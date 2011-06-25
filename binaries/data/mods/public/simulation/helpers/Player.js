@@ -92,7 +92,7 @@ function LoadPlayerSettings(settings)
 			
 			if (getSetting(pData, pDefs, "PopulationLimit") !== undefined)
 			{
-				player.SetPopulationLimit(getSetting(pData, pDefs, "PopulationLimit"));
+				player.SetMaxPopulation(getSetting(pData, pDefs, "PopulationLimit"));
 			}
 			
 			if (getSetting(pData, pDefs, "Resources") !== undefined)

@@ -9,9 +9,9 @@ Player.prototype.Init = function()
 	this.name = undefined;	// define defaults elsewhere (supporting other languages)
 	this.civ = undefined;
 	this.colour = { "r": 0.0, "g": 0.0, "b": 0.0, "a": 1.0 };
-	this.popUsed = 0; // population of units owned by this player
-	this.popReserved = 0; // population of units currently being trained
-	this.popLimit = 0; // maximum population
+	this.popUsed = 0; // population of units owned or trained by this player
+	this.popBonuses = 0; // sum of population bonuses of player's entities
+	this.maxPop = 200; // maximum population
 	this.trainingQueueBlocked = false; // indicates whether any training queue is currently blocked
 	this.resourceCount = {
 		"food": 1000,	
@@ -70,31 +70,36 @@ Player.prototype.GetColour = function()
 
 Player.prototype.TryReservePopulationSlots = function(num)
 {
-	if (num > this.GetPopulationLimit() - this.GetPopulationCount())
+	if (num > (this.GetPopulationLimit() - this.GetPopulationCount()))
 		return false;
 
-	this.popReserved += num;
+	this.popUsed += num;
 	return true;
 };
 
 Player.prototype.UnReservePopulationSlots = function(num)
 {
-	this.popReserved -= num;
+	this.popUsed -= num;
 };
 
 Player.prototype.GetPopulationCount = function()
 {
-	return this.popUsed + this.popReserved;
-};
-
-Player.prototype.SetPopulationLimit = function(limit)
-{
-	this.popLimit = limit;
+	return this.popUsed;
 };
 
 Player.prototype.GetPopulationLimit = function()
 {
-	return this.popLimit;
+	return Math.min(this.maxPop, this.popBonuses);
+};
+
+Player.prototype.SetMaxPopulation = function(max)
+{
+	this.maxPop = max;
+};
+
+Player.prototype.GetMaxPopulation = function()
+{
+	return this.maxPop;
 };
 
 Player.prototype.IsTrainingQueueBlocked = function()
@@ -274,7 +279,7 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 		if (cost)
 		{
 			this.popUsed -= cost.GetPopCost();
-			this.popLimit -= cost.GetPopBonus();
+			this.popBonuses -= cost.GetPopBonus();
 		}
 	}
 	
@@ -287,7 +292,7 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 		if (cost)
 		{
 			this.popUsed += cost.GetPopCost();
-			this.popLimit += cost.GetPopBonus();
+			this.popBonuses += cost.GetPopBonus();
 		}
 	}
 };

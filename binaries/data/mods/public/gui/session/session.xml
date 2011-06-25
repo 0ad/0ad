@@ -360,7 +360,7 @@
 			</object>
 
 			<!-- Population -->
-			<object size="374 0 464 100%" type="image" style="resourceCounter" tooltip="Population (current / maximum)" tooltip_style="sessionToolTipBold">
+			<object size="374 0 464 100%" type="image" style="resourceCounter" tooltip="Population (current / limit)" tooltip_style="sessionToolTipBold">
 				<object size="-2 0 30 28" type="image" style="resourceIcon" cell_id="4"/>
 				<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourcePop"/>
 			</object>
