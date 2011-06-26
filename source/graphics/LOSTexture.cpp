@@ -116,7 +116,14 @@ void CLOSTexture::ConstructTexture(int unit)
 
 	glGenTextures(1, &m_Texture);
 	g_Renderer.BindTexture(unit, m_Texture);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA8, m_TextureSize, m_TextureSize, 0, GL_ALPHA, GL_UNSIGNED_BYTE, 0);
+
+	// Initialise texture with SoD colour, for the areas we don't
+	// overwrite with glTexSubImage2D later
+	u8* texData = new u8[m_TextureSize * m_TextureSize];
+	memset(texData, 0x00, m_TextureSize * m_TextureSize);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA8, m_TextureSize, m_TextureSize, 0, GL_ALPHA, GL_UNSIGNED_BYTE, texData);
+	delete[] texData;
+
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);

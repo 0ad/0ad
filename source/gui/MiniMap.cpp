@@ -459,7 +459,15 @@ void CMiniMap::CreateTextures()
 	// Create terrain texture
 	glGenTextures(1, &m_TerrainTexture);
 	g_Renderer.BindTexture(0, m_TerrainTexture);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_TextureSize, m_TextureSize, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, 0);
+
+	// Initialise texture with solid black, for the areas we don't
+	// overwrite with glTexSubImage2D later
+	u32* texData = new u32[m_TextureSize * m_TextureSize];
+	for (ssize_t i = 0; i < m_TextureSize * m_TextureSize; ++i)
+		texData[i] = 0xFF000000;
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_TextureSize, m_TextureSize, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, texData);
+	delete[] texData;
+
 	m_TerrainData = new u32[(m_MapSize - 1) * (m_MapSize - 1)];
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
