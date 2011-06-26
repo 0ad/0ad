@@ -161,6 +161,7 @@ public:
 		componentManager.SubscribeToMessageType(MT_Update);
 		componentManager.SubscribeToMessageType(MT_RenderSubmit); // for debug overlays
 		componentManager.SubscribeToMessageType(MT_TerrainChanged);
+		componentManager.SubscribeToMessageType(MT_TurnStart);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(Pathfinder)
@@ -187,8 +188,14 @@ public:
 	Grid<TerrainTile>* m_Grid; // terrain/passability information
 	Grid<u8>* m_ObstructionGrid; // cached obstruction information (TODO: we shouldn't bother storing this, it's redundant with LSBs of m_Grid)
 	bool m_TerrainDirty; // indicates if m_Grid has been updated since terrain changed
+	
+	// For responsiveness we will procees some moves in the same turn they were generated in
+	
+	u16 m_MaxSameTurnMoves; // max number of moves that can be created and processed in the same turn
+	u16 m_SameTurnMovesCount; // current number of same turn moves we have processed this turn
 
 	// Debugging - output from last pathfind operation:
+
 	PathfindTileGrid* m_DebugGrid;
 	u32 m_DebugSteps;
 	Path* m_DebugPath;
@@ -241,6 +248,12 @@ public:
 	virtual bool CheckMovement(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, pass_class_t passClass);
 
 	virtual void FinishAsyncRequests();
+
+	virtual void ProcessLongRequests(const std::vector<AsyncLongPathRequest>& longRequests);
+	
+	virtual void ProcessShortRequests(const std::vector<AsyncShortPathRequest>& shortRequests);
+
+	virtual void ProcessSameTurnMoves();
 
 	/**
 	 * Returns the tile containing the given position

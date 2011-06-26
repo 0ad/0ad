@@ -229,6 +229,10 @@ bool CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 	if (!cmpCommandQueue.null())
 		cmpCommandQueue->FlushTurn(commands);
 
+	// Process newly generated move commands so the UI feels snappy
+	if (!cmpPathfinder.null())
+		cmpPathfinder->ProcessSameTurnMoves();
+
 	// Send all the update phases
 	{
 		CMessageUpdate msgUpdate(turnLengthFixed);
@@ -238,6 +242,11 @@ bool CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 		CMessageUpdate_MotionFormation msgUpdate(turnLengthFixed);
 		m_ComponentManager.BroadcastMessage(msgUpdate);
 	}
+
+	// Process move commands for formations (group proxy)
+	if (!cmpPathfinder.null())
+		cmpPathfinder->ProcessSameTurnMoves();
+
 	{
 		CMessageUpdate_MotionUnit msgUpdate(turnLengthFixed);
 		m_ComponentManager.BroadcastMessage(msgUpdate);
@@ -246,6 +255,11 @@ bool CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 		CMessageUpdate_Final msgUpdate(turnLengthFixed);
 		m_ComponentManager.BroadcastMessage(msgUpdate);
 	}
+
+	// Process moves resulting from group proxy movement (unit needs to catch up or realign) and any others
+	if (!cmpPathfinder.null())
+		cmpPathfinder->ProcessSameTurnMoves();
+
 
 	// Clean up any entities destroyed during the simulation update
 	m_ComponentManager.FlushDestroyedComponents();

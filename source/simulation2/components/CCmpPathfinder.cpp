@@ -58,6 +58,9 @@ void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
 	CParamNode externalParamNode;
 	CParamNode::LoadXML(externalParamNode, L"simulation/data/pathfinder.xml");
 
+	const CParamNode pathingSettings = externalParamNode.GetChild("Pathfinder");
+	m_MaxSameTurnMoves = pathingSettings.GetChild("MaxSameTurnMoves").ToInt();
+
 
 	const CParamNode::ChildrenMap& passClasses = externalParamNode.GetChild("Pathfinder").GetChild("PassabilityClasses").GetChildren();
 	for (CParamNode::ChildrenMap::const_iterator it = passClasses.begin(); it != passClasses.end(); ++it)
@@ -197,6 +200,11 @@ void CCmpPathfinder::HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 		// TODO: we ought to only bother updating the dirtied region
 		m_TerrainDirty = true;
+		break;
+	}
+	case MT_TurnStart:
+	{
+		m_SameTurnMovesCount = 0;
 		break;
 	}
 	}
@@ -435,6 +443,12 @@ void CCmpPathfinder::FinishAsyncRequests()
 	// TODO: this computation should be done incrementally, spread
 	// across multiple frames (or even multiple turns)
 
+	ProcessLongRequests(longRequests);
+	ProcessShortRequests(shortRequests);
+}
+
+void CCmpPathfinder::ProcessLongRequests(const std::vector<AsyncLongPathRequest>& longRequests)
+{
 	for (size_t i = 0; i < longRequests.size(); ++i)
 	{
 		const AsyncLongPathRequest& req = longRequests[i];
@@ -443,7 +457,10 @@ void CCmpPathfinder::FinishAsyncRequests()
 		CMessagePathResult msg(req.ticket, path);
 		GetSimContext().GetComponentManager().PostMessage(req.notify, msg);
 	}
+}
 
+void CCmpPathfinder::ProcessShortRequests(const std::vector<AsyncShortPathRequest>& shortRequests)
+{
 	for (size_t i = 0; i < shortRequests.size(); ++i)
 	{
 		const AsyncShortPathRequest& req = shortRequests[i];
@@ -454,3 +471,63 @@ void CCmpPathfinder::FinishAsyncRequests()
 		GetSimContext().GetComponentManager().PostMessage(req.notify, msg);
 	}
 }
+
+void CCmpPathfinder::ProcessSameTurnMoves()
+{
+	u32 moveCount;
+
+	if (m_AsyncLongPathRequests.size() > 0)
+	{
+		// Figure out how many moves we can do this time
+		moveCount = m_MaxSameTurnMoves - m_SameTurnMovesCount;
+	
+		if (moveCount <= 0)
+			return;
+
+		// Copy the long request elements we are going to process into a new array
+		std::vector<AsyncLongPathRequest> longRequests;
+		if (m_AsyncLongPathRequests.size() <= moveCount)
+		{
+			m_AsyncLongPathRequests.swap(longRequests);
+			moveCount = longRequests.size();
+		}
+		else
+		{
+			longRequests.resize(moveCount);
+			copy(m_AsyncLongPathRequests.begin(), m_AsyncLongPathRequests.begin() + moveCount, longRequests.begin());
+			m_AsyncLongPathRequests.erase(m_AsyncLongPathRequests.begin(), m_AsyncLongPathRequests.begin() + moveCount);
+		}
+
+		ProcessLongRequests(longRequests);
+
+		m_SameTurnMovesCount += moveCount;
+	}
+	
+	if (m_AsyncShortPathRequests.size() > 0)
+	{
+		// Figure out how many moves we can do now
+		moveCount = m_MaxSameTurnMoves - m_SameTurnMovesCount;
+
+		if (moveCount <= 0)
+			return;
+
+		// Copy the short request elements we are going to process into a new array
+		std::vector<AsyncShortPathRequest> shortRequests;
+		if (m_AsyncShortPathRequests.size() <= moveCount)
+		{
+			m_AsyncShortPathRequests.swap(shortRequests);
+			moveCount = shortRequests.size();
+		}
+		else
+		{
+			shortRequests.resize(moveCount);
+			copy(m_AsyncShortPathRequests.begin(), m_AsyncShortPathRequests.begin() + moveCount, shortRequests.begin());
+			m_AsyncShortPathRequests.erase(m_AsyncShortPathRequests.begin(), m_AsyncShortPathRequests.begin() + moveCount);
+		}
+
+		ProcessShortRequests(shortRequests);
+
+		m_SameTurnMovesCount += moveCount;
+	}
+}
+

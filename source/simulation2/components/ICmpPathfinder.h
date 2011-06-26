@@ -159,6 +159,11 @@ public:
 	 */
 	virtual void FinishAsyncRequests() = 0;
 
+	/**
+	 * Process moves during the same turn they were created in to improve responsiveness.
+	 */
+	virtual void ProcessSameTurnMoves() = 0;
+
 	DECLARE_INTERFACE_TYPE(Pathfinder)
 };
 
