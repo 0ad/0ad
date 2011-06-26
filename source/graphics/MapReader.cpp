@@ -1140,22 +1140,22 @@ int CMapReader::ParseTerrain()
 
 	// parse terrain from map data
 	//	an error here should stop the loading process
-#define GET_TERRAIN_PROPERTY(prop, out)\
-	if (!pSimulation2->GetScriptInterface().GetProperty(m_MapData.get(), #prop, out))\
+#define GET_TERRAIN_PROPERTY(val, prop, out)\
+	if (!pSimulation2->GetScriptInterface().GetProperty(val, #prop, out))\
 		{	LOGERROR(L"CMapReader::ParseTerrain() failed to get '%hs' property", #prop);\
 			throw PSERROR_Game_World_MapLoadFailed("Error parsing terrain data.\nCheck application log for details"); }
 
 	u32 size;
-	GET_TERRAIN_PROPERTY(size, size)
+	GET_TERRAIN_PROPERTY(m_MapData.get(), size, size)
 
 	m_PatchesPerSide = size / PATCH_SIZE;
 
 	// flat heightmap of u16 data
-	GET_TERRAIN_PROPERTY(height, m_Heightmap)
+	GET_TERRAIN_PROPERTY(m_MapData.get(), height, m_Heightmap)
 
 	// load textures
 	std::vector<std::string> textureNames;
-	GET_TERRAIN_PROPERTY(textureNames, textureNames)
+	GET_TERRAIN_PROPERTY(m_MapData.get(), textureNames, textureNames)
 	num_terrain_tex = textureNames.size();
 
 	while (cur_terrain_tex < num_terrain_tex)
@@ -1170,11 +1170,16 @@ int CMapReader::ParseTerrain()
 	// build tile data
 	m_Tiles.resize(SQR(size));
 
-	// flat array of tile descriptors
-	std::vector<CMapIO::STileDesc> tileData;
-	GET_TERRAIN_PROPERTY(tileData, tileData)
+	CScriptValRooted tileData;
+	GET_TERRAIN_PROPERTY(m_MapData.get(), tileData, tileData)
 
-	ENSURE(SQR(size) == tileData.size());
+	// parse tile data object into flat arrays
+	std::vector<u16> tileIndex;
+	std::vector<u16> tilePriority;
+	GET_TERRAIN_PROPERTY(tileData.get(), index, tileIndex);
+	GET_TERRAIN_PROPERTY(tileData.get(), priority, tilePriority);
+
+	ENSURE(SQR(size) == tileIndex.size() && SQR(size) == tilePriority.size());
 
 	// reorder by patches and store
 	for (size_t x = 0; x < size; ++x)
@@ -1186,7 +1191,11 @@ int CMapReader::ParseTerrain()
 			size_t patchY = y / PATCH_SIZE;
 			size_t offY = y % PATCH_SIZE;
 			
-			m_Tiles[(patchY * m_PatchesPerSide + patchX) * SQR(PATCH_SIZE) + (offY * PATCH_SIZE + offX)] = tileData[y*size + x];
+			STileDesc tile;
+			tile.m_Tex1Index = tileIndex[y*size + x];
+			tile.m_Priority = tilePriority[y*size + x];
+
+			m_Tiles[(patchY * m_PatchesPerSide + patchX) * SQR(PATCH_SIZE) + (offY * PATCH_SIZE + offX)] = tile;
 		}
 	}
 

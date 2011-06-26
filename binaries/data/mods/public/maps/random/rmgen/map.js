@@ -300,7 +300,7 @@ Map.prototype.getMapData = function()
 	// Convert 2D heightmap array to flat array
 	//	Flat because it's easier to handle by the engine
 	var mapSize = size+1;
-	var height16 = new Array(mapSize*mapSize);		// uint16
+	var height16 = new Uint16Array(mapSize*mapSize);		// uint16
 	for (var x = 0; x < mapSize; x++)
 	{
 		for (var z = 0; z < mapSize; z++)
@@ -332,16 +332,18 @@ Map.prototype.getMapData = function()
 	data["textureNames"] = textureNames;
 	
 	//  Convert 2D tile data to flat array
-	var tiles = new Array(size*size);
+	var tileIndex = new Uint16Array(size*size);
+	var tilePriority = new Uint16Array(size*size);
 	for (var x = 0; x < size; x++)
 	{
 		for (var z = 0; z < size; z++)
 		{
 			// TODO: For now just use the texture's index as priority, might want to do this another way
-			tiles[z*size + x] = { "idx": this.texture[x][z], "priority": this.texture[x][z] };
+			tileIndex[z*size + x] = this.texture[x][z];
+			tilePriority[z*size + x] = this.texture[x][z];
 		}
 	}
-	data["tileData"] = tiles;
+	data["tileData"] = {"index": tileIndex, "priority": tilePriority};
 	
 	return data;
 };

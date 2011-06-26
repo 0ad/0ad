@@ -20,7 +20,6 @@
 #include "ScriptInterface.h"
 
 #include "graphics/Entity.h"
-#include "graphics/MapIO.h"
 #include "ps/utf16string.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
@@ -164,21 +163,6 @@ template<> bool ScriptInterface::FromJSVal<Entity>(JSContext* cx, jsval v, Entit
 	if (!JS_GetProperty(cx, obj, "orientation", &orient) || !FromJSVal(cx, orient, out.orientationY))
 		FAIL("Failed to read Entity.orientation property");
 
-	return true;
-}
-
-template<> bool ScriptInterface::FromJSVal<CMapIO::STileDesc>(JSContext* cx, jsval v, CMapIO::STileDesc& out)
-{
-	JSObject* obj;
-	if (!JS_ValueToObject(cx, v, &obj) || obj == NULL)
-		FAIL("Argument must be an object");
-
-	jsval texIdx, priority;
-	if (!JS_GetProperty(cx, obj, "idx", &texIdx) || !FromJSVal(cx, texIdx, out.m_Tex1Index))
-		FAIL("Failed to read CMapIO::STileDesc.m_Tex1Index property");
-	if (!JS_GetProperty(cx, obj, "priority", &priority) || !FromJSVal(cx, priority, out.m_Priority))
-		FAIL("Failed to read CMapIO::STileDesc.m_Priority property");
-	
 	return true;
 }
 
@@ -345,11 +329,6 @@ template<> jsval ScriptInterface::ToJSVal<std::vector<IComponent*> >(JSContext* 
 }
 
 template<> bool ScriptInterface::FromJSVal<std::vector<Entity> >(JSContext* cx, jsval v, std::vector<Entity>& out)
-{
-	return FromJSVal_vector(cx, v, out);
-}
-
-template<> bool ScriptInterface::FromJSVal<std::vector<CMapIO::STileDesc> >(JSContext* cx, jsval v, std::vector<CMapIO::STileDesc>& out)
 {
 	return FromJSVal_vector(cx, v, out);
 }
