@@ -52,12 +52,29 @@ void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
 	m_DebugGrid = NULL;
 	m_DebugPath = NULL;
 
+	m_SameTurnMovesCount = 0;
+
 	// Since this is used as a system component (not loaded from an entity template),
 	// we can't use the real paramNode (it won't get handled properly when deserializing),
 	// so load the data from a special XML file.
 	CParamNode externalParamNode;
 	CParamNode::LoadXML(externalParamNode, L"simulation/data/pathfinder.xml");
 
+    // Previously all move commands during a turn were
+    // queued up and processed asynchronously at the start
+    // of the next turn.  Now we are processing queued up 
+    // events several times duing the turn.  This improves
+    // responsiveness and units move more smoothly especially.
+    // when in formation.  There is still a call at the 
+    // beginning of a turn to process all outstanding moves - 
+    // this will handle any moves above the MaxSameTurnMoves 
+    // threshold.  
+    //
+    // TODO - The moves processed at the beginning of the 
+    // turn do not count against the maximum moves per turn 
+    // currently.  The thinking is that this will eventually 
+    // happen in another thread.  Either way this probably 
+    // will require some adjustment and rethinking.
 	const CParamNode pathingSettings = externalParamNode.GetChild("Pathfinder");
 	m_MaxSameTurnMoves = pathingSettings.GetChild("MaxSameTurnMoves").ToInt();
 
@@ -175,6 +192,7 @@ void CCmpPathfinder::Serialize(ISerializer& serialize)
 	SerializeVector<SerializeLongRequest>()(serialize, "long requests", m_AsyncLongPathRequests);
 	SerializeVector<SerializeShortRequest>()(serialize, "short requests", m_AsyncShortPathRequests);
 	serialize.NumberU32_Unbounded("next ticket", m_NextAsyncTicket);
+	serialize.NumberU16_Unbounded("same turn moves count", m_SameTurnMovesCount);
 }
 
 void CCmpPathfinder::Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
@@ -184,6 +202,7 @@ void CCmpPathfinder::Deserialize(const CParamNode& paramNode, IDeserializer& des
 	SerializeVector<SerializeLongRequest>()(deserialize, "long requests", m_AsyncLongPathRequests);
 	SerializeVector<SerializeShortRequest>()(deserialize, "short requests", m_AsyncShortPathRequests);
 	deserialize.NumberU32_Unbounded("next ticket", m_NextAsyncTicket);
+	deserialize.NumberU16_Unbounded("same turn moves count", m_SameTurnMovesCount);
 }
 
 void CCmpPathfinder::HandleMessage(const CMessage& msg, bool UNUSED(global))
@@ -476,7 +495,7 @@ void CCmpPathfinder::ProcessSameTurnMoves()
 {
 	u32 moveCount;
 
-	if (m_AsyncLongPathRequests.size() > 0)
+	if (!m_AsyncLongPathRequests.empty())
 	{
 		// Figure out how many moves we can do this time
 		moveCount = m_MaxSameTurnMoves - m_SameTurnMovesCount;
@@ -503,7 +522,7 @@ void CCmpPathfinder::ProcessSameTurnMoves()
 		m_SameTurnMovesCount += moveCount;
 	}
 	
-	if (m_AsyncShortPathRequests.size() > 0)
+	if (!m_AsyncShortPathRequests.empty())
 	{
 		// Figure out how many moves we can do now
 		moveCount = m_MaxSameTurnMoves - m_SameTurnMovesCount;

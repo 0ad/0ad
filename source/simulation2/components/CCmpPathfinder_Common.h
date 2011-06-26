@@ -181,6 +181,7 @@ public:
 	std::vector<AsyncLongPathRequest> m_AsyncLongPathRequests;
 	std::vector<AsyncShortPathRequest> m_AsyncShortPathRequests;
 	u32 m_NextAsyncTicket; // unique IDs for asynchronous path requests
+	u16 m_SameTurnMovesCount; // current number of same turn moves we have processed this turn
 
 	// Lazily-constructed dynamic state (not serialized):
 
@@ -189,10 +190,9 @@ public:
 	Grid<u8>* m_ObstructionGrid; // cached obstruction information (TODO: we shouldn't bother storing this, it's redundant with LSBs of m_Grid)
 	bool m_TerrainDirty; // indicates if m_Grid has been updated since terrain changed
 	
-	// For responsiveness we will procees some moves in the same turn they were generated in
+	// For responsiveness we will process some moves in the same turn they were generated in
 	
 	u16 m_MaxSameTurnMoves; // max number of moves that can be created and processed in the same turn
-	u16 m_SameTurnMovesCount; // current number of same turn moves we have processed this turn
 
 	// Debugging - output from last pathfind operation:
 
@@ -249,9 +249,9 @@ public:
 
 	virtual void FinishAsyncRequests();
 
-	virtual void ProcessLongRequests(const std::vector<AsyncLongPathRequest>& longRequests);
+	void ProcessLongRequests(const std::vector<AsyncLongPathRequest>& longRequests);
 	
-	virtual void ProcessShortRequests(const std::vector<AsyncShortPathRequest>& shortRequests);
+	void ProcessShortRequests(const std::vector<AsyncShortPathRequest>& shortRequests);
 
 	virtual void ProcessSameTurnMoves();
 
