@@ -193,6 +193,8 @@ Foundation.prototype.Build = function(builderEnt, work)
 		var cmpBuildingHealth = Engine.QueryInterface(building, IID_Health);
 		cmpBuildingHealth.SetHitpoints(cmpHealth.GetHitpoints());
 
+		PlaySound("constructed", building);
+
 		Engine.PostMessage(this.entity, MT_ConstructionFinished,
 			{ "entity": this.entity, "newentity": building });
 
