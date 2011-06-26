@@ -1193,6 +1193,7 @@ int CMapReader::ParseTerrain()
 			
 			STileDesc tile;
 			tile.m_Tex1Index = tileIndex[y*size + x];
+			tile.m_Tex2Index = 0xFFFF;
 			tile.m_Priority = tilePriority[y*size + x];
 
 			m_Tiles[(patchY * m_PatchesPerSide + patchX) * SQR(PATCH_SIZE) + (offY * PATCH_SIZE + offX)] = tile;
