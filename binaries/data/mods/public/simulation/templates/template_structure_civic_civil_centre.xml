@@ -46,6 +46,13 @@
   <Vision>
     <Range>100</Range>
   </Vision>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_civ_center.xml</select>
+      <constructed>interface/complete/building/complete_civ_center.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
   <GarrisonHolder>
     <Max>20</Max>
 	<EjectHealth>0.1</EjectHealth>

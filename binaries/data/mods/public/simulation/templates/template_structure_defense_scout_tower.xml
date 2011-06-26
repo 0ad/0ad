@@ -42,6 +42,13 @@
   <Vision>
     <Range>100</Range>
   </Vision>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_tower.xml</select>
+      <constructed>interface/complete/building/complete_tower.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
   <GarrisonHolder>
     <Max>5</Max>
 	<EjectHealth>0.1</EjectHealth>

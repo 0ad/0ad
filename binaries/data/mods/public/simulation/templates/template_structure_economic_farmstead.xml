@@ -36,6 +36,13 @@
   <Vision>
     <Range>60</Range>
   </Vision>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_farmstead.xml</select>
+      <constructed>interface/complete/building/complete_farmstead.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
   <ResourceDropsite>
     <Types>food</Types>
   </ResourceDropsite>
