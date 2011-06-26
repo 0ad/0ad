@@ -283,15 +283,8 @@ var UnitFsmSpec = {
 	},
 
 	"Order.Gather": function(msg) {
-		//If target is not visible anymore, give up
-		if (!this.CheckTargetVisible(this.order.data.target))
-		{
-			this.FinishOrder();
-			return;
-		}
-
 		// If the target is still alive, we need to kill it first
-		if (this.MustKillGatherTarget(this.order.data.target))
+		if (this.MustKillGatherTarget(this.order.data.target) && this.CheckTargetVisible(this.order.data.target))
 		{
 			// Make sure we can attack the target, else we'll get very stuck
 			if (!this.GetBestAttack())
@@ -381,6 +374,9 @@ var UnitFsmSpec = {
 	"FORMATIONCONTROLLER": {
 
 		"Order.Walk": function(msg) {
+			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			cmpFormation.CallMemberFunction("SetHeldPosition", [msg.data.x, msg.data.z]);
+
 			this.MoveToPoint(this.order.data.x, this.order.data.z);
 			this.SetNextState("WALKING");
 		},
@@ -733,6 +729,22 @@ var UnitFsmSpec = {
 
 				// TODO: respond to target deaths immediately, rather than waiting
 				// until the next Timer event
+
+				"Attacked": function(msg) {
+					if (this.order.data.target != msg.data.attacker)
+					{
+						// If we're attacked by a close enemy stronger than our current target, we choose to attack him
+						if (this.GetStance().targetAttackers && msg.data.type == "Melee")
+						{
+							var ents = [this.order.data.target, msg.data.attacker];
+							SortEntitiesByPriority(ents);
+							if (ents[0] != this.order.data.target)
+							{
+								this.RespondToTargetedEntities(ents);
+							}
+						}
+					}
+				},
 			},
 
 			"CHASING": {
@@ -2360,6 +2372,7 @@ UnitAI.prototype.FindNewTargets = function()
 	if (!this.GetStance().targetVisibleEnemies)
 		return false;
 
+	SortEntitiesByPriority(ents);
 	return this.RespondToTargetedEntities(ents);
 };
 
