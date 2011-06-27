@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<actor version="1"> 
+  <castshadow/> 
+  <group> 
+    <variant frequency="1" name="Siege Tower"> 
+      <mesh>structural/hele_siege_tower.dae</mesh> 
+      <texture>structural/hele_siege_tower.dds</texture> 
+    </variant> 
+  </group> 
+  <material>player_trans.xml</material>
+</actor>

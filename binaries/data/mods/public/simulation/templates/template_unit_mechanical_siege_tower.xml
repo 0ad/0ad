@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_mechanical_siege">
+  <Identity>
+    <GenericName>Siege Tower</GenericName>
+    <Tooltip>Bonused vs. Walls.</Tooltip>
+  </Identity>
+  <Cost>
+    <Resources>
+      <wood>260</wood>
+      <metal>60</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>200</Max>
+  </Health>
+  <Armour>
+    <Hack>5.0</Hack>
+    <Pierce>20.0</Pierce>
+    <Crush>6.0</Crush>
+  </Armour>
+  <UnitMotion>
+    <WalkSpeed>3.0</WalkSpeed>
+    <Run>
+      <Speed>8.0</Speed>
+    </Run>
+  </UnitMotion>
+  <Attack>
+    <Melee>
+      <Hack>0.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>65.0</Crush>
+      <MaxRange>6.5</MaxRange>
+      <RepeatTime>1500</RepeatTime>
+    </Melee>
+    <Charge>
+      <Hack>0.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>130.0</Crush>
+      <MaxRange>5.0</MaxRange>
+      <MinRange>0.0</MinRange>
+    </Charge>
+  </Attack>
+  <Vision>
+    <Range>48</Range>
+  </Vision>
+  <Sound>
+    <SoundGroups>
+      <select>attack/siege/siege_select.xml</select>
+      <order_walk>attack/siege/ram_move.xml</order_walk>
+      <order_attack>attack/siege/ram_attack.xml</order_attack>
+	  <trained>attack/siege/ram_move.xml</trained>
+    </SoundGroups>
+  </Sound>
+</Entity>
