@@ -6,12 +6,12 @@
       <animations>
         <animation file="quadraped/elephant_idle_01.dae" name="Idle" speed="50"/>
         <animation file="quadraped/elephant_idle_02.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/elephant_walk_01.psa" name="Walk" speed="9"/>
-        <animation file="quadraped/elephant_run_01.psa" name="Run" speed="18"/>
-        <animation event="0.5" file="quadraped/elephant_attack_01.psa" name="Melee" speed="100"/>
-        <animation event="0.5" file="quadraped/elephant_attack_02.psa" name="Melee" speed="100"/>
-        <animation event="0.5" file="quadraped/elephant_attack_03.psa" name="Melee" speed="100"/>
-        <animation file="quadraped/elephant_death_01.psa" name="Death" speed="300"/>
+        <animation file="quadraped/elephant_walk_01.psa" name="Walk" speed="50"/>
+        <animation file="quadraped/elephant_run_01.psa" name="Run" speed="50"/>
+        <animation event="0.5" file="quadraped/elephant_attack_01.psa" name="Melee" speed="50"/>
+        <animation event="0.5" file="quadraped/elephant_attack_02.psa" name="Melee" speed="50"/>
+        <animation event="0.5" file="quadraped/elephant_attack_03.psa" name="Melee" speed="50"/>
+        <animation file="quadraped/elephant_death_01.psa" name="Death" speed="100"/>
       </animations>
       <mesh>skeletal/elephant_asian.pmd</mesh>
       <props>
