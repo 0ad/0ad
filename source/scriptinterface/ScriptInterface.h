@@ -190,9 +190,21 @@ public:
 	template<typename T>
 	bool SetPropertyInt(jsval obj, int name, const T& value, bool constant = false, bool enumerate = true);
 
+	/**
+	 * Get the named property on the given object.
+	 */
 	template<typename T>
 	bool GetProperty(jsval obj, const char* name, T& out);
 
+	/**
+	 * Get the integer-named property on the given object.
+	 */
+	template<typename T>
+	bool GetPropertyInt(jsval obj, int name, T& out);
+
+	/**
+	 * Check the named property has been defined on the given object.
+	 */
 	bool HasProperty(jsval obj, const char* name);
 
 	bool EnumeratePropertyNamesWithPrefix(jsval obj, const char* prefix, std::vector<std::string>& out);
@@ -311,6 +323,7 @@ private:
 	bool SetProperty_(jsval obj, const char* name, jsval value, bool readonly, bool enumerate);
 	bool SetPropertyInt_(jsval obj, int name, jsval value, bool readonly, bool enumerate);
 	bool GetProperty_(jsval obj, const char* name, jsval& value);
+	bool GetPropertyInt_(jsval obj, int name, jsval& value);
 	static bool IsExceptionPending(JSContext* cx);
 	static JSClass* GetClass(JSContext* cx, JSObject* obj);
 	static void* GetPrivate(JSContext* cx, JSObject* obj);
@@ -456,6 +469,15 @@ bool ScriptInterface::GetProperty(jsval obj, const char* name, T& out)
 {
 	jsval val;
 	if (! GetProperty_(obj, name, val))
+		return false;
+	return FromJSVal(GetContext(), val, out);
+}
+
+template<typename T>
+bool ScriptInterface::GetPropertyInt(jsval obj, int name, T& out)
+{
+	jsval val;
+	if (! GetPropertyInt_(obj, name, val))
 		return false;
 	return FromJSVal(GetContext(), val, out);
 }

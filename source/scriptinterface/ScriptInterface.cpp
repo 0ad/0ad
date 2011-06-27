@@ -716,6 +716,17 @@ bool ScriptInterface::GetProperty_(jsval obj, const char* name, jsval& out)
 	return true;
 }
 
+bool ScriptInterface::GetPropertyInt_(jsval obj, int name, jsval& out)
+{
+	if (! JSVAL_IS_OBJECT(obj))
+		return false;
+	JSObject* object = JSVAL_TO_OBJECT(obj);
+
+	if (!JS_GetPropertyById(m->m_cx, object, INT_TO_JSID(name), &out))
+		return false;
+	return true;
+}
+
 bool ScriptInterface::HasProperty(jsval obj, const char* name)
 {
 	if (! JSVAL_IS_OBJECT(obj))

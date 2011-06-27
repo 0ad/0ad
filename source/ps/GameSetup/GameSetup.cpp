@@ -934,6 +934,7 @@ bool Autostart(const CmdLineArgs& args)
 	/*
 	 * Handle various command-line options, for quick testing of various features:
 	 * -autostart=name					-- map name for scenario, or rms name for random map
+	 * -autostart-ai=1:dummybot			-- adds the dummybot AI to player 1
 	 * -autostart-playername=name		-- multiplayer player name
 	 * -autostart-host					-- multiplayer host mode
 	 * -autostart-players=2				-- number of players
@@ -1038,18 +1039,17 @@ bool Autostart(const CmdLineArgs& args)
 
 	// Set player data for AIs
 	//		attrs.settings = { PlayerData: [ { AI: ... }, ... ] }:
-
-	/*
-	 * Handle command-line options for AI:
-	 *  -autostart-ai=1:dummybot -autostart-ai=2:dummybot        -- adds the dummybot AI to players 1 and 2
-	 */
 	if (args.Has("autostart-ai"))
 	{
 		std::vector<CStr> aiArgs = args.GetMultiple("autostart-ai");
 		for (size_t i = 0; i < aiArgs.size(); ++i)
 		{
+			// Instead of overwriting existing player data, modify the array
 			CScriptVal player;
-			scriptInterface.Eval("({})", player);
+			if (!scriptInterface.GetPropertyInt(playerData.get(), i, player) || player.undefined())
+			{
+				scriptInterface.Eval("({})", player);
+			}
 
 			int playerID = aiArgs[i].BeforeFirst(":").ToInt();
 			CStr name = aiArgs[i].AfterFirst(":");
