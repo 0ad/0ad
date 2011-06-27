@@ -17,12 +17,12 @@
     <TurnRate>1.0</TurnRate>
   </Position>
   <UnitMotionFlying>
-    <MaxSpeed>30.0</MaxSpeed>
-    <AccelRate>8.0</AccelRate>
+    <MaxSpeed>40.0</MaxSpeed>
+    <AccelRate>15.0</AccelRate>
     <TurnRate>1.0</TurnRate>
     <OvershootTime>2.0</OvershootTime>
-    <FlyingHeight>30.0</FlyingHeight>
-    <ClimbRate>6.0</ClimbRate>
+    <FlyingHeight>50.0</FlyingHeight>
+    <ClimbRate>5.0</ClimbRate>
   </UnitMotionFlying>
   <Attack>
     <Ranged>
@@ -31,9 +31,9 @@
       <Crush>25.0</Crush>
       <MaxRange>48</MaxRange>
       <MinRange>24</MinRange>
-      <ProjectileSpeed>50.0</ProjectileSpeed>
+      <ProjectileSpeed>60.0</ProjectileSpeed>
       <PrepareTime>0</PrepareTime>
-      <RepeatTime>1000</RepeatTime>
+      <RepeatTime>2000</RepeatTime>
     </Ranged>
   </Attack>
 </Entity>
