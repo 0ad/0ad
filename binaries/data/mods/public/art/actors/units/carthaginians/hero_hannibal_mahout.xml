@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="quadraped/elephant_rider_idle.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/elephant_rider_idle.psa" name="Walk" speed="18"/>
+        <animation file="quadraped/elephant_rider_idle.psa" name="Run" speed="8"/>
+        <animation file="quadraped/elephant_rider_idle.psa" name="melee" speed="50"/>
+        <animation file="biped/rider_sword_death_a.psa" name="death" speed="100"/>
+      </animations>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_numid_all.xml" attachpoint="head"/>
+      </props>
+      <texture>skeletal/hele_isp_b_2.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

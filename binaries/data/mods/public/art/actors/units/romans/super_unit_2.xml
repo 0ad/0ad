@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="100"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="100"/>
+        <animation file="quadraped/horse_attack_a.psa" name="Idle" speed="100"/>
+        <animation file="quadraped/horse_attack_b.psa" name="Idle" speed="100"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="8"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="18"/>
+        <animation file="quadraped/horse_attack_a.psa" name="melee" speed="150"/>
+        <animation file="quadraped/horse_attack_b.psa" name="melee" speed="150"/>
+        <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
+      </animations>
+      <mesh>skeletal/horse.pmd</mesh>
+      <props>
+        <prop actor="units/romans/super_unit_2_r.xml" attachpoint="rider"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="horse-texture-dapel">
+      <texture>skeletal/horse_rome_su2_01.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="horse-color-black">
+      <colour>35 35 35</colour>
+    </variant>
+    <variant frequency="1" name="horse-color-brown">
+      <colour>145 85 45</colour>
+    </variant>
+    <variant frequency="1" name="horse-color-roan">
+      <colour>210 190 125</colour>
+    </variant>
+    <variant frequency="1" name="horse-color-white">
+      <colour>255 255 255</colour>
+    </variant>
+  </group>
+
+  <material>objectcolor.xml</material>
+
+</actor>
