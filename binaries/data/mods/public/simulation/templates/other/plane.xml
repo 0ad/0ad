@@ -2,14 +2,15 @@
 <Entity parent="template_unit">
   <Identity>
     <Civ>hele</Civ>
-    <SpecificName>Aeroplane</SpecificName>
+    <SpecificName>P-51 Mustang</SpecificName>
     <History>This may be anachronistic.</History>
+	<Tooltip>A World War 2 American fighter plane.</Tooltip>
   </Identity>
   <VisualActor>
     <Actor>units/global/plane.xml</Actor> <!-- only using this because its flaming projectiles look nice -->
   </VisualActor>
     <Vision>
-    <Range>80</Range>
+    <Range>100</Range>
   </Vision>
   <Obstruction disable=""/>
   <UnitMotion disable=""/>
