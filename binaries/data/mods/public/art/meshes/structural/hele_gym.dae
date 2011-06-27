@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2010-11-27T08:59:43Z</created>
-    <modified>2010-11-27T08:59:43Z</modified>
+    <created>2011-06-27T20:27:07Z</created>
+    <modified>2011-06-27T20:27:07Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -17,7 +17,7 @@
   </asset>
   <library_images>
     <image id="Map__314-image" name="Map__314">
-      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\structural\hele_struct.png</init_from>
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\structural\hele_struct.png</init_from>
     </image>
   </library_images>
   <library_materials>
@@ -71,10 +71,10 @@
     </effect>
   </library_effects>
   <library_geometries>
-    <geometry id="stoa_005-lib" name="stoa_005Mesh">
+    <geometry id="Gymnasion-lib" name="GymnasionMesh">
       <mesh>
-        <source id="stoa_005-lib-Position">
-          <float_array id="stoa_005-lib-Position-array" count="1485">
+        <source id="Gymnasion-lib-Position">
+          <float_array id="Gymnasion-lib-Position-array" count="1485">
 -12.744590 -1.448699 -12.795520
 -14.006290 -1.448699 -12.795520
 -14.006290 -6.927800 -12.795520
@@ -572,15 +572,15 @@
 -5.714799 -7.563338 -5.868080
 </float_array>
           <technique_common>
-            <accessor source="#stoa_005-lib-Position-array" count="495" stride="3">
+            <accessor source="#Gymnasion-lib-Position-array" count="495" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="stoa_005-lib-Normal0">
-          <float_array id="stoa_005-lib-Normal0-array" count="5652">
+        <source id="Gymnasion-lib-Normal0">
+          <float_array id="Gymnasion-lib-Normal0-array" count="5652">
 0.000000 0.000000 1.000000
 0.000000 0.000000 1.000000
 0.000000 0.000000 1.000000
@@ -2467,15 +2467,15 @@
 1.000000 0.000000 0.000697
 </float_array>
           <technique_common>
-            <accessor source="#stoa_005-lib-Normal0-array" count="1884" stride="3">
+            <accessor source="#Gymnasion-lib-Normal0-array" count="1884" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="stoa_005-lib-UV0">
-          <float_array id="stoa_005-lib-UV0-array" count="3930">
+        <source id="Gymnasion-lib-UV0">
+          <float_array id="Gymnasion-lib-UV0-array" count="3930">
 0.838100 0.059900
 0.913800 0.059900
 0.913800 0.525300
@@ -4443,19 +4443,19 @@
 0.000000 1.000000
 </float_array>
           <technique_common>
-            <accessor source="#stoa_005-lib-UV0-array" count="1965" stride="2">
+            <accessor source="#Gymnasion-lib-UV0-array" count="1965" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="stoa_005-lib-Vertex">
-          <input semantic="POSITION" source="#stoa_005-lib-Position"/>
+        <vertices id="Gymnasion-lib-Vertex">
+          <input semantic="POSITION" source="#Gymnasion-lib-Position"/>
         </vertices>
         <polygons material="_14___Default" count="628">
-          <input semantic="VERTEX" offset="0" source="#stoa_005-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#stoa_005-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#stoa_005-lib-UV0"/>
+          <input semantic="VERTEX" offset="0" source="#Gymnasion-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#Gymnasion-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#Gymnasion-lib-UV0"/>
           <p>0 0 0 1 1 1 2 2 2</p>
           <p>0 3 3 2 4 4 3 5 5</p>
           <p>4 6 6 5 7 7 6 8 8</p>
@@ -5088,50 +5088,11 @@
       </mesh>
     </geometry>
   </library_geometries>
-  <library_animations>
-    <animation id="stoa_005-anim" name="stoa_005">
-      <animation>
-        <source id="stoa_005-Matrix-animation-input">
-          <float_array id="stoa_005-Matrix-animation-input-array" count="0">
-</float_array>
-          <technique_common>
-            <accessor source="#stoa_005-Matrix-animation-input-array" count="0">
-              <param name="TIME" type="float"/>
-            </accessor>
-          </technique_common>
-        </source>
-        <source id="stoa_005-Matrix-animation-output-transform">
-          <float_array id="stoa_005-Matrix-animation-output-transform-array" count="0">
-</float_array>
-          <technique_common>
-            <accessor source="#stoa_005-Matrix-animation-output-transform-array" count="0" stride="16">
-              <param type="float4x4"/>
-            </accessor>
-          </technique_common>
-        </source>
-        <source id="stoa_005-Interpolations">
-          <Name_array id="stoa_005-Interpolations-array" count="0">
-</Name_array>
-          <technique_common>
-            <accessor source="#stoa_005-Interpolations-array" count="0">
-              <param type="name"/>
-            </accessor>
-          </technique_common>
-        </source>
-        <sampler id="stoa_005-Matrix-animation-transform">
-          <input semantic="INPUT" source="#stoa_005-Matrix-animation-input"/>
-          <input semantic="OUTPUT" source="#stoa_005-Matrix-animation-output-transform"/>
-          <input semantic="INTERPOLATION" source="#stoa_005-Interpolations"/>
-        </sampler>
-        <channel source="#stoa_005-Matrix-animation-transform" target="stoa_005/matrix"/>
-      </animation>
-    </animation>
-  </library_animations>
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
-      <node id="stoa_005" name="stoa_005">
-        <matrix sid="matrix">-0.868833 -0.000000 -0.000000 -0.000536 0.000000 -0.868833 -0.000000 -0.007796 -0.000000 -0.000000 0.868833 -0.170071 0.000000 0.000000 0.000000 1.000000</matrix>
-        <instance_geometry url="#stoa_005-lib">
+      <node id="Gymnasion" name="Gymnasion">
+        <matrix sid="matrix">-0.868833 -0.000000 -0.000000 0.000000 0.000000 -0.868833 -0.000000 -0.007796 -0.000000 -0.000000 0.868833 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#Gymnasion-lib">
           <bind_material>
             <technique_common>
               <instance_material symbol="_14___Default" target="#_14___Default"/>

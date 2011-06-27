@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2011-06-27T21:17:16Z</created>
+    <modified>2011-06-27T21:17:16Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__346-image" name="Map__346">
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\structural\rooftiles_broken.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="Material__13" name="Material__13">
+      <instance_effect url="#Material__13-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="Material__13-fx" name="Material__13">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__346-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="Farmstead_Broken_Roof-lib" name="Farmstead_Broken_RoofMesh">
+      <mesh>
+        <source id="Farmstead_Broken_Roof-lib-Position">
+          <float_array id="Farmstead_Broken_Roof-lib-Position-array" count="48">
+-8.252415 -7.554108 7.636603
+-7.891880 -7.806557 7.537033
+-4.194530 -1.759834 7.636826
+-3.833984 -2.012291 7.537227
+-0.393360 -4.421444 6.017253
+-0.390495 -4.423447 6.175466
+-4.450779 -10.216045 6.017253
+-4.447914 -10.218044 6.175466
+-3.904232 -1.963104 7.191600
+-4.177532 -1.771736 7.251236
+-0.616879 -4.264931 5.900190
+-4.674297 -10.059532 5.900190
+-7.961651 -7.757702 7.191600
+-7.891407 -7.806889 7.537227
+-8.234951 -7.566334 7.251236
+-8.251949 -7.554432 7.636826
+</float_array>
+          <technique_common>
+            <accessor source="#Farmstead_Broken_Roof-lib-Position-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Farmstead_Broken_Roof-lib-Normal0">
+          <float_array id="Farmstead_Broken_Roof-lib-Normal0-array" count="144">
+0.180720 -0.126601 0.975353
+0.180720 -0.126601 0.975353
+0.180720 -0.126601 0.975352
+0.180766 -0.126629 0.975340
+0.180766 -0.126629 0.975340
+0.180766 -0.126629 0.975340
+0.818952 -0.573436 -0.022088
+0.818952 -0.573436 -0.022088
+0.818952 -0.573436 -0.022088
+0.818953 -0.573436 -0.022075
+0.818953 -0.573436 -0.022075
+0.818953 -0.573436 -0.022075
+0.252443 -0.176762 0.951330
+0.252443 -0.176762 0.951330
+0.252443 -0.176762 0.951330
+0.252349 -0.176759 0.951355
+0.252349 -0.176759 0.951355
+0.252349 -0.176759 0.951355
+0.573575 0.819153 -0.000003
+0.573575 0.819153 -0.000003
+0.573575 0.819153 -0.000003
+0.573579 0.819150 0.000001
+0.573579 0.819150 0.000001
+0.573579 0.819150 0.000001
+0.573577 0.819152 0.000002
+0.573577 0.819152 0.000002
+0.573577 0.819152 0.000002
+0.573575 0.819153 -0.000003
+0.573575 0.819153 -0.000003
+0.573575 0.819153 -0.000003
+0.573592 0.819141 -0.000017
+0.573592 0.819141 -0.000017
+0.573592 0.819141 -0.000017
+-0.573599 -0.819136 0.000037
+-0.573599 -0.819136 0.000037
+-0.573599 -0.819136 0.000037
+-0.573577 -0.819152 -0.000003
+-0.573577 -0.819152 -0.000003
+-0.573577 -0.819152 -0.000003
+-0.573574 -0.819154 0.000006
+-0.573574 -0.819154 0.000006
+-0.573574 -0.819154 0.000006
+-0.573579 -0.819150 -0.000001
+-0.573579 -0.819150 -0.000001
+-0.573579 -0.819150 -0.000001
+-0.573580 -0.819149 -0.000002
+-0.573580 -0.819149 -0.000002
+-0.573580 -0.819149 -0.000002
+</float_array>
+          <technique_common>
+            <accessor source="#Farmstead_Broken_Roof-lib-Normal0-array" count="48" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Farmstead_Broken_Roof-lib-UV0">
+          <float_array id="Farmstead_Broken_Roof-lib-UV0-array" count="38">
+0.677287 0.921565
+0.677415 0.996517
+0.157500 0.921717
+0.157995 0.996517
+0.153292 0.008233
+0.153357 0.061202
+0.675059 0.008233
+0.675059 0.061202
+0.155197 0.067053
+0.155275 0.903917
+0.674968 0.067053
+0.674968 0.903917
+0.804236 0.992684
+0.803749 0.912195
+0.873464 0.992684
+0.855410 0.912195
+0.395210 0.992684
+0.415274 0.912195
+0.379997 0.944606
+</float_array>
+          <technique_common>
+            <accessor source="#Farmstead_Broken_Roof-lib-UV0-array" count="19" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Farmstead_Broken_Roof-lib-Vertex">
+          <input semantic="POSITION" source="#Farmstead_Broken_Roof-lib-Position"/>
+        </vertices>
+        <polygons material="Material__13" count="16">
+          <input semantic="VERTEX" offset="0" source="#Farmstead_Broken_Roof-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#Farmstead_Broken_Roof-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#Farmstead_Broken_Roof-lib-UV0"/>
+          <p>0 0 0 1 1 1 2 2 2</p>
+          <p>2 3 2 1 4 1 3 5 3</p>
+          <p>4 6 4 5 7 5 6 8 6</p>
+          <p>6 9 6 5 10 5 7 11 7</p>
+          <p>5 12 8 3 13 9 7 14 10</p>
+          <p>7 15 10 3 16 9 1 17 11</p>
+          <p>3 18 12 8 19 13 2 20 14</p>
+          <p>2 21 14 8 22 13 9 23 15</p>
+          <p>5 24 16 10 25 17 3 26 12</p>
+          <p>3 27 12 10 28 17 8 29 13</p>
+          <p>4 30 18 10 31 17 5 32 16</p>
+          <p>7 33 16 11 34 17 6 35 18</p>
+          <p>12 36 13 11 37 17 13 38 12</p>
+          <p>13 39 12 11 40 17 7 41 16</p>
+          <p>14 42 15 12 43 13 15 44 14</p>
+          <p>15 45 14 12 46 13 13 47 12</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="Farmstead_Broken_Roof" name="Farmstead_Broken_Roof">
+        <matrix sid="matrix">-0.866026 0.500000 -0.000000 -7.378251 -0.000000 -0.000000 1.000000 -0.770118 0.500000 0.866026 0.000000 4.501250 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#Farmstead_Broken_Roof-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material__13" target="#Material__13"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+
