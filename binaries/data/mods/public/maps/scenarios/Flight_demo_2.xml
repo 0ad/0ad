@@ -3,29 +3,29 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>default</SkySet>
+		<SkySet>sunny</SkySet>
 		<SunColour r="0.74902" g="0.74902" b="0.74902"/>
 		<SunElevation angle="0.785398"/>
-		<SunRotation angle="5.49779"/>
+		<SunRotation angle="0.908117"/>
 		<TerrainAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.3" g="0.35" b="0.7"/>
-				<Height>5</Height>
-				<Shininess>150</Shininess>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Height>16.3672</Height>
+				<Shininess>0.244141</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.45</Murkiness>
-				<Tint r="0.28" g="0.3" b="0.59"/>
-				<ReflectionTint r="0.28" g="0.3" b="0.59"/>
-				<ReflectionTintStrength>0</ReflectionTintStrength>
+				<Murkiness>0.449219</Murkiness>
+				<Tint r="0" g="1" b="0.25098"/>
+				<ReflectionTint r="0" g="0.501961" b="1"/>
+				<ReflectionTintStrength>0.371094</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="270.364" y="112.205" z="199.118"/>
-		<Rotation angle="0.121659"/>
+		<Position x="282.507" y="123.066" z="179.232"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -47,7 +47,19 @@
         "g": 80,
         "r": 80
       },
-      "Name": "Player 1"
+      "Name": "Player 1",
+      "StartingCamera": {
+        "Position": {
+          "x": 288.285,
+          "y": 22.3825,
+          "z": 378.388
+        },
+        "Rotation": {
+          "x": 30,
+          "y": 0,
+          "z": 0
+        }
+      }
     },
     {
       "AI": "jubot",
@@ -57,7 +69,19 @@
         "g": 20,
         "r": 150
       },
-      "Name": "Player 2"
+      "Name": "Player 2",
+      "StartingCamera": {
+        "Position": {
+          "x": 776.249,
+          "y": 22.3825,
+          "z": 542.534
+        },
+        "Rotation": {
+          "x": 30,
+          "y": 0,
+          "z": 0
+        }
+      }
     }
   ],
   "RevealMap": false
@@ -645,6 +669,16 @@
 			<Player>0</Player>
 			<Position x="259.36191" z="287.67615"/>
 			<Orientation y="-0.63311"/>
+		</Entity>
+		<Entity uid="127">
+			<Template>actor|props/special/eyecandy/control_tower.xml</Template>
+			<Position x="355.21055" z="374.68622"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="128">
+			<Template>actor|props/special/eyecandy/control_tower.xml</Template>
+			<Position x="676.7262" z="547.16852"/>
+			<Orientation y="-2.23951"/>
 		</Entity>
 	</Entities>
 	<Paths/>
