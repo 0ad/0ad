@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="base">
       <animations>
@@ -12,15 +10,13 @@
       </animations>
       <mesh>structural/celt_char_a.dae</mesh>
       <props>
-        <prop actor="units/celts/super_unit_4_h.xml" attachpoint="horseright"/>
-        <prop actor="units/celts/super_unit_4_h2.xml" attachpoint="horseleft"/>
-        <prop actor="units/celts/super_unit_4_d.xml" attachpoint="driver"/>
-        <prop actor="units/celts/super_unit_4_r.xml" attachpoint="rider"/>
+        <prop actor="units/celts/champion_unit_4_h.xml" attachpoint="horseright"/>
+        <prop actor="units/celts/champion_unit_4_h2.xml" attachpoint="horseleft"/>
+        <prop actor="units/celts/champion_unit_4_d.xml" attachpoint="driver"/>
+        <prop actor="units/celts/champion_unit_4_r.xml" attachpoint="rider"/>
       </props>
       <texture>structural/celt_chariot_a.dds</texture>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>
