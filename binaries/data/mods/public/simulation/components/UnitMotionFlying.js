@@ -189,6 +189,11 @@ UnitMotionFlying.prototype.FaceTowardsPoint = function(x, z)
 	// Ignore this - angle is controlled by the target-seeking code instead
 };
 
+UnitMotionFlying.prototype.StopMoving = function()
+{
+	// Ignore this - we can never stop moving
+};
+
 UnitMotionFlying.prototype.SetDebugOverlay = function(enabled)
 {
 };
