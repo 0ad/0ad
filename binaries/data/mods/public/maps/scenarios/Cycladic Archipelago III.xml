@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="446.385" y="116.645" z="259.675"/>
-		<Rotation angle="-0.00100936"/>
-		<Declination angle="0.512417"/>
+		<Position x="454.98" y="117.963" z="265.693"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -36,7 +36,9 @@
   ],
   "CircularMap": true,
   "Description": "A \"small island\"-style map set in the Aegean Sea.\u000a\u000aMap size: Very Large",
+  "GameType": "conquest",
   "Keywords": [],
+  "LockTeams": false,
   "MapType": "conquest",
   "Name": "Cycladic Archipelago III",
   "PlayerData": [
@@ -54,8 +56,7 @@
         "metal": 1000,
         "stone": 500,
         "wood": 1000
-      },
-      "Team": 0
+      }
     },
     {
       "Civ": "hele",
@@ -71,8 +72,7 @@
         "metal": 1000,
         "stone": 500,
         "wood": 1000
-      },
-      "Team": 0
+      }
     }
   ],
   "RevealMap": false,
@@ -19301,6 +19301,66 @@
 			<Template>structures/hele_temple</Template>
 			<Player>2</Player>
 			<Position x="1443.91321" z="1103.98194"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3641">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="454.29029" z="384.68345"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3642">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="456.8686" z="387.4278"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3643">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="459.1508" z="390.25638"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3644">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="460.81067" z="391.83613"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3645">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="462.88935" z="393.98444"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3646">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="1435.3053" z="1054.93763"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3647">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="1437.32007" z="1057.01941"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3648">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="1439.63965" z="1059.34925"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3649">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="1441.86268" z="1061.75757"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3650">
+			<Template>units/hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="1444.29468" z="1063.69971"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
