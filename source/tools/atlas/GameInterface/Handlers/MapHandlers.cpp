@@ -69,7 +69,7 @@ namespace
 		// Disable fog-of-war
 		CmpPtr<ICmpRangeManager> cmpRangeManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
 		if (!cmpRangeManager.null())
-			cmpRangeManager->SetLosRevealAll(true);
+			cmpRangeManager->SetLosRevealAll(-1, true);
 	}
 }
 

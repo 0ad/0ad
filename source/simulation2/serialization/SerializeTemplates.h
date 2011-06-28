@@ -114,6 +114,32 @@ struct SerializeU32_Unbounded
 	}
 };
 
+struct SerializeI32_Unbounded
+{
+	void operator()(ISerializer& serialize, const char* name, i32 value)
+	{
+		serialize.NumberI32_Unbounded(name, value);
+	}
+
+	void operator()(IDeserializer& deserialize, const char* name, i32& value)
+	{
+		deserialize.NumberI32_Unbounded(name, value);
+	}
+};
+
+struct SerializeBool
+{
+	void operator()(ISerializer& serialize, const char* name, bool value)
+	{
+		serialize.Bool(name, value);
+	}
+
+	void operator()(IDeserializer& deserialize, const char* name, bool& value)
+	{
+		deserialize.Bool(name, value);
+	}
+};
+
 struct SerializeScriptVal
 {
 	void operator()(ISerializer& serialize, const char* name, CScriptValRooted value)

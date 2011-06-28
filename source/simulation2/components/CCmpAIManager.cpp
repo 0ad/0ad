@@ -32,6 +32,7 @@
 #include "simulation2/components/ICmpAIInterface.h"
 #include "simulation2/components/ICmpCommandQueue.h"
 #include "simulation2/components/ICmpObstructionManager.h"
+#include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/components/ICmpTemplateManager.h"
 #include "simulation2/helpers/Grid.h"
 #include "simulation2/serialization/DebugSerializer.h"
@@ -537,9 +538,17 @@ public:
 		}
 		}
 	}
+
 	virtual void AddPlayer(std::wstring id, player_id_t player)
 	{
 		m_Worker.AddPlayer(id, player, true);
+
+		// AI players can cheat and see through FoW/SoD, since that greatly simplifies
+		// their implementation.
+		// (TODO: maybe cleverer AIs should be able to optionally retain FoW/SoD)
+		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
+		if (!cmpRangeManager.null())
+			cmpRangeManager->SetLosRevealAll(player, true);
 	}
 
 	virtual void StartComputation()

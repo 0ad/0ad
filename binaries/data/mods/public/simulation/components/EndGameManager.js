@@ -122,9 +122,10 @@ EndGameManager.prototype.UpdatePlayerStates = function()
 				var cmpPlayer = Engine.QueryInterface(playerEntityId, IID_Player);
 				cmpPlayer.SetState("won");
 			}
-			
+
+			// Reveal the map to all players
 			var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-			cmpRangeManager.SetLosRevealAll(true);
+			cmpRangeManager.SetLosRevealAll(-1, true);
 		}
 
 		break;

@@ -152,7 +152,7 @@ ActorViewer::ActorViewer()
 
 	CmpPtr<ICmpRangeManager> cmpRangeManager(m.Simulation2, SYSTEM_ENTITY);
 	if (!cmpRangeManager.null())
-		cmpRangeManager->SetLosRevealAll(true);
+		cmpRangeManager->SetLosRevealAll(-1, true);
 }
 
 ActorViewer::~ActorViewer()

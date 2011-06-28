@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -185,7 +185,7 @@ public:
 
 	// LOS state:
 
-	bool m_LosRevealAll;
+	std::map<player_id_t, bool> m_LosRevealAll;
 	bool m_LosCircular;
 	i32 m_TerrainVerticesPerSide;
 
@@ -222,7 +222,10 @@ public:
 		// SetBounds is called)
 		ResetSubdivisions(entity_pos_t::FromInt(1), entity_pos_t::FromInt(1));
 
-		m_LosRevealAll = false;
+		// The whole map should be visible to Gaia by default, else e.g. animals
+		// will get confused when trying to run from enemies
+		m_LosRevealAll[0] = true;
+
 		m_LosCircular = false;
 		m_TerrainVerticesPerSide = 0;
 	}
@@ -243,7 +246,7 @@ public:
 		SerializeMap<SerializeU32_Unbounded, SerializeQuery>()(serialize, "queries", m_Queries);
 		SerializeMap<SerializeU32_Unbounded, SerializeEntityData>()(serialize, "entity data", m_EntityData);
 
-		serialize.Bool("los reveal all", m_LosRevealAll);
+		SerializeMap<SerializeI32_Unbounded, SerializeBool>()(serialize, "los reveal all", m_LosRevealAll);
 		serialize.Bool("los circular", m_LosCircular);
 		serialize.NumberI32_Unbounded("terrain verts per side", m_TerrainVerticesPerSide);
 
@@ -557,11 +560,11 @@ public:
 		return r;
 	}
 
-	virtual std::vector<entity_id_t> GetEntitiesByPlayer(int playerId)
+	virtual std::vector<entity_id_t> GetEntitiesByPlayer(player_id_t player)
 	{
 		std::vector<entity_id_t> entities;
 
-		u32 ownerMask = CalcOwnerMask(playerId);
+		u32 ownerMask = CalcOwnerMask(player);
 
 		for (std::map<entity_id_t, EntityData>::const_iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
 		{
@@ -800,15 +803,15 @@ public:
 
 	// LOS implementation:
 
-	virtual CLosQuerier GetLosQuerier(int player)
+	virtual CLosQuerier GetLosQuerier(player_id_t player)
 	{
-		if (m_LosRevealAll)
+		if (GetLosRevealAll(player))
 			return CLosQuerier(player, m_LosStateRevealed, m_TerrainVerticesPerSide);
 		else
 			return CLosQuerier(player, m_LosState, m_TerrainVerticesPerSide);
 	}
 
-	virtual ELosVisibility GetLosVisibility(entity_id_t ent, int player)
+	virtual ELosVisibility GetLosVisibility(entity_id_t ent, player_id_t player)
 	{
 		// (We can't use m_EntityData since this needs to handle LOCAL entities too)
 
@@ -822,8 +825,8 @@ public:
 		int i = (pos.X / (int)CELL_SIZE).ToInt_RoundToNearest();
 		int j = (pos.Y / (int)CELL_SIZE).ToInt_RoundToNearest();
 
-		// Global flag makes all positioned entities visible
-		if (m_LosRevealAll)
+		// Reveal flag makes all positioned entities visible
+		if (GetLosRevealAll(player))
 		{
 			if (LosIsOffWorld(i, j))
 				return VIS_HIDDEN;
@@ -850,18 +853,26 @@ public:
 		return VIS_HIDDEN;
 	}
 
-	virtual void SetLosRevealAll(bool enabled)
+	virtual void SetLosRevealAll(player_id_t player, bool enabled)
 	{
-		// Eventually we might want this to be a per-player flag (which is why
-		// GetLosRevealAll takes a player argument), but currently it's just a
-		// global setting since I can't quite work out where per-player would be useful
-
-		m_LosRevealAll = enabled;
+		m_LosRevealAll[player] = enabled;
 	}
 
-	virtual bool GetLosRevealAll(int UNUSED(player))
+	virtual bool GetLosRevealAll(player_id_t player)
 	{
-		return m_LosRevealAll;
+		std::map<player_id_t, bool>::const_iterator it;
+
+		// Special player value can force reveal-all for every player
+		it = m_LosRevealAll.find(-1);
+		if (it != m_LosRevealAll.end() && it->second)
+			return true;
+
+		// Otherwise check the player-specific flag
+		it = m_LosRevealAll.find(player);
+		if (it != m_LosRevealAll.end() && it->second)
+			return true;
+
+		return false;
 	}
 
 	virtual void SetLosCircular(bool enabled)
@@ -1181,11 +1192,11 @@ public:
 		}
 	}
 
-	virtual i32 GetPercentMapExplored(player_id_t playerId)
+	virtual i32 GetPercentMapExplored(player_id_t player)
 	{
 		i32 exploredVertices = 0;
 		i32 overallVisibleVertices = 0;
-		CLosQuerier los(playerId, m_LosState, m_TerrainVerticesPerSide);
+		CLosQuerier los(player, m_LosState, m_TerrainVerticesPerSide);
 
 		for (i32 j = 0; j < m_TerrainVerticesPerSide; j++)
 		{

@@ -17,8 +17,10 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "reveal-map":
+		// Reveal the map for all players, not just the current player,
+		// primarily to make it obvious to everyone that the player is cheating
 		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		cmpRangeManager.SetLosRevealAll(cmd.enable);
+		cmpRangeManager.SetLosRevealAll(-1, cmd.enable);
 		break;
 
 	case "walk":

@@ -135,7 +135,7 @@ public:
 	 * Maybe it should be extended to be more like ExecuteQuery without
 	 * the range parameter.)
 	 */
-	virtual std::vector<entity_id_t> GetEntitiesByPlayer(int playerId) = 0;
+	virtual std::vector<entity_id_t> GetEntitiesByPlayer(player_id_t player) = 0;
 
 	/**
 	 * Toggle the rendering of debug info.
@@ -171,7 +171,7 @@ public:
 		friend class CCmpRangeManager;
 		friend class TestLOSTexture;
 
-		CLosQuerier(int player, const std::vector<u32>& data, ssize_t verticesPerSide) :
+		CLosQuerier(player_id_t player, const std::vector<u32>& data, ssize_t verticesPerSide) :
 			m_Data(&data[0]), m_VerticesPerSide(verticesPerSide)
 		{
 			if (player > 0 && player <= 16)
@@ -254,30 +254,31 @@ public:
 	/**
 	 * Returns a CLosQuerier for checking whether vertex positions are visible to the given player.
 	 */
-	virtual CLosQuerier GetLosQuerier(int player) = 0;
+	virtual CLosQuerier GetLosQuerier(player_id_t player) = 0;
 
 	/**
 	 * Returns the visibility status of the given entity, with respect to the given player.
 	 * Returns VIS_HIDDEN if the entity doesn't exist or is not in the world.
 	 * This respects the GetLosRevealAll flag.
 	 */
-	virtual ELosVisibility GetLosVisibility(entity_id_t ent, int player) = 0;
+	virtual ELosVisibility GetLosVisibility(entity_id_t ent, player_id_t player) = 0;
 
 	/**
 	 * GetLosVisibility wrapped for script calls.
 	 * Returns "hidden", "fogged" or "visible".
 	 */
-	std::string GetLosVisibility_wrapper(entity_id_t ent, int player);
+	std::string GetLosVisibility_wrapper(entity_id_t ent, player_id_t player);
 
 	/**
-	 * Set globally whether the whole map should be made visible.
+	 * Set whether the whole map should be made visible to the given player.
+	 * If player is -1, the map will be made visible to all players.
 	 */
-	virtual void SetLosRevealAll(bool enabled) = 0;
+	virtual void SetLosRevealAll(player_id_t player, bool enabled) = 0;
 
 	/**
 	 * Returns whether the whole map has been made visible to the given player.
 	 */
-	virtual bool GetLosRevealAll(int player) = 0;
+	virtual bool GetLosRevealAll(player_id_t player) = 0;
 
 	/**
 	 * Set the LOS to be restricted to a circular map.
@@ -290,9 +291,9 @@ public:
 	virtual bool GetLosCircular() = 0;
 
 	/**
-	 * Get percent map explored statistics for specified player
+	 * Get percent map explored statistics for specified player.
 	 */
-	virtual i32 GetPercentMapExplored(player_id_t playerId) = 0;
+	virtual i32 GetPercentMapExplored(player_id_t player) = 0;
 
 	DECLARE_INTERFACE_TYPE(RangeManager)
 };
