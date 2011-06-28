@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_super_infantry_swordsman">
+<Entity parent="template_unit_champion_infantry_swordsman">
   <Identity>
     <Civ>iber</Civ>
     <SpecificName>Devotio</SpecificName>
-    <Icon>units/iber_super_infantry.png</Icon>
+    <Icon>units/iber_champion_infantry.png</Icon>
     <History>The Devoted were war-hardened veterans of Iberian mercenaries hired out by foreign powers to fight in far-off conflicts. Fighting with and against diverse types of opponents, these men were deeply knowledgeable about various fighting styles and tactics. Once they had returned home from combat they were lavishly taken care of, rising to important positions in society.</History>
   </Identity>
   <VisualActor>
-    <Actor>units/iberians/super_unit_1.xml</Actor>
+    <Actor>units/iberians/champion_unit_1.xml</Actor>
   </VisualActor>
   <UnitMotion>
     <WalkSpeed>8.8</WalkSpeed>

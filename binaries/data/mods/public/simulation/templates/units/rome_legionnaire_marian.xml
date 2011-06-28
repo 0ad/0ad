@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_super_infantry_swordsman">
+<Entity parent="template_unit_champion_infantry_swordsman">
   <Identity>
     <Civ>rome</Civ>
     <GenericName>Roman Legion</GenericName>
@@ -14,7 +14,7 @@
     <RequiredXp>150</RequiredXp>
   </Promotion>
   <VisualActor>
-    <Actor>units/romans/super_unit_3.xml</Actor>
+    <Actor>units/romans/champion_unit_3.xml</Actor>
   </VisualActor>
   <UnitMotion>
     <WalkSpeed>6.0</WalkSpeed>

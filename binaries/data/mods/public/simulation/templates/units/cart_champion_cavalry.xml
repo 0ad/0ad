@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_super_cavalry">
+<Entity parent="template_unit_champion_cavalry">
   <Identity>
     <Civ>cart</Civ>
     <SpecificName>Pil Qrav</SpecificName>
@@ -37,7 +37,7 @@
     </Charge>
   </Attack>
   <VisualActor>
-    <Actor>units/carthaginians/super_unit_2.xml</Actor>
+    <Actor>units/carthaginians/champion_unit_2.xml</Actor>
   </VisualActor>
   <Footprint>
     <Circle radius="2.5"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_super_infantry_spearman">
+<Entity parent="template_unit_champion_infantry_spearman">
   <Identity>
     <Civ>hele</Civ>
     <SpecificName>Hieros Lochos Hoplites</SpecificName>
@@ -8,6 +8,6 @@
     <Icon>units/thebes_sacred_band_hoplitai.png</Icon>
   </Identity>
   <VisualActor>
-    <Actor>units/hellenes/super_sacred_band.xml</Actor>
+    <Actor>units/hellenes/champion_sacred_band.xml</Actor>
   </VisualActor>
 </Entity>

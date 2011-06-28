@@ -5,7 +5,7 @@
     <SpecificName>Centurio Legionarius</SpecificName>
     <History>A Centurio, also known as an "hecatontarch" in Greek sources, was a professional officer of the Roman army after the Marian reforms of 107 BC. A Centurio, a title roughly analogous to a "colonel" or "captain" in modern armies,  commanded a century (centuria) of 80 men, but senior Centurios could command whole cohorts or take senior staff roles in their legion. These men were harsh masters of war, serving their entire lives in service of Rome among the legions. With high armour and attack, these professionals are the bulwark of any Imperial Roman army.</History>
     <Tooltip>Swordsman. Bonused vs. Infantry Spearmen and Elephants. Pilum Ranged Attack Bonused vs. Infantry Swordsmen and Infantry Javelinists. Small Weakness vs. All Germanic Units.</Tooltip>
-    <Icon>units/rome_super_legion_centurio.png</Icon>
+    <Icon>units/rome_champion_legion_centurio.png</Icon>
   </Identity>
   <Health>
     <Max>140</Max>
@@ -19,7 +19,7 @@
     </Charge>
   </Attack>
   <VisualActor>
-    <Actor>units/romans/imp_rome_su1.xml</Actor>
+    <Actor>units/romans/imp_rome_champion_1.xml</Actor>
   </VisualActor>
   <Promotion disable=""/>
 </Entity>

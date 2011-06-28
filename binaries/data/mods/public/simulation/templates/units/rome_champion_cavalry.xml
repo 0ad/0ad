@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_super_cavalry_swordsman">
+<Entity parent="template_unit_champion_cavalry_swordsman">
   <Identity>
     <Civ>rome</Civ>
     <SpecificName>Eques Consulares</SpecificName>
-    <Icon>units/rome_super_cavalry.png</Icon>
+    <Icon>units/rome_champion_cavalry.png</Icon>
     <History>The Equites Consulares were the best of the Roman cavalry that were picked out by the commanding Consul and served under him directly. They functioned about identical to later Praetorian cavalry, but were usually made up of the most local Italian allies.. The Italic cavalry was of better quality and quantity then the citizen cavalry of the Republic, and were highly prized for service.</History>
   </Identity>
   <VisualActor>
-    <Actor>units/romans/super_unit_2.xml</Actor>
+    <Actor>units/romans/champion_unit_2.xml</Actor>
   </VisualActor>
 </Entity>

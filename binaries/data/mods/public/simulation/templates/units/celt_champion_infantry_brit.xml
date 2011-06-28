@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_super_infantry_swordsman">
+<Entity parent="template_unit_champion_infantry_swordsman">
   <Identity>
     <Civ>celt</Civ>
     <SpecificName>Brythonic Delamokludda</SpecificName>
     <Tooltip>Bonus vs. All Spear Units (infantry and cavalry).</Tooltip>
     <History>Two-handed swordsmen from Briton. These men are veteran soldiers who offer their lives in service to their Brythonic lords.</History>
-    <Icon>units/celt_super_infantry_brit.png</Icon>
+    <Icon>units/celt_champion_infantry_brit.png</Icon>
   </Identity>
   <Armour>
     <Hack>9.0</Hack>
@@ -26,6 +26,6 @@
     </Charge>
   </Attack>
   <VisualActor>
-    <Actor>units/celts/super_unit_3.xml</Actor>
+    <Actor>units/celts/champion_unit_3.xml</Actor>
   </VisualActor>
 </Entity>

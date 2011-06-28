@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_super_cavalry_javelinist">
+<Entity parent="template_unit_champion_cavalry_javelinist">
   <Identity>
     <Civ>iber</Civ>
     <SpecificName>Epones Devotio</SpecificName>
-    <Icon>units/iber_super_cavalry.png</Icon>
+    <Icon>units/iber_champion_cavalry.png</Icon>
     <History>Elite warriors known as The Devoted were adept warriors who could be either infantry or cavalry. Adding to their already considerable skill, The Devoted were renowned for the experience in foreign wars, often in the service of the Carthaginians. Considering that Iberian troops were commonly used as cannon fodder gives some idea of just how good these fierce warriors had to be in order to survive. These cavalrymen skirmish with flaming javelins, giving them a rare siege ability.</History>
   </Identity>
   <VisualActor>
-    <Actor>units/iberians/super_unit_2.xml</Actor>
+    <Actor>units/iberians/champion_unit_2.xml</Actor>
   </VisualActor>
   <Cost>
     <Resources>

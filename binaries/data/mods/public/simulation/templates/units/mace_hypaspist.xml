@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_super_infantry_spearman">
+<Entity parent="template_unit_champion_infantry_spearman">
   <Identity>
     <Civ>hele</Civ>
     <GenericName>Macedonian Shield Bearer</GenericName>
@@ -46,6 +46,6 @@
     </Charge>
   </Attack>
   <VisualActor>
-    <Actor>units/macedonians/mace_su1_hypaspist.xml</Actor>
+    <Actor>units/macedonians/mace_champion_hypaspist.xml</Actor>
   </VisualActor>
 </Entity>

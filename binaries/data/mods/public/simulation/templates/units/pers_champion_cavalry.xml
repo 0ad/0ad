@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_super_cavalry_spearman">
+<Entity parent="template_unit_champion_cavalry_spearman">
   <Identity>
     <Civ>pers</Civ>
     <SpecificName>Bakhtris Asabari</SpecificName>
-    <Icon>units/pers_super_cavalry.png</Icon>
+    <Icon>units/pers_champion_cavalry.png</Icon>
     <History>Cataphracts were the crushing blow of the Persian cavalry. The development of the Persian cataphract is not well understood, as is the relationship between these men and future generations of cataphract cavalry. At best it seems the Persians adopted the catapharct from encounters with Iranian nomads like the Massagetes.</History>
   </Identity>
   <VisualActor>
-    <Actor>units/persians/super_unit_2.xml</Actor>
+    <Actor>units/persians/champion_unit_2.xml</Actor>
   </VisualActor>
   <Cost>
     <Resources>

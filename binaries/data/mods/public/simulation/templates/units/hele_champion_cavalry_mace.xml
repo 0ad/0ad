@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_super_cavalry_spearman">
+<Entity parent="template_unit_champion_cavalry_spearman">
   <Identity>
     <Civ>hele</Civ>
     <SpecificName>Hetairos</SpecificName>
-    <Tooltip>Bonused vs. Cavalry and Archers. Weak vs. Super Units.</Tooltip>
+    <Tooltip>Bonused vs. Cavalry and Archers. Weak vs. Champion Units.</Tooltip>
     <History>The Hetairoi, or Companion cavalry, were a preferred general stand in Macedonian armies. Macedonian noblemen made up this elite cavalry unit, which was key to victory for Macedonian kings starting with Philip II, who increased their number from 600 to several thousand.</History>
-    <Icon>units/hele_super_cavalry_mace.png</Icon>
+    <Icon>units/hele_champion_cavalry_mace.png</Icon>
   </Identity>
   <Cost>
     <Resources>
@@ -36,6 +36,6 @@
     <Range>110</Range>
   </Vision>
   <VisualActor>
-    <Actor>units/hellenes/super_unit_4.xml</Actor>
+    <Actor>units/hellenes/champion_unit_4.xml</Actor>
   </VisualActor>
 </Entity>
