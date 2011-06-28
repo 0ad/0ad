@@ -3,7 +3,7 @@
   <Identity>
     <Civ>hele</Civ>
     <SpecificName>Gymnasion</SpecificName>
-    <Tooltip>Train Super Units.</Tooltip>
+    <Tooltip>Train Champion Units.</Tooltip>
     <History>The gymnasion was a vital place in Hellenistic polises, where physical exercises were performed and social contacts established.</History>
     <Icon>structures/gymnasion.png</Icon>
   </Identity>
@@ -31,10 +31,10 @@
   </Obstruction>
   <TrainingQueue>
     <Entities datatype="tokens">
-      units/hele_super_cavalry_mace
-      units/hele_super_infantry_mace
-      units/hele_super_infantry_polis
-      units/hele_super_ranged_polis
+      units/hele_champion_cavalry_mace
+      units/hele_champion_infantry_mace
+      units/hele_champion_infantry_polis
+      units/hele_champion_ranged_polis
     </Entities>
   </TrainingQueue>
   <Sound>
