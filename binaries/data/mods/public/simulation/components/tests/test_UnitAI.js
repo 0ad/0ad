@@ -1,4 +1,5 @@
 Engine.LoadHelperScript("FSM.js");
+Engine.LoadHelperScript("Entity.js");
 Engine.LoadComponentScript("interfaces/Attack.js");
 Engine.LoadComponentScript("interfaces/DamageReceiver.js");
 Engine.LoadComponentScript("interfaces/Formation.js");
@@ -54,6 +55,10 @@ function TestFormationExiting(mode)
 		GetClassesList: function() { return []; },
 	});
 
+	AddMock(unit, IID_Ownership, {
+		GetOwner: function() { return 1; },
+	});
+
 	AddMock(unit, IID_Position, {
 		GetPosition: function() { return { "x": 0, "z": 0 }; },
 		IsInWorld: function() { return true; },
@@ -62,6 +67,7 @@ function TestFormationExiting(mode)
 	AddMock(unit, IID_UnitMotion, {
 		GetWalkSpeed: function() { return 1; },
 		MoveToFormationOffset: function(target, x, z) { },
+		IsInTargetRange: function(target, min, max) { return true; },
 		MoveToTargetRange: function(target, min, max) { },
 		StopMoving: function() { },
 	});
