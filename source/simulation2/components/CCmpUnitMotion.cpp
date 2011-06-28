@@ -637,11 +637,14 @@ void CCmpUnitMotion::PathResult(u32 ticket, const ICmpPathfinder::Path& path)
 		// Leave the old m_ShortPath - we'll carry on following it until the
 		// new short path has been computed
 
-		// If there's no waypoints then we couldn't get near the target
+		// If there's no waypoints then we couldn't get near the target.
+		// Sort of hack: Just try going directly to the goal point instead
+		// (via the short pathfinder), so if we're stuck and the user clicks
+		// close enough to the unit then we can probably get unstuck
 		if (m_LongPath.m_Waypoints.empty())
 		{
-			StopMoving();
-			return;
+			ICmpPathfinder::Waypoint wp = { m_FinalGoal.x, m_FinalGoal.z };
+			m_LongPath.m_Waypoints.push_back(wp);
 		}
 
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
