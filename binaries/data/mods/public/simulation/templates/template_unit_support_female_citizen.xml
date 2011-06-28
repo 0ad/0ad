@@ -83,6 +83,10 @@
   <Sound>
     <SoundGroups>
 	  <select>voice/hellenes/civ/civ_female_select.xml</select>
+	  <order_walk>voice/hellenes/civ/civ_female_select.xml</order_walk>
+      <order_attack>voice/hellenes/civ/civ_female_select.xml</order_attack>
+      <order_gather>voice/hellenes/civ/civ_female_select.xml</order_gather>
+      <order_repair>voice/hellenes/civ/civ_female_select.xml</order_repair>
       <attack>attack/weapon/sword.xml</attack>
 <!--       <death>actor/human/death/death.xml</death> -->
       <build>resource/construction/con_wood.xml</build>

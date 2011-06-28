@@ -30,4 +30,14 @@
       <Speed>2000</Speed>
     </Heal>
   </Auras>
+  <Sound>
+    <SoundGroups>
+      <select>voice/hellenes/civ/civ_male_select.xml</select>
+      <order_walk>voice/hellenes/civ/civ_male_ack.xml</order_walk>
+      <walk>actor/human/movement/walk.xml</walk>
+      <run>actor/human/movement/run.xml</run>
+      <death>actor/human/death/death.xml</death>
+      <trained>actor/singlesteps/steps_gravel.xml</trained>
+    </SoundGroups>
+  </Sound>
 </Entity>
