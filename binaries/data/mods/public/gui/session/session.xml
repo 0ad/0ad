@@ -408,44 +408,6 @@
 	</object>
 
 	<!-- ================================  ================================ -->
-	<!-- Stance Selection (Temporary location) -->
-	<!-- ================================  ================================ -->
-	<object name="unitStancePanel"
-		sprite="bottomMiddle"
-		size="50 50 300 106"
-		type="text"
-	>
-		<object size="-5 -2 59 62" type="image" sprite="snIconSheetTab" tooltip_style="sessionToolTipBottom"
-			 cell_id="4" tooltip="Stances"/>
-
-		<object size="56 12 100% 100%">
-			<repeat count="5">
-				<object name="unitStanceButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBottomBold" z="100">
-					<object name="unitStanceIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
-				</object>
-			</repeat>
-		</object>
-	</object>
-
-	<!-- ================================  ================================ -->
-	<!-- Idle Worker Button -->
-	<!-- ================================  ================================ -->
-	<object type="image"
-		size="50%-512 100%-240 50%-480 100%-208"
-		sprite="mapPanel"
-	>
-		<object type="button"
-			tooltip_style="sessionToolTip"
-			tooltip="Find idle worker"
-			hotkey="selection.idle"
-		>
-			<!-- TODO: should highlight the button if there's non-zero idle workers -->
-			<object size="0 0 100% 100%" type="image" sprite="idleWorker" ghost="true" />
-			<action on="Press">findIdleWorker();</action>
-		</object>
-	</object>
-
-	<!-- ================================  ================================ -->
 	<!-- START of BOTTOM PANEL -->
 	<!-- ================================  ================================ -->
 
@@ -469,6 +431,22 @@
 			</object>
 
 			<object name="minimapOverlay" size="10 10 100%-10 100%-10" type="image" sprite="stretched:session/minimap_circle.png" ghost="true"/>
+
+			<!-- Idle Worker Button -->
+			<object type="image"
+				size="100%-36 4 100%-4 36"
+			>
+				<object type="button"
+					style="iconButton"
+					tooltip_style="sessionToolTip"
+					tooltip="Find idle worker"
+					hotkey="selection.idle"
+				>
+					<!-- TODO: should highlight the button if there's non-zero idle workers -->
+					<object size="0 0 100% 100%" type="image" sprite="idleWorker" ghost="true" />
+					<action on="Press">findIdleWorker();</action>
+				</object>
+			</object>
 		</object>
 
 		<!-- ================================  ================================ -->
@@ -501,6 +479,20 @@
 				</object>
 			</object>
 
+			<!-- Stance Selection -->
+			<object name="unitStancePanel"
+				sprite="bottomMiddle"
+				size="0 100%-43 100% 100%"
+				type="text"
+			>
+				<object size="5 3 100% 100%">
+					<repeat count="5">
+						<object name="unitStanceButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBottomBold" z="100">
+							<object name="unitStanceIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
+						</object>
+					</repeat>
+				</object>
+			</object>
 		</object>
 
 		<!-- ================================  ================================ -->
