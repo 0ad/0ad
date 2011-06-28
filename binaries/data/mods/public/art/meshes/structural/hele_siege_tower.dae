@@ -134,6 +134,13 @@
 						</technique_common>
 					</bind_material>
 				</instance_geometry>
+				<node id="prop_projectile" name="prop_projectile">
+					<translate sid="translate">0.00000 0.00000 0.00000</translate>
+					<rotate sid="rotateZ">0 0 1 0.00000</rotate>
+					<rotate sid="rotateY">0 1 0 0.00000</rotate>
+					<rotate sid="rotateX">1 0 0 0.00000</rotate>
+					<scale sid="scale">1.00000 1.00000 1.00000</scale>
+				</node>
 			</node>
 		</visual_scene>
 	</library_visual_scenes>

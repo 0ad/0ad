@@ -24,20 +24,4 @@
   <Obstruction>
     <Unit radius="3.75"/>
   </Obstruction>
-  <Health>
-    <Max>400</Max>
-  </Health>
-  <Armour>
-    <Pierce>25.0</Pierce>
-    <Crush>20.0</Crush>
-  </Armour>
-  <UnitMotion>
-    <WalkSpeed>6.0</WalkSpeed>
-  </UnitMotion>
-  <GarrisonHolder>
-    <Max>15</Max>
-	<EjectHealth>0.1</EjectHealth>
-	<List datatype="tokens">Support Infantry</List>
-	<BuffHeal>1</BuffHeal>
-  </GarrisonHolder>
 </Entity>

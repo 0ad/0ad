@@ -4,6 +4,9 @@
   <group> 
     <variant frequency="1" name="Siege Tower"> 
       <mesh>structural/hele_siege_tower.dae</mesh> 
+      <props>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+      </props>
       <texture>structural/hele_siege_tower.dds</texture> 
     </variant> 
   </group> 
