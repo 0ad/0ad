@@ -714,9 +714,8 @@ AtObj PlayerSettingsControl::UpdateSettingsObject()
 
 		// team
 		choice = controls.team;
-		if (choice->GetSelection() > 0)
-		{
-			// valid selection
+		if (choice->GetSelection() >= 0)
+		{	// valid selection
 			player.setInt("Team", choice->GetSelection() - 1);
 		}
 
