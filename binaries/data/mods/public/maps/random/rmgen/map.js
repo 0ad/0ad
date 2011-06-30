@@ -300,7 +300,7 @@ Map.prototype.getMapData = function()
 	// Convert 2D heightmap array to flat array
 	//	Flat because it's easier to handle by the engine
 	var mapSize = size+1;
-	var height16 = new Uint16Array(mapSize*mapSize);		// uint16
+	var height16 = new Uint16Array(Math.floor(mapSize*mapSize));	// uint16	// HACK: typed arrays require integer arguments
 	for (var x = 0; x < mapSize; x++)
 	{
 		for (var z = 0; z < mapSize; z++)
@@ -332,8 +332,8 @@ Map.prototype.getMapData = function()
 	data["textureNames"] = textureNames;
 	
 	//  Convert 2D tile data to flat array
-	var tileIndex = new Uint16Array(size*size);
-	var tilePriority = new Uint16Array(size*size);
+	var tileIndex = new Uint16Array(Math.floor(size*size));		// uint16	// HACK: typed arrays require integer arguments
+	var tilePriority = new Uint16Array(Math.floor(size*size));	// uint16	// HACK: typed arrays require integer arguments
 	for (var x = 0; x < size; x++)
 	{
 		for (var z = 0; z < size; z++)
