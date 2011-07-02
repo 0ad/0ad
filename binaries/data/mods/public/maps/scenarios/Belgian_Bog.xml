@@ -4,7 +4,7 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cirrus</SkySet>
-		<SunColour r="1.10156" g="0.88125" b="0.431985"/>
+		<SunColour r="1.10156" g="0.881248" b="0.431984"/>
 		<SunElevation angle="0.291456"/>
 		<SunRotation angle="-0.79767"/>
 		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="495.295" y="974.907" z="-966.933"/>
-		<Rotation angle="0.012148"/>
-		<Declination angle="0.606942"/>
+		<Position x="490.173" y="142.12" z="161.769"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -22300,6 +22300,132 @@
 			<Template>actor|props/flora/water_lillies.xml</Template>
 			<Position x="439.14835" z="258.13816"/>
 			<Orientation y="2.20202"/>
+		</Entity>
+		<Entity uid="4227">
+			<Template>gaia/geology_stonemine_tropic_quarry</Template>
+			<Player>0</Player>
+			<Position x="808.15027" z="513.6482"/>
+			<Orientation y="2.94651"/>
+		</Entity>
+		<Entity uid="4228">
+			<Template>gaia/geology_stonemine_tropic_quarry</Template>
+			<Player>0</Player>
+			<Position x="830.6078" z="341.19816"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4229">
+			<Template>gaia/geology_stonemine_tropic_quarry</Template>
+			<Player>0</Player>
+			<Position x="210.09519" z="464.33371"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4230">
+			<Template>gaia/geology_stonemine_tropic_quarry</Template>
+			<Player>0</Player>
+			<Position x="90.34858" z="390.33024"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4231">
+			<Template>gaia/geology_stonemine_tropic_quarry</Template>
+			<Player>0</Player>
+			<Position x="652.22986" z="865.21723"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4232">
+			<Template>gaia/geology_stonemine_tropic_quarry</Template>
+			<Player>0</Player>
+			<Position x="359.73978" z="195.2765"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4233">
+			<Template>gaia/geology_stonemine_tropic_quarry</Template>
+			<Player>0</Player>
+			<Position x="490.8816" z="381.47071"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4234">
+			<Template>gaia/geology_metal_tropic_slabs</Template>
+			<Player>0</Player>
+			<Position x="135.4662" z="460.0586"/>
+			<Orientation y="-0.53177"/>
+		</Entity>
+		<Entity uid="4235">
+			<Template>gaia/geology_metal_tropic_slabs</Template>
+			<Player>0</Player>
+			<Position x="168.74973" z="692.48255"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4236">
+			<Template>gaia/geology_metal_tropic_slabs</Template>
+			<Player>0</Player>
+			<Position x="450.42539" z="605.91248"/>
+			<Orientation y="-2.877"/>
+		</Entity>
+		<Entity uid="4237">
+			<Template>gaia/geology_metal_tropic_slabs</Template>
+			<Player>0</Player>
+			<Position x="561.07892" z="380.41157"/>
+			<Orientation y="-0.08202"/>
+		</Entity>
+		<Entity uid="4238">
+			<Template>gaia/geology_metal_tropic_slabs</Template>
+			<Player>0</Player>
+			<Position x="643.73462" z="487.72028"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4239">
+			<Template>gaia/geology_metal_tropic_slabs</Template>
+			<Player>0</Player>
+			<Position x="368.00202" z="435.4604"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4240">
+			<Template>gaia/geology_metal_tropic_slabs</Template>
+			<Player>0</Player>
+			<Position x="872.10584" z="559.78248"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4241">
+			<Template>gaia/geology_metal_tropic_slabs</Template>
+			<Player>0</Player>
+			<Position x="724.89356" z="673.52564"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4242">
+			<Template>gaia/geology_metal_tropic_slabs</Template>
+			<Player>0</Player>
+			<Position x="708.52167" z="181.21488"/>
+			<Orientation y="0.62641"/>
+		</Entity>
+		<Entity uid="4243">
+			<Template>gaia/geology_metal_tropic_slabs</Template>
+			<Player>0</Player>
+			<Position x="405.12583" z="74.86329"/>
+			<Orientation y="-2.88305"/>
+		</Entity>
+		<Entity uid="4244">
+			<Template>gaia/geology_metal_tropic_slabs</Template>
+			<Player>0</Player>
+			<Position x="216.01381" z="319.28791"/>
+			<Orientation y="0.42878"/>
+		</Entity>
+		<Entity uid="4245">
+			<Template>gaia/geology_metal_tropic_slabs</Template>
+			<Player>0</Player>
+			<Position x="247.96752" z="806.65748"/>
+			<Orientation y="-1.62984"/>
+		</Entity>
+		<Entity uid="4246">
+			<Template>gaia/geology_metal_tropic_slabs</Template>
+			<Player>0</Player>
+			<Position x="445.1634" z="314.06882"/>
+			<Orientation y="0.4117"/>
+		</Entity>
+		<Entity uid="4247">
+			<Template>gaia/geology_metal_tropic_slabs</Template>
+			<Player>0</Player>
+			<Position x="648.89606" z="300.65668"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
