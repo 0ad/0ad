@@ -90,7 +90,7 @@ var EconomyManager = Class({
 			{
 				"template": "structures/{civ}_field",
 				"priority": 40,
-				"count": 5,
+				"count": 3,
 			},
 			{
 				"template": "structures/{civ}_house",
@@ -140,12 +140,12 @@ var EconomyManager = Class({
 			{
 				"template": "structures/{civ}_field",
 				"priority": 40,
-				"count": 5,
+				"count": 3,
 			},
 			{
 				"template": "structures/{civ}_house",
 				"priority": 30,
-				"count": 20,
+				"count": 25,
 			},
 		];
 			}
@@ -190,12 +190,12 @@ var EconomyManager = Class({
 			{
 				"template": "structures/{civ}_field",
 				"priority": 40,
-				"count": 5,
+				"count": 3,
 			},
 			{
 				"template": "structures/{civ}_house",
 				"priority": 30,
-				"count": 20,
+				"count": 25,
 			},
 		];
 			}
@@ -448,7 +448,7 @@ var EconomyManager = Class({
 							var distcheck = VectorDistance(supply.position, centrePosition);
 						// Skip targets that are far too far away (e.g. in the enemy base)
 						if (distcheck > 600)
-							return;	
+						return;
 			}
 		});
 							
@@ -456,8 +456,8 @@ var EconomyManager = Class({
 
 						// Skip targets that are far too far away (e.g. in the enemy base)
 						if (dist > 512)
-							return;
-
+							return;							
+							
 						supplies.push({ dist: dist, entity: supply.entity });
 					});
 
@@ -468,14 +468,37 @@ var EconomyManager = Class({
 
 						return false;
 					});
-
+									
 					// Start gathering
 					if (supplies.length)
 					{
-						ent.gather(supplies[0].entity);
-						ent.setMetadata("subrole", "gatherer");
-						ent.setMetadata("gather-type", type);
-						return;
+					// THIS SHOULD BE A GLOBAL VARIABLE
+					var currentposformill = supplies[0].entity.position();
+					var distcheckold = 10000;
+					// CHECK DISTANCE
+					gameState.getOwnEntities().forEach(function(centre) {
+						if (centre.hasClass("CivCentre") || centre.hasClass("Economic"))
+						{
+								var centrePosition = centre.position();
+								var distcheck = VectorDistance(currentposformill, centrePosition);
+									if (distcheck < distcheckold){
+									distcheckold = distcheck;
+									}
+						}
+					});
+					if (distcheckold > 60){
+					//JuBotAI.prototype.chat("Building Mill");
+						planGroups.economyConstruction.addPlan(95,
+						new BuildingConstructionPlanEcon(gameState, "structures/{civ}_mill", 1, currentposformill)
+						);
+					}
+					else{
+					//JuBotAI.prototype.chat("Gathering");
+					ent.gather(supplies[0].entity);
+					ent.setMetadata("subrole", "gatherer");
+					ent.setMetadata("gather-type", type);
+					return;
+					}
 					}
 				}
 
