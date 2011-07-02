@@ -506,7 +506,7 @@ var MilitaryAttackManager = Class({
 					else if (this.attacknumbers < 0.65){
 					this.trainSomeTroops(gameState, planGroups, "units/{civ}_infantry_javelinist_b");
 					}
-					else if (this.attacknumbers < 0.75){
+					else if (this.attacknumbers < 0.85){
 					this.trainMachine(gameState, planGroups, "units/hele_mechanical_siege_lithobolos");
 					}
 					else {
@@ -524,7 +524,7 @@ var MilitaryAttackManager = Class({
 					else if (this.attacknumbers < 0.6){
 					this.trainSomeTroops(gameState, planGroups, "units/{civ}_infantry_javelinist_b");
 					}
-					else if (this.attacknumbers < 0.7){
+					else if (this.attacknumbers < 0.8){
 					this.trainMachine(gameState, planGroups, "units/celt_mechanical_siege_ram");
 					}
 					else {
@@ -548,7 +548,7 @@ var MilitaryAttackManager = Class({
 					else if (this.attacknumbers < 0.7){
 					this.trainSomeTroops(gameState, planGroups, "units/{civ}_cavalry_spearman_b");
 					}
-					else if (this.attacknumbers < 0.8){
+					else if (this.attacknumbers < 0.9){
 					this.trainMachine(gameState, planGroups, "units/iber_mechanical_siege_ram");
 					}
 					else {
@@ -690,7 +690,7 @@ var MilitaryAttackManager = Class({
 		this.baserate = 10;
 		}
 		else if (this.killstrat == 3) {
-		this.baserate = 8;
+		this.baserate = 27;
 		}
 		else {
 		this.baserate = 15;
@@ -717,10 +717,18 @@ var MilitaryAttackManager = Class({
 			}
 		}
 		//Other attacks can go to any low-level structure
-		else {
+		else {	
+			// Find the enemy dropsites we could attack
+			var targets = gameState.entities.filter(function(ent) {
+				return (ent.isEnemy() && ent.hasClass("Economic"));
+			});
+			// If there's no dropsites, attack any village structure
+			if (targets.length == 0)
+			{
 			var targets = gameState.entities.filter(function(ent) {
 				return (ent.isEnemy() && ent.hasClass("Village"));
 			});
+			}
 		}
 
 			// If we have a target, move to it
@@ -772,7 +780,7 @@ var MilitaryAttackManager = Class({
 		var pending1 = gameState.getOwnEntitiesWithRole("attack-pending_3p1");
 		var pending2 = gameState.getOwnEntitiesWithRole("attack-pending_3p2");
 		var pending3 = gameState.getOwnEntitiesWithRole("attack-pending_3p3");
-		if (pending1.length >= this.baserate && pending2.length >= this.baserate && pending3.length >= this.baserate)
+		if (pending1.length + pending2.length + pending3.length >= this.baserate)
 		{
 		//Copy the target selector 3 times, once per attack squad
 			var targets1 = gameState.entities.filter(function(ent) {
