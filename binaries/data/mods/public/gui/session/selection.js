@@ -1,4 +1,4 @@
-const MAX_SELECTION_SIZE = 64; // Limits selection size
+const MAX_SELECTION_SIZE = 200; // Limits selection size
 
 function _setHighlight(ents, alpha)
 {
