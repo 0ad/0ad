@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2011-06-05T01:46:09Z</created>
-    <modified>2011-06-05T01:46:09Z</modified>
+    <created>2011-07-02T22:04:50Z</created>
+    <modified>2011-07-02T22:04:50Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -5941,7 +5941,7 @@
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
       <node id="Plane004" name="Plane004">
-        <matrix sid="matrix">0.422618 -0.906308 -0.000000 -11.119944 0.000000 -0.000000 1.000000 1.311650 -0.906308 -0.422618 0.000000 4.529730 0.000000 0.000000 0.000000 1.000000</matrix>
+        <matrix sid="matrix">0.422618 -0.906308 -0.000000 -11.119202 0.000000 -0.000000 1.000000 1.311650 -0.906308 -0.422618 0.000000 4.508700 0.000000 0.000000 0.000000 1.000000</matrix>
         <instance_geometry url="#Plane004-lib">
           <bind_material>
             <technique_common>
@@ -5949,6 +5949,9 @@
             </technique_common>
           </bind_material>
         </instance_geometry>
+        <node id="prop_garrisoned" name="prop_garrisoned">
+          <matrix sid="matrix">0.422618 0.906308 0.000000 7.373068 -0.906308 0.422618 -0.000000 -17.213360 0.000000 0.000000 1.000000 10.342290 0.000000 0.000000 0.000000 1.000000</matrix>
+        </node>
       </node>
     </visual_scene>
   </library_visual_scenes>
