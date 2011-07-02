@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Bronze Shield Pikeman">
+      <animations>
+        <animation file="biped/not used/inf_phalanx_a.psa" name="Idle" speed="100"/>
+        <animation file="biped/inf_phalanx_walk_a.psa" name="Walk" speed="140"/>
+        <animation file="biped/inf_phalanx_walk_a.psa" name="run" speed="200"/>
+        <animation event="0.5" file="biped/inf_phalanx_atk_a.psa" name="melee" speed="350"/>
+        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
+        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
+        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
+      </animations>
+      <mesh>skeletal/m_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/shields/mace_bronzeshield_a.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/sarissa.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/mace_bronzeshield_a.xml" attachpoint="helmet"/>
+      </props>
+      <texture>skeletal/mace_bronzeshield_pikeman_a.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

@@ -4,11 +4,11 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cirrus</SkySet>
-		<SunColour r="0.819608" g="0.784314" b="0.639216"/>
+		<SunColour r="0.741176" g="0.721569" b="0.643137"/>
 		<SunElevation angle="0.920389"/>
 		<SunRotation angle="-0.953995"/>
-		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
-		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<TerrainAmbientColour r="0.396078" g="0.47451" b="0.654902"/>
+		<UnitsAmbientColour r="0.466667" g="0.584314" b="0.572549"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -17,16 +17,16 @@
 				<Shininess>0.732422</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>1</Murkiness>
-				<Tint r="0.752941" g="0.705882" b="0.552941"/>
-				<ReflectionTint r="0.733333" g="0.615686" b="0.482353"/>
+				<Tint r="0.74902" g="0.701961" b="0.54902"/>
+				<ReflectionTint r="0.729412" g="0.611765" b="0.482353"/>
 				<ReflectionTintStrength>0.525391</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="382.969" y="112.964" z="151.981"/>
-		<Rotation angle="0.0791927"/>
-		<Declination angle="0.580222"/>
+		<Position x="393.889" y="131.77" z="132.966"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
