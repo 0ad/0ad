@@ -26,6 +26,7 @@ Player.prototype.Init = function()
 	this.conquestCriticalEntitiesCount = 0; // number of owned units with ConquestCritical class
 	this.phase = "village";
 	this.startCam = undefined;
+	this.controlAllUnits = false;
 };
 
 Player.prototype.SetPlayerID = function(id)
@@ -249,6 +250,40 @@ Player.prototype.SetStartingCamera = function(pos, rot)
 Player.prototype.HasStartingCamera = function()
 {
 	return (this.startCam !== undefined);
+}
+
+Player.prototype.SetControlAllUnits = function(c)
+{
+	this.controlAllUnits = c;
+}
+
+Player.prototype.CanControlAllUnits = function()
+{
+	return this.controlAllUnits;
+}
+
+/**
+ * Check if given player is our ally
+ */
+Player.prototype.IsAlly = function(id)
+{
+	return (id >= 0 && (id == this.playerID || this.diplomacy[id] > 0));
+}
+
+/**
+ * Check if given player is our enemy
+ */
+Player.prototype.IsEnemy = function(id)
+{
+	return (id >= 0 && id != this.playerID && this.diplomacy[id] < 0);
+}
+
+/**
+ * Check if given player is neutral
+ */
+Player.prototype.IsNeutral = function(id)
+{
+	return (id >= 0 && id != this.playerID && this.diplomacy[id] == 0);
 }
 
 /**

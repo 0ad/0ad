@@ -45,6 +45,15 @@ GuiInterface.prototype.GetSimulationState = function(player)
 		var playerEnt = cmpPlayerMan.GetPlayerByID(i);
 		var cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
 		var cmpPlayerStatisticsTracker = Engine.QueryInterface(playerEnt, IID_StatisticsTracker);
+		
+		// store player ally/enemy data as arrays
+		var allies = [];
+		var enemies = [];
+		for (var j = 0; j <= n; ++j)
+		{
+			allies[j] = cmpPlayer.IsAlly(j);
+			enemies[j] = cmpPlayer.IsEnemy(j);
+		}
 		var playerData = {
 			"name": cmpPlayer.GetName(),
 			"civ": cmpPlayer.GetCiv(),
@@ -55,8 +64,9 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"trainingQueueBlocked": cmpPlayer.IsTrainingQueueBlocked(),
 			"state": cmpPlayer.GetState(),
 			"team": cmpPlayer.GetTeam(),
-			"diplomacy": cmpPlayer.GetDiplomacy(),
-			"phase": cmpPlayer.GetPhase()
+			"phase": cmpPlayer.GetPhase(),
+			"isAlly": allies,
+			"isEnemy": enemies
 		};
 		ret.players.push(playerData);
 	}
@@ -340,7 +350,7 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 		var colour = playerColours[owner];
 		if (!colour)
 		{
-			colour = [1, 1, 1];
+			colour = {"r":1, "g":1, "b":1};
 			var cmpPlayer = Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(owner), IID_Player);
 			if (cmpPlayer)
 				colour = cmpPlayer.GetColour();

@@ -45,7 +45,8 @@ function TestFormationExiting(mode)
 	});
 
 	AddMock(playerEntity, IID_Player, {
-		GetDiplomacy: function() { return []; },
+		IsAlly: function() { return []; },
+		IsEnemy: function() { return []; },
 	});
 
 

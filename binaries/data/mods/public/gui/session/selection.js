@@ -261,10 +261,14 @@ EntitySelection.prototype.addList = function(ents)
 	var selectionSize = this.toList().length;
 	var i = 1;
 	var added = [];
+	var playerID = Engine.GetPlayerID();
+	var allowEnemySelections = g_DevSettings.controlAll || (ents.length == 1 && selectionSize == 0);
 
 	for each (var ent in ents)
 	{
-		if (!this.selected[ent] && (selectionSize + i) <= MAX_SELECTION_SIZE)
+		// Only add entities we own to our selection
+		var entState = GetEntityState(ent);
+		if (!this.selected[ent] && (selectionSize + i) <= MAX_SELECTION_SIZE && (allowEnemySelections || (entState && entState.player == playerID)))
 		{
 			added.push(ent);
 			this.selected[ent] = ent;

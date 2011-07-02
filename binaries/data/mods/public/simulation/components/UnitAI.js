@@ -460,7 +460,7 @@ var UnitFsmSpec = {
 		// anything more important (and we might be stuck in the WALKING
 		// state forever and need to get out of foundations in that case)
 		"Order.LeaveFoundation": function(msg) {
-			if (!IsOwnedByAlly(this.entity, msg.data.target))
+			if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target))
 			{
 				this.FinishOrder();
 				return;
@@ -569,7 +569,7 @@ var UnitFsmSpec = {
 			// Override the LeaveFoundation order since we're not doing
 			// anything more important
 			"Order.LeaveFoundation": function(msg) {
-				if (!IsOwnedByAlly(this.entity, msg.data.target))
+				if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target))
 				{
 					this.FinishOrder();
 					return;
@@ -1097,7 +1097,7 @@ var UnitFsmSpec = {
 			// Override the LeaveFoundation order since we don't want to be
 			// accidentally blocking our own building
 			"Order.LeaveFoundation": function(msg) {
-				if (!IsOwnedByAlly(this.entity, msg.data.target))
+				if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target))
 				{
 					this.FinishOrder();
 					return;
@@ -1423,17 +1423,13 @@ UnitAI.prototype.SetupRangeQuery = function()
 	if (owner != -1)
 	{
 		// If unit not just killed, get enemy players via diplomacy
-		var player = Engine.QueryInterface(playerMan.GetPlayerByID(owner), IID_Player);
-
-		// Get our diplomacy array
-		var diplomacy = player.GetDiplomacy();
+		var cmpPlayer = Engine.QueryInterface(playerMan.GetPlayerByID(owner), IID_Player);
 		var numPlayers = playerMan.GetNumPlayers();
-
 		for (var i = 1; i < numPlayers; ++i)
 		{
 			// Exclude gaia, allies, and self
 			// TODO: How to handle neutral players - Special query to attack military only?
-			if (i != owner && diplomacy[i - 1] < 0)
+			if (cmpPlayer.IsEnemy(i))
 				players.push(i);
 		}
 	}

@@ -118,8 +118,13 @@ function getActionInfo(action, target)
 		return {"possible": false};
 
 	// If the selection isn't friendly units, no action
-	var player = Engine.GetPlayerID();
-	if (entState.player != player && !g_DevSettings.controlAll)
+	var playerID = Engine.GetPlayerID();
+	var allOwnedByPlayer = selection.every(function(ent) {
+		var entState = GetEntityState(ent);
+		return entState && entState.player == playerID;
+	});
+	
+	if (!g_DevSettings.controlAll && !allOwnedByPlayer)
 		return {"possible": false};
 
 	// Work out whether the selection can have rally points
@@ -127,7 +132,6 @@ function getActionInfo(action, target)
 		var entState = GetEntityState(ent);
 		return entState && entState.rallyPoint;
 	});
-
 
 	
 	if (!target)
@@ -163,12 +167,12 @@ function getActionInfo(action, target)
 		var entState = GetEntityState(entityID);
 		if (!entState)
 			continue;
-		// Get entity owner diplomacy array
-		var diplomacy = simState.players[entState.player].diplomacy;
-
-		var playerOwned = ((targetState.player == entState.player)? true : false);
-		var enemyOwned = ((targetState.player != entState.player && targetState.player && diplomacy[targetState.player - 1] < 0)? true : false);
-		var gaiaOwned = ((targetState.player == 0)? true : false);
+		
+		var playerState = simState.players[entState.player];
+		var playerOwned = (targetState.player == entState.player);
+		var allyOwned = playerState.isAlly[targetState.player];
+		var enemyOwned = playerState.isEnemy[targetState.player];
+		var gaiaOwned = (targetState.player == 0);
 		
 		// Find the resource type we're carrying, if any
 		var carriedType = undefined;
@@ -206,11 +210,11 @@ function getActionInfo(action, target)
 				return {"possible": true};
 			break;
 		case "repair":
-			if (entState.buildEntities && targetState.needsRepair && playerOwned)
+			if (entState.buildEntities && targetState.needsRepair && allyOwned)
 				return {"possible": true};
 			break;
 		case "attack":
-			if (entState.attack && targetState.hitpoints && (enemyOwned || gaiaOwned))
+			if (entState.attack && targetState.hitpoints && enemyOwned)
 				return {"possible": true};
 		}
 	}
@@ -240,8 +244,13 @@ function determineAction(x, y, fromMinimap)
 		return undefined;
 
 	// If the selection isn't friendly units, no action
-	var player = Engine.GetPlayerID();
-	if (entState.player != player && !g_DevSettings.controlAll)
+	var playerID = Engine.GetPlayerID();
+	var allOwnedByPlayer = selection.every(function(ent) {
+		var entState = GetEntityState(ent);
+		return entState && entState.player == playerID;
+	});
+	
+	if (!g_DevSettings.controlAll && !allOwnedByPlayer)
 		return undefined;
 
 	// Work out whether the selection can have rally points
@@ -421,6 +430,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 			bandbox.size = [x0, y0, x1, y1].join(" ");
 			bandbox.hidden = false;
 
+			// TODO: Should we handle "control all units" here as well?
 			var ents = Engine.PickFriendlyEntitiesInRect(x0, y0, x1, y1, Engine.GetPlayerID());
 			g_Selection.setHighlightList(ents);
 
@@ -440,6 +450,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 				bandbox.hidden = true;
 
 				// Get list of entities limited to preferred entities
+				// TODO: Should we handle "control all units" here as well?
 				var ents = Engine.PickFriendlyEntitiesInRect(x0, y0, x1, y1, Engine.GetPlayerID());
 				var preferredEntities = getPreferredEntities(ents)
 
@@ -487,7 +498,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 		{
 		case "mousemotion":
 			// If the mouse moved far enough from the original click location,
-			// then switch to drag-orientatio mode
+			// then switch to drag-orientation mode
 			var dragDeltaX = ev.x - dragStart[0];
 			var dragDeltaY = ev.y - dragStart[1];
 			var maxDragDelta = 16;
@@ -761,6 +772,7 @@ function handleInputAfterGui(ev)
 						}
 					}
 					
+					// TODO: Should we handle "control all units" here as well?
 					ents = Engine.PickSimilarFriendlyEntities(templateToMatch, showOffscreen, matchRank);
 				}
 				else
@@ -1059,8 +1071,8 @@ function performCommand(entity, commandName)
 		var template = GetTemplateData(entState.template);
 		var unitName = getEntityName(template);
 	
-		var player = Engine.GetPlayerID();
-		if (entState.player == player || g_DevSettings.controlAll)
+		var playerID = Engine.GetPlayerID();
+		if (entState.player == playerID || g_DevSettings.controlAll)
 		{
 			switch (commandName)
 			{

@@ -63,16 +63,13 @@ BuildingAI.prototype.SetupRangeQuery = function(owner)
 		cmpRangeManager.DestroyActiveQuery(this.enemyUnitsQuery);
 	var players = [];
 	
-	var player = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(owner), IID_Player);
-
-	// Get our diplomacy array
-	var diplomacy = player.GetDiplomacy();
+	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(owner), IID_Player);
 	var numPlayers = cmpPlayerManager.GetNumPlayers();
 		
 	for (var i = 1; i < numPlayers; ++i)
 	{	// Exclude gaia, allies, and self
 		// TODO: How to handle neutral players - Special query to attack military only?
-		if ((i != owner) && (diplomacy[i - 1] < 0))
+		if (cmpPlayer.IsEnemy(i))
 			players.push(i);
 	}
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);

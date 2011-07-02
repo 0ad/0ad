@@ -71,56 +71,48 @@ EndGameManager.prototype.UpdatePlayerStates = function()
 
 		// Ignore gaia
 		var numPlayers = cmpPlayerManager.GetNumPlayers() - 1;
-		var diplomacy = new Array(numPlayers);
+		var cmpPlayers = new Array(numPlayers);
 		
 		// If a player is currently active but has no suitable units left,
-		// mark that player as defeated (else get diplomacy for victory check)
+		// mark that player as defeated
 		for (var i = 0; i < numPlayers; i++)
 		{
 			var playerEntityId = cmpPlayerManager.GetPlayerByID(i+1);
-			var cmpPlayer = Engine.QueryInterface(playerEntityId, IID_Player);
-			if (cmpPlayer.GetState() == "active")
+			cmpPlayers[i] = Engine.QueryInterface(playerEntityId, IID_Player);
+			if (cmpPlayers[i].GetState() == "active")
 			{
-				if (cmpPlayer.GetConquestCriticalEntitiesCount() == 0)
-				{
+				if (cmpPlayers[i].GetConquestCriticalEntitiesCount() == 0)
+				{	// Defeated
 					Engine.PostMessage(playerEntityId, MT_PlayerDefeated, null);
-				}
-				else
-				{	// Get active diplomacy array
-					diplomacy[i] = cmpPlayer.GetDiplomacy();
 				}
 			}
 		}
 
-		// Check diplomacy to see if all active players are allied - if so, they all won
 		var onlyAlliesLeft = true;
-		var allyIDs = [];
-		
+		var allies = [];
 		for (var i = 0; i < numPlayers && onlyAlliesLeft; i++)
 		{
-			if (diplomacy[i])
+			if (cmpPlayers[i].GetState() == "active")
 			{	//Active player
-				for (var j = 0; j < numPlayers && j != i && onlyAlliesLeft; j++)
+				for (var j = 0; j < numPlayers && onlyAlliesLeft; j++)
 				{
-					if (diplomacy[j] && (diplomacy[i][j] <= 0 || diplomacy[j][i] <= 0))
+					if (cmpPlayers[j].GetState() == "active" && (cmpPlayers[i].IsEnemy(j+1) || cmpPlayers[j].IsEnemy(i+1)))
 					{	// Only need to find an active non-allied player
 						onlyAlliesLeft = false;
 					}
 				}
 				
 				if (onlyAlliesLeft)
-					allyIDs.push(i+1);
+					allies.push(i);
 			}
 		}
 
 		// If only allies left and allied victory set (or only one player left)
-		if (onlyAlliesLeft && (this.alliedVictory || allyIDs.length == 1))
+		if (onlyAlliesLeft && (this.alliedVictory || allies.length == 1))
 		{
-			for (var p in allyIDs)
+			for each (var p in allies)
 			{
-				var playerEntityId = cmpPlayerManager.GetPlayerByID(allyIDs[p]);
-				var cmpPlayer = Engine.QueryInterface(playerEntityId, IID_Player);
-				cmpPlayer.SetState("won");
+				cmpPlayers[p].SetState("won");
 			}
 
 			// Reveal the map to all players

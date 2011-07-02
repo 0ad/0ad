@@ -48,9 +48,11 @@ AddMock(100, IID_Player, {
 	IsTrainingQueueBlocked: function() { return false; },
 	GetState: function() { return "active"; },
 	GetTeam: function() { return -1; },
-	GetDiplomacy: function() { return []; },
+	GetDiplomacy: function() { return [-1, 1]; },
 	GetPhase: function() { return ""; },
 	GetConquestCriticalEntitiesCount: function() { return 1; },
+	IsAlly: function() { return false; },
+	IsEnemy: function() { return true; },
 });
 
 AddMock(100, IID_StatisticsTracker, {
@@ -87,9 +89,11 @@ AddMock(101, IID_Player, {
 	IsTrainingQueueBlocked: function() { return false; },
 	GetState: function() { return "active"; },
 	GetTeam: function() { return -1; },
-	GetDiplomacy: function() { return [1]; },
+	GetDiplomacy: function() { return [-1, 1]; },
 	GetPhase: function() { return "village"; },
 	GetConquestCriticalEntitiesCount: function() { return 1; },
+	IsAlly: function() { return true; },
+	IsEnemy: function() { return false; },
 });
 
 AddMock(101, IID_StatisticsTracker, {
@@ -128,8 +132,9 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			trainingQueueBlocked: false,
 			state: "active",
 			team: -1,
-			diplomacy: [],
 			phase: "",
+			isAlly: [false, false, false],
+			isEnemy: [true, true, true],
 		},
 		{
 			name: "Player 2",
@@ -141,8 +146,9 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			trainingQueueBlocked: false,
 			state: "active",
 			team: -1,
-			diplomacy: [1],
 			phase: "village",
+			isAlly: [true, true, true],
+			isEnemy: [false, false, false],
 		}
 	],
 	circularMap: false,
@@ -161,8 +167,9 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			trainingQueueBlocked: false,
 			state: "active",
 			team: -1,
-			diplomacy: [],
 			phase: "",
+			isAlly: [false, false, false],
+			isEnemy: [true, true, true],
 			statistics: {
 				unitsTrained: 10,
 				unitsLost: 9,
@@ -190,8 +197,9 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			trainingQueueBlocked: false,
 			state: "active",
 			team: -1,
-			diplomacy: [1],
 			phase: "village",
+			isAlly: [true, true, true],
+			isEnemy: [false, false, false],
 			statistics: {
 				unitsTrained: 10,
 				unitsLost: 9,

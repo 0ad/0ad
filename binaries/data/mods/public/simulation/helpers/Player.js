@@ -40,24 +40,28 @@ function LoadPlayerSettings(settings)
 	var diplomacy = [];
 	
 	// Build team + diplomacy data
-	for (var i = 0; i < (numPlayers - 1); ++i)
+	for (var i = 0; i < numPlayers; ++i)
 	{
 		diplomacy[i] = cmpPlayerMan.Diplomacy.ENEMY;
 		
-		var pData = settings.PlayerData ? settings.PlayerData[i] : {};
-		var pDefs = playerDefaults ? playerDefaults[i+1] : {};
-		var team = getSetting(pData, pDefs, "Team");
-		
-		// If team defined, add player to the team
-		if (team !== undefined && team != -1)
+		// Skip gaia
+		if (i > 0)
 		{
-			if (!teams[team])
+			var pData = settings.PlayerData ? settings.PlayerData[i-1] : {};
+			var pDefs = playerDefaults ? playerDefaults[i] : {};
+			var team = getSetting(pData, pDefs, "Team");
+			
+			// If team defined, add player to the team
+			if (team !== undefined && team != -1)
 			{
-				teams[team] = [i];
-			}
-			else
-			{
-				teams[team].push(i);
+				if (!teams[team])
+				{
+					teams[team] = [i];
+				}
+				else
+				{
+					teams[team].push(i);
+				}
 			}
 		}
 	}
@@ -78,12 +82,12 @@ function LoadPlayerSettings(settings)
 		
 		var pDefs = playerDefaults ? playerDefaults[i] : {};
 		
-		// Use real player data if available
+		// Skip gaia
 		if (i > 0)
 		{
 			var pData = settings.PlayerData ? settings.PlayerData[i-1] : {};
 			
-			// Copy player data if not gaia
+			// Copy player data
 			player.SetName(getSetting(pData, pDefs, "Name"));
 			player.SetCiv(getSetting(pData, pDefs, "Civ"));
 			
@@ -201,7 +205,7 @@ function QueryPlayerIDInterface(id, iid)
  * Returns true if the entity 'target' is owned by an ally of
  * the owner of 'entity'.
  */
-function IsOwnedByAlly(entity, target)
+function IsOwnedByAllyOfEntity(entity, target)
 {
 	// Figure out which player controls us
 	var owner = 0;
@@ -215,17 +219,56 @@ function IsOwnedByAlly(entity, target)
 	if (cmpOwnershipTarget)
 		targetOwner = cmpOwnershipTarget.GetOwner();
 
-	// Players are always implicitly their own ally
-	if (owner == targetOwner)
-		return true;
-
 	// Get our diplomacy array
-	var playerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var player = Engine.QueryInterface(playerMan.GetPlayerByID(owner), IID_Player);
-	var diplomacy = player.GetDiplomacy();
+	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpPlayer = Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(owner), IID_Player);
 
 	// Check for allied diplomacy status
-	if (diplomacy[targetOwner - 1] > 0)
+	if (cmpPlayer.IsAlly(targetOwner))
+		return true;
+
+	return false;
+}
+
+/**
+ * Returns true if the entity 'target' is owned by an ally of player
+ */
+function IsOwnedByAllyOfPlayer(player, target)
+{
+	// Figure out which player controls the foundation being built
+	var targetOwner = 0;
+	var cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
+	if (cmpOwnershipTarget)
+		targetOwner = cmpOwnershipTarget.GetOwner();
+
+	// Get our diplomacy array
+	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpPlayer = Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(player), IID_Player);
+
+	// Check for allied diplomacy status
+	if (cmpPlayer.IsAlly(targetOwner))
+		return true;
+
+	return false;
+}
+
+/**
+ * Returns true if the entity 'target' is owned by an enemy of player
+ */
+function IsOwnedByEnemyOfPlayer(player, target)
+{
+	// Figure out which player controls the foundation being built
+	var targetOwner = 0;
+	var cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
+	if (cmpOwnershipTarget)
+		targetOwner = cmpOwnershipTarget.GetOwner();
+
+	// Get our diplomacy array
+	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpPlayer = Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(player), IID_Player);
+
+	// Check for allied diplomacy status
+	if (cmpPlayer.IsEnemy(targetOwner))
 		return true;
 
 	return false;
@@ -234,4 +277,6 @@ function IsOwnedByAlly(entity, target)
 Engine.RegisterGlobal("LoadPlayerSettings", LoadPlayerSettings);
 Engine.RegisterGlobal("QueryOwnerInterface", QueryOwnerInterface);
 Engine.RegisterGlobal("QueryPlayerIDInterface", QueryPlayerIDInterface);
-Engine.RegisterGlobal("IsOwnedByAlly", IsOwnedByAlly);
+Engine.RegisterGlobal("IsOwnedByAllyOfEntity", IsOwnedByAllyOfEntity);
+Engine.RegisterGlobal("IsOwnedByAllyOfPlayer", IsOwnedByAllyOfPlayer);
+Engine.RegisterGlobal("IsOwnedByEnemyOfPlayer", IsOwnedByEnemyOfPlayer);

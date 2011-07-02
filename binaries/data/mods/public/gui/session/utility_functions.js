@@ -94,7 +94,6 @@ function getPlayerData(playerAssignments)
 			"civ": civ,
 			"color": color,
 			"team": playerState.team,
-			"diplomacy": playerState.diplomacy,
 			"state": playerState.state,
 			"guid": undefined, // network guid for players controlled by hosts
 			"disconnected": false, // flag for host-controlled players who have left the game

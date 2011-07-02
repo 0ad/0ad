@@ -1,10 +1,18 @@
 function ProcessCommand(player, cmd)
 {
-//	print("command: " + player + " " + uneval(cmd) + "\n");
-	
-	// TODO: all of this stuff needs to do checks for valid arguments
-	// (e.g. make sure players own the units they're trying to use)
+	// Do some basic checks here that commanding player is valid
+	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	if (!cmpPlayerMan || player < 0)
+		return;
+	var playerEnt = cmpPlayerMan.GetPlayerByID(player);
+	if (playerEnt == INVALID_ENTITY)
+		return;
+	var cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
+	if (!cmpPlayer)
+		return;
+	var controlAllUnits = cmpPlayer.CanControlAllUnits();
 
+	// Now handle various commands
 	switch (cmd.type)
 	{
 	case "debug-print":
@@ -16,6 +24,10 @@ function ProcessCommand(player, cmd)
 		cmpGuiInterface.PushNotification({"type": "chat", "player": player, "message": cmd.message});
 		break;
 
+	case "control-all":
+		cmpPlayer.SetControlAllUnits(cmd.flag);
+		break;
+		
 	case "reveal-map":
 		// Reveal the map for all players, not just the current player,
 		// primarily to make it obvious to everyone that the player is cheating
@@ -24,46 +36,69 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "walk":
-		var cmpUnitAI = GetFormationUnitAI(cmd.entities);
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		var cmpUnitAI = GetFormationUnitAI(entities);
 		if (cmpUnitAI)
 			cmpUnitAI.Walk(cmd.x, cmd.z, cmd.queued);
 		break;
 
 	case "attack":
-		var cmpUnitAI = GetFormationUnitAI(cmd.entities);
-		if (cmpUnitAI)
-			cmpUnitAI.Attack(cmd.target, cmd.queued);
+		// Check if target is owned by player's enemy
+		if (IsOwnedByEnemyOfPlayer(player, cmd.target))
+		{
+			var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+			var cmpUnitAI = GetFormationUnitAI(entities);
+			if (cmpUnitAI)
+				cmpUnitAI.Attack(cmd.target, cmd.queued);
+		}
 		break;
 
 	case "repair":
 		// This covers both repairing damaged buildings, and constructing unfinished foundations
-		var cmpUnitAI = GetFormationUnitAI(cmd.entities);
-		if (cmpUnitAI)
-			cmpUnitAI.Repair(cmd.target, cmd.autocontinue, cmd.queued);
+		// Check if target building is owned by player or an ally
+		if (IsOwnedByAllyOfPlayer(player, cmd.target))
+		{
+			var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+			var cmpUnitAI = GetFormationUnitAI(entities);
+			if (cmpUnitAI)
+				cmpUnitAI.Repair(cmd.target, cmd.autocontinue, cmd.queued);
+		}
 		break;
 
 	case "gather":
-		var cmpUnitAI = GetFormationUnitAI(cmd.entities);
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		var cmpUnitAI = GetFormationUnitAI(entities);
 		if (cmpUnitAI)
 			cmpUnitAI.Gather(cmd.target, cmd.queued);
 		break;
 
 	case "returnresource":
-		var cmpUnitAI = GetFormationUnitAI(cmd.entities);
-		if (cmpUnitAI)
-			cmpUnitAI.ReturnResource(cmd.target, cmd.queued);
+		// Check dropsite is owned by player
+		if (IsOwnedByPlayer(cmd.target, player))
+		{
+			var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+			var cmpUnitAI = GetFormationUnitAI(entities);
+			if (cmpUnitAI)
+				cmpUnitAI.ReturnResource(cmd.target, cmd.queued);
+		}
 		break;
 
 	case "train":
-		var queue = Engine.QueryInterface(cmd.entity, IID_TrainingQueue);
-		if (queue)
-			queue.AddBatch(cmd.template, +cmd.count, cmd.metadata);
+		if (CanControlUnit(cmd.entity, player, controlAllUnits))
+		{
+			var queue = Engine.QueryInterface(cmd.entity, IID_TrainingQueue);
+			if (queue)
+				queue.AddBatch(cmd.template, +cmd.count, cmd.metadata);
+		}
 		break;
 
 	case "stop-train":
-		var queue = Engine.QueryInterface(cmd.entity, IID_TrainingQueue);
-		if (queue)
-			queue.RemoveBatch(cmd.id);
+		if (CanControlUnit(cmd.entity, player, controlAllUnits))
+		{
+			var queue = Engine.QueryInterface(cmd.entity, IID_TrainingQueue);
+			if (queue)
+				queue.RemoveBatch(cmd.id);
+		}
 		break;
 
 	case "construct":
@@ -88,11 +123,11 @@ function ProcessCommand(player, cmd)
 		 *  . If it's destroyed, an appropriate fraction of the resource cost is refunded.
 		 *  . If it's completed, it gets replaced with the real building.
 		 */
-
-		// Find the player
-		var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-		var playerEnt = cmpPlayerMan.GetPlayerByID(player);
-		var cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
+		 
+		// Check that we can control these units
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		if (!entities.length)
+			break;
 
 		// Tentatively create the foundation (we might find later that it's a invalid build command)
 		var ent = Engine.AddEntity("foundation|" + cmd.template);
@@ -162,7 +197,7 @@ function ProcessCommand(player, cmd)
 		{
 			ProcessCommand(player, {
 				"type": "repair",
-				"entities": cmd.entities,
+				"entities": entities,
 				"target": ent,
 				"autocontinue": cmd.autocontinue,
 				"queued": cmd.queued
@@ -172,13 +207,9 @@ function ProcessCommand(player, cmd)
 		break;
 	
 	case "delete-entities":
-		for each (var ent in cmd.entities)
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		for each (var ent in entities)
 		{
-			// Verify the player owns the unit
-			var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
-			if (!cmpOwnership || cmpOwnership.GetOwner() != player)
-				continue;
-
 			var cmpHealth = Engine.QueryInterface(ent, IID_Health);
 			if (cmpHealth)
 				cmpHealth.Kill();
@@ -188,7 +219,8 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "set-rallypoint":
-		for each (var ent in cmd.entities)
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		for each (var ent in entities)
 		{
 			var cmpRallyPoint = Engine.QueryInterface(ent, IID_RallyPoint);
 			if (cmpRallyPoint)
@@ -197,7 +229,8 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "unset-rallypoint":
-		for each (var ent in cmd.entities)
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		for each (var ent in entities)
 		{
 			var cmpRallyPoint = Engine.QueryInterface(ent, IID_RallyPoint);
 			if (cmpRallyPoint)
@@ -206,42 +239,40 @@ function ProcessCommand(player, cmd)
 		break;
 		
 	case "defeat-player":
-		// Get player entity by playerId
-		var cmpPlayerMananager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-		var playerEnt = cmpPlayerManager.GetPlayerByID(cmd.playerId);
 		// Send "OnPlayerDefeated" message to player
 		Engine.PostMessage(playerEnt, MT_PlayerDefeated, null);
 		break;
 
 	case "garrison":
-		var targetCmpOwnership = Engine.QueryInterface(cmd.target, IID_Ownership);
-		if (!targetCmpOwnership || targetCmpOwnership.GetOwner() != player)
-			break;
-		var cmpUnitAI = GetFormationUnitAI(cmd.entities);
-		if (cmpUnitAI)
-			cmpUnitAI.Garrison(cmd.target);
+		if (CanControlUnit(cmd.target, player, controlAllUnits))
+		{
+			var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+			var cmpUnitAI = GetFormationUnitAI(entities);
+			if (cmpUnitAI)
+				cmpUnitAI.Garrison(cmd.target);
+		}
 		break;
 		
 	case "unload":
-		var cmpOwnership = Engine.QueryInterface(cmd.garrisonHolder, IID_Ownership);
-		if (!cmpOwnership || cmpOwnership.GetOwner() != player)
-			break;
-		var cmpGarrisonHolder = Engine.QueryInterface(cmd.garrisonHolder, IID_GarrisonHolder);
-		if (cmpGarrisonHolder)
-			cmpGarrisonHolder.Unload(cmd.entity);
+		if (CanControlUnit(cmd.garrisonHolder, player, controlAllUnits))
+		{
+			var cmpGarrisonHolder = Engine.QueryInterface(cmd.garrisonHolder, IID_GarrisonHolder);
+			if (cmpGarrisonHolder)
+				cmpGarrisonHolder.Unload(cmd.entity);
+		}
 		break;
 		
 	case "unload-all":
-		var cmpOwnership = Engine.QueryInterface(cmd.garrisonHolder, IID_Ownership);
-		if (!cmpOwnership || cmpOwnership.GetOwner() != player)
-			break;
-		
-		var cmpGarrisonHolder = Engine.QueryInterface(cmd.garrisonHolder, IID_GarrisonHolder);
-		cmpGarrisonHolder.UnloadAll();
+		if (CanControlUnit(cmd.garrisonHolder, player, controlAllUnits))
+		{
+			var cmpGarrisonHolder = Engine.QueryInterface(cmd.garrisonHolder, IID_GarrisonHolder);
+			cmpGarrisonHolder.UnloadAll();
+		}
 		break;
 
 	case "formation":
-		var cmpUnitAI = GetFormationUnitAI(cmd.entities);
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		var cmpUnitAI = GetFormationUnitAI(entities);
 		if (!cmpUnitAI)
 			break;
 		var cmpFormation = Engine.QueryInterface(cmpUnitAI.entity, IID_Formation);
@@ -264,7 +295,8 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "stance":
-		for each (var ent in cmd.entities)
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		for each (var ent in entities)
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 			if (cmpUnitAI)
@@ -505,6 +537,33 @@ function CanMoveEntsIntoFormation(ents, formationName)
 		return false;
 
 	return true;
+}
+
+/**
+ * Check if entity is owned by player
+ */
+function IsOwnedByPlayer(entity, player)
+{
+	var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
+	return (cmpOwnership && cmpOwnership.GetOwner() == player);
+}
+
+/**
+ * Check if player can control this entity
+ * returns: true if the entity is valid and owned by the player if
+ *		or control all units is activated for the player, else false
+ */
+function CanControlUnit(entity, player, controlAll)
+{
+	return (IsOwnedByPlayer(entity, player) || controlAll);
+}
+
+/**
+ * Filter entities which the player can control
+ */
+function FilterEntityList(entities, player, controlAll)
+{
+	return entities.filter(function(ent) { return CanControlUnit(ent, player, controlAll);} );
 }
 
 Engine.RegisterGlobal("CanMoveEntsIntoFormation", CanMoveEntsIntoFormation);
