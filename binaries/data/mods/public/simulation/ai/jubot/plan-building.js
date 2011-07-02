@@ -190,7 +190,7 @@ var BuildingConstructionPlan = Class({
 			if (obstructionTiles[i] > radius)
 			{
 				var v = friendlyTiles[i];
-				var foe = enemyTiles[i];
+				//var foe = enemyTiles[i];
 			//JuBotAI.prototype.chat(v);
 			//JuBotAI.prototype.chat(i);
 			//JuBotAI.prototype.chat(foe);
