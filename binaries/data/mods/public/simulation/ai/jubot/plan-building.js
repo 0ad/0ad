@@ -160,21 +160,21 @@ var BuildingConstructionPlan = Class({
 		
 		//Look at making sure we're a long way from enemy civ centres as well.
 	
-		var enemyTiles = new Uint16Array(map.data.length);
-		
-			var foetargets = gameState.entities.filter(function(ent) {
-				return (ent.isEnemy());
-			});
-			foetargets.forEach(function(ent) {
-			if (ent.hasClass("CivCentre"))
-			{
-				var infl = 32;
-				var pos = ent.position();
-				var x = Math.round(pos[0] / cellSize);
-				var z = Math.round(pos[1] / cellSize);
-				self.addInfluence(enemyTiles, map.width, map.height, x, z, infl);
-			}
-		});
+//		var enemyTiles = new Uint16Array(map.data.length);
+//		
+//			var foetargets = gameState.entities.filter(function(ent) {
+//				return (ent.isEnemy());
+//			});
+//			foetargets.forEach(function(ent) {
+//			if (ent.hasClass("CivCentre"))
+//			{
+//				var infl = 32;
+//				var pos = ent.position();
+//				var x = Math.round(pos[0] / cellSize);
+//				var z = Math.round(pos[1] / cellSize);
+//				self.addInfluence(enemyTiles, map.width, map.height, x, z, infl);
+//			}
+//		});
 
 
 		// Find target building's approximate obstruction radius,
