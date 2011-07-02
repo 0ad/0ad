@@ -2,8 +2,15 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Giraffe Adult">
-      <mesh>skeletal/giraffe_infant.dae</mesh>
+    <variant frequency="1" name="Giraffe Juvenille">
+		<animations>
+			<animation file="quadraped/giraffe_infant_walk.dae" name="Walk" speed="75"/>
+			<animation file="quadraped/giraffe_infant_run.dae" name="Run" speed="35"/>
+			<animation file="quadraped/giraffe_infant_idle_01.dae" name="Idle" speed="40"/>
+			<animation file="quadraped/giraffe_infant_idle_02.dae" name="Idle" speed="40"/>
+			<animation file="quadraped/giraffe_infant_idle_03.dae" name="Idle" speed="40"/>
+		</animations>
+		<mesh>skeletal/giraffe_infant.dae</mesh>
     </variant>
   </group>
   <group>
@@ -12,6 +19,18 @@
     </variant>
     <variant name="Dark">
       <texture>skeletal/animal_giraffeb.png</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="normal"/>
+    <variant frequency="0" name="feeding">
+      <animations>
+        <animation file="quadraped/giraffe_infant_walk.dae" name="Walk" speed="75"/>
+		<animation file="quadraped/giraffe_infant_run.dae" name="Run" speed="35"/>
+		<animation file="quadraped/giraffe_infant_idle_01.dae" name="Idle" speed="40"/>
+		<animation file="quadraped/giraffe_infant_idle_02.dae" name="Idle" speed="40"/>
+		<animation file="quadraped/giraffe_infant_idle_03.dae" name="Idle" speed="40"/>
+      </animations>
     </variant>
   </group>
   <group>
