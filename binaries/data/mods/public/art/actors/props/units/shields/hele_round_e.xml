@@ -29,6 +29,12 @@
     <variant frequency="1" name="shield-y">
       <texture>props/shield/hele_round_y.dds</texture>
     </variant>
+    <variant frequency="1" name="shield-ab">
+      <texture>props/shield/hele_round_ab.dds</texture>
+    </variant>
+    <variant frequency="1" name="shield-ac">
+      <texture>props/shield/hele_round_ac.dds</texture>
+    </variant>
   </group>
   <material>player_trans.xml</material>
 </actor>
