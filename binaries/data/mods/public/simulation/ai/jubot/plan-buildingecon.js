@@ -178,7 +178,7 @@ var BuildingConstructionPlanEcon = Class({
 			foetargets.forEach(function(ent) {
 			if (ent.hasClass("CivCentre"))
 			{
-				var infl = 32;
+				var infl = 40;
 				var pos = ent.position();
 				var x = Math.round(pos[0] / cellSize);
 				var z = Math.round(pos[1] / cellSize);
