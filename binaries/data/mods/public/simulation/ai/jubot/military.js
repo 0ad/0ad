@@ -489,13 +489,13 @@ var MilitaryAttackManager = Class({
 			//Greeks
 				if (gameState.displayCiv() == "hele"){
 					if (this.attacknumbers < 0.19){
-					this.trainSomeTroops(gameState, planGroups, "units/hele_super_infantry_polis");
+					this.trainSomeTroops(gameState, planGroups, "units/hele_champion_infantry_polis");
 					}
 					else if (this.attacknumbers < 0.26){
-					this.trainSomeTroops(gameState, planGroups, "units/hele_super_ranged_polis");
+					this.trainSomeTroops(gameState, planGroups, "units/hele_champion_ranged_polis");
 					}
 					else if (this.attacknumbers < 0.35){
-					this.trainSomeTroops(gameState, planGroups, "units/hele_super_cavalry_mace");
+					this.trainSomeTroops(gameState, planGroups, "units/hele_champion_cavalry_mace");
 					}
 					else if (this.attacknumbers < 0.45){
 					this.trainSomeTroops(gameState, planGroups, "units/{civ}_infantry_archer_b");
@@ -516,7 +516,7 @@ var MilitaryAttackManager = Class({
 			//Celts
 				else if (gameState.displayCiv() == "celt"){
 					if (this.attacknumbers < 0.25){
-					this.trainSomeTroops(gameState, planGroups, "units/celt_super_infantry_brit");
+					this.trainSomeTroops(gameState, planGroups, "units/celt_champion_infantry_brit");
 					}
 					else if (this.attacknumbers < 0.45){
 					this.trainSomeTroops(gameState, planGroups, "units/{civ}_cavalry_swordsman_b");
@@ -534,10 +534,10 @@ var MilitaryAttackManager = Class({
 			//Iberians
 				else if (gameState.displayCiv() == "iber"){
 					if (this.attacknumbers < 0.25){
-					this.trainSomeTroops(gameState, planGroups, "units/iber_super_infantry");
+					this.trainSomeTroops(gameState, planGroups, "units/iber_champion_infantry");
 					}
 					else if (this.attacknumbers < 0.4){
-					this.trainSomeTroops(gameState, planGroups, "units/iber_super_cavalry");
+					this.trainSomeTroops(gameState, planGroups, "units/iber_champion_cavalry");
 					}
 					else if (this.attacknumbers < 0.5){
 					this.trainSomeTroops(gameState, planGroups, "units/{civ}_infantry_slinger_b");
@@ -562,7 +562,7 @@ var MilitaryAttackManager = Class({
 			this.trainSomeTroops(gameState, planGroups, "units/{civ}_cavalry_javelinist_b");
 			}
 			else if (this.attacknumbers < 0.25 && gameState.displayCiv() == "celt"){
-			this.trainSomeTroops(gameState, planGroups, "units/celt_super_cavalry_brit");
+			this.trainSomeTroops(gameState, planGroups, "units/celt_champion_cavalry_brit");
 			}
 			else if (this.attacknumbers < 0.4 && gameState.displayCiv() == "iber"){
 			this.trainSomeTroops(gameState, planGroups, "units/iber_super_cavalry");
@@ -571,7 +571,7 @@ var MilitaryAttackManager = Class({
 			this.trainSomeTroops(gameState, planGroups, "units/{civ}_cavalry_swordsman_b");
 			}
 			else if (this.attacknumbers < 0.6 && gameState.displayCiv() == "hele"){
-			this.trainSomeTroops(gameState, planGroups, "units/hele_super_cavalry_mace");
+			this.trainSomeTroops(gameState, planGroups, "units/hele_champion_cavalry_mace");
 			}
 			else if  (gameState.displayCiv() == "iber"){
 			this.trainSomeTroops(gameState, planGroups, "units/{civ}_cavalry_spearman_b");

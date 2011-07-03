@@ -119,7 +119,7 @@ var EconomyManager = Class({
 			},
 			{
 				"template": "structures/{civ}_barracks",
-				"priority": 100,
+				"priority": 90,
 				"count": 1,
 			},
 			{
@@ -129,7 +129,7 @@ var EconomyManager = Class({
 			},
 			{
 				"template": "structures/{civ}_scout_tower",
-				"priority": 70,
+				"priority": 60,
 				"count": 3,
 			},
 			{
@@ -488,7 +488,7 @@ var EconomyManager = Class({
 					});
 					if (distcheckold > 60){
 					//JuBotAI.prototype.chat("Building Mill");
-						planGroups.economyConstruction.addPlan(95,
+						planGroups.economyConstruction.addPlan(80,
 						new BuildingConstructionPlanEcon(gameState, "structures/{civ}_mill", 1, currentposformill)
 						);
 					}
