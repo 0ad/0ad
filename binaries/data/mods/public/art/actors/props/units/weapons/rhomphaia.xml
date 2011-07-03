@@ -7,11 +7,17 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Rhomphaia A">
+    <variant frequency="3" name="Rhomphaia A">
       <mesh>props/rhomphaia_a.dae</mesh>
     </variant>
-    <variant frequency="1" name="Rhomphaia B">
+    <variant frequency="3" name="Rhomphaia B">
       <mesh>props/rhomphaia_b.dae</mesh>
+    </variant>
+    <variant frequency="2" name="Thracian Sword A">
+      <mesh>props/sword_thracian_a.dae</mesh>
+    </variant>
+    <variant frequency="2" name="Thracian Sword B">
+      <mesh>props/sword_thracian_b.dae</mesh>
     </variant>
   </group>
 </actor>
