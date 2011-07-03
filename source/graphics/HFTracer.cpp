@@ -127,6 +127,14 @@ bool CHFTracer::CellIntersect(int cx, int cz, const CVector3D& origin, const CVe
 // otherwise
 bool CHFTracer::RayIntersect(const CVector3D& origin, const CVector3D& dir, int& x, int& z, CVector3D& ipt) const
 {
+	// If the map is empty (which should never happen),
+	// return early before we crash when reading zero-sized heightmaps
+	if (!m_MapSize)
+	{
+		debug_warn(L"CHFTracer::RayIntersect called with zero-size map");
+		return false;
+	}
+
 	// intersect first against bounding box
 	CBound bound;
 	bound[0] = CVector3D(-MARGIN_SIZE * m_CellSize, 0, -MARGIN_SIZE * m_CellSize);

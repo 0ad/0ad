@@ -961,8 +961,7 @@ void CGameView::CameraFollow(entity_id_t entity, bool firstPerson)
 InReaction game_view_handler(const SDL_Event_* ev)
 {
 	// put any events that must be processed even if inactive here
-
-	if(!g_app_has_focus || !g_Game)
+	if(!g_app_has_focus || !g_Game || !g_Game->IsGameStarted())
 		return IN_PASS;
 
 	CGameView *pView=g_Game->GetView();
