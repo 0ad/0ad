@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <texture>props/prop_weap.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Rhomphaia A">
+      <mesh>props/rhomphaia_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Rhomphaia B">
+      <mesh>props/rhomphaia_b.dae</mesh>
+    </variant>
+  </group>
+</actor>

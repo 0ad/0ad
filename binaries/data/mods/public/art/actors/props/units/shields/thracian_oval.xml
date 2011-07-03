@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="White Shield Oval A">
+      <mesh>props/shield/oval_a_f.pmd</mesh>
+      <props>
+        <prop actor="props/units/shields/oval_back.xml" attachpoint="back"/>
+      </props>
+      <texture>props/shield/celt_oval2_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="White Shield Oval C">
+      <mesh>props/shield/oval_a_f.pmd</mesh>
+      <props>
+        <prop actor="props/units/shields/oval_back.xml" attachpoint="back"/>
+      </props>
+      <texture>props/shield/celt_oval2_c.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
