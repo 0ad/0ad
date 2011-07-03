@@ -209,7 +209,8 @@ var BuildingConstructionPlan = Class({
 //		Engine.DumpImage("tiles2.png", friendlyTiles, map.width, map.height, 256);
 
 		// Randomise the angle a little, to look less artificial
-		var angle = Math.PI + (Math.random()*2-1) * Math.PI/24;
+		//var angle = Math.PI + (Math.random()*2-1) * Math.PI/24;
+		var angle = Math.random()* 2 * Math.PI;
 
 		return {
 			"x": x,
