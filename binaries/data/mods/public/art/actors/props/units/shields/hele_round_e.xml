@@ -11,29 +11,41 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="shield-e">
+    <variant frequency="1" name="shield-e-ship">
       <texture>props/shield/hele_round_e.dds</texture>
     </variant>
-    <variant frequency="1" name="shield-f">
+    <variant frequency="1" name="shield-f-gorgon">
       <texture>props/shield/hele_round_f.dds</texture>
     </variant>
-    <variant frequency="1" name="shield-k">
+    <variant frequency="1" name="shield-k-alpha">
       <texture>props/shield/hele_round_k.dds</texture>
     </variant>
-    <variant frequency="1" name="shield-m">
+    <variant frequency="1" name="shield-m-triskeles">
       <texture>props/shield/hele_round_m.dds</texture>
     </variant>
-    <variant frequency="1" name="shield-s">
+    <variant frequency="1" name="shield-s-rays">
       <texture>props/shield/hele_round_s.dds</texture>
     </variant>
-    <variant frequency="1" name="shield-y">
+    <variant frequency="1" name="shield-w2-fancy laurel">
+      <texture>props/shield/hele_round_w_2.dds</texture>
+    </variant>
+    <variant frequency="1" name="shield-y-pegasus">
       <texture>props/shield/hele_round_y.dds</texture>
     </variant>
-    <variant frequency="1" name="shield-ab">
+    <variant frequency="1" name="shield-ab-fancy snake">
       <texture>props/shield/hele_round_ab.dds</texture>
     </variant>
-    <variant frequency="1" name="shield-ac">
+    <variant frequency="1" name="shield-ac-fancy eye">
       <texture>props/shield/hele_round_ac.dds</texture>
+    </variant>
+    <variant frequency="1" name="shield-ad-octopus">
+      <texture>props/shield/hele_round_ad.dds</texture>
+    </variant>
+    <variant frequency="1" name="shield-ae-helmet">
+      <texture>props/shield/hele_round_ae.dds</texture>
+    </variant>
+    <variant frequency="1" name="shield-af-winged creatures">
+      <texture>props/shield/hele_round_af.dds</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>

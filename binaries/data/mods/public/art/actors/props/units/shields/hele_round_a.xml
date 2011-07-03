@@ -10,20 +10,23 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="shield-c">
+    <variant frequency="1" name="shield-c-dolphin">
       <texture>props/shield/hele_round_c.dds</texture>
     </variant>
-    <variant frequency="1" name="shield-d">
+    <variant frequency="1" name="shield-d-dog">
       <texture>props/shield/hele_round_d.dds</texture>
     </variant>
-    <variant frequency="1" name="shield-g">
+    <variant frequency="1" name="shield-g-trident">
       <texture>props/shield/hele_round_g.dds</texture>
     </variant>
-    <variant frequency="1" name="shield-i">
+    <variant frequency="1" name="shield-i-lion">
       <texture>props/shield/hele_round_i.dds</texture>
     </variant>
-    <variant frequency="1" name="shield-t">
+    <variant frequency="1" name="shield-t-bird">
       <texture>props/shield/hele_round_t.dds</texture>
+    </variant>
+    <variant frequency="1" name="shield-ag-jar">
+      <texture>props/shield/hele_round_ag.dds</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>
