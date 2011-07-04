@@ -272,7 +272,7 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 	
 	// TODO: maybe we should add a CCmpParticleInterface that passes the interpolation commands
 	// etc to CParticleManager. But in the meantime just handle it explicitly here.
-	if (doInterpolate)
+	if (doInterpolate && CRenderer::IsInitialised())
 		g_Renderer.GetParticleManager().Interpolate(deltaTime);
 
 	return ok;
@@ -285,7 +285,8 @@ void CGame::Interpolate(float frameLength)
 
 	m_TurnManager->Interpolate(frameLength);
 
-	g_Renderer.GetParticleManager().Interpolate(frameLength);
+	if (CRenderer::IsInitialised())
+		g_Renderer.GetParticleManager().Interpolate(frameLength);
 }
 
 
