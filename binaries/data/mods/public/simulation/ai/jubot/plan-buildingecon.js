@@ -220,7 +220,7 @@ var BuildingConstructionPlanEcon = Class({
 
 		// Randomise the angle a little, to look less artificial
 		//var angle = Math.PI + (Math.random()*2-1) * Math.PI/24;
-		var angle = Math.random()* 2 * Math.PI;
+		var angle = Math.PI + (Math.PI / 4);
 		
 		return {
 			"x": x,
