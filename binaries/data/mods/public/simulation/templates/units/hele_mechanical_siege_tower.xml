@@ -11,7 +11,7 @@
     <Actor>structures/hellenes/siege_tower.xml</Actor>
   </VisualActor>
   <Cost>
-    <BuildTime>40</BuildTime>
+    <BuildTime>50</BuildTime>
     <Resources>
       <wood>500</wood>
       <metal>300</metal>
@@ -19,7 +19,7 @@
   </Cost>
   <Footprint replace="">
     <Square width="11.5" depth="10.0"/>
-    <Height>5.0</Height>
+    <Height>20.0</Height>
   </Footprint>
   <Obstruction>
     <Unit radius="3.75"/>
