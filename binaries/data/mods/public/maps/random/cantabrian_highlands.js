@@ -1,19 +1,21 @@
 RMS.LoadLibrary("rmgen");
 
 // terrain textures
-const tGrass = ["medit_grass_field_a", "medit_grass_field_b"];
-const tGrassForest = "medit_grass_wild";
-const tCliff = ["medit_cliff_italia", "medit_cliff_italia_grass"];
-const tGrassDirt75 = "medit_rocks_shrubs";
-const tGrassDirt50 = "medit_rocks_grass_shrubs";
-const tGrassDirt25 = "medit_rocks_grass";
-const tDirt = "medit_dirt_b";
-const tCity = "medit_city_tile";
-const tRocks = "medit_rocks";
-const tGrassPatch = "medit_grass_wild";
-const tShoreBlend = "medit_grass_field_brown";
-const tShore = "medit_riparian_mud";
-const tWater = "medit_riparian_mud";
+const tGrass = ["temp_grass_long_b"];
+const tGrassPForest = "temp_forestfloor_pine";
+const tGrassDForest = "temp_forestfloor_a";
+const tCliff = ["temp_cliff_a", "temp_cliff_b"];
+const tGrassA = "temp_grass_d";
+const tGrassB = "temp_grass_c";
+const tGrassC = "temp_grass_clovers_2";
+const tHill = ["temp_highlands", "temp_grass_long_b"];
+const tDirt = ["temp_dirt_gravel", "temp_dirt_gravel_b"];
+const tRoad = "temp_road";
+const tRoadWild = "temp_road_overgrown";
+const tGrassPatch = "temp_grass_plants";
+const tShoreBlend = "temp_mud_plants";
+const tShore = "temp_mud_a";
+const tWater = "temp_mud_a";
 
 // gaia entities
 const oOak = "gaia/flora_tree_oak";
@@ -41,8 +43,8 @@ const aBushMedium = "actor|props/flora/bush_medit_me.xml";
 const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 
 // terrain + entity (for painting)
-const pForestD = [tGrassForest + TERRAIN_SEPARATOR + oOak, tGrassForest + TERRAIN_SEPARATOR + oOakLarge, tGrassForest];
-const pForestP = [tGrassForest + TERRAIN_SEPARATOR + oPine, tGrassForest + TERRAIN_SEPARATOR + oAleppoPine, tGrassForest];
+const pForestD = [tGrassDForest + TERRAIN_SEPARATOR + oOak, tGrassDForest + TERRAIN_SEPARATOR + oOakLarge, tGrassDForest];
+const pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oPine, tGrassPForest + TERRAIN_SEPARATOR + oAleppoPine, tGrassPForest];
 
 // initialize map
 
@@ -102,7 +104,7 @@ for (var i = 0; i < numPlayers; i++)
 	// create the hill
 	var placer = new ClumpPlacer(hillSize, 0.95, 0.6, 10, ix, iz);
 	var terrainPainter = new LayeredPainter(
-		[tCliff, tGrass],		// terrains
+		[tCliff, tHill],		// terrains
 		[cliffRadius]		// widths
 	);
 	var elevationPainter = new SmoothElevationPainter(
@@ -127,7 +129,7 @@ for (var i = 0; i < numPlayers; i++)
 	// create the city patch
 	var cityRadius = radius/3;
 	placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
-	painter = new LayeredPainter([tRocks, tCity], [1]);
+	painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, painter, null);
 	
 	// get civ specific starting entities
@@ -302,7 +304,7 @@ RMS.SetProgress(30);
 log("Creating hills...");
 placer = new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, 1);
 terrainPainter = new LayeredPainter(
-	[tCliff, [tGrass,tGrass,tGrassDirt75]],		// terrains
+	[tCliff, tHill],		// terrains
 	[2]								// widths
 );
 elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 12, 2);
@@ -326,14 +328,17 @@ var numStragglers = totalTrees * (1.0 - P_FOREST);
 
 // create forests
 log("Creating forests...");
-var types = [pForestD, pForestP];	// some variation
+var types = [
+	[[tGrassDForest, tGrass, pForestD], [tGrassDForest, pForestD]],
+	[[tGrassPForest, tGrass, pForestP], [tGrassPForest, pForestP]]
+];	// some variation
 var size = numForest / (scaleByMapSize(2,8) * numPlayers);
 var num = floor(size / types.length);
 for (var i = 0; i < types.length; ++i)
 {
 	placer = new ClumpPlacer(numForest / num, 0.1, 0.1, 1);
 	painter = new LayeredPainter(
-		[[tGrassForest, tGrass, types[i]], [tGrassForest, types[i]]],		// terrains
+		types[i],		// terrains
 		[2]											// widths
 		);
 	createAreas(
@@ -353,7 +358,7 @@ for (var i = 0; i < sizes.length; i++)
 {
 	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
 	painter = new LayeredPainter(
-		[[tGrass,tGrassDirt75],[tGrassDirt75,tGrassDirt50], [tGrassDirt50,tGrassDirt25]], 		// terrains
+		[[tGrass,tGrassA],[tGrassA,tGrassB], [tGrassB,tGrassC]], 		// terrains
 		[1,1]															// widths
 	);
 	createAreas(
