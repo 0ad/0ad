@@ -346,6 +346,14 @@ void CameraFollowFPS(void* UNUSED(cbdata), entity_id_t entityid)
 		g_Game->GetView()->CameraFollow(entityid, true);
 }
 
+entity_id_t GetFollowedEntity(void* UNUSED(cbdata))
+{
+	if (g_Game && g_Game->GetView())
+		return g_Game->GetView()->GetFollowedEntity();
+	
+	return INVALID_ENTITY;
+}
+
 bool HotkeyIsPressed_(void* UNUSED(cbdata), std::string hotkeyName)
 {
 	return HotkeyIsPressed(hotkeyName);
@@ -491,6 +499,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<CScriptVal, &GetMapSettings>("GetMapSettings");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollow>("CameraFollow");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollowFPS>("CameraFollowFPS");
+	scriptInterface.RegisterFunction<entity_id_t, &GetFollowedEntity>("GetFollowedEntity");
 	scriptInterface.RegisterFunction<bool, std::string, &HotkeyIsPressed_>("HotkeyIsPressed");
 	scriptInterface.RegisterFunction<void, std::wstring, &DisplayErrorDialog>("DisplayErrorDialog");
 	scriptInterface.RegisterFunction<CScriptVal, &GetProfilerState>("GetProfilerState");

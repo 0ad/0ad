@@ -739,6 +739,12 @@ function handleInputAfterGui(ev)
 
 				var selectedEntity = ents[0];
 				var now = new Date();
+				
+				// If camera following and we select different unit, stop
+				if (Engine.GetFollowedEntity() != selectedEntity)
+				{
+					Engine.CameraFollow(0);
+				}
 
 				if ((now.getTime() - doubleClickTimer < doubleClickTime) && (selectedEntity == prevClickedEntity))
 				{

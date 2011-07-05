@@ -958,6 +958,11 @@ void CGameView::CameraFollow(entity_id_t entity, bool firstPerson)
 	m->FollowFirstPerson = firstPerson;
 }
 
+entity_id_t CGameView::GetFollowedEntity()
+{
+	return m->FollowEntity;
+}
+
 InReaction game_view_handler(const SDL_Event_* ev)
 {
 	// put any events that must be processed even if inactive here
