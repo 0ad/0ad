@@ -120,7 +120,10 @@ void CModel::CalcBounds()
 		m_ObjectBounds = m_Anim->m_ObjectBounds;
 	}
 
-	m_ObjectBounds.Transform(GetTransform(),m_Bounds);
+	// Ensure the transform is set correctly before we use it
+	ValidatePosition();
+
+	m_ObjectBounds.Transform(GetTransform(), m_Bounds);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -134,7 +137,7 @@ void CModel::CalcObjectBounds()
 
 	for (size_t i=0;i<numverts;i++) {
 		m_ObjectBounds+=verts[i].m_Coords;
-	}		
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
