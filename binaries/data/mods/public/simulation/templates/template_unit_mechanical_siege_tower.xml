@@ -2,13 +2,16 @@
 <Entity parent="template_unit_mechanical_siege">
   <Identity>
     <GenericName>Siege Tower</GenericName>
-    <Tooltip>Bonused vs. Walls.</Tooltip>
+    <Tooltip>A mobile missile platform.</Tooltip>
   </Identity>
+  <Cost>
+    <Population>5</Population>
+  </Cost>
   <Health>
     <Max>800</Max>
   </Health>
   <Armour>
-    <Hack>5.0</Hack>
+    <Hack>7.0</Hack>
     <Pierce>20.0</Pierce>
     <Crush>6.0</Crush>
   </Armour>
@@ -42,7 +45,7 @@
     </SoundGroups>
   </Sound>
   <GarrisonHolder>
-    <Max>15</Max>
+    <Max>20</Max>
 	<EjectHealth>0.1</EjectHealth>
 	<List datatype="tokens">Support Infantry</List>
 	<BuffHeal>1</BuffHeal>
