@@ -675,10 +675,19 @@ void Shutdown(int UNUSED(flags))
 }
 
 #if OS_UNIX
-void SetDefaultIfLocaleInvalid()
+static void FixLocales()
 {
+#if OS_MACOSX
+	// OS X requires a UTF-8 locale in LC_CTYPE so that *wprintf can handle
+	// wide characters. Peculiarly the string "UTF-8" seems to be acceptable
+	// despite not being a real locale, and it's conveniently language-agnostic,
+	// so use that.
+	setlocale(LC_CTYPE, "UTF-8");
+#endif
+
+
 	// On misconfigured systems with incorrect locale settings, we'll die
-	// with a C++ exception when some code tries to use locales.
+	// with a C++ exception when some code (e.g. Boost) tries to use locales.
 	// To avoid death, we'll detect the problem here and warn the user and
 	// reset to the default C locale.
 
@@ -723,7 +732,7 @@ void SetDefaultIfLocaleInvalid()
 	}
 }
 #else
-void SetDefaultIfLocaleInvalid()
+static void FixLocales()
 {
 	// Do nothing on Windows
 }
@@ -744,7 +753,7 @@ void EarlyInit()
 
 	timer_LatchStartTime();
 
-	SetDefaultIfLocaleInvalid();
+	FixLocales();
 
 	// Because we do GL calls from a secondary thread, Xlib needs to
 	// be told to support multiple threads safely.

@@ -65,12 +65,17 @@ class LeakReporter : public CxxTest::GlobalFixture
 
 };
 
-class TimerSetup : public CxxTest::GlobalFixture
+class MiscSetup : public CxxTest::GlobalFixture
 {
 	virtual bool setUpWorld()
 	{
 		// Timer must be initialised, else things will break when tests do IO
 		timer_LatchStartTime();
+
+#if OS_MACOSX
+		// See comment in GameSetup.cpp FixLocales
+		setlocale(LC_CTYPE, "UTF-8");
+#endif
 
 		return true;
 	}
@@ -78,7 +83,7 @@ class TimerSetup : public CxxTest::GlobalFixture
 };
 
 static LeakReporter leakReporter;
-static TimerSetup timerSetup;
+static MiscSetup miscSetup;
 
 // Definition of functions from lib/self_test.h
 
