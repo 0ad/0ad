@@ -8,17 +8,37 @@ die()
 
 JOBS=${JOBS:="-j2"}
 
-# Parse command-line options
+# Parse command-line options:
+
+premake_args=""
+
 with_system_nvtt=false
 with_system_enet=false
+enable_atlas=true
+
+if [ "`uname -s`" = "Darwin" ]
+then
+  # Atlas is broken on OS X so disable by default
+  enable_atlas=false
+fi
+
 for i in "$@"
 do
   case $i in
-    --with-system-nvtt ) with_system_nvtt=true ;;
-    --with-system-enet ) with_system_enet=true ;;
+    --with-system-nvtt ) with_system_nvtt=true; premake_args="${premake_args} --with-system-nvtt" ;;
+    --with-system-enet ) with_system_enet=true; premake_args="${premake_args} --with-system-enet" ;;
+    --enable-atlas ) enable_atlas=true ;;
+    --disable-atlas ) enable_atlas=false ;;
     -j* ) JOBS=$i ;;
+    * ) premake_args="${premake_args} $i"
   esac
 done
+
+premake_args="${premake_args} --collada"
+if [ "$enable_atlas" = "true" ]; then
+  premake_args="${premake_args} --atlas"
+fi
+
 
 cd "$(dirname $0)"
 # Now in build/workspaces/ (where we assume this script resides)
@@ -52,4 +72,4 @@ echo
 # If we're in bash then make HOSTTYPE available to Premake, for primitive arch-detection
 export HOSTTYPE="$HOSTTYPE"
 
-src/bin/premake --outpath ../workspaces/gcc --atlas --collada "$@" --target gnu || die "Premake failed"
+src/bin/premake --outpath ../workspaces/gcc ${premake_args} --target gnu || die "Premake failed"
