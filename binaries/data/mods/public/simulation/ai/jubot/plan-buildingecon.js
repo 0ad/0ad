@@ -40,24 +40,29 @@ var BuildingConstructionPlanEcon = Class({
 		var pos = this.findGoodPosition(gameState);
 		//Check distance from Pos to CC - we don't want to get too far from the centre, for now.
 		// THIS SHOULD BE A GLOBAL VARIABLE
-		var distcheckold = 10000;
+		//var distcheckold = 10000;
 		// CHECK DISTANCE
-		gameState.getOwnEntities().forEach(function(centre) {
-			if (centre.hasClass("CivCentre"))
-			{
-					var centrePosition = centre.position();
-					var dx = pos.x - centrePosition[0];
-					var dz = pos.z - centrePosition[1];
-					var distcheck = Math.sqrt(dx*dx + dz*dz);
-						if (distcheck < distcheckold){
-						distcheckold = distcheck;
-						}
-			}
-		});
+		//gameState.getOwnEntities().forEach(function(centre) {
+			//if (centre.hasClass("CivCentre"))
+		//	{
+					//var centrePosition = centre.position();
+					//var dx = pos.x - centrePosition[0];
+					//var dz = pos.z - centrePosition[1];
+					//var distcheck = Math.sqrt(dx*dx + dz*dz);
+						//if (distcheck < distcheckold){
+						//distcheckold = distcheck;
+						//}
+			//}
+		//});
 		//Distcheck is thus the distance to the nearest CC - we only build if it's low enough.
-		if (distcheckold < 400){
+		///if (distcheckold < 400){
 		builders[0].construct(this.type, pos.x, pos.z, pos.angle);
-		}
+		//}
+		//else {
+		//var pos = this.findGoodPositionOldStyle(gameState);
+		//builders[0].construct(this.type, pos.x, pos.z, pos.angle);
+		//}
+		
 	},
 	
 	getCost: function()
@@ -169,22 +174,6 @@ var BuildingConstructionPlanEcon = Class({
 		self.addInfluence(friendlyTiles, map.width, map.height, x, z, infl);
 		
 		//Look at making sure we're a long way from enemy civ centres as well.
-	
-//		var enemyTiles = new Uint16Array(map.data.length);
-//		
-//			var foetargets = gameState.entities.filter(function(ent) {
-//				return (ent.isEnemy());
-//			});
-//			foetargets.forEach(function(ent) {
-//			if (ent.hasClass("CivCentre"))
-//			{
-//				var infl = 40;
-//				var pos = ent.position();
-//				var x = Math.round(pos[0] / cellSize);
-//				var z = Math.round(pos[1] / cellSize);
-//				self.addInfluence(enemyTiles, map.width, map.height, x, z, infl);
-//			}
-//		});
 
 
 		// Find target building's approximate obstruction radius,
@@ -228,4 +217,106 @@ var BuildingConstructionPlanEcon = Class({
 			"angle": angle
 		};
 	},
+
+	findGoodPositionOldStyle: function(gameState)
+	{
+		var self = this;
+
+		var cellSize = 4; // size of each tile
+
+		// First, find all tiles that are far enough away from obstructions:
+
+		var map = gameState.getMap();
+
+		var obstructionMask = gameState.getPassabilityClassMask("foundationObstruction");
+		// Only accept valid land tiles (we don't handle docks yet)
+		obstructionMask |= gameState.getPassabilityClassMask("building-land");
+
+		var obstructionTiles = new Uint16Array(map.data.length);
+		for (var i = 0; i < map.data.length; ++i)
+			obstructionTiles[i] = (map.data[i] & obstructionMask) ? 0 : 65535;
+
+//		Engine.DumpImage("tiles0.png", obstructionTiles, map.width, map.height, 64);
+
+		this.expandInfluences(obstructionTiles, map.width, map.height);
+
+		// Compute each tile's closeness to friendly structures:
+
+		var friendlyTiles = new Uint16Array(map.data.length);
+
+		gameState.getOwnEntities().forEach(function(ent) {
+			if (ent.hasClass("Structure"))
+			{
+				var infl = 32;
+				if (ent.hasClass("CivCentre"))
+					infl *= 4;
+
+				var pos = ent.position();
+				var x = Math.round(pos[0] / cellSize);
+				var z = Math.round(pos[1] / cellSize);
+				self.addInfluence(friendlyTiles, map.width, map.height, x, z, infl);
+			}
+		});
+		
+		//Look at making sure we're a long way from enemy civ centres as well.
+	
+//		var enemyTiles = new Uint16Array(map.data.length);
+//		
+//			var foetargets = gameState.entities.filter(function(ent) {
+//				return (ent.isEnemy());
+//			});
+//			foetargets.forEach(function(ent) {
+//			if (ent.hasClass("CivCentre"))
+//			{
+//				var infl = 32;
+//				var pos = ent.position();
+//				var x = Math.round(pos[0] / cellSize);
+//				var z = Math.round(pos[1] / cellSize);
+//				self.addInfluence(enemyTiles, map.width, map.height, x, z, infl);
+//			}
+//		});
+
+
+		// Find target building's approximate obstruction radius,
+		// and expand by a bit to make sure we're not too close
+		var template = gameState.getTemplate(this.type);
+		var radius = Math.ceil(template.obstructionRadius() / cellSize) + 1;
+
+		// Find the best non-obstructed tile
+		var bestIdx = 0;
+		var bestVal = -1;
+		for (var i = 0; i < map.data.length; ++i)
+		{
+			if (obstructionTiles[i] > radius)
+			{
+				var v = friendlyTiles[i];
+				//var foe = enemyTiles[i];
+			//JuBotAI.prototype.chat(v);
+			//JuBotAI.prototype.chat(i);
+			//JuBotAI.prototype.chat(foe);
+				if (v >= bestVal)
+				{
+					bestVal = v;
+					bestIdx = i;
+			//JuBotAI.prototype.chat("BestVal is " + bestVal + ", and bestIdx is " + bestIdx + ".");
+				}
+			}
+		}
+		var x = ((bestIdx % map.width) + 0.5) * cellSize;
+		var z = (Math.floor(bestIdx / map.width) + 0.5) * cellSize;
+
+//		Engine.DumpImage("tiles1.png", obstructionTiles, map.width, map.height, 32);
+//		Engine.DumpImage("tiles2.png", friendlyTiles, map.width, map.height, 256);
+
+		// Randomise the angle a little, to look less artificial
+		//var angle = Math.PI + (Math.random()*2-1) * Math.PI/24;
+		var angle = Math.PI + (Math.PI / 4);
+
+		return {
+			"x": x,
+			"z": z,
+			"angle": angle
+		};
+	},
 });
+

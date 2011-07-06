@@ -441,21 +441,26 @@ var EconomyManager = Class({
 						// Skip targets that are too hard to hunt
 						if (supply.entity.isUnhuntable())
 							return;
+		
+		var distcheck = 1000000;
 		gameState.getOwnEntities().forEach(function(centre) {
 			if (centre.hasClass("CivCentre"))
 			{
 					var centrePosition = centre.position();
-							var distcheck = VectorDistance(supply.position, centrePosition);
+							var currentdistcheck = VectorDistance(supply.position, centrePosition);
+							if (currentdistcheck < distcheck){
+							distcheck = currentdistcheck;
+							}
 						// Skip targets that are far too far away (e.g. in the enemy base)
-						if (distcheck > 600)
-						return;
 			}
 		});
+						if (distcheck > 500)
+						return;
 							
 						var dist = VectorDistance(supply.position, workerPosition);
 
 						// Skip targets that are far too far away (e.g. in the enemy base)
-						if (dist > 512)
+						if (dist > 500)
 							return;							
 							
 						supplies.push({ dist: dist, entity: supply.entity });
@@ -486,13 +491,26 @@ var EconomyManager = Class({
 									}
 						}
 					});
-					if (distcheckold > 60){
+					var foundationsyes = false;
+					if (gameState.findFoundations().length > 2){
+					foundationsyes = false;
+					}
+					else{
+					foundationsyes = true;
+					}
+					
+					if (distcheckold > 60 && foundationsyes == true){
 					//JuBotAI.prototype.chat("Building Mill");
 						planGroups.economyConstruction.addPlan(80,
 						new BuildingConstructionPlanEcon(gameState, "structures/{civ}_mill", 1, currentposformill)
 						);
+						//JuBotAI.prototype.chat("Gathering");
+						ent.gather(supplies[0].entity);
+						ent.setMetadata("subrole", "gatherer");
+						ent.setMetadata("gather-type", type);
+						return;
 					}
-					else{
+					else {
 					//JuBotAI.prototype.chat("Gathering");
 					ent.gather(supplies[0].entity);
 					ent.setMetadata("subrole", "gatherer");
