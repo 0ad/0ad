@@ -99,6 +99,32 @@ Identity.prototype.Schema =
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
+		"<element name='Formations'>" +
+			"<attribute name='datatype'>" +
+				"<value>tokens</value>" +
+			"</attribute>" +
+			"<list>" +
+				"<zeroOrMore>" +
+					"<choice>" +
+						"<value>Loose</value>" +
+						"<value>Box</value>" +
+						"<value>ColumnClosed</value>" +
+						"<value>LineClosed</value>" +
+						"<value>ColumnOpen</value>" +
+						"<value>LineOpen</value>" +
+						"<value>Flank</value>" +
+						"<value>Skirmish</value>" +
+						"<value>Wedge</value>" +
+						"<value>Testudo</value>" +
+						"<value>Phalanx</value>" +
+						"<value>Syntagma</value>" +
+						"<value>Formation12</value>" +
+					"</choice>" +
+				"</zeroOrMore>" +
+			"</list>" +
+		"</element>" +
+	"</optional>" +
+	"<optional>" +
 		"<element name='Icon'>" +
 			"<text/>" +
 		"</element>" +
@@ -123,7 +149,7 @@ Identity.prototype.GetRank = function()
 
 Identity.prototype.GetClassesList = function()
 {
-	if (this.template.Classes)
+	if (this.template.Classes && "_string" in this.template.Classes)
 	{
 		var string = this.template.Classes._string;
 		return string.split(/\s+/);
@@ -137,6 +163,24 @@ Identity.prototype.GetClassesList = function()
 Identity.prototype.HasClass = function(name)
 {
 	return this.GetClassesList().indexOf(name) != -1;
+};
+
+Identity.prototype.GetFormationsList = function()
+{
+	if (this.template.Formations && "_string" in this.template.Formations)
+	{
+		var string = this.template.Formations._string;
+		return string.split(/\s+/);
+	}
+	else
+	{
+		return [];
+	}
+};
+
+Identity.prototype.CanUseFormation = function(name)
+{
+	return this.GetFormationsList().indexOf(name) != -1;
 };
 
 Identity.prototype.GetSelectionGroupName = function()

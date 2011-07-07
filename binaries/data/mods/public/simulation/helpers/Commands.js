@@ -37,9 +37,9 @@ function ProcessCommand(player, cmd)
 
 	case "walk":
 		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-		var cmpUnitAI = GetFormationUnitAI(entities);
-		if (cmpUnitAI)
+		GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
 			cmpUnitAI.Walk(cmd.x, cmd.z, cmd.queued);
+		});
 		break;
 
 	case "attack":
@@ -47,9 +47,9 @@ function ProcessCommand(player, cmd)
 		if (IsOwnedByEnemyOfPlayer(player, cmd.target))
 		{
 			var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-			var cmpUnitAI = GetFormationUnitAI(entities);
-			if (cmpUnitAI)
+			GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
 				cmpUnitAI.Attack(cmd.target, cmd.queued);
+			});
 		}
 		break;
 
@@ -59,17 +59,17 @@ function ProcessCommand(player, cmd)
 		if (IsOwnedByAllyOfPlayer(player, cmd.target))
 		{
 			var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-			var cmpUnitAI = GetFormationUnitAI(entities);
-			if (cmpUnitAI)
+			GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
 				cmpUnitAI.Repair(cmd.target, cmd.autocontinue, cmd.queued);
+			});
 		}
 		break;
 
 	case "gather":
 		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-		var cmpUnitAI = GetFormationUnitAI(entities);
-		if (cmpUnitAI)
+		GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
 			cmpUnitAI.Gather(cmd.target, cmd.queued);
+		});
 		break;
 
 	case "returnresource":
@@ -77,9 +77,9 @@ function ProcessCommand(player, cmd)
 		if (IsOwnedByPlayer(cmd.target, player))
 		{
 			var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-			var cmpUnitAI = GetFormationUnitAI(entities);
-			if (cmpUnitAI)
+			GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
 				cmpUnitAI.ReturnResource(cmd.target, cmd.queued);
+			});
 		}
 		break;
 
@@ -247,9 +247,9 @@ function ProcessCommand(player, cmd)
 		if (CanControlUnit(cmd.target, player, controlAllUnits))
 		{
 			var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-			var cmpUnitAI = GetFormationUnitAI(entities);
-			if (cmpUnitAI)
+			GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
 				cmpUnitAI.Garrison(cmd.target);
+			});
 		}
 		break;
 		
@@ -272,14 +272,13 @@ function ProcessCommand(player, cmd)
 
 	case "formation":
 		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-		var cmpUnitAI = GetFormationUnitAI(entities);
-		if (!cmpUnitAI)
-			break;
-		var cmpFormation = Engine.QueryInterface(cmpUnitAI.entity, IID_Formation);
-		if (!cmpFormation)
-			break;
-		cmpFormation.LoadFormation(cmd.name);
-		cmpFormation.MoveMembersIntoFormation(true);
+		GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
+			var cmpFormation = Engine.QueryInterface(cmpUnitAI.entity, IID_Formation);
+			if (!cmpFormation)
+				return;
+			cmpFormation.LoadFormation(cmd.name);
+			cmpFormation.MoveMembersIntoFormation(true);
+		});
 		break;
 
 	case "promote":
@@ -311,6 +310,7 @@ function ProcessCommand(player, cmd)
 
 /**
  * Get some information about the formations used by entities.
+ * The entities must have a UnitAI component.
  */
 function ExtractFormations(ents)
 {
@@ -319,17 +319,14 @@ function ExtractFormations(ents)
 	for each (var ent in ents)
 	{
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-		if (cmpUnitAI)
+		var fid = cmpUnitAI.GetFormationController();
+		if (fid != INVALID_ENTITY)
 		{
-			var fid = cmpUnitAI.GetFormationController();
-			if (fid != INVALID_ENTITY)
-			{
-				if (!members[fid])
-					members[fid] = [];
-				members[fid].push(ent);
-			}
-			entities.push(ent);
+			if (!members[fid])
+				members[fid] = [];
+			members[fid].push(ent);
 		}
+		entities.push(ent);
 	}
 
 	var ids = [ id for (id in members) ];
@@ -352,28 +349,56 @@ function RemoveFromFormation(ents)
 }
 
 /**
- * Return null or a UnitAI belonging either to the selected unit
- * or to a formation entity for the selected group of units.
+ * Returns a list of UnitAI components, each belonging either to a
+ * selected unit or to a formation entity for groups of the selected units.
  */
-function GetFormationUnitAI(ents)
+function GetFormationUnitAIs(ents)
 {
 	// If an individual was selected, remove it from any formation
 	// and command it individually
 	if (ents.length == 1)
 	{
+		// Skip unit if it has no UnitAI
+		var cmpUnitAI = Engine.QueryInterface(ents[0], IID_UnitAI);
+		if (!cmpUnitAI)
+			return [];
+
 		RemoveFromFormation(ents);
 
-		return Engine.QueryInterface(ents[0], IID_UnitAI);
+		return [ cmpUnitAI ];
 	}
-	
-	// Find what formations the selected entities are currently in
-	var formation = ExtractFormations(ents);
 
-	if (formation.entities.length == 0)
+	// Separate out the units that don't support the chosen formation
+	var formedEnts = [];
+	var nonformedUnitAIs = [];
+	for each (var ent in ents)
 	{
-		// No units with AI - nothing to do here
-		return null;
+		// Skip units with no UnitAI
+		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		if (!cmpUnitAI)
+			continue;
+
+		var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
+		// TODO: Currently we use LineClosed as effectively a boolean flag
+		// to determine whether formations are allowed at all. Instead we
+		// should check specific formation names and do something sensible
+		// (like what?) when some units don't support them.
+		// TODO: We'll also need to fix other formation code to use
+		// "LineClosed" instead of "Line Closed" etc consistently.
+		if (cmpIdentity && cmpIdentity.CanUseFormation("LineClosed"))
+			formedEnts.push(ent);
+		else
+			nonformedUnitAIs.push(cmpUnitAI);
 	}
+
+	if (formedEnts.length == 0)
+	{
+		// No units support the foundation - return all the others
+		return nonformedUnitAIs;
+	}
+
+	// Find what formations the formationable selected entities are currently in
+	var formation = ExtractFormations(formedEnts);
 
 	var formationEnt = undefined;
 	if (formation.ids.length == 1)
@@ -442,7 +467,7 @@ function GetFormationUnitAI(ents)
 		}
 	}
 
-	return Engine.QueryInterface(formationEnt, IID_UnitAI);
+	return nonformedUnitAIs.concat(Engine.QueryInterface(formationEnt, IID_UnitAI));
 }
 
 function CanMoveEntsIntoFormation(ents, formationName)

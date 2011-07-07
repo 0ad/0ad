@@ -112,9 +112,9 @@ public:
 	void test_overlay_tokens()
 	{
 		CParamNode node;
-		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test> <a datatype='tokens'>x y</a><b datatype='tokens'>a  b\nc\td</b></test>"), PSRETURN_OK);
-		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test> <a datatype='tokens'>-y z w</a></test>"), PSRETURN_OK);
-		TS_ASSERT_WSTR_EQUALS(node.ToXML(), L"<test><a datatype=\"tokens\">x z w</a><b datatype=\"tokens\">a b c d</b></test>");
+		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test> <a datatype='tokens'>x y</a><b datatype='tokens'>a  b\nc\td</b><c datatype='tokens'>m n</c></test>"), PSRETURN_OK);
+		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test> <a datatype='tokens'>-y z w</a><c datatype='tokens' replace=''>n   o</c></test>"), PSRETURN_OK);
+		TS_ASSERT_WSTR_EQUALS(node.ToXML(), L"<test><a datatype=\"tokens\">x z w</a><b datatype=\"tokens\">a b c d</b><c datatype=\"tokens\">n o</c></test>");
 	}
 
 	void test_types()

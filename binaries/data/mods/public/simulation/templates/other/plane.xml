@@ -4,11 +4,12 @@
     <Civ>hele</Civ>
     <SpecificName>P-51 Mustang</SpecificName>
     <History>This may be anachronistic.</History>
-	<Tooltip>A World War 2 American fighter plane.</Tooltip>
+    <Tooltip>A World War 2 American fighter plane.</Tooltip>
     <Icon>units/global_mustang.png</Icon>
+    <Formations datatype="tokens" replace=""></Formations>
   </Identity>
   <VisualActor>
-    <Actor>units/global/plane.xml</Actor> <!-- only using this because its flaming projectiles look nice -->
+    <Actor>units/global/plane.xml</Actor>
   </VisualActor>
     <Vision>
     <Range>100</Range>

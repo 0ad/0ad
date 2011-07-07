@@ -3,6 +3,21 @@
   <Identity>
     <GenericName>Unit</GenericName>
     <Classes datatype="tokens">Unit ConquestCritical</Classes>
+    <Formations datatype="tokens">
+      Loose
+      Box
+      ColumnClosed
+      LineClosed
+      ColumnOpen
+      LineOpen
+      Flank
+      Skirmish
+      Wedge
+      Testudo
+      Phalanx
+      Syntagma
+      Formation12
+    </Formations>
   </Identity>
   <Minimap>
     <Type>unit</Type>

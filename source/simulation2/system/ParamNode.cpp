@@ -83,6 +83,7 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element)
 	int at_disable = xmb.GetAttributeID("disable");
 	int at_replace = xmb.GetAttributeID("replace");
 	int at_datatype = xmb.GetAttributeID("datatype");
+	bool replacing = false;
 	{
 		XERO_ITER_ATTR(element, attr)
 		{
@@ -94,16 +95,22 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element)
 			else if (attr.Name == at_replace)
 			{
 				m_Childs.erase(name);
-				break;
+				replacing = true;
 			}
-			else if (attr.Name == at_datatype && std::wstring(attr.Value.begin(), attr.Value.end()) == L"tokens")
+		}
+	}
+	{
+		XERO_ITER_ATTR(element, attr)
+		{
+			if (attr.Name == at_datatype && std::wstring(attr.Value.begin(), attr.Value.end()) == L"tokens")
 			{
 				CParamNode& node = m_Childs[name];
 
 				// Split into tokens
 				std::vector<std::wstring> oldTokens;
 				std::vector<std::wstring> newTokens;
-				boost::algorithm::split(oldTokens, node.m_Value, boost::algorithm::is_space());
+				if (!replacing) // ignore the old tokens if replace="" was given
+					boost::algorithm::split(oldTokens, node.m_Value, boost::algorithm::is_space());
 				boost::algorithm::split(newTokens, value, boost::algorithm::is_space());
 
 				// Delete empty tokens
