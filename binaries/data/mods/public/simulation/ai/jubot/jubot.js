@@ -139,8 +139,8 @@ JuBotAI.prototype.OnUpdate = function()
 		for each (var planGroup in this.planGroups)
 			planGroup.resetPlans();
 	}
-	if (this.turn == 0){
-		this.chat("Good morning. Please prepare for annihilation. Jubal apologises for any inconvenience likely to be caused by your imminent demise.");
-		}
+//	if (this.turn == 0){
+//		this.chat("Good morning. Please prepare for annihilation. Jubal apologises for any inconvenience likely to be caused by your imminent demise.");
+//		}
 	this.turn++;
 };
