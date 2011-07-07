@@ -7,6 +7,9 @@
   !include "MUI2.nsh"
   !include "LogicLib.nsh"
  
+  ; Control whether to include source code (and component selection screen)
+  !define INCLUDE_SOURCE 0
+
 ;--------------------------------
 ;General
 
@@ -39,7 +42,9 @@
 ;Pages
 
   !insertmacro MUI_PAGE_WELCOME
-  !insertmacro MUI_PAGE_COMPONENTS
+  !if INCLUDE_SOURCE
+    !insertmacro MUI_PAGE_COMPONENTS
+  !endif
   !insertmacro MUI_PAGE_DIRECTORY
 
   ;Start Menu Folder Page Configuration
@@ -109,6 +114,7 @@ Section "!Game and data files" GameSection
 
 SectionEnd
 
+!if INCLUDE_SOURCE
 Section /o "Source code" SourceSection
 
   SetOutPath "$INSTDIR"
@@ -118,6 +124,7 @@ Section /o "Source code" SourceSection
   File /r ${CHECKOUTPATH}\libraries
 
 SectionEnd
+!endif
 
 ;--------------------------------
 ;Installer Functions
@@ -144,11 +151,15 @@ FunctionEnd
 ;--------------------------------
 ;Descriptions
 
-  ;Assign descriptions to sections
-  !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
-    !insertmacro MUI_DESCRIPTION_TEXT ${GameSection} "0 A.D. game executable and data."
-    !insertmacro MUI_DESCRIPTION_TEXT ${SourceSection} "Source code and build tools."
-  !insertmacro MUI_FUNCTION_DESCRIPTION_END
+  !if INCLUDE_SOURCE
+
+    ;Assign descriptions to sections
+    !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
+      !insertmacro MUI_DESCRIPTION_TEXT ${GameSection} "0 A.D. game executable and data."
+      !insertmacro MUI_DESCRIPTION_TEXT ${SourceSection} "Source code and build tools."
+    !insertmacro MUI_FUNCTION_DESCRIPTION_END
+
+  !endif
 
 ;--------------------------------
 ;Uninstaller Section
@@ -156,10 +167,12 @@ FunctionEnd
 Section "Uninstall"
 
   RMDir /r "$INSTDIR\binaries"
-  RMDir /r "$INSTDIR\source"
-  RMDir /r "$INSTDIR\docs"
-  RMDir /r "$INSTDIR\build"
-  RMDir /r "$INSTDIR\libraries"
+  !if INCLUDE_SOURCE
+    RMDir /r "$INSTDIR\source"
+    RMDir /r "$INSTDIR\docs"
+    RMDir /r "$INSTDIR\build"
+    RMDir /r "$INSTDIR\libraries"
+  !endif
   Delete "$INSTDIR\*.txt"
   Delete "$INSTDIR\*.bat"
   Delete "$INSTDIR\Uninstall.exe"
