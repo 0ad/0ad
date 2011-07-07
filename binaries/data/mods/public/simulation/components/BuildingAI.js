@@ -86,6 +86,9 @@ BuildingAI.prototype.SetupRangeQuery = function(owner)
  */
 BuildingAI.prototype.OnRangeUpdate = function(msg)
 {
+	if (msg.tag != this.enemyUnitsQuery)
+		return;
+
 	if (msg.added.length > 0)
 	{
 		for each (var entity in msg.added)
