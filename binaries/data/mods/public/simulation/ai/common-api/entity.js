@@ -258,7 +258,7 @@ var Entity = Class({
 	},
 
 	repair: function(target) {
-		Engine.PostCommand({"type": "repair", "entities": [this.id()], "target": target.id(), "queued": false});
+		Engine.PostCommand({"type": "repair", "entities": [this.id()], "target": target.id(), "autocontinue": false, "queued": false});
 		return this;
 	},
 
