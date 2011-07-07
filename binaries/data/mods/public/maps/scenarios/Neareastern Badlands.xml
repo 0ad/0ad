@@ -4,11 +4,11 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>sunny</SkySet>
-		<SunColour r="0.765786" g="0.745527" b="0.664491"/>
+		<SunColour r="0.764706" g="0.745098" b="0.662745"/>
 		<SunElevation angle="0.917321"/>
 		<SunRotation angle="1.53398"/>
 		<TerrainAmbientColour r="0.337255" g="0.411765" b="0.501961"/>
-		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.552941"/>
+		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -24,14 +24,20 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="312.165" y="256.337" z="228.967"/>
+		<Position x="736.901" y="118.382" z="125.974"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name": "Neareastern Badlands",
+  "CircularMap": true,
   "Description": "A bleak landscape of rocky outcrops and scraggly crags.",
+  "GameType": "conquest",
+  "Keywords": [
+    "hidden"
+  ],
+  "LockTeams": false,
+  "Name": "Neareastern Badlands",
   "PlayerData": [
     {
       "Civ": "celt"
@@ -40,7 +46,7 @@
       "Civ": "hele"
     }
   ],
-  "CircularMap": true
+  "RevealMap": false
 }
 ]]></ScriptSettings>
 	<Entities>
