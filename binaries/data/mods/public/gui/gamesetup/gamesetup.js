@@ -1,5 +1,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Constants
+const DEFAULT_NETWORKED_MAP = "Median Oasis";
+const DEFAULT_OFFLINE_MAP = "Acropolis II";
+
 // TODO: Move these somewhere like simulation\data\game_types.json, Atlas needs them too
 const VICTORY_TEXT = ["Conquest", "None"];
 const VICTORY_DATA = ["conquest", "endless"];
@@ -579,7 +582,7 @@ function selectMapType(type)
 	case "scenario":
 		// Set a default map
 		// TODO: This should be remembered from the last session
-		g_GameAttributes.map = (g_IsNetworked ? "Median Oasis" : "Death Canyon");
+		g_GameAttributes.map = (g_IsNetworked ? DEFAULT_NETWORKED_MAP : DEFAULT_OFFLINE_MAP);
 		g_GameAttributes.mapPath = "maps/scenarios/";
 		break;
 		
