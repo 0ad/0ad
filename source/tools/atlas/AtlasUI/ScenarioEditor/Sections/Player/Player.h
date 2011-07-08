@@ -20,6 +20,7 @@
 #include "GameInterface/Messages.h"
 
 #include "wx/collpane.h"
+#include "wx/spinctrl.h"
 
 using namespace AtlasMessage;
 

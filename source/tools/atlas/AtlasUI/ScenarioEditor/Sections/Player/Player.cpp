@@ -24,6 +24,7 @@
 #include "ScenarioEditor/ScenarioEditor.h"
 
 #include "wx/choicebk.h"
+#include "wx/colordlg.h"
 
 enum
 {
