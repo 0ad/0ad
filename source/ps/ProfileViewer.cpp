@@ -535,7 +535,7 @@ void CProfileViewer::SaveToFile()
 		}
 		else
 		{
-			LOGMESSAGERENDER(L"Profiler snapshot saved to '%ls'", OsString(path).c_str());
+			LOGMESSAGERENDER(L"Profiler snapshot saved to '%ls'", path.string().c_str());
 		}
 	}
 
