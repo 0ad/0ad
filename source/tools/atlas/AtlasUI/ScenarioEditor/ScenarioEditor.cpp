@@ -792,7 +792,8 @@ void ScenarioEditor::OnDumpState(wxCommandEvent& event)
 	qSimStateDebugDump q(doBinary);
 	q.Post();
 
-	wxString state(std::wstring(*q.dump));
+	std::wstring dump = *q.dump;
+	wxString state(dump.c_str());
 
 	wxFFile file(filename.c_str(), _T("w"));
 	if (file.IsOpened() && !file.Error())

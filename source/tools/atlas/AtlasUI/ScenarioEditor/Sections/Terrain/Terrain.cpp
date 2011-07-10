@@ -125,7 +125,7 @@ void TerrainSidebar::OnFirstDisplay()
 	qry.Post();
 	std::vector<std::wstring> passClasses = *qry.classNames;
 	for (size_t i = 0; i < passClasses.size(); ++i)
-		m_PassabilityChoice->Append(passClasses[i]);
+		m_PassabilityChoice->Append(passClasses[i].c_str());
 
 	static_cast<TerrainBottomBar*>(m_BottomBar)->LoadTerrain();
 }
