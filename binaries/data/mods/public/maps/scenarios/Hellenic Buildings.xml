@@ -2,28 +2,29 @@
 
 <Scenario version="5">
 	<Environment>
+		<LightingModel>standard</LightingModel>
 		<SkySet>sunny</SkySet>
-		<SunColour r="1.5" g="1.5" b="1.5"/>
+		<SunColour r="0.776471" g="0.74902" b="0.576471"/>
 		<SunElevation angle="0.785398"/>
 		<SunRotation angle="-0.785396"/>
 		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.552941"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>20.0394</Height>
-				<Shininess>150</Shininess>
+				<Shininess>4.15039</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.601563</Murkiness>
-				<Tint r="0.254902" g="0.345098" b="0.521569"/>
-				<ReflectionTint r="0.447059" g="0.545098" b="0.729412"/>
+				<Tint r="0" g="0.501961" b="1"/>
+				<ReflectionTint r="0.447059" g="0.541176" b="0.729412"/>
 				<ReflectionTintStrength>0.300781</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="506.574" y="102.441" z="375.77"/>
+		<Position x="541.54" y="158.154" z="254.433"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -31,7 +32,9 @@
 {
   "Name": "Hellenes Sandbox",
   "Description": "A sandbox scenario to play around with the Hellenes civilisation.",
-  "Keywords": ["demo"],
+  "Keywords": [
+    "demo"
+  ],
   "PlayerData": [
     {
       "Civ": "hele"
