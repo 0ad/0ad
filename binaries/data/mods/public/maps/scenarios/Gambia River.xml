@@ -3,12 +3,12 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>cirrus</SkySet>
-		<SunColour r="0.741176" g="0.721569" b="0.643137"/>
+		<SkySet>cloudless</SkySet>
+		<SunColour r="0.703056" g="0.693084" b="0.558456"/>
 		<SunElevation angle="0.920389"/>
 		<SunRotation angle="-0.953995"/>
 		<TerrainAmbientColour r="0.396078" g="0.47451" b="0.654902"/>
-		<UnitsAmbientColour r="0.466667" g="0.584314" b="0.572549"/>
+		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.552941"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -19,12 +19,12 @@
 				<Murkiness>1</Murkiness>
 				<Tint r="0.74902" g="0.701961" b="0.54902"/>
 				<ReflectionTint r="0.729412" g="0.611765" b="0.482353"/>
-				<ReflectionTintStrength>0.525391</ReflectionTintStrength>
+				<ReflectionTintStrength>0.491211</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="393.889" y="131.77" z="132.966"/>
+		<Position x="383.505" y="115.936" z="139.056"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -7138,7 +7138,7 @@
 		<Entity uid="1199">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="864.79401" z="640.85108"/>
+			<Position x="865.41974" z="657.0304"/>
 			<Orientation y="2.07766"/>
 		</Entity>
 		<Entity uid="1200">
@@ -7264,7 +7264,7 @@
 		<Entity uid="1220">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="402.33637" z="561.33918"/>
+			<Position x="425.81745" z="561.4084"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1221">
@@ -7342,7 +7342,7 @@
 		<Entity uid="1233">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="38.15174" z="606.33661"/>
+			<Position x="54.09658" z="647.08387"/>
 			<Orientation y="1.95153"/>
 		</Entity>
 		<Entity uid="1235">
@@ -7924,7 +7924,7 @@
 		<Entity uid="1338">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="482.15873" z="565.19043"/>
+			<Position x="468.82868" z="585.45087"/>
 			<Orientation y="-1.50527"/>
 		</Entity>
 		<Entity uid="1339">
@@ -8632,13 +8632,13 @@
 		<Entity uid="1475">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="871.00214" z="605.43714"/>
+			<Position x="865.69282" z="589.27161"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1476">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="875.253" z="586.77198"/>
+			<Position x="862.72303" z="570.58271"/>
 			<Orientation y="-2.69547"/>
 		</Entity>
 		<Entity uid="1477">
@@ -8812,13 +8812,13 @@
 		<Entity uid="1506">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="898.78638" z="638.35645"/>
+			<Position x="908.77027" z="642.27198"/>
 			<Orientation y="-2.05979"/>
 		</Entity>
 		<Entity uid="1507">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="863.54017" z="632.10987"/>
+			<Position x="854.19361" z="656.41651"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1508">
@@ -9130,7 +9130,7 @@
 		<Entity uid="1559">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="454.3335" z="552.73884"/>
+			<Position x="455.54307" z="555.43842"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1560">
@@ -9142,7 +9142,7 @@
 		<Entity uid="1561">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="473.39344" z="529.75513"/>
+			<Position x="514.26886" z="543.04432"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1562">
@@ -9352,7 +9352,7 @@
 		<Entity uid="1597">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="122.03223" z="530.0005"/>
+			<Position x="86.43967" z="506.25562"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1598">
@@ -10198,7 +10198,7 @@
 		<Entity uid="1740">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="914.08149" z="589.44306"/>
+			<Position x="926.27802" z="626.86597"/>
 			<Orientation y="1.02181"/>
 		</Entity>
 		<Entity uid="1741">
@@ -28888,13 +28888,13 @@
 		<Entity uid="5034">
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
-			<Position x="410.0532" z="526.53199"/>
+			<Position x="416.78266" z="502.49976"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5035">
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
-			<Position x="408.26133" z="552.00623"/>
+			<Position x="415.60874" z="568.14295"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5036">
@@ -28906,7 +28906,7 @@
 		<Entity uid="5037">
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
-			<Position x="462.60569" z="553.01764"/>
+			<Position x="378.3548" z="531.214"/>
 			<Orientation y="1.36876"/>
 		</Entity>
 		<Entity uid="5038">
@@ -71359,8 +71359,8 @@
 		</Entity>
 		<Entity uid="13272">
 			<Template>actor|fauna/hawk.xml</Template>
-			<Position x="441.15134" z="823.1294"/>
-			<Orientation y="2.72957"/>
+			<Position x="429.78382" z="856.28931"/>
+			<Orientation y="-0.01017"/>
 		</Entity>
 		<Entity uid="13273">
 			<Template>actor|fauna/hawk.xml</Template>
@@ -73055,7 +73055,7 @@
 		</Entity>
 		<Entity uid="13604">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="659.52668" z="1134.59278"/>
+			<Position x="649.22126" z="1126.34864"/>
 			<Orientation y="-2.31591"/>
 		</Entity>
 		<Entity uid="13605">
@@ -73065,7 +73065,7 @@
 		</Entity>
 		<Entity uid="13606">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="635.86579" z="1128.9242"/>
+			<Position x="653.472" z="1126.8224"/>
 			<Orientation y="0.19344"/>
 		</Entity>
 		<Entity uid="13607">

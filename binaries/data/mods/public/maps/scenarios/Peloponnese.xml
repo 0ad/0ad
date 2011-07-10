@@ -4,11 +4,11 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cloudless</SkySet>
-		<SunColour r="0.816452" g="0.794853" b="0.708456"/>
+		<SunColour r="0.737255" g="0.721569" b="0.639216"/>
 		<SunElevation angle="0.874369"/>
 		<SunRotation angle="-0.785396"/>
-		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
-		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<TerrainAmbientColour r="0.333333" g="0.415686" b="0.584314"/>
+		<UnitsAmbientColour r="0.360784" g="0.415686" b="0.447059"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="864.308" y="150.268" z="130.094"/>
+		<Position x="1023.69" y="136.123" z="829.427"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -63,7 +63,8 @@
           "y": 0,
           "z": 0
         }
-      }
+      },
+      "Team": -1
     },
     {
       "AI": "jubot",
@@ -91,7 +92,8 @@
           "y": 0,
           "z": 0
         }
-      }
+      },
+      "Team": -1
     },
     {
       "AI": "jubot",
@@ -107,15 +109,16 @@
         "metal": 500,
         "stone": 500,
         "wood": 700
-      }
+      },
+      "Team": -1
     },
     {
       "AI": "jubot",
       "Civ": "hele",
       "Colour": {
-        "b": 75,
-        "g": 230,
-        "r": 230
+        "b": 0,
+        "g": 128,
+        "r": 255
       },
       "Name": "Thebes",
       "Resources": {
@@ -123,7 +126,8 @@
         "metal": 500,
         "stone": 500,
         "wood": 700
-      }
+      },
+      "Team": -1
     },
     {
       "AI": "jubot",
@@ -139,7 +143,8 @@
         "metal": 500,
         "stone": 500,
         "wood": 700
-      }
+      },
+      "Team": -1
     },
     {
       "AI": "jubot",
@@ -155,7 +160,8 @@
         "metal": 500,
         "stone": 500,
         "wood": 700
-      }
+      },
+      "Team": -1
     }
   ],
   "RevealMap": false
@@ -12033,7 +12039,7 @@
 		<Entity uid="2022">
 			<Template>gaia/geology_stonemine_medit_quarry</Template>
 			<Player>0</Player>
-			<Position x="1244.24146" z="871.41041"/>
+			<Position x="1239.57398" z="869.82825"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2023">
@@ -23438,12 +23444,12 @@
 		</Entity>
 		<Entity uid="4200">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="1258.1255" z="870.17566"/>
+			<Position x="1248.52771" z="878.72938"/>
 			<Orientation y="2.54218"/>
 		</Entity>
 		<Entity uid="4201">
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
-			<Position x="1258.3058" z="864.26044"/>
+			<Position x="1256.94788" z="863.69568"/>
 			<Orientation y="-2.35677"/>
 		</Entity>
 		<Entity uid="4202">
@@ -27313,7 +27319,7 @@
 		</Entity>
 		<Entity uid="4975">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="1252.95289" z="869.4615"/>
+			<Position x="1239.25135" z="865.15522"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4976">
@@ -29728,7 +29734,7 @@
 		</Entity>
 		<Entity uid="5458">
 			<Template>actor|geology/stone_medit_med.xml</Template>
-			<Position x="1267.69288" z="865.80378"/>
+			<Position x="1250.14124" z="851.76539"/>
 			<Orientation y="-2.14065"/>
 		</Entity>
 		<Entity uid="5459">
@@ -29743,17 +29749,17 @@
 		</Entity>
 		<Entity uid="5461">
 			<Template>actor|geology/stone_medit_med.xml</Template>
-			<Position x="1256.26868" z="861.55402"/>
+			<Position x="1239.19483" z="871.55628"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5462">
 			<Template>actor|geology/stone_medit_med.xml</Template>
-			<Position x="1255.02027" z="860.29194"/>
-			<Orientation y="2.35621"/>
+			<Position x="1239.78382" z="861.58704"/>
+			<Orientation y="-2.26458"/>
 		</Entity>
 		<Entity uid="5463">
 			<Template>actor|geology/stone_medit_med.xml</Template>
-			<Position x="1258.99952" z="857.14765"/>
+			<Position x="1232.05018" z="869.10462"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5464">
@@ -32319,7 +32325,7 @@
 		<Entity uid="5973">
 			<Template>other/special_treasure_shipwreck</Template>
 			<Player>0</Player>
-			<Position x="1315.60706" z="1778.92591"/>
+			<Position x="1437.2234" z="1308.65455"/>
 			<Orientation y="-1.99614"/>
 		</Entity>
 		<Entity uid="5974">
@@ -32813,6 +32819,48 @@
 			<Player>3</Player>
 			<Position x="416.36374" z="1014.0069"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6056">
+			<Template>structures/hele_dock</Template>
+			<Player>1</Player>
+			<Position x="1377.05323" z="1054.1725"/>
+			<Orientation y="2.88831"/>
+		</Entity>
+		<Entity uid="6057">
+			<Template>structures/hele_dock</Template>
+			<Player>2</Player>
+			<Position x="901.54554" z="397.41498"/>
+			<Orientation y="2.0589"/>
+		</Entity>
+		<Entity uid="6058">
+			<Template>structures/hele_dock</Template>
+			<Player>3</Player>
+			<Position x="347.44877" z="891.9538"/>
+			<Orientation y="2.7529"/>
+		</Entity>
+		<Entity uid="6059">
+			<Template>structures/hele_dock</Template>
+			<Player>4</Player>
+			<Position x="1113.6078" z="1481.6902"/>
+			<Orientation y="0.97255"/>
+		</Entity>
+		<Entity uid="6060">
+			<Template>structures/hele_dock</Template>
+			<Player>5</Player>
+			<Position x="974.7256" z="1091.78138"/>
+			<Orientation y="0.5862"/>
+		</Entity>
+		<Entity uid="6061">
+			<Template>structures/hele_dock</Template>
+			<Player>6</Player>
+			<Position x="1036.13111" z="1831.97999"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="6062">
+			<Template>gaia/flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="1684.44751" z="1544.52393"/>
+			<Orientation y="-1.48534"/>
 		</Entity>
 	</Entities>
 	<Paths/>

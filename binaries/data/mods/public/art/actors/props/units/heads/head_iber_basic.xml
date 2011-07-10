@@ -1,23 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="mesh">
       <mesh>props/dude_head.pmd</mesh>
+      <texture>props/head/iber_isp_b_1.dds</texture>
     </variant>
   </group>
-
-  <group>
-    <variant name="face-1">
-      <texture>props/head/iber_basic_a.dds</texture>
-    </variant>
-    <variant name="face-2">
-      <texture>props/head/iber_basic_b.dds</texture>
-    </variant>
-  </group>
-
-  <material>objectcolor.xml</material>
-
+  <material>player_trans.xml</material>
 </actor>
