@@ -337,6 +337,7 @@ function tryPlaceBuilding(queued)
 	if (!ok)
 	{
 		// invalid location - don't build it
+		// TODO: play a sound?
 		return false;
 	}
 
@@ -733,6 +734,7 @@ function handleInputAfterGui(ev)
 				if (!ents.length)
 				{
 					g_Selection.reset();
+					resetIdleUnit();
 					inputState = INPUT_NORMAL;
 					return true;
 				}
@@ -918,7 +920,7 @@ function doAction(action, ev)
 
 	case "garrison":
 		Engine.PostNetworkCommand({"type": "garrison", "entities": selection, "target": action.target, "queued": queued});
-		//Need to play some sound here??
+		// TODO: Play a sound?
 		return true;
 		
 	case "set-rallypoint":
@@ -1195,34 +1197,41 @@ function setCameraFollow(entity)
 	Engine.CameraFollow(0);
 }
 
-var lastIdleWorker = 0;
+var lastIdleUnit = 0;
 var currIdleClass = 0;
-function findIdleWorker()
+
+function resetIdleUnit()
+{
+	lastIdleUnit = 0;
+	currIdleClass = 0;
+}
+
+function findIdleUnit(classes)
 {
 	// Cycle through idling classes before giving up
-	var idleClasses = ["Worker", "Trade", "CitizenSoldier"];
-	for (var i = 0; i <= idleClasses.length; ++i)
+	for (var i = 0; i <= classes.length; ++i)
 	{
-		var data = { prevWorker: lastIdleWorker, idleClass: idleClasses[currIdleClass] };
-		lastIdleWorker = Engine.GuiInterfaceCall("FindIdleWorker", data);
+		var data = { prevUnit: lastIdleUnit, idleClass: classes[currIdleClass] };
+		var newIdleUnit = Engine.GuiInterfaceCall("FindIdleUnit", data);
 	
-		// Check if we have valid entity
-		if (lastIdleWorker)
+		// Check if we have new valid entity
+		if (newIdleUnit && newIdleUnit != lastIdleUnit)
 		{
+			lastIdleUnit = newIdleUnit;
 			g_Selection.reset()
-			g_Selection.addList([lastIdleWorker]);
-			Engine.CameraFollow(lastIdleWorker);
+			g_Selection.addList([lastIdleUnit]);
+			Engine.CameraFollow(lastIdleUnit);
 			
 			return;
 		}
 		
-		lastIdleWorker = 0;
-		currIdleClass = (currIdleClass + 1) % idleClasses.length;
+		lastIdleUnit = 0;
+		currIdleClass = (currIdleClass + 1) % classes.length;
 	}
 	
 	// TODO: display a message or play a sound to indicate no more idle units, or something
 	// Reset for next cycle
-	currIdleClass = 0;
+	resetIdleUnit();
 }
 
 function unload(garrisonHolder, entity)

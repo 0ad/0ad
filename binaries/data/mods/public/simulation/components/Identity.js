@@ -89,6 +89,7 @@ Identity.prototype.Schema =
 						"<value>Worker</value>" +
 						"<value>CitizenSoldier</value>" +
 						"<value>Trade</value>" +
+						"<value>Warship</value>" +
 						"<value a:help='Primary weapon type'>Bow</value>" + // TODO: what are these used for?
 						"<value a:help='Primary weapon type'>Javelin</value>" +
 						"<value a:help='Primary weapon type'>Spear</value>" +
