@@ -6,18 +6,18 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2009-03-29T05:31:59Z</created>
-    <modified>2009-03-29T05:31:59Z</modified>
+    <created>2011-07-11T23:17:27Z</created>
+    <modified>2011-07-11T23:17:27Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
     <keywords></keywords>
     <unit meter="0.025400"/>
-    <up_axis>Z_UP</up_axis>
+    <up_axis>Y_UP</up_axis>
   </asset>
   <library_images>
     <image id="Map__292-image" name="Map__292">
-      <init_from>file://C:\Documents and Settings\Brad\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\internal\art\textures\skins\structural\kart_struct.dds</init_from>
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\structural\kart_struct.dds</init_from>
     </image>
   </library_images>
   <library_materials>
@@ -71,10 +71,10 @@
     </effect>
   </library_effects>
   <library_geometries>
-    <geometry id="Box03-lib" name="Box03Mesh">
+    <geometry id="Scout_Tower-lib" name="Scout_TowerMesh">
       <mesh>
-        <source id="Box03-lib-Position">
-          <float_array id="Box03-lib-Position-array" count="720">
+        <source id="Scout_Tower-lib-Position">
+          <float_array id="Scout_Tower-lib-Position-array" count="720">
 -0.397598 -1.120273 0.000000
 0.397598 -1.120273 0.000000
 -0.397598 1.120273 0.000000
@@ -317,15 +317,15 @@
 -3.036184 0.860273 -3.325509
 </float_array>
           <technique_common>
-            <accessor source="#Box03-lib-Position-array" count="240" stride="3">
+            <accessor source="#Scout_Tower-lib-Position-array" count="240" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Box03-lib-Normal0">
-          <float_array id="Box03-lib-Normal0-array" count="3726">
+        <source id="Scout_Tower-lib-Normal0">
+          <float_array id="Scout_Tower-lib-Normal0-array" count="3726">
 0.000000 0.000000 1.000000
 0.000000 0.000000 1.000000
 0.000000 0.000000 1.000000
@@ -589,7 +589,7 @@
 0.000345 0.000294 -1.000000
 -0.000000 0.001016 -0.999999
 -0.000000 0.001016 -0.999999
--0.000000 0.001016 -1.000000
+-0.000000 0.001016 -0.999999
 -1.000000 0.000000 0.000000
 -1.000000 0.000000 0.000000
 -1.000000 0.000000 0.000000
@@ -810,7 +810,7 @@
 0.999720 0.000522 -0.023645
 0.999720 0.000522 -0.023645
 0.999646 -0.000000 -0.026624
-0.999645 -0.000000 -0.026624
+0.999646 -0.000000 -0.026624
 0.999646 -0.000000 -0.026624
 0.007785 0.000000 -0.999970
 0.007785 0.000000 -0.999970
@@ -1570,15 +1570,15 @@
 0.000000 0.000000 1.000000
 </float_array>
           <technique_common>
-            <accessor source="#Box03-lib-Normal0-array" count="1242" stride="3">
+            <accessor source="#Scout_Tower-lib-Normal0-array" count="1242" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Box03-lib-UV0">
-          <float_array id="Box03-lib-UV0-array" count="1492">
+        <source id="Scout_Tower-lib-UV0">
+          <float_array id="Scout_Tower-lib-UV0-array" count="1492">
 0.630751 0.250656
 0.630751 0.219670
 0.664883 0.181514
@@ -2327,19 +2327,19 @@
 0.693760 0.253897
 </float_array>
           <technique_common>
-            <accessor source="#Box03-lib-UV0-array" count="746" stride="2">
+            <accessor source="#Scout_Tower-lib-UV0-array" count="746" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="Box03-lib-Vertex">
-          <input semantic="POSITION" source="#Box03-lib-Position"/>
+        <vertices id="Scout_Tower-lib-Vertex">
+          <input semantic="POSITION" source="#Scout_Tower-lib-Position"/>
         </vertices>
         <polygons material="_02___Default" count="414">
-          <input semantic="VERTEX" offset="0" source="#Box03-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Box03-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Box03-lib-UV0"/>
+          <input semantic="VERTEX" offset="0" source="#Scout_Tower-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#Scout_Tower-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#Scout_Tower-lib-UV0"/>
           <p>12 0 32 13 1 33 14 2 34</p>
           <p>14 3 34 15 4 35 12 5 32</p>
           <p>0 6 0 1 7 1 5 8 30</p>
@@ -2760,18 +2760,21 @@
   </library_geometries>
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
-      <node id="Box03" name="Box03">
-        <translate sid="translate">-3.186969 0.035052 9.588071</translate>
-        <rotate sid="rotateZ">0 0 1 -89.999999</rotate>
-        <rotate sid="rotateX">1 0 0 90.000003</rotate>
-        <instance_geometry url="#Box03-lib">
+      <node id="Scout_Tower" name="Scout_Tower">
+        <matrix sid="matrix">0.000000 0.000000 -1.000000 -3.161738 0.000000 1.000000 0.000000 9.588071 1.000000 -0.000000 0.000000 -0.082948 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#Scout_Tower-lib">
           <bind_material>
             <technique_common>
-              <instance_material symbol="Map__292-Material" target="#Map__292-Material"/>
               <instance_material symbol="_02___Default" target="#_02___Default"/>
             </technique_common>
           </bind_material>
         </instance_geometry>
+        <node id="prop_projectile" name="prop_projectile">
+          <matrix sid="matrix">0.000000 -1.000000 0.000000 0.082948 0.000000 0.000000 1.000000 4.180764 -1.000000 -0.000000 0.000000 -3.161737 0.000000 0.000000 0.000000 1.000000</matrix>
+        </node>
+        <node id="prop_garrisoned" name="prop_garrisoned">
+          <matrix sid="matrix">0.000000 -1.000000 0.000000 -2.505271 0.000000 0.000000 1.000000 7.796613 -1.000000 -0.000000 0.000000 -0.470484 0.000000 0.000000 0.000000 1.000000</matrix>
+        </node>
       </node>
     </visual_scene>
   </library_visual_scenes>
