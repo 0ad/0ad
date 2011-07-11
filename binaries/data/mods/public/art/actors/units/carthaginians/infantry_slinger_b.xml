@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -34,7 +34,7 @@
       <props>
         <prop actor="props/units/heads/head_iber_isl_b.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/sling.xml" attachpoint="r_hand"/>
-        <prop attachpoint=""/>
+        <prop actor="props/units/weapons/slingrock.xml" attachpoint="projectile"/>
       </props>
     </variant>
   </group>
@@ -129,5 +129,4 @@
     </variant>
   </group>
   <material>player_trans.xml</material>
-
 </actor>

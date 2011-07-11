@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -35,6 +35,7 @@
         <prop actor="props/units/heads/head_iber_adv.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/sling.xml" attachpoint="r_hand"/>
         <prop actor="props/units/heads/iber_helmet_02.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/slingrock.xml" attachpoint="projectile"/>
       </props>
     </variant>
   </group>

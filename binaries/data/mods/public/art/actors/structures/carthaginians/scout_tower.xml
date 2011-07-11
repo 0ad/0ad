@@ -6,6 +6,7 @@
       <mesh>structural/kart_scout_tower.pmd</mesh>
       <props>
         <prop actor="props/structures/carthaginians/scout_tower.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <texture>structural/kart_struct.dds</texture>
     </variant>
