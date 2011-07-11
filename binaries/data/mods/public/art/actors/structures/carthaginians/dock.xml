@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="100" name="Karthaginians_Dock">
+      <mesh>structural/kart_dock.dae</mesh>
+      <props>
+        <prop actor="props/structures/carthaginians/dock.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/kart_struct.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="civic_centre_props_a">
+      <mesh>props/kart_civiccentre_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="civic_centre_props_b">
+      <mesh>props/kart_civiccentre_b.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant>
+      <texture>structural/kart_struct.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

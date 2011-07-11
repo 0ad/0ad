@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="kart_fortress_weapons_a">
+      <mesh>props/kart_fortress_weapons.dae</mesh>
+    </variant>
+    <variant frequency="1" name="kart_fortress_weapons_b">
+      <mesh>props/kart_fortress_weapons_b.dae</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
+      <texture>props/prop_weap.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

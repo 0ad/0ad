@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="house_B_props_1">
+      <mesh>props/kart_house_b_1.dae</mesh>
+    </variant>
+    <variant frequency="1" name="house_B_props_2">
+      <mesh>props/kart_house_b_2.dae</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
+      <texture>structural/kart_struct.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
+        <animation file="biped/cavalryidle.psa" name="Walk" speed="50"/>
+        <animation file="biped/rider_gallop.psa" name="Run" speed="40"/>
+        <animation event="0.59" file="biped/rider_javelin_atk_a.psa" load="0" name="Melee" speed="50"/>
+        <animation file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="gather_meat" speed="100"/>
+        <animation file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="gather_meat" speed="100"/>
+        <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
+      </animations>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_numid_all.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/shields/numidian_round_3.xml" attachpoint="shield"/>
+      </props>
+      <texture>skeletal/kart_cjv_e_1.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="carry_meat">
+      <props>
+        <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
+        <prop attachpoint="l_hand"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+
+</actor>

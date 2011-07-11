@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero">
+  <Identity>
+    <Civ>cart</Civ>
+    <SpecificName>Hamilcar Barca</SpecificName>
+    <History>Hamilcar Barca, father of Hannibal, and conqueror of Iberia.</History>
+  </Identity>
+  <VisualActor>
+    <Actor>units/carthaginians/hero_hamilcar_horse.xml</Actor>
+  </VisualActor>
+  <Footprint>
+    <Circle radius="1.5"/>
+    <Height>7.5</Height>
+  </Footprint>
+</Entity>

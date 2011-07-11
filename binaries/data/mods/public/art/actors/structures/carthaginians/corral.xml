@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Carthaginian Corral">
+      <mesh>structural/kart_corral.dae</mesh>
+      <props>
+        <prop actor="props/structures/carthaginians/corral.xml" attachpoint="root"/>
+        <prop actor="props/structures/carthaginians/corral_mud.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/kart_struct.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_fortress">
+  <Identity>
+    <Civ>cart</Civ>
+    <SpecificName>Mecudah</SpecificName>
+    <History>The Carthaginians built a number of rather 'monolithic' blockhouse forts sited at critical locations in North Africa, sometimes also in conjunction with long lengths of wall intended to keep the wilder people of the desert to the south from freely ranging into the ?civilised? territories under their direct control.</History>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/carthaginians/fortress.xml</Actor>
+  </VisualActor>
+  <Footprint>
+    <Square width="24.0" depth="27.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="24.0" depth="27.0"/>
+  </Obstruction>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/cart_hero_hamilcar
+      units/cart_hero_hannibal
+      units/cart_hero_maharbal
+      units/cart_champion_cavalry
+    </Entities>
+  </TrainingQueue>
+</Entity>

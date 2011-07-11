@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="mill-props-a">
+      <mesh>props/kart_mill_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="mill-props-b">
+      <mesh>props/kart_mill_b.dae</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
+      <texture>structural/kart_struct.dds</texture>
+    </variant>
+  </group>
+
+</actor>

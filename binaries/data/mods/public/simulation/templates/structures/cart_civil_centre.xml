@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_civil_centre">
+  <Identity>
+    <Civ>cart</Civ>
+    <SpecificName>Merkaz</SpecificName>
+    <History>Carthiginian's History</History>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/carthaginians/civil_centre.xml</Actor>
+  </VisualActor>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/cart_cavalry_javelinist_b
+      units/cart_infantry_slinger_b
+      units/cart_infantry_spearman_b
+    </Entities>
+  </TrainingQueue>
+</Entity>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="10" name="House A">
+      <mesh>structural/kart_house_a.dae</mesh>
+      <props>
+        <prop actor="props/structures/carthaginians/house_a.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="10" name="House B">
+      <mesh>structural/kart_house_b.dae</mesh>
+      <props>
+        <prop actor="props/structures/carthaginians/house_b.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="10" name="House C">
+      <mesh>structural/kart_house_c.dae</mesh>
+      <props>
+        <prop actor="props/structures/carthaginians/house_c.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant>
+      <texture>structural/kart_struct.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

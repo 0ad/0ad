@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero">
+  <Identity>
+    <Civ>cart</Civ>
+    <SpecificName>Maharbal</SpecificName>
+    <History>Maharbal was Hannibal Barca's "brash young cavalry commander" during the 2nd Punic War. He is credited with turning the wing of the legions at Cannae resulting in defeat in which 30,000 of 50,000 Romans were lost, as well as significant contributions to the winning of many other battles during the 2nd Punic War. He is known for having said, after the battle of Cannae, "Hannibal, you know how to win the victory; just not what to do with it."</History>
+  </Identity>
+  <VisualActor>
+    <Actor>units/carthaginians/hero_maharbal_horse.xml</Actor>
+  </VisualActor>
+  <Footprint>
+    <Circle radius="1.5"/>
+    <Height>7.5</Height>
+  </Footprint>
+</Entity>

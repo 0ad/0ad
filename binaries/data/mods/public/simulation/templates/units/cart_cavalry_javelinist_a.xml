@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/cart_cavalry_javelinist_b">
+  <Promotion>
+    <Entity>cart_cavalry_javelinist_e</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/carthaginians/cavalry_javelinist_a.xml</Actor>
+  </VisualActor>
+</Entity>

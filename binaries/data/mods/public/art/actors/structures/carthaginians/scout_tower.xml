@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Scout_Tower">
+      <mesh>structural/kart_scout_tower.pmd</mesh>
+      <props>
+        <prop actor="props/structures/carthaginians/scout_tower.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/kart_struct.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

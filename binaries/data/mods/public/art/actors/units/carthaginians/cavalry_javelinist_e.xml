@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="120"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="40"/>
+        <animation file="quadraped/horse_walk.psa" name="carry_meat" speed="120"/>
+        <animation event=".5" file="quadraped/horse_attack_a.psa" name="Melee" speed="20"/>
+        <animation event=".5" file="quadraped/horse_attack_b.psa" name="Melee" speed="20"/>
+        <animation file="quadraped/horse_death.psa" name="death" speed="240"/>
+      </animations>
+      <mesh>skeletal/horse.pmd</mesh>
+      <props>
+        <prop actor="units/carthaginians/cavalry_javelinist_e_r.xml" attachpoint="rider"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="Horse-Texture-Plain">
+      <texture>skeletal/horse_kart_cjv_b_1.dds</texture>
+    </variant>
+    <variant frequency="1" name="Horse-Texture-Snipe">
+      <texture>skeletal/horse_kart_cjv_b_2.dds</texture>
+    </variant>
+    <variant frequency="1" name="Horse-Texture-Boots">
+      <texture>skeletal/horse_kart_cjv_b_3.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="horse-color-gray">
+      <colour>238 232 204</colour>
+    </variant>
+    <variant frequency="1" name="horse-color-ruddish">
+      <colour>254 200 160</colour>
+    </variant>
+    <variant frequency="1" name="horse-color-sandy">
+      <colour>254 214 129</colour>
+    </variant>
+  </group>
+
+  <material>objectcolor.xml</material>
+
+</actor>

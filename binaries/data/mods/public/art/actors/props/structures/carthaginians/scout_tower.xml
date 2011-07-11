@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Kart_Scout_Tower_Props_a">
+      <mesh>props/kart_st_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Kart_Scout_Tower_Props_b">
+      <mesh>props/kart_st_b.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant>
+      <texture>structural/kart_struct.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

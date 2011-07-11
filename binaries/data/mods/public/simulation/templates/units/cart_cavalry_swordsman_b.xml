@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_cavalry_melee_swordsman">
+  <Identity>
+    <Civ>cart</Civ>
+	<SelectionGroupName>units/cart_cavalry_swordsman_b</SelectionGroupName>
+	<GenericName>Iberian Heavy Cavalry</GenericName>
+    <SpecificName>I Hérev Rakhúv Meguyás</SpecificName>
+    <History>Along with the Gauls, Iberians formed the Carthaginian heavy cavalry, closing with their opponents at every opportunity. Armed with long-bladed spears and short curved sabers known as falcata, the Iberians were no strangers to fighting on horseback. On many occasions they routed opposing cavalry but usually did not pursue them, preferring to remain close to the main army.</History>
+  </Identity>
+  <Promotion>
+    <Entity>cart_cavalry_swordsman_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/carthaginians/cavalry_swordsman_b.xml</Actor>
+  </VisualActor>
+</Entity>

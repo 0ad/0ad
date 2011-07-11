@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="female/f_idle_01.dae" name="Idle" speed="200"/>
+        <animation file="female/f_walk_01.dae" name="Walk" speed="30"/>
+        <animation file="female/f_walk_01.dae" name="Run" speed="45"/>
+        <animation file="female/f_death_01.dae" name="Death" speed="100"/>
+      </animations>
+      <props>
+        <prop actor="props/units/heads/head_kart_priestess.xml" attachpoint="head"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Peplos-DarkBrown">
+      <mesh>skeletal/f_dress.dae</mesh>
+      <texture>skeletal/kart_fem_01.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
