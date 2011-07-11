@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defense_wall">
+  <Identity>
+    <Civ>gaia</Civ>
+    <SpecificName>Spikes Tall</SpecificName>
+    <History>A cheap, quick defensive structure constructed with sharpened tree trunks</History>
+  </Identity>
+  <Cost>
+    <BuildTime>12</BuildTime>
+  </Cost>
+  <Health>
+    <Max>500</Max>
+  </Health>
+  <Footprint>
+    <Square width="3.0" depth="11.0"/>
+    <Height>2.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="3.0" depth="11.0"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>props/special/palisade_tall_spikes.xml</Actor>
+  </VisualActor>
+</Entity>
