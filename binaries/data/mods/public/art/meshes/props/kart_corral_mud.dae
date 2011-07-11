@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.0" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+	<asset>
+		<contributor>
+			<author>Illusoft Collada 1.4.0 plugin for Blender - http://colladablender.illusoft.com</author>
+			<authoring_tool>Blender v:249 - Illusoft Collada Exporter v:0.3.162</authoring_tool>
+			<comments></comments>
+			<copyright></copyright>
+			<source_data>file:///Users/Home/Desktop/kart_corral.blend</source_data>
+		</contributor>
+		<created>2010-12-26T07:24:30.334523</created>
+		<modified>2010-12-26T07:24:30.334540</modified>
+		<unit meter="0.01" name="centimeter"/>
+		<up_axis>Z_UP</up_axis>
+	</asset>
+	<library_effects>
+		<effect id="decal_struct_mud_long-fx" name="decal_struct_mud_long-fx">
+			<profile_COMMON>
+				<newparam sid="decal_struct_mud_long-surface">
+					<surface type="2D">
+						<init_from>decal_struct_mud_long-img</init_from>
+						<format>A8R8G8B8</format>
+					</surface>
+				</newparam>
+				<newparam sid="decal_struct_mud_long-sampler">
+					<sampler2D>
+						<source>decal_struct_mud_long-surface</source>
+						<minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+						<magfilter>LINEAR</magfilter>
+					</sampler2D>
+				</newparam>
+				<technique sid="blender">
+					<phong>
+						<emission>
+							<color>0.00000 0.00000 0.00000 1</color>
+						</emission>
+						<ambient>
+							<color>0.40000 0.40000 0.40000 1</color>
+						</ambient>
+						<diffuse>
+							<texture texcoord="CHANNEL1" texture="decal_struct_mud_long-sampler"/>
+						</diffuse>
+						<specular>
+							<color>0.50000 0.50000 0.50000 1</color>
+						</specular>
+						<shininess>
+							<float>12.5</float>
+						</shininess>
+						<reflective>
+							<color>1.00000 1.00000 1.00000 1</color>
+						</reflective>
+						<reflectivity>
+							<float>0.0</float>
+						</reflectivity>
+						<transparent>
+							<color>1 1 1 1</color>
+						</transparent>
+						<transparency>
+							<float>0.0</float>
+						</transparency>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+	</library_effects>
+	<library_images>
+		<image id="decal_struct_mud_long-img" name="decal_struct_mud_long-img">
+			<init_from>/Users/Home/Desktop/decal_struct_mud_long.png</init_from>
+		</image>
+	</library_images>
+	<library_materials>
+		<material id="decal_struct_mud_long" name="decal_struct_mud_long">
+			<instance_effect url="#decal_struct_mud_long-fx"/>
+		</material>
+	</library_materials>
+	<library_geometries>
+		<geometry id="Cube_003" name="Cube_003">
+			<mesh>
+				<source id="Cube_003-Position">
+					<float_array count="24" id="Cube_003-Position-array">1.00000 1.00000 -1.00000 1.00000 -1.00000 -1.00000 -1.00000 -1.00000 -1.00000 -1.00000 1.00000 -1.00000 1.00000 1.00000 1.00000 1.00000 -1.00000 1.00000 -1.00000 -1.00000 1.00000 -1.00000 1.00000 1.00000</float_array>
+					<technique_common>
+						<accessor count="8" source="#Cube_003-Position-array" stride="3">
+							<param type="float" name="X"></param>
+							<param type="float" name="Y"></param>
+							<param type="float" name="Z"></param>
+						</accessor>
+					</technique_common>
+				</source>
+				<source id="Cube_003-Normals">
+					<float_array count="18" id="Cube_003-Normals-array">0.00000 0.00000 -1.00000 0.00000 -0.00000 1.00000 1.00000 -0.00000 0.00000 -0.00000 -1.00000 -0.00000 -1.00000 0.00000 -0.00000 0.00000 1.00000 0.00000</float_array>
+					<technique_common>
+						<accessor count="6" source="#Cube_003-Normals-array" stride="3">
+							<param type="float" name="X"></param>
+							<param type="float" name="Y"></param>
+							<param type="float" name="Z"></param>
+						</accessor>
+					</technique_common>
+				</source>
+				<source id="Cube_003-UV">
+					<float_array count="72" id="Cube_003-UV-array">0.00188 0.00188 0.99812 0.00188 0.99812 0.99812 0.99812 0.99812 0.00188 0.99812 0.00188 0.00188 0.00188 0.00188 0.99812 0.00188 0.99812 0.99812 0.99812 0.99812 0.00188 0.99812 0.00188 0.00188 0.00188 0.00188 0.99812 0.00188 0.99812 0.99812 0.99812 0.99812 0.00188 0.99812 0.00188 0.00188 0.00188 0.00188 0.99812 0.00188 0.99812 0.99812 0.99812 0.99812 0.00188 0.99812 0.00188 0.00188 0.00188 0.00188 0.99812 0.00188 0.99812 0.99812 0.99812 0.99812 0.00188 0.99812 0.00188 0.00188 0.00188 0.00188 0.99812 0.00188 0.99812 0.99812 0.99812 0.99812 0.00188 0.99812 0.00188 0.00188</float_array>
+					<technique_common>
+						<accessor count="36" source="#Cube_003-UV-array" stride="2">
+							<param type="float" name="S"></param>
+							<param type="float" name="T"></param>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="Cube_003-Vertex">
+					<input semantic="POSITION" source="#Cube_003-Position"/>
+				</vertices>
+				<triangles count="12" material="decal_struct_mud_long">
+					<input offset="0" semantic="VERTEX" source="#Cube_003-Vertex"/>
+					<input offset="1" semantic="NORMAL" source="#Cube_003-Normals"/>
+					<input offset="2" semantic="TEXCOORD" source="#Cube_003-UV"/>
+					<p>0 0 0 1 0 1 2 0 2 2 0 3 3 0 4 0 0 5 4 1 6 7 1 7 6 1 8 6 1 9 5 1 10 4 1 11 0 2 12 4 2 13 5 2 14 5 2 15 1 2 16 0 2 17 1 3 18 5 3 19 6 3 20 6 3 21 2 3 22 1 3 23 2 4 24 6 4 25 7 4 26 7 4 27 3 4 28 2 4 29 4 5 30 0 5 31 3 5 32 3 5 33 7 5 34 4 5 35</p>
+				</triangles>
+			</mesh>
+		</geometry>
+	</library_geometries>
+	<library_visual_scenes>
+		<visual_scene id="Mud" name="Mud">
+			<node layer="L1" id="Cube_001" name="Cube_001">
+				<translate sid="translate">-0.58056 -7.31198 0.06203</translate>
+				<rotate sid="rotateZ">0 0 1 0.00000</rotate>
+				<rotate sid="rotateY">0 1 0 -0.00000</rotate>
+				<rotate sid="rotateX">1 0 0 180.00000</rotate>
+				<scale sid="scale">11.08955 -8.58313 0.00167</scale>
+				<instance_geometry url="#Cube_003">
+					<bind_material>
+						<technique_common>
+							<instance_material symbol="decal_struct_mud_long" target="#decal_struct_mud_long">
+								<bind_vertex_input input_semantic="TEXCOORD" input_set="1" semantic="CHANNEL1"/>
+							</instance_material>
+						</technique_common>
+					</bind_material>
+				</instance_geometry>
+			</node>
+		</visual_scene>
+	</library_visual_scenes>
+	<scene>
+		<instance_visual_scene url="#Mud"/>
+	</scene>
+</COLLADA>

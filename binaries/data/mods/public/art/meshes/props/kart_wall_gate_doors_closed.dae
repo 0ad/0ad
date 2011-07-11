@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Dino</author>
+      <authoring_tool>OpenCOLLADA for 3ds Max;  Version: 1.2.5;  Revision: 673;  Platform: Win32;  Configuration: Release Max2010</authoring_tool>
+    </contributor>
+    <created>2010-02-19T18:13:28</created>
+    <modified>2010-02-19T18:13:28</modified>
+    <unit name="inch" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="_02___Default_material">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color>0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color>0.588235 0.588235 0.588235 1</color>
+            </ambient>
+            <diffuse>
+              <color>0.8 0.8 0.8 1</color>
+            </diffuse>
+            <specular>
+              <color>0 0 0 1</color>
+            </specular>
+            <shininess>
+              <float>33.21928</float>
+            </shininess>
+            <reflective>
+              <color>0 0 0 1</color>
+            </reflective>
+            <transparent opaque="A_ONE">
+              <color>1 1 1 1</color>
+            </transparent>
+            <transparency>
+              <float>1</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+      <extra>
+        <technique profile="OpenCOLLADA3dsMax">
+          <extended_shader>
+            <apply_reflection_dimming>0</apply_reflection_dimming>
+            <dim_level>0</dim_level>
+            <falloff_type>0</falloff_type>
+            <index_of_refraction>1.5</index_of_refraction>
+            <opacity_type>0</opacity_type>
+            <reflection_level>3</reflection_level>
+            <wire_size>1</wire_size>
+            <wire_units>0</wire_units>
+          </extended_shader>
+          <shader>
+            <ambient_diffuse_lock>0</ambient_diffuse_lock>
+            <ambient_diffuse_texture_lock>1</ambient_diffuse_texture_lock>
+            <diffuse_specular_lock>0</diffuse_specular_lock>
+            <soften>0.1</soften>
+            <use_self_illum_color>0</use_self_illum_color>
+          </shader>
+        </technique>
+      </extra>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="_02___Default_material-material" name="_02___Default_material">
+      <instance_effect url="#_02___Default_material"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="geom-_ncl1_1" name="_ncl1_1">
+      <mesh>
+        <source id="geom-_ncl1_1-positions">
+          <float_array id="geom-_ncl1_1-positions-array" count="96">-1.808552 -4.006571 -0.2262103 1.794485 -4.006574 -0.2262103 -1.808552 4.006574 -0.2262103 1.794486 4.006574 -0.2262103 -1.808552 -4.006572 0.1838927 1.794485 -4.006574 0.1838927 -1.808552 4.006575 0.1838917 1.794486 4.006574 0.1838927 -5.461927 -4.006575 -0.2263824 -1.858888 -4.006574 -0.2263814 -5.461926 4.006574 -0.2263824 -1.858889 4.006574 -0.2263824 -5.461927 -4.006575 0.1837216 -1.858889 -4.006574 0.1837206 -5.461926 4.006573 0.1837196 -1.858889 4.006575 0.1837196 -1.803897 4.006571 -2.943175 -1.803893 -4.006577 -2.943173 1.799146 -4.006573 -2.943173 1.79914 4.006574 -2.943175 -1.803898 4.006571 -3.353277 1.799141 4.006574 -3.353276 1.799146 -4.006574 -3.353275 -1.803893 -4.006574 -3.353276 -1.878138 4.006574 -3.357405 -1.878139 -4.006575 -3.357406 -5.481176 -4.006576 -3.357406 -5.481175 4.006569 -3.357406 -1.878137 4.006574 -2.947303 -5.481175 4.006568 -2.947303 -5.481177 -4.006578 -2.947302 -1.878138 -4.006576 -2.947302</float_array>
+          <technique_common>
+            <accessor source="#geom-_ncl1_1-positions-array" count="32" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="geom-_ncl1_1-normals">
+          <float_array id="geom-_ncl1_1-normals-array" count="240">0 0 -1 0 0 -1 0 0 -0.9999999 0 0 -1 -2.05576e-7 9.24356e-8 0.9999999 -2.81229e-7 1.26452e-7 1 -7.56526e-8 3.40165e-8 1 0 0 1 1 -1.63644e-7 0 1 -1.63644e-7 0 1 -1.63644e-7 0 1 -1.63644e-7 0 1.90973e-8 1 -2.15767e-6 2.64686e-7 1 0 2.45589e-7 1 -1.67782e-7 0 1 -2.32546e-6 -1 2.97534e-8 6.46854e-14 -1 2.97534e-8 -6.91903e-14 -1 2.97534e-8 -6.46856e-14 -1 2.97534e-8 6.91901e-14 7.56526e-8 -3.40165e-8 -1 2.81229e-7 -1.26452e-7 -1 2.05576e-7 -9.24355e-8 -0.9999999 0 0 -1 7.56525e-8 2.15168e-7 1 -1.6489e-13 2.49185e-7 1 2.05576e-7 1.56749e-7 1 2.81229e-7 1.22733e-7 1 1 1.00263e-7 7.57005e-8 1 -1.48764e-8 2.32546e-6 1 -1.10022e-8 2.24976e-6 0.9999999 1.04137e-7 -3.63249e-13 -4.77428e-8 0.9999999 1.906e-6 -6.61715e-7 1 -3.48818e-6 -6.13973e-7 0.9999999 -3.06873e-6 0 1 2.32546e-6 -1 5.95068e-8 4.50471e-15 -1 5.95068e-8 1.38381e-13 -0.9999999 5.95068e-8 1.33876e-13 -1 5.95068e-8 0 -1.91403e-13 2.38027e-7 1 -2.83511e-13 2.38027e-7 1 -2.49615e-13 2.38027e-7 1 -1.57506e-13 2.38027e-7 1 3.13057e-7 -1.27017e-7 -0.9999999 3.30858e-7 -1.19014e-7 -1 2.82487e-7 -1.40763e-7 -1 2.64686e-7 -1.48767e-7 -1 -1 -4.65052e-7 2.24975e-6 -1 -5.80192e-7 -4.04762e-12 -1 -5.76318e-7 7.56971e-8 -1 -4.61177e-7 2.32545e-6 -6.61716e-7 0.9999999 -1.49522e-12 -6.61715e-7 1 1.53879e-12 -6.61715e-7 1 1.30286e-12 -6.61716e-7 1 -1.73114e-12 1 7.09724e-7 8.5162e-8 1 5.80192e-7 2.61614e-6 1 5.84551e-7 2.53098e-6 0.9999999 7.14082e-7 -1.66057e-12 2.41855e-7 4.00194e-8 -1 -1.96883e-14 1.48767e-7 -1 8.9003e-8 1.08748e-7 -1 3.30858e-7 -1.96883e-14 -1 -1.47835e-13 1.19014e-7 0.9999999 -1.73257e-13 1.19014e-7 1 -1.04175e-13 1.19014e-7 1 -7.87532e-14 1.19014e-7 1 0.9999999 -1.48282e-7 -2.33492e-6 1 -1.33891e-7 -2.61613e-6 1 -1.34375e-7 -2.60666e-6 0.9999999 -1.48767e-7 -2.32546e-6 -1.21019e-6 1 2.15767e-6 -1.45577e-6 0.9999999 3.38534e-12 -1.43668e-6 1 1.67785e-7 -1.19109e-6 1 2.32545e-6 -1 6.33811e-8 -2.24975e-6 -1 1.78521e-7 4.15141e-13 -0.9999999 1.74646e-7 -7.57001e-8 -1 5.95069e-8 -2.32545e-6</float_array>
+          <technique_common>
+            <accessor source="#geom-_ncl1_1-normals-array" count="80" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="geom-_ncl1_1-map1">
+          <float_array id="geom-_ncl1_1-map1-array" count="240">0.56404 0.977332 0 0.56404 0.764742 0 0.581824 0.764742 0 0.581824 0.977332 0 0.564486 0.764514 0 0.564486 0.977191 0 0.677449 0.977191 0 0.677449 0.764514 0 0.56425 0.977332 0 0.564249 0.764742 0 0.582033 0.764742 0 0.582033 0.977332 0 0.677616 0.978052 0 0.563445 0.978052 0 0.563445 0.94312 0 0.677616 0.94312 0 0.563936 0.764514 0 0.676899 0.764514 0 0.676899 0.977191 0 0.563936 0.977191 0 0.56404 0.977332 0 0.56404 0.764742 0 0.581824 0.764742 0 0.581824 0.977332 0 0.564486 0.764514 0 0.564486 0.977191 0 0.677449 0.977191 0 0.677449 0.764514 0 0.56425 0.977332 0 0.564249 0.764742 0 0.582033 0.764742 0 0.582033 0.977332 0 0.677616 0.978052 0 0.563445 0.978052 0 0.563445 0.94312 0 0.677616 0.94312 0 0.563936 0.764514 0 0.676899 0.764514 0 0.676899 0.977191 0 0.563936 0.977191 0 0.677449 0.977191 0 0.677449 0.764514 0 0.564486 0.764514 0 0.564486 0.977191 0 0.676899 0.977191 0 0.563936 0.977191 0 0.563936 0.764514 0 0.676899 0.764514 0 0.582033 0.764742 0 0.582033 0.977332 0 0.56425 0.977332 0 0.564249 0.764742 0 0.563445 0.94312 0 0.677616 0.94312 0 0.677616 0.978052 0 0.563445 0.978052 0 0.581824 0.764742 0 0.581824 0.977332 0 0.56404 0.977332 0 0.56404 0.764742 0 0.677449 0.977191 0 0.677449 0.764514 0 0.564486 0.764514 0 0.564486 0.977191 0 0.676899 0.977191 0 0.563936 0.977191 0 0.563936 0.764514 0 0.676899 0.764514 0 0.582033 0.764742 0 0.582033 0.977332 0 0.56425 0.977332 0 0.564249 0.764742 0 0.563445 0.94312 0 0.677616 0.94312 0 0.677616 0.978052 0 0.563445 0.978052 0 0.581824 0.764742 0 0.581824 0.977332 0 0.56404 0.977332 0 0.56404 0.764742 0</float_array>
+          <technique_common>
+            <accessor source="#geom-_ncl1_1-map1-array" count="80" stride="3">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+              <param name="P" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="geom-_ncl1_1-vertices">
+          <input semantic="POSITION" source="#geom-_ncl1_1-positions"/>
+        </vertices>
+        <triangles material="_02___Default_material_1" count="40">
+          <input semantic="VERTEX" source="#geom-_ncl1_1-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#geom-_ncl1_1-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#geom-_ncl1_1-map1" offset="2" set="1"/>
+          <p>3 0 6 1 1 7 0 2 4 0 2 4 2 3 5 3 0 6 7 4 18 6 5 19 4 6 16 4 6 16 5 7 17 7 4 18 7 8 10 5 9 11 1 10 8 1 10 8 3 11 9 7 8 10 6 12 14 7 13 15 3 14 12 3 14 12 2 15 13 6 12 14 4 16 2 6 17 3 2 18 0 2 18 0 0 19 1 4 16 2 11 20 26 9 21 27 8 22 24 8 22 24 10 23 25 11 20 26 15 24 38 14 25 39 12 26 36 12 26 36 13 27 37 15 24 38 15 28 30 13 29 31 9 30 28 9 30 28 11 31 29 15 28 30 14 32 34 15 33 35 11 34 32 11 34 32 10 35 33 14 32 34 12 36 22 14 37 23 10 38 20 10 38 20 8 39 21 12 36 22 16 40 40 17 41 41 18 42 42 18 42 42 19 43 43 16 40 40 20 44 44 21 45 45 22 46 46 22 46 46 23 47 47 20 44 44 20 48 48 23 49 49 17 50 50 17 50 50 16 51 51 20 48 48 21 52 52 20 53 53 16 54 54 16 54 54 19 55 55 21 52 52 22 56 56 21 57 57 19 58 58 19 58 58 18 59 59 22 56 56 24 60 60 25 61 61 26 62 62 26 62 62 27 63 63 24 60 60 28 64 64 29 65 65 30 66 66 30 66 66 31 67 67 28 64 64 28 68 68 31 69 69 25 70 70 25 70 70 24 71 71 28 68 68 29 72 72 28 73 73 24 74 74 24 74 74 27 75 75 29 72 72 30 76 76 29 77 77 27 78 78 27 78 78 26 79 79 30 76 76</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_lights>
+    <light id="EnvironmentAmbientLight" name="EnvironmentAmbientLight">
+      <technique_common>
+        <ambient>
+          <color>0 0 0</color>
+        </ambient>
+      </technique_common>
+    </light>
+  </library_lights>
+  <library_visual_scenes>
+    <visual_scene id="MaxScene">
+      <node name="EnvironmentAmbientLight">
+        <instance_light url="#EnvironmentAmbientLight"/>
+      </node>
+      <node id="node-_" name="_">
+        <translate>0.005230427 -0.3401737 0</translate>
+      </node>
+      <node id="node-node_Box03" name="node_Box03">
+        <translate>0.005230427 -0.3401737 0</translate>
+        <rotate>-1 -1.48353e-7 1.48353e-7 -90</rotate>
+        <scale>0.9999999 1.376004 0.9999999</scale>
+        <node id="node-_ncl1_1" name="_ncl1_1">
+          <translate>1.831002 3.983207 1.270245</translate>
+          <instance_geometry url="#geom-_ncl1_1">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="_02___Default_material_1" target="#_02___Default_material-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#MaxScene"/>
+  </scene>
+</COLLADA>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Dino</author>
+      <authoring_tool>OpenCOLLADA for 3ds Max;  Version: 1.2.5;  Revision: 673;  Platform: Win32;  Configuration: Release Max2010</authoring_tool>
+    </contributor>
+    <created>2010-02-19T18:01:22</created>
+    <modified>2010-02-19T18:01:22</modified>
+    <unit name="inch" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="_02___Default">
+      <profile_COMMON>
+        <newparam sid="kart_struct_dds-surface">
+          <surface type="2D">
+            <init_from>kart_struct_dds</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="kart_struct_dds-sampler">
+          <sampler2D>
+            <source>kart_struct_dds-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color>0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color>0.588235 0.588235 0.588235 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="kart_struct_dds-sampler" texcoord="CHANNEL1"/>
+            </diffuse>
+            <specular>
+              <color>0 0 0 1</color>
+            </specular>
+            <shininess>
+              <float>10</float>
+            </shininess>
+            <reflective>
+              <color>0 0 0 1</color>
+            </reflective>
+            <transparent opaque="A_ONE">
+              <color>1 1 1 1</color>
+            </transparent>
+            <transparency>
+              <float>1</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+      <extra>
+        <technique profile="OpenCOLLADA3dsMax">
+          <extended_shader>
+            <apply_reflection_dimming>0</apply_reflection_dimming>
+            <dim_level>0</dim_level>
+            <falloff_type>0</falloff_type>
+            <index_of_refraction>1.5</index_of_refraction>
+            <opacity_type>0</opacity_type>
+            <reflection_level>3</reflection_level>
+            <wire_size>1</wire_size>
+            <wire_units>0</wire_units>
+          </extended_shader>
+          <shader>
+            <ambient_diffuse_lock>0</ambient_diffuse_lock>
+            <ambient_diffuse_texture_lock>1</ambient_diffuse_texture_lock>
+            <diffuse_specular_lock>0</diffuse_specular_lock>
+            <soften>0.1</soften>
+            <use_self_illum_color>0</use_self_illum_color>
+          </shader>
+        </technique>
+      </extra>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="_02___Default-material" name="_02___Default">
+      <instance_effect url="#_02___Default"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="geom-Box03" name="Box03">
+      <mesh>
+        <source id="geom-Box03-positions">
+          <float_array id="geom-Box03-positions-array" count="96">-0.060347 -4.006572 3.48514 1.462362 -4.006575 0.219678 -0.060348 4.006575 3.485137 1.462361 4.006574 0.219676 0.311332 -4.006573 3.658457 1.834041 -4.006574 0.392995 0.311331 4.006576 3.658454 1.83404 4.006574 0.392993 -5.10586 -4.006574 0.250319 -3.873548 -4.006575 3.636068 -5.105861 4.006574 0.250322 -3.87355 4.006573 3.636069 -5.491231 -4.006575 0.390583 -4.258919 -4.006575 3.776331 -5.491231 4.006573 0.390585 -4.25892 4.006574 3.776333 0.250594 4.006575 -6.592037 0.250596 -4.006575 -6.592034 1.482908 -4.006572 -3.206285 1.482905 4.006576 -3.206289 0.635965 4.006575 -6.732301 1.868276 4.006576 -3.346552 1.868278 -4.006572 -3.346549 0.635967 -4.006572 -6.732298 -4.309291 4.006574 -6.658041 -4.30929 -4.006575 -6.658037 -5.541602 -4.006574 -3.27229 -5.541602 4.006572 -3.272292 -3.923921 4.006575 -6.517777 -5.156232 4.006572 -3.132029 -5.15623 -4.006576 -3.132025 -3.923918 -4.006575 -6.517775</float_array>
+          <technique_common>
+            <accessor source="#geom-Box03-positions-array" count="32" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="geom-Box03-normals">
+          <float_array id="geom-Box03-normals-array" count="240">-0.9063079 -2.63316e-7 -0.4226181 -0.9063079 -2.26656e-7 -0.422618 -0.9063079 -2.40147e-7 -0.4226181 -0.9063079 -2.76807e-7 -0.4226182 0.9063078 2.58149e-7 0.4226181 0.9063078 2.747e-7 0.4226182 0.9063079 2.29724e-7 0.4226181 0.9063079 2.13173e-7 0.4226181 0.4226187 -1.69458e-7 -0.9063076 0.4226187 -1.75541e-7 -0.9063075 0.4226188 -1.75336e-7 -0.9063076 0.4226187 -1.69254e-7 -0.9063076 -1.83558e-6 1 -1.16907e-6 2.23723e-7 1 -4.79774e-7 6.35901e-8 1 -5.33374e-7 -1.99572e-6 1 -1.22267e-6 -0.4226187 2.97735e-7 0.9063076 -0.4226187 2.98686e-7 0.9063076 -0.4226187 2.98654e-7 0.9063076 -0.4226187 2.97703e-7 0.9063076 0.9396926 2.46786e-7 -0.3420202 0.9396926 2.64378e-7 -0.3420202 0.9396926 2.57904e-7 -0.3420202 0.9396926 2.40312e-7 -0.3420202 -0.9396926 -1.32064e-7 0.3420201 -0.9396926 -8.52262e-8 0.3420199 -0.9396926 -2.12503e-7 0.3420202 -0.9396925 -2.59341e-7 0.3420203 0.3420216 -3.5639e-8 0.9396921 0.3420188 -1.90574e-7 0.9396932 0.3420189 -1.85361e-7 0.9396931 0.3420217 -3.04257e-8 0.939692 -1.79242e-6 1 8.93416e-7 2.09468e-6 1 -1.04407e-6 1.79242e-6 1 -8.93414e-7 -2.09469e-6 1 1.04408e-6 -0.3420212 3.09735e-7 -0.9396921 -0.3420199 2.34157e-7 -0.9396927 -0.3420199 2.367e-7 -0.9396927 -0.3420213 3.12278e-7 -0.9396921 -0.9396926 -1.53679e-7 0.3420201 -0.9396926 -9.16894e-8 0.3420201 -0.9396926 -1.14502e-7 0.3420201 -0.9396927 -1.76492e-7 0.34202 0.9396927 1.10062e-7 -0.3420199 0.9396927 1.15537e-7 -0.3420199 0.9396927 1.00659e-7 -0.3420199 0.9396926 9.51844e-8 -0.3420199 -0.3420211 -4.76695e-7 -0.9396922 -0.3420211 -4.77925e-7 -0.9396923 -0.3420211 -4.77884e-7 -0.9396922 -0.3420211 -4.76653e-7 -0.9396923 -9.05276e-8 1 -2.48724e-7 -9.05282e-8 1 -2.48723e-7 -9.05282e-8 0.9999999 -2.48723e-7 -9.05276e-8 0.9999999 -2.48724e-7 0.3420218 5.96632e-7 0.939692 0.3420186 4.22007e-7 0.9396932 0.3420187 4.27883e-7 0.9396932 0.3420219 6.02508e-7 0.939692 -0.9396926 -1.33395e-7 -0.3420201 -0.9396926 -2.74657e-7 -0.3420204 -0.9396926 -2.22672e-7 -0.3420203 -0.9396927 -8.14101e-8 -0.34202 0.9396926 4.09638e-7 0.34202 0.9396927 3.96669e-7 0.34202 0.9396927 4.31909e-7 0.34202 0.9396927 4.44878e-7 0.3420201 0.3420219 -3.96377e-7 -0.9396919 0.3420163 -9.13829e-8 -0.939694 0.3420165 -1.01645e-7 -0.939694 0.3420221 -4.06639e-7 -0.9396919 -3.90516e-7 1 5.8237e-7 -2.50206e-6 1 7.51802e-8 -2.33787e-6 1 1.1462e-7 -2.26319e-7 1 6.21809e-7 -0.3420222 2.29214e-7 0.9396918 -0.3420191 3.93894e-7 0.939693 -0.3420193 3.88353e-7 0.9396929 -0.3420223 2.23672e-7 0.9396918</float_array>
+          <technique_common>
+            <accessor source="#geom-Box03-normals-array" count="80" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="geom-Box03-map1">
+          <float_array id="geom-Box03-map1-array" count="240">0.56404 0.977332 0 0.56404 0.764742 0 0.581824 0.764742 0 0.581824 0.977332 0 0.564486 0.764514 0 0.564486 0.977191 0 0.677449 0.977191 0 0.677449 0.764514 0 0.56425 0.977332 0 0.564249 0.764742 0 0.582033 0.764742 0 0.582033 0.977332 0 0.677616 0.978052 0 0.563445 0.978052 0 0.563445 0.94312 0 0.677616 0.94312 0 0.563936 0.764514 0 0.676899 0.764514 0 0.676899 0.977191 0 0.563936 0.977191 0 0.56404 0.977332 0 0.56404 0.764742 0 0.581824 0.764742 0 0.581824 0.977332 0 0.564486 0.764514 0 0.564486 0.977191 0 0.677449 0.977191 0 0.677449 0.764514 0 0.56425 0.977332 0 0.564249 0.764742 0 0.582033 0.764742 0 0.582033 0.977332 0 0.677616 0.978052 0 0.563445 0.978052 0 0.563445 0.94312 0 0.677616 0.94312 0 0.563936 0.764514 0 0.676899 0.764514 0 0.676899 0.977191 0 0.563936 0.977191 0 0.677449 0.977191 0 0.677449 0.764514 0 0.564486 0.764514 0 0.564486 0.977191 0 0.676899 0.977191 0 0.563936 0.977191 0 0.563936 0.764514 0 0.676899 0.764514 0 0.582033 0.764742 0 0.582033 0.977332 0 0.56425 0.977332 0 0.564249 0.764742 0 0.563445 0.94312 0 0.677616 0.94312 0 0.677616 0.978052 0 0.563445 0.978052 0 0.581824 0.764742 0 0.581824 0.977332 0 0.56404 0.977332 0 0.56404 0.764742 0 0.677449 0.977191 0 0.677449 0.764514 0 0.564486 0.764514 0 0.564486 0.977191 0 0.676899 0.977191 0 0.563936 0.977191 0 0.563936 0.764514 0 0.676899 0.764514 0 0.582033 0.764742 0 0.582033 0.977332 0 0.56425 0.977332 0 0.564249 0.764742 0 0.563445 0.94312 0 0.677616 0.94312 0 0.677616 0.978052 0 0.563445 0.978052 0 0.581824 0.764742 0 0.581824 0.977332 0 0.56404 0.977332 0 0.56404 0.764742 0</float_array>
+          <technique_common>
+            <accessor source="#geom-Box03-map1-array" count="80" stride="3">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+              <param name="P" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="geom-Box03-vertices">
+          <input semantic="POSITION" source="#geom-Box03-positions"/>
+        </vertices>
+        <triangles material="_02___Default_1" count="40">
+          <input semantic="VERTEX" source="#geom-Box03-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#geom-Box03-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#geom-Box03-map1" offset="2" set="1"/>
+          <p>3 0 6 1 1 7 0 2 4 0 2 4 2 3 5 3 0 6 7 4 18 6 5 19 4 6 16 4 6 16 5 7 17 7 4 18 7 8 10 5 9 11 1 10 8 1 10 8 3 11 9 7 8 10 6 12 14 7 13 15 3 14 12 3 14 12 2 15 13 6 12 14 4 16 2 6 17 3 2 18 0 2 18 0 0 19 1 4 16 2 11 20 26 9 21 27 8 22 24 8 22 24 10 23 25 11 20 26 15 24 38 14 25 39 12 26 36 12 26 36 13 27 37 15 24 38 15 28 30 13 29 31 9 30 28 9 30 28 11 31 29 15 28 30 14 32 34 15 33 35 11 34 32 11 34 32 10 35 33 14 32 34 12 36 22 14 37 23 10 38 20 10 38 20 8 39 21 12 36 22 16 40 40 17 41 41 18 42 42 18 42 42 19 43 43 16 40 40 20 44 44 21 45 45 22 46 46 22 46 46 23 47 47 20 44 44 20 48 48 23 49 49 17 50 50 17 50 50 16 51 51 20 48 48 21 52 52 20 53 53 16 54 54 16 54 54 19 55 55 21 52 52 22 56 56 21 57 57 19 58 58 19 58 58 18 59 59 22 56 56 24 60 60 25 61 61 26 62 62 26 62 62 27 63 63 24 60 60 28 64 64 29 65 65 30 66 66 30 66 66 31 67 67 28 64 64 28 68 68 31 69 69 25 70 70 25 70 70 24 71 71 28 68 68 29 72 72 28 73 73 24 74 74 24 74 74 27 75 75 29 72 72 30 76 76 29 77 77 27 78 78 27 78 78 26 79 79 30 76 76</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_lights>
+    <light id="EnvironmentAmbientLight" name="EnvironmentAmbientLight">
+      <technique_common>
+        <ambient>
+          <color>0 0 0</color>
+        </ambient>
+      </technique_common>
+    </light>
+  </library_lights>
+  <library_images>
+    <image id="kart_struct_dds">
+      <init_from>file:///C:/0ad/binaries/data/mods/internal/art/meshes/props/images/kart_struct.dds</init_from>
+    </image>
+  </library_images>
+  <library_visual_scenes>
+    <visual_scene id="MaxScene">
+      <node name="EnvironmentAmbientLight">
+        <instance_light url="#EnvironmentAmbientLight"/>
+      </node>
+      <node id="node-Box03" name="Box03">
+        <translate>0.3726215 -0.2596092 0</translate>
+        <rotate>-1 -1.0365e-7 1.93057e-7 -90</rotate>
+        <rotate>-6.59631e-8 -1 1.59249e-7 -45</rotate>
+        <scale>0.9999999 1.371086 1</scale>
+        <rotate>-6.59631e-8 -1 1.59249e-7 45</rotate>
+        <node>
+          <matrix>1 0 0 1.577473 0 1 0 3.983206 0 0 1 1.374406 0 0 0 1</matrix>
+          <instance_geometry url="#geom-Box03">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="_02___Default_1" target="#_02___Default-material">
+                  <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="1"/>
+                </instance_material>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#MaxScene"/>
+  </scene>
+</COLLADA>
