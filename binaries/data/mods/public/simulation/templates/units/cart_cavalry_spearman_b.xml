@@ -2,13 +2,13 @@
 <Entity parent="template_unit_cavalry_melee_spearman">
   <Identity>
     <Civ>cart</Civ>
-	<SelectionGroupName>units/cart_cavalry_spearman_b</SelectionGroupName>
-	<GenericName>Italian Allied Cavalry</GenericName>
+    <SelectionGroupName>units/cart_cavalry_spearman_b</SelectionGroupName>
+    <GenericName>Italian Allied Cavalry</GenericName>
     <SpecificName>I Rómah Rakhúv</SpecificName>
     <History>The Italian allies of Carthage included the various Samnite tribes of the interior hill-country and Italiote Greek colonies along the Southern coast. They provided a much needed-cavalry contingent for Hannibal's army.</History>
   </Identity>
   <Promotion>
-    <Entity>cart_cavalry_spearman_a</Entity>
+    <Entity>units/cart_cavalry_spearman_a</Entity>
   </Promotion>
   <VisualActor>
     <Actor>units/carthaginians/cavalry_spearman_b.xml</Actor>
