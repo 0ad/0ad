@@ -23,7 +23,7 @@
         <animation file="infantry/general/forage.psa" name="gather_meat" speed="110"/>
         <animation event="0.43" file="infantry/general/mine.psa" name="gather_rock" speed="250"/>
         <animation event="0.43" file="infantry/general/mine.psa" name="gather_ore" speed="250"/>
-		<animation event="0.43" file="infantry/general/mine.psa" name="gather_ruins" speed="250"/>
+        <animation event="0.43" file="infantry/general/mine.psa" name="gather_ruins" speed="250"/>
         <animation event="0.6" file="infantry/general/dude/dudebuild.psa" name="Build" speed="220"/>
         <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
         <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
@@ -35,7 +35,7 @@
       <mesh>skeletal/m_pants.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_celt.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="l_hand"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>
       </props>
       <texture>skeletal/celt_ijv_b_01.dds</texture>
@@ -45,8 +45,7 @@
     <variant frequency="100" name="Idle"/>
     <variant name="Melee">
       <props>
-        <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
-        <prop actor="props/units/weapons/jav.xml" attachpoint="loaded-r_hand"/>
+        <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="loaded-r_hand"/>
         <prop actor="" attachpoint="r_hand"/>
         <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
       </props>
@@ -95,7 +94,7 @@
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
       </props>
     </variant>
-	<variant name="gather_ruins">
+    <variant name="gather_ruins">
       <props>
         <prop attachpoint="shield"/>
         <prop attachpoint="r_hand"/>

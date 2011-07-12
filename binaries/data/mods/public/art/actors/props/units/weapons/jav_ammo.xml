@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="javelin ammo">
+      <texture>props/prop_weap.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ammo1">
+      <mesh>props/javelin_ammo.dae</mesh>
+    </variant>
+    <variant frequency="1" name="ammo2">
+      <mesh>props/javelin_ammo2.dae</mesh>
+    </variant>
+  </group>
+</actor>

@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations>
@@ -44,7 +42,7 @@
       <props>
         <prop actor="props/units/heads/head_iber_isl_b.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="l_hand"/>
       </props>
       <texture>skeletal/iber_isw_b_3.dds</texture>
     </variant>
@@ -54,7 +52,7 @@
     <variant name="Melee">
       <props>
         <prop attachpoint="r_hand"/>
-        <prop actor="props/units/weapons/jav_iron.xml" attachpoint="loaded-r_hand"/>
+        <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="loaded-r_hand"/>
         <prop actor="props/units/weapons/jav_iron.xml" attachpoint="projectile"/>
       </props>
     </variant>
@@ -158,5 +156,4 @@
     </variant>
   </group>
   <material>player_trans.xml</material>
-
 </actor>
