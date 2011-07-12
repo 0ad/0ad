@@ -23,7 +23,7 @@
 #define SQR(x)						((x) * (x))
 
 template <typename T>
-T Interpolate(const T& a, const T& b, float l)
+inline T Interpolate(const T& a, const T& b, float l)
 {
 	return a + (b - a) * l;
 }

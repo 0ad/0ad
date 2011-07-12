@@ -24,6 +24,7 @@
 #define INCLUDED_CAMERA
 
 #include "Frustum.h"
+#include "maths/Bound.h"
 #include "maths/Matrix3D.h"
 
 // view port
@@ -35,27 +36,32 @@ struct SViewPort
 	size_t m_Height;
 };
 
-
 class CCamera
 {
 	public:
-		CCamera ();
-		~CCamera ();
+		CCamera();
+		~CCamera();
 		
 		// Methods for projection
-		void SetProjection (float nearp, float farp, float fov);
-		void SetProjectionTile (int tiles, int tile_x, int tile_y);
-		CMatrix3D& GetProjection () { return m_ProjMat; }
-		const CMatrix3D& GetProjection () const { return m_ProjMat; }
+		void SetProjection(float nearp, float farp, float fov);
+		void SetProjectionTile(int tiles, int tile_x, int tile_y);
+		CMatrix3D& GetProjection() { return m_ProjMat; }
+		const CMatrix3D& GetProjection() const { return m_ProjMat; }
+
+		CMatrix3D& GetOrientation() { return m_Orientation; }
+		const CMatrix3D& GetOrientation() const { return m_Orientation; }
+
+		CMatrix3D GetViewProjection() { return m_ProjMat * m_Orientation.GetInverse(); }
 
 		// Updates the frustum planes. Should be called
 		// everytime the view or projection matrices are
 		// altered.
-		void UpdateFrustum ();
-		const CFrustum& GetFrustum () const { return m_ViewFrustum; }
+		void UpdateFrustum(const CBound& scissor = CBound(CVector3D(-1.0f, -1.0f, -1.0f), CVector3D(1.0f, 1.0f, 1.0f)));
+		void ClipFrustum(const CPlane& clipPlane);
+		const CFrustum& GetFrustum() const { return m_ViewFrustum; }
 
-		void SetViewPort (const SViewPort& viewport);
-		const SViewPort& GetViewPort () const { return m_ViewPort; }
+		void SetViewPort(const SViewPort& viewport);
+		const SViewPort& GetViewPort() const { return m_ViewPort; }
 
 		// getters
 		float GetNearPlane() const { return m_NearPlane; }

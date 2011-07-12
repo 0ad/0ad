@@ -81,18 +81,21 @@ bool CModel::InitModel(const CModelDefPtr& modeldef)
 	size_t numBones = modeldef->GetNumBones();
 	if (numBones != 0)
 	{
+		size_t numBlends = modeldef->GetNumBlends();
+
 		// allocate matrices for bone transformations
-		m_BoneMatrices = new CMatrix3D[numBones];
+		m_BoneMatrices = new CMatrix3D[numBones + numBlends];
+		for (size_t i = 0; i < numBones + numBlends; ++i)
+		{
+			m_BoneMatrices[i].SetIdentity();
+		}
+
 		m_InverseBindBoneMatrices = new CMatrix3D[numBones];
 
 		// store default pose until animation assigned
 		CBoneState* defpose = modeldef->GetBones();
 		for (size_t i = 0; i < numBones; ++i)
 		{
-			m_BoneMatrices[i].SetIdentity();
-			m_BoneMatrices[i].Rotate(defpose[i].m_Rotation);
-			m_BoneMatrices[i].Translate(defpose[i].m_Translation);
-
 			m_InverseBindBoneMatrices[i].SetIdentity();
 			m_InverseBindBoneMatrices[i].Translate(-defpose[i].m_Translation);
 			m_InverseBindBoneMatrices[i].Rotate(defpose[i].m_Rotation.GetInverse());
@@ -100,7 +103,7 @@ bool CModel::InitModel(const CModelDefPtr& modeldef)
 	}
 
 	m_PositionValid = true;
-	
+
 	return true;
 }
 
@@ -111,7 +114,10 @@ void CModel::CalcBounds()
 {
 	// Need to calculate the object bounds first, if that hasn't already been done
 	if (! (m_Anim && m_Anim->m_AnimDef))
-		CalcObjectBounds();
+	{
+		if (m_ObjectBounds.IsEmpty())
+			CalcObjectBounds();
+	}
 	else
 	{
 		if (m_Anim->m_ObjectBounds.IsEmpty())
@@ -180,7 +186,7 @@ void CModel::CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result)
 		// extend bounds by vertex positions at the frame
 		for (size_t i=0;i<numverts;i++)
 		{
-			result += CModelDef::SkinPoint(verts[i], GetAnimatedBoneMatrices(), GetInverseBindBoneMatrices());
+			result += CModelDef::SkinPoint(verts[i], GetAnimatedBoneMatrices());
 		}
 		// advance to next frame
 		m_AnimTime += anim->GetFrameTime();
@@ -321,6 +327,16 @@ void CModel::ValidatePosition()
 		
 		prop.m_Model->SetTransform(proptransform);
 		prop.m_Model->ValidatePosition();
+	}
+
+	if (m_BoneMatrices)
+	{
+		for (size_t i = 0; i < m_pModelDef->GetNumBones(); i++)
+		{
+			m_BoneMatrices[i] = m_BoneMatrices[i] * m_InverseBindBoneMatrices[i];
+		}
+
+		m_pModelDef->BlendBoneMatrices(m_BoneMatrices);
 	}
 }
 

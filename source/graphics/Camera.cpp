@@ -34,7 +34,7 @@
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
 
-CCamera::CCamera ()
+CCamera::CCamera()
 {
 	// set viewport to something anything should handle, but should be initialised
 	// to window size before use
@@ -44,38 +44,35 @@ CCamera::CCamera ()
 	m_ViewPort.m_Height = 600;
 }
 
-CCamera::~CCamera ()
+CCamera::~CCamera()
 {
 }
 
-void CCamera::SetProjection (float nearp, float farp, float fov)
+void CCamera::SetProjection(float nearp, float farp, float fov)
 {
 	m_NearPlane = nearp;
 	m_FarPlane = farp;
 	m_FOV = fov;
 
-	float Aspect = (float)m_ViewPort.m_Width/(float)m_ViewPort.m_Height;
-
-	float w = tanf (m_FOV*0.5f*Aspect);
-	float h = tanf (m_FOV*0.5f);
+	float aspect = (float)m_ViewPort.m_Width/(float)m_ViewPort.m_Height;
+	float f = 1.0f/tanf(m_FOV/2);
 
 	m_ProjMat.SetZero ();
-	m_ProjMat._11 = 1/w;
-	m_ProjMat._22 = 1/h;
-	m_ProjMat._33 = (m_FarPlane+m_NearPlane)/(m_FarPlane-m_NearPlane);
-	m_ProjMat._34 = -2*m_FarPlane*m_NearPlane/(m_FarPlane-m_NearPlane);
+	m_ProjMat._11 = f/aspect;
+	m_ProjMat._22 = f;
+	m_ProjMat._33 = -(m_FarPlane+m_NearPlane)/(m_NearPlane-m_FarPlane);
+	m_ProjMat._34 = 2*m_FarPlane*m_NearPlane/(m_NearPlane-m_FarPlane);
 	m_ProjMat._43 = 1.0f;
 }
 
-void CCamera::SetProjectionTile (int tiles, int tile_x, int tile_y)
+void CCamera::SetProjectionTile(int tiles, int tile_x, int tile_y)
 {
-	float Aspect = (float)m_ViewPort.m_Width/(float)m_ViewPort.m_Height;
 
-	float w = tanf (m_FOV*0.5f*Aspect) / tiles;
-	float h = tanf (m_FOV*0.5f) / tiles;
+	float aspect = (float)m_ViewPort.m_Width/(float)m_ViewPort.m_Height;
+	float f = 1.0f/tanf(m_FOV/2);
 
-	m_ProjMat._11 = 1/w;
-	m_ProjMat._22 = 1/h;
+	m_ProjMat._11 = tiles*f/aspect;
+	m_ProjMat._22 = tiles*f;
 	m_ProjMat._13 = -(1-tiles + 2*tile_x);
 	m_ProjMat._23 = -(1-tiles + 2*tile_y);
 }
@@ -83,7 +80,7 @@ void CCamera::SetProjectionTile (int tiles, int tile_x, int tile_y)
 //Updates the frustum planes. Should be called
 //everytime the view or projection matrices are
 //altered.
-void CCamera::UpdateFrustum ()
+void CCamera::UpdateFrustum(const CBound& scissor)
 {
 	CMatrix3D MatFinal;
 	CMatrix3D MatView;
@@ -92,46 +89,51 @@ void CCamera::UpdateFrustum ()
 
 	MatFinal = m_ProjMat * MatView;
 
-	//get the RIGHT plane
-	m_ViewFrustum.SetNumPlanes (6);
+	// get the RIGHT plane
+	m_ViewFrustum.SetNumPlanes(6);
 
-	m_ViewFrustum.m_aPlanes[0].m_Norm.X = MatFinal._41-MatFinal._11;
-	m_ViewFrustum.m_aPlanes[0].m_Norm.Y = MatFinal._42-MatFinal._12;
-	m_ViewFrustum.m_aPlanes[0].m_Norm.Z = MatFinal._43-MatFinal._13;
-	m_ViewFrustum.m_aPlanes[0].m_Dist	= MatFinal._44-MatFinal._14;
+	m_ViewFrustum.m_aPlanes[0].m_Norm.X = scissor[1].X*MatFinal._41 - MatFinal._11;
+	m_ViewFrustum.m_aPlanes[0].m_Norm.Y = scissor[1].X*MatFinal._42 - MatFinal._12;
+	m_ViewFrustum.m_aPlanes[0].m_Norm.Z = scissor[1].X*MatFinal._43 - MatFinal._13;
+	m_ViewFrustum.m_aPlanes[0].m_Dist   = scissor[1].X*MatFinal._44 - MatFinal._14;
 
-	//get the LEFT plane
-	m_ViewFrustum.m_aPlanes[1].m_Norm.X = MatFinal._41+MatFinal._11;
-	m_ViewFrustum.m_aPlanes[1].m_Norm.Y = MatFinal._42+MatFinal._12;
-	m_ViewFrustum.m_aPlanes[1].m_Norm.Z = MatFinal._43+MatFinal._13;
-	m_ViewFrustum.m_aPlanes[1].m_Dist	= MatFinal._44+MatFinal._14;
+	// get the LEFT plane
+	m_ViewFrustum.m_aPlanes[1].m_Norm.X = -scissor[0].X*MatFinal._41 + MatFinal._11;
+	m_ViewFrustum.m_aPlanes[1].m_Norm.Y = -scissor[0].X*MatFinal._42 + MatFinal._12;
+	m_ViewFrustum.m_aPlanes[1].m_Norm.Z = -scissor[0].X*MatFinal._43 + MatFinal._13;
+	m_ViewFrustum.m_aPlanes[1].m_Dist   = -scissor[0].X*MatFinal._44 + MatFinal._14;
 
-	//get the BOTTOM plane
-	m_ViewFrustum.m_aPlanes[2].m_Norm.X = MatFinal._41+MatFinal._21;
-	m_ViewFrustum.m_aPlanes[2].m_Norm.Y = MatFinal._42+MatFinal._22;
-	m_ViewFrustum.m_aPlanes[2].m_Norm.Z = MatFinal._43+MatFinal._23;
-	m_ViewFrustum.m_aPlanes[2].m_Dist	= MatFinal._44+MatFinal._24;
+	// get the BOTTOM plane
+	m_ViewFrustum.m_aPlanes[2].m_Norm.X = -scissor[0].Y*MatFinal._41 + MatFinal._21;
+	m_ViewFrustum.m_aPlanes[2].m_Norm.Y = -scissor[0].Y*MatFinal._42 + MatFinal._22;
+	m_ViewFrustum.m_aPlanes[2].m_Norm.Z = -scissor[0].Y*MatFinal._43 + MatFinal._23;
+	m_ViewFrustum.m_aPlanes[2].m_Dist   = -scissor[0].Y*MatFinal._44 + MatFinal._24;
 
-	//get the TOP plane
-	m_ViewFrustum.m_aPlanes[3].m_Norm.X = MatFinal._41-MatFinal._21;
-	m_ViewFrustum.m_aPlanes[3].m_Norm.Y = MatFinal._42-MatFinal._22;
-	m_ViewFrustum.m_aPlanes[3].m_Norm.Z = MatFinal._43-MatFinal._23;
-	m_ViewFrustum.m_aPlanes[3].m_Dist	= MatFinal._44-MatFinal._24;
+	// get the TOP plane
+	m_ViewFrustum.m_aPlanes[3].m_Norm.X = scissor[1].Y*MatFinal._41 - MatFinal._21;
+	m_ViewFrustum.m_aPlanes[3].m_Norm.Y = scissor[1].Y*MatFinal._42 - MatFinal._22;
+	m_ViewFrustum.m_aPlanes[3].m_Norm.Z = scissor[1].Y*MatFinal._43 - MatFinal._23;
+	m_ViewFrustum.m_aPlanes[3].m_Dist   = scissor[1].Y*MatFinal._44 - MatFinal._24;
 
-	//get the FAR plane
-	m_ViewFrustum.m_aPlanes[4].m_Norm.X = MatFinal._41-MatFinal._31;
-	m_ViewFrustum.m_aPlanes[4].m_Norm.Y = MatFinal._42-MatFinal._32;
-	m_ViewFrustum.m_aPlanes[4].m_Norm.Z = MatFinal._43-MatFinal._33;
-	m_ViewFrustum.m_aPlanes[4].m_Dist	= MatFinal._44-MatFinal._34;
+	// get the FAR plane
+	m_ViewFrustum.m_aPlanes[4].m_Norm.X = scissor[1].Z*MatFinal._41 - MatFinal._31;
+	m_ViewFrustum.m_aPlanes[4].m_Norm.Y = scissor[1].Z*MatFinal._42 - MatFinal._32;
+	m_ViewFrustum.m_aPlanes[4].m_Norm.Z = scissor[1].Z*MatFinal._43 - MatFinal._33;
+	m_ViewFrustum.m_aPlanes[4].m_Dist   = scissor[1].Z*MatFinal._44 - MatFinal._34;
 
-	//get the NEAR plane
-	m_ViewFrustum.m_aPlanes[5].m_Norm.X = MatFinal._41+MatFinal._31;
-	m_ViewFrustum.m_aPlanes[5].m_Norm.Y = MatFinal._42+MatFinal._32;
-	m_ViewFrustum.m_aPlanes[5].m_Norm.Z = MatFinal._43+MatFinal._33;
-	m_ViewFrustum.m_aPlanes[5].m_Dist	= MatFinal._44+MatFinal._34;
+	// get the NEAR plane
+	m_ViewFrustum.m_aPlanes[5].m_Norm.X = -scissor[0].Z*MatFinal._41 + MatFinal._31;
+	m_ViewFrustum.m_aPlanes[5].m_Norm.Y = -scissor[0].Z*MatFinal._42 + MatFinal._32;
+	m_ViewFrustum.m_aPlanes[5].m_Norm.Z = -scissor[0].Z*MatFinal._43 + MatFinal._33;
+	m_ViewFrustum.m_aPlanes[5].m_Dist   = -scissor[0].Z*MatFinal._44 + MatFinal._34;
 }
 
-void CCamera::SetViewPort (const SViewPort& viewport)
+void CCamera::ClipFrustum(const CPlane& clipPlane)
+{
+	m_ViewFrustum.AddPlane(clipPlane);
+}
+
+void CCamera::SetViewPort(const SViewPort& viewport)
 {
 	m_ViewPort.m_X = viewport.m_X;
 	m_ViewPort.m_Y = viewport.m_Y;

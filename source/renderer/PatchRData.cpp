@@ -57,7 +57,10 @@ const ssize_t BlendOffsets[9][2] = {
 ///////////////////////////////////////////////////////////////////
 // CPatchRData constructor
 CPatchRData::CPatchRData(CPatch* patch) :
-	m_Patch(patch), m_VBSides(0), m_VBBase(0), m_VBBaseIndices(0), m_VBBlends(0), m_VBBlendIndices(0)
+	m_Patch(patch), m_VBSides(0),
+	m_VBBase(0), m_VBBaseIndices(0),
+	m_VBBlends(0), m_VBBlendIndices(0),
+	m_VBWater(0), m_VBWaterIndices(0)
 {
 	ENSURE(patch);
 	Build();
@@ -73,6 +76,8 @@ CPatchRData::~CPatchRData()
 	if (m_VBBaseIndices) g_VBMan.Release(m_VBBaseIndices);
 	if (m_VBBlends) g_VBMan.Release(m_VBBlends);
 	if (m_VBBlendIndices) g_VBMan.Release(m_VBBlendIndices);
+	if (m_VBWater) g_VBMan.Release(m_VBWater);
+	if (m_VBWaterIndices) g_VBMan.Release(m_VBWaterIndices);
 }
 
 const float uvFactor = 0.125f / sqrt(2.f);
@@ -645,6 +650,7 @@ void CPatchRData::Build()
 	BuildSides();
 	BuildIndices();
 	BuildBlends();
+	BuildWater();
 }
 
 void CPatchRData::Update()
@@ -657,6 +663,7 @@ void CPatchRData::Update()
 		BuildSides();
 		BuildIndices();
 		BuildBlends();
+		BuildWater();
 
 		m_UpdateFlags=0;
 	}
@@ -1126,4 +1133,167 @@ void CPatchRData::RenderPriorities()
 			glPopMatrix();
 		}
 	}
+}
+
+//
+// Water build and rendering
+//
+
+// Build vertex buffer for water vertices over our patch
+void CPatchRData::BuildWater()
+{
+	// number of vertices in each direction in each patch
+	ENSURE((PATCH_SIZE % water_cell_size) == 0);
+
+	if (m_VBWater)
+	{
+		g_VBMan.Release(m_VBWater);
+		m_VBWater = 0;
+	}
+	if (m_VBWaterIndices)
+	{
+		g_VBMan.Release(m_VBWaterIndices);
+		m_VBWaterIndices = 0;
+	}
+	m_WaterBounds.SetEmpty();
+
+	// We need to use this to access the water manager or we may not have the
+	// actual values but some compiled-in defaults
+	CmpPtr<ICmpWaterManager> cmpWaterManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	if (cmpWaterManager.null())
+		return;
+
+	// Build data for water
+	std::vector<SWaterVertex> water_vertex_data;
+	std::vector<GLushort> water_indices;
+	u16 water_index_map[PATCH_SIZE+1][PATCH_SIZE+1];
+	memset(water_index_map, 0xFF, sizeof(water_index_map));
+
+	// TODO: This is not (yet) exported via the ICmp interface so... we stick to these values which can be compiled in defaults
+	WaterManager* WaterMgr = g_Renderer.GetWaterManager();
+
+	CPatch* patch = m_Patch;
+	CTerrain* terrain = patch->m_Parent;
+
+	ssize_t x1 = m_Patch->m_X*PATCH_SIZE;
+	ssize_t z1 = m_Patch->m_Z*PATCH_SIZE;
+
+	// build vertices, uv, and shader varying
+	for (ssize_t z = 0; z < PATCH_SIZE; z += water_cell_size)
+	{
+		for (ssize_t x = 0; x <= PATCH_SIZE; x += water_cell_size)
+		{
+			// Check that the edge at x is partially underwater
+			float startTerrainHeight[2] = { terrain->GetVertexGroundLevel(x+x1, z+z1), terrain->GetVertexGroundLevel(x+x1, z+z1 + water_cell_size) };
+			float startWaterHeight[2] = { cmpWaterManager->GetExactWaterLevel(x+x1, z+z1), cmpWaterManager->GetExactWaterLevel(x+x1, z+z1 + water_cell_size) };
+			if (startTerrainHeight[0] >= startWaterHeight[0] && startTerrainHeight[1] >= startWaterHeight[1])
+				continue;
+
+			// Move x back one cell (unless at start of patch), then scan rightwards
+			bool belowWater = true;
+			ssize_t stripStart;
+			for (stripStart = x = std::max(x-water_cell_size, (ssize_t)0); x <= PATCH_SIZE; x += water_cell_size)
+			{
+				// If this edge is not underwater, and neither is the previous edge
+				// (i.e. belowWater == false), then stop this strip since we've reached
+				// a cell that's entirely above water
+				float terrainHeight[2] = { terrain->GetVertexGroundLevel(x+x1, z+z1), terrain->GetVertexGroundLevel(x+x1, z+z1 + water_cell_size) };
+				float waterHeight[2] = { cmpWaterManager->GetExactWaterLevel(x+x1, z+z1), cmpWaterManager->GetExactWaterLevel(x+x1, z+z1 + water_cell_size) };
+				if (terrainHeight[0] >= waterHeight[0] && terrainHeight[1] >= waterHeight[1])
+				{
+					if (!belowWater)
+						break;
+					belowWater = false;
+				}
+				else
+					belowWater = true;
+
+				// Edge (x,z)-(x,z+1) is at least partially underwater, so extend the water plane strip across it
+
+				// Compute vertex data for the 2 points on the edge
+				for (int j = 0; j < 2; j++)
+				{
+					// Check if we already computed this vertex from an earlier strip
+					if (water_index_map[z+j*water_cell_size][x] != 0xFFFF)
+						continue;
+
+					SWaterVertex vertex;
+
+					terrain->CalcPosition(x+x1, z+z1 + j*water_cell_size, vertex.m_Position);
+					float depth = waterHeight[j] - vertex.m_Position.Y;
+					vertex.m_Position.Y = waterHeight[j];
+					m_WaterBounds += vertex.m_Position;
+
+					// NB: Usually this factor is view dependent, but for performance reasons
+					// we do not take it into account with basic non-shader based water.
+					// Average constant Fresnel effect for non-fancy water
+					float alpha = clamp(depth / WaterMgr->m_WaterFullDepth + WaterMgr->m_WaterAlphaOffset, WaterMgr->m_WaterAlphaOffset, WaterMgr->m_WaterMaxAlpha);
+
+					// Split the depth data across 24 bits, so the fancy-water shader can reconstruct
+					// the depth value while the simple-water can just use the precomputed alpha
+					float depthInt = floor(depth);
+					float depthFrac = depth - depthInt;
+					vertex.m_DepthData = SColor4ub(
+						u8(clamp(depthInt, 0.0f, 255.0f)),
+						u8(clamp(-depthInt, 0.0f, 255.0f)),
+						u8(clamp(depthFrac*255.0f, 0.0f, 255.0f)),
+						u8(clamp(alpha*255.0f, 0.0f, 255.0f)));
+
+					water_index_map[z+j*water_cell_size][x] = water_vertex_data.size();
+					water_vertex_data.push_back(vertex);
+				}
+
+				// If this was not the first x in the strip, then add a quad
+				// using the computed vertex data
+
+				if (x <= stripStart)
+					continue;
+
+				water_indices.push_back(water_index_map[z + water_cell_size][x - water_cell_size]);
+				water_indices.push_back(water_index_map[z][x - water_cell_size]);
+				water_indices.push_back(water_index_map[z][x]);
+				water_indices.push_back(water_index_map[z + water_cell_size][x]);
+			}
+		}
+	}
+
+	// no vertex buffers if no data generated
+	if (water_indices.size() == 0)
+		return;
+
+	// allocate vertex buffer
+	m_VBWater = g_VBMan.Allocate(sizeof(SWaterVertex), water_vertex_data.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
+	m_VBWater->m_Owner->UpdateChunkVertices(m_VBWater, &water_vertex_data[0]);
+
+	// Construct indices buffer
+	m_VBWaterIndices = g_VBMan.Allocate(sizeof(GLushort), water_indices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
+	m_VBWaterIndices->m_Owner->UpdateChunkVertices(m_VBWaterIndices, &water_indices[0]);
+}
+
+void CPatchRData::RenderWater()
+{
+	ASSERT(m_UpdateFlags==0);
+
+	if (!m_VBWater)
+		return;
+
+	SWaterVertex *base=(SWaterVertex *)m_VBWater->m_Owner->Bind();
+
+	// setup data pointers
+	GLsizei stride = sizeof(SWaterVertex);
+	glColorPointer(4, GL_UNSIGNED_BYTE, stride, &base[m_VBWater->m_Index].m_DepthData);
+	glVertexPointer(3, GL_FLOAT, stride, &base[m_VBWater->m_Index].m_Position);
+
+	// render
+	if (!g_Renderer.m_SkipSubmit) {
+		u8* indexBase = m_VBWaterIndices->m_Owner->Bind();
+		glDrawElements(GL_QUADS, (GLsizei) m_VBWaterIndices->m_Count,
+			GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(m_VBWaterIndices->m_Index));
+	}
+
+	// bump stats
+	g_Renderer.m_Stats.m_DrawCalls++;
+	g_Renderer.m_Stats.m_WaterTris += m_VBWaterIndices->m_Count / 2;
+
+	CVertexBuffer::Unbind();
 }

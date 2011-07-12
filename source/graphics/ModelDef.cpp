@@ -27,24 +27,20 @@
 #include "maths/Vector4D.h"
 
 CVector3D CModelDef::SkinPoint(const SModelVertex& vtx,
-							   const CMatrix3D newPoseMatrices[],
-							   const CMatrix3D inverseBindMatrices[])
+							   const CMatrix3D newPoseMatrices[])
 {
 	CVector3D result (0, 0, 0);
 
 	for (int i = 0; i < SVertexBlend::SIZE && vtx.m_Blend.m_Bone[i] != 0xff; ++i)
 	{
-		CVector3D bindSpace = inverseBindMatrices[vtx.m_Blend.m_Bone[i]].Transform(vtx.m_Coords);
-		CVector3D worldSpace = newPoseMatrices[vtx.m_Blend.m_Bone[i]].Transform(bindSpace);
-		result += worldSpace * vtx.m_Blend.m_Weight[i];
+		result += newPoseMatrices[vtx.m_Blend.m_Bone[i]].Transform(vtx.m_Coords) * vtx.m_Blend.m_Weight[i];
 	}
 
 	return result;
 }
 
 CVector3D CModelDef::SkinNormal(const SModelVertex& vtx,
-								const CMatrix3D newPoseMatrices[],
-								const CMatrix3D inverseBindMatrices[])
+								const CMatrix3D newPoseMatrices[])
 {
 	// To be correct, the normal vectors apparently need to be multiplied by the
 	// inverse of the transpose. Unfortunately inverses are slow.
@@ -73,9 +69,7 @@ CVector3D CModelDef::SkinNormal(const SModelVertex& vtx,
 
 	for (int i = 0; i < SVertexBlend::SIZE && vtx.m_Blend.m_Bone[i] != 0xff; ++i)
 	{
-		CVector3D bindSpace = inverseBindMatrices[vtx.m_Blend.m_Bone[i]].Rotate(vtx.m_Norm);
-		CVector3D worldSpace = newPoseMatrices[vtx.m_Blend.m_Bone[i]].Rotate(bindSpace);
-		result += worldSpace * vtx.m_Blend.m_Weight[i];
+		result += newPoseMatrices[vtx.m_Blend.m_Bone[i]].Rotate(vtx.m_Norm) * vtx.m_Blend.m_Weight[i];
 	}
 	
 	// If there was more than one influence, the result is probably not going
@@ -94,27 +88,15 @@ void CModelDef::SkinPointsAndNormals(
 		const VertexArrayIterator<CVector3D>& Position,
 		const VertexArrayIterator<CVector3D>& Normal,
 		const SModelVertex* vertices,
-		const CMatrix3D newPoseMatrices[],
-		const CMatrix3D inverseBindMatrices[])
+		const size_t* blendIndices,
+		const CMatrix3D newPoseMatrices[])
 {
 	for (size_t j = 0; j < numVertices; ++j)
 	{
-		const SModelVertex vtx = vertices[j];
+		const SModelVertex& vtx = vertices[j];
 
-		CVector3D pos(0, 0, 0);
-		CVector3D normal(0, 0, 0);
-
-		for (int i = 0; i < SVertexBlend::SIZE && vtx.m_Blend.m_Bone[i] != 0xff; ++i)
-		{
-			CVector3D posBindSpace = inverseBindMatrices[vtx.m_Blend.m_Bone[i]].Transform(vtx.m_Coords);
-			CVector3D normBindSpace = inverseBindMatrices[vtx.m_Blend.m_Bone[i]].Rotate(vtx.m_Norm);
-
-			CVector3D posWorldSpace = newPoseMatrices[vtx.m_Blend.m_Bone[i]].Transform(posBindSpace);
-			CVector3D normWorldSpace = newPoseMatrices[vtx.m_Blend.m_Bone[i]].Rotate(normBindSpace);
-
-			pos += posWorldSpace * vtx.m_Blend.m_Weight[i];
-			normal += normWorldSpace * vtx.m_Blend.m_Weight[i];
-		}
+		Position[j] = newPoseMatrices[blendIndices[j]].Transform(vtx.m_Coords);
+		Normal[j] = newPoseMatrices[blendIndices[j]].Rotate(vtx.m_Norm);
 
 		// If there was more than one influence, the result is probably not going
 		// to be of unit length (since it's a weighted sum of several independent
@@ -122,16 +104,30 @@ void CModelDef::SkinPointsAndNormals(
 		// (It's fairly common to only have one influence, so it seems sensible to
 		// optimise that case a bit.)
 		if (vtx.m_Blend.m_Bone[1] != 0xff) // if more than one influence
-			normal.Normalize();
+			Normal[j].Normalize();
+	}
+}
 
-		Position[j] = pos;
-		Normal[j] = normal;
+void CModelDef::BlendBoneMatrices(
+		CMatrix3D boneMatrices[])
+{
+	for (size_t i = 0; i < m_NumBlends; ++i)
+	{
+		const SVertexBlend& blend = m_pBlends[i];
+		CMatrix3D& boneMatrix = boneMatrices[m_NumBones + i];
+		boneMatrix.Blend(boneMatrices[blend.m_Bone[0]], blend.m_Weight[0]);
+		boneMatrix.AddBlend(boneMatrices[blend.m_Bone[1]], blend.m_Weight[1]);
+		for (size_t j = 2; j < SVertexBlend::SIZE && blend.m_Bone[j] != 0xFF; ++j)
+		{
+			boneMatrix.AddBlend(boneMatrices[blend.m_Bone[j]], blend.m_Weight[j]);
+		}
 	}
 }
 
 // CModelDef Constructor
-CModelDef::CModelDef()	
-	: m_NumVertices(0), m_pVertices(0), m_NumFaces(0), m_pFaces(0), m_NumBones(0), m_Bones(0),
+CModelDef::CModelDef() :
+	m_NumVertices(0), m_pVertices(0), m_NumFaces(0), m_pFaces(0), m_NumBones(0), m_Bones(0),
+	m_NumBlends(0), m_pBlends(0), m_pBlendIndices(0),
 	m_Name(L"[not loaded]")
 {
 }
@@ -144,6 +140,8 @@ CModelDef::~CModelDef()
 	delete[] m_pVertices;
 	delete[] m_pFaces;
 	delete[] m_Bones;
+	delete[] m_pBlends;
+	delete[] m_pBlendIndices;
 }
 
 // FindPropPoint: find and return pointer to prop point matching given name; 
@@ -187,6 +185,34 @@ CModelDef* CModelDef::Load(const VfsPath& filename, const VfsPath& name)
 	{
 		mdef->m_Bones=new CBoneState[mdef->m_NumBones];
 		unpacker.UnpackRaw(mdef->m_Bones,mdef->m_NumBones*sizeof(CBoneState));
+
+		mdef->m_pBlendIndices = new size_t[mdef->m_NumVertices];
+		std::vector<SVertexBlend> blends;
+		for (size_t i = 0; i < mdef->m_NumVertices; i++)
+		{
+			const SVertexBlend &blend = mdef->m_pVertices[i].m_Blend;
+			if (blend.m_Bone[1] == 0xFF)
+			{
+				mdef->m_pBlendIndices[i] = blend.m_Bone[0];
+			}
+			else
+			{
+				// If there's already a vertex using the same blend as this, then
+				// reuse its entry from blends; otherwise add the new one to blends
+				size_t j;
+				for (j = 0; j < blends.size(); j++)
+				{
+					if (blend == blends[j]) break;
+				}
+				if (j >= blends.size())
+					blends.push_back(blend);
+				mdef->m_pBlendIndices[i] = mdef->m_NumBones + j;
+			}
+		}
+
+		mdef->m_NumBlends = blends.size();
+		mdef->m_pBlends = new SVertexBlend[mdef->m_NumBlends];
+		std::copy(blends.begin(), blends.end(), mdef->m_pBlends);
 	}
 
 	if (unpacker.GetVersion() >= 2)
@@ -232,10 +258,6 @@ CModelDef* CModelDef::Load(const VfsPath& filename, const VfsPath& name)
 
 		if (mdef->m_NumBones) // only do skinned models
 		{
-			CMatrix3D identity;
-			identity.SetIdentity();
-			std::vector<CMatrix3D> identityBones (mdef->m_NumBones, identity);
-
 			std::vector<CMatrix3D> bindPose (mdef->m_NumBones);
 
 			for (size_t i = 0; i < mdef->m_NumBones; ++i)
@@ -247,8 +269,8 @@ CModelDef* CModelDef::Load(const VfsPath& filename, const VfsPath& name)
 
 			for (size_t i = 0; i < mdef->m_NumVertices; ++i)
 			{
-				mdef->m_pVertices[i].m_Coords = SkinPoint(mdef->m_pVertices[i], &bindPose[0], &identityBones[0]);
-				mdef->m_pVertices[i].m_Norm = SkinNormal(mdef->m_pVertices[i], &bindPose[0], &identityBones[0]);
+				mdef->m_pVertices[i].m_Coords = SkinPoint(mdef->m_pVertices[i], &bindPose[0]);
+				mdef->m_pVertices[i].m_Norm = SkinNormal(mdef->m_pVertices[i], &bindPose[0]);
 			}
 		}
 	}

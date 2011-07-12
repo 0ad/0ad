@@ -49,6 +49,17 @@ void CFrustum::SetNumPlanes (size_t num)
 		m_NumPlanes = MAX_NUM_FRUSTUM_PLANES-1;
 }
 
+void CFrustum::AddPlane (const CPlane& plane)
+{
+	if (m_NumPlanes >= MAX_NUM_FRUSTUM_PLANES)
+	{
+		debug_warn(L"CFrustum::AddPlane: Too many planes");
+		return;
+	}
+
+	m_aPlanes[m_NumPlanes++] = plane;
+}
+
 bool CFrustum::IsPointVisible (const CVector3D &point) const
 {
 	PLANESIDE Side;

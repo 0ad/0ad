@@ -26,109 +26,6 @@
 #include "Quaternion.h"
 #include "Vector4D.h"
 
-CMatrix3D::CMatrix3D ()
-{
-}
-
-CMatrix3D::CMatrix3D(
-	float a11, float a12, float a13, float a14,
-	float a21, float a22, float a23, float a24,
-	float a31, float a32, float a33, float a34,
-	float a41, float a42, float a43, float a44) :
-	_11(a11), _12(a12), _13(a13), _14(a14),
-	_21(a21), _22(a22), _23(a23), _24(a24),
-	_31(a31), _32(a32), _33(a33), _34(a34),
-	_41(a41), _42(a42), _43(a43), _44(a44)
-{
-}
-
-CMatrix3D::CMatrix3D(float data[])
-{
-	for(int i=0; i<16; i++)
-	{
-		_data[i] = data[i];
-	}
-}
-
-//Matrix multiplication
-CMatrix3D CMatrix3D::operator*(const CMatrix3D& matrix) const
-{
-	return CMatrix3D(
-		_11*matrix._11 + _12*matrix._21 + _13*matrix._31 + _14*matrix._41,
-		_11*matrix._12 + _12*matrix._22 + _13*matrix._32 + _14*matrix._42,
-		_11*matrix._13 + _12*matrix._23 + _13*matrix._33 + _14*matrix._43,
-		_11*matrix._14 + _12*matrix._24 + _13*matrix._34 + _14*matrix._44,
-
-		_21*matrix._11 + _22*matrix._21 + _23*matrix._31 + _24*matrix._41,
-		_21*matrix._12 + _22*matrix._22 + _23*matrix._32 + _24*matrix._42,
-		_21*matrix._13 + _22*matrix._23 + _23*matrix._33 + _24*matrix._43,
-		_21*matrix._14 + _22*matrix._24 + _23*matrix._34 + _24*matrix._44,
-
-		_31*matrix._11 + _32*matrix._21 + _33*matrix._31 + _34*matrix._41,
-		_31*matrix._12 + _32*matrix._22 + _33*matrix._32 + _34*matrix._42,
-		_31*matrix._13 + _32*matrix._23 + _33*matrix._33 + _34*matrix._43,
-		_31*matrix._14 + _32*matrix._24 + _33*matrix._34 + _34*matrix._44,
-
-		_41*matrix._11 + _42*matrix._21 + _43*matrix._31 + _44*matrix._41,
-		_41*matrix._12 + _42*matrix._22 + _43*matrix._32 + _44*matrix._42,
-		_41*matrix._13 + _42*matrix._23 + _43*matrix._33 + _44*matrix._43,
-		_41*matrix._14 + _42*matrix._24 + _43*matrix._34 + _44*matrix._44
-	);
-}
-
-//Matrix multiplication/assignment
-CMatrix3D& CMatrix3D::operator*=(const CMatrix3D& matrix)
-{
-	Concatenate(matrix);	
-	return *this;
-}
-
-//Matrix scaling
-CMatrix3D CMatrix3D::operator*(float f) const
-{
-	CMatrix3D tmp;
-	for (int i=0;i<16;i++) {
-		tmp._data[i]=_data[i]*f;
-	}
-	return tmp;
-}
-
-//Matrix scaling/assignment
-CMatrix3D& CMatrix3D::operator*=(float f) 
-{
-	for (int i=0;i<16;i++) {
-		_data[i]*=f;
-	}
-	return *this;
-}
-
-//Matrix addition
-CMatrix3D CMatrix3D::operator+(const CMatrix3D& m) const
-{
-	CMatrix3D tmp;
-	for (int i=0;i<16;i++) {
-		tmp._data[i]=_data[i]+m._data[i];
-	}
-	return tmp;
-}
-
-//Matrix addition/assignment
-CMatrix3D& CMatrix3D::operator+=(const CMatrix3D& m) 
-{
-	for (int i=0;i<16;i++) {
-		_data[i]+=m._data[i];
-	}
-	return *this;
-}
-
-bool CMatrix3D::operator==(const CMatrix3D &matrix) const
-{
-	for (int i = 0; i < 16; ++i)
-		if (matrix._data[i] != _data[i])
-			return false;
-	return true;
-}
-
 //Sets the identity matrix
 void CMatrix3D::SetIdentity ()
 {
@@ -275,11 +172,6 @@ void CMatrix3D::Translate(const CVector3D &vector)
 	_34 += vector.Z;
 }
 
-void CMatrix3D::Concatenate(const CMatrix3D& m)
-{
-	(*this)=m*(*this);
-}
-
 CVector3D CMatrix3D::GetTranslation() const
 {
 	return CVector3D(_14, _24, _34);
@@ -341,22 +233,6 @@ CVector3D CMatrix3D::GetUp() const
 CVector3D CMatrix3D::GetIn() const
 {
 	return CVector3D(_13, _23, _33);
-}
-
-//Transform a vector by this matrix
-CVector4D CMatrix3D::Transform(const CVector4D &vector) const
-{
-	CVector4D result;
-	Transform(vector,result);
-	return result;
-}
-
-void CMatrix3D::Transform(const CVector4D& vector,CVector4D& result) const
-{
-	result[0] = _11*vector[0] + _12*vector[1] + _13*vector[2] + _14*vector[3];
-	result[1] = _21*vector[0] + _22*vector[1] + _23*vector[2] + _24*vector[3];
-	result[2] = _31*vector[0] + _32*vector[1] + _33*vector[2] + _34*vector[3];
-	result[3] = _41*vector[0] + _42*vector[1] + _43*vector[2] + _44*vector[3];
 }
 
 ///////////////////////////////////////////////////////////////////////////////

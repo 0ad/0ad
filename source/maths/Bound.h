@@ -44,17 +44,38 @@ public:
 	const CVector3D& operator[](int index) const { return m_Data[index]; }
 
 	void SetEmpty();
-	bool IsEmpty();
+	bool IsEmpty() const;
 
-	CBound& operator+=(const CBound& b);
-	CBound& operator+=(const CVector3D& pt);
+	void Extend(const CVector3D& min, const CVector3D& max)
+	{
+		if (min.X < m_Data[0].X) m_Data[0].X = min.X;
+		if (min.Y < m_Data[0].Y) m_Data[0].Y = min.Y;
+		if (min.Z < m_Data[0].Z) m_Data[0].Z = min.Z;
+		if (max.X > m_Data[1].X) m_Data[1].X = max.X;
+		if (max.Y > m_Data[1].Y) m_Data[1].Y = max.Y;
+		if (max.Z > m_Data[1].Z) m_Data[1].Z = max.Z;
+	}
+
+	// operator+=: extend this bound to include given bound
+	CBound& operator+=(const CBound& b)
+	{
+		Extend(b.m_Data[0], b.m_Data[1]);
+		return *this;
+	}
+
+	// operator+=: extend this bound to include given point
+	CBound& operator+=(const CVector3D& pt)
+	{
+		Extend(pt, pt);
+		return *this;
+	}
 
 	bool RayIntersect(const CVector3D& origin,const CVector3D& dir,float& tmin,float& tmax) const;
 
 	// return the volume of this bounding box
 	float GetVolume() const {
 		CVector3D v=m_Data[1]-m_Data[0];
-		return v.X*v.Y*v.Z;
+		return std::max(v.X, 0.0f)*std::max(v.Y, 0.0f)*std::max(v.Z, 0.0f);
 	}
 
 	// return the centre of this bounding box

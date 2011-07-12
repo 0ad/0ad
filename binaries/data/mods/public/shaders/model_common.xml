@@ -19,6 +19,8 @@
         <uniform name="objectColor" loc="0" type="vec3"/>
         <uniform name="shadingColor" loc="1" type="vec3"/>
         <uniform name="ambient" loc="2" type="vec3"/>
+        <uniform name="shadowOffsets1" loc="3" type="vec4"/>
+        <uniform name="shadowOffsets2" loc="4" type="vec4"/>
     </fragment>
 
 </program>

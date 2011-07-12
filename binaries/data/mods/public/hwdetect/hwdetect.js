@@ -142,6 +142,7 @@ function RunDetection(settings)
 	var disable_audio = undefined;
 	var disable_s3tc = undefined;
 	var disable_shadows = undefined;
+	var disable_shadowpcf = undefined;
 	var disable_fancywater = undefined;
 	var override_renderpath = undefined;
 
@@ -212,6 +213,7 @@ function RunDetection(settings)
 	)
 	{
 		disable_shadows = true;
+		disable_shadowpcf = true;
 	}
 
 	// Fragment-shader water is really slow on most Intel devices,
@@ -222,6 +224,7 @@ function RunDetection(settings)
 	)
 	{
 		disable_fancywater = true;
+		disable_shadowpcf = true;
 	}
 
 	// http://trac.wildfiregames.com/ticket/780
@@ -238,6 +241,7 @@ function RunDetection(settings)
 		"disable_audio": disable_audio,
 		"disable_s3tc": disable_s3tc,
 		"disable_shadows": disable_shadows,
+		"disable_shadowpcf": disable_shadowpcf,
 		"disable_fancywater": disable_fancywater,
 		"override_renderpath": override_renderpath,
 	};
@@ -268,6 +272,9 @@ global.RunHardwareDetection = function(settings)
 
 	if (output.disable_shadows !== undefined)
 		Engine.SetDisableShadows(output.disable_shadows);
+
+	if (output.disable_shadowpcf !== undefined)
+		Engine.SetDisableShadowPCF(output.disable_shadowpcf);
 
 	if (output.disable_fancywater !== undefined)
 		Engine.SetDisableFancyWater(output.disable_fancywater);

@@ -21,7 +21,7 @@
 
 CShaderPass::CShaderPass(const CShaderProgramPtr& shader) :
 	m_Shader(shader),
-	m_HasAlpha(false), m_HasBlend(false), m_HasColorMask(false), m_HasDepthMask(false)
+	m_HasAlpha(false), m_HasBlend(false), m_HasColorMask(false), m_HasDepthMask(false), m_HasDepthFunc(false)
 {
 }
 
@@ -46,6 +46,9 @@ void CShaderPass::Bind()
 
 	if (m_HasDepthMask)
 		glDepthMask(m_DepthMask);
+
+	if (m_HasDepthFunc)
+		glDepthFunc(m_DepthFunc);
 }
 
 void CShaderPass::Unbind()
@@ -67,6 +70,9 @@ void CShaderPass::Unbind()
 
 	if (m_HasDepthMask)
 		glDepthMask(1);
+
+	if (m_HasDepthFunc)
+		glDepthFunc(GL_LEQUAL);
 }
 
 void CShaderPass::AlphaFunc(GLenum func, GLclampf ref)
@@ -96,6 +102,12 @@ void CShaderPass::DepthMask(GLboolean mask)
 {
 	m_HasDepthMask = true;
 	m_DepthMask = mask;
+}
+
+void CShaderPass::DepthFunc(GLenum func)
+{
+	m_HasDepthFunc = true;
+	m_DepthFunc = func;
 }
 
 

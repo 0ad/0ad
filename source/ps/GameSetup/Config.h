@@ -45,6 +45,8 @@ extern bool g_NoGLVBO;
 extern bool g_Shadows;
 // flag to switch on reflective/refractive water
 extern bool g_FancyWater;
+// flag to switch on shadow PCF
+extern bool g_ShadowPCF;
 
 extern float g_LodBias;
 extern float g_Gamma;

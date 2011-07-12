@@ -42,6 +42,12 @@ typedef shared_ptr<ModelVertexRenderer> ModelVertexRendererPtr;
 
 class CModel;
 
+class CModelFilter
+{
+public:
+	virtual ~CModelFilter() {}
+	virtual bool Filter(CModel* model) = 0;
+};
 
 /**
  * Class CModelRData: Render data that is maintained per CModel.
@@ -169,6 +175,17 @@ public:
 	virtual void Render(const RenderModifierPtr& modifier, int flags) = 0;
 
 	/**
+	 * Filter: Filter submitted models, setting the passed flags on any models
+	 * that pass the filter, and clearing them from models that fail.
+	 *
+	 * @param filter Filter to select a subset of models.
+	 * @param passed Flags to be set/cleared.
+	 * @param flags If non-zero, only models that contain @p flags
+	 * have the filter test applied.
+	 */
+	virtual void Filter(CModelFilter& filter, int passed, int flags = 0) = 0;
+
+	/**
 	 * CopyPositionAndNormals: Copy unanimated object-space vertices and
 	 * normals into the given vertex array.
 	 *
@@ -268,6 +285,7 @@ public:
 	virtual void EndFrame();
 	virtual bool HaveSubmissions();
 	virtual void Render(const RenderModifierPtr& modifier, int flags);
+	virtual void Filter(CModelFilter& filter, int passed, int flags);
 
 private:
 	BatchModelRendererInternals* m;

@@ -540,7 +540,21 @@ void SortModelRenderer::Render(const RenderModifierPtr& modifier, int flags)
 	} while(!modifier->EndPass(pass++));
 }
 
+void SortModelRenderer::Filter(CModelFilter& filter, int passed, int flags)
+{
+	for (std::vector<SModel*>::iterator it = m->models.begin(); it != m->models.end(); ++it)
+	{
+		SModel* smdl = *it;
+		CModel* mdl = smdl->GetModel();
+		if (flags && !(mdl->GetFlags() & flags))
+			continue;
 
+		if (filter.Filter(mdl))
+			mdl->SetFlags(mdl->GetFlags() | passed);
+		else
+			mdl->SetFlags(mdl->GetFlags() & ~passed);
+	}
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TransparentRenderModifier implementation
@@ -555,67 +569,49 @@ TransparentRenderModifier::~TransparentRenderModifier()
 
 int TransparentRenderModifier::BeginPass(int pass)
 {
+	// First pass: opaque areas only.
+	// Second pass: blended areas.
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+
+	// just pass through texture's alpha
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+
+	// Set the proper LOD bias
+	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	glEnable(GL_ALPHA_TEST);
 	if (pass == 0)
 	{
-		// First pass: Put down Z for opaque parts of the model,
-		// don't touch the color buffer.
-
-		glDepthMask(1);
-
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_CONSTANT);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-
-		// just pass through texture's alpha
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-
-		// Set the proper LOD bias
-		glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
-
-		glEnable(GL_ALPHA_TEST);
-		glAlphaFunc(GL_GREATER,0.975f);
-
-		// render everything with color writes off to setup depth buffer correctly
-		glColorMask(0,0,0,0);
-
-		return STREAM_POS|STREAM_UV0;
+		glAlphaFunc(GL_GREATER, 0.9375f);
 	}
 	else
 	{
-		// Second pass: Put down color, disable Z write
-		glColorMask(1,1,1,1);
-
+		glAlphaFunc(GL_GREATER, 0.0f);
+		glDepthFunc(GL_LESS);
 		glDepthMask(0);
-
-		// setup texture environment to modulate diffuse color with texture color
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
-
-		glAlphaFunc(GL_GREATER,0);
-
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
-
-		// Set the proper LOD bias
-		glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
-
-		return STREAM_POS|STREAM_COLOR|STREAM_UV0;
 	}
+
+	return STREAM_POS|STREAM_COLOR|STREAM_UV0;
 }
 
 bool TransparentRenderModifier::EndPass(int pass)
 {
-	if (pass == 0)
-		return false; // multi-pass
-
 	glDisable(GL_BLEND);
 	glDisable(GL_ALPHA_TEST);
+	if (pass == 0)
+		return false;
+
+	glDepthFunc(GL_LEQUAL);
 	glDepthMask(1);
 
 	return true;
@@ -631,6 +627,129 @@ void TransparentRenderModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(mo
 	// No per-model setup necessary
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TransparentOpaqueRenderModifier implementation
+
+TransparentOpaqueRenderModifier::TransparentOpaqueRenderModifier()
+{
+}
+
+TransparentOpaqueRenderModifier::~TransparentOpaqueRenderModifier()
+{
+}
+
+int TransparentOpaqueRenderModifier::BeginPass(int pass)
+{
+	ENSURE(pass == 0);
+
+	// Put down opaque parts of the model only.
+
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+
+	// just pass through texture's alpha
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+
+	// Set the proper LOD bias
+	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
+
+	glEnable(GL_ALPHA_TEST);
+	glAlphaFunc(GL_GREATER, 0.9375f);
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	return STREAM_POS|STREAM_COLOR|STREAM_UV0;
+}
+
+bool TransparentOpaqueRenderModifier::EndPass(int UNUSED(pass))
+{
+	glDisable(GL_ALPHA_TEST);
+	glDisable(GL_BLEND);
+
+	return true;
+}
+
+void TransparentOpaqueRenderModifier::PrepareTexture(int UNUSED(pass), CTexturePtr& texture)
+{
+	texture->Bind(0);
+}
+
+void TransparentOpaqueRenderModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(model))
+{
+	// No per-model setup necessary
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TransparentBlendRenderModifier implementation
+
+TransparentBlendRenderModifier::TransparentBlendRenderModifier()
+{
+}
+
+TransparentBlendRenderModifier::~TransparentBlendRenderModifier()
+{
+}
+
+int TransparentBlendRenderModifier::BeginPass(int pass)
+{
+	ENSURE(pass == 0);
+
+	// Put down blended parts of the model only.
+
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+
+	// just pass through texture's alpha
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+
+	// Set the proper LOD bias
+	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
+
+	glEnable(GL_ALPHA_TEST);
+	glAlphaFunc(GL_GREATER,0);
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	glDepthFunc(GL_LESS);
+	glDepthMask(0);
+
+	return STREAM_POS|STREAM_COLOR|STREAM_UV0;
+}
+
+bool TransparentBlendRenderModifier::EndPass(int UNUSED(pass))
+{
+	glDisable(GL_ALPHA_TEST);
+	glDisable(GL_BLEND);
+	glDepthFunc(GL_LEQUAL);
+	glDepthMask(1);
+
+	return true;
+}
+
+void TransparentBlendRenderModifier::PrepareTexture(int UNUSED(pass), CTexturePtr& texture)
+{
+	texture->Bind(0);
+}
+
+void TransparentBlendRenderModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(model))
+{
+	// No per-model setup necessary
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TransparentDepthShadowModifier implementation

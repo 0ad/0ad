@@ -78,6 +78,8 @@ struct ShadowMapInternals
 	// alpha texture which is attached to the FBO as a workaround.
 	GLuint DummyTexture;
 
+	float FilterOffsets[8];
+
 	// Helper functions
 	void CalcShadowMatrices();
 	void CreateTexture();
@@ -221,6 +223,13 @@ void ShadowMapInternals::CalcShadowMatrices()
 
 	ShadowBound.IntersectFrustumConservative(LightspaceCamera.GetFrustum());
 
+	// round off the shadow boundaries to sane increments to help reduce swim effect
+	float boundInc = 16.0f;
+	ShadowBound[0].X = floor(ShadowBound[0].X / boundInc) * boundInc;
+	ShadowBound[0].Y = floor(ShadowBound[0].Y / boundInc) * boundInc;
+	ShadowBound[1].X = ceil(ShadowBound[1].X / boundInc) * boundInc;
+	ShadowBound[1].Y = ceil(ShadowBound[1].Y / boundInc) * boundInc;
+
 	// minimum Z bound must not be clipped too much, because objects that lie outside
 	// the shadow bounds cannot cast shadows either
 	// the 2.0 is rather arbitrary: it should be big enough so that we won't accidently miss
@@ -242,11 +251,15 @@ void ShadowMapInternals::CalcShadowMatrices()
 	scale.Y = 2.0 / scale.Y;
 	scale.Z = 2.0 / scale.Z;
 
+	// make sure a given world position falls on a consistent shadowmap texel fractional offset
+	float offsetX = fmod(ShadowBound[0].X - LightTransform._14, 2.0f/(scale.X*EffectiveWidth));
+	float offsetY = fmod(ShadowBound[0].Y - LightTransform._24, 2.0f/(scale.Y*EffectiveHeight));
+
 	LightProjection.SetZero();
 	LightProjection._11 = scale.X;
-	LightProjection._14 = shift.X * scale.X;
+	LightProjection._14 = (shift.X + offsetX) * scale.X;
 	LightProjection._22 = scale.Y;
-	LightProjection._24 = shift.Y * scale.Y;
+	LightProjection._24 = (shift.Y + offsetY) * scale.Y;
 	LightProjection._33 = scale.Z;
 	LightProjection._34 = shift.Z * scale.Z + renderer.m_ShadowZBias;
 	LightProjection._44 = 1.0;
@@ -255,19 +268,15 @@ void ShadowMapInternals::CalcShadowMatrices()
 	// Calculate texture matrix by creating the clip space to texture coordinate matrix
 	// and then concatenating all matrices that have been calculated so far
 	CMatrix3D lightToTex;
-	float texscalex = (float)EffectiveWidth / (float)Width;
-	float texscaley = (float)EffectiveHeight / (float)Height;
-	float texscalez = 1.0;
-
-	texscalex = texscalex / (ShadowBound[1].X - ShadowBound[0].X);
-	texscaley = texscaley / (ShadowBound[1].Y - ShadowBound[0].Y);
-	texscalez = texscalez / (ShadowBound[1].Z - ShadowBound[0].Z);
+	float texscalex = scale.X * 0.5f * (float)EffectiveWidth / (float)Width;
+	float texscaley = scale.Y * 0.5f * (float)EffectiveHeight / (float)Height;
+	float texscalez = scale.Z * 0.5f;
 
 	lightToTex.SetZero();
 	lightToTex._11 = texscalex;
-	lightToTex._14 = -ShadowBound[0].X * texscalex;
+	lightToTex._14 = (offsetX - ShadowBound[0].X) * texscalex;
 	lightToTex._22 = texscaley;
-	lightToTex._24 = -ShadowBound[0].Y * texscaley;
+	lightToTex._24 = (offsetY - ShadowBound[0].Y) * texscaley;
 	lightToTex._33 = texscalez;
 	lightToTex._34 = -ShadowBound[0].Z * texscalez;
 	lightToTex._44 = 1.0;
@@ -359,7 +368,7 @@ void ShadowMapInternals::CreateTexture()
 
 	glTexImage2D(GL_TEXTURE_2D, 0, format, Width, Height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, NULL);
 
-	glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_LUMINANCE);
+	glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_INTENSITY);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
 
@@ -397,6 +406,18 @@ void ShadowMapInternals::CreateTexture()
 		// Disable shadow rendering (but let the user try again if they want)
 		g_Renderer.m_Options.m_Shadows = false;
 	}
+
+	FilterOffsets[0] = -0.4f/Width;
+	FilterOffsets[1] = 1.0f/Height;
+
+	FilterOffsets[2] = -1.0f/Width;
+	FilterOffsets[3] = -0.4f/Height;
+
+	FilterOffsets[4] = 0.4f/Width;
+	FilterOffsets[5] = -1.0f/Height;
+
+	FilterOffsets[6] = 1.0f/Width;
+	FilterOffsets[7] = 0.4f/Height;
 }
 
 
@@ -496,6 +517,10 @@ void ShadowMap::SetDepthTextureBits(int bits)
 	}
 }
 
+const float* ShadowMap::GetFilterOffsets() const
+{
+	return m->FilterOffsets;
+}
 
 //////////////////////////////////////////////////////////////////////////////
 // RenderDebugDisplay: debug visualizations

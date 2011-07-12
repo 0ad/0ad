@@ -34,6 +34,8 @@ public:
 
 	void Render(const CShaderProgramPtr& shader);
 
+	CModelDecal* GetDecal() { return m_Decal; }
+
 private:
 	void BuildArrays();
 

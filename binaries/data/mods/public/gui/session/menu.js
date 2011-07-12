@@ -15,7 +15,7 @@ function openMenuDialog()
 function openSettingsDialog()
 {
 	var settings = getGUIObjectByName("settingsDialogPanel");
-	g_SessionDialog.open("Settings", null, settings, 340, 224, null);
+	g_SessionDialog.open("Settings", null, settings, 340, 252, null);
 }
 
 function openChat()

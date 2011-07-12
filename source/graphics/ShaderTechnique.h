@@ -33,6 +33,7 @@ public:
 	void BlendFunc(GLenum src, GLenum dst);
 	void ColorMask(GLboolean r, GLboolean g, GLboolean b, GLboolean a);
 	void DepthMask(GLboolean mask);
+	void DepthFunc(GLenum func);
 
 	/**
 	 * Set all the GL state that was previously specified on this pass.
@@ -65,6 +66,9 @@ private:
 
 	bool m_HasDepthMask;
 	GLboolean m_DepthMask;
+
+	bool m_HasDepthFunc;
+	GLenum m_DepthFunc;
 };
 
 /**

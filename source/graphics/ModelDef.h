@@ -28,6 +28,7 @@
 #include "lib/file/vfs/vfs_path.h"
 #include "renderer/VertexArray.h"
 #include <map>
+#include <cstring>
 
 class CBoneState;
 
@@ -57,6 +58,11 @@ struct SVertexBlend
 	u8 m_Bone[SIZE];
 	// weight of the influence; all weights sum to 1
 	float m_Weight[SIZE];
+
+	bool operator==(const SVertexBlend& o) const
+	{
+		return !memcmp(m_Bone, o.m_Bone, sizeof(m_Bone)) && !memcmp(m_Weight, o.m_Weight, sizeof(m_Weight));
+	}
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -124,16 +130,21 @@ public:
 	
 public:
 	// accessor: get vertex data
-	size_t GetNumVertices() const { return (size_t)m_NumVertices; }
+	size_t GetNumVertices() const { return m_NumVertices; }
 	SModelVertex* GetVertices() const { return m_pVertices; }
 
 	// accessor: get face data
-	size_t GetNumFaces() const { return (size_t)m_NumFaces; }
+	size_t GetNumFaces() const { return m_NumFaces; }
 	SModelFace* GetFaces() const { return m_pFaces; }
 
 	// accessor: get bone data
-	size_t GetNumBones() const { return (size_t)m_NumBones; }
+	size_t GetNumBones() const { return m_NumBones; }
 	CBoneState* GetBones() const { return m_Bones; }
+
+	// accessor: get blend data
+	size_t GetNumBlends() const { return m_NumBlends; }
+	SVertexBlend* GetBlends() const { return m_pBlends; }
+	size_t* GetBlendIndices() const { return m_pBlendIndices; }
 
 	// find and return pointer to prop point matching given name; return
 	// null if no match (case insensitive search)
@@ -145,7 +156,7 @@ public:
 	 * @return new world-space vertex coordinates
 	 */
 	static CVector3D SkinPoint(const SModelVertex& vtx,
-		const CMatrix3D newPoseMatrices[], const CMatrix3D inverseBindMatrices[]);
+		const CMatrix3D newPoseMatrices[]);
 
 	/**
 	 * Transform the given vertex's normal from the bind pose into the new pose.
@@ -153,7 +164,7 @@ public:
 	 * @return new world-space vertex normal
 	 */
 	static CVector3D SkinNormal(const SModelVertex& vtx,
-		const CMatrix3D newPoseMatrices[], const CMatrix3D inverseBindMatrices[]);
+		const CMatrix3D newPoseMatrices[]);
 
 	/**
 	 * Transform vertices' positions and normals.
@@ -165,8 +176,13 @@ public:
 		const VertexArrayIterator<CVector3D>& Position,
 		const VertexArrayIterator<CVector3D>& Normal,
 		const SModelVertex* vertices,
-		const CMatrix3D newPoseMatrices[],
-		const CMatrix3D inverseBindMatrices[]);
+		const size_t* blendIndices,
+		const CMatrix3D newPoseMatrices[]);
+
+	/**
+	 * Blend bone matrices together to fill bone palette.
+	 */
+	void BlendBoneMatrices(CMatrix3D boneMatrices[]);
 
 	/**
 	 * Register renderer private data. Use the key to
@@ -200,6 +216,10 @@ public:
 	// bone data - default model pose
 	size_t m_NumBones;
 	CBoneState* m_Bones;
+	// blend data
+	size_t m_NumBlends;
+	SVertexBlend *m_pBlends;
+	size_t* m_pBlendIndices;
 	// prop point data
 	std::vector<SPropPoint> m_PropPoints;
 

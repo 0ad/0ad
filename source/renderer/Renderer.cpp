@@ -104,6 +104,7 @@ private:
 	enum {
 		Row_DrawCalls = 0,
 		Row_TerrainTris,
+		Row_WaterTris,
 		Row_ModelTris,
 		Row_BlendSplats,
 		Row_Particles,
@@ -160,6 +161,12 @@ CStr CRendererStatsTable::GetCellText(size_t row, size_t col)
 		if (col == 0)
 			return "# terrain tris";
 		sprintf_s(buf, sizeof(buf), "%lu", (unsigned long)Stats.m_TerrainTris);
+		return buf;
+
+	case Row_WaterTris:
+		if (col == 0)
+			return "# water tris";
+		sprintf_s(buf, sizeof(buf), "%lu", (unsigned long)Stats.m_WaterTris);
 		return buf;
 
 	case Row_ModelTris:
@@ -295,11 +302,15 @@ public:
 		RenderModifierPtr ModSolidPlayer;
 		RenderModifierPtr ModSolidPlayerInstancing;
 		RenderModifierPtr ModTransparent;
+		RenderModifierPtr ModTransparentOpaque;
+		RenderModifierPtr ModTransparentBlend;
 
 		// Palette of available RenderModifiers
 		RenderModifierPtr ModPlainUnlit;
 		RenderModifierPtr ModPlayerUnlit;
 		RenderModifierPtr ModTransparentUnlit;
+		RenderModifierPtr ModTransparentOpaqueUnlit;
+		RenderModifierPtr ModTransparentBlendUnlit;
 
 		RenderModifierPtr ModShaderSolidColor;
 		RenderModifierPtr ModShaderSolidColorInstancing;
@@ -311,6 +322,8 @@ public:
 		LitRenderModifierPtr ModShaderPlayer;
 		LitRenderModifierPtr ModShaderPlayerInstancing;
 		LitRenderModifierPtr ModShaderTransparent;
+		LitRenderModifierPtr ModShaderTransparentOpaque;
+		LitRenderModifierPtr ModShaderTransparentBlend;
 		RenderModifierPtr ModShaderTransparentShadow;
 	} Model;
 
@@ -381,6 +394,20 @@ public:
 		if (Model.Player != Model.PlayerInstancing)
 			Model.PlayerInstancing->Render(modPlayerInstancing, flags);
 	}
+
+	/**
+	 * Filters all non-transparent models with the given modifiers.
+	 */
+	void FilterModels(CModelFilter& filter, int passed, int flags = 0)
+	{
+		Model.Normal->Filter(filter, passed, flags);
+		if (Model.Normal != Model.NormalInstancing)
+			Model.NormalInstancing->Filter(filter, passed, flags);
+
+		Model.Player->Filter(filter, passed, flags);
+		if (Model.Player != Model.PlayerInstancing)
+			Model.PlayerInstancing->Filter(filter, passed, flags);
+	}
 };
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -412,6 +439,7 @@ CRenderer::CRenderer()
 	m_Options.m_Shadows = false;
 	m_Options.m_ShadowAlphaFix = true;
 	m_Options.m_ARBProgramShadow = true;
+	m_Options.m_ShadowPCF = false;
 
 	m_ShadowZBias = 0.02f;
 	m_ShadowMapSize = 0;
@@ -514,6 +542,8 @@ void CRenderer::ReloadShaders()
 		defBasic["USE_SHADOW"] = "1";
 		if (m_Caps.m_ARBProgramShadow && m_Options.m_ARBProgramShadow)
 			defBasic["USE_FP_SHADOW"] = "1";
+		if (m_Options.m_ShadowPCF)
+			defBasic["USE_SHADOW_PCF"] = "1";
 	}
 
 	if (m_LightEnv)
@@ -526,15 +556,20 @@ void CRenderer::ReloadShaders()
 	defTransparent["USE_TRANSPARENT"] = "1";
 
 	// TODO: it'd be nicer to load this technique from an XML file or something
-	CShaderPass passTransparent0(m->shaderManager.LoadProgram("solid_tex", defNull));
-	passTransparent0.AlphaFunc(GL_GREATER, 0.975f);
-	passTransparent0.ColorMask(0, 0, 0, 0);
-	CShaderPass passTransparent1(m->shaderManager.LoadProgram("model_common", defTransparent));
-	passTransparent1.AlphaFunc(GL_GREATER, 0.0f);
-	passTransparent1.BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	passTransparent1.DepthMask(0);
-	CShaderTechnique techTransparent(passTransparent0);
-	techTransparent.AddPass(passTransparent1);
+	CShaderPass passTransparentOpaque(m->shaderManager.LoadProgram("model_common", defTransparent));
+	passTransparentOpaque.AlphaFunc(GL_GREATER, 0.9375f);
+	passTransparentOpaque.BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	CShaderTechnique techTransparentOpaque(passTransparentOpaque);
+
+	CShaderPass passTransparentBlend(m->shaderManager.LoadProgram("model_common", defTransparent));
+	passTransparentBlend.AlphaFunc(GL_GREATER, 0.0f);
+	passTransparentBlend.DepthFunc(GL_LESS);
+	passTransparentBlend.BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	passTransparentBlend.DepthMask(0);
+	CShaderTechnique techTransparentBlend(passTransparentBlend);
+
+	CShaderTechnique techTransparent(passTransparentOpaque);
+	techTransparent.AddPass(passTransparentBlend);
 
 	CShaderPass passTransparentShadow(m->shaderManager.LoadProgram("solid_tex", defBasic));
 	passTransparentShadow.AlphaFunc(GL_GREATER, 0.4f);
@@ -565,6 +600,10 @@ void CRenderer::ReloadShaders()
 
 	m->Model.ModShaderTransparent = LitRenderModifierPtr(new ShaderRenderModifier(
 			techTransparent));
+	m->Model.ModShaderTransparentOpaque = LitRenderModifierPtr(new ShaderRenderModifier(
+			techTransparentOpaque));
+	m->Model.ModShaderTransparentBlend = LitRenderModifierPtr(new ShaderRenderModifier(
+			techTransparentBlend));
 	m->Model.ModShaderTransparentShadow = LitRenderModifierPtr(new ShaderRenderModifier(
 			techTransparentShadow));
 
@@ -603,6 +642,8 @@ bool CRenderer::Open(int width, int height)
 	m->Model.ModSolidColor = RenderModifierPtr(new SolidColorRenderModifier);
 	m->Model.ModSolidPlayerColor = RenderModifierPtr(new SolidPlayerColorRender);
 	m->Model.ModTransparentUnlit = RenderModifierPtr(new TransparentRenderModifier);
+	m->Model.ModTransparentOpaqueUnlit = RenderModifierPtr(new TransparentOpaqueRenderModifier);
+	m->Model.ModTransparentBlendUnlit = RenderModifierPtr(new TransparentBlendRenderModifier);
 	m->Model.ModTransparentDepthShadow = RenderModifierPtr(new TransparentDepthShadowModifier);
 
 	// Dimensions
@@ -659,6 +700,9 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 		case OPT_FANCYWATER:
 			m_Options.m_FancyWater=value;
 			break;
+		case OPT_SHADOWPCF:
+			m_Options.m_ShadowPCF=value;
+			break;
 		default:
 			debug_warn(L"CRenderer::SetOptionBool: unknown option");
 			break;
@@ -676,6 +720,8 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 			return m_Options.m_Shadows;
 		case OPT_FANCYWATER:
 			return m_Options.m_FancyWater;
+		case OPT_SHADOWPCF:
+			return m_Options.m_ShadowPCF;
 		default:
 			debug_warn(L"CRenderer::GetOptionBool: unknown option");
 			break;
@@ -812,6 +858,12 @@ void CRenderer::BeginFrame()
 		m->Model.ModShaderTransparent->SetShadowMap(m->shadow);
 		m->Model.ModShaderTransparent->SetLightEnv(m_LightEnv);
 
+		m->Model.ModShaderTransparentOpaque->SetShadowMap(m->shadow);
+		m->Model.ModShaderTransparentOpaque->SetLightEnv(m_LightEnv);
+
+		m->Model.ModShaderTransparentBlend->SetShadowMap(m->shadow);
+		m->Model.ModShaderTransparentBlend->SetLightEnv(m_LightEnv);
+
 		m->Model.ModNormal = m->Model.ModShaderNormal;
 		m->Model.ModNormalInstancing = m->Model.ModShaderNormalInstancing;
 		m->Model.ModPlayer = m->Model.ModShaderPlayer;
@@ -821,6 +873,8 @@ void CRenderer::BeginFrame()
 		m->Model.ModSolidPlayer = m->Model.ModShaderSolidPlayerColor;
 		m->Model.ModSolidPlayerInstancing = m->Model.ModShaderSolidPlayerColorInstancing;
 		m->Model.ModTransparent = m->Model.ModShaderTransparent;
+		m->Model.ModTransparentOpaque = m->Model.ModShaderTransparentOpaque;
+		m->Model.ModTransparentBlend = m->Model.ModShaderTransparentBlend;
 
 		m->Model.Normal = m->Model.pal_NormalShader;
 		m->Model.NormalInstancing = m->Model.pal_NormalInstancingShader;
@@ -837,6 +891,8 @@ void CRenderer::BeginFrame()
 		m->Model.ModPlayer = m->Model.ModPlayerUnlit;
 		m->Model.ModPlayerInstancing = m->Model.ModPlayerUnlit;
 		m->Model.ModTransparent = m->Model.ModTransparentUnlit;
+		m->Model.ModTransparentOpaque = m->Model.ModTransparentOpaqueUnlit;
+		m->Model.ModTransparentBlend = m->Model.ModTransparentBlendUnlit;
 
 		m->Model.NormalInstancing = m->Model.pal_NormalFF;
 		m->Model.Normal = m->Model.pal_NormalFF;
@@ -919,9 +975,18 @@ void CRenderer::RenderShadowMap()
 	m->shadow->EndRender();
 }
 
-void CRenderer::RenderPatches()
+void CRenderer::RenderPatches(const CFrustum* frustum)
 {
 	PROFILE("render patches");
+
+	bool filtered = false;
+	if (frustum)
+	{
+		if (!m->terrainRenderer->CullPatches(frustum))
+			return;
+
+		filtered = true;
+	}
 
 	// switch on wireframe if we need it
 	if (m_TerrainRenderMode == WIREFRAME)
@@ -931,9 +996,9 @@ void CRenderer::RenderPatches()
 
 	// render all the patches, including blend pass
 	if (GetRenderPath() == RP_SHADER)
-		m->terrainRenderer->RenderTerrainShader((m_Caps.m_Shadows && m_Options.m_Shadows) ? m->shadow : 0);
+		m->terrainRenderer->RenderTerrainShader((m_Caps.m_Shadows && m_Options.m_Shadows) ? m->shadow : 0, filtered);
 	else
-		m->terrainRenderer->RenderTerrain();
+		m->terrainRenderer->RenderTerrain(filtered);
 
 
 	if (m_TerrainRenderMode == WIREFRAME)
@@ -953,14 +1018,14 @@ void CRenderer::RenderPatches()
 		glLineWidth(2.0f);
 
 		// render tiles edges
-		m->terrainRenderer->RenderPatches();
+		m->terrainRenderer->RenderPatches(filtered);
 
 		// set color for outline
 		glColor3f(0, 0, 1);
 		glLineWidth(4.0f);
 
 		// render outline of each patch
-		m->terrainRenderer->RenderOutlines();
+		m->terrainRenderer->RenderOutlines(filtered);
 
 		// .. and restore the renderstates
 		glLineWidth(1.0f);
@@ -968,9 +1033,31 @@ void CRenderer::RenderPatches()
 	}
 }
 
-void CRenderer::RenderModels()
+class CModelCuller : public CModelFilter
+{
+public:
+	CModelCuller(const CFrustum& frustum) : m_Frustum(frustum) { }
+
+	bool Filter(CModel *model)
+	{
+		return m_Frustum.IsBoxVisible(CVector3D(0, 0, 0), model->GetBoundsRec());
+	}
+
+private:
+	const CFrustum& m_Frustum;
+};
+
+void CRenderer::RenderModels(const CFrustum* frustum)
 {
 	PROFILE("render models");
+
+	int flags = 0;
+	if (frustum)
+	{
+		flags = MODELFLAG_FILTERED;
+		CModelCuller culler(*frustum);
+		m->FilterModels(culler, flags);
+	}
 
 	if (m_ModelRenderMode == WIREFRAME)
 	{
@@ -978,7 +1065,7 @@ void CRenderer::RenderModels()
 	}
 
 	m->CallModelRenderers(m->Model.ModNormal, m->Model.ModNormalInstancing,
-			m->Model.ModPlayer, m->Model.ModPlayerInstancing, 0);
+			m->Model.ModPlayer, m->Model.ModPlayerInstancing, flags);
 
 	if (m_ModelRenderMode == WIREFRAME)
 	{
@@ -991,15 +1078,23 @@ void CRenderer::RenderModels()
 		glColor3f(1.0f, 1.0f, 0.0f);
 
 		m->CallModelRenderers(m->Model.ModSolid, m->Model.ModSolidInstancing,
-				m->Model.ModSolid, m->Model.ModSolidInstancing, 0);
+				m->Model.ModSolid, m->Model.ModSolidInstancing, flags);
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
 }
 
-void CRenderer::RenderTransparentModels()
+void CRenderer::RenderTransparentModels(ETransparentMode transparentMode, const CFrustum* frustum)
 {
 	PROFILE("render transparent models");
+
+	int flags = 0;
+	if (frustum)
+	{
+		flags = MODELFLAG_FILTERED;
+		CModelCuller culler(*frustum);
+		m->Model.Transp->Filter(culler, flags);
+	}
 
 	// switch on wireframe if we need it
 	if (m_ModelRenderMode == WIREFRAME)
@@ -1007,7 +1102,12 @@ void CRenderer::RenderTransparentModels()
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	}
 
-	m->Model.Transp->Render(m->Model.ModTransparent, 0);
+	if (transparentMode == TRANSPARENT_OPAQUE)
+		m->Model.Transp->Render(m->Model.ModTransparentOpaque, flags);
+	else if (transparentMode == TRANSPARENT_BLEND)
+		m->Model.Transp->Render(m->Model.ModTransparentBlend, flags);
+	else
+		m->Model.Transp->Render(m->Model.ModTransparent, flags);
 
 	if (m_ModelRenderMode == WIREFRAME)
 	{
@@ -1020,7 +1120,7 @@ void CRenderer::RenderTransparentModels()
 		glDisable(GL_TEXTURE_2D);
 		glColor3f(1.0f, 0.0f, 0.0f);
 
-		m->Model.Transp->Render(m->Model.ModSolid, 0);
+		m->Model.Transp->Render(m->Model.ModSolid, flags);
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
@@ -1034,10 +1134,10 @@ CMatrix3D CRenderer::GetModelViewProjectionMatrix()
 	CMatrix3D proj;
 	CMatrix3D view;
 
-	glGetFloatv( GL_PROJECTION_MATRIX, &proj._11 );
-    glGetFloatv( GL_MODELVIEW_MATRIX, &view._11 );
+	glGetFloatv(GL_PROJECTION_MATRIX, &proj._11);
+	glGetFloatv(GL_MODELVIEW_MATRIX, &view._11);
 
-	return( proj * view );
+	return proj*view;
 }
 
 
@@ -1045,74 +1145,49 @@ CMatrix3D CRenderer::GetModelViewProjectionMatrix()
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // SetObliqueFrustumClipping: change the near plane to the given clip plane (in world space)
 // Based on code from Game Programming Gems 5, from http://www.terathon.com/code/oblique.html
-// - cp is a clip plane in camera space (cp.Dot(v) = 0 for any vector v on the plane)
-// - sign is 1 or -1, to specify the side to clip on
-void CRenderer::SetObliqueFrustumClipping(const CVector4D& cp, int sign)
+// - worldPlane is a clip plane in world space (worldPlane.Dot(v) >= 0 for any vector v passing the clipping test)
+void CRenderer::SetObliqueFrustumClipping(const CVector4D& worldPlane)
 {
-    float matrix[16];
-    CVector4D q;
+	float matrix[16];
+	CVector4D q;
 
 	// First, we'll convert the given clip plane to camera space, then we'll 
 	// Get the view matrix and normal matrix (top 3x3 part of view matrix)
-	CMatrix3D viewMatrix;
-	m_ViewCamera.m_Orientation.GetInverse(viewMatrix);
-	CMatrix3D normalMatrix = viewMatrix;
-	normalMatrix._14 = 0;
-	normalMatrix._24 = 0;
-	normalMatrix._34 = 0;
-	normalMatrix._44 = 1;
-	normalMatrix._41 = 0;
-	normalMatrix._42 = 0;
-	normalMatrix._43 = 0;
+	CMatrix3D normalMatrix = m_ViewCamera.m_Orientation.GetTranspose();
+	CVector4D camPlane = normalMatrix.Transform(worldPlane);
 
-	// Convert the normal to camera space
-	CVector4D planeNormal(cp.m_X, cp.m_Y, cp.m_Z, 0);
-	planeNormal = normalMatrix.Transform(planeNormal);
-	planeNormal.Normalize();
+	// Grab the current projection matrix from OpenGL
+	glGetFloatv(GL_PROJECTION_MATRIX, matrix);
 
-	// Find a point on the plane: we'll take the normal times -D
-	float oldD = cp.m_W;
-	CVector4D pointOnPlane(-oldD * cp.m_X, -oldD * cp.m_Y, -oldD * cp.m_Z, 1);
-	pointOnPlane = viewMatrix.Transform(pointOnPlane);
-	float newD = -pointOnPlane.Dot(planeNormal);
-
-	// Now create a clip plane from the new normal and new D
-	CVector4D camPlane = planeNormal;
-	camPlane.m_W = newD;
-
-    // Grab the current projection matrix from OpenGL
-    glGetFloatv(GL_PROJECTION_MATRIX, matrix);
+	// Calculate the clip-space corner point opposite the clipping plane
+	// as (sgn(camPlane.x), sgn(camPlane.y), 1, 1) and
+	// transform it into camera space by multiplying it
+	// by the inverse of the projection matrix
     
-    // Calculate the clip-space corner point opposite the clipping plane
-    // as (sgn(camPlane.x), sgn(camPlane.y), 1, 1) and
-    // transform it into camera space by multiplying it
-    // by the inverse of the projection matrix
-    
-    q.m_X = (sgn(camPlane.m_X) + matrix[8]) / matrix[0];
-    q.m_Y = (sgn(camPlane.m_Y) + matrix[9]) / matrix[5];
-    q.m_Z = -1.0f;
-    q.m_W = (1.0f + matrix[10]) / matrix[14];
-    
-    // Calculate the scaled plane vector
-    CVector4D c = camPlane * (sign * 2.0f / camPlane.Dot(q));
-    
-    // Replace the third row of the projection matrix
-    matrix[2] = c.m_X;
-    matrix[6] = c.m_Y;
-    matrix[10] = c.m_Z + 1.0f;
-    matrix[14] = c.m_W;
+	q.m_X = (sgn(camPlane.m_X) - matrix[8]/matrix[11]) / matrix[0];
+	q.m_Y = (sgn(camPlane.m_Y) - matrix[9]/matrix[11]) / matrix[5];
+	q.m_Z = 1.0f/matrix[11];
+	q.m_W = (1.0f - matrix[10]/matrix[11]) / matrix[14];
 
-    // Load it back into OpenGL
-    glMatrixMode(GL_PROJECTION);
-    glLoadMatrixf(matrix);
+	// Calculate the scaled plane vector
+	CVector4D c = camPlane * (2.0f * matrix[11] / camPlane.Dot(q));
+
+	// Replace the third row of the projection matrix
+	matrix[2] = c.m_X;
+	matrix[6] = c.m_Y;
+	matrix[10] = c.m_Z - matrix[11];
+	matrix[14] = c.m_W;
+
+	// Load it back into OpenGL
+	glMatrixMode(GL_PROJECTION);
+	glLoadMatrixf(matrix);
 
 	glMatrixMode(GL_MODELVIEW);
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // RenderReflections: render the water reflections to the reflection texture
-void CRenderer::RenderReflections()
+SScreenRect CRenderer::RenderReflections(const CBound& scissor)
 {
 	PROFILE("render reflections");
 
@@ -1126,9 +1201,11 @@ void CRenderer::RenderReflections()
 	// water texture, stretch the image according to our aspect ratio so it covers
 	// the whole screen despite being rendered into a square, and cover slightly more
 	// of the view so we can see wavy reflections of slightly off-screen objects.
-	m_ViewCamera.m_Orientation.Translate(0, -wm.m_WaterHeight, 0);
 	m_ViewCamera.m_Orientation.Scale(1, -1, 1);
-	m_ViewCamera.m_Orientation.Translate(0, wm.m_WaterHeight, 0);
+	m_ViewCamera.m_Orientation.Translate(0, 2*wm.m_WaterHeight, 0);
+	m_ViewCamera.UpdateFrustum(scissor);
+	m_ViewCamera.ClipFrustum(CVector4D(0, 1, 0, -wm.m_WaterHeight));
+
 	SViewPort vp;
 	vp.m_Height = wm.m_ReflectionTextureSize;
 	vp.m_Width = wm.m_ReflectionTextureSize;
@@ -1143,52 +1220,61 @@ void CRenderer::RenderReflections()
 	m->SetOpenGLCamera(m_ViewCamera);
 
 	CVector4D camPlane(0, 1, 0, -wm.m_WaterHeight);
-	SetObliqueFrustumClipping(camPlane, -1);
+	SetObliqueFrustumClipping(camPlane);
 
 	// Save the model-view-projection matrix so the shaders can use it for projective texturing
 	wm.m_ReflectionMatrix = GetModelViewProjectionMatrix();
 
-	// Disable backface culling so trees render properly (it might also be possible to flip
-	// the culling direction here, but this seems to lead to problems)
-	glDisable(GL_CULL_FACE);
+	SScreenRect screenScissor;
+	screenScissor.x1 = (GLint)floor((scissor[0].X*0.5f+0.5f)*vp.m_Width);
+	screenScissor.y1 = (GLint)floor((scissor[0].Y*0.5f+0.5f)*vp.m_Height);
+	screenScissor.x2 = (GLint)ceil((scissor[1].X*0.5f+0.5f)*vp.m_Width);
+	screenScissor.y2 = (GLint)ceil((scissor[1].Y*0.5f+0.5f)*vp.m_Height);
 
-	// Make the depth buffer work backwards; there seems to be some oddness with 
-	// oblique frustum clipping and the "sign" parameter here
-	glClearDepth(0);
-	glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-	glDepthFunc(GL_GEQUAL);
+	if (screenScissor.x1 < screenScissor.x2 && screenScissor.y1 < screenScissor.y2)
+	{
+		glEnable(GL_SCISSOR_TEST);
+		glScissor(screenScissor.x1, screenScissor.y1, screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
 
-	// Render sky, terrain and models
-	m->skyManager.RenderSky();
-	ogl_WarnIfError();
-	RenderPatches();
-	ogl_WarnIfError();
-	RenderModels();
-	ogl_WarnIfError();
-	RenderTransparentModels();
-	ogl_WarnIfError();
+		glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
-	// Copy the image to a texture
-	pglActiveTextureARB(GL_TEXTURE0_ARB);
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, wm.m_ReflectionTexture);
-	glCopyTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 0, 0,
-		(GLsizei)wm.m_ReflectionTextureSize, (GLsizei)wm.m_ReflectionTextureSize);
+		glFrontFace(GL_CW);
 
-	//Reset old camera and re-enable backface culling
+		// Render sky, terrain and models
+		m->skyManager.RenderSky();
+		ogl_WarnIfError();
+		RenderPatches(&m_ViewCamera.GetFrustum());
+		ogl_WarnIfError();
+		RenderModels(&m_ViewCamera.GetFrustum());
+		ogl_WarnIfError();
+		RenderTransparentModels(TRANSPARENT_BLEND, &m_ViewCamera.GetFrustum());
+		ogl_WarnIfError();
+
+		glFrontFace(GL_CCW);
+
+		glDisable(GL_SCISSOR_TEST);
+
+		// Copy the image to a texture
+		pglActiveTextureARB(GL_TEXTURE0_ARB);
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, wm.m_ReflectionTexture);
+		glCopyTexSubImage2D(GL_TEXTURE_2D, 0,
+				screenScissor.x1, screenScissor.y1,
+				screenScissor.x1, screenScissor.y1,
+				screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
+	}
+
+	// Reset old camera
 	m_ViewCamera = normalCamera;
 	m->SetOpenGLCamera(m_ViewCamera);
 
-	glEnable(GL_CULL_FACE);
-	//glClearDepth(1);
-	//glClear(GL_DEPTH_BUFFER_BIT);
-	//glDepthFunc(GL_LEQUAL);
+	return screenScissor;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // RenderRefractions: render the water refractions to the refraction texture
-void CRenderer::RenderRefractions()
+SScreenRect CRenderer::RenderRefractions(const CBound &scissor)
 {
 	PROFILE("render refractions");
 
@@ -1201,6 +1287,9 @@ void CRenderer::RenderRefractions()
 	// water texture, stretch the image according to our aspect ratio so it covers
 	// the whole screen despite being rendered into a square, and cover slightly more
 	// of the view so we can see wavy refractions of slightly off-screen objects.
+	m_ViewCamera.UpdateFrustum(scissor);
+	m_ViewCamera.ClipFrustum(CVector4D(0, -1, 0, wm.m_WaterHeight));
+
 	SViewPort vp;
 	vp.m_Height = wm.m_RefractionTextureSize;
 	vp.m_Width = wm.m_RefractionTextureSize;
@@ -1211,43 +1300,53 @@ void CRenderer::RenderRefractions()
 	CMatrix3D scaleMat;
 	scaleMat.SetScaling(m_Height/float(std::max(1, m_Width)), 1.0f, 1.0f);
 	m_ViewCamera.m_ProjMat = scaleMat * m_ViewCamera.m_ProjMat;
+
 	m->SetOpenGLCamera(m_ViewCamera);
 
-	CVector4D camPlane(0, 1, 0, -wm.m_WaterHeight);
-	SetObliqueFrustumClipping(camPlane, -1);
+	CVector4D camPlane(0, -1, 0, wm.m_WaterHeight);
+	SetObliqueFrustumClipping(camPlane);
 
 	// Save the model-view-projection matrix so the shaders can use it for projective texturing
 	wm.m_RefractionMatrix = GetModelViewProjectionMatrix();
 
-	// Make the depth buffer work backwards; there seems to be some oddness with 
-	// oblique frustum clipping and the "sign" parameter here
-	glClearDepth(0);
-	glClearColor(0.5f, 0.5f, 0.5f, 1.0f);	// a neutral gray to blend in with shores
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-	glDepthFunc(GL_GEQUAL);
+	SScreenRect screenScissor;
+	screenScissor.x1 = (GLint)floor((scissor[0].X*0.5f+0.5f)*vp.m_Width);
+	screenScissor.y1 = (GLint)floor((scissor[0].Y*0.5f+0.5f)*vp.m_Height);
+	screenScissor.x2 = (GLint)ceil((scissor[1].X*0.5f+0.5f)*vp.m_Width);
+	screenScissor.y2 = (GLint)ceil((scissor[1].Y*0.5f+0.5f)*vp.m_Height);
+	if (screenScissor.x1 < screenScissor.x2 && screenScissor.y1 < screenScissor.y2)
+	{
+		glEnable(GL_SCISSOR_TEST);
+		glScissor(screenScissor.x1, screenScissor.y1, screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
 
-	// Render terrain and models
-	RenderPatches();
-	ogl_WarnIfError();
-	RenderModels();
-	ogl_WarnIfError();
-	RenderTransparentModels();
-	ogl_WarnIfError();
+		glClearColor(0.5f, 0.5f, 0.5f, 1.0f);		// a neutral gray to blend in with shores
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
-	// Copy the image to a texture
-	pglActiveTextureARB(GL_TEXTURE0_ARB);
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, wm.m_RefractionTexture);
-	glCopyTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 0, 0,
-		(GLsizei)wm.m_RefractionTextureSize, (GLsizei)wm.m_RefractionTextureSize);
+		// Render terrain and models
+		RenderPatches(&m_ViewCamera.GetFrustum());
+		ogl_WarnIfError();
+		RenderModels(&m_ViewCamera.GetFrustum());
+		ogl_WarnIfError();
+		RenderTransparentModels(TRANSPARENT_BLEND, &m_ViewCamera.GetFrustum());
+		ogl_WarnIfError();
 
-	//Reset old camera and re-enable backface culling
+		glDisable(GL_SCISSOR_TEST);
+
+		// Copy the image to a texture
+		pglActiveTextureARB(GL_TEXTURE0_ARB);
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, wm.m_RefractionTexture);
+		glCopyTexSubImage2D(GL_TEXTURE_2D, 0,
+				screenScissor.x1, screenScissor.y1,
+				screenScissor.x1, screenScissor.y1,
+				screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
+	}
+
+	// Reset old camera
 	m_ViewCamera = normalCamera;
 	m->SetOpenGLCamera(m_ViewCamera);
 
-	glEnable(GL_CULL_FACE);
-	glClearDepth(1);
-	glDepthFunc(GL_LEQUAL);
+	return screenScissor;
 }
 
 
@@ -1435,13 +1534,28 @@ void CRenderer::RenderSubmissions()
 
 	ogl_WarnIfError();
 
-	if (m_WaterManager->m_RenderWater && m_WaterManager->WillRenderFancyWater())
+	CBound waterScissor;
+	if (m_WaterManager->m_RenderWater)
 	{
-		// render reflected and refracted scenes, then re-clear the screen
-		RenderReflections();
-		RenderRefractions();
-		glClearColor(m_ClearColor[0],m_ClearColor[1],m_ClearColor[2],m_ClearColor[3]);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+		waterScissor = m->terrainRenderer->ScissorWater(m_ViewCamera.GetViewProjection());
+		if (waterScissor.GetVolume() > 0 && m_WaterManager->WillRenderFancyWater())
+		{
+			SScreenRect reflectionScissor = RenderReflections(waterScissor);
+			SScreenRect refractionScissor = RenderRefractions(waterScissor);
+			SScreenRect dirty;
+			dirty.x1 = std::min(reflectionScissor.x1, refractionScissor.x1);
+			dirty.y1 = std::min(reflectionScissor.y1, refractionScissor.y1);
+			dirty.x2 = std::max(reflectionScissor.x2, refractionScissor.x2);
+			dirty.y2 = std::max(reflectionScissor.y2, refractionScissor.y2);
+			if (dirty.x1 < dirty.x2 && dirty.y1 < dirty.y2)
+			{
+				glEnable(GL_SCISSOR_TEST);
+				glScissor(dirty.x1, dirty.y1, dirty.x2 - dirty.x1, dirty.y2 - dirty.y1);
+				glClearColor(m_ClearColor[0], m_ClearColor[1], m_ClearColor[2], m_ClearColor[3]);
+				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+				glDisable(GL_SCISSOR_TEST);
+			}
+		}
 	}
 
 	// render submitted patches and models
@@ -1467,27 +1581,25 @@ void CRenderer::RenderSubmissions()
 	RenderModels();
 	ogl_WarnIfError();
 
-	// render transparent stuff, so it can overlap models/terrain
-	RenderTransparentModels();
-	ogl_WarnIfError();
-
 	// render water
-	if (m_WaterManager->m_RenderWater && g_Game)
+	if (m_WaterManager->m_RenderWater && g_Game && waterScissor.GetVolume() > 0)
 	{
+		// render transparent stuff, but only the solid parts that can occlude block water
+		RenderTransparentModels(TRANSPARENT_OPAQUE);
+		ogl_WarnIfError();
+
 		m->terrainRenderer->RenderWater();
 		ogl_WarnIfError();
-		
-		// render transparent stuff again, so it can overlap the water
-		RenderTransparentModels();
+
+		// render transparent stuff again, but only the blended parts that overlap water
+		RenderTransparentModels(TRANSPARENT_BLEND);
 		ogl_WarnIfError();
-		
-		// TODO: Maybe think of a better way to deal with transparent objects;
-		// they can appear both under and above water (seaweed vs. trees), but doing
-		// 2 renders causes (a) inefficiency and (b) darker over-water objects (e.g.
-		// trees) than usual because the transparent bits get overwritten twice.
-		// This doesn't look particularly bad, but it is noticeable if you try
-		// turning the water off. On the other hand every user will have water
-		// on all the time, so it might not be worth worrying about.
+	}
+	else
+	{
+		// render transparent stuff, so it can overlap models/terrain
+		RenderTransparentModels(TRANSPARENT);
+		ogl_WarnIfError();
 	}
 
 	// particles are transparent so render after water
@@ -1931,6 +2043,19 @@ void CRenderer::JSI_SetShadowAlphaFix(JSContext* ctx, jsval newval)
 	m->shadow->RecreateTexture();
 }
 
+jsval CRenderer::JSI_GetShadowPCF(JSContext*)
+{
+	return ToJSVal(m_Options.m_ShadowPCF);
+}
+
+void CRenderer::JSI_SetShadowPCF(JSContext* ctx, jsval newval)
+{
+	if (!ToPrimitive(ctx, newval, m_Options.m_ShadowPCF))
+		return;
+
+	ReloadShaders();
+}
+
 jsval CRenderer::JSI_GetSky(JSContext*)
 {
 	return ToJSVal(m->skyManager.GetSkySet());
@@ -1955,6 +2080,7 @@ void CRenderer::ScriptingInit()
 	AddProperty(L"shadows", &CRenderer::JSI_GetShadows, &CRenderer::JSI_SetShadows);
 	AddProperty(L"depthTextureBits", &CRenderer::JSI_GetDepthTextureBits, &CRenderer::JSI_SetDepthTextureBits);
 	AddProperty(L"shadowAlphaFix", &CRenderer::JSI_GetShadowAlphaFix, &CRenderer::JSI_SetShadowAlphaFix);
+	AddProperty(L"shadowPCF", &CRenderer::JSI_GetShadowPCF, &CRenderer::JSI_SetShadowPCF);
 	AddProperty(L"skipSubmit", &CRenderer::m_SkipSubmit);
 	AddProperty(L"skySet", &CRenderer::JSI_GetSky, &CRenderer::JSI_SetSky);
 

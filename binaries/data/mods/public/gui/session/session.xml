@@ -300,7 +300,7 @@
 		<object name="settingsDialogPanel"
 			sprite="genericPanel"
 			type="image"
-			size="50%-180 50%-200 50%+180 50%+50"
+			size="80%-180 50%-200 50%+180 50%+50"
 			hidden="true"
 			z="30"
 		>
@@ -310,23 +310,30 @@
 				<action on="Load">if (renderer.shadows) this.checked = true; else this.checked = false;</action>
 				<action on="Press">renderer.shadows = this.checked;</action>
 			</object>	
-				
+			
+			<!-- Settings / Shadow PCF -->
+			<object size="0 35 100%-80 60" type="text" style="settingsText" ghost="true">Enable Shadow Filtering</object>
+			<object name="shadowPCFCheckbox" size="100%-56 40 100%-30 65" type="checkbox" style="wheatCrossBox" checked="true">
+				<action on="Load">if (renderer.shadowPCF) this.checked = true; else this.checked = false;</action>
+				<action on="Press">renderer.shadowPCF = this.checked;</action>
+			</object>
+	
 			<!-- Settings / Water -->
-			<object size="0 35 100%-80 60" type="text" style="settingsText" ghost="true">Enable Water Reflections</object>
-			<object name="fancyWaterCheckbox" size="100%-56 40 100%-30 65"  type="checkbox" style="wheatCrossBox" checked="true">
+			<object size="0 60 100%-80 85" type="text" style="settingsText" ghost="true">Enable Water Reflections</object>
+			<object name="fancyWaterCheckbox" size="100%-56 65 100%-30 90"  type="checkbox" style="wheatCrossBox" checked="true">
 				<action on="Load">if (renderer.fancyWater) this.checked = true; else this.checked = false;</action>
 				<action on="Press">renderer.fancyWater = this.checked;</action>
 			</object>
 				
 			<!-- Settings / Music-->
-			<object size="0 60 100%-80 85" type="text" style="settingsText" ghost="true">Enable Music</object>
-			<object size="100%-56 65 100%-30 90" type="checkbox" style="wheatCrossBox" checked="true">
+			<object size="0 85 100%-80 110" type="text" style="settingsText" ghost="true">Enable Music</object>
+			<object size="100%-56 90 100%-30 115" type="checkbox" style="wheatCrossBox" checked="true">
 				<action on="Press">if (this.checked) startMusic(); else stopMusic();</action>
 			</object>
 				
 			<!-- Settings / Dev Overlay -->
-			<object size="0 85 100%-80 110" type="text" style="settingsText" ghost="true">Developer Overlay</object>
-				<object size="100%-56 90 100%-30 115" type="checkbox" style="wheatCrossBox" checked="false">
+			<object size="0 110 100%-80 135" type="text" style="settingsText" ghost="true">Developer Overlay</object>
+				<object size="100%-56 115 100%-30 140" type="checkbox" style="wheatCrossBox" checked="false">
 				<action on="Press">toggleDeveloperOverlay();</action>
 			</object>
 		</object>

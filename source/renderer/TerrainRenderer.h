@@ -72,37 +72,51 @@ public:
 	void EndFrame();
 
 	/**
+	 * CullPatches: Culls patches and decals against a frustum,
+	 * and stores the results in a special filtered list that
+	 * is used when calling render functions with @p filtered true.
+	 */
+	bool CullPatches(const CFrustum* frustum);
+
+	/**
 	 * RenderTerrain: Render textured terrain (including blends between
 	 * different terrain types).
 	 *
 	 * preconditions  : PrepareForRendering must have been called this
 	 * frame before calling RenderTerrain.
+	 *
+	 * @param filtered If true then only render objects that passed CullPatches.
 	 */
-	void RenderTerrain();
+	void RenderTerrain(bool filtered = false);
 
 	/**
 	 * Render textured terrain, as with RenderTerrain, but using shaders
 	 * instead of multitexturing.
 	 *
 	 * @param shadow A prepared shadow map, in case rendering with shadows is enabled.
+	 * @param filtered If true then only render objects that passed CullPatches.
 	 */
-	void RenderTerrainShader(ShadowMap* shadow);
+	void RenderTerrainShader(ShadowMap* shadow, bool filtered = false);
 
 	/**
 	 * RenderPatches: Render all patches un-textured as polygons.
 	 *
 	 * preconditions  : PrepareForRendering must have been called this
 	 * frame before calling RenderPatches.
+	 *
+	 * @param filtered If true then only render objects that passed CullPatches.
 	 */
-	void RenderPatches();
+	void RenderPatches(bool filtered = false);
 
 	/**
 	 * RenderOutlines: Render the outline of patches as lines.
 	 *
 	 * preconditions  : PrepareForRendering must have been called this
 	 * frame before calling RenderOutlines.
+	 *
+	 * @param filtered If true then only render objects that passed CullPatches.
 	 */
-	void RenderOutlines();
+	void RenderOutlines(bool filtered = false);
 
 	/**
 	 * RenderWater: Render water for all patches that have been submitted
@@ -114,12 +128,28 @@ public:
 	void RenderWater();
 
 	/**
+	 * Calculate a scissor rectangle for the visible water patches.
+	 */
+	CBound ScissorWater(const CMatrix3D& viewproj);
+
+	/**
 	 * Render priority text for all submitted patches, for debugging.
 	 */
 	void RenderPriorities();
 
 private:
 	TerrainRendererInternals* m;
+
+	/**
+	 * RenderFancyWater: internal rendering method for fancy water.
+	 * Returns false if unable to render with fancy water.
+	 */
+	bool RenderFancyWater();
+
+	/**
+	 * RenderSimpleWater: internal rendering method for water
+	 */
+	void RenderSimpleWater();
 
 	void PrepareShader(const CShaderProgramPtr& shader, ShadowMap* shadow);
 };

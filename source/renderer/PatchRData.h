@@ -41,11 +41,15 @@ public:
 	void RenderSides();
 	void RenderPriorities();
 
+	void RenderWater();
+
 	static void RenderBases(const std::vector<CPatchRData*>& patches);
 	static void RenderBlends(const std::vector<CPatchRData*>& patches);
 	static void RenderStreams(const std::vector<CPatchRData*>& patches, int streamflags);
 
 	CPatch* GetPatch() { return m_Patch; }
+
+	const CBound& GetWaterBounds() const { return m_WaterBounds; }
 
 private:
 	friend struct SBlendStackItem;
@@ -93,6 +97,17 @@ private:
 	};
 	cassert(sizeof(SBlendVertex) == 32);
 
+	// Mixed Fancy/Simple water vertex description data structure
+	struct SWaterVertex {
+		// vertex position
+		CVector3D m_Position;
+		// (p,q,r, a) where
+		//   p*255 + q*-255 + r = depth of water
+		//   a = depth-dependent alpha
+		SColor4ub m_DepthData;
+	};
+	cassert(sizeof(SWaterVertex) == 16);
+
 	// build this renderdata object
 	void Build();
 
@@ -128,6 +143,24 @@ private:
 
 	// splats used in blend pass
 	std::vector<SSplat> m_BlendSplats;
+
+	// boundary of water in this patch
+	CBound m_WaterBounds;
+
+	// Water vertex buffer
+	CVertexBuffer::VBChunk* m_VBWater;
+
+	// Water indices buffer
+	CVertexBuffer::VBChunk* m_VBWaterIndices;
+
+	// Build water vertices and indices (vertex buffer and data vector)
+	void BuildWater();
+
+	// parameter allowing a varying number of triangles per patch for LOD
+	// MUST be an exact divisor of PATCH_SIZE
+	// compiled const for the moment until/if dynamic water LOD is offered
+	// savings would be mostly beneficial for GPU or simple water
+	static const ssize_t water_cell_size = 1;
 };
 
 #endif

@@ -33,36 +33,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// operator+=: extend this bound to include given bound
-CBound& CBound::operator+=(const CBound& b)
-{
-#define CMPT(c) \
-	if (b[0].c < m_Data[0].c) m_Data[0].c = b[0].c; \
-	if (b[1].c > m_Data[1].c) m_Data[1].c = b[1].c
-	CMPT(X);
-	CMPT(Y);
-	CMPT(Z);
-#undef CMPT
-
-	return *this;
-}
-
-///////////////////////////////////////////////////////////////////////////////
-// operator+=: extend this bound to include given point
-CBound& CBound::operator+=(const CVector3D& pt)
-{
-#define CMPT(c) \
-	if (pt.c < m_Data[0].c) m_Data[0].c = pt.c; \
-	if (pt.c > m_Data[1].c) m_Data[1].c = pt.c
-	CMPT(X);
-	CMPT(Y);
-	CMPT(Z);
-#undef CMPT
-
-	return *this;
-}
-
-///////////////////////////////////////////////////////////////////////////////
 // RayIntersect: intersect ray with this bound; return true
 // if ray hits (and store entry and exit times), or false
 // otherwise
@@ -156,7 +126,7 @@ void CBound::SetEmpty()
 
 ///////////////////////////////////////////////////////////////////////////////
 // IsEmpty: tests whether this bound is empty
-bool CBound::IsEmpty()
+bool CBound::IsEmpty() const
 {
 	return (m_Data[0].X ==  FLT_MAX && m_Data[0].Y ==  FLT_MAX && m_Data[0].Z ==  FLT_MAX
 	     && m_Data[1].X == -FLT_MAX && m_Data[1].Y == -FLT_MAX && m_Data[1].Z == -FLT_MAX);

@@ -26,6 +26,7 @@
 #define INCLUDED_PLANE
 
 #include "Vector3D.h"
+#include "Vector4D.h"
 
 enum PLANESIDE
 {
@@ -38,6 +39,7 @@ class CPlane
 {
 	public:
 		CPlane ();
+		CPlane (const CVector4D& coeffs) : m_Norm(coeffs[0], coeffs[1], coeffs[2]), m_Dist(coeffs[3]) { }
 
 		//sets the plane equation from 3 points on that plane
 		void Set (const CVector3D &p1, const CVector3D &p2, const CVector3D &p3);

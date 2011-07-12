@@ -84,7 +84,7 @@ void ModelRenderer::BuildPositionAndNormals(
 			return;
 		}
 
-		CModelDef::SkinPointsAndNormals(numVertices, Position, Normal, vertices, model->GetAnimatedBoneMatrices(), model->GetInverseBindBoneMatrices());
+		CModelDef::SkinPointsAndNormals(numVertices, Position, Normal, vertices, mdef->GetBlendIndices(), model->GetAnimatedBoneMatrices());
 
 	}
 	else
@@ -253,6 +253,7 @@ struct BatchModelRendererInternals
 	}
 
 	void RenderAllModels(const RenderModifierPtr& modifier, int filterflags, int pass, int streamflags);
+	void FilterAllModels(CModelFilter& filter, int passed, int filterflags);
 };
 
 BMRModelData::~BMRModelData()
@@ -442,7 +443,7 @@ void BatchModelRendererInternals::RenderAllModels(
 
 				ENSURE(bmrdata->GetKey() == this);
 
-				if (filterflags && !(model->GetFlags()&filterflags))
+				if (filterflags && !(model->GetFlags() & filterflags))
 					continue;
 
 				modifier->PrepareModel(pass, model);
@@ -452,4 +453,33 @@ void BatchModelRendererInternals::RenderAllModels(
 	}
 }
 
+void BatchModelRenderer::Filter(CModelFilter& filter, int passed, int flags)
+{
+	if (!HaveSubmissions())
+		return;
 
+	m->FilterAllModels(filter, passed, flags);
+}
+
+// Recompute filter flags
+void BatchModelRendererInternals::FilterAllModels(CModelFilter& filter, int passed, int filterflags)
+{
+	for(BMRModelDefTracker* mdeftracker = submissions; mdeftracker; mdeftracker = mdeftracker->m_Next)
+	{
+		for(size_t idx = 0; idx < mdeftracker->m_Slots; ++idx)
+		{
+			BMRModelData* bmrdata = mdeftracker->m_ModelSlots[idx];
+			for(; bmrdata; bmrdata = bmrdata->m_Next)
+			{
+				CModel* model = bmrdata->GetModel();
+				if (filterflags && !(model->GetFlags() & filterflags))
+					continue;
+
+				if (filter.Filter(model))
+					model->SetFlags(model->GetFlags() | passed);
+				else
+					model->SetFlags(model->GetFlags() & ~passed);
+			}
+		}
+	}
+}

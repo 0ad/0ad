@@ -549,6 +549,7 @@ static void InitRenderer()
 	g_Renderer.SetOptionBool(CRenderer::OPT_FANCYWATER,g_FancyWater);
 	g_Renderer.SetRenderPath(CRenderer::GetRenderPathByName(g_RenderPath));
 	g_Renderer.SetOptionFloat(CRenderer::OPT_LODBIAS, g_LodBias);
+	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWPCF, g_ShadowPCF);
 
 	// create terrain related stuff
 	new CTerrainTextureManager;

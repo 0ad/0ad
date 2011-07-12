@@ -85,6 +85,7 @@ public:
 	void EndFrame();
 	bool HaveSubmissions();
 	void Render(const RenderModifierPtr& modifier, int flags);
+	void Filter(CModelFilter& filter, int passed, int flags);
 
 private:
 	SortModelRendererInternals* m;
@@ -106,9 +107,41 @@ public:
 	bool EndPass(int pass);
 	void PrepareTexture(int pass, CTexturePtr& texture);
 	void PrepareModel(int pass, CModel* model);
-
 };
 
+/**
+ * Class TransparentOpaqueRenderModifier: Modifier for transparent models,
+ * including alpha blending and lighting, Opaque pass only.
+ */
+class TransparentOpaqueRenderModifier : public RenderModifier
+{
+public:
+	TransparentOpaqueRenderModifier();
+	~TransparentOpaqueRenderModifier();
+
+	// Implementation
+	int BeginPass(int pass);
+	bool EndPass(int pass);
+	void PrepareTexture(int pass, CTexturePtr& texture);
+	void PrepareModel(int pass, CModel* model);
+};
+
+/**
+ * Class TransparentBlendRenderModifier: Modifier for transparent models,
+ * including alpha blending and lighting. Blend pass only.
+ */
+class TransparentBlendRenderModifier : public RenderModifier
+{
+public:
+	TransparentBlendRenderModifier();
+	~TransparentBlendRenderModifier();
+
+	// Implementation
+	int BeginPass(int pass);
+	bool EndPass(int pass);
+	void PrepareTexture(int pass, CTexturePtr& texture);
+	void PrepareModel(int pass, CModel* model);
+};
 
 /**
  * Class TransparentDepthShadowModifier: Use to render shadow data for

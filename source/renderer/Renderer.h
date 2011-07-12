@@ -49,6 +49,9 @@ class CParticleManager;
 // rendering modes
 enum ERenderMode { WIREFRAME, SOLID, EDGED_FACES };
 
+// transparency modes
+enum ETransparentMode { TRANSPARENT, TRANSPARENT_OPAQUE, TRANSPARENT_BLEND };
+
 // stream flags
 #define STREAM_POS (1 << 0)
 #define STREAM_NORMAL (1 << 1)
@@ -64,6 +67,11 @@ enum ERenderMode { WIREFRAME, SOLID, EDGED_FACES };
 
 // access to sole renderer object
 #define g_Renderer CRenderer::GetSingleton()
+
+struct SScreenRect
+{
+	GLint x1, y1, x2, y2;
+};
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // CRenderer: base renderer class - primary interface to the rendering engine
@@ -81,7 +89,8 @@ public:
 		OPT_NOVBO,
 		OPT_SHADOWS,
 		OPT_FANCYWATER,
-		OPT_LODBIAS
+		OPT_LODBIAS,
+		OPT_SHADOWPCF
 	};
 
 	enum RenderPath {
@@ -104,6 +113,8 @@ public:
 		size_t m_DrawCalls;
 		// number of terrain triangles drawn
 		size_t m_TerrainTris;
+		// number of water triangles drawn
+		size_t m_WaterTris;
 		// number of (non-transparent) model triangles drawn
 		size_t m_ModelTris;
 		// number of splat passes for alphamapping
@@ -121,6 +132,7 @@ public:
 		RenderPath m_RenderPath;
 		bool m_ShadowAlphaFix;
 		bool m_ARBProgramShadow;
+		bool m_ShadowPCF;
 	} m_Options;
 
 	struct Caps {
@@ -315,6 +327,8 @@ protected:
 	void JSI_SetShadows(JSContext* ctx, jsval newval);
 	jsval JSI_GetShadowAlphaFix(JSContext*);
 	void JSI_SetShadowAlphaFix(JSContext* ctx, jsval newval);
+	jsval JSI_GetShadowPCF(JSContext*);
+	void JSI_SetShadowPCF(JSContext* ctx, jsval newval);
 	jsval JSI_GetSky(JSContext*);
 	void JSI_SetSky(JSContext* ctx, jsval newval);
 
@@ -331,11 +345,11 @@ protected:
 	void RenderSubmissions();
 
 	// patch rendering stuff
-	void RenderPatches();
+	void RenderPatches(const CFrustum* frustum = 0);
 
 	// model rendering stuff
-	void RenderModels();
-	void RenderTransparentModels();
+	void RenderModels(const CFrustum* frustum = 0);
+	void RenderTransparentModels(ETransparentMode transparentMode, const CFrustum* frustum = 0);
 
 	void RenderSilhouettes();
 
@@ -345,14 +359,14 @@ protected:
 	void RenderShadowMap();
 
 	// render water reflection and refraction textures
-	void RenderReflections();
-	void RenderRefractions();
+	SScreenRect RenderReflections(const CBound& scissor);
+	SScreenRect RenderRefractions(const CBound& scissor);
 
 	// debugging
 	void DisplayFrustum();
 
 	// enable oblique frustum clipping with the given clip plane
-	void SetObliqueFrustumClipping(const CVector4D& clipPlane, int sign);
+	void SetObliqueFrustumClipping(const CVector4D& clipPlane);
 
 	void ReloadShaders();
 

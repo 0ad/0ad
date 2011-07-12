@@ -115,6 +115,12 @@ void SetDisableShadows(void* UNUSED(cbdata), bool disabled)
 		g_Shadows = !disabled;
 }
 
+void SetDisableShadowPCF(void* UNUSED(cbdata), bool disabled)
+{
+	if (!IsOverridden("shadowpcf"))
+		g_ShadowPCF = !disabled;
+}
+
 void SetDisableFancyWater(void* UNUSED(cbdata), bool disabled)
 {
 	if (!IsOverridden("fancywater"))
@@ -136,6 +142,7 @@ void RunHardwareDetection()
 	scriptInterface.RegisterFunction<void, bool, &SetDisableAudio>("SetDisableAudio");
 	scriptInterface.RegisterFunction<void, bool, &SetDisableS3TC>("SetDisableS3TC");
 	scriptInterface.RegisterFunction<void, bool, &SetDisableShadows>("SetDisableShadows");
+	scriptInterface.RegisterFunction<void, bool, &SetDisableShadowPCF>("SetDisableShadowPCF");
 	scriptInterface.RegisterFunction<void, bool, &SetDisableFancyWater>("SetDisableFancyWater");
 	scriptInterface.RegisterFunction<void, std::string, &SetRenderPath>("SetRenderPath");
 

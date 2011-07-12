@@ -118,6 +118,11 @@ public:
 	 */
 	void RenderDebugDisplay();
 
+	/**
+	 * Get offsets for PCF filtering.
+	 */
+	const float* GetFilterOffsets() const;
+
 private:
 	ShadowMapInternals* m;
 };

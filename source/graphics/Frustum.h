@@ -48,6 +48,8 @@ public:
 
 	size_t GetNumPlanes() const { return m_NumPlanes; }
 
+	void AddPlane (const CPlane& plane);
+
 	//The following methods return true if the shape is
 	//partially or completely in front of the frustum planes
 	bool IsPointVisible (const CVector3D &point) const;

@@ -16,6 +16,8 @@
         <uniform name="losTex" loc="3" type="sampler2D"/>
 
         <uniform name="ambient" loc="0" type="vec3"/>
+        <uniform name="shadowOffsets1" loc="2" type="vec4"/>
+        <uniform name="shadowOffsets2" loc="3" type="vec4"/>
     </fragment>
 
 </program>

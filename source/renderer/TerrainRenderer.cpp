@@ -76,9 +76,11 @@ struct TerrainRendererInternals
 
 	/// Patches that were submitted for this frame
 	std::vector<CPatchRData*> visiblePatches;
+	std::vector<CPatchRData*> filteredPatches;
 
 	/// Decals that were submitted for this frame
 	std::vector<CDecalRData*> visibleDecals;
+	std::vector<CDecalRData*> filteredDecals;
 
 	/// Fancy water shader
 	Handle fancyWaterShader;
@@ -164,18 +166,44 @@ void TerrainRenderer::EndFrame()
 
 
 ///////////////////////////////////////////////////////////////////
+// Culls patches and decals against a frustum.
+bool TerrainRenderer::CullPatches(const CFrustum* frustum)
+{
+	m->filteredPatches.clear();
+	for (std::vector<CPatchRData*>::iterator it = m->visiblePatches.begin(); it != m->visiblePatches.end(); it++)
+	{
+		if (frustum->IsBoxVisible(CVector3D(0, 0, 0), (*it)->GetPatch()->GetBounds()))
+			m->filteredPatches.push_back(*it);
+	}
+
+	m->filteredDecals.clear();
+	for (std::vector<CDecalRData*>::iterator it = m->visibleDecals.begin(); it != m->visibleDecals.end(); it++)
+	{
+		if (frustum->IsBoxVisible(CVector3D(0, 0, 0), (*it)->GetDecal()->GetBounds()))
+			m->filteredDecals.push_back(*it);
+	}
+
+	return !m->filteredPatches.empty() || !m->filteredDecals.empty();
+}
+
+///////////////////////////////////////////////////////////////////
 // Full-featured terrain rendering with blending and everything
-void TerrainRenderer::RenderTerrain()
+void TerrainRenderer::RenderTerrain(bool filtered)
 {
 	ENSURE(m->phase == Phase_Render);
+
+	std::vector<CPatchRData*>& visiblePatches = filtered ? m->filteredPatches : m->visiblePatches;
+	std::vector<CDecalRData*>& visibleDecals = filtered ? m->filteredDecals : m->visibleDecals;
+	if (visiblePatches.empty() && visibleDecals.empty())
+		return;
 
 	// render the solid black sides of the map first
 	g_Renderer.BindTexture(0, 0);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glColor3f(0, 0, 0);
 	PROFILE_START("render terrain sides");
-	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
-		m->visiblePatches[i]->RenderSides();
+	for (size_t i = 0; i < visiblePatches.size(); ++i)
+		visiblePatches[i]->RenderSides();
 	PROFILE_END("render terrain sides");
 
 	// switch on required client states
@@ -198,7 +226,7 @@ void TerrainRenderer::RenderTerrain()
 	glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, one);
 	
 	PROFILE_START("render terrain base");
-	CPatchRData::RenderBases(m->visiblePatches);
+	CPatchRData::RenderBases(visiblePatches);
 	PROFILE_END("render terrain base");
 
 	// render blends
@@ -231,7 +259,7 @@ void TerrainRenderer::RenderTerrain()
 
 	// render blend passes for each patch
 	PROFILE_START("render terrain blends");
-	CPatchRData::RenderBlends(m->visiblePatches);
+	CPatchRData::RenderBlends(visiblePatches);
 	PROFILE_END("render terrain blends");
 
 	// Disable second texcoord array
@@ -255,8 +283,8 @@ void TerrainRenderer::RenderTerrain()
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 
 	PROFILE_START("render terrain decals");
-	for (size_t i = 0; i < m->visibleDecals.size(); ++i)
-		m->visibleDecals[i]->Render(CShaderProgramPtr());
+	for (size_t i = 0; i < visibleDecals.size(); ++i)
+		visibleDecals[i]->Render(CShaderProgramPtr());
 	PROFILE_END("render terrain decals");
 
 
@@ -323,7 +351,7 @@ void TerrainRenderer::RenderTerrain()
 	pglClientActiveTextureARB(GL_TEXTURE0);
 
 	PROFILE_START("render terrain streams");
-	CPatchRData::RenderStreams(m->visiblePatches, streamflags);
+	CPatchRData::RenderStreams(visiblePatches, streamflags);
 	PROFILE_END("render terrain streams");
 
 	glMatrixMode(GL_TEXTURE);
@@ -363,6 +391,10 @@ void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* 
 	{
 		shader->BindTexture("shadowTex", shadow->GetTexture());
 		shader->Uniform("shadowTransform", shadow->GetTextureMatrix());
+
+		const float* offsets = shadow->GetFilterOffsets();
+		shader->Uniform("shadowOffsets1", offsets[0], offsets[1], offsets[2], offsets[3]);
+		shader->Uniform("shadowOffsets2", offsets[4], offsets[5], offsets[6], offsets[7]);
 	}
 
 	CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
@@ -373,9 +405,14 @@ void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* 
 	shader->Uniform("sunColor", lightEnv.m_SunColor);
 }
 
-void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow)
+void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow, bool filtered)
 {
 	ENSURE(m->phase == Phase_Render);
+
+	std::vector<CPatchRData*>& visiblePatches = filtered ? m->filteredPatches : m->visiblePatches;
+	std::vector<CDecalRData*>& visibleDecals = filtered ? m->filteredDecals : m->visibleDecals;
+	if (visiblePatches.empty() && visibleDecals.empty())
+		return;
 
 	CShaderManager& shaderManager = g_Renderer.GetShaderManager();
 
@@ -386,6 +423,8 @@ void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow)
 		defBasic["USE_SHADOW"] = "1";
 		if (g_Renderer.m_Caps.m_ARBProgramShadow && g_Renderer.m_Options.m_ARBProgramShadow)
 			defBasic["USE_FP_SHADOW"] = "1";
+		if (g_Renderer.m_Options.m_ShadowPCF)
+			defBasic["USE_SHADOW_PCF"] = "1";
 	}
 
 	defBasic["LIGHTING_MODEL_" + g_Renderer.GetLightEnv().GetLightingModel()] = "1";
@@ -399,8 +438,8 @@ void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow)
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glColor3f(0, 0, 0);
 	PROFILE_START("render terrain sides");
-	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
-		m->visiblePatches[i]->RenderSides();
+	for (size_t i = 0; i < visiblePatches.size(); ++i)
+		visiblePatches[i]->RenderSides();
 	PROFILE_END("render terrain sides");
 
 	// switch on required client states
@@ -411,7 +450,7 @@ void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow)
 	PrepareShader(shaderBase, shadow);
 
 	PROFILE_START("render terrain base");
-	CPatchRData::RenderBases(m->visiblePatches);
+	CPatchRData::RenderBases(visiblePatches);
 	PROFILE_END("render terrain base");
 
 	shaderBase->Unbind();
@@ -437,7 +476,7 @@ void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow)
 
 	// render blend passes for each patch
 	PROFILE_START("render terrain blends");
-	CPatchRData::RenderBlends(m->visiblePatches);
+	CPatchRData::RenderBlends(visiblePatches);
 	PROFILE_END("render terrain blends");
 
 	// Disable second texcoord array
@@ -456,8 +495,8 @@ void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow)
 	pglClientActiveTextureARB(GL_TEXTURE0);
 
 	PROFILE_START("render terrain decals");
-	for (size_t i = 0; i < m->visibleDecals.size(); ++i)
-		m->visibleDecals[i]->Render(shaderDecal);
+	for (size_t i = 0; i < visibleDecals.size(); ++i)
+		visibleDecals[i]->Render(shaderDecal);
 	PROFILE_END("render terrain decals");
 
 	shaderDecal->Unbind();
@@ -480,56 +519,111 @@ void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow)
 
 ///////////////////////////////////////////////////////////////////
 // Render un-textured patches as polygons
-void TerrainRenderer::RenderPatches()
+void TerrainRenderer::RenderPatches(bool filtered)
 {
 	ENSURE(m->phase == Phase_Render);
 
+	std::vector<CPatchRData*>& visiblePatches = filtered ? m->filteredPatches : m->visiblePatches;
+	if (visiblePatches.empty())
+		return;
+
 	glEnableClientState(GL_VERTEX_ARRAY);
-	CPatchRData::RenderStreams(m->visiblePatches, STREAM_POS);
+	CPatchRData::RenderStreams(visiblePatches, STREAM_POS);
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 
 ///////////////////////////////////////////////////////////////////
 // Render outlines of submitted patches as lines
-void TerrainRenderer::RenderOutlines()
+void TerrainRenderer::RenderOutlines(bool filtered)
 {
 	ENSURE(m->phase == Phase_Render);
 
+	std::vector<CPatchRData*>& visiblePatches = filtered ? m->filteredPatches : m->visiblePatches;
+	if (visiblePatches.empty())
+		return;
+
 	glEnableClientState(GL_VERTEX_ARRAY);
-	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
-		m->visiblePatches[i]->RenderOutline();
+	for (size_t i = 0; i < visiblePatches.size(); ++i)
+		visiblePatches[i]->RenderOutline();
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 
 ///////////////////////////////////////////////////////////////////
-// Render water that is part of the terrain
-void TerrainRenderer::RenderWater()
+// Scissor rectangle of water patches
+CBound TerrainRenderer::ScissorWater(const CMatrix3D &viewproj)
 {
-	PROFILE( "render water" );
+	CBound scissor;
+	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
+	{
+		CPatchRData* data = m->visiblePatches[i];
+		const CBound& waterBounds = data->GetWaterBounds();
+		if (waterBounds.IsEmpty())
+			continue;
 
-	WaterManager* WaterMgr = g_Renderer.GetWaterManager();
+		CVector4D v1 = viewproj.Transform(CVector4D(waterBounds[0].X, waterBounds[1].Y, waterBounds[0].Z, 1.0f));
+		CVector4D v2 = viewproj.Transform(CVector4D(waterBounds[1].X, waterBounds[1].Y, waterBounds[0].Z, 1.0f));
+		CVector4D v3 = viewproj.Transform(CVector4D(waterBounds[0].X, waterBounds[1].Y, waterBounds[1].Z, 1.0f));
+		CVector4D v4 = viewproj.Transform(CVector4D(waterBounds[1].X, waterBounds[1].Y, waterBounds[1].Z, 1.0f));
+		CBound screenBounds;
+		#define ADDBOUND(v1, v2, v3, v4) \
+			if (v1[2] >= -v1[3]) \
+				screenBounds += CVector3D(v1[0], v1[1], v1[2]) * (1.0f / v1[3]); \
+			else \
+			{ \
+				float t = v1[2] + v1[3]; \
+				if (v2[2] > -v2[3]) \
+				{ \
+					CVector4D c2 = v1 + (v2 - v1) * (t / (t - (v2[2] + v2[3]))); \
+					screenBounds += CVector3D(c2[0], c2[1], c2[2]) * (1.0f / c2[3]); \
+				} \
+				if (v3[2] > -v3[3]) \
+				{ \
+					CVector4D c3 = v1 + (v3 - v1) * (t / (t - (v3[2] + v3[3]))); \
+					screenBounds += CVector3D(c3[0], c3[1], c3[2]) * (1.0f / c3[3]); \
+				} \
+				if (v4[2] > -v4[3]) \
+				{ \
+					CVector4D c4 = v1 + (v4 - v1) * (t / (t - (v4[2] + v4[3]))); \
+					screenBounds += CVector3D(c4[0], c4[1], c4[2]) * (1.0f / c4[3]); \
+				} \
+			}
+		ADDBOUND(v1, v2, v3, v4);
+		ADDBOUND(v2, v1, v3, v4);
+		ADDBOUND(v3, v1, v2, v4);
+		ADDBOUND(v4, v1, v2, v3);
+		#undef ADDBOUND
+		if (screenBounds[0].X >= 1.0f || screenBounds[1].X <= -1.0f || screenBounds[0].Y >= 1.0f || screenBounds[1].Y <= -1.0f)
+			continue;
+		scissor += screenBounds;
+	}
+	return CBound(CVector3D(clamp(scissor[0].X, -1.0f, 1.0f), clamp(scissor[0].Y, -1.0f, 1.0f), -1.0f),
+				  CVector3D(clamp(scissor[1].X, -1.0f, 1.0f), clamp(scissor[1].Y, -1.0f, 1.0f), 1.0f));
+}
 
-	bool fancy = WaterMgr->WillRenderFancyWater();
+// Render fancy water
+bool TerrainRenderer::RenderFancyWater()
+{
+	PROFILE("render fancy water");
 
 	// If we're using fancy water, make sure its shader is loaded
-	if(fancy && !m->fancyWaterShader)
+	if (!m->fancyWaterShader)
 	{
 		Handle h = ogl_program_load(g_VFS, L"shaders/water_high.xml");
 		if (h < 0)
 		{
 			LOGERROR(L"Failed to load water shader. Falling back to non-fancy water.\n");
 			g_Renderer.m_Options.m_FancyWater = false;
-			fancy = false;
+			return false;
 		}
 		else
 		{
 			m->fancyWaterShader = h;
 		}
 	}
-	CTerrain* terrain = g_Game->GetWorld()->GetTerrain(); // TODO: stop using g_Game
 
+	WaterManager* WaterMgr = g_Renderer.GetWaterManager();
 	CLOSTexture& losTexture = g_Renderer.GetScene().GetLOSTexture();
 	
 	glEnable(GL_BLEND);
@@ -538,58 +632,15 @@ void TerrainRenderer::RenderWater()
 	glDepthFunc(GL_LEQUAL);
 
 	double time = WaterMgr->m_WaterTexTimer;
-
 	double period = 1.6;
 	int curTex = (int)(time*60/period) % 60;
 
-	if(fancy)
-	{
-		WaterMgr->m_NormalMap[curTex]->Bind();
-	}
-	else
-	{
-		WaterMgr->m_WaterTexture[curTex]->Bind();
-	}
+	WaterMgr->m_NormalMap[curTex]->Bind();
 
 	// Shift the texture coordinates by these amounts to make the water "flow"
 	float tx = -fmod(time, 81.0)/81.0;
 	float ty = -fmod(time, 34.0)/34.0;
-
-	if(!fancy)
-	{
-		// Perform the shifting by modifying the texture matrix
-		glMatrixMode(GL_TEXTURE);
-		glLoadIdentity();
-		glTranslatef(tx, ty, 0);
-
-		// Set up texture environment to multiply vertex RGB by texture RGB and use vertex alpha
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR_ARB);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PRIMARY_COLOR_ARB);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-
-		// Multiply by LOS texture
-		losTexture.BindTexture(1);
-		pglClientActiveTextureARB(GL_TEXTURE1);
-		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
-		glLoadMatrixf(losTexture.GetTextureMatrix());
-
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_TEXTURE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_ALPHA);
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-	}
+	float repeatPeriod = WaterMgr->m_RepeatPeriod;
 
 	// Set the proper LOD bias
 	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
@@ -597,177 +648,198 @@ void TerrainRenderer::RenderWater()
 	const CCamera& camera = g_Renderer.GetViewCamera();
 	CVector3D camPos = camera.m_Orientation.GetTranslation();
 
-	GLint vertexDepth = 0;	// water depth attribute, if using fancy water
+	// Bind reflection and refraction textures on texture units 1 and 2
+	pglActiveTextureARB(GL_TEXTURE1_ARB);
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, WaterMgr->m_ReflectionTexture);
+	pglActiveTextureARB(GL_TEXTURE2_ARB);
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, WaterMgr->m_RefractionTexture);
 
-	if(fancy)
+	losTexture.BindTexture(3);
+
+	// Bind water shader and set arguments
+	ogl_program_use(m->fancyWaterShader);
+
+	GLint ambient = ogl_program_get_uniform_location(m->fancyWaterShader, "ambient");
+	GLint sunDir = ogl_program_get_uniform_location(m->fancyWaterShader, "sunDir");
+	GLint sunColor = ogl_program_get_uniform_location(m->fancyWaterShader, "sunColor");
+	GLint cameraPos = ogl_program_get_uniform_location(m->fancyWaterShader, "cameraPos");
+	GLint shininess = ogl_program_get_uniform_location(m->fancyWaterShader, "shininess");
+	GLint specularStrength = ogl_program_get_uniform_location(m->fancyWaterShader, "specularStrength");
+	GLint waviness = ogl_program_get_uniform_location(m->fancyWaterShader, "waviness");
+	GLint murkiness = ogl_program_get_uniform_location(m->fancyWaterShader, "murkiness");
+	GLint fullDepth = ogl_program_get_uniform_location(m->fancyWaterShader, "fullDepth");
+	GLint tint = ogl_program_get_uniform_location(m->fancyWaterShader, "tint");
+	GLint reflectionTint = ogl_program_get_uniform_location(m->fancyWaterShader, "reflectionTint");
+	GLint reflectionTintStrength = ogl_program_get_uniform_location(m->fancyWaterShader, "reflectionTintStrength");
+	GLint translation = ogl_program_get_uniform_location(m->fancyWaterShader, "translation");
+	GLint repeatScale = ogl_program_get_uniform_location(m->fancyWaterShader, "repeatScale");
+	GLint reflectionMatrix = ogl_program_get_uniform_location(m->fancyWaterShader, "reflectionMatrix");
+	GLint refractionMatrix = ogl_program_get_uniform_location(m->fancyWaterShader, "refractionMatrix");
+	GLint losMatrix = ogl_program_get_uniform_location(m->fancyWaterShader, "losMatrix");
+	GLint normalMap = ogl_program_get_uniform_location(m->fancyWaterShader, "normalMap");
+	GLint reflectionMap = ogl_program_get_uniform_location(m->fancyWaterShader, "reflectionMap");
+	GLint refractionMap = ogl_program_get_uniform_location(m->fancyWaterShader, "refractionMap");
+	GLint losMap = ogl_program_get_uniform_location(m->fancyWaterShader, "losMap");
+
+	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
+	pglUniform3fvARB(ambient, 1, &lightEnv.m_TerrainAmbientColor.X);
+	pglUniform3fvARB(sunDir, 1, &lightEnv.GetSunDir().X);
+	pglUniform3fvARB(sunColor, 1, &lightEnv.m_SunColor.X);
+	pglUniform1fARB(shininess, WaterMgr->m_Shininess);
+	pglUniform1fARB(specularStrength, WaterMgr->m_SpecularStrength);
+	pglUniform1fARB(waviness, WaterMgr->m_Waviness);
+	pglUniform1fARB(murkiness, WaterMgr->m_Murkiness);
+	pglUniform1fARB(fullDepth, WaterMgr->m_WaterFullDepth);
+	pglUniform3fvARB(tint, 1, WaterMgr->m_WaterTint.FloatArray());
+	pglUniform1fARB(reflectionTintStrength, WaterMgr->m_ReflectionTintStrength);
+	pglUniform3fvARB(reflectionTint, 1, WaterMgr->m_ReflectionTint.FloatArray());
+	pglUniform2fARB(translation, tx, ty);
+	pglUniform1fARB(repeatScale, 1.0f / repeatPeriod);
+	pglUniformMatrix4fvARB(reflectionMatrix, 1, false, &WaterMgr->m_ReflectionMatrix._11);
+	pglUniformMatrix4fvARB(refractionMatrix, 1, false, &WaterMgr->m_RefractionMatrix._11);
+	pglUniformMatrix4fvARB(losMatrix, 1, false, losTexture.GetTextureMatrix());
+	pglUniform1iARB(normalMap, 0);		// texture unit 0
+	pglUniform1iARB(reflectionMap, 1);	// texture unit 1
+	pglUniform1iARB(refractionMap, 2);	// texture unit 2
+	pglUniform1iARB(losMap, 3);			// texture unit 3
+	pglUniform3fvARB(cameraPos, 1, &camPos.X);
+
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_COLOR_ARRAY);
+
+	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
 	{
-		// Bind reflection and refraction textures on texture units 1 and 2
-		pglActiveTextureARB( GL_TEXTURE1_ARB );
-		glEnable( GL_TEXTURE_2D );
-		glBindTexture( GL_TEXTURE_2D, WaterMgr->m_ReflectionTexture );
-		pglActiveTextureARB( GL_TEXTURE2_ARB );
-		glEnable( GL_TEXTURE_2D );
-		glBindTexture( GL_TEXTURE_2D, WaterMgr->m_RefractionTexture );
-
-		losTexture.BindTexture(3);
-
-		// Bind water shader and set arguments
-		ogl_program_use( m->fancyWaterShader );
-
-		GLint ambient = ogl_program_get_uniform_location( m->fancyWaterShader, "ambient" );
-		GLint sunDir = ogl_program_get_uniform_location( m->fancyWaterShader, "sunDir" );
-		GLint sunColor = ogl_program_get_uniform_location( m->fancyWaterShader, "sunColor" );
-		GLint cameraPos = ogl_program_get_uniform_location( m->fancyWaterShader, "cameraPos" );
-		GLint shininess = ogl_program_get_uniform_location( m->fancyWaterShader, "shininess" );
-		GLint specularStrength = ogl_program_get_uniform_location( m->fancyWaterShader, "specularStrength" );
-		GLint waviness = ogl_program_get_uniform_location( m->fancyWaterShader, "waviness" );
-		GLint murkiness = ogl_program_get_uniform_location( m->fancyWaterShader, "murkiness" );
-		GLint fullDepth = ogl_program_get_uniform_location( m->fancyWaterShader, "fullDepth" );
-		GLint tint = ogl_program_get_uniform_location( m->fancyWaterShader, "tint" );
-		GLint reflectionTint = ogl_program_get_uniform_location( m->fancyWaterShader, "reflectionTint" );
-		GLint reflectionTintStrength = ogl_program_get_uniform_location( m->fancyWaterShader, "reflectionTintStrength" );
-		GLint translation = ogl_program_get_uniform_location( m->fancyWaterShader, "translation" );
-		GLint reflectionMatrix = ogl_program_get_uniform_location( m->fancyWaterShader, "reflectionMatrix" );
-		GLint refractionMatrix = ogl_program_get_uniform_location( m->fancyWaterShader, "refractionMatrix" );
-		GLint losMatrix = ogl_program_get_uniform_location( m->fancyWaterShader, "losMatrix" );
-		GLint normalMap = ogl_program_get_uniform_location( m->fancyWaterShader, "normalMap" );
-		GLint reflectionMap = ogl_program_get_uniform_location( m->fancyWaterShader, "reflectionMap" );
-		GLint refractionMap = ogl_program_get_uniform_location( m->fancyWaterShader, "refractionMap" );
-		GLint losMap = ogl_program_get_uniform_location( m->fancyWaterShader, "losMap" );
-
-		const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
-		pglUniform3fvARB( ambient, 1, &lightEnv.m_TerrainAmbientColor.X );
-		pglUniform3fvARB( sunDir, 1, &lightEnv.GetSunDir().X );
-		pglUniform3fvARB( sunColor, 1, &lightEnv.m_SunColor.X );
-		pglUniform1fARB( shininess, WaterMgr->m_Shininess );
-		pglUniform1fARB( specularStrength, WaterMgr->m_SpecularStrength );
-		pglUniform1fARB( waviness, WaterMgr->m_Waviness );
-		pglUniform1fARB( murkiness, WaterMgr->m_Murkiness );
-		pglUniform1fARB( fullDepth, WaterMgr->m_WaterFullDepth );
-		pglUniform3fvARB( tint, 1, WaterMgr->m_WaterTint.FloatArray() );
-		pglUniform1fARB( reflectionTintStrength, WaterMgr->m_ReflectionTintStrength );
-		pglUniform3fvARB( reflectionTint, 1, WaterMgr->m_ReflectionTint.FloatArray() );
-		pglUniform4fARB( translation, tx, ty, 0, 0 );
-		pglUniformMatrix4fvARB( reflectionMatrix, 1, false, &WaterMgr->m_ReflectionMatrix._11 );
-		pglUniformMatrix4fvARB( refractionMatrix, 1, false, &WaterMgr->m_RefractionMatrix._11 );
-		pglUniformMatrix4fvARB( losMatrix, 1, false, losTexture.GetTextureMatrix() );
-		pglUniform1iARB( normalMap, 0 );		// texture unit 0
-		pglUniform1iARB( reflectionMap, 1 );	// texture unit 1
-		pglUniform1iARB( refractionMap, 2 );	// texture unit 2
-		pglUniform1iARB( losMap, 3 );			// texture unit 3
-		pglUniform3fvARB( cameraPos, 1, &camPos.X );
-
-		vertexDepth = ogl_program_get_attrib_location( m->fancyWaterShader, "vertexDepth" );
-	}
-	
-	float repeatPeriod = (fancy ? WaterMgr->m_RepeatPeriod : 16.0f);
-
-	glBegin(GL_QUADS);
-
-	for(size_t i=0; i<m->visiblePatches.size(); i++)
-	{
-		CPatch* patch = m->visiblePatches[i]->GetPatch();
-
-		for(ssize_t dx=0; dx<PATCH_SIZE; dx++)
-		{
-			for(ssize_t dz=0; dz<PATCH_SIZE; dz++)
-			{
-				ssize_t x = (patch->m_X*PATCH_SIZE + dx);
-				ssize_t z = (patch->m_Z*PATCH_SIZE + dz);
-
-				// Some offsets used to go around counterclockwise while keeping code concise
-				const int DX[] = {1,1,0,0};
-				const int DZ[] = {0,1,1,0};
-
-				// is any corner of the tile below the water height? if not, no point rendering it
-				bool shouldRender = false;
-				for (int j = 0; j < 4; j++)
-				{
-					float terrainHeight = terrain->GetVertexGroundLevel(x + DX[j], z + DZ[j]);
-					if (terrainHeight < WaterMgr->m_WaterHeight)
-					{
-						shouldRender = true;
-						break;
-					}
-				}
-				if (!shouldRender)
-					continue;
-
-				for (int j=0; j<4; j++)
-				{
-					ssize_t ix = x + DX[j];
-					ssize_t iz = z + DZ[j];
-
-					float vertX = ix * CELL_SIZE;
-					float vertZ = iz * CELL_SIZE;
-
-					float terrainHeight = terrain->GetVertexGroundLevel(ix, iz);
-
-					if (fancy)
-					{
-						pglVertexAttrib1fARB(vertexDepth, WaterMgr->m_WaterHeight - terrainHeight);
-						pglMultiTexCoord2fARB(GL_TEXTURE0, vertX/repeatPeriod, vertZ/repeatPeriod);
-						glVertex3f(vertX, WaterMgr->m_WaterHeight, vertZ);
-					}
-					else
-					{
-						float alpha = clamp( (WaterMgr->m_WaterHeight - terrainHeight) / WaterMgr->m_WaterFullDepth + WaterMgr->m_WaterAlphaOffset,
-						                      WaterMgr->m_WaterAlphaOffset, WaterMgr->m_WaterMaxAlpha);
-
-						// (Crappy) fresnel effect
-						CVector3D CamFaceVertex=CVector3D(vertX,WaterMgr->m_WaterHeight,vertZ)-camPos;
-						CamFaceVertex.Normalize();
-						float FresnelScalar = CamFaceVertex.Dot(CVector3D(0.0f, -1.0f, 0.0f));
-						// Invert and set boundaries
-						FresnelScalar = 1.f - (FresnelScalar * 0.6);
-
-						glColor4f(WaterMgr->m_WaterColor.r,
-						          WaterMgr->m_WaterColor.g,
-						          WaterMgr->m_WaterColor.b,
-						          alpha * FresnelScalar);
-						pglMultiTexCoord2fARB(GL_TEXTURE0, vertX/repeatPeriod, vertZ/repeatPeriod);
-						pglMultiTexCoord3fARB(GL_TEXTURE1, vertX, WaterMgr->m_WaterHeight, vertZ);
-						glVertex3f(vertX, WaterMgr->m_WaterHeight, vertZ);
-					}
-
-				}
-			}	//end of x loop
-		}	//end of z loop
-	}
-	glEnd();
-
-	if (fancy)
-	{
-		// Unbind the LOS/refraction/reflection textures and the shader
-
-		g_Renderer.BindTexture(3, 0);
-		g_Renderer.BindTexture(2, 0);
-		g_Renderer.BindTexture(1, 0);
-
-		pglActiveTextureARB(GL_TEXTURE0_ARB);
-
-		ogl_program_use(0);
+		CPatchRData* data = m->visiblePatches[i];
+		data->RenderWater();
 	}
 
-	if (!fancy)
+	glDisableClientState(GL_COLOR_ARRAY);
+	glDisableClientState(GL_VERTEX_ARRAY);
+
+	// Unbind the LOS/refraction/reflection textures and the shader
+	g_Renderer.BindTexture(3, 0);
+	g_Renderer.BindTexture(2, 0);
+	g_Renderer.BindTexture(1, 0);
+
+	pglActiveTextureARB(GL_TEXTURE0_ARB);
+
+	ogl_program_use(0);
+
+	glDisable(GL_BLEND);
+
+	return true;
+}
+
+void TerrainRenderer::RenderSimpleWater()
+{
+	PROFILE("render simple water");
+
+	WaterManager* WaterMgr = g_Renderer.GetWaterManager();
+	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LEQUAL);
+
+	double time = WaterMgr->m_WaterTexTimer;
+	double period = 1.6f;
+	int curTex = (int)(time*60/period) % 60;
+
+	WaterMgr->m_WaterTexture[curTex]->Bind();
+
+	// Shift the texture coordinates by these amounts to make the water "flow"
+	float tx = -fmod(time, 81.0)/81.0;
+	float ty = -fmod(time, 34.0)/34.0;
+	float repeatPeriod = 16.0f;
+
+	// Perform the shifting by using texture coordinate generation
+	GLfloat texgenS0[4] = { 1/repeatPeriod, 0, 0, tx };
+	GLfloat texgenT0[4] = { 0, 0, 1/repeatPeriod, ty };
+	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
+	glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
+	glTexGenfv(GL_S, GL_OBJECT_PLANE, texgenS0);
+	glTexGenfv(GL_T, GL_OBJECT_PLANE, texgenT0);
+	glEnable(GL_TEXTURE_GEN_S);
+	glEnable(GL_TEXTURE_GEN_T);
+
+	// Set up texture environment to multiply vertex RGB by texture RGB and use vertex alpha
+	GLfloat waterColor[4] = { WaterMgr->m_WaterColor.r, WaterMgr->m_WaterColor.g, WaterMgr->m_WaterColor.b, 1.0f };
+	glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, waterColor);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_CONSTANT);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PRIMARY_COLOR_ARB);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+
+	// Multiply by LOS texture
+	losTexture.BindTexture(1);
+	const float *losMatrix = losTexture.GetTextureMatrix();
+	GLfloat texgenS1[4] = { losMatrix[0], losMatrix[4], losMatrix[8], losMatrix[12] };
+	GLfloat texgenT1[4] = { losMatrix[1], losMatrix[5], losMatrix[9], losMatrix[13] };
+	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
+	glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
+	glTexGenfv(GL_S, GL_OBJECT_PLANE, texgenS1);
+	glTexGenfv(GL_T, GL_OBJECT_PLANE, texgenT1);
+	glEnable(GL_TEXTURE_GEN_S);
+	glEnable(GL_TEXTURE_GEN_T);
+
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_TEXTURE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_ALPHA);
+	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
+	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+
+	// Set the proper LOD bias
+	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
+
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_COLOR_ARRAY);
+
+	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
 	{
-		g_Renderer.BindTexture(1, 0);
-		pglClientActiveTextureARB(GL_TEXTURE1_ARB);
-		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-
-		glLoadIdentity();
-
-		pglActiveTextureARB(GL_TEXTURE0_ARB);
-		pglClientActiveTextureARB(GL_TEXTURE0_ARB);
-
-		// Clean up the texture matrix and blend mode
-		glLoadIdentity();
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+		CPatchRData* data = m->visiblePatches[i];
+		data->RenderWater();
 	}
 
-	glMatrixMode(GL_MODELVIEW);
+	glDisableClientState(GL_COLOR_ARRAY);
+	glDisableClientState(GL_VERTEX_ARRAY);
+
+	g_Renderer.BindTexture(1, 0);
+
+	glDisable(GL_TEXTURE_GEN_S);
+	glDisable(GL_TEXTURE_GEN_T);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
+	pglActiveTextureARB(GL_TEXTURE0_ARB);
+
+	// Clean up the texture matrix and blend mode
+	glDisable(GL_TEXTURE_GEN_S);
+	glDisable(GL_TEXTURE_GEN_T);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
 	glDisable(GL_BLEND);
 	glDisable(GL_TEXTURE_2D);
+}
+
+///////////////////////////////////////////////////////////////////
+// Render water that is part of the terrain
+void TerrainRenderer::RenderWater()
+{
+	WaterManager* WaterMgr = g_Renderer.GetWaterManager();
+
+	if (!WaterMgr->WillRenderFancyWater() || !RenderFancyWater())
+		RenderSimpleWater();
 }
 
 void TerrainRenderer::RenderPriorities()
