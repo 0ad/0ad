@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2010-11-29T06:31:51Z</created>
-    <modified>2010-11-29T06:31:51Z</modified>
+    <created>2011-07-13T02:57:37Z</created>
+    <modified>2011-07-13T02:57:37Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -16,8 +16,8 @@
     <up_axis>Y_UP</up_axis>
   </asset>
   <library_images>
-    <image id="Map__291-image" name="Map__291">
-      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\structural\iber_struct.dds</init_from>
+    <image id="Map__291_image-image" name="Map__291_image">
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\structural\iber_struct.dds</init_from>
     </image>
   </library_images>
   <library_materials>
@@ -37,7 +37,7 @@
               <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
             </ambient>
             <diffuse>
-              <texture texture="Map__291-image" texcoord="CHANNEL0">
+              <texture texture="Map__291_image-image" texcoord="CHANNEL0">
                 <extra>
                   <technique profile="MAYA">
                     <wrapU sid="wrapU0">TRUE</wrapU>
@@ -1155,7 +1155,7 @@
 -0.683821 -0.707109 -0.179961
 -0.705276 -0.577350 0.411404
 -0.179956 0.707107 0.683824
--0.000000 1.000000 -0.000000
+0.000000 1.000000 0.000000
 -0.683824 0.707107 -0.179957
 -0.179956 0.707107 0.683824
 -0.683824 0.707107 -0.179957
@@ -2175,11 +2175,10 @@
           </bind_material>
         </instance_geometry>
         <node id="prop_garrisoned" name="prop_garrisoned">
-          <translate sid="location">0.01549509 0.2285867 0.6423157</translate>
-          <rotate sid="rotationZ">0 0 1 89.99998</rotate>
-          <rotate sid="rotationY">0 1 0 -2.50448e-6</rotate>
-          <rotate sid="rotationX">1 0 0 89.99998</rotate>
-          <scale sid="scale">4225.858 4225.858 4225.858</scale>
+          <matrix sid="matrix">0.000000 -0.000000 0.124996 0.015495 0.124996 0.000000 -0.000000 0.228587 0.000000 0.124996 0.000000 0.642316 0.000000 0.000000 0.000000 1.000000</matrix>
+        </node>
+        <node id="prop_projectile" name="prop_projectile">
+          <matrix sid="matrix">-0.000000 0.061853 -0.000000 0.034436 -0.061853 -0.000000 0.000000 0.001048 -0.000000 0.000000 0.061853 0.117537 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
       </node>
     </visual_scene>

@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2010-11-17T21:20:44Z</created>
-    <modified>2010-11-17T21:20:44Z</modified>
+    <created>2011-07-13T03:03:37Z</created>
+    <modified>2011-07-13T03:03:37Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -16,8 +16,8 @@
     <up_axis>Y_UP</up_axis>
   </asset>
   <library_images>
-    <image id="Map__357-image" name="Map__357">
-      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\structural\celt_struct_1.dds</init_from>
+    <image id="Map__357_image-image" name="Map__357_image">
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\structural\celt_struct_1.dds</init_from>
     </image>
   </library_images>
   <library_materials>
@@ -37,7 +37,7 @@
               <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
             </ambient>
             <diffuse>
-              <texture texture="Map__357-image" texcoord="CHANNEL0">
+              <texture texture="Map__357_image-image" texcoord="CHANNEL0">
                 <extra>
                   <technique profile="MAYA">
                     <wrapU sid="wrapU0">TRUE</wrapU>
@@ -8178,15 +8178,14 @@
             </technique_common>
           </bind_material>
         </instance_geometry>
-        <node id="prop-gar01" name="prop-gar01">
+        <node id="prop_gar01" name="prop_gar01">
           <matrix sid="matrix">0.125886 0.000000 0.000000 0.000125 0.000000 0.000129 -0.126028 -0.024968 0.000000 0.125886 0.000129 4.382104 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
         <node id="prop_garrisoned" name="prop_garrisoned">
-          <translate sid="location">0.5468796 -0.02496811 6.929515</translate>
-          <rotate sid="rotationZ">0 0 1 0</rotate>
-          <rotate sid="rotationY">0 1 0 0</rotate>
-          <rotate sid="rotationX">1 0 0 89.94072</rotate>
-          <scale sid="scale">5.146741 5.123523 5.15255</scale>
+          <matrix sid="matrix">0.761732 0.000000 0.000000 0.546880 0.000000 0.000785 -0.762592 -0.024968 0.000000 0.758296 0.000789 6.929515 0.000000 0.000000 0.000000 1.000000</matrix>
+        </node>
+        <node id="prop_projectile" name="prop_projectile">
+          <matrix sid="matrix">0.395468 0.000000 0.000000 0.000125 0.000000 0.395468 0.000000 -0.024967 0.000000 0.000000 0.395915 5.740468 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
       </node>
     </visual_scene>
