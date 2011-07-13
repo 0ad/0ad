@@ -943,19 +943,10 @@ void CRenderer::RenderShadowMap()
 	}
 
 
-	// Render all closed models (i.e. models where rendering back faces will produce
-	// the correct result)
-	glCullFace(GL_FRONT);
-
 	{
 		PROFILE("render patches");
 		m->terrainRenderer->RenderPatches();
 	}
-
-	glCullFace(GL_BACK);
-
-	// Render models that aren't closed
-	glDisable(GL_CULL_FACE);
 
 	{
 		PROFILE("render models");
@@ -965,10 +956,11 @@ void CRenderer::RenderShadowMap()
 
 	{
 		PROFILE("render transparent models");
+		// disable face-culling for two-sided models
+		glDisable(GL_CULL_FACE);
 		m->Model.Transp->Render(transparentShadows, MODELFLAG_CASTSHADOWS);
+		glEnable(GL_CULL_FACE);
 	}
-
-	glEnable(GL_CULL_FACE);
 
 	glColor3f(1.0, 1.0, 1.0);
 
@@ -1102,12 +1094,19 @@ void CRenderer::RenderTransparentModels(ETransparentMode transparentMode, const 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	}
 
+	// disable face culling for two-sided models in sub-renders
+	if (flags)
+		glDisable(GL_CULL_FACE);
+
 	if (transparentMode == TRANSPARENT_OPAQUE)
 		m->Model.Transp->Render(m->Model.ModTransparentOpaque, flags);
 	else if (transparentMode == TRANSPARENT_BLEND)
 		m->Model.Transp->Render(m->Model.ModTransparentBlend, flags);
 	else
 		m->Model.Transp->Render(m->Model.ModTransparent, flags);
+
+	if (flags)
+		glEnable(GL_CULL_FACE);
 
 	if (m_ModelRenderMode == WIREFRAME)
 	{
