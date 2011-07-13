@@ -44,7 +44,9 @@ class CModel;
 
 class CModelFilter
 {
+	NONCOPYABLE(CModelFilter);
 public:
+	CModelFilter() {}
 	virtual ~CModelFilter() {}
 	virtual bool Filter(CModel* model) = 0;
 };
