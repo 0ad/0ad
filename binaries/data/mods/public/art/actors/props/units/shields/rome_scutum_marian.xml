@@ -2,10 +2,16 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="Base">
+    <variant frequency="1" name="scutum-round corners">
       <mesh>props/shield/scutum_j_f.pmd</mesh>
       <props>
         <prop actor="props/units/shields/rome_scutum_imp_back1.xml" attachpoint="back"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="scutum-round top">
+      <mesh>props/shield/scutum_r_f.pmd</mesh>
+      <props>
+        <prop actor="props/units/shields/rome_scutum_back.xml" attachpoint="back"/>
       </props>
     </variant>
   </group>
