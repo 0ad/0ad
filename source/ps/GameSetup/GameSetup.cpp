@@ -578,6 +578,16 @@ static void InitRenderer()
 
 static void InitSDL()
 {
+#if OS_LINUX
+	// In fullscreen mode when SDL is compiled with DGA support, the mouse
+	// sensitivity often appears to be unusably wrong (typically too low).
+	// (This seems to be reported almost exclusively on Ubuntu, but can be
+	// reproduced on Gentoo after explicitly enabling DGA.)
+	// Disabling the DGA mouse appears to fix that problem, and doesn't
+	// have any obvious negative effects.
+	setenv("SDL_VIDEO_X11_DGAMOUSE", "0", 0);
+#endif
+
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
 	{
 		LOGERROR(L"SDL library initialization failed: %hs", SDL_GetError());
