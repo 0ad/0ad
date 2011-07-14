@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="5">
+	<Environment>
+		<LightingModel>standard</LightingModel>
+		<SkySet>stratus</SkySet>
+		<SunColour r="1.21198" g="1.031" b="0.652604"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785396"/>
+		<TerrainAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<UnitsAmbientColour r="0.396078" g="0.47451" b="0.654902"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>47.7377</Height>
+				<Shininess>8.54492</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>1</Murkiness>
+				<Tint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTint r="0" g="1" b="1"/>
+				<ReflectionTintStrength>0.0996094</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="440.153" y="390.745" z="-376.717"/>
+		<Rotation angle="0.0702102"/>
+		<Declination angle="0.410839"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "CircularMap": true,
+  "Description": "Ship formations mockup.",
+  "GameType": "endless",
+  "Keywords": [
+    "demo"
+  ],
+  "LockTeams": false,
+  "Name": "Ship Formations",
+  "PlayerData": [
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    }
+  ],
+  "RevealMap": true
+}
+]]></ScriptSettings>
+	<Entities>
+		<Entity uid="11">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="271.95566" z="327.79468"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="12">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="293.00943" z="349.03132"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="314.04102" z="369.33704"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="335.98432" z="393.24796"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="362.52085" z="420.14081"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="313.49494" z="304.3263"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="17">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="333.98462" z="326.7324"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="18">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="353.82715" z="349.65336"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="379.97281" z="373.04343"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="20">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="291.22855" z="283.54139"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="21">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="513.01471" z="442.01395"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="22">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="530.55652" z="459.99189"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="23">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="547.27021" z="407.9527"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="24">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="563.86396" z="427.6259"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="25">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="596.71515" z="395.37772"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="581.03992" z="375.95911"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="27">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="479.24286" z="476.5854"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="28">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="497.57087" z="492.66825"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="29">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="446.52063" z="508.76032"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="30">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="462.48005" z="528.25434"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="31">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="720.97034" z="502.49555"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="32">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="740.04017" z="521.47053"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="33">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="759.8028" z="541.4452"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="34">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="779.16718" z="559.8069"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="35">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="687.7115" z="535.09101"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="36">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="655.26948" z="570.69367"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="37">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="675.51417" z="589.75568"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="38">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="694.04957" z="608.98224"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="39">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="712.82575" z="625.17707"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="40">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="745.81006" z="591.20356"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="41">
+			<Template>units/hele_ship_merchant</Template>
+			<Player>1</Player>
+			<Position x="715.23475" z="564.53345"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="42">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="329.34131" z="553.78248"/>
+			<Orientation y="2.0425"/>
+		</Entity>
+		<Entity uid="43">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="261.47925" z="625.22852"/>
+			<Orientation y="-0.61513"/>
+		</Entity>
+		<Entity uid="44">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="252.62337" z="559.41486"/>
+			<Orientation y="-1.90088"/>
+		</Entity>
+		<Entity uid="45">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="266.20292" z="532.93213"/>
+			<Orientation y="-2.5633"/>
+		</Entity>
+		<Entity uid="46">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="312.49357" z="623.23786"/>
+			<Orientation y="0.55855"/>
+		</Entity>
+		<Entity uid="47">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="285.04554" z="630.78315"/>
+			<Orientation y="-0.05382"/>
+		</Entity>
+		<Entity uid="48">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="290.3892" z="523.38465"/>
+			<Orientation y="3.10914"/>
+		</Entity>
+		<Entity uid="49">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="327.4575" z="591.16663"/>
+			<Orientation y="1.03531"/>
+		</Entity>
+		<Entity uid="50">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="250.19898" z="596.00855"/>
+			<Orientation y="-1.2563"/>
+		</Entity>
+		<Entity uid="51">
+			<Template>units/pers_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="313.33918" z="527.28266"/>
+			<Orientation y="2.67977"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+</Scenario>
