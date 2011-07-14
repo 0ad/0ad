@@ -15,6 +15,8 @@ make ${JOBS}
 
 cd ../
 
+mkdir -p lib/
+
 if [ "`uname -s`" = "Darwin" ]
 then
   # Fix libtool's use of an absolute path
