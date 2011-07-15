@@ -26,7 +26,6 @@
 #include "graphics/Camera.h"
 #include "graphics/SColor.h"
 #include "graphics/ShaderProgram.h"
-#include "lib/ogl.h"
 #include "lib/res/handle.h"
 #include "ps/Singleton.h"
 #include "scripting/ScriptableObject.h"
@@ -234,7 +233,7 @@ public:
 	void SetDisplayTerrainPriorities(bool enabled) { m_DisplayTerrainPriorities = enabled; }
 
 	// bind a GL texture object to active unit
-	void BindTexture(int unit,GLuint tex);
+	void BindTexture(int unit, unsigned int tex);
 
 	// load the default set of alphamaps.
 	// return a negative error code if anything along the way fails.

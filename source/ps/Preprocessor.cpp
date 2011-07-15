@@ -763,7 +763,7 @@ CPreprocessor::Token CPreprocessor::GetArgument (Token &oArg, bool iExpand)
         }
     }
 
-    uint len = oArg.Length;
+    unsigned int len = oArg.Length;
     while (true)
     {
         Token t = GetToken (iExpand);

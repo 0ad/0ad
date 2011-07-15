@@ -39,7 +39,9 @@ struct fd_set;
 
 #define _WINSOCK2API_	// winsock2.h include guard
 
-#define WIN32
+#ifndef WIN32
+# define WIN32
+#endif
 
 #endif	// OS_WIN
 

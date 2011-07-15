@@ -344,10 +344,7 @@ template bool ScriptInterface::FromJSVal<wxString>(JSContext*, jsval, wxString&)
 template bool ScriptInterface::FromJSVal<bool>(JSContext*, jsval, bool&);
 template bool ScriptInterface::FromJSVal<float>(JSContext*, jsval, float&);
 template bool ScriptInterface::FromJSVal<CScriptVal>(JSContext*, jsval, CScriptVal&);
-template bool ScriptInterface::FromJSVal<AtlasMessage::sObjectSettings>(JSContext*, jsval, AtlasMessage::sObjectSettings&);
 template jsval ScriptInterface::ToJSVal<wxString>(JSContext*, wxString const&);
-template jsval ScriptInterface::ToJSVal<wxKeyEvent>(JSContext*, wxKeyEvent const&);
-template jsval ScriptInterface::ToJSVal<wxMouseEvent>(JSContext*, wxMouseEvent const&);
 template jsval ScriptInterface::ToJSVal<int>(JSContext*, int const&);
 template jsval ScriptInterface::ToJSVal<float>(JSContext*, float const&);
 template jsval ScriptInterface::ToJSVal<std::vector<int> >(JSContext*, std::vector<int> const&);

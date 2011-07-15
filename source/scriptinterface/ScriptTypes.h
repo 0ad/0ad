@@ -20,7 +20,9 @@
 
 #ifdef _WIN32
 # define XP_WIN
-# define WIN32 // SpiderMonkey expects this
+# ifndef WIN32
+#  define WIN32 // SpiderMonkey expects this
+# endif
 
 // The jsval struct type causes crashes due to weird miscompilation
 // issues in (at least) VC2008, so force it to be the less-type-safe
@@ -37,6 +39,13 @@
 // (we don't support XP_OS2 or XP_BEOS)
 
 #include <cstring> // required by jsutil.h
+
+// SpiderMonkey wants the DEBUG flag
+#ifndef NDEBUG
+# ifndef DEBUG
+#  define DEBUG
+# endif
+#endif
 
 #include "js/jsapi.h"
 
