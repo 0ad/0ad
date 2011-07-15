@@ -4,11 +4,11 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>default</SkySet>
-		<SunColour r="1.23633" g="1.04724" b="0.659375"/>
+		<SunColour r="1.23633" g="1.0424" b="0.654528"/>
 		<SunElevation angle="0.34668"/>
 		<SunRotation angle="0.374291"/>
 		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
-		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.552941"/>
+		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -24,18 +24,18 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="317.2" y="125.474" z="204.564"/>
-		<Rotation angle="0"/>
+		<Position x="298.487" y="117.744" z="221.988"/>
+		<Rotation angle="0.154926"/>
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "Defend your Celtic fortress against attacks from your treacherous neighbors!",
+  "Description": "Defend your Gallic outpost against attacks from your treacherous neighbors!\u000a\u000aAnd watch out for marauding Romans!",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
-  "Name": "Celtic Fortress",
+  "Name": "Gaul",
   "PlayerData": [
     {
       "AI": "",
@@ -588,13 +588,13 @@
 		<Entity uid="95">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="369.75779" z="285.21662"/>
+			<Position x="402.46213" z="257.04441"/>
 			<Orientation y="-2.92504"/>
 		</Entity>
 		<Entity uid="96">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="368.2097" z="278.98691"/>
+			<Position x="377.53003" z="278.30317"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="97">
@@ -984,73 +984,73 @@
 		<Entity uid="161">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="392.58246" z="286.26362"/>
+			<Position x="400.64844" z="296.69349"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="162">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="391.81714" z="281.37836"/>
+			<Position x="409.05085" z="298.45481"/>
 			<Orientation y="-2.8794"/>
 		</Entity>
 		<Entity uid="163">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="388.04383" z="266.78653"/>
+			<Position x="445.66166" z="295.1991"/>
 			<Orientation y="3.10726"/>
 		</Entity>
 		<Entity uid="164">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="388.8573" z="247.64225"/>
+			<Position x="435.26795" z="293.71872"/>
 			<Orientation y="2.94942"/>
 		</Entity>
 		<Entity uid="165">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="391.31186" z="242.56266"/>
+			<Position x="428.06974" z="296.44343"/>
 			<Orientation y="2.61586"/>
 		</Entity>
 		<Entity uid="166">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="394.03702" z="238.84388"/>
+			<Position x="418.0467" z="292.00901"/>
 			<Orientation y="1.88535"/>
 		</Entity>
 		<Entity uid="167">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="364.90647" z="268.08753"/>
+			<Position x="387.10566" z="263.92176"/>
 			<Orientation y="-3.0261"/>
 		</Entity>
 		<Entity uid="168">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="363.28641" z="255.4421"/>
-			<Orientation y="-3.12272"/>
+			<Position x="372.7374" z="284.65506"/>
+			<Orientation y="-0.03657"/>
 		</Entity>
 		<Entity uid="169">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="363.1684" z="248.13326"/>
+			<Position x="395.06598" z="257.42844"/>
 			<Orientation y="3.09237"/>
 		</Entity>
 		<Entity uid="170">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="363.93384" z="238.16343"/>
+			<Position x="411.17927" z="256.0889"/>
 			<Orientation y="2.93146"/>
 		</Entity>
 		<Entity uid="171">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="366.43387" z="228.09302"/>
+			<Position x="419.88721" z="252.88862"/>
 			<Orientation y="2.90607"/>
 		</Entity>
 		<Entity uid="172">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="369.6879" z="220.8378"/>
+			<Position x="428.28486" z="251.59218"/>
 			<Orientation y="2.58341"/>
 		</Entity>
 		<Entity uid="173">
@@ -1224,8 +1224,8 @@
 		<Entity uid="201">
 			<Template>units/celt_infantry_javelinist_a</Template>
 			<Player>2</Player>
-			<Position x="618.6396" z="342.53705"/>
-			<Orientation y="2.35621"/>
+			<Position x="681.68427" z="319.77076"/>
+			<Orientation y="2.91321"/>
 		</Entity>
 		<Entity uid="202">
 			<Template>structures/celt_civil_centre</Template>
