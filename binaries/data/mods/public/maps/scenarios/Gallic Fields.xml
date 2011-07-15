@@ -24,14 +24,14 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="312.783" y="120.04" z="221.529"/>
+		<Position x="317.2" y="133.425" z="190.792"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "Defend your Gallic outpost against attacks from your treacherous neighbors!\u000a\u000aAnd watch out for marauding Romans!",
+  "Description": "Defend your Gallic outpost against attacks from your treacherous neighbors! They are your cousins by ancestry, but no friends of yours!\u000a\u000aAnd watch out for marauding Romans! Oily scum, they are, who drink watered wine! Pagh!",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
@@ -142,7 +142,7 @@
         "Rotation": {
           "x": 30,
           "y": -6.91876,
-          "z": 0.00000180734
+          "z": 0.0000018073399999999999
         }
       },
       "Team": 3
@@ -1863,7 +1863,7 @@
 		<Entity uid="308">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="859.03663" z="533.70185"/>
+			<Position x="855.26178" z="538.5915"/>
 			<Orientation y="0.91671"/>
 		</Entity>
 		<Entity uid="309">
@@ -2127,7 +2127,7 @@
 		<Entity uid="352">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="864.71534" z="541.07752"/>
+			<Position x="861.4209" z="541.07514"/>
 			<Orientation y="0.36217"/>
 		</Entity>
 		<Entity uid="353">
@@ -5881,8 +5881,8 @@
 		<Entity uid="985">
 			<Template>gaia/flora_tree_euro_beech</Template>
 			<Player>0</Player>
-			<Position x="840.88587" z="560.87"/>
-			<Orientation y="-2.44787"/>
+			<Position x="850.91596" z="572.03418"/>
+			<Orientation y="-3.13398"/>
 		</Entity>
 		<Entity uid="986">
 			<Template>gaia/flora_tree_euro_beech</Template>
@@ -7125,6 +7125,22 @@
 			<Player>0</Player>
 			<Position x="283.11094" z="687.24402"/>
 			<Orientation y="-1.15635"/>
+		</Entity>
+		<Entity uid="1195">
+			<Template>actor|props/special/eyecandy/campfire.xml</Template>
+			<Position x="749.89032" z="252.34638"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1196">
+			<Template>actor|props/special/eyecandy/campfire.xml</Template>
+			<Position x="552.42939" z="833.2547"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1197">
+			<Template>units/thrace_black_cloak</Template>
+			<Player>1</Player>
+			<Position x="805.55933" z="495.39887"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
