@@ -19,8 +19,10 @@ echo "Cleaning bundled third-party dependencies..."
 
 echo "Cleaning build output..."
 
-# Remove workspaces/gcc
+# Remove workspaces/gcc if present
 rm -rf ./gcc
+# Remove workspaces/xcode3 if present
+rm -rf ./xcode3
 
 echo
 echo "Done. Try running update-workspaces.sh again now."
