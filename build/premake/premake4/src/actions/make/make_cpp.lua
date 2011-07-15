@@ -63,7 +63,7 @@
 		_p('')
 
 		-- target build rule
-		_p('$(TARGET): $(GCH) $(OBJECTS) $(LDDEPS) $(RESOURCES) | prelink')
+		_p('$(TARGET): $(OBJECTS) $(LDDEPS) $(RESOURCES) | prelink')
 		_p('\t@echo Linking %s', prj.name)
 		_p('\t$(SILENT) $(LINKCMD)')
 		_p('\t$(POSTBUILDCMDS)')
@@ -111,12 +111,12 @@
 		-- per-file rules
 		for _, file in ipairs(prj.files) do
 			if path.iscppfile(file) then
-				_p('$(OBJDIR)/%s.o: %s | prebuild', _MAKE.esc(path.getbasename(file)), _MAKE.esc(file))
+				_p('$(OBJDIR)/%s.o: %s $(GCH) | prebuild', _MAKE.esc(path.getbasename(file)), _MAKE.esc(file))
 				_p('\t@echo $(notdir $<)')
 				if (path.iscfile(file)) then
-					_p('\t$(SILENT) $(CC) $(CFLAGS) -o "$@" -c "$<"')
+					_p('\t$(SILENT) $(CC) $(CFLAGS) -MF $(OBJDIR)/%s.d -MT "$@" -o "$@" -c "$<"', _MAKE.esc(path.getbasename(file)))
 				else
-					_p('\t$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"')
+					_p('\t$(SILENT) $(CXX) $(CXXFLAGS) -MF $(OBJDIR)/%s.d -MT "$@" -o "$@" -c "$<"', _MAKE.esc(path.getbasename(file)))
 				end
 			elseif (path.getextension(file) == ".rc") then
 				_p('$(OBJDIR)/%s.res: %s', _MAKE.esc(path.getbasename(file)), _MAKE.esc(file))
