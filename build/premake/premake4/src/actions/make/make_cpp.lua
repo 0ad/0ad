@@ -26,7 +26,7 @@
 		-- list intermediate files
 		_p('OBJECTS := \\')
 		for _, file in ipairs(prj.files) do
-			if path.iscppfile(file) then
+			if path.iscppfile(file) or path.getextension(file) == ".asm" then
 				_p('\t$(OBJDIR)/%s.o \\', _MAKE.esc(path.getbasename(file)))
 			end
 		end
@@ -55,15 +55,15 @@
 		_p('')
 
 		if os.is("MacOSX") and prj.kind == "WindowedApp" then
-			_p('all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET) $(dir $(TARGETDIR))PkgInfo $(dir $(TARGETDIR))Info.plist')
+			_p('all: $(TARGET) $(dir $(TARGETDIR))PkgInfo $(dir $(TARGETDIR))Info.plist')
 		else
-			_p('all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)')
+			_p('all: $(TARGET)')
 		end
 		_p('\t@:')
 		_p('')
 
 		-- target build rule
-		_p('$(TARGET): $(GCH) $(OBJECTS) $(LDDEPS) $(RESOURCES)')
+		_p('$(TARGET): $(GCH) $(OBJECTS) $(LDDEPS) $(RESOURCES) | prelink')
 		_p('\t@echo Linking %s', prj.name)
 		_p('\t$(SILENT) $(LINKCMD)')
 		_p('\t$(POSTBUILDCMDS)')
@@ -97,7 +97,7 @@
 		_p('')
 
 		-- custom build step targets
-		_p('prebuild:')
+		_p('prebuild: $(TARGETDIR) $(OBJDIR)')
 		_p('\t$(PREBUILDCMDS)')
 		_p('')
 		
@@ -111,7 +111,7 @@
 		-- per-file rules
 		for _, file in ipairs(prj.files) do
 			if path.iscppfile(file) then
-				_p('$(OBJDIR)/%s.o: %s', _MAKE.esc(path.getbasename(file)), _MAKE.esc(file))
+				_p('$(OBJDIR)/%s.o: %s | prebuild', _MAKE.esc(path.getbasename(file)), _MAKE.esc(file))
 				_p('\t@echo $(notdir $<)')
 				if (path.iscfile(file)) then
 					_p('\t$(SILENT) $(CC) $(CFLAGS) -o "$@" -c "$<"')
@@ -122,9 +122,56 @@
 				_p('$(OBJDIR)/%s.res: %s', _MAKE.esc(path.getbasename(file)), _MAKE.esc(file))
 				_p('\t@echo $(notdir $<)')
 				_p('\t$(SILENT) windres $< -O coff -o "$@" $(RESFLAGS)')
+			elseif (path.getextension(file) == ".asm") then
+				_p('$(OBJDIR)/%s.o: %s', _MAKE.esc(path.getbasename(file)), _MAKE.esc(file))
+				_p('\t@echo $(notdir $<)')
+
+				local opts = ''
+				if os.is('windows') then
+					opts = ''
+				elseif os.is('macosx') then
+					opts = '-D OS_UNIX=1'
+				else
+					opts = '-D DONT_USE_UNDERLINE=1 -D OS_UNIX=1'
+				end
+
+				if not (prj.solution.nasmpath) then
+					prj.solution.nasmpath = 'nasm'				
+				end
+
+				_p('\t$(SILENT)'.._MAKE.esc(prj.solution.nasmpath)..' '..opts..' -i'.._MAKE.esc(path.getdirectory(file))..'/'..' -f '..
+				   _MAKE.esc(prj.solution.nasmformat)..' -o $@ $<\n\t')
+
+				_p('\t$(SILENT)'.._MAKE.esc(prj.solution.nasmpath)..' '..opts..' -i'.._MAKE.esc(path.getdirectory(file))..'/'..
+				   ' -M -o $@ $< >$(OBJDIR)/$(<F:%%.asm=%%.d)\n')
 			end
+			
 		end
-		_p('')
+		_p('')		
+
+		-- output for test-generation
+		-- test generation only works if all required parameters are set!
+		if(prj.solution.cxxtestpath and prj.cxxtestrootfile and prj.cxxtesthdrfiles and prj.cxxtestsrcfiles) then
+			
+			if not(prj.cxxtestrootoptions) then
+				prj.cxxtestrootoptions = ''
+			end
+			if not(prj.cxxtestoptions) then 
+				prj.cxxtestoptions = ''
+			end
+
+			_p(prj.cxxtestrootfile..': ')
+			_p('\t@echo $(notdir $<)')
+			_p('\t$(SILENT)'.._MAKE.esc(prj.solution.cxxtestpath)..' --root '..prj.cxxtestrootoptions..' -o '.._MAKE.esc(prj.cxxtestrootfile))	
+			_p('')	
+	
+			for i, file in ipairs(prj.cxxtesthdrfiles) do
+				_p('%s: %s', _MAKE.esc(prj.cxxtestsrcfiles[i]), _MAKE.esc(file))
+				_p('\t@echo $(notdir $<)')
+				_p('\t$(SILENT)'.._MAKE.esc(prj.solution.cxxtestpath)..' --part '..prj.cxxtestoptions..' -o ' .._MAKE.esc(prj.cxxtestsrcfiles[i])..' '.._MAKE.esc(file))
+			end
+			_p('')
+		end
 		
 		-- include the dependencies, built by GCC (with the -MMD flag)
 		_p('-include $(OBJECTS:%%.o=%%.d)')
@@ -174,6 +221,7 @@
 	function premake.gmake_cpp_config(cfg, cc)
 
 		_p('ifeq ($(config),%s)', _MAKE.esc(cfg.shortname))
+
 		
 		-- if this platform requires a special compiler or linker, list it now
 		local platform = cc.platforms[cfg.platform]
@@ -186,6 +234,9 @@
 		if platform.ar then
 			_p('  AR         = %s', platform.ar)
 		end
+		if not(cfg.gnuexternals) then
+			cfg.gnuexternal = { }		
+		end 
 
 		_p('  OBJDIR     = %s', _MAKE.esc(cfg.objectsdir))		
 		_p('  TARGETDIR  = %s', _MAKE.esc(cfg.buildtarget.directory))
@@ -200,7 +251,7 @@
 		_p('  CFLAGS    += $(CPPFLAGS) $(ARCH) %s', table.concat(table.join(cc.getcflags(cfg), cfg.buildoptions), " "))
 		_p('  CXXFLAGS  += $(CFLAGS) %s', table.concat(cc.getcxxflags(cfg), " "))
 		_p('  LDFLAGS   += %s', table.concat(table.join(cc.getldflags(cfg), cfg.linkoptions, cc.getlibdirflags(cfg)), " "))
-		_p('  LIBS      += %s', table.concat(cc.getlinkflags(cfg), " "))
+		_p('  LIBS      += %s %s', table.concat(cc.getlinkflags(cfg), " "), table.concat(cfg.gnuexternals, " "))
 		_p('  RESFLAGS  += $(DEFINES) $(INCLUDES) %s', table.concat(table.join(cc.getdefines(cfg.resdefines), cc.getincludedirs(cfg.resincludedirs), cfg.resoptions), " "))
 		_p('  LDDEPS    += %s', table.concat(_MAKE.esc(premake.getlinks(cfg, "siblings", "fullpath")), " "))
 		
@@ -213,7 +264,16 @@
 		else
 			-- this was $(TARGET) $(LDFLAGS) $(OBJECTS) ... but was having trouble linking to certain 
 			-- static libraries so $(OBJECTS) was moved up
-			_p('  LINKCMD    = $(%s) -o $(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES) $(ARCH) $(LIBS)', iif(cfg.language == "C", "CC", "CXX"))
+			local lddeps = ''
+
+			-- on osx, --start-group and --end-group aren't supported by ld
+			if os.is('macosx') then
+				lddeps = '$(LDDEPS)'
+			else
+				lddeps = '-Xlinker --start-group $(LDDEPS) -Xlinker --end-group'
+			end
+			_p('  LINKCMD    = $(%s) -o $(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES) $(ARCH) %s $(LIBS)', 
+			iif(cfg.language == "C", "CC", "CXX"), lddeps)
 		end
 		
 		_p('  define PREBUILDCMDS')
@@ -256,7 +316,7 @@
 
 	function _.pchrules(prj)
 		_p('ifneq (,$(PCH))')
-		_p('$(GCH): $(PCH)')
+		_p('$(GCH): $(PCH) | $(OBJDIR)')
 		_p('\t@echo $(notdir $<)')
 		_p('\t-$(SILENT) cp $< $(OBJDIR)')
 		if prj.language == "C" then

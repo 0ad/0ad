@@ -41,6 +41,42 @@
 			kind  = "list",
 			scope = "solution",
 		},
+
+		cxxtesthdrfiles =
+		{
+			kind = "filelist",
+			scope = "config",		
+		},
+
+		cxxtestsrcfiles = 
+		{
+			kind  = "filelist",
+			scope = "config",
+		},
+
+		cxxtestoptions =
+		{
+			kind  = "string",
+			scope = "config",
+		},
+
+		cxxtestpath =
+		{
+			kind  = "path",
+			scope = "solution", 			
+		},
+
+		cxxtestrootfile = 
+		{
+			kind  = "path",
+			scope = "config",
+		},
+
+		cxxtestrootoptions =
+		{
+			kind  = "string",
+			scope = "config",
+		},
 		
 		defines =
 		{
@@ -115,6 +151,12 @@
 				"3.5",
 				"4.0"
 			}
+		},
+
+		gnuexternals =
+		{
+			kind  = "list",
+			scope = "config",
 		},
 		
 		imagepath = 
@@ -218,6 +260,18 @@
 		{
 			kind  = "path",
 			scope = "container",
+		},
+
+		nasmformat =
+		{
+			kind  = "string",
+			scope = "solution",
+		},
+
+		nasmpath =
+		{
+			kind  = "path",
+			scope = "solution"
 		},
 		
 		objdir =

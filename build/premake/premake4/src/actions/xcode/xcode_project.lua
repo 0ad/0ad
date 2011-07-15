@@ -147,6 +147,7 @@
 		local tr = xcode.buildprjtree(prj)
 		xcode.Header(tr)
 		xcode.PBXBuildFile(tr)
+		xcode.PBXBuildRule(tr)
 		xcode.PBXContainerItemProxy(tr)
 		xcode.PBXFileReference(tr)
 		xcode.PBXFrameworksBuildPhase(tr)

@@ -4,14 +4,15 @@ local vs10_helpers = premake.vstudio.vs10_helpers
 	
 		
 	function vs10_helpers.remove_relative_path(file)
-		file = file:gsub("%.%.\\",'')
-		file = file:gsub("%.\\",'')
+		file = file:gsub("%.%./",'')
+		file = file:gsub("%./",'')
+		file = file:gsub("^source/",'')
 		return file
 	end
 		
 	function vs10_helpers.file_path(file)
 		file = vs10_helpers.remove_relative_path(file)
-		local path = string.find(file,'\\[%w%.%_%-]+$')
+		local path = string.find(file,'/[%w%.%_%-]+$')
 		if path then
 			return string.sub(file,1,path-1)
 		else
@@ -23,11 +24,11 @@ local vs10_helpers = premake.vstudio.vs10_helpers
 		local list={}
 		path = vs10_helpers.remove_relative_path(path)
 		if path then
-			for dir in string.gmatch(path,"[%w%-%_%.]+\\")do
+			for dir in string.gmatch(path,"[%w%-%_%.]+/")do
 				if #list == 0 then
 					list[1] = dir:sub(1,#dir-1)
 				else
-					list[#list +1] = list[#list] .."\\" ..dir:sub(1,#dir-1)				
+					list[#list +1] = list[#list] .."/" ..dir:sub(1,#dir-1)				
 				end
 			end		
 		end
@@ -59,8 +60,6 @@ local vs10_helpers = premake.vstudio.vs10_helpers
 	end
 	
 
-	
-	--also translates file paths from '/' to '\\'
 	function vs10_helpers.sort_input_files(files,sorted_container)
 		local types = 
 		{	
@@ -71,18 +70,18 @@ local vs10_helpers = premake.vstudio.vs10_helpers
 			cpp	= "ClCompile",
 			cxx	= "ClCompile",
 			cc	= "ClCompile",
-			rc  = "ResourceCompile"
+			rc  	= "ResourceCompile",
+			asm 	= "ClASM"
 		}
 
 		for _, current_file in ipairs(files) do
-			local translated_path = path.translate(current_file, '\\')
-			local ext = vs10_helpers.get_file_extension(translated_path)
+			local ext = vs10_helpers.get_file_extension(current_file)
 			if ext then
 				local type = types[ext]
 				if type then
-					table.insert(sorted_container[type],translated_path)
+					table.insert(sorted_container[type],current_file)
 				else
-					table.insert(sorted_container.None,translated_path)
+					table.insert(sorted_container.None,current_file)
 				end
 			end
 		end
@@ -388,16 +387,23 @@ local vs10_helpers = premake.vstudio.vs10_helpers
 	end
 
 
-	local function event_hooks(cfg)	
+	local function event_hooks(cfg, prj)	
 		if #cfg.postbuildcommands> 0 then
 		    _p(2,'<PostBuildEvent>')
 				_p(3,'<Command>%s</Command>',premake.esc(table.implode(cfg.postbuildcommands, "", "", "\r\n")))
 			_p(2,'</PostBuildEvent>')
 		end
 		
-		if #cfg.prebuildcommands> 0 then
+		if #cfg.prebuildcommands> 0 or prj.cxxtestrootfile then
 		    _p(2,'<PreBuildEvent>')
 				_p(3,'<Command>%s</Command>',premake.esc(table.implode(cfg.prebuildcommands, "", "", "\r\n")))
+				
+				-- test generation only works if all required parameters are set!
+				if(prj.solution.cxxtestpath and prj.cxxtestrootfile and prj.cxxtesthdrfiles and prj.cxxtestsrcfiles) then
+					local cxxtestpath = path.translate(path.getrelative(prj.location, prj.solution.cxxtestpath),"\\")
+					local cxxtestrootfile = path.translate(prj.cxxtestrootfile,"\\")
+					_p(3,'<Command>%s --root %s &gt; %s</Command>', cxxtestpath, prj.cxxtestrootoptions, cxxtestrootfile)
+				end	
 			_p(2,'</PreBuildEvent>')
 		end
 		
@@ -503,10 +509,8 @@ local vs10_helpers = premake.vstudio.vs10_helpers
 				resource_compile(cfg)
 				item_def_lib(cfg)
 				item_link(cfg)
-				event_hooks(cfg)
+				event_hooks(cfg, prj)
 			_p(1,'</ItemDefinitionGroup>')
-
-			
 		end
 	end
 	
@@ -518,34 +522,50 @@ local vs10_helpers = premake.vstudio.vs10_helpers
   --       <Project>{8fd826f8-3739-44e6-8cc8-997122e53b8d}</Project>
   --     </ProjectReference>
   --   </ItemGroup>
-	--
+
+	local function write_cxxtestgen_block(prj)
+		-- test generation only works if all required parameters are set!
+		if(prj.solution.cxxtestpath and prj.cxxtestrootfile and prj.cxxtesthdrfiles and prj.cxxtestsrcfiles) then
+			local cxxtestpath = path.translate(path.getrelative(prj.location, prj.solution.cxxtestpath),"\\")
+			_p(1,'<ItemGroup>')
+			for i, file in ipairs(prj.cxxtesthdrfiles) do
+				local cxxtesthdrfile = path.translate(file,"\\")
+				local cxxtestsrcfile = path.translate(prj.cxxtestsrcfiles[i],"\\")
+				_p(2,'<CustomBuild Include=\"%s\">', cxxtesthdrfile)
+				      _p(3,'<Message>Generating %s</Message>', path.getname(prj.cxxtestsrcfiles[i]))
+				      _p(3,'<Command>%s --part %s -o \"%s\" \"%s\"</Command>', 
+					cxxtestpath, prj.cxxtestoptions, cxxtestsrcfile, cxxtesthdrfile)
+				      _p(3,'<Outputs>%s;%%(Outputs)</Outputs>', cxxtestsrcfile)
+				_p(2,'</CustomBuild>')
+			end
+			_p(1,'</ItemGroup>')
+		end	
+	end
 	
 	local function write_file_type_block(files,group_type)
 		if #files > 0  then
 			_p(1,'<ItemGroup>')
 			for _, current_file in ipairs(files) do
-				_p(2,'<%s Include=\"%s\" />', group_type,current_file)
+				_p(2,'<%s Include=\"%s\" />', group_type,path.translate(current_file,"\\"))
 			end
 			_p(1,'</ItemGroup>')
 		end
 	end
 	
 	local function write_file_compile_block(files,prj,configs)
-	
 		if #files > 0  then	
-		
 			local config_mappings = {}
 			for _, cfginfo in ipairs(configs) do
 				local cfg = premake.getconfig(prj, cfginfo.src_buildcfg, cfginfo.src_platform)
 				if cfg.pchheader and cfg.pchsource and not cfg.flags.NoPCH then
-					config_mappings[cfginfo] = path.translate(cfg.pchsource, "\\")
+					config_mappings[cfginfo] = cfg.pchsource
 				end
 			end
 
 			
 			_p(1,'<ItemGroup>')
 			for _, current_file in ipairs(files) do
-				_p(2,'<ClCompile Include=\"%s\">', current_file)
+				_p(2,'<ClCompile Include=\"%s\">', path.translate(current_file, "\\"))
 				for _, cfginfo in ipairs(configs) do
 					if config_mappings[cfginfo] and current_file == config_mappings[cfginfo] then 
 							_p(3,'<PrecompiledHeader '.. if_config_and_platform() .. '>Create</PrecompiledHeader>'
@@ -559,6 +579,33 @@ local vs10_helpers = premake.vstudio.vs10_helpers
 			_p(1,'</ItemGroup>')
 		end
 	end
+
+	local function write_nasm_asm_block(files, prj, configs)
+		-- set defaults if required parameters are not set
+		if not (prj.solution.nasmformat) then
+			prj.solution.nasmformat = 'win32'
+		end
+
+		if not (prj.solution.nasmpath) then
+			prj.solution.nasmpath = 'nasm'				
+		end
+
+		if #files > 0 then
+			_p(1,'<ItemGroup>')
+			local nasmpath = path.translate(path.getrelative(prj.location, prj.solution.nasmpath),"\\")
+			for _, current_file in ipairs(files) do
+				_p(2,'<CustomBuild Include=\"%s\">', path.translate(current_file,"\\"))
+					_p(3,'<Message>Assembling %%(FullPath)</Message>')
+					_p(3,'<Command>%s -i %s -f %s \"%%(FullPath)\" -o \"$(IntDir)%%(Filename).obj\"</Command>', 
+					nasmpath, 
+					path.translate(path.getdirectory(current_file),"\\").."\\", 
+					prj.solution.nasmformat)
+					_p(3,'<Outputs>$(IntDir)%%(Filename).obj;%%(Outputs)</Outputs>')
+				_p(2,'</CustomBuild>')
+			end
+			_p(1,'</ItemGroup>')
+		end
+	end
 	
 	
 	local function vcxproj_files(prj)
@@ -566,14 +613,17 @@ local vs10_helpers = premake.vstudio.vs10_helpers
 		{
 			ClCompile	={},
 			ClInclude	={},
+			ClASM	={},
 			None		={},
 			ResourceCompile ={}
 		}
 		
 		cfg = premake.getconfig(prj)
 		vs10_helpers.sort_input_files(cfg.files,sorted)
+		write_cxxtestgen_block(prj)
 		write_file_type_block(sorted.ClInclude,"ClInclude")
 		write_file_compile_block(sorted.ClCompile,prj,prj.solution.vstudio_configs)
+		write_nasm_asm_block(sorted.ClASM, prj, prj.solution.vstudion_configs)
 		write_file_type_block(sorted.None,'None')
 		write_file_type_block(sorted.ResourceCompile,'ResourceCompile')
 
@@ -587,7 +637,7 @@ local vs10_helpers = premake.vstudio.vs10_helpers
 		if #directories >0 then
 			_p(1,'<ItemGroup>')
 			for _, dir in pairs(directories) do
-				_p(2,'<Filter Include="%s">',dir)
+				_p(2,'<Filter Include="%s">',path.translate(dir,"\\"))
 					_p(3,'<UniqueIdentifier>{%s}</UniqueIdentifier>',os.uuid())
 				_p(2,'</Filter>')
 			end
@@ -602,7 +652,7 @@ local vs10_helpers = premake.vstudio.vs10_helpers
 				local path_to_file = vs10_helpers.file_path(current_file)
 				if path_to_file then
 					_p(2,'<%s Include=\"%s\">', group_type,path.translate(current_file, "\\"))
-						_p(3,'<Filter>%s</Filter>',path_to_file)
+						_p(3,'<Filter>%s</Filter>',path.translate(path_to_file,"\\"))
 					_p(2,'</%s>',group_type)
 				else
 					_p(2,'<%s Include=\"%s\" />', group_type,path.translate(current_file, "\\"))
@@ -620,6 +670,7 @@ local vs10_helpers = premake.vstudio.vs10_helpers
 		{
 			ClCompile	={},
 			ClInclude	={},
+			ClASM	={},
 			None		={},
 			ResourceCompile ={}
 		}
@@ -633,6 +684,8 @@ local vs10_helpers = premake.vstudio.vs10_helpers
 			write_filter_includes(sorted)
 			write_file_filter_block(sorted.ClInclude,"ClInclude")
 			write_file_filter_block(sorted.ClCompile,"ClCompile")
+			write_file_filter_block(prj.cxxtesthdrfiles,"CustomBuild")
+			write_file_filter_block(sorted.ClASM,"ClASM")
 			write_file_filter_block(sorted.None,"None")
 			write_file_filter_block(sorted.ResourceCompile,"ResourceCompile")
 		_p('</Project>')

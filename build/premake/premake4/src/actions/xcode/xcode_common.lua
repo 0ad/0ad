@@ -32,6 +32,7 @@
 			[".nib"] = "Resources",
 			[".xib"] = "Resources",
 			[".icns"] = "Resources",
+			[".asm"] = "Sources"
 		}
 		return categories[path.getextension(node.name)]
 	end
@@ -85,6 +86,7 @@
 			[".strings"]   = "text.plist.strings",
 			[".xib"]       = "file.xib",
 			[".icns"]      = "image.icns",
+			[".asm"]       = "sourcecode.asm",
 		}
 		return types[path.getextension(node.path)] or "text"
 	end
@@ -263,6 +265,25 @@
 	end
 
 
+	function xcode.PBXBuildRule(tr)
+		if not (tr.project.solution.nasmpath) then
+			tr.project.solution.nasmpath = 'nasm'				
+		end
+		_p('/* Begin PBXBuildRule section */')
+			_p(2,'28AD1E6E1336798800207177 /* PBXBuildRule */ = {')
+				_p(3,'isa = PBXBuildRule;')
+				_p(3,'compilerSpec = com.apple.compilers.proxy.script;')
+				_p(3,'fileType = sourcecode.asm;')
+				_p(3,'isEditable = 1;')
+				_p(3,'outputFiles = (')
+					_p(4,'"$(DERIVED_FILES_DIR)/$(INPUT_FILE_BASE).o",')
+				_p(3,');')
+				_p(3,'script = "%s -D OS_UNIX=1 -i${INPUT_FILE_DIR}/ -f %s ${INPUT_FILE_PATH} -o ${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.o";', tr.project.solution.nasmpath, tr.project.solution.nasmformat)
+			_p(2,'};')
+		_p('/* End PBXBuildRule section */')
+	end
+
+
 	function xcode.PBXContainerItemProxy(tr)
 		if #tr.projects.children > 0 then
 			_p('/* Begin PBXContainerItemProxy section */')
@@ -432,6 +453,7 @@
 			end
 			_p(3,');')
 			_p(3,'buildRules = (')
+			_p(4,'28AD1E6E1336798800207177 /* PBXBuildRule */,')
 			_p(3,');')
 			
 			_p(3,'dependencies = (')

@@ -227,6 +227,37 @@
 					end
 				end
 			end
+
+			if (path.getextension(fname) == ".asm") then
+				for _, cfginfo in ipairs(prj.solution.vstudio_configs) do
+					if cfginfo.isreal then
+
+						-- set defaults if required parameters are not set
+						if not (prj.solution.nasmformat) then
+							prj.solution.nasmformat = 'win32'
+						end
+						if not (prj.solution.nasmpath) then
+							prj.solution.nasmpath = 'nasm'				
+						end
+
+						local nasmpath = path.translate(path.getrelative(prj.location, prj.solution.nasmpath), "\\")
+						local command = nasmpath.." -i "..path.translate(path.getdirectory(fname), "\\").."\\ -f "..prj.solution.nasmformat..
+							" &quot;$(InputPath)&quot; -o &quot;$(IntDir)\$(InputName).obj&quot;"
+
+						output(indent, "\t<FileConfiguration")
+						attrib(indent, "\tName", cfginfo.name)
+						output(indent, "\t\t>")
+						output(indent, "\t\t<Tool")
+						attrib(indent, "\t\tName", "VCCustomBuildTool")
+						attrib(indent, "\t\tDescription", "Assembling $(InputPath)")
+						attrib(indent, "\t\tCommandLine", command)
+						attrib(indent, "\t\tOutputs", "$(IntDir)\$(InputName).obj")
+						output(indent, "\t\t/>")
+						output(indent, "\t</FileConfiguration>")
+					end
+				end
+			end
+
 			output(indent, "</File>")
 		end
 	end
