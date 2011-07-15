@@ -362,6 +362,17 @@ function project_add_contents(source_root, rel_source_dirs, rel_include_dirs, ex
 end
 
 
+-- Add command-line options to set up the manifest dependencies for Windows
+-- (See lib/sysdep/os/win/manifest.cpp)
+function project_add_manifest()
+	linkoptions { "\"/manifestdependency:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='X86' publicKeyToken='6595b64144ccf1df'\"" }
+	configuration "Debug"
+		linkoptions { "\"/manifestdependency:type='win32' name='Microsoft.VC80.DebugCRT' version='8.0.50727.4053' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'\"" }
+	configuration "Release"
+		linkoptions { "\"/manifestdependency:type='win32' name='Microsoft.VC80.CRT' version='8.0.50727.4053' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'\"" }
+	configuration { }
+end
+
 --------------------------------------------------------------------------------
 -- engine static libraries
 --------------------------------------------------------------------------------
@@ -655,17 +666,9 @@ function setup_main_exe ()
 
 			-- allow manual unload of delay-loaded DLLs
 			"/DELAY:UNLOAD",
-
-			-- see manifest.cpp
-			"\"/manifestdependency:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='X86' publicKeyToken='6595b64144ccf1df'\""
 		}
 
-		-- see manifest.cpp
-		configuration "Debug"
-			linkoptions { "\"/manifestdependency:type='win32' name='Microsoft.VC80.DebugCRT' version='8.0.50727.4053' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'\"" }
-		configuration "Release"
-			linkoptions { "\"/manifestdependency:type='win32' name='Microsoft.VC80.CRT' version='8.0.50727.4053' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'\"" }
-		configuration { }
+		project_add_manifest()
 
 	elseif os.is("linux") then
 
@@ -1064,6 +1067,8 @@ function setup_tests()
 
 		-- see wstartup.h
 		linkoptions { "/INCLUDE:_wstartup_InitAndRegisterShutdown" }
+
+		project_add_manifest()
 
 	elseif os.is("linux") then
 
