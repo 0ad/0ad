@@ -242,7 +242,7 @@
 
 						local nasmpath = path.translate(path.getrelative(prj.location, prj.solution.nasmpath), "\\")
 						local command = nasmpath.." -i "..path.translate(path.getdirectory(fname), "\\").."\\ -f "..prj.solution.nasmformat..
-							" &quot;$(InputPath)&quot; -o &quot;$(IntDir)\$(InputName).obj&quot;"
+							" &quot;$(InputPath)&quot; -o &quot;$(IntDir)\\$(InputName).obj&quot;"
 
 						output(indent, "\t<FileConfiguration")
 						attrib(indent, "\tName", cfginfo.name)
@@ -251,7 +251,7 @@
 						attrib(indent, "\t\tName", "VCCustomBuildTool")
 						attrib(indent, "\t\tDescription", "Assembling $(InputPath)")
 						attrib(indent, "\t\tCommandLine", command)
-						attrib(indent, "\t\tOutputs", "$(IntDir)\$(InputName).obj")
+						attrib(indent, "\t\tOutputs", "$(IntDir)\\$(InputName).obj")
 						output(indent, "\t\t/>")
 						output(indent, "\t</FileConfiguration>")
 					end
