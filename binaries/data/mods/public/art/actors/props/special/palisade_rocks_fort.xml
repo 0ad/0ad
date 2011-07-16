@@ -1,14 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="palisade rocks fort">
-      <animations/>
+      <animations>
+        <animation event="0.5" load="0" name="melee" speed="100"/>
+      </animations>
       <mesh>props/palisade_rocks_fort.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+      </props>
       <texture>props/palisade_main.png</texture>
     </variant>
   </group>
-
 </actor>
