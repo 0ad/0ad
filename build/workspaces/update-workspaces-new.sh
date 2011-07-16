@@ -50,7 +50,7 @@ echo
 # Build/update bundled external libraries
 (cd ../../libraries/fcollada/src && make ${JOBS}) || die "FCollada build failed"
 echo
-(cd ../../libraries/spidermonkey-tip && JOBS=${JOBS} ./build.sh) || die "SpiderMonkey build failed"
+(cd ../../libraries/spidermonkey && JOBS=${JOBS} ./build.sh) || die "SpiderMonkey build failed"
 echo
 if [ "$with_system_nvtt" = "false" ]; then
   (cd ../../libraries/nvtt && JOBS=${JOBS} ./build.sh) || die "NVTT build failed"

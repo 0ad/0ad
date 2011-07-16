@@ -125,7 +125,7 @@ JSBool JSI_Vector3D::getProperty(JSContext* cx, JSObject* obj, jsid id, jsval* v
 	return JS_FALSE;
 }
 
-JSBool JSI_Vector3D::setProperty(JSContext* cx, JSObject* obj, jsid id, jsval* vp)
+JSBool JSI_Vector3D::setProperty(JSContext* cx, JSObject* obj, jsid id, JSBool UNUSED(strict), jsval* vp)
 {
 	if (!JSID_IS_INT(id))
 		return JS_TRUE;

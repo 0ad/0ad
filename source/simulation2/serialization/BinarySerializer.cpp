@@ -25,10 +25,7 @@
 #include "ps/CLogger.h"
 
 #include "scriptinterface/ScriptInterface.h"
-
-#define signbit std::signbit
-#include "js/jsvalue.h" // for JSDOUBLE_IS_INT32
-#undef signbit
+#include "scriptinterface/ScriptExtraHeaders.h" // for JSDOUBLE_IS_INT32
 
 CBinarySerializerScriptImpl::CBinarySerializerScriptImpl(ScriptInterface& scriptInterface, ISerializer& serializer) :
 	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_Rooter(m_ScriptInterface),
@@ -188,8 +185,12 @@ void CBinarySerializerScriptImpl::HandleScriptVal(jsval val)
 
 void CBinarySerializerScriptImpl::ScriptString(const char* name, JSString* string)
 {
-	jschar* chars = JS_GetStringChars(string);
-	size_t length = JS_GetStringLength(string);
+	JSContext* cx = m_ScriptInterface.GetContext();
+	size_t length;
+	const jschar* chars = JS_GetStringCharsAndLength(cx, string, &length);
+
+	if (!chars)
+		throw PSERROR_Serialize_ScriptError("JS_GetStringCharsAndLength failed");
 
 #if BYTE_ORDER != LITTLE_ENDIAN
 #error TODO: probably need to convert JS strings to little-endian

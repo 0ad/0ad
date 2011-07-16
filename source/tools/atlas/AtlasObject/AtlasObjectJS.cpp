@@ -71,7 +71,7 @@ static AtSmartPtr<AtNode> ConvertNode(JSContext* cx, jsval node)
 		if (!str)
 			return obj; // error
 		size_t valueLen;
-		const jschar* valueChars = JS_GetStringCharsAndLength(str, &valueLen);
+		const jschar* valueChars = JS_GetStringCharsAndLength(cx, str, &valueLen);
 		if (!valueChars)
 			return obj; // error
 		wxString valueWx(reinterpret_cast<const char*>(valueChars), wxMBConvUTF16(), valueLen*2);
@@ -111,9 +111,9 @@ static AtSmartPtr<AtNode> ConvertNode(JSContext* cx, jsval node)
 			continue; // ignore integer properties
 
 		JSString* name = JSVAL_TO_STRING(val);
-		size_t len = JS_GetStringLength(name);
-		jschar* chars = JS_GetStringChars(name);
-		wxString nameWx(reinterpret_cast<char*>(chars), wxMBConvUTF16(), len*2);
+		size_t len;
+		const jschar* chars = JS_GetStringCharsAndLength(cx, name, &len);
+		wxString nameWx(reinterpret_cast<const char*>(chars), wxMBConvUTF16(), len*2);
 		std::string nameStr(nameWx.ToUTF8().data());
 
 		jsval vp;

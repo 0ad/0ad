@@ -18,6 +18,7 @@
 #include "precompiled.h"
 
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptExtraHeaders.h" // for typed arrays
 
 #include "maths/Fixed.h"
 #include "maths/FixedVector2D.h"
@@ -28,12 +29,6 @@
 #include "simulation2/helpers/Grid.h"
 #include "simulation2/system/IComponent.h"
 #include "simulation2/system/ParamNode.h"
-
-#include "js/jsapi.h"
-
-#define signbit std::signbit
-#include "js/jstypedarray.h"
-#undef signbit
 
 #define FAIL(msg) STMT(JS_ReportError(cx, msg); return false)
 

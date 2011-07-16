@@ -407,7 +407,7 @@ private:
 		
 		return( JS_TRUE );
 	}
-	static JSBool JSSetProperty( JSContext* cx, JSObject* obj, jsid id, jsval* vp )
+	static JSBool JSSetProperty( JSContext* cx, JSObject* obj, jsid id, JSBool UNUSED(strict), jsval* vp )
 	{
 		T* Instance = ToNative<T>( cx, obj );
 		if( !Instance )

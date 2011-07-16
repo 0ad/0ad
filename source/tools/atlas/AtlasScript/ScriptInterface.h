@@ -31,7 +31,38 @@
 # define XP_UNIX
 #endif // (we don't support XP_OS2 or XP_BEOS)
 
+#ifdef __GNUC__
+# define GCC_VERSION (__GNUC__*100 + __GNUC_MINOR__)
+#else
+# define GCC_VERSION 0
+#endif
+
+#ifdef _MSC_VER
+# define MSC_VERSION _MSC_VER
+#else
+# define MSC_VERSION 0
+#endif
+
+// Ignore some harmless warnings triggered by jsapi.h
+#if GCC_VERSION >= 402 // (older GCCs don't support this pragma)
+# pragma GCC diagnostic ignored "-Wunused-parameter"
+# pragma GCC diagnostic ignored "-Wredundant-decls"
+#endif
+#if MSC_VERSION
+# pragma warning(push)
+# pragma warning(disable:4480) // "nonstandard extension used: specifying underlying type for enum"
+# pragma warning(disable:4100) // "unreferenced formal parameter"
+#endif
+
 #include "js/jsapi.h"
+
+#if MSC_VERSION
+# pragma warning(pop)
+#endif
+#if GCC_VERSION >= 402
+# pragma GCC diagnostic warning "-Wunused-parameter"
+# pragma GCC diagnostic warning "-Wredundant-decls"
+#endif
 
 class wxString;
 

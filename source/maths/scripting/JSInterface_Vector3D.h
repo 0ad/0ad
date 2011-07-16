@@ -57,7 +57,7 @@ namespace JSI_Vector3D
 	extern JSFunctionSpec JSI_methods[];
 
 	JSBool getProperty(JSContext* cx, JSObject* obj, jsid id, jsval* vp);
-	JSBool setProperty(JSContext* cx, JSObject* obj, jsid id, jsval* vp);
+	JSBool setProperty(JSContext* cx, JSObject* obj, jsid id, JSBool strict, jsval* vp);
 	void finalize(JSContext* cx, JSObject* obj);
 	JSBool construct(JSContext* cx, uintN argc, jsval* vp);
 	void init();

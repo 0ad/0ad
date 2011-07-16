@@ -60,7 +60,7 @@ namespace ConfigNamespace_JS
 		return JS_TRUE;
 	}
 
-	JSBool SetProperty(JSContext* cx, JSObject* obj, jsid id, jsval* vp)
+	JSBool SetProperty(JSContext* cx, JSObject* obj, jsid id, JSBool UNUSED(strict), jsval* vp)
 	{
 		EConfigNamespace cfgNs = GET_NS_PRIVATE(cx, obj);
 		if (cfgNs < 0 || cfgNs >= CFG_LAST)
@@ -169,7 +169,7 @@ namespace ConfigDB_JS
 	JSClass Class = {
 		"ConfigDB", 0,
 		JS_PropertyStub, JS_PropertyStub,
-		JS_PropertyStub, JS_PropertyStub,
+		JS_PropertyStub, JS_StrictPropertyStub,
 		JS_EnumerateStub, JS_ResolveStub,
 		JS_ConvertStub, JS_FinalizeStub
 	};

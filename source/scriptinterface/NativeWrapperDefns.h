@@ -72,11 +72,18 @@ struct ScriptInterface_NativeMethodWrapper<void, TC> {
 };
 
 // Fast natives don't trigger the hook we use for profiling, so explicitly
-// notify the profiler when these functions are being called
+// notify the profiler when these functions are being called.
+// ScriptInterface_impl::Register stores the name in a reserved slot.
+// (TODO: this doesn't work for functions registered via InterfaceScripted.h.
+// Maybe we should do some interned JS_GetFunctionId thing.)
 #if ENABLE_SCRIPT_PROFILING
 #define SCRIPT_PROFILE \
 	ENSURE(JSVAL_IS_OBJECT(JS_CALLEE(cx, vp)) && JS_ObjectIsFunction(cx, JSVAL_TO_OBJECT(JS_CALLEE(cx, vp)))); \
-	const char* name = JS_GetFunctionName(JS_ValueToFunction(cx, JS_CALLEE(cx, vp))); /* native function so ValueToFunction is safe; this makes unsafe lifetime assumptions */ \
+	const char* name = "(unknown)"; \
+	jsval nameval; \
+	if (JS_GetReservedSlot(cx, JSVAL_TO_OBJECT(JS_CALLEE(cx, vp)), 0, &nameval) \
+		&& !JSVAL_IS_VOID(nameval)) \
+		name = static_cast<const char*>(JSVAL_TO_PRIVATE(nameval)); \
 	CProfileSampleScript profile(name);
 #else
 #define SCRIPT_PROFILE

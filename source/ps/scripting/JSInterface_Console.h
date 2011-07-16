@@ -35,7 +35,7 @@ namespace JSI_Console
 	extern JSFunctionSpec JSI_methods[];
 
 	JSBool getProperty(JSContext* cx, JSObject* obj, jsid id, jsval* vp);
-	JSBool setProperty(JSContext* cx, JSObject* obj, jsid id, jsval* vp);
+	JSBool setProperty(JSContext* cx, JSObject* obj, jsid id, JSBool strict, jsval* vp);
 
 	JSBool getConsole(JSContext* context, JSObject* obj, jsid id, jsval* vp);
 

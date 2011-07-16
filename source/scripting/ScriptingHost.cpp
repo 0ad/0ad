@@ -208,7 +208,10 @@ CStrW ScriptingHost::ValueToUCString( const jsval value )
 	if (string == NULL)
 		throw PSERROR_Scripting_ConversionFailed();
 
-	jschar *strptr=JS_GetStringChars(string);
-	size_t length=JS_GetStringLength(string);
+	size_t length;
+	const jschar *strptr = JS_GetStringCharsAndLength(m_Context, string, &length);
+	if (!strptr)
+		throw PSERROR_Scripting_ConversionFailed();
+
 	return std::wstring(strptr, strptr+length);
 }

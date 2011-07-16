@@ -62,7 +62,7 @@ JSBool JSI_Console::getProperty(JSContext* UNUSED(cx), JSObject* UNUSED(obj), js
 	}
 }
 
-JSBool JSI_Console::setProperty(JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsid id, jsval* vp)
+JSBool JSI_Console::setProperty(JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsid id, JSBool UNUSED(strict), jsval* vp)
 {
 	if (!JSID_IS_INT(id))
 		return JS_TRUE;

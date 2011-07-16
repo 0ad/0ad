@@ -26,7 +26,7 @@ namespace JSI_IGUIObject
 	extern JSPropertySpec JSI_props[];
 	extern JSFunctionSpec JSI_methods[];
 	JSBool getProperty(JSContext* cx, JSObject* obj, jsid id, jsval* vp);
-	JSBool setProperty(JSContext* cx, JSObject* obj, jsid id, jsval* vp);
+	JSBool setProperty(JSContext* cx, JSObject* obj, jsid id, JSBool strict, jsval* vp);
 	JSBool construct(JSContext* cx, uintN argc, jsval* vp);
 	JSBool toString(JSContext* cx, uintN argc, jsval* vp);
 	JSBool focus(JSContext* cx, uintN argc, jsval* vp);

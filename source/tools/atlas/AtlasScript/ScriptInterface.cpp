@@ -23,12 +23,6 @@
 # include <cxxabi.h>
 #endif
 
-#include "js/jsapi.h"
-
-#ifdef _WIN32
-# pragma warning(disable: 4996) // avoid complaints about deprecated localtime
-#endif
-
 #include "wx/wx.h"
 
 #include "GameInterface/Shareable.h"
@@ -143,8 +137,11 @@ namespace
 			JSString* ret = JS_ValueToString(cx, v);
 			if (! ret)
 				FAIL("Argument must be convertible to a string");
-			jschar* ch = JS_GetStringChars(ret);
-			out = std::wstring(ch, ch+JS_GetStringLength(ret));
+			size_t len;
+			const jschar* ch = JS_GetStringCharsAndLength(cx, ret, &len);
+			if (! ch)
+				FAIL("JS_GetStringsCharsAndLength failed"); // probably out of memory
+			out = std::wstring(ch, ch + len);
 			return true;
 		}
 	};
@@ -156,10 +153,13 @@ namespace
 			JSString* ret = JS_ValueToString(cx, v);
 			if (! ret)
 				FAIL("Argument must be convertible to a string");
+			size_t len = JS_GetStringEncodingLength(cx, ret);
+			if (len == (size_t)-1)
+				FAIL("JS_GetStringEncodingLength failed");
 			char* ch = JS_EncodeString(cx, ret); // chops off high byte of each jschar
 			if (! ch)
-				FAIL("JS_EncodeString failed"); // out of memory
-			out = std::string(ch, ch + JS_GetStringLength(ret));
+				FAIL("JS_EncodeString failed"); // probably out of memory
+			out = std::string(ch, ch + len);
 			JS_free(cx, ch);
 			return true;
 		}
@@ -170,10 +170,13 @@ namespace
 		static bool Convert(JSContext* cx, jsval v, wxString& out)
 		{
 			JSString* ret = JS_ValueToString(cx, v);
+			size_t len;
 			if (! ret)
 				FAIL("Argument must be convertible to a string");
-			jschar* ch = JS_GetStringChars(ret);
-			out = wxString((const char*)ch, wxMBConvUTF16(), (size_t)(JS_GetStringLength(ret)*2));
+			const jschar* ch = JS_GetStringCharsAndLength(cx, ret, &len);
+			if (! ch)
+				FAIL("JS_GetStringsCharsAndLength failed"); // probably out of memory
+			out = wxString((const char*)ch, wxMBConvUTF16(), len*2);
 			return true;
 		}
 	};
@@ -371,7 +374,7 @@ namespace
 {
 	JSClass global_class = {
 		"global", JSCLASS_GLOBAL_FLAGS,
-		JS_PropertyStub, JS_PropertyStub, JS_PropertyStub, JS_PropertyStub,
+		JS_PropertyStub, JS_PropertyStub, JS_PropertyStub, JS_StrictPropertyStub,
 		JS_EnumerateStub, JS_ResolveStub, JS_ConvertStub, JS_FinalizeStub,
 		NULL, NULL, NULL, NULL,
 		NULL, NULL, NULL, NULL
@@ -416,9 +419,14 @@ namespace
 
 		JSString* code = JSVAL_TO_STRING(JS_ARGV(cx, vp)[1]);
 		
+		size_t len;
+		const jschar* ch = JS_GetStringCharsAndLength(cx, code, &len);
+		if (!ch)
+			return JS_FALSE;
+
 		jsval rval = JSVAL_VOID;
 		if (!AtlasScriptInterface_impl::LoadScript(cx,
-				JS_GetStringChars(code), (uintN)JS_GetStringLength(code),
+				ch, (uintN)len,
 				name.c_str(), &rval))
 			return JS_FALSE;
 
@@ -465,7 +473,7 @@ AtlasScriptInterface_impl::AtlasScriptInterface_impl()
 
 	JS_SetVersion(m_cx, JSVERSION_LATEST);
 
-	m_glob = JS_NewGlobalObject(m_cx, &global_class);
+	m_glob = JS_NewCompartmentAndGlobalObject(m_cx, &global_class, NULL);
 	JS_InitStandardClasses(m_cx, m_glob);
 	
 	JS_DefineProperty(m_cx, m_glob, "global", OBJECT_TO_JSVAL(m_glob), NULL, NULL, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);

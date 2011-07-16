@@ -146,7 +146,7 @@ class IGUIObject
 
 	// Allow getProperty to access things like GetParent()
 	friend JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsid id, jsval* vp);
-	friend JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsid id, jsval* vp);
+	friend JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsid id, JSBool strict, jsval* vp);
 
 public:
 	IGUIObject();

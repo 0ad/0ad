@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,7 +47,26 @@
 # endif
 #endif
 
+// Ignore some harmless warnings triggered by jsapi.h
+#if GCC_VERSION >= 402 // (older GCCs don't support this pragma)
+# pragma GCC diagnostic ignored "-Wunused-parameter"
+# pragma GCC diagnostic ignored "-Wredundant-decls"
+#endif
+#if MSC_VERSION
+# pragma warning(push)
+# pragma warning(disable:4480) // "nonstandard extension used: specifying underlying type for enum"
+# pragma warning(disable:4100) // "unreferenced formal parameter"
+#endif
+
 #include "js/jsapi.h"
+
+#if MSC_VERSION
+# pragma warning(pop)
+#endif
+#if GCC_VERSION >= 402
+# pragma GCC diagnostic warning "-Wunused-parameter"
+# pragma GCC diagnostic warning "-Wredundant-decls"
+#endif
 
 #if JS_VERSION != 185
 #error Your compiler is trying to use an incorrect version of the SpiderMonkey library.

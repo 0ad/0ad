@@ -24,7 +24,7 @@
 JSClass JSI_GUISize::JSI_class = {
 	"GUISize", 0,
 		JS_PropertyStub, JS_PropertyStub,
-		JS_PropertyStub, JS_PropertyStub,
+		JS_PropertyStub, JS_StrictPropertyStub,
 		JS_EnumerateStub, JS_ResolveStub,
 		JS_ConvertStub, JS_FinalizeStub,
 		NULL, NULL, NULL, JSI_GUISize::construct
@@ -137,7 +137,7 @@ JSBool JSI_GUISize::toString(JSContext* cx, uintN argc, jsval* vp)
 JSClass JSI_GUIColor::JSI_class = {
 	"GUIColor", 0,
 		JS_PropertyStub, JS_PropertyStub,
-		JS_PropertyStub, JS_PropertyStub,
+		JS_PropertyStub, JS_StrictPropertyStub,
 		JS_EnumerateStub, JS_ResolveStub,
 		JS_ConvertStub, JS_FinalizeStub,
 		NULL, NULL, NULL, JSI_GUIColor::construct
@@ -214,7 +214,7 @@ JSBool JSI_GUIColor::toString(JSContext* cx, uintN argc, jsval* vp)
 JSClass JSI_GUIMouse::JSI_class = {
 	"GUIMouse", 0,
 		JS_PropertyStub, JS_PropertyStub,
-		JS_PropertyStub, JS_PropertyStub,
+		JS_PropertyStub, JS_StrictPropertyStub,
 		JS_EnumerateStub, JS_ResolveStub,
 		JS_ConvertStub, JS_FinalizeStub,
 		NULL, NULL, NULL, JSI_GUIMouse::construct

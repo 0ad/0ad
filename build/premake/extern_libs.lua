@@ -190,13 +190,13 @@ extern_lib_defs = {
 			else
 				include_dir = "include-unix"
 			end
-			tinsert(package.config["Debug"  ].includepaths, libraries_dir.."spidermonkey-tip/"..include_dir.."/debug")
-			tinsert(package.config["Testing"].includepaths, libraries_dir.."spidermonkey-tip/"..include_dir.."/debug")
-			tinsert(package.config["Release"].includepaths, libraries_dir.."spidermonkey-tip/"..include_dir.."/release")
-			tinsert(package.libpaths, libraries_dir.."spidermonkey-tip/lib")
-			tinsert(package.config["Debug"  ].links, "mozjs-ps-debug")
-			tinsert(package.config["Testing"].links, "mozjs-ps-release")
-			tinsert(package.config["Release"].links, "mozjs-ps-release")
+			tinsert(package.config["Debug"  ].includepaths, libraries_dir.."spidermonkey/"..include_dir)
+			tinsert(package.config["Testing"].includepaths, libraries_dir.."spidermonkey/"..include_dir)
+			tinsert(package.config["Release"].includepaths, libraries_dir.."spidermonkey/"..include_dir)
+			tinsert(package.libpaths, libraries_dir.."spidermonkey/lib")
+			tinsert(package.config["Debug"  ].links, "mozjs185-ps-debug")
+			tinsert(package.config["Testing"].links, "mozjs185-ps-release")
+			tinsert(package.config["Release"].links, "mozjs185-ps-release")
 		end,
 	},
 	valgrind = {

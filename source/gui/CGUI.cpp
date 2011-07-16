@@ -325,7 +325,7 @@ static JSBool GetGlobalProperty(JSContext* cx, JSObject* UNUSED(obj), jsid id, j
 	return JS_GetPropertyById(cx, g_ScriptingHost.GetGlobalObject(), id, vp);
 }
 
-static JSBool SetGlobalProperty(JSContext* cx, JSObject* UNUSED(obj), jsid id, jsval* vp)
+static JSBool SetGlobalProperty(JSContext* cx, JSObject* UNUSED(obj), jsid id, JSBool UNUSED(strict), jsval* vp)
 {
 	return JS_SetPropertyById(cx, g_ScriptingHost.GetGlobalObject(), id, vp);
 }
@@ -376,7 +376,7 @@ static JSBool ResolveGlobalProperty(JSContext* cx, JSObject* obj, jsid id, uintN
 
 static JSClass page_global_class = {
 	"page_global", JSCLASS_GLOBAL_FLAGS | JSCLASS_NEW_RESOLVE,
-	JS_PropertyStub, JS_PropertyStub, JS_PropertyStub, JS_PropertyStub,
+	JS_PropertyStub, JS_PropertyStub, JS_PropertyStub, JS_StrictPropertyStub,
 	JS_EnumerateStub, (JSResolveOp)ResolveGlobalProperty, JS_ConvertStub, JS_FinalizeStub,
 	NULL, NULL, NULL, NULL,
 	NULL, NULL, NULL, NULL

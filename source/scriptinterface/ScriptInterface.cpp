@@ -45,11 +45,7 @@
 
 #define STACK_CHUNK_SIZE 8192
 
-#if ENABLE_SCRIPT_PROFILING
-# define signbit std::signbit
-# include "js/jsdbgapi.h"
-# undef signbit
-#endif
+#include "scriptinterface/ScriptExtraHeaders.h"
 
 ////////////////////////////////////////////////////////////////
 
@@ -57,7 +53,7 @@ class ScriptRuntime
 {
 public:
 	ScriptRuntime(int runtimeSize) :
-		m_rooter(NULL)
+		m_rooter(NULL), m_compartmentGlobal(NULL)
 	{
 		m_rt = JS_NewRuntime(runtimeSize);
 		ENSURE(m_rt); // TODO: error handling
@@ -84,6 +80,8 @@ public:
 
 	JSRuntime* m_rt;
 	AutoGCRooter* m_rooter;
+
+	JSObject* m_compartmentGlobal;
 
 private:
 
@@ -227,6 +225,7 @@ struct ScriptInterface_impl
 	JSContext* m_cx;
 	JSObject* m_glob; // global scope object
 	JSObject* m_nativeScope; // native function scope object
+	JSCrossCompartmentCall* m_call;
 };
 
 namespace
@@ -234,7 +233,7 @@ namespace
 
 JSClass global_class = {
 	"global", JSCLASS_GLOBAL_FLAGS,
-	JS_PropertyStub, JS_PropertyStub, JS_PropertyStub, JS_PropertyStub,
+	JS_PropertyStub, JS_PropertyStub, JS_PropertyStub, JS_StrictPropertyStub,
 	JS_EnumerateStub, JS_ResolveStub, JS_ConvertStub, JS_FinalizeStub,
 	NULL, NULL, NULL, NULL,
 	NULL, NULL, NULL, NULL
@@ -265,6 +264,10 @@ void ErrorReporter(JSContext* cx, const char* message, JSErrorReport* report)
 	{
 		// TODO: this violates the docs ("The error reporter callback must not reenter the JSAPI.")
 
+		// Hide the exception from EvaluateScript
+		JSExceptionState* excnState = JS_SaveExceptionState(cx);
+		JS_ClearPendingException(cx);
+
 		jsval rval;
 		const char dumpStack[] = "this.stack.trimRight().replace(/^/mg, '  ')"; // indent each line
 		if (JS_EvaluateScript(cx, JSVAL_TO_OBJECT(excn), dumpStack, ARRAY_SIZE(dumpStack)-1, "(eval)", 1, &rval))
@@ -272,6 +275,13 @@ void ErrorReporter(JSContext* cx, const char* message, JSErrorReport* report)
 			std::string stackTrace;
 			if (ScriptInterface::FromJSVal(cx, rval, stackTrace))
 				msg << "\n" << stackTrace;
+
+			JS_RestoreExceptionState(cx, excnState);
+		}
+		else
+		{
+			// Error got replaced by new exception from EvaluateScript
+			JS_DropExceptionState(cx, excnState);
 		}
 	}
 
@@ -357,7 +367,15 @@ JSBool deepcopy(JSContext* cx, uintN argc, jsval* vp)
 	}
 
 	jsval ret;
-	if (!JS_StructuredClone(cx, JS_ARGV(cx, vp)[0], &ret))
+
+	// We'd usually do:
+	//	if (!JS_StructuredClone(cx, JS_ARGV(cx, vp)[0], &ret, NULL, NULL))
+	//		return JS_FALSE;
+	// but that function is broken in the 1.8.5 release
+	// (https://bugzilla.mozilla.org/show_bug.cgi?id=651510)
+	// so do an equivalent operation with a different API:
+	JSAutoStructuredCloneBuffer buf;
+	if (!buf.write(cx, JS_ARGV(cx, vp)[0]) || !buf.read(&ret, cx))
 		return JS_FALSE;
 
 	JS_SET_RVAL(cx, vp, ret);
@@ -463,7 +481,19 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 	// Threadsafe SpiderMonkey requires that we have a request before doing anything much
 	JS_BeginRequest(m_cx);
 
-	m_glob = JS_NewGlobalObject(m_cx, &global_class);
+	// We only want a single compartment per runtime
+	if (m_runtime->m_compartmentGlobal)
+	{
+		m_call = JS_EnterCrossCompartmentCall(m_cx, m_runtime->m_compartmentGlobal);
+		m_glob = JS_NewGlobalObject(m_cx, &global_class);
+	}
+	else
+	{
+		m_call = NULL;
+		m_glob = JS_NewCompartmentAndGlobalObject(m_cx, &global_class, NULL);
+		m_runtime->m_compartmentGlobal = m_glob;
+	}
+
 	ok = JS_InitStandardClasses(m_cx, m_glob);
 	ENSURE(ok);
 
@@ -485,13 +515,33 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 
 ScriptInterface_impl::~ScriptInterface_impl()
 {
+	if (m_call)
+		JS_LeaveCrossCompartmentCall(m_call);
 	JS_EndRequest(m_cx);
 	JS_DestroyContext(m_cx);
 }
 
 void ScriptInterface_impl::Register(const char* name, JSNative fptr, uintN nargs)
 {
-	JS_DefineFunction(m_cx, m_nativeScope, name, fptr, nargs, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+	JSFunction* func = JS_DefineFunction(m_cx, m_nativeScope, name, fptr, nargs, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+
+	if (!func)
+		return;
+
+#if ENABLE_SCRIPT_PROFILING
+	// Store the function name in a slot, so we can pass it to the profiler.
+
+	// Use a flyweight std::string because we can't assume the caller has
+	// a correctly-aligned string and that its lifetime is long enough
+	typedef boost::flyweight<
+		std::string,
+		boost::flyweights::no_tracking
+		// can't use no_locking; Register might be called in threads
+	> LockedStringFlyweight;
+
+	LockedStringFlyweight fw(name);
+	JS_SetReservedSlot(m_cx, JS_GetFunctionObject(func), 0, PRIVATE_TO_JSVAL((void*)fw.get().c_str()));
+#endif
 }
 
 ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugName, const shared_ptr<ScriptRuntime>& runtime) :
@@ -762,9 +812,9 @@ bool ScriptInterface::EnumeratePropertyNamesWithPrefix(jsval obj, const char* pr
 			continue; // ignore integer properties
 
 		JSString* name = JSVAL_TO_STRING(val);
-		size_t len = JS_GetStringLength(name);
-		jschar* chars = JS_GetStringChars(name);
-		if (len >= prefix16.size() && memcmp(chars, prefix16.c_str(), prefix16.size()*2) == 0)
+		size_t len;
+		const jschar* chars = JS_GetStringCharsAndLength(m->m_cx, name, &len);
+		if (chars && len >= prefix16.size() && memcmp(chars, prefix16.c_str(), prefix16.size()*2) == 0)
 			out.push_back(std::string(chars, chars+len)); // handles Unicode poorly
 	}
 
@@ -1102,7 +1152,10 @@ private:
 
 		if (JSVAL_IS_STRING(val))
 		{
-			JSString* str = JS_NewUCStringCopyN(cxTo, JS_GetStringChars(JSVAL_TO_STRING(val)), JS_GetStringLength(JSVAL_TO_STRING(val)));
+			size_t len;
+			const jschar* chars = JS_GetStringCharsAndLength(cxFrom, JSVAL_TO_STRING(val), &len);
+			CLONE_REQUIRE(chars, L"JS_GetStringCharsAndLength");
+			JSString* str = JS_NewUCStringCopyN(cxTo, chars, len);
 			CLONE_REQUIRE(str, L"JS_NewUCStringCopyN");
 			jsval rval = STRING_TO_JSVAL(str);
 			m_Mapping[JSVAL_TO_GCTHING(val)] = rval;
@@ -1153,7 +1206,10 @@ private:
 				// string jsids are runtime-specific, so we need to copy the string content
 				JSString* idstr = JS_ValueToString(cxFrom, idval);
 				CLONE_REQUIRE(idstr, L"JS_ValueToString (id)");
-				CLONE_REQUIRE(JS_SetUCProperty(cxTo, newObj, JS_GetStringChars(idstr), JS_GetStringLength(idstr), &newPropval), L"JS_SetUCProperty");
+				size_t len;
+				const jschar* chars = JS_GetStringCharsAndLength(cxFrom, idstr, &len);
+				CLONE_REQUIRE(idstr, L"JS_GetStringCharsAndLength (id)");
+				CLONE_REQUIRE(JS_SetUCProperty(cxTo, newObj, chars, len, &newPropval), L"JS_SetUCProperty");
 			}
 			else
 			{
@@ -1195,7 +1251,7 @@ shared_ptr<ScriptInterface::StructuredClone> ScriptInterface::WriteStructuredClo
 {
 	uint64* data = NULL;
 	size_t nbytes = 0;
-	if (!JS_WriteStructuredClone(m->m_cx, v, &data, &nbytes))
+	if (!JS_WriteStructuredClone(m->m_cx, v, &data, &nbytes, NULL, NULL))
 		return shared_ptr<StructuredClone>();
 	// TODO: should we have better error handling?
 	// Currently we'll probably continue and then crash in ReadStructuredClone
@@ -1210,6 +1266,6 @@ shared_ptr<ScriptInterface::StructuredClone> ScriptInterface::WriteStructuredClo
 jsval ScriptInterface::ReadStructuredClone(const shared_ptr<ScriptInterface::StructuredClone>& ptr)
 {
 	jsval ret = JSVAL_VOID;
-	JS_ReadStructuredClone(m->m_cx, ptr->m_Data, ptr->m_Size, &ret);
+	JS_ReadStructuredClone(m->m_cx, ptr->m_Data, ptr->m_Size, JS_STRUCTURED_CLONE_VERSION, &ret, NULL, NULL);
 	return ret;
 }

@@ -24,7 +24,7 @@
 #define BEGIN_INTERFACE_WRAPPER(iname) \
 	JSClass class_ICmp##iname = { \
 		"ICmp" #iname, JSCLASS_HAS_PRIVATE, \
-		JS_PropertyStub, JS_PropertyStub, JS_PropertyStub, JS_PropertyStub, \
+		JS_PropertyStub, JS_PropertyStub, JS_PropertyStub, JS_StrictPropertyStub, \
 		JS_EnumerateStub, JS_ResolveStub, JS_ConvertStub, JS_FinalizeStub, \
 		JSCLASS_NO_OPTIONAL_MEMBERS \
 	}; \

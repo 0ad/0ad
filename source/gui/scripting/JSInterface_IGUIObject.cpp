@@ -290,7 +290,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsid id, jsval*
 	}
 }
 
-JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsid id, jsval* vp)
+JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsid id, JSBool UNUSED(strict), jsval* vp)
 {
 	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, obj, &JSI_IGUIObject::JSI_class, NULL);
 	if (!e)

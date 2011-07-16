@@ -90,6 +90,7 @@ private:
 		{
 			// Clean up rooted objects before destroying their script context
 			m_Obj = CScriptValRooted();
+			m_Commands.clear();
 		}
 
 		static void IncludeModule(void* cbdata, std::wstring name)
@@ -270,6 +271,8 @@ public:
 		m_EntityTemplates = CScriptValRooted();
 		m_PlayerMetadata.clear();
 		m_Players.clear();
+		m_GameState.reset();
+		m_GameStateMapVal = CScriptValRooted();
 	}
 
 	bool AddPlayer(const std::wstring& aiName, player_id_t player, bool callConstructor)

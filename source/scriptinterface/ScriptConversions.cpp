@@ -23,12 +23,7 @@
 #include "ps/utf16string.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
-
-#include "js/jsapi.h"
-
-#define signbit std::signbit
-#include "js/jstypedarray.h"
-#undef signbit
+#include "scriptinterface/ScriptExtraHeaders.h" // for typed arrays
 
 #define FAIL(msg) STMT(JS_ReportError(cx, msg); return false)
 
@@ -114,8 +109,11 @@ template<> bool ScriptInterface::FromJSVal<std::wstring>(JSContext* cx, jsval v,
 	JSString* ret = JS_ValueToString(cx, v);
 	if (!ret)
 		FAIL("Argument must be convertible to a string");
-	jschar* ch = JS_GetStringChars(ret);
-	out = std::wstring(ch, ch + JS_GetStringLength(ret));
+	size_t length;
+	const jschar* ch = JS_GetStringCharsAndLength(cx, ret, &length);
+	if (!ch)
+		FAIL("JS_GetStringsCharsAndLength failed"); // out of memory
+	out = std::wstring(ch, ch + length);
 	return true;
 }
 

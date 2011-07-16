@@ -485,22 +485,22 @@ extern_lib_defs = {
 				include_dir = "include-unix"
 			end
 			configuration "Debug"
-				includedirs { libraries_dir.."spidermonkey-tip/"..include_dir.."/debug" }
+				includedirs { libraries_dir.."spidermonkey/"..include_dir }
 			configuration "Testing"
-				includedirs { libraries_dir.."spidermonkey-tip/"..include_dir.."/debug" }
+				includedirs { libraries_dir.."spidermonkey/"..include_dir }
 			configuration "Release"
-				includedirs { libraries_dir.."spidermonkey-tip/"..include_dir.."/release" }
+				includedirs { libraries_dir.."spidermonkey/"..include_dir }
 			configuration { }
 		end,
 		link_settings = function()
 			configuration "Debug"
-			  	links { "mozjs-ps-debug" }
+			  	links { "mozjs185-ps-debug" }
 			configuration "Testing"
-				links { "mozjs-ps-debug" }
+				links { "mozjs185-ps-debug" }
 			configuration "Release"
-				links { "mozjs-ps-release" }
+				links { "mozjs185-ps-release" }
 			configuration { }
-			add_default_lib_paths("spidermonkey-tip")
+			add_default_lib_paths("spidermonkey")
 		end,
 	},
 	valgrind = {
