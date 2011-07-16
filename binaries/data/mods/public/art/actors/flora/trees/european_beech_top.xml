@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="canopy-forest-a">
       <mesh>gaia/tree_oak_top_a.pmd</mesh>
@@ -23,9 +21,8 @@
       <mesh>gaia/tree_oak_large_top_c.pmd</mesh>
     </variant>
   </group>
-
   <group>
-    <variant frequency="10" name="leaf-texture-green">
+    <variant frequency="15" name="leaf-texture-green">
       <texture>gaia/tree_euro_beech_a.dds</texture>
     </variant>
     <variant frequency="1" name="leaf-texture-golden">
@@ -35,7 +32,5 @@
       <texture>gaia/tree_euro_beech_c.dds</texture>
     </variant>
   </group>
-
   <material>basic_trans.xml</material>
-
 </actor>

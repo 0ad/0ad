@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="315.629" y="115.613" z="214.478"/>
+		<Position x="554.684" y="125.286" z="282.725"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -3405,7 +3405,7 @@
 		<Entity uid="565">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="466.79514" z="697.17811"/>
+			<Position x="465.8708" z="694.70044"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="566">
@@ -8214,7 +8214,7 @@
 			<Template>gaia/flora_bush_temperate</Template>
 			<Player>0</Player>
 			<Position x="470.96384" z="762.04395"/>
-			<Orientation y="2.28716"/>
+			<Orientation y="1.55582"/>
 		</Entity>
 		<Entity uid="1377">
 			<Template>gaia/flora_bush_temperate</Template>
@@ -8232,7 +8232,7 @@
 			<Template>gaia/flora_bush_temperate</Template>
 			<Player>0</Player>
 			<Position x="459.62375" z="753.83869"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="-2.95746"/>
 		</Entity>
 		<Entity uid="1380">
 			<Template>gaia/flora_bush_temperate</Template>
@@ -16747,6 +16747,84 @@
 			<Player>0</Player>
 			<Position x="325.26764" z="160.98096"/>
 			<Orientation y="-2.10845"/>
+		</Entity>
+		<Entity uid="2800">
+			<Template>gaia/special_treasure_food_barrel</Template>
+			<Player>0</Player>
+			<Position x="475.8238" z="436.22828"/>
+			<Orientation y="-1.07683"/>
+		</Entity>
+		<Entity uid="2801">
+			<Template>gaia/special_treasure_food_bin</Template>
+			<Player>0</Player>
+			<Position x="480.41892" z="435.47053"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2802">
+			<Template>gaia/special_treasure_food_crate</Template>
+			<Player>0</Player>
+			<Position x="477.90424" z="438.33436"/>
+			<Orientation y="-3.06923"/>
+		</Entity>
+		<Entity uid="2803">
+			<Template>gaia/special_treasure_stone</Template>
+			<Player>0</Player>
+			<Position x="596.32605" z="546.20734"/>
+			<Orientation y="-1.4488"/>
+		</Entity>
+		<Entity uid="2804">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="618.15131" z="476.27845"/>
+			<Orientation y="-1.1191"/>
+		</Entity>
+		<Entity uid="2805">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="953.89063" z="550.37934"/>
+			<Orientation y="-2.80686"/>
+		</Entity>
+		<Entity uid="2806">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="951.99476" z="531.09601"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2807">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="879.20771" z="541.64081"/>
+			<Orientation y="-1.7187"/>
+		</Entity>
+		<Entity uid="2808">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="889.43226" z="542.04041"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2809">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="457.48032" z="89.12278"/>
+			<Orientation y="-2.19726"/>
+		</Entity>
+		<Entity uid="2810">
+			<Template>gaia/special_treasure_wood</Template>
+			<Player>0</Player>
+			<Position x="453.00336" z="93.67963"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2811">
+			<Template>gaia/special_treasure_stone</Template>
+			<Player>0</Player>
+			<Position x="517.01917" z="134.89559"/>
+			<Orientation y="-2.25141"/>
+		</Entity>
+		<Entity uid="2812">
+			<Template>gaia/special_treasure_stone</Template>
+			<Player>0</Player>
+			<Position x="297.25373" z="698.43543"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
