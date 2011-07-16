@@ -63,7 +63,7 @@ static u8 ComputeChecksum(PCV_u8 buf, size_t numBytes)
 	// (can't use std::accumulate - we need 8-bit wraparound)
 	u8 sum = 0;
 	for(PCV_u8 p = buf; p < buf+numBytes; p++)
-		sum = u8(sum + *p);
+		sum = u8((sum + *p) & 0xFF);
 	return sum;
 }
 
