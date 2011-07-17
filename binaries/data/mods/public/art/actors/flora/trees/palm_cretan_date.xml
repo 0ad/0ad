@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Cretan-Date-Palm-01">
+      <mesh>gaia/tree_cretan_date_palm_01.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Cretan-Date-Palm-02">
+      <mesh>gaia/tree_cretan_date_palm_02.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Cretan-Date-Palm-03">
+      <mesh>gaia/tree_cretan_date_palm_03.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Cretan-Date-Palm-04">
+      <mesh>gaia/tree_cretan_date_palm_04.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Cretan-Date-Palm-05">
+      <mesh>gaia/tree_cretan_date_palm_05.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Cretan-Date-Palm-06">
+      <mesh>gaia/tree_cretan_date_palm_06.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Cretan-Date-Palm-07">
+      <mesh>gaia/tree_cretan_date_palm_07.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Cretan-Date-Palm-08">
+      <mesh>gaia/tree_cretan_date_palm_08.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Palm Fronds-a">
+      <texture>gaia/tree_palm_senegal_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="Palm Fronds-b">
+      <texture>gaia/tree_palm_senegal_b.dds</texture>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>
