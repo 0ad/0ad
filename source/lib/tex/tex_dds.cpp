@@ -90,7 +90,7 @@ public:
 		// (dxt == DXT1A)
 		else
 			a = c[c_selector][A];
-		out[A] = (u8)a;
+		out[A] = (u8)(a & 0xFF);
 	}
 
 private:
