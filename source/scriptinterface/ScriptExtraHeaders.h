@@ -31,6 +31,7 @@
 #endif
 #if MSC_VERSION
 # pragma warning(push)
+# pragma warning(disable:4100) // "unreferenced formal parameter"
 # pragma warning(disable:4800) // "forcing value to bool 'true' or 'false' (performance warning)"
 #endif
 
