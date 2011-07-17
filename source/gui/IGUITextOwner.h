@@ -88,8 +88,7 @@ public:
 	 * @param clipping Clipping rectangle, don't even add a parameter
 	 *		  to get no clipping.
 	 */
-	virtual void Draw(const int &index, const CColor &color, const CPos &pos, 
-					  const float &z, const CRect &clipping = CRect());
+	virtual void DrawText(int index, const CColor& color, const CPos& pos, float z, const CRect& clipping = CRect());
 
 	/**
 	 * Test if mouse position is over an icon

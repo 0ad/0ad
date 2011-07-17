@@ -160,7 +160,6 @@ void CTooltip::Draw()
 		CColor color;
 		GUI<CColor>::GetSetting(this, "textcolor", color);
 
-		// Draw text
-		IGUITextOwner::Draw(0, color, m_CachedActualSize.TopLeft(), z+0.1f);
+		DrawText(0, color, m_CachedActualSize.TopLeft(), z+0.1f);
 	}
 }

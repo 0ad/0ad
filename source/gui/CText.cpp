@@ -244,11 +244,10 @@ void CText::Draw()
 		CColor color;
 		GUI<CColor>::GetSetting(this, "textcolor", color);
 
-		// Draw text
 		if (scrollbar)
-			IGUITextOwner::Draw(0, color, m_CachedActualSize.TopLeft() - CPos(0.f, scroll), bz+0.1f, cliparea);
+			DrawText(0, color, m_CachedActualSize.TopLeft() - CPos(0.f, scroll), bz+0.1f, cliparea);
 		else
-			IGUITextOwner::Draw(0, color, m_TextPos, bz+0.1f, cliparea);
+			DrawText(0, color, m_TextPos, bz+0.1f, cliparea);
 	}
 }
 

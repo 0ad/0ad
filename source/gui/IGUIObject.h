@@ -583,7 +583,6 @@ class CGUIDummyObject : public IGUIObject
 
 public:
 
-	virtual void HandleMessage(const SGUIMessage& UNUSED(Message)) {}
 	virtual void Draw() {}
 	// Empty can never be hovered. It is only a category.
 	virtual bool MouseOver() { return false; }

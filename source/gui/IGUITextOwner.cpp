@@ -78,8 +78,7 @@ void IGUITextOwner::UpdateCachedSize()
 	m_GeneratedTextsValid = false;
 }
 
-void IGUITextOwner::Draw(const int &index, const CColor &color, const CPos &pos,
-						 const float &z, const CRect &clipping)
+void IGUITextOwner::DrawText(int index, const CColor& color, const CPos& pos, float z, const CRect& clipping)
 {
 	if (!m_GeneratedTextsValid)
 	{

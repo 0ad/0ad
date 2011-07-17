@@ -337,7 +337,7 @@ void CDropDown::Draw()
 					   m_CachedActualSize.right-button_width, m_CachedActualSize.bottom);
 
 		CPos pos(m_CachedActualSize.left, m_CachedActualSize.top);
-		IGUITextOwner::Draw(selected, color, pos, bz+0.1f, cliparea);
+		DrawText(selected, color, pos, bz+0.1f, cliparea);
 	}
 
 	bool *scrollbar=NULL, old;

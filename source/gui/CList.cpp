@@ -401,8 +401,7 @@ void CList::DrawList(const int &selected,
 					cliparea.left = GetScrollBar(0).GetOuterRect().right;
 			}
 
-			IGUITextOwner::Draw(i, color, rect.TopLeft() - CPos(0.f, scroll - m_ItemsYPositions[i]), 
-								bz+0.1f, cliparea);
+			DrawText(i, color, rect.TopLeft() - CPos(0.f, scroll - m_ItemsYPositions[i]), bz+0.1f, cliparea);
 		}
 	}
 }

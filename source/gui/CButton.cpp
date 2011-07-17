@@ -116,5 +116,5 @@ void CButton::Draw()
 			   cell_id);
 
 	CColor color = ChooseColor();
-	IGUITextOwner::Draw(0, color, m_TextPos, bz+0.1f);
+	DrawText(0, color, m_TextPos, bz+0.1f);
 }

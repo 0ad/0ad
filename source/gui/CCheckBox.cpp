@@ -175,5 +175,5 @@ void CCheckBox::Draw()
 	if (square_side > line_height)
 		text_pos.y += square_side/2.f - line_height/2.f;
 
-	IGUITextOwner::Draw(0, color, text_pos, bz+0.1f, m_CachedActualSize);
+	DrawText(0, color, text_pos, bz+0.1f, m_CachedActualSize);
 }
