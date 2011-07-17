@@ -347,7 +347,10 @@ static Status Init()
 		hAken = CreateFileW(L"\\\\.\\Aken", GENERIC_READ, shareMode, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 		if(hAken == INVALID_HANDLE_VALUE)
 		{
-			ENSURE(GetLastError() == ERROR_FILE_NOT_FOUND);
+			// GetLastError() is ERROR_FILE_NOT_FOUND if the driver isn't running,
+			// but this is also reached when a handle has already been opened
+			// (e.g. by a second instance of the same program) - in which case we must
+			// indicate failure so that clients won't engage in unsynchronized ring 0 operations.
 			SetLastError(0);
 			return ERR::INVALID_HANDLE;	// NOWARN (happens often due to security restrictions)
 		}
