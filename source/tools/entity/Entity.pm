@@ -31,7 +31,7 @@ sub trim
 
 sub load_xml
 {
-    my ($file) = @_;
+    my ($vfspath, $file) = @_;
     my $root = {};
     my @stack = ($root);
     my $p = new XML::Parser(Handlers => {
@@ -55,8 +55,12 @@ sub load_xml
             $stack[-1]{' content'} .= $str;
         },
     });
-    $p->parse($file);
-
+    eval {
+        $p->parse($file);
+    };
+    if ($@) {
+        die "Error parsing $vfspath: $@";
+    }
     return $root;
 }
 
@@ -95,7 +99,7 @@ sub apply_layer
 sub load_inherited
 {
     my ($vfspath) = @_;
-    my $layer = load_xml(get_file($vfspath));
+    my $layer = load_xml($vfspath, get_file($vfspath));
 
     if ($layer->{Entity}{'@parent'}) {
         my $parent = load_inherited($layer->{Entity}{'@parent'}{' content'});
