@@ -307,7 +307,7 @@ struct FileControlBlocks // POD
 	static const int firstDescriptor = 4000;
 
 	FileControlBlock fcbs[maxFiles];
-	CACHE_ALIGNED volatile intptr_t inUse[maxFiles];
+	CACHE_ALIGNED(volatile intptr_t) inUse[maxFiles];
 
 	void Init()
 	{

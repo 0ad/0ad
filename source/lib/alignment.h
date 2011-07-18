@@ -18,6 +18,17 @@ inline size_t Align(size_t n)
 }
 
 
+// bridge the differences between MSC and GCC alignment definitions.
+// example: ALIGNED(int, 8) myAlignedVariable = 0;
+#if MSC_VERSION
+# define ALIGNED(type, multiple) __declspec(align(multiple)) type
+#elif GCC_VERSION
+# define ALIGNED(type, multiple) type __attribute__((aligned(multiple)))
+#else
+# define ALIGNED(type, multiple) type
+#endif
+
+
 //
 // SIMD vector
 //
@@ -37,10 +48,9 @@ static const size_t vectorSize = 16;
 //
 
 static const size_t cacheLineSize = 64;	// (L2)
+# define CACHE_ALIGNED(type) ALIGNED(type, 64)	// ALIGNED() requires a literal; keep in sync with cacheLineSize
 
-#if MSC_VERSION
-#define CACHE_ALIGNED __declspec(align(64))	// align() requires a literal; keep in sync with cacheLineSize
-#endif
+
 
 
 //

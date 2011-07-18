@@ -38,6 +38,12 @@ symbol lookups and backtraces)
 #include "lib/debug.h"
 
 
+Status debug_CaptureContext(void* UNUSED(context))
+{
+	// (not needed unless/until we support stack traces)
+	return INFO::SKIPPED;
+}
+
 void debug_break()
 {
 	kill(getpid(), SIGTRAP);

@@ -197,7 +197,7 @@ LIB_API ErrorReaction debug_DisplayError(const wchar_t* description, size_t flag
 #define DEBUG_DISPLAY_ERROR(description)\
 	do\
 	{\
-		CACHE_ALIGNED u8 context[DEBUG_CONTEXT_SIZE];\
+		CACHE_ALIGNED(u8) context[DEBUG_CONTEXT_SIZE];\
 		(void)debug_CaptureContext(context);\
 		(void)debug_DisplayError(description, 0, context, L"debug_DisplayError", WIDEN(__FILE__), __LINE__, __func__, 0);\
 	}\

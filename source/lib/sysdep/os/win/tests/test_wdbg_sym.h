@@ -107,7 +107,7 @@ class TestWdbgSym : public CxxTest::TestSuite
 		// this test now always runs. therefore, just make sure a decent
 		// amount of text (not just "(failed)" error messages) was produced.
 		ErrorMessageMem emm = {0};
-		CACHE_ALIGNED u8 context[DEBUG_CONTEXT_SIZE];
+		CACHE_ALIGNED(u8) context[DEBUG_CONTEXT_SIZE];
 		(void)debug_CaptureContext(context);
 		const wchar_t* text = debug_BuildErrorMessage(L"dummy", 0,0,0, context, L"m_test_array", &emm);
 		TS_ASSERT(wcslen(text) > 500);
