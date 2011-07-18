@@ -64,8 +64,8 @@ Status debug_DumpStack(wchar_t* buf, size_t max_chars, void* UNUSED(context), co
 
 	for (size_t i = 0; (int)i < bt_size && bufpos+MAX_OUT_CHARS < bufend; i++)
 	{
-		wchar_t file[DBG_FILE_LEN];
-		wchar_t symbol[DBG_SYMBOL_LEN];
+		wchar_t file[DEBUG_FILE_CHARS];
+		wchar_t symbol[DEBUG_SYMBOL_CHARS];
 		int line;
 		int len;
 		
@@ -108,7 +108,7 @@ Status debug_ResolveSymbol(void* ptr_of_interest, wchar_t* sym_name, wchar_t* fi
 	char** symbols = backtrace_symbols(&ptr_of_interest, 1);
 	if (symbols)
 	{
-		swprintf_s(sym_name, DBG_SYMBOL_LEN, L"%hs", symbols[0]);
+		swprintf_s(sym_name, DEBUG_SYMBOL_CHARS, L"%hs", symbols[0]);
 		free(symbols);
 
 		// (Note that this will usually return a pretty useless string,
