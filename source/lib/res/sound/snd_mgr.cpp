@@ -1018,7 +1018,7 @@ static Status snd_data_buf_get(Handle hsd, ALuint& al_buf)
 	if(sd->type == SD_CLIP)
 	{
 		al_buf = sd->al_buf;
-		return INFO::OK;	// "EOF"
+		return INFO::ALL_COMPLETE;	// "EOF"
 	}
 
 	if(!sd->ogg)
