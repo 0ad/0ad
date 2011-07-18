@@ -11,7 +11,7 @@ Player.prototype.Init = function()
 	this.colour = { "r": 0.0, "g": 0.0, "b": 0.0, "a": 1.0 };
 	this.popUsed = 0; // population of units owned or trained by this player
 	this.popBonuses = 0; // sum of population bonuses of player's entities
-	this.maxPop = 200; // maximum population
+	this.maxPop = 300; // maximum population
 	this.trainingQueueBlocked = false; // indicates whether any training queue is currently blocked
 	this.resourceCount = {
 		"food": 1000,	
