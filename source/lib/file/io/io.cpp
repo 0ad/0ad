@@ -32,18 +32,6 @@ STATUS_ADD_DEFINITIONS(ioStatusDefinitions);
 
 namespace io {
 
-UniqueRange Allocate(size_t size, size_t alignment)
-{
-	ENSURE(is_pow2(alignment));
-	if(alignment <= (size_t)idxDeleterBits)
-		alignment = idxDeleterBits+1;
-
-	const size_t alignedSize = round_up(size, alignment);
-	const UniqueRange::pointer p = rtl_AllocateAligned(alignedSize, alignment);
-	return RVALUE(UniqueRange(p, size, idxDeleterAligned));
-}
-
-
 // this is just a thin wrapper on top of lowio and POSIX aio.
 // note that the Windows aio implementation requires buffers, sizes and
 // offsets to be sector-aligned.

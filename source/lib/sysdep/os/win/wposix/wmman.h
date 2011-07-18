@@ -38,8 +38,8 @@
 #define MAP_PRIVATE	0x02	// writes do not affect the file (copy-on-write)
 #define MAP_FIXED	0x04
 // .. non-portable
-#define MAP_ANONYMOUS 0x10 
-#define MAP_NORESERVE 0x20
+#define MAP_ANONYMOUS 0x10	// backed by the pagefile; fd should be -1
+#define MAP_NORESERVE 0x20	// see below
 
 // note: we need a means of only "reserving" virtual address ranges
 // for the fixed-address expandable array mechanism. the non-portable
@@ -49,7 +49,7 @@
 // doesn't commit mmap-ed regions anyway, but we specify this flag to
 // make sure of that in the future.
 
-#define MAP_FAILED ((void*)(intptr_t)-1L)
+#define MAP_FAILED ((void*)intptr_t(-1))
 
 extern void* mmap(void* start, size_t len, int prot, int flags, int fd, off_t offset);
 extern int munmap(void* start, size_t len);

@@ -23,39 +23,6 @@
 #include "precompiled.h"
 #include "lib/posix/posix.h"
 
-#if ARCH_IA32
-# include "lib/sysdep/arch/ia32/ia32_asm.h"
-#endif
-
-
-#if !HAVE_C99_MATH
-
-size_t fpclassifyd(double d)
-{
-#if ARCH_IA32
-	return ia32_asm_fpclassifyd(d);
-#else
-	// really sucky stub implementation; doesn't attempt to cover all cases.
-
-	if(d != d)
-		return FP_NAN;
-	else
-		return FP_NORMAL;
-#endif
-}
-
-size_t fpclassifyf(float f)
-{
-#if ARCH_IA32
-	return ia32_asm_fpclassifyf(f);
-#else
-	const double d = (double)f;
-	return fpclassifyd(d);
-#endif
-}
-
-#endif	// #if !HAVE_C99_MATH
-
 
 #if EMULATE_WCSDUP
 wchar_t* wcsdup(const wchar_t* str)

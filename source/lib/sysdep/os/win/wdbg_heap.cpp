@@ -338,16 +338,16 @@ public:
 	Status NotifyOfCaller(uintptr_t pc)
 	{
 		if(!m_isRecordingKnownCallers)
-			return INFO::SKIPPED;	// do not affect the stack walk
+			return INFO::SKIPPED;
 
 		// last 'known' function has been reached
 		if(pc == (uintptr_t)&CallerFilter::CallHeapFunctions)
-			return INFO::OK;	// stop stack walk
+			return INFO::ALL_COMPLETE;
 
 		// pc is a 'known' function on the allocation hook's back-trace
 		// (e.g. _malloc_dbg and other helper functions)
 		m_knownCallers.Add(pc);
-		return INFO::CONTINUE;
+		return INFO::OK;
 	}
 
 	bool IsKnownCaller(uintptr_t pc) const
@@ -675,7 +675,9 @@ public:
 	void Gather()
 	{
 		m_numCallers = 0;
-		(void)wdbg_sym_WalkStack(OnFrame_Trampoline, (uintptr_t)this);
+		CONTEXT context;
+		(void)debug_CaptureContext(&context);
+		(void)wdbg_sym_WalkStack(OnFrame_Trampoline, (uintptr_t)this, context);
 		std::fill(m_callers+m_numCallers, m_callers+maxCallers, 0);
 	}
 
@@ -696,7 +698,7 @@ private:
 
 		// skip invalid frames
 		if(pc == 0)
-			return INFO::CONTINUE;
+			return INFO::OK;
 
 		Status ret = m_filter.NotifyOfCaller(pc);
 		// (CallerFilter provokes stack traces of heap functions; if that is
@@ -706,11 +708,11 @@ private:
 
 		// stop the stack walk if frame storage is full
 		if(m_numCallers >= maxCallers)
-			return INFO::OK;
+			return INFO::ALL_COMPLETE;
 
 		if(!m_filter.IsKnownCaller(pc))
 			m_callers[m_numCallers++] = pc;
-		return INFO::CONTINUE;
+		return INFO::OK;
 	}
 
 	static Status OnFrame_Trampoline(const STACKFRAME64* frame, uintptr_t cbData)
@@ -850,7 +852,7 @@ static void PrintCallStack(const uintptr_t* callers, size_t numCallers)
 	wdbg_printf(L"\n  partial, unordered call stack:\n");
 	for(size_t i = 0; i < numCallers; i++)
 	{
-		wchar_t name[DBG_SYMBOL_LEN] = {'\0'}; wchar_t file[DBG_FILE_LEN] = {'\0'}; int line = -1;
+		wchar_t name[DEBUG_SYMBOL_CHARS] = {'\0'}; wchar_t file[DEBUG_FILE_CHARS] = {'\0'}; int line = -1;
 		Status err = debug_ResolveSymbol((void*)callers[i], name, file, &line);
 		wdbg_printf(L"    ");
 		if(err != INFO::OK)
@@ -944,7 +946,7 @@ static Status wdbg_heap_Init()
 	FindCodeSegment();
 
 	// load symbol information now (fails if it happens during shutdown)
-	wchar_t name[DBG_SYMBOL_LEN]; wchar_t file[DBG_FILE_LEN]; int line;
+	wchar_t name[DEBUG_SYMBOL_CHARS]; wchar_t file[DEBUG_FILE_CHARS]; int line;
 	(void)debug_ResolveSymbol(wdbg_heap_Init, name, file, &line);
 
 	int ret = _CrtSetReportHookW2(_CRT_RPTHOOK_INSTALL, ReportHook);

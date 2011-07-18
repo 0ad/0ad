@@ -215,7 +215,7 @@ static const wchar_t* GetExceptionDescription(const EXCEPTION_POINTERS* ep,
 
 // return location at which the exception <er> occurred.
 // params: see debug_ResolveSymbol.
-static void GetExceptionLocus(const EXCEPTION_POINTERS* ep,
+static void GetExceptionLocus(EXCEPTION_POINTERS* ep,
 	wchar_t* file, int* line, wchar_t* func)
 {
 	// HACK: <ep> provides no useful information - ExceptionAddress always
@@ -270,9 +270,9 @@ long __stdcall wseh_ExceptionFilter(struct _EXCEPTION_POINTERS* ep)
 	// extract details from ExceptionRecord.
 	wchar_t descriptionBuf[150];
 	const wchar_t* description = GetExceptionDescription(ep, descriptionBuf, ARRAY_SIZE(descriptionBuf));
-	wchar_t file[DBG_FILE_LEN] = {0};
+	wchar_t file[DEBUG_FILE_CHARS] = {0};
 	int line = 0;
-	wchar_t func[DBG_SYMBOL_LEN] = {0};
+	wchar_t func[DEBUG_SYMBOL_CHARS] = {0};
 	GetExceptionLocus(ep, file, &line, func);
 
 	wchar_t message[500];

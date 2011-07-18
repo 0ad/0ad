@@ -121,8 +121,12 @@ enum DataKind
 # pragma warning(disable:791)	// calling convention specified more than once
 #endif
 
+#pragma pack(push, 8)	// seems to be required
+
 #define _NO_CVCONST_H	// request SymTagEnum be defined
 #include <dbghelp.h>	// must come after win.h and the above definitions
+
+#pragma pack(pop)
 
 #if ICC_VERSION
 # pragma warning(pop)

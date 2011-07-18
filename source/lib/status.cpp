@@ -120,7 +120,6 @@ static const StatusDefinition statusDefs[] = {
 { INFO::OK,             L"No error reported here" },
 { ERR::FAIL,            L"Function failed (no details available)" },
 
-{ INFO::CONTINUE,       L"Continue (not an error)" },
 { INFO::SKIPPED,        L"Skipped (not an error)" },
 { INFO::CANNOT_HANDLE,  L"Cannot handle (not an error)" },
 { INFO::ALL_COMPLETE,   L"All complete (not an error)" },

@@ -44,10 +44,10 @@
 # include <intrin.h>	// __rdtsc
 #endif
 
-#define CPUID_INTRINSIC 0
+#define HAVE_CPUIDEX 0
 #if defined(_MSC_FULL_VER) && _MSC_FULL_VER >= 150030729	// __cpuidex available on VC10+ and VC9 SP1 (allows setting ecx beforehand)
-# undef CPUID_INTRINSIC
-# define CPUID_INTRINSIC 1
+# undef HAVE_CPUIDEX
+# define HAVE_CPUIDEX 1
 #else
 # if ARCH_AMD64
 #  include "lib/sysdep/arch/amd64/amd64_asm.h"
@@ -72,7 +72,7 @@
 
 static void cpuid(x86_x64_CpuidRegs* regs)
 {
-#if CPUID_INTRINSIC
+#if HAVE_CPUIDEX
 	cassert(sizeof(regs->eax) == sizeof(int));
 	cassert(sizeof(*regs) == 4*sizeof(int));
 	__cpuidex((int*)regs, regs->eax, regs->ecx);

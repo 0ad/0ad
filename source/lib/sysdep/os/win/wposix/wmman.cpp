@@ -82,7 +82,7 @@ static Status mmap_mem(void* start, size_t len, int prot, int flags, int fd, voi
 	ENSURE(fd == -1);
 	// .. if MAP_SHARED, writes are to change "the underlying [mapped]
 	//    object", but there is none here (we're backed by the page file).
-	ENSURE(flags & MAP_PRIVATE);
+	ENSURE(!(flags & MAP_SHARED));
 
 	// see explanation at MAP_NORESERVE definition.
 	bool want_commit = (prot != PROT_NONE && !(flags & MAP_NORESERVE));
@@ -120,33 +120,35 @@ static Status mmap_mem(void* start, size_t len, int prot, int flags, int fd, voi
 // CreateFileMapping / MapViewOfFile. they only support read-only,
 // read/write and copy-on-write, so we dumb it down to that and later
 // set the correct (and more restrictive) permission via mprotect.
-static Status mmap_file_access(int prot, int flags, DWORD& protect, DWORD& dwAccess)
+static Status DecodeFlags(int prot, int flags, DWORD& protect, DWORD& access)
 {
-	// assume read-only; other cases handled below.
-	protect = PAGE_READONLY;
-	dwAccess  = FILE_MAP_READ;
+	// ensure exactly one of (MAP_SHARED, MAP_PRIVATE) is specified
+	switch(flags & (MAP_SHARED|MAP_PRIVATE))
+	{
+	case 0:
+	case MAP_SHARED|MAP_PRIVATE:
+		WARN_RETURN(ERR::INVALID_PARAM);
+	default:;
+	}
 
 	if(prot & PROT_WRITE)
 	{
 		// determine write behavior: (whether they change the underlying file)
-		switch(flags & (MAP_SHARED|MAP_PRIVATE))
+		if(flags & MAP_SHARED)	// writes affect the file
 		{
-			// .. changes are written to file.
-		case MAP_SHARED:
 			protect = PAGE_READWRITE;
-			dwAccess  = FILE_MAP_WRITE;	// read and write
-			break;
-			// .. copy-on-write mapping; writes do not affect the file.
-		case MAP_PRIVATE:
-			protect = PAGE_WRITECOPY;
-			dwAccess  = FILE_MAP_COPY;
-			break;
-			// .. either none or both of the flags are set. the latter is
-			//    definitely illegal according to POSIX and some man pages
-			//    say exactly one must be set, so abort.
-		default:
-			WARN_RETURN(ERR::INVALID_PARAM);
+			access  = FILE_MAP_WRITE;	// read and write
 		}
+		else	// copy on write (file remains unchanged)
+		{
+			protect = PAGE_WRITECOPY;
+			access  = FILE_MAP_COPY;
+		}
+	}
+	else
+	{
+		protect = PAGE_READONLY;
+		access  = FILE_MAP_READ;
 	}
 
 	return INFO::OK;
@@ -171,27 +173,24 @@ static Status mmap_file(void* start, size_t len, int prot, int flags, int fd, of
 	// choose protection and access rights for CreateFileMapping /
 	// MapViewOfFile. these are weaker than what PROT_* allows and
 	// are augmented below by subsequently mprotect-ing.
-	DWORD protect; DWORD dwAccess;
-	RETURN_STATUS_IF_ERR(mmap_file_access(prot, flags, protect, dwAccess));
+	DWORD protect; DWORD access;
+	RETURN_STATUS_IF_ERR(DecodeFlags(prot, flags, protect, access));
 
-	// enough foreplay; now actually map.
 	const HANDLE hMap = CreateFileMapping(hFile, 0, protect, 0, 0, 0);
-	// .. create failed; bail now to avoid overwriting the last error value.
 	if(!hMap)
 		WARN_RETURN(ERR::NO_MEM);
-	const DWORD ofs_hi = u64_hi(ofs), ofs_lo = u64_lo(ofs);
-	void* p = MapViewOfFileEx(hMap, dwAccess, ofs_hi, ofs_lo, (SIZE_T)len, start);
-	// .. make sure we got the requested address if MAP_FIXED was passed.
+	void* p = MapViewOfFileEx(hMap, access, u64_hi(ofs), u64_lo(ofs), (SIZE_T)len, start);
+	// ensure we got the requested address if MAP_FIXED was passed.
 	ENSURE(!(flags & MAP_FIXED) || (p == start));
-	// .. free the mapping object now, so that we don't have to hold on to its
-	//    handle until munmap(). it's not actually released yet due to the
-	//    reference held by MapViewOfFileEx (if it succeeded).
+	// free the mapping object now, so that we don't have to hold on to its
+	// handle until munmap(). it's not actually released yet due to the
+	// reference held by MapViewOfFileEx (if it succeeded).
 	CloseHandle(hMap);
-	// .. map failed; bail now to avoid "restoring" the last error value.
+	// map failed; bail now to avoid "restoring" the last error value.
 	if(!p)
 		WARN_RETURN(ERR::NO_MEM);
 
-	// slap on correct (more restrictive) permissions. 
+	// enforce the desired (more restrictive) protection.
 	(void)mprotect(p, len, prot);
 
 	*pp = p;
@@ -201,12 +200,7 @@ static Status mmap_file(void* start, size_t len, int prot, int flags, int fd, of
 
 void* mmap(void* start, size_t len, int prot, int flags, int fd, off_t ofs)
 {
-	if(len == 0)	// POSIX says this must cause mmap to fail
-	{
-		DEBUG_WARN_ERR(ERR::LOGIC);
-		errno = EINVAL;
-		return MAP_FAILED;
-	}
+	ASSERT(len != 0);
 
 	void* p;
 	Status status;

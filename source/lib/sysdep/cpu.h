@@ -102,16 +102,4 @@ inline void cpu_Pause()
 #endif
 }
 
-
-//-----------------------------------------------------------------------------
-// misc
-
-/**
- * set the FPU control word to "desirable" values (see implementation)
- **/
-LIB_API void cpu_ConfigureFloatingPoint();
-
-// NB: cpu_i64FromDouble et al. were faster than _ftol2, but are obsolete
-// since VC8 and GCC (with -ffast-math) generate SSE instructions.
-
 #endif	// #ifndef INCLUDED_CPU

@@ -33,6 +33,7 @@
 #include <map>
 #include <stack>
 
+#include "lib/bits.h"
 #include "lib/sysdep/os/win/win.h"	// HWND
 #include "lib/sysdep/sysdep.h"
 #include "lib/sysdep/os/win/wdbg_sym.h"
@@ -45,7 +46,7 @@ static size_t numCallers;
 static Status OnFrame(const _tagSTACKFRAME64* frame, uintptr_t UNUSED(cbData))
 {
 	callers[numCallers++] = (void*)frame->AddrPC.Offset;
-	return INFO::CONTINUE;
+	return INFO::OK;
 }
 
 #pragma optimize("", off)
@@ -56,7 +57,9 @@ static Status OnFrame(const _tagSTACKFRAME64* frame, uintptr_t UNUSED(cbData))
 // while debug_ResolveSymbol for the function does not)
 __declspec(noinline) static void Func1()
 {
-	wdbg_sym_WalkStack(OnFrame, 0, 0, L"wdbg_sym_WalkStack");
+	CONTEXT context;
+	(void)debug_CaptureContext(&context);
+	wdbg_sym_WalkStack(OnFrame, 0, context);
 }
 
 __declspec(noinline) static void Func2()
@@ -97,18 +100,23 @@ class TestWdbgSym : public CxxTest::TestSuite
 		wchar_t chars[] = { 'w','c','h','a','r','s',0 };
 		wchar_t many_wchars[1024]; memset(many_wchars, 'a', sizeof(many_wchars));
 
-		debug_printf(L"\n(dumping stack frames may result in access violations %.0d %.0c %.0c %.0g %.0g %.0d %.0d..)\n", ints[0], chars[0], many_wchars[0], large_array_of_large_structs[0].d1, small_array_of_large_structs[0].d1, large_array_of_small_structs[0].i1, small_array_of_small_structs[0].i1);
+		debug_printf(L"\n(dumping stack frames may result in access violations...)\n");
+		debug_printf(L"  locals: %.0d %.0c %.0c %.0g %.0g %.0d %.0d\n", ints[0], chars[0], many_wchars[0], large_array_of_large_structs[0].d1, small_array_of_large_structs[0].d1, large_array_of_small_structs[0].i1, small_array_of_small_structs[0].i1);
 
 		// note: we don't want any kind of dialog to be raised, because
 		// this test now always runs. therefore, just make sure a decent
 		// amount of text (not just "(failed)" error messages) was produced.
 		ErrorMessageMem emm = {0};
-		const wchar_t* text = debug_BuildErrorMessage(L"dummy", 0,0,0, 0,L"debug_BuildErrorMessage", &emm);
+		CACHE_ALIGNED u8 context[DEBUG_CONTEXT_SIZE];
+		(void)debug_CaptureContext(context);
+		const wchar_t* text = debug_BuildErrorMessage(L"dummy", 0,0,0, context, L"m_test_array", &emm);
 		TS_ASSERT(wcslen(text) > 500);
+#if 0
 		{
 			std::wofstream s(L"d:\\out.txt");
 			s << text;
 		}
+#endif
 		debug_FreeErrorMessage(&emm);
 
 		debug_printf(L"(done dumping stack frames)\n");
@@ -287,18 +295,27 @@ public:
 
 	void test_stack_walk()
 	{
+		Status ret;
+
 		Func3();
 		TS_ASSERT(numCallers >= 3);
+		size_t foundFunctionBits = 0;
 		void* funcAddresses[3] = { (void*)&Func1, (void*)&Func2, (void*)&Func3 };
-		for(size_t i = 0; i < 3; i++)
+		for(size_t idxCaller = 0; idxCaller < numCallers; idxCaller++)
 		{
-			wchar_t func1[DBG_SYMBOL_LEN], func2[DBG_SYMBOL_LEN];
-			Status ret;
-			ret = debug_ResolveSymbol(callers[i], func1, 0, 0);
+			wchar_t callerName[DEBUG_SYMBOL_CHARS];
+			ret = debug_ResolveSymbol(callers[idxCaller], callerName, 0, 0);
 			TS_ASSERT_OK(ret);
-			ret = debug_ResolveSymbol(funcAddresses[i], func2, 0, 0);
-			TS_ASSERT_OK(ret);
-			TS_ASSERT_WSTR_CONTAINS(func2, func1);
+
+			wchar_t funcName[DEBUG_SYMBOL_CHARS];
+			for(size_t idxFunc = 0; idxFunc < ARRAY_SIZE(funcAddresses); idxFunc++)
+			{
+				ret = debug_ResolveSymbol(funcAddresses[idxFunc], funcName, 0, 0);
+				TS_ASSERT_OK(ret);
+				if(wcsstr(funcName, callerName))
+					foundFunctionBits |= BIT(idxFunc);
+			}
 		}
+		TS_ASSERT(foundFunctionBits == bit_mask<size_t>(ARRAY_SIZE(funcAddresses)));
 	}
 };

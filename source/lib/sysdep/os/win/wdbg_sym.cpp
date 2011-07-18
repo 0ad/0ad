@@ -27,46 +27,40 @@
 #include "precompiled.h"
 #include "lib/sysdep/os/win/wdbg_sym.h"
 
-#include <stdlib.h>
-#include <stdio.h>
+#include <cstdlib>
+#include <cstdio>
 #include <set>
 
-#include "lib/byte_order.h"
+#include "lib/byte_order.h"	// movzx_le64
 #include "lib/module_init.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/debug_stl.h"
 #include "lib/app_hooks.h"
-#if ARCH_IA32
-# include "lib/sysdep/arch/ia32/ia32.h"
-# include "lib/sysdep/arch/ia32/ia32_asm.h"
-#endif
 #include "lib/external_libraries/dbghelp.h"
 #include "lib/sysdep/os/win/wdbg.h"
 #include "lib/sysdep/os/win/wutil.h"
+#include "lib/sysdep/os/win/winit.h"
 
+WINIT_REGISTER_CRITICAL_INIT(wdbg_sym_Init);
 
-#if ARCH_IA32 && !CONFIG_OMIT_FP
-# define IA32_STACK_WALK_ENABLED 1
-#else
-# define IA32_STACK_WALK_ENABLED 0
-#endif
+static WUTIL_FUNC(pRtlCaptureContext, VOID, (PCONTEXT));
+
+static Status wdbg_sym_Init()
+{
+	WUTIL_IMPORT_KERNEL32(RtlCaptureContext, pRtlCaptureContext);
+	return INFO::OK;
+}
 
 
 //----------------------------------------------------------------------------
 // dbghelp
 //----------------------------------------------------------------------------
 
-// passed to all dbghelp symbol query functions. we're not interested in
-// resolving symbols in other processes; the purpose here is only to
-// generate a stack trace. if that changes, we need to init a local copy
-// of these in dump_sym_cb and pass them to all subsequent dump_*.
+// global for convenience (we only support a single process)
 static HANDLE hProcess;
-static uintptr_t mod_base;
 
-#if !IA32_STACK_WALK_ENABLED
 // for StackWalk64; taken from PE header by InitDbghelp.
 static WORD machine;
-#endif
 
 static Status InitDbghelp()
 {
@@ -80,8 +74,9 @@ static Status InitDbghelp()
 	//   any of the options affect it.
 	// - do not set directly - that would zero any existing flags.
 	DWORD opts = pSymGetOptions();
-	opts |= SYMOPT_DEFERRED_LOADS;	// the "fastest, most efficient way"
 	//opts |= SYMOPT_DEBUG;	// lots of debug spew in output window
+	opts |= SYMOPT_DEFERRED_LOADS;	// the "fastest, most efficient way"
+	opts |= SYMOPT_LOAD_LINES;
 	opts |= SYMOPT_UNDNAME;
 	pSymSetOptions(opts);
 
@@ -95,12 +90,9 @@ static Status InitDbghelp()
 	const BOOL ok = pSymInitializeW(hProcess, UserSearchPath, fInvadeProcess);
 	WARN_IF_FALSE(ok);
 
-	mod_base = (uintptr_t)pSymGetModuleBase64(hProcess, (u64)&InitDbghelp);
-
-#if !IA32_STACK_WALK_ENABLED
-	IMAGE_NT_HEADERS* const header = pImageNtHeader((void*)(uintptr_t)mod_base);
+	HMODULE hModule = GetModuleHandle(0);
+	IMAGE_NT_HEADERS* const header = pImageNtHeader(hModule);
 	machine = header->FileHeader.Machine;
-#endif
 
 	return INFO::OK;
 }
@@ -109,10 +101,55 @@ static Status InitDbghelp()
 // call every time before dbghelp functions are used.
 // (on-demand initialization allows handling exceptions raised before
 // winit.cpp init functions are called)
+//
+// NB: this may take SECONDS if OS symbols are installed and
+// symserv wants to access the internet.
 static void sym_init()
 {
 	static ModuleInitState initState;
 	ModuleInit(&initState, InitDbghelp);
+}
+
+
+static STACKFRAME64 PopulateStackFrame(CONTEXT& context)
+{
+	STACKFRAME64 sf;
+	memset(&sf, 0, sizeof(sf));
+	sf.AddrPC.Mode      = AddrModeFlat;
+	sf.AddrFrame.Mode   = AddrModeFlat;
+	sf.AddrStack.Mode   = AddrModeFlat;
+#if ARCH_AMD64
+	sf.AddrPC.Offset    = context.Rip;
+	sf.AddrFrame.Offset = context.Rbp;
+	sf.AddrStack.Offset = context.Rsp;
+#else
+	sf.AddrPC.Offset    = context.Eip;
+	sf.AddrFrame.Offset = context.Ebp;
+	sf.AddrStack.Offset = context.Esp;
+#endif
+	return sf;
+}
+
+
+static IMAGEHLP_STACK_FRAME PopulateImageStackFrame(const STACKFRAME64& sf)
+{
+	IMAGEHLP_STACK_FRAME isf;
+	memset(&isf, 0, sizeof(isf));
+	// apparently only PC, FP and SP are necessary, but
+	// we copy everything to be safe.
+	isf.InstructionOffset  = sf.AddrPC.Offset;
+	isf.ReturnOffset       = sf.AddrReturn.Offset;
+	isf.FrameOffset        = sf.AddrFrame.Offset;
+	isf.StackOffset        = sf.AddrStack.Offset;
+	isf.BackingStoreOffset = sf.AddrBStore.Offset;
+	isf.FuncTableEntry     = (ULONG64)sf.FuncTableEntry;
+	// (note: array of different types, can't copy directly)
+	for(int i = 0; i < 4; i++)
+		isf.Params[i] = sf.Params[i];
+	// isf.Reserved - already zeroed
+	isf.Virtual = sf.Virtual;
+	// isf.Reserved2 - already zeroed
+	return isf;
 }
 
 
@@ -131,15 +168,15 @@ struct SYMBOL_INFO_PACKAGEW2 : public SYMBOL_INFO_PACKAGEW
 // aren't guaranteed to precede ours (although they do in practice).
 struct TI_FINDCHILDREN_PARAMS2
 {
-	TI_FINDCHILDREN_PARAMS2(DWORD num_children)
+	TI_FINDCHILDREN_PARAMS2(DWORD numChildren)
 	{
 		p.Start = 0;
-		p.Count = std::min(num_children, MAX_CHILDREN);
+		p.Count = std::min(numChildren, maxChildren);
 	}
 
-	static const DWORD MAX_CHILDREN = 300;
+	static const DWORD maxChildren = 300;
 	TI_FINDCHILDREN_PARAMS p;
-	DWORD additional_children[MAX_CHILDREN-1];
+	DWORD childrenStorage[maxChildren-1];
 };
 
 #pragma pack(pop)
@@ -152,7 +189,7 @@ static Status ResolveSymbol_lk(void* ptr_of_interest, wchar_t* sym_name, wchar_t
 	sym_init();
 
 	const DWORD64 addr = (DWORD64)ptr_of_interest;
-	int successes = 0;
+	size_t successes = 0;
 
 	WinScopedPreserveLastError s;	// SymFromAddrW, SymGetLineFromAddrW64
 
@@ -165,7 +202,7 @@ static Status ResolveSymbol_lk(void* ptr_of_interest, wchar_t* sym_name, wchar_t
 		SYMBOL_INFOW* sym = &sp.si;
 		if(pSymFromAddrW(hProcess, addr, 0, sym))
 		{
-			wcscpy_s(sym_name, DBG_SYMBOL_LEN, sym->Name);
+			wcscpy_s(sym_name, DEBUG_SYMBOL_CHARS, sym->Name);
 			successes++;
 		}
 	}
@@ -187,7 +224,7 @@ static Status ResolveSymbol_lk(void* ptr_of_interest, wchar_t* sym_name, wchar_t
 				// problem and is balanced by not having to do this from every
 				// call site (full path is too long to display nicely).
 				const wchar_t* basename = path_name_only(line_info.FileName);
-				wcscpy_s(file, DBG_FILE_LEN, basename);
+				wcscpy_s(file, DEBUG_FILE_CHARS, basename);
 				successes++;
 			}
 
@@ -207,11 +244,6 @@ static Status ResolveSymbol_lk(void* ptr_of_interest, wchar_t* sym_name, wchar_t
 	return (successes != 0)? INFO::OK : ERR::FAIL;
 }
 
-// read and return symbol information for the given address. all of the
-// output parameters are optional; we pass back as much information as is
-// available and desired. return 0 iff any information was successfully
-// retrieved and stored.
-// sym_name and file must hold at least the number of chars above;
 // file is the base name only, not path (see rationale in wdbg_sym).
 // the PDB implementation is rather slow (~500µs).
 Status debug_ResolveSymbol(void* ptr_of_interest, wchar_t* sym_name, wchar_t* file, int* line)
@@ -225,251 +257,107 @@ Status debug_ResolveSymbol(void* ptr_of_interest, wchar_t* sym_name, wchar_t* fi
 // stack walk
 //----------------------------------------------------------------------------
 
-/*
-Subroutine linkage example code:
-
-	push	param2
-	push	param1
-	call	func
-ret_addr:
-	[..]
-
-func:
-	push	ebp
-	mov		ebp, esp
-	sub		esp, local_size
-	[..]
-
-Stack contents (down = decreasing address)
-	[param2]
-	[param1]
-	ret_addr
-	prev_ebp         (<- current ebp points at this value)
-	[local_variables]
-*/
-
-
-/*
-	call	func1
-ret1:
-
-func1:
-	push	ebp
-	mov		ebp, esp
-	call	func2
-ret2:
-
-func2:
-	push	ebp
-	mov		ebp, esp
-	STARTHERE
-
-	*/
-
-#if IA32_STACK_WALK_ENABLED
-
-static Status ia32_walk_stack(_tagSTACKFRAME64* sf)
+Status debug_CaptureContext(void* pcontext)
 {
-	// read previous values from _tagSTACKFRAME64
-	void* prev_fp  = (void*)(uintptr_t)sf->AddrFrame .Offset;
-	void* prev_ip  = (void*)(uintptr_t)sf->AddrPC    .Offset;
-	void* prev_ret = (void*)(uintptr_t)sf->AddrReturn.Offset;
-	if(!debug_IsStackPointer(prev_fp))
-		WARN_RETURN(ERR::_11);
-	if(prev_ip && !debug_IsCodePointer(prev_ip))
-		WARN_RETURN(ERR::_12);
-	if(prev_ret && !debug_IsCodePointer(prev_ret))
-		WARN_RETURN(ERR::_13);
+	// there are 4 ways to do so, in order of preference:
+	// - RtlCaptureContext (only available on WinXP or above)
+	// - assembly language subroutine (complicates the build system)
+	// - intentionally raise an SEH exception and capture its context
+	//   (causes annoying "first chance exception" messages and
+	//   can't co-exist with WinScopedLock's destructor)
+	// - GetThreadContext while suspended (a bit tricky + slow).
+	//   note: it used to be common practice to query the current thread
+	//   context, but WinXP SP2 and above require it be suspended.
 
-	// read stack frame
-	void* fp       = ((void**)prev_fp)[0];
-	void* ret_addr = ((void**)prev_fp)[1];
-	if(!fp)
-		return INFO::ALL_COMPLETE;
-	if(!debug_IsStackPointer(fp))
-		WARN_RETURN(ERR::_14);
-	if(!debug_IsCodePointer(ret_addr))
-		return ERR::FAIL;	// NOWARN (invalid address)
+	if(!pRtlCaptureContext)
+		return ERR::NOT_SUPPORTED;	// NOWARN
 
-	void* target;
-	Status err = ia32_GetCallTarget(ret_addr, target);
-	RETURN_STATUS_IF_ERR(err);
-	if(target)	// were able to determine it from the call instruction
-	{
-		if(!debug_IsCodePointer(target))
-			return ERR::FAIL;	// NOWARN (invalid address)
-	}
+	CONTEXT* context = (CONTEXT*)pcontext;
+	cassert(sizeof(CONTEXT) <= DEBUG_CONTEXT_SIZE);
+	memset(context, 0, sizeof(CONTEXT));
+	context->ContextFlags = CONTEXT_FULL;
+	pRtlCaptureContext(context);
+	return INFO::OK;
+}
 
-	sf->AddrFrame .Offset = DWORD64(fp);
-	sf->AddrStack .Offset = DWORD64(prev_fp)+8;	// +8 reverts effects of call + push ebp
-	sf->AddrPC    .Offset = DWORD64(target);
-	sf->AddrReturn.Offset = DWORD64(ret_addr);
+
+static Status CallStackWalk(STACKFRAME64& sf, CONTEXT& context)
+{
+	WinScopedLock lock(WDBG_SYM_CS);
+
+	SetLastError(0);	// StackWalk64 doesn't always SetLastError
+	const HANDLE hThread = GetCurrentThread();
+	if(!pStackWalk64(machine, hProcess, hThread, &sf, &context, 0, pSymFunctionTableAccess64, pSymGetModuleBase64, 0))
+		return ERR::FAIL; // NOWARN (no stack frames left)
+
+	// (the frame pointer can be zero despite StackWalk64 returning TRUE.)
+	if(sf.AddrFrame.Offset == 0)
+		return ERR::FAIL;	// NOWARN (no stack frames left)
+
+	// huge WTF in x64 debug builds (dbghelp 6.12.0002.633):
+	// AddrFrame.Offset doesn't match the correct RBP value.
+	// StackWalk64 updates the context [http://bit.ly/lo1aqZ] and
+	// its Rbp is correct, so we'll use that.
+#if ARCH_AMD64
+	sf.AddrFrame.Offset = context.Rbp;
+#endif
 
 	return INFO::OK;
 }
 
-#endif
 
-
-// note: RtlCaptureStackBackTrace (http://msinilo.pl/blog/?p=40)
-// is likely to be much faster than StackWalk64 (especially relevant
-// for debug_GetCaller), but wasn't known during development and
-// remains undocumented.
-
-Status wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, const CONTEXT* pcontext, const wchar_t* lastFuncToSkip)
+// NB: CaptureStackBackTrace may be faster (http://msinilo.pl/blog/?p=40),
+// but wasn't known during development.
+Status wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, CONTEXT& context, const wchar_t* lastFuncToSkip)
 {
-	// to function properly, StackWalk64 requires a CONTEXT on
-	// non-x86 systems (documented) or when in release mode (observed).
-	// exception handlers can call wdbg_sym_WalkStack with their context record;
-	// otherwise (e.g. dump_stack from ENSURE), we need to query it.
-	CONTEXT context;
-	// .. caller knows the context (most likely from an exception);
-	//    since StackWalk64 may modify it, copy to a local variable.
-	if(pcontext)
-		context = *pcontext;
-	// .. need to determine context ourselves.
-	else
-	{
-		// there are 4 ways to do so, in order of preference:
-		// - asm (easy to use but currently only implemented on IA32)
-		// - RtlCaptureContext (only available on WinXP or above)
-		// - intentionally raise an SEH exception and capture its context
-		//   (causes annoying "first chance exception" messages and
-		//   can't co-exist with WinScopedLock's destructor)
-		// - GetThreadContext while suspended (a bit tricky + slow).
-		//   note: it used to be common practice to query the current thread
-		//   context, but WinXP SP2 and above require it be suspended.
-		//
-		// this MUST be done inline and not in an external function because
-		// compiler-generated prolog code trashes some registers.
-
-#if ARCH_IA32
-		ia32_asm_GetCurrentContext(&context);
-#else
-		// we need to capture the context ASAP, lest more registers be
-		// clobbered. since sym_init is no longer called from winit, the
-		// best we can do is import the function pointer directly.
-		static WUTIL_FUNC(pRtlCaptureContext, VOID, (PCONTEXT));
-		if(!pRtlCaptureContext)
-		{
-			WUTIL_IMPORT_KERNEL32(RtlCaptureContext, pRtlCaptureContext);
-			if(!pRtlCaptureContext)
-				return ERR::NOT_SUPPORTED;	// NOWARN
-		}
-		memset(&context, 0, sizeof(context));
-		context.ContextFlags = CONTEXT_CONTROL|CONTEXT_INTEGER;
-		pRtlCaptureContext(&context);
-#endif
-	}
-	pcontext = &context;
-
-	_tagSTACKFRAME64 sf;
-	memset(&sf, 0, sizeof(sf));
-	sf.AddrPC.Mode      = AddrModeFlat;
-	sf.AddrFrame.Mode   = AddrModeFlat;
-	sf.AddrStack.Mode   = AddrModeFlat;
-#if ARCH_AMD64
-	sf.AddrPC.Offset    = pcontext->Rip;
-	sf.AddrFrame.Offset = pcontext->Rbp;
-	sf.AddrStack.Offset = pcontext->Rsp;
-#else
-	sf.AddrPC.Offset    = pcontext->Eip;
-	sf.AddrFrame.Offset = pcontext->Ebp;
-	sf.AddrStack.Offset = pcontext->Esp;
-#endif
-
-#if !IA32_STACK_WALK_ENABLED
 	sym_init();
-#endif
 
-	// for each stack frame found:
-	Status ret  = ERR::SYM_NO_STACK_FRAMES_FOUND;
-	for(;;)
+	STACKFRAME64 sf = PopulateStackFrame(context);
+	
+	wchar_t func[DEBUG_SYMBOL_CHARS];
+
+	Status ret = ERR::SYM_NO_STACK_FRAMES_FOUND;
+	for(;;)	// each stack frame:
 	{
-		// rationale:
-		// - provide a separate ia32 implementation so that simple
-		//   stack walks (e.g. to determine callers of malloc) do not
-		//   require firing up dbghelp. that takes tens of seconds when
-		//   OS symbols are installed (because symserv is wanting to access
-		//   the internet), which is entirely unacceptable.
-		// - VC7.1 sometimes generates stack frames despite /Oy ;
-		//   ia32_walk_stack may appear to work, but it isn't reliable in
-		//   this case and therefore must not be used!
-		// - don't switch between ia32_stack_walk and StackWalk64 when one
-		//   of them fails: this needlessly complicates things. the ia32
-		//   code is authoritative provided its prerequisite (FP not omitted)
-		//   is met, otherwise totally unusable.
-		Status err;
-#if IA32_STACK_WALK_ENABLED
-		err = ia32_walk_stack(&sf);
-#else
-		{
-			WinScopedLock lock(WDBG_SYM_CS);
-
-			// note: unfortunately StackWalk64 doesn't always SetLastError,
-			// so we have to reset it and check for 0. *sigh*
-			SetLastError(0);
-			const HANDLE hThread = GetCurrentThread();
-			const BOOL ok = pStackWalk64(machine, hProcess, hThread, &sf, (PVOID)pcontext, 0, pSymFunctionTableAccess64, pSymGetModuleBase64, 0);
-			err = ok? INFO::OK : ERR::FAIL; // NOWARN (no stack frames are left)
-		}
-#endif
-
-		// no more frames found - abort. note: also test FP because
-		// StackWalk64 sometimes erroneously reports success.
-		void* const fp = (void*)(uintptr_t)sf.AddrFrame.Offset;
-		if(err != INFO::OK || !fp)
+		if(CallStackWalk(sf, context) != INFO::OK)
 			return ret;
 
 		if(lastFuncToSkip)
 		{
 			void* const pc = (void*)(uintptr_t)sf.AddrPC.Offset;
-			wchar_t func[DBG_SYMBOL_LEN];
-			err = debug_ResolveSymbol(pc, func, 0, 0);
-			if(err == INFO::OK)
+			if(debug_ResolveSymbol(pc, func, 0, 0) == INFO::OK)
 			{
-				if(wcsstr(func, lastFuncToSkip))
+				if(wcsstr(func, lastFuncToSkip))	// this was the last one to skip
 					lastFuncToSkip = 0;
 				continue;
 			}
 		}
 
 		ret = cb(&sf, cbData);
-		// callback is allowing us to continue
-		if(ret == INFO::CONTINUE)
-			ret = INFO::OK;
-		// callback reports it's done; stop calling it and return that value.
-		// (can be either success or failure)
-		else
-		{
-			ENSURE(ret <= 0);	// shouldn't return > 0
-			return ret;
-		}
+		RETURN_STATUS_FROM_CALLBACK(ret);
 	}
 }
 
 
-//
-// get address of Nth function above us on the call stack (uses wdbg_sym_WalkStack)
-//
-
-// called by wdbg_sym_WalkStack for each stack frame
-static Status nth_caller_cb(const _tagSTACKFRAME64* sf, uintptr_t cbData)
-{
-	void** pfunc = (void**)cbData;
-
-	// return its address
-	*pfunc = (void*)(uintptr_t)sf->AddrPC.Offset;
-	return INFO::OK;
-}
-
 void* debug_GetCaller(void* pcontext, const wchar_t* lastFuncToSkip)
 {
+	struct StoreAddress
+	{
+		static Status Func(const STACKFRAME64* sf, uintptr_t cbData)
+		{
+			const uintptr_t funcAddress = sf->AddrPC.Offset;
+
+			// store funcAddress in our `output parameter'
+			memcpy((void*)cbData, &funcAddress, sizeof(funcAddress));
+
+			return INFO::OK;
+		}
+	};
 	void* func;
-	Status ret = wdbg_sym_WalkStack(nth_caller_cb, (uintptr_t)&func, (const CONTEXT*)pcontext, lastFuncToSkip);
+	wdbg_assert(pcontext != 0);
+	Status ret = wdbg_sym_WalkStack(&StoreAddress::Func, (uintptr_t)&func, *(CONTEXT*)pcontext, lastFuncToSkip);
 	return (ret == INFO::OK)? func : 0;
 }
-
 
 
 //-----------------------------------------------------------------------------
@@ -477,20 +365,22 @@ void* debug_GetCaller(void* pcontext, const wchar_t* lastFuncToSkip)
 //-----------------------------------------------------------------------------
 
 // infinite recursion has never happened, but we check for it anyway.
-static const size_t MAX_INDIRECTION = 255;
-static const size_t MAX_LEVEL = 255;
+static const size_t maxIndirection = 255;
+static const size_t maxLevel = 255;
 
 struct DumpState
 {
 	size_t level;
 	size_t indirection;
+	uintptr_t moduleBase;
+	LPSTACKFRAME64 stackFrame;
 
-	DumpState()
+	DumpState(uintptr_t moduleBase, LPSTACKFRAME64 stackFrame)
+		: level(0), indirection(0), moduleBase(moduleBase), stackFrame(stackFrame)
 	{
-		level = 0;
-		indirection = 0;
 	}
 };
+
 
 //----------------------------------------------------------------------------
 
@@ -652,18 +542,18 @@ static bool is_string(const u8* p, size_t stride)
 
 
 // forward decl; called by dump_sequence and some of dump_sym_*.
-static Status dump_sym(DWORD id, const u8* p, DumpState state);
+static Status dump_sym(DWORD id, const u8* p, DumpState& state);
 
 // from cvconst.h
 //
 // rationale: we don't provide a get_register routine, since only the
-// value of FP is known to dump_frame_cb (via _tagSTACKFRAME64).
+// value of FP is known to dump_frame_cb (via STACKFRAME64).
 // displaying variables stored in registers is out of the question;
 // all we can do is display FP-relative variables.
 enum CV_HREG_e
 {
 	CV_REG_EBP = 22,
-	CV_AMD64_RSP = 335
+	CV_AMD64_RBP = 334
 };
 
 
@@ -699,7 +589,7 @@ static void dump_error(Status err)
 }
 
 
-// split out of dump_sequence.
+// moved out of dump_sequence.
 static Status dump_string(const u8* p, size_t el_size)
 {
 	// not char or wchar_t string
@@ -733,7 +623,7 @@ static Status dump_string(const u8* p, size_t el_size)
 }
 
 
-// split out of dump_sequence.
+// moved out of dump_sequence.
 static void seq_determine_formatting(size_t el_size, size_t el_count, bool* fits_on_one_line, size_t* num_elements_to_show)
 {
 	if(el_size == sizeof(char))
@@ -759,7 +649,7 @@ static void seq_determine_formatting(size_t el_size, size_t el_count, bool* fits
 }
 
 
-static Status dump_sequence(DebugStlIterator el_iterator, void* internal, size_t el_count, DWORD el_type_id, size_t el_size, DumpState state)
+static Status dump_sequence(DebugStlIterator el_iterator, void* internal, size_t el_count, DWORD el_type_id, size_t el_size, DumpState& state)
 {
 	const u8* el_p = 0;	// avoid "uninitialized" warning
 
@@ -831,15 +721,13 @@ static const u8* array_iterator(void* internal, size_t el_size)
 }
 
 
-static Status dump_array(const u8* p, size_t el_count, DWORD el_type_id, size_t el_size, DumpState state)
+static Status dump_array(const u8* p, size_t el_count, DWORD el_type_id, size_t el_size, DumpState& state)
 {
 	const u8* iterator_internal_pos = p;
 	return dump_sequence(array_iterator, &iterator_internal_pos,
 		el_count, el_type_id, el_size, state);
 }
 
-
-static const _tagSTACKFRAME64* current_stackframe64;
 
 static Status CanHandleDataKind(DWORD dataKind)
 {
@@ -879,7 +767,7 @@ static bool IsRelativeToFramePointer(DWORD flags, DWORD reg)
 		return true;
 	if((flags & SYMFLAG_REGREL) == 0)
 		return false;
-	if(reg == CV_REG_EBP || reg == CV_AMD64_RSP)
+	if(reg == CV_REG_EBP || reg == CV_AMD64_RBP)
 		return true;
 	return false;
 }
@@ -902,12 +790,10 @@ static bool IsUnretrievable(DWORD flags)
 	return false;
 }
 
-static Status DetermineSymbolAddress(DWORD id, const SYMBOL_INFOW* sym, const u8** pp)
+static Status DetermineSymbolAddress(DWORD id, const SYMBOL_INFOW* sym, const DumpState& state, const u8** pp)
 {
-	const _tagSTACKFRAME64* sf = current_stackframe64;
-
 	DWORD dataKind;
-	if(!pSymGetTypeInfo(hProcess, mod_base, id, TI_GET_DATAKIND, &dataKind))
+	if(!pSymGetTypeInfo(hProcess, state.moduleBase, id, TI_GET_DATAKIND, &dataKind))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
 	Status ret = CanHandleDataKind(dataKind);
 	RETURN_STATUS_IF_ERR(ret);
@@ -920,31 +806,13 @@ static Status DetermineSymbolAddress(DWORD id, const SYMBOL_INFOW* sym, const u8
 	// get address
 	uintptr_t addr = (uintptr_t)sym->Address;
 	if(IsRelativeToFramePointer(sym->Flags, sym->Register))
-	{
-#if ARCH_AMD64
-		addr += (uintptr_t)sf->AddrStack.Offset;
-#else
-		addr += (uintptr_t)sf->AddrFrame.Offset;
-# if defined(NDEBUG)
-		// NB: the addresses of register-relative symbols are apparently
-		// incorrect [VC8, 32-bit Wow64]. the problem occurs regardless of
-		// IA32_STACK_WALK_ENABLED and with both ia32_asm_GetCurrentContext
-		// and RtlCaptureContext. the EBP, ESP and EIP values returned by
-		// ia32_asm_GetCurrentContext match those reported by the IDE, so
-		// the problem appears to lie in the offset values stored in the PDB.
-		if(sym->Flags & SYMFLAG_PARAMETER)
-			addr += sizeof(void*);
-		else
-			addr += sizeof(void*) * 2;
-# endif
-#endif
-	}
+		addr += (uintptr_t)state.stackFrame->AddrFrame.Offset;
 	else if(IsUnretrievable(sym->Flags))
 		return ERR::SYM_UNRETRIEVABLE;	// NOWARN
 
 	*pp = (const u8*)(uintptr_t)addr;
 
-	debug_printf(L"SYM| %ls at %p  flags=%X dk=%d sym->addr=%I64X fp=%I64x\n", sym->Name, *pp, sym->Flags, dataKind, sym->Address, sf->AddrFrame.Offset);
+	debug_printf(L"SYM| %ls at %p  flags=%X dk=%d sym->addr=%I64X fp=%I64x\n", sym->Name, *pp, sym->Flags, dataKind, sym->Address, state.stackFrame->AddrFrame.Offset);
 	return INFO::OK;
 }
 
@@ -958,21 +826,21 @@ static Status DetermineSymbolAddress(DWORD id, const SYMBOL_INFOW* sym, const u8
 // will display the appropriate error message via dump_error.
 // called by dump_sym; lock is held.
 
-static Status dump_sym_array(DWORD type_id, const u8* p, DumpState state)
+static Status dump_sym_array(DWORD type_id, const u8* p, DumpState& state)
 { 
-	ULONG64 size_ = 0;
-	if(!pSymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_LENGTH, &size_))
+	ULONG64 size64 = 0;
+	if(!pSymGetTypeInfo(hProcess, state.moduleBase, type_id, TI_GET_LENGTH, &size64))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
-	const size_t size = (size_t)size_;
+	const size_t size = (size_t)size64;
 
 	// get element count and size
 	DWORD el_type_id = 0;
-	if(!pSymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_TYPEID, &el_type_id))
+	if(!pSymGetTypeInfo(hProcess, state.moduleBase, type_id, TI_GET_TYPEID, &el_type_id))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
 	// .. workaround: TI_GET_COUNT returns total struct size for
 	//    arrays-of-struct. therefore, calculate as size / el_size.
 	ULONG64 el_size_;
-	if(!pSymGetTypeInfo(hProcess, mod_base, el_type_id, TI_GET_LENGTH, &el_size_))
+	if(!pSymGetTypeInfo(hProcess, state.moduleBase, el_type_id, TI_GET_LENGTH, &el_size_))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
 	const size_t el_size = (size_t)el_size_;
 	ENSURE(el_size != 0);
@@ -999,15 +867,15 @@ static void AppendCharacterIfPrintable(u64 data)
 }
 
 
-static Status dump_sym_base_type(DWORD type_id, const u8* p, DumpState state)
+static Status dump_sym_base_type(DWORD type_id, const u8* p, DumpState& state)
 {
 	DWORD base_type;
-	if(!pSymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_BASETYPE, &base_type))
+	if(!pSymGetTypeInfo(hProcess, state.moduleBase, type_id, TI_GET_BASETYPE, &base_type))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
-	ULONG64 size_ = 0;
-	if(!pSymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_LENGTH, &size_))
+	ULONG64 size64 = 0;
+	if(!pSymGetTypeInfo(hProcess, state.moduleBase, type_id, TI_GET_LENGTH, &size64))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
-	const size_t size = (size_t)size_;
+	const size_t size = (size_t)size64;
 
 	// single out() call. note: we pass a single u64 for all sizes,
 	// which will only work on little-endian systems.
@@ -1023,7 +891,10 @@ static Status dump_sym_base_type(DWORD type_id, const u8* p, DumpState state)
 		if(p[i] != 0xCC)
 			break;
 		if(i == size-1)
-			goto display_as_hex;
+		{
+			out(L"(uninitialized)");
+			return INFO::OK;
+		}
 	}
 
 	switch(base_type)
@@ -1062,7 +933,6 @@ static Status dump_sym_base_type(DWORD type_id, const u8* p, DumpState state)
 	case btLong:
 	case btUInt:
 	case btULong:
-display_as_hex:
 		if(size == 1)
 		{
 			// _TUCHAR
@@ -1133,17 +1003,17 @@ display_as_hex:
 
 //-----------------------------------------------------------------------------
 
-static Status dump_sym_base_class(DWORD type_id, const u8* p, DumpState state)
+static Status dump_sym_base_class(DWORD type_id, const u8* p, DumpState& state)
 {
 	DWORD base_class_type_id;
-	if(!pSymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_TYPEID, &base_class_type_id))
+	if(!pSymGetTypeInfo(hProcess, state.moduleBase, type_id, TI_GET_TYPEID, &base_class_type_id))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
 
 	// this is a virtual base class. we can't display those because it'd
 	// require reading the VTbl, which is difficult given lack of documentation
 	// and just not worth it.
 	DWORD vptr_ofs;
-	if(pSymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_VIRTUALBASEPOINTEROFFSET, &vptr_ofs))
+	if(pSymGetTypeInfo(hProcess, state.moduleBase, type_id, TI_GET_VIRTUALBASEPOINTEROFFSET, &vptr_ofs))
 		return ERR::SYM_UNSUPPORTED;	// NOWARN
 
 	return dump_sym(base_class_type_id, p, state);
@@ -1152,18 +1022,18 @@ static Status dump_sym_base_class(DWORD type_id, const u8* p, DumpState state)
 
 //-----------------------------------------------------------------------------
 
-static Status dump_sym_data(DWORD id, const u8* p, DumpState state)
+static Status dump_sym_data(DWORD id, const u8* p, DumpState& state)
 {
 	SYMBOL_INFO_PACKAGEW2 sp;
 	SYMBOL_INFOW* sym = &sp.si;
-	if(!pSymFromIndexW(hProcess, mod_base, id, sym))
+	if(!pSymFromIndexW(hProcess, state.moduleBase, id, sym))
 		RETURN_STATUS_IF_ERR(ERR::SYM_TYPE_INFO_UNAVAILABLE);
 
 	out(L"%ls = ", sym->Name);
 
 	__try
 	{
-		RETURN_STATUS_IF_ERR(DetermineSymbolAddress(id, sym, &p));
+		RETURN_STATUS_IF_ERR(DetermineSymbolAddress(id, sym, state, &p));
 		// display value recursively
 		return dump_sym(sym->TypeIndex, p, state);
 	}
@@ -1176,27 +1046,27 @@ static Status dump_sym_data(DWORD id, const u8* p, DumpState state)
 
 //-----------------------------------------------------------------------------
 
-static Status dump_sym_enum(DWORD type_id, const u8* p, DumpState UNUSED(state))
+static Status dump_sym_enum(DWORD type_id, const u8* p, DumpState& state)
 {
-	ULONG64 size_ = 0;
-	if(!pSymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_LENGTH, &size_))
+	ULONG64 size64 = 0;
+	if(!pSymGetTypeInfo(hProcess, state.moduleBase, type_id, TI_GET_LENGTH, &size64))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
-	const size_t size = (size_t)size_;
+	const size_t size = (size_t)size64;
 
 	const i64 enum_value = movsx_le64(p, size);
 
 	// get array of child symbols (enumerants).
-	DWORD num_children;
-	if(!pSymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_CHILDRENCOUNT, &num_children))
+	DWORD numChildren;
+	if(!pSymGetTypeInfo(hProcess, state.moduleBase, type_id, TI_GET_CHILDRENCOUNT, &numChildren))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
-	TI_FINDCHILDREN_PARAMS2 fcp(num_children);
-	if(!pSymGetTypeInfo(hProcess, mod_base, type_id, TI_FINDCHILDREN, &fcp))
+	TI_FINDCHILDREN_PARAMS2 fcp(numChildren);
+	if(!pSymGetTypeInfo(hProcess, state.moduleBase, type_id, TI_FINDCHILDREN, &fcp))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
-	num_children = fcp.p.Count;	// was truncated to MAX_CHILDREN
+	numChildren = fcp.p.Count;	// was truncated to maxChildren
 	const DWORD* children = fcp.p.ChildId;
 
 	// for each child (enumerant):
-	for(size_t i = 0; i < num_children; i++)
+	for(size_t i = 0; i < numChildren; i++)
 	{
 		DWORD child_data_id = children[i];
 
@@ -1206,7 +1076,7 @@ static Status dump_sym_enum(DWORD type_id, const u8* p, DumpState UNUSED(state))
 		// it manually and guarantees we cover everything. the OLE DLL is
 		// already pulled in by e.g. OpenGL anyway.
 		VARIANT v;
-		if(!pSymGetTypeInfo(hProcess, mod_base, child_data_id, TI_GET_VALUE, &v))
+		if(!pSymGetTypeInfo(hProcess, state.moduleBase, child_data_id, TI_GET_VALUE, &v))
 			WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
 		if(VariantChangeType(&v, &v, 0, VT_I8) != S_OK)
 			continue;
@@ -1215,7 +1085,7 @@ static Status dump_sym_enum(DWORD type_id, const u8* p, DumpState UNUSED(state))
 		if(enum_value == v.llVal)
 		{
 			const wchar_t* name;
-			if(!pSymGetTypeInfo(hProcess, mod_base, child_data_id, TI_GET_SYMNAME, &name))
+			if(!pSymGetTypeInfo(hProcess, state.moduleBase, child_data_id, TI_GET_SYMNAME, &name))
 				WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
 			out(L"%ls", name);
 			LocalFree((HLOCAL)name);
@@ -1234,7 +1104,7 @@ static Status dump_sym_enum(DWORD type_id, const u8* p, DumpState UNUSED(state))
 
 //-----------------------------------------------------------------------------
 
-static Status dump_sym_function(DWORD UNUSED(type_id), const u8* UNUSED(p), DumpState UNUSED(state))
+static Status dump_sym_function(DWORD UNUSED(type_id), const u8* UNUSED(p), DumpState& UNUSED(state))
 {
 	return INFO::SYM_SUPPRESS_OUTPUT;
 }
@@ -1242,13 +1112,13 @@ static Status dump_sym_function(DWORD UNUSED(type_id), const u8* UNUSED(p), Dump
 
 //-----------------------------------------------------------------------------
 
-static Status dump_sym_function_type(DWORD UNUSED(type_id), const u8* p, DumpState state)
+static Status dump_sym_function_type(DWORD UNUSED(type_id), const u8* p, DumpState& state)
 {
 	// this symbol gives class parent, return type, and parameter count.
 	// unfortunately the one thing we care about, its name,
 	// isn't exposed via TI_GET_SYMNAME, so we resolve it ourselves.
 
-	wchar_t name[DBG_SYMBOL_LEN];
+	wchar_t name[DEBUG_SYMBOL_CHARS];
 	Status err = ResolveSymbol_lk((void*)p, name, 0, 0);
 
 	if(state.indirection == 0)
@@ -1310,12 +1180,12 @@ static bool ptr_already_visited(const u8* p)
 }
 
 
-static Status dump_sym_pointer(DWORD type_id, const u8* p, DumpState state)
+static Status dump_sym_pointer(DWORD type_id, const u8* p, DumpState& state)
 {
-	ULONG64 size_ = 0;
-	if(!pSymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_LENGTH, &size_))
+	ULONG64 size64 = 0;
+	if(!pSymGetTypeInfo(hProcess, state.moduleBase, type_id, TI_GET_LENGTH, &size64))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
-	const size_t size = (size_t)size_;
+	const size_t size = (size_t)size64;
 
 	// read+output pointer's value.
 	p = (const u8*)(uintptr_t)movzx_le64(p, size);
@@ -1339,11 +1209,11 @@ static Status dump_sym_pointer(DWORD type_id, const u8* p, DumpState state)
 	// if the pointed-to value turns out to uninteresting (e.g. void*),
 	// the responsible dump_sym* will erase "->", leaving only address.
 	out(L" -> ");
-	if(!pSymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_TYPEID, &type_id))
+	if(!pSymGetTypeInfo(hProcess, state.moduleBase, type_id, TI_GET_TYPEID, &type_id))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
 
 	// prevent infinite recursion just to be safe (shouldn't happen)
-	if(state.indirection >= MAX_INDIRECTION)
+	if(state.indirection >= maxIndirection)
 		WARN_RETURN(ERR::SYM_NESTING_LIMIT);
 	state.indirection++;
 	return dump_sym(type_id, p, state);
@@ -1353,9 +1223,9 @@ static Status dump_sym_pointer(DWORD type_id, const u8* p, DumpState state)
 //-----------------------------------------------------------------------------
 
 
-static Status dump_sym_typedef(DWORD type_id, const u8* p, DumpState state)
+static Status dump_sym_typedef(DWORD type_id, const u8* p, DumpState& state)
 {
-	if(!pSymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_TYPEID, &type_id))
+	if(!pSymGetTypeInfo(hProcess, state.moduleBase, type_id, TI_GET_TYPEID, &type_id))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
 	return dump_sym(type_id, p, state);
 }
@@ -1367,20 +1237,20 @@ static Status dump_sym_typedef(DWORD type_id, const u8* p, DumpState state)
 // determine type and size of the given child in a UDT.
 // useful for UDTs that contain typedefs describing their contents,
 // e.g. value_type in STL containers.
-static Status udt_get_child_type(const wchar_t* child_name, ULONG num_children, const DWORD* children, DWORD* el_type_id, size_t* el_size)
+static Status udt_get_child_type(const wchar_t* child_name, ULONG numChildren, const DWORD* children, const DumpState& state, DWORD* el_type_id, size_t* el_size)
 {
 	const DWORD lastError = GetLastError();
 
 	*el_type_id = 0;
 	*el_size = 0;
 
-	for(ULONG i = 0; i < num_children; i++)
+	for(ULONG i = 0; i < numChildren; i++)
 	{
 		const DWORD child_id = children[i];
 
 		SYMBOL_INFO_PACKAGEW2 sp;
 		SYMBOL_INFOW* sym = &sp.si;
-		if(!pSymFromIndexW(hProcess, mod_base, child_id, sym))
+		if(!pSymFromIndexW(hProcess, state.moduleBase, child_id, sym))
 		{
 			// this happens for several UDTs; cause is unknown.
 			ENSURE(GetLastError() == ERROR_NOT_FOUND);
@@ -1401,7 +1271,7 @@ static Status udt_get_child_type(const wchar_t* child_name, ULONG num_children, 
 }
 
 
-static Status udt_dump_std(const wchar_t* type_name, const u8* p, size_t size, DumpState state, ULONG num_children, const DWORD* children)
+static Status udt_dump_std(const wchar_t* type_name, const u8* p, size_t size, DumpState& state, ULONG numChildren, const DWORD* children)
 {
 	Status err;
 
@@ -1410,16 +1280,17 @@ static Status udt_dump_std(const wchar_t* type_name, const u8* p, size_t size, D
 		return INFO::CANNOT_HANDLE;
 
 	// check for C++ objects that should be displayed via udt_dump_normal.
-	// STL containers are special-cased and the rest (apart from those here)
+	// C++03 containers are special-cased and the rest (apart from those here)
 	// are ignored, because for the most part they are spew.
-	if(!wcsncmp(type_name, L"std::pair", 9))
+	if(!wcsncmp(type_name, L"std::pair", 9) ||
+	   !wcsncmp(type_name, L"std::tr1::", 10))
 		return INFO::CANNOT_HANDLE;
 
 	// display contents of STL containers
 	// .. get element type
 	DWORD el_type_id;
 	size_t el_size;
- 	err = udt_get_child_type(L"value_type", num_children, children, &el_type_id, &el_size);
+ 	err = udt_get_child_type(L"value_type", numChildren, children, state, &el_type_id, &el_size);
 	if(err != INFO::OK)
 		goto not_valid_container;
 	// .. get iterator and # elements
@@ -1442,21 +1313,25 @@ not_valid_container:
 	if(err == ERR::SYM_CHILD_NOT_FOUND)
 		text = L"";
 	// .. not one of the containers we can analyse.
-	if(err == ERR::STL_CNT_UNKNOWN)
+	else if(err == ERR::STL_CNT_UNKNOWN)
+		text = L"unknown ";
+	else if(err == ERR::STL_CNT_UNSUPPORTED)
 		text = L"unsupported ";
 	// .. container of a known type but contents are invalid.
-	if(err == ERR::STL_CNT_INVALID)
+	else if(err == ERR::STL_CNT_INVALID)
 		text = L"uninitialized/invalid ";
 	// .. some other error encountered
 	else
 	{
-		swprintf_s(buf, ARRAY_SIZE(buf), L"error %d while analyzing ", err);
+		wchar_t description[200];
+		(void)StatusDescription(err, description, ARRAY_SIZE(description));
+		swprintf_s(buf, ARRAY_SIZE(buf), L"error \"%ls\" while analyzing ", description);
 		text = buf;
 	}
 
 	// (debug_stl modifies its input string in-place; type_name is
 	// a const string returned by dbghelp)
-	wchar_t type_name_buf[DBG_SYMBOL_LEN];
+	wchar_t type_name_buf[DEBUG_SYMBOL_CHARS];
 	wcscpy_s(type_name_buf, ARRAY_SIZE(type_name_buf), type_name);
 
 	out(L"(%ls%ls)", text, debug_stl_simplify_name(type_name_buf));
@@ -1513,7 +1388,7 @@ not_handle:
 }
 
 
-static Status udt_dump_suppressed(const wchar_t* type_name, const u8* UNUSED(p), size_t UNUSED(size), DumpState state, ULONG UNUSED(num_children), const DWORD* UNUSED(children))
+static Status udt_dump_suppressed(const wchar_t* type_name, const u8* UNUSED(p), size_t UNUSED(size), DumpState state, ULONG UNUSED(numChildren), const DWORD* UNUSED(children))
 {
 	if(!udt_should_suppress(type_name))
 		return INFO::CANNOT_HANDLE;
@@ -1565,26 +1440,26 @@ static bool udt_fits_on_one_line(const wchar_t* type_name, size_t child_count, s
 }
 
 
-static Status udt_dump_normal(const wchar_t* type_name, const u8* p, size_t size, DumpState state, ULONG num_children, const DWORD* children)
+static Status udt_dump_normal(const wchar_t* type_name, const u8* p, size_t size, DumpState state, ULONG numChildren, const DWORD* children)
 {
-	const bool fits_on_one_line = udt_fits_on_one_line(type_name, num_children, size);
+	const bool fits_on_one_line = udt_fits_on_one_line(type_name, numChildren, size);
 
 	// prevent infinite recursion just to be safe (shouldn't happen)
-	if(state.level >= MAX_LEVEL)
+	if(state.level >= maxLevel)
 		WARN_RETURN(ERR::SYM_NESTING_LIMIT);
 	state.level++;
 
 	out(fits_on_one_line? L"{ " : L"\r\n");
 
 	bool displayed_anything = false;
-	for(ULONG i = 0; i < num_children; i++)
+	for(ULONG i = 0; i < numChildren; i++)
 	{
 		const DWORD child_id = children[i];
 
 		// get offset. if not available, skip this child
 		// (we only display data here, not e.g. typedefs)
 		DWORD ofs = 0;
-		if(!pSymGetTypeInfo(hProcess, mod_base, child_id, TI_GET_OFFSET, &ofs))
+		if(!pSymGetTypeInfo(hProcess, state.moduleBase, child_id, TI_GET_OFFSET, &ofs))
 			continue;
 		if(ofs >= size)
 		{
@@ -1625,7 +1500,7 @@ static Status udt_dump_normal(const wchar_t* type_name, const u8* p, size_t size
 	}
 
 	// remove trailing comma separator
-	// note: we can't avoid writing it by checking if i == num_children-1:
+	// note: we can't avoid writing it by checking if i == numChildren-1:
 	// each child might be the last valid data member.
 	if(fits_on_one_line)
 	{
@@ -1637,40 +1512,40 @@ static Status udt_dump_normal(const wchar_t* type_name, const u8* p, size_t size
 }
 
 
-static Status dump_sym_udt(DWORD type_id, const u8* p, DumpState state)
+static Status dump_sym_udt(DWORD type_id, const u8* p, DumpState& state)
 {
-	ULONG64 size_ = 0;
-	if(!pSymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_LENGTH, &size_))
+	ULONG64 size64 = 0;
+	if(!pSymGetTypeInfo(hProcess, state.moduleBase, type_id, TI_GET_LENGTH, &size64))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
-	const size_t size = (size_t)size_;
+	const size_t size = (size_t)size64;
 
 	// get array of child symbols (members/functions/base classes).
-	DWORD num_children;
-	if(!pSymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_CHILDRENCOUNT, &num_children))
+	DWORD numChildren;
+	if(!pSymGetTypeInfo(hProcess, state.moduleBase, type_id, TI_GET_CHILDRENCOUNT, &numChildren))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
-	TI_FINDCHILDREN_PARAMS2 fcp(num_children);
-	if(!pSymGetTypeInfo(hProcess, mod_base, type_id, TI_FINDCHILDREN, &fcp))
+	TI_FINDCHILDREN_PARAMS2 fcp(numChildren);
+	if(!pSymGetTypeInfo(hProcess, state.moduleBase, type_id, TI_FINDCHILDREN, &fcp))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
-	num_children = fcp.p.Count;	// was truncated to MAX_CHILDREN
+	numChildren = fcp.p.Count;	// was truncated to maxChildren
 	const DWORD* children = fcp.p.ChildId;
 
 	const wchar_t* type_name;
-	if(!pSymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_SYMNAME, &type_name))
+	if(!pSymGetTypeInfo(hProcess, state.moduleBase, type_id, TI_GET_SYMNAME, &type_name))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
 
 	Status ret;
 	// note: order is important (e.g. STL special-case must come before
 	// suppressing UDTs, which tosses out most other C++ stdlib classes)
 
-	ret = udt_dump_std       (type_name, p, size, state, num_children, children);
+	ret = udt_dump_std       (type_name, p, size, state, numChildren, children);
 	if(ret != INFO::CANNOT_HANDLE)
 		goto done;
 
-	ret = udt_dump_suppressed(type_name, p, size, state, num_children, children);
+	ret = udt_dump_suppressed(type_name, p, size, state, numChildren, children);
 	if(ret != INFO::CANNOT_HANDLE)
 		goto done;
 
-	ret = udt_dump_normal    (type_name, p, size, state, num_children, children);
+	ret = udt_dump_normal    (type_name, p, size, state, numChildren, children);
 	if(ret != INFO::CANNOT_HANDLE)
 		goto done;
 
@@ -1683,7 +1558,7 @@ done:
 //-----------------------------------------------------------------------------
 
 
-static Status dump_sym_vtable(DWORD UNUSED(type_id), const u8* UNUSED(p), DumpState UNUSED(state))
+static Status dump_sym_vtable(DWORD UNUSED(type_id), const u8* UNUSED(p), DumpState& UNUSED(state))
 {
 	// unsupported (vtable internals are undocumented; too much work).
 	return INFO::SYM_SUPPRESS_OUTPUT;
@@ -1693,14 +1568,14 @@ static Status dump_sym_vtable(DWORD UNUSED(type_id), const u8* UNUSED(p), DumpSt
 //-----------------------------------------------------------------------------
 
 
-static Status dump_sym_unknown(DWORD type_id, const u8* UNUSED(p), DumpState UNUSED(state))
+static Status dump_sym_unknown(DWORD type_id, const u8* UNUSED(p), DumpState& state)
 {
 	// redundant (already done in dump_sym), but this is rare.
 	DWORD type_tag;
-	if(!pSymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_SYMTAG, &type_tag))
+	if(!pSymGetTypeInfo(hProcess, state.moduleBase, type_id, TI_GET_SYMTAG, &type_tag))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
 
-	debug_printf(L"SYM| unknown tag: %d\n", type_tag);
+	debug_printf(L"SYM: unknown tag: %d\n", type_tag);
 	out(L"(unknown symbol type)");
 	return INFO::OK;
 }
@@ -1708,69 +1583,57 @@ static Status dump_sym_unknown(DWORD type_id, const u8* UNUSED(p), DumpState UNU
 
 //-----------------------------------------------------------------------------
 
+typedef Status (*DumpFunc)(DWORD typeId, const u8* p, DumpState& state);
+
+static DumpFunc DumpFuncFromTypeTag(DWORD typeTag)
+{
+	switch(typeTag)
+	{
+	case SymTagArrayType:
+		return dump_sym_array;
+	case SymTagBaseType:
+		return dump_sym_base_type;
+	case SymTagBaseClass:
+		return dump_sym_base_class;
+	case SymTagData:
+		return dump_sym_data;
+	case SymTagEnum:
+		return dump_sym_enum;
+	case SymTagFunction:
+		return dump_sym_function;
+	case SymTagFunctionType:
+		return dump_sym_function_type;
+	case SymTagPointerType:
+		return dump_sym_pointer;
+	case SymTagTypedef:
+		return dump_sym_typedef;
+	case SymTagUDT:
+		return dump_sym_udt;
+	case SymTagVTable:
+		return dump_sym_vtable;
+	default:
+		return dump_sym_unknown;
+	}
+}
+
 
 // write name and value of the symbol <type_id> to the output buffer.
 // delegates to dump_sym_* depending on the symbol's tag.
-static Status dump_sym(DWORD type_id, const u8* p, DumpState state)
+static Status dump_sym(DWORD type_id, const u8* p, DumpState& state)
 {
 	RETURN_STATUS_IF_ERR(out_check_limit());
 
-	DWORD type_tag;
-	if(!pSymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_SYMTAG, &type_tag))
+	DWORD typeTag;
+	if(!pSymGetTypeInfo(hProcess, state.moduleBase, type_id, TI_GET_SYMTAG, &typeTag))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
-	switch(type_tag)
-	{
-	case SymTagArrayType:
-		return dump_sym_array         (type_id, p, state);
-	case SymTagBaseType:
-		return dump_sym_base_type     (type_id, p, state);
-	case SymTagBaseClass:
-		return dump_sym_base_class    (type_id, p, state);
-	case SymTagData:
-		return dump_sym_data          (type_id, p, state);
-	case SymTagEnum:
-		return dump_sym_enum          (type_id, p, state);
-	case SymTagFunction:
-		return dump_sym_function      (type_id, p, state);
-	case SymTagFunctionType:
-		return dump_sym_function_type (type_id, p, state);
-	case SymTagPointerType:
-		return dump_sym_pointer       (type_id, p, state);
-	case SymTagTypedef:
-		return dump_sym_typedef       (type_id, p, state);
-	case SymTagUDT:
-		return dump_sym_udt           (type_id, p, state);
-	case SymTagVTable:
-		return dump_sym_vtable        (type_id, p, state);
-	default:
-		return dump_sym_unknown       (type_id, p, state);
-	}
+	const DumpFunc dumpFunc = DumpFuncFromTypeTag(typeTag);
+	return dumpFunc(type_id, p, state);
 }
 
 
 //-----------------------------------------------------------------------------
 // stack trace
 //-----------------------------------------------------------------------------
-
-struct IMAGEHLP_STACK_FRAME2 : public IMAGEHLP_STACK_FRAME
-{
-	IMAGEHLP_STACK_FRAME2(const _tagSTACKFRAME64* sf)
-	{
-		// apparently only PC, FP and SP are necessary, but
-		// we go whole-hog to be safe.
-		memset(this, 0, sizeof(IMAGEHLP_STACK_FRAME2));
-		InstructionOffset  = sf->AddrPC.Offset;
-		ReturnOffset       = sf->AddrReturn.Offset;
-		FrameOffset        = sf->AddrFrame.Offset;
-		StackOffset        = sf->AddrStack.Offset;
-		BackingStoreOffset = sf->AddrBStore.Offset;
-		FuncTableEntry     = (ULONG64)sf->FuncTableEntry;
-		Virtual            = sf->Virtual;
-		// (note: array of different types, can't copy directly)
-		for(int i = 0; i < 4; i++)
-			Params[i] = sf->Params[i];
-	}
-};
 
 static bool ShouldSkipSymbol(const wchar_t* name)
 {
@@ -1783,15 +1646,14 @@ static bool ShouldSkipSymbol(const wchar_t* name)
 
 // output the symbol's name and value via dump_sym*.
 // called from dump_frame_cb for each local symbol; lock is held.
-static BOOL CALLBACK dump_sym_cb(SYMBOL_INFOW* sym, ULONG UNUSED(size), void* UNUSED(ctx))
+static BOOL CALLBACK dump_sym_cb(SYMBOL_INFOW* sym, ULONG UNUSED(size), PVOID userContext)
 {
 	if(ShouldSkipSymbol(sym->Name))
 		return TRUE;	// continue
 
 	out_latch_pos();	// see decl
-	mod_base = (uintptr_t)sym->ModBase;
 	const u8* p = (const u8*)(uintptr_t)sym->Address;
-	DumpState state;
+	DumpState state((uintptr_t)sym->ModBase, (LPSTACKFRAME64)userContext);
 
 	INDENT;
 	Status err = dump_sym(sym->Index, p, state);
@@ -1805,12 +1667,11 @@ static BOOL CALLBACK dump_sym_cb(SYMBOL_INFOW* sym, ULONG UNUSED(size), void* UN
 }
 
 // called by wdbg_sym_WalkStack for each stack frame
-static Status dump_frame_cb(const _tagSTACKFRAME64* sf, uintptr_t UNUSED(cbData))
+static Status dump_frame_cb(const STACKFRAME64* sf, uintptr_t UNUSED(userContext))
 {
-	current_stackframe64 = sf;
 	void* func = (void*)(uintptr_t)sf->AddrPC.Offset;
 
-	wchar_t func_name[DBG_SYMBOL_LEN]; wchar_t file[DBG_FILE_LEN]; int line;
+	wchar_t func_name[DEBUG_SYMBOL_CHARS]; wchar_t file[DEBUG_FILE_CHARS]; int line;
 	Status ret = ResolveSymbol_lk(func, func_name, file, &line);
 	if(ret == INFO::OK)
 	{
@@ -1821,7 +1682,14 @@ static Status dump_frame_cb(const _tagSTACKFRAME64* sf, uintptr_t UNUSED(cbData)
 		// that would cut off callbacks as well.
 		// note: the stdcall mangled name includes parameter size, which is
 		// different in 64-bit, so only check the first characters.
-		if(!wcsncmp(func_name, L"_BaseProcessStart", 17))
+		if(!wcsncmp(func_name, L"_BaseProcessStart", 17) ||
+		   !wcscmp(func_name, L"BaseThreadInitThunk"))
+			return INFO::OK;
+
+		// skip any mainCRTStartup frames
+		if(!wcscmp(func_name, L"__tmainCRTStartup"))
+			return INFO::OK;
+		if(!wcscmp(func_name, L"mainCRTStartup"))
 			return INFO::OK;
 
 		out(L"%ls (%ls:%d)\r\n", func_name, file, line);
@@ -1835,19 +1703,21 @@ static Status dump_frame_cb(const _tagSTACKFRAME64* sf, uintptr_t UNUSED(cbData)
 	// (i.e. its locals and parameters)
 	// problem: debug info is scope-aware, so we won't see any variables
 	// declared in sub-blocks. we'd have to pass an address in that block,
-	// which isn't worth the trouble. since 
-	IMAGEHLP_STACK_FRAME2 imghlp_frame(sf);
-	const PIMAGEHLP_CONTEXT context = 0;	// ignored
-	pSymSetContext(hProcess, &imghlp_frame, context);
+	// which isn't worth the trouble.
+	IMAGEHLP_STACK_FRAME isf = PopulateImageStackFrame(*sf);
+	const PIMAGEHLP_CONTEXT ic = 0;	// ignored
+	// NB: this sometimes fails for reasons unknown in a static
+	// member function, possibly because the return address is in kernel32
+	(void)pSymSetContext(hProcess, &isf, ic);
 
 	const ULONG64 base = 0; const wchar_t* const mask = 0;	// use scope set by pSymSetContext
-	pSymEnumSymbolsW(hProcess, base, mask, dump_sym_cb, 0);
+	pSymEnumSymbolsW(hProcess, base, mask, dump_sym_cb, (PVOID)sf);
 
 	if(GetLastError() == ERROR_NOT_SUPPORTED)	// no debug info present?
 		SetLastError(0);
 
 	out(L"\r\n");
-	return INFO::CONTINUE;
+	return INFO::OK;
 }
 
 
@@ -1860,10 +1730,11 @@ Status debug_DumpStack(wchar_t* buf, size_t maxChars, void* pcontext, const wcha
 	out_init(buf, maxChars);
 	ptr_reset_visited();
 
-	Status ret = wdbg_sym_WalkStack(dump_frame_cb, 0, (const CONTEXT*)pcontext, lastFuncToSkip);
+	wdbg_assert(pcontext != 0);
+	Status ret = wdbg_sym_WalkStack(dump_frame_cb, 0, *(CONTEXT*)pcontext, lastFuncToSkip);
 
-	busy = 0;
 	COMPILER_FENCE;
+	busy = 0;
 
 	return ret;
 }

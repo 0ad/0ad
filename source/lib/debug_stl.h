@@ -31,8 +31,9 @@
 namespace ERR
 {
 	const Status STL_CNT_UNKNOWN = -100500;
+	const Status STL_CNT_UNSUPPORTED = -100501;
 	// likely causes: not yet initialized or memory corruption.
-	const Status STL_CNT_INVALID = -100501;
+	const Status STL_CNT_INVALID = -100502;
 }
 
 
@@ -45,7 +46,7 @@ namespace ERR
  *
  * @param name Buffer holding input symbol name; modified in-place.
  *		  There is no length limit; must be large enough to hold typical STL
- *		  strings. DBG_SYMBOL_LEN chars is a good measure.
+ *		  strings. DEBUG_SYMBOL_CHARS chars is a good measure.
  * @return name for convenience.
  **/
 extern wchar_t* debug_stl_simplify_name(wchar_t* name);

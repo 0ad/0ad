@@ -39,6 +39,7 @@
 #include "lib/lib_api.h"
 #include "lib/types.h"	// intptr_t
 #include "lib/status.h"
+#include "lib/alignment.h"
 #include "lib/code_annotation.h"
 #include "lib/code_generation.h"
 
@@ -119,8 +120,7 @@ typedef volatile intptr_t atomic_bool;
  * value for suppress flag once set by debug_DisplayError.
  * rationale: this value is fairly distinctive and helps when
  * debugging the symbol engine.
- * initial value is 0 rather that another constant; this avoids
- * allocating .rdata space.
+ * use 0 as the initial value to avoid allocating .rdata space.
  **/
 const atomic_bool DEBUG_SUPPRESS = 0xAB;
 
@@ -175,6 +175,7 @@ enum ErrorReactionInternal
 	ERI_NOT_IMPLEMENTED
 };
 
+
 /**
  * display an error dialog with a message and stack trace.
  *
@@ -192,11 +193,15 @@ enum ErrorReactionInternal
  **/
 LIB_API ErrorReaction debug_DisplayError(const wchar_t* description, size_t flags, void* context, const wchar_t* lastFuncToSkip, const wchar_t* file, int line, const char* func, atomic_bool* suppress);
 
-/**
- * convenience version, in case the advanced parameters aren't needed.
- * macro instead of providing overload/default values for C compatibility.
- **/
-#define DEBUG_DISPLAY_ERROR(text) debug_DisplayError(text, 0, 0, L"debug_DisplayError", WIDEN(__FILE__),__LINE__,__func__, 0)
+// simplified version for just displaying an error message
+#define DEBUG_DISPLAY_ERROR(description)\
+	do\
+	{\
+		CACHE_ALIGNED u8 context[DEBUG_CONTEXT_SIZE];\
+		(void)debug_CaptureContext(context);\
+		(void)debug_DisplayError(description, 0, context, L"debug_DisplayError", WIDEN(__FILE__), __LINE__, __func__, 0);\
+	}\
+	while(0)
 
 
 //
@@ -417,23 +422,23 @@ namespace INFO
 
 
 /**
- * Maximum number of characters (including trailing \\0) written to
+ * Maximum number of characters (including null terminator) written to
  * user's buffers by debug_ResolveSymbol.
  **/
-const size_t DBG_SYMBOL_LEN = 1000;
-const size_t DBG_FILE_LEN = 100;
+static const size_t DEBUG_SYMBOL_CHARS = 1000;
+static const size_t DEBUG_FILE_CHARS = 100;
 
 /**
  * read and return symbol information for the given address.
  *
- * NOTE: the PDB implementation is rather slow (~500us).
+ * NOTE: the PDB implementation is rather slow (~500 us).
  *
  * @param ptr_of_interest address of symbol (e.g. function, variable)
- * @param sym_name optional out; size >= DBG_SYMBOL_LEN chars;
- * receives symbol name returned via debug info.
- * @param file optional out; size >= DBG_FILE_LEN chars; receives
- * base name only (no path; see rationale in wdbg_sym) of
- * source file containing the symbol.
+ * @param sym_name optional out; holds at least DEBUG_SYMBOL_CHARS;
+ *   receives symbol name returned via debug info.
+ * @param file optional out; holds at least DEBUG_FILE_CHARS;
+ *   receives base name only (no path; see rationale in wdbg_sym) of
+ *   source file containing the symbol.
  * @param line optional out; receives source file line number of symbol.
  *
  * note: all of the output parameters are optional; we pass back as much
@@ -443,6 +448,15 @@ const size_t DBG_FILE_LEN = 100;
  **/
 LIB_API Status debug_ResolveSymbol(void* ptr_of_interest, wchar_t* sym_name, wchar_t* file, int* line);
 
+static const size_t DEBUG_CONTEXT_SIZE = 2048;	// Win32 CONTEXT is currently 1232 bytes
+
+/**
+ * @param context must point to an instance of the platform-specific type
+ *   (e.g. CONTEXT) or CACHE_ALIGNED storage of DEBUG_CONTEXT_SIZE bytes.
+ **/
+LIB_API Status debug_CaptureContext(void* context);
+
+
 /**
  * write a complete stack trace (including values of local variables) into
  * the specified buffer.
@@ -450,8 +464,10 @@ LIB_API Status debug_ResolveSymbol(void* ptr_of_interest, wchar_t* sym_name, wch
  * @param buf Target buffer.
  * @param maxChars Max chars of buffer (should be several thousand).
  * @param context Platform-specific representation of execution state
- *		  (e.g. Win32 CONTEXT). if not NULL, tracing starts there; this is useful
- *		  for exceptions. Otherwise, tracing starts from the current call stack.
+ *		  (e.g. Win32 CONTEXT). either specify an SEH exception's
+ *        context record or use debug_CaptureContext to retrieve the current state.
+ *        Rationale: intermediates such as debug_DisplayError change the
+ *        context, so it should be captured as soon as possible.
  * @param lastFuncToSkip Is used for omitting error-reporting functions like
  *		  debug_OnAssertionFailure from the stack trace. It is either 0 (skip nothing) or
  *		  a substring of a function's name (this allows platform-independent

@@ -31,6 +31,7 @@
 #include "lib/config2.h"
 #include "lib/alignment.h"
 #include "lib/bits.h"
+#include "lib/timer.h"
 #include "lib/file/file.h"
 #include "lib/sysdep/filesystem.h"	// wtruncate
 #include "lib/posix/posix_aio.h"	// LIO_READ, LIO_WRITE
@@ -51,7 +52,10 @@ namespace io {
 //
 // use this instead of the file cache for write buffers that are
 // never reused (avoids displacing other items).
-LIB_API UniqueRange Allocate(size_t size, size_t alignment = maxSectorSize);
+static inline UniqueRange Allocate(size_t size, size_t alignment = maxSectorSize)
+{
+	return RVALUE(AllocateAligned(size, alignment));
+}
 
 
 #pragma pack(push, 1)
@@ -146,16 +150,14 @@ struct DefaultCompletedHook
 {
 	/**
 	 * called after a block I/O has completed.
-	 *
-	 * @return INFO::CONTINUE to proceed; any other value will
-	 * be immediately returned by Run.
+	 * @return Status (see RETURN_STATUS_FROM_CALLBACK).
 	 *
 	 * allows progress notification and processing data while waiting for
 	 * previous I/Os to complete.
 	 **/
 	Status operator()(const u8* UNUSED(block), size_t UNUSED(blockSize)) const
 	{
-		return INFO::CONTINUE;
+		return INFO::OK;
 	}
 };
 
@@ -164,16 +166,14 @@ struct DefaultIssueHook
 {
 	/**
 	 * called before a block I/O is issued.
-	 *
-	 * @return INFO::CONTINUE to proceed; any other value will
-	 * be immediately returned by Run.
+	 * @return Status (see RETURN_STATUS_FROM_CALLBACK).
 	 *
 	 * allows generating the data to write while waiting for
 	 * previous I/Os to complete.
 	 **/
 	Status operator()(aiocb& UNUSED(cb)) const
 	{
-		return INFO::CONTINUE;
+		return INFO::OK;
 	}
 };
 
@@ -245,7 +245,7 @@ static inline Status Run(const Operation& op, const Parameters& p = Parameters()
 			if(blocksIssued == numBlocks-1)
 				cb.aio_nbytes = round_up(size_t(op.size - blocksIssued * p.blockSize), size_t(p.alignment));
 
-			RETURN_IF_NOT_CONTINUE(issueHook(cb));
+			RETURN_STATUS_FROM_CALLBACK(issueHook(cb));
 
 			RETURN_STATUS_IF_ERR(Issue(cb, p.queueDepth));
 		}
@@ -253,7 +253,7 @@ static inline Status Run(const Operation& op, const Parameters& p = Parameters()
 		aiocb& cb = controlBlockRingBuffer[blocksCompleted];
 		RETURN_STATUS_IF_ERR(WaitUntilComplete(cb, p.queueDepth));
 
-		RETURN_IF_NOT_CONTINUE(completedHook((u8*)cb.aio_buf, cb.aio_nbytes));
+		RETURN_STATUS_FROM_CALLBACK(completedHook((u8*)cb.aio_buf, cb.aio_nbytes));
 	}
 
 	return INFO::OK;
@@ -275,7 +275,7 @@ static inline Status Run(const Operation& op, const Parameters& p = Parameters()
 //-----------------------------------------------------------------------------
 // Store
 
-// efficient writing requires preallocation, and the resulting file is
+// efficient writing requires preallocation; the resulting file is
 // padded to the sector size and needs to be truncated afterwards.
 // this function takes care of both.
 template<class CompletedHook, class IssueHook>
@@ -316,7 +316,7 @@ static inline Status Store(const OsPath& pathname, const void* data, size_t size
 //-----------------------------------------------------------------------------
 // Load
 
-// convenience function provided for symmetry with Store
+// convenience function provided for symmetry with Store.
 template<class CompletedHook, class IssueHook>
 static inline Status Load(const OsPath& pathname, void* buf, size_t size, const Parameters& p = Parameters(), const CompletedHook& completedHook = CompletedHook(), const IssueHook& issueHook = IssueHook())
 {

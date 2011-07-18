@@ -532,10 +532,12 @@ static bool ShouldSkipError(Status err)
 
 ErrorReaction debug_OnError(Status err, atomic_bool* suppress, const wchar_t* file, int line, const char* func)
 {
+	CACHE_ALIGNED u8 context[DEBUG_CONTEXT_SIZE];
+	(void)debug_CaptureContext(context);
+
 	if(ShouldSkipError(err))
 		return ER_CONTINUE;
 
-	void* context = 0;
 	const wchar_t* lastFuncToSkip = L"debug_OnError";
 	wchar_t buf[400];
 	wchar_t err_buf[200]; StatusDescription(err, err_buf, ARRAY_SIZE(err_buf));
@@ -546,7 +548,9 @@ ErrorReaction debug_OnError(Status err, atomic_bool* suppress, const wchar_t* fi
 
 ErrorReaction debug_OnAssertionFailure(const wchar_t* expr, atomic_bool* suppress, const wchar_t* file, int line, const char* func)
 {
-	void* context = 0;
+	CACHE_ALIGNED u8 context[DEBUG_CONTEXT_SIZE];
+	(void)debug_CaptureContext(context);
+
 	const std::wstring lastFuncToSkip = L"debug_OnAssertionFailure";
 	wchar_t buf[400];
 	swprintf_s(buf, ARRAY_SIZE(buf), L"Assertion failed: \"%ls\"", expr);

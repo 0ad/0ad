@@ -310,6 +310,21 @@ extern Status StatusFromErrno();
 	}\
 	while(0)
 
+// if expression (typically the invocation of a callback) evaluates to:
+// - INFO::OK, do nothing;
+// - INFO::ALL_COMPLETE, return INFO::OK;
+// - anything else, return that.
+#define RETURN_STATUS_FROM_CALLBACK(expression)\
+	do\
+	{\
+		const Status status_ = (expression);\
+		if(status_ == INFO::ALL_COMPLETE)\
+			return INFO::OK;\
+		else if(status_ != INFO::OK)\
+			return status_;\
+	}\
+	while(0)
+
 // return 0 if expression is negative. use in functions that return pointers.
 #define RETURN_0_IF_ERR(expression)\
 	do\
@@ -317,17 +332,6 @@ extern Status StatusFromErrno();
 		const Status status_ = (expression);\
 		if(status_ < 0)\
 			return 0;\
-	}\
-	while(0)
-
-// return expression if it evaluates to something other than
-// INFO::CONTINUE. use when invoking callbacks.
-#define RETURN_IF_NOT_CONTINUE(expression)\
-	do\
-	{\
-		const Status status_ = (expression);\
-		if(status_ != INFO::CONTINUE)\
-			return status_;\
 	}\
 	while(0)
 
@@ -362,9 +366,6 @@ namespace INFO {
 
 	// note: these values are > 100 to allow multiplexing them with
 	// coroutine return values, which return completion percentage.
-
-	// the function (usually a callback) would like to be called again.
-	const Status CONTINUE      = +100000;
 
 	// notify caller that nothing was done.
 	const Status SKIPPED       = +100001;

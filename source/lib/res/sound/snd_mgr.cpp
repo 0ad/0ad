@@ -1009,8 +1009,8 @@ static Status snd_data_free(Handle& hsd)
  * @param hsd Handle to SndData.
  * @param al_buf buffer name.
  * @return Status, most commonly:
- * INFO::CONTINUE = buffer has been returned; more are expected to be available.
- * INFO::OK = buffer has been returned but is the last one (EOF).
+ * INFO::OK = buffer has been returned; more are expected to be available.
+ * INFO::ALL_COMPLETE = buffer has been returned but is the last one (EOF).
  */
 static Status snd_data_buf_get(Handle hsd, ALuint& al_buf)
 {
@@ -1029,7 +1029,7 @@ static Status snd_data_buf_get(Handle hsd, ALuint& al_buf)
 	const size_t size = (size_t)ret;
 	al_buf = al_buf_alloc(data, (ALsizei)size, sd->al_fmt, sd->al_freq);
 
-	return (size < maxBufferSize)? INFO::OK : INFO::CONTINUE;
+	return (size < maxBufferSize)? INFO::ALL_COMPLETE : INFO::OK;
 }
 
 
@@ -1651,7 +1651,7 @@ public:
 			ALuint al_buf;
 			Status ret = snd_data_buf_get(vs->hsd, al_buf);
 			RETURN_STATUS_IF_ERR(ret);
-			if(ret == INFO::OK)	// no further buffers will be forthcoming
+			if(ret == INFO::ALL_COMPLETE)	// no further buffers will be forthcoming
 				vs->flags |= VS_EOF;
 
 			alSourceQueueBuffers(vs->al_src, 1, &al_buf);

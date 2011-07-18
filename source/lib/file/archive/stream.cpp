@@ -116,7 +116,7 @@ void Stream::SetOutputBuffer(u8* out, size_t outSize)
 Status Stream::Feed(const u8* in, size_t inSize)
 {
 	if(m_outProduced == m_outputBufferManager.Size())	// output buffer full; must not call Process
-		return INFO::OK;
+		return INFO::ALL_COMPLETE;
 
 	size_t inConsumed, outProduced;
 	u8* const out = m_outputBufferManager.Buffer() + m_outProduced;
@@ -125,7 +125,7 @@ Status Stream::Feed(const u8* in, size_t inSize)
 
 	m_inConsumed += inConsumed;
 	m_outProduced += outProduced;
-	return INFO::CONTINUE;
+	return INFO::OK;
 }
 
 

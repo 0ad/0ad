@@ -760,8 +760,6 @@ void EarlyInit()
 	// add all debug_printf "tags" that we are interested in:
 	debug_filter_add(L"TIMER");
 
-	cpu_ConfigureFloatingPoint();
-
 	timer_LatchStartTime();
 
 	FixLocales();

@@ -2,6 +2,7 @@
 #define INCLUDED_ALLOCATORS_UNIQUE_RANGE
 
 #include "lib/lib_api.h"
+#include "lib/alignment.h"	// allocationAlignment
 
 // we usually don't hold multiple references to allocations, so unique_ptr
 // can be used instead of the more complex (ICC generated incorrect code on
@@ -14,32 +15,32 @@
 // bonus of no longer requiring a complete type at the invocation of ~unique_ptr.
 // however, this inflates the pointer size to 3 words. if only a few allocator types
 // are needed, we can replace the function pointer with an index stashed into the
-// lower bits of the pointer (safe because allocations are always aligned to the
-// word size).
+// lower bits of the pointer (safe because all allocations' addresses are multiples
+// of allocationAlignment).
 typedef intptr_t IdxDeleter;
 
 // no-op deleter (use when returning part of an existing allocation)
-// must be zero because reset() sets address (which includes idxDeleter) to zero.
 static const IdxDeleter idxDeleterNone = 0;
-
-static const IdxDeleter idxDeleterAligned = 1;
-
-// (temporary value to prevent concurrent calls to AddUniqueRangeDeleter)
-static const IdxDeleter idxDeleterBusy = -IdxDeleter(1);
-
-// governs the maximum number of IdxDeleter and each pointer's alignment requirements
-static const IdxDeleter idxDeleterBits = 0x7;
 
 typedef void (*UniqueRangeDeleter)(void* pointer, size_t size);
 
 /**
- * @return the next available IdxDeleter and associate it with the deleter.
- * halts the program if the idxDeleterBits limit has been reached.
+ * register a deleter, returning its index within the table.
  *
- * thread-safe, but no attempt is made to detect whether the deleter has already been
- * registered (would require a mutex). each allocator must ensure they only call this once.
+ * @param deleter function pointer. must be uniquely associated with
+ *   the idxDeleter storage location.
+ * @param idxDeleter location where to store the next available index.
+ *   if it is already non-zero, skip the call to this function to
+ *   avoid overhead.
+ *
+ * thread-safe. idxDeleter is used for mutual exclusion between
+ * multiple callers for the same deleter. concurrent registration of
+ * different deleters is also safe due to atomic increments.
+ *
+ * halts the program if more than allocationAlignment deleters are
+ * to be registered.
  **/
-LIB_API IdxDeleter AddUniqueRangeDeleter(UniqueRangeDeleter deleter);
+LIB_API void RegisterUniqueRangeDeleter(UniqueRangeDeleter deleter, volatile IdxDeleter* idxDeleter);
 
 LIB_API void CallUniqueRangeDeleter(void* pointer, size_t size, IdxDeleter idxDeleter) throw();
 
@@ -56,7 +57,7 @@ public:
 
 	UniqueRange()
 	{
-		Set(0, 0, idxDeleterNone);
+		Clear();
 	}
 
 	UniqueRange(pointer p, size_t size, IdxDeleter deleter)
@@ -66,10 +67,7 @@ public:
 
 	UniqueRange(RVALUE_REF(UniqueRange) rvalue)
 	{
-		UniqueRange& lvalue = LVALUE(rvalue);
-		address_ = lvalue.address_;
-		size_ = lvalue.size_;
-		lvalue.address_ = 0;
+		Pilfer(LVALUE(rvalue));
 	}
 
 	UniqueRange& operator=(RVALUE_REF(UniqueRange) rvalue)
@@ -78,9 +76,7 @@ public:
 		if(this != &lvalue)
 		{
 			Delete();
-			address_ = lvalue.address_;
-			size_ = lvalue.size_;
-			lvalue.address_ = 0;
+			Pilfer(lvalue);
 		}
 		return *this;
 	}
@@ -92,12 +88,12 @@ public:
 
 	pointer get() const
 	{
-		return pointer(address_ & ~idxDeleterBits);
+		return pointer(address_ & ~(allocationAlignment-1));
 	}
 
 	IdxDeleter get_deleter() const
 	{
-		return IdxDeleter(address_ & idxDeleterBits);
+		return IdxDeleter(address_ % allocationAlignment);
 	}
 
 	size_t size() const
@@ -109,14 +105,14 @@ public:
 	pointer release()	// relinquish ownership
 	{
 		pointer ret = get();
-		address_ = 0;
+		Clear();
 		return ret;
 	}
 
 	void reset()
 	{
 		Delete();
-		address_ = 0;
+		Clear();
 	}
 
 	void reset(pointer p, size_t size, IdxDeleter deleter)
@@ -139,8 +135,8 @@ public:
 private:
 	void Set(pointer p, size_t size, IdxDeleter deleter)
 	{
-		ASSERT((uintptr_t(p) & idxDeleterBits) == 0);
-		ASSERT(deleter <= idxDeleterBits);
+		ASSERT((uintptr_t(p) % allocationAlignment) == 0);
+		ASSERT(size_t(deleter) < allocationAlignment);
 
 		address_ = uintptr_t(p) | deleter;
 		size_ = size;
@@ -148,6 +144,20 @@ private:
 		ASSERT(get() == p);
 		ASSERT(get_deleter() == deleter);
 		ASSERT(this->size() == size);
+	}
+
+	void Clear()
+	{
+		Set(0, 0, idxDeleterNone);
+	}
+
+	void Pilfer(UniqueRange& victim)
+	{
+		const size_t size = victim.size();
+		const IdxDeleter idxDeleter = victim.get_deleter();
+		pointer p = victim.release();
+		Set(p, size, idxDeleter);
+		victim.Clear();
 	}
 
 	void Delete()
@@ -178,5 +188,7 @@ static inline void swap(UniqueRange& p1, RVALUE_REF(UniqueRange) p2)
 }
 
 }
+
+LIB_API UniqueRange AllocateAligned(size_t size, size_t alignment);
 
 #endif	// #ifndef INCLUDED_ALLOCATORS_UNIQUE_RANGE

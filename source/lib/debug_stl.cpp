@@ -37,6 +37,7 @@
 
 static const StatusDefinition debugStlStatusDefinitions[] = {
 	{ ERR::STL_CNT_UNKNOWN, L"Unknown STL container type_name" },
+	{ ERR::STL_CNT_UNSUPPORTED, L"Unsupported STL container" },
 	{ ERR::STL_CNT_INVALID, L"Container type is known but contents are invalid" }
 };
 STATUS_ADD_DEFINITIONS(debugStlStatusDefinitions);
@@ -49,7 +50,7 @@ STATUS_ADD_DEFINITIONS(debugStlStatusDefinitions);
 	else if(!wcsncmp(src, (what), ARRAY_SIZE(what)-1))\
 	{\
 		src += ARRAY_SIZE(what)-1-1; /* see preincrement rationale*/\
-		wcscpy_s(dst, ARRAY_SIZE(what), (with));\
+		wcscpy_s(dst, ARRAY_SIZE(with), (with));\
 		dst += ARRAY_SIZE(with)-1;\
 	}
 #define STRIP(what)\
@@ -139,10 +140,12 @@ wchar_t* debug_stl_simplify_name(wchar_t* name)
 		}
 		REPLACE(L"std::_List_nod", L"list")
 		REPLACE(L"std::_Tree_nod", L"map")
-		REPLACE(L"std::basic_string<char,", L"string<")
-		REPLACE(L"std::basic_string<unsigned short,", L"wstring<")
-		STRIP(L"std::char_traits<char>,")
-		STRIP(L"std::char_traits<unsigned short>,")
+		REPLACE(L"std::basic_string<char, ", L"string<")
+		REPLACE(L"std::basic_string<__wchar_t, ", L"wstring<")
+		REPLACE(L"std::basic_string<unsigned short, ", L"wstring<")
+		STRIP(L"std::char_traits<char>, ")
+		STRIP(L"std::char_traits<unsigned short>, ")
+		STRIP(L"std::char_traits<__wchar_t>, ")
 		STRIP(L"std::_Tmap_traits")
 		STRIP(L"std::_Tset_traits")
 		STRIP_NESTED(L"std::allocator<")
@@ -554,7 +557,7 @@ Status debug_stl_get_container_info(const wchar_t* type_name, const u8* p, size_
 	UNUSED2(el_count);
 	UNUSED2(el_iterator);
 	UNUSED2(it_mem);
-	return ERR::STL_CNT_UNKNOWN;	// NOWARN
+	return ERR::STL_CNT_UNSUPPORTED;	// NOWARN
 #else
 
 	bool handled = false, IsValid = false;

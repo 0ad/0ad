@@ -28,7 +28,6 @@
 #include "lib/sysdep/arch/x86_x64/topology.h"
 
 #include <set>
-#include <bitset>
 
 #include "lib/bits.h"
 #include "lib/module_init.h"
@@ -271,7 +270,7 @@ static Status InitCpuTopology()
 
 					// generate fake but legitimate APIC IDs
 					for(size_t processor = 0; processor < cpuTopology.numProcessors; processor++)
-						cpuTopology.apicIds[processor] = cpuTopology.sortedApicIds[processor] = processor;
+						cpuTopology.apicIds[processor] = cpuTopology.sortedApicIds[processor] = (ApicId)processor;
 					return INFO::OK;
 				}
 			}

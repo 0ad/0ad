@@ -115,44 +115,18 @@ extern wchar_t* wcsdup(const wchar_t* str);
 extern int wcscasecmp(const wchar_t* s1, const wchar_t* s2);
 #endif
 
-// fpclassify etc (too few/diverse to make separate HAVE_ for each)
-#if HAVE_C99 || ICC_VERSION || GCC_VERSION
-# define HAVE_C99_MATH 1
-#else
-# define HAVE_C99_MATH 0
-#endif
-
-#if !HAVE_C99_MATH
-extern size_t fpclassifyf(float f);
-extern size_t fpclassifyd(double d);
-#define fpclassify(x) ( (sizeof(x) == sizeof(float))? fpclassifyf(x) : fpclassifyd(x) )
-
-// these definitions "happen" to match IA32_FP_* and allow using
-// ia32_fp_classify without having to translate the return value.
-// we don't #define to IA32_FP_* to avoid dependency.
-#  define FP_NAN       0x0100
-#  define FP_NORMAL    0x0400
-#  define FP_INFINITE  (FP_NAN | FP_NORMAL)
-#  define FP_ZERO      0x4000
-#  define FP_SUBNORMAL (FP_NORMAL | FP_ZERO)
-
-# define isnan(d) (fpclassify(d) == FP_NAN)
-# define isfinite(d) ((fpclassify(d) & FP_NAN) == 0)
-# define isinf(d) (fpclassify(d) == (FP_NAN|FP_NORMAL))
-# define isnormal(d) (fpclassify(d) == FP_NORMAL)
-//# define signbit
-#else	// HAVE_C99_MATH
 // Some systems have C99 support but in C++ they provide only std::isfinite
 // and not isfinite. C99 specifies that isfinite is a macro, so we can use
 // #ifndef and define it if it's not there already.
 // We've included <cmath> above to make sure it defines that macro.
-# ifndef isfinite
-#  define fpclassify std::fpclassify
+#ifndef isfinite
+# if MSC_VERSION
+#  define isfinite _finite
+#  define isnan _isnan
+# else
 #  define isfinite std::isfinite
 #  define isnan std::isnan
-#  define isinf std::isinf
-#  define isnormal std::isnormal
 # endif
-#endif	// HAVE_C99_MATH
+#endif
 
 #endif	// #ifndef INCLUDED_POSIX
