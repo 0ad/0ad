@@ -328,19 +328,19 @@ size_t cpu_topology_ProcessorFromApicId(size_t apicId)
 size_t cpu_topology_LogicalFromApicId(size_t apicId)
 {
 	const size_t contiguousId = IndexFromApicId(cpuTopology.sortedApicIds, apicId);
-	return cpuTopology.logical(contiguousId);
+	return contiguousId % cpuTopology.logicalPerCore;
 }
 
 size_t cpu_topology_CoreFromApicId(size_t apicId)
 {
 	const size_t contiguousId = IndexFromApicId(cpuTopology.sortedApicIds, apicId);
-	return cpuTopology.core(contiguousId);
+	return (contiguousId / cpuTopology.logicalPerCore) % cpuTopology.coresPerPackage;
 }
 
 size_t cpu_topology_PackageFromApicId(size_t apicId)
 {
 	const size_t contiguousId = IndexFromApicId(cpuTopology.sortedApicIds, apicId);
-	return cpuTopology.package(contiguousId);
+	return contiguousId / (cpuTopology.logicalPerCore * cpuTopology.coresPerPackage);
 }
 
 
