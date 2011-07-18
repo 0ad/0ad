@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="314.488" y="126.482" z="217.945"/>
+		<Position x="274.86" y="117.567" z="176.359"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -67,7 +67,7 @@
       "Team": 0
     },
     {
-      "AI": "",
+      "AI": "jubot",
       "Civ": "celt",
       "Colour": {
         "b": 64,
@@ -96,7 +96,7 @@
       "Team": 1
     },
     {
-      "AI": "",
+      "AI": "jubot",
       "Civ": "celt",
       "Colour": {
         "b": 5,
@@ -125,7 +125,7 @@
       "Team": 2
     },
     {
-      "AI": "jubot",
+      "AI": "",
       "Civ": "rome",
       "Colour": {
         "b": 48,
@@ -7136,12 +7136,6 @@
 			<Position x="552.42939" z="833.2547"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="1197">
-			<Template>units/thrace_black_cloak</Template>
-			<Player>1</Player>
-			<Position x="805.55933" z="495.39887"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="1198">
 			<Template>structures/celt_barracks</Template>
 			<Player>3</Player>
@@ -7775,7 +7769,7 @@
 		<Entity uid="1303">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="819.92359" z="453.25605"/>
+			<Position x="820.07325" z="453.29865"/>
 			<Orientation y="0.6855"/>
 		</Entity>
 		<Entity uid="1304">
