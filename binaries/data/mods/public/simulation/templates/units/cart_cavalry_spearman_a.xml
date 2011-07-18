@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/cart_cavalry_spearman_b">
+  <Identity>
+    <Rank>Advanced</Rank>
+  </Identity>
   <Promotion>
     <Entity>units/cart_cavalry_spearman_e</Entity>
   </Promotion>
