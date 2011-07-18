@@ -17,16 +17,16 @@
 				<Shininess>1.70898</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.800781</Murkiness>
-				<Tint r="0.458824" g="0.443137" b="0.384314"/>
-				<ReflectionTint r="0.568627" g="0.517647" b="0.423529"/>
+				<Tint r="0.458824" g="0.439216" b="0.384314"/>
+				<ReflectionTint r="0.564706" g="0.513726" b="0.419608"/>
 				<ReflectionTintStrength>0.199219</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="307.994" y="130.227" z="60.9315"/>
-		<Rotation angle="0.0234465"/>
-		<Declination angle="0.516132"/>
+		<Position x="700.607" y="118.383" z="628.419"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -52,6 +52,18 @@
         "stone": 300,
         "wood": 300
       },
+      "StartingCamera": {
+        "Position": {
+          "x": 700.607,
+          "y": 22.3825,
+          "z": 794.695
+        },
+        "Rotation": {
+          "x": 30,
+          "y": 0,
+          "z": 0
+        }
+      },
       "Team": -1
     },
     {
@@ -68,6 +80,18 @@
         "metal": 300,
         "stone": 300,
         "wood": 300
+      },
+      "StartingCamera": {
+        "Position": {
+          "x": 308.524,
+          "y": 22.3825,
+          "z": 260.572
+        },
+        "Rotation": {
+          "x": 30,
+          "y": 0,
+          "z": 0
+        }
       },
       "Team": -1
     }
@@ -6398,6 +6422,78 @@
 			<Template>actor|flora/trees/palm_cretan_date_patch.xml</Template>
 			<Position x="675.08924" z="808.79096"/>
 			<Orientation y="-3.13308"/>
+		</Entity>
+		<Entity uid="1137">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="361.93613" z="291.55054"/>
+			<Orientation y="1.0058"/>
+		</Entity>
+		<Entity uid="1138">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="360.03171" z="285.5713"/>
+			<Orientation y="-2.56295"/>
+		</Entity>
+		<Entity uid="1139">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="362.05536" z="278.52369"/>
+			<Orientation y="1.36512"/>
+		</Entity>
+		<Entity uid="1140">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="367.08753" z="275.24839"/>
+			<Orientation y="-2.871"/>
+		</Entity>
+		<Entity uid="1141">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="364.44831" z="266.28559"/>
+			<Orientation y="1.12568"/>
+		</Entity>
+		<Entity uid="1142">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="373.40302" z="263.92444"/>
+			<Orientation y="-2.79131"/>
+		</Entity>
+		<Entity uid="1143">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="666.21576" z="715.11866"/>
+			<Orientation y="0.8291"/>
+		</Entity>
+		<Entity uid="1144">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="672.14924" z="720.54627"/>
+			<Orientation y="-2.87746"/>
+		</Entity>
+		<Entity uid="1145">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="677.95136" z="722.8714"/>
+			<Orientation y="0.11757"/>
+		</Entity>
+		<Entity uid="1146">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="672.6576" z="727.6438"/>
+			<Orientation y="1.19631"/>
+		</Entity>
+		<Entity uid="1147">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="683.85328" z="727.29676"/>
+			<Orientation y="2.99573"/>
+		</Entity>
+		<Entity uid="1148">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="675.03583" z="716.5199"/>
+			<Orientation y="0.51743"/>
 		</Entity>
 	</Entities>
 	<Paths/>
