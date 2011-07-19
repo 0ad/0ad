@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/cart_infantry_archer_a">
+  <Identity>
+    <Rank>Elite</Rank>
+  </Identity>
+  <Promotion disable=""/>
+  <VisualActor>
+    <Actor>units/carthaginians/infantry_archer_e.xml</Actor>
+  </VisualActor>
+  <ResourceGatherer>
+    <BaseSpeed>0.5</BaseSpeed>
+  </ResourceGatherer>
+  <Health>
+    <Max>105</Max>
+    <RegenRate>0.4</RegenRate>
+  </Health>
+  <Stamina>
+    <Max>690</Max>
+  </Stamina>
+  <Armour>
+    <Hack>4.0</Hack>
+    <Pierce>4.0</Pierce>
+    <Crush>6.0</Crush>
+  </Armour>
+  <UnitMotion>
+    <WalkSpeed>6.7</WalkSpeed>
+    <Run>
+      <Speed>16.75</Speed>
+    </Run>
+  </UnitMotion>
+  <Attack>
+    <Ranged>
+      <Pierce>35.0</Pierce>
+      <MaxRange>68.0</MaxRange>
+    </Ranged>
+  </Attack>
+</Entity>

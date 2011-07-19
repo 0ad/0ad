@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_ranged_archer">
+  <Identity>
+    <Civ>cart</Civ>
+	<SelectionGroupName>units/cart_infantry_archer_b</SelectionGroupName>
+    <GenericName>Mauritanian Archer</GenericName>
+    <SpecificName>(Carthage Archer)</SpecificName>
+    <History>A mercenary archer from North Africa.</History>
+    <Icon>units/cart_infantry_archer.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/cart_infantry_archer_a</Entity>
+  </Promotion>
+  <Cost>
+    <Resources>
+      <food>0</food>
+      <wood>0</wood>
+      <metal>85</metal>
+    </Resources>
+  </Cost>
+  <VisualActor>
+    <Actor>units/carthaginians/infantry_archer_b.xml</Actor>
+  </VisualActor>
+</Entity>

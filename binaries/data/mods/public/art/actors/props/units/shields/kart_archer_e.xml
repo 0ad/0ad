@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="base">
+      <mesh>props/shield/archer_front.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/round_archer_back.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Shield-Leather-Tanit">
+      <texture>props/shield/kart_leather_a.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
