@@ -27,7 +27,7 @@
 #include "precompiled.h"
 #include "lib/sysdep/arch/x86_x64/topology.h"
 
-#include <set>
+#include <bitset>
 
 #include "lib/bits.h"
 #include "lib/module_init.h"
