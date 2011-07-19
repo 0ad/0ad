@@ -20,9 +20,9 @@ function Map(size, baseHeight)
 	
 	for (var i = 0; i < size; i++)
 	{
-		this.texture[i] = new Uint16Array(Math.floor(size));	// uint16 - texture IDs	// HACK: typed arrays require integer arguments
+		this.texture[i] = new Uint16Array(size);	// uint16 - texture IDs
 		this.terrainObjects[i] = new Array(size);				// array of entities
-		this.area[i] = new Uint16Array(Math.floor(size));		// uint16 - area IDs	// HACK: typed arrays require integer arguments
+		this.area[i] = new Uint16Array(size);		// uint16 - area IDs
 		
 		for (var j = 0; j < size; j++)
 		{
@@ -35,7 +35,7 @@ function Map(size, baseHeight)
 	this.height = new Array(mapSize);
 	for (var i = 0; i < mapSize; i++)
 	{
-		this.height[i] = new Float32Array(Math.floor(mapSize));		// float32	// HACK: typed arrays require integer arguments
+		this.height[i] = new Float32Array(mapSize);		// float32
 		
 		for (var j = 0; j < mapSize; j++)
 		{	// Initialize height map to baseHeight
@@ -97,10 +97,10 @@ Map.prototype.validT = function(x, z)
 {
 	if (g_MapSettings.CircularMap)
 	{	// Within map circle
-		var halfSize = 0.5*this.size;
+		var halfSize = Math.floor(0.5*this.size);
 		var dx = (x - halfSize);
 		var dz = (z - halfSize);
-		return Math.sqrt(dx*dx + dz*dz) < (halfSize - 1.5);
+		return Math.round(Math.sqrt(dx*dx + dz*dz)) < halfSize;
 	}
 	else
 	{	// Within map square
@@ -300,7 +300,7 @@ Map.prototype.getMapData = function()
 	// Convert 2D heightmap array to flat array
 	//	Flat because it's easier to handle by the engine
 	var mapSize = size+1;
-	var height16 = new Uint16Array(Math.floor(mapSize*mapSize));	// uint16	// HACK: typed arrays require integer arguments
+	var height16 = new Uint16Array(mapSize*mapSize);	// uint16
 	for (var x = 0; x < mapSize; x++)
 	{
 		for (var z = 0; z < mapSize; z++)
@@ -332,8 +332,8 @@ Map.prototype.getMapData = function()
 	data["textureNames"] = textureNames;
 	
 	//  Convert 2D tile data to flat array
-	var tileIndex = new Uint16Array(Math.floor(size*size));		// uint16	// HACK: typed arrays require integer arguments
-	var tilePriority = new Uint16Array(Math.floor(size*size));	// uint16	// HACK: typed arrays require integer arguments
+	var tileIndex = new Uint16Array(size*size);		// uint16
+	var tilePriority = new Uint16Array(size*size);	// uint16
 	for (var x = 0; x < size; x++)
 	{
 		for (var z = 0; z < size; z++)
