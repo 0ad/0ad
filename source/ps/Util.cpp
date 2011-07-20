@@ -100,13 +100,15 @@ void WriteSystemInfo()
 
 	// CPU
 	fprintf(f, "CPU            : %s, %s (%dx%dx%d)", un.machine, cpu_IdentifierString(), (int)cpu_topology_NumPackages(), (int)cpu_topology_CoresPerPackage(), (int)cpu_topology_LogicalPerCore());
-	const double cpu_freq = os_cpu_ClockFrequency();
-	if(cpu_freq != 0.0f)
+	double cpuClock = os_cpu_ClockFrequency();	// query OS (may fail)
+	if(cpuClock <= 0.0)
+		cpuClock = x86_x64_ClockFrequency();	// measure (takes a few ms)
+	if(cpuClock > 0.0)
 	{
-		if(cpu_freq < 1e9)
-			fprintf(f, ", %.2f MHz\n", cpu_freq*1e-6);
+		if(cpuClock < 1e9)
+			fprintf(f, ", %.2f MHz\n", cpuClock*1e-6);
 		else
-			fprintf(f, ", %.2f GHz\n", cpu_freq*1e-9);
+			fprintf(f, ", %.2f GHz\n", cpuClock*1e-9);
 	}
 	else
 		fprintf(f, "\n");

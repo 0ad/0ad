@@ -479,7 +479,7 @@ double x86_x64_ClockFrequency()
 
 	size_t numSamples = 16;
 	// if clock is low-res, do less samples so it doesn't take too long.
-	// balance measuring time (~ 10 ms) and accuracy (< 1 0/00 error -
+	// balance measuring time (~ 10 ms) and accuracy (< 0.1% error -
 	// ok for using the TSC as a time reference)
 	if(timer_Resolution() >= 1e-3)
 		numSamples = 8;
