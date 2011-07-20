@@ -23,7 +23,6 @@
 #include "lib/bits.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
-#include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpRangeManager.h"

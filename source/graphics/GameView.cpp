@@ -31,6 +31,7 @@
 #include "graphics/SkeletonAnimManager.h"
 #include "graphics/Terrain.h"
 #include "graphics/TerrainTextureManager.h"
+#include "graphics/TerritoryTexture.h"
 #include "graphics/Unit.h"
 #include "graphics/UnitManager.h"
 #include "lib/input.h"
@@ -159,6 +160,7 @@ public:
 		ColladaManager(), MeshManager(ColladaManager), SkeletonAnimManager(ColladaManager),
 		ObjectManager(MeshManager, SkeletonAnimManager, *game->GetSimulation2()),
 		LOSTexture(*game->GetSimulation2()),
+		TerritoryTexture(*game->GetSimulation2()),
 		ViewCamera(),
 		CullCamera(),
 		LockCullCamera(false),
@@ -204,6 +206,7 @@ public:
 	CSkeletonAnimManager SkeletonAnimManager;
 	CObjectManager ObjectManager;
 	CLOSTexture LOSTexture;
+	CTerritoryTexture TerritoryTexture;
 
 	/**
 	 * this camera controls the eye position when rendering
@@ -379,6 +382,11 @@ CCinemaManager* CGameView::GetCinema()
 CLOSTexture& CGameView::GetLOSTexture()
 {
 	return m->LOSTexture;
+}
+
+CTerritoryTexture& CGameView::GetTerritoryTexture()
+{
+	return m->TerritoryTexture;
 }
 
 

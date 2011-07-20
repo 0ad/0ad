@@ -35,6 +35,7 @@ class CModelDecal;
 class CParticleEmitter;
 class CPatch;
 class CLOSTexture;
+class CTerritoryTexture;
 struct SOverlayLine;
 struct SOverlaySprite;
 
@@ -63,6 +64,11 @@ public:
 	 * Return the LOS texture to be used for rendering this scene.
 	 */
 	virtual CLOSTexture& GetLOSTexture() = 0;
+
+	/**
+	 * Return the territory texture to be used for rendering this scene.
+	 */
+	virtual CTerritoryTexture& GetTerritoryTexture() = 0;
 };
 
 

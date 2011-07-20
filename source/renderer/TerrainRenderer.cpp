@@ -31,6 +31,7 @@
 #include "graphics/GameView.h"
 #include "graphics/Model.h"
 #include "graphics/ShaderManager.h"
+#include "graphics/TerritoryTexture.h"
 
 #include "maths/MathUtil.h"
 
@@ -400,6 +401,10 @@ void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* 
 	CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
 	shader->BindTexture("losTex", los.GetTexture());
 	shader->Uniform("losTransform", los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
+
+	CTerritoryTexture& territory = g_Renderer.GetScene().GetTerritoryTexture();
+	shader->BindTexture("territoryTex", territory.GetTexture());
+	shader->Uniform("territoryTransform", territory.GetTextureMatrix()[0], territory.GetTextureMatrix()[12], 0.f, 0.f);
 
 	shader->Uniform("ambient", lightEnv.m_TerrainAmbientColor);
 	shader->Uniform("sunColor", lightEnv.m_SunColor);

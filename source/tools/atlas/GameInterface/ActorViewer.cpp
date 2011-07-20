@@ -31,6 +31,7 @@
 #include "graphics/Terrain.h"
 #include "graphics/TerrainTextureEntry.h"
 #include "graphics/TerrainTextureManager.h"
+#include "graphics/TerritoryTexture.h"
 #include "graphics/UnitManager.h"
 #include "maths/MathUtil.h"
 #include "ps/Font.h"
@@ -60,7 +61,8 @@ public:
 		UnitManager(),
 		Simulation2(&UnitManager, &Terrain),
 		ObjectManager(MeshManager, SkeletonAnimManager, Simulation2),
-		LOSTexture(Simulation2)
+		LOSTexture(Simulation2),
+		TerritoryTexture(Simulation2)
 	{
 		UnitManager.SetObjectManager(ObjectManager);
 	}
@@ -84,6 +86,7 @@ public:
 	CUnitManager UnitManager;
 	CSimulation2 Simulation2;
 	CLOSTexture LOSTexture;
+	CTerritoryTexture TerritoryTexture;
 
 	// Simplistic implementation of the Scene interface
 	virtual void EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
@@ -103,6 +106,10 @@ public:
 		return LOSTexture;
 	}
 
+	virtual CTerritoryTexture& GetTerritoryTexture()
+	{
+		return TerritoryTexture;
+	}
 };
 
 ActorViewer::ActorViewer()

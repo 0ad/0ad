@@ -2,6 +2,7 @@
 PARAM sunColor = program.local[0];
 PARAM losTransform = program.local[1];
 PARAM shadowTransform[4] = { program.local[2..5] };
+PARAM territoryTransform = program.local[6];
 
 TEMP lighting;
 
@@ -38,5 +39,6 @@ MOV result.texcoord[0], vertex.texcoord[0];
 #endif
 
 MAD result.texcoord[3], position.xzzz, losTransform.x, losTransform.y;
+MAD result.texcoord[4], position.xzzz, territoryTransform.x, territoryTransform.y;
 
 END

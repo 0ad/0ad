@@ -32,6 +32,11 @@ public:
 
 	virtual ICmpObstructionManager::tag_t GetObstruction() = 0;
 
+	/**
+	 * Gets the square corresponding to this obstruction shape.
+	 * @return true and updates @p out on success;
+	 *         false on failure (e.g. object not in the world).
+	 */
 	virtual bool GetObstructionSquare(ICmpObstructionManager::ObstructionSquare& out) = 0;
 
 	virtual entity_pos_t GetUnitRadius() = 0;

@@ -27,7 +27,6 @@ class CGame;
 class CObjectManager;
 class CCamera;
 class CCinemaManager;
-class CLOSTexture;
 class CVector3D;
 struct SViewPort;
 
@@ -51,6 +50,7 @@ public:
 	//BEGIN: Implementation of Scene
 	virtual void EnumerateObjects(const CFrustum& frustum, SceneCollector* c);
 	virtual CLOSTexture& GetLOSTexture();
+	virtual CTerritoryTexture& GetTerritoryTexture();
 	//END: Implementation of Scene
 
 private:

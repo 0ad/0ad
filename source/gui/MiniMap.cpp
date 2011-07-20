@@ -27,6 +27,7 @@
 #include "graphics/Terrain.h"
 #include "graphics/TerrainTextureEntry.h"
 #include "graphics/TerrainTextureManager.h"
+#include "graphics/TerritoryTexture.h"
 #include "lib/ogl.h"
 #include "lib/external_libraries/sdl.h"
 #include "lib/bits.h"
@@ -39,6 +40,7 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpMinimap.h"
+#include "simulation2/components/ICmpTerritoryManager.h"
 
 bool g_GameRestarted = false;
 
@@ -310,58 +312,22 @@ void CMiniMap::Draw()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	DrawTexture(texCoordMax, angle, x, y, x2, y2, z);
 
-	/* // TODO: reimplement with new sim system
-	// Shade territories by player
-	CTerritoryManager* territoryMgr = g_Game->GetWorld()->GetTerritoryManager();
-	std::vector<CTerritory*>& territories = territoryMgr->GetTerritories();
-
-	PROFILE_START("minimap territory shade");
-	
-	glDisable(GL_TEXTURE_2D);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	for( size_t i=0; i<territories.size(); i++ )
-	{
-		if( territories[i]->owner->GetPlayerID() == 0 )
-			continue;
-		std::vector<CVector2D>& boundary = territories[i]->boundary;
-		SPlayerColour col = territories[i]->owner->GetColour();
-		glColor4f(col.r, col.g, col.b, 0.25f);
-		glBegin(GL_POLYGON);
-		for( size_t j=0; j<boundary.size(); j++ )
-		{
-			float fx = boundary[j].x / (m_Terrain->GetTilesPerSide() * CELL_SIZE);
-			float fy = boundary[j].y / (m_Terrain->GetTilesPerSide() * CELL_SIZE);
-			glVertex3f( x*(1-fx) + x2*fx, y*(1-fy) + y2*fy, z );
-		}
-		glEnd();
-	}
-	glDisable(GL_BLEND);
-
-	PROFILE_END("minimap territory shade");
 
 	// Draw territory boundaries
-	glEnable(GL_LINE_SMOOTH);
-	glLineWidth(1.0f);
+	CTerritoryTexture& territoryTexture = g_Game->GetView()->GetTerritoryTexture();
+	territoryTexture.BindTexture(0);
 	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glColor4f(0.8f, 0.8f, 0.8f, 0.8f);
-	for( size_t i=0; i<territories.size(); i++ )
-	{
-		std::vector<CVector2D>& boundary = territories[i]->boundary;
-		glBegin(GL_LINE_LOOP);
-		for( size_t j=0; j<boundary.size(); j++ )
-		{
-			float fx = boundary[j].x / (m_Terrain->GetTilesPerSide() * CELL_SIZE);
-			float fy = boundary[j].y / (m_Terrain->GetTilesPerSide() * CELL_SIZE);
-			glVertex3f( x*(1-fx) + x2*fx, y*(1-fy) + y2*fy, z );
-		}
-		glEnd();
-	}
-	glLineWidth(1.0f);
-	glDisable(GL_LINE_SMOOTH);
+	glMatrixMode(GL_TEXTURE);
+	glLoadMatrixf(territoryTexture.GetMinimapTextureMatrix());
+	glMatrixMode(GL_MODELVIEW);
+
+	DrawTexture(1.0f, angle, x, y, x2, y2, z);
+
+	glMatrixMode(GL_TEXTURE);
+	glLoadIdentity();
+	glMatrixMode(GL_MODELVIEW);
 	glDisable(GL_BLEND);
-	*/
+
 
 	// Draw the LOS quad in black, using alpha values from the LOS texture
 	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();

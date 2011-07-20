@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -119,11 +119,20 @@ COMPONENT(RangeManager)
 INTERFACE(Selectable)
 COMPONENT(Selectable)
 
+INTERFACE(Settlement)
+COMPONENT(SettlementScripted)
+
 INTERFACE(SoundManager)
 COMPONENT(SoundManager)
 
 INTERFACE(Terrain)
 COMPONENT(Terrain)
+
+INTERFACE(TerritoryInfluence)
+COMPONENT(TerritoryInfluence)
+
+INTERFACE(TerritoryManager)
+COMPONENT(TerritoryManager)
 
 INTERFACE(UnitMotion)
 COMPONENT(UnitMotion) // must be after Obstruction

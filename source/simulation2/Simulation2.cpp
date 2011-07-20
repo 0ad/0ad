@@ -84,6 +84,7 @@ public:
 		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_RangeManager, noParam);
 		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_SoundManager, noParam);
 		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_Terrain, noParam);
+		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_TerritoryManager, noParam);
 		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_WaterManager, noParam);
 
 		if (!skipAI)

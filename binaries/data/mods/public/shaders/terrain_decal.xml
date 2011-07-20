@@ -7,12 +7,14 @@
         <uniform name="sunColor" loc="0" type="vec3"/>
         <uniform name="losTransform" loc="1" type="vec2"/>
         <uniform name="shadowTransform" loc="2" type="mat4"/>
+        <uniform name="territoryTransform" loc="6" type="vec2"/>
     </vertex>
 
     <fragment file="terrain_common.fp">
         <uniform name="baseTex" loc="0" type="sampler2D"/>
         <uniform name="shadowTex" loc="2" type="sampler2DShadow"/>
         <uniform name="losTex" loc="3" type="sampler2D"/>
+        <uniform name="territoryTex" loc="4" type="sampler2D"/>
 
         <uniform name="ambient" loc="0" type="vec3"/>
         <uniform name="shadingColor" loc="1" type="vec3"/>
