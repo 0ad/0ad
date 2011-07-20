@@ -149,7 +149,7 @@ BaseAI.prototype.ApplyEntitiesDelta = function(state)
 	Engine.ProfileStop();
 };
 
-BaseAI.prototype.OnUpdate = function(state)
+BaseAI.prototype.OnUpdate = function()
 {
 };
 
