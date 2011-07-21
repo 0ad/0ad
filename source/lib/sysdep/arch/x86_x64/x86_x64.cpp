@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2011 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -44,16 +44,15 @@
 # include <intrin.h>	// __rdtsc
 #endif
 
-#define HAVE_CPUIDEX 0
-#if defined(_MSC_FULL_VER) && _MSC_FULL_VER >= 150030729	// __cpuidex available on VC10+ and VC9 SP1 (allows setting ecx beforehand)
-# undef HAVE_CPUIDEX
-# define HAVE_CPUIDEX 1
+#if defined(_MSC_FULL_VER) && _MSC_FULL_VER >= 150030729
+// VC10+ and VC9 SP1: __cpuidex is already available
+#elif GCC_VERSION
+# define __cpuidex(regsArray, level, index)\
+	__asm__ __volatile__ ("cpuid"\
+	: "=a" ((regsArray)[0]), "=b" ((regsArray)[1]), "=c" ((regsArray)[2]), "=d" ((regsArray)[3])\
+	: "0" (level), "2" (index));
 #else
-# if ARCH_AMD64
-#  include "lib/sysdep/arch/amd64/amd64_asm.h"
-# else
-#  include "lib/sysdep/arch/ia32/ia32_asm.h"
-# endif
+# error "compiler not supported"
 #endif
 
 
@@ -72,17 +71,9 @@
 
 static void cpuid(x86_x64_CpuidRegs* regs)
 {
-#if HAVE_CPUIDEX
 	cassert(sizeof(regs->eax) == sizeof(int));
 	cassert(sizeof(*regs) == 4*sizeof(int));
 	__cpuidex((int*)regs, regs->eax, regs->ecx);
-#else
-# if ARCH_AMD64
-	amd64_asm_cpuid(regs);
-# else
-	ia32_asm_cpuid(regs);
-# endif
-#endif
 }
 
 static u32 cpuid_maxFunction;
