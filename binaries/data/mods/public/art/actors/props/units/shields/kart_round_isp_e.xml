@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="base">
       <mesh>props/shield/round_h_f.pmd</mesh>
@@ -11,7 +9,6 @@
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="kart-shield-f">
       <texture>props/shield/kart_round_f.dds</texture>
@@ -22,8 +19,21 @@
     <variant frequency="1" name="kart-shield-w">
       <texture>props/shield/kart_round_w.dds</texture>
     </variant>
+    <variant frequency="1" name="kart-shield-ai-double star">
+      <texture>props/shield/kart_round_ai.dds</texture>
+    </variant>
+    <variant frequency="1" name="kart-shield-q-dolphin">
+      <texture>props/shield/kart_round_q.dds</texture>
+    </variant>
+    <variant frequency="1" name="kart-shield-aj-designs">
+      <texture>props/shield/kart_round_aj.dds</texture>
+    </variant>
+    <variant frequency="1" name="kart-shield-ak-palm tree">
+      <texture>props/shield/kart_round_ak.dds</texture>
+    </variant>
+    <variant frequency="1" name="kart-shield-al-palm and dolphins">
+      <texture>props/shield/kart_round_al.dds</texture>
+    </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>

@@ -3,7 +3,14 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="base">
-      <mesh>props/shield/round_h_f.pmd</mesh>
+      <mesh>props/shield/aspis_sm_f.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/hele_round_back.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="shield-c-dolphin">
       <texture>props/shield/kart_round_am.dds</texture>
     </variant>
   </group>
