@@ -603,7 +603,7 @@ static void user_read_data(png_structp png_ptr, png_bytep data, png_size_t lengt
 {
 	nvDebugCheck(png_ptr != NULL);
 	
-	Stream * s = (Stream *)png_ptr->io_ptr;
+	Stream * s = (Stream *)png_get_io_ptr(png_ptr);
 	s->serialize(data, (int)length);
 	
 	if (s->isError()) {

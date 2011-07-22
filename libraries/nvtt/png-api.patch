@@ -1,0 +1,13 @@
+Index: src/src/nvimage/ImageIO.cpp
+===================================================================
+--- src/src/nvimage/ImageIO.cpp	(revision 9895)
++++ src/src/nvimage/ImageIO.cpp	(working copy)
+@@ -603,7 +603,7 @@
+ {
+ 	nvDebugCheck(png_ptr != NULL);
+ 	
+-	Stream * s = (Stream *)png_ptr->io_ptr;
++	Stream * s = (Stream *)png_get_io_ptr(png_ptr);
+ 	s->serialize(data, (int)length);
+ 	
+ 	if (s->isError()) {
