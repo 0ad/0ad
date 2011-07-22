@@ -3,8 +3,11 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="base">
-      <mesh>props/shield/round_h_f.pmd</mesh>
-      <texture>props/shield/kart_round_am.dds</texture>
+      <mesh>props/shield/howdah_hannibal_shields_f.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/kart_turret_hannibal_back.xml" attachpoint="root"/>
+      </props>
+      <texture>props/shield/kart_oval_a.dds</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>

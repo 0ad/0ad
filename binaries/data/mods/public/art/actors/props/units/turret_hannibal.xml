@@ -1,20 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="base">
-      <mesh>props/elephant_turret.pmd</mesh>
+      <mesh>props/howdah_hannibal.dae</mesh>
       <props>
-        <prop actor="units/carthaginians/hero_hannibal_r.xml" attachpoint="turret1"/>
-        <prop actor="props/units/shields/kart_turret_hannibal.xml" attachpoint="shieldleft"/>
-        <prop actor="props/units/shields/kart_turret_hannibal.xml" attachpoint="shieldright"/>
+        <prop actor="units/carthaginians/hero_hannibal_r.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/kart_turret_hannibal.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/kart_turret_hannibal.xml" attachpoint="root"/>
       </props>
-      <texture>props/turret_hannibal.dds</texture>
+      <texture>props/turret_hannibal.png</texture>
     </variant>
   </group>
-
-  <material>basic_trans.xml</material>
-
 </actor>
