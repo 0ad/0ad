@@ -2,39 +2,39 @@
 <Entity parent="template_unit_fauna_hunt_aggressive">
   <Identity>
     <Civ>gaia</Civ>
-    <SpecificName>African Bush Elephant</SpecificName>
+    <SpecificName>Asian Elephant</SpecificName>
     <Icon>gaia/fauna_elephant_african_bush.png</Icon>
   </Identity>
   <Health>
-    <Max>300</Max>
+    <Max>250</Max>
     <RegenRate>1</RegenRate>
   </Health>
   <ResourceSupply>
-    <Amount>800</Amount>
+    <Amount>650</Amount>
     <Type>food.meat</Type>
   </ResourceSupply>
   <VisualActor>
-    <Actor>fauna/elephant_african_bush.xml</Actor>
+    <Actor>fauna/elephant_asian.xml</Actor>
   </VisualActor>
   <Footprint>
-    <Circle radius="3.65"/>
+    <Circle radius="2.8"/>
     <Height>3.0</Height>
   </Footprint>
   <Obstruction>
-    <Unit radius="3.5"/>
+    <Unit radius="2.7"/>
   </Obstruction>
   <Attack>
     <Melee>
-      <Hack>25.0</Hack>
+      <Hack>22.0</Hack>
       <Pierce>10.0</Pierce>
-      <Crush>20.0</Crush>
+      <Crush>18.0</Crush>
       <MaxRange>6.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
     </Melee>
     <Charge>
-      <Hack>30.0</Hack>
-      <Pierce>30.0</Pierce>
-      <Crush>30.0</Crush>
+      <Hack>28.0</Hack>
+      <Pierce>28.0</Pierce>
+      <Crush>28.0</Crush>
       <MaxRange>6.0</MaxRange>
       <MinRange>0.0</MinRange>
     </Charge>
