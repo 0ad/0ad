@@ -19,7 +19,9 @@
 
 #include "maths/Sqrt.h"
 
-#include <boost/random.hpp>
+#include <boost/random/mersenne_twister.hpp>
+#include <boost/random/uniform_int.hpp>
+#include <boost/random/variate_generator.hpp>
 
 class TestSqrt : public CxxTest::TestSuite
 {
