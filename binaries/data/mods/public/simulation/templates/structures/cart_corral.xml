@@ -13,4 +13,11 @@
       gaia/fauna_sheep
     </Entities>
   </TrainingQueue>
+  <Footprint>
+    <Square width="16.0" depth="14.5"/>
+    <Height>5.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="16.0" depth="14.5"/>
+  </Obstruction>
 </Entity>
