@@ -26,7 +26,7 @@
 #include "precompiled.h"
 #include "Noise.h"
 #include <cmath>
-#include <boost/random.hpp>
+#include <boost/random/mersenne_twister.hpp>
 
 namespace 
 {

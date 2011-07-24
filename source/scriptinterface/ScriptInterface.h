@@ -31,9 +31,9 @@
 #include "ps/Profile.h"
 #include "ps/utf16string.h"
 
-class AutoGCRooter;
+#include <boost/random/linear_congruential.hpp>
 
-namespace boost { class rand48; }
+class AutoGCRooter;
 
 // Set the maximum number of function arguments that can be handled
 // (This should be as small as possible (for compiler efficiency),
