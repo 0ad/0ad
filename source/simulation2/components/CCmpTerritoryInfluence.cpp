@@ -29,19 +29,37 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(TerritoryInfluence)
 
-	u8 m_Cost;
+	int m_Cost;
+	u32 m_Weight;
+	u32 m_Radius;
 
 	static std::string GetSchema()
 	{
 		return
-			"<element name='OverrideCost'>"
+			"<optional>"
+				"<element name='OverrideCost'>"
+					"<data type='nonNegativeInteger'>"
+						"<param name='maxInclusive'>255</param>"
+					"</data>"
+				"</element>"
+			"</optional>"
+			"<element name='Weight'>"
+				"<data type='nonNegativeInteger'/>"
+			"</element>"
+			"<element name='Radius'>"
 				"<data type='nonNegativeInteger'/>"
 			"</element>";
 	}
 
 	virtual void Init(const CParamNode& paramNode)
 	{
-		m_Cost = paramNode.GetChild("OverrideCost").ToInt();
+		if (paramNode.GetChild("OverrideCost").IsOk())
+			m_Cost = paramNode.GetChild("OverrideCost").ToInt();
+		else
+			m_Cost = -1;
+
+		m_Weight = paramNode.GetChild("Weight").ToInt();
+		m_Radius = paramNode.GetChild("Radius").ToInt();
 	}
 
 	virtual void Deinit()
@@ -57,11 +75,20 @@ public:
 		Init(paramNode);
 	}
 
-	virtual u8 GetCost()
+	virtual int GetCost()
 	{
 		return m_Cost;
 	}
 
+	virtual u32 GetWeight()
+	{
+		return m_Weight;
+	}
+
+	virtual u32 GetRadius()
+	{
+		return m_Radius;
+	}
 };
 
 REGISTER_COMPONENT_TYPE(TerritoryInfluence)

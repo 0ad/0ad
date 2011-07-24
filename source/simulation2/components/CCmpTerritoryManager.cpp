@@ -27,6 +27,7 @@
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpObstruction.h"
 #include "simulation2/components/ICmpObstructionManager.h"
+#include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPathfinder.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpSettlement.h"
@@ -167,46 +168,70 @@ public:
 	 * a TerritoryInfluence component. Grid cells are 0 if no influence,
 	 * or 1+c if the influence have cost c (assumed between 0 and 254).
 	 */
-	void RasteriseInfluences(Grid<u8>& grid);
+	void RasteriseInfluences(CComponentManager::InterfaceList& infls, Grid<u8>& grid);
 };
 
 REGISTER_COMPONENT_TYPE(TerritoryManager)
 
 
 /*
-
-We compute territory influences with a kind of best-first search:
- 1) Initialise an 'open' list with tiles that contain settlements (annotated with
-    territory ID) with initial cost 0
- 2) Pick the lowest cost tile from 'item'
- 3) For each neighbour which has not already been assigned to a territory,
-    assign it to this territory and compute its new cost (effectively the
-    distance from the associated settlement) and add to 'open'
- 4) Go to 2 until 'open' is empty
-
+We compute the territory influence of an entity with a kind of best-first search,
+storing an 'open' list of tiles that have not yet been processed,
+then taking the highest-weight tile (closest to origin) and updating the weight
+of extending to each neighbour (based on radius-determining 'falloff' value,
+adjusted by terrain movement cost), and repeating until all tiles are processed.
 */
 
-typedef PriorityQueueHeap<std::pair<u16, u16>, u32> OpenQueue;
+typedef PriorityQueueHeap<std::pair<u16, u16>, u32, std::greater<u32> > OpenQueue;
 
-static void ProcessNeighbour(u8 pid, u16 i, u16 j, u32 pg, bool diagonal,
-		Grid<u8>& grid, OpenQueue& queue, const Grid<u8>& influenceGrid)
+static void ProcessNeighbour(u32 falloff, u16 i, u16 j, u32 pg, bool diagonal,
+		Grid<u32>& grid, OpenQueue& queue, const Grid<u8>& costGrid)
 {
-	// Ignore tiles that are already claimed
-	u8 id = grid.get(i, j);
-	if (id)
+	u32 dg = falloff * costGrid.get(i, j);
+	if (diagonal)
+		dg = (dg * 362) / 256;
+
+	// Stop if new cost g=pg-dg is not better than previous value for that tile
+	// (arranged to avoid underflow if pg < dg)
+	if (pg <= grid.get(i, j) + dg)
 		return;
 
-	// Base cost for moving onto this tile
-	u32 dg = diagonal ? 362 : 256;
+	u32 g = pg - dg; // cost to this tile = cost to predecessor - falloff from predecessor
 
-	// Adjust cost based on this tile's influences
-	dg *= influenceGrid.get(i, j);
-
-	u32 g = pg + dg; // cost to this tile = cost to predecessor + delta from predecessor
-
-	grid.set(i, j, pid);
+	grid.set(i, j, g);
 	OpenQueue::Item tile = { std::make_pair(i, j), g };
 	queue.push(tile);
+}
+
+static void FloodFill(Grid<u32>& grid, Grid<u8>& costGrid, OpenQueue& openTiles, u32 falloff)
+{
+	u32 tilesW = grid.m_W;
+	u32 tilesH = grid.m_H;
+
+	while (!openTiles.empty())
+	{
+		OpenQueue::Item tile = openTiles.pop();
+
+		// Process neighbours (if they're not off the edge of the map)
+		u16 x = tile.id.first;
+		u16 z = tile.id.second;
+		if (x > 0)
+			ProcessNeighbour(falloff, x-1, z, tile.rank, false, grid, openTiles, costGrid);
+		if (x < tilesW-1)
+			ProcessNeighbour(falloff, x+1, z, tile.rank, false, grid, openTiles, costGrid);
+		if (z > 0)
+			ProcessNeighbour(falloff, x, z-1, tile.rank, false, grid, openTiles, costGrid);
+		if (z < tilesH-1)
+			ProcessNeighbour(falloff, x, z+1, tile.rank, false, grid, openTiles, costGrid);
+		if (x > 0 && z > 0)
+			ProcessNeighbour(falloff, x-1, z-1, tile.rank, true, grid, openTiles, costGrid);
+		if (x > 0 && z < tilesH-1)
+			ProcessNeighbour(falloff, x-1, z+1, tile.rank, true, grid, openTiles, costGrid);
+		if (x < tilesW-1 && z > 0)
+			ProcessNeighbour(falloff, x+1, z-1, tile.rank, true, grid, openTiles, costGrid);
+		if (x < tilesW-1 && z < tilesH-1)
+			ProcessNeighbour(falloff, x+1, z+1, tile.rank, true, grid, openTiles, costGrid);
+	}
 }
 
 void CCmpTerritoryManager::CalculateTerritories()
@@ -220,98 +245,124 @@ void CCmpTerritoryManager::CalculateTerritories()
 	uint32_t tilesW = cmpTerrain->GetVerticesPerSide() - 1;
 	uint32_t tilesH = cmpTerrain->GetVerticesPerSide() - 1;
 
-	Grid<u8> influenceGrid(tilesW, tilesH);
-
-	RasteriseInfluences(influenceGrid);
-
 	SAFE_DELETE(m_Territories);
 	m_Territories = new Grid<u8>(tilesW, tilesH);
+
+	// Compute terrain-passability-dependent costs per tile
+	Grid<u8> influenceGrid(tilesW, tilesH);
 
 	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
 	ICmpPathfinder::pass_class_t passClass = cmpPathfinder->GetPassabilityClass("default");
 	const Grid<u16>& passGrid = cmpPathfinder->GetPassabilityGrid();
-
-	// Adjust influenceGrid so it contains terrain-passability-dependent costs,
-	// unless overridden by existing values in influenceGrid
 	for (u32 j = 0; j < tilesH; ++j)
 	{
 		for (u32 i = 0; i < tilesW; ++i)
 		{
 			u8 cost;
-			u8 inflCost = influenceGrid.get(i, j);
-			if (inflCost)
-			{
-				cost = inflCost-1; // undo RasteriseInfluences's offset
-			}
+			if (passGrid.get(i, j) & passClass)
+				cost = 4; // TODO: should come from some XML file
 			else
-			{
-				if (passGrid.get(i, j) & passClass)
-					cost = 100;
-				else
-					cost = 1;
-			}
+				cost = 1;
 			influenceGrid.set(i, j, cost);
 		}
 	}
 
-	OpenQueue openTiles;
+	// Find all territory influence entities
+	CComponentManager::InterfaceList influences = GetSimContext().GetComponentManager().GetEntitiesWithInterface(IID_TerritoryInfluence);
 
-	// Initialise open list with all settlements
+	// Allow influence entities to override the terrain costs
+	RasteriseInfluences(influences, influenceGrid);
 
-	CComponentManager::InterfaceList settlements = GetSimContext().GetComponentManager().GetEntitiesWithInterface(IID_Settlement);
-	u8 id = 1;
-	for (CComponentManager::InterfaceList::iterator it = settlements.begin(); it != settlements.end(); ++it)
+	// Split influence entities into per-player lists, ignoring any with invalid properties
+	std::map<player_id_t, std::vector<entity_id_t> > influenceEntities;
+	for (CComponentManager::InterfaceList::iterator it = influences.begin(); it != influences.end(); ++it)
 	{
-		entity_id_t settlement = it->first;
-		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), settlement);
+		// Ignore any with no weight or radius (to avoid divide-by-zero later)
+		ICmpTerritoryInfluence* cmpTerritoryInfluence = static_cast<ICmpTerritoryInfluence*>(it->second);
+		if (cmpTerritoryInfluence->GetWeight() == 0 || cmpTerritoryInfluence->GetRadius() == 0)
+			continue;
+
+		CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), it->first);
+		if (cmpOwnership.null())
+			continue;
+
+		// Ignore Gaia and unassigned
+		player_id_t owner = cmpOwnership->GetOwner();
+		if (owner <= 0)
+			continue;
+
+		// Ignore if invalid position
+		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), it->first);
 		if (cmpPosition.null() || !cmpPosition->IsInWorld())
 			continue;
 
-		// TODO: maybe we need to ignore settlements with owner -1,
-		// since they're probably destroyed
-
-		CFixedVector2D pos = cmpPosition->GetPosition2D();
-		int i = clamp((pos.X / (int)CELL_SIZE).ToInt_RoundToNegInfinity(), 0, (int)tilesW-1);
-		int j = clamp((pos.Y / (int)CELL_SIZE).ToInt_RoundToNegInfinity(), 0, (int)tilesH-1);
-
-		// Must avoid duplicates in the priority queue; ignore the settlement
-		// if there's already one on that tile
-		if (!m_Territories->get(i, j))
-		{
-			m_Territories->set(i, j, id);
-			OpenQueue::Item tile = { std::make_pair((u16)i, (i16)j), 0 };
-			openTiles.push(tile);
-		}
-
-		id += 1;
+		influenceEntities[owner].push_back(it->first);
 	}
 
-	while (!openTiles.empty())
+	// For each player, store the sum of influences on each tile
+	std::vector<std::pair<player_id_t, Grid<u32> > > playerGrids;
+	// TODO: this is a large waste of memory; we don't really need to store
+	// all the intermediate grids
+
+	for (std::map<player_id_t, std::vector<entity_id_t> >::iterator it = influenceEntities.begin(); it != influenceEntities.end(); ++it)
 	{
-		OpenQueue::Item tile = openTiles.pop();
+		Grid<u32> playerGrid(tilesW, tilesH);
 
-		// Get current tile's territory ID
-		u8 tid = m_Territories->get(tile.id.first, tile.id.second);
+		std::vector<entity_id_t>& ents = it->second;
+		for (std::vector<entity_id_t>::iterator eit = ents.begin(); eit != ents.end(); ++eit)
+		{
+			// Compute the influence map of the current entity, then add it to the player grid
 
-		// Process neighbours (if they're not off the edge of the map)
-		u16 x = tile.id.first;
-		u16 z = tile.id.second;
-		if (x > 0)
-			ProcessNeighbour(tid, x-1, z, tile.rank, false, *m_Territories, openTiles, influenceGrid);
-		if (x < tilesW-1)
-			ProcessNeighbour(tid, x+1, z, tile.rank, false, *m_Territories, openTiles, influenceGrid);
-		if (z > 0)
-			ProcessNeighbour(tid, x, z-1, tile.rank, false, *m_Territories, openTiles, influenceGrid);
-		if (z < tilesH-1)
-			ProcessNeighbour(tid, x, z+1, tile.rank, false, *m_Territories, openTiles, influenceGrid);
-		if (x > 0 && z > 0)
-			ProcessNeighbour(tid, x-1, z-1, tile.rank, true, *m_Territories, openTiles, influenceGrid);
-		if (x > 0 && z < tilesH-1)
-			ProcessNeighbour(tid, x-1, z+1, tile.rank, true, *m_Territories, openTiles, influenceGrid);
-		if (x < tilesW-1 && z > 0)
-			ProcessNeighbour(tid, x+1, z-1, tile.rank, true, *m_Territories, openTiles, influenceGrid);
-		if (x < tilesW-1 && z < tilesH-1)
-			ProcessNeighbour(tid, x+1, z+1, tile.rank, true, *m_Territories, openTiles, influenceGrid);
+			Grid<u32> entityGrid(tilesW, tilesH);
+
+			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), *eit);
+			CFixedVector2D pos = cmpPosition->GetPosition2D();
+			int i = clamp((pos.X / (int)CELL_SIZE).ToInt_RoundToNegInfinity(), 0, (int)tilesW-1);
+			int j = clamp((pos.Y / (int)CELL_SIZE).ToInt_RoundToNegInfinity(), 0, (int)tilesH-1);
+
+			CmpPtr<ICmpTerritoryInfluence> cmpTerritoryInfluence(GetSimContext(), *eit);
+			u32 weight = cmpTerritoryInfluence->GetWeight();
+			u32 radius = cmpTerritoryInfluence->GetRadius() / CELL_SIZE;
+			u32 falloff = weight / radius; // earlier check for GetRadius() == 0 prevents divide-by-zero
+
+			// TODO: we should have some maximum value on weight, to avoid overflow
+			// when doing all the sums
+
+			// Initialise the tile under the entity
+			entityGrid.set(i, j, weight);
+			OpenQueue openTiles;
+			OpenQueue::Item tile = { std::make_pair((u16)i, (i16)j), weight };
+			openTiles.push(tile);
+
+			// Expand influences outwards
+			FloodFill(entityGrid, influenceGrid, openTiles, falloff);
+
+			// TODO: we should do a sparse grid and only add the non-zero regions, for performance
+			for (u16 j = 0; j < entityGrid.m_H; ++j)
+				for (u16 i = 0; i < entityGrid.m_W; ++i)
+					playerGrid.set(i, j, playerGrid.get(i, j) + entityGrid.get(i, j));
+		}
+
+		playerGrids.push_back(std::make_pair(it->first, playerGrid));
+	}
+
+	// Set m_Territories to the player ID with the highest influence for each tile
+	for (u16 j = 0; j < tilesH; ++j)
+	{
+		for (u16 i = 0; i < tilesW; ++i)
+		{
+			u32 bestWeight = 0;
+			for (size_t k = 0; k < playerGrids.size(); ++k)
+			{
+				u32 w = playerGrids[k].second.get(i, j);
+				if (w > bestWeight)
+				{
+					player_id_t id = playerGrids[k].first;
+					m_Territories->set(i, j, (u8)id);
+					bestWeight = w;
+				}
+			}
+		}
 	}
 }
 
@@ -336,12 +387,15 @@ static void TileCenter(u16 i, u16 j, entity_pos_t& x, entity_pos_t& z)
 // TODO: would be nice not to duplicate those two functions from CCmpObstructionManager.cpp
 
 
-void CCmpTerritoryManager::RasteriseInfluences(Grid<u8>& grid)
+void CCmpTerritoryManager::RasteriseInfluences(CComponentManager::InterfaceList& infls, Grid<u8>& grid)
 {
-	CComponentManager::InterfaceList infls = GetSimContext().GetComponentManager().GetEntitiesWithInterface(IID_TerritoryInfluence);
 	for (CComponentManager::InterfaceList::iterator it = infls.begin(); it != infls.end(); ++it)
 	{
 		ICmpTerritoryInfluence* cmpTerritoryInfluence = static_cast<ICmpTerritoryInfluence*>(it->second);
+
+		int cost = cmpTerritoryInfluence->GetCost();
+		if (cost == -1)
+			continue;
 
 		CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), it->first);
 		if (cmpObstruction.null())
@@ -350,8 +404,6 @@ void CCmpTerritoryManager::RasteriseInfluences(Grid<u8>& grid)
 		ICmpObstructionManager::ObstructionSquare square;
 		if (!cmpObstruction->GetObstructionSquare(square))
 			continue;
-
-		u8 cost = cmpTerritoryInfluence->GetCost();
 
 		CFixedVector2D halfSize(square.hw, square.hh);
 		CFixedVector2D halfBound = Geometry::GetHalfBoundingBox(square.u, square.v, halfSize);
@@ -366,7 +418,7 @@ void CCmpTerritoryManager::RasteriseInfluences(Grid<u8>& grid)
 				entity_pos_t x, z;
 				TileCenter(i, j, x, z);
 				if (Geometry::PointIsInSquare(CFixedVector2D(x - square.x, z - square.z), square.u, square.v, halfSize))
-					grid.set(i, j, cost+1);
+					grid.set(i, j, cost);
 			}
 		}
 

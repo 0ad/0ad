@@ -29,14 +29,14 @@
 #define PRIORITYQUEUE_DEBUG 1
 #endif
 
-template <typename Item>
+template <typename Item, typename CMP>
 struct QueueItemPriority
 {
 	bool operator()(const Item& a, const Item& b)
 	{
-		if (a.rank > b.rank) // higher costs are lower priority
+		if (CMP()(b.rank, a.rank)) // higher costs are lower priority
 			return true;
-		if (a.rank < b.rank)
+		if (CMP()(a.rank, b.rank))
 			return false;
 		// Need to tie-break to get a consistent ordering
 		// TODO: Should probably tie-break on g or h or something, but don't bother for now
@@ -57,7 +57,7 @@ struct QueueItemPriority
  * This is quite dreadfully slow in MSVC's debug STL implementation,
  * so we shouldn't use it unless we reimplement the heap functions more efficiently.
  */
-template <typename ID, typename R>
+template <typename ID, typename R, typename CMP = std::less<R> >
 class PriorityQueueHeap
 {
 public:
@@ -70,7 +70,7 @@ public:
 	void push(const Item& item)
 	{
 		m_Heap.push_back(item);
-		push_heap(m_Heap.begin(), m_Heap.end(), QueueItemPriority<Item>());
+		push_heap(m_Heap.begin(), m_Heap.end(), QueueItemPriority<Item, CMP>());
 	}
 
 	Item* find(ID id)
@@ -93,7 +93,7 @@ public:
 				ENSURE(m_Heap[n].rank > newrank);
 #endif
 				m_Heap[n].rank = newrank;
-				push_heap(m_Heap.begin(), m_Heap.begin()+n+1, QueueItemPriority<Item>());
+				push_heap(m_Heap.begin(), m_Heap.begin()+n+1, QueueItemPriority<Item, CMP>());
 				return;
 			}
 		}
@@ -105,7 +105,7 @@ public:
 		ENSURE(m_Heap.size());
 #endif
 		Item r = m_Heap.front();
-		pop_heap(m_Heap.begin(), m_Heap.end(), QueueItemPriority<Item>());
+		pop_heap(m_Heap.begin(), m_Heap.end(), QueueItemPriority<Item, CMP>());
 		m_Heap.pop_back();
 		return r;
 	}
@@ -130,7 +130,7 @@ public:
  * It seems fractionally slower than a binary heap in optimised builds, but is
  * much simpler and less susceptible to MSVC's painfully slow debug STL.
  */
-template <typename ID, typename R>
+template <typename ID, typename R, typename CMP = std::less<R> >
 class PriorityQueueList
 {
 public:
@@ -171,7 +171,7 @@ public:
 		size_t bestidx = m_List.size()-1;
 		for (ssize_t i = (ssize_t)bestidx-1; i >= 0; --i)
 		{
-			if (QueueItemPriority<Item>()(best, m_List[i]))
+			if (QueueItemPriority<Item, CMP>()(best, m_List[i]))
 			{
 				bestidx = i;
 				best = m_List[i];

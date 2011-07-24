@@ -28,6 +28,8 @@
     <Actor>structures/hellenes/wall_med.xml</Actor>
   </VisualActor>
   <TerritoryInfluence>
-    <OverrideCost>100</OverrideCost>
+    <OverrideCost>64</OverrideCost>
+    <Weight>0</Weight>
+    <Radius>0</Radius>
   </TerritoryInfluence>
 </Entity>

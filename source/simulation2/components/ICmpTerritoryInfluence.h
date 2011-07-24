@@ -23,7 +23,16 @@
 class ICmpTerritoryInfluence : public IComponent
 {
 public:
-	virtual u8 GetCost() = 0;
+	/**
+	 * Returns either -1 to indicate no special terrain cost, or a value
+	 * in [0, 255] to indicate overriding the normal cost of the terrain
+	 * under the entity's obstruction.
+	 */
+	virtual int GetCost() = 0;
+
+	virtual u32 GetWeight() = 0;
+
+	virtual u32 GetRadius() = 0;
 
 	DECLARE_INTERFACE_TYPE(TerritoryInfluence)
 };
