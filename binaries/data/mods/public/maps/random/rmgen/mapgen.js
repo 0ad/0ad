@@ -28,6 +28,8 @@ var g_Camera = {
 	Declination: 0.523599
 };
 
+var g_CivData = {};
+
 /////////////////////////////////////////////////////////////////////////////////////
 
 function InitMap()
@@ -36,6 +38,18 @@ function InitMap()
 	{
 		// Should never get this far, failed settings would abort prior to loading scripts
 		throw("InitMapGen: settings missing");
+	}
+	
+	// Get civ data as array of JSON strings
+	var data = RMS.GetCivData();
+	if (!data || !data.length)
+	{
+		throw("InitMapGen: error reading civ data");
+	}
+	for (var i = 0; i < data.length; ++i)
+	{
+		var civData = JSON.parse(data[i]);
+		g_CivData[civData.Code] = civData;
 	}
 	
 	// Create new map

@@ -389,59 +389,14 @@ function getCivCode(player)
 
 function getStartingEntities(player)
 {	
-	// This is a temporary hack until map generator has a LoadCivData method
-	var civStartingEntities = {
-		"celt" : [
-			{
-				"Template": "structures/celt_civil_centre" 
-			},
-			{
-				"Template": "units/celt_support_female_citizen",
-				"Count": 4
-			},
-			{
-				"Template": "units/celt_infantry_spearman_b",
-				"Count": 4 
-			},
-			{
-				"Template": "units/celt_cavalry_swordsman_b" 
-			}
-		],
-		"hele" : [
-			{
-				"Template": "structures/hele_civil_centre"
-			},
-			{
-				"Template": "units/hele_support_female_citizen",
-				"Count": 4
-			},
-			{
-				"Template": "units/hele_infantry_spearman_b",
-				"Count": 4
-			},
-			{
-				"Template": "units/hele_cavalry_swordsman_b"
-			}
-		],
-		"iber" : [
-			{
-				"Template": "structures/iber_civil_centre"
-			},
-			{
-				"Template": "units/iber_support_female_citizen",
-				"Count": 4
-			},
-			{
-				"Template": "units/iber_infantry_spearman_b",
-				"Count": 4
-			},
-			{
-				"Template": "units/iber_cavalry_spearman_b"
-			}
-		]
-	};
+	var civ = getCivCode(player);
+	if (!g_CivData[civ] || (g_CivData[civ].SelectableInGameSetup !== undefined && !g_CivData[civ].SelectableInGameSetup) || !g_CivData[civ].StartEntities || !g_CivData[civ].StartEntities.length)
+	{
+		warn("Invalid or unimplemented civ '"+civ+"' specified, falling back to 'hele'");
+		civ = "hele";
+	}
 	
-	return civStartingEntities[getCivCode(player)];
+	return g_CivData[civ].StartEntities;
 }
 
 function getHeight(x, z)
