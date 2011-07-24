@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2010-12-08T23:52:21Z</created>
-    <modified>2010-12-08T23:52:21Z</modified>
+    <created>2011-07-24T21:52:58Z</created>
+    <modified>2011-07-24T21:52:58Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -16,8 +16,8 @@
     <up_axis>Y_UP</up_axis>
   </asset>
   <library_images>
-    <image id="Map__293-image" name="Map__293">
-      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\structural\hele_struct_b.dds</init_from>
+    <image id="Map__293_image-image" name="Map__293_image">
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\structural\hele_struct_b.dds</init_from>
     </image>
   </library_images>
   <library_materials>
@@ -37,7 +37,7 @@
               <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
             </ambient>
             <diffuse>
-              <texture texture="Map__293-image" texcoord="CHANNEL0">
+              <texture texture="Map__293_image-image" texcoord="CHANNEL0">
                 <extra>
                   <technique profile="MAYA">
                     <wrapU sid="wrapU0">TRUE</wrapU>
@@ -1078,12 +1078,8 @@
         <node id="prop_garrisoned" name="prop_garrisoned">
           <matrix sid="matrix">0.317843 0.000000 0.000000 -1.047658 0.000000 -0.000355 -0.317843 -1.178288 0.000000 0.317843 -0.000355 2.665399 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
-        <node id="prop_garrisoned" name="prop_garrisoned">
-          <translate sid="location">1 0 8</translate>
-          <rotate sid="rotationZ">0 0 1 0</rotate>
-          <rotate sid="rotationY">0 1 0 0</rotate>
-          <rotate sid="rotationX">1 0 0 0</rotate>
-          <scale sid="scale">0 0 0</scale>
+        <node id="prop_projectile" name="prop_projectile">
+          <matrix sid="matrix">0.317843 0.000000 0.000000 0.001502 0.000000 0.317843 0.000000 -0.131464 0.000000 0.000000 0.317843 2.088160 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
       </node>
     </visual_scene>
