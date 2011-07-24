@@ -123,6 +123,7 @@ private:
 	static void ExportMap(void* cbdata, CScriptValRooted data);
 	static void SetProgress(void* cbdata, int progress);
 	static void MaybeGC(void* cbdata);
+	static std::vector<std::string> GetCivData(void* cbdata);
 
 	std::set<std::wstring> m_LoadedLibraries;
 	shared_ptr<ScriptInterface::StructuredClone> m_MapData;

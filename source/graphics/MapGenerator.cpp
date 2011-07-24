@@ -91,6 +91,7 @@ bool CMapGeneratorWorker::Run()
 	m_ScriptInterface->RegisterFunction<void, CScriptValRooted, CMapGeneratorWorker::ExportMap>("ExportMap");
 	m_ScriptInterface->RegisterFunction<void, int, CMapGeneratorWorker::SetProgress>("SetProgress");
 	m_ScriptInterface->RegisterFunction<void, CMapGeneratorWorker::MaybeGC>("MaybeGC");
+	m_ScriptInterface->RegisterFunction<std::vector<std::string>, CMapGeneratorWorker::GetCivData>("GetCivData");
 
 	// Parse settings
 	CScriptValRooted settingsVal = m_ScriptInterface->ParseJSON(m_Settings);
@@ -170,6 +171,43 @@ void CMapGeneratorWorker::MaybeGC(void* cbdata)
 {
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(cbdata);
 	self->m_ScriptInterface->MaybeGC();
+}
+
+std::vector<std::string> CMapGeneratorWorker::GetCivData(void* UNUSED(cbdata))
+{
+	VfsPath path(L"civs/");
+	VfsPaths pathnames;
+
+	std::vector<std::string> data;
+
+	// Load all JSON files in civs directory
+	Status ret = vfs::GetPathnames(g_VFS, path, L"*.json", pathnames);
+	if (ret == INFO::OK)
+	{
+		for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
+		{
+			// Load JSON file
+			CVFSFile file;
+			PSRETURN ret = file.Load(g_VFS, *it);
+			if (ret != PSRETURN_OK)
+			{
+				LOGERROR(L"CMapGeneratorWorker::GetCivData: Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
+			}
+			else
+			{
+				data.push_back(std::string(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize()));
+			}
+		}
+	}
+	else
+	{
+		// Some error reading directory
+		wchar_t error[200];
+		LOGERROR(L"CMapGeneratorWorker::GetCivData: Error reading directory '%ls': %ls", path.string().c_str(), StatusDescription(ret, error, ARRAY_SIZE(error)));
+	}
+
+	return data;
+
 }
 
 bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
