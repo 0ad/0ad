@@ -3,7 +3,7 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>cloudless</SkySet>
+		<SkySet>cirrus</SkySet>
 		<SunColour r="0.721569" g="0.701961" b="0.647059"/>
 		<SunElevation angle="0.865165"/>
 		<SunRotation angle="-1.54625"/>
@@ -14,17 +14,17 @@
 				<Type>default</Type>
 				<Colour r="0.458824" g="0.592157" b="0.792157"/>
 				<Height>18.2557</Height>
-				<Shininess>5.12695</Shininess>
+				<Shininess>6.10352</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.762695</Murkiness>
-				<Tint r="0.329412" g="0.576471" b="0.721569"/>
+				<Murkiness>0.800781</Murkiness>
+				<Tint r="0.262745" g="0.603922" b="0.788235"/>
 				<ReflectionTint r="0.00392157" g="0.654902" b="0.764706"/>
 				<ReflectionTintStrength>0.298828</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="212.158" y="115.561" z="79.2412"/>
+		<Position x="250.038" y="122.87" z="61.6697"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -13372,6 +13372,136 @@
 			<Player>0</Player>
 			<Position x="607.35712" z="477.76908"/>
 			<Orientation y="-1.65741"/>
+		</Entity>
+		<Entity uid="2674">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="294.71567" z="283.7884"/>
+			<Orientation y="-2.50551"/>
+		</Entity>
+		<Entity uid="2675">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="300.05665" z="279.27244"/>
+			<Orientation y="-2.53563"/>
+		</Entity>
+		<Entity uid="2676">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="305.07288" z="274.05353"/>
+			<Orientation y="-2.33251"/>
+		</Entity>
+		<Entity uid="2677">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="310.2548" z="269.82993"/>
+			<Orientation y="-2.58458"/>
+		</Entity>
+		<Entity uid="2678">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="315.40207" z="267.14661"/>
+			<Orientation y="-2.487"/>
+		</Entity>
+		<Entity uid="2679">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="319.63303" z="263.48374"/>
+			<Orientation y="-2.42559"/>
+		</Entity>
+		<Entity uid="2680">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="325.07313" z="258.22437"/>
+			<Orientation y="-2.66335"/>
+		</Entity>
+		<Entity uid="2681">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="331.92362" z="253.14506"/>
+			<Orientation y="-2.33692"/>
+		</Entity>
+		<Entity uid="2682">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="338.00214" z="248.49909"/>
+			<Orientation y="-2.71108"/>
+		</Entity>
+		<Entity uid="2683">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="344.52076" z="246.46416"/>
+			<Orientation y="-2.99721"/>
+		</Entity>
+		<Entity uid="2684">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="289.37958" z="289.9596"/>
+			<Orientation y="-2.105"/>
+		</Entity>
+		<Entity uid="2685">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="735.9021" z="311.01902"/>
+			<Orientation y="1.40162"/>
+		</Entity>
+		<Entity uid="2686">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="735.92518" z="303.20972"/>
+			<Orientation y="1.77387"/>
+		</Entity>
+		<Entity uid="2687">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="733.78571" z="295.35792"/>
+			<Orientation y="2.04441"/>
+		</Entity>
+		<Entity uid="2688">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="729.43866" z="288.59177"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2689">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="723.77747" z="282.73768"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2690">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="719.39545" z="277.56147"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2691">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="714.92768" z="272.73993"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2692">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="709.4745" z="267.57346"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2693">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="704.011" z="262.61323"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2694">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="697.89936" z="256.84031"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2695">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="692.43482" z="251.79715"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2696">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="687.94837" z="248.08715"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2697">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="681.66651" z="243.14948"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2698">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="678.5918" z="239.50945"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2699">
+			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
+			<Position x="673.688" z="233.96064"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <float/>
+  <group>
+    <variant frequency="1" name="wave a">
+      <decal angle="0" depth="7" offsetx="0" offsetz="0" width="14"/>
+      <texture>props/water_wave_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="wave b">
+      <decal angle="0" depth="7" offsetx="0" offsetz="0" width="14"/>
+      <texture>props/water_wave_b.dds</texture>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>
