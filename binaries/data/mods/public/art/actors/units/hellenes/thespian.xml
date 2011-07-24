@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="90"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="85"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="50"/>
+        <animation file="biped/inf_sword_ready_b.dae" name="Idle" speed="110"/>
+        <animation file="biped/walk_spearshield.psa" name="Walk" speed="120"/>
+        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="40"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="Attack" speed="85"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="Attack" speed="95"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="Attack" speed="90"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="Attack" speed="100"/>
+        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
+        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
+        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
+      </animations>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/thespian.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/head_hele_h.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/weapon_thespian.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/shields/thespian.xml" attachpoint="shield"/>
+        <prop actor="props/units/cape_hd_black.xml" attachpoint="shoulders"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Armour: Black Reinforced">
+      <texture>skeletal/thespian_a.dds</texture>
+    </variant>
+    <variant frequency="2" name="Armour: Black Corselet">
+      <texture>skeletal/thespian_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="Armour: Black Cuirass">
+      <texture>skeletal/thespian_c.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <texture>props/prop_weap.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="xiphos-goldgrip">
+      <mesh>props/weap_xiphos_a.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="xiphos-steel">
+      <mesh>props/weap_xiphos_d.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="xiphos-steelgrip2">
+      <mesh>props/weap_xiphos_f.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="kopis-bronze">
+      <mesh>props/weap_falcata_b.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="kopis-copper">
+      <mesh>props/weap_falcata_c.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="kopis-steel">
+      <mesh>props/weap_falcata_d.pmd</mesh>
+    </variant>
+    <variant frequency="5" name="spear-long">
+      <mesh>props/spear_lance.dae</mesh>
+    </variant>
+  </group>
+</actor>
