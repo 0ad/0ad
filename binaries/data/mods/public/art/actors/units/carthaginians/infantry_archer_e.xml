@@ -7,7 +7,7 @@
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="97"/>
         <animation event="0.84" file="biped/inf_arch_atk_a.psa" load="0.16" name="Melee" speed="90"/>
-        <animation file="infantry/general/dude/dudewalk.psa" name="Walk" speed="100"/>
+        <animation file="infantry/general/dude/dudewalk.psa" name="Walk" speed="120"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="30"/>
         <animation file="biped/walk_spearshield.psa" name="carry_food" speed="120"/>
         <animation file="biped/walk_spearshield.psa" name="carry_meat" speed="120"/>
@@ -53,12 +53,14 @@
       <props>
         <prop actor="props/units/tools/axe.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
+        <prop attachpoint="shield"/>
       </props>
     </variant>
     <variant name="gather_grain">
       <props>
         <prop actor="props/units/tools/hoe.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
+        <prop attachpoint="shield"/>
       </props>
     </variant>
     <variant name="gather_fruit">
@@ -66,6 +68,7 @@
         <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
         <prop attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
+        <prop attachpoint="shield"/>
       </props>
     </variant>
     <variant name="gather_meat">
@@ -73,30 +76,35 @@
         <prop attachpoint="r_hand"/>
         <prop attachpoint="l_hand"/>
         <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
+        <prop attachpoint="shield"/>
       </props>
     </variant>
     <variant name="gather_rock">
       <props>
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
+        <prop attachpoint="shield"/>
       </props>
     </variant>
     <variant name="gather_ore">
       <props>
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
+        <prop attachpoint="shield"/>
       </props>
     </variant>
     <variant name="gather_ruins">
       <props>
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
+        <prop attachpoint="shield"/>
       </props>
     </variant>
     <variant name="Build">
       <props>
         <prop actor="props/units/tools/mallet.xml" attachpoint="r_hand"/>
         <prop attachpoint="l_hand"/>
+        <prop attachpoint="shield"/>
       </props>
     </variant>
     <variant name="carry_food">

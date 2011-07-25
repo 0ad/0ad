@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations>
         <animation file="female/f_cav_idle_01.dae" name="Idle" speed="50"/>
         <animation file="female/f_cav_idle_01.dae" name="Walk" speed="50"/>
-        <animation file="female/f_cav_run_01.dae" name="Run" speed="8"/>
+        <animation file="female/f_cav_run_01.dae" name="Run" speed="30"/>
         <animation file="female/f_cav_death_01.dae" name="Death" speed="230"/>
         <animation event=".5" file="female/f_cav_jav_atk_01.dae" load="0" name="melee" speed="50"/>
       </animations>
@@ -20,7 +18,6 @@
       <texture>skeletal/celt_boudicca.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant name="Melee">
       <props>
@@ -30,7 +27,5 @@
       </props>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>

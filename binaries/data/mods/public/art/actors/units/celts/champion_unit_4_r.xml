@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations>
         <animation file="biped/cav_chariot_driver_idle_a.dae" name="Idle" speed="10"/>
         <animation event="0.4" file="infantry/javelin/attack/ijv_off_01.psa" load="0" name="Melee" speed="60"/>
         <animation file="biped/cav_chariot_driver_idle_a.dae" name="Walk" speed="10"/>
-        <animation file="biped/cav_chariot_driver_run_a.dae" name="Run" speed="10"/>
+        <animation file="biped/cav_chariot_driver_run_a.dae" name="Run" speed="5"/>
         <animation file="infantry/general/death/inf_01.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_02.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_03.psa" name="Death" speed="200"/>
@@ -27,13 +25,11 @@
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="chainmail-1">
       <texture>skeletal/celt_su3_soldurii_1.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="100" name="Idle">
       <props>
@@ -49,7 +45,5 @@
       </props>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>

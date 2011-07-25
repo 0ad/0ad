@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations>
         <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/horse_gallop.psa" name="Run" speed="50"/>
-        <animation file="quadraped/horse_walk.psa" name="Walk" speed="120"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="30"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="100"/>
         <animation event=".5" file="quadraped/horse_attack_a.psa" name="Melee" speed="105"/>
         <animation event=".5" file="quadraped/horse_attack_b.psa" name="Melee" speed="95"/>
         <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
@@ -16,7 +14,6 @@
       <mesh>skeletal/horse.pmd</mesh>
     </variant>
   </group>
-
   <group>
     <variant frequency="5" name="horse1-plain">
       <texture>skeletal/horse_celt_chariot_1.dds</texture>
@@ -28,7 +25,6 @@
       <texture>skeletal/horse_celt_chariot_3.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="2" name="horse1-black">
       <colour>81 81 85</colour>
@@ -49,7 +45,5 @@
       <colour>255 148 89</colour>
     </variant>
   </group>
-
   <material>objectcolor.xml</material>
-
 </actor>

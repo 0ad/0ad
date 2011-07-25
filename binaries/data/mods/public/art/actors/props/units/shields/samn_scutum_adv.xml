@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/shield/samn_scutum_front.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/samn_scutum_back.xml" attachpoint="root"/>
+      </props>
+      <texture>props/shield/towershield_wood_white.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

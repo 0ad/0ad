@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2011-07-25T08:40:41Z</created>
+    <modified>2011-07-25T08:40:41Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__80_image-image" name="Map__80_image">
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\props\shield\rome_imp_scutum_back.dds</init_from>
+    </image>
+    <image id="Map__81_image-image" name="Map__81_image">
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\props\shield\rome_imp_scutum_back.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_17___Default" name="_17___Default">
+      <instance_effect url="#_17___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_17___Default-fx" name="_17___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <texture texture="Map__80_image-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__81_image-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="Samnite_Sc-lib" name="Samnite_ScMesh">
+      <mesh>
+        <source id="Samnite_Sc-lib-Position">
+          <float_array id="Samnite_Sc-lib-Position-array" count="54">
+-0.740960 0.118954 -2.168985
+-0.601344 0.001189 -2.283033
+-0.847893 0.001188 2.295452
+-1.036420 0.118954 2.181393
+-1.119588 0.273163 1.917671
+-0.795033 0.273164 -1.905277
+-0.425438 -0.120843 -2.344295
+-0.017003 -0.220971 -2.344295
+-0.019787 -0.220971 2.355881
+-0.619947 -0.120844 2.355881
+0.578512 0.001187 -2.283036
+0.710120 0.118954 -2.168985
+1.002482 0.118954 2.181393
+0.852579 0.001188 2.295452
+0.645475 -0.120844 2.355881
+0.436391 -0.120843 -2.344295
+1.087108 0.273164 1.917671
+0.761026 0.273164 -1.905277
+</float_array>
+          <technique_common>
+            <accessor source="#Samnite_Sc-lib-Position-array" count="18" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Samnite_Sc-lib-Normal0">
+          <float_array id="Samnite_Sc-lib-Normal0-array" count="144">
+0.605312 0.795191 0.035611
+0.746935 0.662714 0.053832
+0.606136 0.794563 0.035632
+0.606136 0.794563 0.035632
+0.489371 0.871775 0.022911
+0.605312 0.795191 0.035611
+0.746935 0.662714 0.053832
+0.976168 0.200569 0.082873
+0.838042 0.542602 0.057169
+0.838042 0.542602 0.057169
+0.606136 0.794563 0.035632
+0.746935 0.662714 0.053832
+0.008365 0.999955 0.004579
+0.391242 0.920086 0.019258
+0.314493 0.949211 0.009645
+0.314493 0.949211 0.009645
+0.005894 0.999978 0.003187
+0.008365 0.999955 0.004579
+0.391242 0.920086 0.019258
+0.605312 0.795191 0.035611
+0.489371 0.871775 0.022911
+0.489371 0.871775 0.022911
+0.314493 0.949211 0.009645
+0.391242 0.920086 0.019258
+-0.762200 0.645374 0.050433
+-0.664953 0.746147 0.033205
+-0.539983 0.840992 0.033933
+-0.539983 0.840992 0.033933
+-0.659399 0.750486 0.044314
+-0.762200 0.645374 0.050433
+-0.323038 0.946216 0.017963
+-0.539983 0.840992 0.033933
+-0.664953 0.746147 0.033205
+-0.664953 0.746147 0.033205
+-0.416104 0.909220 0.013300
+-0.323038 0.946216 0.017963
+-0.835143 0.547134 0.056395
+-0.980005 0.180561 0.083591
+-0.762200 0.645374 0.050433
+-0.762200 0.645374 0.050433
+-0.659399 0.750486 0.044314
+-0.835143 0.547134 0.056395
+-0.416104 0.909220 0.013300
+0.008365 0.999955 0.004579
+0.005894 0.999978 0.003187
+0.005894 0.999978 0.003187
+-0.323038 0.946216 0.017963
+-0.416104 0.909220 0.013300
+</float_array>
+          <technique_common>
+            <accessor source="#Samnite_Sc-lib-Normal0-array" count="48" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Samnite_Sc-lib-UV0">
+          <float_array id="Samnite_Sc-lib-UV0-array" count="36">
+0.145974 0.071189
+0.214036 0.048734
+0.129053 0.950188
+0.045074 0.927731
+0.008027 0.875807
+0.119614 0.123110
+0.299789 0.036672
+0.498898 0.036672
+0.497934 0.962085
+0.230592 0.962085
+0.789206 0.048733
+0.853364 0.071189
+0.953305 0.927731
+0.886531 0.950188
+0.794276 0.962085
+0.719923 0.036672
+0.991002 0.875807
+0.878180 0.123110
+</float_array>
+          <technique_common>
+            <accessor source="#Samnite_Sc-lib-UV0-array" count="18" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Samnite_Sc-lib-Vertex">
+          <input semantic="POSITION" source="#Samnite_Sc-lib-Position"/>
+        </vertices>
+        <polygons material="_17___Default" count="16">
+          <input semantic="VERTEX" offset="0" source="#Samnite_Sc-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#Samnite_Sc-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#Samnite_Sc-lib-UV0"/>
+          <p>1 0 1 0 1 0 3 2 3</p>
+          <p>3 3 3 2 4 2 1 5 1</p>
+          <p>0 6 0 5 7 5 4 8 4</p>
+          <p>4 9 4 3 10 3 0 11 0</p>
+          <p>7 12 7 6 13 6 9 14 9</p>
+          <p>9 15 9 8 16 8 7 17 7</p>
+          <p>6 18 6 1 19 1 2 20 2</p>
+          <p>2 21 2 9 22 9 6 23 6</p>
+          <p>11 24 11 10 25 10 13 26 13</p>
+          <p>13 27 13 12 28 12 11 29 11</p>
+          <p>14 30 14 13 31 13 10 32 10</p>
+          <p>10 33 10 15 34 15 14 35 14</p>
+          <p>16 36 16 17 37 17 11 38 11</p>
+          <p>11 39 11 12 40 12 16 41 16</p>
+          <p>15 42 15 7 43 7 8 44 8</p>
+          <p>8 45 8 14 46 14 15 47 15</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="Samnite_Sc" name="Samnite_Sc">
+        <matrix sid="matrix">-0.599793 0.000000 0.000000 -0.008728 0.000000 -0.000000 0.473867 0.000471 0.000000 -0.443276 -0.000000 0.002700 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#Samnite_Sc-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_17___Default" target="#_17___Default"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+
