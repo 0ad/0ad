@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defense_wall">
+  <Identity>
+    <Civ>gaia</Civ>
+    <SpecificName>Outpost</SpecificName>
+    <History>Wooden defensive structure</History>
+  </Identity>
+  <Cost>
+    <BuildTime>18</BuildTime>
+  </Cost>
+  <Health>
+    <Max>2000</Max>
+  </Health>
+  <Footprint>
+    <Square width="6.0" depth="6.0"/>
+    <Height>15.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="6.0" depth="6.0"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>props/special/palisade_rocks_outpost.xml</Actor>
+  </VisualActor>
+</Entity>

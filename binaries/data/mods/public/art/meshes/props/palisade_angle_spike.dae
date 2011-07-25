@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.0" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+	<asset>
+		<contributor>
+			<author>Illusoft Collada 1.4.0 plugin for Blender - http://colladablender.illusoft.com</author>
+			<authoring_tool>Blender v:249 - Illusoft Collada Exporter v:0.3.162</authoring_tool>
+			<comments></comments>
+			<copyright></copyright>
+			<source_data>file://E:/Models/0ADpalisades/pure_palisade29.blend</source_data>
+		</contributor>
+		<created>2011-07-24T19:17:53.870000</created>
+		<modified>2011-07-24T19:17:53.870000</modified>
+		<unit meter="0.01" name="centimeter"/>
+		<up_axis>Z_UP</up_axis>
+	</asset>
+	<library_effects>
+		<effect id="palisade_main_png-fx" name="palisade_main_png-fx">
+			<profile_COMMON>
+				<newparam sid="palisade_main_png-surface">
+					<surface type="2D">
+						<init_from>palisade_main_png-img</init_from>
+						<format>A8R8G8B8</format>
+					</surface>
+				</newparam>
+				<newparam sid="palisade_main_png-sampler">
+					<sampler2D>
+						<source>palisade_main_png-surface</source>
+						<minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+						<magfilter>LINEAR</magfilter>
+					</sampler2D>
+				</newparam>
+				<technique sid="blender">
+					<phong>
+						<emission>
+							<color>0.00000 0.00000 0.00000 1</color>
+						</emission>
+						<ambient>
+							<color>0.40000 0.40000 0.40000 1</color>
+						</ambient>
+						<diffuse>
+							<texture texcoord="CHANNEL1" texture="palisade_main_png-sampler"/>
+						</diffuse>
+						<specular>
+							<color>0.50000 0.50000 0.50000 1</color>
+						</specular>
+						<shininess>
+							<float>12.5</float>
+						</shininess>
+						<reflective>
+							<color>1.00000 1.00000 1.00000 1</color>
+						</reflective>
+						<reflectivity>
+							<float>0.0</float>
+						</reflectivity>
+						<transparent>
+							<color>1 1 1 1</color>
+						</transparent>
+						<transparency>
+							<float>0.0</float>
+						</transparency>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+	</library_effects>
+	<library_images>
+		<image id="palisade_main_png-img" name="palisade_main_png-img">
+			<init_from>E:\Models\0ADpalisades\palisade_main.png</init_from>
+		</image>
+	</library_images>
+	<library_materials>
+		<material id="palisade_main_png" name="palisade_main_png">
+			<instance_effect url="#palisade_main_png-fx"/>
+		</material>
+	</library_materials>
+	<library_geometries>
+		<geometry id="AngleSpike_002" name="AngleSpike_002">
+			<mesh>
+				<source id="AngleSpike_002-Position">
+					<float_array count="57" id="AngleSpike_002-Position-array">2.12131 -0.00058 4.10977 1.60068 0.10060 3.04271 1.42479 0.29459 3.18909 1.20771 0.19341 3.36976 1.16653 -0.10177 3.40403 1.34242 -0.29576 3.25765 1.55950 -0.19457 3.07698 -0.67455 0.08178 0.30799 -0.85044 0.27577 0.45437 -1.06752 0.17459 0.63504 -1.10870 -0.12059 0.66931 -0.93281 -0.31458 0.52293 -0.71573 -0.21340 0.34226 -3.21551 0.08178 -2.74513 -3.25670 -0.21340 -2.71086 -3.39140 0.27577 -2.59875 -3.60848 0.17459 -2.41808 -3.64967 -0.12059 -2.38381 -3.47378 -0.31458 -2.53019</float_array>
+					<technique_common>
+						<accessor count="19" source="#AngleSpike_002-Position-array" stride="3">
+							<param type="float" name="X"></param>
+							<param type="float" name="Y"></param>
+							<param type="float" name="Z"></param>
+						</accessor>
+					</technique_common>
+				</source>
+				<source id="AngleSpike_002-Normals">
+					<float_array count="270" id="AngleSpike_002-Normals-array">0.66402 -0.64119 -0.38456 0.58742 -0.64663 -0.48659 0.72304 0.33726 -0.60283 0.72304 0.33726 -0.60283 0.79873 0.33454 -0.50005 0.66402 -0.64119 -0.38456 0.13562 0.98389 -0.11625 0.21607 0.97620 -0.01737 0.79873 0.33454 -0.50005 0.79873 0.33454 -0.50005 0.72304 0.33726 -0.60283 0.13562 0.98389 -0.11625 -0.58742 0.64663 0.48659 -0.50127 0.64150 0.58068 0.21607 0.97620 -0.01737 0.21607 0.97620 -0.01737 0.13562 0.98389 -0.11625 -0.58742 0.64663 0.48659 -0.72304 -0.33726 0.60283 -0.63558 -0.33448 0.69579 -0.50127 0.64150 0.58068 -0.50127 0.64150 0.58068 -0.58742 0.64663 0.48659 -0.72304 -0.33726 0.60283 -0.13562 -0.98389 0.11625 -0.05298 -0.97555 0.21317 -0.63558 -0.33448 0.69579 -0.63558 -0.33448 0.69579 -0.72304 -0.33726 0.60283 -0.13562 -0.98389 0.11625 0.58742 -0.64663 -0.48659 0.66402 -0.64119 -0.38456 -0.05298 -0.97555 0.21317 -0.05298 -0.97555 0.21317 -0.13562 -0.98389 0.11625 0.58742 -0.64663 -0.48659 0.63967 0.00000 0.76861 0.66402 -0.64119 -0.38456 0.79873 0.33454 -0.50005 0.63967 0.00000 0.76861 0.79873 0.33454 -0.50005 0.21607 0.97620 -0.01737 0.63967 0.00000 0.76861 0.21607 0.97620 -0.01737 -0.50127 0.64150 0.58068 0.63967 0.00000 0.76861 -0.50127 0.64150 0.58068 -0.63558 -0.33448 0.69579 0.63967 0.00000 0.76861 -0.63558 -0.33448 0.69579 -0.05298 -0.97555 0.21317 0.63967 0.00000 0.76861 -0.05298 -0.97555 0.21317 0.66402 -0.64119 -0.38456 0.72304 0.33726 -0.60283 0.58742 -0.64663 -0.48659 0.58629 -0.64663 -0.48793 0.58629 -0.64663 -0.48793 0.72356 0.33726 -0.60219 0.72304 0.33726 -0.60283 0.13562 0.98389 -0.11625 0.72304 0.33726 -0.60283 0.72356 0.33726 -0.60219 0.72356 0.33726 -0.60219 0.13727 0.98392 -0.11423 0.13562 0.98389 -0.11625 -0.58742 0.64663 0.48659 0.13562 0.98389 -0.11625 0.13727 0.98392 -0.11423 0.13727 0.98392 -0.11423 -0.58629 0.64663 0.48793 -0.58742 0.64663 0.48659 -0.72304 -0.33726 0.60283 -0.58742 0.64663 0.48659 -0.58629 0.64663 0.48793 -0.58629 0.64663 0.48793 -0.72356 -0.33726 0.60219 -0.72304 -0.33726 0.60283 -0.13562 -0.98389 0.11625 -0.72304 -0.33726 0.60283 -0.72356 -0.33726 0.60219 -0.72356 -0.33726 0.60219 -0.13727 -0.98392 0.11423 -0.13562 -0.98389 0.11625 0.58742 -0.64663 -0.48659 -0.13562 -0.98389 0.11625 -0.13727 -0.98392 0.11423 -0.13727 -0.98392 0.11423 0.58629 -0.64663 -0.48793 0.58742 -0.64663 -0.48659</float_array>
+					<technique_common>
+						<accessor count="90" source="#AngleSpike_002-Normals-array" stride="3">
+							<param type="float" name="X"></param>
+							<param type="float" name="Y"></param>
+							<param type="float" name="Z"></param>
+						</accessor>
+					</technique_common>
+				</source>
+				<source id="AngleSpike_002-UV">
+					<float_array count="180" id="AngleSpike_002-UV-array">0.47843 0.84655 0.47843 0.46692 0.51983 0.46692 0.51983 0.46692 0.51983 0.84655 0.47843 0.84655 0.56107 0.46692 0.56107 0.84655 0.51983 0.84655 0.51983 0.84655 0.51983 0.46692 0.56107 0.46692 0.47843 0.46692 0.47843 0.84655 0.43703 0.84655 0.43703 0.84655 0.43703 0.46692 0.47843 0.46692 0.51983 0.46692 0.51983 0.84655 0.47843 0.84655 0.47843 0.84655 0.47843 0.46692 0.51983 0.46692 0.56107 0.46692 0.56107 0.84655 0.51983 0.84655 0.51983 0.84655 0.51983 0.46692 0.56107 0.46692 0.47843 0.46692 0.47843 0.84655 0.43703 0.84655 0.43703 0.84655 0.43703 0.46692 0.47843 0.46692 0.16278 0.99825 0.17984 0.84762 0.14813 0.84762 0.16278 0.99825 0.14813 0.84762 0.11635 0.84762 0.16278 0.99825 0.21140 0.84762 0.17984 0.84762 0.16278 0.99825 0.17984 0.84762 0.14813 0.84762 0.16278 0.99825 0.14813 0.84762 0.11635 0.84762 0.16278 0.99825 0.21140 0.84762 0.17984 0.84762 0.51983 0.84655 0.47843 0.84655 0.47843 0.46692 0.47843 0.46692 0.51983 0.46692 0.51983 0.84655 0.56107 0.84655 0.51983 0.84655 0.51983 0.46692 0.51983 0.46692 0.56107 0.46692 0.56107 0.84655 0.47843 0.84655 0.43703 0.84655 0.43703 0.46692 0.43703 0.46692 0.47843 0.46692 0.47843 0.84655 0.51983 0.84655 0.47843 0.84655 0.47843 0.46692 0.47843 0.46692 0.51983 0.46692 0.51983 0.84655 0.56107 0.84655 0.51983 0.84655 0.51983 0.46692 0.51983 0.46692 0.56107 0.46692 0.56107 0.84655 0.47843 0.84655 0.43703 0.84655 0.43703 0.46692 0.43703 0.46692 0.47843 0.46692 0.47843 0.84655</float_array>
+					<technique_common>
+						<accessor count="90" source="#AngleSpike_002-UV-array" stride="2">
+							<param type="float" name="S"></param>
+							<param type="float" name="T"></param>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="AngleSpike_002-Vertex">
+					<input semantic="POSITION" source="#AngleSpike_002-Position"/>
+				</vertices>
+				<triangles count="30" material="palisade_main_png">
+					<input offset="0" semantic="VERTEX" source="#AngleSpike_002-Vertex"/>
+					<input offset="1" semantic="NORMAL" source="#AngleSpike_002-Normals"/>
+					<input offset="2" semantic="TEXCOORD" source="#AngleSpike_002-UV"/>
+					<p>6 0 0 12 1 1 7 2 2 7 3 3 1 4 4 6 5 5 8 6 6 2 7 7 1 8 8 1 9 9 7 10 10 8 11 11 9 12 12 3 13 13 2 14 14 2 15 15 8 16 16 9 17 17 10 18 18 4 19 19 3 20 20 3 21 21 9 22 22 10 23 23 11 24 24 5 25 25 4 26 26 4 27 27 10 28 28 11 29 29 12 30 30 6 31 31 5 32 32 5 33 33 11 34 34 12 35 35 0 36 36 6 37 37 1 38 38 0 39 39 1 40 40 2 41 41 0 42 42 2 43 43 3 44 44 0 45 45 3 46 46 4 47 47 0 48 48 4 49 49 5 50 50 0 51 51 5 52 52 6 53 53 7 54 54 12 55 55 14 56 56 14 57 57 13 58 58 7 59 59 8 60 60 7 61 61 13 62 62 13 63 63 15 64 64 8 65 65 9 66 66 8 67 67 15 68 68 15 69 69 16 70 70 9 71 71 10 72 72 9 73 73 16 74 74 16 75 75 17 76 76 10 77 77 11 78 78 10 79 79 17 80 80 17 81 81 18 82 82 11 83 83 12 84 84 11 85 85 18 86 86 18 87 87 14 88 88 12 89 89</p>
+				</triangles>
+			</mesh>
+		</geometry>
+	</library_geometries>
+	<library_visual_scenes>
+		<visual_scene id="Scene" name="Scene">
+			<node layer="L1" id="AngleSpike" name="AngleSpike">
+				<translate sid="translate">0.00000 0.00000 0.00000</translate>
+				<rotate sid="rotateZ">0 0 1 0.00000</rotate>
+				<rotate sid="rotateY">0 1 0 -0.00000</rotate>
+				<rotate sid="rotateX">1 0 0 0.00000</rotate>
+				<scale sid="scale">1.00000 1.00000 1.00000</scale>
+				<instance_geometry url="#AngleSpike_002">
+					<bind_material>
+						<technique_common>
+							<instance_material symbol="palisade_main_png" target="#palisade_main_png">
+								<bind_vertex_input input_semantic="TEXCOORD" input_set="1" semantic="CHANNEL1"/>
+							</instance_material>
+						</technique_common>
+					</bind_material>
+				</instance_geometry>
+			</node>
+		</visual_scene>
+	</library_visual_scenes>
+	<scene>
+		<instance_visual_scene url="#Scene"/>
+	</scene>
+</COLLADA>
