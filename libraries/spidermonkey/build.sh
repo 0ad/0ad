@@ -87,6 +87,9 @@ then
   LIB_PREFIX=lib
   LIB_SRC_SUFFIX=.dylib
   LIB_DST_SUFFIX=.dylib
+  # Fix libtool's use of an absolute path
+  install_name_tool -id @executable_path/${LIB_PREFIX}mozjs185-ps-debug${DLL_DST_SUFFIX} js-1.8.5/js/src/build-debug/dist/bin/${LIB_PREFIX}mozjs185-ps-debug${DLL_SRC_SUFFIX}
+  install_name_tool -id @executable_path/${LIB_PREFIX}mozjs185-ps-release${DLL_DST_SUFFIX} js-1.8.5/js/src/build-release/dist/bin/${LIB_PREFIX}mozjs185-ps-release${DLL_SRC_SUFFIX}
 else
   INCLUDE_DIR=include-unix
   DLL_SRC_SUFFIX=.so
