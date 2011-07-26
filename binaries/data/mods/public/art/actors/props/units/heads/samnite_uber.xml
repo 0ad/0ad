@@ -2,11 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Winged Helmet">
-      <mesh>props/helmet/samnite_a.dae</mesh>
-      <texture>props/helmet/samnite_a1.dds</texture>
-    </variant>
-    <variant frequency="1" name="Uber Helmet">
+    <variant frequency="1" name="Uber helmet">
       <mesh>props/helmet/samnite_d_uber.dae</mesh>
       <props>
         <prop actor="props/units/heads/samnite_uber_wings.xml" attachpoint="root"/>

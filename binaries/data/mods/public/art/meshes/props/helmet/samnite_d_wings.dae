@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2011-07-26T03:11:58Z</created>
+    <modified>2011-07-26T03:11:58Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__23-image" name="Map__23">
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\props\helmet\samnite_a1.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_16___Default" name="_16___Default">
+      <instance_effect url="#_16___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_16___Default-fx" name="_16___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__23-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="Object12118-lib" name="Object12118Mesh">
+      <mesh>
+        <source id="Object12118-lib-Position">
+          <float_array id="Object12118-lib-Position-array" count="84">
+0.211131 0.099920 -0.044140
+0.300237 0.151929 0.116326
+0.191126 -0.001049 -0.021569
+0.294390 -0.003631 0.203393
+0.358153 0.097092 0.379155
+0.363410 0.195525 0.366293
+0.305354 0.240354 0.224944
+0.211131 0.099920 -0.044140
+0.191126 -0.001049 -0.021569
+0.300237 0.151929 0.116326
+0.294390 -0.003631 0.203393
+0.363410 0.195525 0.366293
+0.358153 0.097092 0.379155
+0.305354 0.240354 0.224944
+-0.237674 0.099920 -0.044141
+-0.217668 -0.001049 -0.021569
+-0.326779 0.151929 0.116325
+-0.320932 -0.003631 0.203392
+-0.389953 0.195525 0.366293
+-0.384696 0.097092 0.379155
+-0.331897 0.240354 0.224943
+-0.237674 0.099920 -0.044141
+-0.326779 0.151929 0.116325
+-0.217668 -0.001049 -0.021569
+-0.320932 -0.003631 0.203392
+-0.384696 0.097092 0.379155
+-0.389953 0.195525 0.366293
+-0.331897 0.240354 0.224943
+</float_array>
+          <technique_common>
+            <accessor source="#Object12118-lib-Position-array" count="28" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object12118-lib-Normal0">
+          <float_array id="Object12118-lib-Normal0-array" count="180">
+0.877069 -0.263559 -0.401606
+0.934690 -0.141509 -0.326081
+0.876811 -0.261880 -0.403264
+0.876811 -0.261880 -0.403264
+0.934690 -0.141509 -0.326081
+0.931856 -0.192413 -0.307605
+0.951604 -0.089249 -0.294081
+0.931856 -0.192413 -0.307605
+0.962942 -0.022029 -0.268808
+0.962942 -0.022029 -0.268808
+0.931856 -0.192413 -0.307605
+0.934690 -0.141509 -0.326081
+0.962942 -0.022029 -0.268808
+0.934690 -0.141509 -0.326081
+0.913377 0.293594 -0.282039
+-0.877069 0.263559 0.401605
+-0.876811 0.261880 0.403264
+-0.934690 0.141509 0.326081
+-0.934690 0.141509 0.326081
+-0.876811 0.261880 0.403264
+-0.931856 0.192413 0.307605
+-0.934690 0.141509 0.326081
+-0.931856 0.192413 0.307605
+-0.962942 0.022029 0.268808
+-0.962942 0.022029 0.268808
+-0.931856 0.192413 0.307605
+-0.951604 0.089249 0.294081
+-0.962942 0.022029 0.268808
+-0.913377 -0.293594 0.282039
+-0.934690 0.141509 0.326081
+-0.877069 -0.263559 -0.401605
+-0.877069 -0.263559 -0.401605
+-0.958177 -0.071922 -0.276992
+-0.876485 -0.259800 -0.405314
+-0.876485 -0.259800 -0.405314
+-0.931857 -0.192412 -0.307605
+-0.958177 -0.071922 -0.276992
+-0.931857 -0.192412 -0.307605
+-0.962942 -0.022029 -0.268808
+-0.962942 -0.022029 -0.268808
+-0.931857 -0.192412 -0.307605
+-0.951604 -0.089248 -0.294081
+-0.962942 -0.022029 -0.268808
+-0.913378 0.293589 -0.282037
+-0.958177 -0.071922 -0.276992
+0.877069 0.263559 0.401605
+0.934690 0.141510 0.326081
+0.876811 0.261880 0.403264
+0.876811 0.261880 0.403264
+0.934690 0.141510 0.326081
+0.931856 0.192413 0.307605
+0.951605 0.089250 0.294080
+0.931856 0.192413 0.307605
+0.962942 0.022030 0.268808
+0.962942 0.022030 0.268808
+0.931856 0.192413 0.307605
+0.934690 0.141510 0.326081
+0.962942 0.022030 0.268808
+0.934690 0.141510 0.326081
+0.913378 -0.293591 0.282038
+</float_array>
+          <technique_common>
+            <accessor source="#Object12118-lib-Normal0-array" count="60" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object12118-lib-UV0">
+          <float_array id="Object12118-lib-UV0-array" count="56">
+0.053112 0.764314
+0.239083 0.786053
+0.072435 0.911572
+0.277730 0.945389
+0.487856 0.909157
+0.483025 0.831656
+0.364667 0.757067
+0.053112 0.764314
+0.072435 0.911572
+0.239083 0.786053
+0.277730 0.945389
+0.483025 0.831656
+0.487856 0.909157
+0.364667 0.757067
+0.053112 0.764314
+0.072435 0.911572
+0.239083 0.786053
+0.277730 0.945389
+0.483025 0.831656
+0.487856 0.909157
+0.364667 0.757067
+0.053112 0.764314
+0.239083 0.786053
+0.072435 0.911572
+0.277730 0.945389
+0.487856 0.909157
+0.483025 0.831656
+0.364667 0.757067
+</float_array>
+          <technique_common>
+            <accessor source="#Object12118-lib-UV0-array" count="28" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Object12118-lib-Vertex">
+          <input semantic="POSITION" source="#Object12118-lib-Position"/>
+        </vertices>
+        <polygons material="_16___Default" count="20">
+          <input semantic="VERTEX" offset="0" source="#Object12118-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#Object12118-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#Object12118-lib-UV0"/>
+          <p>0 0 0 1 1 1 2 2 2</p>
+          <p>2 3 2 1 4 1 3 5 3</p>
+          <p>4 6 4 3 7 3 5 8 5</p>
+          <p>5 9 5 3 10 3 1 11 1</p>
+          <p>5 12 5 1 13 1 6 14 6</p>
+          <p>7 15 7 8 16 8 9 17 9</p>
+          <p>9 18 9 8 19 8 10 20 10</p>
+          <p>9 21 9 10 22 10 11 23 11</p>
+          <p>11 24 11 10 25 10 12 26 12</p>
+          <p>11 27 11 13 28 13 9 29 9</p>
+          <p>14 30 14 15 31 15 16 32 16</p>
+          <p>16 33 16 15 34 15 17 35 17</p>
+          <p>16 36 16 17 37 17 18 38 18</p>
+          <p>18 39 18 17 40 17 19 41 19</p>
+          <p>18 42 18 20 43 20 16 44 16</p>
+          <p>21 45 21 22 46 22 23 47 23</p>
+          <p>23 48 23 22 49 22 24 50 24</p>
+          <p>25 51 25 24 52 24 26 53 26</p>
+          <p>26 54 26 24 55 24 22 56 22</p>
+          <p>26 57 26 22 58 22 27 59 27</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="Object12118" name="Object12118">
+        <matrix sid="matrix">1.029025 0.000000 0.000000 0.010631 0.000000 0.003592 1.029019 0.373474 0.000000 -1.029019 0.003592 0.162241 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#Object12118-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_16___Default" target="#_16___Default"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+

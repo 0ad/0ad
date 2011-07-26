@@ -16,9 +16,9 @@
       <mesh>skeletal/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
-        <prop actor="props/units/heads/samnite_test.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/rome_monte_e.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/shields/cart_tarantine_a.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/samn_scutum_adv.xml" attachpoint="shield"/>
       </props>
     </variant>
   </group>
@@ -26,8 +26,11 @@
     <variant frequency="1" name="pectoral-tripledisc">
       <texture>skeletal/kart_csp_a_1.dds</texture>
     </variant>
-    <variant frequency="1" name="pectoral-muscled">
-      <texture>skeletal/kart_csp_e_1.dds</texture>
+    <variant frequency="1" name="pectoral-square">
+      <texture>skeletal/kart_csp_a_2.dds</texture>
+    </variant>
+    <variant frequency="1" name="pectoral-muscle">
+      <texture>skeletal/kart_csp_a_3.dds</texture>
     </variant>
   </group>
   <group>
