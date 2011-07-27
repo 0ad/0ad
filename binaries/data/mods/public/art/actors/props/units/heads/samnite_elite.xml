@@ -13,6 +13,10 @@
       </props>
       <texture>props/helmet/mace_b.dds</texture>
     </variant>
+    <variant frequency="1" name="Four Feathers">
+      <mesh>props/helmet/rome_montefortino_x.dae</mesh>
+      <texture>props/helmet/rome-e-coolus.dds</texture>
+    </variant>
   </group>
   <material>player_trans.xml</material>
 </actor>
