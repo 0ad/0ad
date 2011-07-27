@@ -7,7 +7,14 @@
       <props>
         <prop actor="props/units/shields/samn_scutum_back.xml" attachpoint="root"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Shield-B">
       <texture>props/shield/samnite_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="Shield-C">
+      <texture>props/shield/samnite_c.dds</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>
