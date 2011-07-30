@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_spearman">
+  <Auras>
+    <Courage>
+      <Radius>20</Radius>
+      <Bonus>5</Bonus>
+    </Courage>
+  </Auras>
   <Identity>
     <Civ>hele</Civ>
     <SpecificName>Philip II</SpecificName>
@@ -10,12 +16,6 @@
   <Vision>
     <Range>110</Range>
   </Vision>
-  <Auras>
-    <Courage>
-      <Radius>20</Radius>
-      <Bonus>5</Bonus>
-    </Courage>
-  </Auras>
   <VisualActor>
     <Actor>units/hellenes/philip_horse.xml</Actor>
   </VisualActor>

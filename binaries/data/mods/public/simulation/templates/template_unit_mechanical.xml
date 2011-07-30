@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit">
+  <Decay>
+    <Inactive/>
+    <DelayTime>0.0</DelayTime>
+    <SinkRate>0.0</SinkRate>
+    <SinkAccel>2.0</SinkAccel>
+  </Decay>
+  <Health>
+    <Healable>false</Healable>
+    <Repairable>true</Repairable>
+  </Health>
   <Identity>
     <GenericName>Mechanical</GenericName>
     <Classes datatype="tokens">Mechanical</Classes>
@@ -11,14 +21,4 @@
     <stone>0</stone>
     <metal>25</metal>
   </Loot>
-  <Health>
-    <Healable>false</Healable>
-    <Repairable>true</Repairable>
-  </Health>
-  <Decay>
-    <Inactive/>
-    <DelayTime>0.0</DelayTime>
-    <SinkRate>0.0</SinkRate>
-    <SinkAccel>2.0</SinkAccel>
-  </Decay>
 </Entity>

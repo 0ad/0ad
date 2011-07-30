@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero">
+  <Footprint>
+    <Circle radius="1.5"/>
+    <Height>7.5</Height>
+  </Footprint>
   <Identity>
     <Civ>cart</Civ>
     <SpecificName>Hamilcar Barca</SpecificName>
@@ -9,8 +13,4 @@
   <VisualActor>
     <Actor>units/carthaginians/hero_hamilcar_horse.xml</Actor>
   </VisualActor>
-  <Footprint>
-    <Circle radius="1.5"/>
-    <Height>7.5</Height>
-  </Footprint>
 </Entity>

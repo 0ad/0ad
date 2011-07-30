@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
+  <Armour>
+    <Hack>5.0</Hack>
+    <Pierce>10.0</Pierce>
+    <Crush>5.0</Crush>
+  </Armour>
+  <BuildRestrictions>
+    <Category>Special</Category>
+  </BuildRestrictions>
+  <Footprint>
+    <Square width="2.5" depth="12.5"/>
+    <Height>4.0</Height>
+  </Footprint>
+  <Health>
+    <Max>200</Max>
+  </Health>
   <Identity>
     <Civ>hele</Civ>
     <GenericName>Column</GenericName>
@@ -7,14 +22,6 @@
     <History>A column fallen off some Greek ruin.</History>
     <Icon>gaia/special_fence.png</Icon>
   </Identity>
-  <Health>
-    <Max>200</Max>
-  </Health>
-  <Armour>
-    <Hack>5.0</Hack>
-    <Pierce>10.0</Pierce>
-    <Crush>5.0</Crush>
-  </Armour>
   <Loot>
     <xp>1</xp>
     <food>0</food>
@@ -22,24 +29,17 @@
     <stone>20</stone>
     <metal>0</metal>
   </Loot>
-  <VisualActor>
-    <Actor>props/special/eyecandy/column_doric_fallen.xml</Actor>
-  </VisualActor>
-  <StatusBars>
-    <HeightOffset>6.0</HeightOffset>
-  </StatusBars>
-  <Footprint>
-    <Square width="2.5" depth="12.5"/>
-    <Height>4.0</Height>
-  </Footprint>
   <Obstruction>
     <Static width="2.0" depth="12.0"/>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>6.0</HeightOffset>
+  </StatusBars>
   <Vision>
     <Range>4</Range>
     <RetainInFog>true</RetainInFog>
   </Vision>
-  <BuildRestrictions>
-    <Category>Special</Category>
-  </BuildRestrictions>
+  <VisualActor>
+    <Actor>props/special/eyecandy/column_doric_fallen.xml</Actor>
+  </VisualActor>
 </Entity>

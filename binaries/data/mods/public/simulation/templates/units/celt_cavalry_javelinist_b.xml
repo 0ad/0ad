@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry_ranged_javelinist">
+  <Armour>
+    <Hack>2.0</Hack>
+  </Armour>
   <Identity>
     <Civ>celt</Civ>
 	<SelectionGroupName>units/celt_cavalry_javelinist_b</SelectionGroupName>
@@ -10,9 +13,6 @@
   <Promotion>
     <Entity>units/celt_cavalry_javelinist_a</Entity>
   </Promotion>
-  <Armour>
-    <Hack>2.0</Hack>
-  </Armour>
   <UnitMotion>
     <WalkSpeed>12.38</WalkSpeed>
     <Run>

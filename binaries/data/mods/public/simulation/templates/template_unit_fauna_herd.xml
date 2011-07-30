@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna">
+  <Auras>
+    <Infidelity>
+      <Radius>20</Radius>
+      <Time>0</Time>
+    </Infidelity>
+  </Auras>
   <Health>
     <DeathType>remain</DeathType>
   </Health>
@@ -8,10 +14,4 @@
     <Amount>100</Amount>
     <Type>food.meat</Type>
   </ResourceSupply>
-  <Auras>
-    <Infidelity>
-      <Radius>20</Radius>
-      <Time>0</Time>
-    </Infidelity>
-  </Auras>
 </Entity>

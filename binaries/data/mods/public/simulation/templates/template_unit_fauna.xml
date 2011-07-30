@@ -1,30 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit">
+  <Cost>
+    <Population>0</Population>
+  </Cost>
+  <Footprint>
+    <Circle radius="1.5"/>
+    <Height>2.25</Height>
+  </Footprint>
   <Identity>
     <GenericName>Fauna</GenericName>
 	<Classes datatype="tokens">Animal Organic -ConquestCritical</Classes>
     <Icon>gaia/fauna_generic.png</Icon>
   </Identity>
+  <Loot>
+    <xp>10</xp>
+  </Loot>
   <Minimap>
     <Type>food</Type>
     <Colour r="205" g="115" b="16"/>
   </Minimap>
-  <Cost>
-    <Population>0</Population>
-  </Cost>
-  <Loot>
-    <xp>10</xp>
-  </Loot>
-  <Footprint>
-    <Circle radius="1.5"/>
-    <Height>2.25</Height>
-  </Footprint>
-  <UnitMotion>
-    <WalkSpeed>5.0</WalkSpeed>
-    <Run>
-      <Speed>15.0</Speed>
-    </Run>
-  </UnitMotion>
   <UnitAI>
     <RoamDistance>8.0</RoamDistance>
     <FleeDistance>32.0</FleeDistance>
@@ -33,6 +27,12 @@
     <FeedTimeMin>15000</FeedTimeMin>
     <FeedTimeMax>60000</FeedTimeMax>
   </UnitAI>
+  <UnitMotion>
+    <WalkSpeed>5.0</WalkSpeed>
+    <Run>
+      <Speed>15.0</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <SilhouetteDisplay>false</SilhouetteDisplay>
   </VisualActor>

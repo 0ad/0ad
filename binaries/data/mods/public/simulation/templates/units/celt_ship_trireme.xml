@@ -1,22 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_ship_trireme">
-  <Identity>
-    <Civ>celt</Civ>
-    <SpecificName>Venetic Ponti</SpecificName>
-    <Tooltip>A massive ship that can transport soldiers far across the sea.</Tooltip>
-    <History>The ships of Gaul were described by Julias Caesar as:  flat bottoms to ride the shallows, exceptionally high bows and sterns, hulls were made entirely of oak, the foot wide cross-timbers were fastened with iron bolts as thick as a mans thumb, sails of raw hides or thin leather, adapted for sailing treacherous and stormy waters of the north atlantic.  Caesar could not injure them by ramming because they were so solidly built, and their height made it difficult to reach them with missiles or board them with grappling irons.</History>
-    <Icon>units/celt_ship_trireme.png</Icon>
-  </Identity>
-  <VisualActor>
-    <Actor>structures/celts/warship.xml</Actor>
-  </VisualActor>
-  <Footprint>
-    <Square width="12.0" depth="36.0"/>
-    <Height>8.0</Height>
-  </Footprint>
-  <Obstruction>
-    <Unit radius="6.0"/>
-  </Obstruction>
+  <Armour>
+    <Pierce>25.0</Pierce>
+    <Crush>20.0</Crush>
+  </Armour>
   <Cost>
     <BuildTime>88</BuildTime>
     <Resources>
@@ -24,17 +11,30 @@
       <metal>250</metal>
     </Resources>
   </Cost>
-  <Health>
-    <Max>880</Max>
-  </Health>
-  <Armour>
-    <Pierce>25.0</Pierce>
-    <Crush>20.0</Crush>
-  </Armour>
-  <UnitMotion>
-    <WalkSpeed>12.5</WalkSpeed>
-  </UnitMotion>
+  <Footprint>
+    <Square width="12.0" depth="36.0"/>
+    <Height>8.0</Height>
+  </Footprint>
   <GarrisonHolder>
     <Max>40</Max>
   </GarrisonHolder>
+  <Health>
+    <Max>880</Max>
+  </Health>
+  <Identity>
+    <Civ>celt</Civ>
+    <SpecificName>Venetic Ponti</SpecificName>
+    <Tooltip>A massive ship that can transport soldiers far across the sea.</Tooltip>
+    <History>The ships of Gaul were described by Julias Caesar as:  flat bottoms to ride the shallows, exceptionally high bows and sterns, hulls were made entirely of oak, the foot wide cross-timbers were fastened with iron bolts as thick as a mans thumb, sails of raw hides or thin leather, adapted for sailing treacherous and stormy waters of the north atlantic.  Caesar could not injure them by ramming because they were so solidly built, and their height made it difficult to reach them with missiles or board them with grappling irons.</History>
+    <Icon>units/celt_ship_trireme.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Unit radius="6.0"/>
+  </Obstruction>
+  <UnitMotion>
+    <WalkSpeed>12.5</WalkSpeed>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>structures/celts/warship.xml</Actor>
+  </VisualActor>
 </Entity>

@@ -1,28 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_fortress">
+  <Attack>
+    <Ranged>
+      <MaxRange>60.0</MaxRange>
+      <MinRange>24.0</MinRange>
+    </Ranged>
+  </Attack>
+  <Cost>
+    <PopulationBonus>22</PopulationBonus>
+  </Cost>
+  <Footprint replace="">
+    <Circle radius="9.0"/>
+    <Height>18.0</Height>
+  </Footprint>
   <Identity>
     <Civ>celt</Civ>
     <SpecificName>Brythonic Broch</SpecificName>
     <Tooltip>Train Brythonic Heroes and Champions.</Tooltip>
     <History>The Broch is an Iron Age round tower fortification type unique to Scotland.  The origin of brochs remains a mystery. Some archaeologists believed the brochs were built by an influx of broch builders who had been displaced and pushed northward during the Roman invasion of Britain. However, this theory has been largely disproven and current thought is that they were built by itinerant (travelling) craftsmen since so many were built to almost the same exact design. </History>
   </Identity>
-  <Cost>
-    <PopulationBonus>22</PopulationBonus>
-  </Cost>
-  <Vision>
-    <Range>100</Range>
-  </Vision>
-  <VisualActor>
-    <Actor>structures/celts/fortress_briton.xml</Actor>
-    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
-  </VisualActor>
-  <Footprint replace="">
-    <Circle radius="9.0"/>
-    <Height>18.0</Height>
-  </Footprint>
   <Obstruction>
     <Static width="17.0" depth="17.0"/>
   </Obstruction>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_broch.xml</select>
+      <constructed>interface/complete/building/complete_broch.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
   <TrainingQueue>
     <Entities datatype="tokens">
       units/celt_hero_boudicca
@@ -33,17 +39,11 @@
 	  units/celt_mechanical_siege_ram
     </Entities>
   </TrainingQueue>
-  <Attack>
-    <Ranged>
-      <MaxRange>60.0</MaxRange>
-      <MinRange>24.0</MinRange>
-    </Ranged>
-  </Attack>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_broch.xml</select>
-      <constructed>interface/complete/building/complete_broch.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
-    </SoundGroups>
-  </Sound>
+  <Vision>
+    <Range>100</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>structures/celts/fortress_briton.xml</Actor>
+    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
+  </VisualActor>
 </Entity>

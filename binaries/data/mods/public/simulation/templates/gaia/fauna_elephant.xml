@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_hunt_aggressive">
+  <Footprint>
+    <Circle radius="2.5"/>
+    <Height>3.5</Height>
+  </Footprint>
+  <Health>
+    <Max>200</Max>
+    <RegenRate>1</RegenRate>
+  </Health>
   <Identity>
     <Civ>gaia</Civ>
     <SpecificName>Elephant</SpecificName>
     <Icon>gaia/fauna_elephant.png</Icon>
   </Identity>
-  <Health>
-    <Max>200</Max>
-    <RegenRate>1</RegenRate>
-  </Health>
   <ResourceSupply>
     <Amount>500</Amount>
     <Type>food.meat</Type>
@@ -16,8 +20,4 @@
   <VisualActor>
     <Actor>fauna/elephant.xml</Actor>
   </VisualActor>
-  <Footprint>
-    <Circle radius="2.5"/>
-    <Height>3.5</Height>
-  </Footprint>
 </Entity>

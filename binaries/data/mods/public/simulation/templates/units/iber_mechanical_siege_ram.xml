@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_siege_ram">
-  <Identity>
-    <Civ>iber</Civ>
-    <SpecificName>Ariete</SpecificName>
-    <Tooltip>Siege Ram</Tooltip>
-    <History>It is not known if any of the Iberians culture tribes used rams; the unit is added to the civ roster for gameplay purposes.</History>
-    <Icon>units/iber_mechanical_siege_ram.png</Icon>
-  </Identity>
-  <VisualActor>
-    <Actor>structures/iberians/siege_ram.xml</Actor>
-  </VisualActor>
+  <Armour>
+    <Pierce>20.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Crush>50.0</Crush>
+    </Melee>
+    <Charge>
+      <Crush>100.0</Crush>
+    </Charge>
+  </Attack>
   <Cost>
     <BuildTime>25</BuildTime>
     <Resources>
@@ -21,31 +23,29 @@
     <Square width="6.75" depth="10.0"/>
     <Height>3.0</Height>
   </Footprint>
-  <Obstruction>
-    <Unit radius="3.75"/>
-  </Obstruction>
-  <Health>
-    <Max>250</Max>
-  </Health>
-  <Armour>
-    <Pierce>20.0</Pierce>
-    <Crush>10.0</Crush>
-  </Armour>
-  <UnitMotion>
-    <WalkSpeed>7.5</WalkSpeed>
-  </UnitMotion>
   <GarrisonHolder>
     <Max>3</Max>
 	<EjectHealth>0.1</EjectHealth>
 	<List datatype="tokens">Support Infantry</List>
 	<BuffHeal>1</BuffHeal>
   </GarrisonHolder>
-  <Attack>
-    <Melee>
-      <Crush>50.0</Crush>
-    </Melee>
-    <Charge>
-      <Crush>100.0</Crush>
-    </Charge>
-  </Attack>
+  <Health>
+    <Max>250</Max>
+  </Health>
+  <Identity>
+    <Civ>iber</Civ>
+    <SpecificName>Ariete</SpecificName>
+    <Tooltip>Siege Ram</Tooltip>
+    <History>It is not known if any of the Iberians culture tribes used rams; the unit is added to the civ roster for gameplay purposes.</History>
+    <Icon>units/iber_mechanical_siege_ram.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Unit radius="3.75"/>
+  </Obstruction>
+  <UnitMotion>
+    <WalkSpeed>7.5</WalkSpeed>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>structures/iberians/siege_ram.xml</Actor>
+  </VisualActor>
 </Entity>

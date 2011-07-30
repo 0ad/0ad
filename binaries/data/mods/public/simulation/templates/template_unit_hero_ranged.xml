@@ -1,41 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_ranged">
-  <Identity>
-    <GenericName>Hero</GenericName>
-    <Classes datatype="tokens">Hero Infantry Ranged</Classes>
-  </Identity>
-  <Minimap>
-    <Type>hero</Type>
-  </Minimap>
-  <Cost>
-    <BuildTime>60</BuildTime>
-    <Resources>
-      <food>100</food>
-      <wood>500</wood>
-    </Resources>
-  </Cost>
-  <Loot>
-    <xp>200</xp>
-    <food>10</food>
-    <wood>50</wood>
-    <stone>0</stone>
-    <metal>0</metal>
-  </Loot>
-  <Health>
-    <Max>200</Max>
-    <RegenRate>0.2</RegenRate>
-  </Health>
   <Armour>
     <Hack>5.0</Hack>
     <Pierce>10.0</Pierce>
     <Crush>10.0</Crush>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>8.5</WalkSpeed>
-    <Run>
-      <Speed>16.0</Speed>
-    </Run>
-  </UnitMotion>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
@@ -47,4 +16,35 @@
       <RepeatTime>2000</RepeatTime>
     </Ranged>
   </Attack>
+  <Cost>
+    <BuildTime>60</BuildTime>
+    <Resources>
+      <food>100</food>
+      <wood>500</wood>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>200</Max>
+    <RegenRate>0.2</RegenRate>
+  </Health>
+  <Identity>
+    <GenericName>Hero</GenericName>
+    <Classes datatype="tokens">Hero Infantry Ranged</Classes>
+  </Identity>
+  <Loot>
+    <xp>200</xp>
+    <food>10</food>
+    <wood>50</wood>
+    <stone>0</stone>
+    <metal>0</metal>
+  </Loot>
+  <Minimap>
+    <Type>hero</Type>
+  </Minimap>
+  <UnitMotion>
+    <WalkSpeed>8.5</WalkSpeed>
+    <Run>
+      <Speed>16.0</Speed>
+    </Run>
+  </UnitMotion>
 </Entity>

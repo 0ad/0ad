@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_gaia">
-  <Identity>
-    <GenericName>Generic Geology</GenericName>
-  </Identity>
   <Footprint>
     <Circle radius="5.0"/>
     <Height>3.5</Height>
   </Footprint>
+  <Identity>
+    <GenericName>Generic Geology</GenericName>
+  </Identity>
   <Obstruction>
     <Static width="7.0" depth="7.0"/>
   </Obstruction>

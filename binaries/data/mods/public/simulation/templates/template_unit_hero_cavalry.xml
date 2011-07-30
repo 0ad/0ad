@@ -1,52 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry">
-  <Identity>
-    <GenericName>Hero Cavalry</GenericName>
-    <Classes datatype="tokens">Hero Cavalry</Classes>
-  </Identity>
-  <Minimap>
-    <Type>hero</Type>
-  </Minimap>
-  <Cost>
-    <Population>2</Population>
-    <BuildTime>50</BuildTime>
-    <Resources>
-      <food>100</food>
-	  <wood>0</wood>
-	  <stone>0</stone>
-      <metal>250</metal>
-    </Resources>
-  </Cost>
-  <Loot>
-    <xp>500</xp>
-    <food>10</food>
-    <wood>0</wood>
-    <stone>0</stone>
-    <metal>25</metal>
-  </Loot>
-  <Health>
-    <Max>500</Max>
-    <RegenRate>0.5</RegenRate>
-  </Health>
-  <Stamina>
-    <Max>2500</Max>
-  </Stamina>
   <Armour>
     <Hack>11.0</Hack>
     <Pierce>13.0</Pierce>
     <Crush>10.0</Crush>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>8.9</WalkSpeed>
-    <Run>
-      <Speed>25.2</Speed>
-      <Range>1000.0</Range>
-      <RangeMin>16.0</RangeMin>
-    </Run>
-  </UnitMotion>
-  <Vision>
-    <Range>100</Range>
-  </Vision>
   <Attack>
     <Melee>
       <Hack>25.0</Hack>
@@ -62,10 +20,52 @@
       <MaxRange>6.0</MaxRange>
     </Charge>
   </Attack>
+  <Cost>
+    <Population>2</Population>
+    <BuildTime>50</BuildTime>
+    <Resources>
+      <food>100</food>
+	  <wood>0</wood>
+	  <stone>0</stone>
+      <metal>250</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>500</Max>
+    <RegenRate>0.5</RegenRate>
+  </Health>
+  <Identity>
+    <GenericName>Hero Cavalry</GenericName>
+    <Classes datatype="tokens">Hero Cavalry</Classes>
+  </Identity>
+  <Loot>
+    <xp>500</xp>
+    <food>10</food>
+    <wood>0</wood>
+    <stone>0</stone>
+    <metal>25</metal>
+  </Loot>
+  <Minimap>
+    <Type>hero</Type>
+  </Minimap>
   <Sound>
     <SoundGroups>
       <attack>attack/weapon/sword.xml</attack>
       <death>actor/fauna/death/death_horse.xml</death>
     </SoundGroups>
   </Sound>
+  <Stamina>
+    <Max>2500</Max>
+  </Stamina>
+  <UnitMotion>
+    <WalkSpeed>8.9</WalkSpeed>
+    <Run>
+      <Speed>25.2</Speed>
+      <Range>1000.0</Range>
+      <RangeMin>16.0</RangeMin>
+    </Run>
+  </UnitMotion>
+  <Vision>
+    <Range>100</Range>
+  </Vision>
 </Entity>

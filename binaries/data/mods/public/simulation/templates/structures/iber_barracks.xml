@@ -5,9 +5,6 @@
     <SpecificName>Cuartel</SpecificName>
     <History>To the best of our knowledge, the Iberians did not have standing armies in the sense that we know of them elsewhere or of today, it is doubtful that they had specific structures designated as military centres; however as a game construct we show a modest structure wherein military related activities take place.</History>
   </Identity>
-  <VisualActor>
-    <Actor>structures/iberians/barracks.xml</Actor>
-  </VisualActor>
   <TrainingQueue>
     <Entities datatype="tokens">
       units/iber_infantry_spearman_b
@@ -17,4 +14,7 @@
       units/iber_cavalry_spearman_b
     </Entities>
   </TrainingQueue>
+  <VisualActor>
+    <Actor>structures/iberians/barracks.xml</Actor>
+  </VisualActor>
 </Entity>

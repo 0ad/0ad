@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_ship_trireme">
+  <Footprint>
+    <Square width="6.0" depth="36.0"/>
+    <Height>8.0</Height>
+  </Footprint>
   <Identity>
     <Civ>pers</Civ>
     <SpecificName>Trireme</SpecificName>
@@ -9,8 +13,4 @@
   <VisualActor>
     <Actor>structures/persians/trireme.xml</Actor>
   </VisualActor>
-  <Footprint>
-    <Square width="6.0" depth="36.0"/>
-    <Height>8.0</Height>
-  </Footprint>
 </Entity>

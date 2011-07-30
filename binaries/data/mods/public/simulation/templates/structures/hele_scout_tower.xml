@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_scout_tower">
+  <Cost>
+    <BuildTime>132</BuildTime>
+  </Cost>
+  <Footprint>
+    <Square width="7.5" depth="7.5"/>
+    <Height>15.0</Height>
+  </Footprint>
+  <Health>
+    <Max>1320</Max>
+  </Health>
   <Identity>
     <Civ>hele</Civ>
     <SpecificName>Pyrgion</SpecificName>
     <History>Towers were an important part of city fortifications. The defending troops shot arrows at the enemy and poured boiling oil over the assailants.</History>
   </Identity>
-  <Cost>
-    <BuildTime>132</BuildTime>
-  </Cost>
-  <Health>
-    <Max>1320</Max>
-  </Health>
-  <Footprint>
-    <Square width="7.5" depth="7.5"/>
-    <Height>15.0</Height>
-  </Footprint>
   <Obstruction>
     <Static width="7.0" depth="7.0"/>
   </Obstruction>
-  <VisualActor>
-    <Actor>structures/hellenes/scout_tower.xml</Actor>
-  </VisualActor>
   <StatusBars>
     <BarWidth>6.0</BarWidth>
     <BarHeight>0.6</BarHeight>
     <HeightOffset>22.0</HeightOffset>
   </StatusBars>
+  <VisualActor>
+    <Actor>structures/hellenes/scout_tower.xml</Actor>
+  </VisualActor>
 </Entity>

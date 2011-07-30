@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
+  <Armour>
+    <Hack>40.0</Hack>
+    <Pierce>50.0</Pierce>
+    <Crush>50.0</Crush>
+  </Armour>
+  <BuildRestrictions>
+    <Category>Special</Category>
+  </BuildRestrictions>
+  <Footprint>
+    <Square width="60.5" depth="60.5"/>
+    <Height>10.0</Height>
+  </Footprint>
+  <Health>
+    <Max>20000</Max>
+  </Health>
   <Identity>
     <Civ>gaia</Civ>
     <GenericName>Pyramid</GenericName>
@@ -8,14 +23,6 @@
 	<Tooltip>What treasures lay within this monumental tomb?</Tooltip>
     <Icon>gaia/special_pyramid.png</Icon>
   </Identity>
-  <Health>
-    <Max>20000</Max>
-  </Health>
-  <Armour>
-    <Hack>40.0</Hack>
-    <Pierce>50.0</Pierce>
-    <Crush>50.0</Crush>
-  </Armour>
   <Loot>
     <xp>100</xp>
     <food>0</food>
@@ -23,13 +30,6 @@
     <stone>20000</stone>
     <metal>20000</metal>
   </Loot>
-  <VisualActor>
-    <Actor>special/pyramid.xml</Actor>
-  </VisualActor>
-  <Footprint>
-    <Square width="60.5" depth="60.5"/>
-    <Height>10.0</Height>
-  </Footprint>
   <Obstruction>
     <Static width="59.0" depth="59.0"/>
   </Obstruction>
@@ -37,7 +37,7 @@
     <Range>72</Range>
     <RetainInFog>true</RetainInFog>
   </Vision>
-  <BuildRestrictions>
-    <Category>Special</Category>
-  </BuildRestrictions>
+  <VisualActor>
+    <Actor>special/pyramid.xml</Actor>
+  </VisualActor>
 </Entity>

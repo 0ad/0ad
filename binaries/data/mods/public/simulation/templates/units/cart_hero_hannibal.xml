@@ -1,32 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero">
-  <Identity>
-    <Civ>cart</Civ>
-    <SpecificName>Hannibal Barca</SpecificName>
-    <History>TBA</History>
-    <Icon>units/cart_hero_hannibal.png</Icon>
-  </Identity>
-  <Cost>
-    <Population>3</Population>
-    <Resources>
-      <food>300</food>
-      <metal>500</metal>
-    </Resources>
-  </Cost>
-  <Health>
-    <Max>400</Max>
-  </Health>
   <Armour>
     <Hack>13.0</Hack>
     <Pierce>25.0</Pierce>
     <Crush>10.0</Crush>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>8.5</WalkSpeed>
-    <Run>
-      <Speed>13.0</Speed>
-    </Run>
-  </UnitMotion>
   <Attack>
     <Melee>
       <Hack>27.0</Hack>
@@ -37,14 +15,36 @@
       <Crush>90.0</Crush>
     </Charge>
   </Attack>
-  <VisualActor>
-    <Actor>units/carthaginians/hero_hannibal_mount.xml</Actor>
-  </VisualActor>
+  <Cost>
+    <Population>3</Population>
+    <Resources>
+      <food>300</food>
+      <metal>500</metal>
+    </Resources>
+  </Cost>
   <Footprint>
     <Circle radius="2.8"/>
     <Height>9.0</Height>
   </Footprint>
+  <Health>
+    <Max>400</Max>
+  </Health>
+  <Identity>
+    <Civ>cart</Civ>
+    <SpecificName>Hannibal Barca</SpecificName>
+    <History>TBA</History>
+    <Icon>units/cart_hero_hannibal.png</Icon>
+  </Identity>
+  <UnitMotion>
+    <WalkSpeed>8.5</WalkSpeed>
+    <Run>
+      <Speed>13.0</Speed>
+    </Run>
+  </UnitMotion>
   <Vision>
     <Range>100</Range>
   </Vision>
+  <VisualActor>
+    <Actor>units/carthaginians/hero_hannibal_mount.xml</Actor>
+  </VisualActor>
 </Entity>

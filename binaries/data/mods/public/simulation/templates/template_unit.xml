@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_entity_full">
+  <Armour>
+    <Hack>1.0</Hack>
+    <Pierce>1.0</Pierce>
+    <Crush>1.0</Crush>
+  </Armour>
+  <Cost>
+    <Population>1</Population>
+    <PopulationBonus>0</PopulationBonus>
+    <BuildTime>1</BuildTime>
+    <Resources>
+      <food>0</food>
+      <wood>0</wood>
+      <stone>0</stone>
+      <metal>0</metal>
+    </Resources>
+  </Cost>
+  <Decay>
+    <Inactive/>
+    <DelayTime>80.0</DelayTime>
+    <SinkRate>0.01</SinkRate>
+    <SinkAccel>0.0</SinkAccel>
+  </Decay>
+  <Footprint>
+    <Circle radius="1.0"/>
+    <Height>2.5</Height>
+  </Footprint>
+  <Health>
+    <DeathType>corpse</DeathType>
+    <Max>100</Max>
+    <RegenRate>0</RegenRate>
+    <Healable>true</Healable>
+    <Repairable>false</Repairable>
+  </Health>
   <Identity>
     <GenericName>Unit</GenericName>
     <Classes datatype="tokens">Unit ConquestCritical</Classes>
@@ -19,43 +52,21 @@
       Formation12
     </Formations>
   </Identity>
+  <Looter/>
   <Minimap>
     <Type>unit</Type>
   </Minimap>
-  <UnitAI>
-    <DefaultStance>aggressive</DefaultStance>
-    <FleeDistance>12.0</FleeDistance>
-    <FormationController>false</FormationController>
-  </UnitAI>
-  <Cost>
-    <Population>1</Population>
-    <PopulationBonus>0</PopulationBonus>
-    <BuildTime>1</BuildTime>
-    <Resources>
-      <food>0</food>
-      <wood>0</wood>
-      <stone>0</stone>
-      <metal>0</metal>
-    </Resources>
-  </Cost>
-  <Health>
-    <DeathType>corpse</DeathType>
-    <Max>100</Max>
-    <RegenRate>0</RegenRate>
-    <Healable>true</Healable>
-    <Repairable>false</Repairable>
-  </Health>
-  <Decay>
-    <Inactive/>
-    <DelayTime>80.0</DelayTime>
-    <SinkRate>0.01</SinkRate>
-    <SinkAccel>0.0</SinkAccel>
-  </Decay>
-  <Armour>
-    <Hack>1.0</Hack>
-    <Pierce>1.0</Pierce>
-    <Crush>1.0</Crush>
-  </Armour>
+  <Obstruction>
+    <Unit radius="0.8"/>
+    <Active>true</Active>
+    <BlockMovement>true</BlockMovement>
+    <BlockPathfinding>false</BlockPathfinding>
+    <BlockFoundation>false</BlockFoundation>
+    <BlockConstruction>true</BlockConstruction>
+    <DisableBlockMovement>false</DisableBlockMovement>
+    <DisableBlockPathfinding>false</DisableBlockPathfinding>
+  </Obstruction>
+  <OverlayRenderer/>
   <ResourceGatherer>
     <MaxDistance>2.0</MaxDistance>
     <BaseSpeed>1.0</BaseSpeed>
@@ -69,6 +80,16 @@
       <metal>20</metal>
     </Capacities>
   </ResourceGatherer>
+  <StatusBars>
+    <BarWidth>2.0</BarWidth>
+    <BarHeight>0.333</BarHeight>
+    <HeightOffset>5.0</HeightOffset>
+  </StatusBars>
+  <UnitAI>
+    <DefaultStance>aggressive</DefaultStance>
+    <FleeDistance>12.0</FleeDistance>
+    <FormationController>false</FormationController>
+  </UnitAI>
   <UnitMotion>
     <FormationController>false</FormationController>
     <WalkSpeed>7.5</WalkSpeed>
@@ -82,32 +103,11 @@
     <PassabilityClass>default</PassabilityClass>
     <CostClass>default</CostClass>
   </UnitMotion>
-  <StatusBars>
-    <BarWidth>2.0</BarWidth>
-    <BarHeight>0.333</BarHeight>
-    <HeightOffset>5.0</HeightOffset>
-  </StatusBars>
-  <OverlayRenderer/>
-  <Footprint>
-    <Circle radius="1.0"/>
-    <Height>2.5</Height>
-  </Footprint>
-  <Obstruction>
-    <Unit radius="0.8"/>
-    <Active>true</Active>
-    <BlockMovement>true</BlockMovement>
-    <BlockPathfinding>false</BlockPathfinding>
-    <BlockFoundation>false</BlockFoundation>
-    <BlockConstruction>true</BlockConstruction>
-    <DisableBlockMovement>false</DisableBlockMovement>
-    <DisableBlockPathfinding>false</DisableBlockPathfinding>
-  </Obstruction>
   <Vision>
     <Range>24</Range>
     <RetainInFog>false</RetainInFog>
     <AlwaysVisible>false</AlwaysVisible>
   </Vision>
-  <Looter/>
   <VisualActor>
     <SilhouetteDisplay>true</SilhouetteDisplay>
     <SilhouetteOccluder>false</SilhouetteOccluder>

@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_fortress">
-  <Identity>
-    <Civ>iber</Civ>
-    <SpecificName>Castro</SpecificName>
-    <History>The Castro can be likened to a more strongly fortified town centre than that of the common Oppidum which were also fortified places of habitation. As such it was widely and normally constructed upon a height, and almost always had some sort of an acropolis built at the highest point within its towered walls. In the archeological record of the Iberian Peninsula, the remnants of as many as a thousand fortified places identifiable as Castros can be found in modern day Portugal alone.</History>
-  </Identity>
-  <VisualActor>
-    <Actor>structures/iberians/fortress.xml</Actor>
-  </VisualActor>
   <Cost>
     <PopulationBonus>15</PopulationBonus>
     <BuildTime>500</BuildTime>
@@ -16,13 +8,18 @@
       <stone>600</stone>
     </Resources>
   </Cost>
-  <Health>
-    <Max>5000</Max>
-  </Health>
   <Footprint>
     <Square width="29.0" depth="29.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <Health>
+    <Max>5000</Max>
+  </Health>
+  <Identity>
+    <Civ>iber</Civ>
+    <SpecificName>Castro</SpecificName>
+    <History>The Castro can be likened to a more strongly fortified town centre than that of the common Oppidum which were also fortified places of habitation. As such it was widely and normally constructed upon a height, and almost always had some sort of an acropolis built at the highest point within its towered walls. In the archeological record of the Iberian Peninsula, the remnants of as many as a thousand fortified places identifiable as Castros can be found in modern day Portugal alone.</History>
+  </Identity>
   <Obstruction>
     <Static width="27.0" depth="27.0"/>
   </Obstruction>
@@ -36,4 +33,7 @@
 	  units/iber_mechanical_siege_ram
     </Entities>
   </TrainingQueue>
+  <VisualActor>
+    <Actor>structures/iberians/fortress.xml</Actor>
+  </VisualActor>
 </Entity>

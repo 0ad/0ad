@@ -1,29 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry">
-  <Identity>
-    <GenericName>Hero</GenericName>
-    <Classes datatype="tokens">Hero Infantry Melee</Classes>
-  </Identity>
-  <Health>
-    <Max>400</Max>
-    <RegenRate>0.5</RegenRate>
-  </Health>
-  <Stamina>
-    <Max>1500</Max>
-  </Stamina>
   <Armour>
     <Hack>10.0</Hack>
     <Pierce>12.0</Pierce>
     <Crush>10.0</Crush>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>6.1</WalkSpeed>
-    <Run>
-      <Speed>16.8</Speed>
-      <Range>600.0</Range>
-      <RangeMin>8.0</RangeMin>
-    </Run>
-  </UnitMotion>
   <Attack>
     <Melee>
       <Hack>25.0</Hack>
@@ -39,13 +20,32 @@
       <MaxRange>5.0</MaxRange>
     </Charge>
   </Attack>
-  <Vision>
-    <Range>80</Range>
-  </Vision>
+  <Health>
+    <Max>400</Max>
+    <RegenRate>0.5</RegenRate>
+  </Health>
+  <Identity>
+    <GenericName>Hero</GenericName>
+    <Classes datatype="tokens">Hero Infantry Melee</Classes>
+  </Identity>
   <Sound>
     <SoundGroups>
       <attack>attack/weapon/sword.xml</attack>
       <death>actor/human/death/death.xml</death>
     </SoundGroups>
   </Sound>
+  <Stamina>
+    <Max>1500</Max>
+  </Stamina>
+  <UnitMotion>
+    <WalkSpeed>6.1</WalkSpeed>
+    <Run>
+      <Speed>16.8</Speed>
+      <Range>600.0</Range>
+      <RangeMin>8.0</RangeMin>
+    </Run>
+  </UnitMotion>
+  <Vision>
+    <Range>80</Range>
+  </Vision>
 </Entity>

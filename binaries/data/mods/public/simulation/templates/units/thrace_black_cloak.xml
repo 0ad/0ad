@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_swordsman">
+  <Armour>
+    <Hack>5.0</Hack>
+    <Pierce>9.0</Pierce>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>30.0</Hack>
+    </Melee>
+    <Charge>
+      <Hack>60.0</Hack>
+    </Charge>
+  </Attack>
+  <Cost>
+    <Resources>
+      <food>0</food>
+      <metal>140</metal>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>hele</Civ>
     <GenericName>Thracian Black Cloak</GenericName>
@@ -9,33 +27,15 @@ Bonus vs. All Spear Units.</Tooltip>
     <History>Thracian tribesmen who wield the fiercesome rhomphaia polearm weapon in combat. They were ubiquitous mercenary swordsmen throughout Hellenistic times, sometimes even serving in two opposing armies.</History>
     <Icon>units/thracian_rhomphaia.png</Icon>
   </Identity>
-  <Cost>
-    <Resources>
-      <food>0</food>
-      <metal>140</metal>
-    </Resources>
-  </Cost>
-  <Armour>
-    <Hack>5.0</Hack>
-    <Pierce>9.0</Pierce>
-  </Armour>
-  <Vision>
-    <Range>88</Range>
-  </Vision>
   <UnitMotion>
     <WalkSpeed>7.5</WalkSpeed>
     <Run>
       <Speed>18.0</Speed>
     </Run>
   </UnitMotion>
-  <Attack>
-    <Melee>
-      <Hack>30.0</Hack>
-    </Melee>
-    <Charge>
-      <Hack>60.0</Hack>
-    </Charge>
-  </Attack>
+  <Vision>
+    <Range>88</Range>
+  </Vision>
   <VisualActor>
     <Actor>units/hellenes/thracian_blackcloak.xml</Actor>
   </VisualActor>

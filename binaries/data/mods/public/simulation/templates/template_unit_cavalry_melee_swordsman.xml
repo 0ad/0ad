@@ -1,23 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry_melee">
-  <Identity>
-    <GenericName>Cavalry Swordsman</GenericName>
-    <History>Fighting from horseback with a sword is a tricky thing to do. This required usage of a sword that was longer than the typical infantry sword. One needed a good reach to attack from the height of a horse. If you were without spear (the ideal weapon of choice) it was probably because you needed your hands free to do other tasks such as riding hard and fast. It wasn't uncommon for the men to dismount and attack from foot if they were armed with only a sword.</History>
-    <Tooltip>Bonused vs. Support Units and Infantry Archers.</Tooltip>
-  </Identity>
-  <Cost>
-    <Resources>
-      <metal>60</metal>
-    </Resources>
-  </Cost>
-  <UnitMotion>
-    <WalkSpeed>9.7</WalkSpeed>
-    <Run>
-      <Speed>27.6</Speed>
-      <Range>600.0</Range>
-      <RangeMin>5.0</RangeMin>
-    </Run>
-  </UnitMotion>
   <Armour>
     <Hack>4.0</Hack>
     <Pierce>6.0</Pierce>
@@ -38,4 +20,22 @@
       <MinRange>0.0</MinRange>
     </Charge>
   </Attack>
+  <Cost>
+    <Resources>
+      <metal>60</metal>
+    </Resources>
+  </Cost>
+  <Identity>
+    <GenericName>Cavalry Swordsman</GenericName>
+    <History>Fighting from horseback with a sword is a tricky thing to do. This required usage of a sword that was longer than the typical infantry sword. One needed a good reach to attack from the height of a horse. If you were without spear (the ideal weapon of choice) it was probably because you needed your hands free to do other tasks such as riding hard and fast. It wasn't uncommon for the men to dismount and attack from foot if they were armed with only a sword.</History>
+    <Tooltip>Bonused vs. Support Units and Infantry Archers.</Tooltip>
+  </Identity>
+  <UnitMotion>
+    <WalkSpeed>9.7</WalkSpeed>
+    <Run>
+      <Speed>27.6</Speed>
+      <Range>600.0</Range>
+      <RangeMin>5.0</RangeMin>
+    </Run>
+  </UnitMotion>
 </Entity>

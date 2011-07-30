@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_barracks">
+  <Footprint>
+    <Square width="24.0" depth="25.0"/>
+    <Height>15.0</Height>
+  </Footprint>
   <Identity>
     <Civ>cart</Civ>
     <SpecificName>Mahaneh</SpecificName>
     <History>The Carthaginians incorporated stables and barracks into their city walls.</History>
   </Identity>
-  <VisualActor>
-    <Actor>structures/carthaginians/barracks.xml</Actor>
-  </VisualActor>
-  <Footprint>
-    <Square width="24.0" depth="25.0"/>
-    <Height>15.0</Height>
-  </Footprint>
   <Obstruction>
     <Static width="22.0" depth="23.0"/>
   </Obstruction>
@@ -27,4 +24,7 @@
 	  units/cart_cavalry_javelinist_b
     </Entities>
   </TrainingQueue>
+  <VisualActor>
+    <Actor>structures/carthaginians/barracks.xml</Actor>
+  </VisualActor>
 </Entity>

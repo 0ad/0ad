@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_swordsman">
+  <Armour>
+    <Hack>8.0</Hack>
+	<Pierce>6</Pierce>
+    <Crush>8.0</Crush>
+  </Armour>
+  <Cost>
+    <Resources>
+      <metal>75</metal>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>celt</Civ>
     <SpecificName>Gallic Solduros</SpecificName>
@@ -7,16 +17,6 @@
     <History>The sword among Celts varies in reputation and commonality. Shortswords, essentially truly just long, broad-bladed daggers, were common, but cheaply made, and most likely the swords refered to as bending after a hard strike, and needing bent back into place. The iron construction of longswords, such as used here, was greatly superior, but also much more expensive. The longsword was primarily a weapon of aristocracy and experienced professional soldiers, who could either afford the weapon, have it made for them by their lord as a reward for service, passed down to them by family, or looted from the field.</History>
     <Icon>units/celt_champion_infantry_gaul.png</Icon>
   </Identity>
-  <Cost>
-    <Resources>
-      <metal>75</metal>
-    </Resources>
-  </Cost>
-  <Armour>
-    <Hack>8.0</Hack>
-	<Pierce>6</Pierce>
-    <Crush>8.0</Crush>
-  </Armour>
   <UnitMotion>
     <WalkSpeed>6.66</WalkSpeed>
     <Run>

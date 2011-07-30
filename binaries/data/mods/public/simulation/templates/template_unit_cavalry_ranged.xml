@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry">
-  <Identity>
-    <GenericName>Ranged Cavalry</GenericName>
-	<Classes datatype="tokens">Ranged</Classes>
-  </Identity>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
@@ -16,6 +12,10 @@
       <RepeatTime>1500</RepeatTime>
     </Ranged>
   </Attack>
+  <Identity>
+    <GenericName>Ranged Cavalry</GenericName>
+	<Classes datatype="tokens">Ranged</Classes>
+  </Identity>
   <Sound>
     <SoundGroups>
       <attack>attack/weapon/arrowfly.xml</attack>

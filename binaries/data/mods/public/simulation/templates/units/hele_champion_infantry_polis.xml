@@ -1,36 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_spearman">
-  <Identity>
-    <Civ>hele</Civ>
-	<GenericName>Spartan Hoplite</GenericName>
-    <SpecificName>Spartiates</SpecificName>
-    <Tooltip>Bonused vs. Melee Cavalry and Melee Infantry. Weak vs. Ranged Infantry and Ranged Cavalry. Long Train Time. Small Bonus vs. All Non-Greek Units.</Tooltip>
-    <History>The Spartans had a very peculiar form of government which enabled them to be professional soldiers. It not only enabled them, but actually forced them to be superior soldiers as a small group of Spartans had to dominate an enormous number of subjects and unwilling allies. The Spartan army was superior in Hellas, and in the rest of the known world. No other army was so well trained, and had such excellent equipment. They believed that traditional training was the key to success, and for centuries they were correct, as they rarely lost a battle in spite of their small numbers. Ironic enough, this concept ended the Spartan supremacy, as the Spartan phalanx could not resist the new sloped Theban phalanx and the invading integrated Macedonian forces. The end of the Spartan power marked the decline of the domination of traditional phalanx warfare.</History>
-    <Icon>units/hele_champion_infantry_polis.png</Icon>
-  </Identity>
-  <Cost>
-    <BuildTime>16</BuildTime>
-    <Resources>
-      <metal>25</metal>
-    </Resources>
-  </Cost>
-  <Health>
-    <Max>140</Max>
-  </Health>
-  <Vision>
-    <Range>88</Range>
-  </Vision>
   <Armour>
     <Hack>10.0</Hack>
     <Pierce>12.0</Pierce>
     <Crush>10.0</Crush>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>5.5</WalkSpeed>
-    <Run>
-      <Speed>15.0</Speed>
-    </Run>
-  </UnitMotion>
   <Attack>
     <Melee>
       <Hack>10.0</Hack>
@@ -43,8 +17,33 @@
       <MaxRange>6.0</MaxRange>
     </Charge>
   </Attack>
+  <Cost>
+    <BuildTime>16</BuildTime>
+    <Resources>
+      <metal>25</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>140</Max>
+  </Health>
+  <Identity>
+    <Civ>hele</Civ>
+	<GenericName>Spartan Hoplite</GenericName>
+    <SpecificName>Spartiates</SpecificName>
+    <Tooltip>Bonused vs. Melee Cavalry and Melee Infantry. Weak vs. Ranged Infantry and Ranged Cavalry. Long Train Time. Small Bonus vs. All Non-Greek Units.</Tooltip>
+    <History>The Spartans had a very peculiar form of government which enabled them to be professional soldiers. It not only enabled them, but actually forced them to be superior soldiers as a small group of Spartans had to dominate an enormous number of subjects and unwilling allies. The Spartan army was superior in Hellas, and in the rest of the known world. No other army was so well trained, and had such excellent equipment. They believed that traditional training was the key to success, and for centuries they were correct, as they rarely lost a battle in spite of their small numbers. Ironic enough, this concept ended the Spartan supremacy, as the Spartan phalanx could not resist the new sloped Theban phalanx and the invading integrated Macedonian forces. The end of the Spartan power marked the decline of the domination of traditional phalanx warfare.</History>
+    <Icon>units/hele_champion_infantry_polis.png</Icon>
+  </Identity>
+  <UnitMotion>
+    <WalkSpeed>5.5</WalkSpeed>
+    <Run>
+      <Speed>15.0</Speed>
+    </Run>
+  </UnitMotion>
+  <Vision>
+    <Range>88</Range>
+  </Vision>
   <VisualActor>
     <Actor>units/hellenes/champion_unit_1.xml</Actor>
   </VisualActor>
-  
 </Entity>

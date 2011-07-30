@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_hunt_skittish">
+  <Footprint>
+    <Circle radius="1.8"/>
+    <Height>1.8</Height>
+  </Footprint>
   <Identity>
     <Civ>gaia</Civ>
     <SpecificName>Wildebeest</SpecificName>
@@ -21,8 +25,4 @@
   <VisualActor>
     <Actor>fauna/wildebeest.xml</Actor>
   </VisualActor>
-  <Footprint>
-    <Circle radius="1.8"/>
-    <Height>1.8</Height>
-  </Footprint>
 </Entity>

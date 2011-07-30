@@ -1,34 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry_javelinist">
-  <Identity>
-    <Civ>iber</Civ>
-    <SpecificName>Epones Devotio</SpecificName>
-    <Icon>units/iber_champion_cavalry.png</Icon>
-    <History>Elite warriors known as The Devoted were adept warriors who could be either infantry or cavalry. Adding to their already considerable skill, The Devoted were renowned for the experience in foreign wars, often in the service of the Carthaginians. Considering that Iberian troops were commonly used as cannon fodder gives some idea of just how good these fierce warriors had to be in order to survive. These cavalrymen skirmish with flaming javelins, giving them a rare siege ability.</History>
-  </Identity>
-  <VisualActor>
-    <Actor>units/iberians/champion_unit_2.xml</Actor>
-  </VisualActor>
-  <Cost>
-    <Resources>
-      <food>100</food>
-      <wood>50</wood>
-      <metal>50</metal>
-    </Resources>
-  </Cost>
   <Armour>
     <Hack>8.0</Hack>
     <Pierce>12.0</Pierce>
     <Crush>8.0</Crush>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>8.5</WalkSpeed>
-    <Run>
-      <Speed>24.0</Speed>
-      <Range>1000.0</Range>
-      <RangeMin>10.0</RangeMin>
-    </Run>
-  </UnitMotion>
   <Attack>
     <Ranged>
       <Pierce>0.0</Pierce>
@@ -37,4 +13,28 @@
       <MinRange>16.0</MinRange>
     </Ranged>
   </Attack>
+  <Cost>
+    <Resources>
+      <food>100</food>
+      <wood>50</wood>
+      <metal>50</metal>
+    </Resources>
+  </Cost>
+  <Identity>
+    <Civ>iber</Civ>
+    <SpecificName>Epones Devotio</SpecificName>
+    <Icon>units/iber_champion_cavalry.png</Icon>
+    <History>Elite warriors known as The Devoted were adept warriors who could be either infantry or cavalry. Adding to their already considerable skill, The Devoted were renowned for the experience in foreign wars, often in the service of the Carthaginians. Considering that Iberian troops were commonly used as cannon fodder gives some idea of just how good these fierce warriors had to be in order to survive. These cavalrymen skirmish with flaming javelins, giving them a rare siege ability.</History>
+  </Identity>
+  <UnitMotion>
+    <WalkSpeed>8.5</WalkSpeed>
+    <Run>
+      <Speed>24.0</Speed>
+      <Range>1000.0</Range>
+      <RangeMin>10.0</RangeMin>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/iberians/champion_unit_2.xml</Actor>
+  </VisualActor>
 </Entity>

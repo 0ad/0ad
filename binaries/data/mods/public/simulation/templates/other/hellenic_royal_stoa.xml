@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
-  <Identity>
-    <Civ>hele</Civ>
-    <GenericName>Stoa</GenericName>
-    <SpecificName>Hellenic Royal Stoa</SpecificName>
-    <History>A structure built for civic purposes. Stoas eventually became meeting places for philosophy and commerce. They were usually built within the Agora, or city center, of a Greek city.</History>
-	<Tooltip>Add +10 to Population Cap. Recruit special units.</Tooltip>
-    <Icon>gaia/special_stoa.png</Icon>
-  </Identity>
+  <Armour>
+    <Hack>20.0</Hack>
+    <Pierce>40.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
   <BuildRestrictions>
     <Category>Stoa</Category>
   </BuildRestrictions>
@@ -21,19 +18,21 @@
       <metal>150</metal>
     </Resources>
   </Cost>
+  <Footprint>
+    <Square width="29" depth="21.0"/>
+    <Height>10.0</Height>
+  </Footprint>
   <Health>
     <Max>1500</Max>
   </Health>
-  <Armour>
-    <Hack>20.0</Hack>
-    <Pierce>40.0</Pierce>
-    <Crush>10.0</Crush>
-  </Armour>
-  <TrainingQueue>
-    <Entities datatype="tokens">
-      units/thrace_black_cloak
-    </Entities>
-  </TrainingQueue>
+  <Identity>
+    <Civ>hele</Civ>
+    <GenericName>Stoa</GenericName>
+    <SpecificName>Hellenic Royal Stoa</SpecificName>
+    <History>A structure built for civic purposes. Stoas eventually became meeting places for philosophy and commerce. They were usually built within the Agora, or city center, of a Greek city.</History>
+	<Tooltip>Add +10 to Population Cap. Recruit special units.</Tooltip>
+    <Icon>gaia/special_stoa.png</Icon>
+  </Identity>
   <Loot>
     <xp>10</xp>
     <food>0</food>
@@ -41,19 +40,20 @@
     <stone>10</stone>
     <metal>15</metal>
   </Loot>
-  <VisualActor>
-    <Actor>special/greek_stoa_great.xml</Actor>
-    <FoundationActor>structures/fndn_wall.xml</FoundationActor>
-  </VisualActor>
-  <Footprint>
-    <Square width="29" depth="21.0"/>
-    <Height>10.0</Height>
-  </Footprint>
   <Obstruction>
     <Static width="28.0" depth="20.0"/>
   </Obstruction>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/thrace_black_cloak
+    </Entities>
+  </TrainingQueue>
   <Vision>
     <Range>40</Range>
     <RetainInFog>true</RetainInFog>
   </Vision>
+  <VisualActor>
+    <Actor>special/greek_stoa_great.xml</Actor>
+    <FoundationActor>structures/fndn_wall.xml</FoundationActor>
+  </VisualActor>
 </Entity>

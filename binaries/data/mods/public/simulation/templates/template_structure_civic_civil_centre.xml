@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic">
-  <Identity>
-    <GenericName>Civic Centre</GenericName>
-    <Tooltip>Build upon a settlement to capture territory. Train citizens.</Tooltip>
-    <Classes datatype="tokens">
-		Village 
-		Defensive
-		CivCentre
-	</Classes>
-    <Icon>structures/civic_centre.png</Icon>
-  </Identity>
+  <Armour>
+    <Hack>20.0</Hack>
+    <Pierce>40</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
   <BuildRestrictions>
     <PlacementType>settlement</PlacementType>
     <Territory>all</Territory>
@@ -25,27 +20,35 @@
       <metal>300</metal>
     </Resources>
   </Cost>
-  <Health>
-    <Max>3000</Max>
-  </Health>
-  <Armour>
-    <Hack>20.0</Hack>
-    <Pierce>40</Pierce>
-    <Crush>10.0</Crush>
-  </Armour>
-  <VisualActor>
-    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
-  </VisualActor>
   <Footprint>
     <Square width="32.0" depth="32.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <GarrisonHolder>
+    <Max>20</Max>
+	<EjectHealth>0.1</EjectHealth>
+	<List datatype="tokens">Support Infantry Cavalry</List>
+	<BuffHeal>1</BuffHeal>
+  </GarrisonHolder>
+  <Health>
+    <Max>3000</Max>
+  </Health>
+  <Identity>
+    <GenericName>Civic Centre</GenericName>
+    <Tooltip>Build upon a settlement to capture territory. Train citizens.</Tooltip>
+    <Classes datatype="tokens">
+		Village 
+		Defensive
+		CivCentre
+	</Classes>
+    <Icon>structures/civic_centre.png</Icon>
+  </Identity>
   <Obstruction>
     <Static width="30.0" depth="30.0"/>
   </Obstruction>
-  <Vision>
-    <Range>100</Range>
-  </Vision>
+  <ResourceDropsite>
+    <Types>food wood stone metal</Types>
+  </ResourceDropsite>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_civ_center.xml</select>
@@ -53,22 +56,19 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
-  <GarrisonHolder>
-    <Max>20</Max>
-	<EjectHealth>0.1</EjectHealth>
-	<List datatype="tokens">Support Infantry Cavalry</List>
-	<BuffHeal>1</BuffHeal>
-  </GarrisonHolder>
-  <ResourceDropsite>
-    <Types>food wood stone metal</Types>
-  </ResourceDropsite>
+  <TerritoryInfluence>
+    <Radius>256</Radius>
+    <Weight>65536</Weight>
+  </TerritoryInfluence>
   <TrainingQueue>
     <Entities datatype="tokens">
       units/{civ}_support_female_citizen
     </Entities>
   </TrainingQueue>
-  <TerritoryInfluence>
-    <Radius>256</Radius>
-    <Weight>65536</Weight>
-  </TerritoryInfluence>
+  <Vision>
+    <Range>100</Range>
+  </Vision>
+  <VisualActor>
+    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+  </VisualActor>
 </Entity>

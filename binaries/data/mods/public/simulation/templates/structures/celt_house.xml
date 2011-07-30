@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_house">
+  <Footprint replace="">
+    <Circle radius="6.0"/>
+    <Height>5.0</Height>
+  </Footprint>
   <Identity>
     <Civ>celt</Civ>
     <SpecificName>Annedd</SpecificName>
     <History>Celts generally lived in round stone or wattle and daub walled structures with thatched roof.</History>
   </Identity>
+  <Obstruction>
+    <Static width="10.0" depth="10.0"/>
+  </Obstruction>
   <VisualActor>
     <Actor>structures/celts/house.xml</Actor>
     <FoundationActor>structures/fndn_2x2.xml</FoundationActor>
   </VisualActor>
-  <Footprint replace="">
-    <Circle radius="6.0"/>
-    <Height>5.0</Height>
-  </Footprint>
-  <Obstruction>
-    <Static width="10.0" depth="10.0"/>
-  </Obstruction>
 </Entity>

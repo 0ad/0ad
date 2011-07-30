@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_gaia_geo_mineral">
+  <Footprint>
+    <Circle radius="10.0"/>
+    <Height>3.5</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="13.0" depth="13.0"/>
+  </Obstruction>
   <Position>
     <Anchor>pitch-roll</Anchor>
   </Position>
@@ -11,11 +18,4 @@
     <BarHeight>0.6</BarHeight>
     <HeightOffset>8.0</HeightOffset>
   </StatusBars>
-  <Footprint>
-    <Circle radius="10.0"/>
-    <Height>3.5</Height>
-  </Footprint>
-  <Obstruction>
-    <Static width="13.0" depth="13.0"/>
-  </Obstruction>
 </Entity>

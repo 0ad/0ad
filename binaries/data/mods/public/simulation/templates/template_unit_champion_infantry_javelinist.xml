@@ -1,32 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry">
-  <Identity>
-    <GenericName>Champion Infantry Skirmisher</GenericName>
-    <Classes datatype="tokens">Ranged</Classes>
-  </Identity>
-  <Cost>
-    <BuildTime>12</BuildTime>
-    <Resources>
-      <food>50</food>
-      <wood>80</wood>
-      <stone>0</stone>
-      <metal>0</metal>
-    </Resources>
-  </Cost>
-  <Health>
-    <Max>120</Max>
-  </Health>
   <Armour>
     <Hack>6.0</Hack>
     <Pierce>6.0</Pierce>
     <Crush>5.0</Crush>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>7.5</WalkSpeed>
-    <Run>
-      <Speed>17.5</Speed>
-    </Run>
-  </UnitMotion>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
@@ -39,9 +17,31 @@
       <RepeatTime>2000</RepeatTime>
     </Ranged>
   </Attack>
+  <Cost>
+    <BuildTime>12</BuildTime>
+    <Resources>
+      <food>50</food>
+      <wood>80</wood>
+      <stone>0</stone>
+      <metal>0</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>120</Max>
+  </Health>
+  <Identity>
+    <GenericName>Champion Infantry Skirmisher</GenericName>
+    <Classes datatype="tokens">Ranged</Classes>
+  </Identity>
   <Sound>
     <SoundGroups>
       <attack>attack/weapon/arrowfly.xml</attack>
     </SoundGroups>
   </Sound>
+  <UnitMotion>
+    <WalkSpeed>7.5</WalkSpeed>
+    <Run>
+      <Speed>17.5</Speed>
+    </Run>
+  </UnitMotion>
 </Entity>

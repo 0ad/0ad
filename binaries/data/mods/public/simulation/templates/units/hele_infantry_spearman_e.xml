@@ -1,25 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/hele_infantry_spearman_a">
-  <Identity>
-    <Rank>Elite</Rank>
-  </Identity>
-  <ResourceGatherer>
-    <BaseSpeed>0.5</BaseSpeed>
-  </ResourceGatherer>
-  <Health>
-    <Max>120</Max>
-  </Health>
   <Armour>
     <Hack>7.0</Hack>
     <Pierce>10.0</Pierce>
     <Crush>7.0</Crush>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>5.2</WalkSpeed>
-    <Run>
-      <Speed>15.6</Speed>
-    </Run>
-  </UnitMotion>
   <Attack>
     <Melee>
       <Hack>7.0</Hack>
@@ -30,8 +15,23 @@
       <Pierce>34.0</Pierce>
     </Charge>
   </Attack>
+  <Health>
+    <Max>120</Max>
+  </Health>
+  <Identity>
+    <Rank>Elite</Rank>
+  </Identity>
+  <Promotion disable=""/>
+  <ResourceGatherer>
+    <BaseSpeed>0.5</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>5.2</WalkSpeed>
+    <Run>
+      <Speed>15.6</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/hellenes/infantry_spearman_e.xml</Actor>
   </VisualActor>
-  <Promotion disable=""/>
 </Entity>

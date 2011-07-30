@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_resource">
-  <Identity>
-    <GenericName>Corral</GenericName>
-    <Tooltip>Raise herd animals for Food.</Tooltip>
-    <Classes datatype="tokens">Village</Classes>
-    <Icon>structures/corral.png</Icon>
-  </Identity>
+  <Armour>
+    <Hack>5.0</Hack>
+    <Pierce>40.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
   <Cost>
     <BuildTime>50</BuildTime>
     <Resources>
       <wood>100</wood>
     </Resources>
   </Cost>
+  <Footprint>
+    <Square width="9.5" depth="19.75"/>
+    <Height>5.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <Max>10</Max>
+	<EjectHealth>0.1</EjectHealth>
+	<List datatype="tokens">Animal</List>
+	<BuffHeal>1</BuffHeal>
+  </GarrisonHolder>
+  <Health>
+    <Max>500</Max>
+  </Health>
+  <Identity>
+    <GenericName>Corral</GenericName>
+    <Tooltip>Raise herd animals for Food.</Tooltip>
+    <Classes datatype="tokens">Village</Classes>
+    <Icon>structures/corral.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Static width="9.5" depth="19.75"/>
+  </Obstruction>
   <ResourceSupply>
     <KillBeforeGather>false</KillBeforeGather>
     <Amount>200</Amount>
     <Type>food.milk</Type>
   </ResourceSupply>
-  <Health>
-    <Max>500</Max>
-  </Health>
-  <Armour>
-    <Hack>5.0</Hack>
-    <Pierce>40.0</Pierce>
-    <Crush>10.0</Crush>
-  </Armour>
-  <VisualActor>
-    <FoundationActor>structures/fndn_2x4.xml</FoundationActor>
-  </VisualActor>
-  <Footprint>
-    <Square width="9.5" depth="19.75"/>
-    <Height>5.0</Height>
-  </Footprint>
-  <Obstruction>
-    <Static width="9.5" depth="19.75"/>
-  </Obstruction>
-  <Vision>
-    <Range>28</Range>
-  </Vision>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_corral.xml</select>
@@ -45,10 +45,10 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
-  <GarrisonHolder>
-    <Max>10</Max>
-	<EjectHealth>0.1</EjectHealth>
-	<List datatype="tokens">Animal</List>
-	<BuffHeal>1</BuffHeal>
-  </GarrisonHolder>
+  <Vision>
+    <Range>28</Range>
+  </Vision>
+  <VisualActor>
+    <FoundationActor>structures/fndn_2x4.xml</FoundationActor>
+  </VisualActor>
 </Entity>

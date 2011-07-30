@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic_mill">
-  <Identity>
-    <Civ>hele</Civ>
-    <SpecificName>Anakeion</SpecificName>
-    <History>Resources and building materials were kept in warehouses.</History>
-  </Identity>
   <Cost>
     <BuildTime>88</BuildTime>
   </Cost>
   <Health>
     <Max>880</Max>
   </Health>
+  <Identity>
+    <Civ>hele</Civ>
+    <SpecificName>Anakeion</SpecificName>
+    <History>Resources and building materials were kept in warehouses.</History>
+  </Identity>
   <VisualActor>
     <Actor>structures/hellenes/mill.xml</Actor>
   </VisualActor>

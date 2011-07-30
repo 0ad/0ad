@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall_tower">
+  <Cost>
+    <BuildTime>18</BuildTime>
+  </Cost>
+  <Footprint>
+    <Square width="9.5" depth="8.5"/>
+    <Height>9.0</Height>
+  </Footprint>
+  <Health>
+    <Max>2000</Max>
+  </Health>
   <Identity>
     <Civ>gaia</Civ>
     <SpecificName>Palisade Fort</SpecificName>
     <History>A cheap, quick defensive structure constructed with sharpened tree trunks</History>
     <Icon>gaia/special_palisade.png</Icon>
   </Identity>
-  <Cost>
-    <BuildTime>18</BuildTime>
-  </Cost>
-  <Health>
-    <Max>2000</Max>
-  </Health>
-  <Footprint>
-    <Square width="9.5" depth="8.5"/>
-    <Height>9.0</Height>
-  </Footprint>
   <Obstruction>
     <Static width="9.0" depth="7.5"/>
   </Obstruction>

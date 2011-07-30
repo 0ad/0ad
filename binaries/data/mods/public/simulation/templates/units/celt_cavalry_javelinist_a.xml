@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/celt_cavalry_javelinist_b">
+  <Armour>
+    <Hack>3.0</Hack>
+    <Pierce>4.0</Pierce>
+    <Crush>3.0</Crush>
+  </Armour>
+  <Attack>
+    <Ranged>
+      <Pierce>36.0</Pierce>
+      <MaxRange>48</MaxRange>
+    </Ranged>
+  </Attack>
+  <Health>
+    <Max>130</Max>
+  </Health>
   <Identity>
     <Rank>Advanced</Rank>
   </Identity>
@@ -9,26 +23,12 @@
   <ResourceGatherer>
     <BaseSpeed>0.75</BaseSpeed>
   </ResourceGatherer>
-  <Health>
-    <Max>130</Max>
-  </Health>
-  <Armour>
-    <Hack>3.0</Hack>
-    <Pierce>4.0</Pierce>
-    <Crush>3.0</Crush>
-  </Armour>
   <UnitMotion>
     <WalkSpeed>11.44</WalkSpeed>
     <Run>
       <Speed>34.32</Speed>
     </Run>
   </UnitMotion>
-  <Attack>
-    <Ranged>
-      <Pierce>36.0</Pierce>
-      <MaxRange>48</MaxRange>
-    </Ranged>
-  </Attack>
   <VisualActor>
     <Actor>units/celts/cavalry_javelinist_a.xml</Actor>
   </VisualActor>

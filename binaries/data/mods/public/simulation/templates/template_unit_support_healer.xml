@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_support">
-  <Identity>
-    <GenericName>Healer</GenericName>
-    <Tooltip>Heal units within his Aura.</Tooltip>
-  </Identity>
+  <Armour>
+    <Hack>2.0</Hack>
+    <Pierce>2.0</Pierce>
+    <Crush>2.0</Crush>
+  </Armour>
+  <Auras>
+    <Heal>
+      <Radius>20</Radius>
+      <Speed>2000</Speed>
+    </Heal>
+  </Auras>
   <Cost>
     <Resources>
       <metal>120</metal>
@@ -13,23 +20,10 @@
     <Max>85</Max>
     <RegenRate>0.3</RegenRate>
   </Health>
-  <Armour>
-    <Hack>2.0</Hack>
-    <Pierce>2.0</Pierce>
-    <Crush>2.0</Crush>
-  </Armour>
-  <UnitMotion>
-    <WalkSpeed>6.5</WalkSpeed>
-  </UnitMotion>
-  <Vision>
-    <Range>48</Range>
-  </Vision>
-  <Auras>
-    <Heal>
-      <Radius>20</Radius>
-      <Speed>2000</Speed>
-    </Heal>
-  </Auras>
+  <Identity>
+    <GenericName>Healer</GenericName>
+    <Tooltip>Heal units within his Aura.</Tooltip>
+  </Identity>
   <Sound>
     <SoundGroups>
       <select>voice/hellenes/civ/civ_male_select.xml</select>
@@ -40,4 +34,10 @@
       <trained>actor/singlesteps/steps_gravel.xml</trained>
     </SoundGroups>
   </Sound>
+  <UnitMotion>
+    <WalkSpeed>6.5</WalkSpeed>
+  </UnitMotion>
+  <Vision>
+    <Range>48</Range>
+  </Vision>
 </Entity>

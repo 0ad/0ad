@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna">
-  <Identity>
-    <GenericName>Fish</GenericName>
-  </Identity>
-  <Health disable=""/>
   <Footprint>
     <Circle radius="5.0"/>
     <Height>2.5</Height>
   </Footprint>
+  <Health disable=""/>
+  <Identity>
+    <GenericName>Fish</GenericName>
+  </Identity>
   <Obstruction>
     <Unit radius="0.1"/>
     <BlockMovement>false</BlockMovement>
@@ -17,11 +17,11 @@
     <Altitude>-4.0</Altitude>
     <Floating>true</Floating>
   </Position>
-  <UnitMotion disable=""/>
-  <UnitAI disable=""/>
   <ResourceSupply>
     <KillBeforeGather>false</KillBeforeGather>
     <Amount>1000</Amount>
     <Type>food.fish</Type>
   </ResourceSupply>
+  <UnitAI disable=""/>
+  <UnitMotion disable=""/>
 </Entity>

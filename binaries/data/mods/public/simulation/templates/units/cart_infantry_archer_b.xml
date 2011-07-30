@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_ranged_archer">
+  <Cost>
+    <Resources>
+      <food>0</food>
+      <wood>0</wood>
+      <metal>85</metal>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>cart</Civ>
 	<SelectionGroupName>units/cart_infantry_archer_b</SelectionGroupName>
@@ -11,13 +18,6 @@
   <Promotion>
     <Entity>units/cart_infantry_archer_a</Entity>
   </Promotion>
-  <Cost>
-    <Resources>
-      <food>0</food>
-      <wood>0</wood>
-      <metal>85</metal>
-    </Resources>
-  </Cost>
   <VisualActor>
     <Actor>units/carthaginians/infantry_archer_b.xml</Actor>
   </VisualActor>

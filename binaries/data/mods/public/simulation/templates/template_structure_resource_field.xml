@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_resource">
-  <Identity>
-    <GenericName>Field</GenericName>
-    <Tooltip>Harvest grain for Food.</Tooltip>
-    <History>Farming originated around 9500 BC in India and the Middle East. The history of agriculture is a central element of human history, as agricultural progress has been a crucial factor in worldwide socio-economic change. Wealth-building and militaristic specializations rarely seen in hunter-gatherer cultures are commonplace in agricultural and agro-industrial societieswhen farmers became capable of producing food beyond the needs of their own families, others in the tribe/nation/empire were freed to devote themselves to projects other than food acquisition.</History>
-    <Icon>structures/field.png</Icon>
-  </Identity>
-  <Minimap>
-    <Colour r="119" g="82" b="46"/>
-  </Minimap>
+  <Armour>
+    <Hack>5.0</Hack>
+    <Pierce>40.0</Pierce>
+    <Crush>40.0</Crush>
+  </Armour>
   <BuildRestrictions>
     <Category>Field</Category>
   </BuildRestrictions>
@@ -18,36 +14,33 @@
       <wood>50</wood>
     </Resources>
   </Cost>
-  <ResourceSupply>
-    <KillBeforeGather>false</KillBeforeGather>
-    <Amount>2000</Amount>
-    <Type>food.grain</Type>
-  </ResourceSupply>
-  <Health>
-    <Max>120</Max>
-  </Health>
-  <Armour>
-    <Hack>5.0</Hack>
-    <Pierce>40.0</Pierce>
-    <Crush>40.0</Crush>
-  </Armour>
-  <VisualActor>
-    <Actor>structures/plot_field_new.xml</Actor>
-    <FoundationActor>structures/plot_field_found.xml</FoundationActor>
-  </VisualActor>
   <Footprint>
     <Square width="28.0" depth="28.0"/>
     <Height>2.0</Height>
   </Footprint>
+  <Health>
+    <Max>120</Max>
+  </Health>
+  <Identity>
+    <GenericName>Field</GenericName>
+    <Tooltip>Harvest grain for Food.</Tooltip>
+    <History>Farming originated around 9500 BC in India and the Middle East. The history of agriculture is a central element of human history, as agricultural progress has been a crucial factor in worldwide socio-economic change. Wealth-building and militaristic specializations rarely seen in hunter-gatherer cultures are commonplace in agricultural and agro-industrial societieswhen farmers became capable of producing food beyond the needs of their own families, others in the tribe/nation/empire were freed to devote themselves to projects other than food acquisition.</History>
+    <Icon>structures/field.png</Icon>
+  </Identity>
+  <Minimap>
+    <Colour r="119" g="82" b="46"/>
+  </Minimap>
   <Obstruction>
     <Static width="18.0" depth="18.0"/>
     <BlockMovement>false</BlockMovement>
     <BlockPathfinding>false</BlockPathfinding>
   </Obstruction>
-  <Vision>
-    <Range>28</Range>
-  </Vision>
   <RallyPoint disable=""/>
+  <ResourceSupply>
+    <KillBeforeGather>false</KillBeforeGather>
+    <Amount>2000</Amount>
+    <Type>food.grain</Type>
+  </ResourceSupply>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_field.xml</select>
@@ -55,4 +48,11 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
+  <Vision>
+    <Range>28</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>structures/plot_field_new.xml</Actor>
+    <FoundationActor>structures/plot_field_found.xml</FoundationActor>
+  </VisualActor>
 </Entity>

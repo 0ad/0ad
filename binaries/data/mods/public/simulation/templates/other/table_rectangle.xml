@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
+  <Armour>
+    <Hack>1.0</Hack>
+    <Pierce>10.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
+  <BuildRestrictions>
+    <Category>Special</Category>
+  </BuildRestrictions>
+  <Footprint>
+    <Square width="4.0" depth="5.25"/>
+    <Height>4.0</Height>
+  </Footprint>
+  <Health>
+    <Max>100</Max>
+  </Health>
   <Identity>
     <Civ>gaia</Civ>
     <GenericName>Table</GenericName>
@@ -7,17 +22,6 @@
     <History>A wooden table.</History>
     <Icon>gaia/special_fence.png</Icon>
   </Identity>
-  <Minimap>
-    <Colour r="119" g="82" b="46"/>
-  </Minimap>
-  <Health>
-    <Max>100</Max>
-  </Health>
-  <Armour>
-    <Hack>1.0</Hack>
-    <Pierce>10.0</Pierce>
-    <Crush>10.0</Crush>
-  </Armour>
   <Loot>
     <xp>1</xp>
     <food>0</food>
@@ -25,24 +29,20 @@
     <stone>0</stone>
     <metal>0</metal>
   </Loot>
-  <VisualActor>
-    <Actor>props/special/eyecandy/table_rectangle.xml</Actor>
-  </VisualActor>
-  <StatusBars>
-    <HeightOffset>6.0</HeightOffset>
-  </StatusBars>
-  <Footprint>
-    <Square width="4.0" depth="5.25"/>
-    <Height>4.0</Height>
-  </Footprint>
+  <Minimap>
+    <Colour r="119" g="82" b="46"/>
+  </Minimap>
   <Obstruction>
     <Static width="3.5" depth="4.75"/>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>6.0</HeightOffset>
+  </StatusBars>
   <Vision>
     <Range>4</Range>
     <RetainInFog>true</RetainInFog>
   </Vision>
-  <BuildRestrictions>
-    <Category>Special</Category>
-  </BuildRestrictions>
+  <VisualActor>
+    <Actor>props/special/eyecandy/table_rectangle.xml</Actor>
+  </VisualActor>
 </Entity>

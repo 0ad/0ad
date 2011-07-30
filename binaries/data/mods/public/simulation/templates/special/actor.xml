@@ -6,14 +6,14 @@
     <Floating>false</Floating>
     <TurnRate>6.0</TurnRate>
   </Position>
-  <VisualActor>
-    <Actor>(should be overridden)</Actor>
-    <SilhouetteDisplay>false</SilhouetteDisplay>
-    <SilhouetteOccluder>false</SilhouetteOccluder>
-  </VisualActor>
   <Vision>
     <Range>0</Range>
     <RetainInFog>true</RetainInFog>
     <AlwaysVisible>false</AlwaysVisible>
   </Vision>
+  <VisualActor>
+    <Actor>(should be overridden)</Actor>
+    <SilhouetteDisplay>false</SilhouetteDisplay>
+    <SilhouetteOccluder>false</SilhouetteOccluder>
+  </VisualActor>
 </Entity>

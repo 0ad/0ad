@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/iber_infantry_javelinist_b">
-  <Identity>
-    <Rank>Advanced</Rank>
-  </Identity>
-  <Promotion>
-    <Entity>units/iber_infantry_javelinist_e</Entity>
-  </Promotion>
-  <VisualActor>
-    <Actor>units/iberians/infantry_javelinist_a.xml</Actor>
-  </VisualActor>
-  <ResourceGatherer>
-    <BaseSpeed>0.75</BaseSpeed>
-  </ResourceGatherer>
-  <Health>
-    <Max>100</Max>
-  </Health>
   <Armour>
     <Hack>4.0</Hack>
     <Pierce>4.0</Pierce>
     <Crush>4.0</Crush>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>6.8</WalkSpeed>
-    <Run>
-      <Speed>20.4</Speed>
-    </Run>
-  </UnitMotion>
   <Attack>
     <Ranged>
       <Pierce>36.0</Pierce>
       <MaxRange>44</MaxRange>
     </Ranged>
   </Attack>
+  <Health>
+    <Max>100</Max>
+  </Health>
+  <Identity>
+    <Rank>Advanced</Rank>
+  </Identity>
+  <Promotion>
+    <Entity>units/iber_infantry_javelinist_e</Entity>
+  </Promotion>
+  <ResourceGatherer>
+    <BaseSpeed>0.75</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>6.8</WalkSpeed>
+    <Run>
+      <Speed>20.4</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/iberians/infantry_javelinist_a.xml</Actor>
+  </VisualActor>
 </Entity>

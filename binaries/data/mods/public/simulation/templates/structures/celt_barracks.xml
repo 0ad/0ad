@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_barracks">
-  <Identity>
-    <Civ>celt</Civ>
-    <SpecificName>Gwersyllty</SpecificName>
-  </Identity>
   <Cost>
     <PopulationBonus>7</PopulationBonus>
     <Resources>
@@ -11,14 +7,14 @@
       <stone>0</stone>
     </Resources>
   </Cost>
-  <VisualActor>
-    <Actor>structures/celts/barracks_new.xml</Actor>
-    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
-  </VisualActor>
   <Footprint>
     <Square width="22.0" depth="22.0"/>
     <Height>5.0</Height>
   </Footprint>
+  <Identity>
+    <Civ>celt</Civ>
+    <SpecificName>Gwersyllty</SpecificName>
+  </Identity>
   <Obstruction>
     <Static width="20.0" depth="20.0"/>
   </Obstruction>
@@ -30,4 +26,8 @@
       units/celt_cavalry_javelinist_b
     </Entities>
   </TrainingQueue>
+  <VisualActor>
+    <Actor>structures/celts/barracks_new.xml</Actor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
+  </VisualActor>
 </Entity>

@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
+  <BuildRestrictions>
+    <Category>Special</Category>
+  </BuildRestrictions>
+  <Footprint>
+    <Square width="24.0" depth="24.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Health>
+    <Max>2000</Max>
+  </Health>
   <Identity>
     <GenericName>Special Building</GenericName>
     <Tooltip>This is a special building unique to a particular civilisation.</Tooltip>
     <Classes datatype="tokens">City</Classes>
     <Icon>.png</Icon>
   </Identity>
-  <BuildRestrictions>
-    <Category>Special</Category>
-  </BuildRestrictions>
-  <Health>
-    <Max>2000</Max>
-  </Health>
-  <VisualActor>
-    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
-  </VisualActor>
-  <Footprint>
-    <Square width="24.0" depth="24.0"/>
-    <Height>8.0</Height>
-  </Footprint>
   <Obstruction>
     <Static width="24.0" depth="24.0"/>
   </Obstruction>
+  <VisualActor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
+  </VisualActor>
 </Entity>

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic">
-  <Identity>
-    <GenericName>Market</GenericName>
-    <Tooltip>Create Trade units and Barter resources. (Currently a useless structure)</Tooltip>
-    <Classes datatype="tokens">Town</Classes>
-    <Icon>structures/market.png</Icon>
-  </Identity>
+  <Armour>
+    <Hack>10.0</Hack>
+    <Pierce>40.0</Pierce>
+    <Crush>20.0</Crush>
+  </Armour>
   <BuildRestrictions>
     <Category>Market</Category>
   </BuildRestrictions>
@@ -15,27 +14,22 @@
       <wood>300</wood>
     </Resources>
   </Cost>
-  <Health>
-    <Max>1500</Max>
-  </Health>
-  <Armour>
-    <Hack>10.0</Hack>
-    <Pierce>40.0</Pierce>
-    <Crush>20.0</Crush>
-  </Armour>
-  <VisualActor>
-    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
-  </VisualActor>
   <Footprint>
     <Square width="17.0" depth="17.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <Health>
+    <Max>1500</Max>
+  </Health>
+  <Identity>
+    <GenericName>Market</GenericName>
+    <Tooltip>Create Trade units and Barter resources. (Currently a useless structure)</Tooltip>
+    <Classes datatype="tokens">Town</Classes>
+    <Icon>structures/market.png</Icon>
+  </Identity>
   <Obstruction>
     <Static width="17.0" depth="17.0"/>
   </Obstruction>
-  <Vision>
-    <Range>28</Range>
-  </Vision>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_market.xml</select>
@@ -48,4 +42,10 @@
       units/{civ}_support_trader
     </Entities>
   </TrainingQueue>
+  <Vision>
+    <Range>28</Range>
+  </Vision>
+  <VisualActor>
+    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
+  </VisualActor>
 </Entity>

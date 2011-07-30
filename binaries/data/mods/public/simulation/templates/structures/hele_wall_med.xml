@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall">
+  <Cost>
+    <BuildTime>22</BuildTime>
+  </Cost>
+  <Footprint>
+    <Square width="25.0" depth="6.5"/>
+    <Height>9.0</Height>
+  </Footprint>
+  <Health>
+    <Max>2200</Max>
+  </Health>
   <Identity>
     <Civ>hele</Civ>
     <SpecificName>Teichos</SpecificName>
     <History>All Hellenic cities were surrounded by stone walls for protection against enemy raids. Some of these fortifications, like the Athenian Long Walls, for example, were massive structures.</History>
   </Identity>
-  <Cost>
-    <BuildTime>22</BuildTime>
-  </Cost>
-  <Health>
-    <Max>2200</Max>
-  </Health>
-  <Footprint>
-    <Square width="25.0" depth="6.5"/>
-    <Height>9.0</Height>
-  </Footprint>
   <Obstruction>
     <Static width="24.0" depth="6.0"/>
   </Obstruction>

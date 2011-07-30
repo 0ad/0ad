@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_barracks">
-  <Identity>
-    <Civ>hele</Civ>
-    <SpecificName>Strategeion</SpecificName>
-    <History>The Stratigeion was the main military headquarters, where important decisions were taken and plans for battles discussed by the Hellene Generals, or "Strategoi".</History>
-  </Identity>
   <Cost>
     <BuildTime>220</BuildTime>
   </Cost>
   <Health>
     <Max>2200</Max>
   </Health>
-  <VisualActor>
-    <Actor>structures/hellenes/barracks.xml</Actor>
-  </VisualActor>
+  <Identity>
+    <Civ>hele</Civ>
+    <SpecificName>Strategeion</SpecificName>
+    <History>The Stratigeion was the main military headquarters, where important decisions were taken and plans for battles discussed by the Hellene Generals, or "Strategoi".</History>
+  </Identity>
   <TrainingQueue>
     <Entities datatype="tokens">
       units/hele_infantry_spearman_b
@@ -23,4 +20,7 @@
       units/hele_cavalry_javelinist_b
     </Entities>
   </TrainingQueue>
+  <VisualActor>
+    <Actor>structures/hellenes/barracks.xml</Actor>
+  </VisualActor>
 </Entity>

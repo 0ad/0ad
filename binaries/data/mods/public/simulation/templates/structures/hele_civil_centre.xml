@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_civil_centre">
-  <Identity>
-    <Civ>hele</Civ>
-    <SpecificName>Agora</SpecificName>
-    <History>The most important place in most Classical Greek poleis, the Agora served many purposes - it was a place for public speeches and was the stage for civic life and commercial interests.</History>
-  </Identity>
   <Cost>
     <BuildTime>330</BuildTime>
   </Cost>
   <Health>
     <Max>3300</Max>
   </Health>
-  <VisualActor>
-    <Actor>structures/hellenes/civic_centre_new.xml</Actor>
-  </VisualActor>
+  <Identity>
+    <Civ>hele</Civ>
+    <SpecificName>Agora</SpecificName>
+    <History>The most important place in most Classical Greek poleis, the Agora served many purposes - it was a place for public speeches and was the stage for civic life and commercial interests.</History>
+  </Identity>
   <TrainingQueue>
     <Entities datatype="tokens">
       units/hele_infantry_spearman_b
@@ -21,4 +18,7 @@
       units/hele_cavalry_swordsman_b
 	</Entities>
   </TrainingQueue>
+  <VisualActor>
+    <Actor>structures/hellenes/civic_centre_new.xml</Actor>
+  </VisualActor>
 </Entity>

@@ -1,22 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_swordsman">
-  <Identity>
-    <Civ>celt</Civ>
-    <SpecificName>Brythonic Delamokludda</SpecificName>
-    <Tooltip>Bonus vs. All Spear Units (infantry and cavalry).</Tooltip>
-    <History>Two-handed swordsmen from Briton. These men are veteran soldiers who offer their lives in service to their Brythonic lords.</History>
-    <Icon>units/celt_champion_infantry_brit.png</Icon>
-  </Identity>
   <Armour>
     <Hack>9.0</Hack>
     <Pierce>5.0</Pierce>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>6.66</WalkSpeed>
-    <Run>
-      <Speed>18.48</Speed>
-    </Run>
-  </UnitMotion>
   <Attack>
     <Melee>
       <Hack>25.0</Hack>
@@ -25,6 +12,19 @@
       <Hack>50.0</Hack>
     </Charge>
   </Attack>
+  <Identity>
+    <Civ>celt</Civ>
+    <SpecificName>Brythonic Delamokludda</SpecificName>
+    <Tooltip>Bonus vs. All Spear Units (infantry and cavalry).</Tooltip>
+    <History>Two-handed swordsmen from Briton. These men are veteran soldiers who offer their lives in service to their Brythonic lords.</History>
+    <Icon>units/celt_champion_infantry_brit.png</Icon>
+  </Identity>
+  <UnitMotion>
+    <WalkSpeed>6.66</WalkSpeed>
+    <Run>
+      <Speed>18.48</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/celts/champion_unit_3.xml</Actor>
   </VisualActor>

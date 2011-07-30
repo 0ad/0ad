@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_ranged_javelinist">
+  <Builder>
+    <Entities datatype="tokens">
+      structures/iber_sb1
+    </Entities>
+  </Builder>
   <Identity>
     <Civ>iber</Civ>
 	<SelectionGroupName>units/iber_infantry_javelinist_b</SelectionGroupName>
@@ -13,9 +18,4 @@
   <VisualActor>
     <Actor>units/iberians/infantry_javelinist_b.xml</Actor>
   </VisualActor>
-  <Builder>
-    <Entities datatype="tokens">
-      structures/iber_sb1
-    </Entities>
-  </Builder>
 </Entity>

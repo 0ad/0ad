@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
+  <BuildRestrictions>
+    <Category>Special</Category>
+  </BuildRestrictions>
+  <Footprint>
+    <Square width="62" depth="15.5"/>
+    <Height>10.0</Height>
+  </Footprint>
+  <Health>
+    <Max>200000</Max>
+  </Health>
   <Identity>
     <Civ>gaia</Civ>
     <GenericName>Wooden Bridge</GenericName>
@@ -7,16 +17,6 @@
     <History>Roman engineers constructed bridges using concrete, which they called Opus caementicium.</History>
     <Icon>gaia/special_blank.png</Icon>
   </Identity>
-  <Health>
-    <Max>200000</Max>
-  </Health>
-  <VisualActor>
-    <Actor>props/special/eyecandy/bridge_edge_wooden.xml</Actor>
-  </VisualActor>
-  <Footprint>
-    <Square width="62" depth="15.5"/>
-    <Height>10.0</Height>
-  </Footprint>
   <Obstruction>
     <Static width="59" depth="15"/>
   </Obstruction>
@@ -25,7 +25,7 @@
     <Range>72</Range>
     <RetainInFog>true</RetainInFog>
   </Vision>
-  <BuildRestrictions>
-    <Category>Special</Category>
-  </BuildRestrictions>
+  <VisualActor>
+    <Actor>props/special/eyecandy/bridge_edge_wooden.xml</Actor>
+  </VisualActor>
 </Entity>

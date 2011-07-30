@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee_spearman">
+  <Armour>
+    <Pierce>6.0</Pierce>
+  </Armour>
+  <Builder>
+    <Entities datatype="tokens">
+      structures/iber_sb1
+    </Entities>
+  </Builder>
   <Identity>
     <Civ>iber</Civ>
 	<SelectionGroupName>units/iber_infantry_spearman_b</SelectionGroupName>
@@ -10,21 +18,13 @@
   <Promotion>
     <Entity>units/iber_infantry_spearman_a</Entity>
   </Promotion>
-  <VisualActor>
-    <Actor>units/iberians/infantry_spearman_b.xml</Actor>
-  </VisualActor>
-  <Builder>
-    <Entities datatype="tokens">
-      structures/iber_sb1
-    </Entities>
-  </Builder>
-  <Armour>
-    <Pierce>6.0</Pierce>
-  </Armour>
   <UnitMotion>
     <WalkSpeed>6.1</WalkSpeed>
     <Run>
       <Speed>16.8</Speed>
     </Run>
   </UnitMotion>
+  <VisualActor>
+    <Actor>units/iberians/infantry_spearman_b.xml</Actor>
+  </VisualActor>
 </Entity>

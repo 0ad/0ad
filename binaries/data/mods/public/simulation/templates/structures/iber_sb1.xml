@@ -1,23 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
-  <Identity>
-    <Civ>iber</Civ>
-    <SpecificName>Monumento Venerado</SpecificName>
-    <Icon>structures/monument.png</Icon>
-    <Tooltip>All units within LOS of this monument will fight harder. Build limit: 1 per territory.</Tooltip>
-    <History>The Iberians were a religious people who built small monuments to their various gods. These monuments could also serve as family tombs.</History>
-  </Identity>
-  <VisualActor>
-    <Actor>structures/iberians/sb_1.xml</Actor>
-    <FoundationActor>structures/fndn_2x2.xml</FoundationActor>
-  </VisualActor>
-  <Footprint>
-    <Square width="10.0" depth="10.0"/>
-    <Height>8.0</Height>
-  </Footprint>
-  <Obstruction>
-    <Static width="10.0" depth="10.0"/>
-  </Obstruction>
   <Cost>
     <BuildTime>120</BuildTime>
     <Resources>
@@ -27,9 +9,23 @@
       <metal>100</metal>
     </Resources>
   </Cost>
+  <Footprint>
+    <Square width="10.0" depth="10.0"/>
+    <Height>8.0</Height>
+  </Footprint>
   <Health>
     <Max>1200</Max>
   </Health>
+  <Identity>
+    <Civ>iber</Civ>
+    <SpecificName>Monumento Venerado</SpecificName>
+    <Icon>structures/monument.png</Icon>
+    <Tooltip>All units within LOS of this monument will fight harder. Build limit: 1 per territory.</Tooltip>
+    <History>The Iberians were a religious people who built small monuments to their various gods. These monuments could also serve as family tombs.</History>
+  </Identity>
+  <Obstruction>
+    <Static width="10.0" depth="10.0"/>
+  </Obstruction>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_iber_monument.xml</select>
@@ -37,4 +33,8 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
+  <VisualActor>
+    <Actor>structures/iberians/sb_1.xml</Actor>
+    <FoundationActor>structures/fndn_2x2.xml</FoundationActor>
+  </VisualActor>
 </Entity>

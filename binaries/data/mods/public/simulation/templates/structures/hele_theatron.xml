@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
-  <Identity>
-    <Civ>hele</Civ>
-    <SpecificName>Theatron</SpecificName>
-    <Tooltip>Take advantage of the Hellenisation civ bonus. (Currently a useless structure)</Tooltip>
-    <History>Greek theatres were places where the immortal tragedies of Aeschylus, Sophocles and many other talented dramatists were staged to the delight of the populace. They were instrumental in enriching Hellenic culture.</History>
-    <Icon>structures/theatron.png</Icon>
-  </Identity>
   <Cost>
     <BuildTime>550</BuildTime>
     <Resources>
@@ -14,17 +7,20 @@
       <stone>500</stone>
     </Resources>
   </Cost>
-  <Health>
-    <Max>5500</Max>
-  </Health>
-  <VisualActor>
-    <Actor>structures/hellenes/special_theatre.xml</Actor>
-    <FoundationActor>structures/fndn_theatron.xml</FoundationActor>
-  </VisualActor>
   <Footprint replace="">
     <Circle radius="26.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <Health>
+    <Max>5500</Max>
+  </Health>
+  <Identity>
+    <Civ>hele</Civ>
+    <SpecificName>Theatron</SpecificName>
+    <Tooltip>Take advantage of the Hellenisation civ bonus. (Currently a useless structure)</Tooltip>
+    <History>Greek theatres were places where the immortal tragedies of Aeschylus, Sophocles and many other talented dramatists were staged to the delight of the populace. They were instrumental in enriching Hellenic culture.</History>
+    <Icon>structures/theatron.png</Icon>
+  </Identity>
   <Obstruction>
     <Static width="52.0" depth="52.0"/>
   </Obstruction>
@@ -35,4 +31,8 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
+  <VisualActor>
+    <Actor>structures/hellenes/special_theatre.xml</Actor>
+    <FoundationActor>structures/fndn_theatron.xml</FoundationActor>
+  </VisualActor>
 </Entity>

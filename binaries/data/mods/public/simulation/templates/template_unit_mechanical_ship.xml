@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical">
-  <Identity>
-    <GenericName>Ship</GenericName>
-  </Identity>
-  <Position>
-    <Floating>true</Floating>
-  </Position>
   <Cost>
     <Population>1</Population>
     <BuildTime>20</BuildTime>
@@ -16,9 +10,28 @@
       <metal>0</metal>
     </Resources>
   </Cost>
+  <Decay>
+    <Inactive/>
+    <DelayTime>0.0</DelayTime>
+    <SinkRate>2.0</SinkRate>
+    <SinkAccel>7.0</SinkAccel>
+  </Decay>
+  <Footprint replace="">
+    <Square width="6.0" depth="30.0"/>
+    <Height>8.0</Height>
+  </Footprint>
   <Health>
     <Max>100</Max>
   </Health>
+  <Identity>
+    <GenericName>Ship</GenericName>
+  </Identity>
+  <Obstruction>
+    <Unit radius="8.0"/>
+  </Obstruction>
+  <Position>
+    <Floating>true</Floating>
+  </Position>
   <ResourceGatherer>
     <MaxDistance>4.0</MaxDistance>
     <BaseSpeed>1.0</BaseSpeed>
@@ -29,25 +42,6 @@
       <metal>20</metal>
     </Capacities>
   </ResourceGatherer>
-  <Decay>
-    <Inactive/>
-    <DelayTime>0.0</DelayTime>
-    <SinkRate>2.0</SinkRate>
-    <SinkAccel>7.0</SinkAccel>
-  </Decay>
-  <UnitMotion>
-    <PassabilityClass>ship</PassabilityClass>
-  </UnitMotion>
-  <Footprint replace="">
-    <Square width="6.0" depth="30.0"/>
-    <Height>8.0</Height>
-  </Footprint>
-  <Obstruction>
-    <Unit radius="8.0"/>
-  </Obstruction>
-  <Vision>
-    <Range>120</Range>
-  </Vision>
   <Sound>
     <SoundGroups>
       <trained>actor/ship/ship_select.xml</trained>
@@ -57,4 +51,10 @@
       <order_gather>actor/ship/ship_move.xml</order_gather>
     </SoundGroups>
   </Sound>
+  <UnitMotion>
+    <PassabilityClass>ship</PassabilityClass>
+  </UnitMotion>
+  <Vision>
+    <Range>120</Range>
+  </Vision>
 </Entity>

@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_temple">
+  <Cost>
+    <BuildTime>220</BuildTime>
+  </Cost>
+  <Footprint>
+    <Square width="19.0" depth="31.5"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <Health>
+    <Max>2200</Max>
+  </Health>
   <Identity>
     <Civ>hele</Civ>
     <SpecificName>Naos</SpecificName>
     <History>The Hellenes built marvelous temples in order to honour their polytheistic pantheon. While all gods were venerated, a specific patron deity was supposed to watch over each polis.</History>
   </Identity>
-  <Cost>
-    <BuildTime>220</BuildTime>
-  </Cost>
-  <Health>
-    <Max>2200</Max>
-  </Health>
+  <Obstruction>
+    <Static width="17.5" depth="30.0"/>
+  </Obstruction>
   <VisualActor>
     <Actor>structures/hellenes/temple_new.xml</Actor>
     <FoundationActor>props/special/eyecandy/greek_temple_unfinished.xml</FoundationActor>
   </VisualActor>
-  <Footprint>
-    <Square width="19.0" depth="31.5"/>
-    <Height>12.0</Height>
-  </Footprint>
-  <Obstruction>
-    <Static width="17.5" depth="30.0"/>
-  </Obstruction>
 </Entity>

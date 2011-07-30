@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_barracks">
-  <Identity>
-    <Civ>celt</Civ>
-    <GenericName>Special Building</GenericName>
-    <SpecificName>Kennel</SpecificName>
-    <Tooltip>Train Celtic war dogs.</Tooltip>
-    <Icon>structures/kennel.png</Icon>
-  </Identity>
   <Cost>
     <PopulationBonus>0</PopulationBonus>
     <BuildTime>50</BuildTime>
@@ -15,29 +8,24 @@
       <stone>50</stone>
     </Resources>
   </Cost>
-  <Health>
-    <Max>500</Max>
-  </Health>
-  <VisualActor>
-    <Actor>structures/celts/kennel.xml</Actor>
-    <FoundationActor>structures/fndn_2x2.xml</FoundationActor>
-  </VisualActor>
-  <TrainingQueue>
-    <Entities datatype="tokens">
-      units/celt_cavalry_spearman_b
-    </Entities>
-  </TrainingQueue>
-  <StatusBars>
-    <HeightOffset>8.0</HeightOffset>
-  </StatusBars>
   <Footprint>
     <Square width="8.0" depth="7.0"/>
     <Height>5.0</Height>
   </Footprint>
+  <GarrisonHolder disable=""/>
+  <Health>
+    <Max>500</Max>
+  </Health>
+  <Identity>
+    <Civ>celt</Civ>
+    <GenericName>Special Building</GenericName>
+    <SpecificName>Kennel</SpecificName>
+    <Tooltip>Train Celtic war dogs.</Tooltip>
+    <Icon>structures/kennel.png</Icon>
+  </Identity>
   <Obstruction>
     <Static width="7.5" depth="6.75"/>
   </Obstruction>
-  <GarrisonHolder disable=""/>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_kennel.xml</select>
@@ -45,4 +33,16 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
+  <StatusBars>
+    <HeightOffset>8.0</HeightOffset>
+  </StatusBars>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/celt_cavalry_spearman_b
+    </Entities>
+  </TrainingQueue>
+  <VisualActor>
+    <Actor>structures/celts/kennel.xml</Actor>
+    <FoundationActor>structures/fndn_2x2.xml</FoundationActor>
+  </VisualActor>
 </Entity>

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_support_trader">
+  <Footprint>
+    <Circle radius="1.5"/>
+    <Height>3.0</Height>
+  </Footprint>
   <Identity>
     <Civ>celt</Civ>
     <SpecificName>Cyfnewidiwr</SpecificName>
@@ -9,8 +13,4 @@
   <VisualActor>
     <Actor>units/celts/trader.xml</Actor>
   </VisualActor>
-  <Footprint>
-    <Circle radius="1.5"/>
-    <Height>3.0</Height>
-  </Footprint>
 </Entity>

@@ -1,31 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry_ranged">
-  <Identity>
-    <GenericName>Cavalry Archer</GenericName>
-    <Rollover>A very rare unit in Part 1. It was used by the Persians, but it didn't gain much traction until the Parthians, Huns, Mongols, and other people of the nomadic steeps introduced them to western Europe. This was the most effective unit on the battlefield for several hundred years until the well armoured knight came along. Therefore, this unit will gain much more prominence in Part 2.</Rollover>
-    <Tooltip>Bonused vs. Infantry Spearman and Infantry Swordsman.</Tooltip>
-  </Identity>
-  <Cost>
-    <BuildTime>20</BuildTime>
-    <Resources>
-      <food>100</food>
-      <wood>85</wood>
-    </Resources>
-  </Cost>
-  <Health>
-    <Max>150</Max>
-  </Health>
   <Armour>
     <Hack>2.0</Hack>
     <Pierce>5.0</Pierce>
     <Crush>8.0</Crush>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>8.5</WalkSpeed>
-    <Run>
-      <Speed>22.0</Speed>
-    </Run>
-  </UnitMotion>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
@@ -38,4 +17,25 @@
       <RepeatTime>2000</RepeatTime>
     </Ranged>
   </Attack>
+  <Cost>
+    <BuildTime>20</BuildTime>
+    <Resources>
+      <food>100</food>
+      <wood>85</wood>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>150</Max>
+  </Health>
+  <Identity>
+    <GenericName>Cavalry Archer</GenericName>
+    <Rollover>A very rare unit in Part 1. It was used by the Persians, but it didn't gain much traction until the Parthians, Huns, Mongols, and other people of the nomadic steeps introduced them to western Europe. This was the most effective unit on the battlefield for several hundred years until the well armoured knight came along. Therefore, this unit will gain much more prominence in Part 2.</Rollover>
+    <Tooltip>Bonused vs. Infantry Spearman and Infantry Swordsman.</Tooltip>
+  </Identity>
+  <UnitMotion>
+    <WalkSpeed>8.5</WalkSpeed>
+    <Run>
+      <Speed>22.0</Speed>
+    </Run>
+  </UnitMotion>
 </Entity>

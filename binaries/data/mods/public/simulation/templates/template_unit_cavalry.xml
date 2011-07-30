@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit">
-  <Identity>
-    <GenericName>Cavalry</GenericName>
-    <Classes datatype="tokens">Cavalry CitizenSoldier Organic</Classes>
-    <Rank>Basic</Rank>
-  </Identity>
-  <Promotion>
-    <RequiredXp>200</RequiredXp>
-  </Promotion>
-  <Position>
-    <Anchor>pitch</Anchor>
-  </Position>
+  <Armour>
+    <Hack>0.0</Hack>
+    <Pierce>0.0</Pierce>
+    <Crush>2.0</Crush>
+  </Armour>
   <Cost>
     <Population>2</Population>
     <BuildTime>13</BuildTime>
@@ -18,6 +12,19 @@
       <food>100</food>
     </Resources>
   </Cost>
+  <Footprint>
+    <Circle radius="2.0"/>
+    <Height>7.5</Height>
+  </Footprint>
+  <Health>
+    <Max>130</Max>
+    <RegenRate>0.2</RegenRate>
+  </Health>
+  <Identity>
+    <GenericName>Cavalry</GenericName>
+    <Classes datatype="tokens">Cavalry CitizenSoldier Organic</Classes>
+    <Rank>Basic</Rank>
+  </Identity>
   <Loot>
     <xp>130</xp>
     <food>10</food>
@@ -25,6 +32,15 @@
     <stone>0</stone>
     <metal>0</metal>
   </Loot>
+  <Obstruction>
+    <Unit radius="1.0"/>
+  </Obstruction>
+  <Position>
+    <Anchor>pitch</Anchor>
+  </Position>
+  <Promotion>
+    <RequiredXp>200</RequiredXp>
+  </Promotion>
   <ResourceGatherer>
     <MaxDistance>2.0</MaxDistance>
     <BaseSpeed>1.0</BaseSpeed>
@@ -38,36 +54,6 @@
       <metal>30</metal>
     </Capacities>
   </ResourceGatherer>
-  <Health>
-    <Max>130</Max>
-    <RegenRate>0.2</RegenRate>
-  </Health>
-  <Stamina>
-    <Max>2000</Max>
-  </Stamina>
-  <Armour>
-    <Hack>0.0</Hack>
-    <Pierce>0.0</Pierce>
-    <Crush>2.0</Crush>
-  </Armour>
-  <UnitMotion>
-    <WalkSpeed>9.3</WalkSpeed>
-    <Run>
-      <Speed>26.4</Speed>
-      <Range>600.0</Range>
-      <RangeMin>5.0</RangeMin>
-    </Run>
-  </UnitMotion>
-  <Footprint>
-    <Circle radius="2.0"/>
-    <Height>7.5</Height>
-  </Footprint>
-  <Obstruction>
-    <Unit radius="1.0"/>
-  </Obstruction>
-  <Vision>
-    <Range>100</Range>
-  </Vision>
   <Sound>
     <SoundGroups>
       <select>voice/hellenes/civ/civ_male_select.xml</select>
@@ -81,4 +67,18 @@
       <trained>interface/alarm/alarm_create_cav.xml</trained>
     </SoundGroups>
   </Sound>
+  <Stamina>
+    <Max>2000</Max>
+  </Stamina>
+  <UnitMotion>
+    <WalkSpeed>9.3</WalkSpeed>
+    <Run>
+      <Speed>26.4</Speed>
+      <Range>600.0</Range>
+      <RangeMin>5.0</RangeMin>
+    </Run>
+  </UnitMotion>
+  <Vision>
+    <Range>100</Range>
+  </Vision>
 </Entity>

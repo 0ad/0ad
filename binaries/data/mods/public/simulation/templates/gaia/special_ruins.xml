@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_gaia_ruins">
+  <Footprint>
+    <Circle radius="3.0"/>
+    <Height>2.5</Height>
+  </Footprint>
   <Identity>
     <Civ>gaia</Civ>
     <GenericName>Ruins</GenericName>
@@ -13,8 +17,4 @@
   <VisualActor>
     <Actor>props/special/eyecandy/column_doric_fallen.xml</Actor>
   </VisualActor>
-  <Footprint>
-    <Circle radius="3.0"/>
-    <Height>2.5</Height>
-  </Footprint>
 </Entity>

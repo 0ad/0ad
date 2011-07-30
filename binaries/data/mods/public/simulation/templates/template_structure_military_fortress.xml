@@ -1,50 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military">
-  <Identity>
-    <GenericName>Fortress</GenericName>
-    <Tooltip>Train Heroes, Champion, and Siege Units.</Tooltip>
-    <Classes datatype="tokens">City Defensive</Classes>
-    <Icon>structures/fortress.png</Icon>
-  </Identity>
-  <BuildRestrictions>
-    <Category>Fortress</Category>
-  </BuildRestrictions>
-  <Cost>
-    <PopulationBonus>10</PopulationBonus>
-    <BuildTime>420</BuildTime>
-    <Resources>
-      <wood>0</wood>
-      <stone>500</stone>
-    </Resources>
-  </Cost>
-  <Health>
-    <Max>4200</Max>
-  </Health>
   <Armour>
     <Hack>20.0</Hack>
     <Pierce>40.0</Pierce>
     <Crush>20.0</Crush>
   </Armour>
-  <VisualActor>
-    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
-  </VisualActor>
-  <Footprint>
-    <Square width="24.0" depth="24.0"/>
-    <Height>8.0</Height>
-  </Footprint>
-  <Obstruction>
-    <Static width="24.0" depth="24.0"/>
-  </Obstruction>
-  <Vision>
-    <Range>80</Range>
-  </Vision>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_fortress.xml</select>
-      <constructed>interface/complete/building/complete_fortress.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
-    </SoundGroups>
-  </Sound>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
@@ -61,10 +21,50 @@
     <DefaultArrowCount>1</DefaultArrowCount>
     <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
   </BuildingAI>
+  <BuildRestrictions>
+    <Category>Fortress</Category>
+  </BuildRestrictions>
+  <Cost>
+    <PopulationBonus>10</PopulationBonus>
+    <BuildTime>420</BuildTime>
+    <Resources>
+      <wood>0</wood>
+      <stone>500</stone>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="24.0" depth="24.0"/>
+    <Height>8.0</Height>
+  </Footprint>
   <GarrisonHolder>
     <Max>20</Max>
 	<EjectHealth>0.1</EjectHealth>
 	<List datatype="tokens">Support Infantry Cavalry Siege</List>
 	<BuffHeal>1</BuffHeal>
   </GarrisonHolder>
+  <Health>
+    <Max>4200</Max>
+  </Health>
+  <Identity>
+    <GenericName>Fortress</GenericName>
+    <Tooltip>Train Heroes, Champion, and Siege Units.</Tooltip>
+    <Classes datatype="tokens">City Defensive</Classes>
+    <Icon>structures/fortress.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Static width="24.0" depth="24.0"/>
+  </Obstruction>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_fortress.xml</select>
+      <constructed>interface/complete/building/complete_fortress.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <Vision>
+    <Range>80</Range>
+  </Vision>
+  <VisualActor>
+    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+  </VisualActor>
 </Entity>

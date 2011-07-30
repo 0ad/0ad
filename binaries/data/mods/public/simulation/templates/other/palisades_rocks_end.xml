@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall">
+  <Cost>
+    <BuildTime>8</BuildTime>
+  </Cost>
+  <Footprint>
+    <Square width="1.5" depth="3.0"/>
+    <Height>9.0</Height>
+  </Footprint>
+  <Health>
+    <Max>1000</Max>
+  </Health>
   <Identity>
     <Civ>gaia</Civ>
     <SpecificName>Palisade End</SpecificName>
     <History>A cheap, quick defensive structure constructed with sharpened tree trunks</History>
     <Icon>gaia/special_palisade.png</Icon>
   </Identity>
-  <Cost>
-    <BuildTime>8</BuildTime>
-  </Cost>
-  <Health>
-    <Max>1000</Max>
-  </Health>
-  <Footprint>
-    <Square width="1.5" depth="3.0"/>
-    <Height>9.0</Height>
-  </Footprint>
   <Obstruction>
     <Static width="1.5" depth="3.0"/>
   </Obstruction>

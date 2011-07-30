@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic">
-  <Identity>
-    <GenericName>Mill</GenericName>
-    <Tooltip>Dropsite for Wood, Stone, and Metal resources.</Tooltip>
-    <Classes datatype="tokens">Village</Classes>
-    <Icon>structures/mill.png</Icon>
-  </Identity>
+  <Armour>
+    <Hack>10.0</Hack>
+    <Pierce>40.0</Pierce>
+    <Crush>15.0</Crush>
+  </Armour>
   <BuildRestrictions>
     <Category>Mill</Category>
     <Territory>all</Territory>
@@ -16,27 +15,26 @@
       <wood>100</wood>
     </Resources>
   </Cost>
-  <Health>
-    <Max>800</Max>
-  </Health>
-  <Armour>
-    <Hack>10.0</Hack>
-    <Pierce>40.0</Pierce>
-    <Crush>15.0</Crush>
-  </Armour>
-  <VisualActor>
-    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
-  </VisualActor>
   <Footprint>
     <Square width="15.0" depth="15.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <Health>
+    <Max>800</Max>
+  </Health>
+  <Identity>
+    <GenericName>Mill</GenericName>
+    <Tooltip>Dropsite for Wood, Stone, and Metal resources.</Tooltip>
+    <Classes datatype="tokens">Village</Classes>
+    <Icon>structures/mill.png</Icon>
+  </Identity>
   <Obstruction>
     <Static width="13.0" depth="13.0"/>
   </Obstruction>
-  <Vision>
-    <Range>60</Range>
-  </Vision>
+  <RallyPoint disable=""/>
+  <ResourceDropsite>
+    <Types>wood stone metal</Types>
+  </ResourceDropsite>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_mill.xml</select>
@@ -44,8 +42,10 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
-  <ResourceDropsite>
-    <Types>wood stone metal</Types>
-  </ResourceDropsite>
-  <RallyPoint disable=""/>
+  <Vision>
+    <Range>60</Range>
+  </Vision>
+  <VisualActor>
+    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
+  </VisualActor>
 </Entity>

@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_ship">
+  <Armour>
+    <Hack>5.0</Hack>
+    <Pierce>10.0</Pierce>
+    <Crush>5.0</Crush>
+  </Armour>
+  <Footprint>
+    <Square width="6.0" depth="12.0"/>
+    <Height>6.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <Max>1</Max>
+	<EjectHealth>0.1</EjectHealth>
+	<List datatype="tokens">Support Infantry</List>
+	<BuffHeal>1</BuffHeal>
+  </GarrisonHolder>
   <Identity>
     <GenericName>Fishing Boat</GenericName>
     <Tooltip>Fish the waters for Food. Garrison a support or infantry unit inside to boost fishing rate.</Tooltip>
   </Identity>
+  <Obstruction>
+    <Unit radius="4.0"/>
+  </Obstruction>
   <ResourceGatherer>
     <MaxDistance>12.0</MaxDistance>
     <BaseSpeed>1.0</BaseSpeed>
@@ -15,22 +33,4 @@
   <UnitMotion>
     <WalkSpeed>8.5</WalkSpeed>
   </UnitMotion>
-  <Footprint>
-    <Square width="6.0" depth="12.0"/>
-    <Height>6.0</Height>
-  </Footprint>
-  <Obstruction>
-    <Unit radius="4.0"/>
-  </Obstruction>
-  <Armour>
-    <Hack>5.0</Hack>
-    <Pierce>10.0</Pierce>
-    <Crush>5.0</Crush>
-  </Armour>
-  <GarrisonHolder>
-    <Max>1</Max>
-	<EjectHealth>0.1</EjectHealth>
-	<List datatype="tokens">Support Infantry</List>
-	<BuffHeal>1</BuffHeal>
-  </GarrisonHolder>
 </Entity>

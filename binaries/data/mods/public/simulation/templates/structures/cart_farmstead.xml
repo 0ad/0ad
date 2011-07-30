@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic_farmstead">
+  <Footprint>
+    <Square width="15.0" depth="15.0"/>
+    <Height>5.0</Height>
+  </Footprint>
   <Identity>
     <Civ>cart</Civ>
     <SpecificName>Ahuzah</SpecificName>
     <History>Although there must have been many small farms as well, when the Carthaginians expanded into the hinterland, most farms and orchardist establishments were created by the wealthy segment of society that became known as the landowners, and the resulting estates were mostly worked by ?almost enslaved? Liby-Phoenicians, Numidians, and whomever they could get.</History>
   </Identity>
-  <VisualActor>
-    <Actor>structures/carthaginians/farmstead.xml</Actor>
-  </VisualActor>
-  <Footprint>
-    <Square width="15.0" depth="15.0"/>
-    <Height>5.0</Height>
-  </Footprint>
   <Obstruction>
     <Static width="15.0" depth="15.0"/>
   </Obstruction>
+  <VisualActor>
+    <Actor>structures/carthaginians/farmstead.xml</Actor>
+  </VisualActor>
 </Entity>

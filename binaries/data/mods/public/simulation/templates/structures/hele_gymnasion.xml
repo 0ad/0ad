@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
-  <Identity>
-    <Civ>hele</Civ>
-    <SpecificName>Gymnasion</SpecificName>
-    <Tooltip>Train Champion Units.</Tooltip>
-    <History>The gymnasion was a vital place in Hellenistic polises, where physical exercises were performed and social contacts established.</History>
-    <Icon>structures/gymnasion.png</Icon>
-  </Identity>
   <Cost>
     <BuildTime>220</BuildTime>
     <Resources>
@@ -15,20 +8,30 @@
       <metal>200</metal>
     </Resources>
   </Cost>
-  <Health>
-    <Max>2200</Max>
-  </Health>
-  <VisualActor>
-    <Actor>structures/hellenes/gymnasion.xml</Actor>
-    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
-  </VisualActor>
   <Footprint>
     <Square width="30.0" depth="30.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <Health>
+    <Max>2200</Max>
+  </Health>
+  <Identity>
+    <Civ>hele</Civ>
+    <SpecificName>Gymnasion</SpecificName>
+    <Tooltip>Train Champion Units.</Tooltip>
+    <History>The gymnasion was a vital place in Hellenistic polises, where physical exercises were performed and social contacts established.</History>
+    <Icon>structures/gymnasion.png</Icon>
+  </Identity>
   <Obstruction>
     <Static width="28.0" depth="28.0"/>
   </Obstruction>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_gymnasium.xml</select>
+      <constructed>interface/complete/building/complete_gymnasium.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
   <TrainingQueue>
     <Entities datatype="tokens">
       units/hele_champion_cavalry_mace
@@ -37,11 +40,8 @@
       units/hele_champion_ranged_polis
     </Entities>
   </TrainingQueue>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_gymnasium.xml</select>
-      <constructed>interface/complete/building/complete_gymnasium.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
-    </SoundGroups>
-  </Sound>
+  <VisualActor>
+    <Actor>structures/hellenes/gymnasion.xml</Actor>
+    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+  </VisualActor>
 </Entity>

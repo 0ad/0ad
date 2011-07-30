@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna">
-  <Identity>
-    <Civ>gaia</Civ>
-    <GenericName>Whale</GenericName>
-    <SpecificName>Humpback Whale</SpecificName>
-	<Tooltip>Collect food from this bountiful oceanic resource.</Tooltip>
-    <Icon>gaia/fauna_fish.png</Icon>
-  </Identity>
-  <VisualActor>
-    <Actor>fauna/whale.xml</Actor>
-  </VisualActor>
+  <Footprint>
+    <Circle radius="5.0"/>
+    <Height>2.5</Height>
+  </Footprint>
   <Health>
     <DeathType>corpse</DeathType>
     <Max>500</Max>
@@ -17,17 +11,13 @@
     <Healable>false</Healable>
     <Repairable>false</Repairable>
   </Health>
-  <UnitMotion>
-    <PassabilityClass>ship</PassabilityClass>
-    <WalkSpeed>2.0</WalkSpeed>
-    <Run>
-      <Speed>6.0</Speed>
-    </Run>
-  </UnitMotion>
-  <Footprint>
-    <Circle radius="5.0"/>
-    <Height>2.5</Height>
-  </Footprint>
+  <Identity>
+    <Civ>gaia</Civ>
+    <GenericName>Whale</GenericName>
+    <SpecificName>Humpback Whale</SpecificName>
+	<Tooltip>Collect food from this bountiful oceanic resource.</Tooltip>
+    <Icon>gaia/fauna_fish.png</Icon>
+  </Identity>
   <Obstruction>
     <Unit radius="0.1"/>
   </Obstruction>
@@ -35,6 +25,11 @@
 	<Altitude>-4.0</Altitude>
 	<Floating>true</Floating>
   </Position>
+  <ResourceSupply>
+    <KillBeforeGather>true</KillBeforeGather>
+    <Amount>2000</Amount>
+    <Type>food.fish</Type>
+  </ResourceSupply>
   <UnitAI>
     <NaturalBehaviour>skittish</NaturalBehaviour>
     <RoamDistance>20.0</RoamDistance>
@@ -44,9 +39,14 @@
     <FeedTimeMin>1000</FeedTimeMin>
     <FeedTimeMax>2000</FeedTimeMax>
   </UnitAI>
-  <ResourceSupply>
-    <KillBeforeGather>true</KillBeforeGather>
-    <Amount>2000</Amount>
-    <Type>food.fish</Type>
-  </ResourceSupply>
+  <UnitMotion>
+    <PassabilityClass>ship</PassabilityClass>
+    <WalkSpeed>2.0</WalkSpeed>
+    <Run>
+      <Speed>6.0</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>fauna/whale.xml</Actor>
+  </VisualActor>
 </Entity>

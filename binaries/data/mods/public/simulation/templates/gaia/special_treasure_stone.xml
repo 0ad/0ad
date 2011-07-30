@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_gaia_treasure">
+  <Footprint replace="">
+    <Circle radius="4.0"/>
+    <Height>2.0</Height>
+  </Footprint>
   <Identity>
     <Civ>gaia</Civ>
     <GenericName>Treasure</GenericName>
     <SpecificName>Stone Treasure</SpecificName>
     <Icon>gaia/special_treasure.png</Icon>
   </Identity>
+  <Obstruction>
+    <Static width="6.5" depth="6.5"/>
+  </Obstruction>
   <ResourceSupply>
     <Amount>300</Amount>
     <Type>treasure.stone</Type>
@@ -13,11 +20,4 @@
   <VisualActor>
     <Actor>props/special/eyecandy/stone_pile.xml</Actor>
   </VisualActor>
-  <Footprint replace="">
-    <Circle radius="4.0"/>
-    <Height>2.0</Height>
-  </Footprint>
-  <Obstruction>
-    <Static width="6.5" depth="6.5"/>
-  </Obstruction>
 </Entity>

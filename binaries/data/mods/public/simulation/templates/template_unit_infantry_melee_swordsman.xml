@@ -1,29 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee">
-  <Identity>
-    <GenericName>Infantry Swordsman</GenericName>
-    <Rollover>Weapon is basically a developed sickle. Probably from the club, to the axe, to the sickle to the sword. It was the Romans who used them to combat the long range of the sarissa. Their spears were so long they had to use two hands to wield them. In a formation they were almost impossible to maneouvre. If flanked, they were easily cut down by a sword as demonstrated by the Romans at the battle of Cynoscephalae. Generally swordsmen were well armoured, had shields, and tended to be nobles. A good sword was an expensive weapon.</Rollover>
-    <Tooltip>Bonused vs. Infantry Spearman and Infantry Javelinist.</Tooltip>
-  </Identity>
-  <Cost>
-    <Resources>
-      <metal>50</metal>
-    </Resources>
-  </Cost>
-  <Loot>
-    <metal>5</metal>
-  </Loot>
   <Armour>
     <Hack>4.0</Hack>
     <Pierce>3.0</Pierce>
     <Crush>5.0</Crush>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>6.9</WalkSpeed>
-    <Run>
-      <Speed>19.2</Speed>
-    </Run>
-  </UnitMotion>
   <Attack>
     <Melee>
       <Hack>20.0</Hack>
@@ -33,6 +14,25 @@
       <Hack>40.0</Hack>
     </Charge>
   </Attack>
+  <Cost>
+    <Resources>
+      <metal>50</metal>
+    </Resources>
+  </Cost>
+  <Identity>
+    <GenericName>Infantry Swordsman</GenericName>
+    <Rollover>Weapon is basically a developed sickle. Probably from the club, to the axe, to the sickle to the sword. It was the Romans who used them to combat the long range of the sarissa. Their spears were so long they had to use two hands to wield them. In a formation they were almost impossible to maneouvre. If flanked, they were easily cut down by a sword as demonstrated by the Romans at the battle of Cynoscephalae. Generally swordsmen were well armoured, had shields, and tended to be nobles. A good sword was an expensive weapon.</Rollover>
+    <Tooltip>Bonused vs. Infantry Spearman and Infantry Javelinist.</Tooltip>
+  </Identity>
+  <Loot>
+    <metal>5</metal>
+  </Loot>
+  <UnitMotion>
+    <WalkSpeed>6.9</WalkSpeed>
+    <Run>
+      <Speed>19.2</Speed>
+    </Run>
+  </UnitMotion>
   <Vision>
     <Range>48</Range>
   </Vision>

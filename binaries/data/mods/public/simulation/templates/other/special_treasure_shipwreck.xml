@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_gaia_treasure">
+  <Footprint replace="">
+    <Circle radius="12.0"/>
+    <Height>2.5</Height>
+  </Footprint>
   <Identity>
     <Civ>gaia</Civ>
     <GenericName>Treasure</GenericName>
@@ -7,6 +11,9 @@
     <Tooltip>A shipwreck with much loss of life. A good opportunity for any businessman.</Tooltip>
     <Icon>gaia/special_treasure.png</Icon>
   </Identity>
+  <Obstruction>
+    <Static width="20.0" depth="20.0"/>
+  </Obstruction>
   <Position>
     <Floating>true</Floating>
   </Position>
@@ -17,11 +24,4 @@
   <VisualActor>
     <Actor>props/special/eyecandy/shipwreck_hull.xml</Actor>
   </VisualActor>
-  <Footprint replace="">
-    <Circle radius="12.0"/>
-    <Height>2.5</Height>
-  </Footprint>
-  <Obstruction>
-    <Static width="20.0" depth="20.0"/>
-  </Obstruction>
 </Entity>

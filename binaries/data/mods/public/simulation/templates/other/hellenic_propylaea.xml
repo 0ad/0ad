@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
-  <Identity>
-    <Civ>hele</Civ>
-    <GenericName>Portico</GenericName>
-    <SpecificName>Propylaea</SpecificName>
-    <History>A Propylaea was used as a gate into a sacred precinct. The most famous of these is the monumental gate at the top of the Acropolis in Athens.</History>
-	<Tooltip>Add +10 to Population Cap.</Tooltip>
-    <Icon>structures/tholos.png</Icon>
-  </Identity>
+  <Armour>
+    <Hack>20.0</Hack>
+    <Pierce>40.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
+  <BuildRestrictions>
+    <Category>Special</Category>
+  </BuildRestrictions>
   <Cost>
     <PopulationBonus>10</PopulationBonus>
     <BuildTime>200</BuildTime>
@@ -18,14 +18,21 @@
       <metal>200</metal>
     </Resources>
   </Cost>
+  <Footprint>
+    <Square width="28.0" depth="32.0"/>
+    <Height>8.0</Height>
+  </Footprint>
   <Health>
     <Max>2000</Max>
   </Health>
-  <Armour>
-    <Hack>20.0</Hack>
-    <Pierce>40.0</Pierce>
-    <Crush>10.0</Crush>
-  </Armour>
+  <Identity>
+    <Civ>hele</Civ>
+    <GenericName>Portico</GenericName>
+    <SpecificName>Propylaea</SpecificName>
+    <History>A Propylaea was used as a gate into a sacred precinct. The most famous of these is the monumental gate at the top of the Acropolis in Athens.</History>
+	<Tooltip>Add +10 to Population Cap.</Tooltip>
+    <Icon>structures/tholos.png</Icon>
+  </Identity>
   <Loot>
     <xp>10</xp>
     <food>0</food>
@@ -33,14 +40,6 @@
     <stone>75</stone>
     <metal>75</metal>
   </Loot>
-  <VisualActor>
-    <Actor>structures/hellenes/propylaea.xml</Actor>
-    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
-  </VisualActor>
-  <Footprint>
-    <Square width="28.0" depth="32.0"/>
-    <Height>8.0</Height>
-  </Footprint>
   <Obstruction>
     <Static width="26.0" depth="30.0"/>
   </Obstruction>
@@ -48,7 +47,8 @@
     <Range>20</Range>
     <RetainInFog>true</RetainInFog>
   </Vision>
-  <BuildRestrictions>
-    <Category>Special</Category>
-  </BuildRestrictions>
+  <VisualActor>
+    <Actor>structures/hellenes/propylaea.xml</Actor>
+    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+  </VisualActor>
 </Entity>

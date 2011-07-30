@@ -1,28 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_hunt_aggressive">
-  <Identity>
-    <Civ>gaia</Civ>
-    <SpecificName>North African Elephant</SpecificName>
-    <Icon>gaia/fauna_elephant_north_african.png</Icon>
-  </Identity>
-  <Health>
-    <Max>200</Max>
-    <RegenRate>1</RegenRate>
-  </Health>
-  <ResourceSupply>
-    <Amount>500</Amount>
-    <Type>food.meat</Type>
-  </ResourceSupply>
-  <VisualActor>
-    <Actor>fauna/elephant_african_forest.xml</Actor>
-  </VisualActor>
-  <Footprint>
-    <Circle radius="2.6"/>
-    <Height>2.7</Height>
-  </Footprint>
-  <Obstruction>
-    <Unit radius="2.6"/>
-  </Obstruction>
+  <Armour>
+    <Hack>6.0</Hack>
+    <Pierce>8.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
   <Attack>
     <Melee>
       <Hack>20.0</Hack>
@@ -32,9 +14,27 @@
       <RepeatTime>1000</RepeatTime>
     </Melee>
   </Attack>
-  <Armour>
-    <Hack>6.0</Hack>
-    <Pierce>8.0</Pierce>
-    <Crush>10.0</Crush>
-  </Armour>
+  <Footprint>
+    <Circle radius="2.6"/>
+    <Height>2.7</Height>
+  </Footprint>
+  <Health>
+    <Max>200</Max>
+    <RegenRate>1</RegenRate>
+  </Health>
+  <Identity>
+    <Civ>gaia</Civ>
+    <SpecificName>North African Elephant</SpecificName>
+    <Icon>gaia/fauna_elephant_north_african.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Unit radius="2.6"/>
+  </Obstruction>
+  <ResourceSupply>
+    <Amount>500</Amount>
+    <Type>food.meat</Type>
+  </ResourceSupply>
+  <VisualActor>
+    <Actor>fauna/elephant_african_forest.xml</Actor>
+  </VisualActor>
 </Entity>

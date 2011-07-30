@@ -1,31 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_siege">
-  <Identity>
-    <GenericName>Siege Tower</GenericName>
-    <Tooltip>A mobile missile platform.</Tooltip>
-  </Identity>
-  <StatusBars>
-    <BarWidth>4.0</BarWidth>
-    <BarHeight>0.666</BarHeight>
-    <HeightOffset>10.0</HeightOffset>
-  </StatusBars>
-  <Cost>
-    <Population>5</Population>
-  </Cost>
-  <Health>
-    <Max>800</Max>
-  </Health>
   <Armour>
     <Hack>7.0</Hack>
     <Pierce>20.0</Pierce>
     <Crush>6.0</Crush>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>3.5</WalkSpeed>
-    <Run>
-      <Speed>8.0</Speed>
-    </Run>
-  </UnitMotion>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
@@ -38,9 +17,26 @@
       <RepeatTime>2000</RepeatTime>
     </Ranged>
   </Attack>
-  <Vision>
-    <Range>85</Range>
-  </Vision>
+  <BuildingAI>
+    <DefaultArrowCount>1</DefaultArrowCount>
+    <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
+  </BuildingAI>
+  <Cost>
+    <Population>5</Population>
+  </Cost>
+  <GarrisonHolder>
+    <Max>20</Max>
+	<EjectHealth>0.1</EjectHealth>
+	<List datatype="tokens">Support Infantry</List>
+	<BuffHeal>1</BuffHeal>
+  </GarrisonHolder>
+  <Health>
+    <Max>800</Max>
+  </Health>
+  <Identity>
+    <GenericName>Siege Tower</GenericName>
+    <Tooltip>A mobile missile platform.</Tooltip>
+  </Identity>
   <Sound>
     <SoundGroups>
       <select>attack/siege/siege_select.xml</select>
@@ -49,14 +45,18 @@
 	  <trained>attack/siege/ram_move.xml</trained>
     </SoundGroups>
   </Sound>
-  <GarrisonHolder>
-    <Max>20</Max>
-	<EjectHealth>0.1</EjectHealth>
-	<List datatype="tokens">Support Infantry</List>
-	<BuffHeal>1</BuffHeal>
-  </GarrisonHolder>
-  <BuildingAI>
-    <DefaultArrowCount>1</DefaultArrowCount>
-    <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
-  </BuildingAI>
+  <StatusBars>
+    <BarWidth>4.0</BarWidth>
+    <BarHeight>0.666</BarHeight>
+    <HeightOffset>10.0</HeightOffset>
+  </StatusBars>
+  <UnitMotion>
+    <WalkSpeed>3.5</WalkSpeed>
+    <Run>
+      <Speed>8.0</Speed>
+    </Run>
+  </UnitMotion>
+  <Vision>
+    <Range>85</Range>
+  </Vision>
 </Entity>

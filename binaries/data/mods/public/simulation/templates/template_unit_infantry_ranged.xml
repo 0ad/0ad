@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry">
-  <Identity>
-    <GenericName>Ranged</GenericName>
-    <Classes datatype="tokens">Ranged</Classes>
-  </Identity>
-  <Health>
-    <Max>90</Max>
-    <RegenRate>0.2</RegenRate>
-  </Health>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
@@ -20,6 +12,14 @@
       <RepeatTime>2000</RepeatTime>
     </Ranged>
   </Attack>
+  <Health>
+    <Max>90</Max>
+    <RegenRate>0.2</RegenRate>
+  </Health>
+  <Identity>
+    <GenericName>Ranged</GenericName>
+    <Classes datatype="tokens">Ranged</Classes>
+  </Identity>
   <Sound>
     <SoundGroups>
       <attack>attack/weapon/arrowfly.xml</attack>

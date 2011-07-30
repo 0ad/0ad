@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall_gate">
+  <Cost>
+    <BuildTime>33</BuildTime>
+  </Cost>
+  <Footprint>
+    <Square width="39.0" depth="8.0"/>
+    <Height>9.0</Height>
+  </Footprint>
+  <Health>
+    <Max>3300</Max>
+  </Health>
   <Identity>
     <Civ>hele</Civ>
     <SpecificName>Pyle</SpecificName>
     <History>(Insert history)</History>
   </Identity>
-  <Cost>
-    <BuildTime>33</BuildTime>
-  </Cost>
-  <Health>
-    <Max>3300</Max>
-  </Health>
-  <Footprint>
-    <Square width="39.0" depth="8.0"/>
-    <Height>9.0</Height>
-  </Footprint>
   <Obstruction>
     <Static width="38.0" depth="6.5"/>
   </Obstruction>

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military">
-  <Identity>
-    <GenericName>Dock</GenericName>
-    <Tooltip>Build upon a shoreline to construct naval vessels and to open sea trade.</Tooltip>
-    <Classes datatype="tokens">Town</Classes>
-    <Icon>structures/dock.png</Icon>
-  </Identity>
+  <Armour>
+    <Hack>15.0</Hack>
+    <Pierce>40.0</Pierce>
+    <Crush>20.0</Crush>
+  </Armour>
   <BuildRestrictions>
     <Category>Dock</Category>
   </BuildRestrictions>
@@ -16,39 +15,28 @@
       <wood>300</wood>
     </Resources>
   </Cost>
-  <Health>
-    <Max>2500</Max>
-  </Health>
-  <Armour>
-    <Hack>15.0</Hack>
-    <Pierce>40.0</Pierce>
-    <Crush>20.0</Crush>
-  </Armour>
-  <Position>
-	<Floating>true</Floating>
-  </Position>
-  <VisualActor>
-    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
-  </VisualActor>
   <Footprint>
     <Square width="18.0" depth="18.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <Health>
+    <Max>2500</Max>
+  </Health>
+  <Identity>
+    <GenericName>Dock</GenericName>
+    <Tooltip>Build upon a shoreline to construct naval vessels and to open sea trade.</Tooltip>
+    <Classes datatype="tokens">Town</Classes>
+    <Icon>structures/dock.png</Icon>
+  </Identity>
   <Obstruction>
     <Static width="18.0" depth="18.0"/>
   </Obstruction>
-  <TrainingQueue>
-    <Entities datatype="tokens">
-      units/{civ}_ship_fishing
-      units/{civ}_ship_merchant
-    </Entities>
-  </TrainingQueue>
+  <Position>
+	<Floating>true</Floating>
+  </Position>
   <ResourceDropsite>
     <Types>food wood stone metal</Types>
   </ResourceDropsite>
-  <Vision>
-    <Range>60</Range>
-  </Vision>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_dock.xml</select>
@@ -56,4 +44,16 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/{civ}_ship_fishing
+      units/{civ}_ship_merchant
+    </Entities>
+  </TrainingQueue>
+  <Vision>
+    <Range>60</Range>
+  </Vision>
+  <VisualActor>
+    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
+  </VisualActor>
 </Entity>

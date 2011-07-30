@@ -1,23 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_house">
-  <Identity>
-    <Civ>celt</Civ>
-    <GenericName>Homestead</GenericName>
-    <SpecificName>Caer</SpecificName>
-    <History>This was be the centre of the town, a great hall where the clan leader resided. All political matters were probably performed inside such a structure.</History>
-	<Tooltip>A Celtic homestead.</Tooltip>
-  </Identity>
-  <VisualActor>
-    <Actor>structures/celts/homestead.xml</Actor>
-    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
-  </VisualActor>
-  <Footprint replace="">
-    <Circle radius="15.0"/>
-    <Height>8.0</Height>
-  </Footprint>
-  <Obstruction>
-    <Static width="24.0" depth="24.0"/>
-  </Obstruction>
+  <Armour>
+    <Hack>20.0</Hack>
+    <Pierce>40</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
   <Cost>
     <PopulationBonus>20</PopulationBonus>
     <BuildTime>600</BuildTime>
@@ -28,17 +15,23 @@
       <metal>100</metal>
     </Resources>
   </Cost>
+  <Footprint replace="">
+    <Circle radius="15.0"/>
+    <Height>8.0</Height>
+  </Footprint>
   <Health>
     <Max>3000</Max>
   </Health>
-  <Armour>
-    <Hack>20.0</Hack>
-    <Pierce>40</Pierce>
-    <Crush>10.0</Crush>
-  </Armour>
-  <Vision>
-    <Range>80</Range>
-  </Vision>
+  <Identity>
+    <Civ>celt</Civ>
+    <GenericName>Homestead</GenericName>
+    <SpecificName>Caer</SpecificName>
+    <History>This was be the centre of the town, a great hall where the clan leader resided. All political matters were probably performed inside such a structure.</History>
+	<Tooltip>A Celtic homestead.</Tooltip>
+  </Identity>
+  <Obstruction>
+    <Static width="24.0" depth="24.0"/>
+  </Obstruction>
   <ResourceDropsite>
     <Types>food wood stone metal</Types>
   </ResourceDropsite>
@@ -49,4 +42,11 @@
       units/celt_infantry_spearman_b
     </Entities>
   </TrainingQueue>
+  <Vision>
+    <Range>80</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>structures/celts/homestead.xml</Actor>
+    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+  </VisualActor>
 </Entity>

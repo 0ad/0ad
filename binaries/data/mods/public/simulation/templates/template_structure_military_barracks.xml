@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military">
-  <Identity>
-    <GenericName>Barracks</GenericName>
-    <Tooltip>Train Citizen-Soldiers.</Tooltip>
-    <Classes datatype="tokens">Town</Classes>
-    <Icon>structures/barracks.png</Icon>
-  </Identity>
+  <Armour>
+    <Hack>15.0</Hack>
+    <Pierce>40.0</Pierce>
+    <Crush>20.0</Crush>
+  </Armour>
   <BuildRestrictions>
     <Category>Barracks</Category>
   </BuildRestrictions>
@@ -17,27 +16,28 @@
       <stone>100</stone>
     </Resources>
   </Cost>
-  <Health>
-    <Max>2000</Max>
-  </Health>
-  <Armour>
-    <Hack>15.0</Hack>
-    <Pierce>40.0</Pierce>
-    <Crush>20.0</Crush>
-  </Armour>
-  <VisualActor>
-    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
-  </VisualActor>
   <Footprint>
     <Square width="19.0" depth="19.0"/>
     <Height>5.0</Height>
   </Footprint>
+  <GarrisonHolder>
+    <Max>10</Max>
+	<EjectHealth>0.1</EjectHealth>
+	<List datatype="tokens">Infantry Cavalry</List>
+	<BuffHeal>1</BuffHeal>
+  </GarrisonHolder>
+  <Health>
+    <Max>2000</Max>
+  </Health>
+  <Identity>
+    <GenericName>Barracks</GenericName>
+    <Tooltip>Train Citizen-Soldiers.</Tooltip>
+    <Classes datatype="tokens">Town</Classes>
+    <Icon>structures/barracks.png</Icon>
+  </Identity>
   <Obstruction>
     <Static width="17.0" depth="17.0"/>
   </Obstruction>
-  <Vision>
-    <Range>40</Range>
-  </Vision>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_barracks.xml</select>
@@ -45,10 +45,10 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
-  <GarrisonHolder>
-    <Max>10</Max>
-	<EjectHealth>0.1</EjectHealth>
-	<List datatype="tokens">Infantry Cavalry</List>
-	<BuffHeal>1</BuffHeal>
-  </GarrisonHolder>
+  <Vision>
+    <Range>40</Range>
+  </Vision>
+  <VisualActor>
+    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
+  </VisualActor>
 </Entity>

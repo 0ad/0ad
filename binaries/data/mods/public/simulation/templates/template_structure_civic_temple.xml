@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic">
-  <Identity>
-    <GenericName>Temple</GenericName>
-    <Tooltip>Train physicians. (Currently a useless structure)</Tooltip>
-    <Classes datatype="tokens">Town</Classes>
-    <Icon>structures/temple.png</Icon>
-  </Identity>
+  <Armour>
+    <Hack>20.0</Hack>
+    <Pierce>40.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
+  <Auras>
+    <Heal>
+      <Radius>40</Radius>
+      <Speed>1000</Speed>
+    </Heal>
+  </Auras>
   <BuildRestrictions>
     <Category>Temple</Category>
   </BuildRestrictions>
@@ -16,27 +21,28 @@
       <stone>300</stone>
     </Resources>
   </Cost>
-  <Health>
-    <Max>2000</Max>
-  </Health>
-  <Armour>
-    <Hack>20.0</Hack>
-    <Pierce>40.0</Pierce>
-    <Crush>10.0</Crush>
-  </Armour>
-  <VisualActor>
-    <FoundationActor>structures/fndn_3x6.xml</FoundationActor>
-  </VisualActor>
   <Footprint>
     <Square width="19.0" depth="31.5"/>
     <Height>12.0</Height>
   </Footprint>
+  <GarrisonHolder>
+    <Max>15</Max>
+	<EjectHealth>0.1</EjectHealth>
+	<List datatype="tokens">Support Infantry Cavalry</List>
+	<BuffHeal>1</BuffHeal>
+  </GarrisonHolder>
+  <Health>
+    <Max>2000</Max>
+  </Health>
+  <Identity>
+    <GenericName>Temple</GenericName>
+    <Tooltip>Train physicians. (Currently a useless structure)</Tooltip>
+    <Classes datatype="tokens">Town</Classes>
+    <Icon>structures/temple.png</Icon>
+  </Identity>
   <Obstruction>
     <Static width="17.5" depth="30.0"/>
   </Obstruction>
-  <Vision>
-    <Range>60</Range>
-  </Vision>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_temple.xml</select>
@@ -49,16 +55,10 @@
       units/{civ}_support_healer
     </Entities>
   </TrainingQueue>
-  <Auras>
-    <Heal>
-      <Radius>40</Radius>
-      <Speed>1000</Speed>
-    </Heal>
-  </Auras>
-   <GarrisonHolder>
-    <Max>15</Max>
-	<EjectHealth>0.1</EjectHealth>
-	<List datatype="tokens">Support Infantry Cavalry</List>
-	<BuffHeal>1</BuffHeal>
-  </GarrisonHolder>
+  <Vision>
+    <Range>60</Range>
+  </Vision>
+  <VisualActor>
+    <FoundationActor>structures/fndn_3x6.xml</FoundationActor>
+  </VisualActor>
 </Entity>

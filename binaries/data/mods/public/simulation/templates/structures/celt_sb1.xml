@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
-  <Identity>
-    <Civ>celt</Civ>
-    <SpecificName>Ffactri</SpecificName>
-    <Tooltip>Build this to increase Farm output +15% per territory. (Currently a useless structure)</Tooltip>
-    <History>The Celts developed the first rotary flour mill.</History>
-    <Icon>structures/sb1.png</Icon>
-  </Identity>
   <Cost>
     <BuildTime>100</BuildTime>
     <PopulationBonus>2</PopulationBonus>
@@ -17,17 +10,17 @@
       <metal>0</metal>
     </Resources>
   </Cost>
-  <VisualActor>
-    <Actor>structures/celts/special.xml</Actor>
-    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
-  </VisualActor>
-  <StatusBars>
-    <HeightOffset>8.0</HeightOffset>
-  </StatusBars>
   <Footprint replace="">
     <Circle radius="9.0"/>
     <Height>6.0</Height>
   </Footprint>
+  <Identity>
+    <Civ>celt</Civ>
+    <SpecificName>Ffactri</SpecificName>
+    <Tooltip>Build this to increase Farm output +15% per territory. (Currently a useless structure)</Tooltip>
+    <History>The Celts developed the first rotary flour mill.</History>
+    <Icon>structures/sb1.png</Icon>
+  </Identity>
   <Obstruction>
     <Static width="16.0" depth="16.0"/>
   </Obstruction>
@@ -38,4 +31,11 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
+  <StatusBars>
+    <HeightOffset>8.0</HeightOffset>
+  </StatusBars>
+  <VisualActor>
+    <Actor>structures/celts/special.xml</Actor>
+    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
+  </VisualActor>
 </Entity>

@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
-  <Identity>
-    <Civ>hele</Civ>
-    <GenericName>Meeting Hall</GenericName>
-    <SpecificName>Prytaneion</SpecificName>
-    <Tooltip>Train Heroes.</Tooltip>
-    <History>The Prytaneion is the meeting place for the city elders to dine and to make swift decisions.</History>
-    <Icon>structures/tholos.png</Icon>
-  </Identity>
   <Cost>
     <BuildTime>220</BuildTime>
     <Resources>
@@ -17,19 +9,31 @@
       <metal>200</metal>
     </Resources>
   </Cost>
-  <Health>
-    <Max>2200</Max>
-  </Health>
-  <VisualActor>
-    <Actor>structures/hellenes/tholos.xml</Actor>
-  </VisualActor>
   <Footprint replace="">
     <Circle radius="10.5"/>
     <Height>8.0</Height>
   </Footprint>
+  <Health>
+    <Max>2200</Max>
+  </Health>
+  <Identity>
+    <Civ>hele</Civ>
+    <GenericName>Meeting Hall</GenericName>
+    <SpecificName>Prytaneion</SpecificName>
+    <Tooltip>Train Heroes.</Tooltip>
+    <History>The Prytaneion is the meeting place for the city elders to dine and to make swift decisions.</History>
+    <Icon>structures/tholos.png</Icon>
+  </Identity>
   <Obstruction>
     <Static width="20.0" depth="20.0"/>
   </Obstruction>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_tholos.xml</select>
+      <constructed>interface/complete/building/complete_tholos.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
   <TrainingQueue>
     <Entities datatype="tokens">
       units/hele_hero_alexander
@@ -40,11 +44,7 @@
       units/hele_hero_xenophon
     </Entities>
   </TrainingQueue>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_tholos.xml</select>
-      <constructed>interface/complete/building/complete_tholos.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
-    </SoundGroups>
-  </Sound>
+  <VisualActor>
+    <Actor>structures/hellenes/tholos.xml</Actor>
+  </VisualActor>
 </Entity>

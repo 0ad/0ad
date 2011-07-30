@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_gaia_flora_tree">
+  <Footprint>
+    <Circle radius="3.0"/>
+    <Height>3.0</Height>
+  </Footprint>
   <Identity>
     <SpecificName>Hardy Bush</SpecificName>
     <History>A bush commonly found in dry flatlands and rocky crags.</History>
@@ -11,8 +15,4 @@
   <VisualActor>
     <Actor>props/flora/bush_tempe_a.xml</Actor>
   </VisualActor>
-  <Footprint>
-    <Circle radius="3.0"/>
-    <Height>3.0</Height>
-  </Footprint>
 </Entity>

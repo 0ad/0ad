@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_herd_passive">
-  <Identity>
-    <Civ>gaia</Civ>
-    <SpecificName>Goat</SpecificName>
-    <Icon>gaia/fauna_goat.png</Icon>
-  </Identity>
   <Cost>
     <BuildTime>50</BuildTime>
     <Resources>
       <food>60</food>
     </Resources>
   </Cost>
+  <Identity>
+    <Civ>gaia</Civ>
+    <SpecificName>Goat</SpecificName>
+    <Icon>gaia/fauna_goat.png</Icon>
+  </Identity>
   <ResourceSupply>
     <Amount>120</Amount>
     <Type>food.meat</Type>

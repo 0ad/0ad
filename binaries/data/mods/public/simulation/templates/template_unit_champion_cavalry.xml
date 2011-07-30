@@ -1,41 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion">
-  <Identity>
-    <GenericName>Champion Cavalry</GenericName>
-    <Classes datatype="tokens">Cavalry</Classes>
-  </Identity>
-  <Cost>
-    <Population>2</Population>
-    <BuildTime>15</BuildTime>
-    <Resources>
-      <food>100</food>
-      <wood>0</wood>
-      <stone>0</stone>
-      <metal>0</metal>
-    </Resources>
-  </Cost>
-  <Health>
-    <Max>150</Max>
-  </Health>
-  <Stamina>
-    <Max>2500</Max>
-  </Stamina>
   <Armour>
     <Hack>6.0</Hack>
     <Pierce>6.0</Pierce>
     <Crush>5.0</Crush>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>8.5</WalkSpeed>
-    <Run>
-      <Speed>24.0</Speed>
-      <Range>1000.0</Range>
-      <RangeMin>10.0</RangeMin>
-    </Run>
-  </UnitMotion>
-  <Vision>
-    <Range>100</Range>
-  </Vision>
   <Attack>
     <Melee>
       <Hack>35.0</Hack>
@@ -52,10 +21,27 @@
       <MinRange>0.0</MinRange>
     </Charge>
   </Attack>
+  <Cost>
+    <Population>2</Population>
+    <BuildTime>15</BuildTime>
+    <Resources>
+      <food>100</food>
+      <wood>0</wood>
+      <stone>0</stone>
+      <metal>0</metal>
+    </Resources>
+  </Cost>
   <Footprint>
     <Circle radius="2.0"/>
     <Height>5.0</Height>
   </Footprint>
+  <Health>
+    <Max>150</Max>
+  </Health>
+  <Identity>
+    <GenericName>Champion Cavalry</GenericName>
+    <Classes datatype="tokens">Cavalry</Classes>
+  </Identity>
   <Obstruction>
     <Unit radius="1.0"/>
   </Obstruction>
@@ -72,4 +58,18 @@
       <trained>interface/alarm/alarm_create_cav.xml</trained>
 	</SoundGroups>
   </Sound>
+  <Stamina>
+    <Max>2500</Max>
+  </Stamina>
+  <UnitMotion>
+    <WalkSpeed>8.5</WalkSpeed>
+    <Run>
+      <Speed>24.0</Speed>
+      <Range>1000.0</Range>
+      <RangeMin>10.0</RangeMin>
+    </Run>
+  </UnitMotion>
+  <Vision>
+    <Range>100</Range>
+  </Vision>
 </Entity>

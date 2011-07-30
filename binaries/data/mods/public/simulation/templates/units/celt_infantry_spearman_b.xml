@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee_spearman">
+  <Armour>
+    <Hack>3.0</Hack>
+  </Armour>
+  <Builder>
+    <Entities datatype="tokens">
+      -structures/{civ}_fortress
+      structures/celt_kennel
+      structures/celt_sb1
+      structures/celt_fortress_b
+      structures/celt_fortress_g
+	</Entities>
+  </Builder>
   <Identity>
     <Civ>celt</Civ>
 	<SelectionGroupName>units/celt_infantry_spearman_b</SelectionGroupName>
@@ -10,9 +22,6 @@
   <Promotion>
     <Entity>units/celt_infantry_spearman_a</Entity>
   </Promotion>
-  <Armour>
-    <Hack>3.0</Hack>
-  </Armour>
   <UnitMotion>
     <WalkSpeed>7.1</WalkSpeed>
     <Run>
@@ -22,13 +31,4 @@
   <VisualActor>
     <Actor>units/celts/infantry_spearman_b.xml</Actor>
   </VisualActor>
-  <Builder>
-    <Entities datatype="tokens">
-      -structures/{civ}_fortress
-      structures/celt_kennel
-      structures/celt_sb1
-      structures/celt_fortress_b
-      structures/celt_fortress_g
-	</Entities>
-  </Builder>
 </Entity>

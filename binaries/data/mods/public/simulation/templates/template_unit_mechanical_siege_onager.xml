@@ -1,37 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_siege">
-  <Identity>
-    <GenericName>Siege Onager</GenericName>
-    <Tooltip>Bonused vs. Structures and Massed Infantry.</Tooltip>
-  </Identity>
-  <Cost>
-    <BuildTime>30</BuildTime>
-    <Resources>
-      <wood>200</wood>
-      <stone>100</stone>
-    </Resources>
-  </Cost>
-  <Loot>
-    <xp>300</xp>
-    <food>0</food>
-    <wood>20</wood>
-    <stone>10</stone>
-    <metal>0</metal>
-  </Loot>
-  <Health>
-    <Max>300</Max>
-  </Health>
   <Armour>
     <Hack>4.0</Hack>
     <Pierce>15.0</Pierce>
     <Crush>10.0</Crush>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>5.5</WalkSpeed>
-    <Run>
-      <Speed>10.0</Speed>
-    </Run>
-  </UnitMotion>
   <Attack>
     <Ranged>
       <Hack>50.0</Hack>
@@ -44,12 +17,39 @@
       <RepeatTime>5000</RepeatTime>
     </Ranged>
   </Attack>
-  <Vision>
-    <Range>90</Range>
-  </Vision>
+  <Cost>
+    <BuildTime>30</BuildTime>
+    <Resources>
+      <wood>200</wood>
+      <stone>100</stone>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>300</Max>
+  </Health>
+  <Identity>
+    <GenericName>Siege Onager</GenericName>
+    <Tooltip>Bonused vs. Structures and Massed Infantry.</Tooltip>
+  </Identity>
+  <Loot>
+    <xp>300</xp>
+    <food>0</food>
+    <wood>20</wood>
+    <stone>10</stone>
+    <metal>0</metal>
+  </Loot>
   <Sound>
     <SoundGroups>
       <select>attack/siege/siege_select.xml</select>
     </SoundGroups>
   </Sound>
+  <UnitMotion>
+    <WalkSpeed>5.5</WalkSpeed>
+    <Run>
+      <Speed>10.0</Speed>
+    </Run>
+  </UnitMotion>
+  <Vision>
+    <Range>90</Range>
+  </Vision>
 </Entity>

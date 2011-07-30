@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/hele_infantry_javelinist_b">
+  <Armour>
+    <Hack>4.0</Hack>
+    <Pierce>4.0</Pierce>
+    <Crush>4.0</Crush>
+  </Armour>
+  <Attack>
+    <Ranged>
+      <Pierce>36.0</Pierce>
+      <MaxRange>48.0</MaxRange>
+    </Ranged>
+  </Attack>
+  <Health>
+    <Max>100</Max>
+  </Health>
   <Identity>
     <Rank>Advanced</Rank>
   </Identity>
@@ -9,26 +23,12 @@
   <ResourceGatherer>
     <BaseSpeed>0.75</BaseSpeed>
   </ResourceGatherer>
-  <Health>
-    <Max>100</Max>
-  </Health>
-  <Armour>
-    <Hack>4.0</Hack>
-    <Pierce>4.0</Pierce>
-    <Crush>4.0</Crush>
-  </Armour>
   <UnitMotion>
     <WalkSpeed>6.8</WalkSpeed>
     <Run>
       <Speed>20.4</Speed>
     </Run>
   </UnitMotion>
-  <Attack>
-    <Ranged>
-      <Pierce>36.0</Pierce>
-      <MaxRange>48.0</MaxRange>
-    </Ranged>
-  </Attack>
   <VisualActor>
     <Actor>units/hellenes/infantry_javelinist_a.xml</Actor>
   </VisualActor>

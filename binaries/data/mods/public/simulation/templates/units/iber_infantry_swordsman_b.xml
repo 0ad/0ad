@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee_swordsman">
+  <Attack>
+    <Melee>
+      <Hack>22.0</Hack>
+    </Melee>
+    <Charge>
+      <Hack>44.0</Hack>
+    </Charge>
+  </Attack>
+  <Builder>
+    <Entities datatype="tokens">
+      structures/iber_sb1
+    </Entities>
+  </Builder>
+  <Cost>
+    <Resources>
+      <metal>60</metal>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>iber</Civ>
 	<SelectionGroupName>units/iber_infantry_swordsman_b</SelectionGroupName>
@@ -13,22 +31,4 @@
   <VisualActor>
     <Actor>units/iberians/infantry_swordsman_b.xml</Actor>
   </VisualActor>
-  <Cost>
-    <Resources>
-      <metal>60</metal>
-    </Resources>
-  </Cost>
-  <Builder>
-    <Entities datatype="tokens">
-      structures/iber_sb1
-    </Entities>
-  </Builder>
-  <Attack>
-    <Melee>
-      <Hack>22.0</Hack>
-    </Melee>
-    <Charge>
-      <Hack>44.0</Hack>
-    </Charge>
-  </Attack>
 </Entity>

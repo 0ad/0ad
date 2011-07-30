@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_javelinist">
+  <Auras>
+    <Courage>
+      <Radius>20</Radius>
+      <Bonus>5</Bonus>
+    </Courage>
+  </Auras>
   <Identity>
     <Civ>hele</Civ>
     <SpecificName>Xenophon</SpecificName>
@@ -16,12 +22,6 @@
   <Vision>
     <Range>88</Range>
   </Vision>
-  <Auras>
-    <Courage>
-      <Radius>20</Radius>
-      <Bonus>5</Bonus>
-    </Courage>
-  </Auras>
   <VisualActor>
     <Actor>units/hellenes/xenophon.xml</Actor>
   </VisualActor>

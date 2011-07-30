@@ -1,34 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry">
-  <Identity>
-    <GenericName>Hero Cavalry Spearman</GenericName>
-    <Classes datatype="tokens">Hero Cavalry</Classes>
-  </Identity>
-  <Cost>
-    <Resources>
-      <food>100</food>
-	  <wood>200</wood>
-	  <stone>0</stone>
-      <metal>50</metal>
-    </Resources>
-  </Cost>
-  <Loot>
-    <xp>500</xp>
-    <food>10</food>
-    <wood>20</wood>
-    <stone>0</stone>
-    <metal>5</metal>
-  </Loot>
   <Armour>
     <Hack>10.0</Hack>
     <Pierce>14.0</Pierce>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>8.5</WalkSpeed>
-    <Run>
-      <Speed>24.0</Speed>
-    </Run>
-  </UnitMotion>
   <Attack>
     <Melee>
       <Hack>10.0</Hack>
@@ -44,4 +19,29 @@
       <MaxRange>6.0</MaxRange>
     </Charge>
   </Attack>
+  <Cost>
+    <Resources>
+      <food>100</food>
+	  <wood>200</wood>
+	  <stone>0</stone>
+      <metal>50</metal>
+    </Resources>
+  </Cost>
+  <Identity>
+    <GenericName>Hero Cavalry Spearman</GenericName>
+    <Classes datatype="tokens">Hero Cavalry</Classes>
+  </Identity>
+  <Loot>
+    <xp>500</xp>
+    <food>10</food>
+    <wood>20</wood>
+    <stone>0</stone>
+    <metal>5</metal>
+  </Loot>
+  <UnitMotion>
+    <WalkSpeed>8.5</WalkSpeed>
+    <Run>
+      <Speed>24.0</Speed>
+    </Run>
+  </UnitMotion>
 </Entity>

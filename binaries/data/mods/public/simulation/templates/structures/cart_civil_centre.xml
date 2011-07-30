@@ -5,9 +5,6 @@
     <SpecificName>Merkaz</SpecificName>
     <History>Carthiginian's History</History>
   </Identity>
-  <VisualActor>
-    <Actor>structures/carthaginians/civil_centre.xml</Actor>
-  </VisualActor>
   <TrainingQueue>
     <Entities datatype="tokens">
       units/cart_infantry_spearman_b
@@ -15,4 +12,7 @@
       units/cart_cavalry_javelinist_b
     </Entities>
   </TrainingQueue>
+  <VisualActor>
+    <Actor>structures/carthaginians/civil_centre.xml</Actor>
+  </VisualActor>
 </Entity>

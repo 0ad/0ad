@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_hunt_defensive">
+  <Armour>
+    <Hack>6.0</Hack>
+    <Pierce>8.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>15.0</Hack>
+      <Pierce>10.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>4.0</MaxRange>
+      <RepeatTime>1000</RepeatTime>
+    </Melee>
+  </Attack>
+  <Footprint>
+    <Circle radius="2.3"/>
+    <Height>2.5</Height>
+  </Footprint>
   <Identity>
     <Civ>gaia</Civ>
     <SpecificName>Walrus</SpecificName>
@@ -12,22 +30,4 @@
   <VisualActor>
     <Actor>fauna/walrus.xml</Actor>
   </VisualActor>
-  <Footprint>
-    <Circle radius="2.3"/>
-    <Height>2.5</Height>
-  </Footprint>
-  <Attack>
-    <Melee>
-      <Hack>15.0</Hack>
-      <Pierce>10.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>4.0</MaxRange>
-      <RepeatTime>1000</RepeatTime>
-    </Melee>
-  </Attack>
-  <Armour>
-    <Hack>6.0</Hack>
-    <Pierce>8.0</Pierce>
-    <Crush>10.0</Crush>
-  </Armour>
 </Entity>

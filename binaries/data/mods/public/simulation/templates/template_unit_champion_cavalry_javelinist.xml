@@ -1,28 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry">
-  <Identity>
-    <GenericName>Champion Cavalry Skirmisher</GenericName>
-    <Classes datatype="tokens">Ranged</Classes>
-  </Identity>
-  <Cost>
-    <Resources>
-      <food>100</food>
-      <wood>80</wood>
-    </Resources>
-  </Cost>
   <Armour>
     <Hack>6.0</Hack>
     <Pierce>6.0</Pierce>
     <Crush>5.0</Crush>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>10.1</WalkSpeed>
-    <Run>
-      <Speed>28.8</Speed>
-      <Range>1000.0</Range>
-      <RangeMin>10.0</RangeMin>
-    </Run>
-  </UnitMotion>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
@@ -35,10 +17,20 @@
       <RepeatTime>2000</RepeatTime>
     </Ranged>
   </Attack>
+  <Cost>
+    <Resources>
+      <food>100</food>
+      <wood>80</wood>
+    </Resources>
+  </Cost>
   <Footprint>
     <Circle radius="2.0"/>
     <Height>5.0</Height>
   </Footprint>
+  <Identity>
+    <GenericName>Champion Cavalry Skirmisher</GenericName>
+    <Classes datatype="tokens">Ranged</Classes>
+  </Identity>
   <Obstruction>
     <Unit radius="1.0"/>
   </Obstruction>
@@ -48,4 +40,12 @@
       <attack>attack/weapon/arrowfly.xml</attack>
     </SoundGroups>
   </Sound>
+  <UnitMotion>
+    <WalkSpeed>10.1</WalkSpeed>
+    <Run>
+      <Speed>28.8</Speed>
+      <Range>1000.0</Range>
+      <RangeMin>10.0</RangeMin>
+    </Run>
+  </UnitMotion>
 </Entity>

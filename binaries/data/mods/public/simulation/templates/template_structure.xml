@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_entity_full">
-  <Identity>
-    <GenericName>Structure</GenericName>
-    <Classes datatype="tokens">Structure ConquestCritical</Classes>
-  </Identity>
+  <Armour>
+    <Hack>10.0</Hack>
+    <Pierce>42.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
+  <BuildingAI>
+    <DefaultArrowCount>0</DefaultArrowCount>
+    <GarrisonArrowMultiplier>0</GarrisonArrowMultiplier>
+  </BuildingAI>
   <BuildRestrictions>
     <PlacementType>standard</PlacementType>
     <Territory>allied</Territory>
   </BuildRestrictions>
-  <Minimap>
-    <Type>structure</Type>
-  </Minimap>
   <Cost>
     <Population>0</Population>
     <PopulationBonus>0</PopulationBonus>
@@ -22,46 +24,25 @@
       <metal>0</metal>
     </Resources>
   </Cost>
-  <Health>
-    <DeathType>corpse</DeathType>
-    <RegenRate>0</RegenRate>
-    <Healable>false</Healable>
-    <Repairable>true</Repairable>
-  </Health>
   <Decay>
     <Inactive/>
     <DelayTime>0.0</DelayTime>
     <SinkRate>4.0</SinkRate>
     <SinkAccel>9.8</SinkAccel>
   </Decay>
-  <Armour>
-    <Hack>10.0</Hack>
-    <Pierce>42.0</Pierce>
-    <Crush>10.0</Crush>
-  </Armour>
-  <StatusBars>
-    <BarWidth>6.0</BarWidth>
-    <BarHeight>0.6</BarHeight>
-    <HeightOffset>12.0</HeightOffset>
-  </StatusBars>
-  <OverlayRenderer/>
-  <Vision>
-    <Range>40</Range>
-    <RetainInFog>true</RetainInFog>
-    <AlwaysVisible>false</AlwaysVisible>
-  </Vision>  
-  <RallyPoint/>
-  <Sound>
-    <SoundGroups>
-      <select>interface/select/building/sel_universal.xml</select>
-      <constructed>interface/complete/building/complete_universal.xml</constructed>
-      <death>attack/destruction/building_collapse_large.xml</death>
-    </SoundGroups>
-  </Sound>
-  <BuildingAI>
-    <DefaultArrowCount>0</DefaultArrowCount>
-    <GarrisonArrowMultiplier>0</GarrisonArrowMultiplier>
-  </BuildingAI>
+  <Health>
+    <DeathType>corpse</DeathType>
+    <RegenRate>0</RegenRate>
+    <Healable>false</Healable>
+    <Repairable>true</Repairable>
+  </Health>
+  <Identity>
+    <GenericName>Structure</GenericName>
+    <Classes datatype="tokens">Structure ConquestCritical</Classes>
+  </Identity>
+  <Minimap>
+    <Type>structure</Type>
+  </Minimap>
   <Obstruction>
     <Active>true</Active>
     <BlockMovement>true</BlockMovement>
@@ -71,6 +52,25 @@
     <DisableBlockMovement>false</DisableBlockMovement>
     <DisableBlockPathfinding>false</DisableBlockPathfinding>
   </Obstruction>
+  <OverlayRenderer/>
+  <RallyPoint/>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_universal.xml</select>
+      <constructed>interface/complete/building/complete_universal.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <StatusBars>
+    <BarWidth>6.0</BarWidth>
+    <BarHeight>0.6</BarHeight>
+    <HeightOffset>12.0</HeightOffset>
+  </StatusBars>
+  <Vision>
+    <Range>40</Range>
+    <RetainInFog>true</RetainInFog>
+    <AlwaysVisible>false</AlwaysVisible>
+  </Vision>
   <VisualActor>
     <SilhouetteDisplay>false</SilhouetteDisplay>
     <SilhouetteOccluder>true</SilhouetteOccluder>

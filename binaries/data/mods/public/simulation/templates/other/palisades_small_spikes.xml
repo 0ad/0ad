@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall">
+  <Cost>
+    <BuildTime>12</BuildTime>
+  </Cost>
+  <Footprint>
+    <Square width="3.0" depth="11.0"/>
+    <Height>2.0</Height>
+  </Footprint>
+  <Health>
+    <Max>200</Max>
+  </Health>
   <Identity>
     <Civ>gaia</Civ>
     <SpecificName>Spikes Small</SpecificName>
     <History>A cheap, quick defensive structure constructed with sharpened branches</History>
     <Icon>gaia/special_palisade.png</Icon>
   </Identity>
-  <Cost>
-    <BuildTime>12</BuildTime>
-  </Cost>
-  <Health>
-    <Max>200</Max>
-  </Health>
-  <Footprint>
-    <Square width="3.0" depth="11.0"/>
-    <Height>2.0</Height>
-  </Footprint>
   <Obstruction>
     <Static width="3.0" depth="11.0"/>
   </Obstruction>

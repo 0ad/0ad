@@ -1,27 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry_spearman">
-  <Identity>
-    <Civ>hele</Civ>
-	<GenericName>Companion Cavalry</GenericName>
-    <SpecificName>Hetairos</SpecificName>
-    <Tooltip>Bonused vs. Cavalry and Archers. Weak vs. Champion Units.</Tooltip>
-    <History>The Hetairoi, or Companion cavalry, were a preferred general stand in Macedonian armies. Macedonian noblemen made up this elite cavalry unit, which was key to victory for Macedonian kings starting with Philip II, who increased their number from 600 to several thousand.</History>
-    <Icon>units/hele_champion_cavalry_mace.png</Icon>
-  </Identity>
-  <Cost>
-    <Resources>
-      <metal>20</metal>
-    </Resources>
-  </Cost>
   <Armour>
     <Hack>10.0</Hack>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>8.8</WalkSpeed>
-    <Run>
-      <Speed>20.75</Speed>
-    </Run>
-  </UnitMotion>
   <Attack>
     <Melee>
       <MaxRange>6.0</MaxRange>
@@ -33,6 +14,25 @@
       <MaxRange>6.0</MaxRange>
     </Charge>
   </Attack>
+  <Cost>
+    <Resources>
+      <metal>20</metal>
+    </Resources>
+  </Cost>
+  <Identity>
+    <Civ>hele</Civ>
+	<GenericName>Companion Cavalry</GenericName>
+    <SpecificName>Hetairos</SpecificName>
+    <Tooltip>Bonused vs. Cavalry and Archers. Weak vs. Champion Units.</Tooltip>
+    <History>The Hetairoi, or Companion cavalry, were a preferred general stand in Macedonian armies. Macedonian noblemen made up this elite cavalry unit, which was key to victory for Macedonian kings starting with Philip II, who increased their number from 600 to several thousand.</History>
+    <Icon>units/hele_champion_cavalry_mace.png</Icon>
+  </Identity>
+  <UnitMotion>
+    <WalkSpeed>8.8</WalkSpeed>
+    <Run>
+      <Speed>20.75</Speed>
+    </Run>
+  </UnitMotion>
   <Vision>
     <Range>110</Range>
   </Vision>

@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry">
-  <Identity>
-    <GenericName>Melee Infantry</GenericName>
-    <Classes datatype="tokens">Melee</Classes>
-  </Identity>
-  <Health>
-    <Max>100</Max>
-    <RegenRate>0.2</RegenRate>
-  </Health>
-  <Cost>
-    <BuildTime>10</BuildTime>
-  </Cost>
   <Attack>
     <Melee>
       <Hack>1.0</Hack>
@@ -27,4 +16,15 @@
       <MinRange>0.0</MinRange>
     </Charge>
   </Attack>
+  <Cost>
+    <BuildTime>10</BuildTime>
+  </Cost>
+  <Health>
+    <Max>100</Max>
+    <RegenRate>0.2</RegenRate>
+  </Health>
+  <Identity>
+    <GenericName>Melee Infantry</GenericName>
+    <Classes datatype="tokens">Melee</Classes>
+  </Identity>
 </Entity>

@@ -1,32 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit">
-  <Identity>
-    <Civ>hele</Civ>
-    <SpecificName>P-51 Mustang</SpecificName>
-    <History>This may be anachronistic.</History>
-    <Tooltip>A World War 2 American fighter plane.</Tooltip>
-    <Icon>units/global_mustang.png</Icon>
-    <Formations datatype="tokens" replace=""></Formations>
-  </Identity>
-  <VisualActor>
-    <Actor>units/global/plane.xml</Actor>
-  </VisualActor>
-    <Vision>
-    <Range>100</Range>
-  </Vision>
-  <Obstruction disable=""/>
-  <UnitMotion disable=""/>
-  <Position>
-    <TurnRate>1.0</TurnRate>
-  </Position>
-  <UnitMotionFlying>
-    <MaxSpeed>40.0</MaxSpeed>
-    <AccelRate>15.0</AccelRate>
-    <TurnRate>1.0</TurnRate>
-    <OvershootTime>2.0</OvershootTime>
-    <FlyingHeight>50.0</FlyingHeight>
-    <ClimbRate>5.0</ClimbRate>
-  </UnitMotionFlying>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
@@ -39,4 +12,31 @@
       <RepeatTime>2000</RepeatTime>
     </Ranged>
   </Attack>
+  <Identity>
+    <Civ>hele</Civ>
+    <SpecificName>P-51 Mustang</SpecificName>
+    <History>This may be anachronistic.</History>
+    <Tooltip>A World War 2 American fighter plane.</Tooltip>
+    <Icon>units/global_mustang.png</Icon>
+    <Formations datatype="tokens" replace=""/>
+  </Identity>
+  <Obstruction disable=""/>
+  <Position>
+    <TurnRate>1.0</TurnRate>
+  </Position>
+  <UnitMotion disable=""/>
+  <UnitMotionFlying>
+    <MaxSpeed>40.0</MaxSpeed>
+    <AccelRate>15.0</AccelRate>
+    <TurnRate>1.0</TurnRate>
+    <OvershootTime>2.0</OvershootTime>
+    <FlyingHeight>50.0</FlyingHeight>
+    <ClimbRate>5.0</ClimbRate>
+  </UnitMotionFlying>
+  <Vision>
+    <Range>100</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>units/global/plane.xml</Actor>
+  </VisualActor>
 </Entity>

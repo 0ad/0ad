@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_gaia_treasure">
+  <Footprint>
+    <Square width="2.5" depth="3.5"/>
+    <Height>12.0</Height>
+  </Footprint>
   <Identity>
     <Civ>gaia</Civ>
     <GenericName>Treasure</GenericName>
     <SpecificName>Food Treasure</SpecificName>
     <Icon>gaia/special_treasure.png</Icon>
   </Identity>
+  <Obstruction>
+    <Static width="2.0" depth="3.0"/>
+  </Obstruction>
   <ResourceSupply>
     <Amount>300</Amount>
     <Type>treasure.food</Type>
@@ -13,11 +20,4 @@
   <VisualActor>
     <Actor>props/special/eyecandy/produce_bin_a.xml</Actor>
   </VisualActor>
-  <Footprint >
-    <Square width="2.5" depth="3.5"/>
-    <Height>12.0</Height>
-  </Footprint>
-  <Obstruction>
-    <Static width="2.0" depth="3.0"/>
-  </Obstruction>
 </Entity>

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic">
-  <Identity>
-    <GenericName>House</GenericName>
-    <Tooltip>Increase the population limit. Train Female Citizens.</Tooltip>
-    <Classes datatype="tokens">Village</Classes>
-    <Icon>structures/house.png</Icon>
-  </Identity>
+  <Armour>
+    <Hack>10.0</Hack>
+    <Pierce>40.0</Pierce>
+    <Crush>5.0</Crush>
+  </Armour>
   <BuildRestrictions>
     <Category>House</Category>
   </BuildRestrictions>
@@ -16,32 +15,22 @@
       <wood>100</wood>
     </Resources>
   </Cost>
-  <Health>
-    <Max>800</Max>
-  </Health>
-  <Armour>
-    <Hack>10.0</Hack>
-    <Pierce>40.0</Pierce>
-    <Crush>5.0</Crush>
-  </Armour>
-  <VisualActor>
-    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
-  </VisualActor>
   <Footprint>
     <Square width="16.0" depth="16.0"/>
     <Height>5.0</Height>
   </Footprint>
+  <Health>
+    <Max>800</Max>
+  </Health>
+  <Identity>
+    <GenericName>House</GenericName>
+    <Tooltip>Increase the population limit. Train Female Citizens.</Tooltip>
+    <Classes datatype="tokens">Village</Classes>
+    <Icon>structures/house.png</Icon>
+  </Identity>
   <Obstruction>
     <Static width="14.0" depth="14.0"/>
   </Obstruction>
-  <StatusBars>
-    <BarWidth>6.0</BarWidth>
-    <BarHeight>0.6</BarHeight>
-    <HeightOffset>8.0</HeightOffset>
-  </StatusBars>
-  <Vision>
-    <Range>28</Range>
-  </Vision>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_house.xml</select>
@@ -49,13 +38,24 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
+  <StatusBars>
+    <BarWidth>6.0</BarWidth>
+    <BarHeight>0.6</BarHeight>
+    <HeightOffset>8.0</HeightOffset>
+  </StatusBars>
+  <TerritoryInfluence>
+    <Radius>64</Radius>
+    <Weight>65536</Weight>
+  </TerritoryInfluence>
   <TrainingQueue>
     <Entities datatype="tokens">
       units/{civ}_support_female_citizen
     </Entities>
   </TrainingQueue>
-  <TerritoryInfluence>
-    <Radius>64</Radius>
-    <Weight>65536</Weight>
-  </TerritoryInfluence>
+  <Vision>
+    <Range>28</Range>
+  </Vision>
+  <VisualActor>
+    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
+  </VisualActor>
 </Entity>

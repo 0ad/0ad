@@ -1,33 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry">
-  <Identity>
-    <GenericName>Hero</GenericName>
-    <Classes datatype="tokens">Hero Infantry Melee</Classes>
-  </Identity>
-  <Cost>
-    <Resources>
-      <wood>100</wood>
-      <metal>100</metal>
-    </Resources>
-  </Cost>
-  <Loot>
-    <wood>10</wood>
-    <metal>10</metal>
-  </Loot>
-  <Stamina>
-    <Max>1200</Max>
-  </Stamina>
   <Armour>
     <Hack>12.0</Hack>
     <Pierce>11.0</Pierce>
     <Crush>11.0</Crush>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>4.5</WalkSpeed>
-    <Run>
-      <Speed>12.0</Speed>
-    </Run>
-  </UnitMotion>
   <Attack>
     <Melee>
       <Hack>12.0</Hack>
@@ -41,4 +18,27 @@
       <MaxRange>7.0</MaxRange>
     </Charge>
   </Attack>
+  <Cost>
+    <Resources>
+      <wood>100</wood>
+      <metal>100</metal>
+    </Resources>
+  </Cost>
+  <Identity>
+    <GenericName>Hero</GenericName>
+    <Classes datatype="tokens">Hero Infantry Melee</Classes>
+  </Identity>
+  <Loot>
+    <wood>10</wood>
+    <metal>10</metal>
+  </Loot>
+  <Stamina>
+    <Max>1200</Max>
+  </Stamina>
+  <UnitMotion>
+    <WalkSpeed>4.5</WalkSpeed>
+    <Run>
+      <Speed>12.0</Speed>
+    </Run>
+  </UnitMotion>
 </Entity>

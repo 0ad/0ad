@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical">
+  <Cost>
+    <Population>3</Population>
+  </Cost>
   <Identity>
     <GenericName>Siege</GenericName>
 	<Classes datatype="tokens">Siege</Classes>
@@ -7,9 +10,6 @@
   <Position>
     <Anchor>pitch-roll</Anchor>
   </Position>
-  <Cost>
-    <Population>3</Population>
-  </Cost>
   <Sound>
     <SoundGroups>
       <select>attack/siege/siege_select.xml</select>

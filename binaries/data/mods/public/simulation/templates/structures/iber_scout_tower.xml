@@ -1,26 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_scout_tower">
-  <Identity>
-    <Civ>iber</Civ>
-    <SpecificName>Torre Iberica</SpecificName>
-    <History>These towers were quite large, high and monolithic stonework; being cylindrical lent them added strength. They were initially built at mountain passes to control access through them or on high places to provide overview and defense of surrounding terrain. They may have also been used as 'toll stations' along trading routes. Sometimes they were even built 'right out in the middle of nowhere' on the flatlands, but always with the idea of defensively controlling terrain.</History>
-  </Identity>
-  <VisualActor>
-    <Actor>structures/iberians/scout_tower.xml</Actor>
-    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
-  </VisualActor>
-  <StatusBars>
-    <BarWidth>6.0</BarWidth>
-    <BarHeight>0.6</BarHeight>
-    <HeightOffset>17.0</HeightOffset>
-  </StatusBars>
-  <Footprint replace="">
-    <Circle radius="8.0"/>
-    <Height>12.0</Height>
-  </Footprint>
-  <Obstruction>
-    <Static width="14.0" depth="14.0"/>
-  </Obstruction>
   <Cost>
     <PopulationBonus>5</PopulationBonus>
     <BuildTime>200</BuildTime>
@@ -29,10 +8,31 @@
       <stone>250</stone>
     </Resources>
   </Cost>
-  <Health>
-    <Max>2000</Max>
-  </Health>
+  <Footprint replace="">
+    <Circle radius="8.0"/>
+    <Height>12.0</Height>
+  </Footprint>
   <GarrisonHolder>
     <Max>10</Max>
   </GarrisonHolder>
+  <Health>
+    <Max>2000</Max>
+  </Health>
+  <Identity>
+    <Civ>iber</Civ>
+    <SpecificName>Torre Iberica</SpecificName>
+    <History>These towers were quite large, high and monolithic stonework; being cylindrical lent them added strength. They were initially built at mountain passes to control access through them or on high places to provide overview and defense of surrounding terrain. They may have also been used as 'toll stations' along trading routes. Sometimes they were even built 'right out in the middle of nowhere' on the flatlands, but always with the idea of defensively controlling terrain.</History>
+  </Identity>
+  <Obstruction>
+    <Static width="14.0" depth="14.0"/>
+  </Obstruction>
+  <StatusBars>
+    <BarWidth>6.0</BarWidth>
+    <BarHeight>0.6</BarHeight>
+    <HeightOffset>17.0</HeightOffset>
+  </StatusBars>
+  <VisualActor>
+    <Actor>structures/iberians/scout_tower.xml</Actor>
+    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
+  </VisualActor>
 </Entity>

@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity>
+  <!--
+  <VisualActor>
+    <Actor>props/special/common/waypoint_flag.xml</Actor>
+  </VisualActor>
+  -->
+  <Formation/>
   <Position>
     <Altitude>0</Altitude>
     <Anchor>upright</Anchor>
     <Floating>false</Floating>
     <TurnRate>6.0</TurnRate>
   </Position>
-  <Formation/>
   <UnitAI>
     <DefaultStance>aggressive</DefaultStance>
     <FleeDistance>12.0</FleeDistance>
@@ -18,9 +23,4 @@
     <PassabilityClass>default</PassabilityClass>
     <CostClass>default</CostClass>
   </UnitMotion>
-  <!--
-  <VisualActor>
-    <Actor>props/special/common/waypoint_flag.xml</Actor>
-  </VisualActor>
-  -->
 </Entity>

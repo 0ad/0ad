@@ -1,38 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_siege">
-  <Identity>
-    <GenericName>Siege Ballista</GenericName>
-    <Tooltip>Bonused vs. Infantry and Cavalry units.</Tooltip>
-  </Identity>
-  <Cost>
-    <BuildTime>20</BuildTime>
-    <Resources>
-      <wood>100</wood>
-      <metal>100</metal>
-    </Resources>
-	<Population>2</Population>
-  </Cost>
-  <Loot>
-    <xp>200</xp>
-    <food>0</food>
-    <wood>10</wood>
-    <stone>0</stone>
-    <metal>10</metal>
-  </Loot>
-  <Health>
-    <Max>200</Max>
-  </Health>
   <Armour>
     <Hack>4.0</Hack>
     <Pierce>10.0</Pierce>
     <Crush>2.0</Crush>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>6.5</WalkSpeed>
-    <Run>
-      <Speed>12.0</Speed>
-    </Run>
-  </UnitMotion>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
@@ -45,12 +17,40 @@
       <RepeatTime>3000</RepeatTime>
     </Ranged>
   </Attack>
-  <Vision>
-    <Range>80</Range>
-  </Vision>
+  <Cost>
+    <BuildTime>20</BuildTime>
+    <Resources>
+      <wood>100</wood>
+      <metal>100</metal>
+    </Resources>
+	<Population>2</Population>
+  </Cost>
+  <Health>
+    <Max>200</Max>
+  </Health>
+  <Identity>
+    <GenericName>Siege Ballista</GenericName>
+    <Tooltip>Bonused vs. Infantry and Cavalry units.</Tooltip>
+  </Identity>
+  <Loot>
+    <xp>200</xp>
+    <food>0</food>
+    <wood>10</wood>
+    <stone>0</stone>
+    <metal>10</metal>
+  </Loot>
   <Sound>
     <SoundGroups>
       <select>attack/siege/siege_select.xml</select>
     </SoundGroups>
   </Sound>
+  <UnitMotion>
+    <WalkSpeed>6.5</WalkSpeed>
+    <Run>
+      <Speed>12.0</Speed>
+    </Run>
+  </UnitMotion>
+  <Vision>
+    <Range>80</Range>
+  </Vision>
 </Entity>

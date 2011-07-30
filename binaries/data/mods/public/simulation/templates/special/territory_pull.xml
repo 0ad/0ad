@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity>
-  <Position>
-    <Altitude>0</Altitude>
-    <Anchor>upright</Anchor>
-    <Floating>false</Floating>
-    <TurnRate>6.0</TurnRate>
-  </Position>
   <Footprint>
     <Square width="64" depth="8"/>
     <Height>9.0</Height>
   </Footprint>
-  <Selectable/>
   <Obstruction>
     <Static width="64" depth="8"/>
     <Active>true</Active>
@@ -22,14 +15,21 @@
     <DisableBlockPathfinding>false</DisableBlockPathfinding>
   </Obstruction>
   <Ownership/>
-  <VisualActor>
-    <SilhouetteDisplay>false</SilhouetteDisplay>
-    <SilhouetteOccluder>true</SilhouetteOccluder>
-    <Actor>structures/hellenes/wall_med.xml</Actor>
-  </VisualActor>
+  <Position>
+    <Altitude>0</Altitude>
+    <Anchor>upright</Anchor>
+    <Floating>false</Floating>
+    <TurnRate>6.0</TurnRate>
+  </Position>
+  <Selectable/>
   <TerritoryInfluence>
     <OverrideCost>0</OverrideCost>
     <Weight>0</Weight>
     <Radius>0</Radius>
   </TerritoryInfluence>
+  <VisualActor>
+    <SilhouetteDisplay>false</SilhouetteDisplay>
+    <SilhouetteOccluder>true</SilhouetteOccluder>
+    <Actor>structures/hellenes/wall_med.xml</Actor>
+  </VisualActor>
 </Entity>

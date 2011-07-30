@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_gaia_flora_tree">
+  <Footprint>
+    <Circle radius="2.5"/>
+    <Height>10.0</Height>
+  </Footprint>
   <Identity>
     <SpecificName>Apple Tree</SpecificName>
     <History>Apple trees bear delicious fruit and are bountiful.</History>
     <Icon>gaia/flora_tree_apple.png</Icon>
   </Identity>
+  <Obstruction>
+    <Unit radius="0.9"/>
+  </Obstruction>
   <ResourceSupply>
     <Amount>300</Amount>
     <Type>food.fruit</Type>
@@ -12,11 +19,4 @@
   <VisualActor>
     <Actor>flora/trees/apple_bloom.xml</Actor>
   </VisualActor>
-  <Footprint>
-    <Circle radius="2.5"/>
-    <Height>10.0</Height>
-  </Footprint>
-  <Obstruction>
-    <Unit radius="0.9"/>
-  </Obstruction>
 </Entity>

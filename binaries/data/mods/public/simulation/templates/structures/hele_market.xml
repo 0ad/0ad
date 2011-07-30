@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic_market">
-  <Identity>
-    <Civ>hele</Civ>
-    <SpecificName>Emporion</SpecificName>
-    <History>Most Hellenic cities were centers of trade. The Emporion is the Hellenic marketplace, where commerce and trading occur. Economic technologies may be researched here as well.</History>
-  </Identity>
   <Cost>
     <BuildTime>165</BuildTime>
   </Cost>
   <Health>
     <Max>1650</Max>
   </Health>
+  <Identity>
+    <Civ>hele</Civ>
+    <SpecificName>Emporion</SpecificName>
+    <History>Most Hellenic cities were centers of trade. The Emporion is the Hellenic marketplace, where commerce and trading occur. Economic technologies may be researched here as well.</History>
+  </Identity>
   <VisualActor>
     <Actor>structures/hellenes/market.xml</Actor>
   </VisualActor>

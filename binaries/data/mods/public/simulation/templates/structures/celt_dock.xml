@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_dock">
+  <Cost>
+    <PopulationBonus>2</PopulationBonus>
+  </Cost>
+  <Footprint>
+    <Square width="12.0" depth="24.0"/>
+    <Height>8.0</Height>
+  </Footprint>
   <Identity>
     <Civ>celt</Civ>
     <SpecificName>Crannog</SpecificName>
     <History>A crannog (or crannoge) is the name given in Scotland and Ireland to an artificial island or natural island, used for a settlement. The name can also be used to refer to wooden platforms erected on shallow loch floors, although understandably few remains of this sort have been found. The choice of an island as a home is thought to have been for defence as well as the availability of food in the form of fish nearby.</History>
   </Identity>
-  <Cost>
-    <PopulationBonus>2</PopulationBonus>
-  </Cost>
-  <VisualActor>
-    <Actor>structures/celts/dock_new.xml</Actor>
-  </VisualActor>
-  <Footprint>
-    <Square width="12.0" depth="24.0"/>
-    <Height>8.0</Height>
-  </Footprint>
   <Obstruction>
     <Static width="10.0" depth="22.0"/>
   </Obstruction>
@@ -23,4 +20,7 @@
       units/celt_ship_trireme
     </Entities>
   </TrainingQueue>
+  <VisualActor>
+    <Actor>structures/celts/dock_new.xml</Actor>
+  </VisualActor>
 </Entity>

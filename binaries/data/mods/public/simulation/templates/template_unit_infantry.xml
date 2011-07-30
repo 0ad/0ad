@@ -1,67 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit">
-  <Identity>
-    <GenericName>Infantry</GenericName>
-    <Classes datatype="tokens">Infantry CitizenSoldier Organic</Classes>
-    <Rank>Basic</Rank>
-  </Identity>
-  <Promotion>
-    <RequiredXp>100</RequiredXp>
-  </Promotion>
-  <Cost>
-    <BuildTime>9</BuildTime>
-    <Resources>
-      <food>50</food>
-      <wood>0</wood>
-      <stone>0</stone>
-      <metal>0</metal>
-    </Resources>
-  </Cost>
-  <Loot>
-    <xp>100</xp>
-    <food>5</food>
-    <wood>0</wood>
-    <stone>0</stone>
-    <metal>0</metal>
-  </Loot>
-  <Looter/>
-  <ResourceGatherer>
-    <MaxDistance>2.0</MaxDistance>
-    <BaseSpeed>1.0</BaseSpeed>
-    <Rates>
-      <food.fish>0.5</food.fish>
-      <food.fruit>0.5</food.fruit>
-      <food.grain>0.5</food.grain>
-      <food.meat>2</food.meat>
-	  <wood.tree>1</wood.tree>
-	  <wood.ruins>10</wood.ruins>
-      <stone.rock>1</stone.rock>
-	  <stone.ruins>10</stone.ruins>
-      <metal.ore>1</metal.ore>
-    </Rates>
-  </ResourceGatherer>
-  <Health>
-    <Max>100</Max>
-    <RegenRate>0.2</RegenRate>
-  </Health>
-  <Stamina>
-    <Max>1000</Max>
-  </Stamina>
   <Armour>
     <Hack>1.0</Hack>
     <Pierce>1.0</Pierce>
     <Crush>9.0</Crush>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>7.5</WalkSpeed>
-    <Run>
-      <Speed>17.5</Speed>
-    </Run>
-    <CostClass>infantry</CostClass>
-  </UnitMotion>
-  <Vision>
-    <Range>80</Range>
-  </Vision>
   <Builder>
     <Rate>1.0</Rate>
     <Entities datatype="tokens">
@@ -82,6 +25,50 @@
       structures/{civ}_fortress
     </Entities>
   </Builder>
+  <Cost>
+    <BuildTime>9</BuildTime>
+    <Resources>
+      <food>50</food>
+      <wood>0</wood>
+      <stone>0</stone>
+      <metal>0</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>100</Max>
+    <RegenRate>0.2</RegenRate>
+  </Health>
+  <Identity>
+    <GenericName>Infantry</GenericName>
+    <Classes datatype="tokens">Infantry CitizenSoldier Organic</Classes>
+    <Rank>Basic</Rank>
+  </Identity>
+  <Loot>
+    <xp>100</xp>
+    <food>5</food>
+    <wood>0</wood>
+    <stone>0</stone>
+    <metal>0</metal>
+  </Loot>
+  <Looter/>
+  <Promotion>
+    <RequiredXp>100</RequiredXp>
+  </Promotion>
+  <ResourceGatherer>
+    <MaxDistance>2.0</MaxDistance>
+    <BaseSpeed>1.0</BaseSpeed>
+    <Rates>
+      <food.fish>0.5</food.fish>
+      <food.fruit>0.5</food.fruit>
+      <food.grain>0.5</food.grain>
+      <food.meat>2</food.meat>
+	  <wood.tree>1</wood.tree>
+	  <wood.ruins>10</wood.ruins>
+      <stone.rock>1</stone.rock>
+	  <stone.ruins>10</stone.ruins>
+      <metal.ore>1</metal.ore>
+    </Rates>
+  </ResourceGatherer>
   <Sound>
     <SoundGroups>
       <select>voice/hellenes/civ/civ_male_select.xml</select>
@@ -102,4 +89,17 @@
       <trained>actor/singlesteps/steps_gravel.xml</trained>
     </SoundGroups>
   </Sound>
+  <Stamina>
+    <Max>1000</Max>
+  </Stamina>
+  <UnitMotion>
+    <WalkSpeed>7.5</WalkSpeed>
+    <Run>
+      <Speed>17.5</Speed>
+    </Run>
+    <CostClass>infantry</CostClass>
+  </UnitMotion>
+  <Vision>
+    <Range>80</Range>
+  </Vision>
 </Entity>

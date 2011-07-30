@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_hunt_skittish">
+  <Footprint>
+    <Circle radius="0.75"/>
+    <Height>1.0</Height>
+  </Footprint>
   <Identity>
     <Civ>gaia</Civ>
     <SpecificName>Rabbit</SpecificName>
@@ -9,14 +13,10 @@
     <Amount>50</Amount>
     <Type>food.meat</Type>
   </ResourceSupply>
-  <VisualActor>
-    <Actor>fauna/rabbit1.xml</Actor>
-  </VisualActor>
   <StatusBars>
     <HeightOffset>3.0</HeightOffset>
   </StatusBars>
-  <Footprint>
-    <Circle radius="0.75"/>
-    <Height>1.0</Height>
-  </Footprint>
+  <VisualActor>
+    <Actor>fauna/rabbit1.xml</Actor>
+  </VisualActor>
 </Entity>

@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_swordsman">
+  <Attack>
+    <Melee>
+      <Hack>30.0</Hack>
+    </Melee>
+  </Attack>
+  <Cost>
+    <Resources>
+      <metal>225</metal>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>iber</Civ>
     <SpecificName>Caros</SpecificName>
@@ -9,14 +19,4 @@
   <VisualActor>
     <Actor>units/iberians/hero_caros.xml</Actor>
   </VisualActor>
-  <Cost>
-    <Resources>
-      <metal>225</metal>
-    </Resources>
-  </Cost>
-  <Attack>
-    <Melee>
-      <Hack>30.0</Hack>
-    </Melee>
-  </Attack>
 </Entity>

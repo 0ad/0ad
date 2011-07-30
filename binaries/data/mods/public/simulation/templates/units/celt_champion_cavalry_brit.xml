@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry_javelinist">
-  <Identity>
-    <Civ>celt</Civ>
-    <SpecificName>Brythonic Carbanto</SpecificName>
-    <Tooltip>Bonus vs. Infantry. High trample damage.</Tooltip>
-    <History>The Britons were one of the last European peoples to use two-horse chariots in combat. They had two iron-rimmed wheels and a flat riding platform that typically carried a driver and a warrior. Useless as shock weapons against tightly packed troops, they were useful for running down individual soldiers and as a stable mount to launch javelins from. The heads of defeated opponents often adorned the chassis to show the warriors prowess.</History>
-    <Icon>units/celt_champion_cavalry_brit.png</Icon>
-  </Identity>
+  <Armour>
+    <Hack>5.0</Hack>
+    <Crush>12.0</Crush>
+  </Armour>
   <Cost>
     <Population>4</Population>
     <BuildTime>20</BuildTime>
@@ -16,13 +13,23 @@
       <metal>100</metal>
     </Resources>
   </Cost>
+  <Footprint replace="">
+    <Square width="4.5" depth="9.0"/>
+    <Height>5.0</Height>
+  </Footprint>
   <Health>
     <Max>200</Max>
   </Health>
-  <Armour>
-    <Hack>5.0</Hack>
-    <Crush>12.0</Crush>
-  </Armour>
+  <Identity>
+    <Civ>celt</Civ>
+    <SpecificName>Brythonic Carbanto</SpecificName>
+    <Tooltip>Bonus vs. Infantry. High trample damage.</Tooltip>
+    <History>The Britons were one of the last European peoples to use two-horse chariots in combat. They had two iron-rimmed wheels and a flat riding platform that typically carried a driver and a warrior. Useless as shock weapons against tightly packed troops, they were useful for running down individual soldiers and as a stable mount to launch javelins from. The heads of defeated opponents often adorned the chassis to show the warriors prowess.</History>
+    <Icon>units/celt_champion_cavalry_brit.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Unit radius="1.5"/>
+  </Obstruction>
   <UnitMotion>
     <WalkSpeed>10.5</WalkSpeed>
     <Run>
@@ -32,11 +39,4 @@
   <VisualActor>
     <Actor>units/celts/champion_unit_4.xml</Actor>
   </VisualActor>
-  <Footprint replace="">
-    <Square width="4.5" depth="9.0"/>
-    <Height>5.0</Height>
-  </Footprint>
-  <Obstruction>
-    <Unit radius="1.5"/>
-  </Obstruction>
 </Entity>

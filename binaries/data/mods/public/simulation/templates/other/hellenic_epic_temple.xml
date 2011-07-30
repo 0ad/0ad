@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="structures/hele_temple">
-  <Identity>
-    <Civ>hele</Civ>
-    <GenericName>Epic Temple</GenericName>
-    <SpecificName>Naos</SpecificName>
-    <History>The Hellenes built marvelous temples in order to honour their polytheistic pantheon. While all gods were venerated, a specific patron deity was supposed to watch over each polis.</History>
-  </Identity>
   <Cost>
     <BuildTime>300</BuildTime>
     <Resources>
@@ -15,9 +9,19 @@
       <metal>500</metal>
     </Resources>
   </Cost>
+  <Footprint>
+    <Square width="28.0" depth="58.0"/>
+    <Height>12.0</Height>
+  </Footprint>
   <Health>
     <Max>5000</Max>
   </Health>
+  <Identity>
+    <Civ>hele</Civ>
+    <GenericName>Epic Temple</GenericName>
+    <SpecificName>Naos</SpecificName>
+    <History>The Hellenes built marvelous temples in order to honour their polytheistic pantheon. While all gods were venerated, a specific patron deity was supposed to watch over each polis.</History>
+  </Identity>
   <Loot>
     <xp>50</xp>
     <food>0</food>
@@ -25,18 +29,14 @@
     <stone>500</stone>
     <metal>500</metal>
   </Loot>
-  <VisualActor>
-    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
-    <Actor>structures/hellenes/temple_epic.xml</Actor>
-  </VisualActor>
-  <Footprint>
-    <Square width="28.0" depth="58.0"/>
-    <Height>12.0</Height>
-  </Footprint>
   <Obstruction>
     <Static width="27.0" depth="57.0"/>
   </Obstruction>
   <Vision>
     <Range>80</Range>
   </Vision>
+  <VisualActor>
+    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+    <Actor>structures/hellenes/temple_epic.xml</Actor>
+  </VisualActor>
 </Entity>

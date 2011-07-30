@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_temple">
+  <Cost>
+    <Resources>
+      <stone>400</stone>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="17.0" depth="30.0"/>
+    <Height>12.0</Height>
+  </Footprint>
   <Identity>
     <Civ>cart</Civ>
     <SpecificName>Miqdá</SpecificName>
     <History>What little we know of the Carthaginian religion has be pieced together from scattered sources. Tanit, a fertility goddess, was one of two principle gods in the Carthaginian pantheon, the other being her consort Ba'al, a deity of Phoenician origin.</History>
     <Tooltip>Train Priestesses. Train Sacred Band pikemen.</Tooltip>
   </Identity>
-  <Cost>
-    <Resources>
-      <stone>400</stone>
-    </Resources>
-  </Cost>
-  <VisualActor>
-    <Actor>structures/carthaginians/temple_big.xml</Actor>
-  </VisualActor>
-  <Footprint>
-    <Square width="17.0" depth="30.0"/>
-    <Height>12.0</Height>
-  </Footprint>
   <Obstruction>
     <Static width="17.0" depth="30.0"/>
   </Obstruction>
@@ -26,4 +23,7 @@
       units/cart_champion_infantry
     </Entities>
   </TrainingQueue>
+  <VisualActor>
+    <Actor>structures/carthaginians/temple_big.xml</Actor>
+  </VisualActor>
 </Entity>

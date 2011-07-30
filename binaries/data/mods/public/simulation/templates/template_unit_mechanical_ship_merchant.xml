@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_ship">
-  <Identity>
-    <GenericName>Merchantman</GenericName>
-    <Tooltip>Gather profitable aquatic treasures.</Tooltip>
-  </Identity>
+  <Armour>
+    <Hack>10.0</Hack>
+    <Pierce>15.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
   <Cost>
     <Resources>
       <wood>0</wood>
       <metal>100</metal>
     </Resources>
   </Cost>
+  <GarrisonHolder>
+    <Max>15</Max>
+	<EjectHealth>0.1</EjectHealth>
+	<List datatype="tokens">Support Infantry Cavalry</List>
+	<BuffHeal>1</BuffHeal>
+  </GarrisonHolder>
   <Health>
     <Max>200</Max>
   </Health>
+  <Identity>
+    <GenericName>Merchantman</GenericName>
+    <Tooltip>Gather profitable aquatic treasures.</Tooltip>
+  </Identity>
   <ResourceGatherer>
     <MaxDistance>12.0</MaxDistance>
     <Capacities>
@@ -22,23 +33,12 @@
       <metal>50</metal>
     </Capacities>
   </ResourceGatherer>
-  <UnitMotion>
-    <WalkSpeed>10.5</WalkSpeed>
-  </UnitMotion>
-  <Armour>
-    <Hack>10.0</Hack>
-    <Pierce>15.0</Pierce>
-    <Crush>10.0</Crush>
-  </Armour>
   <StatusBars>
     <BarWidth>6.0</BarWidth>
     <BarHeight>0.5</BarHeight>
     <HeightOffset>6.0</HeightOffset>
   </StatusBars>
-  <GarrisonHolder>
-    <Max>15</Max>
-	<EjectHealth>0.1</EjectHealth>
-	<List datatype="tokens">Support Infantry Cavalry</List>
-	<BuffHeal>1</BuffHeal>
-  </GarrisonHolder>
+  <UnitMotion>
+    <WalkSpeed>10.5</WalkSpeed>
+  </UnitMotion>
 </Entity>

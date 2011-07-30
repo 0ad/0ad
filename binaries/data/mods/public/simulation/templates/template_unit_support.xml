@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit">
+  <Cost>
+    <BuildTime>15</BuildTime>
+  </Cost>
+  <Health>
+    <RegenRate>0.2</RegenRate>
+  </Health>
   <Identity>
     <GenericName>Support</GenericName>
     <Classes datatype="tokens">Support Organic</Classes>
   </Identity>
-  <Minimap>
-    <Type>support</Type>
-  </Minimap>
-  <UnitAI>
-    <DefaultStance>passive</DefaultStance>
-  </UnitAI>
-  <Cost>
-    <BuildTime>15</BuildTime>
-  </Cost>
   <Loot>
     <xp>10</xp>
     <food>1</food>
@@ -20,12 +17,15 @@
     <stone>1</stone>
     <metal>1</metal>
   </Loot>
-  <Health>
-    <RegenRate>0.2</RegenRate>
-  </Health>
+  <Minimap>
+    <Type>support</Type>
+  </Minimap>
   <Sound>
     <SoundGroups>
       <trained>interface/alarm/alarm_create_worker.xml</trained>
     </SoundGroups>
   </Sound>
+  <UnitAI>
+    <DefaultStance>passive</DefaultStance>
+  </UnitAI>
 </Entity>

@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/hele_cavalry_javelinist_a">
-  <Identity>
-    <Rank>Elite</Rank>
-  </Identity>
-  <ResourceGatherer>
-    <BaseSpeed>0.5</BaseSpeed>
-  </ResourceGatherer>
-  <Health>
-    <Max>140</Max>
-  </Health>
   <Armour>
     <Hack>5.0</Hack>
     <Pierce>5.0</Pierce>
     <Crush>4.0</Crush>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>9.6</WalkSpeed>
-    <Run>
-      <Speed>28.8</Speed>
-    </Run>
-  </UnitMotion>
   <Attack>
     <Ranged>
       <Pierce>37.0</Pierce>
       <MaxRange>52</MaxRange>
     </Ranged>
   </Attack>
+  <Health>
+    <Max>140</Max>
+  </Health>
+  <Identity>
+    <Rank>Elite</Rank>
+  </Identity>
+  <Promotion disable=""/>
+  <ResourceGatherer>
+    <BaseSpeed>0.5</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>9.6</WalkSpeed>
+    <Run>
+      <Speed>28.8</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/hellenes/cavalry_javelinist_e.xml</Actor>
   </VisualActor>
-  <Promotion disable=""/>
 </Entity>

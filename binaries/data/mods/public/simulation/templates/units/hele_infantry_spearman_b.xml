@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee_spearman">
+  <Armour>
+    <Pierce>7.0</Pierce>
+  </Armour>
+  <Attack>
+    <Melee>
+      <MaxRange>6.0</MaxRange>
+    </Melee>
+    <Charge>
+      <MaxRange>6.0</MaxRange>
+    </Charge>
+  </Attack>
+  <Builder>
+    <Entities datatype="tokens">
+      structures/hele_gymnasion
+      structures/hele_theatron
+      structures/hele_prytaneion
+    </Entities>
+  </Builder>
+  <Cost>
+    <Resources>
+      <wood>60</wood>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>hele</Civ>
 	<SelectionGroupName>units/hele_infantry_spearman_b</SelectionGroupName>
@@ -13,33 +36,10 @@ Bonused vs. Cavalry Swordsmen and Cavalry Spearmen.</Tooltip>
   <Promotion>
     <Entity>units/hele_infantry_spearman_a</Entity>
   </Promotion>
-  <Cost>
-    <Resources>
-      <wood>60</wood>
-    </Resources>
-  </Cost>
   <Vision>
     <Range>88</Range>
   </Vision>
-  <Armour>
-    <Pierce>7.0</Pierce>
-  </Armour>
-  <Attack>
-    <Melee>
-      <MaxRange>6.0</MaxRange>
-    </Melee>
-    <Charge>
-      <MaxRange>6.0</MaxRange>
-    </Charge>
-  </Attack>
   <VisualActor>
     <Actor>units/hellenes/infantry_spearman_b.xml</Actor>
   </VisualActor>
-  <Builder>
-    <Entities datatype="tokens">
-      structures/hele_gymnasion
-      structures/hele_theatron
-      structures/hele_prytaneion
-    </Entities>
-  </Builder>
 </Entity>

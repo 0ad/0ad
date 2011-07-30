@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_resource_corral">
+  <Cost>
+    <BuildTime>11</BuildTime>
+  </Cost>
+  <Footprint>
+    <Square width="17.0" depth="17.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Health>
+    <Max>110</Max>
+  </Health>
   <Identity>
     <Civ>hele</Civ>
     <SpecificName>Stavlos</SpecificName>
     <History>A place for a farmer to pen his animals. Garrison a sheep, goat, or cow here to gain a trickle of the food resource. Garrisoning an animal here also "fattens" them so that they may be slaughtered and gathered for a quick burst of food.</History>
   </Identity>
-  <Cost>
-    <BuildTime>11</BuildTime>
-  </Cost>
-  <Health>
-    <Max>110</Max>
-  </Health>
+  <Obstruction>
+    <Static width="14.0" depth="14.0"/>
+  </Obstruction>
   <TrainingQueue>
     <Entities datatype="tokens">
       gaia/fauna_goat
@@ -20,11 +27,4 @@
     <Actor>structures/hellenes/corral.xml</Actor>
     <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
   </VisualActor>
-  <Footprint>
-    <Square width="17.0" depth="17.0"/>
-    <Height>8.0</Height>
-  </Footprint>
-  <Obstruction>
-    <Static width="14.0" depth="14.0"/>
-  </Obstruction>
 </Entity>

@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
+  <Armour>
+    <Hack>15.0</Hack>
+    <Pierce>20.0</Pierce>
+    <Crush>20.0</Crush>
+  </Armour>
+  <BuildRestrictions>
+    <Category>Special</Category>
+  </BuildRestrictions>
+  <Footprint>
+    <Square width="4.5" depth="4.5"/>
+    <Height>10.0</Height>
+  </Footprint>
+  <Health>
+    <Max>1000</Max>
+  </Health>
   <Identity>
     <Civ>gaia</Civ>
     <GenericName>Obelisk</GenericName>
@@ -7,14 +22,6 @@
     <History>A monumental ornamental structure built by the Egyptians of old.</History>
     <Icon>gaia/special_obelisk.png</Icon>
   </Identity>
-  <Health>
-    <Max>1000</Max>
-  </Health>
-  <Armour>
-    <Hack>15.0</Hack>
-    <Pierce>20.0</Pierce>
-    <Crush>20.0</Crush>
-  </Armour>
   <Loot>
     <xp>1</xp>
     <food>0</food>
@@ -22,13 +29,6 @@
     <stone>200</stone>
     <metal>200</metal>
   </Loot>
-  <VisualActor>
-    <Actor>props/special/eyecandy/obelisk.xml</Actor>
-  </VisualActor>
-  <Footprint>
-    <Square width="4.5" depth="4.5"/>
-    <Height>10.0</Height>
-  </Footprint>
   <Obstruction>
     <Static width="4.0" depth="4.0"/>
   </Obstruction>
@@ -36,7 +36,7 @@
     <Range>12</Range>
     <RetainInFog>true</RetainInFog>
   </Vision>
-  <BuildRestrictions>
-    <Category>Special</Category>
-  </BuildRestrictions>
+  <VisualActor>
+    <Actor>props/special/eyecandy/obelisk.xml</Actor>
+  </VisualActor>
 </Entity>

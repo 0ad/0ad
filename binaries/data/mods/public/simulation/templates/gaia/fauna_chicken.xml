@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_hunt_passive">
+  <Footprint>
+    <Circle radius="0.75"/>
+    <Height>1.5</Height>
+  </Footprint>
+  <Health>
+    <Max>5</Max>
+  </Health>
   <Identity>
     <Civ>gaia</Civ>
     <SpecificName>Chicken</SpecificName>
@@ -9,19 +16,15 @@
     <Amount>40</Amount>
     <Type>food.meat</Type>
   </ResourceSupply>
-  <VisualActor>
-    <Actor>fauna/chicken.xml</Actor>
-  </VisualActor>
-  <Health>
-    <Max>5</Max>
-  </Health>
+  <Sound>
+    <SoundGroups>
+      <panic>actor/fauna/animal/chickens.xml</panic>
+      <select>actor/fauna/animal/chickens.xml</select>
+    </SoundGroups>
+  </Sound>
   <StatusBars>
     <HeightOffset>3.0</HeightOffset>
   </StatusBars>
-  <Footprint>
-    <Circle radius="0.75"/>
-    <Height>1.5</Height>
-  </Footprint>
   <UnitAI>
     <RoamDistance>4.0</RoamDistance>
     <FleeDistance>12.0</FleeDistance>
@@ -36,10 +39,7 @@
       <Speed>6.0</Speed>
     </Run>
   </UnitMotion>
-  <Sound>
-    <SoundGroups>
-      <panic>actor/fauna/animal/chickens.xml</panic>
-      <select>actor/fauna/animal/chickens.xml</select>
-    </SoundGroups>
-  </Sound>
+  <VisualActor>
+    <Actor>fauna/chicken.xml</Actor>
+  </VisualActor>
 </Entity>

@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_hunt">
-  <Identity>
-  </Identity>
-  <UnitAI>
-    <NaturalBehaviour>aggressive</NaturalBehaviour>
-  </UnitAI>
   <Attack>
     <Melee>
       <Hack>1.0</Hack>
@@ -14,4 +9,9 @@
       <RepeatTime>1000</RepeatTime>
     </Melee>
   </Attack>
+  <Identity>
+  </Identity>
+  <UnitAI>
+    <NaturalBehaviour>aggressive</NaturalBehaviour>
+  </UnitAI>
 </Entity>

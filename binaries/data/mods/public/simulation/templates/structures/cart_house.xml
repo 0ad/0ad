@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_house">
-  <Identity>
-    <Civ>cart</Civ>
-    <SpecificName>Bayit</SpecificName>
-    <History>Housing was generally built of adobe or sandstone then plastered with stucco. Flat roofs predominate, few windows, arched doorways in evidence, kind of a blend of Achaemenian and Mediterranean styles with some tiled roofs. In the biggest cities, especially Carthage and such as Utica, housing was in flat-roofed structures rising as high as 6 and 7 stories.</History>
-  </Identity>
-  <VisualActor>
-    <Actor>structures/carthaginians/house.xml</Actor>
-  </VisualActor>
   <Cost>
     <PopulationBonus>10</PopulationBonus>
     <BuildTime>120</BuildTime>
@@ -15,14 +7,22 @@
       <wood>150</wood>
     </Resources>
   </Cost>
-  <Health>
-    <Max>1200</Max>
-  </Health>
   <Footprint>
     <Square width="14.5" depth="14.5"/>
     <Height>5.0</Height>
   </Footprint>
+  <Health>
+    <Max>1200</Max>
+  </Health>
+  <Identity>
+    <Civ>cart</Civ>
+    <SpecificName>Bayit</SpecificName>
+    <History>Housing was generally built of adobe or sandstone then plastered with stucco. Flat roofs predominate, few windows, arched doorways in evidence, kind of a blend of Achaemenian and Mediterranean styles with some tiled roofs. In the biggest cities, especially Carthage and such as Utica, housing was in flat-roofed structures rising as high as 6 and 7 stories.</History>
+  </Identity>
   <Obstruction>
     <Static width="13.0" depth="13.0"/>
   </Obstruction>
+  <VisualActor>
+    <Actor>structures/carthaginians/house.xml</Actor>
+  </VisualActor>
 </Entity>

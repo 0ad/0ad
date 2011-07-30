@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_ship_quinquereme">
+  <Footprint>
+    <Square width="8.0" depth="48.0"/>
+    <Height>8.0</Height>
+  </Footprint>
   <Identity>
     <Civ>rome</Civ>
     <SpecificName>Quinquereme</SpecificName>
@@ -8,8 +12,4 @@
   <VisualActor>
     <Actor>structures/romans/quinquereme.xml</Actor>
   </VisualActor>
-  <Footprint>
-    <Square width="8.0" depth="48.0"/>
-    <Height>8.0</Height>
-  </Footprint>
 </Entity>

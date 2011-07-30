@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry">
-  <Identity>
-    <GenericName>Melee Cavalry</GenericName>
-  </Identity>
   <Attack>
     <Melee>
       <Hack>5.0</Hack>
@@ -19,4 +16,7 @@
       <MinRange>0.0</MinRange>
     </Charge>
   </Attack>
+  <Identity>
+    <GenericName>Melee Cavalry</GenericName>
+  </Identity>
 </Entity>

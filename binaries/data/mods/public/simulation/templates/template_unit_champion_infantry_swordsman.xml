@@ -1,28 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry">
-  <Identity>
-    <GenericName>Champion Infantry Swordsman</GenericName>
-    <Classes datatype="tokens">Melee</Classes>
-  </Identity>
-  <Cost>
-    <Resources>
-      <food>50</food>
-      <metal>80</metal>
-    </Resources>
-  </Cost>
   <Armour>
     <Hack>9.0</Hack>
     <Pierce>6.0</Pierce>
     <Crush>8.0</Crush>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>6.1</WalkSpeed>
-    <Run>
-      <Speed>16.8</Speed>
-      <Range>600.0</Range>
-      <RangeMin>5.0</RangeMin>
-    </Run>
-  </UnitMotion>
   <Attack>
     <Melee>
       <Hack>23.0</Hack>
@@ -39,6 +21,16 @@
       <MinRange>0.0</MinRange>
     </Charge>
   </Attack>
+  <Cost>
+    <Resources>
+      <food>50</food>
+      <metal>80</metal>
+    </Resources>
+  </Cost>
+  <Identity>
+    <GenericName>Champion Infantry Swordsman</GenericName>
+    <Classes datatype="tokens">Melee</Classes>
+  </Identity>
   <Sound>
     <SoundGroups>
       <select>voice/hellenes/civ/civ_male_select.xml</select>
@@ -52,4 +44,12 @@
       <death>actor/human/death/death.xml</death>
     </SoundGroups>
   </Sound>
+  <UnitMotion>
+    <WalkSpeed>6.1</WalkSpeed>
+    <Run>
+      <Speed>16.8</Speed>
+      <Range>600.0</Range>
+      <RangeMin>5.0</RangeMin>
+    </Run>
+  </UnitMotion>
 </Entity>

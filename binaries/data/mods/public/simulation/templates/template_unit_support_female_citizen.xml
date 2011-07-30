@@ -1,16 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_support">
+  <Armour>
+    <Hack>1.0</Hack>
+    <Pierce>1.0</Pierce>
+    <Crush>5.0</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>6.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>4.0</MaxRange>
+      <RepeatTime>1000</RepeatTime>
+    </Melee>
+  </Attack>
+  <Auras>
+    <Allure>
+      <Radius>25</Radius>
+    </Allure>
+    <Infidelity>
+      <Radius>10</Radius>
+      <Time>10</Time>
+    </Infidelity>
+  </Auras>
+  <Builder>
+    <Rate>1.0</Rate>
+    <Entities datatype="tokens">
+	  structures/{civ}_house
+      structures/{civ}_mill
+      structures/{civ}_farmstead
+      structures/{civ}_field
+      structures/{civ}_corral
+      structures/{civ}_temple
+      structures/{civ}_market
+      structures/{civ}_civil_centre
+    </Entities>
+  </Builder>
+  <Cost>
+    <Resources>
+      <food>50</food>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>75</Max>
+    <RegenRate>0.3</RegenRate>
+  </Health>
   <Identity>
     <GenericName>Female Citizen</GenericName>
     <History>Women in the ancient world took on a variety of roles - from leadership (Celts) to servant (Greeks). Women are hard workers, the economic backbone of any civilisation. In history, it was typical when all the males (capable of fighting) were killed for the females, children, and elderly to be sold as slaves.</History>
     <Tooltip>Gather resources, build civic structures, and inspire nearby males to work faster.</Tooltip>
     <Classes datatype="tokens">Worker</Classes>
   </Identity>
-  <Cost>
-    <Resources>
-      <food>50</food>
-    </Resources>
-  </Cost>
   <ResourceGatherer>
     <MaxDistance>2.0</MaxDistance>
     <BaseSpeed>1.0</BaseSpeed>
@@ -26,60 +66,6 @@
       <metal.ore>0.75</metal.ore>
     </Rates>
   </ResourceGatherer>
-  <Health>
-    <Max>75</Max>
-    <RegenRate>0.3</RegenRate>
-  </Health>
-  <Stamina>
-    <Max>500</Max>
-  </Stamina>
-  <Armour>
-    <Hack>1.0</Hack>
-    <Pierce>1.0</Pierce>
-    <Crush>5.0</Crush>
-  </Armour>
-  <Attack>
-    <Melee>
-      <Hack>6.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>4.0</MaxRange>
-      <RepeatTime>1000</RepeatTime>
-    </Melee>
-  </Attack>
-  <UnitMotion>
-    <WalkSpeed>6.5</WalkSpeed>
-    <Run>
-      <Speed>8.0</Speed>
-      <Range>150.0</Range>
-      <RangeMin>0.0</RangeMin>
-    </Run>
-  </UnitMotion>
-  <Vision>
-    <Range>60</Range>
-  </Vision>
-  <Builder>
-    <Rate>1.0</Rate>
-    <Entities datatype="tokens">
-	  structures/{civ}_house
-      structures/{civ}_mill
-      structures/{civ}_farmstead
-      structures/{civ}_field
-      structures/{civ}_corral
-      structures/{civ}_temple
-      structures/{civ}_market
-      structures/{civ}_civil_centre
-    </Entities>
-  </Builder>
-  <Auras>
-    <Allure>
-      <Radius>25</Radius>
-    </Allure>
-    <Infidelity>
-      <Radius>10</Radius>
-      <Time>10</Time>
-    </Infidelity>
-  </Auras>
   <Sound>
     <SoundGroups>
 	  <select>voice/hellenes/civ/civ_female_select.xml</select>
@@ -97,4 +83,18 @@
       <gather_ore>resource/mining/mining.xml</gather_ore>
     </SoundGroups>
   </Sound>
+  <Stamina>
+    <Max>500</Max>
+  </Stamina>
+  <UnitMotion>
+    <WalkSpeed>6.5</WalkSpeed>
+    <Run>
+      <Speed>8.0</Speed>
+      <Range>150.0</Range>
+      <RangeMin>0.0</RangeMin>
+    </Run>
+  </UnitMotion>
+  <Vision>
+    <Range>60</Range>
+  </Vision>
 </Entity>

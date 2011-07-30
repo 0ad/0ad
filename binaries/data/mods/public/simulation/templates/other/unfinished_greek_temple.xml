@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_gaia_ruins">
+  <Footprint replace="">
+    <Square width="19.0" depth="31.5"/>
+    <Height>12.0</Height>
+  </Footprint>
   <Identity>
     <Civ>hele</Civ>
     <GenericName>Ruins</GenericName>
@@ -11,13 +15,6 @@
   <Loot>
     <xp>10</xp>
   </Loot>
-  <VisualActor>
-    <Actor>props/special/eyecandy/greek_temple_unfinished.xml</Actor>
-  </VisualActor>
-  <Footprint replace="">
-    <Square width="19.0" depth="31.5"/>
-    <Height>12.0</Height>
-  </Footprint>
   <Obstruction>
     <Static width="17.5" depth="30.0"/>
   </Obstruction>
@@ -25,4 +22,7 @@
     <Range>40</Range>
     <RetainInFog>true</RetainInFog>
   </Vision>
+  <VisualActor>
+    <Actor>props/special/eyecandy/greek_temple_unfinished.xml</Actor>
+  </VisualActor>
 </Entity>

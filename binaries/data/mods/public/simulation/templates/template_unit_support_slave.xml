@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_support">
-  <Identity>
-    <GenericName>Slave</GenericName>
-    <Icon>units/global_slave.png</Icon>
-	<Tooltip>Econ unit with a finite life span.</Tooltip>
-  </Identity>
+  <Armour>
+    <Hack>2.0</Hack>
+    <Pierce>2.0</Pierce>
+    <Crush>2.0</Crush>
+  </Armour>
+  <Builder>
+    <Rate>0.5</Rate>
+    <Entities datatype="tokens">
+      structures/{civ}_house
+      structures/{civ}_mill
+      structures/{civ}_farmstead
+      structures/{civ}_field
+      structures/{civ}_corral
+      structures/{civ}_temple
+      structures/{civ}_market
+      structures/{civ}_civil_centre
+      structures/{civ}_barracks
+      structures/{civ}_dock
+      structures/{civ}_scout_tower
+      structures/{civ}_wall
+      structures/{civ}_wall_tower
+      structures/{civ}_wall_gate
+      structures/{civ}_fortress
+    </Entities>
+  </Builder>
   <Cost>
     <Population>0</Population>
     <BuildTime>20</BuildTime>
@@ -18,6 +38,11 @@
   <Health>
     <Healable>false</Healable>
   </Health>
+  <Identity>
+    <GenericName>Slave</GenericName>
+    <Icon>units/global_slave.png</Icon>
+	<Tooltip>Econ unit with a finite life span.</Tooltip>
+  </Identity>
   <Loot>
     <xp>1</xp>
     <food>0</food>
@@ -40,39 +65,6 @@
 	  <treasure disable=""/>
     </Rates>
   </ResourceGatherer>
-  <Armour>
-    <Hack>2.0</Hack>
-    <Pierce>2.0</Pierce>
-    <Crush>2.0</Crush>
-  </Armour>
-  <UnitMotion>
-    <WalkSpeed>6.5</WalkSpeed>
-    <Run>
-      <Speed>15.0</Speed>
-      <Range>1000.0</Range>
-      <RangeMin>8.0</RangeMin>
-    </Run>
-  </UnitMotion>
-  <Builder>
-    <Rate>0.5</Rate>
-    <Entities datatype="tokens">
-      structures/{civ}_house
-      structures/{civ}_mill
-      structures/{civ}_farmstead
-      structures/{civ}_field
-      structures/{civ}_corral
-      structures/{civ}_temple
-      structures/{civ}_market
-      structures/{civ}_civil_centre
-      structures/{civ}_barracks
-      structures/{civ}_dock
-      structures/{civ}_scout_tower
-      structures/{civ}_wall
-      structures/{civ}_wall_tower
-      structures/{civ}_wall_gate
-      structures/{civ}_fortress
-    </Entities>
-  </Builder>
   <Sound>
     <SoundGroups>
       <select>voice/hellenes/civ/civ_male_select.xml</select>
@@ -91,4 +83,12 @@
       <trained>actor/singlesteps/steps_gravel.xml</trained>
     </SoundGroups>
   </Sound>
+  <UnitMotion>
+    <WalkSpeed>6.5</WalkSpeed>
+    <Run>
+      <Speed>15.0</Speed>
+      <Range>1000.0</Range>
+      <RangeMin>8.0</RangeMin>
+    </Run>
+  </UnitMotion>
 </Entity>

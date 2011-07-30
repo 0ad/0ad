@@ -1,27 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/mace_hypaspist">
-  <VisualActor>
-    <Actor>units/macedonians/mace_champion_argyraspis.xml</Actor>
-  </VisualActor>
-  <Identity>
-    <SpecificName>Argyraspides (Silver shield)</SpecificName>
-	<Tooltip>Alexander's elite guard infantry.</Tooltip>
-    <Icon>units/macedonian_argyraspidai.png</Icon>
-  </Identity>
-  <Health>
-    <Max>145</Max>
-  </Health>
   <Armour>
     <Hack>10.0</Hack>
     <Pierce>12.0</Pierce>
     <Crush>10.0</Crush>
   </Armour>
-  <UnitMotion>
-    <WalkSpeed>5.5</WalkSpeed>
-    <Run>
-      <Speed>15.0</Speed>
-    </Run>
-  </UnitMotion>
   <Attack>
     <Melee>
       <Hack>11.0</Hack>
@@ -35,5 +18,22 @@
       <MaxRange>6.0</MaxRange>
     </Charge>
   </Attack>
+  <Health>
+    <Max>145</Max>
+  </Health>
+  <Identity>
+    <SpecificName>Argyraspides (Silver shield)</SpecificName>
+	<Tooltip>Alexander's elite guard infantry.</Tooltip>
+    <Icon>units/macedonian_argyraspidai.png</Icon>
+  </Identity>
   <Promotion disable=""/>
+  <UnitMotion>
+    <WalkSpeed>5.5</WalkSpeed>
+    <Run>
+      <Speed>15.0</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/macedonians/mace_champion_argyraspis.xml</Actor>
+  </VisualActor>
 </Entity>

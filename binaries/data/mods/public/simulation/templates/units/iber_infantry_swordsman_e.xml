@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/iber_infantry_swordsman_a">
-  <Identity>
-    <Rank>Elite</Rank>
-  </Identity>
-  <VisualActor>
-    <Actor>units/iberians/infantry_swordsman_e.xml</Actor>
-  </VisualActor>
-  <ResourceGatherer>
-    <BaseSpeed>0.5</BaseSpeed>
-  </ResourceGatherer>
-  <Health>
-    <Max>120</Max>
-  </Health>
+  <Armour>
+    <Hack>8.0</Hack>
+    <Pierce>5.0</Pierce>
+    <Crush>7.0</Crush>
+  </Armour>
   <Attack>
     <Melee>
       <Hack>24.0</Hack>
@@ -20,16 +13,23 @@
       <Hack>48.0</Hack>
     </Charge>
   </Attack>
-  <Armour>
-    <Hack>8.0</Hack>
-    <Pierce>5.0</Pierce>
-    <Crush>7.0</Crush>
-  </Armour>
+  <Health>
+    <Max>120</Max>
+  </Health>
+  <Identity>
+    <Rank>Elite</Rank>
+  </Identity>
+  <Promotion disable=""/>
+  <ResourceGatherer>
+    <BaseSpeed>0.5</BaseSpeed>
+  </ResourceGatherer>
   <UnitMotion>
     <WalkSpeed>5.6</WalkSpeed>
     <Run>
       <Speed>16.8</Speed>
     </Run>
   </UnitMotion>
-  <Promotion disable=""/>
+  <VisualActor>
+    <Actor>units/iberians/infantry_swordsman_e.xml</Actor>
+  </VisualActor>
 </Entity>
