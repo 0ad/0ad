@@ -21,9 +21,12 @@
 
 #include "graphics/Terrain.h"
 #include "lib/bits.h"
+#include "ps/Overlay.h"
 #include "ps/Profile.h"
 #include "renderer/Renderer.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpPlayer.h"
+#include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpTerrain.h"
 #include "simulation2/components/ICmpTerritoryManager.h"
 
@@ -171,23 +174,26 @@ void CTerritoryTexture::GenerateBitmap(const Grid<u8>& territories, u8* bitmap, 
 	int alphaMax = 0xC0;
 	int alphaFalloff = 0x20;
 
+	CmpPtr<ICmpPlayerManager> cmpPlayerManager(m_Simulation, SYSTEM_ENTITY);
+
 	u8* p = bitmap;
 	for (ssize_t j = 0; j < h; ++j)
 	{
 		for (ssize_t i = 0; i < w; ++i)
 		{
 			u8 val = territories.get(i, j);
-			switch (val)
+
+			CColor color(1, 0, 1, 1);
+			if (!cmpPlayerManager.null())
 			{
-			// TODO: use player colours or something
-			case 1: *p++ = 0x00; *p++ = 0x00; *p++ = 0xFF; break;
-			case 2: *p++ = 0x00; *p++ = 0xFF; *p++ = 0x00; break;
-			case 3: *p++ = 0xFF; *p++ = 0x00; *p++ = 0x00; break;
-			case 4: *p++ = 0x00; *p++ = 0xFF; *p++ = 0xFF; break;
-			case 5: *p++ = 0xFF; *p++ = 0xFF; *p++ = 0x00; break;
-			case 6: *p++ = 0xFF; *p++ = 0x00; *p++ = 0xFF; break;
-			default: *p++ = 0xFF; *p++ = 0xFF; *p++ = 0xFF; break;
+				CmpPtr<ICmpPlayer> cmpPlayer(m_Simulation, cmpPlayerManager->GetPlayerByID(val));
+				if (!cmpPlayer.null())
+					color = cmpPlayer->GetColour();
 			}
+
+			*p++ = (int)(color.b*255.f);
+			*p++ = (int)(color.g*255.f);
+			*p++ = (int)(color.r*255.f);
 
 			if ((i > 0 && territories.get(i-1, j) != val)
 			 || (i < w-1 && territories.get(i+1, j) != val)
