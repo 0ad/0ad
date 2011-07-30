@@ -275,10 +275,8 @@ struct OglTexState
 	//          mipmaps aren't called for and filter could be NEAREST anyway).
 	GLint filter;
 	// .. wrap mode
-	//    note: to simplify things, we assume that apps will never want to
-	//          set S/T modes independently. it that becomes necessary,
-	//          it's easy to add.
-	GLint wrap;
+	GLint wrap_s;
+	GLint wrap_t;
 	// .. anisotropy
 	//    note: ignored unless EXT_texture_filter_anisotropic is supported.
 	GLfloat anisotropy;
@@ -289,7 +287,8 @@ struct OglTexState
 static void state_set_to_defaults(OglTexState* ots)
 {
 	ots->filter = default_filter;
-	ots->wrap = GL_REPEAT;
+	ots->wrap_s = GL_REPEAT;
+	ots->wrap_t = GL_REPEAT;
 	ots->anisotropy = 1.0f;
 }
 
@@ -305,13 +304,14 @@ static void state_latch(OglTexState* ots)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, mag_filter);
 
 	// wrap
-	const GLint wrap = ots->wrap;
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrap);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrap);
+	const GLint wrap_s = ots->wrap_s;
+	const GLint wrap_t = ots->wrap_t;
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrap_s);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrap_t);
 	// .. only CLAMP and REPEAT are guaranteed to be available.
 	//    if we're using one of the others, we squelch the error that
 	//    may have resulted if this GL implementation is old.
-	if(wrap != GL_CLAMP && wrap != GL_REPEAT)
+	if((wrap_s != GL_CLAMP && wrap_s != GL_REPEAT) || (wrap_t != GL_CLAMP && wrap_t != GL_REPEAT))
 		ogl_SquelchError(GL_INVALID_ENUM);
 
 	// anisotropy
@@ -481,16 +481,18 @@ static Status OglTex_validate(const OglTex* ot)
 	// texture state
 	if(!filter_valid(ot->state.filter))
 		WARN_RETURN(ERR::_14);
-	if(!wrap_valid(ot->state.wrap))
+	if(!wrap_valid(ot->state.wrap_s))
 		WARN_RETURN(ERR::_15);
+	if(!wrap_valid(ot->state.wrap_t))
+		WARN_RETURN(ERR::_16);
 
 	// misc
 	if(!q_flags_valid(ot->q_flags))
-		WARN_RETURN(ERR::_16);
-	if(ot->tmu >= 128)	// unexpected that there will ever be this many
 		WARN_RETURN(ERR::_17);
-	if(ot->flags > OT_ALL_FLAGS)
+	if(ot->tmu >= 128)	// unexpected that there will ever be this many
 		WARN_RETURN(ERR::_18);
+	if(ot->flags > OT_ALL_FLAGS)
+		WARN_RETURN(ERR::_19);
 	// .. note: don't check ot->fmt and ot->int_fmt - they aren't set
 	//    until during ogl_tex_upload.
 
@@ -620,19 +622,22 @@ Status ogl_tex_set_filter(Handle ht, GLint filter)
 
 // override default wrap mode (GL_REPEAT) for this texture.
 // must be called before uploading (raises a warning if called afterwards).
-// wrap is as defined by OpenGL and applies to both S and T coordinates
-// (rationale: see OglTexState).
-Status ogl_tex_set_wrap(Handle ht, GLint wrap)
+// wrap is as defined by OpenGL.
+Status ogl_tex_set_wrap(Handle ht, GLint wrap_s, GLint wrap_t)
 {
 	H_DEREF(ht, OglTex, ot);
 
-	if(!wrap_valid(wrap))
+	if(!wrap_valid(wrap_s))
 		WARN_RETURN(ERR::INVALID_PARAM);
 
-	if(ot->state.wrap != wrap)
+	if(!wrap_valid(wrap_t))
+		WARN_RETURN(ERR::INVALID_PARAM);
+
+	if(ot->state.wrap_s != wrap_s || ot->state.wrap_t != wrap_t)
 	{
 		warn_if_uploaded(ht, ot);
-		ot->state.wrap = wrap;
+		ot->state.wrap_s = wrap_s;
+		ot->state.wrap_t = wrap_t;
 	}
 	return INFO::OK;
 }

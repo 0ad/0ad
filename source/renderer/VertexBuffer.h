@@ -45,6 +45,13 @@ public:
 		size_t m_Index;
 		// number of vertices used by chunk
 		size_t m_Count;
+
+	private:
+		// Only CVertexBuffer can construct/delete these
+		// (Other people should use g_VBMan.Allocate, g_VBMan.Release)
+		friend class CVertexBuffer;
+		VBChunk() {}
+		~VBChunk() {}
 	};
 
 public:
@@ -69,6 +76,10 @@ public:
 
 	size_t GetBytesReserved() const;
 	size_t GetBytesAllocated() const;
+
+	bool CompatibleVertexType(size_t vertexSize, GLenum usage, GLenum target);
+
+	void DumpStatus();
 
 protected:
 	friend class CVertexBufferManager;		// allow allocate only via CVertexBufferManager

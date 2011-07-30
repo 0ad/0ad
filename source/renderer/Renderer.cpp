@@ -106,6 +106,7 @@ private:
 		Row_TerrainTris,
 		Row_WaterTris,
 		Row_ModelTris,
+		Row_OverlayTris,
 		Row_BlendSplats,
 		Row_Particles,
 		Row_VBReserved,
@@ -173,6 +174,12 @@ CStr CRendererStatsTable::GetCellText(size_t row, size_t col)
 		if (col == 0)
 			return "# model tris";
 		sprintf_s(buf, sizeof(buf), "%lu", (unsigned long)Stats.m_ModelTris);
+		return buf;
+
+	case Row_OverlayTris:
+		if (col == 0)
+			return "# overlay tris";
+		sprintf_s(buf, sizeof(buf), "%lu", (unsigned long)Stats.m_OverlayTris);
 		return buf;
 
 	case Row_BlendSplats:
@@ -1573,10 +1580,8 @@ void CRenderer::RenderSubmissions()
 	TerrainOverlay::RenderOverlays();
 	ogl_WarnIfError();
 
-	// render other debug-related overlays before water (so they can be displayed when underwater)
-	PROFILE_START("render overlays");
-	m->overlayRenderer.RenderOverlays();
-	PROFILE_END("render overlays");
+	// render other debug-related overlays before water (so they can be seen when underwater)
+	m->overlayRenderer.RenderOverlaysBeforeWater();
 	ogl_WarnIfError();
 
 	RenderModels();
@@ -1603,6 +1608,10 @@ void CRenderer::RenderSubmissions()
 		ogl_WarnIfError();
 	}
 
+	// render some other overlays after water (so they can be displayed on top of water)
+	m->overlayRenderer.RenderOverlaysAfterWater();
+	ogl_WarnIfError();
+
 	// particles are transparent so render after water
 	RenderParticles();
 	ogl_WarnIfError();
@@ -1622,9 +1631,7 @@ void CRenderer::RenderSubmissions()
 	}
 
 	// render overlays that should appear on top of all other objects
-	PROFILE_START("render fg overlays");
 	m->overlayRenderer.RenderForegroundOverlays(m_ViewCamera);
-	PROFILE_END("render fg overlays");
 	ogl_WarnIfError();
 }
 
@@ -1718,6 +1725,11 @@ void CRenderer::Submit(CPatch* patch)
 }
 
 void CRenderer::Submit(SOverlayLine* overlay)
+{
+	m->overlayRenderer.Submit(overlay);
+}
+
+void CRenderer::Submit(SOverlayTexturedLine* overlay)
 {
 	m->overlayRenderer.Submit(overlay);
 }
@@ -1932,7 +1944,7 @@ int CRenderer::LoadAlphaMaps()
 	(void)tex_wrap(total_w, total_h, 8, TEX_GREY, data, 0, &t);
 	m_hCompositeAlphaMap = ogl_tex_wrap(&t, g_VFS, key);
 	(void)ogl_tex_set_filter(m_hCompositeAlphaMap, GL_LINEAR);
-	(void)ogl_tex_set_wrap  (m_hCompositeAlphaMap, GL_CLAMP_TO_EDGE);
+	(void)ogl_tex_set_wrap  (m_hCompositeAlphaMap, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);
 	int ret = ogl_tex_upload(m_hCompositeAlphaMap, 0, 0, GL_INTENSITY);
 
 	return ret;

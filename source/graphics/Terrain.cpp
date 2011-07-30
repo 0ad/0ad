@@ -223,6 +223,51 @@ void CTerrain::CalcNormalFixed(ssize_t i, ssize_t j, CFixedVector3D& normal) con
 	normal.Normalize();
 }
 
+CVector3D CTerrain::CalcExactNormal(float x, float z) const
+{
+	// Clamp to size-2 so we can use the tiles (xi,zi)-(xi+1,zi+1)
+	const ssize_t xi = clamp((ssize_t)floor(x/CELL_SIZE), (ssize_t)0, m_MapSize-2);
+	const ssize_t zi = clamp((ssize_t)floor(z/CELL_SIZE), (ssize_t)0, m_MapSize-2);
+
+	const float xf = clamp(x/CELL_SIZE-xi, 0.0f, 1.0f);
+	const float zf = clamp(z/CELL_SIZE-zi, 0.0f, 1.0f);
+
+	float h00 = m_Heightmap[zi*m_MapSize + xi];
+	float h01 = m_Heightmap[(zi+1)*m_MapSize + xi];
+	float h10 = m_Heightmap[zi*m_MapSize + (xi+1)];
+	float h11 = m_Heightmap[(zi+1)*m_MapSize + (xi+1)];
+
+	// Determine which terrain triangle this point is on,
+	// then compute the normal of that triangle's plane
+
+	if (GetTriangulationDir(xi, zi))
+	{
+		if (xf + zf <= 1.f)
+		{
+			// Lower-left triangle (don't use h11)
+			return -CVector3D(CELL_SIZE, (h10-h00)*HEIGHT_SCALE, 0).Cross(CVector3D(0, (h01-h00)*HEIGHT_SCALE, CELL_SIZE)).Normalized();
+		}
+		else
+		{
+			// Upper-right triangle (don't use h00)
+			return -CVector3D(CELL_SIZE, (h11-h01)*HEIGHT_SCALE, 0).Cross(CVector3D(0, (h11-h10)*HEIGHT_SCALE, CELL_SIZE)).Normalized();
+		}
+	}
+	else
+	{
+		if (xf <= zf)
+		{
+			// Upper-left triangle (don't use h10)
+			return -CVector3D(CELL_SIZE, (h11-h01)*HEIGHT_SCALE, 0).Cross(CVector3D(0, (h01-h00)*HEIGHT_SCALE, CELL_SIZE)).Normalized();
+		}
+		else
+		{
+			// Lower-right triangle (don't use h01)
+			return -CVector3D(CELL_SIZE, (h10-h00)*HEIGHT_SCALE, 0).Cross(CVector3D(0, (h11-h10)*HEIGHT_SCALE, CELL_SIZE)).Normalized();
+		}
+	}
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // GetPatch: return the patch at (i,j) in patch space, or null if the patch is
 // out of bounds
@@ -298,10 +343,36 @@ float CTerrain::GetExactGroundLevel(float x, float z) const
 	float h01 = m_Heightmap[(zi+1)*m_MapSize + xi];
 	float h10 = m_Heightmap[zi*m_MapSize + (xi+1)];
 	float h11 = m_Heightmap[(zi+1)*m_MapSize + (xi+1)];
-	// Linearly interpolate
-	return (HEIGHT_SCALE * (
-		(1 - zf) * ((1 - xf) * h00 + xf * h10)
-		   + zf  * ((1 - xf) * h01 + xf * h11)));
+
+	// Determine which terrain triangle this point is on,
+	// then compute the linearly-interpolated height on that triangle's plane
+
+	if (GetTriangulationDir(xi, zi))
+	{
+		if (xf + zf <= 1.f)
+		{
+			// Lower-left triangle (don't use h11)
+			return HEIGHT_SCALE * (h00 + (h10-h00)*xf + (h01-h00)*zf);
+		}
+		else
+		{
+			// Upper-right triangle (don't use h00)
+			return HEIGHT_SCALE * (h11 + (h01-h11)*(1-xf) + (h10-h11)*(1-zf));
+		}
+	}
+	else
+	{
+		if (xf <= zf)
+		{
+			// Upper-left triangle (don't use h10)
+			return HEIGHT_SCALE * (h00 + (h11-h01)*xf + (h01-h00)*zf);
+		}
+		else
+		{
+			// Lower-right triangle (don't use h01)
+			return HEIGHT_SCALE * (h00 + (h10-h00)*xf + (h11-h10)*zf);
+		}
+	}
 }
 
 fixed CTerrain::GetExactGroundLevelFixed(fixed x, fixed z) const
@@ -328,6 +399,9 @@ fixed CTerrain::GetExactGroundLevelFixed(fixed x, fixed z) const
 	// Linearly interpolate
 	return ((one - zf).Multiply(xf1 * h00 + xf0 * h10)
 	              + zf.Multiply(xf1 * h01 + xf0 * h11)) / (int)(HEIGHT_UNITS_PER_METRE / 2);
+
+	// TODO: This should probably be more like GetExactGroundLevel()
+	// in handling triangulation properly
 }
 
 bool CTerrain::GetTriangulationDir(ssize_t i, ssize_t j) const

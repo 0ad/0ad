@@ -20,15 +20,22 @@
 #include "simulation2/system/Component.h"
 #include "ICmpTerritoryManager.h"
 
+#include "graphics/Overlay.h"
 #include "graphics/Terrain.h"
+#include "graphics/TextureManager.h"
 #include "maths/MathUtil.h"
+#include "maths/Vector2D.h"
 #include "ps/Overlay.h"
+#include "renderer/Renderer.h"
+#include "renderer/Scene.h"
 #include "renderer/TerrainOverlay.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpObstruction.h"
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPathfinder.h"
+#include "simulation2/components/ICmpPlayer.h"
+#include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpSettlement.h"
 #include "simulation2/components/ICmpTerrain.h"
@@ -36,6 +43,7 @@
 #include "simulation2/helpers/Geometry.h"
 #include "simulation2/helpers/Grid.h"
 #include "simulation2/helpers/PriorityQueue.h"
+#include "simulation2/helpers/Render.h"
 
 class CCmpTerritoryManager;
 
@@ -58,6 +66,7 @@ public:
 		componentManager.SubscribeGloballyToMessageType(MT_OwnershipChanged);
 		componentManager.SubscribeGloballyToMessageType(MT_PositionChanged);
 		componentManager.SubscribeToMessageType(MT_TerrainChanged);
+		componentManager.SubscribeToMessageType(MT_RenderSubmit);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(TerritoryManager)
@@ -67,16 +76,30 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
+	u8 m_ImpassableCost;
+	float m_BorderThickness;
+	float m_BorderSeparation;
+
 	Grid<u8>* m_Territories;
 	TerritoryOverlay* m_DebugOverlay;
+	std::vector<SOverlayTexturedLine> m_BoundaryLines;
+	bool m_BoundaryLinesDirty;
 
 	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
 		m_Territories = NULL;
 		m_DebugOverlay = NULL;
 //		m_DebugOverlay = new TerritoryOverlay(*this);
+		m_BoundaryLinesDirty = true;
 
 		m_DirtyID = 1;
+
+		CParamNode externalParamNode;
+		CParamNode::LoadXML(externalParamNode, L"simulation/data/territorymanager.xml");
+
+		m_ImpassableCost = externalParamNode.GetChild("TerritoryManager").GetChild("ImpassableCost").ToInt();
+		m_BorderThickness = externalParamNode.GetChild("TerritoryManager").GetChild("BorderThickness").ToFixed().ToFloat();
+		m_BorderSeparation = externalParamNode.GetChild("TerritoryManager").GetChild("BorderSeparation").ToFixed().ToFloat();
 	}
 
 	virtual void Deinit()
@@ -116,6 +139,12 @@ public:
 			MakeDirty();
 			break;
 		}
+		case MT_RenderSubmit:
+		{
+			const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
+			RenderSubmit(msgData.collector);
+			break;
+		}
 		}
 	}
 
@@ -148,6 +177,7 @@ public:
 	{
 		SAFE_DELETE(m_Territories);
 		++m_DirtyID;
+		m_BoundaryLinesDirty = true;
 	}
 
 	virtual bool NeedUpdate(size_t* dirtyID)
@@ -169,6 +199,18 @@ public:
 	 * or 1+c if the influence have cost c (assumed between 0 and 254).
 	 */
 	void RasteriseInfluences(CComponentManager::InterfaceList& infls, Grid<u8>& grid);
+
+	struct TerritoryBoundary
+	{
+		player_id_t owner;
+		std::vector<CVector2D> points;
+	};
+
+	std::vector<TerritoryBoundary> ComputeBoundaries();
+
+	void UpdateBoundaryLines();
+
+	void RenderSubmit(SceneCollector& collector);
 };
 
 REGISTER_COMPONENT_TYPE(TerritoryManager)
@@ -252,15 +294,19 @@ void CCmpTerritoryManager::CalculateTerritories()
 	Grid<u8> influenceGrid(tilesW, tilesH);
 
 	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
-	ICmpPathfinder::pass_class_t passClass = cmpPathfinder->GetPassabilityClass("default");
+	ICmpPathfinder::pass_class_t passClassUnrestricted = cmpPathfinder->GetPassabilityClass("unrestricted");
+	ICmpPathfinder::pass_class_t passClassDefault = cmpPathfinder->GetPassabilityClass("default");
 	const Grid<u16>& passGrid = cmpPathfinder->GetPassabilityGrid();
 	for (u32 j = 0; j < tilesH; ++j)
 	{
 		for (u32 i = 0; i < tilesW; ++i)
 		{
+			u8 g = passGrid.get(i, j);
 			u8 cost;
-			if (passGrid.get(i, j) & passClass)
-				cost = 4; // TODO: should come from some XML file
+			if (g & passClassUnrestricted)
+				cost = 255; // off the world; use maximum cost
+			else if (g & passClassDefault)
+				cost = m_ImpassableCost;
 			else
 				cost = 1;
 			influenceGrid.set(i, j, cost);
@@ -423,6 +469,219 @@ void CCmpTerritoryManager::RasteriseInfluences(CComponentManager::InterfaceList&
 		}
 
 	}
+}
+
+std::vector<CCmpTerritoryManager::TerritoryBoundary> CCmpTerritoryManager::ComputeBoundaries()
+{
+	PROFILE("ComputeBoundaries");
+
+	std::vector<CCmpTerritoryManager::TerritoryBoundary> boundaries;
+
+	CalculateTerritories();
+
+	// Copy the territories grid so we can mess with it
+	Grid<u8> grid (*m_Territories);
+
+	// Some constants for the border walk
+	CVector2D edgeOffsets[] = {
+		CVector2D(0.5f, 0.0f),
+		CVector2D(1.0f, 0.5f),
+		CVector2D(0.5f, 1.0f),
+		CVector2D(0.0f, 0.5f)
+	};
+
+	// Try to find an assigned tile
+	for (int j = 0; j < grid.m_H; ++j)
+	{
+		for (int i = 0; i < grid.m_W; ++i)
+		{
+			u8 owner = grid.get(i, j);
+			if (owner)
+			{
+				// Found the first tile (which must be the lowest j value of any non-zero tile);
+				// start at the bottom edge of it and chase anticlockwise around the border until
+				// we reach the starting point again
+
+				boundaries.push_back(TerritoryBoundary());
+				boundaries.back().owner = owner;
+				std::vector<CVector2D>& points = boundaries.back().points;
+
+				int dir = 0; // 0 == bottom edge of tile, 1 == right, 2 == top, 3 == left
+
+				int cdir = dir;
+				int ci = i, cj = j;
+
+				while (true)
+				{
+					points.push_back((CVector2D(ci, cj) + edgeOffsets[cdir]) * CELL_SIZE);
+
+					// Given that we're on an edge on a continuous boundary and aiming anticlockwise,
+					// we can either carry on straight or turn left or turn right, so examine each
+					// of the three possible cases (depending on initial direction):
+					switch (cdir)
+					{
+					case 0:
+						if (ci < grid.m_W-1 && cj > 0 && grid.get(ci+1, cj-1) == owner)
+						{
+							++ci;
+							--cj;
+							cdir = 3;
+						}
+						else if (ci < grid.m_W-1 && grid.get(ci+1, cj) == owner)
+							++ci;
+						else
+							cdir = 1;
+						break;
+					case 1:
+						if (ci < grid.m_W-1 && cj < grid.m_H-1 && grid.get(ci+1, cj+1) == owner)
+						{
+							++ci;
+							++cj;
+							cdir = 0;
+						}
+						else if (cj < grid.m_H-1 && grid.get(ci, cj+1) == owner)
+							++cj;
+						else
+							cdir = 2;
+						break;
+					case 2:
+						if (ci > 0 && cj < grid.m_H-1 && grid.get(ci-1, cj+1) == owner)
+						{
+							--ci;
+							++cj;
+							cdir = 1;
+						}
+						else if (ci > 0 && grid.get(ci-1, cj) == owner)
+							--ci;
+						else
+							cdir = 3;
+						break;
+					case 3:
+						if (ci > 0 && cj > 0 && grid.get(ci-1, cj-1) == owner)
+						{
+							--ci;
+							--cj;
+							cdir = 2;
+						}
+						else if (cj > 0 && grid.get(ci, cj-1) == owner)
+							--cj;
+						else
+							cdir = 0;
+						break;
+					}
+
+					// Stop when we've reached the starting point again
+					if (ci == i && cj == j && cdir == dir)
+						break;
+				}
+
+				// Zero out this whole territory with a simple flood fill, so we don't
+				// process it a second time
+				std::vector<std::pair<int, int> > tileStack;
+
+#define ZERO_AND_PUSH(i, j) STMT(grid.set(i, j, 0); tileStack.push_back(std::make_pair(i, j)); )
+
+				ZERO_AND_PUSH(i, j);
+				while (!tileStack.empty())
+				{
+					int ti = tileStack.back().first;
+					int tj = tileStack.back().second;
+					tileStack.pop_back();
+
+					if (ti > 0 && grid.get(ti-1, tj) == owner)
+						ZERO_AND_PUSH(ti-1, tj);
+					if (ti < grid.m_W-1 && grid.get(ti+1, tj) == owner)
+						ZERO_AND_PUSH(ti+1, tj);
+					if (tj > 0 && grid.get(ti, tj-1) == owner)
+						ZERO_AND_PUSH(ti, tj-1);
+					if (tj < grid.m_H-1 && grid.get(ti, tj+1) == owner)
+						ZERO_AND_PUSH(ti, tj+1);
+
+					if (ti > 0 && tj > 0 && grid.get(ti-1, tj-1) == owner)
+						ZERO_AND_PUSH(ti-1, tj-1);
+					if (ti > 0 && tj < grid.m_H-1 && grid.get(ti-1, tj+1) == owner)
+						ZERO_AND_PUSH(ti-1, tj+1);
+					if (ti < grid.m_W-1 && tj > 0 && grid.get(ti+1, tj-1) == owner)
+						ZERO_AND_PUSH(ti+1, tj-1);
+					if (ti < grid.m_W-1 && tj < grid.m_H-1 && grid.get(ti+1, tj+1) == owner)
+						ZERO_AND_PUSH(ti+1, tj+1);
+				}
+
+#undef ZERO_AND_PUSH
+			}
+		}
+	}
+
+	return boundaries;
+}
+
+void CCmpTerritoryManager::UpdateBoundaryLines()
+{
+	PROFILE("update boundary lines");
+
+	m_BoundaryLines.clear();
+
+	std::vector<CCmpTerritoryManager::TerritoryBoundary> boundaries = ComputeBoundaries();
+
+	CTextureProperties texturePropsBase("art/textures/misc/territory_border.png");
+	texturePropsBase.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE);
+	texturePropsBase.SetMaxAnisotropy(2.f);
+	CTexturePtr textureBase = g_Renderer.GetTextureManager().CreateTexture(texturePropsBase);
+
+	CTextureProperties texturePropsMask("art/textures/misc/territory_border_mask.png");
+	texturePropsMask.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE);
+	texturePropsMask.SetMaxAnisotropy(2.f);
+	CTexturePtr textureMask = g_Renderer.GetTextureManager().CreateTexture(texturePropsMask);
+
+	CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
+	if (cmpTerrain.null())
+		return;
+	CTerrain* terrain = cmpTerrain->GetCTerrain();
+
+	CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSimContext(), SYSTEM_ENTITY);
+	if (cmpPlayerManager.null())
+		return;
+
+	for (size_t i = 0; i < boundaries.size(); ++i)
+	{
+		if (boundaries[i].points.empty())
+			continue;
+
+		CColor color(1, 0, 1, 1);
+		CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(boundaries[i].owner));
+		if (!cmpPlayer.null())
+			color = cmpPlayer->GetColour();
+
+		m_BoundaryLines.push_back(SOverlayTexturedLine());
+		m_BoundaryLines.back().m_Terrain = terrain;
+		m_BoundaryLines.back().m_TextureBase = textureBase;
+		m_BoundaryLines.back().m_TextureMask = textureMask;
+		m_BoundaryLines.back().m_Color = color;
+		m_BoundaryLines.back().m_Thickness = m_BorderThickness;
+
+		SimRender::SmoothPointsAverage(boundaries[i].points, true);
+
+		SimRender::InterpolatePointsRNS(boundaries[i].points, true, m_BorderSeparation);
+
+		std::vector<float>& points = m_BoundaryLines.back().m_Coords;
+		for (size_t j = 0; j < boundaries[i].points.size(); ++j)
+		{
+			points.push_back(boundaries[i].points[j].X);
+			points.push_back(boundaries[i].points[j].Y);
+		}
+	}
+}
+
+void CCmpTerritoryManager::RenderSubmit(SceneCollector& collector)
+{
+	if (m_BoundaryLinesDirty)
+	{
+		UpdateBoundaryLines();
+		m_BoundaryLinesDirty = false;
+	}
+
+	for (size_t i = 0; i < m_BoundaryLines.size(); ++i)
+		collector.Submit(&m_BoundaryLines[i]);
 }
 
 

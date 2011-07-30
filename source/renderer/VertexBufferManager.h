@@ -30,9 +30,6 @@
 class CVertexBufferManager
 {
 public:
-	CVertexBufferManager() {}
-	~CVertexBufferManager();
-
 	// Explicit shutdown of the vertex buffer subsystem
 	void Shutdown();
 	

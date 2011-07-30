@@ -126,6 +126,8 @@ public:
 	void CalcNormal(ssize_t i, ssize_t j, CVector3D& normal) const;
 	void CalcNormalFixed(ssize_t i, ssize_t j, CFixedVector3D& normal) const;
 
+	CVector3D CalcExactNormal(float x, float z) const;
+
 	// flatten out an area of terrain (specified in world space coords); return
 	// the average height of the flattened area
 	float FlattenArea(float x0, float x1, float z0, float z1);

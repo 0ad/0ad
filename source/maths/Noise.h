@@ -36,7 +36,7 @@ class Noise2D
 	int freq;
 
 	/// freq*freq random gradient vectors in the unit cube
-	CVector2D_Maths** grads;
+	CVector2D** grads;
 public:
 	Noise2D(int freq);
 	~Noise2D();

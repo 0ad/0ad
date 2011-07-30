@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,9 +18,12 @@
 #ifndef INCLUDED_GRAPHICS_OVERLAY
 #define INCLUDED_GRAPHICS_OVERLAY
 
+#include "graphics/RenderableObject.h"
 #include "graphics/Texture.h"
 #include "maths/Vector3D.h"
 #include "ps/Overlay.h" // CColor  (TODO: that file has nothing to do with overlays, it should be renamed)
+
+class CTerrain;
 
 /**
  * Line-based overlay, with world-space coordinates, rendered in the world
@@ -33,6 +36,24 @@ struct SOverlayLine
 	CColor m_Color;
 	std::vector<float> m_Coords; // (x, y, z) vertex coordinate triples; shape is not automatically closed
 	u8 m_Thickness; // pixels
+};
+
+/**
+ * Textured line overlay, with world-space coordinates, rendered in the world
+ * onto the terrain. Designed for territory borders.
+ */
+struct SOverlayTexturedLine
+{
+	SOverlayTexturedLine() : m_Terrain(NULL), m_Thickness(1.0f) { }
+
+	CTerrain* m_Terrain;
+	CTexturePtr m_TextureBase;
+	CTexturePtr m_TextureMask;
+	CColor m_Color;
+	std::vector<float> m_Coords; // (x, z) vertex coordinate pairs; y is computed automatically; shape is automatically closed
+	float m_Thickness; // world-space units
+
+	shared_ptr<CRenderData> m_RenderData; // cached renderer data (shared_ptr so that copies/deletes are automatic)
 };
 
 /**

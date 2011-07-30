@@ -81,10 +81,6 @@ TEX color, fragment.texcoord[0], texture[0], 2D;
   MUL color.rgb, color, temp;
 #endif
 
-// Blend with the territory boundary texture
-TEX tex, fragment.texcoord[4], texture[4], 2D;
-LRP color.rgb, tex.a, tex, color;
-
 // Multiply everything by the LOS texture
 TEX tex.a, fragment.texcoord[3], texture[3], 2D;
 MUL color.rgb, color, tex.a;

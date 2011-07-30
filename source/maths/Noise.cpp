@@ -48,14 +48,14 @@ namespace
 Noise2D::Noise2D(int f) 
 {
 	freq = f;
-	grads = new CVector2D_Maths*[freq];
+	grads = new CVector2D*[freq];
 	for(int i=0; i<freq; i++) 
 	{
-		grads[i] = new CVector2D_Maths[freq];
+		grads[i] = new CVector2D[freq];
 		for(int j=0; j<freq; j++) 
 		{
 			float a = randFloat() * 2 * (float)M_PI;
-			grads[i][j] = CVector2D_Maths(cos(a), sin(a));
+			grads[i][j] = CVector2D(cos(a), sin(a));
 		}
 	}
 }
@@ -86,10 +86,10 @@ float Noise2D::operator()(float x, float y)
 	int ix1 = (ix+1) % freq;
 	int iy1 = (iy+1) % freq;
 	
-	float s = grads[ix][iy].Dot(CVector2D_Maths(fx, fy));
-	float t = grads[ix1][iy].Dot(CVector2D_Maths(fx-1, fy));
-	float u = grads[ix][iy1].Dot(CVector2D_Maths(fx, fy-1));
-	float v = grads[ix1][iy1].Dot(CVector2D_Maths(fx-1, fy-1));
+	float s = grads[ix][iy].Dot(CVector2D(fx, fy));
+	float t = grads[ix1][iy].Dot(CVector2D(fx-1, fy));
+	float u = grads[ix][iy1].Dot(CVector2D(fx, fy-1));
+	float v = grads[ix1][iy1].Dot(CVector2D(fx-1, fy-1));
 	
 	float ex = easeCurve(fx);
 	float ey = easeCurve(fy);

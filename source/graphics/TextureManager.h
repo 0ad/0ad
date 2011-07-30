@@ -129,7 +129,8 @@ public:
 	 * Use the given texture name, and default GL parameters.
 	 */
 	explicit CTextureProperties(const VfsPath& path) :
-		m_Path(path), m_Filter(GL_LINEAR_MIPMAP_LINEAR), m_Wrap(GL_REPEAT), m_Aniso(1.0f)
+		m_Path(path), m_Filter(GL_LINEAR_MIPMAP_LINEAR),
+		m_WrapS(GL_REPEAT), m_WrapT(GL_REPEAT), m_Aniso(1.0f)
 	{
 	}
 
@@ -141,7 +142,13 @@ public:
 	/**
 	 * Set wrapping mode (typically GL_REPEAT, GL_CLAMP_TO_EDGE, etc).
 	 */
-	void SetWrap(GLint wrap) { m_Wrap = wrap; }
+	void SetWrap(GLint wrap) { m_WrapS = wrap; m_WrapT = wrap; }
+
+	/**
+	 * Set wrapping mode (typically GL_REPEAT, GL_CLAMP_TO_EDGE, etc),
+	 * separately for S and T.
+	 */
+	void SetWrap(GLint wrap_s, GLint wrap_t) { m_WrapS = wrap_s; m_WrapT = wrap_t; }
 
 	/**
 	 * Set maximum anisotropy value. Must be >= 1.0. Should be a power of 2.
@@ -168,7 +175,8 @@ public:
 private:
 	VfsPath m_Path;
 	GLint m_Filter;
-	GLint m_Wrap;
+	GLint m_WrapS;
+	GLint m_WrapT;
 	float m_Aniso;
 };
 

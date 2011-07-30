@@ -116,6 +116,8 @@ public:
 		size_t m_WaterTris;
 		// number of (non-transparent) model triangles drawn
 		size_t m_ModelTris;
+		// number of overlay triangles drawn
+		size_t m_OverlayTris;
 		// number of splat passes for alphamapping
 		size_t m_BlendSplats;
 		// number of particles
@@ -334,6 +336,7 @@ protected:
 	//BEGIN: Implementation of SceneCollector
 	void Submit(CPatch* patch);
 	void Submit(SOverlayLine* overlay);
+	void Submit(SOverlayTexturedLine* overlay);
 	void Submit(SOverlaySprite* overlay);
 	void Submit(CModelDecal* decal);
 	void Submit(CParticleEmitter* emitter);

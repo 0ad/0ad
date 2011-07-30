@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<program type="arb">
+
+    <vertex file="overlayline.vp">
+        <stream name="pos"/>
+        <stream name="uv0"/>
+        <uniform name="losTransform" loc="0" type="vec2"/>
+    </vertex>
+
+    <fragment file="overlayline.fp">
+        <uniform name="baseTex" loc="0" type="sampler2D"/>
+        <uniform name="maskTex" loc="1" type="sampler2D"/>
+        <uniform name="losTex" loc="2" type="sampler2D"/>
+        <uniform name="objectColor" loc="0" type="vec3"/>
+    </fragment>
+
+</program>

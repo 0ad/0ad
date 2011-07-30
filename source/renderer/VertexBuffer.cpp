@@ -28,8 +28,6 @@
 #include "VertexBufferManager.h"
 #include "ps/CLogger.h"
 
-///////////////////////////////////////////////////////////////////////////////
-// CVertexBuffer constructor 
 CVertexBuffer::CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target)
 	: m_VertexSize(vertexSize), m_Handle(0), m_SysMem(0), m_Usage(usage), m_Target(target)
 {
@@ -66,20 +64,25 @@ CVertexBuffer::CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target)
 	m_FreeList.push_front(chunk);
 }
 
-///////////////////////////////////////////////////////////////////////////////
-// CVertexBuffer destructor
 CVertexBuffer::~CVertexBuffer()
 {
 	if (m_Handle)
 		pglDeleteBuffersARB(1, &m_Handle);
 
-	if (m_SysMem)
-		delete[] m_SysMem;
+	delete[] m_SysMem;
 
-	// janwas 2004-06-14: release freelist
 	typedef std::list<VBChunk*>::iterator Iter;
 	for (Iter iter = m_FreeList.begin(); iter != m_FreeList.end(); ++iter)
 		delete *iter;
+}
+
+
+bool CVertexBuffer::CompatibleVertexType(size_t vertexSize, GLenum usage, GLenum target)
+{
+	if (usage != m_Usage || target != m_Target || vertexSize != m_VertexSize)
+		return false;
+
+	return true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -89,7 +92,7 @@ CVertexBuffer::~CVertexBuffer()
 CVertexBuffer::VBChunk* CVertexBuffer::Allocate(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target)
 {
 	// check this is the right kind of buffer
-	if (usage != m_Usage || target != m_Target || vertexSize != m_VertexSize)
+	if (!CompatibleVertexType(vertexSize, usage, target))
 		return 0;
 
 	// quick check there's enough vertices spare to allocate
@@ -138,11 +141,34 @@ CVertexBuffer::VBChunk* CVertexBuffer::Allocate(size_t vertexSize, size_t numVer
 // Release: return given chunk to this buffer
 void CVertexBuffer::Release(VBChunk* chunk)
 {
-	// add to free list
-	// TODO, RC - need to merge available chunks where possible to avoid 
-	// excessive fragmentation of vertex buffer space
-	m_FreeList.push_front(chunk);
+	// Update total free count before potentially modifying this chunk's count
 	m_FreeVertices += chunk->m_Count;
+
+	typedef std::list<VBChunk*>::iterator Iter;
+
+	// Coalesce with any free-list items that are adjacent to this chunk;
+	// merge the found chunk with the new one, and remove the old one
+	// from the list, and repeat until no more are found
+	bool coalesced;
+	do
+	{
+		coalesced = false;
+		for (Iter iter = m_FreeList.begin(); iter != m_FreeList.end(); ++iter)
+		{
+			if ((*iter)->m_Index == chunk->m_Index + chunk->m_Count
+			 || (*iter)->m_Index + (*iter)->m_Count == chunk->m_Index)
+			{
+				chunk->m_Index = std::min(chunk->m_Index, (*iter)->m_Index);
+				chunk->m_Count += (*iter)->m_Count;
+				m_FreeList.erase(iter);
+				coalesced = true;
+				break;
+			}
+		}
+	}
+	while (coalesced);
+
+	m_FreeList.push_front(chunk);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -204,4 +230,18 @@ size_t CVertexBuffer::GetBytesReserved() const
 size_t CVertexBuffer::GetBytesAllocated() const
 {
 	return (m_MaxVertices - m_FreeVertices) * m_VertexSize;
+}
+
+void CVertexBuffer::DumpStatus()
+{
+	debug_printf(L"freeverts = %d\n", m_FreeVertices);
+
+	size_t maxSize = 0;
+	typedef std::list<VBChunk*>::iterator Iter;
+	for (Iter iter = m_FreeList.begin(); iter != m_FreeList.end(); ++iter)
+	{
+		debug_printf(L"free chunk %p: size=%d\n", *iter, (*iter)->m_Count);
+		maxSize = std::max((*iter)->m_Count, maxSize);
+	}
+	debug_printf(L"max size = %d\n", maxSize);
 }

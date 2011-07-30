@@ -26,13 +26,9 @@
 #include "lib/ogl.h"
 #include "ps/CLogger.h"
 
+#define DUMP_VB_STATS 0 // for debugging
+
 CVertexBufferManager g_VBMan;
-
-// janwas 2004-06-14: added dtor
-
-CVertexBufferManager::~CVertexBufferManager()
-{
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 // Explicit shutdown of the vertex buffer subsystem.
@@ -61,9 +57,22 @@ CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize, size_t
 
 	// TODO, RC - run some sanity checks on allocation request
 
+	typedef std::list<CVertexBuffer*>::iterator Iter;
+
+#if DUMP_VB_STATS
+	debug_printf(L"\n============================\n# allocate vsize=%d nverts=%d\n\n", vertexSize, numVertices);
+	for (Iter iter = m_Buffers.begin(); iter != m_Buffers.end(); ++iter) {
+		CVertexBuffer* buffer = *iter;
+		if (buffer->CompatibleVertexType(vertexSize, usage, target))
+		{
+			debug_printf(L"%p\n", buffer);
+			buffer->DumpStatus();
+		}
+	}
+#endif
+
 	// iterate through all existing buffers testing for one that'll 
 	// satisfy the allocation
-	typedef std::list<CVertexBuffer*>::iterator Iter;
 	for (Iter iter = m_Buffers.begin(); iter != m_Buffers.end(); ++iter) {
 		CVertexBuffer* buffer = *iter;
 		result = buffer->Allocate(vertexSize, numVertices, usage, target);
@@ -89,6 +98,9 @@ CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize, size_t
 void CVertexBufferManager::Release(CVertexBuffer::VBChunk* chunk)
 {
 	ENSURE(chunk);
+#if DUMP_VB_STATS
+	debug_printf(L"\n============================\n# release %p nverts=%d\n\n", chunk, chunk->m_Count);
+#endif
 	chunk->m_Owner->Release(chunk);
 }
 

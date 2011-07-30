@@ -37,6 +37,7 @@ class CPatch;
 class CLOSTexture;
 class CTerritoryTexture;
 struct SOverlayLine;
+struct SOverlayTexturedLine;
 struct SOverlaySprite;
 
 class SceneCollector;
@@ -91,6 +92,11 @@ public:
 	 * Submit a line-based overlay.
 	 */
 	virtual void Submit(SOverlayLine* overlay) = 0;
+
+	/**
+	 * Submit a textured line overlay.
+	 */
+	virtual void Submit(SOverlayTexturedLine* overlay) = 0;
 
 	/**
 	 * Submit a sprite overlay.

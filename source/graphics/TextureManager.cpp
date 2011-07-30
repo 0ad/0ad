@@ -44,7 +44,8 @@ struct TPhash
 		std::size_t seed = 0;
 		boost::hash_combine(seed, a.m_Path);
 		boost::hash_combine(seed, a.m_Filter);
-		boost::hash_combine(seed, a.m_Wrap);
+		boost::hash_combine(seed, a.m_WrapS);
+		boost::hash_combine(seed, a.m_WrapT);
 		boost::hash_combine(seed, a.m_Aniso);
 		return seed;
 	}
@@ -61,7 +62,8 @@ struct TPequal_to
 	bool operator()(CTextureProperties const& a, CTextureProperties const& b) const
 	{
 		return a.m_Path == b.m_Path && a.m_Filter == b.m_Filter
-			&& a.m_Wrap == b.m_Wrap && a.m_Aniso == b.m_Aniso;
+			&& a.m_WrapS == b.m_WrapS && a.m_WrapT == b.m_WrapT
+			&& a.m_Aniso == b.m_Aniso;
 	}
 	bool operator()(CTexturePtr const& a, CTexturePtr const& b) const
 	{
@@ -186,7 +188,7 @@ public:
 		(void)ogl_tex_get_average_colour(h, &texture->m_BaseColour);
 
 		// Set GL upload properties
-		(void)ogl_tex_set_wrap(h, texture->m_Properties.m_Wrap);
+		(void)ogl_tex_set_wrap(h, texture->m_Properties.m_WrapS, texture->m_Properties.m_WrapT);
 		(void)ogl_tex_set_anisotropy(h, texture->m_Properties.m_Aniso);
 
 		// Prevent ogl_tex automatically generating mipmaps (which is slow and unwanted),

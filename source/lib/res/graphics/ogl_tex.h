@@ -289,13 +289,13 @@ extern Status ogl_tex_set_filter(Handle ht, GLint filter);
 * Override default wrap mode (GL_REPEAT) for this texture.
 *
 * @param ht Texture handle
-* @param wrap OpenGL wrap mode (for both S and T coordinates)
-*        (rationale: see {@link OglTexState})
+* @param wrap_s OpenGL wrap mode for S coordinates
+* @param wrap_t OpenGL wrap mode for T coordinates
 * @return Status
 *
 * Must be called before uploading (raises a warning if called afterwards).
 */
-extern Status ogl_tex_set_wrap(Handle ht, GLint wrap);
+extern Status ogl_tex_set_wrap(Handle ht, GLint wrap_s, GLint wrap_t);
 
 /**
 * Override default maximum anisotropic filtering for this texture.

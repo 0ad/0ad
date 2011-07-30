@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,79 +27,104 @@
 #include <math.h>
 
 ///////////////////////////////////////////////////////////////////////////////
-// CVector2D_Maths:
-class CVector2D_Maths
+// CVector2D:
+class CVector2D
 {
 public:
-	CVector2D_Maths() {}
-    CVector2D_Maths(float x,float y) { X=x; Y=y; }
-	CVector2D_Maths(const CVector2D_Maths& p) { X=p.X; Y=p.Y; }
+	CVector2D() {}
+	CVector2D(float x, float y) : X(x), Y(y) {}
 
-	operator float*() {
+	operator float*()
+	{
 		return &X;
 	}
 
-	operator const float*() const {
+	operator const float*() const
+	{
 		return &X;
 	}
 
-	CVector2D_Maths operator-() const {
-	    return CVector2D_Maths(-X, -Y);
+	CVector2D operator-() const
+	{
+		return CVector2D(-X, -Y);
 	}
 
-    CVector2D_Maths operator+(const CVector2D_Maths& t) const {
-    	return CVector2D_Maths(X+t.X, Y+t.Y);
+	CVector2D operator+(const CVector2D& t) const
+	{
+		return CVector2D(X + t.X, Y + t.Y);
 	}
 
-	CVector2D_Maths operator-(const CVector2D_Maths& t) const {
-	    return CVector2D_Maths(X-t.X, Y-t.Y);
+	CVector2D operator-(const CVector2D& t) const
+	{
+		return CVector2D(X - t.X, Y - t.Y);
 	}
 
-	CVector2D_Maths operator*(float f) const {
-	    return CVector2D_Maths(X*f, Y*f);
+	CVector2D operator*(float f) const
+	{
+		return CVector2D(X * f, Y * f);
 	}
 
-	CVector2D_Maths operator/(float f) const {
-	    float inv=1.0f/f;
-		return CVector2D_Maths(X*inv, Y*inv);
+	CVector2D operator/(float f) const
+	{
+		float inv = 1.0f / f;
+		return CVector2D(X * inv, Y * inv);
 	}
 
-	CVector2D_Maths& operator+=(const CVector2D_Maths& t) {
-		X+=t.X; Y+=t.Y;
-	    return *this;
+	CVector2D& operator+=(const CVector2D& t)
+	{
+		X += t.X;
+		Y += t.Y;
+		return *this;
 	}
 
-	CVector2D_Maths& operator-=(const CVector2D_Maths& t) {
-		X-=t.X; Y-=t.Y;
-	    return *this;
+	CVector2D& operator-=(const CVector2D& t)
+	{
+		X -= t.X;
+		Y -= t.Y;
+		return *this;
 	}
 
-	CVector2D_Maths& operator*=(float f) {
-	    X*=f; Y*=f;
-	    return *this;
+	CVector2D& operator*=(float f)
+	{
+		X *= f;
+		Y *= f;
+		return *this;
 	}
 
-	CVector2D_Maths& operator/=(float f) {
-		float invf=1.0f/f;
-	    X*=invf; Y*=invf;
-    	return *this;
+	CVector2D& operator/=(float f)
+	{
+		float invf = 1.0f / f;
+		X *= invf;
+		Y *= invf;
+		return *this;
 	}
 
-    float Dot(const CVector2D_Maths& a) const {
-		return X*a.X + Y*a.Y;
+	float Dot(const CVector2D& a) const
+	{
+		return X * a.X + Y * a.Y;
 	}
 
-	float LengthSquared() const {
-	    return Dot(*this);
+	float LengthSquared() const
+	{
+		return Dot(*this);
 	}
 
-    float Length() const {
-		return (float) sqrt(LengthSquared());
+	float Length() const
+	{
+		return (float)sqrt(LengthSquared());
 	}
 
-    void Normalize() {
-		float mag=Length();
-        X/=mag; Y/=mag;
+	void Normalize()
+	{
+		float mag = Length();
+		X /= mag;
+		Y /= mag;
+	}
+
+	CVector2D Normalized()
+	{
+		float mag = Length();
+		return CVector2D(X / mag, Y / mag);
 	}
 
 public:

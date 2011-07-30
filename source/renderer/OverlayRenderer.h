@@ -19,6 +19,7 @@
 #define INCLUDED_OVERLAYRENDERER
 
 struct SOverlayLine;
+struct SOverlayTexturedLine;
 struct SOverlaySprite;
 class CCamera;
 
@@ -40,6 +41,11 @@ public:
 	void Submit(SOverlayLine* overlay);
 
 	/**
+	 * Add a textured line overlay for rendering in this frame.
+	 */
+	void Submit(SOverlayTexturedLine* overlay);
+
+	/**
 	 * Add a sprite overlay for rendering in this frame.
 	 */
 	void Submit(SOverlaySprite* overlay);
@@ -58,9 +64,17 @@ public:
 
 	/**
 	 * Render all the submitted overlays that are embedded in the world
-	 * (i.e. rendered behind other objects, underwater, etc).
+	 * (i.e. rendered behind other objects in the normal 3D way)
+	 * and should be drawn before water (i.e. may be visible under the water)
 	 */
-	void RenderOverlays();
+	void RenderOverlaysBeforeWater();
+
+	/**
+	 * Render all the submitted overlays that are embedded in the world
+	 * (i.e. rendered behind other objects in the normal 3D way)
+	 * and should be drawn after water (i.e. may be visible on top of the water)
+	 */
+	void RenderOverlaysAfterWater();
 
 	/**
 	 * Render all the submitted overlays that should appear on top of everything
