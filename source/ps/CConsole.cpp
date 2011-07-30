@@ -406,67 +406,28 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 
 		// BEGIN: Buffer History Lookup
 		case SDLK_UP:
-			if ( m_deqBufHistory.size() )
+			if (m_deqBufHistory.size() && iHistoryPos != (int)m_deqBufHistory.size() - 1)
 			{
-				int oldHistoryPos = iHistoryPos;
-				while( iHistoryPos != (int)m_deqBufHistory.size() - 1)
-				{
-					iHistoryPos++;
-					std::wstring& histString = m_deqBufHistory.at(iHistoryPos);
-					if((int)histString.length() >= m_iBufferPos)
-					{
-						bool bad = false;
-						for(int i=0; i<m_iBufferPos; i++)
-						{
-							if(histString[i] != m_szBuffer[i])
-							{
-								bad = true; break;
-							}
-						}
-						if(!bad)
-						{
-							SetBuffer(m_deqBufHistory.at(iHistoryPos).c_str());
-							return;
-						}
-					}
-				}
-				// if we got here, failed to find a string with the right prefix;
-				// revert to the old position in case the user types more stuff
-				iHistoryPos = oldHistoryPos;
+				iHistoryPos++;
+				SetBuffer(m_deqBufHistory.at(iHistoryPos).c_str());
+				m_iBufferPos = m_iBufferLength;
 			}
 			return;
 
 		case SDLK_DOWN:
-			if ( m_deqBufHistory.size() && iHistoryPos > 0 )
+			if (m_deqBufHistory.size())
 			{
-				int oldHistoryPos = iHistoryPos;
-				while( iHistoryPos != 0)
+				if (iHistoryPos > 0)
 				{
 					iHistoryPos--;
-					std::wstring& histString = m_deqBufHistory.at(iHistoryPos);
-					if((int)histString.length() >= m_iBufferPos)
-					{
-						bool bad = false;
-						for(int i=0; i<m_iBufferPos; i++)
-						{
-							if(histString[i] != m_szBuffer[i])
-							{
-								bad = true; break;
-							}
-						}
-						if(!bad)
-						{
-							SetBuffer(m_deqBufHistory.at(iHistoryPos).c_str());
-							return;
-						}
-					}
+					SetBuffer(m_deqBufHistory.at(iHistoryPos).c_str());
+					m_iBufferPos = m_iBufferLength;
 				}
-				// if we got here, failed to find a string with the right prefix;
-				// revert to the old position in case the user types more stuff,
-				// and also clear any complietion we might've added going up
-				iHistoryPos = oldHistoryPos;
-				m_szBuffer[m_iBufferPos] = 0;
-				m_iBufferLength = m_iBufferPos;
+				else if (iHistoryPos == 0)
+				{
+					iHistoryPos--;
+					FlushBuffer();
+				}
 			}
 			return;
 		// END: Buffer History Lookup
