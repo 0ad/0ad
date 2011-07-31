@@ -54,15 +54,6 @@
 
 #include "ogg.h"
 
-// HACK: OpenAL loads and unloads certain DLLs several times on Windows.
-// that looks unnecessary and wastes 100..400 ms on startup.
-// we hold a reference to prevent the actual unload. everything works ATM;
-// hopefully, OpenAL doesn't rely on them actually being unloaded.
-#if OS_WIN
-# define WIN_LOADLIBRARY_HACK 0
-#else
-# define WIN_LOADLIBRARY_HACK 0
-#endif
 
 static const size_t maxBufferSize = 64*KiB;
 
@@ -222,32 +213,7 @@ static Status alc_init()
 {
 	Status ret = INFO::OK;
 
-#if WIN_LOADLIBRARY_HACK
-	HMODULE dlls[3];
-	dlls[0] = LoadLibrary("wrap_oal.dll");
-	dlls[1] = LoadLibrary("setupapi.dll");
-	dlls[2] = LoadLibrary("wdmaud.drv");
-#endif
-
-	// for reasons unknown, the NV native OpenAL implementation
-	// causes an "invalid handle" exception internally when loaded
-	// (it's not caused by the DLL load hack above). everything works and
-	// we can continue normally; we just need to catch it to prevent the
-	// unhandled exception filter from reporting it.
-#if OS_WIN
-	__try
-	{
-		alc_dev = alcOpenDevice((alcString)alc_dev_name);
-	}
-	// if invalid handle, handle it; otherwise, continue handler search.
-	__except(GetExceptionCode() == EXCEPTION_INVALID_HANDLE)
-	{
-		// ignore
-	}
-#else
 	alc_dev = alcOpenDevice((alcString)alc_dev_name);
-#endif
-
 	if(alc_dev)
 	{
 		alc_ctx = alcCreateContext(alc_dev, 0);	// no attrlist needed
@@ -276,13 +242,6 @@ static Status alc_init()
 	wchar_t buf[200];
 	swprintf_s(buf, ARRAY_SIZE(buf), L"SND| alc_init: success, using %hs\n", dev_name);
 	ah_log(buf);
-
-#if WIN_LOADLIBRARY_HACK
-	// release DLL references, so BoundsChecker doesn't complain at exit.
-	for(int i = 0; i < ARRAY_SIZE(dlls); i++)
-		if(dlls[i] != INVALID_HANDLE_VALUE)
-			FreeLibrary(dlls[i]);
-#endif
 
 	return ret;
 }

@@ -295,6 +295,9 @@ public:
 
 	pointer allocate(size_type n)
 	{
+		// safely handle zero-sized allocations (happens with GCC STL - see ticket #909).
+		if(n == 0)
+			n = 1;
 		return p.AllocateMemory<value_type> (n);
 	}
 

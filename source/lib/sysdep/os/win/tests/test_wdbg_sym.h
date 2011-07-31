@@ -50,6 +50,7 @@ static Status OnFrame(const _tagSTACKFRAME64* frame, uintptr_t UNUSED(cbData))
 }
 
 #pragma optimize("", off)
+#pragma warning(disable:4748)	// /GS can not protect [..] from local buffer overrun because optimizations are disabled
 
 // (these must be outside of TestWdbgSym so that we can simply
 // search for the function's name as a substring within the ILT
