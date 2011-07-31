@@ -42,6 +42,10 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
+  <TerritoryInfluence>
+    <Radius>20</Radius>
+    <Weight>65536</Weight>
+  </TerritoryInfluence>
   <Vision>
     <Range>60</Range>
   </Vision>

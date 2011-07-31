@@ -50,6 +50,10 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
+  <TerritoryInfluence>
+    <Radius>40</Radius>
+    <Weight>65536</Weight>
+  </TerritoryInfluence>
   <TrainingQueue>
     <Entities datatype="tokens">
       units/{civ}_support_healer

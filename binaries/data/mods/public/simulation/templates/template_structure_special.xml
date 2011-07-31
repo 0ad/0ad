@@ -19,6 +19,10 @@
   <Obstruction>
     <Static width="24.0" depth="24.0"/>
   </Obstruction>
+  <TerritoryInfluence>
+    <Radius>40</Radius>
+    <Weight>65536</Weight>
+  </TerritoryInfluence>
   <VisualActor>
     <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
   </VisualActor>
