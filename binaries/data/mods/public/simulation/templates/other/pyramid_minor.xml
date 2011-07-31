@@ -13,7 +13,7 @@
     <Height>10.0</Height>
   </Footprint>
   <Health>
-    <Max>10000</Max>
+    <Max>5000</Max>
   </Health>
   <Identity>
     <Civ>gaia</Civ>
@@ -33,6 +33,12 @@
   <Obstruction>
     <Static width="34.0" depth="34.0"/>
   </Obstruction>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_temple.xml</select>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
   <Vision>
     <Range>40</Range>
     <RetainInFog>true</RetainInFog>
