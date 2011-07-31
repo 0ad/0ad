@@ -37,7 +37,6 @@
         <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
         <animation file="biped/inf_salute_c.psa" name="Promotion" speed="288"/>
       </animations>
-      <mesh>skeletal/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/shields/cart_tarantine_e.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
@@ -48,8 +47,29 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Cuirass">
+    <variant frequency="6" name="Cuirass">
+      <mesh>skeletal/m_tunic_short.dae</mesh>
       <texture>skeletal/samnite_isp_e_1.dds</texture>
+    </variant>
+    <variant frequency="2" name="pectoral-tripledisc">
+      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <texture>skeletal/kart_csp_a_1.dds</texture>
+    </variant>
+    <variant frequency="2" name="pectoral-square">
+      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <texture>skeletal/kart_csp_a_2.dds</texture>
+    </variant>
+    <variant frequency="2" name="pectoral-muscle">
+      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <texture>skeletal/kart_csp_a_3.dds</texture>
+    </variant>
+    <variant frequency="2" name="Roman Scale Mail">
+      <mesh>skeletal/m_tunic_long.dae</mesh>
+      <texture>skeletal/rome_su1_extraordinarii.dds</texture>
+    </variant>
+    <variant frequency="1" name="Roman Chainmail">
+      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <texture>skeletal/rome_su3_marian_legion.dds</texture>
     </variant>
   </group>
   <group>
