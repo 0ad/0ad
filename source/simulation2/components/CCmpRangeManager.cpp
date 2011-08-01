@@ -20,9 +20,10 @@
 #include "simulation2/system/Component.h"
 #include "ICmpRangeManager.h"
 
-#include "ICmpPosition.h"
-#include "ICmpVision.h"
 #include "simulation2/MessageTypes.h"
+#include "simulation2/components/ICmpPosition.h"
+#include "simulation2/components/ICmpTerritoryManager.h"
+#include "simulation2/components/ICmpVision.h"
 #include "simulation2/helpers/Render.h"
 #include "simulation2/helpers/Spatial.h"
 
@@ -188,6 +189,7 @@ public:
 	std::map<player_id_t, bool> m_LosRevealAll;
 	bool m_LosCircular;
 	i32 m_TerrainVerticesPerSide;
+	size_t m_TerritoriesDirtyID;
 
 	// Counts of units seeing vertex, per vertex, per player (starting with player 0).
 	// Use u16 to avoid overflows when we have very large (but not infeasibly large) numbers
@@ -228,6 +230,8 @@ public:
 
 		m_LosCircular = false;
 		m_TerrainVerticesPerSide = 0;
+
+		m_TerritoriesDirtyID = 0;
 	}
 
 	virtual void Deinit()
@@ -250,8 +254,11 @@ public:
 		serialize.Bool("los circular", m_LosCircular);
 		serialize.NumberI32_Unbounded("terrain verts per side", m_TerrainVerticesPerSide);
 
-		// We don't serialize m_Subdivision, m_LosPlayerCounts, m_LosState
-		// since they can be recomputed from the entity data when deserializing
+		// We don't serialize m_Subdivision or m_LosPlayerCounts
+		// since they can be recomputed from the entity data when deserializing;
+		// m_LosState must be serialized since it depends on the history of exploration
+
+		SerializeVector<SerializeU32_Unbounded>()(serialize, "los state", m_LosState);
 	}
 
 	virtual void Serialize(ISerializer& serialize)
@@ -266,7 +273,7 @@ public:
 		SerializeCommon(deserialize);
 
 		// Reinitialise subdivisions and LOS data
-		ResetDerivedData();
+		ResetDerivedData(true);
 	}
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
@@ -395,6 +402,7 @@ public:
 		case MT_Update:
 		{
 			m_DebugOverlayDirty = true;
+			UpdateTerritoriesLos();
 			ExecuteActiveQueries();
 			break;
 		}
@@ -415,19 +423,22 @@ public:
 		m_WorldZ1 = z1;
 		m_TerrainVerticesPerSide = vertices;
 
-		ResetDerivedData();
+		ResetDerivedData(false);
 	}
 
 	// Reinitialise subdivisions and LOS data, based on entity data
-	void ResetDerivedData()
+	void ResetDerivedData(bool skipLosState)
 	{
 		ENSURE(m_WorldX0.IsZero() && m_WorldZ0.IsZero()); // don't bother implementing non-zero offsets yet
 		ResetSubdivisions(m_WorldX1, m_WorldZ1);
 
 		m_LosPlayerCounts.clear();
 		m_LosPlayerCounts.resize(MAX_LOS_PLAYER_ID+1);
-		m_LosState.clear();
-		m_LosState.resize(m_TerrainVerticesPerSide*m_TerrainVerticesPerSide);
+		if (!skipLosState)
+		{
+			m_LosState.clear();
+			m_LosState.resize(m_TerrainVerticesPerSide*m_TerrainVerticesPerSide);
+		}
 		m_LosStateRevealed.clear();
 		m_LosStateRevealed.resize(m_TerrainVerticesPerSide*m_TerrainVerticesPerSide);
 
@@ -800,6 +811,7 @@ public:
 			collector.Submit(&m_DebugOverlayLines[i]);
 	}
 
+	// ****************************************************************
 
 	// LOS implementation:
 
@@ -879,12 +891,40 @@ public:
 	{
 		m_LosCircular = enabled;
 
-		ResetDerivedData();
+		ResetDerivedData(false);
 	}
 
 	virtual bool GetLosCircular()
 	{
 		return m_LosCircular;
+	}
+
+	void UpdateTerritoriesLos()
+	{
+		CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(GetSimContext(), SYSTEM_ENTITY);
+		if (cmpTerritoryManager.null() || !cmpTerritoryManager->NeedUpdate(&m_TerritoriesDirtyID))
+			return;
+
+		const Grid<u8>& grid = cmpTerritoryManager->GetTerritoryGrid();
+		ENSURE(grid.m_W == m_TerrainVerticesPerSide-1 && grid.m_H == m_TerrainVerticesPerSide-1);
+
+		// For each tile, if it is owned by a valid player then update the LOS
+		// for every vertex around that tile, to mark them as explored
+
+		for (size_t j = 0; j < grid.m_H; ++j)
+		{
+			for (size_t i = 0; i < grid.m_W; ++i)
+			{
+				u8 p = grid.get(i, j);
+				if (p > 0 && p <= MAX_LOS_PLAYER_ID)
+				{
+					m_LosState[i + j*m_TerrainVerticesPerSide] |= (LOS_EXPLORED << (2*(p-1)));
+					m_LosState[i+1 + j*m_TerrainVerticesPerSide] |= (LOS_EXPLORED << (2*(p-1)));
+					m_LosState[i + (j+1)*m_TerrainVerticesPerSide] |= (LOS_EXPLORED << (2*(p-1)));
+					m_LosState[i+1 + (j+1)*m_TerrainVerticesPerSide] |= (LOS_EXPLORED << (2*(p-1)));
+				}
+			}
+		}
 	}
 
 	/**

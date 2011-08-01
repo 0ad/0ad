@@ -278,12 +278,12 @@ class CMessageTerrainChanged : public CMessage
 public:
 	DEFAULT_MESSAGE_IMPL(TerrainChanged)
 
-	CMessageTerrainChanged(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1) :
+	CMessageTerrainChanged(int32_t i0, int32_t j0, int32_t i1, int32_t j1) :
 		i0(i0), j0(j0), i1(i1), j1(j1)
 	{
 	}
 
-	ssize_t i0, j0, i1, j1; // inclusive lower bound, exclusive upper bound, in tiles
+	int32_t i0, j0, i1, j1; // inclusive lower bound, exclusive upper bound, in tiles
 };
 
 /**

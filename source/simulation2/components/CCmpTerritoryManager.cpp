@@ -182,8 +182,7 @@ public:
 
 	virtual bool NeedUpdate(size_t* dirtyID)
 	{
-		ENSURE(*dirtyID <= m_DirtyID);
-		if (*dirtyID < m_DirtyID)
+		if (*dirtyID != m_DirtyID)
 		{
 			*dirtyID = m_DirtyID;
 			return true;
