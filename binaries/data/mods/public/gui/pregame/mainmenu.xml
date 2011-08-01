@@ -43,6 +43,26 @@
 
 		<!--
 		==========================================
+		- CORNER 'X' EXIT BUTTON
+		==========================================
+		-->
+                <object name="cornerExitButton"
+                        type="button"
+                        style="wheatExit"
+                        size="100%-16 0 100% 16"
+                        tooltip_style="pgToolTip"
+                        tooltip="Exit Game"
+                >
+                        <action on="Press"><![CDATA[
+                                var btCaptions = ["Yes", "No"];
+                                var btCode = [exit, null];
+                                messageBox (400, 200, "Are you sure you want to quit [icon=iconProduct] A.D.?", "Confirmation", 0, btCaptions, btCode);
+                        ]]></action>
+		</object>
+
+
+		<!--
+		==========================================
 		- MAIN PANEL MENU - PARCHMENT BUTTONS
 		==========================================
 		-->
