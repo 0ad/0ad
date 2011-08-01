@@ -4,7 +4,7 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>sunny</SkySet>
-		<SunColour r="0.845198" g="0.826723" b="0.678929"/>
+		<SunColour r="0.843137" g="0.823529" b="0.678431"/>
 		<SunElevation angle="0.773126"/>
 		<SunRotation angle="-0.582913"/>
 		<TerrainAmbientColour r="0.301961" g="0.364706" b="0.529412"/>
@@ -17,61 +17,64 @@
 				<Shininess>0.488281</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.686523</Murkiness>
-				<Tint r="0.25098" g="0.501961" b="0.501961"/>
-				<ReflectionTint r="0.756863" g="0.701961" b="0.52549"/>
+				<Tint r="0.247059" g="0.501961" b="0.501961"/>
+				<ReflectionTint r="0.756863" g="0.701961" b="0.521569"/>
 				<ReflectionTintStrength>0.373047</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="495.705" y="154.718" z="317.658"/>
+		<Position x="494.994" y="146.695" z="327.664"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
+  "CircularMap": true,
+  "Description": "4 players duke it out over the vast Nile Delta. Each city starts out nestled atop a large acropolis, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\u000a\u000aScouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions.",
+  "GameType": "conquest",
+  "Keywords": [],
+  "LockTeams": false,
   "Name": "Necropolis",
-  "Description": "4 players duke it out over the vast Nile Delta. Each city starts out nestled atop a large acropolis, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\u000a\u000aScouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy cities.",
   "PlayerData": [
     {
       "Civ": "hele",
       "Resources": {
         "food": 100,
-        "wood": 100,
         "metal": 100,
-        "stone": 100
+        "stone": 100,
+        "wood": 100
       }
     },
     {
       "Civ": "hele",
       "Resources": {
         "food": 100,
-        "wood": 100,
         "metal": 100,
-        "stone": 100
+        "stone": 100,
+        "wood": 100
       }
     },
     {
       "Civ": "hele",
       "Resources": {
         "food": 100,
-        "wood": 100,
         "metal": 100,
-        "stone": 100
+        "stone": 100,
+        "wood": 100
       }
     },
     {
       "Civ": "hele",
       "Resources": {
         "food": 100,
-        "wood": 100,
         "metal": 100,
-        "stone": 100
+        "stone": 100,
+        "wood": 100
       }
     }
   ],
-  "CircularMap": true,
-  "Keywords": []
+  "RevealMap": false
 }
 ]]></ScriptSettings>
 	<Entities>
@@ -6240,7 +6243,7 @@
 		<Entity uid="1099">
 			<Template>other/hellenic_royal_stoa</Template>
 			<Player>3</Player>
-			<Position x="506.01371" z="1540.2649"/>
+			<Position x="507.13468" z="1542.37989"/>
 			<Orientation y="-0.78142"/>
 		</Entity>
 		<Entity uid="1100">
@@ -6252,19 +6255,19 @@
 		<Entity uid="1101">
 			<Template>other/hellenic_epic_temple</Template>
 			<Player>3</Player>
-			<Position x="513.52607" z="1584.42725"/>
+			<Position x="518.49122" z="1587.99415"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1102">
 			<Template>other/hellenic_stoa</Template>
 			<Player>3</Player>
-			<Position x="485.00266" z="1513.52686"/>
+			<Position x="484.41083" z="1513.61817"/>
 			<Orientation y="-0.78397"/>
 		</Entity>
 		<Entity uid="1103">
 			<Template>other/hellenic_stoa</Template>
 			<Player>3</Player>
-			<Position x="461.33213" z="1490.6117"/>
+			<Position x="459.08002" z="1489.27308"/>
 			<Orientation y="-0.76767"/>
 		</Entity>
 		<Entity uid="1104">
@@ -14047,126 +14050,6 @@
 			<Template>units/hele_support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="1588.84437" z="1565.73829"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2433">
-			<Template>units/hele_champion_ranged_polis</Template>
-			<Player>2</Player>
-			<Position x="1566.68274" z="1526.7865"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2434">
-			<Template>units/hele_champion_ranged_polis</Template>
-			<Player>2</Player>
-			<Position x="1564.6266" z="1524.68982"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2435">
-			<Template>units/hele_champion_ranged_polis</Template>
-			<Player>2</Player>
-			<Position x="1562.16334" z="1523.0376"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2436">
-			<Template>units/hele_champion_ranged_polis</Template>
-			<Player>2</Player>
-			<Position x="1557.64234" z="1518.83228"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2437">
-			<Template>units/hele_champion_ranged_polis</Template>
-			<Player>2</Player>
-			<Position x="1559.68628" z="1520.32032"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2438">
-			<Template>units/hele_champion_ranged_polis</Template>
-			<Player>2</Player>
-			<Position x="1569.42005" z="1523.62049"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2439">
-			<Template>units/hele_champion_ranged_polis</Template>
-			<Player>2</Player>
-			<Position x="1567.05823" z="1521.39661"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2440">
-			<Template>units/hele_champion_ranged_polis</Template>
-			<Player>2</Player>
-			<Position x="1564.85303" z="1519.86524"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2441">
-			<Template>units/hele_champion_ranged_polis</Template>
-			<Player>2</Player>
-			<Position x="1562.95533" z="1517.09888"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2442">
-			<Template>units/hele_champion_ranged_polis</Template>
-			<Player>2</Player>
-			<Position x="1561.06263" z="1514.90113"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2443">
-			<Template>units/hele_champion_infantry_polis</Template>
-			<Player>3</Player>
-			<Position x="454.0861" z="1535.67334"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2444">
-			<Template>units/hele_champion_infantry_polis</Template>
-			<Player>3</Player>
-			<Position x="456.36274" z="1537.62708"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2445">
-			<Template>units/hele_champion_infantry_polis</Template>
-			<Player>3</Player>
-			<Position x="458.28653" z="1539.14783"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2446">
-			<Template>units/hele_champion_infantry_polis</Template>
-			<Player>3</Player>
-			<Position x="460.0027" z="1541.21314"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2447">
-			<Template>units/hele_champion_infantry_polis</Template>
-			<Player>3</Player>
-			<Position x="461.78086" z="1542.81019"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2448">
-			<Template>units/hele_champion_infantry_polis</Template>
-			<Player>3</Player>
-			<Position x="463.84107" z="1540.55665"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2449">
-			<Template>units/hele_champion_infantry_polis</Template>
-			<Player>3</Player>
-			<Position x="461.79783" z="1538.3932"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2450">
-			<Template>units/hele_champion_infantry_polis</Template>
-			<Player>3</Player>
-			<Position x="460.05787" z="1536.99756"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2451">
-			<Template>units/hele_champion_infantry_polis</Template>
-			<Player>3</Player>
-			<Position x="458.85221" z="1535.48694"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2452">
-			<Template>units/hele_champion_infantry_polis</Template>
-			<Player>3</Player>
-			<Position x="456.81458" z="1534.15381"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2463">
@@ -49189,6 +49072,126 @@
 		<Entity uid="9616">
 			<Template>actor|particle/blowing_sand.xml</Template>
 			<Position x="1781.40101" z="430.85596"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9617">
+			<Template>units/thrace_black_cloak</Template>
+			<Player>2</Player>
+			<Position x="1555.5564" z="1518.56092"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9618">
+			<Template>units/thrace_black_cloak</Template>
+			<Player>2</Player>
+			<Position x="1557.48414" z="1521.30518"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9619">
+			<Template>units/thrace_black_cloak</Template>
+			<Player>2</Player>
+			<Position x="1559.27625" z="1523.31983"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9620">
+			<Template>units/thrace_black_cloak</Template>
+			<Player>2</Player>
+			<Position x="1561.21534" z="1525.57447"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9621">
+			<Template>units/thrace_black_cloak</Template>
+			<Player>2</Player>
+			<Position x="1562.83082" z="1527.66626"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9622">
+			<Template>units/thrace_black_cloak</Template>
+			<Player>2</Player>
+			<Position x="1565.78125" z="1524.83985"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9623">
+			<Template>units/thrace_black_cloak</Template>
+			<Player>2</Player>
+			<Position x="1564.11841" z="1522.61402"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9624">
+			<Template>units/thrace_black_cloak</Template>
+			<Player>2</Player>
+			<Position x="1561.89747" z="1520.69983"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9625">
+			<Template>units/thrace_black_cloak</Template>
+			<Player>2</Player>
+			<Position x="1560.08814" z="1518.41651"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9626">
+			<Template>units/thrace_black_cloak</Template>
+			<Player>2</Player>
+			<Position x="1558.52698" z="1516.99366"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9627">
+			<Template>units/thespian_melanochitones</Template>
+			<Player>3</Player>
+			<Position x="455.85578" z="1535.1692"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9628">
+			<Template>units/thespian_melanochitones</Template>
+			<Player>3</Player>
+			<Position x="457.38642" z="1536.44105"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9629">
+			<Template>units/thespian_melanochitones</Template>
+			<Player>3</Player>
+			<Position x="459.35825" z="1538.36475"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9630">
+			<Template>units/thespian_melanochitones</Template>
+			<Player>3</Player>
+			<Position x="461.29258" z="1540.51697"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9631">
+			<Template>units/thespian_melanochitones</Template>
+			<Player>3</Player>
+			<Position x="463.12153" z="1542.49854"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9632">
+			<Template>units/thespian_melanochitones</Template>
+			<Player>3</Player>
+			<Position x="465.98359" z="1539.79078"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9633">
+			<Template>units/thespian_melanochitones</Template>
+			<Player>3</Player>
+			<Position x="463.71885" z="1537.27955"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9634">
+			<Template>units/thespian_melanochitones</Template>
+			<Player>3</Player>
+			<Position x="462.20109" z="1535.91382"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9635">
+			<Template>units/thespian_melanochitones</Template>
+			<Player>3</Player>
+			<Position x="460.28061" z="1533.92542"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9636">
+			<Template>units/thespian_melanochitones</Template>
+			<Player>3</Player>
+			<Position x="457.84287" z="1532.14563"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
