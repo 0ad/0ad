@@ -17,6 +17,7 @@
 
 #include "precompiled.h"
 
+#include "ps/CLogger.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/MessageTypes.h"
 
@@ -59,6 +60,7 @@ jsval CMessage::ToJSValCached(ScriptInterface& scriptInterface) const
 
 jsval CMessageTurnStart::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
 {
+	LOGWARNING(L"CMessageTurnStart::ToJSVal not implemented");
 	return JSVAL_VOID;
 }
 
@@ -110,11 +112,13 @@ CMessage* CMessageInterpolate::FromJSVal(ScriptInterface& scriptInterface, jsval
 
 jsval CMessageRenderSubmit::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
 {
+	LOGWARNING(L"CMessageRenderSubmit::ToJSVal not implemented");
 	return JSVAL_VOID;
 }
 
 CMessage* CMessageRenderSubmit::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
 {
+	LOGWARNING(L"CMessageRenderSubmit::FromJSVal not implemented");
 	return NULL;
 }
 
@@ -122,11 +126,13 @@ CMessage* CMessageRenderSubmit::FromJSVal(ScriptInterface& UNUSED(scriptInterfac
 
 jsval CMessageProgressiveLoad::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
 {
+	LOGWARNING(L"CMessageProgressiveLoad::ToJSVal not implemented");
 	return JSVAL_VOID;
 }
 
 CMessage* CMessageProgressiveLoad::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
 {
+	LOGWARNING(L"CMessageProgressiveLoad::FromJSVal not implemented");
 	return NULL;
 }
 
@@ -226,14 +232,24 @@ CMessage* CMessageMotionChanged::FromJSVal(ScriptInterface& scriptInterface, jsv
 
 ////////////////////////////////
 
-jsval CMessageTerrainChanged::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
+jsval CMessageTerrainChanged::ToJSVal(ScriptInterface& scriptInterface) const
 {
-	return JSVAL_VOID;
+	TOJSVAL_SETUP();
+	SET_MSG_PROPERTY(i0);
+	SET_MSG_PROPERTY(j0);
+	SET_MSG_PROPERTY(i1);
+	SET_MSG_PROPERTY(j1);
+	return OBJECT_TO_JSVAL(obj);
 }
 
-CMessage* CMessageTerrainChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+CMessage* CMessageTerrainChanged::FromJSVal(ScriptInterface& scriptInterface, jsval val)
 {
-	return NULL;
+	FROMJSVAL_SETUP();
+	GET_MSG_PROPERTY(int32_t, i0);
+	GET_MSG_PROPERTY(int32_t, j0);
+	GET_MSG_PROPERTY(int32_t, i1);
+	GET_MSG_PROPERTY(int32_t, j1);
+	return new CMessageTerrainChanged(i0, i1, j0, j1);
 }
 
 ////////////////////////////////
@@ -249,6 +265,7 @@ jsval CMessageRangeUpdate::ToJSVal(ScriptInterface& scriptInterface) const
 
 CMessage* CMessageRangeUpdate::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
 {
+	LOGWARNING(L"CMessageRangeUpdate::FromJSVal not implemented");
 	return NULL;
 }
 
@@ -256,11 +273,13 @@ CMessage* CMessageRangeUpdate::FromJSVal(ScriptInterface& UNUSED(scriptInterface
 
 jsval CMessagePathResult::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
 {
+	LOGWARNING(L"CMessagePathResult::ToJSVal not implemented");
 	return JSVAL_VOID;
 }
 
 CMessage* CMessagePathResult::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
 {
+	LOGWARNING(L"CMessagePathResult::FromJSVal not implemented");
 	return NULL;
 }
 
