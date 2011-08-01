@@ -25,24 +25,6 @@
 
 		<!--
 		==========================================
-		- MAIN MENU - PRE-RELEASE WARNING
-		==========================================
-		-->
-
-		<object
-			style="fancyTextHeadWhite"
-			type="text"
-			sprite="bkTranslucent"
-			textcolor="255 255 0"
-			size="4 24 220 230"
->[font="serif-bold-16"]Alpha version[/font]
-Warning: This is an early development version of the game and many features have not been added yet, but we hope this gives you a glimpse of the game’s vision.
-
-Watch for updates or get involved in the development: http://wildfiregames.com/0ad/
-		</object>
-
-		<!--
-		==========================================
 		- MAIN MENU - STATIC TOOLTIP WINDOW
 		(Put at the top so that it is recognised by those using it.)
 		==========================================
@@ -57,55 +39,208 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 		>tooltipText
 		</object>		
 
+
+
 		<!--
 		==========================================
-		- MAIN MENU - RANDOM BUTTONS
+		- MAIN PANEL MENU - PARCHMENT BUTTONS
 		==========================================
 		-->
 		
-		<object size="100%-400 0 100% 30">
-			<object type="button" style="wheatButton" size="0 0 100 30">
-				Manual
-				<action on="Press"><![CDATA[
-					Engine.PushGuiPage("page_manual.xml", { "page": "intro" });
-				]]></action>
-			</object>
+	
+		<object
+			type="image"
+			sprite="bkTranslucent"
+			size="60 0 310 100%"
+                >
+                        <object	name="pgProductLogo"
+                                style="pgButton"
+                                type="button"
+                                ghost="true"
+                                size="20 40 240 140"
+                                sprite="pgProductLogo"
+                        >
+                        </object>
+                        
+                        <object
+                                size="0 170 100% 400"
+                                type="image"
+                                sprite="bkTranslucent"
+                        >
+                            
+                              <object name="pgLearnToPlayBt"
+                                      type="button"
+                                      style="wheatButton"
+                                      size="4 4 100%-4 36"
+                                      tooltip_style="pgToolTip"
+                                      tooltip="The 0 A.D. Game Manual"
+                              >
+                                        Learn To Play
+                                        <action on="Press"><![CDATA[
+                                                Engine.PushGuiPage("page_manual.xml", { "page": "intro" });
+                                        ]]></action>
+                               </object>
+                            
+                            
+                               <object name="pgSinglePlayerBt"
+                                       style="wheatButton"
+                                       type="button"
+                                       size="4 36 100%-4 68"
+                                       tooltip_style="pgToolTip"
+                                       tooltip="Click here to start a new single player game. (A very basic computer opponent is available for testing purposes.)"
+                                >
+                                    Single Player
+                                    <action on="Press"><![CDATA[
+                                            // Open Session Setup window.
+                                            Engine.PushGuiPage("page_gamesetup.xml", { type: "offline" });
+                                    ]]></action>
+                                </object>
+                               
+                                <object	name="pgMultiPlayerBt"
+                                        style="wheatButton"
+                                        type="button"
+                                        size="4 68 100%-4 100"
+                                        tooltip_style="pgToolTip"
+                                        tooltip="Tired of playing with yourself? Fight against one or more human players in a multiplayer game."
+                                >
+                                        Multiplayer
+                                        <action on="Press"><![CDATA[
+                                                // Open Multiplayer connection window.
+                                                Engine.PushGuiPage("page_gamesetup_mp.xml");
+                                        ]]></action>
+                                </object>
 
-			<object type="button" style="wheatButton" size="100 0 200 30">
-				Website
-				<action on="Press"><![CDATA[
-					var url = "http://wildfiregames.com/0ad/";
-					Engine.OpenURL(url);
-					messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2);
-				]]></action>
-			</object>
+                                <object name="pgEditorBt"
+                                        style="wheatButton"
+                                        type="button"
+                                        size="4 100 100%-4 132"
+                                        tooltip_style="pgToolTip"
+                                        tooltip="Open the Atlas Scenario Editor in a new window. You can run this more reliably by starting the game with the command-line argument &quot;-editor&quot;."
+                                >
+                                        Scenario Editor
+                                        <action on="Press"><![CDATA[
+                                                if (Engine.AtlasIsAvailable())
+                                                        Engine.RestartInAtlas();
+                                                else
+                                                        messageBox(400, 200, "The scenario editor is not available or failed to load.", "Error", 2);
+                                        ]]></action>
+                                </object>
+                                
+                                <object name="pgOptionsBt"
+                                        style="wheatButton"
+                                        type="button"
+                                        size="4 132 100%-4 164"
+                                        tooltip_style="pgToolTip"
+                                        tooltip="This will take you to the options menu.  It does not work now, but someday it will."
+                                        enabled="false"
+                                >
+                                        Options
+                                        <action on="Press"><![CDATA[
+                                                // Open Options window.
+                                                openMainMenuSubWindow ("pgOptions");
+                                        ]]></action>
+                                </object>
+                                
+                                <!-- EXIT BUTTON -->
+                                <object name="pgExit"
+                                        type="button"
+                                        style="wheatButton"
+                                        size="4 164 100%-4 196"
+                                        tooltip_style="pgToolTip"
+                                        tooltip="Exit Game"
+                                >
+                                        Quit
+                                        <action on="Press"><![CDATA[
+                                                var btCaptions = ["Yes", "No"];
+                                                var btCode = [exit, null];
+                                                messageBox (400, 200, "Are you sure you want to quit [icon=iconProduct] A.D.?", "Confirmation", 0, btCaptions, btCode);
+                                        ]]></action>
+                                </object>
+                                
+<!--                        <object name="pgCampaignsBt"
+                                       style="wheatButton"
+                                       type="button"
+                                       size="4 36 100%-4 68"
+                                       tooltip_style="pgToolTip"
+                                       tooltip="Want to play a campaign? Unfortunately you'll have to wait as they're not yet implemented."
+                                       enabled="false"
+                               >
+                                    Historical Campaigns
+                            <action on="Press"><![CDATA[
+                                    openMainMenuSubWindow ("pgCampaigns");
+                            ]]></action>
+                        </object>
+-->
+<!--                        <object name="pgHistoryBt"
+                                style="wheatButton"
+                                type="button"
+                                size="4 36 100%-4 68"
+                                tooltip_style="pgToolTip"
+                                tooltip="One day you will click this button and learn more about ancient history than any history teacher ever taught you."
+                                enabled="false"
+                        >
+                                History
+                                <action on="Press"><![CDATA[
+                                        openMainMenuSubWindow ("pgHistory");
+                                ]]></action>
+                        </object>
+-->
+                        </object>
+                        
+                        <!-- CONTACT METHODS -->
+                        <object size="0 100%-340 100% 100%-300">
+                                <object type="button"
+                                        style="wheatButton"
+                                        size="4 0 50%-2 36"
+                                >
+                                        Website
+                                        <action on="Press"><![CDATA[
+                                                var url = "http://wildfiregames.com/0ad/";
+                                                Engine.OpenURL(url);
+                                                messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2);
+                                        ]]></action>
+                                </object>
 
-			<object type="button" style="wheatButton" size="200 0 300 30">
-				IRC
-				<action on="Press"><![CDATA[
-					var url = "http://webchat.quakenet.org/?channels=0ad";
-					Engine.OpenURL(url);
-					messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2);
-				]]></action>
-			</object>
+                                <object type="button"
+                                        style="wheatButton"
+                                        size="50%+2 0 100%-4 36"
+                                >
+                                        IRC
+                                        <action on="Press"><![CDATA[
+                                                var url = "http://webchat.quakenet.org/?channels=0ad";
+                                                Engine.OpenURL(url);
+                                                messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2);
+                                        ]]></action>
+                                </object>
+                        </object>
+                        
+                        <!-- PRE-RELEASE WARNING -->
+                        <object
+                                style="fancyTextHeadWhite"
+                                type="text"
+                                sprite="bkTranslucent"
+                                textcolor="255 255 0"
+                                size="0 100%-280 100% 100%-64"
+>[font="serif-bold-16"]Alpha version[/font]
+Warning: This is an early development version of the game and many features have not been added yet, but we hope this gives you a glimpse of the game’s vision.
 
-			<!-- MAIN MENU - EXIT BUTTON -->
-			<object type="button" style="wheatButton" name="pgExit" size="300 0 400 30">
-				Quit
-				<action on="Press"><![CDATA[
-					var btCaptions = ["Yes", "No"];
-					var btCode = [exit, null];
-					messageBox (400, 200, "Are you sure you want to quit [icon=iconProduct] A.D.?", "Confirmation", 0, btCaptions, btCode);
-				]]></action>
-			</object>
-		</object>
-
-		<!--
-		==========================================
-		- MAIN MENU - PARCHMENT BUTTONS
-		==========================================
-		-->
-
+Watch for updates or get involved in the development: http://wildfiregames.com/0ad/
+                        </object>
+                        
+                        <!-- VERSION -->
+                        <object name="pgVersionNumber"
+                                style="fancyTextHeadGold"
+                                type="text"
+                                ghost="true"
+                                size="2 100%-64 100%-2 100%-2"
+                        >
+                                <action on="Load"><![CDATA[
+                                        this.caption = "Build: " + buildTime(0) + " - " + buildTime(2);
+                                ]]></action>
+                        </object>
+                </object>
+		
+<!--
 		<object name="pgCampaignsBt"
 			style="pgButton"
 			type="button"
@@ -192,13 +327,20 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 				openMainMenuSubWindow ("pgHistory");
 			]]></action>
 		</object>
+-->
+
+
+              
+
+
+
 
 		<!--
 		==========================================
 		- MAIN MENU - GAME LOGO AND VERSION NUMBER
 		==========================================
 		-->
-
+<!--
 		<object	name="pgProductLogo"
 			style="pgButton"
 			type="button"
@@ -254,13 +396,13 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 				this.caption = "Build: " + buildTime(0) + " - " + buildTime(2);
 			]]></action>
 		</object>
-
+-->
 		<!--
 		==========================================
 		- MAIN MENU - COMPANY LOGO
 		==========================================
 		-->
-
+<!--
 		<object name="pgCompanyLogo"
 			style="pgButton"
 			type="button"
@@ -274,7 +416,7 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 				"to learn more about [icon=iconProduct] A.D., participate in the community, meet the developers, and learn how to become a part of development yourself.\n\n", "About [icon=iconProduct] A.D.", 2, [], []);
 			]]></action>
 		</object>
-
+-->
 		<!--
 		==========================================
 		- MAIN MENU - USER REPORT
@@ -283,7 +425,7 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 
 		<object
 			name="userReportDisabled"
-			size="4 300 304 450"
+			size="100%-300 300 100% 450"
 			type="image"
 			style="userReportPanel"
 		>
@@ -306,7 +448,7 @@ You can automatically send us anonymous feedback that will help us fix bugs, and
 
 		<object
 			name="userReportEnabled"
-			size="4 300 304 590"
+			size="100%-304 300 100%-4 590"
 			type="image"
 			style="userReportPanel"
 		>
@@ -375,7 +517,7 @@ Status: $status.</object>
 		- CAMPAIGNS SCREEN -
 		===============================================
 		-->
-
+<!--
 		<object name="pgCampaigns"
 			style="wheatWindow"
 			type="image"
@@ -396,17 +538,17 @@ Status: $status.</object>
 					closeMainMenuSubWindow ("pgCampaigns");
 				]]></action>
 			</object>
-			
+-->		
 			<!-- Add campaign screen controls here later -->
-			
+<!--		
 		</object>
-
+-->
 		<!--
 		===============================================
 		- OPTIONS SCREEN -
 		===============================================
 		-->
-
+<!--
 		<object name="pgOptions"
 			style="wheatWindow"
 			type="image"
@@ -428,13 +570,13 @@ Status: $status.</object>
 					closeMainMenuSubWindow ("pgOptions");
 				]]></action>
 			</object>
-
+-->
 			<!--
 			===============================================
 			- OPTIONS SCREEN - AUDIO
 			===============================================
 			-->
-
+<!--
 			<object name="pgOptionsAudioWindow"
 				style="wheatBorderBlack"
 				type="image"
@@ -465,13 +607,13 @@ Status: $status.</object>
 						}
 					]]></action>	
 				</object>
-
+-->
 				<!--
 				===============================================
 				- AUDIO SCREEN - Music
 				===============================================
 				-->
-
+<!--
 				<object name="pgOptionsAudioMusicGainTitle"
 					style="wheatTextLabelBlack"
 					type="text"
@@ -545,13 +687,13 @@ Status: $status.</object>
 						}
 					]]></action>	
 				</object>
-
+-->
 				<!--
 				===============================================
 				- AUDIO SCREEN - Sound
 				===============================================
 				-->
-
+<!--
 				<object name="pgOptionsAudioSoundGainTitle"
 					style="wheatTextLabelBlack"
 					type="text"
@@ -621,13 +763,13 @@ Status: $status.</object>
 						}
 					]]></action>	
 				</object>
-
+-->
 				<!--
 				===============================================
 				- AUDIO SCREEN - Ambient
 				===============================================
 				-->
-
+<!--
 				<object name="pgOptionsAudioAmbientGainTitle"
 					style="wheatTextLabelBlack"
 					type="text"
@@ -697,13 +839,13 @@ Status: $status.</object>
 						}
 					]]></action>	
 				</object>
-
+-->
 				<!--
 				===============================================
 				- AUDIO SCREEN - Voice
 				===============================================
 				-->
-
+<!--
 				<object name="pgOptionsAudioVoiceGainTitle"
 					style="wheatTextLabelBlack"
 					type="text"
@@ -774,13 +916,13 @@ Status: $status.</object>
 				</object>
 
 			</object>
-
+-->
 			<!--
 			===============================================
 			- OPTIONS SCREEN - VIDEO
 			===============================================
 			-->
-
+<!--
 			<object name="pgOptionsVideoWindow"
 				style="wheatBorderBlack"
 				type="image"
@@ -788,13 +930,13 @@ Status: $status.</object>
 				size="1% 4% 99% 90%"
 			>
 
-
+-->
 				<!--
 				===============================================
 				- VIDEO SCREEN - Resolution
 				===============================================
 				-->
-
+<!--
 
 				<object name="pgOptionsVideoResolutionTitle"
 					style="wheatTextLabelBlack"
@@ -822,14 +964,14 @@ Status: $status.</object>
 						setCurrItemValue (this.name, "1024x768");
 					]]></action>
 				</object>
-
+-->
 
 				<!--
 				===============================================
 				- VIDEO SCREEN - Detail
 				===============================================
 				-->
-
+<!--
 
 				<object name="pgOptionsVideoDetailTitle"
 					style="wheatTextLabelBlack"
@@ -856,13 +998,13 @@ Status: $status.</object>
 						setCurrItemValue (this.name, "HIGH");
 					]]></action>
 				</object>
-
+-->
 				<!--
 				===============================================
 				- VIDEO SCREEN - Texture
 				===============================================
 				-->
-
+<!--
 				<object name="pgOptionsVideoTextureTitle"
 					style="wheatTextLabelBlack"
 					type="text"
@@ -888,13 +1030,13 @@ Status: $status.</object>
 						setCurrItemValue (this.name, "HIGH");
 					]]></action>
 				</object>
-
+-->
 				<!--
 				===============================================
 				- VIDEO SCREEN - Animation
 				===============================================
 				-->
-
+<!--
 				<object name="pgOptionsVideoAnimationTitle"
 					style="wheatTextLabelBlack"
 					type="text"
@@ -920,13 +1062,13 @@ Status: $status.</object>
 						setCurrItemValue (this.name, "HIGH");
 					]]></action>
 				</object>
-
+-->
 				<!--
 				===============================================
 				- VIDEO SCREEN - Effects
 				===============================================
 				-->
-
+<!--
 				<object name="pgOptionsVideoEffectsTitle"
 					style="wheatTextLabelBlack"
 					type="text"
@@ -952,13 +1094,13 @@ Status: $status.</object>
 						setCurrItemValue (this.name, "HIGH");
 					]]></action>
 				</object>
-
+-->
 				<!--
 				===============================================
 				- VIDEO SCREEN - Weather
 				===============================================
 				-->
-
+<!--
 				<object name="pgOptionsVideoWeatherTitle"
 					style="wheatTextLabelBlack"
 					type="text"
@@ -984,13 +1126,13 @@ Status: $status.</object>
 						setCurrItemValue (this.name, "HIGH");
 					]]></action>
 				</object>
-
+-->
 				<!--
 				===============================================
 				- VIDEO SCREEN - Water
 				===============================================
 				-->
-
+<!--
 				<object name="pgOptionsVideoWaterTitle"
 					style="wheatTextLabelBlack"
 					type="text"
@@ -1016,13 +1158,13 @@ Status: $status.</object>
 						setCurrItemValue (this.name, "HIGH");
 					]]></action>
 				</object>
-
+-->
 				<!--
 				===============================================
 				- VIDEO SCREEN - Terrain
 				===============================================
 				-->
-
+<!--
 				<object name="pgOptionsVideoWaterTerrain"
 					style="wheatTextLabelBlack"
 					type="text"
@@ -1048,13 +1190,13 @@ Status: $status.</object>
 						setCurrItemValue (this.name, "HIGH");
 					]]></action>
 				</object>
-
+-->
 				<!--
 				===============================================
 				- VIDEO SCREEN - Shadow
 				===============================================
 				-->
-
+<!--
 				<object name="pgOptionsVideoShadowTitle"
 					style="wheatTextLabelBlack"
 					type="text"
@@ -1080,13 +1222,13 @@ Status: $status.</object>
 						setCurrItemValue (this.name, "HIGH");
 					]]></action>
 				</object>
-
+-->
 				<!--
 				===============================================
 				- VIDEO SCREEN - Show Blood
 				===============================================
 				-->
-
+<!--
 				<object name="pgOptionsVideoBloodTitle"
 					style="wheatTextLabelBlack"
 					type="text"
@@ -1105,14 +1247,14 @@ Status: $status.</object>
 					size="50%-20 91% 50%+30 96%"
 				>
 				</object>
-
+-->
 
 				<!--
 				===============================================
 				- VIDEO SCREEN - System Information
 				===============================================
 				-->
-
+<!--
 				<object name="pgOptionsVideoSystemInfoButton"
 					style="wheatButton"
 					type="button"
@@ -1126,26 +1268,26 @@ Status: $status.</object>
 				</object>
 
 			</object>
-			
+-->
 			<!--
 			===============================================
 			- OPTIONS SCREEN - GAME
 			===============================================
 			-->
-
+<!--
 			<object name="pgOptionsGameWindow"
 				style="wheatBorderBlack"
 				type="image"
 				hidden="true"
 				size="1% 4% 99% 90%"
 			>
-
+-->
 				<!--
 				===============================================
 				- GAME SCREEN - Mouse Settings
 				===============================================
 				-->
-
+<!--
 				<object name="pgOptionsGameMouseTitle"
 					style="wheatTextLabelBlack"
 					type="text"
@@ -1173,13 +1315,13 @@ Status: $status.</object>
 				</object>
 
 			</object>
-
+-->
 			<!--
 			===============================================
 			- OPTIONS SCREEN - TAB BUTTONS
 			===============================================
 			-->
-
+<!--
 			<object name="pgOptionsAudioButton"
 				style="wheatButton"
 				type="button"
@@ -1215,13 +1357,13 @@ Status: $status.</object>
 					openOptionsTab ("pgOptionsGame");
 				]]></action>
 			</object>
-			
+-->	
 			<!--
 			===============================================
 			- OPTIONS SCREEN - OK BUTTON
 			===============================================
 			-->
-
+<!--
 			<object name="pgOptionsOKButton"
 				style="wheatButton"
 				type="button"
@@ -1238,13 +1380,13 @@ Status: $status.</object>
 					closeMainMenuSubWindow ("pgOptions");
 				]]></action>
 			</object>
-
+-->
 			<!--
 			===============================================
 			- OPTIONS SCREEN - CANCEL BUTTON
 			===============================================
 			-->
-
+<!--
 			<object name="pgOptionsCancelButton"
 				style="wheatButton"
 				type="button"
@@ -1259,13 +1401,13 @@ Status: $status.</object>
 			</object>
 			
 		</object>						
-
+-->
 		<!--
 		===============================================
 		- HISTORY SCREEN -
 		===============================================
 		-->
-
+<!--
 		<object name="pgHistory"
 			style="wheatWindow"
 			type="image"
@@ -1287,13 +1429,13 @@ Status: $status.</object>
 				]]></action>
 			</object>
 		</object>
-
+-->
 		<!--
 		===============================================
 		- CREDITS SCREEN
 		===============================================
 		-->
-
+<!--
 		<object name="pgCredits"
 			style="fancyTextHeadWhite"
 			type="list"
@@ -1307,6 +1449,6 @@ Status: $status.</object>
 				console.write ("Note to self: Ask Gee to create list function to clear (empty) a list.");
 			]]></action>
 		</object>
-		
+-->
 	</object>
 </objects>
