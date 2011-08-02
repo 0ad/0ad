@@ -445,10 +445,13 @@ bool CParticleEmitterType::LoadXML(const VfsPath& path)
 			int id = GetVariableID(Child.GetAttributes().GetNamedItem(at_name));
 			if (id != -1)
 			{
-				m_Variables[id] = IParticleVarPtr(new CParticleVarUniform(
-					Child.GetAttributes().GetNamedItem(at_min).ToFloat(),
-					Child.GetAttributes().GetNamedItem(at_max).ToFloat()
-				));
+				float min = Child.GetAttributes().GetNamedItem(at_min).ToFloat();
+				float max = Child.GetAttributes().GetNamedItem(at_max).ToFloat();
+				// To avoid hangs in the RNG, only use it if [min, max) is non-empty
+				if (min < max)
+					m_Variables[id] = IParticleVarPtr(new CParticleVarUniform(min, max));
+				else
+					m_Variables[id] = IParticleVarPtr(new CParticleVarConstant(min));
 			}
 		}
 		else if (Child.GetNodeName() == el_copy)
