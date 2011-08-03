@@ -37,6 +37,9 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
+  <Vision>
+    <Range>20</Range>
+  </Vision>
   <VisualActor>
     <FoundationActor>structures/fndn_wall.xml</FoundationActor>
   </VisualActor>

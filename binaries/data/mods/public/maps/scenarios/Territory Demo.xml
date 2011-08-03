@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="5">
+	<Environment>
+		<LightingModel>standard</LightingModel>
+		<SkySet>default</SkySet>
+		<SunColour r="0.709804" g="0.709804" b="0.709804"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785396"/>
+		<TerrainAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="526.643" y="110.662" z="175.348"/>
+		<Rotation angle="-0.0757025"/>
+		<Declination angle="0.523599"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "CircularMap": true,
+  "Description": "A demo map showing the territory effects of each type of structure.",
+  "GameType": "endless",
+  "Keywords": [
+    "demo"
+  ],
+  "LockTeams": false,
+  "Name": "Territory Demo",
+  "PlayerData": [
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    }
+  ],
+  "RevealMap": false
+}
+]]></ScriptSettings>
+	<Entities>
+		<Entity uid="11">
+			<Template>structures/cart_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="510.98829" z="344.72135"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="12">
+			<Template>structures/cart_house</Template>
+			<Player>1</Player>
+			<Position x="335.30402" z="410.34861"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>structures/cart_house</Template>
+			<Player>1</Player>
+			<Position x="370.78125" z="469.68815"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>structures/cart_house</Template>
+			<Player>1</Player>
+			<Position x="310.14542" z="458.54871"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>structures/cart_market</Template>
+			<Player>1</Player>
+			<Position x="348.51017" z="561.84498"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>structures/cart_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="266.04773" z="536.93366"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="17">
+			<Template>structures/cart_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="323.78394" z="332.0944"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="18">
+			<Template>structures/cart_temple</Template>
+			<Player>1</Player>
+			<Position x="410.35932" z="646.53315"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>structures/cart_fortress</Template>
+			<Player>1</Player>
+			<Position x="530.40943" z="139.3762"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="20">
+			<Template>structures/cart_mill</Template>
+			<Player>1</Player>
+			<Position x="292.14991" z="393.15833"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="21">
+			<Template>structures/cart_mill</Template>
+			<Player>1</Player>
+			<Position x="683.7978" z="304.56202"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="22">
+			<Template>structures/cart_temple</Template>
+			<Player>1</Player>
+			<Position x="476.64216" z="314.48264"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="23">
+			<Template>structures/cart_wall</Template>
+			<Player>1</Player>
+			<Position x="382.18241" z="216.2515"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="24">
+			<Template>structures/cart_wall_tower</Template>
+			<Player>1</Player>
+			<Position x="332.2118" z="247.38797"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="25">
+			<Template>structures/cart_wall_tower</Template>
+			<Player>1</Player>
+			<Position x="375.3076" z="254.1619"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>structures/cart_corral</Template>
+			<Player>1</Player>
+			<Position x="683.16657" z="528.21607"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="27">
+			<Template>structures/cart_corral</Template>
+			<Player>1</Player>
+			<Position x="649.89191" z="407.24024"/>
+			<Orientation y="-2.38144"/>
+		</Entity>
+		<Entity uid="28">
+			<Template>structures/cart_farmstead</Template>
+			<Player>1</Player>
+			<Position x="644.62" z="473.94178"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="29">
+			<Template>structures/cart_field</Template>
+			<Player>1</Player>
+			<Position x="700.34388" z="495.75495"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="30">
+			<Template>structures/cart_field</Template>
+			<Player>1</Player>
+			<Position x="624.90607" z="456.98383"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="31">
+			<Template>structures/cart_barracks</Template>
+			<Player>1</Player>
+			<Position x="513.94758" z="536.11091"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="32">
+			<Template>structures/cart_barracks</Template>
+			<Player>1</Player>
+			<Position x="724.0287" z="171.00428"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="33">
+			<Template>structures/cart_barracks</Template>
+			<Player>2</Player>
+			<Position x="166.81821" z="322.85016"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="34">
+			<Template>structures/cart_barracks</Template>
+			<Player>1</Player>
+			<Position x="190.47696" z="247.75532"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="35">
+			<Template>structures/cart_wall</Template>
+			<Player>1</Player>
+			<Position x="338.04816" z="122.21552"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="36">
+			<Template>structures/cart_wall_tower</Template>
+			<Player>1</Player>
+			<Position x="227.07238" z="781.29041"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="37">
+			<Template>structures/cart_dock</Template>
+			<Player>1</Player>
+			<Position x="105.77279" z="682.20936"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="38">
+			<Template>structures/cart_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="872.70282" z="348.1222"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="39">
+			<Template>structures/cart_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="670.36042" z="761.49451"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="40">
+			<Template>units/cart_cavalry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="504.55073" z="303.30909"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="41">
+			<Template>units/cart_cavalry_javelinist_a</Template>
+			<Player>1</Player>
+			<Position x="507.24308" z="305.87934"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="42">
+			<Template>units/cart_cavalry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="509.40467" z="308.09662"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="43">
+			<Template>units/cart_cavalry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="530.1905" z="322.03342"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="44">
+			<Template>units/cart_cavalry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="532.46857" z="325.45252"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="45">
+			<Template>units/cart_cavalry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="534.87879" z="327.96216"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="46">
+			<Template>units/cart_cavalry_swordsman_b</Template>
+			<Player>1</Player>
+			<Position x="521.18281" z="304.68262"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="47">
+			<Template>units/cart_cavalry_swordsman_a</Template>
+			<Player>1</Player>
+			<Position x="523.68311" z="306.98786"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="48">
+			<Template>units/cart_cavalry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="525.68177" z="310.36756"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="49">
+			<Template>units/cart_champion_cavalry</Template>
+			<Player>1</Player>
+			<Position x="547.78626" z="339.26069"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="50">
+			<Template>units/cart_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="553.37232" z="350.95719"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="51">
+			<Template>units/cart_hero_hannibal</Template>
+			<Player>1</Player>
+			<Position x="499.03461" z="262.65912"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="52">
+			<Template>units/cart_hero_maharbal</Template>
+			<Player>1</Player>
+			<Position x="503.96732" z="267.22168"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="53">
+			<Template>units/cart_hero_hamilcar</Template>
+			<Player>1</Player>
+			<Position x="508.04432" z="272.15455"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="54">
+			<Template>units/cart_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="461.25129" z="387.83313"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="55">
+			<Template>units/cart_infantry_archer_a</Template>
+			<Player>1</Player>
+			<Position x="464.04853" z="390.72132"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="56">
+			<Template>units/cart_infantry_archer_e</Template>
+			<Player>1</Player>
+			<Position x="465.86698" z="393.33353"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="57">
+			<Template>units/cart_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="467.58353" z="381.7992"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="58">
+			<Template>units/cart_infantry_javelinist_a</Template>
+			<Player>1</Player>
+			<Position x="469.93592" z="383.55814"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="59">
+			<Template>units/cart_infantry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="471.82792" z="386.33426"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="60">
+			<Template>units/cart_infantry_slinger_b</Template>
+			<Player>1</Player>
+			<Position x="474.01981" z="375.63819"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="61">
+			<Template>units/cart_infantry_slinger_a</Template>
+			<Player>1</Player>
+			<Position x="475.61667" z="378.67359"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="62">
+			<Template>units/cart_infantry_slinger_e</Template>
+			<Player>1</Player>
+			<Position x="477.65928" z="380.3813"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="63">
+			<Template>units/cart_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="447.70658" z="370.9596"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="64">
+			<Template>units/cart_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="449.48978" z="373.27222"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="65">
+			<Template>units/cart_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="451.63801" z="375.19043"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="66">
+			<Template>units/cart_infantry_swordsman_b</Template>
+			<Player>1</Player>
+			<Position x="453.78544" z="366.0782"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="67">
+			<Template>units/cart_infantry_swordsman_a</Template>
+			<Player>1</Player>
+			<Position x="455.25596" z="367.8636"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="68">
+			<Template>units/cart_infantry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="456.9549" z="369.96415"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="69">
+			<Template>units/cart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="469.22165" z="363.5293"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="70">
+			<Template>units/cart_support_healer</Template>
+			<Player>1</Player>
+			<Position x="466.09253" z="360.52533"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="71">
+			<Template>units/cart_support_trader</Template>
+			<Player>1</Player>
+			<Position x="462.33643" z="357.8917"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="72">
+			<Template>units/samnite_skirmisher</Template>
+			<Player>1</Player>
+			<Position x="431.0323" z="282.10877"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="73">
+			<Template>units/samnite_spearman</Template>
+			<Player>1</Player>
+			<Position x="433.38141" z="284.89881"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="74">
+			<Template>units/samnite_swordsman</Template>
+			<Player>1</Player>
+			<Position x="429.96073" z="280.10486"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+</Scenario>
