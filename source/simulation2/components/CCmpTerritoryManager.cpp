@@ -300,7 +300,7 @@ void CCmpTerritoryManager::CalculateTerritories()
 	{
 		for (u32 i = 0; i < tilesW; ++i)
 		{
-			u8 g = passGrid.get(i, j);
+			u16 g = passGrid.get(i, j);
 			u8 cost;
 			if (g & passClassUnrestricted)
 				cost = 255; // off the world; use maximum cost
