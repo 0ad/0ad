@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_mechanical_ship_bireme">
+  <Identity>
+    <Civ>hele</Civ>
+    <SpecificName>Mankar Cirya</SpecificName>
+    <History>Elven light warship ship.</History>
+    <Icon>units/noldor_ship_bireme.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/elven_bireme.xml</Actor>
+  </VisualActor>
+</Entity>

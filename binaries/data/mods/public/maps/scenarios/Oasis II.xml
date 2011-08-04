@@ -3,7 +3,7 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>sunny</SkySet>
+		<SkySet>cloudless</SkySet>
 		<SunColour r="0.776471" g="0.74902" b="0.576471"/>
 		<SunElevation angle="0.785398"/>
 		<SunRotation angle="-0.785396"/>
@@ -14,7 +14,7 @@
 				<Type>default</Type>
 				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>20.6689</Height>
-				<Shininess>1.70898</Shininess>
+				<Shininess>1.46484</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.800781</Murkiness>
 				<Tint r="0.458824" g="0.439216" b="0.384314"/>
@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="243.305" y="242.167" z="-44.5151"/>
-		<Rotation angle="0.135089"/>
-		<Declination angle="0.546235"/>
+		<Position x="698.914" y="142.34" z="575.262"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
