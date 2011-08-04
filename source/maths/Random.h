@@ -94,7 +94,7 @@ public:
 	{
 		if (x.index != y.index)
 			return false;
-		for (uint32_t i = 0; i < ARRAY_SIZE(state); ++i)
+		for (uint32_t i = 0; i < ARRAY_SIZE(x.state); ++i)
 			if (x.state[i] != y.state[i])
 				return false;
 		return true;
