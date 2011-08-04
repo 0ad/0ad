@@ -43,6 +43,10 @@
   <Obstruction>
     <Static width="28.0" depth="20.0"/>
   </Obstruction>
+  <TerritoryInfluence>
+    <Radius>40</Radius>
+    <Weight>65536</Weight>
+  </TerritoryInfluence>
   <TrainingQueue>
     <Entities datatype="tokens">
 	  units/thespian_melanochitones

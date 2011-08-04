@@ -12,6 +12,10 @@
   <Obstruction>
     <Static width="10.0" depth="10.0"/>
   </Obstruction>
+  <TerritoryInfluence>
+    <Radius>16</Radius>
+    <Weight>65536</Weight>
+  </TerritoryInfluence>
   <VisualActor>
     <Actor>structures/iberians/house.xml</Actor>
     <FoundationActor>structures/fndn_2x2.xml</FoundationActor>
