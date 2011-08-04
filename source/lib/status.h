@@ -147,6 +147,7 @@ To summarize: +/-1SHHCC (S=subsystem, HH=header, CC=code number)
   04CC archive 
 
 12     res
+  00CC h_mgr
   01CC tex
   02CC ogl_shader
 

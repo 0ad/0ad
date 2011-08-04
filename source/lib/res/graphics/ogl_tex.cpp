@@ -585,8 +585,8 @@ static void warn_if_uploaded(Handle ht, const OglTex* ot)
 	//   need not fall under the above check, e.g. if freed but cached.
 	//   workaround is that ogl_tex_set_* won't call us if the
 	//   same state values are being set (harmless anyway).
-	int refs = h_get_refcnt(ht);
-	if(refs > 1)
+	intptr_t refs = h_get_refcnt(ht);
+	if(intptr_t > 1)
 		return;	// don't complain
 
 	if(ot->flags & OT_IS_UPLOADED)
@@ -909,7 +909,7 @@ Status ogl_tex_upload(const Handle ht, GLenum fmt_ovr, int q_flags_ovr, GLint in
 		// see rationale for <refs> at declaration of OglTex.
 		// note: tex_free is safe even if this OglTex was wrapped -
 		//       the Tex contains a mem handle.
-		int refs = h_get_refcnt(ht);
+		intptr_t refs = h_get_refcnt(ht);
 		if(refs == 1)
 		{
 			// note: we verify above that OT_TEX_VALID is set

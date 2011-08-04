@@ -36,10 +36,26 @@
 
 #include "lib/fnv_hash.h"
 #include "lib/allocators/overrun_protector.h"
+#include "lib/allocators/pool.h"
 #include "lib/module_init.h"
+#include "lib/sysdep/cpu.h"	// cpu_CAS64
 
 
-static const size_t MAX_EXTANT_HANDLES = 10000;
+namespace ERR {
+static const Status H_IDX_INVALID   = -120000;	// totally invalid
+static const Status H_IDX_UNUSED    = -120001;	// beyond current cap
+static const Status H_TAG_MISMATCH  = -120003;
+static const Status H_TYPE_MISMATCH = -120004;
+}
+static const StatusDefinition hStatusDefinitions[] = {
+	{ ERR::H_IDX_INVALID,   L"Handle index completely out of bounds" },
+	{ ERR::H_IDX_UNUSED,    L"Handle index exceeds high-water mark" },
+	{ ERR::H_TAG_MISMATCH,  L"Handle tag mismatch (stale reference?)" },
+	{ ERR::H_TYPE_MISMATCH, L"Handle type mismatch" }
+};
+STATUS_ADD_DEFINITIONS(hStatusDefinitions);
+
+
 
 // rationale
 //
@@ -69,17 +85,16 @@ static const size_t MAX_EXTANT_HANDLES = 10000;
 // (shift value = # bits between LSB and field LSB.
 //  may be larger than the field type - only shift Handle vars!)
 
-// - tag (1-based) ensures the handle references a certain resource instance.
-//   (field width determines maximum unambiguous resource allocs)
-#define TAG_BITS 32
-const size_t TAG_SHIFT = 0;
-const u32 TAG_MASK = 0xFFFFFFFF;	// safer than (1 << 32) - 1
-
 // - index (0-based) of control block in our array.
 //   (field width determines maximum currently open handles)
 #define IDX_BITS 16
-const size_t IDX_SHIFT = 32;
-const u32 IDX_MASK = (1l << IDX_BITS) - 1;
+static const u64 IDX_MASK = (1l << IDX_BITS) - 1;
+
+// - tag (1-based) ensures the handle references a certain resource instance.
+//   (field width determines maximum unambiguous resource allocs)
+typedef i64 Tag;	// matches cpu_CAS64 type
+#define TAG_BITS 48
+static const u64 TAG_MASK = 0xFFFFFFFF;	// safer than (1 << 32) - 1
 
 // make sure both fields fit within a Handle variable
 cassert(IDX_BITS + TAG_BITS <= sizeof(Handle)*CHAR_BIT);
@@ -87,29 +102,26 @@ cassert(IDX_BITS + TAG_BITS <= sizeof(Handle)*CHAR_BIT);
 
 // return the handle's index field (always non-negative).
 // no error checking!
-static inline u32 h_idx(const Handle h)
+static inline size_t h_idx(const Handle h)
 {
-	return (u32)((h >> IDX_SHIFT) & IDX_MASK) - 1;
+	return (size_t)(h & IDX_MASK) - 1;
 }
 
 // return the handle's tag field.
 // no error checking!
-static inline u32 h_tag(const Handle h)
+static inline Tag h_tag(Handle h)
 {
-	return (u32)((h >> TAG_SHIFT) & TAG_MASK);
+	return h >> IDX_BITS;
 }
 
 // build a handle from index and tag.
 // can't fail.
-static inline Handle handle(const u32 _idx, const u32 tag)
+static inline Handle handle(size_t idx, u64 tag)
 {
-	const u32 idx = _idx+1;
-	ENSURE(idx <= IDX_MASK && tag <= TAG_MASK && "handle: idx or tag too big");
-	// somewhat clunky, but be careful with the shift:
-	// *_SHIFT may be larger than its field's type.
-	Handle h_idx = idx & IDX_MASK; h_idx <<= IDX_SHIFT;
-	Handle h_tag = tag & TAG_MASK; h_tag <<= TAG_SHIFT;
-	Handle h = h_idx | h_tag;
+	const size_t idxPlusOne = idx+1;
+	ENSURE(idxPlusOne <= IDX_MASK);
+	ENSURE((tag & IDX_MASK) == 0);
+	Handle h = tag | idxPlusOne;
 	ENSURE(h > 0);
 	return h;
 }
@@ -119,29 +131,22 @@ static inline Handle handle(const u32 _idx, const u32 tag)
 // internal per-resource-instance data
 //
 
-
-// determines maximum number of references to a resource.
-static const size_t REF_BITS  = 16;
-static const u32 REF_MAX = (1ul << REF_BITS)-1;
-
-static const size_t TYPE_BITS = 8;
-
-
-// chosen so that all current resource structs are covered,
-// and so sizeof(HDATA) is a power of 2 (for more efficient array access
-// and array page usage).
-static const size_t HDATA_USER_SIZE = 44+64;
+// chosen so that all current resource structs are covered.
+static const size_t HDATA_USER_SIZE = 100;
 
 
 struct HDATA
 {
+	// we only need the tag, because it is trivial to compute
+	// &HDATA from idx and vice versa. storing the entire handle
+	// avoids needing to extract the tag field.
+	Handle h;	// NB: will be overwritten by pool_free
+
 	uintptr_t key;
 
-	u32 tag  : TAG_BITS;
+	intptr_t refs;
 
-	// smaller bitfields combined into 1
-	u32 refs : REF_BITS;
-	u32 type_idx : TYPE_BITS;
+	// smaller bit fields combined into 1
 	// .. if set, do not actually release the resource (i.e. call dtor)
 	//    when the handle is h_free-d, regardless of the refcount.
 	//    set by h_alloc; reset on exit and by housekeeping.
@@ -167,169 +172,87 @@ struct HDATA
 
 
 // max data array entries. compared to last_in_use => signed.
-static const ssize_t hdata_cap = 1ul << IDX_BITS;
+static const ssize_t hdata_cap = (1ul << IDX_BITS)/4;
 
-// allocate entries as needed so as not to waste memory
-// (hdata_cap may be large). deque-style array of pages
-// to balance locality, fragmentation, and waste.
-static const size_t PAGE_SIZE = 4096;
-static const size_t hdata_per_page = PAGE_SIZE / sizeof(HDATA);
-static const size_t num_pages = hdata_cap / hdata_per_page;
-static HDATA* pages[num_pages];
-
-// these must be signed, because there won't always be a valid
-// first or last element.
-static ssize_t first_free = -1;		// don't want to scan array every h_alloc
-static ssize_t last_in_use = -1;	// don't search unused entries
+// pool of fixed-size elements allows O(1) alloc and free;
+// there is a simple mapping between HDATA address and index.
+static Pool hpool;
 
 
 // error checking strategy:
 // all handles passed in go through h_data(Handle, Type)
 
 
-// get a (possibly new) array entry; array is non-contiguous.
+// get a (possibly new) array entry.
 //
-// fails (returns 0) if idx is out of bounds, or if accessing a new page
-// for the first time, and there's not enough memory to allocate it.
-//
-// also used by h_data, and alloc_idx to find a free entry.
-static HDATA* h_data_from_idx(const ssize_t idx)
+// fails if idx is out of bounds.
+static Status h_data_from_idx(ssize_t idx, HDATA*& hd)
 {
-	// don't compare against last_in_use - this is called before allocating
-	// new entries, and to check if the next (but possibly not yet valid)
-	// entry is free. tag check protects against using unallocated entries.
-	if(idx < 0 || idx >= hdata_cap)
-		return 0;
-	HDATA*& page = pages[idx / hdata_per_page];
-	if(!page)
-	{
-		page = (HDATA*)calloc(1, PAGE_SIZE);
-		if(!page)
-			return 0;
+	// don't check if idx is beyond the current high-water mark, because
+	// we might be allocating a new entry. subsequent tag checks protect
+	// against using unallocated entries.
+	if(size_t(idx) >= hdata_cap)	// also detects negative idx
+		WARN_RETURN(ERR::H_IDX_INVALID);
 
-		// Initialise all the VfsPath members
-		for(size_t i = 0; i < hdata_per_page; ++i)
-			new (&page[i].pathname) VfsPath;
-	}
-
-	// note: VC7.1 optimizes the divides to shift and mask.
-
-	HDATA* hd = &page[idx % hdata_per_page];
+	hd = (HDATA*)(hpool.da.base + idx*hpool.el_size);
 	hd->num_derefs++;
-	return hd;
+	return INFO::OK;
+}
+
+static ssize_t h_idx_from_data(HDATA* hd)
+{
+	if(!pool_contains(&hpool, hd))
+		WARN_RETURN(ERR::INVALID_POINTER);
+	return (uintptr_t(hd) - uintptr_t(hpool.da.base))/hpool.el_size;
 }
 
 
 // get HDATA for the given handle.
 // only uses (and checks) the index field.
 // used by h_force_close (which must work regardless of tag).
-static inline HDATA* h_data_no_tag(const Handle h)
+static inline Status h_data_no_tag(const Handle h, HDATA*& hd)
 {
 	ssize_t idx = (ssize_t)h_idx(h);
+	RETURN_STATUS_IF_ERR(h_data_from_idx(idx, hd));
 	// need to verify it's in range - h_data_from_idx can only verify that
 	// it's < maximum allowable index.
-	if(0 > idx || idx > last_in_use)
-		return 0;
-	return h_data_from_idx(idx);
+	if(uintptr_t(hd) > uintptr_t(hpool.da.base)+hpool.da.pos)
+		WARN_RETURN(ERR::H_IDX_UNUSED);
+	return INFO::OK;
 }
 
 
 // get HDATA for the given handle.
 // also verifies the tag field.
 // used by functions callable for any handle type, e.g. h_filename.
-static inline HDATA* h_data_tag(const Handle h)
+static inline Status h_data_tag(Handle h, HDATA*& hd)
 {
-	HDATA* hd = h_data_no_tag(h);
-	if(!hd)
-		return 0;
+	RETURN_STATUS_IF_ERR(h_data_no_tag(h, hd));
 
-	// note: tag = 0 marks unused entries => is invalid
-	u32 tag = h_tag(h);
-	if(tag == 0 || tag != hd->tag)
-		return 0;
+	if(h != hd->h)
+	{
+		debug_printf(L"h_mgr: expected handle %llx, got %llx\n", hd->h, h);
+		WARN_RETURN(ERR::H_TAG_MISMATCH);
+	}
 
-	return hd;
+	return INFO::OK;
 }
 
 
 // get HDATA for the given handle.
 // also verifies the type.
 // used by most functions accessing handle data.
-static HDATA* h_data_tag_type(const Handle h, const H_Type type)
+static Status h_data_tag_type(const Handle h, const H_Type type, HDATA*& hd)
 {
-	HDATA* hd = h_data_tag(h);
-	if(!hd)
-		return 0;
+	RETURN_STATUS_IF_ERR(h_data_tag(h, hd));
 
 	// h_alloc makes sure type isn't 0, so no need to check that here.
 	if(hd->type != type)
-		return 0;
-
-	return hd;
-}
-
-
-//-----------------------------------------------------------------------------
-
-// idx and hd are undefined if we fail.
-// called by h_alloc only.
-static Status alloc_idx(ssize_t& idx, HDATA*& hd)
-{
-	// we already know the first free entry
-	if(first_free != -1)
 	{
-		idx = first_free;
-		hd = h_data_from_idx(idx);
-	}
-	// need to look for a free entry, or alloc another
-	else
-	{
-		// look for an unused entry
-		for(idx = 0; idx <= last_in_use; idx++)
-		{
-			hd = h_data_from_idx(idx);
-			ENSURE(hd);	// can't fail - idx is valid
-
-			// found one - done
-			if(!hd->tag)
-				goto have_idx;
-		}
-
-		// add another
-		// .. too many already: IDX_BITS must be increased.
-		if(last_in_use >= hdata_cap)
-			WARN_RETURN(ERR::LIMIT);
-		idx = last_in_use+1;	// just incrementing idx would start it at 1
-		hd = h_data_from_idx(idx);
-		if(!hd)
-			WARN_RETURN(ERR::NO_MEM);
-			// can't fail for any other reason - idx is checked above.
-		{	// VC6 goto fix
-		bool is_unused = !hd->tag;
-		ENSURE(is_unused && "invalid last_in_use");
-		}
-
-have_idx:;
+		debug_printf(L"h_mgr: expected type %ws, got %ws\n", hd->type->name, type->name);
+		WARN_RETURN(ERR::H_TYPE_MISMATCH);
 	}
 
-	// check if next entry is free
-	HDATA* hd2 = h_data_from_idx(idx+1);
-	if(hd2 && hd2->tag == 0)
-		first_free = idx+1;
-	else
-		first_free = -1;
-
-	if(idx > last_in_use)
-		last_in_use = idx;
-
-	return INFO::OK;
-}
-
-
-static Status free_idx(ssize_t idx)
-{
-	if(first_free == -1 || idx < first_free)
-		first_free = idx;
 	return INFO::OK;
 }
 
@@ -372,15 +295,17 @@ static Handle key_find(uintptr_t key, H_Type type, KeyRemoveFlag remove_option =
 	for(It it = range.first; it != range.second; ++it)
 	{
 		ssize_t idx = it->second;
-		HDATA* hd = h_data_from_idx(idx);
-		// found match
-		if(hd && hd->type == type && hd->key == key)
-		{
-			if(remove_option == KEY_REMOVE)
-				key2idx->erase(it);
-			ret = handle(idx, hd->tag);
-			break;
-		}
+		HDATA* hd;
+		if(h_data_from_idx(idx, hd) != INFO::OK)
+			continue;
+		if(hd->type != type || hd->key != key)
+			continue;
+
+		// found a match
+		if(remove_option == KEY_REMOVE)
+			key2idx->erase(it);
+		ret = hd->h;
+		break;
 	}
 
 	key2idx_wrapper.lock();
@@ -452,16 +377,19 @@ static Status type_validate(H_Type type)
 }
 
 
-static u32 gen_tag()
+static Tag gen_tag()
 {
-	static u32 tag;
-	if(++tag >= TAG_MASK)
+	static volatile Tag tag;
+	for(;;)
 	{
-		debug_warn(L"h_mgr: tag overflow - allocations are no longer unique."\
-			L"may not notice stale handle reuse. increase TAG_BITS.");
-		tag = 1;
+		const Tag oldTag = tag;
+		const Tag newTag = oldTag + (1ull << IDX_BITS);
+		// it's not easy to detect overflow, because compilers
+		// are allowed to assume it'll never happen. however,
+		// pow(2, 64-IDX_BITS) is "enough" anyway.
+		if(cpu_CAS64(&tag, oldTag, newTag))
+			return newTag;
 	}
-	return tag;
 }
 
 
@@ -475,12 +403,10 @@ static Handle reuse_existing_handle(uintptr_t key, H_Type type, size_t flags)
 	if(h <= 0)
 		return 0;
 
-	HDATA* hd = h_data_tag_type(h, type);
-	// too many references - increase REF_BITS
-	if(hd->refs == REF_MAX)
-		WARN_RETURN(ERR::LIMIT);
+	HDATA* hd;
+	RETURN_STATUS_IF_ERR(h_data_tag_type(h, type, hd));	// h_find means this won't fail
 
-	hd->refs++;
+	cpu_AtomicAdd(&hd->refs, 1);
 
 	// we are reactivating a closed but cached handle.
 	// need to generate a new tag so that copies of the
@@ -489,9 +415,9 @@ static Handle reuse_existing_handle(uintptr_t key, H_Type type, size_t flags)
 	// use before this fails due to refs > 0 check in h_user_data).
 	if(hd->refs == 1)
 	{
-		const u32 tag = gen_tag();
-		hd->tag = tag;
+		const Tag tag = gen_tag();
 		h = handle(h_idx(h), tag);	// can't fail
+		hd->h = h;
 	}
 
 	return h;
@@ -529,16 +455,20 @@ static Status call_init_and_reload(Handle h, H_Type type, HDATA* hd, const PIVFS
 
 static Handle alloc_new_handle(H_Type type, const PIVFS& vfs, const VfsPath& pathname, uintptr_t key, size_t flags, va_list* init_args)
 {
-	ssize_t idx;
-	HDATA* hd;
-	RETURN_STATUS_IF_ERR(alloc_idx(idx, hd));
+	HDATA* hd = (HDATA*)pool_alloc(&hpool, 0);
+	if(!hd)
+		WARN_RETURN(ERR::NO_MEM);
+	new(&hd->pathname) VfsPath;
+
+	ssize_t idx = h_idx_from_data(hd);
+	RETURN_STATUS_IF_ERR(idx);
 
 	// (don't want to do this before the add-reference exit,
 	// so as not to waste tags for often allocated handles.)
-	const u32 tag = gen_tag();
+	const Tag tag = gen_tag();
 	Handle h = handle(idx, tag);	// can't fail.
 
-	hd->tag  = tag;
+	hd->h = h;
 	hd->key  = key;
 	hd->type = type;
 	hd->refs = 1;
@@ -593,16 +523,20 @@ Handle h_alloc(H_Type type, const PIVFS& vfs, const VfsPath& pathname, size_t fl
 
 //-----------------------------------------------------------------------------
 
-// currently cannot fail.
-static Status h_free_idx(ssize_t idx, HDATA* hd)
+static void h_free_hd(HDATA* hd)
 {
-	// only decrement if refcount not already 0.
-	if(hd->refs > 0)
-		hd->refs--;
+	for(;;)
+	{
+		const intptr_t refs = hd->refs;
+		if(refs <= 0)	// skip decrement
+			break;
+		if(cpu_CAS(&hd->refs, refs, refs-1))	// success
+			break;
+	}
 
 	// still references open or caching requests it stays - do not release.
 	if(hd->refs > 0 || hd->keep_open)
-		return INFO::OK;
+		return;
 
 	// actually release the resource (call dtor, free control block).
 
@@ -630,36 +564,26 @@ static Status h_free_idx(ssize_t idx, HDATA* hd)
 
 	hd->pathname.~VfsPath();	// FIXME: ugly hack, but necessary to reclaim memory
 	memset(hd, 0, sizeof(*hd));
-	new (&hd->pathname) VfsPath;	// FIXME too: necessary because otherwise it'll break if we reuse this page
-
-	free_idx(idx);
-
-	return INFO::OK;
+	pool_free(&hpool, hd);
 }
 
 
 Status h_free(Handle& h, H_Type type)
 {
-	ssize_t idx = h_idx(h);
-	HDATA* hd = h_data_tag_type(h, type);
+	// 0-initialized or an error code; don't complain because this
+	// happens often and is harmless.
+	if(h <= 0)
+		return INFO::OK;
 
 	// wipe out the handle to prevent reuse but keep a copy for below.
 	const Handle h_copy = h;
 	h = 0;
 
-	// h was invalid
-	if(!hd)
-	{
-		// 0-initialized or an error code; don't complain because this
-		// happens often and is harmless.
-		if(h_copy <= 0)
-			return INFO::OK;
-		// this was a valid handle but was probably freed in the meantime.
-		// complain because this probably indicates a bug somewhere.
-		WARN_RETURN(ERR::INVALID_HANDLE);
-	}
+	HDATA* hd;
+	RETURN_STATUS_IF_ERR(h_data_tag_type(h_copy, type, hd));
 
-	return h_free_idx(idx, hd);
+	h_free_hd(hd);
+	return INFO::OK;
 }
 
 
@@ -668,8 +592,8 @@ Status h_free(Handle& h, H_Type type)
 
 void* h_user_data(const Handle h, const H_Type type)
 {
-	HDATA* hd = h_data_tag_type(h, type);
-	if(!hd)
+	HDATA* hd;
+	if(h_data_tag_type(h, type, hd) != INFO::OK)
 		return 0;
 
 	if(!hd->refs)
@@ -688,12 +612,9 @@ VfsPath h_filename(const Handle h)
 {
 	// don't require type check: should be useable for any handle,
 	// even if the caller doesn't know its type.
-	HDATA* hd = h_data_tag(h);
-	if(!hd)
-	{
-		DEBUG_WARN_ERR(ERR::LOGIC);
+	HDATA* hd;
+	if(h_data_tag(h, hd) != INFO::OK)
 		return VfsPath();
-	}
 	return hd->pathname;
 }
 
@@ -707,10 +628,9 @@ Status h_reload(const PIVFS& vfs, const VfsPath& pathname)
 	// do this before reloading any of them, because we don't specify reload
 	// order (the parent resource may be reloaded first, and load the child,
 	// whose original data would leak).
-	for(ssize_t i = 0; i <= last_in_use; i++)
+	for(HDATA* hd = (HDATA*)hpool.da.base; hd < (HDATA*)(hpool.da.base + hpool.da.pos); hd = (HDATA*)(uintptr_t(hd)+hpool.el_size))
 	{
-		HDATA* hd = h_data_from_idx(i);
-		if(!hd || hd->key != key || hd->disallow_reload)
+		if(hd->key == 0 || hd->key != key || hd->disallow_reload)
 			continue;
 		hd->type->dtor(hd->user);
 	}
@@ -718,19 +638,17 @@ Status h_reload(const PIVFS& vfs, const VfsPath& pathname)
 	Status ret = INFO::OK;
 
 	// now reload all affected handles
-	for(ssize_t i = 0; i <= last_in_use; i++)
+	size_t i = 0;
+	for(HDATA* hd = (HDATA*)hpool.da.base; hd < (HDATA*)(hpool.da.base + hpool.da.pos); hd = (HDATA*)(uintptr_t(hd)+hpool.el_size), i++)
 	{
-		HDATA* hd = h_data_from_idx(i);
-		if(!hd || hd->key != key || hd->disallow_reload)
+		if(hd->key == 0 || hd->key != key || hd->disallow_reload)
 			continue;
 
-		Handle h = handle(i, hd->tag);
-
-		Status err = hd->type->reload(hd->user, vfs, hd->pathname, h);
+		Status err = hd->type->reload(hd->user, vfs, hd->pathname, hd->h);
 		// don't stop if an error is encountered - try to reload them all.
 		if(err < 0)
 		{
-			h_free(h, hd->type);
+			h_free(hd->h, hd->type);
 			if(ret == 0)	// don't overwrite first error
 				ret = err;
 		}
@@ -758,13 +676,14 @@ Handle h_find(H_Type type, uintptr_t key)
 Status h_force_free(Handle h, H_Type type)
 {
 	// require valid index; ignore tag; type checked below.
-	HDATA* hd = h_data_no_tag(h);
-	if(!hd || hd->type != type)
-		WARN_RETURN(ERR::INVALID_HANDLE);
-	u32 idx = h_idx(h);
+	HDATA* hd;
+	RETURN_STATUS_IF_ERR(h_data_no_tag(h, hd));
+	if(hd->type != type)
+		WARN_RETURN(ERR::H_TYPE_MISMATCH);
 	hd->keep_open = 0;
 	hd->refs = 0;
-	return h_free_idx(idx, hd);
+	h_free_hd(hd);
+	return INFO::OK;
 }
 
 
@@ -776,15 +695,12 @@ Status h_force_free(Handle h, H_Type type)
 // user load the resource; refcounting is done under the hood.
 void h_add_ref(Handle h)
 {
-	HDATA* hd = h_data_tag(h);
-	if(!hd)
-	{
-		DEBUG_WARN_ERR(ERR::LOGIC);	// invalid handle
+	HDATA* hd;
+	if(h_data_tag(h, hd) != INFO::OK)
 		return;
-	}
 
 	ENSURE(hd->refs);	// if there are no refs, how did the caller manage to keep a Handle?!
-	hd->refs++;
+	cpu_AtomicAdd(&hd->refs, 1);
 }
 
 
@@ -794,11 +710,10 @@ void h_add_ref(Handle h)
 // within resource control blocks is impossible. since that is sometimes
 // necessary (always wrapping objects in Handles is excessive), we
 // provide access to the internal reference count.
-int h_get_refcnt(Handle h)
+intptr_t h_get_refcnt(Handle h)
 {
-	HDATA* hd = h_data_tag(h);
-	if(!hd)
-		WARN_RETURN(ERR::INVALID_HANDLE);
+	HDATA* hd;
+	RETURN_STATUS_IF_ERR(h_data_tag(h, hd));
 
 	ENSURE(hd->refs);	// if there are no refs, how did the caller manage to keep a Handle?!
 	return hd->refs;
@@ -809,6 +724,7 @@ static ModuleInitState initState;
 
 static Status Init()
 {
+	RETURN_STATUS_IF_ERR(pool_create(&hpool, hdata_cap*sizeof(HDATA), sizeof(HDATA)));
 	return INFO::OK;
 }
 
@@ -817,38 +733,21 @@ static void Shutdown()
 	debug_printf(L"H_MGR| shutdown. any handle frees after this are leaks!\n");
 
 	// forcibly close all open handles
-	for(ssize_t i = 0; i <= last_in_use; i++)
+	for(HDATA* hd = (HDATA*)hpool.da.base; hd < (HDATA*)(hpool.da.base + hpool.da.pos); hd = (HDATA*)(uintptr_t(hd)+hpool.el_size))
 	{
-		HDATA* hd = h_data_from_idx(i);
-		// can't fail - i is in bounds by definition, and
-		// each HDATA entry has already been allocated.
-		if(!hd)
-		{
-			DEBUG_WARN_ERR(ERR::LOGIC);	// h_data_from_idx failed - why?!
-			continue;
-		}
-
 		// it's already been freed; don't free again so that this
 		// doesn't look like an error.
-		if(!hd->tag)
+		if(hd->key == 0)
 			continue;
 
 		// disable caching; we need to release the resource now.
 		hd->keep_open = 0;
 		hd->refs = 0;
 
-		h_free_idx(i, hd);	// currently cannot fail
+		h_free_hd(hd);
 	}
 
-	// free HDATA array
-	for(size_t j = 0; j < num_pages; j++)
-	{
-		if (pages[j])
-			for(size_t k = 0; k < hdata_per_page; ++k)
-				pages[j][k].pathname.~VfsPath();	// FIXME: ugly hack, but necessary to reclaim memory
-		free(pages[j]);
-		pages[j] = 0;
-	}
+	pool_destroy(&hpool);
 }
 
 

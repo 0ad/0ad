@@ -75,14 +75,12 @@ void* pool_alloc(Pool* p, size_t size)
 	// if pool allows variable sizes, go with the size parameter,
 	// otherwise the pool el_size setting.
 	const size_t el_size = p->el_size? p->el_size : Align<allocationAlignment>(size);
+	ASSERT(el_size != 0);
 
-	// note: this can never happen in pools with variable-sized elements
+	// note: freelist is always empty in pools with variable-sized elements
 	// because they disallow pool_free.
 	void* el = mem_freelist_Detach(p->freelist);
-	if(el)
-		goto have_el;
-
-	// alloc a new entry
+	if(!el)	// freelist empty, need to allocate a new entry
 	{
 		// expand, if necessary
 		if(da_reserve(&p->da, el_size) < 0)
@@ -92,8 +90,7 @@ void* pool_alloc(Pool* p, size_t size)
 		p->da.pos += el_size;
 	}
 
-have_el:
-	ENSURE(pool_contains(p, el));	// paranoia
+	ASSERT(pool_contains(p, el));	// paranoia
 	return el;
 }
 

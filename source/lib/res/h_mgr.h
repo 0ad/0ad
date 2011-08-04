@@ -74,7 +74,7 @@ guide to defining and using resources
 -------------------------------------
 
 1) choose a name for the resource, used to represent all resources
-of this type. we will call ours "Res1"; all below occurences of this
+of this type. we will call ours "Res1"; all below occurrences of this
 must be replaced with the actual name (exact spelling).
 why? the vtbl builder defines its functions as e.g. Res1_reload;
 your actual definition must match.
@@ -88,9 +88,7 @@ struct Res1
 
 Note that all control blocks are stored in fixed-size slots
 (HDATA_USER_SIZE bytes), so squeezing the size of your data doesn't
-necessarily help unless yours is the largest. However, if the filename
-passed to h_alloc fits within the remaining space, it is stored there
-(thus saving time+memory). Therefore, do not be extravagant with space.
+help unless yours is the largest.
 
 3) build its vtbl:
 H_TYPE_DEFINE(Res1);
@@ -355,18 +353,6 @@ typedef H_VTbl* H_Type;
 
 
 
-// resource scope
-// used together with flags (e.g. in mem), so no separate type
-/*
-enum
-{
-	RES_TEMP   = 1,
-	RES_LEVEL  = 2,
-	RES_STATIC = 4
-};
-
-#define RES_SCOPE_MASK 7
-*/
 
 // h_alloc flags
 enum
@@ -388,7 +374,7 @@ const size_t H_STRING_LEN = 256;
 
 // allocate a new handle.
 // if key is 0, or a (key, type) handle doesn't exist,
-//   the first free entry is used.
+//   some free entry is used.
 // otherwise, a handle to the existing object is returned,
 //   and HDATA.size != 0.
 //// user_size is checked to make sure the user data fits in the handle data space.
@@ -437,6 +423,6 @@ extern void h_add_ref(Handle h);
 // within resource control blocks is impossible. since that is sometimes
 // necessary (always wrapping objects in Handles is excessive), we
 // provide access to the internal reference count.
-extern int h_get_refcnt(Handle h);
+extern intptr_t h_get_refcnt(Handle h);
 
 #endif	// #ifndef INCLUDED_H_MGR
