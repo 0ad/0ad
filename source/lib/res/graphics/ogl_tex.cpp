@@ -586,7 +586,7 @@ static void warn_if_uploaded(Handle ht, const OglTex* ot)
 	//   workaround is that ogl_tex_set_* won't call us if the
 	//   same state values are being set (harmless anyway).
 	intptr_t refs = h_get_refcnt(ht);
-	if(intptr_t > 1)
+	if(refs > 1)
 		return;	// don't complain
 
 	if(ot->flags & OT_IS_UPLOADED)
