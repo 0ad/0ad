@@ -6,8 +6,8 @@
     <variant>
       <mesh>structural/kart_merchant_ship.dae</mesh>
       <props>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/structures/carthaginians/merchant_ship_sail.xml" attachpoint="root"/>
+        <prop actor="props/structures/carthaginians/merchantship_cargo.xml" attachpoint="root"/>
       </props>
       <texture>structural/kart_merchant_ship.png</texture>
     </variant>
