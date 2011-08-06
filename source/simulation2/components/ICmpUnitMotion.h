@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,7 +20,8 @@
 
 #include "simulation2/system/Interface.h"
 
-#include "ICmpPosition.h" // for entity_pos_t
+#include "simulation2/components/ICmpPathfinder.h" // for pass_class_t
+#include "simulation2/components/ICmpPosition.h" // for entity_pos_t
 
 /**
  * Motion interface for entities with complex movement capabilities.
@@ -91,6 +92,11 @@ public:
 	 * Get the default speed that this unit will have when running, in metres per second.
 	 */
 	virtual fixed GetRunSpeed() = 0;
+
+	/**
+	 * Get the unit's passability class.
+	 */
+	virtual ICmpPathfinder::pass_class_t GetPassabilityClass() = 0;
 
 	/**
 	 * Override the default obstruction radius, used for planning paths and checking for collisions.

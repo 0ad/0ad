@@ -167,6 +167,8 @@ public:
 		return *m_Territories;
 	}
 
+	virtual int32_t GetOwner(entity_pos_t x, entity_pos_t z);
+
 	// To support lazy updates of territory render data,
 	// we maintain a DirtyID here and increment it whenever territories change;
 	// if a caller has a lower DirtyID then it needs to be updated.
@@ -683,6 +685,13 @@ void CCmpTerritoryManager::RenderSubmit(SceneCollector& collector)
 		collector.Submit(&m_BoundaryLines[i]);
 }
 
+int32_t CCmpTerritoryManager::GetOwner(entity_pos_t x, entity_pos_t z)
+{
+	u16 i, j;
+	CalculateTerritories();
+	NearestTile(x, z, i, j, m_Territories->m_W, m_Territories->m_H);
+	return m_Territories->get(i, j);
+}
 
 void TerritoryOverlay::StartRender()
 {

@@ -80,13 +80,15 @@ function updateBuildingPlacementPreview()
 
 	if (placementEntity && placementPosition)
 	{
-		Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {
+		return Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {
 			"template": placementEntity,
 			"x": placementPosition.x,
 			"z": placementPosition.z,
 			"angle": placementAngle
 		});
 	}
+	
+	return false;
 }
 
 function resetPlacementEntity()
@@ -328,13 +330,7 @@ function tryPlaceBuilding(queued)
 	var selection = g_Selection.toList();
 
 	// Use the preview to check it's a valid build location
-	var ok = Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {
-		"template": placementEntity,
-		"x": placementPosition.x,
-		"z": placementPosition.z,
-		"angle": placementAngle
-	});
-	if (!ok)
+	if (!updateBuildingPlacementPreview())
 	{
 		// invalid location - don't build it
 		// TODO: play a sound?
@@ -561,13 +557,15 @@ function handleInputBeforeGui(ev, hoveredObject)
 				placementAngle = defaultPlacementAngle;
 			}
 
-			Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {
+			var snapData = Engine.GuiInterfaceCall("GetFoundationSnapData", {
 				"template": placementEntity,
 				"x": placementPosition.x,
-				"z": placementPosition.z,
-				"angle": placementAngle
+				"z": placementPosition.z
 			});
-
+			if (snapData.snapped)
+				placementAngle = snapData.angle;
+			
+			updateBuildingPlacementPreview();
 			break;
 
 		case "mousebuttonup":
@@ -821,12 +819,15 @@ function handleInputAfterGui(ev)
 		{
 		case "mousemotion":
 			placementPosition = Engine.GetTerrainAtPoint(ev.x, ev.y);
-			Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {
+			var snapData = Engine.GuiInterfaceCall("GetFoundationSnapData", {
 				"template": placementEntity,
 				"x": placementPosition.x,
-				"z": placementPosition.z,
-				"angle": placementAngle
+				"z": placementPosition.z
 			});
+			if (snapData.snapped)
+				placementAngle = snapData.angle;
+			
+			updateBuildingPlacementPreview();
 
 			return false; // continue processing mouse motion
 
@@ -855,21 +856,11 @@ function handleInputAfterGui(ev)
 			{
 			case "session.rotate.cw":
 				placementAngle += rotation_step;
-				Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {
-					"template": placementEntity,
-					"x": placementPosition.x,
-					"z": placementPosition.z,
-					"angle": placementAngle
-				});
+				updateBuildingPlacementPreview();
 				break;
 			case "session.rotate.ccw":
 				placementAngle -= rotation_step;
-				Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {
-					"template": placementEntity,
-					"x": placementPosition.x,
-					"z": placementPosition.z,
-					"angle": placementAngle
-				});
+				updateBuildingPlacementPreview();
 				break;
 			}
 

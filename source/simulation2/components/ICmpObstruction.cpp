@@ -23,7 +23,7 @@
 
 BEGIN_INTERFACE_WRAPPER(Obstruction)
 DEFINE_INTERFACE_METHOD_0("GetUnitRadius", entity_pos_t, ICmpObstruction, GetUnitRadius)
-DEFINE_INTERFACE_METHOD_0("CheckFoundationCollisions", bool, ICmpObstruction, CheckFoundationCollisions)
+DEFINE_INTERFACE_METHOD_1("CheckFoundation", bool, ICmpObstruction, CheckFoundation, std::string)
 DEFINE_INTERFACE_METHOD_0("GetConstructionCollisions", std::vector<entity_id_t>, ICmpObstruction, GetConstructionCollisions)
 DEFINE_INTERFACE_METHOD_1("SetActive", void, ICmpObstruction, SetActive, bool)
 DEFINE_INTERFACE_METHOD_1("SetDisableBlockMovementPathfinding", void, ICmpObstruction, SetDisableBlockMovementPathfinding, bool)

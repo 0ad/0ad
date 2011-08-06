@@ -44,14 +44,14 @@ public:
 	/**
 	 * Test whether this entity is colliding with any obstruction that are set to
 	 * block the creation of foundations.
-	 * @return true if there is a collision
+	 * @return true if foundation is valid (not obstructed)
 	 */
-	virtual bool CheckFoundationCollisions() = 0;
+	virtual bool CheckFoundation(std::string className) = 0;
 
 	/**
 	 * Returns a list of entities that are colliding with this entity, and that
 	 * are set to block construction.
-	 * @return true if there is a collision
+	 * @return vector of blocking entities
 	 */
 	virtual std::vector<entity_id_t> GetConstructionCollisions() = 0;
 

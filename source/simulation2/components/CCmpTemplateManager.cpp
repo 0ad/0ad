@@ -453,6 +453,7 @@ void CCmpTemplateManager::CopyPreviewSubset(CParamNode& out, const CParamNode& i
 	permittedComponentTypes.insert("Footprint");
 	permittedComponentTypes.insert("Obstruction");
 	permittedComponentTypes.insert("Decay");
+	permittedComponentTypes.insert("BuildRestrictions");
 
 	// Need these for the Actor Viewer:
 	permittedComponentTypes.insert("Attack");

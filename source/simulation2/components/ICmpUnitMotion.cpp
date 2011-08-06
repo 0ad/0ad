@@ -86,6 +86,11 @@ public:
 		return m_Script.Call<fixed>("GetRunSpeed");
 	}
 
+	virtual ICmpPathfinder::pass_class_t GetPassabilityClass()
+	{
+		return m_Script.Call<ICmpPathfinder::pass_class_t>("GetPassabilityClass");
+	}
+
 	virtual void SetUnitRadius(fixed radius)
 	{
 		m_Script.CallVoid("SetUnitRadius", radius);

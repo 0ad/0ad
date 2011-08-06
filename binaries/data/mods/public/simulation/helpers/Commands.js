@@ -74,7 +74,7 @@ function ProcessCommand(player, cmd)
 
 	case "returnresource":
 		// Check dropsite is owned by player
-		if (IsOwnedByPlayer(cmd.target, player))
+		if (IsOwnedByPlayer(player, cmd.target))
 		{
 			var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 			GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
@@ -131,23 +131,38 @@ function ProcessCommand(player, cmd)
 
 		// Tentatively create the foundation (we might find later that it's a invalid build command)
 		var ent = Engine.AddEntity("foundation|" + cmd.template);
-		// TODO: report errors (e.g. invalid template names)
+		if (ent == INVALID_ENTITY)
+		{
+			// Error (e.g. invalid template names)
+			error("Error creating foundation for '" + cmd.template + "'");
+			break;
+		}
 
 		// Move the foundation to the right place
 		var cmpPosition = Engine.QueryInterface(ent, IID_Position);
 		cmpPosition.JumpTo(cmd.x, cmd.z);
 		cmpPosition.SetYRotation(cmd.angle);
 
-		// Check whether it's obstructed by other entities
-		var cmpObstruction = Engine.QueryInterface(ent, IID_Obstruction);
-		if (cmpObstruction && cmpObstruction.CheckFoundationCollisions())
+		// Check whether it's obstructed by other entities or invalid terrain
+		var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
+		if (!cmpBuildRestrictions || !cmpBuildRestrictions.CheckPlacement(player))
 		{
-			// TODO: report error to player (the building site was obstructed)
-			print("Building site was obstructed\n");
+			var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+			cmpGuiInterface.PushNotification({ "player": player, "message": "Building site was obstructed" });
 
 			// Remove the foundation because the construction was aborted
 			Engine.DestroyEntity(ent);
-
+			break;
+		}
+		
+		// Check build limits
+		var cmpBuildLimits = QueryPlayerIDInterface(player, IID_BuildLimits);
+		if (!cmpBuildLimits || !cmpBuildLimits.AllowedToBuild(cmpBuildRestrictions.GetCategory()))
+		{
+			// TODO: The UI should tell the user they can't build this (but we still need this check)
+			
+			// Remove the foundation because the construction was aborted
+			Engine.DestroyEntity(ent);
 			break;
 		}
 
@@ -167,19 +182,10 @@ function ProcessCommand(player, cmd)
 			break;
 		}
 		*/
-
-		var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
-		var cmpBuildLimits = Engine.QueryInterface(playerEnt, IID_BuildLimits);
-		if (!cmpBuildLimits.AllowedToBuild(cmpBuildRestrictions.GetCategory()))
-		{
-			Engine.DestroyEntity(ent);
-			break;
-		}
 		
 		var cmpCost = Engine.QueryInterface(ent, IID_Cost);
 		if (!cmpPlayer.TrySubtractResources(cmpCost.GetResourceCosts()))
 		{
-			// TODO: report error to player (they ran out of resources)
 			Engine.DestroyEntity(ent);
 			break;
 		}
@@ -565,22 +571,13 @@ function CanMoveEntsIntoFormation(ents, formationName)
 }
 
 /**
- * Check if entity is owned by player
- */
-function IsOwnedByPlayer(entity, player)
-{
-	var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
-	return (cmpOwnership && cmpOwnership.GetOwner() == player);
-}
-
-/**
  * Check if player can control this entity
  * returns: true if the entity is valid and owned by the player if
  *		or control all units is activated for the player, else false
  */
 function CanControlUnit(entity, player, controlAll)
 {
-	return (IsOwnedByPlayer(entity, player) || controlAll);
+	return (IsOwnedByPlayer(player, entity) || controlAll);
 }
 
 /**

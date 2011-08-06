@@ -468,16 +468,22 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 			pos.SetYRotation(cmd.angle);
 		}
 
-		// Check whether it's obstructed by other entities
-		var cmpObstruction = Engine.QueryInterface(ent, IID_Obstruction);
-		var colliding = (cmpObstruction && cmpObstruction.CheckFoundationCollisions());
-
 		// Check whether it's in a visible region
 		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		var visible = (cmpRangeManager.GetLosVisibility(ent, player) == "visible");
+		var visible = (cmpRangeManager && cmpRangeManager.GetLosVisibility(ent, player) == "visible");
+		var validPlacement = false;
+		
+		if (visible)
+		{	// Check whether it's obstructed by other entities or invalid terrain
+			var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
+			if (!cmpBuildRestrictions)
+				error("cmpBuildRestrictions not defined");
+			
+			validPlacement = (cmpBuildRestrictions && cmpBuildRestrictions.CheckPlacement(player));
+		}
 
-		var ok = (!colliding && visible);
-
+		var ok = (visible && validPlacement);
+		
 		// Set it to a red shade if this is an invalid location
 		var cmpVisual = Engine.QueryInterface(ent, IID_Visual);
 		if (cmpVisual)
@@ -492,6 +498,71 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 	}
 
 	return false;
+};
+
+GuiInterface.prototype.GetFoundationSnapData = function(player, data)
+{
+	var cmpTemplateMgr = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	var template = cmpTemplateMgr.GetTemplate(data.template);
+
+	if (template.BuildRestrictions.Category == "Dock")
+	{
+		var cmpTerrain = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain);
+		var cmpWaterManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_WaterManager);
+		
+		// Find direction of most open water, algorithm:
+		//	1. Pick points in a circle around dock
+		//	2. If point is in water, add to array
+		//	3. Scan array looking for consective points
+		//	4. Find longest sequence of conseuctive points
+		//	5. Calculate angle using average of sequence
+		const numPoints = 16;
+		const dist = 20.0;
+		var waterPoints = [];
+		for (var i = 0; i < numPoints; ++i)
+		{
+			var angle = (i/numPoints)*2*Math.PI;
+			var nx = data.x - dist*Math.sin(angle);
+			var nz = data.z + dist*Math.cos(angle);
+			
+			if (cmpTerrain.GetGroundLevel(nx, nz) < cmpWaterManager.GetWaterLevel(nx, nz))
+			{
+				waterPoints.push(i);
+			}
+		}
+		var consec = [];
+		var length = waterPoints.length;
+		for (var i = 0; i < length; ++i)
+		{
+			var count = 0;
+			for (var j = 0; j < (length-1); ++j)
+			{
+				if (((waterPoints[(i + j) % length]+1) % numPoints) == waterPoints[(i + j + 1) % length])
+				{
+					++count;
+				}
+				else
+				{
+					break;
+				}
+			}
+			consec[i] = count;
+		}
+		var start = 0;
+		var count = 0;
+		for (var c in consec)
+		{
+			if (consec[c] > count)
+			{
+				start = c;
+				count = consec[c];
+			}
+		}
+
+		return { "snapped": true, "x": data.x, "z": data.z, "angle": -(((waterPoints[start] + consec[start]/2) % numPoints)/numPoints*2*Math.PI) };
+	}
+
+	return {"snapped": false};
 };
 
 GuiInterface.prototype.PlaySound = function(player, data)
@@ -583,6 +654,7 @@ var exposedFunctions = {
 	"SetStatusBars": 1,
 	"DisplayRallyPoint": 1,
 	"SetBuildingPlacementPreview": 1,
+	"GetFoundationSnapData": 1,
 	"PlaySound": 1,
 	"FindIdleUnit": 1,
 

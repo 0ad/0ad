@@ -29,6 +29,7 @@
 #include "ps/Profile.h"
 #include "renderer/Scene.h"
 #include "simulation2/MessageTypes.h"
+#include "simulation2/components/ICmpObstruction.h"
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpWaterManager.h"
 #include "simulation2/serialization/SerializeTemplates.h"
@@ -372,8 +373,98 @@ void CCmpPathfinder::UpdateGrid()
 
 		CmpPtr<ICmpWaterManager> cmpWaterMan(GetSimContext(), SYSTEM_ENTITY);
 
+		// TOOD: these bits should come from ICmpTerrain
 		CTerrain& terrain = GetSimContext().GetTerrain();
 
+		// avoid integer overflow in intermediate calculation
+		const u16 shoreMax = 32767;
+		
+		// First pass - find underwater tiles
+		Grid<bool> waterGrid(m_MapSize, m_MapSize);
+		for (u16 j = 0; j < m_MapSize; ++j)
+		{
+			for (u16 i = 0; i < m_MapSize; ++i)
+			{
+				fixed x, z;
+				TileCenter(i, j, x, z);
+				
+				bool underWater = !cmpWaterMan.null() && (cmpWaterMan->GetWaterLevel(x, z) > terrain.GetExactGroundLevelFixed(x, z));
+				waterGrid.set(i, j, underWater);
+			}
+		}
+		// Second pass - find shore tiles
+		Grid<u16> shoreGrid(m_MapSize, m_MapSize);
+		for (u16 j = 0; j < m_MapSize; ++j)
+		{
+			for (u16 i = 0; i < m_MapSize; ++i)
+			{
+				// Find a land tile
+				if (!waterGrid.get(i, j) && (
+					(i > 0 && waterGrid.get(i-1, j)) || (i > 0 && j < m_MapSize-1 && waterGrid.get(i-1, j+1)) || (i > 0 && j > 0 && waterGrid.get(i-1, j-1)) ||
+					(i < m_MapSize-1 && waterGrid.get(i+1, j)) || (i < m_MapSize-1 && j < m_MapSize-1 && waterGrid.get(i+1, j+1)) || (i < m_MapSize-1 && j > 0 && waterGrid.get(i+1, j-1)) ||
+					(j > 0 && waterGrid.get(i, j-1)) || (j < m_MapSize-1 && waterGrid.get(i, j+1))
+					))
+				{
+					shoreGrid.set(i, j, 0);
+				}
+				else
+				{
+					shoreGrid.set(i, j, shoreMax);
+				}
+			}
+		}
+
+		// Expand influences to find shore distance
+		for (size_t y = 0; y < m_MapSize; ++y)
+		{
+			u16 min = shoreMax;
+			for (size_t x = 0; x < m_MapSize; ++x)
+			{
+				u16 g = shoreGrid.get(x, y);
+				if (g > min)
+					shoreGrid.set(x, y, min);
+				else if (g < min)
+					min = g;
+
+				++min;
+			}
+			for (size_t x = m_MapSize; x > 0; --x)
+			{
+				u16 g = shoreGrid.get(x-1, y);
+				if (g > min)
+					shoreGrid.set(x-1, y, min);
+				else if (g < min)
+					min = g;
+
+				++min;
+			}
+		}
+		for (size_t x = 0; x < m_MapSize; ++x)
+		{
+			u16 min = shoreMax;
+			for (size_t y = 0; y < m_MapSize; ++y)
+			{
+				u16 g = shoreGrid.get(x, y);
+				if (g > min)
+					shoreGrid.set(x, y, min);
+				else if (g < min)
+					min = g;
+
+				++min;
+			}
+			for (size_t y = m_MapSize; y > 0; --y)
+			{
+				u16 g = shoreGrid.get(x, y-1);
+				if (g > min)
+					shoreGrid.set(x, y-1, min);
+				else if (g < min)
+					min = g;
+
+				++min;
+			}
+		}
+
+		// Apply passability classes to terrain
 		for (u16 j = 0; j < m_MapSize; ++j)
 		{
 			for (u16 i = 0; i < m_MapSize; ++i)
@@ -385,7 +476,7 @@ void CCmpPathfinder::UpdateGrid()
 
 				u8 obstruct = m_ObstructionGrid->get(i, j);
 
-				fixed height = terrain.GetVertexGroundLevelFixed(i, j); // TODO: should use tile centre
+				fixed height = terrain.GetExactGroundLevelFixed(x, z);
 
 				fixed water;
 				if (!cmpWaterMan.null())
@@ -394,6 +485,8 @@ void CCmpPathfinder::UpdateGrid()
 				fixed depth = water - height;
 
 				fixed slope = terrain.GetSlopeFixed(i, j);
+
+				fixed shoredist = fixed::FromInt(shoreGrid.get(i, j));
 
 				if (obstruct & ICmpObstructionManager::TILE_OBSTRUCTED_PATHFINDING)
 					t |= 1;
@@ -411,7 +504,7 @@ void CCmpPathfinder::UpdateGrid()
 				{
 					for (size_t n = 0; n < m_PassClasses.size(); ++n)
 					{
-						if (!m_PassClasses[n].IsPassable(depth, slope))
+						if (!m_PassClasses[n].IsPassable(depth, slope, shoredist))
 							t |= m_PassClasses[n].m_Mask;
 					}
 				}
@@ -550,3 +643,81 @@ void CCmpPathfinder::ProcessSameTurnMoves()
 	}
 }
 
+bool CCmpPathfinder::CheckUnitPlacement(const IObstructionTestFilter& filter,
+	entity_pos_t x, entity_pos_t z, entity_pos_t r,	pass_class_t passClass)
+{
+	// Check unit obstruction
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+	if (cmpObstructionManager.null())
+		return false;
+
+	if (cmpObstructionManager->TestUnitShape(filter, x, z, r, NULL))
+		return false;
+
+	// Test against terrain:
+
+	UpdateGrid();
+
+	u16 i0, j0, i1, j1;
+	NearestTile(x - r, z - r, i0, j0);
+	NearestTile(x + r, z + r, i1, j1);
+	for (u16 j = j0; j <= j1; ++j)
+	{
+		for (u16 i = i0; i <= i1; ++i)
+		{
+			if (!IS_TERRAIN_PASSABLE(m_Grid->get(i,j), passClass))
+			{
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+bool CCmpPathfinder::CheckBuildingPlacement(const IObstructionTestFilter& filter,
+	entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w,
+	entity_pos_t h, entity_id_t id, pass_class_t passClass)
+{
+	// Check unit obstruction
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+	if (cmpObstructionManager.null())
+		return false;
+
+	if (cmpObstructionManager->TestStaticShape(filter, x, z, a, w, h, NULL))
+		return false;
+
+	// Test against terrain:
+
+	UpdateGrid();
+
+	CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), id);
+	if (cmpObstruction.null())
+		return false;
+
+	ICmpObstructionManager::ObstructionSquare square;
+	if (!cmpObstruction->GetObstructionSquare(square))
+		return false;
+
+	CFixedVector2D halfSize(square.hw, square.hh);
+	halfSize = halfSize * 1.41421f;
+	CFixedVector2D halfBound = Geometry::GetHalfBoundingBox(square.u, square.v, halfSize);
+
+	u16 i0, j0, i1, j1;
+	NearestTile(square.x - halfBound.X, square.z - halfBound.Y, i0, j0);
+	NearestTile(square.x + halfBound.X, square.z + halfBound.Y, i1, j1);
+	for (u16 j = j0; j <= j1; ++j)
+	{
+		for (u16 i = i0; i <= i1; ++i)
+		{
+			entity_pos_t x, z;
+			TileCenter(i, j, x, z);
+			if (Geometry::PointIsInSquare(CFixedVector2D(x - square.x, z - square.z), square.u, square.v, halfSize)
+				&& !IS_TERRAIN_PASSABLE(m_Grid->get(i,j), passClass))
+			{
+				return false;
+			}
+		}
+	}
+
+	return true;
+}

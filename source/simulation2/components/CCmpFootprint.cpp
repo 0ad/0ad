@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,10 +20,13 @@
 #include "simulation2/system/Component.h"
 #include "ICmpFootprint.h"
 
-#include "ICmpObstruction.h"
-#include "ICmpObstructionManager.h"
-#include "ICmpPosition.h"
+#include "simulation2/components/ICmpObstruction.h"
+#include "simulation2/components/ICmpObstructionManager.h"
+#include "simulation2/components/ICmpPathfinder.h"
+#include "simulation2/components/ICmpPosition.h"
+#include "simulation2/components/ICmpUnitMotion.h"
 #include "simulation2/MessageTypes.h"
+#include "graphics/Terrain.h"	// For CELL_SIZE
 #include "maths/FixedVector2D.h"
 
 class CCmpFootprint : public ICmpFootprint
@@ -125,7 +128,7 @@ public:
 		// because the footprint might be inside the obstruction, but it hopefully gives us a nicer
 		// shape.)
 
-		CFixedVector3D error(fixed::FromInt(-1), fixed::FromInt(-1), fixed::FromInt(-1));
+		const CFixedVector3D error(fixed::FromInt(-1), fixed::FromInt(-1), fixed::FromInt(-1));
 
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
 		if (cmpPosition.null() || !cmpPosition->IsInWorld())
@@ -146,30 +149,46 @@ public:
 		}
 		// else use zero radius
 
-		// The spawn point should be far enough from this footprint to fit the unit, plus a little gap
-		entity_pos_t clearance = spawnedRadius + entity_pos_t::FromInt(2);
+		// Get passability class from UnitMotion
+		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), spawned);
+		if (cmpUnitMotion.null())
+			return error;
 
+		ICmpPathfinder::pass_class_t spawnedPass = cmpUnitMotion->GetPassabilityClass();
+		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
+		if (cmpPathfinder.null())
+			return error;
+		
 		CFixedVector2D initialPos = cmpPosition->GetPosition2D();
 		entity_angle_t initialAngle = cmpPosition->GetRotation().Y;
 
+		// Max spawning distance in tiles
+		const size_t maxSpawningDistance = 4;
+
 		if (m_Shape == CIRCLE)
 		{
-			entity_pos_t radius = m_Size0 + clearance;
-
-			// Try equally-spaced points around the circle, starting from the front and expanding outwards in alternating directions
-			const ssize_t numPoints = 31;
-			for (ssize_t i = 0; i < (numPoints+1)/2; i = (i > 0 ? -i : 1-i)) // [0, +1, -1, +2, -2, ... (np-1)/2, -(np-1)/2]
+			// Expand outwards from foundation
+			for (size_t dist = 0; dist <= maxSpawningDistance; ++dist)
 			{
-				entity_angle_t angle = initialAngle + (entity_angle_t::Pi()*2).Multiply(entity_angle_t::FromInt(i)/(int)numPoints);
+				// The spawn point should be far enough from this footprint to fit the unit, plus a little gap
+				entity_pos_t clearance = spawnedRadius + entity_pos_t::FromInt(2 + CELL_SIZE*dist);
+				entity_pos_t radius = m_Size0 + clearance;
 
-				fixed s, c;
-				sincos_approx(angle, s, c);
+				// Try equally-spaced points around the circle in alternating directions, starting from the front
+				const ssize_t numPoints = 31 + 2*dist;
+				for (ssize_t i = 0; i < (numPoints+1)/2; i = (i > 0 ? -i : 1-i)) // [0, +1, -1, +2, -2, ... (np-1)/2, -(np-1)/2]
+				{
+					entity_angle_t angle = initialAngle + (entity_angle_t::Pi()*2).Multiply(entity_angle_t::FromInt(i)/(int)numPoints);
 
-				CFixedVector3D pos (initialPos.X + s.Multiply(radius), fixed::Zero(), initialPos.Y + c.Multiply(radius));
+					fixed s, c;
+					sincos_approx(angle, s, c);
 
-				SkipTagObstructionFilter filter(spawnedTag); // ignore collisions with the spawned entity
-				if (!cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Z, spawnedRadius, NULL))
-					return pos; // this position is okay, so return it
+					CFixedVector3D pos (initialPos.X + s.Multiply(radius), fixed::Zero(), initialPos.Y + c.Multiply(radius));
+
+					SkipTagObstructionFilter filter(spawnedTag); // ignore collisions with the spawned entity
+					if (cmpPathfinder->CheckUnitPlacement(filter, pos.X, pos.Z, spawnedRadius, spawnedPass))
+						return pos; // this position is okay, so return it
+				}
 			}
 		}
 		else
@@ -177,47 +196,54 @@ public:
 			fixed s, c;
 			sincos_approx(initialAngle, s, c);
 
-			for (size_t edge = 0; edge < 4; ++edge)
+			// Expand outwards from foundation
+			for (size_t dist = 0; dist <= maxSpawningDistance; ++dist)
 			{
-				// Try equally-spaced points along the edge, starting from the middle and expanding outwards in alternating directions
-				const ssize_t numPoints = 9;
+				// The spawn point should be far enough from this footprint to fit the unit, plus a little gap
+				entity_pos_t clearance = spawnedRadius + entity_pos_t::FromInt(2 + CELL_SIZE*dist);
 
-				// Compute the direction and length of the current edge
-				CFixedVector2D dir;
-				fixed sx, sy;
-				switch (edge)
+				for (size_t edge = 0; edge < 4; ++edge)
 				{
-				case 0:
-					dir = CFixedVector2D(c, -s);
-					sx = m_Size0;
-					sy = m_Size1;
-					break;
-				case 1:
-					dir = CFixedVector2D(-s, -c);
-					sx = m_Size1;
-					sy = m_Size0;
-					break;
-				case 2:
-					dir = CFixedVector2D(s, c);
-					sx = m_Size1;
-					sy = m_Size0;
-					break;
-				case 3:
-					dir = CFixedVector2D(-c, s);
-					sx = m_Size0;
-					sy = m_Size1;
-					break;
-				}
-				CFixedVector2D center = initialPos - dir.Perpendicular().Multiply(sy/2 + clearance);
-				dir = dir.Multiply((sx + clearance*2) / (int)(numPoints-1));
+					// Try equally-spaced points along the edge in alternating directions, starting from the middle
+					const ssize_t numPoints = 9 + 2*dist;
 
-				for (ssize_t i = 0; i < (numPoints+1)/2; i = (i > 0 ? -i : 1-i)) // [0, +1, -1, +2, -2, ... (np-1)/2, -(np-1)/2]
-				{
-					CFixedVector2D pos (center + dir*i);
+					// Compute the direction and length of the current edge
+					CFixedVector2D dir;
+					fixed sx, sy;
+					switch (edge)
+					{
+					case 0:
+						dir = CFixedVector2D(c, -s);
+						sx = m_Size0;
+						sy = m_Size1;
+						break;
+					case 1:
+						dir = CFixedVector2D(-s, -c);
+						sx = m_Size1;
+						sy = m_Size0;
+						break;
+					case 2:
+						dir = CFixedVector2D(s, c);
+						sx = m_Size1;
+						sy = m_Size0;
+						break;
+					case 3:
+						dir = CFixedVector2D(-c, s);
+						sx = m_Size0;
+						sy = m_Size1;
+						break;
+					}
+					CFixedVector2D center = initialPos - dir.Perpendicular().Multiply(sy/2 + clearance);
+					dir = dir.Multiply((sx + clearance*2) / (int)(numPoints-1));
 
-					SkipTagObstructionFilter filter(spawnedTag); // ignore collisions with the spawned entity
-					if (!cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Y, spawnedRadius, NULL))
-						return CFixedVector3D(pos.X, fixed::Zero(), pos.Y); // this position is okay, so return it
+					for (ssize_t i = 0; i < (numPoints+1)/2; i = (i > 0 ? -i : 1-i)) // [0, +1, -1, +2, -2, ... (np-1)/2, -(np-1)/2]
+					{
+						CFixedVector2D pos (center + dir*i);
+
+						SkipTagObstructionFilter filter(spawnedTag); // ignore collisions with the spawned entity
+						if (cmpPathfinder->CheckUnitPlacement(filter, pos.X, pos.Y, spawnedRadius, spawnedPass))
+							return CFixedVector3D(pos.X, fixed::Zero(), pos.Y); // this position is okay, so return it
+					}
 				}
 			}
 		}

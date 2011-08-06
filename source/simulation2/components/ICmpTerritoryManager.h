@@ -18,9 +18,9 @@
 #ifndef INCLUDED_ICMPTERRITORYMANAGER
 #define INCLUDED_ICMPTERRITORYMANAGER
 
-#include "simulation2/system/Interface.h"
-
 #include "simulation2/helpers/Grid.h"
+#include "simulation2/system/Interface.h"
+#include "simulation2/components/ICmpPosition.h"
 
 class ICmpTerritoryManager : public IComponent
 {
@@ -28,6 +28,13 @@ public:
 	virtual bool NeedUpdate(size_t* dirtyID) = 0;
 
 	virtual const Grid<u8>& GetTerritoryGrid() = 0;
+
+	/**
+	 * Get owner of territory at given position
+	 *
+	 * @return player ID of owner; 0 if neutral territory
+	 */
+	virtual int32_t GetOwner(entity_pos_t x, entity_pos_t z) = 0;
 
 	DECLARE_INTERFACE_TYPE(TerritoryManager)
 };

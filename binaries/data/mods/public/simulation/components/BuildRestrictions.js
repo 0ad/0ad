@@ -1,19 +1,37 @@
 function BuildRestrictions() {}
 
 BuildRestrictions.prototype.Schema =
-	"<element name='PlacementType'>" +
+	"<a:help>Specifies building placement restrictions as they relate to terrain, territories, and distance.</a:help>" +
+	"<a:example>" +
+		"<BuildRestrictions>" +
+			"<PlacementType>land</PlacementType>" +
+			"<Territory>own</Territory>" +
+			"<Category>Special</Category>" +
+			"<Distance>" +
+				"<FromCategory>CivilCentre</FromCategory>" +
+				"<MaxDistance>40</MaxDistance>" +
+			"</Distance>" +
+		"</BuildRestrictions>" +
+	"</a:example>" +
+	"<element name='PlacementType' a:help='Specifies the terrain type restriction for this building.'>" +
 		"<choice>" +
-			"<value>standard</value>" +
-			"<value>settlement</value>" +
-		"</choice>" + // TODO: add special types for fields, docks, walls
-	"</element>" +
-	"<element name='Territory'>" +
-		"<choice>" +
-			"<value>all</value>" +
-			"<value>allied</value>" +
+			"<value>land</value>" +
+			"<value>shore</value>" +
 		"</choice>" +
 	"</element>" +
-	"<element name='Category'>" +
+	"<element name='Territory' a:help='Specifies territory type restrictions for this building.'>" +
+		"<list>" +
+			"<oneOrMore>" +
+				"<choice>" +
+					"<value>own</value>" +
+					"<value>ally</value>" +
+					"<value>neutral</value>" +
+					"<value>enemy</value>" +
+				"</choice>" +
+			"</oneOrMore>" +
+		"</list>" +
+	"</element>" +
+	"<element name='Category' a:help='Specifies the category of this building, for satisfying special constraints.'>" +
 		"<choice>" +
 			"<value>CivilCentre</value>" +
 			"<value>House</value>" +
@@ -32,43 +50,183 @@ BuildRestrictions.prototype.Schema =
 			"<value>Resource</value>" +
 			"<value>Special</value>" +
 		"</choice>" +
-	"</element>";
+	"</element>" +
+	"<optional>" +
+		"<element name='Distance' a:help='Specifies distance restrictions on this building, relative to buildings from the given category.'>" +
+			"<interleave>" +
+				"<element name='FromCategory'>" +
+					"<choice>" +
+						"<value>CivilCentre</value>" +
+					"</choice>" +
+				"</element>" +
+				"<optional><element name='MinDistance'><data type='positiveInteger'/></element></optional>" +
+				"<optional><element name='MaxDistance'><data type='positiveInteger'/></element></optional>" +
+			"</interleave>" +
+		"</element>" +
+	"</optional>";
 	// TODO: add phases, prerequisites, etc
 
-/*
- * TODO: the vague plan for Category is to add some BuildLimitManager which
- * specifies the limit per category, and which can determine whether you're
- * allowed to build more (based on the number in total / per territory / per
- * civ center as appropriate)
- */
-
-/*
- * TODO: the vague plan for PlacementType is that it may restrict the locations
- * and orientations of new construction work (e.g. civ centers must be on settlements,
- * docks must be on shores), which affects the UI and the build permissions
- */
+BuildRestrictions.prototype.Init = function()
+{
+	this.territories = this.template.Territory.split(/\s+/);
+};
 
 BuildRestrictions.prototype.OnOwnershipChanged = function(msg)
 {
+	// This automatically updates building counts
 	if (this.template.Category)
 	{
-		var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 		if (msg.from != -1)
 		{
-			var fromPlayerBuildLimits = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(msg.from), IID_BuildLimits);
+			var fromPlayerBuildLimits = QueryPlayerIDInterface(msg.from, IID_BuildLimits);
 			fromPlayerBuildLimits.DecrementCount(this.template.Category);
 		}
 		if (msg.to != -1)
 		{
-			var toPlayerBuildLimits = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(msg.to), IID_BuildLimits);
+			var toPlayerBuildLimits = QueryPlayerIDInterface(msg.to, IID_BuildLimits);
 			toPlayerBuildLimits.IncrementCount(this.template.Category);	
 		}
 	}
 };
 
+BuildRestrictions.prototype.CheckPlacement = function(player)
+{
+	// TODO: Return error code for invalid placement, which can be handled by the UI
+
+	// Check obstructions and terrain passability
+	var passClassName = "";
+	switch (this.template.PlacementType)
+	{
+	case "shore":
+		passClassName = "building-shore";
+		break;
+		
+	case "land":
+	default:
+		passClassName = "building-land";
+	}
+
+	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
+	if (!cmpObstruction || !cmpObstruction.CheckFoundation(passClassName))
+	{
+		return false;	// Fail
+	}
+	
+	// Check territory restrictions
+	var cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
+	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
+	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (!(cmpTerritoryManager && cmpPlayer && cmpPosition && cmpPosition.IsInWorld()))
+	{
+		return false;	// Fail
+	}
+	
+	var pos = cmpPosition.GetPosition2D();
+	var tileOwner = cmpTerritoryManager.GetOwner(pos.x, pos.y);
+	var isOwn = (tileOwner == player);
+	var isNeutral = (tileOwner == 0);
+	var isAlly = !isOwn && cmpPlayer.IsAlly(tileOwner);
+	var isEnemy = !isNeutral && cmpPlayer.IsEnemy(tileOwner);
+	
+	if ((isAlly && !this.HasTerritory("ally"))
+		|| (isOwn && !this.HasTerritory("own"))
+		|| (isNeutral && !this.HasTerritory("neutral"))
+		|| (isEnemy && !this.HasTerritory("enemy")))
+	{
+		return false;	// Fail
+	}
+	
+	// Check special requirements
+	if (this.template.Category == "Dock")
+	{
+		// Dock must be oriented from land facing into water
+		var cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
+		if (!cmpFootprint)
+		{
+			return false;	// Fail
+		}
+		
+		// Get building's footprint
+		var shape = cmpFootprint.GetShape();
+		var halfSize = 0;
+		if (shape.type == "square")
+		{
+			halfSize = shape.depth/2;
+		}
+		else if (shape.type == "circle")
+		{
+			halfSize = shape.radius;
+		}
+
+		var cmpTerrain = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain);
+		var cmpWaterManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_WaterManager);
+		if (!cmpTerrain || !cmpWaterManager)
+		{
+			return false;	// Fail
+		}
+		
+		var ang = cmpPosition.GetRotation().y;
+		var sz = halfSize * Math.sin(ang);
+		var cz = halfSize * Math.cos(ang);
+		if ((cmpTerrain.GetGroundLevel(pos.x + sz, pos.y + cz) > cmpWaterManager.GetWaterLevel(pos.x + sz, pos.y + cz)) || // front
+			(cmpTerrain.GetGroundLevel(pos.x - sz, pos.y - cz) <= cmpWaterManager.GetWaterLevel(pos.x - sz, pos.y - cz)))	// back
+		{
+			return false;	// Fail
+		}
+	}
+	
+	// Check distance restriction
+	if (this.template.Distance)
+	{
+		var minDist = 65535;
+		var maxDist = 0;
+		var ents = Engine.GetEntitiesWithInterface(IID_BuildRestrictions);
+		for each (var ent in ents)
+		{
+			var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
+			if (cmpBuildRestrictions.GetCategory() == this.template.Distance.FromCategory && IsOwnedByPlayer(player, ent))
+			{
+				var cmpEntPosition = Engine.QueryInterface(ent, IID_Position);
+				if (cmpEntPosition && cmpEntPosition.IsInWorld())
+				{
+					var entPos = cmpEntPosition.GetPosition2D();
+					var dist = Math.sqrt((pos.x-entPos.x)*(pos.x-entPos.x) + (pos.y-entPos.y)*(pos.y-entPos.y));
+					if (dist < minDist)
+					{
+						minDist = dist;
+					}
+					if (dist > maxDist)
+					{
+						maxDist = dist;
+					}
+				}
+			}
+		}
+		
+		if (this.template.Distance.MinDistance !== undefined && minDist < this.template.Distance.MinDistance
+			|| this.template.Distance.MaxDistance !== undefined && maxDist > this.template.Distance.MaxDistance)
+		{
+			return false;	// Fail
+		}
+	}
+	
+	// Success
+	return true;
+};
+
 BuildRestrictions.prototype.GetCategory = function()
 {
 	return this.template.Category;
+};
+
+BuildRestrictions.prototype.GetTerritories = function()
+{
+	return this.territories;
+};
+
+BuildRestrictions.prototype.HasTerritory = function(territory)
+{
+	return (this.territories.indexOf(territory) != -1);
 };
 
 Engine.RegisterComponentType(IID_BuildRestrictions, "BuildRestrictions", BuildRestrictions);

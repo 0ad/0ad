@@ -20,15 +20,15 @@
 #include "simulation2/system/Component.h"
 #include "ICmpUnitMotion.h"
 
-#include "ICmpObstruction.h"
-#include "ICmpObstructionManager.h"
-#include "ICmpOwnership.h"
-#include "ICmpPosition.h"
-#include "ICmpPathfinder.h"
-#include "ICmpRangeManager.h"
-#include "simulation2/MessageTypes.h"
+#include "simulation2/components/ICmpObstruction.h"
+#include "simulation2/components/ICmpObstructionManager.h"
+#include "simulation2/components/ICmpOwnership.h"
+#include "simulation2/components/ICmpPosition.h"
+#include "simulation2/components/ICmpPathfinder.h"
+#include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/helpers/Geometry.h"
 #include "simulation2/helpers/Render.h"
+#include "simulation2/MessageTypes.h"
 #include "simulation2/serialization/SerializeTemplates.h"
 
 #include "graphics/Overlay.h"
@@ -122,8 +122,8 @@ public:
 	bool m_FormationController;
 	fixed m_WalkSpeed; // in metres per second
 	fixed m_RunSpeed;
-	u8 m_PassClass;
-	u8 m_CostClass;
+	ICmpPathfinder::pass_class_t m_PassClass;
+	ICmpPathfinder::cost_class_t m_CostClass;
 
 	// Dynamic state:
 
@@ -398,6 +398,11 @@ public:
 	virtual fixed GetRunSpeed()
 	{
 		return m_RunSpeed;
+	}
+
+	virtual ICmpPathfinder::pass_class_t GetPassabilityClass()
+	{
+		return m_PassClass;
 	}
 
 	virtual void SetSpeed(fixed speed)

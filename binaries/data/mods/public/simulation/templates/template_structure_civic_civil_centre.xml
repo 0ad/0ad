@@ -6,9 +6,12 @@
     <Crush>10.0</Crush>
   </Armour>
   <BuildRestrictions>
-    <PlacementType>settlement</PlacementType>
-    <Territory>all</Territory>
+    <Territory>own neutral</Territory>
     <Category>CivilCentre</Category>
+    <Distance>
+      <FromCategory>CivilCentre</FromCategory>
+      <MinDistance>150</MinDistance>
+    </Distance>
   </BuildRestrictions>
   <Cost>
     <PopulationBonus>20</PopulationBonus>

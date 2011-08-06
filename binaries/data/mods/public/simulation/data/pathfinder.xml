@@ -15,11 +15,21 @@
     <ship>
       <MinWaterDepth>1</MinWaterDepth>
     </ship>
-    <!-- Building construction classes: -->
+    <!-- Building construction classes:
+    * Land is used for most buildings, which must be away
+        from water and not on cliffs or mountains.
+    * Shore is used for docks, which must be near water and
+        land, yet shallow enough for builders to approach.
+    -->
     <building-land>
       <MaxWaterDepth>0</MaxWaterDepth>
+      <MinShoreDistance>2.0</MinShoreDistance>
       <MaxTerrainSlope>1.0</MaxTerrainSlope>
     </building-land>
+    <building-shore>
+      <MaxShoreDistance>3.0</MaxShoreDistance>
+      <MaxTerrainSlope>1.5</MaxTerrainSlope>
+    </building-shore>
 
   </PassabilityClasses>
   

@@ -20,8 +20,8 @@
 #include "simulation2/system/Component.h"
 #include "ICmpObstruction.h"
 
-#include "ICmpObstructionManager.h"
-#include "ICmpPosition.h"
+#include "simulation2/components/ICmpObstructionManager.h"
+#include "simulation2/components/ICmpPosition.h"
 
 #include "simulation2/MessageTypes.h"
 
@@ -328,7 +328,7 @@ public:
 			return entity_pos_t::Zero();
 	}
 
-	virtual bool CheckFoundationCollisions()
+	virtual bool CheckFoundation(std::string className)
 	{
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
 		if (cmpPosition.null())
@@ -339,17 +339,20 @@ public:
 
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
 
-		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
-		if (cmpObstructionManager.null())
+		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
+		if (cmpPathfinder.null())
 			return false; // error
+
+		// Get passability class
+		ICmpPathfinder::pass_class_t passClass = cmpPathfinder->GetPassabilityClass(className);
 
 		// Ignore collisions with self, or with non-foundation-blocking obstructions
 		SkipTagFlagsObstructionFilter filter(m_Tag, ICmpObstructionManager::FLAG_BLOCK_FOUNDATION);
 
 		if (m_Type == STATIC)
-			return cmpObstructionManager->TestStaticShape(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, NULL);
+			return cmpPathfinder->CheckBuildingPlacement(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, GetEntityId(), passClass);
 		else
-			return cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Y, m_Size0, NULL);
+			return cmpPathfinder->CheckUnitPlacement(filter, pos.X, pos.Y, m_Size0, passClass);
 	}
 
 	virtual std::vector<entity_id_t> GetConstructionCollisions()

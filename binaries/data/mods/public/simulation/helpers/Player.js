@@ -231,6 +231,15 @@ function IsOwnedByAllyOfEntity(entity, target)
 }
 
 /**
+ * Returns true if the entity 'target' is owned by player
+ */
+function IsOwnedByPlayer(player, target)
+{
+	var cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
+	return (cmpOwnershipTarget &&  player == cmpOwnershipTarget.GetOwner());
+}
+
+/**
  * Returns true if the entity 'target' is owned by an ally of player
  */
 function IsOwnedByAllyOfPlayer(player, target)
@@ -278,5 +287,6 @@ Engine.RegisterGlobal("LoadPlayerSettings", LoadPlayerSettings);
 Engine.RegisterGlobal("QueryOwnerInterface", QueryOwnerInterface);
 Engine.RegisterGlobal("QueryPlayerIDInterface", QueryPlayerIDInterface);
 Engine.RegisterGlobal("IsOwnedByAllyOfEntity", IsOwnedByAllyOfEntity);
+Engine.RegisterGlobal("IsOwnedByPlayer", IsOwnedByPlayer);
 Engine.RegisterGlobal("IsOwnedByAllyOfPlayer", IsOwnedByAllyOfPlayer);
 Engine.RegisterGlobal("IsOwnedByEnemyOfPlayer", IsOwnedByEnemyOfPlayer);

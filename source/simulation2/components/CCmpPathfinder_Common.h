@@ -96,11 +96,22 @@ public:
 			m_MaxSlope = node.GetChild("MaxTerrainSlope").ToFixed();
 		else
 			m_MaxSlope = std::numeric_limits<fixed>::max();
+
+		if (node.GetChild("MinShoreDistance").IsOk())
+			m_MinShore = node.GetChild("MinShoreDistance").ToFixed();
+		else
+			m_MinShore = std::numeric_limits<fixed>::min();
+
+		if (node.GetChild("MaxShoreDistance").IsOk())
+			m_MaxShore = node.GetChild("MaxShoreDistance").ToFixed();
+		else
+			m_MaxShore = std::numeric_limits<fixed>::max();
+
 	}
 
-	bool IsPassable(fixed waterdepth, fixed steepness)
+	bool IsPassable(fixed waterdepth, fixed steepness, fixed shoredist)
 	{
-		return ((m_MinDepth <= waterdepth && waterdepth <= m_MaxDepth) && (steepness < m_MaxSlope));
+		return ((m_MinDepth <= waterdepth && waterdepth <= m_MaxDepth) && (steepness < m_MaxSlope) && (m_MinShore <= shoredist && shoredist <= m_MaxShore));
 	}
 
 	ICmpPathfinder::pass_class_t m_Mask;
@@ -108,6 +119,8 @@ private:
 	fixed m_MinDepth;
 	fixed m_MaxDepth;
 	fixed m_MaxSlope;
+	fixed m_MinShore;
+	fixed m_MaxShore;
 };
 
 typedef u16 TerrainTile;
@@ -246,6 +259,10 @@ public:
 	virtual CFixedVector2D GetNearestPointOnGoal(CFixedVector2D pos, const Goal& goal);
 
 	virtual bool CheckMovement(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, pass_class_t passClass);
+
+	virtual bool CheckUnitPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, pass_class_t passClass);
+
+	virtual bool CheckBuildingPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, entity_id_t id, pass_class_t passClass);
 
 	virtual void FinishAsyncRequests();
 
