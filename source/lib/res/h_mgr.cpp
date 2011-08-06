@@ -191,7 +191,7 @@ static Status h_data_from_idx(ssize_t idx, HDATA*& hd)
 	// don't check if idx is beyond the current high-water mark, because
 	// we might be allocating a new entry. subsequent tag checks protect
 	// against using unallocated entries.
-	if(size_t(idx) >= hdata_cap)	// also detects negative idx
+	if(size_t(idx) >= size_t(hdata_cap))	// also detects negative idx
 		WARN_RETURN(ERR::H_IDX_INVALID);
 
 	hd = (HDATA*)(hpool.da.base + idx*hpool.el_size);
