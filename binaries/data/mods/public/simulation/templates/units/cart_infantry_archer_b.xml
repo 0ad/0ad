@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_ranged_archer">
+  <Builder>
+    <Entities datatype="tokens">
+      structures/cart_super_dock
+    </Entities>
+  </Builder>
   <Cost>
     <Resources>
       <food>0</food>

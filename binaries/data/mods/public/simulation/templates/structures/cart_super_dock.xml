@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_dock">
+  <Identity>
+    <Civ>cart</Civ>
+    <SpecificName>Super Dock</SpecificName>
+    <History>The structure is based upon the centre island of the inner harbour constructed to house the war fleet of the Carthaginian navy at Carthage.</History>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/carthaginians/super_dock.xml</Actor>
+    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+  </VisualActor>
+  <Cost>
+    <PopulationBonus>5</PopulationBonus>
+    <BuildTime>250</BuildTime>
+    <Resources>
+      <wood>300</wood>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="42.0" depth="58.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Health>
+    <Max>4000</Max>
+  </Health>
+  <Obstruction>
+    <Static width="42.0" depth="58.0"/>
+  </Obstruction>
+</Entity>
