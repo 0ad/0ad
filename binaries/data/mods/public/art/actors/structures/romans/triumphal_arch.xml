@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Roman Triumphal Arch">
+      <mesh>structural/rome_arch.dae</mesh>
+      <texture>structural/rome_struct_arch.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
