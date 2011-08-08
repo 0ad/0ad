@@ -238,8 +238,8 @@ void ViewGame::Render()
 			cmpPathfinder->SetDebugOverlay(true);
 			// Kind of a hack to make it update the terrain grid
 			ICmpPathfinder::Goal goal = { ICmpPathfinder::Goal::POINT, fixed::Zero(), fixed::Zero() };
-			u8 passClass = cmpPathfinder->GetPassabilityClass(m_DisplayPassability);
-			u8 costClass = cmpPathfinder->GetCostClass("default");
+			ICmpPathfinder::pass_class_t passClass = cmpPathfinder->GetPassabilityClass(m_DisplayPassability);
+			ICmpPathfinder::cost_class_t costClass = cmpPathfinder->GetCostClass("default");
 			cmpPathfinder->SetDebugPath(fixed::Zero(), fixed::Zero(), goal, passClass, costClass);
 		}
 	}
