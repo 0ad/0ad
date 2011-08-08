@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Foundation-Celt Dock">
+      <mesh>structural/found_celt_dock.dae</mesh>
+      <props>
+        <prop actor="particle/construction_dust.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/celt_struct_1.dds</texture>
+    </variant>
+  </group>
+</actor>

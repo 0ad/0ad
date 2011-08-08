@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_military_dock">
+<Entity parent="template_structure_special">
+  <BuildRestrictions>
+	<Territory>own ally neutral</Territory>
+    <PlacementType>shore</PlacementType>
+    <Category>Dock</Category>
+  </BuildRestrictions>
   <Identity>
     <Civ>cart</Civ>
-    <SpecificName>Super Dock</SpecificName>
+    <GenericName>Naval Harbour</GenericName>
+    <SpecificName>/Naval Harbour/</SpecificName>
     <History>The structure is based upon the centre island of the inner harbour constructed to house the war fleet of the Carthaginian navy at Carthage.</History>
+	<Tooltip>Constructs and repairs warships.</Tooltip>
   </Identity>
-  <VisualActor>
-    <Actor>structures/carthaginians/super_dock.xml</Actor>
-    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
-  </VisualActor>
   <Cost>
-    <PopulationBonus>5</PopulationBonus>
-    <BuildTime>250</BuildTime>
+    <PopulationBonus>10</PopulationBonus>
+    <BuildTime>400</BuildTime>
     <Resources>
-      <wood>300</wood>
+      <wood>400</wood>
+      <stone>400</stone>
     </Resources>
   </Cost>
   <Footprint>
@@ -26,4 +30,8 @@
   <Obstruction>
     <Static width="42.0" depth="58.0"/>
   </Obstruction>
+  <VisualActor>
+    <Actor>structures/carthaginians/super_dock.xml</Actor>
+    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+  </VisualActor>
 </Entity>

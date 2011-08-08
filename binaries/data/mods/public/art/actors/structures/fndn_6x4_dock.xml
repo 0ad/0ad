@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" name="foundation dock 6x4">
+      <mesh>structural/found_dock_6x4.dae</mesh>
+      <props>
+        <prop actor="props/structures/construction/found_dock_6x4_chains.xml" attachpoint="root"/>
+        <prop actor="particle/construction_dust.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/foundation.dds</texture>
+    </variant>
+  </group>
+</actor>
