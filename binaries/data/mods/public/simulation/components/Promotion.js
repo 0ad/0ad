@@ -51,6 +51,13 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 	var cmpPromotedUnitOwnership = Engine.QueryInterface(promotedUnitEntity, IID_Ownership);
 	cmpPromotedUnitOwnership.SetOwner(cmpCurrentUnitOwnership.GetOwner());
 
+	// change promoted unit health to the same percent of hitpoints as unit had before promotion
+	var cmpCurrentUnitHealth = Engine.QueryInterface(this.entity, IID_Health);
+	var cmpPromotedUnitHealth = Engine.QueryInterface(promotedUnitEntity, IID_Health);
+	var healthFraction = Math.max(0, Math.min(1, cmpCurrentUnitHealth.GetHitpoints() / cmpCurrentUnitHealth.GetMaxHitpoints()));
+	var promotedUnitHitpoints = Math.round(cmpPromotedUnitHealth.GetMaxHitpoints() * healthFraction);
+	cmpPromotedUnitHealth.SetHitpoints(promotedUnitHitpoints);
+
 	var cmpPromotedUnitPromotion = Engine.QueryInterface(promotedUnitEntity, IID_Promotion);
 	if (cmpPromotedUnitPromotion)
 		cmpPromotedUnitPromotion.IncreaseXp(this.currentXp);
