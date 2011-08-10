@@ -286,25 +286,64 @@ CVector3D CCamera::GetWorldCoordinates(int px, int py, float h) const
 	return CVector3D(0.f, h, 0.f);
 }
 
-CVector3D CCamera::GetFocus()
+CVector3D CCamera::GetFocus() const
 {
 	// Basically the same as GetWorldCoordinates
 
 	CHFTracer tracer(g_Game->GetWorld()->GetTerrain());
 	int x, z;
 
-	CVector3D origin, dir, delta, currentTarget;
+	CVector3D origin, dir, delta, terrainPoint, waterPoint;
 
 	origin = m_Orientation.GetTranslation();
 	dir = m_Orientation.GetIn();
 
-	if (tracer.RayIntersect(origin, dir, x, z, currentTarget))
-		return (currentTarget);
+	bool gotTerrain = tracer.RayIntersect(origin, dir, x, z, terrainPoint);
 
-	// Off the edge of the world?
-	// Work out where it /would/ hit, if the map were extended out to infinity with average height.
+	CPlane plane;
+	plane.Set(CVector3D(0.f, 1.f, 0.f),										// upwards normal
+		CVector3D(0.f, g_Renderer.GetWaterManager()->m_WaterHeight, 0.f));	// passes through water plane
 
-	return (origin + dir * ((50.0f - origin.Y) / dir.Y));
+	bool gotWater = plane.FindRayIntersection( origin, dir, &waterPoint );
+
+	// Clamp the water intersection to within the map's bounds, so that
+	// we'll always return a valid position on the map
+	ssize_t mapSize = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
+	if (gotWater)
+	{
+		waterPoint.X = clamp(waterPoint.X, 0.f, (float)((mapSize-1)*CELL_SIZE));
+		waterPoint.Z = clamp(waterPoint.Z, 0.f, (float)((mapSize-1)*CELL_SIZE));
+	}
+
+	if (gotTerrain)
+	{
+		if (gotWater)
+		{
+			// Intersecting both heightmap and water plane; choose the closest of those
+			if ((origin - terrainPoint).LengthSquared() < (origin - waterPoint).LengthSquared())
+				return terrainPoint;
+			else
+				return waterPoint;
+		}
+		else
+		{
+			// Intersecting heightmap but parallel to water plane
+			return terrainPoint;
+		}
+	}
+	else
+	{
+		if (gotWater)
+		{
+			// Only intersecting water plane
+			return waterPoint;
+		}
+		else
+		{
+			// Not intersecting terrain or water; just return 0,0,0.
+			return CVector3D(0.f, 0.f, 0.f);
+		}
+	}
 }
 
 void CCamera::LookAt(const CVector3D& camera, const CVector3D& target, const CVector3D& up)

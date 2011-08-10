@@ -87,8 +87,8 @@ class CCamera
 		CVector3D GetWorldCoordinates(int px, int py, bool aboveWater=false) const;
 		// Get the point on the plane at height h corresponding to pixel (px,py)
 		CVector3D GetWorldCoordinates(int px, int py, float h) const;
-		// Get the point on the terrain the camera is pointing towards
-		CVector3D GetFocus();
+		// Get the point on the terrain (or water plane) the camera is pointing towards
+		CVector3D GetFocus() const;
 
 		// Build an orientation matrix from camera position, camera focus point, and up-vector
 		void LookAt(const CVector3D& camera, const CVector3D& orientation, const CVector3D& up);
