@@ -769,7 +769,6 @@ function setup_atlas_projects()
 
 	atlas_src = {
 		"ActorEditor",
-		"ColourTester",
 		"CustomControls/Buttons",
 		"CustomControls/Canvas",
 		"CustomControls/ColourDialog",
@@ -890,7 +889,6 @@ end
 
 function setup_atlas_frontends()
 	setup_atlas_frontend_project("ActorEditor")
-	setup_atlas_frontend_project("ColourTester")
 	if _OPTIONS["aoe3ed"] then
 		setup_atlas_frontend_project("ArchiveViewer")
 		setup_atlas_frontend_project("FileConverter")

@@ -802,7 +802,6 @@ function setup_atlas_packages()
 
 	atlas_src = {
 		"ActorEditor",
-		"ColourTester",
 		"CustomControls/Buttons",
 		"CustomControls/Canvas",
 		"CustomControls/ColourDialog",
@@ -920,7 +919,6 @@ end
 
 function setup_atlas_frontends()
 	setup_atlas_frontend_package("ActorEditor")
-	setup_atlas_frontend_package("ColourTester")
 	if options["aoe3ed"] then
 		setup_atlas_frontend_package("ArchiveViewer")
 		setup_atlas_frontend_package("FileConverter")

@@ -25,7 +25,6 @@
 
 #include "ActorEditor/ActorEditor.h"
 #include "ArchiveViewer/ArchiveViewer.h"
-#include "ColourTester/ColourTester.h"
 #include "FileConverter/FileConverter.h"
 #include "ScenarioEditor/ScenarioEditor.h"
 #include "ErrorReporter/ErrorReporter.h"
@@ -206,7 +205,6 @@ public:
 		wxFrame* frame;
 #define MAYBE(t) if (g_InitialWindowType == _T(#t)) frame = new t(NULL); else
 		MAYBE(ActorEditor)
-		MAYBE(ColourTester)
 #ifdef USE_AOE3ED
 		MAYBE(ArchiveViewer)
 		MAYBE(FileConverter)

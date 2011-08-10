@@ -9,10 +9,6 @@ my @progs = (
 		WINDOW_NAME		=> "ActorEditor",
 	},
 	{
-		PROJECT_NAME	=> "ColourTester",
-		WINDOW_NAME		=> "ColourTester",
-	},
-	{
 		PROJECT_NAME	=> "FileConverter",
 		WINDOW_NAME		=> "FileConverter",
 	},
