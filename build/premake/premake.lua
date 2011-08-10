@@ -847,7 +847,6 @@ function setup_atlas_packages()
 	},{	-- extern_libs
 		"boost",
 		"comsuppw",
-		"devil",
 		--"ffmpeg", -- disabled for now because it causes too many build difficulties
 		"libxml2",
 		"sdl",	-- key definitions
@@ -872,7 +871,6 @@ function setup_atlas_packages()
 			"XMB"
 		},{	-- include
 		},{	-- extern_libs
-			"devil",
 			"xerces",
 			"zlib"
 		},{	-- extra_params

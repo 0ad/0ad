@@ -93,9 +93,6 @@ extern_lib_defs = {
 		dbg_suffix = "d",
 		no_delayload = 1
 	},
-	devil = {
-		unix_names = { "IL", "ILU" },
-	},
 	dl = {
 		win_names  = { },
 		unix_names = { "dl" },
@@ -165,6 +162,7 @@ extern_lib_defs = {
 		unix_names = { "openal" },
 		osx_frameworks = { "OpenAL" },
 		dbg_suffix = "",
+		no_delayload = 1, -- delayload seems to cause errors on startup
 	},
 	opengl = {
 		win_names  = { "opengl32", "gdi32" },
