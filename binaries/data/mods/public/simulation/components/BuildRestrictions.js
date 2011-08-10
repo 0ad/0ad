@@ -139,7 +139,10 @@ BuildRestrictions.prototype.CheckPlacement = function(player)
 	// Check special requirements
 	if (this.template.Category == "Dock")
 	{
-		// Dock must be oriented from land facing into water
+		// TODO: Probably should check unit passability classes here, to determine if:
+		//		1. ships can be spawned "nearby"
+		//		2. builders can pass the terrain where the dock is placed (don't worry about paths)
+		//	so it's correct even if the criteria changes for these units
 		var cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
 		if (!cmpFootprint)
 		{
@@ -157,7 +160,7 @@ BuildRestrictions.prototype.CheckPlacement = function(player)
 		{
 			halfSize = shape.radius;
 		}
-
+		
 		var cmpTerrain = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain);
 		var cmpWaterManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_WaterManager);
 		if (!cmpTerrain || !cmpWaterManager)
@@ -168,8 +171,8 @@ BuildRestrictions.prototype.CheckPlacement = function(player)
 		var ang = cmpPosition.GetRotation().y;
 		var sz = halfSize * Math.sin(ang);
 		var cz = halfSize * Math.cos(ang);
-		if ((cmpTerrain.GetGroundLevel(pos.x + sz, pos.y + cz) > cmpWaterManager.GetWaterLevel(pos.x + sz, pos.y + cz)) || // front
-			(cmpTerrain.GetGroundLevel(pos.x - sz, pos.y - cz) <= cmpWaterManager.GetWaterLevel(pos.x - sz, pos.y - cz)))	// back
+		if ((cmpWaterManager.GetWaterLevel(pos.x + sz, pos.y + cz) - cmpTerrain.GetGroundLevel(pos.x + sz, pos.y + cz)) < 1.0 // front
+			|| (cmpWaterManager.GetWaterLevel(pos.x - sz, pos.y - cz) - cmpTerrain.GetGroundLevel(pos.x - sz, pos.y - cz)) > 2.0)	// back
 		{
 			return false;	// Fail
 		}
@@ -178,33 +181,28 @@ BuildRestrictions.prototype.CheckPlacement = function(player)
 	// Check distance restriction
 	if (this.template.Distance)
 	{
-		var minDist = 65535;
-		var maxDist = 0;
+		var nearest = 65535;
 		var ents = Engine.GetEntitiesWithInterface(IID_BuildRestrictions);
 		for each (var ent in ents)
 		{
 			var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
 			if (cmpBuildRestrictions.GetCategory() == this.template.Distance.FromCategory && IsOwnedByPlayer(player, ent))
-			{
+			{	// Find nearest building matching this category
 				var cmpEntPosition = Engine.QueryInterface(ent, IID_Position);
 				if (cmpEntPosition && cmpEntPosition.IsInWorld())
 				{
 					var entPos = cmpEntPosition.GetPosition2D();
 					var dist = Math.sqrt((pos.x-entPos.x)*(pos.x-entPos.x) + (pos.y-entPos.y)*(pos.y-entPos.y));
-					if (dist < minDist)
+					if (dist < nearest)
 					{
-						minDist = dist;
-					}
-					if (dist > maxDist)
-					{
-						maxDist = dist;
+						nearest = dist;
 					}
 				}
 			}
 		}
 		
-		if (this.template.Distance.MinDistance !== undefined && minDist < this.template.Distance.MinDistance
-			|| this.template.Distance.MaxDistance !== undefined && maxDist > this.template.Distance.MaxDistance)
+		if ((this.template.Distance.MinDistance && nearest < this.template.Distance.MinDistance)
+			|| (this.template.Distance.MaxDistance && nearest > this.template.Distance.MaxDistance))
 		{
 			return false;	// Fail
 		}

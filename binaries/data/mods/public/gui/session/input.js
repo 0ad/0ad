@@ -562,7 +562,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 				"x": placementPosition.x,
 				"z": placementPosition.z
 			});
-			if (snapData.snapped)
+			if (snapData)
 				placementAngle = snapData.angle;
 			
 			updateBuildingPlacementPreview();
@@ -824,7 +824,7 @@ function handleInputAfterGui(ev)
 				"x": placementPosition.x,
 				"z": placementPosition.z
 			});
-			if (snapData.snapped)
+			if (snapData)
 				placementAngle = snapData.angle;
 			
 			updateBuildingPlacementPreview();

@@ -509,6 +509,21 @@ GuiInterface.prototype.GetFoundationSnapData = function(player, data)
 	{
 		var cmpTerrain = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain);
 		var cmpWaterManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_WaterManager);
+		if (!cmpTerrain || !cmpWaterManager)
+		{
+			return false;
+		}
+		
+		// Get footprint size
+		var halfSize = 0;
+		if (template.Footprint.Square)
+		{
+			halfSize = Math.max(template.Footprint.Square["@depth"], template.Footprint.Square["@width"])/2;
+		}
+		else if (template.Footprint.Circle)
+		{
+			halfSize = template.Footprint.Circle["@radius"];
+		}
 		
 		// Find direction of most open water, algorithm:
 		//	1. Pick points in a circle around dock
@@ -517,13 +532,12 @@ GuiInterface.prototype.GetFoundationSnapData = function(player, data)
 		//	4. Find longest sequence of conseuctive points
 		//	5. Calculate angle using average of sequence
 		const numPoints = 16;
-		const dist = 20.0;
 		var waterPoints = [];
 		for (var i = 0; i < numPoints; ++i)
 		{
 			var angle = (i/numPoints)*2*Math.PI;
-			var nx = data.x - dist*Math.sin(angle);
-			var nz = data.z + dist*Math.cos(angle);
+			var nx = data.x - halfSize*Math.sin(angle);
+			var nz = data.z + halfSize*Math.cos(angle);
 			
 			if (cmpTerrain.GetGroundLevel(nx, nz) < cmpWaterManager.GetWaterLevel(nx, nz))
 			{
@@ -559,10 +573,10 @@ GuiInterface.prototype.GetFoundationSnapData = function(player, data)
 			}
 		}
 
-		return { "snapped": true, "x": data.x, "z": data.z, "angle": -(((waterPoints[start] + consec[start]/2) % numPoints)/numPoints*2*Math.PI) };
+		return {"x": data.x, "z": data.z, "angle": -(((waterPoints[start] + consec[start]/2) % numPoints)/numPoints*2*Math.PI) };
 	}
 
-	return {"snapped": false};
+	return false;
 };
 
 GuiInterface.prototype.PlaySound = function(player, data)
