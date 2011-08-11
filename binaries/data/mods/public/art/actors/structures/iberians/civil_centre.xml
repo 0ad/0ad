@@ -3,10 +3,15 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="Base">
+      <animations>
+        <animation event="0.5" load="0.0" name="melee" speed="100"/>
+      </animations>
       <mesh>structural/iber_civic_centre.dae</mesh>
       <props>
         <prop actor="props/structures/iberians/civil_centre.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <texture>structural/iber_struct.dds</texture>
     </variant>

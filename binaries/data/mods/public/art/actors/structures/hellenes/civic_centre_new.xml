@@ -3,6 +3,9 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Hellenes_Civic_Centre">
+      <animations>
+        <animation event="0.5" load="0.0" name="melee" speed="100"/>
+      </animations>
       <mesh>structural/hele_civic_struct.dae</mesh>
       <props>
         <prop actor="props/structures/hellenes/civic_centre_props.xml" attachpoint="root"/>
@@ -10,6 +13,8 @@
         <prop actor="props/structures/hellenes/civic_centre_trees.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/civic_centre_round.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/civic_centre_shields.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <texture>structural/hele_struct.dds</texture>
     </variant>

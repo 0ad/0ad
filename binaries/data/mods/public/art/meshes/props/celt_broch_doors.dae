@@ -6,18 +6,18 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2010-09-29T07:52:33Z</created>
-    <modified>2010-09-29T07:52:33Z</modified>
+    <created>2011-08-11T03:28:08Z</created>
+    <modified>2011-08-11T03:28:08Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
     <keywords></keywords>
     <unit meter="0.025400"/>
-    <up_axis>Z_UP</up_axis>
+    <up_axis>Y_UP</up_axis>
   </asset>
   <library_images>
     <image id="Map__9-image" name="Map__9">
-      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\props\celt_prop_1.dds</init_from>
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\props\celt_prop_1.dds</init_from>
     </image>
   </library_images>
   <library_materials>
@@ -75,18 +75,18 @@
       <mesh>
         <source id="door04-lib-Position">
           <float_array id="door04-lib-Position-array" count="36">
--59.625038 9.273064 0.775309
--59.625038 9.273064 -1.606797
--59.625038 11.491802 -1.606797
--59.625038 11.491802 0.775309
--73.404449 16.918907 -6.953298
--77.512772 17.229111 -7.087189
--77.512772 17.872185 -4.963688
--73.404449 17.561981 -4.829797
--73.363197 4.262002 -1.287797
--77.471519 3.951795 -1.153905
--77.471519 3.308721 -3.277406
--73.363205 3.618927 -3.411298
+-0.008095 -1.110455 2.365957
+-0.008095 -1.110455 -0.016149
+-0.008095 1.108284 -0.016149
+-0.008095 1.108284 2.365957
+-13.787506 6.535389 -5.362650
+-17.895828 6.845592 -5.496541
+-17.895828 7.488667 -3.373041
+-13.787506 7.178463 -3.239149
+-13.746254 -6.121517 0.302850
+-17.854576 -6.431724 0.436742
+-17.854576 -7.074798 -1.686759
+-13.746262 -6.764591 -1.820651
 </float_array>
           <technique_common>
             <accessor source="#door04-lib-Position-array" count="12" stride="3">
@@ -167,21 +167,14 @@
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
       <node id="door04" name="door04">
-        <translate sid="translate">2.255286 -1.078047 17.788465</translate>
-        <rotate sid="rotateY">0 1 0 -90.000000</rotate>
-        <rotate sid="rotateX">1 0 0 149.207884</rotate>
-        <node id="door04-Pivot" name="door04-Pivot">
-          <translate>59.616943 -10.383518 1.590648</translate>
-          <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
-          <instance_geometry url="#door04-lib">
-            <bind_material>
-              <technique_common>
-                <instance_material symbol="Map__9-Material" target="#Map__9-Material"/>
-                <instance_material symbol="_8___Defaultfg" target="#_8___Defaultfg"/>
-              </technique_common>
-            </bind_material>
-          </instance_geometry>
-        </node>
+        <matrix sid="matrix">0.000000 0.297236 0.954804 2.312462 1.000000 -0.000000 0.000000 17.788465 0.000000 0.954804 -0.297236 -1.034381 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#door04-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_8___Defaultfg" target="#_8___Defaultfg"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
       </node>
     </visual_scene>
   </library_visual_scenes>

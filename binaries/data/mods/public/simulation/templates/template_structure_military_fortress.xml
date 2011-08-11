@@ -10,7 +10,7 @@
       <Hack>0.0</Hack>
       <Pierce>25.0</Pierce>
       <Crush>0.0</Crush>
-      <MaxRange>60.0</MaxRange>
+      <MaxRange>80.0</MaxRange>
       <MinRange>12.0</MinRange>
       <ProjectileSpeed>60.0</ProjectileSpeed>
       <PrepareTime>1200</PrepareTime>
@@ -18,14 +18,14 @@
     </Ranged>
   </Attack>
   <BuildingAI>
-    <DefaultArrowCount>1</DefaultArrowCount>
+    <DefaultArrowCount>3</DefaultArrowCount>
     <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
   </BuildingAI>
   <BuildRestrictions>
     <Category>Fortress</Category>
   </BuildRestrictions>
   <Cost>
-    <PopulationBonus>10</PopulationBonus>
+    <PopulationBonus>20</PopulationBonus>
     <BuildTime>420</BuildTime>
     <Resources>
       <wood>0</wood>
@@ -47,7 +47,7 @@
   </Health>
   <Identity>
     <GenericName>Fortress</GenericName>
-    <Tooltip>Train Heroes, Champion, and Siege Units.</Tooltip>
+    <Tooltip>Train Heroes, Champions, and Siege Units.</Tooltip>
     <Classes datatype="tokens">City Defensive</Classes>
     <Icon>structures/fortress.png</Icon>
   </Identity>
@@ -66,7 +66,7 @@
     <Weight>65536</Weight>
   </TerritoryInfluence>
   <Vision>
-    <Range>60</Range>
+    <Range>80</Range>
   </Vision>
   <VisualActor>
     <FoundationActor>structures/fndn_6x6.xml</FoundationActor>

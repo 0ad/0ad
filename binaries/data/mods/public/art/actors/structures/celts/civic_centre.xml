@@ -3,12 +3,17 @@
   <castshadow/>
   <group>
     <variant name="Celtic Great Hall">
+      <animations>
+        <animation event="0.5" load="0.0" name="melee" speed="100"/>
+      </animations>
       <mesh>structural/celt_civic3.dae</mesh>
       <props>
         <prop actor="props/structures/celts/civic3_props_arch.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/civic3_props_1.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/civic3_props_new.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <texture>structural/celt_struct_1.dds</texture>
     </variant>

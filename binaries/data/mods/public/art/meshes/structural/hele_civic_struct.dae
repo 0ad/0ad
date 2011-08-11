@@ -6,18 +6,18 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2010-12-01T08:21:37Z</created>
-    <modified>2010-12-01T08:21:37Z</modified>
+    <created>2011-08-11T03:08:35Z</created>
+    <modified>2011-08-11T03:08:35Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
     <keywords></keywords>
     <unit meter="0.025400"/>
-    <up_axis>Z_UP</up_axis>
+    <up_axis>Y_UP</up_axis>
   </asset>
   <library_images>
-    <image id="Map__314_image-image" name="Map__314_image">
-      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\structural\hele_struct.png</init_from>
+    <image id="Map__314_image_image-image" name="Map__314_image_image">
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\structural\hele_struct.png</init_from>
     </image>
   </library_images>
   <library_materials>
@@ -37,7 +37,7 @@
               <color sid="ambient">0.588200  0.588200 0.588200 1.000000</color>
             </ambient>
             <diffuse>
-              <texture texture="Map__314_image-image" texcoord="CHANNEL0">
+              <texture texture="Map__314_image_image-image" texcoord="CHANNEL0">
                 <extra>
                   <technique profile="MAYA">
                     <wrapU sid="wrapU0">TRUE</wrapU>
@@ -3465,98 +3465,22 @@
       </mesh>
     </geometry>
   </library_geometries>
-  <library_animations>
-    <animation id="material1-anim" name="material1">
-      <animation>
-        <source id="material1-Matrix-animation-input">
-          <float_array id="material1-Matrix-animation-input-array" count="0">
-</float_array>
-          <technique_common>
-            <accessor source="#material1-Matrix-animation-input-array" count="0">
-              <param name="TIME" type="float"/>
-            </accessor>
-          </technique_common>
-        </source>
-        <source id="material1-Matrix-animation-output-transform">
-          <float_array id="material1-Matrix-animation-output-transform-array" count="0">
-</float_array>
-          <technique_common>
-            <accessor source="#material1-Matrix-animation-output-transform-array" count="0" stride="16">
-              <param type="float4x4"/>
-            </accessor>
-          </technique_common>
-        </source>
-        <source id="material1-Interpolations">
-          <Name_array id="material1-Interpolations-array" count="0">
-</Name_array>
-          <technique_common>
-            <accessor source="#material1-Interpolations-array" count="0">
-              <param type="name"/>
-            </accessor>
-          </technique_common>
-        </source>
-        <sampler id="material1-Matrix-animation-transform">
-          <input semantic="INPUT" source="#material1-Matrix-animation-input"/>
-          <input semantic="OUTPUT" source="#material1-Matrix-animation-output-transform"/>
-          <input semantic="INTERPOLATION" source="#material1-Interpolations"/>
-        </sampler>
-        <channel source="#material1-Matrix-animation-transform" target="material1/matrix"/>
-      </animation>
-    </animation>
-    <animation id="material1_Pivot-anim" name="material1_Pivot">
-      <animation>
-        <source id="material1_Pivot-Matrix-animation-input">
-          <float_array id="material1_Pivot-Matrix-animation-input-array" count="0">
-</float_array>
-          <technique_common>
-            <accessor source="#material1_Pivot-Matrix-animation-input-array" count="0">
-              <param name="TIME" type="float"/>
-            </accessor>
-          </technique_common>
-        </source>
-        <source id="material1_Pivot-Matrix-animation-output-transform">
-          <float_array id="material1_Pivot-Matrix-animation-output-transform-array" count="0">
-</float_array>
-          <technique_common>
-            <accessor source="#material1_Pivot-Matrix-animation-output-transform-array" count="0" stride="16">
-              <param type="float4x4"/>
-            </accessor>
-          </technique_common>
-        </source>
-        <source id="material1_Pivot-Interpolations">
-          <Name_array id="material1_Pivot-Interpolations-array" count="0">
-</Name_array>
-          <technique_common>
-            <accessor source="#material1_Pivot-Interpolations-array" count="0">
-              <param type="name"/>
-            </accessor>
-          </technique_common>
-        </source>
-        <sampler id="material1_Pivot-Matrix-animation-transform">
-          <input semantic="INPUT" source="#material1_Pivot-Matrix-animation-input"/>
-          <input semantic="OUTPUT" source="#material1_Pivot-Matrix-animation-output-transform"/>
-          <input semantic="INTERPOLATION" source="#material1_Pivot-Interpolations"/>
-        </sampler>
-        <channel source="#material1_Pivot-Matrix-animation-transform" target="material1_Pivot/matrix"/>
-      </animation>
-    </animation>
-  </library_animations>
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
-      <node id="material1" name="material1">
-        <matrix sid="matrix">1.390430 0.000000 0.000000 -0.306240 0.000000 1.390430 0.000000 -0.378324 0.000000 0.000000 1.390430 -0.002705 0.000000 0.000000 0.000000 1.000000</matrix>
-        <node id="material1_Pivot" name="material1_Pivot">
-          <matrix sid="matrix">1.000000 0.000000 0.000000 0.169698 0.000000 1.000000 0.000000 -0.027458 0.000000 0.000000 1.000000 3.898183 0.000000 0.000000 0.000000 1.000000</matrix>
-          <instance_geometry url="#material1_Pivot-lib">
-            <bind_material>
-              <technique_common>
-                <instance_material symbol="_14___Default" target="#_14___Default"/>
-              </technique_common>
-            </bind_material>
-          </instance_geometry>
-          <node id="prop_garrisoned" name="prop_garrisoned">
-            <matrix sid="matrix">0.719202 0.000000 0.000000 9.669615 0.000000 0.719202 0.000000 6.918396 0.000000 0.000000 0.719202 3.884730 0.000000 0.000000 0.000000 1.000000</matrix>
-          </node>
+      <node id="material1_Pivot" name="material1_Pivot">
+        <matrix sid="matrix">1.390430 0.000000 0.000000 -0.070287 0.000000 0.000000 1.390430 5.417446 0.000000 -1.390430 0.000000 0.416502 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#material1_Pivot-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_14___Default" target="#_14___Default"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+        <node id="prop_garrisoned" name="prop_garrisoned">
+          <matrix sid="matrix">0.719202 0.000000 0.000000 9.669615 0.000000 0.719202 0.000000 6.918397 0.000000 -0.000000 0.719202 3.884731 0.000000 0.000000 0.000000 1.000000</matrix>
+        </node>
+        <node id="prop_projectile" name="prop_projectile">
+          <matrix sid="matrix">0.719202 0.000000 0.000000 0.514232 0.000000 0.719202 0.000000 -2.971594 0.000000 -0.000000 0.719202 3.735024 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
       </node>
     </visual_scene>

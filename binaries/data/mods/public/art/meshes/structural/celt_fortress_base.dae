@@ -6,18 +6,18 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2010-10-15T07:54:01Z</created>
-    <modified>2010-10-15T07:54:01Z</modified>
+    <created>2011-08-11T03:36:28Z</created>
+    <modified>2011-08-11T03:36:28Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
     <keywords></keywords>
     <unit meter="0.025400"/>
-    <up_axis>Z_UP</up_axis>
+    <up_axis>Y_UP</up_axis>
   </asset>
   <library_images>
-    <image id="Map__364-image" name="Map__364">
-      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\structural\celt_wall.dds</init_from>
+    <image id="Map__364_image-image" name="Map__364_image">
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\structural\celt_wall.dds</init_from>
     </image>
   </library_images>
   <library_materials>
@@ -37,7 +37,7 @@
               <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
             </ambient>
             <diffuse>
-              <texture texture="Map__364-image" texcoord="CHANNEL0">
+              <texture texture="Map__364_image-image" texcoord="CHANNEL0">
                 <extra>
                   <technique profile="MAYA">
                     <wrapU sid="wrapU0">TRUE</wrapU>
@@ -71,10 +71,10 @@
     </effect>
   </library_effects>
   <library_geometries>
-    <geometry id="wall05-lib" name="wall05Mesh">
+    <geometry id="wall05_Pivot-lib" name="wall05_PivotMesh">
       <mesh>
-        <source id="wall05-lib-Position">
-          <float_array id="wall05-lib-Position-array" count="180">
+        <source id="wall05_Pivot-lib-Position">
+          <float_array id="wall05_Pivot-lib-Position-array" count="180">
 -6.520514 0.231380 9.347719
 -6.793824 -0.041930 9.347719
 -8.245970 -1.494075 0.000000
@@ -117,35 +117,35 @@
 8.245366 14.971104 9.347718
 8.634647 15.360384 9.247300
 8.518676 15.244413 9.347718
--5.091261 13.528801 -0.000000
--8.232428 16.714622 -0.000000
-9.970821 16.696558 -0.000000
+-5.091261 13.528801 0.000000
+-8.232428 16.714622 0.000000
+9.970821 16.696558 0.000000
 -6.896253 15.378448 9.247300
 8.126205 14.874269 9.247176
-6.785000 13.555392 -0.000000
+6.785000 13.555392 0.000000
 -3.359404 14.985312 9.347718
 -3.359404 14.870901 9.247176
 -3.359404 15.258438 9.347718
--3.359404 13.532679 -0.000000
--3.359403 16.709787 -0.000000
+-3.359404 13.532679 0.000000
+-3.359403 16.709787 0.000000
 -3.359404 15.374335 9.247300
 5.179870 15.248356 9.347718
-5.179870 16.701313 -0.000000
+5.179870 16.701313 0.000000
 5.179870 14.974857 9.347718
 5.179869 14.873405 9.247176
-5.179869 13.551798 -0.000000
+5.179869 13.551798 0.000000
 5.179870 15.364403 9.247300
 </float_array>
           <technique_common>
-            <accessor source="#wall05-lib-Position-array" count="60" stride="3">
+            <accessor source="#wall05_Pivot-lib-Position-array" count="60" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="wall05-lib-Normal0">
-          <float_array id="wall05-lib-Normal0-array" count="612">
+        <source id="wall05_Pivot-lib-Normal0">
+          <float_array id="wall05_Pivot-lib-Normal0-array" count="612">
 0.206120 -0.000189 0.978527
 -0.507499 0.000442 0.861653
 -0.508411 0.000450 0.861114
@@ -269,21 +269,21 @@
 1.000000 -0.000001 -0.000002
 1.000000 -0.000001 -0.000002
 1.000000 -0.000001 -0.000002
-1.000000 -0.000001 -0.000000
-1.000000 -0.000001 -0.000000
-1.000000 -0.000001 -0.000000
 1.000000 -0.000001 0.000000
 1.000000 -0.000001 0.000000
 1.000000 -0.000001 0.000000
-1.000000 -0.000000 0.000000
-1.000000 -0.000000 0.000000
-1.000000 -0.000000 0.000000
+1.000000 -0.000001 0.000000
+1.000000 -0.000001 0.000000
+1.000000 -0.000001 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
 -1.000000 -0.000002 0.000004
 -1.000000 -0.000002 0.000004
 -1.000000 -0.000002 0.000004
--1.000000 -0.000000 -0.000002
--1.000000 -0.000000 -0.000002
--1.000000 -0.000000 -0.000002
+-1.000000 0.000000 -0.000002
+-1.000000 0.000000 -0.000002
+-1.000000 0.000000 -0.000002
 -1.000000 0.000000 0.000000
 -1.000000 0.000000 0.000000
 -1.000000 0.000000 0.000000
@@ -352,15 +352,15 @@
 0.001865 -0.989948 0.141422
 </float_array>
           <technique_common>
-            <accessor source="#wall05-lib-Normal0-array" count="204" stride="3">
+            <accessor source="#wall05_Pivot-lib-Normal0-array" count="204" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="wall05-lib-UV0">
-          <float_array id="wall05-lib-UV0-array" count="216">
+        <source id="wall05_Pivot-lib-UV0">
+          <float_array id="wall05_Pivot-lib-UV0-array" count="216">
 0.911472 0.741893
 0.925129 0.727485
 0.930923 0.714380
@@ -471,19 +471,19 @@
 0.327192 0.714381
 </float_array>
           <technique_common>
-            <accessor source="#wall05-lib-UV0-array" count="108" stride="2">
+            <accessor source="#wall05_Pivot-lib-UV0-array" count="108" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="wall05-lib-Vertex">
-          <input semantic="POSITION" source="#wall05-lib-Position"/>
+        <vertices id="wall05_Pivot-lib-Vertex">
+          <input semantic="POSITION" source="#wall05_Pivot-lib-Position"/>
         </vertices>
         <polygons material="_17___Default" count="68">
-          <input semantic="VERTEX" offset="0" source="#wall05-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#wall05-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#wall05-lib-UV0"/>
+          <input semantic="VERTEX" offset="0" source="#wall05_Pivot-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#wall05_Pivot-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#wall05_Pivot-lib-UV0"/>
           <p>5 0 4 6 1 7 1 2 1</p>
           <p>1 3 1 0 4 0 5 5 4</p>
           <p>6 6 7 14 7 5 20 8 2</p>
@@ -558,27 +558,20 @@
   </library_geometries>
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
-      <node id="wall05" name="wall05">
-        <translate sid="translate">0.034608 0.045000 0.000000</translate>
-        <scale sid="scale">1.096257 1.096257 0.939115</scale>
-        <node id="wall05-Pivot" name="wall05-Pivot">
-          <translate>-0.916056 -7.586013 -0.047265</translate>
-          <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
-          <instance_geometry url="#wall05-lib">
-            <bind_material>
-              <technique_common>
-                <instance_material symbol="Map__364-Material" target="#Map__364-Material"/>
-                <instance_material symbol="_17___Default" target="#_17___Default"/>
-              </technique_common>
-            </bind_material>
-          </instance_geometry>
-          <node id="prop_garrisoned" name="prop_garrisoned">
-            <translate sid="location">-6.381566 14.82969 8.967867</translate>
-            <rotate sid="rotationZ">0 0 1 0</rotate>
-            <rotate sid="rotationY">0 1 0 0</rotate>
-            <rotate sid="rotationX">1 0 0 0</rotate>
-            <scale sid="scale">1 1 1</scale>
-          </node>
+      <node id="wall05_Pivot" name="wall05_Pivot">
+        <matrix sid="matrix">1.096257 0.000000 0.000000 -0.969625 0.000000 0.000000 0.939115 -0.044387 0.000000 -1.096257 0.000000 8.271220 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#wall05_Pivot-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_17___Default" target="#_17___Default"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+        <node id="prop_garrisoned" name="prop_garrisoned">
+          <matrix sid="matrix">1.000000 0.000000 0.000000 -6.381566 0.000000 1.000000 0.000000 14.829690 0.000000 0.000000 1.000000 8.967867 0.000000 0.000000 0.000000 1.000000</matrix>
+        </node>
+        <node id="prop_projectile" name="prop_projectile">
+          <matrix sid="matrix">0.912195 0.000000 0.000000 0.884487 0.000000 0.912195 0.000000 14.235879 0.000000 -0.000000 1.064832 11.734424 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
       </node>
     </visual_scene>

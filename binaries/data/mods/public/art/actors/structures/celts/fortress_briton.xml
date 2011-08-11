@@ -3,12 +3,16 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="Brythonic Broch">
+      <animations>
+        <animation event="0.5" load="0.0" name="melee" speed="100"/>
+      </animations>
       <mesh>structural/celt_broch.dae</mesh>
       <props>
         <prop actor="props/structures/celts/broch_weapons.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/broch_shields.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/broch_doors.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/broch_top.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front_flame.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front_flame.xml" attachpoint="projectile"/>
       </props>
       <texture>structural/celt_broch.dds</texture>

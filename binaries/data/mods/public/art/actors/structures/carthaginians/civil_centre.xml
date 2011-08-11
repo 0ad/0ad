@@ -3,11 +3,16 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="Base">
+      <animations>
+        <animation event="0.5" load="0.0" name="melee" speed="100"/>
+      </animations>
       <mesh>structural/kart_civiccentre.dae</mesh>
       <props>
         <prop actor="props/structures/carthaginians/civil_centre.xml" attachpoint="root"/>
         <prop actor="props/structures/carthaginians/civil_centre_1.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <texture>structural/kart_struct.dds</texture>
     </variant>

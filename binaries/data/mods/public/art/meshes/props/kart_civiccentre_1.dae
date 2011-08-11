@@ -6,18 +6,18 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2009-04-24T02:32:48Z</created>
-    <modified>2009-04-24T02:32:48Z</modified>
+    <created>2011-08-11T02:10:22Z</created>
+    <modified>2011-08-11T02:10:22Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
     <keywords></keywords>
     <unit meter="0.025400"/>
-    <up_axis>Z_UP</up_axis>
+    <up_axis>Y_UP</up_axis>
   </asset>
   <library_images>
     <image id="Map__292-image" name="Map__292">
-      <init_from>file://C:\Documents and Settings\Brad\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\internal\art\textures\skins\structural\kart_struct.dds</init_from>
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\structural\kart_struct.dds</init_from>
     </image>
   </library_images>
   <library_materials>
@@ -75,22 +75,22 @@
       <mesh>
         <source id="Object1030-lib-Position">
           <float_array id="Object1030-lib-Position-array" count="48">
--46.382736 -12.639355 -0.045277
--46.382736 -18.263826 -0.045277
--43.008057 -12.639355 -0.045278
--43.008057 -18.263826 -0.045278
--57.327839 -12.639355 -0.045271
--57.327839 -18.263826 -0.045271
--53.953159 -12.639355 -0.045272
--53.953159 -18.263826 -0.045272
--53.998520 -12.639355 -28.772903
--53.998520 -18.263826 -28.772903
--57.373199 -12.639355 -28.772905
--57.373199 -18.263826 -28.772905
--43.053417 -12.639355 -28.772903
--43.053417 -18.263826 -28.772903
--46.428097 -12.639355 -28.772905
--46.428097 -18.263826 -28.772903
+-0.861954 3.711170 -0.045299
+-0.861954 -1.913301 -0.045299
+2.512726 3.711170 -0.045300
+2.512726 -1.913301 -0.045300
+-11.807056 3.711170 -0.045294
+-11.807056 -1.913301 -0.045294
+-8.432377 3.711170 -0.045294
+-8.432377 -1.913301 -0.045294
+-8.477737 3.711170 -28.772926
+-8.477737 -1.913301 -28.772926
+-11.852417 3.711170 -28.772928
+-11.852417 -1.913301 -28.772928
+2.467365 3.711170 -28.772926
+2.467365 -1.913301 -28.772926
+-0.907314 3.711170 -28.772928
+-0.907314 -1.913301 -28.772926
 </float_array>
           <technique_common>
             <accessor source="#Object1030-lib-Position-array" count="16" stride="3">
@@ -183,22 +183,14 @@
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
       <node id="Object1030" name="Object1030">
-        <translate sid="translate">-4.940904 15.309057 6.388091</translate>
-        <rotate sid="rotateZ">0 0 1 -179.999998</rotate>
-        <rotate sid="rotateX">1 0 0 90.000010</rotate>
-        <scale sid="scale">1.046856 1.046856 0.272531</scale>
-        <node id="Object1030-Pivot" name="Object1030-Pivot">
-          <translate>45.520782 16.350525 -0.000022</translate>
-          <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
-          <instance_geometry url="#Object1030-lib">
-            <bind_material>
-              <technique_common>
-                <instance_material symbol="Map__292-Material" target="#Map__292-Material"/>
-                <instance_material symbol="_02___Default" target="#_02___Default"/>
-              </technique_common>
-            </bind_material>
-          </instance_geometry>
-        </node>
+        <matrix sid="matrix">-1.046856 -0.000000 -0.000000 -4.895136 -0.000000 1.046856 -0.000000 6.388091 0.000000 -0.000000 -0.272531 -15.215593 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#Object1030-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_02___Default" target="#_02___Default"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
       </node>
     </visual_scene>
   </library_visual_scenes>
