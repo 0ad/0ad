@@ -1,11 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/cart_infantry_slinger_b">
+  <Armour>
+    <Hack>3.0</Hack>
+    <Pierce>3.0</Pierce>
+    <Crush>3.0</Crush>
+  </Armour>
+  <Attack>
+    <Ranged>
+      <Pierce>21.0</Pierce>
+      <MaxRange>52.0</MaxRange>
+    </Ranged>
+  </Attack>
+  <Health>
+    <Max>100</Max>
+  </Health>
   <Identity>
     <Rank>Advanced</Rank>
   </Identity>
   <Promotion>
     <Entity>units/cart_infantry_slinger_e</Entity>
   </Promotion>
+  <ResourceGatherer>
+    <BaseSpeed>0.75</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>7.5</WalkSpeed>
+    <Run>
+      <Speed>21.6</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/carthaginians/infantry_slinger_a.xml</Actor>
   </VisualActor>

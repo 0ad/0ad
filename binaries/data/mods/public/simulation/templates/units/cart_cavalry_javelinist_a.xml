@@ -1,11 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/cart_cavalry_javelinist_b">
+  <Armour>
+    <Hack>4.0</Hack>
+    <Pierce>4.0</Pierce>
+    <Crush>4.0</Crush>
+  </Armour>
+  <Attack>
+    <Ranged>
+      <Pierce>36.0</Pierce>
+      <MaxRange>48</MaxRange>
+    </Ranged>
+  </Attack>
+  <Health>
+    <Max>130</Max>
+  </Health>
   <Identity>
     <Rank>Advanced</Rank>
   </Identity>
   <Promotion>
     <Entity>units/cart_cavalry_javelinist_e</Entity>
   </Promotion>
+  <ResourceGatherer>
+    <BaseSpeed>0.75</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>12.5</WalkSpeed>
+    <Run>
+      <Speed>35</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/carthaginians/cavalry_javelinist_a.xml</Actor>
   </VisualActor>

@@ -1,11 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/cart_infantry_spearman_b">
+  <Armour>
+    <Hack>5.0</Hack>
+    <Pierce>7.0</Pierce>
+    <Crush>6.0</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>6.0</Hack>
+      <Pierce>16.0</Pierce>
+    </Melee>
+    <Charge>
+      <Hack>12.0</Hack>
+      <Pierce>32.0</Pierce>
+    </Charge>
+  </Attack>
+  <Health>
+    <Max>110</Max>
+  </Health>
   <Identity>
     <Rank>Advanced</Rank>
   </Identity>
   <Promotion>
     <Entity>units/cart_infantry_spearman_e</Entity>
   </Promotion>
+  <ResourceGatherer>
+    <BaseSpeed>0.75</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>7.0</WalkSpeed>
+    <Run>
+      <Speed>18.0</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/carthaginians/infantry_spearman_a.xml</Actor>
   </VisualActor>
