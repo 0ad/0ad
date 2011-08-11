@@ -15,7 +15,7 @@
 
   ;Name and file
   Name "0 A.D."
-  OutFile "0ad-r0${REVISION}-alpha-win32.exe"
+  OutFile "0ad-r${REVISION}-alpha-win32.exe"
 
   ;Default installation folder
   InstallDir "$LOCALAPPDATA\0 A.D. alpha"
@@ -89,7 +89,7 @@ Section "!Game and data files" GameSection
 
   ;Add uninstall information
   WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "DisplayName" "0 A.D."
-  WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "DisplayVersion" "r0${REVISION}-alpha"
+  WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "DisplayVersion" "r${REVISION}-alpha"
   WriteRegDWORD SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "VersionMajor" 0
   WriteRegDWORD SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "VersionMinor" ${REVISION}
   WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "Publisher" "Wildfire Games"

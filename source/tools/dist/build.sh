@@ -9,7 +9,7 @@ EXE=~/0ad/hg/ps/binaries/system/pyrogenesis
 SVNWC=~/0ad/public-trunk/
 
 SVNREV=`svnversion -n ${SVNWC}`
-PREFIX=0ad-r0${SVNREV}-alpha
+PREFIX=0ad-r${SVNREV}-alpha
 
 XZOPTS="-9 -e"
 BZ2OPTS="-9"
