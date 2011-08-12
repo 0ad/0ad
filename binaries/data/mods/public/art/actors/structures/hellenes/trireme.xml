@@ -4,23 +4,13 @@
   <float/>
   <group>
     <variant>
-      <mesh>structural/hele_tri.pmd</mesh>
+      <mesh>structural/hele_ship_trireme.dae</mesh>
       <props>
-        <prop actor="props/structures/hellenes/hele_tri1.xml" attachpoint="props_main"/>
-        <prop actor="props/structures/hellenes/hele_tri2.xml" attachpoint="mast"/>
-        <prop actor="props/structures/hellenes/hele_tri3.xml" attachpoint="oars"/>
         <prop actor="props/units/weapons/bolt.xml" attachpoint="projectile"/>
-        <prop actor="" attachpoint="12"/>
-        <prop actor="" attachpoint="16"/>
-        <prop actor="" attachpoint="17"/>
-        <prop actor="" attachpoint="19"/>
-        <prop actor="" attachpoint="20"/>
-        <prop actor="" attachpoint="22"/>
-        <prop actor="" attachpoint="23"/>
-        <prop actor="" attachpoint="24"/>
+        <prop actor="props/structures/hellenes/trireme_sails.xml" attachpoint="root"/>
       </props>
-      <texture>structural/hele_trireme.dds</texture>
+      <texture>structural/hele_trireme.png</texture>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>basic_trans.xml</material>
 </actor>

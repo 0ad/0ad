@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="mesh">
+      <mesh>props/hele_trireme_sails.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="sail-pegasus">
+      <texture>props/hele_sail_pegasus.dds</texture>
+    </variant>
+    <variant frequency="1" name="sail-krater">
+      <texture>props/hele_sail_krater.dds</texture>
+    </variant>
+    <variant frequency="1" name="sail-triskeles">
+      <texture>props/hele_sail_runner.dds</texture>
+    </variant>
+    <variant frequency="1" name="sail-star">
+      <texture>props/hele_sail_star_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="sail-pegasus2">
+      <texture>props/hele_sail_pegasus_2.dds</texture>
+    </variant>
+    <variant frequency="1" name="sail-hawk">
+      <texture>props/hele_sail_hawk_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="sail-eye">
+      <texture>props/hele_sail_eye.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
