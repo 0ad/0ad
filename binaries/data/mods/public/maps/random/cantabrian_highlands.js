@@ -136,15 +136,15 @@ for (var i = 0; i < numPlayers; i++)
 	var civEntities = getStartingEntities(i);
 	
 	// create the TC
-	var group = new SimpleGroup(	// elements (type, min/max count, min/max distance)
-		[new SimpleObject(civEntities[0].Template, 1,1, 0,0)],
+	var group = new SimpleGroup(	// elements (type, min/max count, min/max distance, min/max angle)
+		[new SimpleObject(civEntities[0].Template, 1,1, 0,0, 0.75*PI, 0.75*PI)],
 		true, null, ix, iz
 	);
 	createObjectGroup(group, i+1);
 	
 	// create starting units
 	var uDist = 8;
-	var uAngle = playerAngle[i] + PI + randFloat(-PI/8, PI/8);
+	var uAngle = -0.75*PI + randFloat(-PI/8, PI/8);
 	for (var j = 1; j < civEntities.length; ++j)
 	{
 		var count = (civEntities[j].Count !== undefined ? civEntities[j].Count : 1);
