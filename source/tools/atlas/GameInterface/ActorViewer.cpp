@@ -40,6 +40,7 @@
 #include "renderer/Renderer.h"
 #include "renderer/Scene.h"
 #include "renderer/SkyManager.h"
+#include "renderer/WaterManager.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPosition.h"
@@ -213,7 +214,7 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 		{
 			ssize_t c = CELL_SIZE * m.Terrain.GetPatchesPerSide()*PATCH_SIZE/2;
 			cmpPosition->JumpTo(entity_pos_t::FromInt(c), entity_pos_t::FromInt(c));
-			cmpPosition->SetYRotation(entity_angle_t::FromFloat((float)M_PI));
+			cmpPosition->SetYRotation(entity_angle_t::Pi());
 		}
 		needsAnimReload = true;
 	}
@@ -325,6 +326,9 @@ void ActorViewer::Render()
 	bool oldSky = g_Renderer.GetSkyManager()->m_RenderSky;
 	g_Renderer.GetSkyManager()->m_RenderSky = false;
 
+	bool oldWater = g_Renderer.GetWaterManager()->m_RenderWater;
+	g_Renderer.GetWaterManager()->m_RenderWater = false;
+
 	g_Renderer.BeginFrame();
 
 	// Find the centre of the interesting region, in the middle of the patch
@@ -378,6 +382,7 @@ void ActorViewer::Render()
 	// Restore the old renderer state
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, oldShadows);
 	g_Renderer.GetSkyManager()->m_RenderSky = oldSky;
+	g_Renderer.GetWaterManager()->m_RenderWater = oldWater;
 
 	ogl_WarnIfError();
 }
