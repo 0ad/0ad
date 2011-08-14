@@ -478,7 +478,7 @@ void MapSidebar::OnRandomGenerate(wxCommandEvent& WXUNUSED(evt))
 
 	std::string json = AtlasObject::SaveToJSON(m_ScenarioEditor.GetScriptInterface().GetContext(), settings);
 
-	wxBusyInfo(_("Generating map"));
+	wxBusyInfo busy(_("Generating map"));
 	wxBusyCursor busyc;
 
 	wxString scriptName(settings["Script"]);
