@@ -399,44 +399,52 @@ void CCmpPathfinder::UpdateGrid()
 			for (u16 i = 0; i < m_MapSize; ++i)
 			{
 				// Find a land tile
-				if (!waterGrid.get(i, j) && (
-					(i > 0 && waterGrid.get(i-1, j)) || (i > 0 && j < m_MapSize-1 && waterGrid.get(i-1, j+1)) || (i > 0 && j > 0 && waterGrid.get(i-1, j-1)) ||
-					(i < m_MapSize-1 && waterGrid.get(i+1, j)) || (i < m_MapSize-1 && j < m_MapSize-1 && waterGrid.get(i+1, j+1)) || (i < m_MapSize-1 && j > 0 && waterGrid.get(i+1, j-1)) ||
-					(j > 0 && waterGrid.get(i, j-1)) || (j < m_MapSize-1 && waterGrid.get(i, j+1))
-					))
+				if (!waterGrid.get(i, j))
 				{
-					shoreGrid.set(i, j, 0);
-				}
-				else
-				{
-					shoreGrid.set(i, j, shoreMax);
+					if ((i > 0 && waterGrid.get(i-1, j)) || (i > 0 && j < m_MapSize-1 && waterGrid.get(i-1, j+1)) || (i > 0 && j > 0 && waterGrid.get(i-1, j-1))
+						|| (i < m_MapSize-1 && waterGrid.get(i+1, j)) || (i < m_MapSize-1 && j < m_MapSize-1 && waterGrid.get(i+1, j+1)) || (i < m_MapSize-1 && j > 0 && waterGrid.get(i+1, j-1))
+						|| (j > 0 && waterGrid.get(i, j-1)) || (j < m_MapSize-1 && waterGrid.get(i, j+1))
+						)
+					{	// If it's bordered by water, it's a shore tile
+						shoreGrid.set(i, j, 0);
+					}
+					else
+					{
+						shoreGrid.set(i, j, shoreMax);
+					}
 				}
 			}
 		}
 
-		// Expand influences to find shore distance
+		// Expand influences on land to find shore distance
 		for (size_t y = 0; y < m_MapSize; ++y)
 		{
 			u16 min = shoreMax;
 			for (size_t x = 0; x < m_MapSize; ++x)
 			{
-				u16 g = shoreGrid.get(x, y);
-				if (g > min)
-					shoreGrid.set(x, y, min);
-				else if (g < min)
-					min = g;
+				if (!waterGrid.get(x, y))
+				{
+					u16 g = shoreGrid.get(x, y);
+					if (g > min)
+						shoreGrid.set(x, y, min);
+					else if (g < min)
+						min = g;
 
-				++min;
+					++min;
+				}
 			}
 			for (size_t x = m_MapSize; x > 0; --x)
 			{
-				u16 g = shoreGrid.get(x-1, y);
-				if (g > min)
-					shoreGrid.set(x-1, y, min);
-				else if (g < min)
-					min = g;
+				if (!waterGrid.get(x-1, y))
+				{
+					u16 g = shoreGrid.get(x-1, y);
+					if (g > min)
+						shoreGrid.set(x-1, y, min);
+					else if (g < min)
+						min = g;
 
-				++min;
+					++min;
+				}
 			}
 		}
 		for (size_t x = 0; x < m_MapSize; ++x)
@@ -444,23 +452,29 @@ void CCmpPathfinder::UpdateGrid()
 			u16 min = shoreMax;
 			for (size_t y = 0; y < m_MapSize; ++y)
 			{
-				u16 g = shoreGrid.get(x, y);
-				if (g > min)
-					shoreGrid.set(x, y, min);
-				else if (g < min)
-					min = g;
+				if (!waterGrid.get(x, y))
+				{
+					u16 g = shoreGrid.get(x, y);
+					if (g > min)
+						shoreGrid.set(x, y, min);
+					else if (g < min)
+						min = g;
 
-				++min;
+					++min;
+				}
 			}
 			for (size_t y = m_MapSize; y > 0; --y)
 			{
-				u16 g = shoreGrid.get(x, y-1);
-				if (g > min)
-					shoreGrid.set(x, y-1, min);
-				else if (g < min)
-					min = g;
+				if (!waterGrid.get(x, y-1))
+				{
+					u16 g = shoreGrid.get(x, y-1);
+					if (g > min)
+						shoreGrid.set(x, y-1, min);
+					else if (g < min)
+						min = g;
 
-				++min;
+					++min;
+				}
 			}
 		}
 
@@ -698,8 +712,9 @@ bool CCmpPathfinder::CheckBuildingPlacement(const IObstructionTestFilter& filter
 	if (!cmpObstruction->GetObstructionSquare(square))
 		return false;
 
-	CFixedVector2D halfSize(square.hw, square.hh);
-	halfSize = halfSize * 1.41421f;
+	// Expand bounds by 1/sqrt(2) tile (multiply by CELL_SIZE since we want world coordinates)
+	entity_pos_t expand = entity_pos_t::FromInt(2).Sqrt().Multiply(entity_pos_t::FromInt(CELL_SIZE / 2));
+	CFixedVector2D halfSize(square.hw + expand, square.hh + expand);
 	CFixedVector2D halfBound = Geometry::GetHalfBoundingBox(square.u, square.v, halfSize);
 
 	u16 i0, j0, i1, j1;

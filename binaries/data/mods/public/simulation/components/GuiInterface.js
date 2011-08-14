@@ -525,55 +525,66 @@ GuiInterface.prototype.GetFoundationSnapData = function(player, data)
 			halfSize = template.Footprint.Circle["@radius"];
 		}
 		
-		// Find direction of most open water, algorithm:
-		//	1. Pick points in a circle around dock
-		//	2. If point is in water, add to array
-		//	3. Scan array looking for consective points
-		//	4. Find longest sequence of conseuctive points
-		//	5. Calculate angle using average of sequence
+		/* Find direction of most open water, algorithm:
+		 *	1. Pick points in a circle around dock
+		 *	2. If point is in water, add to array
+		 *	3. Scan array looking for consective points
+		 *	4. Find longest sequence of conseuctive points
+		 *	5. If sequence equals all points, no direction can be determined,
+		 *		expand search outward and try (1) again
+		 *	6. Calculate angle using average of sequence
+		 */
 		const numPoints = 16;
-		var waterPoints = [];
-		for (var i = 0; i < numPoints; ++i)
+		for (var dist = 0; dist < 4; ++dist)
 		{
-			var angle = (i/numPoints)*2*Math.PI;
-			var nx = data.x - halfSize*Math.sin(angle);
-			var nz = data.z + halfSize*Math.cos(angle);
-			
-			if (cmpTerrain.GetGroundLevel(nx, nz) < cmpWaterManager.GetWaterLevel(nx, nz))
+			var waterPoints = [];
+			for (var i = 0; i < numPoints; ++i)
 			{
-				waterPoints.push(i);
+				var angle = (i/numPoints)*2*Math.PI;
+				var d = halfSize*(dist+1);
+				var nx = data.x - d*Math.sin(angle);
+				var nz = data.z + d*Math.cos(angle);
+				
+				if (cmpTerrain.GetGroundLevel(nx, nz) < cmpWaterManager.GetWaterLevel(nx, nz))
+				{
+					waterPoints.push(i);
+				}
 			}
-		}
-		var consec = [];
-		var length = waterPoints.length;
-		for (var i = 0; i < length; ++i)
-		{
+			var consec = [];
+			var length = waterPoints.length;
+			for (var i = 0; i < length; ++i)
+			{
+				var count = 0;
+				for (var j = 0; j < (length-1); ++j)
+				{
+					if (((waterPoints[(i + j) % length]+1) % numPoints) == waterPoints[(i + j + 1) % length])
+					{
+						++count;
+					}
+					else
+					{
+						break;
+					}
+				}
+				consec[i] = count;
+			}
+			var start = 0;
 			var count = 0;
-			for (var j = 0; j < (length-1); ++j)
+			for (var c in consec)
 			{
-				if (((waterPoints[(i + j) % length]+1) % numPoints) == waterPoints[(i + j + 1) % length])
+				if (consec[c] > count)
 				{
-					++count;
-				}
-				else
-				{
-					break;
+					start = c;
+					count = consec[c];
 				}
 			}
-			consec[i] = count;
-		}
-		var start = 0;
-		var count = 0;
-		for (var c in consec)
-		{
-			if (consec[c] > count)
+			
+			// If we've found a shoreline, stop searching
+			if (count != numPoints-1)
 			{
-				start = c;
-				count = consec[c];
+				return {"x": data.x, "z": data.z, "angle": -(((waterPoints[start] + consec[start]/2) % numPoints)/numPoints*2*Math.PI)};
 			}
 		}
-
-		return {"x": data.x, "z": data.z, "angle": -(((waterPoints[start] + consec[start]/2) % numPoints)/numPoints*2*Math.PI) };
 	}
 
 	return false;

@@ -563,7 +563,11 @@ function handleInputBeforeGui(ev, hoveredObject)
 				"z": placementPosition.z
 			});
 			if (snapData)
+			{
 				placementAngle = snapData.angle;
+				placementPosition.x = snapData.x;
+				placementPosition.z = snapData.z;
+			}
 			
 			updateBuildingPlacementPreview();
 			break;
@@ -825,7 +829,11 @@ function handleInputAfterGui(ev)
 				"z": placementPosition.z
 			});
 			if (snapData)
+			{
 				placementAngle = snapData.angle;
+				placementPosition.x = snapData.x;
+				placementPosition.z = snapData.z;
+			}
 			
 			updateBuildingPlacementPreview();
 
