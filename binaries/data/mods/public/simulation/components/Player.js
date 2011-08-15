@@ -22,11 +22,12 @@ Player.prototype.Init = function()
 
 	this.team = -1;	// team number of the player, players on the same team will always have ally diplomatic status - also this is useful for team emblems, scoring, etc.
 	this.state = "active"; // game state - one of "active", "defeated", "won"
-	this.diplomacy = [];	// array of diplomatic stances for this player with respect to other players (including self)
+	this.diplomacy = [];	// array of diplomatic stances for this player with respect to other players (including gaia and self)
 	this.conquestCriticalEntitiesCount = 0; // number of owned units with ConquestCritical class
 	this.phase = "village";
 	this.startCam = undefined;
 	this.controlAllUnits = false;
+	this.isAI = false;
 };
 
 Player.prototype.SetPlayerID = function(id)
@@ -235,56 +236,90 @@ Player.prototype.SetPhase = function(p)
 Player.prototype.GetStartingCameraPos = function()
 {
 	return this.startCam.position;
-}
+};
 
 Player.prototype.GetStartingCameraRot = function()
 {
 	return this.startCam.rotation;
-}
+};
 
 Player.prototype.SetStartingCamera = function(pos, rot)
 {
 	this.startCam = {"position": pos, "rotation": rot};
-}
+};
 
 Player.prototype.HasStartingCamera = function()
 {
 	return (this.startCam !== undefined);
-}
+};
 
 Player.prototype.SetControlAllUnits = function(c)
 {
 	this.controlAllUnits = c;
-}
+};
 
 Player.prototype.CanControlAllUnits = function()
 {
 	return this.controlAllUnits;
-}
+};
+
+Player.prototype.SetAI = function(flag)
+{
+	this.isAI = flag;
+};
+
+Player.prototype.IsAI = function()
+{
+	return this.isAI;
+};
+
+Player.prototype.SetAlly = function(id)
+{
+	if (id >= 0 && id != this.playerID)
+	{
+		this.diplomacy[id] = 1;
+	}
+};
 
 /**
  * Check if given player is our ally
  */
 Player.prototype.IsAlly = function(id)
 {
-	return (id >= 0 && (id == this.playerID || this.diplomacy[id] > 0));
-}
+	return (id >= 0 && id < this.diplomacy.length && (id == this.playerID || this.diplomacy[id] > 0));
+};
+
+Player.prototype.SetEnemy = function(id)
+{
+	if (id >= 0 && id != this.playerID)
+	{
+		this.diplomacy[id] = -1;
+	}
+};
 
 /**
  * Check if given player is our enemy
  */
 Player.prototype.IsEnemy = function(id)
 {
-	return (id >= 0 && id != this.playerID && this.diplomacy[id] < 0);
-}
+	return (id >= 0 && id < this.diplomacy.length && id != this.playerID && this.diplomacy[id] < 0);
+};
+
+Player.prototype.SetNeutral = function(id)
+{
+	if (id >= 0 && id != this.playerID)
+	{
+		this.diplomacy[id] = 0;
+	}
+};
 
 /**
  * Check if given player is neutral
  */
 Player.prototype.IsNeutral = function(id)
 {
-	return (id >= 0 && id != this.playerID && this.diplomacy[id] == 0);
-}
+	return (id >= 0 && id < this.diplomacy.length && id != this.playerID && this.diplomacy[id] == 0);
+};
 
 /**
  * Keep track of population effects of all entities that
@@ -345,6 +380,6 @@ Player.prototype.OnPlayerDefeated = function()
 		var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
 		cmpOwnership.SetOwner(0);
 	}
-}
+};
 
 Engine.RegisterComponentType(IID_Player, "Player", Player);

@@ -25,7 +25,7 @@ function LoadPlayerSettings(settings)
 	var numPlayers = 8;
 	
 	if (settings.PlayerData)
-	{	//Get number of players including gaia
+	{	// Get number of players including gaia
 		numPlayers = settings.PlayerData.length + 1;
 	}
 	else
@@ -35,36 +35,6 @@ function LoadPlayerSettings(settings)
 	
 	// Get player manager
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	
-	var teams = [];
-	var diplomacy = [];
-	
-	// Build team + diplomacy data
-	for (var i = 0; i < numPlayers; ++i)
-	{
-		diplomacy[i] = cmpPlayerMan.Diplomacy.ENEMY;
-		
-		// Skip gaia
-		if (i > 0)
-		{
-			var pData = settings.PlayerData ? settings.PlayerData[i-1] : {};
-			var pDefs = playerDefaults ? playerDefaults[i] : {};
-			var team = getSetting(pData, pDefs, "Team");
-			
-			// If team defined, add player to the team
-			if (team !== undefined && team != -1)
-			{
-				if (!teams[team])
-				{
-					teams[team] = [i];
-				}
-				else
-				{
-					teams[team].push(i);
-				}
-			}
-		}
-	}
 
 	for (var i = 0; i < numPlayers; ++i)
 	{
@@ -72,13 +42,13 @@ function LoadPlayerSettings(settings)
 		var entID = Engine.AddEntity("special/player");
 		
 		// Retrieve entity
-		var player = Engine.QueryInterface(entID, IID_Player);
-		if (!player)
+		var cmpPlayer = Engine.QueryInterface(entID, IID_Player);
+		if (!cmpPlayer)
 		{
 			throw("Player.js: Error creating player entity "+i);
 		}
 		
-		player.SetPlayerID(i);
+		cmpPlayer.SetPlayerID(i);
 		
 		var pDefs = playerDefaults ? playerDefaults[i] : {};
 		
@@ -88,63 +58,66 @@ function LoadPlayerSettings(settings)
 			var pData = settings.PlayerData ? settings.PlayerData[i-1] : {};
 			
 			// Copy player data
-			player.SetName(getSetting(pData, pDefs, "Name"));
-			player.SetCiv(getSetting(pData, pDefs, "Civ"));
+			cmpPlayer.SetName(getSetting(pData, pDefs, "Name"));
+			cmpPlayer.SetCiv(getSetting(pData, pDefs, "Civ"));
+			cmpPlayer.SetAI(pData.AI && pData.AI != "");
 			
 			var colour = getSetting(pData, pDefs, "Colour");
-			player.SetColour(colour.r, colour.g, colour.b);
+			cmpPlayer.SetColour(colour.r, colour.g, colour.b);
 			
 			if (getSetting(pData, pDefs, "PopulationLimit") !== undefined)
 			{
-				player.SetMaxPopulation(getSetting(pData, pDefs, "PopulationLimit"));
+				cmpPlayer.SetMaxPopulation(getSetting(pData, pDefs, "PopulationLimit"));
 			}
 			
 			if (getSetting(pData, pDefs, "Resources") !== undefined)
 			{
-				player.SetResourceCounts(getSetting(pData, pDefs, "Resources"));
+				cmpPlayer.SetResourceCounts(getSetting(pData, pDefs, "Resources"));
 			}
 			
-			var team = getSetting(pData, pDefs, "Team");
-			
-			//If diplomacy array exists use that, otherwise use team data or default diplomacy
+			// If diplomacy explicitly defined, use that; otherwise use teams
 			if (getSetting(pData, pDefs, "Diplomacy") !== undefined)
 			{
-				player.SetDiplomacy(getSetting(pData, pDefs, "Diplomacy"));
-			}
-			else if (team !== undefined && team != -1)
-			{
-				//Team exists, copy default diplomacy
-				var teamDiplomacy = [];
-				for (var p in diplomacy)
-				{
-					teamDiplomacy[p] = diplomacy[p];
-				}
-				// Set teammates to allies
-				var myTeam = teams[team];
-				for (var n in myTeam)
-				{
-					teamDiplomacy[myTeam[n]] = cmpPlayerMan.Diplomacy.ALLY; //Set ally
-				}
-				
-				player.SetDiplomacy(teamDiplomacy);
+				cmpPlayer.SetDiplomacy(getSetting(pData, pDefs, "Diplomacy"));
 			}
 			else
-			{	//Set default
-				player.SetDiplomacy(diplomacy);
+			{
+				var myTeam = getSetting(pData, pDefs, "Team");
+				for (var j = 0; j < numPlayers; ++j)
+				{
+					// Check if player is on same team
+					if (j > 0)
+					{
+						var theirTeam = getSetting(settings.PlayerData[j-1], playerDefaults[j], "Team");
+						if (myTeam !== undefined && myTeam != -1
+							&& theirTeam !== undefined && theirTeam != -1
+							&& myTeam == theirTeam)
+						{
+							cmpPlayer.SetAlly(j);
+							continue;
+						}
+					}
+					// Gaia, different team, or no team defined
+					cmpPlayer.SetEnemy(j);
+				}
 			}
 			
 			var startCam = getSetting(pData, pDefs, "StartingCamera");
 			if (startCam !== undefined)
 			{
-				player.SetStartingCamera(startCam.Position, startCam.Rotation);
+				cmpPlayer.SetStartingCamera(startCam.Position, startCam.Rotation);
 			}
 		}
 		else
 		{	// Copy gaia data from defaults
-			player.SetName(pDefs.Name);
-			player.SetCiv(pDefs.Civ);
-			player.SetColour(pDefs.Colour.r, pDefs.Colour.g, pDefs.Colour.b);
-			player.SetDiplomacy(diplomacy);
+			cmpPlayer.SetName(pDefs.Name);
+			cmpPlayer.SetCiv(pDefs.Civ);
+			cmpPlayer.SetColour(pDefs.Colour.r, pDefs.Colour.g, pDefs.Colour.b);
+			
+			for (var j = 0; j < numPlayers; ++j)
+			{	// Gaia is everyone's enemy
+				cmpPlayer.SetEnemy(j);
+			}
 		}
 		
 		// Add player to player manager
@@ -219,7 +192,6 @@ function IsOwnedByAllyOfEntity(entity, target)
 	if (cmpOwnershipTarget)
 		targetOwner = cmpOwnershipTarget.GetOwner();
 
-	// Get our diplomacy array
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var cmpPlayer = Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(owner), IID_Player);
 
@@ -250,7 +222,6 @@ function IsOwnedByAllyOfPlayer(player, target)
 	if (cmpOwnershipTarget)
 		targetOwner = cmpOwnershipTarget.GetOwner();
 
-	// Get our diplomacy array
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var cmpPlayer = Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(player), IID_Player);
 
@@ -272,7 +243,6 @@ function IsOwnedByEnemyOfPlayer(player, target)
 	if (cmpOwnershipTarget)
 		targetOwner = cmpOwnershipTarget.GetOwner();
 
-	// Get our diplomacy array
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var cmpPlayer = Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(player), IID_Player);
 

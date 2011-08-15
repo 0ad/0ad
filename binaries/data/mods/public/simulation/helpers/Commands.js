@@ -143,45 +143,44 @@ function ProcessCommand(player, cmd)
 		cmpPosition.JumpTo(cmd.x, cmd.z);
 		cmpPosition.SetYRotation(cmd.angle);
 
-		// Check whether it's obstructed by other entities or invalid terrain
-		var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
-		if (!cmpBuildRestrictions || !cmpBuildRestrictions.CheckPlacement(player))
+		// TODO: Build restrctions disabled for AI since it lacks a mechanism for checking most of them
+		if (!cmpPlayer.IsAI())
 		{
-			var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-			cmpGuiInterface.PushNotification({ "player": player, "message": "Building site was obstructed" });
+			// Check whether it's obstructed by other entities or invalid terrain
+			var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
+			if (!cmpBuildRestrictions || !cmpBuildRestrictions.CheckPlacement(player))
+			{
+				var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+				cmpGuiInterface.PushNotification({ "player": player, "message": "Building site was obstructed" });
 
-			// Remove the foundation because the construction was aborted
-			Engine.DestroyEntity(ent);
-			break;
-		}
-		
-		// Check build limits
-		var cmpBuildLimits = QueryPlayerIDInterface(player, IID_BuildLimits);
-		if (!cmpBuildLimits || !cmpBuildLimits.AllowedToBuild(cmpBuildRestrictions.GetCategory()))
-		{
-			// TODO: The UI should tell the user they can't build this (but we still need this check)
+				// Remove the foundation because the construction was aborted
+				Engine.DestroyEntity(ent);
+				break;
+			}
 			
-			// Remove the foundation because the construction was aborted
-			Engine.DestroyEntity(ent);
-			break;
+			// Check build limits
+			var cmpBuildLimits = QueryPlayerIDInterface(player, IID_BuildLimits);
+			if (!cmpBuildLimits || !cmpBuildLimits.AllowedToBuild(cmpBuildRestrictions.GetCategory()))
+			{
+				// TODO: The UI should tell the user they can't build this (but we still need this check)
+				
+				// Remove the foundation because the construction was aborted
+				Engine.DestroyEntity(ent);
+				break;
+			}
+
+			// Check whether it's in a visible region
+			var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+			var visible = (cmpRangeManager.GetLosVisibility(ent, player) == "visible");
+			if (!visible)
+			{
+				// TODO: report error to player (the building site was not visible)
+				print("Building site was not visible\n");
+
+				Engine.DestroyEntity(ent);
+				break;
+			}
 		}
-
-		/* TODO: the AI isn't smart enough to explore before building, so we'll
-		 * just disable the requirement that the location is visible. Should we
-		 * fix that, or let players build in fog too, or something?
-
-		// Check whether it's in a visible region
-		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		var visible = (cmpRangeManager.GetLosVisibility(ent, player) == "visible");
-		if (!visible)
-		{
-			// TODO: report error to player (the building site was not visible)
-			print("Building site was not visible\n");
-
-			Engine.DestroyEntity(ent);
-			break;
-		}
-		*/
 		
 		var cmpCost = Engine.QueryInterface(ent, IID_Cost);
 		if (!cmpPlayer.TrySubtractResources(cmpCost.GetResourceCosts()))
