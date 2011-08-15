@@ -10,15 +10,19 @@
       <Hack>0.0</Hack>
       <Pierce>40.0</Pierce>
       <Crush>0.0</Crush>
-      <MaxRange>60.0</MaxRange>
+      <MaxRange>70.0</MaxRange>
       <MinRange>10.0</MinRange>
       <ProjectileSpeed>60.0</ProjectileSpeed>
       <PrepareTime>2000</PrepareTime>
       <RepeatTime>2000</RepeatTime>
     </Ranged>
   </Attack>
+  <BuildingAI>
+    <DefaultArrowCount>2</DefaultArrowCount>
+    <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
+  </BuildingAI>
   <Cost>
-    <BuildTime>30</BuildTime>
+    <BuildTime>20</BuildTime>
     <Resources>
       <wood>100</wood>
       <metal>100</metal>

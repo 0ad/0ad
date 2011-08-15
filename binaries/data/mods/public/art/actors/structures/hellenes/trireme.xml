@@ -6,7 +6,7 @@
     <variant>
       <mesh>structural/hele_ship_trireme.dae</mesh>
       <props>
-        <prop actor="props/units/weapons/bolt.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/structures/hellenes/trireme_sails.xml" attachpoint="root"/>
       </props>
       <texture>structural/hele_trireme.png</texture>

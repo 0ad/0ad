@@ -10,7 +10,7 @@
       <Hack>0.0</Hack>
       <Pierce>50.0</Pierce>
       <Crush>100.0</Crush>
-      <MaxRange>80.0</MaxRange>
+      <MaxRange>85.0</MaxRange>
       <MinRange>20.0</MinRange>
       <ProjectileSpeed>40.0</ProjectileSpeed>
       <PrepareTime>2000</PrepareTime>
@@ -18,7 +18,7 @@
     </Ranged>
   </Attack>
   <Cost>
-    <BuildTime>50</BuildTime>
+    <BuildTime>45</BuildTime>
     <Resources>
       <wood>250</wood>
       <metal>200</metal>
@@ -48,6 +48,6 @@
     <WalkSpeed>14.5</WalkSpeed>
   </UnitMotion>
   <Vision>
-    <Range>100</Range>
+    <Range>110</Range>
   </Vision>
 </Entity>
