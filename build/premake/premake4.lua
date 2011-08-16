@@ -668,6 +668,7 @@ function setup_main_exe ()
 			"/DELAY:UNLOAD",
 		}
 
+		-- see manifest.cpp
 		project_add_manifest()
 
 	elseif os.is("linux") then
@@ -873,6 +874,9 @@ function setup_atlas_frontend_project (project_name)
 
 		-- required to use WinMain() on Windows, otherwise will default to main()
 		flags { "WinMain" }
+		
+		-- see manifest.cpp
+		project_add_manifest()
 
 	else -- Non-Windows, = Unix
 		if _OPTIONS["aoe3ed"] then

@@ -903,6 +903,21 @@ function setup_atlas_frontend_package (package_name)
 
 		-- required to use WinMain() on Windows, otherwise will default to main()
 		tinsert(package.buildflags, "no-main")
+		
+		-- see manifest.cpp
+			-- (we need to use &quot; because Premake emits this string directly
+			-- into a double-quoted attribute value in the project XML files
+			-- with no automatic escaping)
+		package.linkoptions = {
+			"&quot;/manifestdependency:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='X86' publicKeyToken='6595b64144ccf1df'&quot;",
+		}
+		
+		package.config["Debug"].linkoptions = {
+			"&quot;/manifestdependency:type='win32' name='Microsoft.VC80.DebugCRT' version='8.0.50727.4053' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'&quot;",
+		}
+		package.config["Release"].linkoptions = {
+			"&quot;/manifestdependency:type='win32' name='Microsoft.VC80.CRT' version='8.0.50727.4053' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'&quot;",
+		}
 
 	else -- Non-Windows, = Unix
 		if options["aoe3ed"] then
