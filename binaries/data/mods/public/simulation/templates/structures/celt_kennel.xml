@@ -36,6 +36,10 @@
   <StatusBars>
     <HeightOffset>8.0</HeightOffset>
   </StatusBars>
+  <TerritoryInfluence>
+    <Radius>20</Radius>
+    <Weight>65536</Weight>
+  </TerritoryInfluence>
   <TrainingQueue>
     <Entities datatype="tokens">
       units/celt_cavalry_spearman_b
