@@ -39,7 +39,7 @@
 // across platforms, we want to convert to a canonical form.
 // TODO: we just do e+0xx now; ought to handle varying precisions and inf and nan etc too
 template<typename T>
-std::string canonfloat(T value, size_t prec)
+std::string canonfloat(T value, int prec)
 {
 	std::stringstream str;
 	str << std::setprecision(prec) << value;

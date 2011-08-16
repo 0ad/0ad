@@ -60,13 +60,13 @@ public:
 	{
 		ENSURE(toMin.X <= toMax.X && toMin.Y <= toMax.Y);
 
-		size_t i0 = GetI0(toMin.X);
-		size_t j0 = GetJ0(toMin.Y);
-		size_t i1 = GetI1(toMax.X);
-		size_t j1 = GetJ1(toMax.Y);
-		for (size_t j = j0; j <= j1; ++j)
+		u32 i0 = GetI0(toMin.X);
+		u32 j0 = GetJ0(toMin.Y);
+		u32 i1 = GetI1(toMax.X);
+		u32 j1 = GetJ1(toMax.Y);
+		for (u32 j = j0; j <= j1; ++j)
 		{
-			for (size_t i = i0; i <= i1; ++i)
+			for (u32 i = i0; i <= i1; ++i)
 			{
 				std::vector<T>& div = m_Divisions.at(i + j*m_DivisionsW);
 				div.push_back(item);
@@ -83,17 +83,17 @@ public:
 	{
 		ENSURE(fromMin.X <= fromMax.X && fromMin.Y <= fromMax.Y);
 
-		size_t i0 = GetI0(fromMin.X);
-		size_t j0 = GetJ0(fromMin.Y);
-		size_t i1 = GetI1(fromMax.X);
-		size_t j1 = GetJ1(fromMax.Y);
-		for (size_t j = j0; j <= j1; ++j)
+		u32 i0 = GetI0(fromMin.X);
+		u32 j0 = GetJ0(fromMin.Y);
+		u32 i1 = GetI1(fromMax.X);
+		u32 j1 = GetJ1(fromMax.Y);
+		for (u32 j = j0; j <= j1; ++j)
 		{
-			for (size_t i = i0; i <= i1; ++i)
+			for (u32 i = i0; i <= i1; ++i)
 			{
 				std::vector<T>& div = m_Divisions.at(i + j*m_DivisionsW);
 
-				for (size_t n = 0; n < div.size(); ++n)
+				for (u32 n = 0; n < div.size(); ++n)
 				{
 					if (div[n] == item)
 					{
@@ -155,13 +155,13 @@ public:
 
 		ENSURE(posMin.X <= posMax.X && posMin.Y <= posMax.Y);
 
-		size_t i0 = GetI0(posMin.X);
-		size_t j0 = GetJ0(posMin.Y);
-		size_t i1 = GetI1(posMax.X);
-		size_t j1 = GetJ1(posMax.Y);
-		for (size_t j = j0; j <= j1; ++j)
+		u32 i0 = GetI0(posMin.X);
+		u32 j0 = GetJ0(posMin.Y);
+		u32 i1 = GetI1(posMax.X);
+		u32 j1 = GetJ1(posMax.Y);
+		for (u32 j = j0; j <= j1; ++j)
 		{
-			for (size_t i = i0; i <= i1; ++i)
+			for (u32 i = i0; i <= i1; ++i)
 			{
 				std::vector<T>& div = m_Divisions.at(i + j*m_DivisionsW);
 				ret.insert(ret.end(), div.begin(), div.end());
@@ -192,40 +192,40 @@ private:
 	// (avoiding out-of-bounds accesses, and rounding correctly so that
 	// points precisely between divisions are counted in both):
 
-	size_t GetI0(entity_pos_t x)
+	u32 GetI0(entity_pos_t x)
 	{
 		return Clamp((x / m_DivisionSize).ToInt_RoundToInfinity()-1, 0, (int)m_DivisionsW-1);
 	}
 
-	size_t GetJ0(entity_pos_t z)
+	u32 GetJ0(entity_pos_t z)
 	{
 		return Clamp((z / m_DivisionSize).ToInt_RoundToInfinity()-1, 0, (int)m_DivisionsH-1);
 	}
 
-	size_t GetI1(entity_pos_t x)
+	u32 GetI1(entity_pos_t x)
 	{
 		return Clamp((x / m_DivisionSize).ToInt_RoundToNegInfinity(), 0, (int)m_DivisionsW-1);
 	}
 
-	size_t GetJ1(entity_pos_t z)
+	u32 GetJ1(entity_pos_t z)
 	{
 		return Clamp((z / m_DivisionSize).ToInt_RoundToNegInfinity(), 0, (int)m_DivisionsH-1);
 	}
 
-	size_t GetIndex0(CFixedVector2D pos)
+	u32 GetIndex0(CFixedVector2D pos)
 	{
 		return GetI0(pos.X) + GetJ0(pos.Y)*m_DivisionsW;
 	}
 
-	size_t GetIndex1(CFixedVector2D pos)
+	u32 GetIndex1(CFixedVector2D pos)
 	{
 		return GetI1(pos.X) + GetJ1(pos.Y)*m_DivisionsW;
 	}
 
 	entity_pos_t m_DivisionSize;
 	std::vector<std::vector<T> > m_Divisions;
-	size_t m_DivisionsW;
-	size_t m_DivisionsH;
+	u32 m_DivisionsW;
+	u32 m_DivisionsH;
 
 	template<typename ELEM> friend struct SerializeSpatialSubdivision;
 };

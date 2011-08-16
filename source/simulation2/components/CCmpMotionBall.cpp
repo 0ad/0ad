@@ -94,8 +94,7 @@ void CCmpMotionBall::Move(fixed dt)
 	float x = pos.X.ToFloat();
 	float z = pos.Z.ToFloat();
 
-	CVector3D normal;
-	GetSimContext().GetTerrain().CalcNormal(x / CELL_SIZE, z / CELL_SIZE, normal);
+	CVector3D normal = GetSimContext().GetTerrain().CalcExactNormal(x, z);
 	// Flatten the vector, to get the downhill force
 	float g = 10.f;
 	CVector3D force(g * normal.X, 0.f, g * normal.Z);
@@ -107,8 +106,8 @@ void CCmpMotionBall::Move(fixed dt)
 
 	float dt_ = dt.ToFloat();
 
-	m_SpeedX *= pow(drag, dt_);
-	m_SpeedZ *= pow(drag, dt_);
+	m_SpeedX *= powf(drag, dt_);
+	m_SpeedZ *= powf(drag, dt_);
 
 	cmpPosition->MoveTo(entity_pos_t::FromFloat(x + m_SpeedX * dt_), entity_pos_t::FromFloat(z + m_SpeedZ * dt_));
 }

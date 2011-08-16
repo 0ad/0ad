@@ -200,7 +200,7 @@ public:
 
 	// 2-bit ELosState per player, starting with player 1 (not 0!) up to player MAX_LOS_PLAYER_ID (inclusive)
 	std::vector<u32> m_LosState;
-	static const int MAX_LOS_PLAYER_ID = 16;
+	static const player_id_t MAX_LOS_PLAYER_ID = 16;
 
 	// Special static visibility data for the "reveal whole map" mode
 	// (TODO: this is usually a waste of memory)
@@ -377,7 +377,8 @@ public:
 				LosAdd(msgData.to, it->second.visionRange, pos);
 			}
 
-			it->second.owner = msgData.to;
+			ENSURE(-128 <= msgData.to && msgData.to <= 127);
+			it->second.owner = (i8)msgData.to;
 
 			break;
 		}
@@ -421,7 +422,7 @@ public:
 		m_WorldZ0 = z0;
 		m_WorldX1 = x1;
 		m_WorldZ1 = z1;
-		m_TerrainVerticesPerSide = vertices;
+		m_TerrainVerticesPerSide = (i32)vertices;
 
 		ResetDerivedData(false);
 	}
@@ -467,10 +468,10 @@ public:
 		entity_pos_t minRange, entity_pos_t maxRange,
 		std::vector<int> owners, int requiredInterface)
 	{
-		size_t id = m_QueryNext++;
+		tag_t id = m_QueryNext++;
 		m_Queries[id] = ConstructQuery(source, minRange, maxRange, owners, requiredInterface);
 
-		return (tag_t)id;
+		return id;
 	}
 
 	virtual void DestroyActiveQuery(tag_t tag)
@@ -774,14 +775,14 @@ public:
 				// Draw the max range circle
 				m_DebugOverlayLines.push_back(SOverlayLine());
 				m_DebugOverlayLines.back().m_Color = (q.enabled ? enabledRingColour : disabledRingColour);
-				SimRender::ConstructCircleOnGround(GetSimContext(), pos.X.ToFloat(), pos.Y.ToDouble(), q.maxRange.ToFloat(), m_DebugOverlayLines.back(), true);
+				SimRender::ConstructCircleOnGround(GetSimContext(), pos.X.ToFloat(), pos.Y.ToFloat(), q.maxRange.ToFloat(), m_DebugOverlayLines.back(), true);
 
 				// Draw the min range circle
 				if (!q.minRange.IsZero())
 				{
 					m_DebugOverlayLines.push_back(SOverlayLine());
 					m_DebugOverlayLines.back().m_Color = (q.enabled ? enabledRingColour : disabledRingColour);
-					SimRender::ConstructCircleOnGround(GetSimContext(), pos.X.ToFloat(), pos.Y.ToDouble(), q.minRange.ToFloat(), m_DebugOverlayLines.back(), true);
+					SimRender::ConstructCircleOnGround(GetSimContext(), pos.X.ToFloat(), pos.Y.ToFloat(), q.minRange.ToFloat(), m_DebugOverlayLines.back(), true);
 				}
 
 				// Draw a ray from the source to each matched entity
@@ -911,9 +912,9 @@ public:
 		// For each tile, if it is owned by a valid player then update the LOS
 		// for every vertex around that tile, to mark them as explored
 
-		for (size_t j = 0; j < grid.m_H; ++j)
+		for (u16 j = 0; j < grid.m_H; ++j)
 		{
-			for (size_t i = 0; i < grid.m_W; ++i)
+			for (u16 i = 0; i < grid.m_W; ++i)
 			{
 				u8 p = grid.get(i, j);
 				if (p > 0 && p <= MAX_LOS_PLAYER_ID)
@@ -979,7 +980,7 @@ public:
 					m_LosState[idx] |= ((LOS_VISIBLE | LOS_EXPLORED) << (2*(owner-1)));
 			}
 
-			counts[idx] += 1;
+			counts[idx] = (u16)(counts[idx] + 1); // ignore overflow; the player should never have 64K units
 		}
 	}
 
@@ -996,7 +997,7 @@ public:
 
 		for (i32 idx = idx0; idx <= idx1; ++idx)
 		{
-			counts[idx] -= 1;
+			counts[idx] = (u16)(counts[idx] - 1);
 
 			// Decreasing from non-zero to zero - move from visible+explored to explored
 			if (counts[idx] == 0)
@@ -1196,23 +1197,23 @@ public:
 		}
 	}
 
-	void LosAdd(i8 owner, entity_pos_t visionRange, CFixedVector2D pos)
+	void LosAdd(player_id_t owner, entity_pos_t visionRange, CFixedVector2D pos)
 	{
 		if (visionRange.IsZero() || owner <= 0 || owner > MAX_LOS_PLAYER_ID)
 			return;
 
-		LosUpdateHelper<true>(owner, visionRange, pos);
+		LosUpdateHelper<true>((u8)owner, visionRange, pos);
 	}
 
-	void LosRemove(i8 owner, entity_pos_t visionRange, CFixedVector2D pos)
+	void LosRemove(player_id_t owner, entity_pos_t visionRange, CFixedVector2D pos)
 	{
 		if (visionRange.IsZero() || owner <= 0 || owner > MAX_LOS_PLAYER_ID)
 			return;
 
-		LosUpdateHelper<false>(owner, visionRange, pos);
+		LosUpdateHelper<false>((u8)owner, visionRange, pos);
 	}
 
-	void LosMove(i8 owner, entity_pos_t visionRange, CFixedVector2D from, CFixedVector2D to)
+	void LosMove(player_id_t owner, entity_pos_t visionRange, CFixedVector2D from, CFixedVector2D to)
 	{
 		if (visionRange.IsZero() || owner <= 0 || owner > MAX_LOS_PLAYER_ID)
 			return;
@@ -1221,14 +1222,14 @@ public:
 		{
 			// If it's a very large move, then simply remove and add to the new position
 
-			LosUpdateHelper<false>(owner, visionRange, from);
-			LosUpdateHelper<true>(owner, visionRange, to);
+			LosUpdateHelper<false>((u8)owner, visionRange, from);
+			LosUpdateHelper<true>((u8)owner, visionRange, to);
 		}
 		else
 		{
 			// Otherwise use the version optimised for mostly-overlapping circles
 
-			LosUpdateHelperIncremental(owner, visionRange, from, to);
+			LosUpdateHelperIncremental((u8)owner, visionRange, from, to);
 		}
 	}
 

@@ -29,7 +29,7 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(TerritoryInfluence)
 
-	int m_Cost;
+	i32 m_Cost;
 	u32 m_Weight;
 	u32 m_Radius;
 
@@ -75,7 +75,7 @@ public:
 		Init(paramNode);
 	}
 
-	virtual int GetCost()
+	virtual i32 GetCost()
 	{
 		return m_Cost;
 	}

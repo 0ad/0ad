@@ -216,7 +216,7 @@ template<> jsval ScriptInterface::ToJSVal<Grid<u16> >(JSContext* cx, const Grid<
 	if (!obj)
 		return JSVAL_VOID;
 
-	size_t len = val.m_W * val.m_H;
+	jsuint len = val.m_W * val.m_H;
 	JSObject *darray = js_CreateTypedArray(cx, js::TypedArray::TYPE_UINT16, len);
 	if (!darray)
 		return JSVAL_VOID;

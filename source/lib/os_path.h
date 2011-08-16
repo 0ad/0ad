@@ -46,7 +46,7 @@ static inline std::string OsString(const OsPath& path)
 	for(size_t i = 0; i < wstring.length(); i++)
 	{
 		ENSURE(wstring[i] <= UCHAR_MAX);
-		string[i] = wstring[i];
+		string[i] = (char)wstring[i];
 	}
 	return string;
 }

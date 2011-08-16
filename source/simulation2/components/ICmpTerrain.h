@@ -35,7 +35,17 @@ public:
 
 	virtual float GetExactGroundLevel(float x, float z) = 0;
 
-	virtual uint32_t GetVerticesPerSide() = 0;
+	/**
+	 * Returns number of tiles per side on the terrain.
+	 * Return value is always non-zero.
+	 */
+	virtual u16 GetTilesPerSide() = 0;
+
+	/**
+	 * Returns number of vertices per side on the terrain.
+	 * Return value is always non-zero.
+	 */
+	virtual u16 GetVerticesPerSide() = 0;
 
 	virtual CTerrain* GetCTerrain() = 0;
 
@@ -51,7 +61,7 @@ public:
 	 * exclusive upper bound) have been changed. CMessageTerrainChanged will be
 	 * sent to any components that care about terrain changes.
 	 */
-	virtual void MakeDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1) = 0;
+	virtual void MakeDirty(i32 i0, i32 j0, i32 i1, i32 j1) = 0;
 
 	DECLARE_INTERFACE_TYPE(Terrain)
 };

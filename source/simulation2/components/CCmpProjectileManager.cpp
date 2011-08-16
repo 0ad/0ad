@@ -196,7 +196,7 @@ void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D 
 	projectile.targetEnt = targetEnt;
 
 	CVector3D offset = projectile.target - projectile.pos;
-	float horizDistance = hypot(offset.X, offset.Z);
+	float horizDistance = hypotf(offset.X, offset.Z);
 
 	projectile.speedFactor = 1.f;
 	projectile.timeLeft = horizDistance / speed.ToFloat();
@@ -221,7 +221,7 @@ void CCmpProjectileManager::AdvanceProjectile(Projectile& projectile, float dt, 
 
 		// To prevent arrows going crazily far after missing the target,
 		// apply a bit of drag to them
-		projectile.speedFactor *= pow(1.0f - 0.4f*projectile.speedFactor, dt);
+		projectile.speedFactor *= powf(1.0f - 0.4f*projectile.speedFactor, dt);
 	}
 	else
 	{
@@ -282,7 +282,7 @@ void CCmpProjectileManager::AdvanceProjectile(Projectile& projectile, float dt, 
 	else
 		axis.Normalize();
 
-	float angle = acos(up.Dot(delta));
+	float angle = acosf(up.Dot(delta));
 
 	CMatrix3D transform;
 	CQuaternion quat;

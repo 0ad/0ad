@@ -95,7 +95,7 @@ public:
 	void Update(float TimeSinceLastFrame);
 
 	// Set a flag using a value from eSndGrpFlags
-	inline void SetFlag(int flag) { m_Flags |= flag; }
+	inline void SetFlag(int flag) { m_Flags = (unsigned char)(m_Flags | flag); }
 
 	// Test flag, returns true if flag is set.
 	inline bool TestFlag(int flag) { return (m_Flags & flag) != 0; }

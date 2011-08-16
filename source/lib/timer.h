@@ -199,13 +199,13 @@ retry:
 
 	std::wstring ToString() const
 	{
-		ENSURE(m_cycles >= 0.0);
+		ENSURE(m_cycles >= 0);
 		return StringForCycles(m_cycles);
 	}
 
 	double ToSeconds() const
 	{
-		return m_cycles / os_cpu_ClockFrequency();
+		return (double)m_cycles / os_cpu_ClockFrequency();
 	}
 
 private:

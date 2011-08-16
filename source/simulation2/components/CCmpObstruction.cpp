@@ -40,6 +40,9 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(Obstruction)
 
+	typedef ICmpObstructionManager::tag_t tag_t;
+	typedef ICmpObstructionManager::flags_t flags_t;
+
 	// Template state:
 
 	enum {
@@ -48,15 +51,15 @@ public:
 	} m_Type;
 	entity_pos_t m_Size0; // radius or width
 	entity_pos_t m_Size1; // radius or depth
-	u8 m_TemplateFlags;
+	flags_t m_TemplateFlags;
 
 	// Dynamic state:
 
 	bool m_Active; // whether the obstruction is obstructing or just an inactive placeholder
 	bool m_Moving;
 	entity_id_t m_ControlGroup;
-	ICmpObstructionManager::tag_t m_Tag;
-	u8 m_Flags;
+	tag_t m_Tag;
+	flags_t m_Flags;
 
 	static std::string GetSchema()
 	{
@@ -127,13 +130,13 @@ public:
 
 		m_Flags = m_TemplateFlags;
 		if (paramNode.GetChild("DisableBlockMovement").ToBool())
-			m_Flags &= ~ICmpObstructionManager::FLAG_BLOCK_MOVEMENT;
+			m_Flags &= (flags_t)(~ICmpObstructionManager::FLAG_BLOCK_MOVEMENT);
 		if (paramNode.GetChild("DisableBlockPathfinding").ToBool())
-			m_Flags &= ~ICmpObstructionManager::FLAG_BLOCK_PATHFINDING;
+			m_Flags &= (flags_t)(~ICmpObstructionManager::FLAG_BLOCK_PATHFINDING);
 
 		m_Active = paramNode.GetChild("Active").ToBool();
 
-		m_Tag = ICmpObstructionManager::tag_t();
+		m_Tag = tag_t();
 		m_Moving = false;
 		m_ControlGroup = GetEntityId();
 	}
@@ -194,12 +197,12 @@ public:
 						data.x, data.z, data.a, m_Size0, m_Size1, m_Flags);
 				else
 					m_Tag = cmpObstructionManager->AddUnitShape(GetEntityId(),
-						data.x, data.z, m_Size0, m_Flags | (m_Moving ? ICmpObstructionManager::FLAG_MOVING : 0), m_ControlGroup);
+						data.x, data.z, m_Size0, (flags_t)(m_Flags | (m_Moving ? ICmpObstructionManager::FLAG_MOVING : 0)), m_ControlGroup);
 			}
 			else if (!data.inWorld && m_Tag.valid())
 			{
 				cmpObstructionManager->RemoveShape(m_Tag);
-				m_Tag = ICmpObstructionManager::tag_t();
+				m_Tag = tag_t();
 			}
 			break;
 		}
@@ -212,7 +215,7 @@ public:
 					break; // error
 
 				cmpObstructionManager->RemoveShape(m_Tag);
-				m_Tag = ICmpObstructionManager::tag_t();
+				m_Tag = tag_t();
 			}
 			break;
 		}
@@ -244,7 +247,7 @@ public:
 					pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, m_Flags);
 			else
 				m_Tag = cmpObstructionManager->AddUnitShape(GetEntityId(),
-					pos.X, pos.Y, m_Size0, m_Flags | (m_Moving ? ICmpObstructionManager::FLAG_MOVING : 0), m_ControlGroup);
+					pos.X, pos.Y, m_Size0, (flags_t)(m_Flags | (m_Moving ? ICmpObstructionManager::FLAG_MOVING : 0)), m_ControlGroup);
 		}
 		else if (!active && m_Active)
 		{
@@ -259,7 +262,7 @@ public:
 					return; // error
 
 				cmpObstructionManager->RemoveShape(m_Tag);
-				m_Tag = ICmpObstructionManager::tag_t();
+				m_Tag = tag_t();
 			}
 		}
 		// else we didn't change the active status
@@ -270,14 +273,14 @@ public:
 		if (disabled)
 		{
 			// Remove the blocking flags
-			m_Flags &= ~ICmpObstructionManager::FLAG_BLOCK_MOVEMENT;
-			m_Flags &= ~ICmpObstructionManager::FLAG_BLOCK_PATHFINDING;
+			m_Flags &= (flags_t)(~ICmpObstructionManager::FLAG_BLOCK_MOVEMENT);
+			m_Flags &= (flags_t)(~ICmpObstructionManager::FLAG_BLOCK_PATHFINDING);
 		}
 		else
 		{
 			// Add the blocking flags if the template had enabled them
-			m_Flags |= (m_TemplateFlags & ICmpObstructionManager::FLAG_BLOCK_MOVEMENT);
-			m_Flags |= (m_TemplateFlags & ICmpObstructionManager::FLAG_BLOCK_PATHFINDING);
+			m_Flags = (flags_t)(m_Flags | (m_TemplateFlags & ICmpObstructionManager::FLAG_BLOCK_MOVEMENT));
+			m_Flags = (flags_t)(m_Flags | (m_TemplateFlags & ICmpObstructionManager::FLAG_BLOCK_PATHFINDING));
 		}
 
 		// Reset the shape with the new flags (kind of inefficiently - we

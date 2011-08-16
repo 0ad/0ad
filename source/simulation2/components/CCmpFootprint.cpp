@@ -163,20 +163,20 @@ public:
 		entity_angle_t initialAngle = cmpPosition->GetRotation().Y;
 
 		// Max spawning distance in tiles
-		const size_t maxSpawningDistance = 4;
+		const i32 maxSpawningDistance = 4;
 
 		if (m_Shape == CIRCLE)
 		{
 			// Expand outwards from foundation
-			for (size_t dist = 0; dist <= maxSpawningDistance; ++dist)
+			for (i32 dist = 0; dist <= maxSpawningDistance; ++dist)
 			{
 				// The spawn point should be far enough from this footprint to fit the unit, plus a little gap
-				entity_pos_t clearance = spawnedRadius + entity_pos_t::FromInt(2 + CELL_SIZE*dist);
+				entity_pos_t clearance = spawnedRadius + entity_pos_t::FromInt(2 + (int)CELL_SIZE*dist);
 				entity_pos_t radius = m_Size0 + clearance;
 
 				// Try equally-spaced points around the circle in alternating directions, starting from the front
-				const ssize_t numPoints = 31 + 2*dist;
-				for (ssize_t i = 0; i < (numPoints+1)/2; i = (i > 0 ? -i : 1-i)) // [0, +1, -1, +2, -2, ... (np-1)/2, -(np-1)/2]
+				const i32 numPoints = 31 + 2*dist;
+				for (i32 i = 0; i < (numPoints+1)/2; i = (i > 0 ? -i : 1-i)) // [0, +1, -1, +2, -2, ... (np-1)/2, -(np-1)/2]
 				{
 					entity_angle_t angle = initialAngle + (entity_angle_t::Pi()*2).Multiply(entity_angle_t::FromInt(i)/(int)numPoints);
 
@@ -197,15 +197,15 @@ public:
 			sincos_approx(initialAngle, s, c);
 
 			// Expand outwards from foundation
-			for (size_t dist = 0; dist <= maxSpawningDistance; ++dist)
+			for (i32 dist = 0; dist <= maxSpawningDistance; ++dist)
 			{
 				// The spawn point should be far enough from this footprint to fit the unit, plus a little gap
-				entity_pos_t clearance = spawnedRadius + entity_pos_t::FromInt(2 + CELL_SIZE*dist);
+				entity_pos_t clearance = spawnedRadius + entity_pos_t::FromInt(2 + (int)CELL_SIZE*dist);
 
-				for (size_t edge = 0; edge < 4; ++edge)
+				for (i32 edge = 0; edge < 4; ++edge)
 				{
 					// Try equally-spaced points along the edge in alternating directions, starting from the middle
-					const ssize_t numPoints = 9 + 2*dist;
+					const i32 numPoints = 9 + 2*dist;
 
 					// Compute the direction and length of the current edge
 					CFixedVector2D dir;
@@ -236,7 +236,7 @@ public:
 					CFixedVector2D center = initialPos - dir.Perpendicular().Multiply(sy/2 + clearance);
 					dir = dir.Multiply((sx + clearance*2) / (int)(numPoints-1));
 
-					for (ssize_t i = 0; i < (numPoints+1)/2; i = (i > 0 ? -i : 1-i)) // [0, +1, -1, +2, -2, ... (np-1)/2, -(np-1)/2]
+					for (i32 i = 0; i < (numPoints+1)/2; i = (i > 0 ? -i : 1-i)) // [0, +1, -1, +2, -2, ... (np-1)/2, -(np-1)/2]
 					{
 						CFixedVector2D pos (center + dir*i);
 

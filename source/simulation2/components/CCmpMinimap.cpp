@@ -87,9 +87,9 @@ public:
 		if (colour.IsOk())
 		{
 			m_UsePlayerColour = false;
-			m_R = colour.GetChild("@r").ToInt();
-			m_G = colour.GetChild("@g").ToInt();
-			m_B = colour.GetChild("@b").ToInt();
+			m_R = (u8)colour.GetChild("@r").ToInt();
+			m_G = (u8)colour.GetChild("@g").ToInt();
+			m_B = (u8)colour.GetChild("@b").ToInt();
 		}
 		else
 		{
@@ -176,9 +176,10 @@ public:
 			if (cmpPlayer.null())
 				break;
 			CColor colour = cmpPlayer->GetColour();
-			m_R = (int)(colour.r*255.0);
-			m_G = (int)(colour.g*255.0);
-			m_B = (int)(colour.b*255.0);
+			m_R = (u8)(colour.r*255.0);
+			m_G = (u8)(colour.g*255.0);
+			m_B = (u8)(colour.b*255.0);
+			// TODO: probably should avoid using floating-point here
 
 			break;
 		}

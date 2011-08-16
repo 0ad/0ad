@@ -80,6 +80,11 @@ public:
 	};
 
 	/**
+	 * Bitmask of EFlag values.
+	 */
+	typedef u8 flags_t;
+
+	/**
 	 * Set the bounds of the world.
 	 * Any point outside the bounds is considered obstructed.
 	 * @param x0,z0,x1,z1 Coordinates of the corners of the world
@@ -97,7 +102,7 @@ public:
 	 * @param flags a set of EFlags values
 	 * @return a valid tag for manipulating the shape
 	 */
-	virtual tag_t AddStaticShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h, u8 flags) = 0;
+	virtual tag_t AddStaticShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h, flags_t flags) = 0;
 
 	/**
 	 * Register a unit shape.
@@ -109,7 +114,7 @@ public:
 	 * @param moving whether the unit is currently moving through the world or is stationary
 	 * @return a valid tag for manipulating the shape
 	 */
-	virtual tag_t AddUnitShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_angle_t r, u8 flags, entity_id_t group) = 0;
+	virtual tag_t AddUnitShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_angle_t r, flags_t flags, entity_id_t group) = 0;
 
 	/**
 	 * Adjust the position and angle of an existing shape.
@@ -262,6 +267,9 @@ public:
 class IObstructionTestFilter
 {
 public:
+	typedef ICmpObstructionManager::tag_t tag_t;
+	typedef ICmpObstructionManager::flags_t flags_t;
+
 	virtual ~IObstructionTestFilter() {}
 
 	/**
@@ -271,7 +279,7 @@ public:
 	 * @param flags set of EFlags for the shape
 	 * @param group the control group (typically the shape's unit, or the unit's formation controller, or 0)
 	 */
-	virtual bool Allowed(ICmpObstructionManager::tag_t tag, u8 flags, entity_id_t group) const = 0;
+	virtual bool Allowed(tag_t tag, flags_t flags, entity_id_t group) const = 0;
 };
 
 /**
@@ -280,7 +288,7 @@ public:
 class NullObstructionFilter : public IObstructionTestFilter
 {
 public:
-	virtual bool Allowed(ICmpObstructionManager::tag_t UNUSED(tag), u8 UNUSED(flags), entity_id_t UNUSED(group)) const
+	virtual bool Allowed(tag_t UNUSED(tag), flags_t UNUSED(flags), entity_id_t UNUSED(group)) const
 	{
 		return true;
 	}
@@ -292,7 +300,7 @@ public:
 class StationaryObstructionFilter : public IObstructionTestFilter
 {
 public:
-	virtual bool Allowed(ICmpObstructionManager::tag_t UNUSED(tag), u8 flags, entity_id_t UNUSED(group)) const
+	virtual bool Allowed(tag_t UNUSED(tag), flags_t flags, entity_id_t UNUSED(group)) const
 	{
 		return !(flags & ICmpObstructionManager::FLAG_MOVING);
 	}
@@ -313,7 +321,7 @@ public:
 	{
 	}
 
-	virtual bool Allowed(ICmpObstructionManager::tag_t UNUSED(tag), u8 flags, entity_id_t group) const
+	virtual bool Allowed(tag_t UNUSED(tag), flags_t flags, entity_id_t group) const
 	{
 		if (group == m_Group)
 			return false;
@@ -330,13 +338,13 @@ public:
  */
 class SkipTagObstructionFilter : public IObstructionTestFilter
 {
-	ICmpObstructionManager::tag_t m_Tag;
+	tag_t m_Tag;
 public:
-	SkipTagObstructionFilter(ICmpObstructionManager::tag_t tag) : m_Tag(tag)
+	SkipTagObstructionFilter(tag_t tag) : m_Tag(tag)
 	{
 	}
 
-	virtual bool Allowed(ICmpObstructionManager::tag_t tag, u8 UNUSED(flags), entity_id_t UNUSED(group)) const
+	virtual bool Allowed(tag_t tag, flags_t UNUSED(flags), entity_id_t UNUSED(group)) const
 	{
 		return tag.n != m_Tag.n;
 	}
@@ -347,14 +355,14 @@ public:
  */
 class SkipTagFlagsObstructionFilter : public IObstructionTestFilter
 {
-	ICmpObstructionManager::tag_t m_Tag;
-	u8 m_Mask;
+	tag_t m_Tag;
+	flags_t m_Mask;
 public:
-	SkipTagFlagsObstructionFilter(ICmpObstructionManager::tag_t tag, u8 mask) : m_Tag(tag), m_Mask(mask)
+	SkipTagFlagsObstructionFilter(tag_t tag, flags_t mask) : m_Tag(tag), m_Mask(mask)
 	{
 	}
 
-	virtual bool Allowed(ICmpObstructionManager::tag_t tag, u8 flags, entity_id_t UNUSED(group)) const
+	virtual bool Allowed(tag_t tag, flags_t flags, entity_id_t UNUSED(group)) const
 	{
 		return (tag.n != m_Tag.n && (flags & m_Mask) != 0);
 	}

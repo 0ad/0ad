@@ -87,9 +87,9 @@ void SimRender::ConstructCircleOnGround(const CSimContext& context, float x, flo
 
 	for (size_t i = 0; i <= numPoints; ++i) // use '<=' so it's a closed loop
 	{
-		float a = i * 2 * (float)M_PI / numPoints;
-		float px = x + radius * sin(a);
-		float pz = z + radius * cos(a);
+		float a = (float)i * 2 * (float)M_PI / (float)numPoints;
+		float px = x + radius * sinf(a);
+		float pz = z + radius * cosf(a);
 		float py = std::max(water, cmpTerrain->GetExactGroundLevel(px, pz)) + heightOffset;
 		overlay.m_Coords.push_back(px);
 		overlay.m_Coords.push_back(py);
@@ -100,15 +100,15 @@ void SimRender::ConstructCircleOnGround(const CSimContext& context, float x, flo
 // This method splits up a straight line into a number of line segments each having a length ~= CELL_SIZE
 static void SplitLine(std::vector<std::pair<float, float> >& coords, float x1, float y1, float x2, float y2)
 {
-	float length = sqrt(SQR(x1 - x2) + SQR(y1 - y2));
+	float length = sqrtf(SQR(x1 - x2) + SQR(y1 - y2));
 	size_t pieces = ((int)length) / CELL_SIZE;
 	if (pieces > 0)
 	{
-		float xPieceLength = (x1 - x2) / pieces;
-		float yPieceLength = (y1 - y2) / pieces;
+		float xPieceLength = (x1 - x2) / (float)pieces;
+		float yPieceLength = (y1 - y2) / (float)pieces;
 		for (size_t i = 1; i <= (pieces - 1); ++i)
 		{
-			coords.push_back(std::make_pair(x1 - (xPieceLength * i), y1 - (yPieceLength * i)));
+			coords.push_back(std::make_pair(x1 - (xPieceLength * (float)i), y1 - (yPieceLength * (float)i)));
 		}
 	}
 	coords.push_back(std::make_pair(x2, y2));
@@ -131,8 +131,8 @@ void SimRender::ConstructSquareOnGround(const CSimContext& context, float x, flo
 			water = cmpWaterMan->GetExactWaterLevel(x, z);
 	}
 
-	float c = cos(a);
-	float s = sin(a);
+	float c = cosf(a);
+	float s = sinf(a);
 
 	std::vector<std::pair<float, float> > coords;
 

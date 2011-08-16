@@ -51,7 +51,7 @@ struct CColor
 	// For passing to CRenderer:
 	SColor4ub AsSColor4ub() const
 	{
-		return SColor4ub((int)(r*255.0), (int)(g*255.0), (int)(b*255.0), (int)(a*255.0));
+		return SColor4ub((u8)(r*255.0), (u8)(g*255.0), (u8)(b*255.0), (u8)(a*255.0));
 	}
 
 	float r, g, b, a;

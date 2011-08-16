@@ -61,7 +61,7 @@ struct utf16_traits
 	{
 		const char_type* end=s;
 		while (*end) end++;
-		return end-s;
+		return (size_t)(end-s);
 	}
 
 	static const char_type* find(const char_type* s, size_t n, const char_type& a)

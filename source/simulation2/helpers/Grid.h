@@ -80,18 +80,18 @@ public:
 			memset(m_Data, 0, m_W*m_H*sizeof(T));
 	}
 
-	void set(size_t i, size_t j, const T& value)
+	void set(int i, int j, const T& value)
 	{
 #if GRID_BOUNDS_DEBUG
-		ENSURE(i < m_W && j < m_H);
+		ENSURE(0 <= i && i < m_W && 0 <= j && j < m_H);
 #endif
 		m_Data[j*m_W + i] = value;
 	}
 
-	T& get(size_t i, size_t j) const
+	T& get(int i, int j) const
 	{
 #if GRID_BOUNDS_DEBUG
-		ENSURE(i < m_W && j < m_H);
+		ENSURE(0 <= i && i < m_W && 0 <= j && j < m_H);
 #endif
 		return m_Data[j*m_W + i];
 	}
@@ -113,7 +113,7 @@ class SparseGrid
 
 	enum { BucketBits = 4, BucketSize = 1 << BucketBits };
 
-	T* GetBucket(size_t i, size_t j)
+	T* GetBucket(int i, int j)
 	{
 		size_t b = (j >> BucketBits) * m_BW + (i >> BucketBits);
 		if (!m_Data[b])
@@ -129,8 +129,8 @@ public:
 	{
 		ENSURE(m_W && m_H);
 
-		m_BW = (m_W + BucketSize-1) >> BucketBits;
-		m_BH = (m_H + BucketSize-1) >> BucketBits;
+		m_BW = (u16)((m_W + BucketSize-1) >> BucketBits);
+		m_BH = (u16)((m_H + BucketSize-1) >> BucketBits);
 
 		m_Data = new T*[m_BW*m_BH];
 		memset(m_Data, 0, m_BW*m_BH*sizeof(T*));
@@ -150,18 +150,18 @@ public:
 		memset(m_Data, 0, m_BW*m_BH*sizeof(T*));
 	}
 
-	void set(size_t i, size_t j, const T& value)
+	void set(int i, int j, const T& value)
 	{
 #if GRID_BOUNDS_DEBUG
-		ENSURE(i < m_W && j < m_H);
+		ENSURE(0 <= i && i < m_W && 0 <= j && j < m_H);
 #endif
 		GetBucket(i, j)[(j % BucketSize)*BucketSize + (i % BucketSize)] = value;
 	}
 
-	T& get(size_t i, size_t j)
+	T& get(int i, int j)
 	{
 #if GRID_BOUNDS_DEBUG
-		ENSURE(i < m_W && j < m_H);
+		ENSURE(0 <= i && i < m_W && 0 <= j && j < m_H);
 #endif
 		return GetBucket(i, j)[(j % BucketSize)*BucketSize + (i % BucketSize)];
 	}

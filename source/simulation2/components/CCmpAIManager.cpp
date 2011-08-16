@@ -141,7 +141,7 @@ private:
 
 			u8* img = buf.get() + hdr_size;
 			for (size_t i = 0; i < data.size(); ++i)
-				img[i] = (data[i] * 255) / max;
+				img[i] = (u8)((data[i] * 255) / max);
 
 			tex_write(&t, filename);
 			tex_free(&t);
@@ -359,7 +359,7 @@ public:
 
 	void SerializeState(ISerializer& serializer)
 	{
-		serializer.NumberU32_Unbounded("num ais", m_Players.size());
+		serializer.NumberU32_Unbounded("num ais", (u32)m_Players.size());
 
 		for (size_t i = 0; i < m_Players.size(); ++i)
 		{
@@ -367,7 +367,7 @@ public:
 			serializer.NumberI32_Unbounded("player", m_Players[i]->m_Player);
 			serializer.ScriptVal("data", m_Players[i]->m_Obj);
 
-			serializer.NumberU32_Unbounded("num commands", m_Players[i]->m_Commands.size());
+			serializer.NumberU32_Unbounded("num commands", (u32)m_Players[i]->m_Commands.size());
 			for (size_t j = 0; j < m_Players[i]->m_Commands.size(); ++j)
 			{
 				CScriptVal val = m_ScriptInterface.ReadStructuredClone(m_Players[i]->m_Commands[j]);
@@ -527,7 +527,7 @@ public:
 		{
 			const CMessageProgressiveLoad& msgData = static_cast<const CMessageProgressiveLoad&> (msg);
 
-			*msgData.total += m_TemplateNames.size();
+			*msgData.total += (int)m_TemplateNames.size();
 
 			if (*msgData.progressed)
 				break;
@@ -535,7 +535,7 @@ public:
 			if (ContinueLoadEntityTemplates())
 				*msgData.progressed = true;
 
-			*msgData.progress += m_TemplateLoadedIdx;
+			*msgData.progress += (int)m_TemplateLoadedIdx;
 
 			break;
 		}

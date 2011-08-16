@@ -31,6 +31,7 @@
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpObstruction.h"
 #include "simulation2/components/ICmpObstructionManager.h"
+#include "simulation2/components/ICmpTerrain.h"
 #include "simulation2/components/ICmpWaterManager.h"
 #include "simulation2/serialization/SerializeTemplates.h"
 
@@ -77,7 +78,7 @@ void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
     // happen in another thread.  Either way this probably 
     // will require some adjustment and rethinking.
 	const CParamNode pathingSettings = externalParamNode.GetChild("Pathfinder");
-	m_MaxSameTurnMoves = pathingSettings.GetChild("MaxSameTurnMoves").ToInt();
+	m_MaxSameTurnMoves = (u16)pathingSettings.GetChild("MaxSameTurnMoves").ToInt();
 
 
 	const CParamNode::ChildrenMap& passClasses = externalParamNode.GetChild("Pathfinder").GetChild("PassabilityClasses").GetChildren();
@@ -305,8 +306,12 @@ const Grid<u16>& CCmpPathfinder::GetPassabilityGrid()
 
 void CCmpPathfinder::UpdateGrid()
 {
+	CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
+	if (cmpTerrain.null())
+		return; // error
+
 	// If the terrain was resized then delete the old grid data
-	if (m_Grid && m_MapSize != GetSimContext().GetTerrain().GetTilesPerSide())
+	if (m_Grid && m_MapSize != cmpTerrain->GetTilesPerSide())
 	{
 		SAFE_DELETE(m_Grid);
 		SAFE_DELETE(m_ObstructionGrid);
@@ -316,11 +321,7 @@ void CCmpPathfinder::UpdateGrid()
 	// Initialise the terrain data when first needed
 	if (!m_Grid)
 	{
-		// TOOD: these bits should come from ICmpTerrain
-		ssize_t size = GetSimContext().GetTerrain().GetTilesPerSide();
-
-		ENSURE(size >= 1 && size <= 0xffff); // must fit in 16 bits
-		m_MapSize = size;
+		m_MapSize = cmpTerrain->GetTilesPerSide();
 		m_Grid = new Grid<TerrainTile>(m_MapSize, m_MapSize);
 		m_ObstructionGrid = new Grid<u8>(m_MapSize, m_MapSize);
 	}
@@ -353,12 +354,12 @@ void CCmpPathfinder::UpdateGrid()
 				if (obstruct & ICmpObstructionManager::TILE_OBSTRUCTED_PATHFINDING)
 					t |= 1;
 				else
-					t &= ~1;
+					t &= (TerrainTile)~1;
 
 				if (obstruct & ICmpObstructionManager::TILE_OBSTRUCTED_FOUNDATION)
 					t |= 2;
 				else
-					t &= ~2;
+					t &= (TerrainTile)~2;
 			}
 		}
 
@@ -417,10 +418,10 @@ void CCmpPathfinder::UpdateGrid()
 		}
 
 		// Expand influences on land to find shore distance
-		for (size_t y = 0; y < m_MapSize; ++y)
+		for (u16 y = 0; y < m_MapSize; ++y)
 		{
 			u16 min = shoreMax;
-			for (size_t x = 0; x < m_MapSize; ++x)
+			for (u16 x = 0; x < m_MapSize; ++x)
 			{
 				if (!waterGrid.get(x, y))
 				{
@@ -433,7 +434,7 @@ void CCmpPathfinder::UpdateGrid()
 					++min;
 				}
 			}
-			for (size_t x = m_MapSize; x > 0; --x)
+			for (u16 x = m_MapSize; x > 0; --x)
 			{
 				if (!waterGrid.get(x-1, y))
 				{
@@ -447,10 +448,10 @@ void CCmpPathfinder::UpdateGrid()
 				}
 			}
 		}
-		for (size_t x = 0; x < m_MapSize; ++x)
+		for (u16 x = 0; x < m_MapSize; ++x)
 		{
 			u16 min = shoreMax;
-			for (size_t y = 0; y < m_MapSize; ++y)
+			for (u16 y = 0; y < m_MapSize; ++y)
 			{
 				if (!waterGrid.get(x, y))
 				{
@@ -463,7 +464,7 @@ void CCmpPathfinder::UpdateGrid()
 					++min;
 				}
 			}
-			for (size_t y = m_MapSize; y > 0; --y)
+			for (u16 y = m_MapSize; y > 0; --y)
 			{
 				if (!waterGrid.get(x, y-1))
 				{
@@ -600,22 +601,20 @@ void CCmpPathfinder::ProcessShortRequests(const std::vector<AsyncShortPathReques
 
 void CCmpPathfinder::ProcessSameTurnMoves()
 {
-	u32 moveCount;
-
 	if (!m_AsyncLongPathRequests.empty())
 	{
 		// Figure out how many moves we can do this time
-		moveCount = m_MaxSameTurnMoves - m_SameTurnMovesCount;
-	
+		i32 moveCount = m_MaxSameTurnMoves - m_SameTurnMovesCount;
+
 		if (moveCount <= 0)
 			return;
 
 		// Copy the long request elements we are going to process into a new array
 		std::vector<AsyncLongPathRequest> longRequests;
-		if (m_AsyncLongPathRequests.size() <= moveCount)
+		if ((i32)m_AsyncLongPathRequests.size() <= moveCount)
 		{
 			m_AsyncLongPathRequests.swap(longRequests);
-			moveCount = longRequests.size();
+			moveCount = (i32)longRequests.size();
 		}
 		else
 		{
@@ -626,23 +625,23 @@ void CCmpPathfinder::ProcessSameTurnMoves()
 
 		ProcessLongRequests(longRequests);
 
-		m_SameTurnMovesCount += moveCount;
+		m_SameTurnMovesCount = (u16)(m_SameTurnMovesCount + moveCount);
 	}
 	
 	if (!m_AsyncShortPathRequests.empty())
 	{
 		// Figure out how many moves we can do now
-		moveCount = m_MaxSameTurnMoves - m_SameTurnMovesCount;
+		i32 moveCount = m_MaxSameTurnMoves - m_SameTurnMovesCount;
 
 		if (moveCount <= 0)
 			return;
 
 		// Copy the short request elements we are going to process into a new array
 		std::vector<AsyncShortPathRequest> shortRequests;
-		if (m_AsyncShortPathRequests.size() <= moveCount)
+		if ((i32)m_AsyncShortPathRequests.size() <= moveCount)
 		{
 			m_AsyncShortPathRequests.swap(shortRequests);
-			moveCount = shortRequests.size();
+			moveCount = (i32)shortRequests.size();
 		}
 		else
 		{
@@ -653,7 +652,7 @@ void CCmpPathfinder::ProcessSameTurnMoves()
 
 		ProcessShortRequests(shortRequests);
 
-		m_SameTurnMovesCount += moveCount;
+		m_SameTurnMovesCount = (u16)(m_SameTurnMovesCount + moveCount);
 	}
 }
 

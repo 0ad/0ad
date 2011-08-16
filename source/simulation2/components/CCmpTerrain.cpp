@@ -79,9 +79,18 @@ public:
 		return m_Terrain->GetExactGroundLevel(x, z);
 	}
 
-	virtual uint32_t GetVerticesPerSide()
+	virtual u16 GetTilesPerSide()
 	{
-		return m_Terrain->GetVerticesPerSide();
+		ssize_t tiles = m_Terrain->GetTilesPerSide();
+		ENSURE(1 <= tiles && tiles <= 65535);
+		return (u16)tiles;
+	}
+
+	virtual u16 GetVerticesPerSide()
+	{
+		ssize_t vertices = m_Terrain->GetVerticesPerSide();
+		ENSURE(1 <= vertices && vertices <= 65535);
+		return (u16)vertices;
 	}
 
 	virtual CTerrain* GetCTerrain()
@@ -93,27 +102,30 @@ public:
 	{
 		// TODO: should refactor this code to be nicer
 
+		u16 tiles = GetTilesPerSide();
+		u16 vertices = GetVerticesPerSide();
+
 		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
 		if (!cmpObstructionManager.null())
 		{
 			cmpObstructionManager->SetBounds(entity_pos_t::Zero(), entity_pos_t::Zero(),
-					entity_pos_t::FromInt(m_Terrain->GetTilesPerSide()*CELL_SIZE),
-					entity_pos_t::FromInt(m_Terrain->GetTilesPerSide()*CELL_SIZE));
+					entity_pos_t::FromInt(tiles*(int)CELL_SIZE),
+					entity_pos_t::FromInt(tiles*(int)CELL_SIZE));
 		}
 
 		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
 		if (!cmpRangeManager.null())
 		{
 			cmpRangeManager->SetBounds(entity_pos_t::Zero(), entity_pos_t::Zero(),
-					entity_pos_t::FromInt(m_Terrain->GetTilesPerSide()*CELL_SIZE),
-					entity_pos_t::FromInt(m_Terrain->GetTilesPerSide()*CELL_SIZE),
-					m_Terrain->GetVerticesPerSide());
+					entity_pos_t::FromInt(tiles*(int)CELL_SIZE),
+					entity_pos_t::FromInt(tiles*(int)CELL_SIZE),
+					vertices);
 		}
 
-		MakeDirty(0, 0, m_Terrain->GetTilesPerSide()+1, m_Terrain->GetTilesPerSide()+1);
+		MakeDirty(0, 0, tiles+1, tiles+1);
 	}
 
-	virtual void MakeDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1)
+	virtual void MakeDirty(i32 i0, i32 j0, i32 i1, i32 j1)
 	{
 		CMessageTerrainChanged msg(i0, j0, i1, j1);
 		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);

@@ -97,7 +97,9 @@ public:
 		CParamNode externalParamNode;
 		CParamNode::LoadXML(externalParamNode, L"simulation/data/territorymanager.xml");
 
-		m_ImpassableCost = externalParamNode.GetChild("TerritoryManager").GetChild("ImpassableCost").ToInt();
+		int impassableCost = externalParamNode.GetChild("TerritoryManager").GetChild("ImpassableCost").ToInt();
+		ENSURE(0 <= impassableCost && impassableCost <= 255);
+		m_ImpassableCost = (u8)impassableCost;
 		m_BorderThickness = externalParamNode.GetChild("TerritoryManager").GetChild("BorderThickness").ToFixed().ToFloat();
 		m_BorderSeparation = externalParamNode.GetChild("TerritoryManager").GetChild("BorderSeparation").ToFixed().ToFloat();
 	}
@@ -259,21 +261,21 @@ static void FloodFill(Grid<u32>& grid, Grid<u8>& costGrid, OpenQueue& openTiles,
 		u16 x = tile.id.first;
 		u16 z = tile.id.second;
 		if (x > 0)
-			ProcessNeighbour(falloff, x-1, z, tile.rank, false, grid, openTiles, costGrid);
+			ProcessNeighbour(falloff, (u16)(x-1), z, tile.rank, false, grid, openTiles, costGrid);
 		if (x < tilesW-1)
-			ProcessNeighbour(falloff, x+1, z, tile.rank, false, grid, openTiles, costGrid);
+			ProcessNeighbour(falloff, (u16)(x+1), z, tile.rank, false, grid, openTiles, costGrid);
 		if (z > 0)
-			ProcessNeighbour(falloff, x, z-1, tile.rank, false, grid, openTiles, costGrid);
+			ProcessNeighbour(falloff, x, (u16)(z-1), tile.rank, false, grid, openTiles, costGrid);
 		if (z < tilesH-1)
-			ProcessNeighbour(falloff, x, z+1, tile.rank, false, grid, openTiles, costGrid);
+			ProcessNeighbour(falloff, x, (u16)(z+1), tile.rank, false, grid, openTiles, costGrid);
 		if (x > 0 && z > 0)
-			ProcessNeighbour(falloff, x-1, z-1, tile.rank, true, grid, openTiles, costGrid);
+			ProcessNeighbour(falloff, (u16)(x-1), (u16)(z-1), tile.rank, true, grid, openTiles, costGrid);
 		if (x > 0 && z < tilesH-1)
-			ProcessNeighbour(falloff, x-1, z+1, tile.rank, true, grid, openTiles, costGrid);
+			ProcessNeighbour(falloff, (u16)(x-1), (u16)(z+1), tile.rank, true, grid, openTiles, costGrid);
 		if (x < tilesW-1 && z > 0)
-			ProcessNeighbour(falloff, x+1, z-1, tile.rank, true, grid, openTiles, costGrid);
+			ProcessNeighbour(falloff, (u16)(x+1), (u16)(z-1), tile.rank, true, grid, openTiles, costGrid);
 		if (x < tilesW-1 && z < tilesH-1)
-			ProcessNeighbour(falloff, x+1, z+1, tile.rank, true, grid, openTiles, costGrid);
+			ProcessNeighbour(falloff, (u16)(x+1), (u16)(z+1), tile.rank, true, grid, openTiles, costGrid);
 	}
 }
 
@@ -285,8 +287,8 @@ void CCmpTerritoryManager::CalculateTerritories()
 		return;
 
 	CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
-	uint32_t tilesW = cmpTerrain->GetVerticesPerSide() - 1;
-	uint32_t tilesH = cmpTerrain->GetVerticesPerSide() - 1;
+	u16 tilesW = cmpTerrain->GetTilesPerSide();
+	u16 tilesH = cmpTerrain->GetTilesPerSide();
 
 	SAFE_DELETE(m_Territories);
 	m_Territories = new Grid<u8>(tilesW, tilesH);
@@ -298,9 +300,9 @@ void CCmpTerritoryManager::CalculateTerritories()
 	ICmpPathfinder::pass_class_t passClassUnrestricted = cmpPathfinder->GetPassabilityClass("unrestricted");
 	ICmpPathfinder::pass_class_t passClassDefault = cmpPathfinder->GetPassabilityClass("default");
 	const Grid<u16>& passGrid = cmpPathfinder->GetPassabilityGrid();
-	for (u32 j = 0; j < tilesH; ++j)
+	for (u16 j = 0; j < tilesH; ++j)
 	{
-		for (u32 i = 0; i < tilesW; ++i)
+		for (u16 i = 0; i < tilesW; ++i)
 		{
 			u16 g = passGrid.get(i, j);
 			u8 cost;
@@ -364,8 +366,8 @@ void CCmpTerritoryManager::CalculateTerritories()
 
 			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), *eit);
 			CFixedVector2D pos = cmpPosition->GetPosition2D();
-			int i = clamp((pos.X / (int)CELL_SIZE).ToInt_RoundToNegInfinity(), 0, (int)tilesW-1);
-			int j = clamp((pos.Y / (int)CELL_SIZE).ToInt_RoundToNegInfinity(), 0, (int)tilesH-1);
+			u16 i = (u16)clamp((pos.X / (int)CELL_SIZE).ToInt_RoundToNegInfinity(), 0, tilesW-1);
+			u16 j = (u16)clamp((pos.Y / (int)CELL_SIZE).ToInt_RoundToNegInfinity(), 0, tilesH-1);
 
 			CmpPtr<ICmpTerritoryInfluence> cmpTerritoryInfluence(GetSimContext(), *eit);
 			u32 weight = cmpTerritoryInfluence->GetWeight();
@@ -418,8 +420,8 @@ void CCmpTerritoryManager::CalculateTerritories()
  */
 static void NearestTile(entity_pos_t x, entity_pos_t z, u16& i, u16& j, u16 w, u16 h)
 {
-	i = clamp((x / (int)CELL_SIZE).ToInt_RoundToZero(), 0, w-1);
-	j = clamp((z / (int)CELL_SIZE).ToInt_RoundToZero(), 0, h-1);
+	i = (u16)clamp((x / (int)CELL_SIZE).ToInt_RoundToZero(), 0, w-1);
+	j = (u16)clamp((z / (int)CELL_SIZE).ToInt_RoundToZero(), 0, h-1);
 }
 
 /**
@@ -427,8 +429,8 @@ static void NearestTile(entity_pos_t x, entity_pos_t z, u16& i, u16& j, u16 w, u
  */
 static void TileCenter(u16 i, u16 j, entity_pos_t& x, entity_pos_t& z)
 {
-	x = entity_pos_t::FromInt(i*(int)CELL_SIZE + CELL_SIZE/2);
-	z = entity_pos_t::FromInt(j*(int)CELL_SIZE + CELL_SIZE/2);
+	x = entity_pos_t::FromInt(i*(int)CELL_SIZE + (int)CELL_SIZE/2);
+	z = entity_pos_t::FromInt(j*(int)CELL_SIZE + (int)CELL_SIZE/2);
 }
 
 // TODO: would be nice not to duplicate those two functions from CCmpObstructionManager.cpp
@@ -440,7 +442,7 @@ void CCmpTerritoryManager::RasteriseInfluences(CComponentManager::InterfaceList&
 	{
 		ICmpTerritoryInfluence* cmpTerritoryInfluence = static_cast<ICmpTerritoryInfluence*>(it->second);
 
-		int cost = cmpTerritoryInfluence->GetCost();
+		i32 cost = cmpTerritoryInfluence->GetCost();
 		if (cost == -1)
 			continue;
 
@@ -465,7 +467,7 @@ void CCmpTerritoryManager::RasteriseInfluences(CComponentManager::InterfaceList&
 				entity_pos_t x, z;
 				TileCenter(i, j, x, z);
 				if (Geometry::PointIsInSquare(CFixedVector2D(x - square.x, z - square.z), square.u, square.v, halfSize))
-					grid.set(i, j, cost);
+					grid.set(i, j, (u8)cost);
 			}
 		}
 
@@ -492,9 +494,9 @@ std::vector<CCmpTerritoryManager::TerritoryBoundary> CCmpTerritoryManager::Compu
 	};
 
 	// Try to find an assigned tile
-	for (int j = 0; j < grid.m_H; ++j)
+	for (u16 j = 0; j < grid.m_H; ++j)
 	{
-		for (int i = 0; i < grid.m_W; ++i)
+		for (u16 i = 0; i < grid.m_W; ++i)
 		{
 			u8 owner = grid.get(i, j);
 			if (owner)
@@ -507,10 +509,13 @@ std::vector<CCmpTerritoryManager::TerritoryBoundary> CCmpTerritoryManager::Compu
 				boundaries.back().owner = owner;
 				std::vector<CVector2D>& points = boundaries.back().points;
 
-				int dir = 0; // 0 == bottom edge of tile, 1 == right, 2 == top, 3 == left
+				u8 dir = 0; // 0 == bottom edge of tile, 1 == right, 2 == top, 3 == left
 
-				int cdir = dir;
-				int ci = i, cj = j;
+				u8 cdir = dir;
+				u16 ci = i, cj = j;
+
+				u16 maxi = (u16)(grid.m_W-1);
+				u16 maxj = (u16)(grid.m_H-1);
 
 				while (true)
 				{
@@ -522,31 +527,31 @@ std::vector<CCmpTerritoryManager::TerritoryBoundary> CCmpTerritoryManager::Compu
 					switch (cdir)
 					{
 					case 0:
-						if (ci < grid.m_W-1 && cj > 0 && grid.get(ci+1, cj-1) == owner)
+						if (ci < maxi && cj > 0 && grid.get(ci+1, cj-1) == owner)
 						{
 							++ci;
 							--cj;
 							cdir = 3;
 						}
-						else if (ci < grid.m_W-1 && grid.get(ci+1, cj) == owner)
+						else if (ci < maxi && grid.get(ci+1, cj) == owner)
 							++ci;
 						else
 							cdir = 1;
 						break;
 					case 1:
-						if (ci < grid.m_W-1 && cj < grid.m_H-1 && grid.get(ci+1, cj+1) == owner)
+						if (ci < maxi && cj < maxj && grid.get(ci+1, cj+1) == owner)
 						{
 							++ci;
 							++cj;
 							cdir = 0;
 						}
-						else if (cj < grid.m_H-1 && grid.get(ci, cj+1) == owner)
+						else if (cj < maxj && grid.get(ci, cj+1) == owner)
 							++cj;
 						else
 							cdir = 2;
 						break;
 					case 2:
-						if (ci > 0 && cj < grid.m_H-1 && grid.get(ci-1, cj+1) == owner)
+						if (ci > 0 && cj < maxj && grid.get(ci-1, cj+1) == owner)
 						{
 							--ci;
 							++cj;
@@ -578,7 +583,7 @@ std::vector<CCmpTerritoryManager::TerritoryBoundary> CCmpTerritoryManager::Compu
 
 				// Zero out this whole territory with a simple flood fill, so we don't
 				// process it a second time
-				std::vector<std::pair<int, int> > tileStack;
+				std::vector<std::pair<u16, u16> > tileStack;
 
 #define ZERO_AND_PUSH(i, j) STMT(grid.set(i, j, 0); tileStack.push_back(std::make_pair(i, j)); )
 
@@ -591,20 +596,20 @@ std::vector<CCmpTerritoryManager::TerritoryBoundary> CCmpTerritoryManager::Compu
 
 					if (ti > 0 && grid.get(ti-1, tj) == owner)
 						ZERO_AND_PUSH(ti-1, tj);
-					if (ti < grid.m_W-1 && grid.get(ti+1, tj) == owner)
+					if (ti < maxi && grid.get(ti+1, tj) == owner)
 						ZERO_AND_PUSH(ti+1, tj);
 					if (tj > 0 && grid.get(ti, tj-1) == owner)
 						ZERO_AND_PUSH(ti, tj-1);
-					if (tj < grid.m_H-1 && grid.get(ti, tj+1) == owner)
+					if (tj < maxj && grid.get(ti, tj+1) == owner)
 						ZERO_AND_PUSH(ti, tj+1);
 
 					if (ti > 0 && tj > 0 && grid.get(ti-1, tj-1) == owner)
 						ZERO_AND_PUSH(ti-1, tj-1);
-					if (ti > 0 && tj < grid.m_H-1 && grid.get(ti-1, tj+1) == owner)
+					if (ti > 0 && tj < maxj && grid.get(ti-1, tj+1) == owner)
 						ZERO_AND_PUSH(ti-1, tj+1);
-					if (ti < grid.m_W-1 && tj > 0 && grid.get(ti+1, tj-1) == owner)
+					if (ti < maxi && tj > 0 && grid.get(ti+1, tj-1) == owner)
 						ZERO_AND_PUSH(ti+1, tj-1);
-					if (ti < grid.m_W-1 && tj < grid.m_H-1 && grid.get(ti+1, tj+1) == owner)
+					if (ti < maxi && tj < maxj && grid.get(ti+1, tj+1) == owner)
 						ZERO_AND_PUSH(ti+1, tj+1);
 				}
 
@@ -703,7 +708,7 @@ void TerritoryOverlay::ProcessTile(ssize_t i, ssize_t j)
 	if (!m_TerritoryManager.m_Territories)
 		return;
 
-	u8 id = m_TerritoryManager.m_Territories->get(i, j);
+	u8 id = m_TerritoryManager.m_Territories->get((int)i, (int)j);
 
 	float a = 0.2f;
 	switch (id)

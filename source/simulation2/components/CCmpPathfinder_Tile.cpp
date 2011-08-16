@@ -60,13 +60,13 @@ public:
 	void SetStatusClosed() { status = STATUS_CLOSED; }
 
 	// Get pi,pj coords of predecessor to this tile on best path, given i,j coords of this tile
-	u16 GetPredI(u16 i) { return i+dpi; }
-	u16 GetPredJ(u16 j) { return j+dpj; }
+	u16 GetPredI(u16 i) { return (u16)(i + dpi); }
+	u16 GetPredJ(u16 j) { return (u16)(j + dpj); }
 	// Set the pi,pj coords of predecessor, given i,j coords of this tile
 	void SetPred(u16 pi_, u16 pj_, u16 i, u16 j)
 	{
-		dpi = pi_-i;
-		dpj = pj_-j;
+		dpi = (i8)((int)pi_ - (int)i);
+		dpj = (i8)((int)pj_ - (int)j);
 #if PATHFIND_DEBUG
 		// predecessor must be adjacent
 		ENSURE(pi_-i == -1 || pi_-i == 0 || pi_-i == 1);
@@ -114,14 +114,14 @@ public:
 
 	virtual void ProcessTile(ssize_t i, ssize_t j)
 	{
-		if (m_Pathfinder.m_Grid && !IS_PASSABLE(m_Pathfinder.m_Grid->get(i, j), m_Pathfinder.m_DebugPassClass))
+		if (m_Pathfinder.m_Grid && !IS_PASSABLE(m_Pathfinder.m_Grid->get((int)i, (int)j), m_Pathfinder.m_DebugPassClass))
 			RenderTile(CColor(1, 0, 0, 0.6f), false);
 
 		if (m_Pathfinder.m_DebugGrid)
 		{
-			PathfindTile& n = m_Pathfinder.m_DebugGrid->get(i, j);
+			PathfindTile& n = m_Pathfinder.m_DebugGrid->get((int)i, (int)j);
 
-			float c = clamp(n.GetStep() / (float)m_Pathfinder.m_DebugSteps, 0.f, 1.f);
+			float c = clamp((float)n.GetStep() / (float)m_Pathfinder.m_DebugSteps, 0.f, 1.f);
 
 			if (n.IsOpen())
 				RenderTile(CColor(1, 1, c, 0.6f), false);
@@ -387,7 +387,7 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 	// a large circle then the heuristics will aim us directly outwards);
 	// otherwise just aim at the center point. (We'll never try moving outwards to a square shape.)
 	if (goal.type == Goal::CIRCLE)
-		state.rGoal = (goal.hw / (int)CELL_SIZE).ToInt_RoundToZero();
+		state.rGoal = (u16)(goal.hw / (int)CELL_SIZE).ToInt_RoundToZero();
 	else
 		state.rGoal = 0;
 
@@ -461,13 +461,13 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 
 		u32 g = state.tiles->get(i, j).cost;
 		if (i > 0)
-			ProcessNeighbour(i, j, i-1, j, g, state);
+			ProcessNeighbour(i, j, (u16)(i-1), j, g, state);
 		if (i < m_MapSize-1)
-			ProcessNeighbour(i, j, i+1, j, g, state);
+			ProcessNeighbour(i, j, (u16)(i+1), j, g, state);
 		if (j > 0)
-			ProcessNeighbour(i, j, i, j-1, g, state);
+			ProcessNeighbour(i, j, i, (u16)(j-1), g, state);
 		if (j < m_MapSize-1)
-			ProcessNeighbour(i, j, i, j+1, g, state);
+			ProcessNeighbour(i, j, i, (u16)(j+1), g, state);
 	}
 
 	// Reconstruct the path (in reverse)

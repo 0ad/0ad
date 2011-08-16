@@ -28,7 +28,7 @@ public:
 	 * in [0, 255] to indicate overriding the normal cost of the terrain
 	 * under the entity's obstruction.
 	 */
-	virtual int GetCost() = 0;
+	virtual i32 GetCost() = 0;
 
 	virtual u32 GetWeight() = 0;
 

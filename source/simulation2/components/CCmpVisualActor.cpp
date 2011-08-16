@@ -351,7 +351,7 @@ public:
 
 		// Save some data from the old unit
 		CColor shading = m_Unit->GetModel().GetShadingColor();
-		size_t playerID = m_Unit->GetModel().GetPlayerID();
+		player_id_t playerID = m_Unit->GetModel().GetPlayerID();
 
 		// Replace with the new unit
 		GetSimContext().GetUnitManager().DeleteUnit(m_Unit);

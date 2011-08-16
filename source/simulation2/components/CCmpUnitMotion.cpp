@@ -1042,7 +1042,7 @@ bool CCmpUnitMotion::PathIsShort(const ICmpPathfinder::Path& path, CFixedVector2
 	CFixedVector2D pos = from;
 	entity_pos_t distLeft = minDistance;
 
-	for (ssize_t i = path.m_Waypoints.size()-1; i >= 0; --i)
+	for (ssize_t i = (ssize_t)path.m_Waypoints.size()-1; i >= 0; --i)
 	{
 		// Check if the next path segment is longer than the requested minimum
 		CFixedVector2D waypoint(path.m_Waypoints[i].x, path.m_Waypoints[i].z);

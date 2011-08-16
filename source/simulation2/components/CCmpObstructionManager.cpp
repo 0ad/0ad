@@ -51,7 +51,7 @@ struct UnitShape
 	entity_id_t entity;
 	entity_pos_t x, z;
 	entity_pos_t r; // radius of circle, or half width of square
-	u8 flags;
+	ICmpObstructionManager::flags_t flags;
 	entity_id_t group; // control group (typically the owner entity, or a formation controller entity) (units ignore collisions with others in the same group)
 };
 
@@ -64,7 +64,7 @@ struct StaticShape
 	entity_pos_t x, z; // world-space coordinates
 	CFixedVector2D u, v; // orthogonal unit vectors - axes of local coordinate space
 	entity_pos_t hw, hh; // half width/height in local coordinate space
-	u8 flags;
+	ICmpObstructionManager::flags_t flags;
 };
 
 /**
@@ -245,10 +245,10 @@ public:
 		}
 	}
 
-	virtual tag_t AddUnitShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_pos_t r, u8 flags, entity_id_t group)
+	virtual tag_t AddUnitShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_pos_t r, flags_t flags, entity_id_t group)
 	{
 		UnitShape shape = { ent, x, z, r, flags, group };
-		size_t id = m_UnitShapeNext++;
+		u32 id = m_UnitShapeNext++;
 		m_UnitShapes[id] = shape;
 		MakeDirtyUnit(flags);
 
@@ -257,7 +257,7 @@ public:
 		return UNIT_INDEX_TO_TAG(id);
 	}
 
-	virtual tag_t AddStaticShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h, u8 flags)
+	virtual tag_t AddStaticShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h, flags_t flags)
 	{
 		fixed s, c;
 		sincos_approx(a, s, c);
@@ -265,7 +265,7 @@ public:
 		CFixedVector2D v(s, c);
 
 		StaticShape shape = { ent, x, z, u, v, w/2, h/2, flags };
-		size_t id = m_StaticShapeNext++;
+		u32 id = m_StaticShapeNext++;
 		m_StaticShapes[id] = shape;
 		MakeDirtyStatic(flags);
 
@@ -350,7 +350,7 @@ public:
 			if (moving)
 				shape.flags |= FLAG_MOVING;
 			else
-				shape.flags &= ~FLAG_MOVING;
+				shape.flags &= (flags_t)~FLAG_MOVING;
 
 			MakeDirtyDebug();
 		}
@@ -468,7 +468,7 @@ private:
 	 * Mark all previous Rasterise()d grids as dirty, if they depend on this shape.
 	 * Call this when a static shape has changed.
 	 */
-	void MakeDirtyStatic(u8 flags)
+	void MakeDirtyStatic(flags_t flags)
 	{
 		if (flags & (FLAG_BLOCK_PATHFINDING|FLAG_BLOCK_FOUNDATION))
 			++m_DirtyID;
@@ -480,7 +480,7 @@ private:
 	 * Mark all previous Rasterise()d grids as dirty, if they depend on this shape.
 	 * Call this when a unit shape has changed.
 	 */
-	void MakeDirtyUnit(u8 flags)
+	void MakeDirtyUnit(flags_t flags)
 	{
 		if (flags & (FLAG_BLOCK_PATHFINDING|FLAG_BLOCK_FOUNDATION))
 			++m_DirtyID;
@@ -690,8 +690,8 @@ bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter,
  */
 static void NearestTile(entity_pos_t x, entity_pos_t z, u16& i, u16& j, u16 w, u16 h)
 {
-	i = clamp((x / (int)CELL_SIZE).ToInt_RoundToZero(), 0, w-1);
-	j = clamp((z / (int)CELL_SIZE).ToInt_RoundToZero(), 0, h-1);
+	i = (u16)clamp((x / (int)CELL_SIZE).ToInt_RoundToZero(), 0, w-1);
+	j = (u16)clamp((z / (int)CELL_SIZE).ToInt_RoundToZero(), 0, h-1);
 }
 
 /**
@@ -699,8 +699,8 @@ static void NearestTile(entity_pos_t x, entity_pos_t z, u16& i, u16& j, u16 w, u
  */
 static void TileCenter(u16 i, u16 j, entity_pos_t& x, entity_pos_t& z)
 {
-	x = entity_pos_t::FromInt(i*(int)CELL_SIZE + CELL_SIZE/2);
-	z = entity_pos_t::FromInt(j*(int)CELL_SIZE + CELL_SIZE/2);
+	x = entity_pos_t::FromInt(i*(int)CELL_SIZE + (int)CELL_SIZE/2);
+	z = entity_pos_t::FromInt(j*(int)CELL_SIZE + (int)CELL_SIZE/2);
 }
 
 bool CCmpObstructionManager::Rasterise(Grid<u8>& grid)
@@ -810,7 +810,7 @@ bool CCmpObstructionManager::Rasterise(Grid<u8>& grid)
 	// Any tiles outside or very near the edge of the map are impassable
 
 	// WARNING: CCmpRangeManager::LosIsOffWorld needs to be kept in sync with this
-	const ssize_t edgeSize = 3; // number of tiles around the edge that will be off-world
+	const u16 edgeSize = 3; // number of tiles around the edge that will be off-world
 
 	u8 edgeFlags = TILE_OBSTRUCTED_PATHFINDING | TILE_OBSTRUCTED_FOUNDATION | TILE_OUTOFBOUNDS;
 
@@ -844,13 +844,13 @@ bool CCmpObstructionManager::Rasterise(Grid<u8>& grid)
 			for (u16 i = 0; i < i0+edgeSize; ++i)
 				grid.set(i, j, edgeFlags);
 		for (u16 j = 0; j < grid.m_H; ++j)
-			for (u16 i = i1-edgeSize+1; i < grid.m_W; ++i)
+			for (u16 i = (u16)(i1-edgeSize+1); i < grid.m_W; ++i)
 				grid.set(i, j, edgeFlags);
 		for (u16 j = 0; j < j0+edgeSize; ++j)
-			for (u16 i = i0+edgeSize; i < i1-edgeSize+1; ++i)
+			for (u16 i = (u16)(i0+edgeSize); i < i1-edgeSize+1; ++i)
 				grid.set(i, j, edgeFlags);
-		for (u16 j = j1-edgeSize+1; j < grid.m_H; ++j)
-			for (u16 i = i0+edgeSize; i < i1-edgeSize+1; ++i)
+		for (u16 j = (u16)(j1-edgeSize+1); j < grid.m_H; ++j)
+			for (u16 i = (u16)(i0+edgeSize); i < i1-edgeSize+1; ++i)
 				grid.set(i, j, edgeFlags);
 	}
 
@@ -966,7 +966,7 @@ void CCmpObstructionManager::RenderSubmit(SceneCollector& collector)
 		{
 			m_DebugOverlayLines.push_back(SOverlayLine());
 			m_DebugOverlayLines.back().m_Color = defaultColour;
-			float a = atan2(it->second.v.X.ToFloat(), it->second.v.Y.ToFloat());
+			float a = atan2f(it->second.v.X.ToFloat(), it->second.v.Y.ToFloat());
 			SimRender::ConstructSquareOnGround(GetSimContext(), it->second.x.ToFloat(), it->second.z.ToFloat(), it->second.hw.ToFloat()*2, it->second.hh.ToFloat()*2, a, m_DebugOverlayLines.back(), true);
 		}
 

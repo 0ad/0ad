@@ -63,7 +63,7 @@ public:
 	{
 		friend class CShaderProgramARB;
 	private:
-		Binding(int v, int f) : vertex(v), fragment(f) { }
+		Binding(int v, int f) : vertex((i16)v), fragment((i16)f) { }
 		i16 vertex;
 		i16 fragment;
 	public:

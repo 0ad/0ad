@@ -177,7 +177,12 @@ public:
 		return 50.f;
 	}
 
-	virtual uint32_t GetVerticesPerSide()
+	virtual u16 GetTilesPerSide()
+	{
+		return 16;
+	}
+
+	virtual u16 GetVerticesPerSide()
 	{
 		return 17;
 	}
@@ -187,7 +192,7 @@ public:
 		return NULL;
 	}
 
-	virtual void MakeDirty(ssize_t UNUSED(i0), ssize_t UNUSED(j0), ssize_t UNUSED(i1), ssize_t UNUSED(j1))
+	virtual void MakeDirty(i32 UNUSED(i0), i32 UNUSED(j0), i32 UNUSED(i1), i32 UNUSED(j1))
 	{
 	}
 

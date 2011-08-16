@@ -148,11 +148,13 @@ public:
 	static CFixed FromString(const CStr8& s);
 	static CFixed FromString(const CStrW& s);
 
+	/// Convert to float. May be lossy - float can't represent all values.
 	float ToFloat() const
 	{
-		return value / (float)fract_pow2;
+		return (float)value / (float)fract_pow2;
 	}
 
+	/// Convert to double. Won't be lossy - double can precisely represent all values.
 	double ToDouble() const
 	{
 		return value / (double)fract_pow2;

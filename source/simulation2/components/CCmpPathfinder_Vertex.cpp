@@ -382,8 +382,8 @@ static void AddTerrainEdges(std::vector<Edge>& edgesAA, std::vector<Vertex>& ver
 				// (The inner edges are redundant but it's easier than trying to split the squares apart.)
 				if (any)
 				{
-					CFixedVector2D v0 = CFixedVector2D(fixed::FromInt(i * CELL_SIZE) - r, fixed::FromInt(j * CELL_SIZE) - r);
-					CFixedVector2D v1 = CFixedVector2D(fixed::FromInt((i+1) * CELL_SIZE) + r, fixed::FromInt((j+1) * CELL_SIZE) + r);
+					CFixedVector2D v0 = CFixedVector2D(fixed::FromInt(i * (int)CELL_SIZE) - r, fixed::FromInt(j * (int)CELL_SIZE) - r);
+					CFixedVector2D v1 = CFixedVector2D(fixed::FromInt((i+1) * (int)CELL_SIZE) + r, fixed::FromInt((j+1) * (int)CELL_SIZE) + r);
 					Edge e = { v0, v1 };
 					edgesAA.push_back(e);
 				}
@@ -409,32 +409,32 @@ static void AddTerrainEdges(std::vector<Edge>& edgesAA, std::vector<Vertex>& ver
 		{
 		case TileEdge::BOTTOM:
 		{
-			v0 = CFixedVector2D(fixed::FromInt(i * CELL_SIZE) - r, fixed::FromInt(j * CELL_SIZE) - r);
-			v1 = CFixedVector2D(fixed::FromInt((i+1) * CELL_SIZE) + r, fixed::FromInt(j * CELL_SIZE) - r);
+			v0 = CFixedVector2D(fixed::FromInt(i * (int)CELL_SIZE) - r, fixed::FromInt(j * (int)CELL_SIZE) - r);
+			v1 = CFixedVector2D(fixed::FromInt((i+1) * (int)CELL_SIZE) + r, fixed::FromInt(j * (int)CELL_SIZE) - r);
 			vert.p.X = v0.X - EDGE_EXPAND_DELTA; vert.p.Y = v0.Y - EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_TR; vertexes.push_back(vert);
 			vert.p.X = v1.X + EDGE_EXPAND_DELTA; vert.p.Y = v1.Y - EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_TL; vertexes.push_back(vert);
 			break;
 		}
 		case TileEdge::TOP:
 		{
-			v0 = CFixedVector2D(fixed::FromInt((i+1) * CELL_SIZE) + r, fixed::FromInt((j+1) * CELL_SIZE) + r);
-			v1 = CFixedVector2D(fixed::FromInt(i * CELL_SIZE) - r, fixed::FromInt((j+1) * CELL_SIZE) + r);
+			v0 = CFixedVector2D(fixed::FromInt((i+1) * (int)CELL_SIZE) + r, fixed::FromInt((j+1) * (int)CELL_SIZE) + r);
+			v1 = CFixedVector2D(fixed::FromInt(i * (int)CELL_SIZE) - r, fixed::FromInt((j+1) * (int)CELL_SIZE) + r);
 			vert.p.X = v0.X + EDGE_EXPAND_DELTA; vert.p.Y = v0.Y + EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_BL; vertexes.push_back(vert);
 			vert.p.X = v1.X - EDGE_EXPAND_DELTA; vert.p.Y = v1.Y + EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_BR; vertexes.push_back(vert);
 			break;
 		}
 		case TileEdge::LEFT:
 		{
-			v0 = CFixedVector2D(fixed::FromInt(i * CELL_SIZE) - r, fixed::FromInt((j+1) * CELL_SIZE) + r);
-			v1 = CFixedVector2D(fixed::FromInt(i * CELL_SIZE) - r, fixed::FromInt(j * CELL_SIZE) - r);
+			v0 = CFixedVector2D(fixed::FromInt(i * (int)CELL_SIZE) - r, fixed::FromInt((j+1) * (int)CELL_SIZE) + r);
+			v1 = CFixedVector2D(fixed::FromInt(i * (int)CELL_SIZE) - r, fixed::FromInt(j * (int)CELL_SIZE) - r);
 			vert.p.X = v0.X - EDGE_EXPAND_DELTA; vert.p.Y = v0.Y + EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_BR; vertexes.push_back(vert);
 			vert.p.X = v1.X - EDGE_EXPAND_DELTA; vert.p.Y = v1.Y - EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_TR; vertexes.push_back(vert);
 			break;
 		}
 		case TileEdge::RIGHT:
 		{
-			v0 = CFixedVector2D(fixed::FromInt((i+1) * CELL_SIZE) + r, fixed::FromInt(j * CELL_SIZE) - r);
-			v1 = CFixedVector2D(fixed::FromInt((i+1) * CELL_SIZE) + r, fixed::FromInt((j+1) * CELL_SIZE) + r);
+			v0 = CFixedVector2D(fixed::FromInt((i+1) * (int)CELL_SIZE) + r, fixed::FromInt(j * (int)CELL_SIZE) - r);
+			v1 = CFixedVector2D(fixed::FromInt((i+1) * (int)CELL_SIZE) + r, fixed::FromInt((j+1) * (int)CELL_SIZE) + r);
 			vert.p.X = v0.X + EDGE_EXPAND_DELTA; vert.p.Y = v0.Y - EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_TL; vertexes.push_back(vert);
 			vert.p.X = v1.X + EDGE_EXPAND_DELTA; vert.p.Y = v1.Y + EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_BL; vertexes.push_back(vert);
 			break;
@@ -523,7 +523,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 		}
 		case CCmpPathfinder::Goal::SQUARE:
 		{
-			float a = atan2(goal.v.X.ToFloat(), goal.v.Y.ToFloat());
+			float a = atan2f(goal.v.X.ToFloat(), goal.v.Y.ToFloat());
 			SimRender::ConstructSquareOnGround(GetSimContext(), goal.x.ToFloat(), goal.z.ToFloat(), goal.hw.ToFloat()*2, goal.hh.ToFloat()*2, a, m_DebugOverlayShortPathLines.back(), true);
 			break;
 		}
@@ -800,7 +800,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 					// Hack: If we started *inside* a shape then perhaps headed to its corner (e.g. the unit
 					// was very near another unit), don't restrict further pathing.
 					if (vertexes[n].quadInward && !(curr.id == START_VERTEX_ID && g < fixed::FromInt(8)))
-						vertexes[n].quadOutward = ((~vertexes[n].quadInward) & quad);
+						vertexes[n].quadOutward = ((~vertexes[n].quadInward) & quad) & 0xF;
 
 					if (n == GOAL_VERTEX_ID)
 						vertexes[n].p = npos; // remember the new best goal position
@@ -829,7 +829,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 					// If this is an axis-aligned shape, the path must continue in the same quadrant
 					// direction (but not go into the inside of the shape).
 					if (vertexes[n].quadInward)
-						vertexes[n].quadOutward = ((~vertexes[n].quadInward) & quad);
+						vertexes[n].quadOutward = ((~vertexes[n].quadInward) & quad) & 0xF;
 
 					if (n == GOAL_VERTEX_ID)
 						vertexes[n].p = npos; // remember the new best goal position
