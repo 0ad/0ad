@@ -789,7 +789,16 @@ void CInput::HandleMessage(SGUIMessage &Message)
 	case GUIM_MOUSE_DBLCLICK_LEFT:
 		{
 			CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
+
+			if (pCaption->length() == 0)
+				break;
+
 			m_iBufferPos = m_iBufferPos_Tail = GetMouseHoveringTextPosition();
+
+
+			if (m_iBufferPos >= pCaption->length())
+				m_iBufferPos = m_iBufferPos_Tail = pCaption->length() - 1;
+
 
 			// See if we are clicking over whitespace
 			if (iswspace((*pCaption)[m_iBufferPos]))
@@ -830,6 +839,10 @@ void CInput::HandleMessage(SGUIMessage &Message)
 						if (!iswspace((*pCaption)[m_iBufferPos_Tail]))
 							break;
 					}
+
+					if (m_iBufferPos_Tail == pCaption->length())
+						break;
+
 					// now go to the right until we hit whitespace or punctuation
 					while (++m_iBufferPos_Tail < (int)pCaption->length())
 					{
@@ -845,6 +858,9 @@ void CInput::HandleMessage(SGUIMessage &Message)
 						if (!iswspace((*pCaption)[m_iBufferPos_Tail]))
 							break;
 					}
+
+					if (m_iBufferPos_Tail == pCaption->length())
+						break;
 
 					// Don't include the leading whitespace
 					m_iBufferPos = m_iBufferPos_Tail;
