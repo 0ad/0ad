@@ -82,6 +82,8 @@ function LoadPlayerSettings(settings)
 			}
 			else
 			{
+				// Init diplomacy
+				cmpPlayer.SetDiplomacy(new Array(numPlayers));
 				var myTeam = getSetting(pData, pDefs, "Team");
 				for (var j = 0; j < numPlayers; ++j)
 				{
@@ -90,8 +92,7 @@ function LoadPlayerSettings(settings)
 					{
 						var theirTeam = getSetting(settings.PlayerData[j-1], playerDefaults[j], "Team");
 						if (myTeam !== undefined && myTeam != -1
-							&& theirTeam !== undefined && theirTeam != -1
-							&& myTeam == theirTeam)
+							&& theirTeam !== undefined && myTeam == theirTeam)
 						{
 							cmpPlayer.SetAlly(j);
 							continue;
