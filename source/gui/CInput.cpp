@@ -795,10 +795,8 @@ void CInput::HandleMessage(SGUIMessage &Message)
 
 			m_iBufferPos = m_iBufferPos_Tail = GetMouseHoveringTextPosition();
 
-
-			if (m_iBufferPos >= pCaption->length())
+			if (m_iBufferPos >= (int)pCaption->length())
 				m_iBufferPos = m_iBufferPos_Tail = pCaption->length() - 1;
-
 
 			// See if we are clicking over whitespace
 			if (iswspace((*pCaption)[m_iBufferPos]))
@@ -840,7 +838,7 @@ void CInput::HandleMessage(SGUIMessage &Message)
 							break;
 					}
 
-					if (m_iBufferPos_Tail == pCaption->length())
+					if (m_iBufferPos_Tail == (int)pCaption->length())
 						break;
 
 					// now go to the right until we hit whitespace or punctuation
@@ -859,7 +857,7 @@ void CInput::HandleMessage(SGUIMessage &Message)
 							break;
 					}
 
-					if (m_iBufferPos_Tail == pCaption->length())
+					if (m_iBufferPos_Tail == (int)pCaption->length())
 						break;
 
 					// Don't include the leading whitespace
