@@ -71,24 +71,6 @@ BuildRestrictions.prototype.Init = function()
 	this.territories = this.template.Territory.split(/\s+/);
 };
 
-BuildRestrictions.prototype.OnOwnershipChanged = function(msg)
-{
-	// This automatically updates building counts
-	if (this.template.Category)
-	{
-		if (msg.from != -1)
-		{
-			var fromPlayerBuildLimits = QueryPlayerIDInterface(msg.from, IID_BuildLimits);
-			fromPlayerBuildLimits.DecrementCount(this.template.Category);
-		}
-		if (msg.to != -1)
-		{
-			var toPlayerBuildLimits = QueryPlayerIDInterface(msg.to, IID_BuildLimits);
-			toPlayerBuildLimits.IncrementCount(this.template.Category);	
-		}
-	}
-};
-
 BuildRestrictions.prototype.CheckPlacement = function(player)
 {
 	// TODO: Return error code for invalid placement, which can be handled by the UI

@@ -76,7 +76,6 @@ BuildLimits.prototype.AllowedToBuild = function(category)
 	{
 		if (this.count[category] >= this.count["CivilCentre"] * this.limit[category].LimitPerCivCentre)
 		{
-			var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 			var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player); 
 			var notification = {"player": cmpPlayer.GetPlayerID(), "message": category+" build limit of "+this.limit[category].LimitPerCivCentre+" per civil centre reached"};
 			var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
@@ -87,8 +86,7 @@ BuildLimits.prototype.AllowedToBuild = function(category)
 	}
 	else if (this.count[category] >= this.limit[category])
 	{
-		var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-		var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player); 
+		var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
 		var notification = {"player": cmpPlayer.GetPlayerID(), "message": category+" build limit of "+this.limit[category]+ " reached"};
 		var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGUIInterface.PushNotification(notification);
@@ -97,6 +95,24 @@ BuildLimits.prototype.AllowedToBuild = function(category)
 	}
 	
 	return true;
+};
+
+BuildLimits.prototype.OnGlobalOwnershipChanged = function(msg)
+{
+	// This automatically updates build counts
+	var cmpBuildRestrictions = Engine.QueryInterface(msg.entity, IID_BuildRestrictions);
+	if (cmpBuildRestrictions)
+	{
+		var playerID = (Engine.QueryInterface(this.entity, IID_Player)).GetPlayerID();
+		if (msg.from == playerID)
+		{
+			this.DecrementCount(cmpBuildRestrictions.GetCategory());
+		}
+		if (msg.to == playerID)
+		{
+			this.IncrementCount(cmpBuildRestrictions.GetCategory());
+		}
+	}
 };
 
 Engine.RegisterComponentType(IID_BuildLimits, "BuildLimits", BuildLimits);
