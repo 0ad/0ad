@@ -262,8 +262,13 @@ function ProcessCommand(player, cmd)
 		if (CanControlUnit(cmd.garrisonHolder, player, controlAllUnits))
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(cmd.garrisonHolder, IID_GarrisonHolder);
-			if (cmpGarrisonHolder)
-				cmpGarrisonHolder.Unload(cmd.entity);
+			if (!cmpGarrisonHolder || !cmpGarrisonHolder.Unload(cmd.entity))
+			{
+				var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
+				var notification = {"player": cmpPlayer.GetPlayerID(), "message": "Unable to ungarrison unit"};
+				var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+				cmpGUIInterface.PushNotification(notification);
+			}	
 		}
 		break;
 		
@@ -271,7 +276,13 @@ function ProcessCommand(player, cmd)
 		if (CanControlUnit(cmd.garrisonHolder, player, controlAllUnits))
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(cmd.garrisonHolder, IID_GarrisonHolder);
-			cmpGarrisonHolder.UnloadAll();
+			if (!cmpGarrisonHolder || !cmpGarrisonHolder.UnloadAll())
+			{
+				var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
+				var notification = {"player": cmpPlayer.GetPlayerID(), "message": "Unable to ungarrison all units"};
+				var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+				cmpGUIInterface.PushNotification(notification);
+			}
 		}
 		break;
 

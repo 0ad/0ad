@@ -30,9 +30,9 @@
   </Cost>
   <GarrisonHolder>
     <Max>20</Max>
-	<EjectHealth>0.1</EjectHealth>
-	<List datatype="tokens">Support Infantry Cavalry</List>
-	<BuffHeal>1</BuffHeal>
+    <EjectHealth>0</EjectHealth>
+    <List datatype="tokens">Support Infantry Cavalry</List>
+    <BuffHeal>1</BuffHeal>
   </GarrisonHolder>
   <Health>
     <Max>300</Max>
@@ -40,7 +40,7 @@
   <Identity>
     <GenericName>Light Warship</GenericName>
     <Tooltip>Light Warship.</Tooltip>
-	<Classes datatype="tokens">Warship</Classes>
+    <Classes datatype="tokens">Warship</Classes>
   </Identity>
   <ResourceGatherer disable=""/>
   <Sound>

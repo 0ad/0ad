@@ -11,7 +11,7 @@ GarrisonHolder.prototype.Schema =
 		"<text/>" +
 	"</element>" +
 	"<element name='EjectHealth'>" +
-		"<ref name='positiveDecimal'/>" +
+		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" + 
 	"<element name='BuffHeal'>" +
 		"<data type='positiveInteger'/>" +
@@ -133,10 +133,29 @@ GarrisonHolder.prototype.Garrison = function(entity)
 /**
  * Simply eject the unit from the garrisoning entity without
  * moving it
+ * Returns true if successful, false if not
  */
-GarrisonHolder.prototype.Eject = function(entity)
+GarrisonHolder.prototype.Eject = function(entity, forced)
 {
 	var entityIndex = this.entities.indexOf(entity);
+	
+	// Find spawning location
+	var cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
+	var pos = cmpFootprint.PickSpawnPoint(entity);
+	if (pos.y < 0)
+	{
+		// Error: couldn't find space satisfying the unit's passability criteria
+		if (forced)
+		{	// If ejection is forced, we need to continue, so use center of the building
+			var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+			pos = cmpPosition.GetPosition();
+		}
+		else
+		{	// Fail
+			return false;
+		}
+	}
+	
 	this.spaceOccupied -= 1;
 	this.entities.splice(entityIndex, 1);
 	
@@ -146,25 +165,11 @@ GarrisonHolder.prototype.Eject = function(entity)
 		cmpUnitAI.Ungarrison();
 	}
 	
-	var cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
-	var pos = cmpFootprint.PickSpawnPoint(entity);
-	if (pos.y < 0)
-	{
-		// Whoops, something went wrong (maybe there wasn't any space to place the unit).
-		// What should we do here?
-		// For now, just move the unit into the middle of the building where it'll probably get stuck
-		var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-		pos = cmpPosition.GetPosition();
-		
-		var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
-		var notification = {"player": cmpPlayer.GetPlayerID(), "message": "Can't find free space to ungarrison unit"};
-		var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		cmpGUIInterface.PushNotification(notification);
-	}
-
 	var cmpNewPosition = Engine.QueryInterface(entity, IID_Position);
 	cmpNewPosition.JumpTo(pos.x, pos.z);
 	// TODO: what direction should they face in?
+	
+	return true;
 };
 
 /**
@@ -193,29 +198,51 @@ GarrisonHolder.prototype.OrderWalkToRallyPoint = function(entities)
 /**
  * Unload units from the garrisoning entity and order them
  * to move to the Rally Point
+ * Returns true if successful, false if not
  */
-GarrisonHolder.prototype.Unload = function(entity)
+GarrisonHolder.prototype.Unload = function(entity, forced)
 {
-	this.Eject(entity);
-	this.OrderWalkToRallyPoint([entity]);
-	this.UpdateGarrisonFlag();
+	if (this.Eject(entity, forced))
+	{
+		this.OrderWalkToRallyPoint([entity]);
+		this.UpdateGarrisonFlag();
+		return true;
+	}
+	
+	return false;
 };
 
 /**
  * Unload all units from the entity
+ * Returns true if all successful, false if not
  */
-GarrisonHolder.prototype.UnloadAll = function()
+GarrisonHolder.prototype.UnloadAll = function(forced)
 {
-	// The entities list is saved to a temporary variable
-	// because during each loop an element is removed
-	// from the list
-	var entities = this.entities.splice(0);
+	// Make copy of entity list
+	var entities = [];
+	for each (var entity in this.entities)
+	{
+		entities.push(entity);
+	}
+	
+	var ejectedEntities = [];
+	var success = true;
 	for each (var entity in entities)
 	{
-		this.Eject(entity);
+		if (this.Eject(entity, forced))
+		{
+			ejectedEntities.push(entity);
+		}
+		else
+		{
+			success = false;
+		}
 	}
-	this.OrderWalkToRallyPoint(entities);
+	
+	this.OrderWalkToRallyPoint(ejectedEntities);
 	this.UpdateGarrisonFlag();
+	
+	return success;
 };
 
 /**
@@ -226,7 +253,26 @@ GarrisonHolder.prototype.OnHealthChanged = function(msg)
 {
 	if (!this.HasEnoughHealth())
 	{
-		this.UnloadAll();
+		// We have to be careful of our passability
+		//	ships: not land passable, so assume units have drowned in a shipwreck
+		//  building: land passable, so units can be ejected freely
+		var classes = (Engine.QueryInterface(this.entity, IID_Identity)).GetClassesList();
+		if (classes.indexOf("Ship") != -1)
+		{	// Ship - kill all units
+			for each (var entity in this.entities)
+			{
+				var cmpHealth = Engine.QueryInterface(entity, IID_Health);
+				if (cmpHealth)
+				{
+					cmpHealth.Kill();
+				}
+			}
+			this.entities = [];
+		}
+		else
+		{	// Building - force ejection
+			this.UnloadAll(true);
+		}
 	}
 };
 
@@ -302,19 +348,34 @@ GarrisonHolder.prototype.OnDestroy = function()
  */
 GarrisonHolder.prototype.OnGlobalOwnershipChanged = function(msg)
 {
-	if (this.entities.indexOf(msg.entity) != -1)
+	var entityIndex = this.entities.indexOf(msg.entity);
+	if (entityIndex != -1)
 	{
 		// If the entity is dead, remove it directly instead of ejecting the corpse
 		var cmpHealth = Engine.QueryInterface(msg.entity, IID_Health);
 		if (cmpHealth && cmpHealth.GetHitpoints() == 0)
 		{
-			this.entities.splice(this.entities.indexOf(msg.entity), 1);
+			this.entities.splice(entityIndex, 1);
 		}
 		else
 		{
-			// Otherwise the unit probably got captured somehow and we don't want it
-			// any more, so eject it
-			this.Eject(msg.entity);
+			// We have to be careful of our passability
+			//	ships: not land passable, assume unit was thrown overboard or something
+			//  building: land passable, unit can be ejected freely
+			var classes = (Engine.QueryInterface(this.entity, IID_Identity)).GetClassesList();
+			if (classes.indexOf("Ship") != -1)
+			{	// Ship - kill unit
+				var cmpHealth = Engine.QueryInterface(msg.entity, IID_Health);
+				if (cmpHealth)
+				{
+					cmpHealth.Kill();
+				}
+				this.entities.splice(entityIndex, 1);
+			}
+			else
+			{	// Building - force ejection
+				this.Eject(msg.entity, true);
+			}
 		}
 	}
 };
@@ -324,9 +385,10 @@ GarrisonHolder.prototype.OnGlobalOwnershipChanged = function(msg)
  */
 GarrisonHolder.prototype.OnGlobalEntityRenamed = function(msg)
 {
-	if (this.entities.indexOf(msg.entity) != -1)
+	var entityIndex = this.entities.indexOf(msg.entity);
+	if (entityIndex != -1)
 	{
-		this.entities[this.entities.indexOf(msg.entity)] = msg.newentity;
+		this.entities[entityIndex] = msg.newentity;
 	}
 };
 

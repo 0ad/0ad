@@ -30,9 +30,9 @@
   </Cost>
   <GarrisonHolder>
     <Max>30</Max>
-	<EjectHealth>0.1</EjectHealth>
-	<List datatype="tokens">Support Infantry Cavalry Siege</List>
-	<BuffHeal>1</BuffHeal>
+    <EjectHealth>0</EjectHealth>
+    <List datatype="tokens">Support Infantry Cavalry Siege</List>
+    <BuffHeal>1</BuffHeal>
   </GarrisonHolder>
   <Health>
     <Max>400</Max>
@@ -40,7 +40,7 @@
   <Identity>
     <GenericName>Medium Warship</GenericName>
     <Tooltip>Medium Warship.</Tooltip>
-	<Classes datatype="tokens">Warship</Classes>
+    <Classes datatype="tokens">Warship</Classes>
   </Identity>
   <ResourceGatherer disable=""/>
   <Sound>
