@@ -32,6 +32,7 @@
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPathfinder.h"
 #include "simulation2/components/ICmpTerrain.h"
+#include "simulation2/helpers/Grid.h"
 
 #include "../Brushes.h"
 #include "../DeltaArray.h"
@@ -345,6 +346,12 @@ BEGIN_COMMAND(ReplaceTerrain)
 
 		CTerrainTextureEntry* replacedTex = m_TerrainDelta.GetTexEntry(x0, y0);
 
+		// Don't bother if we're not making a change
+		if (texentry == replacedTex)
+		{
+			return;
+		}
+
 		ssize_t tiles = m_TerrainDelta.GetTilesPerSide();
 
 		for (ssize_t j = 0; j < tiles; ++j)
@@ -379,5 +386,118 @@ BEGIN_COMMAND(ReplaceTerrain)
 };
 END_COMMAND(ReplaceTerrain)
 
+//////////////////////////////////////////////////////////////////////////
+
+BEGIN_COMMAND(FillTerrain)
+{
+	TerrainArray m_TerrainDelta;
+	ssize_t m_i0, m_j0, m_i1, m_j1;
+
+	cFillTerrain()
+	{
+		m_TerrainDelta.Init();
+	}
+
+	void MakeDirty()
+	{
+		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_INDICES);
+		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+		if (!cmpTerrain.null())
+			cmpTerrain->MakeDirty(m_i0, m_j0, m_i1, m_j1);
+	}
+
+	void Do()
+	{
+		g_CurrentBrush.m_Centre = msg->pos->GetWorldSpace();
+
+		ssize_t x0, y0;
+		g_CurrentBrush.GetBottomLeft(x0, y0);
+
+		m_i0 = m_i1 = x0;
+		m_j0 = m_j1 = y0;
+
+		CTerrainTextureEntry* texentry = g_TexMan.FindTexture(CStrW(*msg->texture).ToUTF8());
+		if (! texentry)
+		{
+			debug_warn(L"Can't find texentry"); // TODO: nicer error handling
+			return;
+		}
+
+		CTerrainTextureEntry* replacedTex = m_TerrainDelta.GetTexEntry(x0, y0);
+
+		// Don't bother if we're not making a change
+		if (texentry == replacedTex)
+		{
+			return;
+		}
+
+		ssize_t tiles = m_TerrainDelta.GetTilesPerSide();
+
+		// Simple 4-way flood fill algorithm using queue and a grid to keep track of visited tiles,
+		//	almost as fast as loop for filling whole map, much faster for small patches
+		SparseGrid<bool> visited(tiles, tiles);
+		std::queue<std::pair<u16, u16>> queue;
+
+		// Initial tile
+		queue.push(std::make_pair((u16)x0, (u16)y0));
+		visited.set(x0, y0, true);
+
+		while(!queue.empty())
+		{
+			// Check front of queue
+			std::pair<u16, u16> t = queue.front();
+			queue.pop();
+			u16 i = t.first;
+			u16 j = t.second;
+
+			if (m_TerrainDelta.GetTexEntry(i, j) == replacedTex)
+			{
+				// Found a tile to replace: adjust bounds and paint it
+				m_i0 = std::min(m_i0, (ssize_t)i);
+				m_j0 = std::min(m_j0, (ssize_t)j);
+				m_i1 = std::max(m_i1, (ssize_t)i+1);
+				m_j1 = std::max(m_j1, (ssize_t)j+1);
+				m_TerrainDelta.PaintTile(i, j, texentry, m_TerrainDelta.GetPriority(i, j));
+
+				// Visit 4 adjacent tiles (could visit 8 if we want to count diagonal adjacency)
+				if (i > 0 && !visited.get(i-1, j))
+				{
+					visited.set(i-1, j, true);
+					queue.push(std::make_pair(i-1, j));
+				}
+				if (i < (tiles-1) && !visited.get(i+1, j))
+				{
+					visited.set(i+1, j, true);
+					queue.push(std::make_pair(i+1, j));
+				}
+				if (j > 0 && !visited.get(i, j-1))
+				{
+					visited.set(i, j-1, true);
+					queue.push(std::make_pair(i, j-1));
+				}
+				if (j < (tiles-1) && !visited.get(i, j+1))
+				{
+					visited.set(i, j+1, true);
+					queue.push(std::make_pair(i, j+1));
+				}
+			}
+		}
+
+		MakeDirty();
+	}
+
+	void Undo()
+	{
+		m_TerrainDelta.Undo();
+		MakeDirty();
+	}
+
+	void Redo()
+	{
+		m_TerrainDelta.Redo();
+		MakeDirty();
+	}
+};
+END_COMMAND(FillTerrain)
 
 }

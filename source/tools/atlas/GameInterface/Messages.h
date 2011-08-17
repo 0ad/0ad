@@ -459,6 +459,11 @@ COMMAND(ReplaceTerrain, NOMERGE,
 		((std::wstring, texture))
 		);
 
+COMMAND(FillTerrain, NOMERGE,
+		((Position, pos))
+		((std::wstring, texture))
+		);
+
 //////////////////////////////////////////////////////////////////////////
 
 QUERY(PickObject,

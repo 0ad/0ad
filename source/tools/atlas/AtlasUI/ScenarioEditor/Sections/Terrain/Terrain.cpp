@@ -75,6 +75,7 @@ TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebar
 		wxSizer* gridSizer = new wxGridSizer(3);
 		gridSizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Paint"), _T("PaintTerrain")), wxSizerFlags().Expand());
 		gridSizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Replace"), _T("ReplaceTerrain")), wxSizerFlags().Expand());
+		gridSizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Fill"), _T("FillTerrain")), wxSizerFlags().Expand());
 		sizer->Add(gridSizer, wxSizerFlags().Expand());
 		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 	}
@@ -294,7 +295,7 @@ public:
 		// Slight hack: Default to Paint mode because that's probably what the user wanted
 		// when they selected a terrain; unless already explicitly in Replace mode, because
 		// then the user probably wanted that instead
-		if (m_ScenarioEditor.GetToolManager().GetCurrentToolName() != _T("ReplaceTerrain"))
+		if (m_ScenarioEditor.GetToolManager().GetCurrentToolName() != _T("ReplaceTerrain") && m_ScenarioEditor.GetToolManager().GetCurrentToolName() != _T("FillTerrain"))
 			m_ScenarioEditor.GetToolManager().SetCurrentTool(_T("PaintTerrain"));
 	}
 
