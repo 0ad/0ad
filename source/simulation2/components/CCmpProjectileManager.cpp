@@ -196,7 +196,7 @@ void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D 
 	projectile.targetEnt = targetEnt;
 
 	CVector3D offset = projectile.target - projectile.pos;
-	float horizDistance = hypotf(offset.X, offset.Z);
+	float horizDistance = hypot(offset.X, offset.Z);	// TODO: Fix missing hypotf for VC2008
 
 	projectile.speedFactor = 1.f;
 	projectile.timeLeft = horizDistance / speed.ToFloat();
