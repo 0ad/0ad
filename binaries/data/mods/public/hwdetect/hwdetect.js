@@ -66,6 +66,9 @@ var g_IntelMesaChipsets = [
 	"Intel(R) Sandybridge Desktop",
 	"Intel(R) Sandybridge Mobile",
 	"Intel(R) Sandybridge Server",
+	"Intel(R) Ivybridge Desktop",
+	"Intel(R) Ivybridge Mobile",
+	"Intel(R) Ivybridge Server",
 	"Unknown Intel Chipset",
 ];
 // Originally generated from Mesa with
@@ -233,6 +236,14 @@ function RunDetection(settings)
 	{
 		override_renderpath = "fixed";
 		warnings.push("Some graphics features are disabled, due to bugs in old graphics drivers. Upgrading to a Gallium-based driver might help.");
+	}
+
+	// http://www.wildfiregames.com/forum/index.php?showtopic=15058
+	// GF FX has poor shader performance, so fall back to non-shader
+	if (GL_RENDERER.match(/^GeForce FX /))
+	{
+		override_renderpath = "fixed";
+		disable_fancywater = true;
 	}
 
 	return {
