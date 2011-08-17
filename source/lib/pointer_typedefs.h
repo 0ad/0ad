@@ -1,6 +1,13 @@
 #ifndef INCLUDED_POINTER_TYPEDEFS
 #define INCLUDED_POINTER_TYPEDEFS
 
+#ifdef __SSE__
+# include <xmmintrin.h>  // __m64, __m128
+#endif
+#ifdef __SSE2__
+# include <emmintrin.h>  // __m128i, __m128d
+#endif
+
 // convenience typedefs for shortening parameter lists.
 // naming convention: [const] [restrict] pointer to [const] type
 // supported types: void, signed/unsigned 8/16/32/64 integers, float, double, XMM
@@ -107,6 +114,16 @@ typedef const double* const cpcDouble;
 typedef const double* __restrict rpcDouble;
 typedef const double* const __restrict crpcDouble;
 
+#ifdef __SSE__
+typedef __m64* pM64;
+typedef __m64* const cpM64;
+typedef __m64* __restrict rpM64;
+typedef __m64* const __restrict crpM64;
+typedef const __m64* pcM64;
+typedef const __m64* const cpcM64;
+typedef const __m64* __restrict rpcM64;
+typedef const __m64* const __restrict crpcM64;
+
 typedef __m128* pM128;
 typedef __m128* const cpM128;
 typedef __m128* __restrict rpM128;
@@ -115,7 +132,9 @@ typedef const __m128* pcM128;
 typedef const __m128* const cpcM128;
 typedef const __m128* __restrict rpcM128;
 typedef const __m128* const __restrict crpcM128;
+#endif // __SSE__
 
+#ifdef __SSE2__
 typedef __m128i* pM128I;
 typedef __m128i* const cpM128I;
 typedef __m128i* __restrict rpM128I;
@@ -133,14 +152,6 @@ typedef const __m128d* pcM128D;
 typedef const __m128d* const cpcM128D;
 typedef const __m128d* __restrict rpcM128D;
 typedef const __m128d* const __restrict crpcM128D;
-
-typedef __m64* pM64;
-typedef __m64* const cpM64;
-typedef __m64* __restrict rpM64;
-typedef __m64* const __restrict crpM64;
-typedef const __m64* pcM64;
-typedef const __m64* const cpcM64;
-typedef const __m64* __restrict rpcM64;
-typedef const __m64* const __restrict crpcM64;
+#endif // __SSE2__
 
 #endif	// #ifndef INCLUDED_POINTER_TYPEDEFS
