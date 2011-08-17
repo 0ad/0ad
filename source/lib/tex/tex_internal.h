@@ -27,6 +27,7 @@
 #ifndef INCLUDED_TEX_INTERNAL
 #define INCLUDED_TEX_INTERNAL
 
+#include "lib/pointer_typedefs.h"
 #include "lib/allocators/dynarray.h"
 #include "lib/file/io/io.h"	// io::Allocate
 

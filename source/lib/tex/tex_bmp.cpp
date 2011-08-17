@@ -95,11 +95,9 @@ static size_t bmp_hdr_size(const u8* file)
 
 
 // requirements: uncompressed, direct colour, bottom up
-static Status bmp_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
+static Status bmp_decode(rpU8 data, size_t UNUSED(size), Tex* RESTRICT t)
 {
-	u8* file = da->base;
-
-	const BmpHeader* hdr = (const BmpHeader*)file;
+	const BmpHeader* hdr = (const BmpHeader*)data;
 	const long w       = (long)read_le32(&hdr->biWidth);
 	const long h_      = (long)read_le32(&hdr->biHeight);
 	const u16 bpp      = read_le16(&hdr->biBitCount);

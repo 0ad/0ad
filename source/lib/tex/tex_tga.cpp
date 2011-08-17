@@ -111,12 +111,10 @@ static size_t tga_hdr_size(const u8* file)
 }
 
 
-// requirements: uncompressed, direct colour, bottom up
-static Status tga_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
+// requirements: uncompressed, direct color, bottom up
+static Status tga_decode(rpU8 data, size_t UNUSED(size), Tex* RESTRICT t)
 {
-	u8* file = da->base;
-
-	TgaHeader* hdr = (TgaHeader*)file;
+	const TgaHeader* hdr = (const TgaHeader*)data;
 	const u8 type  = hdr->img_type;
 	const size_t w   = read_le16(&hdr->w);
 	const size_t h   = read_le16(&hdr->h);

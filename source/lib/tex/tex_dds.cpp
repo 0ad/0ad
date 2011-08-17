@@ -588,10 +588,9 @@ static size_t dds_hdr_size(const u8* UNUSED(file))
 }
 
 
-static Status dds_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
+static Status dds_decode(rpU8 data, size_t UNUSED(size), Tex* RESTRICT t)
 {
-	u8* file = da->base;
-	const DDS_HEADER* sd = (const DDS_HEADER*)(file+4);
+	const DDS_HEADER* sd = (const DDS_HEADER*)(data+4);
 	RETURN_STATUS_IF_ERR(decode_sd(sd, t->w, t->h, t->bpp, t->flags));
 	return INFO::OK;
 }

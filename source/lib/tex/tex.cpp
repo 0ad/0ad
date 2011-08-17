@@ -145,12 +145,12 @@ void tex_util_foreach_mipmap(size_t w, size_t h, size_t bpp, const u8* pixels, i
 	for(;;)
 	{
 		// used to skip past this mip level in <data>
-		const size_t level_data_size = (size_t)(round_up(level_w, data_padding) * round_up(level_h, data_padding) * bpp/8);
+		const size_t level_dataSize = (size_t)(round_up(level_w, data_padding) * round_up(level_h, data_padding) * bpp/8);
 
 		if(level >= 0)
-			cb((size_t)level, level_w, level_h, level_data, level_data_size, cbData);
+			cb((size_t)level, level_w, level_h, level_data, level_dataSize, cbData);
 
-		level_data += level_data_size;
+		level_data += level_dataSize;
 
 		// 1x1 reached - done
 		if(level_w == 1 && level_h == 1)
@@ -179,11 +179,11 @@ struct CreateLevelData
 	size_t prev_level_w;
 	size_t prev_level_h;
 	const u8* prev_level_data;
-	size_t prev_level_data_size;
+	size_t prev_level_dataSize;
 };
 
 // uses 2x2 box filter
-static void create_level(size_t level, size_t level_w, size_t level_h, const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT cbData)
+static void create_level(size_t level, size_t level_w, size_t level_h, const u8* RESTRICT level_data, size_t level_dataSize, void* RESTRICT cbData)
 {
 	CreateLevelData* cld = (CreateLevelData*)cbData;
 	const size_t src_w = cld->prev_level_w;
@@ -194,8 +194,8 @@ static void create_level(size_t level, size_t level_w, size_t level_h, const u8*
 	// base level - must be copied over from source buffer
 	if(level == 0)
 	{
-		ENSURE(level_data_size == cld->prev_level_data_size);
-		memcpy(dst, src, level_data_size);
+		ENSURE(level_dataSize == cld->prev_level_dataSize);
+		memcpy(dst, src, level_dataSize);
 	}
 	else
 	{
@@ -239,18 +239,18 @@ static void create_level(size_t level, size_t level_w, size_t level_h, const u8*
 			}
 		}
 
-		ENSURE(dst == level_data + level_data_size);
-		ENSURE(src == cld->prev_level_data + cld->prev_level_data_size);
+		ENSURE(dst == level_data + level_dataSize);
+		ENSURE(src == cld->prev_level_data + cld->prev_level_dataSize);
 	}
 
 	cld->prev_level_data = level_data;
-	cld->prev_level_data_size = level_data_size;
+	cld->prev_level_dataSize = level_dataSize;
 	cld->prev_level_w = level_w;
 	cld->prev_level_h = level_h;
 }
 
 
-static Status add_mipmaps(Tex* t, size_t w, size_t h, size_t bpp, void* newData, size_t data_size)
+static Status add_mipmaps(Tex* t, size_t w, size_t h, size_t bpp, void* newData, size_t dataSize)
 {
 	// this code assumes the image is of POT dimension; we don't
 	// go to the trouble of implementing image scaling because
@@ -261,7 +261,7 @@ static Status add_mipmaps(Tex* t, size_t w, size_t h, size_t bpp, void* newData,
 	const size_t mipmap_size = tex_img_size(t);
 	shared_ptr<u8> mipmapData;
 	AllocateAligned(mipmapData, mipmap_size);
-	CreateLevelData cld = { bpp/8, w, h, (const u8*)newData, data_size };
+	CreateLevelData cld = { bpp/8, w, h, (const u8*)newData, dataSize };
 	tex_util_foreach_mipmap(w, h, bpp, mipmapData.get(), 0, 1, create_level, &cld);
 	t->data = mipmapData;
 	t->dataSize = mipmap_size;
@@ -295,7 +295,7 @@ TIMER_ACCRUE(tc_plain_transform);
 	// extract texture info
 	const size_t w = t->w, h = t->h, bpp = t->bpp;
 	const size_t flags = t->flags;
-	u8* const data = tex_get_data(t);
+	u8* const srcStorage = tex_get_data(t);
 
 	// sanity checks (not errors, we just can't handle these cases)
 	// .. unknown transform
@@ -307,15 +307,15 @@ TIMER_ACCRUE(tc_plain_transform);
 	if(!transforms)
 		return INFO::OK;
 
-	const size_t data_size = tex_img_size(t);	// size of source
-	size_t new_data_size = data_size;	// size of destination
+	const size_t srcSize = tex_img_size(t);
+	size_t dstSize = srcSize;
 
 	if(transforms & TEX_ALPHA)
 	{
 		// add alpha channel
 		if(bpp == 24)
 		{
-			new_data_size = (data_size / 3) * 4;
+			dstSize = (srcSize / 3) * 4;
 			t->bpp = 32;
 		}
 		// remove alpha channel
@@ -323,7 +323,7 @@ TIMER_ACCRUE(tc_plain_transform);
 		{
 			return INFO::TEX_CODEC_CANNOT_HANDLE;
 		}
-		// can't have alpha with greyscale
+		// can't have alpha with grayscale
 		else
 		{
 			return INFO::TEX_CODEC_CANNOT_HANDLE;
@@ -337,11 +337,11 @@ TIMER_ACCRUE(tc_plain_transform);
 	//
 	// this is necessary even when not flipping because the initial data
 	// is read-only.
-	shared_ptr<u8> newData;
-	AllocateAligned(newData, new_data_size);
+	shared_ptr<u8> dstStorage;
+	AllocateAligned(dstStorage, dstSize);
 
 	// setup row source/destination pointers (simplifies outer loop)
-	u8* dst = (u8*)newData.get();
+	u8* dst = (u8*)dstStorage.get();
 	const u8* src;
 	const size_t pitch = w * bpp/8;	// source bpp (not necessarily dest bpp)
 	// .. avoid y*pitch multiply in row loop; instead, add row_ofs.
@@ -350,19 +350,19 @@ TIMER_ACCRUE(tc_plain_transform);
 	// flipping rows (0,1,2 -> 2,1,0)
 	if(transforms & TEX_ORIENTATION)
 	{
-		src = (const u8*)data+data_size-pitch;	// last row
+		src = (const u8*)srcStorage+srcSize-pitch;	// last row
 		row_ofs = -(ssize_t)pitch;
 	}
 	// adding/removing alpha channel (can't convert in-place)
 	else if(transforms & TEX_ALPHA)
 	{
-		src = (const u8*)data;
+		src = (const u8*)srcStorage;
 	}
 	// do other transforms in-place
 	else
 	{
-		src = (const u8*)newData.get();
-		memcpy(newData.get(), data, data_size);
+		src = (const u8*)dstStorage.get();
+		memcpy(dstStorage.get(), srcStorage, srcSize);
 	}
 
 	// no conversion necessary
@@ -448,12 +448,12 @@ TIMER_ACCRUE(tc_plain_transform);
 		return INFO::TEX_CODEC_CANNOT_HANDLE;
 	}
 
-	t->data = newData;
-	t->dataSize = new_data_size;
+	t->data = dstStorage;
+	t->dataSize = dstSize;
 	t->ofs = 0;
 
 	if(!(t->flags & TEX_MIPMAPS) && transforms & TEX_MIPMAPS)
-		RETURN_STATUS_IF_ERR(add_mipmaps(t, w, h, bpp, newData.get(), new_data_size));
+		RETURN_STATUS_IF_ERR(add_mipmaps(t, w, h, bpp, dstStorage.get(), dstSize));
 
 	CHECK_TEX(t);
 	return INFO::OK;
@@ -671,10 +671,10 @@ u32 tex_get_average_colour(const Tex* t)
 }
 
 
-static void add_level_size(size_t UNUSED(level), size_t UNUSED(level_w), size_t UNUSED(level_h), const u8* RESTRICT UNUSED(level_data), size_t level_data_size, void* RESTRICT cbData)
+static void add_level_size(size_t UNUSED(level), size_t UNUSED(level_w), size_t UNUSED(level_h), const u8* RESTRICT UNUSED(level_data), size_t level_dataSize, void* RESTRICT cbData)
 {
 	size_t* ptotal_size = (size_t*)cbData;
-	*ptotal_size += level_data_size;
+	*ptotal_size += level_dataSize;
 }
 
 // return total byte size of the image pixels. (including mipmaps!)
@@ -714,33 +714,24 @@ size_t tex_hdr_size(const VfsPath& filename)
 // read/write from memory and disk
 //-----------------------------------------------------------------------------
 
-Status tex_decode(const shared_ptr<u8>& data, size_t data_size, Tex* t)
+Status tex_decode(const shared_ptr<u8>& data, size_t dataSize, Tex* t)
 {
 	const TexCodecVTbl* c;
-	RETURN_STATUS_IF_ERR(tex_codec_for_header(data.get(), data_size, &c));
+	RETURN_STATUS_IF_ERR(tex_codec_for_header(data.get(), dataSize, &c));
 
 	// make sure the entire header is available
 	const size_t min_hdr_size = c->hdr_size(0);
-	if(data_size < min_hdr_size)
+	if(dataSize < min_hdr_size)
 		WARN_RETURN(ERR::TEX_INCOMPLETE_HEADER);
 	const size_t hdr_size = c->hdr_size(data.get());
-	if(data_size < hdr_size)
+	if(dataSize < hdr_size)
 		WARN_RETURN(ERR::TEX_INCOMPLETE_HEADER);
 
 	t->data = data;
-	t->dataSize = data_size;
+	t->dataSize = dataSize;
 	t->ofs = hdr_size;
 
-	// for orthogonality, encode and decode both receive the memory as a
-	// DynArray. package data into one and free it again after decoding:
-	DynArray da;
-	RETURN_STATUS_IF_ERR(da_wrap_fixed(&da, data.get(), data_size));
-
-	RETURN_STATUS_IF_ERR(c->decode(&da, t));
-
-	// note: not reached if decode fails. that's not a problem;
-	// this call just zeroes <da> and could be left out.
-	(void)da_free(&da);
+	RETURN_STATUS_IF_ERR(c->decode((rpU8)data.get(), dataSize, t));
 
 	// sanity checks
 	if(!t->w || !t->h || t->bpp > 32)

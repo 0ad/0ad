@@ -169,12 +169,9 @@ METHODDEF(void) src_term(j_decompress_ptr UNUSED(cinfo))
 * The caller is responsible for freeing it after finishing decompression.
 */
 
-GLOBAL(void) src_prepare(j_decompress_ptr cinfo, DynArray* da)
+GLOBAL(void) src_prepare(j_decompress_ptr cinfo, rpU8 data, size_t size)
 {
 	SrcPtr src;
-
-	const u8* p = da->base;
-	const size_t size = da->cur_size;
 
 	/* Treat 0-length buffer as fatal error */
 	if(size == 0)
@@ -207,7 +204,7 @@ GLOBAL(void) src_prepare(j_decompress_ptr cinfo, DynArray* da)
 	* if fill_input_buffer is called, the buffer was overrun.
 	*/
 	src->pub.bytes_in_buffer   = size;
-	src->pub.next_input_byte   = (JOCTET*)p;
+	src->pub.next_input_byte   = (JOCTET*)data;
 }
 
 
@@ -443,9 +440,9 @@ static Status jpg_transform(Tex* UNUSED(t), size_t UNUSED(transforms))
 // due to less copying.
 
 
-static Status jpg_decode_impl(DynArray* da, jpeg_decompress_struct* cinfo, Tex* t)
+static Status jpg_decode_impl(rpU8 data, size_t size, jpeg_decompress_struct* cinfo, Tex* t)
 {
-	src_prepare(cinfo, da);
+	src_prepare(cinfo, data, size);
 
 	// ignore return value since:
 	// - suspension is not possible with the mem data source
@@ -479,12 +476,12 @@ static Status jpg_decode_impl(DynArray* da, jpeg_decompress_struct* cinfo, Tex* 
 
 	// alloc destination buffer
 	const size_t pitch = w * bpp / 8;
-	const size_t img_size = pitch * h;	// for allow_rows
-	shared_ptr<u8> data;
-	AllocateAligned(data, img_size, pageSize);
+	const size_t imgSize = pitch * h;	// for allow_rows
+	shared_ptr<u8> img;
+	AllocateAligned(img, imgSize, pageSize);
 
 	// read rows
-	std::vector<RowPtr> rows = tex_codec_alloc_rows(data.get(), h, pitch, TEX_TOP_DOWN, 0);
+	std::vector<RowPtr> rows = tex_codec_alloc_rows(img.get(), h, pitch, TEX_TOP_DOWN, 0);
 	// could use cinfo->output_scanline to keep track of progress,
 	// but we need to count lines_left anyway (paranoia).
 	JSAMPARRAY row = (JSAMPARRAY)&rows[0];
@@ -507,8 +504,8 @@ static Status jpg_decode_impl(DynArray* da, jpeg_decompress_struct* cinfo, Tex* 
 		ret = WARN::TEX_INVALID_DATA;
 
 	// store image info
-	t->data  = data;
-	t->dataSize = img_size;
+	t->data  = img;
+	t->dataSize = imgSize;
 	t->ofs   = 0;
 	t->w     = w;
 	t->h     = h;
@@ -588,7 +585,7 @@ static size_t jpg_hdr_size(const u8* UNUSED(file))
 }
 
 
-static Status jpg_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
+static Status jpg_decode(rpU8 data, size_t size, Tex* RESTRICT t)
 {
 	// contains the JPEG decompression parameters and pointers to
 	//  working space (allocated as needed by the JPEG library).
@@ -600,7 +597,7 @@ static Status jpg_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 
 	jpeg_create_decompress(&cinfo);
 
-	Status ret = jpg_decode_impl(da, &cinfo, t);
+	Status ret = jpg_decode_impl(data, size, &cinfo, t);
 
 	jpeg_destroy_decompress(&cinfo); // releases a "good deal" of memory
 

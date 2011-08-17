@@ -49,13 +49,44 @@
 // 
 //-----------------------------------------------------------------------------
 
+class MemoryStream
+{
+public:
+	MemoryStream(rpU8 data, size_t size)
+		: data(data), size(size), pos(0)
+	{
+	}
+
+	size_t RemainingSize() const
+	{
+		ASSERT(pos <= size);
+		return size-pos;
+	}
+
+	void CopyTo(rpU8 dst, size_t dstSize)
+	{
+		memcpy(dst, data+pos, dstSize);
+		pos += dstSize;
+	}
+
+private:
+	rpU8 data;
+	size_t size;
+	size_t pos;
+};
+
 
 // pass data from PNG file in memory to libpng
-static void io_read(png_struct* png_ptr, u8* data, png_size_t length)
+static void io_read(png_struct* png_ptr, rpU8 data, png_size_t size)
 {
-	DynArray* da = (DynArray*)png_get_io_ptr(png_ptr);
-	if(da_read(da, data, length) != 0)
-		png_error(png_ptr, "io_read failed");
+	MemoryStream* stream = (MemoryStream*)png_get_io_ptr(png_ptr);
+	if(stream->RemainingSize() < size)
+	{
+		png_error(png_ptr, "PNG: not enough input");
+		return;
+	}
+
+	stream->CopyTo(data, size);
 }
 
 
@@ -87,9 +118,9 @@ static Status png_transform(Tex* UNUSED(t), size_t UNUSED(transforms))
 
 // split out of png_decode to simplify resource cleanup and avoid
 // "dtor / setjmp interaction" warning.
-static Status png_decode_impl(DynArray* da, png_structp png_ptr, png_infop info_ptr, Tex* t)
+static Status png_decode_impl(MemoryStream* stream, png_structp png_ptr, png_infop info_ptr, Tex* t)
 {
-	png_set_read_fn(png_ptr, da, io_read);
+	png_set_read_fn(png_ptr, stream, io_read);
 
 	// read header and determine format
 	png_read_info(png_ptr, info_ptr);
@@ -120,10 +151,10 @@ static Status png_decode_impl(DynArray* da, png_structp png_ptr, png_infop info_
 	png_read_end(png_ptr, info_ptr);
 
 	// success; make sure all data was consumed.
-	ENSURE(da->pos == da->cur_size);
+	ENSURE(stream->RemainingSize() == 0);
 
 	// store image info
-	t->data  = data;
+	t->data     = data;
 	t->dataSize = img_size;
 	t->ofs   = 0;
 	t->w     = w;
@@ -200,11 +231,10 @@ static size_t png_hdr_size(const u8* UNUSED(file))
 TIMER_ADD_CLIENT(tc_png_decode);
 
 // limitation: palette images aren't supported
-static Status png_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
+static Status png_decode(rpU8 data, size_t size, Tex* RESTRICT t)
 {
 TIMER_ACCRUE(tc_png_decode);
 
-	Status ret = ERR::FAIL;
 	png_infop info_ptr = 0;
 
 	// allocate PNG structures; use default stderr and longjmp error handlers
@@ -213,17 +243,21 @@ TIMER_ACCRUE(tc_png_decode);
 		WARN_RETURN(ERR::FAIL);
 	info_ptr = png_create_info_struct(png_ptr);
 	if(!info_ptr)
-		goto fail;
+	{
+		png_destroy_read_struct(&png_ptr, &info_ptr, 0);
+		WARN_RETURN(ERR::NO_MEM);
+	}
 	// setup error handling
 	if(setjmp(png_jmpbuf(png_ptr)))
 	{
 		// libpng longjmps here after an error
-		goto fail;
+		png_destroy_read_struct(&png_ptr, &info_ptr, 0);
+		WARN_RETURN(ERR::FAIL);
 	}
 
-	ret = png_decode_impl(da, png_ptr, info_ptr, t);
+	MemoryStream stream(data, size);
+	Status ret = png_decode_impl(&stream, png_ptr, info_ptr, t);
 
-fail:
 	png_destroy_read_struct(&png_ptr, &info_ptr, 0);
 	
 	return ret;

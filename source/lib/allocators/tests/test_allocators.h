@@ -37,16 +37,5 @@ public:
 		TS_ASSERT_OK(da_set_size(&da, 1000));
 		TS_ASSERT_OK(da_set_prot(&da, PROT_NONE));
 		TS_ASSERT_OK(da_free(&da));
-
-		// test wrapping existing mem blocks for use with da_read
-		u8 data[4] = { 0x12, 0x34, 0x56, 0x78 };
-		TS_ASSERT_OK(da_wrap_fixed(&da, data, sizeof(data)));
-		u8 buf[4];
-		TS_ASSERT_OK(da_read(&da, buf, 4));
-		TS_ASSERT_EQUALS(read_le32(buf), (u32)0x78563412);	// read correct value
-		debug_SkipErrors(ERR::FAIL);
-		TS_ASSERT(da_read(&da, buf, 1) < 0);		// no more data left
-		TS_ASSERT_EQUALS((uint32_t)debug_StopSkippingErrors(), (uint32_t)1);
-		TS_ASSERT_OK(da_free(&da));
 	}
 };

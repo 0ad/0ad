@@ -31,11 +31,6 @@
 #include "lib/allocators/page_aligned.h"
 
 
-// indicates that this DynArray must not be resized or freed
-// (e.g. because it merely wraps an existing memory range).
-// stored in da->prot to reduce size; doesn't conflict with any PROT_* flags.
-const int DA_NOT_OUR_MEM = 0x40000000;
-
 static Status validate_da(DynArray* da)
 {
 	if(!da)
@@ -57,7 +52,7 @@ static Status validate_da(DynArray* da)
 		WARN_RETURN(ERR::_4);
 	if(pos > cur_size || pos > max_size_pa)
 		WARN_RETURN(ERR::_5);
-	if(prot & ~(PROT_READ|PROT_WRITE|PROT_EXEC|DA_NOT_OUR_MEM))
+	if(prot & ~(PROT_READ|PROT_WRITE|PROT_EXEC))
 		WARN_RETURN(ERR::_6);
 
 	return INFO::OK;
@@ -91,16 +86,12 @@ Status da_free(DynArray* da)
 
 	u8* p            = da->base;
 	size_t size_pa   = da->max_size_pa;
-	bool was_wrapped = (da->prot & DA_NOT_OUR_MEM) != 0;
 
 	// wipe out the DynArray for safety
 	// (must be done here because mem_Release may fail)
 	memset(da, 0, sizeof(*da));
 
-	// skip mem_Release if <da> was allocated via da_wrap_fixed
-	// (i.e. it doesn't actually own any memory). don't complain;
-	// da_free is supposed to be called even in the above case.
-	if(!was_wrapped && size_pa)
+	if(size_pa)
 		RETURN_STATUS_IF_ERR(mem_Release(p, size_pa));
 	return INFO::OK;
 }
@@ -109,9 +100,6 @@ Status da_free(DynArray* da)
 Status da_set_size(DynArray* da, size_t new_size)
 {
 	CHECK_DA(da);
-
-	if(da->prot & DA_NOT_OUR_MEM)
-		WARN_RETURN(ERR::LOGIC);
 
 	// determine how much to add/remove
 	const size_t cur_size_pa = Align<pageSize>(da->cur_size);
@@ -154,40 +142,10 @@ Status da_set_prot(DynArray* da, int prot)
 {
 	CHECK_DA(da);
 
-	// somewhat more subtle: POSIX mprotect requires the memory have been
-	// mmap-ed, which it probably wasn't here.
-	if(da->prot & DA_NOT_OUR_MEM)
-		WARN_RETURN(ERR::LOGIC);
-
 	da->prot = prot;
 	RETURN_STATUS_IF_ERR(mem_Protect(da->base, da->cur_size_pa, prot));
 
 	CHECK_DA(da);
-	return INFO::OK;
-}
-
-
-Status da_wrap_fixed(DynArray* da, u8* p, size_t size)
-{
-	da->base        = p;
-	da->max_size_pa = Align<pageSize>(size);
-	da->cur_size    = size;
-	da->cur_size_pa = da->max_size_pa;
-	da->prot        = PROT_READ|PROT_WRITE|DA_NOT_OUR_MEM;
-	da->pos         = 0;
-	CHECK_DA(da);
-	return INFO::OK;
-}
-
-
-Status da_read(DynArray* da, void* data, size_t size)
-{
-	// make sure we have enough data to read
-	if(da->pos+size > da->cur_size)
-		WARN_RETURN(ERR::FAIL);
-
-	memcpy(data, da->base+da->pos, size);
-	da->pos += size;
 	return INFO::OK;
 }
 

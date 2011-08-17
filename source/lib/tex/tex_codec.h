@@ -41,16 +41,15 @@ struct TexCodecVTbl
 	/**
 	 * decode the file into a Tex structure.
 	 *
-	 * @param da input data array (not const, because the texture
+	 * @param data input data array (non-const, because the texture
 	 * may have to be flipped in-place - see "texture orientation").
-	 * its size is guaranteed to be >= 4.
-	 * (usually enough to compare the header's "magic" field;
-	 * anyway, no legitimate file will be smaller)
+	 * @param size [bytes] of data, always >= 4
+	 *   (this is usually enough to compare the header's "magic" field,
+	 *    and no legitimate file will be smaller)
 	 * @param t output texture object
 	 * @return Status
 	 **/
-	Status (*decode)(DynArray* RESTRICT da, Tex * RESTRICT t);
-
+	Status (*decode)(u8* data, size_t size, Tex* RESTRICT t);
 
 	/**
 	 * encode the texture data into the codec's file format (in memory).
@@ -63,7 +62,7 @@ struct TexCodecVTbl
 	 * by the caller.
 	 * @return Status
 	 **/
-	Status (*encode)(Tex* RESTRICT t, DynArray * RESTRICT da);
+	Status (*encode)(Tex* RESTRICT t, DynArray* RESTRICT da);
 
 	/**
 	 * transform the texture's pixel format.

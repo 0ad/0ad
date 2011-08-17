@@ -110,33 +110,6 @@ LIB_API Status da_reserve(DynArray* da, size_t size);
 LIB_API Status da_set_prot(DynArray* da, int prot);
 
 /**
- * "wrap" (i.e. store information about) the given buffer in a DynArray.
- *
- * this is used to allow calling da_read or da_append on normal buffers.
- * da_free should be called when the DynArray is no longer needed,
- * even though it doesn't free this memory (but does zero the DynArray).
- *
- * @param da DynArray. Note: any future operations on it that would
- * change the underlying memory (e.g. da_set_size) will fail.
- * @param p target memory (no alignment/padding requirements)
- * @param size maximum size (no alignment requirements)
- * @return Status.
- **/
-LIB_API Status da_wrap_fixed(DynArray* da, u8* p, size_t size);
-
-/**
- * "read" from array, i.e. copy into the given buffer.
- *
- * starts at offset DynArray.pos and advances this.
- *
- * @param da DynArray.
- * @param data_dst destination memory
- * @param size [bytes] to copy
- * @return Status.
- **/
-LIB_API Status da_read(DynArray* da, void* data_dst, size_t size);
-
-/**
  * "write" to array, i.e. copy from the given buffer.
  *
  * starts at offset DynArray.pos and advances this.
