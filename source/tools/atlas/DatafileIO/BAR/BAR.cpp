@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,10 +22,9 @@
 #include "Stream/Stream.h"
 #include "Stream/Memory.h"
 
-//for :25 strncmp and :81 memset
-#include <string.h>
-
 #include <cassert>
+#include <cstdio>
+#include <cstring>
 
 using namespace DatafileIO;
 
@@ -64,7 +63,8 @@ bool BARReader::Initialise()
 	m_Stream.Read(&filetableOffset, 4);
 
 	m_Stream.Read(&unknown, 4);
-	CHECK(unknown == 0);
+	// 0 in AoE3
+	// Non-zero (e.g. 466a800a, 8df1e438) in AoEO; purpose unknown
 
 	m_Stream.Seek(filetableOffset, Stream::FROM_START);
 

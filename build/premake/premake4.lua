@@ -807,12 +807,7 @@ function setup_atlas_projects()
 		table.insert(atlas_extra_links, "xerces-c")
 	end
 
-	setup_atlas_project("AtlasUI", "SharedLib", atlas_src,
-	{	-- include
-		"..",
-		"CustomControls",
-		"Misc"
-	},{	-- extern_libs
+	atlas_extern_libs = {
 		"boost",
 		"comsuppw",
 		--"ffmpeg", -- disabled for now because it causes too many build difficulties
@@ -822,7 +817,19 @@ function setup_atlas_projects()
 		"wxwidgets",
 		"x11",
 		"zlib",
-	},{	-- extra_params
+	}
+	if _OPTIONS["aoe3ed"] then
+		table.insert(atlas_extern_libs, "devil")
+	end
+
+	setup_atlas_project("AtlasUI", "SharedLib", atlas_src,
+	{	-- include
+		"..",
+		"CustomControls",
+		"Misc"
+	},
+	atlas_extern_libs,
+	{	-- extra_params
 		pch_dir = rootdir.."/source/tools/atlas/AtlasUI/Misc/",
 		no_pch = (has_broken_pch),
 		extra_links = atlas_extra_links,
@@ -840,6 +847,7 @@ function setup_atlas_projects()
 			"XMB"
 		},{	-- include
 		},{	-- extern_libs
+			"devil",
 			"xerces",
 			"zlib"
 		},{	-- extra_params

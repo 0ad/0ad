@@ -253,6 +253,23 @@ extern_lib_defs = {
 			})
 		end,
 	},
+	devil = {
+		compile_settings = function()
+			if os.is("windows") then
+				add_default_include_paths("devil")
+			end
+		end,
+		link_settings = function()
+			-- On Windows, it uses #pragma comment(lib ...) to link the library,
+			-- so we only need to include the library-search-path
+			if os.is("windows") then
+				add_default_lib_paths("devil")
+			end
+			add_default_links({
+				unix_names = { "IL", "ILU" },
+			})
+		end,
+	},
 	enet = {
 		compile_settings = function()
 			if not _OPTIONS["with-system-enet"] then
