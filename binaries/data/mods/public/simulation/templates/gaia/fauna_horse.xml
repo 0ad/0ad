@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_fauna_hunt_skittish">
+  <Footprint>
+    <Circle radius="1.65"/>
+    <Height>3.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>gaia</Civ>
+    <SpecificName>Horse</SpecificName>
+    <Icon>gaia/fauna_horse.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Unit radius="1.5"/>
+  </Obstruction>
+  <ResourceSupply>
+    <Amount>200</Amount>
+  </ResourceSupply>
+  <UnitMotion>
+    <WalkSpeed>5.0</WalkSpeed>
+    <Run>
+      <Speed>12.0</Speed>
+      <Range>600.0</Range>
+      <RangeMin>5.0</RangeMin>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>fauna/horse_a.xml</Actor>
+  </VisualActor>
+</Entity>

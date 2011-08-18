@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Celt Market (Newest)">
+      <mesh>structural/celt_market2.dae</mesh>
+      <props>
+        <prop actor="props/structures/celts/market_newest_prop_1.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/market_newest_props_new.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/market_newest_props_wooden.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
+        <prop actor="particle/smoke.xml" attachpoint="smoke"/>
+      </props>
+      <texture>structural/celt_struct_1.dds</texture>
+    </variant>
+  </group>
+</actor>
