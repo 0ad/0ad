@@ -436,7 +436,7 @@ BEGIN_COMMAND(FillTerrain)
 		// Simple 4-way flood fill algorithm using queue and a grid to keep track of visited tiles,
 		//	almost as fast as loop for filling whole map, much faster for small patches
 		SparseGrid<bool> visited(tiles, tiles);
-		std::queue<std::pair<u16, u16>> queue;
+		std::queue<std::pair<u16, u16> > queue;
 
 		// Initial tile
 		queue.push(std::make_pair((u16)x0, (u16)y0));
