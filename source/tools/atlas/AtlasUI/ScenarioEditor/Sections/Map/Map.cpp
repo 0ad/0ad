@@ -144,7 +144,7 @@ void MapSettingsControl::CreateWidgets()
 	gameTypes.Add(_T("conquest"));
 	gameTypes.Add(_T("endless"));
 
-	wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2, 2, 5, 5);
+	wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2, 5, 5);
 	gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Reveal map")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 	gridSizer->Add(new wxCheckBox(this, ID_MapReveal, wxEmptyString));
 	gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Game type")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
@@ -156,7 +156,7 @@ void MapSettingsControl::CreateWidgets()
 	sizer->AddSpacer(5);
 
 	wxStaticBoxSizer* keywordsSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Keywords"));
-	wxFlexGridSizer* kwGridSizer = new wxFlexGridSizer(2, 2, 5, 5);
+	wxFlexGridSizer* kwGridSizer = new wxFlexGridSizer(2, 5, 5);
 	kwGridSizer->Add(new wxStaticText(this, wxID_ANY, _("Demo")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 	kwGridSizer->Add(new wxCheckBox(this, ID_MapKW_Demo, wxEmptyString));
 	kwGridSizer->Add(new wxStaticText(this, wxID_ANY, _("Hidden")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
@@ -272,7 +272,7 @@ MapSidebar::MapSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContaine
 
 		sizer->AddSpacer(5);
 
-		wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2, 2, 5, 5);
+		wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2, 5, 5);
 		gridSizer->AddGrowableCol(1);
 
 		wxChoice* sizeChoice = new wxChoice(this, ID_RandomSize);
@@ -483,11 +483,13 @@ void MapSidebar::OnRandomGenerate(wxCommandEvent& WXUNUSED(evt))
 
 	wxString scriptName(settings["Script"]);
 
-	AtlasMessage::qGenerateMap qry(scriptName.c_str(), json);
+	AtlasMessage::qGenerateMap qry((std::wstring)scriptName.wc_str(), json);
 	qry.Post();
 
 	if (qry.status < 0)
-		wxLogError(_("Random map script '%ls' failed"), scriptName.c_str());
+	{
+		wxLogError(_("Random map script '%ls' failed"), scriptName.wc_str());
+	}
 
 	m_ScenarioEditor.NotifyOnMapReload();
 }

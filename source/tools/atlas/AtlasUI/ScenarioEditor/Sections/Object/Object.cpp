@@ -104,7 +104,7 @@ struct ObjectSidebarImpl
 
 	void ActorViewerPostToGame()
 	{
-		POST_MESSAGE(SetActorViewer, (m_ActorViewerEntity.c_str(), m_ActorViewerAnimation.c_str(), m_ActorViewerSpeed, false));
+		POST_MESSAGE(SetActorViewer, ((std::wstring)m_ActorViewerEntity.wc_str(), (std::wstring)m_ActorViewerAnimation.wc_str(), m_ActorViewerSpeed, false));
 	}
 };
 

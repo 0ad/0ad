@@ -308,7 +308,7 @@ void SectionLayout::Build(ScenarioEditor& scenarioEditor)
 
 void SectionLayout::SelectPage(const wxString& classname)
 {
-	std::map<std::wstring, int>::iterator it = m_PageMappings.find(classname.c_str());
+	std::map<std::wstring, int>::iterator it = m_PageMappings.find((std::wstring)classname.wc_str());
 	if (it != m_PageMappings.end())
 		m_SidebarBook->SetSelection(it->second);
 }

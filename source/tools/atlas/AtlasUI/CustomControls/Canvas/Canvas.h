@@ -23,6 +23,9 @@ public:
 	Canvas(wxWindow* parent, int* attribList, long style);
 
 	void InitSize();
+
+	void SetCurrent();
+
 protected:
 	virtual void HandleMouseEvent(wxMouseEvent& evt) = 0;
 
@@ -30,6 +33,8 @@ private:
 	void OnResize(wxSizeEvent& evt);
 	void OnMouseCapture(wxMouseCaptureChangedEvent& evt);
 	void OnMouse(wxMouseEvent& evt);
+
+	wxGLContext m_GLContext;
 
 	bool m_SuppressResize;
 

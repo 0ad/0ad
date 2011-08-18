@@ -115,7 +115,7 @@ public:
 		void Paint(PaintTerrain* obj)
 		{
 			POST_MESSAGE(BrushPreview, (true, obj->m_Pos));
-			POST_COMMAND(PaintTerrain, (obj->m_Pos, g_SelectedTexture.c_str(), GetPriority()));
+			POST_COMMAND(PaintTerrain, (obj->m_Pos, (std::wstring)g_SelectedTexture.wc_str(), GetPriority()));
 		}
 
 		virtual bool IsMouseUp(wxMouseEvent& evt) = 0;

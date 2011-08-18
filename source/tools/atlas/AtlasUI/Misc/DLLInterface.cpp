@@ -231,7 +231,7 @@ public:
 			// One argument => argv[1] is probably a filename to open
 			if (argc > 1)
 			{
-				wxChar* filename = argv[1];
+				wxString filename = argv[1];
 
 				if (filename[0] != _T('-')) // ignore -options
 				{
@@ -240,7 +240,7 @@ public:
 						win->OpenFile(filename);
 					}
 					else
-						wxLogError(_("Cannot find file '%s'"), filename);
+						wxLogError(_("Cannot find file '%s'"), filename.c_str());
 				}
 			}
 		}
@@ -331,4 +331,4 @@ private:
 	}
 };
 
-IMPLEMENT_APP_NO_MAIN(AtlasDLLApp)
+IMPLEMENT_APP_NO_MAIN(AtlasDLLApp);

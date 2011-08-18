@@ -58,7 +58,7 @@ public:
 	void OnText(wxCommandEvent& WXUNUSED(event))
 	{
 		m_OldScale = CinemaTextFloat(*m_TimeText, 2, -5.f, 5.f, m_OldScale);
-		m_Sidebar->UpdatePath(m_Name->GetLineText(0).wc_str(), m_OldScale);
+		m_Sidebar->UpdatePath((std::wstring)m_Name->GetLineText(0).wc_str(), m_OldScale);
 	}
 	void Update(std::wstring name, float scale)
 	{

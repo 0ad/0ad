@@ -23,10 +23,16 @@
 #include "ScenarioEditor/Tools/Common/Tools.h"
 
 Canvas::Canvas(wxWindow* parent, int* attribList, long style)
-	: wxGLCanvas(parent, -1, wxDefaultPosition, wxDefaultSize, style, _T("GLCanvas"), attribList),
+	: wxGLCanvas(parent, -1, attribList, wxDefaultPosition, wxDefaultSize, style, _T("GLCanvas")),
+	m_GLContext(this),
 	m_SuppressResize(true),
 	m_LastMousePos(-1, -1), m_MouseCaptured(false)
 {
+}
+
+void Canvas::SetCurrent()
+{
+	m_GLContext.SetCurrent(*this);
 }
 
 void Canvas::OnResize(wxSizeEvent&)

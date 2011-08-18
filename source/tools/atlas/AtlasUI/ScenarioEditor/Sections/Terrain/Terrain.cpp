@@ -94,7 +94,7 @@ TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebar
 		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Visualise"));
 		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 
-		wxSizer* visSizer = new wxFlexGridSizer(2, 2, 5, 5);
+		wxSizer* visSizer = new wxFlexGridSizer(2, 5, 5);
 		sizer->Add(visSizer);
 
 		wxArrayString defaultChoices;
@@ -136,7 +136,7 @@ void TerrainSidebar::OnPassabilityChoice(wxCommandEvent& evt)
 	if (evt.GetSelection() == 0)
 		POST_MESSAGE(SetViewParamS, (AtlasMessage::eRenderView::GAME, L"passability", L""));
 	else
-		POST_MESSAGE(SetViewParamS, (AtlasMessage::eRenderView::GAME, L"passability", evt.GetString().c_str()));
+		POST_MESSAGE(SetViewParamS, (AtlasMessage::eRenderView::GAME, L"passability", (std::wstring)evt.GetString().wc_str()));
 }
 
 void TerrainSidebar::OnShowPriorities(wxCommandEvent& evt)
@@ -226,7 +226,7 @@ public:
 
 		m_LastTerrainSelection = NULL; // clear any reference to deleted button
 
-		AtlasMessage::qGetTerrainGroupPreviews qry(m_Name.c_str(), imageWidth, imageHeight);
+		AtlasMessage::qGetTerrainGroupPreviews qry((std::wstring)m_Name.wc_str(), imageWidth, imageHeight);
 		qry.Post();
 
 		std::vector<AtlasMessage::sTerrainGroupPreview> previews = *qry.previews;

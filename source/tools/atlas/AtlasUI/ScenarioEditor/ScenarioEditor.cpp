@@ -56,12 +56,12 @@ using namespace AtlasMessage;
 // thread to the standard wx one)
 ATLASDLLIMPEXP void Atlas_GLSetCurrent(void* canvas)
 {
-	static_cast<wxGLCanvas*>(canvas)->SetCurrent();
+	static_cast<Canvas*>(canvas)->SetCurrent();
 }
 
 ATLASDLLIMPEXP void Atlas_GLSwapBuffers(void* canvas)
 {
-	static_cast<wxGLCanvas*>(canvas)->SwapBuffers();
+	static_cast<Canvas*>(canvas)->SwapBuffers();
 }
 
 
@@ -358,6 +358,8 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 {
 	// Global application initialisation:
 
+	wxImage::AddHandler(new wxICOHandler);
+
 	// wxLog::SetTraceMask(wxTraceMessages);
 
 	SetOpenFilename(_T(""));
@@ -369,7 +371,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 		const wxString relativePath (_T("tools/atlas/icons/ScenarioEditor.ico"));
 		wxFileName filename (relativePath, wxPATH_UNIX);
 		filename.MakeAbsolute(Datafile::GetDataDirectory());
-		SetIcon(wxIcon(filename.GetFullPath()));
+		SetIcon(wxIcon(filename.GetFullPath(), wxBITMAP_TYPE_ICO));
 	}
 #endif
 
@@ -608,7 +610,7 @@ void ScenarioEditor::OpenFile(const wxString& name, const wxString& filename)
 	wxBusyCursor busyc;
 
 	// TODO: Work when the map is not in .../maps/scenarios/
-	std::wstring map = name.c_str();
+	std::wstring map(name.wc_str());
 
 	// Deactivate tools, so they don't carry forwards into the new CWorld
 	// and crash.
@@ -679,7 +681,7 @@ void ScenarioEditor::OnSave(wxCommandEvent& event)
 		// the preview units.)
 		m_ToolManager.SetCurrentTool(_T(""));
 
-		std::wstring map = m_OpenFilename.c_str();
+		std::wstring map(m_OpenFilename.wc_str());
 		POST_MESSAGE(SaveMap, (map));
 
 		// Wait for it to finish saving
@@ -702,7 +704,7 @@ void ScenarioEditor::OnSaveAs(wxCommandEvent& WXUNUSED(event))
 		m_ToolManager.SetCurrentTool(_T(""));
 
 		// TODO: Work when the map is not in .../maps/scenarios/
-		std::wstring map = dlg.GetFilename().c_str();
+		std::wstring map(dlg.GetFilename().wc_str());
 		POST_MESSAGE(SaveMap, (map));
 
 		SetOpenFilename(dlg.GetFilename());
@@ -751,7 +753,7 @@ void ScenarioEditor::OnJavaScript(wxCommandEvent& WXUNUSED(event))
 	wxString cmd = ::wxGetTextFromUser(_T(""), _("JS command"), _T(""), this);
 	if (cmd.IsEmpty())
 		return;
-	POST_MESSAGE(JavaScript, (cmd.c_str()));
+	POST_MESSAGE(JavaScript, ((std::wstring)cmd.wc_str()));
 }
 
 void ScenarioEditor::OnCameraReset(wxCommandEvent& WXUNUSED(event))

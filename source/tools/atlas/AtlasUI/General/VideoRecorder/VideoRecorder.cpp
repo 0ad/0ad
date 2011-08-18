@@ -200,7 +200,7 @@ void VideoRecorder::RecordCinematic(wxWindow* window, const wxString& trackName,
 
 	VideoEncoder venc (dlg.m_Filename, dlg.m_Framerate, dlg.m_Bitrate, duration, w, h);
 
-	qCinemaRecord qry(trackName.c_str(), dlg.m_Framerate, duration, w, h, Callback<sCinemaRecordCB>(&callback, (void*)&venc));
+	qCinemaRecord qry((std::wstring)trackName.wc_str(), dlg.m_Framerate, duration, w, h, Callback<sCinemaRecordCB>(&callback, (void*)&venc));
 	qry.Post();
 
 	wxLogMessage(_("Finished recording (took %.1f seconds)\n"), sw.Time()/1000.f);

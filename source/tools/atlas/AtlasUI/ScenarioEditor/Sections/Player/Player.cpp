@@ -72,7 +72,7 @@ public:
 		/////////////////////////////////////////////////////////////////////////
 		// Player Info
 		wxStaticBoxSizer* playerInfoSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Player info"));
-		wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2, 2, 5, 5);
+		wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2, 5, 5);
 		gridSizer->AddGrowableCol(1);
 		gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Name")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 		wxTextCtrl* nameCtrl = new wxTextCtrl(this, wxID_ANY);
@@ -97,7 +97,7 @@ public:
 		/////////////////////////////////////////////////////////////////////////
 		// Resources
 		wxStaticBoxSizer* resourceSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Resources"));
-		gridSizer = new wxFlexGridSizer(2, 2, 5, 5);
+		gridSizer = new wxFlexGridSizer(2, 5, 5);
 		gridSizer->AddGrowableCol(1);
 		gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Food")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 		wxSpinCtrl* foodCtrl = new wxSpinCtrl(this, ID_PlayerFood, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, 0, INT_MAX);
