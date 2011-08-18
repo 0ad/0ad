@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,20 +26,20 @@
 #define TOJSVAL_SETUP() \
 	JSObject* obj = JS_NewObject(scriptInterface.GetContext(), NULL, NULL, NULL); \
 	if (! obj) \
-		return JSVAL_VOID
+		return JSVAL_VOID;
 
 #define SET_MSG_PROPERTY(name) \
 	do { \
 		jsval prop = ScriptInterface::ToJSVal(scriptInterface.GetContext(), this->name); \
 		if (! JS_SetProperty(scriptInterface.GetContext(), obj, #name, &prop)) \
 			return JSVAL_VOID; \
-	} while (0)
+	} while (0);
 
 #define FROMJSVAL_SETUP() \
 	if (! JSVAL_IS_OBJECT(val)) \
 		return NULL; \
-	JSObject* obj = JSVAL_TO_OBJECT(val)
-jsval prop;
+	JSObject* obj = JSVAL_TO_OBJECT(val); \
+	jsval prop;
 
 #define GET_MSG_PROPERTY(type, name) \
 	if (! JS_GetProperty(scriptInterface.GetContext(), obj, #name, &prop)) \
@@ -58,10 +58,10 @@ jsval CMessage::ToJSValCached(ScriptInterface& scriptInterface) const
 
 ////////////////////////////////
 
-jsval CMessageTurnStart::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
+jsval CMessageTurnStart::ToJSVal(ScriptInterface& scriptInterface) const
 {
-	LOGWARNING(L"CMessageTurnStart::ToJSVal not implemented");
-	return JSVAL_VOID;
+	TOJSVAL_SETUP();
+	return OBJECT_TO_JSVAL(obj);
 }
 
 CMessage* CMessageTurnStart::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
@@ -250,6 +250,19 @@ CMessage* CMessageTerrainChanged::FromJSVal(ScriptInterface& scriptInterface, js
 	GET_MSG_PROPERTY(int32_t, i1);
 	GET_MSG_PROPERTY(int32_t, j1);
 	return new CMessageTerrainChanged(i0, i1, j0, j1);
+}
+
+////////////////////////////////
+
+jsval CMessageTerritoriesChanged::ToJSVal(ScriptInterface& scriptInterface) const
+{
+	TOJSVAL_SETUP();
+	return OBJECT_TO_JSVAL(obj);
+}
+
+CMessage* CMessageTerritoriesChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+{
+	return new CMessageTerritoriesChanged();
 }
 
 ////////////////////////////////

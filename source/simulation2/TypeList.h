@@ -45,6 +45,7 @@ MESSAGE(PositionChanged)
 MESSAGE(MotionChanged)
 MESSAGE(RangeUpdate)
 MESSAGE(TerrainChanged)
+MESSAGE(TerritoriesChanged)
 MESSAGE(PathResult)
 
 // TemplateManager must come before all other (non-test) components,

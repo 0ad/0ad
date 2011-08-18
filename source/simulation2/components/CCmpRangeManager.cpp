@@ -916,7 +916,7 @@ public:
 		{
 			for (u16 i = 0; i < grid.m_W; ++i)
 			{
-				u8 p = grid.get(i, j);
+				u8 p = grid.get(i, j) & ICmpTerritoryManager::TERRITORY_PLAYER_MASK;
 				if (p > 0 && p <= MAX_LOS_PLAYER_ID)
 				{
 					m_LosState[i + j*m_TerrainVerticesPerSide] |= (LOS_EXPLORED << (2*(p-1)));

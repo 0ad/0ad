@@ -18,8 +18,10 @@
 #ifndef INCLUDED_ICMPTERRITORYMANAGER
 #define INCLUDED_ICMPTERRITORYMANAGER
 
-#include "simulation2/helpers/Grid.h"
 #include "simulation2/system/Interface.h"
+
+#include "simulation2/helpers/Grid.h"
+#include "simulation2/helpers/Player.h"
 #include "simulation2/components/ICmpPosition.h"
 
 class ICmpTerritoryManager : public IComponent
@@ -27,14 +29,27 @@ class ICmpTerritoryManager : public IComponent
 public:
 	virtual bool NeedUpdate(size_t* dirtyID) = 0;
 
+	static const int TERRITORY_PLAYER_MASK = 0x7F;
+	static const int TERRITORY_CONNECTED_MASK = 0x80;
+
+	/**
+	 * For each tile, the TERRITORY_PLAYER_MASK bits are player ID;
+	 * TERRITORY_CONNECTED_MASK is set if the tile is connected to a root object
+	 * (civ center etc).
+	 */
 	virtual const Grid<u8>& GetTerritoryGrid() = 0;
 
 	/**
-	 * Get owner of territory at given position
-	 *
+	 * Get owner of territory at given position.
 	 * @return player ID of owner; 0 if neutral territory
 	 */
-	virtual int32_t GetOwner(entity_pos_t x, entity_pos_t z) = 0;
+	virtual player_id_t GetOwner(entity_pos_t x, entity_pos_t z) = 0;
+
+	/**
+	 * Get whether territory at given position is connected to a root object
+	 * (civ center etc) owned by that territory's player.
+	 */
+	virtual bool IsConnected(entity_pos_t x, entity_pos_t z) = 0;
 
 	DECLARE_INTERFACE_TYPE(TerritoryManager)
 };

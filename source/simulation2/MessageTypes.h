@@ -287,6 +287,19 @@ public:
 };
 
 /**
+ * Sent when territory assignments have changed.
+ */
+class CMessageTerritoriesChanged : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(TerritoriesChanged)
+
+	CMessageTerritoriesChanged()
+	{
+	}
+};
+
+/**
  * Sent by CCmpRangeManager at most once per turn, when an active range query
  * has had matching units enter/leave the range since the last RangeUpdate.
  */

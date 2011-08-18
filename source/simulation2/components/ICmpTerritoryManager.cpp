@@ -22,5 +22,6 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(TerritoryManager)
-DEFINE_INTERFACE_METHOD_2("GetOwner", int32_t, ICmpTerritoryManager, GetOwner, entity_pos_t, entity_pos_t)
+DEFINE_INTERFACE_METHOD_2("GetOwner", player_id_t, ICmpTerritoryManager, GetOwner, entity_pos_t, entity_pos_t)
+DEFINE_INTERFACE_METHOD_2("IsConnected", bool, ICmpTerritoryManager, IsConnected, entity_pos_t, entity_pos_t)
 END_INTERFACE_WRAPPER(TerritoryManager)

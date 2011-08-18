@@ -15,6 +15,6 @@ TEX los, fragment.texcoord[1], texture[2], 2D;
 MUL result.color.rgb, color, los.a;
 
 // Use alpha from base texture
-MOV result.color.a, base.a;
+MUL result.color.a, objectColor.a, base.a;
 
 END

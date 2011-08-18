@@ -30,6 +30,8 @@ public:
 	 */
 	virtual i32 GetCost() = 0;
 
+	virtual bool IsRoot() = 0;
+
 	virtual u32 GetWeight() = 0;
 
 	virtual u32 GetRadius() = 0;

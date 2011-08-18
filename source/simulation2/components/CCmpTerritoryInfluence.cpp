@@ -30,6 +30,7 @@ public:
 	DEFAULT_COMPONENT_ALLOCATOR(TerritoryInfluence)
 
 	i32 m_Cost;
+	bool m_Root;
 	u32 m_Weight;
 	u32 m_Radius;
 
@@ -43,6 +44,9 @@ public:
 					"</data>"
 				"</element>"
 			"</optional>"
+			"<element name='Root'>"
+				"<data type='boolean'/>"
+			"</element>"
 			"<element name='Weight'>"
 				"<data type='nonNegativeInteger'/>"
 			"</element>"
@@ -58,6 +62,7 @@ public:
 		else
 			m_Cost = -1;
 
+		m_Root = paramNode.GetChild("Root").ToBool();
 		m_Weight = paramNode.GetChild("Weight").ToInt();
 		m_Radius = paramNode.GetChild("Radius").ToInt();
 	}
@@ -78,6 +83,11 @@ public:
 	virtual i32 GetCost()
 	{
 		return m_Cost;
+	}
+
+	virtual bool IsRoot()
+	{
+		return m_Root;
 	}
 
 	virtual u32 GetWeight()

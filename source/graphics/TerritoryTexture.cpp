@@ -192,7 +192,7 @@ void CTerritoryTexture::GenerateBitmap(const Grid<u8>& territories, u8* bitmap, 
 	{
 		for (ssize_t i = 0; i < w; ++i)
 		{
-			u8 val = territories.get(i, j);
+			u8 val = territories.get(i, j) & ICmpTerritoryManager::TERRITORY_PLAYER_MASK;
 
 			CColor color(1, 0, 1, 1);
 			if (val < colors.size())
@@ -202,14 +202,10 @@ void CTerritoryTexture::GenerateBitmap(const Grid<u8>& territories, u8* bitmap, 
 			*p++ = (int)(color.g*255.f);
 			*p++ = (int)(color.r*255.f);
 
-			if ((i > 0 && territories.get(i-1, j) != val)
-			 || (i < w-1 && territories.get(i+1, j) != val)
-			 || (j > 0 && territories.get(i, j-1) != val)
-			 || (j < h-1 && territories.get(i, j+1) != val)
-//			 || (i > 0 && j > 0 && territories.get(i-1, j-1) != val)
-//			 || (i < w-1 && j > 0 && territories.get(i+1, j-1) != val)
-//			 || (i > 0 && j > h-1 && territories.get(i-1, j+1) != val)
-//			 || (i < w-1 && j < h-1 && territories.get(i+1, j+1) != val)
+			if ((i > 0 && (territories.get(i-1, j) & ICmpTerritoryManager::TERRITORY_PLAYER_MASK) != val)
+			 || (i < w-1 && (territories.get(i+1, j) & ICmpTerritoryManager::TERRITORY_PLAYER_MASK) != val)
+			 || (j > 0 && (territories.get(i, j-1) & ICmpTerritoryManager::TERRITORY_PLAYER_MASK) != val)
+			 || (j < h-1 && (territories.get(i, j+1) & ICmpTerritoryManager::TERRITORY_PLAYER_MASK) != val)
 			)
 			{
 				*p++ = alphaMax;

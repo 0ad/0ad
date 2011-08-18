@@ -66,6 +66,9 @@
     <BarHeight>0.6</BarHeight>
     <HeightOffset>12.0</HeightOffset>
   </StatusBars>
+  <TerritoryDecay>
+    <HealthDecayRate>20</HealthDecayRate>
+  </TerritoryDecay>
   <Vision>
     <Range>40</Range>
     <RetainInFog>true</RetainInFog>

@@ -82,7 +82,11 @@ Timer.prototype.OnUpdate = function(msg)
 
 		var cmp = Engine.QueryInterface(t[0], t[1]);
 		if (!cmp)
-			continue; // the entity was probably destroyed
+		{
+			// The entity was probably destroyed; clean up the timer
+			delete this.timers[id];
+			continue;
+		}
 
 		try {
 			var lateness = this.time - t[3];
