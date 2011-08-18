@@ -162,6 +162,11 @@ class MockTerrain : public ICmpTerrain
 public:
 	DEFAULT_MOCK_COMPONENT()
 
+	virtual bool IsLoaded()
+	{
+		return true;
+	}
+
 	virtual CFixedVector3D CalcNormal(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z))
 	{
 		return CFixedVector3D(fixed::FromInt(0), fixed::FromInt(1), fixed::FromInt(0));
