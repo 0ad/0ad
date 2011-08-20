@@ -4,7 +4,17 @@
   <group>
     <variant frequency="100" name="mesh">
       <mesh>props/hele_trireme_mainsail.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="sail_eye">
       <texture>props/hele_sail_eye_war.dds</texture>
+    </variant>
+    <variant frequency="1" name="sail_pegasus">
+      <texture>props/hele_sail_pegasus_war.dds</texture>
+    </variant>
+    <variant frequency="1" name="sail_star">
+      <texture>props/hele_sail_star_war.dds</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>
