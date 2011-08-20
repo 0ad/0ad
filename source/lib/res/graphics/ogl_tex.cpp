@@ -77,8 +77,13 @@ static bool wrap_valid(GLint wrap)
 }
 
 
-static bool filter_uses_mipmaps(GLint filter)
+static bool are_mipmaps_needed(size_t width, size_t height, GLint filter)
 {
+	// can't upload the entire texture; we're going to skip some
+	// levels until it no longer exceeds the OpenGL dimension limit.
+	if((GLint)width > ogl_max_tex_size || (GLint)height > ogl_max_tex_size)
+		return true;
+
 	switch(filter)
 	{
 	case GL_NEAREST_MIPMAP_NEAREST:
@@ -466,16 +471,15 @@ static Status OglTex_validate(const OglTex* ot)
 		// .. == 0; texture file probably not loaded successfully.
 		if(w == 0 || h == 0)
 			WARN_RETURN(ERR::_11);
-		// .. greater than max supported tex dimension.
-		//    no-op if ogl_Init not yet called
-		if(w > (size_t)ogl_max_tex_size || h > (size_t)ogl_max_tex_size)
-			WARN_RETURN(ERR::_12);
 		// .. not power-of-2.
 		//    note: we can't work around this because both NV_texture_rectangle
 		//    and subtexture require work for the client (changing tex coords).
 		//    TODO: ARB_texture_non_power_of_two
 		if(!is_pow2(w) || !is_pow2(h))
 			WARN_RETURN(ERR::_13);
+
+		// no longer verify dimensions are less than ogl_max_tex_size,
+		// because we just use the higher mip levels in that case.
 	}
 
 	// texture state
@@ -754,7 +758,7 @@ static Status get_mipmaps(Tex* t, GLint filter, int q_flags, int* plevels_to_ski
 {
 	// decisions:
 	// .. does filter call for uploading mipmaps?
-	const bool need_mipmaps = filter_uses_mipmaps(filter);
+	const bool need_mipmaps = are_mipmaps_needed(t->w, t->h, filter);
 	// .. does the image data include mipmaps? (stored as separate
 	//    images after the regular texels)
 	const bool includes_mipmaps = (t->flags & TEX_MIPMAPS) != 0;
@@ -798,14 +802,24 @@ static Status get_mipmaps(Tex* t, GLint filter, int q_flags, int* plevels_to_ski
 	// t contains mipmaps; we can apply our resolution reduction trick:
 	if(*plevels_to_skip == 0)
 	{
+		// if OpenGL's texture dimension limit is too small, use the
+		// higher mipmap levels. NB: the minimum guaranteed size is
+		// far too low, and menu background textures may be large.
+		GLint w = (GLint)t->w, h = (GLint)t->h;
+		while(w > ogl_max_tex_size || h > ogl_max_tex_size)
+		{
+			(*plevels_to_skip)++;
+			w /= 2; h /= 2;	// doesn't matter if either dimension drops to 0
+		}
+
 		// this saves texture memory by skipping some of the lower
 		// (high-resolution) mip levels.
 		//
 		// note: we don't just use GL_TEXTURE_BASE_LEVEL because it would
 		// require uploading unused levels, which is wasteful.
 		// .. can be expanded to reduce to 1/4, 1/8 by encoding factor in q_flags.
-		const size_t reduce = (q_flags & OGL_TEX_HALF_RES)? 2 : 1;
-		*plevels_to_skip = (int)ceil_log2(reduce);
+		if(q_flags & OGL_TEX_HALF_RES)
+			(*plevels_to_skip)++;
 	}
 
 	return INFO::OK;
