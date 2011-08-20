@@ -31,6 +31,7 @@ namespace JSI_IGUIObject
 	JSBool toString(JSContext* cx, uintN argc, jsval* vp);
 	JSBool focus(JSContext* cx, uintN argc, jsval* vp);
 	JSBool blur(JSContext* cx, uintN argc, jsval* vp);
+	JSBool getComputedSize(JSContext* cx, uintN argc, jsval* vp);
 	void init();
 }
 

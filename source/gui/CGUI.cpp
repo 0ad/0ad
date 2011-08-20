@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -1588,6 +1588,36 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			if (!GUI<CSize>::ParseString(attr_value, size))
 				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
 			else image.m_CellSize = size;
+		}
+		else
+		if (attr_name == "fixed_h_aspect_ratio")
+		{
+			float val;
+			if (!GUI<float>::ParseString(attr_value, val))
+				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
+			else image.m_FixedHAspectRatio = val;
+		}
+		else
+		if (attr_name == "round_coordinates")
+		{
+			bool b;
+			if (!GUI<bool>::ParseString(attr_value, b))
+				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
+			else image.m_RoundCoordinates = b;
+		}
+		else
+		if (attr_name == "wrap_mode")
+		{
+			if (attr_value == L"repeat")
+				image.m_WrapMode = GL_REPEAT;
+			else if (attr_value == L"mirrored_repeat")
+				image.m_WrapMode = GL_MIRRORED_REPEAT;
+			else if (attr_value == L"clamp_to_edge")
+				image.m_WrapMode = GL_CLAMP_TO_EDGE;
+			else if (attr_value == L"clamp_to_border")
+				image.m_WrapMode = GL_CLAMP_TO_BORDER;
+			else
+				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
 		}
 		else
 		if (attr_name == "z_level")

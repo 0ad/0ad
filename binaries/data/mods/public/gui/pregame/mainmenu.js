@@ -9,6 +9,31 @@ function init()
 	userReportEnabledText = getGUIObjectByName("userReportEnabledText").caption;
 }
 
+var t0 = new Date;
+function scrollBackgrounds()
+{
+	var layer1 = getGUIObjectByName("backgroundLayer1");
+	var layer2 = getGUIObjectByName("backgroundLayer2");
+	var layer3 = getGUIObjectByName("backgroundLayer3");
+
+	var screen = layer1.parent.getComputedSize();
+	var h = screen.bottom - screen.top; // height of screen
+	var w = h*16/9; // width of background image
+
+	// Offset the layers by oscillating amounts
+	var t = (t0 - new Date) / 1000;
+	var speed = 1/10;
+	var off1 = 0.10 * w * (1+Math.cos(t*speed));
+	var off2 = 0.18 * w * (1+Math.cos(t*speed)) - h*6/9;
+	var off3 = 0.20 * w * (1+Math.cos(t*speed));
+
+	var left = screen.right - w * (1 + Math.ceil(screen.right / w));
+	layer1.size = new GUISize(left + off1, screen.top, screen.right + off1, screen.bottom);
+
+	layer2.size = new GUISize(screen.right - h + off2, screen.top, screen.right + off2, screen.bottom);
+	layer3.size = new GUISize(screen.right - h + off3, screen.top, screen.right + off3, screen.bottom);
+}
+
 function submitUserReportMessage()
 {
 	var input = getGUIObjectByName("userReportMessageInput");
@@ -55,6 +80,8 @@ function formatUserReportStatus(status)
 
 function onTick()
 {
+	scrollBackgrounds();
+
 	if (Engine.IsUserReportEnabled())
 	{
 		getGUIObjectByName("userReportDisabled").hidden = true;

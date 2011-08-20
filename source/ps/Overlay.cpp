@@ -249,9 +249,19 @@ CPos CRect::TopLeft() const
 	return CPos(left, top);
 }
 
+CPos CRect::TopRight() const
+{
+	return CPos(right, top);
+}
+
+CPos CRect::BottomLeft() const
+{
+	return CPos(left, bottom);
+}
+
 CPos CRect::BottomRight() const
 {
-	return CPos(right, right);
+	return CPos(right, bottom);
 }
 
 CPos CRect::CenterPoint() const

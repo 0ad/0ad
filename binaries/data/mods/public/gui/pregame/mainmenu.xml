@@ -13,11 +13,20 @@
 
 	<object	type="image" sprite="bkFillBlack"/>
 
-	<object	name="pg"
-		type="image"
-		sprite="pgBackground"
-		aspectratio="1.333333"
-	>
+	<object	name="pg">
+
+		<object	name="backgroundLayer1"
+			type="image"
+			sprite="background-hellenes1-1"
+		/>
+		<object	name="backgroundLayer2"
+			type="image"
+			sprite="background-hellenes1-2"
+		/>
+		<object	name="backgroundLayer3"
+			type="image"
+			sprite="background-hellenes1-3"
+		/>
 
 		<action on="Tick">
 			onTick();
@@ -445,7 +454,7 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 
 		<object
 			name="userReportDisabled"
-			size="100%-300 300 100% 450"
+			size="100%-304 100%-154 100%-4 100%-4"
 			type="image"
 			style="userReportPanel"
 		>
@@ -468,7 +477,7 @@ You can automatically send us anonymous feedback that will help us fix bugs, and
 
 		<object
 			name="userReportEnabled"
-			size="100%-304 300 100%-4 590"
+			size="100%-304 100%-294 100%-4 100%-4"
 			type="image"
 			style="userReportPanel"
 		>

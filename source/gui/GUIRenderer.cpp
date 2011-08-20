@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -452,15 +452,19 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 		}
 
 		Call.m_Vertices = ObjectSize;
-		// Round the vertex coordinates to integers, to avoid ugly filtering artifacts
-		Call.m_Vertices.left = (int)(Call.m_Vertices.left + 0.5f);
-		Call.m_Vertices.right = (int)(Call.m_Vertices.right + 0.5f);
-		Call.m_Vertices.top = (int)(Call.m_Vertices.top + 0.5f);
-		Call.m_Vertices.bottom = (int)(Call.m_Vertices.bottom + 0.5f);
+		if (cit->m_RoundCoordinates)
+		{
+			// Round the vertex coordinates to integers, to avoid ugly filtering artifacts
+			Call.m_Vertices.left = (int)(Call.m_Vertices.left + 0.5f);
+			Call.m_Vertices.right = (int)(Call.m_Vertices.right + 0.5f);
+			Call.m_Vertices.top = (int)(Call.m_Vertices.top + 0.5f);
+			Call.m_Vertices.bottom = (int)(Call.m_Vertices.bottom + 0.5f);
+		}
 
 		if (! cit->m_TextureName.empty())
 		{
 			CTextureProperties textureProps(cit->m_TextureName);
+			textureProps.SetWrap(cit->m_WrapMode);
 			CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 			texture->Prefetch();
 			Call.m_HasTexture = true;
@@ -535,6 +539,9 @@ CRect SDrawCall::ComputeTexCoords() const
 	// Get the screen's position/size for the block
 	CRect BlockScreen = m_Image->m_TextureSize.GetClientArea(m_ObjectSize);
 
+	if (m_Image->m_FixedHAspectRatio)
+		BlockScreen.right = BlockScreen.left + BlockScreen.GetHeight() * m_Image->m_FixedHAspectRatio;
+
 	// Get the texture's position/size for the block:
 	CRect BlockTex;
 
@@ -592,6 +599,9 @@ void GUIRenderer::Draw(DrawCalls &Calls)
 	// Called every frame, to draw the object (based on cached calculations)
 
 	glDisable(GL_BLEND);
+
+	// Set LOD bias so mipmapped textures are prettier
+	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, -1.f);
 
 	// Iterate through each DrawCall, and execute whatever drawing code is being called
 	for (DrawCalls::const_iterator cit = Calls.begin(); cit != Calls.end(); ++cit)
@@ -670,4 +680,6 @@ void GUIRenderer::Draw(DrawCalls &Calls)
 
 		glDisable(GL_BLEND);
 	}
+
+	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, 0.f);
 }

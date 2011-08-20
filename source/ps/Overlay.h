@@ -120,6 +120,16 @@ public:
 	CPos TopLeft() const;
 
 	/**
+	 * Get Position equivalent to top/right corner
+	 */
+	CPos TopRight() const;
+
+	/**
+	 * Get Position equivalent to bottom/left corner
+	 */
+	CPos BottomLeft() const;
+
+	/**
 	 * Get Position equivalent to bottom/right corner
 	 */
 	CPos BottomRight() const;

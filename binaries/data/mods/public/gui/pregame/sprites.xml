@@ -2,16 +2,27 @@
 
 <sprites>
 
-		<!--
-		==========================================
-		PREGAME GUI - TEXTURE SPRITES - BACKDROPS
-		==========================================
-		-->
+		<sprite name="background-hellenes1-1">
+			<image
+				texture="pregame/backgrounds/hellenes1-1.png"
+				fixed_h_aspect_ratio="1.777777"
+				round_coordinates="false"
+			/>
+		</sprite>
 
-		<sprite name="pgBackground">
-			<image 	texture="pregame/shell/parchment/background.dds"
-				real_texture_placement="0 0 1024 768"
-				size="0 0 100% 100%" 
+		<sprite name="background-hellenes1-2">
+			<image
+				texture="pregame/backgrounds/hellenes1-2.png"
+				round_coordinates="false"
+				wrap_mode="clamp_to_edge"
+			/>
+		</sprite>
+
+		<sprite name="background-hellenes1-3">
+			<image
+				texture="pregame/backgrounds/hellenes1-3.png"
+				round_coordinates="false"
+				wrap_mode="clamp_to_edge"
 			/>
 		</sprite>
 

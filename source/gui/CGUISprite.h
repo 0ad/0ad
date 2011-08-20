@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -77,7 +77,11 @@ struct SGUIImageEffects
  */
 struct SGUIImage
 {
-	SGUIImage() : m_Effects(NULL), m_Border(false), m_DeltaZ(0.f) {}
+	SGUIImage() :
+		m_FixedHAspectRatio(0.f), m_RoundCoordinates(true), m_WrapMode(GL_REPEAT),
+		m_Effects(NULL), m_Border(false), m_DeltaZ(0.f)
+	{
+	}
 
 	// Filename of the texture
 	VfsPath			m_TextureName;
@@ -98,6 +102,23 @@ struct SGUIImage
 	//  which part of the texture is used.
 	//  Equal to CSize(0,0) for non-celled textures.
 	CSize			m_CellSize;
+
+	/**
+	 * If non-zero, then the image's width will be adjusted when rendering so that
+	 * the width:height ratio equals this value.
+	 */
+	float			m_FixedHAspectRatio;
+
+	/**
+	 * If true, the image's coordinates will be rounded to integer pixels when
+	 * rendering, to avoid blurry filtering.
+	 */
+	bool			m_RoundCoordinates;
+
+	/**
+	 * Texture wrapping mode (GL_REPEAT, GL_CLAMP_TO_BORDER, etc)
+	 */
+	GLint			m_WrapMode;
 
 	// Visual effects (e.g. colour modulation)
 	SGUIImageEffects* m_Effects;

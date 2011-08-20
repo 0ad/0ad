@@ -49,6 +49,7 @@ JSFunctionSpec JSI_IGUIObject::JSI_methods[] =
 	{ "toString", JSI_IGUIObject::toString, 0, 0 },
 	{ "focus", JSI_IGUIObject::focus, 0, 0 },
 	{ "blur", JSI_IGUIObject::blur, 0, 0 },
+	{ "getComputedSize", JSI_IGUIObject::getComputedSize, 0, 0 },
 	{ 0 }
 };
 
@@ -75,7 +76,8 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsid id, jsval*
 		propName == "prototype"   ||
 		propName == "toString"    ||
 		propName == "focus"       ||
-		propName == "blur"
+		propName == "blur"        ||
+		propName == "getComputedSize"
 	   )
 		return JS_TRUE;
 
@@ -645,5 +647,34 @@ JSBool JSI_IGUIObject::blur(JSContext* cx, uintN argc, jsval* vp)
 	e->GetGUI()->SetFocusedObject(NULL);
 
 	JS_SET_RVAL(cx, vp, JSVAL_VOID);
+	return JS_TRUE;
+}
+
+JSBool JSI_IGUIObject::getComputedSize(JSContext* cx, uintN argc, jsval* vp)
+{
+	UNUSED2(argc);
+
+	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, JS_THIS_OBJECT(cx, vp), &JSI_IGUIObject::JSI_class, NULL);
+	if (!e)
+		return JS_FALSE;
+
+	e->UpdateCachedSize();
+	CRect size = e->m_CachedActualSize;
+
+	JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
+	try
+	{
+		g_ScriptingHost.SetObjectProperty_Double(obj, "left", size.left);
+		g_ScriptingHost.SetObjectProperty_Double(obj, "right", size.right);
+		g_ScriptingHost.SetObjectProperty_Double(obj, "top", size.top);
+		g_ScriptingHost.SetObjectProperty_Double(obj, "bottom", size.bottom);
+	}
+	catch (PSERROR_Scripting_ConversionFailed)
+	{
+		debug_warn(L"Error creating size object!");
+		return JS_FALSE;
+	}
+
+	JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(obj));
 	return JS_TRUE;
 }
