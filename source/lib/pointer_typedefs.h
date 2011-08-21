@@ -12,8 +12,46 @@
 // naming convention: [const] [restrict] pointer to [const] type
 // supported types: void, signed/unsigned 8/16/32/64 integers, float, double, XMM
 
-// NB: `restrict' is not going into C++0x, so use __restrict to maintain compatibility
-// with VC2010.
+// which general type of pointer should be used in various situations?
+// it would be convenient (especially for allocators) to allow easy
+// pointer arithmetic. char* is one such option. However, that type of
+// pointer (and also u8*) has a special dispensation for aliasing with
+// _anything_ [C99 6.5(7) - we refer to that standard because __restrict
+// compiler extensions are most likely to conform to its semantics],
+// which might prevent optimizations.
+//
+// storing the address in uintptr_t (signed integers must never overflow)
+// does allow easy arithmetic. unfortunately, the ASSUME_ALIGNED macro
+// requires a pointer type. it is not clear whether casting to a pointer
+// provides the same benefit.
+//
+// GCC and MSVC also provide a function attribute indicating a
+// non-aliased pointer is being returned. however, this propagation
+// does not seem to be reliable, especially because compilers may
+// lose track of pointers [1]. it is therefore a waste of effort to
+// annotate ALL pointers with cumbersome declarations, or pollute
+// public interfaces with the following (little-known) typedefs.
+//
+// performance-critical code should instead introduce restricted
+// pointers immediately before they are used to access memory.
+// when combined with ASSUME_ALIGNED annotations, this would seem to
+// provide all of the benefits of pointer analysis. it is therefore
+// safe to use uintptr_t wherever convenient. however, callers usually
+// expect a void* parameter or return value (e.g. in STL allocators).
+// that seems a reasonable convention without any apparent downsides.
+//
+// in summary:
+// - void* for public allocator interfaces;
+// - uintptr_t for variables/arguments (even some public ones)
+//   which are frequently the subject of address manipulations;
+// - restrict-qualified pointers via the following typedefs
+//   [plus ASSUME_ALIGNED, if applicable] shortly before
+//   accessing the underlying storage.
+//
+// 1: http://drdobbs.com/cpp/184403676?pgno=3
+
+// NB: `restrict' is not going into C++0x, so use __restrict to
+// maintain compatibility with VC2010.
 
 typedef void* pVoid;
 typedef void* const cpVoid;
