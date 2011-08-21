@@ -99,16 +99,4 @@ LIB_API void* bucket_alloc(Bucket* b, size_t size);
 
 LIB_API void* bucket_fast_alloc(Bucket* b);
 
-/**
- * make an entry available for reuse in the given Bucket.
- *
- * this is not allowed if created for variable-size elements.
- * rationale: avoids having to pass el_size here and compare with size when
- * allocating; also prevents fragmentation and leaking memory.
- *
- * @param b Bucket*
- * @param el entry allocated via bucket_alloc.
- **/
-LIB_API void bucket_free(Bucket* b, void* el);
-
 #endif	// #ifndef INCLUDED_ALLOCATORS_BUCKET

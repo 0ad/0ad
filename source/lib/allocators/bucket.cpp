@@ -35,6 +35,49 @@
 const size_t bucketSize = 4000;
 
 
+template<typename T, class Allocator = Allocator_Heap, size_t bucketSize = pageSize>
+class Buckets
+{
+public:
+	// (must round up because freelist stores pointers inside objects)
+	static const size_t objectSize = ROUND_UP(sizeof(T), sizeof(intptr_t));
+
+	Buckets(size_t maxObjects)
+		: storage(maxObjects*objectSize)
+	{
+	}
+
+	size_t RemainingObjects()
+	{
+		return (storage.MaxCapacity() - end) / objectSize;
+	}
+
+	T* Allocate()
+	{
+		void* p = mem_freelist_Detach(freelist);
+		if(p)
+		{
+			ASSERT(Contains(p));
+			return (T*)p;
+		}
+
+		return (T*)StorageAppend(storage, end, objectSize);
+	}
+
+	void Deallocate(T* p)
+	{
+		ASSERT(Contains(p));
+		mem_freelist_AddToFront(freelist, p);
+	}
+
+private:
+	Storage storage;
+	size_t end;
+	void* freelist;
+};
+
+
+
 Status bucket_create(Bucket* b, size_t el_size)
 {
 	b->freelist = mem_freelist_Sentinel();
@@ -130,20 +173,4 @@ void* bucket_fast_alloc(Bucket* b)
 	void* ret = b->bucket+b->pos;
 	b->pos += b->el_size;
 	return ret;
-}
-
-
-void bucket_free(Bucket* b, void* el)
-{
-	if(b->el_size == 0)
-	{
-		DEBUG_WARN_ERR(ERR::LOGIC);	// cannot free variable-size items
-		return;
-	}
-
-	mem_freelist_AddToFront(b->freelist, el);
-
-	// note: checking if <el> was actually allocated from <b> is difficult:
-	// it may not be in the currently open bucket, so we'd have to
-	// iterate over the list - too much work.
 }
