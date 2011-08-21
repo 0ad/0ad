@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2011 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,20 +27,14 @@
 #include "lib/sysdep/os/win/wposix/crt_posix.h"		// _get_osfhandle
 
 
-//-----------------------------------------------------------------------------
-// memory mapping
-//-----------------------------------------------------------------------------
-
-// convert POSIX PROT_* flags to their Win32 PAGE_* enumeration equivalents.
-// used by mprotect.
-static DWORD win32_prot(int prot)
+unsigned MemoryProtectionFromPosix(int prot)
 {
+	if(prot == PROT_NONE)
+		return PAGE_NOACCESS;
+
 	// this covers all 8 combinations of read|write|exec
-	// (note that "none" means all flags are 0).
 	switch(prot & (PROT_READ|PROT_WRITE|PROT_EXEC))
 	{
-	case PROT_NONE:
-		return PAGE_NOACCESS;
 	case PROT_READ:
 		return PAGE_READONLY;
 	case PROT_WRITE:
@@ -57,15 +51,22 @@ static DWORD win32_prot(int prot)
 		return PAGE_EXECUTE_READWRITE;
 	case PROT_READ|PROT_WRITE|PROT_EXEC:
 		return PAGE_EXECUTE_READWRITE;
+	default:	// none set
+		DEBUG_WARN_ERR(ERR::INVALID_FLAG);
+		return PAGE_NOACCESS;
 	}
 
-	return 0;	// UNREACHABLE
+	// UNREACHABLE
 }
 
 
+//-----------------------------------------------------------------------------
+// memory mapping
+//-----------------------------------------------------------------------------
+
 int mprotect(void* addr, size_t len, int prot)
 {
-	const DWORD newProtect = win32_prot(prot);
+	const DWORD newProtect = (DWORD)MemoryProtectionFromPosix(prot);
 	DWORD oldProtect;	// required by VirtualProtect
 	const BOOL ok = VirtualProtect(addr, len, newProtect, &oldProtect);
 	WARN_IF_FALSE(ok);
@@ -104,7 +105,7 @@ static Status mmap_mem(void* start, size_t len, int prot, int flags, int fd, voi
 	}
 
 	const DWORD allocationType = want_commit? MEM_COMMIT : MEM_RESERVE;
-	const DWORD protect = win32_prot(prot);
+	const DWORD protect = (DWORD)MemoryProtectionFromPosix(prot);
 	void* p = VirtualAlloc(start, len, allocationType, protect);
 	if(!p)
 	{

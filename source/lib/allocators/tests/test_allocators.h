@@ -35,7 +35,6 @@ public:
 		// basic test of functionality (not really meaningful)
 		TS_ASSERT_OK(da_alloc(&da, 1000));
 		TS_ASSERT_OK(da_set_size(&da, 1000));
-		TS_ASSERT_OK(da_set_prot(&da, PROT_NONE));
 		TS_ASSERT_OK(da_free(&da));
 	}
 };

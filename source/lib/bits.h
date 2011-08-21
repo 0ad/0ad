@@ -229,6 +229,10 @@ inline T round_down(T n, T multiple)
 	return result;
 }
 
+// evaluates to an expression suitable as an initializer
+// for constant static data members.
+#define ROUND_UP(n, multiple) (((n) + (multiple)-1) & ~((multiple)-1))
+
 
 template<typename T>
 inline T MaxPowerOfTwoDivisor(T value)

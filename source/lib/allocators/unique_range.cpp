@@ -28,6 +28,8 @@ static UniqueRangeDeleter deleters[allocationAlignment] = { FreeNone, FreeAligne
 static IdxDeleter numDeleters = 2;
 
 
+// NB: callers should skip this if *idxDeleterOut != 0 (avoids the overhead
+// of an unnecessary indirect function call)
 void RegisterUniqueRangeDeleter(UniqueRangeDeleter deleter, volatile IdxDeleter* idxDeleterOut)
 {
 	ENSURE(deleter);
@@ -44,7 +46,7 @@ void RegisterUniqueRangeDeleter(UniqueRangeDeleter deleter, volatile IdxDeleter*
 	ENSURE(idxDeleter < (IdxDeleter)ARRAY_SIZE(deleters));
 	deleters[idxDeleter] = deleter;
 	COMPILER_FENCE;
-	*idxDeleterOut = idxDeleter;	// linearization point
+	*idxDeleterOut = idxDeleter;
 }
 
 
@@ -66,8 +68,20 @@ UniqueRange AllocateAligned(size_t size, size_t alignment)
 	const UniqueRange::pointer p = rtl_AllocateAligned(alignedSize, alignment);
 
 	static volatile IdxDeleter idxDeleterAligned;
-	if(idxDeleterAligned == 0)
+	if(idxDeleterAligned == 0)	// (optional optimization)
 		RegisterUniqueRangeDeleter(FreeAligned, &idxDeleterAligned);
 
 	return RVALUE(UniqueRange(p, size, idxDeleterAligned));
+}
+
+
+UniqueRange AllocateVM(size_t size, vm::PageType pageType, int prot)
+{
+	const UniqueRange::pointer p = vm::Allocate(size, pageType, prot);
+
+	static volatile IdxDeleter idxDeleter;
+	if(idxDeleter == 0)	// (optional optimization)
+		RegisterUniqueRangeDeleter(vm::Free, &idxDeleter);
+
+	return RVALUE(UniqueRange(p, size, idxDeleter));
 }

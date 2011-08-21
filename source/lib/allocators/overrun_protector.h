@@ -24,7 +24,7 @@
 #define INCLUDED_ALLOCATORS_OVERRUN_PROTECTOR
 
 #include "lib/config2.h"	// CONFIG2_ALLOCATORS_OVERRUN_PROTECTION
-#include "lib/allocators/page_aligned.h"
+#include "lib/sysdep/vm.h"
 
 /**
 OverrunProtector wraps an arbitrary object in isolated page(s) and
@@ -54,7 +54,7 @@ template<class T> class OverrunProtector
 	NONCOPYABLE(OverrunProtector);	// const member
 public:
 	OverrunProtector()
-		: object(new(page_aligned_alloc(sizeof(T))) T())
+		: object(new(vm::Allocate(sizeof(T))) T())
 	{
 		lock();
 	}
@@ -63,7 +63,7 @@ public:
 	{
 		unlock();
 		object->~T();	// call dtor (since we used placement new)
-		page_aligned_free(object, sizeof(T));
+		vm::Free(object, sizeof(T));
 	}
 
 	T* get() const
@@ -75,7 +75,7 @@ public:
 	void lock() const
 	{
 #if CONFIG2_ALLOCATORS_OVERRUN_PROTECTION
-		mprotect(object, sizeof(T), PROT_NONE);
+		vm::Protect(object, sizeof(T), PROT_NONE);
 #endif
 	}
 
@@ -83,7 +83,7 @@ private:
 	void unlock() const
 	{
 #if CONFIG2_ALLOCATORS_OVERRUN_PROTECTION
-		mprotect(object, sizeof(T), PROT_READ|PROT_WRITE);
+		vm::Protect(object, sizeof(T), PROT_READ|PROT_WRITE);
 #endif
 	}
 

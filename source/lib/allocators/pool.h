@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2011 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -21,11 +21,83 @@
  */
 
 /*
- * pool allocator
+ * pool allocator (fixed-size blocks, freelist).
  */
 
 #ifndef INCLUDED_ALLOCATORS_POOL
 #define INCLUDED_ALLOCATORS_POOL
+
+#include "lib/bits.h"	// ROUND_UP
+#include "lib/allocators/allocator_policies.h"
+
+namespace Allocators {
+	
+/**
+ * allocator design parameters:
+ * - O(1) allocation and deallocation;
+ * - fixed-size objects;
+ * - support for deallocating all objects;
+ * - consecutive allocations are back-to-back;
+ * - objects are aligned to the pointer size.
+ **/
+template<typename T, class Storage = Storage_Fixed<> >
+class Pool
+{
+public:
+	// (must round up because freelist stores pointers inside objects)
+	static const size_t objectSize = ROUND_UP(sizeof(T), sizeof(intptr_t));
+
+	Pool(size_t maxObjects)
+		: storage(maxObjects*objectSize)
+	{
+		DeallocateAll();
+	}
+
+	size_t RemainingObjects()
+	{
+		return (storage.MaxCapacity() - end) / objectSize;
+	}
+
+	T* Allocate()
+	{
+		void* p = mem_freelist_Detach(freelist);
+		if(p)
+		{
+			ASSERT(Contains(p));
+			return (T*)p;
+		}
+
+		return (T*)StorageAppend(storage, end, objectSize);
+	}
+
+	void Deallocate(T* p)
+	{
+		ASSERT(Contains(p));
+		mem_freelist_AddToFront(freelist, p);
+	}
+
+	void DeallocateAll()
+	{
+		freelist = mem_freelist_Sentinel();
+		end = 0;
+	}
+
+	// @return whether the address lies within the previously allocated range.
+	bool Contains(uintptr_t address) const
+	{
+		return (address - storage.Address()) < end;
+	}
+
+private:
+	Storage storage;
+	size_t end;
+	void* freelist;
+};
+
+LIB_API void TestPool();
+
+}	// namespace Allocators
+
 
 #include "lib/allocators/dynarray.h"
 
@@ -144,43 +216,6 @@ LIB_API void pool_free_all(Pool* p);
  **/
 LIB_API size_t pool_committed(Pool* p);
 
-
-/**
- * C++ wrapper on top of pool_alloc for fixed-size allocations (determined by sizeof(T))
- *
- * T must be POD (Plain Old Data) because it is memset to 0!
- **/
-template<class T>
-class PoolAllocator
-{
-public:
-	explicit PoolAllocator(size_t maxElements)
-	{
-		(void)pool_create(&m_pool, maxElements*sizeof(T), sizeof(T));
-	}
-
-	~PoolAllocator()
-	{
-		(void)pool_destroy(&m_pool);
-	}
-
-	T* AllocateZeroedMemory()
-	{
-		T* t = (T*)pool_alloc(&m_pool, 0);
-		if(!t)
-			throw std::bad_alloc();
-		memset(t, 0, sizeof(T));
-		return t;
-	}
-
-	void Free(T* t)
-	{
-		pool_free(&m_pool, t);
-	}
-
-private:
-	Pool m_pool;
-};
 
 /**
  * C++ wrapper on top of pool_alloc for variable-sized allocations.

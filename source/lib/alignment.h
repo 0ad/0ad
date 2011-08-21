@@ -65,7 +65,7 @@ static const size_t largePageSize = 0x200000;	// 2 MB
 // misc
 //
 
-static const size_t allocationAlignment = ARCH_AMD64? 16 : 8;
+static const size_t allocationAlignment = 16;
 
 static const size_t KiB = size_t(1) << 10;
 static const size_t MiB = size_t(1) << 20;

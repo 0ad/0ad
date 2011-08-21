@@ -28,7 +28,7 @@
 #include "lib/allocators/dynarray.h"
 
 #include "lib/alignment.h"
-#include "lib/allocators/page_aligned.h"
+#include "lib/sysdep/vm.h"
 
 
 static Status validate_da(DynArray* da)
@@ -39,7 +39,6 @@ static Status validate_da(DynArray* da)
 	const size_t max_size_pa = da->max_size_pa;
 	const size_t cur_size    = da->cur_size;
 	const size_t pos         = da->pos;
-	const int prot           = da->prot;
 
 	// note: this happens if max_size == 0
 //	if(debug_IsPointerBogus(base))
@@ -52,8 +51,6 @@ static Status validate_da(DynArray* da)
 		WARN_RETURN(ERR::_4);
 	if(pos > cur_size || pos > max_size_pa)
 		WARN_RETURN(ERR::_5);
-	if(prot & ~(PROT_READ|PROT_WRITE|PROT_EXEC))
-		WARN_RETURN(ERR::_6);
 
 	return INFO::OK;
 }
@@ -63,17 +60,17 @@ static Status validate_da(DynArray* da)
 
 Status da_alloc(DynArray* da, size_t max_size)
 {
+	ENSURE(max_size != 0);
 	const size_t max_size_pa = Align<pageSize>(max_size);
 
-	u8* p = 0;
-	if(max_size_pa)	// (avoid mmap failure)
-		RETURN_STATUS_IF_ERR(mem_Reserve(max_size_pa, &p));
+	u8* p = (u8*)vm::ReserveAddressSpace(max_size_pa);
+	if(!p)
+		return ERR::NO_MEM;	// NOWARN (already done in vm)
 
 	da->base        = p;
 	da->max_size_pa = max_size_pa;
 	da->cur_size    = 0;
 	da->cur_size_pa = 0;
-	da->prot        = PROT_READ|PROT_WRITE;
 	da->pos         = 0;
 	CHECK_DA(da);
 	return INFO::OK;
@@ -84,15 +81,11 @@ Status da_free(DynArray* da)
 {
 	CHECK_DA(da);
 
-	u8* p            = da->base;
-	size_t size_pa   = da->max_size_pa;
+	vm::ReleaseAddressSpace(da->base, da->max_size_pa);
 
 	// wipe out the DynArray for safety
-	// (must be done here because mem_Release may fail)
 	memset(da, 0, sizeof(*da));
 
-	if(size_pa)
-		RETURN_STATUS_IF_ERR(mem_Release(p, size_pa));
 	return INFO::OK;
 }
 
@@ -113,19 +106,20 @@ Status da_set_size(DynArray* da, size_t new_size)
 		return ERR::LIMIT;	// NOWARN
 
 	u8* end = da->base + cur_size_pa;
+	bool ok = true;
 	// expanding
 	if(size_delta_pa > 0)
-		RETURN_STATUS_IF_ERR(mem_Commit(end, size_delta_pa, da->prot));
+		ok = vm::Commit(uintptr_t(end), size_delta_pa);
 	// shrinking
 	else if(size_delta_pa < 0)
-		RETURN_STATUS_IF_ERR(mem_Decommit(end+size_delta_pa, -size_delta_pa));
+		ok = vm::Decommit(uintptr_t(end+size_delta_pa), -size_delta_pa);
 	// else: no change in page count, e.g. if going from size=1 to 2
 	// (we don't want mem_* to have to handle size=0)
 
 	da->cur_size = new_size;
 	da->cur_size_pa = new_size_pa;
 	CHECK_DA(da);
-	return INFO::OK;
+	return ok? INFO::OK : ERR::FAIL;
 }
 
 
@@ -134,18 +128,6 @@ Status da_reserve(DynArray* da, size_t size)
 	if(da->pos+size > da->cur_size_pa)
 		RETURN_STATUS_IF_ERR(da_set_size(da, da->cur_size_pa+size));
 	da->cur_size = std::max(da->cur_size, da->pos+size);
-	return INFO::OK;
-}
-
-
-Status da_set_prot(DynArray* da, int prot)
-{
-	CHECK_DA(da);
-
-	da->prot = prot;
-	RETURN_STATUS_IF_ERR(mem_Protect(da->base, da->cur_size_pa, prot));
-
-	CHECK_DA(da);
 	return INFO::OK;
 }
 

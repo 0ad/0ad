@@ -33,8 +33,8 @@
 
 #include "lib/alignment.h"
 #include "lib/app_hooks.h"
-#include "lib/allocators/page_aligned.h"
 #include "lib/fnv_hash.h"
+#include "lib/sysdep/vm.h"
 #include "lib/sysdep/cpu.h"	// cpu_CAS
 #include "lib/sysdep/sysdep.h"
 
@@ -207,7 +207,7 @@ static const size_t messageSize = 512*KiB;
 
 void debug_FreeErrorMessage(ErrorMessageMem* emm)
 {
-	page_aligned_free(emm->pa_mem, messageSize);
+	vm::Free(emm->pa_mem, messageSize);
 }
 
 
@@ -274,7 +274,7 @@ const wchar_t* debug_BuildErrorMessage(
 	sys_StatusDescription(0, os_error, ARRAY_SIZE(os_error));
 
 	// rationale: see ErrorMessageMem
-	emm->pa_mem = page_aligned_alloc(messageSize);
+	emm->pa_mem = vm::Allocate(messageSize);
 	wchar_t* const buf = (wchar_t*)emm->pa_mem;
 	if(!buf)
 		return L"(insufficient memory to generate error message)";

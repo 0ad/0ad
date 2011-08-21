@@ -43,11 +43,6 @@ struct DynArray
 	size_t cur_size;	 /// committed
 	size_t cur_size_pa;
 
-	/**
-	 * mprotect flags applied to newly committed pages
-	 **/
-	int prot;
-
 	size_t pos;
 };
 
@@ -96,18 +91,6 @@ LIB_API Status da_set_size(DynArray* da, size_t new_size);
  * @return Status
  **/
 LIB_API Status da_reserve(DynArray* da, size_t size);
-
-/**
- * change access rights of the array memory.
- *
- * used to implement write-protection. affects the currently committed
- * pages as well as all subsequently added pages.
- *
- * @param da DynArray.
- * @param prot a combination of the PROT_* values used with mprotect.
- * @return Status.
- **/
-LIB_API Status da_set_prot(DynArray* da, int prot);
 
 /**
  * "write" to array, i.e. copy from the given buffer.

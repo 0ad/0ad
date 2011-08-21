@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2011 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -29,11 +29,59 @@
 
 #include "lib/alignment.h"
 #include "lib/allocators/freelist.h"
+#include "lib/allocators/allocator_adapters.h"
 
 #include "lib/timer.h"
 
-TIMER_ADD_CLIENT(tc_pool_alloc);
+namespace Allocators {
 
+template<class Storage>
+struct BasicPoolTest
+{
+	void operator()() const
+	{
+		Pool<double, Storage> p(100);
+		const size_t initialSpace = p.RemainingObjects();
+		double* p1 = p.Allocate();
+		ENSURE(p1 != 0);
+		ENSURE(p.Contains(uintptr_t(p1)));
+		ENSURE(p.RemainingObjects() == initialSpace-1);
+		ENSURE(p.Contains(uintptr_t(p1)+1));
+		ENSURE(p.Contains(uintptr_t(p1)+sizeof(double)-1));
+		ENSURE(!p.Contains(uintptr_t(p1)-1));
+		ENSURE(!p.Contains(uintptr_t(p1)+sizeof(double)));
+		if(p.RemainingObjects() == 0)
+			ENSURE(p.Allocate() == 0);	// full
+		else
+			ENSURE(p.Allocate() != 0);	// can still expand
+		p.DeallocateAll();
+		ENSURE(!p.Contains(uintptr_t(p1)));
+
+		p1 = p.Allocate();
+		ENSURE(p1 != 0);
+		ENSURE(p.Contains(uintptr_t(p1)));
+		ENSURE(p.RemainingObjects() == initialSpace-1);
+		double* p2 = p.Allocate();
+		ENSURE(p2 != 0);
+		ENSURE(p.Contains(uintptr_t(p2)));
+		ENSURE(p.RemainingObjects() == initialSpace-2);
+		ENSURE(p2 == (double*)(uintptr_t(p1)+sizeof(double)));
+		if(p.RemainingObjects() == 0)
+			ENSURE(p.Allocate() == 0);	// full
+		else
+			ENSURE(p.Allocate() != 0);	// can still expand
+	}
+};
+
+void TestPool()
+{
+	ForEachStorage<BasicPoolTest>();
+}
+
+}	// namespace Allocators
+
+
+TIMER_ADD_CLIENT(tc_pool_alloc);
 
 Status pool_create(Pool* p, size_t max_size, size_t el_size)
 {

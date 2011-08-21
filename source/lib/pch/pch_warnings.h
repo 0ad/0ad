@@ -10,6 +10,7 @@
 // .. always disabled W4
 # pragma warning(disable:4103)	// alignment changed after including header (boost has #pragma pack/pop in separate headers)
 # pragma warning(disable:4127)	// conditional expression is constant; rationale: see STMT in lib.h.
+# pragma warning(disable:4324)	// structure was padded due to __declspec(align())
 # pragma warning(disable:4351)	// yes, default init of array entries is desired
 # pragma warning(disable:4355)	// 'this' used in base member initializer list
 # pragma warning(disable:4718)	// recursive call has no side effects, deleting

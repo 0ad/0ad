@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2011 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -55,5 +55,8 @@ extern void* mmap(void* start, size_t len, int prot, int flags, int fd, off_t of
 extern int munmap(void* start, size_t len);
 
 extern int mprotect(void* addr, size_t len, int prot); 
+
+// convert POSIX PROT_* flags to their Win32 PAGE_* enumeration equivalents.
+LIB_API unsigned MemoryProtectionFromPosix(int prot);
 
 #endif	// #ifndef INCLUDED_WMMAN

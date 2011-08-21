@@ -27,9 +27,9 @@
 #include "lib/alignment.h"
 #include "lib/timer.h"
 #include "lib/module_init.h"
-#include "lib/allocators/page_aligned.h"
-#include "lib/sysdep/os_cpu.h"
+#include "lib/sysdep/vm.h"
 #include "lib/sysdep/acpi.h"
+#include "lib/sysdep/os_cpu.h"
 #include "lib/sysdep/os/win/win.h"
 #include "lib/sysdep/os/win/wutil.h"
 #include "lib/sysdep/os/win/wcpu.h"
@@ -374,7 +374,7 @@ static double ReadRelativeDistanceFromSLIT(const SLIT* slit)
 static double MeasureRelativeDistance()
 {
 	const size_t size = 32*MiB;
-	void* mem = page_aligned_alloc(size);
+	void* mem = vm::Allocate(size);
 	ASSUME_ALIGNED(mem, pageSize);
 
 	const uintptr_t previousProcessorMask = os_cpu_SetThreadAffinityMask(os_cpu_ProcessorMask());
@@ -395,7 +395,7 @@ static double MeasureRelativeDistance()
 
 	(void)os_cpu_SetThreadAffinityMask(previousProcessorMask);
 
-	page_aligned_free(mem, size);
+	vm::Free(mem, size);
 
 	return maxTime / minTime;
 }
@@ -462,81 +462,54 @@ bool numa_IsMemoryInterleaved()
 
 
 //-----------------------------------------------------------------------------
-// allocator
-//
-//static bool VerifyPages(void* mem, size_t size, size_t pageSize, size_t node)
-//{
-//	WUTIL_FUNC(pQueryWorkingSetEx, BOOL, (HANDLE, PVOID, DWORD));
-//	WUTIL_IMPORT_KERNEL32(QueryWorkingSetEx, pQueryWorkingSetEx);
-//	if(!pQueryWorkingSetEx)
-//		return true;	// can't do anything
-//
-//#if WINVER >= 0x600
-//	size_t largePageSize = os_cpu_LargePageSize();
-//	ENSURE(largePageSize != 0); // this value is needed for later
-//
-//	// retrieve attributes of all pages constituting mem
-//	const size_t numPages = (size + pageSize-1) / pageSize;
-//	PSAPI_WORKING_SET_EX_INFORMATION* wsi = new PSAPI_WORKING_SET_EX_INFORMATION[numPages];
-//	for(size_t i = 0; i < numPages; i++)
-//		wsi[i].VirtualAddress = (u8*)mem + i*pageSize;
-//	pQueryWorkingSetEx(GetCurrentProcess(), wsi, DWORD(sizeof(PSAPI_WORKING_SET_EX_INFORMATION)*numPages));
-//
-//	// ensure each is valid and allocated on the correct node
-//	for(size_t i = 0; i < numPages; i++)
-//	{
-//		const PSAPI_WORKING_SET_EX_BLOCK& attributes = wsi[i].VirtualAttributes;
-//		if(!attributes.Valid)
-//			return false;
-//		if((attributes.LargePage != 0) != (pageSize == largePageSize))
-//		{
-//			debug_printf(L"NUMA: is not a large page\n");
-//			return false;
-//		}
-//		if(attributes.Node != node)
-//		{
-//			debug_printf(L"NUMA: allocated from remote node\n");
-//			return false;
-//		}
-//	}
-//
-//	delete[] wsi;
-//#else
-//	UNUSED2(mem);
-//	UNUSED2(size);
-//	UNUSED2(pageSize);
-//	UNUSED2(node);
-//#endif
-//
-//	return true;
-//}
-//
-//
-//void* numa_AllocateOnNode(size_t node, size_t size, LargePageDisposition largePageDisposition, size_t* ppageSize)
-//{
-//	ENSURE(node < numa_NumNodes());
-//
-//	// see if there will be enough memory (non-authoritative, for debug purposes only)
-//	{
-//		const size_t sizeMiB = size/MiB;
-//		const size_t availableMiB = numa_AvailableMemory(node);
-//		if(availableMiB < sizeMiB)
-//			debug_printf(L"NUMA: warning: node reports insufficient memory (%d vs %d MB)\n", availableMiB, sizeMiB);
-//	}
-//
-//	size_t pageSize;	// (used below even if ppageSize is zero)
-//	void* const mem = numa_Allocate(size, largePageDisposition, &pageSize);
-//	if(ppageSize)
-//		*ppageSize = pageSize;
-//
-//	// we can't use VirtualAllocExNuma - it's only available in Vista and Server 2008.
-//	// workaround: fault in all pages now to ensure they are allocated from the
-//	// current node, then verify page attributes.
-//	const uintptr_t previousProcessorMask = os_cpu_SetThreadAffinityMask(numa_ProcessorMaskFromNode(node));
-//	memset(mem, 0, size);
-//	(void)os_cpu_SetThreadAffinityMask(previousProcessorMask);
-//
-//	VerifyPages(mem, size, pageSize, node);
-//
-//	return mem;
-//}
+
+#if 0
+
+static bool VerifyPages(void* mem, size_t size, size_t pageSize, size_t node)
+{
+	WUTIL_FUNC(pQueryWorkingSetEx, BOOL, (HANDLE, PVOID, DWORD));
+	WUTIL_IMPORT_KERNEL32(QueryWorkingSetEx, pQueryWorkingSetEx);
+	if(!pQueryWorkingSetEx)
+		return true;	// can't do anything
+
+#if WINVER >= 0x600
+	size_t largePageSize = os_cpu_LargePageSize();
+	ENSURE(largePageSize != 0); // this value is needed for later
+
+	// retrieve attributes of all pages constituting mem
+	const size_t numPages = (size + pageSize-1) / pageSize;
+	PSAPI_WORKING_SET_EX_INFORMATION* wsi = new PSAPI_WORKING_SET_EX_INFORMATION[numPages];
+	for(size_t i = 0; i < numPages; i++)
+		wsi[i].VirtualAddress = (u8*)mem + i*pageSize;
+	pQueryWorkingSetEx(GetCurrentProcess(), wsi, DWORD(sizeof(PSAPI_WORKING_SET_EX_INFORMATION)*numPages));
+
+	// ensure each is valid and allocated on the correct node
+	for(size_t i = 0; i < numPages; i++)
+	{
+		const PSAPI_WORKING_SET_EX_BLOCK& attributes = wsi[i].VirtualAttributes;
+		if(!attributes.Valid)
+			return false;
+		if((attributes.LargePage != 0) != (pageSize == largePageSize))
+		{
+			debug_printf(L"NUMA: is not a large page\n");
+			return false;
+		}
+		if(attributes.Node != node)
+		{
+			debug_printf(L"NUMA: allocated from remote node\n");
+			return false;
+		}
+	}
+
+	delete[] wsi;
+#else
+	UNUSED2(mem);
+	UNUSED2(size);
+	UNUSED2(pageSize);
+	UNUSED2(node);
+#endif
+
+	return true;
+}
+
+#endif

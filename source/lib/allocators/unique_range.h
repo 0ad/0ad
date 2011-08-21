@@ -3,6 +3,7 @@
 
 #include "lib/lib_api.h"
 #include "lib/alignment.h"	// allocationAlignment
+#include "lib/sysdep/vm.h"
 
 // we usually don't hold multiple references to allocations, so unique_ptr
 // can be used instead of the more complex (ICC generated incorrect code on
@@ -190,5 +191,8 @@ static inline void swap(UniqueRange& p1, RVALUE_REF(UniqueRange) p2)
 }
 
 LIB_API UniqueRange AllocateAligned(size_t size, size_t alignment);
+
+LIB_API UniqueRange AllocateVM(size_t size, vm::PageType pageSize = vm::kDefault, int prot = PROT_READ|PROT_WRITE);
+
 
 #endif	// #ifndef INCLUDED_ALLOCATORS_UNIQUE_RANGE
