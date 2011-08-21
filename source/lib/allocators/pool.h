@@ -63,7 +63,7 @@ public:
 		void* p = mem_freelist_Detach(freelist);
 		if(p)
 		{
-			ASSERT(Contains(p));
+			ASSERT(Contains((uintptr_t)p));
 			return (T*)p;
 		}
 
@@ -72,7 +72,7 @@ public:
 
 	void Deallocate(T* p)
 	{
-		ASSERT(Contains(p));
+		ASSERT(Contains((uintptr_t)p));
 		mem_freelist_AddToFront(freelist, p);
 	}
 

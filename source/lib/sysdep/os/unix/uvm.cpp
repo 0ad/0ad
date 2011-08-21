@@ -74,10 +74,10 @@ bool Commit(uintptr_t address, size_t size, PageType UNUSED(pageType), int prot)
 	return true;
 }
 
-bool Decommit(void* p, size_t size)
+bool Decommit(uintptr_t address, size_t size)
 {
 	errno = 0;
-	if(mmap(p, size, PROT_NONE, mmap_flags|MAP_NORESERVE|MAP_FIXED, -1, 0) == MAP_FAILED)
+	if(mmap((void*)address, size, PROT_NONE, mmap_flags|MAP_NORESERVE|MAP_FIXED, -1, 0) == MAP_FAILED)
 		return false;
 	return true;
 }
