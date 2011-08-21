@@ -31,6 +31,17 @@
   <Obstruction>
     <Static width="42.0" depth="58.0"/>
   </Obstruction>
+  <Position>
+	<Floating>true</Floating>
+  </Position>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_dock.xml</select>
+      <constructed>interface/complete/building/complete_dock.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <TerritoryDecay disable=""/>
   <VisualActor>
     <Actor>structures/carthaginians/super_dock.xml</Actor>
     <FoundationActor>structures/fndn_dock_super.xml</FoundationActor>
