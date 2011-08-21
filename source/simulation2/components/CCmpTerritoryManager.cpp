@@ -621,7 +621,7 @@ std::vector<CCmpTerritoryManager::TerritoryBoundary> CCmpTerritoryManager::Compu
 				// we reach the starting point again
 
 				boundaries.push_back(TerritoryBoundary());
-				boundaries.back().connected = (owner & TERRITORY_CONNECTED_MASK);
+				boundaries.back().connected = (owner & TERRITORY_CONNECTED_MASK) != 0;
 				boundaries.back().owner = (owner & TERRITORY_PLAYER_MASK);
 				std::vector<CVector2D>& points = boundaries.back().points;
 
@@ -843,7 +843,7 @@ bool CCmpTerritoryManager::IsConnected(entity_pos_t x, entity_pos_t z)
 		return false;
 
 	NearestTile(x, z, i, j, m_Territories->m_W, m_Territories->m_H);
-	return m_Territories->get(i, j) & TERRITORY_CONNECTED_MASK;
+	return (m_Territories->get(i, j) & TERRITORY_CONNECTED_MASK) != 0;
 }
 
 void TerritoryOverlay::StartRender()
