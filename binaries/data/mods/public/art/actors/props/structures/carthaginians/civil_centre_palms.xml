@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Civ centre palms">
+      <mesh>props/kart_civiccentre_palms</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Palm skin a">
+      <texture>gaia/tree_palm_senegal_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="Palm skin b">
+      <texture>gaia/tree_palm_senegal_b.dds</texture>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>
