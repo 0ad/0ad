@@ -93,8 +93,8 @@
 
 		<object size="260 64 100%-16 100%-260" type="image" sprite="BackgroundIndentFillDark">
 			<object size="0 6 100% 30">
-				<object name="playerNameHeading" type="text" text_align="center" size="100 0 250 100%" font="serif-bold-14">Player Name</object>
-				<object name="playerCivHeading" type="text" text_align="center" size="250 0 400 100%" font="serif-bold-14">Civilization</object>
+				<object name="playerNameHeading" type="text" style="CenteredLabelText" size="100 0 250 100%">Player Name</object>
+				<object name="playerCivHeading" type="text" style="CenteredLabelText" size="250 0 400 100%">Civilization</object>
 				<object name="civInfoButton"
 					type="button"
 					sprite="iconInfo"
@@ -107,20 +107,20 @@
 						Engine.PushGuiPage("page_civinfo.xml");
 					]]></action>
 				</object>
-				<object name="playerTeamHeading" type="text" text_align="center" size="400 0 500 100%" font="serif-bold-14">Team</object>
+				<object name="playerTeamHeading" type="text" style="CenteredLabelText" size="400 0 500 100%">Team</object>
 			</object>
 			<object size="1 36 100%-1 100%">
 				<repeat count="8">
 					<object name="playerBox[n]" size="0 0 100% 30" hidden="true">
 						<object name="playerColour[n]" type="image" size="0 0 100% 100%"/>
-						<object name="playerName[n]" type="text" text_align="right" text_valign="center" size="0 0 100 100%"/>
+						<object name="playerName[n]" type="text" style="RightLabelText" size="0 0 100 100%"/>
 						<object name="playerAssignment[n]" type="dropdown" style="StoneDropDown" size="100 2 250 100%-2" tooltip_style="onscreenToolTip" tooltip="Select player"/>
 						<object name="playerConfig[n]" type="button" style="StoneButtonPlain" size="251 6 264 24"
 							tooltip_style="onscreenToolTip"
 							tooltip="Configure AI settings"
 						>c</object>
 						<object name="playerCiv[n]" type="dropdown" style="StoneDropDown" size="265 2 395 100%-2" tooltip_style="onscreenToolTip" tooltip="Select player's civilization"/>
-						<object name="playerCivText[n]" type="text" text_align="center" text_valign="center" size="265 0 395 100%"/>
+						<object name="playerCivText[n]" type="text" style="CenteredLabelText" size="265 0 395 100%"/>
 						<object name="playerTeam[n]" type="dropdown" style="StoneDropDown" size="415 2 485 100%-2" tooltip_style="onscreenToolTip" tooltip="Select player's team"/>
 						<object name="playerTeamText[n]" type="text" text_align="center" text_valign="center" size="415 0 485 100%"/>
 					</object>
@@ -155,7 +155,7 @@
 				<action on="Press">submitChatInput();</action>
 			</object>
 	
-			<object size="100%-65 100%-25 100%-1 100%" type="button" style="StoneButton">
+			<object size="100%-65 100%-23 100% 100%-3" type="button" style="StoneButtonPlain">
 				Send
 				<action on="Press">submitChatInput();</action>
 			</object>
