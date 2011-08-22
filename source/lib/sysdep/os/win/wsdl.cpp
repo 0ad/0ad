@@ -1496,11 +1496,10 @@ static void RedirectStdout()
  	// to prevent the OS from opening a console on startup (ugly).
 	// that means stdout isn't associated with a lowio handle; _close is
  	// called with fd = -1. oh well, there's nothing we can do.
- 	FILE* f = 0;
-	errno_t ret = _wfreopen_s(&f, OsString(pathname).c_str(), L"wt", stdout);
-	// (ignore return value - it might indicate 'file already exists' even
-	// if f is valid, which is what actually counts)
-	UNUSED2(ret);
+	FILE* f = 0;
+	// ignore return value - it might indicate 'file already exists' even
+	// if f is valid, which is what actually counts.
+	(void)_wfreopen_s(&f, OsString(pathname).c_str(), L"wt", stdout);
 	if(GetLastError() == ERROR_ALREADY_EXISTS)
 		SetLastError(0);
 	// executable directory (probably Program Files) is read-only for

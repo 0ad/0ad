@@ -43,6 +43,7 @@ namespace Allocators {
 template<typename T, class Storage = Storage_Fixed<> >
 class Pool
 {
+	NONCOPYABLE(Pool);
 public:
 	// (must round up because freelist stores pointers inside objects)
 	static const size_t objectSize = ROUND_UP(sizeof(T), sizeof(intptr_t));

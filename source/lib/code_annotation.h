@@ -31,24 +31,30 @@
 #include "lib/sysdep/arch.h"	// ARCH_AMD64
 
 /**
- * mark a function local variable or parameter as unused and avoid
- * the corresponding compiler warning.
- * use inside the function body, e.g. void f(int x) { UNUSED2(x); }
- **/
-#if ICC_VERSION
-// NB: #pragma unused is documented but "unrecognized" when used;
-// casting to void isn't sufficient, but the following is:
-# define UNUSED2(param) param = param
-#else
-# define UNUSED2(param) (void)param
-#endif
-
-/**
  * mark a function parameter as unused and avoid
  * the corresponding compiler warning.
  * wrap around the parameter name, e.g. void f(int UNUSED(x))
  **/
 #define UNUSED(param)
+
+/**
+ * mark a function local variable or parameter as unused and avoid
+ * the corresponding compiler warning.
+ * note that UNUSED is not applicable to variable definitions that
+ * involve initialization, nor is it sufficient in cases where
+ * an argument is unused only in certain situations.
+ * example: void f(int x) { ASSERT(x == 0); UNUSED2(x); }
+ * this asserts in debug builds and avoids warnings in release.
+ **/
+#if HAVE_C99 && GCC_VERSION	// _Pragma from C99, unused from GCC
+# define UNUSED2(param) _Pragma("unused " #param)
+#elif ICC_VERSION
+// ICC 12 still doesn't recognize pragma unused, casting to void
+// isn't sufficient, and self-assignment doesn't work for references.
+# define UNUSED2(param) do{ if(&param) {} } while(false)
+#else
+# define UNUSED2(param) ((void)(param))
+#endif
 
 
 /**

@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2011 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -24,60 +24,52 @@
  * arena allocator (variable-size blocks, no deallocation).
  */
 
-#ifndef INCLUDED_ALLOCATORS_ARENA
-#define INCLUDED_ALLOCATORS_ARENA
-
-#include "lib/allocators/allocator_policies.h"
+#include "precompiled.h"
+#include "lib/allocators/arena.h"
 
 namespace Allocators {
 
-/**
- * allocator design parameters:
- * - O(1) allocation;
- * - variable-size blocks;
- * - support for deallocating all objects;
- * - consecutive allocations are back-to-back;
- * - no extra alignment nor padding.
- **/
 template<class Storage>
-class Arena
+struct BasicArenaTest
 {
-	NONCOPYABLE(Arena);
-public:
-	Arena(size_t maxSize)
-		: storage(maxSize)
+	void operator()() const
 	{
-		DeallocateAll();
-	}
+		Arena<Storage> a(100);
+		const size_t initialSpace = a.RemainingBytes();
+		void* p = a.Allocate(100);
+		ENSURE(p != 0);
+		ENSURE(a.Contains(uintptr_t(p)));
+		ENSURE(a.RemainingBytes() == initialSpace-100);
+		ENSURE(a.Contains(uintptr_t(p)+1));
+		ENSURE(a.Contains(uintptr_t(p)+99));
+		ENSURE(!a.Contains(uintptr_t(p)-1));
+		ENSURE(!a.Contains(uintptr_t(p)+100));
+		if(a.RemainingBytes() == 0)
+			ENSURE(a.Allocate(1) == 0);	// full
+		else
+			ENSURE(a.Allocate(1) != 0);	// can still expand
+		a.DeallocateAll();
+		ENSURE(!a.Contains(uintptr_t(p)));
 
-	size_t RemainingBytes() const
-	{
-		return storage.MaxCapacity() - end;
+		p = a.Allocate(36);
+		ENSURE(p != 0);
+		ENSURE(a.Contains(uintptr_t(p)));
+		ENSURE(a.RemainingBytes() == initialSpace-36);
+		void* p2 = a.Allocate(64);
+		ENSURE(p2 != 0);
+		ENSURE(a.Contains(uintptr_t(p2)));
+		ENSURE(a.RemainingBytes() == initialSpace-36-64);
+		ENSURE(p2 == (void*)(uintptr_t(p)+36));
+		if(a.RemainingBytes() == 0)
+			ENSURE(a.Allocate(1) == 0);	// full
+		else
+			ENSURE(a.Allocate(1) != 0);	// can still expand
 	}
-
-	void* Allocate(size_t size)
-	{
-		return (void*)StorageAppend(storage, end, size);
-	}
-
-	void DeallocateAll()
-	{
-		end = 0;
-	}
-
-	// @return whether the address lies within the previously allocated range.
-	bool Contains(uintptr_t address) const
-	{
-		return (address - storage.Address()) < end;
-	}
-
-private:
-	Storage storage;
-	size_t end;
 };
 
-LIB_API void TestArena();
+void TestArena()
+{
+	ForEachStorage<BasicArenaTest>();
+}
 
 }	// namespace Allocators
-
-#endif	// #ifndef INCLUDED_ALLOCATORS_ARENA
