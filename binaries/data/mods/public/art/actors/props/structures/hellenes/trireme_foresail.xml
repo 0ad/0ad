@@ -2,9 +2,10 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="trireme foresail">
+    <variant frequency="100" name="mesh">
       <mesh>props/hele_trireme_foresail.dae</mesh>
       <texture>props/sail_blank_netting.png</texture>
     </variant>
   </group>
+  <material>player_trans.xml</material>
 </actor>

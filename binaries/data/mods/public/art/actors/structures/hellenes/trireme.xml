@@ -3,14 +3,24 @@
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="100" name="Greek Trireme">
+    <variant frequency="1" name="Greek Trireme">
       <mesh>structural/hele_ship_trireme.dae</mesh>
       <props>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/structures/hellenes/trireme_mainsail.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/trireme_foresail.xml" attachpoint="root"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Blue Eye">
       <texture>structural/hele_trireme_big.dds</texture>
+    </variant>
+    <variant frequency="1" name="Yellow Eye">
+      <texture>structural/hele_trireme_big2.dds</texture>
+    </variant>
+    <variant frequency="1" name="Red Eye">
+      <texture>structural/hele_trireme_big3.dds</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>
