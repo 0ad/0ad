@@ -40,15 +40,12 @@
 		-->
 
 		<object	name="pgToolTip"
-			style="fancyTextHeadWhite"
+			style="stoneTooltip"
 			type="text"
 			hidden="true"
-			sprite="bkTranslucent"
-			size="69% 6.3802% 97.0703125% 28.125%"
+			size="70% 5% 100% 30%"
 		>tooltipText
-		</object>		
-
-
+		</object>
 
 		<!--
 		==========================================
@@ -59,8 +56,7 @@
                         type="button"
                         style="wheatExit"
                         size="100%-16 0 100% 16"
-                        tooltip_style="pgToolTip"
-                        tooltip="Exit Game"
+                        tooltip=""
                 >
                         <action on="Press"><![CDATA[
                                 var btCaptions = ["Yes", "No"];
@@ -69,46 +65,41 @@
                         ]]></action>
 		</object>
 
-
 		<!--
 		==========================================
-		- MAIN PANEL MENU - PARCHMENT BUTTONS
+		- MAIN MENU PANEL
 		==========================================
 		-->
 		<object
 			type="image"
-			sprite="bkTranslucent"
-			size="50 0 300 100%"
+			style="stoneWindow"
+			size="50 0 322 100%"
                 >
-                        <object	name="pgProductLogo"
-                                style="pgButton"
-                                type="button"
+                        <object	name="productLogo"
+                                type="image"
                                 ghost="true"
-                                size="20 2% 240 2%+100"
-                                sprite="pgProductLogo"
-                        >
-                        </object>
+                                size="50%-110 20 50%+110 120"
+                                sprite="productLogo"
+                        />
                         
                         <object
-                                size="0 2%+120 100% 2%+320"
-                                type="image"
-                                sprite="bkTranslucent"
+                                size="4 2%+120 100%-4 2%+320"
                         >
-                              <object name="pgLearnToPlayBt"
+				<object name="menuLearnToPlayButton"
                                       type="button"
-                                      style="wheatButton"
+                                      style="stoneButton"
                                       size="4 4 100%-4 36"
                                       tooltip_style="pgToolTip"
                                       tooltip="The 0 A.D. Game Manual"
-                              >
+				>
                                         Learn To Play
                                         <action on="Press"><![CDATA[
                                                 Engine.PushGuiPage("page_manual.xml", { "page": "intro" });
                                         ]]></action>
                                </object>
                             
-                               <object name="pgSinglePlayerBt"
-                                       style="wheatButton"
+                               <object name="menuSinglePlayerButton"
+                                       style="stoneButton"
                                        type="button"
                                        size="4 36 100%-4 68"
                                        tooltip_style="pgToolTip"
@@ -121,8 +112,8 @@
                                     ]]></action>
                                 </object>
                                
-                                <object	name="pgMultiPlayerBt"
-                                        style="wheatButton"
+                                <object	name="menuMultiPlayerButton"
+                                        style="stoneButton"
                                         type="button"
                                         size="4 68 100%-4 100"
                                         tooltip_style="pgToolTip"
@@ -135,8 +126,8 @@
                                         ]]></action>
                                 </object>
 
-                                <object name="pgEditorBt"
-                                        style="wheatButton"
+                                <object name="menuEditorButton"
+                                        style="stoneButton"
                                         type="button"
                                         size="4 100 100%-4 132"
                                         tooltip_style="pgToolTip"
@@ -151,8 +142,8 @@
                                         ]]></action>
                                 </object>
                                 
-                                <object name="pgOptionsBt"
-                                        style="wheatButton"
+                                <object name="menuOptionsButton"
+                                        style="stoneButton"
                                         type="button"
                                         size="4 132 100%-4 164"
                                         tooltip_style="pgToolTip"
@@ -167,9 +158,9 @@
                                 </object>
                                 
                                 <!-- EXIT BUTTON -->
-                                <object name="pgExit"
+                                <object name="menuExitButton"
                                         type="button"
-                                        style="wheatButton"
+                                        style="stoneButton"
                                         size="4 164 100%-4 196"
                                         tooltip_style="pgToolTip"
                                         tooltip="Exit Game"
@@ -182,8 +173,8 @@
                                         ]]></action>
                                 </object>
 
-<!--                        <object name="pgCampaignsBt"
-                                       style="wheatButton"
+<!--                        <object name="menuCampaignsButton"
+                                       style="stoneButton"
                                        type="button"
                                        size="4 36 100%-4 68"
                                        tooltip_style="pgToolTip"
@@ -196,8 +187,8 @@
                             ]]></action>
                         </object>
 -->
-<!--                        <object name="pgHistoryBt"
-                                style="wheatButton"
+<!--                        <object name="menuHistoryButton"
+                                style="stoneButton"
                                 type="button"
                                 size="4 36 100%-4 68"
                                 tooltip_style="pgToolTip"
@@ -211,10 +202,11 @@
                         </object>
 -->
                         </object>
-                        
-		        <object size="0 50%+30 100% 50%+240"
+
+			<!-- PRE-RELEASE INFO -->
+			<object size="4 50%+30 100%-4 50%+240"
 				type="image"
-				sprite="bkTranslucent"
+				style="stoneTooltip"
 			>
 				<!-- PRE-RELEASE WARNING -->
 		                <object
@@ -233,7 +225,7 @@ Watch for updates or get involved: wildfiregames.com/0ad
 
 				<!-- CONTACT METHODS -->
 		        	<object type="button"
-		        		style="wheatButton"
+		        		style="stoneButton"
 		       			size="4 100%-36 50%-2 100%-4"
 		       		>
 		                	Website
@@ -245,7 +237,7 @@ Watch for updates or get involved: wildfiregames.com/0ad
 				</object>
 
 		                <object type="button"
-		                        style="wheatButton"
+		                        style="stoneButton"
 		                        size="50%+2 100%-36 100%-4 100%-4"
 		                >
 		                	IRC
@@ -257,17 +249,38 @@ Watch for updates or get involved: wildfiregames.com/0ad
 		                </object>
 			</object>
 
-                        <!-- VERSION -->
-                        <object name="pgVersionNumber"
-                                style="fancyTextHeadGold"
-                                type="text"
-                                ghost="true"
-                                size="2 100%-56 100%-2 100%"
+			<!-- LOGO AND BUILD VERSION -->
+			<object
+                                size="4 100%-128 100%-4 100%-56"
                         >
-                                <action on="Load"><![CDATA[
-                                        this.caption = "Build: " + buildTime(0) + " - " + buildTime(2);
-                                ]]></action>
-                        </object>
+				<!-- COMPANY LOGO -->
+		                <object	name="companyLogo"
+		                        type="image"
+		                        ghost="true"
+		                        size="50%-24 0 50%+24 48"
+		                        sprite="companyLogo"
+		                />
+
+				<!-- COMPANY NAME -->
+		                <object
+					type="text"
+		                        style="logoText"
+		                        size="50%-128 52 50%+128 64"
+				>WILDFIRE GAMES</object>
+			</object>
+
+      			<!-- VERSION -->
+		        <object name="versionNumber"
+		       		style="menuCenteredText"
+		       	 	type="text"
+		       		ghost="true"
+		        	size="50%-128 100%-56 50%+128 100%"
+			>
+				<action on="Load"><![CDATA[
+					this.caption = "Build: " + buildTime(0) + " - " + buildTime(2);
+				]]></action>
+			</object>
+                        
                 </object>
 
 <!--

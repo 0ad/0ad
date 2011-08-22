@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<sprites>
+
+	<!--
+	==========================================
+	LOGOS
+	==========================================
+	-->
+        
+	<sprite name="productLogo">
+		<image 	texture="pregame/shell/logo/product.dds"
+			real_texture_placement="0 0 480 218"
+			size="0 0 100% 100%" 
+		/>
+	</sprite>
+        
+	<sprite name="companyLogo">
+		<image 	texture="pregame/shell/logo/wfg_logo_white.png"
+			real_texture_placement="0 0 48 48"
+			size="0 0 100% 100%" 
+		/>
+	</sprite>
+
+	<!--
+	==========================================
+	BACKCOLOR SPRITES
+	==========================================
+	-->
+
+	<sprite name="BackgroundTranslucent">
+		<image 	backcolor="0 0 0 85"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+	
+	<sprite name="BackgroundDarkTransparentBorderGold">
+		<image
+			backcolor="darkgray"
+			size="0 0 100% 100%"
+			border="true"
+			bordercolor="gray"
+		/>
+	</sprite>
+
+
+	<!--
+	==========================================
+	PANEL SPRITES
+	==========================================
+	-->
+
+	<!-- Stone Tooltip -->
+	<sprite name="stoneTooltip">
+		<image 	backcolor="0 0 0 85"
+			size="0 0 100% 100%"
+		/>
+
+		<!-- sides -->
+		<image
+			texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 0 100%-4 4"
+		/>
+		<image
+			texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="100%-4 4 100% 100%-4"
+		/>
+		<image
+			texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 100%-4 100%-4 100%"
+		/>
+		<image
+			texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="0 4 4 100%-4"
+		/>
+
+		<!-- corners -->
+		<image
+			texture="global/border/line_corner_top_right.png"
+			texture_size="0 0 4 4"
+			size="100%-4 0 100% 4"
+		/>
+		<image
+			texture="global/border/line_corner_bottom_right.png"
+			texture_size="0 0 4 4"
+			size="100%-4 100%-4 100% 100%"
+		/>
+		<image
+			texture="global/border/line_corner_bottom_left.png"
+			texture_size="0 0 4 4"
+			size="0 100%-4 4 100%"
+		/>
+		<image
+			texture="global/border/line_corner_top_left.png"
+			texture_size="0 0 4 4"
+			size="0 0 4 4"
+		/>
+	</sprite>
+
+	<!-- Stone Panel -->
+	<sprite name="stonePanel">
+		<image	texture="global/tile/tile_dark.png"
+			texture_size="0 0 256 256"
+			size="4 4 100%-4 100%-4" 
+		/>
+
+		<!-- sides -->
+		<image
+			texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 0 100%-4 4"
+		/>
+		<image
+			texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="100%-4 4 100% 100%-4"
+		/>
+		<image
+			texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 100%-4 100%-4 100%"
+		/>
+		<image
+			texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="0 4 4 100%-4"
+		/>
+
+		<!-- corners -->
+		<image
+			texture="global/border/line_corner_top_right.png"
+			texture_size="0 0 4 4"
+			size="100%-4 0 100% 4"
+		/>
+		<image
+			texture="global/border/line_corner_bottom_right.png"
+			texture_size="0 0 4 4"
+			size="100%-4 100%-4 100% 100%"
+		/>
+		<image
+			texture="global/border/line_corner_bottom_left.png"
+			texture_size="0 0 4 4"
+			size="0 100%-4 4 100%"
+		/>
+		<image
+			texture="global/border/line_corner_top_left.png"
+			texture_size="0 0 4 4"
+			size="0 0 4 4"
+		/>
+	</sprite>
+
+	<!-- Stone Dialog -->
+	<sprite name="stoneDialog">
+		<!-- background -->
+		<image	texture="global/tile/tile_dark.png"
+			texture_size="0 0 256 256"
+			size="4 4 100%-4 100%-4" 
+		/>
+
+		<!-- sides -->
+		<image
+			texture="session/border/border-top.png"
+			texture_size="0 0 128 16"
+			size="16 0 100%-16 16"
+		/>
+		<image
+			texture="session/border/border-right.png"
+			texture_size="0 0 16 128"
+			size="100%-16 16 100% 100%-16"
+		/>
+		<image
+			texture="session/border/border-bottom.png"
+			texture_size="0 0 128 16"
+			size="16 100%-16 100%-16 100%"
+		/>
+		<image
+			texture="session/border/border-left.png"
+			texture_size="0 0 16 128"
+			size="0 16 16 100%-16"
+		/>
+
+		<!-- corners -->
+		<image
+			texture="session/border/border-corner.png"
+			texture_size="0 0 16 16"
+			size="100%-16 0 100% 16"
+		/>
+		<image
+			texture="session/border/border-corner.png"
+			texture_size="0 0 16 16"
+			size="100%-16 100%-16 100% 100%"
+		/>
+		<image
+			texture="session/border/border-corner.png"
+			texture_size="0 0 16 16"
+			size="0 100%-16 16 100%"
+		/>
+		<image
+			texture="session/border/border-corner.png"
+			texture_size="0 0 16 16"
+			size="0 0 16 16"
+		/>
+	</sprite>
+
+	<!-- Stone Dialog Title Bar -->
+	<sprite name="stoneDialogTitleBar">
+		<image	texture="session/titlebar/titlebar_left.png"
+			real_texture_placement="0 0 64 32"
+			size="0%+0 0% 64 0%+32" 
+		/>
+                <image 	texture="session/titlebar/titlebar_middle.png"
+			real_texture_placement="0 0 64 32"
+			size="64 0% 100%-64 0%+32" 
+		/>
+                <image 	texture="session/titlebar/titlebar_right.png"
+			real_texture_placement="0 0 64 32"
+			size="100%-64 0% 100%+0 0%+32" 
+		/>
+	</sprite>
+
+	<!--
+	==========================================
+	MENU BUTTON SPRITES
+	==========================================
+	-->
+	
+	<sprite name="stoneButton">
+		<image	texture="global/button/button_stone_unselected.png"
+			real_texture_placement="0 0 256 32"
+			size="0 0 100% 100%" 
+		/>
+	</sprite>
+        
+	<sprite name="stoneButtonOver">
+		<image 	texture="global/button/button_stone_selected.png"
+			real_texture_placement="0 0 256 32"
+			size="0 0 100% 100%" 
+		/>
+		<image 	texture="global/button/button_stone_selected_left_trim.png"
+			real_texture_placement="0 0 32 32"
+			size="0 0 32 32" 
+		/>
+		<image 	texture="global/button/button_stone_selected_right_trim.png"
+			real_texture_placement="0 0 32 32"
+			size="100%-32 0 100% 32" 
+		/>
+        </sprite>
+
+	<sprite name="stoneButtonDisabled">
+		<effect grayscale="" />
+		<image 	texture="global/button/button_stone_unselected.png"
+			real_texture_placement="0 0 256 32"
+			size="0 0 100% 100%" 
+		/>
+        </sprite>
+
+</sprites>
