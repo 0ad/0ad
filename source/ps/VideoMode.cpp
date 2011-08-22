@@ -380,3 +380,27 @@ int CVideoMode::GetBPP()
 	ENSURE(m_IsInitialised);
 	return m_CurrentBPP;
 }
+
+int CVideoMode::GetDesktopXRes()
+{
+	ENSURE(m_IsInitialised);
+	return m_PreferredW;
+}
+
+int CVideoMode::GetDesktopYRes()
+{
+	ENSURE(m_IsInitialised);
+	return m_PreferredH;
+}
+
+int CVideoMode::GetDesktopBPP()
+{
+	ENSURE(m_IsInitialised);
+	return m_PreferredBPP;
+}
+
+int CVideoMode::GetDesktopFreq()
+{
+	ENSURE(m_IsInitialised);
+	return m_PreferredFreq;
+}

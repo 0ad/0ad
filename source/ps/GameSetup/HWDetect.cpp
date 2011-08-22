@@ -200,6 +200,11 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings.get(), "video_yres", g_VideoMode.GetYRes());
 	scriptInterface.SetProperty(settings.get(), "video_bpp", g_VideoMode.GetBPP());
 
+	scriptInterface.SetProperty(settings.get(), "video_desktop_xres", g_VideoMode.GetDesktopXRes());
+	scriptInterface.SetProperty(settings.get(), "video_desktop_yres", g_VideoMode.GetDesktopYRes());
+	scriptInterface.SetProperty(settings.get(), "video_desktop_bpp", g_VideoMode.GetDesktopBPP());
+	scriptInterface.SetProperty(settings.get(), "video_desktop_freq", g_VideoMode.GetDesktopFreq());
+
 	struct utsname un;
 	uname(&un);
 	scriptInterface.SetProperty(settings.get(), "uname_sysname", std::string(un.sysname));
@@ -258,7 +263,7 @@ void RunHardwareDetection()
 #endif
 
 	// Send the same data to the reporting system
-	g_UserReporter.SubmitReport("hwdetect", 7, scriptInterface.StringifyJSON(settings.get(), false));
+	g_UserReporter.SubmitReport("hwdetect", 8, scriptInterface.StringifyJSON(settings.get(), false));
 
 	// Run the detection script:
 

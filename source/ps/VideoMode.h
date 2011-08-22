@@ -66,6 +66,11 @@ public:
 	int GetYRes();
 	int GetBPP();
 
+	int GetDesktopXRes();
+	int GetDesktopYRes();
+	int GetDesktopBPP();
+	int GetDesktopFreq();
+
 private:
 	void ReadConfig();
 	int GetBestBPP();
