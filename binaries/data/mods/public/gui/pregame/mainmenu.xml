@@ -75,28 +75,25 @@
 		- MAIN PANEL MENU - PARCHMENT BUTTONS
 		==========================================
 		-->
-		
-	
 		<object
 			type="image"
 			sprite="bkTranslucent"
-			size="60 0 310 100%"
+			size="50 0 300 100%"
                 >
                         <object	name="pgProductLogo"
                                 style="pgButton"
                                 type="button"
                                 ghost="true"
-                                size="20 40 240 140"
+                                size="20 2% 240 2%+100"
                                 sprite="pgProductLogo"
                         >
                         </object>
                         
                         <object
-                                size="0 170 100% 400"
+                                size="0 2%+120 100% 2%+320"
                                 type="image"
                                 sprite="bkTranslucent"
                         >
-                            
                               <object name="pgLearnToPlayBt"
                                       type="button"
                                       style="wheatButton"
@@ -109,7 +106,6 @@
                                                 Engine.PushGuiPage("page_manual.xml", { "page": "intro" });
                                         ]]></action>
                                </object>
-                            
                             
                                <object name="pgSinglePlayerBt"
                                        style="wheatButton"
@@ -185,7 +181,7 @@
                                                 messageBox (400, 200, "Are you sure you want to quit [icon=iconProduct] A.D.?", "Confirmation", 0, btCaptions, btCode);
                                         ]]></action>
                                 </object>
-                                
+
 <!--                        <object name="pgCampaignsBt"
                                        style="wheatButton"
                                        type="button"
@@ -216,59 +212,64 @@
 -->
                         </object>
                         
-                        <!-- CONTACT METHODS -->
-                        <object size="0 100%-340 100% 100%-300">
-                                <object type="button"
-                                        style="wheatButton"
-                                        size="4 0 50%-2 36"
-                                >
-                                        Website
-                                        <action on="Press"><![CDATA[
-                                                var url = "http://wildfiregames.com/0ad/";
-                                                Engine.OpenURL(url);
-                                                messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2);
-                                        ]]></action>
-                                </object>
+		        <object size="0 50%+30 100% 50%+240"
+				type="image"
+				sprite="bkTranslucent"
+			>
+				<!-- PRE-RELEASE WARNING -->
+		                <object
+		                        style="fancyTextHeadWhite"
+		                        type="text"
+		                        sprite="bkTranslucent"
+		                        textcolor="255 255 0"
+		                        size="0 0 100% 100%-32"
+				>
+					[font="serif-bold-16"]Alpha version[/font]
+					Warning: This is an early development version of the game and many features have not been added yet, but we hope this gives you a glimpse of the game’s vision.
 
-                                <object type="button"
-                                        style="wheatButton"
-                                        size="50%+2 0 100%-4 36"
-                                >
-                                        IRC
-                                        <action on="Press"><![CDATA[
-                                                var url = "http://webchat.quakenet.org/?channels=0ad";
-                                                Engine.OpenURL(url);
-                                                messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2);
-                                        ]]></action>
-                                </object>
-                        </object>
-                        
-                        <!-- PRE-RELEASE WARNING -->
-                        <object
-                                style="fancyTextHeadWhite"
-                                type="text"
-                                sprite="bkTranslucent"
-                                textcolor="255 255 0"
-                                size="0 100%-280 100% 100%-64"
->[font="serif-bold-16"]Alpha version[/font]
-Warning: This is an early development version of the game and many features have not been added yet, but we hope this gives you a glimpse of the game’s vision.
+					Watch for updates or get involved: wildfiregames.com/0ad
+		                </object>
 
-Watch for updates or get involved in the development: http://wildfiregames.com/0ad/
-                        </object>
-                        
+
+				<!-- CONTACT METHODS -->
+		        	<object type="button"
+		        		style="wheatButton"
+		       			size="4 100%-36 50%-2 100%-4"
+		       		>
+		                	Website
+		                	<action on="Press"><![CDATA[
+		                        	var url = "http://wildfiregames.com/0ad/";
+		                                Engine.OpenURL(url);
+		                                messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2);
+		                        ]]></action>
+				</object>
+
+		                <object type="button"
+		                        style="wheatButton"
+		                        size="50%+2 100%-36 100%-4 100%-4"
+		                >
+		                	IRC
+		                        <action on="Press"><![CDATA[
+				                var url = "http://webchat.quakenet.org/?channels=0ad";
+				                Engine.OpenURL(url);
+				                messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2);
+		                        ]]></action>
+		                </object>
+			</object>
+
                         <!-- VERSION -->
                         <object name="pgVersionNumber"
                                 style="fancyTextHeadGold"
                                 type="text"
                                 ghost="true"
-                                size="2 100%-64 100%-2 100%-2"
+                                size="2 100%-56 100%-2 100%"
                         >
                                 <action on="Load"><![CDATA[
                                         this.caption = "Build: " + buildTime(0) + " - " + buildTime(2);
                                 ]]></action>
                         </object>
                 </object>
-		
+
 <!--
 		<object name="pgCampaignsBt"
 			style="pgButton"
