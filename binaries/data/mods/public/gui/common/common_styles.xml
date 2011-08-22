@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<styles>
+
+	<!--
+	==========================================
+	MENU TEXT STYLES
+	==========================================
+	-->
+
+	<style name="LeftLabelText"
+		font="serif-bold-stroke-14"
+		textcolor="gold"
+		text_align="left"
+		text_valign="center"
+	/>
+
+	<style name="RightLabelText"
+		font="serif-bold-stroke-14"
+		textcolor="gold"
+		text_align="right"
+		text_valign="center"
+	/>
+
+	<style name="CenteredLabelText"
+		font="serif-bold-stroke-14"
+		textcolor="gold"
+		text_align="center"
+		text_valign="center"
+	/>
+
+	<style name="SmallLeftLabelText"
+		font="serif-12"
+		textcolor="white"
+		text_align="left"
+		text_valign="top"
+	/>
+
+	<style name="logoText"
+		font="serif-bold-stroke-14"
+		textcolor="white"
+		text_align="center"
+		text_valign="center"
+	/>
+
+	<!--
+	==========================================
+	MENU TOOLTIP STYLES
+	==========================================
+	-->
+
+	<style 	name="stoneTooltip"
+		sprite="stoneTooltip"
+		buffer_zone="10"
+		font="serif-bold-stroke-14"
+		textcolor="white"
+		text_align="left"
+		text_valign="top"
+	/>
+
+	<!--
+	==========================================
+	MENU WINDOW STYLES
+	==========================================
+	-->
+
+	<style 	name="StonePanel"
+		sprite="StonePanel"
+		buffer_zone="10"
+		text_align="left"
+		text_valign="top"
+	/>
+
+	<!--
+	==========================================
+	MENU DIALOG STYLES
+	==========================================
+	-->
+
+	<style 	name="StoneDialog"
+		sprite="StoneDialog"
+		buffer_zone="10"
+		text_align="left"
+		text_valign="top"
+	/>
+
+	<style 	name="StoneDialogTitleBar"
+		sprite="StoneDialogTitleBar"
+		buffer_zone="10"
+		font="serif-bold-stroke-14"
+		textcolor="white"
+		text_align="center"
+		text_valign="top"
+	/>
+
+	<!--
+	==========================================
+	MENU CONTROL ELEMENT STYLES
+	==========================================
+	-->
+
+	<style 	name="StoneButton"
+		sprite="StoneButton"
+		sprite_disabled="StoneButtonDisabled"
+		sprite_over="StoneButtonOver"
+		sprite_pressed="StoneButtonGlow"
+		font="serif-bold-stroke-14"
+		textcolor="gold"
+		text_align="center"
+		text_valign="center"
+	/>
+
+	<style 	name="StoneButtonPlain"
+		sprite="StoneButton"
+		sprite_disabled="StoneButtonDisabled"
+		sprite_over="StoneButton"
+		sprite_pressed="StoneButton"
+		font="serif-bold-stroke-14"
+		textcolor="gold"
+		text_align="center"
+		text_valign="center"
+	/>
+
+	<style 	name="StoneCrossBox"
+		font="serif-14"
+		sprite="wheatCheckBoxOpen"
+		sprite2="wheatCheckBoxCross"
+		square_side="16"
+		textcolor="black"
+	/>
+
+	<style  name="StoneInput"
+		sprite="wheatIndentFillVeryLight"
+		sprite_selectarea="bkFillDarkBlue"
+		textcolor="black"
+		textcolor_selected="white"
+	/>
+
+	<style 	name="StoneDropDown"
+		dropdown_buffer="1"
+		font="serif-bold-stroke-14"
+		textcolor="white"
+		text_align="center"
+		text_valign="center"
+
+		sprite="StoneButton"
+		sprite_over="StoneButtonOver"
+		sprite_pressed="StoneButtonGlow"
+
+		button_width="15"
+		sprite2="wheatArrowDn"
+		sprite2_pressed="wheatArrowDnOver"
+
+		buffer_zone="10"
+		dropdown_size="200"
+		sprite_list="BackgroundTranslucentBorderDarkTan"
+		sprite_selectarea="BackgroundRedBorderGold"
+		textcolor_selected="white"
+
+		scrollbar="true"
+		scrollbar_style="wheatScrollBar"
+	/>
+
+	<style 	name="StoneList"
+		buffer_zone="5"
+		font="serif-bold-stroke-14"
+		scrollbar="true"
+		scrollbar_style="wheatScrollBar"
+		sprite="BackgroundIndentFillDark"
+		sprite_selectarea="BackgroundRedBorderGold"
+		sprite_over="BackgroundIndentFillDark"
+		textcolor="white"
+		textcolor_selected="white"
+		text_align="left"
+		text_valign="center"
+	/>
+
+	<style 	name="StoneExit"
+		size="100%+9 0%-25 100%+25 0%-9"
+		sprite="StoneCheckBoxCross"
+		sprite_over="StoneCheckBoxCrossOver"
+		tooltip="Close this window and return to the previous screen."
+		tooltip_style="pgToolTip"
+	/>
+
+</styles>

@@ -54,7 +54,7 @@
 		-->
                 <object name="cornerExitButton"
                         type="button"
-                        style="wheatExit"
+                        style="StoneExit"
                         size="100%-16 0 100% 16"
                         tooltip=""
                 >
@@ -72,9 +72,15 @@
 		-->
 		<object
 			type="image"
-			style="stoneWindow"
+			style="StonePanel"
 			size="50 0 322 100%"
                 >
+     			<object type="image"
+                                ghost="true"
+                                size="0 0 100% 100%"
+                                sprite="MainMenuPanelShading"
+                        />
+
                         <object	name="productLogo"
                                 type="image"
                                 ghost="true"
@@ -87,7 +93,7 @@
                         >
 				<object name="menuLearnToPlayButton"
                                       type="button"
-                                      style="stoneButton"
+                                      style="StoneButton"
                                       size="4 4 100%-4 36"
                                       tooltip_style="pgToolTip"
                                       tooltip="The 0 A.D. Game Manual"
@@ -99,7 +105,7 @@
                                </object>
                             
                                <object name="menuSinglePlayerButton"
-                                       style="stoneButton"
+                                       style="StoneButton"
                                        type="button"
                                        size="4 36 100%-4 68"
                                        tooltip_style="pgToolTip"
@@ -113,7 +119,7 @@
                                 </object>
                                
                                 <object	name="menuMultiPlayerButton"
-                                        style="stoneButton"
+                                        style="StoneButton"
                                         type="button"
                                         size="4 68 100%-4 100"
                                         tooltip_style="pgToolTip"
@@ -127,7 +133,7 @@
                                 </object>
 
                                 <object name="menuEditorButton"
-                                        style="stoneButton"
+                                        style="StoneButton"
                                         type="button"
                                         size="4 100 100%-4 132"
                                         tooltip_style="pgToolTip"
@@ -143,7 +149,7 @@
                                 </object>
                                 
                                 <object name="menuOptionsButton"
-                                        style="stoneButton"
+                                        style="StoneButton"
                                         type="button"
                                         size="4 132 100%-4 164"
                                         tooltip_style="pgToolTip"
@@ -160,7 +166,7 @@
                                 <!-- EXIT BUTTON -->
                                 <object name="menuExitButton"
                                         type="button"
-                                        style="stoneButton"
+                                        style="StoneButton"
                                         size="4 164 100%-4 196"
                                         tooltip_style="pgToolTip"
                                         tooltip="Exit Game"
@@ -174,7 +180,7 @@
                                 </object>
 
 <!--                        <object name="menuCampaignsButton"
-                                       style="stoneButton"
+                                       style="StoneButton"
                                        type="button"
                                        size="4 36 100%-4 68"
                                        tooltip_style="pgToolTip"
@@ -188,7 +194,7 @@
                         </object>
 -->
 <!--                        <object name="menuHistoryButton"
-                                style="stoneButton"
+                                style="StoneButton"
                                 type="button"
                                 size="4 36 100%-4 68"
                                 tooltip_style="pgToolTip"
@@ -225,7 +231,7 @@ Watch for updates or get involved: wildfiregames.com/0ad
 
 				<!-- CONTACT METHODS -->
 		        	<object type="button"
-		        		style="stoneButton"
+		        		style="StoneButton"
 		       			size="4 100%-36 50%-2 100%-4"
 		       		>
 		                	Website
@@ -237,7 +243,7 @@ Watch for updates or get involved: wildfiregames.com/0ad
 				</object>
 
 		                <object type="button"
-		                        style="stoneButton"
+		                        style="StoneButton"
 		                        size="50%+2 100%-36 100%-4 100%-4"
 		                >
 		                	IRC
@@ -271,7 +277,7 @@ Watch for updates or get involved: wildfiregames.com/0ad
 
       			<!-- VERSION -->
 		        <object name="versionNumber"
-		       		style="menuCenteredText"
+		       		style="CenteredLabelText"
 		       	 	type="text"
 		       		ghost="true"
 		        	size="50%-128 100%-56 50%+128 100%"

@@ -9,11 +9,11 @@
 	<script file="gui/gamesetup/gamesetup.js"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
-	<object type="image" z="0" sprite="bkTranslucent"/>
+	<object type="image" z="0" sprite="BackgroundTranslucent"/>
 
-	<object type="image" style="wheatWindow" size="50%-190 50%-80 50%+190 50%+80" name="loadingWindow">
+	<object type="image" style="StoneDialog" size="50%-190 50%-80 50%+190 50%+80" name="loadingWindow">
 
-		<object type="text" style="wheatWindowTitleBar">
+		<object type="text" style="StoneDialogTitleBar" size="50%-128 0%-16 50%+128 16">
 			Loading
 		</object>
 
@@ -23,15 +23,17 @@
 
 	</object>
 
-	<object type="image" style="wheatWindow" size="50%-400 50%-300 50%+400 50%+300" hidden="true" name="setupWindow">
+	<object type="image" style="StoneDialog" size="50%-400 50%-300 50%+400 50%+300" hidden="true" name="setupWindow">
 
 		<action on="Tick">
 			onTick();
 		</action>
 
-		<object style="wheatWindowTitleBar" type="text">Match Setup</object>
+		<object style="StoneDialogTitleBar" type="text" size="50%-128 0%-16 50%+128 16">
+			Match Setup
+		</object>
 
-		<object type="button" style="wheatExit" tooltip_style="snToolTip">
+		<object type="button" style="StoneExit" tooltip_style="snToolTip" size="100%-16 0 100% 16">
 			<action on="Press"><![CDATA[
 				cancelSetup();
 				Engine.PopGuiPage();
@@ -39,22 +41,21 @@
 		</object>
 
 		<!-- Map selection -->
-
-		<object size="0 0 250 100%">
-			<object name="mapTypeHeading" type="text" text_valign="center" size="0 0 100% 30" font="serif-bold-16">Match Type:</object>
+		<object size="16 64 250 100%-16">
+			<object name="mapTypeHeading" type="text" style="LeftLabelText" size="0 0 100% 30">Match Type:</object>
 			<object name="mapTypeSelection"
 				type="dropdown"
-				style="wheatDropDown"
+				style="StoneDropDown"
 				size="100 0 100% 30"
 				tooltip_style="onscreenToolTip"
 				tooltip="Select a map type.">
 				<action on="SelectionChange">selectMapType(this.list_data[this.selected]);</action>
 			</object>
 			
-			<object name="mapFilterHeading" type="text" text_valign="center" size="0 34 100% 64" font="serif-bold-14">Map Filter:</object>
+			<object name="mapFilterHeading" type="text" style="LeftLabelText" size="0 34 100% 64">Map Filter:</object>
 			<object name="mapFilterSelection"
 				type="dropdown"
-				style="wheatDropDown"
+				style="StoneDropDown"
 				size="100 34 100% 64"
 				tooltip_style="onscreenToolTip"
 				tooltip="Select a map filter.">
@@ -62,7 +63,7 @@
 			</object>
 		  
 			<object name="mapSelection"
-				style="wheatList"
+				style="StoneList"
 				type="list"
 				size="0 70 100% 100%-200"
 				tooltip_style="onscreenToolTip"
@@ -70,20 +71,19 @@
 				<action on="SelectionChange">selectMap(this.list_data[this.selected]);</action>
 			</object>
 			
-			<object type="image" style="indentedPanel" size="0 100%-190 100% 100%">
-				<object name="mapInfoName" type="text" size="0 0 100% 30" font="serif-bold-18"/>
-				<object name="mapInfoDescription" type="text" size="0 24 100% 100%" font="serif-13"/>
+			<object type="image" sprite="BackgroundIndentFillDark" size="0 100%-190 100% 100%">
+				<object name="mapInfoName" type="text" style="LeftLabelText" size="0 0 100% 30"/>
+				<object name="mapInfoDescription" type="text" style="SmallLeftLabelText" size="0 24 100% 100%"/>
 			</object>
 	
 		</object>
 
 		<!-- Player assignments -->
-		
 		<object name="numPlayersBox" size="260 0 100% 30" hidden="true">
 			<object name="numPlayersSelectionHeading" type="text" text_valign="center" font="serif-bold-16">Number of Players</object>
 			<object name="numPlayersSelection"
 				type="dropdown"
-				style="wheatDropDown"
+				style="StoneDropDown"
 				size="150 0 200 30"
 				tooltip_style="onscreenToolTip"
 				tooltip="Select number of players.">
@@ -91,7 +91,7 @@
 			</object>
 		</object>
 
-		<object size="260 36 100% 100%-260" type="image" sprite="wheatIndentFillLight">
+		<object size="260 64 100%-16 100%-260" type="image" sprite="BackgroundIndentFillDark">
 			<object size="0 6 100% 30">
 				<object name="playerNameHeading" type="text" text_align="center" size="100 0 250 100%" font="serif-bold-14">Player Name</object>
 				<object name="playerCivHeading" type="text" text_align="center" size="250 0 400 100%" font="serif-bold-14">Civilization</object>
@@ -114,14 +114,14 @@
 					<object name="playerBox[n]" size="0 0 100% 30" hidden="true">
 						<object name="playerColour[n]" type="image" size="0 0 100% 100%"/>
 						<object name="playerName[n]" type="text" text_align="right" text_valign="center" size="0 0 100 100%"/>
-						<object name="playerAssignment[n]" type="dropdown" style="wheatDropDown" size="100 2 250 100%-2" tooltip_style="onscreenToolTip" tooltip="Select player"/>
-						<object name="playerConfig[n]" type="button" style="wheatButton" size="251 6 264 24"
+						<object name="playerAssignment[n]" type="dropdown" style="StoneDropDown" size="100 2 250 100%-2" tooltip_style="onscreenToolTip" tooltip="Select player"/>
+						<object name="playerConfig[n]" type="button" style="StoneButtonPlain" size="251 6 264 24"
 							tooltip_style="onscreenToolTip"
 							tooltip="Configure AI settings"
 						>c</object>
-						<object name="playerCiv[n]" type="dropdown" style="wheatDropDown" size="265 2 395 100%-2" tooltip_style="onscreenToolTip" tooltip="Select player's civilization"/>
+						<object name="playerCiv[n]" type="dropdown" style="StoneDropDown" size="265 2 395 100%-2" tooltip_style="onscreenToolTip" tooltip="Select player's civilization"/>
 						<object name="playerCivText[n]" type="text" text_align="center" text_valign="center" size="265 0 395 100%"/>
-						<object name="playerTeam[n]" type="dropdown" style="wheatDropDown" size="415 2 485 100%-2" tooltip_style="onscreenToolTip" tooltip="Select player's team"/>
+						<object name="playerTeam[n]" type="dropdown" style="StoneDropDown" size="415 2 485 100%-2" tooltip_style="onscreenToolTip" tooltip="Select player's team"/>
 						<object name="playerTeamText[n]" type="text" text_align="center" text_valign="center" size="415 0 485 100%"/>
 					</object>
 				</repeat>
@@ -130,57 +130,54 @@
 				
 				
 		<!-- Options -->
-		
 		<object name="gameOptionsBox" size="260 100%-260 100% 100%-190">
 			<object size="2 2 100% 50%-2">	<!-- Top row -->
-				<object name="mapSizeText" size="0 0 175 100%" type="text">Map size:</object>
-				<object name="mapSize" size="75 -2 225 100%-6" type="dropdown" style="wheatDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select map size (larger may reduce performance)"/>
-				<object name="victoryConditionText" size="245 0 500 100%" type="text">Victory condition:</object>
-				<object name="victoryCondition" size="375 -2 500 100%-6" type="dropdown" style="wheatDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select victory condition"/>
+				<object name="mapSizeText" size="0 0 175 100%" type="text" style="LeftLabelText">Map size:</object>
+				<object name="mapSize" size="75 -2 225 100%-6" type="dropdown" style="StoneDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select map size (larger may reduce performance)"/>
+				<object name="victoryConditionText" size="245 0 500 100%" type="text" style="LeftLabelText">Victory condition:</object>
+				<object name="victoryCondition" size="375 -2 500 100%-6" type="dropdown" style="StoneDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select victory condition"/>
 			</object>
 			<object size="2 50%+2 100% 100%"> 	<!-- Bottom row -->
-				<object name="revealMapText" size="0 0 120 100%" type="text">Reveal map:</object>
-				<object name="revealMap" size="120 2 140 100%" type="checkbox" style="wheatCrossBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle reveal map"/>
-				<object name="lockTeamsText" size="245 0 400 100%" type="text">Teams locked:</object>
-				<object name="lockTeams" size="400 2 420 100%" type="checkbox" style="wheatCrossBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle locked teams"/>
+				<object name="revealMapText" size="0 0 120 100%" type="text" style="LeftLabelText">Reveal map:</object>
+				<object name="revealMap" size="120 2 140 100%" type="checkbox" style="StoneCrossBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle reveal map"/>
+				<object name="lockTeamsText" size="245 0 400 100%" type="text" style="LeftLabelText">Teams locked:</object>
+				<object name="lockTeams" size="400 2 420 100%" type="checkbox" style="StoneCrossBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle locked teams"/>
 			</object>
 		</object>
 		
 		
 		<!-- Chat window -->
-
-		<object name="chatPanel" size="260 100%-190 100% 100%-45" type="image" sprite="wheatIndentFillLight">
+		<object name="chatPanel" size="260 100%-190 100%-16 100%-45" type="image" sprite="BackgroundIndentFillDark">
 	
 			<object name="chatText" size="3 1 100%-1 100%-25" type="text" style="chatPanel"/>
 	
-			<object name="chatInput" size="2 100%-23 100%-66 100%-3" type="input" style="wheatInput">
+			<object name="chatInput" size="2 100%-23 100%-66 100%-3" type="input" style="StoneInput">
 				<action on="Press">submitChatInput();</action>
 			</object>
 	
-			<object size="100%-65 100%-25 100%-1 100%" type="button" style="wheatButton">
+			<object size="100%-65 100%-25 100%-1 100%" type="button" style="StoneButton">
 				Send
 				<action on="Press">submitChatInput();</action>
 			</object>
 	
 		</object>
 
+
 		<!-- Other things -->
-	
 		<object name="onscreenToolTip"
 			type="text"
 			font="serif-14"
 			textcolor="white"
-			sprite="bkTranslucent"
+			sprite="BackgroundTranslucent"
 			hidden="true"
-			size="260 100%-40 100%-290 100%"
+			size="260 100%-64 100%-310 100%-16"
 		>[Tooltip text]</object>
 	
 		<object
 			name="cancelGame"
 			type="button"
-			style="wheatButton"
-			font="serif-16"
-			size="100%-140 100%-40 100%+3 100%+3"
+			style="StoneButton"
+			size="100%-300 100%-48 100%-160 100%-16"
 			tooltip_style="onscreenToolTip"
 			tooltip="Click this button to return to the main menu."
 		>Cancel
@@ -193,9 +190,8 @@
 		<object
 			name="startGame"
 			type="button"
-			style="wheatButton"
-			font="serif-16"
-			size="100%-280 100%-40 100%-143 100%+3"
+			style="StoneButton"
+			size="100%-156 100%-48 100%-16 100%-16"
 			tooltip_style="onscreenToolTip"
 			tooltip="Click this button to start a new game with the current settings."
 		>Start game!
