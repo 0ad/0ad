@@ -729,6 +729,9 @@ void ScenarioEditor::SetOpenFilename(const wxString& filename)
 void ScenarioEditor::NotifyOnMapReload()
 {
 	m_SectionLayout.OnMapReload();
+
+	// Notify observers, here so it's independent of individual panels
+	m_MapSettings.NotifyObservers();
 }
 
 //////////////////////////////////////////////////////////////////////////

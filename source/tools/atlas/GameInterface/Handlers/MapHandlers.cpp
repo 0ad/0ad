@@ -139,30 +139,51 @@ QUERYHANDLER(GetMapSettings)
 	msg->settings = g_Game->GetSimulation2()->GetMapSettingsString();
 }
 
-QUERYHANDLER(GetMapSizes)
-{
-	msg->sizes = g_Game->GetSimulation2()->GetMapSizes();
-}
-
 BEGIN_COMMAND(SetMapSettings)
 {
-	void Do()
+	std::string m_OldSettings, m_NewSettings;
+	
+	void SetSettings(const std::string& settings)
 	{
-		Redo();
+		g_Game->GetSimulation2()->SetMapSettings(settings);
 	}
 
+	void Do()
+	{
+		m_OldSettings = g_Game->GetSimulation2()->GetMapSettingsString();
+		m_NewSettings = *msg->settings;
+		
+		SetSettings(m_NewSettings);
+	}
+
+	// TODO: we need some way to notify the Atlas UI when the settings are changed
+	//	externally, otherwise this will have no visible effect
 	void Undo()
 	{
-		// TODO
-		debug_warn(L"Can't undo SetMapSettings");
+		// SetSettings(m_OldSettings);
 	}
 
 	void Redo()
 	{
-		g_Game->GetSimulation2()->SetMapSettings(*msg->settings);
+		// SetSettings(m_NewSettings);
+	}
+
+	void MergeIntoPrevious(cSetMapSettings* prev)
+	{
+		prev->m_NewSettings = m_NewSettings;
 	}
 };
 END_COMMAND(SetMapSettings)
+
+MESSAGEHANDLER(LoadPlayerSettings)
+{
+	g_Game->GetSimulation2()->LoadPlayerSettings(msg->newplayers);
+}
+
+QUERYHANDLER(GetMapSizes)
+{
+	msg->sizes = g_Game->GetSimulation2()->GetMapSizes();
+}
 
 QUERYHANDLER(GetRMSData)
 {
@@ -171,6 +192,8 @@ QUERYHANDLER(GetRMSData)
 
 BEGIN_COMMAND(ResizeMap)
 {
+	int m_OldTiles, m_NewTiles;
+
 	cResizeMap()
 	{
 	}
@@ -186,24 +209,39 @@ BEGIN_COMMAND(ResizeMap)
 		g_Game->GetView()->GetLOSTexture().MakeDirty();
 	}
 
+	void ResizeTerrain(int tiles)
+	{
+		CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+
+		terrain->Resize(tiles / PATCH_SIZE);
+
+		MakeDirty();
+	}
+
 	void Do()
 	{
-		Redo();
+		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+		if (cmpTerrain.null())
+		{
+			m_OldTiles = m_NewTiles = 0;
+		}
+		else
+		{
+			m_OldTiles = (int)cmpTerrain->GetTilesPerSide();
+			m_NewTiles = msg->tiles;
+		}
+
+		ResizeTerrain(m_NewTiles);
 	}
 
 	void Undo()
 	{
-		// TODO
-		debug_warn(L"Can't undo ResizeMap");
+		ResizeTerrain(m_OldTiles);
 	}
 
 	void Redo()
 	{
-		CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-
-		terrain->Resize(msg->tiles / PATCH_SIZE);
-
-		MakeDirty();
+		ResizeTerrain(m_NewTiles);
 	}
 };
 END_COMMAND(ResizeMap)

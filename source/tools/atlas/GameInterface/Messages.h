@@ -152,13 +152,17 @@ QUERY(GetMapSettings,
 		((std::string, settings))
 		);
 
+COMMAND(SetMapSettings, MERGE,
+		((std::string, settings))
+		);
+
+MESSAGE(LoadPlayerSettings,
+		((bool, newplayers))
+		);
+
 QUERY(GetMapSizes,
 		,
 		((std::string, sizes))
-		);
-
-COMMAND(SetMapSettings, NOMERGE,
-		((std::string, settings))
 		);
 
 QUERY(GetRMSData,
@@ -418,7 +422,7 @@ QUERY(GetEnvironmentSettings,
 	  ((sEnvironmentSettings, settings))
 	  );
 
-COMMAND(SetEnvironmentSettings, MERGE,
+COMMAND(SetEnvironmentSettings, MERGE,	// merge lots of small changes into one undoable command
 		((sEnvironmentSettings, settings))
 		);
 
@@ -486,8 +490,8 @@ COMMAND(RotateObject, MERGE,
 		((float, angle))
 		);
 
-COMMAND(DeleteObject, NOMERGE,
-		((ObjectID, id))
+COMMAND(DeleteObjects, NOMERGE,
+		((std::vector<ObjectID>, ids))
 		);
 
 MESSAGE(SetSelectionPreview,
@@ -505,6 +509,12 @@ COMMAND(SetObjectSettings, NOMERGE,
 		((int, view)) // eRenderView
 		((ObjectID, id))
 		((sObjectSettings, settings))
+		);
+
+QUERY(GetPlayerObjects,
+		((int, player))
+		,
+		((std::vector<ObjectID>, ids))
 		);
 
 //////////////////////////////////////////////////////////////////////////

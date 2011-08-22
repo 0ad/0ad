@@ -216,11 +216,12 @@ void Brush::CreateUI(wxWindow* parent, wxSizer* sizer)
 	sizer->AddSpacer(5);
 
 	// TODO: These are yucky
-	wxSizer* spinnerSizer = new wxFlexGridSizer(2, 2, 5, 5);
+	wxFlexGridSizer* spinnerSizer = new wxFlexGridSizer(2, 5, 5);
+	spinnerSizer->AddGrowableCol(1);
 	spinnerSizer->Add(new wxStaticText(parent, wxID_ANY, _("Size")), wxSizerFlags().Align(wxALIGN_CENTER|wxALIGN_RIGHT));
-	spinnerSizer->Add(new BrushSizeCtrl(parent, *this));
+	spinnerSizer->Add(new BrushSizeCtrl(parent, *this), wxSizerFlags().Expand());
 	spinnerSizer->Add(new wxStaticText(parent, wxID_ANY, _("Strength")), wxSizerFlags().Align(wxALIGN_CENTER|wxALIGN_RIGHT));
-	spinnerSizer->Add(new BrushStrengthCtrl(parent, *this));
+	spinnerSizer->Add(new BrushStrengthCtrl(parent, *this), wxSizerFlags().Expand());
 	sizer->Add(spinnerSizer, wxSizerFlags().Expand());
 }
 

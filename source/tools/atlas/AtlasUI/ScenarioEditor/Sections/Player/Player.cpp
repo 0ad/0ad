@@ -101,23 +101,23 @@ public:
 		gridSizer->AddGrowableCol(1);
 		gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Food")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 		wxSpinCtrl* foodCtrl = new wxSpinCtrl(this, ID_PlayerFood, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, 0, INT_MAX);
-		gridSizer->Add(Tooltipped(foodCtrl, _("Initial value of food resource")));
+		gridSizer->Add(Tooltipped(foodCtrl, _("Initial value of food resource")), wxSizerFlags().Expand());
 		m_Controls.food = foodCtrl;
 		gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Wood")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 		wxSpinCtrl* woodCtrl = new wxSpinCtrl(this, ID_PlayerWood, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, 0, INT_MAX);
-		gridSizer->Add(Tooltipped(woodCtrl, _("Initial value of wood resource")));
+		gridSizer->Add(Tooltipped(woodCtrl, _("Initial value of wood resource")), wxSizerFlags().Expand());
 		m_Controls.wood = woodCtrl;
 		gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Metal")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 		wxSpinCtrl* metalCtrl = new wxSpinCtrl(this, ID_PlayerMetal, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, 0, INT_MAX);
-		gridSizer->Add(Tooltipped(metalCtrl, _("Initial value of metal resource")));
+		gridSizer->Add(Tooltipped(metalCtrl, _("Initial value of metal resource")), wxSizerFlags().Expand());
 		m_Controls.metal = metalCtrl;
 		gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Stone")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 		wxSpinCtrl* stoneCtrl = new wxSpinCtrl(this, ID_PlayerStone, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, 0, INT_MAX);
-		gridSizer->Add(Tooltipped(stoneCtrl, _("Initial value of stone resource")));
+		gridSizer->Add(Tooltipped(stoneCtrl, _("Initial value of stone resource")), wxSizerFlags().Expand());
 		m_Controls.stone = stoneCtrl;
 		gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Pop limit")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 		wxSpinCtrl* popCtrl = new wxSpinCtrl(this, ID_PlayerPop, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, 0, INT_MAX);
-		gridSizer->Add(Tooltipped(popCtrl, _("Population limit for this player")));
+		gridSizer->Add(Tooltipped(popCtrl, _("Population limit for this player")), wxSizerFlags().Expand());
 		m_Controls.pop = popCtrl;
 
 		resourceSizer->Add(gridSizer, wxSizerFlags(1).Expand());
@@ -285,31 +285,36 @@ public:
 
 	void ResizePlayers(size_t numPlayers)
 	{
+		wxASSERT(numPlayers <= m_Pages.size());
+
 		// We don't really want to destroy the windows corresponding
-		//		to the tabs, so we've kept them in a vector and will
-		//		only remove and add them to the notebook as needed
-		if (numPlayers <= m_Pages.size())
+		//	to the tabs, so we've kept them in a vector and will
+		//	only remove and add them to the notebook as needed
+		int selection = GetSelection();
+		size_t pageCount = GetPageCount();
+
+		if (numPlayers > pageCount)
 		{
-			size_t pageCount = GetPageCount();
-			if (numPlayers > pageCount)
+			// Add previously removed pages
+			for (size_t i = pageCount; i < numPlayers; ++i)
 			{
-				// Add previously removed pages
-				for (size_t i = pageCount; i < numPlayers; ++i)
-				{
-					AddPage(m_Pages[i], m_Pages[i]->GetPlayerName());
-				}
-			}
-			else
-			{
-				// Remove previously added pages
-				// we have to manually hide them or they remain visible
-				for (size_t i = pageCount - 1; i >= numPlayers; --i)
-				{
-					m_Pages[i]->Hide();
-					RemovePage(i);
-				}
+				AddPage(m_Pages[i], m_Pages[i]->GetPlayerName());
 			}
 		}
+		else
+		{
+			// Remove previously added pages
+			// we have to manually hide them or they remain visible
+			for (size_t i = pageCount - 1; i >= numPlayers; --i)
+			{
+				m_Pages[i]->Hide();
+				RemovePage(i);
+			}
+		}
+
+		// Workaround for bug on wxGTK 2.8: wxChoice selection doesn't update
+		//	(in fact it loses its selection when adding/removing pages)
+		GetChoiceCtrl()->SetSelection(selection);
 	}
 
 protected:
@@ -363,18 +368,85 @@ private:
 		}
 	}
 
-	void OnNumPlayersChanged(wxSpinEvent& WXUNUSED(evt))
+	void OnPlayerColour(wxCommandEvent& WXUNUSED(evt))
 	{
 		if (!m_InGUIUpdate)
 		{
-			m_Players->ResizePlayers(wxDynamicCast(FindWindow(ID_NumPlayers), wxSpinCtrl)->GetValue());
 			SendToEngine();
+
+			// Update player settings, to show new colour
+			POST_MESSAGE(LoadPlayerSettings, (false));
+		}
+	}
+
+	void OnNumPlayersText(wxCommandEvent& WXUNUSED(evt))
+	{	// Ignore because it will also trigger EVT_SPINCTRL
+		//	and we don't want to handle the same event twice
+	}
+
+	void OnNumPlayersSpin(wxSpinEvent& evt)
+	{
+		if (!m_InGUIUpdate)
+		{
+			wxASSERT(evt.GetInt() > 0);
 			
-			// Notify observers
+			// When wxMessageBox pops up, wxSpinCtrl loses focus, which
+			//	forces another EVT_SPINCTRL event, which we don't want
+			//	to handle, so we check here for a change
+			if (evt.GetInt() == (int)m_NumPlayers)
+			{
+				return;	// No change
+			}
+			
+			size_t oldNumPlayers = m_NumPlayers;
+			m_NumPlayers = evt.GetInt();
+
+			if (m_NumPlayers < oldNumPlayers)
+			{
+				// Remove players, but check if they own any entities
+				bool notified = false;
+				for (size_t i = oldNumPlayers; i > m_NumPlayers; --i)
+				{
+					qGetPlayerObjects objectsQry(i);
+					objectsQry.Post();
+
+					std::vector<AtlasMessage::ObjectID> ids = *objectsQry.ids;
+
+					if (ids.size() > 0)
+					{
+						if (!notified)
+						{
+							// TODO: Add option to reassign objects?
+							if (wxMessageBox(_("WARNING: All objects belonging to the removed players will be deleted. Continue anyway?"), _("Remove player confirmation"), wxICON_EXCLAMATION | wxYES_NO) != wxYES)
+							{
+								// Restore previous player count
+								m_NumPlayers = oldNumPlayers;
+								wxDynamicCast(FindWindow(ID_NumPlayers), wxSpinCtrl)->SetValue(m_NumPlayers);
+								return;
+							}
+
+							notified = true;
+						}
+
+						// Delete objects
+						// TODO: Merge multiple commands?
+						POST_COMMAND(DeleteObjects, (ids));
+					}
+				}
+			}
+
+			m_Players->ResizePlayers(m_NumPlayers);
+			SendToEngine();
+
+			// Reload players, notify observers
+			POST_MESSAGE(LoadPlayerSettings, (true));
 			m_MapSettings.NotifyObservers();
 		}
 	}
 
+	// TODO: we shouldn't hardcode this, but instead dynamically create
+	//	new player notebook pages on demand; of course the default data
+	//	will be limited by the entries in player_defaults.json
 	static const size_t MAX_NUM_PLAYERS = 8;
 
 	bool m_InGUIUpdate;
@@ -383,17 +455,19 @@ private:
 	ScenarioEditor& m_ScenarioEditor;
 	std::vector<PlayerPageControls> m_PlayerControls;
 	Observable<AtObj>& m_MapSettings;
+	size_t m_NumPlayers;
 
 	DECLARE_EVENT_TABLE();
 };
 
 BEGIN_EVENT_TABLE(PlayerSettingsControl, wxPanel)
-	EVT_BUTTON(ID_PlayerColour, PlayerSettingsControl::OnEdit)
+	EVT_BUTTON(ID_PlayerColour, PlayerSettingsControl::OnPlayerColour)
 	EVT_BUTTON(ID_CameraSet, PlayerSettingsControl::OnEdit)
 	EVT_BUTTON(ID_CameraClear, PlayerSettingsControl::OnEdit)
 	EVT_CHOICE(wxID_ANY, PlayerSettingsControl::OnEdit)
+	EVT_TEXT(ID_NumPlayers, PlayerSettingsControl::OnNumPlayersText)
 	EVT_TEXT(wxID_ANY, PlayerSettingsControl::OnEdit)
-	EVT_SPINCTRL(ID_NumPlayers, PlayerSettingsControl::OnNumPlayersChanged)
+	EVT_SPINCTRL(ID_NumPlayers, PlayerSettingsControl::OnNumPlayersSpin)
 	EVT_SPINCTRL(ID_PlayerFood, PlayerSettingsControl::OnEditSpin)
 	EVT_SPINCTRL(ID_PlayerWood, PlayerSettingsControl::OnEditSpin)
 	EVT_SPINCTRL(ID_PlayerMetal, PlayerSettingsControl::OnEditSpin)
@@ -402,7 +476,7 @@ BEGIN_EVENT_TABLE(PlayerSettingsControl, wxPanel)
 END_EVENT_TABLE();
 
 PlayerSettingsControl::PlayerSettingsControl(wxWindow* parent, ScenarioEditor& scenarioEditor)
-	: wxPanel(parent, wxID_ANY), m_ScenarioEditor(scenarioEditor), m_InGUIUpdate(false), m_MapSettings(scenarioEditor.GetMapSettings())
+	: wxPanel(parent, wxID_ANY), m_ScenarioEditor(scenarioEditor), m_InGUIUpdate(false), m_MapSettings(scenarioEditor.GetMapSettings()), m_NumPlayers(0)
 {
 	// To prevent recursion, don't handle GUI events right now
 	m_InGUIUpdate = true;
@@ -502,13 +576,17 @@ void PlayerSettingsControl::ReadFromEngine()
 	}
 
 	AtIter player = m_MapSettings["PlayerData"]["item"];
-	size_t numPlayers = player.count();
-
-	if (!m_MapSettings.defined() || !player.defined() || numPlayers == 0)
+	if (!m_MapSettings.defined() || !player.defined() || player.count() == 0)
 	{
-		// Player data missing - set number of players manually
-		numPlayers = MAX_NUM_PLAYERS;
+		// Player data missing - set number of players to max
+		m_NumPlayers = MAX_NUM_PLAYERS;
 	}
+	else
+	{
+		m_NumPlayers = player.count();
+	}
+
+	wxASSERT(m_NumPlayers <= MAX_NUM_PLAYERS && m_NumPlayers != 0);
 
 	// To prevent recursion, don't handle GUI events right now
 	m_InGUIUpdate = true;
@@ -517,12 +595,12 @@ void PlayerSettingsControl::ReadFromEngine()
 	AtIter playerDefs = m_PlayerDefaults["item"];
 	++playerDefs;	// skip gaia
 
-	wxDynamicCast(FindWindow(ID_NumPlayers), wxSpinCtrl)->SetValue(numPlayers);
+	wxDynamicCast(FindWindow(ID_NumPlayers), wxSpinCtrl)->SetValue(m_NumPlayers);
 
 	// Remove / add extra player pages as needed
-	m_Players->ResizePlayers(numPlayers);
+	m_Players->ResizePlayers(m_NumPlayers);
 
-	for (size_t i = 0; i < numPlayers && i < MAX_NUM_PLAYERS; ++i, ++player, ++playerDefs)
+	for (size_t i = 0; i < MAX_NUM_PLAYERS; ++i, ++player, ++playerDefs)
 	{
 		PlayerPageControls controls = m_PlayerControls[i];
 
@@ -537,7 +615,12 @@ void PlayerSettingsControl::ReadFromEngine()
 
 		// civ
 		wxChoice* choice = controls.civ;
-		wxString civCode(player["Civ"]);
+		wxString civCode;
+		if (player["Civ"].defined())
+			civCode = wxString(player["Civ"]);
+		else
+			civCode = wxString(playerDefs["Civ"]);
+
 		for (size_t j = 0; j < choice->GetCount(); ++j)
 		{
 			wxStringClientData* str = dynamic_cast<wxStringClientData*>(choice->GetClientObject(j));
@@ -651,11 +734,12 @@ AtObj PlayerSettingsControl::UpdateSettingsObject()
 {
 	// Update player data in the map settings
 	AtIter oldPlayer = m_MapSettings["PlayerData"]["item"];
-	size_t numPlayers = wxDynamicCast(FindWindow(ID_NumPlayers), wxSpinCtrl)->GetValue();
 	AtObj players;
 	players.set("@array", L"");
 
-	for (size_t i = 0; i < numPlayers && i < MAX_NUM_PLAYERS; ++i)
+	wxASSERT(m_NumPlayers <= MAX_NUM_PLAYERS);
+
+	for (size_t i = 0; i < m_NumPlayers; ++i)
 	{
 		PlayerPageControls controls = m_PlayerControls[i];
 

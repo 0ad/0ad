@@ -145,13 +145,14 @@ void MapSettingsControl::CreateWidgets()
 	gameTypes.Add(_T("endless"));
 
 	wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2, 5, 5);
+	gridSizer->AddGrowableCol(1);
 	gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Reveal map")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 	gridSizer->Add(new wxCheckBox(this, ID_MapReveal, wxEmptyString));
 	gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Game type")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
-	gridSizer->Add(new wxChoice(this, ID_MapType, wxDefaultPosition, wxDefaultSize, gameTypes));
+	gridSizer->Add(new wxChoice(this, ID_MapType, wxDefaultPosition, wxDefaultSize, gameTypes), wxSizerFlags().Expand());
 	gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Lock teams")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 	gridSizer->Add(new wxCheckBox(this, ID_MapTeams, wxEmptyString));
-	sizer->Add(gridSizer);
+	sizer->Add(gridSizer, wxSizerFlags().Expand());
 
 	sizer->AddSpacer(5);
 
@@ -404,6 +405,9 @@ void MapSidebar::OnSimPlay(wxCommandEvent& event)
 
 	if (m_SimState == SimInactive)
 	{
+		// Force update of player settings
+		POST_MESSAGE(LoadPlayerSettings, (false));
+
 		POST_MESSAGE(SimStateSave, (L"default"));
 		POST_MESSAGE(GuiSwitchPage, (L"page_session.xml"));
 		POST_MESSAGE(SimPlay, (speed));

@@ -36,4 +36,14 @@ PlayerManager.prototype.GetNumPlayers = function()
 	return this.playerEntities.length;
 };
 
+PlayerManager.prototype.RemoveAllPlayers = function()
+{
+	// Destroy existing player entities
+	for each (id in this.playerEntities)
+	{
+		Engine.DestroyEntity(id);
+	}
+	this.playerEntities = [];
+};
+
 Engine.RegisterComponentType(IID_PlayerManager, "PlayerManager", PlayerManager);

@@ -3,8 +3,11 @@
  * Used to create player entities prior to reading the rest of a map,
  * all other initialization must be done after loading map (terrain/entities).
  * DO NOT use other components here, as they may fail unpredictably.
+ * settings is the object containing settings for this map.
+ * newPlayers if true will remove any old player entities and add new ones
+ *	(used when loading a map or when Atlas changes the number of players).
  */
-function LoadPlayerSettings(settings)
+function LoadPlayerSettings(settings, newPlayers)
 {
 	// Default settings
 	if (!settings)
@@ -16,7 +19,7 @@ function LoadPlayerSettings(settings)
 	var rawData = Engine.ReadJSONFile("player_defaults.json");
 	if (!(rawData && rawData.PlayerData))
 	{
-		throw("Player.js: Error reading player default data (player_defaults.json)");
+		throw("Player.js: Error reading player_defaults.json");
 	}
 
 	var playerDefaults = rawData.PlayerData;
@@ -24,32 +27,47 @@ function LoadPlayerSettings(settings)
 	// default number of players
 	var numPlayers = 8;
 	
-	if (settings.PlayerData)
-	{	// Get number of players including gaia
-		numPlayers = settings.PlayerData.length + 1;
-	}
-	else
-	{
-		warn("Player.js: Setup has no player data - using defaults");
-	}
-	
 	// Get player manager
-	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-
-	for (var i = 0; i < numPlayers; ++i)
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	
+	// Remove existing players and add new ones
+	if (newPlayers)
 	{
-		// Add player entity to engine
-		var entID = Engine.AddEntity("special/player");
-		
-		// Retrieve entity
-		var cmpPlayer = Engine.QueryInterface(entID, IID_Player);
-		if (!cmpPlayer)
+		cmpPlayerManager.RemoveAllPlayers();
+	
+		if (settings.PlayerData)
+		{	// Get number of players including gaia
+			numPlayers = settings.PlayerData.length + 1;
+		}
+		else
 		{
-			throw("Player.js: Error creating player entity "+i);
+			warn("Player.js: Setup has no player data - using defaults");
 		}
 		
-		cmpPlayer.SetPlayerID(i);
-		
+		for (var i = 0; i < numPlayers; ++i)
+		{
+			// Add player entity to engine
+			// TODO: Get player template name from civ data
+			var entID = Engine.AddEntity("special/player");
+			var cmpPlayer = Engine.QueryInterface(entID, IID_Player);
+			if (!cmpPlayer)
+			{
+				throw("Player.js: Error creating player entity "+i);
+			}
+			
+			cmpPlayer.SetPlayerID(i);
+			
+			// Add player to player manager
+			cmpPlayerManager.AddPlayer(entID);
+		}
+	}
+	
+	numPlayers = cmpPlayerManager.GetNumPlayers();
+	
+	// Initialize the player data
+	for (var i = 0; i < numPlayers; ++i)
+	{
+		var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
 		var pDefs = playerDefaults ? playerDefaults[i] : {};
 		
 		// Skip gaia
@@ -57,7 +75,6 @@ function LoadPlayerSettings(settings)
 		{
 			var pData = settings.PlayerData ? settings.PlayerData[i-1] : {};
 			
-			// Copy player data
 			cmpPlayer.SetName(getSetting(pData, pDefs, "Name"));
 			cmpPlayer.SetCiv(getSetting(pData, pDefs, "Civ"));
 			cmpPlayer.SetAI(pData.AI && pData.AI != "");
@@ -120,9 +137,6 @@ function LoadPlayerSettings(settings)
 				cmpPlayer.SetEnemy(j);
 			}
 		}
-		
-		// Add player to player manager
-		cmpPlayerMan.AddPlayer(entID);
 	}
 }
 
@@ -146,13 +160,13 @@ function getSetting(settings, defaults, property)
  */
 function QueryOwnerInterface(ent, iid)
 {
-	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 
 	var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 	if (!cmpOwnership)
 		return null;
 
-	var playerEnt = cmpPlayerMan.GetPlayerByID(cmpOwnership.GetOwner());
+	var playerEnt = cmpPlayerManager.GetPlayerByID(cmpOwnership.GetOwner());
 	if (!playerEnt)
 		return null;
 	
@@ -166,9 +180,9 @@ function QueryOwnerInterface(ent, iid)
  */
 function QueryPlayerIDInterface(id, iid)
 {
-	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 
-	var playerEnt = cmpPlayerMan.GetPlayerByID(id);
+	var playerEnt = cmpPlayerManager.GetPlayerByID(id);
 	if (!playerEnt)
 		return null;
 	
@@ -193,8 +207,8 @@ function IsOwnedByAllyOfEntity(entity, target)
 	if (cmpOwnershipTarget)
 		targetOwner = cmpOwnershipTarget.GetOwner();
 
-	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(owner), IID_Player);
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(owner), IID_Player);
 
 	// Check for allied diplomacy status
 	if (cmpPlayer.IsAlly(targetOwner))
@@ -223,8 +237,8 @@ function IsOwnedByAllyOfPlayer(player, target)
 	if (cmpOwnershipTarget)
 		targetOwner = cmpOwnershipTarget.GetOwner();
 
-	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(player), IID_Player);
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(player), IID_Player);
 
 	// Check for allied diplomacy status
 	if (cmpPlayer.IsAlly(targetOwner))
@@ -244,8 +258,8 @@ function IsOwnedByEnemyOfPlayer(player, target)
 	if (cmpOwnershipTarget)
 		targetOwner = cmpOwnershipTarget.GetOwner();
 
-	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(player), IID_Player);
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(player), IID_Player);
 
 	// Check for allied diplomacy status
 	if (cmpPlayer.IsEnemy(targetOwner))

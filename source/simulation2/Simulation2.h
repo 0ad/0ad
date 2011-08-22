@@ -69,8 +69,10 @@ public:
 
 	/**
 	 * Loads the player settings script (called before map is loaded)
+	 * @param newPlayers will delete all the existing player entities (if any) and create new ones
+	 *	(needed for loading maps, but Atlas might want to update existing player data)
 	 */
-	void LoadPlayerSettings();
+	void LoadPlayerSettings(bool newPlayers);
 
 	/**
 	 * Loads the map settings script (called after map is loaded)

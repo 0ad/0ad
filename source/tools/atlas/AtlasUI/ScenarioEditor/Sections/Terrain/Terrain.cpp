@@ -94,8 +94,9 @@ TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebar
 		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Visualise"));
 		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 
-		wxSizer* visSizer = new wxFlexGridSizer(2, 5, 5);
-		sizer->Add(visSizer);
+		wxFlexGridSizer* visSizer = new wxFlexGridSizer(2, 5, 5);
+		visSizer->AddGrowableCol(1);
+		sizer->Add(visSizer, wxSizerFlags().Expand());
 
 		wxArrayString defaultChoices;
 		defaultChoices.Add(_("(none)"));
@@ -103,7 +104,7 @@ TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebar
 		m_PassabilityChoice->SetSelection(0);
 
 		visSizer->Add(new wxStaticText(this, wxID_ANY, _("Passability")), wxSizerFlags().Align(wxALIGN_CENTER|wxALIGN_RIGHT));
-		visSizer->Add(m_PassabilityChoice);
+		visSizer->Add(m_PassabilityChoice, wxSizerFlags().Expand());
 
 		visSizer->Add(new wxStaticText(this, wxID_ANY, _("Priorities")), wxSizerFlags().Align(wxALIGN_CENTER|wxALIGN_RIGHT));
 		visSizer->Add(new wxCheckBox(this, ID_ShowPriorities, _("")));

@@ -99,8 +99,7 @@ public:
 		{
 			if (type == KEY_CHAR && evt.GetKeyCode() == WXK_DELETE)
 			{
-				for (size_t i = 0; i < g_SelectedObjects.size(); ++i)
-					POST_COMMAND(DeleteObject, (g_SelectedObjects[i]));
+				POST_COMMAND(DeleteObjects, (g_SelectedObjects));
 
 				g_SelectedObjects.clear();
 				g_SelectedObjects.NotifyObservers();

@@ -478,9 +478,9 @@ CScriptVal CSimulation2::GetMapSettings()
 	return m->m_MapSettings.get();
 }
 
-void CSimulation2::LoadPlayerSettings()
+void CSimulation2::LoadPlayerSettings(bool newPlayers)
 {
-	GetScriptInterface().CallFunctionVoid(GetScriptInterface().GetGlobalObject(), "LoadPlayerSettings", m->m_MapSettings);
+	GetScriptInterface().CallFunctionVoid(GetScriptInterface().GetGlobalObject(), "LoadPlayerSettings", m->m_MapSettings, newPlayers);
 }
 
 void CSimulation2::LoadMapSettings()

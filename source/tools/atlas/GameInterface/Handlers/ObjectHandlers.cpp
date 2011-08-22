@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -543,18 +543,21 @@ BEGIN_COMMAND(RotateObject)
 END_COMMAND(RotateObject)
 
 
-BEGIN_COMMAND(DeleteObject)
+BEGIN_COMMAND(DeleteObjects)
 {
 	// Saved copy of the important aspects of a unit, to allow undo
-	entity_id_t m_EntityID;
-	CStr m_TemplateName;
-	int32_t m_Owner;
-	CFixedVector3D m_Pos;
-	CFixedVector3D m_Rot;
-	// TODO: random selections
+	struct OldObject
+	{
+		entity_id_t entityID;
+		CStr templateName;
+		int32_t owner;
+		CFixedVector3D pos;
+		CFixedVector3D rot;
+	};
 
-	cDeleteObject()
-	: m_EntityID(INVALID_ENTITY), m_Owner(-1)
+	std::vector<OldObject> oldObjects;
+
+	cDeleteObjects()
 	{
 	}
 
@@ -569,46 +572,77 @@ BEGIN_COMMAND(DeleteObject)
 		CmpPtr<ICmpTemplateManager> cmpTemplateManager(sim, SYSTEM_ENTITY);
 		ENSURE(!cmpTemplateManager.null());
 
-		m_EntityID = (entity_id_t)msg->id;
-		m_TemplateName = cmpTemplateManager->GetCurrentTemplateName(m_EntityID);
-
-		CmpPtr<ICmpOwnership> cmpOwner(sim, m_EntityID);
-		if (!cmpOwner.null())
-			m_Owner = cmpOwner->GetOwner();
-
-		CmpPtr<ICmpPosition> cmpPosition(sim, m_EntityID);
-		if (!cmpPosition.null())
+		std::vector<ObjectID> ids = *msg->ids;
+		for (size_t i = 0; i < ids.size(); ++i)
 		{
-			m_Pos = cmpPosition->GetPosition();
-			m_Rot = cmpPosition->GetRotation();
-		}
+			OldObject obj;
 
-		g_Game->GetSimulation2()->DestroyEntity(m_EntityID);
+			obj.entityID = (entity_id_t)ids[i];
+			obj.templateName = cmpTemplateManager->GetCurrentTemplateName(obj.entityID);
+
+			CmpPtr<ICmpOwnership> cmpOwner(sim, obj.entityID);
+			if (!cmpOwner.null())
+				obj.owner = cmpOwner->GetOwner();
+
+			CmpPtr<ICmpPosition> cmpPosition(sim, obj.entityID);
+			if (!cmpPosition.null())
+			{
+				obj.pos = cmpPosition->GetPosition();
+				obj.rot = cmpPosition->GetRotation();
+			}
+
+			oldObjects.push_back(obj);
+			g_Game->GetSimulation2()->DestroyEntity(obj.entityID);
+		}
 	}
 
 	void Undo()
 	{
 		CSimulation2& sim = *g_Game->GetSimulation2();
-		entity_id_t ent = sim.AddEntity(m_TemplateName.FromUTF8(), m_EntityID);
-		if (ent == INVALID_ENTITY)
-			LOGERROR(L"Failed to load entity template '%hs'", m_TemplateName.c_str());
-		else
-		{
-			CmpPtr<ICmpPosition> cmpPosition(sim, m_EntityID);
-			if (!cmpPosition.null())
-			{
-				cmpPosition->JumpTo(m_Pos.X, m_Pos.Z);
-				cmpPosition->SetXZRotation(m_Rot.X, m_Rot.Z);
-				cmpPosition->SetYRotation(m_Rot.Y);
-			}
 
-			CmpPtr<ICmpOwnership> cmpOwner(sim, m_EntityID);
-			if (!cmpOwner.null())
-				cmpOwner->SetOwner(m_Owner);
+		for (size_t i = 0; i < oldObjects.size(); ++i)
+		{
+			entity_id_t ent = sim.AddEntity(oldObjects[i].templateName.FromUTF8(), oldObjects[i].entityID);
+			if (ent == INVALID_ENTITY)
+			{
+				LOGERROR(L"Failed to load entity template '%hs'", oldObjects[i].templateName.c_str());
+			}
+			else
+			{
+				CmpPtr<ICmpPosition> cmpPosition(sim, oldObjects[i].entityID);
+				if (!cmpPosition.null())
+				{
+					cmpPosition->JumpTo(oldObjects[i].pos.X, oldObjects[i].pos.Z);
+					cmpPosition->SetXZRotation(oldObjects[i].rot.X, oldObjects[i].rot.Z);
+					cmpPosition->SetYRotation(oldObjects[i].rot.Y);
+				}
+
+				CmpPtr<ICmpOwnership> cmpOwner(sim, oldObjects[i].entityID);
+				if (!cmpOwner.null())
+					cmpOwner->SetOwner(oldObjects[i].owner);
+			}
 		}
+
+		oldObjects.clear();
 	}
 };
-END_COMMAND(DeleteObject)
+END_COMMAND(DeleteObjects)
 
+QUERYHANDLER(GetPlayerObjects)
+{
+	std::vector<ObjectID> ids;
+	player_id_t playerID = msg->player;
+
+	const CSimulation2::InterfaceListUnordered& cmps = g_Game->GetSimulation2()->GetEntitiesWithInterfaceUnordered(IID_Ownership);
+	for (CSimulation2::InterfaceListUnordered::const_iterator eit = cmps.begin(); eit != cmps.end(); ++eit)
+	{
+		if (static_cast<ICmpOwnership*>(eit->second)->GetOwner() == playerID)
+		{
+			ids.push_back(eit->first);
+		}
+	}
+
+	msg->ids = ids;
+}
 
 }

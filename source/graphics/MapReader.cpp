@@ -1029,7 +1029,7 @@ int CMapReader::LoadScriptSettings()
 // load player settings script
 int CMapReader::LoadPlayerSettings()
 {
-	pSimulation2->LoadPlayerSettings();
+	pSimulation2->LoadPlayerSettings(true);
 	return 0;
 }
 
