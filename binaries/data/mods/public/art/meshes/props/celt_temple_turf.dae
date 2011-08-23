@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2011-08-23T05:29:58Z</created>
+    <modified>2011-08-23T05:29:58Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__329-image" name="Map__329">
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\props\celt_wall_turf.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_14___Default" name="_14___Default">
+      <instance_effect url="#_14___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_14___Default-fx" name="_14___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__329-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="default008-lib" name="default008Mesh">
+      <mesh>
+        <source id="default008-lib-Position">
+          <float_array id="default008-lib-Position-array" count="36">
+4.048895 -5.354612 1.769612
+4.048895 -9.530134 1.769612
+9.675475 -9.530134 1.769612
+9.675475 -5.354612 1.769612
+-4.072995 -5.289717 1.769612
+-4.072995 -9.465306 1.769612
+-9.792678 -9.465306 1.769612
+-9.792678 -5.289717 1.769612
+-9.836704 3.472241 1.843797
+-9.836704 -8.404630 1.843797
+9.784397 -8.404630 1.843797
+9.784397 3.472241 1.843797
+</float_array>
+          <technique_common>
+            <accessor source="#default008-lib-Position-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="default008-lib-Normal0">
+          <float_array id="default008-lib-Normal0-array" count="54">
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#default008-lib-Normal0-array" count="18" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="default008-lib-UV0">
+          <float_array id="default008-lib-UV0-array" count="24">
+0.322266 1.000000
+0.171875 1.000000
+0.171875 0.777344
+0.322266 0.777344
+0.683594 0.996094
+0.535156 0.996094
+0.535156 0.773438
+0.683594 0.773438
+0.683594 0.937500
+0.171875 0.937500
+0.171875 0.312500
+0.683594 0.312500
+</float_array>
+          <technique_common>
+            <accessor source="#default008-lib-UV0-array" count="12" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="default008-lib-Vertex">
+          <input semantic="POSITION" source="#default008-lib-Position"/>
+        </vertices>
+        <polygons material="_14___Default" count="6">
+          <input semantic="VERTEX" offset="0" source="#default008-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#default008-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#default008-lib-UV0"/>
+          <p>1 0 0 2 1 1 3 2 2</p>
+          <p>3 3 2 0 4 3 1 5 0</p>
+          <p>6 6 4 5 7 5 4 8 6</p>
+          <p>4 9 6 7 10 7 6 11 4</p>
+          <p>9 12 8 10 13 9 11 14 10</p>
+          <p>11 15 10 8 16 11 9 17 8</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="default008" name="default008">
+        <matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 -1.000000 0.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#default008-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_14___Default" target="#_14___Default"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+

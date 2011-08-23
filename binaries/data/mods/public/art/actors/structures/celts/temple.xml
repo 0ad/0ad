@@ -10,8 +10,11 @@
         <prop actor="particle/smoke.xml" attachpoint="fire"/>
         <prop actor="particle/flame.xml" attachpoint="fire"/>
         <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/temple_prop_1.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/temple_turf.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/temple_celt_wall.xml" attachpoint="root"/>
       </props>
-      <texture>structural/celt_struct.dds</texture>
+      <texture>structural/celt_struct_1.dds</texture>
     </variant>
   </group>
 </actor>
