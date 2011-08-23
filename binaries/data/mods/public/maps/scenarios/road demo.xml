@@ -1,0 +1,859 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="5">
+	<Environment>
+		<LightingModel>standard</LightingModel>
+		<SkySet>default</SkySet>
+		<SunColour r="1.08585" g="1.04746" b="0.806158"/>
+		<SunElevation angle="0.469398"/>
+		<SunRotation angle="0.294524"/>
+		<TerrainAmbientColour r="0.396078" g="0.47451" b="0.654902"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="272.725" y="93.8082" z="204.926"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "CircularMap": true,
+  "Description": "Demo map showcasing Temperate Road decals.",
+  "GameType": "endless",
+  "Keywords": [
+    "demo"
+  ],
+  "LockTeams": false,
+  "Name": "Road Decals Demo",
+  "PlayerData": [
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    }
+  ],
+  "RevealMap": false
+}
+]]></ScriptSettings>
+	<Entities>
+		<Entity uid="11">
+			<Template>actor|props/special/eyecandy/road_temperate_corner.xml</Template>
+			<Position x="289.9697" z="380.50586"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="12">
+			<Template>actor|props/special/eyecandy/road_temperate_curve_small.xml</Template>
+			<Position x="305.16938" z="370.99701"/>
+			<Orientation y="-0.78632"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>actor|props/special/eyecandy/road_temperate_intersect_T.xml</Template>
+			<Position x="321.14347" z="380.79706"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>actor|props/special/eyecandy/road_temperate_intersect_x.xml</Template>
+			<Position x="274.3107" z="371.6391"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>actor|props/special/eyecandy/road_temperate_long.xml</Template>
+			<Position x="293.64112" z="352.09113"/>
+			<Orientation y="-0.78109"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>actor|props/special/eyecandy/road_temperate_short.xml</Template>
+			<Position x="328.55497" z="373.32477"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="18">
+			<Template>actor|props/special/eyecandy/road_temperate_curve_small.xml</Template>
+			<Position x="340.95933" z="362.17173"/>
+			<Orientation y="-2.45528"/>
+		</Entity>
+		<Entity uid="20">
+			<Template>actor|props/special/eyecandy/road_temperate_short.xml</Template>
+			<Position x="329.19034" z="349.45658"/>
+			<Orientation y="-2.37319"/>
+		</Entity>
+		<Entity uid="22">
+			<Template>actor|props/special/eyecandy/road_temperate_corner.xml</Template>
+			<Position x="314.10798" z="403.9108"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="23">
+			<Template>actor|props/special/eyecandy/road_temperate_curve_small.xml</Template>
+			<Position x="300.34568" z="396.75391"/>
+			<Orientation y="-0.73763"/>
+		</Entity>
+		<Entity uid="24">
+			<Template>actor|props/special/eyecandy/road_temperate_long.xml</Template>
+			<Position x="282.66617" z="416.10358"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="25">
+			<Template>actor|props/special/eyecandy/road_temperate_intersect_T.xml</Template>
+			<Position x="265.25141" z="380.93705"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>actor|props/special/eyecandy/road_temperate_curve_small.xml</Template>
+			<Position x="274.68503" z="395.83002"/>
+			<Orientation y="-2.32981"/>
+		</Entity>
+		<Entity uid="29">
+			<Template>actor|props/special/eyecandy/road_temperate_short.xml</Template>
+			<Position x="274.6645" z="346.94626"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="30">
+			<Template>actor|props/special/eyecandy/road_temperate_intersect_x.xml</Template>
+			<Position x="249.40908" z="371.70481"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="31">
+			<Template>actor|props/special/eyecandy/road_temperate_corner.xml</Template>
+			<Position x="277.69077" z="336.88477"/>
+			<Orientation y="-2.35512"/>
+		</Entity>
+		<Entity uid="32">
+			<Template>actor|props/special/eyecandy/road_temperate_intersect_x.xml</Template>
+			<Position x="329.25782" z="396.03922"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="33">
+			<Template>actor|props/special/eyecandy/road_temperate_curve_small.xml</Template>
+			<Position x="340.11323" z="408.16907"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="34">
+			<Template>actor|props/special/eyecandy/road_temperate_curve_small.xml</Template>
+			<Position x="341.61948" z="383.04615"/>
+			<Orientation y="-0.85026"/>
+		</Entity>
+		<Entity uid="35">
+			<Template>actor|props/special/eyecandy/road_temperate_curve_small.xml</Template>
+			<Position x="352.939" z="394.90967"/>
+			<Orientation y="-2.3415"/>
+		</Entity>
+		<Entity uid="36">
+			<Template>actor|props/special/eyecandy/road_temperate_short.xml</Template>
+			<Position x="261.32163" z="408.80231"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="37">
+			<Template>actor|props/special/eyecandy/road_temperate_long.xml</Template>
+			<Position x="230.27828" z="391.26233"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="40">
+			<Template>actor|props/special/eyecandy/road_temperate_intersect_T.xml</Template>
+			<Position x="269.9574" z="322.5857"/>
+			<Orientation y="0.81775"/>
+		</Entity>
+		<Entity uid="41">
+			<Template>actor|props/special/eyecandy/road_temperate_corner.xml</Template>
+			<Position x="253.06698" z="325.7548"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="42">
+			<Template>actor|props/special/eyecandy/road_temperate_corner.xml</Template>
+			<Position x="273.23957" z="304.21686"/>
+			<Orientation y="-2.34873"/>
+		</Entity>
+		<Entity uid="43">
+			<Template>actor|props/special/eyecandy/road_temperate_corner.xml</Template>
+			<Position x="241.25646" z="313.56809"/>
+			<Orientation y="0.78837"/>
+		</Entity>
+		<Entity uid="44">
+			<Template>actor|props/special/eyecandy/road_temperate_corner.xml</Template>
+			<Position x="261.07096" z="292.40851"/>
+			<Orientation y="-0.77863"/>
+		</Entity>
+		<Entity uid="46">
+			<Template>actor|props/special/eyecandy/road_temperate_intersect_T.xml</Template>
+			<Position x="243.76645" z="296.3985"/>
+			<Orientation y="-2.3501"/>
+		</Entity>
+		<Entity uid="47">
+			<Template>actor|props/special/eyecandy/road_temperate_corner.xml</Template>
+			<Position x="233.9438" z="362.56122"/>
+			<Orientation y="-0.82328"/>
+		</Entity>
+		<Entity uid="48">
+			<Template>actor|props/special/eyecandy/road_temperate_long.xml</Template>
+			<Position x="212.04679" z="376.98322"/>
+			<Orientation y="-0.79036"/>
+		</Entity>
+		<Entity uid="49">
+			<Template>actor|props/special/eyecandy/road_temperate_intersect_T.xml</Template>
+			<Position x="265.2317" z="363.10755"/>
+			<Orientation y="0.79479"/>
+		</Entity>
+		<Entity uid="50">
+			<Template>actor|props/special/eyecandy/road_temperate_end.xml</Template>
+			<Position x="236.71831" z="289.43042"/>
+			<Orientation y="0.81162"/>
+		</Entity>
+		<Entity uid="51">
+			<Template>actor|props/special/eyecandy/road_temperate_corner.xml</Template>
+			<Position x="207.94445" z="406.41868"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="52">
+			<Template>actor|props/special/eyecandy/road_temperate_corner.xml</Template>
+			<Position x="198.5556" z="397.36683"/>
+			<Orientation y="0.76615"/>
+		</Entity>
+		<Entity uid="53">
+			<Template>actor|props/special/eyecandy/road_temperate_curve_small.xml</Template>
+			<Position x="249.63004" z="421.29242"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="54">
+			<Template>actor|props/special/eyecandy/road_temperate_curve_small.xml</Template>
+			<Position x="262.68232" z="435.62638"/>
+			<Orientation y="0.80141"/>
+		</Entity>
+		<Entity uid="55">
+			<Template>actor|props/special/eyecandy/road_temperate_curve_small.xml</Template>
+			<Position x="275.97962" z="447.17072"/>
+			<Orientation y="-2.38546"/>
+		</Entity>
+		<Entity uid="56">
+			<Template>actor|props/special/eyecandy/road_temperate_curve_small.xml</Template>
+			<Position x="237.8261" z="408.06031"/>
+			<Orientation y="-0.74032"/>
+		</Entity>
+		<Entity uid="57">
+			<Template>actor|props/special/eyecandy/road_temperate_curve_small.xml</Template>
+			<Position x="264.13312" z="458.9673"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="58">
+			<Template>actor|props/special/eyecandy/road_temperate_curve_small.xml</Template>
+			<Position x="225.95852" z="420.81147"/>
+			<Orientation y="0.80942"/>
+		</Entity>
+		<Entity uid="59">
+			<Template>actor|props/special/eyecandy/road_temperate_long.xml</Template>
+			<Position x="245.54552" z="439.46479"/>
+			<Orientation y="-2.37081"/>
+		</Entity>
+		<Entity uid="60">
+			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
+			<Position x="240.89281" z="353.58063"/>
+			<Orientation y="0.72864"/>
+		</Entity>
+		<Entity uid="61">
+			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
+			<Position x="245.2692" z="352.97815"/>
+			<Orientation y="1.22181"/>
+		</Entity>
+		<Entity uid="62">
+			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
+			<Position x="291.62183" z="342.12519"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="63">
+			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
+			<Position x="247.05381" z="359.08747"/>
+			<Orientation y="2.36852"/>
+		</Entity>
+		<Entity uid="64">
+			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
+			<Position x="253.38227" z="356.88773"/>
+			<Orientation y="0.36016"/>
+		</Entity>
+		<Entity uid="65">
+			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
+			<Position x="258.21354" z="350.38498"/>
+			<Orientation y="2.11149"/>
+		</Entity>
+		<Entity uid="66">
+			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
+			<Position x="255.20801" z="354.20527"/>
+			<Orientation y="1.50147"/>
+		</Entity>
+		<Entity uid="67">
+			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
+			<Position x="274.92331" z="358.16498"/>
+			<Orientation y="1.05336"/>
+		</Entity>
+		<Entity uid="68">
+			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
+			<Position x="240.69838" z="348.05488"/>
+			<Orientation y="2.82721"/>
+		</Entity>
+		<Entity uid="69">
+			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
+			<Position x="293.31562" z="337.92957"/>
+			<Orientation y="-2.82096"/>
+		</Entity>
+		<Entity uid="70">
+			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
+			<Position x="290.6644" z="328.96155"/>
+			<Orientation y="-2.67138"/>
+		</Entity>
+		<Entity uid="71">
+			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
+			<Position x="288.85743" z="325.77375"/>
+			<Orientation y="-2.34217"/>
+		</Entity>
+		<Entity uid="72">
+			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
+			<Position x="284.97361" z="322.06962"/>
+			<Orientation y="-2.07941"/>
+		</Entity>
+		<Entity uid="73">
+			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
+			<Position x="281.98545" z="320.29184"/>
+			<Orientation y="-2.39747"/>
+		</Entity>
+		<Entity uid="74">
+			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
+			<Position x="277.61237" z="317.9557"/>
+			<Orientation y="1.69916"/>
+		</Entity>
+		<Entity uid="75">
+			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
+			<Position x="282.95759" z="314.90027"/>
+			<Orientation y="0.69414"/>
+		</Entity>
+		<Entity uid="76">
+			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
+			<Position x="288.91282" z="301.95698"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="77">
+			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
+			<Position x="290.54355" z="303.02009"/>
+			<Orientation y="-2.2981"/>
+		</Entity>
+		<Entity uid="78">
+			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
+			<Position x="285.72196" z="297.37494"/>
+			<Orientation y="-2.45606"/>
+		</Entity>
+		<Entity uid="79">
+			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
+			<Position x="281.44632" z="293.10547"/>
+			<Orientation y="2.65564"/>
+		</Entity>
+		<Entity uid="80">
+			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
+			<Position x="240.12511" z="278.63392"/>
+			<Orientation y="0.31814"/>
+		</Entity>
+		<Entity uid="81">
+			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
+			<Position x="241.46373" z="282.00574"/>
+			<Orientation y="1.26394"/>
+		</Entity>
+		<Entity uid="82">
+			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
+			<Position x="244.66457" z="284.49119"/>
+			<Orientation y="0.75451"/>
+		</Entity>
+		<Entity uid="83">
+			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
+			<Position x="247.17293" z="286.8209"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="84">
+			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
+			<Position x="248.74383" z="288.01185"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="85">
+			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
+			<Position x="250.64144" z="283.80542"/>
+			<Orientation y="2.64443"/>
+		</Entity>
+		<Entity uid="86">
+			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
+			<Position x="253.22272" z="279.92157"/>
+			<Orientation y="1.98363"/>
+		</Entity>
+		<Entity uid="87">
+			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
+			<Position x="257.2638" z="278.84702"/>
+			<Orientation y="2.37317"/>
+		</Entity>
+		<Entity uid="88">
+			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
+			<Position x="259.4788" z="277.26325"/>
+			<Orientation y="2.03379"/>
+		</Entity>
+		<Entity uid="89">
+			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
+			<Position x="264.98572" z="277.26328"/>
+			<Orientation y="1.09264"/>
+		</Entity>
+		<Entity uid="90">
+			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
+			<Position x="267.65476" z="280.68287"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="91">
+			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
+			<Position x="273.21128" z="284.49115"/>
+			<Orientation y="1.18435"/>
+		</Entity>
+		<Entity uid="92">
+			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
+			<Position x="277.4286" z="287.05768"/>
+			<Orientation y="1.8435"/>
+		</Entity>
+		<Entity uid="93">
+			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
+			<Position x="280.5705" z="287.29514"/>
+			<Orientation y="-2.9764"/>
+		</Entity>
+		<Entity uid="94">
+			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
+			<Position x="272.51841" z="284.37644"/>
+			<Orientation y="-1.54159"/>
+		</Entity>
+		<Entity uid="95">
+			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
+			<Position x="267.97806" z="277.36783"/>
+			<Orientation y="-2.4155"/>
+		</Entity>
+		<Entity uid="96">
+			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
+			<Position x="263.2334" z="271.43845"/>
+			<Orientation y="2.83715"/>
+		</Entity>
+		<Entity uid="97">
+			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
+			<Position x="265.03873" z="266.3177"/>
+			<Orientation y="-2.26178"/>
+		</Entity>
+		<Entity uid="98">
+			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
+			<Position x="255.87974" z="266.94916"/>
+			<Orientation y="-1.00618"/>
+		</Entity>
+		<Entity uid="99">
+			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
+			<Position x="252.40027" z="270.57486"/>
+			<Orientation y="-0.77758"/>
+		</Entity>
+		<Entity uid="100">
+			<Template>actor|props/flora/grass_soft_small_tall.xml</Template>
+			<Position x="248.26304" z="273.99268"/>
+			<Orientation y="0.51355"/>
+		</Entity>
+		<Entity uid="113">
+			<Template>units/mace_champion_infantry_sele</Template>
+			<Player>1</Player>
+			<Position x="248.67486" z="371.4079"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="114">
+			<Template>units/mace_hypaspist</Template>
+			<Player>1</Player>
+			<Position x="313.94718" z="333.52588"/>
+			<Orientation y="-3.06269"/>
+		</Entity>
+		<Entity uid="115">
+			<Template>units/mace_argyraspis</Template>
+			<Player>1</Player>
+			<Position x="236.76084" z="288.86155"/>
+			<Orientation y="2.83596"/>
+		</Entity>
+		<Entity uid="116">
+			<Template>units/pers_champion_cavalry</Template>
+			<Player>1</Player>
+			<Position x="339.81162" z="395.43107"/>
+			<Orientation y="-2.06785"/>
+		</Entity>
+		<Entity uid="117">
+			<Template>units/samnite_swordsman</Template>
+			<Player>1</Player>
+			<Position x="265.6095" z="454.75062"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="118">
+			<Template>units/samnite_swordsman</Template>
+			<Player>1</Player>
+			<Position x="229.18389" z="419.7982"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="119">
+			<Template>units/samnite_spearman</Template>
+			<Player>1</Player>
+			<Position x="261.85038" z="357.72773"/>
+			<Orientation y="3.00101"/>
+		</Entity>
+		<Entity uid="120">
+			<Template>units/samnite_skirmisher</Template>
+			<Player>1</Player>
+			<Position x="290.06244" z="388.20191"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="121">
+			<Template>units/samnite_skirmisher</Template>
+			<Player>1</Player>
+			<Position x="265.01532" z="318.52472"/>
+			<Orientation y="0.95902"/>
+		</Entity>
+		<Entity uid="122">
+			<Template>units/samnite_swordsman</Template>
+			<Player>1</Player>
+			<Position x="233.70633" z="354.96851"/>
+			<Orientation y="0.92191"/>
+		</Entity>
+		<Entity uid="123">
+			<Template>units/sparta_hellenistic_phalangitai</Template>
+			<Player>1</Player>
+			<Position x="270.58005" z="396.68436"/>
+			<Orientation y="-2.65557"/>
+		</Entity>
+		<Entity uid="124">
+			<Template>units/thebes_sacred_band_hoplitai</Template>
+			<Player>1</Player>
+			<Position x="313.64203" z="410.87317"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="125">
+			<Template>units/thespian_melanochitones</Template>
+			<Player>1</Player>
+			<Position x="338.04148" z="358.0724"/>
+			<Orientation y="-2.9967"/>
+		</Entity>
+		<Entity uid="126">
+			<Template>units/thrace_black_cloak</Template>
+			<Player>1</Player>
+			<Position x="208.62958" z="413.60084"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="127">
+			<Template>units/celt_fanatic</Template>
+			<Player>1</Player>
+			<Position x="282.82361" z="337.56321"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="130">
+			<Template>units/pers_war_elephant</Template>
+			<Player>1</Player>
+			<Position x="235.01026" z="313.00052"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="131">
+			<Template>units/pers_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="261.49714" z="287.48682"/>
+			<Orientation y="0.67197"/>
+		</Entity>
+		<Entity uid="132">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>1</Player>
+			<Position x="279.4455" z="303.71247"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="133">
+			<Template>units/rome_champion_cavalry</Template>
+			<Player>1</Player>
+			<Position x="253.3309" z="333.6291"/>
+			<Orientation y="-2.39867"/>
+		</Entity>
+		<Entity uid="134">
+			<Template>units/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="273.86548" z="372.10001"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="135">
+			<Template>units/rome_legionnaire_imperial</Template>
+			<Player>1</Player>
+			<Position x="191.44065" z="396.62958"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="136">
+			<Template>units/rome_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="305.20514" z="373.64271"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="137">
+			<Template>actor|props/special/eyecandy/road_temperate_intersect_T.xml</Template>
+			<Position x="317.00562" z="336.47504"/>
+			<Orientation y="0.74463"/>
+		</Entity>
+		<Entity uid="138">
+			<Template>actor|props/special/eyecandy/road_temperate_long.xml</Template>
+			<Position x="332.65754" z="313.79621"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="139">
+			<Template>actor|props/special/eyecandy/road_temperate_long.xml</Template>
+			<Position x="360.91556" z="290.16196"/>
+			<Orientation y="2.18102"/>
+		</Entity>
+		<Entity uid="140">
+			<Template>actor|props/special/eyecandy/road_temperate_short.xml</Template>
+			<Position x="381.6363" z="273.77118"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="141">
+			<Template>actor|props/special/eyecandy/road_temperate_short.xml</Template>
+			<Position x="392.25318" z="261.00202"/>
+			<Orientation y="2.52723"/>
+		</Entity>
+		<Entity uid="142">
+			<Template>actor|props/special/eyecandy/road_temperate_curve_small.xml</Template>
+			<Position x="402.41202" z="248.12237"/>
+			<Orientation y="-2.22666"/>
+		</Entity>
+		<Entity uid="143">
+			<Template>actor|props/special/eyecandy/road_temperate_long.xml</Template>
+			<Position x="390.29261" z="229.45868"/>
+			<Orientation y="-2.75512"/>
+		</Entity>
+		<Entity uid="144">
+			<Template>actor|props/special/eyecandy/road_temperate_short.xml</Template>
+			<Position x="381.68052" z="204.30529"/>
+			<Orientation y="-2.92334"/>
+		</Entity>
+		<Entity uid="145">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="314.72355" z="357.07303"/>
+			<Orientation y="0.39925"/>
+		</Entity>
+		<Entity uid="146">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="322.05408" z="299.86808"/>
+			<Orientation y="1.57081"/>
+		</Entity>
+		<Entity uid="147">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="333.28718" z="290.31702"/>
+			<Orientation y="2.27244"/>
+		</Entity>
+		<Entity uid="148">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="343.71418" z="275.71409"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="149">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="356.61381" z="268.6118"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="150">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="364.07032" z="264.2031"/>
+			<Orientation y="2.43094"/>
+		</Entity>
+		<Entity uid="151">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="371.70017" z="255.38059"/>
+			<Orientation y="2.17896"/>
+		</Entity>
+		<Entity uid="152">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="384.3075" z="249.15629"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="153">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="345.34177" z="326.27106"/>
+			<Orientation y="2.36916"/>
+		</Entity>
+		<Entity uid="154">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="365.73429" z="296.79813"/>
+			<Orientation y="2.1734"/>
+		</Entity>
+		<Entity uid="155">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="377.15683" z="294.37824"/>
+			<Orientation y="2.34113"/>
+		</Entity>
+		<Entity uid="156">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="386.84144" z="288.44098"/>
+			<Orientation y="2.30184"/>
+		</Entity>
+		<Entity uid="157">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="398.34406" z="278.0127"/>
+			<Orientation y="2.67353"/>
+		</Entity>
+		<Entity uid="158">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="405.2975" z="261.54352"/>
+			<Orientation y="2.93471"/>
+		</Entity>
+		<Entity uid="159">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="409.32734" z="239.9452"/>
+			<Orientation y="-3.13326"/>
+		</Entity>
+		<Entity uid="160">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="408.47593" z="230.46857"/>
+			<Orientation y="-2.46746"/>
+		</Entity>
+		<Entity uid="161">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="402.82084" z="219.9484"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="162">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="397.49177" z="210.38003"/>
+			<Orientation y="-2.88073"/>
+		</Entity>
+		<Entity uid="163">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="393.21949" z="195.67476"/>
+			<Orientation y="2.96995"/>
+		</Entity>
+		<Entity uid="164">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="395.41364" z="186.25062"/>
+			<Orientation y="3.04822"/>
+		</Entity>
+		<Entity uid="165">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="366.66752" z="193.25255"/>
+			<Orientation y="0.16047"/>
+		</Entity>
+		<Entity uid="166">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="368.76337" z="208.59922"/>
+			<Orientation y="0.21903"/>
+		</Entity>
+		<Entity uid="167">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="371.49634" z="216.94681"/>
+			<Orientation y="0.5733"/>
+		</Entity>
+		<Entity uid="168">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="376.54499" z="225.33558"/>
+			<Orientation y="0.582"/>
+		</Entity>
+		<Entity uid="169">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="314.75019" z="300.77112"/>
+			<Orientation y="-0.7905"/>
+		</Entity>
+		<Entity uid="170">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="304.94156" z="311.75293"/>
+			<Orientation y="-0.90629"/>
+		</Entity>
+		<Entity uid="171">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="293.75391" z="321.19391"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="172">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="335.79871" z="327.95325"/>
+			<Orientation y="0.78274"/>
+		</Entity>
+		<Entity uid="173">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="179.92487" z="397.02961"/>
+			<Orientation y="0.55022"/>
+		</Entity>
+		<Entity uid="174">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="184.50957" z="404.73487"/>
+			<Orientation y="0.79139"/>
+		</Entity>
+		<Entity uid="175">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="190.47205" z="410.80408"/>
+			<Orientation y="0.60184"/>
+		</Entity>
+		<Entity uid="176">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="196.42736" z="418.25098"/>
+			<Orientation y="0.92507"/>
+		</Entity>
+		<Entity uid="177">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="200.63566" z="423.66117"/>
+			<Orientation y="0.88242"/>
+		</Entity>
+		<Entity uid="178">
+			<Template>gaia/flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="205.92988" z="429.08436"/>
+			<Orientation y="0.53133"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+</Scenario>
