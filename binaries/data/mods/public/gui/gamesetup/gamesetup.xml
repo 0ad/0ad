@@ -115,7 +115,7 @@
 						<object name="playerColour[n]" type="image" size="0 0 100% 100%"/>
 						<object name="playerName[n]" type="text" style="RightLabelText" size="0 0 100 100%"/>
 						<object name="playerAssignment[n]" type="dropdown" style="StoneDropDown" size="100 2 250 100%-2" tooltip_style="onscreenToolTip" tooltip="Select player"/>
-						<object name="playerConfig[n]" type="button" style="StoneButtonPlain" size="251 6 264 24"
+						<object name="playerConfig[n]" type="button" style="StoneButton" size="251 6 264 24"
 							tooltip_style="onscreenToolTip"
 							tooltip="Configure AI settings"
 						>c</object>
@@ -155,7 +155,7 @@
 				<action on="Press">submitChatInput();</action>
 			</object>
 	
-			<object size="100%-65 100%-23 100% 100%-3" type="button" style="StoneButtonPlain">
+			<object size="100%-65 100%-23 100% 100%-3" type="button" style="StoneButton">
 				Send
 				<action on="Press">submitChatInput();</action>
 			</object>

@@ -114,22 +114,22 @@
 	==========================================
 	-->
 
-	<style 	name="StoneButton"
+	<style 	name="StoneButtonFancy"
 		sprite="StoneButton"
 		sprite_disabled="StoneButtonDisabled"
-		sprite_over="StoneButtonOver"
-		sprite_pressed="StoneButtonGlow"
+		sprite_over="StoneButtonFancyOver"
+		sprite_pressed="StoneButtonFancyGlow"
 		font="serif-bold-stroke-14"
 		textcolor="gold"
 		text_align="center"
 		text_valign="center"
 	/>
 
-	<style 	name="StoneButtonPlain"
+	<style 	name="StoneButton"
 		sprite="StoneButton"
 		sprite_disabled="StoneButtonDisabled"
-		sprite_over="StoneButton"
-		sprite_pressed="StoneButton"
+		sprite_over="StoneButtonOver"
+		sprite_pressed="StoneButtonGlow"
 		font="serif-bold-stroke-14"
 		textcolor="gold"
 		text_align="center"

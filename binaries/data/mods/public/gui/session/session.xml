@@ -250,7 +250,7 @@
 			<!-- Settings button -->
 			<object type="button"
 				name="settingsButton"
-				style="StoneButton"
+				style="StoneButtonFancy"
 				size="0 0 100% 32"
 				tooltip_style="sessionToolTip"
 			>
@@ -261,7 +261,7 @@
 				<!-- Chat button -->
 				<object type="button"
 					name="chatButton"
-					style="StoneButton"
+					style="StoneButtonFancy"
 					size="0 32 100% 64"
 					tooltip_style="sessionToolTip"
 				>
@@ -271,8 +271,8 @@
 
 				<!-- Pause Button -->
 				<object type="button"
-					style="StoneButton"
 					name="pauseButton"
+					style="StoneButtonFancy"
 					size="0 64 100% 96"
 					tooltip_style="sessionToolTip"
 				>
@@ -283,7 +283,7 @@
 				<!-- Exit button -->
 				<object type="button"
 					name="menuExitButton"
-					style="StoneButton"
+					style="StoneButtonFancy"
 					size="0 96 100% 128"
 					tooltip_style="sessionToolTip"
 				>
