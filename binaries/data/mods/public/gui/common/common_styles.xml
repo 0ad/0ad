@@ -29,6 +29,27 @@
 		text_valign="center"
 	/>
 
+	<style name="LeftTabLabelText"
+		font="serif-bold-stroke-14"
+		textcolor="gold"
+		text_align="left"
+		text_valign="top"
+	/>
+
+	<style name="RightTabLabelText"
+		font="serif-bold-stroke-14"
+		textcolor="gold"
+		text_align="right"
+		text_valign="top"
+	/>
+
+	<style name="CenteredTabLabelText"
+		font="serif-bold-stroke-14"
+		textcolor="gold"
+		text_align="center"
+		text_valign="top"
+	/>
+
 	<style name="SmallLeftLabelText"
 		font="serif-12"
 		textcolor="white"
@@ -36,7 +57,7 @@
 		text_valign="top"
 	/>
 
-	<style name="logoText"
+	<style name="TitleText"
 		font="serif-bold-stroke-14"
 		textcolor="white"
 		text_align="center"
@@ -64,21 +85,15 @@
 	==========================================
 	-->
 
-	<style 	name="StonePanel"
-		sprite="StonePanel"
+	<style 	name="StonePanelThinBorder"
+		sprite="StonePanelThinBorder"
 		buffer_zone="10"
 		text_align="left"
 		text_valign="top"
 	/>
 
-	<!--
-	==========================================
-	MENU DIALOG STYLES
-	==========================================
-	-->
-
-	<style 	name="StoneDialog"
-		sprite="StoneDialog"
+	<style 	name="StonePanel"
+		sprite="StonePanel"
 		buffer_zone="10"
 		text_align="left"
 		text_valign="top"
@@ -123,8 +138,8 @@
 
 	<style 	name="StoneCrossBox"
 		font="serif-14"
-		sprite="wheatCheckBoxOpen"
-		sprite2="wheatCheckBoxCross"
+		sprite="StoneCheckBoxOpen"
+		sprite2="StoneCheckBoxCross"
 		square_side="16"
 		textcolor="black"
 	/>
@@ -148,8 +163,8 @@
 		sprite_pressed="StoneButtonGlow"
 
 		button_width="15"
-		sprite2="wheatArrowDn"
-		sprite2_pressed="wheatArrowDnOver"
+		sprite2="StoneArrowDn"
+		sprite2_pressed="StoneArrowDnOver"
 
 		buffer_zone="10"
 		dropdown_size="200"

@@ -193,16 +193,16 @@
 		</object>
 
 		<!-- Chat window -->
-		<object name="chatDialogPanel" size="50%-200 50%-46 50%+200 50%+46" type="image" hidden="true" sprite="genericPanel">
+		<object name="chatDialogPanel" size="50%-200 50%-46 50%+200 50%+46" type="image" hidden="true" style="StonePanelThinBorder">
 			<object name="chatInput" size="16 12 100%-16 36" type="input" style="chatInput" max_length="80">
 				<action on="Press">submitChatInput();</action>
 			</object>
 
-			<object  size="32 100%-44 144 100%-12" type="button" style="wheatButton">
+			<object  size="32 100%-44 144 100%-12" type="button" style="StoneButton">
 				Cancel
 				<action on="Press">closeChat();</action>
 			</object>
-			<object size="100%-144 100%-44 100%-32 100%-12" type="button" style="wheatButton">
+			<object size="100%-144 100%-44 100%-32 100%-12" type="button" style="StoneButton">
 				Send
 				<action on="Press">submitChatInput();</action>
 			</object>
@@ -213,25 +213,25 @@
 		<!-- Session Dialog -->
 		<!-- ================================  ================================ -->
 		<object name="sessionDialog"
-			sprite="sessionDialog"
+			style="StonePanel"
 			type="image"
 			size="50%-180 50%-200 50%+180 50%+50"
 			hidden="true"
 			z="30"
 		>
-			<object name="sessionDialogTitleBar" size="50%-100 -16 50%+100 16" type="image" sprite="sessionDialogTitleBar">
-				<object name="sessionDialogTitle" size="0 -2 100% 100%" type="text" style="dialogTitleText">Title</object>
+			<object name="sessionDialogTitleBar" size="50%-96 -16 50%+96 16" type="image" style="StoneDialogTitleBar">
+				<object name="sessionDialogTitle" type="text" style="TitleText" size="0 -2 100% 100%">Title</object>
 			</object>
 			
 			<object name="sessionDialogMessage" size="20 10 100%-20 100%-48" type="text" style="dialogText"/>
 
 			<object size="0 100%-48 100% 100%">
-				<object name="sessionDialogConfirm" size="32 100%-64 144 100%-32" type="button" style="wheatButton">
+				<object name="sessionDialogConfirm" size="32 100%-64 144 100%-32" type="button" style="StoneButton">
 					OK
 				<action on="Press"></action>
 				</object>
 
-				<object name="sessionDialogCancel" size="100%-144 100%-64 100%-32 100%-32" type="button" style="wheatButton">
+				<object name="sessionDialogCancel" size="100%-144 100%-64 100%-32 100%-32" type="button" style="StoneButton">
 					Cancel
 				<action on="Press">g_SessionDialog.close();</action>
 				</object>
@@ -242,7 +242,7 @@
 		<!-- Menu -->
 		<!-- ================================  ================================ -->
 		<object name="menuDialogPanel"
-			size="50%-74 50%-180 50%+74 50%+20"
+			size="0 50%-180 100% 50%+20"
 			type="image"
 			hidden="true"
 			z="30"
@@ -250,44 +250,44 @@
 			<!-- Settings button -->
 			<object type="button"
 				name="settingsButton"
-				style="wheatButtonFancy"
-				size="50%-56 0 50%+56 32"
+				style="StoneButton"
+				size="0 0 100% 32"
 				tooltip_style="sessionToolTip"
 			>
-				<object size="0 0 100% 100%" type="text" style="centeredText" name="settingsButtonText" ghost="true">Settings</object>
+				Settings
 				<action on="Press">openSettingsDialog();</action>
 			</object>
 
 				<!-- Chat button -->
 				<object type="button"
 					name="chatButton"
-					style="wheatButtonFancy"
-					size="50%-56 32 50%+56 64"
+					style="StoneButton"
+					size="0 32 100% 64"
 					tooltip_style="sessionToolTip"
 				>
-					<object size="0 0 100% 100%" type="text" style="centeredText" name="chatButtonText" ghost="true">Chat</object>
+					Chat
 					<action on="Press">openChat();</action>
 				</object>
 
 				<!-- Pause Button -->
 				<object type="button"
-					style="wheatButtonFancy"
+					style="StoneButton"
 					name="pauseButton"
-					size="50%-56 64 50%+56 96"
+					size="0 64 100% 96"
 					tooltip_style="sessionToolTip"
 				>
-					<object name="pauseButtonText" size="0 0 100% 100%" type="text" ghost="true" style="centeredText">Pause</object>
+					<object name="pauseButtonText" type="text" style="CenteredLabelText" ghost="true">Pause</object>
 					<action on="Press">togglePause();</action>
 				</object>
 
 				<!-- Exit button -->
 				<object type="button"
 					name="menuExitButton"
-					style="wheatButtonFancy"
-					size="50%-56 96 50%+56 128"
+					style="StoneButton"
+					size="0 96 100% 128"
 					tooltip_style="sessionToolTip"
 				>
-					<object size="0 0 100% 100%" type="text" style="centeredText" name="exitButtonText" ghost="true" font="serif-14">Quit</object>
+					Quit
 					<action on="Press">
 						openExitGameDialog();
 					</action>
@@ -298,7 +298,7 @@
 		<!-- Settings Window -->
 		<!-- ================================  ================================ -->
 		<object name="settingsDialogPanel"
-			sprite="genericPanel"
+			style="StonePanelThinBorder"
 			type="image"
 			size="80%-180 50%-200 50%+180 50%+50"
 			hidden="true"
@@ -469,7 +469,7 @@
 		<!-- ================================  ================================ -->
 		<!-- Supplemental Details Panel on Left -->
 		<!-- ================================  ================================ -->
-		<object size="208 100%-170 50%-110 100%" name="supplementalSelectionDetails" type="image" sprite="bottomLeft" z="30">
+		<object size="208 100%-170 50%-110 100%" name="supplementalSelectionDetails" type="image" style="StonePanelThinBorder" z="30">
 
 			<object name="unitFormationPanel"
 				size="24 12 100% 100%"
@@ -498,7 +498,7 @@
 
 			<!-- Stance Selection -->
 			<object name="unitStancePanel"
-				sprite="bottomMiddle"
+				style="StonePanelThinBorder"
 				size="0 100%-43 100% 100%"
 				type="text"
 			>
@@ -517,7 +517,7 @@
 		<!-- ================================  ================================ -->
 		<object name="selectionDetails"
 			type="image"
-			sprite="bottomMiddle"
+			style="StonePanelThinBorder"
 			size="50%-114 100%-205 50%+114 100%"
 			hidden="false"
 		>
@@ -648,7 +648,7 @@
 		<!-- ================================  ================================ -->
 		<object name="unitCommands"
 			type="image"
-			sprite="bottomRight"
+			style="StonePanelThinBorder"
 			size="622 100%-170 100% 100%"
 			hidden="false"
 		>
@@ -668,7 +668,7 @@
 			</object>
 
 			<object name="unitResearchPanel"
-				style="goldPanelFrilly"
+				style="StonePanelThinBorder"
 				size="0 100%-56 100% 100%"
 				type="text"
 			>
@@ -696,7 +696,7 @@
 			<object name="unitQueuePanel"
 				size="4 -56 100% 0"
 				type="image"
-				sprite="genericPanel"
+				style="StonePanelThinBorder"
 			>
 				<object size="-4 -2 52 54" type="image" sprite="snIconSheetTab" tooltip_style="sessionToolTipBottom" cell_id="3" tooltip="Production queue">
 						<object name="queueProgress" ghost="true" style="iconButtonProgress" type="text"/>
@@ -730,7 +730,7 @@
 	<object name="netStatus" type="text" style="netStatus" z="100" hidden="true">
 			<object type="button"
 				name="disconnectedExitButton"
-				style="wheatButtonFancy"
+				style="StoneButton"
 				size="50%-84 50%+128 50%+84 50%+160"
 				tooltip_style="sessionToolTip"
 				hidden="true"

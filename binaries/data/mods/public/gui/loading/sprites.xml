@@ -6,7 +6,7 @@
 	<sprite name="loadingBackground">
 		<!-- background -->
 		<image
-			texture="loading/background-tile.png"
+			texture="global/tile/stone_background_light.png"
 			texture_size="0 0 512 512"
 			size="0 0 100% 100%"
 		/>
@@ -19,44 +19,44 @@
 
 		<!-- sides -->
 		<image
-			texture="loading/border/border-top.png"
+			texture="global/border/border-top.png"
 			texture_size="0 0 128 16"
 			size="16 0 100%-16 16"
 		/>
 		<image
-			texture="loading/border/border-right.png"
+			texture="global/border/border-right.png"
 			texture_size="0 0 16 128"
 			size="100%-16 16 100% 100%-16"
 		/>
 		<image
-			texture="loading/border/border-bottom.png"
+			texture="global/border/border-bottom.png"
 			texture_size="0 0 128 16"
 			size="16 100%-16 100%-16 100%"
 		/>
 		<image
-			texture="loading/border/border-left.png"
+			texture="global/border/border-left.png"
 			texture_size="0 0 16 128"
 			size="0 16 16 100%-16"
 		/>
 
 		<!-- corners -->
 		<image
-			texture="loading/border/border-corner.png"
+			texture="global/border/border-corner.png"
 			texture_size="0 0 16 16"
 			size="100%-16 0 100% 16"
 		/>
 		<image
-			texture="loading/border/border-corner.png"
+			texture="global/border/border-corner.png"
 			texture_size="0 0 16 16"
 			size="100%-16 100%-16 100% 100%"
 		/>
 		<image
-			texture="loading/border/border-corner.png"
+			texture="global/border/border-corner.png"
 			texture_size="0 0 16 16"
 			size="0 100%-16 16 100%"
 		/>
 		<image
-			texture="loading/border/border-corner.png"
+			texture="global/border/border-corner.png"
 			texture_size="0 0 16 16"
 			size="0 0 16 16"
 		/>
@@ -105,44 +105,44 @@
 	<sprite name="loadingTipImage">
 		<!-- sides -->
 		<image
-			texture="loading/border/line_horiz.png"
+			texture="global/border/line_horiz.png"
 			texture_size="0 0 64 4"
 			size="4 0 100%-4 4"
 		/>
 		<image
-			texture="loading/border/line_vert.png"
+			texture="global/border/line_vert.png"
 			texture_size="0 0 4 64"
 			size="100%-4 4 100% 100%-4"
 		/>
 		<image
-			texture="loading/border/line_horiz.png"
+			texture="global/border/line_horiz.png"
 			texture_size="0 0 64 4"
 			size="4 100%-4 100%-4 100%"
 		/>
 		<image
-			texture="loading/border/line_vert.png"
+			texture="global/border/line_vert.png"
 			texture_size="0 0 4 64"
 			size="0 4 4 100%-4"
 		/>
 
 		<!-- corners -->
 		<image
-			texture="loading/border/line_corner_top_right.png"
+			texture="global/border/line_corner_top_right.png"
 			texture_size="0 0 4 4"
 			size="100%-4 0 100% 4"
 		/>
 		<image
-			texture="loading/border/line_corner_bottom_right.png"
+			texture="global/border/line_corner_bottom_right.png"
 			texture_size="0 0 4 4"
 			size="100%-4 100%-4 100% 100%"
 		/>
 		<image
-			texture="loading/border/line_corner_bottom_left.png"
+			texture="global/border/line_corner_bottom_left.png"
 			texture_size="0 0 4 4"
 			size="0 100%-4 4 100%"
 		/>
 		<image
-			texture="loading/border/line_corner_top_left.png"
+			texture="global/border/line_corner_top_left.png"
 			texture_size="0 0 4 4"
 			size="0 0 4 4"
 		/>

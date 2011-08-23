@@ -9,9 +9,9 @@
 	<script file="gui/gamesetup/gamesetup.js"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
-	<object type="image" z="0" sprite="BackgroundTranslucent"/>
+	<object type="image" z="0" sprite="BackgroundBlack"/>
 
-	<object type="image" style="StoneDialog" size="50%-190 50%-80 50%+190 50%+80" name="loadingWindow">
+	<object type="image" style="StonePanel" size="50%-190 50%-80 50%+190 50%+80" name="loadingWindow">
 
 		<object type="text" style="StoneDialogTitleBar" size="50%-128 0%-16 50%+128 16">
 			Loading
@@ -23,7 +23,7 @@
 
 	</object>
 
-	<object type="image" style="StoneDialog" size="50%-400 50%-300 50%+400 50%+300" hidden="true" name="setupWindow">
+	<object type="image" style="StonePanel" size="0 16 100% 100%" hidden="true" name="setupWindow">
 
 		<action on="Tick">
 			onTick();
@@ -79,12 +79,12 @@
 		</object>
 
 		<!-- Player assignments -->
-		<object name="numPlayersBox" size="260 0 100% 30" hidden="true">
-			<object name="numPlayersSelectionHeading" type="text" text_valign="center" font="serif-bold-16">Number of Players</object>
+		<object name="numPlayersBox" size="260 28 100% 30" hidden="true">
+			<object name="numPlayersSelectionHeading" type="text" style="LeftLabelText" size="160 0 100% 32">Number of Players</object>
 			<object name="numPlayersSelection"
 				type="dropdown"
 				style="StoneDropDown"
-				size="150 0 200 30"
+				size="100 0 150 30"
 				tooltip_style="onscreenToolTip"
 				tooltip="Select number of players.">
 				<action on="SelectionChange">selectNumPlayers(this.list_data[this.selected]);</action>

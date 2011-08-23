@@ -52,7 +52,7 @@ SessionDialog.prototype.open = function(title, message, referencedPanel, x, y, c
 	else
 	{
 		getGUIObjectByName("sessionDialogConfirm").hidden = true;
-		getGUIObjectByName("sessionDialogCancel").size = "50%-56 100%-56 50%+56 100%-24";
+		getGUIObjectByName("sessionDialogCancel").size = "50%-72 100%-56 50%+72 100%-24";
 		getGUIObjectByName("sessionDialogCancel").caption = "Close";
 	}
 
