@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Carthage Tophet">
+      <mesh>structural/kart_tophet.dae</mesh>
+      <props>
+        <prop actor="particle/flame.xml" attachpoint="fire1"/>
+        <prop actor="particle/flame.xml" attachpoint="fire2"/>
+        <prop actor="particle/smoke.xml" attachpoint="fire1"/>
+        <prop actor="particle/smoke.xml" attachpoint="fire2"/>
+        <prop actor="props/structures/carthaginians/tophet_palms.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/kart_struct.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2011-08-23T00:40:16Z</created>
+    <modified>2011-08-23T00:40:16Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__292-image" name="Map__292">
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\structural\kart_struct.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_02___Default" name="_02___Default">
+      <instance_effect url="#_02___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_02___Default-fx" name="_02___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__292-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="Object1040-lib" name="Object1040Mesh">
+      <mesh>
+        <source id="Object1040-lib-Position">
+          <float_array id="Object1040-lib-Position-array" count="48">
+-0.861954 3.711170 -0.045299
+-0.861954 -1.913301 -0.045299
+2.512726 3.711170 -0.045300
+2.512726 -1.913301 -0.045300
+-11.807056 3.711170 -0.045294
+-11.807056 -1.913301 -0.045294
+-8.432377 3.711170 -0.045294
+-8.432377 -1.913301 -0.045294
+-8.477737 3.711170 -28.772926
+-8.477737 -1.913301 -28.772926
+-11.852417 3.711170 -28.772928
+-11.852417 -1.913301 -28.772928
+2.467365 3.711170 -28.772926
+2.467365 -1.913301 -28.772926
+-0.907314 3.711170 -28.772928
+-0.907314 -1.913301 -28.772926
+</float_array>
+          <technique_common>
+            <accessor source="#Object1040-lib-Position-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object1040-lib-Normal0">
+          <float_array id="Object1040-lib-Normal0-array" count="72">
+0.000000 0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000001 0.000000 -1.000000
+0.000001 0.000000 -1.000000
+0.000001 0.000000 -1.000000
+0.000001 0.000000 -1.000000
+0.000001 0.000000 -1.000000
+0.000001 0.000000 -1.000000
+0.000001 0.000000 -1.000000
+0.000000 -0.000000 -1.000000
+0.000000 -0.000000 -1.000000
+0.000000 -0.000000 -1.000000
+0.000000 -0.000000 -1.000000
+0.000000 -0.000000 -1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#Object1040-lib-Normal0-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object1040-lib-UV0">
+          <float_array id="Object1040-lib-UV0-array" count="32">
+0.005330 0.490431
+0.005330 0.209631
+0.183072 0.490431
+0.183072 0.209631
+0.005330 0.490431
+0.005330 0.209631
+0.183072 0.490431
+0.183072 0.209631
+0.005330 0.490431
+0.005330 0.209631
+0.183072 0.490431
+0.183072 0.209631
+0.005330 0.490431
+0.005330 0.209631
+0.183072 0.490431
+0.183072 0.209631
+</float_array>
+          <technique_common>
+            <accessor source="#Object1040-lib-UV0-array" count="16" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Object1040-lib-Vertex">
+          <input semantic="POSITION" source="#Object1040-lib-Position"/>
+        </vertices>
+        <polygons material="_02___Default" count="8">
+          <input semantic="VERTEX" offset="0" source="#Object1040-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#Object1040-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#Object1040-lib-UV0"/>
+          <p>0 0 0 1 1 1 2 2 2</p>
+          <p>3 3 3 2 4 2 1 5 1</p>
+          <p>4 6 4 5 7 5 6 8 6</p>
+          <p>7 9 7 6 10 6 5 11 5</p>
+          <p>8 12 8 9 13 9 10 14 10</p>
+          <p>11 15 11 10 16 10 9 17 9</p>
+          <p>12 18 12 13 19 13 14 20 14</p>
+          <p>15 21 15 14 22 14 13 23 13</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="Object1040" name="Object1040">
+        <matrix sid="matrix">-1.046856 -0.000000 -0.000000 -4.946692 -0.000000 1.046856 -0.000000 6.388091 0.000000 -0.000000 -0.272531 -8.945484 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#Object1040-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_02___Default" target="#_02___Default"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+

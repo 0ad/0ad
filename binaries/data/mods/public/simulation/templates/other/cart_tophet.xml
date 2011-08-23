@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_temple">
+  <Cost>
+    <BuildTime>200</BuildTime>
+    <Resources>
+      <food>0</food>
+      <wood>0</wood>
+      <stone>200</stone>
+      <metal>100</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="24.0" depth="26.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Health>
+    <Max>2000</Max>
+  </Health>
+  <Identity>
+    <Civ>cart</Civ>
+    <GenericName>Sacrificial Temple</GenericName>
+    <SpecificName>Tophet</SpecificName>
+    <History>N/A.</History>
+  </Identity>
+  <Loot>
+    <xp>50</xp>
+    <food>0</food>
+    <wood>0</wood>
+    <stone>20</stone>
+    <metal>10</metal>
+  </Loot>
+  <Obstruction>
+    <Static width="22.0" depth="24.0"/>
+  </Obstruction>
+  <Vision>
+    <Range>40</Range>
+  </Vision>
+  <VisualActor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
+    <Actor>structures/carthaginians/tophet.xml</Actor>
+  </VisualActor>
+</Entity>
