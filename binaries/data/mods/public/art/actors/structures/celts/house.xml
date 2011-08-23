@@ -2,28 +2,30 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="celt house a">
+    <variant frequency="1" name="celt house a">
       <mesh>structural/celt_house_a.dae</mesh>
       <props>
         <prop actor="props/structures/celts/house_a_door.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/house_a_shields.xml" attachpoint="root"/>
       </props>
-      <texture>structural/celt_struct_1.dds</texture>
     </variant>
-    <variant name="celt house b">
+    <variant frequency="1" name="celt house b">
       <mesh>structural/celt_house_b.dae</mesh>
       <props>
         <prop actor="props/structures/celts/house_b_shields.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/house_b_door.xml" attachpoint="root"/>
       </props>
-      <texture>structural/celt_struct_1.dds</texture>
     </variant>
-    <variant name="celt house c">
+    <variant frequency="1" name="celt house c">
       <mesh>structural/celt_house_c.dae</mesh>
       <props>
         <prop actor="props/structures/celts/house_c_shields.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/house_c_door.xml" attachpoint="root"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="texture">
       <texture>structural/celt_struct_1.dds</texture>
     </variant>
   </group>
