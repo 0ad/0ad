@@ -38,6 +38,8 @@
 #include "../DeltaArray.h"
 #include "../View.h"
 
+#include <queue>
+
 namespace AtlasMessage {
 
 QUERYHANDLER(GetTerrainGroups)
