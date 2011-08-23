@@ -28,16 +28,22 @@ TrainingQueue.prototype.Init = function()
 	//     "player": 1, // who paid for this batch; we need this to cope with refunds cleanly
 	//     "template": "units/example",
 	//     "count": 10,
-	//     "resources": { "wood": 100, ... },
-	//     "population": 10,
+	//     "resources": { "wood": 100, ... },	// resources per unit, multiply by count to get total
+	//     "population": 1,	// population per unit, multiply by count to get total
 	//     "trainingStarted": false, // true iff we have reserved population
 	//     "timeTotal": 15000, // msecs
 	//     "timeRemaining": 10000, // msecs
 	//   }
 	
 	this.timer = undefined; // g_ProgressInterval msec timer, active while the queue is non-empty
+	
+	this.entityCache = [];
+	this.spawnNotified = false;
 };
 
+/*
+ * Returns list of entities that can be trained by this building.
+ */
 TrainingQueue.prototype.GetEntitiesList = function()
 {
 	var string = this.template.Entities._string;
@@ -50,6 +56,9 @@ TrainingQueue.prototype.GetEntitiesList = function()
 	return string.split(/\s+/);
 };
 
+/*
+ * Adds a new batch of identical units to the training queue.
+ */
 TrainingQueue.prototype.AddBatch = function(templateName, count, metadata)
 {
 	// TODO: there should probably be a limit on the number of queued batches
@@ -65,22 +74,20 @@ TrainingQueue.prototype.AddBatch = function(templateName, count, metadata)
 		if (!template)
 			return;
 
-		var costMult = count;
-
 		// Apply a time discount to larger batches.
 		// TODO: work out what equation we should use here.
 		var timeMult = Math.pow(count, 0.7);
 
 		var time = timeMult * template.Cost.BuildTime;
 
-		var costs = {};
+		var totalCosts = {};
 		for each (var r in ["food", "wood", "stone", "metal"])
-			costs[r] = Math.floor(costMult * template.Cost.Resources[r]);
+			totalCosts[r] = Math.floor(count * template.Cost.Resources[r]);
 
-		var population = template.Cost.Population * count;
+		var population = template.Cost.Population;
 	
 		// TrySubtractResources should report error to player (they ran out of resources)
-		if (!cmpPlayer.TrySubtractResources(costs))
+		if (!cmpPlayer.TrySubtractResources(totalCosts))
 			return;
 
 		this.queue.push({
@@ -89,7 +96,7 @@ TrainingQueue.prototype.AddBatch = function(templateName, count, metadata)
 			"template": templateName,
 			"count": count,
 			"metadata": metadata,
-			"resources": costs,
+			"resources": template.Cost.Resources,
 			"population": population,
 			"trainingStarted": false,
 			"timeTotal": time*1000,
@@ -112,8 +119,19 @@ TrainingQueue.prototype.AddBatch = function(templateName, count, metadata)
 	}
 };
 
+/*
+ * Removes an existing batch of units from the training queue.
+ * Refunds resource costs and population reservations.
+ */
 TrainingQueue.prototype.RemoveBatch = function(id)
 {
+	// Destroy any cached entities (those which didn't spawn for some reason)
+	for (var i = 0; i < this.entityCache.length; ++i)
+	{
+		Engine.DestroyEntity(this.entityCache[i]);
+	}
+	this.entityCache = [];
+	
 	for (var i = 0; i < this.queue.length; ++i)
 	{
 		var item = this.queue[i];
@@ -125,11 +143,15 @@ TrainingQueue.prototype.RemoveBatch = function(id)
 		var cmpPlayer = QueryPlayerIDInterface(item.player, IID_Player);
 
 		// Refund the resource cost for this batch
-		cmpPlayer.AddResources(item.resources);
+		var totalCosts = {};
+		for each (var r in ["food", "wood", "stone", "metal"])
+			totalCosts[r] = Math.floor(item.count * item.resources[r]);
+			
+		cmpPlayer.AddResources(totalCosts);
 
 		// Remove reserved population slots if necessary
 		if (item.trainingStarted)
-			cmpPlayer.UnReservePopulationSlots(item.population);
+			cmpPlayer.UnReservePopulationSlots(item.population * item.count);
 
 		// Remove from the queue
 		// (We don't need to remove the timer - it'll expire if it discovers the queue is empty)
@@ -140,6 +162,9 @@ TrainingQueue.prototype.RemoveBatch = function(id)
 	}
 };
 
+/*
+ * Returns basic data from all batches in the training queue.
+ */
 TrainingQueue.prototype.GetQueue = function()
 {
 	var out = [];
@@ -156,6 +181,9 @@ TrainingQueue.prototype.GetQueue = function()
 	return out;
 };
 
+/*
+ * Removes all existing batches from the queue.
+ */
 TrainingQueue.prototype.ResetQueue = function()
 {
 	// Empty the training queue and refund all the resource costs
@@ -196,7 +224,10 @@ TrainingQueue.prototype.OnDestroy = function()
 	}
 };
 
-
+/*
+ * This function creates the entities and places them in world if possible.
+ * returns the number of successfully spawned entities.
+ */
 TrainingQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 {
 	var cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
@@ -204,66 +235,81 @@ TrainingQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	var cmpRallyPoint = Engine.QueryInterface(this.entity, IID_RallyPoint);
 	
-	var ents = [];
+	var spawnedEnts = [];
+	
+	if (this.entityCache.length == 0)
+	{
+		// We need entities to test spawning, but we don't want to waste resources,
+		//	so only create them once and use as needed
+		for (var i = 0; i < count; ++i)
+		{
+			this.entityCache.push(Engine.AddEntity(templateName));
+		}
+	}
 
 	for (var i = 0; i < count; ++i)
 	{
-		var ent = Engine.AddEntity(templateName);
-
+		var ent = this.entityCache[0];
 		var pos = cmpFootprint.PickSpawnPoint(ent);
 		if (pos.y < 0)
 		{
-			// Whoops, something went wrong (maybe there wasn't any space to spawn the unit).
-			// What should we do here?
-			// For now, just move the unit into the middle of the building where it'll probably get stuck
-			pos = cmpPosition.GetPosition();
-			
-			var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
-			var notification = {"player": cmpPlayer.GetPlayerID(), "message": "Can't find free space to spawn trained unit"};
-			var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-			cmpGUIInterface.PushNotification(notification);
+			// Fail: there wasn't any space to spawn the unit
+			break;
 		}
-
-		var cmpNewPosition = Engine.QueryInterface(ent, IID_Position);
-		cmpNewPosition.JumpTo(pos.x, pos.z);
-		// TODO: what direction should they face in?
-
-		var cmpNewOwnership = Engine.QueryInterface(ent, IID_Ownership);
-		cmpNewOwnership.SetOwner(cmpOwnership.GetOwner());
-		
-		var cmpPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
-		cmpPlayerStatisticsTracker.IncreaseTrainedUnitsCounter();
-		
-		ents.push(ent);
-
-		// Play a sound, but only for the first in the batch (to avoid nasty phasing effects)
-		if (i == 0)
-			PlaySound("trained", ent);
-	}
-
-	// If a rally point is set, walk towards it (in formation)
-	if (cmpRallyPoint)
-	{
-		var rallyPos = cmpRallyPoint.GetPosition();
-		if (rallyPos)
+		else
 		{
-			ProcessCommand(cmpOwnership.GetOwner(), {
-				"type": "walk",
-				"entities": ents,
-				"x": rallyPos.x,
-				"z": rallyPos.z,
-				"queued": false
-			});
+			// Successfully spawned
+			var cmpNewPosition = Engine.QueryInterface(ent, IID_Position);
+			cmpNewPosition.JumpTo(pos.x, pos.z);
+			// TODO: what direction should they face in?
+
+			var cmpNewOwnership = Engine.QueryInterface(ent, IID_Ownership);
+			cmpNewOwnership.SetOwner(cmpOwnership.GetOwner());
+			
+			var cmpPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
+			cmpPlayerStatisticsTracker.IncreaseTrainedUnitsCounter();
+
+			// Play a sound, but only for the first in the batch (to avoid nasty phasing effects)
+			if (spawnedEnts.length == 0)
+				PlaySound("trained", ent);
+			
+			this.entityCache.shift();
+			spawnedEnts.push(ent);
 		}
 	}
 
-	Engine.PostMessage(this.entity, MT_TrainingFinished, {
-		"entities": ents,
-		"owner": cmpOwnership.GetOwner(),
-		"metadata": metadata,
-	});
+	if (spawnedEnts.length > 0)
+	{
+		// If a rally point is set, walk towards it (in formation)
+		if (cmpRallyPoint)
+		{
+			var rallyPos = cmpRallyPoint.GetPosition();
+			if (rallyPos)
+			{
+				ProcessCommand(cmpOwnership.GetOwner(), {
+					"type": "walk",
+					"entities": spawnedEnts,
+					"x": rallyPos.x,
+					"z": rallyPos.z,
+					"queued": false
+				});
+			}
+		}
+
+		Engine.PostMessage(this.entity, MT_TrainingFinished, {
+			"entities": spawnedEnts,
+			"owner": cmpOwnership.GetOwner(),
+			"metadata": metadata,
+		});
+	}
+	
+	return spawnedEnts.length;
 };
 
+/*
+ * Increments progress on the first batch in the training queue, and blocks the
+ * queue if population limit is reached or some units failed to spawn.
+ */
 TrainingQueue.prototype.ProgressTimeout = function(data)
 {
 	// Allocate the 1000msecs to as many queue items as it takes
@@ -279,14 +325,13 @@ TrainingQueue.prototype.ProgressTimeout = function(data)
 		{
 			// Batch's training hasn't started yet.
 			// Try to reserve the necessary population slots
-			if (!cmpPlayer.TryReservePopulationSlots(item.population))
+			if (!cmpPlayer.TryReservePopulationSlots(item.population * item.count))
 			{
 				// No slots available - don't train this batch now
 				// (we'll try again on the next timeout)
 
 				// Set flag that training queue is blocked
 				cmpPlayer.BlockTrainingQueue();
-
 				break;
 			}
 
@@ -303,12 +348,40 @@ TrainingQueue.prototype.ProgressTimeout = function(data)
 			break;
 		}
 
-		// This item is finished now
-		time -= item.timeRemaining;
-		cmpPlayer.UnReservePopulationSlots(item.population);
-		this.SpawnUnits(item.template, item.count, item.metadata);
-		this.queue.shift();
-		Engine.PostMessage(this.entity, MT_TrainingQueueChanged, { });
+		var numSpawned = this.SpawnUnits(item.template, item.count, item.metadata);
+		if (numSpawned > 0)
+		{
+			// This could be only partially finised
+			cmpPlayer.UnReservePopulationSlots(item.population * numSpawned);
+			item.count -= numSpawned;
+			Engine.PostMessage(this.entity, MT_TrainingQueueChanged, { });
+		}
+		
+		if (item.count == 0)
+		{
+			// All entities spawned, this batch finished
+			time -= item.timeRemaining;
+			this.queue.shift();
+			// Unset flag that training queue is blocked
+			cmpPlayer.UnBlockTrainingQueue();
+			this.spawnNotified = false;
+		}
+		else
+		{
+			// Some entities failed to spawn
+			// Set flag that training queue is blocked
+			cmpPlayer.BlockTrainingQueue();
+			
+			if (!this.spawnNotified)
+			{
+				var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+				var notification = {"player": cmpPlayer.GetPlayerID(), "message": "Can't find free space to spawn trained units" };
+				var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+				cmpGUIInterface.PushNotification(notification);
+				this.spawnNotified = true;
+			}
+			break;
+		}
 	}
 
 	// If the queue's empty, delete the timer, else repeat it
