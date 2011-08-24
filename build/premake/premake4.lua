@@ -51,7 +51,7 @@ if not _OPTIONS["outpath"] then
 	error("You must specify the 'outpath' parameter")
 end
 location(_OPTIONS["outpath"])
-configurations { "Release", "Debug", "Testing" }
+configurations { "Release", "Debug" }
 
 -- Get some environement specific information used later.
 if os.is("windows") then
@@ -116,10 +116,6 @@ function project_set_target(project_name)
 		objdir(obj_dir_prefix.."Debug")
 		targetsuffix("_dbg")
 
-	configuration "Testing"
-		objdir(obj_dir_prefix.."Test")
-		targetsuffix("_test")
-
 	configuration "Release"
 		objdir(obj_dir_prefix.."Release")
 
@@ -138,9 +134,6 @@ function project_set_build_flags()
 
 	configuration "Debug"
 		defines { "DEBUG" }
-
-	configuration "Testing"
-		defines { "TESTING" }
 
 	configuration "Release"
 		flags { "OptimizeSpeed" }
@@ -689,8 +682,6 @@ function setup_main_exe ()
 		-- For debug_resolve_symbol
 		configuration "Debug"
 			linkoptions { "-rdynamic" }
-		configuration "Testing"
-			linkoptions { "-rdynamic" }
 		configuration { }
 
 	elseif os.is("macosx") then
@@ -1094,8 +1085,6 @@ function setup_tests()
 
 		-- For debug_resolve_symbol
 		configuration "Debug"
-			linkoptions { "-rdynamic" }
-		configuration "Testing"
 			linkoptions { "-rdynamic" }
 		configuration { }
 
