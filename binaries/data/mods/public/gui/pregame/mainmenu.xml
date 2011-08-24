@@ -72,24 +72,24 @@
 		-->
 		<object
 			type="image"
-			style="StonePanelThinBorder"
-			size="50 0 322 100%"
+			style="MainMenuPanel"
+			size="60 -2 300 100%+2"
                 >
      			<object type="image"
                                 ghost="true"
-                                size="0 0 100% 100%"
+                                size="4 0 100%-4 100%"
                                 sprite="MainMenuPanelShading"
                         />
 
                         <object	name="productLogo"
                                 type="image"
                                 ghost="true"
-                                size="50%-110 20 50%+110 120"
+                                size="50%-110 30 50%+110 130"
                                 sprite="productLogo"
                         />
                         
                         <object
-                                size="4 2%+120 100%-4 2%+320"
+                                size="8 156 100%-8 356"
                         >
 				<object name="menuLearnToPlayButton"
                                       type="button"
@@ -210,7 +210,7 @@
                         </object>
 
 			<!-- PRE-RELEASE INFO -->
-			<object size="4 50%+30 100%-4 50%+240"
+			<object size="8 50%+10 100%-8 50%+260"
 				type="image"
 				style="stoneTooltip"
 			>
@@ -257,30 +257,30 @@ Watch for updates or get involved: wildfiregames.com/0ad
 
 			<!-- LOGO AND BUILD VERSION -->
 			<object
-                                size="4 100%-128 100%-4 100%-56"
+                                size="4 100%-84 100%-4 100%-56"
                         >
 				<!-- COMPANY LOGO -->
 		                <object	name="companyLogo"
 		                        type="image"
 		                        ghost="true"
-		                        size="50%-24 0 50%+24 48"
+		                        size="50%-16 0 50%+16 32"
 		                        sprite="companyLogo"
 		                />
 
 				<!-- COMPANY NAME -->
 		                <object
 					type="text"
-		                        style="TitleText"
-		                        size="50%-128 52 50%+128 64"
+		                        style="SmallTitleText"
+		                        size="50%-128 32 50%+128 48"
 				>WILDFIRE GAMES</object>
 			</object>
 
       			<!-- VERSION -->
 		        <object name="versionNumber"
-		       		style="CenteredLabelText"
-		       	 	type="text"
+				type="text"
+		       		style="SmallTitleText"
 		       		ghost="true"
-		        	size="50%-128 100%-56 50%+128 100%"
+		        	size="50%-128 100%-36 50%+128 100%"
 			>
 				<action on="Load"><![CDATA[
 					this.caption = "Build: " + buildTime(0) + " - " + buildTime(2);

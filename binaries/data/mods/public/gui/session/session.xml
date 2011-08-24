@@ -213,7 +213,7 @@
 		<!-- Session Dialog -->
 		<!-- ================================  ================================ -->
 		<object name="sessionDialog"
-			style="StonePanel"
+			style="StonePanelLight"
 			type="image"
 			size="50%-180 50%-200 50%+180 50%+50"
 			hidden="true"
@@ -276,7 +276,7 @@
 					size="0 64 100% 96"
 					tooltip_style="sessionToolTip"
 				>
-					<object name="pauseButtonText" type="text" style="CenteredLabelText" ghost="true">Pause</object>
+					<object name="pauseButtonText" type="text" style="CenteredButtonText" ghost="true">Pause</object>
 					<action on="Press">togglePause();</action>
 				</object>
 
@@ -469,7 +469,7 @@
 		<!-- ================================  ================================ -->
 		<!-- Supplemental Details Panel on Left -->
 		<!-- ================================  ================================ -->
-		<object size="208 100%-170 50%-110 100%" name="supplementalSelectionDetails" type="image" style="StonePanelThinBorder" z="30">
+		<object size="208 100%-170 50%-110 100%" name="supplementalSelectionDetails" type="image" sprite="bottomLeft" z="30">
 
 			<object name="unitFormationPanel"
 				size="24 12 100% 100%"
@@ -517,7 +517,7 @@
 		<!-- ================================  ================================ -->
 		<object name="selectionDetails"
 			type="image"
-			style="StonePanelThinBorder"
+			sprite="bottomMiddle"
 			size="50%-114 100%-205 50%+114 100%"
 			hidden="false"
 		>
@@ -648,7 +648,7 @@
 		<!-- ================================  ================================ -->
 		<object name="unitCommands"
 			type="image"
-			style="StonePanelThinBorder"
+			sprite="bottomRight"
 			size="622 100%-170 100% 100%"
 			hidden="false"
 		>

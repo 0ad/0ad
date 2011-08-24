@@ -11,14 +11,27 @@
 	<sprite name="productLogo">
 		<image 	texture="pregame/shell/logo/0ad_logo.png"
 			real_texture_placement="0 0 256 128"
-			size="0 0 100% 100%" 
+			size="0 -5% 100% 105%"
 		/>
 	</sprite>
         
 	<sprite name="companyLogo">
 		<image 	texture="pregame/shell/logo/wfg_logo_white.png"
-			real_texture_placement="0 0 48 48"
-			size="0 0 100% 100%" 
+			real_texture_placement="0 0 32 32"
+		/>
+	</sprite>
+
+	<!--
+	==========================================
+	SHADING
+	==========================================
+	-->
+
+	<!-- gradient -->
+	<sprite name="BackgroundShading">
+		<image
+			texture="global/shading/gradient_wide.png"
+			size="0 0 100% 100%"
 		/>
 	</sprite>
 
@@ -137,10 +150,81 @@
 		/>
 	</sprite>
 
+
+	<!-- MainMenuPanel -->
+	<sprite name="MainMenuPanel">
+		<image	texture="global/tile/stone_background.png"
+			real_texture_placement="24 0 288 312"
+			texture_size="0 0 224 256"
+		/>
+
+		<!-- sides -->
+		<image	backcolor="230 190 80"
+			size="2 0 100%-2 2"
+		/>
+		<image	backcolor="230 190 80"
+			size="100%-2 0 100% 100%"
+		/>
+		<image	backcolor="230 190 80"
+			size="2 100%-2 100%-2 100%"
+		/>
+		<image	backcolor="230 190 80"
+			size="0 0 2 100%"
+		/>
+	</sprite>
+
+
+	<!-- LargeStonePanelThinBorder -->
+	<sprite name="LargeStonePanelThinBorder">
+		<image	texture="global/tile/stone_background.png"
+			real_texture_placement="0 0 312 312"
+			texture_size="0 0 256 256"
+			size="4 4 100%-4 100%-4" 
+		/>
+
+		<!-- sides -->
+		<image	texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 0 100%-4 4"
+		/>
+		<image	texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="100%-4 4 100% 100%-4"
+		/>
+		<image	texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="4 100%-4 100%-4 100%"
+		/>
+		<image	texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="0 4 4 100%-4"
+		/>
+
+		<!-- corners -->
+		<image
+			texture="global/border/line_corner_top_right.png"
+			texture_size="0 0 4 4"
+			size="100%-4 0 100% 4"
+		/>
+		<image	texture="global/border/line_corner_bottom_right.png"
+			texture_size="0 0 4 4"
+			size="100%-4 100%-4 100% 100%"
+		/>
+		<image	texture="global/border/line_corner_bottom_left.png"
+			texture_size="0 0 4 4"
+			size="0 100%-4 4 100%"
+		/>
+		<image	texture="global/border/line_corner_top_left.png"
+			texture_size="0 0 4 4"
+			size="0 0 4 4"
+		/>
+	</sprite>
+
+
 	<!-- StonePanelThinBorder -->
 	<sprite name="StonePanelThinBorder">
 		<image	texture="global/tile/stone_background.png"
-			texture_size="0 0 256 256"
+			texture_size="0 0 512 512"
 			size="4 4 100%-4 100%-4" 
 		/>
 
@@ -186,8 +270,58 @@
 	<sprite name="StonePanel">
 		<!-- background -->
 		<image	texture="global/tile/stone_background.png"
-			texture_size="0 0 256 256"
+			texture_size="0 0 512 512"
 			size="4 4 100%-4 100%-4" 
+		/>
+
+		<!-- sides -->
+		<image	texture="global/border/border-top.png"
+			texture_size="0 0 128 16"
+			size="16 0 100%-16 16"
+		/>
+		<image	texture="global/border/border-right.png"
+			texture_size="0 0 16 128"
+			size="100%-16 16 100% 100%-16"
+		/>
+		<image	texture="global/border/border-bottom.png"
+			texture_size="0 0 128 16"
+			size="16 100%-16 100%-16 100%"
+		/>
+		<image	texture="global/border/border-left.png"
+			texture_size="0 0 16 128"
+			size="0 16 16 100%-16"
+		/>
+
+		<!-- corners -->
+		<image	texture="global/border/border-corner.png"
+			texture_size="0 0 16 16"
+			size="100%-16 0 100% 16"
+		/>
+		<image	texture="global/border/border-corner.png"
+			texture_size="0 0 16 16"
+			size="100%-16 100%-16 100% 100%"
+		/>
+		<image	texture="global/border/border-corner.png"
+			texture_size="0 0 16 16"
+			size="0 100%-16 16 100%"
+		/>
+		<image	texture="global/border/border-corner.png"
+			texture_size="0 0 16 16"
+			size="0 0 16 16"
+		/>
+	</sprite>
+
+	<!-- StonePanelLight -->
+	<sprite name="StonePanelLight">
+		<!-- background -->
+		<image	texture="global/tile/stone_background_light.png"
+			texture_size="0 0 512 512"
+			size="4 4 100%-4 100%-4" 
+		/>
+		<!-- shading -->
+		<image
+			texture="global/shading/gradient_wide.png"
+			size="0 0 100% 100%"
 		/>
 
 		<!-- sides -->

@@ -2,11 +2,38 @@
 
 <styles>
 
+
+
+
+
+
+
 	<!--
 	==========================================
 	MENU TEXT STYLES
 	==========================================
 	-->
+
+	<style name="CenteredButtonText"
+		font="serif-bold-stroke-14"
+		textcolor="white"
+		text_align="center"
+		text_valign="center"
+	/>
+
+	<style name="LeftButtonText"
+		font="serif-bold-stroke-14"
+		textcolor="white"
+		text_align="left"
+		text_valign="top"
+	/>
+
+	<style name="RightButtonText"
+		font="serif-bold-stroke-14"
+		textcolor="white"
+		text_align="right"
+		text_valign="top"
+	/>
 
 	<style name="LeftLabelText"
 		font="serif-bold-stroke-14"
@@ -64,6 +91,13 @@
 		text_valign="center"
 	/>
 
+	<style name="SmallTitleText"
+		font="serif-9"
+		textcolor="white"
+		text_align="center"
+		text_valign="center"
+	/>
+
 	<!--
 	==========================================
 	MENU TOOLTIP STYLES
@@ -85,6 +119,20 @@
 	==========================================
 	-->
 
+	<style 	name="MainMenuPanel"
+		sprite="MainMenuPanel"
+		buffer_zone="10"
+		text_align="left"
+		text_valign="top"
+	/>
+
+	<style 	name="LargeStonePanelThinBorder"
+		sprite="LargeStonePanelThinBorder"
+		buffer_zone="10"
+		text_align="left"
+		text_valign="top"
+	/>
+
 	<style 	name="StonePanelThinBorder"
 		sprite="StonePanelThinBorder"
 		buffer_zone="10"
@@ -94,6 +142,13 @@
 
 	<style 	name="StonePanel"
 		sprite="StonePanel"
+		buffer_zone="10"
+		text_align="left"
+		text_valign="top"
+	/>
+
+	<style 	name="StonePanelLight"
+		sprite="StonePanelLight"
 		buffer_zone="10"
 		text_align="left"
 		text_valign="top"
@@ -120,7 +175,7 @@
 		sprite_over="StoneButtonFancyOver"
 		sprite_pressed="StoneButtonFancyGlow"
 		font="serif-bold-stroke-14"
-		textcolor="gold"
+		textcolor="white"
 		text_align="center"
 		text_valign="center"
 	/>
@@ -131,7 +186,7 @@
 		sprite_over="StoneButtonOver"
 		sprite_pressed="StoneButtonGlow"
 		font="serif-bold-stroke-14"
-		textcolor="gold"
+		textcolor="white"
 		text_align="center"
 		text_valign="center"
 	/>

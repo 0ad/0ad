@@ -17,13 +17,13 @@
 			Loading
 		</object>
 
-		<object type="text" text_align="center" text_valign="center">
+		<object type="text" style="CenteredLabelText">
 			Loading map data. Please wait...
 		</object>
 
 	</object>
 
-	<object type="image" style="StonePanel" size="0 16 100% 100%" hidden="true" name="setupWindow">
+	<object type="image" style="StonePanelLight" size="0 16 100% 100%" hidden="true" name="setupWindow">
 
 		<action on="Tick">
 			onTick();

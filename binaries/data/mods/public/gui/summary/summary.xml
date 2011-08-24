@@ -12,7 +12,7 @@
 	<object type="image" sprite="bkFillBlack">
 
 		<object type="image"
-			style="StonePanel"
+			style="StonePanelLight"
 			size="25 35 100%-25 100%-25"
 		>
 			<object style="StoneDialogTitleBar" type="text" size="50%-128 0%-16 50%+128 16">
@@ -52,7 +52,7 @@
 				<action on="Press">selectPanel(2);</action>
 				<object type="text" style="TitleText" ghost="true">Resources</object>
 			</object>
-			<object name="unitsBuildingsPanel" type="image" sprite="bgInfoBox" size="10 100 100%-10 100%-50">
+			<object name="unitsBuildingsPanel" type="image" sprite="bgInfoBox" size="16 100 100%-16 100%-16">
 				
 				<object size="0 0 100% 100%-50">
 					<object name="playerName0Heading" type="text" style="LeftTabLabelText">
@@ -96,7 +96,7 @@
 				</object>
 			
 			</object>
-			<object name="conquestPanel" type="image" sprite="bgInfoBox" size="10 100 100%-10 100%-50" hidden="true">
+			<object name="conquestPanel" type="image" sprite="bgInfoBox" size="16 100 100%-16 100%-16" hidden="true">
 				
 				<object size="0 0 100% 100%-50">
 					<object name="playerName1Heading" type="text" style="LeftTabLabelText">
@@ -127,7 +127,7 @@
 				</object>
 			
 			</object>
-			<object name="resourcesPanel" type="image" sprite="bgInfoBox" size="10 100 100%-10 100%-50" hidden="true">
+			<object name="resourcesPanel" type="image" sprite="bgInfoBox" size="16 100 100%-16 100%-16" hidden="true">
 			
 				<object size="0 0 100% 100%-50">
 					<object name="playerName2Heading" type="text" style="LeftTabLabelText">
