@@ -1,10 +1,12 @@
 #ifndef INCLUDED_POINTER_TYPEDEFS
 #define INCLUDED_POINTER_TYPEDEFS
 
-#ifdef __SSE__
+#include "lib/sysdep/compiler.h"	// HAVE_SSE
+
+#if HAVE_SSE
 # include <xmmintrin.h>  // __m64, __m128
 #endif
-#ifdef __SSE2__
+#if HAVE_SSE2
 # include <emmintrin.h>  // __m128i, __m128d
 #endif
 
@@ -152,7 +154,7 @@ typedef const double* const cpcDouble;
 typedef const double* __restrict rpcDouble;
 typedef const double* const __restrict crpcDouble;
 
-#ifdef __SSE__
+#if HAVE_SSE
 typedef __m64* pM64;
 typedef __m64* const cpM64;
 typedef __m64* __restrict rpM64;
@@ -170,9 +172,9 @@ typedef const __m128* pcM128;
 typedef const __m128* const cpcM128;
 typedef const __m128* __restrict rpcM128;
 typedef const __m128* const __restrict crpcM128;
-#endif // __SSE__
+#endif // #if HAVE_SSE
 
-#ifdef __SSE2__
+#if HAVE_SSE2
 typedef __m128i* pM128I;
 typedef __m128i* const cpM128I;
 typedef __m128i* __restrict rpM128I;
@@ -190,6 +192,6 @@ typedef const __m128d* pcM128D;
 typedef const __m128d* const cpcM128D;
 typedef const __m128d* __restrict rpcM128D;
 typedef const __m128d* const __restrict crpcM128D;
-#endif // __SSE2__
+#endif // #if HAVE_SSE2
 
 #endif	// #ifndef INCLUDED_POINTER_TYPEDEFS

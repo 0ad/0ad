@@ -98,4 +98,28 @@
 # endif
 #endif
 
+
+// Streaming SIMD Extensions (not supported by all GCC)
+// this only ascertains compiler support; use x86_x64_cap to
+// check whether the instructions are supported by the CPU.
+#ifndef HAVE_SSE
+# if GCC_VERSION && defined(__SSE__)
+#  define HAVE_SSE 1
+# elif MSC_VERSION	// also includes ICC
+#  define HAVE_SSE 1
+# else
+#  define HAVE_SSE 0
+# endif
+#endif
+
+#ifndef HAVE_SSE2
+# if GCC_VERSION && defined(__SSE2__)
+#  define HAVE_SSE2 1
+# elif MSC_VERSION	// also includes ICC
+#  define HAVE_SSE2 1
+# else
+#  define HAVE_SSE2 0
+# endif
+#endif
+
 #endif	// #ifndef INCLUDED_COMPILER
