@@ -195,7 +195,10 @@ void CTerritoryTexture::GenerateBitmap(const Grid<u8>& territories, u8* bitmap, 
 			u8 val = territories.get(i, j) & ICmpTerritoryManager::TERRITORY_PLAYER_MASK;
 
 			CColor color(1, 0, 1, 1);
-			if (val < colors.size())
+			// Force neutral territories to pure white, so that later we can omit them from the texture
+			if (val == 0)
+				color = CColor(1, 1, 1, 0);
+			else if (val < colors.size())
 				color = colors[val];
 
 			*p++ = (int)(color.b*255.f);
@@ -264,6 +267,17 @@ void CTerritoryTexture::GenerateBitmap(const Grid<u8>& territories, u8* bitmap, 
 		{
 			if (bitmap[(j*w+i)*4 + 3] == alphaMax)
 				bitmap[(j*w+i)*4 + 3] = 0;
+		}
+	}
+
+	// Don't show neutral territory boundaries
+	for (ssize_t j = 0; j < h; ++j)
+	{
+		for (ssize_t i = 0; i < w; ++i)
+		{
+			ssize_t idx = (j*w+i)*4;
+			if (bitmap[idx] == 255 && bitmap[idx+1] == 255 && bitmap[idx+2] == 255)
+				bitmap[idx+3] = 0;
 		}
 	}
 }
