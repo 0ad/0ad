@@ -212,7 +212,7 @@
 			>
 
 				<!-- PRE-RELEASE WARNING --> 
-				 <object 
+				<object 
 					style="fancyTextHeadWhite" 
 					type="text" 
 					sprite="bkTranslucent" 
@@ -249,41 +249,42 @@ Watch for updates or get involved: wildfiregames.com/0ad
 						messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2); 
 					]]></action> 
 				</object> 
-				</object> 
+			</object> 
 
-				<!-- LOGO AND BUILD VERSION -->
+			<!-- LOGO AND BUILD VERSION -->
+			<object
+				size="4 100%-84 100%-4 100%-56"
+			>
+
+				<!-- COMPANY LOGO -->
+				<object	name="companyLogo"
+					type="image"
+					ghost="true"
+					size="50%-16 0 50%+16 32"
+					sprite="companyLogo"
+				/>
+
+				<!-- COMPANY NAME -->
 				<object
-		                        size="4 100%-84 100%-4 100%-56"
-		                >
-					<!-- COMPANY LOGO -->
-				        <object	name="companyLogo"
-				                type="image"
-				                ghost="true"
-				                size="50%-16 0 50%+16 32"
-				                sprite="companyLogo"
-				        />
-
-					<!-- COMPANY NAME -->
-				        <object
-						type="text"
-				                style="SmallTitleText"
-				                size="50%-128 32 50%+128 48"
-					>WILDFIRE GAMES</object>
-				</object>
-
-	      			<!-- VERSION -->
-				<object name="versionNumber"
 					type="text"
-			       		style="SmallTitleText"
-			       		ghost="true"
-					size="50%-128 100%-36 50%+128 100%"
-				>
-					<action on="Load"><![CDATA[
-						this.caption = "Build: " + buildTime(0) + " - " + buildTime(2);
-					]]></action>
-				</object>
+				        style="SmallTitleText"
+					size="50%-128 32 50%+128 48"
+				>WILDFIRE GAMES</object>
+			</object>
+
+	      		<!-- VERSION -->
+			<object name="versionNumber"
+				type="text"
+			       	style="SmallTitleText"
+			       	ghost="true"
+				size="50%-128 100%-36 50%+128 100%"
+			>
+				<action on="Load"><![CDATA[
+					this.caption = "Build: " + buildTime(0) + " - " + buildTime(2);
+				]]></action>
+			</object>
                         
-                	</object>
+                </object>
 
 <!--
 		<object name="pgCampaignsBt"
