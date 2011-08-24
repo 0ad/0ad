@@ -81,15 +81,12 @@ local function add_delayload(name, suffix, def)
 	-- no extra debug version; use same library in all configs
 	if suffix == "" then
 		linkoptions { "/DELAYLOAD:"..name..".dll" }
-	-- extra debug version available; use in debug/testing config
+	-- extra debug version available; use in debug config
 	else
 		local dbg_cmd = "/DELAYLOAD:" .. name .. suffix .. ".dll"
 		local cmd     = "/DELAYLOAD:" .. name .. ".dll"
 
 		configuration "Debug"
-			linkoptions { dbg_cmd }
-		-- 'Testing' config uses 'Debug' DLLs
-		configuration "Testing"
 			linkoptions { dbg_cmd }
 		configuration "Release"
 			linkoptions { cmd }
@@ -135,9 +132,6 @@ local function add_default_links(def)
 	else
 		for i,name in pairs(names) do
 			configuration "Debug"
-				links { name .. suffix }
-			-- 'Testing' config uses 'Debug' DLLs
-			configuration "Testing"
 				links { name .. suffix }
 			configuration "Release"
 				links { name }
@@ -295,16 +289,12 @@ extern_lib_defs = {
 			if os.is("windows") then
 				configuration "Debug"
 					links { "FColladaD" }
-				configuration "Testing"
-					links { "FCollada" }
 				configuration "Release"
 					links { "FCollada" }
 			 	configuration { }
 			else
 				configuration "Debug"
 					links { "FColladaSD" }
-				configuration "Testing"
-					links { "FColladaSR" }
 				configuration "Release"
 					links { "FColladaSR" }
 				configuration { }
@@ -393,8 +383,6 @@ extern_lib_defs = {
 			if os.is("windows") then
 				add_default_lib_paths("libxml2")
 				configuration "Debug"
-					links { "libxml2" }
-				configuration "Testing"
 					links { "libxml2" }
 				configuration "Release"
 					links { "libxml2" }
@@ -487,8 +475,6 @@ extern_lib_defs = {
 			end
 			configuration "Debug"
 				includedirs { libraries_dir.."spidermonkey/"..include_dir }
-			configuration "Testing"
-				includedirs { libraries_dir.."spidermonkey/"..include_dir }
 			configuration "Release"
 				includedirs { libraries_dir.."spidermonkey/"..include_dir }
 			configuration { }
@@ -496,8 +482,6 @@ extern_lib_defs = {
 		link_settings = function()
 			configuration "Debug"
 			  	links { "mozjs185-ps-debug" }
-			configuration "Testing"
-				links { "mozjs185-ps-debug" }
 			configuration "Release"
 				links { "mozjs185-ps-release" }
 			configuration { }
@@ -542,8 +526,6 @@ extern_lib_defs = {
 			if os.is("windows") then
 				libdirs { libraries_dir.."wxwidgets/lib/vc_lib" }
 				configuration "Debug"
-					links { "wxmsw28ud_gl" }
-				configuration "Testing"
 					links { "wxmsw28ud_gl" }
 				configuration "Release"
 					links { "wxmsw28u_gl" }
@@ -629,9 +611,6 @@ function project_add_extern_libs(extern_libs, target_type)
 		-- our versions take precedence over the system versions (especially
 		-- for SpiderMonkey), which means we have to do it per-config
 		configuration "Debug"
-			includedirs { "/opt/local/include" }
-			libdirs { "/opt/local/lib" }
-		configuration "Testing"
 			includedirs { "/opt/local/include" }
 			libdirs { "/opt/local/lib" }
 		configuration "Release"
