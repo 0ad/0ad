@@ -2,6 +2,10 @@
 <Entity parent="template_structure_military_barracks">
   <Cost>
     <BuildTime>220</BuildTime>
+    <Resources>
+      <wood>150</wood>
+      <stone>150</stone>
+    </Resources>
   </Cost>
   <Health>
     <Max>2200</Max>

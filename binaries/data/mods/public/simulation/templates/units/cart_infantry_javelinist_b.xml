@@ -8,6 +8,13 @@
       structures/cart_embassy_italiote
     </Entities>
   </Builder>
+  <Cost>
+    <Resources>
+      <food>0</food>
+	  <wood>45</wood>
+	  <metal>50</metal>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>cart</Civ>
     <SelectionGroupName>units/cart_infantry_javelinist_b</SelectionGroupName>

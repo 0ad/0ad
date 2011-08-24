@@ -8,6 +8,13 @@
       structures/cart_embassy_italiote
     </Entities>
   </Builder>
+  <Cost>
+    <Resources>
+      <food>0</food>
+	  <stone>30</stone>
+	  <metal>50</metal>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>cart</Civ>
     <SelectionGroupName>units/cart_infantry_slinger_b</SelectionGroupName>
