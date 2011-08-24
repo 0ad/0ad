@@ -75,11 +75,7 @@
 			style="MainMenuPanel"
 			size="60 -2 300 100%+2"
                 >
-     			<object type="image"
-                                ghost="true"
-                                size="4 0 100%-4 100%"
-                                sprite="MainMenuPanelShading"
-                        />
+     		
 
                         <object	name="productLogo"
                                 type="image"
@@ -209,51 +205,7 @@
 -->
                         </object>
 
-			<!-- PRE-RELEASE INFO -->
-			<object size="8 50%+10 100%-8 50%+260"
-				type="image"
-				style="stoneTooltip"
-			>
-				<!-- PRE-RELEASE WARNING -->
-		                <object
-		                        style="fancyTextHeadWhite"
-		                        type="text"
-		                        sprite="bkTranslucent"
-		                        textcolor="255 255 0"
-		                        size="4 4 100%-4 100%-32"
-				>
-[font="serif-bold-16"]Alpha version[/font]
-Warning: This is an early development version of the game and many features have not been added yet, but we hope this gives you a glimpse of the game’s vision.
-
-Watch for updates or get involved: wildfiregames.com/0ad
-		                </object>
-
-
-				<!-- CONTACT METHODS -->
-		        	<object type="button"
-		        		style="StoneButtonFancy"
-		       			size="4 100%-36 50%-2 100%-4"
-		       		>
-		                	Website
-		                	<action on="Press"><![CDATA[
-		                        	var url = "http://wildfiregames.com/0ad/";
-		                                Engine.OpenURL(url);
-		                                messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2);
-		                        ]]></action>
-				</object>
-
-		                <object type="button"
-		                        style="StoneButtonFancy"
-		                        size="50%+2 100%-36 100%-4 100%-4"
-		                >
-		                	IRC
-		                        <action on="Press"><![CDATA[
-				                var url = "http://webchat.quakenet.org/?channels=0ad";
-				                Engine.OpenURL(url);
-				                messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2);
-		                        ]]></action>
-		                </object>
-			</object>
+			
 
 			<!-- LOGO AND BUILD VERSION -->
 			<object
