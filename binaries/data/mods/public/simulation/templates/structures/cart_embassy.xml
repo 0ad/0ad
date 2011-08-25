@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_barracks">
+  <Cost>
+    <BuildTime>150</BuildTime>
+    <Resources>
+      <wood>400</wood>
+      <stone>200</stone>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="28.0" depth="28.0"/>
+    <Height>15.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>cart</Civ>
+    <GenericName>Embassy</GenericName>
+    <SpecificName>Embassy</SpecificName>
+    <History>The Carthaginian army was a cosmopolitan affair, made up of mercenaries from dozens of lands.</History>
+	<Tooltip>Hire mercenaries.</Tooltip>
+  </Identity>
+  <Obstruction>
+    <Static width="28.0" depth="28.0"/>
+  </Obstruction>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/cart_infantry_swordsman_b
+      units/cart_infantry_javelinist_b
+      units/cart_infantry_slinger_b
+      units/cart_cavalry_swordsman_b
+      units/cart_cavalry_spearman_b
+    </Entities>
+  </TrainingQueue>
+  <VisualActor>
+    <Actor>structures/carthaginians/embassy.xml</Actor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
+  </VisualActor>
+</Entity>
