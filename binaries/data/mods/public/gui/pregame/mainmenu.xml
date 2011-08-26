@@ -206,7 +206,7 @@
                         </object>
 
 			<!-- PRE-RELEASE INFO --> 
-			<object size="8 50%+10 100%-8 50%+260" 
+			<object size="8 50%+40 100%-8 50%+280" 
 				type="image" 
 				style="stoneTooltip" 
 			>
@@ -216,19 +216,22 @@
 					style="fancyTextHeadWhite" 
 					type="text" 
 					sprite="bkTranslucent" 
-					textcolor="255 255 0" 
-					size="4 4 100%-4 100%-32" 
+					textcolor="white"
+					size="8 8 100%-8 100%-36"
 				> 
-[font="serif-bold-16"]Alpha version[/font] 
-Warning: This is an early development version of the game and many features have not been added yet, but we hope this gives you a glimpse of the game's vision. 
+[font="serif-bold-18"]Alpha Version[/font]
 
-Watch for updates or get involved: wildfiregames.com/0ad 
+WARNING: This is an early development version of the game. Many features have not been added yet. 
+
+Get involved at: wildfiregames.com/0ad 
 				</object>
 
 				<!-- CONTACT METHODS --> 
 				<object type="button" 
-					style="StoneButton" 
-					size="4 100%-36 50%-2 100%-4"
+					style="StoneButton"
+                                        tooltip_style="pgToolTip"
+                                        tooltip="Click to open wildfiregames.com/0ad in your web browser."
+					size="8 100%-40 50%-2 100%-8"
 				> 
 					Website 
 					<action on="Press"><![CDATA[ 
@@ -238,9 +241,11 @@ Watch for updates or get involved: wildfiregames.com/0ad
 					]]></action> 
 				</object> 
 	 	 
-				<object type="button" 
-					style="StoneButton" 
-					size="50%+2 100%-36 100%-4 100%-4" 
+				<object type="button"
+					style="StoneButton"
+                                        tooltip_style="pgToolTip"
+                                        tooltip="Click to chat in IRC. (#0ad at webchat.quakenet.org)"
+					size="50%+2 100%-40 100%-8 100%-8" 
 				> 
 					IRC 
 					<action on="Press"><![CDATA[ 
