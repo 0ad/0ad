@@ -527,12 +527,18 @@ void PlayerSettingsControl::CreateWidgets()
 	}
 
 	// Create player pages
-	AtIter player = m_PlayerDefaults["item"];
-	++player;	// Skip gaia
-	for (size_t i = 0; i < MAX_NUM_PLAYERS; ++i, ++player)
+	AtIter playerDefs = m_PlayerDefaults["item"];
+	if (playerDefs.defined())
+		++playerDefs;	// Skip gaia
+	
+	for (size_t i = 0; i < MAX_NUM_PLAYERS; ++i)
 	{
 		// Create new player tab and get controls
-		PlayerPageControls controls = m_Players->AddPlayer(wxString(player["Name"]), i);
+		wxString name(_("Unknown"));
+		if (playerDefs["Name"].defined())
+			name = playerDefs["Name"];
+		
+		PlayerPageControls controls = m_Players->AddPlayer(name, i);
 		m_PlayerControls.push_back(controls);
 
 		// Populate civ choice box
@@ -547,6 +553,10 @@ void PlayerSettingsControl::CreateWidgets()
 		for (size_t j = 0; j < ais.Count(); ++j)
 			aiChoice->Append(ais[j]->GetName(), new wxStringClientData(ais[j]->GetID()));
 		aiChoice->SetSelection(0);
+
+		// Only increment AtIters if they are defined
+		if (playerDefs.defined())
+			++playerDefs;
 	}
 
 	m_InGUIUpdate = false;
@@ -590,25 +600,26 @@ void PlayerSettingsControl::ReadFromEngine()
 
 	// To prevent recursion, don't handle GUI events right now
 	m_InGUIUpdate = true;
-	
-	// Update player controls with player data
-	AtIter playerDefs = m_PlayerDefaults["item"];
-	++playerDefs;	// skip gaia
 
 	wxDynamicCast(FindWindow(ID_NumPlayers), wxSpinCtrl)->SetValue(m_NumPlayers);
 
 	// Remove / add extra player pages as needed
 	m_Players->ResizePlayers(m_NumPlayers);
 
-	for (size_t i = 0; i < MAX_NUM_PLAYERS; ++i, ++player, ++playerDefs)
+	// Update player controls with player data
+	AtIter playerDefs = m_PlayerDefaults["item"];
+	if (playerDefs.defined())
+		++playerDefs;	// skip gaia
+
+	for (size_t i = 0; i < MAX_NUM_PLAYERS; ++i)
 	{
 		PlayerPageControls controls = m_PlayerControls[i];
 
 		// name
-		wxString name;
+		wxString name(_("Unknown"));
 		if (player["Name"].defined())
 			name = wxString(player["Name"]);
-		else
+		else if (playerDefs["Name"].defined())
 			name = wxString(playerDefs["Name"]);
 
 		controls.name->SetValue(name);
@@ -725,6 +736,11 @@ void PlayerSettingsControl::ReadFromEngine()
 		else
 			controls.page->SetCamera(sCameraInfo(), false);
 
+		// Only increment AtIters if they are defined
+		if (player.defined())
+			++player;
+		if (playerDefs.defined())
+			++playerDefs;
 	}
 
 	m_InGUIUpdate = false;
