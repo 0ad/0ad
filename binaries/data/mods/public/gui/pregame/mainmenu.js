@@ -98,6 +98,38 @@ function onTick()
 	}
 }
 
+// Update the submenu
+var margin = 4;
+var currentSubmenu;
+function updateSubmenu(buttonName, newSubmenu)
+{
+        // hide old submenu if possible
+        if (null != currentSubmenu)
+        {
+                getGUIObjectByName(currentSubmenu).hidden = true;
+        }
+        
+        // save new submenu
+        currentSubmenu = newSubmenu;
+        
+        // unhide new submenu
+        getGUIObjectByName(currentSubmenu).hidden = false;
+        
+        // find  position of new submenu
+        var mainMenubutton = getGUIObjectByName(buttonName);
+        var verticalOffset = getGUIObjectByName("mainMenuButtons").size.top;
+        var top = verticalOffset + mainMenubutton.size.top - margin;
+        var bottom = verticalOffset + mainMenubutton.size.bottom + margin;
+        
+        // set position of new submenu
+        var submenu = getGUIObjectByName("submenu");
+        submenu.size = submenu.size.left + " " + top + " " + submenu.size.right + " " + bottom;
+        submenu.hidden = false;
+        
+        // prepare to hide the submenu when the mouse moves off of the submenu
+        getGUIObjectByName("submenuScreen").hidden = false;
+}
+
 // Helper function that enables the dark background mask, then reveals a given subwindow object.
 function openMainMenuSubWindow (windowName)
 {

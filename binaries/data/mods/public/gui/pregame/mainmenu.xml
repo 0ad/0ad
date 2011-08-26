@@ -65,6 +65,91 @@
                         ]]></action>
 		</object>
 
+
+		<!--
+		==========================================
+		- MAIN MENU - USER REPORT
+		==========================================
+		-->
+
+		<object
+			name="userReportDisabled"
+			size="100%-304 100%-154 100%-4 100%-4"
+			type="image"
+			style="userReportPanel"
+		>
+			<object
+				type="text"
+				style="userReportText"
+>[font="serif-bold-16"]Help improve 0 A.D.![/font]
+
+You can automatically send us anonymous feedback that will help us fix bugs, and improve performance and compatibility.
+			</object>
+			<object type="button" style="wheatButton" size="4 100%-36 150 100%-4">
+				[font="serif-bold-16"]Enable feedback
+				<action on="Press">Engine.SetUserReportEnabled(true);</action>
+			</object>
+			<object type="button" style="wheatButton" size="100%-150 100%-36 100%-4 100%-4">
+				Technical details
+				<action on="Press">Engine.PushGuiPage("page_manual.xml", { "page": "userreport" });</action>
+			</object>
+		</object>
+
+		<object
+			name="userReportEnabled"
+			size="100%-304 100%-294 100%-4 100%-4"
+			type="image"
+			style="userReportPanel"
+		>
+			<object
+				name="userReportEnabledText"
+				type="text"
+				style="userReportText"
+>[font="serif-bold-16"]Thank you for helping improve 0 A.D.![/font]
+
+Anonymous feedback is currently enabled.
+Status: $status.
+                        </object>
+			<!--
+				 Put the rest of the text in a separate box, so that
+				 very long $status messages don't mess up the layout
+				 quite so badly:
+			-->
+			<object
+				type="text"
+				style="userReportText"
+				size="0 90 100% 100%"
+>If you want to send a message to the developers, you can enter one here:
+			</object>
+
+			<object
+				name="userReportMessageInput"
+				size="4 130 100%-4 200"
+				type="input"
+				style="wheatInput"
+				multiline="true"
+				scrollbar="true"
+				scrollbar_style="wheatScrollBar"
+			/>
+
+			<object size="100%-124 204 100%-4 236" type="button" style="wheatButton">
+				Send Message
+				<action on="Press">submitUserReportMessage();</action>
+			</object>
+
+			<object type="button" style="wheatButton" size="4 100%-36 150 100%-4">
+				Disable feedback
+				<action on="Press">Engine.SetUserReportEnabled(false);</action>
+			</object>
+			<object type="button" style="wheatButton" size="100%-150 100%-36 100%-4 100%-4">
+				Technical details
+				<action on="Press">Engine.PushGuiPage("page_manual.xml", { "page": "userreport" });</action>
+			</object>
+		</object>
+ 
+
+             
+
 		<!--
 		==========================================
 		- MAIN MENU PANEL
@@ -74,19 +159,27 @@
 			type="image"
 			style="MainMenuPanel"
 			size="60 -2 300 100%+2"
+                       
                 >
-     		
-
                         <object	name="productLogo"
                                 type="image"
+                                sprite="productLogo"
                                 ghost="true"
                                 size="50%-110 30 50%+110 130"
-                                sprite="productLogo"
                         />
                         
-                        <object
+                        <object name="mainMenuButtons"
+                                type="image"
                                 size="8 156 100%-8 356"
+                                ghost="false"
                         >
+                                <!-- Allows sliding the mouse over to submenu without it closing automatically -->
+                                <object
+                                        type="image"
+                                        size="100% 0 100%+8 100%"
+                                        ghost="false"
+                                />
+                            
 				<object name="menuLearnToPlayButton"
                                       type="button"
                                       style="StoneButtonFancy"
@@ -109,12 +202,11 @@
                                 >
                                     Single Player
                                     <action on="Press"><![CDATA[
-                                            // Open Session Setup window.
-                                            Engine.PushGuiPage("page_gamesetup.xml", { type: "offline" });
+                                            updateSubmenu("menuSinglePlayerButton", "submenuSinglePlayer");
                                     ]]></action>
                                 </object>
                                
-                                <object	name="menuMultiPlayerButton"
+                                <object	name="menuMultiplayerButton"
                                         style="StoneButtonFancy"
                                         type="button"
                                         size="4 68 100%-4 100"
@@ -123,8 +215,7 @@
                                 >
                                         Multiplayer
                                         <action on="Press"><![CDATA[
-                                                // Open Multiplayer connection window.
-                                                Engine.PushGuiPage("page_gamesetup_mp.xml");
+                                                updateSubmenu("menuMultiplayerButton", "submenuMultiplayer");
                                         ]]></action>
                                 </object>
 
@@ -208,7 +299,8 @@
 			<!-- PRE-RELEASE INFO --> 
 			<object size="8 50%+40 100%-8 50%+280" 
 				type="image" 
-				style="stoneTooltip" 
+				style="stoneTooltip"
+                                ghost="true"
 			>
 
 				<!-- PRE-RELEASE WARNING --> 
@@ -218,6 +310,7 @@
 					sprite="bkTranslucent" 
 					textcolor="white"
 					size="8 8 100%-8 100%-36"
+                                        ghost="true"
 				> 
 [font="serif-bold-18"]Alpha Version[/font]
 
@@ -231,7 +324,7 @@ Get involved at: wildfiregames.com/0ad
 					style="StoneButton"
                                         tooltip_style="pgToolTip"
                                         tooltip="Click to open wildfiregames.com/0ad in your web browser."
-					size="8 100%-40 50%-2 100%-8"
+					size="8 100%-40 50%-4 100%-8"
 				> 
 					Website 
 					<action on="Press"><![CDATA[ 
@@ -245,7 +338,7 @@ Get involved at: wildfiregames.com/0ad
 					style="StoneButton"
                                         tooltip_style="pgToolTip"
                                         tooltip="Click to chat in IRC. (#0ad at webchat.quakenet.org)"
-					size="50%+2 100%-40 100%-8 100%-8" 
+					size="50%+4 100%-40 100%-8 100%-8" 
 				> 
 					IRC 
 					<action on="Press"><![CDATA[ 
@@ -259,21 +352,22 @@ Get involved at: wildfiregames.com/0ad
 			<!-- LOGO AND BUILD VERSION -->
 			<object
 				size="4 100%-84 100%-4 100%-56"
+                                ghost="true"
 			>
 
 				<!-- COMPANY LOGO -->
 				<object	name="companyLogo"
 					type="image"
-					ghost="true"
-					size="50%-16 0 50%+16 32"
 					sprite="companyLogo"
+                                        ghost="true"
+                                        size="50%-16 0 50%+16 32"
 				/>
 
 				<!-- COMPANY NAME -->
-				<object
-					type="text"
+				<object type="text"
 				        style="SmallTitleText"
-					size="50%-128 32 50%+128 48"
+                                        ghost="true"
+                                        size="50%-128 32 50%+128 48"
 				>WILDFIRE GAMES</object>
 			</object>
 
@@ -290,7 +384,89 @@ Get involved at: wildfiregames.com/0ad
 			</object>
                         
                 </object>
-
+                
+                
+                
+                
+                <!--
+		==========================================
+		- MAIN MENU SIDE PANEL
+		==========================================
+		-->
+                
+                <object
+                        name="submenuScreen"
+			type="image"
+                >
+                    	<action on="MouseEnter">
+                            <![CDATA[getGUIObjectByName("submenu").hidden = true;;]]>
+			</action>
+                <object
+                        name="submenu"
+			type="image"
+			style="MainMenuPanel"
+			size="298 50%-100 538 50%+100"
+                >
+                        <object name="submenuSinglePlayer"
+                                      type="image"
+                                      size="4 4 100%-4 100%-4"
+                                      tooltip_style="pgToolTip"
+                                      tooltip="The 0 A.D. Game Manual"
+                                      hidden="true"
+			>
+                                <object name="subMenuSinglePlayerButton"
+                                              type="button"
+                                              style="StoneButtonFancy"
+                                              size="0 0 100% 32"
+                                              tooltip_style="pgToolTip"
+                                              tooltip="Click here to start a new single player game. (A very basic computer opponent is available for testing purposes.)"
+                                >
+                                        Single Player
+                                        <action on="Press"><![CDATA[
+                                                // Open Session Setup window.
+                                                Engine.PushGuiPage("page_gamesetup.xml", { type: "offline" });
+                                        ]]></action>
+                                </object>
+                        </object>
+                    
+                    
+                        <object name="submenuMultiplayer"
+                                      type="image"
+                                      size="4 4 100%-4 100%-4"
+                                      tooltip_style="pgToolTip"
+                                      tooltip="The 0 A.D. Game Manual"
+                                      hidden="true"
+			>
+                                <object name="subMenuMultiplayerJoinGameButton"
+                                              type="button"
+                                              style="StoneButtonFancy"
+                                              size="0 0 100% 32"
+                                              tooltip_style="pgToolTip"
+                                              tooltip="Tired of playing with yourself? Fight against one or more human players in a multiplayer game."
+                                >
+                                        Multiplayer
+                                        <action on="Press"><![CDATA[
+                                                // Open Multiplayer connection window.
+                                                Engine.PushGuiPage("page_gamesetup_mp.xml");
+                                        ]]></action>
+                                </object>
+                        </object>
+                </object>
+                
+                </object> <!-- end of screen -->
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
 <!--
 		<object name="pgCampaignsBt"
 			style="pgButton"
@@ -468,85 +644,7 @@ Get involved at: wildfiregames.com/0ad
 			]]></action>
 		</object>
 -->
-		<!--
-		==========================================
-		- MAIN MENU - USER REPORT
-		==========================================
-		-->
 
-		<object
-			name="userReportDisabled"
-			size="100%-304 100%-154 100%-4 100%-4"
-			type="image"
-			style="userReportPanel"
-		>
-			<object
-				type="text"
-				style="userReportText"
->[font="serif-bold-16"]Help improve 0 A.D.![/font]
-
-You can automatically send us anonymous feedback that will help us fix bugs, and improve performance and compatibility.
-			</object>
-			<object type="button" style="wheatButton" size="4 100%-36 150 100%-4">
-				[font="serif-bold-16"]Enable feedback
-				<action on="Press">Engine.SetUserReportEnabled(true);</action>
-			</object>
-			<object type="button" style="wheatButton" size="100%-150 100%-36 100%-4 100%-4">
-				Technical details
-				<action on="Press">Engine.PushGuiPage("page_manual.xml", { "page": "userreport" });</action>
-			</object>
-		</object>
-
-		<object
-			name="userReportEnabled"
-			size="100%-304 100%-294 100%-4 100%-4"
-			type="image"
-			style="userReportPanel"
-		>
-			<object
-				name="userReportEnabledText"
-				type="text"
-				style="userReportText"
->[font="serif-bold-16"]Thank you for helping improve 0 A.D.![/font]
-
-Anonymous feedback is currently enabled.
-Status: $status.</object>
-			<!--
-				 Put the rest of the text in a separate box, so that
-				 very long $status messages don't mess up the layout
-				 quite so badly:
-			-->
-			<object
-				type="text"
-				style="userReportText"
-				size="0 90 100% 100%"
->If you want to send a message to the developers, you can enter one here:
-			</object>
-
-			<object
-				name="userReportMessageInput"
-				size="4 130 100%-4 200"
-				type="input"
-				style="wheatInput"
-				multiline="true"
-				scrollbar="true"
-				scrollbar_style="wheatScrollBar"
-			/>
-
-			<object size="100%-124 204 100%-4 236" type="button" style="wheatButton">
-				Send Message
-				<action on="Press">submitUserReportMessage();</action>
-			</object>
-
-			<object type="button" style="wheatButton" size="4 100%-36 150 100%-4">
-				Disable feedback
-				<action on="Press">Engine.SetUserReportEnabled(false);</action>
-			</object>
-			<object type="button" style="wheatButton" size="100%-150 100%-36 100%-4 100%-4">
-				Technical details
-				<action on="Press">Engine.PushGuiPage("page_manual.xml", { "page": "userreport" });</action>
-			</object>
-		</object>
 
 	</object>
 
@@ -556,12 +654,12 @@ Status: $status.</object>
 	==========================================
 	-->
 
-	<object	name="pgSubWindow"
+<!--	<object	name="pgSubWindow"
 		type="image"
 		z="90"
 		hidden="true"
 		sprite="bkTranslucent" 
-	>
+	>-->
 
 		<!--
 		===============================================
@@ -1501,5 +1599,8 @@ Status: $status.</object>
 			]]></action>
 		</object>
 -->
-	</object>
+
+<!--END OF pgSubWindow-->
+<!--	</object>-->
+        
 </objects>
