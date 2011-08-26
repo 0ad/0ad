@@ -4,7 +4,7 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>sunny</SkySet>
-		<SunColour r="0.776471" g="0.74902" b="0.576471"/>
+		<SunColour r="0.879427" g="0.860616" b="0.81829"/>
 		<SunElevation angle="0.757787"/>
 		<SunRotation angle="-0.582913"/>
 		<TerrainAmbientColour r="0.313726" g="0.392157" b="0.54902"/>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="363.43" y="118.383" z="190.089"/>
+		<Position x="307.729" y="166.448" z="83.7249"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -88,7 +88,7 @@
 		<Entity uid="13">
 			<Template>structures/cart_corral</Template>
 			<Player>1</Player>
-			<Position x="144.72277" z="351.43537"/>
+			<Position x="155.44161" z="355.87525"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="14">
@@ -100,7 +100,7 @@
 		<Entity uid="15">
 			<Template>structures/cart_farmstead</Template>
 			<Player>1</Player>
-			<Position x="172.58198" z="357.07593"/>
+			<Position x="172.32535" z="360.90833"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="16">
@@ -148,7 +148,7 @@
 		<Entity uid="26">
 			<Template>structures/cart_scout_tower</Template>
 			<Player>1</Player>
-			<Position x="446.31394" z="394.73667"/>
+			<Position x="502.00577" z="408.68036"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="27">
@@ -160,19 +160,19 @@
 		<Entity uid="28">
 			<Template>structures/cart_wall</Template>
 			<Player>1</Player>
-			<Position x="166.29444" z="397.13917"/>
+			<Position x="85.4148" z="376.44745"/>
 			<Orientation y="2.46578"/>
 		</Entity>
 		<Entity uid="29">
 			<Template>structures/cart_wall_gate</Template>
 			<Player>1</Player>
-			<Position x="138.98816" z="404.31351"/>
+			<Position x="125.26966" z="404.74659"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="30">
 			<Template>structures/cart_wall_tower</Template>
 			<Player>1</Player>
-			<Position x="116.11463" z="369.46558"/>
+			<Position x="109.08948" z="372.07587"/>
 			<Orientation y="-2.48633"/>
 		</Entity>
 		<Entity uid="31">
@@ -1090,7 +1090,7 @@
 		<Entity uid="186">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="253.64475" z="282.90482"/>
+			<Position x="246.30149" z="277.12031"/>
 			<Orientation y="2.95864"/>
 		</Entity>
 		<Entity uid="187">
@@ -1210,20 +1210,20 @@
 		<Entity uid="206">
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
-			<Position x="240.88651" z="363.86591"/>
+			<Position x="238.8964" z="362.20328"/>
 			<Orientation y="-2.2867"/>
 		</Entity>
 		<Entity uid="207">
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
-			<Position x="227.0983" z="354.72086"/>
+			<Position x="226.20795" z="352.42557"/>
 			<Orientation y="-2.87703"/>
 		</Entity>
 		<Entity uid="208">
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
-			<Position x="222.87891" z="336.36808"/>
-			<Orientation y="-2.77845"/>
+			<Position x="221.22045" z="347.15293"/>
+			<Orientation y="-0.19907"/>
 		</Entity>
 		<Entity uid="209">
 			<Template>gaia/flora_tree_date_palm</Template>
@@ -1246,7 +1246,7 @@
 		<Entity uid="212">
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
-			<Position x="233.70655" z="317.38212"/>
+			<Position x="215.64126" z="338.94016"/>
 			<Orientation y="0.97725"/>
 		</Entity>
 		<Entity uid="213">
@@ -1348,7 +1348,7 @@
 		<Entity uid="229">
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
-			<Position x="379.4622" z="182.03177"/>
+			<Position x="377.48713" z="191.1595"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="230">
@@ -1432,7 +1432,7 @@
 		<Entity uid="243">
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
-			<Position x="186.59858" z="275.94513"/>
+			<Position x="186.53241" z="276.07139"/>
 			<Orientation y="-0.97503"/>
 		</Entity>
 		<Entity uid="244">
@@ -2315,25 +2315,25 @@
 			<Template>units/samnite_spearman</Template>
 			<Player>2</Player>
 			<Position x="751.29719" z="354.84903"/>
-			<Orientation y="-2.53179"/>
+			<Orientation y="1.90468"/>
 		</Entity>
 		<Entity uid="413">
 			<Template>units/samnite_spearman</Template>
 			<Player>2</Player>
 			<Position x="752.85627" z="352.23041"/>
-			<Orientation y="-2.56063"/>
+			<Orientation y="1.898"/>
 		</Entity>
 		<Entity uid="414">
 			<Template>units/samnite_spearman</Template>
 			<Player>2</Player>
-			<Position x="754.78669" z="354.20429"/>
-			<Orientation y="-2.60112"/>
+			<Position x="756.15247" z="355.60859"/>
+			<Orientation y="1.5663"/>
 		</Entity>
 		<Entity uid="415">
 			<Template>units/samnite_spearman</Template>
 			<Player>2</Player>
-			<Position x="753.33631" z="356.22712"/>
-			<Orientation y="-2.60628"/>
+			<Position x="753.98841" z="357.16852"/>
+			<Orientation y="2.6763"/>
 		</Entity>
 		<Entity uid="416">
 			<Template>units/samnite_spearman</Template>
@@ -2363,7 +2363,7 @@
 			<Template>units/samnite_swordsman</Template>
 			<Player>2</Player>
 			<Position x="732.28077" z="374.22196"/>
-			<Orientation y="-2.81072"/>
+			<Orientation y="-0.56901"/>
 		</Entity>
 		<Entity uid="421">
 			<Template>units/samnite_swordsman</Template>
@@ -2417,19 +2417,19 @@
 			<Template>units/samnite_swordsman</Template>
 			<Player>2</Player>
 			<Position x="729.58783" z="375.41376"/>
-			<Orientation y="-2.6287"/>
+			<Orientation y="-1.24994"/>
 		</Entity>
 		<Entity uid="430">
 			<Template>units/samnite_swordsman</Template>
 			<Player>2</Player>
 			<Position x="729.23353" z="372.1634"/>
-			<Orientation y="-2.71122"/>
+			<Orientation y="-1.2975"/>
 		</Entity>
 		<Entity uid="431">
 			<Template>units/samnite_swordsman</Template>
 			<Player>2</Player>
 			<Position x="730.77063" z="369.57477"/>
-			<Orientation y="-2.70981"/>
+			<Orientation y="-0.99346"/>
 		</Entity>
 		<Entity uid="432">
 			<Template>units/samnite_swordsman</Template>
@@ -2447,7 +2447,7 @@
 			<Template>units/samnite_swordsman</Template>
 			<Player>2</Player>
 			<Position x="735.65632" z="362.32282"/>
-			<Orientation y="-2.69681"/>
+			<Orientation y="-1.52193"/>
 		</Entity>
 		<Entity uid="435">
 			<Template>units/samnite_swordsman</Template>
@@ -2459,7 +2459,7 @@
 			<Template>units/samnite_swordsman</Template>
 			<Player>2</Player>
 			<Position x="738.44764" z="358.12174"/>
-			<Orientation y="-2.709"/>
+			<Orientation y="-1.69097"/>
 		</Entity>
 		<Entity uid="437">
 			<Template>units/samnite_swordsman</Template>
@@ -2477,7 +2477,7 @@
 			<Template>units/samnite_swordsman</Template>
 			<Player>2</Player>
 			<Position x="743.11078" z="353.413"/>
-			<Orientation y="-2.17434"/>
+			<Orientation y="3.12455"/>
 		</Entity>
 		<Entity uid="440">
 			<Template>units/sparta_hellenistic_phalangitai</Template>
@@ -4216,25 +4216,25 @@
 		<Entity uid="734">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="231.35907" z="343.72352"/>
-			<Orientation y="-2.87511"/>
+			<Position x="244.24189" z="303.37763"/>
+			<Orientation y="-0.22686"/>
 		</Entity>
 		<Entity uid="735">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="224.34627" z="331.57734"/>
-			<Orientation y="2.35621"/>
+			<Position x="225.03295" z="316.29822"/>
+			<Orientation y="-2.59583"/>
 		</Entity>
 		<Entity uid="736">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="221.49431" z="313.245"/>
+			<Position x="210.9973" z="332.02805"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="737">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="207.46048" z="337.56217"/>
+			<Position x="233.37966" z="355.24787"/>
 			<Orientation y="0.7779"/>
 		</Entity>
 		<Entity uid="738">
@@ -4247,6 +4247,258 @@
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
 			<Position x="194.69533" z="184.61435"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="740">
+			<Template>structures/cart_embassy_celtic</Template>
+			<Player>1</Player>
+			<Position x="257.7931" z="357.32654"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="741">
+			<Template>structures/cart_embassy_iberian</Template>
+			<Player>1</Player>
+			<Position x="244.76922" z="345.46525"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="742">
+			<Template>structures/cart_embassy_italiote</Template>
+			<Player>1</Player>
+			<Position x="230.01645" z="332.37555"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="743">
+			<Template>structures/cart_field</Template>
+			<Player>1</Player>
+			<Position x="191.2368" z="375.48438"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="744">
+			<Template>structures/cart_field</Template>
+			<Player>1</Player>
+			<Position x="184.78843" z="326.3498"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="745">
+			<Template>structures/cart_field</Template>
+			<Player>1</Player>
+			<Position x="166.4441" z="335.4994"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="746">
+			<Template>structures/cart_field</Template>
+			<Player>1</Player>
+			<Position x="189.71334" z="345.36548"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="747">
+			<Template>structures/cart_field</Template>
+			<Player>1</Player>
+			<Position x="206.21009" z="360.853"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="748">
+			<Template>other/cart_tophet</Template>
+			<Player>1</Player>
+			<Position x="211.02366" z="267.59437"/>
+			<Orientation y="2.56617"/>
+		</Entity>
+		<Entity uid="749">
+			<Template>units/cart_ship_fishing</Template>
+			<Player>1</Player>
+			<Position x="182.28097" z="489.65351"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="750">
+			<Template>units/cart_ship_merchant</Template>
+			<Player>1</Player>
+			<Position x="184.90075" z="468.81168"/>
+			<Orientation y="1.96525"/>
+		</Entity>
+		<Entity uid="751">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="559.97584" z="461.21988"/>
+			<Orientation y="2.72931"/>
+		</Entity>
+		<Entity uid="752">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="576.60267" z="427.06043"/>
+			<Orientation y="2.69062"/>
+		</Entity>
+		<Entity uid="753">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="592.72193" z="377.168"/>
+			<Orientation y="3.11707"/>
+		</Entity>
+		<Entity uid="754">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="591.63904" z="326.56763"/>
+			<Orientation y="-3.01066"/>
+		</Entity>
+		<Entity uid="755">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="752.74744" z="272.86948"/>
+			<Orientation y="0.0495"/>
+		</Entity>
+		<Entity uid="756">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="503.36643" z="203.2593"/>
+			<Orientation y="-0.3355"/>
+		</Entity>
+		<Entity uid="757">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="723.90125" z="416.9964"/>
+			<Orientation y="0.46253"/>
+		</Entity>
+		<Entity uid="758">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="791.37818" z="509.79752"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="759">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="782.57837" z="214.64405"/>
+			<Orientation y="-2.43981"/>
+		</Entity>
+		<Entity uid="760">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="707.93152" z="159.53101"/>
+			<Orientation y="-2.70829"/>
+		</Entity>
+		<Entity uid="761">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="669.34778" z="89.70984"/>
+			<Orientation y="-2.92527"/>
+		</Entity>
+		<Entity uid="762">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="664.83802" z="63.95231"/>
+			<Orientation y="1.4695"/>
+		</Entity>
+		<Entity uid="763">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="711.8722" z="72.96204"/>
+			<Orientation y="0.81046"/>
+		</Entity>
+		<Entity uid="764">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="766.72345" z="111.78467"/>
+			<Orientation y="1.0127"/>
+		</Entity>
+		<Entity uid="765">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="828.67908" z="149.86893"/>
+			<Orientation y="0.57192"/>
+		</Entity>
+		<Entity uid="766">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="859.16828" z="209.27619"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="767">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="784.89826" z="149.86893"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="768">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="758.43989" z="151.6002"/>
+			<Orientation y="-1.64687"/>
+		</Entity>
+		<Entity uid="769">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="724.55036" z="107.35431"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="770">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="531.52369" z="70.57575"/>
+			<Orientation y="-1.95861"/>
+		</Entity>
+		<Entity uid="771">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="463.82996" z="49.46241"/>
+			<Orientation y="-1.72602"/>
+		</Entity>
+		<Entity uid="772">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="854.62537" z="545.27186"/>
+			<Orientation y="-0.82186"/>
+		</Entity>
+		<Entity uid="773">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="829.90723" z="589.94349"/>
+			<Orientation y="-0.00763"/>
+		</Entity>
+		<Entity uid="774">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="842.84693" z="699.24903"/>
+			<Orientation y="0.2968"/>
+		</Entity>
+		<Entity uid="775">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="845.15607" z="755.2173"/>
+			<Orientation y="-1.86725"/>
+		</Entity>
+		<Entity uid="776">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="759.98188" z="621.33252"/>
+			<Orientation y="2.87848"/>
+		</Entity>
+		<Entity uid="777">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="959.25013" z="421.15705"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="778">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="992.8285" z="505.37113"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="779">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="905.097" z="360.3516"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="780">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="348.15094" z="66.31748"/>
+			<Orientation y="2.70046"/>
+		</Entity>
+		<Entity uid="781">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="382.98914" z="36.67292"/>
+			<Orientation y="1.84786"/>
+		</Entity>
+		<Entity uid="782">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="409.83295" z="107.465"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="783">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="255.5762" z="765.42908"/>
+			<Orientation y="-0.0373"/>
+		</Entity>
+		<Entity uid="784">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="254.32604" z="825.91492"/>
+			<Orientation y="-1.00235"/>
+		</Entity>
+		<Entity uid="785">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="188.39208" z="869.58875"/>
+			<Orientation y="-2.08588"/>
+		</Entity>
+		<Entity uid="786">
+			<Template>actor|particle/blowing_sand.xml</Template>
+			<Position x="184.43088" z="796.52308"/>
+			<Orientation y="0.63028"/>
+		</Entity>
+		<Entity uid="787">
+			<Template>structures/cart_fortress</Template>
+			<Player>1</Player>
+			<Position x="384.40656" z="165.84174"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
