@@ -21,6 +21,9 @@
   <Obstruction>
     <Static width="16.0" depth="16.0"/>
   </Obstruction>
+  <TerritoryInfluence>
+    <Radius>32</Radius>
+  </TerritoryInfluence>
   <TrainingQueue>
     <Entities datatype="tokens">
       units/cart_infantry_javelinist_b
@@ -28,6 +31,9 @@
       units/cart_cavalry_swordsman_b
     </Entities>
   </TrainingQueue>
+  <Vision>
+    <Range>24</Range>
+  </Vision>
   <VisualActor>
     <Actor>structures/carthaginians/embassy_iberian.xml</Actor>
     <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
