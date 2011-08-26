@@ -215,7 +215,7 @@ void AtlasWindow::OnOpen(wxCommandEvent& WXUNUSED(event))
 		path = GetDefaultOpenDirectory();
 	}
 
-	wxFileDialog dlg (this, _("Select XML file to open"), path, name, _("XML files (*.xml)|*.xml|All files (*.*)|*.*"), wxOPEN);
+	wxFileDialog dlg (this, _("Select XML file to open"), path, name, _("XML files (*.xml)|*.xml|All files (*.*)|*.*"), wxFD_OPEN);
 
 	if (dlg.ShowModal() != wxID_OK)
 		return;
@@ -262,7 +262,7 @@ bool AtlasWindow::SaveChanges(bool forceSaveAs)
 		wxFileDialog dlg (this, _("Select XML file to save as"),
 			GetCurrentFilename().GetPath(), GetCurrentFilename().GetFullName(),
 			//_T(""), _T(""),
-			_("XML files (*.xml)|*.xml|All files (*.*)|*.*"), wxSAVE | wxOVERWRITE_PROMPT);
+			_("XML files (*.xml)|*.xml|All files (*.*)|*.*"), wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
 
 		if (dlg.ShowModal() != wxID_OK)
 			return false;

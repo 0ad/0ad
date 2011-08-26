@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -115,8 +115,8 @@ public:
 	void RotateTick(float dt)
 	{
 		int dir = 0;
-		if (wxGetKeyState(WXK_NEXT))  ++dir; // page-down key
-		if (wxGetKeyState(WXK_PRIOR)) --dir; // page-up key
+		if (wxGetKeyState(WXK_PAGEDOWN))  ++dir; // page-down key
+		if (wxGetKeyState(WXK_PAGEUP)) --dir; // page-up key
 		if (dir)
 		{
 			float speed = M_PI/2.f * ScenarioEditor::GetSpeedModifier(); // radians per second

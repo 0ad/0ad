@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -138,7 +138,7 @@ public:
 			defaultFile = wxEmptyString;
 		}
 
-		wxFileDialog dlg(this, _("Choose a file"), defaultDir, defaultFile, m_FileMask, wxOPEN);
+		wxFileDialog dlg(this, _("Choose a file"), defaultDir, defaultFile, m_FileMask, wxFD_OPEN);
 
 		parent->m_DisableKillFocus = true;
 		int ret = dlg.ShowModal();

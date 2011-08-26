@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -159,7 +159,7 @@ private:
 		wxTextCtrl* filenameWin = wxDynamicCast(FindWindow(ID_FILENAME), wxTextCtrl);
 		wxCHECK(filenameWin, );
 
-		wxFileDialog dlg (this, wxFileSelectorPromptStr, filenameWin->GetValue(), filenameWin->GetValue(), _("MP4 files (*.mp4)|*.mp4"), wxSAVE);
+		wxFileDialog dlg (this, wxFileSelectorPromptStr, filenameWin->GetValue(), filenameWin->GetValue(), _("MP4 files (*.mp4)|*.mp4"), wxFD_SAVE);
 		if (dlg.ShowModal() != wxID_OK)
 			return;
 

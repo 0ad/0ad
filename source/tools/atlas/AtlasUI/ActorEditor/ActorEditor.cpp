@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -384,7 +384,7 @@ void ActorEditor::OnCreateEntity(wxCommandEvent& WXUNUSED(event))
 
 	wxString parentEntityFilename
 		(wxFileSelector(_("Choose a parent entity"), entityPath.GetPath(), _T(""),
-		_T("xml"), _("XML files (*.xml)|*.xml|All files (*.*)|*.*"), wxOPEN, this));
+		_T("xml"), _("XML files (*.xml)|*.xml|All files (*.*)|*.*"), wxFD_OPEN, this));
 
 	if (! parentEntityFilename.Length())
 		return; // cancelled by user
@@ -394,7 +394,7 @@ void ActorEditor::OnCreateEntity(wxCommandEvent& WXUNUSED(event))
 
 	wxString outputEntityFilename
 		(wxFileSelector(_("Choose a filename to save as"), entityPath.GetPath(), entityName,
-		_T("xml"), _("XML files (*.xml)|*.xml|All files (*.*)|*.*"), wxSAVE|wxOVERWRITE_PROMPT, this));
+		_T("xml"), _("XML files (*.xml)|*.xml|All files (*.*)|*.*"), wxFD_SAVE|wxFD_OVERWRITE_PROMPT, this));
 
 	if (! outputEntityFilename.Length())
 		return; // cancelled by user
