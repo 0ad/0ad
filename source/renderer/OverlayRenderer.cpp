@@ -168,24 +168,39 @@ void OverlayRenderer::RenderOverlaysAfterWater()
 {
 	PROFILE("render overlays (after water)");
 
-	// Only supported in shader modes
-	// (TODO: should support in non-shader too)
-	if (g_Renderer.GetRenderPath() != CRenderer::RP_SHADER)
-		return;
-
 	if (!m->texlines.empty())
 	{
 		glEnable(GL_TEXTURE_2D);
 		glEnable(GL_BLEND);
 		glDepthMask(0);
 
-		glEnableClientState(GL_VERTEX_ARRAY);
-		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		const char* shaderName;
+		if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+			shaderName = "overlayline";
+		else
+			shaderName = "fixed:overlayline";
 
 		CShaderManager& shaderManager = g_Renderer.GetShaderManager();
-		CShaderProgramPtr shaderTexLine(shaderManager.LoadProgram("overlayline", std::map<CStr, CStr>()));
+		CShaderProgramPtr shaderTexLine(shaderManager.LoadProgram(shaderName, std::map<CStr, CStr>()));
 
 		shaderTexLine->Bind();
+
+		int streamflags = shaderTexLine->GetStreamFlags();
+
+		if (streamflags & STREAM_POS)
+			glEnableClientState(GL_VERTEX_ARRAY);
+
+		if (streamflags & STREAM_UV0)
+		{
+			pglClientActiveTextureARB(GL_TEXTURE0);
+			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		}
+
+		if (streamflags & STREAM_UV1)
+		{
+			pglClientActiveTextureARB(GL_TEXTURE1);
+			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		}
 
 		CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
 		shaderTexLine->BindTexture("losTex", los.GetTexture());
@@ -206,8 +221,20 @@ void OverlayRenderer::RenderOverlaysAfterWater()
 			GLsizei stride = sizeof(CTexturedLineRData::SVertex);
 			CTexturedLineRData::SVertex* base = reinterpret_cast<CTexturedLineRData::SVertex*>(rdata->m_VB->m_Owner->Bind());
 
-			glVertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
-			glTexCoordPointer(2, GL_SHORT, stride, &base->m_UVs[0]);
+			if (streamflags & STREAM_POS)
+				glVertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
+
+			if (streamflags & STREAM_UV0)
+			{
+				pglClientActiveTextureARB(GL_TEXTURE0);
+				glTexCoordPointer(2, GL_SHORT, stride, &base->m_UVs[0]);
+			}
+
+			if (streamflags & STREAM_UV1)
+			{
+				pglClientActiveTextureARB(GL_TEXTURE1);
+				glTexCoordPointer(2, GL_SHORT, stride, &base->m_UVs[0]);
+			}
 
 			u8* indexBase = rdata->m_VBIndices->m_Owner->Bind();
 			glDrawElements(GL_QUAD_STRIP, rdata->m_VBIndices->m_Count, GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*rdata->m_VBIndices->m_Index);
@@ -223,6 +250,9 @@ void OverlayRenderer::RenderOverlaysAfterWater()
 
 		CVertexBuffer::Unbind();
 		glDisableClientState(GL_VERTEX_ARRAY);
+		pglClientActiveTextureARB(GL_TEXTURE1);
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+		pglClientActiveTextureARB(GL_TEXTURE0);
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
 		glDepthMask(1);

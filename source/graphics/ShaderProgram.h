@@ -29,6 +29,22 @@ struct CColor;
 class CMatrix3D;
 class CVector3D;
 
+// Vertex data stream flags
+enum
+{
+	STREAM_POS = (1 << 0),
+	STREAM_NORMAL = (1 << 1),
+	STREAM_COLOR = (1 << 2),
+	STREAM_UV0 = (1 << 3),
+	STREAM_UV1 = (1 << 4),
+	STREAM_UV2 = (1 << 5),
+	STREAM_UV3 = (1 << 6),
+	STREAM_POSTOUV0 = (1 << 7),
+	STREAM_POSTOUV1 = (1 << 8),
+	STREAM_POSTOUV2 = (1 << 9),
+	STREAM_POSTOUV3 = (1 << 10)
+};
+
 /**
  * A compiled vertex+fragment shader program.
  * The implementation may use GL_ARB_{vertex,fragment}_program (assembly syntax)
@@ -52,6 +68,11 @@ public:
 		const std::map<CStr, int>& vertexIndexes, const std::map<CStr, int>& fragmentIndexes,
 		int streamflags);
 
+	/**
+	 * Construct an instance of a pre-defined fixed-function pipeline setup.
+	 */
+	static CShaderProgram* ConstructFFP(const std::string& id);
+
 	typedef const char* attrib_id_t;
 	typedef const char* texture_id_t;
 	typedef const char* uniform_id_t;
@@ -61,12 +82,8 @@ public:
 	 */
 	struct Binding
 	{
-		friend class CShaderProgramARB;
-	private:
 		Binding(int v, int f) : vertex((i16)v), fragment((i16)f) { }
-		i16 vertex;
-		i16 fragment;
-	public:
+
 		Binding() : vertex(-1), fragment(-1) { }
 
 		/**
@@ -74,6 +91,9 @@ public:
 		 * If not then there's no point calling Uniform() to set its value.
 		 */
 		bool Active() { return vertex != -1 || fragment != -1; }
+
+		i16 vertex;
+		i16 fragment;
 	};
 
 	virtual ~CShaderProgram() { }
@@ -116,19 +136,23 @@ public:
 
 	virtual Binding GetUniformBinding(uniform_id_t id) = 0;
 
-	virtual void Uniform(uniform_id_t id, int v) = 0;
-	virtual void Uniform(uniform_id_t id, float v) = 0;
-	virtual void Uniform(uniform_id_t id, float v0, float v1, float v2, float v3) = 0;
-	virtual void Uniform(uniform_id_t id, const CVector3D& v) = 0;
-	virtual void Uniform(uniform_id_t id, const CColor& v) = 0;
-	virtual void Uniform(uniform_id_t id, const CMatrix3D& v) = 0;
-
-	virtual void Uniform(Binding id, int v) = 0;
-	virtual void Uniform(Binding id, float v) = 0;
+	// Uniform-setting methods that subclasses must define:
 	virtual void Uniform(Binding id, float v0, float v1, float v2, float v3) = 0;
-	virtual void Uniform(Binding id, const CVector3D& v) = 0;
-	virtual void Uniform(Binding id, const CColor& v) = 0;
 	virtual void Uniform(Binding id, const CMatrix3D& v) = 0;
+
+	// Convenient uniform-setting wrappers:
+
+	void Uniform(Binding id, int v);
+	void Uniform(Binding id, float v);
+	void Uniform(Binding id, const CVector3D& v);
+	void Uniform(Binding id, const CColor& v);
+
+	void Uniform(uniform_id_t id, int v);
+	void Uniform(uniform_id_t id, float v);
+	void Uniform(uniform_id_t id, const CVector3D& v);
+	void Uniform(uniform_id_t id, const CColor& v);
+	void Uniform(uniform_id_t id, float v0, float v1, float v2, float v3);
+	void Uniform(uniform_id_t id, const CMatrix3D& v);
 
 protected:
 	CShaderProgram(int streamflags);

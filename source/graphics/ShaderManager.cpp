@@ -62,7 +62,7 @@ CShaderProgramPtr CShaderManager::LoadProgram(const char* name, const std::map<C
 		return it->second;
 
 	CShaderProgramPtr program;
-	if (NewProgram(name, defines, program) != PSRETURN_OK)
+	if (!NewProgram(name, defines, program))
 	{
 		LOGERROR(L"Failed to load shader '%hs'", name);
 		program = CShaderProgramPtr();
@@ -74,6 +74,15 @@ CShaderProgramPtr CShaderManager::LoadProgram(const char* name, const std::map<C
 
 bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& baseDefines, CShaderProgramPtr& program)
 {
+	if (strncmp(name, "fixed:", 6) == 0)
+	{
+		program = CShaderProgramPtr(CShaderProgram::ConstructFFP(name+6));
+		if (!program)
+			return false;
+		program->Reload();
+		return true;
+	}
+
 	VfsPath xmlFilename = L"shaders/" + wstring_from_utf8(name) + L".xml";
 
 	CXeromyces XeroFile;
@@ -184,7 +193,7 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 	m_HotloadFiles[vertexFile].insert(program);
 	m_HotloadFiles[fragmentFile].insert(program);
 
-	return PSRETURN_OK;
+	return true;
 }
 
 /*static*/ Status CShaderManager::ReloadChangedFileCB(void* param, const VfsPath& path)

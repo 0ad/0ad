@@ -51,19 +51,6 @@ enum ERenderMode { WIREFRAME, SOLID, EDGED_FACES };
 // transparency modes
 enum ETransparentMode { TRANSPARENT, TRANSPARENT_OPAQUE, TRANSPARENT_BLEND };
 
-// stream flags
-#define STREAM_POS (1 << 0)
-#define STREAM_NORMAL (1 << 1)
-#define STREAM_COLOR (1 << 2)
-#define STREAM_UV0 (1 << 3)
-#define STREAM_UV1 (1 << 4)
-#define STREAM_UV2 (1 << 5)
-#define STREAM_UV3 (1 << 6)
-#define STREAM_POSTOUV0 (1 << 7)
-#define STREAM_POSTOUV1 (1 << 8)
-#define STREAM_POSTOUV2 (1 << 9)
-#define STREAM_POSTOUV3 (1 << 10)
-
 // access to sole renderer object
 #define g_Renderer CRenderer::GetSingleton()
 

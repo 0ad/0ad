@@ -197,31 +197,6 @@ public:
 		return Binding(GetUniformVertexIndex(id), GetUniformFragmentIndex(id));
 	}
 
-	virtual void Uniform(uniform_id_t id, int v)
-	{
-		Uniform(Binding(GetUniformVertexIndex(id), GetUniformFragmentIndex(id)), (float)v, (float)v, (float)v, (float)v);
-	}
-
-	virtual void Uniform(Binding id, int v)
-	{
-		Uniform(id, (float)v, (float)v, (float)v, (float)v);
-	}
-
-	virtual void Uniform(uniform_id_t id, float v)
-	{
-		Uniform(Binding(GetUniformVertexIndex(id), GetUniformFragmentIndex(id)), v, v, v, v);
-	}
-
-	virtual void Uniform(Binding id, float v)
-	{
-		Uniform(id, v, v, v, v);
-	}
-
-	virtual void Uniform(uniform_id_t id, float v0, float v1, float v2, float v3)
-	{
-		Uniform(Binding(GetUniformVertexIndex(id), GetUniformFragmentIndex(id)), v0, v1, v2, v3);
-	}
-
 	virtual void Uniform(Binding id, float v0, float v1, float v2, float v3)
 	{
 		if (id.vertex != -1)
@@ -229,31 +204,6 @@ public:
 
 		if (id.fragment != -1)
 			pglProgramLocalParameter4fARB(GL_FRAGMENT_PROGRAM_ARB, (GLuint)id.fragment, v0, v1, v2, v3);
-	}
-
-	virtual void Uniform(uniform_id_t id, const CVector3D& v)
-	{
-		Uniform(Binding(GetUniformVertexIndex(id), GetUniformFragmentIndex(id)), v.X, v.Y, v.Z, 0.0f);
-	}
-
-	virtual void Uniform(Binding id, const CVector3D& v)
-	{
-		Uniform(id, v.X, v.Y, v.Z, 0.0f);
-	}
-
-	virtual void Uniform(uniform_id_t id, const CColor& v)
-	{
-		Uniform(Binding(GetUniformVertexIndex(id), GetUniformFragmentIndex(id)), v.r, v.g, v.b, v.a);
-	}
-
-	virtual void Uniform(Binding id, const CColor& v)
-	{
-		Uniform(id, v.r, v.g, v.b, v.a);
-	}
-
-	virtual void Uniform(uniform_id_t id, const CMatrix3D& v)
-	{
-		Uniform(Binding(GetUniformVertexIndex(id), GetUniformFragmentIndex(id)), v);
 	}
 
 	virtual void Uniform(Binding id, const CMatrix3D& v)
@@ -310,4 +260,54 @@ bool CShaderProgram::IsValid() const
 int CShaderProgram::GetStreamFlags() const
 {
 	return m_StreamFlags;
+}
+
+void CShaderProgram::Uniform(Binding id, int v)
+{
+	Uniform(id, (float)v, (float)v, (float)v, (float)v);
+}
+
+void CShaderProgram::Uniform(Binding id, float v)
+{
+	Uniform(id, v, v, v, v);
+}
+
+void CShaderProgram::Uniform(Binding id, const CVector3D& v)
+{
+	Uniform(id, v.X, v.Y, v.Z, 0.0f);
+}
+
+void CShaderProgram::Uniform(Binding id, const CColor& v)
+{
+	Uniform(id, v.r, v.g, v.b, v.a);
+}
+
+void CShaderProgram::Uniform(uniform_id_t id, int v)
+{
+	Uniform(GetUniformBinding(id), (float)v, (float)v, (float)v, (float)v);
+}
+
+void CShaderProgram::Uniform(uniform_id_t id, float v)
+{
+	Uniform(GetUniformBinding(id), v, v, v, v);
+}
+
+void CShaderProgram::Uniform(uniform_id_t id, const CVector3D& v)
+{
+	Uniform(GetUniformBinding(id), v.X, v.Y, v.Z, 0.0f);
+}
+
+void CShaderProgram::Uniform(uniform_id_t id, const CColor& v)
+{
+	Uniform(GetUniformBinding(id), v.r, v.g, v.b, v.a);
+}
+
+void CShaderProgram::Uniform(uniform_id_t id, float v0, float v1, float v2, float v3)
+{
+	Uniform(GetUniformBinding(id), v0, v1, v2, v3);
+}
+
+void CShaderProgram::Uniform(uniform_id_t id, const CMatrix3D& v)
+{
+	Uniform(GetUniformBinding(id), v);
 }
