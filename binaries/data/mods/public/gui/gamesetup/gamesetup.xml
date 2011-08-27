@@ -34,7 +34,7 @@
 		</object>
 
 		<!-- Map selection -->
-		<object size="16 64 250 100%-16">
+		<object size="20 64 250 100%-20">
 			<object name="mapTypeHeading" type="text" style="LeftLabelText" size="0 0 100% 30">Match Type:</object>
 			<object name="mapTypeSelection"
 				type="dropdown"
@@ -84,7 +84,7 @@
 			</object>
 		</object>
 
-		<object size="260 64 100%-16 100%-260" type="image" sprite="BackgroundIndentFillDark">
+		<object size="260 64 100%-20 100%-260" type="image" sprite="BackgroundIndentFillDark">
 			<object size="0 6 100% 30">
 				<object name="playerNameHeading" type="text" style="CenteredLabelText" size="100 0 250 100%">Player Name</object>
 				<object name="playerCivHeading" type="text" style="CenteredLabelText" size="250 0 400 100%">Civilization</object>
@@ -140,7 +140,7 @@
 		
 		
 		<!-- Chat window -->
-		<object name="chatPanel" size="260 100%-190 100%-16 100%-45" type="image" sprite="BackgroundIndentFillDark">
+		<object name="chatPanel" size="260 100%-190 100%-20 100%-58" type="image" sprite="BackgroundIndentFillDark">
 	
 			<object name="chatText" size="3 1 100%-1 100%-25" type="text" style="chatPanel"/>
 	
@@ -170,7 +170,7 @@
 			name="cancelGame"
 			type="button"
 			style="StoneButton"
-			size="100%-300 100%-48 100%-160 100%-16"
+			size="100%-304 100%-52 100%-164 100%-20"
 			tooltip_style="onscreenToolTip"
 			tooltip="Click this button to return to the main menu."
 		>Cancel
@@ -184,7 +184,7 @@
 			name="startGame"
 			type="button"
 			style="StoneButton"
-			size="100%-156 100%-48 100%-16 100%-16"
+			size="100%-160 100%-52 100%-20 100%-20"
 			tooltip_style="onscreenToolTip"
 			tooltip="Click this button to start a new game with the current settings."
 		>Start game!

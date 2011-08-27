@@ -82,7 +82,7 @@
 		
 		
 		<!-- Civ history display -->
-		<object size="25 65% 100%-25 100%-50">
+		<object size="25 65% 100%-25 100%-56">
 			<object type="image" sprite="bgInfoHeading" size="0 0 100% 35">
 				<object
 					name="civHistoryHeading"
@@ -111,7 +111,7 @@
 		<object
 			type="button"
 			style="StoneButton"
-			size="100%-150 100%-48 100%-24 100%-16"
+			size="100%-148 100%-52 100%-20 100%-20"
 		>Close
 			<action on="Press"><![CDATA[
 				Engine.PopGuiPage();

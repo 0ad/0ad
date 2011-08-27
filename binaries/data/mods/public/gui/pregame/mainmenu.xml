@@ -60,12 +60,10 @@
                         z="20"
                 >
                         <action on="Press"><![CDATA[
-                                var btCaptions = ["Yes", "No"];
-                                var btCode = [exit, null];
-                                messageBox (400, 200, "Are you sure you want to quit [icon=iconProduct] A.D.?", "Confirmation", 0, btCaptions, btCode);
+                                // Exit without confirmation
+                                exit();
                         ]]></action>
 		</object>
-
 
 		<!--
 		==========================================
@@ -147,8 +145,6 @@ Status: $status.
 				<action on="Press">Engine.PushGuiPage("page_manual.xml", { "page": "userreport" });</action>
 			</object>
 		</object>
- 
-
              
 
 		<!--
@@ -263,7 +259,7 @@ Status: $status.
                                         <action on="Press"><![CDATA[
                                                 var btCaptions = ["Yes", "No"];
                                                 var btCode = [exit, null];
-                                                messageBox (400, 200, "Are you sure you want to quit 0 A.D.?", "Confirmation", 0, btCaptions, btCode);
+                                                messageBox(400, 200, "Are you sure you want to quit 0 A.D.?", "Confirmation", 0, btCaptions, btCode);
                                         ]]></action>
                                 </object>
                         </object>
@@ -354,8 +350,6 @@ Get involved at: wildfiregames.com/0ad
 			</object>
                         
                 </object>
-                
-                
                 
                 
                 <!--

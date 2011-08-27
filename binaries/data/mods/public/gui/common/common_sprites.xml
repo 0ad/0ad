@@ -307,7 +307,45 @@
 			texture_size="0 0 512 512"
 			size="4 4 100%-4 100%-4" 
 		/>
-		<!-- shading -->
+                
+                <!-- thin sides -->
+		<image	texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="20 16 100%-20 20"
+		/>
+		<image	texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="100%-20 20 100%-16 100%-20"
+		/>
+		<image	texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="20 100%-20 100%-20 100%-16"
+		/>
+		<image	texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="16 20 20 100%-20"
+		/>
+                
+		<!-- thin corners -->
+		<image
+			texture="global/border/line_corner_top_right.png"
+			texture_size="0 0 4 4"
+			size="100%-20 16 100%-16 20"
+		/>
+		<image	texture="global/border/line_corner_bottom_right.png"
+			texture_size="0 0 4 4"
+			size="100%-20 100%-20 100%-16 100%-16"
+		/>
+		<image	texture="global/border/line_corner_bottom_left.png"
+			texture_size="0 0 4 4"
+			size="16 100%-20 20 100%-16"
+		/>
+		<image	texture="global/border/line_corner_top_left.png"
+			texture_size="0 0 4 4"
+			size="16 16 20 20"
+		/>
+                
+                <!-- shading -->
 		<image
 			texture="global/shading/gradient_wide.png"
 			size="0 0 100% 100%"
