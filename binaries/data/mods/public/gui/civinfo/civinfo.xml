@@ -10,9 +10,9 @@
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="bkTranslucent"/>
 
-	<object type="image" style="wheatWindow" size="50%-450 50%-300 50%+450 50%+300">
+	<object type="image" style="StonePanelLight" size="50%-466 50%-316 50%+466 50%+316">
 
-		<object style="wheatWindowTitleBar" type="text">Civilizations</object>
+		<object style="StoneDialogTitleBar" type="text" size="50%-128 -16 50%+128 16">Civilizations</object>
 
 		<object type="button" style="wheatExit" tooltip_style="snToolTip">
 			<action on="Press"><![CDATA[
@@ -21,42 +21,42 @@
 		</object>
 		
 		<!-- Civ selection -->
-		
 		<object size="25 10 100% 30">
 			<object
 				name="civSelectionHeading"
 				type="text"
 				font="serif-bold-20"
+                                textcolor="white"
 				text_align="left"
-				size="0 0 300 100%">
+				size="50%-320 10 50%-96 48">
 				Civilization Selection
 			</object>
 			
-			<object name="civSelection" type="dropdown" style="wheatDropDown" size="50%-100 0 50%+100 30">
+			<object name="civSelection" type="dropdown" style="StoneDropDown" size="50%-96 10 50%+96 40">
 				<action on="SelectionChange">selectCiv(this.list_data[this.selected]);</action>
 			</object>
 		</object>
 		
 		<!-- Civ data display -->
-
 		<object size="25 50 100%-25 65%-5">
 			<object type="image" sprite="bgInfoHeading" size="0 0 100% 40">
 				<object
 					name="civGameplayHeading"
 					type="text"
 					font="serif-bold-16"
-					textcolor="255 255 255"
+					textcolor="white"
 					text_align="left"
 					text_valign="center"
 					size="10 0 100% 100%"
 				/>
 			</object>
 			
-			<object type="image" sprite="bgInfoBox" size="0 40 33%-5 100%">
+			<object type="image" sprite="TranslucentPanel" size="0 40 33%-5 100%">
 				<object
 					name="civBonuses"
 					type="text"
 					font="serif-14"
+                                        textcolor="white"
 					text_align="left"
 					size="10 0 100%-10 100%-10"
 				/>
@@ -67,6 +67,7 @@
 					name="civTechs"
 					type="text"
 					font="serif-14"
+                                        textcolor="white"
 					text_align="left"
 					size="10 0 100%-10 100%-10"
 				/>
@@ -77,6 +78,7 @@
 					name="civHeroes"
 					type="text"
 					font="serif-14"
+                                        textcolor="white"
 					text_align="left"
 					size="10 0 100%-10 100%-10"
 				/>
@@ -86,14 +88,13 @@
 		
 		
 		<!-- Civ history display -->
-		
 		<object size="25 65% 100%-25 100%-50">
 			<object type="image" sprite="bgInfoHeading" size="0 0 100% 35">
 				<object
 					name="civHistoryHeading"
 					type="text"
 					font="serif-bold-16"
-					textcolor="255 255 255"
+					textcolor="white"
 					text_align="left"
 					text_valign="center"
 					size="10 0 100% 100%"
@@ -105,6 +106,7 @@
 					name="civHistoryText"
 					type="text"
 					font="serif-14"
+                                        textcolor="white"
 					text_align="left"
 					size="10 0 100% 100%"
 				/>
@@ -114,10 +116,9 @@
 		
 		<object
 			type="button"
-			style="wheatButton"
-			font="serif-16"
-			size="100%-140 100%-40 100%+3 100%+3"
-		>Done
+			style="StoneButton"
+			size="100%-150 100%-48 100%-24 100%-16"
+		>Close
 			<action on="Press"><![CDATA[
 				Engine.PopGuiPage();
 			]]></action>

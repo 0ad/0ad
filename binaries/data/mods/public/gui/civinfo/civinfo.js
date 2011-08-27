@@ -1,5 +1,6 @@
 
 var g_CivData = {};
+var TEXTCOLOR = "white"
 
 function init(settings)
 {
@@ -72,14 +73,16 @@ function selectCiv(code)
 	
 	for(var i = 0; i < civInfo.CivBonuses.length; ++i)
 	{
-		bonusCaption += '[color="10 10 10"][font="serif-bold-14"]' + civInfo.CivBonuses[i].Name + '[/font] [icon="iconInfo" tooltip="'+civInfo.CivBonuses[i].History+'" tooltip_style="civInfoTooltip"]\n     ' + civInfo.CivBonuses[i].Description + '\n[/color]';
+		bonusCaption += '[color="' + TEXTCOLOR + '"][font="serif-bold-14"]' + civInfo.CivBonuses[i].Name + '[/font] [icon="iconInfo" tooltip="'
+                    + civInfo.CivBonuses[i].History + '" tooltip_style="civInfoTooltip"]\n     ' + civInfo.CivBonuses[i].Description + '\n[/color]';
 	}
 
 	bonusCaption += heading("Team Bonus"+(civInfo.TeamBonuses.length == 1 ? "" : "es"), 12) + '\n';
 	
 	for(var i = 0; i < civInfo.TeamBonuses.length; ++i)
 	{
-		bonusCaption += '[color="10 10 10"][font="serif-bold-14"]' + civInfo.TeamBonuses[i].Name + '[/font] [icon="iconInfo" tooltip="'+civInfo.TeamBonuses[i].History+'" tooltip_style="civInfoTooltip"]\n     ' + civInfo.TeamBonuses[i].Description + '\n[/color]';
+		bonusCaption += '[color="' + TEXTCOLOR + '"][font="serif-bold-14"]' + civInfo.TeamBonuses[i].Name + '[/font] [icon="iconInfo" tooltip="'
+                    + civInfo.TeamBonuses[i].History + '" tooltip_style="civInfoTooltip"]\n     ' + civInfo.TeamBonuses[i].Description + '\n[/color]';
 	}
 	
 	getGUIObjectByName("civBonuses").caption = bonusCaption;
@@ -93,7 +96,8 @@ function selectCiv(code)
 		var faction = civInfo.Factions[i];
 		for(var j = 0; j < faction.Technologies.length; ++j)
 		{
-			techCaption += '[color="10 10 10"][font="serif-bold-14"]' + faction.Technologies[j].Name + '[/font] [icon="iconInfo" tooltip="'+faction.Technologies[j].History+'" tooltip_style="civInfoTooltip"]\n     ' + faction.Technologies[j].Description + '\n[/color]';
+			techCaption += '[color="' + TEXTCOLOR + '"][font="serif-bold-14"]' + faction.Technologies[j].Name + '[/font] [icon="iconInfo" tooltip="'
+                            + faction.Technologies[j].History + '" tooltip_style="civInfoTooltip"]\n     ' + faction.Technologies[j].Description + '\n[/color]';
 		}
 	}
 
@@ -101,7 +105,8 @@ function selectCiv(code)
 	
 	for(var i = 0; i < civInfo.Structures.length; ++i)
 	{
-		techCaption += '[color="10 10 10"][font="serif-bold-14"]' + civInfo.Structures[i].Name + '[/font][/color] [icon="iconInfo" tooltip="'+ civInfo.Structures[i].History+'" tooltip_style="civInfoTooltip"]\n';
+		techCaption += '[color="' + TEXTCOLOR + '"][font="serif-bold-14"]' + civInfo.Structures[i].Name + '[/font][/color] [icon="iconInfo" tooltip="'
+                    + civInfo.Structures[i].History + '" tooltip_style="civInfoTooltip"]\n';
 	}
 	
 	getGUIObjectByName("civTechs").caption = techCaption;
@@ -115,7 +120,8 @@ function selectCiv(code)
 		var faction = civInfo.Factions[i];
 		for(var j = 0; j < faction.Heroes.length; ++j)
 		{
-			heroCaption += '[color="10 10 10"][font="serif-bold-14"]' + faction.Heroes[j].Name + '[/font][/color] [icon="iconInfo" tooltip="'+faction.Heroes[j].History+'" tooltip_style="civInfoTooltip"]\n';
+			heroCaption += '[color="' + TEXTCOLOR + '"][font="serif-bold-14"]' + faction.Heroes[j].Name + '[/font][/color] [icon="iconInfo" tooltip="'
+                            + faction.Heroes[j].History + '" tooltip_style="civInfoTooltip"]\n';
 		}
 		heroCaption += '\n';
 	}

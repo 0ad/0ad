@@ -99,9 +99,9 @@ function onTick()
 }
 
 // Update the submenu
-var margin = 4;
+var MARGIN = 4;
 var currentSubmenu;
-function updateSubmenu(buttonName, newSubmenu)
+function updateSubmenu(buttonName, newSubmenu, numButtons)
 {
         // hide old submenu if possible
         if (null != currentSubmenu)
@@ -116,10 +116,12 @@ function updateSubmenu(buttonName, newSubmenu)
         getGUIObjectByName(currentSubmenu).hidden = false;
         
         // find  position of new submenu
-        var mainMenubutton = getGUIObjectByName(buttonName);
+        var sourceButton = getGUIObjectByName(buttonName);
         var verticalOffset = getGUIObjectByName("mainMenuButtons").size.top;
-        var top = verticalOffset + mainMenubutton.size.top - margin;
-        var bottom = verticalOffset + mainMenubutton.size.bottom + margin;
+        var buttonHeight = sourceButton.size.bottom - sourceButton.size.top;
+        
+        var top = verticalOffset + sourceButton.size.top - MARGIN;
+        var bottom = verticalOffset + sourceButton.size.bottom + buttonHeight * (numButtons-1) + MARGIN;
         
         // set position of new submenu
         var submenu = getGUIObjectByName("submenu");
