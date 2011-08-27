@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/kart_trireme_mainsail.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Tree">
+      <texture>props/kart_sail_1.dds</texture>
+    </variant>
+    <variant frequency="1" name="tanit">
+      <texture>props/kart_sail_2.dds</texture>
+    </variant>
+    <variant frequency="1" name="other">
+      <texture>props/kart_sail_3.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
