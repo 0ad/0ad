@@ -356,36 +356,36 @@
 		<!-- Player resource bar -->
 		<!-- ================================  ================================ -->
 		<object
-			size="0 0 500 100%"
+			size="1% 0 45% 100%"
 		>	
 			<!-- Food -->
-			<object size="0 0 80 100%" type="image" style="resourceCounter" tooltip="Food" tooltip_style="sessionToolTipBold">
+			<object size="0 0 20% 100%" type="image" style="resourceCounter" tooltip="Food" tooltip_style="sessionToolTipBold">
 				<object size="0 -6 48 42" type="image" style="resourceIcon" cell_id="0"/>
-				<object size="36 0 100% 100%-2" type="text" style="resourceText" name="resourceFood"/>
+				<object size="30% 0 100% 100%-2" type="text" style="resourceText" name="resourceFood"/>
 			</object>
 
 			<!-- Wood -->
-			<object size="90 0 180 100%" type="image" style="resourceCounter" tooltip="Wood" tooltip_style="sessionToolTipBold">
+			<object size="20% 0 40% 100%" type="image" style="resourceCounter" tooltip="Wood" tooltip_style="sessionToolTipBold">
 				<object size="0 -6 48 42" type="image" style="resourceIcon" cell_id="1"/>
-				<object size="36 0 100% 100%-2" type="text" style="resourceText" name="resourceWood"/>
+				<object size="30% 0 100% 100%-2" type="text" style="resourceText" name="resourceWood"/>
 			</object>
 
 			<!-- Stone -->
-			<object size="180 0 270 100%" type="image" style="resourceCounter" tooltip="Stone" tooltip_style="sessionToolTipBold">
+			<object size="40% 0 60% 100%" type="image" style="resourceCounter" tooltip="Stone" tooltip_style="sessionToolTipBold">
 				<object size="0 -2 48 42" type="image" style="resourceIcon" cell_id="2"/>
-				<object size="36 0 100% 100%-2" type="text" style="resourceText" name="resourceStone"/>
+				<object size="30% 0 100% 100%-2" type="text" style="resourceText" name="resourceStone"/>
 			</object>
 
 			<!-- Metal -->
-			<object size="270 0 360 100%"  type="image" style="resourceCounter" tooltip="Metal" tooltip_style="sessionToolTipBold">
+			<object size="60% 0 80% 100%"  type="image" style="resourceCounter" tooltip="Metal" tooltip_style="sessionToolTipBold">
 				<object size="0 -6 48 42" type="image" style="resourceIcon" cell_id="3"/>
-				<object size="36 0 100% 100%-2" type="text" style="resourceText" name="resourceMetal"/>
+				<object size="30% 0 100% 100%-2" type="text" style="resourceText" name="resourceMetal"/>
 			</object>
 
 			<!-- Population -->
-			<object size="360 0 450 100%" type="image" style="resourceCounter" tooltip="Population (current / limit)" tooltip_style="sessionToolTipBold">
+			<object size="80% 0 100% 100%" type="image" style="resourceCounter" tooltip="Population (current / limit)" tooltip_style="sessionToolTipBold">
 				<object size="0 -6 44 38" type="image" style="resourceIcon" cell_id="4"/>
-				<object size="42 0 100% 100%-2" type="text" style="resourceText" name="resourcePop"/>
+				<object size="30% 0 100% 100%-2" type="text" style="resourceText" name="resourcePop"/>
 			</object>
 		</object>
 
