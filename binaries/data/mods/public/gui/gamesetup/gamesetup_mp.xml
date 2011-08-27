@@ -9,127 +9,41 @@
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="bkTranslucent"/>
 
-	<object type="image" style="wheatWindow" size="50%-190 50%-120 50%+190 50%+120">
+	<object type="image" style="StonePanelLight" size="50%-190 50%-120 50%+190 50%+120">
 
 		<action on="Tick">
 			onTick();
 		</action>
 
-		<object type="text" style="wheatWindowTitleBar">
+		<object style="StoneDialogTitleBar" type="text" size="50%-128 0%-16 50%+128 16">
 			Multiplayer
 		</object>
-	
-		<object type="button" style="wheatExit" tooltip_style="snToolTip">
-			<action on="Press"><![CDATA[
-				cancelSetup();
-			]]></action>
-		</object>
-
-		<object name="pageSelectMode">
-
-			<object type="text" size="0 50%-60 100% 50%">
-				Please select whether you want to join a game or host your own game. 
-			</object>
-
-			<object type="text" size="0 50%+22 200 50%+50" style="wheatTextHeadBlack">
-				Game Mode:
-			</object>
-
-			<object type="button" style="wheatButton" size="130 50%+20 230 50%+50">
-				Join Game
-				<action on="Press"><![CDATA[
-					switchSetupPage("pageSelectMode", "pageJoin");
-				]]></action>
-			</object>
-
-			<object type="button" style="wheatButton" size="250 50%+20 350 50%+50">
-				Host Game
-				<action on="Press"><![CDATA[
-					switchSetupPage("pageSelectMode", "pageHost");
-				]]></action>
-			</object>
-
-		</object>
-
-		<object name="pageHost" hidden="true">
-
-			<object type="text" size="0 0 400 30">
-				Setting up your server.
-			</object>
-
-			<object type="text" size="0 40 200 70" style="wheatTextHeadBlack">
-				Player name:
-			</object>
-
-			<object name="hostPlayerName" type="input" size="220 40 370 60" style="wheatInput">
-				<action on="Load"><![CDATA[
-					this.caption = Engine.GetDefaultPlayerName();
-				]]></action>
-			</object>
-
-			<object hidden="true"> <!-- TODO: restore this when the server name is actually used -->
-			<object type="text" size="0 80 200 110" style="wheatTextHeadBlack">
-				Server name:
-			</object>
-
-			<object name="hostServerName" type="input" size="220 80 370 100" style="wheatInput">
-				<action on="Load"><![CDATA[
-					this.caption = Engine.GetDefaultPlayerName() + "'s game";
-				]]></action>
-			</object>
-			</object>
-
-			<object type="button" size="3 100%-33 103 100%-3" style="wheatButton">
-				Continue
-				<action on="Press"><![CDATA[
-					if (startHost(
-						getGUIObjectByName("hostPlayerName").caption,
-						getGUIObjectByName("hostServerName").caption))
-					{
-						switchSetupPage("pageHost", "pageConnecting");
-					}
-				]]></action>
-			</object>
-
-			<object type="button" style="wheatButton" size="50%-50 100%-33 50%+50 100%-3"> 
-				Back
-				<action on="Press"><![CDATA[
-					switchSetupPage("pageHost", "pageSelectMode");
-				]]></action>
-			</object>
-
-		</object>
-
-		<object type="button" style="wheatButton" size="100%-103 100%-33 100%-3 100%-3">
-			Cancel
-			<action on="Press"><![CDATA[cancelSetup();]]></action>
-		</object>
-
-		<object name="pageJoin" hidden="true">
+                
+                <object name="pageJoin" size="0 32 100% 100%" hidden="true">
 		
-			<object type="text" size="0 0 400 30">
+			<object type="text" style="CenteredLabelText" size="0 0 400 30">
 				Joining an existing game.
 			</object>
 
-			<object type="text" size="0 40 200 70" style="wheatTextHeadBlack">
+			<object type="text" size="0 40 200 70" style="RightLabelText">
 				Player name:
 			</object>
 
-			<object name="joinPlayerName" type="input" size="220 40 370 60" style="wheatInput">
+			<object name="joinPlayerName" type="input" size="210 40 100%-32 64" style="StoneInput">
 				<action on="Load"><![CDATA[
 					this.caption = Engine.GetDefaultPlayerName();
 				]]></action>
 			</object>
 
-			<object type="text" size="0 80 200 110" style="wheatTextHeadBlack">
+			<object type="text" size="0 80 200 110" style="RightLabelText">
 				Server Hostname or IP:
 			</object>
 
-			<object name="joinIP" type="input" size="220 80 370 100" style="wheatInput">
+			<object name="joinIP" type="input" size="210 80 100%-32 104" style="StoneInput">
 				127.0.0.1
-			</object>
+			</object>3 100%-33 103 100%-3
 
-			<object type="button" size="3 100%-33 103 100%-3" style="wheatButton"> 
+			<object type="button" size="50%+16 100%-64 50%+144 100%-32" style="StoneButton"> 
 				Continue
 				<action on="Press"><![CDATA[
 					if (startJoin(
@@ -140,17 +54,56 @@
 					}
 				]]></action>
 			</object>
+		</object>
 
-			<object type="button" size="50%-50 100%-33 50%+50 100%-3" style="wheatButton"> 
-				Back
+		<object name="pageHost" size="0 32 100% 100%" hidden="true">
+
+			<object type="text" style="CenteredLabelText" size="0 0 400 30">
+				Set up your server to host.
+			</object>
+
+			<object type="text" size="0 40 200 70" style="RightLabelText">
+				Player name:
+			</object>
+
+			<object name="hostPlayerName" type="input" size="210 40 100%-32 64" style="StoneInput">
+				<action on="Load"><![CDATA[
+					this.caption = Engine.GetDefaultPlayerName();
+				]]></action>
+			</object>
+
+			<object hidden="true"> <!-- TODO: restore this when the server name is actually used -->
+			<object type="text" size="0 80 200 110" style="RightLabelText">
+				Server name:
+			</object>
+
+			<object name="hostServerName" type="input" size="210 80 100%-32 104" style="StoneInput">
+				<action on="Load"><![CDATA[
+					this.caption = Engine.GetDefaultPlayerName() + "'s game";
+				]]></action>
+			</object>
+			</object>
+
+			<object type="button" size="50%+16 100%-64 50%+144 100%-32" style="StoneButton">
+				Continue
 				<action on="Press"><![CDATA[
-					switchSetupPage("pageJoin", "pageSelectMode");
+					if (startHost(
+						getGUIObjectByName("hostPlayerName").caption,
+						getGUIObjectByName("hostServerName").caption))
+					{
+						switchSetupPage("pageHost", "pageConnecting");
+					}
 				]]></action>
 			</object>
 		</object>
 
+                <object type="button" style="StoneButton" size="50%-144 100%-64 50%-16 100%-32">
+			Cancel
+			<action on="Press"><![CDATA[cancelSetup();]]></action>
+		</object>
+
 		<object name="pageConnecting" hidden="true">
-			<object name="connectionStatus" type="text" text_align="center" size="0 100 100% 120">
+			<object name="connectionStatus" type="text" style="CenteredLabelText" size="0 100 100% 120">
 				[Connection status]
 			</object>
 		</object>

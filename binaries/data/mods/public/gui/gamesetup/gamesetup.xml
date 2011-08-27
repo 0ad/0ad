@@ -33,13 +33,6 @@
 			Match Setup
 		</object>
 
-		<object type="button" style="StoneExit" tooltip_style="snToolTip" size="100%-16 0 100% 16">
-			<action on="Press"><![CDATA[
-				cancelSetup();
-				Engine.PopGuiPage();
-			]]></action>
-		</object>
-
 		<!-- Map selection -->
 		<object size="16 64 250 100%-16">
 			<object name="mapTypeHeading" type="text" style="LeftLabelText" size="0 0 100% 30">Match Type:</object>

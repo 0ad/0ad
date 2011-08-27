@@ -194,7 +194,7 @@
 
 		<!-- Chat window -->
 		<object name="chatDialogPanel" size="50%-200 50%-46 50%+200 50%+46" type="image" hidden="true" sprite="genericPanel">
-			<object name="chatInput" size="16 12 100%-16 36" type="input" style="chatInput" max_length="80">
+			<object name="chatInput" size="16 12 100%-16 36" type="input" style="StoneInput" max_length="80">
 				<action on="Press">submitChatInput();</action>
 			</object>
 
@@ -298,7 +298,7 @@
 		<!-- Settings Window -->
 		<!-- ================================  ================================ -->
 		<object name="settingsDialogPanel"
-			style="TranslucentPanel"
+			style="TranslucentPanelThinBorder"
 			type="image"
 			size="80%-180 50%-200 50%+180 50%+50"
 			hidden="true"

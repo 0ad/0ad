@@ -1,8 +1,22 @@
 var g_IsConnecting = false;
 var g_GameType; // "server" or "client"
 
-function init()
+function init(multiplayerGameType)
 {
+        switch (multiplayerGameType)
+        {
+                case "join":
+                        getGUIObjectByName("pageJoin").hidden = false;
+                        getGUIObjectByName("pageHost").hidden = true;
+                        break;
+                case "host":
+                        getGUIObjectByName("pageJoin").hidden = true;
+                        getGUIObjectByName("pageHost").hidden = false;
+                        break;
+                default:
+                        error("Unrecognised multiplayer game type : " + multiplayerGameType);
+                        break;
+        }
 }
 
 function cancelSetup()

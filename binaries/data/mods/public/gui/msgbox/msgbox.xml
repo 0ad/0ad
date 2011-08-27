@@ -71,11 +71,11 @@
 		switch (data.buttonCaptions.length)
 		{
 		case 1:
-			mbButton1Obj.size = "30% 100%-80 70% 100%-50";
+			mbButton1Obj.size = "50%-64 100%-64 50%+64 100%-32";
 			break;
 		case 2:
-			mbButton1Obj.size = "10% 100%-80 45% 100%-50";
-			mbButton2Obj.size = "55% 100%-80 90% 100%-50";
+			mbButton1Obj.size = "50%-144 100%-64 50%-16 100%-32";
+			mbButton2Obj.size = "50%+16 100%-64 50%+144 100%-32";
 			break;
 		case 3:
 			mbButton1Obj.size = "10% 100%-80 30% 100%-50";
@@ -87,35 +87,36 @@
 	]]></script>
 	<object>
 		<object name="mbMain"
-			style="wheatWindow"
+			style="StonePanelLight"
 			type="image"
 		>
 
 			<object name="mbTitleBar"
-				style="wheatWindowTitleBar"
+				style="StoneDialogTitleBar"
 				type="text"
+                                size="50%-128 0%-16 50%+128 16"
 			/>
 
 			<object name="mbText"
 				type="text"
-				font="serif-16"
+				style="CenteredLabelText"
 				size="30 30 100%-30 100%-100"
 			/>
                         
 			<object name="mbButton1"
-				style="wheatButtonFancy"
+				style="StoneButton"
 				type="button"
 				hidden="true"
 				size="40 100%-50 33%-30 100%-20" 
 			/>
 			<object name="mbButton2"
-				style="wheatButtonFancy"
+				style="StoneButton"
 				type="button"
 				hidden="true"
 				size="33%+30 100%-50 66%-40 100%-20" 
 			/>
 			<object name="mbButton3"
-				style="wheatButtonFancy"
+				style="StoneButton"
 				type="button"
 				hidden="true"
 				size="66%+30 100%-50 100%-40 100%-20"

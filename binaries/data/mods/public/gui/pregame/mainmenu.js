@@ -1,5 +1,5 @@
 var userReportEnabledText; // contains the original version with "$status" placeholder
-var currentSubmenu; // contains placeholdersubmenu
+var currentSubmenu; // contains placeholder submenu
 
 function init()
 {

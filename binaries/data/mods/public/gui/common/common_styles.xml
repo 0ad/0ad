@@ -98,26 +98,40 @@
 		text_valign="center"
 	/>
 
+
+
+
 	<!--
 	==========================================
 	MENU TOOLTIP STYLES
 	==========================================
 	-->
 
-	<style 	name="TranslucentPanel"
-		sprite="TranslucentPanel"
-		buffer_zone="10"
-		font="serif-bold-stroke-14"
-		textcolor="white"
-		text_align="left"
-		text_valign="top"
-	/>
+
 
 	<!--
 	==========================================
 	MENU WINDOW STYLES
 	==========================================
 	-->
+        
+        <style 	name="TranslucentPanel"
+		sprite="BackgroundTranslucent"
+		buffer_zone="10"
+		font="serif-bold-stroke-14"
+		textcolor="white"
+		text_align="left"
+		text_valign="top"
+	/>
+        
+        <style 	name="TranslucentPanelThinBorder"
+		sprite="TranslucentPanelThinBorder"
+		buffer_zone="10"
+		font="serif-bold-stroke-14"
+		textcolor="white"
+		text_align="left"
+		text_valign="top"
+	/>
 
 	<style 	name="MainMenuPanel"
 		sprite="MainMenuPanel"

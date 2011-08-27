@@ -14,12 +14,6 @@
 
 		<object style="StoneDialogTitleBar" type="text" size="50%-128 -16 50%+128 16">Civilizations</object>
 
-		<object type="button" style="wheatExit" tooltip_style="snToolTip">
-			<action on="Press"><![CDATA[
-				Engine.PopGuiPage();
-			]]></action>
-		</object>
-		
 		<!-- Civ selection -->
 		<object size="25 10 100% 30">
 			<object
@@ -51,7 +45,7 @@
 				/>
 			</object>
 			
-			<object type="image" sprite="TranslucentPanel" size="0 40 33%-5 100%">
+			<object type="image" style="TranslucentPanelThinBorder" size="0 40 33%-5 100%">
 				<object
 					name="civBonuses"
 					type="text"

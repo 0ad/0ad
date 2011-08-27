@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+==========================================
+- POST-GAME SUMMARY SCREEN -
+==========================================
+-->
+
+<objects>
+	<script file="gui/common/functions_civinfo.js"/>
+	<script file="gui/common/functions_utility.js" />
+	<script file="gui/common/functions_global_object.js" />
+	<script file="gui/session/music.js"/>
+	<script file="gui/options/options.js"/>
+	
+        <!-- Add a translucent black background to fade out the menu page -->
+	<object type="image" z="0" style="TranslucentPanel"/>
+        
+        <!-- Settings Window -->
+	<object name="options" type="image" style="StonePanelLight" size="50%-190 50%-120 50%+190 50%+120">
+
+                <object style="StoneDialogTitleBar" type="text" size="50%-128 0%-16 50%+128 16">
+			Game Options
+		</object>
+
+                <object size="50%-190 50%-80 50%+140 50%+120">
+        
+                        <!-- Settings / shadows -->
+                        <object size="0 10 100%-80 35" type="text" style="RightLabelText" ghost="true">Enable Shadows</object>
+                        <object name="shadowsCheckbox" size="100%-56 15 100%-30 40" type="checkbox" style="StoneCrossBox" checked="true">
+                                <action on="Load">if (renderer.shadows) this.checked = true; else this.checked = false;</action>
+                                <action on="Press">renderer.shadows = this.checked;</action>
+                        </object>	
+
+                        <!-- Settings / Shadow PCF -->
+                        <object size="0 35 100%-80 60" type="text" style="RightLabelText" ghost="true">Enable Shadow Filtering</object>
+                        <object name="shadowPCFCheckbox" size="100%-56 40 100%-30 65" type="checkbox" style="StoneCrossBox" checked="true">
+                                <action on="Load">if (renderer.shadowPCF) this.checked = true; else this.checked = false;</action>
+                                <action on="Press">renderer.shadowPCF = this.checked;</action>
+                        </object>
+
+                        <!-- Settings / Water -->
+                        <object size="0 60 100%-80 85" type="text" style="RightLabelText" ghost="true">Enable Water Reflections</object>
+                        <object name="fancyWaterCheckbox" size="100%-56 65 100%-30 90"  type="checkbox" style="StoneCrossBox" checked="true">
+                                <action on="Load">if (renderer.fancyWater) this.checked = true; else this.checked = false;</action>
+                                <action on="Press">renderer.fancyWater = this.checked;</action>
+                        </object>
+
+                        <!-- Settings / Music-->
+                        <object size="0 85 100%-80 110" type="text" style="RightLabelText" ghost="true">Enable Music</object>
+                        <object size="100%-56 90 100%-30 115" type="checkbox" style="StoneCrossBox" checked="true">
+                                <action on="Press">if (this.checked) startMusic(); else stopMusic();</action>
+                        </object>
+
+                        <!-- Settings / Dev Overlay -->
+<!--                        <object size="0 110 100%-80 135" type="text" style="RightLabelText" ghost="true">Developer Overlay</object>
+                                <object size="100%-56 115 100%-30 140" type="checkbox" style="StoneCrossBox" checked="false">
+                                <action on="Press">toggleDeveloperOverlay();</action>
+                        </object>-->
+                </object>
+                
+                <object type="button" style="StoneButton" size="50%-64 100%-64 50%+64 100%-32">
+			Cancel
+			<action on="Press"><![CDATA[Engine.PopGuiPage();]]></action>
+		</object>
+
+        </object>
+</objects>
