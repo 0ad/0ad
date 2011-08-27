@@ -4,71 +4,6 @@ const FAUNA = "fauna";
 const SPECIAL = "special";
 
 //-------------------------------- -------------------------------- -------------------------------- 
-// Session Dialog (only one at a time)
-//-------------------------------- -------------------------------- -------------------------------- 
-var g_SessionDialog = new SessionDialog();
-
-function SessionDialog()
-{
-	this.referencedPanel = {};
-}
-
-SessionDialog.prototype.open = function(title, message, referencedPanel, x, y, confirmFunction)
-{
-	// hide previous panel referencedPanel if applicable
-	if (this.referencedPanel)
-		this.referencedPanel.hidden = true
-
-	// set dialog title if applicable
-	getGUIObjectByName("sessionDialogTitle").caption = title? title : "";
-
-	// set dialog message if applicable
-	getGUIObjectByName("sessionDialogMessage").caption = message? message : "";
-
-	// set panel reference if applicable
-	if(referencedPanel)
-	{
-		referencedPanel.size =  "50%-" + ((x/2)-30) + " 50%-" + ((y/2)-30) + " 50%+" + ((x/2)-30) + " 50%+" + ((y/2)-72);
-		referencedPanel.hidden = false;
-		this.referencedPanel = referencedPanel;
-	}
-
-	// set confirm function if applicable
-	if (confirmFunction)
-	{
-		var buttonFunction = function () {
-			this.close(referencedPanel); // "this" is defined as SessionDialog in this context
-			confirmFunction();
-		};
-
-		var dialog = this;
-		var confirmButton = getGUIObjectByName("sessionDialogConfirm");
-		confirmButton.onpress = function() { buttonFunction.call(dialog); };
-		confirmButton.hidden = false;
-		confirmButton.size = "32 100%-56 144 100%-24";
-		getGUIObjectByName("sessionDialogCancel").size = "100%-144 100%-56 100%-32 100%-24";
-		getGUIObjectByName("sessionDialogCancel").caption = "Cancel";
-	}
-	else
-	{
-		getGUIObjectByName("sessionDialogConfirm").hidden = true;
-		getGUIObjectByName("sessionDialogCancel").size = "50%-72 100%-56 50%+72 100%-24";
-		getGUIObjectByName("sessionDialogCancel").caption = "Close";
-	}
-
-	getGUIObjectByName("sessionDialog").size = "50%-" + x/2 + " 50%-" + y/2 + " 50%+" + x/2 + " 50%+" + y/2;
-	getGUIObjectByName("sessionDialog").hidden = false;
-};
-
-
-SessionDialog.prototype.close = function()
-{
-	getGUIObjectByName("sessionDialog").hidden = true;
-	if (this.referencedPanel)
-		this.referencedPanel.hidden = true;
-};
-
-//-------------------------------- -------------------------------- -------------------------------- 
 // Utility functions
 //-------------------------------- -------------------------------- -------------------------------- 
 
@@ -96,7 +31,7 @@ function getPlayerData(playerAssignments)
 			"team": playerState.team,
 			"state": playerState.state,
 			"guid": undefined, // network guid for players controlled by hosts
-			"disconnected": false, // flag for host-controlled players who have left the game
+			"disconnected": false // flag for host-controlled players who have left the game
 		};
 		players.push(player);
 	}

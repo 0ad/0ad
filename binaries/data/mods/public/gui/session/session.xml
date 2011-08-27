@@ -30,20 +30,6 @@
 		</action>
 
 		<!-- ================================  ================================ -->
-		<!-- ALPHA LABELS (alpha, build time, revision) -->
-		<!-- ================================  ================================ -->
-		
-		<!-- Displays Alpha name and number -->
-		<object size="100%-200 32 100% 52" name="alphaLabel" type="text" style="centeredText" font="serif-bold-16" textcolor="white" ghost="true">
-			ALPHA VI : Fortuna
-		</object>
-
-		<!-- Displays build date and revision number-->
-		<object size="100%-200 52 100% 72" name="buildTimeLabel" type="text" style="centeredText" font="serif-12" textcolor="white" ghost="true">
-			<action on="Load"><![CDATA[this.caption = buildTime(0) + " (" + buildTime(2) + ")";]]></action>
-		</object>
-	
-		<!-- ================================  ================================ -->
 		<!-- HOTKEYS (For some reason, they won't work properly unless outside menu) -->
 		<!-- ================================  ================================ -->
 		
@@ -103,7 +89,7 @@
 		/>
 
 		<!-- Dev/cheat commands -->
-		<object name="devCommands" size="100%-156 72 100%-16 232" type="image" sprite="devCommandsBackground"
+		<object name="devCommands" size="100%-156 100 100%-8 260" type="image" sprite="devCommandsBackground"
 				hidden="true" hotkey="session.devcommands.toggle">
 			<action on="Press">
 				toggleDeveloperOverlay();
@@ -208,135 +194,155 @@
 			</object>
 
 		</object>
-
-		<!-- ================================  ================================ -->
-		<!-- Session Dialog -->
-		<!-- ================================  ================================ -->
-		<object name="sessionDialog"
-			style="StonePanelLight"
-			type="image"
-			size="50%-180 50%-200 50%+180 50%+50"
-			hidden="true"
-			z="30"
-		>
-			<object name="sessionDialogTitleBar" size="50%-96 -16 50%+96 16" type="image" style="StoneDialogTitleBar">
-				<object name="sessionDialogTitle" type="text" style="TitleText" size="0 -2 100% 100%">Title</object>
-			</object>
-			
-			<object name="sessionDialogMessage" size="20 10 100%-20 100%-48" type="text" style="dialogText"/>
-
-			<object size="0 100%-48 100% 100%">
-				<object name="sessionDialogConfirm" size="32 100%-64 144 100%-32" type="button" style="StoneButton">
-					OK
-				<action on="Press"></action>
-				</object>
-
-				<object name="sessionDialogCancel" size="100%-144 100%-64 100%-32 100%-32" type="button" style="StoneButton">
-					Cancel
-				<action on="Press">g_SessionDialog.close();</action>
-				</object>
-			</object>
-		</object>
 		
 		<!-- ================================  ================================ -->
 		<!-- Menu -->
 		<!-- ================================  ================================ -->
-		<object name="menuDialogPanel"
-			size="0 50%-180 100% 50%+20"
+                <object name="menuScreen"
 			type="image"
-			hidden="true"
-			z="30"
-		>
-			<!-- Settings button -->
-			<object type="button"
-				name="settingsButton"
-				style="StoneButtonFancy"
-				size="0 0 100% 32"
-				tooltip_style="sessionToolTip"
-			>
-				Settings
-				<action on="Press">openSettingsDialog();</action>
-			</object>
+                        hidden="true"
+                >
+                        <!-- hides the submenu when the mouse leaves the mainMenuButtons or submenu -->
+                    	<action on="MouseEnter">
+                                closeMenu();
+			</action>
+                        
+                        <object name="menu"
+                                style="TranslucentPanelThinBorder"
+                                type="image"
+                                size="100%-164 0 100% 200"
+                                hidden="true"
+                        >
+                                <object size="4 36 100%-4 50%+20">
+                                    
+                                        <!-- Settings button -->
+                                        <object type="button"
+                                                name="settingsButton"
+                                                style="StoneButtonFancy"
+                                                size="0 0 100% 32"
+                                                tooltip_style="sessionToolTip"
+                                        >
+                                                Settings
+                                                <action on="Press">
+                                                        openSettings();
+                                                </action>
+                                        </object>
 
-				<!-- Chat button -->
-				<object type="button"
-					name="chatButton"
-					style="StoneButtonFancy"
-					size="0 32 100% 64"
-					tooltip_style="sessionToolTip"
-				>
-					Chat
-					<action on="Press">openChat();</action>
-				</object>
+                                        <!-- Chat button -->
+                                        <object type="button"
+                                                name="chatButton"
+                                                style="StoneButtonFancy"
+                                                size="0 32 100% 64"
+                                                tooltip_style="sessionToolTip"
+                                        >
+                                                Chat
+                                                <action on="Press">
+                                                        openChat();
+                                                </action>
+                                        </object>
 
-				<!-- Pause Button -->
-				<object type="button"
-					name="pauseButton"
-					style="StoneButtonFancy"
-					size="0 64 100% 96"
-					tooltip_style="sessionToolTip"
-				>
-					<object name="pauseButtonText" type="text" style="CenteredButtonText" ghost="true">Pause</object>
-					<action on="Press">togglePause();</action>
-				</object>
+                                        <!-- Pause Button -->
+                                        <object type="button"
+                                                name="pauseButton"
+                                                style="StoneButtonFancy"
+                                                size="0 64 100% 96"
+                                                tooltip_style="sessionToolTip"
+                                        >
+                                                <object name="pauseButtonText" type="text" style="CenteredButtonText" ghost="true">Pause</object>
+                                                <action on="Press">
+                                                        togglePause();
+                                                </action>
+                                        </object>
 
-				<!-- Exit button -->
-				<object type="button"
-					name="menuExitButton"
-					style="StoneButtonFancy"
-					size="0 96 100% 128"
-					tooltip_style="sessionToolTip"
-				>
-					Quit
-					<action on="Press">
-						openExitGameDialog();
-					</action>
-				</object>
-		</object>
+                                        <!-- Exit button -->
+                                        <object type="button"
+                                                name="menuExitButton"
+                                                style="StoneButtonFancy"
+                                                size="0 96 100% 128"
+                                                tooltip_style="sessionToolTip"
+                                        >
+                                                Exit Game
+                                                <action on="Press">escapeKeyAction();<![CDATA[
+                                                        var btCaptions = ["Yes", "No"];
+                                                        var btCode = [exit, null];
+                                                        messageBox(400, 200, "Are you sure you want to quit?", "Confirmation", 0, btCaptions, btCode);
+                                                ]]></action>
+                                        </object>
+                                        
+                                        <!-- Close button -->
+                                        <object type="button"
+                                                style="StoneButtonFancy"
+                                                size="0 128 100% 160"
+                                                tooltip_style="sessionToolTip"
+                                        >
+                                                Close
+                                                <action on="Press">closeMenu();</action>
+                                        </object>
+                                </object>
+                        </object>
+                </object>
 
 		<!-- ================================  ================================ -->
 		<!-- Settings Window -->
 		<!-- ================================  ================================ -->
-		<object name="settingsDialogPanel"
-			style="TranslucentPanelThinBorder"
+                <object name="settingsDialogPanel"
+			style="StonePanelLight"
 			type="image"
-			size="80%-180 50%-200 50%+180 50%+50"
+			size="50%-180 50%-200 50%+180 50%+50"
 			hidden="true"
-			z="30"
 		>
-			<!-- Settings / shadows -->
-			<object size="0 10 100%-80 35" type="text" style="settingsText" ghost="true">Enable Shadows</object>
-			<object name="shadowsCheckbox" size="100%-56 15 100%-30 40" type="checkbox" style="wheatCrossBox" checked="true">
-				<action on="Load">if (renderer.shadows) this.checked = true; else this.checked = false;</action>
-				<action on="Press">renderer.shadows = this.checked;</action>
-			</object>	
-			
-			<!-- Settings / Shadow PCF -->
-			<object size="0 35 100%-80 60" type="text" style="settingsText" ghost="true">Enable Shadow Filtering</object>
-			<object name="shadowPCFCheckbox" size="100%-56 40 100%-30 65" type="checkbox" style="wheatCrossBox" checked="true">
-				<action on="Load">if (renderer.shadowPCF) this.checked = true; else this.checked = false;</action>
-				<action on="Press">renderer.shadowPCF = this.checked;</action>
+                    	<object name="sessionDialogTitleBar" size="50%-96 -16 50%+96 16" type="image" style="StoneDialogTitleBar">
+				<object name="sessionDialogTitle" type="text" style="TitleText" size="0 -2 100% 100%">Settings</object>
 			</object>
-	
-			<!-- Settings / Water -->
-			<object size="0 60 100%-80 85" type="text" style="settingsText" ghost="true">Enable Water Reflections</object>
-			<object name="fancyWaterCheckbox" size="100%-56 65 100%-30 90"  type="checkbox" style="wheatCrossBox" checked="true">
-				<action on="Load">if (renderer.fancyWater) this.checked = true; else this.checked = false;</action>
-				<action on="Press">renderer.fancyWater = this.checked;</action>
-			</object>
-				
-			<!-- Settings / Music-->
-			<object size="0 85 100%-80 110" type="text" style="settingsText" ghost="true">Enable Music</object>
-			<object size="100%-56 90 100%-30 115" type="checkbox" style="wheatCrossBox" checked="true">
-				<action on="Press">if (this.checked) startMusic(); else stopMusic();</action>
-			</object>
-				
-			<!-- Settings / Dev Overlay -->
-			<object size="0 110 100%-80 135" type="text" style="settingsText" ghost="true">Developer Overlay</object>
-				<object size="100%-56 115 100%-30 140" type="checkbox" style="wheatCrossBox" checked="false">
-				<action on="Press">toggleDeveloperOverlay();</action>
-			</object>
-		</object>
+                        
+                        <object style="TranslucentPanelThinBorder"
+                                type="image"
+                                size="32 32 100%-32 100%-64"
+                        >
+                                <!-- Settings / shadows -->
+                                <object size="0 10 100%-80 35" type="text" style="RightLabelText" ghost="true">Enable Shadows</object>
+                                <object name="shadowsCheckbox" size="100%-56 15 100%-30 40" type="checkbox" style="wheatCrossBox" checked="true">
+                                        <action on="Load">if (renderer.shadows) this.checked = true; else this.checked = false;</action>
+                                        <action on="Press">renderer.shadows = this.checked;</action>
+                                </object>	
+
+                                <!-- Settings / Shadow PCF -->
+                                <object size="0 35 100%-80 60" type="text" style="RightLabelText" ghost="true">Enable Shadow Filtering</object>
+                                <object name="shadowPCFCheckbox" size="100%-56 40 100%-30 65" type="checkbox" style="wheatCrossBox" checked="true">
+                                        <action on="Load">if (renderer.shadowPCF) this.checked = true; else this.checked = false;</action>
+                                        <action on="Press">renderer.shadowPCF = this.checked;</action>
+                                </object>
+
+                                <!-- Settings / Water -->
+                                <object size="0 60 100%-80 85" type="text" style="RightLabelText" ghost="true">Enable Water Reflections</object>
+                                <object name="fancyWaterCheckbox" size="100%-56 65 100%-30 90"  type="checkbox" style="wheatCrossBox" checked="true">
+                                        <action on="Load">if (renderer.fancyWater) this.checked = true; else this.checked = false;</action>
+                                        <action on="Press">renderer.fancyWater = this.checked;</action>
+                                </object>
+
+                                <!-- Settings / Music-->
+                                <object size="0 85 100%-80 110" type="text" style="RightLabelText" ghost="true">Enable Music</object>
+                                <object size="100%-56 90 100%-30 115" type="checkbox" style="wheatCrossBox" checked="true">
+                                        <action on="Press">if (this.checked) startMusic(); else stopMusic();</action>
+                                </object>
+
+                                <!-- Settings / Dev Overlay -->
+                                <object size="0 110 100%-80 135" type="text" style="RightLabelText" ghost="true">Developer Overlay</object>
+                                        <object size="100%-56 115 100%-30 140" type="checkbox" style="wheatCrossBox" checked="false">
+                                        <action on="Press">toggleDeveloperOverlay();</action>
+                                </object>
+                        </object>
+                        
+                        <!-- Close button -->
+                        <object type="button"
+                                style="StoneButton"
+                                size="50%-64 100%-56 50%+64 100%-24"
+                                tooltip_style="sessionToolTip"
+                        >
+                                Close
+                                <action on="Press">this.parent.hidden = true</action>
+                        </object>
+                </object>
 
 	<!-- ================================  ================================ -->
 	<!-- Top Panel  -->
@@ -344,7 +350,7 @@
 	<object name="topPanel"
 		type="image"
 		sprite="topPanel"
-		size="-3 0 100%+3 32"
+		size="-3 0 100%+3 40"
 	>
 		<!-- ================================  ================================ -->
 		<!-- Player resource bar -->
@@ -353,33 +359,33 @@
 			size="0 0 500 100%"
 		>	
 			<!-- Food -->
-			<object size="6 0 96 100%" type="image" style="resourceCounter" tooltip="Food" tooltip_style="sessionToolTipBold">
-				<object size="0 0 34 30" type="image" style="resourceIcon" cell_id="0"/>
-				<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceFood"/>
+			<object size="0 0 80 100%" type="image" style="resourceCounter" tooltip="Food" tooltip_style="sessionToolTipBold">
+				<object size="0 -6 48 42" type="image" style="resourceIcon" cell_id="0"/>
+				<object size="36 0 100% 100%-2" type="text" style="resourceText" name="resourceFood"/>
 			</object>
 
 			<!-- Wood -->
-			<object size="98 0 188 100%" type="image" style="resourceCounter" tooltip="Wood" tooltip_style="sessionToolTipBold">
-				<object size="0 0 34 30" type="image" style="resourceIcon" cell_id="1"/>
-				<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceWood"/>
+			<object size="90 0 180 100%" type="image" style="resourceCounter" tooltip="Wood" tooltip_style="sessionToolTipBold">
+				<object size="0 -6 48 42" type="image" style="resourceIcon" cell_id="1"/>
+				<object size="36 0 100% 100%-2" type="text" style="resourceText" name="resourceWood"/>
 			</object>
 
 			<!-- Stone -->
-			<object size="190 0 280 100%" type="image" style="resourceCounter" tooltip="Stone" tooltip_style="sessionToolTipBold">
-				<object size="0 2 34 30" type="image" style="resourceIcon" cell_id="2"/>
-				<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceStone"/>
+			<object size="180 0 270 100%" type="image" style="resourceCounter" tooltip="Stone" tooltip_style="sessionToolTipBold">
+				<object size="0 -2 48 42" type="image" style="resourceIcon" cell_id="2"/>
+				<object size="36 0 100% 100%-2" type="text" style="resourceText" name="resourceStone"/>
 			</object>
 
 			<!-- Metal -->
-			<object size="282 0 372 100%"  type="image" style="resourceCounter" tooltip="Metal" tooltip_style="sessionToolTipBold">
-				<object size="0 0 34 30" type="image" style="resourceIcon" cell_id="3"/>
-				<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceMetal"/>
+			<object size="270 0 360 100%"  type="image" style="resourceCounter" tooltip="Metal" tooltip_style="sessionToolTipBold">
+				<object size="0 -6 48 42" type="image" style="resourceIcon" cell_id="3"/>
+				<object size="36 0 100% 100%-2" type="text" style="resourceText" name="resourceMetal"/>
 			</object>
 
 			<!-- Population -->
-			<object size="374 0 464 100%" type="image" style="resourceCounter" tooltip="Population (current / limit)" tooltip_style="sessionToolTipBold">
-				<object size="-2 0 30 28" type="image" style="resourceIcon" cell_id="4"/>
-				<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourcePop"/>
+			<object size="360 0 450 100%" type="image" style="resourceCounter" tooltip="Population (current / limit)" tooltip_style="sessionToolTipBold">
+				<object size="0 -6 44 38" type="image" style="resourceIcon" cell_id="4"/>
+				<object size="42 0 100% 100%-2" type="text" style="resourceText" name="resourcePop"/>
 			</object>
 		</object>
 
@@ -393,18 +399,35 @@
 		<!-- ================================  ================================ -->
 		<!--<object size="50%+50 4 50%+300 100%-2" name="PhaseTitleBar" type="text" font="serif-bold-stroke-14" textcolor="white"> Death Match :: Village Phase</object>-->
 		
+                
+                <!-- ================================  ================================ -->
+		<!-- ALPHA LABELS (alpha, build time, revision) -->
+		<!-- ================================  ================================ -->
+		
+		<!-- Displays Alpha name and number -->
+		<object size="70%-128 1 70%+128 100%" name="alphaLabel" type="text" style="CenteredLabelText" text_valign="top" ghost="true">
+			ALPHA VI : Fortuna
+                        
+                        <!-- Displays build date and revision number-->
+                        <object size="50%-128 0 50%+128 100%-3" name="buildTimeLabel" type="text" text_align="center" text_valign="bottom" font="serif-12" textcolor="white" ghost="true">
+                                <action on="Load"><![CDATA[this.caption = buildTime(0) + " (" + buildTime(2) + ")";]]></action>
+                        </object>
+		</object>
 
+		
+                
 		<!-- ================================  ================================ -->
 		<!-- Menu Button -->
 		<!-- ================================  ================================ -->
 		<object type="button"
 			name="menuButton"
-			size="100%-80 0 100%-4 100%"
+			size="100%-164 4 100%-8 36"
+                        style="StoneButtonFancy"
 			tooltip_style="sessionToolTip"
 		>
-			<object size="0 0 100% 100%" type="image" sprite="menuButton" name="menuButtonText" ghost="true">MENU</object>
-			<action on="Press">openMenuDialog();</action>
-		</object> <!-- END OF MENU -->
+                        <object size="50%-32 50%-16 50%+32 50%+16" type="image" sprite="menuButton" name="menuButtonText" ghost="true">MENU</object>
+			<action on="Press">openMenu();</action>
+		</object> <!-- END OF MENU BUTTON -->
 		
 	</object> <!-- END OF TOP PANEL -->
 
@@ -668,7 +691,7 @@
 			</object>
 
 			<object name="unitResearchPanel"
-				style="TranslucentPanel"
+				style="TranslucentPanelThinBorder"
 				size="0 100%-56 100% 100%"
 				type="text"
 			>
@@ -696,7 +719,7 @@
 			<object name="unitQueuePanel"
 				size="4 -56 100% 0"
 				type="image"
-				style="TranslucentPanel"
+				style="TranslucentPanelThinBorder"
 			>
 				<object size="-4 -2 52 54" type="image" sprite="snIconSheetTab" tooltip_style="sessionToolTipBottom" cell_id="3" tooltip="Production queue">
 						<object name="queueProgress" ghost="true" style="iconButtonProgress" type="text"/>

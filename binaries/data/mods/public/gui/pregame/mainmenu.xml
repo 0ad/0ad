@@ -186,12 +186,12 @@ Status: $status.
                                       tooltip="The 0 A.D. Game Manual"
 				>
                                         Learn To Play
-                                        <action on="Press"><![CDATA[
-                                                // close submenu if left open
+                                        <action on="Press">
                                                 getGUIObjectByName("submenu").hidden = true;
-                                                // open game manual dialog
-                                                Engine.PushGuiPage("page_manual.xml", { "page": "intro" });
-                                        ]]></action>
+                                                <![CDATA[
+                                                        Engine.PushGuiPage("page_manual.xml", { "page": "intro" });
+                                                ]]>
+                                        </action>
                                </object>
                             
                                <!-- SINGLEPLAYER BUTTON -->
@@ -202,10 +202,12 @@ Status: $status.
                                        tooltip_style="pgToolTip"
                                        tooltip="Challenge the computer player to a single player match."
                                 >
-                                    Single Player
-                                    <action on="Press"><![CDATA[
-                                            updateSubmenu("submenuSinglePlayer", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 2);
-                                    ]]></action>
+                                        Single Player
+                                        <action on="Press">
+                                                <![CDATA[
+                                                        updateSubmenu("submenuSinglePlayer", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 2);
+                                                ]]>
+                                        </action>
                                 </object>
                                
                                 <!-- MULTIPLAYER BUTTON -->
@@ -217,9 +219,11 @@ Status: $status.
                                         tooltip="Fight against one or more human players in a multiplayer game."
                                 >
                                         Multiplayer
-                                        <action on="Press"><![CDATA[
-                                                updateSubmenu("submenuMultiplayer", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 2);
-                                        ]]></action>
+                                        <action on="Press">
+                                            <![CDATA[
+                                                    updateSubmenu("submenuMultiplayer", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 2);
+                                            ]]>
+                                        </action>
                                 </object>
                                 
                                 <!-- TOOLS AND OPTIONS BUTTON -->
@@ -231,9 +235,11 @@ Status: $status.
                                         tooltip="Game options and scenario design tools."
                                 >
                                         Tools <![CDATA[&]]> Options
-                                        <action on="Press"><![CDATA[
-                                                updateSubmenu("submenuToolsAndOptions", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 2);
-                                        ]]></action>
+                                        <action on="Press">
+                                                <![CDATA[
+                                                        updateSubmenu("submenuToolsAndOptions", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 2);
+                                                ]]>
+                                        </action>
                                 </object>
                                 
                                 <!-- HISTORY BUTTON -->
@@ -245,12 +251,12 @@ Status: $status.
                                         tooltip="Learn about the six civilizations featured in 0 A.D."
                                 >
                                         History
-                                        <action on="Press"><![CDATA[
-                                                // close submenu if left open
+                                        <action on="Press">
                                                 getGUIObjectByName("submenu").hidden = true;
-                                                // open history dialog
-						Engine.PushGuiPage("page_civinfo.xml");
-					]]></action>
+                                                <![CDATA[
+                                                        Engine.PushGuiPage("page_civinfo.xml");
+                                                ]]>
+                                        </action>
                                 </object>
                                 
                                 <!-- EXIT BUTTON -->
@@ -261,15 +267,15 @@ Status: $status.
                                         tooltip_style="pgToolTip"
                                         tooltip="Exit Game"
                                 >
-                                        Exit
-                                        <action on="Press"><![CDATA[
-                                                // close submenu if left open
+                                        Exit Game
+                                        <action on="Press">
                                                 getGUIObjectByName("submenu").hidden = true;
-                                                // open exit dialog
-                                                var btCaptions = ["Yes", "No"];
-                                                var btCode = [exit, null];
-                                                messageBox(400, 200, "Are you sure you want to quit 0 A.D.?", "Confirmation", 0, btCaptions, btCode);
-                                        ]]></action>
+                                                <![CDATA[
+                                                        var btCaptions = ["Yes", "No"];
+                                                        var btCode = [exit, null];
+                                                        messageBox(400, 200, "Are you sure you want to quit 0 A.D.?", "Confirmation", 0, btCaptions, btCode);
+                                                ]]>
+                                        </action>
                                 </object>
                         </object>
 

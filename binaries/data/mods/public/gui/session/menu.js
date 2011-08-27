@@ -1,39 +1,46 @@
-function toggleDeveloperOverlay()
+function openMenu()
 {
-	var devCommands = getGUIObjectByName("devCommands");
-	var text = devCommands.hidden? "opened." : "closed.";
-	submitChatDirectly("The Developer Overlay was " + text);
-	devCommands.hidden = !devCommands.hidden;
+    getGUIObjectByName("menuScreen").hidden = false;
+    getGUIObjectByName("menu").hidden = false;
 }
 
-function openMenuDialog()
+function closeMenu()
 {
-	var menu = getGUIObjectByName("menuDialogPanel");
-	g_SessionDialog.open("Menu", null, menu, 204, 224, null);
+    getGUIObjectByName("menuScreen").hidden = true;
+    getGUIObjectByName("menu").hidden = true;
 }
 
-function openSettingsDialog()
+function openSettings()
 {
-	var settings = getGUIObjectByName("settingsDialogPanel");
-	g_SessionDialog.open("Settings", null, settings, 340, 252, null);
+        closeMenu();
+        closeChat();
+        getGUIObjectByName("settingsDialogPanel").hidden = false;
+}
+
+function closeSettings()
+{
+        getGUIObjectByName("settingsDialogPanel").hidden = true;
 }
 
 function openChat()
 {
+        closeMenu();
+        closeSettings();
 	getGUIObjectByName("chatInput").focus(); // Grant focus to the input area
 	getGUIObjectByName("chatDialogPanel").hidden = false;
-	g_SessionDialog.close();
+	
 }
 
 function closeChat()
 {
 	getGUIObjectByName("chatInput").caption = ""; // Clear chat input
 	getGUIObjectByName("chatDialogPanel").hidden = true;
-	g_SessionDialog.close();
 }
 
 function toggleChatWindow()
 {
+        closeSettings();
+    
 	var chatWindow = getGUIObjectByName("chatDialogPanel");
 	var chatInput = getGUIObjectByName("chatInput");
 
@@ -43,11 +50,14 @@ function toggleChatWindow()
 		chatInput.caption = ""; // Clear chat input
 
 	chatWindow.hidden = !chatWindow.hidden;
-	g_SessionDialog.close();
 }
 
 function togglePause()
 {
+        closeMenu();
+        closeChat();
+        closeSettings();
+    
 	var pauseOverlay = getGUIObjectByName("pauseOverlay");
 
 	if (pauseOverlay.hidden)
@@ -62,20 +72,19 @@ function togglePause()
 	}
 
 	pauseOverlay.hidden = !pauseOverlay.hidden;
-	g_SessionDialog.close();
 }
 
-function openExitGameDialog()
+function toggleDeveloperOverlay()
 {
-	g_SessionDialog.open("Exit Game", "Do you really want to quit?", null, 320, 140, leaveGame);
+	var devCommands = getGUIObjectByName("devCommands");
+	var text = devCommands.hidden? "opened." : "closed.";
+	submitChatDirectly("The Developer Overlay was " + text);
+	devCommands.hidden = !devCommands.hidden;
 }
 
 function escapeKeyAction()
 {
-	var sessionDialog =  getGUIObjectByName("sessionDialog");
-	
-	if (!sessionDialog.hidden)
-		g_SessionDialog.close();
-	else
-		getGUIObjectByName("chatDialogPanel").hidden = true;
+        closeMenu();
+        closeChat();
+        closeSettings();
 }
