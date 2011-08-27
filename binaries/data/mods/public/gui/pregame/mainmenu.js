@@ -1,4 +1,5 @@
 var userReportEnabledText; // contains the original version with "$status" placeholder
+var currentSubmenu; // contains placeholdersubmenu
 
 function init()
 {
@@ -7,6 +8,7 @@ function init()
 		global.curr_music.loop();
 
 	userReportEnabledText = getGUIObjectByName("userReportEnabledText").caption;
+        currentSubmenu = "submenuSinglePlayer";
 }
 
 var t0 = new Date;
@@ -99,32 +101,21 @@ function onTick()
 }
 
 // Update the submenu
-var MARGIN = 4;
-var currentSubmenu;
-function updateSubmenu(buttonName, newSubmenu, numButtons)
+function updateSubmenu(newSubmenu, position, buttonHeight, numButtons)
 {
-        // hide old submenu if possible
-        if (null != currentSubmenu)
-        {
-                getGUIObjectByName(currentSubmenu).hidden = true;
-        }
+        const MARGIN = 4;
+    
+        // remove old submenu
+        getGUIObjectByName(currentSubmenu).hidden = true;
         
-        // save new submenu
+        // switch to new submenu
         currentSubmenu = newSubmenu;
-        
-        // unhide new submenu
         getGUIObjectByName(currentSubmenu).hidden = false;
-        
-        // find  position of new submenu
-        var sourceButton = getGUIObjectByName(buttonName);
-        var verticalOffset = getGUIObjectByName("mainMenuButtons").size.top;
-        var buttonHeight = sourceButton.size.bottom - sourceButton.size.top;
-        
-        var top = verticalOffset + sourceButton.size.top - MARGIN;
-        var bottom = verticalOffset + sourceButton.size.bottom + buttonHeight * (numButtons-1) + MARGIN;
-        
+
         // set position of new submenu
         var submenu = getGUIObjectByName("submenu");
+        var top = position - MARGIN;
+        var bottom = position + (buttonHeight * numButtons) + MARGIN;
         submenu.size = submenu.size.left + " " + top + " " + submenu.size.right + " " + bottom;
         submenu.hidden = false;
         
