@@ -187,6 +187,9 @@ Status: $status.
 				>
                                         Learn To Play
                                         <action on="Press"><![CDATA[
+                                                // close submenu if left open
+                                                getGUIObjectByName("submenu").hidden = true;
+                                                // open game manual dialog
                                                 Engine.PushGuiPage("page_manual.xml", { "page": "intro" });
                                         ]]></action>
                                </object>
@@ -243,6 +246,9 @@ Status: $status.
                                 >
                                         History
                                         <action on="Press"><![CDATA[
+                                                // close submenu if left open
+                                                getGUIObjectByName("submenu").hidden = true;
+                                                // open history dialog
 						Engine.PushGuiPage("page_civinfo.xml");
 					]]></action>
                                 </object>
@@ -257,6 +263,9 @@ Status: $status.
                                 >
                                         Exit
                                         <action on="Press"><![CDATA[
+                                                // close submenu if left open
+                                                getGUIObjectByName("submenu").hidden = true;
+                                                // open exit dialog
                                                 var btCaptions = ["Yes", "No"];
                                                 var btCode = [exit, null];
                                                 messageBox(400, 200, "Are you sure you want to quit 0 A.D.?", "Confirmation", 0, btCaptions, btCode);
