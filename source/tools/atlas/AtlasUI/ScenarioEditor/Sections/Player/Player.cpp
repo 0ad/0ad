@@ -69,96 +69,105 @@ public:
 		wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 		SetSizer(sizer);
 
-		/////////////////////////////////////////////////////////////////////////
-		// Player Info
-		wxStaticBoxSizer* playerInfoSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Player info"));
-		wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2, 5, 5);
-		gridSizer->AddGrowableCol(1);
-		gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Name")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
-		wxTextCtrl* nameCtrl = new wxTextCtrl(this, wxID_ANY);
-		gridSizer->Add(nameCtrl, wxSizerFlags(1).Expand().Align(wxALIGN_RIGHT));
-		m_Controls.name = nameCtrl;
-		gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Civilisation")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
-		wxChoice* civChoice = new wxChoice(this, wxID_ANY);
-		gridSizer->Add(civChoice, wxSizerFlags(1).Expand().Align(wxALIGN_RIGHT));
-		m_Controls.civ = civChoice;
-		gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Colour")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
-		wxButton* colourButton = new wxButton(this, ID_PlayerColour);
-		gridSizer->Add(Tooltipped(colourButton, _("Set player colour")), wxSizerFlags(1).Expand().Align(wxALIGN_RIGHT));
-		m_Controls.colour = colourButton;
-		gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Default AI")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
-		wxChoice* aiChoice = new wxChoice(this, wxID_ANY);
-		gridSizer->Add(Tooltipped(aiChoice, _("Select default AI")), wxSizerFlags(1).Expand().Align(wxALIGN_RIGHT));
-		m_Controls.ai = aiChoice;
+		{
+			/////////////////////////////////////////////////////////////////////////
+			// Player Info
+			wxStaticBoxSizer* playerInfoSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Player info"));
+			wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2, 5, 5);
+			gridSizer->AddGrowableCol(1);
+			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Name")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+			wxTextCtrl* nameCtrl = new wxTextCtrl(this, wxID_ANY);
+			gridSizer->Add(nameCtrl, wxSizerFlags(1).Expand().Align(wxALIGN_RIGHT));
+			m_Controls.name = nameCtrl;
+			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Civilisation")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+			wxChoice* civChoice = new wxChoice(this, wxID_ANY);
+			gridSizer->Add(civChoice, wxSizerFlags(1).Expand().Align(wxALIGN_RIGHT));
+			m_Controls.civ = civChoice;
+			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Colour")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+			wxButton* colourButton = new wxButton(this, ID_PlayerColour);
+			gridSizer->Add(Tooltipped(colourButton, _("Set player colour")), wxSizerFlags(1).Expand().Align(wxALIGN_RIGHT));
+			m_Controls.colour = colourButton;
+			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Default AI")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+			wxChoice* aiChoice = new wxChoice(this, wxID_ANY);
+			gridSizer->Add(Tooltipped(aiChoice, _("Select default AI")), wxSizerFlags(1).Expand().Align(wxALIGN_RIGHT));
+			m_Controls.ai = aiChoice;
 
-		playerInfoSizer->Add(gridSizer, wxSizerFlags(1).Expand());
-		sizer->Add(playerInfoSizer, wxSizerFlags().Expand().Border(wxTOP, 10));
+			playerInfoSizer->Add(gridSizer, wxSizerFlags(1).Expand());
+			sizer->Add(playerInfoSizer, wxSizerFlags().Expand().Border(wxTOP, 10));
+		}
 
-		/////////////////////////////////////////////////////////////////////////
-		// Resources
-		wxStaticBoxSizer* resourceSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Resources"));
-		gridSizer = new wxFlexGridSizer(2, 5, 5);
-		gridSizer->AddGrowableCol(1);
-		gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Food")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
-		wxSpinCtrl* foodCtrl = new wxSpinCtrl(this, ID_PlayerFood, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, INT_MAX);
-		gridSizer->Add(Tooltipped(foodCtrl, _("Initial value of food resource")), wxSizerFlags().Expand());
-		m_Controls.food = foodCtrl;
-		gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Wood")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
-		wxSpinCtrl* woodCtrl = new wxSpinCtrl(this, ID_PlayerWood, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, INT_MAX);
-		gridSizer->Add(Tooltipped(woodCtrl, _("Initial value of wood resource")), wxSizerFlags().Expand());
-		m_Controls.wood = woodCtrl;
-		gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Metal")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
-		wxSpinCtrl* metalCtrl = new wxSpinCtrl(this, ID_PlayerMetal, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, INT_MAX);
-		gridSizer->Add(Tooltipped(metalCtrl, _("Initial value of metal resource")), wxSizerFlags().Expand());
-		m_Controls.metal = metalCtrl;
-		gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Stone")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
-		wxSpinCtrl* stoneCtrl = new wxSpinCtrl(this, ID_PlayerStone, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, INT_MAX);
-		gridSizer->Add(Tooltipped(stoneCtrl, _("Initial value of stone resource")), wxSizerFlags().Expand());
-		m_Controls.stone = stoneCtrl;
-		gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Pop limit")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
-		wxSpinCtrl* popCtrl = new wxSpinCtrl(this, ID_PlayerPop, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, INT_MAX);
-		gridSizer->Add(Tooltipped(popCtrl, _("Population limit for this player")), wxSizerFlags().Expand());
-		m_Controls.pop = popCtrl;
+		{
+			/////////////////////////////////////////////////////////////////////////
+			// Resources
+			wxStaticBoxSizer* resourceSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Resources"));
+			wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2, 5, 5);
+			gridSizer->AddGrowableCol(1);
+			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Food")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+			wxSpinCtrl* foodCtrl = new wxSpinCtrl(this, ID_PlayerFood, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, INT_MAX);
+			gridSizer->Add(Tooltipped(foodCtrl, _("Initial value of food resource")), wxSizerFlags().Expand());
+			m_Controls.food = foodCtrl;
+			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Wood")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+			wxSpinCtrl* woodCtrl = new wxSpinCtrl(this, ID_PlayerWood, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, INT_MAX);
+			gridSizer->Add(Tooltipped(woodCtrl, _("Initial value of wood resource")), wxSizerFlags().Expand());
+			m_Controls.wood = woodCtrl;
+			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Metal")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+			wxSpinCtrl* metalCtrl = new wxSpinCtrl(this, ID_PlayerMetal, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, INT_MAX);
+			gridSizer->Add(Tooltipped(metalCtrl, _("Initial value of metal resource")), wxSizerFlags().Expand());
+			m_Controls.metal = metalCtrl;
+			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Stone")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+			wxSpinCtrl* stoneCtrl = new wxSpinCtrl(this, ID_PlayerStone, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, INT_MAX);
+			gridSizer->Add(Tooltipped(stoneCtrl, _("Initial value of stone resource")), wxSizerFlags().Expand());
+			m_Controls.stone = stoneCtrl;
+			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Pop limit")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+			wxSpinCtrl* popCtrl = new wxSpinCtrl(this, ID_PlayerPop, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, INT_MAX);
+			gridSizer->Add(Tooltipped(popCtrl, _("Population limit for this player")), wxSizerFlags().Expand());
+			m_Controls.pop = popCtrl;
 
-		resourceSizer->Add(gridSizer, wxSizerFlags(1).Expand());
-		sizer->Add(resourceSizer, wxSizerFlags().Expand().Border(wxTOP, 10));
+			resourceSizer->Add(gridSizer, wxSizerFlags(1).Expand());
+			sizer->Add(resourceSizer, wxSizerFlags().Expand().Border(wxTOP, 10));
+		}
+		{
+			/////////////////////////////////////////////////////////////////////////
+			// Diplomacy
+			wxStaticBoxSizer* diplomacySizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Diplomacy"));
+			wxBoxSizer* boxSizer = new wxBoxSizer(wxHORIZONTAL);
+			boxSizer->Add(new wxStaticText(this, wxID_ANY, _("Team")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
+			wxChoice* teamCtrl = new wxChoice(this, wxID_ANY);
+			teamCtrl->Append(_("None"));
+			teamCtrl->Append(_T("1"));
+			teamCtrl->Append(_T("2"));
+			teamCtrl->Append(_T("3"));
+			teamCtrl->Append(_T("4"));
+			boxSizer->Add(teamCtrl);
+			m_Controls.team = teamCtrl;
+			diplomacySizer->Add(boxSizer, wxSizerFlags(1).Expand());
 
-		/////////////////////////////////////////////////////////////////////////
-		// Diplomacy
-		wxStaticBoxSizer* diplomacySizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Diplomacy"));
-		wxBoxSizer* boxSizer = new wxBoxSizer(wxHORIZONTAL);
-		boxSizer->Add(new wxStaticText(this, wxID_ANY, _("Team")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
-		wxChoice* teamCtrl = new wxChoice(this, wxID_ANY);
-		teamCtrl->Append(_("None"));
-		teamCtrl->Append(_T("1"));
-		teamCtrl->Append(_T("2"));
-		teamCtrl->Append(_T("3"));
-		teamCtrl->Append(_T("4"));
-		boxSizer->Add(teamCtrl);
-		m_Controls.team = teamCtrl;
-		diplomacySizer->Add(boxSizer, wxSizerFlags(1).Expand());
+			// TODO: possibly have advanced panel where each player's diplomacy can be set?
+			// Advanced panel
+			/*wxCollapsiblePane* advPane = new wxCollapsiblePane(this, wxID_ANY, _("Advanced"));
+			wxWindow* pane = advPane->GetPane();
+			diplomacySizer->Add(advPane, 0, wxGROW | wxALL, 2);*/
 
-		// TODO: possibly have advanced panel where each player's diplomacy can be set?
-		// Advanced panel
-		/*wxCollapsiblePane* advPane = new wxCollapsiblePane(this, wxID_ANY, _("Advanced"));
-		wxWindow* pane = advPane->GetPane();
-		diplomacySizer->Add(advPane, 0, wxGROW | wxALL, 2);*/
+			sizer->Add(diplomacySizer, wxSizerFlags().Expand().Border(wxTOP, 10));
+		}
 
-		sizer->Add(diplomacySizer, wxSizerFlags().Expand().Border(wxTOP, 10));
+		{
+			/////////////////////////////////////////////////////////////////////////
+			// Camera
+			wxStaticBoxSizer* cameraSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Starting Camera"));
+			wxGridSizer* gridSizer = new wxGridSizer(3);
+			wxButton* cameraSet = new wxButton(this, ID_CameraSet, _("Set"));
+			gridSizer->Add(Tooltipped(cameraSet, _("Set player camera to this view")), wxSizerFlags().Expand());
+			wxButton* cameraView = new wxButton(this, ID_CameraView, _("View"));
+			cameraView->Enable(false);
+			gridSizer->Add(Tooltipped(cameraView, _("View the player camera")), wxSizerFlags().Expand());
+			wxButton* cameraClear = new wxButton(this, ID_CameraClear, _("Clear"));
+			cameraClear->Enable(false);
+			gridSizer->Add(Tooltipped(cameraClear, _("Clear player camera")), wxSizerFlags().Expand());
+			cameraSizer->Add(gridSizer, wxSizerFlags().Expand());
 
-		/////////////////////////////////////////////////////////////////////////
-		// Camera
-		wxStaticBoxSizer* cameraSizer = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Starting Camera"));
-		wxButton* cameraSet = new wxButton(this, ID_CameraSet, _("Set"));
-		cameraSizer->Add(Tooltipped(cameraSet, _("Set player camera to this view")), wxSizerFlags(1));
-		wxButton* cameraView = new wxButton(this, ID_CameraView, _("View"));
-		cameraView->Enable(false);
-		cameraSizer->Add(Tooltipped(cameraView, _("View the player camera")), wxSizerFlags(1));
-		wxButton* cameraClear = new wxButton(this, ID_CameraClear, _("Clear"));
-		cameraClear->Enable(false);
-		cameraSizer->Add(Tooltipped(cameraClear, _("Clear player camera")), wxSizerFlags(1));
-
-		sizer->Add(cameraSizer, wxSizerFlags().Expand().Border(wxTOP, 10));
+			sizer->Add(cameraSizer, wxSizerFlags().Expand().Border(wxTOP, 10));
+		}
 
 		Layout();
 		Thaw();

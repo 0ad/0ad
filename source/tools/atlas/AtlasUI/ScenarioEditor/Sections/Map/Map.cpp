@@ -298,12 +298,14 @@ MapSidebar::MapSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContaine
 	{
 		/////////////////////////////////////////////////////////////////////////
 		// Simulation buttons
-		wxStaticBoxSizer* sizer = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Simulation test"));
-		sizer->Add(new wxButton(this, ID_SimPlay, _("Play")), wxSizerFlags().Proportion(1));
-		sizer->Add(new wxButton(this, ID_SimFast, _("Fast")), wxSizerFlags().Proportion(1));
-		sizer->Add(new wxButton(this, ID_SimSlow, _("Slow")), wxSizerFlags().Proportion(1));
-		sizer->Add(new wxButton(this, ID_SimPause, _("Pause")), wxSizerFlags().Proportion(1));
-		sizer->Add(new wxButton(this, ID_SimReset, _("Reset")), wxSizerFlags().Proportion(1));
+		wxStaticBoxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Simulation test"));
+		wxGridSizer* gridSizer = new wxGridSizer(5);
+		gridSizer->Add(new wxButton(this, ID_SimPlay, _("Play")), wxSizerFlags().Expand());
+		gridSizer->Add(new wxButton(this, ID_SimFast, _("Fast")), wxSizerFlags().Expand());
+		gridSizer->Add(new wxButton(this, ID_SimSlow, _("Slow")), wxSizerFlags().Expand());
+		gridSizer->Add(new wxButton(this, ID_SimPause, _("Pause")), wxSizerFlags().Expand());
+		gridSizer->Add(new wxButton(this, ID_SimReset, _("Reset")), wxSizerFlags().Expand());
+		sizer->Add(gridSizer, wxSizerFlags().Expand());
 		UpdateSimButtons();
 		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 16));
 	}
