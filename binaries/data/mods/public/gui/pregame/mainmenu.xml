@@ -201,7 +201,7 @@ Status: $status.
                                        type="button"
                                        size="4 36 100%-4 68"
                                        tooltip_style="pgToolTip"
-                                       tooltip="Click here to start a new single player game. (A very basic computer opponent is available for testing purposes.)"
+                                       tooltip="Challenge the computer player to a match in single player game."
                                 >
                                     Single Player
                                     <action on="Press"><![CDATA[
@@ -215,7 +215,7 @@ Status: $status.
                                         type="button"
                                         size="4 68 100%-4 100"
                                         tooltip_style="pgToolTip"
-                                        tooltip="Tired of playing with yourself? Fight against one or more human players in a multiplayer game."
+                                        tooltip="Fight against one or more human players in a multiplayer game."
                                 >
                                         Multiplayer
                                         <action on="Press"><![CDATA[
@@ -229,7 +229,7 @@ Status: $status.
                                         type="button"
                                         size="4 100 100%-4 132"
                                         tooltip_style="pgToolTip"
-                                        tooltip="This will take you to the options menu.  It does not work now, but someday it will."
+                                        tooltip="Game options and scenario design tools."
                                 >
                                         Tools <![CDATA[&]]> Options
                                         <action on="Press"><![CDATA[
@@ -384,7 +384,7 @@ Get involved at: wildfiregames.com/0ad
                                         type="image"
                                         size="4 4 100%-4 100%-4"
                                         tooltip_style="pgToolTip"
-                                        tooltip="The 0 A.D. Game Manual"
+                                        tooltip="The 0 A.D. Game Manual."
                                         hidden="true"
                                 >
                                         <object name="subMenuSinglePlayerButton"
@@ -408,7 +408,7 @@ Get involved at: wildfiregames.com/0ad
                                                 style="StoneButtonFancy"
                                                 size="0 32 100% 64"
                                                 tooltip_style="pgToolTip"
-                                                tooltip="Want to play a campaign? Unfortunately you'll have to wait as they're not yet implemented."
+                                                tooltip="Relive history through historical campaigns. [NOT YET IMPLEMENTED]"
                                                 enabled="false"
                                         >
                                                 Campaigns
@@ -476,7 +476,7 @@ Get involved at: wildfiregames.com/0ad
                                                 type="button"
                                                 size="0 0 100% 32"
                                                 tooltip_style="pgToolTip"
-                                                tooltip="This will take you to the options menu.  It does not work now, but someday it will."
+                                                tooltip="Adjust game settings. [NOT YET IMPLEMENTED]"
                                                 enabled="false"
                                         >
                                                 Options
