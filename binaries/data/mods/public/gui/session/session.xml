@@ -264,7 +264,7 @@
                                                 Exit Game
                                                 <action on="Press">escapeKeyAction();<![CDATA[
                                                         var btCaptions = ["Yes", "No"];
-                                                        var btCode = [exit, null];
+                                                        var btCode = [leaveGame, null];
                                                         messageBox(400, 200, "Are you sure you want to quit?", "Confirmation", 0, btCaptions, btCode);
                                                 ]]></action>
                                         </object>
