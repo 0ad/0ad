@@ -201,7 +201,7 @@ Status: $status.
                                        type="button"
                                        size="4 36 100%-4 68"
                                        tooltip_style="pgToolTip"
-                                       tooltip="Challenge the computer player to a match in single player game."
+                                       tooltip="Challenge the computer player to a single player match."
                                 >
                                     Single Player
                                     <action on="Press"><![CDATA[
@@ -392,7 +392,7 @@ Get involved at: wildfiregames.com/0ad
                                                 style="StoneButtonFancy"
                                                 size="0 0 100% 32"
                                                 tooltip_style="pgToolTip"
-                                                tooltip="Click here to start a new single player game. (A very basic computer opponent is available for testing purposes.)"
+                                                tooltip="Click here to start a new single player game."
                                         >
                                                 Matches
                                                 <action on="Press"><![CDATA[
@@ -408,7 +408,7 @@ Get involved at: wildfiregames.com/0ad
                                                 style="StoneButtonFancy"
                                                 size="0 32 100% 64"
                                                 tooltip_style="pgToolTip"
-                                                tooltip="Relive history through historical campaigns. [NOT YET IMPLEMENTED]"
+                                                tooltip="Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
                                                 enabled="false"
                                         >
                                                 Campaigns
