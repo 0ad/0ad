@@ -35,21 +35,25 @@
 
 		<!-- Map selection -->
 		<object size="20 64 250 100%-20">
-			<object name="mapTypeHeading" type="text" style="LeftLabelText" size="0 0 100% 30">Match Type:</object>
-			<object name="mapTypeSelection"
+			
+                        <object size="0 0 40% 100%">
+                                <object name="mapTypeHeading" type="text" style="RightLabelText" size="0 0 100% 28">Match Type:</object>
+                                <object name="mapFilterHeading" type="text" style="RightLabelText" size="0 34 100% 60">Map Filter:</object>
+                        </object>
+                        
+                        <object name="mapTypeSelection"
 				type="dropdown"
 				style="StoneDropDown"
-				size="100 0 100% 30"
+				size="100 0 100% 28"
 				tooltip_style="onscreenToolTip"
 				tooltip="Select a map type.">
 				<action on="SelectionChange">selectMapType(this.list_data[this.selected]);</action>
 			</object>
-			
-			<object name="mapFilterHeading" type="text" style="LeftLabelText" size="0 34 100% 64">Map Filter:</object>
+                        
 			<object name="mapFilterSelection"
 				type="dropdown"
 				style="StoneDropDown"
-				size="100 34 100% 64"
+				size="100 34 100% 60"
 				tooltip_style="onscreenToolTip"
 				tooltip="Select a map filter.">
 				<action on="SelectionChange">selectMapFilter(this.list[this.selected]);</action>
@@ -170,7 +174,7 @@
 			name="cancelGame"
 			type="button"
 			style="StoneButton"
-			size="100%-304 100%-52 100%-164 100%-20"
+			size="100%-304 100%-48 100%-164 100%-20"
 			tooltip_style="onscreenToolTip"
 			tooltip="Click this button to return to the main menu."
 		>Cancel
@@ -184,7 +188,7 @@
 			name="startGame"
 			type="button"
 			style="StoneButton"
-			size="100%-160 100%-52 100%-20 100%-20"
+			size="100%-160 100%-48 100%-20 100%-20"
 			tooltip_style="onscreenToolTip"
 			tooltip="Click this button to start a new game with the current settings."
 		>Start game!

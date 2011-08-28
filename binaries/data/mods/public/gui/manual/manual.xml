@@ -14,7 +14,7 @@
                             <object name="mainText" type="text" style="textPanel"/>
                     </object>
                 </object>	
-        <object type="button" style="StoneButton" size="100%-320 100%-48 100%-160 100%-16">
+        <object type="button" style="StoneButton" size="100%-324 100%-48 100%-164 100%-20">
 			Online Manual
 			<action on="Press"><![CDATA[
 				var url = "http://trac.wildfiregames.com/wiki/0adManual";
@@ -22,7 +22,7 @@
 				messageBox(500, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2);
 				]]></action>
 		</object>
-		<object type="button" style="StoneButton" tooltip_style="snToolTip" size="100%-144 100%-48 100%-16 100%-16">
+		<object type="button" style="StoneButton" tooltip_style="snToolTip" size="100%-148 100%-48 100%-20 100%-20">
 			Close
 			<action on="Press"><![CDATA[Engine.PopGuiPage();]]></action>
 		</object>

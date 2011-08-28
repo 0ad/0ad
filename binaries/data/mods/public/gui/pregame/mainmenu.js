@@ -1,5 +1,6 @@
 var userReportEnabledText; // contains the original version with "$status" placeholder
 var currentSubmenu; // contains placeholder submenu
+const MARGIN = 4;
 
 function init()
 {
@@ -100,11 +101,6 @@ function onTick()
 	}
 }
 
-
-
-
-const MARGIN = 4;
-
 // Sizes right border on main menu panel to match the submenu
 function blendSubmenuIntoMain(topPosition, bottomPosition)
 {
@@ -129,7 +125,7 @@ function updateSubmenu(newSubmenu, position, buttonHeight, numButtons)
         // set position of new submenu
         var submenu = getGUIObjectByName("submenu");
         var top = position - MARGIN;
-        var bottom = position + (buttonHeight * numButtons) + MARGIN;
+        var bottom = position + ((buttonHeight + MARGIN) * numButtons);
         submenu.size = submenu.size.left + " " + top + " " + submenu.size.right + " " + bottom;
         submenu.hidden = false;
         

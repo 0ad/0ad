@@ -184,11 +184,11 @@
 				<action on="Press">submitChatInput();</action>
 			</object>
 
-			<object  size="32 100%-44 144 100%-12" type="button" style="StoneButton">
+			<object  size="32 100%-40 144 100%-12" type="button" style="StoneButton">
 				Cancel
 				<action on="Press">closeChat();</action>
 			</object>
-			<object size="100%-144 100%-44 100%-32 100%-12" type="button" style="StoneButton">
+			<object size="100%-144 100%-40 100%-32 100%-12" type="button" style="StoneButton">
 				Send
 				<action on="Press">submitChatInput();</action>
 			</object>
@@ -208,9 +208,9 @@
 			</action>
                         
                         <object name="menu"
-                                style="TranslucentPanelThinBorder"
+                                style="StonePanelThinBorder"
                                 type="image"
-                                size="100%-164 0 100% 168"
+                                size="100%-164 0 100% 164"
                                 hidden="true"
                         >
                                 <object size="4 36 100%-4 50%+20">
@@ -219,7 +219,7 @@
                                         <object type="button"
                                                 name="settingsButton"
                                                 style="StoneButtonFancy"
-                                                size="0 0 100% 32"
+                                                size="0 0 100% 28"
                                                 tooltip_style="sessionToolTip"
                                         >
                                                 Settings
@@ -232,7 +232,7 @@
                                         <object type="button"
                                                 name="chatButton"
                                                 style="StoneButtonFancy"
-                                                size="0 32 100% 64"
+                                                size="0 32 100% 60"
                                                 tooltip_style="sessionToolTip"
                                         >
                                                 Chat
@@ -245,7 +245,7 @@
                                         <object type="button"
                                                 name="pauseButton"
                                                 style="StoneButtonFancy"
-                                                size="0 64 100% 96"
+                                                size="0 64 100% 92"
                                                 tooltip_style="sessionToolTip"
                                         >
                                                 <object name="pauseButtonText" type="text" style="CenteredButtonText" ghost="true">Pause</object>
@@ -258,7 +258,7 @@
                                         <object type="button"
                                                 name="menuExitButton"
                                                 style="StoneButtonFancy"
-                                                size="0 96 100% 128"
+                                                size="0 96 100% 124"
                                                 tooltip_style="sessionToolTip"
                                         >
                                                 Exit
@@ -326,7 +326,7 @@
                         <!-- Close button -->
                         <object type="button"
                                 style="StoneButton"
-                                size="50%-64 100%-56 50%+64 100%-24"
+                                size="50%-64 100%-52 50%+64 100%-24"
                                 tooltip_style="sessionToolTip"
                         >
                                 Close
@@ -340,42 +340,42 @@
 	<object name="topPanel"
 		type="image"
 		sprite="topPanel"
-		size="-3 0 100%+3 40"
+		size="-3 0 100%+3 36"
 	>
 		<!-- ================================  ================================ -->
 		<!-- Player resource bar -->
 		<!-- ================================  ================================ -->
 		<object
-			size="1% 0 45% 100%"
+			size="10 0 45% 100%"
 		>	
 			<!-- Food -->
-			<object size="0 0 20% 100%" type="image" style="resourceCounter" tooltip="Food" tooltip_style="sessionToolTipBold">
-				<object size="0 -6 48 42" type="image" style="resourceIcon" cell_id="0"/>
-				<object size="30% 0 100% 100%-2" type="text" style="resourceText" name="resourceFood"/>
+			<object size="0 0 90 100%" type="image" style="resourceCounter" tooltip="Food" tooltip_style="sessionToolTipBold">
+				<object size="0 -4 40 36" type="image" style="resourceIcon" cell_id="0"/>
+				<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceFood"/>
 			</object>
 
 			<!-- Wood -->
-			<object size="20% 0 40% 100%" type="image" style="resourceCounter" tooltip="Wood" tooltip_style="sessionToolTipBold">
-				<object size="0 -6 48 42" type="image" style="resourceIcon" cell_id="1"/>
-				<object size="30% 0 100% 100%-2" type="text" style="resourceText" name="resourceWood"/>
+			<object size="90 0 180 100%" type="image" style="resourceCounter" tooltip="Wood" tooltip_style="sessionToolTipBold">
+				<object size="0 -4 40 36" type="image" style="resourceIcon" cell_id="1"/>
+				<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceWood"/>
 			</object>
 
 			<!-- Stone -->
-			<object size="40% 0 60% 100%" type="image" style="resourceCounter" tooltip="Stone" tooltip_style="sessionToolTipBold">
-				<object size="0 -2 48 42" type="image" style="resourceIcon" cell_id="2"/>
-				<object size="30% 0 100% 100%-2" type="text" style="resourceText" name="resourceStone"/>
+			<object size="180 0 270 100%" type="image" style="resourceCounter" tooltip="Stone" tooltip_style="sessionToolTipBold">
+				<object size="0 -4 40 36" type="image" style="resourceIcon" cell_id="2"/>
+				<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceStone"/>
 			</object>
 
 			<!-- Metal -->
-			<object size="60% 0 80% 100%"  type="image" style="resourceCounter" tooltip="Metal" tooltip_style="sessionToolTipBold">
-				<object size="0 -6 48 42" type="image" style="resourceIcon" cell_id="3"/>
-				<object size="30% 0 100% 100%-2" type="text" style="resourceText" name="resourceMetal"/>
+			<object size="270 0 360 100%"  type="image" style="resourceCounter" tooltip="Metal" tooltip_style="sessionToolTipBold">
+				<object size="0 -4 40 36" type="image" style="resourceIcon" cell_id="3"/>
+				<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceMetal"/>
 			</object>
 
 			<!-- Population -->
-			<object size="80% 0 100% 100%" type="image" style="resourceCounter" tooltip="Population (current / limit)" tooltip_style="sessionToolTipBold">
-				<object size="0 -6 44 38" type="image" style="resourceIcon" cell_id="4"/>
-				<object size="30% 0 100% 100%-2" type="text" style="resourceText" name="resourcePop"/>
+			<object size="360 0 450 100%" type="image" style="resourceCounter" tooltip="Population (current / limit)" tooltip_style="sessionToolTipBold">
+				<object size="0 -4 40 34" type="image" style="resourceIcon" cell_id="4"/>
+				<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourcePop"/>
 			</object>
 		</object>
 
@@ -395,23 +395,21 @@
 		<!-- ================================  ================================ -->
 		
 		<!-- Displays Alpha name and number -->
-		<object size="70%-128 1 70%+128 100%" name="alphaLabel" type="text" style="CenteredLabelText" text_valign="top" ghost="true">
+		<object size="70%-128 0 70%+128 100%" name="alphaLabel" type="text" style="CenteredLabelText" text_valign="top" ghost="true">
 			ALPHA VI : Fortuna
                         
                         <!-- Displays build date and revision number-->
-                        <object size="50%-128 0 50%+128 100%-3" name="buildTimeLabel" type="text" text_align="center" text_valign="bottom" font="serif-12" textcolor="white" ghost="true">
+                        <object size="50%-128 0 50%+128 100%-2" name="buildTimeLabel" type="text" text_align="center" text_valign="bottom" font="serif-12" textcolor="white" ghost="true">
                                 <action on="Load"><![CDATA[this.caption = buildTime(0) + " (" + buildTime(2) + ")";]]></action>
                         </object>
 		</object>
 
-		
-                
 		<!-- ================================  ================================ -->
 		<!-- Menu Button -->
 		<!-- ================================  ================================ -->
 		<object type="button"
 			name="menuButton"
-			size="100%-164 4 100%-8 36"
+			size="100%-164 4 100%-8 32"
                         style="StoneButtonFancy"
 			tooltip_style="sessionToolTip"
 		>

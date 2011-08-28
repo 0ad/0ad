@@ -171,7 +171,7 @@
 			
 			</object>
 			
-			<object type="button" style="StoneButton" size="100%-172 100%-48 100%-16 100%-16">
+			<object type="button" style="StoneButton" size="100%-176 100%-48 100%-20 100%-20">
 				Main Menu
 				<action on="Press"><![CDATA[
 					Engine.SwitchGuiPage("page_pregame.xml");

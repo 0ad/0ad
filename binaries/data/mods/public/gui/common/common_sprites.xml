@@ -145,7 +145,7 @@
 	<!-- SubmenuPanel -->
 	<sprite name="SubmenuPanel">
 		<image	texture="global/tile/stone_background.png"
-			real_texture_placement="28 0 292 264"
+			real_texture_placement="32 0 292 264"
 			texture_size="0 0 240 240"
 		/>
 
@@ -460,14 +460,14 @@
 	
 	<sprite name="StoneButton">
 		<image	texture="global/button/button_stone_unselected.png"
-			real_texture_placement="0 0 256 32"
+			real_texture_placement="0 0 256 28"
 			size="0 0 100% 100%" 
 		/>
 	</sprite>
         
 	<sprite name="StoneButtonOver">
 		<image 	texture="global/button/button_stone_selected.png"
-			real_texture_placement="0 0 256 32"
+			real_texture_placement="0 0 256 28"
 			size="0 0 100% 100%" 
 		/>
         </sprite>
@@ -475,46 +475,46 @@
 	<sprite name="StoneButtonGlow">
 		<effect	add_color="60 42 42 0" />
 		<image 	texture="global/button/button_stone_selected.png"
-			real_texture_placement="0 0 256 32"
+			real_texture_placement="0 0 256 28"
 			size="0 0 100% 100%" 
 		/>
         </sprite>
 
 	<sprite name="StoneButtonFancyOver">
 		<image 	texture="global/button/button_stone_selected.png"
-			real_texture_placement="0 0 256 32"
+			real_texture_placement="0 0 256 28"
 			size="0 0 100% 100%" 
 		/>
 		<image 	texture="global/button/button_stone_selected_left_trim.png"
-			real_texture_placement="0 0 32 32"
-			size="0 0 32 32" 
+			real_texture_placement="0 0 32 28"
+			size="0 0 32 28" 
 		/>
 		<image 	texture="global/button/button_stone_selected_right_trim.png"
-			real_texture_placement="0 0 32 32"
-			size="100%-32 0 100% 32" 
+			real_texture_placement="0 0 32 28"
+			size="100%-32 0 100% 28" 
 		/>
         </sprite>
 
 	<sprite name="StoneButtonFancyGlow">
 		<effect	add_color="60 42 42 0" />
 		<image 	texture="global/button/button_stone_selected.png"
-			real_texture_placement="0 0 256 32"
+			real_texture_placement="0 0 256 28"
 			size="0 0 100% 100%" 
 		/>
 		<image 	texture="global/button/button_stone_selected_left_trim.png"
-			real_texture_placement="0 0 32 32"
-			size="0 0 32 32" 
+			real_texture_placement="0 0 32 28"
+			size="0 0 32 28" 
 		/>
 		<image 	texture="global/button/button_stone_selected_right_trim.png"
-			real_texture_placement="0 0 32 32"
-			size="100%-32 0 100% 32" 
+			real_texture_placement="0 0 32 28"
+			size="100%-32 0 100% 28" 
 		/>
         </sprite>
 
 	<sprite name="StoneButtonDisabled">
 		<effect grayscale="" />
 		<image 	texture="global/button/button_stone_unselected.png"
-			real_texture_placement="0 0 256 32"
+			real_texture_placement="0 0 256 28"
 			size="0 0 100% 100%" 
 		/>
         </sprite>
