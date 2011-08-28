@@ -31,9 +31,9 @@
 #include "General/AtlasEventLoop.h"
 #include "General/Datafile.h"
 
-#include "CustomControls/HighResTimer/HighResTimer.h"
 #include "CustomControls/Buttons/ToolButton.h"
 #include "CustomControls/Canvas/Canvas.h"
+#include "CustomControls/HighResTimer/HighResTimer.h"
 
 #include "GameInterface/MessagePasser.h"
 #include "GameInterface/Messages.h"
@@ -449,20 +449,11 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 	m_SectionLayout.SetWindow(this);
 
 	// Toolbar:
+	// wxOSX/Cocoa 2.9 doesn't seem to like SetToolBar, so we use CreateToolBar which implicitly associates
+	//	the toolbar with the frame, and use OnCreateToolBar to construct our custom toolbar
+	//	(this should be equivalent behavior on all platforms)
+	CreateToolBar(wxNO_BORDER|wxTB_FLAT|wxTB_HORIZONTAL, ID_Toolbar);
 
-	ToolButtonBar* toolbar = new ToolButtonBar(m_ToolManager, this, &m_SectionLayout, ID_Toolbar);
-	// TODO: configurable small vs large icon images
-
-	// (button label; tooltip text; image; internal tool name; section to switch to)
-	toolbar->AddToolButton(_("Default"),       _("Default"),                   _T("default.png"),          _T(""),                 _T(""));
-	toolbar->AddToolButton(_("Move"),          _("Move/rotate object"),        _T("moveobject.png"),       _T("TransformObject"),  _T("")/*_T("ObjectSidebar")*/);
-	toolbar->AddToolButton(_("Elevation"),     _("Alter terrain elevation"),   _T("alterelevation.png"),   _T("AlterElevation"),   _T("")/*_T("TerrainSidebar")*/);
-	toolbar->AddToolButton(_("Smooth"),        _("Smooth terrain elevation"),  _T("smoothelevation.png"),  _T("SmoothElevation"),  _T("")/*_T("TerrainSidebar")*/);
-	toolbar->AddToolButton(_("Flatten"),       _("Flatten terrain elevation"), _T("flattenelevation.png"), _T("FlattenElevation"), _T("")/*_T("TerrainSidebar")*/);
-	toolbar->AddToolButton(_("Paint Terrain"), _("Paint terrain texture"),     _T("paintterrain.png"),     _T("PaintTerrain"),     _T("")/*_T("TerrainSidebar")*/);
-
-	toolbar->Realize();
-	SetToolBar(toolbar);
 	// Set the default tool to be selected
 	m_ToolManager.SetCurrentTool(_T(""));
 
@@ -533,6 +524,24 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 	// by changing the window's size
 	SetSize(GetSize() + wxSize(1, 0));
 #endif
+}
+
+wxToolBar* ScenarioEditor::OnCreateToolBar(long style, wxWindowID id, const wxString& WXUNUSED(name))
+{
+	ToolButtonBar* toolbar = new ToolButtonBar(m_ToolManager, this, &m_SectionLayout, id, style);
+	// TODO: configurable small vs large icon images
+
+	// (button label; tooltip text; image; internal tool name; section to switch to)
+	toolbar->AddToolButton(_("Default"),       _("Default"),                   _T("default.png"),          _T(""),                 _T(""));
+	toolbar->AddToolButton(_("Move"),          _("Move/rotate object"),        _T("moveobject.png"),       _T("TransformObject"),  _T("")/*_T("ObjectSidebar")*/);
+	toolbar->AddToolButton(_("Elevation"),     _("Alter terrain elevation"),   _T("alterelevation.png"),   _T("AlterElevation"),   _T("")/*_T("TerrainSidebar")*/);
+	toolbar->AddToolButton(_("Smooth"),        _("Smooth terrain elevation"),  _T("smoothelevation.png"),  _T("SmoothElevation"),  _T("")/*_T("TerrainSidebar")*/);
+	toolbar->AddToolButton(_("Flatten"),       _("Flatten terrain elevation"), _T("flattenelevation.png"), _T("FlattenElevation"), _T("")/*_T("TerrainSidebar")*/);
+	toolbar->AddToolButton(_("Paint Terrain"), _("Paint terrain texture"),     _T("paintterrain.png"),     _T("PaintTerrain"),     _T("")/*_T("TerrainSidebar")*/);
+
+	toolbar->Realize();
+
+	return toolbar;
 }
 
 float ScenarioEditor::GetSpeedModifier()

@@ -18,6 +18,8 @@
 #ifndef INCLUDED_SCENARIOEDITOR
 #define INCLUDED_SCENARIOEDITOR
 
+#include "wx/toolbar.h"
+
 #include "General/AtlasWindowCommandProc.h"
 #include "General/Observable.h"
 #include "Tools/Common/ObjectSettings.h"
@@ -34,6 +36,7 @@ public:
 	void OnClose(wxCloseEvent& event);
 	void OnTimer(wxTimerEvent& event);
 	void OnIdle(wxIdleEvent& event);
+	wxToolBar* OnCreateToolBar(long style, wxWindowID id, const wxString &name);
 	
  	void OnNew(wxCommandEvent& event);
 	void OnOpen(wxCommandEvent& event);

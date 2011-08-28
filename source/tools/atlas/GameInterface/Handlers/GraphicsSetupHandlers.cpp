@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -162,6 +162,11 @@ MESSAGEHANDLER(SetCanvas)
 MESSAGEHANDLER(ResizeScreen)
 {
 	CVideoMode::UpdateRenderer(msg->width, msg->height);
+
+#if OS_MACOSX
+	// OS X seems to require this to update the GL canvas
+	Atlas_GLSetCurrent(const_cast<void*>(g_GameLoop->glCanvas));
+#endif
 }
 
 //////////////////////////////////////////////////////////////////////////

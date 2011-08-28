@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,7 +44,7 @@ private:
 class ToolButtonBar : public wxToolBar
 {
 public:
-	ToolButtonBar(ToolManager& toolManager, wxWindow* parent, SectionLayout* sectionLayout, int baseID);
+	ToolButtonBar(ToolManager& toolManager, wxWindow* parent, SectionLayout* sectionLayout, int baseID, long style);
 	void AddToolButton(const wxString& shortLabel, const wxString& longLabel,
 		const wxString& iconPNGFilename, const wxString& toolName, const wxString& sectionPage);
 

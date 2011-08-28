@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -69,8 +69,8 @@ BEGIN_EVENT_TABLE(ToolButtonBar, wxToolBar)
 	EVT_TOOL(wxID_ANY, ToolButtonBar::OnTool)
 END_EVENT_TABLE()
 
-ToolButtonBar::ToolButtonBar(ToolManager& toolManager, wxWindow* parent, SectionLayout* sectionLayout, int baseID)
-: wxToolBar(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTB_FLAT|wxTB_HORIZONTAL)
+ToolButtonBar::ToolButtonBar(ToolManager& toolManager, wxWindow* parent, SectionLayout* sectionLayout, int baseID, long style)
+: wxToolBar(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, style)
 , m_ToolManager(toolManager), m_SectionLayout(sectionLayout), m_Id(baseID), m_Size(-1)
 {
 	/* "msw.remap: If 1 (the default), wxToolBar bitmap colours will be remapped
