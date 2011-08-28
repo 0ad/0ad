@@ -4,6 +4,9 @@
   <group>
     <variant frequency="1" name="Carthage embassy iberian">
       <mesh>structural/kart_embassy_iberian.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
+      </props>
       <texture>structural/iber_struct.dds</texture>
     </variant>
   </group>

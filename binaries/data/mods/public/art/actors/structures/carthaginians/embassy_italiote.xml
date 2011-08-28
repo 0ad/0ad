@@ -4,6 +4,9 @@
   <group>
     <variant frequency="1" name="Carthage embassy italiote">
       <mesh>structural/kart_embassy_italiote.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
+      </props>
       <texture>structural/rome_struct.dds</texture>
     </variant>
   </group>
