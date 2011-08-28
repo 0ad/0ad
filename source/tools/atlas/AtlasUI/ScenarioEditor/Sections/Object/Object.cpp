@@ -280,10 +280,11 @@ private:
 			Append(m_Players[i]);
 		}
 
-		if (m_ObjectSettings.GetPlayerID() > numPlayers)
+		// The control may not have entries yet
+		if (m_ObjectSettings.GetPlayerID() >= GetCount())
 		{
 			// Invalid player
-			SetSelection((long)numPlayers);
+			SetSelection((long)GetCount()-1);
 		}
 		else
 		{
