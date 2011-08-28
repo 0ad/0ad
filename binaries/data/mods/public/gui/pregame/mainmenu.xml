@@ -152,12 +152,24 @@ Status: $status.
 		- MAIN MENU PANEL
 		==========================================
 		-->
-		<object
-			type="image"
+		<object type="image"
 			style="MainMenuPanel"
 			size="60 -2 300 100%+2"
-                       
                 >
+                        <!-- These are used to make the right side blend in with the submenu -->
+                        <object	name="MainMenuPanelRightBorderTop"
+                                type="image"
+                                sprite="MainMenuPanelRightBorder"
+                                ghost="true"
+                                size="100%-2 0 100% 100%"
+                        />
+                        <object	name="MainMenuPanelRightBorderBottom"
+                                type="image"
+                                sprite="MainMenuPanelRightBorder"
+                                ghost="true"
+                                size="100%-2 0 100% 100%"
+                        />
+                    
                         <object	name="productLogo"
                                 type="image"
                                 sprite="productLogo"
@@ -379,19 +391,20 @@ Get involved at: wildfiregames.com/0ad
                 >
                         <!-- hides the submenu when the mouse leaves the mainMenuButtons or submenu -->
                     	<action on="MouseEnter">
-                            <![CDATA[getGUIObjectByName("submenu").hidden = true;]]>
+                                getGUIObjectByName("submenu").hidden = true;
+                                getGUIObjectByName("MainMenuPanelRightBorderTop").size = "100%-2 0 100% 100%";
 			</action>
                         
                         <!-- submenu -->
                         <object name="submenu"
                                 type="image"
-                                style="MainMenuPanel"
-                                size="298 50%-100 538 50%+100"
+                                style="SubmenuPanel"
+                                size="300 50%-100 536 50%+100"
                         >
                                 <!-- submenuSinglePlayer -->
                                 <object name="submenuSinglePlayer"
                                         type="image"
-                                        size="4 4 100%-4 100%-4"
+                                        size="0 4 100%-4 100%-4"
                                         tooltip_style="pgToolTip"
                                         tooltip="The 0 A.D. Game Manual."
                                         hidden="true"
@@ -433,7 +446,7 @@ Get involved at: wildfiregames.com/0ad
                                 <!-- submenuMultiplayer -->
                                 <object name="submenuMultiplayer"
                                               type="image"
-                                              size="4 4 100%-4 100%-4"
+                                              size="0 4 100%-4 100%-4"
                                               tooltip_style="pgToolTip"
                                               tooltip="The 0 A.D. Game Manual"
                                               hidden="true"
@@ -475,7 +488,7 @@ Get involved at: wildfiregames.com/0ad
                                 <!-- submenuToolsAndOptions -->
                                 <object name="submenuToolsAndOptions"
                                         type="image"
-                                        size="4 4 100%-4 100%-4"
+                                        size="0 4 100%-4 100%-4"
                                         tooltip_style="pgToolTip"
                                         tooltip="The 0 A.D. Game Manual"
                                               hidden="true"

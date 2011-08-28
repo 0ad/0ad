@@ -100,11 +100,25 @@ function onTick()
 	}
 }
 
+
+
+
+const MARGIN = 4;
+
+// Sizes right border on main menu panel to match the submenu
+function blendSubmenuIntoMain(topPosition, bottomPosition)
+{
+    var topSprite = getGUIObjectByName("MainMenuPanelRightBorderTop");
+    topSprite.size = "100%-2 0 100% " + (topPosition + MARGIN);
+    console.write(topSprite.size);
+    
+    var bottomSprite = getGUIObjectByName("MainMenuPanelRightBorderBottom");
+    bottomSprite.size = "100%-2 " + (bottomPosition) + " 100% 100%";
+}
+
 // Update the submenu
 function updateSubmenu(newSubmenu, position, buttonHeight, numButtons)
 {
-        const MARGIN = 4;
-    
         // remove old submenu
         getGUIObjectByName(currentSubmenu).hidden = true;
         
@@ -118,6 +132,9 @@ function updateSubmenu(newSubmenu, position, buttonHeight, numButtons)
         var bottom = position + (buttonHeight * numButtons) + MARGIN;
         submenu.size = submenu.size.left + " " + top + " " + submenu.size.right + " " + bottom;
         submenu.hidden = false;
+        
+        // Blend in right border of main menu into the left border of the submenu
+        blendSubmenuIntoMain(top, bottom);
         
         // prepare to hide the submenu when the mouse moves off of the submenu
         getGUIObjectByName("submenuScreen").hidden = false;
