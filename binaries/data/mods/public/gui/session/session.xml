@@ -210,7 +210,7 @@
                         <object name="menu"
                                 style="TranslucentPanelThinBorder"
                                 type="image"
-                                size="100%-164 0 100% 200"
+                                size="100%-164 0 100% 168"
                                 hidden="true"
                         >
                                 <object size="4 36 100%-4 50%+20">
@@ -261,22 +261,12 @@
                                                 size="0 96 100% 128"
                                                 tooltip_style="sessionToolTip"
                                         >
-                                                Exit Game
+                                                Exit
                                                 <action on="Press">escapeKeyAction();<![CDATA[
                                                         var btCaptions = ["Yes", "No"];
                                                         var btCode = [leaveGame, null];
                                                         messageBox(400, 200, "Are you sure you want to quit?", "Confirmation", 0, btCaptions, btCode);
                                                 ]]></action>
-                                        </object>
-                                        
-                                        <!-- Close button -->
-                                        <object type="button"
-                                                style="StoneButtonFancy"
-                                                size="0 128 100% 160"
-                                                tooltip_style="sessionToolTip"
-                                        >
-                                                Close
-                                                <action on="Press">closeMenu();</action>
                                         </object>
                                 </object>
                         </object>

@@ -279,7 +279,7 @@ Status: $status.
                                         tooltip_style="pgToolTip"
                                         tooltip="Exit Game"
                                 >
-                                        Exit Game
+                                        Exit
                                         <action on="Press">
                                                 getGUIObjectByName("submenu").hidden = true;
                                                 <![CDATA[
