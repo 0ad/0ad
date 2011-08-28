@@ -490,9 +490,13 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 	// current for one thread at a time, and it needs to be current for the
 	// thread that is doing the draw calls, so disable it for this one.
 	wglMakeCurrent(NULL, NULL);
-#elif defined(__WXGTK__)
-	// Need to make sure the canvas is realized by GTK, so that its context is valid
+#elif defined(__WXGTK__) || defined(__WXOSX__) || defined(__WXMAC__)
+	// Need to make sure the canvas is realised, so that its context is valid
+	// this solves the "invalid drawable" error
 	Show(true);
+#endif
+#ifdef __WXGTK__
+	// TODO: wxSafeYield causes issues on wxOSX 2.9, is it necessary?
 	wxSafeYield();
 #endif
 
@@ -523,6 +527,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 	m_Timer.Start(20);
 
 #ifdef __WXGTK__
+	// TODO: Is this necessary?
 	// HACK: because of how we fiddle with stuff earlier to make sure the canvas
 	// is displayed, the layout gets messed up, and it only seems to be fixable
 	// by changing the window's size
