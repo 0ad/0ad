@@ -2,7 +2,7 @@
 <Entity parent="template_unit_champion_cavalry">
   <Armour>
     <Hack>10.0</Hack>
-    <Pierce>9.0</Pierce>
+    <Pierce>15.0</Pierce>
     <Crush>15.0</Crush>
   </Armour>
   <Attack>
@@ -27,7 +27,7 @@
     <Height>8.0</Height>
   </Footprint>
   <Health>
-    <Max>450</Max>
+    <Max>500</Max>
   </Health>
   <Identity>
     <Civ>pers</Civ>
@@ -43,7 +43,7 @@
     </Run>
   </UnitMotion>
   <Vision>
-    <Range>120</Range>
+    <Range>84</Range>
   </Vision>
   <VisualActor>
     <Actor>units/persians/war_elephant.xml</Actor>

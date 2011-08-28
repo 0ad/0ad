@@ -43,6 +43,14 @@
   </Sound>
   <TerritoryDecay disable=""/>
   <TerritoryInfluence disable=""/>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/cart_ship_trireme
+    </Entities>
+  </TrainingQueue>
+  <Vision>
+    <Range>100</Range>
+  </Vision>
   <VisualActor>
     <Actor>structures/carthaginians/super_dock.xml</Actor>
     <FoundationActor>structures/fndn_dock_super.xml</FoundationActor>

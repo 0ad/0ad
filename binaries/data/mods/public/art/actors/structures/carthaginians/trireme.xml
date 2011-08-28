@@ -5,7 +5,10 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>structural/kart_ship_trireme.dae</mesh>
-      <texture>structural/kart_trireme.png</texture>
+      <props>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+      </props>
+      <texture>structural/kart_trireme.dds</texture>
     </variant>
   </group>
   <group>
