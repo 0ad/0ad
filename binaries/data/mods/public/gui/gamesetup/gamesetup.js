@@ -42,7 +42,7 @@ var g_MapData = {};
 var g_CivData = {};
 
 var g_MapFilters = [];
-	
+
 // To prevent the display locking up while we load the map metadata,
 // we'll start with a 'loading' message and switch to the main screen in the
 // tick handler
@@ -76,45 +76,45 @@ function initMain()
 {
 	// Load AI list
 	g_AIs = Engine.GetAIs();
-	
+
 	// Sort AIs by displayed name
 	g_AIs.sort(function (a, b) {
 		return a.data.name < b.data.name ? -1 : b.data.name < a.data.name ? +1 : 0;
 	});
-	
+
 	// Get default player data - remove gaia
 	g_DefaultPlayerData = initPlayerDefaults();
 	g_DefaultPlayerData.shift();
-	
+
 	g_MapSizes = initMapSizes();
 
 	// Init civs
 	initCivNameList();
-	
+
 	// Init map types
 	var mapTypes = getGUIObjectByName("mapTypeSelection");
 	mapTypes.list = ["Scenario","Random"];
 	mapTypes.list_data = ["scenario","random"];
-	
+
 	// Setup map filters - will appear in order they are added
 	addFilter("Default", function(settings) { return settings && !keywordTestOR(settings.Keywords, ["demo", "hidden"]); });
 	addFilter("Demo Maps", function(settings) { return settings && keywordTestAND(settings.Keywords, ["demo"]); });
 	addFilter("Old Maps", function(settings) { return !settings; });
 	addFilter("All Maps", function(settings) { return true; });
-	
+
 	// Populate map filters dropdown
 	var mapFilters = getGUIObjectByName("mapFilterSelection");
 	mapFilters.list = getFilters();
 	g_GameAttributes.mapFilter = "Default";
-	
+
 	// Setup controls for host only
 	if (g_IsController)
 	{
 		mapTypes.selected = 0;
 		mapFilters.selected = 0;
-		
+
 		initMapNameList();
-		
+
 		var numPlayersSelect = getGUIObjectByName("numPlayersSelection");
 		var players = [];
 		for (var i = 1; i <= MAX_PLAYERS; ++i)
@@ -122,7 +122,7 @@ function initMain()
 		numPlayersSelect.list = players;
 		numPlayersSelect.list_data = players;
 		numPlayersSelect.selected = MAX_PLAYERS - 1;
-		
+
 		var victoryConditions = getGUIObjectByName("victoryCondition");
 		victoryConditions.list = VICTORY_TEXT;
 		victoryConditions.list_data = VICTORY_DATA;
@@ -132,14 +132,14 @@ function initMain()
 			{
 				g_GameAttributes.settings.GameType = VICTORY_DATA[this.selected];
 			}
-			
+
 			if (!g_IsInGuiUpdate)
 			{
 				updateGameAttributes();
 			}
 		};
 		victoryConditions.selected = VICTORY_DEFAULTIDX;
-		
+
 		var mapSize = getGUIObjectByName("mapSize");
 		mapSize.list = g_MapSizes.names;
 		mapSize.list_data = g_MapSizes.tiles;
@@ -149,27 +149,27 @@ function initMain()
 			{
 				g_GameAttributes.settings.Size = g_MapSizes.tiles[this.selected];
 			}
-			
+
 			if (!g_IsInGuiUpdate)
 			{
 				updateGameAttributes();
 			}
 		};
-		
+
 		getGUIObjectByName("revealMap").onPress = function()
 		{	// Update attributes so other players can see change
 			g_GameAttributes.settings.RevealMap = this.checked;
-			
+
 			if (!g_IsInGuiUpdate)
 			{
 				updateGameAttributes();
 			}
 		};
-		
+
 		getGUIObjectByName("lockTeams").onPress = function()
 		{	// Update attributes so other players can see change
 			g_GameAttributes.settings.LockTeams = this.checked;
-			
+
 			if (!g_IsInGuiUpdate)
 			{
 				updateGameAttributes();
@@ -183,7 +183,7 @@ function initMain()
 		getGUIObjectByName("mapTypeSelection").hidden = true;
 		getGUIObjectByName("mapFilterSelection").hidden = true;
 		getGUIObjectByName("mapSelection").enabled = false;
-		
+
 		// Disable player and game options controls
 		// TODO: Shouldn't players be able to choose their own assignment?
 		for (var i = 0; i < MAX_PLAYERS; ++i)
@@ -192,20 +192,20 @@ function initMain()
 			getGUIObjectByName("playerCiv["+i+"]").hidden = true;
 			getGUIObjectByName("playerTeam["+i+"]").hidden = true;
 		}
-		
+
 		getGUIObjectByName("numPlayersBox").hidden = true;
-		
+
 		// Disable "start game" button
 		// TODO: Perhaps replace this with a "ready" button, and require host to wait?
 		getGUIObjectByName("startGame").enabled = false;
 	}
-	
+
 	// Set up offline-only bits:
 	if (!g_IsNetworked)
 	{
 		getGUIObjectByName("chatPanel").hidden = true;
 	}
-	
+
 	// Settings for all possible player slots
 	var boxSpacing = 32;
 	for (var i = 0; i < MAX_PLAYERS; ++i)
@@ -217,13 +217,13 @@ function initMain()
 		boxSize.top = i * boxSpacing;
 		boxSize.bottom = i * boxSpacing + h;
 		box.size = boxSize;
-		
+
 		// Populate team dropdowns
 		var team = getGUIObjectByName("playerTeam["+i+"]");
 		team.list = ["None", "1", "2", "3", "4"];
 		team.list_data = [-1, 0, 1, 2, 3];
 		team.selected = 0;
-		
+
 		let playerSlot = i;	// declare for inner function use
 		team.onSelectionChange = function()
 		{	// Update team
@@ -231,13 +231,13 @@ function initMain()
 			{
 				g_GameAttributes.settings.PlayerData[playerSlot].Team = this.selected - 1;
 			}
-			
+
 			if (!g_IsInGuiUpdate)
 			{
 				updateGameAttributes();
 			}
 		};
-		
+
 		// Set events
 		var civ = getGUIObjectByName("playerCiv["+i+"]");
 		civ.onSelectionChange = function()
@@ -246,14 +246,14 @@ function initMain()
 			{
 				g_GameAttributes.settings.PlayerData[playerSlot].Civ = this.list_data[this.selected];
 			}
-			
+
 			if (!g_IsInGuiUpdate)
 			{
 				updateGameAttributes();
 			}
 		};
 	}
-	
+
 	if (g_IsNetworked)
 	{
 		// For multiplayer, focus the chat input box by default
@@ -281,13 +281,13 @@ function handleNetMessage(message)
 			Engine.PopGuiPage();
 			reportDisconnect(message.reason);
 			break;
-		
+
 		default:
 			error("Unrecognised netstatus type "+message.status);
 			break;
 		}
 		break;
-	
+
 	case "gamesetup":
 		if (message.data) // (the host gets undefined data on first connect, so skip that)
 		{
@@ -296,7 +296,7 @@ function handleNetMessage(message)
 
 		onGameAttributesChange();
 		break;
-	
+
 	case "players":
 		// Find and report all joinings/leavings
 		for (var host in message.hosts)
@@ -317,15 +317,15 @@ function handleNetMessage(message)
 		g_PlayerAssignments = message.hosts;
 		updatePlayerList();
 		break;
-	
+
 	case "start":
 		Engine.SwitchGuiPage("page_loading.xml", {
-			"attribs": g_GameAttributes, 
-			"isNetworked" : g_IsNetworked, 
+			"attribs": g_GameAttributes,
+			"isNetworked" : g_IsNetworked,
 			"playerAssignments": g_PlayerAssignments
 		});
 		break;
-	
+
 	case "chat":
 		addChatMessage({ "type": "message", "guid": message.guid, "text": message.text });
 		break;
@@ -339,13 +339,13 @@ function handleNetMessage(message)
 function getMapDisplayName(map)
 {
 	var mapData = loadMapData(map);
-	
+
 	if (!mapData || !mapData.settings || !mapData.settings.Name)
 	{	// Give some msg that map format is unsupported
 		log("Map data missing in scenario '"+map+"' - likely unsupported format");
 		return map;
 	}
-	
+
 	return mapData.settings.Name;
 }
 
@@ -356,13 +356,13 @@ function getSetting(settings, defaults, property)
 	{
 		return settings[property];
 	}
-	
+
 	// Use defaults
 	if (defaults && (property in defaults))
 	{
 		return defaults[property];
 	}
-	
+
 	return undefined;
 }
 
@@ -371,7 +371,7 @@ function initCivNameList()
 {
 	// Cache civ data
 	g_CivData = loadCivData();
-	
+
 	// Extract name/code, and skip civs that are explicitly disabled
 	// (intended for unusable incomplete civs)
 	var civList = [ { "name": civ.Name, "code": civ.Code }
@@ -380,7 +380,7 @@ function initCivNameList()
 
 	// Alphabetically sort the list, ignoring case
 	civList.sort(sortNameIgnoreCase);
-	
+
 	var civListNames = [ civ.name for each (civ in civList) ];
 	var civListCodes = [ civ.code for each (civ in civList) ];
 
@@ -401,41 +401,41 @@ function initMapNameList()
 	// TODO: Should verify these are valid maps before adding to list
 	var mapSelectionBox = getGUIObjectByName("mapSelection")
 	var mapFiles;
-	
+
 	switch (g_GameAttributes.mapType)
 	{
 	case "scenario":
 		mapFiles = getXMLFileList(g_GameAttributes.mapPath);
 		break;
-	
+
 	case "random":
 		mapFiles = getJSONFileList(g_GameAttributes.mapPath);
 		break;
-		
+
 	default:
 		error("initMapNameList: Unexpected map type '"+g_GameAttributes.mapType+"'");
 		return;
 	}
-	
+
 	// Apply map filter, if any defined
 	var mapList = [];
 	for (var i = 0; i < mapFiles.length; ++i)
 	{
 		var file = mapFiles[i];
 		var mapData = loadMapData(file);
-				
+
 		if (g_GameAttributes.mapFilter && mapData && testFilter(g_GameAttributes.mapFilter, mapData.settings))
 		{
 			mapList.push({ "name": getMapDisplayName(file), "file": file });
 		}
 	}
-	
+
 	// Alphabetically sort the list, ignoring case
 	mapList.sort(sortNameIgnoreCase);
-	
+
 	var mapListNames = [ map.name for each (map in mapList) ];
 	var mapListFiles = [ map.file for each (map in mapList) ];
-	
+
 	// Select the default map
 	var selected = mapListFiles.indexOf(g_GameAttributes.map);
 	// Default to the first element if list is not empty and we can't find the one we searched for
@@ -443,7 +443,7 @@ function initMapNameList()
 	{
 		selected = 0;
 	}
-	
+
 	// Update the list control
 	mapSelectionBox.list = mapListNames;
 	mapSelectionBox.list_data = mapListFiles;
@@ -456,7 +456,7 @@ function loadMapData(name)
 	{
 		return undefined;
 	}
-	
+
 	if (!g_MapData[name])
 	{
 		switch (g_GameAttributes.mapType)
@@ -464,17 +464,17 @@ function loadMapData(name)
 		case "scenario":
 			g_MapData[name] = Engine.LoadMapSettings(g_GameAttributes.mapPath+name);
 			break;
-			
+
 		case "random":
 			g_MapData[name] = parseJSONData(g_GameAttributes.mapPath+name+".json");
 			break;
-			
+
 		default:
 			error("loadMapData: Unexpected map type '"+g_GameAttributes.mapType+"'");
 			return undefined;
 		}
 	}
-	
+
 	return g_MapData[name];
 }
 
@@ -522,19 +522,19 @@ function selectNumPlayers(num)
 	{
 		return;
 	}
-	
+
 	// Network clients can't change number of players
 	if (g_IsNetworked && !g_IsController)
 	{
 		return;
 	}
-	
+
 	// Only meaningful for random maps
 	if (g_GameAttributes.mapType != "random")
 	{
 		return;
 	}
-	
+
 	// Update player data
 	var pData = g_GameAttributes.settings.PlayerData;
 	if (pData && num < pData.length)
@@ -550,7 +550,7 @@ function selectNumPlayers(num)
 			g_GameAttributes.settings.PlayerData.push(g_DefaultPlayerData[i]);
 		}
 	}
-	
+
 	updateGameAttributes();
 }
 
@@ -575,7 +575,7 @@ function selectMapType(type)
 
 	// Clear old map data
 	g_MapData = {};
-	
+
 	// Select correct path
 	switch (g_GameAttributes.mapType)
 	{
@@ -585,7 +585,7 @@ function selectMapType(type)
 		g_GameAttributes.map = (g_IsNetworked ? DEFAULT_NETWORKED_MAP : DEFAULT_OFFLINE_MAP);
 		g_GameAttributes.mapPath = "maps/scenarios/";
 		break;
-		
+
 	case "random":
 		g_GameAttributes.mapPath = "maps/random/";
 		g_GameAttributes.settings = {
@@ -593,7 +593,7 @@ function selectMapType(type)
 			Seed: Math.floor(Math.random() * 65536)
 		};
 		break;
-		
+
 	default:
 		error("selectMapType: Unexpected map type '"+g_GameAttributes.mapType+"'");
 		return;
@@ -617,9 +617,9 @@ function selectMapFilter(filterName)
 	{
 		return;
 	}
-	
+
 	g_GameAttributes.mapFilter = filterName;
-	
+
 	initMapNameList();
 
 	updateGameAttributes();
@@ -639,7 +639,7 @@ function selectMap(name)
 	{
 		return;
 	}
-	
+
 	// Return if we have no map
 	if (!name)
 	{
@@ -648,7 +648,7 @@ function selectMap(name)
 
 	var mapData = loadMapData(name);
 	var mapSettings = (mapData && mapData.settings ? deepcopy(mapData.settings) : {});
-	
+
 	// Copy any new settings
 	g_GameAttributes.map = name;
 	g_GameAttributes.script = mapSettings.Script;
@@ -674,7 +674,7 @@ function selectMap(name)
 	else
 	{
 		var numPlayers = (mapSettings.PlayerData ? mapSettings.PlayerData.length : g_GameAttributes.settings.PlayerData.length);
-		
+
 		for (var guid in g_PlayerAssignments)
 		{	// Unassign extra players
 			var player = g_PlayerAssignments[guid].player;
@@ -685,7 +685,7 @@ function selectMap(name)
 			}
 		}
 	}
-	
+
 	updateGameAttributes();
 }
 
@@ -696,13 +696,13 @@ function launchGame()
 		error("Only host can start game");
 		return;
 	}
-	
+
 	// Check that we have a map
 	if (!g_GameAttributes.map)
 	{
 		return;
 	}
-	
+
 	if (g_IsNetworked)
 	{
 		Engine.SetNetworkGameAttributes(g_GameAttributes);
@@ -726,8 +726,8 @@ function launchGame()
 
 		Engine.StartGame(g_GameAttributes, playerID);
 		Engine.SwitchGuiPage("page_loading.xml", {
-			"attribs": g_GameAttributes, 
-			"isNetworked" : g_IsNetworked, 
+			"attribs": g_GameAttributes,
+			"isNetworked" : g_IsNetworked,
 			"playerAssignments": g_PlayerAssignments
 		});
 	}
@@ -738,13 +738,13 @@ function launchGame()
 function onGameAttributesChange()
 {
 	g_IsInGuiUpdate = true;
-	
+
 	// Don't set any attributes here, just show the changes in GUI
-	
+
 	var mapName = g_GameAttributes.map || "";
 	var mapSettings = g_GameAttributes.settings;
 	var numPlayers = (mapSettings.PlayerData ? mapSettings.PlayerData.length : MAX_PLAYERS);
-	
+
 	// Update some controls for clients
 	if (!g_IsController)
 	{
@@ -756,10 +756,10 @@ function onGameAttributesChange()
 		mapTypeHeading.caption = "Match Type: "+mapTypeSelection.list[idx];
 		var mapSelectionBox = getGUIObjectByName("mapSelection");
 		mapSelectionBox.selected = mapSelectionBox.list_data.indexOf(mapName);
-		
+
 		initMapNameList();
 	}
-	
+
 	// Controls common to all map types
 	var revealMap = getGUIObjectByName("revealMap");
 	var victoryCondition = getGUIObjectByName("victoryCondition");
@@ -773,7 +773,7 @@ function onGameAttributesChange()
 
 	var sizeIdx = (g_MapSizes.tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.tiles.indexOf(mapSettings.Size) : g_MapSizes.default);
 	var victoryIdx = (VICTORY_DATA.indexOf(mapSettings.GameType) != -1 ? VICTORY_DATA.indexOf(mapSettings.GameType) : VICTORY_DEFAULTIDX);
-	
+
 	// Handle map type specific logic
 	switch (g_GameAttributes.mapType)
 	{
@@ -786,12 +786,12 @@ function onGameAttributesChange()
 			revealMap.hidden = false;
 			victoryCondition.hidden = false;
 			lockTeams.hidden = false;
-			
+
 			mapSizeText.caption = "Map size:";
 			mapSize.selected = sizeIdx;
 			revealMapText.caption = "Reveal map:";
 			revealMap.checked = (mapSettings.RevealMap ? true : false);
-			
+
 			victoryConditionText.caption = "Victory condition:";
 			victoryCondition.selected = victoryIdx;
 			lockTeamsText.caption = "Teams locked:";
@@ -804,9 +804,9 @@ function onGameAttributesChange()
 			victoryConditionText.caption = "Victory condition: " + VICTORY_TEXT[victoryIdx];
 			lockTeamsText.caption = "Teams locked: " + (mapSettings.LockTeams === undefined || mapSettings.LockTeams ? "Yes" : "No");
 		}
-		
+
 		break;
-	
+
 	case "scenario":
 		// For scenario just reflect settings for the current map
 		numPlayersBox.hidden = true;
@@ -814,33 +814,33 @@ function onGameAttributesChange()
 		revealMap.hidden = true;
 		victoryCondition.hidden = true;
 		lockTeams.hidden = true;
-		
+
 		mapSizeText.caption = "Map size: Default";
 		revealMapText.caption = "Reveal map: " + (mapSettings.RevealMap ? "Yes" : "No");
 		victoryConditionText.caption = "Victory condition: " + VICTORY_TEXT[victoryIdx];
 		lockTeamsText.caption = "Teams locked: " + (mapSettings.LockTeams === undefined || mapSettings.LockTeams  ? "Yes" : "No");
-		
+
 		break;
-		
+
 	default:
 		error("onGameAttributesChange: Unexpected map type '"+g_GameAttributes.mapType+"'");
 		return;
 	}
-	
+
 	// Display map name
 	getGUIObjectByName("mapInfoName").caption = getMapDisplayName(mapName);
-	
+
 	// Load the description from the map file, if there is one
 	var description = mapSettings.Description || "Sorry, no description available.";
-	
+
 	// Describe the number of players
 	var playerString = numPlayers + " " + (numPlayers == 1 ? "player" : "players") + ". ";
-	
+
 	for (var i = 0; i < MAX_PLAYERS; ++i)
 	{
 		// Show only needed player slots
 		getGUIObjectByName("playerBox["+i+"]").hidden = (i >= numPlayers);
-		
+
 		// Show player data or defaults as necessary
 		if (i < numPlayers)
 		{
@@ -854,15 +854,15 @@ function onGameAttributesChange()
 			// Player data / defaults
 			var pData = mapSettings.PlayerData ? mapSettings.PlayerData[i] : {};
 			var pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[i] : {};
-			
+
 			// Common to all game types
 			var color = iColorToString(getSetting(pData, pDefs, "Colour"));
 			pColor.sprite = "colour:"+color+" 100";
 			pName.caption = getSetting(pData, pDefs, "Name");
-			
+
 			var team = getSetting(pData, pDefs, "Team");
 			var civ = getSetting(pData, pDefs, "Civ");
-			
+
 			// For clients or scenarios, hide some player dropdowns
 			if (!g_IsController || g_GameAttributes.mapType == "scenario")
 			{
@@ -870,7 +870,7 @@ function onGameAttributesChange()
 				pCiv.hidden = true;
 				pTeamText.hidden = false;
 				pTeam.hidden = true;
-				
+
 				// Set text values
 				pCivText.caption = g_CivData[civ].Name;
 				pTeamText.caption = (team !== undefined && team >= 0) ? team+1 : "-";
@@ -881,7 +881,7 @@ function onGameAttributesChange()
 				pCiv.hidden = false;
 				pTeamText.hidden = true;
 				pTeam.hidden = false;
-				
+
 				// Set dropdown values
 				pCiv.selected = (civ ? pCiv.list_data.indexOf(civ) : 0);
 				pTeam.selected = (team !== undefined && team >= 0) ? team+1 : 0;
@@ -890,7 +890,7 @@ function onGameAttributesChange()
 	}
 
 	getGUIObjectByName("mapInfoDescription").caption = playerString + description;
-	
+
 	g_IsInGuiUpdate = false;
 
 	// Game attributes include AI settings, so update the player list
@@ -903,7 +903,7 @@ function updateGameAttributes()
 	{
 		Engine.SetNetworkGameAttributes(g_GameAttributes);
 	}
-	else 
+	else
 	{
 		onGameAttributesChange();
 	}
@@ -918,13 +918,13 @@ function updatePlayerList()
 	var assignments = [];
 	var aiAssignments = {};
 	var noAssignment;
-	
+
 	for (var guid in g_PlayerAssignments)
 	{
 		var name = g_PlayerAssignments[guid].name;
 		var hostID = hostNameList.length;
 		var player = g_PlayerAssignments[guid].player;
-		
+
 		hostNameList.push(name);
 		hostGuidList.push(guid);
 		assignments[player] = hostID;
@@ -940,14 +940,14 @@ function updatePlayerList()
 	noAssignment = hostNameList.length;
 	hostNameList.push("[color=\"90 90 90 255\"]Unassigned");
 	hostGuidList.push("");
-	
+
 	for (var i = 0; i < MAX_PLAYERS; ++i)
 	{
 		let playerSlot = i;
 		let playerID = i+1; // we don't show Gaia, so first slot is ID 1
-		
+
 		var selection = assignments[playerID];
-		
+
 		var configButton = getGUIObjectByName("playerConfig["+i+"]");
 		configButton.hidden = true;
 
@@ -966,7 +966,7 @@ function updatePlayerList()
 				{
 					selection = noAssignment;
 				}
-				
+
 				// Since no human is assigned, show the AI config button
 				if (g_IsController)
 				{
@@ -1005,7 +1005,7 @@ function updatePlayerList()
 					}
 				}
 			}
-			
+
 			var assignBox = getGUIObjectByName("playerAssignment["+i+"]");
 			assignBox.list = hostNameList;
 			assignBox.list_data = hostGuidList;
@@ -1096,10 +1096,10 @@ function addChatMessage(msg)
 {
 	var username = escapeText(msg.username || g_PlayerAssignments[msg.guid].name);
 	var message = escapeText(msg.text);
-	
+
 	// TODO: Maybe host should have distinct font/color?
-	var color = "0 0 0";
-	
+	var color = "white";
+
 	if (g_PlayerAssignments[msg.guid] && g_PlayerAssignments[msg.guid].player != 255)
 	{	// Valid player who has been assigned - get player colour
 		var player = g_PlayerAssignments[msg.guid].player - 1;
@@ -1108,19 +1108,19 @@ function addChatMessage(msg)
 		var mapSettings = (mapData && mapData.settings ? mapData.settings : {});
 		var pData = mapSettings.PlayerData ? mapSettings.PlayerData[player] : {};
 		var pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[player] : {};
-		
+
 		color = iColorToString(getSetting(pData, pDefs, "Colour"));
 	}
-	
+
 	var formatted;
 	switch (msg.type)
 	{
 	case "connect":
-		formatted = '[font="serif-bold-13"][color="'+ color +'"]' + username + '[/color][/font] [color="64 64 64"]has joined[/color]';
+		formatted = '[font="serif-bold-13"][color="'+ color +'"]' + username + '[/color][/font] [color="gold"]has joined[/color]';
 		break;
 
 	case "disconnect":
-		formatted = '[font="serif-bold-13"][color="'+ color +'"]' + username + '[/color][/font] [color="64 64 64"]has left[/color]';
+		formatted = '[font="serif-bold-13"][color="'+ color +'"]' + username + '[/color][/font] [color="gold"]has left[/color]';
 		break;
 
 	case "message":
@@ -1148,7 +1148,7 @@ function addFilter(name, filterFunc)
 		var newFilter = {};
 		newFilter.name = name;
 		newFilter.filter = filterFunc;
-		
+
 		g_MapFilters.push(newFilter);
 	}
 	else
@@ -1165,7 +1165,7 @@ function getFilters()
 	{
 		filters.push(g_MapFilters[i].name);
 	}
-	
+
 	return filters;
 }
 
@@ -1179,7 +1179,7 @@ function testFilter(name, mapSettings)
 			return g_MapFilters[i].filter(mapSettings);
 		}
 	}
-	
+
 	error("Invalid map filter: "+name);
 	return false;
 }
@@ -1191,7 +1191,7 @@ function keywordTestAND(keywords, matches)
 	{
 		return false;
 	}
-	
+
 	for (var m = 0; m < matches.length; ++m)
 	{	// Fail on not match
 		if (keywords.indexOf(matches[m]) == -1)
@@ -1209,7 +1209,7 @@ function keywordTestOR(keywords, matches)
 	{
 		return false;
 	}
-	
+
 	for (var m = 0; m < matches.length; ++m)
 	{	// Success on match
 		if (keywords.indexOf(matches[m]) != -1)

@@ -27,13 +27,13 @@
 	==========================================
 	-->
 
-	<style 	name="thinWheatWindow"
+<!--	<style 	name="thinWheatWindow"
 		sprite="thinWheatWindowSand"
 		buffer_zone="10"
 		text_align="left"
 		text_valign="top"
 	/>
-	
+
 	<style 	name="wheatWindow"
 		sprite="wheatWindowSand"
 		buffer_zone="10"
@@ -54,7 +54,7 @@
 		sprite="wheatWindowTitle"
 		text_align="center"
 		text_valign="center"
-	/>
+	/>-->
 
 	<!--
 	==========================================
@@ -62,7 +62,7 @@
 	==========================================
 	-->
 
-	<style 	name="skin*Hele*Window"
+<!--	<style 	name="skin*Hele*Window"
 		sprite="bkGraniteBorderBlack"
 		buffer_zone="10"
 		text_align="left"
@@ -83,7 +83,7 @@
 		sprite_pressed="wheatButtonOver"
 		text_align="center"
 		text_valign="center"
-	/>
+	/>-->
 
 	<!--
 	==========================================
@@ -91,7 +91,7 @@
 	==========================================
 	-->
 
-	<style 	name="wheatButton"
+<!--	<style 	name="wheatButton"
 		sprite="wheatButton"
 		sprite_disabled="wheatButtonDisabled"
 		sprite_over="wheatButtonOver"
@@ -186,8 +186,8 @@
 		textcolor_selected="white"
 		text_align="left"
 		text_valign="center"
-	/>
-	
+	/>-->
+
 	<!--
 	This control is new, so here's a summary:
 	* dropdown_buffer: vertical gap between dropdown and list
@@ -207,7 +207,7 @@
 		* textcolor_selected=text color hobered item
 	-->
 
-	<style 	name="wheatDropDown"
+<!--	<style 	name="wheatDropDown"
 		dropdown_buffer="1"
 		font="serif-13"
 		textcolor="black"
@@ -229,7 +229,7 @@
 
 		scrollbar="true"
 		scrollbar_style="wheatScrollBar"
-	/>
+	/>-->
 
 	<!--
 	==========================================
@@ -243,12 +243,12 @@
 		=============================================================
 		-->
 
-		<style 	name="wheatTextHeadMaxBlack"
+<!--		<style 	name="wheatTextHeadMaxBlack"
 			ghost="true"
 			font="serif-bold-18"
 			text_align="center"
 			textcolor="black"
-		/>
+		/>-->
 
 		<!--
 		=============================================================
@@ -257,11 +257,11 @@
 		=============================================================
 		-->
 
-		<style 	name="wheatTextHeadBlack"
+<!--		<style 	name="wheatTextHeadBlack"
 			ghost="true"
 			font="serif-16"
 			textcolor="black"
-		/>
+		/>-->
 
 		<!--
 		=============================================================
@@ -270,11 +270,11 @@
 		=============================================================
 		-->
 
-		<style 	name="wheatTextLabelBlack"
+<!--		<style 	name="wheatTextLabelBlack"
 			ghost="true"
 			font="serif-14"
 			textcolor="black"
-		/>
+		/>-->
 
 		<!--
 		=============================================================
@@ -283,7 +283,7 @@
 		=============================================================
 		-->
 
-		<style 	name="fancyTextHeadGold"
+<!--		<style 	name="fancyTextHeadGold"
 			ghost="true"
 			font="serif-16"
 			textcolor="gold"
@@ -293,7 +293,7 @@
 			ghost="true"
 			font="serif-14"
 			textcolor="white"
-		/>
+		/>-->
 
 	<!--
 	==========================================
@@ -301,8 +301,8 @@
 	==========================================
 	-->
 
-	<style	name="wheatBorderBlack"
-		scrollbar_style="wheatScrollBar"	
+<!--	<style	name="wheatBorderBlack"
+		scrollbar_style="wheatScrollBar"
 		sprite="bkBorderBlack"
 		sprite_selectarea="bkFillGray"
 		textcolor="black"
@@ -322,7 +322,7 @@
 		sprite_selectarea="bkFillGray"
 		textcolor="black"
 		textcolor_selected="white"
-	/>
+	/>-->
 
 	<!--
 	==========================================
@@ -330,12 +330,12 @@
 	==========================================
 	-->
 
-	<style name="wheatProgressBarBlue"
+<!--	<style name="wheatProgressBarBlue"
 		sprite_background="bkBorderBlack"
 		sprite_bar="bkBlueBorderBlack"
 		ghost="true"
 		tooltip_style="snToolTip"
 		tooltip="(TBA)"
-	/>
+	/>-->
 
 </styles>

@@ -11,7 +11,7 @@
 	==========================================
 	-->
 
-	<object	type="image" sprite="bkFillBlack"/>
+	<object	type="image" sprite="BackgroundBlack"/>
 
 	<object	name="pg">
 
@@ -84,11 +84,11 @@
 
 You can automatically send us anonymous feedback that will help us fix bugs, and improve performance and compatibility.
 			</object>
-			<object type="button" style="wheatButton" size="4 100%-36 150 100%-4">
-				[font="serif-bold-16"]Enable feedback
+			<object type="button" style="StoneButton" size="8 100%-36 146 100%-8">
+				Enable feedback
 				<action on="Press">Engine.SetUserReportEnabled(true);</action>
 			</object>
-			<object type="button" style="wheatButton" size="100%-150 100%-36 100%-4 100%-4">
+			<object type="button" style="StoneButton" size="100%-146 100%-36 100%-8 100%-8">
 				Technical details
 				<action on="Press">Engine.PushGuiPage("page_manual.xml", { "page": "userreport" });</action>
 			</object>
@@ -125,27 +125,27 @@ Status: $status.
 				name="userReportMessageInput"
 				size="4 130 100%-4 200"
 				type="input"
-				style="wheatInput"
+				style="StoneInput"
 				multiline="true"
 				scrollbar="true"
-				scrollbar_style="wheatScrollBar"
+				scrollbar_style="StoneScrollBar"
 			/>
 
-			<object size="100%-124 204 100%-4 236" type="button" style="wheatButton">
+			<object size="100%-124 204 100%-4 232" type="button" style="StoneButton">
 				Send Message
 				<action on="Press">submitUserReportMessage();</action>
 			</object>
 
-			<object type="button" style="wheatButton" size="4 100%-36 150 100%-4">
+			<object type="button" style="StoneButton" size="8 100%-36 146 100%-8">
 				Disable feedback
 				<action on="Press">Engine.SetUserReportEnabled(false);</action>
 			</object>
-			<object type="button" style="wheatButton" size="100%-150 100%-36 100%-4 100%-4">
+			<object type="button" style="StoneButton" size="100%-146 100%-36 100%-8 100%-8">
 				Technical details
 				<action on="Press">Engine.PushGuiPage("page_manual.xml", { "page": "userreport" });</action>
 			</object>
 		</object>
-             
+
 
 		<!--
 		==========================================
@@ -169,14 +169,14 @@ Status: $status.
                                 ghost="true"
                                 size="100%-2 0 100% 100%"
                         />
-                    
+
                         <object	name="productLogo"
                                 type="image"
                                 sprite="productLogo"
                                 ghost="true"
                                 size="50%-110 30 50%+110 130"
                         />
-                        
+
                         <object name="mainMenuButtons"
                                 type="image"
                                 size="8 156 100%-8 356"
@@ -188,7 +188,7 @@ Status: $status.
                                         size="100% 0 100%+8 100%"
                                         ghost="false"
                                 />
-                            
+
                                 <!-- LEARN TO PLAY BUTTON -->
 				<object name="menuLearnToPlayButton"
                                       type="button"
@@ -205,7 +205,7 @@ Status: $status.
                                                 ]]>
                                         </action>
                                </object>
-                            
+
                                <!-- SINGLEPLAYER BUTTON -->
                                <object name="menuSinglePlayerButton"
                                        style="StoneButtonFancy"
@@ -221,7 +221,7 @@ Status: $status.
                                                 ]]>
                                         </action>
                                 </object>
-                               
+
                                 <!-- MULTIPLAYER BUTTON -->
                                 <object	name="menuMultiplayerButton"
                                         style="StoneButtonFancy"
@@ -237,7 +237,7 @@ Status: $status.
                                             ]]>
                                         </action>
                                 </object>
-                                
+
                                 <!-- TOOLS AND OPTIONS BUTTON -->
                                 <object name="menuToolsAndOptionsButton"
                                         style="StoneButtonFancy"
@@ -253,7 +253,7 @@ Status: $status.
                                                 ]]>
                                         </action>
                                 </object>
-                                
+
                                 <!-- HISTORY BUTTON -->
                                 <object name="menuHistoryButton"
                                         style="StoneButtonFancy"
@@ -270,7 +270,7 @@ Status: $status.
                                                 ]]>
                                         </action>
                                 </object>
-                                
+
                                 <!-- EXIT BUTTON -->
                                 <object name="menuExitButton"
                                         type="button"
@@ -291,56 +291,56 @@ Status: $status.
                                 </object>
                         </object>
 
-			<!-- PRE-RELEASE INFO --> 
+			<!-- PRE-RELEASE INFO -->
 			<object size="8 100%-340 100%-8 100%-100"
-				type="image" 
+				type="image"
 				style="TranslucentPanelThinBorder"
 			>
 
-				<!-- PRE-RELEASE WARNING --> 
-				<object 
-					style="fancyTextHeadWhite" 
-					type="text" 
+				<!-- PRE-RELEASE WARNING -->
+				<object
+					font="serif-14"
+					type="text"
 					textcolor="white"
 					size="8 8 100%-8 100%-36"
                                         ghost="true"
-				> 
+				>
 [font="serif-bold-18"]Alpha Version[/font]
 
-WARNING: This is an early development version of the game. Many features have not been added yet. 
+WARNING: This is an early development version of the game. Many features have not been added yet.
 
-Get involved at: wildfiregames.com/0ad 
+Get involved at: wildfiregames.com/0ad
 				</object>
 
-				<!-- CONTACT METHODS --> 
-				<object type="button" 
+				<!-- CONTACT METHODS -->
+				<object type="button"
 					style="StoneButton"
                                         tooltip_style="pgToolTip"
                                         tooltip="Click to open wildfiregames.com/0ad in your web browser."
 					size="8 100%-36 50%-4 100%-8"
-				> 
-					Website 
-					<action on="Press"><![CDATA[ 
-						var url = "http://wildfiregames.com/0ad/"; 
-						Engine.OpenURL(url); 
-						messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2); 
-					]]></action> 
-				</object> 
-	 	 
+				>
+					Website
+					<action on="Press"><![CDATA[
+						var url = "http://wildfiregames.com/0ad/";
+						Engine.OpenURL(url);
+						messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2);
+					]]></action>
+				</object>
+
 				<object type="button"
 					style="StoneButton"
                                         tooltip_style="pgToolTip"
                                         tooltip="Click to chat in IRC. (#0ad at webchat.quakenet.org)"
-					size="50%+4 100%-36 100%-8 100%-8" 
-				> 
-					IRC 
-					<action on="Press"><![CDATA[ 
-						var url = "http://webchat.quakenet.org/?channels=0ad"; 
-						Engine.OpenURL(url); 
-						messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2); 
-					]]></action> 
-				</object> 
-			</object> 
+					size="50%+4 100%-36 100%-8 100%-8"
+				>
+					IRC
+					<action on="Press"><![CDATA[
+						var url = "http://webchat.quakenet.org/?channels=0ad";
+						Engine.OpenURL(url);
+						messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2);
+					]]></action>
+				</object>
+			</object>
 
 			<!-- LOGO AND BUILD VERSION -->
 			<object
@@ -375,16 +375,16 @@ Get involved at: wildfiregames.com/0ad
 					this.caption = "Build: " + buildTime(0) + " - " + buildTime(2);
 				]]></action>
 			</object>
-                        
+
                 </object>
-                
-                
+
+
                 <!--
 		==========================================
 		- SUBMENU
 		==========================================
 		-->
-                
+
                 <object name="submenuScreen"
 			type="image"
                         hidden="true"
@@ -394,7 +394,7 @@ Get involved at: wildfiregames.com/0ad
                                 getGUIObjectByName("submenu").hidden = true;
                                 getGUIObjectByName("MainMenuPanelRightBorderTop").size = "100%-2 0 100% 100%";
 			</action>
-                        
+
                         <!-- submenu -->
                         <object name="submenu"
                                 type="image"
@@ -442,7 +442,7 @@ Get involved at: wildfiregames.com/0ad
                                                 ]]></action>
                                         </object>
                                 </object>
-                                
+
                                 <!-- submenuMultiplayer -->
                                 <object name="submenuMultiplayer"
                                               type="image"
@@ -466,7 +466,7 @@ Get involved at: wildfiregames.com/0ad
                                                         Engine.PushGuiPage("page_gamesetup_mp.xml", "join");
                                                 ]]></action>
                                         </object>
-                                        
+
                                         <object name="subMenuMultiplayerHostButton"
                                                 type="button"
                                                 style="StoneButtonFancy"
@@ -531,19 +531,19 @@ Get involved at: wildfiregames.com/0ad
                                 </object>
                         </object><!-- end of submenu -->
                 </object><!-- end of submenu screen -->
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--
 		<object name="pgCampaignsBt"
 			style="pgButton"
@@ -634,7 +634,7 @@ Get involved at: wildfiregames.com/0ad
 -->
 
 
-              
+
 
 
 
@@ -667,7 +667,7 @@ Get involved at: wildfiregames.com/0ad
 				// Get credits text.
 				var creditsArray  = readFileLines("gui/text/credits.txt");
 
-				// Populate credits list.		
+				// Populate credits list.
 				for (var creditsIndex = 0; creditsIndex < creditsArray.length; creditsIndex++)
 				{
 					// Add credit row to the end of the object's list.
@@ -735,7 +735,7 @@ Get involved at: wildfiregames.com/0ad
 		type="image"
 		z="90"
 		hidden="true"
-		sprite="bkTranslucent" 
+		sprite="bkTranslucent"
 	>-->
 
 		<!--
@@ -764,9 +764,9 @@ Get involved at: wildfiregames.com/0ad
 					closeMainMenuSubWindow ("pgCampaigns");
 				]]></action>
 			</object>
--->		
+-->
 			<!-- Add campaign screen controls here later -->
-<!--		
+<!--
 		</object>
 -->
 		<!--
@@ -831,7 +831,7 @@ Get involved at: wildfiregames.com/0ad
 							global.curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
 							g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
 						}
-					]]></action>	
+					]]></action>
 				</object>
 -->
 				<!--
@@ -911,7 +911,7 @@ Get involved at: wildfiregames.com/0ad
 							global.curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
 							g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
 						}
-					]]></action>	
+					]]></action>
 				</object>
 -->
 				<!--
@@ -987,7 +987,7 @@ Get involved at: wildfiregames.com/0ad
 //							global.curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
 //							g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
 						}
-					]]></action>	
+					]]></action>
 				</object>
 -->
 				<!--
@@ -1063,7 +1063,7 @@ Get involved at: wildfiregames.com/0ad
 //							global.curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
 //							g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
 						}
-					]]></action>	
+					]]></action>
 				</object>
 -->
 				<!--
@@ -1138,7 +1138,7 @@ Get involved at: wildfiregames.com/0ad
 //							global.curr_music.setGain (getGUIObjectByName ("pgOptionsAudioMusicGain").caption);
 //							g_ConfigDB.system["sound.mastergain"] = getGUIObjectByName ("pgOptionsAudioMusicGain").caption;
 						}
-					]]></action>	
+					]]></action>
 				</object>
 
 			</object>
@@ -1486,7 +1486,7 @@ Get involved at: wildfiregames.com/0ad
 					type="button"
 					size="80% 91% 99% 99%"
 					tooltip="Display System Information."
-					tooltip_style="pgFloatingToolTip"				
+					tooltip_style="pgFloatingToolTip"
 				>System Info
 					<action on="Press"><![CDATA[
 						// Display System Information.
@@ -1537,7 +1537,7 @@ Get involved at: wildfiregames.com/0ad
 					]]></action>
 					<action on="Press"><![CDATA[
 						// Clicking the checkbox reverses the buttons
-					]]></action>	
+					]]></action>
 				</object>
 
 			</object>
@@ -1583,7 +1583,7 @@ Get involved at: wildfiregames.com/0ad
 					openOptionsTab ("pgOptionsGame");
 				]]></action>
 			</object>
--->	
+-->
 			<!--
 			===============================================
 			- OPTIONS SCREEN - OK BUTTON
@@ -1618,15 +1618,15 @@ Get involved at: wildfiregames.com/0ad
 				type="button"
 				size="60% 92% 90% 100%"
 				tooltip="Close Options Screen, abandoning all changes."
-				tooltip_style="pgFloatingToolTip"				
+				tooltip_style="pgFloatingToolTip"
 			>Cancel
 				<action on="Press"><![CDATA[
-					// Close Options Screen, abandoning all changes.				
+					// Close Options Screen, abandoning all changes.
 					closeMainMenuSubWindow ("pgOptions");
 				]]></action>
 			</object>
-			
-		</object>						
+
+		</object>
 -->
 		<!--
 		===============================================
@@ -1679,5 +1679,5 @@ Get involved at: wildfiregames.com/0ad
 
 <!--END OF pgSubWindow-->
 <!--	</object>-->
-        
+
 </objects>

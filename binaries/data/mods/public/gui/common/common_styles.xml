@@ -4,10 +4,6 @@
 
 
 
-
-
-
-
 	<!--
 	==========================================
 	MENU TEXT STYLES
@@ -98,6 +94,14 @@
 		text_valign="center"
 	/>
 
+	<style name="ChatText"
+		font="serif-9"
+		textcolor="white"
+		text_align="left"
+		text_valign="top"
+	/>
+
+
 
 
 
@@ -114,7 +118,7 @@
 	MENU WINDOW STYLES
 	==========================================
 	-->
-        
+
         <style 	name="TranslucentPanel"
 		sprite="BackgroundTranslucent"
 		buffer_zone="10"
@@ -123,7 +127,7 @@
 		text_align="left"
 		text_valign="top"
 	/>
-        
+
         <style 	name="TranslucentPanelThinBorder"
 		sprite="TranslucentPanelThinBorder"
 		buffer_zone="10"
@@ -139,7 +143,7 @@
 		text_align="left"
 		text_valign="top"
 	/>
-        
+
         <style 	name="SubmenuPanel"
 		sprite="SubmenuPanel"
 		buffer_zone="10"

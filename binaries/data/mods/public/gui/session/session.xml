@@ -32,15 +32,15 @@
 		<!-- ================================  ================================ -->
 		<!-- HOTKEYS (For some reason, they won't work properly unless outside menu) -->
 		<!-- ================================  ================================ -->
-		
+
 		<!-- Exit button Hotkey  -->
 			<!--
 				<action on="Press"><![CDATA[
 					messageBox(400, 200, "Do you really want to quit?", "Confirmation", 0,
 						["Yes", "No!"], [leaveGame, null]);
-				]]></action> 
+				]]></action>
 			-->
-		
+
 		<object hotkey="leave">
 			<action on="Press">escapeKeyAction();</action>
 		</object>
@@ -59,7 +59,7 @@
 		<object hotkey="pause">
 			<action on="Press">togglePause();</action>
 		</object>
-		
+
 		<!-- Delete button Hotkey (For some reason it won't work when the console is visible -->
 		<object hotkey="session.kill">
 			<action on="Press">performCommand(g_Selection.toList()[0], "delete");</action>
@@ -69,16 +69,16 @@
 		<object hotkey="camera.follow">
 			<action on="Press">setCameraFollow(g_Selection.toList()[0]);</action>
 		</object>
-		
+
 		<!-- Find idle warrior - TODO: Potentially move this to own UI button? -->
 		<object hotkey="selection.idlewarrior">
 			<action on="Press">findIdleUnit(["Hero", "Super", "CitizenSoldier", "Siege", "Warship"]);</action>
 		</object>
-		
+
 		<!-- ================================  ================================ -->
 		<!-- Developer / Debug items -->
 		<!-- ================================  ================================ -->
-		
+
 		<!-- Debug text -->
 		<object name="debug"
 			type="text"
@@ -96,7 +96,7 @@
 			</action>
 
 			<object size="0 0 100%-18 16" type="text" style="devCommandsText">Control all units</object>
-			<object size="100%-16 0 100% 16" type="checkbox" name="devControlAll" style="wheatCrossBox">
+			<object size="100%-16 0 100% 16" type="checkbox" name="devControlAll" style="StoneCrossBox">
 				<action on="Press">
 					g_DevSettings.controlAll = this.checked;
 					Engine.PostNetworkCommand( {"type": "control-all", "flag": this.checked} );
@@ -104,45 +104,45 @@
 			</object>
 
 			<object size="0 16 100%-18 32" type="text" style="devCommandsText">Display selection state</object>
-			<object size="100%-16 16 100% 32" type="checkbox" name="devDisplayState" style="wheatCrossBox"/>
+			<object size="100%-16 16 100% 32" type="checkbox" name="devDisplayState" style="StoneCrossBox"/>
 
 			<object size="0 32 100%-18 48" type="text" style="devCommandsText">Pathfinder overlay</object>
-			<object size="100%-16 32 100% 48" type="checkbox" style="wheatCrossBox">
+			<object size="100%-16 32 100% 48" type="checkbox" style="StoneCrossBox">
 				<action on="Press">Engine.GuiInterfaceCall("SetPathfinderDebugOverlay", this.checked);</action>
 			</object>
 
 			<object size="0 48 100%-18 64" type="text" style="devCommandsText">Obstruction overlay</object>
-			<object size="100%-16 48 100% 64" type="checkbox" style="wheatCrossBox">
+			<object size="100%-16 48 100% 64" type="checkbox" style="StoneCrossBox">
 				<action on="Press">Engine.GuiInterfaceCall("SetObstructionDebugOverlay", this.checked);</action>
 			</object>
 
 			<object size="0 64 100%-18 80" type="text" style="devCommandsText">Unit motion overlay</object>
-			<object size="100%-16 64 100% 80" type="checkbox" style="wheatCrossBox">
+			<object size="100%-16 64 100% 80" type="checkbox" style="StoneCrossBox">
 				<action on="Press">g_Selection.SetMotionDebugOverlay(this.checked);</action>
 			</object>
 
 			<object size="0 80 100%-18 96" type="text" style="devCommandsText">Range overlay</object>
-			<object size="100%-16 80 100% 96" type="checkbox" style="wheatCrossBox">
+			<object size="100%-16 80 100% 96" type="checkbox" style="StoneCrossBox">
 				<action on="Press">Engine.GuiInterfaceCall("SetRangeDebugOverlay", this.checked);</action>
 			</object>
 
 			<object size="0 96 100%-18 112" type="text" style="devCommandsText">Restrict camera</object>
-			<object size="100%-16 96 100% 112" type="checkbox" style="wheatCrossBox" checked="true">
+			<object size="100%-16 96 100% 112" type="checkbox" style="StoneCrossBox" checked="true">
 				<action on="Press">gameView.constrainCamera = this.checked;</action>
 			</object>
 
 			<object size="0 112 100%-18 128" type="text" style="devCommandsText">Reveal map</object>
-			<object name="devCommandsRevealMap" size="100%-16 112 100% 128" type="checkbox" style="wheatCrossBox">
+			<object name="devCommandsRevealMap" size="100%-16 112 100% 128" type="checkbox" style="StoneCrossBox">
 				<action on="Press">Engine.PostNetworkCommand({"type": "reveal-map", "enable": this.checked});</action>
 			</object>
 
 			<object size="0 128 100%-18 144" type="text" style="devCommandsText">Enable time warp</object>
-			<object size="100%-16 128 100% 144" type="checkbox" name="devTimeWarp" style="wheatCrossBox">
+			<object size="100%-16 128 100% 144" type="checkbox" name="devTimeWarp" style="StoneCrossBox">
 				<action on="Press">Engine.EnableTimeWarpRecording(this.checked ? 10 : 0);</action>
 			</object>
 
 			<object size="0 144 100%-18 160" type="text" style="devCommandsText">Promote selected units</object>
-			<object size="100%-16 144 100% 160" type="button" style="wheatCrossBox">
+			<object size="100%-16 144 100% 160" type="button" style="StoneCrossBox">
 				<action on="Press">Engine.PostNetworkCommand({"type": "promote", "entities": g_Selection.toList()});</action>
 			</object>
 		</object>
@@ -194,7 +194,7 @@
 			</object>
 
 		</object>
-		
+
 		<!-- ================================  ================================ -->
 		<!-- Menu -->
 		<!-- ================================  ================================ -->
@@ -206,7 +206,7 @@
                     	<action on="MouseEnter">
                                 closeMenu();
 			</action>
-                        
+
                         <object name="menu"
                                 style="StonePanelThinBorder"
                                 type="image"
@@ -214,7 +214,7 @@
                                 hidden="true"
                         >
                                 <object size="4 36 100%-4 50%+20">
-                                    
+
                                         <!-- Settings button -->
                                         <object type="button"
                                                 name="settingsButton"
@@ -284,45 +284,45 @@
                     	<object name="sessionDialogTitleBar" size="50%-96 -16 50%+96 16" type="image" style="StoneDialogTitleBar">
 				<object name="sessionDialogTitle" type="text" style="TitleText" size="0 -2 100% 100%">Settings</object>
 			</object>
-                        
+
                         <object style="TranslucentPanelThinBorder"
                                 type="image"
                                 size="32 32 100%-32 100%-64"
                         >
                                 <!-- Settings / shadows -->
                                 <object size="0 10 100%-80 35" type="text" style="RightLabelText" ghost="true">Enable Shadows</object>
-                                <object name="shadowsCheckbox" size="100%-56 15 100%-30 40" type="checkbox" style="wheatCrossBox" checked="true">
+                                <object name="shadowsCheckbox" size="100%-56 15 100%-30 40" type="checkbox" style="StoneCrossBox" checked="true">
                                         <action on="Load">if (renderer.shadows) this.checked = true; else this.checked = false;</action>
                                         <action on="Press">renderer.shadows = this.checked;</action>
-                                </object>	
+                                </object>
 
                                 <!-- Settings / Shadow PCF -->
                                 <object size="0 35 100%-80 60" type="text" style="RightLabelText" ghost="true">Enable Shadow Filtering</object>
-                                <object name="shadowPCFCheckbox" size="100%-56 40 100%-30 65" type="checkbox" style="wheatCrossBox" checked="true">
+                                <object name="shadowPCFCheckbox" size="100%-56 40 100%-30 65" type="checkbox" style="StoneCrossBox" checked="true">
                                         <action on="Load">if (renderer.shadowPCF) this.checked = true; else this.checked = false;</action>
                                         <action on="Press">renderer.shadowPCF = this.checked;</action>
                                 </object>
 
                                 <!-- Settings / Water -->
                                 <object size="0 60 100%-80 85" type="text" style="RightLabelText" ghost="true">Enable Water Reflections</object>
-                                <object name="fancyWaterCheckbox" size="100%-56 65 100%-30 90"  type="checkbox" style="wheatCrossBox" checked="true">
+                                <object name="fancyWaterCheckbox" size="100%-56 65 100%-30 90"  type="checkbox" style="StoneCrossBox" checked="true">
                                         <action on="Load">if (renderer.fancyWater) this.checked = true; else this.checked = false;</action>
                                         <action on="Press">renderer.fancyWater = this.checked;</action>
                                 </object>
 
                                 <!-- Settings / Music-->
                                 <object size="0 85 100%-80 110" type="text" style="RightLabelText" ghost="true">Enable Music</object>
-                                <object size="100%-56 90 100%-30 115" type="checkbox" style="wheatCrossBox" checked="true">
+                                <object size="100%-56 90 100%-30 115" type="checkbox" style="StoneCrossBox" checked="true">
                                         <action on="Press">if (this.checked) startMusic(); else stopMusic();</action>
                                 </object>
 
                                 <!-- Settings / Dev Overlay -->
                                 <object size="0 110 100%-80 135" type="text" style="RightLabelText" ghost="true">Developer Overlay</object>
-                                        <object size="100%-56 115 100%-30 140" type="checkbox" style="wheatCrossBox" checked="false">
+                                        <object size="100%-56 115 100%-30 140" type="checkbox" style="StoneCrossBox" checked="false">
                                         <action on="Press">toggleDeveloperOverlay();</action>
                                 </object>
                         </object>
-                        
+
                         <!-- Close button -->
                         <object type="button"
                                 style="StoneButton"
@@ -347,7 +347,7 @@
 		<!-- ================================  ================================ -->
 		<object
 			size="10 0 45% 100%"
-		>	
+		>
 			<!-- Food -->
 			<object size="0 0 90 100%" type="image" style="resourceCounter" tooltip="Food" tooltip_style="sessionToolTipBold">
 				<object size="0 -4 40 36" type="image" style="resourceIcon" cell_id="0"/>
@@ -388,16 +388,16 @@
 		<!-- Phase -->
 		<!-- ================================  ================================ -->
 		<!--<object size="50%+50 4 50%+300 100%-2" name="PhaseTitleBar" type="text" font="serif-bold-stroke-14" textcolor="white"> Death Match :: Village Phase</object>-->
-		
-                
+
+
                 <!-- ================================  ================================ -->
 		<!-- ALPHA LABELS (alpha, build time, revision) -->
 		<!-- ================================  ================================ -->
-		
+
 		<!-- Displays Alpha name and number -->
 		<object size="70%-128 0 70%+128 100%" name="alphaLabel" type="text" style="CenteredLabelText" text_valign="top" ghost="true">
 			ALPHA VI : Fortuna
-                        
+
                         <!-- Displays build date and revision number-->
                         <object size="50%-128 0 50%+128 100%-2" name="buildTimeLabel" type="text" text_align="center" text_valign="bottom" font="serif-12" textcolor="white" ghost="true">
                                 <action on="Load"><![CDATA[this.caption = buildTime(0) + " (" + buildTime(2) + ")";]]></action>
@@ -416,7 +416,7 @@
                         <object size="50%-32 50%-16 50%+32 50%+16" type="image" sprite="menuButton" name="menuButtonText" ghost="true">MENU</object>
 			<action on="Press">openMenu();</action>
 		</object> <!-- END OF MENU BUTTON -->
-		
+
 	</object> <!-- END OF TOP PANEL -->
 
 	<!-- ================================  ================================ -->
@@ -450,7 +450,7 @@
 			type="image"
 			sprite="mapPanel"
 			z="20"
-		>	
+		>
 			<object name="minimap"
 				type="minimap"
 				size="14 14 100%-14 100%-14"
@@ -493,7 +493,7 @@
 					</repeat>
 				</object>
 			</object>
-		
+
 			<object name="unitGarrisonPanel"
 				size="24 12 100% 100%"
 			>
@@ -534,10 +534,10 @@
 		>
 			<!-- Unit details for Single Unit -->
 			<object size="50%-112 0 50%+112 100%" name="detailsAreaSingle">
-	
+
 				<!-- Player Name -->
 				<object size="0 0 100% 40" name="player" type="text" style="largeCenteredOutlinedText" tooltip_style="sessionToolTipBold"/>
-	
+
 				<!-- Stats -->
 				<object size="8 36 50%-48 100%" name="statsArea" type="image">
 					<!-- Attack icon -->
@@ -558,7 +558,7 @@
 					<object size="100%-20 4 100%-4 20" name="rankIcon" type="image" sprite="" ghost="true"/>
 					<object type="image" sprite="glassSquareIcon" ghost="true"/>
 				</object>
-						
+
 				<!-- Stats Bars -->
 				<object size= "50%+48 40 100% 136" type="image" tooltip_style="sessionToolTip">
 					<!-- Health bar -->
@@ -567,21 +567,21 @@
 						<object type="image" sprite="healthForeground" ghost="true" name="healthBar"/>
 						<object type="image" sprite="statsBarShader" ghost="true"/>
 					</object>
-					
+
 					<!-- Stamina bar -->
 					<object size="32 0 44 100%" type="image" name="stamina" tooltip="Stamina" tooltip_style="sessionToolTip">
 						<object type="image" sprite="staminaBackground" ghost="true"/>
 						<object type="image" sprite="staminaForeground" ghost="true" name="staminaBar"/>
 						<object type="image" sprite="statsBarShader" ghost="true"/>
 					</object>
-					
+
 					<!-- Resource bar -->
 					<object size="18 0 30 100%" type="image" name="resources" tooltip="Resources" tooltip_style="sessionToolTip">
 						<object type="image" sprite="resourceBackground" ghost="true"/>
 						<object type="image" sprite="resourceForeground" ghost="true" name="resourceBar"/>
 						<object type="image" sprite="statsBarShader" ghost="true"/>
 					</object>
-					
+
 					<!-- Experience bar -->
 					<object size="46 0 58 100%" type="image" name="experience" tooltip="Experience" tooltip_style="sessionToolTip">
 						<object type="image" sprite="experienceBackground" ghost="true"/>
@@ -589,14 +589,14 @@
 						<object type="image" sprite="statsBarShader" ghost="true"/>
 					</object>
 				</object>
-				
+
 				<!-- Specific Name -->
 				<object size="0 142 100% 162" name="specific" type="text" style="largeCenteredOutlinedText" tooltip_style="sessionToolTipBold"/>
 			</object>
 
 			<!-- Unit details for Multiple Units -->
 			<object size="50%-112 0 50%+112 100%" name="detailsAreaMultiple">
-					
+
 				<object name="unitSelectionPanel"
 					size="20 12 100%-20 100%"
 				>
@@ -610,12 +610,12 @@
 							</object>
 						</repeat>
 					</object>
-				</object>	
+				</object>
 
 				<!-- Total -->
 				<object size="100%-42 12 100%-8 46" type="image" sprite="groupsIcon">
 					<object size="0 0 100% 100%" type="text" style="largeCenteredOutlinedText" name="numberOfUnits"/>
-				</object>	
+				</object>
 
 				<!-- Stats Bars -->
 				<object size= "100%-38 52 100%-18 100%-40" type="image" tooltip_style="sessionToolTip">
@@ -625,7 +625,7 @@
 						<object type="image" sprite="healthForeground" ghost="true" name="healthBarMultiple"/>
 						<object type="image" sprite="statsBarShader" ghost="true"/>
 					</object>
-					
+
 					<!-- Stamina bar -->
 					<object size="14 0 26 100%" type="image" name="staminaMultiple" tooltip="Stamina" tooltip_style="sessionToolTipBold">
 						<object type="image" sprite="staminaBackground" ghost="true"/>
@@ -727,9 +727,9 @@
 		</object> <!-- END OF UNIT COMMANDS -->
 
 	</object><!-- END OF BOTTOM PANEL -->
-		
+
 	</object> <!-- END OF SN OBJECT -->
-	
+
 	<!-- ================================  ================================ -->
 	<!-- Selection bandbox -->
 	<!-- ================================  ================================ -->
@@ -749,7 +749,7 @@
 				<object size="0 0 100% 100%" type="text" style="centeredText" name="disconnectedExitButtonText" ghost="true" font="serif-14">Return to Main Menu</object>
 				<action on="Press">leaveGame()</action>
 			</object>
-	
+
 	</object>
 
 </objects>

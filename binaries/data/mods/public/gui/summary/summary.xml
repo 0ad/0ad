@@ -9,7 +9,7 @@
 <objects>
 	<script file="gui/common/functions_civinfo.js"/>
 	<script file="gui/summary/summary.js"/>
-	<object type="image" sprite="bkFillBlack">
+	<object type="image" sprite="BackgroundBlack">
 
 		<object type="image"
 			style="StonePanelLight"
@@ -18,9 +18,9 @@
 			<object style="StoneDialogTitleBar" type="text" size="50%-128 0%-16 50%+128 16">
 				Summary
 			</object>
-			
-			<object type="image" sprite="bgInfoHeading" size="16 16 100%-16 46">				
-				<object 
+
+			<object type="image" sprite="ForegroundBody" size="20 20 100%-20 50">
+				<object
 					name="summaryText"
 					type="text"
 					size="50 0 100%-50 30"
@@ -28,8 +28,8 @@
 					textcolor="255 255 255"
 					text_align="center"
 				/>
-			
-				<object 
+
+				<object
 					name="timeElapsed"
 					type="text"
 					size="100%-200 0 100%-10 30"
@@ -38,22 +38,27 @@
 					text_align="center"
 				/>
  			</object>
-			
-			
-			<object name="unitsBuildingsPanelButton" type="button" sprite="bgInfoBox" size="16 75 166 101">
+
+                        <object name="tabDividerLeft" type="image" sprite="TabSpacer" size="172 100 174 102"/>
+                        <object name="tabDividerRight" type="image" sprite="TabSpacer" size="328 100 330 102"/>
+
+			<object name="unitsBuildingsPanelButton" type="button" sprite="ForegroundTab" size="20 75 170 100">
 				<action on="Press">selectPanel(0);</action>
 				<object type="text" style="TitleText" ghost="true">Units/buildings</object>
 			</object>
-			<object name="conquestPanelButton" type="button" sprite="bgInfoHeading" size="172 75 322 101">
+
+			<object name="conquestPanelButton" type="button" sprite="BackgroundTab" size="176 75 326 100">
 				<action on="Press">selectPanel(1);</action>
 				<object type="text" style="TitleText" ghost="true">Conquest</object>
 			</object>
-			<object name="resourcesPanelButton" type="button" sprite="bgInfoHeading" size="328 75 476 101">
+
+			<object name="resourcesPanelButton" type="button" sprite="BackgroundTab" size="332 75 480 100">
 				<action on="Press">selectPanel(2);</action>
 				<object type="text" style="TitleText" ghost="true">Resources</object>
 			</object>
-			<object name="unitsBuildingsPanel" type="image" sprite="bgInfoBox" size="16 100 100%-16 100%-16">
-				
+
+			<object name="unitsBuildingsPanel" type="image" sprite="ForegroundBody" size="20 100 100%-20 100%-48">
+
 				<object size="0 0 100% 100%-50">
 					<object name="playerName0Heading" type="text" style="LeftTabLabelText">
 						Player name
@@ -76,9 +81,9 @@
 					<object name="enemyBuildingsDestroyedHeading" type="text" style="CenteredTabLabelText">
 						Enemy&#10;buildings&#10;destroyed
 					</object>
-					
-				</object>	
-				
+
+				</object>
+
 				<object size="0 65 100% 100%-50">
 					<repeat count="8">
 						<object type="image" name="playerBox0[n]" size="10 0 10 30" hidden="true">
@@ -94,10 +99,10 @@
 						</object>
 					</repeat>
 				</object>
-			
+
 			</object>
-			<object name="conquestPanel" type="image" sprite="bgInfoBox" size="16 100 100%-16 100%-16" hidden="true">
-				
+			<object name="conquestPanel" type="image" sprite="ForegroundBody" size="20 100 100%-20 100%-48" hidden="true">
+
 				<object size="0 0 100% 100%-50">
 					<object name="playerName1Heading" type="text" style="LeftTabLabelText">
 						Player name
@@ -111,8 +116,8 @@
 					<object name="mapExplorationHeading" type="text" style="CenteredTabLabelText">
 						Map&#10;exploration
 					</object>
-				</object>	
-				
+				</object>
+
 				<object size="0 65 100% 100%-50">
 					<repeat count="8">
 						<object type="image" name="playerBox1[n]" size="10 0 10 30" hidden="true">
@@ -125,10 +130,10 @@
 						</object>
 					</repeat>
 				</object>
-			
+
 			</object>
-			<object name="resourcesPanel" type="image" sprite="bgInfoBox" size="16 100 100%-16 100%-16" hidden="true">
-			
+			<object name="resourcesPanel" type="image" sprite="ForegroundBody" size="20 100 100%-20 100%-48" hidden="true">
+
 				<object size="0 0 100% 100%-50">
 					<object name="playerName2Heading" type="text" style="LeftTabLabelText">
 						Player name
@@ -151,8 +156,8 @@
 					<object name="treasuresCollectedHeading" type="text" style="CenteredTabLabelText">
 						Treasures&#10;collected
 					</object>
-				</object>	
-				
+				</object>
+
 				<object size="0 65 100% 100%-50">
 					<repeat count="8">
 						<object type="image" name="playerBox2[n]" size="10 0 10 30" hidden="true">
@@ -168,9 +173,9 @@
 						</object>
 					</repeat>
 				</object>
-			
+
 			</object>
-			
+
 			<object type="button" style="StoneButton" size="100%-176 100%-48 100%-20 100%-20">
 				Main Menu
 				<action on="Press"><![CDATA[
