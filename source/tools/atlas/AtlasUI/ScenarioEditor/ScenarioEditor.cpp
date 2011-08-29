@@ -452,7 +452,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 	// wxOSX/Cocoa 2.9 doesn't seem to like SetToolBar, so we use CreateToolBar which implicitly associates
 	//	the toolbar with the frame, and use OnCreateToolBar to construct our custom toolbar
 	//	(this should be equivalent behavior on all platforms)
-	CreateToolBar(wxNO_BORDER|wxTB_FLAT|wxTB_HORIZONTAL, ID_Toolbar);
+	CreateToolBar(wxNO_BORDER|wxTB_FLAT|wxTB_HORIZONTAL, ID_Toolbar)->Realize();
 
 	// Set the default tool to be selected
 	m_ToolManager.SetCurrentTool(_T(""));
@@ -538,8 +538,6 @@ wxToolBar* ScenarioEditor::OnCreateToolBar(long style, wxWindowID id, const wxSt
 	toolbar->AddToolButton(_("Smooth"),        _("Smooth terrain elevation"),  _T("smoothelevation.png"),  _T("SmoothElevation"),  _T("")/*_T("TerrainSidebar")*/);
 	toolbar->AddToolButton(_("Flatten"),       _("Flatten terrain elevation"), _T("flattenelevation.png"), _T("FlattenElevation"), _T("")/*_T("TerrainSidebar")*/);
 	toolbar->AddToolButton(_("Paint Terrain"), _("Paint terrain texture"),     _T("paintterrain.png"),     _T("PaintTerrain"),     _T("")/*_T("TerrainSidebar")*/);
-
-	toolbar->Realize();
 
 	return toolbar;
 }

@@ -147,11 +147,14 @@ void MapSettingsControl::CreateWidgets()
 	wxFlexGridSizer* gridSizer = new wxFlexGridSizer(2, 5, 5);
 	gridSizer->AddGrowableCol(1);
 	gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Reveal map")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
-	gridSizer->Add(new wxCheckBox(this, ID_MapReveal, wxEmptyString));
+	gridSizer->Add(Tooltipped(new wxCheckBox(this, ID_MapReveal, wxEmptyString),
+		_("If checked, players won't need to explore")));
 	gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Game type")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
-	gridSizer->Add(new wxChoice(this, ID_MapType, wxDefaultPosition, wxDefaultSize, gameTypes), wxSizerFlags().Expand());
+	gridSizer->Add(Tooltipped(new wxChoice(this, ID_MapType, wxDefaultPosition, wxDefaultSize, gameTypes),
+		_("Select the game type (or victory condition)")), wxSizerFlags().Expand());
 	gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Lock teams")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
-	gridSizer->Add(new wxCheckBox(this, ID_MapTeams, wxEmptyString));
+	gridSizer->Add(Tooltipped(new wxCheckBox(this, ID_MapTeams, wxEmptyString),
+		_("NOT IMPLEMENTED")));
 	sizer->Add(gridSizer, wxSizerFlags().Expand());
 
 	sizer->AddSpacer(5);
@@ -159,9 +162,11 @@ void MapSettingsControl::CreateWidgets()
 	wxStaticBoxSizer* keywordsSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Keywords"));
 	wxFlexGridSizer* kwGridSizer = new wxFlexGridSizer(2, 5, 5);
 	kwGridSizer->Add(new wxStaticText(this, wxID_ANY, _("Demo")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
-	kwGridSizer->Add(new wxCheckBox(this, ID_MapKW_Demo, wxEmptyString));
+	kwGridSizer->Add(Tooltipped(new wxCheckBox(this, ID_MapKW_Demo, wxEmptyString),
+		_("If checked, map will only be visible using filters in game setup")));
 	kwGridSizer->Add(new wxStaticText(this, wxID_ANY, _("Hidden")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
-	kwGridSizer->Add(new wxCheckBox(this, ID_MapKW_Hidden, wxEmptyString));
+	kwGridSizer->Add(Tooltipped(new wxCheckBox(this, ID_MapKW_Hidden, wxEmptyString),
+		_("If checked, map will only be visible using filters in game setup")));
 	keywordsSizer->Add(kwGridSizer);
 	sizer->Add(keywordsSizer, wxSizerFlags().Expand());
 }
@@ -262,14 +267,16 @@ MapSidebar::MapSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContaine
 	m_MapSettingsCtrl = new MapSettingsControl(this, m_ScenarioEditor);
 	m_MainSizer->Add(m_MapSettingsCtrl, wxSizerFlags().Expand());
 
-	m_MainSizer->Add(new wxButton(this, ID_OpenPlayerPanel, _T("Player settings")), wxSizerFlags().Expand().Border(wxTOP, 16));
-
 	{
 		/////////////////////////////////////////////////////////////////////////
 		// Random map settings
 		wxStaticBoxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Random map"));
 
 		sizer->Add(new wxChoice(this, ID_RandomScript), wxSizerFlags().Expand());
+
+		sizer->AddSpacer(5);
+
+		sizer->Add(new wxButton(this, ID_OpenPlayerPanel, _T("Change players")), wxSizerFlags().Expand());
 
 		sizer->AddSpacer(5);
 
@@ -282,17 +289,20 @@ MapSidebar::MapSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContaine
 
 		gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Random seed")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 		wxBoxSizer* seedSizer = new wxBoxSizer(wxHORIZONTAL);
-		seedSizer->Add(Tooltipped(new wxTextCtrl(this, ID_RandomSeed, _T("0"), wxDefaultPosition, wxDefaultSize, 0, wxTextValidator(wxFILTER_NUMERIC)), _("Seed value for random map")), wxSizerFlags(1).Expand());
-		seedSizer->Add(Tooltipped(new wxButton(this, ID_RandomReseed, _("R"), wxDefaultPosition, wxSize(24, -1)), _("New random seed")));
+		seedSizer->Add(Tooltipped(new wxTextCtrl(this, ID_RandomSeed, _T("0"), wxDefaultPosition, wxDefaultSize, 0, wxTextValidator(wxFILTER_NUMERIC)),
+			_("Seed value for random map")), wxSizerFlags(1).Expand());
+		seedSizer->Add(Tooltipped(new wxButton(this, ID_RandomReseed, _("R"), wxDefaultPosition, wxSize(24, -1)),
+			_("New random seed")));
 		gridSizer->Add(seedSizer, wxSizerFlags().Expand());
 
 		sizer->Add(gridSizer, wxSizerFlags().Expand());
 
 		sizer->AddSpacer(5);
 
-		sizer->Add(new wxButton(this, ID_RandomGenerate, _("Generate map")), wxSizerFlags().Expand());
+		sizer->Add(Tooltipped(new wxButton(this, ID_RandomGenerate, _("Generate map")),
+			_("Run selected random map script")), wxSizerFlags().Expand());
 
-		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 16));
+		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 	}
 
 	{
@@ -300,14 +310,19 @@ MapSidebar::MapSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContaine
 		// Simulation buttons
 		wxStaticBoxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Simulation test"));
 		wxGridSizer* gridSizer = new wxGridSizer(5);
-		gridSizer->Add(new wxButton(this, ID_SimPlay, _("Play")), wxSizerFlags().Expand());
-		gridSizer->Add(new wxButton(this, ID_SimFast, _("Fast")), wxSizerFlags().Expand());
-		gridSizer->Add(new wxButton(this, ID_SimSlow, _("Slow")), wxSizerFlags().Expand());
-		gridSizer->Add(new wxButton(this, ID_SimPause, _("Pause")), wxSizerFlags().Expand());
-		gridSizer->Add(new wxButton(this, ID_SimReset, _("Reset")), wxSizerFlags().Expand());
+		gridSizer->Add(Tooltipped(new wxButton(this, ID_SimPlay, _("Play")),
+			_("Run the simulation at normal speed")), wxSizerFlags().Expand());
+		gridSizer->Add(Tooltipped(new wxButton(this, ID_SimFast, _("Fast")),
+			_("Run the simulation at 8x speed")), wxSizerFlags().Expand());
+		gridSizer->Add(Tooltipped(new wxButton(this, ID_SimSlow, _("Slow")),
+			_("Run the simulation at 1/8x speed")), wxSizerFlags().Expand());
+		gridSizer->Add(Tooltipped(new wxButton(this, ID_SimPause, _("Pause")),
+			_("Pause the simulation")), wxSizerFlags().Expand());
+		gridSizer->Add(Tooltipped(new wxButton(this, ID_SimReset, _("Reset")),
+			_("Reset the editor to initial state")), wxSizerFlags().Expand());
 		sizer->Add(gridSizer, wxSizerFlags().Expand());
 		UpdateSimButtons();
-		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 16));
+		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 	}
 }
 

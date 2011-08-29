@@ -85,11 +85,13 @@ public:
 			m_Controls.civ = civChoice;
 			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Colour")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 			wxButton* colourButton = new wxButton(this, ID_PlayerColour);
-			gridSizer->Add(Tooltipped(colourButton, _("Set player colour")), wxSizerFlags(1).Expand().Align(wxALIGN_RIGHT));
+			gridSizer->Add(Tooltipped(colourButton,
+				_("Set player colour")), wxSizerFlags(1).Expand().Align(wxALIGN_RIGHT));
 			m_Controls.colour = colourButton;
 			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Default AI")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 			wxChoice* aiChoice = new wxChoice(this, wxID_ANY);
-			gridSizer->Add(Tooltipped(aiChoice, _("Select default AI")), wxSizerFlags(1).Expand().Align(wxALIGN_RIGHT));
+			gridSizer->Add(Tooltipped(aiChoice,
+				_("Select default AI")), wxSizerFlags(1).Expand().Align(wxALIGN_RIGHT));
 			m_Controls.ai = aiChoice;
 
 			playerInfoSizer->Add(gridSizer, wxSizerFlags(1).Expand());
@@ -104,23 +106,28 @@ public:
 			gridSizer->AddGrowableCol(1);
 			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Food")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 			wxSpinCtrl* foodCtrl = new wxSpinCtrl(this, ID_PlayerFood, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, INT_MAX);
-			gridSizer->Add(Tooltipped(foodCtrl, _("Initial value of food resource")), wxSizerFlags().Expand());
+			gridSizer->Add(Tooltipped(foodCtrl,
+				_("Initial value of food resource")), wxSizerFlags().Expand());
 			m_Controls.food = foodCtrl;
 			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Wood")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 			wxSpinCtrl* woodCtrl = new wxSpinCtrl(this, ID_PlayerWood, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, INT_MAX);
-			gridSizer->Add(Tooltipped(woodCtrl, _("Initial value of wood resource")), wxSizerFlags().Expand());
+			gridSizer->Add(Tooltipped(woodCtrl,
+				_("Initial value of wood resource")), wxSizerFlags().Expand());
 			m_Controls.wood = woodCtrl;
 			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Metal")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 			wxSpinCtrl* metalCtrl = new wxSpinCtrl(this, ID_PlayerMetal, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, INT_MAX);
-			gridSizer->Add(Tooltipped(metalCtrl, _("Initial value of metal resource")), wxSizerFlags().Expand());
+			gridSizer->Add(Tooltipped(metalCtrl,
+				_("Initial value of metal resource")), wxSizerFlags().Expand());
 			m_Controls.metal = metalCtrl;
 			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Stone")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 			wxSpinCtrl* stoneCtrl = new wxSpinCtrl(this, ID_PlayerStone, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, INT_MAX);
-			gridSizer->Add(Tooltipped(stoneCtrl, _("Initial value of stone resource")), wxSizerFlags().Expand());
+			gridSizer->Add(Tooltipped(stoneCtrl,
+				_("Initial value of stone resource")), wxSizerFlags().Expand());
 			m_Controls.stone = stoneCtrl;
 			gridSizer->Add(new wxStaticText(this, wxID_ANY, _("Pop limit")), wxSizerFlags().Align(wxALIGN_CENTER_VERTICAL | wxALIGN_RIGHT));
 			wxSpinCtrl* popCtrl = new wxSpinCtrl(this, ID_PlayerPop, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, INT_MAX);
-			gridSizer->Add(Tooltipped(popCtrl, _("Population limit for this player")), wxSizerFlags().Expand());
+			gridSizer->Add(Tooltipped(popCtrl,
+				_("Population limit for this player")), wxSizerFlags().Expand());
 			m_Controls.pop = popCtrl;
 
 			resourceSizer->Add(gridSizer, wxSizerFlags(1).Expand());
@@ -157,13 +164,16 @@ public:
 			wxStaticBoxSizer* cameraSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Starting Camera"));
 			wxGridSizer* gridSizer = new wxGridSizer(3);
 			wxButton* cameraSet = new wxButton(this, ID_CameraSet, _("Set"));
-			gridSizer->Add(Tooltipped(cameraSet, _("Set player camera to this view")), wxSizerFlags().Expand());
+			gridSizer->Add(Tooltipped(cameraSet,
+				_("Set player camera to this view")), wxSizerFlags().Expand());
 			wxButton* cameraView = new wxButton(this, ID_CameraView, _("View"));
 			cameraView->Enable(false);
-			gridSizer->Add(Tooltipped(cameraView, _("View the player camera")), wxSizerFlags().Expand());
+			gridSizer->Add(Tooltipped(cameraView,
+				_("View the player camera")), wxSizerFlags().Expand());
 			wxButton* cameraClear = new wxButton(this, ID_CameraClear, _("Clear"));
 			cameraClear->Enable(false);
-			gridSizer->Add(Tooltipped(cameraClear, _("Clear player camera")), wxSizerFlags().Expand());
+			gridSizer->Add(Tooltipped(cameraClear,
+				_("Clear player camera")), wxSizerFlags().Expand());
 			cameraSizer->Add(gridSizer, wxSizerFlags().Expand());
 
 			sizer->Add(cameraSizer, wxSizerFlags().Expand().Border(wxTOP, 10));

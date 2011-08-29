@@ -53,6 +53,13 @@ enum
 	ID_ResizeMap
 };
 
+// Helper function for adding tooltips
+static wxWindow* Tooltipped(wxWindow* window, const wxString& tip)
+{
+	window->SetToolTip(tip);
+	return window;
+}
+
 TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer) :
 	Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer)
 {
@@ -61,9 +68,12 @@ TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebar
 		// Terrain elevation
 		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Elevation tools"));
 		wxSizer* gridSizer = new wxGridSizer(3);
-		gridSizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Modify"), _T("AlterElevation")), wxSizerFlags().Expand());
-		gridSizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Smooth"), _T("SmoothElevation")), wxSizerFlags().Expand());
-		gridSizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Flatten"), _T("FlattenElevation")), wxSizerFlags().Expand());
+		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), this, _("Modify"), _T("AlterElevation")),
+			_("Brush with left mouse buttons to raise terrain,\nright mouse button to lower it")), wxSizerFlags().Expand());
+		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), this, _("Smooth"), _T("SmoothElevation")),
+			_("Brush with left mouse button to smooth terrain,\nright mouse button to roughen it")), wxSizerFlags().Expand());
+		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), this, _("Flatten"), _T("FlattenElevation")),
+			_("Brush with left mouse button to flatten terrain")), wxSizerFlags().Expand());
 		sizer->Add(gridSizer, wxSizerFlags().Expand());
 		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 	}
@@ -73,9 +83,12 @@ TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebar
 		// Terrain texture
 		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Texture tools"));
 		wxSizer* gridSizer = new wxGridSizer(3);
-		gridSizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Paint"), _T("PaintTerrain")), wxSizerFlags().Expand());
-		gridSizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Replace"), _T("ReplaceTerrain")), wxSizerFlags().Expand());
-		gridSizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Fill"), _T("FillTerrain")), wxSizerFlags().Expand());
+		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), this, _("Paint"), _T("PaintTerrain")),
+			_("Brush with left mouse button to paint texture dominantly,\nright mouse button to paint submissively")), wxSizerFlags().Expand());
+		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), this, _("Replace"), _T("ReplaceTerrain")),
+			_("Replace all of a terrain texture with a new one")), wxSizerFlags().Expand());
+		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), this, _("Fill"), _T("FillTerrain")),
+			_T("Bucket fill a patch of terrain texture with a new one")), wxSizerFlags().Expand());
 		sizer->Add(gridSizer, wxSizerFlags().Expand());
 		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 	}
@@ -104,10 +117,12 @@ TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebar
 		m_PassabilityChoice->SetSelection(0);
 
 		visSizer->Add(new wxStaticText(this, wxID_ANY, _("Passability")), wxSizerFlags().Align(wxALIGN_CENTER|wxALIGN_RIGHT));
-		visSizer->Add(m_PassabilityChoice, wxSizerFlags().Expand());
+		visSizer->Add(Tooltipped(m_PassabilityChoice,
+			_("View passability classes")), wxSizerFlags().Expand());
 
 		visSizer->Add(new wxStaticText(this, wxID_ANY, _("Priorities")), wxSizerFlags().Align(wxALIGN_CENTER|wxALIGN_RIGHT));
-		visSizer->Add(new wxCheckBox(this, ID_ShowPriorities, _("")));
+		visSizer->Add(Tooltipped(new wxCheckBox(this, ID_ShowPriorities, _("")),
+			_("Show terrain texture priorities")));
 	}
 
 	{
@@ -164,7 +179,7 @@ void TerrainSidebar::OnResizeMap(wxCommandEvent& WXUNUSED(evt))
 
 	// TODO: set default based on current map size
 
-	wxSingleChoiceDialog dlg(this, _("Select new map size. WARNING: This probably only works reliably on blank maps, and cannot be undone."),
+	wxSingleChoiceDialog dlg(this, _("Select new map size. WARNING: This probably only works reliably on blank maps."),
 			_("Resize map"), sizeNames);
 
 	if (dlg.ShowModal() != wxID_OK)
@@ -244,6 +259,8 @@ public:
 
 			// Add spaces into the displayed name so there are more wrapping opportunities
 			wxString labelText = name;
+			if (labelText.Len())
+				labelText[0] = wxToupper(labelText[0]);
 			labelText.Replace(_T("_"), _T(" "));
 			wxStaticText* label = new wxStaticText(m_ScrolledPanel, wxID_ANY, labelText, wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER);
 			label->Wrap(imageWidth);
@@ -357,9 +374,19 @@ public:
 		for (size_t i = 0; i < m_TerrainGroups.GetCount(); ++i)
 		{
 			wxString visibleName = m_TerrainGroups[i];
+			// Format name slightly
 			if (visibleName.Len())
 				visibleName[0] = wxToupper(visibleName[0]);
+			visibleName.Replace(_T("_"), _T(" "));
 			AddPage(new TextureNotebookPage(m_ScenarioEditor, this, m_TerrainGroups[i]), visibleName);
+		}
+
+		// On some platforms (wxOSX) there is no initial OnPageChanged event, so it loads with a blank page
+		//	and setting selection to 0 won't trigger it either, so just force first page to display
+		// (this is safe because the sidebar has already been displayed)
+		if (GetPageCount() > 0)
+		{
+			static_cast<TextureNotebookPage*>(GetPage(0))->OnDisplay();
 		}
 	}
 

@@ -113,8 +113,8 @@ ObjectSidebar::ObjectSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarCo
 {
 	wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
 	sizer->Add(new wxStaticText(this, wxID_ANY, _("Filter")), wxSizerFlags().Align(wxALIGN_CENTER));
-	wxTextCtrl* objectFilter = new wxTextCtrl(this, ID_ObjectFilter);
-	sizer->Add(objectFilter, wxSizerFlags().Expand().Proportion(1));
+	sizer->Add(Tooltipped(new wxTextCtrl(this, ID_ObjectFilter),
+		_("Enter text to filter object list")), wxSizerFlags().Expand().Proportion(1));
 	m_MainSizer->Add(sizer, wxSizerFlags().Expand());
 
 	wxArrayString strings;
@@ -193,10 +193,17 @@ void ObjectSidebar::FilterObjects()
 
 void ObjectSidebar::ToggleViewer(wxCommandEvent& WXUNUSED(evt))
 {
+	// Change name of button
 	if (p->m_ActorViewerActive)
+	{
+		wxDynamicCast(FindWindow(ID_ToggleViewer), wxButton)->SetLabel(_("Switch to actor viewer"));
 		m_ScenarioEditor.GetToolManager().SetCurrentTool(_T(""), NULL);
+	}
 	else
+	{
+		wxDynamicCast(FindWindow(ID_ToggleViewer), wxButton)->SetLabel(_("Return to game view"));
 		m_ScenarioEditor.GetToolManager().SetCurrentTool(_T("ActorViewerTool"), NULL);
+	}
 }
 
 void ObjectSidebar::OnSelectType(wxCommandEvent& WXUNUSED(evt))
