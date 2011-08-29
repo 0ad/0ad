@@ -21,10 +21,10 @@
 
 #include "AtlasObject/AtlasObject.h"
 #include "AtlasScript/ScriptInterface.h"
+#include "CustomControls/ColourDialog/ColourDialog.h"
 #include "ScenarioEditor/ScenarioEditor.h"
 
 #include "wx/choicebk.h"
-#include "wx/colordlg.h"
 
 enum
 {
@@ -227,11 +227,7 @@ private:
 	void OnColour(wxCommandEvent& evt)
 	{
 		// Show colour dialog
-		wxColourData clrData;
-		clrData.SetColour(m_Controls.colour->GetBackgroundColour());
-
-		wxColourDialog colourDlg(this, &clrData);
-		colourDlg.SetTitle(_("Choose player colour"));
+		ColourDialog colourDlg(this, _T("Scenario Editor/PlayerColour"), m_Controls.colour->GetBackgroundColour());
 
 		if (colourDlg.ShowModal() == wxID_OK)
 		{
