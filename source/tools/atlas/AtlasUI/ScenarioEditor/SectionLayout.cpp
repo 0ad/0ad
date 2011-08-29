@@ -299,10 +299,10 @@ void SectionLayout::Build(ScenarioEditor& scenarioEditor)
 
 	#undef ADD_SIDEBAR
 
-	m_VertSplitter->SetDefaultSashPosition(-165);
+	m_VertSplitter->SetDefaultSashPosition(-BOTTOMBAR_SIZE);
 	m_VertSplitter->Initialize(m_Canvas);
 
-	m_HorizSplitter->SetDefaultSashPosition(200);
+	m_HorizSplitter->SetDefaultSashPosition(SIDEBAR_SIZE);
 	m_HorizSplitter->SplitVertically(m_SidebarBook, m_VertSplitter);
 }
 
