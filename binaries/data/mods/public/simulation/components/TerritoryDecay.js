@@ -19,6 +19,10 @@ TerritoryDecay.prototype.IsConnected = function()
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (!cmpOwnership)
 		return false;
+		
+	// Prevent special gaia buildings from decaying (e.g. fences, ruins)
+	if (cmpOwnership.GetOwner() == 0)
+		return true;
 
 	var cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
 	if (!cmpTerritoryManager)
