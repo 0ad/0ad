@@ -233,12 +233,12 @@ EntitySelection.prototype.update = function()
 };
 
 /**
- * Update selection if some selected entities was renamed
+ * Update selection if some selected entities were renamed
  * (in case of unit promotion or finishing building structure)
  */
 EntitySelection.prototype.checkRenamedEntities = function()
 {
-	var renamedEntities = Engine.GuiInterfaceCall("GetRenamedEntities", true);
+	var renamedEntities = Engine.GuiInterfaceCall("GetRenamedEntities");
 	if (renamedEntities.length > 0)
 	{
 		var removeFromSelectionList = [];
@@ -392,6 +392,7 @@ EntityGroupsContainer.prototype.addEntities = function(groupName, ents)
 
 EntityGroupsContainer.prototype.update = function()
 {
+	this.checkRenamedEntities();
 	for each (var group in this.groups)
 	{
 		for (var ent in group.ents)
@@ -403,6 +404,31 @@ EntityGroupsContainer.prototype.update = function()
 			{
 				group.removeEnt(ent);
 			}
+		}
+	}
+}
+
+/**
+ * Update control group if some entities in the group were renamed
+ * (in case of unit promotion or finishing building structure)
+ */
+EntityGroupsContainer.prototype.checkRenamedEntities = function()
+{
+	var renamedEntities = Engine.GuiInterfaceCall("GetRenamedEntities");
+	if (renamedEntities.length > 0)
+	{
+		for each (var group in this.groups)
+		{
+			var addToGroup = [];
+			for each (var renamedEntity in renamedEntities)
+			{
+				if (renamedEntity.entity in group.ents)
+				{
+					group.removeEnt(renamedEntity.entity);
+					addToGroup.push(renamedEntity.newentity);
+				}
+			}
+			group.add(addToGroup);
 		}
 	}
 }

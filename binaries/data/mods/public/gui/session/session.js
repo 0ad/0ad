@@ -179,6 +179,9 @@ function onTick()
 		getGUIObjectByName("resourcePop").textcolor = "255 165 0";
 	else
 		getGUIObjectByName("resourcePop").textcolor = "white";
+		
+	// Clear renamed entities list
+	Engine.GuiInterfaceCall("ClearRenamedEntities", {});
 }
 
 function checkPlayerState()

@@ -102,12 +102,14 @@ GuiInterface.prototype.GetExtendedSimulationState = function(player)
 	return ret;
 };
 
-GuiInterface.prototype.GetRenamedEntities = function(player, clearList)
+GuiInterface.prototype.GetRenamedEntities = function(player)
 {
-	var result = this.renamedEntities;
-	if (clearList)
-		this.renamedEntities = [];
-	return result;
+	return this.renamedEntities;
+};
+
+GuiInterface.prototype.ClearRenamedEntities = function(player)
+{
+	this.renamedEntities = [];
 };
 
 GuiInterface.prototype.GetEntityState = function(player, ent)
@@ -668,6 +670,7 @@ var exposedFunctions = {
 	"GetSimulationState": 1,
 	"GetExtendedSimulationState": 1,
 	"GetRenamedEntities": 1,
+	"ClearRenamedEntities": 1,
 	"GetEntityState": 1,
 	"GetTemplateData": 1,
 	"GetNextNotification": 1,
