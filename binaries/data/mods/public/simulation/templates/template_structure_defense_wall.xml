@@ -22,9 +22,9 @@
     <Max>2000</Max>
   </Health>
   <Identity>
-    <GenericName>Wall</GenericName>
-    <Tooltip>Protect a town, close off choke points, and defend resource sites.</Tooltip>
-    <Classes datatype="tokens">Village</Classes>
+    <GenericName>City Wall</GenericName>
+    <Tooltip>Wall off your town for a stout defense.</Tooltip>
+    <Classes datatype="tokens">Town</Classes>
     <Icon>structures/wall.png</Icon>
   </Identity>
   <Obstruction>

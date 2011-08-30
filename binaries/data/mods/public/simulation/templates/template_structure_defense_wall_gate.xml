@@ -22,9 +22,9 @@
     <Max>3000</Max>
   </Health>
   <Identity>
-    <GenericName>Gate</GenericName>
-    <Tooltip>Allow units access through a City Wall. Currently not a working feature.</Tooltip>
-    <Classes datatype="tokens">Village</Classes>
+    <GenericName>City Gate</GenericName>
+    <Tooltip>Allow units access through a City Wall. (Currently not a working feature).</Tooltip>
+    <Classes datatype="tokens">Town</Classes>
     <Icon>structures/gate.png</Icon>
   </Identity>
   <Obstruction>
