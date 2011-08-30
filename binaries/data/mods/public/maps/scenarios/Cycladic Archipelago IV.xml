@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="457.137" y="131.042" z="235.614"/>
+		<Position x="619.576" y="131.042" z="1335.21"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -80,7 +80,7 @@
     },
     {
       "AI": "jubot",
-      "Civ": "hele",
+      "Civ": "cart",
       "Colour": {
         "b": 64,
         "g": 255,
@@ -19128,12 +19128,6 @@
 			<Position x="1444.29468" z="1063.69971"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="3651">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>3</Player>
-			<Position x="611.05591" z="1484.49366"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="3652">
 			<Template>gaia/geology_metal_mediterranean_slabs</Template>
 			<Player>0</Player>
@@ -19914,12 +19908,6 @@
 			<Position x="469.4969" z="435.94294"/>
 			<Orientation y="-2.36402"/>
 		</Entity>
-		<Entity uid="3789">
-			<Template>other/hellenic_royal_stoa</Template>
-			<Player>3</Player>
-			<Position x="636.95691" z="1452.0232"/>
-			<Orientation y="-0.78193"/>
-		</Entity>
 		<Entity uid="3790">
 			<Template>gaia/fauna_fish_tuna</Template>
 			<Player>0</Player>
@@ -20660,36 +20648,6 @@
 			<Position x="631.47638" z="1437.51404"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="3931">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>3</Player>
-			<Position x="617.94648" z="1457.9065"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3932">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>3</Player>
-			<Position x="620.12604" z="1460.64393"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3933">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>3</Player>
-			<Position x="622.22876" z="1463.59302"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3934">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>3</Player>
-			<Position x="624.54853" z="1465.61426"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3935">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>3</Player>
-			<Position x="626.99677" z="1467.8119"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="3936">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
 			<Player>0</Player>
@@ -20755,6 +20713,48 @@
 			<Player>0</Player>
 			<Position x="690.86164" z="1092.48243"/>
 			<Orientation y="-0.09418"/>
+		</Entity>
+		<Entity uid="3947">
+			<Template>structures/cart_civil_centre</Template>
+			<Player>3</Player>
+			<Position x="602.13416" z="1491.17103"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3950">
+			<Template>other/cart_tophet</Template>
+			<Player>3</Player>
+			<Position x="629.41993" z="1453.2981"/>
+			<Orientation y="2.39538"/>
+		</Entity>
+		<Entity uid="3951">
+			<Template>units/cart_infantry_spearman_e</Template>
+			<Player>3</Player>
+			<Position x="606.8639" z="1465.81653"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3952">
+			<Template>units/cart_infantry_spearman_e</Template>
+			<Player>3</Player>
+			<Position x="609.97437" z="1468.67334"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3953">
+			<Template>units/cart_infantry_spearman_e</Template>
+			<Player>3</Player>
+			<Position x="612.16327" z="1471.29761"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3954">
+			<Template>units/cart_infantry_spearman_e</Template>
+			<Player>3</Player>
+			<Position x="615.34064" z="1474.95508"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3955">
+			<Template>units/cart_infantry_spearman_e</Template>
+			<Player>3</Player>
+			<Position x="617.57874" z="1477.74097"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
