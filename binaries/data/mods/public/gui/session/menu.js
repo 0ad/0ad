@@ -132,7 +132,7 @@ function toggleDeveloperOverlay()
 	devCommands.hidden = !devCommands.hidden;
 }
 
-function escapeKeyAction()
+function closeOpenDialogs()
 {
         closeMenu();
         closeChat();

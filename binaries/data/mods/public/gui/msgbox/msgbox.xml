@@ -7,7 +7,7 @@
 		var mbMainObj = getGUIObjectByName("mbMain");
 		var mbTitleObj = getGUIObjectByName("mbTitleBar");
 		var mbTextObj = getGUIObjectByName("mbText");
-		
+
 		var mbButton1Obj = getGUIObjectByName("mbButton1");
 		var mbButton2Obj = getGUIObjectByName("mbButton2");
 		var mbButton3Obj = getGUIObjectByName("mbButton3");
@@ -15,11 +15,11 @@
 		// Calculate size
 		var mbLRDiff = data.width / 2;     // Message box left/right difference from 50% of screen
 		var mbUDDiff = data.height / 2;    // Message box up/down difference from 50% of screen
-		
+
 		var mbSizeString = "50%-" + mbLRDiff + " 50%-" + mbUDDiff + " 50%+" + mbLRDiff + " 50%+" + mbUDDiff;
-		
+
 		mbMainObj.size = mbSizeString;
-		
+
 		// Texts
 		mbTitleObj.caption	= data.title;
 		mbTextObj.caption 	= data.message;
@@ -100,20 +100,20 @@
 			<object name="mbText"
 				type="text"
 				style="CenteredLabelText"
-				size="30 30 100%-30 100%-100"
+				size="5% 20% 95% 100%-96"
 			/>
-                        
+
 			<object name="mbButton1"
 				style="StoneButton"
 				type="button"
 				hidden="true"
-				size="40 100%-50 33%-30 100%-20" 
+				size="40 100%-50 33%-30 100%-20"
 			/>
 			<object name="mbButton2"
 				style="StoneButton"
 				type="button"
 				hidden="true"
-				size="33%+30 100%-50 66%-40 100%-20" 
+				size="33%+30 100%-50 66%-40 100%-20"
 			/>
 			<object name="mbButton3"
 				style="StoneButton"

@@ -42,7 +42,7 @@
 			-->
 
 		<object hotkey="leave">
-			<action on="Press">escapeKeyAction();</action>
+			<action on="Press">closeOpenDialogs();</action>
 		</object>
 
 		<!-- Chat: Depending on the current state, it either opens message window or closes message window / posts message -->
@@ -421,7 +421,7 @@
                                                 Exit
                                                 <action on="Press">
                                                         closeMenu();
-                                                        escapeKeyAction();
+                                                        closeOpenDialogs();
                                                         <![CDATA[
                                                                 var btCaptions = ["Yes", "No"];
                                                                 var btCode = [leaveGame, null];

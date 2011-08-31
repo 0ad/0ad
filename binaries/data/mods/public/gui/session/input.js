@@ -87,7 +87,7 @@ function updateBuildingPlacementPreview()
 			"angle": placementAngle
 		});
 	}
-	
+
 	return false;
 }
 
@@ -113,7 +113,7 @@ function findGatherType(gatherer, supply)
 function getActionInfo(action, target)
 {
 	var selection = g_Selection.toList();
-	
+
 	// If the selection doesn't exist, no action
 	var entState = GetEntityState(selection[0]);
 	if (!entState)
@@ -125,7 +125,7 @@ function getActionInfo(action, target)
 		var entState = GetEntityState(ent);
 		return entState && entState.player == playerID;
 	});
-	
+
 	if (!g_DevSettings.controlAll && !allOwnedByPlayer)
 		return {"possible": false};
 
@@ -135,7 +135,7 @@ function getActionInfo(action, target)
 		return entState && entState.rallyPoint;
 	});
 
-	
+
 	if (!target)
 	{
 		if (action == "set-rallypoint" && haveRallyPoints)
@@ -148,7 +148,7 @@ function getActionInfo(action, target)
 
 	if (haveRallyPoints && selection.indexOf(target) != -1 && action == "unset-rallypoint")
 		return {"possible": true};
-		
+
 	// Look at the first targeted entity
 	// (TODO: maybe we eventually want to look at more, and be more context-sensitive?
 	// e.g. prefer to attack an enemy unit, even if some friendly units are closer to the mouse)
@@ -163,19 +163,19 @@ function getActionInfo(action, target)
 	// Check if any entities in the selection can gather the requested resource,
 	// can return to the dropsite, can build the foundation, or can attack the enemy
 	var simState = Engine.GuiInterfaceCall("GetSimulationState");
-	
+
 	for each (var entityID in selection)
 	{
 		var entState = GetEntityState(entityID);
 		if (!entState)
 			continue;
-		
+
 		var playerState = simState.players[entState.player];
 		var playerOwned = (targetState.player == entState.player);
 		var allyOwned = playerState.isAlly[targetState.player];
 		var enemyOwned = playerState.isEnemy[targetState.player];
 		var gaiaOwned = (targetState.player == 0);
-		
+
 		// Find the resource type we're carrying, if any
 		var carriedType = undefined;
 		if (entState.resourceCarrying && entState.resourceCarrying.length)
@@ -239,7 +239,7 @@ function determineAction(x, y, fromMinimap)
 		preSelectedAction = ACTION_NONE;
 		return undefined;
 	}
-	
+
 	// If the selection doesn't exist, no action
 	var entState = GetEntityState(selection[0]);
 	if (!entState)
@@ -251,7 +251,7 @@ function determineAction(x, y, fromMinimap)
 		var entState = GetEntityState(ent);
 		return entState && entState.player == playerID;
 	});
-	
+
 	if (!g_DevSettings.controlAll && !allOwnedByPlayer)
 		return undefined;
 
@@ -288,7 +288,7 @@ function determineAction(x, y, fromMinimap)
 			if (getActionInfo("repair", target).possible)
 				return {"type": "repair", "cursor": "action-repair", "target": target};
 			else
-				return {"type": "none", "cursor": "action-repair-disabled", "target": undefined};	
+				return {"type": "none", "cursor": "action-repair-disabled", "target": undefined};
 			break;
 		}
 	}
@@ -307,7 +307,7 @@ function determineAction(x, y, fromMinimap)
 		else if ((actionInfo = getActionInfo("returnresource", target)).possible)
 			return {"type": "returnresource", "cursor": actionInfo.cursor, "target": target};
 		else if (getActionInfo("build", target).possible)
-			return {"type": "build", "cursor": "action-build", "target": target};	
+			return {"type": "build", "cursor": "action-build", "target": target};
 		else if (getActionInfo("repair", target).possible)
 			return {"type": "build", "cursor": "action-repair", "target": target};
 		else if (getActionInfo("attack", target).possible)
@@ -373,7 +373,7 @@ function getPreferredEntities(ents)
 			preferredEnts.push(ent);
 
 		entStateList.push(entState);
-	}			
+	}
 
 	// If there are no units, check if there are defensive entities in the selection
 	if (!preferredEnts.length)
@@ -406,7 +406,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 	// (This is for states which should override the normal GUI processing - events will
 	// be processed here before being passed on, and propagation will stop if this function
 	// returns true)
-	// 
+	//
 	// TODO: it'd probably be nice to have a better state-machine system, with guaranteed
 	// entry/exit functions, since this is a bit broken now
 
@@ -451,7 +451,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 				var ents = Engine.PickFriendlyEntitiesInRect(x0, y0, x1, y1, Engine.GetPlayerID());
 				var preferredEntities = getPreferredEntities(ents)
 
-				if (preferredEntities.length)			
+				if (preferredEntities.length)
 					ents = preferredEntities;
 
 				// Remove the bandbox hover highlighting
@@ -482,14 +482,14 @@ function handleInputBeforeGui(ev, hoveredObject)
 				bandbox.hidden = true;
 
 				g_Selection.setHighlightList([]);
-				
+
 				inputState = INPUT_NORMAL;
 				return true;
 			}
 			break;
 		}
 		break;
-	
+
 	case INPUT_BUILDING_CLICK:
 		switch (ev.type)
 		{
@@ -568,7 +568,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 				placementPosition.x = snapData.x;
 				placementPosition.z = snapData.z;
 			}
-			
+
 			updateBuildingPlacementPreview();
 			break;
 
@@ -718,7 +718,7 @@ function handleInputAfterGui(ev)
 			// If the mouse moved further than a limit, switch to bandbox mode
 			var dragDeltaX = ev.x - dragStart[0];
 			var dragDeltaY = ev.y - dragStart[1];
-			
+
 			if (Math.abs(dragDeltaX) >= maxDragDelta || Math.abs(dragDeltaY) >= maxDragDelta)
 			{
 				inputState = INPUT_BANDBOXING;
@@ -743,7 +743,7 @@ function handleInputAfterGui(ev)
 
 				var selectedEntity = ents[0];
 				var now = new Date();
-				
+
 				// If camera following and we select different unit, stop
 				if (Engine.GetFollowedEntity() != selectedEntity)
 				{
@@ -756,7 +756,7 @@ function handleInputAfterGui(ev)
 					var showOffscreen = Engine.HotkeyIsPressed("selection.offscreen");
 					var matchRank = true;
 					var templateToMatch;
-					
+
 					// Check for double click or triple click
 					if (!doubleClicked)
 					{
@@ -781,7 +781,7 @@ function handleInputAfterGui(ev)
 							templateToMatch = Engine.GuiInterfaceCall("GetEntityState", selectedEntity).template;
 						}
 					}
-					
+
 					// TODO: Should we handle "control all units" here as well?
 					ents = Engine.PickSimilarFriendlyEntities(templateToMatch, showOffscreen, matchRank);
 				}
@@ -810,7 +810,7 @@ function handleInputAfterGui(ev)
 					g_Selection.reset();
 					g_Selection.addList(ents);
 				}
-				
+
 				inputState = INPUT_NORMAL;
 				return true;
 			}
@@ -834,7 +834,7 @@ function handleInputAfterGui(ev)
 				placementPosition.x = snapData.x;
 				placementPosition.z = snapData.z;
 			}
-			
+
 			updateBuildingPlacementPreview();
 
 			return false; // continue processing mouse motion
@@ -921,7 +921,7 @@ function doAction(action, ev)
 		Engine.PostNetworkCommand({"type": "garrison", "entities": selection, "target": action.target, "queued": queued});
 		// TODO: Play a sound?
 		return true;
-		
+
 	case "set-rallypoint":
 		var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
 		Engine.PostNetworkCommand({"type": "set-rallypoint", "entities": selection, "x": target.x, "z": target.z});
@@ -941,10 +941,10 @@ function doAction(action, ev)
 			"entities": []
 		});
 		return true;
-		
+
 	case "none":
 		return true;
-		
+
 	default:
 		error("Invalid action.type "+action.type);
 		return false;
@@ -1077,7 +1077,7 @@ function performCommand(entity, commandName)
 		var entState = GetEntityState(entity);
 		var template = GetTemplateData(entState.template);
 		var unitName = getEntityName(template);
-	
+
 		var playerID = Engine.GetPlayerID();
 		if (entState.player == playerID || g_DevSettings.controlAll)
 		{
@@ -1088,14 +1088,18 @@ function performCommand(entity, commandName)
 
 				if (selection.length > 0)
 				{
-					var message = "Are you sure you want to\ndelete the selected units?";
+					closeMenu();
+                                        closeOpenDialogs();
 
-					var deleteFunction = function ()
-					{ 
+                                        var deleteFunction = function ()
+					{
 						Engine.PostNetworkCommand({"type": "delete-entities", "entities": selection});
 					};
 
-					g_SessionDialog.open("Delete", message, null, 340, 160, deleteFunction);
+                                        var btCaptions = ["Yes", "No"];
+                                        var btCode = [deleteFunction, null];
+
+                                        messageBox(400, 200, "Destroy everything currently selected?", "Delete", 0, btCaptions, btCode);
 				}
 				break;
 			case "garrison":
@@ -1212,7 +1216,7 @@ function findIdleUnit(classes)
 	{
 		var data = { prevUnit: lastIdleUnit, idleClass: classes[currIdleClass] };
 		var newIdleUnit = Engine.GuiInterfaceCall("FindIdleUnit", data);
-	
+
 		// Check if we have new valid entity
 		if (newIdleUnit && newIdleUnit != lastIdleUnit)
 		{
@@ -1220,14 +1224,14 @@ function findIdleUnit(classes)
 			g_Selection.reset()
 			g_Selection.addList([lastIdleUnit]);
 			Engine.CameraFollow(lastIdleUnit);
-			
+
 			return;
 		}
-		
+
 		lastIdleUnit = 0;
 		currIdleClass = (currIdleClass + 1) % classes.length;
 	}
-	
+
 	// TODO: display a message or play a sound to indicate no more idle units, or something
 	// Reset for next cycle
 	resetIdleUnit();
