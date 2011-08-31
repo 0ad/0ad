@@ -4,7 +4,7 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>sunny</SkySet>
-		<SunColour r="0.741176" g="0.721569" b="0.643137"/>
+		<SunColour r="0.737255" g="0.721569" b="0.639216"/>
 		<SunElevation angle="0.825282"/>
 		<SunRotation angle="-0.374291"/>
 		<TerrainAmbientColour r="0.313726" g="0.392157" b="0.54902"/>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="335.027" y="141.84" z="83.5085"/>
+		<Position x="128.339" y="174.336" z="295.224"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -3196,31 +3196,31 @@
 		<Entity uid="596">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="315.02793" z="678.3896"/>
+			<Position x="314.81605" z="673.40571"/>
 			<Orientation y="1.21189"/>
 		</Entity>
 		<Entity uid="597">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="315.19773" z="657.68195"/>
+			<Position x="315.92145" z="655.0918"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="598">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="315.03568" z="639.73407"/>
+			<Position x="315.42649" z="639.24915"/>
 			<Orientation y="-1.33727"/>
 		</Entity>
 		<Entity uid="599">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="315.74344" z="621.6443"/>
+			<Position x="316.54963" z="619.23487"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="600">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="319.95508" z="599.81214"/>
+			<Position x="320.34928" z="598.7212"/>
 			<Orientation y="-3.14083"/>
 		</Entity>
 		<Entity uid="601">
@@ -3232,19 +3232,19 @@
 		<Entity uid="602">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="320.74955" z="583.84473"/>
+			<Position x="321.00532" z="583.64716"/>
 			<Orientation y="3.00136"/>
 		</Entity>
 		<Entity uid="603">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
-			<Player>2</Player>
-			<Position x="321.9242" z="561.61219"/>
+			<Player>0</Player>
+			<Position x="321.17704" z="561.87311"/>
 			<Orientation y="3.03675"/>
 		</Entity>
 		<Entity uid="605">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="333.16855" z="538.24775"/>
+			<Position x="333.07032" z="538.27833"/>
 			<Orientation y="1.41761"/>
 		</Entity>
 		<Entity uid="606">
@@ -3256,7 +3256,7 @@
 		<Entity uid="607">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="369.56885" z="540.70044"/>
+			<Position x="369.58246" z="540.60688"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="608">
@@ -3820,7 +3820,7 @@
 		<Entity uid="701">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="300.14109" z="669.0141"/>
+			<Position x="300.11881" z="669.10969"/>
 			<Orientation y="1.27764"/>
 		</Entity>
 		<Entity uid="702">
@@ -4234,7 +4234,7 @@
 		</Entity>
 		<Entity uid="774">
 			<Template>actor|particle/blowing_sand.xml</Template>
-			<Position x="842.84693" z="699.24903"/>
+			<Position x="93.86457" z="50.70615"/>
 			<Orientation y="0.2968"/>
 		</Entity>
 		<Entity uid="775">
@@ -4615,13 +4615,13 @@
 		<Entity uid="843">
 			<Template>units/hele_ship_trireme</Template>
 			<Player>2</Player>
-			<Position x="230.19268" z="880.01368"/>
+			<Position x="243.85969" z="894.58112"/>
 			<Orientation y="-2.22356"/>
 		</Entity>
 		<Entity uid="844">
 			<Template>units/hele_ship_trireme</Template>
 			<Player>2</Player>
-			<Position x="255.06411" z="848.5641"/>
+			<Position x="84.23087" z="731.99384"/>
 			<Orientation y="2.5378"/>
 		</Entity>
 		<Entity uid="845">
@@ -4997,14 +4997,14 @@
 		<Entity uid="908">
 			<Template>gaia/fauna_fish</Template>
 			<Player>0</Player>
-			<Position x="283.61371" z="480.88013"/>
+			<Position x="254.7762" z="492.93073"/>
 			<Orientation y="0.70015"/>
 		</Entity>
 		<Entity uid="909">
 			<Template>gaia/fauna_fish</Template>
 			<Player>0</Player>
-			<Position x="261.94507" z="556.46424"/>
-			<Orientation y="-2.33991"/>
+			<Position x="255.02451" z="553.7356"/>
+			<Orientation y="0.20423"/>
 		</Entity>
 		<Entity uid="911">
 			<Template>gaia/special_treasure_food_jars</Template>
@@ -5212,67 +5212,67 @@
 		</Entity>
 		<Entity uid="945">
 			<Template>other/palisades_rocks_straight</Template>
-			<Player>2</Player>
-			<Position x="702.404" z="290.96387"/>
+			<Player>1</Player>
+			<Position x="702.15442" z="291.06931"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="948">
 			<Template>other/palisades_rocks_straight</Template>
-			<Player>2</Player>
+			<Player>1</Player>
 			<Position x="681.56507" z="312.76856"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="949">
 			<Template>other/palisades_rocks_tower</Template>
-			<Player>2</Player>
+			<Player>1</Player>
 			<Position x="686.09845" z="307.22101"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="951">
 			<Template>other/palisades_rocks_tower</Template>
-			<Player>2</Player>
+			<Player>1</Player>
 			<Position x="697.90723" z="295.22495"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="954">
 			<Template>other/palisades_rocks_fort</Template>
-			<Player>2</Player>
-			<Position x="675.6554" z="318.00141"/>
+			<Player>1</Player>
+			<Position x="674.70282" z="317.96631"/>
 			<Orientation y="0.76954"/>
 		</Entity>
 		<Entity uid="955">
 			<Template>other/palisades_rocks_fort</Template>
-			<Player>2</Player>
-			<Position x="707.89893" z="285.46338"/>
+			<Player>1</Player>
+			<Position x="707.5066" z="285.23435"/>
 			<Orientation y="0.70438"/>
 		</Entity>
 		<Entity uid="956">
 			<Template>other/palisades_rocks_gate</Template>
-			<Player>2</Player>
+			<Player>1</Player>
 			<Position x="692.0271" z="300.9893"/>
 			<Orientation y="-0.80918"/>
 		</Entity>
 		<Entity uid="957">
 			<Template>other/palisades_rocks_curve</Template>
-			<Player>0</Player>
+			<Player>1</Player>
 			<Position x="721.75532" z="275.91211"/>
 			<Orientation y="1.67827"/>
 		</Entity>
 		<Entity uid="958">
 			<Template>other/palisades_rocks_curve</Template>
-			<Player>0</Player>
-			<Position x="666.60584" z="332.30842"/>
+			<Player>1</Player>
+			<Position x="666.15204" z="332.52994"/>
 			<Orientation y="-3.06463"/>
 		</Entity>
 		<Entity uid="959">
 			<Template>other/palisades_rocks_straight</Template>
-			<Player>0</Player>
+			<Player>1</Player>
 			<Position x="714.06232" z="280.56235"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="960">
 			<Template>other/palisades_rocks_straight</Template>
-			<Player>0</Player>
+			<Player>1</Player>
 			<Position x="670.36194" z="323.79346"/>
 			<Orientation y="-0.76119"/>
 		</Entity>
@@ -5285,13 +5285,13 @@
 		<Entity uid="962">
 			<Template>gaia/fauna_fish_tuna</Template>
 			<Player>0</Player>
-			<Position x="251.60962" z="469.5005"/>
-			<Orientation y="0.44755"/>
+			<Position x="240.76542" z="485.88102"/>
+			<Orientation y="1.4138"/>
 		</Entity>
 		<Entity uid="963">
 			<Template>gaia/fauna_fish_tuna</Template>
 			<Player>0</Player>
-			<Position x="271.33356" z="511.92853"/>
+			<Position x="258.66773" z="520.6399"/>
 			<Orientation y="-2.42742"/>
 		</Entity>
 		<Entity uid="964">
@@ -5309,14 +5309,14 @@
 		<Entity uid="966">
 			<Template>gaia/fauna_fish_tilapia</Template>
 			<Player>0</Player>
-			<Position x="255.39708" z="589.60132"/>
-			<Orientation y="1.32163"/>
+			<Position x="247.04955" z="578.2765"/>
+			<Orientation y="0.70078"/>
 		</Entity>
 		<Entity uid="967">
 			<Template>gaia/fauna_fish_tilapia</Template>
 			<Player>0</Player>
-			<Position x="286.57703" z="488.72272"/>
-			<Orientation y="-2.85026"/>
+			<Position x="284.72391" z="501.16279"/>
+			<Orientation y="-0.77158"/>
 		</Entity>
 		<Entity uid="968">
 			<Template>gaia/fauna_fish_tilapia</Template>
@@ -5399,7 +5399,7 @@
 		<Entity uid="981">
 			<Template>gaia/fauna_fish_tuna</Template>
 			<Player>0</Player>
-			<Position x="185.53208" z="445.62861"/>
+			<Position x="224.89664" z="490.91926"/>
 			<Orientation y="1.19701"/>
 		</Entity>
 		<Entity uid="982">
@@ -5759,7 +5759,7 @@
 		<Entity uid="1041">
 			<Template>other/special_treasure_shipwreck_debris</Template>
 			<Player>0</Player>
-			<Position x="312.89786" z="453.79947"/>
+			<Position x="311.82584" z="446.21848"/>
 			<Orientation y="0.72051"/>
 		</Entity>
 		<Entity uid="1042">
@@ -5801,7 +5801,7 @@
 		<Entity uid="1049">
 			<Template>other/unfinished_greek_temple</Template>
 			<Player>0</Player>
-			<Position x="698.11902" z="100.30762"/>
+			<Position x="711.2121" z="114.3842"/>
 			<Orientation y="-2.16683"/>
 		</Entity>
 		<Entity uid="1051">
@@ -5836,8 +5836,8 @@
 		</Entity>
 		<Entity uid="1056">
 			<Template>other/obelisk</Template>
-			<Player>0</Player>
-			<Position x="859.7544" z="723.2887"/>
+			<Player>1</Player>
+			<Position x="846.17603" z="736.85828"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1057">
@@ -5866,8 +5866,8 @@
 		</Entity>
 		<Entity uid="1061">
 			<Template>other/fence_long</Template>
-			<Player>0</Player>
-			<Position x="351.55872" z="95.94513"/>
+			<Player>1</Player>
+			<Position x="350.29566" z="93.26269"/>
 			<Orientation y="0.8038"/>
 		</Entity>
 		<Entity uid="1062">
@@ -5983,6 +5983,12 @@
 			<Player>0</Player>
 			<Position x="607.68116" z="196.34845"/>
 			<Orientation y="-3.07903"/>
+		</Entity>
+		<Entity uid="1081">
+			<Template>units/hele_ship_trireme</Template>
+			<Player>2</Player>
+			<Position x="59.9716" z="659.9513"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
