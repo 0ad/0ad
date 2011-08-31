@@ -23,7 +23,7 @@
 
 	</object>
 
-	<object type="image" style="StonePanelLight" size="0 16 100% 100%" hidden="true" name="setupWindow">
+	<object type="image" style="StonePanelLight" size="24 24 100%-24 100%-24" hidden="true" name="setupWindow">
 
 		<action on="Tick">
 			onTick();
@@ -34,7 +34,7 @@
 		</object>
 
 		<!-- Map selection -->
-		<object size="20 64 250 100%-20">
+		<object size="20 64 300 100%-20">
 
                         <object size="0 0 40% 100%">
                                 <object name="mapTypeHeading" type="text" style="RightLabelText" size="0 0 100% 28">Match Type:</object>
@@ -76,7 +76,7 @@
 		</object>
 
 		<!-- Player assignments -->
-		<object name="numPlayersBox" size="260 28 100% 30" hidden="true">
+		<object name="numPlayersBox" size="320 28 100% 30" hidden="true">
 			<object name="numPlayersSelectionHeading" type="text" style="LeftLabelText" size="160 0 100% 32">Number of Players</object>
 			<object name="numPlayersSelection"
 				type="dropdown"
@@ -88,7 +88,7 @@
 			</object>
 		</object>
 
-		<object size="260 64 100%-20 100%-260" type="image" sprite="BackgroundIndentFillDark">
+		<object size="320 64 100%-20 100%-260" type="image" sprite="BackgroundIndentFillDark">
 			<object size="0 6 100% 30">
 				<object name="playerNameHeading" type="text" style="CenteredLabelText" size="100 0 250 100%">Player Name</object>
 				<object name="playerCivHeading" type="text" style="CenteredLabelText" size="250 0 400 100%">Civilization</object>
@@ -127,7 +127,7 @@
 
 
 		<!-- Options -->
-		<object name="gameOptionsBox" size="260 100%-260 100% 100%-190">
+		<object name="gameOptionsBox" size="320 100%-260 100% 100%-190">
 			<object size="2 2 100% 50%-2">	<!-- Top row -->
 				<object name="mapSizeText" size="0 0 175 100%" type="text" style="LeftLabelText">Map size:</object>
 				<object name="mapSize" size="75 -2 225 100%-6" type="dropdown" style="StoneDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select map size (larger may reduce performance)"/>
@@ -144,7 +144,7 @@
 
 
 		<!-- Chat window -->
-		<object name="chatPanel" size="260 100%-190 100%-20 100%-58" type="image" sprite="BackgroundIndentFillDark">
+		<object name="chatPanel" size="320 100%-190 100%-20 100%-64" type="image" sprite="BackgroundIndentFillDark">
 
 			<object name="chatText" size="3 1 100%-1 100%-25" type="text" style="chatPanel"/>
 
@@ -160,16 +160,17 @@
 		</object>
 
 
-		<!-- Other things -->
+                <!-- Tooltip -->
 		<object name="onscreenToolTip"
 			type="text"
 			font="serif-14"
 			textcolor="white"
 			sprite="BackgroundTranslucent"
 			hidden="true"
-			size="260 100%-64 100%-310 100%-16"
+			size="100%-656 100%-64 100%-304 100%-16"
 		>[Tooltip text]</object>
 
+                <!-- Cancel Button -->
 		<object
 			name="cancelGame"
 			type="button"
@@ -184,6 +185,7 @@
 			]]></action>
 		</object>
 
+                <!-- Start Button -->
 		<object
 			name="startGame"
 			type="button"

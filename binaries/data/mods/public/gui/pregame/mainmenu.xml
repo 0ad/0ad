@@ -146,16 +146,184 @@ Status: $status.
 			</object>
 		</object>
 
+                <!--
+		==========================================
+		- SUBMENU
+		==========================================
+		-->
+                <object name="submenuScreen"
+			type="image"
+                        hidden="true"
+                >
+                        <!-- hides the submenu when the mouse leaves the mainMenuButtons or submenu -->
+                    	<action on="MouseEnter">
+                                closeMenu();
+			</action>
+
+                        <!-- submenu -->
+                        <object name="submenu"
+                                type="image"
+                                style="SubmenuPanel"
+                                size="60 50%-100 300 50%+100"
+                        >
+                                <!-- submenuSinglePlayer -->
+                                <object name="submenuSinglePlayer"
+                                        type="image"
+                                        size="0 4 100%-4 100%-4"
+                                        tooltip_style="pgToolTip"
+                                        tooltip="The 0 A.D. Game Manual."
+                                        hidden="true"
+                                >
+                                        <object name="subMenuSinglePlayerButton"
+                                                type="button"
+                                                style="StoneButtonFancy"
+                                                size="0 0 100% 28"
+                                                tooltip_style="pgToolTip"
+                                                tooltip="Click here to start a new single player game."
+                                        >
+                                                Matches
+                                                <action on="Press">
+                                                        closeMenu();
+                                                        Engine.PushGuiPage("page_gamesetup.xml", { type: "offline" });
+                                                </action>
+                                        </object>
+
+                                        <object name="subMenuCampaignButton"
+                                                type="button"
+                                                style="StoneButtonFancy"
+                                                size="0 32 100% 60"
+                                                tooltip_style="pgToolTip"
+                                                tooltip="Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
+                                                enabled="false"
+                                        >
+                                                Campaigns
+                                                <action on="Press">
+                                                        closeMenu();
+                                                        <![CDATA[
+                                                                // Open Campaigns window.
+                                                                // NOT IMPLEMENTED YET
+                                                        ]]>
+                                                </action>
+                                        </object>
+                                </object>
+
+                                <!-- submenuMultiplayer -->
+                                <object name="submenuMultiplayer"
+                                              type="image"
+                                              size="0 4 100%-4 100%-4"
+                                              tooltip_style="pgToolTip"
+                                              tooltip="The 0 A.D. Game Manual"
+                                              hidden="true"
+                                >
+                                        <object name="subMenuMultiplayerJoinButton"
+                                                type="button"
+                                                style="StoneButtonFancy"
+                                                size="0 0 100% 28"
+                                                tooltip_style="pgToolTip"
+                                                tooltip="Joining an existing multiplayer game."
+                                        >
+                                                Join Game
+                                                <action on="Press">
+                                                        closeMenu();
+                                                        // Open Multiplayer connection window with join option.
+                                                        Engine.PushGuiPage("page_gamesetup_mp.xml", "join");
+                                                </action>
+                                        </object>
+
+                                        <object name="subMenuMultiplayerHostButton"
+                                                type="button"
+                                                style="StoneButtonFancy"
+                                                size="0 32 100% 60"
+                                                tooltip_style="pgToolTip"
+                                                tooltip="Host a multiplayer game."
+                                        >
+                                                Host Game
+                                                <action on="Press">
+                                                        closeMenu();
+                                                        // Open Multiplayer connection window with host option.
+                                                        Engine.PushGuiPage("page_gamesetup_mp.xml", "host");
+                                                </action>
+                                        </object>
+
+                                </object>
+
+                                <!-- submenuToolsAndOptions -->
+                                <object name="submenuToolsAndOptions"
+                                        type="image"
+                                        size="0 4 100%-4 100%-4"
+                                        tooltip_style="pgToolTip"
+                                        tooltip="The 0 A.D. Game Manual"
+                                        hidden="true"
+                                >
+                                        <object name="submenuOptionsButton"
+                                                style="StoneButtonFancy"
+                                                type="button"
+                                                size="0 0 100% 28"
+                                                tooltip_style="pgToolTip"
+                                                tooltip="Adjust game settings. [NOT YET IMPLEMENTED]"
+                                                enabled="false"
+                                        >
+                                                Options
+                                                <action on="Press">
+                                                        closeMenu();
+                                                        <![CDATA[
+                                                                // Open Options window.
+                                                                Engine.PushGuiPage("page_options.xml");
+                                                        ]]>
+                                                </action>
+                                        </object>
+
+                                        <object name="submenuEditorButton"
+                                                style="StoneButtonFancy"
+                                                type="button"
+                                                size="0 32 100% 60"
+                                                tooltip_style="pgToolTip"
+                                                tooltip="Open the Atlas Scenario Editor in a new window. You can run this more reliably by starting the game with the command-line argument &quot;-editor&quot;."
+                                        >
+                                                Scenario Editor
+                                                <action on="Press">
+                                                        closeMenu();
+                                                        <![CDATA[
+                                                        // Start Atlas
+                                                                if (Engine.AtlasIsAvailable())
+                                                                        Engine.RestartInAtlas();
+                                                                else
+                                                                        messageBox(400, 200, "The scenario editor is not available or failed to load.", "Error", 2);
+                                                        ]]>
+                                                </action>
+                                        </object>
+                                </object>
+                        </object><!-- end of submenu -->
+                </object><!-- end of submenu screen -->
+
 
 		<!--
 		==========================================
 		- MAIN MENU PANEL
 		==========================================
 		-->
-		<object type="image"
+		<object name="mainMenu"
+                        type="image"
 			style="MainMenuPanel"
 			size="60 -2 300 100%+2"
+                        z="50"
                 >
+                        <!-- These hides the submenu if you move the mouse over
+                        the main menu panel. The regular submenu screen canot
+                        handle this because it must be below the main menu panel
+                        in order for the submenu to slide out from behind the
+                        main menu panel. -->
+                        <object name="secondarySubmenuScreen"
+                                type="image"
+                                hidden="true"
+                                size="0 0 100% 100%"
+                        >
+                                <!-- hides the submenu when the mouse leaves the mainMenuButtons or submenu -->
+                                <action on="MouseEnter">
+                                        closeMenu();
+                                </action>
+                        </object>
+
                         <!-- These are used to make the right side blend in with the submenu -->
                         <object	name="MainMenuPanelRightBorderTop"
                                 type="image"
@@ -182,7 +350,11 @@ Status: $status.
                                 size="8 156 100%-8 356"
                                 ghost="false"
                         >
-                                <!-- Allows sliding the mouse over to submenu without it closing automatically -->
+                                <!-- Allows sliding the mouse over to the submenu.
+                                Without this, the submenu will close automatically
+                                when the mouse encounters the "secondarySubmenuScreen"
+                                in the thin space between the main menu buttons
+                                and the submenu buttons. -->
                                 <object
                                         type="image"
                                         size="100% 0 100%+8 100%"
@@ -199,7 +371,7 @@ Status: $status.
 				>
                                         Learn To Play
                                         <action on="Press">
-                                                getGUIObjectByName("submenu").hidden = true;
+                                                closeMenu();
                                                 <![CDATA[
                                                         Engine.PushGuiPage("page_manual.xml", { "page": "intro" });
                                                 ]]>
@@ -216,9 +388,8 @@ Status: $status.
                                 >
                                         Single Player
                                         <action on="Press">
-                                                <![CDATA[
-                                                        updateSubmenu("submenuSinglePlayer", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 2);
-                                                ]]>
+                                                closeMenu();
+                                                openMenu("submenuSinglePlayer", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 2);
                                         </action>
                                 </object>
 
@@ -232,9 +403,8 @@ Status: $status.
                                 >
                                         Multiplayer
                                         <action on="Press">
-                                            <![CDATA[
-                                                    updateSubmenu("submenuMultiplayer", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 2);
-                                            ]]>
+                                                closeMenu();
+                                                openMenu("submenuMultiplayer", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 2);
                                         </action>
                                 </object>
 
@@ -248,9 +418,8 @@ Status: $status.
                                 >
                                         Tools <![CDATA[&]]> Options
                                         <action on="Press">
-                                                <![CDATA[
-                                                        updateSubmenu("submenuToolsAndOptions", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 2);
-                                                ]]>
+                                                closeMenu();
+                                                openMenu("submenuToolsAndOptions", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 2);
                                         </action>
                                 </object>
 
@@ -264,7 +433,7 @@ Status: $status.
                                 >
                                         History
                                         <action on="Press">
-                                                getGUIObjectByName("submenu").hidden = true;
+                                                closeMenu();
                                                 <![CDATA[
                                                         Engine.PushGuiPage("page_civinfo.xml");
                                                 ]]>
@@ -281,7 +450,7 @@ Status: $status.
                                 >
                                         Exit
                                         <action on="Press">
-                                                getGUIObjectByName("submenu").hidden = true;
+                                                closeMenu();
                                                 <![CDATA[
                                                         var btCaptions = ["Yes", "No"];
                                                         var btCode = [exit, null];
@@ -379,158 +548,7 @@ Get involved at: wildfiregames.com/0ad
                 </object>
 
 
-                <!--
-		==========================================
-		- SUBMENU
-		==========================================
-		-->
 
-                <object name="submenuScreen"
-			type="image"
-                        hidden="true"
-                >
-                        <!-- hides the submenu when the mouse leaves the mainMenuButtons or submenu -->
-                    	<action on="MouseEnter">
-                                getGUIObjectByName("submenu").hidden = true;
-                                getGUIObjectByName("MainMenuPanelRightBorderTop").size = "100%-2 0 100% 100%";
-			</action>
-
-                        <!-- submenu -->
-                        <object name="submenu"
-                                type="image"
-                                style="SubmenuPanel"
-                                size="300 50%-100 536 50%+100"
-                        >
-                                <!-- submenuSinglePlayer -->
-                                <object name="submenuSinglePlayer"
-                                        type="image"
-                                        size="0 4 100%-4 100%-4"
-                                        tooltip_style="pgToolTip"
-                                        tooltip="The 0 A.D. Game Manual."
-                                        hidden="true"
-                                >
-                                        <object name="subMenuSinglePlayerButton"
-                                                type="button"
-                                                style="StoneButtonFancy"
-                                                size="0 0 100% 28"
-                                                tooltip_style="pgToolTip"
-                                                tooltip="Click here to start a new single player game."
-                                        >
-                                                Matches
-                                                <action on="Press"><![CDATA[
-                                                        // Hide submenu
-                                                        this.parent.parent.hidden = true;
-                                                        // Open Session Setup window.
-                                                        Engine.PushGuiPage("page_gamesetup.xml", { type: "offline" });
-                                                ]]></action>
-                                        </object>
-
-                                        <object name="subMenuCampaignButton"
-                                                type="button"
-                                                style="StoneButtonFancy"
-                                                size="0 32 100% 60"
-                                                tooltip_style="pgToolTip"
-                                                tooltip="Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
-                                                enabled="false"
-                                        >
-                                                Campaigns
-                                                <action on="Press"><![CDATA[
-                                                        // Hide submenu
-                                                        this.parent.parent.hidden = true;
-                                                        // Open Campaigns window.
-                                                        // NOT IMPLEMENTED YET
-                                                ]]></action>
-                                        </object>
-                                </object>
-
-                                <!-- submenuMultiplayer -->
-                                <object name="submenuMultiplayer"
-                                              type="image"
-                                              size="0 4 100%-4 100%-4"
-                                              tooltip_style="pgToolTip"
-                                              tooltip="The 0 A.D. Game Manual"
-                                              hidden="true"
-                                >
-                                        <object name="subMenuMultiplayerJoinButton"
-                                                type="button"
-                                                style="StoneButtonFancy"
-                                                size="0 0 100% 28"
-                                                tooltip_style="pgToolTip"
-                                                tooltip="Joining an existing multiplayer game."
-                                        >
-                                                Join Game
-                                                <action on="Press"><![CDATA[
-                                                        // Hide submenu
-                                                        this.parent.parent.hidden = true;
-                                                        // Open Multiplayer connection window with join option.
-                                                        Engine.PushGuiPage("page_gamesetup_mp.xml", "join");
-                                                ]]></action>
-                                        </object>
-
-                                        <object name="subMenuMultiplayerHostButton"
-                                                type="button"
-                                                style="StoneButtonFancy"
-                                                size="0 32 100% 60"
-                                                tooltip_style="pgToolTip"
-                                                tooltip="Host a multiplayer game."
-                                        >
-                                                Host Game
-                                                <action on="Press"><![CDATA[
-                                                        // Hide submenu
-                                                        this.parent.parent.hidden = true;
-                                                        // Open Multiplayer connection window with host option.
-                                                        Engine.PushGuiPage("page_gamesetup_mp.xml", "host");
-                                                ]]></action>
-                                        </object>
-
-                                </object>
-
-                                <!-- submenuToolsAndOptions -->
-                                <object name="submenuToolsAndOptions"
-                                        type="image"
-                                        size="0 4 100%-4 100%-4"
-                                        tooltip_style="pgToolTip"
-                                        tooltip="The 0 A.D. Game Manual"
-                                              hidden="true"
-                                >
-                                        <object name="submenuOptionsButton"
-                                                style="StoneButtonFancy"
-                                                type="button"
-                                                size="0 0 100% 28"
-                                                tooltip_style="pgToolTip"
-                                                tooltip="Adjust game settings. [NOT YET IMPLEMENTED]"
-                                                enabled="false"
-                                        >
-                                                Options
-                                                <action on="Press"><![CDATA[
-                                                        // Hide submenu
-                                                        this.parent.parent.hidden = true;
-                                                        // Open Options window.
-                                                        Engine.PushGuiPage("page_options.xml");
-                                                ]]></action>
-                                        </object>
-
-                                        <object name="submenuEditorButton"
-                                                style="StoneButtonFancy"
-                                                type="button"
-                                                size="0 32 100% 60"
-                                                tooltip_style="pgToolTip"
-                                                tooltip="Open the Atlas Scenario Editor in a new window. You can run this more reliably by starting the game with the command-line argument &quot;-editor&quot;."
-                                        >
-                                                Scenario Editor
-                                                <action on="Press"><![CDATA[
-                                                        // Hide submenu
-                                                        this.parent.parent.hidden = true;
-                                                        // Start Atlas
-                                                        if (Engine.AtlasIsAvailable())
-                                                                Engine.RestartInAtlas();
-                                                        else
-                                                                messageBox(400, 200, "The scenario editor is not available or failed to load.", "Error", 2);
-                                                ]]></action>
-                                        </object>
-                                </object>
-                        </object><!-- end of submenu -->
-                </object><!-- end of submenu screen -->
 
 
 

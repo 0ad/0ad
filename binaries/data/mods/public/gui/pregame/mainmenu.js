@@ -83,7 +83,11 @@ function formatUserReportStatus(status)
 
 function onTick()
 {
+        // Animate backgrounds
 	scrollBackgrounds();
+
+        // Animate submenu
+        updateMenuPosition();
 
 	if (Engine.IsUserReportEnabled())
 	{
@@ -101,23 +105,40 @@ function onTick()
 	}
 }
 
-// Sizes right border on main menu panel to match the submenu
-function blendSubmenuIntoMain(topPosition, bottomPosition)
+
+/*
+ * MENU FUNCTIONS
+ */
+
+// Slide menu
+function updateMenuPosition()
 {
-    var topSprite = getGUIObjectByName("MainMenuPanelRightBorderTop");
-    topSprite.size = "100%-2 0 100% " + (topPosition + MARGIN);
-    console.write(topSprite.size);
-    
-    var bottomSprite = getGUIObjectByName("MainMenuPanelRightBorderBottom");
-    bottomSprite.size = "100%-2 " + (bottomPosition) + " 100% 100%";
+        if (getGUIObjectByName("submenuScreen").hidden == false)
+        {
+                var submenu = getGUIObjectByName("submenu");
+
+                // The offset is the increment or number of units/pixels to move
+                // the menu. An offset of one is always accurate, but it is too
+                // slow. The offset must divide into the travel distance evenly
+                // in order for the menu to end up at the right spot. The travel
+                // distance is the max-initial. The travel distance in this
+                // example is 300-60 = 240. We choose an offset of 5 because it
+                // divides into 240 evenly and provided the speed we wanted.
+                var OFFSET = 5;
+
+                if (submenu.size.left < getGUIObjectByName("mainMenu").size.right)
+                {
+                        submenu.size = (submenu.size.left + OFFSET) + " " + submenu.size.top + " " + (submenu.size.right + OFFSET) + " " + submenu.size.bottom;
+                }
+        }
 }
 
-// Update the submenu
-function updateSubmenu(newSubmenu, position, buttonHeight, numButtons)
+// Opens the menu by revealing the screen which contains the menu
+function openMenu(newSubmenu, position, buttonHeight, numButtons)
 {
         // remove old submenu
         getGUIObjectByName(currentSubmenu).hidden = true;
-        
+
         // switch to new submenu
         currentSubmenu = newSubmenu;
         getGUIObjectByName(currentSubmenu).hidden = false;
@@ -127,28 +148,53 @@ function updateSubmenu(newSubmenu, position, buttonHeight, numButtons)
         var top = position - MARGIN;
         var bottom = position + ((buttonHeight + MARGIN) * numButtons);
         submenu.size = submenu.size.left + " " + top + " " + submenu.size.right + " " + bottom;
-        submenu.hidden = false;
-        
+
         // Blend in right border of main menu into the left border of the submenu
         blendSubmenuIntoMain(top, bottom);
-        
+
         // prepare to hide the submenu when the mouse moves off of the submenu
         getGUIObjectByName("submenuScreen").hidden = false;
+        getGUIObjectByName("secondarySubmenuScreen").hidden = false;
 }
 
-// Helper function that enables the dark background mask, then reveals a given subwindow object.
+// Closes the menu and resets position
+function closeMenu()
+{
+        getGUIObjectByName("submenuScreen").hidden = true;
+        getGUIObjectByName("secondarySubmenuScreen").hidden = true;
+        getGUIObjectByName("submenu").size = getGUIObjectByName("mainMenu").size;
+        getGUIObjectByName("MainMenuPanelRightBorderTop").size = "100%-2 0 100% 100%";
+}
+
+// Sizes right border on main menu panel to match the submenu
+function blendSubmenuIntoMain(topPosition, bottomPosition)
+{
+    var topSprite = getGUIObjectByName("MainMenuPanelRightBorderTop");
+    topSprite.size = "100%-2 0 100% " + (topPosition + MARGIN);
+
+    var bottomSprite = getGUIObjectByName("MainMenuPanelRightBorderBottom");
+    bottomSprite.size = "100%-2 " + (bottomPosition) + " 100% 100%";
+}
+
+// Reveals submenu
 function openMainMenuSubWindow (windowName)
 {
 	guiUnHide("pgSubWindow");
 	guiUnHide(windowName);
 }
 
-// Helper function that disables the dark background mask, then hides a given subwindow object.
+// Hides submenu
 function closeMainMenuSubWindow (windowName)
 {
 	guiHide("pgSubWindow");
 	guiHide(windowName);
 }
+
+
+
+/*
+ * FUNCTIONS BELOW DO NOT WORK YET
+ */
 
 // Switch to a given options tab window.
 function openOptionsTab(tabName)

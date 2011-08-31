@@ -63,9 +63,9 @@ function init(initData, hotloadData)
 	}
 	else // Needed for autostart loading option
 	{
-		g_Players = getPlayerData(null); 
+		g_Players = getPlayerData(null);
 	}
-	
+
 	// Cache civ data
 	g_CivData = loadCivData();
 	g_CivData["gaia"] = { "Code": "gaia", "Name": "Gaia" };
@@ -76,7 +76,7 @@ function init(initData, hotloadData)
 	{
 		g_Selection.selected = hotloadData.selection;
 	}
-	else 
+	else
 	{
 		startMusic(g_CivData[g_Players[Engine.GetPlayerID()].civ].Music); // Starting for the first time:
 	}
@@ -101,7 +101,7 @@ function reportPerformance(time)
 		size: settings.Size, // only defined for random maps
 		profiler: Engine.GetProfilerState()
 	};
-	
+
 	Engine.SubmitUserReport("profile", 3, JSON.stringify(data));
 }
 
@@ -129,16 +129,16 @@ function leaveGame()
 			"type": "defeat-player",
 			"playerId": Engine.GetPlayerID()
 		});
-	
+
 	}
 
 	stopMusic();
 	endGame();
-	
-	Engine.SwitchGuiPage("page_summary.xml", 
-							{ "gameResult"  : gameResult, 
-							  "timeElapsed" : extendedSimState.timeElapsed, 
-							  "playerStates": extendedSimState.players 
+
+	Engine.SwitchGuiPage("page_summary.xml",
+							{ "gameResult"  : gameResult,
+							  "timeElapsed" : extendedSimState.timeElapsed,
+							  "playerStates": extendedSimState.players
 						    });
 }
 
@@ -174,12 +174,15 @@ function onTick()
 	// Run timers
 	updateTimers();
 
+        // Animate menu
+        updateMenuPosition();
+
 	// When training is blocked, flash population (alternates colour every 500msec)
 	if (g_IsTrainingQueueBlocked && (Date.now() % 1000) < 500)
 		getGUIObjectByName("resourcePop").textcolor = "255 165 0";
 	else
 		getGUIObjectByName("resourcePop").textcolor = "white";
-		
+
 	// Clear renamed entities list
 	Engine.GuiInterfaceCall("ClearRenamedEntities", {});
 }
@@ -188,7 +191,7 @@ function checkPlayerState()
 {
 	var simState = Engine.GuiInterfaceCall("GetSimulationState");
 	var playerState = simState.players[Engine.GetPlayerID()];
-	
+
 	if (!g_GameEnded)
 	{
 		if (playerState.state == "defeated")
@@ -201,10 +204,10 @@ function checkPlayerState()
 		{
 			g_GameEnded = true;
 			switchMusic("win_1", 0.0);
-			
+
 			if (!getGUIObjectByName("devCommandsRevealMap").checked)
 				getGUIObjectByName("devCommandsRevealMap").checked = true;
-			
+
 			g_SessionDialog.open("Victory", "You have won the battle!\nDo you want to leave the game now?", null, 320, 160, leaveGame);
 		}
 	}
@@ -215,7 +218,7 @@ function onSimulationUpdate()
 	g_Selection.dirty = false;
 	g_EntityStates = {};
 	g_TemplateData = {};
-	
+
 	var simState = Engine.GuiInterfaceCall("GetSimulationState");
 
 	// If we're called during init when the game is first loading, there will be no simulation yet, so do nothing
@@ -272,7 +275,7 @@ function updateDebug(simState)
 	var conciseSimState = deepcopy(simState);
 	conciseSimState.players = "<<<omitted>>>";
 	var text = "simulation: " + uneval(conciseSimState);
-	
+
 	var selection = g_Selection.toList();
 	if (selection.length)
 	{
@@ -301,6 +304,6 @@ function updatePlayerDisplay(simState)
 	getGUIObjectByName("resourceStone").caption = playerState.resourceCounts.stone;
 	getGUIObjectByName("resourceMetal").caption = playerState.resourceCounts.metal;
 	getGUIObjectByName("resourcePop").caption = playerState.popCount + "/" + playerState.popLimit;
-	
+
 	g_IsTrainingQueueBlocked = playerState.trainingQueueBlocked;
 }

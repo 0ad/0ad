@@ -126,7 +126,7 @@ function handleNetMessage(message)
 	case "chat":
 		addChatMessage({ "type": "message", "guid": message.guid, "text": message.text });
 		break;
-		
+
 	// To prevent errors, ignore these message types that occur during autostart
 	case "gamesetup":
 	case "start":
@@ -163,7 +163,7 @@ function submitChatInput()
 	}
 
 	input.blur(); // Remove focus
-	
+
 	toggleChatWindow();
 }
 
@@ -183,7 +183,7 @@ function addChatMessage(msg)
 	}
 
 	var message = escapeText(msg.text);
-	
+
 	var formatted;
 
 	switch (msg.type)

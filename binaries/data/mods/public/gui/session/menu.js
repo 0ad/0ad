@@ -1,13 +1,63 @@
-function openMenu()
+/*
+ * MENU POSITION CONSTANTS
+*/
+
+// Menu / panel border size
+const MARGIN = 4;
+
+// Includes the main menu button
+const NUM_BUTTONS = 5;
+
+// Regular menu buttons
+const BUTTON_HEIGHT = 32;
+
+// The position where the bottom of the menu will end up (currently 164)
+const END_MENU_POSITION = (BUTTON_HEIGHT * NUM_BUTTONS) + MARGIN;
+
+// Menu starting position - bottom
+const MENU_BOTTOM  = 36;
+
+// Menu starting position - top
+const MENU_TOP = MENU_BOTTOM - END_MENU_POSITION;
+
+// Menu starting position - overall
+const INITIAL_MENU_POSITION = "100%-" + END_MENU_POSITION + " " + MENU_TOP + " 100% " + MENU_BOTTOM;
+
+
+// Slide menu
+function updateMenuPosition()
 {
-    getGUIObjectByName("menuScreen").hidden = false;
-    getGUIObjectByName("menu").hidden = false;
+        if (getGUIObjectByName("menuScreen").hidden == false)
+        {
+                var menu = getGUIObjectByName("menu");
+
+                // The offset is the increment or number of units/pixels to move
+                // the menu. An offset of one is always accurate, but it is too
+                // slow. The offset must divide into the travel distance evenly
+                // in order for the menu to end up at the right spot. The travel
+                // distance is the max-initial. The travel distance in this
+                // example is 164-36 = 128. We choose an offset of 8 because it
+                // divides into 128 evenly and provided the speed we wanted.
+                var OFFSET = 8;
+
+                if (menu.size.bottom < END_MENU_POSITION)
+                {
+                        menu.size = "100%-" + END_MENU_POSITION + " " + (menu.size.top + OFFSET) + " 100% " + (menu.size.bottom + OFFSET);
+                }
+        }
 }
 
+// Opens the menu by revealing the screen which contains the menu
+function openMenu()
+{
+        getGUIObjectByName("menuScreen").hidden = false;
+}
+
+// Closes the menu and resets position
 function closeMenu()
 {
-    getGUIObjectByName("menuScreen").hidden = true;
-    getGUIObjectByName("menu").hidden = true;
+        getGUIObjectByName("menuScreen").hidden = true;
+        getGUIObjectByName("menu").size = INITIAL_MENU_POSITION;
 }
 
 function openSettings()
@@ -28,7 +78,7 @@ function openChat()
         closeSettings();
 	getGUIObjectByName("chatInput").focus(); // Grant focus to the input area
 	getGUIObjectByName("chatDialogPanel").hidden = false;
-	
+
 }
 
 function closeChat()
@@ -40,7 +90,7 @@ function closeChat()
 function toggleChatWindow()
 {
         closeSettings();
-    
+
 	var chatWindow = getGUIObjectByName("chatDialogPanel");
 	var chatInput = getGUIObjectByName("chatInput");
 
@@ -57,7 +107,7 @@ function togglePause()
         closeMenu();
         closeChat();
         closeSettings();
-    
+
 	var pauseOverlay = getGUIObjectByName("pauseOverlay");
 
 	if (pauseOverlay.hidden)
