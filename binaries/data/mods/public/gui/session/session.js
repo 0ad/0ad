@@ -196,19 +196,30 @@ function checkPlayerState()
 	{
 		if (playerState.state == "defeated")
 		{
-			g_GameEnded = true;
+			closeMenu();
+                        closeOpenDialogs();
+
+                        g_GameEnded = true;
 			switchMusic("loss_1", 0.0);
-			g_SessionDialog.open("Defeat",  "You have been defeated...\nDo you want to leave the game now?", null, 320, 160, leaveGame);
+
+                        var btCaptions = ["Yes", "No"];
+                        var btCode = [leaveGame, null];
+                        messageBox(400, 200, "You have been defeated...\nDo you want to leave the game now?", "Defeat", 0, btCaptions, btCode);
 		}
 		else if (playerState.state == "won")
 		{
-			g_GameEnded = true;
+			closeMenu();
+                        closeOpenDialogs();
+
+                        g_GameEnded = true;
 			switchMusic("win_1", 0.0);
 
 			if (!getGUIObjectByName("devCommandsRevealMap").checked)
 				getGUIObjectByName("devCommandsRevealMap").checked = true;
 
-			g_SessionDialog.open("Victory", "You have won the battle!\nDo you want to leave the game now?", null, 320, 160, leaveGame);
+                        var btCaptions = ["Yes", "No"];
+                        var btCode = [leaveGame, null];
+                        messageBox(400, 200, "You have won the battle!\nDo you want to leave the game now?", "Victory", 0, btCaptions, btCode);
 		}
 	}
 }
