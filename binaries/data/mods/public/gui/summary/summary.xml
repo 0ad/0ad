@@ -57,7 +57,7 @@
 				<object type="text" style="TitleText" ghost="true">Resources</object>
 			</object>
 
-			<object name="unitsBuildingsPanel" type="image" sprite="ForegroundBody" size="20 100 100%-20 100%-48">
+			<object name="unitsBuildingsPanel" type="image" sprite="ForegroundBody" size="20 100 100%-20 100%-54">
 
 				<object size="0 0 100% 100%-50">
 					<object name="playerName0Heading" type="text" style="LeftTabLabelText">
@@ -101,7 +101,7 @@
 				</object>
 
 			</object>
-			<object name="conquestPanel" type="image" sprite="ForegroundBody" size="20 100 100%-20 100%-48" hidden="true">
+			<object name="conquestPanel" type="image" sprite="ForegroundBody" size="20 100 100%-20 100%-54" hidden="true">
 
 				<object size="0 0 100% 100%-50">
 					<object name="playerName1Heading" type="text" style="LeftTabLabelText">
@@ -132,7 +132,7 @@
 				</object>
 
 			</object>
-			<object name="resourcesPanel" type="image" sprite="ForegroundBody" size="20 100 100%-20 100%-48" hidden="true">
+			<object name="resourcesPanel" type="image" sprite="ForegroundBody" size="20 100 100%-20 100%-54" hidden="true">
 
 				<object size="0 0 100% 100%-50">
 					<object name="playerName2Heading" type="text" style="LeftTabLabelText">

@@ -36,7 +36,7 @@
 		<!-- Map selection -->
 		<object size="20 64 300 100%-20">
 
-                        <object size="0 0 40% 100%">
+                        <object size="0 0 100%-180 100%">
                                 <object name="mapTypeHeading" type="text" style="RightLabelText" size="0 0 100% 28">Match Type:</object>
                                 <object name="mapFilterHeading" type="text" style="RightLabelText" size="0 34 100% 60">Map Filter:</object>
                         </object>
@@ -44,7 +44,7 @@
                         <object name="mapTypeSelection"
 				type="dropdown"
 				style="StoneDropDown"
-				size="100 0 100% 28"
+				size="100%-180 0 100% 28"
 				tooltip_style="onscreenToolTip"
 				tooltip="Select a map type.">
 				<action on="SelectionChange">selectMapType(this.list_data[this.selected]);</action>
@@ -53,7 +53,7 @@
 			<object name="mapFilterSelection"
 				type="dropdown"
 				style="StoneDropDown"
-				size="100 34 100% 60"
+				size="100%-180 34 100% 60"
 				tooltip_style="onscreenToolTip"
 				tooltip="Select a map filter.">
 				<action on="SelectionChange">selectMapFilter(this.list[this.selected]);</action>
