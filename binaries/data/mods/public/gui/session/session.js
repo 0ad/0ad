@@ -196,11 +196,11 @@ function checkPlayerState()
 	{
 		if (playerState.state == "defeated")
 		{
-			closeMenu();
-                        closeOpenDialogs();
-
-                        g_GameEnded = true;
+			g_GameEnded = true;
 			switchMusic("loss_1", 0.0);
+
+                        closeMenu();
+                        closeOpenDialogs();
 
                         var btCaptions = ["Yes", "No"];
                         var btCode = [leaveGame, null];
@@ -208,11 +208,11 @@ function checkPlayerState()
 		}
 		else if (playerState.state == "won")
 		{
-			closeMenu();
-                        closeOpenDialogs();
-
-                        g_GameEnded = true;
+			g_GameEnded = true;
 			switchMusic("win_1", 0.0);
+
+                        closeMenu();
+                        closeOpenDialogs();
 
 			if (!getGUIObjectByName("devCommandsRevealMap").checked)
 				getGUIObjectByName("devCommandsRevealMap").checked = true;
