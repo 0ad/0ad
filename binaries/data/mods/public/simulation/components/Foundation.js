@@ -114,6 +114,14 @@ Foundation.prototype.Build = function(builderEnt, work)
 					var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 					if (cmpUnitAI)
 						cmpUnitAI.LeaveFoundation(this.entity);
+					else
+					{
+						// If obstructing fauna is gaia but doesn't have UnitAI, just destroy it
+						var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+						var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
+						if (cmpOwnership && cmpIdentity && cmpOwnership.GetOwner() == 0 && cmpIdentity.HasClass("Animal"))
+							Engine.DestroyEntity(ent);
+					}
 
 					// TODO: What if an obstruction has no UnitAI?
 				}
