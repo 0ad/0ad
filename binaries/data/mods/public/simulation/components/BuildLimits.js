@@ -5,8 +5,8 @@ BuildLimits.prototype.Schema =
 	"<a:example>" +
 		"<Limits>" +
 		  "<CivilCentre/>" +
-		  "<ScoutTower>20</ScoutTower>" +
-		  "<Fortress>5</Fortress>" +
+		  "<ScoutTower>25</ScoutTower>" +
+		  "<Fortress>10</Fortress>" +
 		  "<Special>" +
 			"<LimitPerCivCentre>1</LimitPerCivCentre>" +
 		  "</Special>" +
