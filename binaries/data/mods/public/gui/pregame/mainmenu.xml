@@ -457,7 +457,7 @@ Get involved at: wildfiregames.com/0ad
 					<action on="Press"><![CDATA[
 						var url = "http://wildfiregames.com/0ad/";
 						Engine.OpenURL(url);
-						messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2);
+						messageBox(450, 200, "Opening "+url+"\n in default web browser. Please wait...", "Opening page", 2);
 					]]></action>
 				</object>
 
@@ -471,7 +471,7 @@ Get involved at: wildfiregames.com/0ad
 					<action on="Press"><![CDATA[
 						var url = "http://webchat.quakenet.org/?channels=0ad";
 						Engine.OpenURL(url);
-						messageBox(400, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2);
+						messageBox(450, 200, "Opening "+url+"\n in default web browser. Please wait...", "Opening page", 2);
 					]]></action>
 				</object>
 			</object>

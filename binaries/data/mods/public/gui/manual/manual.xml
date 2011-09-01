@@ -17,7 +17,7 @@
 			<action on="Press"><![CDATA[
 				var url = "http://trac.wildfiregames.com/wiki/0adManual";
 				Engine.OpenURL(url);
-				messageBox(500, 200, "Opening "+url+" in default web browser. Please wait...", "Opening page", 2);
+				messageBox(450, 200, "Opening "+url+"\n in default web browser. Please wait...", "Opening page", 2);
 				]]></action>
 		</object>
 		<object type="button" style="StoneButton" tooltip_style="snToolTip" size="100%-148 100%-48 100%-20 100%-20">
@@ -25,7 +25,5 @@
 			<action on="Press"><![CDATA[Engine.PopGuiPage();]]></action>
 		</object>
 	</object>
-
-
 
 </objects>
