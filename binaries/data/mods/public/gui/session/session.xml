@@ -352,83 +352,86 @@
                 <!-- ================================  ================================ -->
 		<!-- Menu -->
 		<!-- ================================  ================================ -->
-                <object name="menuScreen"
-			type="image"
+                <object name="menu"
+                        style="StonePanelThinBorder"
+                        type="image"
+                        size="100%-164 -160 100% 36"
                         hidden="true"
-                        size="0 0 100% 100%"
                 >
-                        <!-- hides the menu when the mouse leaves the menu -->
-                    	<action on="MouseEnter">
-                                closeMenu();
-			</action>
+                        <object size="4 36 100%-4 50%+20">
 
-                        <object name="menu"
-                                style="StonePanelThinBorder"
-                                type="image"
-                                size="100%-164 -128 100% 36"
-                        >
-                                <object size="4 36 100%-4 50%+20">
+                                <!-- Settings button -->
+                                <object type="button"
+                                        name="settingsButton"
+                                        style="StoneButtonFancy"
+                                        size="0 0 100% 28"
+                                        tooltip_style="sessionToolTip"
+                                >
+                                        Settings
+                                        <action on="Press">
+                                                closeMenu();
+                                                openSettings();
+                                        </action>
+                                </object>
 
-                                        <!-- Settings button -->
-                                        <object type="button"
-                                                name="settingsButton"
-                                                style="StoneButtonFancy"
-                                                size="0 0 100% 28"
-                                                tooltip_style="sessionToolTip"
-                                        >
-                                                Settings
-                                                <action on="Press">
-                                                        closeMenu();
-                                                        openSettings();
-                                                </action>
-                                        </object>
+                                <!-- Chat button -->
+                                <object type="button"
+                                        name="chatButton"
+                                        style="StoneButtonFancy"
+                                        size="0 32 100% 60"
+                                        tooltip_style="sessionToolTip"
+                                >
+                                        Chat
+                                        <action on="Press">
+                                                closeMenu();
+                                                openChat();
+                                        </action>
+                                </object>
 
-                                        <!-- Chat button -->
-                                        <object type="button"
-                                                name="chatButton"
-                                                style="StoneButtonFancy"
-                                                size="0 32 100% 60"
-                                                tooltip_style="sessionToolTip"
-                                        >
-                                                Chat
-                                                <action on="Press">
-                                                        closeMenu();
-                                                        openChat();
-                                                </action>
-                                        </object>
+                                <!-- Pause Button -->
+                                <object type="button"
+                                        name="pauseButton"
+                                        style="StoneButtonFancy"
+                                        size="0 64 100% 92"
+                                        tooltip_style="sessionToolTip"
+                                >
+                                        <object name="pauseButtonText" type="text" style="CenteredButtonText" ghost="true">Pause</object>
+                                        <action on="Press">
+                                                closeMenu();
+                                                togglePause();
+                                        </action>
+                                </object>
 
-                                        <!-- Pause Button -->
-                                        <object type="button"
-                                                name="pauseButton"
-                                                style="StoneButtonFancy"
-                                                size="0 64 100% 92"
-                                                tooltip_style="sessionToolTip"
-                                        >
-                                                <object name="pauseButtonText" type="text" style="CenteredButtonText" ghost="true">Pause</object>
-                                                <action on="Press">
-                                                        closeMenu();
-                                                        togglePause();
-                                                </action>
-                                        </object>
+                                <!-- Exit button -->
+                                <object type="button"
+                                        name="menuExitButton"
+                                        style="StoneButtonFancy"
+                                        size="0 96 100% 124"
+                                        tooltip_style="sessionToolTip"
+                                >
+                                        Exit
+                                        <action on="Press">
+                                                closeMenu();
+                                                closeOpenDialogs();
+                                                <![CDATA[
+                                                        var btCaptions = ["Yes", "No"];
+                                                        var btCode = [leaveGame, null];
+                                                        messageBox(400, 200, "Are you sure you want to quit?", "Confirmation", 0, btCaptions, btCode);
+                                                ]]>
+                                        </action>
+                                </object>
 
-                                        <!-- Exit button -->
-                                        <object type="button"
-                                                name="menuExitButton"
-                                                style="StoneButtonFancy"
-                                                size="0 96 100% 124"
-                                                tooltip_style="sessionToolTip"
-                                        >
-                                                Exit
-                                                <action on="Press">
-                                                        closeMenu();
-                                                        closeOpenDialogs();
-                                                        <![CDATA[
-                                                                var btCaptions = ["Yes", "No"];
-                                                                var btCode = [leaveGame, null];
-                                                                messageBox(400, 200, "Are you sure you want to quit?", "Confirmation", 0, btCaptions, btCode);
-                                                        ]]>
-                                                </action>
-                                        </object>
+                                <!-- Exit button -->
+                                <object type="button"
+                                        name="menuCloseButton"
+                                        style="StoneButtonFancy"
+                                        size="0 128 100% 156"
+                                        tooltip_style="sessionToolTip"
+                                >
+                                        Close
+                                        <action on="Press">
+                                                closeMenu();
+                                        </action>
                                 </object>
                         </object>
                 </object>

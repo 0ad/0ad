@@ -12,10 +12,10 @@
 
 	<!-- LOADING SCREEN BACKGROUND -->
 	<object type="image" style="StonePanelLight"/>
-	
+
 	<object size="50%-400 30 50%+400 150">
 		<object name="loadingMapName" size="0 0 100% 32" type="text" style="loadingPageTitleText"/>
-			
+
 		<!-- LOADING SCREEN progressbar -->
 		<object size="50%-256 48 50%+256 80" type="image" sprite="loadingProgressBarBackground">
 			<object name="progressbar"
@@ -23,16 +23,16 @@
 				style="loadingProgressbar"
 				size="56 5 456 100%-5"
 			>
-				<object name="progressbar_left" size="0%-12 0 0 100%" type="image" sprite="loadingProgressbar_left"/>
-				<object name="progressbar_right" size="0 0 12 100%" type="image" sprite="loadingProgressbar_right"/>
+				<object name="progressbar_left" size="-8 0 8 100%" type="image" sprite="loadingProgressbar_left"/>
+				<object name="progressbar_right" size="8 0 24 100%" type="image" sprite="loadingProgressbar_right"/>
 				<action on="Progress">displayProgress();</action>
 			</object>
 		</object>
-			
+
 		<!-- LOADING SCREEN TEXT -->
 		<object name="progressText" size="0 64 100% 100%" type="text" style="loadingBarText"/>
 	</object>
-		
+
 	<!-- LOADING SCREEN TIP IMAGE-->
 	<object size="50%-452 50%-196 50%+68 50%+196" type="image" sprite="loadingTipImage">
 		<object name="tipImage" size="4 4 516 516" type="image">

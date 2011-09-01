@@ -3,7 +3,7 @@ var g_Data;
 function init(data)
 {
 	g_Data = data;
-	
+
 	// Set to "hourglass" cursor.
 	setCursor("cursor-wait");
 
@@ -15,7 +15,7 @@ function init(data)
 		// Set tip text
 		var tipTextFilePath = tipTextLoadingArray[getRandom (0, tipTextLoadingArray.length-1)];
 		var tipText = readFile(tipTextFilePath);
-		
+
 		if (tipText)
 		{
 			var index = tipText.indexOf("\n");
@@ -39,7 +39,7 @@ function init(data)
 	// janwas: main loop now sets progress / description, but that won't
 	// happen until the first timeslice completes, so set initial values.
 	var loadingMapName = getGUIObjectByName ("loadingMapName");
-	
+
 	if (data)
 	{
 		var mapName = data.attribs.settings.Name;
@@ -69,19 +69,21 @@ function init(data)
 // ====================================================================
 function displayProgress()
 {
+        const END_PIECE_WIDTH = 16;
+
 	getGUIObjectByName("progressbar").caption = g_Progress; // display current progress
 	getGUIObjectByName("progressText").caption = g_LoadDescription; // display current progess details
-	
+
 	// Keep curved right edge of progress bar in sync with the rest of the progress bar
 	var middle = getGUIObjectByName("progressbar");
 	var rightSide = getGUIObjectByName("progressbar_right");
-	
-	var middleLength = middle.size.right - middle.size.left;
+
+	var middleLength = (middle.size.right - middle.size.left) - (END_PIECE_WIDTH / 2);
 	var increment = Math.round(g_Progress*middleLength/100);
 
 	var size = rightSide.size;
 	size.left = increment;
-	size.right = increment+12;
+	size.right = increment + END_PIECE_WIDTH;
 	rightSide.size = size;
 }
 
@@ -97,7 +99,7 @@ function reallyStartGame()
 
 	// Switch GUI from loading screen to game session.
 	Engine.SwitchGuiPage("page_session.xml", g_Data);
-	
+
 	// Restore default cursor.
 	setCursor("arrow-default");
 }

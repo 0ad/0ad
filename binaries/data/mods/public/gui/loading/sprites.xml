@@ -60,15 +60,15 @@
 	<sprite name="loadingProgressBarBackground">
 		<image
 			texture="loading/progressbar/progressbar_background_left.png"
-			size="0%+0 0% 64 0%+32" 
+			size="0%+0 0% 64 0%+32"
 		/>
         <image
 			texture="loading/progressbar/progressbar_background_middle.png"
-			size="64 0% 100%-64 0%+32" 
+			size="64 0% 100%-64 0%+32"
 		/>
         <image
 			texture="loading/progressbar/progressbar_background_right.png"
-			size="100%-64 0% 100%+0 0%+32" 
+			size="100%-64 0% 100%+0 0%+32"
 		/>
 	</sprite>
 
@@ -76,22 +76,22 @@
 	<sprite name="loadingProgressbar_left">
 		<image
 			texture="loading/progressbar/progressbar_left.png"
-			real_texture_placement="0 0 12 20"
-			size="0 0 100% 100%" 
+			real_texture_placement="16 6 32 26"
+			size="0 0 100% 100%"
 		/>
 	</sprite>
 	<sprite name="loadingProgressbar_middle">
 		<image
 			texture="loading/progressbar/progressbar_middle.png"
-			real_texture_placement="0 0 1 20"
+			real_texture_placement="0 6 1 26"
 			size="0 0 100% 100%"
 		/>
 	</sprite>
 	<sprite name="loadingProgressbar_right">
 		<image
 			texture="loading/progressbar/progressbar_right.png"
-			real_texture_placement="4 0 16 20"
-			size="0 0 100% 100%" 
+			real_texture_placement="0 6 16 26"
+			size="0 0 100% 100%"
 		/>
 	</sprite>
 
@@ -141,7 +141,7 @@
 			size="0 0 4 4"
 		/>
 	</sprite>
-	
+
 	<!-- TIP IMAGE GRADIENT -->
 	<sprite name="loadingTipImageCover">
 		<image

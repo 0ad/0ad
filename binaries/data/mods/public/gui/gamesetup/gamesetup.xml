@@ -170,12 +170,24 @@
 			size="100%-656 100%-64 100%-304 100%-16"
 		>[Tooltip text]</object>
 
+                <!-- Start Button -->
+		<object
+			name="startGame"
+			type="button"
+			style="StoneButton"
+			size="100%-304 100%-48 100%-164 100%-20"
+			tooltip_style="onscreenToolTip"
+			tooltip="Click this button to start a new game with the current settings."
+		>Start game!
+			<action on="Press">launchGame();</action>
+		</object>
+
                 <!-- Cancel Button -->
 		<object
 			name="cancelGame"
 			type="button"
 			style="StoneButton"
-			size="100%-304 100%-48 100%-164 100%-20"
+                        size="100%-160 100%-48 100%-20 100%-20"
 			tooltip_style="onscreenToolTip"
 			tooltip="Click this button to return to the main menu."
 		>Cancel
@@ -183,18 +195,6 @@
 				cancelSetup();
 				Engine.PopGuiPage();
 			]]></action>
-		</object>
-
-                <!-- Start Button -->
-		<object
-			name="startGame"
-			type="button"
-			style="StoneButton"
-			size="100%-160 100%-48 100%-20 100%-20"
-			tooltip_style="onscreenToolTip"
-			tooltip="Click this button to start a new game with the current settings."
-		>Start game!
-			<action on="Press">launchGame();</action>
 		</object>
 
 	</object>

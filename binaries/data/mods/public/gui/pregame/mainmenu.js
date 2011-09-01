@@ -113,10 +113,10 @@ function onTick()
 // Slide menu
 function updateMenuPosition()
 {
-        if (getGUIObjectByName("submenuScreen").hidden == false)
-        {
-                var submenu = getGUIObjectByName("submenu");
+        var submenu = getGUIObjectByName("submenu");
 
+        if (submenu.hidden == false)
+        {
                 // The offset is the increment or number of units/pixels to move
                 // the menu. An offset of one is always accurate, but it is too
                 // slow. The offset must divide into the travel distance evenly
@@ -124,7 +124,7 @@ function updateMenuPosition()
                 // distance is the max-initial. The travel distance in this
                 // example is 300-60 = 240. We choose an offset of 5 because it
                 // divides into 240 evenly and provided the speed we wanted.
-                var OFFSET = 5;
+                var OFFSET = 10;
 
                 if (submenu.size.left < getGUIObjectByName("mainMenu").size.right)
                 {
@@ -136,10 +136,13 @@ function updateMenuPosition()
 // Opens the menu by revealing the screen which contains the menu
 function openMenu(newSubmenu, position, buttonHeight, numButtons)
 {
-        // remove old submenu
-        getGUIObjectByName(currentSubmenu).hidden = true;
+        var menuSound = new Sound("audio/attack/weapon/arrowfly_24.ogg");
+	if (menuSound)
+	{
+		menuSound.play(0);
+	}
 
-        // switch to new submenu
+        // switch to new submenu type
         currentSubmenu = newSubmenu;
         getGUIObjectByName(currentSubmenu).hidden = false;
 
@@ -153,16 +156,22 @@ function openMenu(newSubmenu, position, buttonHeight, numButtons)
         blendSubmenuIntoMain(top, bottom);
 
         // prepare to hide the submenu when the mouse moves off of the submenu
-        getGUIObjectByName("submenuScreen").hidden = false;
-        getGUIObjectByName("secondarySubmenuScreen").hidden = false;
+        getGUIObjectByName("submenu").hidden = false;
 }
 
 // Closes the menu and resets position
 function closeMenu()
 {
-        getGUIObjectByName("submenuScreen").hidden = true;
-        getGUIObjectByName("secondarySubmenuScreen").hidden = true;
+        // remove old submenu type
+        getGUIObjectByName(currentSubmenu).hidden = true;
+
+        // hide submenu
+        getGUIObjectByName("submenu").hidden = true;
+
+        // reset submenu position
         getGUIObjectByName("submenu").size = getGUIObjectByName("mainMenu").size;
+
+        // reset main menu panel right border
         getGUIObjectByName("MainMenuPanelRightBorderTop").size = "100%-2 0 100% 100%";
 }
 
