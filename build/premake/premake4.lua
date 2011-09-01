@@ -994,14 +994,16 @@ function configure_cxxtestgen()
 	cxxtestrootoptions(lcxxtestrootoptions)
 	cxxtestoptions(lcxxtestoptions)
 
+	-- The file paths needs to be made relative to the project directory for the prebuildcommands.
+	-- premake's paths are relative to premake4.lua by default.
+	lcxxtestrootfile = path.rebase(lcxxtestrootfile, path.getabsolute("."), _OPTIONS["outpath"])
+	lcxxtestpath = path.rebase(lcxxtestpath, path.getabsolute("."), _OPTIONS["outpath"])
+
 	-- On windows we have to use backlashes in our paths. We don't have to take care
 	-- of that for the parameters passed to our cxxtestgen customizations.
 	if os.is("windows") then
 		lcxxtestrootfile = path.translate(lcxxtestrootfile, "\\")
 		lcxxtestpath = path.translate(lcxxtestpath, "\\")
-		-- The file paths needs to be made relative to the project directory
-		lcxxtestrootfile = "..\\" .. lcxxtestrootfile
-		lcxxtestpath = "..\\" .. lcxxtestpath
 	end
 
 	if _ACTION ~= "gmake" and _ACTION ~= "vs2010" then
@@ -1022,12 +1024,13 @@ function configure_cxxtestgen()
 			cxxtesthdrfiles { v }
 
 			if _ACTION ~= "gmake" and _ACTION ~= "vs2010" then
+				-- see detailed comment above.
+				src_file = path.rebase(src_file, path.getabsolute("."), _OPTIONS["outpath"])
+				v = path.rebase(v, path.getabsolute("."), _OPTIONS["outpath"])
+
 				if os.is("windows") then
 					src_file = path.translate(src_file, "\\")
 					v = path.translate(v, "\\")
-					-- The file paths need to be made relative to the project directory
-					src_file = "..\\" .. src_file
-					v = "..\\" .. v
 				end
 				prebuildcommands { lcxxtestpath.." --part "..lcxxtestoptions.." -o "..src_file.." "..v }
 			end

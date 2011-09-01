@@ -114,9 +114,9 @@
 				_p('$(OBJDIR)/%s.o: %s $(GCH) | prebuild', _MAKE.esc(path.getbasename(file)), _MAKE.esc(file))
 				_p('\t@echo $(notdir $<)')
 				if (path.iscfile(file)) then
-					_p('\t$(SILENT) $(CC) $(CFLAGS) -MF $(OBJDIR)/%s.d -MT "$@" -o "$@" -c "$<"', _MAKE.esc(path.getbasename(file)))
+					_p('\t$(SILENT) $(CC) $(PCHINCLUDES) $(CFLAGS) -MF $(OBJDIR)/%s.d -MT "$@" -o "$@" -c "$<"', _MAKE.esc(path.getbasename(file)))
 				else
-					_p('\t$(SILENT) $(CXX) $(CXXFLAGS) -MF $(OBJDIR)/%s.d -MT "$@" -o "$@" -c "$<"', _MAKE.esc(path.getbasename(file)))
+					_p('\t$(SILENT) $(CXX) $(PCHINCLUDES) $(CXXFLAGS) -MF $(OBJDIR)/%s.d -MT "$@" -o "$@" -c "$<"', _MAKE.esc(path.getbasename(file)))
 				end
 			elseif (path.getextension(file) == ".rc") then
 				_p('$(OBJDIR)/%s.res: %s', _MAKE.esc(path.getbasename(file)), _MAKE.esc(file))
@@ -151,8 +151,7 @@
 
 		-- output for test-generation
 		-- test generation only works if all required parameters are set!
-		if(prj.solution.cxxtestpath and prj.cxxtestrootfile and prj.cxxtesthdrfiles and prj.cxxtestsrcfiles) then
-			
+		if(prj.cxxtestpath and prj.cxxtestrootfile and prj.cxxtesthdrfiles and prj.cxxtestsrcfiles) then
 			if not(prj.cxxtestrootoptions) then
 				prj.cxxtestrootoptions = ''
 			end
@@ -162,19 +161,20 @@
 
 			_p(prj.cxxtestrootfile..': ')
 			_p('\t@echo $(notdir $<)')
-			_p('\t$(SILENT)'.._MAKE.esc(prj.solution.cxxtestpath)..' --root '..prj.cxxtestrootoptions..' -o '.._MAKE.esc(prj.cxxtestrootfile))	
+			_p('\t$(SILENT)'.._MAKE.esc(prj.cxxtestpath)..' --root '..prj.cxxtestrootoptions..' -o '.._MAKE.esc(prj.cxxtestrootfile))	
 			_p('')	
 	
 			for i, file in ipairs(prj.cxxtesthdrfiles) do
 				_p('%s: %s', _MAKE.esc(prj.cxxtestsrcfiles[i]), _MAKE.esc(file))
 				_p('\t@echo $(notdir $<)')
-				_p('\t$(SILENT)'.._MAKE.esc(prj.solution.cxxtestpath)..' --part '..prj.cxxtestoptions..' -o ' .._MAKE.esc(prj.cxxtestsrcfiles[i])..' '.._MAKE.esc(file))
+				_p('\t$(SILENT)'.._MAKE.esc(prj.cxxtestpath)..' --part '..prj.cxxtestoptions..' -o ' .._MAKE.esc(prj.cxxtestsrcfiles[i])..' '.._MAKE.esc(file))
 			end
 			_p('')
 		end
 		
 		-- include the dependencies, built by GCC (with the -MMD flag)
 		_p('-include $(OBJECTS:%%.o=%%.d)')
+		_p('-include $(GCH:%%.h.gch=%%.h.d)')
 	end
 
 
@@ -308,9 +308,9 @@
 
 	function _.pchconfig(cfg)			
 		if not cfg.flags.NoPCH and cfg.pchheader then
-			_p('  PCH        = %s', _MAKE.esc(path.getrelative(cfg.location, cfg.pchheader)))
+			_p('  PCH        = %s', _MAKE.esc(cfg.pchheader))
 			_p('  GCH        = $(OBJDIR)/%s.gch', _MAKE.esc(path.getname(cfg.pchheader))) 
-			_p('  CPPFLAGS  += -I$(OBJDIR) -include $(OBJDIR)/%s', _MAKE.esc(path.getname(cfg.pchheader)))
+			_p('  PCHINCLUDES = -I$(OBJDIR) -include $(OBJDIR)/%s', _MAKE.esc(path.getname(cfg.pchheader)))
 		end
 	end
 
