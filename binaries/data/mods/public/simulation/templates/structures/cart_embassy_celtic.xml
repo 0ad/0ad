@@ -2,7 +2,7 @@
 <Entity parent="template_structure_military_barracks">
   <Cost>
     <PopulationBonus>0</PopulationBonus>
-    <BuildTime>150</BuildTime>
+    <BuildTime>120</BuildTime>
     <Resources>
       <wood>200</wood>
       <stone>0</stone>
@@ -12,6 +12,9 @@
     <Square width="16.0" depth="13.0"/>
     <Height>11.0</Height>
   </Footprint>
+  <Health>
+    <Max>1200</Max>
+  </Health>
   <Identity>
     <Civ>cart</Civ>
     <GenericName>Embassy</GenericName>

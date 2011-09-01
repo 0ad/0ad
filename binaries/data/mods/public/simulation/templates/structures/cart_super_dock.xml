@@ -10,7 +10,7 @@
     <GenericName>Naval Harbour</GenericName>
     <SpecificName>/Naval Harbour/</SpecificName>
     <History>The structure is based upon the centre island of the inner harbour constructed to house the war fleet of the Carthaginian navy at Carthage.</History>
-	<Tooltip>Constructs and repairs warships.</Tooltip>
+	<Tooltip>Construct and repair mighty warships.</Tooltip>
     <Icon>structures/dock.png</Icon>
   </Identity>
   <Cost>
@@ -45,7 +45,9 @@
   <TerritoryInfluence disable=""/>
   <TrainingQueue>
     <Entities datatype="tokens">
+      units/cart_ship_bireme
       units/cart_ship_trireme
+      units/cart_ship_quinquereme
     </Entities>
   </TrainingQueue>
   <Vision>
