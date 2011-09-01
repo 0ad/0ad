@@ -5,6 +5,9 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>structural/rome_qui.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/rock.xml" attachpoint="projectile"/>
+      </props>
       <texture>structural/rome_qui.dds</texture>
     </variant>
   </group>
@@ -14,14 +17,12 @@
         <prop actor="props/structures/romans/quinquereme_oars.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/quinquereme_props.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/quinquereme_mast.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/rock.xml" attachpoint="projectile"/>
       </props>
     </variant>
     <variant frequency="1" name="no-sail">
       <props>
         <prop actor="props/structures/romans/quinquereme_oars.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/quinquereme_props.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/rock.xml" attachpoint="projectile"/>
       </props>
     </variant>
   </group>
