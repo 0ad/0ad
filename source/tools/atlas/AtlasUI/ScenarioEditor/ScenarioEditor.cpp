@@ -650,6 +650,8 @@ void ScenarioEditor::OnOpen(wxCommandEvent& WXUNUSED(event))
 		Datafile::GetDataDirectory() + _T("/mods/public/maps/scenarios"), m_OpenFilename,
 		_T("PMP files (*.pmp)|*.pmp|All files (*.*)|*.*"),
 		wxFD_OPEN);
+	// Set default filter
+	dlg.SetFilterIndex(0);
 
 	wxString cwd = wxFileName::GetCwd();
 	
@@ -708,6 +710,8 @@ void ScenarioEditor::OnSaveAs(wxCommandEvent& WXUNUSED(event))
 		Datafile::GetDataDirectory() + _T("/mods/public/maps/scenarios"), m_OpenFilename,
 		_T("PMP files (*.pmp)|*.pmp|All files (*.*)|*.*"),
 		wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+	// Set default filter
+	dlg.SetFilterIndex(0);
 
 	if (dlg.ShowModal() == wxID_OK)
 	{

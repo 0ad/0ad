@@ -216,6 +216,8 @@ void AtlasWindow::OnOpen(wxCommandEvent& WXUNUSED(event))
 	}
 
 	wxFileDialog dlg (this, _("Select XML file to open"), path, name, _("XML files (*.xml)|*.xml|All files (*.*)|*.*"), wxFD_OPEN);
+	// Set default filter
+	dlg.SetFilterIndex(0);
 
 	if (dlg.ShowModal() != wxID_OK)
 		return;
@@ -263,6 +265,8 @@ bool AtlasWindow::SaveChanges(bool forceSaveAs)
 			GetCurrentFilename().GetPath(), GetCurrentFilename().GetFullName(),
 			//_T(""), _T(""),
 			_("XML files (*.xml)|*.xml|All files (*.*)|*.*"), wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+		// Set default filter
+		dlg.SetFilterIndex(0);
 
 		if (dlg.ShowModal() != wxID_OK)
 			return false;
