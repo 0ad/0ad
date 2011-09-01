@@ -158,7 +158,7 @@
 			z="0"
 		>
 			<object size="0 0 100% 100%" type="image" sprite="devCommandsBackground" ghost="true" z="0"/>
-			<object size="0 0 100% 100%" type="text" style="largeBoldCenteredText" textcolor="white" ghost="true" z="0">Game Paused</object>
+			<object size="0 0 100% 100%" type="text" style="PauseText" ghost="true" z="0">Game Paused</object>
 			<action on="Press">togglePause();</action>
 		</object>
 

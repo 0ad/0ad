@@ -4,7 +4,14 @@
 
 	<!-- ================================  ================================ -->
 	<!-- Text Styles -->
-	<!-- ================================  ================================ -->	
+	<!-- ================================  ================================ -->
+        <style name="PauseText"
+		font="serif-bold-24"
+		textcolor="white"
+		text_align="center"
+		text_valign="center"
+	/>
+
 	<style name="leftAlignedText"
 		textcolor="white"
 		text_align="left"
@@ -29,7 +36,7 @@
 		text_align="center"
 		text_valign="center"
 	/>
-	
+
 	<style name="largeCenteredOutlinedText"
 		font="serif-bold-stroke-14"
 		textcolor="white"
@@ -71,7 +78,7 @@
 		textcolor="255 255 255"
 		text_align="right"
 	/>
-	
+
 	<style name="resourceText"
 		textcolor="white"
 		font="serif-bold-stroke-14"
@@ -79,7 +86,7 @@
 		text_align="left"
 		text_valign="center"
 	/>
-	
+
 	<style name="statsText"
 		textcolor="white"
 		font="serif-bold-stroke-14"
@@ -87,7 +94,7 @@
 		text_align="center"
 		text_valign="center"
 	/>
-	
+
 	<style name="settingsText"
 		font="serif-16"
 		textcolor="white"
@@ -111,11 +118,11 @@
 
 	<!-- ================================  ================================ -->
 	<!-- Icon Styles -->
-	<!-- ================================  ================================ -->	
+	<!-- ================================  ================================ -->
 	<style name="resourceIcon"
 		sprite="snIconSheetResource"
 		ghost="true"
-	/>	
+	/>
 
 	<style name="formationIcon"
 		sprite="formation"
@@ -126,7 +133,7 @@
 	<style name="commandIcon"
 		sprite="commands"
 		ghost="true"
-	/>	
+	/>
 
 	<style name="iconButton"
 		sprite="snIconPortrait"
@@ -137,7 +144,7 @@
 
 	<!-- ================================  ================================ -->
 	<!-- Tooltip Styles -->
-	<!-- ================================  ================================ -->	
+	<!-- ================================  ================================ -->
 	<style name="resourceCounter"
 		tooltip_style="snToolTip"
 	/>
@@ -148,7 +155,7 @@
 
 	<!-- ================================  ================================ -->
 	<!-- Misc Styles -->
-	<!-- ================================  ================================ -->	
+	<!-- ================================  ================================ -->
 	<style name="chatPanel"
 		buffer_zone="5"
 		font="serif-bold-stroke-14"
@@ -157,14 +164,14 @@
 		text_align="left"
 		text_valign="top"
 	/>
-	
+
 	<style  name="chatInput"
 		sprite="chatInput"
 		sprite_selectarea="chatInputHighlight"
 		textcolor="white"
 		textcolor_selected="darkgray"
 	/>
-	
+
 	<style name="notificationPanel"
 		buffer_zone="5"
 		font="serif-bold-stroke-14"
@@ -183,7 +190,7 @@
 
 	<!-- ================================  ================================ -->
 	<!-- Old Panel Styles -->
-	<!-- ================================  ================================ -->	
+	<!-- ================================  ================================ -->
 	<style name="goldPanel"
 		sprite="goldPanel"
 		buffer_zone="4"
@@ -197,7 +204,7 @@
 		text_align="center"
 		text_valign="center"
 	/>
-	
+
 	<style name="frilly"
 		sprite="frilly"
 		buffer_zone="4"
