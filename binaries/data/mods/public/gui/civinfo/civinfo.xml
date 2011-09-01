@@ -25,15 +25,15 @@
 				size="50%-320 10 50%-96 48">
 				Civilization Selection
 			</object>
-			
+
 			<object name="civSelection" type="dropdown" style="StoneDropDown" size="50%-96 10 50%+96 38">
 				<action on="SelectionChange">selectCiv(this.list_data[this.selected]);</action>
 			</object>
 		</object>
-		
+
 		<!-- Civ data display -->
 		<object size="25 50 100%-25 65%-5">
-			<object type="image" sprite="bgInfoHeading" size="0 0 100% 40">
+			<object type="image" sprite="TranslucentPanelThinBorder" size="0 0 100% 40">
 				<object
 					name="civGameplayHeading"
 					type="text"
@@ -44,8 +44,8 @@
 					size="10 0 100% 100%"
 				/>
 			</object>
-			
-			<object type="image" style="TranslucentPanelThinBorder" size="0 40 33%-5 100%">
+
+			<object type="image" sprite="BackgroundTranslucent" size="0 40 33%-5 100%">
 				<object
 					name="civBonuses"
 					type="text"
@@ -55,8 +55,8 @@
 					size="10 0 100%-10 100%-10"
 				/>
 			</object>
-			
-			<object type="image" sprite="bgInfoBox" size="33%+5 40 75%-5 100%">
+
+			<object type="image" sprite="BackgroundTranslucent" size="33%+5 40 75%-5 100%">
 				<object
 					name="civTechs"
 					type="text"
@@ -66,8 +66,8 @@
 					size="10 0 100%-10 100%-10"
 				/>
 			</object>
-			
-			<object type="image" sprite="bgInfoBox" size="75%+5 40 100% 100%">
+
+			<object type="image" sprite="BackgroundTranslucent" size="75%+5 40 100% 100%">
 				<object
 					name="civHeroes"
 					type="text"
@@ -77,13 +77,13 @@
 					size="10 0 100%-10 100%-10"
 				/>
 			</object>
-			
+
 		</object>
-		
-		
+
+
 		<!-- Civ history display -->
 		<object size="25 65% 100%-25 100%-56">
-			<object type="image" sprite="bgInfoHeading" size="0 0 100% 35">
+			<object type="image" sprite="TranslucentPanelThinBorder" size="0 0 100% 35">
 				<object
 					name="civHistoryHeading"
 					type="text"
@@ -94,8 +94,8 @@
 					size="10 0 100% 100%"
 				/>
 			</object>
-			
-			<object type="image" sprite="bgInfoBox" size="0 35 100% 100%">
+
+			<object type="image" sprite="BackgroundTranslucent" size="0 35 100% 100%">
 				<object
 					name="civHistoryText"
 					type="text"
@@ -105,9 +105,9 @@
 					size="10 0 100% 100%"
 				/>
 			</object>
-			
+
 		</object>
-		
+
 		<object
 			type="button"
 			style="StoneButton"
@@ -117,7 +117,7 @@
 				Engine.PopGuiPage();
 			]]></action>
 		</object>
-		
+
 	</object>
-	
+
 </objects>

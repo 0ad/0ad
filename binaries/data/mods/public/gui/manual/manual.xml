@@ -9,11 +9,9 @@
 
 	<object type="image" style="StonePanelLight" size="50%-466 50%-316 50%+466 50%+316">
 
-                <object type="image" style="TranslucentPanelThinBorder" size="16 16 100%-16 100%-48">
-                    <object type="image" style="TranslucentPanel" size="16 4 100%-4 100%-4">
-                            <object name="mainText" type="text" style="textPanel"/>
-                    </object>
-                </object>	
+                <object type="image" sprite="BackgroundTranslucent" size="20 20 100%-20 100%-52">
+                        <object name="mainText" type="text" style="textPanel"/>
+                </object>
         <object type="button" style="StoneButton" size="100%-324 100%-48 100%-164 100%-20">
 			Online Manual
 			<action on="Press"><![CDATA[
@@ -27,7 +25,7 @@
 			<action on="Press"><![CDATA[Engine.PopGuiPage();]]></action>
 		</object>
 	</object>
-	
+
 
 
 </objects>
