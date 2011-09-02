@@ -1,6 +1,6 @@
 var userReportEnabledText; // contains the original version with "$status" placeholder
-var currentSubmenu; // contains placeholder submenu
-const MARGIN = 4;
+var currentSubmenuType; // contains submenu type
+const MARGIN = 4; // menu border size
 
 function init()
 {
@@ -9,7 +9,9 @@ function init()
 		global.curr_music.loop();
 
 	userReportEnabledText = getGUIObjectByName("userReportEnabledText").caption;
-        currentSubmenu = "submenuSinglePlayer";
+
+        // initialize currentSubmenuType with placeholder to avoid null
+        currentSubmenuType = "submenuSinglePlayer";
 }
 
 var t0 = new Date;
@@ -32,8 +34,7 @@ function scrollBackgrounds()
 
 	var left = screen.right - w * (1 + Math.ceil(screen.right / w));
 	layer1.size = new GUISize(left + off1, screen.top, screen.right + off1, screen.bottom);
-
-	layer2.size = new GUISize(screen.right - h + off2, screen.top, screen.right + off2, screen.bottom);
+	layer2.size = new GUISize(screen.right/2 - h + off2, screen.top, screen.right/2 + h + off2, screen.bottom);
 	layer3.size = new GUISize(screen.right - h + off3, screen.top, screen.right + off3, screen.bottom);
 }
 
@@ -143,8 +144,8 @@ function openMenu(newSubmenu, position, buttonHeight, numButtons)
 	}
 
         // switch to new submenu type
-        currentSubmenu = newSubmenu;
-        getGUIObjectByName(currentSubmenu).hidden = false;
+        currentSubmenuType = newSubmenu;
+        getGUIObjectByName(currentSubmenuType).hidden = false;
 
         // set position of new submenu
         var submenu = getGUIObjectByName("submenu");
@@ -155,24 +156,30 @@ function openMenu(newSubmenu, position, buttonHeight, numButtons)
         // Blend in right border of main menu into the left border of the submenu
         blendSubmenuIntoMain(top, bottom);
 
-        // prepare to hide the submenu when the mouse moves off of the submenu
+        // Reveal submenu
         getGUIObjectByName("submenu").hidden = false;
+
+        // prepare to hide the submenu when the user clicks on the background
+        getGUIObjectByName("submenuScreen").hidden = false;
 }
 
 // Closes the menu and resets position
 function closeMenu()
 {
         // remove old submenu type
-        getGUIObjectByName(currentSubmenu).hidden = true;
+        getGUIObjectByName(currentSubmenuType).hidden = true;
 
-        // hide submenu
-        getGUIObjectByName("submenu").hidden = true;
-
-        // reset submenu position
-        getGUIObjectByName("submenu").size = getGUIObjectByName("mainMenu").size;
+        // hide submenu and reset position
+        var submenu = getGUIObjectByName("submenu");
+        submenu.hidden = true;
+        submenu.size = getGUIObjectByName("mainMenu").size;
 
         // reset main menu panel right border
         getGUIObjectByName("MainMenuPanelRightBorderTop").size = "100%-2 0 100% 100%";
+
+        // hide submenu screen
+        getGUIObjectByName("submenuScreen").hidden = false;
+        console.write(getGUIObjectByName("submenuScreen").hidden);
 }
 
 // Sizes right border on main menu panel to match the submenu

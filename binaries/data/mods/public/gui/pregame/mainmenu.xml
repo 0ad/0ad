@@ -146,11 +146,23 @@ Status: $status.
 			</object>
 		</object>
 
+
                 <!--
 		==========================================
 		- SUBMENU
 		==========================================
 		-->
+
+                <!-- submenu screen (hides submenu when clicked -->
+                <object name="submenuScreen"
+                        type="button"
+                        size="0 0 100% 100%"
+                        hidden="true"
+                >
+                        <action on="Press">
+                                closeMenu();
+                        </action>
+                </object>
 
                 <!-- submenu -->
                 <object name="submenu"
