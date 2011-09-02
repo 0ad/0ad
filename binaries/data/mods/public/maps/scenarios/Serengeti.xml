@@ -4,46 +4,78 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>sunny</SkySet>
-		<SunColour r="0.776471" g="0.741176" b="0.623529"/>
+		<SunColour r="0.776471" g="0.737255" b="0.619608"/>
 		<SunElevation angle="0.825282"/>
 		<SunRotation angle="-0.785396"/>
-		<TerrainAmbientColour r="0.337255" g="0.411765" b="0.505882"/>
+		<TerrainAmbientColour r="0.337255" g="0.411765" b="0.501961"/>
 		<UnitsAmbientColour r="0.521569" g="0.521569" b="0.521569"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>18.2557</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.355469</Murkiness>
-				<Tint r="0.568627" g="0.517647" b="0.423529"/>
-				<ReflectionTint r="0.568627" g="0.517647" b="0.423529"/>
+				<Tint r="0.564706" g="0.513726" b="0.419608"/>
+				<ReflectionTint r="0.564706" g="0.513726" b="0.419608"/>
 				<ReflectionTintStrength>0.491211</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="111.294" y="109.454" z="402.718"/>
+		<Position x="98.0811" y="117.262" z="406.034"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name": "Serengeti",
   "Description": "The African serengeti has herds of animals criss crossing the plain. Mineral wealth is bountiful and wood is in full supply.",
+  "Name": "Serengeti",
   "PlayerData": [
     {
-      "Civ": "hele"
+      "AI": "",
+      "Civ": "cart",
+      "Colour": {
+        "b": 200,
+        "g": 80,
+        "r": 80
+      },
+      "Name": "Carthage",
+      "Team": -1
     },
     {
-      "Civ": "iber"
+      "AI": "jubot",
+      "Civ": "iber",
+      "Colour": {
+        "b": 20,
+        "g": 20,
+        "r": 150
+      },
+      "Name": "Iberia",
+      "Team": -1
     },
     {
-      "Civ": "hele"
+      "AI": "jubot",
+      "Civ": "hele",
+      "Colour": {
+        "b": 5,
+        "g": 165,
+        "r": 50
+      },
+      "Name": "Greece",
+      "Team": -1
     },
     {
-      "Civ": "celt"
+      "AI": "jubot",
+      "Civ": "celt",
+      "Colour": {
+        "b": 75,
+        "g": 230,
+        "r": 230
+      },
+      "Name": "Gaul",
+      "Team": -1
     }
   ]
 }
@@ -3013,12 +3045,6 @@
 			<Position x="421.5112" z="363.41086"/>
 			<Orientation y="0.55619"/>
 		</Entity>
-		<Entity uid="585">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="105.35236" z="565.89271"/>
-			<Orientation y="2.35898"/>
-		</Entity>
 		<Entity uid="587">
 			<Template>structures/hele_civil_centre</Template>
 			<Player>3</Player>
@@ -5733,66 +5759,6 @@
 			<Position x="479.31843" z="125.13999"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="1137">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="111.6619" z="544.87873"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1138">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="114.65558" z="546.91352"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1139">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="117.81737" z="550.09888"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1140">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="120.0142" z="552.5174"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1141">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="122.43017" z="555.11811"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1142">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="126.12293" z="558.61817"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1143">
-			<Template>units/hele_infantry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="116.2095" z="542.19703"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1144">
-			<Template>units/hele_infantry_archer_b</Template>
-			<Player>1</Player>
-			<Position x="120.37948" z="546.98285"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1145">
-			<Template>units/hele_infantry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="123.83315" z="550.50318"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1146">
-			<Template>units/hele_cavalry_swordsman_b</Template>
-			<Player>1</Player>
-			<Position x="129.16375" z="555.18323"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="1157">
 			<Template>gaia/fauna_giraffe</Template>
 			<Player>0</Player>
@@ -6370,7 +6336,7 @@
 		<Entity uid="1276">
 			<Template>gaia/geology_metal_savanna_slabs</Template>
 			<Player>0</Player>
-			<Position x="251.21897" z="158.1751"/>
+			<Position x="304.77036" z="161.3428"/>
 			<Orientation y="0.90468"/>
 		</Entity>
 		<Entity uid="1277">
@@ -6400,7 +6366,7 @@
 		<Entity uid="1281">
 			<Template>gaia/geology_metal_savanna_slabs</Template>
 			<Player>0</Player>
-			<Position x="530.53199" z="472.56092"/>
+			<Position x="524.16614" z="464.47934"/>
 			<Orientation y="-0.13682"/>
 		</Entity>
 		<Entity uid="1282">
@@ -8801,7 +8767,7 @@
 		<Entity uid="1751">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="242.78045" z="169.19446"/>
+			<Position x="233.96137" z="166.50083"/>
 			<Orientation y="-0.01706"/>
 		</Entity>
 		<Entity uid="1752">
@@ -9245,7 +9211,7 @@
 		</Entity>
 		<Entity uid="1839">
 			<Template>actor|props/flora/grass_savanna.xml</Template>
-			<Position x="227.34511" z="184.40505"/>
+			<Position x="228.54352" z="175.60126"/>
 			<Orientation y="-2.63878"/>
 		</Entity>
 		<Entity uid="1840">
@@ -9255,7 +9221,7 @@
 		</Entity>
 		<Entity uid="1841">
 			<Template>actor|props/flora/grass_savanna.xml</Template>
-			<Position x="222.28194" z="175.57833"/>
+			<Position x="224.47336" z="181.17968"/>
 			<Orientation y="1.69462"/>
 		</Entity>
 		<Entity uid="1842">
@@ -9270,7 +9236,7 @@
 		</Entity>
 		<Entity uid="1844">
 			<Template>actor|props/flora/grass_savanna.xml</Template>
-			<Position x="246.36303" z="199.4713"/>
+			<Position x="245.24189" z="200.11181"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1845">
@@ -12565,7 +12531,7 @@
 		</Entity>
 		<Entity uid="2503">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="250.21337" z="143.40156"/>
+			<Position x="310.45402" z="152.15442"/>
 			<Orientation y="2.242"/>
 		</Entity>
 		<Entity uid="2504">
@@ -12575,7 +12541,7 @@
 		</Entity>
 		<Entity uid="2505">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="263.74958" z="147.56803"/>
+			<Position x="269.71549" z="163.0645"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2506">
@@ -13280,7 +13246,7 @@
 		</Entity>
 		<Entity uid="2679">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="253.35595" z="176.61538"/>
+			<Position x="308.13407" z="170.35485"/>
 			<Orientation y="-2.53106"/>
 		</Entity>
 		<Entity uid="2680">
@@ -13290,12 +13256,12 @@
 		</Entity>
 		<Entity uid="2681">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="251.21534" z="162.52991"/>
+			<Position x="305.07538" z="161.87243"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2682">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="252.23656" z="159.07447"/>
+			<Position x="297.65613" z="165.48098"/>
 			<Orientation y="2.31687"/>
 		</Entity>
 		<Entity uid="2683">
@@ -14465,18 +14431,18 @@
 		</Entity>
 		<Entity uid="2916">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="245.37803" z="180.45444"/>
+			<Position x="304.3722" z="154.18981"/>
 			<Orientation y="-1.68273"/>
 		</Entity>
 		<Entity uid="2917">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="236.53219" z="180.67492"/>
+			<Position x="300.2642" z="160.88717"/>
 			<Orientation y="-0.12595"/>
 		</Entity>
 		<Entity uid="2918">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="234.73145" z="192.28579"/>
-			<Orientation y="2.35621"/>
+			<Position x="309.30384" z="157.39992"/>
+			<Orientation y="1.7254"/>
 		</Entity>
 		<Entity uid="2919">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
@@ -14485,7 +14451,7 @@
 		</Entity>
 		<Entity uid="2920">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
-			<Position x="249.46587" z="194.21479"/>
+			<Position x="305.10148" z="157.01812"/>
 			<Orientation y="-2.88886"/>
 		</Entity>
 		<Entity uid="2921">
@@ -15390,6 +15356,72 @@
 			<Template>units/celt_cavalry_spearman_b</Template>
 			<Player>4</Player>
 			<Position x="634.7641" z="579.16102"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3137">
+			<Template>structures/cart_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="98.08111" z="572.3111"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3138">
+			<Template>units/cart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="107.4169" z="546.85907"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3139">
+			<Template>units/cart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="109.60582" z="549.53772"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3140">
+			<Template>units/cart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="112.45582" z="551.79517"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3141">
+			<Template>units/cart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="116.00399" z="555.10395"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3142">
+			<Template>units/cart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="119.38074" z="558.16956"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3143">
+			<Template>units/cart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="123.04386" z="561.49976"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3144">
+			<Template>units/cart_infantry_swordsman_b</Template>
+			<Player>1</Player>
+			<Position x="113.06786" z="541.3451"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3145">
+			<Template>units/cart_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="116.43316" z="544.69825"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3146">
+			<Template>units/cart_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="119.69619" z="547.96125"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3147">
+			<Template>units/cart_cavalry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="124.83947" z="551.15253"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
