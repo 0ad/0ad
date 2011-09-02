@@ -21,12 +21,13 @@
 
 #include "wx/busyinfo.h"
 #include "wx/config.h"
+#include "wx/dir.h"
 #include "wx/evtloop.h"
 #include "wx/ffile.h"
 #include "wx/filename.h"
 #include "wx/image.h"
+#include "wx/sysopt.h"
 #include "wx/tooltip.h"
-#include "wx/dir.h"
 
 #include "General/AtlasEventLoop.h"
 #include "General/Datafile.h"
@@ -359,6 +360,12 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 	// Global application initialisation:
 
 	wxImage::AddHandler(new wxICOHandler);
+
+	/* "osx.openfiledialog.always-show-types: Per default a wxFileDialog with wxFD_OPEN
+	   does not show a types-popup on OSX but allows the selection of files from any of
+	   the supported types. Setting this to 1 shows a wxChoice for selection (if there
+	   is more than one supported filetype)." */
+	wxSystemOptions::SetOption(_T("osx.openfiledialog.always-show-types"), 1);	// has global effect
 
 	// wxLog::SetTraceMask(wxTraceMessages);
 
