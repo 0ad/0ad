@@ -205,7 +205,7 @@ function initMapSizes()
 function iColorToString(color)
 {
 	var string = "0 0 0";
-	if (color && color.r && color.g && color.b)
+	if (color && ("r" in color) && ("g" in color) && ("b" in color))
 		string = color.r + " " + color.g + " " + color.b;
 	
 	return string;
