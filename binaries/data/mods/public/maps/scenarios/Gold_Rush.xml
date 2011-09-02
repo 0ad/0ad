@@ -4,10 +4,10 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cloudless</SkySet>
-		<SunColour r="0.713726" g="0.713726" b="0.713726"/>
+		<SunColour r="0.741881" g="0.675368" b="0.552574"/>
 		<SunElevation angle="0.877437"/>
 		<SunRotation angle="-0.730175"/>
-		<TerrainAmbientColour r="0.447059" g="0.466667" b="0.54902"/>
+		<TerrainAmbientColour r="0.396078" g="0.47451" b="0.654902"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
@@ -18,32 +18,64 @@
 				<Waviness>8</Waviness>
 				<Murkiness>0.298828</Murkiness>
 				<Tint r="0" g="0" b="0"/>
-				<ReflectionTint r="0.396078" g="0.47451" b="0.654902"/>
+				<ReflectionTint r="0.392157" g="0.47451" b="0.654902"/>
 				<ReflectionTintStrength>0.298828</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="622.8" y="127.761" z="367.692"/>
+		<Position x="613.468" y="126.255" z="385.796"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name": "Gold Rush",
   "Description": "A wide-open map with a central rocky region rich in Minerals (Metal Resource). This map may be played if the other more detailed maps cause uncomfortable lag.",
+  "Name": "Gold Rush",
   "PlayerData": [
     {
-      "Civ": "hele"
+      "AI": "",
+      "Civ": "cart",
+      "Colour": {
+        "b": 200,
+        "g": 80,
+        "r": 80
+      },
+      "Name": "Player 1",
+      "Team": -1
     },
     {
-      "Civ": "celt"
+      "AI": "jubot",
+      "Civ": "celt",
+      "Colour": {
+        "b": 20,
+        "g": 20,
+        "r": 150
+      },
+      "Name": "Player 2",
+      "Team": -1
     },
     {
-      "Civ": "hele"
+      "AI": "jubot",
+      "Civ": "hele",
+      "Colour": {
+        "b": 5,
+        "g": 165,
+        "r": 50
+      },
+      "Name": "Player 3",
+      "Team": -1
     },
     {
-      "Civ": "iber"
+      "AI": "jubot",
+      "Civ": "iber",
+      "Colour": {
+        "b": 75,
+        "g": 230,
+        "r": 230
+      },
+      "Name": "Player 4",
+      "Team": -1
     }
   ]
 }
