@@ -743,6 +743,9 @@ void CCmpTerritoryManager::UpdateBoundaryLines()
 
 	m_BoundaryLines.clear();
 
+	if (!CRenderer::IsInitialised())
+		return;
+
 	std::vector<CCmpTerritoryManager::TerritoryBoundary> boundaries = ComputeBoundaries();
 
 	CTextureProperties texturePropsBase("art/textures/misc/territory_border.png");
