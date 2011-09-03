@@ -7,8 +7,10 @@
       <mesh>structural/kart_ship_quinquereme.dae</mesh>
       <props>
         <prop actor="props/units/weapons/rock.xml" attachpoint="projectile"/>
+        <prop actor="props/structures/carthaginians/quin_mainsail.xml" attachpoint="root"/>
+        <prop actor="props/structures/carthaginians/quin_foresail.xml" attachpoint="root"/>
       </props>
-      <texture>null_white.dds</texture>
+      <texture>structural/kart_quinquereme.png</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>
