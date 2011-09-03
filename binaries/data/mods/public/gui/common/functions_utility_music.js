@@ -1,6 +1,6 @@
 /*
 	DESCRIPTION	: Audio functions (eg "pick a random sound from a list", "build a playlist") go here.
-	NOTES		: 
+	NOTES		:
 */
 
 // ====================================================================
@@ -33,7 +33,7 @@ function newRandomSound(soundType, soundSubType, soundPrePath)
 		case "music":
 			var randomSoundPath = "audio/music/"
 		break;
-		case "voice":
+		case "effect":
 			randomSoundPath = soundPrePath + "/";
 		break;
 		default:
@@ -80,7 +80,7 @@ function fadeIn (soundHandle, finalGain, fadeDuration)
 	// Adjust the gain of a sound from zero up to the given value.
 	soundHandle.fade(0, finalGain, fadeDuration)
 
-	return true;	
+	return true;
 }
 
 // ====================================================================

@@ -27,10 +27,10 @@ function scrollBackgrounds()
 
 	// Offset the layers by oscillating amounts
 	var t = (t0 - new Date) / 1000;
-	var speed = 1/10;
-	var off1 = 0.10 * w * (1+Math.cos(t*speed));
-	var off2 = 0.18 * w * (1+Math.cos(t*speed)) - h*6/9;
-	var off3 = 0.20 * w * (1+Math.cos(t*speed));
+	var speed = 1/20;
+	var off1 = 0.02 * w * (1+Math.cos(t*speed));
+	var off2 = 0.12 * w * (1+Math.cos(t*speed)) - h*6/9;
+	var off3 = 0.16 * w * (1+Math.cos(t*speed));
 
 	var left = screen.right - w * (1 + Math.ceil(screen.right / w));
 	layer1.size = new GUISize(left + off1, screen.top, screen.right + off1, screen.bottom);
@@ -137,7 +137,7 @@ function updateMenuPosition()
 // Opens the menu by revealing the screen which contains the menu
 function openMenu(newSubmenu, position, buttonHeight, numButtons)
 {
-        var menuSound = new Sound("audio/attack/weapon/arrowfly_24.ogg");
+        var menuSound = new newRandomSound("effect", "arrowfly_", "audio/attack/weapon");
 	if (menuSound)
 	{
 		menuSound.play(0);
