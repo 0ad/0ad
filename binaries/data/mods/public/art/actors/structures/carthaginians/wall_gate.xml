@@ -4,9 +4,6 @@
   <group>
     <variant frequency="1" name="Base">
       <mesh>structural/kart_wall_gate.dae</mesh>
-      <props>
-        <prop actor="props/structures/carthaginians/wall_gate_doors.xml" attachpoint="root"/>
-      </props>
       <texture>structural/kart_struct.dds</texture>
     </variant>
   </group>
