@@ -39,8 +39,8 @@
 				/>
  			</object>
 
-                        <object name="tabDividerLeft" type="image" sprite="TabSpacer" size="172 100 174 102"/>
-                        <object name="tabDividerRight" type="image" sprite="TabSpacer" size="328 100 330 102"/>
+			<object name="tabDividerLeft" type="image" sprite="TabSpacer" size="172 100 174 102"/>
+			<object name="tabDividerRight" type="image" sprite="TabSpacer" size="328 100 330 102"/>
 
 			<object name="unitsBuildingsPanelButton" type="button" sprite="ForegroundTab" size="20 75 170 100">
 				<action on="Press">selectPanel(0);</action>
@@ -57,7 +57,7 @@
 				<object type="text" style="TitleText" ghost="true">Resources</object>
 			</object>
 
-			<object name="unitsBuildingsPanel" type="image" sprite="ForegroundBody" size="20 100 100%-20 100%-54">
+			<object name="unitsBuildingsPanel" type="image" sprite="ForegroundBody" size="20 100 100%-20 100%-58">
 
 				<object size="0 0 100% 100%-50">
 					<object name="playerName0Heading" type="text" style="LeftTabLabelText">
@@ -101,7 +101,7 @@
 				</object>
 
 			</object>
-			<object name="conquestPanel" type="image" sprite="ForegroundBody" size="20 100 100%-20 100%-54" hidden="true">
+			<object name="conquestPanel" type="image" sprite="ForegroundBody" size="20 100 100%-20 100%-58" hidden="true">
 
 				<object size="0 0 100% 100%-50">
 					<object name="playerName1Heading" type="text" style="LeftTabLabelText">
@@ -132,7 +132,7 @@
 				</object>
 
 			</object>
-			<object name="resourcesPanel" type="image" sprite="ForegroundBody" size="20 100 100%-20 100%-54" hidden="true">
+			<object name="resourcesPanel" type="image" sprite="ForegroundBody" size="20 100 100%-20 100%-58" hidden="true">
 
 				<object size="0 0 100% 100%-50">
 					<object name="playerName2Heading" type="text" style="LeftTabLabelText">
@@ -176,11 +176,13 @@
 
 			</object>
 
-			<object type="button" style="StoneButton" size="100%-176 100%-48 100%-20 100%-20">
+			<object type="button" style="StoneButton" size="100%-180 100%-52 100%-24 100%-24">
 				Main Menu
-				<action on="Press"><![CDATA[
-					Engine.SwitchGuiPage("page_pregame.xml");
-				]]></action>
+				<action on="Press">
+					<![CDATA[
+						Engine.SwitchGuiPage("page_pregame.xml");
+					]]>
+				</action>
 			</object>
 
 		</object>

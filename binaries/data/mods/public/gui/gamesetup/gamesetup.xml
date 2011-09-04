@@ -36,15 +36,15 @@
 		<!-- Map selection -->
 		<object size="20 64 300 100%-20">
 
-                        <object size="0 0 100%-180 100%">
-                                <object name="mapTypeHeading" type="text" style="RightLabelText" size="0 0 100% 28">Match Type:</object>
-                                <object name="mapFilterHeading" type="text" style="RightLabelText" size="0 34 100% 60">Map Filter:</object>
-                        </object>
+			<object size="0 0 100%-180 100%">
+				<object name="mapTypeHeading" type="text" style="RightLabelText" size="0 0 100% 28">Match Type:</object>
+				<object name="mapFilterHeading" type="text" style="RightLabelText" size="0 34 100% 60">Map Filter:</object>
+			</object>
 
-                        <object name="mapTypeSelection"
+			<object name="mapTypeSelection"
 				type="dropdown"
 				style="StoneDropDown"
-				size="100%-180 0 100% 28"
+				size="100%-180 0 100% 30"
 				tooltip_style="onscreenToolTip"
 				tooltip="Select a map type.">
 				<action on="SelectionChange">selectMapType(this.list_data[this.selected]);</action>
@@ -53,7 +53,7 @@
 			<object name="mapFilterSelection"
 				type="dropdown"
 				style="StoneDropDown"
-				size="100%-180 34 100% 60"
+				size="100%-180 34 100% 64"
 				tooltip_style="onscreenToolTip"
 				tooltip="Select a map filter.">
 				<action on="SelectionChange">selectMapFilter(this.list[this.selected]);</action>
@@ -76,7 +76,7 @@
 		</object>
 
 		<!-- Player assignments -->
-		<object name="numPlayersBox" size="320 28 100% 30" hidden="true">
+		<object name="numPlayersBox" size="320 28 100% 58" hidden="true">
 			<object name="numPlayersSelectionHeading" type="text" style="LeftLabelText" size="160 0 100% 32">Number of Players</object>
 			<object name="numPlayersSelection"
 				type="dropdown"
@@ -111,7 +111,7 @@
 					<object name="playerBox[n]" size="0 0 100% 30" hidden="true">
 						<object name="playerColour[n]" type="image" size="0 0 100% 100%"/>
 						<object name="playerName[n]" type="text" style="RightLabelText" size="0 0 100 100%"/>
-						<object name="playerAssignment[n]" type="dropdown" style="StoneDropDown" size="100 2 250 100%-2" tooltip_style="onscreenToolTip" tooltip="Select player"/>
+						<object name="playerAssignment[n]" type="dropdown" style="StoneDropDown" size="100 2 250 30" tooltip_style="onscreenToolTip" tooltip="Select player"/>
 						<object name="playerConfig[n]" type="button" style="StoneButton" size="251 6 264 24"
 							tooltip_style="onscreenToolTip"
 							tooltip="Configure AI settings"
@@ -167,7 +167,7 @@
 			textcolor="white"
 			sprite="BackgroundTranslucent"
 			hidden="true"
-			size="100%-656 100%-64 100%-304 100%-16"
+			size="100%-656 100%-64 100%-312 100%-24"
 		>[Tooltip text]</object>
 
                 <!-- Start Button -->
@@ -175,7 +175,7 @@
 			name="startGame"
 			type="button"
 			style="StoneButton"
-			size="100%-304 100%-48 100%-164 100%-20"
+			size="100%-308 100%-52 100%-168 100%-24"
 			tooltip_style="onscreenToolTip"
 			tooltip="Click this button to start a new game with the current settings."
 		>Start game!
@@ -187,14 +187,16 @@
 			name="cancelGame"
 			type="button"
 			style="StoneButton"
-                        size="100%-160 100%-48 100%-20 100%-20"
+                        size="100%-164 100%-52 100%-24 100%-24"
 			tooltip_style="onscreenToolTip"
 			tooltip="Click this button to return to the main menu."
 		>Cancel
-			<action on="Press"><![CDATA[
-				cancelSetup();
-				Engine.PopGuiPage();
-			]]></action>
+			<action on="Press">
+				<![CDATA[
+					cancelSetup();
+					Engine.PopGuiPage();
+				]]>
+			</action>
 		</object>
 
 	</object>

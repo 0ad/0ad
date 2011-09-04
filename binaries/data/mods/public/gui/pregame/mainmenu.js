@@ -4,13 +4,11 @@ const MARGIN = 4; // menu border size
 
 function init()
 {
-	global.curr_music = newRandomSound("music", "menu");
-	if (global.curr_music)
-		global.curr_music.loop();
+	playMainMenuMusic();
 
 	userReportEnabledText = getGUIObjectByName("userReportEnabledText").caption;
 
-        // initialize currentSubmenuType with placeholder to avoid null
+        // initialize currentSubmenuType with placeholder to avoid null when switching
         currentSubmenuType = "submenuSinglePlayer";
 }
 
@@ -179,7 +177,6 @@ function closeMenu()
 
         // hide submenu screen
         getGUIObjectByName("submenuScreen").hidden = false;
-        console.write(getGUIObjectByName("submenuScreen").hidden);
 }
 
 // Sizes right border on main menu panel to match the submenu

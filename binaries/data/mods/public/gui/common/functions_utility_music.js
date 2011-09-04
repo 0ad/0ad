@@ -3,6 +3,21 @@
 	NOTES		:
 */
 
+
+/*
+ * These constants are used in session and summary
+ */
+var g_MusicGain = 0.3;
+
+const RELATIVE_MUSIC_PATH = "audio/music/";
+var g_PeaceTracks = [];
+var g_BattleTracks = [];
+
+const MAIN_MENU = "main_menu";
+const DEFEAT_CUE = "gen_loss_cue";
+const DEFEAT_MUSIC = "gen_loss_track";
+const VICTORY_MUSIC = "win_1";
+
 // ====================================================================
 
 // Quick run-down of the basic audio commands:
@@ -104,3 +119,175 @@ function crossFade (outHandle, inHandle, fadeDuration)
 }
 
 // ====================================================================
+
+
+
+
+/*
+ * At some point, this ought to be extended to do dynamic music selection and
+ * crossfading - it at least needs to pick the music track based on the player's
+ * civ and peace/battle
+ */
+
+/*
+ * These functions are used in session and summary
+ *
+ */
+
+function storeTracks(civMusic)
+{
+	for each (var music in civMusic)
+	{
+		if ("peace" == music["Type"])
+		{
+			g_PeaceTracks.push(music["File"]);
+		}
+		else if ("battle" == music["Type"])
+		{
+			g_BattleTracks.push(music["File"]);
+		}
+	}
+}
+
+function getRandomPeaceTrack()
+{
+	return RELATIVE_MUSIC_PATH + g_PeaceTracks[getRandom(0, g_PeaceTracks.length-1)];
+}
+
+function getRandomBattleTrack()
+{
+	return RELATIVE_MUSIC_PATH + g_BattleTracks[getRandom(0, g_BattleTracks.length-1)];
+}
+
+function playMainMenuMusic()
+{
+    	if (global.curr_music)
+		switchMusic(MAIN_MENU, 0.0, true);
+	else
+		playMusic(MAIN_MENU, 0.0, true);
+}
+
+function stopMainMenuMusic()
+{
+	if (global.main_menu_music)
+		global.main_menu_music.fade(-1, 0.0, 5.0);
+}
+
+
+function playDefeatMusic()
+{
+	switchMusic(DEFEAT_CUE, 0.0, false);
+	switchMusic(DEFEAT_MUSIC, 10.0, true);
+}
+
+function playVictoryMusic()
+{
+	switchMusic(VICTORY_MUSIC, 0.0, true);
+}
+
+function startSessionSounds(civMusic)
+{
+	storeTracks(civMusic);
+	playAmbientSounds();
+	playRandomCivMusic();
+}
+
+function playRandomCivMusic()
+{
+	global.curr_music = new Sound(getRandomPeaceTrack());
+	if (global.curr_music)
+	{
+		global.curr_music.loop();
+		global.curr_music.fade(0.0, g_MusicGain, 10.0);
+	}
+}
+
+function playAmbientSounds()
+{
+	global.curr_ambient = new Sound("audio/ambient/dayscape/day_temperate_gen_03.ogg");
+	if (global.curr_ambient)
+	{
+		global.curr_ambient.loop();
+		global.curr_ambient.setGain(0.8);
+	}
+}
+
+function playMusic(track, fadeInPeriod, isLooping)
+{
+	global.curr_music = new Sound(RELATIVE_MUSIC_PATH + track + ".ogg");
+
+	if (global.curr_music)
+	{
+		if (isLooping)
+			global.curr_music.loop();
+		else
+			global.curr_music.play();
+
+		if (fadeInPeriod)
+			global.curr_music.fade(0.0, g_MusicGain, fadeInPeriod);
+	}
+}
+
+function switchMusic(track, fadeInPeriod, isLooping)
+{
+	if (global.curr_music)
+		global.curr_music.fade(-1, 0.0, 5.0);
+
+	playMusic(track, fadeInPeriod, isLooping);
+}
+
+function stopSound()
+{
+	stopMusic();
+	stopAmbient();
+}
+
+function stopMusic()
+{
+	if (global.curr_music)
+	{
+		global.curr_music.fade(-1, 0.0, 5.0);
+		global.curr_music = null;
+	}
+}
+
+function stopAmbientSounds()
+{
+	if (global.curr_ambient)
+	{
+		global.curr_ambient.fade(-1, 0.0, 5.0);
+		global.curr_ambient = null;
+	}
+}
+
+function isMusicPlaying()
+{
+	if (global.curr_music)
+		return true;
+
+	return false;
+}
+
+//function isEndingMusicPlaying()
+//{
+//	if (global.curr_music)
+//	{
+//		if (global.curr_music[DEFEAT_CUE] ||
+//		    global.curr_music[DEFEAT_MUSIC] ||
+//		    global.curr_music[VICTORY_MUSIC])
+//		{
+//			return true;
+//		}
+//	}
+//
+//	return false;
+//}
+//
+//
+//function isMusicPlaying()
+//{
+//	if (global.curr_music)
+//		return global.curr_music.isPlaying();
+//
+//	return false;
+//}

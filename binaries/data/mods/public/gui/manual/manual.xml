@@ -9,10 +9,10 @@
 
 	<object type="image" style="StonePanelLight" size="50%-466 50%-316 50%+466 50%+316">
 
-                <object type="image" sprite="BackgroundTranslucent" size="20 20 100%-20 100%-52">
-                        <object name="mainText" type="text" style="textPanel"/>
-                </object>
-        <object type="button" style="StoneButton" size="100%-324 100%-48 100%-164 100%-20">
+		<object type="image" sprite="BackgroundTranslucent" size="20 20 100%-20 100%-58">
+			<object name="mainText" type="text" style="textPanel"/>
+		</object>
+	<object type="button" style="StoneButton" size="100%-308 100%-52 100%-168 100%-24">
 			Online Manual
 			<action on="Press"><![CDATA[
 				var url = "http://trac.wildfiregames.com/wiki/0adManual";
@@ -20,7 +20,7 @@
 				messageBox(450, 200, "Opening "+url+"\n in default web browser. Please wait...", "Opening page", 2);
 				]]></action>
 		</object>
-		<object type="button" style="StoneButton" tooltip_style="snToolTip" size="100%-148 100%-48 100%-20 100%-20">
+		<object type="button" style="StoneButton" tooltip_style="snToolTip" size="100%-164 100%-52 100%-24 100%-24">
 			Close
 			<action on="Press"><![CDATA[Engine.PopGuiPage();]]></action>
 		</object>

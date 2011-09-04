@@ -78,7 +78,7 @@ function init(initData, hotloadData)
 	}
 	else
 	{
-		startMusic(g_CivData[g_Players[Engine.GetPlayerID()].civ].Music); // Starting for the first time:
+		startSessionSounds(g_CivData[g_Players[Engine.GetPlayerID()].civ].Music); // Starting for the first time:
 	}
 
 	onSimulationUpdate();
@@ -130,16 +130,18 @@ function leaveGame()
 			"playerId": Engine.GetPlayerID()
 		});
 
+
+		playDefeatMusic();
 	}
 
-	stopMusic();
+	stopAmbientSounds();
 	endGame();
 
 	Engine.SwitchGuiPage("page_summary.xml",
-							{ "gameResult"  : gameResult,
-							  "timeElapsed" : extendedSimState.timeElapsed,
-							  "playerStates": extendedSimState.players
-						    });
+					    { "gameResult"  : gameResult,
+					    "timeElapsed" : extendedSimState.timeElapsed,
+					    "playerStates": extendedSimState.players
+					    });
 }
 
 // Return some data that we'll use when hotloading this file after changes
@@ -197,29 +199,29 @@ function checkPlayerState()
 		if (playerState.state == "defeated")
 		{
 			g_GameEnded = true;
-			switchMusic("loss_1", 0.0);
+			playDefeatMusic();
 
-                        closeMenu();
-                        closeOpenDialogs();
+			closeMenu();
+			closeOpenDialogs();
 
-                        var btCaptions = ["Yes", "No"];
-                        var btCode = [leaveGame, null];
-                        messageBox(400, 200, "You have been defeated...\nDo you want to leave the game now?", "Defeat", 0, btCaptions, btCode);
+			var btCaptions = ["Yes", "No"];
+			var btCode = [leaveGame, null];
+			messageBox(400, 200, "You have been defeated...\nDo you want to leave the game now?", "Defeat", 0, btCaptions, btCode);
 		}
 		else if (playerState.state == "won")
 		{
 			g_GameEnded = true;
-			switchMusic("win_1", 0.0);
+			playVictoryMusic();
 
-                        closeMenu();
-                        closeOpenDialogs();
+			closeMenu();
+			closeOpenDialogs();
 
 			if (!getGUIObjectByName("devCommandsRevealMap").checked)
 				getGUIObjectByName("devCommandsRevealMap").checked = true;
 
-                        var btCaptions = ["Yes", "No"];
-                        var btCode = [leaveGame, null];
-                        messageBox(400, 200, "You have won the battle!\nDo you want to leave the game now?", "Victory", 0, btCaptions, btCode);
+			var btCaptions = ["Yes", "No"];
+			var btCode = [leaveGame, null];
+			messageBox(400, 200, "You have won the battle!\nDo you want to leave the game now?", "Victory", 0, btCaptions, btCode);
 		}
 	}
 }
