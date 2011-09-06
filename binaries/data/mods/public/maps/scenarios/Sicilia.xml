@@ -7,13 +7,13 @@
 		<SunColour r="0.776471" g="0.74902" b="0.576471"/>
 		<SunElevation angle="0.819146"/>
 		<SunRotation angle="-1.11674"/>
-		<TerrainAmbientColour r="0.396078" g="0.47451" b="0.654902"/>
-		<UnitsAmbientColour r="0.454902" g="0.505882" b="0.545098"/>
+		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
+		<UnitsAmbientColour r="0.454902" g="0.501961" b="0.541176"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
 				<Colour r="0.294118" g="0.34902" b="0.694118"/>
-				<Height>20.0394</Height>
+				<Height>19.8295</Height>
 				<Shininess>4.15039</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.525391</Murkiness>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="834.734" y="120.127" z="174.436"/>
+		<Position x="228.537" y="122.472" z="392.566"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -1028,12 +1028,6 @@
 			<Player>0</Player>
 			<Position x="851.02375" z="505.3725"/>
 			<Orientation y="-0.27367"/>
-		</Entity>
-		<Entity uid="213">
-			<Template>units/celt_champion_infantry_gaul</Template>
-			<Player>1</Player>
-			<Position x="262.36869" z="524.48963"/>
-			<Orientation y="-0.87087"/>
 		</Entity>
 		<Entity uid="214">
 			<Template>units/celt_champion_infantry_gaul</Template>
@@ -2836,7 +2830,7 @@
 		</Entity>
 		<Entity uid="848">
 			<Template>actor|props/flora/bush_tempe_a.xml</Template>
-			<Position x="425.94965" z="504.25452"/>
+			<Position x="438.23588" z="495.44275"/>
 			<Orientation y="2.70813"/>
 		</Entity>
 		<Entity uid="849">
@@ -16381,6 +16375,24 @@
 			<Player>0</Player>
 			<Position x="196.18163" z="650.66645"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3431">
+			<Template>units/cart_sacred_band_cavalry</Template>
+			<Player>1</Player>
+			<Position x="257.49949" z="525.336"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3432">
+			<Template>other/cart_tophet</Template>
+			<Player>1</Player>
+			<Position x="247.3896" z="615.4626"/>
+			<Orientation y="-2.37012"/>
+		</Entity>
+		<Entity uid="3433">
+			<Template>other/hellenic_royal_stoa</Template>
+			<Player>2</Player>
+			<Position x="760.60206" z="447.93058"/>
+			<Orientation y="0.79564"/>
 		</Entity>
 	</Entities>
 	<Paths/>
