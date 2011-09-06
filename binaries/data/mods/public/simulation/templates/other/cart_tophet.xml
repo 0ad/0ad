@@ -21,6 +21,7 @@
     <GenericName>Sacrificial Temple</GenericName>
     <SpecificName>Tophet</SpecificName>
     <History>N/A.</History>
+	<Tooltip>Train physicians and Sacred Band Cavalrymen.</Tooltip>
   </Identity>
   <Loot>
     <xp>50</xp>
@@ -32,6 +33,11 @@
   <Obstruction>
     <Static width="22.0" depth="24.0"/>
   </Obstruction>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/cart_sacred_band_cavalry
+    </Entities>
+  </TrainingQueue>
   <Vision>
     <Range>40</Range>
   </Vision>
