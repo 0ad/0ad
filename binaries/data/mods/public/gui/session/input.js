@@ -709,6 +709,15 @@ function handleInputAfterGui(ev)
 				inputState = INPUT_NORMAL;
 				break;
 			}
+			// else
+		default:
+			// Slight hack: If selection is empty, reset the input state
+			if (g_Selection.toList().length == 0)
+			{
+				preSelectedAction = ACTION_NONE;
+				inputState = INPUT_NORMAL;
+				break;
+			}
 		}
 		break;
 	case INPUT_SELECTING:
