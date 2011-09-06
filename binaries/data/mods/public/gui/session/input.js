@@ -1094,22 +1094,8 @@ function performCommand(entity, commandName)
 			{
 			case "delete":
 				var selection = g_Selection.toList();
-
 				if (selection.length > 0)
-				{
-					closeMenu();
-                                        closeOpenDialogs();
-
-                                        var deleteFunction = function ()
-					{
-						Engine.PostNetworkCommand({"type": "delete-entities", "entities": selection});
-					};
-
-                                        var btCaptions = ["Yes", "No"];
-                                        var btCode = [deleteFunction, null];
-
-                                        messageBox(400, 200, "Destroy everything currently selected?", "Delete", 0, btCaptions, btCode);
-				}
+					openDeleteDialog(selection);
 				break;
 			case "garrison":
 				inputState = INPUT_PRESELECTEDACTION;

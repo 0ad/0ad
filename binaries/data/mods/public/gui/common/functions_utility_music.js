@@ -17,6 +17,8 @@ const MAIN_MENU = "main_menu";
 const DEFEAT_CUE = "gen_loss_cue";
 const DEFEAT_MUSIC = "gen_loss_track";
 const VICTORY_MUSIC = "win_1";
+//const AMBIENT_SOUND = "audio/ambient/dayscape/day_temperate_gen_03.ogg";
+const BUTTON_SOUND = "audio/interface/ui/ui_button_longclick.ogg";
 
 // ====================================================================
 
@@ -42,11 +44,15 @@ const VICTORY_MUSIC = "win_1";
 function newRandomSound(soundType, soundSubType, soundPrePath)
 {
 	// Return a random audio file by category, to be assigned to a handle.
+	var randomSoundPath;
 
 	switch (soundType)
 	{
 		case "music":
-			var randomSoundPath = "audio/music/"
+			randomSoundPath = "audio/music/"
+		break;
+		case "ambient":
+			randomSoundPath = "audio/ambient/" + soundPrePath + "/";
 		break;
 		case "effect":
 			randomSoundPath = soundPrePath + "/";
@@ -161,10 +167,16 @@ function getRandomBattleTrack()
 
 function playMainMenuMusic()
 {
-    	if (global.curr_music)
+	if (global.curr_music)
 		switchMusic(MAIN_MENU, 0.0, true);
 	else
 		playMusic(MAIN_MENU, 0.0, true);
+}
+
+function playButtonSound()
+{
+    var buttonSound = new Sound(BUTTON_SOUND);
+    buttonSound.play();
 }
 
 function stopMainMenuMusic()
@@ -192,6 +204,16 @@ function startSessionSounds(civMusic)
 	playRandomCivMusic();
 }
 
+function startMusic()
+{
+    console.write(getRandomPeaceTrack());
+
+
+    console.write(global.curr_music);
+    playRandomCivMusic();
+    console.write(global.curr_music);
+}
+
 function playRandomCivMusic()
 {
 	global.curr_music = new Sound(getRandomPeaceTrack());
@@ -204,7 +226,10 @@ function playRandomCivMusic()
 
 function playAmbientSounds()
 {
-	global.curr_ambient = new Sound("audio/ambient/dayscape/day_temperate_gen_03.ogg");
+	// Seem to need the underscore at the end of "temperate" to avoid crash
+	// (Might be caused by trying to randomly load day_temperate.xml)
+	global.curr_ambient = newRandomSound("ambient", "temperate_", "dayscape");
+	console.write(global.curr_ambient);
 	if (global.curr_ambient)
 	{
 		global.curr_ambient.loop();

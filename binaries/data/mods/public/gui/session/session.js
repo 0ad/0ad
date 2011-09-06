@@ -71,6 +71,7 @@ function init(initData, hotloadData)
 	g_CivData["gaia"] = { "Code": "gaia", "Name": "Gaia" };
 
 	getGUIObjectByName("civIcon").sprite = "stretched:"+g_CivData[g_Players[Engine.GetPlayerID()].civ].Emblem;
+	initMenuPosition(); // set initial position
 
 	if (hotloadData)
 	{

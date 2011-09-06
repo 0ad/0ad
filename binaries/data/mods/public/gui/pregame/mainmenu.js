@@ -8,8 +8,8 @@ function init()
 
 	userReportEnabledText = getGUIObjectByName("userReportEnabledText").caption;
 
-        // initialize currentSubmenuType with placeholder to avoid null when switching
-        currentSubmenuType = "submenuSinglePlayer";
+	// initialize currentSubmenuType with placeholder to avoid null when switching
+	currentSubmenuType = "submenuSinglePlayer";
 }
 
 var t0 = new Date;
@@ -82,11 +82,11 @@ function formatUserReportStatus(status)
 
 function onTick()
 {
-        // Animate backgrounds
+	// Animate backgrounds
 	scrollBackgrounds();
 
-        // Animate submenu
-        updateMenuPosition();
+	// Animate submenu
+	updateMenuPosition();
 
 	if (Engine.IsUserReportEnabled())
 	{
@@ -112,81 +112,77 @@ function onTick()
 // Slide menu
 function updateMenuPosition()
 {
-        var submenu = getGUIObjectByName("submenu");
+	var submenu = getGUIObjectByName("submenu");
 
-        if (submenu.hidden == false)
-        {
-                // The offset is the increment or number of units/pixels to move
-                // the menu. An offset of one is always accurate, but it is too
-                // slow. The offset must divide into the travel distance evenly
-                // in order for the menu to end up at the right spot. The travel
-                // distance is the max-initial. The travel distance in this
-                // example is 300-60 = 240. We choose an offset of 5 because it
-                // divides into 240 evenly and provided the speed we wanted.
-                var OFFSET = 10;
+	if (submenu.hidden == false)
+	{
+		// The offset is the increment or number of units/pixels to move
+		// the menu. An offset of one is always accurate, but it is too
+		// slow. The offset must divide into the travel distance evenly
+		// in order for the menu to end up at the right spot. The travel
+		// distance is the max-initial. The travel distance in this
+		// example is 300-60 = 240. We choose an offset of 5 because it
+		// divides into 240 evenly and provided the speed we wanted.
+		const OFFSET = 10;
 
-                if (submenu.size.left < getGUIObjectByName("mainMenu").size.right)
-                {
-                        submenu.size = (submenu.size.left + OFFSET) + " " + submenu.size.top + " " + (submenu.size.right + OFFSET) + " " + submenu.size.bottom;
-                }
-        }
+		if (submenu.size.left < getGUIObjectByName("mainMenu").size.right)
+		{
+			submenu.size = (submenu.size.left + OFFSET) + " " + submenu.size.top + " " + (submenu.size.right + OFFSET) + " " + submenu.size.bottom;
+		}
+	}
 }
 
 // Opens the menu by revealing the screen which contains the menu
 function openMenu(newSubmenu, position, buttonHeight, numButtons)
 {
-        var menuSound = new newRandomSound("effect", "arrowfly_", "audio/attack/weapon");
-	if (menuSound)
-	{
-		menuSound.play(0);
-	}
+	// switch to new submenu type
+	currentSubmenuType = newSubmenu;
+	getGUIObjectByName(currentSubmenuType).hidden = false;
 
-        // switch to new submenu type
-        currentSubmenuType = newSubmenu;
-        getGUIObjectByName(currentSubmenuType).hidden = false;
+	// set position of new submenu
+	var submenu = getGUIObjectByName("submenu");
+	var top = position - MARGIN;
+	var bottom = position + ((buttonHeight + MARGIN) * numButtons);
+	submenu.size = submenu.size.left + " " + top + " " + submenu.size.right + " " + bottom;
 
-        // set position of new submenu
-        var submenu = getGUIObjectByName("submenu");
-        var top = position - MARGIN;
-        var bottom = position + ((buttonHeight + MARGIN) * numButtons);
-        submenu.size = submenu.size.left + " " + top + " " + submenu.size.right + " " + bottom;
+	// Blend in right border of main menu into the left border of the submenu
+	blendSubmenuIntoMain(top, bottom);
 
-        // Blend in right border of main menu into the left border of the submenu
-        blendSubmenuIntoMain(top, bottom);
+	// Reveal submenu
+	getGUIObjectByName("submenu").hidden = false;
 
-        // Reveal submenu
-        getGUIObjectByName("submenu").hidden = false;
-
-        // prepare to hide the submenu when the user clicks on the background
-        getGUIObjectByName("submenuScreen").hidden = false;
+	// prepare to hide the submenu when the user clicks on the background
+	getGUIObjectByName("submenuScreen").hidden = false;
 }
 
 // Closes the menu and resets position
 function closeMenu()
 {
-        // remove old submenu type
-        getGUIObjectByName(currentSubmenuType).hidden = true;
+	playButtonSound();
 
-        // hide submenu and reset position
-        var submenu = getGUIObjectByName("submenu");
-        submenu.hidden = true;
-        submenu.size = getGUIObjectByName("mainMenu").size;
+	// remove old submenu type
+	getGUIObjectByName(currentSubmenuType).hidden = true;
 
-        // reset main menu panel right border
-        getGUIObjectByName("MainMenuPanelRightBorderTop").size = "100%-2 0 100% 100%";
+	// hide submenu and reset position
+	var submenu = getGUIObjectByName("submenu");
+	submenu.hidden = true;
+	submenu.size = getGUIObjectByName("mainMenu").size;
 
-        // hide submenu screen
-        getGUIObjectByName("submenuScreen").hidden = false;
+	// reset main menu panel right border
+	getGUIObjectByName("MainMenuPanelRightBorderTop").size = "100%-2 0 100% 100%";
+
+	// hide submenu screen
+	getGUIObjectByName("submenuScreen").hidden = false;
 }
 
 // Sizes right border on main menu panel to match the submenu
 function blendSubmenuIntoMain(topPosition, bottomPosition)
 {
-    var topSprite = getGUIObjectByName("MainMenuPanelRightBorderTop");
-    topSprite.size = "100%-2 0 100% " + (topPosition + MARGIN);
+	var topSprite = getGUIObjectByName("MainMenuPanelRightBorderTop");
+	topSprite.size = "100%-2 0 100% " + (topPosition + MARGIN);
 
-    var bottomSprite = getGUIObjectByName("MainMenuPanelRightBorderBottom");
-    bottomSprite.size = "100%-2 " + (bottomPosition) + " 100% 100%";
+	var bottomSprite = getGUIObjectByName("MainMenuPanelRightBorderBottom");
+	bottomSprite.size = "100%-2 " + (bottomPosition) + " 100% 100%";
 }
 
 // Reveals submenu
@@ -209,54 +205,54 @@ function closeMainMenuSubWindow (windowName)
  * FUNCTIONS BELOW DO NOT WORK YET
  */
 
-// Switch to a given options tab window.
-function openOptionsTab(tabName)
-{
-	// Hide the other tabs.
-	for (i = 1; i <= 3; i++)
-	{
-		switch (i)
-		{
-			case 1:
-				var tmpName = "pgOptionsAudio";
-			break;
-			case 2:
-				var tmpName = "pgOptionsVideo";
-			break;
-			case 3:
-				var tmpName = "pgOptionsGame";
-			break;
-			default:
-			break;
-		}
-
-		if (tmpName != tabName)
-		{
-			getGUIObjectByName (tmpName + "Window").hidden = true;
-			getGUIObjectByName (tmpName + "Button").enabled = true;
-		}
-	}
-
-	// Make given tab visible.
-	getGUIObjectByName (tabName + "Window").hidden = false;
-	getGUIObjectByName (tabName + "Button").enabled = false;
-}
-
-// Move the credits up the screen.
-function updateCredits()
-{
-	// If there are still credit lines to remove, remove them.
-	if (getNumItems("pgCredits") > 0)
-		removeItem ("pgCredits", 0);
-	else
-	{
-		// When we've run out of credit,
-
-		// Stop the increment timer if it's still active.
-		cancelInterval();
-
-		// Close the credits screen and return.
-		closeMainMenuSubWindow ("pgCredits");
-		guiUnHide ("pg");
-	}
-}
+//// Switch to a given options tab window.
+//function openOptionsTab(tabName)
+//{
+//	// Hide the other tabs.
+//	for (i = 1; i <= 3; i++)
+//	{
+//		switch (i)
+//		{
+//			case 1:
+//				var tmpName = "pgOptionsAudio";
+//			break;
+//			case 2:
+//				var tmpName = "pgOptionsVideo";
+//			break;
+//			case 3:
+//				var tmpName = "pgOptionsGame";
+//			break;
+//			default:
+//			break;
+//		}
+//
+//		if (tmpName != tabName)
+//		{
+//			getGUIObjectByName (tmpName + "Window").hidden = true;
+//			getGUIObjectByName (tmpName + "Button").enabled = true;
+//		}
+//	}
+//
+//	// Make given tab visible.
+//	getGUIObjectByName (tabName + "Window").hidden = false;
+//	getGUIObjectByName (tabName + "Button").enabled = false;
+//}
+//
+//// Move the credits up the screen.
+//function updateCredits()
+//{
+//	// If there are still credit lines to remove, remove them.
+//	if (getNumItems("pgCredits") > 0)
+//		removeItem ("pgCredits", 0);
+//	else
+//	{
+//		// When we've run out of credit,
+//
+//		// Stop the increment timer if it's still active.
+//		cancelInterval();
+//
+//		// Close the credits screen and return.
+//		closeMainMenuSubWindow ("pgCredits");
+//		guiUnHide ("pg");
+//	}
+//}

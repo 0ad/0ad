@@ -96,12 +96,12 @@ function layoutButtonRow(rowNumber, guiName, buttonSideLength, buttonSpacer, sta
 		if (button)
 		{
 			var size = button.size;
-			
+
 			size.left = buttonSpacer*colNumber;
 			size.right = buttonSpacer*colNumber + buttonSideLength;
 			size.top = buttonSpacer*rowNumber;
 			size.bottom = buttonSpacer*rowNumber + buttonSideLength;
-			
+
 			button.size = size;
 			colNumber++;
 		}
@@ -109,50 +109,61 @@ function layoutButtonRow(rowNumber, guiName, buttonSideLength, buttonSpacer, sta
 }
 
 // Sets up "unit panels" - the panels with rows of icons (Helper function for updateUnitDisplay)
-
 function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 {
 	usedPanels[guiName] = 1;
 	var numberOfItems = items.length;
 	var selection = g_Selection.toList();
 	var garrisonGroups = new EntityGroups();
-	if (guiName == "Selection")
+
+	// Determine how many buttons there should be
+	switch (guiName)
 	{
-		if (numberOfItems > 16)
+		case SELECTION:
+			if (numberOfItems > 16)
 				numberOfItems =  16;
-	}
-	else if (guiName == "Formation")
-	{
-		if (numberOfItems > 16)
-				numberOfItems =  16;
-	}	
-	else if (guiName == "Stance")
-	{
-		if (numberOfItems > 5)
+			break;
+
+		case QUEUE:
+			if (numberOfItems > 16)
+				numberOfItems = 16;
+			break;
+
+		case GARRISON:
+			if (numberOfItems > 16)
+				numberOfItems = 16;
+			//Group garrisoned units based on class
+			garrisonGroups.add(unitEntState.garrisonHolder.entities);
+			break;
+
+		case STANCE:
+			if (numberOfItems > 5)
 				numberOfItems =  5;
-	}
-	else if (guiName == "Queue")
-	{
-		if (numberOfItems > 16)
-			numberOfItems = 16;
-	}
-	else if (guiName == "Garrison")
-	{
-		if (numberOfItems > 16)
-			numberOfItems = 16;
-		//Group garrisoned units based on class
-		garrisonGroups.add(unitEntState.garrisonHolder.entities);
-	}
-	else if (guiName == "Command")
-	{
-		if (numberOfItems > 6)
-			numberOfItems = 6;
-	}
-	else if (numberOfItems > 24)
-	{
-		numberOfItems =  24;
+		case FORMATION:
+			if (numberOfItems > 16)
+				numberOfItems =  16;
+			break;
+
+		case TRAINING:
+			if (numberOfItems > 24)
+				numberOfItems =  24;
+			break;
+
+		case CONSTRUCTION:
+			if (numberOfItems > 24)
+				numberOfItems =  24;
+			break;
+
+		case COMMAND:
+			if (numberOfItems > 6)
+				numberOfItems = 6;
+			break;
+
+		default:
+			break;
 	}
 
+	// Make buttons
 	var i;
 	for (i = 0; i < numberOfItems; i++)
 	{
@@ -168,78 +179,78 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 
 		switch (guiName)
 		{
-		case SELECTION:
-			var name = getEntityName(template);
-			var tooltip = name;
-			var count = g_Selection.groups.getCount(item);	
-			getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
-			break;
+			case SELECTION:
+				var name = getEntityName(template);
+				var tooltip = name;
+				var count = g_Selection.groups.getCount(item);
+				getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
+				break;
 
-		case QUEUE:
-			var tooltip = getEntityName(template);
-			var progress = Math.round(item.progress*100) + "%";
-			getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (item.count > 1 ? item.count : "");
-			
-			if (i == 0)
-			{
-				getGUIObjectByName("queueProgress").caption = (item.progress ? progress : "");
-				var size = getGUIObjectByName("unit"+guiName+"ProgressSlider["+i+"]").size;
-				size.top = Math.round(item.progress*40);
-				getGUIObjectByName("unit"+guiName+"ProgressSlider["+i+"]").size = size;
-			}
-			break;
+			case QUEUE:
+				var tooltip = getEntityName(template);
+				var progress = Math.round(item.progress*100) + "%";
+				getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (item.count > 1 ? item.count : "");
 
-		case GARRISON:
-			var name = getEntityName(template);
-			var tooltip = "Unload " + getEntityName(template);
-			var count = garrisonGroups.getCount(item);
-			getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
-			break;
+				if (i == 0)
+				{
+					getGUIObjectByName("queueProgress").caption = (item.progress ? progress : "");
+					var size = getGUIObjectByName("unit"+guiName+"ProgressSlider["+i+"]").size;
+					size.top = Math.round(item.progress*40);
+					getGUIObjectByName("unit"+guiName+"ProgressSlider["+i+"]").size = size;
+				}
+				break;
 
-		case STANCE:
-		case FORMATION:
-			var tooltip = toTitleCase(item);
-			break;
+			case GARRISON:
+				var name = getEntityName(template);
+				var tooltip = "Unload " + getEntityName(template);
+				var count = garrisonGroups.getCount(item);
+				getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
+				break;
 
-		case TRAINING:
-			var tooltip = getEntityNameWithGenericType(template);
-			if (template.tooltip)
-				tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
+			case STANCE:
+			case FORMATION:
+				var tooltip = toTitleCase(item);
+				break;
 
-			tooltip += "\n" + getEntityCost(template);
+			case TRAINING:
+				var tooltip = getEntityNameWithGenericType(template);
+				if (template.tooltip)
+					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
 
-			var [batchSize, batchIncrement] = getTrainingQueueBatchStatus(unitEntState.id, entType);
-			if (batchSize)
-			{
-				tooltip += "\n[font=\"serif-13\"]Training [font=\"serif-bold-13\"]" + batchSize + "[font=\"serif-13\"] units; " + 
-				"Shift-click to train [font=\"serif-bold-13\"]"+ (batchSize+batchIncrement) + "[font=\"serif-13\"] units[/font]";
-			}
-			break;
+				tooltip += "\n" + getEntityCost(template);
 
-		case CONSTRUCTION:
-			var tooltip = getEntityNameWithGenericType(template);
-			if (template.tooltip)
-				tooltip += "\n[font=\"serif-13\"]" + template.tooltip + getPopulationBonus(template) + "[/font]";
+				var [batchSize, batchIncrement] = getTrainingQueueBatchStatus(unitEntState.id, entType);
+				if (batchSize)
+				{
+					tooltip += "\n[font=\"serif-13\"]Training [font=\"serif-bold-13\"]" + batchSize + "[font=\"serif-13\"] units; " +
+					"Shift-click to train [font=\"serif-bold-13\"]"+ (batchSize+batchIncrement) + "[font=\"serif-13\"] units[/font]";
+				}
+				break;
 
-			tooltip += "\n" + getEntityCost(template);
-			break;
+			case CONSTRUCTION:
+				var tooltip = getEntityNameWithGenericType(template);
+				if (template.tooltip)
+					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + getPopulationBonus(template) + "[/font]";
 
-		case COMMAND:
-			if (item == "unload-all")
-			{
-				var count = unitEntState.garrisonHolder.entities.length;
-				getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 0 ? count : "");
-			}
-			else
-			{
-				getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = "";
-			}
+				tooltip += "\n" + getEntityCost(template);
+				break;
 
-			tooltip = toTitleCase(item);
-			break;
+			case COMMAND:
+				if (item == "unload-all")
+				{
+					var count = unitEntState.garrisonHolder.entities.length;
+					getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 0 ? count : "");
+				}
+				else
+				{
+					getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = "";
+				}
 
-		default:
-			break;
+				tooltip = toTitleCase(item);
+				break;
+
+			default:
+				break;
 		}
 
 		// Button
@@ -248,8 +259,8 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		button.hidden = false;
 		button.tooltip = tooltip;
 
-		// Button Function
-		button.onpress = (function(e) { return function() { callback(e) } })(item); // (need nested functions to get the closure right)
+		// Button Function (need nested functions to get the closure right)
+		button.onpress = (function(e){ return function() { callback(e) } })(item);
 
 		// Get icon image
 		if (guiName == "Formation")
@@ -290,7 +301,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			//icon.cell_id = i;
 			//icon.cell_id = getCommandCellId(item);
 			icon.sprite = "stretched:session/icons/single/" + getCommandImage(item);
-			
+
 		}
 		else if (template.icon)
 		{
@@ -326,7 +337,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		for (var i = 0; i < numRows; i++)
 			layoutButtonRow(i, guiName, buttonSideLength, buttonSpacer, rowLength*i, rowLength*(i+1) );
 	}
-	
+
 	// Resize Queue panel if needed
 	if (guiName == "Queue") // or garrison
 	{
@@ -347,7 +358,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, selection)
 {
 	//var isInvisible = true;
-	
+
 	// Panels that are active
 	var usedPanels = {};
 
