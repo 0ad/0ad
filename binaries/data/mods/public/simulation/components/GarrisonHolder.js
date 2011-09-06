@@ -138,6 +138,10 @@ GarrisonHolder.prototype.Garrison = function(entity)
 GarrisonHolder.prototype.Eject = function(entity, forced)
 {
 	var entityIndex = this.entities.indexOf(entity);
+	if (entityIndex == -1)
+	{	// Error: invalid entity ID, usually it's already been ejected
+		return false; // Fail
+	}
 	
 	// Find spawning location
 	var cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
