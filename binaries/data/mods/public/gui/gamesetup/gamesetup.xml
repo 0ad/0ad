@@ -190,7 +190,7 @@
                         size="100%-164 100%-52 100%-24 100%-24"
 			tooltip_style="onscreenToolTip"
 			tooltip="Click this button to return to the main menu."
-		>Cancel
+		>Main Menu
 			<action on="Press">
 				<![CDATA[
 					cancelSetup();
