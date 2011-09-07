@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/cart_cavalry_swordsman_2_b">
+  <Armour>
+    <Hack>5.0</Hack>
+    <Pierce>8.0</Pierce>
+    <Crush>6.0</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>21.0</Hack>
+    </Melee>
+    <Charge>
+      <Hack>63.0</Hack>
+    </Charge>
+  </Attack>
+  <Health>
+    <Max>140</Max>
+  </Health>
+  <Identity>
+    <Rank>Advanced</Rank>
+  </Identity>
+  <Promotion>
+    <Entity>units/celt_cavalry_swordsman_2_e</Entity>
+  </Promotion>
+  <ResourceGatherer>
+    <BaseSpeed>0.75</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>9.68</WalkSpeed>
+    <Run>
+      <Speed>29.04</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/celts/cavalry_swordsman_a.xml</Actor>
+  </VisualActor>
+</Entity>

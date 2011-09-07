@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_cavalry_melee_swordsman">
+  <Armour>
+    <Hack>3.0</Hack>
+  </Armour>
+  <Cost>
+    <Resources>
+      <food>0</food>
+	  <metal>125</metal>
+    </Resources>
+  </Cost>
+  <Identity>
+    <Civ>cart</Civ>
+	<SelectionGroupName>units/cart_cavalry_swordsman_2_b</SelectionGroupName>
+    <GenericName>Gallic Mercenary Cavalry</GenericName>
+	<SpecificName>Epos</SpecificName>
+    <History>Like a sword, a horse was a sign of nobility and as a result the Celtic cavalry was often better equipped than the infantry. Armor and helmets were common, while weapons consisted of a large bladed spear and a long slashing sword for close combat. Shields could be round, hexagonal, or oval, but the most common was a regular oval body shield with the top and bottom shorn off. Unlike other horseman, the Celts were not afraid to leap off their mount to fight on foot then climb into the saddle again when possible.</History>
+    <Icon>units/cart_cavalry_swordsman_2.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/celt_cavalry_swordsman_2_a</Entity>
+  </Promotion>
+  <UnitMotion>
+    <WalkSpeed>11.0</WalkSpeed>
+    <Run>
+      <Speed>33.0</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/celts/cavalry_swordsman_b.xml</Actor>
+  </VisualActor>
+</Entity>

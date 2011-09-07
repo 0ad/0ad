@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/cart_infantry_swordsman_2_b">
+  <Armour>
+    <Hack>6.0</Hack>
+    <Pierce>4.0</Pierce>
+    <Crush>6.0</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>21.0</Hack>
+    </Melee>
+    <Charge>
+      <Hack>42.0</Hack>
+    </Charge>
+  </Attack>
+  <Health>
+    <Max>110</Max>
+  </Health>
+  <Identity>
+    <Rank>Advanced</Rank>
+  </Identity>
+  <Promotion>
+    <Entity>units/cart_infantry_swordsman_2_e</Entity>
+  </Promotion>
+  <ResourceGatherer>
+    <BaseSpeed>0.75</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>7.0</WalkSpeed>
+    <Run>
+      <Speed>18.0</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/carthaginians/infantry_swordsman_2_a.xml</Actor>
+  </VisualActor>
+</Entity>

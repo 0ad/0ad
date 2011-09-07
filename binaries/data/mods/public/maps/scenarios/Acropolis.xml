@@ -4,11 +4,11 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cirrus</SkySet>
-		<SunColour r="0.92549" g="0.835294" b="0.741176"/>
+		<SunColour r="0.921569" g="0.831373" b="0.737255"/>
 		<SunElevation angle="0.665748"/>
 		<SunRotation angle="-0.263845"/>
 		<TerrainAmbientColour r="0.337255" g="0.411765" b="0.501961"/>
-		<UnitsAmbientColour r="0.384314" g="0.423529" b="0.458824"/>
+		<UnitsAmbientColour r="0.384314" g="0.419608" b="0.458824"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="492.105" y="162.707" z="287.155"/>
+		<Position x="501.475" y="146.789" z="314.375"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -1240,20 +1240,20 @@
 		<Entity uid="225">
 			<Template>structures/hele_temple</Template>
 			<Player>1</Player>
-			<Position x="318.366" z="625.09339"/>
-			<Orientation y="2.35621"/>
+			<Position x="441.58036" z="529.59998"/>
+			<Orientation y="0.80549"/>
 		</Entity>
 		<Entity uid="226">
 			<Template>other/hellenic_stoa</Template>
 			<Player>1</Player>
-			<Position x="306.00226" z="609.23194"/>
-			<Orientation y="0.78428"/>
+			<Position x="527.3158" z="458.4499"/>
+			<Orientation y="-0.78657"/>
 		</Entity>
 		<Entity uid="227">
 			<Template>other/hellenic_stoa</Template>
 			<Player>1</Player>
-			<Position x="334.25281" z="638.86231"/>
-			<Orientation y="-2.32834"/>
+			<Position x="417.8375" z="509.81244"/>
+			<Orientation y="2.3811"/>
 		</Entity>
 		<Entity uid="228">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
@@ -1794,30 +1794,6 @@
 			<Player>0</Player>
 			<Position x="2027.14856" z="1005.37342"/>
 			<Orientation y="-0.2186"/>
-		</Entity>
-		<Entity uid="321">
-			<Template>structures/hele_scout_tower</Template>
-			<Player>1</Player>
-			<Position x="931.89264" z="554.06934"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="322">
-			<Template>structures/hele_scout_tower</Template>
-			<Player>1</Player>
-			<Position x="390.73542" z="1053.98523"/>
-			<Orientation y="-2.63244"/>
-		</Entity>
-		<Entity uid="323">
-			<Template>structures/hele_scout_tower</Template>
-			<Player>1</Player>
-			<Position x="811.93561" z="893.8133"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="324">
-			<Template>structures/hele_scout_tower</Template>
-			<Player>1</Player>
-			<Position x="1191.03138" z="122.8553"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="340">
 			<Template>structures/hele_field</Template>
@@ -6184,37 +6160,37 @@
 		<Entity uid="1075">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="411.59916" z="523.0359"/>
+			<Position x="410.24518" z="522.78284"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1076">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="407.38209" z="520.7616"/>
+			<Position x="417.0807" z="529.33106"/>
 			<Orientation y="-2.6809"/>
 		</Entity>
 		<Entity uid="1077">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="408.65912" z="531.77259"/>
+			<Position x="441.07435" z="551.33033"/>
 			<Orientation y="-2.68131"/>
 		</Entity>
 		<Entity uid="1078">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="419.94224" z="523.84357"/>
-			<Orientation y="0.5504"/>
+			<Position x="598.961" z="460.95795"/>
+			<Orientation y="0.20588"/>
 		</Entity>
 		<Entity uid="1079">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="411.55323" z="512.65088"/>
+			<Position x="403.28415" z="479.32557"/>
 			<Orientation y="1.21933"/>
 		</Entity>
 		<Entity uid="1080">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="418.7866" z="516.03345"/>
+			<Position x="486.32947" z="560.36561"/>
 			<Orientation y="1.21163"/>
 		</Entity>
 		<Entity uid="1081">
@@ -14119,54 +14095,6 @@
 			<Position x="1601.30823" z="1571.34302"/>
 			<Orientation y="-2.42554"/>
 		</Entity>
-		<Entity uid="2409">
-			<Template>structures/hele_scout_tower</Template>
-			<Player>2</Player>
-			<Position x="1453.40894" z="1763.26246"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2410">
-			<Template>structures/hele_scout_tower</Template>
-			<Player>2</Player>
-			<Position x="1374.79041" z="1609.71436"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2411">
-			<Template>structures/hele_scout_tower</Template>
-			<Player>2</Player>
-			<Position x="1402.86036" z="1304.3578"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2412">
-			<Template>structures/hele_scout_tower</Template>
-			<Player>2</Player>
-			<Position x="1519.2079" z="1121.71827"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2413">
-			<Template>structures/hele_scout_tower</Template>
-			<Player>4</Player>
-			<Position x="1403.81763" z="195.98685"/>
-			<Orientation y="-2.41048"/>
-		</Entity>
-		<Entity uid="2414">
-			<Template>structures/hele_scout_tower</Template>
-			<Player>4</Player>
-			<Position x="1163.81983" z="290.75419"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2415">
-			<Template>structures/hele_scout_tower</Template>
-			<Player>4</Player>
-			<Position x="1141.10975" z="718.2511"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2416">
-			<Template>structures/hele_scout_tower</Template>
-			<Player>4</Player>
-			<Position x="1427.93274" z="867.83619"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="2417">
 			<Template>units/hele_support_female_citizen</Template>
 			<Player>1</Player>
@@ -16530,30 +16458,6 @@
 			<Player>0</Player>
 			<Position x="674.98688" z="1591.73792"/>
 			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2821">
-			<Template>structures/hele_scout_tower</Template>
-			<Player>3</Player>
-			<Position x="296.89466" z="1354.81873"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2822">
-			<Template>structures/hele_scout_tower</Template>
-			<Player>3</Player>
-			<Position x="712.5016" z="1143.06666"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2823">
-			<Template>structures/hele_scout_tower</Template>
-			<Player>3</Player>
-			<Position x="1087.80311" z="1469.47681"/>
-			<Orientation y="0.41018"/>
-		</Entity>
-		<Entity uid="2824">
-			<Template>structures/hele_scout_tower</Template>
-			<Player>3</Player>
-			<Position x="1170.7074" z="1821.25403"/>
-			<Orientation y="-2.55874"/>
 		</Entity>
 		<Entity uid="2825">
 			<Template>gaia/geology_metal_mediterranean_slabs</Template>

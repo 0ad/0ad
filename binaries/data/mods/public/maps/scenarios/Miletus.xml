@@ -4,7 +4,7 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cirrus</SkySet>
-		<SunColour r="0.858824" g="0.803922" b="0.670588"/>
+		<SunColour r="0.858824" g="0.803922" b="0.666667"/>
 		<SunElevation angle="0.773126"/>
 		<SunRotation angle="0.374291"/>
 		<TerrainAmbientColour r="0.337255" g="0.403922" b="0.466667"/>
@@ -17,14 +17,14 @@
 				<Shininess>1.95313</Shininess>
 				<Waviness>7.96875</Waviness>
 				<Murkiness>0.701172</Murkiness>
-				<Tint r="0.329412" g="0.52549" b="0.721569"/>
-				<ReflectionTint r="0.305882" g="0.603922" b="0.745098"/>
+				<Tint r="0.329412" g="0.521569" b="0.721569"/>
+				<ReflectionTint r="0.301961" g="0.603922" b="0.741176"/>
 				<ReflectionTintStrength>0.423828</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="225.878" y="118.383" z="70.821"/>
+		<Position x="219.843" y="78.528" z="108.423"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -6344,7 +6344,7 @@
 		<Entity uid="1347">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
 			<Player>0</Player>
-			<Position x="291.56846" z="122.6578"/>
+			<Position x="264.23401" z="142.3281"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1348">
@@ -6658,6 +6658,18 @@
 			<Player>0</Player>
 			<Position x="555.73377" z="719.76172"/>
 			<Orientation y="1.51554"/>
+		</Entity>
+		<Entity uid="1401">
+			<Template>structures/hele_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="296.49451" z="122.10045"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1402">
+			<Template>structures/hele_fortress</Template>
+			<Player>1</Player>
+			<Position x="98.88323" z="397.69077"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
