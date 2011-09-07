@@ -40,24 +40,33 @@
         </sprite>
 
         <sprite name="BackgroundRed">
-                <image 	backcolor="80 0 0 255"
+                <image 	backcolor="darkred"
 			size="0 0 100% 100%"
 		/>
         </sprite>
 
-        <sprite name="BackgroundRedBorderGold">
-                <image 	backcolor="80 0 0 255"
+        <sprite name="BackgroundSelectArea">
+                <image 	backcolor="darkred"
 			bordercolor="gold"
 			size="0 0 100% 100%"
 			border="true"
 		/>
         </sprite>
 
-	<sprite name="BackgroundTranslucentBorderDarkTan">
-		<image	backcolor="30 20 10 255"
+	<sprite name="BackgroundListBox">
+		<image	backcolor="darkbrown"
 			size="0 0 100% 100%"
 			border="true"
 			bordercolor="60 60 40"
+		/>
+	</sprite>
+
+	<sprite name="BackgroundSessionTooltip">
+		<image
+			backcolor="darkbrown"
+			size="0 0 100% 100%"
+			border="true"
+			bordercolor="gold"
 		/>
 	</sprite>
 

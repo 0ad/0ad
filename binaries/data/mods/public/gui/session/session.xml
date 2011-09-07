@@ -382,27 +382,7 @@
 					<action on="Press">chatMenuButton();</action>
 				</object>
 
-								<!-- Pause Button -->
-<!--				<object type="button"
-					name="pauseButton"
-					style="StoneButtonFancy"
-					size="0 64 100% 92"
-					tooltip_style="sessionToolTip"
-				>
-					<object name="pauseButtonText" type="text" style="CenteredButtonText" ghost="true">Pause</object>
-					<action on="Press">togglePause();</action>
-				</object>-->
-
 				<!-- Exit button -->
-<!--				<object type="button"
-					name="menuExitButton"
-					style="StoneButtonFancy"
-					size="0 96 100% 124"
-					tooltip_style="sessionToolTip"
-				>
-					Exit
-					<action on="Press">exitMenuButton();</action>
-				</object>-->
 				<object type="button"
 					name="menuExitButton"
 					style="StoneButtonFancy"
@@ -412,17 +392,6 @@
 					Exit
 					<action on="Press">exitMenuButton();</action>
 				</object>
-
-				<!-- Resume button -->
-<!--				<object type="button"
-					name="menuCloseButton"
-					style="StoneButtonFancy"
-					size="0 128 100% 156"
-					tooltip_style="sessionToolTip"
-				>
-					Close
-					<action on="Press">closeMenu();;</action>
-				</object>-->
 
 				<!-- Pause / Resume Button -->
 				<object type="button"

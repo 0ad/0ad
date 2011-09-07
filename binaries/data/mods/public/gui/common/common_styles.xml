@@ -248,8 +248,8 @@
 
 		buffer_zone="10"
 		dropdown_size="200"
-		sprite_list="BackgroundTranslucentBorderDarkTan"
-		sprite_selectarea="BackgroundRedBorderGold"
+		sprite_list="BackgroundListBox"
+		sprite_selectarea="BackgroundSelectArea"
 		textcolor_selected="white"
 
 		scrollbar="true"
@@ -262,7 +262,7 @@
 		scrollbar="true"
 		scrollbar_style="wheatScrollBar"
 		sprite="BackgroundIndentFillDark"
-		sprite_selectarea="BackgroundRedBorderGold"
+		sprite_selectarea="BackgroundSelectArea"
 		sprite_over="BackgroundIndentFillDark"
 		textcolor="white"
 		textcolor_selected="white"

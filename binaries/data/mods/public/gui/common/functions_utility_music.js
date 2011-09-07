@@ -173,18 +173,17 @@ function playMainMenuMusic()
 		playMusic(MAIN_MENU, 0.0, true);
 }
 
-function playButtonSound()
-{
-    var buttonSound = new Sound(BUTTON_SOUND);
-    buttonSound.play();
-}
-
 function stopMainMenuMusic()
 {
 	if (global.main_menu_music)
 		global.main_menu_music.fade(-1, 0.0, 5.0);
 }
 
+function playButtonSound()
+{
+    var buttonSound = new Sound(BUTTON_SOUND);
+    buttonSound.play();
+}
 
 function playDefeatMusic()
 {

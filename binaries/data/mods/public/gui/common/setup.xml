@@ -24,7 +24,7 @@
 			sprite_bar_vertical_over="bkWhiteBorderBlack"
 			sprite_bar_vertical_pressed="bkWhiteBorderBlack"
 	/>
-	
+
 	<!--
 	==========================================
 	- SETUP - ICONS
@@ -41,22 +41,22 @@
 			sprite="iconProduct"
 			size="16 16"
 		/>
-		
+
 		<icon 	name="iconBullet"
 			sprite="iconBullet"
-			size="8 8" 
+			size="8 8"
 		/>
 
 		<icon 	name="iconInfinity"
 			sprite="iconInfinity"
-			size="16 16" 
+			size="16 16"
 		/>
-		
+
 		<icon	name="iconInfo"
 			sprite="iconInfo"
 			size="16 16"
 		/>
-		
+
 		<!--
 		==========================================
 		- SETUP - ICONS - RESOURCE
@@ -66,45 +66,45 @@
 		<icon	name="iconResourceFood"
 				sprite="snIconSheetResource"
 				cell_id="0"
-				size="30 30" 
+				size="30 30"
 		/>
 
 		<icon	name="iconResourceWood"
 				sprite="snIconSheetResource"
 				cell_id="1"
-				size="30 30" 
+				size="30 30"
 		/>
 
 		<icon	name="iconResourceStone"
 				sprite="snIconSheetResource"
 				cell_id="2"
-				size="30 30" 
+				size="30 30"
 		/>
 
 		<icon 	name="iconResourceOre"
 				sprite="snIconSheetResource"
 				cell_id="3"
-				size="30 30" 
+				size="30 30"
 		/>
 
 		<icon 	name="iconResourcePopulation"
 				sprite="snIconSheetResource"
 				cell_id="4"
-				size="30 30" 
+				size="30 30"
 		/>
-		
+
 		<!--
 		==========================================
 		- SETUP - ICONS - STATISTICS
 		==========================================
-		-->		
-	
+		-->
+
 		<icon 	name="iconGarrisonCapacity"
 				sprite="snIconSheetGarrison"
 				cell_id="0"
-				size="30 30" 
+				size="30 30"
 		/>
-		
+
 		<!--
 		==========================================
 		- SETUP - TOOLTIPS
@@ -116,13 +116,13 @@
 				delay="0"
 				hide_object="true"
 		/>
-		
+
 		<tooltip	name="pgSessionSetupToolTip"
 				use_object="pgSessionSetupToolTip"
 				delay="0"
 				hide_object="true"
-		/>	
-		
+		/>
+
 		<tooltip 	name="pgFloatingToolTip"
 				anchor="top"
 				buffer_zone="4"
@@ -144,7 +144,7 @@
 				sprite="bkWhiteBorderBlack"
 				textcolor="0 0 0"
 		/>
-		
+
 		<tooltip 	name="snToolTipBottom"
 				anchor="bottom"
 				buffer_zone="4"
@@ -156,6 +156,11 @@
 				textcolor="0 0 0"
 		/>
 
+
+
+
+		<!-- these are used -->
+
 		<tooltip 	name="sessionToolTip"
 				anchor="top"
 				buffer_zone="4"
@@ -163,10 +168,10 @@
 				font="serif-14"
 				maxwidth="300"
 				offset="16 32"
-				sprite="bkDarkTransparentBorderGold"
+				sprite="BackgroundSessionTooltip"
 				textcolor="255 255 255"
 		/>
-		
+
 		<tooltip 	name="sessionToolTipBottom"
 				anchor="bottom"
 				buffer_zone="4"
@@ -174,7 +179,7 @@
 				font="serif-14"
 				maxwidth="400"
 				offset="-4 -4"
-				sprite="bkDarkTransparentBorderGold"
+				sprite="BackgroundSessionTooltip"
 				textcolor="255 255 255"
 		/>
 
@@ -185,7 +190,7 @@
 				font="serif-bold-14"
 				maxwidth="300"
 				offset="16 32"
-				sprite="bkDarkTransparentBorderGold"
+				sprite="BackgroundSessionTooltip"
 				textcolor="255 255 255"
 		/>
 
@@ -196,10 +201,10 @@
 				font="serif-bold-14"
 				maxwidth="400"
 				offset="-4 -4"
-				sprite="bkDarkTransparentBorderGold"
+				sprite="BackgroundSessionTooltip"
 				textcolor="255 255 255"
 		/>
-		
+
 		<!--
 		==========================================
 		- SETUP - COLORS
@@ -209,23 +214,25 @@
 		<color name="black">0 0 0</color>
 		<color name="white">255 255 255</color>
 		<color name="red">255 0 0</color>
-		<color name="blue">0 0 255</color>        
+		<color name="blue">0 0 255</color>
 		<color name="yellow">255 255 0</color>
 
 		<color name="gold">237 227 167</color>
 		<color name="lightgray">243 242 240</color>
-		<color name="gray">143 142 140</color>    
-		<color name="darkgray">43 42 40</color>                
-		<color name="green">0 200 0</color>        
-		<color name="mustard">191 191 2</color>        
+		<color name="gray">143 142 140</color>
+		<color name="darkgray">43 42 40</color>
+		<color name="green">0 200 0</color>
+		<color name="mustard">191 191 2</color>
 		<color name="brown">159 98 24</color>
 		<color name="orange">255 165 0</color>
+		<color name="darkred">80 0 0</color>
+		<color name="darkbrown">30 20 10</color>
 
 		<color name="transparent">0 0 0 0</color>
 
         <!--
-NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED 
-NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED 
+NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED
+NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED
 	-->
 
 	<scrollbar	name="sb"
@@ -273,12 +280,12 @@ NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET 
 			sprite_button_bottom_pressed="sprite2_pressed"
 			sprite_button_top_pressed="sprite2_pressed"
 	/>
-	
-	
+
+
 
         <!--
-NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED 
-NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED 
+NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED
+NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED
 	-->
 
 
@@ -288,88 +295,88 @@ NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET 
 		==========================================
 		-->
 
-		<icon 	name="icon_statistic_garrison" 
-			sprite="ui_icon_sheet_statistic" 
-			cell_id="12" 
-			size="20 20" 
+		<icon 	name="icon_statistic_garrison"
+			sprite="ui_icon_sheet_statistic"
+			cell_id="12"
+			size="20 20"
 		/>
 
 		<icon 	name="icon_statistic_rank1"
-			sprite="ui_icon_sheet_statistic" 
-			cell_id="9" 
-			size="20 20" 
+			sprite="ui_icon_sheet_statistic"
+			cell_id="9"
+			size="20 20"
 		/>
 
 		<icon 	name="icon_statistic_rank2"
 			sprite="ui_icon_sheet_statistic"
-			cell_id="10" 
-			size="20 20" 
+			cell_id="10"
+			size="20 20"
 		/>
 
 		<icon 	name="icon_statistic_rank3"
 			sprite="ui_icon_sheet_statistic"
-			cell_id="11" 
-			size="20 20" 
+			cell_id="11"
+			size="20 20"
 		/>
 
 		<icon 	name="icon_statistic_hp"
 			sprite="ui_icon_sheet_statistic"
-			cell_id="13" 
-			size="20 20" 
+			cell_id="13"
+			size="20 20"
 		/>
 
 		<icon 	name="icon_statistic_accuracy"
 			sprite="ui_icon_sheet_statistic"
 			cell_id="0"
-			size="20 20" 
+			size="20 20"
 		/>
 
 		<icon 	name="icon_statistic_armour"
 			sprite="ui_icon_sheet_statistic"
 			cell_id="2"
-			size="20 20" 
+			size="20 20"
 		/>
 
 		<icon 	name="icon_statistic_attack"
 			sprite="ui_icon_sheet_statistic"
 			cell_id="1"
-			size="20 20" 
+			size="20 20"
 		/>
 
 		<icon 	name="icon_statistic_crush"
 			sprite="ui_icon_sheet_statistic"
-			cell_id="8" 
-			size="20 20" 
+			cell_id="8"
+			size="20 20"
 		/>
 
 		<icon	name="icon_statistic_hack"
 			sprite="ui_icon_sheet_statistic"
 			cell_id="6"
-			size="20 20" 
+			size="20 20"
 		/>
 
 		<icon 	name="icon_statistic_los"
 			sprite="ui_icon_sheet_statistic"
 			cell_id="3"
-			size="20 20" 
+			size="20 20"
 		/>
 
 		<icon 	name="icon_statistic_pierce"
-			sprite="ui_icon_sheet_statistic" 
-			cell_id="7" 
-			size="20 20" 
+			sprite="ui_icon_sheet_statistic"
+			cell_id="7"
+			size="20 20"
 		/>
 
 		<icon 	name="icon_statistic_range"
 			sprite="ui_icon_sheet_statistic"
 			cell_id="5"
-			size="20 20" 
+			size="20 20"
 		/>
 
 		<icon 	name="icon_statistic_speed"
 			sprite="ui_icon_sheet_statistic"
 			cell_id="4"
-			size="20 20" 
+			size="20 20"
 		/>
-        
+
 </setup>

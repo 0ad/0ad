@@ -23,6 +23,10 @@ var g_EntityStates = {}; // {id:entState}
 // Whether the player has lost/won and reached the end of their game
 var g_GameEnded = false;
 
+// Colors to flash when pop limit reached
+const DEFAULT_POPULATION_COLOR = "white";
+const POPULATION_ALERT_COLOR = "orange";
+
 function GetEntityState(entId)
 {
 	if (!(entId in g_EntityStates))
@@ -182,9 +186,9 @@ function onTick()
 
 	// When training is blocked, flash population (alternates colour every 500msec)
 	if (g_IsTrainingQueueBlocked && (Date.now() % 1000) < 500)
-		getGUIObjectByName("resourcePop").textcolor = "255 165 0";
+		getGUIObjectByName("resourcePop").textcolor = POPULATION_ALERT_COLOR;
 	else
-		getGUIObjectByName("resourcePop").textcolor = "white";
+		getGUIObjectByName("resourcePop").textcolor = DEFAULT_POPULATION_COLOR;
 
 	// Clear renamed entities list
 	Engine.GuiInterfaceCall("ClearRenamedEntities", {});

@@ -13,15 +13,6 @@
 			size="0 0 100% 100%"
 		/>
 	</sprite>
-	
-    <sprite name="bkDarkTransparentBorderGold">
-        <image
-		   backcolor="darkgray"
-           size="0 0 100% 100%"
-           border="true"
-           bordercolor="gray"
-        />
-    </sprite>
 
         <sprite name="bkWhiteBorderBlack">
                 <image 	backcolor="white"
@@ -38,14 +29,14 @@
 			bordercolor="black"
 		/>
         </sprite>
-		
+
         <sprite name="bkDarkGrayBorderBlack">
 			<image 	backcolor="darkgray"
 					size="0 0 100% 100%"
 					border="true"
 					bordercolor="black"
 		/>
-        </sprite>		
+        </sprite>
 
         <sprite name="bkBlueBorderBlack">
                 <image 	backcolor="blue"
@@ -57,16 +48,16 @@
 
 	<sprite name="bkBorderBlack">
 		<image backcolor="black"
-			size="-1 -1 100%+1 0" 
+			size="-1 -1 100%+1 0"
 		/>
 		<image 	backcolor="black"
-			size="-1 100% 100%+1 100%+1" 
+			size="-1 100% 100%+1 100%+1"
 		/>
 		<image 	backcolor="black"
-			size="-1 0 0 100%" 
+			size="-1 0 0 100%"
 		/>
 		<image 	backcolor="black"
-			size="100% 0 100%+1 100%" 
+			size="100% 0 100%+1 100%"
 		/>
         </sprite>
 
@@ -81,64 +72,64 @@
 	<sprite name="bkFillGray">
 		<image backcolor="gray"/>
 	</sprite>
-	
+
 	<sprite name="bkFillDarkBlue">
 		<image backcolor="63 127 210 255"/>
 	</sprite>
-	
+
 	<!--
 	==========================================
 	GENERIC - PROGRESS BARS
 	==========================================
-	-->	
-	
+	-->
+
 	<sprite name="bkGreenBar">
 		<image 	backcolor="green"
-				size="0 0 100% 100%" 
-		/>	
+				size="0 0 100% 100%"
+		/>
 		<image	backcolor="100 100 100"
 				size="0 1 1 100%-1"
 		/>
 		<image 	backcolor="100 100 100"
-				size="0 0 100%-1 1" 
+				size="0 0 100%-1 1"
 		/>
 		<image 	backcolor="64 64 64"
 				size="100%-1 0 100% 100%"
 		/>
 		<image 	backcolor="64 64 64"
-				size="0 100%-1 100%-1 100%" 
+				size="0 100%-1 100%-1 100%"
 		/>
 		<image 	backcolor="128 128 128"
-				size="100%-2 1 100%-1 100%-1" 
+				size="100%-2 1 100%-1 100%-1"
 		/>
 		<image	backcolor="128 128 128"
-				size="1 100%-2 100%-1 100%-1" 
+				size="1 100%-2 100%-1 100%-1"
 		/>
-	</sprite>	
-	
+	</sprite>
+
 	<sprite name="bkBlueBar">
 		<image 	backcolor="blue"
-				size="0 0 100% 100%" 
+				size="0 0 100% 100%"
 		/>
 		<image	backcolor="100 100 100"
 				size="0 1 1 100%-1"
 		/>
 		<image 	backcolor="100 100 100"
-				size="0 0 100%-1 1" 
+				size="0 0 100%-1 1"
 		/>
 		<image 	backcolor="64 64 64"
 				size="100%-1 0 100% 100%"
 		/>
 		<image 	backcolor="64 64 64"
-				size="0 100%-1 100%-1 100%" 
+				size="0 100%-1 100%-1 100%"
 		/>
 		<image 	backcolor="128 128 128"
-				size="100%-2 1 100%-1 100%-1" 
+				size="100%-2 1 100%-1 100%-1"
 		/>
 		<image	backcolor="128 128 128"
-				size="1 100%-2 100%-1 100%-1" 
+				size="1 100%-2 100%-1 100%-1"
 		/>
-	</sprite>	
+	</sprite>
 
 	<!--
 	==========================================
@@ -148,7 +139,7 @@
 
 	<sprite name="textureGranite">
 		<image	texture="global/tile/granite.dds"
-			size="0 0 100% 100%" 
+			size="0 0 100% 100%"
 		/>
 	</sprite>
 
@@ -163,7 +154,7 @@
 
 	<sprite name="textureSand">
 		<image	texture="global/tile/sandstone.dds"
-			size="0 0 100% 100%" 
+			size="0 0 100% 100%"
 		/>
 	</sprite>
 
@@ -190,19 +181,19 @@
 			size="0 0 100% 100%"
 		/>
 	</sprite>
-	
+
 	<sprite name="iconInfo">
                 <image 	texture="global/icon/info_black.dds"
 			size="0 3 100% 100%+3"
 		/>
 	</sprite>
-	
+
 	<sprite name="iconInfoOver">
                 <image 	texture="global/icon/info_white.dds"
 			size="0 3 100% 100%+3"
 		/>
 	</sprite>
-	
+
 
 	<!--
 	==========================================
@@ -214,81 +205,81 @@
 		<!-- Starting with top left corner continuing in a clockwise manner -->
 		<image 	texture="global/border/corner_bronze.dds"
 			real_texture_placement="0 0 15 15"
-			size="0%-10 0%-10 0 0" 
+			size="0%-10 0%-10 0 0"
 		/>
 		<image 	texture="global/border/top_marble.dds"
 			texture_size="0 0 128 32"
-			size="0 0%-10 100% 22" 
+			size="0 0%-10 100% 22"
 		/>
 		<image 	texture="global/border/corner_bronze.dds"
 			real_texture_placement="0 0 15 15"
-			size="100% 0%-10 100%+10 0" 
+			size="100% 0%-10 100%+10 0"
 		/>
 		<image	texture="global/border/right_marble.dds"
 			texture_size="0 0 32 128"
-			size="100%-22 0 100%+10 100%" 
+			size="100%-22 0 100%+10 100%"
 		/>
         <image	texture="global/border/corner_bronze.dds"
 			real_texture_placement="0 0 15 15"
-			size="100% 100% 100%+10 100%+10" 
+			size="100% 100% 100%+10 100%+10"
 		/>
         <image	texture="global/border/bottom_marble.dds"
 			texture_size="0 0 128 32"
-			size="0 100%-22 100% 100%+10" 
+			size="0 100%-22 100% 100%+10"
 		/>
 		<image 	texture="global/border/corner_bronze.dds"
 			real_texture_placement="0 0 15 15"
-			size="0%-10 100% 0 100%+10" 
+			size="0%-10 100% 0 100%+10"
 		/>
 		<image 	texture="global/border/left_marble.dds"
 			texture_size="0 0 32 128"
-			size="0%-10 0 0%+22 100%" 
+			size="0%-10 0 0%+22 100%"
 		/>
 		<!-- middle -->
 		<image	texture="global/tile/sandstone.dds"
 			texture_size="0 0 128 128"
-			size="0 0 100% 100%" 
+			size="0 0 100% 100%"
 		/>
 	</sprite>
-	
+
 	<sprite name="wheatWindowSand">
 		<!-- middle -->
 		<image	texture="global/tile/sandstone.dds"
 			texture_size="0 0 128 128"
-			size="0%-10 0%-10 100%+10 100%+10" 
+			size="0%-10 0%-10 100%+10 100%+10"
 		/>
 		<!-- Starting with top left corner continuing in a clockwise manner -->
 		<image 	texture="global/border/corner_bronze.dds"
 			real_texture_placement="0 0 15 15"
-			size="0%-25 0%-25 0%-10 0%-10" 
+			size="0%-25 0%-25 0%-10 0%-10"
 		/>
 		<image 	texture="global/border/top_marble.dds"
 			texture_size="0 0 128 32"
-			size="0%-10 0%-25 100%+10 0%+7" 
+			size="0%-10 0%-25 100%+10 0%+7"
 		/>
 		<image 	texture="global/border/corner_bronze.dds"
 			real_texture_placement="0 0 15 15"
-			size="100%+10 0%-25 100%+25 0%-10" 
+			size="100%+10 0%-25 100%+25 0%-10"
 		/>
 		<image	texture="global/border/right_marble.dds"
 			texture_size="0 0 32 128"
-			size="100%-7 0%-10 100%+25 100%+10" 
+			size="100%-7 0%-10 100%+25 100%+10"
 		/>
         <image	texture="global/border/corner_bronze.dds"
 			real_texture_placement="0 0 15 15"
-			size="100%+10 100%+10 100%+25 100%+25" 
+			size="100%+10 100%+10 100%+25 100%+25"
 		/>
         <image	texture="global/border/bottom_marble.dds"
 			texture_size="0 0 128 32"
-			size="0%-10 100%-7 100%+10 100%+25" 
+			size="0%-10 100%-7 100%+10 100%+25"
 		/>
 		<image 	texture="global/border/corner_bronze.dds"
 			real_texture_placement="0 0 15 15"
-			size="0%-25 100%+10 0%-10 100%+25" 
+			size="0%-25 100%+10 0%-10 100%+25"
 		/>
 		<image 	texture="global/border/left_marble.dds"
 			texture_size="0 0 32 128"
-			size="0%-25 0%-10 0%+7 100%+10" 
+			size="0%-25 0%-10 0%+7 100%+10"
 		/>
 	</sprite>
 
@@ -296,163 +287,163 @@
 		<!-- middle -->
 		<image	texture="global/tile/granite.dds"
 			texture_size="0 0 128 128"
-			size="0%-10 0%-10 100%+10 100%+10" 
+			size="0%-10 0%-10 100%+10 100%+10"
 		/>
 		<!-- Starting with top left corner continuing in a clockwise manner -->
 		<image 	texture="global/border/corner_bronze.dds"
 			real_texture_placement="0 0 15 15"
-			size="0%-25 0%-25 0%-10 0%-10" 
+			size="0%-25 0%-25 0%-10 0%-10"
 		/>
 		<image 	texture="global/border/top_marble.dds"
 			texture_size="0 0 128 32"
-			size="0%-10 0%-25 100%+10 0%+7" 
+			size="0%-10 0%-25 100%+10 0%+7"
 		/>
 		<image 	texture="global/border/corner_bronze.dds"
 			real_texture_placement="0 0 15 15"
-			size="100%+10 0%-25 100%+25 0%-10" 
+			size="100%+10 0%-25 100%+25 0%-10"
 		/>
 		<image	texture="global/border/right_marble.dds"
 			texture_size="0 0 32 128"
-			size="100%-6 0%-10 100%+26 100%+10" 
+			size="100%-6 0%-10 100%+26 100%+10"
 		/>
                 <image	texture="global/border/corner_bronze.dds"
 			real_texture_placement="0 0 15 15"
-			size="100%+10 100%+10 100%+25 100%+25" 
+			size="100%+10 100%+10 100%+25 100%+25"
 		/>
                 <image	texture="global/border/bottom_marble.dds"
 			texture_size="0 0 128 32"
-			size="0%-10 100%-7 100%+10 100%+25" 
+			size="0%-10 100%-7 100%+10 100%+25"
 		/>
 		<image 	texture="global/border/corner_bronze.dds"
 			real_texture_placement="0 0 15 15"
-			size="0%-25 100%+10 0%-10 100%+25" 
+			size="0%-25 100%+10 0%-10 100%+25"
 		/>
 		<image 	texture="global/border/left_marble.dds"
 			texture_size="0 0 32 128"
-			size="0%-25 0%-10 0%+7 100%+10" 
+			size="0%-25 0%-10 0%+7 100%+10"
 		/>
 	</sprite>
 
 	<sprite name="wheatWindowTitle">
 		<image	texture="global/titlebar/left_gold_fern.dds"
 			real_texture_placement="0 0 64 32"
-			size="0%+0 0% 64 0%+32" 
+			size="0%+0 0% 64 0%+32"
 		/>
                 <image 	texture="global/titlebar/middle_gold_fern.dds"
 			real_texture_placement="0 0 64 32"
-			size="64 0% 100%-64 0%+32" 
+			size="64 0% 100%-64 0%+32"
 		/>
                 <image 	texture="global/titlebar/right_gold_fern.dds"
 			real_texture_placement="0 0 64 32"
-			size="100%-64 0% 100%+0 0%+32" 
+			size="100%-64 0% 100%+0 0%+32"
 		/>
 	</sprite>
 
 	<sprite name="wheatCheckBoxOpen">
 		<image	texture="global/button/checkbox_open_gray.dds"
-			size="0 0 100% 100%" 
+			size="0 0 100% 100%"
 		/>
         </sprite>
 
 	<sprite name="wheatCheckBoxTick">
 		<image	texture="global/button/checkbox_tick_gray.dds"
-			size="0 0 100% 100%" 
+			size="0 0 100% 100%"
 		/>
         </sprite>
 
 	<sprite name="wheatCheckBoxCross">
 		<image	texture="global/button/checkbox_cross_gray.dds"
-			size="0 0 100% 100%" 
+			size="0 0 100% 100%"
 		/>
         </sprite>
 
 	<sprite name="wheatCheckBoxCrossOver">
 		<image	texture="global/button/checkbox_cross_over_gray.dds"
-			size="0 0 100% 100%" 
+			size="0 0 100% 100%"
 		/>
         </sprite>
 
 	<sprite name="wheatArrowLeft">
 		<image	texture="global/button/arrowbox_lt.dds"
-			size="0 0 100% 100%" 
+			size="0 0 100% 100%"
 		/>
         </sprite>
 
 	<sprite name="wheatArrowLeftOver">
 		<image	texture="global/button/arrowbox_lt_over.dds"
-			size="0 0 100% 100%" 
+			size="0 0 100% 100%"
 		/>
         </sprite>
 
 	<sprite name="wheatArrowRight">
 		<image	texture="global/button/arrowbox_rt.dds"
-			size="0 0 100% 100%" 
+			size="0 0 100% 100%"
 		/>
         </sprite>
 
 	<sprite name="wheatArrowRightOver">
 		<image	texture="global/button/arrowbox_rt_over.dds"
-			size="0 0 100% 100%" 
+			size="0 0 100% 100%"
 		/>
         </sprite>
 	<sprite name="wheatArrowUp">
 		<image	texture="global/button/arrowbox_up.dds"
-			size="0 0 100% 100%" 
+			size="0 0 100% 100%"
 		/>
         </sprite>
 
 	<sprite name="wheatArrowUpOver">
 		<image	texture="global/button/arrowbox_up_over.dds"
-			size="0 0 100% 100%" 
+			size="0 0 100% 100%"
 		/>
         </sprite>
 
 	<sprite name="wheatArrowDn">
 		<image	texture="global/button/arrowbox_dn.dds"
-			size="0 0 100% 100%" 
+			size="0 0 100% 100%"
 		/>
         </sprite>
 
 	<sprite name="wheatArrowDnOver">
 		<image	texture="global/button/arrowbox_dn_over.dds"
-			size="0 0 100% 100%" 
+			size="0 0 100% 100%"
 		/>
         </sprite>
-	
+
 	<sprite name="wheatScrollSpriteBar">
 		<image	texture="global/border/scrollbar.dds"
 			real_texture_placement="0 0 16 128"
-			size="0 0 100% 100%" 
+			size="0 0 100% 100%"
 		/>
 	</sprite>
 
 	<sprite name="wheatButton">
 		<image	texture="global/button/button_wood.png"
-			real_texture_placement="0 0 160 31" 
-			size="0 0 100% 100%" 
+			real_texture_placement="0 0 160 31"
+			size="0 0 100% 100%"
 		/>
 	</sprite>
-        
+
 	<sprite name="wheatButtonOver">
 		<image 	texture="global/button/button_wood.png"
-			real_texture_placement="0 32 160 64" 
-			size="0 0 100% 100%" 
+			real_texture_placement="0 32 160 64"
+			size="0 0 100% 100%"
 		/>
         </sprite>
 
 	<sprite name="wheatButtonDisabled">
 		<effect grayscale="" />
 		<image 	texture="global/button/button_wood.png"
-			real_texture_placement="0 0 160 31" 
-			size="0 0 100% 100%" 
+			real_texture_placement="0 0 160 31"
+			size="0 0 100% 100%"
 		/>
         </sprite>
 
 	<sprite name="wheatButtonGlow">
 		<effect	add_color="60 42 42 0" />
 		<image 	texture="global/button/button_wood.png"
-			real_texture_placement="0 0 160 31" 
-			size="0 0 100% 100%" 
+			real_texture_placement="0 0 160 31"
+			size="0 0 100% 100%"
 		/>
         </sprite>
 
@@ -460,19 +451,19 @@
 		<!-- Starting with top left corner continuing in a clockwise manner -->
 		<!-- Top border -->
 		<image	backcolor="109 122 146"
-			size="0 0 100%-1 1" 
+			size="0 0 100%-1 1"
 		/>
 		<!-- Right border -->
 		<image 	backcolor="220 223 228"
-			size="100%-1 0 100% 100%" 
+			size="100%-1 0 100% 100%"
 		/>
 		<!-- Bottom border -->
 		<image 	backcolor="220 223 228"
-			size="0 100%-1 100% 100%" 
+			size="0 100%-1 100% 100%"
 		/>
 		<!-- Left border -->
 		<image 	backcolor="109 122 146"
-			size="0 0 1 100%-1" 
+			size="0 0 1 100%-1"
 		/>
 		<!-- middle -->
 	</sprite>
@@ -481,19 +472,19 @@
 		<!-- Starting with top left corner continuing in a clockwise manner -->
 		<!-- Top border -->
 		<image	backcolor="109 122 146"
-			size="0 0 100%-1 1" 
+			size="0 0 100%-1 1"
 		/>
 		<!-- Right border -->
 		<image 	backcolor="220 223 228"
-			size="100%-1 0 100% 100%" 
+			size="100%-1 0 100% 100%"
 		/>
 		<!-- Bottom border -->
 		<image 	backcolor="220 223 228"
-			size="0 100%-1 100% 100%" 
+			size="0 100%-1 100% 100%"
 		/>
 		<!-- Left border -->
 		<image 	backcolor="109 122 146"
-			size="0 0 1 100%-1" 
+			size="0 0 1 100%-1"
 		/>
 		<!-- middle -->
 		<image 	backcolor="0 0 0 85"
@@ -505,19 +496,19 @@
 		<!-- Starting with top left corner continuing in a clockwise manner -->
 		<!-- Top border -->
 		<image	backcolor="109 122 146"
-			size="0 0 100%-1 1" 
+			size="0 0 100%-1 1"
 		/>
 		<!-- Right border -->
 		<image 	backcolor="220 223 228"
-			size="100%-1 0 100% 100%" 
+			size="100%-1 0 100% 100%"
 		/>
 		<!-- Bottom border -->
 		<image 	backcolor="220 223 228"
-			size="0 100%-1 100% 100%" 
+			size="0 100%-1 100% 100%"
 		/>
 		<!-- Left border -->
 		<image 	backcolor="109 122 146"
-			size="0 0 1 100%-1" 
+			size="0 0 1 100%-1"
 		/>
 		<!-- middle -->
 		<image 	backcolor="100 100 100 85"
@@ -527,16 +518,16 @@
 
 	<sprite name="wheatIndentFillVeryLight">
 		<image	backcolor="109 122 146"
-			size="0 0 100%-1 1" 
+			size="0 0 100%-1 1"
 		/>
 		<image 	backcolor="220 223 228"
-			size="100%-1 0 100% 100%" 
+			size="100%-1 0 100% 100%"
 		/>
 		<image 	backcolor="220 223 228"
-			size="0 100%-1 100% 100%" 
+			size="0 100%-1 100% 100%"
 		/>
 		<image 	backcolor="109 122 146"
-			size="0 0 1 100%-1" 
+			size="0 0 1 100%-1"
 		/>
 		<image 	backcolor="255 255 255 160"
 			size="1 1 100%-1 100%-1"
@@ -551,15 +542,15 @@
 
 	<sprite	name="watermarkProduct">
 		<image	texture="global/watermark/product.dds"
-			real_texture_placement="0 0 200 98" 
-			size="0 0 100% 100%" 
+			real_texture_placement="0 0 200 98"
+			size="0 0 100% 100%"
 		/>
 	</sprite>
 
 	<sprite	name="watermarkCompany">
 		<image	texture="global/watermark/company.dds"
-			real_texture_placement="0 0 207 28" 
-			size="0 0 100% 100%" 
+			real_texture_placement="0 0 207 28"
+			size="0 0 100% 100%"
 		/>
 	</sprite>
 
