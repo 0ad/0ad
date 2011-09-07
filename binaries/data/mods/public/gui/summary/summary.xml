@@ -177,11 +177,10 @@
 			</object>
 
 			<object type="button" style="StoneButton" size="100%-180 100%-52 100%-24 100%-24">
-				Main Menu
+				Continue
 				<action on="Press">
-					<![CDATA[
-						Engine.SwitchGuiPage("page_pregame.xml");
-					]]>
+					Engine.SwitchGuiPage("page_pregame.xml");
+					Engine.PushGuiPage("page_gamesetup.xml", { type: "offline" });
 				</action>
 			</object>
 
