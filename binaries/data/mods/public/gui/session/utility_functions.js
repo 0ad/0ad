@@ -3,9 +3,9 @@ const FLORA = "flora";
 const FAUNA = "fauna";
 const SPECIAL = "special";
 
-//-------------------------------- -------------------------------- -------------------------------- 
+//-------------------------------- -------------------------------- --------------------------------
 // Utility functions
-//-------------------------------- -------------------------------- -------------------------------- 
+//-------------------------------- -------------------------------- --------------------------------
 
 // Get the basic player data
 function getPlayerData(playerAssignments)
@@ -35,7 +35,7 @@ function getPlayerData(playerAssignments)
 		};
 		players.push(player);
 	}
-	
+
 	// Overwrite default player names with multiplayer names
 	if (playerAssignments)
 	{
@@ -49,7 +49,7 @@ function getPlayerData(playerAssignments)
 			}
 		}
 	}
-	
+
 	return players;
 }
 
@@ -137,14 +137,14 @@ function damageTypesToText(dmg)
 {
 	if (!dmg)
 		return "[font=\"serif-12\"](None)[/font]";
-	
+
 	var hackLabel = "[font=\"serif-12\"] Hack[/font]";
 	var pierceLabel = "[font=\"serif-12\"] Pierce[/font]";
 	var crushLabel = "[font=\"serif-12\"] Crush[/font]";
 	var hackDamage = dmg.hack;
 	var pierceDamage = dmg.pierce;
 	var crushDamage = dmg.crush;
-	
+
 	var dmgArray = [];
 	if (hackDamage) dmgArray.push(hackDamage + hackLabel);
 	if (pierceDamage) dmgArray.push(pierceDamage + pierceLabel);
@@ -234,11 +234,11 @@ function getEntityCommandsList(entState)
 	var commands = [];
 	if (entState.garrisonHolder)
 		commands.push("unload-all");
-	commands.push("delete");
 	if (isUnit(entState))
 		commands.push("garrison");
 	if (entState.buildEntities)
 		commands.push("repair");
+	commands.push("delete");
 	return commands;
 }
 
@@ -279,7 +279,7 @@ function getEntityNameWithGenericType(template)
 			name = template.name.specific + " (" + template.name.generic + ")";
 		else
 			name = template.name.specific || template.name.generic || "???";
-		
+
 		return "[font=\"serif-bold-16\"]" + name + "[/font]";
 }
 
