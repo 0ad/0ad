@@ -61,8 +61,10 @@ static Status AppendDriverVersionsFromRegistry(VersionList& versionList)
 
 	HKEY hkDrivers;
 	const wchar_t* key = L"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\OpenGLDrivers";
+	// (we've received word of this failing on one WinXP system, but
+	// AppendDriverVersionsFromKnownFiles might still work.)
 	if(RegOpenKeyExW(HKEY_LOCAL_MACHINE, key, 0, KEY_READ, &hkDrivers) != 0)
-		WARN_RETURN(ERR::FAIL);
+		return ERR::FAIL;	// NOWARN (see above)
 
 	// for each subkey (i.e. installed OpenGL driver):
 	for(DWORD i = 0; ; i++)
