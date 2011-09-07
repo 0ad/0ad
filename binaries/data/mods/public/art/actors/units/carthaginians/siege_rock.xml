@@ -5,6 +5,9 @@
     <variant frequency="100" name="carthaginian ballista">
       <mesh>structural/kart_ballista.dae</mesh>
       <texture>structural/hele_siege.dds</texture>
+	  <props>
+        <prop actor="props/units/weapons/rock_flaming.xml" attachpoint="projectile"/>
+      </props>
     </variant>
   </group>
 </actor>
