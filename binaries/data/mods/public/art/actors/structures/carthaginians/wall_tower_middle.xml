@@ -2,10 +2,11 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Wall_Tower_Both">
-      <mesh>structural/kart_wall_tower_a.pmd</mesh>
+    <variant frequency="1" name="Wall_Tower">
+      <mesh>structural/kart_wall_tower_a.dae</mesh>
       <props>
-        <prop actor="props/structures/carthaginians/wall_tower.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <texture>structural/kart_struct.dds</texture>
     </variant>
