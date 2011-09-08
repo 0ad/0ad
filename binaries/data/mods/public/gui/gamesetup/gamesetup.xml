@@ -118,7 +118,7 @@
 		<object name="gameOptionsBox" size="320 50%+124 100%-24 50%+220">
 
 			<!-- First Column -->
-			<object size="0 0 25% 100%">
+			<object size="0 0 150 100%">
 
 				<!-- Number of Players-->
 				<object size="0 0 100% 32">
@@ -136,7 +136,7 @@
 			</object>
 
 			<!-- Second Column -->
-			<object size="25% 0 52% 100%">
+			<object size="150 0 330 100%">
 
 				<!-- Number of Players-->
 				<object size="0 0 100% 32">
@@ -163,7 +163,7 @@
 			</object>
 
 			<!-- Third Column -->
-			<object size="52% 0 70% 100%">
+			<object size="330 0 450 100%">
 				<object size="0 0 100% 32">
 					<object size="0 0 100% 100%" type="text" style="RightLabelText">Reveal map:</object>
 				</object>
@@ -173,7 +173,7 @@
 			</object>
 
 			<!-- Fourth Column -->
-			<object size="70% 0 100% 100%">
+			<object size="450 0 600 100%">
 				<object size="0 0 100% 32">
 					<object name="revealMapText" size="0 0 100% 100%" type="text" style="LeftLabelText"/>
 					<object name="revealMap" size="0 50%-8 16 50%+8" type="checkbox" style="StoneCrossBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle reveal map"/>
