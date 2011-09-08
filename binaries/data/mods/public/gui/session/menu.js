@@ -18,7 +18,7 @@ const BUTTON_HEIGHT = 32;
 const END_MENU_POSITION = (BUTTON_HEIGHT * NUM_BUTTONS) + MARGIN;
 
 // Menu starting position: bottom
-const MENU_BOTTOM = 36;
+const MENU_BOTTOM = 0;
 
 // Menu starting position: top
 const MENU_TOP = MENU_BOTTOM - END_MENU_POSITION;
@@ -31,9 +31,9 @@ const INITIAL_MENU_POSITION = "100%-164 " + MENU_TOP + " 100% " + MENU_BOTTOM;
 // slow. The offset must divide into the travel distance evenly
 // in order for the menu to end up at the right spot. The travel
 // distance is the max-initial. The travel distance in this
-// example is 164-36 = 128. We choose an offset of 16 because it
-// divides into 128 evenly and provided the speed we wanted.
-const OFFSET = 8;
+// example is 164-0 = 164. We choose an offset of 10.25 because it
+// divides into 164 evenly and provided the speed we wanted.
+const OFFSET = 10.25;
 
 var isMenuOpen = false;
 var menu;
