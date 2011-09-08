@@ -9,6 +9,7 @@
 		<animation file="quadraped/giraffe_adult_idle_02.dae" name="Idle" speed="40"/>
 		<animation file="quadraped/giraffe_adult_idle_03.dae" name="Idle" speed="40"/>
 		<animation file="quadraped/giraffe_adult_run.dae" name="Run" speed="20"/>
+		<animation file="quadraped/giraffe_adult_death.dae" name="Death" speed="110"/>
     </animations>
       <mesh>skeletal/giraffe_adult.dae</mesh>
     </variant>
@@ -30,6 +31,7 @@
         <animation file="quadraped/giraffe_adult_idle_02.dae" name="Idle" speed="40"/>
         <animation file="quadraped/giraffe_adult_idle_03.dae" name="Idle" speed="40"/>
 		<animation file="quadraped/giraffe_adult_run.dae" name="Run" speed="20"/>
+		<animation file="quadraped/giraffe_adult_death.dae" name="Death" speed="110"/>
       </animations>
     </variant>
   </group>

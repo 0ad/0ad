@@ -9,6 +9,7 @@
 			<animation file="quadraped/lion_idle_01.dae" name="Idle" speed="50"/>
 			<animation file="quadraped/lion_idle_02.dae" name="Idle" speed="50"/>
 			<animation file="quadraped/lion_idle_03.dae" name="Idle" speed="50"/>
+			<animation file="quadraped/lion_death.dae" name="Death" speed="60"/>
 		</animations>
 		<mesh>skeletal/animal_lion.dae</mesh>
     </variant>
@@ -27,6 +28,7 @@
 		<animation file="quadraped/lion_idle_01.dae" name="Idle" speed="50"/>
 		<animation file="quadraped/lion_idle_02.dae" name="Idle" speed="50"/>
 		<animation file="quadraped/lion_idle_03.dae" name="Idle" speed="50"/>
+		<animation file="quadraped/lion_death.dae" name="Death" speed="60"/>
       </animations>
     </variant>
   </group>
