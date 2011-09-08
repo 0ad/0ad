@@ -1,0 +1,11 @@
+{
+	"settings" : {
+		"Name" : "Islands",
+		"Script" : "islands.js",
+		"Description" : "Each player starts on an island surrounded by water.",
+		"BaseTerrain" : ["medit_sea_depths"],
+		"BaseHeight" : -5,
+		"CircularMap" : true,
+		"XXXXXX" : "Optionally define other things here, like we would for a scenario"
+	}
+}

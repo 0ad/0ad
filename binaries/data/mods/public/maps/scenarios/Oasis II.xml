@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="685.098" y="94.377" z="674.406"/>
+		<Position x="700.813" y="110.336" z="632.859"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -6259,16 +6259,6 @@
 			<Position x="313.6273" z="267.37018"/>
 			<Orientation y="-1.21802"/>
 		</Entity>
-		<Entity uid="1109">
-			<Template>actor|flora/trees/palm_cretan_date_tall.xml</Template>
-			<Position x="687.93683" z="775.42524"/>
-			<Orientation y="0.03672"/>
-		</Entity>
-		<Entity uid="1110">
-			<Template>actor|flora/trees/palm_cretan_date_tall.xml</Template>
-			<Position x="701.99494" z="786.72669"/>
-			<Orientation y="1.92144"/>
-		</Entity>
 		<Entity uid="1111">
 			<Template>gaia/special_treasure_stone</Template>
 			<Player>0</Player>
@@ -6525,6 +6515,12 @@
 			<Player>0</Player>
 			<Position x="781.72846" z="832.90601"/>
 			<Orientation y="-0.23321"/>
+		</Entity>
+		<Entity uid="1156">
+			<Template>other/cart_tophet</Template>
+			<Player>1</Player>
+			<Position x="732.68989" z="766.48951"/>
+			<Orientation y="-2.34728"/>
 		</Entity>
 	</Entities>
 	<Paths/>
