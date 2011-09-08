@@ -145,10 +145,12 @@ void ObjectSidebar::OnToolChange(ITool* tool)
 	{
 		p->m_ActorViewerActive = true;
 		p->ActorViewerPostToGame();
+		wxDynamicCast(FindWindow(ID_ToggleViewer), wxButton)->SetLabel(_("Return to game view"));
 	}
 	else
 	{
 		p->m_ActorViewerActive = false;
+		wxDynamicCast(FindWindow(ID_ToggleViewer), wxButton)->SetLabel(_("Switch to Actor Viewer"));
 	}
 
 	static_cast<ObjectBottomBar*>(m_BottomBar)->ShowActorViewer(p->m_ActorViewerActive);
@@ -191,17 +193,14 @@ void ObjectSidebar::FilterObjects()
 	p->m_ObjectListBox->Thaw();
 }
 
-void ObjectSidebar::ToggleViewer(wxCommandEvent& WXUNUSED(evt))
+void ObjectSidebar::OnToggleViewer(wxCommandEvent& WXUNUSED(evt))
 {
-	// Change name of button
 	if (p->m_ActorViewerActive)
 	{
-		wxDynamicCast(FindWindow(ID_ToggleViewer), wxButton)->SetLabel(_("Switch to actor viewer"));
 		m_ScenarioEditor.GetToolManager().SetCurrentTool(_T(""), NULL);
 	}
 	else
 	{
-		wxDynamicCast(FindWindow(ID_ToggleViewer), wxButton)->SetLabel(_("Return to game view"));
 		m_ScenarioEditor.GetToolManager().SetCurrentTool(_T("ActorViewerTool"), NULL);
 	}
 }
@@ -242,7 +241,7 @@ BEGIN_EVENT_TABLE(ObjectSidebar, Sidebar)
 	EVT_CHOICE(ID_ObjectType, ObjectSidebar::OnSelectType)
 	EVT_TEXT(ID_ObjectFilter, ObjectSidebar::OnSelectFilter)
 	EVT_LISTBOX(ID_SelectObject, ObjectSidebar::OnSelectObject)
-	EVT_BUTTON(ID_ToggleViewer, ObjectSidebar::ToggleViewer)
+	EVT_BUTTON(ID_ToggleViewer, ObjectSidebar::OnToggleViewer)
 END_EVENT_TABLE();
 
 //////////////////////////////////////////////////////////////////////////
