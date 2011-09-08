@@ -17,12 +17,14 @@
         <prop actor="props/structures/carthaginians/trireme_frontsail.xml" attachpoint="root"/>
         <prop actor="props/structures/carthaginians/trireme_mainsail.xml" attachpoint="root"/>
         <prop actor="props/structures/carthaginians/trireme_tent.xml" attachpoint="root"/>
+        <prop actor="props/structures/carthaginians/trireme_shrouds.xml" attachpoint="root"/>
       </props>
     </variant>
     <variant frequency="1" name="no tent">
       <props>
         <prop actor="props/structures/carthaginians/trireme_frontsail.xml" attachpoint="root"/>
         <prop actor="props/structures/carthaginians/trireme_mainsail.xml" attachpoint="root"/>
+        <prop actor="props/structures/carthaginians/trireme_shrouds.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

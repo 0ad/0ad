@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2011-09-08T07:53:52Z</created>
+    <modified>2011-09-08T07:53:52Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__3-image" name="Map__3">
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\props\ship_shroud.png</init_from>
+    </image>
+    <image id="Map__23-image" name="Map__23">
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\props\ship_shroud.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_04___Default" name="_04___Default">
+      <instance_effect url="#_04___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_04___Default-fx" name="_04___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__3-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <texture texture="Map__23-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="Pyramid004-lib" name="Pyramid004Mesh">
+      <mesh>
+        <source id="Pyramid004-lib-Position">
+          <float_array id="Pyramid004-lib-Position-array" count="108">
+1.229438 0.013499 11.523952
+-2.036682 -2.023183 0.000000
+2.036682 -2.023183 0.000000
+2.036682 2.036682 0.000000
+-2.036682 2.036682 0.000000
+0.000000 0.000000 0.000000
+1.229438 0.052476 11.523952
+-2.036682 -1.984206 0.000000
+2.036682 -1.984206 0.000000
+1.229438 -0.717718 11.495736
+2.036682 2.200929 0.162995
+-2.036682 2.200929 0.162995
+-2.036682 -1.846864 -0.149853
+2.036682 -1.846864 -0.149853
+0.000000 0.183762 0.007091
+1.229438 -0.756580 11.492733
+2.036682 2.162067 0.159991
+-2.036682 2.162068 0.159991
+-9.075035 -0.168690 16.245480
+-12.030885 -2.024417 0.031987
+-6.119185 -2.024417 0.031987
+-6.119185 2.037924 -0.032201
+-12.030885 2.037924 -0.032201
+-9.075035 -0.000000 0.000000
+-9.075035 -0.129689 16.244864
+-12.030885 -1.985416 0.031371
+-6.119185 -1.985416 0.031371
+-9.075035 -0.899908 16.217264
+-6.119185 2.199694 0.194982
+-12.030884 2.199694 0.194982
+-12.030885 -1.845621 -0.182054
+-6.119186 -1.845622 -0.182054
+-9.075035 0.183762 0.007091
+-9.075035 -0.938745 16.213644
+-6.119185 2.160856 0.191362
+-12.030884 2.160857 0.191362
+</float_array>
+          <technique_common>
+            <accessor source="#Pyramid004-lib-Position-array" count="36" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Pyramid004-lib-Normal0">
+          <float_array id="Pyramid004-lib-Normal0-array" count="216">
+0.000000 -0.984739 0.174038
+0.000000 -0.984739 0.174038
+0.000000 -0.984739 0.174038
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.984739 -0.174038
+0.000000 0.984739 -0.174038
+0.000000 0.984739 -0.174038
+0.000000 0.968400 0.249403
+0.000000 0.968400 0.249403
+0.000000 0.968400 0.249403
+0.000000 0.077059 -0.997027
+0.000000 0.077059 -0.997027
+0.000000 0.077059 -0.997027
+0.000000 0.077059 -0.997027
+0.000000 0.077059 -0.997027
+0.000000 0.077059 -0.997027
+0.000000 0.077059 -0.997027
+0.000000 0.077059 -0.997027
+0.000000 0.077059 -0.997027
+0.000000 0.077059 -0.997027
+0.000000 0.077059 -0.997027
+0.000000 0.077059 -0.997027
+-0.000000 -0.968400 -0.249403
+-0.000000 -0.968400 -0.249403
+-0.000000 -0.968400 -0.249403
+0.000000 -0.993514 0.113713
+0.000000 -0.993514 0.113713
+0.000000 -0.993514 0.113713
+0.000000 -0.015799 -0.999875
+0.000000 -0.015799 -0.999875
+0.000000 -0.015799 -0.999875
+0.000000 -0.015799 -0.999875
+0.000000 -0.015799 -0.999875
+0.000000 -0.015799 -0.999875
+0.000000 -0.015799 -0.999875
+0.000000 -0.015799 -0.999875
+0.000000 -0.015799 -0.999875
+0.000000 -0.015799 -0.999875
+0.000000 -0.015799 -0.999875
+0.000000 -0.015799 -0.999875
+0.000000 0.993514 -0.113713
+0.000000 0.993514 -0.113713
+0.000000 0.993514 -0.113713
+0.000000 0.981797 0.189934
+0.000000 0.981797 0.189934
+0.000000 0.981797 0.189934
+0.000000 0.092801 -0.995685
+0.000000 0.092801 -0.995685
+0.000000 0.092801 -0.995685
+0.000000 0.092801 -0.995685
+0.000000 0.092801 -0.995685
+0.000000 0.092801 -0.995685
+0.000000 0.092801 -0.995685
+0.000000 0.092801 -0.995685
+0.000000 0.092801 -0.995685
+0.000000 0.092801 -0.995685
+0.000000 0.092801 -0.995685
+0.000000 0.092801 -0.995685
+-0.000000 -0.981797 -0.189934
+-0.000000 -0.981797 -0.189934
+-0.000000 -0.981797 -0.189934
+</float_array>
+          <technique_common>
+            <accessor source="#Pyramid004-lib-Normal0-array" count="72" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Pyramid004-lib-UV0">
+          <float_array id="Pyramid004-lib-UV0-array" count="112">
+0.492467 1.251575
+-0.071563 0.011299
+1.056497 0.011299
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+1.000000 0.000000
+0.000000 0.000000
+0.500000 0.500000
+0.500000 1.000000
+0.492467 1.251575
+-0.071563 0.011299
+1.056497 0.011299
+0.492467 1.251575
+-0.071563 0.011299
+1.056497 0.011299
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+1.000000 0.000000
+0.000000 0.000000
+0.500000 0.500000
+0.500000 1.000000
+0.492467 1.251575
+-0.071563 0.011299
+1.056497 0.011299
+0.492467 1.251575
+-0.071563 0.011299
+1.056497 0.011299
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+1.000000 0.000000
+0.000000 0.000000
+0.500000 0.500000
+0.500000 1.000000
+0.492467 1.251575
+-0.071563 0.011299
+1.056497 0.011299
+0.492467 1.251575
+-0.071563 0.011299
+1.056497 0.011299
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+1.000000 0.000000
+0.000000 0.000000
+0.500000 0.500000
+0.500000 1.000000
+0.492467 1.251575
+-0.071563 0.011299
+1.056497 0.011299
+</float_array>
+          <technique_common>
+            <accessor source="#Pyramid004-lib-UV0-array" count="56" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Pyramid004-lib-Vertex">
+          <input semantic="POSITION" source="#Pyramid004-lib-Position"/>
+        </vertices>
+        <polygons material="_04___Default" count="24">
+          <input semantic="VERTEX" offset="0" source="#Pyramid004-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#Pyramid004-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#Pyramid004-lib-UV0"/>
+          <p>0 0 0 1 1 1 2 2 2</p>
+          <p>1 3 5 5 4 9 2 5 6</p>
+          <p>2 6 6 5 7 9 3 8 7</p>
+          <p>3 9 7 5 10 9 4 11 8</p>
+          <p>4 12 8 5 13 9 1 14 5</p>
+          <p>7 15 12 6 16 11 8 17 13</p>
+          <p>9 18 14 10 19 15 11 20 16</p>
+          <p>10 21 19 14 22 23 11 23 20</p>
+          <p>11 24 20 14 25 23 12 26 21</p>
+          <p>12 27 21 14 28 23 13 29 22</p>
+          <p>13 30 22 14 31 23 10 32 19</p>
+          <p>16 33 26 15 34 25 17 35 27</p>
+          <p>18 36 28 19 37 29 20 38 30</p>
+          <p>19 39 33 23 40 37 20 41 34</p>
+          <p>20 42 34 23 43 37 21 44 35</p>
+          <p>21 45 35 23 46 37 22 47 36</p>
+          <p>22 48 36 23 49 37 19 50 33</p>
+          <p>25 51 40 24 52 39 26 53 41</p>
+          <p>27 54 42 28 55 43 29 56 44</p>
+          <p>28 57 47 32 58 51 29 59 48</p>
+          <p>29 60 48 32 61 51 30 62 49</p>
+          <p>30 63 49 32 64 51 31 65 50</p>
+          <p>31 66 50 32 67 51 28 68 47</p>
+          <p>34 69 54 33 70 53 35 71 55</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="Pyramid004" name="Pyramid004">
+        <matrix sid="matrix">0.000000 1.346874 0.026186 -0.130506 0.000000 -0.036891 0.956053 4.305177 0.928734 -0.000000 -0.000000 10.513369 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#Pyramid004-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_04___Default" target="#_04___Default"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+
