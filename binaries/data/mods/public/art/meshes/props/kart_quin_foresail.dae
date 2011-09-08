@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.56.5 r35899</authoring_tool>
     </contributor>
-    <created>2011-09-04T11:46:30</created>
-    <modified>2011-09-04T11:46:30</modified>
+    <created>2011-09-08T12:39:26</created>
+    <modified>2011-09-08T12:39:26</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -60,11 +60,11 @@
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
       <node id="Circle_002" type="NODE">
-        <translate sid="location">0.5099943 1.340774 4.22111</translate>
+        <translate sid="location">0.4709107 1.238023 3.897624</translate>
         <rotate sid="rotationZ">0 0 1 0</rotate>
         <rotate sid="rotationY">0 1 0 0</rotate>
         <rotate sid="rotationX">1 0 0 0</rotate>
-        <scale sid="scale">0.5351332 0.5351332 0.5351332</scale>
+        <scale sid="scale">0.494123 0.494123 0.494123</scale>
         <instance_geometry url="#Circle_003-mesh"/>
       </node>
     </visual_scene>
