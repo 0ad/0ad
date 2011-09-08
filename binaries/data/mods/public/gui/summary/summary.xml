@@ -21,20 +21,19 @@
 		    <object type="image" sprite="ForegroundBody" size="20 20 100%-20 64">
 			    <object name="summaryText"
 				    type="text"
-				    size="50 8 100%-50 100%-8"
+				    size="50 0 100%-50 100%-3"
 				    font="serif-bold-18"
 				    textcolor="255 255 255"
-				    text_align="center"
-				    text_valign="bottom"
+				    text_align="left"
+				    text_valign="center"
 			    />
 
 			    <object name="timeElapsed"
 				    type="text"
-				    size="100%-200 8 100%-10 100%-8"
+				    size="100%-200 10 100%-10 100%"
 				    font="serif-16"
 				    textcolor="255 255 255"
 				    text_align="center"
-				    text_valign="bottom"
 			    />
 		    </object>
 
