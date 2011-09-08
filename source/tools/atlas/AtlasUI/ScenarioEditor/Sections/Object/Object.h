@@ -32,8 +32,7 @@ protected:
 
 private:
 	void OnToolChange(ITool* tool);
-
-	void ToggleViewer(wxCommandEvent& evt);
+	void OnToggleViewer(wxCommandEvent& evt);
 	void OnSelectType(wxCommandEvent& evt);
 	void OnSelectFilter(wxCommandEvent& evt);
 	void OnSelectObject(wxCommandEvent& evt);
