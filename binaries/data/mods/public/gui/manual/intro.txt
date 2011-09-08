@@ -19,7 +19,7 @@ Basic controls:
 [font="serif-bold-16"]Modes
 [font="serif-14"]The main menu gives access to two game modes:
 
-• [font="serif-bold-14"]Single-player[font="serif-14"] — the game does not have any AI opponents yet, but you can use this to test the game's mechanics.
+• [font="serif-bold-14"]Single-player[font="serif-14"] — play a sandbox game or against one or more AI opponents. The AI/AIs are under development and may not always be up to date on the new features, but you can test playing the game against an actual opponent if you aren't able to play with a human.
 
 • [font="serif-bold-14"]Multiplayer[font="serif-14"] — play against human opponents over the internet.
 
@@ -28,9 +28,9 @@ To set up a multiplayer game, one player must select the "Host game" option. The
 [font="serif-bold-16"]Game setup
 [font="serif-14"]In a multiplayer game, only the host can alter the game setup options.
 
-First, select a map to play on. The "techdemo" maps are designed for testing particular gameplay features and are probably not generally useful.
+First, select whether you want to play on a random map (created automatically from a random map script) or a scenario (created by a map designer). Scenarios can be filtered to show only some maps. The default maps are shown immediately, but custom maps are often not so select "All maps" to see a list of all available maps. Then select a map to play on. The "techdemo" maps are designed for testing particular gameplay features and are probably not generally useful.
 
-Next, you can use the drop-down lists in the player list to select who controls which player in the map. This always shows 8 players – anyone who is assigned to a player that doesn't exist in the map, or is not assigned to any player at all, will probably not have a fun time.
+Finally change the settings. For random maps this includes the number of players, the size of a map, etc. For scenarios you can only select who controls which player (decides where you start on the map etc). The options are either a human player, an AI or no player at all (existing units will attack enemies that come into sight, but no new units will be created, nor will the units be sent to attack anyone).
 
 When you are ready to start, click the "Start game" button.
 
