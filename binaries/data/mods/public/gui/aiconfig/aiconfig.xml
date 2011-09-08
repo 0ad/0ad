@@ -7,46 +7,36 @@
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="BackgroundTranslucent"/>
 
-	<object type="image" style="StonePanelLight" size="50%-250 50%-100 50%+250 50%+100">
+	<object type="image" style="StoneDialog" size="50%-200 50%-100 50%+200 50%+140">
 
-		<object style="StoneDialogTitleBar" type="text" size="50%-128 -16 50%+128 16">AI Configuration</object>
-
-		<object type="button" style="StoneExit" tooltip_style="snToolTip">
-			<action on="Press"><![CDATA[
-				Engine.PopGuiPage();
-			]]></action>
-		</object>
+		<object style="TitleText" type="text" size="50%-128 -16 50%+128 16">AI Configuration</object>
 
 		<object size="50%-128 46 50%+128 66">
 			<object type="text" style="RightLabelText" size="0 0 100 100%">
 				AI Player
 			</object>
 
-			<object name="aiSelection" type="dropdown" style="StoneDropDown" size="110 0 310 28">
+			<object name="aiSelection" type="dropdown" style="StoneDropDown" size="50%-16 0 50%+144 28">
 				<action on="SelectionChange">selectAI(this.selected);</action>
 			</object>
 		</object>
 
-		<object size="50%-192 66 50%+192 100%-52">
+		<object size="15% 50%-48 85% 50%+48">
 
-			<object name="aiDescription" type="text" style="CenteredLabelText" size="0 0 100% 100%"/>
+			<object name="aiDescription" type="text" style="LeftLabelText" size="0 0 100% 100%"/>
 
 			<!-- TODO: we might want to add things like difficulty controls into here -->
 
 		</object>
 
-		<object type="button" style="StoneButton" size="100%-280 100%-48 100%-154 100%-20">
+		<object type="button" style="StoneButton" size="50%-144 100%-60 50%-16 100%-32">
 			Cancel
-			<action on="Press"><![CDATA[
-				Engine.PopGuiPage();
-			]]></action>
+			<action on="Press">Engine.PopGuiPage();</action>
 		</object>
 
-		<object type="button" style="StoneButton" size="100%-146 100%-48 100%-20 100%-20">
+		<object type="button" style="StoneButton" size="50%+16 100%-60 50%+144 100%-32">
                         OK
-			<action on="Press"><![CDATA[
-				returnAI();
-			]]></action>
+			<action on="Press">returnAI();</action>
 		</object>
 
 	</object>

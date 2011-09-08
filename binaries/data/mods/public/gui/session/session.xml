@@ -199,14 +199,12 @@
 		<!-- Settings Window -->
 		<!-- ================================  ================================ -->
 		<object name="settingsDialogPanel"
-			style="StonePanelLight"
+			style="StoneDialog"
 			type="image"
 			size="50%-180 50%-200 50%+180 50%+50"
 			hidden="true"
 		>
-			<object name="sessionDialogTitleBar" size="50%-96 -16 50%+96 16" type="image" style="StoneDialogTitleBar">
-				<object name="sessionDialogTitle" type="text" style="TitleText" size="0 -2 100% 100%">Settings</object>
-			</object>
+			<object type="text" style="TitleText" size="50%-96 -16 50%+96 16">Settings</object>
 
 			<object style="TranslucentPanelThinBorder"
 				type="image"

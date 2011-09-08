@@ -9,18 +9,18 @@
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" z="0" sprite="bkTranslucent"/>
 
-	<object type="image" style="StonePanelLight" size="50%-190 50%-120 50%+190 50%+120">
+	<object type="image" style="StoneDialog" size="50%-190 50%-120 50%+190 50%+120">
 
 		<action on="Tick">
 			onTick();
 		</action>
 
-		<object style="StoneDialogTitleBar" type="text" size="50%-128 0%-16 50%+128 16">
+		<object style="TitleText" type="text" size="50%-128 0%-16 50%+128 16">
 			Multiplayer
 		</object>
-                
+
                 <object name="pageJoin" size="0 32 100% 100%" hidden="true">
-		
+
 			<object type="text" style="CenteredLabelText" size="0 0 400 30">
 				Joining an existing game.
 			</object>
@@ -43,7 +43,7 @@
 				127.0.0.1
 			</object>3 100%-33 103 100%-3
 
-			<object type="button" size="50%+16 100%-60 50%+144 100%-32" style="StoneButton"> 
+			<object type="button" size="50%+16 100%-60 50%+144 100%-32" style="StoneButton">
 				Continue
 				<action on="Press"><![CDATA[
 					if (startJoin(

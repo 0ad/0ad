@@ -115,13 +115,13 @@ function initMain()
 
 		initMapNameList();
 
-		var numPlayersSelect = getGUIObjectByName("numPlayersSelection");
+		var numPlayersSelection = getGUIObjectByName("numPlayersSelection");
 		var players = [];
 		for (var i = 1; i <= MAX_PLAYERS; ++i)
 			players.push(i);
-		numPlayersSelect.list = players;
-		numPlayersSelect.list_data = players;
-		numPlayersSelect.selected = MAX_PLAYERS - 1;
+		numPlayersSelection.list = players;
+		numPlayersSelection.list_data = players;
+		numPlayersSelection.selected = MAX_PLAYERS - 1;
 
 		var victoryConditions = getGUIObjectByName("victoryCondition");
 		victoryConditions.list = VICTORY_TEXT;
@@ -193,7 +193,7 @@ function initMain()
 			getGUIObjectByName("playerTeam["+i+"]").hidden = true;
 		}
 
-		getGUIObjectByName("numPlayersBox").hidden = true;
+		getGUIObjectByName("numPlayersSelection").hidden = true;
 
 		// Disable "start game" button
 		// TODO: Perhaps replace this with a "ready" button, and require host to wait?
@@ -761,15 +761,17 @@ function onGameAttributesChange()
 	}
 
 	// Controls common to all map types
+	var numPlayersSelection = getGUIObjectByName("numPlayersSelection");
 	var revealMap = getGUIObjectByName("revealMap");
 	var victoryCondition = getGUIObjectByName("victoryCondition");
 	var lockTeams = getGUIObjectByName("lockTeams");
 	var mapSize = getGUIObjectByName("mapSize");
+
+	var numPlayersText= getGUIObjectByName("numPlayersText");
+	var mapSizeText = getGUIObjectByName("mapSizeText");
 	var revealMapText = getGUIObjectByName("revealMapText");
 	var victoryConditionText = getGUIObjectByName("victoryConditionText");
 	var lockTeamsText = getGUIObjectByName("lockTeamsText");
-	var mapSizeText = getGUIObjectByName("mapSizeText");
-	var numPlayersBox = getGUIObjectByName("numPlayersBox");
 
 	var sizeIdx = (g_MapSizes.tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.tiles.indexOf(mapSettings.Size) : g_MapSizes.default);
 	var victoryIdx = (VICTORY_DATA.indexOf(mapSettings.GameType) != -1 ? VICTORY_DATA.indexOf(mapSettings.GameType) : VICTORY_DEFAULTIDX);
@@ -780,12 +782,18 @@ function onGameAttributesChange()
 	case "random":
 		if (g_IsController)
 		{	//Host
-			getGUIObjectByName("numPlayersSelection").selected = numPlayers - 1;
-			numPlayersBox.hidden = false;
+			numPlayersSelection.selected = numPlayers - 1;
+			numPlayersSelection.hidden = false;
 			mapSize.hidden = false;
 			revealMap.hidden = false;
 			victoryCondition.hidden = false;
 			lockTeams.hidden = false;
+
+			numPlayersText.hidden = true;
+			mapSizeText.hidden = true;
+			revealMapText.hidden = true;
+			victoryConditionText.hidden = true;
+			lockTeamsText.hidden = true;
 
 			mapSizeText.caption = "Map size:";
 			mapSize.selected = sizeIdx;
@@ -798,7 +806,14 @@ function onGameAttributesChange()
 			lockTeams.checked =  (mapSettings.LockTeams === undefined || mapSettings.LockTeams ? true : false);
 		}
 		else
-		{	// Client
+		{
+			// Client
+			numPlayersText.hidden = true;
+			mapSizeText.hidden = true;
+			revealMapText.hidden = true;
+			victoryConditionText.hidden = true;
+			lockTeamsText.hidden = true;
+
 			mapSizeText.caption = "Map size: " + g_MapSizes.names[sizeIdx];
 			revealMapText.caption = "Reveal map: " + (mapSettings.RevealMap ? "Yes" : "No");
 			victoryConditionText.caption = "Victory condition: " + VICTORY_TEXT[victoryIdx];
@@ -809,16 +824,23 @@ function onGameAttributesChange()
 
 	case "scenario":
 		// For scenario just reflect settings for the current map
-		numPlayersBox.hidden = true;
+		numPlayersSelection.hidden = true;
 		mapSize.hidden = true;
 		revealMap.hidden = true;
 		victoryCondition.hidden = true;
 		lockTeams.hidden = true;
 
-		mapSizeText.caption = "Map size: Default";
-		revealMapText.caption = "Reveal map: " + (mapSettings.RevealMap ? "Yes" : "No");
-		victoryConditionText.caption = "Victory condition: " + VICTORY_TEXT[victoryIdx];
-		lockTeamsText.caption = "Teams locked: " + (mapSettings.LockTeams === undefined || mapSettings.LockTeams  ? "Yes" : "No");
+		numPlayersText.hidden = false;
+		mapSizeText.hidden = false;
+		revealMapText.hidden = false;
+		victoryConditionText.hidden = false;
+		lockTeamsText.hidden = false;
+
+		numPlayersText.caption = numPlayers;
+		mapSizeText.caption = "Default";
+		revealMapText.caption = (mapSettings.RevealMap ? "Yes" : "No");
+		victoryConditionText.caption = VICTORY_TEXT[victoryIdx];
+		lockTeamsText.caption = (mapSettings.LockTeams === undefined || mapSettings.LockTeams  ? "Yes" : "No");
 
 		break;
 

@@ -87,7 +87,14 @@
 		text_valign="center"
 	/>
 
-       <style name="MediumTitleText"
+	<style name="LargeTitleText"
+		font="serif-bold-24"
+		textcolor="white"
+		text_align="center"
+		text_valign="center"
+	/>
+
+	<style name="MediumTitleText"
 		font="serif-bold-12"
 		textcolor="white"
 		text_align="center"
@@ -100,8 +107,6 @@
 		text_align="left"
 		text_valign="top"
 	/>
-
-
 
 
 
@@ -172,21 +177,25 @@
 		text_valign="top"
 	/>
 
-	<style 	name="StonePanelLight"
-		sprite="StonePanelLight"
+	<style 	name="StoneWindow"
+		sprite="StoneWindow"
 		buffer_zone="10"
 		text_align="left"
 		text_valign="top"
 	/>
 
-	<style 	name="StoneDialogTitleBar"
-		sprite="StoneDialogTitleBar"
+	<style 	name="StoneDialog"
+		sprite="StoneDialog"
 		buffer_zone="10"
-		font="serif-bold-stroke-14"
-		textcolor="white"
-		text_align="center"
+		text_align="left"
 		text_valign="top"
 	/>
+
+
+
+
+
+
 
 	<!--
 	==========================================

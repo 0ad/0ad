@@ -312,15 +312,15 @@
 		/>
 	</sprite>
 
-	<!-- StonePanel -->
+<!--	 StonePanel
 	<sprite name="StonePanel">
-		<!-- background -->
+		 background
 		<image	texture="global/tile/stone_background.png"
 			texture_size="0 0 512 512"
 			size="4 4 100%-4 100%-4"
 		/>
 
-		<!-- sides -->
+		 sides
 		<image	texture="global/border/border-top.png"
 			texture_size="0 0 128 16"
 			size="16 0 100%-16 16"
@@ -338,7 +338,7 @@
 			size="0 16 16 100%-16"
 		/>
 
-		<!-- corners -->
+		 corners
 		<image	texture="global/border/border-corner.png"
 			texture_size="0 0 16 16"
 			size="100%-16 0 100% 16"
@@ -355,10 +355,10 @@
 			texture_size="0 0 16 16"
 			size="0 0 16 16"
 		/>
-	</sprite>
+	</sprite>-->
 
-	<!-- StonePanelLight -->
-	<sprite name="StonePanelLight">
+	<!-- StoneWindow -->
+	<sprite name="StoneWindow">
 		<!-- background -->
 		<image	texture="global/tile/stone_background_light.png"
 			texture_size="0 0 512 512"
@@ -443,10 +443,126 @@
 			texture_size="0 0 16 16"
 			size="0 0 16 16"
 		/>
+
+		<!-- title frame -->
+		<image	texture="global/titlebar/titlebar_left.png"
+			real_texture_placement="0 0 64 32"
+			size="50%-128 36 50%-64 4"
+		/>
+                <image 	texture="global/titlebar/titlebar_middle.png"
+			real_texture_placement="0 0 64 32"
+			size="50%-64 36 50%+64 4"
+		/>
+                <image 	texture="global/titlebar/titlebar_right.png"
+			real_texture_placement="0 0 64 32"
+			size="50%+64 36 50%+128 4"
+		/>
+	</sprite>
+
+	<!-- StoneDialog -->
+	<sprite name="StoneDialog">
+		<!-- background -->
+		<image	texture="global/tile/stone_background_light.png"
+			texture_size="0 0 512 512"
+			size="4 4 100%-4 100%-4"
+		/>
+
+                <!-- shading -->
+		<image
+			texture="global/shading/gradient_wide.png"
+			size="0 0 100% 100%"
+		/>
+
+                <!-- thin sides -->
+		<image	texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="20 16 100%-20 20"
+		/>
+		<image	texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="100%-20 20 100%-16 100%-20"
+		/>
+		<image	texture="global/border/line_horiz.png"
+			texture_size="0 0 64 4"
+			size="20 100%-20 100%-20 100%-16"
+		/>
+		<image	texture="global/border/line_vert.png"
+			texture_size="0 0 4 64"
+			size="16 20 20 100%-20"
+		/>
+
+		<!-- thin corners -->
+		<image
+			texture="global/border/line_corner_top_right.png"
+			texture_size="0 0 4 4"
+			size="100%-20 16 100%-16 20"
+		/>
+		<image	texture="global/border/line_corner_bottom_right.png"
+			texture_size="0 0 4 4"
+			size="100%-20 100%-20 100%-16 100%-16"
+		/>
+		<image	texture="global/border/line_corner_bottom_left.png"
+			texture_size="0 0 4 4"
+			size="16 100%-20 20 100%-16"
+		/>
+		<image	texture="global/border/line_corner_top_left.png"
+			texture_size="0 0 4 4"
+			size="16 16 20 20"
+		/>
+
+		<!-- sides -->
+		<image	texture="global/border/border-top.png"
+			texture_size="0 0 128 16"
+			size="16 0 100%-16 16"
+		/>
+		<image	texture="global/border/border-right.png"
+			texture_size="0 0 16 128"
+			size="100%-16 16 100% 100%-16"
+		/>
+		<image	texture="global/border/border-bottom.png"
+			texture_size="0 0 128 16"
+			size="16 100%-16 100%-16 100%"
+		/>
+		<image	texture="global/border/border-left.png"
+			texture_size="0 0 16 128"
+			size="0 16 16 100%-16"
+		/>
+
+		<!-- corners -->
+		<image	texture="global/border/border-corner.png"
+			texture_size="0 0 16 16"
+			size="100%-16 0 100% 16"
+		/>
+		<image	texture="global/border/border-corner.png"
+			texture_size="0 0 16 16"
+			size="100%-16 100%-16 100% 100%"
+		/>
+		<image	texture="global/border/border-corner.png"
+			texture_size="0 0 16 16"
+			size="0 100%-16 16 100%"
+		/>
+		<image	texture="global/border/border-corner.png"
+			texture_size="0 0 16 16"
+			size="0 0 16 16"
+		/>
+
+		<!-- title frame -->
+		<image	texture="global/titlebar/titlebar_left.png"
+			real_texture_placement="0 0 64 32"
+			size="50%-128 0%-16 50%-64 16"
+		/>
+                <image 	texture="global/titlebar/titlebar_middle.png"
+			real_texture_placement="0 0 64 32"
+			size="50%-64 0%-16 50%+64 16"
+		/>
+                <image 	texture="global/titlebar/titlebar_right.png"
+			real_texture_placement="0 0 64 32"
+			size="50%+64 0%-16 50%+128 16"
+		/>
 	</sprite>
 
 	<!-- Stone Dialog Title Bar -->
-	<sprite name="StoneDialogTitleBar">
+<!--	<sprite name="StoneDialogTitleBar">
 		<image	texture="global/titlebar/titlebar_left.png"
 			real_texture_placement="0 0 64 32"
 			size="50%-128 0 50%-64 32"
@@ -459,7 +575,7 @@
 			real_texture_placement="0 0 64 32"
 			size="50%+64 0 50%+128 32"
 		/>
-	</sprite>
+	</sprite>-->
 
 	<!--
 	==========================================

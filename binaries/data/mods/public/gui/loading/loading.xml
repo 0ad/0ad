@@ -10,46 +10,42 @@
 	<script file="gui/loading/loading.js"/>
 	<script file="gui/common/functions_utility_error.js"/>
 
-	<!-- LOADING SCREEN BACKGROUND -->
-	<object type="image" style="StonePanelLight"/>
+	<object type="image" style="StoneWindow">
 
-	<object size="50%-400 30 50%+400 150">
-		<object name="loadingMapName" size="0 0 100% 32" type="text" style="loadingPageTitleText"/>
-
-		<!-- LOADING SCREEN progressbar -->
-		<object size="50%-256 48 50%+256 80" type="image" sprite="loadingProgressBarBackground">
+		<!-- LOADING SCREEN progress bar -->
+		<object size="50%-256 4 50%+256 36" type="image" sprite="LoadingProgressBarBackground">
 			<object name="progressbar"
 				type="progressbar"
-				style="loadingProgressbar"
+				style="LoadingProgressbar"
 				size="56 5 456 100%-5"
 			>
-				<object name="progressbar_left" size="-8 0 8 100%" type="image" sprite="loadingProgressbar_left"/>
-				<object name="progressbar_right" size="8 0 24 100%" type="image" sprite="loadingProgressbar_right"/>
+				<object name="progressbar_left" size="-8 0 8 100%" type="image" sprite="LoadingProgressBarLeft"/>
+				<object name="progressbar_right" size="8 0 24 100%" type="image" sprite="LoadingProgressBarRight"/>
 				<action on="Progress">displayProgress();</action>
+				<object name="progressText" size="0 0 100% 100%" type="text" style="LoadingBarText"/>
 			</object>
 		</object>
 
 		<!-- LOADING SCREEN TEXT -->
-		<object name="progressText" size="0 64 100% 100%" type="text" style="loadingBarText"/>
-	</object>
+		<object name="loadingMapName" size="50%-256 36 50%+256 50%-196" type="text" style="LargeTitleText"/>
+`
+		<!-- LOADING SCREEN TIP IMAGE-->
+		<object size="50%-452 50%-196 50%+68 50%+196" type="image" sprite="LoadingTipImage">
+			<object name="tipImage" size="4 4 516 516" type="image">
+				<object name="tipImageCover" size="0 0 100% 100%" type="image" sprite="LoadingTipImageCover"/>
+			</object>
+		</object>
 
-	<!-- LOADING SCREEN TIP IMAGE-->
-	<object size="50%-452 50%-196 50%+68 50%+196" type="image" sprite="loadingTipImage">
-		<object name="tipImage" size="4 4 516 516" type="image">
-			<object name="tipImageCover" size="0 0 100% 100%" type="image" sprite="loadingTipImageCover"/>
+		<!-- LOADING SCREEN TIP TEXT-->
+		<object size="50%+128 50%-193 50%+448 50%+193" type="image" sprite="LoadingTipText">
+			<object name="tipTitle" size="30 30 100% 50" type="text" style="LoadingTipTitleText"/>
+			<object name="tipText" size="30 50 100%-30 100%" type="text" style="LoadingTipText"/>
+		</object>
+
+		<!-- LOADING SCREEN QUOTE (needs increased z value to overcome the transparent area of the tip image above it -->
+		<object size="50%-448 50%+230 50%+448 100%-16" z="20">
+			<object name="quoteTitleText" size="0 0 100% 30" type="text" style="LoadingTitleText">Quote of the Day:</object>
+			<object name="quoteText" size="0 30 100% 100%" type="text" style="LoadingText"></object>
 		</object>
 	</object>
-
-	<!-- LOADING SCREEN TIP TEXT-->
-	<object size="50%+128 50%-193 50%+448 50%+193" type="image" sprite="loadingTipText">
-		<object name="tipTitle" size="30 30 100% 50" type="text" style="loadingTipTitleText"/>
-		<object name="tipText" size="30 50 100%-30 100%" type="text" style="loadingTipText"/>
-	</object>
-
-	<!-- LOADING SCREEN QUOTE (needs increased z value to overcome the transparent area of the tip image above it -->
-	<object size="50%-448 50%+230 50%+448 100%-16" z="20">
-		<object name="quoteTitleText" size="0 0 100% 30" type="text" style="loadingTitleText">Quote of the Day:</object>
-		<object name="quoteText" size="0 30 100% 100%" type="text" style="loadingText"></object>
-	</object>
-
 </objects>
