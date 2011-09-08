@@ -205,12 +205,7 @@ function startSessionSounds(civMusic)
 
 function startMusic()
 {
-    console.write(getRandomPeaceTrack());
-
-
-    console.write(global.curr_music);
     playRandomCivMusic();
-    console.write(global.curr_music);
 }
 
 function playRandomCivMusic()
@@ -228,7 +223,6 @@ function playAmbientSounds()
 	// Seem to need the underscore at the end of "temperate" to avoid crash
 	// (Might be caused by trying to randomly load day_temperate.xml)
 	global.curr_ambient = newRandomSound("ambient", "temperate_", "dayscape");
-	console.write(global.curr_ambient);
 	if (global.curr_ambient)
 	{
 		global.curr_ambient.loop();

@@ -178,7 +178,7 @@
 			    Continue
 			    <action on="Press">
 				    Engine.SwitchGuiPage("page_pregame.xml");
-				    Engine.PushGuiPage("page_gamesetup.xml", { type: "offline" });
+<!--				    Engine.PushGuiPage("page_gamesetup.xml", { type: "offline" });-->
 			    </action>
 		    </object>
 	    </object>
