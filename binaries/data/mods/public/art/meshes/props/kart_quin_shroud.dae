@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.56.5 r35899</authoring_tool>
+    </contributor>
+    <created>2011-09-09T13:43:28</created>
+    <modified>2011-09-09T13:43:28</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_materials/>
+  <library_geometries>
+    <geometry id="Plane-mesh">
+      <mesh>
+        <source id="Plane-mesh-positions">
+          <float_array id="Plane-mesh-positions-array" count="48">3.624463 17.28971 -6.430802 1.423142 1.703245 -1.46623 -2.131494 1.703245 -1.46623 -1.785518 17.28971 -6.430802 3.624472 14.03592 -12.25431 1.423142 1.637981 -1.583035 -2.131494 1.637981 -1.58304 -1.78551 14.03592 -12.25431 -1.78551 14.03592 -12.25431 -2.131494 1.637981 -1.58304 1.423142 1.637981 -1.583035 3.624472 14.03592 -12.25431 -1.785518 17.28971 -6.430802 -2.131494 1.703245 -1.46623 1.423142 1.703245 -1.46623 3.624463 17.28971 -6.430802</float_array>
+          <technique_common>
+            <accessor source="#Plane-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane-mesh-normals">
+          <float_array id="Plane-mesh-normals-array" count="24">0 -0.3034946 -0.9528332 0 -0.3034946 -0.9528331 -1.09295e-6 0.652357 0.7579119 -2.29996e-7 0.6523571 0.7579118 2.29996e-7 -0.6523571 -0.7579118 1.09295e-6 -0.652357 -0.7579119 0 0.3034946 0.9528332 0 0.3034946 0.9528331</float_array>
+          <technique_common>
+            <accessor source="#Plane-mesh-normals-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane-mesh-map-0">
+          <float_array id="Plane-mesh-map-0-array" count="48">0.9946212 0.05830001 0.7752764 0.9942882 -3.41311e-5 0.05830001 0.7752764 0.9942882 -3.41311e-5 0.9942882 -3.41311e-5 0.05830001 -3.41311e-5 0.05829983 -3.41311e-5 0.9942882 0.7752764 0.9942882 -3.41311e-5 0.05829983 0.7752764 0.9942882 0.9946212 0.05829972 -3.41311e-5 0.05829983 0.9946212 0.05829972 0.7752764 0.9942882 -3.41311e-5 0.05829983 0.7752764 0.9942882 -3.41311e-5 0.9942882 0.9946212 0.05830001 -3.41311e-5 0.05830001 0.7752764 0.9942882 -3.41311e-5 0.05830001 -3.41311e-5 0.9942882 0.7752764 0.9942882</float_array>
+          <technique_common>
+            <accessor source="#Plane-mesh-map-0-array" count="24" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Plane-mesh-vertices">
+          <input semantic="POSITION" source="#Plane-mesh-positions"/>
+        </vertices>
+        <polylist count="8">
+          <input semantic="VERTEX" source="#Plane-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Plane-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Plane-mesh-map-0" offset="2" set="0"/>
+          <vcount>3 3 3 3 3 3 3 3 </vcount>
+          <p>15 0 0 14 0 1 12 0 2 14 1 3 13 1 4 12 1 5 8 2 6 9 2 7 10 2 8 8 3 9 10 3 10 11 3 11 7 4 12 4 4 13 5 4 14 7 5 15 5 5 16 6 5 17 0 6 18 3 6 19 1 6 20 3 7 21 2 7 22 1 7 23</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Plane" type="NODE">
+        <translate sid="location">-0.5161497 -0.2368698 23.07122</translate>
+        <rotate sid="rotationZ">0 0 1 90</rotate>
+        <rotate sid="rotationY">0 1 0 -1.11062e-14</rotate>
+        <rotate sid="rotationX">1 0 0 -60.80641</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <instance_geometry url="#Plane-mesh"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
