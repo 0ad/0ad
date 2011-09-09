@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -44,6 +44,7 @@
         <prop actor="props/units/heads/head_celt.xml" attachpoint="head"/>
         <prop actor="props/units/shields/celt_dip.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spatha.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/cape_hd.xml" attachpoint="shoulders"/>
       </props>
     </variant>
   </group>
