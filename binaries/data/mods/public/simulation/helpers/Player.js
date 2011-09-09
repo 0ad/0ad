@@ -77,8 +77,6 @@ function LoadPlayerSettings(settings, newPlayers)
 			
 			cmpPlayer.SetName(getSetting(pData, pDefs, "Name"));
 			cmpPlayer.SetCiv(getSetting(pData, pDefs, "Civ"));
-			cmpPlayer.SetAI(pData.AI && pData.AI != "");
-			
 			var colour = getSetting(pData, pDefs, "Colour");
 			cmpPlayer.SetColour(colour.r, colour.g, colour.b);
 			
