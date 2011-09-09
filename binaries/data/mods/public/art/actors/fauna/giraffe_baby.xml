@@ -3,15 +3,15 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Giraffe Juvenille">
-		<animations>
-			<animation file="quadraped/giraffe_infant_walk.dae" name="Walk" speed="75"/>
-			<animation file="quadraped/giraffe_infant_run.dae" name="Run" speed="35"/>
-			<animation file="quadraped/giraffe_infant_idle_01.dae" name="Idle" speed="40"/>
-			<animation file="quadraped/giraffe_infant_idle_02.dae" name="Idle" speed="40"/>
-			<animation file="quadraped/giraffe_infant_idle_03.dae" name="Idle" speed="40"/>
-			<animation file="quadraped/giraffe_infant_death.dae" name="Death" speed="110"/>
-		</animations>
-		<mesh>skeletal/giraffe_infant.dae</mesh>
+      <animations>
+        <animation file="quadraped/giraffe_infant_walk.dae" name="Walk" speed="75"/>
+        <animation file="quadraped/giraffe_infant_run.dae" name="Run" speed="35"/>
+        <animation file="quadraped/giraffe_infant_idle_01.dae" name="Idle" speed="40"/>
+        <animation file="quadraped/giraffe_infant_idle_02.dae" name="Idle" speed="40"/>
+        <animation file="quadraped/giraffe_infant_idle_03.dae" name="Idle" speed="40"/>
+        <animation file="quadraped/giraffe_infant_death.dae" name="Death" speed="130"/>
+      </animations>
+      <mesh>skeletal/giraffe_infant.dae</mesh>
     </variant>
   </group>
   <group>
@@ -27,11 +27,11 @@
     <variant frequency="0" name="feeding">
       <animations>
         <animation file="quadraped/giraffe_infant_walk.dae" name="Walk" speed="75"/>
-		<animation file="quadraped/giraffe_infant_run.dae" name="Run" speed="35"/>
-		<animation file="quadraped/giraffe_infant_idle_01.dae" name="Idle" speed="40"/>
-		<animation file="quadraped/giraffe_infant_idle_02.dae" name="Idle" speed="40"/>
-		<animation file="quadraped/giraffe_infant_idle_03.dae" name="Idle" speed="40"/>
-		<animation file="quadraped/giraffe_infant_death.dae" name="Death" speed="110"/>
+        <animation file="quadraped/giraffe_infant_run.dae" name="Run" speed="35"/>
+        <animation file="quadraped/giraffe_infant_idle_01.dae" name="Idle" speed="40"/>
+        <animation file="quadraped/giraffe_infant_idle_02.dae" name="Idle" speed="40"/>
+        <animation file="quadraped/giraffe_infant_idle_03.dae" name="Idle" speed="40"/>
+        <animation file="quadraped/giraffe_infant_death.dae" name="Death" speed="110"/>
       </animations>
     </variant>
   </group>

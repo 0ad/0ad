@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-	<castshadow/>
-	<group>
-		<variant frequency="100" name="Mesh">
-			<animations>
-				<animation file="quadraped/lion_walk.dae" name="Walk" speed="120"/>
-				<animation file="quadraped/lion_run.dae" name="Run" speed="150"/>
-				<animation file="quadraped/lion_idle_01.dae" name="Idle" speed="50"/>
-				<animation file="quadraped/lion_idle_02.dae" name="Idle" speed="50"/>
-				<animation file="quadraped/lion_idle_03.dae" name="Idle" speed="50"/>
-				<animation file="quadraped/lion_death.dae" name="Death" speed="60"/>
-			</animations>
-			<mesh>skeletal/animal_lioness.dae</mesh>
-		</variant>
-	</group>
-	<group>
-		<variant frequency="100" name="texture">
-			<texture>skeletal/animal_lioness.png</texture>
-		</variant>
-	</group>
-	<group>
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Mesh">
+      <animations>
+        <animation file="quadraped/lion_walk.dae" name="Walk" speed="120"/>
+        <animation file="quadraped/lion_run.dae" name="Run" speed="150"/>
+        <animation file="quadraped/lion_idle_01.dae" name="Idle" speed="50"/>
+        <animation file="quadraped/lion_idle_02.dae" name="Idle" speed="50"/>
+        <animation file="quadraped/lion_idle_03.dae" name="Idle" speed="50"/>
+        <animation file="quadraped/lion_death.dae" name="Death" speed="80"/>
+      </animations>
+      <mesh>skeletal/animal_lioness.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="texture">
+      <texture>skeletal/animal_lioness.png</texture>
+    </variant>
+  </group>
+  <group>
     <variant frequency="100" name="normal"/>
     <variant frequency="0" name="feeding">
       <animations>
         <animation file="quadraped/lion_walk.dae" name="Walk" speed="110"/>
-		<animation file="quadraped/lion_run.dae" name="Run" speed="150"/>
-		<animation file="quadraped/lion_idle_01.dae" name="Idle" speed="50"/>
-		<animation file="quadraped/lion_idle_02.dae" name="Idle" speed="50"/>
-		<animation file="quadraped/lion_idle_03.dae" name="Idle" speed="50"/>
-		<animation file="quadraped/lion_death.dae" name="Death" speed="60"/>
+        <animation file="quadraped/lion_run.dae" name="Run" speed="150"/>
+        <animation file="quadraped/lion_idle_01.dae" name="Idle" speed="50"/>
+        <animation file="quadraped/lion_idle_02.dae" name="Idle" speed="50"/>
+        <animation file="quadraped/lion_idle_03.dae" name="Idle" speed="50"/>
+        <animation file="quadraped/lion_death.dae" name="Death" speed="60"/>
       </animations>
     </variant>
   </group>
-	<group>
-		<variant frequency="100" name="Idle"/>
-		<variant name="death">
-			<props>
-				<prop actor="props/units/blood_01.xml" attachpoint="root"/>
-			</props>
-		</variant>
-	</group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
 </actor>
