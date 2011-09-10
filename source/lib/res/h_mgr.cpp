@@ -38,7 +38,7 @@
 #include "lib/allocators/overrun_protector.h"
 #include "lib/allocators/pool.h"
 #include "lib/module_init.h"
-#include "lib/sysdep/cpu.h"	// cpu_CAS64
+#include "lib/posix/posix_pthread.h"
 
 
 namespace ERR {
@@ -46,12 +46,14 @@ static const Status H_IDX_INVALID   = -120000;	// totally invalid
 static const Status H_IDX_UNUSED    = -120001;	// beyond current cap
 static const Status H_TAG_MISMATCH  = -120003;
 static const Status H_TYPE_MISMATCH = -120004;
+static const Status H_ALREADY_FREED = -120005;
 }
 static const StatusDefinition hStatusDefinitions[] = {
 	{ ERR::H_IDX_INVALID,   L"Handle index completely out of bounds" },
 	{ ERR::H_IDX_UNUSED,    L"Handle index exceeds high-water mark" },
 	{ ERR::H_TAG_MISMATCH,  L"Handle tag mismatch (stale reference?)" },
-	{ ERR::H_TYPE_MISMATCH, L"Handle type mismatch" }
+	{ ERR::H_TYPE_MISMATCH, L"Handle type mismatch" },
+	{ ERR::H_ALREADY_FREED, L"Handle already freed" }
 };
 STATUS_ADD_DEFINITIONS(hStatusDefinitions);
 
@@ -92,7 +94,7 @@ static const u64 IDX_MASK = (1l << IDX_BITS) - 1;
 
 // - tag (1-based) ensures the handle references a certain resource instance.
 //   (field width determines maximum unambiguous resource allocs)
-typedef i64 Tag;	// matches cpu_CAS64 type
+typedef i64 Tag;
 #define TAG_BITS 48
 static const u64 TAG_MASK = 0xFFFFFFFF;	// safer than (1 << 32) - 1
 
@@ -222,6 +224,8 @@ static inline Status h_data_no_tag(const Handle h, HDATA*& hd)
 }
 
 
+static bool ignoreDoubleFree = false;
+
 // get HDATA for the given handle.
 // also verifies the tag field.
 // used by functions callable for any handle type, e.g. h_filename.
@@ -229,11 +233,16 @@ static inline Status h_data_tag(Handle h, HDATA*& hd)
 {
 	RETURN_STATUS_IF_ERR(h_data_no_tag(h, hd));
 
-	if(h != hd->h)
+	if(hd->key == 0)	// HDATA was wiped out and hd->h overwritten by pool_free
 	{
-		debug_printf(L"h_mgr: expected handle %llx, got %llx\n", hd->h, h);
-		WARN_RETURN(ERR::H_TAG_MISMATCH);
+		if(ignoreDoubleFree)
+			return ERR::H_ALREADY_FREED;	// NOWARN (see ignoreDoubleFree)
+		else
+			WARN_RETURN(ERR::H_ALREADY_FREED);
 	}
+
+	if(h != hd->h)
+		WARN_RETURN(ERR::H_TAG_MISMATCH);
 
 	return INFO::OK;
 }
@@ -379,17 +388,12 @@ static Status type_validate(H_Type type)
 
 static Tag gen_tag()
 {
-	static volatile Tag tag;
-	for(;;)
-	{
-		const Tag oldTag = tag;
-		const Tag newTag = oldTag + (1ull << IDX_BITS);
-		// it's not easy to detect overflow, because compilers
-		// are allowed to assume it'll never happen. however,
-		// pow(2, 64-IDX_BITS) is "enough" anyway.
-		if(cpu_CAS64(&tag, oldTag, newTag))
-			return newTag;
-	}
+	static Tag tag;
+	tag += (1ull << IDX_BITS);
+	// it's not easy to detect overflow, because compilers
+	// are allowed to assume it'll never happen. however,
+	// pow(2, 64-IDX_BITS) is "enough" anyway.
+	return tag;
 }
 
 
@@ -406,7 +410,7 @@ static Handle reuse_existing_handle(uintptr_t key, H_Type type, size_t flags)
 	HDATA* hd;
 	RETURN_STATUS_IF_ERR(h_data_tag_type(h, type, hd));	// h_find means this won't fail
 
-	cpu_AtomicAdd(&hd->refs, 1);
+	hd->refs += 1;
 
 	// we are reactivating a closed but cached handle.
 	// need to generate a new tag so that copies of the
@@ -499,9 +503,23 @@ fail:
 }
 
 
+static pthread_mutex_t h_mutex = PTHREAD_MUTEX_INITIALIZER;
+// (the same class is defined in vfs.cpp, but it is easier to
+// just duplicate it to avoid having to specify the mutex.
+// such a class exists in ps/ThreadUtil.h, but we can't
+// take a dependency on that module here.)
+struct ScopedLock
+{
+	ScopedLock() { pthread_mutex_lock(&h_mutex); }
+	~ScopedLock() {	pthread_mutex_unlock(&h_mutex); }
+};
+
+
 // any further params are passed to type's init routine
 Handle h_alloc(H_Type type, const PIVFS& vfs, const VfsPath& pathname, size_t flags, ...)
 {
+	ScopedLock s;
+
 	RETURN_STATUS_IF_ERR(type_validate(type));
 
 	const uintptr_t key = fnv_hash(pathname.string().c_str(), pathname.string().length()*sizeof(pathname.string()[0]));
@@ -525,14 +543,8 @@ Handle h_alloc(H_Type type, const PIVFS& vfs, const VfsPath& pathname, size_t fl
 
 static void h_free_hd(HDATA* hd)
 {
-	for(;;)
-	{
-		const intptr_t refs = hd->refs;
-		if(refs <= 0)	// skip decrement
-			break;
-		if(cpu_CAS(&hd->refs, refs, refs-1))	// success
-			break;
-	}
+	if(hd->refs > 0)
+		hd->refs--;
 
 	// still references open or caching requests it stays - do not release.
 	if(hd->refs > 0 || hd->keep_open)
@@ -570,6 +582,8 @@ static void h_free_hd(HDATA* hd)
 
 Status h_free(Handle& h, H_Type type)
 {
+	ScopedLock s;
+
 	// 0-initialized or an error code; don't complain because this
 	// happens often and is harmless.
 	if(h <= 0)
@@ -610,7 +624,7 @@ void* h_user_data(const Handle h, const H_Type type)
 
 VfsPath h_filename(const Handle h)
 {
-	// don't require type check: should be useable for any handle,
+	// don't require type check: should be usable for any handle,
 	// even if the caller doesn't know its type.
 	HDATA* hd;
 	if(h_data_tag(h, hd) != INFO::OK)
@@ -622,6 +636,8 @@ VfsPath h_filename(const Handle h)
 // TODO: what if iterating through all handles is too slow?
 Status h_reload(const PIVFS& vfs, const VfsPath& pathname)
 {
+	ScopedLock s;
+
 	const u32 key = fnv_hash(pathname.string().c_str(), pathname.string().length()*sizeof(pathname.string()[0]));
 
 	// destroy (note: not free!) all handles backed by this file.
@@ -662,6 +678,7 @@ Status h_reload(const PIVFS& vfs, const VfsPath& pathname)
 
 Handle h_find(H_Type type, uintptr_t key)
 {
+	ScopedLock s;
 	return key_find(key, type);
 }
 
@@ -675,6 +692,8 @@ Handle h_find(H_Type type, uintptr_t key)
 // at that point, all (cached) OpenAL resources must be freed.
 Status h_force_free(Handle h, H_Type type)
 {
+	ScopedLock s;
+
 	// require valid index; ignore tag; type checked below.
 	HDATA* hd;
 	RETURN_STATUS_IF_ERR(h_data_no_tag(h, hd));
@@ -700,7 +719,7 @@ void h_add_ref(Handle h)
 		return;
 
 	ENSURE(hd->refs);	// if there are no refs, how did the caller manage to keep a Handle?!
-	cpu_AtomicAdd(&hd->refs, 1);
+	hd->refs++;
 }
 
 
@@ -731,6 +750,12 @@ static Status Init()
 static void Shutdown()
 {
 	debug_printf(L"H_MGR| shutdown. any handle frees after this are leaks!\n");
+	// objects that store handles to other objects are destroyed before their
+	// children, so the subsequent forced destruction of the child here will
+	// raise a double-free warning unless we ignore it. (#860, #915, #920)
+	ignoreDoubleFree = true;
+
+	ScopedLock s;
 
 	// forcibly close all open handles
 	for(HDATA* hd = (HDATA*)hpool.da.base; hd < (HDATA*)(hpool.da.base + hpool.da.pos); hd = (HDATA*)(uintptr_t(hd)+hpool.el_size))
