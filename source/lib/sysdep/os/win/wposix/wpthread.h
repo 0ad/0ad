@@ -71,11 +71,17 @@ LIB_API int pthread_cancel(pthread_t thread);
 LIB_API int pthread_join(pthread_t thread, void** value_ptr);
 
 // mutex
-typedef void* pthread_mutex_t;	// pointer to critical section
-typedef void pthread_mutexattr_t;
-#define PTHREAD_MUTEX_INITIALIZER pthread_mutex_initializer()
 
+typedef void* pthread_mutexattr_t;
+LIB_API int pthread_mutexattr_init(pthread_mutexattr_t* attr);
+LIB_API int pthread_mutexattr_destroy(pthread_mutexattr_t* attr);
+enum { PTHREAD_MUTEX_RECURSIVE }; // the only one we support
+LIB_API int pthread_mutexattr_gettype(const pthread_mutexattr_t* attr, int* type);
+LIB_API int pthread_mutexattr_settype(pthread_mutexattr_t* attr, int type);
+
+typedef void* pthread_mutex_t;	// pointer to critical section
 LIB_API pthread_mutex_t pthread_mutex_initializer();
+#define PTHREAD_MUTEX_INITIALIZER pthread_mutex_initializer()
 LIB_API int pthread_mutex_init(pthread_mutex_t*, const pthread_mutexattr_t*);
 LIB_API int pthread_mutex_destroy(pthread_mutex_t*);
 LIB_API int pthread_mutex_lock(pthread_mutex_t*);

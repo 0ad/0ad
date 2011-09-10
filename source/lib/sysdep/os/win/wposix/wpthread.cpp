@@ -255,6 +255,29 @@ again:
 // note: we use wutil_Allocate instead of new because the (no longer extant)
 // memory manager used a pthread_mutex.
 
+
+int pthread_mutexattr_init(pthread_mutexattr_t* UNUSED(attr))
+{
+	return 0;
+}
+
+int pthread_mutexattr_destroy(pthread_mutexattr_t* UNUSED(attr))
+{
+	return 0;
+}
+
+int pthread_mutexattr_gettype(const pthread_mutexattr_t* UNUSED(attr), int* type)
+{
+	*type = PTHREAD_MUTEX_RECURSIVE;
+	return 0;
+}
+
+int pthread_mutexattr_settype(pthread_mutexattr_t* UNUSED(attr), int type)
+{
+	return (type == PTHREAD_MUTEX_RECURSIVE)? 0 : -ENOSYS;
+}
+
+
 static CRITICAL_SECTION* CRITICAL_SECTION_from_pthread_mutex_t(pthread_mutex_t* m)
 {
 	if(!m)
