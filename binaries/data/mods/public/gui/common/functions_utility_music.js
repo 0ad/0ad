@@ -199,7 +199,7 @@ function playVictoryMusic()
 function startSessionSounds(civMusic)
 {
 	storeTracks(civMusic);
-	playAmbientSounds();
+	playRandomAmbientSound();
 	playRandomCivMusic();
 }
 
@@ -218,16 +218,26 @@ function playRandomCivMusic()
 	}
 }
 
-function playAmbientSounds()
+function playRandomAmbientSound()
 {
 	// Seem to need the underscore at the end of "temperate" to avoid crash
 	// (Might be caused by trying to randomly load day_temperate.xml)
-	global.curr_ambient = newRandomSound("ambient", "temperate_", "dayscape");
+//	global.curr_ambient = newRandomSound("ambient", "temperate_", "dayscape");
+//	if (global.curr_ambient)
+//	{
+//		global.curr_ambient.loop();
+//		global.curr_ambient.setGain(0.8);
+//	}
+
+	// Just play this track for now. We don't randomly change to new tracks.
+	// Some of the existing ones are too annoying if played constantly.
+	global.curr_ambient = new Sound("audio/ambient/dayscape/day_temperate_gen_03.ogg");
 	if (global.curr_ambient)
 	{
 		global.curr_ambient.loop();
 		global.curr_ambient.setGain(0.8);
 	}
+
 }
 
 function playMusic(track, fadeInPeriod, isLooping)
