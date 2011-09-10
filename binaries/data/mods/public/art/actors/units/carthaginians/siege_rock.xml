@@ -3,11 +3,14 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="carthaginian ballista">
+      <animations>
+        <animation event="0.5" load="0" name="melee" speed="100"/>
+      </animations>
       <mesh>structural/kart_ballista.dae</mesh>
-      <texture>structural/hele_siege.dds</texture>
-	  <props>
+      <props>
         <prop actor="props/units/weapons/rock_flaming.xml" attachpoint="projectile"/>
       </props>
+      <texture>structural/hele_siege.dds</texture>
     </variant>
   </group>
 </actor>
