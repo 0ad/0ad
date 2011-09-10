@@ -2,9 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="carthaginian ballista">
-      <mesh>structural/kart_ballista.dae</mesh>
-      <texture>structural/kart_ballista.png</texture>
+    <variant frequency="1" name="bolt shooter">
+      <mesh>structural/hele_sp.pmd</mesh>
+      <props>
+        <prop actor="props/units/weapons/bolt.xml" attachpoint="projectile"/>
+      </props>
+      <texture>structural/hele_siege.dds</texture>
     </variant>
   </group>
 </actor>
