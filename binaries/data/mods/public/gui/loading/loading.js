@@ -91,8 +91,9 @@ function displayProgress()
 function reallyStartGame()
 {
 	// Stop the music
-	if (global.curr_music)
-		global.curr_music.fade(-1, 0.0, 5.0); // fade to 0 over 5 seconds
+//	if (global.curr_music)
+//		global.curr_music.fade(-1, 0.0, 5.0); // fade to 0 over 5 seconds
+
 
 	// This is a reserved function name that is executed by the engine when it is ready
 	// to start the game (i.e. loading progress has reached 100%).

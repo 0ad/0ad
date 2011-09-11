@@ -4,21 +4,7 @@
 */
 
 
-/*
- * These constants are used in session and summary
- */
-var g_MusicGain = 0.3;
 
-const RELATIVE_MUSIC_PATH = "audio/music/";
-var g_PeaceTracks = [];
-var g_BattleTracks = [];
-
-const MAIN_MENU = "main_menu";
-const DEFEAT_CUE = "gen_loss_cue";
-const DEFEAT_MUSIC = "gen_loss_track";
-const VICTORY_MUSIC = "win_1";
-//const AMBIENT_SOUND = "audio/ambient/dayscape/day_temperate_gen_03.ogg";
-const BUTTON_SOUND = "audio/interface/ui/ui_button_longclick.ogg";
 
 // ====================================================================
 
@@ -127,195 +113,45 @@ function crossFade (outHandle, inHandle, fadeDuration)
 // ====================================================================
 
 
+//const AMBIENT_SOUND = "audio/ambient/dayscape/day_temperate_gen_03.ogg";
 
 
-/*
- * At some point, this ought to be extended to do dynamic music selection and
- * crossfading - it at least needs to pick the music track based on the player's
- * civ and peace/battle
- */
+//const AMBIENT_TEMPERATE = "temperate";
+//var currentAmbient;
 
-/*
- * These functions are used in session and summary
- *
- */
-
-function storeTracks(civMusic)
-{
-	for each (var music in civMusic)
-	{
-		if ("peace" == music["Type"])
-		{
-			g_PeaceTracks.push(music["File"]);
-		}
-		else if ("battle" == music["Type"])
-		{
-			g_BattleTracks.push(music["File"]);
-		}
-	}
-}
-
-function getRandomPeaceTrack()
-{
-	return RELATIVE_MUSIC_PATH + g_PeaceTracks[getRandom(0, g_PeaceTracks.length-1)];
-}
-
-function getRandomBattleTrack()
-{
-	return RELATIVE_MUSIC_PATH + g_BattleTracks[getRandom(0, g_BattleTracks.length-1)];
-}
-
-function playMainMenuMusic()
-{
-	if (global.curr_music)
-		switchMusic(MAIN_MENU, 0.0, true);
-	else
-		playMusic(MAIN_MENU, 0.0, true);
-}
-
-function stopMainMenuMusic()
-{
-	if (global.main_menu_music)
-		global.main_menu_music.fade(-1, 0.0, 5.0);
-}
-
-function playButtonSound()
-{
-    var buttonSound = new Sound(BUTTON_SOUND);
-    buttonSound.play();
-}
-
-function playDefeatMusic()
-{
-	switchMusic(DEFEAT_CUE, 0.0, false);
-	switchMusic(DEFEAT_MUSIC, 10.0, true);
-}
-
-function playVictoryMusic()
-{
-	switchMusic(VICTORY_MUSIC, 0.0, true);
-}
-
-function startSessionSounds(civMusic)
-{
-	storeTracks(civMusic);
-	playRandomAmbientSound();
-	playRandomCivMusic();
-}
-
-function startMusic()
-{
-    playRandomCivMusic();
-}
-
-function playRandomCivMusic()
-{
-	global.curr_music = new Sound(getRandomPeaceTrack());
-	if (global.curr_music)
-	{
-		global.curr_music.loop();
-		global.curr_music.fade(0.0, g_MusicGain, 10.0);
-	}
-}
-
-function playRandomAmbientSound()
-{
-	// Seem to need the underscore at the end of "temperate" to avoid crash
-	// (Might be caused by trying to randomly load day_temperate.xml)
-//	global.curr_ambient = newRandomSound("ambient", "temperate_", "dayscape");
-//	if (global.curr_ambient)
-//	{
-//		global.curr_ambient.loop();
-//		global.curr_ambient.setGain(0.8);
-//	}
-
-	// Just play this track for now. We don't randomly change to new tracks.
-	// Some of the existing ones are too annoying if played constantly.
-	global.curr_ambient = new Sound("audio/ambient/dayscape/day_temperate_gen_03.ogg");
-	if (global.curr_ambient)
-	{
-		global.curr_ambient.loop();
-		global.curr_ambient.setGain(0.8);
-	}
-
-}
-
-function playMusic(track, fadeInPeriod, isLooping)
-{
-	global.curr_music = new Sound(RELATIVE_MUSIC_PATH + track + ".ogg");
-
-	if (global.curr_music)
-	{
-		if (isLooping)
-			global.curr_music.loop();
-		else
-			global.curr_music.play();
-
-		if (fadeInPeriod)
-			global.curr_music.fade(0.0, g_MusicGain, fadeInPeriod);
-	}
-}
-
-function switchMusic(track, fadeInPeriod, isLooping)
-{
-	if (global.curr_music)
-		global.curr_music.fade(-1, 0.0, 5.0);
-
-	playMusic(track, fadeInPeriod, isLooping);
-}
-
-function stopSound()
-{
-	stopMusic();
-	stopAmbient();
-}
-
-function stopMusic()
-{
-	if (global.curr_music)
-	{
-		global.curr_music.fade(-1, 0.0, 5.0);
-		global.curr_music = null;
-	}
-}
-
-function stopAmbientSounds()
-{
-	if (global.curr_ambient)
-	{
-		global.curr_ambient.fade(-1, 0.0, 5.0);
-		global.curr_ambient = null;
-	}
-}
-
-function isMusicPlaying()
-{
-	if (global.curr_music)
-		return true;
-
-	return false;
-}
-
-//function isEndingMusicPlaying()
+//function playRandomAmbient(type)
 //{
-//	if (global.curr_music)
+//	switch (type)
 //	{
-//		if (global.curr_music[DEFEAT_CUE] ||
-//		    global.curr_music[DEFEAT_MUSIC] ||
-//		    global.curr_music[VICTORY_MUSIC])
-//		{
-//			return true;
-//		}
-//	}
+//		case AMBIENT_TEMPERATE:
+//			// Seem to need the underscore at the end of "temperate" to avoid crash
+//			// (Might be caused by trying to randomly load day_temperate.xml)
+//			currentAmbient = newRandomSound("ambient", "temperate_", "dayscape");
+//			if (currentAmbient)
+//			{
+//				currentAmbient.loop();
+//				currentAmbient.setGain(0.8);
+//			}
+//			break;
 //
-//	return false;
+//		default:
+//			console.write("Unrecognized ambient type: " + type);
+//			break;
+//	}
 //}
 //
-//
-//function isMusicPlaying()
+//function stopAmbient()
 //{
-//	if (global.curr_music)
-//		return global.curr_music.isPlaying();
-//
-//	return false;
+//	if (currentAmbient)
+//	{
+//		currentAmbient.fade(-1, 0.0, 5.0);
+//		currentAmbient = null;
+//	}
+//}
+
+//const BUTTON_SOUND = "audio/interface/ui/ui_button_longclick.ogg";
+//function playButtonSound()
+//{
+//    var buttonSound = new Sound(BUTTON_SOUND);
+//    buttonSound.play();
 //}

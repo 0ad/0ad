@@ -10,176 +10,175 @@
 	<script file="gui/common/functions_civinfo.js"/>
 	<script file="gui/summary/summary.js"/>
 
-	    <object type="image"
-		    style="StoneWindow"
-		    size="0 0 100% 100%"
-	    >
-		    <object style="TitleText" type="text" size="50%-128 4 50%+128 36">
-			    Summary
-		    </object>
+	<object type="image"
+		style="StoneWindow"
+		size="0 0 100% 100%"
+	>
+		<object style="TitleText" type="text" size="50%-128 4 50%+128 36">
+			Summary
+		</object>
 
-		    <object type="image" sprite="ForegroundBody" size="20 20 100%-20 64">
-			    <object name="summaryText"
-				    type="text"
-				    size="50 0 100%-50 100%-3"
-				    font="serif-bold-18"
-				    textcolor="255 255 255"
-				    text_align="left"
-				    text_valign="center"
-			    />
+		<object type="image" sprite="ForegroundBody" size="20 20 100%-20 64">
+			<object name="summaryText"
+				type="text"
+				size="50 0 100%-50 100%-3"
+				font="serif-bold-18"
+				textcolor="255 255 255"
+				text_align="left"
+				text_valign="center"
+			/>
 
-			    <object name="timeElapsed"
-				    type="text"
-				    size="100%-200 10 100%-10 100%"
-				    font="serif-16"
-				    textcolor="255 255 255"
-				    text_align="center"
-			    />
-		    </object>
+			<object name="timeElapsed"
+				type="text"
+				size="100%-200 10 100%-10 100%"
+				font="serif-16"
+				textcolor="255 255 255"
+				text_align="center"
+			/>
+		</object>
 
-		    <object name="tabDividerLeft" type="image" sprite="TabSpacer" size="172 120 174 122"/>
-		    <object name="tabDividerRight" type="image" sprite="TabSpacer" size="328 120 330 122"/>
+		<object name="tabDividerLeft" type="image" sprite="TabSpacer" size="172 120 174 122"/>
+		<object name="tabDividerRight" type="image" sprite="TabSpacer" size="328 120 330 122"/>
 
-		    <object name="unitsBuildingsPanelButton" type="button" sprite="ForegroundTab" size="20 95 170 120">
-			    <action on="Press">selectPanel(0);</action>
-			    <object type="text" style="TitleText" ghost="true">Units/buildings</object>
-		    </object>
+		<object name="unitsBuildingsPanelButton" type="button" sprite="ForegroundTab" size="20 95 170 120">
+			<action on="Press">selectPanel(0);</action>
+			<object type="text" style="TitleText" ghost="true">Units/buildings</object>
+		</object>
 
-		    <object name="conquestPanelButton" type="button" sprite="BackgroundTab" size="176 95 326 120">
-			    <action on="Press">selectPanel(1);</action>
-			    <object type="text" style="TitleText" ghost="true">Conquest</object>
-		    </object>
+		<object name="conquestPanelButton" type="button" sprite="BackgroundTab" size="176 95 326 120">
+			<action on="Press">selectPanel(1);</action>
+			<object type="text" style="TitleText" ghost="true">Conquest</object>
+		</object>
 
-		    <object name="resourcesPanelButton" type="button" sprite="BackgroundTab" size="332 95 480 120">
-			    <action on="Press">selectPanel(2);</action>
-			    <object type="text" style="TitleText" ghost="true">Resources</object>
-		    </object>
+		<object name="resourcesPanelButton" type="button" sprite="BackgroundTab" size="332 95 480 120">
+			<action on="Press">selectPanel(2);</action>
+			<object type="text" style="TitleText" ghost="true">Resources</object>
+		</object>
 
-		    <object name="unitsBuildingsPanel" type="image" sprite="ForegroundBody" size="20 120 100%-20 100%-58">
+		<object name="unitsBuildingsPanel" type="image" sprite="ForegroundBody" size="20 120 100%-20 100%-58">
 
-			    <object size="0 0 100% 100%-50">
-				    <object name="playerName0Heading" type="text" style="LeftTabLabelText">
-					    Player name
-				    </object>
-				    <object name="unitsTrainedHeading" type="text" style="CenteredTabLabelText">
-					    Units&#10;trained
-				    </object>
-				    <object name="unitsLostHeading" type="text" style="CenteredTabLabelText">
-					    Units&#10;lost
-				    </object>
-				    <object name="enemyUnitsKilledHeading" type="text" style="CenteredTabLabelText">
-					    Enemy units&#10;killed
-				    </object>
-				    <object name="buildingsConstructedHeading" type="text" style="CenteredTabLabelText">
-					    Buildings&#10;constructed
-				    </object>
-				    <object name="buildingsLostHeading" type="text" style="CenteredTabLabelText">
-					    Buildings&#10;lost
-				    </object>
-				    <object name="enemyBuildingsDestroyedHeading" type="text" style="CenteredTabLabelText">
-					    Enemy&#10;buildings&#10;destroyed
-				    </object>
+			<object size="0 0 100% 100%-50">
+				<object name="playerName0Heading" type="text" style="LeftTabLabelText">
+					Player name
+				</object>
+				<object name="unitsTrainedHeading" type="text" style="CenteredTabLabelText">
+					Units&#10;trained
+				</object>
+				<object name="unitsLostHeading" type="text" style="CenteredTabLabelText">
+					Units&#10;lost
+				</object>
+				<object name="enemyUnitsKilledHeading" type="text" style="CenteredTabLabelText">
+					Enemy units&#10;killed
+				</object>
+				<object name="buildingsConstructedHeading" type="text" style="CenteredTabLabelText">
+					Buildings&#10;constructed
+				</object>
+				<object name="buildingsLostHeading" type="text" style="CenteredTabLabelText">
+					Buildings&#10;lost
+				</object>
+				<object name="enemyBuildingsDestroyedHeading" type="text" style="CenteredTabLabelText">
+					Enemy&#10;buildings&#10;destroyed
+				</object>
 
-			    </object>
+			</object>
 
-			    <object size="0 65 100% 100%-50">
-				    <repeat count="8">
-					    <object type="image" name="playerBox0[n]" size="10 0 10 30" hidden="true">
-						    <object name="playerColourBox0[n]"     		type="image" size="10 4 30 24" />
-						    <object name="playerName0[n]"          		type="text" style="LeftLabelText" size="40 2 208 100%" />
-						    <object name="civIcon0[n]" 			type="image" size="208 0 240 32"/>
-						    <object name="unitsTrained[n]"         		type="text" style="CenteredLabelText"/>
-						    <object name="unitsLost[n]"            		type="text" style="CenteredLabelText"/>
-						    <object name="enemyUnitsKilled[n]"     		type="text" style="CenteredLabelText"/>
-						    <object name="buildingsConstructed[n]" 		type="text" style="CenteredLabelText"/>
-						    <object name="buildingsLost[n]"        		type="text" style="CenteredLabelText"/>
-						    <object name="enemyBuildingsDestroyed[n]"   	type="text" style="CenteredLabelText"/>
-					    </object>
-				    </repeat>
-			    </object>
+			<object size="0 65 100% 100%-50">
+				<repeat count="8">
+					<object type="image" name="playerBox0[n]" size="10 0 10 30" hidden="true">
+						<object name="playerColourBox0[n]"     		type="image" size="10 4 30 24" />
+						<object name="playerName0[n]"          		type="text" style="LeftLabelText" size="40 2 208 100%" />
+						<object name="civIcon0[n]" 			type="image" size="208 0 240 32"/>
+						<object name="unitsTrained[n]"         		type="text" style="CenteredLabelText"/>
+						<object name="unitsLost[n]"            		type="text" style="CenteredLabelText"/>
+						<object name="enemyUnitsKilled[n]"     		type="text" style="CenteredLabelText"/>
+						<object name="buildingsConstructed[n]" 		type="text" style="CenteredLabelText"/>
+						<object name="buildingsLost[n]"        		type="text" style="CenteredLabelText"/>
+						<object name="enemyBuildingsDestroyed[n]"   	type="text" style="CenteredLabelText"/>
+					</object>
+				</repeat>
+			</object>
 
-		    </object>
-		    <object name="conquestPanel" type="image" sprite="ForegroundBody" size="20 120 100%-20 100%-58" hidden="true">
+		</object>
+		<object name="conquestPanel" type="image" sprite="ForegroundBody" size="20 120 100%-20 100%-58" hidden="true">
 
-			    <object size="0 0 100% 100%-50">
-				    <object name="playerName1Heading" type="text" style="LeftTabLabelText">
-					    Player name
-				    </object>
-				    <object name="civCentresBuiltHeading" type="text" style="CenteredTabLabelText">
-					    Civ centres&#10;built
-				    </object>
-				    <object name="enemyCivCentresDestroyedHeading" type="text" style="CenteredTabLabelText">
-					    Enemy&#10;civ centres&#10;destroyed
-				    </object>
-				    <object name="mapExplorationHeading" type="text" style="CenteredTabLabelText">
-					    Map&#10;exploration
-				    </object>
-			    </object>
+			<object size="0 0 100% 100%-50">
+				<object name="playerName1Heading" type="text" style="LeftTabLabelText">
+					Player name
+				</object>
+				<object name="civCentresBuiltHeading" type="text" style="CenteredTabLabelText">
+					Civ centres&#10;built
+				</object>
+				<object name="enemyCivCentresDestroyedHeading" type="text" style="CenteredTabLabelText">
+					Enemy&#10;civ centres&#10;destroyed
+				</object>
+				<object name="mapExplorationHeading" type="text" style="CenteredTabLabelText">
+					Map&#10;exploration
+				</object>
+			</object>
 
-			    <object size="0 65 100% 100%-50">
-				    <repeat count="8">
-					    <object type="image" name="playerBox1[n]" size="10 0 10 30" hidden="true">
-						    <object name="playerColourBox1[n]"     		type="image" size="10 4 30 24" />
-						    <object name="playerName1[n]"          		type="text"  style="LeftLabelText" size="40 2 208 100%" />
-						    <object name="civIcon1[n]" 			type="image" size="208 0 240 32"/>
-						    <object name="civCentresBuilt[n]"      		type="text" style="CenteredLabelText"/>
-						    <object name="enemyCivCentresDestroyed[n]" 	type="text" style="CenteredLabelText"/>
-						    <object name="mapExploration[n]" 		type="text" style="CenteredLabelText"/>
-					    </object>
-				    </repeat>
-			    </object>
+			<object size="0 65 100% 100%-50">
+				<repeat count="8">
+					<object type="image" name="playerBox1[n]" size="10 0 10 30" hidden="true">
+						<object name="playerColourBox1[n]"     		type="image" size="10 4 30 24" />
+						<object name="playerName1[n]"          		type="text"  style="LeftLabelText" size="40 2 208 100%" />
+						<object name="civIcon1[n]" 			type="image" size="208 0 240 32"/>
+						<object name="civCentresBuilt[n]"      		type="text" style="CenteredLabelText"/>
+						<object name="enemyCivCentresDestroyed[n]" 	type="text" style="CenteredLabelText"/>
+						<object name="mapExploration[n]" 		type="text" style="CenteredLabelText"/>
+					</object>
+				</repeat>
+			</object>
 
-		    </object>
-		    <object name="resourcesPanel" type="image" sprite="ForegroundBody" size="20 120 100%-20 100%-58" hidden="true">
+		</object>
+		<object name="resourcesPanel" type="image" sprite="ForegroundBody" size="20 120 100%-20 100%-58" hidden="true">
 
-			    <object size="0 0 100% 100%-50">
-				    <object name="playerName2Heading" type="text" style="LeftTabLabelText">
-					    Player name
-				    </object>
-				    <object name="foodGatheredHeading" type="text" style="CenteredTabLabelText">
-					    Food&#10;gathered
-				    </object>
-				    <object name="vegetarianRatioHeading" type="text" style="CenteredTabLabelText">
-					    Vegetarian&#10;ratio
-				    </object>
-				    <object name="woodGatheredHeading" type="text" style="CenteredTabLabelText">
-					    Wood&#10;gathered
-				    </object>
-				    <object name="metalGatheredHeading" type="text" style="CenteredTabLabelText">
-					    Metal&#10;gathered
-				    </object>
-				    <object name="stoneGatheredHeading" type="text" style="CenteredTabLabelText">
-					    Stone&#10;gathered
-				    </object>
-				    <object name="treasuresCollectedHeading" type="text" style="CenteredTabLabelText">
-					    Treasures&#10;collected
-				    </object>
-			    </object>
+			<object size="0 0 100% 100%-50">
+				<object name="playerName2Heading" type="text" style="LeftTabLabelText">
+					Player name
+				</object>
+				<object name="foodGatheredHeading" type="text" style="CenteredTabLabelText">
+					Food&#10;gathered
+				</object>
+				<object name="vegetarianRatioHeading" type="text" style="CenteredTabLabelText">
+					Vegetarian&#10;ratio
+				</object>
+				<object name="woodGatheredHeading" type="text" style="CenteredTabLabelText">
+					Wood&#10;gathered
+				</object>
+				<object name="metalGatheredHeading" type="text" style="CenteredTabLabelText">
+					Metal&#10;gathered
+				</object>
+				<object name="stoneGatheredHeading" type="text" style="CenteredTabLabelText">
+					Stone&#10;gathered
+				</object>
+				<object name="treasuresCollectedHeading" type="text" style="CenteredTabLabelText">
+					Treasures&#10;collected
+				</object>
+			</object>
 
-			    <object size="0 65 100% 100%-50">
-				    <repeat count="8">
-					    <object type="image" name="playerBox2[n]" size="10 0 10 30" hidden="true">
-						    <object name="playerColourBox2[n]" 		type="image" size="10 4 30 24" />
-						    <object name="playerName2[n]"      		type="text"  style="LeftLabelText" size="40 2 208 100%" />
-						    <object name="civIcon2[n]" 		   	type="image" size="208 0 240 32"/>
-						    <object name="foodGathered[n]"     		type="text" style="CenteredLabelText"/>
-						    <object name="vegetarianRatio[n]"  		type="text" style="CenteredLabelText"/>
-						    <object name="woodGathered[n]"     		type="text" style="CenteredLabelText"/>
-						    <object name="metalGathered[n]"    		type="text" style="CenteredLabelText"/>
-						    <object name="stoneGathered[n]"    		type="text" style="CenteredLabelText" />
-						    <object name="treasuresCollected[n]"    	type="text" style="CenteredLabelText"/>
-					    </object>
-				    </repeat>
-			    </object>
+			<object size="0 65 100% 100%-50">
+				<repeat count="8">
+					<object type="image" name="playerBox2[n]" size="10 0 10 30" hidden="true">
+						<object name="playerColourBox2[n]" 		type="image" size="10 4 30 24" />
+						<object name="playerName2[n]"      		type="text"  style="LeftLabelText" size="40 2 208 100%" />
+						<object name="civIcon2[n]" 		   	type="image" size="208 0 240 32"/>
+						<object name="foodGathered[n]"     		type="text" style="CenteredLabelText"/>
+						<object name="vegetarianRatio[n]"  		type="text" style="CenteredLabelText"/>
+						<object name="woodGathered[n]"     		type="text" style="CenteredLabelText"/>
+						<object name="metalGathered[n]"    		type="text" style="CenteredLabelText"/>
+						<object name="stoneGathered[n]"    		type="text" style="CenteredLabelText" />
+						<object name="treasuresCollected[n]"    	type="text" style="CenteredLabelText"/>
+					</object>
+				</repeat>
+			</object>
 
-		    </object>
+		</object>
 
-		    <object type="button" style="StoneButton" size="100%-164 100%-52 100%-24 100%-24">
-			    Continue
-			    <action on="Press">
-				    Engine.SwitchGuiPage("page_pregame.xml");
-<!--				    Engine.PushGuiPage("page_gamesetup.xml", { type: "offline" });-->
-			    </action>
-		    </object>
-	    </object>
+		<object type="button" style="StoneButton" size="100%-164 100%-52 100%-24 100%-24">
+			Continue
+			<action on="Press">
+				Engine.SwitchGuiPage("page_pregame.xml");
+			</action>
+		</object>
+	</object>
 </objects>

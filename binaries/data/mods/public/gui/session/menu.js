@@ -45,6 +45,7 @@ function initMenuPosition()
 	menu.size = INITIAL_MENU_POSITION;
 }
 
+
 // =============================================================================
 // Overall Menu
 // =============================================================================
@@ -71,14 +72,14 @@ function updateMenuPosition()
 // Opens the menu by revealing the screen which contains the menu
 function openMenu()
 {
-	playButtonSound();
+//	playButtonSound();
 	isMenuOpen = true;
 }
 
 // Closes the menu and resets position
 function closeMenu()
 {
-	playButtonSound();
+//	playButtonSound();
 	isMenuOpen = false;
 }
 
@@ -232,3 +233,12 @@ function closeOpenDialogs()
 	closeChat();
 	closeSettings(false);
 }
+
+
+// Temporarily adding this here
+//function playButtonSound()
+//{
+//    const BUTTON_SOUND = "audio/interface/ui/ui_button_longclick.ogg";
+//    var buttonSound = new Sound(BUTTON_SOUND);
+//    buttonSound.play();
+//}

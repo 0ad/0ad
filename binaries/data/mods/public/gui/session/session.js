@@ -83,7 +83,11 @@ function init(initData, hotloadData)
 	}
 	else
 	{
-		startSessionSounds(g_CivData[g_Players[Engine.GetPlayerID()].civ].Music); // Starting for the first time:
+		// Starting for the first time:
+		var civMusic = g_CivData[g_Players[Engine.GetPlayerID()].civ].Music;
+		global.music.storeTracks(civMusic);
+		global.music.setState(global.music.states.PEACE);
+		playRandomAmbient("temperate");
 	}
 
 	onSimulationUpdate();
@@ -95,6 +99,7 @@ function init(initData, hotloadData)
 	setTimeout(function() { reportPerformance(5); }, 5000);
 	setTimeout(function() { reportPerformance(60); }, 60000);
 }
+
 
 function reportPerformance(time)
 {
@@ -128,25 +133,26 @@ function leaveGame()
 	{
 		gameResult = "You have abandoned the game.";
 
-		// Tell other players that we have given up and
-		// been defeated
+		// Tell other players that we have given up and been defeated
 		Engine.PostNetworkCommand({
 			"type": "defeat-player",
 			"playerId": Engine.GetPlayerID()
 		});
 
+console.write("here");
+		global.music.setState(global.music.states.DEFEAT);
+console.write(global.music.currentState);
 
-		playDefeatMusic();
 	}
 
-	stopAmbientSounds();
+	stopAmbient();
 	endGame();
 
-	Engine.SwitchGuiPage("page_summary.xml",
-					    { "gameResult"  : gameResult,
-					    "timeElapsed" : extendedSimState.timeElapsed,
-					    "playerStates": extendedSimState.players
-					    });
+	Engine.SwitchGuiPage("page_summary.xml", {
+							"gameResult"  : gameResult,
+							"timeElapsed" : extendedSimState.timeElapsed,
+							"playerStates": extendedSimState.players
+						 });
 }
 
 // Return some data that we'll use when hotloading this file after changes
@@ -181,7 +187,10 @@ function onTick()
 	// Run timers
 	updateTimers();
 
-        // Animate menu
+	// Play tracks based on current music state
+	global.music.update();
+
+	// Animate menu
         updateMenuPosition();
 
 	// When training is blocked, flash population (alternates colour every 500msec)
@@ -204,7 +213,7 @@ function checkPlayerState()
 		if (playerState.state == "defeated")
 		{
 			g_GameEnded = true;
-			playDefeatMusic();
+			global.music.setState(global.music.states.DEFEAT_CUE);
 
 			closeMenu();
 			closeOpenDialogs();
@@ -216,7 +225,7 @@ function checkPlayerState()
 		else if (playerState.state == "won")
 		{
 			g_GameEnded = true;
-			playVictoryMusic();
+			global.music.setState(global.music.states.VICTORY);
 
 			closeMenu();
 			closeOpenDialogs();
@@ -324,4 +333,44 @@ function updatePlayerDisplay(simState)
 	getGUIObjectByName("resourcePop").caption = playerState.popCount + "/" + playerState.popLimit;
 
 	g_IsTrainingQueueBlocked = playerState.trainingQueueBlocked;
+}
+
+
+
+// Temporarily adding this here
+const AMBIENT_TEMPERATE = "temperate";
+var currentAmbient;
+function playRandomAmbient(type)
+{
+	switch (type)
+	{
+		case AMBIENT_TEMPERATE:
+			// Seem to need the underscore at the end of "temperate" to avoid crash
+			// (Might be caused by trying to randomly load day_temperate.xml)
+//			currentAmbient = newRandomSound("ambient", "temperate_", "dayscape");
+
+			const AMBIENT = "audio/ambient/dayscape/day_temperate_gen_03.ogg";
+			currentAmbient = new Sound(AMBIENT);
+
+			if (currentAmbient)
+			{
+				currentAmbient.loop();
+				currentAmbient.setGain(0.8);
+			}
+			break;
+
+		default:
+			console.write("Unrecognized ambient type: " + type);
+			break;
+	}
+}
+
+// Temporarily adding this here
+function stopAmbient()
+{
+	if (currentAmbient)
+	{
+		currentAmbient.fade(-1, 0.0, 5.0);
+		currentAmbient = null;
+	}
 }

@@ -4,7 +4,10 @@ const MARGIN = 4; // menu border size
 
 function init()
 {
-	playMainMenuMusic();
+	initMusic();
+
+	// Play main menu music
+	global.music.setState(global.music.states.MENU);
 
 	userReportEnabledText = getGUIObjectByName("userReportEnabledText").caption;
 
@@ -82,6 +85,9 @@ function formatUserReportStatus(status)
 
 function onTick()
 {
+	// Play tracks based on current music state
+	global.music.update();
+
 	// Animate backgrounds
 	scrollBackgrounds();
 
@@ -108,6 +114,14 @@ function onTick()
 /*
  * MENU FUNCTIONS
  */
+
+// Temporarily adding this here
+//const BUTTON_SOUND = "audio/interface/ui/ui_button_longclick.ogg";
+//function playButtonSound()
+//{
+//    var buttonSound = new Sound(BUTTON_SOUND);
+//    buttonSound.play();
+//}
 
 // Slide menu
 function updateMenuPosition()
@@ -158,7 +172,7 @@ function openMenu(newSubmenu, position, buttonHeight, numButtons)
 // Closes the menu and resets position
 function closeMenu()
 {
-	playButtonSound();
+//	playButtonSound();
 
 	// remove old submenu type
 	getGUIObjectByName(currentSubmenuType).hidden = true;
