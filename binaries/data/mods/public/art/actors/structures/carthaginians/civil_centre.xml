@@ -16,5 +16,13 @@
       <texture>structural/kart_struct.dds</texture>
     </variant>
   </group>
+  <group>
+    <variant name="Idle"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/waypoint_flag_0ad.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
   <material>player_trans.xml</material>
 </actor>

@@ -110,20 +110,18 @@
 						</technique_common>
 					</bind_material>
 				</instance_geometry>
-				
-				
 			<node layer="L1" id="prop_garrisoned" name="prop_garrisoned">
 				<matrix>
-					1.0 0.0 0.0 0.0
-					0.0 1.0 0.0 0.0
-					0.0 0.0 1.0 0.0
+					1.0 0.0 0.0 -9.94
+					0.0 1.0 0.0 14.8
+					0.0 0.0 1.0 3.759
 					0.0 0.0 0.0 1.0
 				</matrix>
 			</node>
 			<node layer="L1" id="prop_projectile" name="prop_projectile">
 				<matrix>
 					1.0 0.0 0.0 0.0
-					0.0 1.0 0.0 0.0
+					0.0 1.0 0.0 6.0
 					0.0 0.0 1.0 0.0
 					0.0 0.0 0.0 1.0
 				</matrix>
