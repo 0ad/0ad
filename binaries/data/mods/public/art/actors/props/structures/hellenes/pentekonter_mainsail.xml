@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="mesh">
+      <mesh>props/hele_pentekonter_sail.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="sail_eye">
+      <texture>props/hele_sail_eye_war.dds</texture>
+    </variant>
+    <variant frequency="1" name="sail_pegasus">
+      <texture>props/hele_sail_pegasus_war.dds</texture>
+    </variant>
+    <variant frequency="1" name="sail_star">
+      <texture>props/hele_sail_star_war.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

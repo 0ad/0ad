@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" name="Greek Pentekonter">
+      <mesh>structural/hele_ship_pentekonter.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/structures/hellenes/pentekonter_mainsail.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/hele_pentekonter.png</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
