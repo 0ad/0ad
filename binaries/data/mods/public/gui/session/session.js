@@ -139,10 +139,7 @@ function leaveGame()
 			"playerId": Engine.GetPlayerID()
 		});
 
-console.write("here");
 		global.music.setState(global.music.states.DEFEAT);
-console.write(global.music.currentState);
-
 	}
 
 	stopAmbient();
@@ -160,6 +157,7 @@ function getHotloadData()
 {
 	return { selection: g_Selection.selected };
 }
+
 
 function onTick()
 {
@@ -187,11 +185,11 @@ function onTick()
 	// Run timers
 	updateTimers();
 
-	// Play tracks based on current music state
-	global.music.update();
-
 	// Animate menu
         updateMenuPosition();
+
+	// Update music state
+	global.music.update();
 
 	// When training is blocked, flash population (alternates colour every 500msec)
 	if (g_IsTrainingQueueBlocked && (Date.now() % 1000) < 500)

@@ -85,14 +85,14 @@ function formatUserReportStatus(status)
 
 function onTick()
 {
-	// Play tracks based on current music state
-	global.music.update();
-
 	// Animate backgrounds
 	scrollBackgrounds();
 
 	// Animate submenu
 	updateMenuPosition();
+
+	// Update music state
+	global.music.update();
 
 	if (Engine.IsUserReportEnabled())
 	{

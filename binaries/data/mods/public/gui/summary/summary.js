@@ -209,3 +209,9 @@ function init(data)
 
         selectPanel(0);
 }
+
+function onTick()
+{
+	// Update music state
+	global.music.update();
+}
