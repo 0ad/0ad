@@ -2772,9 +2772,14 @@
         <node id="prop_projectile" name="prop_projectile">
           <matrix sid="matrix">0.000000 -1.000000 0.000000 0.082948 0.000000 0.000000 1.000000 4.180764 -1.000000 -0.000000 0.000000 -3.161737 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
-        <node id="prop_garrisoned" name="prop_garrisoned">
-          <matrix sid="matrix">0.000000 -1.000000 0.000000 -2.505271 0.000000 0.000000 1.000000 7.796613 -1.000000 -0.000000 0.000000 -0.470484 0.000000 0.000000 0.000000 1.000000</matrix>
-        </node>
+			<node layer="L1" id="prop_garrisoned" name="prop_garrisoned">
+				<matrix>
+					1.0 0.0 0.0 1.5
+					0.0 1.0 0.0 7.7
+					0.0 0.0 1.0 0.0
+					0.0 0.0 0.0 1.0
+				</matrix>
+			</node>
       </node>
     </visual_scene>
   </library_visual_scenes>
