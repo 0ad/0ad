@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Berries">
+      <mesh>gaia/berrybush.dae</mesh>
+      <props>
+        <prop actor="props/flora/berries.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="green">
+      <texture>gaia/berry_bush.png</texture>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>
