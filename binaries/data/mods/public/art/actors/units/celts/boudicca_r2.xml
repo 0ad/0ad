@@ -13,8 +13,9 @@
       <mesh>skeletal/f_tunic.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_celt_boudicca.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/jav_gold.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="l_hand"/>
         <prop actor="props/units/cape_celt_boudicca.xml" attachpoint="shoulders"/>
+        <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="r_hand"/>
       </props>
       <texture>skeletal/celt_boudicca_2.dds</texture>
     </variant>
@@ -22,7 +23,7 @@
   <group>
     <variant name="Melee">
       <props>
-        <prop actor="props/units/weapons/jav_gold.xml" attachpoint="loaded-r_hand"/>
+        <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="loaded-r_hand"/>
         <prop attachpoint="r_hand"/>
         <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
       </props>
