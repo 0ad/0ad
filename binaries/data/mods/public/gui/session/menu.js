@@ -33,7 +33,7 @@ const INITIAL_MENU_POSITION = "100%-164 " + MENU_TOP + " 100% " + MENU_BOTTOM;
 // distance is the max-initial. The travel distance in this
 // example is 164-0 = 164. We choose an offset of 10.25 because it
 // divides into 164 evenly and provided the speed we wanted.
-const OFFSET = 10.25;
+const OFFSET = 20.5;
 
 var isMenuOpen = false;
 var menu;

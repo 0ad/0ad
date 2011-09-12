@@ -67,7 +67,7 @@ Music.prototype.update = function()
 		switch (this.currentState)
 		{
 			case this.states.OFF:
-			    	if (this.isMusicPlaying())
+			    	if (this.isPlaying())
 				{
 					this.currentMusic.fade(-1, 0.0, 3.0);
 					this.currentMusic = null;
@@ -76,7 +76,6 @@ Music.prototype.update = function()
 
 			case this.states.MENU:
 				this.switchMusic(this.tracks.MAIN_MENU_TRACK, 0.0, true);
-				console.write("menu");
 				break;
 
 			case this.states.PEACE:
@@ -106,7 +105,7 @@ Music.prototype.update = function()
 				break;
 		}
 	}
-//	else if (!this.isMusicPlaying())
+//	else if (!this.isPlaying())
 //	{
 //
 //	}
@@ -173,7 +172,7 @@ Music.prototype.switchMusic = function(track, fadeInPeriod, isLooping)
 	}
 };
 
-Music.prototype.isMusicPlaying = function()
+Music.prototype.isPlaying = function()
 {
 	if (!this.currentMusic)
 		return false;
@@ -185,12 +184,12 @@ Music.prototype.isMusicPlaying = function()
 	return true;
 };
 
-Music.prototype.startMusic = function()
+Music.prototype.start = function()
 {
 	this.setState(this.states.PEACE);
 };
 
-Music.prototype.stopMusic = function()
+Music.prototype.stop = function()
 {
 	this.setState(this.states.OFF);
 };

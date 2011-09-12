@@ -234,7 +234,7 @@
 				<!-- Settings / Music-->
 				<object size="0 85 100%-80 110" type="text" style="RightLabelText" ghost="true">Enable Music</object>
 				<object size="100%-56 90 100%-30 115" type="checkbox" style="StoneCrossBox" checked="true">
-					<action on="Press">if (this.checked) startMusic(); else stopMusic();</action>
+					<action on="Press">if (this.checked) global.music.start(); else global.music.stop();</action>
 				</object>
 
 				<!-- Settings / Dev Overlay -->
