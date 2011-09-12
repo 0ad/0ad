@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -19,7 +19,7 @@
         <animation event="0.4" file="female/f_mine_01.dae" name="gather_rock" speed="140"/>
         <animation event="0.4" file="female/f_mine_01.dae" name="gather_ore" speed="140"/>
         <animation file="female/f_mine_01.dae" name="gather_ruins" speed="140"/>
-        <animation event="0.6" file="female/f_build_01.dae" name="Build" speed="40"/>
+        <animation event="0.6" file="female/f_build_01.dae" name="Build" speed="60"/>
         <animation file="female/f_death_01.dae" name="Death" speed="120"/>
       </animations>
       <props>
