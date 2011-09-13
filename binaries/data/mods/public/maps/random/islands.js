@@ -69,6 +69,9 @@ var pPalmForest = [tForestFloor+TERRAIN_SEPARATOR+oPalm, tGrass];
 var pPineForest = [tForestFloor+TERRAIN_SEPARATOR+oPine, tGrass];
 var pPoplarForest = [tForestFloor+TERRAIN_SEPARATOR+oLombardyPoplar, tGrass];
 var pMainForest = [tForestFloor+TERRAIN_SEPARATOR+oCarob, tForestFloor+TERRAIN_SEPARATOR+oBeech, tGrass, tGrass];
+
+const BUILDING_ANGlE = 0.75*PI;
+
 // initialize map
 
 log("Initializing map...");
@@ -270,19 +273,15 @@ if((numPlayers>=6)||(i==startingPlaces[numPlayers-1][nPlayer])){
 	var civEntities = getStartingEntities(nPlayer);
 	
 	// create the TC
-	var angletemple = 1.5*PI-islandAngle[i];
-	angletemple = 0.75*PI;
-	//angletemple = (angletemple<0)?angletemple+2*PI:angletemple;
 	var group = new SimpleGroup(	// elements (type, min/max count, min/max distance)
-		[new SimpleObject(civEntities[0].Template, 1,1, 0,0, angletemple, angletemple)],
+		[new SimpleObject(civEntities[0].Template, 1,1, 0,0, BUILDING_ANGlE, BUILDING_ANGlE)],
 		true, null, ix, iz
 	);
 	createObjectGroup(group, nPlayer+1);
 	
 	// create starting units
 	var uDist = 8;
-	var uAngle = islandAngle[i] + PI + randFloat(-PI/8, PI/8);
-	
+	var uAngle = -BUILDING_ANGlE + randFloat(-PI/8, PI/8);
 	for (var j = 1; j < civEntities.length; ++j)
 	{
 		var count = (civEntities[j].Count !== undefined ? civEntities[j].Count : 1);

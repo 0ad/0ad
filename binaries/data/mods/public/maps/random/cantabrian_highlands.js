@@ -46,6 +46,8 @@ const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 const pForestD = [tGrassDForest + TERRAIN_SEPARATOR + oOak, tGrassDForest + TERRAIN_SEPARATOR + oOakLarge, tGrassDForest];
 const pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oPine, tGrassPForest + TERRAIN_SEPARATOR + oAleppoPine, tGrassPForest];
 
+const BUILDING_ANGlE = 0.75*PI;
+
 // initialize map
 
 log("Initializing map...");
@@ -137,14 +139,14 @@ for (var i = 0; i < numPlayers; i++)
 	
 	// create the TC
 	var group = new SimpleGroup(	// elements (type, min/max count, min/max distance, min/max angle)
-		[new SimpleObject(civEntities[0].Template, 1,1, 0,0, 0.75*PI, 0.75*PI)],
+		[new SimpleObject(civEntities[0].Template, 1,1, 0,0, BUILDING_ANGlE, BUILDING_ANGlE)],
 		true, null, ix, iz
 	);
 	createObjectGroup(group, i+1);
 	
 	// create starting units
 	var uDist = 8;
-	var uAngle = -0.75*PI + randFloat(-PI/8, PI/8);
+	var uAngle = -BUILDING_ANGlE + randFloat(-PI/8, PI/8);
 	for (var j = 1; j < civEntities.length; ++j)
 	{
 		var count = (civEntities[j].Count !== undefined ? civEntities[j].Count : 1);
