@@ -164,9 +164,6 @@ function openMenu(newSubmenu, position, buttonHeight, numButtons)
 
 	// Reveal submenu
 	getGUIObjectByName("submenu").hidden = false;
-
-	// prepare to hide the submenu when the user clicks on the background
-	getGUIObjectByName("submenuScreen").hidden = false;
 }
 
 // Closes the menu and resets position
@@ -184,9 +181,6 @@ function closeMenu()
 
 	// reset main menu panel right border
 	getGUIObjectByName("MainMenuPanelRightBorderTop").size = "100%-2 0 100% 100%";
-
-	// hide submenu screen
-	getGUIObjectByName("submenuScreen").hidden = false;
 }
 
 // Sizes right border on main menu panel to match the submenu
@@ -200,18 +194,18 @@ function blendSubmenuIntoMain(topPosition, bottomPosition)
 }
 
 // Reveals submenu
-function openMainMenuSubWindow (windowName)
-{
-	guiUnHide("pgSubWindow");
-	guiUnHide(windowName);
-}
+//function openMainMenuSubWindow (windowName)
+//{
+//	guiUnHide("pgSubWindow");
+//	guiUnHide(windowName);
+//}
 
 // Hides submenu
-function closeMainMenuSubWindow (windowName)
-{
-	guiHide("pgSubWindow");
-	guiHide(windowName);
-}
+//function closeMainMenuSubWindow (windowName)
+//{
+//	guiHide("pgSubWindow");
+//	guiHide(windowName);
+//}
 
 
 
