@@ -50,24 +50,6 @@
 
 		<!--
 		==========================================
-		- CORNER 'X' EXIT BUTTON
-		==========================================
-		-->
-                <object name="cornerExitButton"
-                        type="button"
-                        style="StoneExit"
-                        size="100%-16 0 100% 16"
-                        tooltip=""
-                        z="20"
-                >
-                        <action on="Press"><![CDATA[
-                                // Exit without confirmation
-                                exit();
-                        ]]></action>
-		</object>
-
-		<!--
-		==========================================
 		- MAIN MENU - USER REPORT
 		==========================================
 		-->
