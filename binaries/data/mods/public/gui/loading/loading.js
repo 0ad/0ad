@@ -1,4 +1,5 @@
 var g_Data;
+const END_PIECE_WIDTH = 16;
 
 function init(data)
 {
@@ -69,22 +70,30 @@ function init(data)
 // ====================================================================
 function displayProgress()
 {
-        const END_PIECE_WIDTH = 16;
+	// Make the progessbar finish a little early so that the user can actually see it finish
+	if (g_Progress < 100)
+	{
+		// Show 100 when it is really 99
+		var progress = g_Progress + 1;
 
-	getGUIObjectByName("progressbar").caption = g_Progress; // display current progress
-	getGUIObjectByName("progressText").caption = g_LoadDescription; // display current progess details
+		getGUIObjectByName("progressbar").caption = progress; // display current progress
+		getGUIObjectByName("progressText").caption = progress + "%";
 
-	// Keep curved right edge of progress bar in sync with the rest of the progress bar
-	var middle = getGUIObjectByName("progressbar");
-	var rightSide = getGUIObjectByName("progressbar_right");
+		// Displays detailed loading info rather than a percent
+		// getGUIObjectByName("progressText").caption = g_LoadDescription; // display current progess details
 
-	var middleLength = (middle.size.right - middle.size.left) - (END_PIECE_WIDTH / 2);
-	var increment = Math.round(g_Progress*middleLength/100);
+		// Keep curved right edge of progress bar in sync with the rest of the progress bar
+		var middle = getGUIObjectByName("progressbar");
+		var rightSide = getGUIObjectByName("progressbar_right");
 
-	var size = rightSide.size;
-	size.left = increment;
-	size.right = increment + END_PIECE_WIDTH;
-	rightSide.size = size;
+		var middleLength = (middle.size.right - middle.size.left) - (END_PIECE_WIDTH / 2);
+		var increment = Math.round(progress * middleLength / 100);
+
+		var size = rightSide.size;
+		size.left = increment;
+		size.right = increment + END_PIECE_WIDTH;
+		rightSide.size = size;
+	}
 }
 
 // ====================================================================
