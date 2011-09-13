@@ -55,11 +55,15 @@ function Music()
 	this.time = Date.now();
 }
 
-// Needs to be called in onTick() to work
-Music.prototype.update = function()
+// "reference" refers to this instance of Music (needed if called from the timer)
+Music.prototype.setState = function(state)
 {
-	this.updateTimer();
+	this.reference.currentState = state;
+	this.updateState();
+};
 
+Music.prototype.updateState = function()
+{
 	if (this.currentState != this.oldState)
 	{
 		this.oldState = this.currentState;
@@ -95,7 +99,6 @@ Music.prototype.update = function()
 				break;
 
 			case this.states.DEFEAT_CUE:
-//				this.currentMusic.fade(-1, 0.0, 1.0);
 				this.switchMusic(this.tracks.DEFEAT_CUE_TRACK, 2.0, false);
 				this.setDelay(this.states.DEFEAT, 7000);
 				break;
@@ -105,16 +108,6 @@ Music.prototype.update = function()
 				break;
 		}
 	}
-//	else if (!this.isPlaying())
-//	{
-//
-//	}
-};
-
-// "reference" refers to this instance of Music (needed if called from the timer)
-Music.prototype.setState = function(state)
-{
-	this.reference.currentState = state;
 };
 
 Music.prototype.storeTracks = function(civMusic)
@@ -207,6 +200,7 @@ Music.prototype.stopTimer = function()
 	this.timer = null;
 };
 
+// Needs to be called in onTick() to work
 Music.prototype.updateTimer = function()
 {
 	this.time = Date.now();

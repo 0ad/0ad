@@ -189,7 +189,7 @@ function onTick()
         updateMenuPosition();
 
 	// Update music state
-	global.music.update();
+	global.music.updateTimer();
 
 	// When training is blocked, flash population (alternates colour every 500msec)
 	if (g_IsTrainingQueueBlocked && (Date.now() % 1000) < 500)

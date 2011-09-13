@@ -213,5 +213,5 @@ function init(data)
 function onTick()
 {
 	// Update music state
-	global.music.update();
+	global.music.updateTimer();
 }

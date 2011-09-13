@@ -92,7 +92,7 @@ function onTick()
 	updateMenuPosition();
 
 	// Update music state
-	global.music.update();
+	global.music.updateTimer();
 
 	if (Engine.IsUserReportEnabled())
 	{
