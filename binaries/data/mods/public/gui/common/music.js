@@ -8,7 +8,8 @@ function initMusic()
 	// Might need to use pregame for that sort of setup and move all the
 	// menu stuff to a main_menu page
 
-	global.music = new Music();
+	if (!global.music)
+	    global.music = new Music();
 }
 
 

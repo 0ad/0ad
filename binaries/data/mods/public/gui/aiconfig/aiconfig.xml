@@ -30,15 +30,13 @@
 		</object>
 
 		<object type="button" style="StoneButton" size="50%-144 100%-60 50%-16 100%-32">
-			Cancel
-			<action on="Press">Engine.PopGuiPage();</action>
-		</object>
-
-		<object type="button" style="StoneButton" size="50%+16 100%-60 50%+144 100%-32">
-                        OK
+			OK
 			<action on="Press">returnAI();</action>
 		</object>
 
+		<object type="button" style="StoneButton" size="50%+16 100%-60 50%+144 100%-32">
+			Cancel
+			<action on="Press">Engine.PopGuiPage();</action>
+		</object>
 	</object>
-
 </objects>

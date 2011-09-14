@@ -179,20 +179,20 @@
 		</object>
 
 		<!-- Chat window -->
-		<object name="chatDialogPanel" size="50%-200 50%-46 50%+200 50%+46" type="image" hidden="true" sprite="genericPanel">
+		<object name="chatDialogPanel" size="50%-180 50%-58 50%+180 50%+46" type="image" hidden="true" sprite="genericPanel">
 			<object name="chatInput" size="16 12 100%-16 36" type="input" style="StoneInput" max_length="80">
 				<action on="Press">submitChatInput();</action>
 			</object>
 
-			<object  size="32 100%-40 144 100%-12" type="button" style="StoneButton">
-				Cancel
-				<action on="Press">closeChat();</action>
-			</object>
-			<object size="100%-144 100%-40 100%-32 100%-12" type="button" style="StoneButton">
+			<object size="50%-144 100%-50 50%-16 100%-22" type="button" style="StoneButton">
 				Send
 				<action on="Press">submitChatInput();</action>
 			</object>
 
+			<object  size="50%+16 100%-50 50%+144 100%-22" type="button" style="StoneButton">
+				Cancel
+				<action on="Press">closeChat();</action>
+			</object>
 		</object>
 
 		<!-- ================================  ================================ -->

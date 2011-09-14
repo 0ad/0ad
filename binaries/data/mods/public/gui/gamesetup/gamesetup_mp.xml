@@ -43,7 +43,7 @@
 				127.0.0.1
 			</object>3 100%-33 103 100%-3
 
-			<object type="button" size="50%+16 100%-60 50%+144 100%-32" style="StoneButton">
+			<object type="button" size="50%-144 100%-60 50%-16 100%-32" style="StoneButton">
 				Continue
 				<action on="Press"><![CDATA[
 					if (startJoin(
@@ -84,7 +84,7 @@
 			</object>
 			</object>
 
-			<object type="button" size="50%+16 100%-60 50%+144 100%-32" style="StoneButton">
+			<object type="button" size="50%-144 100%-60 50%-16 100%-32" style="StoneButton">
 				Continue
 				<action on="Press"><![CDATA[
 					if (startHost(
@@ -97,7 +97,7 @@
 			</object>
 		</object>
 
-                <object type="button" style="StoneButton" size="50%-144 100%-60 50%-16 100%-32">
+                <object type="button" style="StoneButton" size="50%+16 100%-60 50%+144 100%-32">
 			Cancel
 			<action on="Press"><![CDATA[cancelSetup();]]></action>
 		</object>
