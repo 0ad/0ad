@@ -85,6 +85,7 @@ function init(initData, hotloadData)
 	{
 		// Starting for the first time:
 		var civMusic = g_CivData[g_Players[Engine.GetPlayerID()].civ].Music;
+		initMusic();
 		global.music.storeTracks(civMusic);
 		global.music.setState(global.music.states.PEACE);
 		playRandomAmbient("temperate");
