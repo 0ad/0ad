@@ -207,9 +207,8 @@ var BuildingConstructionPlanEcon = Class({
 //		Engine.DumpImage("tiles1.png", obstructionTiles, map.width, map.height, 32);
 //		Engine.DumpImage("tiles2.png", friendlyTiles, map.width, map.height, 256);
 
-		// Randomise the angle a little, to look less artificial
-		//var angle = Math.PI + (Math.random()*2-1) * Math.PI/24;
-		var angle = Math.PI + (Math.PI / 4);
+		// Fixed angle to match fixed starting cam
+		var angle = 0.75*Math.PI;
 		
 		return {
 			"x": x,
