@@ -25,10 +25,10 @@ function Music()
 	this.MUSIC_BATTLE = "battle";
 
 	this.tracks = {
-		MAIN_MENU_TRACK : "main_menu",
-		VICTORY_TRACK : "win_1",
-		DEFEAT_TRACK : "gen_loss_track",
-		DEFEAT_CUE_TRACK : "gen_loss_cue"
+		MAIN_MENU_TRACK : "main_menu.ogg",
+		VICTORY_TRACK : "win_1.ogg",
+		DEFEAT_TRACK : "gen_loss_track.ogg",
+		DEFEAT_CUE_TRACK : "gen_loss_cue.ogg"
 	};
 
 	this.states = {
@@ -152,7 +152,7 @@ Music.prototype.switchMusic = function(track, fadeInPeriod, isLooping)
 		this.currentMusic = null;
 	}
 
-	this.currentMusic = new Sound(this.RELATIVE_MUSIC_PATH + track + ".ogg");
+	this.currentMusic = new Sound(this.RELATIVE_MUSIC_PATH + track);
 
 	if (this.currentMusic)
 	{
