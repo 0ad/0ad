@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" name="Longboat">
+      <mesh>structural/viking_longboat.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/structures/viking/longboat_sail.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/viking_longboat.png</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
