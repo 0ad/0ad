@@ -37,8 +37,13 @@
 		<object size="24 64 300 100%-24">
 
 			<object size="0 0 100%-180 100%">
-				<object name="mapTypeHeading" type="text" style="RightLabelText" size="0 0 100% 28">Match Type:</object>
-				<object name="mapFilterHeading" type="text" style="RightLabelText" size="0 34 100% 60">Map Filter:</object>
+				<object type="text" style="RightLabelText" size="0 0 100% 28">Match Type:</object>
+				<object type="text" style="RightLabelText" size="0 34 100% 60">Map Filter:</object>
+			</object>
+
+			<object size="100%-180 0 100% 100%">
+				<object name="mapTypeText" type="text" style="LeftLabelText" size="0 0 100% 28" hidden="true"/>
+				<object name="mapFilterText" type="text" style="LeftLabelText" size="0 34 100% 60" hidden="true"/>
 			</object>
 
 			<object name="mapTypeSelection"
@@ -107,7 +112,7 @@
 						<object name="playerCiv[n]" type="dropdown" style="StoneDropDown" size="285 2 415 30" tooltip_style="onscreenToolTip" tooltip="Select player's civilization."/>
 						<object name="playerCivText[n]" type="text" style="CenteredLabelText" size="285 0 415 30"/>
 						<object name="playerTeam[n]" type="dropdown" style="StoneDropDown" size="435 2 505 30" tooltip_style="onscreenToolTip" tooltip="Select player's team."/>
-						<object name="playerTeamText[n]" type="text" text_align="center" text_valign="center" size="435 0 505 100%"/>
+						<object name="playerTeamText[n]" type="text" style="CenteredLabelText" size="435 0 505 100%"/>
 					</object>
 				</repeat>
 			</object>
@@ -122,7 +127,7 @@
 
 				<!-- Number of Players-->
 				<object size="0 0 100% 32">
-					<object size="0 0 100% 100%" type="text" style="RightLabelText">Number of Players:</object>
+					<object size="0 0 100% 100%" type="text" style="RightLabelText">Number of players:</object>
 				</object>
 
 				<object size="0 32 100% 64">
@@ -140,13 +145,13 @@
 
 				<!-- Number of Players-->
 				<object size="0 0 100% 32">
-				<object name="numPlayersText" size="0 0 100% 100%" type="text" style="LeftLabelText"/>
-					<object name="numPlayersSelection"
-						type="dropdown"
-						style="StoneDropDown"
-						size="0 2 100% 30"
-						tooltip_style="onscreenToolTip"
-						tooltip="Select number of players.">
+					<object name="numPlayersText" size="0 0 100% 100%" type="text" style="LeftLabelText"/>
+						<object name="numPlayersSelection"
+							type="dropdown"
+							style="StoneDropDown"
+							size="0 2 100% 30"
+							tooltip_style="onscreenToolTip"
+							tooltip="Select number of players.">
 						<action on="SelectionChange">selectNumPlayers(this.list_data[this.selected]);</action>
 					</object>
 				</object>
@@ -156,7 +161,7 @@
 					<object name="mapSize" size="0 2 100% 30" type="dropdown" style="StoneDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select map size. (Larger sizes may reduce performance.)"/>
 				</object>
 
-			    	<object size="0 64 100% 96">
+				<object size="0 64 100% 96">
 					<object name="victoryConditionText" size="0 0 100% 100%" type="text" style="LeftLabelText"/>
 					<object name="victoryCondition" size="0 2 100% 30" type="dropdown" style="StoneDropDown" hidden="true" tooltip_style="onscreenToolTip" tooltip="Select victory condition."/>
 				</object>
@@ -183,6 +188,7 @@
 					<object name="lockTeams" size="0 50%-8 16 50%+8" type="checkbox" style="StoneCrossBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle locked teams."/>
 				</object>
 			</object>
+		<!-- End Options -->
 		</object>
 
 
@@ -234,7 +240,7 @@
 			tooltip_style="onscreenToolTip"
 			tooltip="Return to the main menu."
 		>
-			Main Menu
+			Main menu
 			<action on="Press">
 				<![CDATA[
 					cancelSetup();

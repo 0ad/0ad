@@ -181,7 +181,9 @@ function initMain()
 		// If we're a network client, disable all the map controls
 		// TODO: make them look visually disabled so it's obvious why they don't work
 		getGUIObjectByName("mapTypeSelection").hidden = true;
+		getGUIObjectByName("mapTypeText").hidden = false;
 		getGUIObjectByName("mapFilterSelection").hidden = true;
+		getGUIObjectByName("mapFilterText").hidden = false;
 		getGUIObjectByName("mapSelection").enabled = false;
 
 		// Disable player and game options controls
@@ -748,12 +750,10 @@ function onGameAttributesChange()
 	// Update some controls for clients
 	if (!g_IsController)
 	{
-		var mapFilterHeading = getGUIObjectByName("mapFilterHeading");
-		mapFilterHeading.caption = "Map Filter: "+g_GameAttributes.mapFilter;
+		getGUIObjectByName("mapFilterText").caption = g_GameAttributes.mapFilter;
 		var mapTypeSelection = getGUIObjectByName("mapTypeSelection");
-		var mapTypeHeading = getGUIObjectByName("mapTypeHeading");
 		var idx = mapTypeSelection.list_data.indexOf(g_GameAttributes.mapType);
-		mapTypeHeading.caption = "Match Type: "+mapTypeSelection.list[idx];
+		getGUIObjectByName("mapTypeText").caption = mapTypeSelection.list[idx];
 		var mapSelectionBox = getGUIObjectByName("mapSelection");
 		mapSelectionBox.selected = mapSelectionBox.list_data.indexOf(mapName);
 
@@ -808,16 +808,17 @@ function onGameAttributesChange()
 		else
 		{
 			// Client
-			numPlayersText.hidden = true;
-			mapSizeText.hidden = true;
-			revealMapText.hidden = true;
-			victoryConditionText.hidden = true;
-			lockTeamsText.hidden = true;
+			numPlayersText.hidden = false;
+			mapSizeText.hidden = false;
+			revealMapText.hidden = false;
+			victoryConditionText.hidden = false;
+			lockTeamsText.hidden = false;
 
-			mapSizeText.caption = "Map size: " + g_MapSizes.names[sizeIdx];
-			revealMapText.caption = "Reveal map: " + (mapSettings.RevealMap ? "Yes" : "No");
-			victoryConditionText.caption = "Victory condition: " + VICTORY_TEXT[victoryIdx];
-			lockTeamsText.caption = "Teams locked: " + (mapSettings.LockTeams === undefined || mapSettings.LockTeams ? "Yes" : "No");
+			numPlayersText.caption = numPlayers;
+			mapSizeText.caption = g_MapSizes.names[sizeIdx];
+			revealMapText.caption = (mapSettings.RevealMap ? "Yes" : "No");
+			victoryConditionText.caption = VICTORY_TEXT[victoryIdx];
+			lockTeamsText.caption = (mapSettings.LockTeams === undefined || mapSettings.LockTeams ? "Yes" : "No");
 		}
 
 		break;
