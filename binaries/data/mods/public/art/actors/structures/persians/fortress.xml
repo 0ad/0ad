@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="Persian_Fortress_A">
+      <mesh>structural/pers_fortress.dae</mesh>
+      <props>
+        <prop actor="props/structures/persians/fortress.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Persian_Fortress_B">
+      <mesh>structural/pers_fortress_b.dae</mesh>
+      <props>
+        <prop actor="props/structures/persians/fortress_b.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
+      <texture>structural/pers_struct.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

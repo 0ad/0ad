@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="persian-alt-building-03">
+      <mesh>props/pers_alt_build_03.dae</mesh>
+      <texture>structural/pers_struct.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="plain">
+      <props>
+        <prop attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="prop">
+      <props>
+        <prop actor="props/structures/persians/alt_building_03_prop.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="baskets_a">
+      <mesh>props/pers_alt_build_05_baskets_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="baskets_b">
+      <mesh>props/pers_alt_build_05_baskets_b.dae</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="texture">
+      <texture>structural/pers_struct.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>

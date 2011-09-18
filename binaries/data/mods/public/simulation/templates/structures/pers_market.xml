@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_economic_market">
+  <Identity>
+    <Civ>pers</Civ>
+    <SpecificName>Bazaar</SpecificName>
+    <History>Traders from all distant parts of the huge empire met, exchanged and sold goods in the huge bazaars present in almost every big city. Babylon and Susa were the largest and most frequented trade centres.</History>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/persians/market.xml</Actor>
+  </VisualActor>
+</Entity>

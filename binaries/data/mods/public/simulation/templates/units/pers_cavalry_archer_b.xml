@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_cavalry_ranged_archer">
+  <Identity>
+    <Civ>pers</Civ>
+	<SelectionGroupName>units/pers_cavalry_archer_b</SelectionGroupName>
+	<GenericName>Scythe Chariots</GenericName>
+    <SpecificName>Chaharcharkhe</SpecificName>
+    <History>Chariots were obsolete by the 5th and 4th centuries BC, but they were viewed as symbols of rank and class, hence their continued deployment on the battlefield in extremely limited roles well after their obsolescence. The crew was made up of an archer and a driver who rode in an armored car equipped with scythe-like blades underneath the chassis and the axels themselves sported a pair of the deadly knives.</History>
+  </Identity>
+  <Promotion>
+    <Entity>pers_cavalry_archer_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/persians/cavalry_archer_b_r.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
+        <animation file="biped/cavalryidle.psa" name="Walk" speed="50"/>
+        <animation file="biped/rider_gallop.psa" name="Run" speed="8"/>
+        <animation event=".5" file="biped/rider_javelin_atk_a.psa" load="0" name="Melee" speed="75"/>
+      </animations>
+      <mesh>skeletal/m_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_pers_a.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/hele_hoplite_b.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/shields/pers_pelta_e.xml" attachpoint="shield"/>
+        <prop actor="props/units/cape_m_short.xml" attachpoint="shoulders"/>
+      </props>
+      <texture>skeletal/pers_cjv_e_1.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Melee">
+      <props>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="loaded-r_hand"/>
+        <prop attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
+      </props>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

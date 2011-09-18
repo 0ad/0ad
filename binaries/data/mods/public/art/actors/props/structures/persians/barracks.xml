@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="props-a">
+      <mesh>props/pers_barracks_props_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="props-b">
+      <mesh>props/pers_barracks_props_b.dae</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
+      <texture>structural/pers_struct.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>

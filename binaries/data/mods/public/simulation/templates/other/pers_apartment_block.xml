@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_house">
+  <Cost>
+    <PopulationBonus>15</PopulationBonus>
+  </Cost>
+  <Footprint>
+    <Square width="25.0" depth="14.0"/>
+    <Height>10.0</Height>
+  </Footprint>
+  <Health>
+    <Max>2000</Max>
+  </Health>
+  <Identity>
+    <Civ>pers</Civ>
+    <SpecificName>Apartments</SpecificName>
+  </Identity>
+  <VisualActor>
+    <Actor>props/structures/persians/alt_building_03.xml</Actor>
+  </VisualActor>
+</Entity>

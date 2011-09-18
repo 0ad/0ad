@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Persian Kahk Special Building">
+      <mesh>structural/pers_sb_1_new.dae</mesh>
+      <props>
+        <prop actor="props/structures/persians/sb1.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/pers_struct.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

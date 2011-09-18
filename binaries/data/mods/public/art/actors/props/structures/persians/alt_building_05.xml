@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="persian-alt-building-05">
+      <mesh>props/pers_alt_build_05.dae</mesh>
+      <props>
+        <prop actor="props/structures/persians/alt_building_05_baskets.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/pers_struct.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

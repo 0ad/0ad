@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defense_wall_tower">
+  <Footprint>
+    <Square width="8.0" depth="8.0"/>
+    <Height>18.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>pers</Civ>
+    <SpecificName>Borj</SpecificName>
+    <History>When Cyrus the Great campaigned in the north and chose to establish the river Jaxartes as a boundary, he constructed a mighty fortress to protect his territories from Scythian raids. It was called Cyropolis and was situated close to the place where Alexander the Great later built his Alexandria Eschatae.</History>
+  </Identity>
+  <Obstruction>
+    <Static width="8.0" depth="8.0"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>structures/persians/wall_tower.xml</Actor>
+  </VisualActor>
+</Entity>

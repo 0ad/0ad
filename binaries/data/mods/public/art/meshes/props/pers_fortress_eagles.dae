@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2009-01-04T02:08:48Z</created>
+    <modified>2009-01-04T02:08:48Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__4-image" name="Map__4">
+      <init_from>file://C:\Documents and Settings\Brad\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\internal\art\textures\skins\structural\pers_struct.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_02___Default" name="_02___Default">
+      <instance_effect url="#_02___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_02___Default-fx" name="_02___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__4-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="Object19-lib" name="Object19Mesh">
+      <mesh>
+        <source id="Object19-lib-Position">
+          <float_array id="Object19-lib-Position-array" count="24">
+-3.179535 -14.115009 5.774148
+-3.179535 -17.894711 5.774148
+-3.179535 -17.894711 8.023529
+-3.179535 -14.115009 8.023529
+-3.179533 -0.591000 5.774148
+-3.179532 -4.370701 5.774148
+-3.179532 -4.370701 8.023529
+-3.179533 -0.591000 8.023529
+</float_array>
+          <technique_common>
+            <accessor source="#Object19-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object19-lib-Normal0">
+          <float_array id="Object19-lib-Normal0-array" count="36">
+-1.000000 -0.000000 0.000000
+-1.000000 -0.000000 0.000000
+-1.000000 -0.000000 0.000000
+-1.000000 -0.000000 0.000000
+-1.000000 -0.000000 0.000000
+-1.000000 -0.000000 0.000000
+-1.000000 -0.000000 0.000000
+-1.000000 -0.000000 0.000000
+-1.000000 -0.000000 0.000000
+-1.000000 -0.000000 0.000000
+-1.000000 -0.000000 0.000000
+-1.000000 -0.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#Object19-lib-Normal0-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object19-lib-UV0">
+          <float_array id="Object19-lib-UV0-array" count="16">
+0.014516 0.261202
+0.106837 0.261202
+0.106837 0.314647
+0.014516 0.314647
+0.014516 0.261202
+0.106837 0.261202
+0.106837 0.314647
+0.014516 0.314647
+</float_array>
+          <technique_common>
+            <accessor source="#Object19-lib-UV0-array" count="8" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Object19-lib-Vertex">
+          <input semantic="POSITION" source="#Object19-lib-Position"/>
+        </vertices>
+        <polygons material="_02___Default" count="4">
+          <input semantic="VERTEX" offset="0" source="#Object19-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#Object19-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#Object19-lib-UV0"/>
+          <p>0 0 0 1 1 1 2 2 2</p>
+          <p>2 3 2 3 4 3 0 5 0</p>
+          <p>4 6 4 5 7 5 6 8 6</p>
+          <p>6 9 6 7 10 7 4 11 4</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_lights>
+    <light id="SceneAmbient-lib" name="SceneAmbientMesh">
+      <technique_common>
+        <ambient>
+          <color>0.113725 0.113725 0.113725</color>
+        </ambient>
+      </technique_common>
+    </light>
+  </library_lights>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="Object19" name="Object19">
+        <translate sid="translate">6.741271 -11.355241 7.713883</translate>
+        <rotate sid="rotateZ">0 0 1 90.000009</rotate>
+        <node id="Object19-Pivot" name="Object19-Pivot">
+          <translate>4.474327 16.121525 -3.963391</translate>
+          <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
+          <instance_geometry url="#Object19-lib">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="Map__4-Material" target="#Map__4-Material"/>
+                <instance_material symbol="_02___Default" target="#_02___Default"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+

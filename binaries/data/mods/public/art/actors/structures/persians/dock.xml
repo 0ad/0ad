@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>structural/pers_dock.dae</mesh>
+      <props>
+        <prop actor="props/structures/persians/dock.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/pers_struct.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

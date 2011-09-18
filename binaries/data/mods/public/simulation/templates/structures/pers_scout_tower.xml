@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defense_scout_tower">
+  <Identity>
+    <Civ>pers</Civ>
+    <SpecificName>Padgan</SpecificName>
+    <History>The narrow entrance into mountainous Cilicia was protected by wooden fortifications which made any foreign intrusions extremely difficult.</History>
+  </Identity>
+  <StatusBars>
+    <BarWidth>6.0</BarWidth>
+    <BarHeight>0.6</BarHeight>
+    <HeightOffset>19.0</HeightOffset>
+  </StatusBars>
+  <VisualActor>
+    <Actor>structures/persians/scout_tower.xml</Actor>
+  </VisualActor>
+</Entity>

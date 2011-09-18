@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2009-01-08T06:06:10Z</created>
+    <modified>2009-01-08T06:06:10Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__5-image" name="Map__5">
+      <init_from>file://C:\Documents and Settings\Brad\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\internal\art\textures\skins\structural\pers_struct.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_03___Default" name="_03___Default">
+      <instance_effect url="#_03___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_03___Default-fx" name="_03___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__5-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="Object51-lib" name="Object51Mesh">
+      <mesh>
+        <source id="Object51-lib-Position">
+          <float_array id="Object51-lib-Position-array" count="24">
+-6.308458 -0.590999 5.774148
+-6.308457 -4.370700 5.774148
+-6.308457 -4.370700 8.023529
+-6.308458 -0.590999 8.023529
+1.097787 -4.411582 5.774148
+1.097785 -0.631880 5.774148
+1.097785 -0.631880 8.023529
+1.097787 -4.411582 8.023529
+</float_array>
+          <technique_common>
+            <accessor source="#Object51-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object51-lib-Normal0">
+          <float_array id="Object51-lib-Normal0-array" count="36">
+-1.000000 -0.000000 0.000000
+-1.000000 -0.000000 0.000000
+-1.000000 -0.000000 0.000000
+-1.000000 -0.000000 0.000000
+-1.000000 -0.000000 0.000000
+-1.000000 -0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#Object51-lib-Normal0-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Object51-lib-UV0">
+          <float_array id="Object51-lib-UV0-array" count="16">
+0.014516 0.261202
+0.106837 0.261202
+0.106837 0.314647
+0.014516 0.314647
+0.014516 0.261202
+0.106837 0.261202
+0.106837 0.314647
+0.014516 0.314647
+</float_array>
+          <technique_common>
+            <accessor source="#Object51-lib-UV0-array" count="8" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Object51-lib-Vertex">
+          <input semantic="POSITION" source="#Object51-lib-Position"/>
+        </vertices>
+        <polygons material="_03___Default" count="4">
+          <input semantic="VERTEX" offset="0" source="#Object51-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#Object51-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#Object51-lib-UV0"/>
+          <p>0 0 0 1 1 1 2 2 2</p>
+          <p>2 3 2 3 4 3 0 5 0</p>
+          <p>4 6 4 5 7 5 6 8 6</p>
+          <p>6 9 6 7 10 7 4 11 4</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_lights>
+    <light id="SceneAmbient-lib" name="SceneAmbientMesh">
+      <technique_common>
+        <ambient>
+          <color>0.113725 0.113725 0.113725</color>
+        </ambient>
+      </technique_common>
+    </light>
+  </library_lights>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="Object51" name="Object51">
+        <translate sid="translate">0.121103 5.446586 8.705254</translate>
+        <rotate sid="rotateZ">0 0 1 -89.999999</rotate>
+        <node id="Object51-Pivot" name="Object51-Pivot">
+          <translate>7.815650 2.185392 -3.963391</translate>
+          <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
+          <instance_geometry url="#Object51-lib">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="Map__5-Material" target="#Map__5-Material"/>
+                <instance_material symbol="_03___Default" target="#_03___Default"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+

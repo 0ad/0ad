@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_house">
+  <Footprint>
+    <Square width="26.0" depth="26.0"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <Health>
+    <Max>2000</Max>
+  </Health>
+  <Identity>
+    <Civ>pers</Civ>
+    <SpecificName>Warehouse</SpecificName>
+  </Identity>
+  <VisualActor>
+    <Actor>props/structures/persians/alt_building_01.xml</Actor>
+  </VisualActor>
+</Entity>
