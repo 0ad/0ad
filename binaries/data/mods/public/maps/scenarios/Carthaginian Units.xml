@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="5">
+	<Environment>
+		<LightingModel>standard</LightingModel>
+		<SkySet>default</SkySet>
+		<SunColour r="0.74902" g="0.74902" b="0.74902"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785396"/>
+		<TerrainAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="339.26" y="84.6987" z="316.135"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "CircularMap": true,
+  "Description": "Carthaginian Units",
+  "GameType": "conquest",
+  "Keywords": [
+    "demo"
+  ],
+  "LockTeams": false,
+  "Name": "Carthaginian Units",
+  "PlayerData": [
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    },
+    {
+      "Civ": "hele"
+    }
+  ],
+  "RevealMap": false
+}
+]]></ScriptSettings>
+	<Entities>
+		<Entity uid="11">
+			<Template>units/samnite_skirmisher</Template>
+			<Player>1</Player>
+			<Position x="290.39545" z="372.79584"/>
+			<Orientation y="2.32213"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>units/samnite_skirmisher</Template>
+			<Player>1</Player>
+			<Position x="292.8592" z="372.99015"/>
+			<Orientation y="-3.1223"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>units/samnite_spearman</Template>
+			<Player>1</Player>
+			<Position x="286.51621" z="367.14008"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>units/samnite_spearman</Template>
+			<Player>1</Player>
+			<Position x="287.70322" z="368.75538"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>units/samnite_spearman</Template>
+			<Player>1</Player>
+			<Position x="286.8483" z="372.6991"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="17">
+			<Template>units/samnite_spearman</Template>
+			<Player>1</Player>
+			<Position x="285.10822" z="370.37198"/>
+			<Orientation y="2.44358"/>
+		</Entity>
+		<Entity uid="18">
+			<Template>units/samnite_spearman</Template>
+			<Player>1</Player>
+			<Position x="283.91083" z="367.99897"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>units/samnite_spearman</Template>
+			<Player>1</Player>
+			<Position x="281.47321" z="370.37198"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="20">
+			<Template>units/samnite_spearman</Template>
+			<Player>1</Player>
+			<Position x="282.22309" z="373.03891"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="21">
+			<Template>units/samnite_spearman</Template>
+			<Player>1</Player>
+			<Position x="284.62995" z="375.25971"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="22">
+			<Template>units/samnite_swordsman</Template>
+			<Player>1</Player>
+			<Position x="280.96146" z="366.11036"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="23">
+			<Template>units/samnite_swordsman</Template>
+			<Player>1</Player>
+			<Position x="285.7858" z="362.94706"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="24">
+			<Template>units/samnite_swordsman</Template>
+			<Player>1</Player>
+			<Position x="283.67905" z="365.00351"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="25">
+			<Template>units/samnite_swordsman</Template>
+			<Player>1</Player>
+			<Position x="282.37555" z="363.93827"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>units/samnite_swordsman</Template>
+			<Player>1</Player>
+			<Position x="282.15278" z="362.19266"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="27">
+			<Template>units/samnite_swordsman</Template>
+			<Player>1</Player>
+			<Position x="283.93281" z="360.77677"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="28">
+			<Template>units/samnite_swordsman</Template>
+			<Player>1</Player>
+			<Position x="284.81614" z="361.89005"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="29">
+			<Template>units/samnite_swordsman</Template>
+			<Player>1</Player>
+			<Position x="282.40506" z="366.93921"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="30">
+			<Template>units/cart_cavalry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="359.49207" z="408.93769"/>
+			<Orientation y="-2.0112"/>
+		</Entity>
+		<Entity uid="31">
+			<Template>units/cart_cavalry_javelinist_a</Template>
+			<Player>2</Player>
+			<Position x="357.52268" z="411.21674"/>
+			<Orientation y="-2.19114"/>
+		</Entity>
+		<Entity uid="36">
+			<Template>units/cart_cavalry_javelinist_e</Template>
+			<Player>2</Player>
+			<Position x="355.56058" z="413.68903"/>
+			<Orientation y="-2.14821"/>
+		</Entity>
+		<Entity uid="39">
+			<Template>units/cart_cavalry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="359.35688" z="417.81717"/>
+			<Orientation y="-2.20575"/>
+		</Entity>
+		<Entity uid="56">
+			<Template>units/cart_cavalry_swordsman_2_b</Template>
+			<Player>2</Player>
+			<Position x="353.64078" z="416.4726"/>
+			<Orientation y="-2.27323"/>
+		</Entity>
+		<Entity uid="57">
+			<Template>units/cart_cavalry_swordsman_2_a</Template>
+			<Player>2</Player>
+			<Position x="351.74662" z="418.32505"/>
+			<Orientation y="-2.24236"/>
+		</Entity>
+		<Entity uid="60">
+			<Template>units/cart_cavalry_swordsman_2_e</Template>
+			<Player>2</Player>
+			<Position x="349.29661" z="420.82444"/>
+			<Orientation y="-2.34452"/>
+		</Entity>
+		<Entity uid="61">
+			<Template>units/cart_cavalry_swordsman_b</Template>
+			<Player>2</Player>
+			<Position x="357.00803" z="421.6265"/>
+			<Orientation y="-2.43653"/>
+		</Entity>
+		<Entity uid="62">
+			<Template>units/cart_cavalry_swordsman_a</Template>
+			<Player>2</Player>
+			<Position x="355.40693" z="423.44025"/>
+			<Orientation y="-2.37758"/>
+		</Entity>
+		<Entity uid="69">
+			<Template>units/cart_cavalry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="353.37247" z="425.2794"/>
+			<Orientation y="-2.43078"/>
+		</Entity>
+		<Entity uid="73">
+			<Template>units/cart_champion_cavalry</Template>
+			<Player>2</Player>
+			<Position x="334.16456" z="440.20673"/>
+			<Orientation y="-2.55079"/>
+		</Entity>
+		<Entity uid="74">
+			<Template>units/cart_hero_hannibal</Template>
+			<Player>2</Player>
+			<Position x="347.13865" z="426.91797"/>
+			<Orientation y="-2.31275"/>
+		</Entity>
+		<Entity uid="75">
+			<Template>units/cart_hero_hamilcar</Template>
+			<Player>2</Player>
+			<Position x="341.38007" z="429.61313"/>
+			<Orientation y="-2.40662"/>
+		</Entity>
+		<Entity uid="76">
+			<Template>units/cart_hero_maharbal</Template>
+			<Player>2</Player>
+			<Position x="338.29874" z="432.89625"/>
+			<Orientation y="-2.45179"/>
+		</Entity>
+		<Entity uid="77">
+			<Template>units/cart_infantry_archer_b</Template>
+			<Player>2</Player>
+			<Position x="325.35087" z="407.28495"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="78">
+			<Template>units/cart_infantry_archer_a</Template>
+			<Player>2</Player>
+			<Position x="326.50824" z="409.21921"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="81">
+			<Template>units/cart_infantry_archer_e</Template>
+			<Player>2</Player>
+			<Position x="327.89466" z="411.00644"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="82">
+			<Template>units/cart_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="322.35325" z="409.9534"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="83">
+			<Template>units/cart_infantry_javelinist_a</Template>
+			<Player>2</Player>
+			<Position x="323.74415" z="411.7772"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="84">
+			<Template>units/cart_infantry_javelinist_e</Template>
+			<Player>2</Player>
+			<Position x="325.1211" z="413.80274"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="85">
+			<Template>units/cart_infantry_slinger_b</Template>
+			<Player>2</Player>
+			<Position x="318.70771" z="413.42151"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="86">
+			<Template>units/cart_infantry_slinger_a</Template>
+			<Player>2</Player>
+			<Position x="320.44666" z="415.48017"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="87">
+			<Template>units/cart_infantry_slinger_e</Template>
+			<Player>2</Player>
+			<Position x="322.12598" z="416.99366"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="88">
+			<Template>units/cart_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="330.54816" z="413.36735"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="93">
+			<Template>units/cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="332.57938" z="415.30915"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="114">
+			<Template>units/cart_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="334.4412" z="417.47104"/>
+			<Orientation y="2.535"/>
+		</Entity>
+		<Entity uid="126">
+			<Template>units/cart_infantry_swordsman_2_b</Template>
+			<Player>2</Player>
+			<Position x="327.77164" z="416.87519"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="139">
+			<Template>units/cart_infantry_swordsman_2_e</Template>
+			<Player>2</Player>
+			<Position x="331.78885" z="420.78193"/>
+			<Orientation y="2.52015"/>
+		</Entity>
+		<Entity uid="142">
+			<Template>units/cart_infantry_swordsman_b</Template>
+			<Player>2</Player>
+			<Position x="324.31379" z="420.91214"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="143">
+			<Template>units/cart_infantry_swordsman_a</Template>
+			<Player>2</Player>
+			<Position x="326.94248" z="423.05167"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="148">
+			<Template>units/cart_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="328.91315" z="425.22992"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="149">
+			<Template>units/cart_mechanical_siege_ballista</Template>
+			<Player>2</Player>
+			<Position x="354.14087" z="439.52323"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="150">
+			<Template>units/cart_mechanical_siege_oxybeles</Template>
+			<Player>2</Player>
+			<Position x="363.01178" z="431.22635"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="151">
+			<Template>units/cart_sacred_band_cavalry</Template>
+			<Player>2</Player>
+			<Position x="325.28956" z="436.50974"/>
+			<Orientation y="2.31734"/>
+		</Entity>
+		<Entity uid="152">
+			<Template>units/cart_champion_infantry</Template>
+			<Player>2</Player>
+			<Position x="322.79905" z="432.7266"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="154">
+			<Template>units/cart_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="319.8866" z="429.6435"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="155">
+			<Template>units/cart_support_healer</Template>
+			<Player>2</Player>
+			<Position x="317.48292" z="426.92215"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="156">
+			<Template>units/cart_support_trader</Template>
+			<Player>2</Player>
+			<Position x="314.61411" z="423.11304"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="159">
+			<Template>units/cart_cavalry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="361.59708" z="415.81937"/>
+			<Orientation y="-2.0376"/>
+		</Entity>
+		<Entity uid="162">
+			<Template>units/cart_cavalry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="362.9951" z="413.23465"/>
+			<Orientation y="-2.35454"/>
+		</Entity>
+		<Entity uid="168">
+			<Template>units/cart_infantry_swordsman_2_a</Template>
+			<Player>2</Player>
+			<Position x="329.76838" z="419.05643"/>
+			<Orientation y="2.43776"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+</Scenario>
