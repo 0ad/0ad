@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_support_trader">
+  <Footprint>
+    <Circle radius="2.0"/>
+    <Height>7.5</Height>
+  </Footprint>
   <Identity>
     <Civ>pers</Civ>
+	<GenericName>Aramaean Merchant</GenericName>
     <SpecificName>Tamkarum Arami</SpecificName>
     <History>Merchants were the working corps of the Persian economy, moving goods from one end of the vast empire to the other. Commodities included linen, carpets, perfume, cotton, salt, fruit, and even pearls. Thanks to the Aramaeans, the main language of Mesopotamia and in all directions from it was Aramaic, making trade simple. The language was eventually taken on as the official language of the Empire.</History>
   </Identity>
