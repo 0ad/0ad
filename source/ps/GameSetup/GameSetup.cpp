@@ -102,6 +102,10 @@
 #define MUST_INIT_X11 0
 #endif
 
+#if OS_WIN
+extern void wmi_Shutdown();
+#endif
+
 #include <iostream>
 
 ERROR_GROUP(System);
@@ -683,6 +687,12 @@ void Shutdown(int UNUSED(flags))
 		delete &g_Profiler;
 		delete &g_ProfileViewer;
 	TIMER_END(L"shutdown misc");
+
+#if OS_WIN
+	TIMER_BEGIN(L"shutdown wmi");
+	wmi_Shutdown();
+	TIMER_END(L"shutdown wmi");
+#endif
 }
 
 #if OS_UNIX

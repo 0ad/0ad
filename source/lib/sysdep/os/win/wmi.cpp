@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2011 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -42,12 +42,20 @@ _COM_SMARTPTR_TYPEDEF(IEnumWbemClassObject, __uuidof(IEnumWbemClassObject));
 
 static ModuleInitState initState;
 
+static bool didInitCOM = false;
+
 static Status Init()
 {
 	HRESULT hr;
 
 	hr = CoInitialize(0);
 	ENSURE(hr == S_OK || hr == S_FALSE);	// S_FALSE => already initialized
+
+	// balance calls to CoInitialize and CoUninitialize
+	if (hr == S_FALSE)
+		CoUninitialize();
+	else if (hr == S_OK)
+		didInitCOM = true;
 
 	hr = CoInitializeSecurity(0, -1, 0, 0, RPC_C_AUTHN_LEVEL_DEFAULT, RPC_C_IMP_LEVEL_IMPERSONATE, 0, EOAC_NONE, 0);
 	if(FAILED(hr))
@@ -75,8 +83,18 @@ static void Shutdown()
 {
 	pSvc->Release();
 
-	// note: don't shut down COM because other modules may still be using it.
-	//CoUninitialize();
+	if (didInitCOM)
+	{
+		/* From MSDN documentation: A thread must call CoUninitialize once for each successful call
+		 * it has made to the CoInitialize or CoInitializeEx function, including any call that returns
+		 * S_FALSE. Only the CoUninitialize call corresponding to the CoInitialize or CoInitializeEx
+		 * call that initialized the library can close it. 
+		 *
+		 * So it should be perfectly safe to call this, since it balances out the CoInitialize in Init
+		 */
+		CoUninitialize();
+		didInitCOM = false;
+	}
 }
 
 void wmi_Shutdown()

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -73,21 +73,6 @@ static InputProcessor g_Input;
 static GameLoopState state;
 GameLoopState* g_GameLoop = &state;
 
-static void* LaunchWindow(void* data)
-{
-	debug_SetThreadName("atlas_window");
-
-	const wchar_t* windowName = reinterpret_cast<const wchar_t*>(data);
-	Atlas_StartWindow(windowName);
-	return NULL;
-}
-
-// Work out which Atlas window to launch, given the command-line arguments
-static const wchar_t* FindWindowName(const CmdLineArgs& UNUSED(args))
-{
-	return L"ScenarioEditor";
-	// (This is a bit pointless - there's no choice since we've deleted the ActorViewer)
-}
 
 static ErrorReactionInternal AtlasDisplayError(const wchar_t* text, size_t flags)
 {
@@ -114,47 +99,20 @@ static void RendererIncrementalLoad()
 	while (more && timer_Time() - startTime < maxTime);
 }
 
-bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll) 
+static void* RunEngine(void *data)
 {
-	// Load required symbols from the DLL
-	try
-	{
-		dll.LoadSymbol("Atlas_StartWindow", Atlas_StartWindow);
-		dll.LoadSymbol("Atlas_SetMessagePasser", Atlas_SetMessagePasser);
-		dll.LoadSymbol("Atlas_SetDataDirectory", Atlas_SetDataDirectory);
-		dll.LoadSymbol("Atlas_GLSetCurrent", Atlas_GLSetCurrent);
-		dll.LoadSymbol("Atlas_GLSwapBuffers", Atlas_GLSwapBuffers);
-		dll.LoadSymbol("Atlas_NotifyEndOfFrame", Atlas_NotifyEndOfFrame);
-		dll.LoadSymbol("Atlas_DisplayError", Atlas_DisplayError);
-		dll.LoadSymbol("Atlas_ReportError", Atlas_ReportError);
-		dll.LoadSymbol("ShareableMalloc", ShareableMallocFptr);
-		dll.LoadSymbol("ShareableFree", ShareableFreeFptr);
-	}
-	catch (PSERROR_DllLoader&)
-	{
-		debug_warn(L"Failed to initialise DLL");
-		return false;
-	}
+	debug_SetThreadName("engine_thread");
 
-	// Construct a message passer for communicating with Atlas
-	MessagePasserImpl msgPasser;
-	AtlasMessage::g_MessagePasser = &msgPasser;
+	// Set new main thread so that all the thread-safety checks pass
+	ThreadUtil::SetMainThread();
 
-	// Pass our message handler to Atlas
-	Atlas_SetMessagePasser(&msgPasser);
+	const CmdLineArgs args = *reinterpret_cast<const CmdLineArgs*>(data);
 
-	// Tell Atlas the location of the data directory
-	const Paths paths(args);
-	Atlas_SetDataDirectory(paths.RData().string().c_str());
+	MessagePasserImpl* msgPasser = (MessagePasserImpl*)AtlasMessage::g_MessagePasser;	
 
 	// Register all the handlers for message which might be passed back
 	RegisterHandlers();
-
-	// Create a new thread, and launch the Atlas window inside that thread
-	const wchar_t* windowName = FindWindowName(args);
-	pthread_t uiThread;
-	pthread_create(&uiThread, NULL, LaunchWindow, reinterpret_cast<void*>(const_cast<wchar_t*>(windowName)));
-
+	
 	// Override ah_display_error to pass all errors to the Atlas UI
 	AppHooks hooks = {0};
 	hooks.display_error = AtlasDisplayError;
@@ -199,7 +157,7 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 		
 		{
 			IMessage* msg;
-			while ((msg = msgPasser.Retrieve()) != NULL)
+			while ((msg = msgPasser->Retrieve()) != NULL)
 			{
 				recent_activity = true;
 
@@ -294,7 +252,7 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 				// (TODO: This should probably be done with something like semaphores)
 				Atlas_NotifyEndOfFrame(); // (TODO: rename to NotifyEndOfQuiteShortProcessingPeriodSoPleaseSendMeNewMessages or something)
 				SDL_Delay(50);
-				if (!msgPasser.IsEmpty())
+				if (!msgPasser->IsEmpty())
 					break;
 				time = timer_Time();
 			}
@@ -306,10 +264,58 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 		}
 	}
 
+	return NULL;
+}
+
+bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll) 
+{
+	// Load required symbols from the DLL
+	try
+	{
+		dll.LoadSymbol("Atlas_StartWindow", Atlas_StartWindow);
+		dll.LoadSymbol("Atlas_SetMessagePasser", Atlas_SetMessagePasser);
+		dll.LoadSymbol("Atlas_SetDataDirectory", Atlas_SetDataDirectory);
+		dll.LoadSymbol("Atlas_GLSetCurrent", Atlas_GLSetCurrent);
+		dll.LoadSymbol("Atlas_GLSwapBuffers", Atlas_GLSwapBuffers);
+		dll.LoadSymbol("Atlas_NotifyEndOfFrame", Atlas_NotifyEndOfFrame);
+		dll.LoadSymbol("Atlas_DisplayError", Atlas_DisplayError);
+		dll.LoadSymbol("Atlas_ReportError", Atlas_ReportError);
+		dll.LoadSymbol("ShareableMalloc", ShareableMallocFptr);
+		dll.LoadSymbol("ShareableFree", ShareableFreeFptr);
+	}
+	catch (PSERROR_DllLoader&)
+	{
+		debug_warn(L"Failed to initialise DLL");
+		return false;
+	}
+
+	// Construct a message passer for communicating with Atlas
+	// (here so that it's scope lasts beyond the game thread)
+	MessagePasserImpl msgPasser;
+	AtlasMessage::g_MessagePasser = &msgPasser;
+
+	// Pass our message handler to Atlas
+	Atlas_SetMessagePasser(&msgPasser);
+
+	// Tell Atlas the location of the data directory
+	const Paths paths(args);
+	Atlas_SetDataDirectory(paths.RData().string().c_str());
+
+	// run the engine loop in a new thread
+	pthread_t engineThread;
+	pthread_create(&engineThread, NULL, RunEngine, reinterpret_cast<void*>(const_cast<CmdLineArgs*>(&args)));
+
+	// start Atlas UI on main thread
+	//	(required for wxOSX/Cocoa compatbility as some parts of the API aren't thread-safe)
+	Atlas_StartWindow(L"ScenarioEditor");
+
+	// Wait for the engine to exit
+	pthread_join(engineThread, NULL);
+
 	// TODO: delete all remaining messages, to avoid memory leak warnings
 
-	// Wait for the UI to exit
-	pthread_join(uiThread, NULL);
+	// Restore main thread
+	ThreadUtil::SetMainThread();
 
 	// Clean up
 	View::DestroyViews();

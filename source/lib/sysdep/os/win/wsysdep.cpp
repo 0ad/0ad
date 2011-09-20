@@ -459,6 +459,9 @@ Status sys_pick_directory(OsPath& path)
 		return INFO::OK;
 	}
 
+	// Balance call to CoInitialize, which must have been successful
+	CoUninitialize();
+
 	WARN_RETURN(StatusFromWin());
 }
 
