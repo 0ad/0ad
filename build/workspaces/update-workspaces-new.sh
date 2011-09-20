@@ -16,12 +16,6 @@ with_system_nvtt=false
 with_system_enet=false
 enable_atlas=true
 
-if [ "`uname -s`" = "Darwin" ]
-then
-  # Atlas is broken on OS X so disable by default
-  enable_atlas=false
-fi
-
 for i in "$@"
 do
   case $i in
