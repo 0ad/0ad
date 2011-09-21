@@ -118,6 +118,28 @@ var BuildingConstructionPlan = Class({
 		}
 	},
 
+	/**
+	 * Add a circular linear-falloff shape to a grid.
+	 */
+	subtractInfluence: function(grid, w, h, cx, cy, maxDist)
+	{
+		var x0 = Math.max(0, cx - maxDist);
+		var y0 = Math.max(0, cy - maxDist);
+		var x1 = Math.min(w, cx + maxDist);
+		var y1 = Math.min(h, cy + maxDist);
+		for (var y = y0; y < y1; ++y)
+		{
+			for (var x = x0; x < x1; ++x)
+			{
+				var dx = x - cx;
+				var dy = y - cy;
+				var r = Math.sqrt(dx*dx + dy*dy);
+				if (r < maxDist)
+					grid[x + y*w] -= maxDist - r;
+			}
+		}
+	},
+	
 	findGoodPosition: function(gameState)
 	{
 		var self = this;
@@ -149,7 +171,7 @@ var BuildingConstructionPlan = Class({
 			{
 				var infl = 32;
 				if (ent.hasClass("CivCentre"))
-					infl *= 4;
+					infl *= 5;
 
 				var pos = ent.position();
 				var x = Math.round(pos[0] / cellSize);
@@ -157,26 +179,22 @@ var BuildingConstructionPlan = Class({
 				self.addInfluence(friendlyTiles, map.width, map.height, x, z, infl);
 			}
 		});
-		
-		//Look at making sure we're a long way from enemy civ centres as well.
-	
-//		var enemyTiles = new Uint16Array(map.data.length);
-//		
+
 //			var foetargets = gameState.entities.filter(function(ent) {
 //				return (ent.isEnemy());
 //			});
 //			foetargets.forEach(function(ent) {
 //			if (ent.hasClass("CivCentre"))
 //			{
-//				var infl = 32;
+//				var infl = 100;
 //				var pos = ent.position();
 //				var x = Math.round(pos[0] / cellSize);
 //				var z = Math.round(pos[1] / cellSize);
-//				self.addInfluence(enemyTiles, map.width, map.height, x, z, infl);
+//				self.subtractInfluence(friendlyTiles, map.width, map.height, x, z, infl);
 //			}
 //		});
 
-
+		
 		// Find target building's approximate obstruction radius,
 		// and expand by a bit to make sure we're not too close
 		var template = gameState.getTemplate(this.type);

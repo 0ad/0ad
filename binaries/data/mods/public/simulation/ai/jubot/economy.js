@@ -149,6 +149,76 @@ var EconomyManager = Class({
 			},
 		];
 			}
+			// Carthage building list
+			else if (gameState.displayCiv() == "cart"){
+		this.targetBuildings = [
+			{
+				"template": "structures/{civ}_civil_centre",
+				"priority": 500,
+				"count": 1,
+			},
+			{
+				"template": "structures/{civ}_house",
+				"priority": 110,
+				"count": 6,
+			},
+				{
+				"template": "structures/{civ}_field",
+				"priority": 100,
+				"count": 2,
+			},
+			{
+				"template": "structures/{civ}_barracks",
+				"priority": 100,
+				"count": 1,
+			},
+			{
+				"template": "structures/cart_fortress",
+				"priority": 80,
+				"count": 1,
+			},
+			{
+				"template": "structures/cart_temple",
+				"priority": 75,
+				"count": 1,
+			},
+			{
+				"template": "structures/{civ}_scout_tower",
+				"priority": 70,
+				"count": 3,
+			},
+			{
+				"template": "structures/{civ}_house",
+				"priority": 55,
+				"count": 15,
+			},
+			{
+				"template": "structures/cart_embassy_celtic",
+				"priority": 50,
+				"count": 1,
+			},
+			{
+				"template": "structures/cart_embassy_iberian",
+				"priority": 50,
+				"count": 1,
+			},
+			{
+				"template": "structures/cart_embassy_italiote",
+				"priority": 50,
+				"count": 1,
+			},
+			{
+				"template": "structures/{civ}_field",
+				"priority": 40,
+				"count": 3,
+			},
+			{
+				"template": "structures/{civ}_house",
+				"priority": 30,
+				"count": 25,
+			},
+		];
+			}
 			// Celt building list
 			else if (gameState.displayCiv() == "iber"){
 		this.targetBuildings = [
@@ -443,13 +513,27 @@ var EconomyManager = Class({
 							return;
 		
 		var distcheck = 1000000;
+		var supplydistcheck = 1000000;
 		gameState.getOwnEntities().forEach(function(centre) {
 			if (centre.hasClass("CivCentre"))
 			{
 					var centrePosition = centre.position();
+							var currentsupplydistcheck = VectorDistance(supply.position, centrePosition);
+							if (currentsupplydistcheck < currentsupplydistcheck){
+							supplydistcheck = currentsupplydistcheck;
+							}
 							var currentdistcheck = VectorDistance(supply.position, centrePosition);
 							if (currentdistcheck < distcheck){
 							distcheck = currentdistcheck;
+							}
+						// Skip targets that are far too far away (e.g. in the enemy base)
+			}
+						else if (centre.hasClass("Economic"))
+			{
+					var centrePosition = centre.position();
+							var currentsupplydistcheck = VectorDistance(supply.position, centrePosition);
+							if (currentsupplydistcheck < currentsupplydistcheck){
+							supplydistcheck = currentsupplydistcheck;
 							}
 						// Skip targets that are far too far away (e.g. in the enemy base)
 			}
@@ -479,15 +563,15 @@ var EconomyManager = Class({
 					{
 					// THIS SHOULD BE A GLOBAL VARIABLE
 					var currentposformill = supplies[0].entity.position();
-					var distcheckold = 10000;
+					var distcheckoldII = 10000;
 					// CHECK DISTANCE
 					gameState.getOwnEntities().forEach(function(centre) {
 						if (centre.hasClass("CivCentre") || centre.hasClass("Economic"))
 						{
 								var centrePosition = centre.position();
-								var distcheck = VectorDistance(currentposformill, centrePosition);
-									if (distcheck < distcheckold){
-									distcheckold = distcheck;
+								var distcheckII = VectorDistance(currentposformill, centrePosition);
+									if (distcheckII < distcheckoldII){
+									distcheckoldII = distcheckII;
 									}
 						}
 					});
@@ -499,7 +583,7 @@ var EconomyManager = Class({
 					foundationsyes = true;
 					}
 					
-					if (distcheckold > 60 && foundationsyes == true){
+					if (distcheckoldII > 60 && foundationsyes == true){
 					//JuBotAI.prototype.chat("Building Mill");
 						planGroups.economyConstruction.addPlan(80,
 						new BuildingConstructionPlanEcon(gameState, "structures/{civ}_mill", 1, currentposformill)

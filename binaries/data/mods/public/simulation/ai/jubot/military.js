@@ -195,9 +195,9 @@ var MilitaryAttackManager = Class({
 			}
 	},
 	
-	combatcheck: function(gameState, planGroups)
+	combatcheck: function(gameState, planGroups, assaultgroup)
 	{
-			var regroupneeded = gameState.getOwnEntitiesWithRole("attack");
+			var regroupneeded = gameState.getOwnEntitiesWithRole(assaultgroup);
 				regroupneeded.forEach(function(troop) {
 				var currentPosition = troop.position();
 			var targets = gameState.entities.filter(function(ent) {
@@ -220,90 +220,9 @@ var MilitaryAttackManager = Class({
 				person.setMetadata("role", "fighting");
 				});
 			}
-				});
+				});	
 	},
-	
-	combatcheck3p1: function(gameState, planGroups)
-	{
-			var regroupneeded = gameState.getOwnEntitiesWithRole("attack_3p1");
-				regroupneeded.forEach(function(troop) {
-				var currentPosition = troop.position();
-			var targets = gameState.entities.filter(function(ent) {
-				var foeposition = ent.position();
-				if (foeposition){
-				var dist = VectorDistance(foeposition, currentPosition);
-				return (ent.isEnemy() && ent.owner()!= 0 && dist < 50);
-				}
-				else {
-				return false;
-				}
-			});
-			if (targets.length >= 5){
-				regroupneeded.forEach(function(person) {
-				var targetrandomiser = Math.floor(Math.random()*targets.length);
-				var target = targets.toEntityArray()[targetrandomiser];
-				var targetPos = target.position();
-				// TODO: this should be an attack-move command
-				person.move(targetPos[0], targetPos[1]);
-				person.setMetadata("role", "fighting");
-				});
-			}
-				});
-	},	
-	combatcheck3p2: function(gameState, planGroups)
-	{
-			var regroupneeded = gameState.getOwnEntitiesWithRole("attack_3p2");
-				regroupneeded.forEach(function(troop) {
-				var currentPosition = troop.position();
-			var targets = gameState.entities.filter(function(ent) {
-				var foeposition = ent.position();
-				if (foeposition){
-				var dist = VectorDistance(foeposition, currentPosition);
-				return (ent.isEnemy() && ent.owner()!= 0 && dist < 50);
-				}
-				else {
-				return false;
-				}
-			});
-			if (targets.length >= 5){
-				regroupneeded.forEach(function(person) {
-				var targetrandomiser = Math.floor(Math.random()*targets.length);
-				var target = targets.toEntityArray()[targetrandomiser];
-				var targetPos = target.position();
-				// TODO: this should be an attack-move command
-				person.move(targetPos[0], targetPos[1]);
-				person.setMetadata("role", "fighting");
-				});
-			}
-				});
-	},	
-	combatcheck3p3: function(gameState, planGroups)
-	{
-			var regroupneeded = gameState.getOwnEntitiesWithRole("attack_3p3");
-				regroupneeded.forEach(function(troop) {
-				var currentPosition = troop.position();
-			var targets = gameState.entities.filter(function(ent) {
-				var foeposition = ent.position();
-				if (foeposition){
-				var dist = VectorDistance(foeposition, currentPosition);
-				return (ent.isEnemy() && ent.owner()!= 0 && dist < 50);
-				}
-				else {
-				return false;
-				}
-			});
-			if (targets.length >= 5){
-				regroupneeded.forEach(function(person) {
-				var targetrandomiser = Math.floor(Math.random()*targets.length);
-				var target = targets.toEntityArray()[targetrandomiser];
-				var targetPos = target.position();
-				// TODO: this should be an attack-move command
-				person.move(targetPos[0], targetPos[1]);
-				person.setMetadata("role", "fighting");
-				});
-			}
-				});
-	},
+
 	defenseregroup: function(gameState, planGroups)
 	{
 			if (gameState.getTimeElapsed() > this.changetimeRegDef){
@@ -555,6 +474,39 @@ var MilitaryAttackManager = Class({
 					this.trainSomeTroops(gameState, planGroups, "units/{civ}_infantry_swordsman_b");
 					}
 				}
+			//Carthaginians
+				else if (gameState.displayCiv() == "cart"){
+					if (this.attacknumbers < 0.25){
+					this.trainSomeTroops(gameState, planGroups, "units/cart_champion_infantry");
+					}
+					else if (this.attacknumbers < 0.4){
+					this.trainSomeTroops(gameState, planGroups, "units/cart_champion_cavalry");
+					}
+					else if (this.attacknumbers < 0.5){
+					this.trainSomeTroops(gameState, planGroups, "units/{civ}_infantry_archer_b");
+					}
+					else if (this.attacknumbers < 0.6){
+					this.trainSomeTroops(gameState, planGroups, "units/{civ}_infantry_swordsman_b");
+					}
+					else if (this.attacknumbers < 0.65){
+					this.trainSomeTroops(gameState, planGroups, "units/{civ}_infantry_javelinist_b");
+					}
+					else if (this.attacknumbers < 0.7){
+					this.trainSomeTroops(gameState, planGroups, "units/{civ}_cavalry_swordsman_b");
+					}
+					else if (this.attacknumbers < 0.8){
+					this.trainSomeTroops(gameState, planGroups, "units/{civ}_cavalry_swordsman_2_b");
+					}
+					else if (this.attacknumbers < 0.85){
+					this.trainSomeTroops(gameState, planGroups, "units/{civ}_infantry_swordsman_2_b");
+					}
+					else if (this.attacknumbers < 0.9){
+					this.trainMachine(gameState, planGroups, "units/cart_mechanical_siege_ballista");
+					}
+					else {
+					this.trainSomeTroops(gameState, planGroups, "units/{civ}_infantry_spearman_b");
+					}
+				}
 			}
 			// Cav raiders training list
 			else if (this.killstrat == 2){
@@ -578,6 +530,9 @@ var MilitaryAttackManager = Class({
 			}
 			else if  (gameState.displayCiv() == "celt"){
 			this.trainSomeTroops(gameState, planGroups, "units/{civ}_cavalry_javelinist_b");
+			}
+			else if  (gameState.displayCiv() == "cart"){
+			this.trainSomeTroops(gameState, planGroups, "units/{civ}_cavalry_swordsman_b");
 			}
 			else if  (gameState.displayCiv() == "hele"){
 			this.trainSomeTroops(gameState, planGroups, "units/{civ}_cavalry_swordsman_b");
@@ -620,6 +575,18 @@ var MilitaryAttackManager = Class({
 					else {
 					this.trainSomeTroops3prong(gameState, planGroups, "units/{civ}_infantry_swordsman_b");
 					}
+				}
+			//Carts
+				else if (gameState.displayCiv() == "cart"){
+					if (this.attacknumbers < 0.2){
+					this.trainSomeTroops3prong(gameState, planGroups, "units/{civ}_cavalry_swordsman_b");
+					}
+					else if (this.attacknumbers < 0.4){
+					this.trainSomeTroops3prong(gameState, planGroups, "units/{civ}_infantry_archer_b");
+					}
+					else {
+					this.trainSomeTroops3prong(gameState, planGroups, "units/{civ}_infantry_spearman_b");
+					}
 			}
 			}
 			// Generic training list
@@ -660,6 +627,18 @@ var MilitaryAttackManager = Class({
 					this.trainSomeTroops(gameState, planGroups, "units/{civ}_infantry_swordsman_b");
 					}
 				}
+			//Carts
+				else if (gameState.displayCiv() == "cart"){
+					if (this.attacknumbers < 0.2){
+					this.trainSomeTroops3prong(gameState, planGroups, "units/{civ}_cavalry_swordsman_b");
+					}
+					else if (this.attacknumbers < 0.4){
+					this.trainSomeTroops3prong(gameState, planGroups, "units/{civ}_infantry_archer_b");
+					}
+					else {
+					this.trainSomeTroops3prong(gameState, planGroups, "units/{civ}_infantry_spearman_b");
+					}
+				}
 			}
 	},
 	
@@ -673,14 +652,15 @@ var MilitaryAttackManager = Class({
 		Engine.ProfileStart("military update");
 		// Also train up some defenders
 
-		this.combatcheck(gameState, planGroups);
-		this.combatcheck3p1(gameState, planGroups);
-		this.combatcheck3p2(gameState, planGroups);
-		this.combatcheck3p3(gameState, planGroups);
+		this.combatcheck(gameState, planGroups, "attack");
+		this.combatcheck(gameState, planGroups, "attack_3p1");
+		this.combatcheck(gameState, planGroups, "attack_3p2");
+		this.combatcheck(gameState, planGroups, "attack_3p3");
 		this.trainDefenderSquad(gameState, planGroups);
 		this.trainAttackSquad(gameState, planGroups);
 		this.regroup(gameState, planGroups);
 		this.defenseregroup(gameState, planGroups);
+		this.waitingregroup(gameState, planGroups);
 
 // Variable for impetuousness, so squads vary in size.
 		if (this.killstrat == 1){

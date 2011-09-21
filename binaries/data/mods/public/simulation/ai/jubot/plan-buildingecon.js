@@ -167,7 +167,7 @@ var BuildingConstructionPlanEcon = Class({
 		// Compute each tile's closeness to friendly structures:
 
 		var friendlyTiles = new Uint16Array(map.data.length);
-		var infl = 20;
+		var infl = 100;
 		var pos = this.resourceposition;
 		var x = Math.round(pos[0] / cellSize);
 		var z = Math.round(pos[1] / cellSize);
