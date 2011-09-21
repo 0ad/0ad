@@ -349,25 +349,27 @@ TrainingQueue.prototype.ProgressTimeout = function(data)
 		}
 
 		var numSpawned = this.SpawnUnits(item.template, item.count, item.metadata);
-		if (numSpawned > 0)
-		{
-			// This could be only partially finised
-			cmpPlayer.UnReservePopulationSlots(item.population * numSpawned);
-			item.count -= numSpawned;
-			Engine.PostMessage(this.entity, MT_TrainingQueueChanged, { });
-		}
-		
-		if (item.count == 0)
+		if (numSpawned == item.count)
 		{
 			// All entities spawned, this batch finished
+			cmpPlayer.UnReservePopulationSlots(item.population * numSpawned);
 			time -= item.timeRemaining;
 			this.queue.shift();
 			// Unset flag that training queue is blocked
 			cmpPlayer.UnBlockTrainingQueue();
 			this.spawnNotified = false;
+			Engine.PostMessage(this.entity, MT_TrainingQueueChanged, { });
 		}
 		else
 		{
+			if (numSpawned > 0)
+			{
+				// Only partially finished
+				cmpPlayer.UnReservePopulationSlots(item.population * numSpawned);
+				item.count -= numSpawned;
+				Engine.PostMessage(this.entity, MT_TrainingQueueChanged, { });
+			}
+
 			// Some entities failed to spawn
 			// Set flag that training queue is blocked
 			cmpPlayer.BlockTrainingQueue();
