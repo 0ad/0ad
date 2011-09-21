@@ -105,13 +105,20 @@ public:
 	void Latch()
 	{
 		if(m_hasChanged)
-			Upload(m_changed);
+		{
+			if(!Upload(m_changed))
+				m_hasChanged = false;
+		}
+
 	}
 
 	void RestoreOriginal()
 	{
 		if(m_hasChanged)
-			Upload(m_original);
+		{
+			if(!Upload(m_original))
+				m_hasChanged = false;
+		}
 	}
 
 private:
@@ -151,7 +158,10 @@ private:
 		if(ok == FALSE)
 		{
 			ok = SetDeviceGammaRamp(g_hDC, ramps);
-			ENSURE(ok);
+			// at least one 32-bit XP system STILL fails here,
+			// so don't raise an error dialog.
+			if(!ok)
+				debug_printf(L"SetDeviceGammaRamp failed twice. Oh well.\n");
 		}
 		return (ok == TRUE);
 	}
