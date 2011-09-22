@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="Base">
       <animations>
-        <animation file="female/f_idle_01.dae" name="Idle" speed="200"/>
-        <animation file="female/f_walk_01.dae" name="Walk" speed="10"/>
-        <animation file="female/f_lumber_01.dae" name="gather_wood" speed="100"/>
-        <animation file="female/f_farm_01.dae" name="gather_grain" speed="150"/>
-        <animation file="female/f_gather_01.dae" name="gather_fruit" speed="100"/>
-        <animation file="female/f_mine_01.dae" name="gather_stone" speed="150"/>
-        <animation file="female/f_mine_01.dae" name="gather_metal" speed="150"/>
-        <animation file="female/f_build_01.dae" name="Build" speed="150"/>
-        <animation file="female/f_death_01.dae" name="Death" speed="100"/>
+        <animation file="female/f_idle_01.dae" name="Idle" speed="100"/>
+        <animation file="female/f_walk_01.dae" name="Walk" speed="30"/>
+        <animation file="female/f_walk_01.dae" name="Run" speed="45"/>
+        <animation file="female/f_walk_01.dae" name="carry_food" speed="40"/>
+        <animation file="female/f_walk_01.dae" name="carry_meat" speed="40"/>
+        <animation file="female/f_walk_01.dae" name="carry_wood" speed="40"/>
+        <animation file="female/f_walk_01.dae" name="carry_stone" speed="40"/>
+        <animation file="female/f_walk_01.dae" name="carry_metal" speed="40"/>
+        <animation event="0.4" file="female/f_lumber_01.dae" name="gather_tree" speed="60"/>
+        <animation file="female/f_farm_01.dae" name="gather_grain" speed="75"/>
+        <animation file="female/f_gather_01.dae" name="gather_fruit" speed="25"/>
+        <animation file="female/f_gather_01.dae" name="gather_meat" speed="25"/>
+        <animation event="0.4" file="female/f_mine_01.dae" name="gather_rock" speed="150"/>
+        <animation event="0.4" file="female/f_mine_01.dae" name="gather_ore" speed="150"/>
+        <animation file="female/f_mine_01.dae" name="gather_ruins" speed="150"/>
+        <animation event="0.6" file="female/f_build_01.dae" name="Build" speed="70"/>
+        <animation file="female/f_death_01.dae" name="Death" speed="130"/>
       </animations>
       <props>
         <prop actor="props/units/heads/head_pers_fem_1.xml" attachpoint="head"/>
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="Dress-01">
       <mesh>skeletal/f_dress.dae</mesh>
@@ -32,7 +37,6 @@
       <texture>skeletal/pers_fem_2.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="Idle">
       <props>
@@ -40,7 +44,7 @@
         <prop attachpoint="r_hand"/>
       </props>
     </variant>
-    <variant name="gather_wood">
+    <variant name="gather_tree">
       <props>
         <prop actor="props/units/tools/axe.xml" attachpoint="l_hand"/>
         <prop actor="" attachpoint="r_hand"/>
@@ -59,13 +63,26 @@
         <prop attachpoint="l_hand"/>
       </props>
     </variant>
-    <variant name="gather_stone">
+    <variant name="gather_meat">
+      <props>
+        <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
+        <prop attachpoint="l_hand"/>
+        <prop attachpoint="r_hand"/>
+      </props>
+    </variant>
+    <variant name="gather_rock">
       <props>
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
       </props>
     </variant>
-    <variant name="gather_metal">
+    <variant name="gather_ore">
+      <props>
+        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
+        <prop attachpoint="r_hand"/>
+      </props>
+    </variant>
+    <variant name="gather_ruins">
       <props>
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
@@ -77,8 +94,41 @@
         <prop attachpoint="l_hand"/>
       </props>
     </variant>
+    <variant name="carry_food">
+      <props>
+        <prop actor="props/units/shuttle_basket_back.xml" attachpoint="back"/>
+        <prop attachpoint="l_hand"/>
+        <prop attachpoint="r_hand"/>
+      </props>
+    </variant>
+    <variant name="carry_meat">
+      <props>
+        <prop actor="props/units/shuttle_basket_back.xml" attachpoint="back"/>
+        <prop attachpoint="l_hand"/>
+        <prop attachpoint="r_hand"/>
+      </props>
+    </variant>
+    <variant name="carry_wood">
+      <props>
+        <prop actor="props/units/shuttle_basket_back.xml" attachpoint="back"/>
+        <prop attachpoint="l_hand"/>
+        <prop attachpoint="r_hand"/>
+      </props>
+    </variant>
+    <variant name="carry_stone">
+      <props>
+        <prop actor="props/units/shuttle_basket_back.xml" attachpoint="back"/>
+        <prop attachpoint="l_hand"/>
+        <prop attachpoint="r_hand"/>
+      </props>
+    </variant>
+    <variant name="carry_metal">
+      <props>
+        <prop actor="props/units/shuttle_basket_back.xml" attachpoint="back"/>
+        <prop attachpoint="l_hand"/>
+        <prop attachpoint="r_hand"/>
+      </props>
+    </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>
