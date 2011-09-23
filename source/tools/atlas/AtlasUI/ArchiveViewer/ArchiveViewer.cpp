@@ -461,7 +461,7 @@ void ArchiveViewer::ExtractFiles(bool onlySelected)
 			wxString filename = wxString( utf16tow(file.filename).c_str() );
 			int lastSlash = filename.Find(_T('\\'), true);
 			if (lastSlash != -1)
-				dirs.insert(filename.Mid(0, lastSlash+1).c_str());
+				dirs.insert(filename.Mid(0, lastSlash+1).wc_str());
 		}
 
 		// Construct the directory tree:
