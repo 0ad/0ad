@@ -78,12 +78,13 @@ BaseAI.prototype.HandleMessage = function(state)
 	Engine.ProfileStart("HandleMessage setup");
 
 	this.entities = new EntityCollection(this, this._rawEntities);
+	this.events = state.events;
+	this.map = state.map;
+	this.passabilityClasses = state.passabilityClasses;
 	this.player = this._player;
 	this.playerData = state.players[this._player];
 	this.templates = this._templates;
 	this.timeElapsed = state.timeElapsed;
-	this.map = state.map;
-	this.passabilityClasses = state.passabilityClasses;
 
 	Engine.ProfileStop();
 
@@ -91,12 +92,13 @@ BaseAI.prototype.HandleMessage = function(state)
 
 	// Clean up temporary properties, so they don't disturb the serializer
 	delete this.entities;
+	delete this.events;
+	delete this.map;
+	delete this.passabilityClasses;
 	delete this.player;
 	delete this.playerData;
 	delete this.templates;
 	delete this.timeElapsed;
-	delete this.map;
-	delete this.passabilityClasses;
 };
 
 BaseAI.prototype.ApplyEntitiesDelta = function(state)
@@ -150,7 +152,7 @@ BaseAI.prototype.ApplyEntitiesDelta = function(state)
 };
 
 BaseAI.prototype.OnUpdate = function()
-{
+{	// AIs override this function
 };
 
 BaseAI.prototype.chat = function(message)
