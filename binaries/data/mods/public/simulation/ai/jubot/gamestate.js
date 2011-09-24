@@ -78,6 +78,32 @@ var GameState = Class({
 			});
 	}),
 
+	getOwnEntitiesWithTwoRoles: Memoize('getOwnEntitiesWithRole', function(role, role2)
+	{
+		var metas = this.ai._entityMetadata;
+		if (role === undefined)
+			return this.getOwnEntities().filter_raw(function(ent) {
+				var metadata = metas[ent.id];
+				if (!metadata || !('role' in metadata))
+					return true;
+				return (metadata.role === undefined);
+			});
+		else if (role2 === undefined)
+			return this.getOwnEntities().filter_raw(function(ent) {
+				var metadata = metas[ent.id];
+				if (!metadata || !('role' in metadata))
+					return true;
+				return (metadata.role === undefined);
+			});
+		else
+			return this.getOwnEntities().filter_raw(function(ent) {
+				var metadata = metas[ent.id];
+				if (!metadata || !('role' in metadata))
+					return false;
+				return (metadata.role === role || metadata.role === role2);
+			});
+	}),
+
 	countEntitiesWithType: function(type)
 	{
 		var count = 0;
@@ -124,6 +150,30 @@ var GameState = Class({
 			{
 				queue.forEach(function(item) {
 					if (item.metadata && item.metadata.role == role)
+						count += item.count;
+				});
+			}
+		});
+		return count;
+	},
+
+	countEntitiesAndQueuedWithRoles: function(role, role2)
+	{
+		var count = 0;
+		this.getOwnEntities().forEach(function(ent) {
+
+			if (ent.getMetadata("role") == role)
+				++count;
+			else if (ent.getMetadata("role") == role2)
+				++count;
+
+			var queue = ent.trainingQueue();
+			if (queue)
+			{
+				queue.forEach(function(item) {
+					if (item.metadata && item.metadata.role == role)
+						count += item.count;
+					else if (item.metadata && item.metadata.role == role2)
 						count += item.count;
 				});
 			}
@@ -207,4 +257,14 @@ var GameState = Class({
 		});
 		return supplies;
 	},
+       
+    getPopulationLimit: function()
+    {
+        return this.playerData.popLimit;
+    },
+       
+    getPopulation: function()
+    {
+        return this.playerData.popCount;
+    }
 });

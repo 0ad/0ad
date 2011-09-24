@@ -12,12 +12,12 @@ var MilitaryAttackManager = Class({
 	{
 		this.baserate = 11;
 		this.defsquad = 10;
-		this.defsquadmin = 2;
+		this.defsquadmin = 5;
 		this.findatype = 1;
 		this.killstrat = 0;
 		this.changetime = 60*1000;
 		this.changetimeReg = 60*5000;
-		this.changetimeRegDef = 60*5000;
+		this.changetimeRegDef = 60*1000;
 		this.changetimeRegWaiting = 60*4000;
 		this.attacknumbers = 0.4
 		this.squadTypes = [
@@ -222,24 +222,69 @@ var MilitaryAttackManager = Class({
 			}
 				});	
 	},
+	
+	combatcheck_militia: function(gameState, planGroups, assaultgroup)
+	{
+			var regroupneeded = gameState.getOwnEntitiesWithRole(assaultgroup);
+				regroupneeded.forEach(function(troop) {
+				var currentPosition = troop.position();
+			// Find nearby enemies
+			var targets = gameState.entities.filter(function(ent) {
+				var foeposition = ent.position();
+				if (foeposition){
+				var dist = VectorDistance(foeposition, currentPosition);
+				return (ent.isEnemy() && ent.owner()!= 0 && dist < 50);
+				}
+				else {
+				return false;
+				}
+			});
+			// Check that some of our own buildings are nearby
+			var ownbuildings = gameState.getOwnEntities.filter(function(ent) {
+				var foeposition = ent.position();
+				if (foeposition){
+				var dist = VectorDistance(foeposition, currentPosition);
+				return (dist < 50 && ent.hasClass("Village"));
+				}
+				else {
+				return false;
+				}
+			});
+			if (targets.length >= 5 && ownbuildings.length > 0){
+				regroupneeded.forEach(function(person) {
+				var targetrandomiser = Math.floor(Math.random()*targets.length);
+				var target = targets.toEntityArray()[targetrandomiser];
+				var targetPos = target.position();
+				// TODO: this should be an attack-move command
+				person.move(targetPos[0], targetPos[1]);
+				person.setMetadata("role", "militiafighter");
+				});
+			}
+				});	
+	},
 
 	defenseregroup: function(gameState, planGroups)
 	{
 			if (gameState.getTimeElapsed() > this.changetimeRegDef){
-			var defenseregroupers = gameState.getOwnEntitiesWithRole("defenders");
-				//Find a friendsly CC
-			var targets = gameState.entities.filter(function(ent) {
-				return (!ent.isEnemy() && ent.hasClass("CivCentre"));
+			// Send them home
+					var targets = gameState.entities.filter(function(squeak) {
+				return (!squeak.isEnemy() && squeak.hasClass("Village"));
 			});
-			if (targets.length){
-				var target = targets.toEntityArray()[0];
+			if (targets.length)
+			{
+				var targetrandomiser = Math.floor(Math.random()*targets.length);
+				var target = targets.toEntityArray()[targetrandomiser];
 				var targetPos = target.position();
-
-				// TODO: this should be an attack-move command
-				defenseregroupers.move(targetPos[0], targetPos[1]);
 			}
-			// Wait 4 mins to do this again.
-			this.changetimeRegDef = this.changetimeRegDef + (60*1500);
+			// Change 'em back to militia
+			var defenseregroupers = gameState.getOwnEntitiesWithRole("militiafighter");
+		defenseregroupers.forEach(function(ent) {
+			// If we have a target to go home to, move to it
+				ent.move(targetPos[0], targetPos[1]);
+				ent.setMetadata("role", "militia");
+		});
+			// Wait 45 secs to do this again.
+			this.changetimeRegDef = this.changetimeRegDef + (30*1000);
 			}
 	},
 	
@@ -314,27 +359,27 @@ var MilitaryAttackManager = Class({
 		var pendingdefense = gameState.getOwnEntitiesWithRole("defenders");
 		//JuBotAI.prototype.chat("Number of defenders is" + pendingdefense.length);
 			if (pendingdefense.length < this.defsquadmin && gameState.displayCiv() == "iber"){
-			planGroups.economyPersonnel.addPlan(122,
+			planGroups.economyPersonnel.addPlan(500,
 				new UnitTrainingPlan(gameState,
 					"units/{civ}_infantry_swordsman_b", 3, { "role": "defenders" })
 			);
 			}
 			else if (pendingdefense.length < this.defsquadmin){
-			planGroups.economyPersonnel.addPlan(122,
+			planGroups.economyPersonnel.addPlan(500,
 				new UnitTrainingPlan(gameState,
 					"units/{civ}_infantry_spearman_b", 3, { "role": "defenders" })
 			);
 		//JuBotAI.prototype.chat("Training defenders");
 			}
 			else if (pendingdefense.length < this.defsquad && gameState.displayCiv() == "iber"){
-			planGroups.economyPersonnel.addPlan(110,
+			planGroups.economyPersonnel.addPlan(150,
 				new UnitTrainingPlan(gameState,
 					"units/{civ}_infantry_swordsman_b", 3, { "role": "defenders" })
 			);
 		//JuBotAI.prototype.chat("Training defenders");
 			}
 			else if (pendingdefense.length < this.defsquad){
-			planGroups.economyPersonnel.addPlan(110,
+			planGroups.economyPersonnel.addPlan(150,
 				new UnitTrainingPlan(gameState,
 					"units/{civ}_infantry_spearman_b", 3, { "role": "defenders" })
 			);
@@ -346,7 +391,7 @@ var MilitaryAttackManager = Class({
 	{
 			var trainers = gameState.findTrainers(gameState.applyCiv(type));
 			if (trainers.length != 0){
-			planGroups.economyPersonnel.addPlan(100,
+			planGroups.economyPersonnel.addPlan(150,
 				new UnitTrainingPlan(gameState,
 					type, 3, { "role": "attack-pending" })
 			);
@@ -360,7 +405,7 @@ var MilitaryAttackManager = Class({
 	{
 			var trainers = gameState.findTrainers(gameState.applyCiv(type));
 			if (trainers.length != 0){
-			planGroups.economyPersonnel.addPlan(100,
+			planGroups.economyPersonnel.addPlan(150,
 				new UnitTrainingPlan(gameState,
 					type, 1, { "role": "attack-pending" })
 			);
@@ -375,19 +420,19 @@ var MilitaryAttackManager = Class({
 			var trainers = gameState.findTrainers(gameState.applyCiv(type));
 			var section = Math.random();
 			if (trainers.length != 0 && section < 0.3){
-			planGroups.economyPersonnel.addPlan(100,
+			planGroups.economyPersonnel.addPlan(150,
 				new UnitTrainingPlan(gameState,
 					type, 3, { "role": "attack-pending_3p1" })
 			);
 			}
 			else if (trainers.length != 0 && section < 0.6){
-			planGroups.economyPersonnel.addPlan(100,
+			planGroups.economyPersonnel.addPlan(150,
 				new UnitTrainingPlan(gameState,
 					type, 3, { "role": "attack-pending_3p2" })
 			);
 			}
 			else if (trainers.length != 0){
-			planGroups.economyPersonnel.addPlan(100,
+			planGroups.economyPersonnel.addPlan(150,
 				new UnitTrainingPlan(gameState,
 					type, 3, { "role": "attack-pending_3p3" })
 			);
@@ -656,7 +701,8 @@ var MilitaryAttackManager = Class({
 		this.combatcheck(gameState, planGroups, "attack_3p1");
 		this.combatcheck(gameState, planGroups, "attack_3p2");
 		this.combatcheck(gameState, planGroups, "attack_3p3");
-		this.trainDefenderSquad(gameState, planGroups);
+		this.combatcheck(gameState, planGroups, "militia");
+		//this.trainDefenderSquad(gameState, planGroups);
 		this.trainAttackSquad(gameState, planGroups);
 		this.regroup(gameState, planGroups);
 		this.defenseregroup(gameState, planGroups);
@@ -815,25 +861,17 @@ var MilitaryAttackManager = Class({
 			if (whatnext > 0.8){
 			this.killstrat = 0;
 			// Regular "train a few guys and go kill stuff" type attack.
-		//JuBotAI.prototype.chat("Regular attack (" + gameState.displayCiv() + ")");
-		//JuBotAI.prototype.chat(whatnext);
 			}
 			else if (whatnext > 0.5) {
 			this.killstrat = 2;
-		//JuBotAI.prototype.chat("Cavalry raid (" + gameState.displayCiv() + ")");
-		//JuBotAI.prototype.chat(whatnext);
 			// Cavalry raid
 			}
 			else if (whatnext > 0.4) {
 			this.killstrat = 3;
-		//JuBotAI.prototype.chat("3 pronged assault (" + gameState.displayCiv() + ")");
-		//JuBotAI.prototype.chat(whatnext);
 			// 3 prong
 			}
 			else {
 			this.killstrat = 1;
-		//JuBotAI.prototype.chat("Full assault (" + gameState.displayCiv() + ")");
-		//JuBotAI.prototype.chat(whatnext);
 			//Full Assault!
 			}
 		}
