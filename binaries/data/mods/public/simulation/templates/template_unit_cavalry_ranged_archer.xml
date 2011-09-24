@@ -8,17 +8,17 @@
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
-      <Pierce>40.0</Pierce>
+      <Pierce>30.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>56.0</MaxRange>
       <MinRange>20.0</MinRange>
-      <ProjectileSpeed>50.0</ProjectileSpeed>
+      <ProjectileSpeed>60.0</ProjectileSpeed>
       <PrepareTime>1200</PrepareTime>
       <RepeatTime>2000</RepeatTime>
     </Ranged>
   </Attack>
   <Cost>
-    <BuildTime>20</BuildTime>
+    <BuildTime>15</BuildTime>
     <Resources>
       <food>100</food>
       <wood>85</wood>
@@ -29,7 +29,7 @@
   </Health>
   <Identity>
     <GenericName>Cavalry Archer</GenericName>
-    <Rollover>A very rare unit in Part 1. It was used by the Persians, but it didn't gain much traction until the Parthians, Huns, Mongols, and other people of the nomadic steeps introduced them to western Europe. This was the most effective unit on the battlefield for several hundred years until the well armoured knight came along. Therefore, this unit will gain much more prominence in Part 2.</Rollover>
+    <History>A very rare unit in Part 1. It was used by the Persians, but it didn't gain much traction until the Parthians, Huns, Mongols, and other people of the nomadic steeps introduced them to western Europe. This was the most effective unit on the battlefield for several hundred years until the well armoured knight came along. Therefore, this unit will gain much more prominence in Part 2.</History>
     <Tooltip>Bonused vs. Infantry Spearman and Infantry Swordsman.</Tooltip>
   </Identity>
   <UnitMotion>
