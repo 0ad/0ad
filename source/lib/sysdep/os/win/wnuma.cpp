@@ -36,7 +36,7 @@
 #include <Psapi.h>
 
 #if ARCH_X86_X64
-#include "lib/sysdep/arch/x86_x64/topology.h"	// ApicIds
+#include "lib/sysdep/arch/x86_x64/apic.h"	// ProcessorFromApicId
 #endif
 
 
@@ -231,7 +231,7 @@ static ProximityDomains ExtractProximityDomainsFromSRAT(const SRAT* srat)
 		const AffinityAPIC* affinityAPIC = DynamicCastFromHeader<AffinityAPIC>(header);
 		if(affinityAPIC)
 		{
-			const size_t processor = cpu_topology_ProcessorFromApicId(affinityAPIC->apicId);
+			const size_t processor = ProcessorFromApicId(affinityAPIC->apicId);
 			const u32 proximityDomainNumber = affinityAPIC->ProximityDomainNumber();
 			ProximityDomain& proximityDomain = proximityDomains[proximityDomainNumber];
 			proximityDomain.processorMask |= Bit<uintptr_t>(processor);
@@ -270,7 +270,7 @@ static Status InitTopology()
 
 #if ARCH_X86_X64
 	const SRAT* srat = (const SRAT*)acpi_GetTable("SRAT");
-	if(srat)
+	if(srat && AreApicIdsReliable())
 	{
 		const ProximityDomains proximityDomains = ExtractProximityDomainsFromSRAT(srat);
 		PopulateNodesFromProximityDomains(proximityDomains);
