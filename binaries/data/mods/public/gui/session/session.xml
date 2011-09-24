@@ -732,7 +732,7 @@
 				tooltip_style="sessionToolTip"
 				hidden="true"
 			>
-				<object size="0 0 100% 100%" type="text" style="centeredText" name="disconnectedExitButtonText" ghost="true" font="serif-14">Return to Main Menu</object>
+				<object size="0 0 100% 100%" type="text" style="CenteredButtonText" name="disconnectedExitButtonText" ghost="true">Return to Main Menu</object>
 				<action on="Press">leaveGame()</action>
 			</object>
 
