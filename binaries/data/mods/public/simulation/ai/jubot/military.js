@@ -223,7 +223,7 @@ var MilitaryAttackManager = Class({
 				});	
 	},
 	
-	combatcheck_militia: function(gameState, planGroups, assaultgroup)
+	combatcheckMilitia: function(gameState, planGroups, assaultgroup)
 	{
 			var regroupneeded = gameState.getOwnEntitiesWithRole(assaultgroup);
 				regroupneeded.forEach(function(troop) {
@@ -240,7 +240,7 @@ var MilitaryAttackManager = Class({
 				}
 			});
 			// Check that some of our own buildings are nearby
-			var ownbuildings = gameState.getOwnEntities.filter(function(ent) {
+			var ownbuildings = gameState.getOwnEntities().filter(function(ent) {
 				var foeposition = ent.position();
 				if (foeposition){
 				var dist = VectorDistance(foeposition, currentPosition);
@@ -701,7 +701,7 @@ var MilitaryAttackManager = Class({
 		this.combatcheck(gameState, planGroups, "attack_3p1");
 		this.combatcheck(gameState, planGroups, "attack_3p2");
 		this.combatcheck(gameState, planGroups, "attack_3p3");
-		this.combatcheck(gameState, planGroups, "militia");
+		this.combatcheckMilitia(gameState, planGroups, "militia");
 		//this.trainDefenderSquad(gameState, planGroups);
 		this.trainAttackSquad(gameState, planGroups);
 		this.regroup(gameState, planGroups);
