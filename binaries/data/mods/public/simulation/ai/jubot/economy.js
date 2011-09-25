@@ -495,7 +495,7 @@ var EconomyManager = Class({
 						if (supply.entity.isUnhuntable())
 							return;
 						// And don't go for the bloody fish!
-						if (supply.entity.hasClass(IsSeaCreature))
+						if (supply.entity.hasClass("IsSeaCreature"))
 							return;
 		
 		var distcheck = 1000000;
