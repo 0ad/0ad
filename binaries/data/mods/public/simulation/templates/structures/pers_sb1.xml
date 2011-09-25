@@ -6,12 +6,20 @@
   </Footprint>
   <Identity>
     <Civ>pers</Civ>
-    <SpecificName>Kakh</SpecificName>
+	<GenericName>Persian Palace</GenericName>
+    <SpecificName>Tacara</SpecificName>
     <History>The annual tribute that the Persians received from their satrapies and vassal states, as regularised by Darius the Great, accounted for incredible annual revenue.</History>
+	<Tooltip>Special Building.
+"Satrapy Tribute": Gain a trickle of Food, Wood, Stone, and Metal resources. Train Persian Immortals. Build Limit: 1.</Tooltip>
   </Identity>
   <Obstruction>
     <Static width="28.0" depth="32.0"/>
   </Obstruction>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/pers_champion_infantry
+    </Entities>
+  </TrainingQueue>
   <VisualActor>
     <Actor>structures/persians/sb1_new.xml</Actor>
     <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
