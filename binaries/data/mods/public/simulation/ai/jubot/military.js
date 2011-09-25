@@ -577,7 +577,7 @@ var MilitaryAttackManager = Class({
 			this.trainSomeTroops(gameState, planGroups, "units/{civ}_cavalry_javelinist_b");
 			}
 			else if  (gameState.displayCiv() == "cart"){
-			this.trainSomeTroops(gameState, planGroups, "units/{civ}_cavalry_swordsman_b");
+			this.trainSomeTroops(gameState, planGroups, "units/{civ}_cavalry_spearman_b");
 			}
 			else if  (gameState.displayCiv() == "hele"){
 			this.trainSomeTroops(gameState, planGroups, "units/{civ}_cavalry_swordsman_b");
@@ -624,7 +624,7 @@ var MilitaryAttackManager = Class({
 			//Carts
 				else if (gameState.displayCiv() == "cart"){
 					if (this.attacknumbers < 0.2){
-					this.trainSomeTroops3prong(gameState, planGroups, "units/{civ}_cavalry_swordsman_b");
+					this.trainSomeTroops3prong(gameState, planGroups, "units/{civ}_cavalry_spearman_b");
 					}
 					else if (this.attacknumbers < 0.4){
 					this.trainSomeTroops3prong(gameState, planGroups, "units/{civ}_infantry_archer_b");

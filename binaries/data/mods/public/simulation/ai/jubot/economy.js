@@ -7,15 +7,16 @@ var EconomyManager = Class({
 		this.targetNumBuilders = 6; // number of workers we want working on construction
 		this.changetimeRegBui = 180*1000;
 		this.changetimeWorkers = 60*1000;
+		this.changetimeBoost = 30*1000;
 		this.worknumbers = 1.5;
 		// (This is a stupid design where we just construct certain numbers
 		// of certain buildings in sequence)
 		// Greek building list
 		// Relative proportions of workers to assign to each resource type
 		this.gatherWeights = {
-			"food": 140,
-			"wood": 140,
-			"stone": 50,
+			"food": 180,
+			"wood": 180,
+			"stone": 45,
 			"metal": 120,
 		};
 	},
@@ -254,6 +255,7 @@ var EconomyManager = Class({
 				planGroups.economyConstruction.addPlan(160,
 					new BuildingConstructionPlan(gameState, "structures/{civ}_house", 1)
 				);
+				return;
 		}
 		
 		if (gameState.findFoundations().length > 0)
@@ -286,6 +288,9 @@ var EconomyManager = Class({
 		var workNo = gameState.countEntitiesAndQueuedWithRole("worker");
 		
 		if (miliNo > workNo){
+		workNumMod = workNumMod - 0.6;
+		}
+		if (gameState.getTimeElapsed() < 150 * 100){
 		workNumMod = workNumMod - 0.6;
 		}
 		// If we have too few, train another
@@ -449,6 +454,14 @@ var EconomyManager = Class({
 	{
 		var self = this;
 
+		var allWorkers = gameState.getOwnEntitiesWithTwoRoles("worker", "militia")
+		allWorkers.forEach(function(worker){
+		var shallIstop = Math.random();
+		if (shallIstop > 0.9975){
+		var targetPos = worker.position();	
+		worker.move(targetPos[0], targetPos[1]);
+		}
+		});
 		// Search for idle workers, and tell them to gather resources
 		// Maybe just pick a random nearby resource type at first;
 		// later we could add some timer that redistributes workers based on
@@ -480,6 +493,9 @@ var EconomyManager = Class({
 					resourceSupplies[type].forEach(function(supply) {
 						// Skip targets that are too hard to hunt
 						if (supply.entity.isUnhuntable())
+							return;
+						// And don't go for the bloody fish!
+						if (supply.entity.hasClass(IsSeaCreature))
 							return;
 		
 		var distcheck = 1000000;

@@ -124,7 +124,7 @@ JuBotAI.prototype.OnUpdate = function()
 		var unaffordablePlans = [];
 		for each (var planGroup in this.planGroups)
 		{
-			var plan = planGroup.executePlans(gameState);
+			var plan = planGroup.executePlans(gameState, this.modules);
 			if (plan)
 				unaffordablePlans.push({"group": planGroup, "priority": plan.priority, "plan": plan.plan});
 		}
