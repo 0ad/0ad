@@ -146,20 +146,19 @@ template<> bool ScriptInterface::FromJSVal<Entity>(JSContext* cx, jsval v, Entit
 	if (!JS_ValueToObject(cx, v, &obj) || obj == NULL)
 		FAIL("Argument must be an object");
 
-	jsval name, id, player, x, z, orient;
+	jsval templateName, id, player, position, rotation;
 
+	// TODO: Report type errors
 	if(!JS_GetProperty(cx, obj, "player", &player) || !FromJSVal(cx, player, out.playerID))
 		FAIL("Failed to read Entity.player property");
-	if (!JS_GetProperty(cx, obj, "name", &name) || !FromJSVal(cx, name, out.templateName))
-		FAIL("Failed to read Entity.name property");
+	if (!JS_GetProperty(cx, obj, "templateName", &templateName) || !FromJSVal(cx, templateName, out.templateName))
+		FAIL("Failed to read Entity.templateName property");
 	if (!JS_GetProperty(cx, obj, "id", &id) || !FromJSVal(cx, id, out.entityID))
 		FAIL("Failed to read Entity.id property");
-	if (!JS_GetProperty(cx, obj, "x", &x) || !FromJSVal(cx, x, out.positionX))
-		FAIL("Failed to read Entity.x property");
-	if (!JS_GetProperty(cx, obj, "z", &z) || !FromJSVal(cx, z, out.positionZ))
-		FAIL("Failed to read Entity.z property");
-	if (!JS_GetProperty(cx, obj, "orientation", &orient) || !FromJSVal(cx, orient, out.orientationY))
-		FAIL("Failed to read Entity.orientation property");
+	if (!JS_GetProperty(cx, obj, "position", &position) || !FromJSVal(cx, position, out.position))
+		FAIL("Failed to read Entity.position property");
+	if (!JS_GetProperty(cx, obj, "rotation", &rotation) || !FromJSVal(cx, rotation, out.rotation))
+		FAIL("Failed to read Entity.rotation property");
 
 	return true;
 }

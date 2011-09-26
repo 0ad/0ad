@@ -18,15 +18,16 @@
 #ifndef INCLUDED_ENTITY
 #define INCLUDED_ENTITY
 
+#include "maths/FixedVector3D.h"
+
 // Struct for parsing random map data
 struct Entity
 {
 	std::wstring templateName;
 	u16 entityID;
 	u16 playerID;
-	float positionX;
-	float positionZ;
-	float orientationY;
+	CFixedVector3D position;
+	CFixedVector3D rotation;
 };
 
 

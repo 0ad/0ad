@@ -1239,15 +1239,11 @@ int CMapReader::ParseEntities()
 		}
 		else
 		{
-			CFixedVector3D Position;
-			Position.X = fixed::FromFloat(currEnt.positionX);
-			Position.Z = fixed::FromFloat(currEnt.positionZ);
-
 			CmpPtr<ICmpPosition> cmpPosition(sim, ent);
 			if (!cmpPosition.null())
 			{
-				cmpPosition->JumpTo(Position.X, Position.Z);
-				cmpPosition->SetYRotation(entity_angle_t::FromFloat(currEnt.orientationY));
+				cmpPosition->JumpTo(currEnt.position.X, currEnt.position.Z);
+				cmpPosition->SetYRotation(currEnt.rotation.Y);
 				// TODO: other parts of the position
 			}
 

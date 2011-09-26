@@ -240,8 +240,8 @@ SimpleObject.prototype.place = function(cx, cz, player, avoidSelf, constraint)
 					var length = resultObjs.length;
 					for (var i = 0; (i < length) && !fail; i++)
 					{
-						var dx = x - resultObjs[i].x;
-						var dy = z - resultObjs[i].z;
+						var dx = x - resultObjs[i].position.x;
+						var dy = z - resultObjs[i].position.z;
 						
 						if ((dx*dx + dy*dy) < 1)
 						{
@@ -339,8 +339,8 @@ RandomObject.prototype.place = function(cx, cz, player, avoidSelf, constraint)
 					var length = resultObjs.length;
 					for (var i = 0; (i < length) && !fail; i++)
 					{
-						var dx = x - resultObjs[i].x;
-						var dy = z - resultObjs[i].z;
+						var dx = x - resultObjs[i].position.x;
+						var dy = z - resultObjs[i].position.z;
 						
 						if ((dx*dx + dy*dy) < 1)
 						{
@@ -431,8 +431,8 @@ SimpleGroup.prototype.place = function(player, constraint)
 		g_Map.addObject(resultObjs[i]);
 		
 		if (this.tileClass !== undefined)
-		{	// Round object position to integer
-			this.tileClass.add(Math.floor(resultObjs[i].tileX), Math.floor(resultObjs[i].tileZ));
+		{	// Convert position to integer number of tiles
+			this.tileClass.add(Math.floor(resultObjs[i].position.x/CELL_SIZE), Math.floor(resultObjs[i].position.z/CELL_SIZE));
 		}
 	}
 	
@@ -487,8 +487,8 @@ RandomGroup.prototype.place = function(player, constraint)
 		g_Map.addObject(resultObjs[i]);
 		
 		if (this.tileClass !== undefined)
-		{	// Round object position to integer
-			this.tileClass.add(Math.floor(resultObjs[i].tileX), Math.floor(resultObjs[i].tileZ));
+		{	// Convert position to integer number of tiles
+			this.tileClass.add(Math.floor(resultObjs[i].position.x/CELL_SIZE), Math.floor(resultObjs[i].position.z/CELL_SIZE));
 		}
 	}
 	
