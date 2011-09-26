@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Texture">
+      <texture>structural/kart_struct.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Shields Var 1">
+      <mesh>props/kart_bireme_shields.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Shields Var 2">
+      <mesh>props/kart_bireme_shields_2.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Shields Var 3">
+      <mesh>props/kart_bireme_shields_3.dae</mesh>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
