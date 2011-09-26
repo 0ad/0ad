@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
+  <Cost>
+    <BuildTime>300</BuildTime>
+    <Resources>
+      <food>0</food>
+      <wood>0</wood>
+      <stone>300</stone>
+      <metal>200</metal>
+    </Resources>
+  </Cost>
   <Footprint>
     <Square width="28.0" depth="32.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <Health>
+    <Max>3000</Max>
+  </Health>
   <Identity>
     <Civ>pers</Civ>
 	<GenericName>Persian Palace</GenericName>

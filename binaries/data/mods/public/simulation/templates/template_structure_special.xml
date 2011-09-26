@@ -3,6 +3,15 @@
   <BuildRestrictions>
     <Category>Special</Category>
   </BuildRestrictions>
+  <Cost>
+    <BuildTime>200</BuildTime>
+    <Resources>
+      <food>0</food>
+      <wood>0</wood>
+      <stone>200</stone>
+      <metal>200</metal>
+    </Resources>
+  </Cost>
   <Footprint>
     <Square width="24.0" depth="24.0"/>
     <Height>8.0</Height>
