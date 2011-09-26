@@ -152,6 +152,9 @@ inline bool is_pow2(T n)
 	return (n & (n-1)) == 0;
 }
 
+// as above; intended for use in static_assert
+#define IS_POW2(n) (((n) != 0) && ((n) & ((n)-1)) == 0)
+
 template<typename T>
 inline T LeastSignificantBit(T x)
 {
@@ -164,6 +167,7 @@ inline T ClearLeastSignificantBit(T x)
 {
 	return x & (x-1);
 }
+
 
 /**
  * ceil(log2(x))
@@ -185,6 +189,26 @@ inline size_t ceil_log2(T x)
 
 	return log;
 }
+
+// compile-time variant of the above
+template<size_t N>
+struct CeilLog2
+{
+	enum { value = 1 + CeilLog2<(N+1)/2>::value };
+};
+
+template<>
+struct CeilLog2<1>
+{
+	enum { value = 0 };
+};
+
+template<>
+struct CeilLog2<0>
+{
+	enum { value = 0 };
+};
+
 
 
 /**

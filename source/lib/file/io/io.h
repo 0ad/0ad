@@ -223,6 +223,10 @@ LIB_API Status WaitUntilComplete(aiocb& cb, size_t queueDepth);
 //-----------------------------------------------------------------------------
 // Run
 
+#ifndef ENABLE_IO_STATS
+#define ENABLE_IO_STATS 0
+#endif
+
 // (hooks must be passed by const reference to allow passing rvalues.
 // functors with non-const member data can mark them as mutable.)
 template<class CompletedHook, class IssueHook>
@@ -232,6 +236,11 @@ static inline Status Run(const Operation& op, const Parameters& p = Parameters()
 	p.Validate(op);
 
 	ControlBlockRingBuffer controlBlockRingBuffer(op, p);
+
+#if ENABLE_IO_STATS
+	const double t0 = timer_Time();
+	COMPILER_FENCE;
+#endif
 
 	const off_t numBlocks = p.blockSize? (off_t)DivideRoundUp((u64)op.size, (u64)p.blockSize) : 1;
 	for(off_t blocksIssued = 0, blocksCompleted = 0; blocksCompleted < numBlocks; blocksCompleted++)
@@ -255,6 +264,13 @@ static inline Status Run(const Operation& op, const Parameters& p = Parameters()
 
 		RETURN_STATUS_FROM_CALLBACK(completedHook((u8*)cb.aio_buf, cb.aio_nbytes));
 	}
+
+#if ENABLE_IO_STATS
+	COMPILER_FENCE;
+	const double t1 = timer_Time();
+	const off_t totalSize = p.blockSize? numBlocks*p.blockSize : op.size;
+	debug_printf(L"IO: %.2f MB/s (%.2f)\n", totalSize/(t1-t0)/1e6, (t1-t0)*1e3);
+#endif
 
 	return INFO::OK;
 }
