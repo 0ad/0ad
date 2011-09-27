@@ -25,8 +25,9 @@ UnitAI.prototype.Schema =
 					"<value a:help='Will actively attack any unit it encounters, even if not threatened'>violent</value>" +
 					"<value a:help='Will attack nearby units if it feels threatened (if they linger within LOS for too long)'>aggressive</value>" +
 					"<value a:help='Will attack nearby units if attacked'>defensive</value>" +
-					"<value a:help='Will never attack units'>passive</value>" +
+					"<value a:help='Will never attack units but will attempt to flee when attacked'>passive</value>" +
 					"<value a:help='Will never attack units. Will typically attempt to flee for short distances when units approach'>skittish</value>" +
+					"<value a:help='Will never attack units and will not attempt to flee when attacked'>domestic</value>" +
 				"</choice>" +
 			"</element>" +
 			"<element name='RoamDistance'>" +
@@ -1202,6 +1203,10 @@ var UnitFsmSpec = {
 			{
 				if (this.CanAttack(msg.data.attacker))
 					this.Attack(msg.data.attacker, false);
+			}
+			else if (this.template.NaturalBehaviour == "domestic")
+			{	// Never flee, stop what we were doing
+				this.SetNextState("IDLE");
 			}
 		},
 
