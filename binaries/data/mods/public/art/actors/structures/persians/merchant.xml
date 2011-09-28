@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>structural/pers_merc.dae</mesh>
+      <props>
+        <prop actor="props/structures/persians/merchant_sail.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/pers_merc.dds</texture>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_mechanical_ship_merchant">
+  <Footprint>
+    <Square width="6.0" depth="25.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>pers</Civ>
+    <SpecificName>Merchant</SpecificName>
+    <History>Phoenician merchant ship used by the persians for trading over sea.</History>
+    <Icon>units/pers_ship_mercant.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/persians/merchant.xml</Actor>
+  </VisualActor>
+</Entity>

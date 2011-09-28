@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/pers_merc_sail.dae</mesh>
+      <texture>props/pers_trireme_sail_c.dds</texture>
+    </variant>
+  </group>
+  
+  <material>player_trans.xml</material>
+  
+</actor>
