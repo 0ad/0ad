@@ -136,6 +136,35 @@ var EntityTemplate = Class({
 		// that aren't really weak:
 		return this._template.Health.Max >= 10;
 	},
+
+	buildCategory: function() {
+		if (!this._template.BuildRestrictions || !this._template.BuildRestrictions.Category)
+			return undefined;
+		return this._template.BuildRestrictions.Category;
+	},
+
+	buildDistance: function() {
+		if (!this._template.BuildRestrictions || !this._template.BuildRestrictions.Distance)
+			return undefined;
+		return this._template.BuildRestrictions.Distance;
+	},
+
+	buildPlacementType: function() {
+		if (!this._template.BuildRestrictions || !this._template.BuildRestrictions.PlacementType)
+			return undefined;
+		return this._template.BuildRestrictions.PlacementType;
+	},
+
+	buildTerritories: function() {
+		if (!this._template.BuildRestrictions || !this._template.BuildRestrictions.Territory)
+			return undefined;
+		return this._template.BuildRestrictions.Territory.split(/\s+/);
+	},
+
+	hasBuildTerritory: function(territory) {
+		var territories = this.buildTerritories();
+		return (territories && territories.indexOf(territory) != -1);
+	},
 });
 
 
