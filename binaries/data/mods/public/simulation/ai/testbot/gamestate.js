@@ -12,6 +12,7 @@ var GameState = Class({
 		this.timeElapsed = ai.timeElapsed;
 		this.templates = ai.templates;
 		this.entities = ai.entities;
+		this.player = ai.player;
 		this.playerData = ai.playerData;
 	},
 
@@ -201,5 +202,45 @@ var GameState = Class({
 			});
 		});
 		return supplies;
+	},
+
+	getPopulationLimit: function()
+	{
+		return this.playerData.popLimit;
+	},
+
+	getPopulation: function()
+	{
+		return this.playerData.popCount;
+	},
+
+	getPlayerID: function()
+	{
+		return this.player;
+	},
+
+	isPlayerAlly: function(id)
+	{
+		return this.playerData.isAlly[id];
+	},
+
+	isPlayerEnemy: function(id)
+	{
+		return this.playerData.isEnemy[id];
+	},
+
+	isEntityAlly: function(ent)
+	{
+		return ent && ent.owner !== undefined && this.playerData.isAlly[ent.owner];
+	},
+
+	isEntityEnemy: function(ent)
+	{
+		return ent && ent.owner !== undefined && this.playerData.isEnemy[ent.owner];
+	},
+
+	isEntityOwn: function(ent)
+	{
+		return (ent && ent.owner !== undefined && ent.owner == this.player);
 	},
 });
