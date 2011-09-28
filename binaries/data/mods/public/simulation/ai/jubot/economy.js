@@ -661,7 +661,7 @@ var EconomyManager = Class({
 	{
 		Engine.ProfileStart("economy update");
 
-		this.buildRegroup(gameState, planGroups)
+		//this.buildRegroup(gameState, planGroups)
 		
 		this.checkBuildingList(gameState);
 		
