@@ -26,11 +26,6 @@ var EconomyManager = Class({
 			if (gameState.displayCiv() == "hele"){
 		this.targetBuildings = [
 			{
-				"template": "structures/{civ}_civil_centre",
-				"priority": 500,
-				"count": 1,
-			},
-			{
 				"template": "structures/{civ}_scout_tower",
 				"priority": 105,
 				"count": 1,
@@ -80,11 +75,6 @@ var EconomyManager = Class({
 			// Celt building list
 			else if (gameState.displayCiv() == "celt"){
 		this.targetBuildings = [
-			{
-				"template": "structures/{civ}_civil_centre",
-				"priority": 500,
-				"count": 1,
-			},
 				{
 				"template": "structures/{civ}_field",
 				"priority": 100,
@@ -115,11 +105,6 @@ var EconomyManager = Class({
 			// Carthage building list
 			else if (gameState.displayCiv() == "cart"){
 		this.targetBuildings = [
-			{
-				"template": "structures/{civ}_civil_centre",
-				"priority": 500,
-				"count": 1,
-			},
 				{
 				"template": "structures/{civ}_field",
 				"priority": 100,
@@ -170,11 +155,6 @@ var EconomyManager = Class({
 			// Celt building list
 			else if (gameState.displayCiv() == "iber"){
 		this.targetBuildings = [
-			{
-				"template": "structures/{civ}_civil_centre",
-				"priority": 500,
-				"count": 1,
-			},
 				{
 				"template": "structures/{civ}_field",
 				"priority": 100,
@@ -207,11 +187,6 @@ var EconomyManager = Class({
 		else {
 		this.targetBuildings = [
 			{
-				"template": "structures/{civ}_civil_centre",
-				"priority": 500,
-				"count": 1,
-			},
-			{
 				"template": "structures/{civ}_scout_tower",
 				"priority": 105,
 				"count": 1,
@@ -243,6 +218,14 @@ var EconomyManager = Class({
 	
 	buildMoreBuildings: function(gameState, planGroups)
 	{
+		var numCCs = gameState.countEntitiesAndQueuedWithType(gameState.applyCiv("{civ}_civil_centre)");
+			if (numCCs < 1)
+			{
+				planGroups.economyConstruction.addPlan(1000,
+					new BuildingConstructionPlan(gameState, "structures/{civ}_civil_centre", 1)
+				);
+				return;
+			}
 		// Limit ourselves to constructing two buildings at a time
 		if (gameState.findFoundations().length > 0)
 			return;
