@@ -50,7 +50,7 @@ var EconomyManager = Class({
 				"priority": 80,
 				"count": 1,
 			},
-				{
+			{
 				"template": "structures/{civ}_field",
 				"priority": 70,
 				"count": 2,
@@ -247,15 +247,13 @@ var EconomyManager = Class({
 		for each (var building in this.targetBuildings)
 		{
 			var numBuildings = gameState.countEntitiesAndQueuedWithType(gameState.applyCiv(building.template));
-			if (gameState.findFoundations().length > 0){
-				return;
-				}
 			// If we have too few, build another
 			if (numBuildings < building.count)
 			{
 				planGroups.economyConstruction.addPlan(building.priority,
 					new BuildingConstructionPlan(gameState, building.template, 1)
 				);
+				return;
 			}
 		}
 	},
