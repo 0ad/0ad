@@ -218,7 +218,7 @@ var EconomyManager = Class({
 	
 	buildMoreBuildings: function(gameState, planGroups)
 	{
-		var numCCs = gameState.countEntitiesAndQueuedWithType(gameState.applyCiv("{civ}_civil_centre");
+		var numCCs = gameState.countEntitiesAndQueuedWithType(gameState.applyCiv("structures/{civ}_civil_centre"));
 			if (numCCs < 1)
 			{
 				planGroups.economyConstruction.addPlan(1000,
