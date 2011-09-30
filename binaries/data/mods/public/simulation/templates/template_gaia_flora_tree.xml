@@ -2,7 +2,9 @@
 <Entity parent="template_gaia_flora">
   <Identity>
     <GenericName>Tree</GenericName>
-    <Tooltip>Chop down to accumulate Wood.</Tooltip>
+
+    <Classes datatype="tokens">ForestPlant</Classes>
+  <Tooltip>Chop down to accumulate Wood.</Tooltip>
     <Icon>gaia/flora_tree_generic.png</Icon>
   </Identity>
   <Minimap>
