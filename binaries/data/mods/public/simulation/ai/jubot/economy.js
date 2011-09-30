@@ -247,7 +247,9 @@ var EconomyManager = Class({
 		for each (var building in this.targetBuildings)
 		{
 			var numBuildings = gameState.countEntitiesAndQueuedWithType(gameState.applyCiv(building.template));
-
+			if (gameState.findFoundations().length > 0){
+				return;
+				}
 			// If we have too few, build another
 			if (numBuildings < building.count)
 			{
