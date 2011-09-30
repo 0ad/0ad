@@ -221,7 +221,16 @@ function IsOwnedByAllyOfEntity(entity, target)
 function IsOwnedByPlayer(player, target)
 {
 	var cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
-	return (cmpOwnershipTarget &&  player == cmpOwnershipTarget.GetOwner());
+	return (cmpOwnershipTarget && player == cmpOwnershipTarget.GetOwner());
+}
+
+/**
+ * Returns true if the entity 'target' is owned by gaia (player 0)
+ */
+function IsOwnedByGaia(target)
+{
+	var cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
+	return (cmpOwnershipTarget && cmpOwnershipTarget.GetOwner() == 0);
 }
 
 /**
@@ -271,5 +280,6 @@ Engine.RegisterGlobal("QueryOwnerInterface", QueryOwnerInterface);
 Engine.RegisterGlobal("QueryPlayerIDInterface", QueryPlayerIDInterface);
 Engine.RegisterGlobal("IsOwnedByAllyOfEntity", IsOwnedByAllyOfEntity);
 Engine.RegisterGlobal("IsOwnedByPlayer", IsOwnedByPlayer);
+Engine.RegisterGlobal("IsOwnedByGaia", IsOwnedByGaia);
 Engine.RegisterGlobal("IsOwnedByAllyOfPlayer", IsOwnedByAllyOfPlayer);
 Engine.RegisterGlobal("IsOwnedByEnemyOfPlayer", IsOwnedByEnemyOfPlayer);

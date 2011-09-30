@@ -66,10 +66,14 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "gather":
-		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-		GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
-			cmpUnitAI.Gather(cmd.target, cmd.queued);
-		});
+		// Check if target resource is owned by gaia or player
+		if (IsOwnedByGaia(cmd.target) || IsOwnedByPlayer(player, cmd.target))
+		{
+			var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+			GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
+				cmpUnitAI.Gather(cmd.target, cmd.queued);
+			});
+		}
 		break;
 
 	case "returnresource":
