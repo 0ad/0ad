@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_gaia_flora">
   <Identity>
-    <GenericName>Tree</GenericName>
-
     <Classes datatype="tokens">ForestPlant</Classes>
-  <Tooltip>Chop down to accumulate Wood.</Tooltip>
+    <GenericName>Tree</GenericName>
     <Icon>gaia/flora_tree_generic.png</Icon>
+    <Tooltip>Chop down to accumulate Wood.</Tooltip>
   </Identity>
   <Minimap>
     <Type>wood</Type>
