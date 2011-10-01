@@ -82,8 +82,8 @@ EndGameManager.prototype.UpdatePlayerStates = function()
 			if (cmpPlayers[i].GetState() == "active")
 			{
 				if (cmpPlayers[i].GetConquestCriticalEntitiesCount() == 0)
-				{	// Defeated
-					Engine.PostMessage(playerEntityId, MT_PlayerDefeated, null);
+				{	// Defeated - notify AIs by sending playerId
+					Engine.PostMessage(playerEntityId, MT_PlayerDefeated, { "playerId": i } );
 				}
 			}
 		}
