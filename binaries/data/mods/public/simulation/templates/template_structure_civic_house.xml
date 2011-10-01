@@ -25,7 +25,7 @@
   <Identity>
     <GenericName>House</GenericName>
     <Tooltip>Increase the population limit.</Tooltip>
-    <Classes datatype="tokens">Village</Classes>
+    <Classes datatype="tokens">Village -ConquestCritical</Classes>
     <Icon>structures/house.png</Icon>
   </Identity>
   <Obstruction>

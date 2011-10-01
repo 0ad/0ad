@@ -47,7 +47,7 @@
   <Identity>
     <GenericName>Outpost</GenericName>
     <Tooltip>Reconnoiter the countryside. Garrison to provide defense.</Tooltip>
-    <Classes datatype="tokens">Village Defensive</Classes>
+    <Classes datatype="tokens">Village Defensive -ConquestCritical</Classes>
     <Icon>structures/outpost.png</Icon>
   </Identity>
   <Obstruction>

@@ -46,7 +46,7 @@
   <Identity>
     <GenericName>Wall Turret</GenericName>
     <Tooltip>Garrison to defend a City Wall against attackers.</Tooltip>
-    <Classes datatype="tokens">Town Defensive</Classes>
+    <Classes datatype="tokens">Town Defensive -ConquestCritical</Classes>
     <Icon>structures/tower.png</Icon>
   </Identity>
   <Obstruction>

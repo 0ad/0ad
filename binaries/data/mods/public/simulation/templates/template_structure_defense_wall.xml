@@ -24,7 +24,7 @@
   <Identity>
     <GenericName>City Wall</GenericName>
     <Tooltip>Wall off your town for a stout defense.</Tooltip>
-    <Classes datatype="tokens">Town</Classes>
+    <Classes datatype="tokens">Town -ConquestCritical</Classes>
     <Icon>structures/wall.png</Icon>
   </Identity>
   <Obstruction>
