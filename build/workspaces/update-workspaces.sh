@@ -24,7 +24,8 @@ do
     --enable-atlas ) enable_atlas=true ;;
     --disable-atlas ) enable_atlas=false ;;
     -j* ) JOBS=$i ;;
-    * ) premake_args="${premake_args} $i"
+    # Assume any other --options are for Premake
+    --* ) premake_args="${premake_args} $i" ;;
   esac
 done
 
@@ -54,16 +55,21 @@ if [ "$with_system_enet" = "false" ]; then
 fi
 echo
 
-# Make sure workspaces/gcc exists.
-mkdir -p gcc
-
 # Now build premake and run it to create the makefiles
-cd ../premake
-make -C src ${JOBS} || die "Premake build failed"
+cd ../premake/premake4
+make -C build/gmake.unix ${JOBS} || die "Premake build failed"
 
 echo
+
+cd ..
 
 # If we're in bash then make HOSTTYPE available to Premake, for primitive arch-detection
 export HOSTTYPE="$HOSTTYPE"
 
-src/bin/premake --outpath ../workspaces/gcc ${premake_args} --target gnu || die "Premake failed"
+premake4/bin/release/premake4 --file="premake4.lua" --outpath="../workspaces/gcc/" ${premake_args} gmake || die "Premake failed"
+
+# Also generate xcode3 workspaces if on OS X
+if [ "`uname -s`" = "Darwin" ]
+then
+  premake4/bin/release/premake4 --file="premake4.lua" --outpath="../workspaces/xcode3" ${premake_args} xcode3 || die "Premake failed"
+fi

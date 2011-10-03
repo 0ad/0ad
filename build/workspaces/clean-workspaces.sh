@@ -14,7 +14,6 @@ echo "Cleaning bundled third-party dependencies..."
 (cd ../../libraries/spidermonkey && rm -rf ./js-1.8.5)
 (cd ../../libraries/nvtt/src && rm -rf ./build)
 
-(cd ../premake/src && make clean)
 (cd ../premake/premake4/build/gmake.unix && make clean)
 
 echo "Cleaning build output..."
