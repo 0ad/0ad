@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="base">
       <mesh>props/shield/pelta_b_f.pmd</mesh>
@@ -11,13 +9,10 @@
       </props>
     </variant>
   </group>
-
   <group>
-    <variant frequency="1" name="pers-pelta-a">
-      <texture>props/shield/pers_pelta_a.dds</texture>
+    <variant frequency="1" name="pers-pelta-d">
+      <texture>props/shield/pers_pelta_d.dds</texture>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>
