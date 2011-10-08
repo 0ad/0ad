@@ -4,30 +4,18 @@
   <group>
     <variant frequency="1" name="House A">
       <mesh>structural/pers_house_a.dae</mesh>
-      <props>
-        <prop actor="props/structures/persians/house_a.xml" attachpoint="root"/>
-      </props>
       <texture>structural/pers_struct.dds</texture>
     </variant>
     <variant frequency="1" name="House B">
       <mesh>structural/pers_house_b.dae</mesh>
-      <props>
-        <prop actor="props/structures/persians/house_b.xml" attachpoint="root"/>
-      </props>
       <texture>structural/pers_struct.dds</texture>
     </variant>
     <variant frequency="1" name="House C">
       <mesh>structural/pers_house_c.dae</mesh>
-      <props>
-        <prop actor="props/structures/persians/house_c.xml" attachpoint="root"/>
-      </props>
       <texture>structural/pers_struct.dds</texture>
     </variant>
     <variant frequency="1" name="House D">
       <mesh>structural/pers_house_d.dae</mesh>
-      <props>
-        <prop actor="props/structures/persians/house_d.xml" attachpoint="root"/>
-      </props>
       <texture>structural/pers_struct.dds</texture>
     </variant>
   </group>
