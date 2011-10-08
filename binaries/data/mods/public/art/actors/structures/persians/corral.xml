@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Carthaginian Corral">
+      <mesh>structural/pers_corral.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/iber_corral_mud.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/pers_struct.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
