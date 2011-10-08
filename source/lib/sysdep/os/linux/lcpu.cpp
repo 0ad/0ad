@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2011 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -25,6 +25,7 @@
 #include "lib/sysdep/os_cpu.h"
 #include "lib/alignment.h"
 #include "lib/bits.h"
+#include "lib/module_init.h"
 
 #if OS_LINUX
 #include "valgrind.h"
@@ -98,47 +99,71 @@ size_t os_cpu_MemoryAvailable()
 }
 
 
+// glibc __CPU_SETSIZE=1024 is smaller than required on some Linux (4096),
+// but the CONFIG_NR_CPUS in a header may not reflect the actual kernel,
+// so we have to detect the limit at runtime.
+// (see http://trac.wildfiregames.com/ticket/547 for additional information)
+static size_t maxCpus;
+
+static bool IsMaxCpusSufficient()
+{
+	const size_t setSize = CPU_ALLOC_SIZE(maxCpus);
+	cpu_set_t* set = CPU_ALLOC(maxCpus);
+	const int ret = sched_getaffinity(0, setSize, set);
+	CPU_FREE(set);
+	if(ret == 0)
+		return true;
+	ENSURE(errno == EINVAL);
+	return false;
+}
+
+
+static Status DetectMaxCpus()
+{
+	// the most I have ever heard of is CONFIG_NR_CPUS=4096,
+	// and even that limit should be enough for years and years.
+	for(maxCpus = 64; maxCpus <= 65536; maxCpus *= 2)
+	{
+		if(IsMaxCpusSufficient())
+			return INFO::OK;
+	}
+	return ERR::FAIL;
+}
+
+
 uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask)
 {
-	// This code is broken on kernels with CONFIG_NR_CPUS >= 1024, since cpu_set_t
-	// is too small by default. See <http://trac.wildfiregames.com/ticket/547>.
-	// It seems the most reliable solution is to use dynamically-allocated sets
-	// (CPU_SET_S etc), and do it in a loop until we've allocated a set large
-	// enough to fit all the CPUs.
-	// That's a pain and we currently don't actually need this code at all, and on OS X
-	// we don't implement this function anyway, so just disable it here.
-#if 0
-	int ret;
-	cpu_set_t set;
+	static ModuleInitState maxCpusInitState;
+	(void)ModuleInit(&maxCpusInitState, DetectMaxCpus);
+	const size_t setSize = CPU_ALLOC_SIZE(maxCpus);
+	cpu_set_t* set = CPU_ALLOC(maxCpus);
+	ENSURE(set);
 
 	uintptr_t previousProcessorMask = 0;
 	{
-		ret = sched_getaffinity(0, sizeof(set), &set);
+		int ret = sched_getaffinity(0, setSize, set);
 		ENSURE(ret == 0);
 
 		for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
 		{
-			if(CPU_ISSET(processor, &set))
+			if(CPU_ISSET_S(processor, setSize, set))
 				previousProcessorMask |= uintptr_t(1) << processor;
 		}
 	}
 	
-	CPU_ZERO(&set);
+	CPU_ZERO_S(setSize, set);
 	for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
 	{
 		if(IsBitSet(processorMask, processor))
-			CPU_SET(processor, &set);
+			CPU_SET_S(processor, setSize, set);
 	}
 
-	ret = sched_setaffinity(0, sizeof(set), &set);
+	int ret = sched_setaffinity(0, setSize, set);
 	ENSURE(ret == 0);
 	// (The process gets migrated immediately by the setaffinity call)
 
+	CPU_FREE(set);
 	return previousProcessorMask;
-#endif
-
-	UNUSED2(processorMask);
-	return os_cpu_ProcessorMask();
 }
 
 
