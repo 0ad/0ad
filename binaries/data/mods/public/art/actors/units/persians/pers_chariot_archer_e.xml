@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant>
+      <mesh>structural/pers_chariot_e.dae</mesh>
+      <props>
+        <prop actor="props/units/pers_chariot_e_emblem.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/pers_chariot_e.png</texture>
+    </variant>
+  </group>
+</actor>
