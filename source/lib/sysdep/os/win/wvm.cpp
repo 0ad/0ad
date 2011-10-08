@@ -287,6 +287,7 @@ CACHE_ALIGNED(struct AddressRangeDescriptor)	// POD
 		base = (intptr_t)AllocateLargeOrSmallPages(0, totalSize, MEM_RESERVE);
 		if(!base)
 		{
+			debug_printf(L"AllocateLargeOrSmallPages of %lld failed\n", (u64)totalSize);
 			DEBUG_DISPLAY_ERROR(ErrorString());
 			return ERR::NO_MEM;	// NOWARN (error string is more helpful)
 		}
@@ -344,7 +345,7 @@ CACHE_ALIGNED(struct AddressRangeDescriptor)	// POD
 	static const wchar_t* ErrorString()
 	{
 #if ARCH_IA32
-		return L"Out of address space (64-bit OS is required)";
+		return L"Out of address space (64-bit OS may help)";
 #elif OS_WIN
 		// because early AMD64 lacked CMPXCHG16B, the Windows lock-free slist
 		// must squeeze the address, ABA tag and list length (a questionable
