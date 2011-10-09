@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/pers_infantry_archer_b">
+  <Armour>
+    <Hack>3.0</Hack>
+    <Pierce>4.0</Pierce>
+    <Crush>3.0</Crush>
+  </Armour>
+  <Attack>
+    <Ranged>
+      <Pierce>30.0</Pierce>
+      <MaxRange>64.0</MaxRange>
+    </Ranged>
+  </Attack>
+  <Health>
+    <Max>85</Max>
+  </Health>
   <Promotion>
     <Entity>units/pers_infantry_archer_e</Entity>
   </Promotion>
+  <Vision>
+    <Range>66</Range>
+  </Vision>
   <VisualActor>
     <Actor>units/persians/infantry_archer_a.xml</Actor>
   </VisualActor>

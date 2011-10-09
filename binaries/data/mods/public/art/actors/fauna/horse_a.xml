@@ -7,6 +7,7 @@
         <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
         <animation file="quadraped/horse_walk.psa" name="Walk" speed="120"/>
         <animation file="quadraped/horse_gallop.psa" name="Run" speed="40"/>
+        <animation file="quadraped/horse_death.psa" name="death" speed="250"/>
       </animations>
       <mesh>skeletal/horse.pmd</mesh>
     </variant>
