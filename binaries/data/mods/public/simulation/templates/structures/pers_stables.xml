@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_barracks">
+  <Footprint>
+    <Square width="19.0" depth="17.0"/>
+    <Height>5.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>pers</Civ>
+    <SpecificName>Tavileh</SpecificName>
+    <History>Cavalry was primarily used as an elite assault force by the Persians</History>
+  </Identity>
+  <Obstruction>
+    <Static width="17.0" depth="15.0"/>
+  </Obstruction>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/pers_cavalry_archer_b
+      units/pers_cavalry_javelinist_b
+      units/pers_cavalry_spearman_b
+      units/pers_cavalry_swordsman_b
+    </Entities>
+  </TrainingQueue>
+  <VisualActor>
+    <Actor>structures/persians/stables.xml</Actor>
+    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
+  </VisualActor>
+</Entity>
