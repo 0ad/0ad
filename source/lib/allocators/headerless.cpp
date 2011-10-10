@@ -627,7 +627,7 @@ public:
 		Validate();
 	}
 
-	void* Allocate(size_t size) throw()
+	void* Allocate(size_t size) NOTHROW
 	{
 		ENSURE(IsValidSize(size));
 		Validate();
@@ -754,7 +754,7 @@ void HeaderlessAllocator::Reset()
 	return impl->Reset();
 }
 
-void* HeaderlessAllocator::Allocate(size_t size) throw()
+void* HeaderlessAllocator::Allocate(size_t size) NOTHROW
 {
 	return impl->Allocate(size);
 }

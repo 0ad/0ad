@@ -39,7 +39,7 @@
 #include "lib/sysdep/arch/x86_x64/apic.h"
 
 
-//-----------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------
 // detect *maximum* number of cores/packages/caches.
 // note: some of them may be disabled by the OS or BIOS.
 // note: Intel Appnote 485 assures us that they are uniform across packages.
@@ -116,7 +116,7 @@ static size_t MaxLogicalPerCache()
 }
 
 
-//-----------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------
 // CPU topology interface
 
 // APIC IDs consist of variable-length bit fields indicating the logical,
@@ -298,7 +298,7 @@ size_t cpu_topology_ApicId(size_t idxLogical, size_t idxCore, size_t idxPackage)
 }
 
 
-//-----------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------
 // cache topology
 
 // note: Windows 2003 GetLogicalProcessorInformation provides similar
@@ -430,7 +430,7 @@ static void DetermineProcessorsCache(const uintptr_t* cachesProcessorMask, size_
 }
 
 
-//-----------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------
 // cache topology interface
 
 struct CacheTopology	// POD

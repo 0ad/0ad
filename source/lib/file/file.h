@@ -52,7 +52,7 @@ public:
 
 	File(const OsPath& pathname, int oflag)
 	{
-		(void)Open(pathname, oflag);
+		THROW_STATUS_IF_ERR(Open(pathname, oflag));
 	}
 
 	~File()

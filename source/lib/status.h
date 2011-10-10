@@ -297,9 +297,30 @@ extern Status StatusFromErrno();
 	}\
 	while(0)
 
-// warn and throw expression if it is negative. use to propagate
-// errors from within constructors.
+// warn and throw a status. use when an error is first detected to
+// begin propagating it to callers.
+#define WARN_THROW(status)\
+	do\
+	{\
+		DEBUG_WARN_ERR(status);\
+		throw status;\
+	}\
+	while(0)
+
+// throw expression if it is negative. use to propagate
+// expected errors from constructors.
 #define THROW_STATUS_IF_ERR(expression)\
+	do\
+	{\
+		const Status status_ = (expression);\
+		if(status_ < 0)\
+			throw status_;\
+	}\
+	while(0)
+
+// warn and throw expression if it is negative. use to propagate
+// errors from constructors.
+#define WARN_THROW_STATUS_IF_ERR(expression)\
 	do\
 	{\
 		const Status status_ = (expression);\

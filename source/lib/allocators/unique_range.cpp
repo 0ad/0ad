@@ -50,7 +50,7 @@ void RegisterUniqueRangeDeleter(UniqueRangeDeleter deleter, volatile IdxDeleter*
 }
 
 
-void CallUniqueRangeDeleter(void* pointer, size_t size, IdxDeleter idxDeleter) throw()
+void CallUniqueRangeDeleter(void* pointer, size_t size, IdxDeleter idxDeleter) NOTHROW
 {
 	ASSERT(idxDeleter < numDeleters);
 	// (some deleters do not tolerate null pointers)

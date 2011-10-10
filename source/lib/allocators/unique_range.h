@@ -43,7 +43,7 @@ typedef void (*UniqueRangeDeleter)(void* pointer, size_t size);
  **/
 LIB_API void RegisterUniqueRangeDeleter(UniqueRangeDeleter deleter, volatile IdxDeleter* idxDeleter);
 
-LIB_API void CallUniqueRangeDeleter(void* pointer, size_t size, IdxDeleter idxDeleter) throw();
+LIB_API void CallUniqueRangeDeleter(void* pointer, size_t size, IdxDeleter idxDeleter) NOTHROW;
 
 
 // unfortunately, unique_ptr allows constructing without a custom deleter. to ensure callers can

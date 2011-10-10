@@ -58,6 +58,20 @@
 
 
 /**
+ * void function() NOTHROW - indicate the function will not
+ * throw any synchronous exceptions, thus hopefully generating
+ * smaller and more efficient code.
+ **/
+#if GCC_VERSION >= 303
+# define NOTHROW __attribute__((nothrow))
+#elif MSC_VERSION
+# define NOTHROW throw()	// special meaning, equivalent to __declspec(nothrow)
+#else
+# define NOTHROW	// throw() might result in ADDITIONAL checks
+#endif
+
+
+/**
  * "unreachable code" helpers
  *
  * unreachable lines of code are often the source or symptom of subtle bugs.
