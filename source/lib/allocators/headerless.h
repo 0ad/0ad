@@ -76,7 +76,7 @@ public:
 	 * (this allocator is designed for requests on the order of several KiB)
 	 * @return allocated memory or 0 if the pool is too fragmented or full.
 	 **/
-	void* Allocate(size_t size) NOTHROW;
+	NOTHROW_DECLARE void* Allocate(size_t size);
 
 	/**
 	 * deallocate memory.

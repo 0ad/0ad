@@ -81,24 +81,24 @@ public:
 		return &value;
 	}
 
-	AlignedAllocator() NOTHROW
+	NOTHROW_DEFINE AlignedAllocator()
 	{
 	}
 
-	AlignedAllocator(const AlignedAllocator&) NOTHROW
+	NOTHROW_DEFINE AlignedAllocator(const AlignedAllocator&)
 	{
 	}
 
 	template <class U>
-	AlignedAllocator (const AlignedAllocator<U>&) NOTHROW
+	NOTHROW_DEFINE AlignedAllocator (const AlignedAllocator<U>&)
 	{
 	}
 
-	~AlignedAllocator() NOTHROW
+	NOTHROW_DEFINE ~AlignedAllocator()
 	{
 	}
 
-	size_type max_size() const NOTHROW
+	NOTHROW_DEFINE size_type max_size() const
 	{
 		// maximum number of *elements* that can be allocated
 		return std::numeric_limits<std::size_t>::max() / sizeof(T);
@@ -133,13 +133,13 @@ public:
 
 // indicate that all specializations of this allocator are interchangeable
 template <class T1, class T2>
-bool operator==(const AlignedAllocator<T1>&, const AlignedAllocator<T2>&) NOTHROW
+NOTHROW_DEFINE bool operator==(const AlignedAllocator<T1>&, const AlignedAllocator<T2>&)
 {
 	return true;
 }
 
 template <class T1, class T2>
-bool operator!=(const AlignedAllocator<T1>&, const AlignedAllocator<T2>&) NOTHROW
+NOTHROW_DEFINE bool operator!=(const AlignedAllocator<T1>&, const AlignedAllocator<T2>&)
 {
 	return false;
 }

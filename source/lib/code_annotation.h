@@ -58,16 +58,32 @@
 
 
 /**
- * void function() NOTHROW - indicate the function will not
- * throw any synchronous exceptions, thus hopefully generating
- * smaller and more efficient code.
+ * indicate a function will not throw any synchronous exceptions,
+ * thus hopefully generating smaller and more efficient code.
+ *
+ * must be placed BEFORE return types because "The [VC++] compiler
+ * ignores, without warning, any __declspec keywords placed after *".
+ * such syntax is apparently also legal in GCC, per the example
+ * "__attribute__((noreturn)) void d0 (void)".
+ *
+ * example:
+ * NOTHROW_DECLARE void function();
+ * NOTHROW_DEFINE void function() {}
  **/
 #if GCC_VERSION >= 303
-# define NOTHROW __attribute__((nothrow))
+# define NOTHROW_DECLARE __attribute__((nothrow))
+# define NOTHROW_DEFINE	// not supported for definitions
 #elif MSC_VERSION
-# define NOTHROW throw()	// special meaning, equivalent to __declspec(nothrow)
+// Kevin Frei, 2006-03-23: "I work on the Visual C++ compiler team,
+// and agree completely with Paul Parks: don't use throw(), because
+// there's a chance that we'll eventually implement it according to the standard".
+# define NOTHROW_DECLARE __declspec(nothrow)
+# define NOTHROW_DEFINE	__declspec(nothrow)
 #else
-# define NOTHROW	// throw() might result in ADDITIONAL checks
+// don't use throw() because it might result in ADDITIONAL checks
+// (the standard mandates calling unexpected())
+# define NOTHROW_DECLARE
+# define NOTHROW_DEFINE
 #endif
 
 
