@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/iber_cavalry_javelinist_a">
+  <Identity>
+	<Rank>Elite</Rank>
+  </Identity>
+  <ResourceGatherer>
+    <BaseSpeed>0.5</BaseSpeed>
+  </ResourceGatherer>
+  <Health>
+    <Max>140</Max>
+  </Health>
+  <Armour>
+    <Hack>4.0</Hack>
+    <Pierce>5.0</Pierce>
+    <Crush>4.0</Crush>
+  </Armour>
+  <UnitMotion>
+    <WalkSpeed>10.56</WalkSpeed>
+    <Run>
+      <Speed>31.68</Speed>
+    </Run>
+  </UnitMotion>
+  <Attack>
+    <Ranged>
+      <Pierce>37.0</Pierce>
+      <MaxRange>52</MaxRange>
+    </Ranged>
+  </Attack>
+  <VisualActor>
+    <Actor>units/iberians/cavalry_javelinist_e.xml</Actor>
+  </VisualActor>
+</Entity>

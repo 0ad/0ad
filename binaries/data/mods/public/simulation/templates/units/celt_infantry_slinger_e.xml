@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/celt_infantry_slinger_a">
+  <Identity>
+	<Rank>Elite</Rank>
+  </Identity>
+  <ResourceGatherer>
+    <BaseSpeed>0.5</BaseSpeed>
+  </ResourceGatherer>
+  <Health>
+    <Max>110</Max>
+  </Health>
+  <Armour>
+    <Hack>4.0</Hack>
+    <Pierce>5.0</Pierce>
+    <Crush>4.0</Crush>
+  </Armour>
+  <UnitMotion>
+    <WalkSpeed>6.6</WalkSpeed>
+    <Run>
+      <Speed>19.8</Speed>
+    </Run>
+  </UnitMotion>
+  <Attack>
+    <Ranged>
+      <Pierce>37.0</Pierce>
+      <MaxRange>48</MaxRange>
+    </Ranged>
+  </Attack>
+  <VisualActor>
+    <Actor>units/celts/infantry_slinger_e.xml</Actor>
+  </VisualActor>
+</Entity>
