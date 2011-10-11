@@ -64,7 +64,48 @@ var EntityTemplate = Class({
 	isRepairable: function() { return this._template.Health.Repairable === "true"; },
 
 
-	// TODO: attack, armour
+	armourStrengths: function() {
+		if (!this._template.Armour)
+			return undefined;
+
+		return {
+			hack: +this._template.Armour.Hack,
+			pierce: +this._template.Armour.Pierce,
+			crush: +this._template.Armour.Crush
+		};
+	},
+
+	attackTypes: function() {
+		if (!this._template.Attack)
+			return undefined;
+
+		var ret = [];
+		for (var type in this._template.Attack)
+			ret.push(type);
+
+		return ret;
+	},
+
+	attackRange: function(type) {
+		if (!this._template.Attack || !this._template.Attack[type])
+			return undefined;
+
+		return {
+			max: +this._template.Attack[type].MaxRange,
+			min: +(this._template.Attack[type].MinRange || 0)
+		};
+	},
+
+	attackStrengths: function(type) {
+		if (!this._template.Attack || !this._template.Attack[type])
+			return undefined;
+
+		return {
+			hack: +(this._template.Attack[type].Hack || 0),
+			pierce: +(this._template.Attack[type].Pierce || 0),
+			crush: +(this._template.Attack[type].Crush || 0)
+		};
+	},
 
 
 	buildableEntities: function() {
