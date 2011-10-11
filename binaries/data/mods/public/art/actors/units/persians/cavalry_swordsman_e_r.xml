@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="Base">
       <animations>
@@ -21,7 +19,6 @@
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="Rider-Texture-1">
       <texture>skeletal/pers_csw_e_1.dds</texture>
@@ -33,7 +30,5 @@
       <texture>skeletal/pers_csw_e_3.dds</texture>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>

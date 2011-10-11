@@ -1,21 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations>
-        <animation file="biped/inf_arch_atk_a.psa" name="Idle" speed="1"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="95"/>
         <animation event="0.85" file="biped/inf_arch_atk_a.psa" load="0" name="Attack" speed="100"/>
-        <animation file="infantry/general/dude/dudewalk.psa" name="Walk" speed="20"/>
-        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="5"/>
-        <animation file="infantry/general/chop.psa" name="gather_wood" speed="100"/>
-        <animation file="biped/hoe.psa" name="gather_grain" speed="150"/>
-        <animation file="infantry/general/forage.psa" name="gather_fruit" speed="100"/>
-        <animation file="infantry/general/mine.psa" name="gather_stone" speed="150"/>
-        <animation file="infantry/general/mine.psa" name="gather_metal" speed="150"/>
-        <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="150"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Walk" speed="20"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Run" speed="5"/>
         <animation file="infantry/general/death/inf_01.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_02.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_03.psa" name="Death" speed="200"/>
@@ -27,14 +20,13 @@
       <props>
         <prop actor="props/units/heads/head_pers_tiara_y.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="l_hand"/>
-        <prop actor="props/temp/quiver.xml" attachpoint="l_hip"/>
+        <prop actor="props/units/quiver_hip.xml" attachpoint="l_hip"/>
         <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <texture>skeletal/pers_car_b_1.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="100" name="Idle"/>
     <variant name="Melee">
@@ -45,7 +37,5 @@
       </props>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>

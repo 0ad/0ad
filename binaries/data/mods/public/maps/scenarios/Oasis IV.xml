@@ -3,7 +3,7 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>sunny</SkySet>
+		<SkySet>cloudless</SkySet>
 		<SunColour r="0.776471" g="0.74902" b="0.576471"/>
 		<SunElevation angle="0.773126"/>
 		<SunRotation angle="-0.650408"/>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="995.022" y="114.435" z="801.294"/>
+		<Position x="974.007" y="118.383" z="792.302"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -3612,31 +3612,31 @@
 		<Entity uid="649">
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
-			<Position x="1007.44074" z="840.04871"/>
+			<Position x="999.91144" z="881.04371"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="650">
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
-			<Position x="996.65687" z="835.19349"/>
+			<Position x="989.7262" z="884.43445"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="651">
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
-			<Position x="1004.40656" z="846.55494"/>
+			<Position x="997.60376" z="870.40711"/>
 			<Orientation y="0.73125"/>
 		</Entity>
 		<Entity uid="652">
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
-			<Position x="1014.22443" z="838.05024"/>
+			<Position x="1002.9676" z="863.50123"/>
 			<Orientation y="-2.94459"/>
 		</Entity>
 		<Entity uid="653">
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
-			<Position x="1002.35877" z="837.8979"/>
+			<Position x="991.90748" z="869.84565"/>
 			<Orientation y="-0.15502"/>
 		</Entity>
 		<Entity uid="654">
@@ -4894,7 +4894,7 @@
 		</Entity>
 		<Entity uid="883">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="927.0365" z="935.1612"/>
+			<Position x="914.79725" z="930.27112"/>
 			<Orientation y="0.89003"/>
 		</Entity>
 		<Entity uid="885">
@@ -5984,13 +5984,13 @@
 		<Entity uid="1143">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="921.21937" z="927.17615"/>
+			<Position x="901.67542" z="992.90107"/>
 			<Orientation y="0.19059"/>
 		</Entity>
 		<Entity uid="1146">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="916.09217" z="936.98853"/>
+			<Position x="900.61658" z="981.12598"/>
 			<Orientation y="1.19631"/>
 		</Entity>
 		<Entity uid="1149">
@@ -9626,25 +9626,25 @@
 		<Entity uid="1755">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="916.76185" z="922.49915"/>
+			<Position x="890.44153" z="985.93"/>
 			<Orientation y="0.65752"/>
 		</Entity>
 		<Entity uid="1756">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="927.5666" z="921.00947"/>
+			<Position x="891.31348" z="977.82844"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1757">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="934.50709" z="925.96662"/>
+			<Position x="894.6261" z="969.49756"/>
 			<Orientation y="3.13918"/>
 		</Entity>
 		<Entity uid="1758">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="935.38886" z="915.94935"/>
+			<Position x="903.67518" z="973.53461"/>
 			<Orientation y="1.15687"/>
 		</Entity>
 		<Entity uid="1759">
@@ -10022,7 +10022,7 @@
 		<Entity uid="1833">
 			<Template>gaia/geology_stonemine_desert_quarry</Template>
 			<Player>0</Player>
-			<Position x="515.82581" z="1193.88416"/>
+			<Position x="512.05036" z="1194.63855"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1834">
@@ -10349,7 +10349,7 @@
 		</Entity>
 		<Entity uid="1890">
 			<Template>actor|particle/blowing_sand.xml</Template>
-			<Position x="1030.318" z="784.84711"/>
+			<Position x="190.9593" z="119.52872"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1891">
