@@ -8,34 +8,44 @@
         <animation file="biped/cavalryidle.psa" name="Walk" speed="50"/>
         <animation file="biped/rider_gallop.psa" name="Run" speed="40"/>
         <animation event="0.59" file="biped/rider_javelin_atk_a.psa" load="0" name="Melee" speed="50"/>
+        <animation event="0.5" file="biped/rider_spear_shield_atk_a.psa" name="gather_meat" speed="300"/>
         <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
       </animations>
       <mesh>skeletal/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_iber_adv.xml" attachpoint="head"/>
-        <prop actor="props/units/heads/iber_helmet_isp_b.xml" attachpoint="helmet"/>		
-        <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
-        <prop actor="props/units/weapons/jav.xml" attachpoint="loaded-r_hand"/>
+        <prop actor="props/units/heads/iber_helmet_isp_b.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="loaded-r_hand"/>
         <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
-        <prop actor="props/units/shields/iberian_buckler_adv.xml" attachpoint="shield"/>	
+        <prop actor="props/units/shields/iberian_buckler_adv.xml" attachpoint="shield"/>
       </props>
     </variant>
   </group>
-  
-    <group>
+  <group>
     <variant frequency="2" name="Iberian-Tunic-beige">
       <texture>skeletal/iber_isw_a_1.dds</texture>
     </variant>
     <variant frequency="1" name="Iberian-Tunic-brown">
       <texture>skeletal/iber_isw_a_2.dds</texture>
     </variant>
-    <variant frequency="2" name="Iberian-Tunic-pect">	
+    <variant frequency="2" name="Iberian-Tunic-pect">
       <texture>skeletal/kart_ijv_a_1.dds</texture>
-    </variant>	
+    </variant>
   </group>
-  
   <group>
     <variant frequency="100" name="Idle"/>
+    <variant name="melee">
+      <props>
+        <prop attachpoint="r_hand"/>
+      </props>
+    </variant>
+    <variant name="gather_meat">
+      <props>
+        <prop actor="props/units/weapons/falcata.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
     <variant name="carry_meat">
       <props>
         <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
