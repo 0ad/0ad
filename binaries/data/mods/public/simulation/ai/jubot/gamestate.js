@@ -274,28 +274,43 @@ var GameState = Class({
 		return this.player;
 	},
 
+	/**
+	 * Checks whether the player with the given id is an ally of the AI player
+	 */
 	isPlayerAlly: function(id)
 	{
 		return this.playerData.isAlly[id];
 	},
 
+	/**
+	 * Checks whether the player with the given id is an enemy of the AI player
+	 */
 	isPlayerEnemy: function(id)
 	{
 		return this.playerData.isEnemy[id];
 	},
 
+	/**
+	 * Checks whether an Entity object is owned by an ally of the AI player (or self)
+	 */
 	isEntityAlly: function(ent)
 	{
-		return (ent && ent.owner !== undefined && this.playerData.isAlly[ent.owner]);
+		return (ent && ent.owner() !== undefined && this.playerData.isAlly[ent.owner()]);
 	},
 
+	/**
+	 * Checks whether an Entity object is owned by an enemy of the AI player
+	 */
 	isEntityEnemy: function(ent)
 	{
-		return (ent && ent.owner !== undefined && this.playerData.isEnemy[ent.owner]);
+		return (ent && ent.owner() !== undefined && this.playerData.isEnemy[ent.owner()]);
 	},
 
+	/**
+	 * Checks whether an Entity object is owned by the AI player
+	 */
 	isEntityOwn: function(ent)
 	{
-		return (ent && ent.owner !== undefined && ent.owner == this.player);
+		return (ent && ent.owner() !== undefined && ent.owner() == this.player);
 	},
 });
