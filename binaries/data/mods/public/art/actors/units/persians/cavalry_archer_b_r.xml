@@ -6,9 +6,10 @@
       <animations>
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="95"/>
-        <animation event="0.85" file="biped/inf_arch_atk_a.psa" load="0" name="Attack" speed="100"/>
+        <animation event="0.84" file="biped/inf_arch_atk_a.psa" load="0.16" name="Attack" speed="100"/>
         <animation file="biped/inf_sword_ready_a.dae" name="Walk" speed="20"/>
         <animation file="biped/inf_sword_ready_a.dae" name="Run" speed="5"/>
+        <animation file="biped/inf_salute_c.psa" name="Promotion" speed="290"/>
         <animation file="infantry/general/death/inf_01.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_02.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_03.psa" name="Death" speed="200"/>

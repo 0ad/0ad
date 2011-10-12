@@ -11,7 +11,7 @@
     </Ranged>
   </Attack>
   <Cost>
-    <Population>4</Population>
+    <Population>3</Population>
     <BuildTime>19</BuildTime>
     <Resources>
       <food>200</food>
@@ -19,6 +19,10 @@
       <metal>100</metal>
     </Resources>
   </Cost>
+  <Footprint replace="">
+    <Square width="5.5" depth="10.0"/>
+    <Height>5.0</Height>
+  </Footprint>
   <Health>
     <Max>190</Max>
   </Health>
@@ -38,6 +42,9 @@
     <stone>0</stone>
     <metal>25</metal>
   </Loot>
+  <Obstruction>
+    <Unit radius="2.0"/>
+  </Obstruction>
   <Promotion>
     <Entity>units/pers_cavalry_archer_a</Entity>
   </Promotion>

@@ -6,7 +6,10 @@
       <animations>
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="95"/>
-        <animation event="0.84" file="biped/inf_arch_atk_a.psa" load="0.16" name="Attack" speed="100"/>
+        <animation event="" file="biped/inf_salute_a.psa" load="" name="Attack" speed="250"/>
+        <animation file="biped/inf_salute_b.psa" name="Attack" speed="250"/>
+        <animation file="biped/inf_salute_d.psa" name="Attack" speed="250"/>
+        <animation file="biped/inf_salute_e.psa" name="Attack" speed="250"/>
         <animation file="biped/inf_sword_ready_a.dae" name="Walk" speed="20"/>
         <animation file="biped/inf_sword_ready_a.dae" name="Run" speed="5"/>
         <animation file="biped/inf_salute_c.psa" name="Promotion" speed="290"/>
@@ -19,27 +22,13 @@
       </animations>
       <mesh>skeletal/m_pants_celt.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_pers_b.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="l_hand"/>
-        <prop actor="props/units/quiver_hip.xml" attachpoint="l_hip"/>
-        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/units/shields/pers_pelta_a_b_reverse.xml" attachpoint="back"/>
-        <prop actor="props/units/heads/pers_conical_plume.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/pers_neckguard.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/head_pers_tiara_y.xml" attachpoint="head"/>
       </props>
-      <texture>skeletal/pers_car_e_r.png</texture>
+      <texture>skeletal/pers_car_b_1.dds</texture>
     </variant>
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="Melee">
-      <props>
-        <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="l_hand"/>
-        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-      </props>
-    </variant>
   </group>
   <material>player_trans.xml</material>
 </actor>

@@ -12,12 +12,22 @@
       <MinRange>16.0</MinRange>
     </Ranged>
   </Attack>
+  <Cost>
+    <Population>6</Population>
+  </Cost>
+  <Footprint replace="">
+    <Square width="8.0" depth="11.0"/>
+    <Height>5.0</Height>
+  </Footprint>
   <Health>
     <Max>200</Max>
   </Health>
   <Identity>
     <Rank>Advanced</Rank>
   </Identity>
+  <Obstruction>
+    <Unit radius="2.5"/>
+  </Obstruction>
   <Promotion>
     <Entity>units/pers_cavalry_archer_e</Entity>
   </Promotion>
