@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="50"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="48"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="115"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="95"/>
+        <animation event=".5" file="quadraped/horse_attack_a.psa" name="Melee" speed="105"/>
+        <animation event=".5" file="quadraped/horse_attack_b.psa" name="Melee" speed="95"/>
+        <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
+      </animations>
+      <mesh>skeletal/horse.pmd</mesh>
+      <props>
+        <prop actor="props/units/horse/pers_peytral_iron.xml" attachpoint="chest"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="horse2a">
+      <texture>skeletal/horse_pers_csw_e_1.dds</texture>
+    </variant>
+    <variant frequency="1" name="horse2b">
+      <texture>skeletal/horse_pers_csw_e_2.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="2brown">
+      <colour>151 124 85</colour>
+    </variant>
+    <variant frequency="1" name="2beige">
+      <colour>235 216 199</colour>
+    </variant>
+    <variant frequency="1" name="2gray">
+      <colour>181 181 181</colour>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

@@ -1,20 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/horse_gallop.psa" name="Walk" speed="17"/>
-      </animations>
-      <mesh>skeletal/horse.pmd</mesh>
+    <variant>
+      <mesh>structural/pers_chariot_a.dae</mesh>
       <props>
-        <prop actor="units/persians/cavalry_archer_a_r.xml" attachpoint="rider"/>
+        <prop actor="units/persians/pers_chariot_archer_a_h1.xml" attachpoint="horse1"/>
+        <prop actor="units/persians/pers_chariot_archer_a_h2.xml" attachpoint="horse2"/>
+        <prop actor="units/persians/pers_chariot_archer_a_h3.xml" attachpoint="horse3"/>
+        <prop actor="units/persians/pers_chariot_archer_a_h4.xml" attachpoint="horse4"/>
+        <prop actor="units/persians/cavalry_archer_a_r.xml" attachpoint="rider1"/>
+        <prop actor="units/persians/cavalry_archer_b_r.xml" attachpoint="rider2"/>
       </props>
-      <texture>skeletal/horse_black_a.dds</texture>
+      <texture>structural/pers_chariot_a.png</texture>
     </variant>
   </group>
-
+  <material>player_trans.xml</material>
 </actor>

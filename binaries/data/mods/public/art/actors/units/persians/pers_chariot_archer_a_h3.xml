@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="45"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="45"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/horse_attack_b.psa" name="Idle" speed="200"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="50"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="120"/>
+        <animation event=".5" file="quadraped/horse_attack_a.psa" name="Melee" speed="105"/>
+        <animation event=".5" file="quadraped/horse_attack_b.psa" name="Melee" speed="95"/>
+        <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
+      </animations>
+      <mesh>skeletal/horse.pmd</mesh>
+      <props>
+        <prop actor="props/units/horse/pers_peytral_iron.xml" attachpoint="chest"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="horse3a">
+      <texture>skeletal/horse_pers_csw_e_1.dds</texture>
+    </variant>
+    <variant frequency="1" name="horse3b">
+      <texture>skeletal/horse_pers_csw_e_2.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="3brown">
+      <colour>91 60 38</colour>
+    </variant>
+    <variant frequency="1" name="3beige">
+      <colour>196 175 115</colour>
+    </variant>
+    <variant frequency="1" name="3gray">
+      <colour>129 133 135</colour>
+    </variant>
+    <variant frequency="1" name="3black">
+      <colour>26 26 26</colour>
+    </variant>
+    <variant frequency="1" name="3white">
+      <colour>255 255 255</colour>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>
