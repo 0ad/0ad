@@ -25,11 +25,19 @@
   <Identity>
     <Civ>pers</Civ>
 	<SelectionGroupName>units/pers_cavalry_archer_b</SelectionGroupName>
-	<GenericName>Scythe Chariot</GenericName>
+	<GenericName>Scythed Chariot</GenericName>
     <SpecificName>Sa Qurbute</SpecificName>
     <History>Chariots were obsolete by the 5th and 4th centuries BC, but they were viewed as symbols of rank and class, hence their continued deployment on the battlefield in extremely limited roles well after their obsolescence. The crew was made up of an archer and a driver who rode in an armored car equipped with scythe-like blades underneath the chassis and the axels themselves sported a pair of the deadly knives.</History>
+	<Icon>units/pers_cavalry_archer.png</Icon>
     <Tooltip>Bonused vs. Infantry Spearman and Infantry Swordsman. High Trample Damage Aura.</Tooltip>
   </Identity>
+  <Loot>
+    <xp>200</xp>
+    <food>0</food>
+    <wood>25</wood>
+    <stone>0</stone>
+    <metal>25</metal>
+  </Loot>
   <Promotion>
     <Entity>units/pers_cavalry_archer_a</Entity>
   </Promotion>
