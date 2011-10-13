@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="98.0811" y="117.262" z="406.034"/>
+		<Position x="123.775" y="126.644" z="375.315"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -37,9 +37,9 @@
       "AI": "",
       "Civ": "cart",
       "Colour": {
-        "b": 200,
-        "g": 80,
-        "r": 80
+        "b": 192,
+        "g": 128,
+        "r": 0
       },
       "Name": "Carthage",
       "Team": -1
@@ -68,11 +68,11 @@
     },
     {
       "AI": "jubot",
-      "Civ": "celt",
+      "Civ": "pers",
       "Colour": {
-        "b": 75,
-        "g": 230,
-        "r": 230
+        "b": 159,
+        "g": 26,
+        "r": 96
       },
       "Name": "Gaul",
       "Team": -1
@@ -15292,72 +15292,6 @@
 			<Position x="647.03669" z="112.2509"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="3125">
-			<Template>structures/celt_civil_centre</Template>
-			<Player>4</Player>
-			<Position x="613.25098" z="596.15955"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3126">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="619.9344" z="575.73176"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3127">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="622.01032" z="577.56965"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3128">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="624.0102" z="579.65723"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3129">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="625.44922" z="581.18586"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3130">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="627.21814" z="582.74683"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3131">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="628.79334" z="584.01966"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3132">
-			<Template>units/celt_infantry_spearman_b</Template>
-			<Player>4</Player>
-			<Position x="625.1537" z="569.87232"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3133">
-			<Template>units/celt_infantry_javelinist_b</Template>
-			<Player>4</Player>
-			<Position x="628.70612" z="573.01539"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3134">
-			<Template>units/celt_infantry_javelinist_b</Template>
-			<Player>4</Player>
-			<Position x="631.34437" z="575.92298"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3136">
-			<Template>units/celt_cavalry_spearman_b</Template>
-			<Player>4</Player>
-			<Position x="634.7641" z="579.16102"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="3137">
 			<Template>structures/cart_civil_centre</Template>
 			<Player>1</Player>
@@ -15422,6 +15356,72 @@
 			<Template>units/cart_cavalry_spearman_b</Template>
 			<Player>1</Player>
 			<Position x="124.83947" z="551.15253"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3148">
+			<Template>structures/pers_civil_centre</Template>
+			<Player>4</Player>
+			<Position x="612.10615" z="593.81458"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3149">
+			<Template>units/pers_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="617.66907" z="574.99866"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3150">
+			<Template>units/pers_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="620.284" z="577.17762"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3151">
+			<Template>units/pers_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="621.8957" z="578.92194"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3152">
+			<Template>units/pers_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="623.3379" z="580.20899"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3153">
+			<Template>units/pers_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="624.83198" z="582.1692"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3154">
+			<Template>units/pers_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="627.02607" z="585.00892"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3155">
+			<Template>units/pers_infantry_spearman_b</Template>
+			<Player>4</Player>
+			<Position x="621.28498" z="569.59858"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3156">
+			<Template>units/pers_infantry_javelinist_b</Template>
+			<Player>4</Player>
+			<Position x="624.92774" z="572.71393"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3158">
+			<Template>units/pers_infantry_archer_b</Template>
+			<Player>4</Player>
+			<Position x="628.46515" z="577.65046"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3159">
+			<Template>units/pers_cavalry_swordsman_b</Template>
+			<Player>4</Player>
+			<Position x="631.8053" z="580.53321"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
