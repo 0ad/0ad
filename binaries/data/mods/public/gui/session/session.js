@@ -258,6 +258,7 @@ function onSimulationUpdate()
 	updatePlayerDisplay(simState);
 	updateSelectionDetails();
 	updateBuildingPlacementPreview();
+	updateTimeElapsedCounter(simState);
 }
 
 function updateGroups()
@@ -334,7 +335,13 @@ function updatePlayerDisplay(simState)
 	g_IsTrainingQueueBlocked = playerState.trainingQueueBlocked;
 }
 
-
+function updateTimeElapsedCounter(simState)
+{
+	var timeElapsedCounter = getGUIObjectByName("timeElapsedCounter");
+	if (timeElapsedCounter.hidden)
+		return;
+	timeElapsedCounter.caption = timeToString(simState.timeElapsed);
+}
 
 // Temporarily adding this here
 const AMBIENT_TEMPERATE = "temperate";

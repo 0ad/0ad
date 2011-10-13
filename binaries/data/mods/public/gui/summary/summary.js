@@ -5,18 +5,6 @@ var panelNames = [ 'unitsBuildingsPanel', 'conquestPanel', 'resourcesPanel' ];
 var panelButtonNames = [ 'unitsBuildingsPanelButton', 'conquestPanelButton', 'resourcesPanelButton' ];
 
 /**
- * @param time Time period in milliseconds (integer)
- * @return String representing time period
- */
-function timeToString(time)
-{
-	var hours   = Math.floor(time / 1000 / 60 / 60);
-	var minutes = Math.floor(time / 1000 / 60) % 60;
-	var seconds = Math.floor(time / 1000) % 60;
-	return hours + ':' + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds);
-}
-
-/**
  * Select active panel
  * @param panelNumber Number of panel, which should get active state (integer)
  */
