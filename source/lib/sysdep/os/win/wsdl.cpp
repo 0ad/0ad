@@ -473,11 +473,17 @@ SDL_VideoInfo* SDL_GetVideoInfo()
 
 	if(video_info.video_mem == 0)
 	{
-		WmiMap videoAdapter;
-		if(wmi_GetClass(L"Win32_VideoController", videoAdapter) == INFO::OK)
+		WmiInstances instances;
+		if(wmi_GetClassInstances(L"Win32_VideoController", instances) == INFO::OK)
 		{
-			VARIANT vTotalMemory = videoAdapter[L"AdapterRAM"];
-			video_info.video_mem = vTotalMemory.lVal;
+			for(WmiInstances::iterator it = instances.begin(); it != instances.end(); ++it)
+			{
+				if((*it)[L"Availability"].intVal != 8)	// not offline
+				{
+					video_info.video_mem = std::max<Uint32>(video_info.video_mem, (*it)[L"AdapterRAM"].lVal);
+					break;
+				}
+			}
 		}
 	}
 

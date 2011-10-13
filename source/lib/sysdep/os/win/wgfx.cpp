@@ -139,10 +139,20 @@ static void AppendDriverVersionsFromKnownFiles(VersionList& versionList)
 
 Status wgfx_CardName(wchar_t* cardName, size_t numChars)
 {
-	WmiMap wmiMap;
-	RETURN_STATUS_IF_ERR(wmi_GetClass(L"Win32_VideoController", wmiMap));
-	swprintf_s(cardName, numChars, L"%ls", wmiMap[L"Caption"].bstrVal);
-	return INFO::OK;
+	WmiInstances instances;
+	RETURN_STATUS_IF_ERR(wmi_GetClassInstances(L"Win32_VideoController", instances));
+	wchar_t* pos = cardName;
+	for(WmiInstances::iterator it = instances.begin(); it != instances.end(); ++it)
+	{
+		if((*it)[L"Availability"].intVal == 8)	// offline
+			continue;
+		const int ret = swprintf_s(pos, numChars-(pos-cardName), L"%ls; ", (*it)[L"Caption"].bstrVal);
+		if(ret > 0)
+			pos += ret;
+		return INFO::OK;
+	}
+
+	return ERR::FAIL;	// no active card found
 }
 
 

@@ -36,13 +36,15 @@
 #define _WIN32_DCOM
 #include "lib/sysdep/os/win/win.h"
 #include <comdef.h>	// VARIANT
-typedef std::map<std::wstring, VARIANT> WmiMap;
+// contains name and value of all instance properties
+typedef std::map<std::wstring, VARIANT> WmiInstance;
+
+typedef std::vector<WmiInstance> WmiInstances;
 
 /**
- * return a map of name/value pairs of the WMI class members.
- * @return Status
+ * get all instances of the requested class.
  **/
-extern Status wmi_GetClass(const wchar_t* className, WmiMap& wmiMap);
+extern Status wmi_GetClassInstances(const wchar_t* className, WmiInstances& instances);
 
 extern void wmi_Shutdown();
 

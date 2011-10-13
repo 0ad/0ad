@@ -126,9 +126,21 @@ static const OsPath& GetDirectSoundDriverPath()
 
 Status win_get_snd_info()
 {
-	WmiMap wmiMap;
-	if(wmi_GetClass(L"Win32_SoundDevice", wmiMap) == INFO::OK)
-		swprintf_s(snd_card, SND_CARD_LEN, L"%ls", wmiMap[L"ProductName"].bstrVal);
+	WmiInstances instances;
+	RETURN_STATUS_IF_ERR(wmi_GetClassInstances(L"Win32_SoundDevice", instances));
+	std::set<std::wstring> names;	// get rid of duplicate "High Definition Audio Device" entries
+	for(WmiInstances::iterator it = instances.begin(); it != instances.end(); ++it)
+	{
+		if((*it)[L"Availability"].intVal != 8)	// not offline
+			names.insert(std::wstring((*it)[L"ProductName"].bstrVal));
+	}
+	wchar_t* pos = snd_card;
+	for(std::set<std::wstring>::const_iterator it = names.begin(); it != names.end(); ++it)
+	{
+		const int ret = swprintf_s(pos, SND_CARD_LEN-(pos-snd_card), L"%ls; ", it->c_str());
+		if(ret > 0)
+			pos += ret;
+	}
 
 	// find all DLLs related to OpenAL and retrieve their versions.
 	VersionList versionList;

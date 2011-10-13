@@ -27,7 +27,7 @@
 #ifndef INCLUDED_SND
 #define INCLUDED_SND
 
-const size_t SND_CARD_LEN = 128;
+const size_t SND_CARD_LEN = 256;
 /**
  * description of sound card.
  **/

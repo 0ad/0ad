@@ -103,7 +103,7 @@ void wmi_Shutdown()
 }
 
 
-Status wmi_GetClass(const wchar_t* className, WmiMap& wmiMap)
+Status wmi_GetClassInstances(const wchar_t* className, WmiInstances& instances)
 {
 	RETURN_STATUS_IF_ERR(ModuleInit(&initState, Init));
 
@@ -126,6 +126,7 @@ Status wmi_GetClass(const wchar_t* className, WmiMap& wmiMap)
 			break;
 		ENSURE(pEnum);
 
+		WmiInstance instance;
 		pObj->BeginEnumeration(WBEM_FLAG_NONSYSTEM_ONLY);
 		for(;;)
 		{
@@ -137,9 +138,10 @@ Status wmi_GetClass(const wchar_t* className, WmiMap& wmiMap)
 				SysFreeString(name);
 				break;
 			}
-			wmiMap[name] = value;
+			instance[name] = value;
 			SysFreeString(name);
 		}
+		instances.push_back(instance);
 	}
 
 	return INFO::OK;
