@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_dock">
+  <Footprint>
+    <Square width="18.5" depth="15.0"/>
+    <Height>8.0</Height>
+  </Footprint>
   <Identity>
     <Civ>pers</Civ>
     <SpecificName>Langargah</SpecificName>
     <History>Situated on the Mediterranean coast, all Phoenician cities had excellent docks and harbours, the oustanding example being Tyre, which was situated on an island close to the shore.</History>
   </Identity>
+  <Obstruction>
+    <Static width="17.0" depth="14.0"/>
+  </Obstruction>
   <VisualActor>
     <Actor>structures/persians/dock.xml</Actor>
   </VisualActor>
