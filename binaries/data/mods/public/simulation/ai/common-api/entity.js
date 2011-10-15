@@ -106,6 +106,16 @@ var EntityTemplate = Class({
 			crush: +(this._template.Attack[type].Crush || 0)
 		};
 	},
+	
+	attackTimes: function(type) {
+		if (!this._template.Attack || !this._template.Attack[type])
+			return undefined;
+
+		return {
+			prepare: +(this.template[type].PrepareTime || 0),
+			repeat: +(this.template[type].RepeatTime || 1000)
+		};
+	},
 
 
 	buildableEntities: function() {
