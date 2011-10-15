@@ -109,7 +109,11 @@ Status da_set_size(DynArray* da, size_t new_size)
 	bool ok = true;
 	// expanding
 	if(size_delta_pa > 0)
+	{
 		ok = vm::Commit(uintptr_t(end), size_delta_pa);
+		if(!ok)
+			debug_printf(L"Commit failed (%p %d)\n", end, size_delta_pa);
+	}
 	// shrinking
 	else if(size_delta_pa < 0)
 		ok = vm::Decommit(uintptr_t(end+size_delta_pa), -size_delta_pa);

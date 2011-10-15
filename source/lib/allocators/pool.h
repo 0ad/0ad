@@ -247,7 +247,10 @@ public:
 	{
 		T* t = (T*)pool_alloc(&m_pool, count*sizeof(T));
 		if(!t)
+		{
+			debug_break();
 			throw std::bad_alloc();
+		}
 		return t;
 	}
 

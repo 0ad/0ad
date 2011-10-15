@@ -238,6 +238,13 @@ static void* AllocateLargeOrSmallPages(uintptr_t address, size_t size, DWORD all
 			statistics[processor].NotifySmallPageCommit();
 		return smallPages;
 	}
+	else
+	{
+		MEMORY_BASIC_INFORMATION mbi = {0};
+		SIZE_T ret = VirtualQuery(LPCVOID(address), &mbi, sizeof(mbi));
+		debug_printf(L"Allocation failed. VirtualQuery returned %d\n", ret);
+		debug_printf(L"base=%p allocBase=%p allocProt=%d size=%d state=%d prot=%d type=%d\n", mbi.BaseAddress, mbi.AllocationBase, mbi.AllocationProtect, mbi.RegionSize, mbi.State, mbi.Protect, mbi.Type);
+	}
 
 	return 0;
 }
