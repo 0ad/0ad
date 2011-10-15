@@ -35,6 +35,9 @@
 #include "lib/sysdep/os/win/wposix/wposix_internal.h"
 #include "lib/sysdep/os/win/wposix/wtime.h"			// timespec
 #include "lib/sysdep/os/win/wseh.h"		// wseh_ExceptionFilter
+#include "lib/sysdep/os/win/winit.h"
+
+WINIT_REGISTER_CRITICAL_INIT(wpthread_Init);
 
 
 static HANDLE HANDLE_from_pthread(pthread_t p)
@@ -52,6 +55,17 @@ static pthread_t pthread_from_HANDLE(HANDLE h)
 // misc
 //-----------------------------------------------------------------------------
 
+// non-pseudo handle so that pthread_self value is unique for each thread
+static __declspec(thread) HANDLE hCurrentThread;
+
+static void NotifyCurrentThread()
+{
+	// (we leave it to the OS to clean these up at process exit - threads are not created often)
+	WARN_IF_FALSE(DuplicateHandle(GetCurrentProcess(), GetCurrentThread(), GetCurrentProcess(), &hCurrentThread, 0, FALSE, DUPLICATE_SAME_ACCESS));
+}
+
+
+
 int pthread_equal(pthread_t t1, pthread_t t2)
 {
 	return t1 == t2;
@@ -59,7 +73,7 @@ int pthread_equal(pthread_t t1, pthread_t t2)
 
 pthread_t pthread_self()
 {
-	return pthread_from_HANDLE(GetCurrentThread());
+	return pthread_from_HANDLE(hCurrentThread);
 }
 
 
@@ -602,6 +616,8 @@ static unsigned __stdcall thread_start(void* param)
 	void* arg            = func_and_arg->arg;
 	wutil_Free(param);
 
+	NotifyCurrentThread();
+
 	void* ret = 0;
 	__try
 	{
@@ -636,8 +652,8 @@ int pthread_create(pthread_t* thread_id, const void* UNUSED(attr), void* (*func)
 	// _beginthreadex has more overhead and no value added vs.
 	// CreateThread, but it avoids small memory leaks in
 	// ExitThread when using the statically-linked CRT (-> MSDN).
-	const uintptr_t id = _beginthreadex(0, 0, thread_start, func_and_arg, 0, 0);
-	if(!id)
+	HANDLE hThread = (HANDLE)_beginthreadex(0, 0, thread_start, func_and_arg, 0, 0);
+	if(!hThread)
 	{
 		WARN_IF_ERR(ERR::FAIL);
 		return -1;
@@ -645,7 +661,7 @@ int pthread_create(pthread_t* thread_id, const void* UNUSED(attr), void* (*func)
 
 	// SUSv3 doesn't specify whether this is optional - go the safe route.
 	if(thread_id)
-		*thread_id = (pthread_t)id;
+		*thread_id = pthread_from_HANDLE(hThread);
 
 	return 0;
 }
@@ -680,4 +696,11 @@ int pthread_join(pthread_t thread, void** value_ptr)
 
 	CloseHandle(hThread);
 	return 0;
+}
+
+
+static Status wpthread_Init()
+{
+	NotifyCurrentThread();
+	return INFO::OK;
 }
