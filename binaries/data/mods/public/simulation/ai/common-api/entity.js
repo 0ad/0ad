@@ -112,8 +112,8 @@ var EntityTemplate = Class({
 			return undefined;
 
 		return {
-			prepare: +(this.template[type].PrepareTime || 0),
-			repeat: +(this.template[type].RepeatTime || 1000)
+			prepare: +(this._template.Attack[type].PrepareTime || 0),
+			repeat: +(this._template.Attack[type].RepeatTime || 1000)
 		};
 	},
 
