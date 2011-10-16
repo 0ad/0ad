@@ -39,7 +39,7 @@ namespace Allocators {
  * - consecutive allocations are back-to-back;
  * - no extra alignment nor padding.
  **/
-template<class Storage>
+template<class Storage = Storage_Fixed<> >
 class Arena
 {
 	NONCOPYABLE(Arena);
@@ -55,9 +55,14 @@ public:
 		return storage.MaxCapacity() - end;
 	}
 
-	void* Allocate(size_t size)
+	void* allocate(size_t size)
 	{
 		return (void*)StorageAppend(storage, end, size);
+	}
+
+	void deallocate(void* UNUSED(p), size_t UNUSED(size))
+	{
+		// ignored
 	}
 
 	void DeallocateAll()

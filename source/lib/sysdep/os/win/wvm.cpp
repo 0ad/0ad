@@ -421,7 +421,6 @@ void ReleaseAddressSpace(void* p, size_t UNUSED(size))
 //-----------------------------------------------------------------------------
 // commit/decommit, allocate/free, protect
 
-// [23 page faults for an 8 MPixel image total 789 kc, i.e. < 1 ms]
 TIMER_ADD_CLIENT(tc_commit);
 
 bool Commit(uintptr_t address, size_t size, PageType pageType, int prot)

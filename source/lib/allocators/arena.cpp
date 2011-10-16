@@ -36,7 +36,7 @@ struct BasicArenaTest
 	{
 		Arena<Storage> a(100);
 		const size_t initialSpace = a.RemainingBytes();
-		void* p = a.Allocate(100);
+		void* p = a.allocate(100);
 		ENSURE(p != 0);
 		ENSURE(a.Contains(uintptr_t(p)));
 		ENSURE(a.RemainingBytes() == initialSpace-100);
@@ -45,25 +45,25 @@ struct BasicArenaTest
 		ENSURE(!a.Contains(uintptr_t(p)-1));
 		ENSURE(!a.Contains(uintptr_t(p)+100));
 		if(a.RemainingBytes() == 0)
-			ENSURE(a.Allocate(1) == 0);	// full
+			ENSURE(a.allocate(1) == 0);	// full
 		else
-			ENSURE(a.Allocate(1) != 0);	// can still expand
+			ENSURE(a.allocate(1) != 0);	// can still expand
 		a.DeallocateAll();
 		ENSURE(!a.Contains(uintptr_t(p)));
 
-		p = a.Allocate(36);
+		p = a.allocate(36);
 		ENSURE(p != 0);
 		ENSURE(a.Contains(uintptr_t(p)));
 		ENSURE(a.RemainingBytes() == initialSpace-36);
-		void* p2 = a.Allocate(64);
+		void* p2 = a.allocate(64);
 		ENSURE(p2 != 0);
 		ENSURE(a.Contains(uintptr_t(p2)));
 		ENSURE(a.RemainingBytes() == initialSpace-36-64);
 		ENSURE(p2 == (void*)(uintptr_t(p)+36));
 		if(a.RemainingBytes() == 0)
-			ENSURE(a.Allocate(1) == 0);	// full
+			ENSURE(a.allocate(1) == 0);	// full
 		else
-			ENSURE(a.Allocate(1) != 0);	// can still expand
+			ENSURE(a.allocate(1) != 0);	// can still expand
 	}
 };
 

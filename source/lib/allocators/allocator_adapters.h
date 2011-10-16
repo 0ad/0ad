@@ -92,4 +92,96 @@ struct Allocator_AddressSpace
 	}
 };
 
+
+/**
+ * fully STL-compatible allocator that simply draws upon another Allocator.
+ * this allows a single allocator to serve multiple STL containers.
+ */
+template<typename T, class Allocator>
+class ProxyAllocator
+{
+public:
+	typedef T value_type;
+	typedef T* pointer;
+	typedef const T* const_pointer;
+	typedef T& reference;
+	typedef const T& const_reference;
+	typedef std::size_t size_type;
+	typedef std::ptrdiff_t difference_type;
+
+	template<class U>
+	struct rebind
+	{
+		typedef ProxyAllocator<U, Allocator> other;
+	};
+
+	explicit NOTHROW_DEFINE ProxyAllocator(Allocator& allocator)
+		: allocator(&allocator)
+	{
+	}
+
+	template<typename U, class A>
+	NOTHROW_DEFINE ProxyAllocator(const ProxyAllocator<U,A>& rhs)
+		: allocator(rhs.allocator)
+	{
+	}
+	
+	// (required by VC2010 std::vector)
+	bool operator==(const ProxyAllocator& rhs) const
+	{
+		return allocator == rhs.allocator;
+	}
+	bool operator!=(const ProxyAllocator& rhs) const
+	{
+		return !operator==(rhs);
+	}
+
+	pointer address(reference r)
+	{
+		return &r;
+	}
+
+	const_pointer address(const_reference s)
+	{
+		return &s;
+	}
+
+	size_type max_size() const throw ()
+	{
+		return std::numeric_limits<std::size_t>::max() / sizeof(T);
+	}
+
+	void construct(const pointer ptr, const value_type& t)
+	{
+		new(ptr) T(t);
+	}
+
+	void destroy(pointer ptr)
+	{
+		ptr->~T();
+		UNUSED2(ptr); // silence MSVC warnings
+	}
+
+	pointer allocate(size_type n)
+	{
+		// safely handle zero-sized allocations (happens with GCC STL - see ticket #909).
+		if(n == 0)
+			n = 1;
+		return (pointer)allocator->allocate(n*sizeof(T));
+	}
+
+	pointer allocate(size_type n, const void* const)
+	{
+		return allocate(n);
+	}
+
+	void deallocate(const pointer ptr, const size_type n)
+	{
+		return allocator->deallocate(ptr, n*sizeof(T));
+	}
+
+//private:	// otherwise copy ctor cannot access it
+	Allocator* allocator;
+};
+
 #endif	// #ifndef ALLOCATOR_ADAPTERS
