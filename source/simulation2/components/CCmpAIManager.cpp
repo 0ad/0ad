@@ -34,6 +34,7 @@
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/components/ICmpTemplateManager.h"
+#include "simulation2/components/ICmpTerritoryManager.h"
 #include "simulation2/helpers/Grid.h"
 #include "simulation2/serialization/DebugSerializer.h"
 #include "simulation2/serialization/StdDeserializer.h"
@@ -272,7 +273,8 @@ public:
 		m_PlayerMetadata.clear();
 		m_Players.clear();
 		m_GameState.reset();
-		m_GameStateMapVal = CScriptValRooted();
+		m_PassabilityMapVal = CScriptValRooted();
+		m_TerritoryMapVal = CScriptValRooted();
 	}
 
 	bool AddPlayer(const std::wstring& aiName, player_id_t player, bool callConstructor)
@@ -286,18 +288,26 @@ public:
 		return true;
 	}
 
-	void StartComputation(const shared_ptr<ScriptInterface::StructuredClone>& gameState, const Grid<u16>& map)
+	void StartComputation(const shared_ptr<ScriptInterface::StructuredClone>& gameState, const Grid<u16>& passabilityMap, const Grid<u8>& territoryMap, bool territoryMapDirty)
 	{
 		ENSURE(m_CommandsComputed);
 
 		m_GameState = gameState;
 
-		if (map.m_DirtyID != m_GameStateMap.m_DirtyID)
+		if (passabilityMap.m_DirtyID != m_PassabilityMap.m_DirtyID)
 		{
-			m_GameStateMap = map;
+			m_PassabilityMap = passabilityMap;
 
 			JSContext* cx = m_ScriptInterface.GetContext();
-			m_GameStateMapVal = CScriptValRooted(cx, ScriptInterface::ToJSVal(cx, m_GameStateMap));
+			m_PassabilityMapVal = CScriptValRooted(cx, ScriptInterface::ToJSVal(cx, m_PassabilityMap));
+		}
+
+		if (territoryMapDirty)
+		{
+			m_TerritoryMap = territoryMap;
+
+			JSContext* cx = m_ScriptInterface.GetContext();
+			m_TerritoryMapVal = CScriptValRooted(cx, ScriptInterface::ToJSVal(cx, m_TerritoryMap));
 		}
 
 		m_CommandsComputed = false;
@@ -432,7 +442,8 @@ private:
 		{
 			PROFILE("AI compute read state");
 			state = m_ScriptInterface.ReadStructuredClone(m_GameState);
-			m_ScriptInterface.SetProperty(state.get(), "map", m_GameStateMapVal, true);
+			m_ScriptInterface.SetProperty(state.get(), "passabilityMap", m_PassabilityMapVal, true);
+			m_ScriptInterface.SetProperty(state.get(), "territoryMap", m_TerritoryMapVal, true);
 		}
 
 		// It would be nice to do
@@ -467,8 +478,10 @@ private:
 	std::vector<shared_ptr<CAIPlayer> > m_Players; // use shared_ptr just to avoid copying
 
 	shared_ptr<ScriptInterface::StructuredClone> m_GameState;
-	Grid<u16> m_GameStateMap;
-	CScriptValRooted m_GameStateMapVal;
+	Grid<u16> m_PassabilityMap;
+	CScriptValRooted m_PassabilityMapVal;
+	Grid<u8> m_TerritoryMap;
+	CScriptValRooted m_TerritoryMapVal;
 
 	bool m_CommandsComputed;
 };
@@ -568,16 +581,28 @@ public:
 		// Get the game state from AIInterface
 		CScriptVal state = cmpAIInterface->GetRepresentation();
 
-		// Get the map data
+		// Get the passability data
 		Grid<u16> dummyGrid;
-		const Grid<u16>* map = &dummyGrid;
+		const Grid<u16>* passabilityMap = &dummyGrid;
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
 		if (!cmpPathfinder.null())
-			map = &cmpPathfinder->GetPassabilityGrid();
+			passabilityMap = &cmpPathfinder->GetPassabilityGrid();
+
+		// Get the territory data
+		//	Since getting the territory grid can trigger a recalculation, we check NeedUpdate first
+		bool territoryMapDirty = false;
+		Grid<u8> dummyGrid2;
+		const Grid<u8>* territoryMap = &dummyGrid2;
+		CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(GetSimContext(), SYSTEM_ENTITY);
+		if (!cmpTerritoryManager.null() && cmpTerritoryManager->NeedUpdate(&m_TerritoriesDirtyID))
+		{
+			territoryMap = &cmpTerritoryManager->GetTerritoryGrid();
+			territoryMapDirty = true;
+		}
 
 		LoadPathfinderClasses(state);
 
-		m_Worker.StartComputation(scriptInterface.WriteStructuredClone(state.get()), *map);
+		m_Worker.StartComputation(scriptInterface.WriteStructuredClone(state.get()), *passabilityMap, *territoryMap, territoryMapDirty);
 	}
 
 	virtual void PushCommands()
@@ -605,6 +630,7 @@ private:
 	std::vector<std::string> m_TemplateNames;
 	size_t m_TemplateLoadedIdx;
 	std::vector<std::pair<std::string, const CParamNode*> > m_Templates;
+	size_t m_TerritoriesDirtyID;
 
 	void StartLoadEntityTemplates()
 	{

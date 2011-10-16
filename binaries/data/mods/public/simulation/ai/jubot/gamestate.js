@@ -43,9 +43,9 @@ var GameState = Class({
 		return new Resources(this.playerData.resourceCounts);
 	},
 
-	getMap: function()
+	getPassabilityMap: function()
 	{
-		return this.ai.map;
+		return this.ai.passabilityMap;
 	},
 
 	getPassabilityClassMask: function(name)
@@ -53,6 +53,11 @@ var GameState = Class({
 		if (!(name in this.ai.passabilityClasses))
 			error("Tried to use invalid passability class name '"+name+"'");
 		return this.ai.passabilityClasses[name];
+	},
+
+	getTerritoryMap: function()
+	{
+		return this.ai.territoryMap;
 	},
 
 	getOwnEntities: (function()

@@ -79,11 +79,12 @@ BaseAI.prototype.HandleMessage = function(state)
 
 	this.entities = new EntityCollection(this, this._rawEntities);
 	this.events = state.events;
-	this.map = state.map;
 	this.passabilityClasses = state.passabilityClasses;
+	this.passabilityMap = state.passabilityMap;
 	this.player = this._player;
 	this.playerData = state.players[this._player];
 	this.templates = this._templates;
+	this.territoryMap = state.territoryMap;
 	this.timeElapsed = state.timeElapsed;
 
 	Engine.ProfileStop();
@@ -93,11 +94,12 @@ BaseAI.prototype.HandleMessage = function(state)
 	// Clean up temporary properties, so they don't disturb the serializer
 	delete this.entities;
 	delete this.events;
-	delete this.map;
 	delete this.passabilityClasses;
+	delete this.passabilityMap;
 	delete this.player;
 	delete this.playerData;
 	delete this.templates;
+	delete this.territoryMap;
 	delete this.timeElapsed;
 };
 

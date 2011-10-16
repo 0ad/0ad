@@ -148,30 +148,61 @@ var BuildingConstructionPlanEcon = Class({
 
 		var cellSize = 4; // size of each tile
 
-		// First, find all tiles that are far enough away from obstructions:
+		var template = gameState.getTemplate(this.type);
 
-		var map = gameState.getMap();
-
+		// Find all tiles in valid territory that are far enough away from obstructions:
+		var passabilityMap = gameState.getPassabilityMap();
+		var territoryMap = gameState.getTerritoryMap();
+		const TERRITORY_PLAYER_MASK = 0x7F;
 		var obstructionMask = gameState.getPassabilityClassMask("foundationObstruction");
-		// Only accept valid land tiles (we don't handle docks yet)
-		obstructionMask |= gameState.getPassabilityClassMask("building-land");
 
-		var obstructionTiles = new Uint16Array(map.data.length);
-		for (var i = 0; i < map.data.length; ++i)
-			obstructionTiles[i] = (map.data[i] & obstructionMask) ? 0 : 65535;
+		if (passabilityMap.data.length != territoryMap.data.length)
+			error("passability and territory data are not matched!");
 
-//		Engine.DumpImage("tiles0.png", obstructionTiles, map.width, map.height, 64);
+		// See BuildRestrictions.js
+		switch(template.buildPlacementType())
+		{
+		case "shore":
+			obstructionMask |= gameState.getPassabilityClassMask("building-shore");
+			break;
+		case "land":
+		default:
+			obstructionMask |= gameState.getPassabilityClassMask("building-land");
+		}
 
-		this.expandInfluences(obstructionTiles, map.width, map.height);
+		var playerID = gameState.getPlayerID();
+		var buildOwn = template.hasBuildTerritory("own");
+		var buildAlly = template.hasBuildTerritory("ally");
+		var buildNeutral = template.hasBuildTerritory("neutral");
+		var buildEnemy = template.hasBuildTerritory("enemy");
 
+		var obstructionTiles = new Uint16Array(passabilityMap.data.length);
+		for (var i = 0; i < passabilityMap.data.length; ++i)
+		{
+			var tilePlayer = (territoryMap.data[i] & TERRITORY_PLAYER_MASK);
+			var invalidTerritory = (
+				(!buildOwn && tilePlayer == playerID) ||
+				(!buildAlly && gameState.isPlayerAlly(tilePlayer) && tilePlayer != playerID) ||
+				(!buildNeutral && tilePlayer == 0) ||
+				(!buildEnemy && gameState.isPlayerEnemy(tilePlayer) && tilePlayer !=0)
+			);
+			obstructionTiles[i] = (invalidTerritory || (passabilityMap.data[i] & obstructionMask)) ? 0 : 65535;
+		}
+
+//		Engine.DumpImage("tiles0.png", obstructionTiles, passabilityMap.width, passabilityMap.height, 64);
+
+		this.expandInfluences(obstructionTiles, passabilityMap.width, passabilityMap.height);
+
+		// TODO: handle distance restrictions for e.g. CivCentres
+		
 		// Compute each tile's closeness to friendly structures:
 
-		var friendlyTiles = new Uint16Array(map.data.length);
+		var friendlyTiles = new Uint16Array(passabilityMap.data.length);
 		var infl = 100;
 		var pos = this.resourceposition;
 		var x = Math.round(pos[0] / cellSize);
 		var z = Math.round(pos[1] / cellSize);
-		self.addInfluence(friendlyTiles, map.width, map.height, x, z, infl);
+		self.addInfluence(friendlyTiles, passabilityMap.width, passabilityMap.height, x, z, infl);
 		
 		//Look at making sure we're a long way from enemy civ centres as well.
 
@@ -184,7 +215,7 @@ var BuildingConstructionPlanEcon = Class({
 		// Find the best non-obstructed tile
 		var bestIdx = 0;
 		var bestVal = -1;
-		for (var i = 0; i < map.data.length; ++i)
+		for (var i = 0; i < passabilityMap.data.length; ++i)
 		{
 			if (obstructionTiles[i] > radius)
 			{
@@ -201,11 +232,11 @@ var BuildingConstructionPlanEcon = Class({
 				}
 			}
 		}
-		var x = ((bestIdx % map.width) + 0.5) * cellSize;
-		var z = (Math.floor(bestIdx / map.width) + 0.5) * cellSize;
+		var x = ((bestIdx % passabilityMap.width) + 0.5) * cellSize;
+		var z = (Math.floor(bestIdx / passabilityMap.width) + 0.5) * cellSize;
 
-//		Engine.DumpImage("tiles1.png", obstructionTiles, map.width, map.height, 32);
-//		Engine.DumpImage("tiles2.png", friendlyTiles, map.width, map.height, 256);
+//		Engine.DumpImage("tiles1.png", obstructionTiles, passabilityMap.width, passabilityMap.height, 32);
+//		Engine.DumpImage("tiles2.png", friendlyTiles, passabilityMap.width, passabilityMap.height, 256);
 
 		// Fixed angle to match fixed starting cam
 		var angle = 0.75*Math.PI;
@@ -225,23 +256,23 @@ var BuildingConstructionPlanEcon = Class({
 
 		// First, find all tiles that are far enough away from obstructions:
 
-		var map = gameState.getMap();
+		var passabilityMap = gameState.getPassabilityMap();
 
 		var obstructionMask = gameState.getPassabilityClassMask("foundationObstruction");
 		// Only accept valid land tiles (we don't handle docks yet)
 		obstructionMask |= gameState.getPassabilityClassMask("building-land");
 
-		var obstructionTiles = new Uint16Array(map.data.length);
-		for (var i = 0; i < map.data.length; ++i)
-			obstructionTiles[i] = (map.data[i] & obstructionMask) ? 0 : 65535;
+		var obstructionTiles = new Uint16Array(passabilityMap.data.length);
+		for (var i = 0; i < passabilityMap.data.length; ++i)
+			obstructionTiles[i] = (passabilityMap.data[i] & obstructionMask) ? 0 : 65535;
 
-//		Engine.DumpImage("tiles0.png", obstructionTiles, map.width, map.height, 64);
+//		Engine.DumpImage("tiles0.png", obstructionTiles, passabilityMap.width, passabilityMap.height, 64);
 
-		this.expandInfluences(obstructionTiles, map.width, map.height);
+		this.expandInfluences(obstructionTiles, passabilityMap.width, passabilityMap.height);
 
 		// Compute each tile's closeness to friendly structures:
 
-		var friendlyTiles = new Uint16Array(map.data.length);
+		var friendlyTiles = new Uint16Array(passabilityMap.data.length);
 
 		gameState.getOwnEntities().forEach(function(ent) {
 			if (ent.hasClass("Structure"))
@@ -253,13 +284,13 @@ var BuildingConstructionPlanEcon = Class({
 				var pos = ent.position();
 				var x = Math.round(pos[0] / cellSize);
 				var z = Math.round(pos[1] / cellSize);
-				self.addInfluence(friendlyTiles, map.width, map.height, x, z, infl);
+				self.addInfluence(friendlyTiles, passabilityMap.width, passabilityMap.height, x, z, infl);
 			}
 		});
 		
 		//Look at making sure we're a long way from enemy civ centres as well.
 	
-//		var enemyTiles = new Uint16Array(map.data.length);
+//		var enemyTiles = new Uint16Array(passabilityMap.data.length);
 //		
 //			var foetargets = gameState.entities.filter(function(ent) {
 //				return (ent.isEnemy());
@@ -271,7 +302,7 @@ var BuildingConstructionPlanEcon = Class({
 //				var pos = ent.position();
 //				var x = Math.round(pos[0] / cellSize);
 //				var z = Math.round(pos[1] / cellSize);
-//				self.addInfluence(enemyTiles, map.width, map.height, x, z, infl);
+//				self.addInfluence(enemyTiles, passabilityMap.width, passabilityMap.height, x, z, infl);
 //			}
 //		});
 
@@ -284,7 +315,7 @@ var BuildingConstructionPlanEcon = Class({
 		// Find the best non-obstructed tile
 		var bestIdx = 0;
 		var bestVal = -1;
-		for (var i = 0; i < map.data.length; ++i)
+		for (var i = 0; i < passabilityMap.data.length; ++i)
 		{
 			if (obstructionTiles[i] > radius)
 			{
@@ -301,11 +332,11 @@ var BuildingConstructionPlanEcon = Class({
 				}
 			}
 		}
-		var x = ((bestIdx % map.width) + 0.5) * cellSize;
-		var z = (Math.floor(bestIdx / map.width) + 0.5) * cellSize;
+		var x = ((bestIdx % passabilityMap.width) + 0.5) * cellSize;
+		var z = (Math.floor(bestIdx / passabilityMap.width) + 0.5) * cellSize;
 
-//		Engine.DumpImage("tiles1.png", obstructionTiles, map.width, map.height, 32);
-//		Engine.DumpImage("tiles2.png", friendlyTiles, map.width, map.height, 256);
+//		Engine.DumpImage("tiles1.png", obstructionTiles, passabilityMap.width, passabilityMap.height, 32);
+//		Engine.DumpImage("tiles2.png", friendlyTiles, passabilityMap.width, passabilityMap.height, 256);
 
 		// Randomise the angle a little, to look less artificial
 		//var angle = Math.PI + (Math.random()*2-1) * Math.PI/24;

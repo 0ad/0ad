@@ -236,3 +236,30 @@ template<> jsval ScriptInterface::ToJSVal<Grid<u16> >(JSContext* cx, const Grid<
 
 	return OBJECT_TO_JSVAL(obj);
 }
+
+template<> jsval ScriptInterface::ToJSVal<Grid<u8> >(JSContext* cx, const Grid<u8>& val)
+{
+	JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
+	if (!obj)
+		return JSVAL_VOID;
+
+	jsuint len = val.m_W * val.m_H;
+	JSObject *darray = js_CreateTypedArray(cx, js::TypedArray::TYPE_UINT8, len);
+	if (!darray)
+		return JSVAL_VOID;
+
+	js::TypedArray *tdest = js::TypedArray::fromJSObject(darray);
+	ENSURE(tdest->byteLength == len*sizeof(u8));
+
+	memcpy(tdest->data, val.m_Data, tdest->byteLength);
+
+	jsval w = ToJSVal(cx, val.m_W);
+	jsval h = ToJSVal(cx, val.m_H);
+	jsval data = OBJECT_TO_JSVAL(darray);
+
+	JS_SetProperty(cx, obj, "width", &w);
+	JS_SetProperty(cx, obj, "height", &h);
+	JS_SetProperty(cx, obj, "data", &data);
+
+	return OBJECT_TO_JSVAL(obj);
+}
