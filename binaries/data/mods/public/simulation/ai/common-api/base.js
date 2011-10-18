@@ -115,6 +115,12 @@ BaseAI.prototype.ApplyEntitiesDelta = function(state)
 		}
 		else if (evt.type == "Destroy")
 		{
+			// The entity was destroyed but its data may still be useful, so
+			// remember the raw entity and this AI's metadata concerning it
+			evt.msg.metadata = (evt.msg.metadata || []);
+			evt.msg.rawEntity = (evt.msg.rawEntity || this._rawEntities[evt.msg.entity]);
+			evt.msg.metadata[this._player] = this._entityMetadata[evt.msg.entity];
+
 			delete this._rawEntities[evt.msg.entity];
 			delete this._entityMetadata[evt.msg.entity];
 			delete this._ownEntities[evt.msg.entity];
