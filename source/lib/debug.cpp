@@ -225,7 +225,7 @@ public:
 	{
 		va_list ap;
 		va_start(ap, fmt);
-		const int len = vswprintf_s(m_pos, m_charsLeft, fmt, ap);
+		const int len = vswprintf(m_pos, m_charsLeft, fmt, ap);
 		va_end(ap);
 		if(len < 0)
 			return false;

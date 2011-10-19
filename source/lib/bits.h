@@ -122,14 +122,12 @@ inline T SetBitsTo(T num, size_t lo_idx, size_t hi_idx, size_t value)
 
 
 /**
- * @return number of 1-bits in mask
+ * @return number of 1-bits in mask.
+ * execution time is proportional to number of 1-bits in mask.
  **/
 template<typename T>
-inline size_t PopulationCount(T mask)
+inline size_t SparsePopulationCount(T mask)
 {
-	// note: a more complex but probably faster method is given at
-	// http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetParallel
-
 	size_t num1Bits = 0;
 	while(mask)
 	{
@@ -139,6 +137,24 @@ inline size_t PopulationCount(T mask)
 
 	return num1Bits;
 }
+
+/**
+ * @return number of 1-bits in mask.
+ * execution time is logarithmic in the total number of bits.
+ * supports up to 128-bit integers (if their arithmetic operators are defined).
+ * [http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetParallel]
+ **/
+template<typename T>
+static inline size_t PopulationCount(T x)
+{
+	const T mask = T(~T(0));
+	x -= (x >> 1) & (mask/3);	// count 2 bits
+	x = (x & (mask/15*3)) + ((x >> 2) & (mask/15*3));	// count 4 bits
+	x = (x + (x >> 4)) & (mask/255*15);	// count 8 bits
+	return (x * (mask/255)) >> ((sizeof(T)-1)*CHAR_BIT);
+}
+
+
 
 /**
  * @return whether the given number is a power of two.

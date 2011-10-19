@@ -455,7 +455,11 @@ Status waio_Preallocate(int fd, off_t size)
 	// allocate all space up front to reduce fragmentation
 	LARGE_INTEGER size64; size64.QuadPart = alignedSize;
 	WARN_IF_FALSE(SetFilePointerEx(hFile, size64, 0, FILE_BEGIN));
-	WARN_IF_FALSE(SetEndOfFile(hFile));
+	if(!SetEndOfFile(hFile))
+	{
+		debug_printf(L"Preallocate(%lld) failed: %d\n", size, GetLastError());
+		return ERR::FAIL;	// NOWARN (probably not enough disk space)
+	}
 
 	// avoid synchronous zero-fill (see discussion in header)
 	if(pSetFileValidData)

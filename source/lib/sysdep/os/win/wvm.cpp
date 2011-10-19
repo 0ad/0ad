@@ -54,7 +54,7 @@ static WUTIL_FUNC(pVirtualAllocExNuma, LPVOID, (HANDLE, LPVOID, SIZE_T, DWORD, D
 static DWORD WINAPI EmulateGetCurrentProcessorNumber(VOID)
 {
 	const u8 apicId = x86_x64_ApicId();
-	const DWORD processor = ProcessorFromApicId(apicId);
+	const DWORD processor = (DWORD)ProcessorFromApicId(apicId);
 	ASSERT(processor < os_cpu_MaxProcessors);
 	return processor;
 }
