@@ -60,6 +60,26 @@ BuildLimits.prototype.DecrementCount = function(category)
 	}
 };
 
+BuildLimits.prototype.GetLimits = function()
+{
+	var limits = {};
+	for (var category in this.limit)
+	{
+		limits[category] = this.limit[category];
+	}
+	return limits;
+};
+
+BuildLimits.prototype.GetCounts = function()
+{
+	var counts = {};
+	for (var category in this.count)
+	{
+		counts[category] = this.count[category];
+	}
+	return counts;
+};
+
 BuildLimits.prototype.AllowedToBuild = function(category)
 {
 	// TODO: The UI should reflect this before the user tries to place the building,

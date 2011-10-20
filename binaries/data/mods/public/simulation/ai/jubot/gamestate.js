@@ -318,4 +318,38 @@ var GameState = Class({
 	{
 		return (ent && ent.owner() !== undefined && ent.owner() == this.player);
 	},
+	
+	/**
+	 * Returns player build limits
+	 * an object where each key is a category corresponding to a build limit for the player.
+	 */
+	getBuildLimits: function()
+	{
+		return this.playerData.buildLimits;
+	},
+	
+	/**
+	 * Returns player build counts
+	 * an object where each key is a category corresponding to the current building count for the player.
+	 */
+	getBuildCounts: function()
+	{
+		return this.playerData.buildCounts;
+	},
+	
+	/**
+	 * Checks if the player's build limit has been reached for the given category.
+	 * The category comes from the entity tenplate, specifically the BuildRestrictions component.
+	 */
+	isBuildLimitReached: function(category)
+	{
+		if (this.playerData.buildLimits[category] === undefined || this.playerData.buildCounts[category] === undefined)
+			return false;
+		
+		// There's a special case of build limits per civ centre, so check that first
+		if (this.playerData.buildLimits[category].LimitPerCivCentre !== undefined)
+			return (this.playerData.buildCounts[category] >= this.playerData.buildCounts["CivilCentre"]*this.playerData.buildLimits[category].LimitPerCivCentre);
+		else
+			return (this.playerData.buildCounts[category] >= this.playerData.buildLimits[category]);
+	},
 });

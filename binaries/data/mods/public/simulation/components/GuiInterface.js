@@ -43,8 +43,8 @@ GuiInterface.prototype.GetSimulationState = function(player)
 	for (var i = 0; i < n; ++i)
 	{
 		var playerEnt = cmpPlayerMan.GetPlayerByID(i);
+		var cmpPlayerBuildLimits = Engine.QueryInterface(playerEnt, IID_BuildLimits);
 		var cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
-		var cmpPlayerStatisticsTracker = Engine.QueryInterface(playerEnt, IID_StatisticsTracker);
 		
 		// store player ally/enemy data as arrays
 		var allies = [];
@@ -67,7 +67,9 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"team": cmpPlayer.GetTeam(),
 			"phase": cmpPlayer.GetPhase(),
 			"isAlly": allies,
-			"isEnemy": enemies
+			"isEnemy": enemies,
+			"buildLimits": cmpPlayerBuildLimits.GetLimits(),
+			"buildCounts": cmpPlayerBuildLimits.GetCounts()
 		};
 		ret.players.push(playerData);
 	}
