@@ -57,7 +57,7 @@ public:
 	void OnRenderPath(wxCommandEvent& event);
 	void OnDumpState(wxCommandEvent& event);
 
-	void OpenFile(const wxString& name, const wxString& filename);
+	bool OpenFile(const wxString& name, const wxString& filename);
 
 	void NotifyOnMapReload();
 

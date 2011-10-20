@@ -174,6 +174,12 @@ COMMAND(ResizeMap, NOMERGE,
 		((int, tiles))
 		);
 
+QUERY(VFSFileExists,
+		((std::wstring, path))
+		,
+		((bool, exists))
+		);
+
 //////////////////////////////////////////////////////////////////////////
 // Messages for player panel
 

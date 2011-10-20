@@ -623,29 +623,62 @@ void ScenarioEditor::OnNew(wxCommandEvent& WXUNUSED(event))
 		OpenFile(_T("_default"), _T(""));
 }
 
-void ScenarioEditor::OpenFile(const wxString& name, const wxString& filename)
+bool ScenarioEditor::OpenFile(const wxString& name, const wxString& filename)
 {
-	wxBusyInfo busy(_("Loading map"));
+	wxBusyInfo busy(_("Loading ") + name);
 	wxBusyCursor busyc;
+	
+	wxString mapPath(_T("maps/scenarios/"));
+	wxFileName fullFilename(filename);
 
-	// TODO: Work when the map is not in .../maps/scenarios/
-	std::wstring map(name.wc_str());
+	// For compatibility it's still possible to load xml maps but in that case,
+	// we want a blank filename so that we're forced to Save As
+	if (filename.IsEmpty() || fullFilename.GetExt().IsSameAs(_T("xml"), false))
+	{
+		fullFilename = _T("");
+	}
+	else
+	{	// force extension to pmp
+		fullFilename.SetExt(_T("pmp"));
+
+		// check if pmp exists
+		qVFSFileExists qry(wxString(mapPath + fullFilename.GetFullName()).c_str());
+		qry.Post();
+		if (!qry.exists)
+		{
+			return false;
+		}
+	}
+
+	// Every map requires an xml file, so check that it exists
+	wxFileName xmlName(name);
+	xmlName.SetExt(_T("xml"));
+	qVFSFileExists qry(wxString(mapPath + xmlName.GetFullName()).c_str());
+	qry.Post();
+	if (!qry.exists)
+	{
+		return false;
+	}
 
 	// Deactivate tools, so they don't carry forwards into the new CWorld
 	// and crash.
 	m_ToolManager.SetCurrentTool(_T(""));
 	// TODO: clear the undo buffer, etc
 
+	// TODO: Work when the map is not in .../maps/scenarios/
+	std::wstring map(name.wc_str());
 	POST_MESSAGE(LoadMap, (map));
 
-	SetOpenFilename(filename);
+	SetOpenFilename(fullFilename.GetFullName());
 
-	// Wait for it to load, while the wxBusyInfo is telling the user that we're doing that
-	qPing qry;
-	qry.Post();
+	{	// Wait for it to load, while the wxBusyInfo is telling the user that we're doing that
+		qPing qry;
+		qry.Post();
+	}
 
 	NotifyOnMapReload();
 
+	return true;
 	// TODO: Make this a non-undoable command
 }
 
@@ -661,13 +694,20 @@ void ScenarioEditor::OnOpen(wxCommandEvent& WXUNUSED(event))
 	dlg.SetFilterIndex(0);
 
 	wxString cwd = wxFileName::GetCwd();
-	
+
 	if (dlg.ShowModal() == wxID_OK)
-		OpenFile(dlg.GetFilename(), dlg.GetFilename());
-	
-	wxCHECK_RET(cwd == wxFileName::GetCwd(), _T("cwd changed"));
+	{
+		// TODO: Handle maps in subdirectories of maps/scenarios
+		wxFileName filename(dlg.GetFilename());
+		if (!OpenFile(filename.GetName(), filename.GetFullName()))
+		{
+			wxLogError(_("Map '%ls' does not exist"), filename.GetName().c_str());
+		}
+		
 		// paranoia - MSDN says OFN_NOCHANGEDIR (used when we don't give wxCHANGE_DIR)
 		// "is ineffective for GetOpenFileName", but it seems to work anyway
+		wxCHECK_RET(cwd == wxFileName::GetCwd(), _T("cwd changed"));
+	}
 
 	// TODO: Make this a non-undoable command
 }
@@ -675,15 +715,11 @@ void ScenarioEditor::OnOpen(wxCommandEvent& WXUNUSED(event))
 void ScenarioEditor::OnMRUFile(wxCommandEvent& event)
 {
 	wxString filename(m_FileHistory.GetHistoryFile(event.GetId() - wxID_FILE1));
-	if (filename.Len())
-	{
-		OpenFile(filename, filename);
-	}
-	else
-	{	//Remove from MRU
+
+	if (!OpenFile(filename, filename))
+	{	// Missing or invalid - warn and remove from MRU
+		wxLogError(_("Map '%ls' does not exist"), filename.c_str());
 		m_FileHistory.RemoveFileFromHistory(event.GetId() - wxID_FILE1);
-		wxMessageDialog msgDlg(NULL, _T("File '/mods/*/maps/scenarios/")+filename + _T("' does not exist!"), _T("Error"), wxICON_ERROR);
-		msgDlg.ShowModal();
 	}
 }
 
@@ -695,13 +731,15 @@ void ScenarioEditor::OnSave(wxCommandEvent& event)
 	}
 	else
 	{
-		wxBusyInfo busy(_("Saving map"));
+		wxBusyInfo busy(_("Saving ") + m_OpenFilename);
+		wxBusyCursor busyc;
 
 		// Deactivate tools, so things like unit previews don't get saved.
 		// (TODO: Would be nicer to leave the tools active, and just not save
 		// the preview units.)
 		m_ToolManager.SetCurrentTool(_T(""));
 
+		// TODO: Handle maps in subdirectories of maps/scenarios
 		std::wstring map(m_OpenFilename.wc_str());
 		POST_MESSAGE(SaveMap, (map));
 
@@ -722,15 +760,26 @@ void ScenarioEditor::OnSaveAs(wxCommandEvent& WXUNUSED(event))
 
 	if (dlg.ShowModal() == wxID_OK)
 	{
-		wxBusyInfo busy(_("Saving map"));
+		// On wxMSW the extension is automatically set to pmp if that filter is selected
+		// but not on wxGTK or wxOSX. Set it explicitly since it's the only possible format.
+		wxFileName filename(dlg.GetFilename());
+		filename.SetExt(_T("pmp"));
+		if (!filename.IsOk())
+		{	// Shouldn't happen
+			wxLogError(_("Invalid filename '%ls'"), filename.GetFullName().c_str());
+			return;
+		}
+
+		wxBusyInfo busy(_("Saving ") + filename.GetFullName());
+		wxBusyCursor busyc;
 
 		m_ToolManager.SetCurrentTool(_T(""));
 
-		// TODO: Work when the map is not in .../maps/scenarios/
-		std::wstring map(dlg.GetFilename().wc_str());
+		// TODO: Handle maps in subdirectories of maps/scenarios
+		std::wstring map(filename.GetFullName().wc_str());
 		POST_MESSAGE(SaveMap, (map));
 
-		SetOpenFilename(dlg.GetFilename());
+		SetOpenFilename(filename.GetFullName());
 
 		// Wait for it to finish saving
 		qPing qry;
@@ -831,8 +880,7 @@ void ScenarioEditor::OnDumpState(wxCommandEvent& event)
 	}
 	else
 	{
-		wxMessageDialog msgDlg(NULL, _("Error writing to file: ") + filename, _("Error"), wxICON_ERROR);
-		msgDlg.ShowModal();
+		wxLogError(_("Error writing to file '%ls'"), filename.c_str());
 	}
 }
 

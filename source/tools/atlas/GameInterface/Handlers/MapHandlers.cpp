@@ -246,4 +246,9 @@ BEGIN_COMMAND(ResizeMap)
 };
 END_COMMAND(ResizeMap)
 
+QUERYHANDLER(VFSFileExists)
+{
+	msg->exists = VfsFileExists(*msg->path);
+}
+
 }
