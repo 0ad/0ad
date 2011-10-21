@@ -129,6 +129,22 @@ function chooseRand()
 	return ar[randInt(ar.length)];
 }
 
+// "Inside-out" implementation of Fisher-Yates shuffle
+function shuffleArray(source)
+{
+	if (!source.length)
+		return [];
+
+	var result = [source[0]];
+	for (var i = 1; i < source.length; i++)
+	{
+		var j = randInt(0, i);
+		result[i] = result[j];
+		result[j] = source[i];
+	}
+	return result;
+}
+
 function createAreas(centeredPlacer, painter, constraint, num, retryFactor)
 {
 	if (retryFactor === undefined)

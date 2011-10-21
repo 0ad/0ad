@@ -69,6 +69,14 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
+// randomize player order
+var playerIDs = [];
+for (var i = 0; i < numPlayers; i++)
+{
+	playerIDs.push(i+1);
+}
+playerIDs = shuffleArray(playerIDs);
+
 // place players
 
 var playerX = new Array(numPlayers);
@@ -85,7 +93,8 @@ for (var i = 0; i < numPlayers; i++)
 
 for (var i = 0; i < numPlayers; i++)
 {
-	log("Creating base for player " + (i + 1) + "...");
+	var id = playerIDs[i];
+	log("Creating base for player " + id + "...");
 	
 	// scale radius of player area by map size
 	var radius = scaleByMapSize(15,25);
@@ -110,14 +119,14 @@ for (var i = 0; i < numPlayers; i++)
 	createArea(placer, painter, null);
 	
 	// get civ specific starting entities
-	var civEntities = getStartingEntities(i);
+	var civEntities = getStartingEntities(id-1);
 	
 	// create the TC
 	var group = new SimpleGroup(	// elements (type, min/max count, min/max distance, min/max angle)
 		[new SimpleObject(civEntities[0].Template, 1,1, 0,0, BUILDING_ANGlE, BUILDING_ANGlE)],
 		true, null, ix, iz
 	);
-	createObjectGroup(group, i+1);
+	createObjectGroup(group, id);
 	
 	// create starting units
 	var uDist = 8;
@@ -131,7 +140,7 @@ for (var i = 0; i < numPlayers; i++)
 			[new SimpleObject(civEntities[j].Template, count,count, 1,ceil(count/2))],
 			true, null, ux, uz
 		);
-		createObjectGroup(group, i+1);
+		createObjectGroup(group, id);
 		uAngle += PI/4;
 	}
 	

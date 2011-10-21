@@ -87,6 +87,14 @@ var clPlayer = createTileClass();
 var clBaseResource = createTileClass();
 var clSettlement = createTileClass();
 
+// randomize player order
+var playerIDs = [];
+for (var i = 0; i < numPlayers; i++)
+{
+	playerIDs.push(i+1);
+}
+playerIDs = shuffleArray(playerIDs);
+
 // Place players
 
 log("Creating players...");
@@ -395,7 +403,8 @@ RMS.SetProgress(30);
 
 for (var i = 1; i <= numPlayers; i++)
 {
-	log("Creating base for player " + i + "...");
+	var id = playerIDs[i-1];
+	log("Creating base for player " + id + "...");
 	
 	// get fractional locations in tiles
 	var fx = fractionToTiles(playerX[i]);
@@ -416,14 +425,14 @@ for (var i = 1; i <= numPlayers; i++)
 	createArea(placer, [painter, elevationPainter], null);
 	
 	// get civ specific starting entities
-	var civEntities = getStartingEntities(i-1);
+	var civEntities = getStartingEntities(id-1);
 	
 	// create the TC
 	var group = new SimpleGroup(	// elements (type, min/max count, min/max distance, min/max angle)
 		[new SimpleObject(civEntities[0].Template, 1,1, 0,0, BUILDING_ANGlE, BUILDING_ANGlE)],
 		true, null, ix, iz
 	);
-	createObjectGroup(group, i);
+	createObjectGroup(group, id);
 	
 	// create starting units
 	var uDist = 8;
@@ -437,7 +446,7 @@ for (var i = 1; i <= numPlayers; i++)
 			[new SimpleObject(civEntities[j].Template, count,count, 1,ceil(count/2))],
 			true, null, ux, uz
 		);
-		createObjectGroup(group, i);
+		createObjectGroup(group, id);
 		uAngle += PI/4;
 	}
 	

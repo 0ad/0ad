@@ -96,6 +96,14 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 
+// randomize player order
+var playerIDs = [];
+for (var i = 0; i < numPlayers; i++)
+{
+	playerIDs.push(i+1);
+}
+playerIDs = shuffleArray(playerIDs);
+
 //array holding starting islands based on number of players
 var startingPlaces=[[0],[0,3],[0,2,4],[0,1,3,4],[0,1,2,3,4],[0,1,2,3,4,5]];
 
@@ -256,6 +264,8 @@ for(var i=0;i<numIslands;i++)
 {
 if((numPlayers>=6)||(i==startingPlaces[numPlayers-1][nPlayer])){
 
+	var id = playerIDs[nPlayer];
+
 	// get the x and z in tiles
 	var fx = fractionToTiles(islandX[i]);
 	var fz = fractionToTiles(islandZ[i]);
@@ -270,14 +280,14 @@ if((numPlayers>=6)||(i==startingPlaces[numPlayers-1][nPlayer])){
 
 
 	// get civ specific starting entities
-	var civEntities = getStartingEntities(nPlayer);
+	var civEntities = getStartingEntities(id-1);
 	
 	// create the TC
 	var group = new SimpleGroup(	// elements (type, min/max count, min/max distance)
 		[new SimpleObject(civEntities[0].Template, 1,1, 0,0, BUILDING_ANGlE, BUILDING_ANGlE)],
 		true, null, ix, iz
 	);
-	createObjectGroup(group, nPlayer+1);
+	createObjectGroup(group, id);
 	
 	// create starting units
 	var uDist = 8;
@@ -291,7 +301,7 @@ if((numPlayers>=6)||(i==startingPlaces[numPlayers-1][nPlayer])){
 			[new SimpleObject(civEntities[j].Template, count,count, 1,ceil(count/2))],
 			true, null, ux, uz
 		);
-		createObjectGroup(group, nPlayer+1);
+		createObjectGroup(group, id);
 		uAngle += PI/4;
 	}
 
