@@ -1,5 +1,6 @@
 Engine.LoadComponentScript("interfaces/Attack.js");
 Engine.LoadComponentScript("interfaces/Builder.js");
+Engine.LoadComponentScript("interfaces/BuildLimits.js");
 Engine.LoadComponentScript("interfaces/DamageReceiver.js");
 Engine.LoadComponentScript("interfaces/Foundation.js");
 Engine.LoadComponentScript("interfaces/GarrisonHolder.js");
@@ -56,6 +57,11 @@ AddMock(100, IID_Player, {
 	IsEnemy: function() { return true; },
 });
 
+AddMock(100, IID_BuildLimits, {
+	GetLimits: function() { return {"Foo": 10}; },
+	GetCounts: function() { return {"Foo": 5}; },
+});
+
 AddMock(100, IID_StatisticsTracker, {
 	GetStatistics: function() { 
 		return {
@@ -98,6 +104,11 @@ AddMock(101, IID_Player, {
 	IsEnemy: function() { return false; },
 });
 
+AddMock(101, IID_BuildLimits, {
+	GetLimits: function() { return {"Bar": 20}; },
+	GetCounts: function() { return {"Bar": 0}; },
+});
+
 AddMock(101, IID_StatisticsTracker, {
 	GetStatistics: function() { 
 		return {
@@ -138,6 +149,8 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			phase: "",
 			isAlly: [false, false, false],
 			isEnemy: [true, true, true],
+			buildLimits: {"Foo": 10},
+			buildCounts: {"Foo": 5},
 		},
 		{
 			name: "Player 2",
@@ -153,6 +166,8 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			phase: "village",
 			isAlly: [true, true, true],
 			isEnemy: [false, false, false],
+			buildLimits: {"Bar": 20},
+			buildCounts: {"Bar": 0},
 		}
 	],
 	circularMap: false,
@@ -175,6 +190,8 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			phase: "",
 			isAlly: [false, false, false],
 			isEnemy: [true, true, true],
+			buildLimits: {"Foo": 10},
+			buildCounts: {"Foo": 5},
 			statistics: {
 				unitsTrained: 10,
 				unitsLost: 9,
@@ -206,6 +223,8 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			phase: "village",
 			isAlly: [true, true, true],
 			isEnemy: [false, false, false],
+			buildLimits: {"Bar": 20},
+			buildCounts: {"Bar": 0},
 			statistics: {
 				unitsTrained: 10,
 				unitsLost: 9,
