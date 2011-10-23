@@ -533,8 +533,8 @@ GuiInterface.prototype.GetFoundationSnapData = function(player, data)
 		/* Find direction of most open water, algorithm:
 		 *	1. Pick points in a circle around dock
 		 *	2. If point is in water, add to array
-		 *	3. Scan array looking for consective points
-		 *	4. Find longest sequence of conseuctive points
+		 *	3. Scan array looking for consecutive points
+		 *	4. Find longest sequence of consecutive points
 		 *	5. If sequence equals all points, no direction can be determined,
 		 *		expand search outward and try (1) again
 		 *	6. Calculate angle using average of sequence

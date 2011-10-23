@@ -147,7 +147,7 @@ function ProcessCommand(player, cmd)
 		cmpPosition.JumpTo(cmd.x, cmd.z);
 		cmpPosition.SetYRotation(cmd.angle);
 
-		// TODO: Build restrctions disabled for AI since it lacks a mechanism for checking most of them
+		// TODO: Build restrictions disabled for AI since it lacks a mechanism for checking most of them
 		if (!cmpPlayer.IsAI())
 		{
 			// Check whether it's obstructed by other entities or invalid terrain
