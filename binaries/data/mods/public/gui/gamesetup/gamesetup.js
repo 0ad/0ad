@@ -97,7 +97,8 @@ function initMain()
 	mapTypes.list_data = ["scenario","random"];
 
 	// Setup map filters - will appear in order they are added
-	addFilter("Default", function(settings) { return settings && !keywordTestOR(settings.Keywords, ["demo", "hidden"]); });
+	addFilter("Default", function(settings) { return settings && !keywordTestOR(settings.Keywords, ["naval", "demo", "hidden"]); });
+	addFilter("Naval Maps", function(settings) { return settings && keywordTestAND(settings.Keywords, ["naval"]); });
 	addFilter("Demo Maps", function(settings) { return settings && keywordTestAND(settings.Keywords, ["demo"]); });
 	addFilter("Old Maps", function(settings) { return !settings; });
 	addFilter("All Maps", function(settings) { return true; });
