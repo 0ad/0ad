@@ -199,7 +199,7 @@ function onTick()
 		getGUIObjectByName("resourcePop").textcolor = DEFAULT_POPULATION_COLOR;
 
 	// Clear renamed entities list
-	Engine.GuiInterfaceCall("ClearRenamedEntities", {});
+	Engine.GuiInterfaceCall("ClearRenamedEntities");
 }
 
 function checkPlayerState()
