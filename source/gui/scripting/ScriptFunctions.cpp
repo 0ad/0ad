@@ -456,6 +456,16 @@ void RewindTimeWarp(void* UNUSED(cbdata))
 	g_Game->GetTurnManager()->RewindTimeWarp();
 }
 
+void QuickSave(void* UNUSED(cbdata))
+{
+	g_Game->GetTurnManager()->QuickSave();
+}
+
+void QuickLoad(void* UNUSED(cbdata))
+{
+	g_Game->GetTurnManager()->QuickLoad();
+}
+
 } // namespace
 
 void GuiScriptingInit(ScriptInterface& scriptInterface)
@@ -520,4 +530,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, &DumpSimState>("DumpSimState");
 	scriptInterface.RegisterFunction<void, unsigned int, &EnableTimeWarpRecording>("EnableTimeWarpRecording");
 	scriptInterface.RegisterFunction<void, &RewindTimeWarp>("RewindTimeWarp");
+	scriptInterface.RegisterFunction<void, &QuickSave>("QuickSave");
+	scriptInterface.RegisterFunction<void, &QuickLoad>("QuickLoad");
 }

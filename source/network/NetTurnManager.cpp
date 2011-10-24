@@ -25,6 +25,7 @@
 
 #include "gui/GUIManager.h"
 #include "maths/MathUtil.h"
+#include "ps/CLogger.h"
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/Replay.h"
@@ -270,6 +271,46 @@ void CNetTurnManager::RewindTimeWarp()
 	m_QueuedCommands.resize(queuedCommandsSize);
 }
 
+void CNetTurnManager::QuickSave()
+{
+	std::stringstream stream;
+	bool ok = m_Simulation2.SerializeState(stream);
+	if (!ok)
+	{
+		LOGERROR(L"Failed to quicksave game");
+		return;
+	}
+	LOGMESSAGERENDER(L"Quicksaved game");
+
+	m_QuickSaveState = stream.str();
+
+}
+
+void CNetTurnManager::QuickLoad()
+{
+	if (m_QuickSaveState.empty())
+	{
+		LOGERROR(L"Cannot quickload game - no game was quicksaved");
+		return;
+	}
+
+	std::stringstream stream(m_QuickSaveState);
+	bool ok = m_Simulation2.DeserializeState(stream);
+	if (!ok)
+	{
+		LOGERROR(L"Failed to quickload game");
+		return;
+	}
+	LOGMESSAGERENDER(L"Quickloaded game");
+
+	// See RewindTimeWarp
+	m_CurrentTurn = 0;
+	m_ReadyTurn = 1;
+	m_DeltaTime = 0;
+	size_t queuedCommandsSize = m_QueuedCommands.size();
+	m_QueuedCommands.clear();
+	m_QueuedCommands.resize(queuedCommandsSize);
+}
 
 
 CNetClientTurnManager::CNetClientTurnManager(CSimulation2& simulation, CNetClient& client, int clientId, IReplayLogger& replay) :

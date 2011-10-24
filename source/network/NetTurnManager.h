@@ -119,6 +119,9 @@ public:
 	 */
 	void RewindTimeWarp();
 
+	void QuickSave();
+	void QuickLoad();
+
 protected:
 	/**
 	 * Store a command to be executed at a given turn.
@@ -168,6 +171,7 @@ protected:
 private:
 	size_t m_TimeWarpNumTurns; // 0 if disabled
 	std::list<std::string> m_TimeWarpStates;
+	std::string m_QuickSaveState; // TODO: should implement a proper disk-based quicksave system
 };
 
 /**
