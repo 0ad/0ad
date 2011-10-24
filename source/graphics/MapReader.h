@@ -34,6 +34,7 @@ class CLightEnv;
 class CCinemaManager;
 class CTriggerManager;
 class CSimulation2;
+class CSimContext;
 class CTerrainTextureEntry;
 class CScriptValRooted;
 class ScriptInterface;
@@ -52,7 +53,7 @@ public:
 
 	// LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
 	void LoadMap(const VfsPath& pathname, CTerrain*, WaterManager*, SkyManager*, CLightEnv*, CGameView*,
-		CCinemaManager*, CTriggerManager*, CSimulation2*, int playerID);
+		CCinemaManager*, CTriggerManager*, CSimulation2*, const CSimContext*, int playerID, bool skipEntities);
 
 	void LoadRandomMap(const CStrW& scriptFile, const CScriptValRooted& settings, CTerrain*, WaterManager*, SkyManager*, CLightEnv*, CGameView*,
 		CCinemaManager*, CTriggerManager*, CSimulation2*, int playerID);
@@ -133,7 +134,9 @@ private:
 	CCinemaManager* pCinema;
 	CTriggerManager* pTrigMan;
 	CSimulation2* pSimulation2;
+	const CSimContext* pSimContext;
 	int m_PlayerID;
+	bool m_SkipEntities;
 	VfsPath filename_xml;
 	bool only_xml;
 	u32 file_format_version;

@@ -62,7 +62,7 @@ CMapReader::CMapReader()
 void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 						 WaterManager* pWaterMan_, SkyManager* pSkyMan_,
 						 CLightEnv *pLightEnv_, CGameView *pGameView_, CCinemaManager* pCinema_, CTriggerManager* pTrigMan_,
-						 CSimulation2 *pSimulation2_, int playerID_)
+						 CSimulation2 *pSimulation2_, const CSimContext* pSimContext_, int playerID_, bool skipEntities)
 {
 	// latch parameters (held until DelayedLoadFinished)
 	pTerrain = pTerrain_;
@@ -73,7 +73,9 @@ void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 	pCinema = pCinema_;
 	pTrigMan = pTrigMan_;
 	pSimulation2 = pSimulation2_;
+	pSimContext = pSimContext_;
 	m_PlayerID = playerID_;
+	m_SkipEntities = skipEntities;
 	m_StartingCameraTarget = INVALID_ENTITY;
 
 	filename_xml = pathname.ChangeExtension(L".xml");
@@ -144,7 +146,9 @@ void CMapReader::LoadRandomMap(const CStrW& scriptFile, const CScriptValRooted& 
 	pCinema = pCinema_;
 	pTrigMan = pTrigMan_;
 	pSimulation2 = pSimulation2_;
+	pSimContext = pSimulation2 ? &pSimulation2->GetSimContext() : NULL;
 	m_PlayerID = playerID_;
+	m_SkipEntities = false;
 	m_StartingCameraTarget = INVALID_ENTITY;
 
 	// delete all existing entities
@@ -282,7 +286,7 @@ int CMapReader::ApplyData()
 	if (pLightEnv)
 		*pLightEnv = m_LightEnv;
 
-	CmpPtr<ICmpPlayerManager> cmpPlayerManager(*pSimulation2, SYSTEM_ENTITY);
+	CmpPtr<ICmpPlayerManager> cmpPlayerManager(*pSimContext, SYSTEM_ENTITY);
 
 	if (pGameView && !cmpPlayerManager.null())
 	{
@@ -290,7 +294,7 @@ int CMapReader::ApplyData()
 		pGameView->ResetCameraTarget(pGameView->GetCamera()->GetFocus());
 	
 		// TODO: Starting rotation?
-		CmpPtr<ICmpPlayer> cmpPlayer(*pSimulation2, cmpPlayerManager->GetPlayerByID(m_PlayerID));
+		CmpPtr<ICmpPlayer> cmpPlayer(*pSimContext, cmpPlayerManager->GetPlayerByID(m_PlayerID));
 		if (!cmpPlayer.null() && cmpPlayer->HasStartingCamera())
 		{
 			// Use player starting camera
@@ -300,7 +304,7 @@ int CMapReader::ApplyData()
 		else if (m_StartingCameraTarget != INVALID_ENTITY)
 		{
 			// Point camera at entity
-			CmpPtr<ICmpPosition> cmpPosition(*pSimulation2, m_StartingCameraTarget);
+			CmpPtr<ICmpPosition> cmpPosition(*pSimContext, m_StartingCameraTarget);
 			if (!cmpPosition.null())
 			{
 				CFixedVector3D pos = cmpPosition->GetPosition();
@@ -309,7 +313,7 @@ int CMapReader::ApplyData()
 		}
 	}
 
-	CmpPtr<ICmpTerrain> cmpTerrain(*pSimulation2, SYSTEM_ENTITY);
+	CmpPtr<ICmpTerrain> cmpTerrain(*pSimContext, SYSTEM_ENTITY);
 	if (!cmpTerrain.null())
 		cmpTerrain->ReloadTerrain();
 
@@ -630,7 +634,7 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 					int element_name = waterelement.GetNodeName();
 					if (element_name == el_height)
 					{
-						CmpPtr<ICmpWaterManager> cmpWaterMan(*m_MapReader.pSimulation2, SYSTEM_ENTITY);
+						CmpPtr<ICmpWaterManager> cmpWaterMan(*m_MapReader.pSimContext, SYSTEM_ENTITY);
 						ENSURE(!cmpWaterMan.null());
 						cmpWaterMan->SetWaterLevel(entity_pos_t::FromString(waterelement.GetText()));
 						continue;
@@ -859,6 +863,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 {
 	XMBElementList entities = parent.GetChildNodes();
 
+	ENSURE(m_MapReader.pSimulation2);
 	CSimulation2& sim = *m_MapReader.pSimulation2;
 	CmpPtr<ICmpPlayerManager> cmpPlayerManager(sim, SYSTEM_ENTITY);
 
@@ -981,9 +986,12 @@ int CXMLReader::ProgressiveRead()
 		}
 		else if (name == "Entities")
 		{
-			ret = ReadEntities(node, end_time);
-			if (ret != 0)	// error or timed out
-				return ret;
+			if (!m_MapReader.m_SkipEntities)
+			{
+				ret = ReadEntities(node, end_time);
+				if (ret != 0)	// error or timed out
+					return ret;
+			}
 		}
 		else if (name == "Paths")
 		{
@@ -995,7 +1003,8 @@ int CXMLReader::ProgressiveRead()
 		}
 		else if (name == "Script")
 		{
-			m_MapReader.pSimulation2->SetStartupScript(node.GetText().FromUTF8());
+			if (m_MapReader.pSimulation2)
+				m_MapReader.pSimulation2->SetStartupScript(node.GetText().FromUTF8());
 		}
 		else
 		{
@@ -1021,7 +1030,8 @@ int CMapReader::LoadScriptSettings()
 		xml_reader = new CXMLReader(filename_xml, *this);
 
 	// parse the script settings
-	pSimulation2->SetMapSettings(xml_reader->ReadScriptSettings());
+	if (pSimulation2)
+		pSimulation2->SetMapSettings(xml_reader->ReadScriptSettings());
 
 	return 0;
 }
@@ -1029,14 +1039,16 @@ int CMapReader::LoadScriptSettings()
 // load player settings script
 int CMapReader::LoadPlayerSettings()
 {
-	pSimulation2->LoadPlayerSettings(true);
+	if (pSimulation2)
+		pSimulation2->LoadPlayerSettings(true);
 	return 0;
 }
 
 // load map settings script
 int CMapReader::LoadMapSettings()
 {
-	pSimulation2->LoadMapSettings();
+	if (pSimulation2)
+		pSimulation2->LoadMapSettings();
 	return 0;
 }
 

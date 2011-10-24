@@ -51,9 +51,9 @@ void DeserializeRNG(const std::string& str, boost::rand48& rng)
 	s >> rng;
 }
 
-bool CComponentManager::DumpDebugState(std::ostream& stream)
+bool CComponentManager::DumpDebugState(std::ostream& stream, bool includeDebugInfo)
 {
-	CDebugSerializer serializer(m_ScriptInterface, stream);
+	CDebugSerializer serializer(m_ScriptInterface, stream, includeDebugInfo);
 
 	serializer.StringASCII("rng", SerializeRNG(m_RNG), 0, 32);
 

@@ -82,7 +82,7 @@ void CWorld::RegisterInit(const CStrW& mapFile, int playerID)
 				CRenderer::IsInitialised() ? g_Renderer.GetSkyManager() : NULL,
 				&g_LightEnv, m_pGame->GetView(),
 				m_pGame->GetView() ? m_pGame->GetView()->GetCinema() : NULL,
-				pTriggerManager, m_pGame->GetSimulation2(), playerID);
+				pTriggerManager, m_pGame->GetSimulation2(), &m_pGame->GetSimulation2()->GetSimContext(), playerID, false);
 				// fails immediately, or registers for delay loading
 		}
 		catch (PSERROR_File& err)

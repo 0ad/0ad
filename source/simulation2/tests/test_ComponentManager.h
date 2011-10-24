@@ -564,7 +564,7 @@ public:
 		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (man.QueryInterface(ent3, IID_Test2))->GetX(), 21000);
 
 		std::stringstream debugStream;
-		TS_ASSERT(man.DumpDebugState(debugStream));
+		TS_ASSERT(man.DumpDebugState(debugStream, true));
 		TS_ASSERT_STR_EQUALS(debugStream.str(),
 				"rng: \"78606\"\n"
 				"entities:\n"
@@ -654,7 +654,7 @@ public:
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent3, IID_Test1))->GetX(), 8);
 
 		std::stringstream debugStream;
-		TS_ASSERT(man.DumpDebugState(debugStream));
+		TS_ASSERT(man.DumpDebugState(debugStream, true));
 		TS_ASSERT_STR_EQUALS(debugStream.str(),
 				"rng: \"78606\"\n"
 				"entities:\n"

@@ -30,8 +30,9 @@ public:
 	/**
 	 * @param scriptInterface Script interface corresponding to any jsvals passed to ScriptVal()
 	 * @param stream Stream to receive UTF-8 encoded output
+	 * @param includeDebugInfo If true then additional non-deterministic data will be included in the output
 	 */
-	CDebugSerializer(ScriptInterface& scriptInterface, std::ostream& stream);
+	CDebugSerializer(ScriptInterface& scriptInterface, std::ostream& stream, bool includeDebugInfo = true);
 
 	void Comment(const std::string& comment);
 	void TextLine(const std::string& text);
@@ -59,6 +60,7 @@ protected:
 private:
 	ScriptInterface& m_ScriptInterface;
 	std::ostream& m_Stream;
+	bool m_IsDebug;
 	int m_Indent;
 };
 

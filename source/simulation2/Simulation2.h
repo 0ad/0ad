@@ -90,6 +90,17 @@ public:
 	const std::wstring& GetStartupScript();
 
 	/**
+	 * Set the attributes identifying the scenario/RMS used to initialise this
+	 * simulation.
+	 */
+	void SetInitAttributes(const CScriptValRooted& settings);
+
+	/**
+	 * Get the data passed to SetInitAttributes.
+	 */
+	CScriptValRooted GetInitAttributes();
+
+	/**
 	 * Set the initial map settings (as a UTF-8-encoded JSON string),
 	 * which will be used to set up the simulation state.
 	 */
@@ -141,8 +152,8 @@ public:
 	 */
 	void InitGame(const CScriptVal& data);
 
-	bool Update(int turnLength);
-	bool Update(int turnLength, const std::vector<SimulationCommand>& commands);
+	void Update(int turnLength);
+	void Update(int turnLength, const std::vector<SimulationCommand>& commands);
 	void Interpolate(float frameLength, float frameOffset);
 	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling);
 

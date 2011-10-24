@@ -162,7 +162,6 @@ public:
 private:
 	void RegisterInit(const CScriptValRooted& attribs);
 	IReplayLogger* m_ReplayLogger;
-	CScriptValRooted m_RegisteredAttribs;
 
 	std::vector<CColor> m_PlayerColours;
 };

@@ -84,9 +84,6 @@ CGame::CGame(bool disableGraphics):
  **/
 CGame::~CGame()
 {
-	// Clear rooted value before destroying its context
-	m_RegisteredAttribs = CScriptValRooted();
-
 	// Again, the in-game call tree is going to be different to the main menu one.
 	if (CProfileManager::IsInitialised())
 		g_Profiler.StructuralReset();
@@ -117,7 +114,7 @@ void CGame::SetTurnManager(CNetTurnManager* turnManager)
  **/
 void CGame::RegisterInit(const CScriptValRooted& attribs)
 {
-	m_RegisteredAttribs = attribs; // save the attributes for ReallyStartGame
+	m_Simulation2->SetInitAttributes(attribs);
 
 	std::string mapType;
 	m_Simulation2->GetScriptInterface().GetProperty(attribs.get(), "mapType", mapType);
@@ -165,7 +162,7 @@ void CGame::RegisterInit(const CScriptValRooted& attribs)
 PSRETURN CGame::ReallyStartGame()
 {
 	CScriptVal settings;
-	m_Simulation2->GetScriptInterface().GetProperty(m_RegisteredAttribs.get(), "settings", settings);
+	m_Simulation2->GetScriptInterface().GetProperty(m_Simulation2->GetInitAttributes().get(), "settings", settings);
 	m_Simulation2->InitGame(settings);
 
 	// Call the reallyStartGame GUI function, but only if it exists

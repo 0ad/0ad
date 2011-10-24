@@ -27,11 +27,14 @@
 #include "simulation2/components/ICmpCommandQueue.h"
 #include "simulation2/components/ICmpTemplateManager.h"
 
+#include "graphics/MapReader.h"
+#include "graphics/Terrain.h"
 #include "lib/timer.h"
 #include "lib/file/vfs/vfs_util.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
+#include "ps/Loader.h"
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/XML/Xeromyces.h"
@@ -43,11 +46,21 @@
 #define getpid _getpid // use the non-deprecated function name
 #endif
 
+static std::string Hexify(const std::string& s) // TODO: shouldn't duplicate this function in so many places
+{
+	std::stringstream str;
+	str << std::hex;
+	for (size_t i = 0; i < s.size(); ++i)
+		str << std::setfill('0') << std::setw(2) << (int)(unsigned char)s[i];
+	return str.str();
+}
+
 class CSimulation2Impl
 {
 public:
 	CSimulation2Impl(CUnitManager* unitManager, CTerrain* terrain) :
-		m_SimContext(), m_ComponentManager(m_SimContext), m_EnableOOSLog(false)
+		m_SimContext(), m_ComponentManager(m_SimContext),
+		m_EnableOOSLog(false), m_EnableSerializationTest(false)
 	{
 		m_SimContext.m_UnitManager = unitManager;
 		m_SimContext.m_Terrain = terrain;
@@ -56,6 +69,7 @@ public:
 		RegisterFileReloadFunc(ReloadChangedFileCB, this);
 
 //		m_EnableOOSLog = true; // TODO: this should be a command-line flag or similar
+// 		m_EnableSerializationTest = true; // TODO: this should too
 	}
 
 	~CSimulation2Impl()
@@ -65,41 +79,45 @@ public:
 
 	void ResetState(bool skipScriptedComponents, bool skipAI)
 	{
-		m_ComponentManager.ResetState();
-
 		m_DeltaTime = 0.0;
 		m_LastFrameOffset = 0.0f;
 		m_TurnNumber = 0;
+		ResetComponentState(m_ComponentManager, skipScriptedComponents, skipAI);
+	}
+
+	static void ResetComponentState(CComponentManager& componentManager, bool skipScriptedComponents, bool skipAI)
+	{
+		componentManager.ResetState();
 
 		CParamNode noParam;
 		CComponentManager::ComponentTypeId cid;
 
 		// Add native system components:
-		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_TemplateManager, noParam);
+		componentManager.AddComponent(SYSTEM_ENTITY, CID_TemplateManager, noParam);
 
-		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_CommandQueue, noParam);
-		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_ObstructionManager, noParam);
-		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_Pathfinder, noParam);
-		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_ProjectileManager, noParam);
-		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_RangeManager, noParam);
-		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_SoundManager, noParam);
-		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_Terrain, noParam);
-		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_TerritoryManager, noParam);
-		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_WaterManager, noParam);
+		componentManager.AddComponent(SYSTEM_ENTITY, CID_CommandQueue, noParam);
+		componentManager.AddComponent(SYSTEM_ENTITY, CID_ObstructionManager, noParam);
+		componentManager.AddComponent(SYSTEM_ENTITY, CID_Pathfinder, noParam);
+		componentManager.AddComponent(SYSTEM_ENTITY, CID_ProjectileManager, noParam);
+		componentManager.AddComponent(SYSTEM_ENTITY, CID_RangeManager, noParam);
+		componentManager.AddComponent(SYSTEM_ENTITY, CID_SoundManager, noParam);
+		componentManager.AddComponent(SYSTEM_ENTITY, CID_Terrain, noParam);
+		componentManager.AddComponent(SYSTEM_ENTITY, CID_TerritoryManager, noParam);
+		componentManager.AddComponent(SYSTEM_ENTITY, CID_WaterManager, noParam);
 
 		if (!skipAI)
 		{
-			m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_AIManager, noParam);
+			componentManager.AddComponent(SYSTEM_ENTITY, CID_AIManager, noParam);
 		}
 
 		// Add scripted system components:
 		if (!skipScriptedComponents)
 		{
 #define LOAD_SCRIPTED_COMPONENT(name) \
-			cid = m_ComponentManager.LookupCID(name); \
+			cid = componentManager.LookupCID(name); \
 			if (cid == CID__Invalid) \
 				LOGERROR(L"Can't find component type " L##name); \
-			m_ComponentManager.AddComponent(SYSTEM_ENTITY, cid, noParam)
+			componentManager.AddComponent(SYSTEM_ENTITY, cid, noParam)
 
 			LOAD_SCRIPTED_COMPONENT("AIInterface");
 			LOAD_SCRIPTED_COMPONENT("EndGameManager");
@@ -111,7 +129,8 @@ public:
 		}
 	}
 
-	bool LoadScripts(const VfsPath& path);
+	static bool LoadDefaultScripts(CComponentManager& componentManager, std::set<VfsPath>* loadedScripts);
+	static bool LoadScripts(CComponentManager& componentManager, std::set<VfsPath>* loadedScripts, const VfsPath& path);
 	Status ReloadChangedFile(const VfsPath& path);
 
 	static Status ReloadChangedFileCB(void* param, const VfsPath& path)
@@ -120,7 +139,8 @@ public:
 	}
 
 	int ProgressiveLoad();
-	bool Update(int turnLength, const std::vector<SimulationCommand>& commands);
+	void Update(int turnLength, const std::vector<SimulationCommand>& commands);
+	static void UpdateComponents(CSimContext& simContext, fixed turnLengthFixed, const std::vector<SimulationCommand>& commands);
 	void Interpolate(float frameLength, float frameOffset);
 
 	void DumpState();
@@ -131,6 +151,7 @@ public:
 	float m_LastFrameOffset;
 
 	std::wstring m_StartupScript;
+	CScriptValRooted m_InitAttributes;
 	CScriptValRooted m_MapSettings;
 
 	std::set<VfsPath> m_LoadedScripts;
@@ -138,9 +159,48 @@ public:
 	uint32_t m_TurnNumber;
 
 	bool m_EnableOOSLog;
+
+
+	// Functions and data for the serialization test mode: (see Update() for relevant comments)
+
+	bool m_EnableSerializationTest;
+
+	struct SerializationTestState
+	{
+		std::stringstream state;
+		std::stringstream debug;
+		std::string hash;
+	};
+
+	void DumpSerializationTestState(SerializationTestState& state, const OsPath& path, const OsPath::String& suffix);
+
+	void ReportSerializationFailure(
+		SerializationTestState* primaryStateBefore, SerializationTestState* primaryStateAfter,
+		SerializationTestState* secondaryStateBefore, SerializationTestState* secondaryStateAfter);
+
+	static std::vector<SimulationCommand> CloneCommandsFromOtherContext(ScriptInterface& oldScript, ScriptInterface& newScript,
+		const std::vector<SimulationCommand>& commands)
+	{
+		std::vector<SimulationCommand> newCommands = commands;
+		for (size_t i = 0; i < newCommands.size(); ++i)
+		{
+			newCommands[i].data = CScriptValRooted(newScript.GetContext(),
+				newScript.CloneValueFromOtherContext(oldScript, newCommands[i].data.get()));
+		}
+		return newCommands;
+	}
 };
 
-bool CSimulation2Impl::LoadScripts(const VfsPath& path)
+bool CSimulation2Impl::LoadDefaultScripts(CComponentManager& componentManager, std::set<VfsPath>* loadedScripts)
+{
+	return (
+		LoadScripts(componentManager, loadedScripts, "simulation/components/interfaces/") &&
+		LoadScripts(componentManager, loadedScripts, L"simulation/helpers/") &&
+		LoadScripts(componentManager, loadedScripts, L"simulation/components/")
+	);
+}
+
+bool CSimulation2Impl::LoadScripts(CComponentManager& componentManager, std::set<VfsPath>* loadedScripts, const VfsPath& path)
 {
 	VfsPaths pathnames;
 	if (vfs::GetPathnames(g_VFS, path, L"*.js", pathnames) < 0)
@@ -150,9 +210,10 @@ bool CSimulation2Impl::LoadScripts(const VfsPath& path)
 	for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
 	{
 		VfsPath filename = *it;
-		m_LoadedScripts.insert(filename);
+		if (loadedScripts)
+			loadedScripts->insert(filename);
 		LOGMESSAGE(L"Loading simulation script '%ls'", filename.string().c_str());
-		if (! m_ComponentManager.LoadScript(filename))
+		if (! componentManager.LoadScript(filename))
 			ok = false;
 	}
 	return ok;
@@ -207,63 +268,167 @@ int CSimulation2Impl::ProgressiveLoad()
 	return ret;
 }
 
-bool CSimulation2Impl::Update(int turnLength, const std::vector<SimulationCommand>& commands)
+void CSimulation2Impl::DumpSerializationTestState(SerializationTestState& state, const OsPath& path, const OsPath::String& suffix)
+{
+	if (!state.hash.empty())
+	{
+		std::ofstream file (OsString(path / (L"hash." + suffix)).c_str(), std::ofstream::out | std::ofstream::trunc);
+		file << Hexify(state.hash);
+	}
+
+	if (!state.debug.str().empty())
+	{
+		std::ofstream file (OsString(path / (L"debug." + suffix)).c_str(), std::ofstream::out | std::ofstream::trunc);
+		file << state.debug.str();
+	}
+
+	if (!state.state.str().empty())
+	{
+		std::ofstream file (OsString(path / (L"state." + suffix)).c_str(), std::ofstream::out | std::ofstream::trunc | std::ofstream::binary);
+		file << state.state.str();
+	}
+}
+
+void CSimulation2Impl::ReportSerializationFailure(
+	SerializationTestState* primaryStateBefore, SerializationTestState* primaryStateAfter,
+	SerializationTestState* secondaryStateBefore, SerializationTestState* secondaryStateAfter)
+{
+	OsPath path = psLogDir() / "oos_log";
+	CreateDirectories(path, 0700);
+
+	// Clean up obsolete files from previous runs
+	wunlink(path / "hash.before.a");
+	wunlink(path / "hash.before.b");
+	wunlink(path / "debug.before.a");
+	wunlink(path / "debug.before.b");
+	wunlink(path / "state.before.a");
+	wunlink(path / "state.before.b");
+	wunlink(path / "hash.after.a");
+	wunlink(path / "hash.after.b");
+	wunlink(path / "debug.after.a");
+	wunlink(path / "debug.after.b");
+	wunlink(path / "state.after.a");
+	wunlink(path / "state.after.b");
+
+	if (primaryStateBefore)
+		DumpSerializationTestState(*primaryStateBefore, path, L"before.a");
+	if (primaryStateAfter)
+		DumpSerializationTestState(*primaryStateAfter, path, L"after.a");
+	if (secondaryStateBefore)
+		DumpSerializationTestState(*secondaryStateBefore, path, L"before.b");
+	if (secondaryStateAfter)
+		DumpSerializationTestState(*secondaryStateAfter, path, L"after.b");
+
+	debug_warn(L"Serialization test failure");
+}
+
+void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationCommand>& commands)
 {
 	fixed turnLengthFixed = fixed::FromInt(turnLength) / 1000;
 
-	// TODO: the update process is pretty ugly, with lots of messages and dependencies
-	// between different components. Ought to work out a nicer way to do this.
+	/*
+	 * In serialization test mode, we save the original (primary) simulation state before each turn update.
+	 * We run the update, then load the saved state into a secondary context.
+	 * We serialize that again and compare to the original serialization (to check that
+	 * serialize->deserialize->serialize is equivalent to serialize).
+	 * Then we run the update on the secondary context, and check that its new serialized
+	 * state matches the primary context after the update (to check that the simulation doesn't depend
+	 * on anything that's not serialized).
+	 */
 
-	CMessageTurnStart msgTurnStart;
-	m_ComponentManager.BroadcastMessage(msgTurnStart);
+	const bool serializationTestDebugDump = false; // set true to save human-readable state dumps, for debugging (but slow)
+	const bool serializationTestHash = true; // set true to save and compare hash of state
 
-	CmpPtr<ICmpPathfinder> cmpPathfinder(m_SimContext, SYSTEM_ENTITY);
-	if (!cmpPathfinder.null())
-		cmpPathfinder->FinishAsyncRequests();
-
-	// Push AI commands onto the queue before we use them
-	CmpPtr<ICmpAIManager> cmpAIManager(m_SimContext, SYSTEM_ENTITY);
-	if (!cmpAIManager.null())
-		cmpAIManager->PushCommands();
-
-	CmpPtr<ICmpCommandQueue> cmpCommandQueue(m_SimContext, SYSTEM_ENTITY);
-	if (!cmpCommandQueue.null())
-		cmpCommandQueue->FlushTurn(commands);
-
-	// Process newly generated move commands so the UI feels snappy
-	if (!cmpPathfinder.null())
-		cmpPathfinder->ProcessSameTurnMoves();
-
-	// Send all the update phases
+	SerializationTestState primaryStateBefore;
+	if (m_EnableSerializationTest)
 	{
-		CMessageUpdate msgUpdate(turnLengthFixed);
-		m_ComponentManager.BroadcastMessage(msgUpdate);
-	}
-	{
-		CMessageUpdate_MotionFormation msgUpdate(turnLengthFixed);
-		m_ComponentManager.BroadcastMessage(msgUpdate);
+		ENSURE(m_ComponentManager.SerializeState(primaryStateBefore.state));
+		if (serializationTestDebugDump)
+			ENSURE(m_ComponentManager.DumpDebugState(primaryStateBefore.debug, false));
+		if (serializationTestHash)
+			ENSURE(m_ComponentManager.ComputeStateHash(primaryStateBefore.hash, false));
 	}
 
-	// Process move commands for formations (group proxy)
-	if (!cmpPathfinder.null())
-		cmpPathfinder->ProcessSameTurnMoves();
 
+	UpdateComponents(m_SimContext, turnLengthFixed, commands);
+
+
+	if (m_EnableSerializationTest)
 	{
-		CMessageUpdate_MotionUnit msgUpdate(turnLengthFixed);
-		m_ComponentManager.BroadcastMessage(msgUpdate);
+		// Initialise the secondary simulation
+		CTerrain secondaryTerrain;
+		CSimContext secondaryContext;
+		secondaryContext.m_Terrain = &secondaryTerrain;
+		CComponentManager secondaryComponentManager(secondaryContext);
+		secondaryComponentManager.LoadComponentTypes();
+		ENSURE(LoadDefaultScripts(secondaryComponentManager, NULL));
+		ResetComponentState(secondaryComponentManager, false, false);
+
+		// Load the map into the secondary simulation
+
+		LDR_BeginRegistering();
+		CMapReader* mapReader = new CMapReader; // automatically deletes itself
+
+		// TODO: this duplicates CWorld::RegisterInit and could probably be cleaned up a bit
+		std::string mapType;
+		m_ComponentManager.GetScriptInterface().GetProperty(m_InitAttributes.get(), "mapType", mapType);
+		if (mapType == "scenario")
+		{
+			// Load scenario attributes
+			std::wstring mapFile;
+			m_ComponentManager.GetScriptInterface().GetProperty(m_InitAttributes.get(), "map", mapFile);
+
+			VfsPath mapfilename(VfsPath("maps/scenarios") / (mapFile + L".pmp"));
+			mapReader->LoadMap(mapfilename, &secondaryTerrain, NULL, NULL, NULL, NULL, NULL, NULL,
+				NULL, &secondaryContext, INVALID_PLAYER, true); // throws exception on failure
+		}
+		else
+		{
+			// TODO: support random map scripts
+			debug_warn(L"Serialization test mode only supports scenarios");
+		}
+
+		LDR_EndRegistering();
+		ENSURE(LDR_NonprogressiveLoad() == INFO::OK);
+
+		ENSURE(secondaryComponentManager.DeserializeState(primaryStateBefore.state));
+
+		SerializationTestState secondaryStateBefore;
+		ENSURE(secondaryComponentManager.SerializeState(secondaryStateBefore.state));
+		if (serializationTestDebugDump)
+			ENSURE(secondaryComponentManager.DumpDebugState(secondaryStateBefore.debug, false));
+		if (serializationTestHash)
+			ENSURE(secondaryComponentManager.ComputeStateHash(secondaryStateBefore.hash, false));
+
+		if (primaryStateBefore.state.str() != secondaryStateBefore.state.str() ||
+			primaryStateBefore.hash != secondaryStateBefore.hash)
+		{
+			ReportSerializationFailure(&primaryStateBefore, NULL, &secondaryStateBefore, NULL);
+		}
+
+		SerializationTestState primaryStateAfter;
+		ENSURE(m_ComponentManager.SerializeState(primaryStateAfter.state));
+		if (serializationTestDebugDump)
+			ENSURE(m_ComponentManager.DumpDebugState(primaryStateAfter.debug, false));
+		if (serializationTestHash)
+			ENSURE(m_ComponentManager.ComputeStateHash(primaryStateAfter.hash, false));
+
+		UpdateComponents(secondaryContext, turnLengthFixed,
+			CloneCommandsFromOtherContext(m_ComponentManager.GetScriptInterface(), secondaryComponentManager.GetScriptInterface(), commands));
+
+		SerializationTestState secondaryStateAfter;
+		ENSURE(secondaryComponentManager.SerializeState(secondaryStateAfter.state));
+		if (serializationTestDebugDump)
+			ENSURE(secondaryComponentManager.DumpDebugState(secondaryStateAfter.debug, false));
+		if (serializationTestHash)
+			ENSURE(secondaryComponentManager.ComputeStateHash(secondaryStateAfter.hash, false));
+
+		if (primaryStateAfter.state.str() != secondaryStateAfter.state.str() ||
+			primaryStateAfter.hash != secondaryStateAfter.hash)
+		{
+			ReportSerializationFailure(&primaryStateBefore, &primaryStateAfter, &secondaryStateBefore, &secondaryStateAfter);
+		}
 	}
-	{
-		CMessageUpdate_Final msgUpdate(turnLengthFixed);
-		m_ComponentManager.BroadcastMessage(msgUpdate);
-	}
-
-	// Process moves resulting from group proxy movement (unit needs to catch up or realign) and any others
-	if (!cmpPathfinder.null())
-		cmpPathfinder->ProcessSameTurnMoves();
-
-
-	// Clean up any entities destroyed during the simulation update
-	m_ComponentManager.FlushDestroyedComponents();
 
 //	if (m_TurnNumber == 0)
 //		m_ComponentManager.GetScriptInterface().DumpHeap();
@@ -278,12 +443,69 @@ bool CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 		DumpState();
 
 	// Start computing AI for the next turn
+	CmpPtr<ICmpAIManager> cmpAIManager(m_SimContext, SYSTEM_ENTITY);
 	if (!cmpAIManager.null())
 		cmpAIManager->StartComputation();
 
 	++m_TurnNumber;
+}
 
-	return true; // TODO: don't bother with bool return
+void CSimulation2Impl::UpdateComponents(CSimContext& simContext, fixed turnLengthFixed, const std::vector<SimulationCommand>& commands)
+{
+	// TODO: the update process is pretty ugly, with lots of messages and dependencies
+	// between different components. Ought to work out a nicer way to do this.
+
+	CComponentManager& componentManager = simContext.GetComponentManager();
+
+	CMessageTurnStart msgTurnStart;
+	componentManager.BroadcastMessage(msgTurnStart);
+
+	CmpPtr<ICmpPathfinder> cmpPathfinder(simContext, SYSTEM_ENTITY);
+	if (!cmpPathfinder.null())
+		cmpPathfinder->FinishAsyncRequests();
+
+	// Push AI commands onto the queue before we use them
+	CmpPtr<ICmpAIManager> cmpAIManager(simContext, SYSTEM_ENTITY);
+	if (!cmpAIManager.null())
+		cmpAIManager->PushCommands();
+
+	CmpPtr<ICmpCommandQueue> cmpCommandQueue(simContext, SYSTEM_ENTITY);
+	if (!cmpCommandQueue.null())
+		cmpCommandQueue->FlushTurn(commands);
+
+	// Process newly generated move commands so the UI feels snappy
+	if (!cmpPathfinder.null())
+		cmpPathfinder->ProcessSameTurnMoves();
+
+	// Send all the update phases
+	{
+		CMessageUpdate msgUpdate(turnLengthFixed);
+		componentManager.BroadcastMessage(msgUpdate);
+	}
+	{
+		CMessageUpdate_MotionFormation msgUpdate(turnLengthFixed);
+		componentManager.BroadcastMessage(msgUpdate);
+	}
+
+	// Process move commands for formations (group proxy)
+	if (!cmpPathfinder.null())
+		cmpPathfinder->ProcessSameTurnMoves();
+
+	{
+		CMessageUpdate_MotionUnit msgUpdate(turnLengthFixed);
+		componentManager.BroadcastMessage(msgUpdate);
+	}
+	{
+		CMessageUpdate_Final msgUpdate(turnLengthFixed);
+		componentManager.BroadcastMessage(msgUpdate);
+	}
+
+	// Process moves resulting from group proxy movement (unit needs to catch up or realign) and any others
+	if (!cmpPathfinder.null())
+		cmpPathfinder->ProcessSameTurnMoves();
+
+	// Clean up any entities destroyed during the simulation update
+	componentManager.FlushDestroyedComponents();
 }
 
 void CSimulation2Impl::Interpolate(float frameLength, float frameOffset)
@@ -316,7 +538,7 @@ void CSimulation2Impl::DumpState()
 
 	file << "\n";
 
-	m_ComponentManager.DumpDebugState(file);
+	m_ComponentManager.DumpDebugState(file, true);
 
 	std::ofstream binfile (OsString(path.ChangeExtension(L".dat")).c_str(), std::ofstream::out | std::ofstream::trunc | std::ofstream::binary);
 	m_ComponentManager.SerializeState(binfile);
@@ -407,15 +629,15 @@ void CSimulation2::InitGame(const CScriptVal& data)
 	GetScriptInterface().CallFunction(GetScriptInterface().GetGlobalObject(), "InitGame", data, ret);
 }
 
-bool CSimulation2::Update(int turnLength)
+void CSimulation2::Update(int turnLength)
 {
 	std::vector<SimulationCommand> commands;
-	return m->Update(turnLength, commands);
+	m->Update(turnLength, commands);
 }
 
-bool CSimulation2::Update(int turnLength, const std::vector<SimulationCommand>& commands)
+void CSimulation2::Update(int turnLength, const std::vector<SimulationCommand>& commands)
 {
-	return m->Update(turnLength, commands);
+	m->Update(turnLength, commands);
 }
 
 void CSimulation2::Interpolate(float frameLength, float frameOffset)
@@ -436,16 +658,12 @@ float CSimulation2::GetLastFrameOffset() const
 
 bool CSimulation2::LoadScripts(const VfsPath& path)
 {
-	return m->LoadScripts(path);
+	return m->LoadScripts(m->m_ComponentManager, &m->m_LoadedScripts, path);
 }
 
 bool CSimulation2::LoadDefaultScripts()
 {
-	return (
-		m->LoadScripts(L"simulation/components/interfaces/") &&
-		m->LoadScripts(L"simulation/helpers/") &&
-		m->LoadScripts(L"simulation/components/")
-	);
+	return m->LoadDefaultScripts(m->m_ComponentManager, &m->m_LoadedScripts);
 }
 
 void CSimulation2::SetStartupScript(const std::wstring& code)
@@ -456,6 +674,16 @@ void CSimulation2::SetStartupScript(const std::wstring& code)
 const std::wstring& CSimulation2::GetStartupScript()
 {
 	return m->m_StartupScript;
+}
+
+void CSimulation2::SetInitAttributes(const CScriptValRooted& attribs)
+{
+	m->m_InitAttributes = attribs;
+}
+
+CScriptValRooted CSimulation2::GetInitAttributes()
+{
+	return m->m_InitAttributes;
 }
 
 void CSimulation2::SetMapSettings(const std::string& settings)
@@ -514,7 +742,7 @@ bool CSimulation2::ComputeStateHash(std::string& outHash, bool quick)
 
 bool CSimulation2::DumpDebugState(std::ostream& stream)
 {
-	return m->m_ComponentManager.DumpDebugState(stream);
+	return m->m_ComponentManager.DumpDebugState(stream, true);
 }
 
 bool CSimulation2::SerializeState(std::ostream& stream)

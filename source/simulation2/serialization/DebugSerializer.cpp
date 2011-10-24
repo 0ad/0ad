@@ -52,8 +52,8 @@ std::string canonfloat(T value, int prec)
 	return r;
 }
 
-CDebugSerializer::CDebugSerializer(ScriptInterface& scriptInterface, std::ostream& stream) :
-	m_ScriptInterface(scriptInterface), m_Stream(stream), m_Indent(0)
+CDebugSerializer::CDebugSerializer(ScriptInterface& scriptInterface, std::ostream& stream, bool includeDebugInfo) :
+	m_ScriptInterface(scriptInterface), m_Stream(stream), m_IsDebug(includeDebugInfo), m_Indent(0)
 {
 }
 
@@ -170,7 +170,7 @@ void CDebugSerializer::PutRaw(const char* name, const u8* data, size_t len)
 
 bool CDebugSerializer::IsDebug() const
 {
-	return true;
+	return m_IsDebug;
 }
 
 std::ostream& CDebugSerializer::GetStream()

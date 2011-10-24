@@ -208,7 +208,7 @@ public:
 
 	// Various state serialization functions:
 	bool ComputeStateHash(std::string& outHash, bool quick);
-	bool DumpDebugState(std::ostream& stream);
+	bool DumpDebugState(std::ostream& stream, bool includeDebugInfo);
 	// FlushDestroyedComponents must be called before SerializeState (since the destruction queue
 	// won't get serialized)
 	bool SerializeState(std::ostream& stream);
