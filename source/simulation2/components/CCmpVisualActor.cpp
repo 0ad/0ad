@@ -104,8 +104,10 @@ public:
 	{
 		m_Unit = NULL;
 
+		m_R = m_G = m_B = fixed::FromInt(1);
+
 		if (!GetSimContext().HasUnitManager())
-			return; // do nothing if graphics are disabled
+			return; // do nothing further if graphics are disabled
 
 		// TODO: we should do some fancy animation of under-construction buildings rising from the ground,
 		// but for now we'll just use the foundation actor and ignore the normal one
@@ -113,8 +115,6 @@ public:
 			m_ActorName = paramNode.GetChild("FoundationActor").ToString();
 		else
 			m_ActorName = paramNode.GetChild("Actor").ToString();
-
-		m_R = m_G = m_B = fixed::FromInt(1);
 
 		std::set<CStr> selections;
 		m_Unit = GetSimContext().GetUnitManager().CreateUnit(m_ActorName, GetActorSeed(), selections);
