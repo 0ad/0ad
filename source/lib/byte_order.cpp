@@ -65,65 +65,83 @@ u64 swap64(const u64 x)
 
 u16 read_le16(const void* p)
 {
-	return to_le16(*(u16*)p);
+	u16 n;
+	memcpy(&n, p, sizeof(n));
+	return to_le16(n);
 }
 
 u32 read_le32(const void* p)
 {
-	return to_le32(*(u32*)p);
+	u32 n;
+	memcpy(&n, p, sizeof(n));
+	return to_le32(n);
 }
 
 u64 read_le64(const void* p)
 {
-	return to_le64(*(u64*)p);
+	u64 n;
+	memcpy(&n, p, sizeof(n));
+	return to_le64(n);
 }
 
 
 u16 read_be16(const void* p)
 {
-	return to_be16(*(u16*)p);
+	u16 n;
+	memcpy(&n, p, sizeof(n));
+	return to_be16(n);
 }
 
 u32 read_be32(const void* p)
 {
-	return to_be32(*(u32*)p);
+	u32 n;
+	memcpy(&n, p, sizeof(n));
+	return to_be32(n);
 }
 
 u64 read_be64(const void* p)
 {
-	return to_be64(*(u64*)p);
+	u64 n;
+	memcpy(&n, p, sizeof(n));
+	return to_be64(n);
 }
 
 
 void write_le16(void* p, u16 x)
 {
-	*(u16*)p = to_le16(x);
+	u16 n = to_le16(x);
+	memcpy(p, &n, sizeof(n));
 }
 
 void write_le32(void* p, u32 x)
 {
-	*(u32*)p = to_le32(x);
+	u32 n = to_le32(x);
+	memcpy(p, &n, sizeof(n));
 }
 
 void write_le64(void* p, u64 x)
 {
-	*(u64*)p = to_le64(x);
+	u64 n = to_le64(x);
+	memcpy(p, &n, sizeof(n));
 }
 
 
 void write_be16(void* p, u16 x)
 {
-	*(u16*)p = to_be16(x);
+	u16 n = to_be16(x);
+	memcpy(p, &n, sizeof(n));
 }
 
 void write_be32(void* p, u32 x)
 {
-	*(u32*)p = to_be32(x);
+	u32 n = to_be32(x);
+	memcpy(p, &n, sizeof(n));
 }
 
 void write_be64(void* p, u64 x)
 {
-	*(u64*)p = to_be64(x);
+	u64 n = to_be64(x);
+	memcpy(p, &n, sizeof(n));
 }
 
 
