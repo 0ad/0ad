@@ -642,7 +642,7 @@ bool ScenarioEditor::OpenFile(const wxString& name, const wxString& filename)
 		fullFilename.SetExt(_T("pmp"));
 
 		// check if pmp exists
-		qVFSFileExists qry(wxString(mapPath + fullFilename.GetFullName()).wc_str());
+		qVFSFileExists qry(std::wstring((mapPath + fullFilename.GetFullName()).wc_str()));
 		qry.Post();
 		if (!qry.exists)
 		{
@@ -653,7 +653,7 @@ bool ScenarioEditor::OpenFile(const wxString& name, const wxString& filename)
 	// Every map requires an xml file, so check that it exists
 	wxFileName xmlName(name);
 	xmlName.SetExt(_T("xml"));
-	qVFSFileExists qry(wxString(mapPath + xmlName.GetFullName()).wc_str());
+	qVFSFileExists qry(std::wstring((mapPath + xmlName.GetFullName()).wc_str()));
 	qry.Post();
 	if (!qry.exists)
 	{
