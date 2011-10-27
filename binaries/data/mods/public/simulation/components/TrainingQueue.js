@@ -96,7 +96,7 @@ TrainingQueue.prototype.AddBatch = function(templateName, count, metadata)
 			"template": templateName,
 			"count": count,
 			"metadata": metadata,
-			"resources": template.Cost.Resources,
+			"resources": deepcopy(template.Cost.Resources), // need to copy to avoid serialization problems
 			"population": population,
 			"trainingStarted": false,
 			"timeTotal": time*1000,
