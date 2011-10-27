@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,12 +27,12 @@ static inline CStr NetMessageStringConvert(u32 arg)
 
 static inline CStr NetMessageStringConvert(const CStr8& arg)
 {
-	return arg;
+	return arg.EscapeToPrintableASCII();
 }
 
 static inline CStr NetMessageStringConvert(const CStrW& arg)
 {
-	return arg.ToUTF8();
+	return arg.ToUTF8().EscapeToPrintableASCII();
 }
 
 #endif

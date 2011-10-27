@@ -311,6 +311,11 @@ public:
 	CStr UnescapeBackslashes() const;
 
 	/**
+	 * Convert strings to printable ASCII characters with C-style escapes
+	 */
+	CStr EscapeToPrintableASCII() const;
+
+	/**
 	 * Return a trimmed copy of the CStr.
 	 *
 	 * @param PS_TRIM_MODE Mode value from trim mode enumeration.

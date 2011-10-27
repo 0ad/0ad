@@ -356,6 +356,31 @@ CStr CStr::UnescapeBackslashes() const
 	return NewString;
 }
 
+CStr CStr::EscapeToPrintableASCII() const
+{
+	CStr NewString;
+	for (size_t i = 0; i < length(); i++)
+	{
+		tchar ch = (*this)[i];
+
+		if (ch == '"')
+			NewString += _T("\\\"");
+		else if (ch == '\\')
+			NewString += _T("\\\\");
+		else if (ch == '\n')
+			NewString += _T("\\n");
+		else if (ch >= 32 && ch <= 126)
+			NewString += ch;
+		else
+		{
+			std::tstringstream ss;
+			ss << _T("\\x") << std::hex << std::setfill(_T('0')) << std::setw(2) << (int)(unsigned char)ch;
+			NewString += ss.str();
+		}
+	}
+	return NewString;
+}
+
 // Returns a trimmed string, removes whitespace from the left/right/both
 CStr CStr::Trim(PS_TRIM_MODE Mode) const
 {
