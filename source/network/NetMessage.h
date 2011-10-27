@@ -31,8 +31,6 @@
  */
 class CNetMessage : public ISerializable
 {
-	NONCOPYABLE(CNetMessage);
-
 	friend class CNetSession;
 
 public:
@@ -127,7 +125,7 @@ public:
 	u32 m_Turn;
 	CScriptValRooted m_Data;
 private:
-	ScriptInterface& m_ScriptInterface;
+	ScriptInterface* m_ScriptInterface;
 };
 
 /**
@@ -135,6 +133,7 @@ private:
  */
 class CGameSetupMessage : public CNetMessage
 {
+	NONCOPYABLE(CGameSetupMessage);
 public:
 	CGameSetupMessage(ScriptInterface& scriptInterface);
 	CGameSetupMessage(ScriptInterface& scriptInterface, jsval data);

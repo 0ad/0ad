@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -53,6 +53,55 @@ static CStr DebugName(CNetServerSession* session)
 		return "[unauthed host]";
 	return "[" + session->GetGUID().substr(0, 8) + "...]";
 }
+
+/**
+ * Async task for receiving the initial game state to be forwarded to another
+ * client that is rejoining an in-progress network game.
+ */
+class CNetFileReceiveTask_ServerRejoin : public CNetFileReceiveTask
+{
+	NONCOPYABLE(CNetFileReceiveTask_ServerRejoin);
+public:
+	CNetFileReceiveTask_ServerRejoin(CNetServerWorker& server, u32 hostID)
+		: m_Server(server), m_RejoinerHostID(hostID)
+	{
+	}
+
+	virtual void OnComplete()
+	{
+		// We've received the game state from an existing player - now
+		// we need to send it onwards to the newly rejoining player
+
+		// Find the session corresponding to the rejoining host (if any)
+		CNetServerSession* session = NULL;
+		for (size_t i = 0; i < m_Server.m_Sessions.size(); ++i)
+		{
+			if (m_Server.m_Sessions[i]->GetHostID() == m_RejoinerHostID)
+			{
+				session = m_Server.m_Sessions[i];
+				break;
+			}
+		}
+
+		if (!session)
+		{
+			LOGMESSAGE(L"Net server: rejoining client disconnected before we sent to it");
+			return;
+		}
+
+		// Store the received state file, and tell the client to start downloading it from us
+		// TODO: this will get kind of confused if there's multiple clients downloading in parallel;
+		// they'll race and get whichever happens to be the latest received by the server,
+		// which should still work but isn't great
+		m_Server.m_JoinSyncFile = m_Buffer;
+		CJoinSyncStartMessage message;
+		session->SendMessage(&message);
+	}
+
+private:
+	CNetServerWorker& m_Server;
+	u32 m_RejoinerHostID;
+};
 
 /*
  * XXX: We use some non-threadsafe functions from the worker thread.
@@ -195,8 +244,9 @@ void CNetServerWorker::Run()
 		m_Stats->LatchHostState(m_Host);
 	}
 
-	// Clear root before deleting its context
+	// Clear roots before deleting their context
 	m_GameAttributes = CScriptValRooted();
+	m_SavedCommands.clear();
 
 	SAFE_DELETE(m_ScriptInterface);
 }
@@ -237,6 +287,10 @@ bool CNetServerWorker::RunStep()
 	if (!newStartGame.empty())
 		StartGame();
 
+	// Perform file transfers
+	for (size_t i = 0; i < m_Sessions.size(); ++i)
+		m_Sessions[i]->GetFileTransferer().Poll();
+
 	// Process network events:
 
 	ENetEvent event;
@@ -264,12 +318,6 @@ bool CNetServerWorker::RunStep()
 		char hostname[256] = "(error)";
 		enet_address_get_host_ip(&event.peer->address, hostname, ARRAY_SIZE(hostname));
 		LOGMESSAGE(L"Net server: Received connection from %hs:%u", hostname, event.peer->address.port);
-
-		if (m_State != SERVER_STATE_PREGAME)
-		{
-			enet_peer_disconnect(event.peer, NDR_SERVER_ALREADY_IN_GAME);
-			break;
-		}
 
 		// Set up a session object for this peer
 
@@ -343,6 +391,24 @@ bool CNetServerWorker::RunStep()
 
 void CNetServerWorker::HandleMessageReceive(const CNetMessage* message, CNetServerSession* session)
 {
+	// Handle non-FSM messages first
+	Status status = session->GetFileTransferer().HandleMessageReceive(message);
+	if (status != INFO::SKIPPED)
+		return;
+
+	if (message->GetType() == NMT_FILE_TRANSFER_REQUEST)
+	{
+		CFileTransferRequestMessage* reqMessage = (CFileTransferRequestMessage*)message;
+
+		// Rejoining client got our JoinSyncStart after we received the state from
+		// another client, and has now requested that we forward it to them
+
+		ENSURE(!m_JoinSyncFile.empty());
+		session->GetFileTransferer().StartResponse(reqMessage->m_RequestID, m_JoinSyncFile);
+
+		return;
+	}
+
 	// Update FSM
 	bool ok = session->Update(message->GetType(), (void*)message);
 	if (!ok)
@@ -366,6 +432,8 @@ void CNetServerWorker::SetupSession(CNetServerSession* session)
 	session->AddTransition(NSS_PREGAME, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED, (void*)&OnDisconnect, context);
 	session->AddTransition(NSS_PREGAME, (uint)NMT_CHAT, NSS_PREGAME, (void*)&OnChat, context);
 	session->AddTransition(NSS_PREGAME, (uint)NMT_LOADED_GAME, NSS_INGAME, (void*)&OnLoadedGame, context);
+
+	session->AddTransition(NSS_JOIN_SYNCING, (uint)NMT_LOADED_GAME, NSS_INGAME, (void*)&OnJoinSyncingLoadedGame, context);
 
 	session->AddTransition(NSS_INGAME, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED, (void*)&OnDisconnect, context);
 	session->AddTransition(NSS_INGAME, (uint)NMT_CHAT, NSS_INGAME, (void*)&OnChat, context);
@@ -412,19 +480,57 @@ void CNetServerWorker::OnUserLeave(CNetServerSession* session)
 
 void CNetServerWorker::AddPlayer(const CStr& guid, const CStrW& name)
 {
-	// Find the first free player ID
-
+	// Find all player IDs in active use; we mustn't give them to a second player
 	std::set<i32> usedIDs;
 	for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end(); ++it)
-		usedIDs.insert(it->second.m_PlayerID);
+		if (it->second.m_Enabled)
+			usedIDs.insert(it->second.m_PlayerID);
 
-	i32 playerID;
-	for (playerID = 1; usedIDs.find(playerID) != usedIDs.end(); ++playerID)
+	// If the player is rejoining after disconnecting, try to give them
+	// back their old player ID
+
+	i32 playerID = -1;
+	bool foundPlayerID = false;
+
+	// Try to match GUID first
+	for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end(); ++it)
 	{
-		// (do nothing)
+		if (!it->second.m_Enabled && it->first == guid && usedIDs.find(it->second.m_PlayerID) == usedIDs.end())
+		{
+			playerID = it->second.m_PlayerID;
+			foundPlayerID = true;
+			m_PlayerAssignments.erase(it); // delete the old mapping, since we've got a new one now
+			break;
+		}
+	}
+
+	// Try to match username next
+	if (!foundPlayerID)
+	{
+		for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end(); ++it)
+		{
+			if (!it->second.m_Enabled && it->second.m_Name == name && usedIDs.find(it->second.m_PlayerID) == usedIDs.end())
+			{
+				playerID = it->second.m_PlayerID;
+				foundPlayerID = true;
+				m_PlayerAssignments.erase(it); // delete the old mapping, since we've got a new one now
+				break;
+			}
+		}
+	}
+
+	// Otherwise pick the first free player ID
+	if (!foundPlayerID)
+	{
+		for (playerID = 1; usedIDs.find(playerID) != usedIDs.end(); ++playerID)
+		{
+			// (do nothing)
+		}
+		foundPlayerID = true;
 	}
 
 	PlayerAssignment assignment;
+	assignment.m_Enabled = true;
 	assignment.m_Name = name;
 	assignment.m_PlayerID = playerID;
 	m_PlayerAssignments[guid] = assignment;
@@ -436,7 +542,7 @@ void CNetServerWorker::AddPlayer(const CStr& guid, const CStrW& name)
 
 void CNetServerWorker::RemovePlayer(const CStr& guid)
 {
-	m_PlayerAssignments.erase(guid);
+	m_PlayerAssignments[guid].m_Enabled = false;
 
 	SendPlayerAssignments();
 }
@@ -461,6 +567,9 @@ void CNetServerWorker::ConstructPlayerAssignmentMessage(CPlayerAssignmentMessage
 {
 	for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end(); ++it)
 	{
+		if (!it->second.m_Enabled)
+			continue;
+
 		CPlayerAssignmentMessage::S_m_Hosts h;
 		h.m_GUID = it->first;
 		h.m_Name = it->second.m_Name;
@@ -494,12 +603,6 @@ bool CNetServerWorker::OnClientHandshake(void* context, CFsmEvent* event)
 	CNetServerSession* session = (CNetServerSession*)context;
 	CNetServerWorker& server = session->GetServer();
 
-	if (server.m_State != SERVER_STATE_PREGAME)
-	{
-		session->Disconnect(NDR_SERVER_ALREADY_IN_GAME);
-		return false;
-	}
-
 	CCliHandshakeMessage* message = (CCliHandshakeMessage*)event->GetParamRef();
 	if (message->m_ProtocolVersion != PS_PROTOCOL_VERSION)
 	{
@@ -523,19 +626,39 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 	CNetServerSession* session = (CNetServerSession*)context;
 	CNetServerWorker& server = session->GetServer();
 
+	CAuthenticateMessage* message = (CAuthenticateMessage*)event->GetParamRef();
+
+	CStrW username = server.DeduplicatePlayerName(SanitisePlayerName(message->m_Name));
+
+	bool isRejoining = false;
+
 	if (server.m_State != SERVER_STATE_PREGAME)
 	{
-		session->Disconnect(NDR_SERVER_ALREADY_IN_GAME);
-		return false;
-	}
+// 		isRejoining = true; // uncomment this to test rejoining even if the player wasn't connected previously
 
-	CAuthenticateMessage* message = (CAuthenticateMessage*)event->GetParamRef();
+		// Search for an old disconnected player of the same name
+		// (TODO: if GUIDs were stable, we should use them instead)
+		for (PlayerAssignmentMap::iterator it = server.m_PlayerAssignments.begin(); it != server.m_PlayerAssignments.end(); ++it)
+		{
+			if (!it->second.m_Enabled && it->second.m_Name == username)
+			{
+				isRejoining = true;
+				break;
+			}
+		}
+
+		// Players who weren't already in the game are not allowed to join now that it's started
+		if (!isRejoining)
+		{
+			LOGMESSAGE(L"Refused connection after game start from not-previously-known user \"%ls\"", username.c_str());
+			session->Disconnect(NDR_SERVER_ALREADY_IN_GAME);
+			return true;
+		}
+	}
 
 	// TODO: check server password etc?
 
 	u32 newHostID = server.m_NextHostID++;
-
-	CStrW username = server.DeduplicatePlayerName(SanitisePlayerName(message->m_Name));
 
 	session->SetUserName(username);
 	session->SetGUID(message->m_GUID);
@@ -548,6 +671,21 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 	session->SendMessage(&authenticateResult);
 
 	server.OnUserJoin(session);
+
+	if (isRejoining)
+	{
+		// Request a copy of the current game state from an existing player,
+		// so we can send it on to the new player
+
+		// Assume session 0 is most likely the local player, so they're
+		// the most efficient client to request a copy from
+		CNetServerSession* sourceSession = server.m_Sessions.at(0);
+		sourceSession->GetFileTransferer().StartTask(
+			shared_ptr<CNetFileReceiveTask>(new CNetFileReceiveTask_ServerRejoin(server, newHostID))
+		);
+
+		session->SetNextState(NSS_JOIN_SYNCING);
+	}
 
 	return true;
 }
@@ -566,6 +704,11 @@ bool CNetServerWorker::OnInGame(void* context, CFsmEvent* event)
 
 		// Send it back to all clients immediately
 		server.Broadcast(simMessage);
+
+		// Save all the received commands
+		if (server.m_SavedCommands.size() < simMessage->m_Turn + 1)
+			server.m_SavedCommands.resize(simMessage->m_Turn + 1);
+		server.m_SavedCommands[simMessage->m_Turn].push_back(*simMessage);
 
 		// TODO: we should do some validation of ownership (clients can't send commands on behalf of opposing players)
 
@@ -608,7 +751,61 @@ bool CNetServerWorker::OnLoadedGame(void* context, CFsmEvent* event)
 	CNetServerSession* session = (CNetServerSession*)context;
 	CNetServerWorker& server = session->GetServer();
 
+	// We're in the loading state, so wait until every player has loaded before
+	// starting the game
+	ENSURE(server.m_State == SERVER_STATE_LOADING);
 	server.CheckGameLoadStatus(session);
+
+	return true;
+}
+
+bool CNetServerWorker::OnJoinSyncingLoadedGame(void* context, CFsmEvent* event)
+{
+	// A client rejoining an in-progress game has now finished loading the
+	// map and deserialized the initial state.
+	// The simulation may have progressed since then, so send any subsequent
+	// commands to them and set them as an active player so they can participate
+	// in all future turns.
+	// 
+	// (TODO: if it takes a long time for them to receive and execute all these
+	// commands, the other players will get frozen for that time and may be unhappy;
+	// we could try repeating this process a few times until the client converges
+	// on the up-to-date state, before setting them as active.)
+
+	ENSURE(event->GetType() == (uint)NMT_LOADED_GAME);
+
+	CNetServerSession* session = (CNetServerSession*)context;
+	CNetServerWorker& server = session->GetServer();
+
+	CLoadedGameMessage* message = (CLoadedGameMessage*)event->GetParamRef();
+
+	u32 turn = message->m_CurrentTurn;
+	u32 readyTurn = server.m_ServerTurnManager->GetReadyTurn();
+
+	// Send them all commands received since their saved state,
+	// and turn-ended messages for any turns that have already been processed
+	for (size_t i = turn + 1; i < std::max(readyTurn+1, (u32)server.m_SavedCommands.size()); ++i)
+	{
+		if (i < server.m_SavedCommands.size())
+			for (size_t j = 0; j < server.m_SavedCommands[i].size(); ++j)
+				session->SendMessage(&server.m_SavedCommands[i][j]);
+
+		if (i <= readyTurn)
+		{
+			CEndCommandBatchMessage endMessage;
+			endMessage.m_Turn = i;
+			endMessage.m_TurnLength = server.m_ServerTurnManager->GetSavedTurnLength(i);
+			session->SendMessage(&endMessage);
+		}
+	}
+
+	// Tell the turn manager to expect commands from this new client
+	server.m_ServerTurnManager->InitialiseClient(session->GetHostID(), readyTurn);
+
+	// Tell the client that everything has finished loading and it should start now
+	CLoadedGameMessage loaded;
+	loaded.m_CurrentTurn = readyTurn;
+	session->SendMessage(&loaded);
 
 	return true;
 }
@@ -634,6 +831,7 @@ void CNetServerWorker::CheckGameLoadStatus(CNetServerSession* changedSession)
 	}
 
 	CLoadedGameMessage loaded;
+	loaded.m_CurrentTurn = 0;
 	Broadcast(&loaded);
 
 	m_State = SERVER_STATE_INGAME;
@@ -644,7 +842,7 @@ void CNetServerWorker::StartGame()
 	m_ServerTurnManager = new CNetServerTurnManager(*this);
 
 	for (size_t i = 0; i < m_Sessions.size(); ++i)
-		m_ServerTurnManager->InitialiseClient(m_Sessions[i]->GetHostID()); // TODO: only for non-observers
+		m_ServerTurnManager->InitialiseClient(m_Sessions[i]->GetHostID(), 0); // TODO: only for non-observers
 
 	m_State = SERVER_STATE_LOADING;
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 #define NETSESSION_H
 
 #include "network/fsm.h"
+#include "network/NetFileTransfer.h"
 #include "network/NetHost.h"
 #include "ps/CStr.h"
 #include "scriptinterface/ScriptVal.h"
@@ -38,10 +39,20 @@ class CNetStatsTable;
  */
 
 /**
+ * Interface for sessions to which messages can be sent.
+ */
+class INetSession
+{
+public:
+	virtual ~INetSession() {}
+	virtual bool SendMessage(const CNetMessage* message) = 0;
+};
+
+/**
  * The client end of a network session.
  * Provides an abstraction of the network interface, allowing communication with the server.
  */
-class CNetClientSession
+class CNetClientSession : public INetSession
 {
 	NONCOPYABLE(CNetClientSession);
 
@@ -70,10 +81,15 @@ public:
 	/**
 	 * Send a message to the server.
 	 */
-	bool SendMessage(const CNetMessage* message);
+	virtual bool SendMessage(const CNetMessage* message);
+
+	CNetFileTransferer& GetFileTransferer() { return m_FileTransferer; }
 
 private:
 	CNetClient& m_Client;
+
+	CNetFileTransferer m_FileTransferer;
+
 	ENetHost* m_Host;
 	ENetPeer* m_Server;
 	CNetStatsTable* m_Stats;
@@ -88,7 +104,7 @@ private:
  * Thread-safety:
  * - This is constructed and used by CNetServerWorker in the network server thread.
  */
-class CNetServerSession : public CFsm
+class CNetServerSession : public CFsm, public INetSession
 {
 	NONCOPYABLE(CNetServerSession);
 
@@ -124,10 +140,14 @@ public:
 	/**
 	 * Send a message to the client.
 	 */
-	bool SendMessage(const CNetMessage* message);
+	virtual bool SendMessage(const CNetMessage* message);
+
+	CNetFileTransferer& GetFileTransferer() { return m_FileTransferer; }
 
 private:
 	CNetServerWorker& m_Server;
+
+	CNetFileTransferer m_FileTransferer;
 
 	ENetPeer* m_Peer;
 

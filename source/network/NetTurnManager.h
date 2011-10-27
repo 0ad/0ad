@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -60,6 +60,8 @@ public:
 
 	virtual ~CNetTurnManager() { }
 
+	void ResetState(u32 newCurrentTurn, u32 newReadyTurn);
+
 	/**
 	 * Set the current user's player ID, which will be added into command messages.
 	 */
@@ -73,6 +75,13 @@ public:
 	 * @param maxTurns maximum number of turns to simulate at once
 	 */
 	bool Update(float frameLength, size_t maxTurns);
+
+	/**
+	 * Advance the simulation by as much as possible. Intended for catching up
+	 * over a small number of turns when rejoining a multiplayer match.
+	 * Returns true if it advanced by at least one turn.
+	 */
+	bool UpdateFastForward();
 
 	/**
 	 * Returns whether Update(frameLength, ...) will process at least one new turn.
@@ -121,6 +130,8 @@ public:
 
 	void QuickSave();
 	void QuickLoad();
+
+	u32 GetCurrentTurn() { return m_CurrentTurn; }
 
 protected:
 	/**
@@ -234,7 +245,7 @@ public:
 	/**
 	 * Inform the turn manager of a new client who will be sending commands.
 	 */
-	void InitialiseClient(int client);
+	void InitialiseClient(int client, u32 turn);
 
 	/**
 	 * Inform the turn manager that a previously-initialised client has left the game
@@ -243,6 +254,18 @@ public:
 	void UninitialiseClient(int client);
 
 	void SetTurnLength(u32 msecs);
+
+	/**
+	 * Returns the latest turn for which all clients are ready;
+	 * they will have already been told to execute this turn.
+	 */
+	u32 GetReadyTurn() { return m_ReadyTurn; }
+
+	/**
+	 * Returns the turn length that was used for the given turn.
+	 * Requires turn <= GetReadyTurn().
+	 */
+	u32 GetSavedTurnLength(u32 turn);
 
 protected:
 	void CheckClientsReady();
@@ -262,6 +285,9 @@ protected:
 
 	// Current turn length
 	u32 m_TurnLength;
+
+	// Turn lengths for all previously executed turns
+	std::vector<u32> m_SavedTurnLengths;
 
 	CNetServerWorker& m_NetServer;
 };

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,15 +23,47 @@
 #include "NetSession.h"
 #include "NetTurnManager.h"
 
+#include "lib/byte_order.h"
 #include "lib/sysdep/sysdep.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
+#include "ps/Compress.h"
 #include "ps/CStr.h"
 #include "ps/Game.h"
+#include "ps/Loader.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 
 CNetClient *g_NetClient = NULL;
+
+/**
+ * Async task for receiving the initial game state when rejoining an
+ * in-progress network game.
+ */
+class CNetFileReceiveTask_ClientRejoin : public CNetFileReceiveTask
+{
+	NONCOPYABLE(CNetFileReceiveTask_ClientRejoin);
+public:
+	CNetFileReceiveTask_ClientRejoin(CNetClient& client)
+		: m_Client(client)
+	{
+	}
+
+	virtual void OnComplete()
+	{
+		// We've received the game state from the server
+
+		// Save it so we can use it after the map has finished loading
+		m_Client.m_JoinSyncBuffer = m_Buffer;
+
+		// Pretend the server told us to start the game
+		CGameStartMessage start;
+		m_Client.HandleMessage(&start);
+	}
+
+private:
+	CNetClient& m_Client;
+};
 
 CNetClient::CNetClient(CGame* game) :
 	m_Session(NULL),
@@ -57,6 +89,15 @@ CNetClient::CNetClient(CGame* game) :
 	AddTransition(NCS_PREGAME, (uint)NMT_GAME_SETUP, NCS_PREGAME, (void*)&OnGameSetup, context);
 	AddTransition(NCS_PREGAME, (uint)NMT_PLAYER_ASSIGNMENT, NCS_PREGAME, (void*)&OnPlayerAssignment, context);
 	AddTransition(NCS_PREGAME, (uint)NMT_GAME_START, NCS_LOADING, (void*)&OnGameStart, context);
+	AddTransition(NCS_PREGAME, (uint)NMT_JOIN_SYNC_START, NCS_JOIN_SYNCING, (void*)&OnJoinSyncStart, context);
+
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_CHAT, NCS_JOIN_SYNCING, (void*)&OnChat, context);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_GAME_SETUP, NCS_JOIN_SYNCING, (void*)&OnGameSetup, context);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_PLAYER_ASSIGNMENT, NCS_JOIN_SYNCING, (void*)&OnPlayerAssignment, context);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_GAME_START, NCS_JOIN_SYNCING, (void*)&OnGameStart, context);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_SIMULATION_COMMAND, NCS_JOIN_SYNCING, (void*)&OnInGame, context);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_END_COMMAND_BATCH, NCS_JOIN_SYNCING, (void*)&OnJoinSyncEndCommandBatch, context);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_LOADED_GAME, NCS_INGAME, (void*)&OnLoadedGame, context);
 
 	AddTransition(NCS_LOADING, (uint)NMT_CHAT, NCS_LOADING, (void*)&OnChat, context);
 	AddTransition(NCS_LOADING, (uint)NMT_GAME_SETUP, NCS_LOADING, (void*)&OnGameSetup, context);
@@ -76,7 +117,7 @@ CNetClient::CNetClient(CGame* game) :
 
 CNetClient::~CNetClient()
 {
-	delete m_Session;
+	DestroyConnection();
 }
 
 void CNetClient::SetUserName(const CStrW& username)
@@ -98,6 +139,11 @@ void CNetClient::SetAndOwnSession(CNetClientSession* session)
 {
 	delete m_Session;
 	m_Session = session;
+}
+
+void CNetClient::DestroyConnection()
+{
+	SAFE_DELETE(m_Session);
 }
 
 void CNetClient::Poll()
@@ -203,6 +249,40 @@ void CNetClient::SendChatMessage(const std::wstring& text)
 
 bool CNetClient::HandleMessage(CNetMessage* message)
 {
+	// Handle non-FSM messages first
+	
+	Status status = m_Session->GetFileTransferer().HandleMessageReceive(message);
+	if (status == INFO::OK)
+		return true;
+	if (status != INFO::SKIPPED)
+		return false;
+
+	if (message->GetType() == NMT_FILE_TRANSFER_REQUEST)
+	{
+		CFileTransferRequestMessage* reqMessage = (CFileTransferRequestMessage*)message;
+
+		// TODO: we should support different transfer request types, instead of assuming
+		// it's always requesting the simulation state
+
+		std::stringstream stream;
+
+		LOGMESSAGERENDER(L"Serializing game at turn %d for rejoining player", m_ClientTurnManager->GetCurrentTurn());
+		u32 turn = to_le32(m_ClientTurnManager->GetCurrentTurn());
+		stream.write((char*)&turn, sizeof(turn));
+
+		bool ok = m_Game->GetSimulation2()->SerializeState(stream);
+		ENSURE(ok);
+
+		// Compress the content with zlib to save bandwidth
+		// (TODO: if this is still too large, compressing with e.g. LZMA works much better)
+		std::string compressed;
+		CompressZLib(stream.str(), compressed, true);
+
+		m_Session->GetFileTransferer().StartResponse(reqMessage->m_RequestID, compressed);
+
+		return true;
+	}
+
 	// Update FSM
 	bool ok = Update(message->GetType(), message);
 	if (!ok)
@@ -212,11 +292,31 @@ bool CNetClient::HandleMessage(CNetMessage* message)
 
 void CNetClient::LoadFinished()
 {
+	if (!m_JoinSyncBuffer.empty())
+	{
+		std::string state;
+		DecompressZLib(m_JoinSyncBuffer, state, true);
+
+		std::stringstream stream(state);
+
+		u32 turn;
+		stream.read((char*)&turn, sizeof(turn));
+		turn = to_le32(turn);
+
+		LOGMESSAGE(L"Rejoining client deserializing state at turn %d\n", turn);
+
+		bool ok = m_Game->GetSimulation2()->DeserializeState(stream);
+		ENSURE(ok);
+
+		m_ClientTurnManager->ResetState(turn, turn);
+	}
+
 	CScriptValRooted msg;
 	GetScriptInterface().Eval("({'type':'netstatus','status':'waiting_for_players'})", msg);
 	PushGuiMessage(msg);
 
 	CLoadedGameMessage loaded;
+	loaded.m_CurrentTurn = m_ClientTurnManager->GetCurrentTurn();
 	SendMessage(&loaded);
 }
 
@@ -330,6 +430,7 @@ bool CNetClient::OnPlayerAssignment(void* context, CFsmEvent* event)
 	for (size_t i = 0; i < message->m_Hosts.size(); ++i)
 	{
 		PlayerAssignment assignment;
+		assignment.m_Enabled = true;
 		assignment.m_Name = message->m_Hosts[i].m_Name;
 		assignment.m_PlayerID = message->m_Hosts[i].m_PlayerID;
 		newPlayerAssignments[message->m_Hosts[i].m_GUID] = assignment;
@@ -362,6 +463,36 @@ bool CNetClient::OnGameStart(void* context, CFsmEvent* event)
 	CScriptValRooted msg;
 	client->GetScriptInterface().Eval("({'type':'start'})", msg);
 	client->PushGuiMessage(msg);
+
+	return true;
+}
+
+bool CNetClient::OnJoinSyncStart(void* context, CFsmEvent* event)
+{
+	ENSURE(event->GetType() == (uint)NMT_JOIN_SYNC_START);
+
+	CNetClient* client = (CNetClient*)context;
+
+	// The server wants us to start downloading the game state from it, so do so
+	client->m_Session->GetFileTransferer().StartTask(
+		shared_ptr<CNetFileReceiveTask>(new CNetFileReceiveTask_ClientRejoin(*client))
+	);
+
+	return true;
+}
+
+bool CNetClient::OnJoinSyncEndCommandBatch(void* context, CFsmEvent* event)
+{
+	ENSURE(event->GetType() == (uint)NMT_END_COMMAND_BATCH);
+
+	CNetClient* client = (CNetClient*)context;
+
+	CEndCommandBatchMessage* endMessage = (CEndCommandBatchMessage*)event->GetParamRef();
+
+	client->m_ClientTurnManager->FinishedAllCommands(endMessage->m_Turn, endMessage->m_TurnLength);
+	
+	// Execute all the received commands for the latest turn
+	client->m_ClientTurnManager->UpdateFastForward();
 
 	return true;
 }

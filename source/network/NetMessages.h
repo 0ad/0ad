@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@
 
 #define PS_PROTOCOL_MAGIC				0x5073013f		// 'P', 's', 0x01, '?'
 #define PS_PROTOCOL_MAGIC_RESPONSE		0x50630121		// 'P', 'c', 0x01, '!'
-#define PS_PROTOCOL_VERSION				0x01010004		// Arbitrary protocol
+#define PS_PROTOCOL_VERSION				0x01010005		// Arbitrary protocol
 #define PS_DEFAULT_PORT					0x5073			// 'P', 's'
 
 // Defines the list of message types. The order of the list must not change.
@@ -48,11 +48,19 @@ enum NetMessageType
 	NMT_CHAT,		// Common chat message
 	NMT_GAME_SETUP,
 	NMT_PLAYER_ASSIGNMENT,
+
+	NMT_FILE_TRANSFER_REQUEST,
+	NMT_FILE_TRANSFER_RESPONSE,
+	NMT_FILE_TRANSFER_DATA,
+	NMT_FILE_TRANSFER_ACK,
+
+	NMT_JOIN_SYNC_START,
+
 	NMT_LOADED_GAME,
 	NMT_GAME_START,
 	NMT_END_COMMAND_BATCH,
-	NMT_SYNC_CHECK,
-	NMT_SYNC_ERROR,
+	NMT_SYNC_CHECK,	// OOS-detection hash checking
+	NMT_SYNC_ERROR,	// OOS-detection error
 	NMT_SIMULATION_COMMAND,
 	NMT_LAST				// Last message in the list
 };
@@ -119,7 +127,30 @@ START_NMT_CLASS_(PlayerAssignment, NMT_PLAYER_ASSIGNMENT)
 	NMT_END_ARRAY()
 END_NMT_CLASS()
 
+START_NMT_CLASS_(FileTransferRequest, NMT_FILE_TRANSFER_REQUEST)
+	NMT_FIELD_INT(m_RequestID, u32, 4)
+END_NMT_CLASS()
+
+START_NMT_CLASS_(FileTransferResponse, NMT_FILE_TRANSFER_RESPONSE)
+	NMT_FIELD_INT(m_RequestID, u32, 4)
+	NMT_FIELD_INT(m_Length, u32, 4)
+END_NMT_CLASS()
+
+START_NMT_CLASS_(FileTransferData, NMT_FILE_TRANSFER_DATA)
+	NMT_FIELD_INT(m_RequestID, u32, 4)
+	NMT_FIELD(CStr8, m_Data)
+END_NMT_CLASS()
+
+START_NMT_CLASS_(FileTransferAck, NMT_FILE_TRANSFER_ACK)
+	NMT_FIELD_INT(m_RequestID, u32, 4)
+	NMT_FIELD_INT(m_NumPackets, u32, 4)
+END_NMT_CLASS()
+
+START_NMT_CLASS_(JoinSyncStart, NMT_JOIN_SYNC_START)
+END_NMT_CLASS()
+
 START_NMT_CLASS_(LoadedGame, NMT_LOADED_GAME)
+	NMT_FIELD_INT(m_CurrentTurn, u32, 4)
 END_NMT_CLASS()
 
 START_NMT_CLASS_(GameStart, NMT_GAME_START)

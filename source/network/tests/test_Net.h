@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,7 +38,7 @@ public:
 	void setUp()
 	{
 		g_VFS = CreateVfs(20 * MiB);
-		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/"mods/public", VFS_MOUNT_MUST_EXIST));
+		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/"mods"/"public", VFS_MOUNT_MUST_EXIST));
 		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir()/"_testcache"));
 		CXeromyces::Startup();
 
@@ -194,5 +194,143 @@ public:
 		client2Game.GetTurnManager()->Update(1.0f, 1);
 		client3Game.GetTurnManager()->Update(1.0f, 1);
 		wait(clients, 100);
+	}
+
+	void test_rejoin_DISABLED()
+	{
+		ScriptInterface scriptInterface("Engine", "Test", ScriptInterface::CreateRuntime());
+		TestStdoutLogger logger;
+
+		std::vector<CNetClient*> clients;
+
+		CGame client1Game(true);
+		CGame client2Game(true);
+		CGame client3Game(true);
+
+		CNetServer server;
+
+		CScriptValRooted attrs;
+		scriptInterface.Eval("({mapType:'scenario',map:'_default',thing:'example'})", attrs);
+		server.UpdateGameAttributes(attrs.get(), scriptInterface);
+
+		CNetClient client1(&client1Game);
+		CNetClient client2(&client2Game);
+		CNetClient client3(&client3Game);
+
+		client1.SetUserName(L"alice");
+		client2.SetUserName(L"bob");
+		client3.SetUserName(L"charlie");
+
+		clients.push_back(&client1);
+		clients.push_back(&client2);
+		clients.push_back(&client3);
+
+		connect(server, clients);
+		debug_printf(L"%ls", client1.TestReadGuiMessages().c_str());
+
+		server.StartGame();
+		SDL_Delay(100);
+		for (size_t j = 0; j < clients.size(); ++j)
+		{
+			clients[j]->Poll();
+			TS_ASSERT_OK(LDR_NonprogressiveLoad());
+			clients[j]->LoadFinished();
+		}
+
+		wait(clients, 100);
+
+		{
+			CScriptValRooted cmd;
+			client1.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client1 test sim command 1]\\n'})", cmd);
+			client1Game.GetTurnManager()->PostCommand(cmd);
+		}
+
+		wait(clients, 100);
+		client1Game.GetTurnManager()->Update(1.0f, 1);
+		client2Game.GetTurnManager()->Update(1.0f, 1);
+		client3Game.GetTurnManager()->Update(1.0f, 1);
+		wait(clients, 100);
+
+		{
+			CScriptValRooted cmd;
+			client1.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client1 test sim command 2]\\n'})", cmd);
+			client1Game.GetTurnManager()->PostCommand(cmd);
+		}
+
+		debug_printf(L"==== Disconnecting client 2\n");
+
+		client2.DestroyConnection();
+		clients.erase(clients.begin()+1);
+
+		debug_printf(L"==== Connecting client 2B\n");
+
+		CGame client2BGame(true);
+		CNetClient client2B(&client2BGame);
+		client2B.SetUserName(L"bob");
+		clients.push_back(&client2B);
+
+		TS_ASSERT(client2B.SetupConnection("127.0.0.1"));
+
+		for (size_t i = 0; ; ++i)
+		{
+			debug_printf(L"[%d]\n", client2B.GetCurrState());
+			client2B.Poll();
+			if (client2B.GetCurrState() == NCS_PREGAME)
+				break;
+
+			if (client2B.GetCurrState() == NCS_UNCONNECTED)
+			{
+				TS_FAIL("connection rejected");
+				return;
+			}
+
+			if (i > 20)
+			{
+				TS_FAIL("connection timeout");
+				return;
+			}
+
+			SDL_Delay(100);
+		}
+
+		wait(clients, 100);
+
+		client1Game.GetTurnManager()->Update(1.0f, 1);
+		client3Game.GetTurnManager()->Update(1.0f, 1);
+		wait(clients, 100);
+		server.SetTurnLength(100);
+		client1Game.GetTurnManager()->Update(1.0f, 1);
+		client3Game.GetTurnManager()->Update(1.0f, 1);
+		wait(clients, 100);
+
+		// (This SetTurnLength thing doesn't actually detect errors unless you change
+		// CNetTurnManager::TurnNeedsFullHash to always return true)
+
+		{
+			CScriptValRooted cmd;
+			client1.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client1 test sim command 3]\\n'})", cmd);
+			client1Game.GetTurnManager()->PostCommand(cmd);
+		}
+
+
+		clients[2]->Poll();
+		TS_ASSERT_OK(LDR_NonprogressiveLoad());
+		clients[2]->LoadFinished();
+
+		wait(clients, 100);
+
+		{
+			CScriptValRooted cmd;
+			client1.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client1 test sim command 4]\\n'})", cmd);
+			client1Game.GetTurnManager()->PostCommand(cmd);
+		}
+
+		for (size_t i = 0; i < 3; ++i)
+		{
+			client1Game.GetTurnManager()->Update(1.0f, 1);
+			client2BGame.GetTurnManager()->Update(1.0f, 1);
+			client3Game.GetTurnManager()->Update(1.0f, 1);
+			wait(clients, 100);
+		}
 	}
 };

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@
 static const int CHANNEL_COUNT = 1;
 
 CNetClientSession::CNetClientSession(CNetClient& client) :
-	m_Client(client), m_Host(NULL), m_Server(NULL), m_Stats(NULL)
+	m_Client(client), m_FileTransferer(this), m_Host(NULL), m_Server(NULL), m_Stats(NULL)
 {
 }
 
@@ -95,6 +95,8 @@ void CNetClientSession::Disconnect(u32 reason)
 void CNetClientSession::Poll()
 {
 	ENSURE(m_Host && m_Server);
+
+	m_FileTransferer.Poll();
 
 	ENetEvent event;
 	while (enet_host_service(m_Host, &event, 0) > 0)
@@ -165,7 +167,7 @@ bool CNetClientSession::SendMessage(const CNetMessage* message)
 
 
 CNetServerSession::CNetServerSession(CNetServerWorker& server, ENetPeer* peer) :
-	m_Server(server), m_Peer(peer)
+	m_Server(server), m_FileTransferer(this), m_Peer(peer)
 {
 }
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,6 +18,7 @@
 #ifndef NETSERVER_H
 #define NETSERVER_H
 
+#include "NetFileTransfer.h"
 #include "NetHost.h"
 
 #include "ps/ThreadUtil.h"
@@ -31,6 +32,7 @@ class CFsmEvent;
 class ScriptInterface;
 class CPlayerAssignmentMessage;
 class CNetStatsTable;
+class CSimulationMessage;
 
 class CNetServerWorker;
 
@@ -76,6 +78,10 @@ enum NetServerSessionState
 	// or is loading the game.
 	// Server must be in SERVER_STATE_PREGAME or SERVER_STATE_LOADING.
 	NSS_PREGAME,
+
+	// The client has authenticated but the game was already started,
+	// so it's synchronising with the game state from other clients
+	NSS_JOIN_SYNCING,
 
 	// The client is running the game.
 	// Server must be in SERVER_STATE_LOADING or SERVER_STATE_INGAME.
@@ -171,6 +177,7 @@ public:
 
 private:
 	friend class CNetServer;
+	friend class CNetFileReceiveTask_ServerRejoin;
 
 	CNetServerWorker(int autostartPlayers);
 	~CNetServerWorker();
@@ -219,7 +226,7 @@ private:
 
 	/**
 	 * Set the turn length to a fixed value.
-	 * TODO: we should replace this with some adapative lag-dependent computation.
+	 * TODO: we should replace this with some adaptive lag-dependent computation.
 	 */
 	void SetTurnLength(u32 msecs);
 
@@ -238,6 +245,7 @@ private:
 	static bool OnInGame(void* context, CFsmEvent* event);
 	static bool OnChat(void* context, CFsmEvent* event);
 	static bool OnLoadedGame(void* context, CFsmEvent* event);
+	static bool OnJoinSyncingLoadedGame(void* context, CFsmEvent* event);
 	static bool OnDisconnect(void* context, CFsmEvent* event);
 
 	void CheckGameLoadStatus(CNetServerSession* changedSession);
@@ -274,6 +282,19 @@ private:
 	u32 m_NextHostID;
 
 	CNetServerTurnManager* m_ServerTurnManager;
+
+	/**
+	 * A copy of all simulation commands received so far, indexed by
+	 * turn number, to simplify support for rejoining etc.
+	 * TODO: verify this doesn't use too much RAM.
+	 */
+	std::vector<std::vector<CSimulationMessage> > m_SavedCommands;
+
+	/**
+	 * The latest copy of the simulation state, received from an existing
+	 * client when a new client has asked to rejoin the game.
+	 */
+	std::string m_JoinSyncFile;
 
 private:
 	// Thread-related stuff:

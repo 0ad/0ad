@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 #define NETCLIENT_H
 
 #include "network/fsm.h"
+#include "network/NetFileTransfer.h"
 #include "network/NetHost.h"
 #include "scriptinterface/ScriptVal.h"
 
@@ -42,6 +43,7 @@ enum
 	NCS_INITIAL_GAMESETUP,
 	NCS_PREGAME,
 	NCS_LOADING,
+	NCS_JOIN_SYNCING,
 	NCS_INGAME
 };
 
@@ -55,6 +57,8 @@ enum
 class CNetClient : public CFsm
 {
 	NONCOPYABLE(CNetClient);
+
+	friend class CNetFileReceiveTask_ClientRejoin;
 
 public:
 	/**
@@ -77,6 +81,12 @@ public:
 	 * @return true on success, false on connection failure
 	 */
 	bool SetupConnection(const CStr& server);
+
+	/**
+	 * Destroy the connection to the server.
+	 * This client probably cannot be used again.
+	 */
+	void DestroyConnection();
 
 	/**
 	 * Poll the connection for messages from the server and process them, and send
@@ -166,6 +176,8 @@ private:
 	static bool OnPlayerAssignment(void* context, CFsmEvent* event);
 	static bool OnInGame(void* context, CFsmEvent* event);
 	static bool OnGameStart(void* context, CFsmEvent* event);
+	static bool OnJoinSyncStart(void* context, CFsmEvent* event);
+	static bool OnJoinSyncEndCommandBatch(void* context, CFsmEvent* event);
 	static bool OnLoadedGame(void* context, CFsmEvent* event);
 
 	/**
@@ -203,6 +215,9 @@ private:
 
 	/// Queue of messages for GuiPoll
 	std::deque<CScriptValRooted> m_GuiMessageQueue;
+
+	/// Serialized game state received when joining an in-progress game
+	std::string m_JoinSyncBuffer;
 };
 
 /// Global network client for the standard game

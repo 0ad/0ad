@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,8 +34,18 @@ class CNetMessage;
 
 struct PlayerAssignment
 {
-	CStrW m_Name; // player name
-	i32 m_PlayerID; // the player that the given host controls, or -1 if none (observer)
+	/**
+	 * Whether the player is currently connected and active.
+	 * (We retain information on disconnected players to support rejoining,
+	 * but don't transmit these to other clients.)
+	 */
+	bool m_Enabled;
+
+	/// Player name
+	CStrW m_Name;
+
+	/// The player that the given host controls, or -1 if none (observer)
+	i32 m_PlayerID;
 };
 
 typedef std::map<CStr, PlayerAssignment> PlayerAssignmentMap; // map from GUID -> assignment

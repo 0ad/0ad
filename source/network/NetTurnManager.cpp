@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -68,6 +68,16 @@ CNetTurnManager::CNetTurnManager(CSimulation2& simulation, u32 defaultTurnLength
 	// So they can be sending us commands scheduled for n+1, n+2, n+3.
 	// So we need a 3-element buffer:
 	m_QueuedCommands.resize(COMMAND_DELAY + 1);
+}
+
+void CNetTurnManager::ResetState(u32 newCurrentTurn, u32 newReadyTurn)
+{
+	m_CurrentTurn = newCurrentTurn;
+	m_ReadyTurn = newReadyTurn;
+	m_DeltaTime = 0;
+	size_t queuedCommandsSize = m_QueuedCommands.size();
+	m_QueuedCommands.clear();
+	m_QueuedCommands.resize(queuedCommandsSize);
 }
 
 void CNetTurnManager::SetPlayerID(int playerId)
@@ -168,6 +178,45 @@ bool CNetTurnManager::Update(float frameLength, size_t maxTurns)
 	return true;
 }
 
+bool CNetTurnManager::UpdateFastForward()
+{
+	m_DeltaTime = 0;
+
+	NETTURN_LOG((L"UpdateFastForward current=%d ready=%d\n", m_CurrentTurn, m_ReadyTurn));
+
+	// Check that the next turn is ready for execution
+	if (m_ReadyTurn <= m_CurrentTurn)
+		return false;
+
+	while (m_ReadyTurn > m_CurrentTurn)
+	{
+		// TODO: It would be nice to remove some of the duplication with Update()
+		// (This is similar but doesn't call any Notify functions or update DeltaTime,
+		// it just updates the simulation state)
+
+		m_CurrentTurn += 1;
+
+		m_Simulation2.FlushDestroyedEntities();
+
+		// Put all the client commands into a single list, in a globally consistent order
+		std::vector<SimulationCommand> commands;
+		for (std::map<u32, std::vector<SimulationCommand> >::iterator it = m_QueuedCommands[0].begin(); it != m_QueuedCommands[0].end(); ++it)
+		{
+			commands.insert(commands.end(), it->second.begin(), it->second.end());
+		}
+		m_QueuedCommands.pop_front();
+		m_QueuedCommands.resize(m_QueuedCommands.size() + 1);
+
+		m_Replay.Turn(m_CurrentTurn-1, m_TurnLength, commands);
+
+		NETTURN_LOG((L"Running %d cmds\n", commands.size()));
+
+		m_Simulation2.Update(m_TurnLength, commands);
+	}
+
+	return true;
+}
+
 void CNetTurnManager::OnSyncError(u32 turn, const std::string& expectedHash)
 {
 	NETTURN_LOG((L"OnSyncError(%d, %ls)\n", turn, Hexify(expectedHash).c_str()));
@@ -191,7 +240,10 @@ void CNetTurnManager::OnSyncError(u32 turn, const std::string& expectedHash)
 	msg << L"Out of sync on turn " << turn << L": expected hash " << Hexify(expectedHash) << L"\n\n";
 	msg << L"Current state: turn " << m_CurrentTurn << L", hash " << Hexify(hash) << L"\n\n";
 	msg << L"Dumping current state to " << path;
-	g_GUI->DisplayMessageBox(600, 350, L"Sync error", msg.str());
+	if (g_GUI)
+		g_GUI->DisplayMessageBox(600, 350, L"Sync error", msg.str());
+	else
+		LOGERROR(L"%ls", msg.str().c_str());
 }
 
 void CNetTurnManager::Interpolate(float frameLength)
@@ -263,12 +315,7 @@ void CNetTurnManager::RewindTimeWarp()
 	// won't do the next snapshot until the appropriate time.
 	// (Ideally we ought to serialise the turn manager state and restore it
 	// here, but this is simpler for now.)
-	m_CurrentTurn = 0;
-	m_ReadyTurn = 1;
-	m_DeltaTime = 0;
-	size_t queuedCommandsSize = m_QueuedCommands.size();
-	m_QueuedCommands.clear();
-	m_QueuedCommands.resize(queuedCommandsSize);
+	ResetState(0, 1);
 }
 
 void CNetTurnManager::QuickSave()
@@ -304,12 +351,7 @@ void CNetTurnManager::QuickLoad()
 	LOGMESSAGERENDER(L"Quickloaded game");
 
 	// See RewindTimeWarp
-	m_CurrentTurn = 0;
-	m_ReadyTurn = 1;
-	m_DeltaTime = 0;
-	size_t queuedCommandsSize = m_QueuedCommands.size();
-	m_QueuedCommands.clear();
-	m_QueuedCommands.resize(queuedCommandsSize);
+	ResetState(0, 1);
 }
 
 
@@ -411,6 +453,10 @@ void CNetLocalTurnManager::OnSimulationMessage(CSimulationMessage* UNUSED(msg))
 CNetServerTurnManager::CNetServerTurnManager(CNetServerWorker& server) :
 	m_NetServer(server), m_ReadyTurn(1), m_TurnLength(DEFAULT_TURN_LENGTH_MP)
 {
+	// The first turn we will actually execute is number 2,
+	// so store dummy values into the saved lengths list
+	m_SavedTurnLengths.push_back(0);
+	m_SavedTurnLengths.push_back(0);
 }
 
 void CNetServerTurnManager::NotifyFinishedClientCommands(int client, u32 turn)
@@ -448,6 +494,10 @@ void CNetServerTurnManager::CheckClientsReady()
 	msg.m_TurnLength = m_TurnLength;
 	msg.m_Turn = m_ReadyTurn;
 	m_NetServer.Broadcast(&msg);
+
+	// Save the turn length in case it's needed later
+	ENSURE(m_SavedTurnLengths.size() == m_ReadyTurn);
+	m_SavedTurnLengths.push_back(m_TurnLength);
 }
 
 void CNetServerTurnManager::NotifyFinishedClientUpdate(int client, u32 turn, const std::string& hash)
@@ -497,13 +547,13 @@ void CNetServerTurnManager::NotifyFinishedClientUpdate(int client, u32 turn, con
 	m_ClientStateHashes.erase(m_ClientStateHashes.begin(), m_ClientStateHashes.lower_bound(newest+1));
 }
 
-void CNetServerTurnManager::InitialiseClient(int client)
+void CNetServerTurnManager::InitialiseClient(int client, u32 turn)
 {
-	NETTURN_LOG((L"InitialiseClient(client=%d)\n", client));
+	NETTURN_LOG((L"InitialiseClient(client=%d, turn=%d)\n", client, turn));
 
 	ENSURE(m_ClientsReady.find(client) == m_ClientsReady.end());
-	m_ClientsReady[client] = 1;
-	m_ClientsSimulated[client] = 0;
+	m_ClientsReady[client] = turn + 1;
+	m_ClientsSimulated[client] = turn;
 }
 
 void CNetServerTurnManager::UninitialiseClient(int client)
@@ -522,4 +572,10 @@ void CNetServerTurnManager::UninitialiseClient(int client)
 void CNetServerTurnManager::SetTurnLength(u32 msecs)
 {
 	m_TurnLength = msecs;
+}
+
+u32 CNetServerTurnManager::GetSavedTurnLength(u32 turn)
+{
+	ENSURE(turn <= m_ReadyTurn);
+	return m_SavedTurnLengths.at(turn);
 }

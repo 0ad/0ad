@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -109,6 +109,26 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 
 	case NMT_PLAYER_ASSIGNMENT:
 		pNewMessage = new CPlayerAssignmentMessage;
+		break;
+
+	case NMT_FILE_TRANSFER_REQUEST:
+		pNewMessage = new CFileTransferRequestMessage;
+		break;
+
+	case NMT_FILE_TRANSFER_RESPONSE:
+		pNewMessage = new CFileTransferResponseMessage;
+		break;
+
+	case NMT_FILE_TRANSFER_DATA:
+		pNewMessage = new CFileTransferDataMessage;
+		break;
+
+	case NMT_FILE_TRANSFER_ACK:
+		pNewMessage = new CFileTransferAckMessage;
+		break;
+
+	case NMT_JOIN_SYNC_START:
+		pNewMessage = new CJoinSyncStartMessage;
 		break;
 
 	case NMT_LOADED_GAME:
