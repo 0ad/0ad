@@ -116,20 +116,30 @@ bool CComponentManager::ComputeStateHash(std::string& outHash, bool quick)
 	std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::const_iterator cit = m_ComponentsByTypeId.begin();
 	for (; cit != m_ComponentsByTypeId.end(); ++cit)
 	{
-		// Skip component types with no components
-		if (cit->second.empty())
-			continue;
-
 		// In quick mode, only check unit positions
 		if (quick && !(cit->first == CID_Position))
 			continue;
 
+		// Only emit component types if they have a component that will be serialized
+		bool needsSerialization = false;
+		for (std::map<entity_id_t, IComponent*>::const_iterator eit = cit->second.begin(); eit != cit->second.end(); ++eit)
+		{
+			// Don't serialize local entities
+			if (ENTITY_IS_LOCAL(eit->first))
+				continue;
+
+			needsSerialization = true;
+			break;
+		}
+
+		if (!needsSerialization)
+			continue;
+
 		serializer.NumberI32_Unbounded("component type id", cit->first);
 
-		std::map<entity_id_t, IComponent*>::const_iterator eit = cit->second.begin();
-		for (; eit != cit->second.end(); ++eit)
+		for (std::map<entity_id_t, IComponent*>::const_iterator eit = cit->second.begin(); eit != cit->second.end(); ++eit)
 		{
-			// Don't hash local entities
+			// Don't serialize local entities
 			if (ENTITY_IS_LOCAL(eit->first))
 				continue;
 
@@ -177,23 +187,37 @@ bool CComponentManager::SerializeState(std::ostream& stream)
 	serializer.StringASCII("rng", SerializeRNG(m_RNG), 0, 32);
 	serializer.NumberU32_Unbounded("next entity id", m_NextEntityId);
 
-	uint32_t numComponentTypes = 0;
-
 	std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::const_iterator cit;
+	
+	uint32_t numComponentTypes = 0;
+	std::set<ComponentTypeId> serializedComponentTypes;
 
 	for (cit = m_ComponentsByTypeId.begin(); cit != m_ComponentsByTypeId.end(); ++cit)
 	{
-		if (cit->second.empty())
+		// Only emit component types if they have a component that will be serialized
+		bool needsSerialization = false;
+		for (std::map<entity_id_t, IComponent*>::const_iterator eit = cit->second.begin(); eit != cit->second.end(); ++eit)
+		{
+			// Don't serialize local entities
+			if (ENTITY_IS_LOCAL(eit->first))
+				continue;
+
+			needsSerialization = true;
+			break;
+		}
+
+		if (!needsSerialization)
 			continue;
 
 		numComponentTypes++;
+		serializedComponentTypes.insert(cit->first);
 	}
 
 	serializer.NumberU32_Unbounded("num component types", numComponentTypes);
 
 	for (cit = m_ComponentsByTypeId.begin(); cit != m_ComponentsByTypeId.end(); ++cit)
 	{
-		if (cit->second.empty())
+		if (serializedComponentTypes.find(cit->first) == serializedComponentTypes.end())
 			continue;
 
 		std::map<ComponentTypeId, ComponentType>::const_iterator ctit = m_ComponentTypesById.find(cit->first);
@@ -205,11 +229,9 @@ bool CComponentManager::SerializeState(std::ostream& stream)
 
 		serializer.StringASCII("name", ctit->second.name, 0, 255);
 
-		std::map<entity_id_t, IComponent*>::const_iterator eit;
-
 		// Count the components before serializing any of them
 		uint32_t numComponents = 0;
-		for (eit = cit->second.begin(); eit != cit->second.end(); ++eit)
+		for (std::map<entity_id_t, IComponent*>::const_iterator eit = cit->second.begin(); eit != cit->second.end(); ++eit)
 		{
 			// Don't serialize local entities
 			if (ENTITY_IS_LOCAL(eit->first))
@@ -222,7 +244,7 @@ bool CComponentManager::SerializeState(std::ostream& stream)
 		serializer.NumberU32_Unbounded("num components", numComponents);
 
 		// Serialize the components now
-		for (eit = cit->second.begin(); eit != cit->second.end(); ++eit)
+		for (std::map<entity_id_t, IComponent*>::const_iterator eit = cit->second.begin(); eit != cit->second.end(); ++eit)
 		{
 			// Don't serialize local entities
 			if (ENTITY_IS_LOCAL(eit->first))

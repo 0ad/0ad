@@ -443,8 +443,11 @@ public:
 		m_LosStateRevealed.clear();
 		m_LosStateRevealed.resize(m_TerrainVerticesPerSide*m_TerrainVerticesPerSide);
 
-		for (std::map<u32, EntityData>::iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
-			LosAdd(it->second.owner, it->second.visionRange, CFixedVector2D(it->second.x, it->second.z));
+		for (std::map<entity_id_t, EntityData>::const_iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
+		{
+			if (it->second.inWorld)
+				LosAdd(it->second.owner, it->second.visionRange, CFixedVector2D(it->second.x, it->second.z));
+		}
 
 		for (ssize_t j = 0; j < m_TerrainVerticesPerSide; ++j)
 			for (ssize_t i = 0; i < m_TerrainVerticesPerSide; ++i)
