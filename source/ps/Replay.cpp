@@ -22,6 +22,7 @@
 #include "graphics/TerrainTextureManager.h"
 #include "lib/timer.h"
 #include "lib/file/file_system.h"
+#include "lib/res/h_mgr.h"
 #include "lib/tex/tex.h"
 #include "ps/Game.h"
 #include "ps/Loader.h"
@@ -136,6 +137,8 @@ void CReplayPlayer::Replay()
 	new CTerrainTextureManager;
 	g_TexMan.LoadTerrainTextures();
 
+	// Initialise h_mgr so it doesn't crash when emitting sounds
+	h_mgr_init();
 
 	std::vector<SimulationCommand> commands;
 	u32 turn = 0;
