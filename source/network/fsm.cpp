@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -169,8 +169,9 @@ bool CFsmTransition::RunActions( void ) const
 CFsm::CFsm( void )
 {
 	m_Done		 = false;
-	m_FirstState = ( unsigned int )FSM_INVALID_STATE;
-	m_CurrState	 = ( unsigned int )FSM_INVALID_STATE;
+	m_FirstState = FSM_INVALID_STATE;
+	m_CurrState	 = FSM_INVALID_STATE;
+	m_NextState  = FSM_INVALID_STATE;
 }
 
 //-----------------------------------------------------------------------------
@@ -222,8 +223,9 @@ void CFsm::Shutdown( void )
 	m_Transitions.clear();
 
 	m_Done		 = false;
-	m_FirstState = ( unsigned int )FSM_INVALID_STATE;
-	m_CurrState	 = ( unsigned int )FSM_INVALID_STATE;
+	m_FirstState = FSM_INVALID_STATE;
+	m_CurrState	 = FSM_INVALID_STATE;
+	m_NextState  = FSM_INVALID_STATE;
 }
 
 //-----------------------------------------------------------------------------
@@ -409,11 +411,18 @@ bool CFsm::Update( unsigned int eventType, void* pEventParam )
 	// Valid transition?
 	if ( !pTransition->ApplyConditions() ) return false;
 
+	// Save the default state transition (actions might call SetNextState
+	// to override this)
+	SetNextState( pTransition->GetNextState() );
+
 	// Run transition actions
 	if ( !pTransition->RunActions() ) return false;
 
 	// Switch state
-	SetCurrState( pTransition->GetNextState() );
+	SetCurrState( GetNextState() );
+
+	// Reset the next state since it's no longer valid
+	SetNextState( FSM_INVALID_STATE );
 	
 	return true;
 }

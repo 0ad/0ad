@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -152,6 +152,8 @@ public:
 	void			SetFirstState		( unsigned int firstState );
 	void			SetCurrState		( unsigned int state );
 	unsigned int	GetCurrState		( void ) const		{ return m_CurrState; }
+	void			SetNextState		( unsigned int nextState )	{ m_NextState = nextState; }
+	unsigned int	GetNextState		( void ) const	{ return m_NextState; }
 	const StateSet&	GetStates			( void ) const		{ return m_States; }
 	const EventMap&	GetEvents			( void ) const		{ return m_Events; }
 	const TransitionList&	GetTransitions		( void ) const		{ return m_Transitions; }
@@ -166,6 +168,7 @@ private:
 	bool			m_Done;				// FSM work is done
 	unsigned int	m_FirstState;		// Initial state
 	unsigned int	m_CurrState;		// Current state
+	unsigned int	m_NextState;		// Next state
 	StateSet		m_States;			// List of states
 	EventMap		m_Events;			// List of events
 	TransitionList	m_Transitions;		// State transitions
