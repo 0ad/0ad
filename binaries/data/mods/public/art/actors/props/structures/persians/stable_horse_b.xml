@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>skeletal/horse.pmd</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="16" name="bblack">
+      <texture>skeletal/horse_black_a.dds</texture>
+    </variant>
+    <variant frequency="17" name="bbrown">
+      <texture>skeletal/horse_brown_a.dds</texture>
+    </variant>
+    <variant frequency="16" name="bchestnut">
+      <texture>skeletal/horse_chestnut_a.dds</texture>
+    </variant>
+    <variant frequency="17" name="bdun">
+      <texture>skeletal/horse_dun_a.dds</texture>
+    </variant>
+    <variant frequency="17" name="bgray">
+      <texture>skeletal/horse_gray_a.dds</texture>
+    </variant>
+    <variant frequency="17" name="btan">
+      <texture>skeletal/horse_tan_a.dds</texture>
+    </variant>
+  </group>
+</actor>

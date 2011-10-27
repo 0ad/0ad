@@ -8,9 +8,9 @@
       <mesh>structural/pers_stables.dae</mesh>
       <props>
         <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
-		<prop actor="fauna/horse_a.xml" attachpoint="horsea"/>
-		<prop actor="fauna/horse_a.xml" attachpoint="horseb"/>
-		<prop actor="fauna/horse_a.xml" attachpoint="horsec"/>
+		<prop actor="props/structures/persians/stable_horse_a.xml" attachpoint="horsea"/>
+		<prop actor="props/structures/persians/stable_horse_b.xml" attachpoint="horseb"/>
+		<prop actor="props/structures/persians/stable_horse_c.xml" attachpoint="horsec"/>
       </props>
       <texture>structural/pers_struct.dds</texture>
     </variant>
