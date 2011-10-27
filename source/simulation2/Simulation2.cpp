@@ -68,7 +68,7 @@ public:
 
 		RegisterFileReloadFunc(ReloadChangedFileCB, this);
 
-//		m_EnableOOSLog = true; // TODO: this should be a command-line flag or similar
+// 		m_EnableOOSLog = true; // TODO: this should be a command-line flag or similar
 // 		m_EnableSerializationTest = true; // TODO: this should too
 	}
 
@@ -523,9 +523,11 @@ void CSimulation2Impl::DumpState()
 {
 	PROFILE("DumpState");
 
-	std::wstringstream name;
-	name << L"sim_log/" << getpid() << L"/" << std::setw(5) << std::setfill(L'0') << m_TurnNumber << L".txt";
-	OsPath path = psLogDir() / name.str();
+	std::stringstream pid;
+	pid << getpid();
+	std::stringstream name;\
+	name << std::setw(5) << std::setfill('0') << m_TurnNumber << ".txt";
+	OsPath path = psLogDir() / "sim_log" / pid.str() / name.str();
 	CreateDirectories(path.Parent(), 0700);
 	std::ofstream file (OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 
