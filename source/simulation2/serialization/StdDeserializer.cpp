@@ -20,6 +20,7 @@
 #include "StdDeserializer.h"
 
 #include "SerializedScriptTypes.h"
+#include "StdSerializer.h" // for DEBUG_SERIALIZER_ANNOTATE
 
 #include "scriptinterface/ScriptInterface.h"
 
@@ -38,8 +39,22 @@ CStdDeserializer::~CStdDeserializer()
 	FreeScriptBackrefs();
 }
 
-void CStdDeserializer::Get(u8* data, size_t len)
+void CStdDeserializer::Get(const char* name, u8* data, size_t len)
 {
+#if DEBUG_SERIALIZER_ANNOTATE
+	std::string strName;
+	char c = m_Stream.get();
+	ENSURE(c == '<');
+	while (1)
+	{
+		c = m_Stream.get();
+		if (c == '>')
+			break;
+		else
+			strName += c;
+	}
+	ENSURE(strName == name);
+#endif
 	m_Stream.read((char*)data, (std::streamsize)len);
 	if (!m_Stream.good()) // hit eof before len, or other errors
 		throw PSERROR_Deserialize_ReadFailed();
@@ -79,7 +94,7 @@ void CStdDeserializer::FreeScriptBackrefs()
 
 ////////////////////////////////////////////////////////////////
 
-jsval CStdDeserializer::ReadScriptVal(JSObject* appendParent)
+jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JSObject* appendParent)
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
 
@@ -116,9 +131,9 @@ jsval CStdDeserializer::ReadScriptVal(JSObject* appendParent)
 		for (uint32_t i = 0; i < numProps; ++i)
 		{
 			utf16string propname;
-			ReadStringUTF16(propname);
+			ReadStringUTF16("prop name", propname);
 
-			jsval propval = ReadScriptVal(NULL);
+			jsval propval = ReadScriptVal("prop value", NULL);
 			CScriptValRooted propvalRoot(cx, propval);
 
 			if (!JS_SetUCProperty(cx, obj, (const jschar*)propname.data(), propname.length(), &propval))
@@ -168,18 +183,18 @@ jsval CStdDeserializer::ReadScriptVal(JSObject* appendParent)
 	}
 }
 
-void CStdDeserializer::ReadStringUTF16(utf16string& str)
+void CStdDeserializer::ReadStringUTF16(const char* name, utf16string& str)
 {
 	uint32_t len;
 	NumberU32_Unbounded("string length", len);
 	str.resize(len); // TODO: should check len*2 <= bytes remaining in stream, before resizing
-	Get((u8*)str.data(), len*2);
+	Get(name, (u8*)str.data(), len*2);
 }
 
-void CStdDeserializer::ScriptString(const char* UNUSED(name), JSString*& out)
+void CStdDeserializer::ScriptString(const char* name, JSString*& out)
 {
 	utf16string str;
-	ReadStringUTF16(str);
+	ReadStringUTF16(name, str);
 
 #if BYTE_ORDER != LITTLE_ENDIAN
 #error TODO: probably need to convert JS strings from little-endian
@@ -190,25 +205,25 @@ void CStdDeserializer::ScriptString(const char* UNUSED(name), JSString*& out)
 		throw PSERROR_Deserialize_ScriptError("JS_NewUCStringCopyN failed");
 }
 
-void CStdDeserializer::ScriptVal(const char* UNUSED(name), jsval& out)
+void CStdDeserializer::ScriptVal(const char* name, jsval& out)
 {
-	out = ReadScriptVal(NULL);
+	out = ReadScriptVal(name, NULL);
 }
 
-void CStdDeserializer::ScriptVal(const char* UNUSED(name), CScriptVal& out)
+void CStdDeserializer::ScriptVal(const char* name, CScriptVal& out)
 {
-	out = ReadScriptVal(NULL);
+	out = ReadScriptVal(name, NULL);
 }
 
-void CStdDeserializer::ScriptVal(const char* UNUSED(name), CScriptValRooted& out)
+void CStdDeserializer::ScriptVal(const char* name, CScriptValRooted& out)
 {
-	out = CScriptValRooted(m_ScriptInterface.GetContext(), ReadScriptVal(NULL));
+	out = CScriptValRooted(m_ScriptInterface.GetContext(), ReadScriptVal(name, NULL));
 }
 
-void CStdDeserializer::ScriptObjectAppend(const char* UNUSED(name), jsval& obj)
+void CStdDeserializer::ScriptObjectAppend(const char* name, jsval& obj)
 {
 	if (!JSVAL_IS_OBJECT(obj))
 		throw PSERROR_Deserialize_ScriptError();
 
-	ReadScriptVal(JSVAL_TO_OBJECT(obj));
+	ReadScriptVal(name, JSVAL_TO_OBJECT(obj));
 }

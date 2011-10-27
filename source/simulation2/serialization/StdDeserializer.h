@@ -40,11 +40,11 @@ public:
 	virtual std::istream& GetStream();
 
 protected:
-	virtual void Get(u8* data, size_t len);
+	virtual void Get(const char* name, u8* data, size_t len);
 
 private:
-	jsval ReadScriptVal(JSObject* appendParent);
-	void ReadStringUTF16(utf16string& str);
+	jsval ReadScriptVal(const char* name, JSObject* appendParent);
+	void ReadStringUTF16(const char* name, utf16string& str);
 
 	virtual void AddScriptBackref(JSObject* obj);
 	virtual JSObject* GetScriptBackref(u32 tag);

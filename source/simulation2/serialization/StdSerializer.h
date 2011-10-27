@@ -22,6 +22,8 @@
 
 #include <cstring>
 
+#define DEBUG_SERIALIZER_ANNOTATE 0 // annotate the stream to help debugging if you're reading the output in a hex editor
+
 class CStdSerializerImpl
 {
 	NONCOPYABLE(CStdSerializerImpl);
@@ -30,10 +32,10 @@ public:
 
 	void Put(const char* name, const u8* data, size_t len)
 	{
-#if 0 // annotate the stream to help debugging if you're reading the output in a hex editor
-		m_Stream.put('[');
+#if DEBUG_SERIALIZER_ANNOTATE
+		m_Stream.put('<');
 		m_Stream.write(name, strlen(name));
-		m_Stream.put(']');
+		m_Stream.put('>');
 #else
 		UNUSED2(name);
 #endif

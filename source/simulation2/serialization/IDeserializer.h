@@ -79,9 +79,7 @@ public:
 	virtual std::istream& GetStream() = 0;
 
 protected:
-	virtual void ReadString(std::string& out);
-
-	virtual void Get(u8* data, size_t len) = 0;
+	virtual void Get(const char* name, u8* data, size_t len) = 0;
 };
 
 #endif // INCLUDED_IDESERIALIZER

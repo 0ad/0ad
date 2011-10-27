@@ -27,10 +27,10 @@ IDeserializer::~IDeserializer()
 {
 }
 
-void IDeserializer::NumberU8(const char* UNUSED(name), uint8_t& out, uint8_t lower, uint8_t upper)
+void IDeserializer::NumberU8(const char* name, uint8_t& out, uint8_t lower, uint8_t upper)
 {
 	uint8_t value;
-	Get((u8*)&value, sizeof(uint8_t));
+	Get(name, (u8*)&value, sizeof(uint8_t));
 
 	if (!(lower <= value && value <= upper))
 		throw PSERROR_Deserialize_OutOfBounds();
@@ -38,10 +38,10 @@ void IDeserializer::NumberU8(const char* UNUSED(name), uint8_t& out, uint8_t low
 	out = value;
 }
 
-void IDeserializer::NumberI8(const char* UNUSED(name), int8_t& out, int8_t lower, int8_t upper)
+void IDeserializer::NumberI8(const char* name, int8_t& out, int8_t lower, int8_t upper)
 {
 	int8_t value;
-	Get((u8*)&value, sizeof(uint8_t));
+	Get(name, (u8*)&value, sizeof(uint8_t));
 
 	if (!(lower <= value && value <= upper))
 		throw PSERROR_Deserialize_OutOfBounds();
@@ -49,10 +49,10 @@ void IDeserializer::NumberI8(const char* UNUSED(name), int8_t& out, int8_t lower
 	out = value;
 }
 
-void IDeserializer::NumberU16(const char* UNUSED(name), uint16_t& out, uint16_t lower, uint16_t upper)
+void IDeserializer::NumberU16(const char* name, uint16_t& out, uint16_t lower, uint16_t upper)
 {
 	uint16_t value;
-	Get((u8*)&value, sizeof(uint16_t));
+	Get(name, (u8*)&value, sizeof(uint16_t));
 	value = to_le16(value);
 
 	if (!(lower <= value && value <= upper))
@@ -61,10 +61,10 @@ void IDeserializer::NumberU16(const char* UNUSED(name), uint16_t& out, uint16_t 
 	out = value;
 }
 
-void IDeserializer::NumberI16(const char* UNUSED(name), int16_t& out, int16_t lower, int16_t upper)
+void IDeserializer::NumberI16(const char* name, int16_t& out, int16_t lower, int16_t upper)
 {
 	int16_t value;
-	Get((u8*)&value, sizeof(uint16_t));
+	Get(name, (u8*)&value, sizeof(uint16_t));
 	value = (i16)to_le16((u16)value);
 
 	if (!(lower <= value && value <= upper))
@@ -73,10 +73,10 @@ void IDeserializer::NumberI16(const char* UNUSED(name), int16_t& out, int16_t lo
 	out = value;
 }
 
-void IDeserializer::NumberU32(const char* UNUSED(name), uint32_t& out, uint32_t lower, uint32_t upper)
+void IDeserializer::NumberU32(const char* name, uint32_t& out, uint32_t lower, uint32_t upper)
 {
 	uint32_t value;
-	Get((u8*)&value, sizeof(uint32_t));
+	Get(name, (u8*)&value, sizeof(uint32_t));
 	value = to_le32(value);
 
 	if (!(lower <= value && value <= upper))
@@ -85,10 +85,10 @@ void IDeserializer::NumberU32(const char* UNUSED(name), uint32_t& out, uint32_t 
 	out = value;
 }
 
-void IDeserializer::NumberI32(const char* UNUSED(name), int32_t& out, int32_t lower, int32_t upper)
+void IDeserializer::NumberI32(const char* name, int32_t& out, int32_t lower, int32_t upper)
 {
 	int32_t value;
-	Get((u8*)&value, sizeof(uint32_t));
+	Get(name, (u8*)&value, sizeof(uint32_t));
 	value = (i32)to_le32((u32)value);
 
 	if (!(lower <= value && value <= upper))
@@ -97,52 +97,52 @@ void IDeserializer::NumberI32(const char* UNUSED(name), int32_t& out, int32_t lo
 	out = value;
 }
 
-void IDeserializer::NumberU8_Unbounded(const char* UNUSED(name), uint8_t& out)
+void IDeserializer::NumberU8_Unbounded(const char* name, uint8_t& out)
 {
-	Get((u8*)&out, sizeof(uint8_t));
+	Get(name, (u8*)&out, sizeof(uint8_t));
 }
 
-void IDeserializer::NumberI8_Unbounded(const char* UNUSED(name), int8_t& out)
+void IDeserializer::NumberI8_Unbounded(const char* name, int8_t& out)
 {
-	Get((u8*)&out, sizeof(int8_t));
+	Get(name, (u8*)&out, sizeof(int8_t));
 }
 
-void IDeserializer::NumberU16_Unbounded(const char* UNUSED(name), uint16_t& out)
+void IDeserializer::NumberU16_Unbounded(const char* name, uint16_t& out)
 {
 	uint16_t value;
-	Get((u8*)&value, sizeof(uint16_t));
+	Get(name, (u8*)&value, sizeof(uint16_t));
 	out = to_le16(value);
 }
 
-void IDeserializer::NumberI16_Unbounded(const char* UNUSED(name), int16_t& out)
+void IDeserializer::NumberI16_Unbounded(const char* name, int16_t& out)
 {
 	int16_t value;
-	Get((u8*)&value, sizeof(int16_t));
+	Get(name, (u8*)&value, sizeof(int16_t));
 	out = (i16)to_le16((u16)value);
 }
 
-void IDeserializer::NumberU32_Unbounded(const char* UNUSED(name), uint32_t& out)
+void IDeserializer::NumberU32_Unbounded(const char* name, uint32_t& out)
 {
 	uint32_t value;
-	Get((u8*)&value, sizeof(uint32_t));
+	Get(name, (u8*)&value, sizeof(uint32_t));
 	out = to_le32(value);
 }
 
-void IDeserializer::NumberI32_Unbounded(const char* UNUSED(name), int32_t& out)
+void IDeserializer::NumberI32_Unbounded(const char* name, int32_t& out)
 {
 	int32_t value;
-	Get((u8*)&value, sizeof(int32_t));
+	Get(name, (u8*)&value, sizeof(int32_t));
 	out = (i32)to_le32((u32)value);
 }
 
-void IDeserializer::NumberFloat_Unbounded(const char* UNUSED(name), float& out)
+void IDeserializer::NumberFloat_Unbounded(const char* name, float& out)
 {
-	Get((u8*)&out, sizeof(float));
+	Get(name, (u8*)&out, sizeof(float));
 }
 
-void IDeserializer::NumberDouble_Unbounded(const char* UNUSED(name), double& out)
+void IDeserializer::NumberDouble_Unbounded(const char* name, double& out)
 {
-	Get((u8*)&out, sizeof(double));
+	Get(name, (u8*)&out, sizeof(double));
 }
 
 void IDeserializer::NumberFixed_Unbounded(const char* name, fixed& out)
@@ -159,25 +159,25 @@ void IDeserializer::Bool(const char* name, bool& out)
 	out = (i != 0);
 }
 
-void IDeserializer::StringASCII(const char* UNUSED(name), std::string& out, uint32_t minlength, uint32_t maxlength)
+void IDeserializer::StringASCII(const char* name, std::string& out, uint32_t minlength, uint32_t maxlength)
 {
 	uint32_t len;
 	NumberU32("string length", len, minlength, maxlength);
 	out.resize(len); // TODO: should check len <= bytes remaining in stream
-	Get((u8*)out.data(), len);
+	Get(name, (u8*)out.data(), len);
 
 	for (size_t i = 0; i < out.length(); ++i)
 		if (out[i] == 0 || (unsigned char)out[i] >= 128)
 			throw PSERROR_Deserialize_InvalidCharInString();
 }
 
-void IDeserializer::String(const char* UNUSED(name), std::wstring& out, uint32_t minlength, uint32_t maxlength)
+void IDeserializer::String(const char* name, std::wstring& out, uint32_t minlength, uint32_t maxlength)
 {
 	std::string str;
 	uint32_t len;
 	NumberU32_Unbounded("string length", len);
 	str.resize(len); // TODO: should check len <= bytes remaining in stream
-	Get((u8*)str.data(), len);
+	Get(name, (u8*)str.data(), len);
 
 	Status err;
 	out = wstring_from_utf8(str, &err);
@@ -188,21 +188,13 @@ void IDeserializer::String(const char* UNUSED(name), std::wstring& out, uint32_t
 		throw PSERROR_Deserialize_OutOfBounds();
 }
 
-void IDeserializer::RawBytes(const char* UNUSED(name), u8* data, size_t len)
+void IDeserializer::RawBytes(const char* name, u8* data, size_t len)
 {
-	Get(data, len);
+	Get(name, data, len);
 }
 
 int IDeserializer::GetVersion() const
 {
 	debug_warn(L"GetVersion() not implemented in this subclass");
 	return 0;
-}
-
-void IDeserializer::ReadString(std::string& out)
-{
-	uint32_t len;
-	NumberU32_Unbounded("string length", len);
-	out.resize(len); // TODO: should check len <= bytes remaining in stream
-	Get((u8*)out.data(), len);
 }
