@@ -113,11 +113,19 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JSObject* append
 	{
 		JSObject* obj;
 		if (appendParent)
+		{
 			obj = appendParent;
+		}
 		else if (type == SCRIPT_TYPE_ARRAY)
-			obj = JS_NewArrayObject(cx, 0, NULL);
+		{
+			u32 length;
+			NumberU32_Unbounded("array length", length);
+			obj = JS_NewArrayObject(cx, length, NULL);
+		}
 		else
+		{
 			obj = JS_NewObject(cx, NULL, NULL, NULL);
+		}
 
 		if (!obj)
 			throw PSERROR_Deserialize_ScriptError();

@@ -295,7 +295,7 @@ public:
 
 			serialize.ScriptVal("script", obj);
 
-			TS_ASSERT_STREAM(stream, 115,
+			TS_ASSERT_STREAM(stream, 119,
 					"\x03" // SCRIPT_TYPE_OBJECT
 					"\x02\0\0\0" // num props
 					"\x01\0\0\0" "x\0" // "x"
@@ -303,6 +303,7 @@ public:
 					"\x7b\0\0\0" // 123
 					"\x01\0\0\0" "y\0" // "y"
 					"\x02" // SCRIPT_TYPE_ARRAY
+					"\x08\0\0\0" // array length
 					"\x08\0\0\0" // num props
 					"\x01\0\0\0" "0\0" // "0"
 					"\x05" "\x01\0\0\0" // SCRIPT_TYPE_INT 1
@@ -400,10 +401,16 @@ public:
 		helper_script_roundtrip("prop order 2", "var x={}; x.d=3; x.a=1; x.f=2; x.b=7; x", "({d:3, a:1, f:2, b:7})");
 	}
 
+	void test_script_array_sparse()
+	{
+		helper_script_roundtrip("array_sparse", "[,1,2,,4,,]", "[, 1, 2, , 4, ,]");
+	}
+
 	void test_script_numbers()
 	{
 		const char stream[] = "\x02" // SCRIPT_TYPE_ARRAY
 					"\x04\0\0\0" // num props
+					"\x04\0\0\0" // array length
 					"\x01\0\0\0" "0\0" // "0"
 					"\x05" "\0\0\0\x80" // SCRIPT_TYPE_INT -2147483648 (JS_INT_MIN)
 					"\x01\0\0\0" "1\0" // "1"

@@ -72,6 +72,13 @@ void CBinarySerializerScriptImpl::HandleScriptVal(jsval val)
 		{
 			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_ARRAY);
 			// TODO: probably should have a more efficient storage format
+
+			// Arrays like [1, 2, ] have an 'undefined' at the end which is part of the
+			// length but seemingly isn't enumerated, so store the length explicitly
+			jsuint length = 0;
+			if (!JS_GetArrayLength(cx, obj, &length))
+				throw PSERROR_Serialize_ScriptError("JS_GetArrayLength failed");
+			m_Serializer.NumberU32_Unbounded("array length", length);
 		}
 		else
 		{
