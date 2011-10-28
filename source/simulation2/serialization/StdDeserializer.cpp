@@ -54,6 +54,8 @@ void CStdDeserializer::Get(const char* name, u8* data, size_t len)
 			strName += c;
 	}
 	ENSURE(strName == name);
+#else
+	UNUSED2(name);
 #endif
 	m_Stream.read((char*)data, (std::streamsize)len);
 	if (!m_Stream.good()) // hit eof before len, or other errors
