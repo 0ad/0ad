@@ -1,16 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_ranged_slinger">
+  <Builder>
+    <Entities datatype="tokens">
+      structures/hele_gymnasion
+      structures/hele_theatron
+      structures/hele_prytaneion
+    </Entities>
+  </Builder>
+  <Cost>
+    <Resources>
+      <food>0</food>
+	  <metal>50</metal>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>hele</Civ>
     <SelectionGroupName>units/hele_infantry_slinger_b</SelectionGroupName>
     <GenericName>Rhodian Slinger</GenericName>
-    <SpecificName>Sphenodonetes Rhodikos</SpecificName>
+    <SpecificName>Sphendonetes Rhodikos</SpecificName>
     <History></History>
     <Icon>units/hele_infantry_slinger.png</Icon>
   </Identity>
   <Promotion>
     <Entity>units/hele_infantry_slinger_a</Entity>
   </Promotion>
+  <Vision>
+    <Range>66</Range>
+  </Vision>
   <VisualActor>
     <Actor>units/hellenes/infantry_slinger_b.xml</Actor>
   </VisualActor>

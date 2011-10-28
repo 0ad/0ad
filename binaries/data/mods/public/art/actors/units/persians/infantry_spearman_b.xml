@@ -39,18 +39,47 @@
       </animations>
       <mesh>skeletal/m_pants_celt.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_pers_a.xml" attachpoint="head"/>
         <prop actor="props/units/shields/pers_tower.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear_ball.xml" attachpoint="r_hand"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Clothing-ruddish-stripes">
-      <texture>skeletal/pers_isp_b_1.dds</texture>
+    <variant frequency="1" name="Clothing-red-stripes">
+      <props>
+        <prop actor="props/units/heads/head_pers_tiara_y.xml" attachpoint="head"/>
+      </props>
+      <texture>skeletal/pers_isp_a_1.dds</texture>
     </variant>
-    <variant frequency="1" name="Clothing-brown-stripes">
-      <texture>skeletal/pers_isp_b_2.dds</texture>
+    <variant frequency="1" name="Clothing-blue-stripes">
+      <props>
+        <prop actor="props/units/heads/head_pers_tiara_y.xml" attachpoint="head"/>
+      </props>
+      <texture>skeletal/pers_isp_a_2.dds</texture>
+    </variant>
+    <variant frequency="1" name="Clothing-gold-stripes">
+      <props>
+        <prop actor="props/units/heads/head_pers_tiara_y.xml" attachpoint="head"/>
+      </props>
+      <texture>skeletal/pers_isp_a_3.dds</texture>
+    </variant>
+    <variant frequency="1" name="Clothing-emerald">
+      <props>
+        <prop actor="props/units/heads/head_pers_tiara.xml" attachpoint="head"/>
+      </props>
+      <texture>skeletal/pers_isp_e_1.dds</texture>
+    </variant>
+    <variant frequency="1" name="Clothing-gold">
+      <props>
+        <prop actor="props/units/heads/head_pers_tiara.xml" attachpoint="head"/>
+      </props>
+      <texture>skeletal/pers_isp_e_2.dds</texture>
+    </variant>
+    <variant frequency="2" name="Clothing-brown-stripes">
+      <props>
+        <prop actor="props/units/heads/head_pers_tiara_y.xml" attachpoint="head"/>
+      </props>
+      <texture>skeletal/pers_isp_b_1.dds</texture>
     </variant>
   </group>
   <group>

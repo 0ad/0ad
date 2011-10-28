@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/hele_infantry_slinger_a">
+  <Armour>
+    <Hack>4.0</Hack>
+    <Pierce>4.0</Pierce>
+    <Crush>4.0</Crush>
+  </Armour>
+  <Attack>
+    <Ranged>
+      <Pierce>22.0</Pierce>
+      <MaxRange>56.0</MaxRange>
+    </Ranged>
+  </Attack>
+  <Health>
+    <Max>110</Max>
+  </Health>
   <Identity>
     <Rank>Elite</Rank>
   </Identity>
   <Promotion disable=""/>
+  <ResourceGatherer>
+    <BaseSpeed>0.5</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>7.0</WalkSpeed>
+    <Run>
+      <Speed>20.4</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/hellenes/infantry_slinger_e.xml</Actor>
   </VisualActor>
