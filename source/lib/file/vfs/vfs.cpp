@@ -54,7 +54,7 @@ class VFS : public IVFS
 public:
 	VFS(size_t cacheSize)
 		: m_cacheSize(cacheSize), m_fileCache(m_cacheSize)
-		, m_trace(CreateTrace(4*MiB))
+		, m_trace(CreateTrace(8*MiB))
 	{
 	}
 
