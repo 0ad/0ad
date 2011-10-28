@@ -12,6 +12,11 @@
   <Obstruction>
     <Static width="23.0" depth="15.0"/>
   </Obstruction>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/pers_ship_trireme
+    </Entities>
+  </TrainingQueue>
   <VisualActor>
     <Actor>structures/persians/dock.xml</Actor>
   </VisualActor>
