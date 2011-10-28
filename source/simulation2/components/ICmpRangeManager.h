@@ -295,6 +295,12 @@ public:
 	 */
 	virtual i32 GetPercentMapExplored(player_id_t player) = 0;
 
+
+	/**
+	 * Perform some internal consistency checks for testing/debugging.
+	 */
+	virtual void Verify() = 0;
+
 	DECLARE_INTERFACE_TYPE(RangeManager)
 };
 

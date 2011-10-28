@@ -36,6 +36,8 @@
 #include "ps/Profile.h"
 #include "renderer/Scene.h"
 
+#define DEBUG_RANGE_MANAGER_BOUNDS 0
+
 /**
  * Representation of a range query.
  */
@@ -396,6 +398,10 @@ public:
 			if (it->second.inWorld)
 				m_Subdivision.Remove(ent, CFixedVector2D(it->second.x, it->second.z));
 
+			// This will be called after Ownership's OnDestroy, so ownership will be set
+			// to -1 already and we don't have to do a LosRemove here
+			ENSURE(it->second.owner == -1);
+
 			m_EntityData.erase(it);
 
 			break;
@@ -425,6 +431,45 @@ public:
 		m_TerrainVerticesPerSide = (i32)vertices;
 
 		ResetDerivedData(false);
+	}
+
+	virtual void Verify()
+	{
+		// Ignore if map not initialised yet
+		if (m_WorldX1.IsZero())
+			return;
+
+		// Check that calling ResetDerivedData (i.e. recomputing all the state from scratch)
+		// does not affect the incrementally-computed state
+
+		std::vector<std::vector<u16> > oldPlayerCounts = m_LosPlayerCounts;
+		std::vector<u32> oldStateRevealed = m_LosStateRevealed;
+		SpatialSubdivision<entity_id_t> oldSubdivision = m_Subdivision;
+
+		ResetDerivedData(true);
+		
+		if (oldPlayerCounts != m_LosPlayerCounts)
+		{
+			for (size_t i = 0; i < oldPlayerCounts.size(); ++i)
+			{
+				debug_printf(L"%d: ", i);
+				for (size_t j = 0; j < oldPlayerCounts[i].size(); ++j)
+					debug_printf(L"%d ", oldPlayerCounts[i][j]);
+				debug_printf(L"\n");
+			}
+			for (size_t i = 0; i < m_LosPlayerCounts.size(); ++i)
+			{
+				debug_printf(L"%d: ", i);
+				for (size_t j = 0; j < m_LosPlayerCounts[i].size(); ++j)
+					debug_printf(L"%d ", m_LosPlayerCounts[i][j]);
+				debug_printf(L"\n");
+			}
+			debug_warn(L"inconsistent player counts");
+		}
+		if (oldStateRevealed != m_LosStateRevealed)
+			debug_warn(L"inconsistent revealed");
+		if (oldSubdivision != m_Subdivision)
+			debug_warn(L"inconsistent subdivs");
 	}
 
 	// Reinitialise subdivisions and LOS data, based on entity data
@@ -1055,8 +1100,8 @@ public:
 		entity_pos_t r2 = r.Square();
 
 		// Compute the integers on either side of x
-		i32 xfloor = x.ToInt_RoundToNegInfinity();
-		i32 xceil = x.ToInt_RoundToInfinity();
+		i32 xfloor = (x - entity_pos_t::Epsilon()).ToInt_RoundToNegInfinity();
+		i32 xceil = (x + entity_pos_t::Epsilon()).ToInt_RoundToInfinity();
 
 		// Initialise the strip (i0, i1) to a rough guess
 		i32 i0 = xfloor;
@@ -1073,12 +1118,22 @@ public:
 			entity_pos_t dy2 = dy.Square();
 			while (dy2 + (entity_pos_t::FromInt(i0-1) - x).Square() <= r2)
 				--i0;
-			while (i0 <= xceil && dy2 + (entity_pos_t::FromInt(i0) - x).Square() > r2)
+			while (i0 < xceil && dy2 + (entity_pos_t::FromInt(i0) - x).Square() > r2)
 				++i0;
 			while (dy2 + (entity_pos_t::FromInt(i1+1) - x).Square() <= r2)
 				++i1;
-			while (i1 >= xfloor && dy2 + (entity_pos_t::FromInt(i1) - x).Square() > r2)
+			while (i1 > xfloor && dy2 + (entity_pos_t::FromInt(i1) - x).Square() > r2)
 				--i1;
+
+#if DEBUG_RANGE_MANAGER_BOUNDS
+			if (i0 <= i1)
+			{
+				ENSURE(dy2 + (entity_pos_t::FromInt(i0) - x).Square() <= r2);
+				ENSURE(dy2 + (entity_pos_t::FromInt(i1) - x).Square() <= r2);
+			}
+			ENSURE(dy2 + (entity_pos_t::FromInt(i0 - 1) - x).Square() > r2);
+			ENSURE(dy2 + (entity_pos_t::FromInt(i1 + 1) - x).Square() > r2);
+#endif
 
 			// Clamp the strip to exclude the 1-tile border,
 			// then add or remove the strip as requested
@@ -1132,10 +1187,10 @@ public:
 		entity_pos_t r = visionRange / (int)CELL_SIZE;
 		entity_pos_t r2 = r.Square();
 
-		i32 xfloor_from = x_from.ToInt_RoundToNegInfinity();
-		i32 xceil_from = x_from.ToInt_RoundToInfinity();
-		i32 xfloor_to = x_to.ToInt_RoundToNegInfinity();
-		i32 xceil_to = x_to.ToInt_RoundToInfinity();
+		i32 xfloor_from = (x_from - entity_pos_t::Epsilon()).ToInt_RoundToNegInfinity();
+		i32 xceil_from = (x_from + entity_pos_t::Epsilon()).ToInt_RoundToInfinity();
+		i32 xfloor_to = (x_to - entity_pos_t::Epsilon()).ToInt_RoundToNegInfinity();
+		i32 xceil_to = (x_to + entity_pos_t::Epsilon()).ToInt_RoundToInfinity();
 
 		i32 i0_from = xfloor_from;
 		i32 i1_from = xceil_from;
@@ -1148,23 +1203,40 @@ public:
 			entity_pos_t dy2_from = dy_from.Square();
 			while (dy2_from + (entity_pos_t::FromInt(i0_from-1) - x_from).Square() <= r2)
 				--i0_from;
-			while (i0_from <= xceil_from && dy2_from + (entity_pos_t::FromInt(i0_from) - x_from).Square() > r2)
+			while (i0_from < xceil_from && dy2_from + (entity_pos_t::FromInt(i0_from) - x_from).Square() > r2)
 				++i0_from;
 			while (dy2_from + (entity_pos_t::FromInt(i1_from+1) - x_from).Square() <= r2)
 				++i1_from;
-			while (i1_from >= xfloor_from && dy2_from + (entity_pos_t::FromInt(i1_from) - x_from).Square() > r2)
+			while (i1_from > xfloor_from && dy2_from + (entity_pos_t::FromInt(i1_from) - x_from).Square() > r2)
 				--i1_from;
 
 			entity_pos_t dy_to = entity_pos_t::FromInt(j) - y_to;
 			entity_pos_t dy2_to = dy_to.Square();
 			while (dy2_to + (entity_pos_t::FromInt(i0_to-1) - x_to).Square() <= r2)
 				--i0_to;
-			while (i0_to <= xceil_to && dy2_to + (entity_pos_t::FromInt(i0_to) - x_to).Square() > r2)
+			while (i0_to < xceil_to && dy2_to + (entity_pos_t::FromInt(i0_to) - x_to).Square() > r2)
 				++i0_to;
 			while (dy2_to + (entity_pos_t::FromInt(i1_to+1) - x_to).Square() <= r2)
 				++i1_to;
-			while (i1_to >= xfloor_to && dy2_to + (entity_pos_t::FromInt(i1_to) - x_to).Square() > r2)
+			while (i1_to > xfloor_to && dy2_to + (entity_pos_t::FromInt(i1_to) - x_to).Square() > r2)
 				--i1_to;
+
+#if DEBUG_RANGE_MANAGER_BOUNDS
+			if (i0_from <= i1_from)
+			{
+				ENSURE(dy2_from + (entity_pos_t::FromInt(i0_from) - x_from).Square() <= r2);
+				ENSURE(dy2_from + (entity_pos_t::FromInt(i1_from) - x_from).Square() <= r2);
+			}
+			ENSURE(dy2_from + (entity_pos_t::FromInt(i0_from - 1) - x_from).Square() > r2);
+			ENSURE(dy2_from + (entity_pos_t::FromInt(i1_from + 1) - x_from).Square() > r2);
+			if (i0_to <= i1_to)
+			{
+				ENSURE(dy2_to + (entity_pos_t::FromInt(i0_to) - x_to).Square() <= r2);
+				ENSURE(dy2_to + (entity_pos_t::FromInt(i1_to) - x_to).Square() <= r2);
+			}
+			ENSURE(dy2_to + (entity_pos_t::FromInt(i0_to - 1) - x_to).Square() > r2);
+			ENSURE(dy2_to + (entity_pos_t::FromInt(i1_to + 1) - x_to).Square() > r2);
+#endif
 
 			// Check whether this strip moved at all
 			if (!(i0_to == i0_from && i1_to == i1_from))

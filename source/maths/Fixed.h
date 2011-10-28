@@ -117,6 +117,7 @@ public:
 	CFixed() : value(0) { }
 
 	static CFixed Zero() { return CFixed(0); }
+	static CFixed Epsilon() { return CFixed(1); }
 	static CFixed Pi();
 
 	T GetInternalValue() const { return value; }

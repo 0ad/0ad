@@ -43,6 +43,35 @@ public:
 	{
 	}
 
+	/**
+	 * Equivalence test (ignoring order of items within each subdivision)
+	 */
+	bool operator==(const SpatialSubdivision& rhs)
+	{
+		if (m_DivisionSize != rhs.m_DivisionSize || m_DivisionsW != rhs.m_DivisionsW || m_DivisionsH != rhs.m_DivisionsH)
+			return false;
+		
+		for (u32 j = 0; j < m_DivisionsH; ++j)
+		{
+			for (u32 i = 0; i < m_DivisionsW; ++i)
+			{
+				std::vector<T> div1 = m_Divisions.at(i + j*m_DivisionsW);
+				std::vector<T> div2 = rhs.m_Divisions.at(i + j*m_DivisionsW);
+				std::sort(div1.begin(), div1.end());
+				std::sort(div2.begin(), div2.end());
+				if (div1 != div2)
+					return false;
+			}
+		}
+
+		return true;
+	}
+
+	bool operator!=(const SpatialSubdivision& rhs)
+	{
+		return !(*this == rhs);
+	}
+
 	void Reset(entity_pos_t maxX, entity_pos_t maxZ, entity_pos_t divisionSize)
 	{
 		m_DivisionSize = divisionSize;
