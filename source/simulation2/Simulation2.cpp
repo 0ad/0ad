@@ -336,7 +336,7 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 	 * on anything that's not serialized).
 	 */
 
-	const bool serializationTestDebugDump = false; // set true to save human-readable state dumps, for debugging (but slow)
+	const bool serializationTestDebugDump = false; // set true to save human-readable state dumps before an error is detected, for debugging (but slow)
 	const bool serializationTestHash = true; // set true to save and compare hash of state
 
 	SerializationTestState primaryStateBefore;
@@ -408,8 +408,6 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 
 		SerializationTestState primaryStateAfter;
 		ENSURE(m_ComponentManager.SerializeState(primaryStateAfter.state));
-		if (serializationTestDebugDump)
-			ENSURE(m_ComponentManager.DumpDebugState(primaryStateAfter.debug, false));
 		if (serializationTestHash)
 			ENSURE(m_ComponentManager.ComputeStateHash(primaryStateAfter.hash, false));
 
@@ -418,14 +416,16 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 
 		SerializationTestState secondaryStateAfter;
 		ENSURE(secondaryComponentManager.SerializeState(secondaryStateAfter.state));
-		if (serializationTestDebugDump)
-			ENSURE(secondaryComponentManager.DumpDebugState(secondaryStateAfter.debug, false));
 		if (serializationTestHash)
 			ENSURE(secondaryComponentManager.ComputeStateHash(secondaryStateAfter.hash, false));
 
 		if (primaryStateAfter.state.str() != secondaryStateAfter.state.str() ||
 			primaryStateAfter.hash != secondaryStateAfter.hash)
 		{
+			// Only do the (slow) dumping now we know we're going to need to report it
+			ENSURE(m_ComponentManager.DumpDebugState(primaryStateAfter.debug, false));
+			ENSURE(secondaryComponentManager.DumpDebugState(secondaryStateAfter.debug, false));
+
 			ReportSerializationFailure(&primaryStateBefore, &primaryStateAfter, &secondaryStateBefore, &secondaryStateAfter);
 		}
 	}
@@ -563,6 +563,11 @@ CSimulation2::~CSimulation2()
 void CSimulation2::EnableOOSLog()
 {
 	m->m_EnableOOSLog = true;
+}
+
+void CSimulation2::EnableSerializationTest()
+{
+	m->m_EnableSerializationTest = true;
 }
 
 entity_id_t CSimulation2::AddEntity(const std::wstring& templateName)

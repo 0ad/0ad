@@ -52,6 +52,7 @@ public:
 	~CSimulation2();
 
 	void EnableOOSLog();
+	void EnableSerializationTest();
 
 	/**
 	 * Load all scripts in the specified directory (non-recursively),
