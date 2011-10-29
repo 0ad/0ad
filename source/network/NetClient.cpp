@@ -294,6 +294,9 @@ void CNetClient::LoadFinished()
 {
 	if (!m_JoinSyncBuffer.empty())
 	{
+		// We're rejoining a game, and just finished loading the initial map,
+		// so deserialize the saved game state now
+
 		std::string state;
 		DecompressZLib(m_JoinSyncBuffer, state, true);
 
@@ -309,11 +312,18 @@ void CNetClient::LoadFinished()
 		ENSURE(ok);
 
 		m_ClientTurnManager->ResetState(turn, turn);
-	}
 
-	CScriptValRooted msg;
-	GetScriptInterface().Eval("({'type':'netstatus','status':'waiting_for_players'})", msg);
-	PushGuiMessage(msg);
+		CScriptValRooted msg;
+		GetScriptInterface().Eval("({'type':'netstatus','status':'join_syncing'})", msg);
+		PushGuiMessage(msg);
+	}
+	else
+	{
+		// Connecting at the start of a game, so we'll wait for other players to finish loading
+		CScriptValRooted msg;
+		GetScriptInterface().Eval("({'type':'netstatus','status':'waiting_for_players'})", msg);
+		PushGuiMessage(msg);
+	}
 
 	CLoadedGameMessage loaded;
 	loaded.m_CurrentTurn = m_ClientTurnManager->GetCurrentTurn();
@@ -371,12 +381,15 @@ bool CNetClient::OnAuthenticate(void* context, CFsmEvent* event)
 
 	CAuthenticateResultMessage* message = (CAuthenticateResultMessage*)event->GetParamRef();
 
-	LOGMESSAGE(L"Net: Authentication result: host=%d, %ls", message->m_HostID, message->m_Message.c_str() );
+	LOGMESSAGE(L"Net: Authentication result: host=%d, %ls", message->m_HostID, message->m_Message.c_str());
+
+	bool  isRejoining = (message->m_Code == ARC_OK_REJOINING);
 
 	client->m_HostID = message->m_HostID;
 
 	CScriptValRooted msg;
 	client->GetScriptInterface().Eval("({'type':'netstatus','status':'authenticated'})", msg);
+	client->GetScriptInterface().SetProperty(msg.get(), "rejoining", isRejoining);
 	client->PushGuiMessage(msg);
 
 	return true;

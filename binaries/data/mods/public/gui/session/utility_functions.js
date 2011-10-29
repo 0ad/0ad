@@ -71,6 +71,7 @@ function updatePlayerDataAdd(players, hostGuid, playerAssignment)
 	{
 		players[playerAssignment.player].guid = hostGuid;
 		players[playerAssignment.player].name = playerAssignment.name;
+		players[playerAssignment.player].offline = false;
 	}
 }
 

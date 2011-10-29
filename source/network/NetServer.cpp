@@ -665,7 +665,7 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 	session->SetHostID(newHostID);
 
 	CAuthenticateResultMessage authenticateResult;
-	authenticateResult.m_Code = ARC_OK;
+	authenticateResult.m_Code = isRejoining ? ARC_OK_REJOINING : ARC_OK;
 	authenticateResult.m_HostID = newHostID;
 	authenticateResult.m_Message = L"Logged in";
 	session->SendMessage(&authenticateResult);

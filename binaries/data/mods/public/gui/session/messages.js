@@ -74,6 +74,10 @@ function handleNetMessage(message)
 			obj.caption = "Waiting for other players to connect...";
 			obj.hidden = false;
 			break;
+		case "join_syncing":
+			obj.caption = "Synchronising gameplay with other players...";
+			obj.hidden = false;
+			break;
 		case "active":
 			obj.caption = "";
 			obj.hidden = true;
@@ -116,6 +120,9 @@ function handleNetMessage(message)
 			{
 				// Update the cached player data, so we can display the correct name
 				updatePlayerDataAdd(g_Players, host, message.hosts[host]);
+
+				// Tell the user about the connection
+				addChatMessage({ "type": "connect", "guid": host }, message.hosts);
 			}
 		}
 
@@ -167,14 +174,19 @@ function submitChatInput()
 	toggleChatWindow();
 }
 
-function addChatMessage(msg)
+function addChatMessage(msg, playerAssignments)
 {
+	// Default to global assignments, but allow overriding for when reporting
+	// new players joining
+	if (!playerAssignments)
+		playerAssignments = g_PlayerAssignments;
+
 	var playerColor, username;
-	if (g_PlayerAssignments[msg.guid])
+	if (playerAssignments[msg.guid])
 	{
-		var n = g_PlayerAssignments[msg.guid].player;
+		var n = playerAssignments[msg.guid].player;
 		playerColor = g_Players[n].color.r + " " + g_Players[n].color.g + " " + g_Players[n].color.b;
-		username = escapeText(g_PlayerAssignments[msg.guid].name);
+		username = escapeText(playerAssignments[msg.guid].name);
 	}
 	else
 	{
@@ -188,6 +200,9 @@ function addChatMessage(msg)
 
 	switch (msg.type)
 	{
+	case "connect":
+		formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] has joined the game.";
+		break;
 	case "disconnect":
 		formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] has left the game.";
 		break;

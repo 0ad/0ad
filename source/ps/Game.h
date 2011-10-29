@@ -65,12 +65,6 @@ class CGame
 	CNetTurnManager* m_TurnManager;
 
 public:
-	enum ENetStatus
-	{
-		NET_WAITING_FOR_CONNECT, /// we have loaded the game; waiting for other players to finish loading
-		NET_NORMAL /// running the game
-	};
-
 	CGame(bool disableGraphics = false);
 	~CGame();
 

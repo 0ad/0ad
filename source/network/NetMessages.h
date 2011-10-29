@@ -69,9 +69,8 @@ enum NetMessageType
 enum AuthenticateResultCode
 {
 	ARC_OK,
+	ARC_OK_REJOINING,
 	ARC_PASSWORD_INVALID,
-	ARC_NICK_TAKEN,
-	ARC_NICK_INVALID,
 };
 
 #endif //	NETMESSAGES_H
