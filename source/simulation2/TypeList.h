@@ -143,7 +143,7 @@ INTERFACE(Vision)
 COMPONENT(Vision)
 
 INTERFACE(Visual)
-COMPONENT(VisualActor)
+COMPONENT(VisualActor) // must be after Ownership (dependency in Deserialize)
 
 INTERFACE(WaterManager)
 COMPONENT(WaterManager)

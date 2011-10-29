@@ -20,6 +20,7 @@
 #include "simulation2/system/Component.h"
 #include "ICmpVisual.h"
 
+#include "ICmpOwnership.h"
 #include "ICmpPosition.h"
 #include "ICmpRangeManager.h"
 #include "ICmpVision.h"
@@ -59,14 +60,13 @@ public:
 	ICmpRangeManager::ELosVisibility m_Visibility; // only valid between Interpolate and RenderSubmit
 
 	// Current animation state
-	float m_AnimRunThreshold; // if non-zero this is the special walk/run mode
+	fixed m_AnimRunThreshold; // if non-zero this is the special walk/run mode
 	std::string m_AnimName;
 	bool m_AnimOnce;
-	float m_AnimSpeed;
+	fixed m_AnimSpeed;
 	std::wstring m_SoundGroup;
-	float m_AnimDesync;
-
-	float m_AnimSyncRepeatTime; // 0.0 if not synced
+	fixed m_AnimDesync;
+	fixed m_AnimSyncRepeatTime; // 0.0 if not synced
 
 	static std::string GetSchema()
 	{
@@ -118,24 +118,21 @@ public:
 
 		std::set<CStr> selections;
 		m_Unit = GetSimContext().GetUnitManager().CreateUnit(m_ActorName, GetActorSeed(), selections);
-		if (!m_Unit)
+		if (m_Unit)
 		{
-			// The error will have already been logged
-			return;
+			u32 modelFlags = 0;
+			if (paramNode.GetChild("SilhouetteDisplay").ToBool())
+				modelFlags |= MODELFLAG_SILHOUETTE_DISPLAY;
+			if (paramNode.GetChild("SilhouetteOccluder").ToBool())
+				modelFlags |= MODELFLAG_SILHOUETTE_OCCLUDER;
+
+			if (m_Unit->GetModel().ToCModel())
+				m_Unit->GetModel().ToCModel()->AddFlagsRec(modelFlags);
+
+			m_Unit->SetID(GetEntityId());
 		}
 
-		u32 modelFlags = 0;
-		if (paramNode.GetChild("SilhouetteDisplay").ToBool())
-			modelFlags |= MODELFLAG_SILHOUETTE_DISPLAY;
-		if (paramNode.GetChild("SilhouetteOccluder").ToBool())
-			modelFlags |= MODELFLAG_SILHOUETTE_OCCLUDER;
-
-		if (m_Unit->GetModel().ToCModel())
-			m_Unit->GetModel().ToCModel()->AddFlagsRec(modelFlags);
-
-		m_Unit->SetID(GetEntityId());
-
-		SelectAnimation("idle", false, 0.f, L"");
+		SelectAnimation("idle", false, fixed::Zero(), L"");
 	}
 
 	virtual void Deinit()
@@ -147,6 +144,31 @@ public:
 		}
 	}
 
+	template<typename S>
+	void SerializeCommon(S& serialize)
+	{
+		// TODO: store random variation. This ought to be synchronised across saved games
+		// and networks, so everyone sees the same thing. Saving the list of selection strings
+		// would be awfully inefficient, so actors should be changed to (by default) represent
+		// variations with a 16-bit RNG seed (selected randomly when creating new units, or
+		// when someone hits the "randomise" button in the map editor), only overridden with
+		// a list of strings if it really needs to be a specific variation.
+
+		serialize.NumberFixed_Unbounded("r", m_R);
+		serialize.NumberFixed_Unbounded("g", m_G);
+		serialize.NumberFixed_Unbounded("b", m_B);
+
+		serialize.NumberFixed_Unbounded("anim run threshold", m_AnimRunThreshold);
+		serialize.StringASCII("anim name", m_AnimName, 0, 256);
+		serialize.Bool("anim once", m_AnimOnce);
+		serialize.NumberFixed_Unbounded("anim speed", m_AnimSpeed);
+		serialize.String("sound group", m_SoundGroup, 0, 256);
+		serialize.NumberFixed_Unbounded("anim desync", m_AnimDesync);
+		serialize.NumberFixed_Unbounded("anim sync repeat time", m_AnimSyncRepeatTime);
+
+		// TODO: store actor variables?
+	}
+
 	virtual void Serialize(ISerializer& serialize)
 	{
 		// TODO: store the actor name, if !debug and it differs from the template
@@ -156,27 +178,30 @@ public:
 			serialize.String("actor", m_ActorName, 0, 256);
 		}
 
-		// TODO: store random variation. This ought to be synchronised across saved games
-		// and networks, so everyone sees the same thing. Saving the list of selection strings
-		// would be awfully inefficient, so actors should be changed to (by default) represent
-		// variations with a 16-bit RNG seed (selected randomly when creating new units, or
-		// when someone hits the "randomise" button in the map editor), only overridden with
-		// a list of strings if it really needs to be a specific variation.
-
-		// TODO: store animation state
-
-		serialize.NumberFixed_Unbounded("r", m_R);
-		serialize.NumberFixed_Unbounded("g", m_G);
-		serialize.NumberFixed_Unbounded("b", m_B);
+		SerializeCommon(serialize);
 	}
 
 	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
 	{
 		Init(paramNode);
 
-		deserialize.NumberFixed_Unbounded("r", m_R);
-		deserialize.NumberFixed_Unbounded("g", m_G);
-		deserialize.NumberFixed_Unbounded("b", m_B);
+		SerializeCommon(deserialize);
+
+		fixed repeattime = m_AnimSyncRepeatTime; // save because SelectAnimation overwrites it
+
+		if (m_AnimRunThreshold.IsZero())
+			SelectAnimation(m_AnimName, m_AnimOnce, m_AnimSpeed, m_SoundGroup);
+		else
+			SelectMovementAnimation(m_AnimRunThreshold);
+
+		SetAnimationSyncRepeat(repeattime);
+
+		if (m_Unit)
+		{
+			CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), GetEntityId());
+			if (!cmpOwnership.null())
+				m_Unit->GetModel().SetPlayerID(cmpOwnership->GetOwner());
+		}
 	}
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
@@ -266,57 +291,54 @@ public:
 		return CVector3D();
 	}
 
-	virtual void SelectAnimation(std::string name, bool once, float speed, std::wstring soundgroup)
+	virtual void SelectAnimation(std::string name, bool once, fixed speed, std::wstring soundgroup)
 	{
-		if (!m_Unit)
-			return;
-
-		if (!isfinite(speed) || speed < 0) // JS 'undefined' converts to NaN, which causes Bad Things
-			speed = 1.f;
-
-		m_AnimRunThreshold = 0.f;
+		m_AnimRunThreshold = fixed::Zero();
 		m_AnimName = name;
 		m_AnimOnce = once;
 		m_AnimSpeed = speed;
 		m_SoundGroup = soundgroup;
-		m_AnimDesync = 0.05f; // TODO: make this an argument
-		m_AnimSyncRepeatTime = 0.0f;
+		m_AnimDesync = fixed::FromInt(1)/20; // TODO: make this an argument
+		m_AnimSyncRepeatTime = fixed::Zero();
 
-		m_Unit->SetEntitySelection(m_AnimName);
-		if (m_Unit->GetAnimation())
-			m_Unit->GetAnimation()->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed, m_AnimDesync, m_SoundGroup.c_str());
+		if (m_Unit)
+		{
+			m_Unit->SetEntitySelection(m_AnimName);
+			if (m_Unit->GetAnimation())
+				m_Unit->GetAnimation()->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed.ToFloat(), m_AnimDesync.ToFloat(), m_SoundGroup.c_str());
+		}
 	}
 
-	virtual void SelectMovementAnimation(float runThreshold)
+	virtual void SelectMovementAnimation(fixed runThreshold)
 	{
-		if (!m_Unit)
-			return;
-
 		m_AnimRunThreshold = runThreshold;
 
-		m_Unit->SetEntitySelection("walk");
-		if (m_Unit->GetAnimation())
-			m_Unit->GetAnimation()->SetAnimationState("walk", false, 1.f, 0.f, L"");
+		if (m_Unit)
+		{
+			m_Unit->SetEntitySelection("walk");
+			if (m_Unit->GetAnimation())
+				m_Unit->GetAnimation()->SetAnimationState("walk", false, 1.f, 0.f, L"");
+		}
 	}
 
-	virtual void SetAnimationSyncRepeat(float repeattime)
+	virtual void SetAnimationSyncRepeat(fixed repeattime)
 	{
-		if (!m_Unit)
-			return;
-
 		m_AnimSyncRepeatTime = repeattime;
 
-		if (m_Unit->GetAnimation())
-			m_Unit->GetAnimation()->SetAnimationSyncRepeat(m_AnimSyncRepeatTime);
+		if (m_Unit)
+		{
+			if (m_Unit->GetAnimation())
+				m_Unit->GetAnimation()->SetAnimationSyncRepeat(m_AnimSyncRepeatTime.ToFloat());
+		}
 	}
 
-	virtual void SetAnimationSyncOffset(float actiontime)
+	virtual void SetAnimationSyncOffset(fixed actiontime)
 	{
-		if (!m_Unit)
-			return;
-
-		if (m_Unit->GetAnimation())
-			m_Unit->GetAnimation()->SetAnimationSyncOffset(actiontime);
+		if (m_Unit)
+		{
+			if (m_Unit->GetAnimation())
+				m_Unit->GetAnimation()->SetAnimationSyncOffset(actiontime.ToFloat());
+		}
 	}
 
 	virtual void SetShadingColour(fixed r, fixed g, fixed b, fixed a)
@@ -329,10 +351,10 @@ public:
 
 	virtual void SetVariable(std::string name, float value)
 	{
-		if (!m_Unit)
-			return;
-
-		m_Unit->GetModel().SetEntityVariable(name, value);
+		if (m_Unit)
+		{
+			m_Unit->GetModel().SetEntityVariable(name, value);
+		}
 	}
 
 	virtual void Hotload(const VfsPath& name)
@@ -361,12 +383,12 @@ public:
 
 		m_Unit->SetEntitySelection(m_AnimName);
 		if (m_Unit->GetAnimation())
-			m_Unit->GetAnimation()->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed, m_AnimDesync, m_SoundGroup.c_str());
+			m_Unit->GetAnimation()->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed.ToFloat(), m_AnimDesync.ToFloat(), m_SoundGroup.c_str());
 
 		// We'll lose the exact synchronisation but we should at least make sure it's going at the correct rate
-		if (m_AnimSyncRepeatTime != 0.0f)
+		if (!m_AnimSyncRepeatTime.IsZero())
 			if (m_Unit->GetAnimation())
-				m_Unit->GetAnimation()->SetAnimationSyncRepeat(m_AnimSyncRepeatTime);
+				m_Unit->GetAnimation()->SetAnimationSyncRepeat(m_AnimSyncRepeatTime.ToFloat());
 
 		m_Unit->GetModel().SetShadingColor(shading);
 
@@ -394,7 +416,7 @@ void CCmpVisualActor::Update(fixed turnLength)
 		return;
 
 	// If we're in the special movement mode, select an appropriate animation
-	if (m_AnimRunThreshold)
+	if (!m_AnimRunThreshold.IsZero())
 	{
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
 		if (cmpPosition.null() || !cmpPosition->IsInWorld())
@@ -408,7 +430,7 @@ void CCmpVisualActor::Update(fixed turnLength)
 			if (m_Unit->GetAnimation())
 				m_Unit->GetAnimation()->SetAnimationState("idle", false, 1.f, 0.f, L"");
 		}
-		else if (speed < m_AnimRunThreshold)
+		else if (speed < m_AnimRunThreshold.ToFloat())
 		{
 			m_Unit->SetEntitySelection("walk");
 			if (m_Unit->GetAnimation())

@@ -285,9 +285,9 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 		if (!cmpVisual.null())
 		{
 			// TODO: SetEntitySelection(anim)
-			cmpVisual->SelectAnimation(anim, false, speed, soundgroup);
+			cmpVisual->SelectAnimation(anim, false, fixed::FromFloat(speed), soundgroup);
 			if (repeattime)
-				cmpVisual->SetAnimationSyncRepeat(repeattime);
+				cmpVisual->SetAnimationSyncRepeat(fixed::FromFloat(repeattime));
 		}
 	}
 

@@ -71,25 +71,25 @@ public:
 	 * @param speed animation speed multiplier (typically 1.0 for the default speed)
 	 * @param soundgroup VFS path of sound group .xml, relative to audio/, or empty string for none
 	 */
-	virtual void SelectAnimation(std::string name, bool once, float speed, std::wstring soundgroup) = 0;
+	virtual void SelectAnimation(std::string name, bool once, fixed speed, std::wstring soundgroup) = 0;
 
 	/**
 	 * Start playing the walk/run animations, scaled to the unit's movement speed.
 	 * @param runThreshold movement speed at which to switch to the run animation
 	 */
-	virtual void SelectMovementAnimation(float runThreshold) = 0;
+	virtual void SelectMovementAnimation(fixed runThreshold) = 0;
 
 	/**
 	 * Adjust the speed of the current animation, so it can match simulation events.
 	 * @param repeattime time for complete loop of animation, in msec
 	 */
-	virtual void SetAnimationSyncRepeat(float repeattime) = 0;
+	virtual void SetAnimationSyncRepeat(fixed repeattime) = 0;
 
 	/**
 	 * Adjust the offset of the current animation, so it can match simulation events.
 	 * @param actiontime time between now and when the 'action' event should occur, in msec
 	 */
-	virtual void SetAnimationSyncOffset(float actiontime) = 0;
+	virtual void SetAnimationSyncOffset(fixed actiontime) = 0;
 
 	/**
 	 * Set the shading colour that will be modulated with the model's textures.
