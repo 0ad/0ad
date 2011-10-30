@@ -38,7 +38,7 @@ namespace AtlasMessage {
 
 MESSAGEHANDLER(CameraReset)
 {
-	if (g_Game->GetView()->GetCinema()->IsPlaying())
+	if (!g_Game || g_Game->GetView()->GetCinema()->IsPlaying())
 		return;
 
 	CVector3D focus = g_Game->GetView()->GetCamera()->GetFocus();
@@ -63,7 +63,7 @@ MESSAGEHANDLER(CameraReset)
 
 MESSAGEHANDLER(ScrollConstant)
 {
-	if (g_Game->GetView()->GetCinema()->IsPlaying())
+	if (!g_Game || g_Game->GetView()->GetCinema()->IsPlaying())
 		return;
 
 	if (msg->dir < 0 || msg->dir > 5)
@@ -81,7 +81,7 @@ MESSAGEHANDLER(ScrollConstant)
 
 MESSAGEHANDLER(Scroll)
 {
-	if (g_Game->GetView()->GetCinema()->IsPlaying()) // TODO: do this better (probably a separate View class for cinematics)
+	if (!g_Game || g_Game->GetView()->GetCinema()->IsPlaying()) // TODO: do this better (probably a separate View class for cinematics)
 		return;
 
 	static CVector3D targetPos;
@@ -131,7 +131,7 @@ MESSAGEHANDLER(Scroll)
 
 MESSAGEHANDLER(SmoothZoom)
 {
-	if (g_Game->GetView()->GetCinema()->IsPlaying())
+	if (!g_Game || g_Game->GetView()->GetCinema()->IsPlaying())
 		return;
 
 	g_GameLoop->input.zoomDelta += msg->amount;
@@ -139,7 +139,7 @@ MESSAGEHANDLER(SmoothZoom)
 
 MESSAGEHANDLER(RotateAround)
 {
-	if (g_Game->GetView()->GetCinema()->IsPlaying())
+	if (!g_Game || g_Game->GetView()->GetCinema()->IsPlaying())
 		return;
 
 	static CVector3D focusPos;
@@ -222,6 +222,9 @@ MESSAGEHANDLER(LookAt)
 
 QUERYHANDLER(GetView)
 {
+	if (!g_Game)
+		return;
+
 	CVector3D focus = g_Game->GetView()->GetCamera()->GetFocus();
 	sCameraInfo info;
 
@@ -242,7 +245,7 @@ QUERYHANDLER(GetView)
 
 MESSAGEHANDLER(SetView)
 {
-	if (g_Game->GetView()->GetCinema()->IsPlaying())
+	if (!g_Game || g_Game->GetView()->GetCinema()->IsPlaying())
 		return;
 
 	CGameView* view = g_Game->GetView();

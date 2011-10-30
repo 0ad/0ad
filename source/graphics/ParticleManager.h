@@ -40,6 +40,11 @@ public:
 	 */
 	void AddUnattachedEmitter(const CParticleEmitterPtr& emitter);
 
+	/**
+	 * Delete unattached emitters if we don't wish to see them anymore (like in actor viewer)
+	 */
+	void ClearUnattachedEmitters();
+
 	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum);
 
 	void Interpolate(float frameLength);

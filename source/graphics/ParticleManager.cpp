@@ -55,6 +55,11 @@ void CParticleManager::AddUnattachedEmitter(const CParticleEmitterPtr& emitter)
 	m_UnattachedEmitters.push_back(emitter);
 }
 
+void CParticleManager::ClearUnattachedEmitters()
+{
+	m_UnattachedEmitters.clear();
+}
+
 void CParticleManager::Interpolate(float frameLength)
 {
 	m_CurrentTime += frameLength;

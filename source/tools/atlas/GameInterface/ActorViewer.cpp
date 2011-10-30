@@ -200,6 +200,9 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 			m.Entity = INVALID_ENTITY;
 		}
 
+		// Clear particles associated with deleted entity
+		g_Renderer.GetParticleManager().ClearUnattachedEmitters();
+
 		// If there's no actor to display, return with nothing loaded
 		if (id.empty())
 			return;
