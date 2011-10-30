@@ -31,6 +31,7 @@ public:
 	WriteBuffer();
 
 	void Append(const void* data, size_t size);
+	void Reserve(size_t size);
 	void Overwrite(const void* data, size_t size, size_t offset);
 
 	shared_ptr<u8> Data() const
@@ -44,6 +45,8 @@ public:
 	}
 
 private:
+	void EnsureSufficientCapacity(size_t size);
+
 	size_t m_capacity;	// must come first (init order)
 
 	shared_ptr<u8> m_data;

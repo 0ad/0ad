@@ -112,8 +112,10 @@ void CGame::SetTurnManager(CNetTurnManager* turnManager)
  * Makes calls to initialize the game view, world, and simulation objects.
  * Calls are made to facilitate progress reporting of the initialization.
  **/
-void CGame::RegisterInit(const CScriptValRooted& attribs)
+void CGame::RegisterInit(const CScriptValRooted& attribs, const std::string& savedState)
 {
+	m_InitialSavedState = savedState;
+
 	m_Simulation2->SetInitAttributes(attribs);
 
 	std::string mapType;
@@ -151,7 +153,25 @@ void CGame::RegisterInit(const CScriptValRooted& attribs)
 		m_World->RegisterInitRMS(scriptFile, settings, m_PlayerID);
 	}
 
+	if (!m_InitialSavedState.empty())
+		RegMemFun(this, &CGame::LoadInitialState, L"Loading game", 1000);
+
 	LDR_EndRegistering();
+}
+
+int CGame::LoadInitialState()
+{
+	ENSURE(!m_InitialSavedState.empty());
+
+	std::string state;
+	m_InitialSavedState.swap(state); // deletes the original to save a bit of memory
+
+	std::stringstream stream(state);
+
+	bool ok = m_Simulation2->DeserializeState(stream);
+	ENSURE(ok);
+
+	return 0;
 }
 
 /**
@@ -209,11 +229,11 @@ void CGame::SetPlayerID(int playerID)
 		m_TurnManager->SetPlayerID(m_PlayerID);
 }
 
-void CGame::StartGame(const CScriptValRooted& attribs)
+void CGame::StartGame(const CScriptValRooted& attribs, const std::string& savedState)
 {
 	m_ReplayLogger->StartGame(attribs);
 
-	RegisterInit(attribs);
+	RegisterInit(attribs, savedState);
 }
 
 // TODO: doInterpolate is optional because Atlas interpolates explicitly,

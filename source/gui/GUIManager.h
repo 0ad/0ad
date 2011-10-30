@@ -134,6 +134,11 @@ public:
 	 */
 	void UpdateResolution();
 
+	/**
+	 * Calls the current page's script function getSavedGameData() and returns the result.
+	 */
+	CScriptVal GetSavedGameData();
+
 private:
 	struct SGUIPage
 	{

@@ -178,6 +178,12 @@ Status CGUIManager::ReloadChangedFiles(const VfsPath& path)
 	return INFO::OK;
 }
 
+CScriptVal CGUIManager::GetSavedGameData()
+{
+	CScriptVal data;
+	m_ScriptInterface.CallFunction(OBJECT_TO_JSVAL(top()->GetScriptObject()), "getSavedGameData", data);
+	return data;
+}
 
 InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 {

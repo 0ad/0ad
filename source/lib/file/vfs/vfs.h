@@ -156,6 +156,13 @@ struct IVFS
 	virtual Status GetRealPath(const VfsPath& pathname, OsPath& realPathname) = 0;
 
 	/**
+	 * retrieve the real (POSIX) pathname underlying a VFS directory.
+	 *
+	 * this is useful for passing paths to external libraries.
+	 **/
+	virtual Status GetDirectoryRealPath(const VfsPath& pathname, OsPath& realPathname) = 0;
+
+	/**
 	 * retrieve the VFS pathname that corresponds to a real file.
 	 *
 	 * this is useful for reacting to file change notifications.

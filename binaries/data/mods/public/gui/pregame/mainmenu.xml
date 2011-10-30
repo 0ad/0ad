@@ -189,6 +189,21 @@ Status: $status.
 						]]>
 					</action>
 				</object>
+
+				<object name="subMenuLoadButton"
+					type="button"
+					style="StoneButtonFancy"
+					size="0 64 100% 92"
+					tooltip_style="pgToolTip"
+					tooltip="Click here to load a saved game."
+				>
+					Load Game
+					<action on="Press">
+						closeMenu();
+						Engine.PushGuiPage("page_loadgame.xml", { type: "offline" });
+					</action>
+				</object>
+
 			</object>
 
 			<!-- submenuMultiplayer -->
@@ -344,7 +359,7 @@ Status: $status.
 					Single Player
 					<action on="Press">
 						closeMenu();
-						openMenu("submenuSinglePlayer", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 2);
+						openMenu("submenuSinglePlayer", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 3);
 					</action>
 				</object>
 

@@ -58,7 +58,7 @@ namespace
 
 	void StartGame(const CScriptValRooted& attrs)
 	{
-		g_Game->StartGame(attrs);
+		g_Game->StartGame(attrs, "");
 
 		// TODO: Non progressive load can fail - need a decent way to handle this
 		LDR_NonprogressiveLoad();

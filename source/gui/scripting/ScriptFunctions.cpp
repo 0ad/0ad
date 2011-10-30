@@ -38,6 +38,7 @@
 #include "ps/Overlay.h"
 #include "ps/ProfileViewer.h"
 #include "ps/Pyrogenesis.h"
+#include "ps/SavedGame.h"
 #include "ps/UserReport.h"
 #include "ps/GameSetup/Atlas.h"
 #include "ps/GameSetup/Config.h"
@@ -189,7 +190,52 @@ void StartGame(void* cbdata, CScriptVal attribs, int playerID)
 			sim->GetScriptInterface().CloneValueFromOtherContext(guiManager->GetScriptInterface(), attribs.get()));
 
 	g_Game->SetPlayerID(playerID);
-	g_Game->StartGame(gameAttribs);
+	g_Game->StartGame(gameAttribs, "");
+}
+
+CScriptVal StartSavedGame(void* cbdata, std::wstring name)
+{
+	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
+
+	ENSURE(!g_NetServer);
+	ENSURE(!g_NetClient);
+
+	ENSURE(!g_Game);
+
+	// Load the saved game data from disk
+	CScriptValRooted metadata;
+	std::string savedState;
+	Status err = SavedGames::Load(name, guiManager->GetScriptInterface(), metadata, savedState);
+	WARN_IF_ERR(err);
+	if (err < 0)
+		return CScriptVal();
+
+	g_Game = new CGame();
+
+	// Convert from GUI script context to sim script context
+	CSimulation2* sim = g_Game->GetSimulation2();
+	CScriptValRooted gameMetadata (sim->GetScriptInterface().GetContext(),
+		sim->GetScriptInterface().CloneValueFromOtherContext(guiManager->GetScriptInterface(), metadata.get()));
+
+	CScriptValRooted gameInitAttributes;
+	sim->GetScriptInterface().GetProperty(gameMetadata.get(), "initAttributes", gameInitAttributes);
+
+	int playerID;
+	sim->GetScriptInterface().GetProperty(gameMetadata.get(), "player", playerID);
+
+	// Start the game
+	g_Game->SetPlayerID(playerID);
+	g_Game->StartGame(gameInitAttributes, savedState);
+
+	return metadata.get();
+}
+
+void SaveGame(void* cbdata)
+{
+	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
+
+	if (SavedGames::Save(L"quicksave", *g_Game->GetSimulation2(), guiManager, g_Game->GetPlayerID()) < 0)
+		LOGERROR(L"Failed to save game");
 }
 
 void SetNetworkGameAttributes(void* cbdata, CScriptVal attribs)
@@ -289,6 +335,13 @@ std::vector<CScriptValRooted> GetAIs(void* cbdata)
 	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
 
 	return ICmpAIManager::GetAIs(guiManager->GetScriptInterface());
+}
+
+std::vector<CScriptValRooted> GetSavedGames(void* cbdata)
+{
+	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
+
+	return SavedGames::GetSavedGames(guiManager->GetScriptInterface());
 }
 
 void OpenURL(void* UNUSED(cbdata), std::string url)
@@ -498,6 +551,13 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, std::wstring, &SendNetworkChat>("SendNetworkChat");
 	scriptInterface.RegisterFunction<std::vector<CScriptValRooted>, &GetAIs>("GetAIs");
 
+	// Saved games
+	scriptInterface.RegisterFunction<CScriptVal, std::wstring, &StartSavedGame>("StartSavedGame");
+	scriptInterface.RegisterFunction<std::vector<CScriptValRooted>, &GetSavedGames>("GetSavedGames");
+	scriptInterface.RegisterFunction<void, &SaveGame>("SaveGame");
+	scriptInterface.RegisterFunction<void, &QuickSave>("QuickSave");
+	scriptInterface.RegisterFunction<void, &QuickLoad>("QuickLoad");
+
 	// Misc functions
 	scriptInterface.RegisterFunction<std::wstring, std::wstring, &SetCursor>("SetCursor");
 	scriptInterface.RegisterFunction<int, &GetPlayerID>("GetPlayerID");
@@ -530,6 +590,4 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, &DumpSimState>("DumpSimState");
 	scriptInterface.RegisterFunction<void, unsigned int, &EnableTimeWarpRecording>("EnableTimeWarpRecording");
 	scriptInterface.RegisterFunction<void, &RewindTimeWarp>("RewindTimeWarp");
-	scriptInterface.RegisterFunction<void, &QuickSave>("QuickSave");
-	scriptInterface.RegisterFunction<void, &QuickLoad>("QuickLoad");
 }

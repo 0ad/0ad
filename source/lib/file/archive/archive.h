@@ -92,6 +92,16 @@ struct IArchiveWriter
 	 * @param pathnameInArchive the name to store in the archive
 	 **/
 	virtual Status AddFile(const OsPath& pathname, const Path& pathameInArchive) = 0;
+
+	/**
+	 * add a file to the archive, when it is already in memory and not on disk.
+	 *
+	 * @param data the uncompressed file contents to add
+	 * @param size the length of data
+	 * @param mtime the last-modified-time to be stored in the archive
+	 * @param pathnameInArchive the name to store in the archive
+	 **/
+	virtual Status AddMemory(const u8* data, size_t size, time_t mtime, const OsPath& pathnameInArchive) = 0;
 };
 
 typedef shared_ptr<IArchiveWriter> PIArchiveWriter;

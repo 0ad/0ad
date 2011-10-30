@@ -9,7 +9,7 @@ const RESUME = "Resume";
 const MARGIN = 4;
 
 // Includes the main menu button
-const NUM_BUTTONS = 5;
+const NUM_BUTTONS = 6;
 
 // Regular menu buttons
 const BUTTON_HEIGHT = 32;
@@ -26,14 +26,8 @@ const MENU_TOP = MENU_BOTTOM - END_MENU_POSITION;
 // Menu starting position: overall
 const INITIAL_MENU_POSITION = "100%-164 " + MENU_TOP + " 100% " + MENU_BOTTOM;
 
-// The offset is the increment or number of units/pixels to move
-// the menu. An offset of one is always accurate, but it is too
-// slow. The offset must divide into the travel distance evenly
-// in order for the menu to end up at the right spot. The travel
-// distance is the max-initial. The travel distance in this
-// example is 164-0 = 164. We choose an offset of 10.25 because it
-// divides into 164 evenly and provided the speed we wanted.
-const OFFSET = 20.5;
+// Number of pixels per millisecond to move
+const MENU_SPEED = 1.2;
 
 var isMenuOpen = false;
 var menu;
@@ -51,20 +45,30 @@ function initMenuPosition()
 // =============================================================================
 //
 // Slide menu
-function updateMenuPosition()
+function updateMenuPosition(dt)
 {
 	if (isMenuOpen)
 	{
-		if (menu.size.bottom < END_MENU_POSITION)
+		var maxOffset = END_MENU_POSITION - menu.size.bottom;
+		if (maxOffset > 0)
 		{
-			menu.size = "100%-164 " + (menu.size.top + OFFSET) + " 100% " + (menu.size.bottom + OFFSET);
+			var offset = Math.min(MENU_SPEED * dt, maxOffset);
+			var size = menu.size;
+			size.top += offset;
+			size.bottom += offset;
+			menu.size = size;
 		}
 	}
 	else
 	{
-		if (menu.size.top > MENU_TOP)
+		var maxOffset = menu.size.top - MENU_TOP;
+		if (maxOffset > 0)
 		{
-			menu.size = "100%-164 " + (menu.size.top - OFFSET) + " 100% " + (menu.size.bottom - OFFSET);
+			var offset = Math.min(MENU_SPEED * dt, maxOffset);
+			var size = menu.size;
+			size.top -= offset;
+			size.bottom -= offset;
+			menu.size = size;
 		}
 	}
 }

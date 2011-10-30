@@ -607,6 +607,24 @@ public:
 	{
 		FileInfo fileInfo;
 		RETURN_STATUS_IF_ERR(GetFileInfo(pathname, &fileInfo));
+
+		PFile file(new File);
+		RETURN_STATUS_IF_ERR(file->Open(pathname, O_RDONLY));
+
+		return AddFileOrMemory(fileInfo, pathnameInArchive, file, NULL);
+	}
+
+	Status AddMemory(const u8* data, size_t size, time_t mtime, const OsPath& pathnameInArchive)
+	{
+		FileInfo fileInfo(pathnameInArchive, size, mtime);
+
+		return AddFileOrMemory(fileInfo, pathnameInArchive, PFile(), data);
+	}
+
+	Status AddFileOrMemory(const FileInfo& fileInfo, const OsPath& pathnameInArchive, const PFile& file, const u8* data)
+	{
+		ENSURE((file && !data) || (data && !file));
+
 		const off_t usize = fileInfo.Size();
 		// skip 0-length files.
 		// rationale: zip.cpp needs to determine whether a CDFH entry is
@@ -618,9 +636,6 @@ public:
 		// we thus skip 0-length files to avoid confusing them with directories.
 		if(!usize)
 			return INFO::SKIPPED;
-
-		PFile file(new File);
-		RETURN_STATUS_IF_ERR(file->Open(pathname, O_RDONLY));
 
 		const size_t pathnameLength = pathnameInArchive.string().length();
 
@@ -648,9 +663,16 @@ public:
 			u8* cdata = (u8*)buf.get() + sizeof(LFH) + pathnameLength;
 			Stream stream(codec);
 			stream.SetOutputBuffer(cdata, csizeMax);
-			io::Operation op(*file.get(), 0, usize);
 			StreamFeeder streamFeeder(stream);
-			RETURN_STATUS_IF_ERR(io::Run(op, io::Parameters(), streamFeeder));
+			if(file)
+			{
+				io::Operation op(*file.get(), 0, usize);
+				RETURN_STATUS_IF_ERR(io::Run(op, io::Parameters(), streamFeeder));
+			}
+			else
+			{
+				RETURN_STATUS_IF_ERR(streamFeeder(data, usize));
+			}
 			RETURN_STATUS_IF_ERR(stream.Finish());
 			csize = stream.OutSize();
 			checksum = stream.Checksum();

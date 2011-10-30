@@ -430,6 +430,7 @@ static void InitVfs(const CmdLineArgs& args)
 	g_VFS = CreateVfs(cacheSize);
 
 	g_VFS->Mount(L"screenshots/", paths.Data()/"screenshots"/"");
+	g_VFS->Mount(L"saves/", paths.Data()/"saves"/"");
 	const OsPath readonlyConfig = paths.RData()/"config"/"";
 	g_VFS->Mount(L"config/", readonlyConfig);
 	if(readonlyConfig != paths.Config())
@@ -1145,7 +1146,7 @@ bool Autostart(const CmdLineArgs& args)
 	else
 	{
 		g_Game->SetPlayerID(1);
-		g_Game->StartGame(attrs);
+		g_Game->StartGame(attrs, "");
 
 		LDR_NonprogressiveLoad();
 

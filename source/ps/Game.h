@@ -73,7 +73,7 @@ public:
 	 **/
 	bool m_Paused;
 
-	void StartGame(const CScriptValRooted& attribs);
+	void StartGame(const CScriptValRooted& attribs, const std::string& savedState);
 	PSRETURN ReallyStartGame();
 
 	/*
@@ -154,10 +154,13 @@ public:
 	{	return *m_ReplayLogger; }
 
 private:
-	void RegisterInit(const CScriptValRooted& attribs);
+	void RegisterInit(const CScriptValRooted& attribs, const std::string& savedState);
 	IReplayLogger* m_ReplayLogger;
 
 	std::vector<CColor> m_PlayerColours;
+
+	int LoadInitialState();
+	std::string m_InitialSavedState; // valid between RegisterInit and LoadInitialState
 };
 
 extern CGame *g_Game;

@@ -38,7 +38,7 @@ WriteBuffer::WriteBuffer()
 }
 
 
-void WriteBuffer::Append(const void* data, size_t size)
+void WriteBuffer::EnsureSufficientCapacity(size_t size)
 {
 	if(m_size + size > m_capacity)
 	{
@@ -48,8 +48,21 @@ void WriteBuffer::Append(const void* data, size_t size)
 		memcpy(newData.get(), m_data.get(), m_size);
 		m_data = newData;
 	}
+}
 
+
+void WriteBuffer::Append(const void* data, size_t size)
+{
+	EnsureSufficientCapacity(size);
 	memcpy(m_data.get() + m_size, data, size);
+	m_size += size;
+}
+
+
+void WriteBuffer::Reserve(size_t size)
+{
+	EnsureSufficientCapacity(size);
+	memset(m_data.get() + m_size, 0, size);
 	m_size += size;
 }
 

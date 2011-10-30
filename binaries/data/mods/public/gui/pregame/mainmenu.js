@@ -83,13 +83,18 @@ function formatUserReportStatus(status)
 	return "unknown";
 }
 
+var lastTickTime = new Date;
 function onTick()
 {
+	var now = new Date;
+	var tickLength = new Date - lastTickTime;
+	lastTickTime = now;
+
 	// Animate backgrounds
 	scrollBackgrounds();
 
 	// Animate submenu
-	updateMenuPosition();
+	updateMenuPosition(tickLength);
 
 	// Update music state
 	global.music.updateTimer();
@@ -124,24 +129,23 @@ function onTick()
 //}
 
 // Slide menu
-function updateMenuPosition()
+function updateMenuPosition(dt)
 {
 	var submenu = getGUIObjectByName("submenu");
 
 	if (submenu.hidden == false)
 	{
-		// The offset is the increment or number of units/pixels to move
-		// the menu. An offset of one is always accurate, but it is too
-		// slow. The offset must divide into the travel distance evenly
-		// in order for the menu to end up at the right spot. The travel
-		// distance is the max-initial. The travel distance in this
-		// example is 300-60 = 240. We choose an offset of 5 because it
-		// divides into 240 evenly and provided the speed we wanted.
-		const OFFSET = 10;
+		// Number of pixels per millisecond to move
+		const SPEED = 1.2;
 
-		if (submenu.size.left < getGUIObjectByName("mainMenu").size.right)
+		var maxOffset = getGUIObjectByName("mainMenu").size.right - submenu.size.left;
+		if (maxOffset > 0)
 		{
-			submenu.size = (submenu.size.left + OFFSET) + " " + submenu.size.top + " " + (submenu.size.right + OFFSET) + " " + submenu.size.bottom;
+			var offset = Math.min(SPEED * dt, maxOffset);
+			var size = submenu.size;
+			size.left += offset;
+			size.right += offset;
+			submenu.size = size;
 		}
 	}
 }

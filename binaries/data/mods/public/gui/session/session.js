@@ -159,9 +159,22 @@ function getHotloadData()
 	return { selection: g_Selection.selected };
 }
 
+// Return some data that will be stored in saved game files
+function getSavedGameData()
+{
+	var data = {};
+	data.playerAssignments = g_PlayerAssignments;
+	// TODO: control groups, etc
+	return data;
+}
 
+var lastTickTime = new Date;
 function onTick()
 {
+	var now = new Date;
+	var tickLength = new Date - lastTickTime;
+	lastTickTime = now;
+
 	checkPlayerState();
 
 	while (true)
@@ -187,7 +200,7 @@ function onTick()
 	updateTimers();
 
 	// Animate menu
-        updateMenuPosition();
+	updateMenuPosition(tickLength);
 
 	// Update music state
 	global.music.updateTimer();

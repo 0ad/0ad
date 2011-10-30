@@ -471,7 +471,7 @@ bool CNetClient::OnGameStart(void* context, CFsmEvent* event)
 			*client->m_Game->GetSimulation2(), *client, client->m_HostID, client->m_Game->GetReplayLogger());
 
 	client->m_Game->SetPlayerID(player);
-	client->m_Game->StartGame(client->m_GameAttributes);
+	client->m_Game->StartGame(client->m_GameAttributes, "");
 
 	CScriptValRooted msg;
 	client->GetScriptInterface().Eval("({'type':'start'})", msg);

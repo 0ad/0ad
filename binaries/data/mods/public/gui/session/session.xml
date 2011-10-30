@@ -371,7 +371,6 @@
 		<object name="menu"
 			style="StonePanelThinBorder"
 			type="image"
-			size="100%-164 -160 100% 36"
 			hidden="false"
 		>
 			<object size="4 36 100%-4 50%+20">
@@ -419,6 +418,21 @@
 					<object name="pauseButtonText" type="text" style="CenteredButtonText" ghost="true">Pause</object>
 					<action on="Press">togglePause();</action>
 				</object>
+
+				<!-- Save game button -->
+				<object type="button"
+					name="saveGameButton"
+					style="StoneButtonFancy"
+					size="0 128 100% 154"
+					tooltip_style="sessionToolTip"
+				>
+					Save Game
+					<action on="Press">
+						Engine.SaveGame();
+						closeMenu();
+					</action>
+				</object>
+
 			</object>
 		</object>
 

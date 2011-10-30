@@ -205,6 +205,15 @@ public:
 		return INFO::OK;
 	}
 
+	virtual Status GetDirectoryRealPath(const VfsPath& pathname, OsPath& realPathname)
+	{
+		ScopedLock s;
+		VfsDirectory* directory;
+		WARN_RETURN_STATUS_IF_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, NULL));
+		realPathname = directory->AssociatedDirectory()->Path();
+		return INFO::OK;
+	}
+
 	virtual Status GetVirtualPath(const OsPath& realPathname, VfsPath& pathname)
 	{
 		ScopedLock s;

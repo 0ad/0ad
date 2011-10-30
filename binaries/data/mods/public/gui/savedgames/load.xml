@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects>
+
+	<script file="gui/savedgames/load.js"/>
+
+	<!-- Add a translucent black background to fade out the menu page -->
+	<object type="image" z="0" sprite="BackgroundTranslucent"/>
+
+	<object type="image" style="StoneDialog" size="50%-190 50%-200 50%+190 50%+200">
+
+		<object type="text" style="TitleText" size="50%-128 0%-16 50%+128 16">
+			Load Game
+		</object>
+
+		<object name="gameSelection"
+			style="StoneList"
+			type="list"
+			size="24 24 100%-24 100%-100">
+		</object>
+		
+		<object type="button" size="50%-144 100%-60 50%-16 100%-32" style="StoneButton">
+			Load Game
+			<action on="Press">loadGame();</action>
+		</object>
+
+		<object type="button" style="StoneButton" size="50%+16 100%-60 50%+144 100%-32">
+			Cancel
+			<action on="Press">Engine.PopGuiPage();</action>
+		</object>
+
+	</object>
+
+	</objects>

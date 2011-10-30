@@ -97,7 +97,7 @@
 			</object>
 		</object>
 
-                <object type="button" style="StoneButton" size="50%+16 100%-60 50%+144 100%-32">
+		<object type="button" style="StoneButton" size="50%+16 100%-60 50%+144 100%-32">
 			Cancel
 			<action on="Press"><![CDATA[cancelSetup();]]></action>
 		</object>
