@@ -19,7 +19,7 @@
 			size="24 24 100%-24 100%-100">
 		</object>
 		
-		<object type="button" size="50%-144 100%-60 50%-16 100%-32" style="StoneButton">
+		<object name="loadGameButton" type="button" size="50%-144 100%-60 50%-16 100%-32" style="StoneButton">
 			Load Game
 			<action on="Press">loadGame();</action>
 		</object>

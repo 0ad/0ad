@@ -21,12 +21,20 @@ function init()
 {
 	var savedGames = Engine.GetSavedGames();
 
+	var gameSelection = getGUIObjectByName("gameSelection");
+
+	if (savedGames.length == 0)
+	{
+		gameSelection.list = [ "No saved games found" ];
+		getGUIObjectByName("loadGameButton").enabled = false;
+		return;
+	}
+
 	savedGames.sort(sortDecreasingDate);
 
 	var gameListIDs = [ game.id for each (game in savedGames) ];
 	var gameListLabels = [ generateLabel(game.metadata) for each (game in savedGames) ];
 
-	var gameSelection = getGUIObjectByName("gameSelection");
 	gameSelection.list = gameListLabels;
 	gameSelection.list_data = gameListIDs;
 	gameSelection.selected = 0;
