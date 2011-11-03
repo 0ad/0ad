@@ -4,25 +4,27 @@
   <float/>
   <group>
     <variant frequency="1" name="Greek Fishing Boata">
+      <animations>
+        <animation file="mechanical/rowing_boat_move.dae" name="Walk" speed="25"/>
+        <animation file="mechanical/rowing_boat_move.dae" name="Run" speed="45"/>
+      </animations>
       <mesh>structural/hele_fishing_boat.dae</mesh>
-      <animations> 
-        <animation file="mechanical/rowing_boat_move.dae" name="Walk" speed="100"/> 
-      </animations> 
       <props>
         <prop actor="props/structures/hellenes/fisherman_body.xml" attachpoint="root"/>
         <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
       </props>
       <texture>structural/hele_fishing_boat.dds</texture>
     </variant>
-	<variant frequency="1" name="Greek Fishing Boatb">
+    <variant frequency="1" name="Greek Fishing Boatb">
+      <animations>
+        <animation file="mechanical/rowing_boat_move.dae" name="Walk" speed="25"/>
+        <animation file="mechanical/rowing_boat_move.dae" name="Run" speed="45"/>
+      </animations>
       <mesh>structural/hele_fishing_boat.dae</mesh>
-      <animations> 
-        <animation file="mechanical/rowing_boat_move.dae" name="Walk" speed="100"/> 
-      </animations> 
       <props>
         <prop actor="props/structures/hellenes/fisherman_body.xml" attachpoint="root"/>
         <prop actor="props/units/heads/head_hele_e.xml" attachpoint="head"/>
-		<prop actor="props/units/heads/hele_straw.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/hele_straw.xml" attachpoint="head"/>
       </props>
       <texture>structural/hele_fishing_boat.dds</texture>
     </variant>
