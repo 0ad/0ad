@@ -580,6 +580,16 @@ function setup_all_libs ()
 	setup_static_lib_project("lowlevel", source_dirs, extern_libs, {})
 
 
+	-- Third-party libraries that are built as part of the main project,
+	-- not built externally and then linked
+	source_dirs = {
+		"third_party/mongoose",
+	}
+	extern_libs = {
+	}
+	setup_static_lib_project("mongoose", source_dirs, extern_libs, { no_pch = 1 })
+
+
 	-- CxxTest mock function support
 	extern_libs = {
 		"boost",
