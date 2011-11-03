@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.60.0 r41226</authoring_tool>
     </contributor>
-    <created>2011-11-03T01:01:19</created>
-    <modified>2011-11-03T01:01:19</modified>
+    <created>2011-11-03T00:53:18</created>
+    <modified>2011-11-03T00:53:18</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -251,7 +251,7 @@
             <matrix sid="transform">-0.1847991 0.6830543 0.7066016 0.8093317 0.8001407 -0.312897 0.5117325 0.8044137 0.5706346 0.6599485 -0.4887165 -0.05230308 0 0 0 1</matrix>
           </node>
           <node id="prop-head" name="prop-head" sid="prop-head" type="JOINT">
-            <matrix sid="transform">-1 -1.50996e-7 3.68459e-15 0 1.64126e-14 -1.34359e-7 1 1.776575 -1.50996e-7 1 3.42285e-8 0.8593303 0 0 0 1</matrix>
+            <matrix sid="transform">1 0 0 0 0 1 0 1.651946 0 0 1 1.24718e-7 0 0 0 1</matrix>
           </node>
         </node>
       </node>

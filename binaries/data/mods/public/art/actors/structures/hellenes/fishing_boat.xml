@@ -5,6 +5,9 @@
   <group>
     <variant frequency="1" name="Greek Fishing Boata">
       <mesh>structural/hele_fishing_boat.dae</mesh>
+      <animations> 
+        <animation file="mechanical/rowing_boat_move.dae" name="Walk" speed="100"/> 
+      </animations> 
       <props>
         <prop actor="props/structures/hellenes/fisherman_body.xml" attachpoint="root"/>
         <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
@@ -13,6 +16,9 @@
     </variant>
 	<variant frequency="1" name="Greek Fishing Boatb">
       <mesh>structural/hele_fishing_boat.dae</mesh>
+      <animations> 
+        <animation file="mechanical/rowing_boat_move.dae" name="Walk" speed="100"/> 
+      </animations> 
       <props>
         <prop actor="props/structures/hellenes/fisherman_body.xml" attachpoint="root"/>
         <prop actor="props/units/heads/head_hele_e.xml" attachpoint="head"/>
