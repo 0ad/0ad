@@ -41,39 +41,14 @@
       <props>
         <prop actor="props/units/shields/pers_tower.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear_ball.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/head_pers_a.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/thracian_cap_01.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Clothing-red-stripes">
-      <props>
-        <prop actor="props/units/heads/head_pers_tiara_y.xml" attachpoint="head"/>
-      </props>
-      <texture>skeletal/pers_isp_a_1.dds</texture>
-    </variant>
-    <variant frequency="1" name="Clothing-blue-stripes">
-      <props>
-        <prop actor="props/units/heads/head_pers_tiara_y.xml" attachpoint="head"/>
-      </props>
-      <texture>skeletal/pers_isp_a_2.dds</texture>
-    </variant>
-    <variant frequency="1" name="Clothing-gold-stripes">
-      <props>
-        <prop actor="props/units/heads/head_pers_tiara_y.xml" attachpoint="head"/>
-      </props>
-      <texture>skeletal/pers_isp_a_3.dds</texture>
-    </variant>
-    <variant frequency="1" name="Clothing-emerald">
-      <props>
-        <prop actor="props/units/heads/head_pers_tiara.xml" attachpoint="head"/>
-      </props>
-      <texture>skeletal/pers_isp_e_1.dds</texture>
-    </variant>
-    <variant frequency="1" name="Clothing-gold">
-      <props>
-        <prop actor="props/units/heads/head_pers_tiara.xml" attachpoint="head"/>
-      </props>
-      <texture>skeletal/pers_isp_e_2.dds</texture>
+    <variant frequency="1" name="quilted corselet 1">
+      <texture>skeletal/pers_isp_a_new_1.png</texture>
     </variant>
   </group>
   <group>

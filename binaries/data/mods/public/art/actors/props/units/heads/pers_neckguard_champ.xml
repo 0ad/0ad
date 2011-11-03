@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/helmet/pers_neckguard.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Neck Guard Bronze">
+      <texture>props/helmet/pers_h1.dds</texture>
+    </variant>
+    <variant frequency="1" name="Neck Guard Iron">
+      <texture>props/helmet/pers_h2.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

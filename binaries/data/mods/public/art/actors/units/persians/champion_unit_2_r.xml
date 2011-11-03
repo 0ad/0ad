@@ -14,17 +14,33 @@
       <mesh>skeletal/m_pants_armor.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_pers_b.xml" attachpoint="head"/>
-        <prop actor="props/units/heads/pers_conical_plume.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/pers_neckguard.xml" attachpoint="helmet"/>
-        <prop actor="props/units/weapons/spear_ball.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/cape_olivegreen.xml" attachpoint="shoulders"/>
+        <prop actor="props/units/heads/pers_conical_champcav.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/pers_neckguard_champ.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/spear_lance_persian.xml" attachpoint="r_hand"/>
         <prop actor="props/units/pers_quiver_hip.xml" attachpoint="l_hip"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Elite-Rider-Texture-01">
-      <texture>skeletal/pers_csp_e_1.dds</texture>
+    <variant frequency="1" name="Rider-Armour-Iron">
+      <texture>skeletal/pers_champ_cav_r_1.png</texture>
+    </variant>
+    <variant frequency="1" name="Rider-Armour-Bronze">
+      <texture>skeletal/pers_champ_cav_r_2.png</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Arm Guards Iron">
+      <props>
+        <prop actor="props/units/pers_bactrian_arm_left_iron.xml" attachpoint="l_shoulder"/>
+        <prop actor="props/units/pers_bactrian_arm_right_iron.xml" attachpoint="r_shoulder"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Arm Guards Bronze">
+      <props>
+        <prop actor="props/units/pers_bactrian_arm_left_bronze.xml" attachpoint="l_shoulder"/>
+        <prop actor="props/units/pers_bactrian_arm_right_bronze.xml" attachpoint="r_shoulder"/>
+      </props>
     </variant>
   </group>
   <material>player_trans.xml</material>
