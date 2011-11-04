@@ -1,0 +1,381 @@
+/* Copyright (C) 2011 Wildfire Games.
+ * This file is part of 0 A.D.
+ *
+ * 0 A.D. is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * 0 A.D. is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
+ * @file New profiler (complementing the older CProfileManager)
+ * 
+ * The profiler is designed for analysing framerate fluctuations or glitches,
+ * and temporal relationships between threads.
+ * This contrasts with CProfilerManager and most external profiling tools,
+ * which are designed more for measuring average throughput over a number of
+ * frames.
+ * 
+ * To view the profiler output, press F11 to enable the HTTP output mode
+ * and then open source/tools/profiler2/profiler2.html in a web browser.
+ * 
+ * There is a single global CProfiler2 instance (g_Profiler2),
+ * providing the API used by the rest of the game.
+ * The game can record the entry/exit timings of a region of code
+ * using the PROFILE2 macro, and can record other events using
+ * PROFILE2_EVENT.
+ * Regions and events can be annotated with arbitrary string attributes,
+ * specified with printf-style format strings, using PROFILE2_ATTR
+ * (e.g. PROFILE2_ATTR("frame: %d", m_FrameNum) ).
+ * 
+ * This is designed for relatively coarse-grained profiling, or for rare events.
+ * Don't use it for regions that are typically less than ~0.1msecs, or that are
+ * called hundreds of times per frame. (The old CProfilerManager is better
+ * for that.)
+ * 
+ * New threads must call g_Profiler2.RegisterCurrentThread before any other
+ * profiler functions.
+ * 
+ * The main thread should call g_Profiler2.RecordFrameStart at the start of
+ * each frame.
+ * Other threads should call g_Profiler2.RecordSyncMarker occasionally,
+ * especially if it's been a long time since their last call to the profiler,
+ * or if they've made thousands of calls since the last sync marker.
+ * 
+ * The profiler is implemented with thread-local fixed-size ring buffers,
+ * which store a sequence of variable-length items indicating the time
+ * of the event and associated data (pointers to names, attribute strings, etc).
+ * An HTTP server provides access to the data: when requested, it will make
+ * a copy of a thread's buffer, then parse the items and return them in JSON
+ * format. The profiler2.html requests and processes and visualises this data.
+ * 
+ * The RecordSyncMarker calls are necessary to correct for time drift and to
+ * let the buffer parser accurately detect the start of an item in the byte stream.
+ * 
+ * This design aims to minimise the performance overhead of recording data,
+ * and to simplify the visualisation of the data by doing it externally in an
+ * environment with better UI tools (i.e. HTML) instead of within the game engine.
+ * 
+ * The initial setup of g_Profiler2 must happen in the game's main thread.
+ * RegisterCurrentThread and the Record functions may be called from any thread.
+ * The HTTP server runs its own threads, which may call the ConstructJSON functions.
+ */
+
+#ifndef INCLUDED_PROFILER2
+#define INCLUDED_PROFILER2
+
+#include "lib/timer.h"
+#include "ps/ThreadUtil.h"
+
+struct mg_context;
+
+// Note: Lots of functions are defined inline, to hypothetically
+// minimise performance overhead.
+
+class CProfiler2
+{
+public:
+	// Items stored in the buffers:
+
+	/// Item type identifiers
+	enum EItem
+	{
+		ITEM_NOP = 0,
+		ITEM_SYNC = 1, // magic value used for parse syncing
+		ITEM_EVENT = 2, // single event
+		ITEM_ENTER = 3, // entering a region
+		ITEM_LEAVE = 4, // leaving a region (must be correctly nested)
+		ITEM_ATTRIBUTE = 5, // arbitrary string associated with current region, or latest event (if the previous item was an event)
+	};
+
+	static const size_t MAX_ATTRIBUTE_LENGTH = 256; // includes null terminator, which isn't stored
+
+	/// An arbitrary number to help resyncing with the item stream when parsing.
+	static const u8 RESYNC_MAGIC[8];
+	
+	/**
+	 * An item with a relative time and an ID string pointer.
+	 */
+	struct SItem_dt_id
+	{
+		float dt; // time relative to last event
+		const char* id;
+	};
+
+private:
+	// TODO: what's a good size?
+	// TODO: different threads might want different sizes
+	static const size_t BUFFER_SIZE = 128*1024;
+
+	/**
+	 * Class instantiated in every registered thread.
+	 */
+	class ThreadStorage
+	{
+		NONCOPYABLE(ThreadStorage);
+	public:
+		ThreadStorage(CProfiler2& profiler, const std::string& name);
+		~ThreadStorage();
+	
+		void RecordSyncMarker(double t)
+		{
+			// Store the magic string followed by the absolute time
+			// (to correct for drift caused by the precision of relative
+			// times stored in other items)
+			u8 buffer[sizeof(RESYNC_MAGIC) + sizeof(t)];
+			memcpy(buffer, &RESYNC_MAGIC, sizeof(RESYNC_MAGIC));
+			memcpy(buffer + sizeof(RESYNC_MAGIC), &t, sizeof(t));
+			Write(ITEM_SYNC, buffer, ARRAY_SIZE(buffer));
+			m_LastTime = t;
+		}
+
+		void Record(EItem type, double t, const char* id)
+		{
+			// Store a relative time instead of absolute, so we can use floats
+			// (to save memory) without suffering from precision problems
+			SItem_dt_id item = { (float)(t - m_LastTime), id };
+			Write(type, &item, sizeof(item));
+			m_LastTime = t;
+		}
+
+		void RecordFrameStart(double t)
+		{
+			RecordSyncMarker(t);
+			Record(ITEM_EVENT, t, "__framestart"); // magic string recognised by the visualiser
+		}
+
+		void RecordAttribute(const char* fmt, va_list argp);
+
+		CProfiler2& GetProfiler()
+		{
+			return m_Profiler;
+		}
+
+		const std::string& GetName()
+		{
+			return m_Name;
+		}
+
+		/**
+		 * Returns a copy of a subset of the thread's buffer.
+		 * Not guaranteed to start on an item boundary.
+		 * May be called by any thread.
+		 */
+		std::string GetBuffer();
+
+	private:
+		/**
+		 * Store an item into the buffer.
+		 */
+		void Write(EItem type, const void* item, u32 itemSize)
+		{
+			// See m_BufferPos0 etc for comments on synchronisation
+
+			u32 size = 1 + itemSize;
+			u32 start = m_BufferPos0;
+			if (start + size > BUFFER_SIZE)
+			{
+				// The remainder of the buffer is too small - fill the rest
+				// with NOPs then start from offset 0, so we don't have to
+				// bother splitting the real item across the end of the buffer
+
+				m_BufferPos0 = size;
+				COMPILER_FENCE; // must write m_BufferPos0 before m_Buffer
+
+				memset(m_Buffer + start, 0, BUFFER_SIZE - start);
+				start = 0;
+			}
+			else
+			{
+				m_BufferPos0 = start + size;
+				COMPILER_FENCE; // must write m_BufferPos0 before m_Buffer
+			}
+
+			m_Buffer[start] = (u8)type;
+			memcpy(&m_Buffer[start + 1], item, itemSize);
+			
+			COMPILER_FENCE; // must write m_BufferPos1 after m_Buffer
+			m_BufferPos1 = start + size;
+		}
+
+		CProfiler2& m_Profiler;
+		std::string m_Name;
+
+		double m_LastTime; // used for computing relative times
+
+		u8* m_Buffer;
+
+		// To allow hopefully-safe reading of the buffer from a separate thread,
+		// without any expensive synchronisation in the recording thread,
+		// two copies of the current buffer write position are stored.
+		// BufferPos0 is updated before writing; BufferPos1 is updated after writing.
+		// GetBuffer can read Pos1, copy the buffer, read Pos0, then assume any bytes
+		// outside the range Pos1 <= x < Pos0 are safe to use. (Any in that range might
+		// be half-written and corrupted.) (All ranges are modulo BUFFER_SIZE.)
+		// Outside of Write(), these will always be equal.
+		// 
+		// TODO: does this attempt at synchronisation (plus use of COMPILER_FENCE etc)
+		// actually work in practice?
+		u32 m_BufferPos0;
+		u32 m_BufferPos1;
+	};
+
+public:
+	CProfiler2();
+
+	/**
+	 * Call in main thread to set up the profiler,
+	 * before calling any other profiler functions.
+	 */
+	void Initialise();
+
+	/**
+	 * Call in main thread to enable the HTTP server.
+	 * (Disabled by default for security and performance
+	 * and to avoid annoying a firewall.)
+	 */
+	void EnableHTTP();
+
+	/**
+	 * Call in main thread to shut everything down.
+	 * All other profiled threads should have been terminated already.
+	 */
+	void Shutdown();
+
+	/**
+	 * Call in any thread to enable the profiler in that thread.
+	 * @p name should be unique, and is used by the visualiser to identify
+	 * this thread.
+	 */
+	void RegisterCurrentThread(const std::string& name);
+
+	/**
+	 * Non-main threads should call this occasionally,
+	 * especially if it's been a long time since their last call to the profiler,
+	 * or if they've made thousands of calls since the last sync marker.
+	 */
+	void RecordSyncMarker()
+	{
+		GetThreadStorage().RecordSyncMarker(GetTime());
+	}
+
+	/**
+	 * Call in main thread at the start of a frame.
+	 */
+	void RecordFrameStart()
+	{
+		GetThreadStorage().RecordFrameStart(GetTime());
+	}
+
+	void RecordEvent(const char* id)
+	{
+		GetThreadStorage().Record(ITEM_EVENT, GetTime(), id);
+	}
+
+	void RecordRegionEnter(const char* id)
+	{
+		GetThreadStorage().Record(ITEM_ENTER, GetTime(), id);
+	}
+
+	void RecordRegionLeave(const char* id)
+	{
+		GetThreadStorage().Record(ITEM_LEAVE, GetTime(), id);
+	}
+
+	void RecordAttribute(const char* fmt, ...)
+	{
+		va_list argp;
+		va_start(argp, fmt);
+		GetThreadStorage().RecordAttribute(fmt, argp);
+		va_end(argp);
+	}
+
+	/**
+	 * Call in any thread to produce a JSON representation of the general
+	 * state of the application.
+	 */
+	void ConstructJSONOverview(std::ostream& stream);
+
+	/**
+	 * Call in any thread to produce a JSON representation of the buffer
+	 * for a given thread.
+	 * Returns NULL on success, or an error string.
+	 */
+	const char* ConstructJSONResponse(std::ostream& stream, const std::string& thread);
+
+private:
+	static void TLSDtor(void* data);
+
+	ThreadStorage& GetThreadStorage()
+	{
+		ThreadStorage* storage = (ThreadStorage*)pthread_getspecific(m_TLS);
+		ASSERT(storage);
+		return *storage;
+	}
+
+	double GetTime()
+	{
+		return timer_Time();
+	}
+
+	bool m_Initialised;
+	
+	mg_context* m_MgContext;
+	
+	pthread_key_t m_TLS;
+
+	CMutex m_Mutex;
+	std::vector<ThreadStorage*> m_Threads; // thread-safe; protected by m_Mutex
+};
+
+extern CProfiler2 g_Profiler2;
+
+/**
+ * Scope-based enter/leave helper.
+ */
+class CProfile2Region
+{
+public:
+	CProfile2Region(const char* name) : m_Name(name)
+	{
+		g_Profiler2.RecordRegionEnter(m_Name);
+	}
+	~CProfile2Region()
+	{
+		g_Profiler2.RecordRegionLeave(m_Name);
+	}
+private:
+	const char* m_Name;
+};
+
+/**
+ * Starts timing from now until the end of the current scope.
+ * @p region is the name to associate with this region (should be
+ * a constant string literal; the pointer must remain valid forever).
+ * Regions may be nested, but preferably shouldn't be nested deeply since
+ * it hurts the visualisation.
+ */
+#define PROFILE2(region) CProfile2Region profile2__(region)
+
+/**
+ * Record the named event at the current time.
+ */
+#define PROFILE2_EVENT(name) g_Profiler2.RecordEvent(name)
+
+/**
+ * Associates a string (with printf-style formatting) with the current
+ * region or event.
+ * (If the last profiler call was PROFILE2_EVENT, it associates with that
+ * event; otherwise it associates with the currently-active region.)
+ */
+#define PROFILE2_ATTR g_Profiler2.RecordAttribute
+
+#endif // INCLUDED_PROFILER2
