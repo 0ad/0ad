@@ -47,6 +47,7 @@
 #include "ps/Overlay.h"
 #include "ps/Profile.h"
 #include "ps/ProfileViewer.h"
+#include "ps/Profiler2.h"
 #include "ps/UserReport.h"
 #include "ps/Util.h"
 #include "ps/VideoMode.h"
@@ -193,6 +194,8 @@ void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 
 void Render()
 {
+	PROFILE3("render");
+
 	ogl_WarnIfError();
 
 	CStr skystring = "255 0 255";
@@ -235,10 +238,8 @@ void Render()
 
 	g_Renderer.RenderTextOverlays();
 
-	// Temp GUI message GeeTODO
-	PROFILE_START("render gui");
-	if(g_DoRenderGui) g_GUI->Draw();
-	PROFILE_END("render gui");
+	if (g_DoRenderGui)
+		g_GUI->Draw();
 
 	ogl_WarnIfError();
 
@@ -253,30 +254,25 @@ void Render()
 
 	glLoadIdentity();
 
-	PROFILE_START("render console");
 	g_Console->Render();
-	PROFILE_END("render console");
 
 	ogl_WarnIfError();
 
-	PROFILE_START("render logger");
-	if(g_DoRenderLogger) g_Logger->Render();
-	PROFILE_END("render logger");
+	if (g_DoRenderLogger)
+		g_Logger->Render();
 
 	ogl_WarnIfError();
 
 	// Profile information
 
-	PROFILE_START("render profiling");
 	g_ProfileViewer.RenderProfile();
-	PROFILE_END("render profiling");
 
 	ogl_WarnIfError();
 
 	// Draw the cursor (or set the Windows cursor, on Windows)
 	if (g_DoRenderCursor)
 	{
-		PROFILE("render cursor");
+		PROFILE3("render cursor");
 		CStrW cursorName = g_CursorName;
 		if (cursorName.empty())
 		{
@@ -297,6 +293,14 @@ void Render()
 	glPopAttrib();
 
 	g_Renderer.EndFrame();
+
+	PROFILE2_ATTR("draw calls: %d", (int)g_Renderer.GetStats().m_DrawCalls);
+	PROFILE2_ATTR("terrain tris: %d", (int)g_Renderer.GetStats().m_TerrainTris);
+	PROFILE2_ATTR("water tris: %d", (int)g_Renderer.GetStats().m_WaterTris);
+	PROFILE2_ATTR("model tris: %d", (int)g_Renderer.GetStats().m_ModelTris);
+	PROFILE2_ATTR("overlay tris: %d", (int)g_Renderer.GetStats().m_OverlayTris);
+	PROFILE2_ATTR("blend splats: %d", (int)g_Renderer.GetStats().m_BlendSplats);
+	PROFILE2_ATTR("particles: %d", (int)g_Renderer.GetStats().m_Particles);
 
 	ogl_WarnIfError();
 }
@@ -694,6 +698,8 @@ void Shutdown(int UNUSED(flags))
 	wmi_Shutdown();
 	TIMER_END(L"shutdown wmi");
 #endif
+
+	g_Profiler2.Shutdown();
 }
 
 #if OS_UNIX
@@ -773,6 +779,10 @@ void EarlyInit()
 
 	timer_LatchStartTime();
 
+	// initialise profiler early so it can profile startup
+	g_Profiler2.Initialise();
+	g_Profiler2.RegisterCurrentThread("main");
+
 	FixLocales();
 
 	// Because we do GL calls from a secondary thread, Xlib needs to
@@ -844,6 +854,8 @@ void Init(const CmdLineArgs& args, int UNUSED(flags))
 
 	if (!g_Quickstart)
 		g_UserReporter.Initialize(); // after config
+
+	PROFILE2_EVENT("Init finished");
 }
 
 void InitGraphics(const CmdLineArgs& args, int flags)

@@ -149,7 +149,7 @@ bool CNetTurnManager::Update(float frameLength, size_t maxTurns)
 		// Save the current state for rewinding, if enabled
 		if (m_TimeWarpNumTurns && (m_CurrentTurn % m_TimeWarpNumTurns) == 0)
 		{
-			PROFILE("time warp serialization");
+			PROFILE3("time warp serialization");
 			std::stringstream stream;
 			m_Simulation2.SerializeState(stream);
 			m_TimeWarpStates.push_back(stream.str());
@@ -390,7 +390,7 @@ void CNetClientTurnManager::NotifyFinishedUpdate(u32 turn)
 	bool quick = !TurnNeedsFullHash(turn);
 	std::string hash;
 	{
-		PROFILE("state hash check");
+		PROFILE3("state hash check");
 		bool ok = m_Simulation2.ComputeStateHash(hash, quick);
 		ENSURE(ok);
 	}
@@ -435,7 +435,7 @@ void CNetLocalTurnManager::NotifyFinishedUpdate(u32 UNUSED(turn))
 #if 0 // this hurts performance and is only useful for verifying log replays
 	std::string hash;
 	{
-		PROFILE("state hash check");
+		PROFILE3("state hash check");
 		bool ok = m_Simulation2.ComputeStateHash(hash);
 		ENSURE(ok);
 	}

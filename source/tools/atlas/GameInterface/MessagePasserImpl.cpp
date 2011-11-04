@@ -24,6 +24,7 @@
 
 #include "lib/timer.h"
 #include "lib/rand.h"
+#include "lib/posix/posix_filesystem.h"
 
 using namespace AtlasMessage;
 

@@ -143,6 +143,10 @@ void CGUIManager::LoadPage(SGUIPage& page)
 		}
 
 		CStrW name (node.GetText().FromUTF8());
+
+		PROFILE2("load gui xml");
+		PROFILE2_ATTR("name: %ls", name.c_str());
+
 		TIMER(name.c_str());
 		VfsPath path = VfsPath("gui") / name;
 		page.gui->LoadXmlFile(path, page.inputs);
@@ -253,6 +257,8 @@ void CGUIManager::SendEventToAll(const CStr& eventName)
 
 void CGUIManager::TickObjects()
 {
+	PROFILE3("gui tick");
+
 	// Save an immutable copy so iterators aren't invalidated by tick handlers
 	PageStackType pageStack = m_PageStack;
 
@@ -266,6 +272,8 @@ void CGUIManager::TickObjects()
 
 void CGUIManager::Draw()
 {
+	PROFILE3("render gui");
+
 	for (PageStackType::iterator it = m_PageStack.begin(); it != m_PageStack.end(); ++it)
 		it->gui->Draw();
 }

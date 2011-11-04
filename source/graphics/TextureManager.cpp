@@ -29,6 +29,7 @@
 #include "ps/CacheLoader.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
+#include "ps/Profile.h"
 
 #include <iomanip>
 #include <boost/unordered_map.hpp>
@@ -170,6 +171,9 @@ public:
 		if (m_DisableGL)
 			return;
 
+		PROFILE2("load texture");
+		PROFILE2_ATTR("name: %ls", path.string().c_str());
+
 		Handle h = ogl_tex_load(m_VFS, path, RES_UNIQUE);
 		if (h <= 0)
 		{
@@ -284,6 +288,9 @@ public:
 	void ConvertTexture(const CTexturePtr& texture)
 	{
 		VfsPath sourcePath = texture->m_Properties.m_Path;
+
+		PROFILE2("convert texture");
+		PROFILE2_ATTR("name: %ls", sourcePath.string().c_str());
 
 		MD5 hash;
 		u32 version;

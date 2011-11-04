@@ -649,7 +649,7 @@ public:
 	 */
 	void ExecuteActiveQueries()
 	{
-		PROFILE("ExecuteActiveQueries");
+		PROFILE3("ExecuteActiveQueries");
 
 		// Store a queue of all messages before sending any, so we can assume
 		// no entities will move until we've finished checking all the ranges

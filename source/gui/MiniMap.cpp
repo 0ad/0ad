@@ -262,7 +262,7 @@ void CMiniMap::DrawTexture(float coordMax, float angle, float x, float y, float 
 
 void CMiniMap::Draw()
 {
-	PROFILE("minimap");
+	PROFILE3("render minimap");
 
 	// The terrain isn't actually initialized until the map is loaded, which
 	// happens when the game is started, so abort until then.

@@ -175,6 +175,8 @@ void CConsole::Render()
 {
 	if (! (m_bVisible || m_bToggle) ) return;
 
+	PROFILE3("render console");
+
 	CFont font(CONSOLE_FONT);
 	font.Bind();
 

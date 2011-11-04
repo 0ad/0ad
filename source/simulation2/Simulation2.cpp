@@ -324,6 +324,9 @@ void CSimulation2Impl::ReportSerializationFailure(
 
 void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationCommand>& commands)
 {
+	PROFILE3("sim update");
+	PROFILE2_ATTR("turn %d", (int)m_TurnNumber);
+
 	fixed turnLengthFixed = fixed::FromInt(turnLength) / 1000;
 
 	/*
@@ -510,6 +513,8 @@ void CSimulation2Impl::UpdateComponents(CSimContext& simContext, fixed turnLengt
 
 void CSimulation2Impl::Interpolate(float frameLength, float frameOffset)
 {
+	PROFILE3("sim interpolate");
+
 	m_LastFrameOffset = frameOffset;
 
 	CMessageInterpolate msg(frameLength, frameOffset);
@@ -654,6 +659,8 @@ void CSimulation2::Interpolate(float frameLength, float frameOffset)
 
 void CSimulation2::RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling)
 {
+	PROFILE3("sim submit");
+
 	CMessageRenderSubmit msg(collector, frustum, culling);
 	m->m_ComponentManager.BroadcastMessage(msg);
 }

@@ -19,7 +19,6 @@
 #define INCLUDED_THREADUTIL
 
 #include "lib/posix/posix_pthread.h"
-#include "lib/posix/posix_filesystem.h"	// O_CREAT
 
 #ifdef DEBUG_LOCKS
 

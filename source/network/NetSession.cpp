@@ -94,6 +94,8 @@ void CNetClientSession::Disconnect(u32 reason)
 
 void CNetClientSession::Poll()
 {
+	PROFILE3("net client poll");
+
 	ENSURE(m_Host && m_Server);
 
 	m_FileTransferer.Poll();
@@ -152,6 +154,8 @@ void CNetClientSession::Poll()
 
 void CNetClientSession::Flush()
 {
+	PROFILE3("net client flush");
+
 	ENSURE(m_Host && m_Server);
 
 	enet_host_flush(m_Host);

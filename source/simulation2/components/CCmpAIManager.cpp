@@ -440,7 +440,7 @@ private:
 		// Deserialize the game state, to pass to the AI's HandleMessage
 		CScriptVal state;
 		{
-			PROFILE("AI compute read state");
+			PROFILE3("AI compute read state");
 			state = m_ScriptInterface.ReadStructuredClone(m_GameState);
 			m_ScriptInterface.SetProperty(state.get(), "passabilityMap", m_PassabilityMapVal, true);
 			m_ScriptInterface.SetProperty(state.get(), "territoryMap", m_TerritoryMapVal, true);
@@ -452,10 +452,12 @@ private:
 		// affecting other AI scripts they share it with. But the performance
 		// cost is far too high, so we won't do that.
 
+		for (size_t i = 0; i < m_Players.size(); ++i)
 		{
-			PROFILE("AI compute scripts");
-			for (size_t i = 0; i < m_Players.size(); ++i)
-				m_Players[i]->Run(state);
+			PROFILE3("AI script");
+			PROFILE2_ATTR("player: %d", m_Players[i]->m_Player);
+			PROFILE2_ATTR("script: %ls", m_Players[i]->m_AIName.c_str());
+			m_Players[i]->Run(state);
 		}
 
 		// Run the GC every so often.
@@ -463,7 +465,7 @@ private:
 		// since it avoids random GC delays while running other scripts)
 		if (m_TurnNum++ % 25 == 0)
 		{
-			PROFILE("AI compute GC");
+			PROFILE3("AI compute GC");
 			m_ScriptInterface.MaybeGC();
 		}
 	}

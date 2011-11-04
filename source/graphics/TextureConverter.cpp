@@ -26,6 +26,7 @@
 #include "maths/MD5.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
+#include "ps/Profiler2.h"
 #include "ps/XML/Xeromyces.h"
 
 #include "nvtt/nvtt.h"
@@ -486,12 +487,16 @@ bool CTextureConverter::IsBusy()
 void* CTextureConverter::RunThread(void* data)
 {
 	debug_SetThreadName("TextureConverter");
+	g_Profiler2.RegisterCurrentThread("texconv");
 
 	CTextureConverter* textureConverter = static_cast<CTextureConverter*>(data);
 
 	// Wait until the main thread wakes us up
 	while (SDL_SemWait(textureConverter->m_WorkerSem) == 0)
 	{
+		g_Profiler2.RecordSyncMarker();
+		PROFILE2_EVENT("wakeup");
+
 		pthread_mutex_lock(&textureConverter->m_WorkerMutex);
 		if (textureConverter->m_Shutdown)
 		{
@@ -513,9 +518,13 @@ void* CTextureConverter::RunThread(void* data)
 
 //		TIMER(L"TextureConverter compress");
 
-		// Perform the compression
-		nvtt::Compressor compressor;
-		result->ret = compressor.process(request->inputOptions, request->compressionOptions, request->outputOptions);
+		{
+			PROFILE2("compress");
+
+			// Perform the compression
+			nvtt::Compressor compressor;
+			result->ret = compressor.process(request->inputOptions, request->compressionOptions, request->outputOptions);
+		}
 
 		// Ugly hack: NVTT 2.0 doesn't set DDPF_ALPHAPIXELS for DXT1a, so we can't
 		// distinguish it from DXT1. (It's fixed in trunk by

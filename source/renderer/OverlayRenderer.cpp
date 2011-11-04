@@ -116,7 +116,7 @@ void OverlayRenderer::EndFrame()
 
 void OverlayRenderer::PrepareForRendering()
 {
-	PROFILE("prepare overlays");
+	PROFILE3("prepare overlays");
 
 	// This is where we should do something like sort the overlays by
 	// colour/sprite/etc for more efficient rendering
@@ -138,7 +138,7 @@ void OverlayRenderer::PrepareForRendering()
 
 void OverlayRenderer::RenderOverlaysBeforeWater()
 {
-	PROFILE("render overlays (before water)");
+	PROFILE3("render overlays (before)");
 
 	glDisable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
@@ -166,7 +166,7 @@ void OverlayRenderer::RenderOverlaysBeforeWater()
 
 void OverlayRenderer::RenderOverlaysAfterWater()
 {
-	PROFILE("render overlays (after water)");
+	PROFILE3("render overlays (after)");
 
 	if (!m->texlines.empty())
 	{
@@ -262,7 +262,7 @@ void OverlayRenderer::RenderOverlaysAfterWater()
 
 void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 {
-	PROFILE("render overlays (fg)");
+	PROFILE3("render overlays (fg)");
 
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);

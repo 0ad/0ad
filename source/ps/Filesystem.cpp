@@ -20,6 +20,7 @@
 
 #include "gui/GUIManager.h"
 #include "ps/CLogger.h"
+#include "ps/Profile.h"
 
 #include "lib/res/h_mgr.h"	// h_reload
 #include "lib/sysdep/dir_watch.h"
@@ -67,6 +68,8 @@ static bool CanIgnore(const DirWatchNotification& notification)
 
 Status ReloadChangedFiles()
 {
+	PROFILE3("hotload");
+
 	std::vector<DirWatchNotification> notifications;
 	RETURN_STATUS_IF_ERR(dir_watch_Poll(notifications));
 	for(size_t i = 0; i < notifications.size(); i++)

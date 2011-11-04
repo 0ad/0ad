@@ -146,6 +146,8 @@ struct SBlendLayer
 
 void CPatchRData::BuildBlends()
 {
+	PROFILE3("build blends");
+
 	m_BlendSplats.clear();
 
 	std::vector<SBlendVertex> blendVertices;
@@ -428,6 +430,8 @@ void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector
 
 void CPatchRData::BuildIndices()
 {
+	PROFILE3("build indices");
+
 	CTerrain* terrain = m_Patch->m_Parent;
 
 	ssize_t px = m_Patch->m_X * PATCH_SIZE;
@@ -520,6 +524,8 @@ void CPatchRData::BuildIndices()
 
 void CPatchRData::BuildVertices()
 {
+	PROFILE3("build vertices");
+
 	// create both vertices and lighting colors
 
 	// number of vertices in each direction in each patch
@@ -613,6 +619,8 @@ void CPatchRData::BuildSide(std::vector<SSideVertex>& vertices, CPatchSideFlags 
 
 void CPatchRData::BuildSides()
 {
+	PROFILE3("build sides");
+
 	std::vector<SSideVertex> sideVertices;
 
 	int sideFlags = m_Patch->GetSideFlags();
@@ -1142,6 +1150,8 @@ void CPatchRData::RenderPriorities()
 // Build vertex buffer for water vertices over our patch
 void CPatchRData::BuildWater()
 {
+	PROFILE3("build water");
+
 	// number of vertices in each direction in each patch
 	ENSURE((PATCH_SIZE % water_cell_size) == 0);
 

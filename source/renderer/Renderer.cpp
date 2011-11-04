@@ -933,7 +933,7 @@ void CRenderer::SetClearColor(SColor4ub color)
 
 void CRenderer::RenderShadowMap()
 {
-	PROFILE("render shadow map");
+	PROFILE3("render shadow map");
 
 	m->shadow->BeginRender();
 
@@ -978,7 +978,7 @@ void CRenderer::RenderShadowMap()
 
 void CRenderer::RenderPatches(const CFrustum* frustum)
 {
-	PROFILE("render patches");
+	PROFILE3("render patches");
 
 	bool filtered = false;
 	if (frustum)
@@ -1050,7 +1050,7 @@ private:
 
 void CRenderer::RenderModels(const CFrustum* frustum)
 {
-	PROFILE("render models");
+	PROFILE3("render models");
 
 	int flags = 0;
 	if (frustum)
@@ -1087,7 +1087,7 @@ void CRenderer::RenderModels(const CFrustum* frustum)
 
 void CRenderer::RenderTransparentModels(ETransparentMode transparentMode, const CFrustum* frustum)
 {
-	PROFILE("render transparent models");
+	PROFILE3("render transparent models");
 
 	int flags = 0;
 	if (frustum)
@@ -1360,7 +1360,7 @@ SScreenRect CRenderer::RenderRefractions(const CBound &scissor)
 
 void CRenderer::RenderSilhouettes()
 {
-	PROFILE("render silhouettes");
+	PROFILE3("render silhouettes");
 
 	// Render silhouettes of units hidden behind terrain or occluders.
 	// To avoid breaking the standard rendering of alpha-blended objects, this
@@ -1473,7 +1473,7 @@ void CRenderer::RenderParticles()
 	if (GetRenderPath() != RP_SHADER)
 		return;
 
-	PROFILE("render particles");
+	PROFILE3("render particles");
 
 	m->particleRenderer.RenderParticles();
 
@@ -1499,7 +1499,7 @@ void CRenderer::RenderParticles()
 // RenderSubmissions: force rendering of any batched objects
 void CRenderer::RenderSubmissions()
 {
-	PROFILE("render submissions");
+	PROFILE3("render submissions");
 
 	ogl_WarnIfError();
 
@@ -1507,7 +1507,8 @@ void CRenderer::RenderSubmissions()
 	m->SetOpenGLCamera(m_ViewCamera);
 
 	// Prepare model renderers
-	PROFILE_START("prepare models");
+	{
+	PROFILE3("prepare models");
 	m->Model.Normal->PrepareModels();
 	m->Model.Player->PrepareModels();
 	if (m->Model.Normal != m->Model.NormalInstancing)
@@ -1515,19 +1516,13 @@ void CRenderer::RenderSubmissions()
 	if (m->Model.Player != m->Model.PlayerInstancing)
 		m->Model.PlayerInstancing->PrepareModels();
 	m->Model.Transp->PrepareModels();
-	PROFILE_END("prepare models");
+	}
 
-	PROFILE_START("prepare terrain");
 	m->terrainRenderer->PrepareForRendering();
-	PROFILE_END("prepare terrain");
 
-	PROFILE_START("prepare overlays");
 	m->overlayRenderer.PrepareForRendering();
-	PROFILE_END("prepare overlays");
 
-	PROFILE_START("prepare particles");
 	m->particleRenderer.PrepareForRendering();
-	PROFILE_END("prepare particles");
 
 	if (m_Caps.m_Shadows && m_Options.m_Shadows && GetRenderPath() == RP_SHADER)
 	{
@@ -1639,7 +1634,7 @@ void CRenderer::RenderSubmissions()
 // EndFrame: signal frame end
 void CRenderer::EndFrame()
 {
-	PROFILE("end frame");
+	PROFILE3("end frame");
 
 	// empty lists
 	m->terrainRenderer->EndFrame();
@@ -1657,9 +1652,12 @@ void CRenderer::EndFrame()
 
 	ogl_tex_bind(0, 0);
 
-	if (glGetError())
 	{
-		ONCE(LOGERROR(L"CRenderer::EndFrame: GL errors occurred"));
+		PROFILE3("error check");
+		if (glGetError())
+		{
+			ONCE(LOGERROR(L"CRenderer::EndFrame: GL errors occurred"));
+		}
 	}
 }
 

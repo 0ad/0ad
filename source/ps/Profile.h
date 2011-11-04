@@ -25,6 +25,7 @@
 #include <vector>
 
 #include "lib/adts/ring_buf.h"
+#include "ps/Profiler2.h"
 #include "ps/Singleton.h"
 #include "ps/ThreadUtil.h"
 
@@ -146,14 +147,14 @@ public:
 class CProfileSample
 {
 public:
-	CProfileSample( const char* name )
+	CProfileSample(const char* name)
 	{
 		if (CProfileManager::IsInitialised())
 		{
 			// The profiler is only safe to use on the main thread
 			ENSURE(ThreadUtil::IsMainThread());
 
-			g_Profiler.Start( name );
+			g_Profiler.Start(name);
 		}
 	}
 	~CProfileSample()
@@ -187,11 +188,14 @@ public:
 	}
 };
 
-// Put a PROFILE( xyz ) block at the start of all code to be profiled.
+// Put a PROFILE("xyz") block at the start of all code to be profiled.
 // Profile blocks last until the end of the containing scope.
-#define PROFILE( name ) CProfileSample __profile( name )
+#define PROFILE(name) CProfileSample __profile(name)
 // Cheat a bit to make things slightly easier on the user
-#define PROFILE_START( name ) { CProfileSample __profile( name )
-#define PROFILE_END( name ) }
+#define PROFILE_START(name) { CProfileSample __profile(name)
+#define PROFILE_END(name) }
+
+// Do both old and new profilers simultaneously (1+2=3), for convenience.
+#define PROFILE3(name) PROFILE(name); PROFILE2(name)
 
 #endif // INCLUDED_PROFILE

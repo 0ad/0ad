@@ -49,6 +49,7 @@ that of Atlas depending on commandline parameters.
 #include "ps/Hotkey.h"
 #include "ps/Loader.h"
 #include "ps/Profile.h"
+#include "ps/Profiler2.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/Replay.h"
 #include "ps/UserReport.h"
@@ -132,6 +133,11 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 			g_VideoMode.ToggleFullscreen();
 			return IN_HANDLED;
 		}
+		else if (hotkey == "profile2.enable")
+		{
+			g_Profiler2.EnableHTTP();
+			return IN_HANDLED;
+		}
 		break;
 	}
 
@@ -142,7 +148,7 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 // dispatch all pending events to the various receivers.
 static void PumpEvents()
 {
-	PROFILE("dispatch events");
+	PROFILE3("dispatch events");
 
 	SDL_Event_ ev;
 	while(SDL_PollEvent(&ev.ev))
@@ -182,6 +188,8 @@ return false;
 
 static int ProgressiveLoad()
 {
+	PROFILE3("progressive load");
+
 	wchar_t description[100];
 	int progress_percent;
 	try
@@ -226,6 +234,8 @@ static int ProgressiveLoad()
 
 static void RendererIncrementalLoad()
 {
+	PROFILE3("renderer incremental load");
+
 	const double maxTime = 0.1f;
 
 	double startTime = timer_Time();
@@ -241,6 +251,9 @@ static bool quit = false;	// break out of main loop
 
 static void Frame()
 {
+	g_Profiler2.RecordFrameStart();
+	PROFILE2("frame");
+
 	ogl_WarnIfError();
 
 	// get elapsed time
@@ -269,7 +282,7 @@ static void Frame()
 	// debugging easier.
 	if( !g_NetClient && !g_app_has_focus )
 	{
-		PROFILE("non-focus delay");
+		PROFILE3("non-focus delay");
 		need_update = false;
 		// don't use SDL_WaitEvent: don't want the main loop to freeze until app focus is restored
 		SDL_Delay(10);
@@ -279,10 +292,7 @@ static void Frame()
 	// this is mostly relevant for "inactive" state, so that other windows
 	// get enough CPU time, but it's always nice for power+thermal management.
 
-	bool is_building_archive;	// must come before PROFILE_START's {
-	PROFILE_START("build archive");
-	is_building_archive = ProgressiveBuildArchive();
-	PROFILE_END( "build archive");
+	bool is_building_archive = ProgressiveBuildArchive();
 
 	// this scans for changed files/directories and reloads them, thus
 	// allowing hotloading (changes are immediately assimilated in-game).
@@ -290,23 +300,13 @@ static void Frame()
 	// archive file each iteration, but keeps it locked; reloading
 	// would trigger a warning because the file can't be opened.
 	if(!is_building_archive)
-	{
-		PROFILE_START("reload changed files");
 		ReloadChangedFiles();
-		PROFILE_END( "reload changed files");
-	}
 
-	PROFILE_START("progressive load");
 	ProgressiveLoad();
-	PROFILE_END("progressive load");
 
-	PROFILE_START("renderer incremental load");
 	RendererIncrementalLoad();
-	PROFILE_END("renderer incremental load");
 
-	PROFILE_START("input");
 	PumpEvents();
-	PROFILE_END("input");
 
 	// if the user quit by closing the window, the GL context will be broken and
 	// may crash when we call Render() on some drivers, so leave this loop
@@ -321,16 +321,12 @@ static void Frame()
 		g_ResizedW = g_ResizedH = 0;
 	}
 
-	PROFILE_START("network poll");
 	if (g_NetClient)
 		g_NetClient->Poll();
-	PROFILE_END("network poll");
 
 	ogl_WarnIfError();
 
-	PROFILE_START("gui tick");
 	g_GUI->TickObjects();
-	PROFILE_END("gui tick");
 
 	ogl_WarnIfError();
 
@@ -338,11 +334,8 @@ static void Frame()
 	{
 		g_Game->Update(TimeSinceLastFrame);
 
-		PROFILE_START( "camera update" );
 		g_Game->GetView()->Update(float(TimeSinceLastFrame));
-		PROFILE_END( "camera update" );
 
-		PROFILE_START( "sound update" );
 		CCamera* camera = g_Game->GetView()->GetCamera();
 		CMatrix3D& orientation = camera->m_Orientation;
 		float* pos = &orientation._data[12];
@@ -352,37 +345,37 @@ static void Frame()
 		// is going wrong, because the listener and camera are supposed to
 		// coincide in position and orientation.
 		float down[3] = { -up[0], -up[1], -up[2] };
-		if(snd_update(pos, dir, down) < 0)
-			debug_printf(L"snd_update failed\n");
-		PROFILE_END( "sound update" );
+
+		{
+			PROFILE3("sound update");
+			if (snd_update(pos, dir, down) < 0)
+				debug_printf(L"snd_update failed\n");
+		}
 	}
 	else
 	{
-		if(snd_update(0, 0, 0) < 0)
+		PROFILE3("sound update (0)");
+		if (snd_update(0, 0, 0) < 0)
 			debug_printf(L"snd_update (pos=0 version) failed\n");
 	}
 
 	// Immediately flush any messages produced by simulation code
-	PROFILE_START("network flush");
 	if (g_NetClient)
 		g_NetClient->Flush();
-	PROFILE_END("network flush");
 
 	g_UserReporter.Update();
 
 	g_Console->Update(TimeSinceLastFrame);
 
-	PROFILE_START("render");
 	ogl_WarnIfError();
 	if(need_render)
 	{
 		Render();
-		PROFILE_START( "swap buffers" );
+
+		PROFILE3("swap buffers");
 		SDL_GL_SwapBuffers();
-		PROFILE_END( "swap buffers" );
 	}
 	ogl_WarnIfError();
-	PROFILE_END("render");
 
 	g_Profiler.Frame();
 

@@ -23,6 +23,7 @@
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
+#include "ps/Profile.h"
 #include "ps/XML/Xeromyces.h"
 #include "ps/XML/XMLWriter.h"
 #include "renderer/Renderer.h"
@@ -74,6 +75,9 @@ CShaderProgramPtr CShaderManager::LoadProgram(const char* name, const std::map<C
 
 bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& baseDefines, CShaderProgramPtr& program)
 {
+	PROFILE2("loading shader");
+	PROFILE2_ATTR("name: %s", name);
+
 	if (strncmp(name, "fixed:", 6) == 0)
 	{
 		program = CShaderProgramPtr(CShaderProgram::ConstructFFP(name+6));

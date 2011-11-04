@@ -26,6 +26,7 @@
 #include "lib/res/graphics/unifont.h"
 #include "lib/sysdep/sysdep.h"
 #include "ps/Font.h"
+#include "ps/Profile.h"
 
 #include <ctime>
 #include <iostream>
@@ -276,6 +277,8 @@ void CLogger::LogError(const wchar_t* fmt, ...)
 
 void CLogger::Render()
 {
+	PROFILE3("render logger");
+
 	CleanupRenderQueue();
 
 	CFont font(L"mono-stroke-10");

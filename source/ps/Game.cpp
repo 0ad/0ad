@@ -273,7 +273,6 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 		// so just use the sim rate itself as the number of turns per frame.
 		size_t maxTurns = (size_t)m_SimRate;
 
-		PROFILE("simulation update");
 		if (m_TurnManager->Update(deltaTime, maxTurns))
 		{
 			g_GUI->SendEventToAll("SimulationUpdate");
@@ -283,7 +282,6 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 
 	if (doInterpolate)
 	{
-		PROFILE("interpolate");
 		m_TurnManager->Interpolate(deltaTime);
 	}
 	

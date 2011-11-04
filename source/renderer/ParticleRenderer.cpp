@@ -76,6 +76,8 @@ struct SortEmitterDistance
 
 void ParticleRenderer::PrepareForRendering()
 {
+	PROFILE3("prepare particles");
+
 	// Can't load the shader in the constructor because it's called before the
 	// renderer initialisation is complete, so load it the first time through here
 	if (!m->shader)

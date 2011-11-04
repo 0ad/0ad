@@ -610,7 +610,7 @@ CBound TerrainRenderer::ScissorWater(const CMatrix3D &viewproj)
 // Render fancy water
 bool TerrainRenderer::RenderFancyWater()
 {
-	PROFILE("render fancy water");
+	PROFILE3("render fancy water");
 
 	// If we're using fancy water, make sure its shader is loaded
 	if (!m->fancyWaterShader)
@@ -739,7 +739,7 @@ bool TerrainRenderer::RenderFancyWater()
 
 void TerrainRenderer::RenderSimpleWater()
 {
-	PROFILE("render simple water");
+	PROFILE3("render simple water");
 
 	WaterManager* WaterMgr = g_Renderer.GetWaterManager();
 	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
