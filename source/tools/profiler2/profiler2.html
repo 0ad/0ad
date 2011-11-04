@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<title>0 A.D. profiler UI</title>
+<script src="jquery-1.6.4.js"></script>
+<script src="profiler2.js"></script>
+<script>
+$(refresh);
+</script>
+<style>
+canvas { border: 1px #ddd solid; }
+#tooltip { background: #ffd; padding: 4px; font: 16px sans-serif; }
+</style>
+
+<button onclick="refresh()">Refresh</button>
+<br>
+<div id="timelines"></div>
+
+<div id="tooltip" style="position: absolute; visibility: hidden"></div>
+
+<pre id="debug"></pre>
