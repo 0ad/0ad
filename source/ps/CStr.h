@@ -311,9 +311,9 @@ public:
 	CStr UnescapeBackslashes() const;
 
 	/**
-	 * Convert strings to printable ASCII characters with C-style escapes
+	 * Convert strings to printable ASCII characters with JSON-style escapes.
 	 */
-	CStr EscapeToPrintableASCII() const;
+	CStr8 EscapeToPrintableASCII() const;
 
 	/**
 	 * Return a trimmed copy of the CStr.

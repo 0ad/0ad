@@ -32,7 +32,7 @@ static inline CStr NetMessageStringConvert(const CStr8& arg)
 
 static inline CStr NetMessageStringConvert(const CStrW& arg)
 {
-	return arg.ToUTF8().EscapeToPrintableASCII();
+	return arg.EscapeToPrintableASCII();
 }
 
 #endif

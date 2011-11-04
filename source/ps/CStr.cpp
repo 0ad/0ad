@@ -356,25 +356,26 @@ CStr CStr::UnescapeBackslashes() const
 	return NewString;
 }
 
-CStr CStr::EscapeToPrintableASCII() const
+CStr8 CStr::EscapeToPrintableASCII() const
 {
-	CStr NewString;
+	CStr8 NewString;
 	for (size_t i = 0; i < length(); i++)
 	{
 		tchar ch = (*this)[i];
 
-		if (ch == '"')
-			NewString += _T("\\\"");
-		else if (ch == '\\')
-			NewString += _T("\\\\");
-		else if (ch == '\n')
-			NewString += _T("\\n");
+		if (ch == '"') NewString += "\\\"";
+		else if (ch == '\\') NewString += "\\\\";
+		else if (ch == '\b') NewString += "\\b";
+		else if (ch == '\f') NewString += "\\f";
+		else if (ch == '\n') NewString += "\\n";
+		else if (ch == '\r') NewString += "\\r";
+		else if (ch == '\t') NewString += "\\t";
 		else if (ch >= 32 && ch <= 126)
 			NewString += ch;
 		else
 		{
-			std::tstringstream ss;
-			ss << _T("\\x") << std::hex << std::setfill(_T('0')) << std::setw(2) << (int)(unsigned char)ch;
+			std::stringstream ss;
+			ss << "\\u" << std::hex << std::setfill('0') << std::setw(4) << (int)(unsigned char)ch;
 			NewString += ss.str();
 		}
 	}
