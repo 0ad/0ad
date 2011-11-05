@@ -781,7 +781,6 @@ void EarlyInit()
 
 	// initialise profiler early so it can profile startup
 	g_Profiler2.Initialise();
-	g_Profiler2.RegisterCurrentThread("main");
 
 	FixLocales();
 

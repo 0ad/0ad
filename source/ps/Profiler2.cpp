@@ -129,6 +129,8 @@ void CProfiler2::Initialise()
 	int err = pthread_key_create(&m_TLS, &CProfiler2::TLSDtor);
 	ENSURE(err == 0);
 	m_Initialised = true;
+
+	RegisterCurrentThread("main");
 }
 
 void CProfiler2::EnableHTTP()

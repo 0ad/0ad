@@ -99,12 +99,14 @@ static void RendererIncrementalLoad()
 	while (more && timer_Time() - startTime < maxTime);
 }
 
-static void* RunEngine(void *data)
+static void* RunEngine(void* data)
 {
 	debug_SetThreadName("engine_thread");
 
 	// Set new main thread so that all the thread-safety checks pass
 	ThreadUtil::SetMainThread();
+
+	g_Profiler2.RegisterCurrentThread("atlasmain");
 
 	const CmdLineArgs args = *reinterpret_cast<const CmdLineArgs*>(data);
 

@@ -35,6 +35,7 @@
 
 #include "lib/timer.h"
 #include "lib/sysdep/sysdep.h"
+#include "ps/Profiler2.h"
 #include "scriptinterface/ScriptInterface.h"
 
 class LeakReporter : public CxxTest::GlobalFixture
@@ -77,9 +78,17 @@ class MiscSetup : public CxxTest::GlobalFixture
 		setlocale(LC_CTYPE, "UTF-8");
 #endif
 
+		g_Profiler2.Initialise();
+
 		return true;
 	}
 
+	virtual bool tearDownWorld()
+	{
+		g_Profiler2.Shutdown();
+
+		return true;
+	}
 };
 
 static LeakReporter leakReporter;
