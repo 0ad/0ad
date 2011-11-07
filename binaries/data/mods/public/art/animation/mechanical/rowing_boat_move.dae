@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.60.0 r41226</authoring_tool>
     </contributor>
-    <created>2011-11-03T00:53:18</created>
-    <modified>2011-11-03T00:53:18</modified>
+    <created>2011-11-07T16:55:59</created>
+    <modified>2011-11-07T16:55:59</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -98,25 +98,25 @@
   <library_animations>
     <animation id="RowingBoat_RowingBoatBone_pose_matrix">
       <source id="RowingBoat_RowingBoatBone_pose_matrix-input">
-        <float_array id="RowingBoat_RowingBoatBone_pose_matrix-input-array" count="4">0.03999996 1.36 1.6 4.8</float_array>
+        <float_array id="RowingBoat_RowingBoatBone_pose_matrix-input-array" count="5">0.03999996 0.72 0.8 1.08 1.2</float_array>
         <technique_common>
-          <accessor source="#RowingBoat_RowingBoatBone_pose_matrix-input-array" count="4" stride="1">
+          <accessor source="#RowingBoat_RowingBoatBone_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="RowingBoat_RowingBoatBone_pose_matrix-output">
-        <float_array id="RowingBoat_RowingBoatBone_pose_matrix-output-array" count="64">1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1</float_array>
+        <float_array id="RowingBoat_RowingBoatBone_pose_matrix-output-array" count="80">1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#RowingBoat_RowingBoatBone_pose_matrix-output-array" count="4" stride="16">
+          <accessor source="#RowingBoat_RowingBoatBone_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="RowingBoat_RowingBoatBone_pose_matrix-interpolation">
-        <Name_array id="RowingBoat_RowingBoatBone_pose_matrix-interpolation-array" count="4">LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="RowingBoat_RowingBoatBone_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#RowingBoat_RowingBoatBone_pose_matrix-interpolation-array" count="4" stride="1">
+          <accessor source="#RowingBoat_RowingBoatBone_pose_matrix-interpolation-array" count="5" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -130,25 +130,25 @@
     </animation>
     <animation id="RowingBoat_RightRow_pose_matrix">
       <source id="RowingBoat_RightRow_pose_matrix-input">
-        <float_array id="RowingBoat_RightRow_pose_matrix-input-array" count="4">0.03999996 1.36 1.6 4.8</float_array>
+        <float_array id="RowingBoat_RightRow_pose_matrix-input-array" count="5">0.03999996 0.72 0.8 1.08 1.2</float_array>
         <technique_common>
-          <accessor source="#RowingBoat_RightRow_pose_matrix-input-array" count="4" stride="1">
+          <accessor source="#RowingBoat_RightRow_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="RowingBoat_RightRow_pose_matrix-output">
-        <float_array id="RowingBoat_RightRow_pose_matrix-output-array" count="64">-0.1847993 -0.6830542 0.7066018 -0.824337 0.948223 -0.3128978 -0.0544793 0.8032764 0.2583065 0.6599484 0.705511 -0.05697894 0 0 0 1 -0.01237511 -0.8570249 -0.5151262 -0.824337 0.9968473 0.02980357 -0.07353246 0.8032764 0.07837176 -0.5144122 0.8539542 -0.05697894 0 0 0 1 -0.2864724 -0.7685334 -0.5720928 -0.824337 0.948223 -0.3128978 -0.05447947 0.8032764 -0.1371372 -0.5580784 0.8183777 -0.05697894 0 0 0 1 -0.1847993 -0.6830542 0.7066018 -0.824337 0.948223 -0.3128978 -0.0544793 0.8032764 0.2583065 0.6599484 0.705511 -0.05697894 0 0 0 1</float_array>
+        <float_array id="RowingBoat_RightRow_pose_matrix-output-array" count="80">-0.1847993 -0.6830542 0.7066018 -0.824337 0.948223 -0.3128978 -0.0544793 0.8032764 0.2583065 0.6599484 0.705511 -0.05697894 0 0 0 1 -0.04919695 -0.8565596 -0.5136976 -0.824337 0.838315 -0.3150072 0.44497 0.8032764 -0.5429619 -0.4087492 0.7335643 -0.05697894 0 0 0 1 -0.2153086 -0.9366363 -0.2763235 -0.824337 0.7656986 0.01369714 -0.6430535 0.8032764 0.6060922 -0.3500355 0.714232 -0.05697894 0 0 0 1 0.1514689 -0.8540436 0.4976612 -0.824337 0.8583709 -0.1360141 -0.4946711 0.8032764 0.4901596 0.5021053 0.7124842 -0.05697894 0 0 0 1 -0.1847993 -0.6830542 0.7066018 -0.824337 0.948223 -0.3128978 -0.0544793 0.8032764 0.2583065 0.6599484 0.705511 -0.05697894 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#RowingBoat_RightRow_pose_matrix-output-array" count="4" stride="16">
+          <accessor source="#RowingBoat_RightRow_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="RowingBoat_RightRow_pose_matrix-interpolation">
-        <Name_array id="RowingBoat_RightRow_pose_matrix-interpolation-array" count="4">LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="RowingBoat_RightRow_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#RowingBoat_RightRow_pose_matrix-interpolation-array" count="4" stride="1">
+          <accessor source="#RowingBoat_RightRow_pose_matrix-interpolation-array" count="5" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -162,25 +162,25 @@
     </animation>
     <animation id="RowingBoat_LeftRow_pose_matrix">
       <source id="RowingBoat_LeftRow_pose_matrix-input">
-        <float_array id="RowingBoat_LeftRow_pose_matrix-input-array" count="4">0.03999996 1.36 1.6 4.8</float_array>
+        <float_array id="RowingBoat_LeftRow_pose_matrix-input-array" count="5">0.03999996 0.72 0.8 1.08 1.2</float_array>
         <technique_common>
-          <accessor source="#RowingBoat_LeftRow_pose_matrix-input-array" count="4" stride="1">
+          <accessor source="#RowingBoat_LeftRow_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="RowingBoat_LeftRow_pose_matrix-output">
-        <float_array id="RowingBoat_LeftRow_pose_matrix-output-array" count="64">-0.1847991 0.6830543 0.7066016 0.8093317 0.8001407 -0.312897 0.5117325 0.8044137 0.5706346 0.6599485 -0.4887164 -0.05230307 0 0 0 1 0.1992981 0.9268673 -0.3181145 0.8093317 0.8662811 -0.01489162 0.4993346 0.8044137 0.4580798 -0.3750931 -0.8058956 -0.05230307 0 0 0 1 0.5298752 0.7685337 -0.3585915 0.8093317 0.8001409 -0.3128972 0.5117321 0.8044137 0.2810811 -0.5580779 -0.7807317 -0.05230307 0 0 0 1 -0.1847991 0.6830543 0.7066016 0.8093317 0.8001407 -0.312897 0.5117325 0.8044137 0.5706346 0.6599485 -0.4887164 -0.05230307 0 0 0 1</float_array>
+        <float_array id="RowingBoat_LeftRow_pose_matrix-output-array" count="80">-0.1847991 0.6830543 0.7066016 0.8093317 0.8001407 -0.312897 0.5117325 0.8044137 0.5706346 0.6599485 -0.4887164 -0.05230307 0 0 0 1 0.3229944 0.8566179 -0.4023433 0.8093317 0.9453446 -0.312106 0.09441018 0.8044137 -0.04470026 -0.4108471 -0.9106077 -0.05230307 0 0 0 1 0.2736532 0.9393976 -0.2065083 0.8093317 0.5536828 0.02170509 0.8324446 0.8044137 0.7864789 -0.3421412 -0.5141887 -0.05230307 0 0 0 1 -0.38045 0.8488044 0.3671357 0.8093317 0.5714387 -0.09637022 0.8149666 0.8044137 0.7271282 0.5198497 -0.4483755 -0.05230307 0 0 0 1 -0.1847991 0.6830543 0.7066016 0.8093317 0.8001407 -0.312897 0.5117325 0.8044137 0.5706346 0.6599485 -0.4887164 -0.05230307 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#RowingBoat_LeftRow_pose_matrix-output-array" count="4" stride="16">
+          <accessor source="#RowingBoat_LeftRow_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="RowingBoat_LeftRow_pose_matrix-interpolation">
-        <Name_array id="RowingBoat_LeftRow_pose_matrix-interpolation-array" count="4">LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="RowingBoat_LeftRow_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#RowingBoat_LeftRow_pose_matrix-interpolation-array" count="4" stride="1">
+          <accessor source="#RowingBoat_LeftRow_pose_matrix-interpolation-array" count="5" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -191,6 +191,38 @@
         <input semantic="INTERPOLATION" source="#RowingBoat_LeftRow_pose_matrix-interpolation"/>
       </sampler>
       <channel source="#RowingBoat_LeftRow_pose_matrix-sampler" target="LeftRow/transform"/>
+    </animation>
+    <animation id="RowingBoat_prop-head_pose_matrix">
+      <source id="RowingBoat_prop-head_pose_matrix-input">
+        <float_array id="RowingBoat_prop-head_pose_matrix-input-array" count="5">0.03999996 0.72 0.8 1.08 1.2</float_array>
+        <technique_common>
+          <accessor source="#RowingBoat_prop-head_pose_matrix-input-array" count="5" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="RowingBoat_prop-head_pose_matrix-output">
+        <float_array id="RowingBoat_prop-head_pose_matrix-output-array" count="80">-1 -1.50996e-7 0 0 0 -1.34359e-7 1 1.776575 -1.50996e-7 1 0 0.8593303 0 0 0 1 -1 -1.50996e-7 0 0 0 -1.34359e-7 1 1.776575 -1.50996e-7 1 0 0.8593303 0 0 0 1 -1 -1.50996e-7 0 0 0 -1.34359e-7 1 1.776575 -1.50996e-7 1 0 0.8593303 0 0 0 1 -1 -1.50996e-7 0 0 0 -1.34359e-7 1 1.776575 -1.50996e-7 1 0 0.8593303 0 0 0 1 -1 -1.50996e-7 0 0 0 -1.34359e-7 1 1.776575 -1.50996e-7 1 0 0.8593303 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#RowingBoat_prop-head_pose_matrix-output-array" count="5" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="RowingBoat_prop-head_pose_matrix-interpolation">
+        <Name_array id="RowingBoat_prop-head_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#RowingBoat_prop-head_pose_matrix-interpolation-array" count="5" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="RowingBoat_prop-head_pose_matrix-sampler">
+        <input semantic="INPUT" source="#RowingBoat_prop-head_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#RowingBoat_prop-head_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#RowingBoat_prop-head_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#RowingBoat_prop-head_pose_matrix-sampler" target="prop-head/transform"/>
     </animation>
   </library_animations>
   <library_controllers>
@@ -251,7 +283,7 @@
             <matrix sid="transform">-0.1847991 0.6830543 0.7066016 0.8093317 0.8001407 -0.312897 0.5117325 0.8044137 0.5706346 0.6599485 -0.4887165 -0.05230308 0 0 0 1</matrix>
           </node>
           <node id="prop-head" name="prop-head" sid="prop-head" type="JOINT">
-            <matrix sid="transform">1 0 0 0 0 1 0 1.651946 0 0 1 1.24718e-7 0 0 0 1</matrix>
+            <matrix sid="transform">-1 -1.50996e-7 3.68459e-15 0 1.64126e-14 -1.34359e-7 1 1.776575 -1.50996e-7 1 3.42285e-8 0.8593303 0 0 0 1</matrix>
           </node>
         </node>
       </node>
