@@ -3,6 +3,10 @@
   <castshadow/> 
   <group> 
     <variant frequency="1" name="Siege Tower"> 
+      <animations>
+        <animation file="mechanical/hele_siege_tower_move.dae" name="Walk" speed="12"/>
+        <animation file="mechanical/hele_siege_tower_move.dae" name="Run" speed="24"/>
+      </animations>
       <mesh>structural/hele_siege_tower.dae</mesh> 
       <props>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
