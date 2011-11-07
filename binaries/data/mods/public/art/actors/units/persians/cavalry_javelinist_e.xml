@@ -1,20 +1,45 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations>
         <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/horse_gallop.psa" name="Walk" speed="17"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="120"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="40"/>
+        <animation file="quadraped/horse_walk.psa" name="carry_meat" speed="120"/>
+        <animation event=".5" file="quadraped/horse_attack_a.psa" name="Melee" speed="20"/>
+        <animation event=".5" file="quadraped/horse_attack_b.psa" name="Melee" speed="20"/>
+        <animation file="quadraped/horse_death.psa" name="death" speed="240"/>
       </animations>
       <mesh>skeletal/horse.pmd</mesh>
       <props>
         <prop actor="units/persians/cavalry_javelinist_e_r.xml" attachpoint="rider"/>
+        <prop actor="props/units/horse/pers_peytral_iron.xml" attachpoint="chest"/>
       </props>
-      <texture>skeletal/horse_black_a.dds</texture>
     </variant>
   </group>
-
+  <group>
+    <variant name="horse -1">
+      <texture>skeletal/horse_pers_csw_e_2.dds</texture>
+    </variant>
+    <variant name="horse -2">
+      <texture>skeletal/horse_pers_csw_e_2.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="horse-color-black">
+      <colour>41 41 41</colour>
+    </variant>
+    <variant frequency="1" name="horse-color-biege">
+      <colour>247 213 111</colour>
+    </variant>
+    <variant frequency="1" name="horse-color-gray">
+      <colour>253 253 253</colour>
+    </variant>
+    <variant frequency="1" name="horse-color-brown">
+      <colour>211 123 44</colour>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
 </actor>

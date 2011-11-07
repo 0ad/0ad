@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="Base">
       <animations>
@@ -18,10 +16,10 @@
       <mesh>skeletal/horse.pmd</mesh>
       <props>
         <prop actor="units/persians/cavalry_swordsman_b_r.xml" attachpoint="rider"/>
+        <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="horse-texture-1">
       <texture>skeletal/horse_pers_csw_b_1.dds</texture>
@@ -33,7 +31,6 @@
       <texture>skeletal/horse_pers_csw_b_3.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="horse-color-black">
       <colour>41 41 41</colour>
@@ -48,7 +45,5 @@
       <colour>211 123 44</colour>
     </variant>
   </group>
-
   <material>objectcolor.xml</material>
-
 </actor>

@@ -15,5 +15,9 @@
       <texture>structural/pers_chariot_a.png</texture>
     </variant>
   </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="carry_meat"/>
+  </group>
   <material>player_trans.xml</material>
 </actor>

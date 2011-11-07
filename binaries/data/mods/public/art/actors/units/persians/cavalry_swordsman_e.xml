@@ -4,18 +4,23 @@
   <group>
     <variant frequency="1" name="Base">
       <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="100"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="75"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="100"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="100"/>
         <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/horse_attack_a.psa" name="Idle" speed="20"/>
-        <animation file="quadraped/horse_attack_b.psa" name="Idle" speed="20"/>
+        <animation file="quadraped/horse_attack_a.psa" name="Idle" speed="200"/>
+        <animation file="quadraped/horse_attack_b.psa" name="Idle" speed="200"/>
         <animation file="quadraped/horse_gallop.psa" name="Run" speed="8"/>
         <animation file="quadraped/horse_walk.psa" name="Walk" speed="17"/>
-        <animation event=".5" file="quadraped/horse_attack_a.psa" name="Melee" speed="20"/>
-        <animation event=".5" file="quadraped/horse_attack_b.psa" name="Melee" speed="20"/>
+        <animation event="" file="quadraped/horse_attack_a.psa" name="Melee" speed="300"/>
+        <animation event="" file="quadraped/horse_attack_b.psa" name="Melee" speed="300"/>
         <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
       </animations>
       <mesh>skeletal/horse.pmd</mesh>
       <props>
         <prop actor="units/persians/cavalry_swordsman_e_r.xml" attachpoint="rider"/>
+        <prop actor="props/units/horse/pers_peytral.xml" attachpoint="chest"/>
       </props>
     </variant>
   </group>

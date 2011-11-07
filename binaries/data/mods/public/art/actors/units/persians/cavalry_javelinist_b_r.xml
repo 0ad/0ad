@@ -1,36 +1,79 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations>
         <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
         <animation file="biped/cavalryidle.psa" name="Walk" speed="50"/>
-        <animation file="biped/rider_gallop.psa" name="Run" speed="8"/>
-        <animation event=".5" file="biped/rider_javelin_atk_a.psa" load="0" name="Melee" speed="50"/>
+        <animation file="biped/rider_gallop.psa" name="Run" speed="40"/>
+        <animation event="0.59" file="biped/rider_javelin_atk_a.psa" load="0" name="Melee" speed="50"/>
+        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="gather_meat" speed="350"/>
+        <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="gather_meat" speed="350"/>
+        <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
       </animations>
-      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <mesh>skeletal/m_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_pers_a.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="loaded-r_hand"/>
+        <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
       </props>
-      <texture>skeletal/pers_cjv_b_1.dds</texture>
     </variant>
   </group>
-
+  <group>
+    <variant frequency="1" name="Clothing-red-stripes">
+      <props>
+        <prop actor="props/units/heads/head_pers_tiara_y.xml" attachpoint="head"/>
+      </props>
+      <texture>skeletal/pers_isp_a_1.dds</texture>
+    </variant>
+    <variant frequency="1" name="Clothing-blue-stripes">
+      <props>
+        <prop actor="props/units/heads/head_pers_tiara_y.xml" attachpoint="head"/>
+      </props>
+      <texture>skeletal/pers_isp_a_2.dds</texture>
+    </variant>
+    <variant frequency="1" name="Clothing-gold-stripes">
+      <props>
+        <prop actor="props/units/heads/head_pers_tiara_y.xml" attachpoint="head"/>
+      </props>
+      <texture>skeletal/pers_isp_a_3.dds</texture>
+    </variant>
+    <variant frequency="1" name="Clothing-emerald">
+      <props>
+        <prop actor="props/units/heads/head_pers_tiara.xml" attachpoint="head"/>
+      </props>
+      <texture>skeletal/pers_isp_e_1.dds</texture>
+    </variant>
+    <variant frequency="1" name="Clothing-gold">
+      <props>
+        <prop actor="props/units/heads/head_pers_tiara.xml" attachpoint="head"/>
+      </props>
+      <texture>skeletal/pers_isp_e_2.dds</texture>
+    </variant>
+    <variant frequency="2" name="Clothing-brown-stripes">
+      <props>
+        <prop actor="props/units/heads/head_pers_tiara_y.xml" attachpoint="head"/>
+      </props>
+      <texture>skeletal/pers_isp_b_1.dds</texture>
+    </variant>
+  </group>
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="Melee">
+    <variant name="carry_meat">
       <props>
-        <prop actor="props/units/weapons/jav.xml" attachpoint="loaded-r_hand"/>
-        <prop attachpoint="r_hand"/>
+        <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
+        <prop attachpoint="l_hand"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant name="gather_meat">
+      <props>
+        <prop actor="props/units/weapons/spartan_sword.xml" attachpoint="r_hand"/>
       </props>
     </variant>
   </group>
-
-  <material>basic_trans.xml</material>
-
+  <material>player_trans.xml</material>
 </actor>

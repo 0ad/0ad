@@ -48,6 +48,12 @@
   <Promotion>
     <Entity>units/pers_cavalry_archer_a</Entity>
   </Promotion>
+  <ResourceGatherer>
+    <MaxDistance>4.0</MaxDistance>
+    <Capacities>
+      <food>50</food>
+    </Capacities>
+  </ResourceGatherer>
   <UnitMotion>
     <WalkSpeed>11.0</WalkSpeed>
     <Run>
