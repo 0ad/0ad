@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="100"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="100"/>
+        <animation file="quadraped/horse_attack_a.psa" name="Idle" speed="100"/>
+        <animation file="quadraped/horse_attack_b.psa" name="Idle" speed="100"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="8"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="18"/>
+        <animation file="quadraped/horse_attack_a.psa" name="melee" speed="150"/>
+        <animation file="quadraped/horse_attack_b.psa" name="melee" speed="150"/>
+        <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
+      </animations>
+      <mesh>skeletal/horse.pmd</mesh>
+      <props>
+        <prop actor="units/romans/hero_scipio_r.xml" attachpoint="rider"/>
+        <prop actor="props/units/hero_star.xml" attachpoint="root"/>
+      </props>
+      <texture>skeletal/horse_rome_marcellus.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Death">
+      <props>
+        <prop attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

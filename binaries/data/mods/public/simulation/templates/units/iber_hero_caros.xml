@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_swordsman">
+  <Armour>
+    <Hack>9.0</Hack>
+    <Pierce>10.0</Pierce>
+    <Crush>8.0</Crush>
+  </Armour>
   <Attack>
     <Melee>
       <Hack>30.0</Hack>
     </Melee>
   </Attack>
-  <Cost>
-    <Resources>
-      <metal>225</metal>
-    </Resources>
-  </Cost>
   <Identity>
     <Civ>iber</Civ>
     <SpecificName>Caros</SpecificName>
