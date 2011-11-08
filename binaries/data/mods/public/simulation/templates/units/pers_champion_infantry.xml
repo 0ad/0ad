@@ -2,6 +2,10 @@
 <Entity parent="template_unit_champion_infantry_spearman">
   <Cost>
     <BuildTime>5</BuildTime>
+    <Resources>
+      <wood>0</wood>
+	  <metal>80</metal>
+    </Resources>
   </Cost>
   <Identity>
     <Civ>pers</Civ>

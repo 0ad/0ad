@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee_spearman">
+  <Armour>
+    <Pierce>7.0</Pierce>
+    <Crush>7.0</Crush>
+  </Armour>
   <Builder>
     <Entities datatype="tokens">
       structures/pers_stables

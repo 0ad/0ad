@@ -2,8 +2,8 @@
 <Entity parent="units/hele_infantry_spearman_a">
   <Armour>
     <Hack>7.0</Hack>
-    <Pierce>11.0</Pierce>
-    <Crush>7.0</Crush>
+    <Pierce>12.0</Pierce>
+    <Crush>8.0</Crush>
   </Armour>
   <Attack>
     <Melee>
@@ -26,9 +26,9 @@
     <BaseSpeed>0.5</BaseSpeed>
   </ResourceGatherer>
   <UnitMotion>
-    <WalkSpeed>5.2</WalkSpeed>
+    <WalkSpeed>6.0</WalkSpeed>
     <Run>
-      <Speed>15.6</Speed>
+      <Speed>18.0</Speed>
     </Run>
   </UnitMotion>
   <VisualActor>

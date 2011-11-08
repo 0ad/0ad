@@ -1,16 +1,25 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="800"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="400"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="350"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="600"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="666"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="333"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="222"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="250"/>
         <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/horse_attack_a.psa" name="Idle" speed="20"/>
-        <animation file="quadraped/horse_gallop.psa" name="Walk" speed="17"/>
-        <animation file="quadraped/horse_attack_a.psa" name="melee" speed="25"/>
-        <animation file="quadraped/horse_attack_b.psa" name="melee" speed="20"/>
+        <animation file="quadraped/horse_walk.psa" name="carry_meat" speed="120"/>
+        <animation file="quadraped/horse_attack_a.psa" name="Idle" speed="400"/>
+        <animation file="quadraped/horse_attack_b.psa" name="Idle" speed="300"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="40"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="100"/>
+        <animation file="quadraped/horse_attack_a.psa" name="melee" speed="150"/>
+        <animation file="quadraped/horse_attack_b.psa" name="melee" speed="150"/>
         <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
       </animations>
       <mesh>skeletal/horse.pmd</mesh>
@@ -19,13 +28,17 @@
       </props>
     </variant>
   </group>
-
   <group>
-    <variant name="horse-texture-1">
-      <texture>skeletal/horse_pers_csp_a_1.dds</texture>
+    <variant frequency="2" name="horse-texture-1">
+      <texture>skeletal/horse_pers_csw_e_1.dds</texture>
+    </variant>
+    <variant frequency="2" name="horse-texture-2">
+      <texture>skeletal/horse_pers_csw_e_2.dds</texture>
+    </variant>
+    <variant frequency="1" name="horse-texture-3">
+      <texture>skeletal/horse_pers_csw_e_3.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="horse-color-black">
       <colour>46 46 46</colour>
@@ -40,7 +53,5 @@
       <colour>211 123 44</colour>
     </variant>
   </group>
-
   <material>objectcolor.xml</material>
-
 </actor>
