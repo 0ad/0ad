@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -71,7 +71,7 @@ static FMVector3 FMVector3_Normalize(const FMVector3& vec)
 		return FMVector3(1.0f, 0.0f, 0.0f);
 }
 
-static void AddStaticPropPoints(std::vector<PropPoint> &propPoints, FCDSceneNode* node)
+static void AddStaticPropPoints(std::vector<PropPoint> &propPoints, const FMMatrix44& upAxisTransform, FCDSceneNode* node)
 {
 	if (node->GetName().find("prop-") == 0 || node->GetName().find("prop_") == 0)
 	{
@@ -80,10 +80,10 @@ static void AddStaticPropPoints(std::vector<PropPoint> &propPoints, FCDSceneNode
 
 		Log(LOG_INFO, "Adding prop point %s", propPointName.c_str());
 
-		// Get translation and orientation of the world transform
-		// (TODO: maybe this should be relative to the main mesh's transform?)
+		// CalculateWorldTransform applies transformations recursively for all parents of this node
+		// upAxisTransform transforms this node to right-handed Z_UP coordinates
 
-		FMMatrix44 transform = node->CalculateWorldTransform();
+		FMMatrix44 transform = upAxisTransform * node->CalculateWorldTransform();
 
 		HMatrix matrix;
 		memcpy(matrix, transform.Transposed().m, sizeof(matrix));
@@ -91,12 +91,21 @@ static void AddStaticPropPoints(std::vector<PropPoint> &propPoints, FCDSceneNode
 		AffineParts parts;
 		decomp_affine(matrix, &parts);
 
-		// Add prop point to list (attached to no bone)
+		// Add prop point in game coordinates
 
 		PropPoint p = {
 			propPointName,
-			{ parts.t.x, parts.t.y, parts.t.z },
-			{ parts.q.x, parts.q.y, parts.q.z, parts.q.w },
+			
+			// Flip translation across the x-axis by swapping y and z
+			{ parts.t.x, parts.t.z, parts.t.y },
+
+			// To convert the quaternions: imagine you're using the axis/angle
+			// representation, then swap the y,z basis vectors and change the
+			// direction of rotation by negating the angle ( => negating sin(angle)
+			// => negating x,y,z => changing (x,y,z,w) to (-x,-z,-y,w)
+			// but then (-x,-z,-y,w) == (x,z,y,-w) so do that instead)
+			{ parts.q.x, parts.q.z, parts.q.y, -parts.q.w },
+
 			0xff
 		};
 		propPoints.push_back(p);
@@ -104,7 +113,7 @@ static void AddStaticPropPoints(std::vector<PropPoint> &propPoints, FCDSceneNode
 
 	// Search children for prop points
 	for (size_t i = 0; i < node->GetChildrenCount(); ++i)
-		AddStaticPropPoints(propPoints, node->GetChild(i));
+		AddStaticPropPoints(propPoints, upAxisTransform, node->GetChild(i));
 }
 
 class PMDConvert
@@ -132,6 +141,12 @@ public:
 			// Convert the geometry into a suitable form for the game
 			ReindexGeometry(polys);
 
+			std::vector<VertexBlend> boneWeights;	// unused
+			std::vector<BoneTransform> boneTransforms;	// unused
+			std::vector<PropPoint> propPoints;
+
+			// Get the raw vertex data
+
 			FCDGeometryPolygonsInput* inputPosition = polys->FindInput(FUDaeGeometryInput::POSITION);
 			FCDGeometryPolygonsInput* inputNormal   = polys->FindInput(FUDaeGeometryInput::NORMAL);
 			FCDGeometryPolygonsInput* inputTexcoord = polys->FindInput(FUDaeGeometryInput::TEXCOORD);
@@ -152,14 +167,28 @@ public:
 			assert(sourceNormal  ->GetDataCount() == vertexCount*3);
 			assert(sourceTexcoord->GetDataCount() == vertexCount*2);
 
-			TransformVertices(dataPosition, dataNormal, vertexCount, converter.GetEntityTransform(), converter.IsYUp());
+			// Transform mesh coordinate system to game coordinates
+			// (doesn't modify prop points)
 
-			std::vector<VertexBlend> boneWeights;
-			std::vector<BoneTransform> boneTransforms;
-			std::vector<PropPoint> propPoints;
+			TransformStaticModel(dataPosition, dataNormal, vertexCount, converter.GetEntityTransform(), converter.IsYUp());
+
+			// Add static prop points
+			//	which are empty child nodes of the main parent
+
+			// Default prop points are already given in game coordinates
 			AddDefaultPropPoints(propPoints);
+			
+			// Calculate transform to convert from COLLADA-defined up_axis to Z-up because
+			//	it's relatively straightforward to convert that to game coordinates
+			FMMatrix44 upAxisTransform = FMMatrix44_Identity;
+			if (converter.IsYUp())
+			{
+				// Prop points are rotated -90 degrees about the X-axis, reverse that rotation
+				// (do this once now because it's easier than messing with quaternions later)
+				upAxisTransform = FMMatrix44::XAxisRotationMatrix(1.57f);
+			}
 
-			AddStaticPropPoints(propPoints, converter.GetInstance().GetParent());
+			AddStaticPropPoints(propPoints, upAxisTransform, converter.GetInstance().GetParent());
 
 			WritePMD(output, indicesCombined, indicesCombinedCount, dataPosition, dataNormal, dataTexcoord, vertexCount, boneWeights, boneTransforms, propPoints);
 		}
@@ -372,7 +401,9 @@ public:
 			assert(sourceNormal  ->GetDataCount() == vertexCount*3);
 			assert(sourceTexcoord->GetDataCount() == vertexCount*2);
 
-			TransformVertices(dataPosition, dataNormal, vertexCount, boneTransforms, propPoints,
+			// Transform model coordinate system to game coordinates
+
+			TransformSkinnedModel(dataPosition, dataNormal, vertexCount, boneTransforms, propPoints,
 				converter.GetEntityTransform(), skin->GetBindShapeTransform(),
 				converter.IsYUp(), converter.IsXSI());
 
@@ -489,10 +520,10 @@ public:
 	}
 
 	/**
-	 * Applies world-space transform to vertex data, and flips into other-handed
-	 * coordinate space.
+	 * Applies world-space transform to vertex data and transforms Collada's right-handed
+	 *	Y-up / Z-up coordinates to the game's left-handed Y-up coordinate system
 	 */
-	static void TransformVertices(float* position, float* normal, size_t vertexCount,
+	static void TransformStaticModel(float* position, float* normal, size_t vertexCount,
 		const FMMatrix44& transform, bool yUp)
 	{
 		for (size_t i = 0; i < vertexCount; ++i)
@@ -504,7 +535,7 @@ public:
 			pos = transform.TransformCoordinate(pos);
 			norm = FMVector3_Normalize(transform.TransformVector(norm));
 
-			// Convert from Y_UP or Z_UP to the game's coordinate system
+			// Convert from right-handed Y_UP or Z_UP to the game's coordinate system (left-handed Y-up)
 
 			if (yUp)
 			{
@@ -529,7 +560,11 @@ public:
 		}
 	}
 
-	static void TransformVertices(float* position, float* normal, size_t vertexCount,
+	/**
+	 * Applies world-space transform to vertex data and transforms Collada's right-handed
+	 *	Y-up / Z-up coordinates to the game's left-handed Y-up coordinate system
+	 */
+	static void TransformSkinnedModel(float* position, float* normal, size_t vertexCount,
 		std::vector<BoneTransform>& bones, std::vector<PropPoint>& propPoints,
 		const FMMatrix44& transform, const FMMatrix44& bindTransform, bool yUp, bool isXSI)
 	{
@@ -558,7 +593,7 @@ public:
 			pos = scaledTransform.TransformCoordinate(pos);
 			norm = FMVector3_Normalize(scaledTransform.TransformVector(norm));
 
-			// Convert from Y_UP or Z_UP to the game's coordinate system
+			// Convert from right-handed Y_UP or Z_UP to the game's coordinate system (left-handed Y-up)
 
 			if (yUp)
 			{
@@ -595,7 +630,14 @@ public:
 			}
 			else
 			{
+				// Flip translation across the x-axis by swapping y and z
 				std::swap(propPoints[i].translation[1], propPoints[i].translation[2]);
+
+				// To convert the quaternions: imagine you're using the axis/angle
+				// representation, then swap the y,z basis vectors and change the
+				// direction of rotation by negating the angle ( => negating sin(angle)
+				// => negating x,y,z => changing (x,y,z,w) to (-x,-z,-y,w)
+				// but then (-x,-z,-y,w) == (x,z,y,-w) so do that instead)
 				std::swap(propPoints[i].orientation[1], propPoints[i].orientation[2]);
 				propPoints[i].orientation[3] = -propPoints[i].orientation[3];
 			}

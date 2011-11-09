@@ -41,7 +41,7 @@ typedef void (*OutputFn) (void* cb_data, const char* data, unsigned int length);
 
 /* This version number should be bumped whenever incompatible changes
  * are made, to invalidate old caches. */
-#define COLLADA_CONVERTER_VERSION 2
+#define COLLADA_CONVERTER_VERSION 3
 
 EXPORT void set_logger(LogFn logger, void* cb_data);
 EXPORT int set_skeleton_definitions(const char* xml, int length);
