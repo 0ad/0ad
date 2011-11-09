@@ -301,15 +301,18 @@ std::string CProfiler2::ThreadStorage::GetBuffer()
 void CProfiler2::ThreadStorage::RecordAttribute(const char* fmt, va_list argp)
 {
 	char buffer[MAX_ATTRIBUTE_LENGTH + 4] = {0}; // first 4 bytes are used for storing length
-	i32 len = vsprintf_s(buffer + 4, ARRAY_SIZE(buffer) - 4, fmt, argp);
-	if (len < 0)
+	int len = vsnprintf(buffer + 4, MAX_ATTRIBUTE_LENGTH - 1, fmt, argp); // subtract 1 from length to make MSVC vsnprintf safe
+	// (Don't use vsprintf_s because it treats overflow as fatal)
+
+	// Terminate the string if the printing was truncated
+	if (len < 0 || len >= MAX_ATTRIBUTE_LENGTH - 1)
 	{
-		debug_warn("Profiler attribute sprintf failed");
-		return;
+		strncpy(buffer + 4 + MAX_ATTRIBUTE_LENGTH - 4, "...", 4);
+		len = MAX_ATTRIBUTE_LENGTH - 1; // excluding null terminator
 	}
 
 	// Store the length in the buffer
-	memcpy(buffer, &len, sizeof(len)); 
+	memcpy(buffer, &len, sizeof(len));
 
 	Write(ITEM_ATTRIBUTE, buffer, 4 + len);
 }
