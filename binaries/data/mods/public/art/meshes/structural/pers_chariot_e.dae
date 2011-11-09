@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2011-10-11T12:32:40Z</created>
-    <modified>2011-10-11T12:32:40Z</modified>
+    <created>2011-11-09T02:45:30Z</created>
+    <modified>2011-11-09T02:45:30Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -16,7 +16,7 @@
     <up_axis>Y_UP</up_axis>
   </asset>
   <library_images>
-    <image id="Map__333-image" name="Map__333">
+    <image id="Map__333_image-image" name="Map__333_image">
       <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\structural\pers_chariot_e.png</init_from>
     </image>
   </library_images>
@@ -37,7 +37,7 @@
               <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
             </ambient>
             <diffuse>
-              <texture texture="Map__333-image" texcoord="CHANNEL0">
+              <texture texture="Map__333_image-image" texcoord="CHANNEL0">
                 <extra>
                   <technique profile="MAYA">
                     <wrapU sid="wrapU0">TRUE</wrapU>
@@ -71,10 +71,10 @@
     </effect>
   </library_effects>
   <library_geometries>
-    <geometry id="Mesh_001-lib" name="Mesh_001Mesh">
+    <geometry id="Chariot_Elite-lib" name="Chariot_EliteMesh">
       <mesh>
-        <source id="Mesh_001-lib-Position">
-          <float_array id="Mesh_001-lib-Position-array" count="1404">
+        <source id="Chariot_Elite-lib-Position">
+          <float_array id="Chariot_Elite-lib-Position-array" count="1404">
 2.303871 2.171025 -5.352993
 2.303871 1.255024 -5.345705
 2.303871 0.465388 -4.881392
@@ -331,10 +331,10 @@
 1.616600 2.779800 4.853138
 1.767800 2.743100 4.833338
 1.807000 2.662100 4.822138
-2.148700 2.427200 6.858538
-2.149000 2.427200 6.858538
-2.148900 2.427600 6.858538
-2.149100 2.427200 6.858838
+2.148700 2.427200 7.117649
+2.149000 2.427200 7.117649
+2.148900 2.427600 7.117649
+2.149100 2.427200 7.117949
 1.818000 2.592000 5.661538
 1.713900 2.708000 5.727138
 1.850900 2.678900 5.665238
@@ -411,10 +411,10 @@
 1.585156 2.975385 5.664562
 1.627321 2.842189 5.727240
 1.676916 2.990342 5.662532
-1.632292 3.359483 6.859218
-1.632051 3.359110 6.858914
-1.632348 3.359397 6.858919
-1.632498 3.359137 6.858922
+1.632292 3.359483 7.118329
+1.632051 3.359110 7.118025
+1.632348 3.359397 7.118030
+1.632498 3.359137 7.118033
 1.636999 2.945766 4.822266
 1.586255 2.871318 4.832544
 1.629704 2.722025 4.853138
@@ -423,10 +423,10 @@
 1.637676 2.759531 4.853138
 1.530109 2.647257 4.832544
 1.440263 2.653978 4.822266
-1.084524 2.443394 6.858922
-1.084374 2.443135 6.858919
-1.084770 2.443021 6.858914
-1.084326 2.443043 6.859218
+1.084524 2.443394 7.118033
+1.084374 2.443135 7.118031
+1.084770 2.443021 7.118025
+1.084326 2.443043 7.118329
 1.381700 2.666259 5.662532
 1.534802 2.697385 5.727240
 1.440534 2.594271 5.664562
@@ -443,10 +443,10 @@
 -1.440534 2.594271 5.664562
 -1.534802 2.697385 5.727240
 -1.381700 2.666259 5.662532
--1.084326 2.443043 6.859218
--1.084770 2.443021 6.858914
--1.084374 2.443135 6.858919
--1.084524 2.443394 6.858922
+-1.084326 2.443043 7.118329
+-1.084770 2.443021 7.118025
+-1.084374 2.443135 7.118031
+-1.084524 2.443394 7.118033
 -1.440263 2.653978 4.822266
 -1.530109 2.647257 4.832544
 -1.637676 2.759531 4.853138
@@ -455,10 +455,10 @@
 -1.629704 2.722025 4.853138
 -1.586255 2.871318 4.832544
 -1.636999 2.945766 4.822266
--1.632498 3.359137 6.858922
--1.632348 3.359397 6.858919
--1.632051 3.359110 6.858914
--1.632292 3.359483 6.859218
+-1.632498 3.359137 7.118033
+-1.632348 3.359397 7.118030
+-1.632051 3.359110 7.118025
+-1.632292 3.359483 7.118329
 -1.676916 2.990342 5.662532
 -1.627321 2.842189 5.727240
 -1.585156 2.975385 5.664562
@@ -475,10 +475,10 @@
 -1.850900 2.678900 5.665238
 -1.713900 2.708000 5.727138
 -1.818000 2.592000 5.661538
--2.149100 2.427200 6.858838
--2.148900 2.427600 6.858538
--2.149000 2.427200 6.858538
--2.148700 2.427200 6.858538
+-2.149100 2.427200 7.117949
+-2.148900 2.427600 7.117649
+-2.149000 2.427200 7.117649
+-2.148700 2.427200 7.117649
 -1.807000 2.662100 4.822138
 -1.767800 2.743100 4.833338
 -1.616600 2.779800 4.853138
@@ -545,15 +545,15 @@
 -1.572800 3.985100 -2.203462
 </float_array>
           <technique_common>
-            <accessor source="#Mesh_001-lib-Position-array" count="468" stride="3">
+            <accessor source="#Chariot_Elite-lib-Position-array" count="468" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Mesh_001-lib-Normal0">
-          <float_array id="Mesh_001-lib-Normal0-array" count="6795">
+        <source id="Chariot_Elite-lib-Normal0">
+          <float_array id="Chariot_Elite-lib-Normal0-array" count="6795">
 -0.990814 -0.123661 0.054201
 -0.923612 -0.372326 0.090945
 -0.862117 0.481460 -0.157750
@@ -2821,15 +2821,15 @@
 1.000000 0.000000 0.000000
 </float_array>
           <technique_common>
-            <accessor source="#Mesh_001-lib-Normal0-array" count="2265" stride="3">
+            <accessor source="#Chariot_Elite-lib-Normal0-array" count="2265" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Mesh_001-lib-UV0">
-          <float_array id="Mesh_001-lib-UV0-array" count="4530">
+        <source id="Chariot_Elite-lib-UV0">
+          <float_array id="Chariot_Elite-lib-UV0-array" count="4530">
 0.053557 0.953668
 0.145969 0.947578
 0.149739 0.955339
@@ -5097,19 +5097,19 @@
 0.752588 0.999356
 </float_array>
           <technique_common>
-            <accessor source="#Mesh_001-lib-UV0-array" count="2265" stride="2">
+            <accessor source="#Chariot_Elite-lib-UV0-array" count="2265" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="Mesh_001-lib-Vertex">
-          <input semantic="POSITION" source="#Mesh_001-lib-Position"/>
+        <vertices id="Chariot_Elite-lib-Vertex">
+          <input semantic="POSITION" source="#Chariot_Elite-lib-Position"/>
         </vertices>
         <polygons material="Material__1" count="755">
-          <input semantic="VERTEX" offset="0" source="#Mesh_001-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Mesh_001-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Mesh_001-lib-UV0"/>
+          <input semantic="VERTEX" offset="0" source="#Chariot_Elite-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#Chariot_Elite-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#Chariot_Elite-lib-UV0"/>
           <p>200 0 0 211 1 1 212 2 2</p>
           <p>213 3 3 214 4 4 215 5 5</p>
           <p>197 6 6 218 7 7 216 8 8</p>
@@ -5871,9 +5871,9 @@
   </library_geometries>
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
-      <node id="Mesh_001" name="Mesh_001">
+      <node id="Chariot_Elite" name="Chariot_Elite">
         <matrix sid="matrix">1.109120 0.000000 0.000000 0.000000 0.000000 1.109120 -0.000000 0.000000 0.000000 0.000000 1.109120 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
-        <instance_geometry url="#Mesh_001-lib">
+        <instance_geometry url="#Chariot_Elite-lib">
           <bind_material>
             <technique_common>
               <instance_material symbol="Material__1" target="#Material__1"/>
@@ -5881,22 +5881,22 @@
           </bind_material>
         </instance_geometry>
         <node id="prop_horse2" name="prop_horse2">
-          <matrix sid="matrix">0.844427 0.000000 0.000000 -0.678964 0.000000 0.844427 0.000000 0.000548 0.000000 -0.000000 0.844427 -2.364827 0.000000 0.000000 0.000000 1.000000</matrix>
+          <matrix sid="matrix">0.844427 0.000000 0.000000 -0.678964 0.000000 -0.000000 0.844427 0.000548 0.000000 -0.844427 -0.000000 2.465267 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
         <node id="prop_horse1" name="prop_horse1">
-          <matrix sid="matrix">0.844427 0.000000 0.000000 -2.452564 0.000000 0.844427 0.000000 0.000548 0.000000 -0.000000 0.844427 -2.364827 0.000000 0.000000 0.000000 1.000000</matrix>
+          <matrix sid="matrix">0.844427 0.000000 0.000000 -2.452564 0.000000 -0.000000 0.844427 0.000548 0.000000 -0.844427 -0.000000 2.465267 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
         <node id="prop_horse3" name="prop_horse3">
-          <matrix sid="matrix">0.844427 0.000000 0.000000 0.703244 0.000000 0.844427 0.000000 0.000548 0.000000 -0.000000 0.844427 -2.364827 0.000000 0.000000 0.000000 1.000000</matrix>
+          <matrix sid="matrix">0.844427 0.000000 0.000000 0.703244 0.000000 -0.000000 0.844427 0.000548 0.000000 -0.844427 -0.000000 2.465267 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
         <node id="prop_horse4" name="prop_horse4">
-          <matrix sid="matrix">0.844427 0.000000 0.000000 2.469799 0.000000 0.844427 0.000000 0.000548 0.000000 -0.000000 0.844427 -2.364827 0.000000 0.000000 0.000000 1.000000</matrix>
+          <matrix sid="matrix">0.844427 0.000000 0.000000 2.469799 0.000000 -0.000000 0.844427 0.000548 0.000000 -0.844427 -0.000000 2.465267 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
         <node id="prop_rider2" name="prop_rider2">
-          <matrix sid="matrix">0.844427 0.000000 0.000000 0.635417 0.000000 0.844427 0.000000 2.121650 0.000000 -0.000000 0.844427 3.689075 0.000000 0.000000 0.000000 1.000000</matrix>
+          <matrix sid="matrix">0.844427 0.000000 0.000000 0.814815 0.000000 -0.000000 0.844427 2.049450 0.000000 -0.844427 -0.000000 -3.199172 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
         <node id="prop_rider1" name="prop_rider1">
-          <matrix sid="matrix">0.844427 0.000000 0.000000 -0.940235 0.000000 0.844427 0.000000 2.117452 0.000000 -0.000000 0.844427 3.345907 0.000000 0.000000 0.000000 1.000000</matrix>
+          <matrix sid="matrix">0.844427 0.000000 0.000000 -0.760836 0.000000 -0.000000 0.844427 2.045252 0.000000 -0.844427 -0.000000 -3.542340 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
       </node>
     </visual_scene>

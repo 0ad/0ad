@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2011-10-12T11:09:02Z</created>
-    <modified>2011-10-12T11:09:02Z</modified>
+    <created>2011-11-09T02:40:06Z</created>
+    <modified>2011-11-09T02:40:06Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -16,7 +16,7 @@
     <up_axis>Y_UP</up_axis>
   </asset>
   <library_images>
-    <image id="Map__354-image" name="Map__354">
+    <image id="Map__354_image-image" name="Map__354_image">
       <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\structural\pers_chariot_b.png</init_from>
     </image>
   </library_images>
@@ -37,7 +37,7 @@
               <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
             </ambient>
             <diffuse>
-              <texture texture="Map__354-image" texcoord="CHANNEL0">
+              <texture texture="Map__354_image-image" texcoord="CHANNEL0">
                 <extra>
                   <technique profile="MAYA">
                     <wrapU sid="wrapU0">TRUE</wrapU>
@@ -5629,13 +5629,13 @@
           </bind_material>
         </instance_geometry>
         <node id="prop_horse1" name="prop_horse1">
-          <matrix sid="matrix">0.934730 0.000000 0.000000 -1.367363 0.000000 0.934730 -0.000000 0.000606 0.000000 0.000000 0.934730 -3.725633 0.000000 0.000000 0.000000 1.000000</matrix>
+          <matrix sid="matrix">0.934730 0.000000 0.000000 -1.367363 0.000000 -0.000000 0.934730 0.000606 0.000000 -0.934730 -0.000000 0.895611 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
         <node id="prop_horse2" name="prop_horse2">
-          <matrix sid="matrix">0.934730 0.000000 0.000000 1.337556 0.000000 0.934730 -0.000000 0.000606 0.000000 0.000000 0.934730 -3.725633 0.000000 0.000000 0.000000 1.000000</matrix>
+          <matrix sid="matrix">0.934730 0.000000 0.000000 1.337556 0.000000 -0.000000 0.934730 0.000606 0.000000 -0.934730 -0.000000 0.895611 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
         <node id="prop_rider1" name="prop_rider1">
-          <matrix sid="matrix">0.934730 0.000000 0.000000 -0.009746 0.000000 0.934730 -0.000000 1.957446 0.000000 0.000000 0.934730 1.986701 0.000000 0.000000 0.000000 1.000000</matrix>
+          <matrix sid="matrix">0.934730 0.000000 0.000000 -0.009746 0.000000 -0.000000 0.934730 1.957446 0.000000 -0.934730 -0.000000 -4.410151 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
       </node>
     </visual_scene>
