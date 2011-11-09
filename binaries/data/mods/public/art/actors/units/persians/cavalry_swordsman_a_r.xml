@@ -13,20 +13,20 @@
       </animations>
       <mesh>skeletal/m_pants.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_pers_tiara.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/axe_single.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/head_pers_a.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/thracian_cap_01.xml" attachpoint="helmet"/>
+        <prop actor="props/units/shields/pers_pelta_e_reverse.xml" attachpoint="back"/>
+        <prop actor="props/units/weapons/axe_sagaris.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/shields/pers_buckler_1.xml" attachpoint="shield"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Rider-Texture-1">
-      <texture>skeletal/pers_csw_a.dds</texture>
+      <texture>skeletal/pers_csw_a_01.dds</texture>
     </variant>
     <variant frequency="1" name="Rider-Texture-2">
-      <texture>skeletal/pers_csw_a_1.dds</texture>
-    </variant>
-    <variant frequency="1" name="Rider-Texture-3">
-      <texture>skeletal/pers_csw_a_2.dds</texture>
+      <texture>skeletal/pers_csw_a_02.dds</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>
