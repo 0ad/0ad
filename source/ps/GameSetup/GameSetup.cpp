@@ -62,6 +62,7 @@
 
 #include "renderer/Renderer.h"
 #include "renderer/VertexBufferManager.h"
+#include "renderer/ModelRenderer.h"
 
 #include "maths/MathUtil.h"
 
@@ -591,6 +592,7 @@ static void InitRenderer()
 	g_Renderer.SetViewport(vp);
 
 	ColorActivateFastImpl();
+	ModelRenderer::Init();
 }
 
 static void InitSDL()

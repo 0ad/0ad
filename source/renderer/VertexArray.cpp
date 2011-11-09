@@ -19,6 +19,7 @@
 
 #include "lib/alignment.h"
 #include "lib/ogl.h"
+#include "lib/sysdep/rtl.h"
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
 #include "graphics/SColor.h"
@@ -47,7 +48,7 @@ VertexArray::~VertexArray()
 // Free all resources on destruction or when a layout parameter changes
 void VertexArray::Free()
 {
-	delete[] m_BackingStore;
+	rtl_FreeAligned(m_BackingStore);
 	m_BackingStore = 0;
 	
 	if (m_VB)
@@ -214,7 +215,7 @@ void VertexArray::Layout()
 	//debug_printf(L"Stride: %u\n", m_Stride);
 	
 	if (m_Stride)
-		m_BackingStore = new char[m_Stride * m_NumVertices];
+		m_BackingStore = (char*)rtl_AllocateAligned(m_Stride * m_NumVertices, 16);
 }
 
 
@@ -249,7 +250,7 @@ u8* VertexArray::Bind()
 // Free the backing store to save some memory
 void VertexArray::FreeBackingStore()
 {
-	delete[] m_BackingStore;
+	rtl_FreeAligned(m_BackingStore);
 	m_BackingStore = 0;
 }
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,6 +25,10 @@
 #include "graphics/SkeletonAnimDef.h"
 #include "ps/FileIo.h"
 #include "maths/Vector4D.h"
+
+#if ARCH_X86_X64
+# include <xmmintrin.h>
+#endif
 
 CVector3D CModelDef::SkinPoint(const SModelVertex& vtx,
 							   const CMatrix3D newPoseMatrices[])
@@ -91,12 +95,18 @@ void CModelDef::SkinPointsAndNormals(
 		const size_t* blendIndices,
 		const CMatrix3D newPoseMatrices[])
 {
+	// To avoid some performance overhead, get the raw vertex array pointers
+	char* PositionData = Position.GetData();
+	size_t PositionStride = Position.GetStride();
+	char* NormalData = Normal.GetData();
+	size_t NormalStride = Normal.GetStride();
+
 	for (size_t j = 0; j < numVertices; ++j)
 	{
 		const SModelVertex& vtx = vertices[j];
 
-		Position[j] = newPoseMatrices[blendIndices[j]].Transform(vtx.m_Coords);
-		Normal[j] = newPoseMatrices[blendIndices[j]].Rotate(vtx.m_Norm);
+		CVector3D pos = newPoseMatrices[blendIndices[j]].Transform(vtx.m_Coords);
+		CVector3D norm = newPoseMatrices[blendIndices[j]].Rotate(vtx.m_Norm);
 
 		// If there was more than one influence, the result is probably not going
 		// to be of unit length (since it's a weighted sum of several independent
@@ -104,9 +114,94 @@ void CModelDef::SkinPointsAndNormals(
 		// (It's fairly common to only have one influence, so it seems sensible to
 		// optimise that case a bit.)
 		if (vtx.m_Blend.m_Bone[1] != 0xff) // if more than one influence
-			Normal[j].Normalize();
+			norm.Normalize();
+
+		memcpy(PositionData + PositionStride*j, &pos.X, 3*sizeof(float));
+		memcpy(NormalData + NormalStride*j, &norm.X, 3*sizeof(float));
 	}
 }
+
+#if ARCH_X86_X64
+void CModelDef::SkinPointsAndNormals_SSE(
+		size_t numVertices,
+		const VertexArrayIterator<CVector3D>& Position,
+		const VertexArrayIterator<CVector3D>& Normal,
+		const SModelVertex* vertices,
+		const size_t* blendIndices,
+		const CMatrix3D newPoseMatrices[])
+{
+	// To avoid some performance overhead, get the raw vertex array pointers
+	char* PositionData = Position.GetData();
+	size_t PositionStride = Position.GetStride();
+	char* NormalData = Normal.GetData();
+	size_t NormalStride = Normal.GetStride();
+
+	// Must be aligned correctly for SSE
+	ASSERT((intptr_t)newPoseMatrices % 16 == 0);
+	ASSERT((intptr_t)PositionData % 16 == 0);
+	ASSERT((intptr_t)PositionStride % 16 == 0);
+ 	ASSERT((intptr_t)NormalData % 16 == 0);
+	ASSERT((intptr_t)NormalStride % 16 == 0);
+
+	__m128 col0, col1, col2, col3, vec0, vec1, vec2;
+
+	for (size_t j = 0; j < numVertices; ++j)
+	{
+		const SModelVertex& vtx = vertices[j];
+		const CMatrix3D& mtx = newPoseMatrices[blendIndices[j]];
+
+		// Loads matrix to xmm registers.
+		col0 = _mm_load_ps(mtx._data);
+		col1 = _mm_load_ps(mtx._data + 4);
+		col2 = _mm_load_ps(mtx._data + 8);
+		col3 = _mm_load_ps(mtx._data + 12);
+		
+		// Loads and computes vertex coordinates.
+		vec0 = _mm_load1_ps(&vtx.m_Coords.X);
+		vec0 = _mm_mul_ps(col0, vec0);
+		vec1 = _mm_load1_ps(&vtx.m_Coords.Y);
+		vec1 = _mm_mul_ps(col1, vec1);
+		vec0 = _mm_add_ps(vec0, vec1);
+		vec1 = _mm_load1_ps(&vtx.m_Coords.Z);
+		vec1 = _mm_mul_ps(col2, vec1);
+		vec1 = _mm_add_ps(vec1, col3);
+		vec0 = _mm_add_ps(vec0, vec1);
+		_mm_store_ps((float*)(PositionData + PositionStride*j), vec0);
+
+		// Loads and computes normal vectors.
+		vec0 = _mm_load1_ps(&vtx.m_Norm.X);
+		vec0 = _mm_mul_ps(col0, vec0);
+		vec1 = _mm_load1_ps(&vtx.m_Norm.Y);
+		vec1 = _mm_mul_ps(col1, vec1);
+		vec0 = _mm_add_ps(vec0, vec1);
+		vec1 = _mm_load1_ps(&vtx.m_Norm.Z);
+		vec1 = _mm_mul_ps(col2, vec1);
+		vec0 = _mm_add_ps(vec0, vec1);
+
+		// If there was more than one influence, the result is probably not going
+		// to be of unit length (since it's a weighted sum of several independent
+		// unit vectors), so we need to normalise it.
+		// (It's fairly common to only have one influence, so it seems sensible to
+		// optimise that case a bit.)
+		if (vtx.m_Blend.m_Bone[1] != 0xff) // if more than one influence
+		{
+			// Normalization.
+			// vec1 = [x*x, y*y, z*z, ?*?]
+			vec1 = _mm_mul_ps(vec0, vec0);
+			// vec2 = [y*y, z*z, x*x, y*y]
+			vec2 = _mm_shuffle_ps(vec1, vec1, _MM_SHUFFLE(1, 2, 0, 1));
+			vec1 = _mm_add_ps(vec1, vec2);
+			// vec2 = [z*z, x*x, y*y, z*z]
+			vec2 = _mm_shuffle_ps(vec2, vec2, _MM_SHUFFLE(1, 2, 0, 1));
+			vec1 = _mm_add_ps(vec1, vec2);
+			// rsqrt(a) = 1 / sqrt(a)
+			vec1 = _mm_rsqrt_ps(vec1);
+			vec0 = _mm_mul_ps(vec0, vec1);
+		}
+		_mm_store_ps((float*)(NormalData + NormalStride*j), vec0);
+	}
+}
+#endif
 
 void CModelDef::BlendBoneMatrices(
 		CMatrix3D boneMatrices[])

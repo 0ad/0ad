@@ -37,13 +37,35 @@ struct ShaderModelDef : public CModelDefRPrivate
 	/// Indices are the same for all models, so share them
 	VertexIndexArray m_IndexArray;
 
+	/// Static per-CModelDef vertex array
+	VertexArray m_Array;
+
+	/// UV coordinates are stored in the static array
+	VertexArray::Attribute m_UV;
+
 	ShaderModelDef(const CModelDefPtr& mdef);
 };
 
 
 ShaderModelDef::ShaderModelDef(const CModelDefPtr& mdef)
-	: m_IndexArray(GL_STATIC_DRAW)
+	: m_IndexArray(GL_STATIC_DRAW), m_Array(GL_STATIC_DRAW)
 {
+	size_t numVertices = mdef->GetNumVertices();
+
+	m_UV.type = GL_FLOAT;
+	m_UV.elems = 2;
+	m_Array.AddAttribute(&m_UV);
+
+	m_Array.SetNumVertices(numVertices);
+	m_Array.Layout();
+
+	VertexArrayIterator<float[2]> UVit = m_UV.GetIterator<float[2]>();
+
+	ModelRenderer::BuildUV(mdef, UVit);
+
+	m_Array.Upload();
+	m_Array.FreeBackingStore();
+
 	m_IndexArray.SetNumVertices(mdef->GetNumFaces()*3);
 	m_IndexArray.Layout();
 	ModelRenderer::BuildIndices(mdef, m_IndexArray.GetIterator());
@@ -60,9 +82,6 @@ struct ShaderModel
 	/// Position and normals are recalculated on CPU every frame
 	VertexArray::Attribute m_Position;
 	VertexArray::Attribute m_Normal;
-
-	/// UV is stored per-CModel in order to avoid space wastage due to alignment
-	VertexArray::Attribute m_UV;
 
 	ShaderModel() : m_Array(GL_DYNAMIC_DRAW) { }
 };
@@ -103,25 +122,23 @@ void* ShaderModelRenderer::CreateModelData(CModel* model)
 	// Build the per-model data
 	ShaderModel* shadermodel = new ShaderModel;
 
+	// Positions and normals must be 16-byte aligned for SSE writes.
+
 	shadermodel->m_Position.type = GL_FLOAT;
-	shadermodel->m_Position.elems = 3;
+	shadermodel->m_Position.elems = 4;
 	shadermodel->m_Array.AddAttribute(&shadermodel->m_Position);
 
-	shadermodel->m_UV.type = GL_FLOAT;
-	shadermodel->m_UV.elems = 2;
-	shadermodel->m_Array.AddAttribute(&shadermodel->m_UV);
-
 	shadermodel->m_Normal.type = GL_FLOAT;
-	shadermodel->m_Normal.elems = 3;
+	shadermodel->m_Normal.elems = 4;
 	shadermodel->m_Array.AddAttribute(&shadermodel->m_Normal);
 
 	shadermodel->m_Array.SetNumVertices(mdef->GetNumVertices());
 	shadermodel->m_Array.Layout();
 
-	// Fill in static UV coordinates
-	VertexArrayIterator<float[2]> UVit = shadermodel->m_UV.GetIterator<float[2]>();
-
-	ModelRenderer::BuildUV(mdef, UVit);
+	// Verify alignment
+	ENSURE(shadermodel->m_Position.offset % 16 == 0);
+	ENSURE(shadermodel->m_Normal.offset % 16 == 0);
+	ENSURE(shadermodel->m_Array.GetStride() % 16 == 0);
 
 	return shadermodel;
 }
@@ -188,11 +205,19 @@ void ShaderModelRenderer::EndPass(int streamflags)
 
 
 // Prepare UV coordinates for this modeldef
-void ShaderModelRenderer::PrepareModelDef(int UNUSED(streamflags), const CModelDefPtr& def)
+void ShaderModelRenderer::PrepareModelDef(int streamflags, const CModelDefPtr& def)
 {
 	m->shadermodeldef = (ShaderModelDef*)def->GetRenderData(m);
 
 	ENSURE(m->shadermodeldef);
+
+	if (streamflags & STREAM_UV0)
+	{
+		u8* base = m->shadermodeldef->m_Array.Bind();
+		GLsizei stride = (GLsizei)m->shadermodeldef->m_Array.GetStride();
+
+		glTexCoordPointer(2, GL_FLOAT, stride, base + m->shadermodeldef->m_UV.offset);
+	}
 }
 
 
@@ -212,9 +237,6 @@ void ShaderModelRenderer::RenderModel(int streamflags, CModel* model, void* data
 
 	if (streamflags & STREAM_NORMAL)
 		glNormalPointer(GL_FLOAT, stride, base + shadermodel->m_Normal.offset);
-
-	if (streamflags & STREAM_UV0)
-		glTexCoordPointer(2, GL_FLOAT, stride, base + shadermodel->m_UV.offset);
 
 	// render the lot
 	size_t numFaces = mdldef->GetNumFaces();

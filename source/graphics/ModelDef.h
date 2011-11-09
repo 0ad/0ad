@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -178,6 +178,19 @@ public:
 		const SModelVertex* vertices,
 		const size_t* blendIndices,
 		const CMatrix3D newPoseMatrices[]);
+
+#if ARCH_X86_X64
+	/**
+	 * SSE-optimised version of SkinPointsAndNormals.
+	 */
+	static void SkinPointsAndNormals_SSE(
+		size_t numVertices,
+		const VertexArrayIterator<CVector3D>& Position,
+		const VertexArrayIterator<CVector3D>& Normal,
+		const SModelVertex* vertices,
+		const size_t* blendIndices,
+		const CMatrix3D newPoseMatrices[]);
+#endif
 
 	/**
 	 * Blend bone matrices together to fill bone palette.

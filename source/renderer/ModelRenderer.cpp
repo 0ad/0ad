@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,9 +41,22 @@
 
 #include <boost/weak_ptr.hpp>
 
+#if ARCH_X86_X64
+# include "lib/sysdep/arch/x86_x64/x86_x64.h"
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ModelRenderer implementation
+
+static bool g_EnableSSE = false;
+
+void ModelRenderer::Init()
+{
+#if ARCH_X86_X64
+	if (x86_x64_cap(X86_X64_CAP_SSE))
+		g_EnableSSE = true;
+#endif
+}
 
 // Helper function to copy object-space position and normal vectors into arrays.
 void ModelRenderer::CopyPositionAndNormals(
@@ -84,8 +97,10 @@ void ModelRenderer::BuildPositionAndNormals(
 			return;
 		}
 
-		CModelDef::SkinPointsAndNormals(numVertices, Position, Normal, vertices, mdef->GetBlendIndices(), model->GetAnimatedBoneMatrices());
-
+		if (g_EnableSSE)
+			CModelDef::SkinPointsAndNormals_SSE(numVertices, Position, Normal, vertices, mdef->GetBlendIndices(), model->GetAnimatedBoneMatrices());
+		else
+			CModelDef::SkinPointsAndNormals(numVertices, Position, Normal, vertices, mdef->GetBlendIndices(), model->GetAnimatedBoneMatrices());
 	}
 	else
 	{

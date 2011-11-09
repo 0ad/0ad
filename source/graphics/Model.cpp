@@ -32,6 +32,7 @@
 #include "ObjectEntry.h"
 #include "lib/res/graphics/ogl_tex.h"
 #include "lib/res/h_mgr.h"
+#include "lib/sysdep/rtl.h"
 #include "ps/Profile.h"
 
 #include "ps/CLogger.h"
@@ -57,7 +58,7 @@ CModel::~CModel()
 // ReleaseData: delete anything allocated by the model
 void CModel::ReleaseData()
 {
-	delete[] m_BoneMatrices;
+	rtl_FreeAligned(m_BoneMatrices);
 	delete[] m_InverseBindBoneMatrices;
 
 	for (size_t i = 0; i < m_Props.size(); ++i)
@@ -84,7 +85,7 @@ bool CModel::InitModel(const CModelDefPtr& modeldef)
 		size_t numBlends = modeldef->GetNumBlends();
 
 		// allocate matrices for bone transformations
-		m_BoneMatrices = new CMatrix3D[numBones + numBlends];
+		m_BoneMatrices = (CMatrix3D*)rtl_AllocateAligned(sizeof(CMatrix3D) * (numBones + numBlends), 16);
 		for (size_t i = 0; i < numBones + numBlends; ++i)
 		{
 			m_BoneMatrices[i].SetIdentity();

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -124,6 +124,12 @@ public:
 	virtual ~ModelRenderer() { }
 
 	/**
+	 * Initialise global settings.
+	 * Should be called before using the class.
+	 */
+	static void Init();
+	
+	/**
 	 * Submit: Submit a model for rendering this frame.
 	 *
 	 * preconditions : The model must not have been submitted to any
@@ -212,7 +218,8 @@ public:
 	 * @param Position Points to the array that will receive
 	 * transformed position vectors. The array behind the iterator
 	 * must be large enough to hold model->GetModelDef()->GetNumVertices()
-	 * vertices.
+	 * vertices. It must allow 16 bytes to be written to each element
+	 * (i.e. provide 4 bytes of padding after each CVector3D).
 	 * @param Normal Points to the array that will receive transformed
 	 * normal vectors. The array behind the iterator must be as large as
 	 * the Position array.

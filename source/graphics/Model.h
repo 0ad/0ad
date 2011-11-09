@@ -154,11 +154,12 @@ public:
 	 */
 	bool IsSkinned() { return (m_BoneMatrices != NULL); }
 
-	// return the models bone matrices
+	// return the models bone matrices; 16-byte aligned for SSE reads
 	const CMatrix3D* GetAnimatedBoneMatrices() { 
 		ENSURE(m_PositionValid);
 		return m_BoneMatrices;
 	}
+
 	const CMatrix3D* GetInverseBindBoneMatrices() { 
 		return m_InverseBindBoneMatrices;
 	}

@@ -103,6 +103,16 @@ public:
 		return tmp;
 	}
 
+	// Accessors for raw buffer data, for performance-critical code
+	char* GetData() const
+	{
+		return m_Data;
+	}
+	size_t GetStride() const
+	{
+		return m_Stride;
+	}
+
 private:
 	char* m_Data;
 	size_t m_Stride;
@@ -187,7 +197,7 @@ private:
 
 	CVertexBuffer::VBChunk* m_VB;
 	size_t m_Stride;
-	char* m_BackingStore;
+	char* m_BackingStore; // 16-byte aligned, to allow fast SSE access
 };
 
 /**

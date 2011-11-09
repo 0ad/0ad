@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,7 +25,9 @@
 #include <algorithm>
 #include <vector>
 
+#include "lib/bits.h"
 #include "lib/ogl.h"
+#include "lib/sysdep/rtl.h"
 #include "maths/MathUtil.h"
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
@@ -117,16 +119,25 @@ PSModel::PSModel(CModel* model)
 {
 	CModelDefPtr mdef = m_Model->GetModelDef();
 
-	m_Position.type = GL_FLOAT;
-	m_Position.elems = 3;
-	m_Array.AddAttribute(&m_Position);
+	// Positions and normals must be 16-byte aligned for SSE writes.
+	// We can pack the color after the position; it will be corrupted by
+	// BuildPositionAndNormals, but that's okay since we'll recompute the
+	// colors afterwards.
 
 	m_Color.type = GL_UNSIGNED_BYTE;
 	m_Color.elems = 4;
 	m_Array.AddAttribute(&m_Color);
 
+	m_Position.type = GL_FLOAT;
+	m_Position.elems = 3;
+	m_Array.AddAttribute(&m_Position);
+
 	m_Array.SetNumVertices(mdef->GetNumVertices());
 	m_Array.Layout();
+
+	// Verify alignment
+	ENSURE(m_Position.offset % 16 == 0);
+	ENSURE(m_Array.GetStride() % 16 == 0);
 
 	m_Indices = new u16[mdef->GetNumFaces()*3];
 }
@@ -194,8 +205,13 @@ float PSModel::BackToFrontIndexSort(const CMatrix3D& worldToCam)
  */
 struct PolygonSortModelRendererInternals
 {
-	/// Scratch space for normal vector calculation
-	std::vector<CVector3D> normals;
+	/**
+	 * Scratch space for normal vector calculation.
+	 * Space is reserved so we don't have to do frequent reallocations.
+	 * Allocated with rtl_AllocateAligned(normalsNumVertices*16, 16) for SSE writes.
+	 */
+	char* normals;
+	size_t normalsNumVertices;
 };
 
 
@@ -203,10 +219,14 @@ struct PolygonSortModelRendererInternals
 PolygonSortModelRenderer::PolygonSortModelRenderer()
 {
 	m = new PolygonSortModelRendererInternals;
+	m->normals = 0;
+	m->normalsNumVertices = 0;
 }
 
 PolygonSortModelRenderer::~PolygonSortModelRenderer()
 {
+	rtl_FreeAligned(m->normals);
+
 	delete m;
 }
 
@@ -237,11 +257,19 @@ void PolygonSortModelRenderer::UpdateModelData(CModel* model, void* data, int up
 		size_t numVertices = mdef->GetNumVertices();
 
 		// build vertices
-		if (m->normals.size() < numVertices)
-			m->normals.resize(numVertices);
+
+		// allocate working space for computing normals
+		if (numVertices > m->normalsNumVertices)
+		{
+			rtl_FreeAligned(m->normals);
+
+			size_t newSize = round_up_to_pow2(numVertices);
+			m->normals = (char*)rtl_AllocateAligned(newSize*16, 16);
+			m->normalsNumVertices = newSize;
+		}
 
 		VertexArrayIterator<CVector3D> Position = psmdl->m_Position.GetIterator<CVector3D>();
-		VertexArrayIterator<CVector3D> Normal = VertexArrayIterator<CVector3D>((char*)&m->normals[0], sizeof(CVector3D));
+		VertexArrayIterator<CVector3D> Normal = VertexArrayIterator<CVector3D>(m->normals, 16);
 
 		ModelRenderer::BuildPositionAndNormals(model, Position, Normal);
 
