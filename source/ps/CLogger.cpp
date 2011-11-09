@@ -288,7 +288,8 @@ void CLogger::Render()
 	glPushMatrix();
 
 	glScalef(1.0f, -1.0f, 1.0f);
-	glTranslatef(4.0f, 4.0f + (float)lineSpacing - g_yres, 0.0f);
+	//Offset by 35 vertically to avoid the top bar.
+	glTranslatef(4.0f, 35.0f + (float)lineSpacing - g_yres, 0.0f);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
