@@ -305,7 +305,7 @@ void CProfiler2::ThreadStorage::RecordAttribute(const char* fmt, va_list argp)
 	// (Don't use vsprintf_s because it treats overflow as fatal)
 
 	// Terminate the string if the printing was truncated
-	if (len < 0 || len >= MAX_ATTRIBUTE_LENGTH - 1)
+	if (len < 0 || len >= (int)MAX_ATTRIBUTE_LENGTH - 1)
 	{
 		strncpy(buffer + 4 + MAX_ATTRIBUTE_LENGTH - 4, "...", 4);
 		len = MAX_ATTRIBUTE_LENGTH - 1; // excluding null terminator
