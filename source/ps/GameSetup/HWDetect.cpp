@@ -263,7 +263,7 @@ void RunHardwareDetection()
 #endif
 
 	// Send the same data to the reporting system
-	g_UserReporter.SubmitReport("hwdetect", 8, scriptInterface.StringifyJSON(settings.get(), false));
+	g_UserReporter.SubmitReport("hwdetect", 9, scriptInterface.StringifyJSON(settings.get(), false));
 
 	// Run the detection script:
 
@@ -348,6 +348,15 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 	scriptInterface.SetProperty(settings.get(), "GL_" #id, std::string(c)); \
 	}  while (false)
 
+#define QUERY(target, pname) do { \
+	GLint i = -1; \
+	pglGetQueryivARB(GL_##target, GL_##pname, &i); \
+	if (ogl_SquelchError(GL_INVALID_ENUM)) \
+		scriptInterface.SetProperty(settings.get(), "GL_" #target ".GL_" #pname, errstr); \
+	else \
+		scriptInterface.SetProperty(settings.get(), "GL_" #target ".GL_" #pname, i); \
+	} while (false)
+
 #define VERTEXPROGRAM(id) do { \
 	GLint i = -1; \
 	pglGetProgramivARB(GL_VERTEX_PROGRAM_ARB, GL_##id, &i); \
@@ -427,12 +436,19 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 	// Core OpenGL 2.0 (treated as extensions):
 
 	if (ogl_HaveExtension("GL_EXT_texture_lod_bias"))
+	{
 		FLOAT(MAX_TEXTURE_LOD_BIAS_EXT);
+	}
 
-	// Skip GL_ARB_occlusion_query's QUERY_COUNTER_BITS_ARB since it'd need GetQueryiv
+	if (ogl_HaveExtension("GL_ARB_occlusion_query"))
+	{
+		QUERY(SAMPLES_PASSED, QUERY_COUNTER_BITS);
+	}
 
 	if (ogl_HaveExtension("GL_ARB_shading_language_100"))
+	{
 		STRING(SHADING_LANGUAGE_VERSION_ARB);
+	}
 
 	if (ogl_HaveExtension("GL_ARB_vertex_shader"))
 	{
@@ -454,7 +470,9 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 	}
 
 	if (ogl_HaveExtension("GL_ARB_draw_buffers"))
+	{
 		INTEGER(MAX_DRAW_BUFFERS_ARB);
+	}
 
 	// Core OpenGL 3.0:
 
@@ -489,6 +507,16 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 
 
 	// Other interesting extensions:
+
+	if (ogl_HaveExtension("GL_EXT_timer_query") || ogl_HaveExtension("GL_ARB_timer_query"))
+	{
+		QUERY(TIME_ELAPSED_EXT, QUERY_COUNTER_BITS);
+	}
+
+	if (ogl_HaveExtension("GL_ARB_timer_query"))
+	{
+		QUERY(TIMESTAMP, QUERY_COUNTER_BITS);
+	}
 
 	if (ogl_HaveExtension("GL_EXT_texture_filter_anisotropic"))
 	{
