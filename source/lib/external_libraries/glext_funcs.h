@@ -235,6 +235,40 @@ FUNC2(void, glGetVertexAttribfvARB, glGetVertexAttribfv, "2.0", (GLuint index, G
 FUNC2(void, glGetVertexAttribivARB, glGetVertexAttribiv, "2.0", (GLuint index, GLenum pname, GLint *params))
 FUNC2(void, glGetVertexAttribPointervARB, glGetVertexAttribPointerv, "2.0", (GLuint index, GLenum pname, void **pointer))
 
+// GL_ARB_occlusion_query / GL1.5:
+FUNC2(void, glGenQueriesARB, glGenQueries, "1.5", (GLsizei n, GLuint *ids))
+FUNC2(void, glDeleteQueriesARB, glDeleteQueries, "1.5", (GLsizei n, const GLuint *ids))
+FUNC2(GLboolean, glIsQueryARB, glIsQuery, "1.5", (GLuint id))
+FUNC2(void, glBeginQueryARB, glBeginQuery, "1.5", (GLenum target, GLuint id))
+FUNC2(void, glEndQueryARB, glEndQuery, "1.5", (GLenum target))
+FUNC2(void, glGetQueryivARB, glGetQueryiv, "1.5", (GLenum target, GLenum pname, GLint *params))
+FUNC2(void, glGetQueryObjectivARB, glGetQueryObjectiv, "1.5", (GLuint id, GLenum pname, GLint *params))
+FUNC2(void, glGetQueryObjectuivARB, glGetQueryObjectuiv, "1.5", (GLuint id, GLenum pname, GLuint *params))
+
+// GL_ARB_sync / GL3.2:
+FUNC2(void, glGetInteger64v, glGetInteger64v, "3.2", (GLenum pname, GLint64 *params))
+
+// GL_ARB_timer_query / GL3.3:
+FUNC2(void, glQueryCounter, glQueryCounter, "3.3", (GLuint id, GLenum target))
+FUNC2(void, glGetQueryObjecti64v, glGetQueryObjecti64v, "3.3", (GLuint id, GLenum pname, GLint64 *params))
+FUNC2(void, glGetQueryObjectui64v, glGetQueryObjectui64v, "3.3", (GLuint id, GLenum pname, GLuint64 *params))
+
+// GL_GREMEDY_string_marker (from gDEBugger)
+FUNC(int, glStringMarkerGREMEDY, (GLsizei len, const GLvoid *string))
+
+// GL_INTEL_performance_queries (undocumented, may be unstable, use at own risk;
+// see http://zaynar.co.uk/docs/gl-intel-performance-queries.html)
+FUNC(void, glGetFirstPerfQueryIdINTEL, (GLuint *queryId))
+FUNC(void, glGetNextPerfQueryIdINTEL, (GLuint prevQueryId, GLuint *queryId))
+FUNC(void, glGetPerfQueryInfoINTEL, (GLuint queryId, GLuint nameMaxLength, char *name, GLuint *counterBufferSize, GLuint *numCounters, GLuint *maxQueries, GLuint *))
+FUNC(void, glGetPerfCounterInfoINTEL, (GLuint queryId, GLuint counterId, GLuint nameMaxLength, char *name, GLuint descMaxLength, char *desc, GLuint *offset, GLuint *size, GLuint *usage, GLuint *type, GLuint64 *))
+FUNC(void, glCreatePerfQueryINTEL, (GLuint queryId, GLuint *id))
+FUNC(void, glBeginPerfQueryINTEL, (GLuint id))
+FUNC(void, glEndPerfQueryINTEL, (GLuint id))
+FUNC(void, glDeletePerfQueryINTEL, (GLuint id))
+FUNC(void, glGetPerfQueryDataINTEL, (GLuint id, GLenum requestType, GLuint maxLength, char *buffer, GLuint *length))
+
+
 #if OS_WIN
 // WGL_EXT_swap_control
 FUNC(int, wglSwapIntervalEXT, (int))
@@ -250,7 +284,4 @@ FUNC(int, wglQueryPbufferARB, (HPBUFFERARB, int, int*))
 FUNC(int, wglGetPixelFormatAttribivARB, (HDC, int, int, unsigned int, const int*, int*))
 FUNC(int, wglGetPixelFormatAttribfvARB, (HDC, int, int, unsigned int, const int*, float*))
 FUNC(int, wglChoosePixelFormatARB, (HDC, const int *, const float*, unsigned int, int*, unsigned int*))
-
-// GL_GREMEDY_string_marker (from gDEBugger)
-FUNC(int, glStringMarkerGREMEDY, (GLsizei len, const GLvoid *string))
 #endif // OS_WIN

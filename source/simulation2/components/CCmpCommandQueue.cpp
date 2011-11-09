@@ -85,6 +85,9 @@ public:
 	{
 		JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
 
+		PROFILE2_EVENT("post net command");
+		PROFILE2_ATTR("command: %s", GetSimContext().GetScriptInterface().StringifyJSON(cmd.get(), false).c_str());
+
 		// TODO: would be nicer to not use globals
 		g_Game->GetTurnManager()->PostCommand(CScriptValRooted(cx, cmd));
 	}

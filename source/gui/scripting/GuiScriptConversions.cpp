@@ -41,6 +41,9 @@ template<> jsval ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, SDL_Event_ 
 	case SDL_MOUSEMOTION: typeName = "mousemotion"; break;
 	case SDL_MOUSEBUTTONDOWN: typeName = "mousebuttondown"; break;
 	case SDL_MOUSEBUTTONUP: typeName = "mousebuttonup"; break;
+	case SDL_QUIT: typeName = "quit"; break;
+	case SDL_VIDEOEXPOSE: typeName = "videoexpose"; break;
+	case SDL_VIDEORESIZE: typeName = "videoresize"; break;
 	case SDL_HOTKEYDOWN: typeName = "hotkeydown"; break;
 	case SDL_HOTKEYUP: typeName = "hotkeyup"; break;
 	default: typeName = "(unknown)"; break;

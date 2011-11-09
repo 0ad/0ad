@@ -138,7 +138,7 @@ void OverlayRenderer::PrepareForRendering()
 
 void OverlayRenderer::RenderOverlaysBeforeWater()
 {
-	PROFILE3("render overlays (before)");
+	PROFILE3_GPU("overlays (before)");
 
 	glDisable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
@@ -166,7 +166,7 @@ void OverlayRenderer::RenderOverlaysBeforeWater()
 
 void OverlayRenderer::RenderOverlaysAfterWater()
 {
-	PROFILE3("render overlays (after)");
+	PROFILE3_GPU("overlays (after)");
 
 	if (!m->texlines.empty())
 	{
@@ -262,7 +262,7 @@ void OverlayRenderer::RenderOverlaysAfterWater()
 
 void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 {
-	PROFILE3("render overlays (fg)");
+	PROFILE3_GPU("overlays (fg)");
 
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);

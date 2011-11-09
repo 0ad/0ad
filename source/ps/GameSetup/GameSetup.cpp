@@ -198,6 +198,10 @@ void Render()
 
 	ogl_WarnIfError();
 
+	g_Profiler2.RecordGPUFrameStart();
+
+	ogl_WarnIfError();
+
 	CStr skystring = "255 0 255";
 	CFG_GET_USER_VAL("skycolor", String, skystring);
 	CColor skycol;
@@ -272,7 +276,7 @@ void Render()
 	// Draw the cursor (or set the Windows cursor, on Windows)
 	if (g_DoRenderCursor)
 	{
-		PROFILE3("render cursor");
+		PROFILE3_GPU("cursor");
 		CStrW cursorName = g_CursorName;
 		if (cursorName.empty())
 		{
@@ -301,6 +305,10 @@ void Render()
 	PROFILE2_ATTR("overlay tris: %d", (int)g_Renderer.GetStats().m_OverlayTris);
 	PROFILE2_ATTR("blend splats: %d", (int)g_Renderer.GetStats().m_BlendSplats);
 	PROFILE2_ATTR("particles: %d", (int)g_Renderer.GetStats().m_Particles);
+
+	ogl_WarnIfError();
+
+	g_Profiler2.RecordGPUFrameEnd();
 
 	ogl_WarnIfError();
 }
@@ -647,6 +655,8 @@ void Shutdown(int UNUSED(flags))
 
 	tex_codec_unregister_all();
 
+	g_Profiler2.ShutdownGPU();
+
 	TIMER_BEGIN(L"shutdown SDL");
 	ShutdownSDL();
 	TIMER_END(L"shutdown SDL");
@@ -850,6 +860,13 @@ void Init(const CmdLineArgs& args, int UNUSED(flags))
 	// g_ConfigDB, command line args, globals
 	CONFIG_Init(args);
 
+	// Optionally start profiler HTTP output automatically
+	// (By default it's only enabled by a hotkey, for security/performance)
+	bool profilerHTTPEnable = false;
+	CFG_GET_USER_VAL("profiler2.http.autoenable", Bool, profilerHTTPEnable);
+	if (profilerHTTPEnable)
+		g_Profiler2.EnableHTTP();
+
 	if (!g_Quickstart)
 		g_UserReporter.Initialize(); // after config
 
@@ -878,6 +895,13 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 	SetTextureQuality(quality);
 
 	ogl_WarnIfError();
+
+	// Optionally start profiler GPU timings automatically
+	// (By default it's only enabled by a hotkey, for performance/compatibility)
+	bool profilerGPUEnable = false;
+	CFG_GET_USER_VAL("profiler2.gpu.autoenable", Bool, profilerGPUEnable);
+	if (profilerGPUEnable)
+		g_Profiler2.EnableGPU();
 
 	if(!g_Quickstart)
 	{

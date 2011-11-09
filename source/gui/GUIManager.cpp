@@ -272,7 +272,7 @@ void CGUIManager::TickObjects()
 
 void CGUIManager::Draw()
 {
-	PROFILE3("render gui");
+	PROFILE3_GPU("gui");
 
 	for (PageStackType::iterator it = m_PageStack.begin(); it != m_PageStack.end(); ++it)
 		it->gui->Draw();

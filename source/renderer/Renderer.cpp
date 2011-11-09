@@ -933,7 +933,7 @@ void CRenderer::SetClearColor(SColor4ub color)
 
 void CRenderer::RenderShadowMap()
 {
-	PROFILE3("render shadow map");
+	PROFILE3_GPU("shadow map");
 
 	m->shadow->BeginRender();
 
@@ -978,7 +978,7 @@ void CRenderer::RenderShadowMap()
 
 void CRenderer::RenderPatches(const CFrustum* frustum)
 {
-	PROFILE3("render patches");
+	PROFILE3_GPU("patches");
 
 	bool filtered = false;
 	if (frustum)
@@ -1050,7 +1050,7 @@ private:
 
 void CRenderer::RenderModels(const CFrustum* frustum)
 {
-	PROFILE3("render models");
+	PROFILE3_GPU("models");
 
 	int flags = 0;
 	if (frustum)
@@ -1087,7 +1087,7 @@ void CRenderer::RenderModels(const CFrustum* frustum)
 
 void CRenderer::RenderTransparentModels(ETransparentMode transparentMode, const CFrustum* frustum)
 {
-	PROFILE3("render transparent models");
+	PROFILE3_GPU("transparent models");
 
 	int flags = 0;
 	if (frustum)
@@ -1165,7 +1165,10 @@ void CRenderer::SetObliqueFrustumClipping(const CVector4D& worldPlane)
 	CVector4D camPlane = normalMatrix.Transform(worldPlane);
 
 	// Grab the current projection matrix from OpenGL
+	{
+	PROFILE3("get proj matrix (oblique clipping)"); // sometimes the vsync delay gets accounted here
 	glGetFloatv(GL_PROJECTION_MATRIX, matrix);
+	}
 
 	// Calculate the clip-space corner point opposite the clipping plane
 	// as (sgn(camPlane.x), sgn(camPlane.y), 1, 1) and
@@ -1197,7 +1200,7 @@ void CRenderer::SetObliqueFrustumClipping(const CVector4D& worldPlane)
 // RenderReflections: render the water reflections to the reflection texture
 SScreenRect CRenderer::RenderReflections(const CBound& scissor)
 {
-	PROFILE("render reflections");
+	PROFILE3_GPU("water reflections");
 
 	WaterManager& wm = m->waterManager;
 
@@ -1284,7 +1287,7 @@ SScreenRect CRenderer::RenderReflections(const CBound& scissor)
 // RenderRefractions: render the water refractions to the refraction texture
 SScreenRect CRenderer::RenderRefractions(const CBound &scissor)
 {
-	PROFILE("render refractions");
+	PROFILE3_GPU("water refractions");
 
 	WaterManager& wm = m->waterManager;
 
@@ -1360,7 +1363,7 @@ SScreenRect CRenderer::RenderRefractions(const CBound &scissor)
 
 void CRenderer::RenderSilhouettes()
 {
-	PROFILE3("render silhouettes");
+	PROFILE3_GPU("silhouettes");
 
 	// Render silhouettes of units hidden behind terrain or occluders.
 	// To avoid breaking the standard rendering of alpha-blended objects, this
@@ -1473,7 +1476,7 @@ void CRenderer::RenderParticles()
 	if (GetRenderPath() != RP_SHADER)
 		return;
 
-	PROFILE3("render particles");
+	PROFILE3_GPU("particles");
 
 	m->particleRenderer.RenderParticles();
 
@@ -1529,11 +1532,11 @@ void CRenderer::RenderSubmissions()
 		RenderShadowMap();
 	}
 
-	// clear buffers
-	PROFILE_START("clear buffers");
-	glClearColor(m_ClearColor[0],m_ClearColor[1],m_ClearColor[2],m_ClearColor[3]);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-	PROFILE_END("clear buffers");
+	{
+		PROFILE3_GPU("clear buffers");
+		glClearColor(m_ClearColor[0], m_ClearColor[1], m_ClearColor[2], m_ClearColor[3]);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	}
 
 	ogl_WarnIfError();
 
@@ -1545,6 +1548,8 @@ void CRenderer::RenderSubmissions()
 		{
 			SScreenRect reflectionScissor = RenderReflections(waterScissor);
 			SScreenRect refractionScissor = RenderRefractions(waterScissor);
+
+			PROFILE3_GPU("water scissor");
 			SScreenRect dirty;
 			dirty.x1 = std::min(reflectionScissor.x1, refractionScissor.x1);
 			dirty.y1 = std::min(reflectionScissor.y1, refractionScissor.y1);
@@ -1690,7 +1695,7 @@ void CRenderer::DisplayFrustum()
 // Text overlay rendering
 void CRenderer::RenderTextOverlays()
 {
-	PROFILE("render text overlays");
+	PROFILE3_GPU("text overlays");
 
 	if (m_DisplayTerrainPriorities)
 		m->terrainRenderer->RenderPriorities();

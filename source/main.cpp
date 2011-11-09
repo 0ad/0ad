@@ -135,6 +135,7 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 		}
 		else if (hotkey == "profile2.enable")
 		{
+			g_Profiler2.EnableGPU();
 			g_Profiler2.EnableHTTP();
 			return IN_HANDLED;
 		}
@@ -151,8 +152,17 @@ static void PumpEvents()
 	PROFILE3("dispatch events");
 
 	SDL_Event_ ev;
-	while(SDL_PollEvent(&ev.ev))
+	while (SDL_PollEvent(&ev.ev))
+	{
+		PROFILE2("event");
+		if (g_GUI)
+		{
+			std::string data = g_GUI->GetScriptInterface().StringifyJSON(
+				ScriptInterface::ToJSVal(g_GUI->GetScriptInterface().GetContext(), ev));
+			PROFILE2_ATTR("%s", data.c_str());
+		}
 		in_dispatch_event(&ev);
+	}
 }
 
 
@@ -253,6 +263,8 @@ static void Frame()
 {
 	g_Profiler2.RecordFrameStart();
 	PROFILE2("frame");
+	g_Profiler2.IncrementFrameNumber();
+	PROFILE2_ATTR("%d", g_Profiler2.GetFrameNumber());
 
 	ogl_WarnIfError();
 

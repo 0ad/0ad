@@ -277,7 +277,7 @@ void CLogger::LogError(const wchar_t* fmt, ...)
 
 void CLogger::Render()
 {
-	PROFILE3("render logger");
+	PROFILE3_GPU("logger");
 
 	CleanupRenderQueue();
 

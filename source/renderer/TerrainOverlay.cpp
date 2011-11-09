@@ -93,7 +93,7 @@ void TerrainOverlay::RenderOverlays()
 	if (g_TerrainOverlayList.size() == 0)
 		return;
 
-	PROFILE3("render terrain overlays");
+	PROFILE3_GPU("terrain overlays");
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

@@ -130,6 +130,7 @@ function update_display(range)
 //    display_top_items(main_events, g_data.text_output);
 
     display_frames(processed_main, g_data.canvas_frames);
+    display_events(processed_main, g_data.canvas_frames);
 
     $(g_data.threads[0].canvas).unbind();
     $(g_data.canvas_zoom).unbind();
@@ -284,21 +285,66 @@ function compute_intervals(data, range)
     var num_colours = 0;
     
     var events = [];
-    var intervals = [];
-    
-    var stack = [];
-    for (var i = start; i <= end; ++i)
+
+    // Read events for the entire data period (not just start..end)
+    var lastWasEvent = false;
+    for (var i = 0; i < data.length; ++i)
     {
         if (data[i][0] == ITEM_EVENT)
         {
             events.push({'t': data[i][1], 'id': data[i][2]});
+            lastWasEvent = true;
+        }
+        else if (data[i][0] == ITEM_ATTRIBUTE)
+        {
+            if (lastWasEvent)
+            {
+                if (!events[events.length-1].attrs)
+                    events[events.length-1].attrs = [];
+                events[events.length-1].attrs.push(data[i][1]);
+            }
+        }
+        else
+        {
+            lastWasEvent = false;
+        }
+    }
+    
+    
+    var intervals = [];
+    
+    // Read intervals from the focused data period (start..end)
+    var stack = [];
+    var lastT = 0;
+    var lastWasEvent = false;
+    for (var i = start; i <= end; ++i)
+    {
+        if (data[i][0] == ITEM_EVENT)
+        {
+//            if (data[i][1] < lastT)
+//                console.log('Time went backwards: ' + (data[i][1] - lastT));
+
+            lastT = data[i][1];
+            lastWasEvent = true;
         }
         else if (data[i][0] == ITEM_ENTER)
         {
+//            if (data[i][1] < lastT)
+//                console.log('Time went backwards: ' + (data[i][1] - lastT));
+
             stack.push({'t0': data[i][1], 'id': data[i][2]});
+
+            lastT = data[i][1];
+            lastWasEvent = false;
         }
         else if (data[i][0] == ITEM_LEAVE)
         {
+//            if (data[i][1] < lastT)
+//                console.log('Time went backwards: ' + (data[i][1] - lastT));
+
+            lastT = data[i][1];
+            lastWasEvent = false;
+            
             if (!stack.length)
                 continue;
             var interval = stack.pop();
@@ -319,13 +365,7 @@ function compute_intervals(data, range)
         }
         else if (data[i][0] == ITEM_ATTRIBUTE)
         {
-            if (i > 0 && data[i-1][0] == ITEM_EVENT)
-            {
-                if (!events[events.length-1].attrs)
-                    events[events.length-1].attrs = [];
-                events[events.length-1].attrs.push(data[i][1]);
-            }
-            else if (stack.length)
+            if (!lastWasEvent && stack.length)
             {
                 if (!stack[stack.length-1].attrs)
                     stack[stack.length-1].attrs = [];
@@ -365,6 +405,9 @@ function display_frames(data, canvas)
     canvas._zoomData = {
         'x_to_t': function(x) {
             return tmin + (x - xpadding) / dx;
+        },
+        't_to_x': function(t) {
+            return (t - tmin) * dx + xpadding;
         }
     };
     
@@ -407,6 +450,56 @@ function display_frames(data, canvas)
     ctx.rect(xpadding + dx*(data.tmin - tmin), 0, dx*(data.tmax - data.tmin), canvas.height);
     ctx.fill();
     ctx.stroke();
+    
+    ctx.restore();
+}
+
+function display_events(data, canvas)
+{
+    var ctx = canvas.getContext('2d');
+    ctx.save();
+    
+    var x_to_time = canvas._zoomData.x_to_t;
+    var time_to_x = canvas._zoomData.t_to_x;
+    
+    for (var i = 0; i < data.events.length; ++i)
+    {
+        var event = data.events[i];
+        
+        if (event.id == '__framestart')
+            continue;
+        
+        if (event.id == 'gui event' && event.attrs && event.attrs[0] == 'type: mousemove')
+            continue;
+        
+        var x = time_to_x(event.t);
+        var y = 32;
+        
+        var x0 = x;
+        var x1 = x;
+        var y0 = y-4;
+        var y1 = y+4;
+
+        ctx.strokeStyle = 'rgb(255, 0, 0)';
+        ctx.beginPath();
+        ctx.moveTo(x0, y0);
+        ctx.lineTo(x1, y1);
+        ctx.stroke();
+        canvas._tooltips.push({
+            'x0': x0, 'x1': x1,
+            'y0': y0, 'y1': y1,
+            'text': function(event) { return function() {
+                var t = '<b>' + event.id + '</b><br>';
+                if (event.attrs)
+                {
+                    event.attrs.forEach(function(attr) {
+                        t += attr + '<br>';
+                    });
+                }
+                return t;
+            }} (event)
+        });
+    }
     
     ctx.restore();
 }
@@ -483,7 +576,12 @@ function display_hierarchy(main_data, data, canvas, range, zoom)
 
         var label = interval.id;
         if (interval.attrs)
-            label += ' [...]';
+        {
+            if (/^\d+$/.exec(interval.attrs[0]))
+                label += ' ' + interval.attrs[0];
+            else
+                label += ' [...]';
+        }
         var x0 = Math.floor(time_to_x(interval.t0));
         var x1 = Math.floor(time_to_x(interval.t1));
         var y0 = padding_top + interval.depth * BAR_SPACING;
@@ -532,7 +630,7 @@ function display_hierarchy(main_data, data, canvas, range, zoom)
         ctx.moveTo(x+0.5, 0);
         ctx.lineTo(x+0.5, canvas.height);
         ctx.stroke();
-        ctx.fillText('Frame [' + ((frame.t1 - frame.t0) * 1000).toFixed(0)+'ms]', x+2, padding_top - 24);
+        ctx.fillText(((frame.t1 - frame.t0) * 1000).toFixed(0)+'ms', x+2, padding_top - 24);
         ctx.restore();
     }
 
@@ -636,7 +734,7 @@ function set_tooltip_handlers(canvas)
         for (var i = 0; i < tooltips.length; ++i)
         {
             var t = tooltips[i];
-            if (t.x0 <= relativeX && relativeX <= t.x1 && t.y0 <= relativeY && relativeY <= t.y1)
+            if (t.x0-1 <= relativeX && relativeX <= t.x1+1 && t.y0 <= relativeY && relativeY <= t.y1)
             {
                 text = t.text();
                 break;
@@ -644,6 +742,10 @@ function set_tooltip_handlers(canvas)
         }
         if (text)
         {
+            if (text.length > 512)
+                $('#tooltip').addClass('long');
+            else
+                $('#tooltip').removeClass('long');
             $('#tooltip').css('left', (event.pageX+16)+'px');
             $('#tooltip').css('top', (event.pageY+8)+'px');
             $('#tooltip').html(text);

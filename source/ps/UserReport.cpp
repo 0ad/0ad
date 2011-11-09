@@ -28,6 +28,7 @@
 #include "lib/sysdep/sysdep.h"
 #include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
+#include "ps/Profiler2.h"
 #include "ps/ThreadUtil.h"
 
 #define DEBUG_UPLOADS 0
@@ -230,6 +231,7 @@ private:
 	static void* RunThread(void* data)
 	{
 		debug_SetThreadName("CUserReportWorker");
+		g_Profiler2.RegisterCurrentThread("userreport");
 
 		static_cast<CUserReporterWorker*>(data)->Run();
 
@@ -242,8 +244,12 @@ private:
 		// (This has to be done in the thread because it's potentially very slow)
 		SetStatus("proxy");
 		std::wstring proxy;
-		if (sys_get_proxy_config(wstring_from_utf8(m_URL), proxy) == INFO::OK)
-			curl_easy_setopt(m_Curl, CURLOPT_PROXY, utf8_from_wstring(proxy).c_str());
+
+		{
+			PROFILE2("get proxy config");
+			if (sys_get_proxy_config(wstring_from_utf8(m_URL), proxy) == INFO::OK)
+				curl_easy_setopt(m_Curl, CURLOPT_PROXY, utf8_from_wstring(proxy).c_str());
+		}
 
 		SetStatus("waiting");
 
@@ -267,9 +273,13 @@ private:
 		 * occasionally so it can check its timer.
 		 */
 
+		g_Profiler2.RecordRegionEnter("semaphore wait");
+
 		// Wait until the main thread wakes us up
 		while (SDL_SemWait(m_WorkerSem) == 0)
 		{
+			g_Profiler2.RecordRegionLeave("semaphore wait");
+
 			// Handle shutdown requests as soon as possible
 			if (GetShutdown())
 				return;
@@ -291,6 +301,8 @@ private:
 					return;
 			}
 		}
+
+		g_Profiler2.RecordRegionLeave("semaphore wait");
 	}
 
 	bool GetEnabled()
@@ -316,6 +328,8 @@ private:
 
 	bool ProcessReport()
 	{
+		PROFILE2("process report");
+		
 		shared_ptr<CUserReport> report;
 
 		{

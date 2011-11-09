@@ -198,4 +198,7 @@ public:
 // Do both old and new profilers simultaneously (1+2=3), for convenience.
 #define PROFILE3(name) PROFILE(name); PROFILE2(name)
 
+// Also do GPU
+#define PROFILE3_GPU(name) PROFILE(name); PROFILE2(name); PROFILE2_GPU(name)
+
 #endif // INCLUDED_PROFILE

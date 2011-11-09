@@ -1,18 +1,23 @@
-/* Copyright (C) 2011 Wildfire Games.
- * This file is part of 0 A.D.
+/* Copyright (c) 2011 Wildfire Games
  *
- * 0 A.D. is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * 0 A.D. is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 #include "precompiled.h"
@@ -21,6 +26,7 @@
 
 #include "lib/allocators/shared_ptr.h"
 #include "ps/CLogger.h"
+#include "ps/Profiler2GPU.h"
 #include "third_party/mongoose/mongoose.h"
 
 CProfiler2 g_Profiler2;
@@ -29,8 +35,13 @@ CProfiler2 g_Profiler2;
 const u8 CProfiler2::RESYNC_MAGIC[8] = {0x11, 0x22, 0x33, 0x44, 0xf4, 0x93, 0xbe, 0x15};
 
 CProfiler2::CProfiler2() :
-	m_Initialised(false), m_MgContext(NULL)
+	m_Initialised(false), m_FrameNumber(0), m_MgContext(NULL), m_GPU(NULL)
 {
+}
+
+CProfiler2::~CProfiler2()
+{
+	ENSURE(!m_Initialised); // should have called Shutdown() explicitly
 }
 
 /**
@@ -133,6 +144,12 @@ void CProfiler2::Initialise()
 	RegisterCurrentThread("main");
 }
 
+void CProfiler2::InitialiseGPU()
+{
+	ENSURE(!m_GPU);
+	m_GPU = new CProfiler2GPU(*this);
+}
+
 void CProfiler2::EnableHTTP()
 {
 	ENSURE(m_Initialised);
@@ -150,9 +167,23 @@ void CProfiler2::EnableHTTP()
 	ENSURE(m_MgContext);
 }
 
+void CProfiler2::EnableGPU()
+{
+	ENSURE(m_Initialised);
+	if (!m_GPU)
+		InitialiseGPU();
+}
+
+void CProfiler2::ShutdownGPU()
+{
+	SAFE_DELETE(m_GPU);
+}
+
 void CProfiler2::Shutdown()
 {
 	ENSURE(m_Initialised);
+
+	ENSURE(!m_GPU); // must shutdown GPU before profiler
 
 	if (m_MgContext)
 	{
@@ -167,6 +198,30 @@ void CProfiler2::Shutdown()
 	m_Initialised = false;
 }
 
+void CProfiler2::RecordGPUFrameStart()
+{
+	if (m_GPU)
+		m_GPU->FrameStart();
+}
+
+void CProfiler2::RecordGPUFrameEnd()
+{
+	if (m_GPU)
+		m_GPU->FrameEnd();
+}
+
+void CProfiler2::RecordGPURegionEnter(const char* id)
+{
+	if (m_GPU)
+		m_GPU->RegionEnter(id);
+}
+
+void CProfiler2::RecordGPURegionLeave(const char* id)
+{
+	if (m_GPU)
+		m_GPU->RegionLeave(id);
+}
+
 /**
  * Called by pthreads when a registered thread is destroyed.
  */
@@ -174,12 +229,7 @@ void CProfiler2::TLSDtor(void* data)
 {
 	ThreadStorage* storage = (ThreadStorage*)data;
 
-	CProfiler2& profiler = storage->GetProfiler();
-
-	{
-		CScopeLock lock(profiler.m_Mutex);
-		profiler.m_Threads.erase(std::find(profiler.m_Threads.begin(), profiler.m_Threads.end(), storage));
-	}
+	storage->GetProfiler().RemoveThreadStorage(storage);
 
 	delete (ThreadStorage*)data;
 }
@@ -197,8 +247,19 @@ void CProfiler2::RegisterCurrentThread(const std::string& name)
 	RecordSyncMarker();
 	RecordEvent("thread start");
 
+	AddThreadStorage(storage);
+}
+
+void CProfiler2::AddThreadStorage(ThreadStorage* storage)
+{
 	CScopeLock lock(m_Mutex);
 	m_Threads.push_back(storage);
+}
+
+void CProfiler2::RemoveThreadStorage(ThreadStorage* storage)
+{
+	CScopeLock lock(m_Mutex);
+	m_Threads.erase(std::find(m_Threads.begin(), m_Threads.end(), storage));
 }
 
 CProfiler2::ThreadStorage::ThreadStorage(CProfiler2& profiler, const std::string& name) :
@@ -256,6 +317,8 @@ void CProfiler2::ThreadStorage::RecordAttribute(const char* fmt, va_list argp)
 
 void CProfiler2::ConstructJSONOverview(std::ostream& stream)
 {
+	TIMER(L"profile2 overview");
+
 	CScopeLock lock(m_Mutex);
 
 	stream << "{\"threads\":[";
@@ -275,6 +338,8 @@ void CProfiler2::ConstructJSONOverview(std::ostream& stream)
 template<typename V>
 void RunBufferVisitor(const std::string& buffer, V& visitor)
 {
+	TIMER(L"profile2 visitor");
+
 	// The buffer doesn't necessarily start at the beginning of an item
 	// (we just grabbed it from some arbitrary point in the middle),
 	// so scan forwards until we find a sync marker.
@@ -421,24 +486,33 @@ public:
 
 const char* CProfiler2::ConstructJSONResponse(std::ostream& stream, const std::string& thread)
 {
-	CScopeLock lock(m_Mutex);
+	TIMER(L"profile2 query");
 
-	ThreadStorage* storage = NULL;
-	for (size_t i = 0; i < m_Threads.size(); ++i)
+	std::string buffer;
+
 	{
-		if (m_Threads[i]->GetName() == thread)
+		TIMER(L"profile2 get buffer");
+
+		CScopeLock lock(m_Mutex); // lock against changes to m_Threads or deletions of ThreadStorage
+
+		ThreadStorage* storage = NULL;
+		for (size_t i = 0; i < m_Threads.size(); ++i)
 		{
-			storage = m_Threads[i];
-			break;
+			if (m_Threads[i]->GetName() == thread)
+			{
+				storage = m_Threads[i];
+				break;
+			}
 		}
+
+		if (!storage)
+			return "cannot find named thread";
+
+		stream << "{\"events\":[\n";
+
+		buffer = storage->GetBuffer();
 	}
 
-	if (!storage)
-		return "cannot find named thread";
-
-	stream << "{\"events\":[\n";
-
-	std::string buffer = storage->GetBuffer();
 	BufferVisitor_Dump visitor(stream);
 	RunBufferVisitor(buffer, visitor);
 

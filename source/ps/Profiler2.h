@@ -1,18 +1,23 @@
-/* Copyright (C) 2011 Wildfire Games.
- * This file is part of 0 A.D.
+/* Copyright (c) 2011 Wildfire Games
  *
- * 0 A.D. is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * 0 A.D. is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 /**
@@ -80,8 +85,12 @@ struct mg_context;
 // Note: Lots of functions are defined inline, to hypothetically
 // minimise performance overhead.
 
+class CProfiler2GPU;
+
 class CProfiler2
 {
+	friend class CProfiler2GPU_base;
+
 public:
 	// Items stored in the buffers:
 
@@ -113,7 +122,7 @@ public:
 private:
 	// TODO: what's a good size?
 	// TODO: different threads might want different sizes
-	static const size_t BUFFER_SIZE = 128*1024;
+	static const size_t BUFFER_SIZE = 1024*1024;
 
 	/**
 	 * Class instantiated in every registered thread.
@@ -153,6 +162,14 @@ private:
 		}
 
 		void RecordAttribute(const char* fmt, va_list argp);
+		
+		void RecordAttributePrintf(const char* fmt, ...)
+		{
+			va_list argp;
+			va_start(argp, fmt);
+			RecordAttribute(fmt, argp);
+			va_end(argp);
+		}
 
 		CProfiler2& GetProfiler()
 		{
@@ -230,6 +247,7 @@ private:
 
 public:
 	CProfiler2();
+	~CProfiler2();
 
 	/**
 	 * Call in main thread to set up the profiler,
@@ -243,6 +261,18 @@ public:
 	 * and to avoid annoying a firewall.)
 	 */
 	void EnableHTTP();
+
+	/**
+	 * Call in main thread to enable the GPU profiling support,
+	 * after OpenGL has been initialised.
+	 */
+	void EnableGPU();
+
+	/**
+	 * Call in main thread to shut down the GPU profiling support,
+	 * before shutting down OpenGL.
+	 */
+	void ShutdownGPU();
 
 	/**
 	 * Call in main thread to shut everything down.
@@ -272,6 +302,7 @@ public:
 	 */
 	void RecordFrameStart()
 	{
+		ENSURE(ThreadUtil::IsMainThread());
 		GetThreadStorage().RecordFrameStart(GetTime());
 	}
 
@@ -298,6 +329,11 @@ public:
 		va_end(argp);
 	}
 
+	void RecordGPUFrameStart();
+	void RecordGPUFrameEnd();
+	void RecordGPURegionEnter(const char* id);
+	void RecordGPURegionLeave(const char* id);
+
 	/**
 	 * Call in any thread to produce a JSON representation of the general
 	 * state of the application.
@@ -311,7 +347,27 @@ public:
 	 */
 	const char* ConstructJSONResponse(std::ostream& stream, const std::string& thread);
 
+	double GetTime()
+	{
+		return timer_Time();
+	}
+
+	int GetFrameNumber()
+	{
+		return m_FrameNumber;
+	}
+
+	void IncrementFrameNumber()
+	{
+		++m_FrameNumber;
+	}
+
+	void AddThreadStorage(ThreadStorage* storage);
+	void RemoveThreadStorage(ThreadStorage* storage);
+
 private:
+	void InitialiseGPU();
+
 	static void TLSDtor(void* data);
 
 	ThreadStorage& GetThreadStorage()
@@ -321,16 +377,15 @@ private:
 		return *storage;
 	}
 
-	double GetTime()
-	{
-		return timer_Time();
-	}
-
 	bool m_Initialised;
+
+	int m_FrameNumber;
 	
 	mg_context* m_MgContext;
 	
 	pthread_key_t m_TLS;
+
+	CProfiler2GPU* m_GPU;
 
 	CMutex m_Mutex;
 	std::vector<ThreadStorage*> m_Threads; // thread-safe; protected by m_Mutex
@@ -357,6 +412,24 @@ private:
 };
 
 /**
+ * Scope-based GPU enter/leave helper.
+ */
+class CProfile2GPURegion
+{
+public:
+	CProfile2GPURegion(const char* name) : m_Name(name)
+	{
+		g_Profiler2.RecordGPURegionEnter(m_Name);
+	}
+	~CProfile2GPURegion()
+	{
+		g_Profiler2.RecordGPURegionLeave(m_Name);
+	}
+private:
+	const char* m_Name;
+};
+
+/**
  * Starts timing from now until the end of the current scope.
  * @p region is the name to associate with this region (should be
  * a constant string literal; the pointer must remain valid forever).
@@ -364,6 +437,8 @@ private:
  * it hurts the visualisation.
  */
 #define PROFILE2(region) CProfile2Region profile2__(region)
+
+#define PROFILE2_GPU(region) CProfile2GPURegion profile2gpu__(region)
 
 /**
  * Record the named event at the current time.

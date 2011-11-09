@@ -495,6 +495,10 @@ void IGUIObject::SetScriptHandler(const CStr& Action, JSObject* Function)
 
 InReaction IGUIObject::SendEvent(EGUIMessageType type, const CStr& EventName)
 {
+	PROFILE2_EVENT("gui event");
+	PROFILE2_ATTR("type: %s", EventName.c_str());
+	PROFILE2_ATTR("object: %s", m_Name.c_str());
+
 	SGUIMessage msg(type);
 	HandleMessage(msg);
 

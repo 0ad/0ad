@@ -275,7 +275,11 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 
 		if (m_TurnManager->Update(deltaTime, maxTurns))
 		{
-			g_GUI->SendEventToAll("SimulationUpdate");
+			{
+				PROFILE3("gui sim update");
+				g_GUI->SendEventToAll("SimulationUpdate");
+			}
+
 			GetView()->GetLOSTexture().MakeDirty();
 		}
 	}
