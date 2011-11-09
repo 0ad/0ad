@@ -1,8 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/pers_cavalry_javelinist_b">
+  <Armour>
+    <Hack>4.0</Hack>
+    <Pierce>4.0</Pierce>
+    <Crush>3.0</Crush>
+  </Armour>
+  <Attack>
+    <Ranged>
+      <Pierce>36.0</Pierce>
+      <MaxRange>48</MaxRange>
+    </Ranged>
+  </Attack>
+  <Health>
+    <Max>130</Max>
+  </Health>
+  <Identity>
+    <Rank>Advanced</Rank>
+  </Identity>
   <Promotion>
     <Entity>units/pers_cavalry_javelinist_e</Entity>
   </Promotion>
+  <ResourceGatherer>
+    <BaseSpeed>0.75</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>11.5</WalkSpeed>
+    <Run>
+      <Speed>28.75</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/persians/cavalry_javelinist_a.xml</Actor>
   </VisualActor>

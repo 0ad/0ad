@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/pers_cavalry_swordsman_a">
+  <Armour>
+    <Hack>8.0</Hack>
+    <Pierce>11.0</Pierce>
+    <Crush>7.0</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>25.0</Hack>
+    </Melee>
+    <Charge>
+      <Hack>66.0</Hack>
+    </Charge>
+  </Attack>
+  <Health>
+    <Max>150</Max>
+  </Health>
+  <Identity>
+    <Rank>Elite</Rank>
+  </Identity>
+  <Promotion disable=""/>
+  <ResourceGatherer>
+    <BaseSpeed>0.5</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>10.0</WalkSpeed>
+    <Run>
+      <Speed>25.0</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/persians/cavalry_swordsman_e.xml</Actor>
   </VisualActor>

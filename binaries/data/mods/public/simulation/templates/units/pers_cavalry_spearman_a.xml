@@ -1,8 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/pers_cavalry_spearman_b">
+  <Armour>
+    <Hack>6.0</Hack>
+    <Pierce>10.0</Pierce>
+    <Crush>6.0</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>6.0</Hack>
+      <Pierce>16.0</Pierce>
+    </Melee>
+    <Charge>
+      <Hack>18.0</Hack>
+      <Pierce>48.0</Pierce>
+    </Charge>
+  </Attack>
+  <Health>
+    <Max>140</Max>
+  </Health>
+  <Identity>
+    <Rank>Advanced</Rank>
+  </Identity>
   <Promotion>
     <Entity>units/pers_cavalry_spearman_e</Entity>
   </Promotion>
+  <ResourceGatherer>
+    <BaseSpeed>0.75</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>10.5</WalkSpeed>
+    <Run>
+      <Speed>25.25</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/persians/cavalry_spearman_a.xml</Actor>
   </VisualActor>
