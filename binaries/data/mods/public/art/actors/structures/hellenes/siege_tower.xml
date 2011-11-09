@@ -1,18 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?> 
-<actor version="1"> 
-  <castshadow/> 
-  <group> 
-    <variant frequency="1" name="Siege Tower"> 
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Siege Tower">
       <animations>
-        <animation file="mechanical/hele_siege_tower_move.dae" name="Walk" speed="12"/>
+        <animation file="mechanical/hele_siege_tower_move.dae" name="Walk" speed="15"/>
         <animation file="mechanical/hele_siege_tower_move.dae" name="Run" speed="24"/>
+        <animation event="0.5" load="0.0" name="Melee" speed="100"/>
       </animations>
-      <mesh>structural/hele_siege_tower.dae</mesh> 
+      <mesh>structural/hele_siege_tower.dae</mesh>
       <props>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
       </props>
-      <texture>structural/hele_siege_tower.dds</texture> 
-    </variant> 
-  </group> 
+      <texture>structural/hele_siege_tower.dds</texture>
+    </variant>
+  </group>
   <material>player_trans.xml</material>
 </actor>

@@ -38,9 +38,9 @@
   <Loot>
     <xp>200</xp>
     <food>0</food>
-    <wood>25</wood>
+    <wood>20</wood>
     <stone>0</stone>
-    <metal>25</metal>
+    <metal>20</metal>
   </Loot>
   <Obstruction>
     <Unit radius="2.0"/>
@@ -49,7 +49,7 @@
     <Entity>units/pers_cavalry_archer_a</Entity>
   </Promotion>
   <ResourceGatherer>
-    <MaxDistance>4.0</MaxDistance>
+    <MaxDistance>5.0</MaxDistance>
     <Capacities>
       <food>50</food>
     </Capacities>
