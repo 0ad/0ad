@@ -503,5 +503,8 @@ int main(int argc, char* argv[])
 
 	RunGameOrAtlas(argc, const_cast<const char**>(argv));
 
+	// Shut down profiler initialised by EarlyInit
+	g_Profiler2.Shutdown();
+
 	return EXIT_SUCCESS;
 }

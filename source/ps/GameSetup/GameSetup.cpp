@@ -698,8 +698,6 @@ void Shutdown(int UNUSED(flags))
 	wmi_Shutdown();
 	TIMER_END(L"shutdown wmi");
 #endif
-
-	g_Profiler2.Shutdown();
 }
 
 #if OS_UNIX
@@ -779,7 +777,8 @@ void EarlyInit()
 
 	timer_LatchStartTime();
 
-	// initialise profiler early so it can profile startup
+	// initialise profiler early so it can profile startup,
+	// but only after LatchStartTime
 	g_Profiler2.Initialise();
 
 	FixLocales();
