@@ -141,8 +141,8 @@ bool debug_filter_allows(const wchar_t* text)
 #undef debug_printf	// allowing #defining it out
 void debug_printf(const wchar_t* fmt, ...)
 {
-	wchar_t buf[4096];
-
+	wchar_t buf[16384];
+	
 	va_list ap;
 	va_start(ap, fmt);
 	const int numChars = vswprintf_s(buf, ARRAY_SIZE(buf), fmt, ap);

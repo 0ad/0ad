@@ -260,11 +260,11 @@ function RunDetection(settings)
 
 global.RunHardwareDetection = function(settings)
 {
-	//print(uneval(settings)+"\n");
+	//print(JSON.stringify(settings, null, 1).length+"\n");
 
 	var output = RunDetection(settings);
 
-	//print(uneval(output)+"\n");
+	//print(JSON.stringify(output, null, 1)+"\n");
 
 	for (var i = 0; i < output.warnings.length; ++i)
 		warn(output.warnings[i]);
