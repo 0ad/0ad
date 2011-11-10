@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="669.781" y="211.817" z="487.562"/>
-		<Rotation angle="-0.109194"/>
-		<Declination angle="0.597328"/>
+		<Position x="700.607" y="166.416" z="545.221"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -6574,12 +6574,6 @@
 			<Position x="558.45215" z="569.37751"/>
 			<Orientation y="-2.59968"/>
 		</Entity>
-		<Entity uid="1180">
-			<Template>structures/pers_tachara</Template>
-			<Player>1</Player>
-			<Position x="738.3053" z="811.72828"/>
-			<Orientation y="-2.40339"/>
-		</Entity>
 		<Entity uid="1181">
 			<Template>structures/pers_fortress</Template>
 			<Player>1</Player>
@@ -8115,6 +8109,12 @@
 			<Player>1</Player>
 			<Position x="544.95124" z="856.6808"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1526">
+			<Template>structures/pers_apadana</Template>
+			<Player>1</Player>
+			<Position x="737.48151" z="807.03412"/>
+			<Orientation y="-2.36852"/>
 		</Entity>
 	</Entities>
 	<Paths/>
