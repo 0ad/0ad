@@ -6,18 +6,18 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2009-01-14T22:47:29Z</created>
-    <modified>2009-01-14T22:47:29Z</modified>
+    <created>2011-11-11T02:31:20Z</created>
+    <modified>2011-11-11T02:31:20Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
     <keywords></keywords>
     <unit meter="0.025400"/>
-    <up_axis>Z_UP</up_axis>
+    <up_axis>Y_UP</up_axis>
   </asset>
   <library_images>
-    <image id="Map__283-image" name="Map__283">
-      <init_from>file://C:\Documents and Settings\Brad\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\internal\art\textures\skins\structural\iber_struct.dds</init_from>
+    <image id="Map__283_image-image" name="Map__283_image">
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\structural\iber_struct.dds</init_from>
     </image>
   </library_images>
   <library_materials>
@@ -37,7 +37,7 @@
               <color sid="ambient">0.588200  0.588200 0.588200 1.000000</color>
             </ambient>
             <diffuse>
-              <texture texture="Map__283-image" texcoord="CHANNEL0">
+              <texture texture="Map__283_image-image" texcoord="CHANNEL0">
                 <extra>
                   <technique profile="MAYA">
                     <wrapU sid="wrapU0">TRUE</wrapU>
@@ -5246,18 +5246,17 @@
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
       <node id="Spear03" name="Spear03">
-        <translate sid="translate">1.645977 -5.687948 1.663173</translate>
-        <rotate sid="rotateZ">0 0 1 99.363741</rotate>
-        <rotate sid="rotateY">0 1 0 -11.311149</rotate>
-        <rotate sid="rotateX">1 0 0 2.633607</rotate>
+        <matrix sid="matrix">-0.159541 -0.984167 0.077215 1.645977 0.196137 0.045056 0.979541 1.663173 -0.967511 0.171422 0.185843 5.687948 0.000000 0.000000 0.000000 1.000000</matrix>
         <instance_geometry url="#Spear03-lib">
           <bind_material>
             <technique_common>
-              <instance_material symbol="Map__283-Material" target="#Map__283-Material"/>
               <instance_material symbol="_8___Default" target="#_8___Default"/>
             </technique_common>
           </bind_material>
         </instance_geometry>
+        <node id="prop_garrisoned" name="prop_garrisoned">
+          <matrix sid="matrix">-0.159541 0.967511 0.196137 13.287537 -0.984167 -0.171422 0.045056 5.893007 0.077215 -0.185843 0.979541 1.827477 0.000000 0.000000 0.000000 1.000000</matrix>
+        </node>
       </node>
     </visual_scene>
   </library_visual_scenes>

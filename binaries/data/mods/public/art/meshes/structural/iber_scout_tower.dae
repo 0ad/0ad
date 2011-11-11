@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2011-07-13T02:57:37Z</created>
-    <modified>2011-07-13T02:57:37Z</modified>
+    <created>2011-11-11T02:26:45Z</created>
+    <modified>2011-11-11T02:26:45Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -16,7 +16,7 @@
     <up_axis>Y_UP</up_axis>
   </asset>
   <library_images>
-    <image id="Map__291_image-image" name="Map__291_image">
+    <image id="Map__291_image_image-image" name="Map__291_image_image">
       <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\structural\iber_struct.dds</init_from>
     </image>
   </library_images>
@@ -37,7 +37,7 @@
               <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
             </ambient>
             <diffuse>
-              <texture texture="Map__291_image-image" texcoord="CHANNEL0">
+              <texture texture="Map__291_image_image-image" texcoord="CHANNEL0">
                 <extra>
                   <technique profile="MAYA">
                     <wrapU sid="wrapU0">TRUE</wrapU>
@@ -2175,10 +2175,10 @@
           </bind_material>
         </instance_geometry>
         <node id="prop_garrisoned" name="prop_garrisoned">
-          <matrix sid="matrix">0.000000 -0.000000 0.124996 0.015495 0.124996 0.000000 -0.000000 0.228587 0.000000 0.124996 0.000000 0.642316 0.000000 0.000000 0.000000 1.000000</matrix>
+          <matrix sid="matrix">0.000000 0.124996 0.000000 0.015495 -0.124996 0.000000 -0.000000 0.228587 -0.000000 -0.000000 0.124996 0.642316 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
         <node id="prop_projectile" name="prop_projectile">
-          <matrix sid="matrix">-0.000000 0.061853 -0.000000 0.034436 -0.061853 -0.000000 0.000000 0.001048 -0.000000 0.000000 0.061853 0.117537 0.000000 0.000000 0.000000 1.000000</matrix>
+          <matrix sid="matrix">-0.000000 0.061853 0.000000 0.034436 -0.061853 -0.000000 -0.000000 0.001048 -0.000000 0.000000 0.061853 0.117537 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
       </node>
     </visual_scene>
