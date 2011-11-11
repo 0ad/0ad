@@ -7,9 +7,10 @@
         <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
         <animation file="biped/cavalryidle.psa" name="Walk" speed="18"/>
         <animation file="biped/rider_gallop.psa" name="Run" speed="8"/>
-        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="Melee" speed="200"/>
-        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="Melee" speed="190"/>
-        <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="Melee" speed="200"/>
+        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="Melee" speed="300"/>
+        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="Melee" speed="350"/>
+        <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="Melee" speed="300"/>
+        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="gather_meat" speed="350"/>
         <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
       </animations>
       <mesh>skeletal/m_pants_celt.dae</mesh>
@@ -17,20 +18,26 @@
         <prop actor="props/units/heads/head_pers_a.xml" attachpoint="head"/>
         <prop actor="props/units/heads/pers_conical_plume.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/axe_sagaris.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/shields/pers_pelta_a_b_reverse.xml" attachpoint="back"/>
+        <prop actor="props/units/shields/pers_back_curved_iron.xml" attachpoint="back"/>
+        <prop actor=""/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Rider-Texture-1">
-      <texture>skeletal/pers_csw_e_1.dds</texture>
+    <variant frequency="1" name="Scale-Iron">
+      <texture>skeletal/pers_su1_anusiya_iron.dds</texture>
     </variant>
-    <variant frequency="1" name="Rider-Texture-2">
-      <texture>skeletal/pers_csw_e_2.dds</texture>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="carry_meat">
+      <props>
+        <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
+        <prop attachpoint="l_hand"/>
+        <prop attachpoint="shield"/>
+      </props>
     </variant>
-    <variant frequency="1" name="Rider-Texture-3">
-      <texture>skeletal/pers_csw_e_3.dds</texture>
-    </variant>
+    <variant name="gather_meat"/>
   </group>
   <material>player_trans.xml</material>
 </actor>
