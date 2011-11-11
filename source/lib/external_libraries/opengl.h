@@ -59,7 +59,6 @@
 # include <GL/glext.h>
 # if OS_WIN
 #  include <GL/wglext.h>
-#  define GL_TEXTURE_IMAGE_SIZE_ARB 0x86A0
 # endif
 #endif
 

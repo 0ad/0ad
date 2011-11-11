@@ -83,6 +83,41 @@ extern const char* ogl_HaveExtensions(int dummy, ...) SENTINEL_ARG;
  **/
 extern const char* ogl_ExtensionString();
 
+// The game wants to use some extension constants that aren't provided by
+// glext.h on some old systems.
+// Manually define all the necessary ones that are missing from
+// GL_GLEXT_VERSION 39 (Mesa 7.0) since that's probably an old enough baseline:
+#ifndef GL_VERSION_3_0
+# define GL_MIN_PROGRAM_TEXEL_OFFSET 0x8904
+# define GL_MAX_PROGRAM_TEXEL_OFFSET 0x8905
+#endif
+#ifndef GL_EXT_transform_feedback
+# define GL_MAX_TRANSFORM_FEEDBACK_INTERLEAVED_COMPONENTS_EXT 0x8C8A
+# define GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_ATTRIBS_EXT 0x8C8B
+# define GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_COMPONENTS_EXT 0x8C80
+#endif
+#ifndef GL_ARB_geometry_shader4
+# define GL_MAX_GEOMETRY_TEXTURE_IMAGE_UNITS_ARB 0x8C29
+# define GL_MAX_GEOMETRY_VARYING_COMPONENTS_ARB 0x8DDD
+# define GL_MAX_VERTEX_VARYING_COMPONENTS_ARB 0x8DDE
+# define GL_MAX_GEOMETRY_UNIFORM_COMPONENTS_ARB 0x8DDF
+# define GL_MAX_GEOMETRY_OUTPUT_VERTICES_ARB 0x8DE0
+# define GL_MAX_GEOMETRY_TOTAL_OUTPUT_COMPONENTS_ARB 0x8DE1
+#endif
+#ifndef GL_ARB_timer_query
+# define GL_TIME_ELAPSED 0x88BF
+# define GL_TIMESTAMP 0x8E28
+#endif
+// Also need some more for OS X 10.5:
+#ifndef GL_EXT_texture_array
+# define GL_MAX_ARRAY_TEXTURE_LAYERS_EXT 0x88FF
+#endif
+// Also need some types not in old glext.h:
+#ifndef GL_ARB_sync
+ typedef int64_t GLint64;
+ typedef uint64_t GLuint64;
+#endif
+
 // declare extension function pointers
 #if OS_WIN
 # define GL_CALL_CONV __stdcall
