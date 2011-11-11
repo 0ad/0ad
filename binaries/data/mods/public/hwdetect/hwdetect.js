@@ -246,6 +246,15 @@ function RunDetection(settings)
 		disable_fancywater = true;
 	}
 
+	// http://trac.wildfiregames.com/ticket/964
+	// SiS Mirage 3 drivers apparently crash with shaders, so fall back to non-shader
+	// (The other known SiS cards don't advertise GL_ARB_fragment_program so we
+	// don't need to do anything special for them)
+	if (os_win && GL_RENDERER.match(/^Mirage Graphics3$/))
+	{
+		override_renderpath = "fixed";
+	}
+
 	return {
 		"dialog_warnings": dialog_warnings,
 		"warnings": warnings,
