@@ -292,7 +292,7 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 	}
 
 	// Construct a message passer for communicating with Atlas
-	// (here so that it's scope lasts beyond the game thread)
+	// (here so that its scope lasts beyond the game thread)
 	MessagePasserImpl msgPasser;
 	AtlasMessage::g_MessagePasser = &msgPasser;
 
@@ -303,12 +303,12 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 	const Paths paths(args);
 	Atlas_SetDataDirectory(paths.RData().string().c_str());
 
-	// run the engine loop in a new thread
+	// Run the engine loop in a new thread
 	pthread_t engineThread;
 	pthread_create(&engineThread, NULL, RunEngine, reinterpret_cast<void*>(const_cast<CmdLineArgs*>(&args)));
 
-	// start Atlas UI on main thread
-	//	(required for wxOSX/Cocoa compatbility as some parts of the API aren't thread-safe)
+	// Start Atlas UI on main thread
+	// (required for wxOSX/Cocoa compatibility - see http://trac.wildfiregames.com/ticket/500)
 	Atlas_StartWindow(L"ScenarioEditor");
 
 	// Wait for the engine to exit
