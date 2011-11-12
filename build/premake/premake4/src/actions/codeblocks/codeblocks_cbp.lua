@@ -63,13 +63,18 @@
 				
 				-- begin linker block --
 				_p(4,'<Linker>')
+				_p(5,'<Add option="-Wl,--start-group" />')
+				for _,v in ipairs(premake.getlinks(cfg, "siblings", "fullpath")) do
+					_p(5,'<Add option="%s" />', premake.esc(v))
+				end
+				_p(5,'<Add option="-Wl,--end-group" />')
 				for _,flag in ipairs(table.join(cc.getldflags(cfg), cfg.linkoptions)) do
 					_p(5,'<Add option="%s" />', premake.esc(flag))
 				end
 				for _,v in ipairs(premake.getlinks(cfg, "all", "directory")) do
 					_p(5,'<Add directory="%s" />', premake.esc(v))
 				end
-				for _,v in ipairs(premake.getlinks(cfg, "all", "basename")) do
+				for _,v in ipairs(premake.getlinks(cfg, "system", "basename")) do
 					_p(5,'<Add library="%s" />', premake.esc(v))
 				end
 				_p(4,'</Linker>')

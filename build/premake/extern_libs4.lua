@@ -56,8 +56,10 @@ local function pkgconfig_libs(lib, alternative_cmd)
 		result_libs = string.gsub(result_libs, ",", " ")
 		result_libs = string.gsub(result_libs, "\n", "")
 		linkoptions { result_libs }
-	else
+	elseif _ACTION == "gmake" then	
 		gnuexternals { "`"..cmd_libs.."`" }
+	else
+		linkoptions { "`"..cmd_libs.."`" }
 	end
 end
 

@@ -20,6 +20,8 @@ echo "Cleaning build output..."
 
 # Remove workspaces/gcc if present
 rm -rf ./gcc
+# Remove workspaces/codeblocks if present
+rm -rf ./codeblocks
 # Remove workspaces/xcode3 if present
 rm -rf ./xcode3
 

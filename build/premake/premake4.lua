@@ -262,8 +262,12 @@ function project_set_build_flags()
 			if _OPTIONS["libdir"] then
 				linkoptions {"-Wl,-rpath=" .. _OPTIONS["libdir"] }
 			else
-				-- Add the executable path:
-				linkoptions { "-Wl,-rpath='$$ORIGIN'" } -- use Makefile escaping of '$'
+				-- Adding the executable path and taking care of correct escaping
+				if _ACTION == "gmake" then
+					linkoptions { "-Wl,-rpath='$$ORIGIN'" } 
+				elseif _ACTION == "codeblocks" then
+					linkoptions { "-Wl,-R\\\\$$ORIGIN" }				
+				end
 			end
 		end
 
