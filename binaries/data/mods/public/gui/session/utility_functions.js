@@ -245,19 +245,19 @@ function getEntityCommandsList(entState)
 
 function getEntityCost(template)
 {
+	var cost = "";
 	if (template.cost)
 	{
 		var costs = [];
-		if (template.cost.food) costs.push("[font=\"serif-bold-13\"]Food:[/font] " + template.cost.food);
-		if (template.cost.wood) costs.push("[font=\"serif-bold-13\"]Wood:[/font] " + template.cost.wood);
-		if (template.cost.metal) costs.push("[font=\"serif-bold-13\"]Metal:[/font] " + template.cost.metal);
-		if (template.cost.stone) costs.push("[font=\"serif-bold-13\"]Stone:[/font] " + template.cost.stone);
-		if (template.cost.population) costs.push("[font=\"serif-bold-13\"]Population:[/font] " + template.cost.population);
+		if (template.cost.food) costs.push(template.cost.food + " [font=\"serif-12\"]Food[/font]");
+		if (template.cost.wood) costs.push(template.cost.wood + " [font=\"serif-12\"]Wood[/font]");
+		if (template.cost.metal) costs.push(template.cost.metal + " [font=\"serif-12\"]Metal[/font]");
+		if (template.cost.stone) costs.push(template.cost.stone + " [font=\"serif-12\"]Stone[/font]");
+		if (template.cost.population) costs.push(template.cost.population + " [font=\"serif-12\"]Population[/font]");
 
-		if (costs.length)
-			return costs.join(", ");
+		cost += "[font=\"serif-bold-13\"]Costs:[/font] " + costs.join(", ");
 	}
-	return "";
+	return cost;
 }
 
 function getPopulationBonus(template)
@@ -268,20 +268,48 @@ function getPopulationBonus(template)
 	return popBonus;
 }
 
+function getEntitySpeed(template)
+{
+	var speed = "";
+	if (template.speed)
+	{
+		speed += "[font=\"serif-bold-13\"]Speed:[/font] ";
+		var speeds = [];
+		if (template.speed.walk) speeds.push(template.speed.walk + " [font=\"serif-12\"]Walk[/font]");
+		if (template.speed.run) speeds.push(template.speed.run + " [font=\"serif-12\"]Run[/font]");
+
+		speed += speeds.join(", ");
+	}
+	return speed;
+}
+
+function getEntityAttack(template)
+{
+	var attacks = [];
+	if (template.attack)
+	{
+		for (var type in template.attack)
+		{
+			attacks.push("[font=\"serif-bold-13\"]" + type + " Attack:[/font] " + damageTypesToText(template.attack[type]));
+		}
+	}
+	return attacks.join("\n");
+}
+
 function getEntityName(template)
 {
-		return template.name.specific || template.name.generic || "???";
+	return template.name.specific || template.name.generic || "???";
 }
 
 function getEntityNameWithGenericType(template)
 {
-		var name;
-		if ((template.name.specific && template.name.generic) && (template.name.specific != template.name.generic))
-			name = template.name.specific + " (" + template.name.generic + ")";
-		else
-			name = template.name.specific || template.name.generic || "???";
+	var name;
+	if ((template.name.specific && template.name.generic) && (template.name.specific != template.name.generic))
+		name = template.name.specific + " (" + template.name.generic + ")";
+	else
+		name = template.name.specific || template.name.generic || "???";
 
-		return "[font=\"serif-bold-16\"]" + name + "[/font]";
+	return "[font=\"serif-bold-16\"]" + name + "[/font]";
 }
 
 function getEntityRankedName(entState)

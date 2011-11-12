@@ -270,6 +270,44 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 
 	var ret = {};
 
+	if (template.Armour)
+	{
+		ret.armour = {
+			"hack": +template.Armour.Hack,
+			"pierce": +template.Armour.Pierce,
+			"crush": +template.Armour.Crush,
+		};
+	}
+	
+	if (template.Attack)
+	{
+		ret.attack = {};
+		for (var type in template.Attack)
+		{
+			ret.attack[type] = {
+				"hack": (+template.Attack[type].Hack || 0),
+				"pierce": (+template.Attack[type].Pierce || 0),
+				"crush": (+template.Attack[type].Crush || 0),
+			};
+		}
+	}
+	
+	if (template.Cost)
+	{
+		ret.cost = {};
+		if (template.Cost.Resources.food) ret.cost.food = +template.Cost.Resources.food;
+		if (template.Cost.Resources.wood) ret.cost.wood = +template.Cost.Resources.wood;
+		if (template.Cost.Resources.stone) ret.cost.stone = +template.Cost.Resources.stone;
+		if (template.Cost.Resources.metal) ret.cost.metal = +template.Cost.Resources.metal;
+		if (template.Cost.Population) ret.cost.population = +template.Cost.Population;
+		if (template.Cost.PopulationBonus) ret.cost.populationBonus = +template.Cost.PopulationBonus;
+	}
+	
+	if (template.Health)
+	{
+		ret.health = +template.Health.Max;
+	}
+
 	if (template.Identity)
 	{
 		ret.selectionGroupName = template.Identity.SelectionGroupName;
@@ -281,15 +319,12 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 		ret.tooltip =  template.Identity.Tooltip;
 	}
 
-	if (template.Cost)
+	if (template.UnitMotion)
 	{
-		ret.cost = {};
-		if (template.Cost.Resources.food) ret.cost.food = +template.Cost.Resources.food;
-		if (template.Cost.Resources.wood) ret.cost.wood = +template.Cost.Resources.wood;
-		if (template.Cost.Resources.stone) ret.cost.stone = +template.Cost.Resources.stone;
-		if (template.Cost.Resources.metal) ret.cost.metal = +template.Cost.Resources.metal;
-		if (template.Cost.Population) ret.cost.population = +template.Cost.Population;
-		if (template.Cost.PopulationBonus) ret.cost.populationBonus = +template.Cost.PopulationBonus;
+		ret.speed = {
+			"walk": +template.UnitMotion.WalkSpeed,
+		};
+		if (template.UnitMotion.Run) ret.speed.run = +template.UnitMotion.Run.Speed;
 	}
 
 	return ret;

@@ -214,25 +214,39 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 
 			case TRAINING:
 				var tooltip = getEntityNameWithGenericType(template);
+
 				if (template.tooltip)
 					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
 
+				var [batchSize, batchIncrement] = getTrainingQueueBatchStatus(unitEntState.id, entType);
+				var trainNum = batchSize ? batchSize+batchIncrement : batchIncrement;
+
 				tooltip += "\n" + getEntityCost(template);
 
-				var [batchSize, batchIncrement] = getTrainingQueueBatchStatus(unitEntState.id, entType);
-				if (batchSize)
-				{
-					tooltip += "\n[font=\"serif-13\"]Training [font=\"serif-bold-13\"]" + batchSize + "[font=\"serif-13\"] units; " +
-					"Shift-click to train [font=\"serif-bold-13\"]"+ (batchSize+batchIncrement) + "[font=\"serif-13\"] units[/font]";
-				}
+				if (template.health)
+					tooltip += "\n[font=\"serif-bold-13\"]Health:[/font] " + template.health;
+				if (template.armour)
+					tooltip += "\n[font=\"serif-bold-13\"]Armour:[/font] " + damageTypesToText(template.armour);
+				if (template.attack)
+					tooltip += "\n" + getEntityAttack(template);
+				if (template.speed)
+					tooltip += "\n" + getEntitySpeed(template);
+
+				tooltip += "\n\n[font=\"serif-bold-13\"]Shift-click[/font][font=\"serif-13\"] to train " + trainNum + ".[/font]";
+
 				break;
 
 			case CONSTRUCTION:
 				var tooltip = getEntityNameWithGenericType(template);
 				if (template.tooltip)
-					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + getPopulationBonus(template) + "[/font]";
+					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
 
 				tooltip += "\n" + getEntityCost(template);
+
+				tooltip += getPopulationBonus(template);
+				if (template.health)
+					tooltip += "\n[font=\"serif-bold-13\"]Health:[/font] " + template.health;
+
 				break;
 
 			case COMMAND:
