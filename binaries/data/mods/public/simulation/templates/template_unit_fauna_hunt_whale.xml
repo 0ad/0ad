@@ -3,8 +3,10 @@
   <Health>
     <Max>100</Max>
     <DeathType>remain</DeathType>
-  </Health> <Identity>
-  <Classes datatype="tokens">SeaCreature</Classes> </Identity>
+  </Health>
+  <Identity>
+    <Classes datatype="tokens">SeaCreature</Classes>
+  </Identity>
   <ResourceSupply>
     <KillBeforeGather>true</KillBeforeGather>
     <Amount>500</Amount>
