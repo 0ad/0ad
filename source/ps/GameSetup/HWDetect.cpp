@@ -485,7 +485,7 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 
 	if (ogl_HaveExtension("GL_EXT_timer_query") || ogl_HaveExtension("GL_ARB_timer_query"))
 	{
-		QUERY(TIME_ELAPSED_EXT, QUERY_COUNTER_BITS);
+		QUERY(TIME_ELAPSED, QUERY_COUNTER_BITS);
 	}
 
 	if (ogl_HaveExtension("GL_ARB_timer_query"))
