@@ -109,6 +109,7 @@ static bool IsMaxCpusSufficient()
 {
 	const size_t setSize = CPU_ALLOC_SIZE(maxCpus);
 	cpu_set_t* set = CPU_ALLOC(maxCpus);
+	ENSURE(set);
 	const int ret = sched_getaffinity(0, setSize, set);
 	CPU_FREE(set);
 	if(ret == 0)
