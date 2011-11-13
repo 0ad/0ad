@@ -154,6 +154,10 @@ MESSAGEHANDLER(SetActorViewer)
 
 MESSAGEHANDLER(SetCanvas)
 {
+	// Need to set the canvas size before possibly doing any rendering,
+	// else we'll get GL errors when trying to render to 0x0
+	CVideoMode::UpdateRenderer(msg->width, msg->height);
+
 	g_GameLoop->glCanvas = msg->canvas;
 	Atlas_GLSetCurrent(const_cast<void*>(g_GameLoop->glCanvas));
 }

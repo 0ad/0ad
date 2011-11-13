@@ -500,7 +500,8 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 
 	// Send setup messages to game engine:
 
-	POST_MESSAGE(SetCanvas, (static_cast<wxGLCanvas*>(canvas)));
+	POST_MESSAGE(SetCanvas, (static_cast<wxGLCanvas*>(canvas),
+		canvas->GetClientSize().GetWidth(), canvas->GetClientSize().GetHeight()));
 
 	POST_MESSAGE(InitGraphics, ());
 

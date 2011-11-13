@@ -122,6 +122,8 @@ QUERY(Ping, , );
 
 MESSAGE(SetCanvas,
 		((void*, canvas))
+		((int, width))
+		((int, height))
 		);
 
 MESSAGE(ResizeScreen,
