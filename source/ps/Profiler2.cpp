@@ -107,7 +107,7 @@ static void* MgCallback(mg_event event, struct mg_connection *conn, const struct
 		}
 		else
 		{
-			mg_printf(conn, header404);
+			mg_printf(conn, "%s", header404);
 			return handled;
 		}
 

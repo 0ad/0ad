@@ -30,7 +30,7 @@ Status CNetFileTransferer::HandleMessageReceive(const CNetMessage* message)
 		task->m_Length = respMessage->m_Length;
 		task->m_Buffer.reserve(respMessage->m_Length);
 
-		LOGMESSAGERENDER(L"Downloading data over network (%d KB) - please wait...", task->m_Length/1024);
+		LOGMESSAGERENDER(L"Downloading data over network (%d KB) - please wait...", (int)(task->m_Length/1024));
 		m_LastProgressReportTime = timer_Time();
 
 		return INFO::OK;
@@ -75,7 +75,7 @@ Status CNetFileTransferer::HandleMessageReceive(const CNetMessage* message)
 		double t = timer_Time();
 		if (t > m_LastProgressReportTime + 0.5)
 		{
-			LOGMESSAGERENDER(L"Downloading data: %.1f%% of %d KB", 100.f*task->m_Buffer.size()/task->m_Length, task->m_Length/1024);
+			LOGMESSAGERENDER(L"Downloading data: %.1f%% of %d KB", 100.f*task->m_Buffer.size()/task->m_Length, (int)(task->m_Length/1024));
 			m_LastProgressReportTime = t;
 		}
 

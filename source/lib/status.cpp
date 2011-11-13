@@ -85,7 +85,7 @@ wchar_t* StatusDescription(Status status, wchar_t* buf, size_t max_chars)
 		return buf;
 	}
 
-	swprintf_s(buf, max_chars, L"Unknown error (%lld, 0x%llX)", status, status);
+	swprintf_s(buf, max_chars, L"Unknown error (%lld, 0x%llX)", (long long)status, (long long)status);
 	return buf;
 }
 

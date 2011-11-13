@@ -161,9 +161,9 @@ private:
 			Record(ITEM_EVENT, t, "__framestart"); // magic string recognised by the visualiser
 		}
 
-		void RecordAttribute(const char* fmt, va_list argp);
+		void RecordAttribute(const char* fmt, va_list argp) VPRINTF_ARGS(2);
 		
-		void RecordAttributePrintf(const char* fmt, ...)
+		void RecordAttributePrintf(const char* fmt, ...) PRINTF_ARGS(2)
 		{
 			va_list argp;
 			va_start(argp, fmt);
@@ -321,7 +321,7 @@ public:
 		GetThreadStorage().Record(ITEM_LEAVE, GetTime(), id);
 	}
 
-	void RecordAttribute(const char* fmt, ...)
+	void RecordAttribute(const char* fmt, ...) PRINTF_ARGS(2)
 	{
 		va_list argp;
 		va_start(argp, fmt);

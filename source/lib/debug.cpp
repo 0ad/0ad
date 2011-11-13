@@ -541,7 +541,7 @@ ErrorReaction debug_OnError(Status err, atomic_bool* suppress, const wchar_t* fi
 	const wchar_t* lastFuncToSkip = L"debug_OnError";
 	wchar_t buf[400];
 	wchar_t err_buf[200]; StatusDescription(err, err_buf, ARRAY_SIZE(err_buf));
-	swprintf_s(buf, ARRAY_SIZE(buf), L"Function call failed: return value was %lld (%ls)", err, err_buf);
+	swprintf_s(buf, ARRAY_SIZE(buf), L"Function call failed: return value was %lld (%ls)", (long long)err, err_buf);
 	return debug_DisplayError(buf, DE_MANUAL_BREAK, context, lastFuncToSkip, file,line,func, suppress);
 }
 

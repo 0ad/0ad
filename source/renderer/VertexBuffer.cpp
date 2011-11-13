@@ -234,14 +234,14 @@ size_t CVertexBuffer::GetBytesAllocated() const
 
 void CVertexBuffer::DumpStatus()
 {
-	debug_printf(L"freeverts = %d\n", m_FreeVertices);
+	debug_printf(L"freeverts = %d\n", (int)m_FreeVertices);
 
 	size_t maxSize = 0;
 	typedef std::list<VBChunk*>::iterator Iter;
 	for (Iter iter = m_FreeList.begin(); iter != m_FreeList.end(); ++iter)
 	{
-		debug_printf(L"free chunk %p: size=%d\n", *iter, (*iter)->m_Count);
+		debug_printf(L"free chunk %p: size=%d\n", *iter, (int)((*iter)->m_Count));
 		maxSize = std::max((*iter)->m_Count, maxSize);
 	}
-	debug_printf(L"max size = %d\n", maxSize);
+	debug_printf(L"max size = %d\n", (int)maxSize);
 }

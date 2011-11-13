@@ -1590,7 +1590,7 @@ static void convert_uri_to_file_name(struct mg_connection *conn,
   int match_len;
 
   match_len = get_document_root(conn, &vec);
-  mg_snprintf(conn, buf, buf_len, "%.*s%s", vec.len, vec.ptr, uri + match_len);
+  mg_snprintf(conn, buf, buf_len, "%.*s%s", (int) vec.len, vec.ptr, uri + match_len);
 
 #if defined(_WIN32) && !defined(__SYMBIAN32__)
   change_slashes_to_backslashes(buf);
@@ -2203,7 +2203,7 @@ static int check_authorization(struct mg_connection *conn, const char *path) {
   while ((list = next_option(list, &uri_vec, &filename_vec)) != NULL) {
     if (!memcmp(conn->request_info.uri, uri_vec.ptr, uri_vec.len)) {
       (void) mg_snprintf(conn, fname, sizeof(fname), "%.*s",
-          filename_vec.len, filename_vec.ptr);
+          (int) filename_vec.len, filename_vec.ptr);
       if ((fp = mg_fopen(fname, "r")) == NULL) {
         cry(conn, "%s: cannot open %s: %s", __func__, fname, strerror(errno));
       }
@@ -2599,7 +2599,7 @@ static void handle_file_request(struct mg_connection *conn, const char *path,
       "Accept-Ranges: bytes\r\n"
       "%s\r\n",
       conn->request_info.status_code, msg, date, lm, etag,
-      mime_vec.len, mime_vec.ptr, cl, suggest_connection_header(conn), range);
+      (int) mime_vec.len, mime_vec.ptr, cl, suggest_connection_header(conn), range);
 
   if (strcmp(conn->request_info.request_method, "HEAD") != 0) {
     send_file_data(conn, fp, cl);
@@ -3139,7 +3139,7 @@ static void do_ssi_include(struct mg_connection *conn, const char *ssi,
   if (sscanf(tag, " virtual=\"%[^\"]\"", file_name) == 1) {
     // File name is relative to the webserver root
     (void) mg_snprintf(conn, path, sizeof(path), "%.*s%c%s",
-        root.len, root.ptr, DIRSEP, file_name);
+        (int) root.len, root.ptr, DIRSEP, file_name);
   } else if (sscanf(tag, " file=\"%[^\"]\"", file_name) == 1) {
     // File name is relative to the webserver working directory
     // or it is absolute system path
@@ -3467,7 +3467,7 @@ static int set_ports_option(struct mg_context *ctx) {
   while (success && (list = next_option(list, &vec, NULL)) != NULL) {
     if (!parse_port_string(&vec, &so)) {
       cry(fc(ctx), "%s: %.*s: invalid port spec. Expecting list of: %s",
-          __func__, vec.len, vec.ptr, "[IP_ADDRESS:]PORT[s|p]");
+          __func__, (int) vec.len, vec.ptr, "[IP_ADDRESS:]PORT[s|p]");
       success = 0;
     } else if (so.is_ssl && ctx->ssl_ctx == NULL) {
       cry(fc(ctx), "Cannot add SSL socket, is -ssl_certificate option set?");
@@ -3492,7 +3492,7 @@ static int set_ports_option(struct mg_context *ctx) {
                listen(sock, 100) != 0) {
       closesocket(sock);
       cry(fc(ctx), "%s: cannot bind to %.*s: %s", __func__,
-          vec.len, vec.ptr, strerror(ERRNO));
+          (int) vec.len, vec.ptr, strerror(ERRNO));
       success = 0;
     } else if ((listener = (struct socket *)
                 calloc(1, sizeof(*listener))) == NULL) {

@@ -102,7 +102,7 @@ bool XMLWriter_File::StoreVFS(const PIVFS& vfs, const VfsPath& pathname)
 	Status ret = vfs->CreateFile(pathname, data, size);
 	if (ret < 0)
 	{
-		LOGERROR(L"Error saving XML data through VFS: %lld", ret);
+		LOGERROR(L"Error saving XML data through VFS: %lld", (long long)ret);
 		return false;
 	}
 	return true;

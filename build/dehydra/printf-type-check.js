@@ -67,10 +67,24 @@ function find_printf_type(decl, loc) {
         return ['w', 'printf', 2, 3];
     else if (name == 'swprintf')
         return ['w', 'printf', 3, 4];
-    else if (name == 'JS_ReportError')
+
+    // SpiderMonkey:
+    if (name == 'JS_ReportError')
         return ['a', 'printf', 2, 3];
     else if (name == 'JS_ReportWarning')
         return ['a', 'printf', 2, 3];
+
+    // Mongoose:
+    if (name == 'mg_printf')
+        return ['a', 'printf', 2, 3];
+    else if (name == 'mg_snprintf')
+        return ['a', 'printf', 4, 5];
+    else if (name == 'send_http_error')
+        return ['a', 'printf', 4, 5];
+    else if (name == 'cry')
+        return ['a', 'printf', 2, 3];
+    else if (name == 'mg_md5')
+        return;
 
     // Ignore vararg functions that we know aren't using normal format strings
     if (name.match(/^(__builtin_va_start|execlp|open|fcntl|ioctl|sem_open|h_alloc|sys_wopen|ogl_HaveExtensions|JS_ConvertArguments|curl_easy_setopt|curl_easy_getinfo|SMBIOS::FieldInitializer::Read|SMBIOS::FieldStringizer::Write)$/))
@@ -139,6 +153,8 @@ function compare_format_type(ctype, functype, fmt, arg, loc) {
             return (arg == 'float*');
         if (t.match(/^l[aefg]$/))
             return (arg == 'double*');
+        if (t.match(/^n$/))
+            return (arg == 'int*');
         // ...
     }
 
@@ -160,10 +176,16 @@ function check_arg_types(ctype, functype, fmt_string, arg_type_names, loc) {
         if (fmt_type != '%%')
             ++num_fmt_types;
 
-        // Each '*' eats an extra argument
-        var stars = fmt_type.match(/\*/g);
-        if (stars)
-            num_fmt_types += stars.length;
+        if (functype == 'printf') {
+            // In printf, each '*' eats an extra argument
+            var stars = fmt_type.match(/\*/g);
+            if (stars)
+                num_fmt_types += stars.length;
+        } else if (functype == 'scanf') {
+            // In scanf, a '*' prefix means the argument is omitted
+            if (fmt_type.match(/^%\*/))
+                --num_fmt_types;
+        }
     }
 
     if (num_fmt_types != arg_type_names.length) {
@@ -173,15 +195,21 @@ function check_arg_types(ctype, functype, fmt_string, arg_type_names, loc) {
 
     for each (var fmt_type in fmt_types) {
         if (fmt_type != '%%') {
-            // Each '*' eats an extra argument of type int
-            var stars = fmt_type.match(/\*/g);
-            if (stars) {
-                for (var s in stars) {
-                    var arg = arg_type_names.shift();
-                    if (! compare_format_type(ctype, functype, '%d', arg, loc)) {
-                        error('Invalid argument type "'+arg+'" for format specifier "'+fmt_type+'"', loc());
+            if (functype == 'printf') {
+                // In printf, each '*' eats an extra argument of type int
+                var stars = fmt_type.match(/\*/g);
+                if (stars) {
+                    for (var s in stars) {
+                        var arg = arg_type_names.shift();
+                        if (! compare_format_type(ctype, functype, '%d', arg, loc)) {
+                            error('Invalid argument type "'+arg+'" for format specifier "'+fmt_type+'"', loc());
+                        }
                     }
                 }
+            } else if (functype == 'scanf') {
+                // In scanf, a '*' prefix means the argument is omitted
+                if (fmt_type.match(/^%\*/))
+                    continue;
             }
 
             var arg = arg_type_names.shift();
@@ -189,6 +217,10 @@ function check_arg_types(ctype, functype, fmt_string, arg_type_names, loc) {
                 error('Invalid argument type "'+arg+'" for format specifier "'+fmt_type+'"', loc());
             }
         }
+    }
+
+    if (arg_type_names.length) {
+        error('Internal error: got some arg types left over');
     }
 }
 

@@ -258,7 +258,7 @@ static Status h_data_tag_type(const Handle h, const H_Type type, HDATA*& hd)
 	// h_alloc makes sure type isn't 0, so no need to check that here.
 	if(hd->type != type)
 	{
-		debug_printf(L"h_mgr: expected type %ws, got %ws\n", hd->type->name, type->name);
+		debug_printf(L"h_mgr: expected type %ls, got %ls\n", hd->type->name, type->name);
 		WARN_RETURN(ERR::H_TYPE_MISMATCH);
 	}
 

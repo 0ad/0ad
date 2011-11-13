@@ -639,7 +639,7 @@ private:
 						ogl_WarnIfError();
 						ENSURE(length == m_QueryTypes[j].counterBufferSize);
 
-						m_Storage.RecordAttributePrintf("-- %hs --", m_QueryTypes[j].name.c_str());
+						m_Storage.RecordAttributePrintf("-- %s --", m_QueryTypes[j].name.c_str());
 
 						for (size_t k = 0; k < m_QueryTypes[j].counters.size(); ++k)
 						{
@@ -650,14 +650,14 @@ private:
 								ENSURE(counter.size == 4);
 								GLuint value;
 								memcpy(&value, buf + counter.offset, counter.size);
-								m_Storage.RecordAttributePrintf("%hs: %d", counter.name.c_str(), value);
+								m_Storage.RecordAttributePrintf("%s: %d", counter.name.c_str(), value);
 							}
 							else if (counter.type == INTEL_PERFQUERIES_TYPE_UNSIGNED_INT64)
 							{
 								ENSURE(counter.size == 8);
 								GLuint64 value;
 								memcpy(&value, buf + counter.offset, counter.size);
-								m_Storage.RecordAttributePrintf("%hs: %.0f", counter.name.c_str(), (double)value);
+								m_Storage.RecordAttributePrintf("%s: %.0f", counter.name.c_str(), (double)value);
 
 								if (counter.name == "TotalTime")
 									elapsed = (double)value / 1e6;
@@ -667,7 +667,7 @@ private:
 								ENSURE(counter.size == 4);
 								GLfloat value;
 								memcpy(&value, buf + counter.offset, counter.size);
-								m_Storage.RecordAttributePrintf("%hs: %f", counter.name.c_str(), value);
+								m_Storage.RecordAttributePrintf("%s: %f", counter.name.c_str(), value);
 							}
 							else if (counter.type == INTEL_PERFQUERIES_TYPE_BOOL)
 							{
@@ -675,7 +675,7 @@ private:
 								GLuint value;
 								memcpy(&value, buf + counter.offset, counter.size);
 								ENSURE(value == 0 || value == 1);
-								m_Storage.RecordAttributePrintf("%hs: %d", counter.name.c_str(), value);
+								m_Storage.RecordAttributePrintf("%s: %d", counter.name.c_str(), value);
 							}
 							else
 							{
