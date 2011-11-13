@@ -125,6 +125,7 @@ GarrisonHolder.prototype.Garrison = function(entity)
 		this.spaceOccupied += 1;
 		cmpPosition.MoveOutOfWorld();
 		this.UpdateGarrisonFlag();
+		Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
 		return true;
 	}
 	return false;
@@ -172,6 +173,8 @@ GarrisonHolder.prototype.Eject = function(entity, forced)
 	var cmpNewPosition = Engine.QueryInterface(entity, IID_Position);
 	cmpNewPosition.JumpTo(pos.x, pos.z);
 	// TODO: what direction should they face in?
+	
+	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
 	
 	return true;
 };
@@ -271,7 +274,8 @@ GarrisonHolder.prototype.OnHealthChanged = function(msg)
 					cmpHealth.Kill();
 				}
 			}
-			this.entities = [];
+			this.entities = [];		
+			Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
 		}
 		else
 		{	// Building - force ejection
@@ -360,6 +364,7 @@ GarrisonHolder.prototype.OnGlobalOwnershipChanged = function(msg)
 		if (cmpHealth && cmpHealth.GetHitpoints() == 0)
 		{
 			this.entities.splice(entityIndex, 1);
+			Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
 		}
 		else
 		{
@@ -375,6 +380,7 @@ GarrisonHolder.prototype.OnGlobalOwnershipChanged = function(msg)
 					cmpHealth.Kill();
 				}
 				this.entities.splice(entityIndex, 1);
+				Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
 			}
 			else
 			{	// Building - force ejection
@@ -393,7 +399,9 @@ GarrisonHolder.prototype.OnGlobalEntityRenamed = function(msg)
 	if (entityIndex != -1)
 	{
 		this.entities[entityIndex] = msg.newentity;
+		Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
 	}
 };
 
 Engine.RegisterComponentType(IID_GarrisonHolder, "GarrisonHolder", GarrisonHolder);
+

@@ -113,6 +113,14 @@ AIProxy.prototype.OnTrainingQueueChanged = function(msg)
 	this.changes.trainingQueue = cmpTrainingQueue.GetQueue();
 }
 
+AIProxy.prototype.OnGarrisonedUnitsChanged = function(msg)
+{
+	this.NotifyChange();
+	
+	var cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
+	this.changes.garrisoned = cmpGarrisonHolder.GetEntities();
+}
+
 // TODO: event handlers for all the other things
 
 AIProxy.prototype.GetFullRepresentation = function()
