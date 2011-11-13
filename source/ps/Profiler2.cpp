@@ -41,7 +41,8 @@ CProfiler2::CProfiler2() :
 
 CProfiler2::~CProfiler2()
 {
-	ENSURE(!m_Initialised); // should have called Shutdown() explicitly
+	if (m_Initialised)
+		Shutdown();
 }
 
 /**
