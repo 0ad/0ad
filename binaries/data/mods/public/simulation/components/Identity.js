@@ -92,6 +92,10 @@ Identity.prototype.Schema =
 						"<value>Warship</value>" +
 						"<value>SeaCreature</value>" +
 						"<value>ForestPlant</value>" +
+						"<value>DropsiteFood</value>" +
+						"<value>DropsiteWood</value>" +
+						"<value>DropsiteStone</value>" +
+						"<value>DropsiteMetal</value>" +
 						"<value a:help='Primary weapon type'>Bow</value>" + // TODO: what are these used for?
 						"<value a:help='Primary weapon type'>Javelin</value>" +
 						"<value a:help='Primary weapon type'>Spear</value>" +
