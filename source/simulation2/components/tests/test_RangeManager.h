@@ -89,25 +89,25 @@ public:
 
 		cmp->SetBounds(entity_pos_t::FromInt(0), entity_pos_t::FromInt(0), entity_pos_t::FromInt(512), entity_pos_t::FromInt(512), 512/CELL_SIZE + 1);
 		cmp->Verify();
-		cmp->HandleMessage(CMessageCreate(100), false);
+		{ CMessageCreate msg(100); cmp->HandleMessage(msg, false); }
 		cmp->Verify();
-		cmp->HandleMessage(CMessageOwnershipChanged(100, -1, 1), false);
+		{ CMessageOwnershipChanged msg(100, -1, 1); cmp->HandleMessage(msg, false); }
 		cmp->Verify();
-		cmp->HandleMessage(CMessagePositionChanged(100, true, entity_pos_t::FromInt(247), entity_pos_t::FromDouble(257.95), entity_angle_t::Zero()), false);
+		{ CMessagePositionChanged msg(100, true, entity_pos_t::FromInt(247), entity_pos_t::FromDouble(257.95), entity_angle_t::Zero()); cmp->HandleMessage(msg, false); }
 		cmp->Verify();
-		cmp->HandleMessage(CMessagePositionChanged(100, true, entity_pos_t::FromInt(247), entity_pos_t::FromInt(253), entity_angle_t::Zero()), false);
-		cmp->Verify();
-
-		cmp->HandleMessage(CMessagePositionChanged(100, true, entity_pos_t::FromInt(256), entity_pos_t::FromInt(256), entity_angle_t::Zero()), false);
+		{ CMessagePositionChanged msg(100, true, entity_pos_t::FromInt(247), entity_pos_t::FromInt(253), entity_angle_t::Zero()); cmp->HandleMessage(msg, false); }
 		cmp->Verify();
 
-		cmp->HandleMessage(CMessagePositionChanged(100, true, entity_pos_t::FromInt(256)+entity_pos_t::Epsilon(), entity_pos_t::FromInt(256), entity_angle_t::Zero()), false);
+		{ CMessagePositionChanged msg(100, true, entity_pos_t::FromInt(256), entity_pos_t::FromInt(256), entity_angle_t::Zero()); cmp->HandleMessage(msg, false); }
 		cmp->Verify();
-		cmp->HandleMessage(CMessagePositionChanged(100, true, entity_pos_t::FromInt(256)-entity_pos_t::Epsilon(), entity_pos_t::FromInt(256), entity_angle_t::Zero()), false);
+
+		{ CMessagePositionChanged msg(100, true, entity_pos_t::FromInt(256)+entity_pos_t::Epsilon(), entity_pos_t::FromInt(256), entity_angle_t::Zero()); cmp->HandleMessage(msg, false); }
 		cmp->Verify();
-		cmp->HandleMessage(CMessagePositionChanged(100, true, entity_pos_t::FromInt(256), entity_pos_t::FromInt(256)+entity_pos_t::Epsilon(), entity_angle_t::Zero()), false);
+		{ CMessagePositionChanged msg(100, true, entity_pos_t::FromInt(256)-entity_pos_t::Epsilon(), entity_pos_t::FromInt(256), entity_angle_t::Zero()); cmp->HandleMessage(msg, false); }
 		cmp->Verify();
-		cmp->HandleMessage(CMessagePositionChanged(100, true, entity_pos_t::FromInt(256), entity_pos_t::FromInt(256)-entity_pos_t::Epsilon(), entity_angle_t::Zero()), false);
+		{ CMessagePositionChanged msg(100, true, entity_pos_t::FromInt(256), entity_pos_t::FromInt(256)+entity_pos_t::Epsilon(), entity_angle_t::Zero()); cmp->HandleMessage(msg, false); }
+		cmp->Verify();
+		{ CMessagePositionChanged msg(100, true, entity_pos_t::FromInt(256), entity_pos_t::FromInt(256)-entity_pos_t::Epsilon(), entity_angle_t::Zero()); cmp->HandleMessage(msg, false); }
 		cmp->Verify();
 
 		WELL512 rng;
@@ -115,7 +115,7 @@ public:
 		{
 			double x = boost::uniform_real<>(0.0, 512.0)(rng);
 			double z = boost::uniform_real<>(0.0, 512.0)(rng);
-			cmp->HandleMessage(CMessagePositionChanged(100, true, entity_pos_t::FromDouble(x), entity_pos_t::FromDouble(z), entity_angle_t::Zero()), false);
+			{ CMessagePositionChanged msg(100, true, entity_pos_t::FromDouble(x), entity_pos_t::FromDouble(z), entity_angle_t::Zero()); cmp->HandleMessage(msg, false); }
 			cmp->Verify();
 		}
 	}
