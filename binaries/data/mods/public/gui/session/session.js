@@ -351,8 +351,6 @@ function updatePlayerDisplay(simState)
 function updateTimeElapsedCounter(simState)
 {
 	var timeElapsedCounter = getGUIObjectByName("timeElapsedCounter");
-	if (timeElapsedCounter.hidden)
-		return;
 	timeElapsedCounter.caption = timeToString(simState.timeElapsed);
 }
 
