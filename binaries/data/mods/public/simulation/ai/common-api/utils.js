@@ -5,6 +5,13 @@ function VectorDistance(a, b)
 	return Math.sqrt(dx*dx + dz*dz);
 }
 
+function SquareVectorDistance(a, b)//A sqrtless vector calculator, to see if that improves speed at all.
+{
+	var dx = a[0] - b[0];
+	var dz = a[1] - b[1];
+	return (dx*dx + dz*dz);
+}
+
 function MemoizeInit(obj)
 {
 	obj._memoizeCache = {};
