@@ -1586,7 +1586,7 @@ static int get_document_root(const struct mg_connection *conn,
 static void convert_uri_to_file_name(struct mg_connection *conn,
                                      const char *uri, char *buf,
                                      size_t buf_len) {
-  struct vec vec;
+  struct vec vec = {0};
   int match_len;
 
   match_len = get_document_root(conn, &vec);
@@ -3128,7 +3128,7 @@ static void send_ssi_file(struct mg_connection *, const char *, FILE *, int);
 static void do_ssi_include(struct mg_connection *conn, const char *ssi,
                            char *tag, int include_level) {
   char file_name[BUFSIZ], path[PATH_MAX], *p;
-  struct vec root;
+  struct vec root = {0};
   int is_ssi;
   FILE *fp;
 
