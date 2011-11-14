@@ -35,8 +35,8 @@ BuildLimits.prototype.Schema =
 
 BuildLimits.prototype.Init = function()
 {
-	this.limit = [];
-	this.count = [];
+	this.limit = {};
+	this.count = {};
 	for (var category in this.template.Limits)
 	{
 		this.limit[category] = this.template.Limits[category];
@@ -62,22 +62,12 @@ BuildLimits.prototype.DecrementCount = function(category)
 
 BuildLimits.prototype.GetLimits = function()
 {
-	var limits = {};
-	for (var category in this.limit)
-	{
-		limits[category] = this.limit[category];
-	}
-	return limits;
+	return this.limit;
 };
 
 BuildLimits.prototype.GetCounts = function()
 {
-	var counts = {};
-	for (var category in this.count)
-	{
-		counts[category] = this.count[category];
-	}
-	return counts;
+	return this.count;
 };
 
 BuildLimits.prototype.AllowedToBuild = function(category)
