@@ -8,6 +8,7 @@ newoption { trigger = "without-tests", description = "Disable generation of test
 newoption { trigger = "without-pch", description = "Disable generation and usage of precompiled headers" }
 newoption { trigger = "with-system-nvtt", description = "Search standard paths for nvidia-texture-tools library, instead of using bundled copy" }
 newoption { trigger = "with-system-enet", description = "Search standard paths for libenet, instead of using bundled copy" }
+newoption { trigger = "with-system-mozjs185", description = "Search standard paths for libmozjs185, instead of using bundled copy" }
 newoption { trigger = "bindir", description = "Directory for executables (typically '/usr/games'); default is to be relocatable" }
 newoption { trigger = "datadir", description = "Directory for data files (typically '/usr/share/games/0ad'); default is ../data/ relative to executable" }
 newoption { trigger = "libdir", description = "Directory for libraries (typically '/usr/lib/games/0ad'); default is ./ relative to executable" }

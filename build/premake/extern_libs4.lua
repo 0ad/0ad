@@ -470,24 +470,32 @@ extern_lib_defs = {
 	},
 	spidermonkey = {
 		compile_settings = function()
-			if os.is("windows") then
-				include_dir = "include-win32"
+			if _OPTIONS["with-system-mozjs185"] then
+				pkgconfig_cflags("mozjs185")
 			else
-				include_dir = "include-unix"
+				if os.is("windows") then
+					include_dir = "include-win32"
+				else
+					include_dir = "include-unix"
+				end
+				configuration "Debug"
+					includedirs { libraries_dir.."spidermonkey/"..include_dir }
+				configuration "Release"
+					includedirs { libraries_dir.."spidermonkey/"..include_dir }
+				configuration { }
 			end
-			configuration "Debug"
-				includedirs { libraries_dir.."spidermonkey/"..include_dir }
-			configuration "Release"
-				includedirs { libraries_dir.."spidermonkey/"..include_dir }
-			configuration { }
 		end,
 		link_settings = function()
-			configuration "Debug"
-			  	links { "mozjs185-ps-debug" }
-			configuration "Release"
-				links { "mozjs185-ps-release" }
-			configuration { }
-			add_default_lib_paths("spidermonkey")
+			if _OPTIONS["with-system-mozjs185"] then
+				pkgconfig_libs("mozjs185")
+			else
+				configuration "Debug"
+			  		links { "mozjs185-ps-debug" }
+				configuration "Release"
+					links { "mozjs185-ps-release" }
+				configuration { }
+				add_default_lib_paths("spidermonkey")
+			end
 		end,
 	},
 	valgrind = {

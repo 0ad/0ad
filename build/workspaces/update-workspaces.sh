@@ -14,6 +14,7 @@ premake_args=""
 
 with_system_nvtt=false
 with_system_enet=false
+with_system_mozjs185=false
 enable_atlas=true
 
 for i in "$@"
@@ -21,6 +22,7 @@ do
   case $i in
     --with-system-nvtt ) with_system_nvtt=true; premake_args="${premake_args} --with-system-nvtt" ;;
     --with-system-enet ) with_system_enet=true; premake_args="${premake_args} --with-system-enet" ;;
+    --with-system-mozjs185 ) with_system_mozjs185=true; premake_args="${premake_args} --with-system-mozjs185" ;;
     --enable-atlas ) enable_atlas=true ;;
     --disable-atlas ) enable_atlas=false ;;
     -j* ) JOBS=$i ;;
@@ -44,7 +46,9 @@ echo
 # Build/update bundled external libraries
 (cd ../../libraries/fcollada/src && make ${JOBS}) || die "FCollada build failed"
 echo
-(cd ../../libraries/spidermonkey && JOBS=${JOBS} ./build.sh) || die "SpiderMonkey build failed"
+if [ "$with_system_mozjs185" = "false" ]; then
+  (cd ../../libraries/spidermonkey && JOBS=${JOBS} ./build.sh) || die "SpiderMonkey build failed"
+fi
 echo
 if [ "$with_system_nvtt" = "false" ]; then
   (cd ../../libraries/nvtt && JOBS=${JOBS} ./build.sh) || die "NVTT build failed"
