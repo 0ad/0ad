@@ -274,7 +274,7 @@ JSBool GetBuildTimestamp(JSContext* cx, uintN argc, jsval* vp)
 	return JS_TRUE;
 }
 
-#ifdef DEBUG
+#if MOZJS_DEBUG_ABI
 void DumpHeap(const char* basename, int idx, JSContext* cx)
 {
 	char filename[64];
@@ -292,7 +292,7 @@ JSBool DumpHeaps(JSContext* cx, uintN argc, jsval* vp)
 	UNUSED2(cx);
 	UNUSED2(argc);
 
-#ifdef DEBUG
+#if MOZJS_DEBUG_ABI
 	static int i = 0;
 
 	if (ScriptingHost::IsInitialised())

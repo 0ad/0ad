@@ -472,6 +472,7 @@ extern_lib_defs = {
 		compile_settings = function()
 			if _OPTIONS["with-system-mozjs185"] then
 				pkgconfig_cflags("mozjs185")
+				defines { "WITH_SYSTEM_MOZJS185" }
 			else
 				if os.is("windows") then
 					include_dir = "include-win32"

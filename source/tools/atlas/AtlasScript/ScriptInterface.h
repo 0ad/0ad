@@ -28,7 +28,14 @@
 # define JS_NO_JSVAL_JSID_STRUCT_TYPES
 
 #else
+
 # define XP_UNIX
+
+// (See comment in scriptinterface/ScriptTypes.h)
+# if defined(DEBUG) && defined(WITH_SYSTEM_MOZJS185)
+#  define JS_NO_JSVAL_JSID_STRUCT_TYPES
+# endif
+
 #endif // (we don't support XP_OS2 or XP_BEOS)
 
 #ifdef __GNUC__

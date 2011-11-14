@@ -1099,7 +1099,7 @@ void* ScriptInterface::GetPrivate(JSContext* cx, JSObject* obj)
 
 void ScriptInterface::DumpHeap()
 {
-#ifdef DEBUG
+#if MOZJS_DEBUG_ABI
 	JS_DumpHeap(m->m_cx, stderr, NULL, 0, NULL, (size_t)-1, NULL);
 #endif
 	fprintf(stderr, "# Bytes allocated: %d\n", JS_GetGCParameter(GetRuntime(), JSGC_BYTES));

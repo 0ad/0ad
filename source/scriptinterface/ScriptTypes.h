@@ -33,10 +33,30 @@
 // the ones that are needed and this avoids conflicting definitions
 # define JS_SYS_TYPES_H_DEFINES_EXACT_SIZE_TYPES
 
-#else
+#else // If not Windows, then Unix:
+
 # define XP_UNIX
+
+// In DEBUG mode, jsval defaults to struct types. Normally we build separate
+// debug/release mode versions of the library, but when using --with-system-mozjs185
+// it's always a release mode library, so we have to disable struct types for
+// ABI compatibility
+# if defined(DEBUG) && defined(WITH_SYSTEM_MOZJS185)
+#  define JS_NO_JSVAL_JSID_STRUCT_TYPES
+# endif
+
 #endif
 // (we don't support XP_OS2 or XP_BEOS)
+
+
+// Guess whether the library was compiled with the release-mode or debug-mode ABI
+// (for JS_DumpHeap etc)
+#if defined(DEBUG) && !defined(WITH_SYSTEM_MOZJS185)
+# define MOZJS_DEBUG_ABI 1
+#else
+# define MOZJS_DEBUG_ABI 0
+#endif
+
 
 #include <cstring> // required by jsutil.h
 
