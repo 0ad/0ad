@@ -110,6 +110,11 @@ public:
 		{ CMessagePositionChanged msg(100, true, entity_pos_t::FromInt(256), entity_pos_t::FromInt(256)-entity_pos_t::Epsilon(), entity_angle_t::Zero()); cmp->HandleMessage(msg, false); }
 		cmp->Verify();
 
+		{ CMessagePositionChanged msg(100, true, entity_pos_t::FromInt(383), entity_pos_t::FromInt(84), entity_angle_t::Zero()); cmp->HandleMessage(msg, false); }
+		cmp->Verify();
+		{ CMessagePositionChanged msg(100, true, entity_pos_t::FromInt(348), entity_pos_t::FromInt(83), entity_angle_t::Zero()); cmp->HandleMessage(msg, false); }
+		cmp->Verify();
+
 		WELL512 rng;
 		for (size_t i = 0; i < 1024; ++i)
 		{

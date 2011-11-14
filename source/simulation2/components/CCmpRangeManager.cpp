@@ -1028,6 +1028,7 @@ public:
 					m_LosState[idx] |= ((LOS_VISIBLE | LOS_EXPLORED) << (2*(owner-1)));
 			}
 
+			ASSERT(counts[idx] < 65535);
 			counts[idx] = (u16)(counts[idx] + 1); // ignore overflow; the player should never have 64K units
 		}
 	}
@@ -1045,6 +1046,7 @@ public:
 
 		for (i32 idx = idx0; idx <= idx1; ++idx)
 		{
+			ASSERT(counts[idx] > 0);
 			counts[idx] = (u16)(counts[idx] - 1);
 
 			// Decreasing from non-zero to zero - move from visible+explored to explored
@@ -1263,10 +1265,14 @@ public:
 					// Process each of the regions as its own strip.
 					// (If this produces negative-width strips then they'll just get ignored
 					// which is fine.)
-					LosRemoveStripHelper(owner, i0clamp_from, i0clamp_to-1, j, countsData);
-					LosRemoveStripHelper(owner, i1clamp_to+1, i1clamp_from, j, countsData);
+					// (If the strips don't actually overlap (which is very rare with normal unit
+					// movement speeds), the region between them will be both added and removed,
+					// so we have to do the add first to avoid overflowing to -1 and triggering
+					// assertion failures.)
 					LosAddStripHelper(owner, i0clamp_to, i0clamp_from-1, j, countsData);
 					LosAddStripHelper(owner, i1clamp_from+1, i1clamp_to, j, countsData);
+					LosRemoveStripHelper(owner, i0clamp_from, i0clamp_to-1, j, countsData);
+					LosRemoveStripHelper(owner, i1clamp_to+1, i1clamp_from, j, countsData);
 				}
 			}
 		}
