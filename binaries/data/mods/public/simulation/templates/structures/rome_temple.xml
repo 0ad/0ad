@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_temple">
+  <Footprint>
+    <Square width="19.0" depth="31.5"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>rome</Civ>
+    <SpecificName>Nosocomium</SpecificName>
+    <History>Roman temples in general were not meant for congregational worship. Instead the temple housed a statue of whatever deity the temple was dedicated to and what was needed to carry out the ceremonial and cultic practice necessary for worship. The actual activity was performed outside.</History>
+  </Identity>
+  <Obstruction>
+    <Static width="17.5" depth="30.0"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>structures/romans/temple.xml</Actor>
+  </VisualActor>
+</Entity>

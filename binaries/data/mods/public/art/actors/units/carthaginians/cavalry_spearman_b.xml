@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -14,6 +14,7 @@
       <mesh>skeletal/horse.pmd</mesh>
       <props>
         <prop actor="units/carthaginians/cavalry_spearman_b_r.xml" attachpoint="rider"/>
+        <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
       </props>
     </variant>
   </group>
