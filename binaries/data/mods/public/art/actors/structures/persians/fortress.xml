@@ -6,6 +6,7 @@
       <mesh>structural/pers_fortress.dae</mesh>
       <props>
         <prop actor="props/structures/persians/fortress.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front_flame.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front_flame.xml" attachpoint="projectile"/>
       </props>
     </variant>
@@ -13,6 +14,7 @@
       <mesh>structural/pers_fortress_b.dae</mesh>
       <props>
         <prop actor="props/structures/persians/fortress_b.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front_flame.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front_flame.xml" attachpoint="projectile"/>
       </props>
     </variant>
@@ -20,6 +22,14 @@
   <group>
     <variant>
       <texture>structural/pers_struct.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/waypoint_flag_0ad.xml" attachpoint="garrisoned"/>
+      </props>
     </variant>
   </group>
   <material>player_trans.xml</material>
