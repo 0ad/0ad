@@ -7,7 +7,8 @@
         <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
         <animation file="biped/cavalryidle.psa" name="Walk" speed="18"/>
         <animation file="biped/rider_gallop.psa" name="Run" speed="8"/>
-        <animation file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="Melee" speed="300"/>
+        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="Melee" speed="300"/>
+        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="gather_meat" speed="300"/>
         <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
       </animations>
       <mesh>skeletal/m_pants_celt.dae</mesh>
@@ -23,6 +24,16 @@
     </variant>
     <variant frequency="2" name="Rider-Texture-2">
       <texture>skeletal/pers_csw_b_2.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="carry_meat">
+      <props>
+        <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
+        <prop attachpoint="l_hand"/>
+        <prop attachpoint="shield"/>
+      </props>
     </variant>
   </group>
   <material>player_trans.xml</material>
