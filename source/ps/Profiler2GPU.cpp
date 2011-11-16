@@ -65,7 +65,8 @@ protected:
 
 	~CProfiler2GPU_timer_query()
 	{
-		pglDeleteQueriesARB(m_FreeQueries.size(), m_FreeQueries.data());
+		if (!m_FreeQueries.empty())
+			pglDeleteQueriesARB(m_FreeQueries.size(), &m_FreeQueries[0]);
 		ogl_WarnIfError();
 	}
 
@@ -76,7 +77,7 @@ protected:
 		{
 			// Generate a batch of new queries
 			m_FreeQueries.resize(8);
-			pglGenQueriesARB(m_FreeQueries.size(), m_FreeQueries.data());
+			pglGenQueriesARB(m_FreeQueries.size(), &m_FreeQueries[0]);
 			ogl_WarnIfError();
 		}
 
