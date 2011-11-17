@@ -60,7 +60,7 @@ QUERYHANDLER(CinemaRecord)
 		g_Renderer.Resize(w, h);
 		SViewPort vp = { 0, 0, w, h };
 		g_Game->GetView()->GetCamera()->SetViewPort(vp);
-		g_Game->GetView()->GetCamera()->SetProjection(CGameView::defaultNear, CGameView::defaultFar, CGameView::defaultFOV);
+		g_Game->GetView()->SetCameraProjection();
 	}
 
 	unsigned char* img = new unsigned char [w*h*3];
@@ -113,7 +113,7 @@ QUERYHANDLER(CinemaRecord)
 		g_Renderer.Resize(g_xres, g_yres);
 		SViewPort vp = { 0, 0, g_xres, g_yres };
 		g_Game->GetView()->GetCamera()->SetViewPort(vp);
-		g_Game->GetView()->GetCamera()->SetProjection(CGameView::defaultNear, CGameView::defaultFar, CGameView::defaultFOV);
+		g_Game->GetView()->SetCameraProjection();
 	}
 
 }

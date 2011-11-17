@@ -59,11 +59,6 @@
 
 extern int g_xres, g_yres;
 
-const float CGameView::defaultFOV = DEGTORAD(20.f);
-const float CGameView::defaultNear = 16.f;
-const float CGameView::defaultFar = 4096.f;
-const float CGameView::defaultCullFOV = CGameView::defaultFOV + DEGTORAD(6.0f);	//add 6 degrees to the default FOV for use with the culling frustum
-
 // Maximum distance outside the edge of the map that the camera's
 // focus point can be moved
 static const float CAMERA_EDGE_MARGIN = 2.0f*CELL_SIZE;
@@ -280,6 +275,9 @@ public:
 	float ViewZoomMin;
 	float ViewZoomMax;
 	float ViewZoomDefault;
+	float ViewFOV;
+	float ViewNear;
+	float ViewFar;
 	int JoystickPanX;
 	int JoystickPanY;
 	int JoystickRotateX;
@@ -333,7 +331,7 @@ CGameView::CGameView(CGame *pGame):
 	vp.m_Height=g_yres;
 	m->ViewCamera.SetViewPort(vp);
 
-	m->ViewCamera.SetProjection(defaultNear, defaultFar, defaultFOV);
+	m->ViewCamera.SetProjection(m->ViewNear, m->ViewFar, m->ViewFOV);
 	SetupCameraMatrixSmooth(m, &m->ViewCamera.m_Orientation);
 	m->ViewCamera.UpdateFrustum();
 
@@ -351,7 +349,7 @@ CGameView::~CGameView()
 void CGameView::SetViewport(const SViewPort& vp)
 {
 	m->ViewCamera.SetViewPort(vp);
-	m->ViewCamera.SetProjection(defaultNear, defaultFar, defaultFOV);
+	m->ViewCamera.SetProjection(m->ViewNear, m->ViewFar, m->ViewFOV);
 }
 
 CObjectManager& CGameView::GetObjectManager() const
@@ -430,8 +428,14 @@ int CGameView::Initialize()
 	CFG_GET_SYS_VAL("view.rotate.x.smoothness", Float, m->RotateX.m_Smoothness);
 	CFG_GET_SYS_VAL("view.rotate.y.smoothness", Float, m->RotateY.m_Smoothness);
 
+	CFG_GET_SYS_VAL("view.near", Float, m->ViewNear);
+	CFG_GET_SYS_VAL("view.far", Float, m->ViewFar);
+	CFG_GET_SYS_VAL("view.fov", Float, m->ViewFOV);
+
+	// Convert to radians
 	m->RotateX.SetValue(DEGTORAD(m->ViewRotateXDefault));
 	m->RotateY.SetValue(DEGTORAD(m->ViewRotateYDefault));
+	m->ViewFOV = DEGTORAD(m->ViewFOV);
 
 	return 0;
 }
@@ -463,7 +467,7 @@ void CGameView::BeginFrame()
 		// from model rendering; as it is now, a shadow map is only rendered if its associated model is to be
 		// rendered.
 		// (See http://trac.wildfiregames.com/ticket/504)
-		m->CullCamera.SetProjection(defaultNear, defaultFar, defaultCullFOV);
+		m->CullCamera.SetProjection(m->ViewNear, m->ViewFar, GetCullFOV());
 		m->CullCamera.UpdateFrustum();
 	}
 	g_Renderer.SetSceneCamera(m->ViewCamera, m->CullCamera);
@@ -890,6 +894,7 @@ void CGameView::Update(float DeltaTime)
 	m->RotateY.Wrap(-(float)M_PI, (float)M_PI);
 
 	// Update the camera matrix
+	m->ViewCamera.SetProjection(m->ViewNear, m->ViewFar, m->ViewFOV);
 	SetupCameraMatrixSmooth(m, &m->ViewCamera.m_Orientation);
 	m->ViewCamera.UpdateFrustum();
 }
@@ -969,6 +974,31 @@ void CGameView::CameraFollow(entity_id_t entity, bool firstPerson)
 entity_id_t CGameView::GetFollowedEntity()
 {
 	return m->FollowEntity;
+}
+
+float CGameView::GetNear() const
+{
+	return m->ViewNear;
+}
+
+float CGameView::GetFar() const
+{
+	return m->ViewFar;
+}
+
+float CGameView::GetFOV() const
+{
+	return m->ViewFOV;
+}
+
+float CGameView::GetCullFOV() const
+{
+	return m->ViewFOV + DEGTORAD(6.0f);	//add 6 degrees to the default FOV for use with the culling frustum;
+}
+
+void CGameView::SetCameraProjection()
+{
+	m->ViewCamera.SetProjection(m->ViewNear, m->ViewFar, m->ViewFOV);
 }
 
 InReaction game_view_handler(const SDL_Event_* ev)

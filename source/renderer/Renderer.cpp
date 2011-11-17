@@ -1223,7 +1223,7 @@ SScreenRect CRenderer::RenderReflections(const CBound& scissor)
 	vp.m_X = 0;
 	vp.m_Y = 0;
 	m_ViewCamera.SetViewPort(vp);
-	m_ViewCamera.SetProjection(CGameView::defaultNear, CGameView::defaultFar, CGameView::defaultFOV*1.05f); // Slightly higher than view FOV
+	m_ViewCamera.SetProjection(normalCamera.GetNearPlane(), normalCamera.GetFarPlane(), normalCamera.GetFOV()*1.05f); // Slightly higher than view FOV
 	CMatrix3D scaleMat;
 	scaleMat.SetScaling(m_Height/float(std::max(1, m_Width)), 1.0f, 1.0f);
 	m_ViewCamera.m_ProjMat = scaleMat * m_ViewCamera.m_ProjMat;
@@ -1307,7 +1307,7 @@ SScreenRect CRenderer::RenderRefractions(const CBound &scissor)
 	vp.m_X = 0;
 	vp.m_Y = 0;
 	m_ViewCamera.SetViewPort(vp);
-	m_ViewCamera.SetProjection(CGameView::defaultNear, CGameView::defaultFar, CGameView::defaultFOV*1.05f); // Slightly higher than view FOV
+	m_ViewCamera.SetProjection(normalCamera.GetNearPlane(), normalCamera.GetFarPlane(), normalCamera.GetFOV()*1.05f); // Slightly higher than view FOV
 	CMatrix3D scaleMat;
 	scaleMat.SetScaling(m_Height/float(std::max(1, m_Width)), 1.0f, 1.0f);
 	m_ViewCamera.m_ProjMat = scaleMat * m_ViewCamera.m_ProjMat;

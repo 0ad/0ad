@@ -37,9 +37,6 @@ class CGameViewImpl;
 class CGameView : private Scene
 {
 	NONCOPYABLE(CGameView);
-public:
-	static const float defaultFOV, defaultCullFOV, defaultNear, defaultFar;
-
 private:
 	CGameViewImpl* m;
 
@@ -87,6 +84,14 @@ public:
 	void ResetCameraAngleZoom();
 	void CameraFollow(entity_id_t entity, bool firstPerson);
 	entity_id_t GetFollowedEntity();
+
+	float GetNear() const;
+	float GetFar() const;
+	float GetFOV() const;
+	float GetCullFOV() const;
+
+	// Set projection of current camera using near, far, and FOV values
+	void SetCameraProjection();
 
 	CCamera *GetCamera();
 	CCinemaManager* GetCinema();

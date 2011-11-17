@@ -220,7 +220,7 @@ void ViewGame::Render()
 	SViewPort vp = { 0, 0, g_xres, g_yres };
 	CCamera& camera = GetCamera();
 	camera.SetViewPort(vp);
-	camera.SetProjection(CGameView::defaultNear, CGameView::defaultFar, CGameView::defaultFOV);
+	camera.SetProjection(g_Game->GetView()->GetNear(), g_Game->GetView()->GetFar(), g_Game->GetView()->GetFOV());
 	camera.UpdateFrustum();
 
 	// Update the pathfinder display if necessary
