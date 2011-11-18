@@ -216,6 +216,12 @@ var EntityTemplate = Class({
 		var territories = this.buildTerritories();
 		return (territories && territories.indexOf(territory) != -1);
 	},
+	
+	visionRange: function() {
+		if (!this._template.Vision)
+			return undefined;
+		return this._template.Vision.Range;
+	},
 });
 
 
