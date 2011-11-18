@@ -11,19 +11,12 @@
         <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="gather_meat" speed="300"/>
         <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
       </animations>
-      <mesh>skeletal/m_pants_celt.dae</mesh>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_pers_tiara.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/head_pers_b.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/axe_sagaris.xml" attachpoint="r_hand"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="Rider-Texture-1">
-      <texture>skeletal/pers_csw_b_1.dds</texture>
-    </variant>
-    <variant frequency="2" name="Rider-Texture-2">
-      <texture>skeletal/pers_csw_b_2.dds</texture>
+      <texture>skeletal/pers_csw_b_1.png</texture>
     </variant>
   </group>
   <group>

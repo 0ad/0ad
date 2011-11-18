@@ -20,13 +20,14 @@
       </animations>
       <mesh>skeletal/m_pants_celt.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_pers_tiara_y.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/head_pers_tiara.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/pers_kidaris_tied.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="l_hand"/>
         <prop actor="props/units/quiver_hip.xml" attachpoint="l_hip"/>
         <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <texture>skeletal/pers_car_b_1.dds</texture>
+      <texture>skeletal/pers_car_b_r_2.png</texture>
     </variant>
   </group>
   <group>

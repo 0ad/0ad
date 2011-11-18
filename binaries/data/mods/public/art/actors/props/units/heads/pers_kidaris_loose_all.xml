@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="base">
+      <mesh>props/helmet/pers_kidaris_loose.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Kidaris White">
+      <texture>props/helmet/pers_kidaris_1.png</texture>
+    </variant>
+    <variant frequency="1" name="Kidaris Tan">
+      <texture>props/helmet/pers_kidaris_2.png</texture>
+    </variant>
+    <variant frequency="1" name="Kidaris Yellow">
+      <texture>props/helmet/pers_kidaris_3.png</texture>
+    </variant>
+  </group>
+</actor>

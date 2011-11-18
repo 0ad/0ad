@@ -1,23 +1,29 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant frequency="1" name="face-beard-small-a">
+    <variant frequency="2" name="face-beard-small-a">
       <mesh>props/head_beard_small.pmd</mesh>
       <texture>props/head/pers_face_a.dds</texture>
     </variant>
-    <variant frequency="1" name="face-beard-small-b">
+    <variant frequency="2" name="face-beard-small-b">
       <mesh>props/head_beard_small.pmd</mesh>
       <texture>props/head/pers_face_b.dds</texture>
     </variant>
-    <variant frequency="1" name="face-beard-large-a">
+    <variant frequency="3" name="face-beard-large-a">
       <mesh>props/head_beard_large.pmd</mesh>
       <texture>props/head/pers_face_a.dds</texture>
     </variant>
-    <variant frequency="1" name="face-beard-large-b">
+    <variant frequency="3" name="face-beard-large-b">
       <mesh>props/head_beard_large.pmd</mesh>
+      <texture>props/head/pers_face_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="face-beard-wide-a">
+      <mesh>props/head_beard_wide.pmd</mesh>
+      <texture>props/head/pers_face_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="face-beard-wide-b">
+      <mesh>props/head_beard_wide.pmd</mesh>
       <texture>props/head/pers_face_b.dds</texture>
     </variant>
     <variant frequency="1" name="face-scrubby-i">
@@ -25,7 +31,5 @@
       <texture>props/head/pers_face_i.dds</texture>
     </variant>
   </group>
-
   <material>objectcolor.xml</material>
-
 </actor>
