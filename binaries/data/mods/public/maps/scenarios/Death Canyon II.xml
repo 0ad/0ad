@@ -4,10 +4,10 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>overcast</SkySet>
-		<SunColour r="1.03932" g="0.88413" b="0.559635"/>
+		<SunColour r="1.03932" g="0.880365" b="0.55838"/>
 		<SunElevation angle="0.506214"/>
 		<SunRotation angle="0.674952"/>
-		<TerrainAmbientColour r="0.262745" g="0.321569" b="0.454902"/>
+		<TerrainAmbientColour r="0.258824" g="0.321569" b="0.454902"/>
 		<UnitsAmbientColour r="0.458824" g="0.439216" b="0.384314"/>
 		<Water>
 			<WaterBody>
@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="523.473" y="267.737" z="440.604"/>
-		<Rotation angle="0.0400836"/>
-		<Declination angle="0.523599"/>
+		<Position x="669.87" y="121.37" z="719.862"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -17649,6 +17649,42 @@
 			<Player>0</Player>
 			<Position x="330.14161" z="293.87821"/>
 			<Orientation y="-0.52248"/>
+		</Entity>
+		<Entity uid="3522">
+			<Template>units/iber_champion_infantry</Template>
+			<Player>2</Player>
+			<Position x="385.78663" z="197.11442"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3523">
+			<Template>units/iber_champion_infantry</Template>
+			<Player>2</Player>
+			<Position x="389.5923" z="201.49401"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3524">
+			<Template>units/iber_champion_infantry</Template>
+			<Player>2</Player>
+			<Position x="392.86725" z="204.11396"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3525">
+			<Template>units/pers_kardakes_hoplite</Template>
+			<Player>1</Player>
+			<Position x="663.711" z="758.15668"/>
+			<Orientation y="3.07343"/>
+		</Entity>
+		<Entity uid="3526">
+			<Template>units/pers_kardakes_hoplite</Template>
+			<Player>1</Player>
+			<Position x="666.25208" z="758.98493"/>
+			<Orientation y="3.05431"/>
+		</Entity>
+		<Entity uid="3527">
+			<Template>units/pers_kardakes_hoplite</Template>
+			<Player>1</Player>
+			<Position x="668.74335" z="759.68647"/>
+			<Orientation y="3.10924"/>
 		</Entity>
 	</Entities>
 	<Paths/>

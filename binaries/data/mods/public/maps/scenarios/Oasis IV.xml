@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="974.007" y="118.383" z="792.302"/>
+		<Position x="975.778" y="86.6231" z="875.465"/>
 		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -15712,30 +15712,6 @@
 			<Position x="956.62824" z="261.20926"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="2913">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="320.8465" z="944.9469"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2914">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="324.61063" z="949.19745"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2915">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="328.77173" z="953.17762"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2916">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="332.40351" z="958.00367"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="2917">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
 			<Player>0</Player>
@@ -15871,7 +15847,7 @@
 		<Entity uid="2939">
 			<Template>structures/celt_civil_centre</Template>
 			<Player>4</Player>
-			<Position x="309.42554" z="966.34833"/>
+			<Position x="310.23411" z="967.7563"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2940">
@@ -15890,6 +15866,114 @@
 			<Template>other/pers_house_b</Template>
 			<Player>1</Player>
 			<Position x="1029.5265" z="896.91211"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2943">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="318.39838" z="946.59968"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2944">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="322.85022" z="950.70301"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2945">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="327.38056" z="955.06031"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2946">
+			<Template>units/celt_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="331.8596" z="959.48328"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2948">
+			<Template>units/pers_kardakes_hoplite</Template>
+			<Player>1</Player>
+			<Position x="979.31037" z="955.34772"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2949">
+			<Template>units/pers_kardakes_hoplite</Template>
+			<Player>1</Player>
+			<Position x="982.44788" z="959.10761"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2950">
+			<Template>units/pers_kardakes_hoplite</Template>
+			<Player>1</Player>
+			<Position x="986.0193" z="962.94471"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2952">
+			<Template>units/pers_kardakes_hoplite</Template>
+			<Player>1</Player>
+			<Position x="976.20655" z="952.61017"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2953">
+			<Template>units/cart_sacred_band_cavalry</Template>
+			<Player>2</Player>
+			<Position x="313.72083" z="300.64014"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2954">
+			<Template>units/cart_sacred_band_cavalry</Template>
+			<Player>2</Player>
+			<Position x="319.34528" z="308.14945"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2955">
+			<Template>units/thespian_melanochitones</Template>
+			<Player>3</Player>
+			<Position x="950.0633" z="243.0424"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2956">
+			<Template>units/thespian_melanochitones</Template>
+			<Player>3</Player>
+			<Position x="952.88508" z="245.55845"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2957">
+			<Template>units/thespian_melanochitones</Template>
+			<Player>3</Player>
+			<Position x="955.98853" z="249.58404"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2958">
+			<Template>units/thespian_melanochitones</Template>
+			<Player>3</Player>
+			<Position x="960.28486" z="253.44188"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2959">
+			<Template>units/celt_fanatic</Template>
+			<Player>4</Player>
+			<Position x="323.88266" z="941.19678"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2960">
+			<Template>units/celt_fanatic</Template>
+			<Player>4</Player>
+			<Position x="327.59055" z="944.80628"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2961">
+			<Template>units/celt_fanatic</Template>
+			<Player>4</Player>
+			<Position x="331.89927" z="948.8946"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2962">
+			<Template>units/celt_fanatic</Template>
+			<Player>4</Player>
+			<Position x="336.6579" z="953.98877"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>

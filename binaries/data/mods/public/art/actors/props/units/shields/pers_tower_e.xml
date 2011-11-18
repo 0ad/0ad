@@ -10,8 +10,11 @@
     </variant>
   </group>
   <group>
-    <variant name="spara-texture-a">
+    <variant frequency="1" name="spara-texture-a">
       <texture>props/shield/pers_rect_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="spara-texture-g">
+      <texture>props/shield/pers_rect_g.png</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>
