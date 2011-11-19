@@ -21,10 +21,9 @@ var EconomyManager = Class({
 		};
 	},
 
-	
-	checkBuildingList: function (gameState) {
+	villageBuildingList: function (gameState) {
 			if (gameState.displayCiv() == "hele"){
-		this.targetBuildings = [
+		this.villageBuildings = [
 			{
 				"template": "structures/{civ}_scout_tower",
 				"priority": 105,
@@ -41,10 +40,123 @@ var EconomyManager = Class({
 				"count": 1,
 			},
 			{
-				"template": "structures/{civ}_scout_tower",
-				"priority": 90,
-				"count": 3,
+				"template": "structures/{civ}_field",
+				"priority": 70,
+				"count": 2,
 			},
+		];
+			}
+			// Celt building list
+			else if (gameState.displayCiv() == "celt"){
+		this.villageBuildings = [
+			{
+				"template": "structures/{civ}_scout_tower",
+				"priority": 105,
+				"count": 1,
+			},
+				{
+				"template": "structures/{civ}_field",
+				"priority": 103,
+				"count": 1,
+			},
+			{
+				"template": "structures/{civ}_barracks",
+				"priority": 101,
+				"count": 1,
+			},
+			{
+				"template": "structures/{civ}_field",
+				"priority": 70,
+				"count": 2,
+			},
+		];
+			}
+			// Carthage building list
+			else if (gameState.displayCiv() == "cart"){
+		this.villageBuildings = [
+			{
+				"template": "structures/{civ}_scout_tower",
+				"priority": 105,
+				"count": 1,
+			},
+				{
+				"template": "structures/{civ}_field",
+				"priority": 103,
+				"count": 1,
+			},
+			{
+				"template": "structures/{civ}_barracks",
+				"priority": 101,
+				"count": 1,
+			},
+			{
+				"template": "structures/{civ}_field",
+				"priority": 70,
+				"count": 2,
+			},
+		];
+			}
+			// Celt building list
+			else if (gameState.displayCiv() == "iber"){
+		this.villageBuildings = [
+			{
+				"template": "structures/{civ}_scout_tower",
+				"priority": 105,
+				"count": 1,
+			},
+				{
+				"template": "structures/{civ}_field",
+				"priority": 103,
+				"count": 1,
+			},
+			{
+				"template": "structures/{civ}_barracks",
+				"priority": 101,
+				"count": 1,
+			},
+			{
+				"template": "structures/{civ}_field",
+				"priority": 70,
+				"count": 2,
+			},
+		];
+			}
+
+			// Fallback option just in case
+		else {
+		this.villageBuildings = [
+			{
+				"template": "structures/{civ}_scout_tower",
+				"priority": 105,
+				"count": 1,
+			},
+				{
+				"template": "structures/{civ}_field",
+				"priority": 100,
+				"count": 2,
+			},
+			{
+				"template": "structures/{civ}_barracks",
+				"priority": 99,
+				"count": 1,
+			},
+			{
+				"template": "structures/{civ}_scout_tower",
+				"priority": 60,
+				"count": 4,
+			},
+			{
+				"template": "structures/{civ}_field",
+				"priority": 40,
+				"count": 5,
+			},
+		];
+			}
+	},
+	
+	checkBuildingList: function (gameState) {
+			if (gameState.displayCiv() == "hele"){
+		this.targetBuildings = [
 			{
 				"template": "structures/hele_gymnasion",
 				"priority": 80,
@@ -61,11 +173,6 @@ var EconomyManager = Class({
 				"count": 1,
 			},
 			{
-				"template": "structures/{civ}_scout_tower",
-				"priority": 50,
-				"count": 5,
-			},
-			{
 				"template": "structures/{civ}_field",
 				"priority": 40,
 				"count": 3,
@@ -75,11 +182,6 @@ var EconomyManager = Class({
 			// Celt building list
 			else if (gameState.displayCiv() == "celt"){
 		this.targetBuildings = [
-				{
-				"template": "structures/{civ}_field",
-				"priority": 100,
-				"count": 1,
-			},
 			{
 				"template": "structures/{civ}_barracks",
 				"priority": 90,
@@ -90,31 +192,11 @@ var EconomyManager = Class({
 				"priority": 80,
 				"count": 1,
 			},
-			{
-				"template": "structures/{civ}_scout_tower",
-				"priority": 60,
-				"count": 3,
-			},
-			{
-				"template": "structures/{civ}_field",
-				"priority": 40,
-				"count": 3,
-			},
 		];
 			}
 			// Carthage building list
 			else if (gameState.displayCiv() == "cart"){
 		this.targetBuildings = [
-				{
-				"template": "structures/{civ}_field",
-				"priority": 100,
-				"count": 1,
-			},
-			{
-				"template": "structures/{civ}_barracks",
-				"priority": 100,
-				"count": 1,
-			},
 			{
 				"template": "structures/cart_fortress",
 				"priority": 80,
@@ -124,11 +206,6 @@ var EconomyManager = Class({
 				"template": "structures/cart_temple",
 				"priority": 75,
 				"count": 1,
-			},
-			{
-				"template": "structures/{civ}_scout_tower",
-				"priority": 70,
-				"count": 3,
 			},
 			{
 				"template": "structures/cart_embassy_celtic",
@@ -145,40 +222,15 @@ var EconomyManager = Class({
 				"priority": 50,
 				"count": 1,
 			},
-			{
-				"template": "structures/{civ}_field",
-				"priority": 40,
-				"count": 3,
-			},
 		];
 			}
 			// Celt building list
 			else if (gameState.displayCiv() == "iber"){
 		this.targetBuildings = [
-				{
-				"template": "structures/{civ}_field",
-				"priority": 100,
-				"count": 1,
-			},
-			{
-				"template": "structures/{civ}_barracks",
-				"priority": 100,
-				"count": 1,
-			},
 			{
 				"template": "structures/iber_fortress",
 				"priority": 80,
 				"count": 1,
-			},
-			{
-				"template": "structures/{civ}_scout_tower",
-				"priority": 70,
-				"count": 3,
-			},
-			{
-				"template": "structures/{civ}_field",
-				"priority": 40,
-				"count": 3,
 			},
 		];
 			}
@@ -186,11 +238,6 @@ var EconomyManager = Class({
 			// Fallback option just in case
 		else {
 		this.targetBuildings = [
-			{
-				"template": "structures/{civ}_scout_tower",
-				"priority": 105,
-				"count": 1,
-			},
 				{
 				"template": "structures/{civ}_field",
 				"priority": 100,
@@ -244,14 +291,44 @@ var EconomyManager = Class({
 		if (gameState.findFoundations().length > 0)
 			return;	
 			
+		// START BY GETTING ALL CCs UP TO SMALL VILLAGE LEVEL
+		for each (var building in this.villageBuildings)
+		{
+			var numBuildings = gameState.countEntitiesAndQueuedWithType(gameState.applyCiv(building.template));
+			
+		var wantedtotal = building.count * numCCs;
+			// If we have too few, build another
+			if (numBuildings < wantedtotal && building.template != gameState.applyCiv("structures/{civ}_field"))
+			{
+				planGroups.economyConstruction.addPlan(building.priority,
+					new BuildingConstructionPlan(gameState, building.template, 1)
+				);
+				return;
+			}
+			else if (numBuildings < wantedtotal && building.template == gameState.applyCiv("structures/{civ}_field"))
+			{
+				planGroups.economyConstruction.addPlan(building.priority,
+					new BuildingConstructionPlanResources(gameState, building.template, 1)
+				);
+				return;
+			}
+		}
+		// THEN BUILD THE MAIN BASE INTO A TOWN
 		for each (var building in this.targetBuildings)
 		{
 			var numBuildings = gameState.countEntitiesAndQueuedWithType(gameState.applyCiv(building.template));
 			// If we have too few, build another
-			if (numBuildings < building.count)
+			if (numBuildings < building.count && building.template != gameState.applyCiv("structures/{civ}_field"))
 			{
 				planGroups.economyConstruction.addPlan(building.priority,
 					new BuildingConstructionPlan(gameState, building.template, 1)
+				);
+				return;
+			}
+			else if (numBuildings < building.count && building.template == gameState.applyCiv("structures/{civ}_field"))
+			{
+				planGroups.economyConstruction.addPlan(building.priority,
+					new BuildingConstructionPlanResources(gameState, building.template, 1)
 				);
 				return;
 			}
@@ -400,8 +477,8 @@ var EconomyManager = Class({
 			var targets = gameState.entities.filter(function(enten) {
 				var foeposition = enten.position();
 				if (foeposition){
-				var dist = VectorDistance(foeposition, currentPosition);
-				return (enten.isEnemy() && enten.owner()!= 0 && dist < 50);
+				var dist = SquareVectorDistance(foeposition, currentPosition);
+				return (enten.isEnemy() && enten.owner()!= 0 && dist < 2500);
 				}
 				else {
 				return false;
@@ -466,7 +543,7 @@ var EconomyManager = Class({
 					// Make sure there's actually some of that type
 					if (!resourceSupplies[type])
 						continue;
-
+					// The types are food wood stone metal
 					// Pick the closest one.
 					// TODO: we should care about distance to dropsites, not (just) to the worker,
 					// and gather rates of workers
@@ -481,39 +558,66 @@ var EconomyManager = Class({
 						if (supply.entity.hasClass("SeaCreature"))
 							return;
 		
-		var distcheck = 1000000;
-		var supplydistcheck = 1000000;
+		var distcheck = 10000000000;
+		var supplydistcheck = 100000000000;
 		gameState.getOwnEntities().forEach(function(centre) {
 			if (centre.hasClass("CivCentre"))
 			{
 					var centrePosition = centre.position();
-							var currentsupplydistcheck = VectorDistance(supply.position, centrePosition);
+							var currentsupplydistcheck = SquareVectorDistance(supply.position, centrePosition);
 							if (currentsupplydistcheck < currentsupplydistcheck){
 							supplydistcheck = currentsupplydistcheck;
 							}
-							var currentdistcheck = VectorDistance(supply.position, centrePosition);
+							var currentdistcheck = SquareVectorDistance(supply.position, centrePosition);
 							if (currentdistcheck < distcheck){
 							distcheck = currentdistcheck;
 							}
 						// Skip targets that are far too far away (e.g. in the enemy base)
 			}
-						else if (centre.hasClass("Economic"))
+						else if (centre.hasClass("DropsiteFood") && type == "food")
 			{
 					var centrePosition = centre.position();
-							var currentsupplydistcheck = VectorDistance(supply.position, centrePosition);
+							var currentsupplydistcheck = SquareVectorDistance(supply.position, centrePosition);
+							if (currentsupplydistcheck < currentsupplydistcheck){
+							supplydistcheck = currentsupplydistcheck;
+							}
+						// Skip targets that are far too far away (e.g. in the enemy base)
+			}
+						else if (centre.hasClass("DropsiteWood") && type == "wood")
+			{
+					var centrePosition = centre.position();
+							var currentsupplydistcheck = SquareVectorDistance(supply.position, centrePosition);
+							if (currentsupplydistcheck < currentsupplydistcheck){
+							supplydistcheck = currentsupplydistcheck;
+							}
+						// Skip targets that are far too far away (e.g. in the enemy base)
+			}
+						else if (centre.hasClass("DropsiteStone") && type == "stone")
+			{
+					var centrePosition = centre.position();
+							var currentsupplydistcheck = SquareVectorDistance(supply.position, centrePosition);
+							if (currentsupplydistcheck < currentsupplydistcheck){
+							supplydistcheck = currentsupplydistcheck;
+							}
+						// Skip targets that are far too far away (e.g. in the enemy base)
+			}
+						else if (centre.hasClass("DropsiteMetal") && type == "metal")
+			{
+					var centrePosition = centre.position();
+							var currentsupplydistcheck = SquareVectorDistance(supply.position, centrePosition);
 							if (currentsupplydistcheck < currentsupplydistcheck){
 							supplydistcheck = currentsupplydistcheck;
 							}
 						// Skip targets that are far too far away (e.g. in the enemy base)
 			}
 		});
-						if (distcheck > 500)
+						if (distcheck > 250000)
 						return;
 							
-						var dist = VectorDistance(supply.position, workerPosition);
+						var dist = SquareVectorDistance(supply.position, workerPosition);
 
 						// Skip targets that are far too far away (e.g. in the enemy base)
-						if (dist > 500)
+						if (dist > 250000)
 							return;							
 							
 						supplies.push({ dist: dist, entity: supply.entity });
@@ -526,36 +630,77 @@ var EconomyManager = Class({
 
 						return false;
 					});
-									
+					
+					if (type == "food"){
+					var whatshallwebuild = "structures/{civ}_farmstead"
+					}
+					else {
+					var whatshallwebuild = "structures/{civ}_mill"
+					}
+					
+					
 					// Start gathering
 					if (supplies.length)
 					{
 					// THIS SHOULD BE A GLOBAL VARIABLE
 					var currentposformill = supplies[0].entity.position();
-					var distcheckoldII = 10000;
+					var distcheckoldII = 1000000000;
 					// CHECK DISTANCE
 					gameState.getOwnEntities().forEach(function(centre) {
-						if (centre.hasClass("CivCentre") || centre.hasClass("Economic"))
+						if (centre.hasClass("CivCentre"))
 						{
 								var centrePosition = centre.position();
-								var distcheckII = VectorDistance(currentposformill, centrePosition);
+								var distcheckII = SquareVectorDistance(currentposformill, centrePosition);
+									if (distcheckII < distcheckoldII){
+									distcheckoldII = distcheckII;
+									}
+						}
+						else if (centre.hasClass("DropsiteFood") && type == "food")
+						{
+								var centrePosition = centre.position();
+								var distcheckII = SquareVectorDistance(currentposformill, centrePosition);
+									if (distcheckII < distcheckoldII){
+									distcheckoldII = distcheckII;
+									}
+						}
+						else if (centre.hasClass("DropsiteWood") && type == "wood")
+						{
+								var centrePosition = centre.position();
+								var distcheckII = SquareVectorDistance(currentposformill, centrePosition);
+									if (distcheckII < distcheckoldII){
+									distcheckoldII = distcheckII;
+									}
+						}
+						else if (centre.hasClass("DropsiteMetal") && type == "metal")
+						{
+								var centrePosition = centre.position();
+								var distcheckII = SquareVectorDistance(currentposformill, centrePosition);
+									if (distcheckII < distcheckoldII){
+									distcheckoldII = distcheckII;
+									}
+						}
+						else if (centre.hasClass("DropsiteStone") && type == "stone")
+						{
+								var centrePosition = centre.position();
+								var distcheckII = SquareVectorDistance(currentposformill, centrePosition);
 									if (distcheckII < distcheckoldII){
 									distcheckoldII = distcheckII;
 									}
 						}
 					});
 					var foundationsyes = false;
-					if (gameState.findFoundations().length > 2){
+					if (gameState.findFoundations().length > 1){
 					foundationsyes = false;
 					}
 					else{
 					foundationsyes = true;
 					}
+					//warn(type + " is the resource and " + distcheckoldII + " is the distance.");
 					
-					if (distcheckoldII > 60 && foundationsyes == true){
+					if (distcheckoldII > 5000 && foundationsyes == true){
 					//JuBotAI.prototype.chat("Building Mill");
-						planGroups.economyConstruction.addPlan(80,
-						new BuildingConstructionPlanEcon(gameState, "structures/{civ}_mill", 1, currentposformill)
+						planGroups.economyConstruction.addPlan(150,
+						new BuildingConstructionPlanEcon(gameState, whatshallwebuild, 1, currentposformill)
 						);
 						//JuBotAI.prototype.chat("Gathering");
 						ent.gather(supplies[0].entity);
@@ -647,6 +792,7 @@ var EconomyManager = Class({
 		//this.buildRegroup(gameState, planGroups)
 		
 		this.checkBuildingList(gameState);
+		this.villageBuildingList(gameState);
 		
 		this.reassignRolelessUnits(gameState);
 

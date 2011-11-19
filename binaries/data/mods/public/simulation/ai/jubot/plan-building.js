@@ -200,10 +200,24 @@ var BuildingConstructionPlan = Class({
 		gameState.getOwnEntities().forEach(function(ent) {
 			if (ent.hasClass("Structure"))
 			{
-				var infl = 32;
+				var infl = 15;
 				if (ent.hasClass("CivCentre"))
-					infl *= 5;
-
+				{
+					infl = infl*5;
+				}
+				else if (ent.hasClass("Village"))
+				{
+					infl = 0;
+				}
+				else if (ent.hasClass("Economic"))
+				{
+					infl = 20;
+				}
+				else
+				{
+					infl = 0;
+				}
+				
 				var pos = ent.position();
 				var x = Math.round(pos[0] / cellSize);
 				var z = Math.round(pos[1] / cellSize);

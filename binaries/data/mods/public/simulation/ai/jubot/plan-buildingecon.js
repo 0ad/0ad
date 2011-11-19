@@ -3,6 +3,9 @@ var BuildingConstructionPlanEcon = Class({
 	_init: function(gameState, type, indno, resourcepos)
 	{
 		this.type = gameState.applyCiv(type);
+		
+		this.resourceposition = resourcepos;
+		this.pos = this.findGoodPosition(gameState);
 
 		var template = gameState.getTemplate(this.type);
 		if (!template)
@@ -10,9 +13,8 @@ var BuildingConstructionPlanEcon = Class({
 			this.invalidTemplate = true;
 			return;
 		}
-
+		
 		this.cost = new Resources(template.cost());
-		this.resourceposition = resourcepos;
 	},
 
 	canExecute: function(gameState)
@@ -37,7 +39,6 @@ var BuildingConstructionPlanEcon = Class({
 		// do the building themselves - all we care about is that there is
 		// some unit that can start the foundation
 
-		var pos = this.findGoodPosition(gameState);
 		//Check distance from Pos to CC - we don't want to get too far from the centre, for now.
 		// THIS SHOULD BE A GLOBAL VARIABLE
 		//var distcheckold = 10000;
@@ -56,7 +57,7 @@ var BuildingConstructionPlanEcon = Class({
 		//});
 		//Distcheck is thus the distance to the nearest CC - we only build if it's low enough.
 		///if (distcheckold < 400){
-		builders[0].construct(this.type, pos.x, pos.z, pos.angle);
+		builders[0].construct(this.type, this.pos.x, this.pos.z, this.pos.angle);
 		//}
 		//else {
 		//var pos = this.findGoodPositionOldStyle(gameState);
@@ -188,7 +189,6 @@ var BuildingConstructionPlanEcon = Class({
 			);
 			obstructionTiles[i] = (invalidTerritory || (passabilityMap.data[i] & obstructionMask)) ? 0 : 65535;
 		}
-
 //		Engine.DumpImage("tiles0.png", obstructionTiles, passabilityMap.width, passabilityMap.height, 64);
 
 		this.expandInfluences(obstructionTiles, passabilityMap.width, passabilityMap.height);
@@ -198,7 +198,7 @@ var BuildingConstructionPlanEcon = Class({
 		// Compute each tile's closeness to friendly structures:
 
 		var friendlyTiles = new Uint16Array(passabilityMap.data.length);
-		var infl = 100;
+		var infl = 25;
 		var pos = this.resourceposition;
 		var x = Math.round(pos[0] / cellSize);
 		var z = Math.round(pos[1] / cellSize);
@@ -228,10 +228,69 @@ var BuildingConstructionPlanEcon = Class({
 				{
 					bestVal = v;
 					bestIdx = i;
-			//JuBotAI.prototype.chat("BestVal is " + bestVal + ", and bestIdx is " + bestIdx + ".");
 				}
 			}
 		}
+		//warn("BestVal is " + bestVal + ", and bestIdx is " + bestIdx + ".");
+		
+		if (bestVal <= 5) {
+		//warn("Trying to build Civ Centre");
+		this.type = gameState.applyCiv("structures/{civ}_civil_centre");
+
+		var playerID = gameState.getPlayerID();
+		var buildOwn = template.hasBuildTerritory("own");
+		var buildAlly = template.hasBuildTerritory("ally");
+		var buildNeutral = template.hasBuildTerritory("neutral");
+		var buildEnemy = template.hasBuildTerritory("enemy");
+		// Since this is for CCs, only refrain from building on actual enemy territory.
+		var obstructionTilesII = new Uint16Array(passabilityMap.data.length);
+		for (var i = 0; i < passabilityMap.data.length; ++i)
+		{
+			var tilePlayer = (territoryMap.data[i] & TERRITORY_PLAYER_MASK);
+			var invalidTerritory = (
+				(!buildEnemy && gameState.isPlayerEnemy(tilePlayer) && tilePlayer !=0)
+			);
+			obstructionTilesII[i] = (invalidTerritory || (passabilityMap.data[i] & obstructionMask)) ? 0 : 65535;
+		}
+//		Engine.DumpImage("tiles0.png", obstructionTiles, passabilityMap.width, passabilityMap.height, 64);
+
+		this.expandInfluences(obstructionTilesII, passabilityMap.width, passabilityMap.height);
+
+		// TODO: handle distance restrictions for e.g. CivCentres
+		
+		// Compute each tile's closeness to friendly structures:
+
+		var friendlyTiles = new Uint16Array(passabilityMap.data.length);
+		var infl = 50;
+		var pos = this.resourceposition;
+		var x = Math.round(pos[0] / cellSize);
+		var z = Math.round(pos[1] / cellSize);
+		self.addInfluence(friendlyTiles, passabilityMap.width, passabilityMap.height, x, z, infl);
+		
+		
+		var template = gameState.getTemplate(this.type);
+		var radius = Math.ceil(template.obstructionRadius() / cellSize) + 1;
+		var bestIdx = 0;
+		var bestVal = -1;
+		for (var i = 0; i < passabilityMap.data.length; ++i)
+		{
+			if (obstructionTilesII[i] > radius)
+			{
+				var v = friendlyTiles[i];
+				//var foe = enemyTiles[i];
+			//JuBotAI.prototype.chat(v);
+			//JuBotAI.prototype.chat(i);
+			//JuBotAI.prototype.chat(foe);
+				if (v >= bestVal)
+				{
+					bestVal = v;
+					bestIdx = i;
+				}
+			}
+		}
+		//warn("For CC, BestVal is " + bestVal + ", and bestIdx is " + bestIdx + ".");
+		}
+		
 		var x = ((bestIdx % passabilityMap.width) + 0.5) * cellSize;
 		var z = (Math.floor(bestIdx / passabilityMap.width) + 0.5) * cellSize;
 
@@ -242,6 +301,7 @@ var BuildingConstructionPlanEcon = Class({
 		var angle = 0.75*Math.PI;
 		
 		return {
+			"canbuild": true,
 			"x": x,
 			"z": z,
 			"angle": angle

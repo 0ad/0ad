@@ -203,8 +203,8 @@ var MilitaryAttackManager = Class({
 			var targets = gameState.entities.filter(function(ent) {
 				var foeposition = ent.position();
 				if (foeposition){
-				var dist = VectorDistance(foeposition, currentPosition);
-				return (ent.isEnemy() && ent.owner()!= 0 && dist < 50);
+				var dist = SquareVectorDistance(foeposition, currentPosition);
+				return (ent.isEnemy() && ent.owner()!= 0 && dist < 2500);
 				}
 				else {
 				return false;
@@ -223,6 +223,52 @@ var MilitaryAttackManager = Class({
 				});	
 	},
 	
+	CombatAnalyser: function(gameState, planGroups, startunit)
+	{
+				var centrepoint = startunit.position();
+					var targets = gameState.entities.filter(function(squeak) {
+				var currentPosition = squeak.position();
+				if (currentPosition){
+				var dist = SquareVectorDistance(foeposition, currentPosition);
+				return (dist < 2500);
+				}
+				else {
+				return false;
+				}
+			});
+			if (targets.length)
+			{
+			var forest = 0;
+			var foeTot = 0;
+			var foeCav = 0;
+			var foeInf = 0;
+			var foeBow = 0;
+			var foeRangeCav = 0;
+				targets.forEach(function(item) {
+				if (item.hasClass("ForestPlant")){
+				forest += 1;
+				}
+				if (item.isEnemy() && item.owner != 0 && item.hasClass("Infantry") && item.hasClass("Melee")){
+				foeTot += 1;
+				foeInf += 1;
+				}
+				if (item.isEnemy() && item.owner != 0 && item.hasClass("Infantry" && item.hasClass("Ranged"))){
+				foeTot += 1;
+				foeBow += 1;
+				}
+				if (item.isEnemy() && item.owner != 0 && item.hasClass("Cavalry") && item.hasClass("Melee")){
+				foeTot += 1;
+				foeCav += 1;
+				}
+				if (item.isEnemy() && item.owner != 0 && item.hasClass("Cavalry" && item.hasClass("Ranged"))){
+				foeTot += 1;
+				foeRangeCav += 1;
+				}
+				});
+			}
+
+	},
+	
 	combatcheckMilitia: function(gameState, planGroups, assaultgroup)
 	{
 			var regroupneeded = gameState.getOwnEntitiesWithRole(assaultgroup);
@@ -232,8 +278,8 @@ var MilitaryAttackManager = Class({
 			var targets = gameState.entities.filter(function(ent) {
 				var foeposition = ent.position();
 				if (foeposition){
-				var dist = VectorDistance(foeposition, currentPosition);
-				return (ent.isEnemy() && ent.owner()!= 0 && dist < 50);
+				var dist = SquareVectorDistance(foeposition, currentPosition);
+				return (ent.isEnemy() && ent.owner()!= 0 && dist < 2500);
 				}
 				else {
 				return false;
@@ -243,8 +289,8 @@ var MilitaryAttackManager = Class({
 			var ownbuildings = gameState.getOwnEntities().filter(function(ent) {
 				var foeposition = ent.position();
 				if (foeposition){
-				var dist = VectorDistance(foeposition, currentPosition);
-				return (dist < 50 && ent.hasClass("Village"));
+				var dist = SquareVectorDistance(foeposition, currentPosition);
+				return (dist < 2500 && ent.hasClass("Village"));
 				}
 				else {
 				return false;
@@ -252,12 +298,17 @@ var MilitaryAttackManager = Class({
 			});
 			if (targets.length >= 5 && ownbuildings.length > 0){
 				regroupneeded.forEach(function(person) {
+				var position = targets.toEntityArray()[0].position();
+				var ourposition = person.position();
+				var distance = SquareVectorDistance(position, ourposition);
+				if (distance <= 22500){
 				var targetrandomiser = Math.floor(Math.random()*targets.length);
 				var target = targets.toEntityArray()[targetrandomiser];
 				var targetPos = target.position();
 				// TODO: this should be an attack-move command
 				person.move(targetPos[0], targetPos[1]);
 				person.setMetadata("role", "militiafighter");
+				}
 				});
 			}
 				});	
