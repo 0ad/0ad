@@ -144,24 +144,24 @@ void CCamera::SetViewPort(const SViewPort& viewport)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // GetCameraPlanePoints: return four points in camera space at given distance from camera
-void CCamera::GetCameraPlanePoints(float dist,CVector3D pts[4]) const
+void CCamera::GetCameraPlanePoints(float dist, CVector3D pts[4]) const
 {
-	float aspect=float(m_ViewPort.m_Width)/float(m_ViewPort.m_Height);
+	float aspect = float(m_ViewPort.m_Width)/float(m_ViewPort.m_Height);
+	float x = dist*aspect*tanf(m_FOV*0.5f);
+	float y = dist*tanf(m_FOV*0.5f);
 
-	float x=dist*float(tan(GetFOV()*aspect*0.5));
-	float y=dist*float(tan(GetFOV()*0.5));
-	pts[0].X=-x;
-	pts[0].Y=-y;
-	pts[0].Z=dist;
-	pts[1].X=x;
-	pts[1].Y=-y;
-	pts[1].Z=dist;
-	pts[2].X=x;
-	pts[2].Y=y;
-	pts[2].Z=dist;
-	pts[3].X=-x;
-	pts[3].Y=y;
-	pts[3].Z=dist;
+	pts[0].X = -x;
+	pts[0].Y = -y;
+	pts[0].Z = dist;
+	pts[1].X = x;
+	pts[1].Y = -y;
+	pts[1].Z = dist;
+	pts[2].X = x;
+	pts[2].Y = y;
+	pts[2].Z = dist;
+	pts[3].X = -x;
+	pts[3].Y = y;
+	pts[3].Z = dist;
 }
 
 void CCamera::BuildCameraRay(int px, int py, CVector3D& origin, CVector3D& dir) const
