@@ -603,6 +603,39 @@ var MilitaryAttackManager = Class({
 					this.trainSomeTroops(gameState, planGroups, "units/{civ}_infantry_spearman_b");
 					}
 				}
+			//Persians
+				else if (gameState.displayCiv() == "pers"){
+					if (this.attacknumbers < 0.15){
+					this.trainSomeTroops(gameState, planGroups, "units/pers_champion_infantry");
+					}
+					else if (this.attacknumbers < 0.25){
+					this.trainSomeTroops(gameState, planGroups, "units/pers_champion_cavalry");
+					}
+					else if (this.attacknumbers < 0.35){
+					this.trainSomeTroops(gameState, planGroups, "units/{civ}_infantry_archer_b");
+					}
+					else if (this.attacknumbers < 0.5){
+					this.trainSomeTroops(gameState, planGroups, "units/{civ}_infantry_spearman_b");
+					}
+					else if (this.attacknumbers < 0.55){
+					this.trainSomeTroops(gameState, planGroups, "units/{civ}_infantry_javelinist_b");
+					}
+					else if (this.attacknumbers < 0.65){
+					this.trainSomeTroops(gameState, planGroups, "units/{civ}_cavalry_swordsman_b");
+					}
+					else if (this.attacknumbers < 0.75){
+					this.trainSomeTroops(gameState, planGroups, "units/{civ}_cavalry_spearman_b");
+					}
+					else if (this.attacknumbers < 0.85){
+					this.trainSomeTroops(gameState, planGroups, "units/{civ}_cavalry_archer_b");
+					}
+					else if (this.attacknumbers < 0.9){
+					this.trainMachine(gameState, planGroups, "units/pers_champion_cavalry");
+					}
+					else {
+					this.trainSomeTroops(gameState, planGroups, "units/{civ}_infantry_spearman_b");
+					}
+				}
 			}
 			// Cav raiders training list
 			else if (this.killstrat == 2){
@@ -615,11 +648,23 @@ var MilitaryAttackManager = Class({
 			else if (this.attacknumbers < 0.4 && gameState.displayCiv() == "iber"){
 			this.trainSomeTroops(gameState, planGroups, "units/iber_super_cavalry");
 			}
+			else if (this.attacknumbers < 0.25 && gameState.displayCiv() == "pers"){
+			this.trainSomeTroops(gameState, planGroups, "units/pers_cavalry_archer_b");
+			}
 			else if (this.attacknumbers < 0.6 && gameState.displayCiv() == "celt"){
 			this.trainSomeTroops(gameState, planGroups, "units/{civ}_cavalry_swordsman_b");
 			}
 			else if (this.attacknumbers < 0.6 && gameState.displayCiv() == "hele"){
 			this.trainSomeTroops(gameState, planGroups, "units/hele_champion_cavalry_mace");
+			}
+			else if (this.attacknumbers < 0.5 && gameState.displayCiv() == "pers"){
+			this.trainSomeTroops(gameState, planGroups, "units/pers_cavalry_javelinist_b");
+			}
+			else if (this.attacknumbers < 0.75 && gameState.displayCiv() == "pers"){
+			this.trainSomeTroops(gameState, planGroups, "units/pers_cavalry_swordsman_b");
+			}
+			else if (gameState.displayCiv() == "pers"){
+			this.trainSomeTroops(gameState, planGroups, "units/pers_cavalry_spearman_b");
 			}
 			else if  (gameState.displayCiv() == "iber"){
 			this.trainSomeTroops(gameState, planGroups, "units/{civ}_cavalry_spearman_b");
@@ -684,6 +729,18 @@ var MilitaryAttackManager = Class({
 					this.trainSomeTroops3prong(gameState, planGroups, "units/{civ}_infantry_spearman_b");
 					}
 			}
+			//Pers
+				else if (gameState.displayCiv() == "pers"){
+					if (this.attacknumbers < 0.25){
+					this.trainSomeTroops3prong(gameState, planGroups, "units/{civ}_cavalry_spearman_b");
+					}
+					else if (this.attacknumbers < 0.55){
+					this.trainSomeTroops3prong(gameState, planGroups, "units/{civ}_infantry_archer_b");
+					}
+					else {
+					this.trainSomeTroops3prong(gameState, planGroups, "units/{civ}_infantry_spearman_b");
+					}
+			}
 			}
 			// Generic training list
 			else {
@@ -735,6 +792,18 @@ var MilitaryAttackManager = Class({
 					this.trainSomeTroops3prong(gameState, planGroups, "units/{civ}_infantry_spearman_b");
 					}
 				}
+			//Pers
+				else if (gameState.displayCiv() == "pers"){
+					if (this.attacknumbers < 0.25){
+					this.trainSomeTroops3prong(gameState, planGroups, "units/{civ}_cavalry_spearman_b");
+					}
+					else if (this.attacknumbers < 0.55){
+					this.trainSomeTroops3prong(gameState, planGroups, "units/{civ}_infantry_archer_b");
+					}
+					else {
+					this.trainSomeTroops3prong(gameState, planGroups, "units/{civ}_infantry_spearman_b");
+					}
+			}
 			}
 	},
 	

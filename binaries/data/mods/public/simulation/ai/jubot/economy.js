@@ -96,8 +96,33 @@ var EconomyManager = Class({
 			},
 		];
 			}
-			// Celt building list
+			// Iberian building list
 			else if (gameState.displayCiv() == "iber"){
+		this.villageBuildings = [
+			{
+				"template": "structures/{civ}_scout_tower",
+				"priority": 105,
+				"count": 1,
+			},
+				{
+				"template": "structures/{civ}_field",
+				"priority": 103,
+				"count": 1,
+			},
+			{
+				"template": "structures/{civ}_barracks",
+				"priority": 101,
+				"count": 1,
+			},
+			{
+				"template": "structures/{civ}_field",
+				"priority": 70,
+				"count": 2,
+			},
+		];
+			}
+			// Persian building list
+			else if (gameState.displayCiv() == "pers"){
 		this.villageBuildings = [
 			{
 				"template": "structures/{civ}_scout_tower",
@@ -235,6 +260,26 @@ var EconomyManager = Class({
 		];
 			}
 
+			// Perian building list
+			else if (gameState.displayCiv() == "pers"){
+		this.targetBuildings = [
+			{
+				"template": "structures/pers_fortress",
+				"priority": 80,
+				"count": 1,
+			},
+			{
+				"template": "structures/pers_stables",
+				"priority": 75,
+				"count": 1,
+			},
+			{
+				"template": "structures/pers_apadana",
+				"priority": 50,
+				"count": 1,
+			},
+		];
+			}
 			// Fallback option just in case
 		else {
 		this.targetBuildings = [
@@ -421,6 +466,26 @@ var EconomyManager = Class({
 			planGroups.economyPersonnel.addPlan(priority,
 				new UnitTrainingPlan(gameState,
 					"units/{civ}_infantry_javelinist_b", 2, { "role": "militia" })
+			);
+			}
+		}
+		else if (gameState.displayCiv() == "pers"){
+			if (workNumMod < 0.95){
+			planGroups.economyPersonnel.addPlan(priority,
+				new UnitTrainingPlan(gameState,
+					"units/{civ}_support_female_citizen", 2, { "role": "worker" })
+			);
+			}
+			else if (workNumMod > 1.6) {
+			planGroups.economyPersonnel.addPlan(priority,
+				new UnitTrainingPlan(gameState,
+					"units/{civ}_infantry_spearman_b", 2, { "role": "militia" })
+			);
+			}
+			else {
+			planGroups.economyPersonnel.addPlan(priority,
+				new UnitTrainingPlan(gameState,
+					"units/{civ}_infantry_archer_b", 2, { "role": "militia" })
 			);
 			}
 		}
@@ -699,7 +764,7 @@ var EconomyManager = Class({
 					
 					if (distcheckoldII > 5000 && foundationsyes == true){
 					//JuBotAI.prototype.chat("Building Mill");
-						planGroups.economyConstruction.addPlan(150,
+						planGroups.economyConstruction.addPlan(100,
 						new BuildingConstructionPlanEcon(gameState, whatshallwebuild, 1, currentposformill)
 						);
 						//JuBotAI.prototype.chat("Gathering");
