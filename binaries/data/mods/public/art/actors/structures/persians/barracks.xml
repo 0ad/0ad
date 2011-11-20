@@ -7,7 +7,14 @@
     <variant frequency="100" name="Base">
       <mesh>structural/pers_barracks.dae</mesh>
       <props>
+        <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
         <prop actor="props/structures/persians/barracks.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/pers_taka_a.xml" attachpoint="shieldright"/>
+        <prop actor="props/units/shields/pers_pelta_a.xml" attachpoint="shieldleft"/>
+        <prop actor="props/units/shields/pers_tower.xml" attachpoint="entranceshield"/>
+        <prop actor="props/units/shields/pers_round_kardakes.xml" attachpoint="tableside"/>
+        <prop actor="props/units/shields/pers_round_kardakes.xml" attachpoint="shieldtop"/>
+        <prop actor="props/units/shields/pers_round_kardakes.xml" attachpoint="shieldoutside"/>
       </props>
       <texture>structural/pers_struct.dds</texture>
     </variant>
