@@ -453,7 +453,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 		Paths paths(args);
 		g_VFS = CreateVfs(20 * MiB);
 		g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE);
-		g_VFS->Mount(L"", paths.RData()/"mods/public", VFS_MOUNT_MUST_EXIST);
+		g_VFS->Mount(L"", paths.RData()/"mods"/"public", VFS_MOUNT_MUST_EXIST);
 
 		{
 			CReplayPlayer replay;
