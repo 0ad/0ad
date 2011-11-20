@@ -5,13 +5,14 @@
     <variant frequency="1" name="base">
       <mesh>props/shield/pelta_a_f.pmd</mesh>
       <props>
-        <prop actor="props/units/shields/pers_pelta_a_back_reverse.xml" attachpoint="back"/>
+        <prop actor="props/units/shields/pelta_a_back.xml" attachpoint="back"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="pers-pelta-b">
-      <texture>props/shield/hele_pelta_i.dds</texture>
+    <variant frequency="1" name="taka shield h">
+      <texture>props/shield/pers_pelta_h.png</texture>
     </variant>
   </group>
+  <material>player_trans.xml</material>
 </actor>
