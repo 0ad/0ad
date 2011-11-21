@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2011-11-21T01:51:51Z</created>
-    <modified>2011-11-21T01:51:51Z</modified>
+    <created>2011-11-21T02:00:19Z</created>
+    <modified>2011-11-21T02:00:19Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -14998,6 +14998,9 @@
         </instance_geometry>
         <node id="prop_fire" name="prop_fire">
           <matrix sid="matrix">-0.946189 1.053496 -0.000000 -0.008342 -1.053496 -0.946189 0.000000 -0.635622 -0.000000 0.000000 1.416025 1.826328 0.000000 0.000000 0.000000 1.000000</matrix>
+        </node>
+        <node id="prop_garrisoned" name="prop_garrisoned">
+          <matrix sid="matrix">-0.668201 0.743981 -0.000000 7.364348 -0.743981 -0.668201 0.000000 1.545864 0.000000 0.000000 1.000000 15.320575 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
       </node>
     </visual_scene>

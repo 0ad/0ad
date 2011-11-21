@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="CeltTemple">
+    <variant frequency="100" name="CeltTemple">
       <mesh>structural/celt_temple.dae</mesh>
       <props>
         <prop actor="props/structures/celts/temple_color.xml" attachpoint="root"/>
@@ -15,6 +15,14 @@
         <prop actor="props/structures/celts/temple_celt_wall.xml" attachpoint="root"/>
       </props>
       <texture>structural/celt_struct_1.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/waypoint_flag_0ad.xml" attachpoint="garrisoned"/>
+      </props>
     </variant>
   </group>
 </actor>
