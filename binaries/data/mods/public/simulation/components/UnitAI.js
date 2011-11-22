@@ -691,31 +691,31 @@ var UnitFsmSpec = {
 				},
 
 				"Timer": function(msg) {
-					// Check the target is still alive
-					if (this.TargetIsAlive(this.order.data.target))
+					var target = this.order.data.target;
+					// Check the target is still alive and attackable
+					if (this.TargetIsAlive(target) && this.CanAttack(target))
 					{
 						// Check we can still reach the target
-						if (this.CheckTargetRange(this.order.data.target, IID_Attack, this.attackType))
+						if (this.CheckTargetRange(target, IID_Attack, this.attackType))
 						{
-							this.FaceTowardsTarget(this.order.data.target);
+							this.FaceTowardsTarget(target);
 							var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-							cmpAttack.PerformAttack(this.attackType, this.order.data.target);
+							cmpAttack.PerformAttack(this.attackType, target);
 							return;
 						}
 
 						// Can't reach it - try to chase after it
-						if (this.ShouldChaseTargetedEntity(this.order.data.target, this.order.data.force))
+						if (this.ShouldChaseTargetedEntity(target, this.order.data.force))
 						{
-							if (this.MoveToTargetRange(this.order.data.target, IID_Attack, this.attackType))
+							if (this.MoveToTargetRange(target, IID_Attack, this.attackType))
 							{
 								this.SetNextState("COMBAT.CHASING");
 								return;
 							}
 						}
-
 					}
 
-					// Can't reach it, or it doesn't exist any more - give up
+					// Can't reach it, no longer owned by enemy, or it doesn't exist any more - give up
 					if (this.FinishOrder())
 						return;
 
@@ -837,15 +837,16 @@ var UnitFsmSpec = {
 				},
 
 				"Timer": function(msg) {
-					// Check we can still reach the target
-					if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer))
+					var target = this.order.data.target;
+					// Check we can still reach and gather from the target
+					if (this.CheckTargetRange(target, IID_ResourceGatherer) && this.CanGather(target))
 					{
 						// Gather the resources:
 
 						var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
 
 						// Try to gather treasure
-						if (cmpResourceGatherer.TryInstantGather(this.order.data.target)) 
+						if (cmpResourceGatherer.TryInstantGather(target)) 
 							return;
 						
 						// If we've already got some resources but they're the wrong type,
@@ -854,7 +855,7 @@ var UnitFsmSpec = {
 							cmpResourceGatherer.DropResources();
 
 						// Collect from the target
-						var status = cmpResourceGatherer.PerformGather(this.order.data.target);
+						var status = cmpResourceGatherer.PerformGather(target);
 
 						// TODO: if exhausted, we should probably stop immediately
 						// and choose a new target
@@ -879,7 +880,7 @@ var UnitFsmSpec = {
 					else
 					{
 						// Try to follow the target
-						if (this.MoveToTargetRange(this.order.data.target, IID_ResourceGatherer))
+						if (this.MoveToTargetRange(target, IID_ResourceGatherer))
 						{
 							this.SetNextState("APPROACHING");
 							return;
@@ -1030,10 +1031,10 @@ var UnitFsmSpec = {
 
 				"Timer": function(msg) {
 					var target = this.order.data.target;
-					// Check we can still reach the target
-					if (!this.CheckTargetRange(target, IID_Builder))
+					// Check we can still reach and repair the target
+					if (!this.CheckTargetRange(target, IID_Builder) || !this.CanRepair(target))
 					{
-						// Can't reach it, or it doesn't exist any more
+						// Can't reach it, no longer owned by ally, or it doesn't exist any more
 						this.FinishOrder();
 						return;
 					}
@@ -1071,10 +1072,10 @@ var UnitFsmSpec = {
 				}
 
 				// If this building was e.g. a farmstead, we should look for nearby
-				// resources we can gather
-				var cmpResourceDropsite = Engine.QueryInterface(msg.data.newentity, IID_ResourceDropsite);
-				if (cmpResourceDropsite)
+				// resources we can gather, if we are capable of doing so
+				if (this.CanReturnResource(msg.data.newentity))
 				{
+					var cmpResourceDropsite = Engine.QueryInterface(msg.data.newentity, IID_ResourceDropsite);
 					var types = cmpResourceDropsite.GetTypes();
 					var nearby = this.FindNearbyResource(function (ent, type) {
 						return (types.indexOf(type.generic) != -1);
@@ -1138,13 +1139,16 @@ var UnitFsmSpec = {
 
 			"GARRISONED": {
 				"enter": function() {
-					var cmpGarrisonHolder = Engine.QueryInterface(this.order.data.target, IID_GarrisonHolder);
-					if (cmpGarrisonHolder && cmpGarrisonHolder.Garrison(this.entity))
+					var target = this.order.data.target;
+					// Check that we can still garrison here and that garrisoning succeeds
+					var cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
+					if (this.CanGarrison(target) && cmpGarrisonHolder.Garrison(this.entity))
 					{
 						this.isGarrisoned = true;
 					}
 					else
-					{	// Garrisoning failed for some reason, so finish the order
+					{
+						// Garrisoning failed for some reason, so finish the order
 						if (this.FinishOrder())
 							return;
 					}
@@ -1205,7 +1209,8 @@ var UnitFsmSpec = {
 					this.Attack(msg.data.attacker, false);
 			}
 			else if (this.template.NaturalBehaviour == "domestic")
-			{	// Never flee, stop what we were doing
+			{
+				// Never flee, stop what we were doing
 				this.SetNextState("IDLE");
 			}
 		},
@@ -2436,15 +2441,28 @@ UnitAI.prototype.CanAttack = function(target)
 	if (!cmpAttack)
 		return false;
 
-	// TODO: verify that this is a valid target
+	// Verify that the target is owned by an enemy of this entity's player
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership || !IsOwnedByEnemyOfPlayer(cmpOwnership.GetOwner(), target))
+		return false;
 
 	return true;
 };
 
 UnitAI.prototype.CanGarrison = function(target)
 {
+	// Formation controllers should always respond to commands
+	// (then the individual units can make up their own minds)
+	if (this.IsFormationController())
+		return true;
+
 	var cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
 	if (!cmpGarrisonHolder)
+		return false;
+
+	// Verify that the target is owned by this entity's player
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership || !IsOwnedByPlayer(cmpOwnership.GetOwner(), target))
 		return false;
 
 	// Don't let animals garrison for now
@@ -2472,7 +2490,10 @@ UnitAI.prototype.CanGather = function(target)
 	if (!cmpResourceGatherer.GetTargetGatherRate(target))
 		return false;
 
-	// TODO: should verify it's owned by the correct player, etc
+	// Verify that the target is owned by gaia or this entity's player
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership || (!IsOwnedByGaia(target) && !IsOwnedByPlayer(cmpOwnership.GetOwner(), target)))
+		return false;
 
 	return true;
 };
@@ -2500,7 +2521,10 @@ UnitAI.prototype.CanReturnResource = function(target)
 	if (!type || !cmpResourceDropsite.AcceptsType(type))
 		return false;
 
-	// TODO: should verify it's owned by the correct player, etc
+	// Verify that the dropsite is owned by this entity's player
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership || !IsOwnedByPlayer(cmpOwnership.GetOwner(), target))
+		return false;
 
 	return true;
 };
@@ -2517,7 +2541,10 @@ UnitAI.prototype.CanRepair = function(target)
 	if (!cmpBuilder)
 		return false;
 
-	// TODO: verify that this is a valid target
+	// Verify that the target is owned by an ally of this entity's player
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership || !IsOwnedByAllyOfPlayer(cmpOwnership.GetOwner(), target))
+		return false;
 
 	return true;
 };

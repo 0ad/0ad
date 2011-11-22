@@ -1,3 +1,7 @@
+// Setting this to true will display some warnings when commands
+//	are likely to fail, which may be useful for debugging AIs
+var g_DebugCommands = false;
+
 function ProcessCommand(player, cmd)
 {
 	// Do some basic checks here that commanding player is valid
@@ -11,6 +15,12 @@ function ProcessCommand(player, cmd)
 	if (!cmpPlayer)
 		return;
 	var controlAllUnits = cmpPlayer.CanControlAllUnits();
+
+	// Note: checks of UnitAI targets are not robust enough here, as ownership
+	//	can change after the order is issued, they should be checked by UnitAI
+	//	when the specific behavior (e.g. attack, garrison) is performed.
+	// (Also it's not ideal if a command silently fails, it's nicer if UnitAI
+	//	moves the entities closer to the target before giving up.)
 
 	// Now handle various commands
 	switch (cmd.type)
@@ -27,7 +37,7 @@ function ProcessCommand(player, cmd)
 	case "control-all":
 		cmpPlayer.SetControlAllUnits(cmd.flag);
 		break;
-		
+
 	case "reveal-map":
 		// Reveal the map for all players, not just the current player,
 		// primarily to make it obvious to everyone that the player is cheating
@@ -43,65 +53,88 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "attack":
-		// Check if target is owned by player's enemy
-		if (IsOwnedByEnemyOfPlayer(player, cmd.target))
+		if (g_DebugCommands && !IsOwnedByEnemyOfPlayer(player, cmd.target))
 		{
-			var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-			GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
-				cmpUnitAI.Attack(cmd.target, cmd.queued);
-			});
+			// This check is for debugging only!
+			warn("Invalid command: attack target is not owned by enemy of player "+player+": "+uneval(cmd));
 		}
+
+		// See UnitAI.CanAttack for target checks
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
+			cmpUnitAI.Attack(cmd.target, cmd.queued);
+		});
 		break;
 
 	case "repair":
 		// This covers both repairing damaged buildings, and constructing unfinished foundations
-		// Check if target building is owned by player or an ally
-		if (IsOwnedByAllyOfPlayer(player, cmd.target))
+		if (g_DebugCommands && !IsOwnedByAllyOfPlayer(player, cmd.target))
 		{
-			var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-			GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
-				cmpUnitAI.Repair(cmd.target, cmd.autocontinue, cmd.queued);
-			});
+			// This check is for debugging only!
+			warn("Invalid command: repair target is not owned by ally of player "+player+": "+uneval(cmd));
 		}
+
+		// See UnitAI.CanRepair for target checks
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
+			cmpUnitAI.Repair(cmd.target, cmd.autocontinue, cmd.queued);
+		});
 		break;
 
 	case "gather":
-		// Check if target resource is owned by gaia or player
-		if (IsOwnedByGaia(cmd.target) || IsOwnedByPlayer(player, cmd.target))
+		if (g_DebugCommands && !(IsOwnedByPlayer(player, cmd.target) || IsOwnedByGaia(cmd.target)))
 		{
-			var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-			GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
-				cmpUnitAI.Gather(cmd.target, cmd.queued);
-			});
+			// This check is for debugging only!
+			warn("Invalid command: resource is not owned by gaia or player "+player+": "+uneval(cmd));
 		}
+
+		// See UnitAI.CanGather for target checks
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
+			cmpUnitAI.Gather(cmd.target, cmd.queued);
+		});
 		break;
 
 	case "returnresource":
 		// Check dropsite is owned by player
-		if (IsOwnedByPlayer(player, cmd.target))
+		if (g_DebugCommands && IsOwnedByPlayer(player, cmd.target))
 		{
-			var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-			GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
-				cmpUnitAI.ReturnResource(cmd.target, cmd.queued);
-			});
+			// This check is for debugging only!
+			warn("Invalid command: dropsite is not owned by player "+player+": "+uneval(cmd));
 		}
+
+		// See UnitAI.CanReturnResource for target checks
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
+			cmpUnitAI.ReturnResource(cmd.target, cmd.queued);
+		});
 		break;
 
 	case "train":
+		// Verify that the building can be controlled by the player
 		if (CanControlUnit(cmd.entity, player, controlAllUnits))
 		{
 			var queue = Engine.QueryInterface(cmd.entity, IID_TrainingQueue);
 			if (queue)
 				queue.AddBatch(cmd.template, +cmd.count, cmd.metadata);
 		}
+		else if (g_DebugCommands)
+		{
+			warn("Invalid command: training building cannot be controlled by player "+player+": "+uneval(cmd));
+		}
 		break;
 
 	case "stop-train":
+		// Verify that the building can be controlled by the player
 		if (CanControlUnit(cmd.entity, player, controlAllUnits))
 		{
 			var queue = Engine.QueryInterface(cmd.entity, IID_TrainingQueue);
 			if (queue)
 				queue.RemoveBatch(cmd.id);
+		}
+		else if (g_DebugCommands)
+		{
+			warn("Invalid command: training building cannot be controlled by player "+player+": "+uneval(cmd));
 		}
 		break;
 
@@ -138,7 +171,7 @@ function ProcessCommand(player, cmd)
 		if (ent == INVALID_ENTITY)
 		{
 			// Error (e.g. invalid template names)
-			error("Error creating foundation for '" + cmd.template + "'");
+			error("Error creating foundation entity for '" + cmd.template + "'");
 			break;
 		}
 
@@ -147,52 +180,72 @@ function ProcessCommand(player, cmd)
 		cmpPosition.JumpTo(cmd.x, cmd.z);
 		cmpPosition.SetYRotation(cmd.angle);
 
-		// TODO: Build restrictions disabled for AI since it lacks a mechanism for checking most of them
+		// Check whether it's obstructed by other entities or invalid terrain
+		var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
+		if (!cmpBuildRestrictions || !cmpBuildRestrictions.CheckPlacement(player))
+		{
+			if (g_DebugCommands)
+			{
+				warn("Invalid command: build restrictions check failed for player "+player+": "+uneval(cmd));
+			}
+
+			var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+			cmpGuiInterface.PushNotification({ "player": player, "message": "Building site was obstructed" });
+
+			// Remove the foundation because the construction was aborted
+			Engine.DestroyEntity(ent);
+			break;
+		}
+
+		// Check build limits
+		var cmpBuildLimits = QueryPlayerIDInterface(player, IID_BuildLimits);
+		if (!cmpBuildLimits || !cmpBuildLimits.AllowedToBuild(cmpBuildRestrictions.GetCategory()))
+		{
+			if (g_DebugCommands)
+			{
+				warn("Invalid command: build limits check failed for player "+player+": "+uneval(cmd));
+			}
+
+			// TODO: The UI should tell the user they can't build this (but we still need this check)
+
+			// Remove the foundation because the construction was aborted
+			Engine.DestroyEntity(ent);
+			break;
+		}
+
+		// TODO: AI has no visibility info
 		if (!cmpPlayer.IsAI())
 		{
-			// Check whether it's obstructed by other entities or invalid terrain
-			var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
-			if (!cmpBuildRestrictions || !cmpBuildRestrictions.CheckPlacement(player))
-			{
-				var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-				cmpGuiInterface.PushNotification({ "player": player, "message": "Building site was obstructed" });
-
-				// Remove the foundation because the construction was aborted
-				Engine.DestroyEntity(ent);
-				break;
-			}
-			
-			// Check build limits
-			var cmpBuildLimits = QueryPlayerIDInterface(player, IID_BuildLimits);
-			if (!cmpBuildLimits || !cmpBuildLimits.AllowedToBuild(cmpBuildRestrictions.GetCategory()))
-			{
-				// TODO: The UI should tell the user they can't build this (but we still need this check)
-				
-				// Remove the foundation because the construction was aborted
-				Engine.DestroyEntity(ent);
-				break;
-			}
-
 			// Check whether it's in a visible region
 			var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 			var visible = (cmpRangeManager.GetLosVisibility(ent, player) == "visible");
 			if (!visible)
 			{
-				// TODO: report error to player (the building site was not visible)
-				print("Building site was not visible\n");
+				if (g_DebugCommands)
+				{
+					warn("Invalid command: foundation visibility check failed for player "+player+": "+uneval(cmd));
+				}
+
+				var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+				cmpGuiInterface.PushNotification({ "player": player, "message": "Building site was not visible" });
 
 				Engine.DestroyEntity(ent);
 				break;
 			}
 		}
-		
+
 		var cmpCost = Engine.QueryInterface(ent, IID_Cost);
 		if (!cmpPlayer.TrySubtractResources(cmpCost.GetResourceCosts()))
 		{
+			if (g_DebugCommands)
+			{
+				warn("Invalid command: building cost check failed for player "+player+": "+uneval(cmd));
+			}
+
 			Engine.DestroyEntity(ent);
 			break;
 		}
-		
+
 		// Make it owned by the current player
 		var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 		cmpOwnership.SetOwner(player);
@@ -214,7 +267,7 @@ function ProcessCommand(player, cmd)
 		}
 
 		break;
-	
+
 	case "delete-entities":
 		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		for each (var ent in entities)
@@ -246,13 +299,14 @@ function ProcessCommand(player, cmd)
 				cmpRallyPoint.Unset();
 		}
 		break;
-		
+
 	case "defeat-player":
 		// Send "OnPlayerDefeated" message to player
-		Engine.PostMessage(playerEnt, MT_PlayerDefeated, null);
+		Engine.PostMessage(playerEnt, MT_PlayerDefeated, { "playerId": player } );
 		break;
 
 	case "garrison":
+		// Verify that the building can be controlled by the player
 		if (CanControlUnit(cmd.target, player, controlAllUnits))
 		{
 			var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
@@ -260,9 +314,14 @@ function ProcessCommand(player, cmd)
 				cmpUnitAI.Garrison(cmd.target);
 			});
 		}
+		else if (g_DebugCommands)
+		{
+			warn("Invalid command: garrison target cannot be controlled by player "+player+": "+uneval(cmd));
+		}
 		break;
-		
+
 	case "unload":
+		// Verify that the building can be controlled by the player
 		if (CanControlUnit(cmd.garrisonHolder, player, controlAllUnits))
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(cmd.garrisonHolder, IID_GarrisonHolder);
@@ -274,9 +333,14 @@ function ProcessCommand(player, cmd)
 				cmpGUIInterface.PushNotification(notification);
 			}	
 		}
+		else if (g_DebugCommands)
+		{
+			warn("Invalid command: unload target cannot be controlled by player "+player+": "+uneval(cmd));
+		}
 		break;
-		
+
 	case "unload-all":
+		// Verify that the building can be controlled by the player
 		if (CanControlUnit(cmd.garrisonHolder, player, controlAllUnits))
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(cmd.garrisonHolder, IID_GarrisonHolder);
@@ -287,6 +351,10 @@ function ProcessCommand(player, cmd)
 				var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 				cmpGUIInterface.PushNotification(notification);
 			}
+		}
+		else if (g_DebugCommands)
+		{
+			warn("Invalid command: unload-all target cannot be controlled by player "+player+": "+uneval(cmd));
 		}
 		break;
 
@@ -302,6 +370,7 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "promote":
+		// No need to do checks here since this is a cheat anyway
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGuiInterface.PushNotification({"type": "chat", "player": player, "message": "(Cheat - promoted units)"});
 
@@ -324,7 +393,7 @@ function ProcessCommand(player, cmd)
 		break;
 
 	default:
-		error("Ignoring unrecognised command type '" + cmd.type + "'");
+		error("Invalid command: unknown command type: "+uneval(cmd));
 	}
 }
 
