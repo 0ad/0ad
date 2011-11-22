@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2011-11-22T01:08:52Z</created>
+    <modified>2011-11-22T01:08:52Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__47-image" name="Map__47">
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\props\shield\pers_pelta_f.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="prop" name="prop">
+      <instance_effect url="#prop-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="prop-fx" name="prop">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__47-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="taka_back-lib" name="taka_backMesh">
+      <mesh>
+        <source id="taka_back-lib-Position">
+          <float_array id="taka_back-lib-Position-array" count="60">
+0.915744 -0.046512 0.509213
+0.881885 0.236014 0.509213
+0.712624 0.525679 0.509213
+0.555149 0.360125 0.509213
+0.287582 0.231612 0.509213
+-0.000000 0.179120 0.509213
+-0.287582 0.231612 0.509213
+-0.555149 0.360125 0.509213
+-0.712624 0.525679 0.509213
+-0.881885 0.236014 0.509213
+-0.915744 -0.046512 0.509213
+-0.870924 -0.304452 0.509213
+-0.740852 -0.537142 0.509213
+-0.538260 -0.721807 0.509213
+-0.282980 -0.840368 0.509213
+0.000001 -0.881222 0.509213
+0.282981 -0.840368 0.509213
+0.538262 -0.721806 0.509213
+0.740853 -0.537141 0.509213
+0.870925 -0.304450 0.509213
+</float_array>
+          <technique_common>
+            <accessor source="#taka_back-lib-Position-array" count="20" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="taka_back-lib-Normal0">
+          <float_array id="taka_back-lib-Normal0-array" count="162">
+-0.000002 -0.000001 -1.000000
+-0.000000 -0.000000 -1.000000
+-0.000001 -0.000000 -1.000000
+-0.000001 -0.000000 -1.000000
+-0.000000 -0.000000 -1.000000
+-0.000000 -0.000000 -1.000000
+0.000001 -0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 -0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 -0.000000 -1.000000
+-0.000002 -0.000000 -1.000000
+0.000000 -0.000000 -1.000000
+-0.000000 -0.000000 -1.000000
+0.000000 0.000000 -1.000000
+-0.000000 -0.000000 -1.000000
+0.000000 0.000000 -1.000000
+-0.000000 -0.000000 -1.000000
+0.000000 -0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 -0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+-0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+-0.000000 0.000000 -1.000000
+-0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+-0.000000 0.000000 -1.000000
+-0.000000 -0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000001 -1.000000
+0.000000 0.000000 -1.000000
+-0.000000 0.000000 -1.000000
+-0.000000 0.000001 -1.000000
+-0.000000 0.000000 -1.000000
+-0.000000 0.000000 -1.000000
+-0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+-0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+-0.000000 -0.000000 -1.000000
+-0.000000 0.000000 -1.000000
+-0.000000 -0.000000 -1.000000
+-0.000000 -0.000000 -1.000000
+-0.000000 0.000000 -1.000000
+-0.000000 0.000000 -1.000000
+-0.000000 -0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+-0.000000 -0.000000 -1.000000
+0.000000 0.000000 -1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#taka_back-lib-Normal0-array" count="54" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="taka_back-lib-UV0">
+          <float_array id="taka_back-lib-UV0-array" count="80">
+1.000000 0.562711
+0.974441 0.774722
+0.868118 0.992085
+0.770637 0.852206
+0.659356 0.775852
+0.500000 0.747476
+0.340644 0.775852
+0.229363 0.852206
+0.131882 0.992085
+0.025559 0.774722
+0.000000 0.562710
+0.024472 0.372187
+0.103271 0.215373
+0.206108 0.116990
+0.345492 0.029064
+0.500000 0.007915
+0.654509 0.029064
+0.793893 0.116990
+0.896730 0.215374
+0.975528 0.372187
+1.000000 0.562711
+0.974441 0.774722
+0.868118 0.992085
+0.770637 0.852206
+0.229363 0.852206
+0.131882 0.992085
+0.025559 0.774722
+0.340644 0.775852
+0.000000 0.562710
+0.024472 0.372187
+0.103271 0.215373
+0.206108 0.116990
+0.500000 0.747476
+0.659356 0.775852
+0.345492 0.029064
+0.500000 0.007915
+0.654509 0.029064
+0.793893 0.116990
+0.896730 0.215374
+0.975528 0.372187
+</float_array>
+          <technique_common>
+            <accessor source="#taka_back-lib-UV0-array" count="40" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="taka_back-lib-Vertex">
+          <input semantic="POSITION" source="#taka_back-lib-Position"/>
+        </vertices>
+        <polygons material="prop" count="18">
+          <input semantic="VERTEX" offset="0" source="#taka_back-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#taka_back-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#taka_back-lib-UV0"/>
+          <p>1 0 1 0 1 0 2 2 2</p>
+          <p>2 3 2 0 4 0 3 5 3</p>
+          <p>8 6 8 7 7 7 9 8 9</p>
+          <p>7 9 7 6 10 6 9 11 9</p>
+          <p>10 12 10 9 13 9 11 14 11</p>
+          <p>12 15 12 11 16 11 13 17 13</p>
+          <p>11 18 11 9 19 9 13 20 13</p>
+          <p>9 21 9 6 22 6 13 23 13</p>
+          <p>6 24 6 5 25 5 13 26 13</p>
+          <p>5 27 5 4 28 4 13 29 13</p>
+          <p>4 30 4 3 31 3 13 32 13</p>
+          <p>14 33 14 13 34 13 15 35 15</p>
+          <p>16 36 16 15 37 15 17 38 17</p>
+          <p>15 39 15 13 40 13 17 41 17</p>
+          <p>13 42 13 3 43 3 17 44 17</p>
+          <p>3 45 3 0 46 0 17 47 17</p>
+          <p>17 48 17 0 49 0 18 50 18</p>
+          <p>18 51 18 0 52 0 19 53 19</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="taka_back" name="taka_back">
+        <matrix sid="matrix">0.860440 0.000000 0.000000 0.000000 0.000000 0.952060 -0.000000 0.346497 0.000000 0.000000 1.000000 -0.492096 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#taka_back-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="prop" target="#prop"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+

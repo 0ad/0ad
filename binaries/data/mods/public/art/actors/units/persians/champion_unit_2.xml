@@ -10,15 +10,15 @@
         <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="275"/>
         <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="200"/>
         <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="100"/>
-        <animation file="quadraped/horse_attack_a.psa" name="Idle" speed="250"/>
-        <animation file="quadraped/horse_attack_b.psa" name="Idle" speed="300"/>
+        <animation file="quadraped/horse_attack_a.psa" name="Idle" speed="350"/>
+        <animation file="quadraped/horse_attack_b.psa" name="Idle" speed="375"/>
         <animation file="quadraped/horse_gallop.psa" name="Run" speed="45"/>
         <animation file="quadraped/horse_gallop.psa" name="Run" speed="40"/>
         <animation file="quadraped/horse_walk.psa" name="Walk" speed="122"/>
         <animation file="quadraped/horse_walk.psa" name="Walk" speed="130"/>
         <animation file="quadraped/horse_walk.psa" name="Walk" speed="118"/>
-        <animation event="0.5" file="quadraped/horse_attack_a.psa" name="Melee" speed="120"/>
-        <animation event="0.5" file="quadraped/horse_attack_b.psa" name="Melee" speed="120"/>
+        <animation event="0.5" file="quadraped/horse_attack_a.psa" name="Melee" speed="200"/>
+        <animation event="0.5" file="quadraped/horse_attack_b.psa" name="Melee" speed="200"/>
         <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
       </animations>
       <mesh>skeletal/horse.pmd</mesh>

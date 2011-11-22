@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_ranged_javelinist">
+  <Attack>
+    <Ranged>
+      <MaxRange>44.0</MaxRange>
+    </Ranged>
+  </Attack>
+  <Cost>
+    <Resources>
+      <wood>50</wood>
+    </Resources>
+  </Cost>
+  <Identity>
+    <Civ>hele</Civ>
+	<SelectionGroupName>units/mace_infantry_javelinist_b</SelectionGroupName>
+	<GenericName>Agrianian Peltast</GenericName>
+    <SpecificName>Peltastes Agrianikoi</SpecificName>
+    <History>Peltasts were javelinists originating in Thrace but their form of combat was widely copied by the Hellenes, Macedonians, and Persians. Equipped with a small oval or crescent shield, a peltast would charge at enemy formations whilst hurling his javelins then fall back to avoid close combat. They wore no armor and were at a significant disadvantage against heavy infantry and cavalry, relying on their speed and skill for survival. Agrianians are a Thracian tribe who sold their services to the Macedonians as mercenaries and added a much needed ranged and skirmishing ability to Macedonian armies.</History>
+    <Icon>units/hele_infantry_javelinist.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/mace_infantry_javelinist_a</Entity>
+  </Promotion>
+  <UnitMotion>
+    <WalkSpeed>11.0</WalkSpeed>
+    <Run>
+      <Speed>20.0</Speed>
+    </Run>
+  </UnitMotion>
+  <Vision>
+    <Range>66</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>units/macedonians/infantry_javelinist_b.xml</Actor>
+  </VisualActor>
+</Entity>

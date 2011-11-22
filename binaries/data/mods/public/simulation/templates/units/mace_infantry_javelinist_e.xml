@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/mace_infantry_javelinist_a">
+  <Armour>
+    <Hack>5.0</Hack>
+    <Pierce>6.0</Pierce>
+    <Crush>5.0</Crush>
+  </Armour>
+  <Attack>
+    <Ranged>
+      <Pierce>37.0</Pierce>
+      <MaxRange>52.0</MaxRange>
+    </Ranged>
+  </Attack>
+  <Health>
+    <Max>110</Max>
+  </Health>
+  <Identity>
+    <Rank>Elite</Rank>
+  </Identity>
+  <Promotion disable=""/>
+  <ResourceGatherer>
+    <BaseSpeed>0.5</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>10.0</WalkSpeed>
+    <Run>
+      <Speed>20.0</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/macedonians/infantry_javelinist_e.xml</Actor>
+  </VisualActor>
+</Entity>
