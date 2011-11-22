@@ -1,17 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant frequency="1" name="base">
+    <variant frequency="1" name="pelta-small">
       <mesh>props/shield/pelta_a_f.pmd</mesh>
       <props>
         <prop actor="props/units/shields/pelta_a_back.xml" attachpoint="back"/>
       </props>
     </variant>
+    <variant frequency="1" name="pelta-big">
+      <mesh>props/shield/taka_front.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/taka_a_back.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
-
   <group>
     <variant frequency="1" name="pelta-l">
       <texture>props/shield/hele_pelta_l.dds</texture>
@@ -23,7 +26,5 @@
       <texture>props/shield/hele_pelta_f.dds</texture>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/shield/taka_back.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="back-i">
+      <texture>props/shield/hele_pelta_i.dds</texture>
+    </variant>
+    <variant frequency="1" name="back-d">
+      <texture>props/shield/hele_pelta_d.dds</texture>
+    </variant>
+  </group>
+</actor>

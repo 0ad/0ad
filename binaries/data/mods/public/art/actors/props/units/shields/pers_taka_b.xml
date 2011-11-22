@@ -2,7 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="base">
+    <variant frequency="1" name="taka large">
+      <mesh>props/shield/taka_front.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/taka_a_back.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="take small">
       <mesh>props/shield/pelta_a_f.pmd</mesh>
       <props>
         <prop actor="props/units/shields/pelta_a_back.xml" attachpoint="back"/>
