@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_mechanical_ship_trireme">
+  <Footprint>
+    <Square width="6.0" depth="36.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>pers</Civ>
+    <SpecificName>Hamaraniyanava</SpecificName>
+    <History>Cypriad galleys comprised a substantial part of Xerxes' navy which invaded Greece in 480 BC. While generally considered inferior to the ships of the Phoenicians, these were still very good.</History>
+    <Icon>units/pers_ship_bireme.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/persians/bireme.xml</Actor>
+  </VisualActor>
+</Entity>

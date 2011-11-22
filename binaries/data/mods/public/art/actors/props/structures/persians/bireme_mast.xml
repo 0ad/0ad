@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/pers_bir_mast.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="trireme-sail-zoroaster">
+      <texture>props/pers_trireme_sail.dds</texture>
+    </variant>
+    <variant frequency="1" name="trireme-sail-royal standard">
+      <texture>props/pers_trireme_sail_b.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
