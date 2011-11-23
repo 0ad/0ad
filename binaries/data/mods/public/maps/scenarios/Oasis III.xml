@@ -3,7 +3,7 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>cloudless</SkySet>
+		<SkySet>sunny 1</SkySet>
 		<SunColour r="0.776471" g="0.74902" b="0.576471"/>
 		<SunElevation angle="0.785398"/>
 		<SunRotation angle="-0.785396"/>
@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="313.322" y="158.441" z="19.6896"/>
+		<Position x="701.785" y="98.0725" z="683.92"/>
 		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -151,7 +151,7 @@
 		<Entity uid="28">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="742.49433" z="743.00867"/>
+			<Position x="771.33838" z="831.27662"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="29">
@@ -163,8 +163,8 @@
 		<Entity uid="30">
 			<Template>gaia/geology_stonemine_desert_quarry</Template>
 			<Player>0</Player>
-			<Position x="768.97492" z="826.73426"/>
-			<Orientation y="1.18834"/>
+			<Position x="742.00092" z="738.67957"/>
+			<Orientation y="-0.90154"/>
 		</Entity>
 		<Entity uid="31">
 			<Template>gaia/geology_stonemine_desert_quarry</Template>
@@ -5226,7 +5226,7 @@
 		</Entity>
 		<Entity uid="902">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="771.1648" z="833.45069"/>
+			<Position x="769.08802" z="820.30481"/>
 			<Orientation y="-1.44135"/>
 		</Entity>
 		<Entity uid="903">

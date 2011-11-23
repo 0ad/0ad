@@ -676,13 +676,13 @@ var EconomyManager = Class({
 						// Skip targets that are far too far away (e.g. in the enemy base)
 			}
 		});
-						if (distcheck > 250000)
+						if (distcheck > 500000)
 						return;
 							
 						var dist = SquareVectorDistance(supply.position, workerPosition);
 
 						// Skip targets that are far too far away (e.g. in the enemy base)
-						if (dist > 250000)
+						if (dist > 500000)
 							return;							
 							
 						supplies.push({ dist: dist, entity: supply.entity });

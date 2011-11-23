@@ -969,9 +969,9 @@ var UnitFsmSpec = {
 					// get stuck with the carry animation after stopping moving
 					this.SelectAnimation("idle");
 
-					// Check the dropsite really is in range
+					// Check the dropsite is in range and we can return our resource there
 					// (we didn't get stopped before reaching it)
-					if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer))
+					if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer) && this.CanReturnResource(this.order.data.target, true))
 					{
 						var cmpResourceDropsite = Engine.QueryInterface(this.order.data.target, IID_ResourceDropsite);
 						if (cmpResourceDropsite)
@@ -989,7 +989,7 @@ var UnitFsmSpec = {
 						}
 					}
 
-					// The dropsite was destroyed, or we couldn't reach it.
+					// The dropsite was destroyed, or we couldn't reach it, or ownership changed
 					// Look for a new one.
 
 					var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
@@ -1064,7 +1064,7 @@ var UnitFsmSpec = {
 					return;
 
 				// If this building was e.g. a farm, we should start gathering from it
-				// if we are capable of doing so
+				// if we own the building
 				if (this.CanGather(msg.data.newentity))
 				{
 					this.Gather(msg.data.newentity, true);
@@ -1072,8 +1072,8 @@ var UnitFsmSpec = {
 				}
 
 				// If this building was e.g. a farmstead, we should look for nearby
-				// resources we can gather, if we are capable of doing so
-				if (this.CanReturnResource(msg.data.newentity))
+				// resources we can gather, if we own the building
+				if (this.CanReturnResource(msg.data.newentity, false))
 				{
 					var cmpResourceDropsite = Engine.QueryInterface(msg.data.newentity, IID_ResourceDropsite);
 					var types = cmpResourceDropsite.GetTypes();
@@ -2309,7 +2309,7 @@ UnitAI.prototype.Gather = function(target, queued)
 
 UnitAI.prototype.ReturnResource = function(target, queued)
 {
-	if (!this.CanReturnResource(target))
+	if (!this.CanReturnResource(target, true))
 	{
 		this.WalkToTarget(target, queued);
 		return;
@@ -2498,7 +2498,7 @@ UnitAI.prototype.CanGather = function(target)
 	return true;
 };
 
-UnitAI.prototype.CanReturnResource = function(target)
+UnitAI.prototype.CanReturnResource = function(target, checkCarriedResource)
 {
 	// Formation controllers should always respond to commands
 	// (then the individual units can make up their own minds)
@@ -2515,11 +2515,14 @@ UnitAI.prototype.CanReturnResource = function(target)
 	if (!cmpResourceDropsite)
 		return false;
 
-	// Verify that we are carrying some resources,
-	// and can return our current resource to this target
-	var type = cmpResourceGatherer.GetMainCarryingType();
-	if (!type || !cmpResourceDropsite.AcceptsType(type))
-		return false;
+	if (checkCarriedResource)
+	{
+		// Verify that we are carrying some resources,
+		// and can return our current resource to this target
+		var type = cmpResourceGatherer.GetMainCarryingType();
+		if (!type || !cmpResourceDropsite.AcceptsType(type))
+			return false;
+	}
 
 	// Verify that the dropsite is owned by this entity's player
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
