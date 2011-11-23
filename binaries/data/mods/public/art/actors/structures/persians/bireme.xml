@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>structural/pers_bir.dae</mesh>
+      <props>
+        <prop actor="props/structures/persians/bireme_oars.xml" attachpoint="root"/>
+        <prop actor="props/structures/persians/bireme_mast.xml" attachpoint="root"/>
+        <prop actor="props/structures/persians/bireme_fence.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+      </props>
+      <texture>structural/pers_bir.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
