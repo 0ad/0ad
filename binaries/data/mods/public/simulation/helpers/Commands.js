@@ -216,10 +216,12 @@ function ProcessCommand(player, cmd)
 		// TODO: AI has no visibility info
 		if (!cmpPlayer.IsAI())
 		{
-			// Check whether it's in a visible region
+			// Check whether it's in a visible or fogged region
+			//	tell GetLosVisibility to force RetainInFog because preview entities set this to false,
+			//	which would show them as hidden instead of fogged
 			var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-			var visible = (cmpRangeManager.GetLosVisibility(ent, player) == "visible");
-			if (!visible)
+			var hidden = (cmpRangeManager.GetLosVisibility(ent, player, true) == "hidden");
+			if (hidden)
 			{
 				if (g_DebugCommands)
 				{

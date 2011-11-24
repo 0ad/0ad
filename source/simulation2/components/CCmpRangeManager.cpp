@@ -872,7 +872,7 @@ public:
 			return CLosQuerier(player, m_LosState, m_TerrainVerticesPerSide);
 	}
 
-	virtual ELosVisibility GetLosVisibility(entity_id_t ent, player_id_t player)
+	virtual ELosVisibility GetLosVisibility(entity_id_t ent, player_id_t player, bool forceRetainInFog)
 	{
 		// (We can't use m_EntityData since this needs to handle LOCAL entities too)
 
@@ -906,7 +906,7 @@ public:
 		if (los.IsExplored(i, j))
 		{
 			CmpPtr<ICmpVision> cmpVision(GetSimContext(), ent);
-			if (!cmpVision.null() && cmpVision->GetRetainInFog())
+			if (forceRetainInFog || (!cmpVision.null() && cmpVision->GetRetainInFog()))
 				return VIS_FOGGED;
 		}
 
