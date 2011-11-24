@@ -220,8 +220,8 @@ function ProcessCommand(player, cmd)
 			//	tell GetLosVisibility to force RetainInFog because preview entities set this to false,
 			//	which would show them as hidden instead of fogged
 			var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-			var hidden = (cmpRangeManager.GetLosVisibility(ent, player, true) == "hidden");
-			if (hidden)
+			var visible = (cmpRangeManager && cmpRangeManager.GetLosVisibility(ent, player, true) != "hidden");
+			if (!visible)
 			{
 				if (g_DebugCommands)
 				{

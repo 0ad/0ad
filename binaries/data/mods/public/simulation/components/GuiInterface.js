@@ -512,10 +512,10 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 		//	tell GetLosVisibility to force RetainInFog because preview entities set this to false,
 		//	which would show them as hidden instead of fogged
 		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		var hidden = (cmpRangeManager && cmpRangeManager.GetLosVisibility(ent, player, true) == "hidden");
+		var visible = (cmpRangeManager && cmpRangeManager.GetLosVisibility(ent, player, true) != "hidden");
 		var validPlacement = false;
 
-		if (!hidden)
+		if (visible)
 		{	// Check whether it's obstructed by other entities or invalid terrain
 			var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
 			if (!cmpBuildRestrictions)
@@ -524,7 +524,7 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 			validPlacement = (cmpBuildRestrictions && cmpBuildRestrictions.CheckPlacement(player));
 		}
 
-		var ok = (!hidden && validPlacement);
+		var ok = (visible && validPlacement);
 
 		// Set it to a red shade if this is an invalid location
 		var cmpVisual = Engine.QueryInterface(ent, IID_Visual);
