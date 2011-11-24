@@ -1008,6 +1008,13 @@ function startBuildingPlacement(buildEntType)
 	inputState = INPUT_BUILDING_PLACEMENT;
 }
 
+// Called by GUI when user clicks exchange resources button
+function exchangeResources(command)
+{
+	Engine.PostNetworkCommand({"type": "barter", "sell": command.sell, "buy": command.buy, "amount": command.amount});
+}
+
+
 // Batch training:
 // When the user shift-clicks, we set these variables and switch to INPUT_BATCHTRAINING
 // When the user releases shift, or clicks on a different training button, we create the batched units

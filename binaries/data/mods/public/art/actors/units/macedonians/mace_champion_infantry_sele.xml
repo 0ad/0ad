@@ -12,14 +12,22 @@
         <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
         <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
       </animations>
-      <mesh>skeletal/m_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/shields/mace_bronzeshield_a.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="r_hand"/>
         <prop actor="props/units/heads/mace_bronzeshield_a.xml" attachpoint="helmet"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="armour 1">
+      <mesh>skeletal/m_tunic_long.dae</mesh>
       <texture>skeletal/mace_bronzeshield_pikeman_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="armour 2">
+      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <texture>skeletal/mace_bronzeshield_2.png</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>
