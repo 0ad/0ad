@@ -394,6 +394,11 @@ function ProcessCommand(player, cmd)
 		}
 		break;
 
+	case "barter":
+		var cmpBarter = Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter);
+		cmpBarter.ExchangeResources(playerEnt, cmd.sell, cmd.buy, cmd.amount);
+		break;
+
 	default:
 		error("Invalid command: unknown command type: "+uneval(cmd));
 	}

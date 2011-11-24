@@ -120,6 +120,7 @@ public:
 			componentManager.AddComponent(SYSTEM_ENTITY, cid, noParam)
 
 			LOAD_SCRIPTED_COMPONENT("AIInterface");
+			LOAD_SCRIPTED_COMPONENT("Barter");
 			LOAD_SCRIPTED_COMPONENT("EndGameManager");
 			LOAD_SCRIPTED_COMPONENT("GuiInterface");
 			LOAD_SCRIPTED_COMPONENT("PlayerManager");

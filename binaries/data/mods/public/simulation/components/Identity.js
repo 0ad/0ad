@@ -82,6 +82,7 @@ Identity.prototype.Schema =
 						"<value>CivCentre</value>" +
 						"<value>Economic</value>" +
 						"<value>Defensive</value>" +
+						"<value>BarterMarket</value>" +
 						"<value>Village</value>" +
 						"<value>Town</value>" +
 						"<value>City</value>" +
