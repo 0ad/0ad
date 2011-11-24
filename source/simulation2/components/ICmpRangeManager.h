@@ -260,14 +260,17 @@ public:
 	 * Returns the visibility status of the given entity, with respect to the given player.
 	 * Returns VIS_HIDDEN if the entity doesn't exist or is not in the world.
 	 * This respects the GetLosRevealAll flag.
+	 * If forceRetainInFog is true, the visibility acts as if CCmpVision's RetainInFog flag were set.
+	 * TODO: This is a hack to allow preview entities in FoW to return fogged instead of hidden,
+	 *	see http://trac.wildfiregames.com/ticket/958
 	 */
-	virtual ELosVisibility GetLosVisibility(entity_id_t ent, player_id_t player) = 0;
+	virtual ELosVisibility GetLosVisibility(entity_id_t ent, player_id_t player, bool forceRetainInFog = false) = 0;
 
 	/**
 	 * GetLosVisibility wrapped for script calls.
 	 * Returns "hidden", "fogged" or "visible".
 	 */
-	std::string GetLosVisibility_wrapper(entity_id_t ent, player_id_t player);
+	std::string GetLosVisibility_wrapper(entity_id_t ent, player_id_t player, bool forceRetainInFog);
 
 	/**
 	 * Set whether the whole map should be made visible to the given player.

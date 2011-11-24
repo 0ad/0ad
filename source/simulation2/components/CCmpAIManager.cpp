@@ -507,6 +507,8 @@ public:
 
 	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
+		m_TerritoriesDirtyID = 0;
+
 		StartLoadEntityTemplates();
 	}
 

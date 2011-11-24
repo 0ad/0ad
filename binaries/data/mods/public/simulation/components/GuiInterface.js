@@ -255,7 +255,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	}
 
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	ret.visibility = cmpRangeManager.GetLosVisibility(ent, player);
+	ret.visibility = cmpRangeManager.GetLosVisibility(ent, player, false);
 
 	return ret;
 };
@@ -508,22 +508,24 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 			pos.SetYRotation(cmd.angle);
 		}
 
-		// Check whether it's in a visible region
+		// Check whether it's in a visible or fogged region
+		//	tell GetLosVisibility to force RetainInFog because preview entities set this to false,
+		//	which would show them as hidden instead of fogged
 		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		var visible = (cmpRangeManager && cmpRangeManager.GetLosVisibility(ent, player) == "visible");
+		var visible = (cmpRangeManager && cmpRangeManager.GetLosVisibility(ent, player, true) != "hidden");
 		var validPlacement = false;
-		
+
 		if (visible)
 		{	// Check whether it's obstructed by other entities or invalid terrain
 			var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
 			if (!cmpBuildRestrictions)
 				error("cmpBuildRestrictions not defined");
-			
+
 			validPlacement = (cmpBuildRestrictions && cmpBuildRestrictions.CheckPlacement(player));
 		}
 
 		var ok = (visible && validPlacement);
-		
+
 		// Set it to a red shade if this is an invalid location
 		var cmpVisual = Engine.QueryInterface(ent, IID_Visual);
 		if (cmpVisual)

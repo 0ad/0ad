@@ -21,9 +21,9 @@
 
 #include "simulation2/system/InterfaceScripted.h"
 
-std::string ICmpRangeManager::GetLosVisibility_wrapper(entity_id_t ent, int player)
+std::string ICmpRangeManager::GetLosVisibility_wrapper(entity_id_t ent, int player, bool forceRetainInFog)
 {
-	ELosVisibility visibility = GetLosVisibility(ent, player);
+	ELosVisibility visibility = GetLosVisibility(ent, player, forceRetainInFog);
 	switch (visibility)
 	{
 	case VIS_HIDDEN: return "hidden";
@@ -43,7 +43,7 @@ DEFINE_INTERFACE_METHOD_1("ResetActiveQuery", std::vector<entity_id_t>, ICmpRang
 DEFINE_INTERFACE_METHOD_1("GetEntitiesByPlayer", std::vector<entity_id_t>, ICmpRangeManager, GetEntitiesByPlayer, player_id_t)
 DEFINE_INTERFACE_METHOD_1("SetDebugOverlay", void, ICmpRangeManager, SetDebugOverlay, bool)
 DEFINE_INTERFACE_METHOD_2("SetLosRevealAll", void, ICmpRangeManager, SetLosRevealAll, player_id_t, bool)
-DEFINE_INTERFACE_METHOD_2("GetLosVisibility", std::string, ICmpRangeManager, GetLosVisibility_wrapper, entity_id_t, player_id_t)
+DEFINE_INTERFACE_METHOD_3("GetLosVisibility", std::string, ICmpRangeManager, GetLosVisibility_wrapper, entity_id_t, player_id_t, bool)
 DEFINE_INTERFACE_METHOD_1("SetLosCircular", void, ICmpRangeManager, SetLosCircular, bool)
 DEFINE_INTERFACE_METHOD_0("GetLosCircular", bool, ICmpRangeManager, GetLosCircular)
 DEFINE_INTERFACE_METHOD_1("GetPercentMapExplored", i32, ICmpRangeManager, GetPercentMapExplored, player_id_t)

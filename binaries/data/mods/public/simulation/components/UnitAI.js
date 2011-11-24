@@ -1945,7 +1945,7 @@ UnitAI.prototype.CheckTargetVisible = function(target)
 	if (!cmpRangeManager)
 		return false;
 
-	if (cmpRangeManager.GetLosVisibility(target, cmpOwnership.GetOwner()) == "hidden")
+	if (cmpRangeManager.GetLosVisibility(target, cmpOwnership.GetOwner(), false) == "hidden")
 		return false;
 
 	// Either visible directly, or visible in fog
