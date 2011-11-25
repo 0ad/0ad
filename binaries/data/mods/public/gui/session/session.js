@@ -232,7 +232,7 @@ function checkPlayerState()
 
 			var btCaptions = ["Yes", "No"];
 			var btCode = [leaveGame, null];
-			messageBox(400, 200, "You have been defeated...\nDo you want to leave the game now?", "Defeat", 0, btCaptions, btCode);
+			messageBox(400, 200, "Do you want to quit?", "DEFEATED!", 0, btCaptions, btCode);
 		}
 		else if (playerState.state == "won")
 		{
@@ -247,7 +247,7 @@ function checkPlayerState()
 
 			var btCaptions = ["Yes", "No"];
 			var btCode = [leaveGame, null];
-			messageBox(400, 200, "You have won the battle!\nDo you want to leave the game now?", "Victory", 0, btCaptions, btCode);
+			messageBox(400, 200, "Do you want to quit?", "VICTORIOUS!", 0, btCaptions, btCode);
 		}
 	}
 }
