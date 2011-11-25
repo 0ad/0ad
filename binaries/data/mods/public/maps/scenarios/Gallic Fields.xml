@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="259.565" y="150.34" z="147.637"/>
+		<Position x="341.055" y="81.9215" z="306.497"/>
 		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -372,12 +372,6 @@
 			<Template>units/celt_hero_caratacos</Template>
 			<Player>1</Player>
 			<Position x="309.61088" z="367.64911"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="57">
-			<Template>structures/celt_barracks</Template>
-			<Player>1</Player>
-			<Position x="317.35367" z="395.78223"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="58">
@@ -1277,12 +1271,6 @@
 			<Player>2</Player>
 			<Position x="719.38245" z="329.00669"/>
 			<Orientation y="0.019"/>
-		</Entity>
-		<Entity uid="210">
-			<Template>structures/celt_barracks</Template>
-			<Player>2</Player>
-			<Position x="688.7906" z="349.29694"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="211">
 			<Template>other/palisades_rocks_straight</Template>
@@ -7126,12 +7114,6 @@
 		<Entity uid="1196">
 			<Template>actor|props/special/eyecandy/campfire.xml</Template>
 			<Position x="552.42939" z="833.2547"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1198">
-			<Template>structures/celt_barracks</Template>
-			<Player>3</Player>
-			<Position x="525.2912" z="773.25782"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1199">
@@ -17843,6 +17825,24 @@
 			<Player>0</Player>
 			<Position x="753.04261" z="99.05979"/>
 			<Orientation y="1.04381"/>
+		</Entity>
+		<Entity uid="2991">
+			<Template>other/celt_tavern</Template>
+			<Player>3</Player>
+			<Position x="523.84565" z="773.51758"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2992">
+			<Template>other/celt_tavern</Template>
+			<Player>2</Player>
+			<Position x="687.87037" z="350.25312"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2993">
+			<Template>other/celt_tavern</Template>
+			<Player>1</Player>
+			<Position x="318.73227" z="396.5698"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
