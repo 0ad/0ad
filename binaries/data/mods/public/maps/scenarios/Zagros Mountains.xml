@@ -4,7 +4,7 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>sunny 1</SkySet>
-		<SunColour r="0.741176" g="0.678431" b="0.458824"/>
+		<SunColour r="0.737255" g="0.67451" b="0.458824"/>
 		<SunElevation angle="0.78233"/>
 		<SunRotation angle="-0.693359"/>
 		<TerrainAmbientColour r="0.337255" g="0.427451" b="0.603922"/>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="360.459" y="78.6418" z="688.401"/>
+		<Position x="586.029" y="78.6418" z="-10.4483"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -22588,6 +22588,126 @@
 			<Player>0</Player>
 			<Position x="896.56678" z="402.76783"/>
 			<Orientation y="-1.0145"/>
+		</Entity>
+		<Entity uid="4318">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="406.0861" z="802.34681"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4319">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="451.8477" z="748.17597"/>
+			<Orientation y="-0.0556"/>
+		</Entity>
+		<Entity uid="4320">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="819.78638" z="537.21143"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4321">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="819.04853" z="521.34339"/>
+			<Orientation y="2.95095"/>
+		</Entity>
+		<Entity uid="4322">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="823.85492" z="505.68662"/>
+			<Orientation y="0.25795"/>
+		</Entity>
+		<Entity uid="4323">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="826.20069" z="513.92658"/>
+			<Orientation y="0.38282"/>
+		</Entity>
+		<Entity uid="4324">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="830.66755" z="526.17444"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4325">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="832.58368" z="511.43238"/>
+			<Orientation y="-0.62241"/>
+		</Entity>
+		<Entity uid="4326">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="816.98798" z="514.36628"/>
+			<Orientation y="0.81826"/>
+		</Entity>
+		<Entity uid="4327">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="840.25782" z="360.17927"/>
+			<Orientation y="0.51151"/>
+		</Entity>
+		<Entity uid="4328">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="694.28309" z="320.20496"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4329">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="459.9449" z="479.1414"/>
+			<Orientation y="-0.15227"/>
+		</Entity>
+		<Entity uid="4330">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="359.44526" z="443.4261"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4331">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="222.40755" z="273.22663"/>
+			<Orientation y="0.01503"/>
+		</Entity>
+		<Entity uid="4332">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="294.46171" z="138.08661"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4333">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="610.13215" z="61.60027"/>
+			<Orientation y="-0.24636"/>
+		</Entity>
+		<Entity uid="4334">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="589.77417" z="78.6961"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4335">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="547.2027" z="60.70075"/>
+			<Orientation y="-1.29766"/>
+		</Entity>
+		<Entity uid="4336">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="722.45533" z="135.22458"/>
+			<Orientation y="-0.78019"/>
+		</Entity>
+		<Entity uid="4337">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="642.26343" z="103.32276"/>
+			<Orientation y="0.05857"/>
 		</Entity>
 	</Entities>
 	<Paths/>
