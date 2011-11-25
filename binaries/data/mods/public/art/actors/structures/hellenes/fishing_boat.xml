@@ -5,8 +5,8 @@
   <group>
     <variant frequency="1" name="Greek Fishing Boata">
       <animations>
-        <animation file="mechanical/rowing_boat_move.dae" name="Walk" speed="25"/>
-        <animation file="mechanical/rowing_boat_move.dae" name="Run" speed="45"/>
+        <animation file="mechanical/rowing_boat_move.dae" name="Walk" speed="10"/>
+        <animation file="mechanical/rowing_boat_move.dae" name="Run" speed="10"/>
       </animations>
       <mesh>structural/hele_fishing_boat.dae</mesh>
       <props>
@@ -17,8 +17,8 @@
     </variant>
     <variant frequency="1" name="Greek Fishing Boatb">
       <animations>
-        <animation file="mechanical/rowing_boat_move.dae" name="Walk" speed="25"/>
-        <animation file="mechanical/rowing_boat_move.dae" name="Run" speed="45"/>
+        <animation file="mechanical/rowing_boat_move.dae" name="Walk" speed="10"/>
+        <animation file="mechanical/rowing_boat_move.dae" name="Run" speed="10"/>
       </animations>
       <mesh>structural/hele_fishing_boat.dae</mesh>
       <props>

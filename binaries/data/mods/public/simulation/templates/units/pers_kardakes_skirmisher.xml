@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_javelinist">
+  <Cost>
+    <Resources>
+      <food>0</food>
+      <wood>80</wood>
+      <stone>0</stone>
+      <metal>50</metal>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>pers</Civ>
     <GenericName>Cardaces Skirmisher</GenericName>
