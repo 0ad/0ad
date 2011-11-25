@@ -35,6 +35,7 @@ class CMatrix3D
 public:
 	// the matrix data itself - accessible as either longhand names
 	// or via a flat or 2d array
+	// NOTE: _xy means row x, column y, so don't be fooled by the way they're listed below
 	union {
 		struct {
 			float _11, _21, _31, _41;
@@ -153,6 +154,12 @@ public:
 				 _12 == m._12 && _22 == m._22 && _32 == m._32 && _42 == m._42 &&
 				 _13 == m._13 && _23 == m._23 && _33 == m._33 && _43 == m._43 &&
 				 _14 == m._14 && _24 == m._24 && _34 == m._34 && _44 == m._44;
+	}
+
+	// inequality
+	bool operator!=(const CMatrix3D& m) const
+	{
+		return !(*this == m);
 	}
 
 	// set this matrix to the identity matrix

@@ -71,6 +71,10 @@ COMPONENT(CommandQueue)
 INTERFACE(Decay)
 COMPONENT(Decay)
 
+// Note: The VisualActor component relies on this component being initialized before itself, in order to support using
+// an entity's footprint shape for the selection boxes. This dependency is not strictly necessary, but it does avoid
+// some extra plumbing code to set up on-demand initialization. If you find yourself forced to break this dependency, 
+// see VisualActor's Init method for a description of how you can avoid it.
 INTERFACE(Footprint)
 COMPONENT(Footprint)
 
@@ -142,6 +146,8 @@ COMPONENT(UnitMotionScripted)
 INTERFACE(Vision)
 COMPONENT(Vision)
 
+// Note: this component relies on the Footprint component being initialized before itself. See the comments above for
+// the Footprint component to find out why.
 INTERFACE(Visual)
 COMPONENT(VisualActor) // must be after Ownership (dependency in Deserialize)
 

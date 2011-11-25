@@ -1041,7 +1041,7 @@ public:
 
 	bool Filter(CModel *model)
 	{
-		return m_Frustum.IsBoxVisible(CVector3D(0, 0, 0), model->GetBoundsRec());
+		return m_Frustum.IsBoxVisible(CVector3D(0, 0, 0), model->GetWorldBoundsRec());
 	}
 
 private:
@@ -1198,7 +1198,7 @@ void CRenderer::SetObliqueFrustumClipping(const CVector4D& worldPlane)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // RenderReflections: render the water reflections to the reflection texture
-SScreenRect CRenderer::RenderReflections(const CBound& scissor)
+SScreenRect CRenderer::RenderReflections(const CBoundingBoxAligned& scissor)
 {
 	PROFILE3_GPU("water reflections");
 
@@ -1285,7 +1285,7 @@ SScreenRect CRenderer::RenderReflections(const CBound& scissor)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // RenderRefractions: render the water refractions to the refraction texture
-SScreenRect CRenderer::RenderRefractions(const CBound &scissor)
+SScreenRect CRenderer::RenderRefractions(const CBoundingBoxAligned &scissor)
 {
 	PROFILE3_GPU("water refractions");
 
@@ -1540,7 +1540,7 @@ void CRenderer::RenderSubmissions()
 
 	ogl_WarnIfError();
 
-	CBound waterScissor;
+	CBoundingBoxAligned waterScissor;
 	if (m_WaterManager->m_RenderWater)
 	{
 		waterScissor = m->terrainRenderer->ScissorWater(m_ViewCamera.GetViewProjection());
@@ -1756,10 +1756,10 @@ void CRenderer::SubmitNonRecursive(CModel* model)
 {
 	if (model->GetFlags() & MODELFLAG_CASTSHADOWS) {
 //		PROFILE( "updating shadow bounds" );
-		m->shadow->AddShadowedBound(model->GetBounds());
+		m->shadow->AddShadowedBound(model->GetWorldBounds());
 	}
 
-	// Tricky: The call to GetBounds() above can invalidate the position
+	// Tricky: The call to GetWorldBounds() above can invalidate the position
 	model->ValidatePosition();
 
 	bool canUseInstancing = false;

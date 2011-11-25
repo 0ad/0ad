@@ -41,6 +41,8 @@ public:
 	void SetGroundEnabled(bool enabled);
 	void SetShadowsEnabled(bool enabled);
 	void SetStatsEnabled(bool enabled);
+	void SetBoundingBoxesEnabled(bool enabled);
+	void SetAxesMarkerEnabled(bool enabled);
 	void Render();
 	void Update(float dt);
 

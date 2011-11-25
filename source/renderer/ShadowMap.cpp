@@ -28,7 +28,7 @@
 
 #include "graphics/LightEnv.h"
 
-#include "maths/Bound.h"
+#include "maths/BoundingBoxAligned.h"
 #include "maths/MathUtil.h"
 #include "maths/Matrix3D.h"
 
@@ -67,7 +67,7 @@ struct ShadowMapInternals
 	// transform light space into world space
 	CMatrix3D InvLightTransform;
 	// bounding box of shadowed objects in light space
-	CBound ShadowBound;
+	CBoundingBoxAligned ShadowBound;
 
 	// Camera transformed into light space
 	CCamera LightspaceCamera;
@@ -203,9 +203,9 @@ void ShadowMap::SetupFrame(const CCamera& camera, const CVector3D& lightdir)
 //////////////////////////////////////////////////////////////////////////////
 // AddShadowedBound: add a world-space bounding box to the bounds of shadowed
 // objects
-void ShadowMap::AddShadowedBound(const CBound& bounds)
+void ShadowMap::AddShadowedBound(const CBoundingBoxAligned& bounds)
 {
-	CBound lightspacebounds;
+	CBoundingBoxAligned lightspacebounds;
 
 	bounds.Transform(m->LightTransform, lightspacebounds);
 	m->ShadowBound += lightspacebounds;

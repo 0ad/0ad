@@ -21,7 +21,7 @@
 #include "graphics/Texture.h"
 #include "lib/ogl.h"
 #include "lib/file/vfs/vfs_path.h"
-#include "maths/Bound.h"
+#include "maths/BoundingBoxAligned.h"
 
 class CVector3D;
 class CParticleEmitter;
@@ -88,7 +88,7 @@ private:
 	 */
 	void UpdateEmitterStep(CParticleEmitter& emitter, float dt);
 
-	CBound CalculateBounds(CVector3D emitterPos, CBound emittedBounds);
+	CBoundingBoxAligned CalculateBounds(CVector3D emitterPos, CBoundingBoxAligned emittedBounds);
 
 	CTexturePtr m_Texture;
 
@@ -99,7 +99,7 @@ private:
 
 	float m_MaxLifetime;
 	size_t m_MaxParticles;
-	CBound m_MaxBounds;
+	CBoundingBoxAligned m_MaxBounds;
 
 	typedef shared_ptr<IParticleVar> IParticleVarPtr;
 	std::vector<IParticleVarPtr> m_Variables;

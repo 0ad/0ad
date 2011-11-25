@@ -77,7 +77,7 @@ void CParticleEmitter::UpdateArrayData()
 
 	ENSURE(m_Particles.size() <= m_Type->m_MaxParticles);
 
-	CBound bounds;
+	CBoundingBoxAligned bounds;
 
 	for (size_t i = 0; i < m_Particles.size(); ++i)
 	{
@@ -232,7 +232,7 @@ void CModelParticleEmitter::CalcBounds()
 	// current computed particle positions plus the emitter type's largest
 	// potential bounding box at the current position
 
-	m_Bounds = m_Type->CalculateBounds(m_Emitter->GetPosition(), m_Emitter->GetParticleBounds());
+	m_WorldBounds = m_Type->CalculateBounds(m_Emitter->GetPosition(), m_Emitter->GetParticleBounds());
 }
 
 void CModelParticleEmitter::ValidatePosition()

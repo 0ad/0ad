@@ -51,19 +51,18 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simu
 		if (cmpVisual.null())
 			continue;
 
-		CBound bounds = cmpVisual->GetBounds();
+		CBoundingBoxOriented selectionBox = cmpVisual->GetSelectionBox();
+		if (selectionBox.IsEmpty())
+			continue;
 
 		float tmin, tmax;
-		if (!bounds.RayIntersect(origin, dir, tmin, tmax))
+		if (!selectionBox.RayIntersect(origin, dir, tmin, tmax))
 			continue;
 
 		// Find the perpendicular distance from the object's centre to the picker ray
 
-		CVector3D centre;
-		bounds.GetCentre(centre);
-
-		CVector3D closest = origin + dir * (centre - origin).Dot(dir);
-		float dist2 = (closest - centre).LengthSquared();
+		CVector3D closest = origin + dir * (selectionBox.m_Center - origin).Dot(dir);
+		float dist2 = (closest - selectionBox.m_Center).LengthSquared();
 
 		hits.push_back(std::make_pair(dist2, ent));
 	}

@@ -18,6 +18,7 @@
 #ifndef INCLUDED_MODELABSTRACT
 #define INCLUDED_MODELABSTRACT
 
+#include "maths/BoundingBoxOriented.h"
 #include "graphics/RenderableObject.h"
 #include "ps/Overlay.h"
 #include "simulation2/helpers/Player.h"
@@ -37,10 +38,36 @@ class CModelAbstract : public CRenderableObject
 	NONCOPYABLE(CModelAbstract);
 
 public:
-	CModelAbstract() :
-		m_Parent(NULL), m_PositionValid(false),
-		m_ShadingColor(1, 1, 1, 1), m_PlayerID(INVALID_PLAYER)
+
+	/**
+	 * Describes a custom selection shape to be used for a model's selection box instead of the default 
+	 * recursive bounding boxes.
+	 */
+	struct CustomSelectionShape
 	{
+		enum EType {
+			/// The selection shape is determined by an oriented box of custom, user-specified size.
+			BOX,
+			/// The selection shape is determined by a cylinder of custom, user-specified size.
+			CYLINDER
+		};
+
+		EType m_Type; ///< Type of shape.
+		float m_Size0; ///< Box width if @ref BOX, or radius if @ref CYLINDER
+		float m_Size1; ///< Box depth if @ref BOX, or radius if @ref CYLINDER
+		float m_Height; ///< Box height if @ref BOX, cylinder height if @ref CYLINDER
+	};
+
+public:
+	
+	CModelAbstract()
+		: m_Parent(NULL), m_PositionValid(false), m_ShadingColor(1, 1, 1, 1), m_PlayerID(INVALID_PLAYER), 
+		  m_SelectionBoxValid(false), m_CustomSelectionShape(NULL)
+	{ }
+
+	~CModelAbstract()
+	{
+		delete m_CustomSelectionShape; // allocated and set externally by CCmpVisualActor, but our responsibility to clean up
 	}
 
 	virtual CModelAbstract* Clone() const = 0;
@@ -58,15 +85,47 @@ public:
 	// and this seems the easiest way to integrate with other code that wants
 	// type-specific processing)
 
-	/**
-	 * Calls SetDirty on this model and all child objects.
-	 */
+	/// Calls SetDirty on this model and all child objects.
 	virtual void SetDirtyRec(int dirtyflags) = 0;
 
+	/// Returns world space bounds of this object and all child objects.
+	virtual const CBoundingBoxAligned GetWorldBoundsRec() { return GetWorldBounds(); }
+
 	/**
-	 * Returns world space bounds of this object and all child objects.
+	 * Returns the world-space selection box of this model. Used primarily for hittesting against against a selection ray. The 
+	 * returned selection box may be empty to indicate that it does not wish to participate in the selection process.
 	 */
-	virtual const CBound GetBoundsRec() { return GetBounds(); }
+	virtual const CBoundingBoxOriented& GetSelectionBox();
+
+	virtual void InvalidateBounds()
+	{
+		m_BoundsValid = false;
+		// a call to this method usually means that the model's transform has changed, i.e. it has moved or rotated, so we'll also
+		// want to update the selection box accordingly regardless of the shape it is built from.
+		m_SelectionBoxValid = false;
+	}
+
+	/// Sets a custom selection shape as described by a @p descriptor. Argument may be NULL 
+	/// if you wish to keep the default behaviour of using the recursively-calculated bounding boxes.
+	void SetCustomSelectionShape(CustomSelectionShape* descriptor)
+	{
+		if (m_CustomSelectionShape != descriptor)
+		{
+			m_CustomSelectionShape = descriptor;
+			m_SelectionBoxValid = false; // update the selection box when it is next requested
+		}
+	}
+
+	/**
+	 * Returns the (object-space) bounds that should be used to construct a selection box for this model and its children.
+	 * May return an empty bound to indicate that this model and its children should not be selectable themselves, or should
+	 * not be included in its parent model's selection box. This method is used for constructing the default selection boxes,
+	 * as opposed to any boxes of custom shape specified by @ref m_CustomSelectionShape.
+	 * 
+	 * If you wish your model type to be included in selection boxes, override this method and have it return the object-space
+	 * bounds of itself, augmented recursively (via this method) with the object-space selection bounds of its children.
+	 */
+	virtual const CBoundingBoxAligned GetObjectSelectionBoundsRec() { return CBoundingBoxAligned::EMPTY; }
 
 	/**
 	 * Called when terrain has changed in the given inclusive bounds.
@@ -81,14 +140,12 @@ public:
 	virtual void SetEntityVariable(const std::string& UNUSED(name), float UNUSED(value)) { }
 
 	/**
-	 * Ensure that both the transformation and the bone
-	 * matrices are correct for this model and all its props.
+	 * Ensure that both the transformation and the bone matrices are correct for this model and all its props.
 	 */
 	virtual void ValidatePosition() = 0;
 
 	/**
-	 * Mark this model's position and bone matrices,
-	 * and all props' positions as invalid.
+	 * Mark this model's position and bone matrices, and all props' positions as invalid.
 	 */
 	virtual void InvalidatePosition() = 0;
 
@@ -100,7 +157,11 @@ public:
 	virtual void SetShadingColor(const CColor& colour) { m_ShadingColor = colour; }
 	virtual CColor GetShadingColor() const { return m_ShadingColor; }
 
-	/// If non-null points to the model that we are attached to.
+protected:
+	void CalcSelectionBox();
+
+public:
+	/// If non-null, points to the model that we are attached to.
 	CModelAbstract* m_Parent;
 
 	/// True if both transform and and bone matrices are valid.
@@ -108,8 +169,23 @@ public:
 
 	player_id_t m_PlayerID;
 
-	// modulating color
+	/// Modulating color
 	CColor m_ShadingColor;
+
+protected:
+
+	/// Selection box for this model.
+	CBoundingBoxOriented m_SelectionBox;
+
+	/// Is the current selection box valid?
+	bool m_SelectionBoxValid;
+
+	/// Pointer to a descriptor for a custom-defined selection box shape. If no custom selection box is required, this is NULL 
+	/// and the standard recursive-bounding-box-based selection box is used. Otherwise, a custom selection box described by this 
+	/// field will be used.
+	/// @see SetCustomSelectionShape
+	CustomSelectionShape* m_CustomSelectionShape;
+
 };
 
 #endif // INCLUDED_MODELABSTRACT

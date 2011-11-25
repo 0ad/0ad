@@ -21,23 +21,25 @@
 
 #include "precompiled.h"
 
-#include "Bound.h"
+#include "BoundingBoxAligned.h"
 
 #include "lib/ogl.h"
 
 #include <float.h>
 
 #include "graphics/Frustum.h"
+#include "maths/BoundingBoxOriented.h"
 #include "maths/Brush.h"
 #include "maths/Matrix3D.h"
 
+const CBoundingBoxAligned CBoundingBoxAligned::EMPTY = CBoundingBoxAligned(); // initializes to an empty bound
 
 ///////////////////////////////////////////////////////////////////////////////
 // RayIntersect: intersect ray with this bound; return true
 // if ray hits (and store entry and exit times), or false
 // otherwise
 // note: incoming ray direction must be normalised
-bool CBound::RayIntersect(const CVector3D& origin,const CVector3D& dir,
+bool CBoundingBoxAligned::RayIntersect(const CVector3D& origin,const CVector3D& dir,
 			float& tmin,float& tmax) const
 {
 	float t1,t2;
@@ -118,7 +120,7 @@ bool CBound::RayIntersect(const CVector3D& origin,const CVector3D& dir,
 
 ///////////////////////////////////////////////////////////////////////////////
 // SetEmpty: initialise this bound as empty
-void CBound::SetEmpty()
+void CBoundingBoxAligned::SetEmpty()
 {
 	m_Data[0]=CVector3D( FLT_MAX, FLT_MAX, FLT_MAX);
 	m_Data[1]=CVector3D(-FLT_MAX,-FLT_MAX,-FLT_MAX);
@@ -126,7 +128,7 @@ void CBound::SetEmpty()
 
 ///////////////////////////////////////////////////////////////////////////////
 // IsEmpty: tests whether this bound is empty
-bool CBound::IsEmpty() const
+bool CBoundingBoxAligned::IsEmpty() const
 {
 	return (m_Data[0].X ==  FLT_MAX && m_Data[0].Y ==  FLT_MAX && m_Data[0].Z ==  FLT_MAX
 	     && m_Data[1].X == -FLT_MAX && m_Data[1].Y == -FLT_MAX && m_Data[1].Z == -FLT_MAX);
@@ -136,7 +138,7 @@ bool CBound::IsEmpty() const
 // Transform: transform this bound by given matrix; return transformed bound
 // in 'result' parameter - slightly modified version of code in Graphic Gems
 // (can't remember which one it was, though)
-void CBound::Transform(const CMatrix3D& m,CBound& result) const
+void CBoundingBoxAligned::Transform(const CMatrix3D& m, CBoundingBoxAligned& result) const
 {
 	ENSURE(this!=&result);
 
@@ -161,10 +163,59 @@ void CBound::Transform(const CMatrix3D& m,CBound& result) const
 	}
 }
 
+void CBoundingBoxAligned::Transform(const CMatrix3D& transform, CBoundingBoxOriented& result) const
+{
+	// The idea is this: compute the corners of this bounding box, transform them according to the specified matrix,
+	// then derive the box center, orientation vectors, and half-sizes.
+	// TODO: this implementation can be further optimized; see Philip's comments on http://trac.wildfiregames.com/ticket/914
+	const CVector3D& pMin = m_Data[0];
+	const CVector3D& pMax = m_Data[1];
+
+	// Find the corners of these bounds. We only need some of the corners to derive the information we need, so let's 
+	// not actually compute all of them. The corners are numbered starting from the minimum position (m_Data[0]), going
+	// counter-clockwise in the bottom plane, and then in the same order for the top plane (starting from the corner
+	// that's directly above the minimum position). Hence, corner0 is pMin and corner6 is pMax, so we don't need to
+	// custom-create those.
+	
+	CVector3D corner0; // corner0 is pMin, no need to copy it
+	CVector3D corner1(pMax.X, pMin.Y, pMin.Z);
+	CVector3D corner3(pMin.X, pMin.Y, pMax.Z);
+	CVector3D corner4(pMin.X, pMax.Y, pMin.Z);
+	CVector3D corner6; // corner6 is pMax, no need to copy it
+
+	// transform corners to world space
+	corner0 = transform.Transform(pMin); // = corner0
+	corner1 = transform.Transform(corner1);
+	corner3 = transform.Transform(corner3);
+	corner4 = transform.Transform(corner4);
+	corner6 = transform.Transform(pMax); // = corner6
+
+	// Compute orientation vectors, half-size vector, and box center. We can get the orientation vectors by just taking
+	// the directional vectors from a specific corner point (corner0) to the other corners, once in each direction. The
+	// half-sizes are similarly computed by taking the distances of those sides and dividing them by 2. Finally, the 
+	// center is simply the middle between the transformed pMin and pMax corners.
+
+	const CVector3D sideU(corner1 - corner0);
+	const CVector3D sideV(corner4 - corner0);
+	const CVector3D sideW(corner3 - corner0);
+
+	result.m_Basis[0] = sideU.Normalized();
+	result.m_Basis[1] = sideV.Normalized();
+	result.m_Basis[2] = sideW.Normalized();
+
+	result.m_HalfSizes = CVector3D(
+		sideU.Length()/2.f,
+		sideV.Length()/2.f,
+		sideW.Length()/2.f
+	);
+
+	result.m_Center = (corner0 + corner6) * 0.5f;
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // Intersect with the given frustum in a conservative manner
-void CBound::IntersectFrustumConservative(const CFrustum& frustum)
+void CBoundingBoxAligned::IntersectFrustumConservative(const CFrustum& frustum)
 {
 	CBrush brush(*this);
 	CBrush buf;
@@ -176,7 +227,7 @@ void CBound::IntersectFrustumConservative(const CFrustum& frustum)
 
 
 ///////////////////////////////////////////////////////////////////////////////
-void CBound::Expand(float amount)
+void CBoundingBoxAligned::Expand(float amount)
 {
 	m_Data[0] -= CVector3D(amount, amount, amount);
 	m_Data[1] += CVector3D(amount, amount, amount);
@@ -184,7 +235,7 @@ void CBound::Expand(float amount)
 
 ///////////////////////////////////////////////////////////////////////////////
 // Render the bounding box
-void CBound::Render() const
+void CBoundingBoxAligned::Render() const
 {
 	glBegin(GL_QUADS);
 		glTexCoord2f(0, 0); glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[0].Z);

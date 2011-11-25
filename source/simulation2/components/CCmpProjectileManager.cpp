@@ -347,7 +347,7 @@ void CCmpProjectileManager::RenderSubmit(SceneCollector& collector, const CFrust
 
 		model.ValidatePosition();
 
-		if (culling && !frustum.IsBoxVisible(CVector3D(0, 0, 0), model.GetBounds()))
+		if (culling && !frustum.IsBoxVisible(CVector3D(0, 0, 0), model.GetWorldBounds()))
 			continue;
 
 		// TODO: do something about LOS (copy from CCmpVisualActor)

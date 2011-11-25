@@ -173,14 +173,14 @@ bool TerrainRenderer::CullPatches(const CFrustum* frustum)
 	m->filteredPatches.clear();
 	for (std::vector<CPatchRData*>::iterator it = m->visiblePatches.begin(); it != m->visiblePatches.end(); it++)
 	{
-		if (frustum->IsBoxVisible(CVector3D(0, 0, 0), (*it)->GetPatch()->GetBounds()))
+		if (frustum->IsBoxVisible(CVector3D(0, 0, 0), (*it)->GetPatch()->GetWorldBounds()))
 			m->filteredPatches.push_back(*it);
 	}
 
 	m->filteredDecals.clear();
 	for (std::vector<CDecalRData*>::iterator it = m->visibleDecals.begin(); it != m->visibleDecals.end(); it++)
 	{
-		if (frustum->IsBoxVisible(CVector3D(0, 0, 0), (*it)->GetDecal()->GetBounds()))
+		if (frustum->IsBoxVisible(CVector3D(0, 0, 0), (*it)->GetDecal()->GetWorldBounds()))
 			m->filteredDecals.push_back(*it);
 	}
 
@@ -557,13 +557,13 @@ void TerrainRenderer::RenderOutlines(bool filtered)
 
 ///////////////////////////////////////////////////////////////////
 // Scissor rectangle of water patches
-CBound TerrainRenderer::ScissorWater(const CMatrix3D &viewproj)
+CBoundingBoxAligned TerrainRenderer::ScissorWater(const CMatrix3D &viewproj)
 {
-	CBound scissor;
+	CBoundingBoxAligned scissor;
 	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
 	{
 		CPatchRData* data = m->visiblePatches[i];
-		const CBound& waterBounds = data->GetWaterBounds();
+		const CBoundingBoxAligned& waterBounds = data->GetWaterBounds();
 		if (waterBounds.IsEmpty())
 			continue;
 
@@ -571,7 +571,7 @@ CBound TerrainRenderer::ScissorWater(const CMatrix3D &viewproj)
 		CVector4D v2 = viewproj.Transform(CVector4D(waterBounds[1].X, waterBounds[1].Y, waterBounds[0].Z, 1.0f));
 		CVector4D v3 = viewproj.Transform(CVector4D(waterBounds[0].X, waterBounds[1].Y, waterBounds[1].Z, 1.0f));
 		CVector4D v4 = viewproj.Transform(CVector4D(waterBounds[1].X, waterBounds[1].Y, waterBounds[1].Z, 1.0f));
-		CBound screenBounds;
+		CBoundingBoxAligned screenBounds;
 		#define ADDBOUND(v1, v2, v3, v4) \
 			if (v1[2] >= -v1[3]) \
 				screenBounds += CVector3D(v1[0], v1[1], v1[2]) * (1.0f / v1[3]); \
@@ -603,7 +603,7 @@ CBound TerrainRenderer::ScissorWater(const CMatrix3D &viewproj)
 			continue;
 		scissor += screenBounds;
 	}
-	return CBound(CVector3D(clamp(scissor[0].X, -1.0f, 1.0f), clamp(scissor[0].Y, -1.0f, 1.0f), -1.0f),
+	return CBoundingBoxAligned(CVector3D(clamp(scissor[0].X, -1.0f, 1.0f), clamp(scissor[0].Y, -1.0f, 1.0f), -1.0f),
 				  CVector3D(clamp(scissor[1].X, -1.0f, 1.0f), clamp(scissor[1].Y, -1.0f, 1.0f), 1.0f));
 }
 

@@ -24,7 +24,7 @@
 #include "Model.h"
 #include "ModelDef.h"
 #include "maths/Quaternion.h"
-#include "maths/Bound.h"
+#include "maths/BoundingBoxAligned.h"
 #include "SkeletonAnim.h"
 #include "SkeletonAnimDef.h"
 #include "SkeletonAnimManager.h"
@@ -34,7 +34,6 @@
 #include "lib/res/h_mgr.h"
 #include "lib/sysdep/rtl.h"
 #include "ps/Profile.h"
-
 #include "ps/CLogger.h"
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -117,12 +116,12 @@ void CModel::CalcBounds()
 	if (! (m_Anim && m_Anim->m_AnimDef))
 	{
 		if (m_ObjectBounds.IsEmpty())
-			CalcObjectBounds();
+			CalcStaticObjectBounds();
 	}
 	else
 	{
 		if (m_Anim->m_ObjectBounds.IsEmpty())
-			CalcAnimatedObjectBound(m_Anim->m_AnimDef, m_Anim->m_ObjectBounds);
+			CalcAnimatedObjectBounds(m_Anim->m_AnimDef, m_Anim->m_ObjectBounds);
 		ENSURE(! m_Anim->m_ObjectBounds.IsEmpty()); // (if this happens, it'll be recalculating the bounds every time)
 		m_ObjectBounds = m_Anim->m_ObjectBounds;
 	}
@@ -130,12 +129,13 @@ void CModel::CalcBounds()
 	// Ensure the transform is set correctly before we use it
 	ValidatePosition();
 
-	m_ObjectBounds.Transform(GetTransform(), m_Bounds);
+	// Now transform the object-space bounds to world-space bounds
+	m_ObjectBounds.Transform(GetTransform(), m_WorldBounds);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // CalcObjectBounds: calculate object space bounds of this model, based solely on vertex positions
-void CModel::CalcObjectBounds()
+void CModel::CalcStaticObjectBounds()
 {
 	m_ObjectBounds.SetEmpty();
 
@@ -149,7 +149,7 @@ void CModel::CalcObjectBounds()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // CalcAnimatedObjectBound: calculate bounds encompassing all vertex positions for given animation 
-void CModel::CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result)
+void CModel::CalcAnimatedObjectBounds(CSkeletonAnimDef* anim, CBoundingBoxAligned& result)
 {
 	result.SetEmpty();
 
@@ -200,12 +200,64 @@ void CModel::CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-const CBound CModel::GetBoundsRec()
+const CBoundingBoxAligned CModel::GetWorldBoundsRec()
 {
-	CBound bounds = GetBounds();
+	CBoundingBoxAligned bounds = GetWorldBounds();
 	for (size_t i = 0; i < m_Props.size(); ++i)
-		bounds += m_Props[i].m_Model->GetBoundsRec();
+		bounds += m_Props[i].m_Model->GetWorldBoundsRec();
 	return bounds;
+}
+
+const CBoundingBoxAligned CModel::GetObjectSelectionBoundsRec()
+{
+	CBoundingBoxAligned objBounds = GetObjectBounds();		// updates the (children-not-included) object-space bounds if necessary
+
+	// now extend these bounds to include the props' selection bounds (if any)
+	for (size_t i = 0; i < m_Props.size(); ++i)
+	{
+		const Prop& prop = m_Props[i];
+		if (prop.m_Hidden)
+			continue; // prop is hidden from rendering, so it also shouldn't be used for selection
+
+		CBoundingBoxAligned propSelectionBounds = prop.m_Model->GetObjectSelectionBoundsRec();
+		if (propSelectionBounds.IsEmpty())
+			continue;	// submodel does not wish to participate in selection box, exclude it
+
+		// We have the prop's bounds in its own object-space; now we need to transform them so they can be properly added 
+		// to the bounds in our object-space. For that, we need the transform of the prop attachment point.
+		// 
+		// We have the prop point information; however, it's not trivial to compute its exact location in our object-space
+		// since it may or may not be attached to a bone (see SPropPoint), which in turn may or may not be in the middle of
+		// an animation. The bone matrices might be of interest, but they're really only meant to be used for the animation 
+		// system and are quite opaque to use from the outside (see @ref ValidatePosition).
+		// 
+		// However, a nice side effect of ValidatePosition is that it also computes the absolute world-space transform of 
+		// our props and sets it on their respective models. In particular, @ref ValidatePosition will compute the prop's
+		// world-space transform as either
+		// 
+		// T' = T x	B x O
+		// or 
+		// T' = T x O
+		// 
+		// where T' is the prop's world-space transform, T is our world-space transform, O is the prop's local
+		// offset/rotation matrix, and B is an optional transformation matrix of the bone the prop is attached to 
+		// (taking into account animation and everything).
+		// 
+		// From this, it is clear that either O or B x O is the object-space transformation matrix of the prop. So,
+		// all we need to do is apply our own inverse world-transform T^(-1) to T' to get our desired result. Luckily,
+		// this is precomputed upon setting the transform matrix (see @ref SetTransform), so it is free to fetch.
+		
+		CMatrix3D propObjectTransform = prop.m_Model->GetTransform(); // T'
+		propObjectTransform.Concatenate(GetInvTransform()); // T^(-1) x T'
+
+		// Transform the prop's bounds into our object coordinate space
+		CBoundingBoxAligned transformedPropSelectionBounds;
+		propSelectionBounds.Transform(propObjectTransform, transformedPropSelectionBounds);
+
+		objBounds += transformedPropSelectionBounds;
+	}
+
+	return objBounds;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -294,6 +346,7 @@ void CModel::ValidatePosition()
 	
 		m_Anim->m_AnimDef->BuildBoneMatrices(m_AnimTime, m_BoneMatrices, !(m_Flags & MODELFLAG_NOLOOPANIMATION));
 	
+		// add world-space transformation to m_BoneMatrices
 		const CMatrix3D& transform = GetTransform();
 		for (size_t i = 0; i < m_pModelDef->GetNumBones(); i++)
 			m_BoneMatrices[i].Concatenate(transform);
@@ -313,6 +366,8 @@ void CModel::ValidatePosition()
 		}
 	}
 	
+	// our own position is now valid; now we can safely update our props' positions without fearing 
+	// that doing so will cause a revalidation of this model (see recursion above).
 	m_PositionValid = true;
 	
 	// re-position and validate all props
@@ -322,9 +377,15 @@ void CModel::ValidatePosition()
 
 		CMatrix3D proptransform = prop.m_Point->m_Transform;;
 		if (prop.m_Point->m_BoneIndex != 0xff)
+		{
+			// m_BoneMatrices[i] already have world transform pre-applied (see above)
 			proptransform.Concatenate(m_BoneMatrices[prop.m_Point->m_BoneIndex]);
+		}
 		else
+		{
+			// not relative to any bone; just apply world-space transformation (i.e. relative to object-space origin)
 			proptransform.Concatenate(m_Transform);
+		}
 		
 		prop.m_Model->SetTransform(proptransform);
 		prop.m_Model->ValidatePosition();
@@ -410,6 +471,8 @@ void CModel::CopyAnimationFrom(CModel* source)
 void CModel::AddProp(const SPropPoint* point, CModelAbstract* model, CObjectEntry* objectentry)
 {
 	// position model according to prop point position
+
+	// this next call will invalidate the bounds of "model", which will in turn also invalidate the selection box
 	model->SetTransform(point->m_Transform);
 	model->m_Parent = this;
 
@@ -426,6 +489,10 @@ void CModel::AddAmmoProp(const SPropPoint* point, CModelAbstract* model, CObject
 	m_AmmoPropPoint = point;
 	m_AmmoLoadedProp = m_Props.size() - 1;
 	m_Props[m_AmmoLoadedProp].m_Hidden = true;
+
+	// we only need to invalidate the selection box here if it is based on props and their visibilities
+	if (!m_CustomSelectionShape)
+		m_SelectionBoxValid = false;
 }
 
 void CModel::ShowAmmoProp()
@@ -437,6 +504,10 @@ void CModel::ShowAmmoProp()
 	for (size_t i = 0; i < m_Props.size(); ++i)
 		if (m_Props[i].m_Point == m_AmmoPropPoint)
 			m_Props[i].m_Hidden = (i != m_AmmoLoadedProp);
+	
+	//  we only need to invalidate the selection box here if it is based on props and their visibilities
+	if (!m_CustomSelectionShape)
+		m_SelectionBoxValid = false;
 }
 
 void CModel::HideAmmoProp()
@@ -448,6 +519,10 @@ void CModel::HideAmmoProp()
 	for (size_t i = 0; i < m_Props.size(); ++i)
 		if (m_Props[i].m_Point == m_AmmoPropPoint)
 			m_Props[i].m_Hidden = (i == m_AmmoLoadedProp);
+
+	//  we only need to invalidate here if the selection box is based on props and their visibilities
+	if (!m_CustomSelectionShape)
+		m_SelectionBoxValid = false;
 }
 
 CModelAbstract* CModel::FindFirstAmmoProp()

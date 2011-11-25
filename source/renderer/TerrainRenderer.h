@@ -130,7 +130,7 @@ public:
 	/**
 	 * Calculate a scissor rectangle for the visible water patches.
 	 */
-	CBound ScissorWater(const CMatrix3D& viewproj);
+	CBoundingBoxAligned ScissorWater(const CMatrix3D& viewproj);
 
 	/**
 	 * Render priority text for all submitted patches, for debugging.

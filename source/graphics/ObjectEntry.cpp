@@ -129,7 +129,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	model->SetTexture(texture);
 
 	// calculate initial object space bounds, based on vertex positions
-	model->CalcObjectBounds();
+	model->CalcStaticObjectBounds();
 
 	// load the animations
 	for (std::multimap<CStr, CObjectBase::Anim>::iterator it = variation.anims.begin(); it != variation.anims.end(); ++it)

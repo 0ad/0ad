@@ -24,7 +24,7 @@
 
 #include "lib/ogl.h"
 
-class CBound;
+class CBoundingBoxAligned;
 class CMatrix3D;
 
 struct ShadowMapInternals;
@@ -80,7 +80,7 @@ public:
 	 *
 	 * @param bounds world space bounding box
 	 */
-	void AddShadowedBound(const CBound& bounds);
+	void AddShadowedBound(const CBoundingBoxAligned& bounds);
 
 	/**
 	 * BeginRender: Set OpenGL state for rendering into the shadow map texture.

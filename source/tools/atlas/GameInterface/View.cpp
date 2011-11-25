@@ -132,6 +132,10 @@ void ViewActor::SetParam(const std::wstring& name, bool value)
 		m_ActorViewer->SetShadowsEnabled(value);
 	else if (name == L"stats")
 		m_ActorViewer->SetStatsEnabled(value);
+	else if (name == L"bounding_box")
+		m_ActorViewer->SetBoundingBoxesEnabled(value);
+	else if (name == L"axes_marker")
+		m_ActorViewer->SetAxesMarkerEnabled(value);
 }
 
 void ViewActor::SetParam(const std::wstring& name, const AtlasMessage::Colour& value)

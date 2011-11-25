@@ -57,7 +57,7 @@ void CPatch::Initialize(CTerrain* parent,ssize_t x,ssize_t z)
 // CalcBounds: calculating the bounds of this patch
 void CPatch::CalcBounds()
 {
-	m_Bounds.SetEmpty();
+	m_WorldBounds.SetEmpty();
 
 	for (ssize_t j=0;j<PATCH_SIZE+1;j++)
 	{
@@ -65,14 +65,14 @@ void CPatch::CalcBounds()
 		{
 			CVector3D pos;
 			m_Parent->CalcPosition(m_X*PATCH_SIZE+i,m_Z*PATCH_SIZE+j,pos);
-			m_Bounds+=pos;
+			m_WorldBounds+=pos;
 		}
 	}
 
 	// If this a side patch, the sides go down to height 0, so add them
 	// into the bounds
 	if (GetSideFlags())
-		m_Bounds[0].Y = std::min(m_Bounds[0].Y, 0.f);
+		m_WorldBounds[0].Y = std::min(m_WorldBounds[0].Y, 0.f);
 }
 
 int CPatch::GetSideFlags()

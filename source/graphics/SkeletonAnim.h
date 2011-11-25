@@ -22,7 +22,7 @@
 #ifndef INCLUDED_SKELETONANIM
 #define INCLUDED_SKELETONANIM
 
-#include "maths/Bound.h"
+#include "maths/BoundingBoxAligned.h"
 
 class CSkeletonAnimDef;
 
@@ -47,7 +47,7 @@ public:
 	float m_ActionPos;
 	float m_ActionPos2;
 	// object space bounds of the model when this animation is applied to it
-	CBound m_ObjectBounds;
+	CBoundingBoxAligned m_ObjectBounds;
 };
 
 #endif

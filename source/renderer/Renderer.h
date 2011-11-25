@@ -348,8 +348,8 @@ protected:
 	void RenderShadowMap();
 
 	// render water reflection and refraction textures
-	SScreenRect RenderReflections(const CBound& scissor);
-	SScreenRect RenderRefractions(const CBound& scissor);
+	SScreenRect RenderReflections(const CBoundingBoxAligned& scissor);
+	SScreenRect RenderRefractions(const CBoundingBoxAligned& scissor);
 
 	// debugging
 	void DisplayFrustum();

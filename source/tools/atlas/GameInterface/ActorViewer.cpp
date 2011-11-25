@@ -33,6 +33,7 @@
 #include "graphics/TerrainTextureManager.h"
 #include "graphics/TerritoryTexture.h"
 #include "graphics/UnitManager.h"
+#include "graphics/Overlay.h"
 #include "maths/MathUtil.h"
 #include "ps/Font.h"
 #include "ps/GameSetup/Config.h"
@@ -48,6 +49,7 @@
 #include "simulation2/components/ICmpTerrain.h"
 #include "simulation2/components/ICmpUnitMotion.h"
 #include "simulation2/components/ICmpVisual.h"
+#include "simulation2/helpers/Render.h"
 
 struct ActorViewerImpl : public Scene
 {
@@ -75,6 +77,8 @@ public:
 	bool WalkEnabled;
 	bool GroundEnabled;
 	bool ShadowsEnabled;
+	bool SelectionBoxEnabled;
+	bool AxesMarkerEnabled;
 
 	SColor4ub Background;
 	
@@ -89,6 +93,9 @@ public:
 	CLOSTexture LOSTexture;
 	CTerritoryTexture TerritoryTexture;
 
+	SOverlayLine SelectionBoxOverlay;
+	SOverlayLine AxesMarkerOverlays[3];
+
 	// Simplistic implementation of the Scene interface
 	virtual void EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 	{
@@ -99,6 +106,48 @@ public:
 					c->Submit(Terrain.GetPatch(pi, pj));
 		}
 
+		CmpPtr<ICmpVisual> cmpVisual(Simulation2, Entity);
+
+		// add selection box outlines manually
+		if (SelectionBoxEnabled && !cmpVisual.null())
+		{
+			SelectionBoxOverlay.m_Color = CColor(35/255.f, 86/255.f, 188/255.f, .75f); // pretty blue
+			SelectionBoxOverlay.m_Thickness = 2;
+
+			SimRender::ConstructBoxOutline(cmpVisual->GetSelectionBox(), SelectionBoxOverlay);
+			c->Submit(&SelectionBoxOverlay);
+		}
+
+		// add origin axis thingy
+		if (AxesMarkerEnabled && !cmpVisual.null())
+		{
+			AxesMarkerOverlays[0].m_Color = CColor(1, 0, 0, .5f); // X axis; red
+			AxesMarkerOverlays[1].m_Color = CColor(0, 1, 0, .5f); // Y axis; green
+			AxesMarkerOverlays[2].m_Color = CColor(0, 0, 1, .5f); // Z axis; blue
+
+			AxesMarkerOverlays[0].m_Thickness = 2;
+			AxesMarkerOverlays[1].m_Thickness = 2;
+			AxesMarkerOverlays[2].m_Thickness = 2;
+
+			AxesMarkerOverlays[0].m_Coords.clear();
+			AxesMarkerOverlays[1].m_Coords.clear();
+			AxesMarkerOverlays[2].m_Coords.clear();
+
+			CVector3D origin = cmpVisual->GetPosition() + CVector3D(0, 0.02f, 0); // offset from the ground a little bit to prevent fighting with the floor texture
+			AxesMarkerOverlays[0].PushCoords(origin);
+			AxesMarkerOverlays[1].PushCoords(origin);
+			AxesMarkerOverlays[2].PushCoords(origin);
+
+			AxesMarkerOverlays[0].PushCoords(origin + CVector3D(1, 0, 0));
+			AxesMarkerOverlays[1].PushCoords(origin + CVector3D(0, 1, 0));
+			AxesMarkerOverlays[2].PushCoords(origin + CVector3D(0, 0, 1));
+
+			c->Submit(&AxesMarkerOverlays[0]);
+			c->Submit(&AxesMarkerOverlays[1]);
+			c->Submit(&AxesMarkerOverlays[2]);
+		}
+
+		// send a RenderSubmit message so the components can submit their visuals to the renderer
 		Simulation2.RenderSubmit(*c, frustum, false);
 	}
 
@@ -114,11 +163,13 @@ public:
 };
 
 ActorViewer::ActorViewer()
-: m(*new ActorViewerImpl())
+	: m(*new ActorViewerImpl())
 {
 	m.WalkEnabled = false;
 	m.GroundEnabled = true;
 	m.ShadowsEnabled = g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWS);
+	m.SelectionBoxEnabled = false;
+	m.AxesMarkerEnabled = false;
 	m.Background = SColor4ub(0, 0, 0, 255);
 
 	// Create a tiny empty piece of terrain, just so we can put shadows
@@ -307,6 +358,8 @@ void ActorViewer::SetBackgroundColour(const SColor4ub& colour)
 void ActorViewer::SetWalkEnabled(bool enabled)    { m.WalkEnabled = enabled; }
 void ActorViewer::SetGroundEnabled(bool enabled)  { m.GroundEnabled = enabled; }
 void ActorViewer::SetShadowsEnabled(bool enabled) { m.ShadowsEnabled = enabled; }
+void ActorViewer::SetBoundingBoxesEnabled(bool enabled) { m.SelectionBoxEnabled = enabled; }
+void ActorViewer::SetAxesMarkerEnabled(bool enabled)    { m.AxesMarkerEnabled = enabled; }
 
 void ActorViewer::SetStatsEnabled(bool enabled)
 {

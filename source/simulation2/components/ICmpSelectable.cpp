@@ -26,3 +26,5 @@
 BEGIN_INTERFACE_WRAPPER(Selectable)
 DEFINE_INTERFACE_METHOD_1("SetSelectionHighlight", void, ICmpSelectable, SetSelectionHighlight, CColor)
 END_INTERFACE_WRAPPER(Selectable)
+
+bool ICmpSelectable::ms_EnableDebugOverlays = false;

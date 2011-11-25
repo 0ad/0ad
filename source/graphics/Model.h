@@ -54,11 +54,22 @@ public:
 	{
 		Prop() : m_Point(0), m_Model(0), m_ObjectEntry(0), m_Hidden(false) {}
 
+		/**
+		 * Location of the prop point within its parent model, relative to either a bone in the parent model or to the 
+		 * parent model's origin. See the documentation for @ref SPropPoint for more details.
+		 * @see SPropPoint
+		 */
 		const SPropPoint* m_Point;
+
+		/**
+		 * Pointer to the model associated with this prop. Note that the transform matrix held by this model is the full object-to-world
+		 * space transform, taking into account all parent model positioning (see @ref CModel::ValidatePosition for positioning logic).
+		 * @see CModel::ValidatePosition
+		 */
 		CModelAbstract* m_Model;
 		CObjectEntry* m_ObjectEntry;
 
-		bool m_Hidden; // temporarily removed from rendering
+		bool m_Hidden; ///< Should this prop be temporarily removed from rendering?
 	};
 
 public:
@@ -75,8 +86,6 @@ public:
 
 	// setup model from given geometry
 	bool InitModel(const CModelDefPtr& modeldef);
-	// calculate the world space bounds of this model
-	virtual void CalcBounds();
 	// update this model's state; 'time' is the absolute time since the start of the animation, in MS
 	void UpdateTo(float time);
 
@@ -133,12 +142,35 @@ public:
 			m_Props[i].m_Model->SetEntityVariable(name, value);
 	}
 
-	// calculate object space bounds of this model, based solely on vertex positions
-	void CalcObjectBounds();
-	// calculate bounds encompassing all vertex positions for given animation 
-	void CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result);
+	// --- WORLD/OBJECT SPACE BOUNDS -----------------------------------------------------------------
 
-	virtual const CBound GetBoundsRec();
+	/// Overridden to calculate both the world-space and object-space bounds of this model, and stores the result in
+	/// m_Bounds and m_ObjectBounds, respectively.
+	virtual void CalcBounds();
+
+	/// Returns the object-space bounds for this model, excluding its children.
+	const CBoundingBoxAligned& GetObjectBounds()
+	{
+		RecalculateBoundsIfNecessary();				// recalculates both object-space and world-space bounds if necessary
+		return m_ObjectBounds;
+	}
+
+	virtual const CBoundingBoxAligned GetWorldBoundsRec();		// reimplemented here
+
+	/// Auxiliary method; calculates object space bounds of this model, based solely on vertex positions, and stores 
+	/// the result in m_ObjectBounds. Called by CalcBounds (instead of CalcAnimatedObjectBounds) if it has been determined 
+	/// that the object-space bounds are static.
+	void CalcStaticObjectBounds();
+	
+	/// Auxiliary method; calculate object-space bounds encompassing all vertex positions for given animation, and stores 
+	/// the result in m_ObjectBounds. Called by CalcBounds (instead of CalcStaticBounds) if it has been determined that the 
+	/// object-space bounds need to take animations into account.
+	void CalcAnimatedObjectBounds(CSkeletonAnimDef* anim,CBoundingBoxAligned& result);
+
+	// --- SELECTION BOX/BOUNDS ----------------------------------------------------------------------
+
+	/// Reimplemented here since proper models should participate in selection boxes.
+	virtual const CBoundingBoxAligned GetObjectSelectionBoundsRec();
 
 	/**
 	 * Set transform of this object.
@@ -236,12 +268,20 @@ private:
 	// object space bounds of model - accounts for bounds of all possible animations
 	// that can play on a model. Not always up-to-date - currently CalcBounds()
 	// updates it when necessary.
-	CBound m_ObjectBounds;
+	CBoundingBoxAligned m_ObjectBounds;
 	// animation currently playing on this model, if any
 	CSkeletonAnim* m_Anim;
 	// time (in MS) into the current animation
 	float m_AnimTime;
-	// current state of all bones on this model; null if associated modeldef isn't skeletal
+	
+	/**
+	 * Current state of all bones on this model; null if associated modeldef isn't skeletal.
+	 * Props may attach to these bones by means of the SPropPoint::m_BoneIndex field; in this case their
+	 * transformation matrix held is relative to the bone transformation (see @ref SPropPoint and 
+	 * @ref CModel::ValidatePosition).
+	 * 
+	 * @see SPropPoint
+	 */
 	CMatrix3D* m_BoneMatrices;
 	// inverse matrices for the bind pose's bones; null if not skeletal
 	CMatrix3D* m_InverseBindBoneMatrices;

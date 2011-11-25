@@ -23,7 +23,7 @@
 
 #include "HFTracer.h"
 #include "Terrain.h"
-#include "maths/Bound.h"
+#include "maths/BoundingBoxAligned.h"
 #include "maths/Vector3D.h"
 
 // To cope well with points that are slightly off the edge of the map,
@@ -136,7 +136,7 @@ bool CHFTracer::RayIntersect(const CVector3D& origin, const CVector3D& dir, int&
 	}
 
 	// intersect first against bounding box
-	CBound bound;
+	CBoundingBoxAligned bound;
 	bound[0] = CVector3D(-MARGIN_SIZE * m_CellSize, 0, -MARGIN_SIZE * m_CellSize);
 	bound[1] = CVector3D((m_MapSize + MARGIN_SIZE) * m_CellSize, 65535 * m_HeightScale, (m_MapSize + MARGIN_SIZE) * m_CellSize);
 

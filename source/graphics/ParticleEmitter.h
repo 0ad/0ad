@@ -83,7 +83,7 @@ public:
 	/**
 	 * Get the bounding box of the center points of particles at their current positions.
 	 */
-	CBound GetParticleBounds() { return m_ParticleBounds; }
+	CBoundingBoxAligned GetParticleBounds() { return m_ParticleBounds; }
 
 	/**
 	 * Push a new particle onto the ring buffer. (May overwrite an old particle.)
@@ -133,7 +133,7 @@ public:
 
 private:
 	/// Bounding box of the current particle center points
-	CBound m_ParticleBounds;
+	CBoundingBoxAligned m_ParticleBounds;
 
 	VertexArray m_VertexArray;
 	VertexArray::Attribute m_AttributePos;

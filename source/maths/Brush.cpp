@@ -26,13 +26,13 @@
 #include <float.h>
 
 #include "Brush.h"
-#include "Bound.h"
+#include "BoundingBoxAligned.h"
 #include "graphics/Frustum.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////
 // Convert the given bounds into a brush
-CBrush::CBrush(const CBound& bounds)
+CBrush::CBrush(const CBoundingBoxAligned& bounds)
 {
 	m_Vertices.resize(8);
 
@@ -58,7 +58,7 @@ CBrush::CBrush(const CBound& bounds)
 
 ///////////////////////////////////////////////////////////////////////////////
 // Calculate bounds of this brush
-void CBrush::Bounds(CBound& result) const
+void CBrush::Bounds(CBoundingBoxAligned& result) const
 {
 	result.SetEmpty();
 

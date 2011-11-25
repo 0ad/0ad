@@ -25,6 +25,7 @@
 #include "ICmpRangeManager.h"
 #include "ICmpVision.h"
 #include "simulation2/MessageTypes.h"
+#include "simulation2/components/ICmpFootprint.h"
 
 #include "graphics/Frustum.h"
 #include "graphics/Model.h"
@@ -97,7 +98,38 @@ public:
 			"</element>"
 			"<element name='SilhouetteOccluder'>"
 				"<data type='boolean'/>"
-			"</element>";
+			"</element>"
+			"<optional>"
+				"<element name='SelectionShape'>"
+					"<choice>"
+						"<element name='Bounds' a:help='Determines the selection box based on the model bounds'>"
+							"<empty/>"
+						"</element>"
+						"<element name='Footprint' a:help='Determines the selection box based on the entity Footprint component'>"
+							"<empty/>"
+						"</element>"
+						"<element name='Box' a:help='Sets the selection shape to a box of specified dimensions'>"
+							"<attribute name='width'>"
+								"<ref name='positiveDecimal' />"
+							"</attribute>"
+							"<attribute name='height'>"
+								"<ref name='positiveDecimal' />"
+							"</attribute>"
+							"<attribute name='depth'>"
+								"<ref name='positiveDecimal' />"
+							"</attribute>"
+						"</element>"
+						"<element name='Cylinder' a:help='Sets the selection shape to a cylinder of specified dimensions'>"
+							"<attribute name='radius'>"
+								"<ref name='positiveDecimal' />"
+							"</attribute>"
+							"<attribute name='height'>"
+								"<ref name='positiveDecimal' />"
+							"</attribute>"
+						"</element>"
+					"</choice>"
+				"</element>"
+			"</optional>";
 	}
 
 	virtual void Init(const CParamNode& paramNode)
@@ -126,8 +158,16 @@ public:
 			if (paramNode.GetChild("SilhouetteOccluder").ToBool())
 				modelFlags |= MODELFLAG_SILHOUETTE_OCCLUDER;
 
-			if (m_Unit->GetModel().ToCModel())
-				m_Unit->GetModel().ToCModel()->AddFlagsRec(modelFlags);
+			CModelAbstract& model = m_Unit->GetModel();
+			if (model.ToCModel())
+				model.ToCModel()->AddFlagsRec(modelFlags);
+
+			// Initialize the model's selection shape descriptor. This currently relies on the component initialization order; the 
+			// Footprint component must be initialized before this component (VisualActor) to support the ability to use the footprint
+			// shape for the selection box (instead of the default recursive bounding box). See TypeList.h for the order in
+			// which components are initialized; if for whatever reason you need to get rid of this dependency, you can always just
+			// initialize the selection shape descriptor on-demand.
+			InitSelectionShapeDescriptor(model, paramNode);
 
 			m_Unit->SetID(GetEntityId());
 		}
@@ -245,11 +285,18 @@ public:
 		}
 	}
 
-	virtual CBound GetBounds()
+	virtual CBoundingBoxAligned GetBounds()
 	{
 		if (!m_Unit)
-			return CBound();
-		return m_Unit->GetModel().GetBounds();
+			return CBoundingBoxAligned::EMPTY;
+		return m_Unit->GetModel().GetWorldBounds();
+	}
+
+	virtual CBoundingBoxOriented GetSelectionBox()
+	{
+		if (!m_Unit)
+			return CBoundingBoxOriented::EMPTY;
+		return m_Unit->GetModel().GetSelectionBox();
 	}
 
 	virtual CVector3D GetPosition()
@@ -403,12 +450,91 @@ private:
 		return GetEntityId();
 	}
 
+	/// Helper method; initializes the model selection shape descriptor from XML. Factored out for readability of @ref Init.
+	/// The @p model argument is technically not really necessary since naturally this method is intended to initialize this
+	/// visual actor's model (I wouldn't know which other one you'd pass), but it's included here to enforce that the
+	/// component's model must have been created before using this method (i.e. to prevent accidentally calls to this method
+	/// before the model was constructed).
+	void InitSelectionShapeDescriptor(CModelAbstract& model, const CParamNode& paramNode);
+
 	void Update(fixed turnLength);
 	void Interpolate(float frameTime, float frameOffset);
 	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling);
 };
 
 REGISTER_COMPONENT_TYPE(VisualActor)
+
+// ------------------------------------------------------------------------------------------------------------------
+
+void CCmpVisualActor::InitSelectionShapeDescriptor(CModelAbstract& model, const CParamNode& paramNode)
+{
+	// by default, we don't need a custom selection shape and we can just keep the default behaviour
+	CModelAbstract::CustomSelectionShape* shapeDescriptor = NULL;
+
+	const CParamNode& shapeNode = paramNode.GetChild("SelectionShape");
+	if (shapeNode.IsOk())
+	{
+		if (shapeNode.GetChild("Bounds").IsOk())
+		{
+			// default; no need to take action
+		}
+		else if (shapeNode.GetChild("Footprint").IsOk())
+		{
+			CmpPtr<ICmpFootprint> cmpFootprint(GetSimContext(), GetEntityId());
+			if (!cmpFootprint.null())
+			{
+				ICmpFootprint::EShape fpShape;				// fp stands for "footprint"
+				entity_pos_t fpSize0, fpSize1, fpHeight;	// fp stands for "footprint"
+				cmpFootprint->GetShape(fpShape, fpSize0, fpSize1, fpHeight);
+
+				float size0 = fpSize0.ToFloat();
+				float size1 = fpSize1.ToFloat();
+
+				// TODO: we should properly distinguish between CIRCLE and SQUARE footprint shapes here, but since cylinders 
+				// aren't implemented yet and are almost indistinguishable from boxes for small enough sizes anyway, 
+				// we'll just use boxes for either case. However, for circular footprints the size0 and size1 values both 
+				// represent the radius, so we do have to adjust them to match the size1 and size0's of square footprints 
+				// (which represent the full width and depth).
+				if (fpShape == ICmpFootprint::CIRCLE)
+				{
+					size0 *= 2;
+					size1 *= 2;
+				}
+
+				shapeDescriptor = new CModelAbstract::CustomSelectionShape;
+				shapeDescriptor->m_Type = CModelAbstract::CustomSelectionShape::BOX;
+				shapeDescriptor->m_Size0 = size0;
+				shapeDescriptor->m_Size1 = size1;
+				shapeDescriptor->m_Height = fpHeight.ToFloat();
+			}
+			else
+			{
+				LOGERROR(L"[VisualActor] Cannot apply footprint-based SelectionShape; Footprint component not initialized.");
+			}
+		}
+		else if (shapeNode.GetChild("Box").IsOk())
+		{
+			// TODO: we might need to support the ability to specify a different box center in the future
+			shapeDescriptor = new CModelAbstract::CustomSelectionShape;
+			shapeDescriptor->m_Type = CModelAbstract::CustomSelectionShape::BOX;
+			shapeDescriptor->m_Size0 = shapeNode.GetChild("Box").GetChild("@width").ToFixed().ToFloat();
+			shapeDescriptor->m_Size1 = shapeNode.GetChild("Box").GetChild("@depth").ToFixed().ToFloat();
+			shapeDescriptor->m_Height = shapeNode.GetChild("Box").GetChild("@height").ToFixed().ToFloat();
+		}
+		else if (shapeNode.GetChild("Cylinder").IsOk())
+		{
+			LOGWARNING(L"[VisualActor] TODO: Cylinder selection shapes are not yet implemented; defaulting to recursive bounding boxes");
+		}
+		else
+		{
+			// shouldn't happen by virtue of validation against schema
+			LOGERROR(L"[VisualActor] No selection shape specified");
+		}
+	}
+
+	// the model is now responsible for cleaning up the descriptor
+	model.SetCustomSelectionShape(shapeDescriptor);
+}
 
 void CCmpVisualActor::Update(fixed turnLength)
 {
@@ -504,7 +630,7 @@ void CCmpVisualActor::RenderSubmit(SceneCollector& collector, const CFrustum& fr
 
 	CModelAbstract& model = m_Unit->GetModel();
 
-	if (culling && !frustum.IsBoxVisible(CVector3D(0, 0, 0), model.GetBoundsRec()))
+	if (culling && !frustum.IsBoxVisible(CVector3D(0, 0, 0), model.GetWorldBoundsRec()))
 		return;
 
 	collector.SubmitRecursive(&model);

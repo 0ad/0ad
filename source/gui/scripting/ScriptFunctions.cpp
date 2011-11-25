@@ -49,6 +49,7 @@
 #include "simulation2/components/ICmpGuiInterface.h"
 #include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/components/ICmpTemplateManager.h"
+#include "simulation2/components/ICmpSelectable.h"
 #include "simulation2/helpers/Selection.h"
 
 #include "js/jsapi.h"
@@ -518,6 +519,10 @@ void QuickLoad(void* UNUSED(cbdata))
 {
 	g_Game->GetTurnManager()->QuickLoad();
 }
+void SetBoundingBoxDebugOverlay(void* UNUSED(cbdata), bool enabled)
+{
+	ICmpSelectable::ms_EnableDebugOverlays = enabled;
+}
 
 } // namespace
 
@@ -590,4 +595,5 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, &DumpSimState>("DumpSimState");
 	scriptInterface.RegisterFunction<void, unsigned int, &EnableTimeWarpRecording>("EnableTimeWarpRecording");
 	scriptInterface.RegisterFunction<void, &RewindTimeWarp>("RewindTimeWarp");
+	scriptInterface.RegisterFunction<void, bool, &SetBoundingBoxDebugOverlay>("SetBoundingBoxDebugOverlay");
 }
