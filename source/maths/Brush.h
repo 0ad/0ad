@@ -24,7 +24,7 @@
 
 #include "Vector3D.h"
 
-class CBound;
+class CBoundingBoxAligned;
 class CFrustum;
 class CPlane;
 
@@ -40,9 +40,9 @@ public:
 	/**
 	 * CBrush: Construct a brush from a bounds object.
 	 *
-	 * @param bounds the CBound object to construct the brush from.
+	 * @param bounds the CBoundingBoxAligned object to construct the brush from.
 	 */
-	CBrush(const CBound& bounds);
+	CBrush(const CBoundingBoxAligned& bounds);
 
 	/**
 	 * IsEmpty: Returns whether the brush is empty.
@@ -56,7 +56,7 @@ public:
 	 *
 	 * @param result the resulting bounding box is stored here
 	 */
-	void Bounds(CBound& result) const;
+	void Bounds(CBoundingBoxAligned& result) const;
 
 	/**
 	 * Slice: Cut the object along the given plane, resulting in a smaller (or even empty)

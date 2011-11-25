@@ -140,7 +140,7 @@ public:
 				CmpPtr<ICmpVisual> cmpVisual(GetSimContext(), GetEntityId());
 				if (!cmpVisual.null())
 				{
-					CBound bound = cmpVisual->GetBounds();
+					CBoundingBoxAligned bound = cmpVisual->GetBounds();
 					m_TotalSinkDepth = std::max(m_TotalSinkDepth, bound[1].Y - bound[0].Y);
 				}
 

@@ -32,6 +32,11 @@ public:
 	virtual void SetSelectionHighlight(CColor color) = 0;
 
 	DECLARE_INTERFACE_TYPE(Selectable)
+
+	// TODO: this is slightly ugly design; it would be nice to change the component system to support per-component-type data 
+	// and methods, where we can keep settings like these. Note that any such data store would need to be per-component-manager
+	// and not entirely global, to support multiple simulation instances.
+	static bool ms_EnableDebugOverlays; // ms for member static
 };
 
 #endif // INCLUDED_ICMPSELECTABLE

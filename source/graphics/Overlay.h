@@ -36,6 +36,11 @@ struct SOverlayLine
 	CColor m_Color;
 	std::vector<float> m_Coords; // (x, y, z) vertex coordinate triples; shape is not automatically closed
 	u8 m_Thickness; // pixels
+
+	/// Utility function; pushes three vertex coordinates at once onto the coordinates array
+	void PushCoords(const float x, const float y, const float z) { m_Coords.push_back(x); m_Coords.push_back(y); m_Coords.push_back(z); }
+	/// Utility function; pushes a vertex location onto the coordinates array
+	void PushCoords(const CVector3D& v) { PushCoords(v.X, v.Y, v.Z); }
 };
 
 /**

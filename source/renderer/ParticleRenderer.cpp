@@ -158,7 +158,7 @@ void ParticleRenderer::RenderBounds()
 	{
 		CParticleEmitter* emitter = m->emitters[i];
 
-		CBound bounds = emitter->m_Type->CalculateBounds(emitter->GetPosition(), emitter->GetParticleBounds());
+		CBoundingBoxAligned bounds = emitter->m_Type->CalculateBounds(emitter->GetPosition(), emitter->GetParticleBounds());
 		bounds.Render();
 	}
 }

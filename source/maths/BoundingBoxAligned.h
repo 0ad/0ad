@@ -27,20 +27,34 @@
 
 class CFrustum;
 class CMatrix3D;
+class CBoundingBoxOriented;
 
 ///////////////////////////////////////////////////////////////////////////////
-// CBound: basic axis aligned bounding box class
-class CBound
+// basic axis aligned bounding box (AABB) class
+class CBoundingBoxAligned
 {
 public:
-	CBound() { SetEmpty(); }
-	CBound(const CVector3D& min,const CVector3D& max) {
-		m_Data[0]=min; m_Data[1]=max;
+	
+	CBoundingBoxAligned() { SetEmpty(); }
+	CBoundingBoxAligned(const CVector3D& min, const CVector3D& max) {
+		m_Data[0] = min;
+		m_Data[1] = max;
 	}
 
-	void Transform(const CMatrix3D& m,CBound& result) const;
+	/**
+	 * Transforms these bounds according to the specified transformation matrix @m, and writes the axis-aligned bounds
+	 * of that result to @p result.
+	 */
+	void Transform(const CMatrix3D& m, CBoundingBoxAligned& result) const;
 
-	CVector3D& operator[](int index) {	return m_Data[index]; }
+	/**
+	 * Transform these bounds using the matrix @p transform, and write out the result as an oriented (i.e. non-axis-aligned) box.
+	 * The difference with @ref Transform(const CMatrix3D&, CBoundingBoxAligned&) is that that method is equivalent to first 
+	 * computing this result, and then from that taking the axis-aligned bounding boxes again.
+	 */
+	void Transform(const CMatrix3D& m, CBoundingBoxOriented& result) const;
+
+	CVector3D& operator[](int index) { return m_Data[index]; }
 	const CVector3D& operator[](int index) const { return m_Data[index]; }
 
 	void SetEmpty();
@@ -57,30 +71,43 @@ public:
 	}
 
 	// operator+=: extend this bound to include given bound
-	CBound& operator+=(const CBound& b)
+	CBoundingBoxAligned& operator+=(const CBoundingBoxAligned& b)
 	{
 		Extend(b.m_Data[0], b.m_Data[1]);
 		return *this;
 	}
 
 	// operator+=: extend this bound to include given point
-	CBound& operator+=(const CVector3D& pt)
+	CBoundingBoxAligned& operator+=(const CVector3D& pt)
 	{
 		Extend(pt, pt);
 		return *this;
 	}
 
-	bool RayIntersect(const CVector3D& origin,const CVector3D& dir,float& tmin,float& tmax) const;
+	/**
+	 * Returns true if the ray originating in @p origin and with unit direction vector @p dir intersects this AABB, false otherwise.
+	 * Additionally, returns the distance in the positive direction from the origin of the ray to the entry and exit points in 
+	 * the bounding box in @p tmin and @p tmax. If the origin is inside the box, then this is counted as an intersection and one 
+	 * of @p tMin and @p tMax may be negative. 
+	 * 
+	 * See also Real-Time Rendering, Third Edition by T. Akenine-Moller, p. 741--742.
+	 * 
+	 * @param origin Origin of the ray.
+	 * @param dir Direction vector of the ray, defining the positive direction of the ray. Must be of unit length.
+	 */
+	bool RayIntersect(const CVector3D& origin, const CVector3D& dir, float& tmin, float& tmax) const;
 
 	// return the volume of this bounding box
-	float GetVolume() const {
-		CVector3D v=m_Data[1]-m_Data[0];
-		return std::max(v.X, 0.0f)*std::max(v.Y, 0.0f)*std::max(v.Z, 0.0f);
+	float GetVolume() const
+	{
+		CVector3D v = m_Data[1] - m_Data[0];
+		return (std::max(v.X, 0.0f) * std::max(v.Y, 0.0f) * std::max(v.Z, 0.0f));
 	}
 
 	// return the centre of this bounding box
-	void GetCentre(CVector3D& centre) const {
-		centre=(m_Data[0]+m_Data[1])*0.5f;
+	void GetCentre(CVector3D& centre) const
+	{
+		centre = (m_Data[0] + m_Data[1]) * 0.5f;
 	}
 
 	/**
@@ -109,7 +136,12 @@ public:
 	void Render() const;
 
 private:
+	// Holds the minimal and maximal coordinate points in m_Data[0] and m_Data[1], respectively.
 	CVector3D m_Data[2];
+
+public:
+	static const CBoundingBoxAligned EMPTY;
+
 };
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

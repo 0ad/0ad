@@ -24,7 +24,7 @@
 #define INCLUDED_CAMERA
 
 #include "Frustum.h"
-#include "maths/Bound.h"
+#include "maths/BoundingBoxAligned.h"
 #include "maths/Matrix3D.h"
 
 // view port
@@ -56,7 +56,7 @@ class CCamera
 		// Updates the frustum planes. Should be called
 		// everytime the view or projection matrices are
 		// altered.
-		void UpdateFrustum(const CBound& scissor = CBound(CVector3D(-1.0f, -1.0f, -1.0f), CVector3D(1.0f, 1.0f, 1.0f)));
+		void UpdateFrustum(const CBoundingBoxAligned& scissor = CBoundingBoxAligned(CVector3D(-1.0f, -1.0f, -1.0f), CVector3D(1.0f, 1.0f, 1.0f)));
 		void ClipFrustum(const CPlane& clipPlane);
 		const CFrustum& GetFrustum() const { return m_ViewFrustum; }
 

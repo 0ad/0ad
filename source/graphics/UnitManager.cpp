@@ -100,15 +100,16 @@ CUnit* CUnitManager::PickUnit(const CVector3D& origin, const CVector3D& dir) con
 		CUnit* unit = m_Units[i];
 		float tmin, tmax;
 		
-		if (unit->GetModel().GetBounds().RayIntersect(origin, dir, tmin, tmax))
+		const CBoundingBoxOriented& selectionBox = unit->GetModel().GetSelectionBox();
+		if (selectionBox.RayIntersect(origin, dir, tmin, tmax))
 		{
 			// Point of closest approach
-			CVector3D obj;
-			unit->GetModel().GetBounds().GetCentre(obj);
-			CVector3D delta = obj - origin;
+			// TODO: this next bit is virtually identical to Selection::PickEntitiesAtPoint; might be useful to factor it out and 
+			// reuse it
+			CVector3D delta = selectionBox.m_Center - origin;
 			float distance = delta.Dot(dir);
 			CVector3D closest = origin + dir * distance;
-			CVector3D offset = obj - closest;
+			CVector3D offset = selectionBox.m_Center - closest;
 
 			float rel = offset.Length();
 			if (rel < minrel) {

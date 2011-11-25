@@ -17,14 +17,14 @@
 
 #include "lib/self_test.h"
 
-#include "maths/Bound.h"
+#include "maths/BoundingBoxAligned.h"
 
 class TestBound : public CxxTest::TestSuite 
 {
 public:
 	void test_empty()
 	{
-		CBound bound;
+		CBoundingBoxAligned bound;
 		TS_ASSERT(bound.IsEmpty());
 		bound += CVector3D(1, 2, 3);
 		TS_ASSERT(! bound.IsEmpty());
@@ -34,7 +34,7 @@ public:
 
 	void test_extend_vector()
 	{
-		CBound bound;
+		CBoundingBoxAligned bound;
 		CVector3D v (1, 2, 3);
 		bound += v;
 		
@@ -45,9 +45,9 @@ public:
 
 	void test_extend_bound()
 	{
-		CBound bound;
+		CBoundingBoxAligned bound;
 		CVector3D v (1, 2, 3);
-		CBound b (v, v);
+		CBoundingBoxAligned b (v, v);
 		bound += b;
 
 		CVector3D centre;

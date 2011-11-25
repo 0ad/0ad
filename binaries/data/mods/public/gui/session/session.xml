@@ -97,7 +97,7 @@
 		/>
 
 		<!-- Dev/cheat commands -->
-		<object name="devCommands" size="100%-156 50%-80 100%-8 50%+80" type="image" sprite="devCommandsBackground"
+		<object name="devCommands" size="100%-156 50%-88 100%-8 50%+88" type="image" sprite="devCommandsBackground"
 				hidden="true" hotkey="session.devcommands.toggle">
 			<action on="Press">
 				toggleDeveloperOverlay();
@@ -134,23 +134,28 @@
 				<action on="Press">Engine.GuiInterfaceCall("SetRangeDebugOverlay", this.checked);</action>
 			</object>
 
-			<object size="0 96 100%-18 112" type="text" style="devCommandsText">Restrict camera</object>
-			<object size="100%-16 96 100% 112" type="checkbox" style="StoneCrossBox" checked="true">
+			<object size="0 96 100%-18 112" type="text" style="devCommandsText">Bounding box overlay</object>
+			<object size="100%-16 96 100% 112" type="checkbox" style="StoneCrossBox">
+				<action on="Press">Engine.SetBoundingBoxDebugOverlay(this.checked);</action>
+			</object>
+			
+			<object size="0 112 100%-18 128" type="text" style="devCommandsText">Restrict camera</object>
+			<object size="100%-16 112 100% 128" type="checkbox" style="StoneCrossBox" checked="true">
 				<action on="Press">gameView.constrainCamera = this.checked;</action>
 			</object>
 
-			<object size="0 112 100%-18 128" type="text" style="devCommandsText">Reveal map</object>
-			<object name="devCommandsRevealMap" size="100%-16 112 100% 128" type="checkbox" style="StoneCrossBox">
+			<object size="0 128 100%-18 144" type="text" style="devCommandsText">Reveal map</object>
+			<object size="100%-16 128 100% 144" type="checkbox" name="devCommandsRevealMap" style="StoneCrossBox">
 				<action on="Press">Engine.PostNetworkCommand({"type": "reveal-map", "enable": this.checked});</action>
 			</object>
 
-			<object size="0 128 100%-18 144" type="text" style="devCommandsText">Enable time warp</object>
-			<object size="100%-16 128 100% 144" type="checkbox" name="devTimeWarp" style="StoneCrossBox">
+			<object size="0 144 100%-18 160" type="text" style="devCommandsText">Enable time warp</object>
+			<object size="100%-16 144 100% 160" type="checkbox" name="devTimeWarp" style="StoneCrossBox">
 				<action on="Press">Engine.EnableTimeWarpRecording(this.checked ? 10 : 0);</action>
 			</object>
 
-			<object size="0 144 100%-18 160" type="text" style="devCommandsText">Promote selected units</object>
-			<object size="100%-16 144 100% 160" type="button" style="StoneCrossBox">
+			<object size="0 160 100%-18 176" type="text" style="devCommandsText">Promote selected units</object>
+			<object size="100%-16 160 100% 176" type="button" style="StoneCrossBox">
 				<action on="Press">Engine.PostNetworkCommand({"type": "promote", "entities": g_Selection.toList()});</action>
 			</object>
 		</object>

@@ -579,9 +579,9 @@ void CParticleEmitterType::UpdateEmitterStep(CParticleEmitter& emitter, float dt
 	}
 }
 
-CBound CParticleEmitterType::CalculateBounds(CVector3D emitterPos, CBound emittedBounds)
+CBoundingBoxAligned CParticleEmitterType::CalculateBounds(CVector3D emitterPos, CBoundingBoxAligned emittedBounds)
 {
-	CBound bounds = m_MaxBounds;
+	CBoundingBoxAligned bounds = m_MaxBounds;
 	bounds[0] += emitterPos;
 	bounds[1] += emitterPos;
 

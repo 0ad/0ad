@@ -625,7 +625,7 @@ void CTerrain::MakeDirty(int dirtyFlags)
 	}
 }
 
-CBound CTerrain::GetVertexesBound(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1)
+CBoundingBoxAligned CTerrain::GetVertexesBound(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1)
 {
 	i0 = clamp(i0, (ssize_t)0, m_MapSize-1);
 	j0 = clamp(j0, (ssize_t)0, m_MapSize-1);
@@ -644,7 +644,7 @@ CBound CTerrain::GetVertexesBound(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1
 		}
 	}
 
-	CBound bound;
+	CBoundingBoxAligned bound;
 	bound[0].X = (float)(i0*CELL_SIZE);
 	bound[0].Y = (float)(minH*HEIGHT_SCALE);
 	bound[0].Z = (float)(j0*CELL_SIZE);

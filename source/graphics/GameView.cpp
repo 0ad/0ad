@@ -36,7 +36,7 @@
 #include "graphics/UnitManager.h"
 #include "lib/input.h"
 #include "lib/timer.h"
-#include "maths/Bound.h"
+#include "maths/BoundingBoxAligned.h"
 #include "maths/MathUtil.h"
 #include "maths/Matrix3D.h"
 #include "maths/Quaternion.h"
@@ -499,7 +499,7 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 			CPatch* patch=pTerrain->GetPatch(i,j);	// can't fail
 
 			// If the patch is underwater, calculate a bounding box that also contains the water plane
-			CBound bounds = patch->GetBounds();
+			CBoundingBoxAligned bounds = patch->GetWorldBounds();
 			float waterHeight = g_Renderer.GetWaterManager()->m_WaterHeight + 0.001f;
 			if(bounds[1].Y < waterHeight) {
 				bounds[1].Y = waterHeight;

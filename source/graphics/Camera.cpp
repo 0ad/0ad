@@ -80,7 +80,7 @@ void CCamera::SetProjectionTile(int tiles, int tile_x, int tile_y)
 //Updates the frustum planes. Should be called
 //everytime the view or projection matrices are
 //altered.
-void CCamera::UpdateFrustum(const CBound& scissor)
+void CCamera::UpdateFrustum(const CBoundingBoxAligned& scissor)
 {
 	CMatrix3D MatFinal;
 	CMatrix3D MatView;

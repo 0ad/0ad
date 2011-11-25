@@ -25,6 +25,9 @@
 
 class CSimContext;
 class CVector2D;
+class CVector3D;
+class CBoundingBoxAligned;
+class CBoundingBoxOriented;
 struct SOverlayLine;
 
 namespace SimRender
@@ -52,6 +55,23 @@ void ConstructCircleOnGround(const CSimContext& context, float x, float z, float
 void ConstructSquareOnGround(const CSimContext& context, float x, float z, float w, float h, float a,
 		SOverlayLine& overlay,
 		bool floating, float heightOffset = 0.25f);
+
+/**
+ * Constructs a solid outline of an arbitrarily-aligned box.
+ */
+void ConstructBoxOutline(const CBoundingBoxOriented& box, SOverlayLine& overlayLine);
+
+/**
+ * Constructs a solid outline of an axis-aligned bounding box.
+ */
+void ConstructBoxOutline(const CBoundingBoxAligned& bound, SOverlayLine& overlayLine);
+
+/**
+ * Constructs a simple gimbal outline of radius @p radius at @p center in @p out.
+ * @param numSteps The amount of steps to trace a circle's complete outline. Must be a (strictly) positive multiple of four. 
+ *     For small radii, you can get away with small values; setting this to 4 will create a diamond shape.
+ */
+void ConstructGimbal(const CVector3D& center, float radius, SOverlayLine& out, size_t numSteps = 16);
 
 /**
  * Updates @p points so each point is averaged with its neighbours, resulting in

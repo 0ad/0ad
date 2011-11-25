@@ -28,7 +28,7 @@ portal rendering, where a portal may have 3 or more edges.
 #include "precompiled.h"
 
 #include "Frustum.h"
-#include "maths/Bound.h"
+#include "maths/BoundingBoxAligned.h"
 #include "maths/MathUtil.h"
 
 CFrustum::CFrustum ()
@@ -113,7 +113,7 @@ bool CFrustum::IsSphereVisible (const CVector3D &center, float radius) const
 }
 
 
-bool CFrustum::IsBoxVisible (const CVector3D &position,const CBound &bounds) const
+bool CFrustum::IsBoxVisible (const CVector3D &position,const CBoundingBoxAligned &bounds) const
 {
 	//basically for every plane we calculate the furthest point
 	//in the box to that plane. If that point is beyond the plane

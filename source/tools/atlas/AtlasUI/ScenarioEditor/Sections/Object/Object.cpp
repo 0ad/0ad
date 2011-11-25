@@ -44,6 +44,8 @@ enum
 	ID_ViewerShadows,
 	ID_ViewerPolyCount,
 	ID_ViewerAnimation,
+	ID_ViewerBoundingBox,
+	ID_ViewerAxesMarker,
 	ID_ViewerPlay,
 	ID_ViewerPause,
 	ID_ViewerSlow
@@ -59,10 +61,15 @@ static wxWindow* Tooltipped(wxWindow* window, const wxString& tip)
 class ObjectBottomBar : public wxPanel
 {
 public:
-	ObjectBottomBar(wxWindow* parent, ScenarioEditor& scenarioEditor, Observable<ObjectSettings>& objectSettings, Observable<AtObj>& mapSettings, ObjectSidebarImpl* p);
+	ObjectBottomBar(
+		wxWindow* parent,
+		ScenarioEditor& scenarioEditor,
+		Observable<ObjectSettings>& objectSettings,
+		Observable<AtObj>& mapSettings,
+		ObjectSidebarImpl* p
+	);
 
 	void OnFirstDisplay();
-
 	void ShowActorViewer(bool show);
 
 private:
@@ -75,11 +82,12 @@ private:
 	bool m_ViewerGround;
 	bool m_ViewerShadows;
 	bool m_ViewerPolyCount;
+	bool m_ViewerBoundingBox;
+	bool m_ViewerAxesMarker;
 
 	wxPanel* m_ViewerPanel;
 
 	ObjectSidebarImpl* p;
-
 	ScenarioEditor& m_ScenarioEditor;
 
 	DECLARE_EVENT_TABLE();
@@ -108,14 +116,27 @@ struct ObjectSidebarImpl
 	}
 };
 
-ObjectSidebar::ObjectSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
-: Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer), p(new ObjectSidebarImpl())
+ObjectSidebar::ObjectSidebar(
+	ScenarioEditor& scenarioEditor,
+	wxWindow* sidebarContainer,
+	wxWindow* bottomBarContainer
+)
+	: Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer),
+	  p(new ObjectSidebarImpl())
 {
 	wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
 	sizer->Add(new wxStaticText(this, wxID_ANY, _("Filter")), wxSizerFlags().Align(wxALIGN_CENTER));
-	sizer->Add(Tooltipped(new wxTextCtrl(this, ID_ObjectFilter),
-		_("Enter text to filter object list")), wxSizerFlags().Expand().Proportion(1));
+	sizer->Add(
+		Tooltipped(
+			new wxTextCtrl(this, ID_ObjectFilter),
+			_("Enter text to filter object list")
+		),
+		wxSizerFlags().Expand().Proportion(1)
+	);
 	m_MainSizer->Add(sizer, wxSizerFlags().Expand());
+	m_MainSizer->AddSpacer(3);
+
+	// ------------------------------------------------------------------------------------------
 
 	wxArrayString strings;
 	strings.Add(_("Entities"));
@@ -123,13 +144,27 @@ ObjectSidebar::ObjectSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarCo
 	wxChoice* objectType = new wxChoice(this, ID_ObjectType, wxDefaultPosition, wxDefaultSize, strings);
 	objectType->SetSelection(0);
 	m_MainSizer->Add(objectType, wxSizerFlags().Expand());
+	m_MainSizer->AddSpacer(3);
+	
+	// ------------------------------------------------------------------------------------------
 
 	p->m_ObjectListBox = new wxListBox(this, ID_SelectObject, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_HSCROLL);
 	m_MainSizer->Add(p->m_ObjectListBox, wxSizerFlags().Proportion(1).Expand());
+	m_MainSizer->AddSpacer(3);
+
+	// ------------------------------------------------------------------------------------------
 
 	m_MainSizer->Add(new wxButton(this, ID_ToggleViewer, _("Switch to Actor Viewer")), wxSizerFlags().Expand());
 
-	m_BottomBar = new ObjectBottomBar(bottomBarContainer, scenarioEditor, scenarioEditor.GetObjectSettings(), scenarioEditor.GetMapSettings(), p);
+	// ------------------------------------------------------------------------------------------
+
+	m_BottomBar = new ObjectBottomBar(
+		bottomBarContainer,
+		scenarioEditor,
+		scenarioEditor.GetObjectSettings(),
+		scenarioEditor.GetMapSettings(),
+		p
+	);
 
 	p->m_ToolConn = scenarioEditor.GetToolManager().GetCurrentTool().RegisterObserver(0, &ObjectSidebar::OnToolChange, this);
 }
@@ -312,7 +347,13 @@ END_EVENT_TABLE();
 
 //////////////////////////////////////////////////////////////////////////
 
-ObjectBottomBar::ObjectBottomBar(wxWindow* parent, ScenarioEditor& scenarioEditor,  Observable<ObjectSettings>& objectSettings, Observable<AtObj>& mapSettings, ObjectSidebarImpl* p)
+ObjectBottomBar::ObjectBottomBar(
+	wxWindow* parent,
+	ScenarioEditor& scenarioEditor,
+	Observable<ObjectSettings>& objectSettings,
+	Observable<AtObj>& mapSettings,
+	ObjectSidebarImpl* p
+)
 	: wxPanel(parent, wxID_ANY), p(p), m_ScenarioEditor(scenarioEditor)
 {
 	m_ViewerWireframe = false;
@@ -320,21 +361,39 @@ ObjectBottomBar::ObjectBottomBar(wxWindow* parent, ScenarioEditor& scenarioEdito
 	m_ViewerGround = true;
 	m_ViewerShadows = true;
 	m_ViewerPolyCount = false;
+	m_ViewerBoundingBox = false;
+	m_ViewerAxesMarker = false;
 
-	wxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
+	wxSizer* mainSizer = new wxBoxSizer(wxHORIZONTAL);
 
+	// --- viewer options panel -------------------------------------------------------------------------------
 
 	m_ViewerPanel = new wxPanel(this, wxID_ANY);
 	wxSizer* viewerSizer = new wxBoxSizer(wxHORIZONTAL);
 
-	wxSizer* viewerButtonsSizer = new wxStaticBoxSizer(wxVERTICAL, m_ViewerPanel, _("Display settings"));
-	viewerButtonsSizer->SetMinSize(140, -1);
-	viewerButtonsSizer->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerWireframe, _("Wireframe")), _("Toggle wireframe / solid rendering")), wxSizerFlags().Expand());
-	viewerButtonsSizer->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerMove, _("Move")), _("Toggle movement along ground when playing walk/run animations")), wxSizerFlags().Expand());
-	viewerButtonsSizer->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerGround, _("Ground")), _("Toggle the ground plane")), wxSizerFlags().Expand());
-	viewerButtonsSizer->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerShadows, _("Shadows")), _("Toggle shadow rendering")), wxSizerFlags().Expand());
-	viewerButtonsSizer->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerPolyCount, _("Poly count")), _("Toggle polygon-count statistics - turn off ground and shadows for more useful data")), wxSizerFlags().Expand());
+	wxSizer* viewerButtonsSizer = new wxStaticBoxSizer(wxHORIZONTAL, m_ViewerPanel, _("Display settings"));
+	{
+		wxSizer* viewerButtonsLeft = new wxBoxSizer(wxVERTICAL);
+		viewerButtonsLeft->SetMinSize(110, -1);
+		viewerButtonsLeft->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerWireframe,   _("Wireframe")),      _("Toggle wireframe / solid rendering")), wxSizerFlags().Expand());
+		viewerButtonsLeft->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerMove,        _("Move")),           _("Toggle movement along ground when playing walk/run animations")), wxSizerFlags().Expand());
+		viewerButtonsLeft->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerGround,      _("Ground")),         _("Toggle the ground plane")), wxSizerFlags().Expand());
+		viewerButtonsLeft->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerShadows,     _("Shadows")),        _("Toggle shadow rendering")), wxSizerFlags().Expand());
+		viewerButtonsLeft->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerPolyCount,   _("Poly count")),     _("Toggle polygon-count statistics - turn off ground and shadows for more useful data")), wxSizerFlags().Expand());
+		viewerButtonsLeft->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerBoundingBox, _("Bounding Boxes")), _("Toggle bounding boxes")), wxSizerFlags().Expand());
+
+		wxSizer* viewerButtonsRight = new wxBoxSizer(wxVERTICAL);
+		viewerButtonsRight->SetMinSize(110,-1);
+		viewerButtonsRight->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerAxesMarker,  _("Axes Marker")),    _("Toggle the axes marker (R=X, G=Y, B=Z)")), wxSizerFlags().Expand());
+
+		viewerButtonsSizer->Add(viewerButtonsLeft, wxSizerFlags().Expand());
+		viewerButtonsSizer->Add(viewerButtonsRight, wxSizerFlags().Expand());
+	}
+
 	viewerSizer->Add(viewerButtonsSizer, wxSizerFlags().Expand());
+	viewerSizer->AddSpacer(3);
+
+	// --- animations panel -------------------------------------------------------------------------------
 
 	wxSizer* viewerAnimSizer = new wxStaticBoxSizer(wxVERTICAL, m_ViewerPanel, _("Animation"));
 
@@ -357,17 +416,28 @@ ObjectBottomBar::ObjectBottomBar(wxWindow* parent, ScenarioEditor& scenarioEdito
 
 	viewerSizer->Add(viewerAnimSizer, wxSizerFlags().Expand());
 
-	m_ViewerPanel->SetSizer(viewerSizer);
-	sizer->Add(m_ViewerPanel, wxSizerFlags().Expand());
+	// --- add viewer-specific options -------------------------------------------------------------------------------
 
+	m_ViewerPanel->SetSizer(viewerSizer);
+	mainSizer->Add(m_ViewerPanel, wxSizerFlags().Expand());
+
+	m_ViewerPanel->Layout(); // prevents strange visibility glitch of the animation buttons on my machine (Vista 32-bit SP1) -- vtsj
 	m_ViewerPanel->Show(false);
 
+	// --- add player/variation selection -------------------------------------------------------------------------------
 
+	wxSizer* playerSelectionSizer = new wxBoxSizer(wxHORIZONTAL);
 	wxSizer* playerVariationSizer = new wxBoxSizer(wxVERTICAL);
 
 	// TODO: make this a wxChoice instead
 	wxComboBox* playerSelect = new PlayerComboBox(this, objectSettings, mapSettings);
-	playerVariationSizer->Add(playerSelect);
+	playerSelectionSizer->Add(new wxStaticText(this, wxID_ANY, _("Player:")), wxSizerFlags().Align(wxALIGN_CENTER));
+	playerSelectionSizer->AddSpacer(3);
+	playerSelectionSizer->Add(playerSelect);
+
+	playerVariationSizer->Add(playerSelectionSizer);
+	playerVariationSizer->AddSpacer(3);
+
 
 	wxWindow* variationSelect = new VariationControl(this, objectSettings);
 	variationSelect->SetMinSize(wxSize(160, -1));
@@ -375,9 +445,12 @@ ObjectBottomBar::ObjectBottomBar(wxWindow* parent, ScenarioEditor& scenarioEdito
 	variationSizer->Add(variationSelect, wxSizerFlags().Proportion(1).Expand());
 	playerVariationSizer->Add(variationSizer, wxSizerFlags().Proportion(1));
 
-	sizer->Add(playerVariationSizer, wxSizerFlags().Expand());
+	mainSizer->AddSpacer(3);
+	mainSizer->Add(playerVariationSizer, wxSizerFlags().Expand());
 
-	SetSizer(sizer);
+	// ----------------------------------------------------------------------------------
+
+	SetSizer(mainSizer);
 }
 
 void ObjectBottomBar::OnFirstDisplay()
@@ -402,6 +475,7 @@ void ObjectBottomBar::OnFirstDisplay()
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"ground", m_ViewerGround));
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"shadows", m_ViewerShadows));
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"stats", m_ViewerPolyCount));
+	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"bounding_box", m_ViewerBoundingBox));
 }
 
 void ObjectBottomBar::ShowActorViewer(bool show)
@@ -434,6 +508,14 @@ void ObjectBottomBar::OnViewerSetting(wxCommandEvent& evt)
 		m_ViewerPolyCount = !m_ViewerPolyCount;
 		POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"stats", m_ViewerPolyCount));
 		break;
+	case ID_ViewerBoundingBox:
+		m_ViewerBoundingBox = !m_ViewerBoundingBox;
+		POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"bounding_box", m_ViewerBoundingBox));
+		break;
+	case ID_ViewerAxesMarker:
+		m_ViewerAxesMarker = !m_ViewerAxesMarker;
+		POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"axes_marker", m_ViewerAxesMarker));
+		break;
 	}
 }
 
@@ -464,4 +546,6 @@ BEGIN_EVENT_TABLE(ObjectBottomBar, wxPanel)
 	EVT_BUTTON(ID_ViewerPlay, ObjectBottomBar::OnSpeed)
 	EVT_BUTTON(ID_ViewerPause, ObjectBottomBar::OnSpeed)
 	EVT_BUTTON(ID_ViewerSlow, ObjectBottomBar::OnSpeed)
+	EVT_BUTTON(ID_ViewerBoundingBox, ObjectBottomBar::OnViewerSetting)
+	EVT_BUTTON(ID_ViewerAxesMarker, ObjectBottomBar::OnViewerSetting)
 END_EVENT_TABLE();

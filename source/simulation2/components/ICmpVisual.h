@@ -20,7 +20,8 @@
 
 #include "simulation2/system/Interface.h"
 
-#include "maths/Bound.h"
+#include "maths/BoundingBoxOriented.h"
+#include "maths/BoundingBoxAligned.h"
 #include "maths/Fixed.h"
 #include "lib/file/vfs/vfs_path.h"
 
@@ -34,7 +35,14 @@ public:
 	 * Get the world-space bounding box of the object's visual representation.
 	 * (Not safe for use in simulation code.)
 	 */
-	virtual CBound GetBounds() = 0;
+	virtual CBoundingBoxAligned GetBounds() = 0;
+
+	/**
+	 * Get the oriented world-space bounding box of the object's visual representation, clipped at the Y=0 plane in object space
+	 * to prevent it from extending into the terrain. The primary difference with GetBounds is that this bounding box is not aligned 
+	 * to the world axes, but arbitrarily rotated according to the model transform.
+	 */
+	virtual CBoundingBoxOriented GetSelectionBox() = 0;
 
 	/**
 	 * Get the world-space position of the base point of the object's visual representation.

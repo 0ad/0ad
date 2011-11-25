@@ -49,7 +49,7 @@ public:
 
 	CPatch* GetPatch() { return m_Patch; }
 
-	const CBound& GetWaterBounds() const { return m_WaterBounds; }
+	const CBoundingBoxAligned& GetWaterBounds() const { return m_WaterBounds; }
 
 private:
 	friend struct SBlendStackItem;
@@ -145,7 +145,7 @@ private:
 	std::vector<SSplat> m_BlendSplats;
 
 	// boundary of water in this patch
-	CBound m_WaterBounds;
+	CBoundingBoxAligned m_WaterBounds;
 
 	// Water vertex buffer
 	CVertexBuffer::VBChunk* m_VBWater;

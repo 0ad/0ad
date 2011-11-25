@@ -24,9 +24,12 @@
 #include "simulation2/components/ICmpWaterManager.h"
 #include "graphics/Overlay.h"
 #include "graphics/Terrain.h"
+#include "maths/BoundingBoxAligned.h"
+#include "maths/BoundingBoxOriented.h"
 #include "maths/MathUtil.h"
 #include "maths/Vector2D.h"
 #include "ps/Profile.h"
+#include "maths/Quaternion.h"
 
 void SimRender::ConstructLineOnGround(const CSimContext& context, const std::vector<float>& xz,
 		SOverlayLine& overlay, bool floating, float heightOffset)
@@ -156,6 +159,121 @@ void SimRender::ConstructSquareOnGround(const CSimContext& context, float x, flo
 		overlay.m_Coords.push_back(px);
 		overlay.m_Coords.push_back(py);
 		overlay.m_Coords.push_back(pz);
+	}
+}
+
+void SimRender::ConstructBoxOutline(const CBoundingBoxAligned& bound, SOverlayLine& overlayLine)
+{
+	overlayLine.m_Coords.clear(); 
+
+	if (bound.IsEmpty())
+		return;
+
+	const CVector3D& pMin = bound[0];
+	const CVector3D& pMax = bound[1];
+	
+	// floor square 
+	overlayLine.PushCoords(pMin.X, pMin.Y, pMin.Z);
+	overlayLine.PushCoords(pMax.X, pMin.Y, pMin.Z);
+	overlayLine.PushCoords(pMax.X, pMin.Y, pMax.Z);
+	overlayLine.PushCoords(pMin.X, pMin.Y, pMax.Z);
+	overlayLine.PushCoords(pMin.X, pMin.Y, pMin.Z);
+	// roof square 
+	overlayLine.PushCoords(pMin.X, pMax.Y, pMin.Z);
+	overlayLine.PushCoords(pMax.X, pMax.Y, pMin.Z);
+	overlayLine.PushCoords(pMax.X, pMax.Y, pMax.Z);
+	overlayLine.PushCoords(pMin.X, pMax.Y, pMax.Z);
+	overlayLine.PushCoords(pMin.X, pMax.Y, pMin.Z);
+}
+
+void SimRender::ConstructBoxOutline(const CBoundingBoxOriented& box, SOverlayLine& overlayLine)
+{
+	overlayLine.m_Coords.clear();
+
+	if (box.IsEmpty())
+		return;
+
+	CVector3D corners[8];
+	box.GetCorner(-1, -1, -1, corners[0]);
+	box.GetCorner( 1, -1, -1, corners[1]);
+	box.GetCorner( 1, -1,  1, corners[2]);
+	box.GetCorner(-1, -1,  1, corners[3]);
+	box.GetCorner(-1,  1, -1, corners[4]);
+	box.GetCorner( 1,  1, -1, corners[5]);
+	box.GetCorner( 1,  1,  1, corners[6]);
+	box.GetCorner(-1,  1,  1, corners[7]);
+
+	overlayLine.PushCoords(corners[0]);
+	overlayLine.PushCoords(corners[1]);
+	overlayLine.PushCoords(corners[2]);
+	overlayLine.PushCoords(corners[3]);
+	overlayLine.PushCoords(corners[0]);
+
+	overlayLine.PushCoords(corners[4]);
+	overlayLine.PushCoords(corners[5]);
+	overlayLine.PushCoords(corners[6]);
+	overlayLine.PushCoords(corners[7]);
+	overlayLine.PushCoords(corners[4]);
+}
+
+void SimRender::ConstructGimbal(const CVector3D& center, float radius, SOverlayLine& out, size_t numSteps)
+{
+	ENSURE(numSteps > 0 && numSteps % 4 == 0); // must be a positive multiple of 4
+	
+	out.m_Coords.clear();
+
+	size_t fullCircleSteps = numSteps;
+	const float angleIncrement = 2.f*M_PI/fullCircleSteps;
+
+	const CVector3D X_UNIT(1, 0, 0);
+	const CVector3D Y_UNIT(0, 1, 0);
+	const CVector3D Z_UNIT(0, 0, 1);
+	CVector3D rotationVector(0, 0, radius); // directional vector based in the center that we will be rotating to get the gimbal points
+
+	// first draw a quarter of XZ gimbal; then complete the XY gimbal; then continue the XZ gimbal and finally add the YZ gimbal
+	// (that way we can keep a single continuous line)
+	
+	// -- XZ GIMBAL (PART 1/2) -----------------------------------------------
+
+	CQuaternion xzRotation;
+	xzRotation.FromAxisAngle(Y_UNIT, angleIncrement);
+
+	for (size_t i = 0; i < fullCircleSteps/4; ++i) // complete only a quarter of the way
+	{
+		out.PushCoords(center + rotationVector);
+		rotationVector = xzRotation.Rotate(rotationVector);
+	}
+
+	// -- XY GIMBAL ----------------------------------------------------------
+
+	// now complete the XY gimbal while the XZ gimbal is interrupted
+	CQuaternion xyRotation;
+	xyRotation.FromAxisAngle(Z_UNIT, angleIncrement);
+
+	for (size_t i = 0; i < fullCircleSteps; ++i) // note the <; the last point of the XY gimbal isn't added, because the XZ gimbal will add it
+	{
+		out.PushCoords(center + rotationVector);
+		rotationVector = xyRotation.Rotate(rotationVector);
+	}
+
+	// -- XZ GIMBAL (PART 2/2) -----------------------------------------------
+
+	// resume the XZ gimbal to completion
+	for (size_t i = fullCircleSteps/4; i < fullCircleSteps; ++i) // exclude the last point of the circle so the YZ gimbal can add it
+	{
+		out.PushCoords(center + rotationVector);
+		rotationVector = xzRotation.Rotate(rotationVector);
+	}
+
+	// -- YZ GIMBAL ----------------------------------------------------------
+
+	CQuaternion yzRotation;
+	yzRotation.FromAxisAngle(X_UNIT, angleIncrement);
+
+	for (size_t i = 0; i <= fullCircleSteps; ++i)
+	{
+		out.PushCoords(center + rotationVector);
+		rotationVector = yzRotation.Rotate(rotationVector);
 	}
 }
 

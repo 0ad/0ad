@@ -22,6 +22,7 @@
 
 #include "ICmpPosition.h"
 #include "ICmpFootprint.h"
+#include "ICmpVisual.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/helpers/Render.h"
 
@@ -45,11 +46,19 @@ public:
 	DEFAULT_COMPONENT_ALLOCATOR(Selectable)
 
 	SOverlayLine m_Overlay;
+	SOverlayLine* m_DebugBoundingBoxOverlay;
+	SOverlayLine* m_DebugSelectionBoxOverlay;
 
 	CCmpSelectable()
+		: m_DebugBoundingBoxOverlay(NULL), m_DebugSelectionBoxOverlay(NULL)
 	{
 		m_Overlay.m_Thickness = 2;
 		m_Overlay.m_Color = CColor(0, 0, 0, 0);
+	}
+
+	~CCmpSelectable(){
+		delete m_DebugBoundingBoxOverlay;
+		delete m_DebugSelectionBoxOverlay;
 	}
 
 	static std::string GetSchema()
@@ -153,8 +162,35 @@ public:
 	void RenderSubmit(SceneCollector& collector)
 	{
 		// (This is only called if a > 0)
-
 		collector.Submit(&m_Overlay);
+
+		if (ICmpSelectable::ms_EnableDebugOverlays)
+		{
+			// allocate debug overlays on-demand
+			if (!m_DebugBoundingBoxOverlay) m_DebugBoundingBoxOverlay = new SOverlayLine;
+			if (!m_DebugSelectionBoxOverlay) m_DebugSelectionBoxOverlay = new SOverlayLine;
+
+			CmpPtr<ICmpVisual> cmpVisual(GetSimContext(), GetEntityId()); 
+			if (!cmpVisual.null()) 
+			{
+				SimRender::ConstructBoxOutline(cmpVisual->GetBounds(), *m_DebugBoundingBoxOverlay);
+				m_DebugBoundingBoxOverlay->m_Thickness = 2; 
+				m_DebugBoundingBoxOverlay->m_Color = CColor(1.f, 0.f, 0.f, 1.f);
+
+				SimRender::ConstructBoxOutline(cmpVisual->GetSelectionBox(), *m_DebugSelectionBoxOverlay);
+				m_DebugSelectionBoxOverlay->m_Thickness = 2;
+				m_DebugSelectionBoxOverlay->m_Color = CColor(0.f, 1.f, 0.f, 1.f);
+
+				collector.Submit(m_DebugBoundingBoxOverlay);
+				collector.Submit(m_DebugSelectionBoxOverlay);
+			}
+		}
+		else
+		{
+			// reclaim debug overlay line memory when no longer debugging (and make sure to set to zero after deletion)
+			if (m_DebugBoundingBoxOverlay) SAFE_DELETE(m_DebugBoundingBoxOverlay);
+			if (m_DebugSelectionBoxOverlay) SAFE_DELETE(m_DebugSelectionBoxOverlay);
+		}
 	}
 };
 

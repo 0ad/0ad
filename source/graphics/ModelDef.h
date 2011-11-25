@@ -32,19 +32,49 @@
 
 class CBoneState;
 
-///////////////////////////////////////////////////////////////////////////////
-// SPropPoint: structure describing a prop point
+/**
+ * Describes the position of a prop point within its parent model. A prop point is the location within a parent model
+ * where the prop's origin will be attached.
+ * 
+ * A prop point is specified by its transformation matrix (or separately by its position and rotation), which
+ * can be relative to either the parent model's origin, or one of the parent's bones. If the parent model is boned, 
+ * then the @ref m_BoneIndex field may specify a bone to which the transformation matrix is relative (see 
+ * @ref CModel::m_BoneMatrices). Otherwise, the transformation matrix is assumed to be relative to the parent model's 
+ * origin.
+ * 
+ * @see CModel::m_BoneMatrices
+ */
 struct SPropPoint
 {
-	// name of the prop point
+	/// Name of the prop point
 	CStr m_Name;
-	// position of the point
+
+	/**
+	 * Position of the point within the parent model, relative to either the parent model's origin or one of the parent 
+	 * model's bones if applicable. Also specified as part of @ref m_Transform.
+	 * @see m_Transform
+	 */
 	CVector3D m_Position;
-	// rotation of the point
+
+	/**
+	 * Rotation of the prop model that will be attached at this point. Also specified as part of @ref m_Transform.
+	 * @see m_Transform
+	 */
 	CQuaternion m_Rotation;
-	// object to parent space transformation 
+
+	/**
+	 * Object to parent space transformation. Combines both @ref m_Position and @ref m_Rotation in a single
+	 * transformation matrix. This transformation is relative to either the parent model's origin, or one of its
+	 * bones, depending on whether it is skeletal. If relative to a bone, then the bone in the parent model to
+	 * which this transformation is relative may be found by m_BoneIndex.
+	 * @see m_Position, m_Rotation
+	 */
 	CMatrix3D m_Transform;
-	// index of parent bone; 0xff if unboned
+
+	/**
+	 * Index of parent bone to which this prop point is relative, if any. The value 0xFF specifies that either the parent
+	 * model is unboned, or that this prop point is relative to the parent model's origin rather than one if its bones.
+	 */
 	u8 m_BoneIndex;
 };
 
@@ -246,3 +276,4 @@ private:
 };
 
 #endif
+ 
