@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant frequency="1" name="Tree dead 1">
+      <mesh>gaia/tree_dead_a_2.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="Tree dead 2">
+      <mesh>gaia/tree_dead_a_1.pmd</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="texture">
+      <texture>gaia/tree_dead.dds</texture>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>
