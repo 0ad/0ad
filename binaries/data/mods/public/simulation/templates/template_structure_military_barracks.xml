@@ -30,7 +30,7 @@
   </Health>
   <Identity>
     <GenericName>Barracks</GenericName>
-    <Tooltip>Train Citizen-Soldiers.</Tooltip>
+    <Tooltip>Train Citizen-Soldiers. Garrison: 10.</Tooltip>
     <Classes datatype="tokens">Town</Classes>
     <Icon>structures/barracks.png</Icon>
   </Identity>
@@ -46,7 +46,7 @@
   </Sound>
   <TerritoryInfluence>
     <Root>false</Root>
-    <Radius>32</Radius>
+    <Radius>38</Radius>
     <Weight>65536</Weight>
   </TerritoryInfluence>
   <Vision>

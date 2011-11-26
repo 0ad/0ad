@@ -27,6 +27,10 @@
   <Obstruction>
     <Static width="28.0" depth="32.0"/>
   </Obstruction>
+  <TerritoryInfluence>
+    <Root>true</Root>
+    <Radius>38</Radius>
+  </TerritoryInfluence>
   <TrainingQueue>
     <Entities datatype="tokens">
       units/pers_champion_infantry
