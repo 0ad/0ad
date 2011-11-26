@@ -1,5 +1,6 @@
 Engine.LoadHelperScript("FSM.js");
 Engine.LoadHelperScript("Entity.js");
+Engine.LoadHelperScript("Player.js");
 Engine.LoadComponentScript("interfaces/Attack.js");
 Engine.LoadComponentScript("interfaces/DamageReceiver.js");
 Engine.LoadComponentScript("interfaces/Formation.js");

@@ -1,4 +1,5 @@
 Engine.LoadComponentScript("interfaces/Attack.js");
+Engine.LoadComponentScript("interfaces/Barter.js");
 Engine.LoadComponentScript("interfaces/Builder.js");
 Engine.LoadComponentScript("interfaces/BuildLimits.js");
 Engine.LoadComponentScript("interfaces/DamageReceiver.js");
@@ -18,19 +19,27 @@ Engine.LoadComponentScript("GuiInterface.js");
 
 var cmp = ConstructComponent(SYSTEM_ENTITY, "GuiInterface");
 
-AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
-	GetNumPlayers: function() { return 2; },
-	GetPlayerByID: function(id) { TS_ASSERT(id === 0 || id === 1); return 100+id; }
+
+AddMock(SYSTEM_ENTITY, IID_Barter, {
+	GetPrices: function() { return {
+		"buy": { "food": 150 },
+		"sell": { "food": 25 },
+	}},
 });
 
-AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
-	GetCurrentTemplateName: function(ent) { return "example"; },
-	GetTemplate: function(name) { return ""; },
+AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
+	GetNumPlayers: function() { return 2; },
+	GetPlayerByID: function(id) { TS_ASSERT(id === 0 || id === 1); return 100+id; },
 });
 
 AddMock(SYSTEM_ENTITY, IID_RangeManager, {
 	GetLosVisibility: function(ent, player) { return "visible"; },
 	GetLosCircular: function() { return false; },
+});
+
+AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
+	GetCurrentTemplateName: function(ent) { return "example"; },
+	GetTemplate: function(name) { return ""; },
 });
 
 AddMock(SYSTEM_ENTITY, IID_Timer, {
@@ -133,6 +142,9 @@ AddMock(101, IID_StatisticsTracker, {
 	IncreaseBuiltCivCentresCounter: function() { return 1; },
 });
 
+// Note: property order matters when using TS_ASSERT_UNEVAL_EQUALS,
+//	because uneval preserves property order. So make sure this object
+//	matches the ordering in GuiInterface.
 TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 	players: [
 		{
@@ -248,12 +260,9 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 });
 
 
-AddMock(10, IID_Position, {
-	GetPosition: function() {
-		return {x:1, y:2, z:3};
-	},
-	IsInWorld: function() {
-		return true;
+AddMock(10, IID_Builder, {
+	GetEntitiesList: function() {
+		return ["test1", "test2"];
 	},
 });
 
@@ -263,20 +272,40 @@ AddMock(10, IID_Health, {
 	IsRepairable: function() { return false; },
 });
 
-AddMock(10, IID_Builder, {
-	GetEntitiesList: function() {
-		return ["test1", "test2"];
-	}
+AddMock(10, IID_Identity, {
+	GetClassesList: function() { return ["class1", "class2"]; },
+	GetRank: function() { return "foo"; },
+	GetSelectionGroupName: function() { return "Selection Group Name"; },
+	HasClass: function() { return true; },
 });
 
-var state = cmp.GetEntityState(-1, 10);
-TS_ASSERT_UNEVAL_EQUALS(state, {
+AddMock(10, IID_Position, {
+	GetPosition: function() {
+		return {x:1, y:2, z:3};
+	},
+	IsInWorld: function() {
+		return true;
+	},
+});
+
+// Note: property order matters when using TS_ASSERT_UNEVAL_EQUALS,
+//	because uneval preserves property order. So make sure this object
+//	matches the ordering in GuiInterface.
+TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
 	id: 10,
 	template: "example",
+	identity: {
+		rank: "foo",
+		classes: ["class1", "class2"],
+		selectionGroupName: "Selection Group Name",
+	},
 	position: {x:1, y:2, z:3},
 	hitpoints: 50,
 	maxHitpoints: 60,
 	needsRepair: false,
 	buildEntities: ["test1", "test2"],
+	barterMarket: {
+		prices: { "buy": {"food":150}, "sell": {"food":25} },
+	},
 	visibility: "visible",
 });
