@@ -138,7 +138,7 @@
 			<object size="100%-16 96 100% 112" type="checkbox" style="StoneCrossBox">
 				<action on="Press">Engine.SetBoundingBoxDebugOverlay(this.checked);</action>
 			</object>
-			
+
 			<object size="0 112 100%-18 128" type="text" style="devCommandsText">Restrict camera</object>
 			<object size="100%-16 112 100% 128" type="checkbox" style="StoneCrossBox" checked="true">
 				<action on="Press">gameView.constrainCamera = this.checked;</action>
@@ -391,11 +391,26 @@
 					<action on="Press">settingsMenuButton();</action>
 				</object>
 
+
+				<!-- Save game button -->
+				<object type="button"
+					name="saveGameButton"
+					style="StoneButtonFancy"
+					size="0 32 100% 60"
+					tooltip_style="sessionToolTip"
+				>
+					Save
+					<action on="Press">
+						Engine.SaveGame();
+						closeMenu();
+					</action>
+				</object>
+
 				<!-- Chat button -->
 				<object type="button"
 					name="chatButton"
 					style="StoneButtonFancy"
-					size="0 32 100% 60"
+					size="0 64 100% 92"
 					tooltip_style="sessionToolTip"
 				>
 					Chat
@@ -406,7 +421,7 @@
 				<object type="button"
 					name="menuExitButton"
 					style="StoneButtonFancy"
-					size="0 64 100% 92"
+					size="0 96 100% 124"
 					tooltip_style="sessionToolTip"
 				>
 					Exit
@@ -417,27 +432,12 @@
 				<object type="button"
 					name="pauseButton"
 					style="StoneButtonFancy"
-					size="0 96 100% 124"
+					size="0 128 100% 154"
 					tooltip_style="sessionToolTip"
 				>
 					<object name="pauseButtonText" type="text" style="CenteredButtonText" ghost="true">Pause</object>
 					<action on="Press">togglePause();</action>
 				</object>
-
-				<!-- Save game button -->
-				<object type="button"
-					name="saveGameButton"
-					style="StoneButtonFancy"
-					size="0 128 100% 154"
-					tooltip_style="sessionToolTip"
-				>
-					Save Game
-					<action on="Press">
-						Engine.SaveGame();
-						closeMenu();
-					</action>
-				</object>
-
 			</object>
 		</object>
 

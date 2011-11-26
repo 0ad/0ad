@@ -254,7 +254,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		};
 	}
 
-	if (!cmpFoundation && cmpIdentity.HasClass("BarterMarket"))
+	if (!cmpFoundation && cmpIdentity && cmpIdentity.HasClass("BarterMarket"))
 	{
 		var cmpBarter = Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter);
 		ret.barterMarket = { "prices": cmpBarter.GetPrices() };

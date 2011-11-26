@@ -4,7 +4,7 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>sunny 1</SkySet>
-		<SunColour r="0.741176" g="0.678431" b="0.458824"/>
+		<SunColour r="0.815686" g="0.792157" b="0.705882"/>
 		<SunElevation angle="0.78233"/>
 		<SunRotation angle="-0.693359"/>
 		<TerrainAmbientColour r="0.337255" g="0.427451" b="0.603922"/>
@@ -24,8 +24,8 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="360.459" y="78.6418" z="688.401"/>
-		<Rotation angle="0"/>
+		<Position x="354.672" y="85.5367" z="661.071"/>
+		<Rotation angle="0.0703978"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -37,7 +37,7 @@
     "medit_grass_field_b"
   ],
   "CircularMap": true,
-  "Description": "It's civil war in the enchanted East. Heirs of the noble Achemaenid house vie for the throne of Persia and for mastery of Asia.\u000a\u000aPlayers start the match in their own territories near the Persian Gulf. Access to their enemies can be found through the rugged hinterlands.",
+  "Description": "It's civil war in the enchanted East. Heirs of the noble Achemaenid house vie for the throne of Persia and for mastery of Asia.\u000a\u000aPlayers start the match in their own province near the Persian Gulf. Access to untapped resources territories can be found through the rugged hinterlands.",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": true,
@@ -174,330 +174,6 @@
 			<Template>structures/pers_civil_centre</Template>
 			<Player>2</Player>
 			<Position x="285.81885" z="239.12346"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="24">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="387.33936" z="774.54285"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="25">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="388.73664" z="776.02686"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="26">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="389.73224" z="777.39551"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="27">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="391.31287" z="779.12446"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="28">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="392.85175" z="780.72431"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="29">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="394.53318" z="782.51856"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="30">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="395.9914" z="783.42743"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="31">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="397.41727" z="785.2552"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="32">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="398.71354" z="786.38044"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="33">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="386.3082" z="772.84504"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="34">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="388.59406" z="771.52845"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="35">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="390.1767" z="772.86652"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="36">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="391.48716" z="774.65766"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="37">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="392.63715" z="775.96698"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="38">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="393.65296" z="777.13349"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="39">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="394.71747" z="778.66272"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="40">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="395.88877" z="780.14985"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="41">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="397.55701" z="781.68592"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="42">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="399.05149" z="782.69495"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="43">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="400.35602" z="783.99292"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="44">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="390.49769" z="769.45954"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="45">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="391.52921" z="771.06806"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="46">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="392.78312" z="772.49274"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="47">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="393.8107" z="773.81275"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="48">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="394.95295" z="775.47968"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="49">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="395.95636" z="776.83545"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="50">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="397.26764" z="778.55903"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="51">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="398.47556" z="779.8213"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="52">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="400.22147" z="780.99653"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="53">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="401.77134" z="782.70521"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="54">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="396.53718" z="762.99427"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="55">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="398.20109" z="764.68561"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="56">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="399.317" z="766.17981"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="57">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="400.55286" z="767.63135"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="58">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="401.59754" z="769.04328"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="59">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="402.56485" z="770.2823"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="60">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="403.44297" z="771.20533"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="61">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="404.54062" z="772.5207"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="62">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="405.542" z="773.63038"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="63">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="407.14798" z="775.69935"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="64">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="409.13306" z="773.22571"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="65">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="407.2201" z="771.91144"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="66">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="406.27692" z="770.72761"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="67">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="405.04545" z="769.24726"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="68">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="404.11149" z="767.70661"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="69">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="402.97645" z="766.24164"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="70">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="401.94797" z="764.83564"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="71">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="401.16791" z="763.96827"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="72">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="400.46573" z="763.12128"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="73">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="398.68415" z="761.32801"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="74">
-			<Template>units/pers_war_elephant</Template>
-			<Player>1</Player>
-			<Position x="379.82126" z="780.8249"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="75">
-			<Template>units/pers_war_elephant</Template>
-			<Player>1</Player>
-			<Position x="382.73926" z="786.00922"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="76">
-			<Template>units/pers_war_elephant</Template>
-			<Player>1</Player>
-			<Position x="386.12333" z="789.63654"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="77">
-			<Template>units/pers_war_elephant</Template>
-			<Player>1</Player>
-			<Position x="388.50657" z="794.00226"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="80">
@@ -1014,330 +690,6 @@
 			<Template>units/pers_infantry_spearman_e</Template>
 			<Player>2</Player>
 			<Position x="291.55784" z="279.69993"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="246">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="237.11474" z="246.81615"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="247">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="238.3656" z="248.13738"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="248">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="239.42928" z="249.5711"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="249">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="240.61687" z="250.98197"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="250">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="241.72483" z="252.52776"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="251">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="242.6349" z="254.08518"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="252">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="243.78713" z="255.61513"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="253">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="244.99486" z="256.49845"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="254">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="246.39417" z="257.64753"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="255">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="247.62409" z="259.30204"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="256">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="239.17548" z="244.95318"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="257">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="240.34453" z="246.29595"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="258">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="241.83548" z="247.24161"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="259">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="242.93583" z="248.60628"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="260">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="244.08046" z="249.83053"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="261">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="245.40886" z="251.01287"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="262">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="246.8238" z="252.0727"/>
-			<Orientation y="2.42795"/>
-		</Entity>
-		<Entity uid="263">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="247.79305" z="253.96915"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="264">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="249.1218" z="254.86941"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="265">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="250.4432" z="256.35746"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="266">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="242.1613" z="242.234"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="267">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="243.04502" z="243.5409"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="268">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="244.02297" z="244.939"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="269">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="245.01307" z="246.14945"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="270">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="246.02389" z="247.42687"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="271">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="247.13231" z="248.78321"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="272">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="248.22884" z="250.1056"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="273">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="249.50206" z="251.3969"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="274">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="250.90992" z="252.82474"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="275">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>2</Player>
-			<Position x="252.51174" z="254.41015"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="276">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>2</Player>
-			<Position x="251.7945" z="233.19428"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="277">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>2</Player>
-			<Position x="252.9826" z="234.75214"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="278">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>2</Player>
-			<Position x="254.08121" z="235.63871"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="279">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>2</Player>
-			<Position x="255.15804" z="236.63511"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="280">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>2</Player>
-			<Position x="256.10941" z="237.83658"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="281">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>2</Player>
-			<Position x="257.42142" z="238.42113"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="282">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>2</Player>
-			<Position x="258.2786" z="240.27393"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="283">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>2</Player>
-			<Position x="259.19083" z="241.48261"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="284">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>2</Player>
-			<Position x="260.28577" z="242.5264"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="285">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>2</Player>
-			<Position x="261.72696" z="243.95633"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="286">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>2</Player>
-			<Position x="264.20105" z="241.46435"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="287">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>2</Player>
-			<Position x="262.58762" z="240.41431"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="288">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>2</Player>
-			<Position x="261.62336" z="238.85256"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="289">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>2</Player>
-			<Position x="260.82734" z="237.73876"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="290">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>2</Player>
-			<Position x="259.20197" z="237.04954"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="291">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>2</Player>
-			<Position x="258.33024" z="235.88733"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="292">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>2</Player>
-			<Position x="257.67374" z="234.51716"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="293">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>2</Player>
-			<Position x="255.68947" z="233.34136"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="294">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>2</Player>
-			<Position x="254.2821" z="232.48629"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="295">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>2</Player>
-			<Position x="253.51514" z="231.22388"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="296">
-			<Template>units/pers_war_elephant</Template>
-			<Player>2</Player>
-			<Position x="230.3588" z="254.4962"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="297">
-			<Template>units/pers_war_elephant</Template>
-			<Player>2</Player>
-			<Position x="233.66639" z="259.78852"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="298">
-			<Template>units/pers_war_elephant</Template>
-			<Player>2</Player>
-			<Position x="236.4343" z="265.43793"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="299">
-			<Template>units/pers_war_elephant</Template>
-			<Player>2</Player>
-			<Position x="241.11522" z="267.37574"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="304">
@@ -2499,7 +1851,7 @@
 		<Entity uid="545">
 			<Template>gaia/flora_tree_fig</Template>
 			<Player>0</Player>
-			<Position x="278.50455" z="209.05141"/>
+			<Position x="273.54676" z="281.57767"/>
 			<Orientation y="-1.87452"/>
 		</Entity>
 		<Entity uid="546">
@@ -7263,25 +6615,25 @@
 		<Entity uid="1339">
 			<Template>gaia/flora_tree_aleppo_pine</Template>
 			<Player>0</Player>
-			<Position x="312.8617" z="724.27045"/>
+			<Position x="313.96009" z="707.59705"/>
 			<Orientation y="1.68842"/>
 		</Entity>
 		<Entity uid="1340">
 			<Template>gaia/flora_tree_aleppo_pine</Template>
 			<Player>0</Player>
-			<Position x="322.78245" z="717.91492"/>
+			<Position x="404.87363" z="682.67035"/>
 			<Orientation y="2.89965"/>
 		</Entity>
 		<Entity uid="1341">
 			<Template>gaia/flora_tree_aleppo_pine</Template>
 			<Player>0</Player>
-			<Position x="326.75776" z="705.52479"/>
+			<Position x="428.13386" z="672.83509"/>
 			<Orientation y="-3.11422"/>
 		</Entity>
 		<Entity uid="1342">
 			<Template>gaia/flora_tree_aleppo_pine</Template>
 			<Player>0</Player>
-			<Position x="325.29126" z="688.43531"/>
+			<Position x="188.8659" z="868.71766"/>
 			<Orientation y="-2.28704"/>
 		</Entity>
 		<Entity uid="1343">
@@ -7299,13 +6651,13 @@
 		<Entity uid="1345">
 			<Template>gaia/flora_tree_aleppo_pine</Template>
 			<Player>0</Player>
-			<Position x="320.70926" z="694.52186"/>
+			<Position x="315.38611" z="695.43042"/>
 			<Orientation y="3.09739"/>
 		</Entity>
 		<Entity uid="1346">
 			<Template>gaia/flora_tree_aleppo_pine</Template>
 			<Player>0</Player>
-			<Position x="315.97757" z="710.05378"/>
+			<Position x="303.8317" z="713.66724"/>
 			<Orientation y="-2.94811"/>
 		</Entity>
 		<Entity uid="1347">
@@ -19260,36 +18612,6 @@
 			<Position x="475.44587" z="880.35914"/>
 			<Orientation y="0.82515"/>
 		</Entity>
-		<Entity uid="3647">
-			<Template>actor|geology/decal_stone_tropic.xml</Template>
-			<Position x="885.14026" z="794.22822"/>
-			<Orientation y="-1.55221"/>
-		</Entity>
-		<Entity uid="3649">
-			<Template>actor|geology/decal_stone_tropic.xml</Template>
-			<Position x="879.714" z="790.2851"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3650">
-			<Template>actor|geology/decal_stone_tropic.xml</Template>
-			<Position x="873.75959" z="796.01581"/>
-			<Orientation y="0.07578"/>
-		</Entity>
-		<Entity uid="3651">
-			<Template>actor|geology/decal_stone_tropic.xml</Template>
-			<Position x="873.7046" z="802.48481"/>
-			<Orientation y="2.346"/>
-		</Entity>
-		<Entity uid="3652">
-			<Template>actor|geology/decal_stone_tropic.xml</Template>
-			<Position x="880.00226" z="800.47345"/>
-			<Orientation y="2.48177"/>
-		</Entity>
-		<Entity uid="3653">
-			<Template>actor|geology/decal_stone_tropic.xml</Template>
-			<Position x="883.07282" z="797.31403"/>
-			<Orientation y="1.89817"/>
-		</Entity>
 		<Entity uid="3659">
 			<Template>actor|geology/stone_desert_med.xml</Template>
 			<Position x="333.06977" z="417.8419"/>
@@ -22588,6 +21910,126 @@
 			<Player>0</Player>
 			<Position x="896.56678" z="402.76783"/>
 			<Orientation y="-1.0145"/>
+		</Entity>
+		<Entity uid="4318">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="406.0861" z="802.34681"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4319">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="451.8477" z="748.17597"/>
+			<Orientation y="-0.0556"/>
+		</Entity>
+		<Entity uid="4320">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="819.78638" z="537.21143"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4321">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="819.04853" z="521.34339"/>
+			<Orientation y="2.95095"/>
+		</Entity>
+		<Entity uid="4322">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="823.85492" z="505.68662"/>
+			<Orientation y="0.25795"/>
+		</Entity>
+		<Entity uid="4323">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="826.20069" z="513.92658"/>
+			<Orientation y="0.38282"/>
+		</Entity>
+		<Entity uid="4324">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="830.66755" z="526.17444"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4325">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="832.58368" z="511.43238"/>
+			<Orientation y="-0.62241"/>
+		</Entity>
+		<Entity uid="4326">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="816.98798" z="514.36628"/>
+			<Orientation y="0.81826"/>
+		</Entity>
+		<Entity uid="4327">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="840.25782" z="360.17927"/>
+			<Orientation y="0.51151"/>
+		</Entity>
+		<Entity uid="4328">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="694.28309" z="320.20496"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4329">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="459.9449" z="479.1414"/>
+			<Orientation y="-0.15227"/>
+		</Entity>
+		<Entity uid="4330">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="359.44526" z="443.4261"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4331">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="222.40755" z="273.22663"/>
+			<Orientation y="0.01503"/>
+		</Entity>
+		<Entity uid="4332">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="294.46171" z="138.08661"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4333">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="610.13215" z="61.60027"/>
+			<Orientation y="-0.24636"/>
+		</Entity>
+		<Entity uid="4334">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="589.77417" z="78.6961"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4335">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="547.2027" z="60.70075"/>
+			<Orientation y="-1.29766"/>
+		</Entity>
+		<Entity uid="4336">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="722.45533" z="135.22458"/>
+			<Orientation y="-0.78019"/>
+		</Entity>
+		<Entity uid="4337">
+			<Template>gaia/flora_tree_dead</Template>
+			<Player>0</Player>
+			<Position x="642.26343" z="103.32276"/>
+			<Orientation y="0.05857"/>
 		</Entity>
 	</Entities>
 	<Paths/>
