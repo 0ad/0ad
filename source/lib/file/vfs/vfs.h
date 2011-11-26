@@ -172,12 +172,19 @@ struct IVFS
 	 * directories below a mount point with a matching real path.
 	 **/
 	virtual Status GetVirtualPath(const OsPath& realPathname, VfsPath& pathname) = 0;
-	
+
 	/**
-	 * indicate that a file has changed; remove its data from the cache and
-	 * arrange for its directory to be updated.
+	 * remove file from the virtual directory listing and evict its
+	 * data from the cache.
 	 **/
-	virtual Status Invalidate(const VfsPath& pathname) = 0;
+	virtual Status RemoveFile(const VfsPath& pathname) = 0;
+
+	/**
+	 * request the directory be re-populated when it is next accessed.
+	 * useful for synchronizing with the underlying filesystem after
+	 * files have been created or their metadata changed.
+	 **/
+	virtual Status RepopulateDirectory(const VfsPath& path) = 0;
 
 	/**
 	 * empty the contents of the filesystem.

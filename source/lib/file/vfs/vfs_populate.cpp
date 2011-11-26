@@ -69,7 +69,14 @@ public:
 private:
 	void AddFile(const FileInfo& fileInfo) const
 	{
-		const VfsFile file(fileInfo.Name(), (size_t)fileInfo.Size(), fileInfo.MTime(), m_realDirectory->Priority(), m_realDirectory);
+		const VfsPath name = fileInfo.Name();
+		if(name.Extension() == L".DELETED")
+		{
+			m_directory->RemoveFile(name.Basename());
+			return;
+		}
+
+		const VfsFile file(name, (size_t)fileInfo.Size(), fileInfo.MTime(), m_realDirectory->Priority(), m_realDirectory);
 		const VfsFile* pfile = m_directory->AddFile(file);
 
 #if ENABLE_ARCHIVE_STATS
@@ -94,7 +101,15 @@ private:
 		const size_t flags = VFS_LOOKUP_ADD|VFS_LOOKUP_SKIP_POPULATE;
 		VfsDirectory* directory;
 		WARN_IF_ERR(vfs_Lookup(pathname, this_->m_directory, directory, 0, flags));
-		const VfsFile file(fileInfo.Name(), (size_t)fileInfo.Size(), fileInfo.MTime(), this_->m_realDirectory->Priority(), archiveFile);
+
+		const VfsPath name = fileInfo.Name();
+		if(name.Extension() == L".DELETED")
+		{
+			directory->RemoveFile(name.Basename());
+			return;
+		}
+
+		const VfsFile file(name, (size_t)fileInfo.Size(), fileInfo.MTime(), this_->m_realDirectory->Priority(), archiveFile);
 		directory->AddFile(file);
 #if ENABLE_ARCHIVE_STATS
 		s_numArchivedFiles++;

@@ -133,7 +133,8 @@ public:
 		TS_ASSERT_OK(CreateDirectories(DataDir()/"mods"/"_test.sim"/"simulation"/"components"/"hotload"/"", 0700));
 
 		copyFile(L"simulation/components/test-hotload1.js", L"simulation/components/hotload/hotload.js");
-		TS_ASSERT_OK(g_VFS->Invalidate(L"simulation/components/hotload/hotload.js"));
+		TS_ASSERT_OK(g_VFS->RemoveFile(L"simulation/components/hotload/hotload.js"));
+		TS_ASSERT_OK(g_VFS->RepopulateDirectory(L"simulation/components/hotload/"));
 		TS_ASSERT(sim.LoadScripts(L"simulation/components/hotload/"));
 
 		sim.ResetState(true, true);
@@ -143,7 +144,8 @@ public:
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (sim.QueryInterface(ent, IID_Test1))->GetX(), 100);
 
 		copyFile(L"simulation/components/test-hotload2.js", L"simulation/components/hotload/hotload.js");
-		TS_ASSERT_OK(g_VFS->Invalidate(L"simulation/components/hotload/hotload.js"));
+		TS_ASSERT_OK(g_VFS->RemoveFile(L"simulation/components/hotload/hotload.js"));
+		TS_ASSERT_OK(g_VFS->RepopulateDirectory(L"simulation/components/hotload/"));
 
 		TS_ASSERT_OK(sim.ReloadChangedFile(L"art/irrelevant.xml"));
 		TS_ASSERT_OK(sim.ReloadChangedFile(L"simulation/components/irrelevant.js"));
@@ -156,7 +158,8 @@ public:
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (sim.QueryInterface(ent, IID_Test1))->GetX(), 1000);
 
 		TS_ASSERT_OK(DeleteDirectory(DataDir()/"mods"/"_test.sim"/"simulation"/"components"/"hotload"/""));
-		TS_ASSERT_OK(g_VFS->Invalidate(L"simulation/components/hotload/hotload.js"));
+		TS_ASSERT_OK(g_VFS->RemoveFile(L"simulation/components/hotload/hotload.js"));
+		TS_ASSERT_OK(g_VFS->RepopulateDirectory(L"simulation/components/hotload/"));
 
 		TS_ASSERT_OK(sim.ReloadChangedFile(L"simulation/components/hotload/hotload.js"));
 	}

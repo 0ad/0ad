@@ -94,6 +94,12 @@ public:
 	VfsDirectory* AddSubdirectory(const VfsPath& name);
 
 	/**
+	 * remove the given file from the virtual directory (no effect on
+	 * the physical file). no effect if the file does not exist.
+	 **/
+	void RemoveFile(const VfsPath& name);
+
+	/**
 	 * @return file with the given name.
 	 * (note: non-const to allow changes to the file)
 	 **/
@@ -135,10 +141,9 @@ public:
 	bool ShouldPopulate();
 
 	/**
-	 * indicate that a file has changed; ensure its new version supersedes
-	 * the old by removing it and marking the directory for re-population.
+	 * ensure the next ShouldPopulate returns true.
 	 **/
-	void Invalidate(const VfsPath& name);
+	void RequestRepopulate();
 
 	/**
 	 * empty file and subdirectory lists (e.g. when rebuilding VFS).
