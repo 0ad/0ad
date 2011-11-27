@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_military_barracks">
+<Entity parent="template_structure_military_embassy">
   <Cost>
-    <PopulationBonus>0</PopulationBonus>
     <BuildTime>150</BuildTime>
-    <Resources>
-      <wood>100</wood>
-      <stone>100</stone>
-    </Resources>
   </Cost>
   <Footprint>
     <Square width="13" depth="15.5"/>
@@ -17,7 +12,6 @@
   </Health>
   <Identity>
     <Civ>cart</Civ>
-    <GenericName>Embassy</GenericName>
     <SpecificName>Italiote Embassy</SpecificName>
     <History>The Carthaginian army was a cosmopolitan affair, made up of mercenaries from dozens of lands.</History>
 	<Tooltip>Hire Italian mercenaries.</Tooltip>
@@ -26,20 +20,13 @@
   <Obstruction>
     <Static width="11.0" depth="14.0"/>
   </Obstruction>
-  <TerritoryInfluence>
-    <Radius>32</Radius>
-  </TerritoryInfluence>
   <TrainingQueue>
     <Entities datatype="tokens">
       units/cart_infantry_swordsman_2_b
       units/cart_cavalry_spearman_b
     </Entities>
   </TrainingQueue>
-  <Vision>
-    <Range>24</Range>
-  </Vision>
   <VisualActor>
     <Actor>structures/carthaginians/embassy_italiote.xml</Actor>
-    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
   </VisualActor>
 </Entity>

@@ -459,7 +459,7 @@ static void InitVfs(const CmdLineArgs& args)
 	OsPath modLoosePath = paths.RData()/"mods";
 	for (size_t i = 0; i < mods.size(); ++i)
 	{
-		size_t priority = i;
+		size_t priority = i+1;	// mods are higher priority than regular mountings, which default to priority 0
 		size_t flags = VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE|VFS_MOUNT_MUST_EXIST;
 		OsPath modName(mods[i]);
 		g_VFS->Mount(L"", modLoosePath / modName/"", flags, priority);

@@ -73,9 +73,11 @@
 				<action on="SelectionChange">selectMap(this.list_data[this.selected]);</action>
 			</object>
 
-			<object type="image" sprite="BackgroundIndentFillDark" size="0 100%-190 100% 100%">
+			<object size="0 100%-190 100% 100%">
 				<object name="mapInfoName" type="text" style="LeftLabelText" size="0 0 100% 30"/>
-				<object name="mapInfoDescription" type="text" style="SmallLeftLabelText" size="0 24 100% 100%"/>
+				<object type="image" sprite="BackgroundIndentFillDark" size="0 30 100% 100%">
+					<object name="mapInfoDescription" type="text" style="MapDescription" size="0 0 100% 100%"/>
+				</object>
 			</object>
 
 		</object>
@@ -83,13 +85,14 @@
 		<!-- Player assignments -->
 		<object size="320 64 100%-24 358" type="image" sprite="BackgroundIndentFillDark">
 			<object size="0 6 100% 30">
-				<object name="playerNameHeading" type="text" style="CenteredLabelText" size="100 0 250 100%">Player Name</object>
-				<object name="playerCivHeading" type="text" style="CenteredLabelText" size="285 0 415 100%">Civilization</object>
+				<object name="playerNameHeading" type="text" style="CenteredLabelText" size="0 0 180 100%">Player Name</object>
+				<object name="playerPlacementHeading" type="text" style="CenteredLabelText" size="180 0 340 100%">Player Placement</object>
+				<object name="playerCivHeading" type="text" style="CenteredLabelText" size="350 0 530 100%">Civilization</object>
 				<object name="civInfoButton"
 					type="button"
 					sprite="iconInfo"
 					sprite_over="iconInfoOver"
-					size="395 0 411 16"
+					size="484 0 500 16"
 					tooltip_style="onscreenToolTip"
 					tooltip="View civilization info"
 				>
@@ -97,22 +100,22 @@
 						Engine.PushGuiPage("page_civinfo.xml");
 					]]></action>
 				</object>
-				<object name="playerTeamHeading" type="text" style="CenteredLabelText" size="420 0 520 100%">Team</object>
+				<object name="playerTeamHeading" type="text" style="CenteredLabelText" size="530 0 630 100%">Team</object>
 			</object>
 			<object size="1 36 100%-1 100%">
 				<repeat count="8">
 					<object name="playerBox[n]" size="0 0 100% 32" hidden="true">
 						<object name="playerColour[n]" type="image" size="0 0 100% 100%"/>
-						<object name="playerName[n]" type="text" style="RightLabelText" size="0 2 100 30"/>
-						<object name="playerAssignment[n]" type="dropdown" style="StoneDropDown" size="100 2 250 30" tooltip_style="onscreenToolTip" tooltip="Select player."/>
-						<object name="playerConfig[n]" type="button" style="StoneButton" size="255 6 280 26"
+						<object name="playerName[n]" type="text" style="CenteredLabelText" size="0 2 180 30"/>
+						<object name="playerAssignment[n]" type="dropdown" style="StoneDropDown" size="190 2 340 30" tooltip_style="onscreenToolTip" tooltip="Select player."/>
+						<object name="playerConfig[n]" type="button" style="StoneButton" size="345 6 370 26"
 							tooltip_style="onscreenToolTip"
 							tooltip="Configure AI settings."
 						>C</object>
-						<object name="playerCiv[n]" type="dropdown" style="StoneDropDown" size="285 2 415 30" tooltip_style="onscreenToolTip" tooltip="Select player's civilization."/>
-						<object name="playerCivText[n]" type="text" style="CenteredLabelText" size="285 0 415 30"/>
-						<object name="playerTeam[n]" type="dropdown" style="StoneDropDown" size="435 2 505 30" tooltip_style="onscreenToolTip" tooltip="Select player's team."/>
-						<object name="playerTeamText[n]" type="text" style="CenteredLabelText" size="435 0 505 100%"/>
+						<object name="playerCiv[n]" type="dropdown" style="StoneDropDown" size="375 2 505 30" tooltip_style="onscreenToolTip" tooltip="Select player's civilization."/>
+						<object name="playerCivText[n]" type="text" style="CenteredLabelText" size="375 0 505 30"/>
+						<object name="playerTeam[n]" type="dropdown" style="StoneDropDown" size="515 2 615 30" tooltip_style="onscreenToolTip" tooltip="Select player's team."/>
+						<object name="playerTeamText[n]" type="text" style="CenteredLabelText" size="545 0 615 100%"/>
 					</object>
 				</repeat>
 			</object>
@@ -194,17 +197,16 @@
 
 		<!-- Chat window -->
 		<object name="chatPanel" size="320 470 100%-24 100%-58" type="image" sprite="BackgroundIndentFillDark">
+			<object name="chatText" size="2 2 100%-2 100%-26" type="text" style="ChatPanel"/>
 
-			<object name="chatInput" size="4 4 100%-76 24" type="input" style="StoneInput">
+			<object name="chatInput" size="4 100%-24 100%-76 100%-4" type="input" style="StoneInput">
 				<action on="Press">submitChatInput();</action>
 			</object>
 
-			<object size="100%-72 4 100%-4 24" type="button" style="StoneButton">
+			<object size="100%-72 100%-24 100%-4 100%-4" type="button" style="StoneButton">
 				Send
 				<action on="Press">submitChatInput();</action>
 			</object>
-
-			<object name="chatText" size="2 24 100%-2 100%-2" type="text" style="chatPanel"/>
 		</object>
 
 

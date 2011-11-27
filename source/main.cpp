@@ -292,7 +292,7 @@ static void Frame()
 	// If we are not running a multiplayer game, disable updates when the game is
 	// minimized or out of focus and relinquish the CPU a bit, in order to make 
 	// debugging easier.
-	if( !g_NetClient && !g_app_has_focus )
+	if( g_PauseOnFocusLoss && !g_NetClient && !g_app_has_focus )
 	{
 		PROFILE3("non-focus delay");
 		need_update = false;

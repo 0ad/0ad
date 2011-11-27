@@ -106,6 +106,12 @@ VfsDirectory* VfsDirectory::AddSubdirectory(const VfsPath& name)
 }
 
 
+void VfsDirectory::RemoveFile(const VfsPath& name)
+{
+	m_files.erase(name.string());
+}
+
+
 VfsFile* VfsDirectory::GetFile(const VfsPath& name)
 {
 	VfsFiles::iterator it = m_files.find(name.string());
@@ -138,9 +144,8 @@ bool VfsDirectory::ShouldPopulate()
 }
 
 
-void VfsDirectory::Invalidate(const VfsPath& name)
+void VfsDirectory::RequestRepopulate()
 {
-	m_files.erase(name.string());
 	m_shouldPopulate = 1;
 }
 

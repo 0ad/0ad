@@ -224,15 +224,25 @@ public:
 		return INFO::OK;
 	}
 
-	virtual Status Invalidate(const VfsPath& pathname)
+	virtual Status RemoveFile(const VfsPath& pathname)
 	{
 		ScopedLock s;
 		m_fileCache.Remove(pathname);
 
+		VfsDirectory* directory; VfsFile* file;
+		RETURN_STATUS_IF_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, &file));
+		directory->RemoveFile(file->Name());
+
+		return INFO::OK;
+	}
+
+	virtual Status RepopulateDirectory(const VfsPath& path)
+	{
+		ScopedLock s;
+
 		VfsDirectory* directory;
-		RETURN_STATUS_IF_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, 0));
-		const OsPath name = pathname.Filename();
-		directory->Invalidate(name);
+		RETURN_STATUS_IF_ERR(vfs_Lookup(path, &m_rootDirectory, directory, 0));
+		directory->RequestRepopulate();
 
 		return INFO::OK;
 	}

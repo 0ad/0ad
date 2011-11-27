@@ -4,16 +4,8 @@
   <castshadow/>
 
   <group>
-    <variant frequency="1" name="props_a">
-      <mesh>props/pers_cc_props_a.dae</mesh>
-    </variant>
     <variant frequency="1" name="props_b">
-      <mesh>props/pers_cc_props_b.dae</mesh>
-    </variant>
-  </group>
-
-  <group>
-    <variant frequency="1" name="texture">
+      <mesh>props/pers_civic_props_b.dae</mesh>
       <texture>structural/pers_struct.dds</texture>
     </variant>
   </group>
