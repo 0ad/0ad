@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.60.0 r41226</authoring_tool>
     </contributor>
-    <created>2011-11-27T12:07:11</created>
-    <modified>2011-11-27T12:07:11</modified>
+    <created>2011-11-27T17:06:07</created>
+    <modified>2011-11-27T17:06:07</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -53,9 +53,9 @@
     <geometry id="props_b-mesh">
       <mesh>
         <source id="props_b-mesh-positions">
-          <float_array id="props_b-mesh-positions-array" count="48">8.358302 -5.078999 9.67573 -8.358302 -5.078999 9.67573 8.358302 -5.078999 2.029127 -8.358302 -5.078999 2.029127 11.96556 -5.078999 2.029127 -11.96556 -5.078999 2.029127 11.96556 -5.078999 9.675728 -11.96556 -5.078999 9.675728 7.727176 14.02417 11.01357 -7.727176 14.02417 11.01357 7.727176 14.02417 0.6912837 -7.727176 14.02417 0.6912837 12.59669 14.02417 0.6912837 -12.59669 14.02417 0.6912837 12.59669 14.02417 11.01357 -12.59669 14.02417 11.01357</float_array>
+          <float_array id="props_b-mesh-positions-array" count="60">8.358302 -5.078999 9.67573 -8.358302 -5.078999 9.67573 8.358302 -5.078999 2.029127 -8.358302 -5.078999 2.029127 11.96556 -5.078999 2.029127 -11.96556 -5.078999 2.029127 11.96556 -5.078999 9.675728 -11.96556 -5.078999 9.675728 7.727176 14.02417 11.01357 -7.727176 14.02417 11.01357 7.727176 14.02417 0.6912837 -7.727176 14.02417 0.6912837 12.59669 14.02417 0.6912837 -12.59669 14.02417 0.6912837 12.59669 14.02417 11.01357 -12.59669 14.02417 11.01357 0.8202934 -9.322447 3.391136 0.8202934 -9.322447 2.323429 -0.8201618 -9.322447 2.323429 -0.8201618 -9.322447 3.391136</float_array>
           <technique_common>
-            <accessor source="#props_b-mesh-positions-array" count="16" stride="3">
+            <accessor source="#props_b-mesh-positions-array" count="20" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
@@ -63,9 +63,9 @@
           </technique_common>
         </source>
         <source id="props_b-mesh-normals">
-          <float_array id="props_b-mesh-normals-array" count="12">0 -1 0 0 -1 0 0 1 0 0 1 0</float_array>
+          <float_array id="props_b-mesh-normals-array" count="15">0 -1 0 0 -1 0 0 1 0 0 1 0 0 -1 0</float_array>
           <technique_common>
-            <accessor source="#props_b-mesh-normals-array" count="4" stride="3">
+            <accessor source="#props_b-mesh-normals-array" count="5" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
@@ -73,9 +73,9 @@
           </technique_common>
         </source>
         <source id="props_b-mesh-map-0">
-          <float_array id="props_b-mesh-map-0-array" count="32">0.6304504 0.4995099 0.5140033 0.4995099 0.5140033 0.2526678 0.6304504 0.2526678 0.6283783 0.2508655 0.6283783 0.4977077 0.7448254 0.4977076 0.7448254 0.2508655 0.6283783 0.4977076 0.7448254 0.4977077 0.7448254 0.2508655 0.6283783 0.2508655 0.6304504 0.2526678 0.6304504 0.4995099 0.5140033 0.4995099 0.5140033 0.2526678</float_array>
+          <float_array id="props_b-mesh-map-0-array" count="40">0.6304504 0.4995099 0.5140033 0.4995099 0.5140033 0.2526678 0.6304504 0.2526678 0.6302531 0.2506492 0.6302531 0.4974913 0.7467002 0.4974913 0.7467002 0.2506492 0.6302531 0.4974913 0.7467002 0.4974913 0.7467002 0.2506492 0.6302531 0.2506492 0.6304504 0.2526678 0.6304504 0.4995099 0.5140033 0.4995099 0.5140033 0.2526678 0.0159685 0.258848 0.106781 0.258848 0.106781 0.3179544 0.0159685 0.3179544</float_array>
           <technique_common>
-            <accessor source="#props_b-mesh-map-0-array" count="16" stride="2">
+            <accessor source="#props_b-mesh-map-0-array" count="20" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
@@ -84,12 +84,12 @@
         <vertices id="props_b-mesh-vertices">
           <input semantic="POSITION" source="#props_b-mesh-positions"/>
         </vertices>
-        <polylist material="Material_0021" count="4">
+        <polylist material="Material_0021" count="5">
           <input semantic="VERTEX" source="#props_b-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#props_b-mesh-normals" offset="1"/>
           <input semantic="TEXCOORD" source="#props_b-mesh-map-0" offset="2" set="0"/>
-          <vcount>4 4 4 4 </vcount>
-          <p>6 0 0 0 0 1 2 0 2 4 0 3 3 1 4 1 1 5 7 1 6 5 1 7 8 2 8 14 2 9 12 2 10 10 2 11 13 3 12 15 3 13 9 3 14 11 3 15</p>
+          <vcount>4 4 4 4 4 </vcount>
+          <p>6 0 0 0 0 1 2 0 2 4 0 3 3 1 4 1 1 5 7 1 6 5 1 7 8 2 8 14 2 9 12 2 10 10 2 11 13 3 12 15 3 13 9 3 14 11 3 15 18 4 16 17 4 17 16 4 18 19 4 19</p>
         </polylist>
       </mesh>
       <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
