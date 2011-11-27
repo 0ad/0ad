@@ -1,119 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<COLLADA version="1.4.0" xmlns="http://www.collada.org/2005/11/COLLADASchema">
-	<asset>
-		<contributor>
-			<author>Illusoft Collada 1.4.0 plugin for Blender - http://colladablender.illusoft.com</author>
-			<authoring_tool>Blender v:249 - Illusoft Collada Exporter v:0.3.162</authoring_tool>
-			<comments></comments>
-			<copyright></copyright>
-			<source_data>file://E:/Models/0ADPersCivCenter/0ADPersCivCentre15.blend</source_data>
-		</contributor>
-		<created>2011-11-27T00:54:10.889000</created>
-		<modified>2011-11-27T00:54:10.889000</modified>
-		<unit meter="0.01" name="centimeter"/>
-		<up_axis>Z_UP</up_axis>
-	</asset>
-	<library_effects>
-		<effect id="pers_struct_dds-fx" name="pers_struct_dds-fx">
-			<profile_COMMON>
-				<newparam sid="pers_struct_dds-surface">
-					<surface type="2D">
-						<init_from>pers_struct_dds-img</init_from>
-						<format>A8R8G8B8</format>
-					</surface>
-				</newparam>
-				<newparam sid="pers_struct_dds-sampler">
-					<sampler2D>
-						<source>pers_struct_dds-surface</source>
-						<minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
-						<magfilter>LINEAR</magfilter>
-					</sampler2D>
-				</newparam>
-				<technique sid="blender">
-					<lambert>
-						<diffuse>
-							<texture texcoord="CHANNEL1" texture="pers_struct_dds-sampler"/>
-						</diffuse>
-					</lambert>
-				</technique>
-			</profile_COMMON>
-		</effect>
-	</library_effects>
-	<library_images>
-		<image id="pers_struct_dds-img" name="pers_struct_dds-img">
-			<init_from>E:\Models\0ADPersCorral\pers_struct.dds</init_from>
-		</image>
-	</library_images>
-	<library_materials>
-		<material id="pers_struct_dds" name="pers_struct_dds">
-			<instance_effect url="#pers_struct_dds-fx"/>
-		</material>
-	</library_materials>
-	<library_geometries>
-		<geometry id="props_b_001" name="props_b_001">
-			<mesh>
-				<source id="props_b_001-Position">
-					<float_array count="48" id="props_b_001-Position-array">8.35830 -4.67900 9.67573 -8.35830 -4.67900 9.67573 8.35830 -4.67900 2.02913 -8.35830 -4.67900 2.02913 11.96556 -4.67900 2.02913 -11.96556 -4.67900 2.02913 11.96556 -4.67900 9.67573 -11.96556 -4.67900 9.67573 7.72718 14.42417 11.01357 -7.72718 14.42417 11.01357 7.72718 14.42417 0.69128 -7.72718 14.42417 0.69128 12.59669 14.42417 0.69128 -12.59669 14.42417 0.69128 12.59669 14.42417 11.01357 -12.59669 14.42417 11.01357</float_array>
-					<technique_common>
-						<accessor count="16" source="#props_b_001-Position-array" stride="3">
-							<param type="float" name="X"></param>
-							<param type="float" name="Y"></param>
-							<param type="float" name="Z"></param>
-						</accessor>
-					</technique_common>
-				</source>
-				<source id="props_b_001-Normals">
-					<float_array count="12" id="props_b_001-Normals-array">0.00000 -1.00000 0.00000 -0.00000 -1.00000 0.00000 0.00000 1.00000 -0.00000 0.00000 1.00000 0.00000</float_array>
-					<technique_common>
-						<accessor count="4" source="#props_b_001-Normals-array" stride="3">
-							<param type="float" name="X"></param>
-							<param type="float" name="Y"></param>
-							<param type="float" name="Z"></param>
-						</accessor>
-					</technique_common>
-				</source>
-				<source id="props_b_001-UV">
-					<float_array count="48" id="props_b_001-UV-array">0.63045 0.49951 0.51400 0.49951 0.51400 0.25267 0.51400 0.25267 0.63045 0.25267 0.63045 0.49951 0.62900 0.25103 0.62900 0.49787 0.74545 0.49787 0.74545 0.49787 0.74545 0.25103 0.62900 0.25103 0.62900 0.49787 0.74545 0.49787 0.74545 0.25103 0.74545 0.25103 0.62900 0.25103 0.62900 0.49787 0.63045 0.25267 0.63045 0.49951 0.51400 0.49951 0.51400 0.49951 0.51400 0.25267 0.63045 0.25267</float_array>
-					<technique_common>
-						<accessor count="24" source="#props_b_001-UV-array" stride="2">
-							<param type="float" name="S"></param>
-							<param type="float" name="T"></param>
-						</accessor>
-					</technique_common>
-				</source>
-				<vertices id="props_b_001-Vertex">
-					<input semantic="POSITION" source="#props_b_001-Position"/>
-				</vertices>
-				<triangles count="8" material="pers_struct_dds">
-					<input offset="0" semantic="VERTEX" source="#props_b_001-Vertex"/>
-					<input offset="1" semantic="NORMAL" source="#props_b_001-Normals"/>
-					<input offset="2" semantic="TEXCOORD" source="#props_b_001-UV"/>
-					<p>6 0 0 0 0 1 2 0 2 2 0 3 4 0 4 6 0 5 3 1 6 1 1 7 7 1 8 7 1 9 5 1 10 3 1 11 8 2 12 14 2 13 12 2 14 12 2 15 10 2 16 8 2 17 13 3 18 15 3 19 9 3 20 9 3 21 11 3 22 13 3 23</p>
-				</triangles>
-			</mesh>
-		</geometry>
-	</library_geometries>
-	<library_visual_scenes>
-		<visual_scene id="Scene" name="Scene">
-			<node layer="L1" id="props_b" name="props_b">
-				<translate sid="translate">0.00000 0.00000 0.00000</translate>
-				<rotate sid="rotateZ">0 0 1 0.00000</rotate>
-				<rotate sid="rotateY">0 1 0 -0.00000</rotate>
-				<rotate sid="rotateX">1 0 0 0.00000</rotate>
-				<scale sid="scale">1.00000 1.00000 1.00000</scale>
-				<instance_geometry url="#props_b_001">
-					<bind_material>
-						<technique_common>
-							<instance_material symbol="pers_struct_dds" target="#pers_struct_dds">
-								<bind_vertex_input input_semantic="TEXCOORD" input_set="1" semantic="CHANNEL1"/>
-							</instance_material>
-						</technique_common>
-					</bind_material>
-				</instance_geometry>
-			</node>
-		</visual_scene>
-	</library_visual_scenes>
-	<scene>
-		<instance_visual_scene url="#Scene"/>
-	</scene>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.60.0 r41226</authoring_tool>
+    </contributor>
+    <created>2011-11-27T12:07:11</created>
+    <modified>2011-11-27T12:07:11</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="Material_002-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.5 0.5 0.5 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+        <extra>
+          <technique profile="GOOGLEEARTH">
+            <double_sided>1</double_sided>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="Material_002-material" name="Material.002">
+      <instance_effect url="#Material_002-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="props_b-mesh">
+      <mesh>
+        <source id="props_b-mesh-positions">
+          <float_array id="props_b-mesh-positions-array" count="48">8.358302 -5.078999 9.67573 -8.358302 -5.078999 9.67573 8.358302 -5.078999 2.029127 -8.358302 -5.078999 2.029127 11.96556 -5.078999 2.029127 -11.96556 -5.078999 2.029127 11.96556 -5.078999 9.675728 -11.96556 -5.078999 9.675728 7.727176 14.02417 11.01357 -7.727176 14.02417 11.01357 7.727176 14.02417 0.6912837 -7.727176 14.02417 0.6912837 12.59669 14.02417 0.6912837 -12.59669 14.02417 0.6912837 12.59669 14.02417 11.01357 -12.59669 14.02417 11.01357</float_array>
+          <technique_common>
+            <accessor source="#props_b-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="props_b-mesh-normals">
+          <float_array id="props_b-mesh-normals-array" count="12">0 -1 0 0 -1 0 0 1 0 0 1 0</float_array>
+          <technique_common>
+            <accessor source="#props_b-mesh-normals-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="props_b-mesh-map-0">
+          <float_array id="props_b-mesh-map-0-array" count="32">0.6304504 0.4995099 0.5140033 0.4995099 0.5140033 0.2526678 0.6304504 0.2526678 0.6283783 0.2508655 0.6283783 0.4977077 0.7448254 0.4977076 0.7448254 0.2508655 0.6283783 0.4977076 0.7448254 0.4977077 0.7448254 0.2508655 0.6283783 0.2508655 0.6304504 0.2526678 0.6304504 0.4995099 0.5140033 0.4995099 0.5140033 0.2526678</float_array>
+          <technique_common>
+            <accessor source="#props_b-mesh-map-0-array" count="16" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="props_b-mesh-vertices">
+          <input semantic="POSITION" source="#props_b-mesh-positions"/>
+        </vertices>
+        <polylist material="Material_0021" count="4">
+          <input semantic="VERTEX" source="#props_b-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#props_b-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#props_b-mesh-map-0" offset="2" set="0"/>
+          <vcount>4 4 4 4 </vcount>
+          <p>6 0 0 0 0 1 2 0 2 4 0 3 3 1 4 1 1 5 7 1 6 5 1 7 8 2 8 14 2 9 12 2 10 10 2 11 13 3 12 15 3 13 9 3 14 11 3 15</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="props_b" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <instance_geometry url="#props_b-mesh">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_0021" target="#Material_002-material">
+                <bind_vertex_input semantic="UVTex" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
 </COLLADA>
