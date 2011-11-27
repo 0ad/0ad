@@ -39,6 +39,14 @@ static std::vector<const VfsFile*> s_looseFiles;
 static size_t s_numArchivedFiles;
 #endif
 
+struct CompareFileInfoByName
+{
+	bool operator()(const FileInfo& a, const FileInfo& b)
+	{
+		return a.Name() < b.Name();
+	}
+};
+
 // helper class that allows breaking up the logic into sub-functions without
 // always having to pass directory/realDirectory as parameters.
 class PopulateHelper
@@ -59,6 +67,13 @@ public:
 		FileInfos files; files.reserve(500);
 		DirectoryNames subdirectoryNames; subdirectoryNames.reserve(50);
 		RETURN_STATUS_IF_ERR(GetDirectoryEntries(m_realDirectory->Path(), &files, &subdirectoryNames));
+
+		// to support .DELETED files inside archives safely, we need to load
+		// archives and loose files in a deterministic order in case they add
+		// and then delete the same file (or vice versa, depending on loading
+		// order). GetDirectoryEntries has undefined order so sort its output
+		std::sort(files.begin(), files.end(), CompareFileInfoByName());
+		std::sort(subdirectoryNames.begin(), subdirectoryNames.end());
 
 		RETURN_STATUS_IF_ERR(AddFiles(files));
 		AddSubdirectories(subdirectoryNames);
