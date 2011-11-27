@@ -5,11 +5,11 @@
     <variant frequency="100" name="Base">
       <mesh>structural/pers_civic.dae</mesh>
       <props>
+        <prop actor="props/structures/persians/civil_centre_a.xml" attachpoint="root"/>
         <prop actor="props/structures/persians/civil_centre_b.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <texture>structural/pers_struct.dds</texture>
     </variant>
   </group>
-  <material>player_trans.xml</material>
 </actor>
