@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -51,17 +51,15 @@ void Canvas::InitSize()
 }
 
 
-void Canvas::OnMouseCapture(wxMouseCaptureChangedEvent& WXUNUSED(evt))
+void Canvas::OnMouseCaptureLost(wxMouseCaptureLostEvent& WXUNUSED(evt))
 {
-	if (m_MouseCaptured)
-	{
-		// unexpected loss of capture (i.e. not through ReleaseMouse)
-		m_MouseCaptured = false;
-		
-		// (Note that this can be made to happen easily, by alt-tabbing away,
-		// and mouse events will be missed; so it is never guaranteed that e.g.
-		// two LeftDown events will be separated by a LeftUp.)
-	}
+	// Mouse capture lost due to "external" event, like a dialog box or alt-tabbing
+	//	(this is currently a Windows only event and failure to handle it will lead
+	//	to an assertion failure in debug builds)
+	m_MouseCaptured = false;
+
+	// Because of this, it is never guaranteed that e.g. two LeftDown events will be
+	//	separated by a LeftUp
 }
 
 void Canvas::OnMouse(wxMouseEvent& evt)
@@ -98,7 +96,7 @@ void Canvas::OnMouse(wxMouseEvent& evt)
 }
 
 BEGIN_EVENT_TABLE(Canvas, wxGLCanvas)
-	EVT_SIZE(Canvas::OnResize)
+	EVT_SIZE       (Canvas::OnResize)
 	EVT_LEFT_DOWN  (Canvas::OnMouse)
 	EVT_LEFT_UP    (Canvas::OnMouse)
 	EVT_RIGHT_DOWN (Canvas::OnMouse)
@@ -107,5 +105,5 @@ BEGIN_EVENT_TABLE(Canvas, wxGLCanvas)
 	EVT_MIDDLE_UP  (Canvas::OnMouse)
 	EVT_MOUSEWHEEL (Canvas::OnMouse)
 	EVT_MOTION     (Canvas::OnMouse)
-	EVT_MOUSE_CAPTURE_CHANGED(Canvas::OnMouseCapture)
+	EVT_MOUSE_CAPTURE_LOST(Canvas::OnMouseCaptureLost)
 END_EVENT_TABLE()

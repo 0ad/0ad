@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -50,7 +50,7 @@ public:
 	void OnItemSelected(wxListEvent& event);
 	void OnMouseEvent(wxMouseEvent& event);
 	void OnChar(wxKeyEvent& event);
-	void OnMouseCaptureChanged(wxMouseCaptureChangedEvent& event);
+	void OnMouseCaptureLost(wxMouseCaptureLostEvent& event);
 
 private:
 	long m_DragSource;

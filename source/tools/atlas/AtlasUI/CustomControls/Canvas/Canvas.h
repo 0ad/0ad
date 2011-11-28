@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@ protected:
 
 private:
 	void OnResize(wxSizeEvent& evt);
-	void OnMouseCapture(wxMouseCaptureChangedEvent& evt);
+	void OnMouseCaptureLost(wxMouseCaptureLostEvent& evt);
 	void OnMouse(wxMouseEvent& evt);
 
 	wxGLContext m_GLContext;
