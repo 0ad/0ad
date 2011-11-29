@@ -1297,7 +1297,8 @@ int CMapReader::ParseEnvironment()
 
 	std::wstring skySet;
 	GET_ENVIRONMENT_PROPERTY(envObj.get(), SkySet, skySet)
-	pSkyMan->SetSkySet(skySet);
+	if (pSkyMan)
+		pSkyMan->SetSkySet(skySet);
 
 	CColor sunColor;
 	GET_ENVIRONMENT_PROPERTY(envObj.get(), SunColour, sunColor)
