@@ -347,6 +347,12 @@ public:
 	 */
 	const char* ConstructJSONResponse(std::ostream& stream, const std::string& thread);
 
+	/**
+	 * Call in any thread to save a JSONP representation of the buffers
+	 * for all threads, to a file named profile2.jsonp in the logs directory.
+	 */
+	void SaveToFile();
+
 	double GetTime()
 	{
 		return timer_Time();

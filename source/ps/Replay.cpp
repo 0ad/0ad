@@ -203,8 +203,15 @@ void CReplayPlayer::Replay()
 		}
 		else if (type == "end")
 		{
-			game.GetSimulation2()->Update(turnLength, commands);
-			commands.clear();
+			{
+				g_Profiler2.RecordFrameStart();
+				PROFILE2("frame");
+				g_Profiler2.IncrementFrameNumber();
+				PROFILE2_ATTR("%d", g_Profiler2.GetFrameNumber());
+
+				game.GetSimulation2()->Update(turnLength, commands);
+				commands.clear();
+			}
 
 //			std::string hash;
 //			bool ok = game.GetSimulation2()->ComputeStateHash(hash, true);
@@ -226,6 +233,8 @@ void CReplayPlayer::Replay()
 			debug_printf(L"Unrecognised replay token %hs\n", type.c_str());
 		}
 	}
+
+	g_Profiler2.SaveToFile();
 
 	std::string hash;
 	bool ok = game.GetSimulation2()->ComputeStateHash(hash, false);
