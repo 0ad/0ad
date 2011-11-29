@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.60.0 r41226</authoring_tool>
     </contributor>
-    <created>2011-11-29T23:36:34</created>
-    <modified>2011-11-29T23:36:34</modified>
+    <created>2011-11-29T23:23:00</created>
+    <modified>2011-11-29T23:23:00</modified>
     <unit name="inch" meter="0.0254"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -59,25 +59,25 @@
   <library_animations>
     <animation id="TwoWheeler_twowheel_pose_matrix">
       <source id="TwoWheeler_twowheel_pose_matrix-input">
-        <float_array id="TwoWheeler_twowheel_pose_matrix-input-array" count="2">0.04166662 1.25</float_array>
+        <float_array id="TwoWheeler_twowheel_pose_matrix-input-array" count="4">0.04166662 0.4166666 0.8333333 1.25</float_array>
         <technique_common>
-          <accessor source="#TwoWheeler_twowheel_pose_matrix-input-array" count="2" stride="1">
+          <accessor source="#TwoWheeler_twowheel_pose_matrix-input-array" count="4" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="TwoWheeler_twowheel_pose_matrix-output">
-        <float_array id="TwoWheeler_twowheel_pose_matrix-output-array" count="32">1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1</float_array>
+        <float_array id="TwoWheeler_twowheel_pose_matrix-output-array" count="64">1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#TwoWheeler_twowheel_pose_matrix-output-array" count="2" stride="16">
+          <accessor source="#TwoWheeler_twowheel_pose_matrix-output-array" count="4" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="TwoWheeler_twowheel_pose_matrix-interpolation">
-        <Name_array id="TwoWheeler_twowheel_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <Name_array id="TwoWheeler_twowheel_pose_matrix-interpolation-array" count="4">LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#TwoWheeler_twowheel_pose_matrix-interpolation-array" count="2" stride="1">
+          <accessor source="#TwoWheeler_twowheel_pose_matrix-interpolation-array" count="4" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -91,25 +91,25 @@
     </animation>
     <animation id="TwoWheeler_weapon_pose_matrix">
       <source id="TwoWheeler_weapon_pose_matrix-input">
-        <float_array id="TwoWheeler_weapon_pose_matrix-input-array" count="2">0.04166662 1.25</float_array>
+        <float_array id="TwoWheeler_weapon_pose_matrix-input-array" count="4">0.04166662 0.4166666 0.8333333 1.25</float_array>
         <technique_common>
-          <accessor source="#TwoWheeler_weapon_pose_matrix-input-array" count="2" stride="1">
+          <accessor source="#TwoWheeler_weapon_pose_matrix-input-array" count="4" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="TwoWheeler_weapon_pose_matrix-output">
-        <float_array id="TwoWheeler_weapon_pose_matrix-output-array" count="32">1 0 0 0 0 1 0 4.035812 0 0 1 -1.024012 0 0 0 1 1 0 0 0 0 1 0 4.035812 0 0 1 -1.024012 0 0 0 1</float_array>
+        <float_array id="TwoWheeler_weapon_pose_matrix-output-array" count="64">1 0 0 0 0 1 0 4.035812 0 0 1 -1.024012 0 0 0 1 1 0 0 0 0 1 0 4.035812 0 0 1 -1.024012 0 0 0 1 1 0 0 0 0 1 0 4.035812 0 0 1 -1.024012 0 0 0 1 1 0 0 0 0 1 0 4.035812 0 0 1 -1.024012 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#TwoWheeler_weapon_pose_matrix-output-array" count="2" stride="16">
+          <accessor source="#TwoWheeler_weapon_pose_matrix-output-array" count="4" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="TwoWheeler_weapon_pose_matrix-interpolation">
-        <Name_array id="TwoWheeler_weapon_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <Name_array id="TwoWheeler_weapon_pose_matrix-interpolation-array" count="4">LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#TwoWheeler_weapon_pose_matrix-interpolation-array" count="2" stride="1">
+          <accessor source="#TwoWheeler_weapon_pose_matrix-interpolation-array" count="4" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -123,25 +123,25 @@
     </animation>
     <animation id="TwoWheeler_l_wheel_pose_matrix">
       <source id="TwoWheeler_l_wheel_pose_matrix-input">
-        <float_array id="TwoWheeler_l_wheel_pose_matrix-input-array" count="2">0.04166662 1.25</float_array>
+        <float_array id="TwoWheeler_l_wheel_pose_matrix-input-array" count="4">0.04166662 0.4166666 0.8333333 1.25</float_array>
         <technique_common>
-          <accessor source="#TwoWheeler_l_wheel_pose_matrix-input-array" count="2" stride="1">
+          <accessor source="#TwoWheeler_l_wheel_pose_matrix-input-array" count="4" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="TwoWheeler_l_wheel_pose_matrix-output">
-        <float_array id="TwoWheeler_l_wheel_pose_matrix-output-array" count="32">1 0 0 2.194393 0 1 -3.177e-7 1.730068 0 3.177e-7 1 -2.897311 0 0 0 1 1 0 0 2.194393 0 1 -3.177e-7 1.730068 0 3.177e-7 1 -2.897311 0 0 0 1</float_array>
+        <float_array id="TwoWheeler_l_wheel_pose_matrix-output-array" count="64">1 0 0 2.194393 0 1 0 1.730068 0 0 1 -2.897311 0 0 0 1 1 0 0 2.194393 0 -0.5000002 -0.8660254 1.730068 0 0.8660254 -0.5000002 -2.897311 0 0 0 1 1 0 0 2.194393 0 -0.5 0.8660256 1.730068 0 -0.8660256 -0.5 -2.897311 0 0 0 1 1 0 0 2.194393 0 1 -3.177e-7 1.730068 0 3.177e-7 1 -2.897311 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#TwoWheeler_l_wheel_pose_matrix-output-array" count="2" stride="16">
+          <accessor source="#TwoWheeler_l_wheel_pose_matrix-output-array" count="4" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="TwoWheeler_l_wheel_pose_matrix-interpolation">
-        <Name_array id="TwoWheeler_l_wheel_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <Name_array id="TwoWheeler_l_wheel_pose_matrix-interpolation-array" count="4">LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#TwoWheeler_l_wheel_pose_matrix-interpolation-array" count="2" stride="1">
+          <accessor source="#TwoWheeler_l_wheel_pose_matrix-interpolation-array" count="4" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -155,25 +155,25 @@
     </animation>
     <animation id="TwoWheeler_r_wheel_pose_matrix">
       <source id="TwoWheeler_r_wheel_pose_matrix-input">
-        <float_array id="TwoWheeler_r_wheel_pose_matrix-input-array" count="2">0.04166662 1.25</float_array>
+        <float_array id="TwoWheeler_r_wheel_pose_matrix-input-array" count="4">0.04166662 0.4166666 0.8333333 1.25</float_array>
         <technique_common>
-          <accessor source="#TwoWheeler_r_wheel_pose_matrix-input-array" count="2" stride="1">
+          <accessor source="#TwoWheeler_r_wheel_pose_matrix-input-array" count="4" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="TwoWheeler_r_wheel_pose_matrix-output">
-        <float_array id="TwoWheeler_r_wheel_pose_matrix-output-array" count="32">1 0 0 -2.202461 0 1 -3.177e-7 1.730068 0 3.177e-7 1 -2.897311 0 0 0 1 1 0 0 -2.202461 0 1 -3.177e-7 1.730068 0 3.177e-7 1 -2.897311 0 0 0 1</float_array>
+        <float_array id="TwoWheeler_r_wheel_pose_matrix-output-array" count="64">1 0 0 -2.202461 0 1 0 1.730068 0 0 1 -2.897311 0 0 0 1 1 0 0 -2.202461 0 -0.5000002 -0.8660254 1.730068 0 0.8660254 -0.5000002 -2.897311 0 0 0 1 1 0 0 -2.202461 0 -0.5 0.8660256 1.730068 0 -0.8660256 -0.5 -2.897311 0 0 0 1 1 0 0 -2.202461 0 1 -3.177e-7 1.730068 0 3.177e-7 1 -2.897311 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#TwoWheeler_r_wheel_pose_matrix-output-array" count="2" stride="16">
+          <accessor source="#TwoWheeler_r_wheel_pose_matrix-output-array" count="4" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="TwoWheeler_r_wheel_pose_matrix-interpolation">
-        <Name_array id="TwoWheeler_r_wheel_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <Name_array id="TwoWheeler_r_wheel_pose_matrix-interpolation-array" count="4">LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#TwoWheeler_r_wheel_pose_matrix-interpolation-array" count="2" stride="1">
+          <accessor source="#TwoWheeler_r_wheel_pose_matrix-interpolation-array" count="4" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -184,102 +184,6 @@
         <input semantic="INTERPOLATION" source="#TwoWheeler_r_wheel_pose_matrix-interpolation"/>
       </sampler>
       <channel source="#TwoWheeler_r_wheel_pose_matrix-sampler" target="r_wheel/transform"/>
-    </animation>
-    <animation id="TwoWheeler_prop_rider1_pose_matrix">
-      <source id="TwoWheeler_prop_rider1_pose_matrix-input">
-        <float_array id="TwoWheeler_prop_rider1_pose_matrix-input-array" count="2">0.04166662 1.25</float_array>
-        <technique_common>
-          <accessor source="#TwoWheeler_prop_rider1_pose_matrix-input-array" count="2" stride="1">
-            <param name="TIME" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="TwoWheeler_prop_rider1_pose_matrix-output">
-        <float_array id="TwoWheeler_prop_rider1_pose_matrix-output-array" count="32">1 0 0 0.06483149 0 0 1 1.917722 0 -1 0 -2.767935 0 0 0 1 1 0 0 0.06483149 0 0 1 1.917722 0 -1 0 -2.767935 0 0 0 1</float_array>
-        <technique_common>
-          <accessor source="#TwoWheeler_prop_rider1_pose_matrix-output-array" count="2" stride="16">
-            <param name="TRANSFORM" type="float4x4"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="TwoWheeler_prop_rider1_pose_matrix-interpolation">
-        <Name_array id="TwoWheeler_prop_rider1_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
-        <technique_common>
-          <accessor source="#TwoWheeler_prop_rider1_pose_matrix-interpolation-array" count="2" stride="1">
-            <param name="INTERPOLATION" type="name"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <sampler id="TwoWheeler_prop_rider1_pose_matrix-sampler">
-        <input semantic="INPUT" source="#TwoWheeler_prop_rider1_pose_matrix-input"/>
-        <input semantic="OUTPUT" source="#TwoWheeler_prop_rider1_pose_matrix-output"/>
-        <input semantic="INTERPOLATION" source="#TwoWheeler_prop_rider1_pose_matrix-interpolation"/>
-      </sampler>
-      <channel source="#TwoWheeler_prop_rider1_pose_matrix-sampler" target="prop_rider1/transform"/>
-    </animation>
-    <animation id="TwoWheeler_prop_horse2_pose_matrix">
-      <source id="TwoWheeler_prop_horse2_pose_matrix-input">
-        <float_array id="TwoWheeler_prop_horse2_pose_matrix-input-array" count="2">0.04166662 1.25</float_array>
-        <technique_common>
-          <accessor source="#TwoWheeler_prop_horse2_pose_matrix-input-array" count="2" stride="1">
-            <param name="TIME" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="TwoWheeler_prop_horse2_pose_matrix-output">
-        <float_array id="TwoWheeler_prop_horse2_pose_matrix-output-array" count="32">1 0 1.68587e-7 1.37737 -1.68587e-7 1.94707e-7 1 0.00100547 0 -1 1.94707e-7 2.557469 0 0 0 1 1 0 1.68587e-7 1.37737 -1.68587e-7 1.94707e-7 1 0.00100547 0 -1 1.94707e-7 2.557469 0 0 0 1</float_array>
-        <technique_common>
-          <accessor source="#TwoWheeler_prop_horse2_pose_matrix-output-array" count="2" stride="16">
-            <param name="TRANSFORM" type="float4x4"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="TwoWheeler_prop_horse2_pose_matrix-interpolation">
-        <Name_array id="TwoWheeler_prop_horse2_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
-        <technique_common>
-          <accessor source="#TwoWheeler_prop_horse2_pose_matrix-interpolation-array" count="2" stride="1">
-            <param name="INTERPOLATION" type="name"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <sampler id="TwoWheeler_prop_horse2_pose_matrix-sampler">
-        <input semantic="INPUT" source="#TwoWheeler_prop_horse2_pose_matrix-input"/>
-        <input semantic="OUTPUT" source="#TwoWheeler_prop_horse2_pose_matrix-output"/>
-        <input semantic="INTERPOLATION" source="#TwoWheeler_prop_horse2_pose_matrix-interpolation"/>
-      </sampler>
-      <channel source="#TwoWheeler_prop_horse2_pose_matrix-sampler" target="prop_horse2/transform"/>
-    </animation>
-    <animation id="TwoWheeler_prop_horse1_pose_matrix">
-      <source id="TwoWheeler_prop_horse1_pose_matrix-input">
-        <float_array id="TwoWheeler_prop_horse1_pose_matrix-input-array" count="2">0.04166662 1.25</float_array>
-        <technique_common>
-          <accessor source="#TwoWheeler_prop_horse1_pose_matrix-input-array" count="2" stride="1">
-            <param name="TIME" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="TwoWheeler_prop_horse1_pose_matrix-output">
-        <float_array id="TwoWheeler_prop_horse1_pose_matrix-output-array" count="32">1 0 1.68587e-7 -1.354853 -1.68587e-7 1.94707e-7 1 0.00100547 0 -1 1.94707e-7 2.557469 0 0 0 1 1 0 1.68587e-7 -1.354853 -1.68587e-7 1.94707e-7 1 0.00100547 0 -1 1.94707e-7 2.557469 0 0 0 1</float_array>
-        <technique_common>
-          <accessor source="#TwoWheeler_prop_horse1_pose_matrix-output-array" count="2" stride="16">
-            <param name="TRANSFORM" type="float4x4"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="TwoWheeler_prop_horse1_pose_matrix-interpolation">
-        <Name_array id="TwoWheeler_prop_horse1_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
-        <technique_common>
-          <accessor source="#TwoWheeler_prop_horse1_pose_matrix-interpolation-array" count="2" stride="1">
-            <param name="INTERPOLATION" type="name"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <sampler id="TwoWheeler_prop_horse1_pose_matrix-sampler">
-        <input semantic="INPUT" source="#TwoWheeler_prop_horse1_pose_matrix-input"/>
-        <input semantic="OUTPUT" source="#TwoWheeler_prop_horse1_pose_matrix-output"/>
-        <input semantic="INTERPOLATION" source="#TwoWheeler_prop_horse1_pose_matrix-interpolation"/>
-      </sampler>
-      <channel source="#TwoWheeler_prop_horse1_pose_matrix-sampler" target="prop_horse1/transform"/>
     </animation>
   </library_animations>
   <library_controllers>
@@ -343,13 +247,13 @@
             <matrix sid="transform">1 0 0 -2.202461 0 1 -3.177e-7 1.730068 0 3.177e-7 1 -2.897311 0 0 0 1</matrix>
           </node>
           <node id="prop_rider1" name="prop_rider1" sid="prop_rider1" type="JOINT">
-            <matrix sid="transform">1 0 0 0.06483153 0 7.54979e-8 1 1.917722 0 -1 7.54979e-8 -2.767935 0 0 0 1</matrix>
+            <matrix sid="transform">1 0 0 0.0648315 0 1 0 1.878623 0 0 1 -2.897311 0 0 0 1</matrix>
           </node>
           <node id="prop_horse2" name="prop_horse2" sid="prop_horse2" type="JOINT">
-            <matrix sid="transform">1 2.6794e-15 1.68587e-7 1.37737 -1.68587e-7 1.94707e-7 1 0.001005471 -3.01458e-14 -1 1.94707e-7 2.557469 0 0 0 1</matrix>
+            <matrix sid="transform">1 0 0 1.37737 0 1 0 3.8147e-5 0 0 1 2.754643 0 0 0 1</matrix>
           </node>
           <node id="prop_horse1" name="prop_horse1" sid="prop_horse1" type="JOINT">
-            <matrix sid="transform">1 2.6794e-15 1.68587e-7 -1.354853 -1.68587e-7 1.94707e-7 1 0.001005471 -3.01458e-14 -1 1.94707e-7 2.557469 0 0 0 1</matrix>
+            <matrix sid="transform">1 0 0 -1.354853 0 1 0 3.8147e-5 0 0 1 2.754643 0 0 0 1</matrix>
           </node>
         </node>
       </node>
