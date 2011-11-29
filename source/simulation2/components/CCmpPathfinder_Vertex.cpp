@@ -499,7 +499,7 @@ void CCmpPathfinder::ComputeShortPath(const IObstructionTestFilter& filter,
 {
 	UpdateGrid(); // TODO: only need to bother updating if the terrain changed
 
-	PROFILE("ComputeShortPath");
+	PROFILE3("ComputeShortPath");
 //	ScopeTimer UID__(L"ComputeShortPath");
 
 	m_DebugOverlayShortPathLines.clear();
