@@ -1391,13 +1391,6 @@ int CMapReader::ParseCamera()
 CMapReader::~CMapReader()
 {
 	// Cleaup objects
-	if (xml_reader)
-	{
-		delete xml_reader;
-	}
-
-	if (m_MapGen)
-	{
-		delete m_MapGen;
-	}
+	delete xml_reader;
+	delete m_MapGen;
 }
