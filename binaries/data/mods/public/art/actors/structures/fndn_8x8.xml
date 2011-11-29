@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="foundation 8x8">
+      <mesh>structural/found_8x8_a.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1">
+      <props>
+        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
+        <prop actor="particle/construction_dust.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1">
+      <texture>structural/foundation.dds</texture>
+    </variant>
+  </group>
+</actor>
