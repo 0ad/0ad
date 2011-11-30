@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="975.778" y="86.6231" z="875.465"/>
+		<Position x="983.742" y="89.0828" z="851.997"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -268,7 +268,7 @@
 		</Entity>
 		<Entity uid="39">
 			<Template>actor|particle/blowing_sand.xml</Template>
-			<Position x="281.73487" z="410.99524"/>
+			<Position x="249.55738" z="265.5293"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="40">
@@ -5856,11 +5856,6 @@
 			<Position x="349.99003" z="241.62934"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="1110">
-			<Template>actor|flora/trees/palm_cretan_date_tall.xml</Template>
-			<Position x="1026.04383" z="902.2787"/>
-			<Orientation y="1.92144"/>
-		</Entity>
 		<Entity uid="1111">
 			<Template>gaia/special_treasure_stone</Template>
 			<Player>0</Player>
@@ -9692,14 +9687,14 @@
 		<Entity uid="1766">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="916.88361" z="898.91285"/>
+			<Position x="1026.14161" z="898.37488"/>
 			<Orientation y="-1.41623"/>
 		</Entity>
 		<Entity uid="1767">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="904.13282" z="905.39081"/>
-			<Orientation y="-1.11461"/>
+			<Position x="1035.66553" z="907.37098"/>
+			<Orientation y="-2.35926"/>
 		</Entity>
 		<Entity uid="1769">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
@@ -15856,18 +15851,6 @@
 			<Position x="352.23642" z="928.01319"/>
 			<Orientation y="-2.37522"/>
 		</Entity>
-		<Entity uid="2941">
-			<Template>other/pers_house_a</Template>
-			<Player>1</Player>
-			<Position x="1018.91553" z="915.46155"/>
-			<Orientation y="-2.37887"/>
-		</Entity>
-		<Entity uid="2942">
-			<Template>other/pers_house_b</Template>
-			<Player>1</Player>
-			<Position x="1029.5265" z="896.91211"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="2943">
 			<Template>units/celt_support_female_citizen</Template>
 			<Player>4</Player>
@@ -15975,6 +15958,12 @@
 			<Player>4</Player>
 			<Position x="336.6579" z="953.98877"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2963">
+			<Template>structures/pers_sb2</Template>
+			<Player>1</Player>
+			<Position x="1021.94043" z="912.20844"/>
+			<Orientation y="-0.76703"/>
 		</Entity>
 	</Entities>
 	<Paths/>

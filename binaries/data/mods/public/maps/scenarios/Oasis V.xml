@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="978.723" y="91.2086" z="166.467"/>
+		<Position x="992.597" y="79.7402" z="856.035"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -54,12 +54,12 @@
       },
       "StartingCamera": {
         "Position": {
-          "x": 1001.1,
+          "x": 341.534,
           "y": 22.3825,
-          "z": 943.783
+          "z": 939.931
         },
         "Rotation": {
-          "x": 30,
+          "x": 35,
           "y": 0,
           "z": 0
         }
@@ -83,12 +83,12 @@
       },
       "StartingCamera": {
         "Position": {
-          "x": 321.952,
+          "x": 992.597,
           "y": 22.3825,
-          "z": 298.089
+          "z": 937.95
         },
         "Rotation": {
-          "x": 30,
+          "x": 35,
           "y": 0,
           "z": 0
         }
@@ -14560,7 +14560,7 @@
 		</Entity>
 		<Entity uid="2703">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="249.1639" z="920.24665"/>
+			<Position x="444.57969" z="972.17072"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2704">
@@ -14690,7 +14690,7 @@
 		</Entity>
 		<Entity uid="2729">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="425.44098" z="960.51392"/>
+			<Position x="358.6425" z="892.79401"/>
 			<Orientation y="1.92612"/>
 		</Entity>
 		<Entity uid="2730">
@@ -14980,27 +14980,27 @@
 		</Entity>
 		<Entity uid="2787">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="367.72681" z="907.21741"/>
+			<Position x="352.55063" z="898.54456"/>
 			<Orientation y="-2.98653"/>
 		</Entity>
 		<Entity uid="2788">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="359.26948" z="906.35608"/>
+			<Position x="359.8458" z="906.18396"/>
 			<Orientation y="0.59238"/>
 		</Entity>
 		<Entity uid="2789">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="372.34034" z="918.45716"/>
+			<Position x="362.8974" z="903.3678"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2790">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="368.74036" z="910.2522"/>
+			<Position x="355.42493" z="896.12311"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2791">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="366.8581" z="906.72663"/>
+			<Position x="366.95643" z="899.08912"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2792">
@@ -15750,12 +15750,6 @@
 			<Position x="975.11536" z="230.11931"/>
 			<Orientation y="-0.75118"/>
 		</Entity>
-		<Entity uid="2971">
-			<Template>other/pers_apartment_block</Template>
-			<Player>1</Player>
-			<Position x="346.4192" z="912.67463"/>
-			<Orientation y="-0.73415"/>
-		</Entity>
 		<Entity uid="2972">
 			<Template>structures/pers_civil_centre</Template>
 			<Player>1</Player>
@@ -15970,6 +15964,12 @@
 			<Template>units/cart_support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="983.6496" z="968.0011"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3008">
+			<Template>structures/pers_sb2</Template>
+			<Player>1</Player>
+			<Position x="346.99305" z="911.8921"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>

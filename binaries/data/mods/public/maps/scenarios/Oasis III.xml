@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="701.785" y="98.0725" z="683.92"/>
+		<Position x="307.71" y="97.981" z="34.0104"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -6482,12 +6482,6 @@
 			<Position x="282.45756" z="268.35813"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="1169">
-			<Template>other/pers_apartment_block</Template>
-			<Player>2</Player>
-			<Position x="328.22828" z="224.97187"/>
-			<Orientation y="-0.76229"/>
-		</Entity>
 		<Entity uid="1170">
 			<Template>units/pers_support_female_citizen</Template>
 			<Player>2</Player>
@@ -6511,6 +6505,12 @@
 			<Player>2</Player>
 			<Position x="297.54618" z="256.89234"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1174">
+			<Template>structures/pers_sb2</Template>
+			<Player>2</Player>
+			<Position x="326.38923" z="226.25293"/>
+			<Orientation y="-0.82265"/>
 		</Entity>
 	</Entities>
 	<Paths/>

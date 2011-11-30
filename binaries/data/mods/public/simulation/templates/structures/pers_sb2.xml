@@ -18,11 +18,12 @@
   </Health>
   <Identity>
     <Civ>pers</Civ>
-	<GenericName>Persian Special</GenericName>
-    <SpecificName>Special</SpecificName>
+	<GenericName>Persian Special Building</GenericName>
+    <SpecificName>Special Building</SpecificName>
     <History>Special Persian building</History>
     <Icon>structures/palace.png</Icon>
-	<Tooltip>Special building</Tooltip>
+	<Tooltip>Special Building.
+Train War Elephants and Kardakes mercenaries.</Tooltip>
   </Identity>
   <Obstruction>
     <Static width="25.0" depth="25.0"/>
@@ -33,6 +34,8 @@
   </TerritoryInfluence>
   <TrainingQueue>
     <Entities datatype="tokens">
+	  units/pers_kardakes
+	  units/pers_kardakes_skirmishers
 	  units/pers_war_elephant
     </Entities>
   </TrainingQueue>
