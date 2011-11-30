@@ -568,7 +568,14 @@ private:
 
 PIArchiveReader CreateArchiveReader_Zip(const OsPath& archivePathname)
 {
-	return PIArchiveReader(new ArchiveReader_Zip(archivePathname));
+	try
+	{
+		return PIArchiveReader(new ArchiveReader_Zip(archivePathname));
+	}
+	catch(Status)
+	{
+		return PIArchiveReader();
+	}
 }
 
 
@@ -737,5 +744,12 @@ private:
 
 PIArchiveWriter CreateArchiveWriter_Zip(const OsPath& archivePathname, bool noDeflate)
 {
-	return PIArchiveWriter(new ArchiveWriter_Zip(archivePathname, noDeflate));
+	try
+	{
+		return PIArchiveWriter(new ArchiveWriter_Zip(archivePathname, noDeflate));
+	}
+	catch(Status)
+	{
+		return PIArchiveWriter();
+	}
 }

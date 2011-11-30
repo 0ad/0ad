@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special">
+  <Cost>
+    <BuildTime>300</BuildTime>
+    <Resources>
+      <food>0</food>
+      <wood>0</wood>
+      <stone>300</stone>
+      <metal>200</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="25.0" depth="25.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Health>
+    <Max>3000</Max>
+  </Health>
+  <Identity>
+    <Civ>pers</Civ>
+	<GenericName>Persian Special</GenericName>
+    <SpecificName>Special</SpecificName>
+    <History>Special Persian building</History>
+    <Icon>structures/palace.png</Icon>
+	<Tooltip>Special building</Tooltip>
+  </Identity>
+  <Obstruction>
+    <Static width="25.0" depth="25.0"/>
+  </Obstruction>
+  <TerritoryInfluence>
+    <Root>true</Root>
+    <Radius>38</Radius>
+  </TerritoryInfluence>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+	  units/pers_war_elephant
+    </Entities>
+  </TrainingQueue>
+  <VisualActor>
+    <Actor>structures/persians/sb2.xml</Actor>
+    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+  </VisualActor>
+</Entity>

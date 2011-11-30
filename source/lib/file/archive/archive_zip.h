@@ -29,7 +29,14 @@
 
 #include "lib/file/archive/archive.h"
 
+/**
+ * @return 0 if opening the archive failed (e.g. because an external program is holding on to it)
+ **/
 LIB_API PIArchiveReader CreateArchiveReader_Zip(const OsPath& archivePathname);
+
+/**
+ * @return 0 if opening the archive failed (e.g. because an external program is holding on to it)
+ **/
 LIB_API PIArchiveWriter CreateArchiveWriter_Zip(const OsPath& archivePathname, bool noDeflate);
 
 #endif	// #ifndef INCLUDED_ARCHIVE_ZIP

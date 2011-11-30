@@ -53,13 +53,47 @@ var g_data;
 
 function refresh()
 {
+    if (1)
+        refresh_live();
+    else
+        refresh_jsonp('../../../binaries/system/profile2.jsonp');
+}
+
+function refresh_jsonp(url)
+{
+    var script = document.createElement('script');
+    
+    window.profileDataCB = function(data)
+    {
+        script.parentNode.removeChild(script);
+
+        var threads = [];
+        data.threads.forEach(function(thread) {
+            var canvas = $('<canvas width="1600" height="160"></canvas>');
+            thread.data.events.pop();
+            threads.push({'name': thread.name, 'data': thread.data, 'canvas': canvas.get(0)});
+        });
+        g_data = { 'threads': threads };
+
+        var range = {'seconds': 0.05};
+
+        rebuild_canvases();
+        update_display(range);
+    };
+
+    script.src = url;
+    document.body.appendChild(script);
+}
+
+function refresh_live()
+{
     $.ajax({
         url: 'http://127.0.0.1:8000/overview',
         dataType: 'json',
         success: function (data) {
             var threads = [];
             data.threads.forEach(function(thread) {
-                var canvas = $('<canvas width="1600" height="128"></canvas>');
+                var canvas = $('<canvas width="1600" height="160"></canvas>');
                 threads.push({'name': thread.name, 'canvas': canvas.get(0)});
             });
             var callback_data = { 'threads': threads, 'completed': 0 };
@@ -93,7 +127,7 @@ function refresh_thread(thread, callback_data)
 
                 rebuild_canvases();
                 update_display(range);
-        }
+            }
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alert('Failed to connect to server ("'+textStatus+'")');
@@ -349,7 +383,7 @@ function compute_intervals(data, range)
                 continue;
             var interval = stack.pop();
 
-            if (data[i][2] != interval.id)
+            if (data[i][2] != interval.id && data[i][2] != '(ProfileStop)')
                 alert('inconsistent interval ids ('+interval.id+' / '+data[i][2]+')');
 
             if (!g_used_colours[interval.id])
@@ -411,6 +445,23 @@ function display_frames(data, canvas)
         }
     };
     
+//    var y_per_second = 1000;
+    var y_per_second = 100;
+
+    [16, 33, 200, 500].forEach(function(t) {
+        var y1 = canvas.height;
+        var y0 = y1 - t/1000*y_per_second;
+        var y = Math.floor(y0) + 0.5;
+
+        ctx.beginPath();
+        ctx.moveTo(xpadding, y);
+        ctx.lineTo(canvas.width - xpadding, y);
+        ctx.strokeStyle = 'rgb(255, 0, 0)';
+        ctx.stroke();
+        ctx.fillStyle = 'rgb(255, 0, 0)';
+        ctx.fillText(t+'ms', 0, y-2);
+    });
+
     ctx.strokeStyle = 'rgb(0, 0, 0)';
     ctx.fillStyle = 'rgb(255, 255, 255)';
     for (var i = 0; i < data.frames.length; ++i)
@@ -421,7 +472,7 @@ function display_frames(data, canvas)
         var x0 = xpadding + dx*(frame.t0 - tmin);
         var x1 = x0 + dx*duration;
         var y1 = canvas.height;
-        var y0 = y1 - duration*1000;
+        var y0 = y1 - duration*y_per_second;
         
         ctx.beginPath();
         ctx.rect(x0, y0, x1-x0, y1-y0);
@@ -662,7 +713,8 @@ function set_frames_zoom_handlers(canvas0)
         var relativeX = event.pageX - this.offsetLeft;
         var relativeY = event.pageY - this.offsetTop;
         
-        var width = 0.001 + 0.5 * relativeY / canvas0.height;
+//        var width = 0.001 + 0.5 * relativeY / canvas0.height;
+        var width = 0.001 + 5 * relativeY / canvas0.height;
 
         var tavg = zdata.x_to_t(relativeX);
         var tmax = tavg + width/2;

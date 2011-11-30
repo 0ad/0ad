@@ -14,6 +14,18 @@
     <Civ>pers</Civ>
     <SpecificName>Inn</SpecificName>
   </Identity>
+  <Obstruction>
+    <Static width="28.0" depth="15.0"/>
+  </Obstruction>
+  <RallyPoint/>
+  <TerritoryInfluence>
+    <Radius>26</Radius>
+  </TerritoryInfluence>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/{civ}_support_female_citizen
+    </Entities>
+  </TrainingQueue>
   <VisualActor>
     <Actor>props/structures/persians/alt_building_04.xml</Actor>
   </VisualActor>

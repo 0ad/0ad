@@ -384,27 +384,27 @@ JSBool deepcopy(JSContext* cx, uintN argc, jsval* vp)
 
 JSBool ProfileStart(JSContext* cx, uintN argc, jsval* vp)
 {
-	if (CProfileManager::IsInitialised() && ThreadUtil::IsMainThread())
+	const char* name = "(ProfileStart)";
+
+	if (argc >= 1)
 	{
-		const char* name = "(ProfileStart)";
+		std::string str;
+		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], str))
+			return JS_FALSE;
 
-		if (argc >= 1)
-		{
-			std::string str;
-			if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], str))
-				return JS_FALSE;
+		typedef boost::flyweight<
+			std::string,
+			boost::flyweights::no_tracking,
+			boost::flyweights::no_locking
+		> StringFlyweight;
 
-			typedef boost::flyweight<
-				std::string,
-				boost::flyweights::no_tracking,
-				boost::flyweights::no_locking
-			> StringFlyweight;
-
-			name = StringFlyweight(str).get().c_str();
-		}
-
-		g_Profiler.StartScript(name);
+		name = StringFlyweight(str).get().c_str();
 	}
+
+	if (CProfileManager::IsInitialised() && ThreadUtil::IsMainThread())
+		g_Profiler.StartScript(name);
+
+	g_Profiler2.RecordRegionEnter(name);
 
 	JS_SET_RVAL(cx, vp, JSVAL_VOID);
 	return JS_TRUE;
@@ -413,9 +413,9 @@ JSBool ProfileStart(JSContext* cx, uintN argc, jsval* vp)
 JSBool ProfileStop(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* vp)
 {
 	if (CProfileManager::IsInitialised() && ThreadUtil::IsMainThread())
-	{
 		g_Profiler.Stop();
-	}
+
+	g_Profiler2.RecordRegionLeave("(ProfileStop)");
 
 	JS_SET_RVAL(cx, vp, JSVAL_VOID);
 	return JS_TRUE;

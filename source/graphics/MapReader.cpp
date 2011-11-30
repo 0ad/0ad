@@ -1297,7 +1297,8 @@ int CMapReader::ParseEnvironment()
 
 	std::wstring skySet;
 	GET_ENVIRONMENT_PROPERTY(envObj.get(), SkySet, skySet)
-	pSkyMan->SetSkySet(skySet);
+	if (pSkyMan)
+		pSkyMan->SetSkySet(skySet);
 
 	CColor sunColor;
 	GET_ENVIRONMENT_PROPERTY(envObj.get(), SunColour, sunColor)
@@ -1391,13 +1392,6 @@ int CMapReader::ParseCamera()
 CMapReader::~CMapReader()
 {
 	// Cleaup objects
-	if (xml_reader)
-	{
-		delete xml_reader;
-	}
-
-	if (m_MapGen)
-	{
-		delete m_MapGen;
-	}
+	delete xml_reader;
+	delete m_MapGen;
 }

@@ -366,7 +366,7 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 {
 	UpdateGrid();
 
-	PROFILE("ComputePath");
+	PROFILE3("ComputePath");
 
 	PathfinderState state = { 0 };
 
@@ -489,6 +489,11 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 	delete m_DebugGrid;
 	m_DebugGrid = state.tiles;
 	m_DebugSteps = state.steps;
+
+	PROFILE2_ATTR("from: (%d, %d)", i0, j0);
+	PROFILE2_ATTR("to: (%d, %d)", state.iGoal, state.jGoal);
+	PROFILE2_ATTR("reached: (%d, %d)", state.iBest, state.jBest);
+	PROFILE2_ATTR("steps: %d", state.steps);
 
 #if PATHFIND_STATS
 	printf("PATHFINDER: steps=%d avgo=%d proc=%d impc=%d impo=%d addo=%d\n", state.steps, state.sumOpenSize/state.steps, state.numProcessed, state.numImproveClosed, state.numImproveOpen, state.numAddToOpen);

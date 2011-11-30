@@ -524,3 +524,28 @@ const char* CProfiler2::ConstructJSONResponse(std::ostream& stream, const std::s
 
 	return NULL;
 }
+
+void CProfiler2::SaveToFile()
+{
+	OsPath path = psLogDir()/"profile2.jsonp";
+	std::ofstream stream(OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
+
+	std::vector<ThreadStorage*> threads;
+
+	{
+		CScopeLock lock(m_Mutex);
+		threads = m_Threads;
+	}
+
+	stream << "profileDataCB({\"threads\": [\n";
+	for (size_t i = 0; i < threads.size(); ++i)
+	{
+		if (i != 0)
+			stream << ",\n";
+		stream << "{\"name\":\"" << CStr(threads[i]->GetName()).EscapeToPrintableASCII() << "\",\n";
+		stream << "\"data\": ";
+		ConstructJSONResponse(stream, threads[i]->GetName());
+		stream << "\n}";
+	}
+	stream << "\n]});\n";
+}

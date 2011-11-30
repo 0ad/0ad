@@ -342,16 +342,22 @@ public:
 		ENSURE(!m_Frames.empty());
 		SFrame& frame = m_Frames.back();
 
-		SEvent event;
-		event.id = id;
-		event.query = NewQuery();
-		event.isEnter = isEnter;
+		// Must call glEndQuery before calling glGenQueries (via NewQuery),
+		// for compatibility with the GL_EXT_timer_query spec (which says
+		// GL_INVALID_OPERATION if a query of any target is active; the ARB
+		// spec and OpenGL specs don't appear to say that, but the AMD drivers
+		// implement that error (see Trac #1033))
 
 		if (!frame.events.empty())
 		{
 			pglEndQueryARB(GL_TIME_ELAPSED);
 			ogl_WarnIfError();
 		}
+
+		SEvent event;
+		event.id = id;
+		event.query = NewQuery();
+		event.isEnter = isEnter;
 
 		pglBeginQueryARB(GL_TIME_ELAPSED, event.query);
 		ogl_WarnIfError();
@@ -770,16 +776,22 @@ CProfiler2GPU::CProfiler2GPU(CProfiler2& profiler) :
 	CFG_GET_USER_VAL("profiler2.gpu.ext.enable", Bool, enabledEXT);
 	CFG_GET_USER_VAL("profiler2.gpu.intel.enable", Bool, enabledINTEL);
 
+	// Only enable either ARB or EXT, not both, because they are redundant
+	// (EXT is only needed for compatibility with older systems), and because
+	// using both triggers GL_INVALID_OPERATION on AMD drivers (see comment
+	// in CProfiler2GPU_EXT_timer_query::RecordRegion)
 	if (enabledARB && CProfiler2GPU_ARB_timer_query::IsSupported())
 	{
 		m_ProfilerARB = new CProfiler2GPU_ARB_timer_query(m_Profiler);
 	}
-
-	if (enabledEXT && CProfiler2GPU_EXT_timer_query::IsSupported())
+	else if (enabledEXT && CProfiler2GPU_EXT_timer_query::IsSupported())
 	{
 		m_ProfilerEXT = new CProfiler2GPU_EXT_timer_query(m_Profiler);
 	}
 
+	// The INTEL mode should be compatible with ARB/EXT (though no current
+	// drivers support both), and provides complementary data, so enable it
+	// when possible
 	if (enabledINTEL && CProfiler2GPU_INTEL_performance_queries::IsSupported())
 	{
 		m_ProfilerINTEL = new CProfiler2GPU_INTEL_performance_queries(m_Profiler);

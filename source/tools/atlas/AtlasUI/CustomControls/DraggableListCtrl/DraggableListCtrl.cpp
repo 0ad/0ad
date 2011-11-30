@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -67,8 +67,11 @@ void DraggableListCtrl::OnItemSelected(wxListEvent& event)
 	}
 }
 
-void DraggableListCtrl::OnMouseCaptureChanged(wxMouseCaptureChangedEvent& WXUNUSED(event))
+void DraggableListCtrl::OnMouseCaptureLost(wxMouseCaptureLostEvent& WXUNUSED(event))
 {
+	// Mouse capture lost due to "external" event, like a dialog box or alt-tabbing
+	//	(this is currently a Windows only event and failure to handle it will lead
+	//	to an assertion failure in debug builds)
 	OnEndDrag();
 }
 
@@ -84,6 +87,7 @@ void DraggableListCtrl::OnMouseEvent(wxMouseEvent& event)
 	if (event.LeftUp())
 	{
 		// Finished dragging; stop responding to mouse motion
+		OnEndDrag();
 		ReleaseMouse();
 	}
 	
@@ -154,5 +158,5 @@ BEGIN_EVENT_TABLE(DraggableListCtrl, EditableListCtrl)
 	EVT_MOTION(DraggableListCtrl::OnMouseEvent)
 	EVT_LEFT_UP(DraggableListCtrl::OnMouseEvent) 
 	EVT_CHAR(DraggableListCtrl::OnChar)
-	EVT_MOUSE_CAPTURE_CHANGED(DraggableListCtrl::OnMouseCaptureChanged)
+	EVT_MOUSE_CAPTURE_LOST(DraggableListCtrl::OnMouseCaptureLost)
 END_EVENT_TABLE()

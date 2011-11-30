@@ -12,8 +12,20 @@
   </Health>
   <Identity>
     <Civ>pers</Civ>
-    <SpecificName>Apartments</SpecificName>
+    <SpecificName>Apartment Block</SpecificName>
   </Identity>
+  <Obstruction>
+    <Static width="23.0" depth="12.0"/>
+  </Obstruction>
+  <RallyPoint/>
+  <TerritoryInfluence>
+    <Radius>25</Radius>
+  </TerritoryInfluence>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/{civ}_support_female_citizen
+    </Entities>
+  </TrainingQueue>
   <VisualActor>
     <Actor>props/structures/persians/alt_building_03.xml</Actor>
   </VisualActor>

@@ -37,6 +37,13 @@ CMapGeneratorWorker::~CMapGeneratorWorker()
 {
 	// Wait for thread to end
 	pthread_join(m_WorkerThread, NULL);
+
+	// The StructuredClone destructor references a JSContext created by our
+	//	ScriptInterface, so explicitly clean it up before ScriptInterface
+	m_MapData.reset();
+
+	// Cleanup ScriptInterface
+	delete m_ScriptInterface;
 }
 
 void CMapGeneratorWorker::Initialize(const VfsPath& scriptFile, const std::string& settings)
@@ -72,9 +79,6 @@ void* CMapGeneratorWorker::RunThread(void *data)
 	// At this point the random map scripts are done running, so the thread has no further purpose
 	//	and can die. The data will be stored in m_MapData already if successful, or m_Progress
 	//	will contain an error value on failure.
-
-	// Cleanup ScriptInterface
-	SAFE_DELETE(self->m_ScriptInterface);
 
 	return NULL;
 }

@@ -141,7 +141,10 @@ private:
 			if(pathname.Extension() == L".zip")
 			{
 				PIArchiveReader archiveReader = CreateArchiveReader_Zip(pathname);
-				RETURN_STATUS_IF_ERR(archiveReader->ReadEntries(AddArchiveFile, (uintptr_t)this));
+				// archiveReader == nullptr if file could not be opened (e.g. because
+				// archive is currently open in another program)
+				if(archiveReader)
+					RETURN_STATUS_IF_ERR(archiveReader->ReadEntries(AddArchiveFile, (uintptr_t)this));
 			}
 			else	// regular (non-archive) file
 				AddFile(files[i]);
