@@ -15,8 +15,8 @@
         <prop actor="props/structures/celts/fortress_shields.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/fortress_a5.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/celt_fortress.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front_flame.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front_flame.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <texture>structural/celt_wall.dds</texture>
     </variant>

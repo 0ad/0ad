@@ -10,8 +10,8 @@
       <props>
         <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
         <prop actor="props/structures/iberians/fortress_sheilds.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front_flame.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front_flame.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <texture>structural/iber_struct.dds</texture>
     </variant>
