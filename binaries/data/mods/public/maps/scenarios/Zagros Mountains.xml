@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="359.852" y="68.8254" z="682.149"/>
+		<Position x="381.354" y="97.0527" z="569.972"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -22066,6 +22066,18 @@
 			<Player>0</Player>
 			<Position x="353.37806" z="680.48115"/>
 			<Orientation y="0.69231"/>
+		</Entity>
+		<Entity uid="4344">
+			<Template>structures/pers_sb2</Template>
+			<Player>1</Player>
+			<Position x="390.70237" z="786.96863"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4345">
+			<Template>structures/pers_sb2</Template>
+			<Player>2</Player>
+			<Position x="236.88622" z="248.73742"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
