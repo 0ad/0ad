@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="992.597" y="79.7402" z="856.035"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.610865"/>
+		<Position x="978.375" y="111.678" z="796.345"/>
+		<Rotation angle="-0.00330707"/>
+		<Declination angle="0.587707"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -54,9 +54,9 @@
       },
       "StartingCamera": {
         "Position": {
-          "x": 341.534,
+          "x": 960.901,
           "y": 22.3825,
-          "z": 939.931
+          "z": 246.352
         },
         "Rotation": {
           "x": 35,
@@ -210,7 +210,7 @@
 		</Entity>
 		<Entity uid="39">
 			<Template>actor|particle/blowing_sand.xml</Template>
-			<Position x="82.00422" z="12.36951"/>
+			<Position x="467.68464" z="423.98417"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="40">
@@ -3398,7 +3398,7 @@
 		<Entity uid="623">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="54.97103" z="652.7115"/>
+			<Position x="87.52375" z="623.36316"/>
 			<Orientation y="-2.09437"/>
 		</Entity>
 		<Entity uid="624">
@@ -5857,24 +5857,6 @@
 			<Position x="292.33146" z="304.2996"/>
 			<Orientation y="0.66025"/>
 		</Entity>
-		<Entity uid="1120">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="957.1048" z="954.83295"/>
-			<Orientation y="-2.3008"/>
-		</Entity>
-		<Entity uid="1121">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="952.82483" z="950.85047"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1122">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="957.18238" z="949.38086"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="1123">
 			<Template>other/obelisk</Template>
 			<Player>0</Player>
@@ -5980,14 +5962,8 @@
 		<Entity uid="1157">
 			<Template>other/cart_tophet</Template>
 			<Player>2</Player>
-			<Position x="344.94065" z="251.00333"/>
+			<Position x="300.73826" z="325.0854"/>
 			<Orientation y="-2.32627"/>
-		</Entity>
-		<Entity uid="1158">
-			<Template>structures/cart_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="298.35499" z="325.4239"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1159">
 			<Template>units/cart_support_female_citizen</Template>
@@ -15492,24 +15468,6 @@
 			<Position x="290.51786" z="952.6808"/>
 			<Orientation y="1.03248"/>
 		</Entity>
-		<Entity uid="2888">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="973.47584" z="288.61298"/>
-			<Orientation y="-2.56003"/>
-		</Entity>
-		<Entity uid="2889">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="969.79224" z="283.00983"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2890">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="967.10517" z="292.20197"/>
-			<Orientation y="1.06476"/>
-		</Entity>
 		<Entity uid="2891">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
 			<Player>0</Player>
@@ -15561,7 +15519,7 @@
 		<Entity uid="2899">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
 			<Player>0</Player>
-			<Position x="61.10718" z="754.09003"/>
+			<Position x="91.60315" z="618.07483"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2900">
@@ -15726,12 +15684,6 @@
 			<Position x="936.73053" z="275.75379"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="2952">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="322.36188" z="941.36744"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="2953">
 			<Template>units/cart_sacred_band_cavalry</Template>
 			<Player>2</Player>
@@ -15750,12 +15702,6 @@
 			<Position x="975.11536" z="230.11931"/>
 			<Orientation y="-0.75118"/>
 		</Entity>
-		<Entity uid="2972">
-			<Template>structures/pers_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="317.0246" z="967.22107"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="2973">
 			<Template>structures/cart_civil_centre</Template>
 			<Player>2</Player>
@@ -15767,24 +15713,6 @@
 			<Player>2</Player>
 			<Position x="1008.71601" z="914.5539"/>
 			<Orientation y="-2.33259"/>
-		</Entity>
-		<Entity uid="2975">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="324.78162" z="943.57416"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2976">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="327.26874" z="945.76386"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2977">
-			<Template>units/pers_kardakes_hoplite</Template>
-			<Player>1</Player>
-			<Position x="330.0344" z="948.45405"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2978">
 			<Template>units/pers_kardakes_hoplite</Template>
@@ -15832,30 +15760,6 @@
 			<Template>units/pers_kardakes_skirmisher</Template>
 			<Player>1</Player>
 			<Position x="949.91193" z="253.86022"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2986">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="326.11658" z="937.12494"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2987">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="327.4626" z="938.96918"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2988">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="329.33036" z="941.81751"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2989">
-			<Template>units/pers_kardakes_skirmisher</Template>
-			<Player>1</Player>
-			<Position x="332.08436" z="944.56458"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2990">
@@ -15969,8 +15873,92 @@
 		<Entity uid="3008">
 			<Template>structures/pers_sb2</Template>
 			<Player>1</Player>
-			<Position x="346.99305" z="911.8921"/>
+			<Position x="317.06666" z="963.68592"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3009">
+			<Template>units/pers_war_elephant</Template>
+			<Player>1</Player>
+			<Position x="324.47468" z="940.28614"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3010">
+			<Template>units/pers_war_elephant</Template>
+			<Player>1</Player>
+			<Position x="330.4438" z="945.83863"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3012">
+			<Template>units/cart_sacred_band_cavalry</Template>
+			<Player>2</Player>
+			<Position x="994.37226" z="953.91736"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3013">
+			<Template>units/cart_sacred_band_cavalry</Template>
+			<Player>2</Player>
+			<Position x="991.55744" z="951.45105"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3014">
+			<Template>units/cart_sacred_band_cavalry</Template>
+			<Player>2</Player>
+			<Position x="989.35676" z="949.0896"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3015">
+			<Template>units/cart_sacred_band_cavalry</Template>
+			<Player>2</Player>
+			<Position x="987.0298" z="946.98072"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3016">
+			<Template>gaia/special_treasure_metal_persian_bigl</Template>
+			<Player>0</Player>
+			<Position x="1098.88306" z="600.5387"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3017">
+			<Template>gaia/special_treasure_metal_persian_small</Template>
+			<Player>0</Player>
+			<Position x="1093.7295" z="595.20008"/>
+			<Orientation y="-2.7483"/>
+		</Entity>
+		<Entity uid="3018">
+			<Template>gaia/special_treasure_food_persian_big</Template>
+			<Player>0</Player>
+			<Position x="977.37836" z="298.47916"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3019">
+			<Template>gaia/special_treasure_food_persian_small</Template>
+			<Player>0</Player>
+			<Position x="967.063" z="299.42634"/>
+			<Orientation y="-2.97567"/>
+		</Entity>
+		<Entity uid="3020">
+			<Template>gaia/special_treasure_food_persian_small</Template>
+			<Player>0</Player>
+			<Position x="941.27802" z="945.4289"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3021">
+			<Template>gaia/special_treasure_food_persian_big</Template>
+			<Player>0</Player>
+			<Position x="944.6897" z="953.1089"/>
+			<Orientation y="0.87972"/>
+		</Entity>
+		<Entity uid="3022">
+			<Template>gaia/special_treasure_metal_persian_small</Template>
+			<Player>0</Player>
+			<Position x="94.66431" z="621.81305"/>
+			<Orientation y="0.52601"/>
+		</Entity>
+		<Entity uid="3023">
+			<Template>gaia/special_treasure_metal_persian_bigl</Template>
+			<Player>0</Player>
+			<Position x="86.82139" z="614.41773"/>
+			<Orientation y="-1.01491"/>
 		</Entity>
 	</Entities>
 	<Paths/>

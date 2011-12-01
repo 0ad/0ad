@@ -40,7 +40,7 @@
         <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
         <animation file="biped/inf_salute_c.psa" name="Promotion" speed="288"/>
       </animations>
-      <mesh>skeletal/m_pants_celt.dae</mesh>
+      <mesh>skeletal/m_pants_tunic.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_pers_a.xml" attachpoint="head"/>
         <prop actor="props/units/heads/pers_kidaris_loose_yellow.xml" attachpoint="helmet"/>
@@ -52,14 +52,11 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="tunic 1">
-      <texture>skeletal/pers_isp_a_1.dds</texture>
+    <variant frequency="1" name="Mail Iron">
+      <texture>skeletal/pers_kardakes_1.png</texture>
     </variant>
-    <variant frequency="1" name="tunic 2">
-      <texture>skeletal/pers_isp_a_2.dds</texture>
-    </variant>
-    <variant frequency="1" name="tunic 3">
-      <texture>skeletal/pers_isp_a_3.dds</texture>
+    <variant frequency="1" name="Mail Bronze">
+      <texture>skeletal/pers_kardakes_2.png</texture>
     </variant>
   </group>
   <group>

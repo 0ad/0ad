@@ -28,8 +28,15 @@ Train War Elephants and Kardakes mercenaries.</Tooltip>
   <Obstruction>
     <Static width="25.0" depth="25.0"/>
   </Obstruction>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_fortress.xml</select>
+      <constructed>interface/complete/building/complete_fortress.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
   <TerritoryInfluence>
-    <Root>true</Root>
+    <Root>false</Root>
     <Radius>38</Radius>
   </TerritoryInfluence>
   <TrainingQueue>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/hele_infantry_spearman_a">
   <Armour>
-    <Hack>7.0</Hack>
-    <Pierce>12.0</Pierce>
+    <Hack>8.0</Hack>
+    <Pierce>11.0</Pierce>
     <Crush>8.0</Crush>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>7.0</Hack>
+      <Hack>8.0</Hack>
       <Pierce>17.0</Pierce>
     </Melee>
     <Charge>
-      <Hack>14.0</Hack>
+      <Hack>16.0</Hack>
       <Pierce>34.0</Pierce>
     </Charge>
   </Attack>
@@ -26,7 +26,7 @@
     <BaseSpeed>0.5</BaseSpeed>
   </ResourceGatherer>
   <UnitMotion>
-    <WalkSpeed>6.0</WalkSpeed>
+    <WalkSpeed>6.5</WalkSpeed>
     <Run>
       <Speed>18.0</Speed>
     </Run>
