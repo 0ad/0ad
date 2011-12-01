@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_treasure">
+  <Footprint>
+    <Square width="5.5" depth="3.5"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>gaia</Civ>
+    <GenericName>Metal Treasure</GenericName>
+    <SpecificName>Persian Rugs</SpecificName>
+    <Icon>gaia/special_treasure.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Static width="5.0" depth="3.0"/>
+  </Obstruction>
+  <ResourceSupply>
+    <Amount>300</Amount>
+    <Type>treasure.metal</Type>
+  </ResourceSupply>
+  <VisualActor>
+    <Actor>props/special/eyecandy/treasure_persian_metal_small.xml</Actor>
+  </VisualActor>
+</Entity>

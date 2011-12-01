@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_treasure">
+  <Footprint replace="">
+    <Circle radius="6.0"/>
+    <Height>2.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>gaia</Civ>
+    <GenericName>Food Treasure</GenericName>
+    <SpecificName>Persian Food Stores</SpecificName>
+    <Icon>gaia/special_treasure.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Static width="8.0" depth="8.0"/>
+  </Obstruction>
+  <ResourceSupply>
+    <Amount>600</Amount>
+    <Type>treasure.food</Type>
+  </ResourceSupply>
+  <VisualActor>
+    <Actor>props/special/eyecandy/treasure_persian_food_big.xml</Actor>
+  </VisualActor>
+</Entity>

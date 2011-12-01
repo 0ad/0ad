@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="983.742" y="89.0828" z="851.997"/>
+		<Position x="343.187" y="61.0093" z="885.039"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -268,7 +268,7 @@
 		</Entity>
 		<Entity uid="39">
 			<Template>actor|particle/blowing_sand.xml</Template>
-			<Position x="249.55738" z="265.5293"/>
+			<Position x="894.65339" z="842.76111"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="40">
@@ -5890,42 +5890,6 @@
 			<Template>gaia/special_treasure_stone</Template>
 			<Player>0</Player>
 			<Position x="321.31092" z="335.49042"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1117">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="293.6945" z="297.0471"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1118">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="288.49753" z="302.46183"/>
-			<Orientation y="-2.36419"/>
-		</Entity>
-		<Entity uid="1119">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="292.33146" z="304.2996"/>
-			<Orientation y="0.66025"/>
-		</Entity>
-		<Entity uid="1120">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="957.1048" z="954.83295"/>
-			<Orientation y="-2.3008"/>
-		</Entity>
-		<Entity uid="1121">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="952.82483" z="950.85047"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1122">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="957.18238" z="949.38086"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1123">
@@ -15539,42 +15503,6 @@
 			<Position x="330.3219" z="1014.57569"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="2885">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="287.03565" z="957.9214"/>
-			<Orientation y="-2.9794"/>
-		</Entity>
-		<Entity uid="2886">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="284.81632" z="950.55573"/>
-			<Orientation y="1.50678"/>
-		</Entity>
-		<Entity uid="2887">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="290.51786" z="952.6808"/>
-			<Orientation y="1.03248"/>
-		</Entity>
-		<Entity uid="2888">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="973.47584" z="288.61298"/>
-			<Orientation y="-2.56003"/>
-		</Entity>
-		<Entity uid="2889">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="969.79224" z="283.00983"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2890">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="967.10517" z="292.20197"/>
-			<Orientation y="1.06476"/>
-		</Entity>
 		<Entity uid="2891">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
 			<Player>0</Player>
@@ -15964,6 +15892,54 @@
 			<Player>1</Player>
 			<Position x="1021.94043" z="912.20844"/>
 			<Orientation y="-0.76703"/>
+		</Entity>
+		<Entity uid="2964">
+			<Template>gaia/special_treasure_metal_persian_bigl</Template>
+			<Player>0</Player>
+			<Position x="959.66059" z="276.16666"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2965">
+			<Template>gaia/special_treasure_metal_persian_small</Template>
+			<Player>0</Player>
+			<Position x="965.24628" z="279.19678"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2966">
+			<Template>gaia/special_treasure_metal_persian_small</Template>
+			<Player>0</Player>
+			<Position x="286.73484" z="297.35703"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2967">
+			<Template>gaia/special_treasure_metal_persian_bigl</Template>
+			<Player>0</Player>
+			<Position x="291.74167" z="300.5012"/>
+			<Orientation y="-0.6981"/>
+		</Entity>
+		<Entity uid="2968">
+			<Template>gaia/special_treasure_metal_persian_bigl</Template>
+			<Player>0</Player>
+			<Position x="293.76301" z="946.136"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2969">
+			<Template>gaia/special_treasure_metal_persian_small</Template>
+			<Player>0</Player>
+			<Position x="296.66938" z="953.23047"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2970">
+			<Template>gaia/special_treasure_metal_persian_small</Template>
+			<Player>0</Player>
+			<Position x="952.75635" z="963.39704"/>
+			<Orientation y="-2.32462"/>
+		</Entity>
+		<Entity uid="2971">
+			<Template>gaia/special_treasure_metal_persian_bigl</Template>
+			<Player>0</Player>
+			<Position x="955.91108" z="955.84626"/>
+			<Orientation y="-2.30755"/>
 		</Entity>
 	</Entities>
 	<Paths/>
