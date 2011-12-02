@@ -8,7 +8,7 @@
 		<SunElevation angle="0.665748"/>
 		<SunRotation angle="-0.478602"/>
 		<TerrainAmbientColour r="0.337255" g="0.411765" b="0.501961"/>
-		<UnitsAmbientColour r="0.443137" g="0.470588" b="0.509804"/>
+		<UnitsAmbientColour r="0.439216" g="0.466667" b="0.509804"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -17,65 +17,93 @@
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.491211</Murkiness>
-				<Tint r="0.317647" g="0.635294" b="0.635294"/>
-				<ReflectionTint r="0.25098" g="0.501961" b="0.501961"/>
+				<Tint r="0.313726" g="0.631373" b="0.631373"/>
+				<ReflectionTint r="0.247059" g="0.501961" b="0.501961"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="478.764" y="98.7443" z="404.631"/>
-		<Rotation angle="0.0697329"/>
+		<Position x="486.762" y="108.053" z="397.926"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name": "Acropolis",
+  "CircularMap": true,
   "Description": "Four Greek cities duke it out on a gigantic round map. Each city starts on a large flat plateau, or 'Acropolis' and comes with a group of important civic buildings and a battalion of soldiers. The map represents central Greece around the area of Boeotia and Attica.",
+  "Keywords": [],
+  "Name": "Acropolis",
   "PlayerData": [
     {
+      "AI": "",
       "Civ": "hele",
+      "Colour": {
+        "b": 200,
+        "g": 80,
+        "r": 80
+      },
+      "Name": "Player 1",
       "Resources": {
         "food": 250,
-        "wood": 250,
         "metal": 250,
-        "stone": 250
+        "stone": 250,
+        "wood": 250
       },
       "Team": 0
     },
     {
+      "AI": "qbot",
       "Civ": "hele",
+      "Colour": {
+        "b": 20,
+        "g": 20,
+        "r": 150
+      },
+      "Name": "Player 2",
       "Resources": {
         "food": 250,
-        "wood": 250,
         "metal": 250,
-        "stone": 250
+        "stone": 250,
+        "wood": 250
       },
       "Team": 0
     },
     {
+      "AI": "jubot",
       "Civ": "hele",
+      "Colour": {
+        "b": 5,
+        "g": 165,
+        "r": 50
+      },
+      "Name": "Player 3",
       "Resources": {
         "food": 250,
-        "wood": 250,
         "metal": 250,
-        "stone": 250
+        "stone": 250,
+        "wood": 250
       },
       "Team": 1
     },
     {
+      "AI": "qbot",
       "Civ": "hele",
+      "Colour": {
+        "b": 75,
+        "g": 230,
+        "r": 230
+      },
+      "Name": "Player 4",
       "Resources": {
         "food": 250,
-        "wood": 250,
         "metal": 250,
-        "stone": 250
+        "stone": 250,
+        "wood": 250
       },
       "Team": 1
     }
-  ],
-  "CircularMap": true,
-  "Keywords": []
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>
