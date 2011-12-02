@@ -35,5 +35,13 @@
       <texture>skeletal/horse_hele_philip.dds</texture>
     </variant>
   </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
   <material>player_trans.xml</material>
 </actor>

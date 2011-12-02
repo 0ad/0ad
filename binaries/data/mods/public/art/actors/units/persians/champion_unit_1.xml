@@ -4,12 +4,14 @@
   <group>
     <variant frequency="1" name="Base">
       <animations>
-        <animation file="biped/inf_sword_ready_e.dae" name="Idle" speed="100"/>
-        <animation file="biped/inf_sword_ready_e.dae" name="Idle" speed="95"/>
+        <animation file="biped/inf_spear_ready_a.dae" name="Idle" speed="100"/>
+        <animation file="biped/inf_spear_ready_a.dae" name="Idle" speed="95"/>
+        <animation file="biped/inf_spear_ready_a.dae" name="Idle" speed="80"/>
         <animation file="biped/walk_spearshield.psa" name="Walk" speed="130"/>
         <animation file="biped/walk_spearshield.psa" name="Walk" speed="125"/>
         <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="Melee" speed="120"/>
         <animation event="0.5" file="infantry/sword/attack/isw_s_def_01.psa" name="Melee" speed="80"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="Melee" speed="80"/>
         <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="Melee" speed="80"/>
         <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="Melee" speed="80"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="25"/>
