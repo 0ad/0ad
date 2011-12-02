@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="701.785" y="98.0725" z="683.92"/>
+		<Position x="700.412" y="70.2807" z="716.116"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -103,7 +103,7 @@
 		<Entity uid="11">
 			<Template>structures/cart_civil_centre</Template>
 			<Player>1</Player>
-			<Position x="672.85706" z="810.60547"/>
+			<Position x="672.88093" z="810.60291"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="21">
@@ -6284,42 +6284,6 @@
 			<Position x="270.96467" z="239.40198"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="1117">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="303.2551" z="291.77775"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1118">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="304.84144" z="299.288"/>
-			<Orientation y="-2.36419"/>
-		</Entity>
-		<Entity uid="1119">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="301.97309" z="295.88712"/>
-			<Orientation y="0.66025"/>
-		</Entity>
-		<Entity uid="1120">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="695.6847" z="826.72059"/>
-			<Orientation y="-2.3008"/>
-		</Entity>
-		<Entity uid="1121">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="691.86841" z="828.90064"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1122">
-			<Template>gaia/special_treasure_food_bin</Template>
-			<Player>0</Player>
-			<Position x="694.17322" z="831.77723"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="1123">
 			<Template>other/obelisk</Template>
 			<Player>0</Player>
@@ -6482,12 +6446,6 @@
 			<Position x="282.45756" z="268.35813"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="1169">
-			<Template>other/pers_apartment_block</Template>
-			<Player>2</Player>
-			<Position x="328.22828" z="224.97187"/>
-			<Orientation y="-0.76229"/>
-		</Entity>
 		<Entity uid="1170">
 			<Template>units/pers_support_female_citizen</Template>
 			<Player>2</Player>
@@ -6510,6 +6468,36 @@
 			<Template>units/pers_support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="297.54618" z="256.89234"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1174">
+			<Template>structures/pers_sb2</Template>
+			<Player>2</Player>
+			<Position x="326.38923" z="226.25293"/>
+			<Orientation y="-0.82265"/>
+		</Entity>
+		<Entity uid="1175">
+			<Template>gaia/special_treasure_food_persian_big</Template>
+			<Player>0</Player>
+			<Position x="313.23429" z="287.49448"/>
+			<Orientation y="2.74854"/>
+		</Entity>
+		<Entity uid="1176">
+			<Template>gaia/special_treasure_food_persian_small</Template>
+			<Player>0</Player>
+			<Position x="320.7458" z="290.34946"/>
+			<Orientation y="2.26809"/>
+		</Entity>
+		<Entity uid="1177">
+			<Template>gaia/special_treasure_food_persian_small</Template>
+			<Player>0</Player>
+			<Position x="697.33808" z="821.81861"/>
+			<Orientation y="-2.61055"/>
+		</Entity>
+		<Entity uid="1178">
+			<Template>gaia/special_treasure_food_persian_big</Template>
+			<Player>0</Player>
+			<Position x="704.82557" z="819.62653"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>

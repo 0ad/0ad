@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
+        <animation file="biped/cavalryidle.psa" name="Walk" speed="18"/>
+        <animation file="biped/rider_gallop.psa" name="Run" speed="8"/>
+        <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="Melee" speed="250"/>
+        <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="Melee" speed="250"/>
+        <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
+      </animations>
+      <mesh>skeletal/m_pants_celt.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_pers_hero_1.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/pers_conical_plume.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/pers_hair.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/spear_lance_persian.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/shields/pers_taka_cyrus.xml" attachpoint="shield"/>
+        <prop actor="props/units/pers_quiver_hip.xml" attachpoint="l_hip"/>
+        <prop actor="props/units/cape_hd_cav.xml" attachpoint="shoulders"/>
+        <prop actor="props/units/pers_bactrian_arm_left_bronze.xml" attachpoint="l_shoulder"/>
+        <prop actor="props/units/pers_bactrian_arm_right_bronze.xml" attachpoint="r_shoulder"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Cyrus-Armour">
+      <texture>skeletal/pers_hero_cyrus.png</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

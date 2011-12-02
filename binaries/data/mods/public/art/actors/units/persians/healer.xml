@@ -8,13 +8,13 @@
         <animation file="biped/inf_staff_walk_a.dae" name="Walk" speed="20"/>
         <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
       </animations>
-      <mesh>skeletal/m_dress_a.pmd</mesh>
+      <mesh>skeletal/m_dress_cuffs.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_pers_a.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/head_pers_tiara_mouth.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/pers_kidaris_tied.xml" attachpoint="helmet"/>
         <prop actor="props/units/staff.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/heads/hele_hood_priest.xml" attachpoint="helmet"/>
       </props>
-      <texture>skeletal/hele_healer_1.dds</texture>
+      <texture>skeletal/pers_healer.png</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>

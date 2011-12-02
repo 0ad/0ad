@@ -39,21 +39,26 @@ When you are ready to start, click the "Start game" button.
 [font="serif-14"]Alt+F4: Close the game, without confirmation
 F9: Show/hide console
 Shift + F: Show/hide frame counter (FPS)
-F11: Enable/disable real-time performance profiler (toggles through the displays of information)
-Shift+F11: Save current profiler data to "logs/profile.txt"
 F2: Take screenshot (in .png format, saved to %appdata%/0ad\data\screenshots on Windows)
 Shift+F2: Take huge screenshot (6400px*4800px, in .bmp format, saved to %appdata%/0ad\data\screenshots on Windows)
 
 [font="serif-bold-14"]In Game
 [font="serif-14"]Alt + Enter: Toggle between fullscreen and windowed
-Double Left Click: Select all of your units of the same kind on the screen
-Triple Left Click: Select all of your units of the same kind on the entire map
+Double Left Click [on unit]: Select all of your units of the same kind and the same rank on the screen
+Triple Left Click [on unit]: Select all of your units of the same kind on the screen (even if they're different ranks)
+Alt + Double Left Click [on unit]: Select all your units of the same kind and rank on the entire map
+Alt + Triple Left Click [on unit]: Select all your units of the same kind on the entire map (even if the are different ranks)
 F10: Open/close menu
 F12: Show/hide time elapsed counter
 ESC: Close all dialogs (chat, menu)
 Enter/return:Open/send chat
 Pause: Pause/unpause the game
 Delete: Delete currently selected unit/units/building/buildings
+,: Select idle fighters
+.: Select idle workers (including citizen soldiers)
+Ctrl + 1 (and so on up to Ctrl + 9): Create control group 1 (to 9) from the selected units/buildings
+1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)
+Shift + 1 (to 0): Add selected units/buildings to control group 1 (to 0)
 
 [font="serif-bold-14"]Modify mouse action
 [font="serif-14"]Ctrl + Right Click on building: Garrison

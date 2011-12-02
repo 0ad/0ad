@@ -4,6 +4,9 @@
   <group>
     <variant frequency="100" name="sb2">
       <mesh>structural/pers_sb2.dae</mesh>
+      <props>
+        <prop actor="fauna/elephant_asian.xml" attachpoint="root"/>
+      </props>
       <texture>structural/pers_struct.dds</texture>
     </variant>
   </group>

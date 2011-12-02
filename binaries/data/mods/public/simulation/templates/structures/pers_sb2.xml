@@ -18,21 +18,31 @@
   </Health>
   <Identity>
     <Civ>pers</Civ>
-	<GenericName>Persian Special</GenericName>
-    <SpecificName>Special</SpecificName>
+	<GenericName>Persian Special Building</GenericName>
+    <SpecificName>Special Building</SpecificName>
     <History>Special Persian building</History>
     <Icon>structures/palace.png</Icon>
-	<Tooltip>Special building</Tooltip>
+	<Tooltip>Special Building.
+Train War Elephants and Kardakes mercenaries.</Tooltip>
   </Identity>
   <Obstruction>
     <Static width="25.0" depth="25.0"/>
   </Obstruction>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_fortress.xml</select>
+      <constructed>interface/complete/building/complete_fortress.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
   <TerritoryInfluence>
-    <Root>true</Root>
+    <Root>false</Root>
     <Radius>38</Radius>
   </TerritoryInfluence>
   <TrainingQueue>
     <Entities datatype="tokens">
+	  units/pers_kardakes_hoplite
+	  units/pers_kardakes_skirmisher
 	  units/pers_war_elephant
     </Entities>
   </TrainingQueue>
