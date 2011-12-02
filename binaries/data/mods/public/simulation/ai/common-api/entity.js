@@ -333,18 +333,21 @@ var Entity = Class({
 	// TODO: visibility
 
 
-	move: function(x, z) {
-		Engine.PostCommand({"type": "walk", "entities": [this.id()], "x": x, "z": z, "queued": false});
+	move: function(x, z, queued) {
+		queued = queued || false;
+		Engine.PostCommand({"type": "walk", "entities": [this.id()], "x": x, "z": z, "queued": queued});
 		return this;
 	},
 
-	gather: function(target) {
-		Engine.PostCommand({"type": "gather", "entities": [this.id()], "target": target.id(), "queued": false});
+	gather: function(target, queued) {
+		queued = queued || false;
+		Engine.PostCommand({"type": "gather", "entities": [this.id()], "target": target.id(), "queued": queued});
 		return this;
 	},
 
-	repair: function(target) {
-		Engine.PostCommand({"type": "repair", "entities": [this.id()], "target": target.id(), "autocontinue": false, "queued": false});
+	repair: function(target, queued) {
+		queued = queued || false;
+		Engine.PostCommand({"type": "repair", "entities": [this.id()], "target": target.id(), "autocontinue": false, "queued": queued});
 		return this;
 	},
 

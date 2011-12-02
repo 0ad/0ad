@@ -101,9 +101,10 @@ EntityCollection.prototype.forEach = function(callback, thisp)
 	return this;
 };
 
-EntityCollection.prototype.move = function(x, z)
+EntityCollection.prototype.move = function(x, z, queued)
 {
-	Engine.PostCommand({"type": "walk", "entities": this.toIdArray(), "x": x, "z": z, "queued": false});
+	queued = queued || false;
+	Engine.PostCommand({"type": "walk", "entities": this.toIdArray(), "x": x, "z": z, "queued": queued});
 	return this;
 };
 
