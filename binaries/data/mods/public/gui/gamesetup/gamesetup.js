@@ -957,12 +957,12 @@ function updatePlayerList()
 	for each (var ai in g_AIs)
 	{	// Give AI a different color so it stands out
 		aiAssignments[ai.id] = hostNameList.length;
-		hostNameList.push("[color=\"30 90 30 255\"]AI: " + ai.data.name);
+		hostNameList.push("[color=\"70 150 70 255\"]AI: " + ai.data.name);
 		hostGuidList.push("ai:" + ai.id);
 	}
 
 	noAssignment = hostNameList.length;
-	hostNameList.push("[color=\"90 90 90 255\"]Unassigned");
+	hostNameList.push("[color=\"140 140 140 255\"]Unassigned");
 	hostGuidList.push("");
 
 	for (var i = 0; i < MAX_PLAYERS; ++i)
