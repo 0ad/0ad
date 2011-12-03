@@ -6,11 +6,9 @@
   </Armour>
   <Attack>
     <Melee>
-      <Crush>50.0</Crush>
+      <Crush>75.0</Crush>
+      <MaxRange>8.0</MaxRange>
     </Melee>
-    <Charge>
-      <Crush>100.0</Crush>
-    </Charge>
   </Attack>
   <Cost>
     <BuildTime>25</BuildTime>
@@ -20,11 +18,11 @@
     </Resources>
   </Cost>
   <Footprint replace="">
-    <Square width="6.75" depth="10.0"/>
+    <Square width="7.0" depth="15.0"/>
     <Height>3.0</Height>
   </Footprint>
   <GarrisonHolder>
-    <Max>3</Max>
+    <Max>5</Max>
 	<EjectHealth>0.1</EjectHealth>
 	<List datatype="tokens">Support Infantry</List>
 	<BuffHeal>1</BuffHeal>
@@ -33,15 +31,15 @@
     <Max>250</Max>
   </Health>
   <Identity>
-    <Civ>iber</Civ>
+    <Civ>pers</Civ>
 	<GenericName>Assyrian Siege Ram</GenericName>
     <SpecificName>Athuriya Hamaranakuba</SpecificName>
-    <Tooltip>Siege Ram.</Tooltip>
+    <Tooltip>Siege Ram. Bonused vs. Wall Gates. Garrison: 5.</Tooltip>
     <History>Even after the fall of the Neo-Assyrian Empire, the Assyrians themselves remained active in events. Under the Achaemenids they served in their own national regiments together with the Chaldeans. Naturally, they continued to employ the siege skills that made Assyria so famous in Persian service.</History>
-    <Icon>units/iber_mechanical_siege_ram.png</Icon>
+    <Icon>units/pers_mechanical_siege_ram.png</Icon>
   </Identity>
   <Obstruction>
-    <Unit radius="3.75"/>
+    <Unit radius="4.0"/>
   </Obstruction>
   <UnitMotion>
     <WalkSpeed>8.0</WalkSpeed>
