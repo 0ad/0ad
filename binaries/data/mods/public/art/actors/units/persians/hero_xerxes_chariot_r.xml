@@ -21,7 +21,8 @@
       <mesh>skeletal/m_pants_celt.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_pers_xerxes.xml" attachpoint="head"/>
-        <prop actor="props/units/heads/pers_kidaris_royal_loose.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/pers_crown.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/pers_hair_xerxes.xml" attachpoint="helmet"/>
         <prop actor="props/units/cape_hd.xml" attachpoint="shoulders"/>
         <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="l_hand"/>
         <prop actor="props/units/quiver_hip.xml" attachpoint="l_hip"/>
