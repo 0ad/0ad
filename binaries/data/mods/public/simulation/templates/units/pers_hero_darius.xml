@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero_cavalry_archer">
+  <Armour>
+    <Hack>10.0</Hack>
+    <Pierce>12.0</Pierce>
+    <Crush>12.0</Crush>
+  </Armour>
+  <Attack>
+    <Ranged>
+      <Pierce>35.0</Pierce>
+      <MaxRange>64.0</MaxRange>
+      <MinRange>12.0</MinRange>
+    </Ranged>
+  </Attack>
+  <Cost>
+    <Population>4</Population>
+    <BuildTime>50</BuildTime>
+    <Resources>
+      <food>200</food>
+      <wood>100</wood>
+      <metal>100</metal>
+    </Resources>
+  </Cost>
+  <Footprint replace="">
+    <Square width="6.0" depth="12.0"/>
+    <Height>5.0</Height>
+  </Footprint>
+  <Health>
+    <Max>500</Max>
+  </Health>
+  <Identity>
+    <Civ>pers</Civ>
+	<GenericName>Darius The Great</GenericName>
+    <SpecificName>Darayavahush I</SpecificName>
+    <Icon>units/pers_hero_xerxes.png</Icon>
+	<Tooltip>Hero Scythe Chariot Archer.
+High Trample Aura. Counters Melee Infantry. Countered by Skirmishers.
+Hero Aura: "Leadership." Boosts Movement Speed of all nearby units.
+Hero Aura: "Merchant of the Empire." Boosts profitablity of trade during his lifetime.</Tooltip>
+    <History>(King, 521 BC - 486 BC) The son of Vishtaspa (Hystaspes), the satrap of Parthia and Hyrcania; a great administrator as well as a decent general, Darius introduced the division of the empire into satrapies and conquered NW India, Thrace and Macedonia. He was called the 'Merchant of the Empire'.</History>
+  </Identity>
+  <Loot>
+    <xp>300</xp>
+    <food>0</food>
+    <wood>20</wood>
+    <stone>0</stone>
+    <metal>100</metal>
+  </Loot>
+  <Obstruction>
+    <Unit radius="2.5"/>
+  </Obstruction>
+  <UnitMotion>
+    <WalkSpeed>12.0</WalkSpeed>
+    <Run>
+      <Speed>24.0</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/persians/hero_darius_chariot.xml</Actor>
+  </VisualActor>
+</Entity>
