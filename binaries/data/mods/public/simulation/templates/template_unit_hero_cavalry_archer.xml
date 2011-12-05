@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_cavalry_javelinist">
+  <Armour>
+    <Hack>8.0</Hack>
+    <Pierce>8.0</Pierce>
+    <Crush>7.0</Crush>
+  </Armour>
+  <Attack>
+    <Ranged>
+      <Hack>0.0</Hack>
+      <Pierce>40.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>56.0</MaxRange>
+      <MinRange>20.0</MinRange>
+      <ProjectileSpeed>75.0</ProjectileSpeed>
+      <PrepareTime>1200</PrepareTime>
+      <RepeatTime>2000</RepeatTime>
+    </Ranged>
+  </Attack>
+  <Cost>
+    <BuildTime>45</BuildTime>
+  </Cost>
+  <Health>
+    <Max>450</Max>
+    <RegenRate>0.5</RegenRate>
+  </Health>
+  <Identity>
+    <GenericName>Hero Cavalry Archer</GenericName>
+    <Classes datatype="tokens">Hero Cavalry Ranged</Classes>
+  </Identity>
+  <Loot>
+    <xp>450</xp>
+    <food>10</food>
+    <wood>20</wood>
+    <stone>0</stone>
+    <metal>0</metal>
+  </Loot>
+  <Minimap>
+    <Type>hero</Type>
+  </Minimap>
+  <UnitMotion>
+    <WalkSpeed>11.0</WalkSpeed>
+    <Run>
+      <Speed>25.0</Speed>
+      <Range>1000.0</Range>
+      <RangeMin>16.0</RangeMin>
+    </Run>
+  </UnitMotion>
+</Entity>
