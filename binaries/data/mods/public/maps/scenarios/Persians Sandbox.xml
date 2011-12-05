@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="700.607" y="166.416" z="545.221"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Position x="663.89" y="96.1762" z="673.198"/>
+		<Rotation angle="-0.00425879"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -8115,6 +8115,12 @@
 			<Player>1</Player>
 			<Position x="737.48151" z="807.03412"/>
 			<Orientation y="-2.36852"/>
+		</Entity>
+		<Entity uid="1527">
+			<Template>structures/pers_sb2</Template>
+			<Player>1</Player>
+			<Position x="563.88056" z="742.91132"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>

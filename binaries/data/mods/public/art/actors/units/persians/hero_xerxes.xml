@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="infantry/spear/idle/isp_01.psa" name="Idle" speed="200"/>
+        <animation file="biped/walk_spearshield.psa" name="Walk" speed="120"/>
+        <animation event="0.84" file="biped/inf_arch_atk_a.psa" load="0.16" name="Melee" speed="90"/>
+        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="30"/>
+        <animation file="biped/walk_spearshield.psa" name="carry_meat" speed="120"/>
+        <animation file="infantry/general/forage.psa" name="gather_meat" speed="125"/>
+        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
+        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="500"/>
+        <animation file="infantry/general/death/inf_04.psa" name="Death" speed="400"/>
+        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
+        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
+        <animation file="biped/inf_salute_c.psa" name="Promotion" speed="290"/>
+      </animations>
+      <mesh>skeletal/m_dress_cuffs.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_pers_xerxes.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/pers_crown.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/pers_hair_xerxes.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/pers_quiver_xerxes.xml" attachpoint="back"/>
+        <prop actor="props/units/hero_star.xml" attachpoint="root"/>
+      </props>
+      <texture>skeletal/pers_hero_xerxes.png</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Melee">
+      <props>
+        <prop actor="props/units/weapons/bow_short.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+      </props>
+    </variant>
+    <variant name="death">
+      <props>
+        <prop actor="" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="carry_meat">
+      <props>
+        <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
+        <prop attachpoint="l_hand"/>
+        <prop attachpoint="helmet"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

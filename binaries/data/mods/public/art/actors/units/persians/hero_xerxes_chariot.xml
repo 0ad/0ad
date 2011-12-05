@@ -5,12 +5,13 @@
     <variant>
       <animations>
         <animation file="mechanical/pers_chariot_e_idle.dae" name="Idle" speed="100"/>
-        <animation file="mechanical/pers_chariot_e_move.dae" name="Walk" speed="12"/>
-        <animation file="mechanical/pers_chariot_e_move.dae" name="Run" speed="30"/>
+        <animation file="mechanical/pers_chariot_e_move.dae" name="Walk" speed="10"/>
+        <animation file="mechanical/pers_chariot_e_move.dae" name="Run" speed="10"/>
       </animations>
       <mesh>structural/pers_chariot_e.dae</mesh>
       <props>
-        <prop actor="props/units/pers_chariot_e_emblem.xml" attachpoint="root"/>
+        <prop actor="props/units/pers_chariot_hero_emblem.xml" attachpoint="root"/>
+        <prop actor="props/units/hero_star.xml" attachpoint="root"/>
         <prop actor="units/persians/pers_chariot_archer_e_h1.xml" attachpoint="horse1"/>
         <prop actor="units/persians/pers_chariot_archer_e_h2.xml" attachpoint="horse2"/>
         <prop actor="units/persians/pers_chariot_archer_e_h3.xml" attachpoint="horse3"/>

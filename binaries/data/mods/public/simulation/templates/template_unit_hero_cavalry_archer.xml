@@ -3,7 +3,7 @@
   <Armour>
     <Hack>8.0</Hack>
     <Pierce>8.0</Pierce>
-    <Crush>7.0</Crush>
+    <Crush>8.0</Crush>
   </Armour>
   <Attack>
     <Ranged>
@@ -19,6 +19,11 @@
   </Attack>
   <Cost>
     <BuildTime>45</BuildTime>
+    <Resources>
+      <food>100</food>
+      <wood>100</wood>
+      <metal>100</metal>
+    </Resources>
   </Cost>
   <Health>
     <Max>450</Max>
