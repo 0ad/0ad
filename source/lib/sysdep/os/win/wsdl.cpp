@@ -480,7 +480,7 @@ SDL_VideoInfo* SDL_GetVideoInfo()
 			{
 				if((*it)[L"Availability"].intVal != 8)	// not offline
 				{
-					video_info.video_mem = std::max<Uint32>(video_info.video_mem, (*it)[L"AdapterRAM"].lVal);
+					video_info.video_mem = std::max<Uint32>(video_info.video_mem, (*it)[L"AdapterRAM"].lVal / KiB);
 					break;
 				}
 			}
