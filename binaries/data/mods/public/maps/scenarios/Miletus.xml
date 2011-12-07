@@ -3,7 +3,7 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>cirrus</SkySet>
+		<SkySet>cumulus</SkySet>
 		<SunColour r="0.858824" g="0.803922" b="0.666667"/>
 		<SunElevation angle="0.773126"/>
 		<SunRotation angle="0.374291"/>
@@ -18,15 +18,15 @@
 				<Waviness>7.96875</Waviness>
 				<Murkiness>0.701172</Murkiness>
 				<Tint r="0.329412" g="0.521569" b="0.721569"/>
-				<ReflectionTint r="0.301961" g="0.603922" b="0.741176"/>
+				<ReflectionTint r="0.301961" g="0.603922" b="0.737255"/>
 				<ReflectionTintStrength>0.423828</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="219.843" y="78.528" z="108.423"/>
+		<Position x="231.132" y="79.7402" z="157.926"/>
 		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {

@@ -29,7 +29,9 @@
 
 #include "lib/lib_api.h"
 #include "lib/byte_order.h"
-#include "SDL/SDL_keysym.h"
+#ifndef WSDL_NO_KEYSYM
+# include "SDL/SDL_keysym.h"
+#endif
 
 typedef u8  Uint8;
 typedef u16 Uint16;
@@ -82,7 +84,7 @@ LIB_API SDL_Surface* SDL_GetVideoSurface();
 
 typedef struct
 {
-	int video_mem;
+	Uint32 video_mem;	// total amount of video memory (in K) 
 }
 SDL_VideoInfo;
 
@@ -174,6 +176,8 @@ Sint16 SDL_JoystickGetAxis(SDL_Joystick* joystick, int axis);
 // events
 //-----------------------------------------------------------------------------
 
+#ifndef WSDL_NO_KEYSYM
+
 typedef struct
 {
 	SDLKey sym;
@@ -187,6 +191,8 @@ typedef struct
 	SDL_keysym keysym;
 }
 SDL_KeyboardEvent;
+
+#endif	// #ifndef WSDL_NO_KEYSYM
 
 typedef struct
 {
@@ -290,7 +296,9 @@ typedef union
 {
 	Uint8 type;
 	SDL_ActiveEvent active;
+#ifndef WSDL_NO_KEYSYM
 	SDL_KeyboardEvent key;
+#endif
 	SDL_MouseMotionEvent motion;
 	SDL_MouseButtonEvent button;
 	SDL_ResizeEvent resize;

@@ -128,6 +128,7 @@ public:
 	void destroy(pointer p)
 	{
 		p->~T();
+		UNUSED2(p);	// otherwise, warning is raised for reasons unknown
 	}
 };
 

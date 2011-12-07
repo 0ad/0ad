@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall_tower">
+  <Cost>
+    <BuildTime>40</BuildTime>
+    <Resources>
+      <stone>250</stone>
+    </Resources>
+  </Cost>
   <Footprint>
-    <Square width="8.0" depth="8.0"/>
+    <Square width="9.5" depth="9.5"/>
     <Height>18.0</Height>
   </Footprint>
+  <Health>
+    <Max>7500</Max>
+  </Health>
   <Identity>
     <Civ>pers</Civ>
     <SpecificName>Dezhak</SpecificName>
     <History>When Cyrus the Great campaigned in the north and chose to establish the river Jaxartes as a boundary, he constructed a mighty fortress to protect his territories from Scythian raids. It was called Cyropolis and was situated close to the place where Alexander the Great later built his Alexandria Eschatae.</History>
   </Identity>
   <Obstruction>
-    <Static width="8.0" depth="8.0"/>
+    <Static width="8.5" depth="8.5"/>
   </Obstruction>
   <VisualActor>
     <Actor>structures/persians/wall_tower.xml</Actor>

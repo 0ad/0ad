@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall_gate">
+  <Cost>
+    <BuildTime>40</BuildTime>
+    <Resources>
+      <stone>100</stone>
+    </Resources>
+  </Cost>
   <Footprint>
-    <Square width="25.0" depth="8.5"/>
-    <Height>8.0</Height>
+    <Square width="24.0" depth="8.0"/>
+    <Height>9.0</Height>
   </Footprint>
+  <Health>
+    <Max>6000</Max>
+  </Health>
   <Identity>
     <Civ>pers</Civ>
     <SpecificName>Duvitaparnam</SpecificName>
     <History>The several ceremonial entrances to the great city of Babylon were furnished with magnificent gates, the gate of Ishtar being the most splendid of all.</History>
   </Identity>
   <Obstruction>
-    <Static width="25.0" depth="8.5"/>
+    <Static width="22.0" depth="7.0"/>
   </Obstruction>
   <VisualActor>
     <Actor>structures/persians/wall_gate.xml</Actor>

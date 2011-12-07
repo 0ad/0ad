@@ -11,6 +11,8 @@
         <prop actor="props/structures/celts/civic_entry.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
         <prop actor="particle/smoke_homestead.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <texture>structural/celt_struct_1.dds</texture>
     </variant>

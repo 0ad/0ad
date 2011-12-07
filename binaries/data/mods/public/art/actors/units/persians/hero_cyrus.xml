@@ -24,15 +24,11 @@
       <mesh>skeletal/horse.pmd</mesh>
       <props>
         <prop actor="units/persians/hero_cyrus_r.xml" attachpoint="rider"/>
-        <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
+        <prop actor="props/units/horse/pers_peytral.xml" attachpoint="chest"/>
         <prop actor="props/units/heads/pers_cav_knot.xml" attachpoint="head"/>
         <prop actor="props/units/hero_star.xml" attachpoint="root"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="2" name="horse-snipe">
-      <texture>skeletal/horse_hele_philip.dds</texture>
+      <texture>skeletal/horse_pers_cyrus.png</texture>
     </variant>
   </group>
   <group>

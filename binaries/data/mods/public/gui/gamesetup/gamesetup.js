@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Constants
-const DEFAULT_NETWORKED_MAP = "Oasis II";
-const DEFAULT_OFFLINE_MAP = "Oasis II";
+const DEFAULT_NETWORKED_MAP = "Median Oasis";
+const DEFAULT_OFFLINE_MAP = "Oasis";
 
 // TODO: Move these somewhere like simulation\data\game_types.json, Atlas needs them too
 const VICTORY_TEXT = ["Conquest", "None"];

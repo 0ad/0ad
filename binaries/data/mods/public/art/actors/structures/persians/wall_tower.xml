@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="100" name="walltower">
       <mesh>structural/pers_wall_tower.dae</mesh>
       <props>
         <prop actor="props/structures/persians/wall_tower.xml" attachpoint="root"/>
-        <prop actor=""/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <texture>structural/pers_struct.dds</texture>
     </variant>
   </group>
-
+  <group>
+    <variant name="Idle"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/waypoint_flag_0ad.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
   <material>player_trans.xml</material>
-
 </actor>
