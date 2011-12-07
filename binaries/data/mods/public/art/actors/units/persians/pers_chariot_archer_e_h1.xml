@@ -21,6 +21,7 @@
       <mesh>skeletal/horse.pmd</mesh>
       <props>
         <prop actor="props/units/horse/pers_peytral.xml" attachpoint="chest"/>
+        <prop actor="props/units/horse_back_blanket.xml" attachpoint="rider"/>
       </props>
     </variant>
   </group>

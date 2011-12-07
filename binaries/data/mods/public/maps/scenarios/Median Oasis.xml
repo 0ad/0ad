@@ -3,8 +3,8 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>cirrus</SkySet>
-		<SunColour r="1.13477" g="0.752063" b="0.373807"/>
+		<SkySet>sunrise</SkySet>
+		<SunColour r="1.13477" g="0.738713" b="0.373807"/>
 		<SunElevation angle="0.34668"/>
 		<SunRotation angle="-0.582913"/>
 		<TerrainAmbientColour r="0.282353" g="0.34902" b="0.513726"/>
@@ -13,18 +13,18 @@
 			<WaterBody>
 				<Type>default</Type>
 				<Colour r="0.294118" g="0.34902" b="0.694118"/>
-				<Height>21.1935</Height>
+				<Height>18.2557</Height>
 				<Shininess>1.70898</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.373047</Murkiness>
-				<Tint r="0.337255" g="0.411765" b="0.501961"/>
-				<ReflectionTint r="0.87451" g="0.694118" b="0.556863"/>
+				<Tint r="0" g="0" b="0"/>
+				<ReflectionTint r="0.866667" g="0.737255" b="0.466667"/>
 				<ReflectionTintStrength>0.355469</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="512.784" y="61.3786" z="797.776"/>
+		<Position x="514.607" y="79.7402" z="788.631"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -46,10 +46,22 @@
         "r": 80
       },
       "Name": "Player 1",
+      "StartingCamera": {
+        "Position": {
+          "x": 517.235,
+          "y": 22.3825,
+          "z": 850.446
+        },
+        "Rotation": {
+          "x": 35,
+          "y": 0,
+          "z": 0
+        }
+      },
       "Team": 0
     },
     {
-      "AI": "jubot",
+      "AI": "qbot",
       "Civ": "hele",
       "Colour": {
         "b": 20,
@@ -60,7 +72,7 @@
       "Team": 1
     },
     {
-      "AI": "jubot",
+      "AI": "qbot",
       "Civ": "pers",
       "Colour": {
         "b": 33,
@@ -71,7 +83,7 @@
       "Team": 0
     },
     {
-      "AI": "jubot",
+      "AI": "qbot",
       "Civ": "hele",
       "Colour": {
         "b": 191,
@@ -6240,7 +6252,7 @@
 		</Entity>
 		<Entity uid="1121">
 			<Template>actor|geology/stone_desert_med.xml</Template>
-			<Position x="422.9734" z="904.37458"/>
+			<Position x="436.31904" z="909.14545"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1122">
@@ -8705,8 +8717,8 @@
 		</Entity>
 		<Entity uid="1620">
 			<Template>actor|props/flora/water_log.xml</Template>
-			<Position x="555.37458" z="603.66163"/>
-			<Orientation y="1.0815"/>
+			<Position x="547.91791" z="596.0522"/>
+			<Orientation y="-2.25651"/>
 		</Entity>
 		<Entity uid="1637">
 			<Template>actor|props/flora/plant_sm.xml</Template>
@@ -13270,17 +13282,17 @@
 		</Entity>
 		<Entity uid="2562">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="530.61683" z="865.399"/>
-			<Orientation y="0.96836"/>
+			<Position x="487.28483" z="824.95588"/>
+			<Orientation y="3.12125"/>
 		</Entity>
 		<Entity uid="2563">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="533.3216" z="867.4513"/>
-			<Orientation y="2.35621"/>
+			<Position x="535.38123" z="866.94819"/>
+			<Orientation y="1.172"/>
 		</Entity>
 		<Entity uid="2564">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="531.65229" z="865.399"/>
+			<Position x="493.75007" z="869.64454"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2565">

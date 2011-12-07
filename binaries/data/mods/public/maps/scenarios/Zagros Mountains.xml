@@ -3,10 +3,10 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>sunny 1</SkySet>
+		<SkySet>cumulus</SkySet>
 		<SunColour r="0.811765" g="0.792157" b="0.701961"/>
-		<SunElevation angle="0.78233"/>
-		<SunRotation angle="-0.693359"/>
+		<SunElevation angle="0.773126"/>
+		<SunRotation angle="-0.668816"/>
 		<TerrainAmbientColour r="0.337255" g="0.427451" b="0.603922"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="381.354" y="97.0527" z="569.972"/>
+		<Position x="360.893" y="77.4587" z="697.713"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -223,30 +223,6 @@
 			<Player>0</Player>
 			<Position x="331.52363" z="751.44831"/>
 			<Orientation y="0.3271"/>
-		</Entity>
-		<Entity uid="90">
-			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
-			<Player>0</Player>
-			<Position x="789.48792" z="452.1164"/>
-			<Orientation y="-0.67215"/>
-		</Entity>
-		<Entity uid="91">
-			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
-			<Player>0</Player>
-			<Position x="760.14136" z="414.19126"/>
-			<Orientation y="0.56264"/>
-		</Entity>
-		<Entity uid="92">
-			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
-			<Player>0</Player>
-			<Position x="819.00483" z="387.35788"/>
-			<Orientation y="-1.6795"/>
-		</Entity>
-		<Entity uid="93">
-			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
-			<Player>0</Player>
-			<Position x="787.93177" z="376.16974"/>
-			<Orientation y="2.60207"/>
 		</Entity>
 		<Entity uid="94">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>

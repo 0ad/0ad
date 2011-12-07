@@ -3,35 +3,38 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>cloudless</SkySet>
+		<SkySet>stormy</SkySet>
 		<SunColour r="0.776471" g="0.74902" b="0.576471"/>
 		<SunElevation angle="0.785398"/>
 		<SunRotation angle="-0.785396"/>
-		<TerrainAmbientColour r="0.396078" g="0.47451" b="0.654902"/>
+		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
 		<UnitsAmbientColour r="0.439216" g="0.521569" b="0.611765"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>19.9</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.45</Murkiness>
-				<Tint r="0.278431" g="0.298039" b="0.588235"/>
-				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
+				<Murkiness>0.947266</Murkiness>
+				<Tint r="0" g="0.501961" b="1"/>
+				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="610.727" y="134.38" z="-24.5689"/>
-		<Rotation angle="-0.0805182"/>
-		<Declination angle="0.523599"/>
+		<Position x="554.441" y="118.09" z="-70.7325"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name": "The Massacre of Delphi",
   "Description": "The Celts invade Greece. Fight through the central valley or cut through the rich highlands in order to secure the lands around Delphi!",
+  "GameType": "conquest",
+  "Keywords": [],
+  "LockTeams": false,
+  "Name": "Massacre of Delphi",
   "PlayerData": [
     {
       "Civ": "celt"
@@ -40,7 +43,7 @@
       "Civ": "hele"
     }
   ],
-  "Keywords": []
+  "RevealMap": false
 }
 ]]></ScriptSettings>
 	<Entities>
