@@ -138,7 +138,7 @@ AttackMoveToCC.prototype.update = function(gameState, militaryManager, events){
 	if (numUnits < 1) return;
 	var damageRate = -deltaHealth / deltaTime * 1000;
 	var centrePos = units.getCentrePosition();
-	
+	if (! centrePos) return;
 	
 	var idleCount = 0;
 	// Looks for idle units away from the formations centre
