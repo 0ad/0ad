@@ -2,8 +2,8 @@
 <actor version="1">
   <group>
     <variant name="decal_dirt_6x4">
-      <decal width="40" depth="25" angle="0" offsetx="0" offsetz="0"/>
-      <texture>props/decal_struct_sand_long.dds</texture>
+      <decal angle="0" depth="25" offsetx="0" offsetz="0" width="40"/>
+      <texture>props/decal_struct_sand_long.png</texture>
     </variant>
   </group>
   <material>basic_trans.xml</material>
