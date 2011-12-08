@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.60.0 r41226</authoring_tool>
     </contributor>
-    <created>2011-11-07T19:16:39</created>
-    <modified>2011-11-07T19:16:39</modified>
+    <created>2011-12-08T00:26:11</created>
+    <modified>2011-12-08T00:26:11</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -395,6 +395,9 @@
           </node>
           <node id="prop-projectile" name="prop-projectile" sid="prop-projectile" type="JOINT">
             <matrix sid="transform">1 0 0 0 0 1 0 10.4391 0 0 1 0.8209438 0 0 0 1</matrix>
+          </node>
+          <node id="prop-garrisoned" name="prop-garrisoned" sid="prop-garrisoned" type="JOINT">
+            <matrix sid="transform">7.54979e-8 1 0 2.981608 -7.54979e-8 5.69993e-15 1 17.06719 1 -7.54979e-8 7.54979e-8 3.457351 0 0 0 1</matrix>
           </node>
         </node>
       </node>
