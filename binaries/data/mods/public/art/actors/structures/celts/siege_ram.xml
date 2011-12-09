@@ -7,7 +7,7 @@
         <animation file="mechanical/celt_siege_ram_idle.dae" name="Idle" speed="100"/> 
         <animation file="mechanical/celt_siege_ram_move.dae" name="Walk" speed="15"/> 
         <animation file="mechanical/celt_siege_ram_move.dae" name="Run" speed="30"/> 
-        <animation file="mechanical/celt_siege_ram_attack.dae" name="Melee" speed="100"/>
+        <animation event="0.5" file="mechanical/celt_siege_ram_attack.dae" name="Melee" speed="100"/>
       </animations> 
       <mesh>structural/celt_siege_ram.dae</mesh>
       <props>
@@ -16,5 +16,4 @@
       <texture>structural/celt_siege_ram.dds</texture>
     </variant>
   </group>
-  <material>basic_trans.xml</material>
 </actor>
