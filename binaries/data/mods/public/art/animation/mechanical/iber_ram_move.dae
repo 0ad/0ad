@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.60.0 r41226</authoring_tool>
     </contributor>
-    <created>2011-11-02T23:22:33</created>
-    <modified>2011-11-02T23:22:33</modified>
+    <created>2011-12-09T20:49:58</created>
+    <modified>2011-12-09T20:49:58</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -98,25 +98,25 @@
   <library_animations>
     <animation id="FourWheelRam_RamBone_pose_matrix">
       <source id="FourWheelRam_RamBone_pose_matrix-input">
-        <float_array id="FourWheelRam_RamBone_pose_matrix-input-array" count="5">0.03999996 0.4 0.8 1.16 1.2</float_array>
+        <float_array id="FourWheelRam_RamBone_pose_matrix-input-array" count="4">0.03999996 0.4 0.8 1.2</float_array>
         <technique_common>
-          <accessor source="#FourWheelRam_RamBone_pose_matrix-input-array" count="5" stride="1">
+          <accessor source="#FourWheelRam_RamBone_pose_matrix-input-array" count="4" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="FourWheelRam_RamBone_pose_matrix-output">
-        <float_array id="FourWheelRam_RamBone_pose_matrix-output-array" count="80">1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1</float_array>
+        <float_array id="FourWheelRam_RamBone_pose_matrix-output-array" count="64">1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#FourWheelRam_RamBone_pose_matrix-output-array" count="5" stride="16">
+          <accessor source="#FourWheelRam_RamBone_pose_matrix-output-array" count="4" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="FourWheelRam_RamBone_pose_matrix-interpolation">
-        <Name_array id="FourWheelRam_RamBone_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="FourWheelRam_RamBone_pose_matrix-interpolation-array" count="4">LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#FourWheelRam_RamBone_pose_matrix-interpolation-array" count="5" stride="1">
+          <accessor source="#FourWheelRam_RamBone_pose_matrix-interpolation-array" count="4" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -130,25 +130,25 @@
     </animation>
     <animation id="FourWheelRam_WheelLeftBack_pose_matrix">
       <source id="FourWheelRam_WheelLeftBack_pose_matrix-input">
-        <float_array id="FourWheelRam_WheelLeftBack_pose_matrix-input-array" count="5">0.03999996 0.4 0.8 1.16 1.2</float_array>
+        <float_array id="FourWheelRam_WheelLeftBack_pose_matrix-input-array" count="4">0.03999996 0.4 0.8 1.2</float_array>
         <technique_common>
-          <accessor source="#FourWheelRam_WheelLeftBack_pose_matrix-input-array" count="5" stride="1">
+          <accessor source="#FourWheelRam_WheelLeftBack_pose_matrix-input-array" count="4" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="FourWheelRam_WheelLeftBack_pose_matrix-output">
-        <float_array id="FourWheelRam_WheelLeftBack_pose_matrix-output-array" count="80">3.13916e-7 -1 0 2.384418 1 3.13916e-7 -7.7486e-7 0.9007676 7.7486e-7 0 1 -2.81239 0 0 0 1 3.13917e-7 -1 0 2.384418 -0.5000008 -1.56958e-7 -0.866025 0.9007676 0.866025 2.7186e-7 -0.5000008 -2.81239 0 0 0 1 3.13916e-7 -1 0 2.384418 -0.4999993 -1.56958e-7 0.866026 0.9007676 -0.866026 -2.7186e-7 -0.4999993 -2.81239 0 0 0 1 3.13916e-7 -1 0 2.384418 0.9781333 3.07052e-7 -0.207979 0.9007676 0.207979 0 0.9781333 -2.81239 0 0 0 1 3.13916e-7 -1 0 2.384418 0.9781333 3.07052e-7 -0.207979 0.9007676 0.207979 0 0.9781333 -2.81239 0 0 0 1</float_array>
+        <float_array id="FourWheelRam_WheelLeftBack_pose_matrix-output-array" count="64">3.13916e-7 -1 0 2.384418 1 3.13916e-7 -7.7486e-7 0.9007676 7.7486e-7 0 1 -2.81239 0 0 0 1 3.13916e-7 -1 0 2.384418 -0.5000008 -1.56958e-7 -0.866025 0.9007676 0.866025 2.7186e-7 -0.5000008 -2.81239 0 0 0 1 3.13916e-7 -1 0 2.384418 -0.4999993 -1.56958e-7 0.866026 0.9007676 -0.866026 -2.7186e-7 -0.4999993 -2.81239 0 0 0 1 3.13916e-7 -1 0 2.384418 1 3.13916e-7 -1.09256e-6 0.9007676 1.09256e-6 0 1 -2.81239 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#FourWheelRam_WheelLeftBack_pose_matrix-output-array" count="5" stride="16">
+          <accessor source="#FourWheelRam_WheelLeftBack_pose_matrix-output-array" count="4" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="FourWheelRam_WheelLeftBack_pose_matrix-interpolation">
-        <Name_array id="FourWheelRam_WheelLeftBack_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="FourWheelRam_WheelLeftBack_pose_matrix-interpolation-array" count="4">LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#FourWheelRam_WheelLeftBack_pose_matrix-interpolation-array" count="5" stride="1">
+          <accessor source="#FourWheelRam_WheelLeftBack_pose_matrix-interpolation-array" count="4" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -162,25 +162,25 @@
     </animation>
     <animation id="FourWheelRam_WheelLeftFront_pose_matrix">
       <source id="FourWheelRam_WheelLeftFront_pose_matrix-input">
-        <float_array id="FourWheelRam_WheelLeftFront_pose_matrix-input-array" count="5">0.03999996 0.4 0.8 1.16 1.2</float_array>
+        <float_array id="FourWheelRam_WheelLeftFront_pose_matrix-input-array" count="4">0.03999996 0.4 0.8 1.2</float_array>
         <technique_common>
-          <accessor source="#FourWheelRam_WheelLeftFront_pose_matrix-input-array" count="5" stride="1">
+          <accessor source="#FourWheelRam_WheelLeftFront_pose_matrix-input-array" count="4" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="FourWheelRam_WheelLeftFront_pose_matrix-output">
-        <float_array id="FourWheelRam_WheelLeftFront_pose_matrix-output-array" count="80">3.13916e-7 -1 0 2.384418 1 3.13916e-7 -7.7486e-7 0.9007672 7.7486e-7 0 1 2.632552 0 0 0 1 3.13917e-7 -1 0 2.384418 -0.5000008 -1.56958e-7 -0.866025 0.9007672 0.866025 2.7186e-7 -0.5000008 2.632552 0 0 0 1 3.13916e-7 -1 0 2.384418 -0.4999993 -1.56958e-7 0.866026 0.9007672 -0.866026 -2.7186e-7 -0.4999993 2.632552 0 0 0 1 3.13916e-7 -1 0 2.384418 0.9781522 3.07058e-7 -0.2078904 0.9007672 0.2078904 0 0.9781522 2.632552 0 0 0 1 3.13916e-7 -1 0 2.384418 0.9781522 3.07058e-7 -0.2078904 0.9007672 0.2078904 0 0.9781522 2.632552 0 0 0 1</float_array>
+        <float_array id="FourWheelRam_WheelLeftFront_pose_matrix-output-array" count="64">3.13916e-7 -1 0 2.384418 1 3.13916e-7 -7.7486e-7 0.9007672 7.7486e-7 0 1 2.632552 0 0 0 1 3.13916e-7 -1 0 2.384418 -0.5000008 -1.56958e-7 -0.866025 0.9007672 0.866025 2.7186e-7 -0.5000008 2.632552 0 0 0 1 3.13916e-7 -1 0 2.384418 -0.4999993 -1.56958e-7 0.866026 0.9007672 -0.866026 -2.7186e-7 -0.4999993 2.632552 0 0 0 1 3.13916e-7 -1 0 2.384418 1 3.13916e-7 -1.09256e-6 0.9007672 1.09256e-6 0 1 2.632552 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#FourWheelRam_WheelLeftFront_pose_matrix-output-array" count="5" stride="16">
+          <accessor source="#FourWheelRam_WheelLeftFront_pose_matrix-output-array" count="4" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="FourWheelRam_WheelLeftFront_pose_matrix-interpolation">
-        <Name_array id="FourWheelRam_WheelLeftFront_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="FourWheelRam_WheelLeftFront_pose_matrix-interpolation-array" count="4">LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#FourWheelRam_WheelLeftFront_pose_matrix-interpolation-array" count="5" stride="1">
+          <accessor source="#FourWheelRam_WheelLeftFront_pose_matrix-interpolation-array" count="4" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -194,25 +194,25 @@
     </animation>
     <animation id="FourWheelRam_WheelRightBack_pose_matrix">
       <source id="FourWheelRam_WheelRightBack_pose_matrix-input">
-        <float_array id="FourWheelRam_WheelRightBack_pose_matrix-input-array" count="5">0.03999996 0.4 0.8 1.16 1.2</float_array>
+        <float_array id="FourWheelRam_WheelRightBack_pose_matrix-input-array" count="4">0.03999996 0.4 0.8 1.2</float_array>
         <technique_common>
-          <accessor source="#FourWheelRam_WheelRightBack_pose_matrix-input-array" count="5" stride="1">
+          <accessor source="#FourWheelRam_WheelRightBack_pose_matrix-input-array" count="4" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="FourWheelRam_WheelRightBack_pose_matrix-output">
-        <float_array id="FourWheelRam_WheelRightBack_pose_matrix-output-array" count="80">5.52335e-7 1 0 -2.366691 -1 5.52335e-7 1.78814e-7 0.9007676 1.78814e-7 0 1 -2.81239 0 0 0 1 5.52335e-7 1 0 -2.366691 0.5000001 -2.76168e-7 -0.8660255 0.9007676 -0.8660255 4.78336e-7 -0.5000001 -2.81239 0 0 0 1 5.52335e-7 1 0 -2.366691 0.5000001 -2.76168e-7 0.8660255 0.9007676 0.8660255 -4.78336e-7 -0.5000001 -2.81239 0 0 0 1 5.52335e-7 1 0 -2.366691 -0.9781435 5.40263e-7 0.2079307 0.9007676 0.2079307 0 0.9781435 -2.81239 0 0 0 1 5.52335e-7 1 0 -2.366691 -0.9781435 5.40263e-7 0.2079307 0.9007676 0.2079307 0 0.9781435 -2.81239 0 0 0 1</float_array>
+        <float_array id="FourWheelRam_WheelRightBack_pose_matrix-output-array" count="64">5.52335e-7 1 0 -2.366692 -1 5.52335e-7 1.78814e-7 0.9007676 1.78814e-7 0 1 -2.81239 0 0 0 1 5.52335e-7 1 0 -2.366692 0.5000001 -2.76168e-7 -0.8660255 0.9007676 -0.8660255 4.78336e-7 -0.5000001 -2.81239 0 0 0 1 5.52335e-7 1 0 -2.366692 0.5000001 -2.76167e-7 0.8660255 0.9007676 0.8660255 -4.78336e-7 -0.5000001 -2.81239 0 0 0 1 5.52335e-7 1 0 -2.366692 -1 5.52335e-7 -1.38886e-7 0.9007676 -1.38886e-7 0 1 -2.81239 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#FourWheelRam_WheelRightBack_pose_matrix-output-array" count="5" stride="16">
+          <accessor source="#FourWheelRam_WheelRightBack_pose_matrix-output-array" count="4" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="FourWheelRam_WheelRightBack_pose_matrix-interpolation">
-        <Name_array id="FourWheelRam_WheelRightBack_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="FourWheelRam_WheelRightBack_pose_matrix-interpolation-array" count="4">LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#FourWheelRam_WheelRightBack_pose_matrix-interpolation-array" count="5" stride="1">
+          <accessor source="#FourWheelRam_WheelRightBack_pose_matrix-interpolation-array" count="4" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -226,25 +226,25 @@
     </animation>
     <animation id="FourWheelRam_WheelRightFront_pose_matrix">
       <source id="FourWheelRam_WheelRightFront_pose_matrix-input">
-        <float_array id="FourWheelRam_WheelRightFront_pose_matrix-input-array" count="5">0.03999996 0.4 0.8 1.16 1.2</float_array>
+        <float_array id="FourWheelRam_WheelRightFront_pose_matrix-input-array" count="4">0.03999996 0.4 0.8 1.2</float_array>
         <technique_common>
-          <accessor source="#FourWheelRam_WheelRightFront_pose_matrix-input-array" count="5" stride="1">
+          <accessor source="#FourWheelRam_WheelRightFront_pose_matrix-input-array" count="4" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="FourWheelRam_WheelRightFront_pose_matrix-output">
-        <float_array id="FourWheelRam_WheelRightFront_pose_matrix-output-array" count="80">5.52335e-7 1 0 -2.366691 -1 5.52335e-7 1.78814e-7 0.9007672 1.78814e-7 0 1 2.632552 0 0 0 1 5.52335e-7 1 0 -2.366691 0.5000001 -2.76168e-7 -0.8660255 0.9007672 -0.8660255 4.78336e-7 -0.5000001 2.632552 0 0 0 1 5.52335e-7 1 0 -2.366691 0.5000001 -2.76168e-7 0.8660255 0.9007672 0.8660255 -4.78336e-7 -0.5000001 2.632552 0 0 0 1 5.52335e-7 1 0 -2.366691 -0.9781514 5.40267e-7 0.2078937 0.9007672 0.2078937 0 0.9781514 2.632552 0 0 0 1 5.52335e-7 1 0 -2.366691 -0.9781514 5.40267e-7 0.2078937 0.9007672 0.2078937 0 0.9781514 2.632552 0 0 0 1</float_array>
+        <float_array id="FourWheelRam_WheelRightFront_pose_matrix-output-array" count="64">5.52335e-7 1 0 -2.366692 -1 5.52335e-7 1.78814e-7 0.9007672 1.78814e-7 0 1 2.632552 0 0 0 1 5.52335e-7 1 0 -2.366692 0.5000001 -2.76168e-7 -0.8660255 0.9007672 -0.8660255 4.78336e-7 -0.5000001 2.632552 0 0 0 1 5.52335e-7 1 0 -2.366692 0.5000001 -2.76167e-7 0.8660255 0.9007672 0.8660255 -4.78336e-7 -0.5000001 2.632552 0 0 0 1 5.52335e-7 1 0 -2.366692 -1 5.52335e-7 -1.38886e-7 0.9007672 -1.38886e-7 0 1 2.632552 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#FourWheelRam_WheelRightFront_pose_matrix-output-array" count="5" stride="16">
+          <accessor source="#FourWheelRam_WheelRightFront_pose_matrix-output-array" count="4" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="FourWheelRam_WheelRightFront_pose_matrix-interpolation">
-        <Name_array id="FourWheelRam_WheelRightFront_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="FourWheelRam_WheelRightFront_pose_matrix-interpolation-array" count="4">LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#FourWheelRam_WheelRightFront_pose_matrix-interpolation-array" count="5" stride="1">
+          <accessor source="#FourWheelRam_WheelRightFront_pose_matrix-interpolation-array" count="4" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -278,9 +278,9 @@
           </technique_common>
         </source>
         <source id="FourWheelRam_Ram-skin-weights">
-          <float_array id="FourWheelRam_Ram-skin-weights-array" count="537">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</float_array>
+          <float_array id="FourWheelRam_Ram-skin-weights-array" count="97">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</float_array>
           <technique_common>
-            <accessor source="#FourWheelRam_Ram-skin-weights-array" count="537" stride="1">
+            <accessor source="#FourWheelRam_Ram-skin-weights-array" count="97" stride="1">
               <param name="WEIGHT" type="float"/>
             </accessor>
           </technique_common>
@@ -292,8 +292,8 @@
         <vertex_weights count="537">
           <input semantic="JOINT" source="#FourWheelRam_Ram-skin-joints" offset="0"/>
           <input semantic="WEIGHT" source="#FourWheelRam_Ram-skin-weights" offset="1"/>
-          <vcount>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 </vcount>
-          <v>5 0 5 1 5 2 5 3 5 4 5 5 5 6 5 7 5 8 5 9 5 10 5 11 5 12 5 13 5 14 5 15 1 16 3 17 1 18 3 19 1 20 3 21 1 22 3 23 1 24 3 25 1 26 3 27 1 28 3 29 1 30 3 31 1 32 3 33 1 34 3 35 1 36 3 37 1 38 3 39 1 40 3 41 1 42 3 43 1 44 3 45 1 46 3 47 1 48 3 49 1 50 3 51 1 52 3 53 1 54 3 55 5 56 5 57 5 58 5 59 5 60 5 61 5 62 5 63 5 64 5 65 5 66 5 67 5 68 5 69 5 70 5 71 0 72 2 73 0 74 2 75 0 76 2 77 0 78 2 79 0 80 2 81 0 82 2 83 0 84 2 85 0 86 2 87 0 88 2 89 0 90 2 91 0 92 2 93 0 94 2 95 0 96 2 97 0 98 2 99 0 100 2 101 0 102 2 103 0 104 2 105 0 106 2 107 0 108 2 109 0 110 2 111 5 112 5 113 5 114 5 115 5 116 5 117 5 118 5 119 5 120 5 121 5 122 5 123 5 124 5 125 5 126 5 127 5 128 5 129 5 130 5 131 5 132 5 133 5 134 5 135 5 136 5 137 5 138 5 139 5 140 5 141 5 142 5 143 5 144 5 145 5 146 5 147 5 148 5 149 5 150 5 151 5 152 5 153 5 154 5 155 5 156 5 157 5 158 5 159 5 160 5 161 5 162 5 163 5 164 5 165 5 166 5 167 5 168 5 169 5 170 5 171 5 172 5 173 5 174 5 175 5 176 5 177 5 178 5 179 5 180 5 181 5 182 5 183 5 184 5 185 5 186 5 187 5 188 5 189 5 190 5 191 5 192 5 193 5 194 5 195 5 196 5 197 5 198 5 199 5 200 5 201 5 202 5 203 5 204 5 205 5 206 5 207 5 208 5 209 5 210 5 211 5 212 5 213 5 214 5 215 5 216 5 217 5 218 5 219 5 220 5 221 5 222 5 223 5 224 5 225 5 226 5 227 5 228 5 229 5 230 5 231 5 232 5 233 5 234 5 235 5 236 5 237 5 238 5 239 5 240 5 241 5 242 5 243 5 244 5 245 5 246 5 247 5 248 5 249 5 250 5 251 5 252 5 253 5 254 5 255 5 256 5 257 5 258 5 259 5 260 5 261 5 262 5 263 5 264 5 265 5 266 5 267 5 268 5 269 5 270 5 271 5 272 5 273 5 274 5 275 5 276 5 277 5 278 5 279 5 280 5 281 5 282 5 283 5 284 5 285 5 286 5 287 5 288 5 289 5 290 5 291 5 292 5 293 5 294 5 295 5 296 5 297 5 298 5 299 5 300 5 301 5 302 5 303 5 304 5 305 5 306 5 307 5 308 5 309 5 310 5 311 5 312 5 313 5 314 5 315 5 316 5 317 5 318 5 319 5 320 5 321 5 322 5 323 5 324 5 325 5 326 5 327 5 328 5 329 5 330 5 331 5 332 5 333 5 334 5 335 5 336 5 337 5 338 5 339 5 340 5 341 5 342 5 343 5 344 5 345 5 346 5 347 5 348 5 349 5 350 5 351 5 352 5 353 5 354 5 355 5 356 5 357 5 358 5 359 5 360 5 361 5 362 5 363 5 364 5 365 5 366 5 367 5 368 5 369 5 370 5 371 5 372 5 373 5 374 5 375 5 376 5 377 5 378 5 379 5 380 5 381 5 382 5 383 5 384 5 385 5 386 5 387 5 388 5 389 5 390 5 391 5 392 5 393 5 394 5 395 5 396 5 397 5 398 5 399 5 400 5 401 5 402 5 403 4 404 4 405 4 406 4 407 4 408 4 409 4 410 4 411 4 412 4 413 4 414 4 415 4 416 4 417 4 418 4 419 4 420 5 421 5 422 5 423 5 424 5 425 5 426 5 427 5 428 5 429 5 430 5 431 5 432 5 433 5 434 5 435 5 436 5 437 5 438 5 439 5 440 5 441 5 442 5 443 5 444 5 445 5 446 5 447 5 448 5 449 5 450 5 451 5 452 5 453 5 454 5 455 5 456 5 457 5 458 5 459 5 460 5 461 5 462 5 463 5 464 5 465 5 466 5 467 5 468 5 469 5 470 5 471 5 472 5 473 5 474 5 475 5 476 5 477 5 478 5 479 5 480 5 481 5 482 5 483 5 484 5 485 5 486 5 487 5 488 5 489 5 490 5 491 5 492 5 493 5 494 5 495 5 496 5 497 5 498 5 499 5 500 5 501 5 502 5 503 5 504 5 505 5 506 5 507 5 508 5 509 5 510 5 511 5 512 5 513 5 514 5 515 5 516 5 517 5 518 5 519 5 520 5 521 5 522 5 523 5 524 5 525 5 526 5 527 5 528 5 529 5 530 5 531 5 532 5 533 5 534 5 535 5 536</v>
+          <vcount>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 </vcount>
+          <v>1 0 3 1 1 2 3 3 1 4 3 5 1 6 3 7 1 8 3 9 1 10 3 11 1 12 3 13 1 14 3 15 1 16 3 17 1 18 3 19 1 20 3 21 1 22 3 23 1 24 3 25 1 26 3 27 1 28 3 29 1 30 3 31 1 32 3 33 1 34 3 35 1 36 3 37 1 38 3 39 0 40 2 41 0 42 2 43 0 44 2 45 0 46 2 47 0 48 2 49 0 50 2 51 0 52 2 53 0 54 2 55 0 56 2 57 0 58 2 59 0 60 2 61 0 62 2 63 0 64 2 65 0 66 2 67 0 68 2 69 0 70 2 71 0 72 2 73 0 74 2 75 0 76 2 77 0 78 2 79 4 80 4 81 4 82 4 83 4 84 4 85 4 86 4 87 4 88 4 89 4 90 4 91 4 92 4 93 4 94 4 95 4 96</v>
         </vertex_weights>
       </skin>
     </controller>
@@ -309,19 +309,22 @@
         <node id="RamBone" name="RamBone" sid="RamBone" type="JOINT">
           <matrix sid="transform">1 0 0 0 0 7.54979e-8 -1 0 0 1 7.54979e-8 0 0 0 0 1</matrix>
           <node id="WheelLeftBack" name="WheelLeftBack" sid="WheelLeftBack" type="JOINT">
-            <matrix sid="transform">3.13916e-7 -1 -2.35919e-13 2.384418 0.9781333 3.07052e-7 -0.207979 0.9007676 0.207979 6.52878e-8 0.9781333 -2.81239 0 0 0 1</matrix>
+            <matrix sid="transform">3.13916e-7 -1 -2.21216e-13 2.384418 1 3.13916e-7 -1.09256e-6 0.9007676 1.09256e-6 1.21757e-13 1 -2.81239 0 0 0 1</matrix>
           </node>
           <node id="WheelLeftFront" name="WheelLeftFront" sid="WheelLeftFront" type="JOINT">
-            <matrix sid="transform">3.13916e-7 -1 -2.25738e-13 2.384418 0.9781522 3.07058e-7 -0.2078904 0.9007671 0.2078904 6.526e-8 0.9781522 2.632552 0 0 0 1</matrix>
+            <matrix sid="transform">3.13916e-7 -1 -2.21216e-13 2.384418 1 3.13916e-7 -1.09256e-6 0.9007671 1.09256e-6 1.21757e-13 1 2.632552 0 0 0 1</matrix>
           </node>
           <node id="WheelRightBack" name="WheelRightBack" sid="WheelRightBack" type="JOINT">
-            <matrix sid="transform">5.52335e-7 1 -1.27794e-13 -2.366691 -0.9781435 5.40263e-7 0.2079307 0.9007676 0.2079307 -1.14847e-7 0.9781435 -2.81239 0 0 0 1</matrix>
+            <matrix sid="transform">5.52335e-7 1 -1.19845e-13 -2.366692 -1 5.52335e-7 -1.38886e-7 0.9007676 -1.38886e-7 1.96557e-13 1 -2.81239 0 0 0 1</matrix>
           </node>
           <node id="WheelRightFront" name="WheelRightFront" sid="WheelRightFront" type="JOINT">
-            <matrix sid="transform">5.52335e-7 1 -1.10377e-13 -2.366691 -0.9781514 5.40267e-7 0.2078937 0.9007671 0.2078937 -1.14827e-7 0.9781514 2.632552 0 0 0 1</matrix>
+            <matrix sid="transform">5.52335e-7 1 -1.19845e-13 -2.366692 -1 5.52335e-7 -1.38886e-7 0.9007671 -1.38886e-7 1.96557e-13 1 2.632552 0 0 0 1</matrix>
           </node>
           <node id="Weapon" name="Weapon" sid="Weapon" type="JOINT">
             <matrix sid="transform">-4.17288e-7 -3.18422e-8 -1 -0.001851559 1 5.96046e-8 -4.17288e-7 1.786429 5.96047e-8 -1 3.18421e-8 5.485816 0 0 0 1</matrix>
+          </node>
+          <node id="prop_garrisoned" name="prop_garrisoned" sid="prop_garrisoned" type="JOINT">
+            <matrix sid="transform">1 0 0 -0.6008426 0 1 0 3.294856 0 0 1 -2.984471 0 0 0 1</matrix>
           </node>
         </node>
       </node>
