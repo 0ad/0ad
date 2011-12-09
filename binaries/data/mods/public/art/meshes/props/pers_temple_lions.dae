@@ -1,243 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
   <asset>
     <contributor>
-      <author></author>
-      <authoring_tool>FBX COLLADA exporter</authoring_tool>
-      <comments></comments>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.60.0 r41226</authoring_tool>
     </contributor>
-    <created>2011-06-05T04:10:59Z</created>
-    <modified>2011-06-05T04:10:59Z</modified>
-    <revision></revision>
-    <title></title>
-    <subject></subject>
-    <keywords></keywords>
-    <unit meter="0.025400"/>
-    <up_axis>Y_UP</up_axis>
+    <created>2011-12-09T00:15:56</created>
+    <modified>2011-12-09T00:15:56</modified>
+    <unit name="inch" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
   </asset>
-  <library_images>
-    <image id="Map__4-image" name="Map__4">
-      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\internal\art\textures\skins\structural\pers_struct.dds</init_from>
-    </image>
-  </library_images>
-  <library_materials>
-    <material id="_02___Default" name="_02___Default">
-      <instance_effect url="#_02___Default-fx"/>
-    </material>
-  </library_materials>
   <library_effects>
-    <effect id="_02___Default-fx" name="_02___Default">
+    <effect id="Material-effect">
       <profile_COMMON>
-        <technique sid="standard">
+        <technique sid="common">
           <phong>
             <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+              <color sid="emission">0 0 0 1</color>
             </emission>
             <ambient>
-              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+              <color sid="ambient">0 0 0 1</color>
             </ambient>
             <diffuse>
-              <texture texture="Map__4-image" texcoord="CHANNEL0">
-                <extra>
-                  <technique profile="MAYA">
-                    <wrapU sid="wrapU0">TRUE</wrapU>
-                    <wrapV sid="wrapV0">TRUE</wrapV>
-                    <blend_mode>ADD</blend_mode>
-                  </technique>
-                </extra>
-              </texture>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
             </diffuse>
             <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+              <color sid="specular">0.5 0.5 0.5 1</color>
             </specular>
             <shininess>
-              <float sid="shininess">2.000000</float>
+              <float sid="shininess">50</float>
             </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
           </phong>
         </technique>
+        <extra>
+          <technique profile="GOOGLEEARTH">
+            <double_sided>1</double_sided>
+          </technique>
+        </extra>
       </profile_COMMON>
+      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
     </effect>
   </library_effects>
+  <library_materials>
+    <material id="Material-material" name="Material">
+      <instance_effect url="#Material-effect"/>
+    </material>
+  </library_materials>
   <library_geometries>
-    <geometry id="Object48-lib" name="Object48Mesh">
+    <geometry id="Cube_000-mesh">
       <mesh>
-        <source id="Object48-lib-Position">
-          <float_array id="Object48-lib-Position-array" count="60">
--40.438511 -63.384541 6.694006
--6.078983 -63.384541 6.694006
--6.078983 -63.384541 12.121714
--40.438511 -63.384541 12.121714
--6.078983 -63.384541 17.549414
--6.078983 -63.384541 28.404819
--40.438511 -63.384541 28.404819
--40.438511 -63.384541 22.977119
--6.078983 -63.384541 22.977119
--40.438511 -63.384541 17.549414
-7.830015 -63.302263 6.694005
-42.189541 -63.302263 6.694005
-42.189541 -63.302263 12.121713
-7.830015 -63.302263 12.121713
-42.189541 -63.302263 17.549412
-42.189541 -63.302263 28.404818
-7.830015 -63.302263 28.404818
-7.830015 -63.302263 22.977118
-42.189541 -63.302263 22.977118
-7.830015 -63.302263 17.549412
-</float_array>
+        <source id="Cube_000-mesh-positions">
+          <float_array id="Cube_000-mesh-positions-array" count="36">-1.232841 -8.834148 1.814058 1.513985 -8.834148 1.814058 1.513985 -8.834148 3.373406 -1.232841 -8.834148 3.373406 7.149849 -8.83501 2.277963 2.975871 -8.83501 2.277963 -7.038662 -8.834148 2.277963 -2.864685 -8.834148 2.277963 -2.864685 -8.834148 -0.09156572 7.149849 -8.83501 -0.09156572 -7.038662 -8.834148 -0.09156572 2.975871 -8.83501 -0.09156572</float_array>
           <technique_common>
-            <accessor source="#Object48-lib-Position-array" count="20" stride="3">
+            <accessor source="#Cube_000-mesh-positions-array" count="12" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Object48-lib-Normal0">
-          <float_array id="Object48-lib-Normal0-array" count="144">
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-</float_array>
+        <source id="Cube_000-mesh-normals">
+          <float_array id="Cube_000-mesh-normals-array" count="9">0 -1 0 0 -1 0 0 -1 0</float_array>
           <technique_common>
-            <accessor source="#Object48-lib-Normal0-array" count="48" stride="3">
+            <accessor source="#Cube_000-mesh-normals-array" count="3" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Object48-lib-UV0">
-          <float_array id="Object48-lib-UV0-array" count="60">
-0.498650 0.359329
-0.251158 0.359329
-0.251158 0.394225
-0.498650 0.394225
-0.251158 0.429122
-0.251158 0.498914
-0.498650 0.498914
-0.498650 0.464018
-0.251158 0.464018
-0.498650 0.429122
-0.251085 0.359329
-0.498723 0.359329
-0.498723 0.394225
-0.251085 0.394225
-0.498723 0.429122
-0.498723 0.498914
-0.251085 0.498914
-0.251085 0.464018
-0.498723 0.464018
-0.251085 0.429122
-0.498650 0.359329
-0.251158 0.359329
-0.251158 0.394225
-0.498650 0.394225
-0.251158 0.429122
-0.251158 0.498914
-0.498650 0.498914
-0.498650 0.464018
-0.251158 0.464018
-0.498650 0.429122
-</float_array>
+        <source id="Cube_000-mesh-map-0">
+          <float_array id="Cube_000-mesh-map-0-array" count="24">0.009746432 0.316715 0.009746432 0.2589908 0.1114288 0.2589908 0.1114288 0.316715 0.4985446 0.4985519 0.4985446 0.3601773 0.2547947 0.3601773 0.2547947 0.4985519 0.4985455 0.4985519 0.2547956 0.4985519 0.2547956 0.3601773 0.4985455 0.3601773</float_array>
           <technique_common>
-            <accessor source="#Object48-lib-UV0-array" count="30" stride="2">
+            <accessor source="#Cube_000-mesh-map-0-array" count="12" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="Object48-lib-Vertex">
-          <input semantic="POSITION" source="#Object48-lib-Position"/>
+        <vertices id="Cube_000-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_000-mesh-positions"/>
         </vertices>
-        <polygons material="_02___Default" count="16">
-          <input semantic="VERTEX" offset="0" source="#Object48-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Object48-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Object48-lib-UV0"/>
-          <p>0 0 0 1 1 1 2 2 2</p>
-          <p>3 3 3 0 4 0 2 5 2</p>
-          <p>3 6 3 2 7 2 4 8 4</p>
-          <p>5 9 5 6 10 6 7 11 7</p>
-          <p>8 12 8 5 13 5 7 14 7</p>
-          <p>8 15 8 7 16 7 9 17 9</p>
-          <p>4 18 4 8 19 8 9 20 9</p>
-          <p>3 21 3 4 22 4 9 23 9</p>
-          <p>10 24 10 11 25 11 12 26 12</p>
-          <p>13 27 13 10 28 10 12 29 12</p>
-          <p>13 30 13 12 31 12 14 32 14</p>
-          <p>15 33 15 16 34 16 17 35 17</p>
-          <p>18 36 18 15 37 15 17 38 17</p>
-          <p>18 39 18 17 40 17 19 41 19</p>
-          <p>14 42 14 18 43 18 19 44 19</p>
-          <p>13 45 13 14 46 14 19 47 19</p>
-        </polygons>
+        <polylist material="Material1" count="3">
+          <input semantic="VERTEX" source="#Cube_000-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_000-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Cube_000-mesh-map-0" offset="2" set="0"/>
+          <vcount>4 4 4 </vcount>
+          <p>3 0 0 0 0 1 1 0 2 2 0 3 6 1 4 10 1 5 8 1 6 7 1 7 4 2 8 5 2 9 11 2 10 9 2 11</p>
+        </polylist>
       </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
     </geometry>
   </library_geometries>
   <library_visual_scenes>
-    <visual_scene id="RootNode" name="RootNode">
-      <node id="Object48" name="Object48">
-        <matrix sid="matrix">0.140836 0.000000 0.000000 0.000000 0.000000 0.000000 0.140836 -0.495478 0.000000 -0.140836 0.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
-        <instance_geometry url="#Object48-lib">
+    <visual_scene id="Scene" name="Scene">
+      <node id="props" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <instance_geometry url="#Cube_000-mesh">
           <bind_material>
             <technique_common>
-              <instance_material symbol="_02___Default" target="#_02___Default"/>
+              <instance_material symbol="Material1" target="#Material-material">
+                <bind_vertex_input semantic="Object15-lib-UV0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
@@ -245,7 +116,6 @@
     </visual_scene>
   </library_visual_scenes>
   <scene>
-    <instance_visual_scene url="#RootNode"/>
+    <instance_visual_scene url="#Scene"/>
   </scene>
 </COLLADA>
-
