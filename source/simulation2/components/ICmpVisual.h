@@ -20,6 +20,7 @@
 
 #include "simulation2/system/Interface.h"
 
+#include "ps/CStr.h"
 #include "maths/BoundingBoxOriented.h"
 #include "maths/BoundingBoxAligned.h"
 #include "maths/Fixed.h"
@@ -89,6 +90,11 @@ public:
 	 * @param soundgroup VFS path of sound group .xml, relative to audio/, or empty string for none
 	 */
 	virtual void SelectAnimation(std::string name, bool once, fixed speed, std::wstring soundgroup) = 0;
+
+	/**
+	 * Sets the specified entity selection on the underlying unit.
+	 */
+	virtual void SetUnitEntitySelection(const CStr& selection) = 0;
 
 	/**
 	 * Start playing the walk/run animations, scaled to the unit's movement speed.

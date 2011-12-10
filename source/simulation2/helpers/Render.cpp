@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -343,9 +343,10 @@ static CVector2D EvaluateSpline(float t, CVector2D a0, CVector2D a1, CVector2D a
 	return p + CVector2D(dp.Y*-offset, dp.X*offset);
 }
 
-void SimRender::InterpolatePointsRNS(std::vector<CVector2D>& points, bool closed, float offset)
+void SimRender::InterpolatePointsRNS(std::vector<CVector2D>& points, bool closed, float offset, int segmentSamples)
 {
 	PROFILE("InterpolatePointsRNS");
+	ENSURE(segmentSamples > 0);
 
 	std::vector<CVector2D> newPoints;
 
@@ -357,20 +358,54 @@ void SimRender::InterpolatePointsRNS(std::vector<CVector2D>& points, bool closed
 	// curve with fewer points
 
 	size_t n = points.size();
-	if (n < 1)
-		return; // can't do anything unless we have two points
 
-	size_t imax = closed ? n : n-1; // TODO: we probably need to do a bit more to handle non-closed paths
+	if (closed)
+	{
+		if (n < 1)
+			return; // we need at least a single point to not crash
+	}
+	else
+	{
+		if (n < 2)
+			return; // in non-closed mode, we need at least n=2 to not crash
+	}
 
-	newPoints.reserve(imax*4);
+	size_t imax = closed ? n : n-1;
+	newPoints.reserve(imax*segmentSamples);
+
+	// these are primarily used inside the loop, but for open paths we need them outside the loop once to compute the last point
+	CVector2D a0;
+	CVector2D a1;
+	CVector2D a2;
+	CVector2D a3;
 
 	for (size_t i = 0; i < imax; ++i)
 	{
-		// Get the relevant points for this spline segment
-		CVector2D p0 = points[(i-1+n)%n];
+
+		// Get the relevant points for this spline segment; each step interpolates the segment between p1 and p2; p0 and p3 are the points
+		// before p1 and after p2, respectively; they're needed to compute tangents and whatnot.
+		CVector2D p0; // normally points[(i-1+n)%n], but it's a bit more complicated due to open/closed paths -- see below
 		CVector2D p1 = points[i];
 		CVector2D p2 = points[(i+1)%n];
-		CVector2D p3 = points[(i+2)%n];
+		CVector2D p3; // normally points[(i+2)%n], but it's a bit more complicated due to open/closed paths -- see below
+
+		if (!closed && (i == 0))
+			// p0's point index is out of bounds, and we can't wrap around because we're in non-closed mode -- create an artificial point
+			// that extends p1 -> p0 (i.e. the first segment's direction)
+			p0 = points[0] + (points[0] - points[1]);
+		else
+			// standard wrap-around case
+			p0 = points[(i-1+n)%n]; // careful; don't use (i-1)%n here, as the result is machine-dependent for negative operands (e.g. if i==0, the result could be either -1 or n-1)
+
+
+		if (!closed && (i == n-2))
+			// p3's point index is out of bounds; create an artificial point that extends p_(n-2) -> p_(n-1) (i.e. the last segment's direction)
+			// (note that p2's index should not be out of bounds, because in non-closed mode imax is reduced by 1)
+			p3 = points[n-1] + (points[n-1] - points[n-2]);
+		else
+			// standard wrap-around case
+			p3 = points[(i+2)%n];
+
 
 		// Do the RNS computation (based on GPG4 "Nonuniform Splines")
 		float l1 = (p2 - p1).Length(); // length of spline segment (i)..(i+1)
@@ -381,17 +416,108 @@ void SimRender::InterpolatePointsRNS(std::vector<CVector2D>& points, bool closed
 		CVector2D v2 = (s1 + s2).Normalized() * l1; // spline velocity at i+1
 
 		// Compute standard cubic spline parameters
-		CVector2D a0 = p1*2 + p2*-2 + v1 + v2;
-		CVector2D a1 = p1*-3 + p2*3 + v1*-2 + v2*-1;
-		CVector2D a2 = v1;
-		CVector2D a3 = p1;
+		a0 = p1*2 + p2*-2 + v1 + v2;
+		a1 = p1*-3 + p2*3 + v1*-2 + v2*-1;
+		a2 = v1;
+		a3 = p1;
 
-		// Interpolate at various points
-		newPoints.push_back(EvaluateSpline(0.f, a0, a1, a2, a3, offset));
-		newPoints.push_back(EvaluateSpline(1.f/4.f, a0, a1, a2, a3, offset));
-		newPoints.push_back(EvaluateSpline(2.f/4.f, a0, a1, a2, a3, offset));
-		newPoints.push_back(EvaluateSpline(3.f/4.f, a0, a1, a2, a3, offset));
+		// Interpolate at regular points across the interval
+		for (int sample = 0; sample < segmentSamples; sample++)
+			newPoints.push_back(EvaluateSpline(sample/((float) segmentSamples), a0, a1, a2, a3, offset));
+
 	}
 
+	if (!closed)
+		// if the path is open, we should take care to include the last control point
+		// NOTE: we can't just do push_back(points[n-1]) here because that ignores the offset
+		newPoints.push_back(EvaluateSpline(1.f, a0, a1, a2, a3, offset));
+
 	points.swap(newPoints);
+}
+
+void SimRender::ConstructDashedLine(const std::vector<CVector2D>& keyPoints, SDashedLine& dashedLineOut, const float dashLength, const float blankLength)
+{
+	// sanity checks
+	if (dashLength <= 0)
+		return;
+
+	if (blankLength <= 0)
+		return;
+
+	if (keyPoints.size() < 2)
+		return;
+
+	dashedLineOut.m_Points.clear();
+	dashedLineOut.m_StartIndices.clear();
+
+	// walk the line, counting the total length so far at each node point. When the length exceeds dashLength, cut the last segment at the
+	// required length and continue for blankLength along the line to start a new dash segment.
+
+	// TODO: we should probably extend this function to also allow for closed lines. I was thinking of slightly scaling the dash/blank length
+	// so that it fits the length of the curve, but that requires knowing the length of the curve upfront which is sort of expensive to compute
+	// (O(n) and lots of square roots).
+
+	bool buildingDash = true; // true if we're building a dash, false if a blank
+	float curDashLength = 0; // builds up the current dash/blank's length as we walk through the line nodes
+	CVector2D dashLastPoint = keyPoints[0]; // last point of the current dash/blank being built.
+
+	// register the first starting node of the first dash
+	dashedLineOut.m_Points.push_back(keyPoints[0]);
+	dashedLineOut.m_StartIndices.push_back(0);
+
+	// index of the next key point on the path. Must always point to a node that is further along the path than dashLastPoint, so we can
+	// properly take a direction vector along the path.
+	size_t i = 0;
+
+	while(i < keyPoints.size() - 1)
+	{
+		// get length of this segment
+		CVector2D segmentVector = keyPoints[i + 1] - dashLastPoint; // vector from our current point along the path to nextNode
+		float segmentLength = segmentVector.Length();
+
+		float targetLength = (buildingDash ? dashLength : blankLength);
+		if (curDashLength + segmentLength > targetLength)
+		{
+			// segment is longer than the dash length we still have to go, so we'll need to cut it; create a cut point along the segment
+			// line that is of just the required length to complete the dash, then make it the base point for the next dash/blank.
+			float cutLength = targetLength - curDashLength;
+			CVector2D cutPoint = dashLastPoint + (segmentVector.Normalized() * cutLength);
+
+			// start a new dash or blank in the next iteration
+			curDashLength = 0;
+			buildingDash = !buildingDash; // flip from dash to blank and vice-versa
+			dashLastPoint = cutPoint;
+
+			// don't increment i, we haven't fully traversed this segment yet so we still need to use the same point to take the
+			// direction vector with in the next iteration
+
+			// this cut point is either the end of the current dash or the beginning of a new dash; either way, we're gonna need it
+			// in the points array.
+			dashedLineOut.m_Points.push_back(cutPoint);
+
+			if (buildingDash)
+			{
+				// if we're gonna be building a new dash, then cutPoint is now the base point of that new dash, so let's register its
+				// index as a start index of a dash.
+				dashedLineOut.m_StartIndices.push_back(dashedLineOut.m_Points.size() - 1);
+			}
+
+		}
+		else
+		{
+			// the segment from lastDashPoint to keyPoints[i+1] doesn't suffice to complete the dash, so we need to add keyPoints[i+1]
+			// to this dash's points and continue from there
+
+			if (buildingDash)
+				// still building the dash, add it to the output (we don't need to store the blanks)
+				dashedLineOut.m_Points.push_back(keyPoints[i+1]);
+
+			curDashLength += segmentLength;
+			dashLastPoint = keyPoints[i+1];
+			i++;
+
+		}
+
+	}
+
 }

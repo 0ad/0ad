@@ -15,34 +15,28 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_ICMPPLAYER
-#define INCLUDED_ICMPPLAYER
+#ifndef INCLUDED_ICMPRALLYPOINT
+#define INCLUDED_ICMPRALLYPOINT
 
+#include "maths/FixedVector2D.h"
+#include "simulation2/helpers/Position.h"
 #include "simulation2/system/Interface.h"
 
-struct CColor;
-class CFixedVector3D;
-
 /**
- * Player data.
- * (This interface only includes the functions needed by native code for loading maps,
- * and for minimap rendering; most player interaction is handled by scripts instead.)
+ * Rally Point.
+ * Holds the position of a unit's rally point, and renders it to screen.
  */
-class ICmpPlayer : public IComponent
+class ICmpRallyPointRenderer : public IComponent
 {
 public:
-	virtual void SetName(const std::wstring& name) = 0;
-	virtual void SetCiv(const std::wstring& civcode) = 0;
-	virtual void SetColour(u8 r, u8 g, u8 b) = 0;
 
-	virtual CColor GetColour() = 0;
-	virtual std::wstring GetCiv() = 0;
-	virtual CFixedVector3D GetStartingCameraPos() = 0;
-	virtual CFixedVector3D GetStartingCameraRot() = 0;
+	/// Sets whether the rally point marker and line should be displayed.
+	virtual void SetDisplayed(bool displayed) = 0;
 
-	virtual bool HasStartingCamera() = 0;
+	/// Sets the position at which the rally point marker should be displayed.
+	virtual void SetPosition(CFixedVector2D position) = 0;
 
-	DECLARE_INTERFACE_TYPE(Player)
+	DECLARE_INTERFACE_TYPE(RallyPointRenderer)
 };
 
-#endif // INCLUDED_ICMPPLAYER
+#endif // INCLUDED_ICMPRALLYPOINT

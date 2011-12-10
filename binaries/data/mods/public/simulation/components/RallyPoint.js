@@ -13,7 +13,7 @@ RallyPoint.prototype.SetPosition = function(x, z)
 	this.pos = {
 		"x": x,
 		"z": z
-	}
+	};
 };
 
 RallyPoint.prototype.Unset = function()

@@ -100,8 +100,10 @@ class CShaderProgramFFP_OverlayLine : public CShaderProgramFFP
 		ID_objectColor
 	};
 
+	bool m_IgnoreLos;
+
 public:
-	CShaderProgramFFP_OverlayLine() :
+	CShaderProgramFFP_OverlayLine(const std::map<CStr, CStr>& defines) :
 		CShaderProgramFFP(STREAM_POS | STREAM_UV0 | STREAM_UV1)
 	{
 		m_UniformIndexes["losTransform"] = ID_losTransform;
@@ -111,6 +113,13 @@ public:
 		m_UniformIndexes["baseTex"] = 0;
 		m_UniformIndexes["maskTex"] = 1;
 		m_UniformIndexes["losTex"] = 2;
+
+		m_IgnoreLos = (defines.find(CStr("IGNORE_LOS")) != defines.end());
+	}
+
+	bool IsIgnoreLos()
+	{
+		return m_IgnoreLos;
 	}
 
 	virtual void Uniform(Binding id, float v0, float v1, float v2, float v3)
@@ -145,7 +154,7 @@ public:
 		// RGB channels:
 		//   Unit 0: Load base texture
 		//   Unit 1: Load mask texture; interpolate with objectColor & base
-		//   Unit 2: Load LOS texture; multiply
+		//   Unit 2: (Load LOS texture; multiply) if not #IGNORE_LOS, pass through otherwise
 		// Alpha channel:
 		//   Unit 0: Load base texture
 		//   Unit 1: Multiply by objectColor
@@ -163,12 +172,15 @@ public:
 		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 
+		// -----------------------------------------------------------------------------
+
 		pglActiveTextureARB(GL_TEXTURE1);
 		glEnable(GL_TEXTURE_2D);
-
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 		// Uniform() sets GL_TEXTURE_ENV_COLOR
 
+		// load mask texture; interpolate with objectColor and base; GL_INTERPOLATE takes 3 arguments:
+		// a0 * a2 + a1 * (1 - a2)
 		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_INTERPOLATE);
 		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_CONSTANT);
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
@@ -183,26 +195,41 @@ public:
 		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_ALPHA_ARB, GL_PREVIOUS);
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_ALPHA_ARB, GL_SRC_ALPHA);
 
+		// -----------------------------------------------------------------------------
+
 		pglActiveTextureARB(GL_TEXTURE2);
 		glEnable(GL_TEXTURE_2D);
-
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 
-		glEnable(GL_TEXTURE_GEN_S);
-		glEnable(GL_TEXTURE_GEN_T);
-		glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
-		glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
-		// Uniform() sets GL_OBJECT_PLANE values
+		bool ignoreLos = IsIgnoreLos();
+		if (ignoreLos)
+		{
+			// RGB pass through
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+		}
+		else
+		{
+			// multiply RGB with LoS texture alpha channel
+			glEnable(GL_TEXTURE_GEN_S);
+			glEnable(GL_TEXTURE_GEN_T);
+			glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
+			glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
+			// Uniform() sets GL_OBJECT_PLANE values
+			
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_TEXTURE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_ALPHA);
+		}
 
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_TEXTURE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_ALPHA);
-
+		// alpha pass through
 		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
 		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+		
 	}
 
 	virtual void Unbind()
@@ -221,10 +248,10 @@ public:
 	}
 };
 
-/*static*/ CShaderProgram* CShaderProgram::ConstructFFP(const std::string& id)
+/*static*/ CShaderProgram* CShaderProgram::ConstructFFP(const std::string& id, const std::map<CStr, CStr>& defines)
 {
 	if (id == "overlayline")
-		return new CShaderProgramFFP_OverlayLine();
+		return new CShaderProgramFFP_OverlayLine(defines);
 
 	LOGERROR(L"CShaderProgram::ConstructFFP: Invalid id '%hs'", id.c_str());
 	return NULL;

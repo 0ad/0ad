@@ -26,6 +26,10 @@ GuiInterface.prototype.Init = function()
 /*
  * All of the functions defined below are called via Engine.GuiInterfaceCall(name, arg)
  * from GUI scripts, and executed here with arguments (player, arg).
+ * 
+ * CAUTION: The input to the functions in this module is not network-synchronised, so it 
+ * mustn't affect the simulation state (i.e. the data that is serialised and can affect 
+ * the behaviour of the rest of the simulation) else it'll cause out-of-sync errors.
  */
 
 /**
@@ -223,7 +227,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	var cmpRallyPoint = Engine.QueryInterface(ent, IID_RallyPoint);
 	if (cmpRallyPoint)
 	{
-		ret.rallyPoint = { };
+		ret.rallyPoint = {'position': cmpRallyPoint.GetPosition()}; // undefined or {x,z} object
 	}
 
 	var cmpGarrisonHolder = Engine.QueryInterface(ent, IID_GarrisonHolder);
@@ -418,62 +422,62 @@ GuiInterface.prototype.SetStatusBars = function(player, cmd)
 };
 
 /**
- * Displays the rally point of a building
+ * Displays the rally point of a given list of entities (carried in cmd.entities).
+ * 
+ * The 'cmd' object may carry its own x/z coordinate pair indicating the location where the rally point should 
+ * be rendered, in order to support instantaneously rendering a rally point marker at a specified location 
+ * instead of incurring a delay while PostNetworkCommand processes the set-rallypoint command (see input.js).
+ * If cmd doesn't carry a custom location, then the position to render the marker at will be read from the 
+ * RallyPoint component.
  */
 GuiInterface.prototype.DisplayRallyPoint = function(player, cmd)
 {
-	// If there are rally points already displayed, destroy them
-	for each (var ent in this.rallyPoints)
-	{
-		// Hide it first (the destruction won't be instantaneous)
-		var cmpPosition = Engine.QueryInterface(ent, IID_Position);
-		cmpPosition.MoveOutOfWorld();
+	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpPlayer = Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(player), IID_Player);
 
-		Engine.DestroyEntity(ent);
+	// If there are some rally points already displayed, first hide them
+	for each (var ent in this.entsRallyPointsDisplayed)
+	{
+		var cmpRallyPointRenderer = Engine.QueryInterface(ent, IID_RallyPointRenderer);
+		if (cmpRallyPointRenderer)
+			cmpRallyPointRenderer.SetDisplayed(false);
 	}
 
-	this.rallyPoints = [];
-
-	var positions = [];
-	// DisplayRallyPoints is called passing a list of entities for which
-	// rally points must be displayed
+	// Show the rally points for the passed entities
 	for each (var ent in cmd.entities)
 	{
+		var cmpRallyPointRenderer = Engine.QueryInterface(ent, IID_RallyPointRenderer);
+		if (!cmpRallyPointRenderer)
+			continue;
+		
+		// entity must have a rally point component to display a rally point marker
+		// (regardless of whether cmd specifies a custom location)
 		var cmpRallyPoint = Engine.QueryInterface(ent, IID_RallyPoint);
 		if (!cmpRallyPoint)
 			continue;
 
 		// Verify the owner
 		var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
-		if (!cmpOwnership || cmpOwnership.GetOwner() != player)
-			continue;
+		if (!(cmpPlayer && cmpPlayer.CanControlAllUnits()))
+			if (!cmpOwnership || cmpOwnership.GetOwner() != player)
+				continue;
 
 		// If the command was passed an explicit position, use that and
 		// override the real rally point position; otherwise use the real position
 		var pos;
 		if (cmd.x && cmd.z)
-			pos = {"x": cmd.x, "z": cmd.z};
+			pos = cmd; 
 		else
-			pos = cmpRallyPoint.GetPosition();
+			pos = cmpRallyPoint.GetPosition(); // may return undefined
 
 		if (pos)
-		{
-			// TODO: it'd probably be nice if we could draw some kind of line
-			// between the building and pos, to make the marker easy to find even
-			// if it's a long way from the building
+			cmpRallyPointRenderer.SetPosition({'x': pos.x, 'y': pos.z}); // SetPosition takes a CFixedVector2D which has X/Y components, not X/Z
 
-			positions.push(pos);
-		}
+		cmpRallyPointRenderer.SetDisplayed(true);
 	}
 
-	// Add rally point entity for each building
-	for each (var pos in positions)
-	{
-		var rallyPoint = Engine.AddLocalEntity("actor|props/special/common/waypoint_flag.xml");
-		var cmpPosition = Engine.QueryInterface(rallyPoint, IID_Position);
-		cmpPosition.JumpTo(pos.x, pos.z);
-		this.rallyPoints.push(rallyPoint);
-	}	
+	// Remember which entities have their rally points displayed so we can hide them again
+	this.entsRallyPointsDisplayed = cmd.entities;
 };
 
 /**

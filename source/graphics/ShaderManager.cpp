@@ -80,7 +80,7 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 
 	if (strncmp(name, "fixed:", 6) == 0)
 	{
-		program = CShaderProgramPtr(CShaderProgram::ConstructFFP(name+6));
+		program = CShaderProgramPtr(CShaderProgram::ConstructFFP(name+6, baseDefines));
 		if (!program)
 			return false;
 		program->Reload();

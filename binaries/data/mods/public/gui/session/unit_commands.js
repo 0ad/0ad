@@ -270,7 +270,8 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				break;
 
 			case COMMAND:
-				if (item == "unload-all")
+				// here, "item" is an object with properties .name (command name), .tooltip and .icon (relative to session/icons/single)
+				if (item.name == "unload-all")
 				{
 					var count = unitEntState.garrisonHolder.entities.length;
 					getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 0 ? count : "");
@@ -280,7 +281,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 					getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = "";
 				}
 
-				tooltip = toTitleCase(item);
+				tooltip = (item.tooltip ? item.tooltip : toTitleCase(item.name));
 				break;
 
 			default:
@@ -334,7 +335,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		{
 			//icon.cell_id = i;
 			//icon.cell_id = getCommandCellId(item);
-			icon.sprite = "stretched:session/icons/single/" + getCommandImage(item);
+			icon.sprite = "stretched:session/icons/single/" + item.icon;
 
 		}
 		else if (template.icon)
@@ -477,7 +478,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		var commands = getEntityCommandsList(entState);
 		if (commands.length)
 			setupUnitPanel("Command", usedPanels, entState, commands,
-				function (item) { performCommand(entState.id, item); } );
+				function (item) { performCommand(entState.id, item.name); } );
 
 		if (entState.garrisonHolder)
 		{

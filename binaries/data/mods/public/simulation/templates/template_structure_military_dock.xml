@@ -36,6 +36,9 @@
   <Position>
 	<Floating>true</Floating>
   </Position>
+  <RallyPointRenderer>
+    <LinePassabilityClass>ship</LinePassabilityClass>
+  </RallyPointRenderer>
   <ResourceDropsite>
     <Types>food wood stone metal</Types>
   </ResourceDropsite>

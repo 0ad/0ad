@@ -189,23 +189,6 @@ function getFormationCellId(formationName)
 	}
 }
 
-function getCommandImage(commandName)
-{
-	switch (commandName)
-	{
-	case "delete":
-		return "kill_small.png";
-	case "unload-all":
-		return "garrison-out.png";
-	case "garrison":
-		return "garrison.png";
-	case "repair":
-		return "repair.png";
-	default:
-		return "";
-	}
-}
-
 function getEntityFormationsList(entState)
 {
 	var civ = g_Players[entState.player].civ;
@@ -234,12 +217,47 @@ function getEntityCommandsList(entState)
 {
 	var commands = [];
 	if (entState.garrisonHolder)
-		commands.push("unload-all");
+	{
+		commands.push({
+			"name": "unload-all",
+			"tooltip": "Unload All",
+			"icon": "garrison-out.png"
+		});
+	}
+	
+	commands.push({
+		"name": "delete",
+		"tooltip": "Delete",
+		"icon": "kill_small.png"
+	});
+	
 	if (isUnit(entState))
-		commands.push("garrison");
+	{
+		commands.push({
+			"name": "garrison",
+			"tooltip": "Garrison",
+			"icon": "garrison.png"
+		});
+	}
+	
 	if (entState.buildEntities)
-		commands.push("repair");
-	commands.push("delete");
+	{
+		commands.push({
+			"name": "repair",
+			"tooltip": "Repair",
+			"icon": "repair.png"
+		});
+	}
+	
+	if (entState.rallyPoint)
+	{
+		commands.push({
+			"name": "focus-rally",
+			"tooltip": "Focus on Rally Point",
+			"icon": "focus-rally.png"
+		});
+	}
+	
 	return commands;
 }
 

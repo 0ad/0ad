@@ -34,6 +34,7 @@
 #include "ps/CConsole.h"
 #include "ps/Errors.h"
 #include "ps/Game.h"
+#include "ps/World.h"
 #include "ps/Hotkey.h"
 #include "ps/Overlay.h"
 #include "ps/ProfileViewer.h"
@@ -400,6 +401,23 @@ void CameraFollowFPS(void* UNUSED(cbdata), entity_id_t entityid)
 		g_Game->GetView()->CameraFollow(entityid, true);
 }
 
+/// Move camera to a 2D location
+void CameraMoveTo(void* UNUSED(cbdata), entity_pos_t x, entity_pos_t z)
+{
+	// called from JS; must not fail
+	if(!(g_Game && g_Game->GetWorld() && g_Game->GetView() && g_Game->GetWorld()->GetTerrain()))
+		return;
+
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+
+	CVector3D target;
+	target.X = x.ToFloat();
+	target.Z = z.ToFloat();
+	target.Y = terrain->GetExactGroundLevel(target.X, target.Z);
+
+	g_Game->GetView()->MoveCameraTarget(target);
+}
+
 entity_id_t GetFollowedEntity(void* UNUSED(cbdata))
 {
 	if (g_Game && g_Game->GetView())
@@ -519,6 +537,7 @@ void QuickLoad(void* UNUSED(cbdata))
 {
 	g_Game->GetTurnManager()->QuickLoad();
 }
+
 void SetBoundingBoxDebugOverlay(void* UNUSED(cbdata), bool enabled)
 {
 	ICmpSelectable::ms_EnableDebugOverlays = enabled;
@@ -574,6 +593,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<CScriptVal, &GetMapSettings>("GetMapSettings");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollow>("CameraFollow");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollowFPS>("CameraFollowFPS");
+	scriptInterface.RegisterFunction<void, entity_pos_t, entity_pos_t, &CameraMoveTo>("CameraMoveTo");
 	scriptInterface.RegisterFunction<entity_id_t, &GetFollowedEntity>("GetFollowedEntity");
 	scriptInterface.RegisterFunction<bool, std::string, &HotkeyIsPressed_>("HotkeyIsPressed");
 	scriptInterface.RegisterFunction<void, std::wstring, &DisplayErrorDialog>("DisplayErrorDialog");

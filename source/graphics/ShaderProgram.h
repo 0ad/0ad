@@ -71,7 +71,7 @@ public:
 	/**
 	 * Construct an instance of a pre-defined fixed-function pipeline setup.
 	 */
-	static CShaderProgram* ConstructFFP(const std::string& id);
+	static CShaderProgram* ConstructFFP(const std::string& id, const std::map<CStr, CStr>& defines);
 
 	typedef const char* attrib_id_t;
 	typedef const char* texture_id_t;
