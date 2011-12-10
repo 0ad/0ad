@@ -82,7 +82,7 @@ public:
 	bool ShadowsEnabled;
 	bool SelectionBoxEnabled;
 	bool AxesMarkerEnabled;
-	bool PropPointsEnabled;
+	unsigned PropPointsMode; // 0 disabled, 1 for point markers, 2 for point markers + axes
 
 	SColor4ub Background;
 	
@@ -128,34 +128,19 @@ public:
 			// add origin axis thingy
 			if (AxesMarkerEnabled)
 			{
-				AxesMarkerOverlays[0].m_Color = CColor(1, 0, 0, .5f); // X axis; red
-				AxesMarkerOverlays[1].m_Color = CColor(0, 1, 0, .5f); // Y axis; green
-				AxesMarkerOverlays[2].m_Color = CColor(0, 0, 1, .5f); // Z axis; blue
-
-				AxesMarkerOverlays[0].m_Thickness = 2;
-				AxesMarkerOverlays[1].m_Thickness = 2;
-				AxesMarkerOverlays[2].m_Thickness = 2;
-
-				AxesMarkerOverlays[0].m_Coords.clear();
-				AxesMarkerOverlays[1].m_Coords.clear();
-				AxesMarkerOverlays[2].m_Coords.clear();
-
-				CVector3D origin = cmpVisual->GetPosition() + CVector3D(0, 0.02f, 0); // offset from the ground a little bit to prevent fighting with the floor texture
-				AxesMarkerOverlays[0].PushCoords(origin);
-				AxesMarkerOverlays[1].PushCoords(origin);
-				AxesMarkerOverlays[2].PushCoords(origin);
-
-				AxesMarkerOverlays[0].PushCoords(origin + CVector3D(1, 0, 0));
-				AxesMarkerOverlays[1].PushCoords(origin + CVector3D(0, 1, 0));
-				AxesMarkerOverlays[2].PushCoords(origin + CVector3D(0, 0, 1));
+				CMatrix3D worldSpaceAxes;
+				// offset from the ground a little bit to prevent fighting with the floor texture (also note: SetTranslation
+				// sets the identity 3x3 transformation matrix, which are the world axes)
+				worldSpaceAxes.SetTranslation(cmpVisual->GetPosition() + CVector3D(0, 0.02f, 0));
+				SimRender::ConstructAxesMarker(worldSpaceAxes, AxesMarkerOverlays[0], AxesMarkerOverlays[1], AxesMarkerOverlays[2]);
 
 				c->Submit(&AxesMarkerOverlays[0]);
 				c->Submit(&AxesMarkerOverlays[1]);
 				c->Submit(&AxesMarkerOverlays[2]);
 			}
 
-			// add prop point gimbals
-			if (PropPointsEnabled && Props.size() > 0)
+			// add prop point overlays
+			if (PropPointsMode > 0 && Props.size() > 0)
 			{
 				PropPointOverlays.clear(); // doesn't clear capacity, but should be ok since the number of prop points is usually pretty limited
 				for (size_t i = 0; i < Props.size(); ++i)
@@ -164,15 +149,34 @@ public:
 					if (prop.m_Model) // should always be the case
 					{
 						// prop point positions are automatically updated during animations etc. by CModel::ValidatePosition
+						const CMatrix3D& propCoordSystem = prop.m_Model->GetTransform();
+						
 						SOverlayLine pointGimbal;
 						pointGimbal.m_Color = CColor(1.f, 0.f, 1.f, 1.f);
-						SimRender::ConstructGimbal(prop.m_Model->GetTransform().GetTranslation(), 0.05f, pointGimbal);
-
+						SimRender::ConstructGimbal(propCoordSystem.GetTranslation(), 0.05f, pointGimbal);
 						PropPointOverlays.push_back(pointGimbal);
+
+						if (PropPointsMode > 1)
+						{
+							// scale the prop axes coord system down a bit to distinguish them from the main world-space axes markers
+							CMatrix3D displayCoordSystem = propCoordSystem;
+							displayCoordSystem.Scale(0.5f, 0.5f, 0.5f);
+							// revert translation scaling
+							displayCoordSystem._14 = propCoordSystem._14;
+							displayCoordSystem._24 = propCoordSystem._24;
+							displayCoordSystem._34 = propCoordSystem._34;
+
+							// construct an XYZ axes marker for the prop's coordinate system
+							SOverlayLine xAxis, yAxis, zAxis;
+							SimRender::ConstructAxesMarker(displayCoordSystem, xAxis, yAxis, zAxis);
+							PropPointOverlays.push_back(xAxis);
+							PropPointOverlays.push_back(yAxis);
+							PropPointOverlays.push_back(zAxis);
+						}
 					}
 				}
 
-				for (size_t i = 0; i < Props.size(); ++i)
+				for (size_t i = 0; i < PropPointOverlays.size(); ++i)
 				{
 					c->Submit(&PropPointOverlays[i]);
 				}
@@ -244,7 +248,7 @@ ActorViewer::ActorViewer()
 	m.ShadowsEnabled = g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWS);
 	m.SelectionBoxEnabled = false;
 	m.AxesMarkerEnabled = false;
-	m.PropPointsEnabled = false;
+	m.PropPointsMode = 0;
 	m.Background = SColor4ub(0, 0, 0, 255);
 
 	// Create a tiny empty piece of terrain, just so we can put shadows
@@ -438,7 +442,7 @@ void ActorViewer::SetGroundEnabled(bool enabled)  { m.GroundEnabled = enabled; }
 void ActorViewer::SetShadowsEnabled(bool enabled) { m.ShadowsEnabled = enabled; }
 void ActorViewer::SetBoundingBoxesEnabled(bool enabled) { m.SelectionBoxEnabled = enabled; }
 void ActorViewer::SetAxesMarkerEnabled(bool enabled)    { m.AxesMarkerEnabled = enabled; }
-void ActorViewer::SetPropPointsEnabled(bool enabled)    { m.PropPointsEnabled = enabled; }
+void ActorViewer::SetPropPointsMode(unsigned mode)      { m.PropPointsMode = mode; }
 
 void ActorViewer::SetStatsEnabled(bool enabled)
 {

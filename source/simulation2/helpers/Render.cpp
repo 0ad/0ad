@@ -277,6 +277,30 @@ void SimRender::ConstructGimbal(const CVector3D& center, float radius, SOverlayL
 	}
 }
 
+void SimRender::ConstructAxesMarker(const CMatrix3D& coordSystem, SOverlayLine& outX, SOverlayLine& outY, SOverlayLine& outZ)
+{
+	outX.m_Coords.clear();
+	outY.m_Coords.clear();
+	outZ.m_Coords.clear();
+
+	outX.m_Color = CColor(1, 0, 0, .5f); // X axis; red
+	outY.m_Color = CColor(0, 1, 0, .5f); // Y axis; green
+	outZ.m_Color = CColor(0, 0, 1, .5f); // Z axis; blue
+
+	outX.m_Thickness = 2;
+	outY.m_Thickness = 2;
+	outZ.m_Thickness = 2;
+
+	CVector3D origin = coordSystem.GetTranslation();
+	outX.PushCoords(origin);
+	outY.PushCoords(origin);
+	outZ.PushCoords(origin);
+
+	outX.PushCoords(origin + CVector3D(coordSystem(0,0), coordSystem(1,0), coordSystem(2,0)));
+	outY.PushCoords(origin + CVector3D(coordSystem(0,1), coordSystem(1,1), coordSystem(2,1)));
+	outZ.PushCoords(origin + CVector3D(coordSystem(0,2), coordSystem(1,2), coordSystem(2,2)));
+}
+
 void SimRender::SmoothPointsAverage(std::vector<CVector2D>& points, bool closed)
 {
 	PROFILE("SmoothPointsAverage");

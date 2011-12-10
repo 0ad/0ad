@@ -26,6 +26,7 @@
 class CSimContext;
 class CVector2D;
 class CVector3D;
+class CMatrix3D;
 class CBoundingBoxAligned;
 class CBoundingBoxOriented;
 struct SOverlayLine;
@@ -72,6 +73,12 @@ void ConstructBoxOutline(const CBoundingBoxAligned& bound, SOverlayLine& overlay
  *     For small radii, you can get away with small values; setting this to 4 will create a diamond shape.
  */
 void ConstructGimbal(const CVector3D& center, float radius, SOverlayLine& out, size_t numSteps = 16);
+
+/**
+ * Constructs XYZ axis marker overlay lines for the coordinate system specified by @p coordSystem and writes them to @p outX,
+ * @p outY and @p outZ. The overlay lines are colored RGB for the XYZ axes, respectively.
+ */
+void ConstructAxesMarker(const CMatrix3D& coordSystem, SOverlayLine& outX, SOverlayLine& outY, SOverlayLine& outZ);
 
 /**
  * Updates @p points so each point is averaged with its neighbours, resulting in

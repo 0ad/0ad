@@ -35,7 +35,8 @@ class CMatrix3D
 public:
 	// the matrix data itself - accessible as either longhand names
 	// or via a flat or 2d array
-	// NOTE: _xy means row x, column y, so don't be fooled by the way they're listed below
+	// NOTE: _xy means row x, column y in the mathematical notation of this matrix, so don't be 
+	// fooled by the way they're listed below
 	union {
 		struct {
 			float _11, _21, _31, _41;
@@ -45,7 +46,7 @@ public:
 		};
 		float _data[16];
 		float _data2d[4][4];
-			// (Be aware that m(0,2) == _data2d[2][0] == _13, etc. This is to be considered a feature.)
+		// (Be aware that m(0,2) == _data2d[2][0] == _13, etc. This is to be considered a feature.)
 	};
 
 public:
@@ -75,6 +76,9 @@ public:
 	}
 
 	// accessors to individual elements of matrix
+	// NOTE: in this function definition, 'col' and 'row' represent the column and row into the 
+	// internal element matrix which is the transposed of the mathematical notation, so the first 
+	// and second arguments here are actually the row and column into the mathematical notation.
 	float& operator()(int col,int row) {
 		return _data[row*4+col];
 	}
@@ -209,7 +213,7 @@ public:
 	// concatenate a rotation described by given quaternion
 	void Rotate(const CQuaternion& quat);
 
-	// set this matrix to given translation
+	// sets this matrix to the given translation matrix (any existing transformation will be overwritten)
 	void SetTranslation(float x, float y, float z);
 	void SetTranslation(const CVector3D& vector);
 
