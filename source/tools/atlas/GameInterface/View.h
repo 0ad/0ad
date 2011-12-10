@@ -43,7 +43,7 @@ public:
 	virtual bool WantsHighFramerate() { return false; }
 
 	virtual void SetParam(const std::wstring& name, bool value);
-	virtual void SetParam(const std::wstring& name, unsigned value);
+	virtual void SetParam(const std::wstring& name, int value);
 	virtual void SetParam(const std::wstring& name, const AtlasMessage::Colour& value);
 	virtual void SetParam(const std::wstring& name, const std::wstring& value);
 
@@ -110,7 +110,7 @@ public:
 	virtual bool WantsHighFramerate();
 
 	virtual void SetParam(const std::wstring& name, bool value);
-	virtual void SetParam(const std::wstring& name, unsigned value);
+	virtual void SetParam(const std::wstring& name, int value);
 	virtual void SetParam(const std::wstring& name, const AtlasMessage::Colour& value);
 
 	void SetSpeedMultiplier(float speed);

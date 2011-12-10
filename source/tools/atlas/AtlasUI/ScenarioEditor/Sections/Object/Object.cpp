@@ -85,7 +85,7 @@ private:
 	bool m_ViewerPolyCount;
 	bool m_ViewerBoundingBox;
 	bool m_ViewerAxesMarker;
-	unsigned m_ViewerPropPointsMode; // 0 disabled, 1 for point markers, 2 for point markers + axes
+	int m_ViewerPropPointsMode; // 0 disabled, 1 for point markers, 2 for point markers + axes
 
 	wxPanel* m_ViewerPanel;
 
@@ -480,7 +480,7 @@ void ObjectBottomBar::OnFirstDisplay()
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"shadows", m_ViewerShadows));
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"stats", m_ViewerPolyCount));
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"bounding_box", m_ViewerBoundingBox));
-	POST_MESSAGE(SetViewParamU, (AtlasMessage::eRenderView::ACTOR, L"prop_points", m_ViewerPropPointsMode));
+	POST_MESSAGE(SetViewParamI, (AtlasMessage::eRenderView::ACTOR, L"prop_points", m_ViewerPropPointsMode));
 }
 
 void ObjectBottomBar::ShowActorViewer(bool show)
@@ -523,7 +523,7 @@ void ObjectBottomBar::OnViewerSetting(wxCommandEvent& evt)
 		break;
 	case ID_ViewerPropPoints:
 		m_ViewerPropPointsMode = (++m_ViewerPropPointsMode % 3);
-		POST_MESSAGE(SetViewParamU, (AtlasMessage::eRenderView::ACTOR, L"prop_points", m_ViewerPropPointsMode));
+		POST_MESSAGE(SetViewParamI, (AtlasMessage::eRenderView::ACTOR, L"prop_points", m_ViewerPropPointsMode));
 		break;
 	}
 }

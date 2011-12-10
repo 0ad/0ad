@@ -52,10 +52,10 @@ MESSAGE(SetViewParamB,
 		((std::wstring, name))
 		((bool, value))
 		);
-MESSAGE(SetViewParamU,
+MESSAGE(SetViewParamI,
 		((int, view)) // eRenderView
 		((std::wstring, name))
-		((unsigned, value))
+		((int, value))
 		);
 MESSAGE(SetViewParamC,
 		((int, view)) // eRenderView

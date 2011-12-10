@@ -82,7 +82,7 @@ public:
 	bool ShadowsEnabled;
 	bool SelectionBoxEnabled;
 	bool AxesMarkerEnabled;
-	unsigned PropPointsMode; // 0 disabled, 1 for point markers, 2 for point markers + axes
+	int PropPointsMode; // 0 disabled, 1 for point markers, 2 for point markers + axes
 
 	SColor4ub Background;
 	
@@ -442,7 +442,7 @@ void ActorViewer::SetGroundEnabled(bool enabled)  { m.GroundEnabled = enabled; }
 void ActorViewer::SetShadowsEnabled(bool enabled) { m.ShadowsEnabled = enabled; }
 void ActorViewer::SetBoundingBoxesEnabled(bool enabled) { m.SelectionBoxEnabled = enabled; }
 void ActorViewer::SetAxesMarkerEnabled(bool enabled)    { m.AxesMarkerEnabled = enabled; }
-void ActorViewer::SetPropPointsMode(unsigned mode)      { m.PropPointsMode = mode; }
+void ActorViewer::SetPropPointsMode(int mode)           { m.PropPointsMode = mode; }
 
 void ActorViewer::SetStatsEnabled(bool enabled)
 {

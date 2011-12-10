@@ -43,7 +43,7 @@ public:
 	void SetStatsEnabled(bool enabled);
 	void SetBoundingBoxesEnabled(bool enabled);
 	void SetAxesMarkerEnabled(bool enabled);
-	void SetPropPointsMode(unsigned mode);
+	void SetPropPointsMode(int mode);
 	void Render();
 	void Update(float dt);
 

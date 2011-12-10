@@ -58,7 +58,7 @@ void View::SetParam(const std::wstring& UNUSED(name), const std::wstring& UNUSED
 {
 }
 
-void View::SetParam(const std::wstring& UNUSED(name), unsigned UNUSED(value))
+void View::SetParam(const std::wstring& UNUSED(name), int UNUSED(value))
 {
 }
 
@@ -142,7 +142,7 @@ void ViewActor::SetParam(const std::wstring& name, bool value)
 		m_ActorViewer->SetAxesMarkerEnabled(value);
 }
 
-void ViewActor::SetParam(const std::wstring& name, unsigned value)
+void ViewActor::SetParam(const std::wstring& name, int value)
 {
 	if (name == L"prop_points")
 		m_ActorViewer->SetPropPointsMode(value);

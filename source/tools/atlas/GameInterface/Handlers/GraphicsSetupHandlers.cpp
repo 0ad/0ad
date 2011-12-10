@@ -120,7 +120,7 @@ MESSAGEHANDLER(SetViewParamB)
 	view->SetParam(*msg->name, msg->value);
 }
 
-MESSAGEHANDLER(SetViewParamU)
+MESSAGEHANDLER(SetViewParamI)
 {
 	View* view = View::GetView(msg->view);
 	view->SetParam(*msg->name, msg->value);
