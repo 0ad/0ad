@@ -58,6 +58,10 @@ void View::SetParam(const std::wstring& UNUSED(name), const std::wstring& UNUSED
 {
 }
 
+void View::SetParam(const std::wstring& UNUSED(name), int UNUSED(value))
+{
+}
+
 //////////////////////////////////////////////////////////////////////////
 
 ViewActor::ViewActor()
@@ -136,8 +140,12 @@ void ViewActor::SetParam(const std::wstring& name, bool value)
 		m_ActorViewer->SetBoundingBoxesEnabled(value);
 	else if (name == L"axes_marker")
 		m_ActorViewer->SetAxesMarkerEnabled(value);
-	else if (name == L"prop_points")
-		m_ActorViewer->SetPropPointsEnabled(value);
+}
+
+void ViewActor::SetParam(const std::wstring& name, int value)
+{
+	if (name == L"prop_points")
+		m_ActorViewer->SetPropPointsMode(value);
 }
 
 void ViewActor::SetParam(const std::wstring& name, const AtlasMessage::Colour& value)

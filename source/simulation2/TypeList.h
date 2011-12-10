@@ -118,6 +118,9 @@ COMPONENT(Position) // must be before VisualActor
 INTERFACE(ProjectileManager)
 COMPONENT(ProjectileManager)
 
+INTERFACE(RallyPointRenderer)
+COMPONENT(RallyPointRenderer)
+
 INTERFACE(RangeManager)
 COMPONENT(RangeManager)
 

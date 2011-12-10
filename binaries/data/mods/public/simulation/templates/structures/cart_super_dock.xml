@@ -34,6 +34,9 @@
   <Position>
 	<Floating>true</Floating>
   </Position>
+  <RallyPointRenderer>
+    <LinePassabilityClass>ship</LinePassabilityClass>
+  </RallyPointRenderer>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_dock.xml</select>

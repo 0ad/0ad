@@ -49,16 +49,43 @@ struct SOverlayLine
  */
 struct SOverlayTexturedLine
 {
-	SOverlayTexturedLine() : m_Terrain(NULL), m_Thickness(1.0f) { }
+	enum LineCapType
+	{
+		LINECAP_FLAT, ///< no line ending; abrupt stop of the line (aka. butt ending)
+
+		/**
+		 * Semi-circular line ending. The texture is mapped by curving the left vertical edge around the semi-circle's rim. That is,
+		 * the center point has UV coordinates (0.5;0.5), and the rim vertices all have U coordinate 0 and a V coordinate that ranges
+		 * from 0 to 1 as the rim is traversed.
+		 */
+		LINECAP_ROUND,
+		LINECAP_SHARP, ///< sharp point ending
+		LINECAP_SQUARE, ///< square end that extends half the line width beyond the line end
+	};
+
+	SOverlayTexturedLine()
+		: m_Terrain(NULL), m_Thickness(1.0f), m_Closed(false), m_AlwaysVisible(false), m_StartCapType(LINECAP_FLAT), m_EndCapType(LINECAP_FLAT)
+	{}
 
 	CTerrain* m_Terrain;
 	CTexturePtr m_TextureBase;
 	CTexturePtr m_TextureMask;
-	CColor m_Color;
-	std::vector<float> m_Coords; // (x, z) vertex coordinate pairs; y is computed automatically; shape is automatically closed
-	float m_Thickness; // world-space units
+	CColor m_Color; ///< Color to apply to the line texture
+	std::vector<float> m_Coords; ///< (x, z) vertex coordinate pairs; y is computed automatically
+	float m_Thickness; ///< Half-width of the line, in world-space units
 
-	shared_ptr<CRenderData> m_RenderData; // cached renderer data (shared_ptr so that copies/deletes are automatic)
+	bool m_Closed; ///< Should this line be treated as a closed loop? (if set, the end cap settings are ignored)
+	bool m_AlwaysVisible; ///< Should this line be rendered even under the SoD?
+	LineCapType m_StartCapType; ///< LineCapType to be used at the start of the line
+	LineCapType m_EndCapType; ///< LineCapType to be used at the end of the line
+
+	shared_ptr<CRenderData> m_RenderData; ///< Cached renderer data (shared_ptr so that copies/deletes are automatic)
+
+	/**
+	 * Converts a string line cap type into its corresponding LineCap enum value, and returns the resulting value.
+	 * If the input string is unrecognized, a warning is issued and a default value is returned.
+	 */
+	static LineCapType StrToLineCapType(const std::wstring& str);
 };
 
 /**

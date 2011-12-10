@@ -127,6 +127,32 @@ public:
 		return CVector2D(X / mag, Y / mag);
 	}
 
+	/**
+	 * Returns a version of this vector rotated counterclockwise by @p angle radians.
+	 */
+	CVector2D Rotated(float angle)
+	{
+		float c = cosf(angle);
+		float s = sinf(angle);
+		return CVector2D(
+			c*X - s*Y,
+			s*X + c*Y
+		);
+	}
+
+	/**
+	 * Rotates this vector counterclockwise by @p angle radians.
+	 */
+	void Rotate(float angle)
+	{
+		float c = cosf(angle);
+		float s = sinf(angle);
+		float newX = c*X - s*Y;
+		float newY = s*X + c*Y;
+		X = newX;
+		Y = newY;
+	}
+
 public:
 	float X, Y;
 };

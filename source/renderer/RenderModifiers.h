@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -131,18 +131,6 @@ public:
 private:
 	const ShadowMap* m_Shadow;
 	const CLightEnv* m_LightEnv;
-};
-
-
-/**
- * Class RenderModifierRenderer: Interface to a model renderer that can render
- * its models via a RenderModifier that sets up fragment stages.
- */
-class RenderModifierRenderer : public ModelRenderer
-{
-public:
-	RenderModifierRenderer() { }
-	virtual ~RenderModifierRenderer();
 };
 
 

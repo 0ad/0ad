@@ -103,6 +103,9 @@ public:
 
 	TerritoryOverlay* m_DebugOverlay;
 
+	bool m_EnableLineDebugOverlays; ///< Enable node debugging overlays for boundary lines?
+	std::vector<SOverlayLine> m_DebugBoundaryLineNodes;
+
 	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
 		m_Territories = NULL;
@@ -110,7 +113,7 @@ public:
 //		m_DebugOverlay = new TerritoryOverlay(*this);
 		m_BoundaryLinesDirty = true;
 		m_TriggerEvent = true;
-
+		m_EnableLineDebugOverlays = false;
 		m_DirtyID = 1;
 
 		m_AnimTime = 0.0;
@@ -742,6 +745,7 @@ void CCmpTerritoryManager::UpdateBoundaryLines()
 	PROFILE("update boundary lines");
 
 	m_BoundaryLines.clear();
+	m_DebugBoundaryLineNodes.clear();
 
 	if (!CRenderer::IsInitialised())
 		return;
@@ -780,23 +784,40 @@ void CCmpTerritoryManager::UpdateBoundaryLines()
 		m_BoundaryLines.push_back(SBoundaryLine());
 		m_BoundaryLines.back().connected = boundaries[i].connected;
 		m_BoundaryLines.back().color = color;
-
 		m_BoundaryLines.back().overlay.m_Terrain = terrain;
 		m_BoundaryLines.back().overlay.m_TextureBase = textureBase;
 		m_BoundaryLines.back().overlay.m_TextureMask = textureMask;
 		m_BoundaryLines.back().overlay.m_Color = color;
 		m_BoundaryLines.back().overlay.m_Thickness = m_BorderThickness;
+		m_BoundaryLines.back().overlay.m_Closed = true;
 
-		SimRender::SmoothPointsAverage(boundaries[i].points, true);
+		SimRender::SmoothPointsAverage(boundaries[i].points, m_BoundaryLines.back().overlay.m_Closed);
 
-		SimRender::InterpolatePointsRNS(boundaries[i].points, true, m_BorderSeparation);
+		SimRender::InterpolatePointsRNS(boundaries[i].points, m_BoundaryLines.back().overlay.m_Closed, m_BorderSeparation);
 
 		std::vector<float>& points = m_BoundaryLines.back().overlay.m_Coords;
 		for (size_t j = 0; j < boundaries[i].points.size(); ++j)
 		{
 			points.push_back(boundaries[i].points[j].X);
 			points.push_back(boundaries[i].points[j].Y);
+
+			if (m_EnableLineDebugOverlays)
+			{
+				const int numHighlightNodes = 7; // highlight the X last nodes on either end to see where they meet (if closed)
+				SOverlayLine overlayNode;
+				if (j > boundaries[i].points.size() - 1 - numHighlightNodes)
+					overlayNode.m_Color = CColor(1.f, 0.f, 0.f, 1.f);
+				else if (j < numHighlightNodes)
+					overlayNode.m_Color = CColor(0.f, 1.f, 0.f, 1.f);
+				else
+					overlayNode.m_Color = CColor(1.0f, 1.0f, 1.0f, 1.0f);
+
+				overlayNode.m_Thickness = 1;
+				SimRender::ConstructCircleOnGround(GetSimContext(), boundaries[i].points[j].X, boundaries[i].points[j].Y, 0.1f, overlayNode, true);
+				m_DebugBoundaryLineNodes.push_back(overlayNode);
+			}
 		}
+
 	}
 }
 
@@ -825,6 +846,10 @@ void CCmpTerritoryManager::RenderSubmit(SceneCollector& collector)
 {
 	for (size_t i = 0; i < m_BoundaryLines.size(); ++i)
 		collector.Submit(&m_BoundaryLines[i].overlay);
+	
+	for (size_t i = 0; i < m_DebugBoundaryLineNodes.size(); ++i)
+		collector.Submit(&m_DebugBoundaryLineNodes[i]);
+
 }
 
 player_id_t CCmpTerritoryManager::GetOwner(entity_pos_t x, entity_pos_t z)

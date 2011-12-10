@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2011 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,6 +17,8 @@
 
 #ifndef INCLUDED_OVERLAYRENDERER
 #define INCLUDED_OVERLAYRENDERER
+
+#include "graphics/ShaderManager.h"
 
 struct SOverlayLine;
 struct SOverlayTexturedLine;
@@ -82,6 +84,15 @@ public:
 	 * @param viewCamera camera to be used for billboard computations
 	 */
 	void RenderForegroundOverlays(const CCamera& viewCamera);
+
+private:
+	
+	/**
+	 * Helper method; renders those overlay lines currently registered in the internals (i.e. in m->texlines) for which the
+	 * always visible flag equals @alwaysVisible. Used for batch rendering the overlay lines by their alwaysVisible status,
+	 * because this requires a separate shader to be used.
+	 */
+	void RenderTexturedOverlayLines(CShaderProgramPtr shader, bool alwaysVisible);
 
 private:
 	OverlayRendererInternals* m;

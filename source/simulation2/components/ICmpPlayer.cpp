@@ -53,6 +53,11 @@ public:
 		return m_Script.Call<CColor>("GetColour");
 	}
 
+	virtual std::wstring GetCiv()
+	{
+		return m_Script.Call<std::wstring>("GetCiv");
+	}
+
 	virtual CFixedVector3D GetStartingCameraPos()
 	{
 		return m_Script.Call<CFixedVector3D>("GetStartingCameraPos");

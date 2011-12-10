@@ -361,6 +361,14 @@ public:
 		}
 	}
 
+	virtual void SetUnitEntitySelection(const CStr& selection)
+	{
+		if (m_Unit)
+		{
+			m_Unit->SetEntitySelection(selection);
+		}
+	}
+
 	virtual void SelectMovementAnimation(fixed runThreshold)
 	{
 		m_AnimRunThreshold = runThreshold;

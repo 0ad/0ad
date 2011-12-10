@@ -23,12 +23,35 @@
  * Helper functions related to rendering
  */
 
+#include "maths/Vector2D.h"
+
 class CSimContext;
 class CVector2D;
 class CVector3D;
+class CMatrix3D;
 class CBoundingBoxAligned;
 class CBoundingBoxOriented;
 struct SOverlayLine;
+
+struct SDashedLine
+{
+	/// Packed array of consecutive dashes' points. Use m_StartIndices to navigate it.
+	std::vector<CVector2D> m_Points;
+
+	/**
+	 * Start indices in m_Points of each dash. Dash n starts at point m_StartIndices[n] and ends at the point with index
+	 * m_StartIndices[n+1] - 1, or at the end of the m_Points vector. Use the GetEndIndex(n) convenience method to abstract away the
+	 * difference and get the (exclusive) end index of dash n.
+	 */
+	std::vector<size_t> m_StartIndices;
+
+	/// Returns the (exclusive) end point index (i.e. index within m_Points) of dash n.
+	size_t GetEndIndex(size_t i)
+	{
+		// for the last dash, there is no next starting index, so we need to use the end index of the m_Points array instead
+		return (i < m_StartIndices.size() - 1 ? m_StartIndices[i+1] : m_Points.size());
+	}
+};
 
 namespace SimRender
 {
@@ -74,6 +97,12 @@ void ConstructBoxOutline(const CBoundingBoxAligned& bound, SOverlayLine& overlay
 void ConstructGimbal(const CVector3D& center, float radius, SOverlayLine& out, size_t numSteps = 16);
 
 /**
+ * Constructs XYZ axis marker overlay lines for the coordinate system specified by @p coordSystem and writes them to @p outX,
+ * @p outY and @p outZ. The overlay lines are colored RGB for the XYZ axes, respectively.
+ */
+void ConstructAxesMarker(const CMatrix3D& coordSystem, SOverlayLine& outX, SOverlayLine& outY, SOverlayLine& outZ);
+
+/**
  * Updates @p points so each point is averaged with its neighbours, resulting in
  * a somewhat smoother curve, assuming the points are roughly equally spaced.
  * If @p closed then the points are treated as a closed path (the last is connected
@@ -88,8 +117,19 @@ void SmoothPointsAverage(std::vector<CVector2D>& points, bool closed);
  * the direction of the curve.
  * If @p closed then the points are treated as a closed path (the last is connected
  * to the first).
+ * @param segmentSamples Amount of intermediate points to sample between every two control points.
  */
-void InterpolatePointsRNS(std::vector<CVector2D>& points, bool closed, float offset);
+void InterpolatePointsRNS(std::vector<CVector2D>& points, bool closed, float offset, int segmentSamples = 4);
+
+/**
+ * Creates a dashed line from the line specified by @points so that each dash is of length
+ * @p dashLength, and each blank inbetween is of length @p blankLength. The dashed line returned as a list of smaller lines
+ * in @p dashedLineOut.
+ *
+ * @param dashLength Length of a single dash. Must be strictly positive.
+ * @param blankLength Length of a single blank between dashes. Must be strictly positive.
+ */
+void ConstructDashedLine(const std::vector<CVector2D>& linePoints, SDashedLine& dashedLineOut, const float dashLength, const float blankLength);
 
 } // namespace
 

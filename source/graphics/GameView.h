@@ -79,7 +79,7 @@ public:
 
 	InReaction HandleEvent(const SDL_Event_* ev);
 
-	void MoveCameraTarget(const CVector3D& target, bool minimap = false);
+	void MoveCameraTarget(const CVector3D& target);
 	void ResetCameraTarget(const CVector3D& target);
 	void ResetCameraAngleZoom();
 	void CameraFollow(entity_id_t entity, bool firstPerson);

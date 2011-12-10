@@ -8,8 +8,23 @@
     </variant>
   </group>
   <group>
-    <variant name="waypoint_hellenes">
+    <variant name="hele">
       <texture>props/banner_greek.png</texture>
+    </variant>
+    <variant name="pers">
+      <texture>props/banner_persian.png</texture>
+    </variant>
+    <variant name="celt">
+      <texture>props/banner_celt.png</texture>
+    </variant>
+    <variant name="cart">
+      <texture>props/banner_carthage.png</texture>
+    </variant>
+    <variant name="iber">
+      <texture>props/banner_iberians.png</texture>
+    </variant>
+    <variant name="rome">
+      <texture>props/banner_romans.png</texture>
     </variant>
   </group>
 </actor>

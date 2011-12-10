@@ -135,7 +135,6 @@ function getActionInfo(action, target)
 		return entState && entState.rallyPoint;
 	});
 
-
 	if (!target)
 	{
 		if (action == "set-rallypoint" && haveRallyPoints)
@@ -1114,6 +1113,24 @@ function performCommand(entity, commandName)
 				break;
 			case "unload-all":
 				unloadAll(entity);
+				break;
+			case "focus-rally":
+				// if the selected building has a rally point set, move the camera to it; otherwise, move to the building itself
+				// (since that's where units will spawn without a rally point)
+				var focusTarget = null;
+				if (entState.rallyPoint && entState.rallyPoint.position)
+				{
+					focusTarget = entState.rallyPoint.position;
+				}
+				else
+				{
+					if (entState.position)
+						focusTarget = entState.position;
+				}
+				
+				if (focusTarget !== null)
+					Engine.CameraMoveTo(focusTarget.x, focusTarget.z);
+				
 				break;
 			default:
 				break;
