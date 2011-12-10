@@ -292,6 +292,11 @@ public:
 		return m_Unit->GetModel().GetWorldBounds();
 	}
 
+	virtual CUnit* GetUnit()
+	{
+		return m_Unit;
+	}
+
 	virtual CBoundingBoxOriented GetSelectionBox()
 	{
 		if (!m_Unit)

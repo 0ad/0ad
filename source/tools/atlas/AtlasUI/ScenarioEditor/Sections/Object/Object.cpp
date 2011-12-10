@@ -46,6 +46,7 @@ enum
 	ID_ViewerAnimation,
 	ID_ViewerBoundingBox,
 	ID_ViewerAxesMarker,
+	ID_ViewerPropPoints,
 	ID_ViewerPlay,
 	ID_ViewerPause,
 	ID_ViewerSlow
@@ -84,6 +85,7 @@ private:
 	bool m_ViewerPolyCount;
 	bool m_ViewerBoundingBox;
 	bool m_ViewerAxesMarker;
+	bool m_ViewerPropPoints;
 
 	wxPanel* m_ViewerPanel;
 
@@ -363,6 +365,7 @@ ObjectBottomBar::ObjectBottomBar(
 	m_ViewerPolyCount = false;
 	m_ViewerBoundingBox = false;
 	m_ViewerAxesMarker = false;
+	m_ViewerPropPoints = false;
 
 	wxSizer* mainSizer = new wxBoxSizer(wxHORIZONTAL);
 
@@ -384,7 +387,8 @@ ObjectBottomBar::ObjectBottomBar(
 
 		wxSizer* viewerButtonsRight = new wxBoxSizer(wxVERTICAL);
 		viewerButtonsRight->SetMinSize(110,-1);
-		viewerButtonsRight->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerAxesMarker,  _("Axes Marker")),    _("Toggle the axes marker (R=X, G=Y, B=Z)")), wxSizerFlags().Expand());
+		viewerButtonsRight->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerAxesMarker,  _("Axes Marker")), _("Toggle the axes marker (R=X, G=Y, B=Z)")), wxSizerFlags().Expand());
+		viewerButtonsRight->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerPropPoints,  _("Prop Points")), _("Toggle prop points (works best in wireframe mode)")), wxSizerFlags().Expand());
 
 		viewerButtonsSizer->Add(viewerButtonsLeft, wxSizerFlags().Expand());
 		viewerButtonsSizer->Add(viewerButtonsRight, wxSizerFlags().Expand());
@@ -476,6 +480,7 @@ void ObjectBottomBar::OnFirstDisplay()
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"shadows", m_ViewerShadows));
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"stats", m_ViewerPolyCount));
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"bounding_box", m_ViewerBoundingBox));
+	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"prop_points", m_ViewerPropPoints));
 }
 
 void ObjectBottomBar::ShowActorViewer(bool show)
@@ -516,6 +521,10 @@ void ObjectBottomBar::OnViewerSetting(wxCommandEvent& evt)
 		m_ViewerAxesMarker = !m_ViewerAxesMarker;
 		POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"axes_marker", m_ViewerAxesMarker));
 		break;
+	case ID_ViewerPropPoints:
+		m_ViewerPropPoints = !m_ViewerPropPoints;
+		POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"prop_points", m_ViewerPropPoints));
+		break;
 	}
 }
 
@@ -548,4 +557,5 @@ BEGIN_EVENT_TABLE(ObjectBottomBar, wxPanel)
 	EVT_BUTTON(ID_ViewerSlow, ObjectBottomBar::OnSpeed)
 	EVT_BUTTON(ID_ViewerBoundingBox, ObjectBottomBar::OnViewerSetting)
 	EVT_BUTTON(ID_ViewerAxesMarker, ObjectBottomBar::OnViewerSetting)
+	EVT_BUTTON(ID_ViewerPropPoints, ObjectBottomBar::OnViewerSetting)
 END_EVENT_TABLE();

@@ -25,6 +25,8 @@
 #include "maths/Fixed.h"
 #include "lib/file/vfs/vfs_path.h"
 
+class CUnit;
+
 /**
  * The visual representation of an entity (typically an actor).
  */
@@ -68,6 +70,13 @@ public:
 	 * Returns (0,0,0) if no point can be found.
 	 */
 	virtual CVector3D GetProjectileLaunchPoint() = 0;
+
+	/**
+	 * Returns the underlying unit of this visual actor. May return NULL to indicate that no unit exists (e.g. may happen if the
+	 * game is started without graphics rendering).
+	 * Originally intended for introspection purposes in Atlas; for other purposes, consider using a specialized getter first.
+	 */
+	virtual CUnit* GetUnit() = 0;
 
 	/**
 	 * Start playing the given animation. If there are multiple possible animations then it will

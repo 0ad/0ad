@@ -2,11 +2,22 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="scouttower">
+    <variant frequency="1" name="scouttowera">
       <animations>
         <animation event="0.5" load="0" name="melee" speed="100"/>
       </animations>
-      <mesh>structural/pers_scout_tower.dae</mesh>
+      <mesh>structural/pers_scout_tower_a.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+      </props>
+      <texture>structural/pers_struct.dds</texture>
+    </variant>
+    <variant frequency="1" name="scouttowerb">
+      <animations>
+        <animation event="0.5" load="0" name="melee" speed="100"/>
+      </animations>
+      <mesh>structural/pers_scout_tower_b.dae</mesh>
       <props>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>

@@ -3,11 +3,11 @@
   <castshadow/>
   <group>
     <variant>
-      <animations> 
-        <animation file="mechanical/pers_chariot_a_idle.dae" name="Idle" speed="100"/> 
-        <animation file="mechanical/pers_chariot_a_move.dae" name="Walk" speed="15"/> 
-        <animation file="mechanical/pers_chariot_a_move.dae" name="Run" speed="30"/> 
-      </animations> 
+      <animations>
+        <animation file="mechanical/pers_chariot_a_idle.dae" name="Idle" speed="100"/>
+        <animation file="mechanical/pers_chariot_a_move.dae" name="Walk" speed="12"/>
+        <animation file="mechanical/pers_chariot_a_move.dae" name="Run" speed="20"/>
+      </animations>
       <mesh>structural/pers_chariot_a.dae</mesh>
       <props>
         <prop actor="units/persians/pers_chariot_archer_a_h1.xml" attachpoint="horse1"/>

@@ -20,7 +20,7 @@
     </Resources>
   </Cost>
   <Footprint replace="">
-    <Square width="6.75" depth="10.0"/>
+    <Square width="6.75" depth="9.0"/>
     <Height>3.0</Height>
   </Footprint>
   <GarrisonHolder>
@@ -40,7 +40,7 @@
     <Icon>units/iber_mechanical_siege_ram.png</Icon>
   </Identity>
   <Obstruction>
-    <Unit radius="3.75"/>
+    <Unit radius="3"/>
   </Obstruction>
   <UnitMotion>
     <WalkSpeed>8.0</WalkSpeed>

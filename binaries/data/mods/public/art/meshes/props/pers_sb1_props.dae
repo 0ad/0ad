@@ -1,211 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
   <asset>
     <contributor>
-      <author></author>
-      <authoring_tool>FBX COLLADA exporter</authoring_tool>
-      <comments></comments>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.60.0 r41226</authoring_tool>
     </contributor>
-    <created>2009-06-16T23:37:03Z</created>
-    <modified>2009-06-16T23:37:03Z</modified>
-    <revision></revision>
-    <title></title>
-    <subject></subject>
-    <keywords></keywords>
-    <unit meter="0.025400"/>
+    <created>2011-12-08T19:15:35</created>
+    <modified>2011-12-08T19:15:35</modified>
+    <unit name="inch" meter="0.0254"/>
     <up_axis>Z_UP</up_axis>
   </asset>
-  <library_images>
-    <image id="Map__313-image" name="Map__313">
-      <init_from>file://C:\Documents and Settings\Brad\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\internal\art\textures\skins\structural\pers_struct.dds</init_from>
-    </image>
-  </library_images>
-  <library_materials>
-    <material id="_06___Default" name="_06___Default">
-      <instance_effect url="#_06___Default-fx"/>
-    </material>
-  </library_materials>
   <library_effects>
-    <effect id="_06___Default-fx" name="_06___Default">
+    <effect id="Materialprop-effect">
       <profile_COMMON>
-        <technique sid="standard">
+        <technique sid="common">
           <phong>
             <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+              <color sid="emission">0 0 0 1</color>
             </emission>
             <ambient>
-              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+              <color sid="ambient">0 0 0 1</color>
             </ambient>
             <diffuse>
-              <texture texture="Map__313-image" texcoord="CHANNEL0">
-                <extra>
-                  <technique profile="MAYA">
-                    <wrapU sid="wrapU0">TRUE</wrapU>
-                    <wrapV sid="wrapV0">TRUE</wrapV>
-                    <blend_mode>ADD</blend_mode>
-                  </technique>
-                </extra>
-              </texture>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
             </diffuse>
             <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+              <color sid="specular">0.5 0.5 0.5 1</color>
             </specular>
             <shininess>
-              <float sid="shininess">2.000000</float>
+              <float sid="shininess">50</float>
             </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
           </phong>
         </technique>
+        <extra>
+          <technique profile="GOOGLEEARTH">
+            <double_sided>1</double_sided>
+          </technique>
+        </extra>
       </profile_COMMON>
+      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
     </effect>
   </library_effects>
+  <library_materials>
+    <material id="Materialprop-material" name="Materialprop">
+      <instance_effect url="#Materialprop-effect"/>
+    </material>
+  </library_materials>
   <library_geometries>
-    <geometry id="Props-lib" name="PropsMesh">
+    <geometry id="Cube_002-mesh">
       <mesh>
-        <source id="Props-lib-Position">
-          <float_array id="Props-lib-Position-array" count="60">
-2.564440 -3.162003 0.102591
-2.564440 -3.162003 1.394392
-5.297583 -3.162003 1.394393
-5.297583 -3.162003 0.102591
--5.297583 -3.162003 1.394393
--2.564440 -3.162003 1.394392
--2.564440 -3.162003 0.102591
--5.297583 -3.162003 0.102591
-1.153118 -0.870215 6.446134
-1.153118 -0.870215 7.389083
--1.137823 -0.870215 7.389083
--1.137823 -0.870215 6.446134
-0.401595 -3.162004 1.643124
-0.401595 -3.162004 0.072560
-2.129058 -3.162004 0.072560
-2.129058 -3.162004 1.643124
--2.177295 -3.162005 1.643124
--2.177295 -3.162005 0.072560
--0.449832 -3.162005 0.072560
--0.449832 -3.162005 1.643124
-</float_array>
+        <source id="Cube_002-mesh-positions">
+          <float_array id="Cube_002-mesh-positions-array" count="48">4.426653 -13.24685 0.01253044 -4.426653 -13.24685 0.01253044 4.426653 -13.93802 0.01253044 -4.426653 -13.93802 0.01253044 0 -13.93802 0.01253044 0 -13.24685 0.01253044 4.426653 -13.24685 3.738813 -4.426653 -13.24685 3.738813 4.426652 -13.93802 3.738813 -4.426652 -13.93802 3.738813 0 -13.93802 3.738813 0 -13.24685 3.738813 13.40734 -13.24685 0.01253044 -13.40734 -13.24685 0.01253044 13.40734 -13.93802 0.01253044 -13.40734 -13.93802 0.01253044</float_array>
           <technique_common>
-            <accessor source="#Props-lib-Position-array" count="20" stride="3">
+            <accessor source="#Cube_002-mesh-positions-array" count="16" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Props-lib-Normal0">
-          <float_array id="Props-lib-Normal0-array" count="90">
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
--0.000000 -1.000000 -0.000000
-0.000000 -1.000000 -0.000000
--0.000000 -1.000000 -0.000000
--0.000000 -1.000000 -0.000000
--0.000000 -1.000000 -0.000000
--0.000000 -1.000000 -0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-0.000000 -1.000000 0.000000
-</float_array>
+        <source id="Cube_002-mesh-normals">
+          <float_array id="Cube_002-mesh-normals-array" count="36">0 0 1 0 0 1 0 -1 -1.27966e-7 0 -1 -1.27966e-7 0 1 0 0 1 0 0 1 0 0 1 0 0 -1 -2.55932e-7 0 -1 -2.55932e-7 0.3832415 -2.64396e-7 0.9236481 -0.3832415 -2.64396e-7 0.9236481</float_array>
           <technique_common>
-            <accessor source="#Props-lib-Normal0-array" count="30" stride="3">
+            <accessor source="#Cube_002-mesh-normals-array" count="12" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Props-lib-UV0">
-          <float_array id="Props-lib-UV0-array" count="40">
-0.257174 0.358739
-0.257174 0.495865
-0.517072 0.495865
-0.517072 0.358739
-0.517072 0.495865
-0.257174 0.495865
-0.257174 0.358739
-0.517072 0.358739
-0.017765 0.260637
-0.017765 0.314681
-0.105322 0.314681
-0.105322 0.260637
-0.508427 0.495865
-0.508427 0.251376
-0.752829 0.251376
-0.752829 0.495865
-0.752829 0.495865
-0.752829 0.251376
-0.508427 0.251376
-0.508427 0.495865
-</float_array>
+        <source id="Cube_002-mesh-map-0">
+          <float_array id="Cube_002-mesh-map-0-array" count="88">0.6913062 0.9993485 0.5617589 0.9993485 0.5617589 0.9588935 0.6913062 0.9588935 0.5617589 0.9588935 0.5617589 0.9993485 0.6913062 0.9993485 0.6913062 0.9588935 0.5824467 0.006616055 0.5824467 0.337171 0.3861046 0.337171 0.3861046 0.006616055 0.3861046 0.337171 0.5824467 0.337171 0.5824467 0.006616055 0.3861046 0.006616055 0.5824467 0.337171 0.5824467 0.006616055 0.3861046 0.006616055 0.3861046 0.337171 0.3861046 0.006616055 0.5824467 0.006616055 0.5824467 0.337171 0.3861046 0.337171 0.5824467 0.006616055 0.5824467 0.337171 0.980781 0.006616055 0.980781 0.006616055 0.5824467 0.337171 0.5824467 0.006616055 0.5824467 0.337171 0.5824467 0.006616055 0.980781 0.006616055 0.980781 0.006616055 0.5824467 0.006616055 0.5824467 0.337171 0.6913062 0.9993485 0.6913062 0.9588935 0.9541287 0.9588935 0.9541287 0.9993485 0.9541287 0.9588935 0.6913062 0.9588935 0.6913062 0.9993485 0.9541287 0.9993485</float_array>
           <technique_common>
-            <accessor source="#Props-lib-UV0-array" count="20" stride="2">
+            <accessor source="#Cube_002-mesh-map-0-array" count="44" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="Props-lib-Vertex">
-          <input semantic="POSITION" source="#Props-lib-Position"/>
+        <vertices id="Cube_002-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_002-mesh-positions"/>
         </vertices>
-        <polygons material="_06___Default" count="10">
-          <input semantic="VERTEX" offset="0" source="#Props-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Props-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Props-lib-UV0"/>
-          <p>1 0 1 0 1 0 3 2 3</p>
-          <p>3 3 3 2 4 2 1 5 1</p>
-          <p>5 6 5 4 7 4 7 8 7</p>
-          <p>7 9 7 6 10 6 5 11 5</p>
-          <p>8 12 8 9 13 9 10 14 10</p>
-          <p>10 15 10 11 16 11 8 17 8</p>
-          <p>12 18 12 13 19 13 14 20 14</p>
-          <p>14 21 14 15 22 15 12 23 12</p>
-          <p>16 24 16 17 25 17 18 26 18</p>
-          <p>18 27 18 19 28 19 16 29 16</p>
-        </polygons>
+        <polylist material="Materialprop1" count="12">
+          <input semantic="VERTEX" source="#Cube_002-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_002-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Cube_002-mesh-map-0" offset="2" set="0"/>
+          <vcount>4 4 4 4 4 4 3 3 3 3 4 4 </vcount>
+          <p>6 0 0 11 0 1 10 0 2 8 0 3 10 1 4 11 1 5 7 1 6 9 1 7 2 2 8 8 2 9 10 2 10 4 2 11 10 3 12 9 3 13 3 3 14 4 3 15 6 4 16 0 4 17 5 4 18 11 4 19 5 5 20 1 5 21 7 5 22 11 5 23 0 6 24 6 6 25 12 6 26 13 7 27 7 7 28 1 7 29 8 8 30 2 8 31 14 8 32 15 9 33 3 9 34 9 9 35 6 10 36 8 10 37 14 10 38 12 10 39 15 11 40 9 11 41 7 11 42 13 11 43</p>
+        </polylist>
       </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
     </geometry>
   </library_geometries>
   <library_visual_scenes>
-    <visual_scene id="RootNode" name="RootNode">
-      <node id="Props" name="Props">
-        <translate sid="translate">0.038001 -10.869963 -0.017381</translate>
-        <scale sid="scale">1.308541 1.308541 1.615965</scale>
-        <instance_geometry url="#Props-lib">
+    <visual_scene id="Scene" name="Scene">
+      <node id="stair_prop" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <instance_geometry url="#Cube_002-mesh">
           <bind_material>
             <technique_common>
-              <instance_material symbol="Map__313-Material" target="#Map__313-Material"/>
-              <instance_material symbol="_06___Default" target="#_06___Default"/>
+              <instance_material symbol="Materialprop1" target="#Materialprop-material">
+                <bind_vertex_input semantic="Box01-lib-UV0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
@@ -213,7 +116,6 @@
     </visual_scene>
   </library_visual_scenes>
   <scene>
-    <instance_visual_scene url="#RootNode"/>
+    <instance_visual_scene url="#Scene"/>
   </scene>
 </COLLADA>
-

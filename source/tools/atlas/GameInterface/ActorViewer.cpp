@@ -23,7 +23,9 @@
 
 #include "graphics/ColladaManager.h"
 #include "graphics/LOSTexture.h"
+#include "graphics/Unit.h"
 #include "graphics/Model.h"
+#include "graphics/ModelDef.h"
 #include "graphics/ObjectManager.h"
 #include "graphics/ParticleManager.h"
 #include "graphics/Patch.h"
@@ -36,6 +38,7 @@
 #include "graphics/Overlay.h"
 #include "maths/MathUtil.h"
 #include "ps/Font.h"
+#include "ps/CLogger.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/ProfileViewer.h"
 #include "renderer/Renderer.h"
@@ -79,6 +82,7 @@ public:
 	bool ShadowsEnabled;
 	bool SelectionBoxEnabled;
 	bool AxesMarkerEnabled;
+	bool PropPointsEnabled;
 
 	SColor4ub Background;
 	
@@ -95,6 +99,8 @@ public:
 
 	SOverlayLine SelectionBoxOverlay;
 	SOverlayLine AxesMarkerOverlays[3];
+	std::vector<CModel::Prop> Props;
+	std::vector<SOverlayLine> PropPointOverlays;
 
 	// Simplistic implementation of the Scene interface
 	virtual void EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
@@ -107,44 +113,70 @@ public:
 		}
 
 		CmpPtr<ICmpVisual> cmpVisual(Simulation2, Entity);
-
-		// add selection box outlines manually
-		if (SelectionBoxEnabled && !cmpVisual.null())
+		if (!cmpVisual.null())
 		{
-			SelectionBoxOverlay.m_Color = CColor(35/255.f, 86/255.f, 188/255.f, .75f); // pretty blue
-			SelectionBoxOverlay.m_Thickness = 2;
+			// add selection box outlines manually
+			if (SelectionBoxEnabled)
+			{
+				SelectionBoxOverlay.m_Color = CColor(35/255.f, 86/255.f, 188/255.f, .75f); // pretty blue
+				SelectionBoxOverlay.m_Thickness = 2;
 
-			SimRender::ConstructBoxOutline(cmpVisual->GetSelectionBox(), SelectionBoxOverlay);
-			c->Submit(&SelectionBoxOverlay);
-		}
+				SimRender::ConstructBoxOutline(cmpVisual->GetSelectionBox(), SelectionBoxOverlay);
+				c->Submit(&SelectionBoxOverlay);
+			}
 
-		// add origin axis thingy
-		if (AxesMarkerEnabled && !cmpVisual.null())
-		{
-			AxesMarkerOverlays[0].m_Color = CColor(1, 0, 0, .5f); // X axis; red
-			AxesMarkerOverlays[1].m_Color = CColor(0, 1, 0, .5f); // Y axis; green
-			AxesMarkerOverlays[2].m_Color = CColor(0, 0, 1, .5f); // Z axis; blue
+			// add origin axis thingy
+			if (AxesMarkerEnabled)
+			{
+				AxesMarkerOverlays[0].m_Color = CColor(1, 0, 0, .5f); // X axis; red
+				AxesMarkerOverlays[1].m_Color = CColor(0, 1, 0, .5f); // Y axis; green
+				AxesMarkerOverlays[2].m_Color = CColor(0, 0, 1, .5f); // Z axis; blue
 
-			AxesMarkerOverlays[0].m_Thickness = 2;
-			AxesMarkerOverlays[1].m_Thickness = 2;
-			AxesMarkerOverlays[2].m_Thickness = 2;
+				AxesMarkerOverlays[0].m_Thickness = 2;
+				AxesMarkerOverlays[1].m_Thickness = 2;
+				AxesMarkerOverlays[2].m_Thickness = 2;
 
-			AxesMarkerOverlays[0].m_Coords.clear();
-			AxesMarkerOverlays[1].m_Coords.clear();
-			AxesMarkerOverlays[2].m_Coords.clear();
+				AxesMarkerOverlays[0].m_Coords.clear();
+				AxesMarkerOverlays[1].m_Coords.clear();
+				AxesMarkerOverlays[2].m_Coords.clear();
 
-			CVector3D origin = cmpVisual->GetPosition() + CVector3D(0, 0.02f, 0); // offset from the ground a little bit to prevent fighting with the floor texture
-			AxesMarkerOverlays[0].PushCoords(origin);
-			AxesMarkerOverlays[1].PushCoords(origin);
-			AxesMarkerOverlays[2].PushCoords(origin);
+				CVector3D origin = cmpVisual->GetPosition() + CVector3D(0, 0.02f, 0); // offset from the ground a little bit to prevent fighting with the floor texture
+				AxesMarkerOverlays[0].PushCoords(origin);
+				AxesMarkerOverlays[1].PushCoords(origin);
+				AxesMarkerOverlays[2].PushCoords(origin);
 
-			AxesMarkerOverlays[0].PushCoords(origin + CVector3D(1, 0, 0));
-			AxesMarkerOverlays[1].PushCoords(origin + CVector3D(0, 1, 0));
-			AxesMarkerOverlays[2].PushCoords(origin + CVector3D(0, 0, 1));
+				AxesMarkerOverlays[0].PushCoords(origin + CVector3D(1, 0, 0));
+				AxesMarkerOverlays[1].PushCoords(origin + CVector3D(0, 1, 0));
+				AxesMarkerOverlays[2].PushCoords(origin + CVector3D(0, 0, 1));
 
-			c->Submit(&AxesMarkerOverlays[0]);
-			c->Submit(&AxesMarkerOverlays[1]);
-			c->Submit(&AxesMarkerOverlays[2]);
+				c->Submit(&AxesMarkerOverlays[0]);
+				c->Submit(&AxesMarkerOverlays[1]);
+				c->Submit(&AxesMarkerOverlays[2]);
+			}
+
+			// add prop point gimbals
+			if (PropPointsEnabled && Props.size() > 0)
+			{
+				PropPointOverlays.clear(); // doesn't clear capacity, but should be ok since the number of prop points is usually pretty limited
+				for (size_t i = 0; i < Props.size(); ++i)
+				{
+					CModel::Prop& prop = Props[i];
+					if (prop.m_Model) // should always be the case
+					{
+						// prop point positions are automatically updated during animations etc. by CModel::ValidatePosition
+						SOverlayLine pointGimbal;
+						pointGimbal.m_Color = CColor(1.f, 0.f, 1.f, 1.f);
+						SimRender::ConstructGimbal(prop.m_Model->GetTransform().GetTranslation(), 0.05f, pointGimbal);
+
+						PropPointOverlays.push_back(pointGimbal);
+					}
+				}
+
+				for (size_t i = 0; i < Props.size(); ++i)
+				{
+					c->Submit(&PropPointOverlays[i]);
+				}
+			}
 		}
 
 		// send a RenderSubmit message so the components can submit their visuals to the renderer
@@ -160,7 +192,49 @@ public:
 	{
 		return TerritoryTexture;
 	}
+
+	/**
+	 * Recursively fetches the props of the currently displayed entity model and its submodels, and stores them for rendering.
+	 */
+	void UpdatePropList();
+	void UpdatePropListRecursive(CModelAbstract* model);
+
 };
+
+void ActorViewerImpl::UpdatePropList()
+{
+	Props.clear();
+
+	CmpPtr<ICmpVisual> cmpVisual(Simulation2, Entity);
+	if (!cmpVisual.null())
+	{
+		CUnit* unit = cmpVisual->GetUnit();
+		if (unit)
+		{
+			CModelAbstract& modelAbstract = unit->GetModel();
+			UpdatePropListRecursive(&modelAbstract);
+		}
+	}
+}
+
+void ActorViewerImpl::UpdatePropListRecursive(CModelAbstract* modelAbstract)
+{
+	ENSURE(modelAbstract);
+
+	CModel* model = modelAbstract->ToCModel();
+	if (model)
+	{
+		std::vector<CModel::Prop>& modelProps = model->GetProps();
+		for (size_t i=0; i < modelProps.size(); i++)
+		{
+			CModel::Prop& modelProp = modelProps[i];
+			
+			Props.push_back(modelProp);
+			if (modelProp.m_Model)
+				UpdatePropListRecursive(modelProp.m_Model);
+		}
+	}
+}
 
 ActorViewer::ActorViewer()
 	: m(*new ActorViewerImpl())
@@ -170,6 +244,7 @@ ActorViewer::ActorViewer()
 	m.ShadowsEnabled = g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWS);
 	m.SelectionBoxEnabled = false;
 	m.AxesMarkerEnabled = false;
+	m.PropPointsEnabled = false;
 	m.Background = SColor4ub(0, 0, 0, 255);
 
 	// Create a tiny empty piece of terrain, just so we can put shadows
@@ -259,7 +334,6 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 			return;
 
 		m.Entity = m.Simulation2.AddEntity(L"preview|" + id);
-
 		if (m.Entity == INVALID_ENTITY)
 			return;
 
@@ -270,6 +344,7 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 			cmpPosition->JumpTo(entity_pos_t::FromInt(c), entity_pos_t::FromInt(c));
 			cmpPosition->SetYRotation(entity_angle_t::Pi());
 		}
+
 		needsAnimReload = true;
 	}
 
@@ -343,6 +418,9 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 			if (repeattime)
 				cmpVisual->SetAnimationSyncRepeat(fixed::FromFloat(repeattime));
 		}
+
+		// update prop list for new entity/animation (relies on needsAnimReload also getting called for entire entity changes)
+		m.UpdatePropList();
 	}
 
 	m.CurrentUnitID = id;
@@ -360,6 +438,7 @@ void ActorViewer::SetGroundEnabled(bool enabled)  { m.GroundEnabled = enabled; }
 void ActorViewer::SetShadowsEnabled(bool enabled) { m.ShadowsEnabled = enabled; }
 void ActorViewer::SetBoundingBoxesEnabled(bool enabled) { m.SelectionBoxEnabled = enabled; }
 void ActorViewer::SetAxesMarkerEnabled(bool enabled)    { m.AxesMarkerEnabled = enabled; }
+void ActorViewer::SetPropPointsEnabled(bool enabled)    { m.PropPointsEnabled = enabled; }
 
 void ActorViewer::SetStatsEnabled(bool enabled)
 {
