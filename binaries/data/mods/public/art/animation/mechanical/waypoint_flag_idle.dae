@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.60.0 r41226</authoring_tool>
     </contributor>
-    <created>2011-12-11T12:28:10</created>
-    <modified>2011-12-11T12:28:10</modified>
+    <created>2011-12-11T13:46:15</created>
+    <modified>2011-12-11T13:46:15</modified>
     <unit name="inch" meter="0.0254"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -91,25 +91,25 @@
   <library_animations>
     <animation id="SixWheeler_sixwheel_pose_matrix">
       <source id="SixWheeler_sixwheel_pose_matrix-input">
-        <float_array id="SixWheeler_sixwheel_pose_matrix-input-array" count="2">0.04166662 1.25</float_array>
+        <float_array id="SixWheeler_sixwheel_pose_matrix-input-array" count="9">0.04166662 0.1666666 0.4166666 0.5833333 0.8333333 0.9166667 1.041667 1.166667 1.25</float_array>
         <technique_common>
-          <accessor source="#SixWheeler_sixwheel_pose_matrix-input-array" count="2" stride="1">
+          <accessor source="#SixWheeler_sixwheel_pose_matrix-input-array" count="9" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="SixWheeler_sixwheel_pose_matrix-output">
-        <float_array id="SixWheeler_sixwheel_pose_matrix-output-array" count="32">1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1</float_array>
+        <float_array id="SixWheeler_sixwheel_pose_matrix-output-array" count="144">1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#SixWheeler_sixwheel_pose_matrix-output-array" count="2" stride="16">
+          <accessor source="#SixWheeler_sixwheel_pose_matrix-output-array" count="9" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="SixWheeler_sixwheel_pose_matrix-interpolation">
-        <Name_array id="SixWheeler_sixwheel_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <Name_array id="SixWheeler_sixwheel_pose_matrix-interpolation-array" count="9">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#SixWheeler_sixwheel_pose_matrix-interpolation-array" count="2" stride="1">
+          <accessor source="#SixWheeler_sixwheel_pose_matrix-interpolation-array" count="9" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -120,6 +120,230 @@
         <input semantic="INTERPOLATION" source="#SixWheeler_sixwheel_pose_matrix-interpolation"/>
       </sampler>
       <channel source="#SixWheeler_sixwheel_pose_matrix-sampler" target="sixwheel/transform"/>
+    </animation>
+    <animation id="SixWheeler_weapon_pose_matrix">
+      <source id="SixWheeler_weapon_pose_matrix-input">
+        <float_array id="SixWheeler_weapon_pose_matrix-input-array" count="9">0.04166662 0.1666666 0.4166666 0.5833333 0.8333333 0.9166667 1.041667 1.166667 1.25</float_array>
+        <technique_common>
+          <accessor source="#SixWheeler_weapon_pose_matrix-input-array" count="9" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="SixWheeler_weapon_pose_matrix-output">
+        <float_array id="SixWheeler_weapon_pose_matrix-output-array" count="144">1 0 0 0 0 1 0 8.276234 0 0 1 -0.198324 0 0 0 1 1 0 0 0 0 1 0 8.276234 0 0 1 -0.198324 0 0 0 1 1 0 0 0 0 1 0 8.276234 0 0 1 -0.198324 0 0 0 1 1 0 0 0 0 1 0 8.276234 0 0 1 -0.198324 0 0 0 1 1 0 0 0 0 1 0 8.276234 0 0 1 -0.198324 0 0 0 1 1 0 0 0 0 1 0 8.276234 0 0 1 -0.198324 0 0 0 1 1 0 0 0 0 1 0 8.276234 0 0 1 -0.198324 0 0 0 1 1 0 0 0 0 1 0 8.276234 0 0 1 -0.198324 0 0 0 1 1 0 0 0 0 1 0 8.276234 0 0 1 -0.198324 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#SixWheeler_weapon_pose_matrix-output-array" count="9" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="SixWheeler_weapon_pose_matrix-interpolation">
+        <Name_array id="SixWheeler_weapon_pose_matrix-interpolation-array" count="9">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#SixWheeler_weapon_pose_matrix-interpolation-array" count="9" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="SixWheeler_weapon_pose_matrix-sampler">
+        <input semantic="INPUT" source="#SixWheeler_weapon_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#SixWheeler_weapon_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#SixWheeler_weapon_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#SixWheeler_weapon_pose_matrix-sampler" target="weapon/transform"/>
+    </animation>
+    <animation id="SixWheeler_l_back_pose_matrix">
+      <source id="SixWheeler_l_back_pose_matrix-input">
+        <float_array id="SixWheeler_l_back_pose_matrix-input-array" count="9">0.04166662 0.1666666 0.4166666 0.5833333 0.8333333 0.9166667 1.041667 1.166667 1.25</float_array>
+        <technique_common>
+          <accessor source="#SixWheeler_l_back_pose_matrix-input-array" count="9" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="SixWheeler_l_back_pose_matrix-output">
+        <float_array id="SixWheeler_l_back_pose_matrix-output-array" count="144">1 0 0 0 0 1 0 7.660087 0 0 1 -0.3839378 0 0 0 1 1 0 0 0 0 1 0 7.770831 0 0 1 -0.5367091 0 0 0 1 1 0 0 0 0 1 0 7.660087 0 0 1 -0.1983241 0 0 0 1 1 0 0 -0.001997053 0 1 0 7.677311 0 0 1 -0.6498223 0 0 0 1 1 0 0 -0.001488327 0 1 0 7.672924 0 0 1 -0.6817827 0 0 0 1 1 0 0 -0.001067936 0 1 0 7.669298 0 0 1 -0.5699459 0 0 0 1 1 0 0 -4.04798e-4 0 1 0 7.663578 0 0 1 -0.2232539 0 0 0 1 1 0 0 0 0 1 0 7.660087 0 0 1 -0.3910584 0 0 0 1 1 0 0 0 0 1 0 7.660087 0 0 1 -0.3910584 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#SixWheeler_l_back_pose_matrix-output-array" count="9" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="SixWheeler_l_back_pose_matrix-interpolation">
+        <Name_array id="SixWheeler_l_back_pose_matrix-interpolation-array" count="9">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#SixWheeler_l_back_pose_matrix-interpolation-array" count="9" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="SixWheeler_l_back_pose_matrix-sampler">
+        <input semantic="INPUT" source="#SixWheeler_l_back_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#SixWheeler_l_back_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#SixWheeler_l_back_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#SixWheeler_l_back_pose_matrix-sampler" target="l_back/transform"/>
+    </animation>
+    <animation id="SixWheeler_l_mid_pose_matrix">
+      <source id="SixWheeler_l_mid_pose_matrix-input">
+        <float_array id="SixWheeler_l_mid_pose_matrix-input-array" count="9">0.04166662 0.1666666 0.4166666 0.5833333 0.8333333 0.9166667 1.041667 1.166667 1.25</float_array>
+        <technique_common>
+          <accessor source="#SixWheeler_l_mid_pose_matrix-input-array" count="9" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="SixWheeler_l_mid_pose_matrix-output">
+        <float_array id="SixWheeler_l_mid_pose_matrix-output-array" count="144">1 0 0 0 0 1 0 7.132814 0 0 1 -0.523859 0 0 0 1 1 0 0 0 0 1 0 7.215304 0 0 1 -0.6955 0 0 0 1 1 0 0 0 0 1 0 7.164397 0 0 1 -0.2948008 0 0 0 1 1 0 0 0 0 1 0 7.139424 0 0 1 -0.9053661 0 0 0 1 1 0 0 0 0 1 0 7.129007 0 0 1 -0.9188771 0 0 0 1 1 0 0 0 0 1 0 7.128223 0 0 1 -0.7793957 0 0 0 1 1 0 0 0 0 1 0 7.129002 0 0 1 -0.3815073 0 0 0 1 1 0 0 0 0 1 0 7.130654 0 0 1 -0.5291284 0 0 0 1 1 0 0 0 0 1 0 7.130654 0 0 1 -0.5291284 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#SixWheeler_l_mid_pose_matrix-output-array" count="9" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="SixWheeler_l_mid_pose_matrix-interpolation">
+        <Name_array id="SixWheeler_l_mid_pose_matrix-interpolation-array" count="9">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#SixWheeler_l_mid_pose_matrix-interpolation-array" count="9" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="SixWheeler_l_mid_pose_matrix-sampler">
+        <input semantic="INPUT" source="#SixWheeler_l_mid_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#SixWheeler_l_mid_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#SixWheeler_l_mid_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#SixWheeler_l_mid_pose_matrix-sampler" target="l_mid/transform"/>
+    </animation>
+    <animation id="SixWheeler_l_front_pose_matrix">
+      <source id="SixWheeler_l_front_pose_matrix-input">
+        <float_array id="SixWheeler_l_front_pose_matrix-input-array" count="9">0.04166662 0.1666666 0.4166666 0.5833333 0.8333333 0.9166667 1.041667 1.166667 1.25</float_array>
+        <technique_common>
+          <accessor source="#SixWheeler_l_front_pose_matrix-input-array" count="9" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="SixWheeler_l_front_pose_matrix-output">
+        <float_array id="SixWheeler_l_front_pose_matrix-output-array" count="144">0.999845 0 -0.01760822 -2.55167e-4 0 1 0 6.57536 0.01760822 0 0.999845 -0.5641026 0 0 0 1 0.9998529 0 -0.01715201 0 0 1 0 6.711833 0.01715201 0 0.9998529 -0.7812796 0 0 0 1 0.9993185 0 0.03691071 0.03023368 0 1 0 6.621447 -0.03691071 0 0.9993185 -0.2631773 0 0 0 1 0.9994326 0 -0.03368252 0.01946556 0 1 0 6.604623 0.03368252 0 0.9994326 -1.019136 0 0 0 1 0.9990934 0 -0.04257118 0.007175326 0 1 0 6.583429 0.04257118 0 0.9990934 -0.9979048 0 0 0 1 0.9993006 0 -0.03739362 0.004029691 0 1 0 6.577797 0.03739362 0 0.9993006 -0.8679818 0 0 0 1 0.9996621 0 -0.02599662 8.72417e-4 0 1 0 6.571972 0.02599662 0 0.9996621 -0.5706039 0 0 0 1 0.9998529 0 -0.01715201 0 0 1 0 6.570204 0.01715201 0 0.9998529 -0.5607999 0 0 0 1 0.9998529 0 -0.01715201 0 0 1 0 6.570204 0.01715201 0 0.9998529 -0.5607999 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#SixWheeler_l_front_pose_matrix-output-array" count="9" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="SixWheeler_l_front_pose_matrix-interpolation">
+        <Name_array id="SixWheeler_l_front_pose_matrix-interpolation-array" count="9">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#SixWheeler_l_front_pose_matrix-interpolation-array" count="9" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="SixWheeler_l_front_pose_matrix-sampler">
+        <input semantic="INPUT" source="#SixWheeler_l_front_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#SixWheeler_l_front_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#SixWheeler_l_front_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#SixWheeler_l_front_pose_matrix-sampler" target="l_front/transform"/>
+    </animation>
+    <animation id="SixWheeler_r_back_pose_matrix">
+      <source id="SixWheeler_r_back_pose_matrix-input">
+        <float_array id="SixWheeler_r_back_pose_matrix-input-array" count="9">0.04166662 0.1666666 0.4166666 0.5833333 0.8333333 0.9166667 1.041667 1.166667 1.25</float_array>
+        <technique_common>
+          <accessor source="#SixWheeler_r_back_pose_matrix-input-array" count="9" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="SixWheeler_r_back_pose_matrix-output">
+        <float_array id="SixWheeler_r_back_pose_matrix-output-array" count="144">0.9982066 0 -0.05986368 -1.48341e-4 0 1 0 6.006033 0.05986368 0 0.9982066 -0.5585348 0 0 0 1 0.9995799 0 -0.02898216 0 0 1 0 6.350643 0.02898216 0 0.9995799 -1.040577 0 0 0 1 0.9971349 0 0.07564425 0.01757621 0 1 0 6.138679 -0.07564425 0 0.9971349 -0.2335929 0 0 0 1 0.9975159 0 -0.07044255 0.01131623 0 1 0 6.105355 0.07044255 0 0.9975159 -1.04898 0 0 0 1 0.9995958 0 -0.02843099 0.004171311 0 1 0 6.054814 0.02843099 0 0.9995958 -1.051999 0 0 0 1 0.9998809 0 -0.015437 0.002342641 0 1 0 6.01976 0.015437 0 0.9998809 -0.8735169 0 0 0 1 0.9992762 0 -0.03804045 5.07175e-4 0 1 0 5.997532 0.03804045 0 0.9992762 -0.6707261 0 0 0 1 0.9981905 0 -0.06013172 0 0 1 0 5.98918 0.06013172 0 0.9981905 -0.5363923 0 0 0 1 0.9981905 0 -0.06013172 0 0 1 0 5.98918 0.06013172 0 0.9981905 -0.5363923 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#SixWheeler_r_back_pose_matrix-output-array" count="9" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="SixWheeler_r_back_pose_matrix-interpolation">
+        <Name_array id="SixWheeler_r_back_pose_matrix-interpolation-array" count="9">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#SixWheeler_r_back_pose_matrix-interpolation-array" count="9" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="SixWheeler_r_back_pose_matrix-sampler">
+        <input semantic="INPUT" source="#SixWheeler_r_back_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#SixWheeler_r_back_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#SixWheeler_r_back_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#SixWheeler_r_back_pose_matrix-sampler" target="r_back/transform"/>
+    </animation>
+    <animation id="SixWheeler_r_mid_pose_matrix">
+      <source id="SixWheeler_r_mid_pose_matrix-input">
+        <float_array id="SixWheeler_r_mid_pose_matrix-input-array" count="9">0.04166662 0.1666666 0.4166666 0.5833333 0.8333333 0.9166667 1.041667 1.166667 1.25</float_array>
+        <technique_common>
+          <accessor source="#SixWheeler_r_mid_pose_matrix-input-array" count="9" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="SixWheeler_r_mid_pose_matrix-output">
+        <float_array id="SixWheeler_r_mid_pose_matrix-output-array" count="144">0.9931365 0 -0.116961 0 0 1 0 5.456511 0.116961 0 0.9931365 -0.5021013 0 0 0 1 0.9985316 0 -0.05417245 0 0 1 0 6.116382 0.05417245 0 0.9985316 -1.506002 0 0 0 1 0.9907363 0 0.1358001 0 0 1 0 5.571847 -0.1358001 0 0.9907363 -0.1426006 0 0 0 1 0.987076 0 -0.1602531 0 0 1 0 5.624176 0.1602531 0 0.987076 -1.040138 0 0 0 1 0.9990091 0 0.04450511 0 0 1 0 5.574143 -0.04450511 0 0.9990091 -1.231095 0 0 0 1 0.9994384 0 0.03351044 0 0 1 0 5.50134 -0.03351044 0 0.9994384 -0.7856093 0 0 0 1 0.9990932 0 -0.04257577 0 0 1 0 5.451525 0.04257577 0 0.9990932 -0.5422673 0 0 0 1 0.9930481 0 -0.117709 0 0 1 0 5.426198 0.117709 0 0.9930481 -0.3852213 0 0 0 1 0.9930481 0 -0.117709 0 0 1 0 5.426198 0.117709 0 0.9930481 -0.3852213 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#SixWheeler_r_mid_pose_matrix-output-array" count="9" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="SixWheeler_r_mid_pose_matrix-interpolation">
+        <Name_array id="SixWheeler_r_mid_pose_matrix-interpolation-array" count="9">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#SixWheeler_r_mid_pose_matrix-interpolation-array" count="9" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="SixWheeler_r_mid_pose_matrix-sampler">
+        <input semantic="INPUT" source="#SixWheeler_r_mid_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#SixWheeler_r_mid_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#SixWheeler_r_mid_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#SixWheeler_r_mid_pose_matrix-sampler" target="r_mid/transform"/>
+    </animation>
+    <animation id="SixWheeler_r_front_pose_matrix">
+      <source id="SixWheeler_r_front_pose_matrix-input">
+        <float_array id="SixWheeler_r_front_pose_matrix-input-array" count="9">0.04166662 0.1666666 0.4166666 0.5833333 0.8333333 0.9166667 1.041667 1.166667 1.25</float_array>
+        <technique_common>
+          <accessor source="#SixWheeler_r_front_pose_matrix-input-array" count="9" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="SixWheeler_r_front_pose_matrix-output">
+        <float_array id="SixWheeler_r_front_pose_matrix-output-array" count="144">0.975242 0 -0.2211405 0 0 1 0 4.868083 0.2211405 0 0.975242 -0.4175903 0 0 0 1 0.9970422 0 -0.07685548 0 0 1 0 5.983773 0.07685548 0 0.9970422 -2.284588 0 0 0 1 0.9844374 0 0.1757357 0 0 1 0 4.955808 -0.1757357 0 0.9844374 -0.07225477 0 0 0 1 0.9685209 0 -0.2489321 0 0 1 0 5.192463 0.2489321 0 0.9685209 -0.9293521 0 0 0 1 0.9780035 0 0.2085884 0 0 1 0 5.150509 -0.2085884 0 0.9780035 -1.526357 0 0 0 1 0.9892776 0 0.1460475 0 0 1 0 5.037312 -0.1460475 0 0.9892776 -1.120718 0 0 0 1 0.9963198 0 -0.0857132 0 0 1 0 4.844969 0.0857132 0 0.9963198 -0.2930501 0 0 0 1 0.9744856 0 -0.2244501 0 0 1 0 4.815104 0.2244501 0 0.9744856 -0.2090288 0 0 0 1 0.9744856 0 -0.2244501 0 0 1 0 4.815104 0.2244501 0 0.9744856 -0.2090288 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#SixWheeler_r_front_pose_matrix-output-array" count="9" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="SixWheeler_r_front_pose_matrix-interpolation">
+        <Name_array id="SixWheeler_r_front_pose_matrix-interpolation-array" count="9">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#SixWheeler_r_front_pose_matrix-interpolation-array" count="9" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="SixWheeler_r_front_pose_matrix-sampler">
+        <input semantic="INPUT" source="#SixWheeler_r_front_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#SixWheeler_r_front_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#SixWheeler_r_front_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#SixWheeler_r_front_pose_matrix-sampler" target="r_front/transform"/>
     </animation>
   </library_animations>
   <library_controllers>
@@ -177,22 +401,22 @@
             <matrix sid="transform">1 0 0 0 0 1 0 8.276234 0 0 1 -0.1983241 0 0 0 1</matrix>
           </node>
           <node id="l_back" name="l_back" sid="l_back" type="JOINT">
-            <matrix sid="transform">1 0 0 0 0 1 0 7.660087 0 0 1 -0.3839378 0 0 0 1</matrix>
+            <matrix sid="transform">1 0 0 0 0 1 0 7.660087 0 0 1 -0.3910584 0 0 0 1</matrix>
           </node>
           <node id="l_mid" name="l_mid" sid="l_mid" type="JOINT">
-            <matrix sid="transform">1 0 0 -5.23349e-11 0 1 0 7.132814 0 0 1 -0.523859 0 0 0 1</matrix>
+            <matrix sid="transform">1 0 0 0 0 1 0 7.130654 0 0 1 -0.5291284 0 0 0 1</matrix>
           </node>
           <node id="l_front" name="l_front" sid="l_front" type="JOINT">
-            <matrix sid="transform">0.999845 1.20159e-9 -0.01760826 -2.55167e-4 -1.20159e-9 1 1.06103e-11 6.57536 0.01760826 1.05516e-11 0.999845 -0.5641026 0 0 0 1</matrix>
+            <matrix sid="transform">0.9998529 1.16715e-9 -0.01715203 0 -1.16715e-9 1 1.00118e-11 6.570204 0.01715203 1.00115e-11 0.9998529 -0.5607999 0 0 0 1</matrix>
           </node>
           <node id="r_back" name="r_back" sid="r_back" type="JOINT">
-            <matrix sid="transform">0.9982066 4.30385e-9 -0.05986373 -1.48341e-4 -4.30365e-9 1 1.32275e-10 6.006033 0.05986373 1.25596e-10 0.9982066 -0.5585347 0 0 0 1</matrix>
+            <matrix sid="transform">0.9981905 4.32409e-9 -0.06013172 0 -4.32388e-9 1 1.3349e-10 5.98918 0.06013172 1.26754e-10 0.9981905 -0.5363923 0 0 0 1</matrix>
           </node>
           <node id="r_mid" name="r_mid" sid="r_mid" type="JOINT">
-            <matrix sid="transform">0.9931365 8.42819e-9 -0.116961 -3.58603e-10 -8.4267e-9 1 5.07236e-10 5.456511 0.116961 4.8184e-10 0.9931365 -0.5021012 0 0 0 1</matrix>
+            <matrix sid="transform">0.9930481 8.48469e-9 -0.117709 0 -8.48317e-9 1 5.13909e-10 5.426198 0.117709 4.88207e-10 0.9930481 -0.3852213 0 0 0 1</matrix>
           </node>
           <node id="r_front" name="r_front" sid="r_front" type="JOINT">
-            <matrix sid="transform">0.975242 1.61324e-8 -0.2211405 -5.69359e-10 -1.61231e-8 1 1.84715e-9 4.868083 0.2211405 1.76405e-9 0.975242 -0.4175903 0 0 0 1</matrix>
+            <matrix sid="transform">0.9744856 1.63826e-8 -0.2244501 0 -1.63729e-8 1 1.90424e-9 4.815104 0.2244501 1.81924e-9 0.9744856 -0.2090288 0 0 0 1</matrix>
           </node>
         </node>
       </node>

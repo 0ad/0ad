@@ -474,8 +474,8 @@ void CTexturedLineRData::Update()
 		{
 			u16 index1Prev = vertices.size() - 4; // index of the vertex1 in the previous iteration (BR of this quad)
 			u16 index2Prev = vertices.size() - 3; // index of the vertex2 in the previous iteration (BL of this quad)
-			ENSURE(index1Prev >= 0 && index1Prev < vertices.size());
-			ENSURE(index2Prev >= 0 && index2Prev < vertices.size());
+			ENSURE(index1Prev < vertices.size());
+			ENSURE(index2Prev < vertices.size());
 			// Add two corner points from last iteration and join with one of our own corners to create triangle 1
 			// (don't need to do this if i == 1 because i == 0 are the first two ones, they don't need to be copied)
 			if (i > 1)

@@ -4,6 +4,9 @@
   <group>
     <variant frequency="100">
       <mesh>props/waypoint_flag.dae</mesh>
+      <animations> 
+        <animation file="mechanical/waypoint_flag_idle.dae" name="Idle" speed="30"/>		
+      </animations> 
     </variant>
   </group>
   <group>

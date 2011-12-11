@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.60.0 r41226</authoring_tool>
     </contributor>
-    <created>2011-11-20T14:17:26</created>
-    <modified>2011-11-20T14:17:26</modified>
+    <created>2011-12-11T19:35:23</created>
+    <modified>2011-12-11T19:35:23</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -112,6 +112,13 @@
             </technique_common>
           </bind_material>
         </instance_geometry>
+        <node id="prop-garrisoned" type="NODE">
+          <translate sid="location">10.69804 -5.29351 0.08656085</translate>
+          <rotate sid="rotationZ">0 0 1 105</rotate>
+          <rotate sid="rotationY">0 1 0 -2.41914e-6</rotate>
+          <rotate sid="rotationX">1 0 0 90</rotate>
+          <scale sid="scale">1 1 1</scale>
+        </node>
         <node id="prop-shieldtop" type="NODE">
           <translate sid="location">4.951555 6.245066 1.06613</translate>
           <rotate sid="rotationZ">0 0 1 105</rotate>
