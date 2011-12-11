@@ -803,7 +803,7 @@ void CCmpTerritoryManager::UpdateBoundaryLines()
 
 			if (m_EnableLineDebugOverlays)
 			{
-				const int numHighlightNodes = 7; // highlight the X last nodes on either end to see where they meet (if closed)
+				const size_t numHighlightNodes = 7; // highlight the X last nodes on either end to see where they meet (if closed)
 				SOverlayLine overlayNode;
 				if (j > boundaries[i].points.size() - 1 - numHighlightNodes)
 					overlayNode.m_Color = CColor(1.f, 0.f, 0.f, 1.f);

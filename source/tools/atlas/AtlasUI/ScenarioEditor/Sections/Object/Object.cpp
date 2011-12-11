@@ -522,7 +522,7 @@ void ObjectBottomBar::OnViewerSetting(wxCommandEvent& evt)
 		POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"axes_marker", m_ViewerAxesMarker));
 		break;
 	case ID_ViewerPropPoints:
-		m_ViewerPropPointsMode = (++m_ViewerPropPointsMode % 3);
+		m_ViewerPropPointsMode = (m_ViewerPropPointsMode+1) % 3;
 		POST_MESSAGE(SetViewParamI, (AtlasMessage::eRenderView::ACTOR, L"prop_points", m_ViewerPropPointsMode));
 		break;
 	}
