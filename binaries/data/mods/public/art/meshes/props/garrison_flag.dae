@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.60.0 r41226</authoring_tool>
+    </contributor>
+    <created>2011-12-11T19:17:51</created>
+    <modified>2011-12-11T19:17:51</modified>
+    <unit name="centimeter" meter="0.01"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="Material_002-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.64 0.64 0.64 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.5 0.5 0.5 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="Material_002-material" name="Material.002">
+      <instance_effect url="#Material_002-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="wrld_waypoint_flag-Ge-mesh">
+      <mesh>
+        <source id="wrld_waypoint_flag-Ge-mesh-positions">
+          <float_array id="wrld_waypoint_flag-Ge-mesh-positions-array" count="240">0.06654107 0 -0.03201174 0 -0.06654113 -0.03201174 -0.06654119 0 -0.03201174 0 0.06654107 -0.03201174 0.06654107 0 5.998501 0 -0.06654113 5.998501 -0.06654119 0 5.998501 0 0.06654107 5.998501 -2.012944 0.1542692 5.95697 -2.012944 0.1542692 4.612833 -0.008871555 0.05709266 4.685237 -0.008871912 0.05709278 5.884565 -1.61213 0.1287806 4.646514 -1.211315 0.1018528 4.662783 -0.8105006 0.08277046 4.675405 -0.409686 0.05709278 4.685237 -2.012944 0.1907317 5.688142 -2.012944 0.2111176 5.419315 -2.012944 0.2111176 5.150487 -2.012944 0.1907317 4.88166 -1.61213 0.1287806 5.923289 -1.211315 0.1018528 5.90702 -0.8105009 0.08277046 5.894397 -0.4096863 0.05709278 5.884565 -0.008871555 0.2074741 4.925103 -0.008871674 0.2915514 5.164968 -0.008871674 0.2915514 5.404834 -0.008871793 0.2074741 5.6447 -0.4096861 0.2074741 4.925103 -0.8105008 0.2030501 4.919204 -1.211315 0.1989313 4.911631 -1.61213 0.1951232 4.901869 -0.4096862 0.2915514 5.164968 -0.8105008 0.2702978 5.163002 -1.211315 0.2532075 5.160478 -1.61213 0.2322148 5.157224 -0.4096862 0.2915514 5.404834 -0.8105008 0.2702978 5.406801 -1.211315 0.2532075 5.409325 -1.61213 0.2322148 5.412579 -0.4096863 0.2074741 5.6447 -0.8105009 0.2030501 5.650599 -1.211315 0.1989313 5.658172 -1.61213 0.1951232 5.667933 -1.61213 0.181357 5.667933 -1.211315 0.1865831 5.658172 -0.8105009 0.189284 5.650599 -0.4096863 0.193708 5.6447 -1.61213 0.2184486 5.412579 -1.211315 0.2408592 5.409325 -0.8105008 0.2565317 5.406801 -0.4096862 0.2777853 5.404834 -1.61213 0.2184486 5.157224 -1.211315 0.2408592 5.160478 -0.8105008 0.2565317 5.163002 -0.4096862 0.2777853 5.164968 -1.61213 0.181357 4.901869 -1.211315 0.1865831 4.911631 -0.8105008 0.189284 4.919204 -0.4096861 0.193708 4.925103 -0.008871793 0.193708 5.6447 -0.008871674 0.2777853 5.404834 -0.008871674 0.2777853 5.164968 -0.008871555 0.193708 4.925103 -0.4096863 0.04332661 5.884565 -0.8105009 0.06900429 5.894397 -1.211315 0.08950448 5.90702 -1.61213 0.1150144 5.923289 -2.012944 0.1769655 4.88166 -2.012944 0.1973515 5.150487 -2.012944 0.1973515 5.419315 -2.012944 0.1769655 5.688142 -0.409686 0.04332661 4.685237 -0.8105006 0.06900429 4.675405 -1.211315 0.08950448 4.662783 -1.61213 0.1150144 4.646514 -0.008871912 0.04332661 5.884565 -0.008871555 0.04332649 4.685237 -2.012944 0.1405031 4.612833 -2.012944 0.1405031 5.95697</float_array>
+          <technique_common>
+            <accessor source="#wrld_waypoint_flag-Ge-mesh-positions-array" count="80" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_waypoint_flag-Ge-mesh-normals">
+          <float_array id="wrld_waypoint_flag-Ge-mesh-normals-array" count="168">0 0 -1 0 0 1 0.7071067 -0.707107 0 -0.7071069 -0.7071066 0 -0.7071067 0.707107 0 0.7071069 0.7071066 0 0.03873473 0.9805688 -0.1923132 0.03742134 0.9506143 -0.3081107 0.02723783 0.9145687 -0.4035124 0.03270226 0.8721863 -0.4880796 1.25995e-7 0.8472589 -0.5311803 -0.02793198 0.993654 -0.1089562 -0.02753669 0.9836015 -0.1782411 -0.02266478 0.9706476 -0.2394357 -0.02763003 0.9540143 -0.2984849 0 0.9437056 -0.3307864 -0.05256295 0.9986177 0 -0.05230331 0.9986312 0 -0.04260021 0.9990922 0 -0.05295157 0.9985971 0 0 1 0 -0.02793204 0.993654 0.1089562 -0.02753669 0.9836015 0.1782411 -0.02266478 0.9706476 0.2394357 -0.02763003 0.9540144 0.2984849 0 0.9437056 0.3307864 0.03873473 0.9805688 0.1923132 0.03742134 0.9506143 0.3081108 0.02723783 0.9145687 0.4035124 0.03270226 0.8721863 0.4880796 0 0.8472589 0.5311801 0 -0.8472589 -0.5311801 -0.03270226 -0.8721863 -0.4880796 -0.03047025 -0.9144833 -0.4034747 -0.03406262 -0.9507285 -0.3081478 -0.03873473 -0.9805688 -0.1923132 0 -0.9437056 -0.3307864 0.02763003 -0.9540144 -0.2984849 0.01923251 -0.9707174 -0.2394528 0.03101301 -0.9835013 -0.1782229 0.02793204 -0.993654 -0.1089562 0 -1 0 0.05295157 -0.9985971 0 0.03907161 -0.9992364 0 0.05582523 -0.9984406 0 0.05256295 -0.9986177 0 0 -0.9437056 0.3307864 0.02763003 -0.9540143 0.2984849 0.01923251 -0.9707175 0.2394529 0.03101301 -0.9835013 0.178223 0.02793198 -0.993654 0.1089562 -1.25995e-7 -0.8472589 0.5311803 -0.03270226 -0.8721863 0.4880796 -0.03047025 -0.9144833 0.4034747 -0.03406262 -0.9507285 0.3081477 -0.03873473 -0.9805688 0.1923132</float_array>
+          <technique_common>
+            <accessor source="#wrld_waypoint_flag-Ge-mesh-normals-array" count="56" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_waypoint_flag-Ge-mesh-map-0">
+          <float_array id="wrld_waypoint_flag-Ge-mesh-map-0-array" count="448">0.9918853 0.09729695 0.9918853 0.1905146 0.8986675 0.1905146 0.8986675 0.09729677 0.9918853 0.004079103 0.9918853 0.09729677 0.8986675 0.09729677 0.8986675 0.004079103 0.9976722 0.002374172 0.9976722 0.9975762 0.8931379 0.9975762 0.8931379 0.002374172 0.9976722 0.002374172 0.9976722 0.9975762 0.8931379 0.9975762 0.8931379 0.002374172 0.9976722 0.002374172 0.9976722 0.9975762 0.8931379 0.9975762 0.8931379 0.002374172 0.8931379 0.9975762 0.8931379 0.002374172 0.9976722 0.002374172 0.9976722 0.9975762 0.6942541 0.44782 0.8664235 0.44782 0.8664235 0.5577801 0.6942541 0.5577801 0.5220848 0.44782 0.6942541 0.44782 0.6942541 0.5577801 0.5220848 0.5577801 0.3499153 0.44782 0.5220848 0.44782 0.5220848 0.5577801 0.3499153 0.5577801 0.1777459 0.44782 0.3499153 0.44782 0.3499153 0.5577801 0.1777459 0.5577801 0.00557655 0.44782 0.1777459 0.44782 0.1777459 0.5577801 0.00557655 0.5577801 0.6942541 0.5577801 0.8664235 0.5577801 0.8664235 0.6677401 0.6942541 0.6677401 0.5220848 0.5577801 0.6942541 0.5577801 0.6942541 0.6677401 0.5220848 0.6677401 0.3499153 0.5577801 0.5220848 0.5577801 0.5220848 0.6677401 0.3499153 0.6677401 0.1777459 0.5577801 0.3499153 0.5577801 0.3499153 0.6677401 0.1777459 0.6677401 0.00557655 0.5577801 0.1777459 0.5577801 0.1777459 0.6677401 0.00557655 0.6677401 0.6942541 0.6677401 0.8664235 0.6677401 0.8664235 0.7777001 0.6942541 0.7777001 0.5220848 0.6677401 0.6942541 0.6677401 0.6942541 0.7777001 0.5220847 0.7777001 0.3499153 0.6677401 0.5220848 0.6677401 0.5220847 0.7777001 0.3499153 0.7777001 0.1777459 0.6677401 0.3499153 0.6677401 0.3499153 0.7777001 0.1777459 0.7777001 0.00557655 0.6677401 0.1777459 0.6677401 0.1777459 0.7777001 0.00557655 0.7777001 0.6942541 0.7777001 0.8664235 0.7777001 0.8664235 0.8876601 0.6942542 0.8876601 0.5220847 0.7777001 0.6942541 0.7777001 0.6942542 0.8876601 0.5220848 0.8876601 0.3499153 0.7777001 0.5220847 0.7777001 0.5220848 0.8876601 0.3499153 0.8876601 0.1777459 0.7777001 0.3499153 0.7777001 0.3499153 0.8876601 0.1777459 0.8876601 0.00557655 0.7777001 0.1777459 0.7777001 0.1777459 0.8876601 0.00557655 0.8876601 0.6942542 0.8876601 0.8664235 0.8876601 0.8664235 0.9976202 0.6942542 0.9976202 0.5220848 0.8876601 0.6942542 0.8876601 0.6942542 0.9976202 0.5220847 0.9976202 0.3499153 0.8876601 0.5220848 0.8876601 0.5220847 0.9976202 0.3499153 0.9976202 0.1777459 0.8876601 0.3499153 0.8876601 0.3499153 0.9976202 0.1777459 0.9976202 0.00557655 0.8876601 0.1777459 0.8876601 0.1777459 0.9976202 0.00557655 0.9976202 0.02638387 0.3917671 0.02638387 0.4885719 0.1861343 0.4885719 0.1861343 0.3917671 0.1861343 0.3917671 0.1861343 0.4885719 0.3458847 0.4885719 0.3458847 0.3917671 0.3458847 0.3917671 0.3458847 0.4885719 0.5056352 0.4885719 0.5056353 0.3917671 0.5056353 0.3917671 0.5056352 0.4885719 0.6653858 0.4885719 0.6653858 0.3917671 0.6653858 0.3917671 0.6653858 0.4885719 0.8251362 0.4885719 0.8251362 0.3917671 0.02638387 0.2949624 0.02638387 0.3917671 0.1861343 0.3917671 0.1861343 0.2949624 0.1861343 0.2949624 0.1861343 0.3917671 0.3458847 0.3917671 0.3458847 0.2949624 0.3458847 0.2949624 0.3458847 0.3917671 0.5056353 0.3917671 0.5056352 0.2949624 0.5056352 0.2949624 0.5056353 0.3917671 0.6653858 0.3917671 0.6653857 0.2949624 0.6653857 0.2949624 0.6653858 0.3917671 0.8251362 0.3917671 0.8251362 0.2949624 0.02638387 0.1981577 0.02638387 0.2949624 0.1861343 0.2949624 0.1861343 0.1981577 0.1861343 0.1981577 0.1861343 0.2949624 0.3458847 0.2949624 0.3458847 0.1981577 0.3458847 0.1981577 0.3458847 0.2949624 0.5056352 0.2949624 0.5056353 0.1981577 0.5056353 0.1981577 0.5056352 0.2949624 0.6653857 0.2949624 0.6653857 0.1981577 0.6653857 0.1981577 0.6653857 0.2949624 0.8251362 0.2949624 0.8251362 0.1981577 0.02638387 0.101353 0.02638387 0.1981577 0.1861343 0.1981577 0.1861343 0.101353 0.1861343 0.101353 0.1861343 0.1981577 0.3458847 0.1981577 0.3458847 0.101353 0.3458847 0.101353 0.3458847 0.1981577 0.5056353 0.1981577 0.5056353 0.101353 0.5056353 0.101353 0.5056353 0.1981577 0.6653857 0.1981577 0.6653857 0.101353 0.6653857 0.101353 0.6653857 0.1981577 0.8251362 0.1981577 0.8251362 0.101353 0.02638387 0.004548192 0.02638387 0.101353 0.1861343 0.101353 0.1861343 0.004548192 0.1861343 0.004548192 0.1861343 0.101353 0.3458847 0.101353 0.3458847 0.004548192 0.3458847 0.004548192 0.3458847 0.101353 0.5056353 0.101353 0.5056353 0.004548192 0.5056353 0.004548192 0.5056353 0.101353 0.6653857 0.101353 0.6653857 0.004548192 0.6653857 0.004548192 0.6653857 0.101353 0.8251362 0.101353 0.8251362 0.004548192</float_array>
+          <technique_common>
+            <accessor source="#wrld_waypoint_flag-Ge-mesh-map-0-array" count="224" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_waypoint_flag-Ge-mesh-vertices">
+          <input semantic="POSITION" source="#wrld_waypoint_flag-Ge-mesh-positions"/>
+        </vertices>
+        <polylist material="Material_0021" count="56">
+          <input semantic="VERTEX" source="#wrld_waypoint_flag-Ge-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#wrld_waypoint_flag-Ge-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#wrld_waypoint_flag-Ge-mesh-map-0" offset="2" set="0"/>
+          <vcount>4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 </vcount>
+          <p>0 0 0 1 0 1 2 0 2 3 0 3 4 1 4 7 1 5 6 1 6 5 1 7 0 2 8 4 2 9 5 2 10 1 2 11 1 3 12 5 3 13 6 3 14 2 3 15 2 4 16 6 4 17 7 4 18 3 4 19 4 5 20 0 5 21 3 5 22 7 5 23 12 6 24 9 6 25 19 6 26 31 6 27 13 7 28 12 7 29 31 7 30 30 7 31 14 8 32 13 8 33 30 8 34 29 8 35 15 9 36 14 9 37 29 9 38 28 9 39 10 10 40 15 10 41 28 10 42 24 10 43 31 11 44 19 11 45 18 11 46 35 11 47 30 12 48 31 12 49 35 12 50 34 12 51 29 13 52 30 13 53 34 13 54 33 13 55 28 14 56 29 14 57 33 14 58 32 14 59 24 15 60 28 15 61 32 15 62 25 15 63 35 16 64 18 16 65 17 16 66 39 16 67 34 17 68 35 17 69 39 17 70 38 17 71 33 18 72 34 18 73 38 18 74 37 18 75 32 19 76 33 19 77 37 19 78 36 19 79 25 20 80 32 20 81 36 20 82 26 20 83 39 21 84 17 21 85 16 21 86 43 21 87 38 22 88 39 22 89 43 22 90 42 22 91 37 23 92 38 23 93 42 23 94 41 23 95 36 24 96 37 24 97 41 24 98 40 24 99 26 25 100 36 25 101 40 25 102 27 25 103 43 26 104 16 26 105 8 26 106 20 26 107 42 27 108 43 27 109 20 27 110 21 27 111 41 28 112 42 28 113 21 28 114 22 28 115 40 29 116 41 29 117 22 29 118 23 29 119 27 30 120 40 30 121 23 30 122 11 30 123 60 31 124 76 31 125 64 31 126 47 31 127 47 32 128 64 32 129 65 32 130 46 32 131 46 33 132 65 33 133 66 33 134 45 33 135 45 34 136 66 34 137 67 34 138 44 34 139 44 35 140 67 35 141 79 35 142 71 35 143 61 36 144 60 36 145 47 36 146 51 36 147 51 37 148 47 37 149 46 37 150 50 37 151 50 38 152 46 38 153 45 38 154 49 38 155 49 39 156 45 39 157 44 39 158 48 39 159 48 40 160 44 40 161 71 40 162 70 40 163 62 41 164 61 41 165 51 41 166 55 41 167 55 42 168 51 42 169 50 42 170 54 42 171 54 43 172 50 43 173 49 43 174 53 43 175 53 44 176 49 44 177 48 44 178 52 44 179 52 45 180 48 45 181 70 45 182 69 45 183 63 46 184 62 46 185 55 46 186 59 46 187 59 47 188 55 47 189 54 47 190 58 47 191 58 48 192 54 48 193 53 48 194 57 48 195 57 49 196 53 49 197 52 49 198 56 49 199 56 50 200 52 50 201 69 50 202 68 50 203 77 51 204 63 51 205 59 51 206 72 51 207 72 52 208 59 52 209 58 52 210 73 52 211 73 53 212 58 53 213 57 53 214 74 53 215 74 54 216 57 54 217 56 54 218 75 54 219 75 55 220 56 55 221 68 55 222 78 55 223</p>
+        </polylist>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_animations>
+    <animation id="SixWheeler_sixwheel_pose_matrix">
+      <source id="SixWheeler_sixwheel_pose_matrix-input">
+        <float_array id="SixWheeler_sixwheel_pose_matrix-input-array" count="2">0.04166662 1.25</float_array>
+        <technique_common>
+          <accessor source="#SixWheeler_sixwheel_pose_matrix-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="SixWheeler_sixwheel_pose_matrix-output">
+        <float_array id="SixWheeler_sixwheel_pose_matrix-output-array" count="32">1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#SixWheeler_sixwheel_pose_matrix-output-array" count="2" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="SixWheeler_sixwheel_pose_matrix-interpolation">
+        <Name_array id="SixWheeler_sixwheel_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#SixWheeler_sixwheel_pose_matrix-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="SixWheeler_sixwheel_pose_matrix-sampler">
+        <input semantic="INPUT" source="#SixWheeler_sixwheel_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#SixWheeler_sixwheel_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#SixWheeler_sixwheel_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#SixWheeler_sixwheel_pose_matrix-sampler" target="sixwheel/transform"/>
+    </animation>
+    <animation id="SixWheeler_weapon_pose_matrix">
+      <source id="SixWheeler_weapon_pose_matrix-input">
+        <float_array id="SixWheeler_weapon_pose_matrix-input-array" count="2">0.04166662 1.25</float_array>
+        <technique_common>
+          <accessor source="#SixWheeler_weapon_pose_matrix-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="SixWheeler_weapon_pose_matrix-output">
+        <float_array id="SixWheeler_weapon_pose_matrix-output-array" count="32">1 0 0 0 0 1 0 5.959361 0 0 1 3.74421e-7 0 0 0 1 1 0 0 0 0 1 0 5.959361 0 0 1 3.74421e-7 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#SixWheeler_weapon_pose_matrix-output-array" count="2" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="SixWheeler_weapon_pose_matrix-interpolation">
+        <Name_array id="SixWheeler_weapon_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#SixWheeler_weapon_pose_matrix-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="SixWheeler_weapon_pose_matrix-sampler">
+        <input semantic="INPUT" source="#SixWheeler_weapon_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#SixWheeler_weapon_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#SixWheeler_weapon_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#SixWheeler_weapon_pose_matrix-sampler" target="weapon/transform"/>
+    </animation>
+  </library_animations>
+  <library_controllers>
+    <controller id="SixWheeler_flag-skin" name="SixWheeler">
+      <skin source="#wrld_waypoint_flag-Ge-mesh">
+        <bind_shape_matrix>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</bind_shape_matrix>
+        <source id="SixWheeler_flag-skin-joints">
+          <Name_array id="SixWheeler_flag-skin-joints-array" count="8">sixwheel weapon l_back l_mid l_front r_back r_mid r_front</Name_array>
+          <technique_common>
+            <accessor source="#SixWheeler_flag-skin-joints-array" count="8" stride="1">
+              <param name="JOINT" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="SixWheeler_flag-skin-bind_poses">
+          <float_array id="SixWheeler_flag-skin-bind_poses-array" count="128">1 0 0 0 0 0 1 0 0 -1 0 0 0 0 0 1 1 0 0 0 0 0 1 -5.959361 0 -1 0 -3.74421e-7 0 0 0 1 1 0 0 2.009435 0 0 1 -5.291698 0 -1 0 0.2136818 0 0 0 1 1 0 0 1.617222 0 0 1 -5.294772 0 -1 0 0.2150413 0 0 0 1 1 0 0 1.217664 3.1574e-7 0 1 -5.297245 0 -1 0 0.2144234 0 0 0 1 1 0 0 0.811611 0 0 1 -5.295494 0 -1 0 0.2137669 0 0 0 1 1 0 0 0.4139308 0 0 1 -5.295622 0 -1 0 0.2139396 0 0 0 1 1 0 0 0.02586114 0 0 1 -5.292475 0 -1 0 0.2113396 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#SixWheeler_flag-skin-bind_poses-array" count="8" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="SixWheeler_flag-skin-weights">
+          <float_array id="SixWheeler_flag-skin-weights-array" count="80">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</float_array>
+          <technique_common>
+            <accessor source="#SixWheeler_flag-skin-weights-array" count="80" stride="1">
+              <param name="WEIGHT" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <joints>
+          <input semantic="JOINT" source="#SixWheeler_flag-skin-joints"/>
+          <input semantic="INV_BIND_MATRIX" source="#SixWheeler_flag-skin-bind_poses"/>
+        </joints>
+        <vertex_weights count="80">
+          <input semantic="JOINT" source="#SixWheeler_flag-skin-joints" offset="0"/>
+          <input semantic="WEIGHT" source="#SixWheeler_flag-skin-weights" offset="1"/>
+          <vcount>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 </vcount>
+          <v>0 0 0 1 0 2 0 3 0 4 0 5 0 6 0 7 2 8 2 9 7 10 7 11 3 12 4 13 5 14 6 15 2 16 2 17 2 18 2 19 3 20 4 21 5 22 6 23 7 24 7 25 7 26 7 27 6 28 5 29 4 30 3 31 6 32 5 33 4 34 3 35 6 36 5 37 4 38 3 39 6 40 5 41 4 42 3 43 3 44 4 45 5 46 6 47 3 48 4 49 5 50 6 51 3 52 4 53 5 54 6 55 3 56 4 57 5 58 6 59 7 60 7 61 7 62 7 63 6 64 5 65 4 66 3 67 2 68 2 69 2 70 2 71 6 72 5 73 4 74 3 75 7 76 7 77 2 78 2 79</v>
+        </vertex_weights>
+      </skin>
+    </controller>
+  </library_controllers>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="SixWheeler" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <node id="sixwheel" name="sixwheel" sid="sixwheel" type="JOINT">
+          <matrix sid="transform">1 0 0 0 0 7.54979e-8 -1 0 0 1 7.54979e-8 0 0 0 0 1</matrix>
+          <node id="weapon" name="weapon" sid="weapon" type="JOINT">
+            <matrix sid="transform">1 0 0 0 0 1 0 5.959361 0 0 1 3.74421e-7 0 0 0 1</matrix>
+          </node>
+          <node id="l_back" name="l_back" sid="l_back" type="JOINT">
+            <matrix sid="transform">1 0 0 -2.009435 0 0.9842418 0.1768281 5.028772 0 -0.1768281 0.9842418 0.4572923 0 0 0 1</matrix>
+          </node>
+          <node id="l_mid" name="l_mid" sid="l_mid" type="JOINT">
+            <matrix sid="transform">1 0 0 -1.617222 0 0.9963976 0.08480472 5.187212 0 -0.08480472 0.9963976 0.1718707 0 0 0 1</matrix>
+          </node>
+          <node id="l_front" name="l_front" sid="l_front" type="JOINT">
+            <matrix sid="transform">1 0 0 -1.217664 0 1 0 5.243464 0 0 1 -0.07729003 0 0 0 1</matrix>
+          </node>
+          <node id="r_back" name="r_back" sid="r_back" type="JOINT">
+            <matrix sid="transform">1 0 0 -0.811611 0 1 0 5.295494 0 0 1 -0.1941765 0 0 0 1</matrix>
+          </node>
+          <node id="r_mid" name="r_mid" sid="r_mid" type="JOINT">
+            <matrix sid="transform">1 0 0 -0.4139308 0 1 0 5.295622 0 0 1 -0.2531206 0 0 0 1</matrix>
+          </node>
+          <node id="r_front" name="r_front" sid="r_front" type="JOINT">
+            <matrix sid="transform">1 0 0 -0.02586118 0 1 0 5.292475 0 0 1 -0.2113396 0 0 0 1</matrix>
+          </node>
+        </node>
+      </node>
+      <node id="flag" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <instance_controller url="#SixWheeler_flag-skin">
+          <skeleton>#sixwheel</skeleton>
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_0021" target="#Material_002-material">
+                <bind_vertex_input semantic="wrld_waypoint_flag-Geometry-UV" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_controller>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

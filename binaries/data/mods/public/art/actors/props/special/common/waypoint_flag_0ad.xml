@@ -3,8 +3,11 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="Base">
-      <mesh>props/wrld_waypoint_flag.pmd</mesh>
+      <mesh>props/garrison_flag.dae</mesh>
       <texture>props/wrld_waypoint_flag.dds</texture>
+      <animations> 
+        <animation file="mechanical/garrison_flag_idle.dae" name="Idle" speed="25"/>		
+      </animations> 
     </variant>
   </group>
   <material>player_trans.xml</material>
