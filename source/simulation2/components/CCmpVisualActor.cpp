@@ -172,7 +172,7 @@ public:
 			m_Unit->SetID(GetEntityId());
 		}
 
-		SelectAnimation("idle", false, fixed::Zero(), L"");
+		SelectAnimation("idle", false, fixed::FromInt(1), L"");
 	}
 
 	virtual void Deinit()
