@@ -4,7 +4,7 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>sunny 1</SkySet>
-		<SunColour r="0.760784" g="0.733333" b="0.521569"/>
+		<SunColour r="0.756863" g="0.729412" b="0.521569"/>
 		<SunElevation angle="1.03697"/>
 		<SunRotation angle="-0.693359"/>
 		<TerrainAmbientColour r="0.301961" g="0.364706" b="0.529412"/>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="455.069" y="57.6605" z="84.0836"/>
+		<Position x="100.822" y="79.7395" z="-20.7987"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -3322,7 +3322,7 @@
 		<Entity uid="7951">
 			<Template>gaia/fauna_elephant_north_african</Template>
 			<Player>0</Player>
-			<Position x="433.067" z="73.1772"/>
+			<Position x="497.56534" z="45.5844"/>
 			<Orientation y="2.3562"/>
 		</Entity>
 		<Entity uid="7952">
@@ -6687,18 +6687,6 @@
 			<Position x="448.14985" z="108.54468"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="8691">
-			<Template>structures/cart_civil_centre</Template>
-			<Player>4</Player>
-			<Position x="0" z="512.8407"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8692">
-			<Template>structures/cart_civil_centre</Template>
-			<Player>4</Player>
-			<Position x="49.36574" z="575.99946"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="8694">
 			<Template>gaia/geology_metal_desert_badlands_slabs</Template>
 			<Player>0</Player>
@@ -6899,31 +6887,31 @@
 		</Entity>
 		<Entity uid="8732">
 			<Template>gaia/fauna_elephant_african_bush</Template>
-			<Player>1</Player>
+			<Player>0</Player>
 			<Position x="490.14005" z="57.02085"/>
 			<Orientation y="-1.31307"/>
 		</Entity>
 		<Entity uid="8733">
 			<Template>gaia/fauna_elephant_african_infant</Template>
-			<Player>1</Player>
+			<Player>0</Player>
 			<Position x="494.66001" z="53.99367"/>
 			<Orientation y="-2.22504"/>
 		</Entity>
 		<Entity uid="8734">
 			<Template>gaia/fauna_elephant_african_infant</Template>
-			<Player>1</Player>
+			<Player>0</Player>
 			<Position x="491.57477" z="46.61112"/>
 			<Orientation y="1.11957"/>
 		</Entity>
 		<Entity uid="8735">
 			<Template>gaia/fauna_elephant_north_african</Template>
-			<Player>1</Player>
+			<Player>0</Player>
 			<Position x="405.47843" z="32.69675"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="8736">
 			<Template>gaia/fauna_elephant_north_african</Template>
-			<Player>1</Player>
+			<Player>0</Player>
 			<Position x="403.30848" z="25.45629"/>
 			<Orientation y="0.36011"/>
 		</Entity>
@@ -6971,7 +6959,7 @@
 		</Entity>
 		<Entity uid="8744">
 			<Template>gaia/fauna_giraffe</Template>
-			<Player>1</Player>
+			<Player>0</Player>
 			<Position x="503.39301" z="60.94751"/>
 			<Orientation y="0.92724"/>
 		</Entity>
@@ -6996,13 +6984,13 @@
 		<Entity uid="8748">
 			<Template>gaia/fauna_horse</Template>
 			<Player>0</Player>
-			<Position x="271.72748" z="398.1703"/>
+			<Position x="292.98694" z="390.19767"/>
 			<Orientation y="0.98699"/>
 		</Entity>
 		<Entity uid="8749">
 			<Template>gaia/fauna_horse</Template>
-			<Player>1</Player>
-			<Position x="272.62922" z="144.16022"/>
+			<Player>0</Player>
+			<Position x="272.84095" z="144.19372"/>
 			<Orientation y="0.69146"/>
 		</Entity>
 		<Entity uid="8750">
@@ -7020,19 +7008,19 @@
 		<Entity uid="8752">
 			<Template>gaia/fauna_wildebeest</Template>
 			<Player>0</Player>
-			<Position x="383.2056" z="251.8053"/>
+			<Position x="369.67566" z="283.78928"/>
 			<Orientation y="-1.96964"/>
 		</Entity>
 		<Entity uid="8753">
 			<Template>gaia/fauna_wildebeest</Template>
-			<Player>1</Player>
-			<Position x="233.90476" z="105.99175"/>
-			<Orientation y="0.74073"/>
+			<Player>0</Player>
+			<Position x="259.0764" z="137.25512"/>
+			<Orientation y="-0.39748"/>
 		</Entity>
 		<Entity uid="8754">
 			<Template>gaia/fauna_wildebeest</Template>
 			<Player>0</Player>
-			<Position x="164.10486" z="224.51418"/>
+			<Position x="168.48502" z="236.44642"/>
 			<Orientation y="-1.52857"/>
 		</Entity>
 		<Entity uid="8755">
