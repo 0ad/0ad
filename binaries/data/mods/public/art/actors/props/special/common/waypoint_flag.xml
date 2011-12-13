@@ -4,10 +4,10 @@
   <float/>
   <group>
     <variant frequency="100">
+      <animations>
+        <animation file="mechanical/waypoint_flag_idle.dae" name="Idle" speed="30"/>
+      </animations>
       <mesh>props/waypoint_flag.dae</mesh>
-      <animations> 
-        <animation file="mechanical/waypoint_flag_idle.dae" name="Idle" speed="30"/>		
-      </animations> 
     </variant>
   </group>
   <group>
@@ -30,4 +30,5 @@
       <texture>props/banner_romans.png</texture>
     </variant>
   </group>
+  <material>basic_trans.xml</material>
 </actor>
