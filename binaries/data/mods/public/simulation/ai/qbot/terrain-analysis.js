@@ -241,7 +241,7 @@ PathFinder.prototype.countAttached = function(pos){
  *  
  * Determines whether there is a path from one point to another.  It is initialised with a single point (p1) and then 
  * can efficiently determine if another point is reachable from p1.  Initialising the object is costly so it should be 
- * cached.   
+ * cached.
  */
 
 function Accessibility(gameState, location){
@@ -249,8 +249,15 @@ function Accessibility(gameState, location){
 	
 	var start = this.findClosestPassablePoint(this.gamePosToMapPos(location));
 	
-	// Put the value 1 in all accessible points on the map
-	this.floodFill(start);
+	// Check that the accessible region is a decent size, otherwise obstacles close to the start point can create
+	// tiny accessible areas which makes the rest of the map inaceesible.
+	var iterations = 0;
+	while (this.floodFill(start) < 20 && iterations < 30){
+		this.map[start[0] + this.width*(start[1])] = 0;
+		start = this.findClosestPassablePoint(this.gamePosToMapPos(location));
+		iterations += 1;
+	}
+	
 }
 
 copyPrototype(Accessibility, TerrainAnalysis);
@@ -279,6 +286,8 @@ Accessibility.prototype.floodFill = function(start){
 	map[start[0] + w*(start[1])] = 1;
 	stack.push(start);
 	
+	var count = 0;
+	
 	// while there are new points being added to the stack
 	while (stack.length > 0){
 		//run through the current stack
@@ -292,6 +301,7 @@ Accessibility.prototype.floodFill = function(start){
 				if (cell >= 0 && cell < this.length && map[cell] > 1){
 					map[cell] = 1;
 					newStack.push([cur[0]+pos[0], cur[1]+pos[1]]);
+					count += 1;
 				}
 			}
 		}
@@ -299,4 +309,5 @@ Accessibility.prototype.floodFill = function(start){
 		stack = newStack;
 		newStack = [];
 	}
+	return count;
 };

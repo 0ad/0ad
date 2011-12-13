@@ -101,6 +101,7 @@ protected:
 	bool m_SmoothPath; ///< Smooth the path before rendering?
 
 	entity_id_t m_MarkerEntityId; ///< Entity ID of the rally point marker. Allocated when first displayed.
+	player_id_t m_LastOwner; ///< Last seen owner of this entity (used to keep track of ownership changes).
 	std::wstring m_MarkerTemplate;  ///< Template name of the rally point marker.
 
 	/// Marker connector line settings (loaded from XML)
@@ -230,8 +231,7 @@ public:
 			break;
 		case MT_OwnershipChanged:
 			{
-				CreateMarker(); // change marker actor to new owner's civilization
-				UpdateMarkerPosition(); // the new marker doesn't have a position yet, so let's make sure to update it
+				UpdateMarker(); // update marker variation to new player's civilization
 			}
 			break;
 		case MT_TurnStart:
@@ -247,7 +247,7 @@ public:
 		if (m_RallyPoint != pos)
 		{
 			m_RallyPoint = pos;
-			UpdateMarkerPosition();
+			UpdateMarker(); // reposition the marker
 			RecomputeRallyPointPath();
 		}
 	}
@@ -259,7 +259,7 @@ public:
 			m_Displayed = displayed;
 
 			// move the marker out of oblivion and back into the real world, or vice-versa
-			UpdateMarkerPosition();
+			UpdateMarker();
 			
 			// Check for changes to the SoD and update the overlay lines accordingly. We need to do this here because this method
 			// only takes effect when the display flag is active; we need to pick up changes to the SoD that might have occurred 
@@ -279,17 +279,13 @@ private:
 	}
 
 	/**
-	 * (Re)creates the rally point marker entity. Called upon initialization and whenever the ownership of this entity changes, as 
-	 * the marker actor depends on the owner's civilization. If a marker entity already exists, it will be destroyed first.
-	 */
-	void CreateMarker();
-
-	/**
-	 * Repositions the rally point marker; moves it outside of the world (ie. hides it), or positions it at the rally point.
+	 * Repositions the rally point marker; moves it outside of the world (ie. hides it), or positions it at the currently set rally 
+	 * point. Also updates the actor's variation according to the entity's current owning player's civilization.
+	 * 
 	 * Should be called whenever either the position of the rally point changes (including whether it is set or not), or the display
-	 * flag changes.
+	 * flag changes, or the ownership of the entity changes.
 	 */
-	void UpdateMarkerPosition();
+	void UpdateMarker();
 
 	/**
 	 * Recomputes the full path from this entity to the rally point, and does all the necessary post-processing to make it prettier.
@@ -359,6 +355,7 @@ void CCmpRallyPointRenderer::Init(const CParamNode& paramNode)
 {
 	m_Displayed = false;
 	m_SmoothPath = true;
+	m_LastOwner = INVALID_PLAYER;
 	m_MarkerEntityId = INVALID_ENTITY;
 	m_EnableDebugNodeOverlay = false;
 
@@ -406,62 +403,27 @@ void CCmpRallyPointRenderer::Init(const CParamNode& paramNode)
 		texturePropsMask.SetMaxAnisotropy(4.f);
 		m_TextureMask = g_Renderer.GetTextureManager().CreateTexture(texturePropsMask);
 	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	CreateMarker(); // TODO: evaluate how much load this puts on the entity IDs, if it's too high then we can do this on-demand)
 }
 
-void CCmpRallyPointRenderer::CreateMarker()
-{
-	CComponentManager& componentMgr = GetSimContext().GetComponentManager();
-
-	// if a marker entity already exists, kill it first
-	if (m_MarkerEntityId != INVALID_ENTITY)
-	{
-		CmpPtr<ICmpPosition> markerCmpPosition(GetSimContext(), m_MarkerEntityId);
-		if (!markerCmpPosition.null())
-			markerCmpPosition->MoveOutOfWorld();
-
-		componentMgr.DestroyComponentsSoon(m_MarkerEntityId); // queue entity for destruction
-		m_MarkerEntityId = INVALID_ENTITY; // make sure any code below doesn't try to access the soon-to-be-destroyed entity anymore
-	}
-
-	// allocate a new entity for the marker
-	if (!m_MarkerTemplate.empty())
-	{
-		m_MarkerEntityId = componentMgr.AllocateNewLocalEntity();
-		if (m_MarkerEntityId != INVALID_ENTITY)
-			m_MarkerEntityId = componentMgr.AddEntity(m_MarkerTemplate, m_MarkerEntityId);
-	}
-	
-	// set rally point flag selection based on player civilization
-	CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), GetEntityId());
-	if (!cmpOwnership.null())
-	{
-		player_id_t ownerId = cmpOwnership->GetOwner();
-		if (ownerId != INVALID_PLAYER)
-		{
-			CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSimContext(), SYSTEM_ENTITY);
-			ENSURE(!cmpPlayerManager.null());
-
-			CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(ownerId));
-			if (!cmpPlayer.null())
-			{
-				CmpPtr<ICmpVisual> cmpVisualActor(GetSimContext(), m_MarkerEntityId);
-				if (!cmpVisualActor.null())
-				{
-					cmpVisualActor->SetUnitEntitySelection(CStrW(cmpPlayer->GetCiv()).ToUTF8());
-				}
-			}
-		}
-	}
-}
-
-void CCmpRallyPointRenderer::UpdateMarkerPosition()
+void CCmpRallyPointRenderer::UpdateMarker()
 {
 	if (m_MarkerEntityId == INVALID_ENTITY)
-		return; // there is no valid marker entity, no use trying to position it
+	{
+		// no marker exists yet, create one first
+		CComponentManager& componentMgr = GetSimContext().GetComponentManager();
+
+		// allocate a new entity for the marker
+		if (!m_MarkerTemplate.empty())
+		{
+			m_MarkerEntityId = componentMgr.AllocateNewLocalEntity();
+			if (m_MarkerEntityId != INVALID_ENTITY)
+				m_MarkerEntityId = componentMgr.AddEntity(m_MarkerTemplate, m_MarkerEntityId);
+		}
+	}
+
+	// the marker entity should be valid at this point, otherwise something went wrong trying to allocate it
+	if (m_MarkerEntityId == INVALID_ENTITY)
+		LOGERROR(L"Failed to create rally point marker entity");
 
 	CmpPtr<ICmpPosition> markerCmpPosition(GetSimContext(), m_MarkerEntityId);
 	if (!markerCmpPosition.null())
@@ -473,6 +435,32 @@ void CCmpRallyPointRenderer::UpdateMarkerPosition()
 		else
 		{
 			markerCmpPosition->MoveOutOfWorld(); // hide it
+		}
+	}
+
+	// set rally point flag selection based on player civilization
+	CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), GetEntityId());
+	if (!cmpOwnership.null())
+	{
+		player_id_t ownerId = cmpOwnership->GetOwner();
+		if (ownerId != INVALID_PLAYER && ownerId != m_LastOwner)
+		{
+			m_LastOwner = ownerId;
+			CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSimContext(), SYSTEM_ENTITY);
+			// cmpPlayerManager should not be null as long as this method is called on-demand instead of at Init() time
+			// (we can't rely on component initialization order in Init())
+			if (!cmpPlayerManager.null())
+			{
+				CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(ownerId));
+				if (!cmpPlayer.null())
+				{
+					CmpPtr<ICmpVisual> cmpVisualActor(GetSimContext(), m_MarkerEntityId);
+					if (!cmpVisualActor.null())
+					{
+						cmpVisualActor->SetUnitEntitySelection(CStrW(cmpPlayer->GetCiv()).ToUTF8());
+					}
+				}
+			}
 		}
 	}
 }
@@ -745,7 +733,6 @@ void CCmpRallyPointRenderer::UpdateOverlayLines()
 		m_VisibilitySegments = newVisibilitySegments; // save the new visibility segments to compare against next time
 		ConstructOverlayLines();
 	}
-
 }
 
 void CCmpRallyPointRenderer::FixFootprintWaypoints(std::vector<CVector2D>& coords, CmpPtr<ICmpPosition> cmpPosition, CmpPtr<ICmpFootprint> cmpFootprint)
