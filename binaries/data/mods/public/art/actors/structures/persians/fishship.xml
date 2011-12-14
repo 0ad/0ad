@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" name="Pers Fishing Ship">
+      <mesh>structural/pers_fishship.dae</mesh>
+      <props>
+        <prop actor="props/structures/persians/fishship_sail.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/pers_fishship.dds</texture>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>
