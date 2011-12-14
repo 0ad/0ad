@@ -2,12 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="pers flag 3">
+    <variant frequency="1" name="kart flag 1">
       <animations>
         <animation file="mechanical/garrison_flag_idle.dae" name="Idle" speed="30"/>
       </animations>
       <mesh>props/garrison_flag.dae</mesh>
-      <texture>props/garrison_pers_3.png</texture>
+      <texture>props/garrison_cart_1.png</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>
