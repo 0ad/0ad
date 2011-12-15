@@ -6,27 +6,27 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2011-11-11T00:10:23Z</created>
-    <modified>2011-11-11T00:10:23Z</modified>
+    <created>2011-12-15T04:16:02Z</created>
+    <modified>2011-12-15T04:16:02Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
     <keywords></keywords>
     <unit meter="0.025400"/>
-    <up_axis>Y_UP</up_axis>
+    <up_axis>Z_UP</up_axis>
   </asset>
   <library_images>
-    <image id="pers_struct_dds_sampler-image" name="pers_struct_dds_sampler">
+    <image id="Map__4-image" name="Map__4">
       <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\structural\pers_struct.dds</init_from>
     </image>
   </library_images>
   <library_materials>
-    <material id="pers_struct_dds" name="pers_struct_dds">
-      <instance_effect url="#pers_struct_dds-fx"/>
+    <material id="_0225151___Default" name="_0225151___Default">
+      <instance_effect url="#_0225151___Default-fx"/>
     </material>
   </library_materials>
   <library_effects>
-    <effect id="pers_struct_dds-fx" name="pers_struct_dds">
+    <effect id="_0225151___Default-fx" name="_0225151___Default">
       <profile_COMMON>
         <technique sid="standard">
           <phong>
@@ -34,10 +34,10 @@
               <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
             </emission>
             <ambient>
-              <color sid="ambient">0.400000  0.400000 0.400000 1.000000</color>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
             </ambient>
             <diffuse>
-              <texture texture="pers_struct_dds_sampler-image" texcoord="CHANNEL0">
+              <texture texture="Map__4-image" texcoord="CHANNEL0">
                 <extra>
                   <technique profile="MAYA">
                     <wrapU sid="wrapU0">TRUE</wrapU>
@@ -48,10 +48,10 @@
               </texture>
             </diffuse>
             <specular>
-              <color sid="specular">0.500000  0.500000 0.500000 1.000000</color>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
             </specular>
             <shininess>
-              <float sid="shininess">12.500001</float>
+              <float sid="shininess">2.000000</float>
             </shininess>
             <reflective>
               <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
@@ -17067,7 +17067,7 @@
         <vertices id="Stables-lib-Vertex">
           <input semantic="POSITION" source="#Stables-lib-Position"/>
         </vertices>
-        <polygons material="pers_struct_dds" count="2519">
+        <polygons material="_0225151___Default" count="2519">
           <input semantic="VERTEX" offset="0" source="#Stables-lib-Vertex"/>
           <input semantic="NORMAL" offset="1" source="#Stables-lib-Normal0"/>
           <input semantic="TEXCOORD" offset="2" set="0" source="#Stables-lib-UV0"/>
@@ -19597,22 +19597,25 @@
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
       <node id="Stables" name="Stables">
-        <matrix sid="matrix">1.013480 0.000000 0.000000 -0.316831 0.000000 0.000000 1.013480 0.000000 0.000000 -1.013480 0.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
+        <matrix sid="matrix">1.013480 0.000000 0.000000 -0.316831 0.000000 1.013480 0.000000 0.000000 0.000000 0.000000 1.013480 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
         <instance_geometry url="#Stables-lib">
           <bind_material>
             <technique_common>
-              <instance_material symbol="pers_struct_dds" target="#pers_struct_dds"/>
+              <instance_material symbol="_0225151___Default" target="#_0225151___Default"/>
             </technique_common>
           </bind_material>
         </instance_geometry>
         <node id="prop_horsea" name="prop_horsea">
-          <matrix sid="matrix">-1.000000 0.000000 -0.000000 0.454808 -0.000000 -1.000000 -0.000000 -0.693702 -0.000000 -0.000000 1.000000 -0.000133 0.000000 0.000000 0.000000 1.000000</matrix>
+          <matrix sid="matrix">-1.000000 -0.000000 0.000000 0.454808 0.000000 -1.000000 0.000000 -0.693702 0.000000 0.000000 1.000000 -0.000133 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
         <node id="prop_horseb" name="prop_horseb">
-          <matrix sid="matrix">-1.000000 0.000000 -0.000000 -2.745192 -0.000000 -1.000000 -0.000000 -0.693702 -0.000000 -0.000000 1.000000 -0.000133 0.000000 0.000000 0.000000 1.000000</matrix>
+          <matrix sid="matrix">-1.000000 -0.000000 0.000000 -2.745192 0.000000 -1.000000 0.000000 -0.693702 0.000000 0.000000 1.000000 -0.000133 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
         <node id="prop_horsec" name="prop_horsec">
-          <matrix sid="matrix">1.000000 0.000000 0.000000 -6.245193 -0.000000 1.000000 0.000000 -0.068524 -0.000000 -0.000000 1.000000 -0.000133 0.000000 0.000000 0.000000 1.000000</matrix>
+          <matrix sid="matrix">1.000000 0.000000 0.000000 -6.245193 0.000000 1.000000 0.000000 -0.068524 0.000000 0.000000 1.000000 -0.000133 0.000000 0.000000 0.000000 1.000000</matrix>
+        </node>
+        <node id="prop_garrisoned" name="prop_garrisoned">
+          <matrix sid="matrix">0.986699 0.000000 0.000000 0.708033 0.000000 0.986699 0.000000 6.661907 0.000000 0.000000 0.986699 11.530020 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
       </node>
     </visual_scene>

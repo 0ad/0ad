@@ -14,6 +14,7 @@
     <Circle radius="9.0"/>
     <Height>6.0</Height>
   </Footprint>
+  <GarrisonHolder disable=""/>
   <Identity>
     <Civ>celt</Civ>
     <GenericName>Rotary Mill</GenericName>
@@ -25,6 +26,7 @@
   <Obstruction>
     <Static width="16.0" depth="16.0"/>
   </Obstruction>
+  <RallyPoint disable=""/>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_ffactri.xml</select>

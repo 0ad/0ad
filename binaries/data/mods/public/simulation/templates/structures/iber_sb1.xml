@@ -13,6 +13,7 @@
     <Square width="10.0" depth="10.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <GarrisonHolder disable=""/>
   <Health>
     <Max>1200</Max>
   </Health>
@@ -26,6 +27,7 @@
   <Obstruction>
     <Static width="10.0" depth="10.0"/>
   </Obstruction>
+  <RallyPoint disable=""/>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_iber_monument.xml</select>
