@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_scout_tower">
+  <BuildingAI>
+    <DefaultArrowCount>2</DefaultArrowCount>
+  </BuildingAI>
   <Cost>
     <PopulationBonus>5</PopulationBonus>
     <BuildTime>200</BuildTime>
@@ -31,6 +34,9 @@
     <BarHeight>0.6</BarHeight>
     <HeightOffset>17.0</HeightOffset>
   </StatusBars>
+  <TerritoryInfluence>
+    <Radius>38</Radius>
+  </TerritoryInfluence>
   <VisualActor>
     <Actor>structures/iberians/scout_tower.xml</Actor>
     <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
