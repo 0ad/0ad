@@ -287,12 +287,14 @@ EconomyManager.prototype.updateResourceMaps = function(gameState, events){
 			this.resourceMaps[resource] = new Map(gameState);
 
 			var supplies = gameState.findResourceSupplies();
-			for (var i in supplies[resource]){
-				var current = supplies[resource][i];
-				var x = Math.round(current.position[0] / gameState.cellSize);
-				var z = Math.round(current.position[1] / gameState.cellSize);
-				var strength = Math.round(current.entity.resourceSupplyMax()/decreaseFactor[resource]);
-				this.resourceMaps[resource].addInfluence(x, z, radius[resource], strength);
+			if (supplies[resource]){
+				for (var i in supplies[resource]){
+					var current = supplies[resource][i];
+					var x = Math.round(current.position[0] / gameState.cellSize);
+					var z = Math.round(current.position[1] / gameState.cellSize);
+					var strength = Math.round(current.entity.resourceSupplyMax()/decreaseFactor[resource]);
+					this.resourceMaps[resource].addInfluence(x, z, radius[resource], strength);
+				}
 			}
 		}
 		// Look for destroy events and subtract the entities original influence from the resourceMap
