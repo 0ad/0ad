@@ -94,6 +94,13 @@ function ProcessCommand(player, cmd)
 			cmpUnitAI.Gather(cmd.target, cmd.queued);
 		});
 		break;
+		
+	case "gatherNearPosition":
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
+			cmpUnitAI.GatherNearPosition([cmd.x, cmd.z], cmd.resourceType, cmd.queued);
+		});
+		break;
 
 	case "returnresource":
 		// Check dropsite is owned by player
@@ -288,7 +295,10 @@ function ProcessCommand(player, cmd)
 		{
 			var cmpRallyPoint = Engine.QueryInterface(ent, IID_RallyPoint);
 			if (cmpRallyPoint)
+			{
 				cmpRallyPoint.SetPosition(cmd.x, cmd.z);
+				cmpRallyPoint.SetData(cmd.data);
+			}
 		}
 		break;
 

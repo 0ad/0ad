@@ -162,6 +162,67 @@ function getActionInfo(action, target)
 	// Check if any entities in the selection can gather the requested resource,
 	// can return to the dropsite, can build the foundation, or can attack the enemy
 	var simState = Engine.GuiInterfaceCall("GetSimulationState");
+	
+	// Look to see what type of command units going to the rally point should use
+	if (haveRallyPoints && action == "set-rallypoint")
+	{
+		// haveRallyPoints ensures all selected entities can have rally points.
+		// We assume that all entities are owned by the same player.
+		var entState = GetEntityState(selection[0]);
+		
+		var playerState = simState.players[entState.player];
+		var playerOwned = (targetState.player == entState.player);
+		var allyOwned = playerState.isAlly[targetState.player];
+		var enemyOwned = playerState.isEnemy[targetState.player];
+		var gaiaOwned = (targetState.player == 0);
+		
+		var cursor = "";
+		
+		// default to walking there
+		var data = {command: "walk"};
+		if (targetState.garrisonHolder && playerOwned)
+		{
+			// Don't allow the rally point to be set on any of the currently selected units
+			for (var i = 0; i < selection.length; i++)
+			{
+				if (target === selection[i])
+				{
+					return {"possible": false};
+				}
+			}
+			data.command = "garrison";
+			data.target = target;
+			cursor = "action-garrison";
+		}
+		else if (targetState.resourceSupply && (playerOwned || gaiaOwned))
+		{
+			var resourceType = targetState.resourceSupply.type.specific;
+			if (targetState.resourceSupply.type.generic === "treasure")
+			{
+				cursor = "action-gather-" + targetState.resourceSupply.type.generic;
+			}
+			else
+			{
+				cursor = "action-gather-" + targetState.resourceSupply.type.specific;
+			}
+			data.command = "gather";
+			data.resourceType = resourceType;
+		}
+		else if (targetState.foundation && entState.buildEntities)
+		{
+			data.command = "build";
+			data.target = target;
+			cursor = "action-build";
+		}
+		else if (targetState.needsRepair && allyOwned)
+		{
+			data.command = "repair";
+			data.target = target;
+			cursor = "action-repair";
+		}
+		
+		return {"possible": true, "data": data, "position": targetState.position, "cursor": cursor};
+	}
 
 	for each (var entityID in selection)
 	{
@@ -309,12 +370,12 @@ function determineAction(x, y, fromMinimap)
 			return {"type": "build", "cursor": "action-build", "target": target};
 		else if (getActionInfo("repair", target).possible)
 			return {"type": "build", "cursor": "action-repair", "target": target};
+		else if((actionInfo = getActionInfo("set-rallypoint", target)).possible)
+			return {"type": "set-rallypoint", "cursor": actionInfo.cursor, "data": actionInfo.data, "position": actionInfo.position};
 		else if (getActionInfo("attack", target).possible)
 			return {"type": "attack", "cursor": "action-attack", "target": target};
-		else if(getActionInfo("set-rallypoint", target).possible)
-			return {"type": "set-rallypoint"};
 		else if(getActionInfo("unset-rallypoint", target).possible)
-				return {"type": "unset-rallypoint"};
+			return {"type": "unset-rallypoint"};
 		else if (getActionInfo("move", target).possible)
 			return {"type": "move"};
 	}
@@ -931,13 +992,23 @@ function doAction(action, ev)
 		return true;
 
 	case "set-rallypoint":
-		var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
-		Engine.PostNetworkCommand({"type": "set-rallypoint", "entities": selection, "x": target.x, "z": target.z});
+		var pos = undefined;
+		// if there is a position set in the action then use this so that when setting a 
+		// rally point on an entity it is centered on that entity
+		if (action.position)
+		{
+			pos = action.position;
+		}
+		else
+		{
+			pos = Engine.GetTerrainAtPoint(ev.x, ev.y);
+		}
+		Engine.PostNetworkCommand({"type": "set-rallypoint", "entities": selection, "x": pos.x, "z": pos.z, "data": action.data});
 		// Display rally point at the new coordinates, to avoid display lag
 		Engine.GuiInterfaceCall("DisplayRallyPoint", {
 			"entities": selection,
-			"x": target.x,
-			"z": target.z
+			"x": pos.x,
+			"z": pos.z
 		});
 		return true;
 

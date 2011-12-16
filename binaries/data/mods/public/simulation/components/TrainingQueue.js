@@ -280,19 +280,14 @@ TrainingQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 
 	if (spawnedEnts.length > 0)
 	{
-		// If a rally point is set, walk towards it (in formation)
+		// If a rally point is set, walk towards it (in formation) using a suitable command based on where the 
+		// rally point is placed.
 		if (cmpRallyPoint)
 		{
 			var rallyPos = cmpRallyPoint.GetPosition();
 			if (rallyPos)
 			{
-				ProcessCommand(cmpOwnership.GetOwner(), {
-					"type": "walk",
-					"entities": spawnedEnts,
-					"x": rallyPos.x,
-					"z": rallyPos.z,
-					"queued": false
-				});
+				ProcessCommand(cmpOwnership.GetOwner(), getRallyPointCommand(cmpRallyPoint, spawnedEnts));
 			}
 		}
 
