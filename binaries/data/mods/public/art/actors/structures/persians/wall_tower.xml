@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -16,7 +16,7 @@
     <variant name="Idle"/>
     <variant name="garrisoned">
       <props>
-        <prop actor="props/special/common/waypoint_flag_0ad.xml" attachpoint="garrisoned"/>
+        <prop actor="props/special/common/garrison_flag_persians.xml" attachpoint="garrisoned"/>
       </props>
     </variant>
   </group>

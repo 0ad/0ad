@@ -2,10 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="garrison flag persians">
-      <mesh>props/waypoint_flag.dae</mesh>
-      <texture>props/banner_persian.png</texture>
+    <variant frequency="1" name="pers flag 3">
+      <animations>
+        <animation file="mechanical/garrison_flag_idle.dae" name="Idle" speed="30"/>
+      </animations>
+      <mesh>props/garrison_flag.dae</mesh>
+      <texture>props/garrison_pers_3.png</texture>
     </variant>
   </group>
-  <material>basic_trans.xml</material>
+  <material>player_trans.xml</material>
 </actor>

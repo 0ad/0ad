@@ -442,7 +442,9 @@ GuiInterface.prototype.DisplayRallyPoint = function(player, cmd)
 		if (cmpRallyPointRenderer)
 			cmpRallyPointRenderer.SetDisplayed(false);
 	}
-
+	
+	this.entsRallyPointsDisplayed = [];
+	
 	// Show the rally points for the passed entities
 	for each (var ent in cmd.entities)
 	{
@@ -468,16 +470,17 @@ GuiInterface.prototype.DisplayRallyPoint = function(player, cmd)
 		if (cmd.x && cmd.z)
 			pos = cmd; 
 		else
-			pos = cmpRallyPoint.GetPosition(); // may return undefined
+			pos = cmpRallyPoint.GetPosition(); // may return undefined if no rally point is set
 
 		if (pos)
+		{
 			cmpRallyPointRenderer.SetPosition({'x': pos.x, 'y': pos.z}); // SetPosition takes a CFixedVector2D which has X/Y components, not X/Z
-
-		cmpRallyPointRenderer.SetDisplayed(true);
+			cmpRallyPointRenderer.SetDisplayed(true);
+			
+			// remember which entities have their rally points displayed so we can hide them again
+			this.entsRallyPointsDisplayed.push(ent);
+		}
 	}
-
-	// Remember which entities have their rally points displayed so we can hide them again
-	this.entsRallyPointsDisplayed = cmd.entities;
 };
 
 /**

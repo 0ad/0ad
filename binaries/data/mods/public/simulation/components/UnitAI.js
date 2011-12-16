@@ -284,6 +284,7 @@ var UnitFsmSpec = {
 	},
 
 	"Order.Gather": function(msg) {
+		
 		// If the target is still alive, we need to kill it first
 		if (this.MustKillGatherTarget(this.order.data.target) && this.CheckTargetVisible(this.order.data.target))
 		{
@@ -314,6 +315,12 @@ var UnitFsmSpec = {
 			this.StopMoving();
 			this.SetNextState("INDIVIDUAL.GATHER.GATHERING");
 		}
+	},
+	
+	"Order.GatherNearPosition": function(msg){
+		// Move the unit to the position to gather from.
+		this.MoveToPoint(this.order.data.x, this.order.data.z);
+		this.SetNextState("INDIVIDUAL.GATHER.WALKING");
 	},
 
 	"Order.ReturnResource": function(msg) {
@@ -406,6 +413,12 @@ var UnitFsmSpec = {
 			// TODO: see notes in Order.Attack
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 			cmpFormation.CallMemberFunction("Gather", [msg.data.target, false]);
+			cmpFormation.Disband();
+		},
+		
+		"Order.GatherNearPosition": function(msg){
+			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			cmpFormation.CallMemberFunction("GatherNearPosition", [[msg.data.x, msg.data.z], msg.data.type, false]);
 			cmpFormation.Disband();
 		},
 
@@ -813,6 +826,33 @@ var UnitFsmSpec = {
 
 					// We reached the target - start gathering from it now
 					this.SetNextState("GATHERING");
+				},
+			},
+			
+			// Walking to a good place to gather resoruce near, ued by gatherNearPosition
+			"WALKING": {
+				"enter": function() {
+					this.SelectAnimation("move");
+				},
+
+				"MoveCompleted": function(msg) {
+						var resourceType = this.order.data.type;
+						
+						// Try to find another nearby target of the same specific type
+						var nearby = this.FindNearbyResource(function (ent, type) {
+							return (type.specific == resourceType);
+						});
+						
+						// If there is a nearby resource start gathering
+						if (nearby)
+						{
+							this.Gather(nearby, false);
+							return;
+						}
+						
+						// Couldn't find nearby resources, so give up
+						this.FinishOrder();
+
 				},
 			},
 
@@ -2179,6 +2219,7 @@ UnitAI.prototype.ComputeWalkingDistance = function()
 		switch (order.type)
 		{
 		case "Walk":
+		case "GatherNearPosition":
 			// Add the distance to the target point
 			var dx = order.data.x - pos.x;
 			var dz = order.data.z - pos.z;
@@ -2306,6 +2347,11 @@ UnitAI.prototype.Gather = function(target, queued)
 
 	this.AddOrder("Gather", { "target": target, "type": type, "lastPos": lastPos }, queued);
 };
+
+UnitAI.prototype.GatherNearPosition = function(position, type, queued)
+{
+	this.AddOrder("GatherNearPosition", { "type": type, "x": position[0], "z": position[1] }, queued);
+}
 
 UnitAI.prototype.ReturnResource = function(target, queued)
 {

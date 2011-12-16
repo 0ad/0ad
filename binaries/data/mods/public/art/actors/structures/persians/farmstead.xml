@@ -5,6 +5,7 @@
     <variant frequency="100" name="Base">
       <mesh>structural/pers_farmstead.dae</mesh>
       <props>
+        <prop actor="props/structures/decals/dirt_3x3.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/farmstead_mud.xml" attachpoint="root"/>
       </props>
       <texture>structural/pers_struct.dds</texture>
