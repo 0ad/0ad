@@ -60,19 +60,7 @@ public:
 	{
 		RETURN_STATUS_IF_ERR(MapRegisters(m_hpetRegisters));
 
-		// retrieve capabilities and ID
-		{
-			const u64 caps_and_id = Read64(CAPS_AND_ID);
-			const u8 revision = (u8)bits(caps_and_id, 0, 7);
-			ENSURE(revision != 0);	// "the value must NOT be 00h"
-			m_counterBits = (caps_and_id & Bit<u64>(13))? 64 : 32;
-			const u16 vendorID = (u16)bits(caps_and_id, 16, 31);
-			const u32 period_fs = (u32)bits(caps_and_id, 32, 63);
-			ENSURE(period_fs != 0);	// "a value of 0 in this field is not permitted"
-			ENSURE(period_fs <= 0x05F5E100);	// 100 ns (min freq is 10 MHz)
-			m_frequency = 1e15 / period_fs;
-			debug_printf(L"HPET: rev=%X vendor=%X bits=%d period=%08X freq=%g\n", revision, vendorID, m_counterBits, period_fs, m_frequency);
-		}
+		RETURN_STATUS_IF_ERR(VerifyCapabilities(m_frequency, m_counterBits));
 
 		// start the counter (if not already running)
 		Write64(CONFIG, Read64(CONFIG)|1);
@@ -197,6 +185,40 @@ private:
 		const __m128i value128 = _mm_set_epi32(0, 0, int(value >> 32), int(value & 0xFFFFFFFF));
 #endif
 		_mm_storel_epi64((__m128i*)address, value128);
+	}
+
+	Status VerifyCapabilities(double& frequency, u32& counterBits) const
+	{
+		// AMD document 43366 indicates the clock generator that drives the
+		// HPET is "spread-capable". Wikipedia's frequency hopping article
+		// explains that this reduces electromagnetic interference.
+		// The AMD document recommends BIOS writers add SMM hooks for
+		// reporting the resulting slightly different frequency.
+		// This apparently requires calibration triggered when the HPET is
+		// accessed, during which the config register is -1. We'll wait
+		// about 1 ms (MMIO is expected to take at least 1 us) and
+		// then ensure the HPET timer period is within reasonable bounds.
+		u64 caps_and_id = Read64(CAPS_AND_ID);
+		for(size_t reps = 0; reps < 1000; reps++)
+		{
+			if(caps_and_id != ~u64(0))	// register seems valid
+				break;
+			caps_and_id = Read64(CAPS_AND_ID);
+		}
+
+		const u8 revision = (u8)bits(caps_and_id, 0, 7);
+		ENSURE(revision != 0);	// "the value must NOT be 00h"
+		counterBits = (caps_and_id & Bit<u64>(13))? 64 : 32;
+		const u16 vendorID = (u16)bits(caps_and_id, 16, 31);
+		const u32 period_fs = (u32)bits(caps_and_id, 32, 63);
+		ENSURE(period_fs != 0);	// "a value of 0 in this field is not permitted"
+		frequency = 1e15 / period_fs;
+		debug_printf(L"HPET: rev=%X vendor=%X bits=%d period=%08X freq=%g\n", revision, vendorID, counterBits, period_fs, frequency);
+
+		if(period_fs > 0x05F5E100)	// 100 ns (spec guarantees >= 10 MHz)
+			return ERR::CORRUPTED;	// avoid using HPET (e.g. if calibration was still in progress)
+
+		return INFO::OK;
 	}
 
 	volatile void* m_hpetRegisters;
