@@ -3,6 +3,9 @@
   <Health>
     <Max>100</Max>
     <DeathType>remain</DeathType>
+    <RegenRate>1</RegenRate>
+    <Healable>false</Healable>
+    <Repairable>false</Repairable>
   </Health>
   <Identity>
     <Classes datatype="tokens">SeaCreature</Classes>
