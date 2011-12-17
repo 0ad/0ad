@@ -253,7 +253,7 @@
 		_p('  LDFLAGS   += %s', table.concat(table.join(cc.getldflags(cfg), cfg.linkoptions, cc.getlibdirflags(cfg)), " "))
 		_p('  LIBS      += %s %s', table.concat(cc.getlinkflags(cfg), " "), table.concat(cfg.gnuexternals, " "))
 		_p('  RESFLAGS  += $(DEFINES) $(INCLUDES) %s', table.concat(table.join(cc.getdefines(cfg.resdefines), cc.getincludedirs(cfg.resincludedirs), cfg.resoptions), " "))
-		_p('  LDDEPS    += %s', table.concat(_MAKE.esc(premake.getlinks(cfg, "siblings", "fullpath")), " "))
+		_p('  LDDEPS    += %s', table.concat(_MAKE.esc(premake.getlinks(cfg, "static", "fullpath")), " "))
 		
 		if cfg.kind == "StaticLib" then
 			if cfg.platform:startswith("Universal") then

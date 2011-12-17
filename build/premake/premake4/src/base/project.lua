@@ -266,6 +266,7 @@
 --   siblings     - linkable sibling projects
 --   system       - system (non-sibling) libraries
 --   dependencies - all sibling dependencies, including non-linkable
+--   static	  - siblings that are static libraries
 --   all          - return everything
 --
 -- Part may be one of:
@@ -288,7 +289,9 @@
 		local namestyle = premake.getnamestyle(cfg)
 		
 		local function canlink(source, target)
-			if (target.kind ~= "SharedLib" and target.kind ~= "StaticLib") then 
+			if (kind == "static" and target.kind ~= "StaticLib") then
+				return false				
+			elseif (target.kind ~= "SharedLib" and target.kind ~= "StaticLib") then 
 				return false
 			end
 			if premake.iscppproject(source) then

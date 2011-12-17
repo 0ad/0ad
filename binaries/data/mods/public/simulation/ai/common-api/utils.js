@@ -37,3 +37,15 @@ function ShallowClone(obj)
 		ret[k] = obj[k];
 	return ret;
 }
+
+// Picks a random element from an array
+function PickRandom(list){
+	if (list.length === 0)
+	{
+		return undefined;
+	}
+	else
+	{
+		return list[Math.floor(Math.random()*list.length)];
+	}
+}

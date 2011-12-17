@@ -720,6 +720,12 @@ function setup_atlas_project(project_name, target_type, rel_source_dirs, rel_inc
 	if not extra_params["pch_dir"] then
 		extra_params["pch_dir"] = source_root
 	end
+	
+	-- install_name settings aren't really supported yet by premake, but there are plans for the future.
+	-- we currently use this hack to work around some bugs with wrong install_names.
+	if target_type == "SharedLib" and os.is("macosx") then
+		linkoptions { "-install_name @executable_path/lib"..project_name..".dylib" }		
+	end
 
 	project_add_contents(source_root, rel_source_dirs, rel_include_dirs, extra_params)
 	project_add_extern_libs(extern_libs, target_type)
