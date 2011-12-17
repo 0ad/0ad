@@ -1,21 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-		<variant frequency="100" name="fish mesh">
-			<animations>
-				<animation file="other/fish_generic.dae" name="Idle" speed="80"/>
-			</animations>
-			<mesh>skeletal/fish_generic.dae</mesh>
-		</variant>
+    <variant frequency="100" name="fish mesh">
+      <animations>
+        <animation file="other/fish_generic.dae" name="Idle" speed="40"/>
+      </animations>
+      <mesh>skeletal/fish_generic.dae</mesh>
+    </variant>
   </group>
-
   <group>
     <variant frequency="100" name="generic texture">
       <texture>skeletal/animal_fish_generic.png</texture>
     </variant>
   </group>
-
 </actor>
