@@ -26,3 +26,9 @@ Entity.prototype.unloadAll = function() {
 	Engine.PostCommand({"type": "unload-all", "garrisonHolder": this.id()});
 	return this;
 };
+
+Entity.prototype.attack = function(unitId)
+{
+	Engine.PostCommand({"type": "attack", "entities": [this.id()], "target": unitId, "queued": false});
+	return this;
+};

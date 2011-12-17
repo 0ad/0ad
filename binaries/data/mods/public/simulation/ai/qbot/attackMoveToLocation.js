@@ -1,16 +1,18 @@
-function AttackMoveToCC(gameState, militaryManager){
-	this.minAttackSize = 20;
-	this.maxAttackSize = 60;
+function AttackMoveToLocation(gameState, militaryManager, minAttackSize, maxAttackSize, targetFinder){
+	this.minAttackSize = minAttackSize || 20;
+	this.maxAttackSize = maxAttackSize || 60;
 	this.idList=[];
 	
 	this.previousTime = 0;
 	this.state = "unexecuted";
 	
+	this.targetFinder = targetFinder || this.defaultTargetFinder;
+	
 	this.healthRecord = [];
 };
 
 // Returns true if the attack can be executed at the current time 
-AttackMoveToCC.prototype.canExecute = function(gameState, militaryManager){
+AttackMoveToLocation.prototype.canExecute = function(gameState, militaryManager){
 	var enemyStrength = militaryManager.measureEnemyStrength(gameState);
 	var enemyCount = militaryManager.measureEnemyCount(gameState);
 	
@@ -27,13 +29,8 @@ AttackMoveToCC.prototype.canExecute = function(gameState, militaryManager){
 			|| availableCount >= this.maxAttackSize);
 };
 
-// Executes the attack plan, after this is executed the update function will be run every turn
-AttackMoveToCC.prototype.execute = function(gameState, militaryManager){
-	var availableCount = militaryManager.countAvailableUnits();
-	this.idList = militaryManager.getAvailableUnits(availableCount);
-	
-	var pending = EntityCollectionFromIds(gameState, this.idList);
-	
+// Default target finder aims for conquest critical targets
+AttackMoveToLocation.prototype.defaultTargetFinder = function(gameState, militaryManager){
 	// Find the critical enemy buildings we could attack
 	var targets = militaryManager.getEnemyBuildings(gameState,"ConquestCritical");
 	// If there are no critical structures, attack anything else that's critical
@@ -49,7 +46,22 @@ AttackMoveToCC.prototype.execute = function(gameState, militaryManager){
 	if (targets.length == 0) {
 		targets = militaryManager.getEnemyBuildings(gameState,"Village");
 	}
+	return targets;
+};
 
+// Executes the attack plan, after this is executed the update function will be run every turn
+AttackMoveToLocation.prototype.execute = function(gameState, militaryManager){
+	var availableCount = militaryManager.countAvailableUnits();
+	this.idList = militaryManager.getAvailableUnits(availableCount);
+	
+	var pending = EntityCollectionFromIds(gameState, this.idList);
+	
+	var targets = this.targetFinder(gameState, militaryManager);
+	
+	if (targets.length === 0){
+		targets = this.defaultTargetFinder(gameState, militaryManager);
+	}
+	
 	// If we have a target, move to it
 	if (targets.length) {
 		// Add an attack role so the economic manager doesn't try and use them
@@ -59,7 +71,9 @@ AttackMoveToCC.prototype.execute = function(gameState, militaryManager){
 		
 		var curPos = pending.getCentrePosition();
 		
-		var target = targets.toEntityArray()[0];
+		// pick a random target from the list 
+		var rand = Math.floor((Math.random()*targets.length));
+		var target = targets.toEntityArray()[rand];
 		this.targetPos = target.position();
 		
 		// Find possible distinct paths to the enemy 
@@ -75,6 +89,7 @@ AttackMoveToCC.prototype.execute = function(gameState, militaryManager){
 		pending.move(this.path[0][0], this.path[0][1]);
 	} else if (targets.length == 0 ) {
 		gameState.ai.gameFinished = true;
+		return;
 	}
 	
 	this.state = "walking";
@@ -82,7 +97,7 @@ AttackMoveToCC.prototype.execute = function(gameState, militaryManager){
 
 // Runs every turn after the attack is executed
 // This removes idle units from the attack
-AttackMoveToCC.prototype.update = function(gameState, militaryManager, events){
+AttackMoveToLocation.prototype.update = function(gameState, militaryManager, events){
 	
 	// keep the list of units in good order by pruning ids with no corresponding entities (i.e. dead units)
 	var removeList = [];

@@ -169,7 +169,7 @@ PathFinder.prototype.walkGradient = function(start, mode){
 	
 	var blockPoint = undefined;
 	var blockPlacementRadius = 45;
-	var blockRadius = 30;
+	var blockRadius = 23;
 	var count = 0;
 	
 	var cur = start;
@@ -208,7 +208,7 @@ PathFinder.prototype.walkGradient = function(start, mode){
 	this.addInfluence(blockPoint[0], blockPoint[1], blockRadius, -10000, 'constant');
 	if (mode === 'entryPoints'){
 		// returns the point where the path enters the blockPlacementRadius
-		return blockPoint;
+		return [blockPoint[0] * this.cellSize, blockPoint[1] * this.cellSize];
 	}else{
 		// return a path of points 20 squares apart on the route
 		return path;

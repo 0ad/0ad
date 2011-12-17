@@ -47,5 +47,11 @@ var Filters = {
 		return function(ent){
 			return Filters.byClassesOr(["CitizenSoldier", "Super"])(ent);
 		};
+	},
+	
+	isIdle: function(){
+		return function(ent){
+			return ent.isIdle();
+		};
 	}
 };
