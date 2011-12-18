@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="700.607" y="79.7402" z="712.78"/>
+		<Position x="262.398" y="52.2275" z="605.817"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -8805,6 +8805,12 @@
 			<Template>actor|geology/stone_desert_med.xml</Template>
 			<Position x="418.03995" z="757.0561"/>
 			<Orientation y="0.3914"/>
+		</Entity>
+		<Entity uid="1665">
+			<Template>units/cart_support_trader</Template>
+			<Player>3</Player>
+			<Position x="259.24186" z="654.32026"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
