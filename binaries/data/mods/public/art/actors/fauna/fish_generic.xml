@@ -4,9 +4,9 @@
   <group>
     <variant frequency="100" name="fish mesh">
       <animations>
-        <animation file="other/fish_generic_idle_a.dae" name="Idle" speed="50"/>
+        <animation file="other/fish_generic_idle_a.dae" name="Idle" speed="40"/>
         <animation file="other/fish_generic_idle_b.dae" name="Idle" speed="50"/>
-        <animation file="other/fish_generic_idle_c.dae" name="Idle" speed="50"/>
+        <animation file="other/fish_generic_idle_c.dae" name="Idle" speed="35"/>
       </animations>
       <mesh>skeletal/fish_generic.dae</mesh>
     </variant>

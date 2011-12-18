@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="Mesh">
       <animations>
-        <animation file="quadraped/lion_walk.dae" name="Walk" speed="120"/>
+        <animation file="quadraped/lion_walk.dae" name="Walk" speed="80"/>
         <animation file="quadraped/lion_run.dae" name="Run" speed="20"/>
         <animation file="quadraped/lion_idle_01.dae" name="Idle" speed="50"/>
         <animation file="quadraped/lion_idle_02.dae" name="Idle" speed="50"/>
@@ -23,7 +23,7 @@
     <variant frequency="100" name="normal"/>
     <variant frequency="0" name="feeding">
       <animations>
-        <animation file="quadraped/lion_walk.dae" name="Walk" speed="110"/>
+        <animation file="quadraped/lion_walk.dae" name="Walk" speed="80"/>
         <animation file="quadraped/lion_run.dae" name="Run" speed="20"/>
         <animation file="quadraped/lion_idle_01.dae" name="Idle" speed="50"/>
         <animation file="quadraped/lion_idle_02.dae" name="Idle" speed="50"/>
