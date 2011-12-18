@@ -52,7 +52,8 @@ AttackMoveToLocation.prototype.defaultTargetFinder = function(gameState, militar
 // Executes the attack plan, after this is executed the update function will be run every turn
 AttackMoveToLocation.prototype.execute = function(gameState, militaryManager){
 	var availableCount = militaryManager.countAvailableUnits();
-	this.idList = militaryManager.getAvailableUnits(availableCount);
+	var numWanted = Math.min(availableCount, this.maxAttackSize);
+	this.idList = militaryManager.getAvailableUnits(numWanted);
 	
 	var pending = EntityCollectionFromIds(gameState, this.idList);
 	

@@ -917,6 +917,7 @@ This skeleton is for the deer and any other similiar shaped animals with the exa
                         <bone name="motion_back"></bone> 
                         <bone name="jump_first"></bone> 
                         <bone name="jump_second"></bone> 
+                        <bone name="jump_third"></bone> 
                 </bone> 
 	</standard_skeleton> 
  
@@ -930,6 +931,7 @@ This skeleton is for the deer and any other similiar shaped animals with the exa
                         <bone name="motion_back"><target>motion_back</target></bone>
                         <bone name="jump_first"><target>jump_first</target></bone>
                         <bone name="jump_second"><target>jump_second</target></bone>
+                        <bone name="jump_third"><target>jump_third</target></bone>
                 </bone> 
 	</skeleton>  
 	

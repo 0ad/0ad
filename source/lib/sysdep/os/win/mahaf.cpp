@@ -194,19 +194,20 @@ void mahaf_WriteModelSpecificRegister(u64 reg, u64 value)
 // driver installation
 //-----------------------------------------------------------------------------
 
-static SC_HANDLE OpenServiceControlManager()
+// @param access need not include SC_MANAGER_CONNECT ("implicitly specified")
+static SC_HANDLE OpenServiceControlManager(DWORD access)
 {
 	LPCWSTR machineName = 0;	// local
 	LPCWSTR databaseName = 0;	// default
-	SC_HANDLE hSCM = OpenSCManagerW(machineName, databaseName, SC_MANAGER_ALL_ACCESS);
+	SC_HANDLE hSCM = OpenSCManagerW(machineName, databaseName, access);
 	if(!hSCM)
 	{
-		// administrator privileges are required. note: installing the
-		// service and having it start automatically would allow
-		// Least-Permission accounts to use it, but is too invasive and
-		// thus out of the question.
+		// administrator privileges are required for SC_MANAGER_CREATE_SERVICE.
+		// note: installing the service and having it start automatically would
+		// allow Least-Permission accounts to use it (after relaxing the
+		// service's DACL).
 
-		// rule out other problems
+		// ensure no other problems arose
 		ENSURE(GetLastError() == ERROR_ACCESS_DENIED);
 
 		return 0;
@@ -218,10 +219,10 @@ static SC_HANDLE OpenServiceControlManager()
 
 static void UninstallDriver()
 {
-	SC_HANDLE hSCM = OpenServiceControlManager();
+	SC_HANDLE hSCM = OpenServiceControlManager(SC_MANAGER_ENUMERATE_SERVICE);
 	if(!hSCM)
 		return;
-	SC_HANDLE hService = OpenServiceW(hSCM, AKEN_NAME, SERVICE_ALL_ACCESS);
+	SC_HANDLE hService = OpenServiceW(hSCM, AKEN_NAME, SERVICE_STOP|SERVICE_INTERROGATE);
 	if(!hService)
 		return;
 
@@ -249,7 +250,7 @@ static void UninstallDriver()
 
 static void StartDriver(const OsPath& driverPathname)
 {
-	const SC_HANDLE hSCM = OpenServiceControlManager();
+	const SC_HANDLE hSCM = OpenServiceControlManager(SC_MANAGER_CREATE_SERVICE);
 	if(!hSCM)
 	{
 		ENSURE(GetLastError() == ERROR_ACCESS_DENIED);
@@ -257,7 +258,7 @@ static void StartDriver(const OsPath& driverPathname)
 		return;
 	}
 
-	SC_HANDLE hService = OpenServiceW(hSCM, AKEN_NAME, SERVICE_ALL_ACCESS);
+	SC_HANDLE hService = OpenServiceW(hSCM, AKEN_NAME, GENERIC_READ);
 
 	// during development, we want to ensure the newest build is used, so
 	// unload and re-create the service if it's running/installed.
@@ -280,7 +281,7 @@ static void StartDriver(const OsPath& driverPathname)
 		LPCWSTR startName = 0;	// LocalSystem
 		// NB: Windows 7 seems to insist upon backslashes (i.e. external_file_string)
 		hService = CreateServiceW(hSCM, AKEN_NAME, AKEN_NAME,
-			SERVICE_ALL_ACCESS, SERVICE_KERNEL_DRIVER, SERVICE_DEMAND_START, SERVICE_ERROR_NORMAL,
+			SERVICE_START, SERVICE_KERNEL_DRIVER, SERVICE_DEMAND_START, SERVICE_ERROR_NORMAL,
 			OsString(driverPathname).c_str(), 0, 0, 0, startName, 0);
 		ENSURE(hService != 0);
 	}

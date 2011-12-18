@@ -121,7 +121,7 @@ QBotAI.prototype.OnUpdate = function() {
 	this.turn++;
 };
 
-var debugOn = true;
+var debugOn = false;
 
 function debug(output){
 	if (debugOn){
