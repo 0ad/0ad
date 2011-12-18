@@ -491,7 +491,7 @@ MilitaryAttackManager.prototype.buildDefences = function(gameState, queues){
 	
 	if (numFortresses + queues.defenceBuilding.totalLength() < gameState.getBuildLimits()["Fortress"]) {
 		if (gameState.countEntitiesWithType(gameState.applyCiv("units/{civ}_support_female_citizen")) > gameState.ai.modules[0].targetNumWorkers * 0.5){
-			if (gameState.getTimeElapsed() > 200 * 1000 * numFortresses){
+			if (gameState.getTimeElapsed() > 350 * 1000 * numFortresses){
 				if (gameState.ai.pathsToMe.length > 0){
 					var position = gameState.ai.pathsToMe.shift();
 					// TODO: pick a fort randomly from the list.
