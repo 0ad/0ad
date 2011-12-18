@@ -2487,9 +2487,14 @@ UnitAI.prototype.CanAttack = function(target)
 	if (!cmpAttack)
 		return false;
 
-	// Verify that the target is owned by an enemy of this entity's player
+	// Verify that the target is alive
+	if (!this.TargetIsAlive(target))
+		return false;
+
+	// Verify that the target is owned by an enemy of this entity's player,
+	//	or that it's an attackable resource supply like a domestic animal
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership || !IsOwnedByEnemyOfPlayer(cmpOwnership.GetOwner(), target))
+	if (!cmpOwnership || (!this.MustKillGatherTarget(target) && !IsOwnedByEnemyOfPlayer(cmpOwnership.GetOwner(), target)))
 		return false;
 
 	return true;
