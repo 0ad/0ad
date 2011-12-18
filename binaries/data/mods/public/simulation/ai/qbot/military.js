@@ -470,7 +470,7 @@ MilitaryAttackManager.prototype.measureEnemyStrength = function(gameState){
 // Adds towers to the defenceBuilding queue
 MilitaryAttackManager.prototype.buildDefences = function(gameState, queues){ 
 	if (gameState.countEntitiesAndQueuedWithType(gameState.applyCiv('structures/{civ}_scout_tower'))
-			+ queues.defenceBuilding.totalLength() <= gameState.getBuildLimits()["ScoutTower"]) {
+			+ queues.defenceBuilding.totalLength() < gameState.getBuildLimits()["ScoutTower"]) {
 		
 		
 		gameState.getOwnEntities().forEach(function(dropsiteEnt) {
@@ -488,7 +488,8 @@ MilitaryAttackManager.prototype.buildDefences = function(gameState, queues){
 	for (var i in this.bFort){
 		numFortresses += gameState.countEntitiesAndQueuedWithType(gameState.applyCiv(this.bFort[i]));
 	}
-	if (numFortresses + queues.defenceBuilding.totalLength() <= gameState.getBuildLimits()["Fortress"]) {
+	
+	if (numFortresses + queues.defenceBuilding.totalLength() < gameState.getBuildLimits()["Fortress"]) {
 		if (gameState.countEntitiesWithType(gameState.applyCiv("units/{civ}_support_female_citizen")) > gameState.ai.modules[0].targetNumWorkers * 0.5){
 			if (gameState.getTimeElapsed() > 200 * 1000 * numFortresses){
 				if (gameState.ai.pathsToMe.length > 0){
@@ -563,26 +564,33 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 		}
 	}
 	
-	
 	// Look for attack plans which can be executed, only do this once every minute
-	if (gameState.getTimeElapsed() - 60*1000 > this.lastAttackTime){
-		this.lastAttackTime = gameState.getTimeElapsed();
-		for (var i = 0; i < this.availableAttacks.length; i++){
-			if (this.availableAttacks[i].canExecute(gameState, this)){
-				// Make it so raids happen a bit randomly 
-				if (this.attackCount > 4 || Math.random() < 0.25){
-					this.availableAttacks[i].execute(gameState, this);
-					this.currentAttacks.push(this.availableAttacks[i]);
+	if (gameState.getTimeElapsed() < 6.5*60*1000){
+		if (gameState.getTimeElapsed() - 60*1000 > this.lastAttackTime){
+			this.lastAttackTime = gameState.getTimeElapsed();
+			for (var i = 0; i < this.availableAttacks.length; i++){
+				if (this.availableAttacks[i].canExecute(gameState, this)){
+					// Make it so raids happen a bit randomly 
+					if (Math.random() < 0.35){
+						this.availableAttacks[i].execute(gameState, this);
+						this.currentAttacks.push(this.availableAttacks[i]);
+						debug("Raiding!");
+						this.availableAttacks.splice(i, 1, new this.attackManagers[i](gameState, this, 10, 10, this.getEconomicTargets));
+					}
 				}
-				if (this.attackCount < 4){
-					this.availableAttacks.splice(i, 1, new this.attackManagers[i](gameState, this, 10, 10, this.getEconomicTargets));
-				}else{
-					this.availableAttacks.splice(i, 1, new this.attackManagers[i](gameState, this, 20, 40 + 10 * Math.max(this.attackCount, 8)));
-				}
-				this.attackCount++;
 			}
 		}
+	}else{
+		for (var i = 0; i < this.availableAttacks.length; i++){
+			if (this.availableAttacks[i].canExecute(gameState, this)){
+				this.availableAttacks[i].execute(gameState, this);
+				this.currentAttacks.push(this.availableAttacks[i]);
+				debug("Attacking!");
+			}
+			this.availableAttacks.splice(i, 1, new this.attackManagers[i](gameState, this, 20, 60));
+		}
 	}
+	
 	// Keep current attacks updated
 	for (i in this.currentAttacks){
 		this.currentAttacks[i].update(gameState, this, events);

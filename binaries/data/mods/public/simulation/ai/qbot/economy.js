@@ -447,6 +447,7 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 	//Later in the game we want to build stuff faster.
 	if (gameState.countEntitiesWithType(gameState.applyCiv("units/{civ}_support_female_citizen")) > this.targetNumWorkers * 0.5) {
 		this.targetNumBuilders = 10;
+		gameState.ai.priorities.field = 20;
 	}else{
 		this.targetNumBuilders = 5;
 	}
