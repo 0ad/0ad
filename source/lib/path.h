@@ -43,6 +43,8 @@
 
 #include <cstring>
 
+#include "lib/posix/posix.h"	// wcscasecmp
+
 namespace ERR
 {
 	const Status PATH_CHARACTER_ILLEGAL   = -100300;
