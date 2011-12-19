@@ -162,7 +162,7 @@ String.prototype.rpad = function(padString, length) {
     return str;
 };
 
-QueueManager.prototype.printQueues = function(){
+QueueManager.prototype.printQueues = function(gameState){
 	debug("OUTQUEUES");
 	for (var i in this.queues){
 		var qStr = "";
@@ -192,11 +192,12 @@ QueueManager.prototype.printQueues = function(){
 		}
 	}
 	debug("Accounts: " + uneval(this.account));
+	debug("Needed Resources:" + uneval(this.futureNeeds(gameState)));
 };
 
 QueueManager.prototype.update = function(gameState) {
 	Engine.ProfileStart("Queue Manager");
-	//this.printQueues();
+	//this.printQueues(gameState);
 	
 	Engine.ProfileStart("Pick items from queues");
 	// See if there is a high priority item from last time.

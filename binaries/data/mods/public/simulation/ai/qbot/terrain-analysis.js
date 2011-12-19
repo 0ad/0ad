@@ -40,7 +40,9 @@ TerrainAnalysis.prototype.findClosestPassablePoint = function(startPoint){
 				p[j] += direction;
 				if (p[0] + w*p[1] > 0 && p[0] + w*p[1] < this.length &&
 						this.map[p[0] + w*p[1]] != 0){
-					return p;
+					if (this.countConnected(p, 10) >= 10){
+						return p;
+					}
 				}
 			}
 		}
@@ -48,6 +50,32 @@ TerrainAnalysis.prototype.findClosestPassablePoint = function(startPoint){
 	}
 	
 	return undefined;
+};
+
+// Counts how many accessible tiles there are connected to the start Point.  If there are >= maxCount then it stops.
+// This is inefficient for large areas so maxCount should be kept small for efficiency.
+TerrainAnalysis.prototype.countConnected = function(startPoint, maxCount, curCount, checked){
+	curCount = curCount || 0;
+	checked = checked || [];
+	
+	var w = this.width;
+	
+	var positions = [[0,1], [0,-1], [1,0], [-1,0]];
+	
+	curCount += 1; // add 1 for the current point
+	checked.push(startPoint);
+	if (curCount >= maxCount){
+		return curCount;
+	}
+	
+	for (var i in positions){
+		var p = [startPoint[0] + positions[i][0], startPoint[1] + positions[i][1]];
+		if (p[0] + w*p[1] > 0 && p[0] + w*p[1] < this.length &&
+				this.map[p[0] + w*p[1]] != 0 && !(p in checked)){
+			curCount += this.countConnected(p, maxCount, curCount, checked);
+		}
+	}
+	return curCount;
 };
 
 /*
@@ -70,7 +98,7 @@ function PathFinder(gameState){
 copyPrototype(PathFinder, TerrainAnalysis);
 
 /*
- * Returns a list of distinct paths to the destination.  Curerntly paths are distinct if they are more than 
+ * Returns a list of distinct paths to the destination.  Currently paths are distinct if they are more than 
  * blockRadius apart at a distance of blockPlacementRadius from the destination.  Where blockRadius and 
  * blockPlacementRadius are defined in walkGradient
  */

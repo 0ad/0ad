@@ -126,11 +126,15 @@ EconomyManager.prototype.reassignIdleWorkers = function(gameState) {
 			}
 
 			var types = self.pickMostNeededResources(gameState);
+			//debug("Most Needed Resources: " + uneval(types));
 			for ( var typeKey in types) {
 				var type = types[typeKey];
 				// Make sure there are actually some resources of that type
-				if (!resourceSupplies[type])
+				if (!resourceSupplies[type]){
+					debug("No " + type + " found!");
 					continue;
+				}
+				var numSupplies = resourceSupplies[type].length;
 
 				// TODO: we should care about gather rates of workers
 				
@@ -157,7 +161,7 @@ EconomyManager.prototype.reassignIdleWorkers = function(gameState) {
 						return;
 					}
 					
-					// And don't go for the bloody fish!
+					// And don't go for the bloody fish! TODO: remove after alpha 8
 					if (supply.entity.hasClass("SeaCreature")){
 						return;
 					}
@@ -175,8 +179,8 @@ EconomyManager.prototype.reassignIdleWorkers = function(gameState) {
 					}
 
 					// Skip targets that are far too far away (e.g. in the
-					// enemy base)
-					if (dist > 512){
+					// enemy base), only do this for common supplies
+					if (dist > 6072 && numSupplies > 100){
 						return;
 					}
 
@@ -200,6 +204,8 @@ EconomyManager.prototype.reassignIdleWorkers = function(gameState) {
 					ent.setMetadata("subrole", "gatherer");
 					ent.setMetadata("gather-type", type);
 					return;
+				}else{
+					debug("No " + type + " found!");
 				}
 			}
 
