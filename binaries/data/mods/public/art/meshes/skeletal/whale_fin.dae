@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.60.0 r41226</authoring_tool>
     </contributor>
-    <created>2011-12-19T14:06:55</created>
-    <modified>2011-12-19T14:06:55</modified>
+    <created>2011-12-19T19:23:21</created>
+    <modified>2011-12-19T19:23:21</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -59,25 +59,25 @@
   <library_animations>
     <animation id="whale_1_main_pose_matrix">
       <source id="whale_1_main_pose_matrix-input">
-        <float_array id="whale_1_main_pose_matrix-input-array" count="6">0.04166662 0.1666666 0.5 0.75 1.083333 1.25</float_array>
+        <float_array id="whale_1_main_pose_matrix-input-array" count="2">0.04166662 1.25</float_array>
         <technique_common>
-          <accessor source="#whale_1_main_pose_matrix-input-array" count="6" stride="1">
+          <accessor source="#whale_1_main_pose_matrix-input-array" count="2" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="whale_1_main_pose_matrix-output">
-        <float_array id="whale_1_main_pose_matrix-output-array" count="96">1 0 1.59173e-7 0 1.59173e-7 1.94707e-7 -1 0 0 1 1.94707e-7 0 0 0 0 1 1 0 1.59173e-7 0 1.59173e-7 1.94707e-7 -1 0 0 1 1.94707e-7 0 0 0 0 1 1 0 1.59173e-7 0 1.59173e-7 1.94707e-7 -1 0 0 1 1.94707e-7 0 0 0 0 1 1 0 1.59173e-7 0 1.59173e-7 1.94707e-7 -1 0 0 1 1.94707e-7 0 0 0 0 1 1 0 1.59173e-7 0 1.59173e-7 1.94707e-7 -1 0 0 1 1.94707e-7 0 0 0 0 1 1 0 1.59173e-7 0 1.59173e-7 1.94707e-7 -1 0 0 1 1.94707e-7 0 0 0 0 1</float_array>
+        <float_array id="whale_1_main_pose_matrix-output-array" count="32">1 0 1.59173e-7 0 1.59173e-7 1.94707e-7 -1 0 0 1 1.94707e-7 0 0 0 0 1 1 0 1.59173e-7 0 1.59173e-7 1.94707e-7 -1 0 0 1 1.94707e-7 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#whale_1_main_pose_matrix-output-array" count="6" stride="16">
+          <accessor source="#whale_1_main_pose_matrix-output-array" count="2" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="whale_1_main_pose_matrix-interpolation">
-        <Name_array id="whale_1_main_pose_matrix-interpolation-array" count="6">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="whale_1_main_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#whale_1_main_pose_matrix-interpolation-array" count="6" stride="1">
+          <accessor source="#whale_1_main_pose_matrix-interpolation-array" count="2" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -89,235 +89,11 @@
       </sampler>
       <channel source="#whale_1_main_pose_matrix-sampler" target="main/transform"/>
     </animation>
-    <animation id="whale_1_body_pose_matrix">
-      <source id="whale_1_body_pose_matrix-input">
-        <float_array id="whale_1_body_pose_matrix-input-array" count="6">0.04166662 0.1666666 0.5 0.75 1.083333 1.25</float_array>
-        <technique_common>
-          <accessor source="#whale_1_body_pose_matrix-input-array" count="6" stride="1">
-            <param name="TIME" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="whale_1_body_pose_matrix-output">
-        <float_array id="whale_1_body_pose_matrix-output-array" count="96">1.94707e-7 1 0 1.943967 -1 1.94707e-7 0 -1.321894 0 0 1 -2.19865e-7 0 0 0 1 1.94707e-7 1 0 1.943967 -1 1.94707e-7 0 -1.045672 0 0 1 -1.66083e-7 0 0 0 1 1.94707e-7 1 0 1.943967 -1 1.94707e-7 0 -1.64454 0 0 1 -2.82687e-7 0 0 0 1 1.94707e-7 1 0 1.943967 -1 1.94707e-7 0 -1.045672 0 0 1 -1.66083e-7 0 0 0 1 1.94707e-7 1 0 1.943967 -1 1.94707e-7 0 -1.64454 0 0 1 -2.82687e-7 0 0 0 1 1.94707e-7 1 0 1.943967 -1 1.94707e-7 0 -1.321894 0 0 1 -2.19865e-7 0 0 0 1</float_array>
-        <technique_common>
-          <accessor source="#whale_1_body_pose_matrix-output-array" count="6" stride="16">
-            <param name="TRANSFORM" type="float4x4"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="whale_1_body_pose_matrix-interpolation">
-        <Name_array id="whale_1_body_pose_matrix-interpolation-array" count="6">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
-        <technique_common>
-          <accessor source="#whale_1_body_pose_matrix-interpolation-array" count="6" stride="1">
-            <param name="INTERPOLATION" type="name"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <sampler id="whale_1_body_pose_matrix-sampler">
-        <input semantic="INPUT" source="#whale_1_body_pose_matrix-input"/>
-        <input semantic="OUTPUT" source="#whale_1_body_pose_matrix-output"/>
-        <input semantic="INTERPOLATION" source="#whale_1_body_pose_matrix-interpolation"/>
-      </sampler>
-      <channel source="#whale_1_body_pose_matrix-sampler" target="body/transform"/>
-    </animation>
-    <animation id="whale_1_spine_pose_matrix">
-      <source id="whale_1_spine_pose_matrix-input">
-        <float_array id="whale_1_spine_pose_matrix-input-array" count="6">0.04166662 0.1666666 0.5 0.75 1.083333 1.25</float_array>
-        <technique_common>
-          <accessor source="#whale_1_spine_pose_matrix-input-array" count="6" stride="1">
-            <param name="TIME" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="whale_1_spine_pose_matrix-output">
-        <float_array id="whale_1_spine_pose_matrix-output-array" count="96">1 0 0 -1.09674e-6 0 1 0 -6.077372 0 0 1 -8.16549e-7 0 0 0 1 0.9977869 -0.06649297 0 0.1787923 0.06649291 0.9977869 0 -6.010324 0 0 1 -8.45433e-7 0 0 0 1 0.994251 0.1070747 0 -0.01155304 -0.1070747 0.994251 0 -6.051533 0 0 1 -8.21606e-7 0 0 0 1 0.9977869 -0.06649297 0 0.1787923 0.06649291 0.9977869 0 -6.010324 0 0 1 -8.45433e-7 0 0 0 1 0.994251 0.1070747 0 -0.01155304 -0.1070747 0.994251 0 -6.051533 0 0 1 -8.21606e-7 0 0 0 1 1 0 0 -1.09674e-6 0 1 0 -6.077372 0 0 1 -8.16549e-7 0 0 0 1</float_array>
-        <technique_common>
-          <accessor source="#whale_1_spine_pose_matrix-output-array" count="6" stride="16">
-            <param name="TRANSFORM" type="float4x4"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="whale_1_spine_pose_matrix-interpolation">
-        <Name_array id="whale_1_spine_pose_matrix-interpolation-array" count="6">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
-        <technique_common>
-          <accessor source="#whale_1_spine_pose_matrix-interpolation-array" count="6" stride="1">
-            <param name="INTERPOLATION" type="name"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <sampler id="whale_1_spine_pose_matrix-sampler">
-        <input semantic="INPUT" source="#whale_1_spine_pose_matrix-input"/>
-        <input semantic="OUTPUT" source="#whale_1_spine_pose_matrix-output"/>
-        <input semantic="INTERPOLATION" source="#whale_1_spine_pose_matrix-interpolation"/>
-      </sampler>
-      <channel source="#whale_1_spine_pose_matrix-sampler" target="spine/transform"/>
-    </animation>
-    <animation id="whale_1_pelvis_pose_matrix">
-      <source id="whale_1_pelvis_pose_matrix-input">
-        <float_array id="whale_1_pelvis_pose_matrix-input-array" count="6">0.04166662 0.1666666 0.5 0.75 1.083333 1.25</float_array>
-        <technique_common>
-          <accessor source="#whale_1_pelvis_pose_matrix-input-array" count="6" stride="1">
-            <param name="TIME" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="whale_1_pelvis_pose_matrix-output">
-        <float_array id="whale_1_pelvis_pose_matrix-output-array" count="96">1 0 0 -1.01794e-6 0 1 0 -4.368417 0 0 1 -5.86935e-7 0 0 0 1 0.9902766 -0.139112 0 0.244898 0.139112 0.9902766 0 -4.329672 0 0 1 -6.33247e-7 0 0 0 1 0.9544639 0.2983263 0 -0.6025298 -0.2983263 0.954464 0 -4.339165 0 0 1 -5.50294e-7 0 0 0 1 0.9902766 -0.139112 0 0.244898 0.139112 0.9902766 0 -4.329672 0 0 1 -6.33247e-7 0 0 0 1 0.9544639 0.2983263 0 -0.6025298 -0.2983263 0.954464 0 -4.339165 0 0 1 -5.50294e-7 0 0 0 1 1 0 0 -1.01794e-6 0 1 0 -4.368417 0 0 1 -5.86935e-7 0 0 0 1</float_array>
-        <technique_common>
-          <accessor source="#whale_1_pelvis_pose_matrix-output-array" count="6" stride="16">
-            <param name="TRANSFORM" type="float4x4"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="whale_1_pelvis_pose_matrix-interpolation">
-        <Name_array id="whale_1_pelvis_pose_matrix-interpolation-array" count="6">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
-        <technique_common>
-          <accessor source="#whale_1_pelvis_pose_matrix-interpolation-array" count="6" stride="1">
-            <param name="INTERPOLATION" type="name"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <sampler id="whale_1_pelvis_pose_matrix-sampler">
-        <input semantic="INPUT" source="#whale_1_pelvis_pose_matrix-input"/>
-        <input semantic="OUTPUT" source="#whale_1_pelvis_pose_matrix-output"/>
-        <input semantic="INTERPOLATION" source="#whale_1_pelvis_pose_matrix-interpolation"/>
-      </sampler>
-      <channel source="#whale_1_pelvis_pose_matrix-sampler" target="pelvis/transform"/>
-    </animation>
-    <animation id="whale_1_tail_pose_matrix">
-      <source id="whale_1_tail_pose_matrix-input">
-        <float_array id="whale_1_tail_pose_matrix-input-array" count="6">0.04166662 0.1666666 0.5 0.75 1.083333 1.25</float_array>
-        <technique_common>
-          <accessor source="#whale_1_tail_pose_matrix-input-array" count="6" stride="1">
-            <param name="TIME" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="whale_1_tail_pose_matrix-output">
-        <float_array id="whale_1_tail_pose_matrix-output-array" count="96">1 0 0 -2.2753e-7 0 1 0 -1.288125 0 0 1 -1.73071e-7 0 0 0 1 0.8989108 -0.4381316 0 -2.2753e-7 0.4381316 0.8989108 0 -1.288125 0 0 1 -1.73071e-7 0 0 0 1 0.9767544 0.2143614 0 -2.2753e-7 -0.2143614 0.9767544 0 -1.288125 0 0 1 -1.73071e-7 0 0 0 1 0.8989108 -0.4381316 0 -2.2753e-7 0.4381316 0.8989108 0 -1.288125 0 0 1 -1.73071e-7 0 0 0 1 0.9767544 0.2143614 0 -2.2753e-7 -0.2143614 0.9767544 0 -1.288125 0 0 1 -1.73071e-7 0 0 0 1 1 0 0 -2.2753e-7 0 1 0 -1.288125 0 0 1 -1.73071e-7 0 0 0 1</float_array>
-        <technique_common>
-          <accessor source="#whale_1_tail_pose_matrix-output-array" count="6" stride="16">
-            <param name="TRANSFORM" type="float4x4"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="whale_1_tail_pose_matrix-interpolation">
-        <Name_array id="whale_1_tail_pose_matrix-interpolation-array" count="6">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
-        <technique_common>
-          <accessor source="#whale_1_tail_pose_matrix-interpolation-array" count="6" stride="1">
-            <param name="INTERPOLATION" type="name"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <sampler id="whale_1_tail_pose_matrix-sampler">
-        <input semantic="INPUT" source="#whale_1_tail_pose_matrix-input"/>
-        <input semantic="OUTPUT" source="#whale_1_tail_pose_matrix-output"/>
-        <input semantic="INTERPOLATION" source="#whale_1_tail_pose_matrix-interpolation"/>
-      </sampler>
-      <channel source="#whale_1_tail_pose_matrix-sampler" target="tail/transform"/>
-    </animation>
-    <animation id="whale_1_fin_r_pose_matrix">
-      <source id="whale_1_fin_r_pose_matrix-input">
-        <float_array id="whale_1_fin_r_pose_matrix-input-array" count="6">0.04166662 0.1666666 0.5 0.75 1.083333 1.25</float_array>
-        <technique_common>
-          <accessor source="#whale_1_fin_r_pose_matrix-input-array" count="6" stride="1">
-            <param name="TIME" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="whale_1_fin_r_pose_matrix-output">
-        <float_array id="whale_1_fin_r_pose_matrix-output-array" count="96">-1 -2.25644e-7 1.33866e-7 0.415417 2.76903e-7 -0.8038101 0.5948864 1.830027 0 0.5948867 0.8038097 1.854875 0 0 0 1 -0.989871 0.1141167 -0.08445596 0.415417 -0.1419699 -0.7956684 0.5888608 1.830027 0 0.5948868 0.8038097 1.854875 0 0 0 1 -0.9799143 -0.1602952 0.1186319 0.415417 0.1994194 -0.787665 0.5829378 1.830027 0 0.5948868 0.8038097 1.854875 0 0 0 1 -0.989871 0.1141167 -0.08445596 0.415417 -0.1419699 -0.7956684 0.5888608 1.830027 0 0.5948868 0.8038097 1.854875 0 0 0 1 -0.9799143 -0.1602952 0.1186319 0.415417 0.1994194 -0.787665 0.5829378 1.830027 0 0.5948868 0.8038097 1.854875 0 0 0 1 -1 -2.25644e-7 1.33866e-7 0.415417 2.76903e-7 -0.8038101 0.5948864 1.830027 0 0.5948867 0.8038097 1.854875 0 0 0 1</float_array>
-        <technique_common>
-          <accessor source="#whale_1_fin_r_pose_matrix-output-array" count="6" stride="16">
-            <param name="TRANSFORM" type="float4x4"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="whale_1_fin_r_pose_matrix-interpolation">
-        <Name_array id="whale_1_fin_r_pose_matrix-interpolation-array" count="6">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
-        <technique_common>
-          <accessor source="#whale_1_fin_r_pose_matrix-interpolation-array" count="6" stride="1">
-            <param name="INTERPOLATION" type="name"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <sampler id="whale_1_fin_r_pose_matrix-sampler">
-        <input semantic="INPUT" source="#whale_1_fin_r_pose_matrix-input"/>
-        <input semantic="OUTPUT" source="#whale_1_fin_r_pose_matrix-output"/>
-        <input semantic="INTERPOLATION" source="#whale_1_fin_r_pose_matrix-interpolation"/>
-      </sampler>
-      <channel source="#whale_1_fin_r_pose_matrix-sampler" target="fin_r/transform"/>
-    </animation>
-    <animation id="whale_1_fin_l_pose_matrix">
-      <source id="whale_1_fin_l_pose_matrix-input">
-        <float_array id="whale_1_fin_l_pose_matrix-input-array" count="6">0.04166662 0.1666666 0.5 0.75 1.083333 1.25</float_array>
-        <technique_common>
-          <accessor source="#whale_1_fin_l_pose_matrix-input-array" count="6" stride="1">
-            <param name="TIME" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="whale_1_fin_l_pose_matrix-output">
-        <float_array id="whale_1_fin_l_pose_matrix-output-array" count="96">-1 -2.85248e-7 0 0.4154168 2.17299e-7 -0.8038096 -0.5948869 1.830027 2.07361e-7 -0.5948871 0.8038094 -1.835955 0 0 0 1 -0.989871 0.1141166 0.0844562 0.4154168 -0.1419699 -0.7956678 -0.5888612 1.830027 1.61025e-7 -0.5948871 0.8038094 -1.835955 0 0 0 1 -0.9799143 -0.1602952 -0.1186317 0.4154168 0.1994193 -0.7876645 -0.5829381 1.830027 2.306e-7 -0.5948871 0.8038094 -1.835955 0 0 0 1 -0.989871 0.1141166 0.0844562 0.4154168 -0.1419699 -0.7956678 -0.5888612 1.830027 1.61025e-7 -0.5948871 0.8038094 -1.835955 0 0 0 1 -0.9799143 -0.1602952 -0.1186317 0.4154168 0.1994193 -0.7876645 -0.5829381 1.830027 2.306e-7 -0.5948871 0.8038094 -1.835955 0 0 0 1 -1 -2.85248e-7 0 0.4154168 2.17299e-7 -0.8038096 -0.5948869 1.830027 2.07361e-7 -0.5948871 0.8038094 -1.835955 0 0 0 1</float_array>
-        <technique_common>
-          <accessor source="#whale_1_fin_l_pose_matrix-output-array" count="6" stride="16">
-            <param name="TRANSFORM" type="float4x4"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="whale_1_fin_l_pose_matrix-interpolation">
-        <Name_array id="whale_1_fin_l_pose_matrix-interpolation-array" count="6">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
-        <technique_common>
-          <accessor source="#whale_1_fin_l_pose_matrix-interpolation-array" count="6" stride="1">
-            <param name="INTERPOLATION" type="name"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <sampler id="whale_1_fin_l_pose_matrix-sampler">
-        <input semantic="INPUT" source="#whale_1_fin_l_pose_matrix-input"/>
-        <input semantic="OUTPUT" source="#whale_1_fin_l_pose_matrix-output"/>
-        <input semantic="INTERPOLATION" source="#whale_1_fin_l_pose_matrix-interpolation"/>
-      </sampler>
-      <channel source="#whale_1_fin_l_pose_matrix-sampler" target="fin_l/transform"/>
-    </animation>
-    <animation id="whale_1_head_pose_matrix">
-      <source id="whale_1_head_pose_matrix-input">
-        <float_array id="whale_1_head_pose_matrix-input-array" count="6">0.04166662 0.1666666 0.5 0.75 1.083333 1.25</float_array>
-        <technique_common>
-          <accessor source="#whale_1_head_pose_matrix-input-array" count="6" stride="1">
-            <param name="TIME" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="whale_1_head_pose_matrix-output">
-        <float_array id="whale_1_head_pose_matrix-output-array" count="96">1 0 0 9.16949e-7 0 1 0 5.850651 0 0 1 7.86087e-7 0 0 0 1 0.9976614 0.06834954 0 0.2011436 -0.06834954 0.9976614 0 5.850651 0 0 1 7.70901e-7 0 0 0 1 0.9988968 -0.04696041 0 -0.1638495 0.04696035 0.9988968 0 5.850651 0 0 1 7.98457e-7 0 0 0 1 0.9976614 0.06834954 0 0.2011436 -0.06834954 0.9976614 0 5.850651 0 0 1 7.70901e-7 0 0 0 1 0.9988968 -0.04696041 0 -0.1638495 0.04696035 0.9988968 0 5.850651 0 0 1 7.98457e-7 0 0 0 1 1 0 0 9.16949e-7 0 1 0 5.850651 0 0 1 7.86087e-7 0 0 0 1</float_array>
-        <technique_common>
-          <accessor source="#whale_1_head_pose_matrix-output-array" count="6" stride="16">
-            <param name="TRANSFORM" type="float4x4"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="whale_1_head_pose_matrix-interpolation">
-        <Name_array id="whale_1_head_pose_matrix-interpolation-array" count="6">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
-        <technique_common>
-          <accessor source="#whale_1_head_pose_matrix-interpolation-array" count="6" stride="1">
-            <param name="INTERPOLATION" type="name"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <sampler id="whale_1_head_pose_matrix-sampler">
-        <input semantic="INPUT" source="#whale_1_head_pose_matrix-input"/>
-        <input semantic="OUTPUT" source="#whale_1_head_pose_matrix-output"/>
-        <input semantic="INTERPOLATION" source="#whale_1_head_pose_matrix-interpolation"/>
-      </sampler>
-      <channel source="#whale_1_head_pose_matrix-sampler" target="head/transform"/>
-    </animation>
   </library_animations>
   <library_controllers>
     <controller id="whale_1_whale_mesh-skin" name="whale_1">
       <skin source="#whale_mesh-mesh">
-        <bind_shape_matrix>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</bind_shape_matrix>
+        <bind_shape_matrix>7.54979e-8 1 0 0 -1 7.54979e-8 0 0 0 0 1 0 0 0 0 1</bind_shape_matrix>
         <source id="whale_1_whale_mesh-skin-joints">
           <Name_array id="whale_1_whale_mesh-skin-joints-array" count="8">body spine pelvis tail fin_r fin_l head main</Name_array>
           <technique_common>
@@ -327,7 +103,7 @@
           </technique_common>
         </source>
         <source id="whale_1_whale_mesh-skin-bind_poses">
-          <float_array id="whale_1_whale_mesh-skin-bind_poses-array" count="128">1.78814e-7 0 -1 -1.321895 1 1.34359e-7 1.94707e-7 -1.943967 1.34359e-7 -1 0 0 0 0 0 1 2.08616e-7 0 -1 -1.321894 1 1.34359e-7 1.94707e-7 4.133405 1.34359e-7 -1 0 8.93131e-7 0 0 0 1 1.93715e-7 0 -1 -1.321893 1 1.34359e-7 1.94707e-7 8.501822 1.34359e-7 -1 0 1.48007e-6 0 0 0 1 1.93715e-7 0 -1 -1.321892 1 1.34359e-7 1.94707e-7 9.789947 1.34359e-7 -1 0 1.65314e-6 0 0 0 1 0 0 1 1.737311 -0.8038093 -0.5948862 1.26824e-7 1.930132 0.5948866 -0.8038097 0 -3.736065 0 0 0 1 0 -1.49012e-7 1 1.737311 -0.8038094 0.5948866 0 1.941387 -0.5948868 -0.8038096 0 3.720858 0 0 0 1 1.93715e-7 0 -1 -1.321896 1 1.34359e-7 1.94707e-7 -7.794619 1.34359e-7 -1 0 -7.09505e-7 0 0 0 1 1 1.59173e-7 0 0 0 1.94707e-7 1 0 1.59173e-7 -1 1.94707e-7 0 0 0 0 1</float_array>
+          <float_array id="whale_1_whale_mesh-skin-bind_poses-array" count="128">0 -1.78814e-7 -1 -1.321895 2.09857e-7 -1 1.94707e-7 -1.943967 -1 -2.09857e-7 0 0 0 0 0 1 0 -2.08616e-7 -1 -1.321894 2.09857e-7 -1 1.94707e-7 4.133405 -1 -2.09857e-7 0 8.93131e-7 0 0 0 1 0 -1.93715e-7 -1 -1.321893 2.09857e-7 -1 1.94707e-7 8.501822 -1 -2.09857e-7 0 1.48007e-6 0 0 0 1 0 -1.93715e-7 -1 -1.321892 2.09857e-7 -1 1.94707e-7 9.789947 -1 -2.09857e-7 0 1.65314e-6 0 0 0 1 0 0 1 1.737311 -0.5948864 0.8038092 1.26824e-7 1.930132 -0.8038096 -0.5948867 0 -3.736065 0 0 0 1 0 0 1 1.737311 0.5948865 0.8038093 0 1.941387 -0.8038096 0.5948867 0 3.720857 0 0 0 1 0 -1.93715e-7 -1 -1.321896 2.09857e-7 -1 1.94707e-7 -7.794619 -1 -2.09857e-7 0 -7.09505e-7 0 0 0 1 2.34671e-7 -1 0 0 1.94707e-7 0 1 0 -1 -2.34671e-7 1.94707e-7 0 0 0 0 1</float_array>
           <technique_common>
             <accessor source="#whale_1_whale_mesh-skin-bind_poses-array" count="8" stride="16">
               <param name="TRANSFORM" type="float4x4"/>
@@ -359,31 +135,31 @@
     <visual_scene id="Scene" name="Scene">
       <node id="whale_1" type="NODE">
         <translate sid="location">0 0 0</translate>
-        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationZ">0 0 1 -90</rotate>
         <rotate sid="rotationY">0 1 0 0</rotate>
         <rotate sid="rotationX">1 0 0 0</rotate>
         <scale sid="scale">1 1 1</scale>
         <node id="main" name="main" sid="main" type="JOINT">
-          <matrix sid="transform">1 -9.60584e-15 1.59173e-7 0 1.59173e-7 1.94707e-7 -1 -3.39397e-8 -2.13863e-14 1 1.94707e-7 0 0 0 0 1</matrix>
+          <matrix sid="transform">2.34671e-7 1.94707e-7 -1 -3.39397e-8 -1 2.43058e-14 -2.34671e-7 -2.56238e-15 -2.13863e-14 1 1.94707e-7 0 0 0 0 1</matrix>
           <node id="body" name="body" sid="body" type="JOINT">
-            <matrix sid="transform">1.94707e-7 1 -2.48145e-8 1.943967 -1 1.94707e-7 -1.19209e-7 -1.321894 -1.19209e-7 2.48145e-8 1 -2.19865e-7 0 0 0 1</matrix>
+            <matrix sid="transform">1.94707e-7 1 -2.48145e-8 1.943967 -1 1.94707e-7 -1.19209e-7 -1.060639 -1.19209e-7 2.48145e-8 1 -1.68997e-7 0 0 0 1</matrix>
             <node id="spine" name="spine" sid="spine" type="JOINT">
-              <matrix sid="transform">1 -1.58932e-8 -4.39648e-15 -1.09674e-6 4.06705e-15 1 4.89128e-16 -6.077372 4.84434e-15 4.89129e-16 1 -8.16549e-7 0 0 0 1</matrix>
+              <matrix sid="transform">0.9978811 -0.06506372 -8.29723e-9 0.1865663 0.06506371 0.9978811 -1.39387e-8 -6.004738 9.18655e-9 1.33694e-8 1 -8.47302e-7 0 0 0 1</matrix>
               <node id="pelvis" name="pelvis" sid="pelvis" type="JOINT">
-                <matrix sid="transform">0.9999999 1.39091e-8 4.10775e-15 -1.01794e-6 4.06705e-15 1 4.89128e-16 -4.368417 4.84434e-15 4.89129e-16 1 -5.86936e-7 0 0 0 1</matrix>
+                <matrix sid="transform">0.9928197 -0.1196197 -1.45652e-8 0.1968679 0.1196197 0.9928197 -2.60677e-8 -4.323867 1.75788e-8 2.41383e-8 1 -6.30692e-7 0 0 0 1</matrix>
                 <node id="tail" name="tail" sid="tail" type="JOINT">
-                  <matrix sid="transform">1 -9.92084e-10 4.71105e-15 -2.2753e-7 -1.01438e-14 1 4.89129e-16 -1.288125 -2.26108e-15 4.89131e-16 1 -1.73071e-7 0 0 0 1</matrix>
+                  <matrix sid="transform">0.8970988 -0.4418298 -3.77698e-8 -0.003213238 0.4418298 0.8970988 -1.06548e-7 -1.286654 8.09595e-8 7.88965e-8 1 -1.72199e-7 0 0 0 1</matrix>
                 </node>
               </node>
             </node>
             <node id="fin_r" name="fin_r" sid="fin_r" type="JOINT">
-              <matrix sid="transform">-1 -2.25644e-7 1.33866e-7 0.415417 2.76903e-7 -0.8038101 0.5948864 1.830027 -2.66295e-8 0.5948867 0.8038097 1.854875 0 0 0 1</matrix>
+              <matrix sid="transform">-0.9913229 0.1056597 -0.0781971 0.415417 -0.1314487 -0.7968354 0.5897246 1.830027 -6.07787e-9 0.5948867 0.8038097 1.854875 0 0 0 1</matrix>
             </node>
             <node id="fin_l" name="fin_l" sid="fin_l" type="JOINT">
-              <matrix sid="transform">-1 -2.85248e-7 4.68658e-8 0.4154168 2.17299e-7 -0.8038096 -0.5948869 1.830027 2.07361e-7 -0.5948871 0.8038094 -1.835955 0 0 0 1</matrix>
+              <matrix sid="transform">-0.9913229 0.1056596 0.07819729 0.4154168 -0.1314488 -0.7968349 -0.589725 1.830027 1.65025e-7 -0.5948871 0.8038094 -1.835955 0 0 0 1</matrix>
             </node>
             <node id="head" name="head" sid="head" type="JOINT">
-              <matrix sid="transform">1 -1.58932e-8 -4.39648e-15 9.16949e-7 4.06705e-15 1 4.89128e-16 5.850651 4.84434e-15 4.89129e-16 1 7.86087e-7 0 0 0 1</matrix>
+              <matrix sid="transform">0.9976752 0.06814814 9.64417e-9 0.1981053 -0.06814815 0.9976752 1.3989e-8 5.850893 -8.66843e-9 -1.46137e-8 1 7.7095e-7 0 0 0 1</matrix>
             </node>
           </node>
         </node>
