@@ -166,6 +166,12 @@ EconomyManager.prototype.reassignIdleWorkers = function(gameState) {
 						return;
 					}
 					
+					// Don't go for floating treasures since we won't be able to reach them and it kills the pathfinder.
+					if (supply.entity.templateName() == "other/special_treasure_shipwreck_debris" || 
+							supply.entity.templateName() == "other/special_treasure_shipwreck" ){
+						return;
+					}
+					
 					// Check we can actually reach the resource
 					if (!gameState.ai.accessibility.isAccessible(supply.position)){
 						return;
