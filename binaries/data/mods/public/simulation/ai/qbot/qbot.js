@@ -82,6 +82,7 @@ QBotAI.prototype.OnUpdate = function() {
 	if (this.gameFinished){
 		return;
 	}
+	
 	if (this.events.length > 0){
 		this.savedEvents = this.savedEvents.concat(this.events);
 	}
@@ -106,7 +107,7 @@ QBotAI.prototype.OnUpdate = function() {
 		}
 		
 		this.queueManager.update(gameState);
-		
+			
 		// Generate some entropy in the random numbers (against humans) until the engine gets random initialised numbers
 		// TODO: remove this when the engine gives a random seed
 		var n = this.savedEvents.length % 29;
@@ -123,7 +124,7 @@ QBotAI.prototype.OnUpdate = function() {
 	this.turn++;
 };
 
-var debugOn = false;
+var debugOn = true;
 
 function debug(output){
 	if (debugOn){

@@ -9,32 +9,40 @@
 
 
 //-EmjeR-// Timer class //
-function Timer()
-{
-	var alarmList = new Array();
-	this.setTimer = set_timer;
-	this.checkTimer = check_timer;
-	this.clearTimer = clear_timer;
-	this.activateTimer = activate_timer;
-	this.deactivateTimer = deactivate_timer;
+var Timer = function() {
+	///Private array.
+	var alarmList = [];
 	
-	// Get an alarm with 'id'
-	function get_alarm(id)
-	{
-		return this.alarmList[id];
-	}
-}
-
+	///Private methods
+	function num_alarms() {
+		return alarmList.length;
+	};
+	
+	function get_alarm(id) {
+		return alarmList[id];
+	};
+	
+	function add_alarm(index, alarm) {
+		alarmList[index] = alarm;
+	};
+	
+	function delete_alarm(id) {
+		delete alarmList[id];
+	};
+	
+	///Privileged methods
 	// Add an new alarm to the list
-	function set_alarm(interval, delay = 0, repeat = -1)
-	{
-		var index = this.alarmList.length;
+	this.setTimer = function(gameState, interval, delay, repeat) {
+		delay = delay || 0;
+		repeat = repeat || -1;
+		
+		var index = num_alarms();
 		
 		// Check for an empty place in the alarmList
 		// !Uncomment this if the empty spaces in alarmList should be filled with new alarms!
-		/*for (i = 0; i < this.alarmList.length; i++)
+		/*for (i = 0; i < num_alarmList(); i++)
 		{
-			if (this.alarmList[i] == undefined)
+			if (get_alarm(i) == undefined)
 			{
 				index = i;
 				break;
@@ -42,14 +50,13 @@ function Timer()
 		}*/
 		
 		//Add a new alarm to the list
-		this.alarmList[index] = new alarm(index, interval, delay, repeat);
+		add_alarm(index, new alarm(gameState, index, interval, delay, repeat));
 		return index;
-	}
+	};
 	
 	
 	// Check if a alarm has reached its interval.
-	function check_timer(id)
-	{
+	this.checkTimer = function(gameState,id) {
 		var alarm = get_alarm(id);
 		if (alarm == undefined)
 			return false;
@@ -61,7 +68,7 @@ function Timer()
 		// If repeat forever (repeat is -1).
 		if (alarm.repeat < 0)
 		{
-			var time_diffrence = time - alarm.start_time - alarm.delay - alarm.inteval * alarm.counter;
+			var time_diffrence = time - alarm.start_time - alarm.delay - alarm.interval * alarm.counter;
 			if (time_diffrence > alarm.interval)
 			{
 				alarmState = true;
@@ -71,7 +78,7 @@ function Timer()
 		// If the alarm has rung less times than repeat.
 		else if (alarm.counter < alarm.repeat)
 		{
-			var time_diffrence = time - alarm.start_time - alarm.delay - alarm.inteval * alarm.counter;
+			var time_diffrence = time - alarm.start_time - alarm.delay - alarm.interval * alarm.counter;
 			if (time_diffrence > alarm.interval)
 			{
 				alarmState = true;
@@ -82,40 +89,36 @@ function Timer()
 		// Check if the alarm has rung 'alarm.repeat' times ifso, delete the alarm.
 		if (alarm.counter == alarm.repeat)
 		{
-			this.clear_timer(id);
+			this.clearTimer(id);
 		}
 		
 		return alarmState;
-	}
+	};
 	
 	
 	// Remove an alarm from the list.
-	function clear_timer(id)
-	{
-		delete this.alarmList[id];
-	}
+	this.clearTimer = function(id) {
+		delete_alarm();
+	};
 	
 	
 	// Activate a deactivated alarm.
-	function activate_timer(id)
-	{
+	this.activateTimer = function(id) {
 		var alarm = get_alarm(id);
 		alarm.active = true;
-	}
+	};
 	
 	
 	// Deactivate an active alarm but don't delete it.
-	function deactivate_timer(id)
-	{
+	this.deactivateTimer = function(id) {
 		var alarm = get_alarm(id);
 		alarm.active = false;
-	}
-
+	};
+};
 
 
 //-EmjeR-// Alarm class //
-function alarm(id, interval, delay, repeat)
-{
+function alarm(gameState, id, interval, delay, repeat) {
 	this.id = id;
 	this.interval = interval;
 	this.delay = delay;
@@ -124,4 +127,4 @@ function alarm(id, interval, delay, repeat)
 	this.start_time = gameState.getTimeElapsed();
 	this.active = true;
 	this.counter = 0;
-}
+};
