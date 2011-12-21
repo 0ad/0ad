@@ -68,6 +68,8 @@ QBotAI.prototype.runInit = function(gameState){
 		var pathFinder = new PathFinder(gameState);
 		this.pathsToMe = pathFinder.getPaths(enemyCivCentres.toEntityArray()[0].position(), myCivCentres.toEntityArray()[0].position(), 'entryPoints');
 		
+		this.timer = new Timer();
+		
 		this.firstTime = false;
 	}
 };
