@@ -27,6 +27,7 @@ var Timer = function() {
 	};
 	
 	function delete_alarm(id) {
+		// Set the array element to undefined
 		delete alarmList[id];
 	};
 	
@@ -37,17 +38,6 @@ var Timer = function() {
 		repeat = repeat || -1;
 		
 		var index = num_alarms();
-		
-		// Check for an empty place in the alarmList
-		// !Uncomment this if the empty spaces in alarmList should be filled with new alarms!
-		/*for (i = 0; i < num_alarmList(); i++)
-		{
-			if (get_alarm(i) == undefined)
-			{
-				index = i;
-				break;
-			}
-		}*/
 		
 		//Add a new alarm to the list
 		add_alarm(index, new alarm(gameState, index, interval, delay, repeat));
@@ -65,49 +55,33 @@ var Timer = function() {
 		var time = gameState.getTimeElapsed();
 		var alarmState = false;
 		
-		// If repeat forever (repeat is -1).
-		if (alarm.repeat < 0)
-		{
+		// If repeat forever (repeat is -1). Or if the alarm has rung less times than repeat.
+		if (alarm.repeat < 0 || alarm.counter < alarm.repeat) {
 			var time_diffrence = time - alarm.start_time - alarm.delay - alarm.interval * alarm.counter;
-			if (time_diffrence > alarm.interval)
-			{
-				alarmState = true;
-				alarm.counter++;
-			}
-		}
-		// If the alarm has rung less times than repeat.
-		else if (alarm.counter < alarm.repeat)
-		{
-			var time_diffrence = time - alarm.start_time - alarm.delay - alarm.interval * alarm.counter;
-			if (time_diffrence > alarm.interval)
-			{
+			if (time_diffrence > alarm.interval) {
 				alarmState = true;
 				alarm.counter++;
 			}
 		}
 		
-		// Check if the alarm has rung 'alarm.repeat' times ifso, delete the alarm.
-		if (alarm.counter == alarm.repeat)
-		{
+		// Check if the alarm has rung 'alarm.repeat' times if so, delete the alarm.
+		if (alarm.counter >= alarm.repeat) {
 			this.clearTimer(id);
 		}
 		
 		return alarmState;
 	};
 	
-	
 	// Remove an alarm from the list.
 	this.clearTimer = function(id) {
-		delete_alarm();
+		delete_alarm(id);
 	};
-	
 	
 	// Activate a deactivated alarm.
 	this.activateTimer = function(id) {
 		var alarm = get_alarm(id);
 		alarm.active = true;
 	};
-	
 	
 	// Deactivate an active alarm but don't delete it.
 	this.deactivateTimer = function(id) {
