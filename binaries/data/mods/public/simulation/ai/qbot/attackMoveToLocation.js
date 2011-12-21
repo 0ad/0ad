@@ -86,6 +86,9 @@ AttackMoveToLocation.prototype.execute = function(gameState, militaryManager){
 		
 		var rand = Math.floor(Math.random() * pathsToEnemy.length);
 		this.path = pathsToEnemy[rand];
+		if (!this.path[0]){
+			pathsToEnemy = [this.targetPos];
+		}
 
 		pending.move(this.path[0][0], this.path[0][1]);
 	} else if (targets.length == 0 ) {

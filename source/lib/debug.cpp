@@ -146,7 +146,8 @@ void debug_printf(const wchar_t* fmt, ...)
 	va_list ap;
 	va_start(ap, fmt);
 	const int numChars = vswprintf_s(buf, ARRAY_SIZE(buf), fmt, ap);
-	ENSURE(numChars >= 0);
+	if(numChars < 0)
+		debug_break();	// poor man's assert - avoid infinite loop because ENSURE also uses debug_printf
 	va_end(ap);
 
 	if(debug_filter_allows(buf))

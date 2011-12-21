@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="100" name="Mesh">
+      <animations>
+        <animation file="other/whale_fin_idle_a.dae" name="Idle" speed="5"/>
+        <animation file="other/whale_fin_idle_a.dae" name="Idle" speed="6"/>
+        <animation file="other/whale_fin_idle_b.dae" name="Idle" speed="5"/>
+        <animation file="other/whale_fin_idle_b.dae" name="Idle" speed="5"/>
+        <animation file="other/whale_fin_idle_c.dae" name="Idle" speed="5"/>
+        <animation file="other/whale_fin_idle_c.dae" name="Idle" speed="7"/>
+        <animation file="other/whale_fin_idle_d.dae" name="Idle" speed="6"/>
+        <animation file="other/whale_fin_idle_d.dae" name="Idle" speed="5"/>
+      </animations>
+      <mesh>skeletal/whale_fin.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="texture">
+      <texture>skeletal/animal_whale_fin.png</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="props/units/blood_whale.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+</actor>

@@ -241,9 +241,8 @@ static void* AllocateLargeOrSmallPages(uintptr_t address, size_t size, DWORD all
 	else
 	{
 		MEMORY_BASIC_INFORMATION mbi = {0};
-		SIZE_T ret = VirtualQuery(LPCVOID(address), &mbi, sizeof(mbi));
-		debug_printf(L"Allocation failed. VirtualQuery returned %d\n", ret);
-		debug_printf(L"base=%p allocBase=%p allocProt=%d size=%d state=%d prot=%d type=%d\n", mbi.BaseAddress, mbi.AllocationBase, mbi.AllocationProtect, mbi.RegionSize, mbi.State, mbi.Protect, mbi.Type);
+		(void)VirtualQuery(LPCVOID(address), &mbi, sizeof(mbi));	// return value is #bytes written in mbi
+		debug_printf(L"Allocation failed: base=%p allocBase=%p allocProt=%d size=%d state=%d prot=%d type=%d\n", mbi.BaseAddress, mbi.AllocationBase, mbi.AllocationProtect, mbi.RegionSize, mbi.State, mbi.Protect, mbi.Type);
 	}
 
 	return 0;
@@ -465,6 +464,8 @@ void Free(void* p, size_t UNUSED(size))
 //-----------------------------------------------------------------------------
 // on-demand commit
 
+// NB: avoid using debug_printf here because OutputDebugString has been
+// observed to generate vectored exceptions when running outside the IDE.
 static LONG CALLBACK VectoredHandler(const PEXCEPTION_POINTERS ep)
 {
 	const PEXCEPTION_RECORD er = ep->ExceptionRecord;
@@ -485,7 +486,7 @@ static LONG CALLBACK VectoredHandler(const PEXCEPTION_POINTERS ep)
 
 	// if unknown (e.g. access violation in kernel address space or
 	// violation of alignment requirements), we don't want to handle it.
-	if(address == ~uintptr_t(0))	
+	if(address == ~uintptr_t(0))
 		return EXCEPTION_CONTINUE_SEARCH;
 
 	// the address space must have been allocated by ReserveAddressSpace

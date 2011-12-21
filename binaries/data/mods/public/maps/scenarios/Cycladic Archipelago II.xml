@@ -24,43 +24,51 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="458.287" y="92.4" z="278.728"/>
+		<Position x="450.011" y="101.467" z="284.755"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name": "Cycladic Archipelago II",
+  "BaseHeight": 0,
+  "BaseTerrain": [
+    "medit_sea_depths"
+  ],
+  "CircularMap": true,
   "Description": "Multiplayer map. A \"small island\"-style map set in the Aegean Sea.",
   "Keywords": [
     "naval"
   ],
+  "Name": "Cycladic Archipelago II",
   "PlayerData": [
     {
       "AI": "",
-      "Civ": "hele"
+      "Civ": "pers",
+      "Colour": {
+        "b": 200,
+        "g": 80,
+        "r": 80
+      },
+      "Name": "Player 1",
+      "Team": -1
     },
     {
       "AI": "",
-      "Civ": "hele"
+      "Civ": "hele",
+      "Colour": {
+        "b": 20,
+        "g": 20,
+        "r": 150
+      },
+      "Name": "Player 2",
+      "Team": -1
     }
   ],
-  "CircularMap": true,
-  "Size": 384,
   "Seed": 0,
-  "BaseTerrain": [
-    "medit_sea_depths"
-  ],
-  "BaseHeight": 0
+  "Size": 384
 }
 ]]></ScriptSettings>
 	<Entities>
-		<Entity uid="11">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="445.59647" z="410.84916"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="12">
 			<Template>gaia/geology_stonemine_medit_quarry</Template>
 			<Player>0</Player>
@@ -7463,25 +7471,25 @@
 			<Template>gaia/fauna_fish_tuna</Template>
 			<Player>0</Player>
 			<Position x="485.69013" z="616.22669"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="-0.68834"/>
 		</Entity>
 		<Entity uid="1405">
 			<Template>gaia/fauna_fish_tuna</Template>
 			<Player>0</Player>
 			<Position x="493.85691" z="672.41578"/>
-			<Orientation y="0.49558"/>
+			<Orientation y="0.22608"/>
 		</Entity>
 		<Entity uid="1406">
 			<Template>gaia/fauna_fish_tuna</Template>
 			<Player>0</Player>
-			<Position x="523.32337" z="674.40552"/>
-			<Orientation y="3.10575"/>
+			<Position x="553.8819" z="581.32465"/>
+			<Orientation y="1.05"/>
 		</Entity>
 		<Entity uid="1407">
 			<Template>gaia/fauna_fish_tuna</Template>
 			<Player>0</Player>
 			<Position x="474.29899" z="650.66004"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="-0.98571"/>
 		</Entity>
 		<Entity uid="1408">
 			<Template>gaia/fauna_fish_tuna</Template>
@@ -7505,7 +7513,7 @@
 			<Template>gaia/fauna_fish_tuna</Template>
 			<Player>0</Player>
 			<Position x="409.84458" z="692.6355"/>
-			<Orientation y="-0.37131"/>
+			<Orientation y="2.80388"/>
 		</Entity>
 		<Entity uid="1412">
 			<Template>gaia/fauna_fish_tuna</Template>
@@ -15271,6 +15279,60 @@
 			<Player>0</Player>
 			<Position x="276.63886" z="887.11982"/>
 			<Orientation y="-0.46712"/>
+		</Entity>
+		<Entity uid="2861">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="591.11292" z="564.50348"/>
+			<Orientation y="0.42962"/>
+		</Entity>
+		<Entity uid="2862">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="481.62214" z="732.84327"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2863">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="807.08045" z="890.55597"/>
+			<Orientation y="-0.01543"/>
+		</Entity>
+		<Entity uid="2864">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="963.91718" z="1023.80378"/>
+			<Orientation y="-2.27396"/>
+		</Entity>
+		<Entity uid="2865">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="931.97333" z="448.8647"/>
+			<Orientation y="-0.19727"/>
+		</Entity>
+		<Entity uid="2866">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="831.08356" z="75.96953"/>
+			<Orientation y="-0.04989"/>
+		</Entity>
+		<Entity uid="2867">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="441.20807" z="135.00904"/>
+			<Orientation y="0.22147"/>
+		</Entity>
+		<Entity uid="2868">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="1381.15528" z="789.46302"/>
+			<Orientation y="-1.87327"/>
+		</Entity>
+		<Entity uid="2869">
+			<Template>structures/pers_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="442.41813" z="402.6955"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
