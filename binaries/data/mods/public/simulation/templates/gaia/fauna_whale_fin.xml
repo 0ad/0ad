@@ -26,20 +26,25 @@
     <Amount>2000</Amount>
     <Type>food.fish</Type>
   </ResourceSupply>
+  <StatusBars>
+    <BarWidth>4.0</BarWidth>
+    <BarHeight>0.666</BarHeight>
+    <HeightOffset>5.0</HeightOffset>
+  </StatusBars>
   <UnitAI>
     <NaturalBehaviour>skittish</NaturalBehaviour>
     <RoamDistance>30.0</RoamDistance>
     <FleeDistance>60.0</FleeDistance>
-    <RoamTimeMin>10000</RoamTimeMin>
-    <RoamTimeMax>30000</RoamTimeMax>
+    <RoamTimeMin>100000</RoamTimeMin>
+    <RoamTimeMax>300000</RoamTimeMax>
     <FeedTimeMin>1000</FeedTimeMin>
     <FeedTimeMax>2000</FeedTimeMax>
   </UnitAI>
   <UnitMotion>
     <PassabilityClass>ship</PassabilityClass>
-    <WalkSpeed>6.0</WalkSpeed>
+    <WalkSpeed>10.0</WalkSpeed>
     <Run>
-      <Speed>12.0</Speed>
+      <Speed>15.0</Speed>
     </Run>
   </UnitMotion>
   <VisualActor>
