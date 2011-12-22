@@ -17,19 +17,47 @@
 			onTick();
 		</action>
 
-		<object	name="backgroundLayer1"
+		<object	name="backgroundHele1-1"
 			type="image"
 			sprite="background-hellenes1-1"
+			hidden="true"
 			ghost="true"
 		/>
-		<object	name="backgroundLayer2"
+		<object	name="backgroundHele1-2"
 			type="image"
 			sprite="background-hellenes1-2"
+			hidden="true"
 			ghost="true"
 		/>
-		<object	name="backgroundLayer3"
+		<object	name="backgroundHele1-3"
 			type="image"
 			sprite="background-hellenes1-3"
+			hidden="true"
+			ghost="true"
+		/>
+		
+		<object	name="backgroundPers1-1"
+			type="image"
+			sprite="background-persians1-1"
+			hidden="true"
+			ghost="true"
+		/>
+		<object	name="backgroundPers1-2"
+			type="image"
+			sprite="background-persians1-2"
+			hidden="true"
+			ghost="true"
+		/>
+		<object	name="backgroundPers1-3"
+			type="image"
+			sprite="background-persians1-3"
+			hidden="true"
+			ghost="true"
+		/>
+		<object	name="backgroundPers1-4"
+			type="image"
+			sprite="background-persians1-4"
+			hidden="true"
 			ghost="true"
 		/>
 
