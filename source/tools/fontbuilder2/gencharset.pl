@@ -16,6 +16,7 @@ for ( # (these are probably more than we really need)
     'Latin Extended Additional',
     'Spacing Modifier Letters',
     'General Punctuation',
+    'Combining Diacritical Marks',
 ) {
     print "# $_\n";
     for my $r (@{Unicode::UCD::charblock($_)}) {
