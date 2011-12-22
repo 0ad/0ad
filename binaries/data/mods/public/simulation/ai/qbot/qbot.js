@@ -124,6 +124,14 @@ QBotAI.prototype.OnUpdate = function() {
 	this.turn++;
 };
 
+// TODO: Remove override when the whole AI state is serialised
+QBotAI.prototype.Deserialize = function(data)
+{
+	this._rawEntities = data._rawEntities;
+	this._ownEntities = data._ownEntities;
+	this._entityMetadata = {};
+};
+
 var debugOn = false;
 
 function debug(output){
