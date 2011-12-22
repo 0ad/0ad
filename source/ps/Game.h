@@ -161,6 +161,7 @@ private:
 
 	int LoadInitialState();
 	std::string m_InitialSavedState; // valid between RegisterInit and LoadInitialState
+	bool m_IsSavedGame; // true if loading a saved game; false for a new game
 };
 
 extern CGame *g_Game;

@@ -202,7 +202,7 @@ Status LDR_ProgressiveLoad(double time_budget, wchar_t* description, size_t max_
 	{
 		state = LOADING;
 
-		ret  = ERR::TIMED_OUT;	// make caller think we did something
+		ret = ERR::TIMED_OUT;	// make caller think we did something
 		// progress already set to 0.0; that'll be passed back.
 		goto done;
 	}
@@ -219,7 +219,7 @@ Status LDR_ProgressiveLoad(double time_budget, wchar_t* description, size_t max_
 		const double estimated_duration = lr.estimated_duration_ms*1e-3;
 		if(!HaveTimeForNextTask(time_left, time_budget, lr.estimated_duration_ms))
 		{
-			ret  = ERR::TIMED_OUT;
+			ret = ERR::TIMED_OUT;
 			goto done;
 		}
 
@@ -258,7 +258,7 @@ Status LDR_ProgressiveLoad(double time_budget, wchar_t* description, size_t max_
 		// .. function interrupted itself, i.e. timed out; abort.
 		if(timed_out)
 		{
-			ret  = ERR::TIMED_OUT;
+			ret = ERR::TIMED_OUT;
 			goto done;
 		}
 		// .. failed; abort. loading will continue when we're called in
@@ -268,6 +268,13 @@ Status LDR_ProgressiveLoad(double time_budget, wchar_t* description, size_t max_
 		else if(status < 0)
 		{
 			ret = (Status)status;
+			goto done;
+		}
+		// .. function called LDR_Cancel; abort. return OK since this is an
+		//    intentional cancellation, not an error.
+		else if(state != LOADING)
+		{
+			ret = INFO::OK;
 			goto done;
 		}
 		// .. succeeded; continue and process next queued task.

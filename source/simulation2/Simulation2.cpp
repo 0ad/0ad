@@ -638,8 +638,7 @@ ScriptInterface& CSimulation2::GetScriptInterface() const
 
 void CSimulation2::InitGame(const CScriptVal& data)
 {
-	CScriptVal ret; // ignored
-	GetScriptInterface().CallFunction(GetScriptInterface().GetGlobalObject(), "InitGame", data, ret);
+	GetScriptInterface().CallFunctionVoid(GetScriptInterface().GetGlobalObject(), "InitGame", data);
 }
 
 void CSimulation2::Update(int turnLength)

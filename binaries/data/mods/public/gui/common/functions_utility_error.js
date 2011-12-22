@@ -16,7 +16,7 @@ function cancelOnError(msg)
 	if (msg)
 	{
 		Engine.PushGuiPage("page_msgbox.xml", {
-			width: 400,
+			width: 500,
 			height: 200,
 			message: '[font="serif-bold-18"]' + msg + '[/font]',
 			title: "Loading Aborted",

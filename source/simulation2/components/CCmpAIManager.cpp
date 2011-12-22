@@ -210,6 +210,7 @@ private:
 				CScriptVal settings;
 				m_ScriptInterface.Eval(L"({})", settings);
 				m_ScriptInterface.SetProperty(settings.get(), "player", m_Player, false);
+				ENSURE(m_Worker.m_HasLoadedEntityTemplates);
 				m_ScriptInterface.SetProperty(settings.get(), "templates", m_Worker.m_EntityTemplates, false);
 
 				obj = m_ScriptInterface.CallConstructor(ctor.get(), settings.get());
@@ -218,6 +219,7 @@ private:
 			{
 				// For deserialization, we want to create the object with the correct prototype
 				// but don't want to actually run the constructor again
+				// XXX: actually we don't currently use this path for deserialization - maybe delete it?
 				obj = m_ScriptInterface.NewObjectFromConstructor(ctor.get());
 			}
 
@@ -258,7 +260,8 @@ public:
 		m_ScriptRuntime(ScriptInterface::CreateRuntime()),
 		m_ScriptInterface("Engine", "AI", m_ScriptRuntime),
 		m_TurnNum(0),
-		m_CommandsComputed(true)
+		m_CommandsComputed(true),
+		m_HasLoadedEntityTemplates(false)
 	{
 		m_ScriptInterface.SetCallbackData(static_cast<void*> (this));
 
@@ -337,6 +340,8 @@ public:
 
 	void LoadEntityTemplates(const std::vector<std::pair<std::string, const CParamNode*> >& templates)
 	{
+		m_HasLoadedEntityTemplates = true;
+
 		m_ScriptInterface.Eval("({})", m_EntityTemplates);
 
 		for (size_t i = 0; i < templates.size(); ++i)
@@ -369,13 +374,18 @@ public:
 
 	void SerializeState(ISerializer& serializer)
 	{
+		std::stringstream rngStream;
+		rngStream << m_RNG;
+		serializer.StringASCII("rng", rngStream.str(), 0, 32);
+
+		serializer.NumberU32_Unbounded("turn", m_TurnNum);
+
 		serializer.NumberU32_Unbounded("num ais", (u32)m_Players.size());
 
 		for (size_t i = 0; i < m_Players.size(); ++i)
 		{
-			serializer.String("name", m_Players[i]->m_AIName, 0, 256);
+			serializer.String("name", m_Players[i]->m_AIName, 1, 256);
 			serializer.NumberI32_Unbounded("player", m_Players[i]->m_Player);
-			serializer.ScriptVal("data", m_Players[i]->m_Obj);
 
 			serializer.NumberU32_Unbounded("num commands", (u32)m_Players[i]->m_Commands.size());
 			for (size_t j = 0; j < m_Players[i]->m_Commands.size(); ++j)
@@ -383,6 +393,11 @@ public:
 				CScriptVal val = m_ScriptInterface.ReadStructuredClone(m_Players[i]->m_Commands[j]);
 				serializer.ScriptVal("command", val);
 			}
+
+			CScriptVal scriptData;
+			if (!m_ScriptInterface.CallFunction(m_Players[i]->m_Obj.get(), "Serialize", scriptData))
+				LOGERROR(L"AI script Serialize call failed");
+			serializer.ScriptVal("data", scriptData);
 		}
 	}
 
@@ -395,6 +410,14 @@ public:
 		m_PlayerMetadata.clear();
 		m_Players.clear();
 
+		std::string rngString;
+		std::stringstream rngStream;
+		deserializer.StringASCII("rng", rngString, 0, 32);
+		rngStream << rngString;
+		rngStream >> m_RNG;
+
+		deserializer.NumberU32_Unbounded("turn", m_TurnNum);
+
 		uint32_t numAis;
 		deserializer.NumberU32_Unbounded("num ais", numAis);
 
@@ -402,14 +425,10 @@ public:
 		{
 			std::wstring name;
 			player_id_t player;
-			deserializer.String("name", name, 0, 256);
+			deserializer.String("name", name, 1, 256);
 			deserializer.NumberI32_Unbounded("player", player);
-			if (!AddPlayer(name, player, false))
+			if (!AddPlayer(name, player, true))
 				throw PSERROR_Deserialize_ScriptError();
-
-			// Use ScriptObjectAppend so we don't lose the carefully-constructed
-			// prototype/parent of this object
-			deserializer.ScriptObjectAppend("data", m_Players.back()->m_Obj.getRef());
 
 			uint32_t numCommands;
 			deserializer.NumberU32_Unbounded("num commands", numCommands);
@@ -420,6 +439,11 @@ public:
 				deserializer.ScriptVal("command", val);
 				m_Players.back()->m_Commands.push_back(m_ScriptInterface.WriteStructuredClone(val.get()));
 			}
+			
+			CScriptVal scriptData;
+			deserializer.ScriptVal("data", scriptData);
+			if (!m_ScriptInterface.CallFunctionVoid(m_Players.back()->m_Obj.get(), "Deserialize", scriptData))
+				LOGERROR(L"AI script Deserialize call failed");
 		}
 	}
 
@@ -473,9 +497,11 @@ private:
 	shared_ptr<ScriptRuntime> m_ScriptRuntime;
 	ScriptInterface m_ScriptInterface;
 	boost::rand48 m_RNG;
-	size_t m_TurnNum;
+	u32 m_TurnNum;
 
 	CScriptValRooted m_EntityTemplates;
+	bool m_HasLoadedEntityTemplates;
+
 	std::map<VfsPath, CScriptValRooted> m_PlayerMetadata;
 	std::vector<shared_ptr<CAIPlayer> > m_Players; // use shared_ptr just to avoid copying
 
@@ -523,17 +549,16 @@ public:
 		// directly. So we'll just grab the ISerializer's stream and write to it
 		// with an independent serializer.
 
-		// TODO: make the serialization/deserialization actually work, and not really slowly
-//		m_Worker.Serialize(serialize.GetStream(), serialize.IsDebug());
-		UNUSED2(serialize);
+		m_Worker.Serialize(serialize.GetStream(), serialize.IsDebug());
 	}
 
 	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
 	{
 		Init(paramNode);
 
-//		m_Worker.Deserialize(deserialize.GetStream());
-		UNUSED2(deserialize);
+		ForceLoadEntityTemplates();
+
+		m_Worker.Deserialize(deserialize.GetStream());
 	}
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))

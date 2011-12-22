@@ -36,6 +36,7 @@
 #include "ps/Profile.h"
 #include "ps/Replay.h"
 #include "ps/World.h"
+#include "ps/GameSetup/GameSetup.h"
 #include "renderer/Renderer.h"
 #include "scripting/ScriptingHost.h"
 #include "scriptinterface/ScriptInterface.h"
@@ -63,7 +64,8 @@ CGame::CGame(bool disableGraphics):
 	m_GameStarted(false),
 	m_Paused(false),
 	m_SimRate(1.0f),
-	m_PlayerID(-1)
+	m_PlayerID(-1),
+	m_IsSavedGame(false)
 {
 	m_ReplayLogger = new CReplayLogger(m_Simulation2->GetScriptInterface());
 	// TODO: should use CDummyReplayLogger unless activated by cmd-line arg, perhaps?
@@ -115,6 +117,7 @@ void CGame::SetTurnManager(CNetTurnManager* turnManager)
 void CGame::RegisterInit(const CScriptValRooted& attribs, const std::string& savedState)
 {
 	m_InitialSavedState = savedState;
+	m_IsSavedGame = !savedState.empty();
 
 	m_Simulation2->SetInitAttributes(attribs);
 
@@ -153,7 +156,7 @@ void CGame::RegisterInit(const CScriptValRooted& attribs, const std::string& sav
 		m_World->RegisterInitRMS(scriptFile, settings, m_PlayerID);
 	}
 
-	if (!m_InitialSavedState.empty())
+	if (m_IsSavedGame)
 		RegMemFun(this, &CGame::LoadInitialState, L"Loading game", 1000);
 
 	LDR_EndRegistering();
@@ -161,6 +164,7 @@ void CGame::RegisterInit(const CScriptValRooted& attribs, const std::string& sav
 
 int CGame::LoadInitialState()
 {
+	ENSURE(m_IsSavedGame);
 	ENSURE(!m_InitialSavedState.empty());
 
 	std::string state;
@@ -169,7 +173,11 @@ int CGame::LoadInitialState()
 	std::stringstream stream(state);
 
 	bool ok = m_Simulation2->DeserializeState(stream);
-	ENSURE(ok);
+	if (!ok)
+	{
+		CancelLoad(L"Failed to load saved game state. It might have been\nsaved with an incompatible version of the game.");
+		return 0;
+	}
 
 	return 0;
 }
@@ -181,9 +189,13 @@ int CGame::LoadInitialState()
  **/
 PSRETURN CGame::ReallyStartGame()
 {
-	CScriptVal settings;
-	m_Simulation2->GetScriptInterface().GetProperty(m_Simulation2->GetInitAttributes().get(), "settings", settings);
-	m_Simulation2->InitGame(settings);
+	// Call the script function InitGame only for new games, not saved games
+	if (!m_IsSavedGame)
+	{
+		CScriptVal settings;
+		m_Simulation2->GetScriptInterface().GetProperty(m_Simulation2->GetInitAttributes().get(), "settings", settings);
+		m_Simulation2->InitGame(settings);
+	}
 
 	// Call the reallyStartGame GUI function, but only if it exists
 	if (g_GUI && g_GUI->HasPages())

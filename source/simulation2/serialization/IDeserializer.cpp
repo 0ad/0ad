@@ -163,7 +163,9 @@ void IDeserializer::StringASCII(const char* name, std::string& out, uint32_t min
 {
 	uint32_t len;
 	NumberU32("string length", len, minlength, maxlength);
-	out.resize(len); // TODO: should check len <= bytes remaining in stream
+
+	RequireBytesInStream(len);
+	out.resize(len);
 	Get(name, (u8*)out.data(), len);
 
 	for (size_t i = 0; i < out.length(); ++i)
@@ -176,7 +178,9 @@ void IDeserializer::String(const char* name, std::wstring& out, uint32_t minleng
 	std::string str;
 	uint32_t len;
 	NumberU32_Unbounded("string length", len);
-	str.resize(len); // TODO: should check len <= bytes remaining in stream
+
+	RequireBytesInStream(len);
+	str.resize(len);
 	Get(name, (u8*)str.data(), len);
 
 	Status err;
