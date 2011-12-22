@@ -1197,7 +1197,7 @@ bool Autostart(const CmdLineArgs& args)
 
 void CancelLoad(const CStrW& message)
 {
-	//Cancel loader
+	// Cancel loader
 	LDR_Cancel();
 
 	// Call the cancelOnError GUI function, defined in ..gui/common/functions_utility_error.js
