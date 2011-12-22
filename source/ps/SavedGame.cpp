@@ -75,15 +75,9 @@ Status SavedGames::Save(const std::wstring& prefix, CSimulation2& simulation, CG
 	std::string metadataString = simulation.GetScriptInterface().StringifyJSON(metadata.get(), true);
 	
 	// Write the saved game as zip file containing the various components
-	PIArchiveWriter archiveWriter;
-	try
-	{
-		archiveWriter = CreateArchiveWriter_Zip(tempSaveFileRealPath, false);
-	}
-	catch (Status err)
-	{
-		WARN_RETURN(err);
-	}
+	PIArchiveWriter archiveWriter = CreateArchiveWriter_Zip(tempSaveFileRealPath, false);
+	if (!archiveWriter)
+		WARN_RETURN(ERR::FAIL);
 
 	WARN_RETURN_STATUS_IF_ERR(archiveWriter->AddMemory((const u8*)metadataString.c_str(), metadataString.length(), now, "metadata.json"));
 	WARN_RETURN_STATUS_IF_ERR(archiveWriter->AddMemory((const u8*)simStateStream.str().c_str(), simStateStream.str().length(), now, "simulation.dat"));
@@ -147,15 +141,9 @@ Status SavedGames::Load(const std::wstring& name, ScriptInterface& scriptInterfa
 	OsPath realPath;
 	WARN_RETURN_STATUS_IF_ERR(g_VFS->GetRealPath(filename, realPath));
 
-	PIArchiveReader archiveReader;
-	try
-	{
-		archiveReader = CreateArchiveReader_Zip(realPath);
-	}
-	catch (Status err)
-	{
-		WARN_RETURN(err);
-	}
+	PIArchiveReader archiveReader = CreateArchiveReader_Zip(realPath);
+	if (!archiveReader)
+		WARN_RETURN(ERR::FAIL);
 
 	CGameLoader loader(scriptInterface, &metadata, &savedState);
 	WARN_RETURN_STATUS_IF_ERR(archiveReader->ReadEntries(CGameLoader::ReadEntryCallback, (uintptr_t)&loader));
@@ -185,14 +173,11 @@ std::vector<CScriptValRooted> SavedGames::GetSavedGames(ScriptInterface& scriptI
 			continue; // skip this file
 		}
 
-		PIArchiveReader archiveReader;
-		try
+		PIArchiveReader archiveReader = CreateArchiveReader_Zip(realPath);
+		if (!archiveReader)
 		{
-			archiveReader = CreateArchiveReader_Zip(realPath);
-		}
-		catch (Status err)
-		{
-			DEBUG_WARN_ERR(err);
+			// Triggered by e.g. the file being open in another program
+			LOGWARNING(L"Failed to read saved game '%ls'", realPath.string().c_str());
 			continue; // skip this file
 		}
 

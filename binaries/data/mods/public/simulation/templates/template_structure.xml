@@ -53,14 +53,14 @@
     <DisableBlockPathfinding>false</DisableBlockPathfinding>
   </Obstruction>
   <OverlayRenderer/>
-  <RallyPoint />
+  <RallyPoint/>
   <RallyPointRenderer>
     <MarkerTemplate>special/rallypoint</MarkerTemplate>
     <LineTexture>art/textures/misc/rallypoint_line.png</LineTexture>
     <LineTextureMask>art/textures/misc/rallypoint_line_mask.png</LineTextureMask>
     <LineThickness>0.2</LineThickness>
-    <LineColour r="35" g="86" b="188" />
-    <LineDashColour r="158" g="11" b="15" />
+    <LineColour r="35" g="86" b="188"/>
+    <LineDashColour r="158" g="11" b="15"/>
     <LineStartCap>square</LineStartCap>
     <LineEndCap>round</LineEndCap>
     <LineCostClass>default</LineCostClass>

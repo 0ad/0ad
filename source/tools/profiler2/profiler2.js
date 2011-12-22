@@ -59,6 +59,16 @@ function refresh()
         refresh_jsonp('../../../binaries/system/profile2.jsonp');
 }
 
+function concat_events(data)
+{
+    var events = [];
+    data.events.forEach(function(ev) {
+        ev.pop(); // remove the dummy null markers
+        Array.prototype.push.apply(events, ev);
+    });
+    return events;
+}
+
 function refresh_jsonp(url)
 {
     var script = document.createElement('script');
@@ -70,8 +80,7 @@ function refresh_jsonp(url)
         var threads = [];
         data.threads.forEach(function(thread) {
             var canvas = $('<canvas width="1600" height="160"></canvas>');
-            thread.data.events.pop();
-            threads.push({'name': thread.name, 'data': thread.data, 'canvas': canvas.get(0)});
+            threads.push({'name': thread.name, 'data': { 'events': concat_events(thread.data) }, 'canvas': canvas.get(0)});
         });
         g_data = { 'threads': threads };
 
@@ -114,7 +123,7 @@ function refresh_thread(thread, callback_data)
         dataType: 'json',
         data: { 'thread': thread.name },
         success: function (data) {
-            data.events.pop();
+            data.events = concat_events(data.events);
             
             thread.data = data;
             
@@ -159,7 +168,7 @@ function update_display(range)
 
     var main_events = g_data.threads[0].data.events;
 
-    var processed_main = compute_intervals(main_events, range);
+    var processed_main = g_data.threads[0].processed_events = compute_intervals(main_events, range);
 
 //    display_top_items(main_events, g_data.text_output);
 
@@ -812,4 +821,29 @@ function set_tooltip_handlers(canvas)
     $(canvas).mousemove(function(event) {
         do_tooltip.call(this, event);
     });
+}
+
+function search_regions(query)
+{
+    var re = new RegExp(query);
+    var data = g_data.threads[0].processed_events;
+    
+    var found = [];
+    for (var i = 0; i < data.intervals.length; ++i)
+    {
+        var interval = data.intervals[i];
+        if (interval.id.match(re))
+        {
+            found.push(interval);
+            if (found.length > 100)
+                break;
+        }
+    }
+    
+    var out = $('#regionsearchresult > tbody');
+    out.empty();
+    for (var i = 0; i < found.length; ++i)
+    {
+        out.append($('<tr><td>?</td><td>' + found[i].id + '</td><td>' + (found[i].duration*1000) + '</td></tr>'));
+    }
 }

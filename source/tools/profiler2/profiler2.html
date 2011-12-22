@@ -17,4 +17,12 @@ canvas { border: 1px #ddd solid; }
 
 <div id="tooltip" style="position: absolute; visibility: hidden"></div>
 
+Search: <input id="regionsearch" oninput="search_regions(this.value)">
+<table id="regionsearchresult">
+<thead>
+<tr><th>Frame<th>Region<th>Time (msec)
+</thead>
+<tbody>
+</table>
+
 <pre id="debug"></pre>

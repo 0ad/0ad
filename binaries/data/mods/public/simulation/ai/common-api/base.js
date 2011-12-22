@@ -3,15 +3,40 @@ function BaseAI(settings)
 	if (!settings)
 		return;
 
-	// Make some properties non-enumerable, so they won't be serialised
-	Object.defineProperty(this, "_player", {value: settings.player, enumerable: false});
-	Object.defineProperty(this, "_templates", {value: settings.templates, enumerable: false});
-	Object.defineProperty(this, "_derivedTemplates", {value: {}, enumerable: false});
+	// Copies of static engine data (not serialized)
+	this._player = settings.player;
+	this._templates = settings.templates;
+	this._derivedTemplates = {};
 
+	// Representation of the current world state (requires serialization)
+	this._rawEntities = null;
 	this._ownEntities = {};
-
 	this._entityMetadata = {};
 }
+
+// Return a simple object (using no classes etc) that will be serialized
+// into saved games
+BaseAI.prototype.Serialize = function()
+{
+	return {
+		_rawEntities: this._rawEntities,
+		_ownEntities: this._ownEntities,
+		_entityMetadata: this._entityMetadata,
+	};
+
+	// TODO: ought to get the AI script subclass to serialize its own state
+};
+
+// Called after the constructor when loading a saved game, with 'data' being
+// whatever Serialize() returned
+BaseAI.prototype.Deserialize = function(data)
+{
+	this._rawEntities = data._rawEntities;
+	this._ownEntities = data._ownEntities;
+	this._entityMetadata = data._entityMetadata;
+
+	// TODO: ought to get the AI script subclass to deserialize its own state
+};
 
 // Components that will be disabled in foundation entity templates.
 // (This is a bit yucky and fragile since it's the inverse of
@@ -160,7 +185,8 @@ BaseAI.prototype.ApplyEntitiesDelta = function(state)
 };
 
 BaseAI.prototype.OnUpdate = function()
-{	// AIs override this function
+{
+	// AIs override this function
 };
 
 BaseAI.prototype.chat = function(message)

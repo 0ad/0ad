@@ -261,69 +261,77 @@ bool CComponentManager::SerializeState(std::ostream& stream)
 
 bool CComponentManager::DeserializeState(std::istream& stream)
 {
-	CStdDeserializer deserializer(m_ScriptInterface, stream);
-
-	ResetState();
-
-	std::string rng;
-	deserializer.StringASCII("rng", rng, 0, 32);
-	DeserializeRNG(rng, m_RNG);
-
-	deserializer.NumberU32_Unbounded("next entity id", m_NextEntityId); // TODO: use sensible bounds
-
-	uint32_t numComponentTypes;
-	deserializer.NumberU32_Unbounded("num component types", numComponentTypes);
-
-	ICmpTemplateManager* templateManager = NULL;
-	CParamNode noParam;
-
-	for (size_t i = 0; i < numComponentTypes; ++i)
+	try
 	{
-		std::string ctname;
-		deserializer.StringASCII("name", ctname, 0, 255);
 
-		ComponentTypeId ctid = LookupCID(ctname);
-		if (ctid == CID__Invalid)
+		CStdDeserializer deserializer(m_ScriptInterface, stream);
+
+		ResetState();
+
+		std::string rng;
+		deserializer.StringASCII("rng", rng, 0, 32);
+		DeserializeRNG(rng, m_RNG);
+
+		deserializer.NumberU32_Unbounded("next entity id", m_NextEntityId); // TODO: use sensible bounds
+
+		uint32_t numComponentTypes;
+		deserializer.NumberU32_Unbounded("num component types", numComponentTypes);
+
+		ICmpTemplateManager* templateManager = NULL;
+		CParamNode noParam;
+
+		for (size_t i = 0; i < numComponentTypes; ++i)
 		{
-			LOGERROR(L"Deserialization saw unrecognised component type '%hs'", ctname.c_str());
+			std::string ctname;
+			deserializer.StringASCII("name", ctname, 0, 255);
+
+			ComponentTypeId ctid = LookupCID(ctname);
+			if (ctid == CID__Invalid)
+			{
+				LOGERROR(L"Deserialization saw unrecognised component type '%hs'", ctname.c_str());
+				return false;
+			}
+
+			uint32_t numComponents;
+			deserializer.NumberU32_Unbounded("num components", numComponents);
+
+			for (size_t j = 0; j < numComponents; ++j)
+			{
+				entity_id_t ent;
+				deserializer.NumberU32_Unbounded("entity id", ent);
+				IComponent* component = ConstructComponent(ent, ctid);
+				if (!component)
+					return false;
+
+				// Try to find the template for this entity
+				const CParamNode* entTemplate = NULL;
+				if (templateManager && ent != SYSTEM_ENTITY) // (system entities don't use templates)
+					entTemplate = templateManager->LoadLatestTemplate(ent);
+
+				// Deserialize, with the appropriate template for this component
+				if (entTemplate)
+					component->Deserialize(entTemplate->GetChild(ctname.c_str()), deserializer);
+				else
+					component->Deserialize(noParam, deserializer);
+
+				// If this was the template manager, remember it so we can use it when
+				// deserializing any further non-system entities
+				if (ent == SYSTEM_ENTITY && ctid == CID_TemplateManager)
+					templateManager = static_cast<ICmpTemplateManager*> (component);
+			}
+		}
+
+		if (stream.peek() != EOF)
+		{
+			LOGERROR(L"Deserialization didn't reach EOF");
 			return false;
 		}
 
-		uint32_t numComponents;
-		deserializer.NumberU32_Unbounded("num components", numComponents);
-
-		for (size_t j = 0; j < numComponents; ++j)
-		{
-			entity_id_t ent;
-			deserializer.NumberU32_Unbounded("entity id", ent);
-			IComponent* component = ConstructComponent(ent, ctid);
-			if (!component)
-				return false;
-
-			// Try to find the template for this entity
-			const CParamNode* entTemplate = NULL;
-			if (templateManager && ent != SYSTEM_ENTITY) // (system entities don't use templates)
-				entTemplate = templateManager->LoadLatestTemplate(ent);
-
-			// Deserialize, with the appropriate template for this component
-			if (entTemplate)
-				component->Deserialize(entTemplate->GetChild(ctname.c_str()), deserializer);
-			else
-				component->Deserialize(noParam, deserializer);
-
-			// If this was the template manager, remember it so we can use it when
-			// deserializing any further non-system entities
-			if (ent == SYSTEM_ENTITY && ctid == CID_TemplateManager)
-				templateManager = static_cast<ICmpTemplateManager*> (component);
-		}
+		return true;
 	}
-
-	if (stream.peek() != EOF)
+	catch (PSERROR_Deserialize& e)
 	{
-		LOGERROR(L"Deserialization didn't reach EOF");
+		LOGERROR(L"Deserialization failed: %hs", e.what());
 		return false;
 	}
-
-	// TODO: catch exceptions
-	return true;
 }

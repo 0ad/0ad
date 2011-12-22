@@ -391,6 +391,7 @@ void RunBufferVisitor(const std::string& buffer, V& visitor)
 			memcpy(&t, buffer.c_str()+pos, sizeof(t));
 			pos += sizeof(t);
 			lastTime = t;
+			visitor.OnSync(lastTime);
 			break;
 		}
 		case CProfiler2::ITEM_EVENT:
@@ -462,6 +463,13 @@ public:
 	{
 	}
 
+	void OnSync(double time)
+	{
+		// Split the array of items into an array of array (arbitrarily splitting
+		// around the sync points) to avoid array-too-large errors in JSON decoders
+		m_Stream << "null], [\n";
+	}
+
 	void OnEvent(double time, const char* id)
 	{
 		m_Stream << "[1," << std::fixed << std::setprecision(9) << time;
@@ -514,13 +522,14 @@ const char* CProfiler2::ConstructJSONResponse(std::ostream& stream, const std::s
 
 		stream << "{\"events\":[\n";
 
+		stream << "[\n";
 		buffer = storage->GetBuffer();
 	}
 
 	BufferVisitor_Dump visitor(stream);
 	RunBufferVisitor(buffer, visitor);
 
-	stream << "null\n]}";
+	stream << "null]\n]}";
 
 	return NULL;
 }
@@ -529,6 +538,7 @@ void CProfiler2::SaveToFile()
 {
 	OsPath path = psLogDir()/"profile2.jsonp";
 	std::ofstream stream(OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
+	ENSURE(stream.good());
 
 	std::vector<ThreadStorage*> threads;
 

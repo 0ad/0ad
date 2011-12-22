@@ -107,7 +107,7 @@ QBotAI.prototype.OnUpdate = function() {
 		}
 		
 		this.queueManager.update(gameState);
-			
+		
 		// Generate some entropy in the random numbers (against humans) until the engine gets random initialised numbers
 		// TODO: remove this when the engine gives a random seed
 		var n = this.savedEvents.length % 29;
@@ -124,7 +124,14 @@ QBotAI.prototype.OnUpdate = function() {
 	this.turn++;
 };
 
-var debugOn = true;
+// TODO: Remove override when the whole AI state is serialised
+QBotAI.prototype.Deserialize = function(data)
+{
+	BaseAI.prototype.Deserialize.call(this, data);
+	this._entityMetadata = {};
+};
+
+var debugOn = false;
 
 function debug(output){
 	if (debugOn){

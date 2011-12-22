@@ -325,7 +325,7 @@ CFixedVector2D CCmpPathfinder::GetNearestPointOnGoal(CFixedVector2D pos, const C
 	// cost of a virtual call inside ComputeShortPath)
 }
 
-typedef PriorityQueueList<u16, fixed> PriorityQueue;
+typedef PriorityQueueHeap<u16, fixed> PriorityQueue;
 
 struct TileEdge
 {

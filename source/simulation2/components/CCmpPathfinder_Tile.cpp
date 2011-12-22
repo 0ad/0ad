@@ -30,7 +30,7 @@
 #include "renderer/TerrainOverlay.h"
 #include "simulation2/helpers/PriorityQueue.h"
 
-typedef PriorityQueueList<std::pair<u16, u16>, u32> PriorityQueue;
+typedef PriorityQueueHeap<std::pair<u16, u16>, u32> PriorityQueue;
 
 #define PATHFIND_STATS 0
 

@@ -30,7 +30,9 @@ TerrainAnalysis.prototype.findClosestPassablePoint = function(startPoint){
 	
 	if (p[0] + w*p[1] > 0 && p[0] + w*p[1] < this.length &&
 			this.map[p[0] + w*p[1]] != 0){
-		return p;
+		if (this.countConnected(p, 10) >= 10){
+			return p;
+		}
 	}
 	
 	// search in a spiral pattern.
@@ -83,7 +85,7 @@ TerrainAnalysis.prototype.countConnected = function(startPoint, maxCount, curCou
  *  
  * Used to create a list of distinct paths between two points. 
  * 
- * Currently it works basically.
+ * Currently it works with a basic implementation which should be improved.
  * 
  * TODO: Make this use territories.
  */

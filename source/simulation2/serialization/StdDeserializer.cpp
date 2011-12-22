@@ -67,6 +67,12 @@ std::istream& CStdDeserializer::GetStream()
 	return m_Stream;
 }
 
+void CStdDeserializer::RequireBytesInStream(size_t numBytes)
+{
+	if (numBytes >= m_Stream.rdbuf()->in_avail())
+		throw PSERROR_Deserialize_OutOfBounds("RequireBytesInStream");
+}
+
 void CStdDeserializer::AddScriptBackref(JSObject* obj)
 {
 	std::pair<std::map<u32, JSObject*>::iterator, bool> it = m_ScriptBackrefs.insert(std::make_pair((u32)m_ScriptBackrefs.size()+1, obj));
@@ -197,7 +203,8 @@ void CStdDeserializer::ReadStringUTF16(const char* name, utf16string& str)
 {
 	uint32_t len;
 	NumberU32_Unbounded("string length", len);
-	str.resize(len); // TODO: should check len*2 <= bytes remaining in stream, before resizing
+	RequireBytesInStream(len*2);
+	str.resize(len);
 	Get(name, (u8*)str.data(), len*2);
 }
 

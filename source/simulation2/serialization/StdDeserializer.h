@@ -38,7 +38,8 @@ public:
 	virtual void ScriptString(const char* name, JSString*& out);
 
 	virtual std::istream& GetStream();
-
+	virtual void RequireBytesInStream(size_t numBytes);
+	
 protected:
 	virtual void Get(const char* name, u8* data, size_t len);
 
