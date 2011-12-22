@@ -1,7 +1,7 @@
 var userReportEnabledText; // contains the original version with "$status" placeholder
 var currentSubmenuType; // contains submenu type
 const MARGIN = 4; // menu border size
-const background = "persians1"; // Background type. Currently: 'hellenes1', 'persians1'.
+const background = "hellenes1"; // Background type. Currently: 'hellenes1', 'persians1'.
 
 function init()
 {
