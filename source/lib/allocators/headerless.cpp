@@ -539,7 +539,7 @@ public:
 		m_totalDeallocatedBlocks++;
 		m_totalDeallocatedBytes += size;
 		ENSURE(m_totalDeallocatedBlocks <= m_totalAllocatedBlocks);
-		ENSURE(m_totalDeallocatedBytes <= m_totalDeallocatedBytes);
+		ENSURE(m_totalDeallocatedBytes <= m_totalAllocatedBytes);
 
 		ENSURE(m_currentExtantBlocks != 0);
 		ENSURE(m_currentExtantBytes >= size);
