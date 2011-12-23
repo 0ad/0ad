@@ -69,7 +69,7 @@ std::istream& CStdDeserializer::GetStream()
 
 void CStdDeserializer::RequireBytesInStream(size_t numBytes)
 {
-	if (numBytes >= m_Stream.rdbuf()->in_avail())
+	if (numBytes > (size_t)m_Stream.rdbuf()->in_avail())
 		throw PSERROR_Deserialize_OutOfBounds("RequireBytesInStream");
 }
 

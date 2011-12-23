@@ -18,6 +18,8 @@
 #ifndef NETFILETRANSFER_H
 #define NETFILETRANSFER_H
 
+#include <map>
+
 class CNetMessage;
 class CNetClientSession;
 class CNetServerSession;
@@ -61,7 +63,7 @@ public:
 	u32 m_RequestID;
 
 	size_t m_Length;
-	
+
 	std::string m_Buffer;
 };
 
