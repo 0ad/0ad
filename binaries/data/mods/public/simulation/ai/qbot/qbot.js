@@ -27,13 +27,14 @@ function QBotAI(settings) {
 		citizenSoldier : 100,
 		villager : 100,
 		economicBuilding : 30,
-		field: 4,
+		field: 20,
 		advancedSoldier : 30,
 		siege : 10,
 		militaryBuilding : 50,
 		defenceBuilding: 17,
 		civilCentre: 1000
 	};
+	
 	this.queueManager = new QueueManager(this.queues, this.priorities);
 	
 	this.firstTime = true;
