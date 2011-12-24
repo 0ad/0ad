@@ -7,12 +7,40 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack>25.0</Hack>
-      <Crush>30.0</Crush>
+      <Hack>22.0</Hack>
+      <Crush>25.0</Crush>
+	  <Bonuses>
+		<BonusStructures>
+		  <Classes>Structure</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusStructures>
+		<BonusCav>
+		  <Classes>Cavalry</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusCav>
+		<BonusGates>
+		  <Classes>Gates</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusGates>
+	  </Bonuses>
     </Melee>
     <Charge>
       <Hack>75.0</Hack>
       <Crush>90.0</Crush>
+	  <Bonuses>
+		<BonusStructures>
+		  <Classes>Structure</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusStructures>
+		<BonusCav>
+		  <Classes>Cavalry</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusCav>
+		<BonusGates>
+		  <Classes>Gates</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusGates>
+	  </Bonuses>
     </Charge>
   </Attack>
   <Cost>
@@ -31,6 +59,7 @@
   </Health>
   <Identity>
     <Civ>pers</Civ>
+    <Classes datatype="tokens">Elephant -Cavalry</Classes>
     <GenericName>Indian War Elephant</GenericName>
     <SpecificName>Pil Jangi Hendi</SpecificName>
     <Icon>units/pers_war_elephant.png</Icon>

@@ -11,16 +11,28 @@
       <Pierce>27.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>7.0</MaxRange>
+	  <Bonuses>
+		<BonusCavalry>
+		  <Classes>Cavalry</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusCavalry>
+	  </Bonuses>
     </Melee>
     <Charge>
       <Hack>18.0</Hack>
       <Pierce>40.0</Pierce>
       <MaxRange>7.0</MaxRange>
+	  <Bonuses>
+		<BonusCavalry>
+		  <Classes>Cavalry</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusCavalry>
+	  </Bonuses>
     </Charge>
   </Attack>
   <Identity>
+    <Classes datatype="tokens">Melee Spear</Classes>
     <GenericName>Hero Pikeman</GenericName>
-    <Classes datatype="tokens">Hero Infantry Melee</Classes>
   </Identity>
   <Loot>
     <wood>10</wood>

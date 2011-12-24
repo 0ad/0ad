@@ -8,13 +8,31 @@
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
-      <Pierce>35.0</Pierce>
+      <Pierce>25.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>36</MaxRange>
       <MinRange>10.0</MinRange>
       <ProjectileSpeed>50.0</ProjectileSpeed>
       <PrepareTime>1200</PrepareTime>
       <RepeatTime>2000</RepeatTime>
+	  <Bonuses>
+		<BonusPrimary>
+		  <Classes>Infantry Spear</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusPrimary>
+		<BonusSecondary>
+		  <Classes>Cavalry Bow</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusSecondary>
+		<BonusElephants>
+		  <Classes>Elephant</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusElephants>
+		<BonusChariots>
+		  <Classes>Chariot</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusChariots>
+	  </Bonuses>
     </Ranged>
   </Attack>
   <Cost>
@@ -23,9 +41,11 @@
     </Resources>
   </Cost>
   <Identity>
+    <Classes datatype="tokens">Javelin</Classes>
     <GenericName>Skirmisher</GenericName>
     <Rollover>These were the skirmishers. These lightly armoured units would advance quickly, throw a hail of javelins and then retreat back to their ranks. Grab another spear and repeat. They would do well against any unit that wasn't wearing proper armour, but more poorly if they fought hand to hand vs a well armoured unit. They didn't always have to throw their spears either. They used these light small spears in hand to hand similar to a quarterstaff. Also note that the development of the pilum was a key transition. The pilum was a weapon with a long steel shaft that would sink into a shield and was nearly impossible to remove. This rendered the shield useless. They also weighted and balanced them to make them accurately hit with a punch.</Rollover>
-    <Tooltip>Counters Spearmen and Cavalry Archers. Special bonus against Elephants and Chariots.</Tooltip>
+    <Tooltip>Skirmisher.
+Counters Spearmen and Cavalry Archers. Special bonus against Elephants and Chariots.</Tooltip>
   </Identity>
   <Loot>
     <wood>5</wood>

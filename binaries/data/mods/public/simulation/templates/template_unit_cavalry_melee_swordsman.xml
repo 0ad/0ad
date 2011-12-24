@@ -7,17 +7,45 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack>20.0</Hack>
+      <Hack>10.0</Hack>
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>6.0</MaxRange>
+	  <Bonuses>
+		<BonusPrimary>
+		  <Classes>Support</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusPrimary>
+		<BonusSecondary>
+		  <Classes>Infantry Bow</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusSecondary>
+		<BonusSiege>
+		  <Classes>Siege</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusSiege>
+	  </Bonuses>
     </Melee>
     <Charge>
-      <Hack>60.0</Hack>
+      <Hack>30.0</Hack>
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>6.0</MaxRange>
       <MinRange>0.0</MinRange>
+	  <Bonuses>
+		<BonusPrimary>
+		  <Classes>Support</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusPrimary>
+		<BonusSecondary>
+		  <Classes>Infantry Bow</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusSecondary>
+		<BonusSiege>
+		  <Classes>Siege</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusSiege>
+	  </Bonuses>
     </Charge>
   </Attack>
   <Cost>
@@ -26,9 +54,10 @@
     </Resources>
   </Cost>
   <Identity>
+    <Classes datatype="tokens">Sword</Classes>
     <GenericName>Cavalry Swordsman</GenericName>
     <History>Fighting from horseback with a sword is a tricky thing to do. This required usage of a sword that was longer than the typical infantry sword. One needed a good reach to attack from the height of a horse. If you were without spear (the ideal weapon of choice) it was probably because you needed your hands free to do other tasks such as riding hard and fast. It wasn't uncommon for the men to dismount and attack from foot if they were armed with only a sword.</History>
-    <Tooltip>Counters Support Units and Archers. Countered by Spearmen.</Tooltip>
+    <Tooltip>Counters Support Units, Archers, and Siege Weapons. Countered by Spearmen.</Tooltip>
   </Identity>
   <UnitMotion>
     <WalkSpeed>11.5</WalkSpeed>

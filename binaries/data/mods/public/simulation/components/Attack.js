@@ -1,5 +1,20 @@
 function Attack() {}
 
+var bonusesSchema = 
+	"<optional>" +
+		"<element name='Bonuses'>" +
+			"<zeroOrMore>" +
+				"<element>" +
+					"<anyName/>" +
+					"<interleave>" +
+						"<element name='Classes' a:help='If an entity has all these classes then the bonus is applied'><text/></element>" +
+						"<element name='Multiplier' a:help='The attackers attack strength is multiplied by this'><ref name='nonNegativeDecimal'/></element>" +
+					"</interleave>" +
+				"</element>" +
+			"</zeroOrMore>" +
+		"</element>" +
+	"</optional>";
+
 Attack.prototype.Schema =
 	"<a:help>Controls the attack abilities and strengths of the unit.</a:help>" +
 	"<a:example>" +
@@ -9,6 +24,16 @@ Attack.prototype.Schema =
 			"<Crush>5.0</Crush>" +
 			"<MaxRange>4.0</MaxRange>" +
 			"<RepeatTime>1000</RepeatTime>" +
+			"<Bonuses>" +
+				"<Bonus1>" +
+					"<Classes>Infantry</Classes>" +
+					"<Multiplier>1.5</Multiplier>" +
+				"</Bonus1>" +
+				"<BonusCavMelee>" +
+					"<Classes>Cavalry Melee</Classes>" +
+					"<Multiplier>1.5</Multiplier>" +
+				"</BonusCavMelee>" +
+			"</Bonuses>" +
 		"</Melee>" +
 		"<Ranged>" +
 			"<Hack>0.0</Hack>" +
@@ -19,6 +44,12 @@ Attack.prototype.Schema =
 			"<PrepareTime>800</PrepareTime>" +
 			"<RepeatTime>1600</RepeatTime>" +
 			"<ProjectileSpeed>50.0</ProjectileSpeed>" +
+			"<Bonuses>" +
+				"<Bonus1>" +
+					"<Classes>Cavalry</Classes>" +
+					"<Multiplier>2</Multiplier>" +
+				"</Bonus1>" +
+			"</Bonuses>" +
 		"</Ranged>" +
 		"<Charge>" +
 			"<Hack>10.0</Hack>" +
@@ -38,6 +69,7 @@ Attack.prototype.Schema =
 				"<element name='RepeatTime' a:help='Time between attacks (in milliseconds). The attack animation will be stretched to match this time'>" + // TODO: it shouldn't be stretched
 					"<data type='positiveInteger'/>" +
 				"</element>" +
+				bonusesSchema +
 			"</interleave>" +
 		"</element>" +
 	"</optional>" +
@@ -58,6 +90,7 @@ Attack.prototype.Schema =
 				"<element name='ProjectileSpeed' a:help='Speed of projectiles (in metres per second). If unspecified, then it is a melee attack instead'>" +
 					"<ref name='nonNegativeDecimal'/>" +
 				"</element>" +
+				bonusesSchema +
 			"</interleave>" +
 		"</element>" +
 	"</optional>" +
@@ -69,6 +102,7 @@ Attack.prototype.Schema =
 				"<element name='Crush' a:help='Crush damage strength'><ref name='nonNegativeDecimal'/></element>" +
 				"<element name='MaxRange'><ref name='nonNegativeDecimal'/></element>" + // TODO: how do these work?
 				"<element name='MinRange'><ref name='nonNegativeDecimal'/></element>" +
+				bonusesSchema +
 			"</interleave>" +
 		"</element>" +
 	"</optional>";
@@ -118,7 +152,35 @@ Attack.prototype.GetRange = function(type)
 	var max = +this.template[type].MaxRange;
 	var min = +(this.template[type].MinRange || 0);
 	return { "max": max, "min": min };
-}
+};
+
+// Calculate the attack damage multiplier against a target
+Attack.prototype.GetAttackBonus = function(type, target)
+{
+	var attackBonus = 1;
+	if (this.template[type].Bonuses)
+	{
+		var cmpIdentity = Engine.QueryInterface(target, IID_Identity);
+		if (!cmpIdentity)
+			return 1;
+		
+		// Multiply the bonuses for all matching classes
+		for (var key in this.template[type].Bonuses)
+		{
+			var bonus = this.template[type].Bonuses[key];
+			
+			var hasClasses = true;
+			var classes = bonus.Classes.split(/\s+/);
+			for (var key in classes)
+				hasClasses = hasClasses && cmpIdentity.HasClass(classes[key]);
+			
+			if (hasClasses)
+				attackBonus *= bonus.Multiplier;
+		}
+	}
+	
+	return attackBonus;
+};
 
 /**
  * Attack the target entity. This should only be called after a successful range check,
@@ -225,7 +287,7 @@ Attack.prototype.TargetKilled = function(killerEntity, targetEntity)
 	{
 		cmpLooter.Collect(targetEntity);
 	}
-}
+};
 
 /**
  * Inflict damage on the target
@@ -233,11 +295,13 @@ Attack.prototype.TargetKilled = function(killerEntity, targetEntity)
 Attack.prototype.CauseDamage = function(data)
 {
 	var strengths = this.GetAttackStrengths(data.type);
-
+	
+	var attackBonus = this.GetAttackBonus(data.type, data.target);
+	
 	var cmpDamageReceiver = Engine.QueryInterface(data.target, IID_DamageReceiver);
 	if (!cmpDamageReceiver)
 		return;
-	var targetState = cmpDamageReceiver.TakeDamage(strengths.hack, strengths.pierce, strengths.crush);
+	var targetState = cmpDamageReceiver.TakeDamage(strengths.hack * attackBonus, strengths.pierce * attackBonus, strengths.crush * attackBonus);
 	// if target killed pick up loot and credit experience
 	if (targetState.killed == true)
 	{

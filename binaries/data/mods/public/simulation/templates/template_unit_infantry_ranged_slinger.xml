@@ -8,13 +8,19 @@
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
-      <Pierce>20.0</Pierce>
+      <Pierce>15.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>48.0</MaxRange>
       <MinRange>16.0</MinRange>
       <ProjectileSpeed>60.0</ProjectileSpeed>
       <PrepareTime>900</PrepareTime>
       <RepeatTime>1500</RepeatTime>
+	  <Bonuses>
+		<BonusInfantry>
+		  <Classes>Infantry</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusInfantry>
+	  </Bonuses>
     </Ranged>
   </Attack>
   <Cost>
@@ -23,8 +29,9 @@
     </Resources>
   </Cost>
   <Identity>
+    <Classes datatype="tokens">Sling</Classes>
     <GenericName>Slinger</GenericName>
-    <Tooltip>No attack bonuses. Generally counters Infantry. Countered by Cavalry.</Tooltip>
+    <Tooltip>Generally counters Infantry. Countered by Cavalry.</Tooltip>
   </Identity>
   <Loot>
     <xp>75</xp>

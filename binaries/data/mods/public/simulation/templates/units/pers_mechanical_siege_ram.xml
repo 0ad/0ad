@@ -8,6 +8,9 @@
     <Melee>
       <MaxRange>8.0</MaxRange>
     </Melee>
+    <Charge>
+      <MaxRange>8.0</MaxRange>
+    </Charge>
   </Attack>
   <Cost>
     <BuildTime>25</BuildTime>
@@ -26,11 +29,9 @@
 	<List datatype="tokens">Support Infantry</List>
 	<BuffHeal>1</BuffHeal>
   </GarrisonHolder>
-  <Health>
-    <Max>300</Max>
-  </Health>
   <Identity>
     <Civ>pers</Civ>
+	<Classes datatype="tokens">Pers</Classes>
 	<GenericName>Assyrian Siege Ram</GenericName>
     <SpecificName>Athuriya Hamaranakuba</SpecificName>
     <Tooltip>Siege Ram. Bonused vs. Wall Gates. Garrison: 5.</Tooltip>

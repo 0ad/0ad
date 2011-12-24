@@ -8,17 +8,29 @@
   <Attack>
     <Melee>
       <Hack>8.0</Hack>
-      <Pierce>18.0</Pierce>
+      <Pierce>13.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
+	  <Bonuses>
+		<BonusCavMelee>
+		  <Classes>Cavalry Melee</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusCavMelee>
+	  </Bonuses>
     </Melee>
     <Charge>
       <Hack>16.0</Hack>
-      <Pierce>36.0</Pierce>
+      <Pierce>26.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
       <MinRange>0.0</MinRange>
+	  <Bonuses>
+		<BonusCavMelee>
+		  <Classes>Cavalry Melee</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusCavMelee>
+	  </Bonuses>
     </Charge>
   </Attack>
   <Cost>
@@ -29,7 +41,7 @@
   </Cost>
   <Identity>
     <GenericName>Champion Spearman</GenericName>
-    <Classes datatype="tokens">Melee</Classes>
+    <Classes datatype="tokens">Melee Infantry Spear</Classes>
 	<Tooltip>Champion Spearman.
 Good heavy line infantry. Counters Cavalry. Countered by Swordsmen.</Tooltip>
   </Identity>

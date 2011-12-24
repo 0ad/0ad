@@ -5,11 +5,6 @@
     <Pierce>8.0</Pierce>
     <Crush>7.0</Crush>
   </Armour>
-  <Attack>
-    <Ranged>
-      <Pierce>40.0</Pierce>
-    </Ranged>
-  </Attack>
   <Cost>
     <BuildTime>35</BuildTime>
   </Cost>
@@ -19,7 +14,7 @@
   </Health>
   <Identity>
     <GenericName>Hero Archer</GenericName>
-    <Classes datatype="tokens">Hero Infantry Ranged</Classes>
+    <Classes datatype="tokens">Hero</Classes>
 	<Tooltip>Hero Archer.
 Counters Swordsmen and Cavalry Spearmen. Countered by Skirmishers and other Cavalry types.</Tooltip>
   </Identity>
