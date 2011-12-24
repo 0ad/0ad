@@ -69,7 +69,15 @@ std::istream& CStdDeserializer::GetStream()
 
 void CStdDeserializer::RequireBytesInStream(size_t numBytes)
 {
-	if (numBytes >= m_Stream.rdbuf()->in_avail())
+	// It would be nice to do:
+// 	if (numBytes > (size_t)m_Stream.rdbuf()->in_avail())
+// 		throw PSERROR_Deserialize_OutOfBounds("RequireBytesInStream");
+	// but that doesn't work (at least on MSVC) since in_avail isn't
+	// guaranteed to return the actual number of bytes available; see e.g.
+	// http://social.msdn.microsoft.com/Forums/en/vclanguage/thread/13009a88-933f-4be7-bf3d-150e425e66a6#70ea562d-8605-4742-8851-1bae431ce6ce
+	
+	// Instead we'll just verify that it's not an extremely large number:
+	if (numBytes > 64*MiB)
 		throw PSERROR_Deserialize_OutOfBounds("RequireBytesInStream");
 }
 

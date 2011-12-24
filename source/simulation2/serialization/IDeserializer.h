@@ -79,8 +79,11 @@ public:
 	virtual std::istream& GetStream() = 0;
 
 	/**
-	 * Throws an exception if the stream cannot provide the required number of
-	 * bytes. (This should be used when allocating memory based on data in the
+	 * Throws an exception if the stream definitely cannot provide the required
+	 * number of bytes.
+	 * (It might be conservative and *not* throw an exception in some cases where
+	 * the stream actually can't provide the required bytes.)
+	 * (This should be used when allocating memory based on data in the
 	 * stream, e.g. reading strings, to avoid dangerously large allocations
 	 * when the data is invalid.)
 	 */

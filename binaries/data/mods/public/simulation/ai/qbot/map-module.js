@@ -18,6 +18,11 @@ Map.prototype.gamePosToMapPos = function(p){
 	return [Math.round(p[0]/this.cellSize), Math.round(p[1]/this.cellSize)];
 };
 
+Map.prototype.point = function(p){
+	var q = this.gamePosToMapPos(p);
+	return this.map[q[0] + this.width * q[1]];
+};
+
 Map.createObstructionMap = function(gameState, template){
 	var passabilityMap = gameState.getMap();
 	var territoryMap = gameState.getTerritoryMap(); 

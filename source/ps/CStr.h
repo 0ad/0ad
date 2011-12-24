@@ -313,7 +313,7 @@ public:
 	/**
 	 * Convert strings to printable ASCII characters with JSON-style escapes.
 	 */
-	CStr8 EscapeToPrintableASCII() const;
+	std::string EscapeToPrintableASCII() const;
 
 	/**
 	 * Return a trimmed copy of the CStr.

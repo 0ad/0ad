@@ -134,12 +134,13 @@ public:
 		SAFE_DELETE(m_DebugOverlay);
 	}
 
-	virtual void Serialize(ISerializer& serialize)
+	virtual void Serialize(ISerializer& UNUSED(serialize))
 	{
-		// TODO
+		// Territory state can be recomputed as required, so we don't need to serialize any of it.
+		// TODO: do we ever need to serialize m_TriggerEvent to prevent lost messages?
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
 	{
 		Init(paramNode);
 	}

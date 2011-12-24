@@ -118,6 +118,7 @@ EconomyManager.prototype.reassignIdleWorkers = function(gameState) {
 	
 	if (idleWorkers.length) {
 		var resourceSupplies = gameState.findResourceSupplies();
+		var territoryMap = Map.createTerritoryMap(gameState); 
 
 		idleWorkers.forEach(function(ent) {
 			// Check that the worker isn't garrisoned
@@ -174,6 +175,12 @@ EconomyManager.prototype.reassignIdleWorkers = function(gameState) {
 					
 					// Check we can actually reach the resource
 					if (!gameState.ai.accessibility.isAccessible(supply.position)){
+						return;
+					}
+					
+					// Don't gather in enemy territory
+					var territory = territoryMap.point(supply.position);
+					if (territory != 0 && gameState.isPlayerEnemy(territory)){
 						return;
 					}
 					
@@ -459,7 +466,6 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 	//Later in the game we want to build stuff faster.
 	if (gameState.countEntitiesWithType(gameState.applyCiv("units/{civ}_support_female_citizen")) > this.targetNumWorkers * 0.5) {
 		this.targetNumBuilders = 10;
-		gameState.ai.priorities.field = 20;
 	}else{
 		this.targetNumBuilders = 5;
 	}

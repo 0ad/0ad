@@ -30,8 +30,8 @@
 #include "lib/utf8.h"
 #include "lib/byte_order.h"
 #include "network/Serialization.h"
-#include <cassert>
 
+#include <iomanip>
 #include <sstream>
 
 #define UNIDOUBLER_HEADER "CStr.cpp"
@@ -356,9 +356,9 @@ CStr CStr::UnescapeBackslashes() const
 	return NewString;
 }
 
-CStr8 CStr::EscapeToPrintableASCII() const
+std::string CStr::EscapeToPrintableASCII() const
 {
-	CStr8 NewString;
+	std::string NewString;
 	for (size_t i = 0; i < length(); i++)
 	{
 		tchar ch = (*this)[i];

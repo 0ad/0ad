@@ -26,8 +26,11 @@
 
 #include "lib/allocators/shared_ptr.h"
 #include "ps/CLogger.h"
+#include "ps/CStr.h"
 #include "ps/Profiler2GPU.h"
 #include "third_party/mongoose/mongoose.h"
+
+#include <iomanip>
 
 CProfiler2 g_Profiler2;
 
@@ -463,7 +466,7 @@ public:
 	{
 	}
 
-	void OnSync(double time)
+	void OnSync(double UNUSED(time))
 	{
 		// Split the array of items into an array of array (arbitrarily splitting
 		// around the sync points) to avoid array-too-large errors in JSON decoders

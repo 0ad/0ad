@@ -145,7 +145,19 @@ def generate_font(chars, outname, ttf, loadopts, size, renderstyle):
         fnt.write("%d\n" % charheight)
         glyphs.sort(key = lambda g: ord(g.char))
         for g in glyphs:
-            fnt.write("%d %d %d %d %d %d %d %d\n" % (ord(g.char), g.pos.x, h-g.pos.y, g.w, g.h, -g.x0, g.y0, g.xadvance))
+            x0 = g.x0
+            y0 = g.y0
+            # UGLY HACK: see http://trac.wildfiregames.com/ticket/1039 ;
+            # to handle a-macron-acute characters without the hassle of
+            # doing proper OpenType GPOS layout (which the Pagella font
+            # doesn't support anyway), we'll just shift the combining acute
+            # glyph by an arbitrary amount to make it roughly the right
+            # place when used after an a-macron glyph.
+            if ord(g.char) == 0x0301:
+                y0 += charheight/3
+
+            fnt.write("%d %d %d %d %d %d %d %d\n" % (ord(g.char), g.pos.x, h-g.pos.y, g.w, g.h, -x0, y0, g.xadvance))
+
         fnt.close()
 
         return
