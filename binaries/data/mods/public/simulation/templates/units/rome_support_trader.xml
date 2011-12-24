@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_support_trader">
+  <Identity>
+    <Civ>rome</Civ>
+    <SpecificName>Plebean</SpecificName>
+    <History>Plebians were the poor class in Roman society, underneath the patricians, often carrying out much local trading and business. While patricians financed large business ventures plebian merchants did the actual work. They traded far and wide, from Iberia to Syria, buying and selling everything from salt to wool to horses to metals to glass to slaves. Romes extensive network of roads within Italy, many ports, and central location within the Mediterranean made it an ideal place to do business.</History>
+  </Identity>
+  <VisualActor>
+    <Actor>units/romans/trader.xml</Actor>
+  </VisualActor>
+</Entity>

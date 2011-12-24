@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="roman siege wall gate">
+      <mesh>structural/rome_siege_gate.dae</mesh>
+      <props>
+        <prop actor="structures/romans/siege_wall_gate_door.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/rome_special_1.dds</texture>
+    </variant>
+  </group>
+
+</actor>

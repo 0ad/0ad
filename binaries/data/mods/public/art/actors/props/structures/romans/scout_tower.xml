@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="Scout Tower Shields 1">
+      <mesh>props/rome_st_shields_1.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Scout Tower Shields 2">
+      <mesh>props/rome_st_shields_2.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Scout Tower Shields 3">
+      <mesh>props/rome_st_shields_3.dae</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
+      <texture>props/rome_prop_shields.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

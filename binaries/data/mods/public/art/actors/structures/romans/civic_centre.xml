@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Civic Center">
+      <animations>
+        <animation event="0.5" load="0" name="melee" speed="100"/>
+      </animations>
+      <mesh>structural/roman_cc.dae</mesh>
+      <props>
+        <prop actor="props/structures/romans/rome_cc_trans.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/rome_cc_statues.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+      </props>
+      <texture>structural/rome_struct.png</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_rome.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

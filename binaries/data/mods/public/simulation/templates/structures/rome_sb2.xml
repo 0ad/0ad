@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special">
+  <Identity>
+    <Civ>rome</Civ>
+    <SpecificName>Murus Latericius</SpecificName>
+    <History>It has a turf wall, and it's surrounded by a canal filled with water whenever possible for extra defence. Many towns started up as bigger military camps to evolve to more complicated cities.</History>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/romans/murus_latericius.xml</Actor>
+  </VisualActor>
+</Entity>

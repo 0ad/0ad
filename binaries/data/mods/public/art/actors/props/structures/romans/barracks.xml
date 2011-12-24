@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="Barracks Shields 1">
+      <mesh>props/rome_barracks_shields_1.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Barracks Shields 2">
+      <mesh>props/rome_barracks_shields_2.dae</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
+      <texture>props/rome_prop_shields.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>
