@@ -8,6 +8,16 @@
   <Attack>
     <Ranged>
       <Pierce>40.0</Pierce>
+	  <Bonuses>
+		<BonusPrimary>
+		  <Classes>Infantry Bow</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusPrimary>
+		<BonusSecondary>
+		  <Classes>Cavalry Sword</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusSecondary>
+	  </Bonuses>
     </Ranged>
   </Attack>
   <Cost>
@@ -23,8 +33,8 @@
     <RegenRate>0.5</RegenRate>
   </Health>
   <Identity>
+    <Classes datatype="tokens">Hero</Classes>
     <GenericName>Hero Cavalry Skirmisher</GenericName>
-    <Classes datatype="tokens">Hero Cavalry Ranged</Classes>
   </Identity>
   <Loot>
     <xp>450</xp>

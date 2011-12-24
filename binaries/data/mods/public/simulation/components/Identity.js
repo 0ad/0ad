@@ -64,16 +64,49 @@ Identity.prototype.Schema =
 			"<list>" +
 				"<zeroOrMore>" +
 					"<choice>" +
+						"<value>Cart</value>" +
+						"<value>Celt</value>" +
+						"<value>Hele</value>" +
+						"<value>Iber</value>" +
+						"<value>Pers</value>" +
+						"<value>Rome</value>" +
 						"<value>Unit</value>" +
 						"<value>Infantry</value>" +
-						"<value>Cavalry</value>" +
-						"<value>Ranged</value>" +
 						"<value>Melee</value>" +
+						"<value>InfantrySpearman</value>" +
+						"<value>InfantrySwordsman</value>" +
+						"<value>Cavalry</value>" +
+						"<value>CavalrySpearman</value>" +
+						"<value>CavalrySwordsman</value>" +
+						"<value>CavalrySkirmisher</value>" +
+						"<value>CavalryArcher</value>" +
+						"<value>Ranged</value>" +
+						"<value>InfantrySlinger</value>" +
+						"<value>InfantrySkirmisher</value>" +
+						"<value>InfantryArcher</value>" +
 						"<value>Mechanical</value>" +
 						"<value>Ship</value>" +
 						"<value>Siege</value>" +
-						"<value>Super</value>" +
+						"<value>Champion</value>" +
+						"<value>ChampionInfantry</value>" +
+						"<value>ChampionSpearman</value>" +
+						"<value>ChampionSwordsman</value>" +
+						"<value>ChampionSkirmisher</value>" +
+						"<value>ChampionArcher</value>" +
+						"<value>ChampionCavalry</value>" +
+						"<value>ChampionCavalrySpearman</value>" +
+						"<value>ChampionCavalrySwordsman</value>" +
+						"<value>ChampionCavalrySkirmisher</value>" +
+						"<value>ChampionCavalryArcher</value>" +
 						"<value>Hero</value>" +
+						"<value>Elephant</value>" +
+						"<value>Chariot</value>" +
+						"<value>Mercenary</value>" +
+						"<value>Spear</value>" +
+						"<value>Sword</value>" +
+						"<value>Bow</value>" +
+						"<value>Javelin</value>" +
+						"<value>Sling</value>" +
 						"<value>Support</value>" +
 						"<value>Animal</value>" +
 						"<value>Organic</value>" +
@@ -82,6 +115,8 @@ Identity.prototype.Schema =
 						"<value>CivCentre</value>" +
 						"<value>Economic</value>" +
 						"<value>Defensive</value>" +
+						"<value>Gates</value>" +
+						"<value>Wall</value>" +
 						"<value>BarterMarket</value>" +
 						"<value>Village</value>" +
 						"<value>Town</value>" +

@@ -8,13 +8,23 @@
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
-      <Pierce>30.0</Pierce>
+      <Pierce>20.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>56.0</MaxRange>
       <MinRange>20.0</MinRange>
       <ProjectileSpeed>75.0</ProjectileSpeed>
       <PrepareTime>1200</PrepareTime>
       <RepeatTime>2000</RepeatTime>
+	  <Bonuses>
+		<BonusPrimary>
+		  <Classes>Infantry Spear</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusPrimary>
+		<BonusSecondary>
+		  <Classes>Infantry Sword</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusSecondary>
+	  </Bonuses>
     </Ranged>
   </Attack>
   <Cost>
@@ -28,9 +38,11 @@
     <Max>150</Max>
   </Health>
   <Identity>
+	<Classes datatype="tokens">Bow</Classes>
     <GenericName>Cavalry Archer</GenericName>
     <History>A very rare unit in Part 1. It was used by the Persians, but it didn't gain much traction until the Parthians, Huns, Mongols, and other people of the nomadic steeps introduced them to western Europe. This was the most effective unit on the battlefield for several hundred years until the well armoured knight came along. Therefore, this unit will gain much more prominence in Part 2.</History>
-    <Tooltip>Counters Spearmen and Swordsmen. Countered by Skirmishers.</Tooltip>
+    <Tooltip>Cavalry Archer.
+Counters Spearmen and Swordsmen. Countered by Skirmishers.</Tooltip>
   </Identity>
   <UnitMotion>
     <WalkSpeed>12.0</WalkSpeed>

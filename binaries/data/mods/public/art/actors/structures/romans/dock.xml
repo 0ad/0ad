@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>structural/rome_dock.dae</mesh>
+      <props>
+        <prop actor="props/structures/romans/dock.xml" attachpoint="root"/>
+        <prop actor=""/>
+      </props>
+      <texture>structural/rome_struct.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

@@ -8,14 +8,26 @@
   <Attack>
     <Melee>
       <Hack>10.0</Hack>
-      <Pierce>20.0</Pierce>
+      <Pierce>15.0</Pierce>
       <MaxRange>6.0</MaxRange>
+	  <Bonuses>
+		<BonusPersians>
+		  <Classes>Pers</Classes>
+		  <Multiplier>1.25</Multiplier>
+		</BonusPersians>
+	  </Bonuses>
     </Melee>
     <Charge>
       <Hack>20.0</Hack>
-      <Pierce>40.0</Pierce>
+      <Pierce>30.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>6.0</MaxRange>
+	  <Bonuses>
+		<BonusPersians>
+		  <Classes>Pers</Classes>
+		  <Multiplier>1.25</Multiplier>
+		</BonusPersians>
+	  </Bonuses>
     </Charge>
   </Attack>
   <Cost>
@@ -28,6 +40,7 @@
   </Health>
   <Identity>
     <Civ>hele</Civ>
+    <Classes datatype="tokens">Hele</Classes>
     <GenericName>Macedonian Shield Bearer</GenericName>
     <SpecificName>Hypaspist</SpecificName>
     <History>The Hypaspistai, or "shield bearers", were the flower of the Macedonian infantry. They were the most battle hardened veterans  within the army and followed Philip II and Alexander the Great into over a dozen full scale engagements. These heavily armed and opulently armoured units acted as an intermediary between the phalanx and the cavalry arm, many times charging headlong with Alexander into a breech in the enemy lines. Sometimes they fought as slow pikemen, like the Pezhetairoi with 6 meter "sarissas", and other times they fought as Hoplites with large aspides and 2.5 meter-long spears, or "dorata". In later times they became known as the Argyraspidai, or "Silver Shields" when Alexander bestowed upon them armor and shields plated in pure silver, and played a decisive role in the early Diadochoi Wars of Alexander's "Successors."</History>

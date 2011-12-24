@@ -8,13 +8,23 @@
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
-      <Pierce>25.0</Pierce>
+      <Pierce>20.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>50.0</MaxRange>
       <MinRange>10.0</MinRange>
       <ProjectileSpeed>75.0</ProjectileSpeed>
       <PrepareTime>1200</PrepareTime>
       <RepeatTime>2000</RepeatTime>
+	  <Bonuses>
+		<BonusPrimary>
+		  <Classes>Infantry Sword</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusPrimary>
+		<BonusSecondary>
+		  <Classes>Cavalry Spear</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusSecondary>
+	  </Bonuses>
     </Ranged>
   </Attack>
   <Cost>
@@ -23,6 +33,7 @@
     </Resources>
   </Cost>
   <Identity>
+    <Classes datatype="tokens">Bow</Classes>
     <GenericName>Archer</GenericName>
     <History>They tended to be lightly armoured. They usually only participated in the first stage of a battle, sending a volley of arrows raining down the enemy. Of course they would have to stop shooting once the melee units closed in. This means their job was largely over once the 'true battle' was underway. They spent hours training with a bow, but if you were hit by an arrow it was more likely an act of random chance than being specifically targeted by an archer.</History>
     <Tooltip>Counters Swordsmen and Cavalry Spearmen. Countered by Skirmishers and other Cavalry types.</Tooltip>

@@ -9,26 +9,46 @@
     <Melee>
       <Hack>0.0</Hack>
       <Pierce>0.0</Pierce>
-      <Crush>65.0</Crush>
+      <Crush>30.0</Crush>
       <MaxRange>6.5</MaxRange>
       <RepeatTime>1500</RepeatTime>
+	  <Bonuses>
+		<BonusStruct>
+		  <Classes>Structure</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusStruct>
+		<BonusGates>
+		  <Classes>Gates</Classes>
+		  <Multiplier>3.0</Multiplier>
+		</BonusGates>
+	  </Bonuses>
     </Melee>
     <Charge>
       <Hack>0.0</Hack>
       <Pierce>0.0</Pierce>
-      <Crush>130.0</Crush>
-      <MaxRange>5.0</MaxRange>
+      <Crush>40.0</Crush>
+      <MaxRange>6.5</MaxRange>
       <MinRange>0.0</MinRange>
+	  <Bonuses>
+		<BonusStruct>
+		  <Classes>Structure</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusStruct>
+		<BonusGates>
+		  <Classes>Gates</Classes>
+		  <Multiplier>3.0</Multiplier>
+		</BonusGates>
+	  </Bonuses>
     </Charge>
   </Attack>
   <Cost>
     <Resources>
-      <wood>260</wood>
-      <metal>60</metal>
+      <wood>200</wood>
+      <metal>100</metal>
     </Resources>
   </Cost>
   <Health>
-    <Max>200</Max>
+    <Max>300</Max>
   </Health>
   <Identity>
     <GenericName>Siege Ram</GenericName>

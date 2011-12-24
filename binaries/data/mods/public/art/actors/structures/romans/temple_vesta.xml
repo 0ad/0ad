@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>structural/rome_hc.pmd</mesh>
+      <props>
+        <prop actor="props/structures/romans/temple.xml" attachpoint="props_main"/>
+      </props>
+      <texture>structural/rome_struct_2.dds</texture>
+    </variant>
+  </group>
+
+</actor>

@@ -12,6 +12,12 @@
       <Crush>0.0</Crush>
       <MaxRange>4.8</MaxRange>
       <RepeatTime>1000</RepeatTime>
+	  <Bonuses>
+		<ElephantStench>
+		  <Classes>Elephant</Classes>
+		  <Multiplier>0.5</Multiplier>
+		</ElephantStench>
+	  </Bonuses>
     </Melee>
     <Charge>
       <Hack>105.0</Hack>
@@ -19,6 +25,12 @@
       <Crush>0.0</Crush>
       <MaxRange>4.8</MaxRange>
       <MinRange>0.0</MinRange>
+	  <Bonuses>
+		<ElephantStench>
+		  <Classes>Elephant</Classes>
+		  <Multiplier>0.5</Multiplier>
+		</ElephantStench>
+	  </Bonuses>
     </Charge>
   </Attack>
   <Cost>

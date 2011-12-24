@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defense_wall">
+  <Armour>
+    <Hack>15.0</Hack>
+    <Pierce>35.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
+  <Cost>
+    <Resources>
+      <wood>150</wood>
+      <stone>0</stone>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="26.0" depth="8.0"/>
+    <Height>7.0</Height>
+  </Footprint>
+  <Health>
+    <Max>1000</Max>
+  </Health>
+  <Identity>
+    <Civ>rome</Civ>
+    <SpecificName>Circummunitio</SpecificName>
+    <History>Quick building, but expensive wooden and earthen walls used to surround and siege an enemy town or fortified position. The most famous examples are the Roman sieges of the Iberian stronghold of Numantia and the Gallic stronghold of Alesia.</History>
+  </Identity>
+  <Obstruction>
+    <Static width="26.0" depth="8.0"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>structures/romans/siege_wall.xml</Actor>
+    <FoundationActor>structures/fndn_1x1.xml</FoundationActor>
+  </VisualActor>
+</Entity>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_fortress">
+  <Identity>
+    <Civ>rome</Civ>
+    <SpecificName>Fortis</SpecificName>
+    <History>Fortified city.</History>
+  </Identity>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/rome_champion_cavalry
+      units/rome_champion_infantry
+    </Entities>
+  </TrainingQueue>
+  <VisualActor>
+    <Actor>structures/romans/fortress.xml</Actor>
+  </VisualActor>
+</Entity>

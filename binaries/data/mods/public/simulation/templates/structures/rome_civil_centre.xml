@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_civil_centre">
+  <Footprint>
+    <Square width="40.0" depth="40.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>rome</Civ>
+    <SpecificName>Municipium</SpecificName>
+    <History>A Municipium was a Roman settlement just below a Colonia in level, enjoying self-governance and the grant of Latin citizenship rights for its inhabitants.</History>
+  </Identity>
+  <Obstruction>
+    <Static width="37.0" depth="37.0"/>
+  </Obstruction>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/rome_infantry_swordsman_b
+      units/rome_infantry_javelinist_b
+      units/rome_cavalry_spearman_b
+    </Entities>
+  </TrainingQueue>
+  <VisualActor>
+    <FoundationActor>structures/fndn_8x8.xml</FoundationActor>
+    <Actor>structures/romans/civic_centre.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>structural/rome_mill.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/rome_struct.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

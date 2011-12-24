@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="17"/>
+        <animation file="quadraped/horse_gallop.psa" name="run" speed="8"/>
+        <animation file="quadraped/horse_attack_a.psa" name="melee" speed="100"/>
+        <animation file="quadraped/horse_attack_b.psa" name="melee" speed="100"/>
+        <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
+      </animations>
+      <mesh>skeletal/horse.pmd</mesh>
+      <props>
+        <prop actor="units/romans/cavalry_spearman_b_r.xml" attachpoint="rider"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="horse-texture-a">
+      <texture>skeletal/horse_rome_snipe.dds</texture>
+    </variant>
+    <variant frequency="1" name="horse-texture-b">
+      <texture>skeletal/horse_rome_stripe.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="2" name="horse-color-white">
+      <colour>242 242 242</colour>
+    </variant>
+    <variant frequency="2" name="horse-color-beige">
+      <colour>164 145 87</colour>
+    </variant>
+    <variant frequency="1" name="horse-color-gray">
+      <colour>116 116 116</colour>
+    </variant>
+  </group>
+
+  <material>objectcolor.xml</material>
+
+</actor>

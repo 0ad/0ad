@@ -8,13 +8,23 @@
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
-      <Pierce>40.0</Pierce>
+      <Pierce>30.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>56</MaxRange>
       <MinRange>16.0</MinRange>
       <ProjectileSpeed>50.0</ProjectileSpeed>
       <PrepareTime>1200</PrepareTime>
       <RepeatTime>2000</RepeatTime>
+	  <Bonuses>
+		<BonusPrimary>
+		  <Classes>Infantry Bow</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusPrimary>
+		<BonusSecondary>
+		  <Classes>Cavalry Sword</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusSecondary>
+	  </Bonuses>
     </Ranged>
   </Attack>
   <Cost>
@@ -28,8 +38,8 @@
     <Height>5.0</Height>
   </Footprint>
   <Identity>
+    <Classes datatype="tokens">Ranged Javelin</Classes>
     <GenericName>Champion Cavalry Skirmisher.</GenericName>
-    <Classes datatype="tokens">Ranged</Classes>
 	<Tooltip>Champion Cavalry Skirmisher.
 Good for raiding. Counters Archers and Cavalry Swordsmen.</Tooltip>
   </Identity>

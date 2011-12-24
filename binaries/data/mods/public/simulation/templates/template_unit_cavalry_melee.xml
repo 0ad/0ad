@@ -3,20 +3,33 @@
   <Attack>
     <Melee>
       <Hack>5.0</Hack>
-      <Pierce>15.0</Pierce>
+      <Pierce>10.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>6.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
+	  <Bonuses>
+		<ElephantStench>
+		  <Classes>Elephant</Classes>
+		  <Multiplier>0.5</Multiplier>
+		</ElephantStench>
+	  </Bonuses>
     </Melee>
     <Charge>
       <Hack>15.0</Hack>
-      <Pierce>45.0</Pierce>
+      <Pierce>30.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>6.0</MaxRange>
       <MinRange>0.0</MinRange>
+	  <Bonuses>
+		<ElephantStench>
+		  <Classes>Elephant</Classes>
+		  <Multiplier>0.5</Multiplier>
+		</ElephantStench>
+	  </Bonuses>
     </Charge>
   </Attack>
   <Identity>
+    <Classes datatype="tokens">Melee</Classes>
     <GenericName>Melee Cavalry</GenericName>
   </Identity>
 </Entity>

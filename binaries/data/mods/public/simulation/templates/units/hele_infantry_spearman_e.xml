@@ -7,12 +7,24 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack>8.0</Hack>
-      <Pierce>17.0</Pierce>
+      <Hack>7.0</Hack>
+      <Pierce>12.0</Pierce>
+	  <Bonuses>
+		<BonusInfMelee>
+		  <Classes>Infantry Melee</Classes>
+		  <Multiplier>1.2</Multiplier>
+		</BonusInfMelee>
+	  </Bonuses>
     </Melee>
     <Charge>
-      <Hack>16.0</Hack>
-      <Pierce>34.0</Pierce>
+      <Hack>14.0</Hack>
+      <Pierce>24.0</Pierce>
+	  <Bonuses>
+		<BonusInfMelee>
+		  <Classes>Infantry Melee</Classes>
+		  <Multiplier>1.2</Multiplier>
+		</BonusInfMelee>
+	  </Bonuses>
     </Charge>
   </Attack>
   <Health>

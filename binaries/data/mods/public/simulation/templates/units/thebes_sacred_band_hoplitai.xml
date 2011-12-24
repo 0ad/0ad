@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_spearman">
+  <Attack>
+    <Melee>
+      <Hack>10.0</Hack>
+      <Pierce>20.0</Pierce>
+      <MaxRange>6.0</MaxRange>
+	  <Bonuses>
+		<BonusGreeks>
+		  <Classes>Hele</Classes>
+		  <Multiplier>1.1</Multiplier>
+		</BonusGreeks>
+	  </Bonuses>
+    </Melee>
+    <Charge>
+      <Hack>20.0</Hack>
+      <Pierce>40.0</Pierce>
+      <MaxRange>6.0</MaxRange>
+	  <Bonuses>
+		<BonusGreeks>
+		  <Classes>Hele</Classes>
+		  <Multiplier>1.1</Multiplier>
+		</BonusGreeks>
+	  </Bonuses>
+    </Charge>
+  </Attack>
   <Identity>
     <Civ>hele</Civ>
 	<GenericName>Theban Sacred Band Hoplite</GenericName>

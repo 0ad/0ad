@@ -8,13 +8,31 @@
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
-      <Pierce>40.0</Pierce>
+      <Pierce>30.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>48</MaxRange>
       <MinRange>12.0</MinRange>
       <ProjectileSpeed>50.0</ProjectileSpeed>
       <PrepareTime>1200</PrepareTime>
       <RepeatTime>2000</RepeatTime>
+	  <Bonuses>
+		<BonusPrimary>
+		  <Classes>Infantry Spear</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusPrimary>
+		<BonusSecondary>
+		  <Classes>Cavalry Bow</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusSecondary>
+		<BonusElephants>
+		  <Classes>Elephant</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusElephants>
+		<BonusChariots>
+		  <Classes>Chariot</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusChariots>
+	  </Bonuses>
     </Ranged>
   </Attack>
   <Cost>
@@ -30,10 +48,10 @@
     <Max>120</Max>
   </Health>
   <Identity>
+    <Classes datatype="tokens">Ranged Javelin</Classes>
     <GenericName>Champion Skirmisher</GenericName>
-    <Classes datatype="tokens">Ranged</Classes>
 	<Tooltip>Champion Skirmisher.
-Heavy skirmisher. Counters Archers and Chariots. Countered by Cavalry.</Tooltip>
+Heavy skirmisher. Counters Spearmen and Cavalry Archers. Special bonus against Elephants and Chariots.</Tooltip>
   </Identity>
   <Sound>
     <SoundGroups>

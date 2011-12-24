@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_barracks">
+  <Identity>
+    <Civ>rome</Civ>
+    <SpecificName>Castra</SpecificName>
+    <History>Romans specialised in the building of military camps and forts. A few of them still survive.</History>
+  </Identity>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/rome_cavalry_spearman_b
+      units/rome_infantry_swordsman_b
+      units/rome_infantry_javelinist_b
+      units/rome_infantry_spearman_a
+    </Entities>
+  </TrainingQueue>
+  <VisualActor>
+    <Actor>structures/romans/barracks.xml</Actor>
+  </VisualActor>
+</Entity>

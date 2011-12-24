@@ -7,17 +7,28 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack>5.0</Hack>
-      <Pierce>15.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>6.0</MaxRange>
+	  <Bonuses>
+		<BonusPrimary>
+		  <Classes>Infantry Sword</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusPrimary>
+		<BonusSecondary>
+		  <Classes>Infantry Javelin</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusSecondary>
+	  </Bonuses>
     </Melee>
     <Charge>
-      <Hack>15.0</Hack>
-      <Pierce>45.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>6.0</MaxRange>
-      <MinRange>0.0</MinRange>
+	  <Bonuses>
+		<BonusPrimary>
+		  <Classes>Infantry Sword</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusPrimary>
+		<BonusSecondary>
+		  <Classes>Infantry Javelin</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusSecondary>
+	  </Bonuses>
     </Charge>
   </Attack>
   <Cost>
@@ -26,6 +37,7 @@
     </Resources>
   </Cost>
   <Identity>
+    <Classes datatype="tokens">Spear</Classes>
     <GenericName>Cavalry Spearman</GenericName>
     <History>This was the weapon of choice from horseback. This was the unit that would eventually evolve to the medieval knight (after heavy influence by the Sarmartians and their lances). Infantry were an easy kill; just ride them down and skewer them with your stick and its point on the end. As with all cavalry - it was only the rich and the nobles who were able to fight from horseback due to the cost of owning such a beast.</History>
     <Tooltip>Counters Swordsmen and Skirmishers. Countered by Spearmen.</Tooltip>

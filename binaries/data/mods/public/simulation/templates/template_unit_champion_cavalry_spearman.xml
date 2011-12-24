@@ -8,17 +8,37 @@
   <Attack>
     <Melee>
       <Hack>8.0</Hack>
-      <Pierce>18.0</Pierce>
+      <Pierce>13.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
+	  <Bonuses>
+		<BonusPrimary>
+		  <Classes>Infantry Sword</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusPrimary>
+		<BonusSecondary>
+		  <Classes>Infantry Javelin</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusSecondary>
+	  </Bonuses>
     </Melee>
     <Charge>
       <Hack>24.0</Hack>
-      <Pierce>54.0</Pierce>
+      <Pierce>45.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
       <MinRange>0.0</MinRange>
+	  <Bonuses>
+		<BonusPrimary>
+		  <Classes>Infantry Sword</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusPrimary>
+		<BonusSecondary>
+		  <Classes>Infantry Javelin</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusSecondary>
+	  </Bonuses>
     </Charge>
   </Attack>
   <Cost>
@@ -31,8 +51,8 @@
     <Max>160</Max>
   </Health>
   <Identity>
+    <Classes datatype="tokens">Melee Spear</Classes>
     <GenericName>Champion Cavalry Spearman</GenericName>
-    <Classes datatype="tokens">Melee</Classes>
 	<Tooltip>Champion Cavalry Spearman.
 Good heavy cavalry. Counters Ranged Units. Countered by Spearmen and Pikemen.</Tooltip>
   </Identity>

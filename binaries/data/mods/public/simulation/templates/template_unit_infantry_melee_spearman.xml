@@ -8,11 +8,23 @@
   <Attack>
     <Melee>
       <Hack>5.0</Hack>
-      <Pierce>15.0</Pierce>
+      <Pierce>10.0</Pierce>
+	  <Bonuses>
+		<BonusCavMelee>
+		  <Classes>Cavalry Melee</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusCavMelee>
+	  </Bonuses>
     </Melee>
     <Charge>
       <Hack>10.0</Hack>
-      <Pierce>30.0</Pierce>
+      <Pierce>20.0</Pierce>
+	  <Bonuses>
+		<BonusCharge>
+		  <Classes>Cavalry Melee</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusCharge>
+	  </Bonuses>
     </Charge>
   </Attack>
   <Cost>
@@ -21,6 +33,7 @@
     </Resources>
   </Cost>
   <Identity>
+    <Classes datatype="tokens">InfantrySpearman Spear</Classes>
     <GenericName>Spearman</GenericName>
     <Rollover>Probably one of the most primitive units in the game. Fighting with a sharp object at the end of the pole didn't require a lot of technology to develop. It also allowed the human to distance themselves from their attacker. As time passed the spears got longer and longer. Started with a fighting style similar to using a quarterstaff, then to using them in numbers as a 'pin cushion' vs. humans (sarissa in a phalanx). Later it was developed to combat cavalry. During the medieval period it evolved to the pike. These units tended to be armoured as heavily as possible.</Rollover>
     <Tooltip>Counters Cavalry. Countered by Archers.</Tooltip>

@@ -7,12 +7,40 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack>27.0</Hack>
-      <Crush>30.0</Crush>
+      <Hack>25.0</Hack>
+      <Crush>25.0</Crush>
+	  <Bonuses>
+		<BonusStructures>
+		  <Classes>Structure</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusStructures>
+		<BonusCav>
+		  <Classes>Cavalry</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusCav>
+		<BonusGates>
+		  <Classes>Gates</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusGates>
+	  </Bonuses>
     </Melee>
     <Charge>
       <Hack>75.0</Hack>
-      <Crush>90.0</Crush>
+      <Crush>75.0</Crush>
+	  <Bonuses>
+		<BonusStructures>
+		  <Classes>Structure</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusStructures>
+		<BonusCav>
+		  <Classes>Cavalry</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusCav>
+		<BonusGates>
+		  <Classes>Gates</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusGates>
+	  </Bonuses>
     </Charge>
   </Attack>
   <Cost>
@@ -31,6 +59,7 @@
   </Health>
   <Identity>
     <Civ>cart</Civ>
+    <Classes datatype="tokens">Elephant -Cavalry</Classes>
     <GenericName>Hannibal Barca</GenericName>
     <SpecificName>Ḥannibaʿal Baraq</SpecificName>
 	<Tooltip>Hero Aura: TBD</Tooltip>

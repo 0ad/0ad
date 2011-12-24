@@ -1,20 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_spearman">
   <Armour>
-    <Hack>10.0</Hack>
+    <Hack>12.0</Hack>
     <Pierce>12.0</Pierce>
-    <Crush>10.0</Crush>
+    <Crush>12.0</Crush>
   </Armour>
   <Attack>
     <Melee>
       <Hack>10.0</Hack>
-      <Pierce>20.0</Pierce>
+      <Pierce>15.0</Pierce>
       <MaxRange>6.0</MaxRange>
+	  <Bonuses>
+		<BonusCarths>
+		  <Classes>Cart</Classes>
+		  <Multiplier>1.1</Multiplier>
+		</BonusCarths>
+		<BonusCelts>
+		  <Classes>Celt</Classes>
+		  <Multiplier>1.1</Multiplier>
+		</BonusCelts>
+		<BonusIberians>
+		  <Classes>Iber</Classes>
+		  <Multiplier>1.1</Multiplier>
+		</BonusIberians>
+		<BonusPersians>
+		  <Classes>Pers</Classes>
+		  <Multiplier>1.1</Multiplier>
+		</BonusPersians>
+		<BonusRomans>
+		  <Classes>Rome</Classes>
+		  <Multiplier>1.1</Multiplier>
+		</BonusRomans>
+	  </Bonuses>
     </Melee>
     <Charge>
       <Hack>20.0</Hack>
-      <Pierce>40.0</Pierce>
+      <Pierce>30.0</Pierce>
       <MaxRange>6.0</MaxRange>
+	  <Bonuses>
+		<BonusCarths>
+		  <Classes>Cart</Classes>
+		  <Multiplier>1.1</Multiplier>
+		</BonusCarths>
+		<BonusCelts>
+		  <Classes>Celt</Classes>
+		  <Multiplier>1.1</Multiplier>
+		</BonusCelts>
+		<BonusIberians>
+		  <Classes>Iber</Classes>
+		  <Multiplier>1.1</Multiplier>
+		</BonusIberians>
+		<BonusPersians>
+		  <Classes>Pers</Classes>
+		  <Multiplier>1.1</Multiplier>
+		</BonusPersians>
+		<BonusRomans>
+		  <Classes>Rome</Classes>
+		  <Multiplier>1.1</Multiplier>
+		</BonusRomans>
+	  </Bonuses>
     </Charge>
   </Attack>
   <Cost>
@@ -25,6 +69,7 @@
   </Cost>
   <Identity>
     <Civ>hele</Civ>
+    <Classes datatype="tokens">Hele</Classes>
 	<GenericName>Spartan Hoplite</GenericName>
     <SpecificName>Spartiā́tēs</SpecificName>
     <Tooltip>Poleis Champion Spearman.

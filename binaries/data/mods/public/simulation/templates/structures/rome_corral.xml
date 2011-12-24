@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_resource_corral">
+  <Identity>
+    <Civ>rome</Civ>
+    <SpecificName>Saeptum</SpecificName>
+    <History>A place for a farmer to pen his animals. Garrison a sheep, goat, or cow here to gain a trickle of the food resource. Garrisoning an animal here also "fattens" them so that they may be slaughtered and gathered for a quick burst of food.</History>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/plot_corral.xml</Actor>
+  </VisualActor>
+</Entity>
