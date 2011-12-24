@@ -3,7 +3,18 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="Mesh">
-      <mesh>skeletal/chicken.pmd</mesh>
+      <animations>
+        <animation file="quadraped/chicken_idle_01.dae" name="Idle" speed="20"/>
+        <animation file="quadraped/chicken_idle_02.dae" name="Idle" speed="50"/>
+        <animation file="quadraped/chicken_idle_03.dae" name="Idle" speed="30"/>
+        <animation file="quadraped/chicken_idle_03.dae" name="Idle" speed="30"/>
+        <animation file="quadraped/chicken_walk.dae" name="Walk" speed="80"/>
+        <animation file="quadraped/chicken_run_01.dae" name="Run" speed="25"/>
+        <animation file="quadraped/chicken_run_02.dae" name="Run" speed="25"/>
+        <animation file="quadraped/chicken_attack.dae" name="Attack" speed="100"/>
+        <animation file="quadraped/chicken_death.dae" name="Death" speed="75"/>
+      </animations>
+      <mesh>skeletal/chicken.dae</mesh>
     </variant>
   </group>
   <group>
