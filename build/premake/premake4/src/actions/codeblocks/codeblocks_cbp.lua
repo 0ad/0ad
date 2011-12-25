@@ -34,6 +34,7 @@
 				
 				_p(4,'<Option output="%s" prefix_auto="0" extension_auto="0" />', premake.esc(cfg.buildtarget.fullpath))
 				_p(4,'<Option object_output="%s" />', premake.esc(cfg.objectsdir))
+				_p(4,'<Option external_deps="%s" />', table.concat(premake.getlinks(cfg, "siblings", "fullpath"),";"))
 
 				-- identify the type of binary
 				local types = { WindowedApp = 0, ConsoleApp = 1, StaticLib = 2, SharedLib = 3 }
