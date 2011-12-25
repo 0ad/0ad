@@ -12,7 +12,7 @@
 										<bone name="l_forearm">
 											<bone name="l_hand">
 												<bone name="DUMMY_l_finge_0">
-													<bone name="DUMMY_l_finge_0nub"/>
+													<bone name="DUMMY_l_finger_0nub"/>
 												</bone>
 											</bone>
 										</bone>
@@ -22,8 +22,8 @@
 									<bone name="r_upperarm">
 										<bone name="r_forearm">
 											<bone name="r_hand">
-												<bone name="DUMMY_r_finge_0">
-													<bone name="DUMMY_r_finge_0nub"/>
+												<bone name="DUMMY_r_finger_0">
+													<bone name="DUMMY_r_finger_0nub"/>
 												</bone>
 											</bone>
 										</bone>
@@ -109,9 +109,9 @@ inherited from the parent bone in this hierarchy.
 											<bone name="Bip01_L_Hand">
 												<target>l_hand</target>
 												
-												<bone name="Bip01_L_Finge_0">
+												<bone name="Bip01_L_Finger_0">
 												
-													<bone name="Bip01_L_Finge_0Nub"/>
+													<bone name="Bip01_L_Finger_0Nub"/>
 													
 												</bone>
 											</bone>
@@ -556,7 +556,7 @@ This skeleton is for the deer and any other similiar shaped animals with the exa
 					<bone name="l_forearm">
 					  <bone name="l_hand">
 					    <bone name="l_finger">
-					     <bone name="DUMMY_l_finge_0nub"/>
+					     <bone name="DUMMY_l_finger_0nub"/>
 					    </bone>
 					  </bone>
 					</bone>
@@ -567,7 +567,7 @@ This skeleton is for the deer and any other similiar shaped animals with the exa
 					<bone name="r_forearm">
 					  <bone name="r_hand">
 					    <bone name="r_finger">
-					     <bone name="DUMMY_r_finge_0nub"/>
+					     <bone name="DUMMY_r_finger_0nub"/>
 					    </bone>
 					  </bone>
 					</bone>
