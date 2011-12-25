@@ -11,8 +11,8 @@
 									<bone name="l_upperarm">
 										<bone name="l_forearm">
 											<bone name="l_hand">
-												<bone name="DUMMY_l_finge_0">
-													<bone name="DUMMY_l_finger_0nub"/>
+												<bone name="DUMMY_l_finger0">
+													<bone name="DUMMY_l_finger0nub"/>
 												</bone>
 											</bone>
 										</bone>
@@ -22,8 +22,8 @@
 									<bone name="r_upperarm">
 										<bone name="r_forearm">
 											<bone name="r_hand">
-												<bone name="DUMMY_r_finger_0">
-													<bone name="DUMMY_r_finger_0nub"/>
+												<bone name="DUMMY_r_finger0">
+													<bone name="DUMMY_r_finger0nub"/>
 												</bone>
 											</bone>
 										</bone>
@@ -68,7 +68,7 @@ whether this <skeleton> applies to the data found in a given model file.
 The hierarchy of bones is mostly irrelevant (though it makes sense to match
 the structure used by the modelling program) - the only effect is that
 the default <target> (i.e. when none is specified for a given bone) is
-inherited from the parent bone in this hierarchy.
+inherited from the parent node in this hierarchy.
 
 -->
 	
@@ -109,9 +109,9 @@ inherited from the parent bone in this hierarchy.
 											<bone name="Bip01_L_Hand">
 												<target>l_hand</target>
 												
-												<bone name="Bip01_L_Finger_0">
+												<bone name="Bip01_L_Finger0">
 												
-													<bone name="Bip01_L_Finger_0Nub"/>
+													<bone name="Bip01_L_Finger0Nub"/>
 													
 												</bone>
 											</bone>
@@ -131,9 +131,9 @@ inherited from the parent bone in this hierarchy.
 											<bone name="Bip01_R_Hand">
 												<target>r_hand</target>
 												
-												<bone name="Bip01_R_Finge_0">
+												<bone name="Bip01_R_Finger0">
 												
-													<bone name="Bip01_R_Finge_0Nub"/>
+													<bone name="Bip01_R_Finger0Nub"/>
 													
 												</bone>
 											</bone>
@@ -331,36 +331,36 @@ This skeleton is for the deer and any other similiar shaped animals with the exa
 	
 	<skeleton title="3ds Max deer biped" target="Deer">
 		 <identifier>
-			<root>Dee_01</root>
+			<root>Deer01</root>
 		 </identifier>
-		 <bone name="Dee_01"><target>root</target>
-			<bone name="Dee_01_Pelvis"><target>pelvis</target>
-			  <bone name="Dee_01_Spine"><target>spine</target>
-				<bone name="Dee_01_Spine1"><target>spine1</target>
-				  <bone name="Dee_01_Neck"><target>neck</target>
-				  	<bone name="Dee_01_Neck1"><target>neck1</target>
-					  <bone name="Dee_01_Head"><target>head</target>
-					    <bone name="Dee_01_Ponytail1"><target>r_ear</target>
+		 <bone name="Deer01"><target>root</target>
+			<bone name="Deer01_Pelvis"><target>pelvis</target>
+			  <bone name="Deer01_Spine"><target>spine</target>
+				<bone name="Deer01_Spine1"><target>spine1</target>
+				  <bone name="Deer01_Neck"><target>neck</target>
+				  	<bone name="Deer01_Neck1"><target>neck1</target>
+					  <bone name="Deer01_Head"><target>head</target>
+					    <bone name="Deer01_Ponytail1"><target>r_ear</target>
 					    </bone>
-					    <bone name="Dee_01_Ponytail2"><target>l_ear</target>
+					    <bone name="Deer01_Ponytail2"><target>l_ear</target>
 					    </bone>
 					  </bone>
 					</bone>
-					<bone name="Dee_01_L_Clavicle"><target>l_clavicle</target>
-					  <bone name="Dee_01_L_UpperArm"><target>l_upperarm</target>
-						<bone name="Dee_01_L_Forearm"><target>l_forearm</target>
-						  <bone name="Dee_01_L_Hand"><target>l_hand</target>
-						  	 <bone name="Dee_01_L_Finge_0"><target>l_finger</target>
+					<bone name="Deer01_L_Clavicle"><target>l_clavicle</target>
+					  <bone name="Deer01_L_UpperArm"><target>l_upperarm</target>
+						<bone name="Deer01_L_Forearm"><target>l_forearm</target>
+						  <bone name="Deer01_L_Hand"><target>l_hand</target>
+						  	 <bone name="Deer01_L_Finger0"><target>l_finger</target>
 							 </bone>
 						  </bone>
 						</bone>
 					  </bone>
 					</bone>
-					<bone name="Dee_01_R_Clavicle"><target>r_clavicle</target>
-					  <bone name="Dee_01_R_UpperArm"><target>r_upperarm</target>
-						<bone name="Dee_01_R_Forearm"><target>r_forearm</target>
-						  <bone name="Dee_01_R_Hand"><target>r_hand</target>
-						    <bone name="Dee_01_R_Finge_0"><target>r_finger</target>
+					<bone name="Deer01_R_Clavicle"><target>r_clavicle</target>
+					  <bone name="Deer01_R_UpperArm"><target>r_upperarm</target>
+						<bone name="Deer01_R_Forearm"><target>r_forearm</target>
+						  <bone name="Deer01_R_Hand"><target>r_hand</target>
+						    <bone name="Deer01_R_Finger0"><target>r_finger</target>
 							 </bone>
 						  </bone>
 						</bone>
@@ -369,24 +369,24 @@ This skeleton is for the deer and any other similiar shaped animals with the exa
 				  </bone>
 				</bone>
 			  </bone>
-			  <bone name="Dee_01_L_Thigh"><target>l_thigh</target>
-				<bone name="Dee_01_L_Calf"><target>l_calf</target>
-				  <bone name="Dee_01_L_Foot"><target>l_foot</target>
-					<bone name="Dee_01_L_Toe0"><target>l_toe</target>
+			  <bone name="Deer01_L_Thigh"><target>l_thigh</target>
+				<bone name="Deer01_L_Calf"><target>l_calf</target>
+				  <bone name="Deer01_L_Foot"><target>l_foot</target>
+					<bone name="Deer01_L_Toe0"><target>l_toe</target>
 					</bone>
 				  </bone>
 				</bone>
 			  </bone>
-			  <bone name="Dee_01_R_Thigh"><target>r_thigh</target>
-				<bone name="Dee_01_R_Calf"><target>r_calf</target>
-				  <bone name="Dee_01_R_Foot"><target>r_foot</target>
-					<bone name="Dee_01_R_Toe0"><target>r_toe</target>
+			  <bone name="Deer01_R_Thigh"><target>r_thigh</target>
+				<bone name="Deer01_R_Calf"><target>r_calf</target>
+				  <bone name="Deer01_R_Foot"><target>r_foot</target>
+					<bone name="Deer01_R_Toe0"><target>r_toe</target>
 					</bone>
 				  </bone>
 				</bone>
 			  </bone>
-			  <bone name="Dee_01_Tail"><target>tail</target>
-				<bone name="Dee_01_Tail1"><target>tail1</target>
+			  <bone name="Deer01_Tail"><target>tail</target>
+				<bone name="Deer01_Tail1"><target>tail1</target>
 				</bone>
 			  </bone>
 			</bone>
@@ -490,7 +490,7 @@ This skeleton is for the deer and any other similiar shaped animals with the exa
 					  <bone name="Horse_L_UpperArm"><target>l_upperarm</target>
 						<bone name="Horse_L_Forearm"><target>l_forearm</target>
 						  <bone name="Horse_L_Hand"><target>l_hand</target>
-						  	 <bone name="Horse_L_Finge_0"><target>l_finger</target>
+						  	 <bone name="Horse_L_Finger0"><target>l_finger</target>
 							 </bone>
 						  </bone>
 						</bone>
@@ -500,7 +500,7 @@ This skeleton is for the deer and any other similiar shaped animals with the exa
 					  <bone name="Horse_R_UpperArm"><target>r_upperarm</target>
 						<bone name="Horse_R_Forearm"><target>r_forearm</target>
 						  <bone name="Horse_R_Hand"><target>r_hand</target>
-						    <bone name="Horse_R_Finge_0"><target>r_finger</target>
+						    <bone name="Horse_R_Finger0"><target>r_finger</target>
 							 </bone>
 						  </bone>
 						</bone>
@@ -556,7 +556,7 @@ This skeleton is for the deer and any other similiar shaped animals with the exa
 					<bone name="l_forearm">
 					  <bone name="l_hand">
 					    <bone name="l_finger">
-					     <bone name="DUMMY_l_finger_0nub"/>
+					     <bone name="DUMMY_l_finger0nub"/>
 					    </bone>
 					  </bone>
 					</bone>
@@ -567,7 +567,7 @@ This skeleton is for the deer and any other similiar shaped animals with the exa
 					<bone name="r_forearm">
 					  <bone name="r_hand">
 					    <bone name="r_finger">
-					     <bone name="DUMMY_r_finger_0nub"/>
+					     <bone name="DUMMY_r_finger0nub"/>
 					    </bone>
 					  </bone>
 					</bone>
@@ -630,8 +630,8 @@ This skeleton is for the deer and any other similiar shaped animals with the exa
 					  <bone name="Ele01_L_UpperArm"><target>l_upperarm</target>
 						<bone name="Ele01_L_Forearm"><target>l_forearm</target>
 						  <bone name="Ele01_L_Hand"><target>l_hand</target>
-						  	 <bone name="Ele01_L_Finge_0"><target>l_finger</target>
-								<bone name="Ele01_L_Finge_0Nub"/>
+						  	 <bone name="Ele01_L_Finger0"><target>l_finger</target>
+								<bone name="Ele01_L_Finger0Nub"/>
 							 </bone>
 						  </bone>
 						</bone>
@@ -641,8 +641,8 @@ This skeleton is for the deer and any other similiar shaped animals with the exa
 					  <bone name="Ele01_R_UpperArm"><target>r_upperarm</target>
 						<bone name="Ele01_R_Forearm"><target>r_forearm</target>
 						  <bone name="Ele01_R_Hand"><target>r_hand</target>
-						    <bone name="Ele01_R_Finge_0"><target>r_finger</target>
-								<bone name="Ele01_R_Finge_0Nub"/>
+						    <bone name="Ele01_R_Finger0"><target>r_finger</target>
+								<bone name="Ele01_R_Finger0Nub"/>
 							 </bone>
 						  </bone>
 						</bone>
@@ -967,113 +967,6 @@ This skeleton is for the deer and any other similiar shaped animals with the exa
 					</bone> 
                 </bone> 
 	</skeleton>
-	
-	<standard_skeleton title="LionBones" id="lion">
-		<bone name="Bone">
-		  <bone name="Bone_001">
-			<bone name="Bone_002">
-			  <bone name="Bone_004">
-				<bone name="Bone_006">
-				  <bone name="Bone_008">
-					<bone name="Bone_013"></bone>
-				  </bone>
-				</bone>
-			  </bone>
-			</bone>
-			<bone name="Bone_003">
-			  <bone name="Bone_005">
-				<bone name="Bone_007">
-				  <bone name="Bone_009">
-					<bone name="Bone_014"></bone>
-				  </bone>
-				</bone>
-			  </bone>
-			</bone>
-			<bone name="Bone_010">
-			  <bone name="Bone_011">
-				<bone name="Bone_012">
-				  <bone name="Bone_023"></bone>
-				</bone>
-			  </bone>
-			</bone>
-		  </bone>
-		  <bone name="Bone_015">
-			<bone name="Bone_017">
-			  <bone name="Bone_019">
-				<bone name="Bone_024"></bone>
-			  </bone>
-			</bone>
-		  </bone>
-		  <bone name="Bone_016">
-			<bone name="Bone_018">
-			  <bone name="Bone_020">
-				<bone name="Bone_025"></bone>
-			  </bone>
-			</bone>
-		  </bone>
-		  <bone name="Bone_021">
-			<bone name="Bone_022"></bone>
-		  </bone>
-		</bone>
-	</standard_skeleton>
-
-	<skeleton title="LionBones" target="lion">
-		<identifier>
-			<root>ArmatureLion</root>
-		</identifier>
-		<bone name="Bone"><target>Bone</target>
-		  <bone name="Bone_001"><target>Bone_001</target>
-			<bone name="Bone_002"><target>Bone_002</target>
-			  <bone name="Bone_004"><target>Bone_004</target>
-				<bone name="Bone_006"><target>Bone_006</target>
-				  <bone name="Bone_008"><target>Bone_008</target>
-					<bone name="Bone_013"><target>Bone_013</target>
-					</bone>
-				  </bone>
-				</bone>
-			  </bone>
-			</bone>
-			<bone name="Bone_003"><target>Bone_003</target>
-			  <bone name="Bone_005"><target>Bone_005</target>
-				<bone name="Bone_007"><target>Bone_005</target>
-				  <bone name="Bone_009"><target>Bone_009</target>
-					<bone name="Bone_014"><target>Bone_014</target>
-					</bone>
-				  </bone>
-				</bone>
-			  </bone>
-			</bone>
-			<bone name="Bone_010"><target>Bone_010</target>
-			  <bone name="Bone_011"><target>Bone_011</target>
-				<bone name="Bone_012"><target>Bone_012</target>
-				  <bone name="Bone_023"><target>Bone_023</target>
-				  </bone>
-				</bone>
-			  </bone>
-			</bone>
-		  </bone>
-		  <bone name="Bone_015"><target>Bone_015</target>
-			<bone name="Bone_017"><target>Bone_017</target>
-			  <bone name="Bone_019"><target>Bone_019</target>
-				<bone name="Bone_024"><target>Bone_024</target>
-				</bone>
-			  </bone>
-			</bone>
-		  </bone>
-		  <bone name="Bone_016"><target>Bone_016</target>
-			<bone name="Bone_018"><target>Bone_018</target>
-			  <bone name="Bone_020"><target>Bone_020</target>
-				<bone name="Bone_025"><target>Bone_025</target>
-				</bone>
-			  </bone>
-			</bone>
-		  </bone>
-		  <bone name="Bone_021"><target>Bone_021</target>
-			<bone name="Bone_022"><target>Bone_022</target>
-			</bone>
-		  </bone>
-		</bone>
-	</skeleton>
 
 	<standard_skeleton title="BlenderChicken" id="BlenderChicken">
 		<bone name="Body">
@@ -1135,4 +1028,5 @@ This skeleton is for the deer and any other similiar shaped animals with the exa
 			</bone>
 		</bone>
     </skeleton>
+	
 </skeletons>
