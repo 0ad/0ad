@@ -640,7 +640,7 @@ static Status DetectCacheAndTLB()
 	return INFO::OK;
 }
 
-const x86_x64::Cache* x86_x64::Caches(size_t idxCache)
+const x86_x64::Cache* Caches(size_t idxCache)
 {
 	static ModuleInitState initState;
 	ModuleInit(&initState, DetectCacheAndTLB);
