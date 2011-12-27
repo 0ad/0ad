@@ -202,13 +202,12 @@ static SC_HANDLE OpenServiceControlManager(DWORD access)
 	SC_HANDLE hSCM = OpenSCManagerW(machineName, databaseName, access);
 	if(!hSCM)
 	{
-		// administrator privileges are required for SC_MANAGER_CREATE_SERVICE.
-		// note: installing the service and having it start automatically would
-		// allow Least-Permission accounts to use it (after relaxing the
-		// service's DACL).
-
 		// ensure no other problems arose
 		ENSURE(GetLastError() == ERROR_ACCESS_DENIED);
+
+		// administrator privileges are required for SC_MANAGER_CREATE_SERVICE.
+		// this is a problem on Vista / Win7, so users will have to use the
+		// separate aken_install.bat
 
 		return 0;
 	}
@@ -258,7 +257,7 @@ static void StartDriver(const OsPath& driverPathname)
 		return;
 	}
 
-	SC_HANDLE hService = OpenServiceW(hSCM, AKEN_NAME, GENERIC_READ);
+	SC_HANDLE hService = OpenServiceW(hSCM, AKEN_NAME, SERVICE_START);
 
 	// during development, we want to ensure the newest build is used, so
 	// unload and re-create the service if it's running/installed.
@@ -281,22 +280,25 @@ static void StartDriver(const OsPath& driverPathname)
 		LPCWSTR startName = 0;	// LocalSystem
 		// NB: Windows 7 seems to insist upon backslashes (i.e. external_file_string)
 		hService = CreateServiceW(hSCM, AKEN_NAME, AKEN_NAME,
-			SERVICE_START, SERVICE_KERNEL_DRIVER, SERVICE_DEMAND_START, SERVICE_ERROR_NORMAL,
+			SERVICE_START, SERVICE_KERNEL_DRIVER, SERVICE_AUTO_START, SERVICE_ERROR_NORMAL,
 			OsString(driverPathname).c_str(), 0, 0, 0, startName, 0);
 		ENSURE(hService != 0);
 	}
 
-	// start service
 	{
 		DWORD numArgs = 0;
 		BOOL ok = StartService(hService, numArgs, 0);
 		if(!ok)
 		{
-			if(GetLastError() != ERROR_SERVICE_ALREADY_RUNNING)
+			switch(GetLastError())
 			{
-				// starting failed. don't raise a warning because this
-				// always happens on least-permission user accounts.
-				//DEBUG_WARN_ERR(ERR::LOGIC);
+			case ERROR_SERVICE_ALREADY_RUNNING:
+				break;	// ok, no action needed
+			case ERROR_ACCESS_DENIED:
+				break;	// Win7, can't start service; must use aken_install.bat
+			default:	// unexpected problem
+				DEBUG_WARN_ERR(ERR::LOGIC);
+				break;
 			}
 		}
 	}

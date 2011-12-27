@@ -86,11 +86,6 @@ inline bool cpu_CAS(volatile T* location, T expected, T new_value)
 LIB_API void cpu_Test();
 
 /**
- * enforce strict instruction ordering in the CPU pipeline.
- **/
-LIB_API void cpu_Serialize();
-
-/**
  * pause in spin-wait loops, as a performance optimisation.
  **/
 inline void cpu_Pause()

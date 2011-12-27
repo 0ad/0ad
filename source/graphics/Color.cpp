@@ -83,7 +83,7 @@ void ColorActivateFastImpl()
 	{
 	}
 #if ARCH_X86_X64
-	else if (x86_x64_cap(X86_X64_CAP_SSE))
+	else if (x86_x64::Cap(x86_x64::CAP_SSE))
 	{
 		ConvertRGBColorTo4ub = sse_ConvertRGBColorTo4ub;
 	}

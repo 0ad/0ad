@@ -23,10 +23,25 @@
 #include "precompiled.h"
 #include "lib/sysdep/arch/x86_x64/apic.h"
 
+#include "lib/bits.h"
 #include "lib/module_init.h"
 #include "lib/sysdep/cpu.h"	// ERR::CPU_FEATURE_MISSING
 #include "lib/sysdep/os_cpu.h"
-#include "lib/sysdep/arch/x86_x64/x86_x64.h"	// x86_x64_ApicId
+#include "lib/sysdep/arch/x86_x64/x86_x64.h"
+
+
+ApicId GetApicId()
+{
+	x86_x64::CpuidRegs regs = { 0 };
+	regs.eax = 1;
+	// note: CPUID function 1 is always supported, but only processors with
+	// an xAPIC (e.g. P4/Athlon XP) will return a nonzero ID.
+	bool ok = x86_x64::cpuid(&regs);
+	ASSERT(ok); UNUSED2(ok);
+	const u8 apicId = (u8)bits(regs.ebx, 24, 31);
+	return apicId;
+}
+
 
 static size_t numIds;
 static ApicId processorApicIds[os_cpu_MaxProcessors];
@@ -39,7 +54,7 @@ static Status GetAndValidateApicIds()
 	{
 		static void Callback(size_t processor, uintptr_t UNUSED(data))
 		{
-			processorApicIds[processor] = x86_x64_ApicId();
+			processorApicIds[processor] = GetApicId();
 		}
 	};
 	// (can fail due to restrictions on our process affinity or lack of

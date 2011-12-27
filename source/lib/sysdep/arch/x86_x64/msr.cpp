@@ -31,7 +31,7 @@ namespace MSR {
 
 bool IsAccessible()
 {
-	if(!x86_x64_Cap(X86_X64_CAP_MSR))
+	if(!x86_x64::Cap(x86_x64::CAP_MSR))
 		return false;
 
 	// only read/writable from ring 0, so we need the driver.
@@ -49,13 +49,13 @@ bool HasEnergyPerfBias()
 	// this, lest we provoke a GPF.
 	return false;	
 #else
-	if(x86_x64_Vendor() != X86_X64_VENDOR_INTEL)
+	if(x86_x64::Vendor() != x86_x64::VENDOR_INTEL)
 		return false;
 
-	if(x86_x64_Family() < 6)
+	if(x86_x64::Family() < 6)
 		return false;
 
-	if(x86_x64_Model() < 0xE)
+	if(x86_x64::Model() < 0xE)
 		return false;
 
 	return true;
@@ -65,32 +65,33 @@ bool HasEnergyPerfBias()
 
 bool HasPlatformInfo()
 {
-	if(x86_x64_Vendor() != X86_X64_VENDOR_INTEL)
+	if(x86_x64::Vendor() != x86_x64::VENDOR_INTEL)
 		return false;
 
-	if(x86_x64_Family() != 6)
+	if(x86_x64::Family() != 6)
 		return false;
 
-	switch(x86_x64_Model())
+	switch(x86_x64::Model())
 	{
-	// Xeon 5500 / i7 (section B.4 in 253669-037US)
-	case 0x1A:	// Bloomfield, Gainstown
-	case 0x1E:	// Clarksfield, Lynnfield, Jasper Forest
-	case 0x1F:
+	// section 34.4 in 253665-041US
+	case x86_x64::MODEL_NEHALEM_EP:
+	case x86_x64::MODEL_NEHALEM_EP_2:
+	case x86_x64::MODEL_NEHALEM_EX:
+	case x86_x64::MODEL_I7_I5:
 		return true;
 
-	// Xeon 7500 (section B.4.2)
-	case 0x2E:
+	// section 34.5
+	case x86_x64::MODEL_CLARKDALE:
+	case x86_x64::MODEL_WESTMERE_EP:
 		return true;
 
-	// Xeon 5600 / Westmere (section B.5)
-	case 0x25:	// Clarkdale, Arrandale
-	case 0x2C:	// Gulftown
+	// section 34.6
+	case x86_x64::MODEL_WESTMERE_EX:
 		return true;
 
-	// Xeon 2xxx / Sandy Bridge (section B.6)
-	case 0x2A:
-	case 0x2D:
+	// section 34.7
+	case x86_x64::MODEL_SANDY_BRIDGE:
+	case x86_x64::MODEL_SANDY_BRIDGE_2:
 		return true;
 
 	default:
@@ -101,13 +102,13 @@ bool HasPlatformInfo()
 
 bool HasUncore()
 {
-	if(x86_x64_Vendor() != X86_X64_VENDOR_INTEL)
+	if(x86_x64::Vendor() != x86_x64::VENDOR_INTEL)
 		return false;
 
-	if(x86_x64_Family() != 6)
+	if(x86_x64::Family() != 6)
 		return false;
 
-	switch(x86_x64_Model())
+	switch(x86_x64::Model())
 	{
 	// Xeon 5500 / i7 (section B.4.1 in 253669-037US)
 	case 0x1A:	// Bloomfield, Gainstown

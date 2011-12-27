@@ -31,7 +31,7 @@
 #include "lib/sysdep/cpu.h"	// cpu_AtomicAdd
 #if ARCH_X86_X64 && CONFIG2_TIMER_ALLOW_RDTSC
 # include "lib/sysdep/os_cpu.h"	// os_cpu_ClockFrequency
-# include "lib/sysdep/arch/x86_x64/x86_x64.h"	// x86_x64_rdtsc
+# include "lib/sysdep/arch/x86_x64/x86_x64.h"	// x86_x64::rdtsc
 #endif
 
 
@@ -142,7 +142,7 @@ private:
 
 // since TIMER_ACCRUE et al. are called so often, we try to keep
 // overhead to an absolute minimum. storing raw tick counts (e.g. CPU cycles
-// returned by x86_x64_rdtsc) instead of absolute time has two benefits:
+// returned by x86_x64::rdtsc) instead of absolute time has two benefits:
 // - no need to convert from raw->time on every call
 //   (instead, it's only done once when displaying the totals)
 // - possibly less overhead to querying the time itself
@@ -170,7 +170,7 @@ public:
 
 	void SetFromTimer()
 	{
-		m_cycles = x86_x64_rdtsc();
+		m_cycles = x86_x64::rdtsc();
 	}
 
 	void AddDifference(TimerUnit t0, TimerUnit t1)

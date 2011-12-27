@@ -25,8 +25,12 @@
  * thread-safe, no explicit initialization is required.
  */
 
-#ifndef INCLUDED_TOPOLOGY
-#define INCLUDED_TOPOLOGY
+#ifndef INCLUDED_X86_X64_TOPOLOGY
+#define INCLUDED_X86_X64_TOPOLOGY
+
+#include "lib/sysdep/arch/x86_x64/apic.h"	// ApicId
+
+namespace topology {
 
 //-----------------------------------------------------------------------------
 // cpu
@@ -41,25 +45,40 @@
 /**
  * @return number of *enabled* CPU packages / sockets.
  **/
-LIB_API size_t cpu_topology_NumPackages();
+LIB_API size_t NumPackages();
 
 /**
  * @return number of *enabled* CPU cores per package.
  * (2 on dual-core systems)
  **/
-LIB_API size_t cpu_topology_CoresPerPackage();
+LIB_API size_t CoresPerPackage();
 
 /**
  * @return number of *enabled* logical processors (aka Hyperthreads)
  * per core. (2 on P4 EE)
  **/
-LIB_API size_t cpu_topology_LogicalPerCore();
+LIB_API size_t LogicalPerCore();
 
-LIB_API size_t cpu_topology_PackageFromApicId(size_t apicId);
-LIB_API size_t cpu_topology_CoreFromApicId(size_t apicId);
-LIB_API size_t cpu_topology_LogicalFromApicId(size_t apicId);
+/**
+ * @return index of processor package/socket in [0, NumPackages())
+ **/
+LIB_API size_t PackageFromApicId(ApicId apicId);
 
-LIB_API size_t cpu_topology_ApicId(size_t idxPackage, size_t idxCore, size_t idxLogical);
+/**
+ * @return index of processor core in [0, CoresPerPackage())
+ **/
+LIB_API size_t CoreFromApicId(ApicId apicId);
+
+/**
+ * @return index of logical processor in [0, LogicalPerCore())
+ **/
+LIB_API size_t LogicalFromApicId(ApicId apicId);
+
+/**
+ * @param idxPackage, idxCore, idxLogical return values of *FromApicId
+ * @return APIC ID (see note at AreApicIdsReliable)
+ **/
+LIB_API ApicId ApicIdFromIndices(size_t idxPackage, size_t idxCore, size_t idxLogical);
 
 
 //-----------------------------------------------------------------------------
@@ -75,16 +94,18 @@ LIB_API size_t cpu_topology_ApicId(size_t idxPackage, size_t idxCore, size_t idx
 /**
  * @return number of distinct L2 caches.
  **/
-LIB_API size_t cache_topology_NumCaches();
+LIB_API size_t NumCaches();
 
 /**
  * @return L2 cache number (zero-based) to which the given processor belongs.
  **/
-LIB_API size_t cache_topology_CacheFromProcessor(size_t processor);
+LIB_API size_t CacheFromProcessor(size_t processor);
 
 /**
  * @return bit-mask of all processors sharing the given cache.
  **/
-LIB_API uintptr_t cache_topology_ProcessorMaskFromCache(size_t cache);
+LIB_API uintptr_t ProcessorMaskFromCache(size_t cache);
 
-#endif	// #ifndef INCLUDED_TOPOLOGY
+}	// namespace topology
+
+#endif	// #ifndef INCLUDED_X86_X64_TOPOLOGY

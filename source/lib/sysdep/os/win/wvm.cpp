@@ -37,7 +37,7 @@
 #include "lib/module_init.h"
 #include "lib/sysdep/cpu.h"    // cpu_AtomicAdd
 #include "lib/sysdep/numa.h"
-#include "lib/sysdep/arch/x86_x64/x86_x64.h"	// x86_x64_ApicId
+#include "lib/sysdep/arch/x86_x64/x86_x64.h"	// x86_x64::ApicId
 #include "lib/sysdep/arch/x86_x64/apic.h"	// ProcessorFromApicId
 #include "lib/sysdep/os/win/wversion.h"
 #include "lib/sysdep/os/win/winit.h"
@@ -53,7 +53,7 @@ static WUTIL_FUNC(pVirtualAllocExNuma, LPVOID, (HANDLE, LPVOID, SIZE_T, DWORD, D
 
 static DWORD WINAPI EmulateGetCurrentProcessorNumber(VOID)
 {
-	const u8 apicId = x86_x64_ApicId();
+	const ApicId apicId = GetApicId();
 	const DWORD processor = (DWORD)ProcessorFromApicId(apicId);
 	ASSERT(processor < os_cpu_MaxProcessors);
 	return processor;

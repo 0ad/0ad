@@ -37,11 +37,13 @@
 #include <intrin.h>	// __rdtsc
 #endif
 
+namespace x86_x64 {
+
 /**
- * registers used/returned by x86_x64_cpuid
+ * registers used/returned by cpuid
  **/
 #pragma pack(push, 1)	// (allows casting to int*)
-struct x86_x64_CpuidRegs
+struct CpuidRegs
 {
 	u32 eax;
 	u32 ebx;
@@ -60,89 +62,92 @@ struct x86_x64_CpuidRegs
  *     and allows graceful expansion to functions that require further inputs.
  * @return true on success or false if the sub-function isn't supported.
  **/
-LIB_API bool x86_x64_cpuid(x86_x64_CpuidRegs* regs);
+LIB_API bool cpuid(CpuidRegs* regs);
 
 /**
  * CPU vendor.
  * (this is exposed because some CPUID functions are vendor-specific.)
  * (an enum is easier to compare than the original string values.)
  **/
-enum x86_x64_Vendors
+enum Vendors
 {
-	X86_X64_VENDOR_UNKNOWN,
-	X86_X64_VENDOR_INTEL,
-	X86_X64_VENDOR_AMD
+	VENDOR_UNKNOWN,
+	VENDOR_INTEL,
+	VENDOR_AMD
 };
 
-LIB_API x86_x64_Vendors x86_x64_Vendor();
+LIB_API Vendors Vendor();
 
 
-LIB_API size_t x86_x64_Model();
+enum Models
+{
+	MODEL_NEHALEM_EP     = 0x1A, // Bloomfield (X35xx), Gainestown (X55xx)
+	MODEL_NEHALEM_EP_2   = 0x1E, // Clarksfield, Lynnfield (X34xx), Jasper Forest (C35xx, C55xx)
+	MODEL_I7_I5          = 0x1F, // similar to 1E; mentioned in 253665-041US, no codename known
+	MODEL_CLARKDALE      = 0x25, // Arrandale, Clarkdale (L34xx)
+	MODEL_WESTMERE_EP    = 0x2C, // Gulftown (X36xx, X56xx)
+	MODEL_NEHALEM_EX     = 0x2E, // Beckton (X75xx)
+	MODEL_WESTMERE_EX    = 0x2F, // Gulftown uarch, Beckton package (E7-48xx)
+	MODEL_SANDY_BRIDGE   = 0x2A, // (E3-12xx, E5-26xx)
+	MODEL_SANDY_BRIDGE_2 = 0x2D, // (E5-26xx, E5-46xx)
+};
 
-LIB_API size_t x86_x64_Family();
+LIB_API size_t Model();
+
+LIB_API size_t Family();
 
 
 /**
  * @return the colloquial processor generation
  * (5 = Pentium, 6 = Pentium Pro/II/III / K6, 7 = Pentium4 / Athlon, 8 = Core / Opteron)
  **/
-LIB_API size_t x86_x64_Generation();
+LIB_API size_t Generation();
 
 
 /**
  * bit indices of CPU capability flags (128 bits).
  * values are defined by IA-32 CPUID feature flags - do not change!
  **/
-enum x86_x64_Cap
+enum Caps
 {
 	// standard (ecx) - currently only defined by Intel
-	X86_X64_CAP_SSE3            = 0+0,	// Streaming SIMD Extensions 3
-	X86_X64_CAP_EST             = 0+7,	// Enhanced Speedstep Technology
-	X86_X64_CAP_SSSE3           = 0+9,	// Supplemental Streaming SIMD Extensions 3
-	X86_X64_CAP_SSE41           = 0+19,	// Streaming SIMD Extensions 4.1
-	X86_X64_CAP_SSE42           = 0+20,	// Streaming SIMD Extensions 4.2
+	CAP_SSE3            = 0+0,	// Streaming SIMD Extensions 3
+	CAP_EST             = 0+7,	// Enhanced Speedstep Technology
+	CAP_SSSE3           = 0+9,	// Supplemental Streaming SIMD Extensions 3
+	CAP_SSE41           = 0+19,	// Streaming SIMD Extensions 4.1
+	CAP_SSE42           = 0+20,	// Streaming SIMD Extensions 4.2
 
 	// standard (edx)
-	X86_X64_CAP_FPU             = 32+0,  // Floating Point Unit
-	X86_X64_CAP_TSC             = 32+4,  // TimeStamp Counter
-	X86_X64_CAP_MSR             = 32+5,	 // Model Specific Registers
-	X86_X64_CAP_CMOV            = 32+15, // Conditional MOVe
-	X86_X64_CAP_TM_SCC          = 32+22, // Thermal Monitoring and Software Controlled Clock
-	X86_X64_CAP_MMX             = 32+23, // MultiMedia eXtensions
-	X86_X64_CAP_SSE             = 32+25, // Streaming SIMD Extensions
-	X86_X64_CAP_SSE2            = 32+26, // Streaming SIMD Extensions 2
-	X86_X64_CAP_HT              = 32+28, // HyperThreading
+	CAP_FPU             = 32+0,  // Floating Point Unit
+	CAP_TSC             = 32+4,  // TimeStamp Counter
+	CAP_MSR             = 32+5,	 // Model Specific Registers
+	CAP_CMOV            = 32+15, // Conditional MOVe
+	CAP_TM_SCC          = 32+22, // Thermal Monitoring and Software Controlled Clock
+	CAP_MMX             = 32+23, // MultiMedia eXtensions
+	CAP_SSE             = 32+25, // Streaming SIMD Extensions
+	CAP_SSE2            = 32+26, // Streaming SIMD Extensions 2
+	CAP_HT              = 32+28, // HyperThreading
 
 	// extended (ecx)
-	X86_X64_CAP_AMD_CMP_LEGACY  = 64+1,  // N-core and X86_X64_CAP_HT is falsely set
+	CAP_AMD_CMP_LEGACY  = 64+1,  // N-core and CAP_HT is falsely set
 
 	// extended (edx)
-	X86_X64_CAP_AMD_MP          = 96+19,  // MultiProcessing capable; reserved on AMD64
-	X86_X64_CAP_AMD_MMX_EXT     = 96+22,
-	X86_X64_CAP_AMD_3DNOW_PRO   = 96+30,
-	X86_X64_CAP_AMD_3DNOW       = 96+31
+	CAP_AMD_MP          = 96+19,  // MultiProcessing capable; reserved on AMD64
+	CAP_AMD_MMX_EXT     = 96+22,
+	CAP_AMD_3DNOW_PRO   = 96+30,
+	CAP_AMD_3DNOW       = 96+31
 };
 
 /**
- * @return whether the CPU supports the indicated x86_x64_Cap / feature flag.
+ * @return whether the CPU supports the indicated Cap / feature flag.
  **/
-LIB_API bool x86_x64_cap(x86_x64_Cap cap);
+LIB_API bool Cap(Caps cap);
 
-LIB_API void x86_x64_caps(u32* d0, u32* d1, u32* d2, u32* d3);
+LIB_API void GetCapBits(u32* d0, u32* d1, u32* d2, u32* d3);
 
 
 //-----------------------------------------------------------------------------
 // stateless
-
-/**
- * @return APIC ID of the currently executing processor or zero if the
- * platform does not have an xAPIC (i.e. 7th generation x86 or below).
- *
- * rationale: the alternative of accessing the APIC mmio registers is not
- * feasible - mahaf_MapPhysicalMemory only works reliably on WinXP. we also
- * don't want to intefere with the OS's constant use of the APIC registers.
- **/
-LIB_API u8 x86_x64_ApicId();
 
 /**
  * @return the current value of the TimeStampCounter (a counter of
@@ -154,22 +159,24 @@ LIB_API u8 x86_x64_ApicId();
  * - x64 RDTSC writes to edx:eax and clears the upper halves of rdx and rax.
  **/
 #if MSC_VERSION
-#define x86_x64_rdtsc __rdtsc
+static inline u64 rdtsc() { return __rdtsc(); }
 #else
-LIB_API u64 x86_x64_rdtsc();
+LIB_API u64 rdtsc();
 #endif
 
 /**
  * trigger a breakpoint inside this function when it is called.
  **/
-LIB_API void x86_x64_DebugBreak();
+LIB_API void DebugBreak();
 
 /**
- * measure the CPU clock frequency via x86_x64_rdtsc and timer_Time.
+ * measure the CPU clock frequency via rdtsc and timer_Time.
  * (it follows that this must not be called from WHRT init.)
  * this takes several milliseconds (i.e. much longer than
  * os_cpu_ClockFrequency) but delivers accurate measurements.
  **/
-LIB_API double x86_x64_ClockFrequency();
+LIB_API double ClockFrequency();
+
+}	// namespace x86_x64
 
 #endif	// #ifndef INCLUDED_X86_X64

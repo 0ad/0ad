@@ -23,7 +23,9 @@
 #ifndef INCLUDED_X86_X64_CACHE
 #define INCLUDED_X86_X64_CACHE
 
-struct x86_x64_Cache	// POD (may be used before static constructors)
+namespace x86_x64 {
+
+struct Cache	// POD (may be used before static constructors)
 {
 	enum Type
 	{
@@ -133,6 +135,8 @@ enum IdxCache
  * @return 0 if idxCache >= TLB+numTLBs, otherwise a valid pointer to
  * a Cache whose numEntries is 0 if disabled / not present.
  **/
-LIB_API const x86_x64_Cache* x86_x64_Caches(size_t idxCache);
+LIB_API const Cache* Caches(size_t idxCache);
+
+}	// namespace x86_x64
 
 #endif	// #ifndef INCLUDED_X86_X64_CACHE
