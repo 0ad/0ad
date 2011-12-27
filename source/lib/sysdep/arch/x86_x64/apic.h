@@ -25,6 +25,16 @@
 
 typedef u8 ApicId;	// not necessarily contiguous values
 
+/**
+ * @return APIC ID of the currently executing processor or zero if the
+ * platform does not have an xAPIC (i.e. 7th generation x86 or below).
+ *
+ * rationale: the alternative of accessing the APIC mmio registers is not
+ * feasible - mahaf_MapPhysicalMemory only works reliably on WinXP. we also
+ * don't want to interfere with the OS's constant use of the APIC registers.
+ **/
+LIB_API u8 GetApicId();
+
 // if this returns false, apicId = contiguousId = processor.
 // otherwise, there are unspecified but bijective mappings between
 // apicId<->contiguousId and apicId<->processor.

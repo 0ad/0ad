@@ -45,14 +45,14 @@
 static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted settings);
 
 #if ARCH_X86_X64
-CScriptVal ConvertCaches(ScriptInterface& scriptInterface, IdxCache idxCache)
+CScriptVal ConvertCaches(ScriptInterface& scriptInterface, x86_x64::IdxCache idxCache)
 {
 	CScriptVal ret;
 	scriptInterface.Eval("[]", ret);
-	for (size_t idxLevel = 0; idxLevel < x86_x64_Cache::maxLevels; ++idxLevel)
+	for (size_t idxLevel = 0; idxLevel < x86_x64::Cache::maxLevels; ++idxLevel)
 	{
-		const x86_x64_Cache* pcache = x86_x64_Caches(idxCache+idxLevel);
-		if (pcache->type == x86_x64_Cache::kNull || pcache->numEntries == 0)
+		const x86_x64::Cache* pcache = x86_x64::Caches(idxCache+idxLevel);
+		if (pcache->type == x86_x64::Cache::kNull || pcache->numEntries == 0)
 			continue;
 		CScriptVal cache;
 		scriptInterface.Eval("({})", cache);
@@ -73,7 +73,7 @@ CScriptVal ConvertTLBs(ScriptInterface& scriptInterface)
 	scriptInterface.Eval("[]", ret);
 	for(size_t i = 0; ; i++)
 	{
-		const x86_x64_Cache* ptlb = x86_x64_Caches(TLB+i);
+		const x86_x64::Cache* ptlb = x86_x64::Caches(x86_x64::TLB+i);
 		if (!ptlb)
 			break;
 		CScriptVal tlb;
@@ -229,10 +229,10 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings.get(), "cpu_largepagesize", (u32)os_cpu_LargePageSize());
 	scriptInterface.SetProperty(settings.get(), "cpu_numprocs", (u32)os_cpu_NumProcessors());
 #if ARCH_X86_X64
-	scriptInterface.SetProperty(settings.get(), "cpu_numpackages", (u32)cpu_topology_NumPackages());
-	scriptInterface.SetProperty(settings.get(), "cpu_coresperpackage", (u32)cpu_topology_CoresPerPackage());
-	scriptInterface.SetProperty(settings.get(), "cpu_logicalpercore", (u32)cpu_topology_LogicalPerCore());
-	scriptInterface.SetProperty(settings.get(), "cpu_numcaches", (u32)cache_topology_NumCaches());
+	scriptInterface.SetProperty(settings.get(), "cpu_numpackages", (u32)topology::NumPackages());
+	scriptInterface.SetProperty(settings.get(), "cpu_coresperpackage", (u32)topology::CoresPerPackage());
+	scriptInterface.SetProperty(settings.get(), "cpu_logicalpercore", (u32)topology::LogicalPerCore());
+	scriptInterface.SetProperty(settings.get(), "cpu_numcaches", (u32)topology::NumCaches());
 #endif
 
 	scriptInterface.SetProperty(settings.get(), "numa_numnodes", (u32)numa_NumNodes());
@@ -244,21 +244,21 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings.get(), "ram_free", (u32)os_cpu_MemoryAvailable());
 
 #if ARCH_X86_X64
-	scriptInterface.SetProperty(settings.get(), "x86_frequency", x86_x64_ClockFrequency());
+	scriptInterface.SetProperty(settings.get(), "x86_frequency", x86_x64::ClockFrequency());
 
-	scriptInterface.SetProperty(settings.get(), "x86_vendor", (u32)x86_x64_Vendor());
-	scriptInterface.SetProperty(settings.get(), "x86_model", (u32)x86_x64_Model());
-	scriptInterface.SetProperty(settings.get(), "x86_family", (u32)x86_x64_Family());
+	scriptInterface.SetProperty(settings.get(), "x86_vendor", (u32)x86_x64::Vendor());
+	scriptInterface.SetProperty(settings.get(), "x86_model", (u32)x86_x64::Model());
+	scriptInterface.SetProperty(settings.get(), "x86_family", (u32)x86_x64::Family());
 
 	u32 caps0, caps1, caps2, caps3;
-	x86_x64_caps(&caps0, &caps1, &caps2, &caps3);
+	x86_x64::GetCapBits(&caps0, &caps1, &caps2, &caps3);
 	scriptInterface.SetProperty(settings.get(), "x86_caps[0]", caps0);
 	scriptInterface.SetProperty(settings.get(), "x86_caps[1]", caps1);
 	scriptInterface.SetProperty(settings.get(), "x86_caps[2]", caps2);
 	scriptInterface.SetProperty(settings.get(), "x86_caps[3]", caps3);
 
-	scriptInterface.SetProperty(settings.get(), "x86_icaches", ConvertCaches(scriptInterface, L1I));
-	scriptInterface.SetProperty(settings.get(), "x86_dcaches", ConvertCaches(scriptInterface, L1D));
+	scriptInterface.SetProperty(settings.get(), "x86_icaches", ConvertCaches(scriptInterface, x86_x64::L1I));
+	scriptInterface.SetProperty(settings.get(), "x86_dcaches", ConvertCaches(scriptInterface, x86_x64::L1D));
 	scriptInterface.SetProperty(settings.get(), "x86_tlbs", ConvertTLBs(scriptInterface));
 #endif
 

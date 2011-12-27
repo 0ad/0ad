@@ -99,10 +99,10 @@ void WriteSystemInfo()
 	fprintf(f, "OS             : %s %s (%s)\n", un.sysname, un.release, un.version);
 
 	// CPU
-	fprintf(f, "CPU            : %s, %s (%dx%dx%d)", un.machine, cpu_IdentifierString(), (int)cpu_topology_NumPackages(), (int)cpu_topology_CoresPerPackage(), (int)cpu_topology_LogicalPerCore());
+	fprintf(f, "CPU            : %s, %s (%dx%dx%d)", un.machine, cpu_IdentifierString(), (int)topology::NumPackages(), (int)topology::CoresPerPackage(), (int)topology::LogicalPerCore());
 	double cpuClock = os_cpu_ClockFrequency();	// query OS (may fail)
 	if(cpuClock <= 0.0)
-		cpuClock = x86_x64_ClockFrequency();	// measure (takes a few ms)
+		cpuClock = x86_x64::ClockFrequency();	// measure (takes a few ms)
 	if(cpuClock > 0.0)
 	{
 		if(cpuClock < 1e9)

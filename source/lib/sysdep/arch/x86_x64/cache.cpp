@@ -29,25 +29,27 @@
 #include "lib/sysdep/os_cpu.h"
 #include "lib/sysdep/arch/x86_x64/x86_x64.h"
 
+namespace x86_x64 {
+
 static const size_t maxTLBs = 2*2*4;	// (level0, level1) x (D,I) x (4K, 2M, 4M, 1G)
 static size_t numTLBs = 0;
 
-static const size_t numCaches = x86_x64_Cache::maxLevels * 2 + maxTLBs;
-static x86_x64_Cache caches[numCaches];
+static const size_t numCaches = x86_x64::Cache::maxLevels * 2 + maxTLBs;
+static Cache caches[numCaches];
 
 
-static void AddCache(const x86_x64_Cache& cache)
+static void AddCache(const x86_x64::Cache& cache)
 {
 	ENSURE(cache.Validate());
 
-	if(cache.type == x86_x64_Cache::kData || cache.type == x86_x64_Cache::kUnified)
+	if(cache.type == x86_x64::Cache::kData || cache.type == x86_x64::Cache::kUnified)
 		caches[L1D + cache.level-1] = cache;
-	if(cache.type == x86_x64_Cache::kInstruction || cache.type == x86_x64_Cache::kUnified)
+	if(cache.type == x86_x64::Cache::kInstruction || cache.type == x86_x64::Cache::kUnified)
 		caches[L1I + cache.level-1] = cache;
 }
 
 
-static void AddTLB(const x86_x64_Cache& tlb)
+static void AddTLB(const x86_x64::Cache& tlb)
 {
 	ENSURE(tlb.Validate());
 	ENSURE(tlb.level == 1 || tlb.level == 2);	// see maxTLBs
@@ -65,9 +67,9 @@ static void AddTLB(const x86_x64_Cache& tlb)
 namespace AMD
 {
 
-static x86_x64_Cache L1Cache(u32 reg, x86_x64_Cache::Type type)
+static x86_x64::Cache L1Cache(u32 reg, x86_x64::Cache::Type type)
 {
-	x86_x64_Cache cache;
+	x86_x64::Cache cache;
 	cache.Initialize(1, type);
 
 	const size_t lineSize      = bits(reg,  0,  7);
@@ -87,12 +89,12 @@ static x86_x64_Cache L1Cache(u32 reg, x86_x64_Cache::Type type)
 static const size_t associativityTable[16] =
 {
 	0, 1, 2, 0, 4, 0, 8, 0,
-	16, 0, 32, 48, 64, 96, 128, x86_x64_Cache::fullyAssociative
+	16, 0, 32, 48, 64, 96, 128, x86_x64::Cache::fullyAssociative
 };
 
-static x86_x64_Cache L2Cache(u32 reg, x86_x64_Cache::Type type)
+static x86_x64::Cache L2Cache(u32 reg, x86_x64::Cache::Type type)
 {
-	x86_x64_Cache cache;
+	x86_x64::Cache cache;
 	cache.Initialize(2, type);
 
 	const size_t lineSize         = bits(reg,  0,  7);
@@ -109,9 +111,9 @@ static x86_x64_Cache L2Cache(u32 reg, x86_x64_Cache::Type type)
 }
 
 // (same as L2 except for the size)
-static x86_x64_Cache L3Cache(u32 reg, x86_x64_Cache::Type type)
+static x86_x64::Cache L3Cache(u32 reg, x86_x64::Cache::Type type)
 {
-	x86_x64_Cache cache;
+	x86_x64::Cache cache;
 	cache.Initialize(3, type);
 
 	const size_t lineSize         = bits(reg,  0,  7);
@@ -128,9 +130,9 @@ static x86_x64_Cache L3Cache(u32 reg, x86_x64_Cache::Type type)
 	return cache;
 }
 
-static x86_x64_Cache TLB1(u32 reg, size_t bitOffset, size_t pageSize, x86_x64_Cache::Type type)
+static x86_x64::Cache TLB1(u32 reg, size_t bitOffset, size_t pageSize, x86_x64::Cache::Type type)
 {
-	x86_x64_Cache cache;
+	x86_x64::Cache cache;
 	cache.Initialize(1, type);
 
 	const size_t numEntries    = bits(reg, bitOffset+0, bitOffset+ 7);
@@ -145,9 +147,9 @@ static x86_x64_Cache TLB1(u32 reg, size_t bitOffset, size_t pageSize, x86_x64_Ca
 	return cache;
 }
 
-static x86_x64_Cache TLB2(u32 reg, size_t bitOffset, size_t pageSize, x86_x64_Cache::Type type)
+static x86_x64::Cache TLB2(u32 reg, size_t bitOffset, size_t pageSize, x86_x64::Cache::Type type)
 {
-	x86_x64_Cache cache;
+	x86_x64::Cache cache;
 	cache.Initialize(2, type);
 
 	const size_t numEntries       = bits(reg, bitOffset+ 0, bitOffset+11);
@@ -164,11 +166,11 @@ static x86_x64_Cache TLB2(u32 reg, size_t bitOffset, size_t pageSize, x86_x64_Ca
 
 static void AddTLB2Pair(u32 reg, size_t pageSize)
 {
-	x86_x64_Cache::Type type = x86_x64_Cache::kUnified;
+	x86_x64::Cache::Type type = x86_x64::Cache::kUnified;
 	if(bits(reg, 16, 31) != 0)	// not unified
 	{
-		AddTLB(TLB2(reg, 16, pageSize, x86_x64_Cache::kData));
-		type = x86_x64_Cache::kInstruction;
+		AddTLB(TLB2(reg, 16, pageSize, x86_x64::Cache::kData));
+		type = x86_x64::Cache::kInstruction;
 	}
 	AddTLB(TLB2(reg, 0, pageSize, type));
 }
@@ -177,25 +179,25 @@ static void AddTLB2Pair(u32 reg, size_t pageSize)
 // "reserved". cache characteristics are returned via ext. functions.
 static void DetectCacheAndTLB()
 {
-	x86_x64_CpuidRegs regs = { 0 };
+	x86_x64::CpuidRegs regs = { 0 };
 
 	regs.eax = 0x80000005;
-	if(x86_x64_cpuid(&regs))
+	if(x86_x64::cpuid(&regs))
 	{
-		AddCache(L1Cache(regs.ecx, x86_x64_Cache::kData));
-		AddCache(L1Cache(regs.edx, x86_x64_Cache::kInstruction));
+		AddCache(L1Cache(regs.ecx, x86_x64::Cache::kData));
+		AddCache(L1Cache(regs.edx, x86_x64::Cache::kInstruction));
 
-		AddTLB(TLB1(regs.eax,  0, 2*MiB, x86_x64_Cache::kInstruction));
-		AddTLB(TLB1(regs.eax, 16, 2*MiB, x86_x64_Cache::kData));
-		AddTLB(TLB1(regs.ebx,  0, 4*KiB, x86_x64_Cache::kInstruction));
-		AddTLB(TLB1(regs.ebx, 16, 4*KiB, x86_x64_Cache::kData));
+		AddTLB(TLB1(regs.eax,  0, 2*MiB, x86_x64::Cache::kInstruction));
+		AddTLB(TLB1(regs.eax, 16, 2*MiB, x86_x64::Cache::kData));
+		AddTLB(TLB1(regs.ebx,  0, 4*KiB, x86_x64::Cache::kInstruction));
+		AddTLB(TLB1(regs.ebx, 16, 4*KiB, x86_x64::Cache::kData));
 	}
 
 	regs.eax = 0x80000006;
-	if(x86_x64_cpuid(&regs))
+	if(x86_x64::cpuid(&regs))
 	{
-		AddCache(L2Cache(regs.ecx, x86_x64_Cache::kUnified));
-		AddCache(L3Cache(regs.edx, x86_x64_Cache::kUnified));
+		AddCache(L2Cache(regs.ecx, x86_x64::Cache::kUnified));
+		AddCache(L3Cache(regs.edx, x86_x64::Cache::kUnified));
 
 		AddTLB2Pair(regs.eax, 2*MiB);
 		AddTLB2Pair(regs.ebx, 4*KiB);
@@ -215,21 +217,21 @@ static bool DetectCache()
 	// note: level order is unspecified (see Intel AP-485)
 	for(u32 count = 0; ; count++)
 	{
-		x86_x64_CpuidRegs regs = { 0 };
+		x86_x64::CpuidRegs regs = { 0 };
 		regs.eax = 4;
 		regs.ecx = count;
-		if(!x86_x64_cpuid(&regs))
+		if(!x86_x64::cpuid(&regs))
 			return false;
 
-		const x86_x64_Cache::Type type = (x86_x64_Cache::Type)bits(regs.eax, 0, 4);
-		if(type == x86_x64_Cache::kNull)	// no more remaining
+		const x86_x64::Cache::Type type = (x86_x64::Cache::Type)bits(regs.eax, 0, 4);
+		if(type == x86_x64::Cache::kNull)	// no more remaining
 			break;
 
 		const size_t level      = (size_t)bits(regs.eax, 5, 7);
 		const size_t partitions = (size_t)bits(regs.ebx, 12, 21)+1;
 		const size_t sets       = (size_t)bits(regs.ecx, 0, 31)+1;
 
-		x86_x64_Cache cache;
+		x86_x64::Cache cache;
 		cache.Initialize(level, type);
 		cache.entrySize     = (size_t)bits(regs.ebx,  0, 11)+1;	// (yes, this also uses +1 encoding)
 		cache.associativity = (size_t)bits(regs.ebx, 22, 31)+1;
@@ -274,9 +276,9 @@ static Descriptors GetDescriptors()
 	const uintptr_t firstProcessor = allProcessors & -intptr_t(allProcessors);
 	const uintptr_t prevAffinityMask = os_cpu_SetThreadAffinityMask(firstProcessor);
 
-	x86_x64_CpuidRegs regs = { 0 };
+	x86_x64::CpuidRegs regs = { 0 };
 	regs.eax = 2;
-	if(!x86_x64_cpuid(&regs))
+	if(!x86_x64::cpuid(&regs))
 		return Descriptors();
 
 	Descriptors descriptors;
@@ -290,7 +292,7 @@ static Descriptors GetDescriptors()
 		if(--iterations == 0)
 			break;
 		regs.eax = 2;
-		const bool ok = x86_x64_cpuid(&regs);
+		const bool ok = x86_x64::cpuid(&regs);
 		ENSURE(ok);
 	}
 
@@ -321,19 +323,19 @@ enum Flags
 // (there are > 100 descriptors, so we squeeze all fields into 8 bytes.)
 struct Characteristics	// POD
 {
-	x86_x64_Cache::Type Type() const
+	x86_x64::Cache::Type Type() const
 	{
 		switch(flags & U)
 		{
 		case D:
-			return x86_x64_Cache::kData;
+			return x86_x64::Cache::kData;
 		case I:
-			return x86_x64_Cache::kInstruction;
+			return x86_x64::Cache::kInstruction;
 		case U:
-			return x86_x64_Cache::kUnified;
+			return x86_x64::Cache::kUnified;
 		default:
 			DEBUG_WARN_ERR(ERR::LOGIC);
-			return x86_x64_Cache::kNull;
+			return x86_x64::Cache::kNull;
 		}
 	}
 
@@ -365,7 +367,7 @@ struct Characteristics	// POD
 	u32 flags;	// level, type, largeSize
 };
 
-static const u8 F = x86_x64_Cache::fullyAssociative;
+static const u8 F = x86_x64::Cache::fullyAssociative;
 
 #define CACHE(descriptor, flags, totalSize, assoc, entrySize)  { descriptor, assoc, -entrySize, flags | ((totalSize)/(entrySize)) }
 #define TLB(descriptor, flags, entrySize, assoc, numEntries) { descriptor, assoc, numEntries, flags | (entrySize) }
@@ -586,7 +588,7 @@ static void DetectCacheAndTLB(size_t& descriptorFlags)
 		if((descriptorFlags & SKIP_CACHE_DESCRIPTORS) && !characteristics->IsTLB())
 			continue;
 
-		x86_x64_Cache cache;
+		x86_x64::Cache cache;
 		cache.Initialize(characteristics->Level(), characteristics->Type());
 		cache.numEntries    = characteristics->NumEntries();
 		cache.entrySize     = characteristics->EntrySize();
@@ -605,13 +607,13 @@ static void DetectCacheAndTLB(size_t& descriptorFlags)
 static Status DetectCacheAndTLB()
 {
 	// ensure all cache entries are initialized (DetectCache* might not set them all)
-	for(size_t idxLevel = 0; idxLevel < x86_x64_Cache::maxLevels; idxLevel++)
+	for(size_t idxLevel = 0; idxLevel < x86_x64::Cache::maxLevels; idxLevel++)
 	{
-		caches[L1D+idxLevel].Initialize(idxLevel+1, x86_x64_Cache::kData);
-		caches[L1I+idxLevel].Initialize(idxLevel+1, x86_x64_Cache::kInstruction);
+		caches[L1D+idxLevel].Initialize(idxLevel+1, x86_x64::Cache::kData);
+		caches[L1I+idxLevel].Initialize(idxLevel+1, x86_x64::Cache::kInstruction);
 	}
 
-	if(x86_x64_Vendor() == X86_X64_VENDOR_AMD)
+	if(x86_x64::Vendor() == x86_x64::VENDOR_AMD)
 		AMD::DetectCacheAndTLB();
 	else
 	{
@@ -622,13 +624,13 @@ static Status DetectCacheAndTLB()
 	}
 
 	// sanity checks
-	for(size_t idxLevel = 0; idxLevel < x86_x64_Cache::maxLevels; idxLevel++)
+	for(size_t idxLevel = 0; idxLevel < x86_x64::Cache::maxLevels; idxLevel++)
 	{
-		ENSURE(caches[L1D+idxLevel].type == x86_x64_Cache::kData || caches[L1D+idxLevel].type == x86_x64_Cache::kUnified);
+		ENSURE(caches[L1D+idxLevel].type == x86_x64::Cache::kData || caches[L1D+idxLevel].type == x86_x64::Cache::kUnified);
 		ENSURE(caches[L1D+idxLevel].level == idxLevel+1);
 		ENSURE(caches[L1D+idxLevel].Validate() == true);
 
-		ENSURE(caches[L1I+idxLevel].type == x86_x64_Cache::kInstruction || caches[L1I+idxLevel].type == x86_x64_Cache::kUnified);
+		ENSURE(caches[L1I+idxLevel].type == x86_x64::Cache::kInstruction || caches[L1I+idxLevel].type == x86_x64::Cache::kUnified);
 		ENSURE(caches[L1I+idxLevel].level == idxLevel+1);
 		ENSURE(caches[L1I+idxLevel].Validate() == true);
 	}
@@ -638,7 +640,7 @@ static Status DetectCacheAndTLB()
 	return INFO::OK;
 }
 
-const x86_x64_Cache* x86_x64_Caches(size_t idxCache)
+const x86_x64::Cache* x86_x64::Caches(size_t idxCache)
 {
 	static ModuleInitState initState;
 	ModuleInit(&initState, DetectCacheAndTLB);
@@ -648,3 +650,5 @@ const x86_x64_Cache* x86_x64_Caches(size_t idxCache)
 
 	return &caches[idxCache];
 }
+
+}	// namespace x86_x64

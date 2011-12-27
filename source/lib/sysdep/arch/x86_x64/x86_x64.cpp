@@ -44,6 +44,8 @@
 # include <intrin.h>	// __rdtsc
 #endif
 
+namespace x86_x64 {
+
 #if defined(_MSC_FULL_VER) && _MSC_FULL_VER >= 150030729
 // VC10+ and VC9 SP1: __cpuidex is already available
 #elif GCC_VERSION
@@ -65,11 +67,10 @@
 // call a public function (that re-enters ModuleInit), so each
 // function gets its own initState.
 
-
 //-----------------------------------------------------------------------------
 // CPUID
 
-static void cpuid(x86_x64_CpuidRegs* regs)
+static void Invoke_cpuid(CpuidRegs* regs)
 {
 	cassert(sizeof(regs->eax) == sizeof(int));
 	cassert(sizeof(*regs) == 4*sizeof(int));
@@ -81,20 +82,20 @@ static u32 cpuid_maxExtendedFunction;
 
 static Status InitCpuid()
 {
-	x86_x64_CpuidRegs regs = { 0 };
+	CpuidRegs regs = { 0 };
 
 	regs.eax = 0;
-	cpuid(&regs);
+	Invoke_cpuid(&regs);
 	cpuid_maxFunction = regs.eax;
 
 	regs.eax = 0x80000000;
-	cpuid(&regs);
+	Invoke_cpuid(&regs);
 	cpuid_maxExtendedFunction = regs.eax;
 
 	return INFO::OK;
 }
 
-bool x86_x64_cpuid(x86_x64_CpuidRegs* regs)
+bool cpuid(CpuidRegs* regs)
 {
 	static ModuleInitState initState;
 	ModuleInit(&initState, InitCpuid);
@@ -105,7 +106,7 @@ bool x86_x64_cpuid(x86_x64_CpuidRegs* regs)
 	if(function < 0x80000000 && function > cpuid_maxFunction)
 		return false;
 
-	cpuid(regs);
+	Invoke_cpuid(regs);
 	return true;
 }
 
@@ -114,22 +115,22 @@ bool x86_x64_cpuid(x86_x64_CpuidRegs* regs)
 // capability bits
 
 // treated as 128 bit field; order: std ecx, std edx, ext ecx, ext edx
-// keep in sync with enum x86_x64_Cap!
+// keep in sync with enum Cap!
 static u32 caps[4];
 
 static ModuleInitState capsInitState;
 
 static Status InitCaps()
 {
-	x86_x64_CpuidRegs regs = { 0 };
+	CpuidRegs regs = { 0 };
 	regs.eax = 1;
-	if(x86_x64_cpuid(&regs))
+	if(cpuid(&regs))
 	{
 		caps[0] = regs.ecx;
 		caps[1] = regs.edx;
 	}
 	regs.eax = 0x80000001;
-	if(x86_x64_cpuid(&regs))
+	if(cpuid(&regs))
 	{
 		caps[2] = regs.ecx;
 		caps[3] = regs.edx;
@@ -138,7 +139,7 @@ static Status InitCaps()
 	return INFO::OK;
 }
 
-bool x86_x64_cap(x86_x64_Cap cap)
+bool Cap(Caps cap)
 {
 	ModuleInit(&capsInitState, InitCaps);
 
@@ -152,7 +153,7 @@ bool x86_x64_cap(x86_x64_Cap cap)
 	return IsBitSet(caps[index], bit);
 }
 
-void x86_x64_caps(u32* d0, u32* d1, u32* d2, u32* d3)
+void GetCapBits(u32* d0, u32* d1, u32* d2, u32* d3)
 {
 	ModuleInit(&capsInitState, InitCaps);
 
@@ -166,13 +167,13 @@ void x86_x64_caps(u32* d0, u32* d1, u32* d2, u32* d3)
 //-----------------------------------------------------------------------------
 // vendor
 
-static x86_x64_Vendors vendor;
+static Vendors vendor;
 
 static Status InitVendor()
 {
-	x86_x64_CpuidRegs regs = { 0 };
+	CpuidRegs regs = { 0 };
 	regs.eax = 0;
-	if(!x86_x64_cpuid(&regs))
+	if(!cpuid(&regs))
 		DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
 
 	// copy regs to string
@@ -184,19 +185,19 @@ static Status InitVendor()
 	vendorString[12] = '\0';	// 0-terminate
 
 	if(!strcmp(vendorString, "AuthenticAMD"))
-		vendor = X86_X64_VENDOR_AMD;
+		vendor = x86_x64::VENDOR_AMD;
 	else if(!strcmp(vendorString, "GenuineIntel"))
-		vendor = X86_X64_VENDOR_INTEL;
+		vendor = x86_x64::VENDOR_INTEL;
 	else
 	{
 		DEBUG_WARN_ERR(ERR::CPU_UNKNOWN_VENDOR);
-		vendor = X86_X64_VENDOR_UNKNOWN;
+		vendor = x86_x64::VENDOR_UNKNOWN;
 	}
 
 	return INFO::OK;
 }
 
-x86_x64_Vendors x86_x64_Vendor()
+Vendors Vendor()
 {
 	static ModuleInitState initState;
 	ModuleInit(&initState, InitVendor);
@@ -213,9 +214,9 @@ static ModuleInitState signatureInitState;
 
 static Status InitSignature()
 {
-	x86_x64_CpuidRegs regs = { 0 };
+	CpuidRegs regs = { 0 };
 	regs.eax = 1;
-	if(!x86_x64_cpuid(&regs))
+	if(!cpuid(&regs))
 		DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
 	model = bits(regs.eax, 4, 7);
 	family = bits(regs.eax, 8, 11);
@@ -223,18 +224,18 @@ static Status InitSignature()
 	const size_t extendedFamily = bits(regs.eax, 20, 27);
 	if(family == 0xF)
 		family += extendedFamily;
-	if(family == 0xF || (x86_x64_Vendor() == X86_X64_VENDOR_INTEL && family == 6))
+	if(family == 0xF || (Vendor() == x86_x64::VENDOR_INTEL && family == 6))
 		model += extendedModel << 4;
 	return INFO::OK;
 }
 
-size_t x86_x64_Model()
+size_t Model()
 {
 	ModuleInit(&signatureInitState, InitSignature);
 	return model;
 }
 
-size_t x86_x64_Family()
+size_t Family()
 {
 	ModuleInit(&signatureInitState, InitSignature);
 	return family;
@@ -285,9 +286,9 @@ static Status InitIdentifierString()
 	bool gotBrandString = true;
 	for(u32 function = 0x80000002; function <= 0x80000004; function++)
 	{
-		x86_x64_CpuidRegs regs = { 0 };
+		CpuidRegs regs = { 0 };
 		regs.eax = function;
-		gotBrandString &= x86_x64_cpuid(&regs);
+		gotBrandString &= cpuid(&regs);
 		memcpy(pos, &regs, 16);
 		pos += 16;
 	}
@@ -300,11 +301,11 @@ static Status InitIdentifierString()
 	//   doesn't recognize.
 	if(!gotBrandString || strncmp(identifierString, "Unknow", 6) == 0)
 	{
-		const size_t family = x86_x64_Family();
-		const size_t model = x86_x64_Model();
-		switch(x86_x64_Vendor())
+		const size_t family = Family();
+		const size_t model = Model();
+		switch(Vendor())
 		{
-		case X86_X64_VENDOR_AMD:
+		case x86_x64::VENDOR_AMD:
 			// everything else is either too old, or should have a brand string.
 			if(family == 6)
 			{
@@ -314,7 +315,7 @@ static Status InitIdentifierString()
 					strcpy_s(identifierString, ARRAY_SIZE(identifierString), "AMD Athlon");
 				else
 				{
-					if(x86_x64_cap(X86_X64_CAP_AMD_MP))
+					if(Cap(x86_x64::CAP_AMD_MP))
 						strcpy_s(identifierString, ARRAY_SIZE(identifierString), "AMD Athlon MP");
 					else
 						strcpy_s(identifierString, ARRAY_SIZE(identifierString), "AMD Athlon XP");
@@ -322,7 +323,7 @@ static Status InitIdentifierString()
 			}
 			break;
 
-		case X86_X64_VENDOR_INTEL:
+		case x86_x64::VENDOR_INTEL:
 			// everything else is either too old, or should have a brand string.
 			if(family == 6)
 			{
@@ -357,7 +358,7 @@ static Status InitIdentifierString()
 	return INFO::OK;
 }
 
-const char* cpu_IdentifierString()
+static const char* IdentifierString()
 {
 	static ModuleInitState initState;
 	ModuleInit(&initState, InitIdentifierString);
@@ -368,25 +369,8 @@ const char* cpu_IdentifierString()
 //-----------------------------------------------------------------------------
 // miscellaneous stateless functions
 
-// these routines do not call ModuleInit (because some of them are
-// time-critical, e.g. cpu_Serialize) and should also avoid the
-// other x86_x64* functions and their global state.
-// in particular, use cpuid instead of x86_x64_cpuid.
-
-u8 x86_x64_ApicId()
-{
-	x86_x64_CpuidRegs regs = { 0 };
-	regs.eax = 1;
-	// note: CPUID function 1 is always supported, but only processors with
-	// an xAPIC (e.g. P4/Athlon XP) will return a nonzero ID.
-	cpuid(&regs);
-	const u8 apicId = (u8)bits(regs.ebx, 24, 31);
-	return apicId;
-}
-
-
-#if !MSC_VERSION	// replaced by macro
-u64 x86_x64_rdtsc()
+#if !MSC_VERSION	// ensure not already defined in header
+u64 rdtsc()
 {
 #if GCC_VERSION
 	// GCC supports "portable" assembly for both x86 and x64
@@ -398,7 +382,7 @@ u64 x86_x64_rdtsc()
 #endif
 
 
-void x86_x64_DebugBreak()
+void DebugBreak()
 {
 #if MSC_VERSION
 	__debugbreak();
@@ -408,14 +392,6 @@ void x86_x64_DebugBreak()
 	// we include it for completeness, though.
 	__asm__ __volatile__ ("int $3");
 #endif
-}
-
-
-void cpu_Serialize()
-{
-	x86_x64_CpuidRegs regs = { 0 };
-	regs.eax = 1;
-	cpuid(&regs);	// CPUID serializes execution.
 }
 
 
@@ -450,13 +426,13 @@ private:
 
 // note: this function uses timer.cpp!timer_Time, which is implemented via
 // whrt.cpp on Windows.
-double x86_x64_ClockFrequency()
+double ClockFrequency()
 {
 	// if the TSC isn't available, there's really no good way to count the
 	// actual CPU clocks per known time interval, so bail.
 	// note: loop iterations ("bogomips") are not a reliable measure due
 	// to differing IPC and compiler optimizations.
-	if(!x86_x64_cap(X86_X64_CAP_TSC))
+	if(!Cap(x86_x64::CAP_TSC))
 		return -1.0;	// impossible value
 
 	// increase priority to reduce interference while measuring.
@@ -465,7 +441,7 @@ double x86_x64_ClockFrequency()
 
 	// note: no need to "warm up" cpuid - it will already have been
 	// called several times by the time this code is reached.
-	// (background: it's used in x86_x64_rdtsc() to serialize instruction flow;
+	// (background: it's used in rdtsc() to serialize instruction flow;
 	// the first call is documented to be slower on Intel CPUs)
 
 	size_t numSamples = 16;
@@ -488,27 +464,27 @@ double x86_x64_ClockFrequency()
 		do
 		{
 			// note: timer_Time effectively has a long delay (up to 5 us)
-			// before returning the time. we call it before x86_x64_rdtsc to
+			// before returning the time. we call it before rdtsc to
 			// minimize the delay between actually sampling time / TSC,
 			// thus decreasing the chance for interference.
 			// (if unavoidable background activity, e.g. interrupts,
 			// delays the second reading, inaccuracy is introduced).
 			t1 = timer_Time();
-			c1 = x86_x64_rdtsc();
+			c1 = rdtsc();
 		}
 		while(t1 == t0);
 		// .. wait until start of next tick and at least 1 ms elapsed.
 		do
 		{
 			const double t2 = timer_Time();
-			const u64 c2 = x86_x64_rdtsc();
+			const u64 c2 = rdtsc();
 			dc = (i64)(c2 - c1);
 			dt = t2 - t1;
 		}
 		while(dt < 1e-3);
 
 		// .. freq = (delta_clocks) / (delta_seconds);
-		//    x86_x64_rdtsc/timer overhead is negligible.
+		//    rdtsc/timer overhead is negligible.
 		const double freq = dc / dt;
 		samples[i] = freq;
 	}
@@ -525,4 +501,12 @@ double x86_x64_ClockFrequency()
 
 	const double clockFrequency = sum / (hi-lo);
 	return clockFrequency;
+}
+
+}	// namespace x86_x64
+
+
+const char* cpu_IdentifierString()
+{
+	return x86_x64::IdentifierString();
 }

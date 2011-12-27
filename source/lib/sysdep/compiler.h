@@ -100,7 +100,7 @@
 
 
 // Streaming SIMD Extensions (not supported by all GCC)
-// this only ascertains compiler support; use x86_x64_cap to
+// this only ascertains compiler support; use x86_x64::Cap to
 // check whether the instructions are supported by the CPU.
 #ifndef HAVE_SSE
 # if GCC_VERSION && defined(__SSE__)

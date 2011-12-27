@@ -38,6 +38,7 @@
 #include "lib/sysdep/arch/x86_x64/cache.h"
 #include "lib/sysdep/arch/x86_x64/apic.h"
 
+namespace topology {
 
 //---------------------------------------------------------------------------------------------------------------------
 // detect *maximum* number of cores/packages/caches.
@@ -49,19 +50,19 @@ static size_t MaxCoresPerPackage()
 	// assume single-core unless one of the following applies:
 	size_t maxCoresPerPackage = 1;
 
-	x86_x64_CpuidRegs regs = { 0 };
-	switch(x86_x64_Vendor())
+	x86_x64::CpuidRegs regs = { 0 };
+	switch(x86_x64::Vendor())
 	{
-	case X86_X64_VENDOR_INTEL:
+	case x86_x64::VENDOR_INTEL:
 		regs.eax = 4;
 		regs.ecx = 0;
-		if(x86_x64_cpuid(&regs))
+		if(x86_x64::cpuid(&regs))
 			maxCoresPerPackage = bits(regs.eax, 26, 31)+1;
 		break;
 
-	case X86_X64_VENDOR_AMD:
+	case x86_x64::VENDOR_AMD:
 		regs.eax = 0x80000008;
-		if(x86_x64_cpuid(&regs))
+		if(x86_x64::cpuid(&regs))
 			maxCoresPerPackage = bits(regs.ecx, 0, 7)+1;
 		break;
 
@@ -80,13 +81,13 @@ static size_t MaxLogicalPerCore()
 		bool operator()() const
 		{
 			// definitely not
-			if(!x86_x64_cap(X86_X64_CAP_HT))
+			if(!x86_x64::Cap(x86_x64::CAP_HT))
 				return false;
 
 			// multi-core AMD systems falsely set the HT bit for reasons of
 			// compatibility. we'll just ignore it, because clearing it might
 			// confuse other callers.
-			if(x86_x64_Vendor() == X86_X64_VENDOR_AMD && x86_x64_cap(X86_X64_CAP_AMD_CMP_LEGACY))
+			if(x86_x64::Vendor() == x86_x64::VENDOR_AMD && x86_x64::Cap(x86_x64::CAP_AMD_CMP_LEGACY))
 				return false;
 
 			return true;
@@ -94,9 +95,9 @@ static size_t MaxLogicalPerCore()
 	};
 	if(IsHyperthreadingCapable()())
 	{
-		x86_x64_CpuidRegs regs = { 0 };
+		x86_x64::CpuidRegs regs = { 0 };
 		regs.eax = 1;
-		if(!x86_x64_cpuid(&regs))
+		if(!x86_x64::cpuid(&regs))
 			DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
 		const size_t logicalPerPackage = bits(regs.ebx, 16, 23);
 		const size_t maxCoresPerPackage = MaxCoresPerPackage();
@@ -112,7 +113,7 @@ static size_t MaxLogicalPerCore()
 
 static size_t MaxLogicalPerCache()
 {
-	return x86_x64_Caches(L2D)->sharedBy;
+	return x86_x64::Caches(x86_x64::L2D)->sharedBy;
 }
 
 
@@ -240,44 +241,44 @@ static Status InitCpuTopology()
 }
 
 
-size_t cpu_topology_NumPackages()
+size_t NumPackages()
 {
 	ModuleInit(&cpuInitState, InitCpuTopology);
 	return cpuTopology.numPackages;
 }
 
-size_t cpu_topology_CoresPerPackage()
+size_t CoresPerPackage()
 {
 	ModuleInit(&cpuInitState, InitCpuTopology);
 	return cpuTopology.coresPerPackage;
 }
 
-size_t cpu_topology_LogicalPerCore()
+size_t LogicalPerCore()
 {
 	ModuleInit(&cpuInitState, InitCpuTopology);
 	return cpuTopology.logicalPerCore;
 }
 
-size_t cpu_topology_LogicalFromApicId(size_t apicId)
+size_t LogicalFromApicId(ApicId apicId)
 {
 	const size_t contiguousId = ContiguousIdFromApicId(apicId);
 	return contiguousId % cpuTopology.logicalPerCore;
 }
 
-size_t cpu_topology_CoreFromApicId(size_t apicId)
+size_t CoreFromApicId(ApicId apicId)
 {
 	const size_t contiguousId = ContiguousIdFromApicId(apicId);
 	return (contiguousId / cpuTopology.logicalPerCore) % cpuTopology.coresPerPackage;
 }
 
-size_t cpu_topology_PackageFromApicId(size_t apicId)
+size_t PackageFromApicId(ApicId apicId)
 {
 	const size_t contiguousId = ContiguousIdFromApicId(apicId);
 	return contiguousId / (cpuTopology.logicalPerCore * cpuTopology.coresPerPackage);
 }
 
 
-size_t cpu_topology_ApicId(size_t idxLogical, size_t idxCore, size_t idxPackage)
+ApicId ApicIdFromIndices(size_t idxLogical, size_t idxCore, size_t idxPackage)
 {
 	ModuleInit(&cpuInitState, InitCpuTopology);
 
@@ -450,22 +451,24 @@ static Status InitCacheTopology()
 	return INFO::OK;
 }
 
-size_t cache_topology_NumCaches()
+size_t NumCaches()
 {
 	ModuleInit(&cacheInitState, InitCacheTopology);
 	return cacheTopology.numCaches;
 }
 
-size_t cache_topology_CacheFromProcessor(size_t processor)
+size_t CacheFromProcessor(size_t processor)
 {
 	ModuleInit(&cacheInitState, InitCacheTopology);
 	ENSURE(processor < os_cpu_NumProcessors());
 	return cacheTopology.processorsCache[processor];
 }
 
-uintptr_t cache_topology_ProcessorMaskFromCache(size_t cache)
+uintptr_t ProcessorMaskFromCache(size_t cache)
 {
 	ModuleInit(&cacheInitState, InitCacheTopology);
 	ENSURE(cache < cacheTopology.numCaches);
 	return cacheTopology.cachesProcessorMask[cache];
 }
+
+}	// namespace topology

@@ -36,7 +36,7 @@
 #include "lib/sysdep/os/win/wutil.h"
 
 #if ARCH_X86_X64
-# include "lib/sysdep/arch/x86_x64/x86_x64.h"	// x86_x64_rdtsc
+# include "lib/sysdep/arch/x86_x64/x86_x64.h"	// x86_x64::rdtsc
 # include "lib/sysdep/arch/x86_x64/topology.h"
 # include "lib/sysdep/arch/x86_x64/msr.h"
 #endif
@@ -46,9 +46,9 @@
 
 static bool IsUniprocessor()
 {
-	if(cpu_topology_NumPackages() != 1)
+	if(topology::NumPackages() != 1)
 		return false;
-	if(cpu_topology_CoresPerPackage() != 1)
+	if(topology::CoresPerPackage() != 1)
 		return false;
 	return true;
 }
@@ -57,11 +57,11 @@ static bool IsUniprocessor()
 static bool IsInvariantTSC()
 {
 #if ARCH_X86_X64
-	// (we no longer need to check x86_x64_Vendor - Intel and AMD
+	// (we no longer need to check x86_x64::Vendor - Intel and AMD
 	// agreed on the definition of this feature check)
-	x86_x64_CpuidRegs regs = { 0 };
+	x86_x64::CpuidRegs regs = { 0 };
 	regs.eax = 0x80000007;
-	if(x86_x64_cpuid(&regs))
+	if(x86_x64::cpuid(&regs))
 	{
 		// TSC is invariant across P-state, C-state, turbo, and
 		// stop grant transitions (e.g. STPCLK)
@@ -77,17 +77,17 @@ static bool IsInvariantTSC()
 static bool IsThrottlingPossible()
 {
 #if ARCH_X86_X64
-	x86_x64_CpuidRegs regs = { 0 };
-	switch(x86_x64_Vendor())
+	x86_x64::CpuidRegs regs = { 0 };
+	switch(x86_x64::Vendor())
 	{
-	case X86_X64_VENDOR_INTEL:
-		if(x86_x64_cap(X86_X64_CAP_TM_SCC) || x86_x64_cap(X86_X64_CAP_EST))
+	case x86_x64::VENDOR_INTEL:
+		if(x86_x64::Cap(x86_x64::CAP_TM_SCC) || x86_x64::Cap(x86_x64::CAP_EST))
 			return true;
 		break;
 
-	case X86_X64_VENDOR_AMD:
+	case x86_x64::VENDOR_AMD:
 		regs.eax = 0x80000007;
-		if(x86_x64_cpuid(&regs))
+		if(x86_x64::cpuid(&regs))
 		{
 			enum AmdPowerNowFlags
 			{
@@ -109,6 +109,18 @@ static bool IsThrottlingPossible()
 }
 
 
+static bool IsSandyBridge()
+{
+	if(x86_x64::Vendor() != x86_x64::VENDOR_INTEL)
+		return false;
+	if(x86_x64::Model() == x86_x64::MODEL_SANDY_BRIDGE)
+		return true;
+	if(x86_x64::Model() == x86_x64::MODEL_SANDY_BRIDGE_2)
+		return true;
+	return false;
+}
+
+
 //-----------------------------------------------------------------------------
 
 class CounterTSC : public ICounter
@@ -122,7 +134,7 @@ public:
 	Status Activate()
 	{
 #if ARCH_X86_X64
-		if(!x86_x64_cap(X86_X64_CAP_TSC))
+		if(!x86_x64::Cap(x86_x64::CAP_TSC))
 			return ERR::NOT_SUPPORTED;		// NOWARN (CPU doesn't support RDTSC)
 #endif
 
@@ -177,7 +189,7 @@ public:
 
 #if ARCH_X86_X64
 		// recent CPU:
-		//if(x86_x64_Generation() >= 7)
+		//if(x86_x64::Generation() >= 7)
 		{
 			// note: 8th generation CPUs support C1-clock ramping, which causes
 			// drift on multi-core systems, but those were excluded above.
@@ -204,7 +216,7 @@ public:
 
 	u64 Counter() const
 	{
-		return x86_x64_rdtsc();
+		return x86_x64::rdtsc();
 	}
 
 	size_t CounterBits() const
@@ -214,7 +226,7 @@ public:
 
 	double NominalFrequency() const
 	{
-		// WARNING: do not call x86_x64_ClockFrequency because it uses the
+		// WARNING: do not call x86_x64::ClockFrequency because it uses the
 		// HRT, which we're currently in the process of initializing.
 		// instead query CPU clock frequency via OS.
 		//
@@ -224,9 +236,10 @@ public:
 #if ARCH_X86_X64
 		if(MSR::IsAccessible() && MSR::HasPlatformInfo())
 		{
+			const i64 busFrequency = IsSandyBridge()? 100000000 : 133333333;
 			const u64 platformInfo = MSR::Read(MSR::PLATFORM_INFO);
 			const u8 maxNonTurboRatio = bits(platformInfo, 8, 15);
-			return maxNonTurboRatio * 133.33e6f;
+			return double(maxNonTurboRatio) * busFrequency;
 		}
 		else
 #endif

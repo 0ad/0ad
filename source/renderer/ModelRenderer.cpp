@@ -53,7 +53,7 @@ static bool g_EnableSSE = false;
 void ModelRenderer::Init()
 {
 #if ARCH_X86_X64
-	if (x86_x64_cap(X86_X64_CAP_SSE))
+	if (x86_x64::Cap(x86_x64::CAP_SSE))
 		g_EnableSSE = true;
 #endif
 }

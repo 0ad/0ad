@@ -34,17 +34,17 @@ public:
 	void test_rdtsc()
 	{
 		// must increase monotonously
-		const u64 c1 = x86_x64_rdtsc();
-		const u64 c2 = x86_x64_rdtsc();
-		const u64 c3 = x86_x64_rdtsc();
+		const u64 c1 = x86_x64::rdtsc();
+		const u64 c2 = x86_x64::rdtsc();
+		const u64 c3 = x86_x64::rdtsc();
 		TS_ASSERT(c1 < c2 && c2 < c3);
 	}
 
 	void test_ia32_cap()
 	{
 		// make sure the really common/basic caps end up reported as true
-		TS_ASSERT(x86_x64_cap(X86_X64_CAP_FPU));
-		TS_ASSERT(x86_x64_cap(X86_X64_CAP_TSC));
-		TS_ASSERT(x86_x64_cap(X86_X64_CAP_MMX));
+		TS_ASSERT(x86_x64::Cap(x86_x64::CAP_FPU));
+		TS_ASSERT(x86_x64::Cap(x86_x64::CAP_TSC));
+		TS_ASSERT(x86_x64::Cap(x86_x64::CAP_MMX));
 	}
 };
