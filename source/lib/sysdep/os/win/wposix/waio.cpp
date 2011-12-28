@@ -436,6 +436,8 @@ Status waio_close(int fd)
 
 Status waio_Preallocate(int fd, off_t size)
 {
+	WinScopedPreserveLastError s;
+
 	HANDLE hFile;	// from FileControlBlock OR lowio
 	{
 		FileControlBlock* fcb = fileControlBlocks.FromDescriptor(fd);
@@ -457,8 +459,11 @@ Status waio_Preallocate(int fd, off_t size)
 	WARN_IF_FALSE(SetFilePointerEx(hFile, size64, 0, FILE_BEGIN));
 	if(!SetEndOfFile(hFile))
 	{
-		debug_printf(L"Preallocate(%lld) failed: %d\n", size, GetLastError());
-		return ERR::FAIL;	// NOWARN (probably not enough disk space)
+		if(GetLastError() == ERROR_DISK_FULL)
+			SetLastError(0);
+		else
+			debug_printf(L"waio_Preallocate(%lld) failed: %d\n", size, GetLastError());
+		return ERR::FAIL;	// NOWARN (either out of disk space, or error was printed)
 	}
 
 	// avoid synchronous zero-fill (see discussion in header)
@@ -472,7 +477,6 @@ Status waio_Preallocate(int fd, off_t size)
 		// verifying the filesystem is indeed FAT would be overkill; we'll just
 		// ignore the return code. however, GetLastError can be used to check
 		// whether other problems arose.
-		WinScopedPreserveLastError s;
 		(void)pSetFileValidData(hFile, alignedSize);
 		ENSURE(GetLastError() == 0);
 	}
