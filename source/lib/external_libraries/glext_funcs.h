@@ -248,6 +248,10 @@ FUNC2(void, glGetQueryObjectuivARB, glGetQueryObjectuiv, "1.5", (GLuint id, GLen
 // GL_ARB_sync / GL3.2:
 FUNC2(void, glGetInteger64v, glGetInteger64v, "3.2", (GLenum pname, GLint64 *params))
 
+// GL_EXT_timer_query:
+FUNC(void, glGetQueryObjecti64vEXT, (GLuint id, GLenum pname, GLint64 *params))
+FUNC(void, glGetQueryObjectui64vEXT, (GLuint id, GLenum pname, GLuint64 *params))
+
 // GL_ARB_timer_query / GL3.3:
 FUNC2(void, glQueryCounter, glQueryCounter, "3.3", (GLuint id, GLenum target))
 FUNC2(void, glGetQueryObjecti64v, glGetQueryObjecti64v, "3.3", (GLuint id, GLenum pname, GLint64 *params))
