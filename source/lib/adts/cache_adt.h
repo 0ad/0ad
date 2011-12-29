@@ -538,8 +538,6 @@ public:
 	}
 };
 
-// TODO: use SSE/3DNow RCP instruction? not yet, because not all systems
-// support it and overhead of detecting this support eats into any gains.
 
 // initial implementation for testing purposes; quite inefficient.
 template<typename Key, typename Entry>
@@ -558,7 +556,7 @@ public:
 
 	bool find(const Key& key, const Entry** pentry) const
 	{
-		CIt it = std::find_if(lru.begin(), lru.end(), KeyEq(key));
+		CIt it = std::find(lru.begin(), lru.end(), KeyAndEntry(key));
 		if(it == lru.end())
 			return false;
 		*pentry = &it->entry;
@@ -567,7 +565,7 @@ public:
 
 	void remove(const Key& key)
 	{
-		std::remove_if(lru.begin(), lru.end(), KeyEq(key));
+		lru.remove(KeyAndEntry(key));
 	}
 
 	void on_access(Entry& entry)
@@ -593,20 +591,14 @@ public:
 private:
 	struct KeyAndEntry
 	{
+		KeyAndEntry(const Key& key): key(key) {}
+		KeyAndEntry(const Key& key, const Entry& entry): key(key), entry(entry) {}
+
+		bool operator==(const KeyAndEntry& rhs) const { return key == rhs.key; }
+		bool operator!=(const KeyAndEntry& rhs) const { return !operator==(rhs); }
+
 		Key key;
 		Entry entry;
-		KeyAndEntry(const Key& key_, const Entry& entry_)
-			: key(key_), entry(entry_) {}
-	};
-	class KeyEq
-	{
-		Key key;
-	public:
-		KeyEq(const Key& key_) : key(key_) {}
-		bool operator()(const KeyAndEntry& ke) const
-		{
-			return ke.key == key;
-		}
 	};
 
 	typedef std::list<KeyAndEntry> List;

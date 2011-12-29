@@ -123,7 +123,7 @@ function refresh_thread(thread, callback_data)
         dataType: 'json',
         data: { 'thread': thread.name },
         success: function (data) {
-            data.events = concat_events(data.events);
+            data.events = concat_events(data);
             
             thread.data = data;
             

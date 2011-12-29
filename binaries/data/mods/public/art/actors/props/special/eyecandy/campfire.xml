@@ -4,7 +4,7 @@
     <variant name="Base1">
       <mesh>props/special/campfire.dae</mesh>
       <props>
-        <prop actor="particle/smoke.xml" attachpoint="root"/>
+        <prop actor="particle/smoke_light.xml" attachpoint="root"/>
         <prop actor="particle/flame.xml" attachpoint="root"/>
         <prop actor="props/special/eyecandy/campfire_decal.xml" attachpoint="root"/>
       </props>

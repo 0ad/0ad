@@ -342,7 +342,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 		{
 			XML_Element("Paths");
 
-			for ( ; it != paths.end(); it++ )
+			for ( ; it != paths.end(); ++it )
 			{
 				CStrW name = it->first;
 				float timescale = it->second.GetTimescale();

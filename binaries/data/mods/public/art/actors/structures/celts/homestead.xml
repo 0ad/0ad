@@ -10,11 +10,19 @@
         <prop actor="props/structures/celts/civic_props_new.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/civic_entry.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
-        <prop actor="particle/smoke_homestead.xml" attachpoint="root"/>
+        <prop actor="particle/smoke_light.xml" attachpoint="smoke"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <texture>structural/celt_struct_1.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_celt.xml" attachpoint="garrisoned"/>
+      </props>
     </variant>
   </group>
   <material>player_trans.xml</material>

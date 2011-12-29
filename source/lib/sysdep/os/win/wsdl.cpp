@@ -317,7 +317,7 @@ static bool video_NeedsChange(int w, int h, int cur_w, int cur_h, bool fullscree
 }
 
 
-static void video_SetPixelFormat(HDC g_hDC, int bpp)
+static void video_SetPixelFormat(HDC hDC, int bpp)
 {
 	const DWORD dwFlags = PFD_SUPPORT_OPENGL|PFD_DRAW_TO_WINDOW|PFD_DOUBLEBUFFER;
 	BYTE cColourBits = (BYTE)bpp;
@@ -351,9 +351,9 @@ static void video_SetPixelFormat(HDC g_hDC, int bpp)
 	// note: the GDI pixel format functions require opengl32.dll to be loaded.
 	// a deadlock on the next line is probably due to VLD's LdrLoadDll hook.
 
-	const int pf = ChoosePixelFormat(g_hDC, &pfd);
+	const int pf = ChoosePixelFormat(hDC, &pfd);
 	ENSURE(pf >= 1);
-	WARN_IF_FALSE(SetPixelFormat(g_hDC, pf, &pfd));
+	WARN_IF_FALSE(SetPixelFormat(hDC, pf, &pfd));
 }
 
 

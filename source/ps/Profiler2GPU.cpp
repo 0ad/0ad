@@ -235,6 +235,7 @@ private:
 			{
 				GLuint64 queryTimestamp = 0;
 				pglGetQueryObjectui64v(frame.events[i].query, GL_QUERY_RESULT, &queryTimestamp);
+					// (use the non-suffixed function here, as defined by GL_ARB_timer_query)
 				ogl_WarnIfError();
 
 				// Convert to absolute CPU-clock time
@@ -407,7 +408,8 @@ private:
 
 				// Advance by the elapsed time to the next event
 				GLuint64 queryElapsed = 0;
-				pglGetQueryObjectui64v(frame.events[i].query, GL_QUERY_RESULT, &queryElapsed);
+				pglGetQueryObjectui64vEXT(frame.events[i].query, GL_QUERY_RESULT, &queryElapsed);
+					// (use the EXT-suffixed function here, as defined by GL_EXT_timer_query)
 				ogl_WarnIfError();
 				t += (double)queryElapsed / 1e9;
 			}

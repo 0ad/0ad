@@ -6,11 +6,6 @@
 #include "lib/sysdep/rtl.h"	// rtl_FreeAligned
 
 
-// (hardwired index avoids RegisterUniqueRangeDeleter overhead for
-// this commonly used allocator.)
-static const IdxDeleter idxDeleterAligned = 1;
-
-
 static void FreeNone(void* UNUSED(pointer), size_t UNUSED(size))
 {
 	// (providing a deleter function for idxDeleterNone avoids

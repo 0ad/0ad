@@ -448,10 +448,7 @@ Status sys_pick_directory(OsPath& path)
 	const BOOL ok = SHGetPathFromIDListW(pidl, pathBuf);
 
 	// free the ITEMIDLIST
-	IMalloc* p_malloc;
-	SHGetMalloc(&p_malloc);
-	p_malloc->Free(pidl);
-	p_malloc->Release();
+	CoTaskMemFree(pidl);
 
 	if(ok == TRUE)
 	{

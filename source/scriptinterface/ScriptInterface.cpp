@@ -1102,9 +1102,9 @@ void ScriptInterface::DumpHeap()
 #if MOZJS_DEBUG_ABI
 	JS_DumpHeap(m->m_cx, stderr, NULL, 0, NULL, (size_t)-1, NULL);
 #endif
-	fprintf(stderr, "# Bytes allocated: %d\n", JS_GetGCParameter(GetRuntime(), JSGC_BYTES));
+	fprintf(stderr, "# Bytes allocated: %u\n", JS_GetGCParameter(GetRuntime(), JSGC_BYTES));
 	JS_GC(m->m_cx);
-	fprintf(stderr, "# Bytes allocated after GC: %d\n", JS_GetGCParameter(GetRuntime(), JSGC_BYTES));
+	fprintf(stderr, "# Bytes allocated after GC: %u\n", JS_GetGCParameter(GetRuntime(), JSGC_BYTES));
 }
 
 void ScriptInterface::MaybeGC()

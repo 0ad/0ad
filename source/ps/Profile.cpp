@@ -274,9 +274,9 @@ CProfileNode::CProfileNode( const char* _name, CProfileNode* _parent )
 CProfileNode::~CProfileNode()
 {
 	profile_iterator it;
-	for( it = children.begin(); it != children.end(); it++ )
+	for( it = children.begin(); it != children.end(); ++it )
 		delete( *it );	
-	for( it = script_children.begin(); it != script_children.end(); it++ )
+	for( it = script_children.begin(); it != script_children.end(); ++it )
 		delete( *it );
 	
 	delete display_table;
@@ -323,7 +323,7 @@ double CProfileNode::GetTurnMallocs() const
 const CProfileNode* CProfileNode::GetChild( const char* childName ) const
 {
 	const_profile_iterator it;
-	for( it = children.begin(); it != children.end(); it++ )
+	for( it = children.begin(); it != children.end(); ++it )
 		if( (*it)->name == childName )
 			return( *it );
 
@@ -333,7 +333,7 @@ const CProfileNode* CProfileNode::GetChild( const char* childName ) const
 const CProfileNode* CProfileNode::GetScriptChild( const char* childName ) const
 {
 	const_profile_iterator it;
-	for( it = script_children.begin(); it != script_children.end(); it++ )
+	for( it = script_children.begin(); it != script_children.end(); ++it )
 		if( (*it)->name == childName )
 			return( *it );
 
