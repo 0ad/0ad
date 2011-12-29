@@ -3,6 +3,7 @@ use warnings;
 use Data::Dumper;
 use File::Find;
 use XML::Simple;
+use JSON;
 
 use Entity;
 
@@ -82,6 +83,11 @@ sub add_entities
             if ($ent->{Entity}{Sound})
             {
                 push @deps, [ $path, "audio/" . $_->{' content'} ] for grep ref($_), values %{$ent->{Entity}{Sound}{SoundGroups}};
+            }
+
+            if ($ent->{Entity}{Identity})
+            {
+                push @deps, [ $path, "art/textures/ui/session/portraits/" . $ent->{Entity}{Identity}{Icon}{' content'} ] if $ent->{Entity}{Identity}{Icon};
             }
         }
     }
@@ -247,6 +253,95 @@ sub add_audio
     push @files, find_files('audio', 'ogg');
 }
 
+sub add_gui_xml
+{
+    print "Loading GUI XML...\n";
+    my @guifiles = find_files('gui', 'xml');
+    for my $f (sort @guifiles)
+    {
+        push @files, $f;
+
+        if ($f =~ /^gui\/page_/)
+        {
+            push @roots, $f;
+            my $xml = XMLin(vfs_to_physical($f), ForceArray => [qw(include)], KeyAttr => []) or die "Failed to parse '$f': $!";
+
+            push @deps, [ $f, "gui/$_" ] for @{$xml->{include}};
+        }
+        else
+        {
+            my $xml = XMLin(vfs_to_physical($f), ForceArray => [qw(object script action sprite image)], KeyAttr => [], KeepRoot => 1) or die "Failed to parse '$f': $!";
+            if ((keys %$xml)[0] eq 'objects')
+            {
+                push @deps, [ $f, $_->{file} ] for grep { ref $_ and $_->{file} } @{$xml->{objects}{script}};
+                my $add_objects;
+                $add_objects = sub
+                {
+                    my ($parent) = @_;
+                    for my $obj (@{$parent->{object}})
+                    {
+                        # TODO: look at sprites, styles, etc
+                        $add_objects->($obj);
+                    }
+                };
+                $add_objects->($xml->{objects});
+            }
+            elsif ((keys %$xml)[0] eq 'setup')
+            {
+                # TODO: look at sprites, styles, etc
+            }
+            elsif ((keys %$xml)[0] eq 'styles')
+            {
+                # TODO: look at sprites, styles, etc
+            }
+            elsif ((keys %$xml)[0] eq 'sprites')
+            {
+                for my $sprite (@{$xml->{sprites}{sprite}})
+                {
+                    for my $image (@{$sprite->{image}})
+                    {
+                        push @deps, [ $f, "art/textures/ui/$image->{texture}" ] if $image->{texture};
+                    }
+                }
+            }
+            else
+            {
+                print Dumper $xml;
+                exit;
+            }
+        }
+    }
+}
+
+sub add_gui_data
+{
+    print "Loading GUI data...\n";
+    push @files, find_files('gui', 'js');
+    push @files, find_files('art/textures/ui', 'dds|png|jpg|tga');
+}
+
+sub add_civs
+{
+    print "Loading civs...\n";
+
+    my @civfiles = find_files('civs', 'json');
+    for my $f (sort @civfiles)
+    {
+        push @files, $f;
+
+        push @roots, $f;
+
+        open my $fh, vfs_to_physical($f) or die "Failed to open '$f': $!";
+        my $civ = decode_json(do { local $/; <$fh> });
+
+        push @deps, [ $f, "art/textures/ui/" . $civ->{Emblem} ];
+
+        push @deps, [ $f, "audio/music/" . $_->{File} ] for @{$civ->{Music}};
+    }
+}
+
+
+
 sub check_deps
 {
     my %files;
@@ -302,6 +397,7 @@ sub check_unused
     }
 }
 
+
 add_scenarios_xml() if CHECK_SCENARIOS_XML;
 
 add_scenarios_pmp();
@@ -313,11 +409,14 @@ add_actors();
 add_art();
 
 add_soundgroups();
-
 add_audio();
 
+add_gui_xml();
+add_gui_data();
+
+add_civs();
+
 # TODO: add non-skin textures, and all the references to them
-# TODO: add GUI files
 
 print "\n";
 check_deps();
