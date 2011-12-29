@@ -194,7 +194,7 @@ bool ogl_HaveExtension(const char* ext)
 	const char *p = exts, *end;
 
 	// make sure ext is valid & doesn't contain spaces
-	if(!ext || ext == '\0' || strchr(ext, ' '))
+	if(!ext || ext[0] == '\0' || strchr(ext, ' '))
 		return false;
 
 	for(;;)
