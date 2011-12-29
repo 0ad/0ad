@@ -257,7 +257,7 @@ void CConsole::DrawHistory()
 		for (Iter = m_deqMsgHistory.begin();
 			 Iter != m_deqMsgHistory.end()
 				 && (((i - m_iMsgHistPos + 1) * m_iFontHeight) < m_fHeight);
-			 Iter++)
+			 ++Iter)
 		{
 			if (i >= m_iMsgHistPos){
 				glTranslatef(0.0f, -(float)m_iFontHeight, 0.0f);

@@ -115,14 +115,14 @@ static void LoadConfigBindings()
 
 				std::vector<SKey>::iterator itKey, itKey2;
 
-				for( itKey = keyCombination.begin(); itKey != keyCombination.end(); itKey++ )
+				for( itKey = keyCombination.begin(); itKey != keyCombination.end(); ++itKey )
 				{
 					SHotkeyMapping bindCode;
 
 					bindCode.name = hotkeyName;
 					bindCode.negated = itKey->negated;
 
-					for( itKey2 = keyCombination.begin(); itKey2 != keyCombination.end(); itKey2++ )
+					for( itKey2 = keyCombination.begin(); itKey2 != keyCombination.end(); ++itKey2 )
 					{
 						// Push any auxiliary keys.
 						if( itKey != itKey2 )
@@ -149,14 +149,14 @@ void LoadHotkeys()
 	{
 		KeyMapping& hotkeyMap = mapIt->second;
 
-		for( std::vector<SHotkeyMapping>::iterator it = hotkeyMap.begin(); it != hotkeyMap.end(); it++ )
+		for( std::vector<SHotkeyMapping>::iterator it = hotkeyMap.begin(); it != hotkeyMap.end(); ++it )
 		{
 			if( !it->negated )
 				continue;
 
 			bool allNegated = true;
 
-			for( std::vector<SKey>::iterator j = it->requires.begin(); j != it->requires.end(); j++ )
+			for( std::vector<SKey>::iterator j = it->requires.begin(); j != it->requires.end(); ++j )
 				if( !j->negated )
 					allNegated = false;
 			
@@ -263,7 +263,7 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 	std::vector<const char*> closestMapNames;
 	size_t closestMapMatch = 0;
 
-	for( std::vector<SHotkeyMapping>::iterator it = g_HotkeyMap[keycode].begin(); it < g_HotkeyMap[keycode].end(); it++ )
+	for( std::vector<SHotkeyMapping>::iterator it = g_HotkeyMap[keycode].begin(); it < g_HotkeyMap[keycode].end(); ++it )
 	{
 		// If a key has been pressed, and this event triggers on its release, skip it.
 		// Similarly, if the key's been released and the event triggers on a keypress, skip it.
@@ -274,7 +274,7 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 		
 		bool accept = true;
 
-		for( std::vector<SKey>::iterator itKey = it->requires.begin(); itKey != it->requires.end(); itKey++ )
+		for( std::vector<SKey>::iterator itKey = it->requires.begin(); itKey != it->requires.end(); ++itKey )
 		{
 			bool rqdState = !itKey->negated;
 
@@ -326,7 +326,7 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 
 	// -- KEYUP SECTION --
 
-	for( std::vector<SHotkeyMapping>::iterator it = g_HotkeyMap[keycode].begin(); it < g_HotkeyMap[keycode].end(); it++ )
+	for( std::vector<SHotkeyMapping>::iterator it = g_HotkeyMap[keycode].begin(); it < g_HotkeyMap[keycode].end(); ++it )
 	{
 		// If it's a keydown event, won't cause HotKeyUps in anything that doesn't
 		// use this key negated => skip them
@@ -339,7 +339,7 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 
 		bool accept = true;
 
-		for( std::vector<SKey>::iterator itKey = it->requires.begin(); itKey != it->requires.end(); itKey++ )
+		for( std::vector<SKey>::iterator itKey = it->requires.begin(); itKey != it->requires.end(); ++itKey )
 		{
 			bool rqdState = !itKey->negated;
 

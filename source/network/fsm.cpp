@@ -126,7 +126,7 @@ bool CFsmTransition::ApplyConditions( void ) const
     bool eval = true;
 
 	CallbackList::const_iterator it = m_Conditions.begin();
-    for( ; it != m_Conditions.end(); it++ )
+    for( ; it != m_Conditions.end(); ++it )
 	{
 		if ( it->pFunction )
 		{
@@ -149,7 +149,7 @@ bool CFsmTransition::RunActions( void ) const
 	bool result = true;
 
 	CallbackList::const_iterator it = m_Actions.begin();
-	for( ; it != m_Actions.end(); it++ )
+	for( ; it != m_Actions.end(); ++it )
 	{
 		if ( it->pFunction )
 		{
@@ -200,7 +200,7 @@ void CFsm::Shutdown( void )
 {
 	// Release transitions
 	TransitionList::iterator itTransition = m_Transitions.begin();
-	for ( ; itTransition < m_Transitions.end(); itTransition++ )
+	for ( ; itTransition < m_Transitions.end(); ++itTransition )
 	{
 		CFsmTransition* pCurrTransition = *itTransition;
 		if ( !pCurrTransition ) continue;
@@ -210,7 +210,7 @@ void CFsm::Shutdown( void )
 
 	// Release events
 	EventMap::iterator itEvent = m_Events.begin();
-	for( ; itEvent != m_Events.end(); itEvent++ )
+	for( ; itEvent != m_Events.end(); ++itEvent )
 	{
 		CFsmEvent* pCurrEvent = itEvent->second;
 		if ( !pCurrEvent ) continue;
@@ -335,7 +335,7 @@ CFsmTransition* CFsm::GetTransition(
 
 	// Loop through the list of transitions
 	TransitionList::const_iterator it = m_Transitions.begin();
-	for ( ; it != m_Transitions.end(); it++ )
+	for ( ; it != m_Transitions.end(); ++it )
 	{
 		CFsmTransition* pCurrTransition = *it;
 		if ( !pCurrTransition ) continue;

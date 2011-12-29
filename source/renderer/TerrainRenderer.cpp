@@ -171,14 +171,14 @@ void TerrainRenderer::EndFrame()
 bool TerrainRenderer::CullPatches(const CFrustum* frustum)
 {
 	m->filteredPatches.clear();
-	for (std::vector<CPatchRData*>::iterator it = m->visiblePatches.begin(); it != m->visiblePatches.end(); it++)
+	for (std::vector<CPatchRData*>::iterator it = m->visiblePatches.begin(); it != m->visiblePatches.end(); ++it)
 	{
 		if (frustum->IsBoxVisible(CVector3D(0, 0, 0), (*it)->GetPatch()->GetWorldBounds()))
 			m->filteredPatches.push_back(*it);
 	}
 
 	m->filteredDecals.clear();
-	for (std::vector<CDecalRData*>::iterator it = m->visibleDecals.begin(); it != m->visibleDecals.end(); it++)
+	for (std::vector<CDecalRData*>::iterator it = m->visibleDecals.begin(); it != m->visibleDecals.end(); ++it)
 	{
 		if (frustum->IsBoxVisible(CVector3D(0, 0, 0), (*it)->GetDecal()->GetWorldBounds()))
 			m->filteredDecals.push_back(*it);

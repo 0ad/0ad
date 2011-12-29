@@ -841,7 +841,7 @@ void CCmpRallyPointRenderer::FixInvisibleWaypoints(std::vector<CVector2D>& coord
 		}
 		else
 		{
-			it++;
+			++it;
 		}
 	}
 }

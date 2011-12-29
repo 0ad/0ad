@@ -240,7 +240,7 @@ public:
 	{
 		JSFunctionSpec* JSI_methods = new JSFunctionSpec[ m_Methods.size() + 1 ];
 		size_t MethodID;
-		for( MethodID = 0; MethodID < m_Methods.size(); MethodID++ )
+		for( MethodID = 0; MethodID < m_Methods.size(); ++MethodID )
 			JSI_methods[MethodID] = m_Methods[MethodID];
 
 		JSI_methods[MethodID].name = 0;
@@ -255,7 +255,7 @@ public:
 	static void ScriptingShutdown()
 	{
 		PropertyTable::iterator it;
-		for( it = m_NativeProperties.begin(); it != m_NativeProperties.end(); it++ )
+		for( it = m_NativeProperties.begin(); it != m_NativeProperties.end(); ++it )
 			delete( it->second );
 		m_NativeProperties.clear();
 	}
@@ -451,12 +451,12 @@ public:
 	void Shutdown()
 	{
 		PropertyTable::iterator it;
-		for( it = m_ScriptProperties.begin(); it != m_ScriptProperties.end(); it++ )
+		for( it = m_ScriptProperties.begin(); it != m_ScriptProperties.end(); ++it )
 			delete( it->second );
 		m_ScriptProperties.clear();
 		ReleaseScriptObject();
 #ifdef ALLOW_NONSHARED_NATIVES
-		for( it = m_NonsharedProperties.begin(); it != m_NonsharedProperties.end(); it++ )
+		for( it = m_NonsharedProperties.begin(); it != m_NonsharedProperties.end(); ++it )
 			delete( it->second );
 		m_NonsharedProperties.clear();
 #endif

@@ -76,7 +76,7 @@ std::vector<sCinemaPath> GetCurrentPaths()
 	const std::map<CStrW, CCinemaPath>& paths = g_Game->GetView()->GetCinema()->GetAllPaths();
 	std::vector<sCinemaPath> atlasPaths;
 
-	for ( std::map<CStrW, CCinemaPath>::const_iterator it=paths.begin(); it!=paths.end(); it++  )
+	for ( std::map<CStrW, CCinemaPath>::const_iterator it=paths.begin(); it!=paths.end(); ++it  )
 	{
 		sCinemaPath path = ConstructCinemaPath(&it->second);	
 		path.name = it->first;
@@ -108,7 +108,7 @@ void SetCurrentPaths(const std::vector<sCinemaPath>& atlasPaths)
 {
 	std::map<CStrW, CCinemaPath> paths;
 	
-	for ( std::vector<sCinemaPath>::const_iterator it=atlasPaths.begin(); it!=atlasPaths.end(); it++ )
+	for ( std::vector<sCinemaPath>::const_iterator it=atlasPaths.begin(); it!=atlasPaths.end(); ++it )
 	{
 		CStrW pathName(*it->name);
 		paths[pathName] = CCinemaPath();
