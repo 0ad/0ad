@@ -6,7 +6,7 @@ use XML::Simple;
 
 use Entity;
 
-use constant CHECK_SCENARIOS => 0;
+use constant CHECK_SCENARIOS_XML => 0;
 use constant ROOT_ACTORS => 1;
 use constant INCLUDE_INTERNAL => 1;
 
@@ -122,14 +122,15 @@ sub add_actors
 sub add_art
 {
     print "Loading art files...\n";
+    push @files, find_files('art/textures/terrain', 'dds|png|jpg|tga');
     push @files, find_files('art/textures/skins', 'dds|png|jpg|tga');
     push @files, find_files('art/meshes', 'pmd|dae');
     push @files, find_files('art/animation', 'psa|dae');
 }
 
-sub add_scenarios
+sub add_scenarios_xml
 {
-    print "Loading scenarios...\n";
+    print "Loading scenario XML...\n";
     my @mapfiles = find_files('maps/scenarios', 'xml');
     for my $f (sort @mapfiles)
     {
@@ -158,6 +159,63 @@ sub add_scenarios
                 push @deps, [ $f, "simulation/templates/$template.xml" ];
             }
         }
+    }
+}
+
+sub add_scenarios_pmp
+{
+    print "Loading scenario PMP...\n";
+
+    # Need to generate terrain texture filename=>path lookup first
+    my %terrains;
+    for my $f (find_files('art/textures/terrain/types', 'dds|png|jpg|tga'))
+    {
+        $f =~ /([^\/]+)\.(dds|png|jpg|tga)/ or die;
+        warn "Duplicate terrain name '$1' (from '$terrains{$1}' and '$f')\n" if $terrains{$1};
+        $terrains{$1} = $f;
+    }
+
+    my @mapfiles = find_files('maps/scenarios', 'pmp');
+    for my $f (sort @mapfiles)
+    {
+        push @files, $f;
+
+        push @roots, $f;
+
+        open my $fh, vfs_to_physical($f) or die "Failed to open '$f': $!";
+        binmode $fh;
+
+        my $buf;
+
+        read $fh, $buf, 4;
+        die "Invalid PMP file ($buf)" unless $buf eq "PSMP";
+
+        read $fh, $buf, 4;
+        my $version = unpack 'V', $buf;
+        die "Invalid PMP file ($version)" unless $version == 5;
+
+        read $fh, $buf, 4;
+        my $datasize = unpack 'V', $buf;
+
+        read $fh, $buf, 4;
+        my $mapsize = unpack 'V', $buf;
+
+        seek $fh, 2 * ($mapsize*16+1)*($mapsize*16+1), 1; # heightmap
+
+        read $fh, $buf, 4;
+        my $numtexs = unpack 'V', $buf;
+
+        for (0..$numtexs-1)
+        {
+            read $fh, $buf, 4;
+            my $len = unpack 'V', $buf;
+            my $str;
+            read $fh, $str, $len;
+
+            push @deps, [ $f, $terrains{$str} || "art/textures/terrain/types/(unknown)/$str" ];
+        }
+
+        # ignore patches data
     }
 }
 
@@ -244,7 +302,9 @@ sub check_unused
     }
 }
 
-add_scenarios() if CHECK_SCENARIOS;
+add_scenarios_xml() if CHECK_SCENARIOS_XML;
+
+add_scenarios_pmp();
 
 add_entities();
 
