@@ -130,7 +130,7 @@ Status wmi_GetClassInstances(const wchar_t* className, WmiInstances& instances)
 		pObj->BeginEnumeration(WBEM_FLAG_NONSYSTEM_ONLY);
 		for(;;)
 		{
-			BSTR name;
+			BSTR name = NULL;
 			VARIANT value;
 			VariantInit(&value);
 			if(pObj->Next(0, &name, &value, 0, 0) != WBEM_S_NO_ERROR)
