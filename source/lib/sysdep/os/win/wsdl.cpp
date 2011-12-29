@@ -219,7 +219,7 @@ static void wnd_UpdateWindowDimensions(DWORD windowStyle, int& w, int& h)
 	RECT r;
 	r.left = r.top = 0;
 	r.right = w; r.bottom = h;
-	if (AdjustWindowRectEx(&r, windowStyle, FALSE, 0))
+	if(AdjustWindowRectEx(&r, windowStyle, FALSE, 0))
 	{
 		w = r.right - r.left;
 		h = r.bottom - r.top;
@@ -244,7 +244,7 @@ static HWND wnd_CreateWindow(int w, int h)
 	// no CS_VREDRAW and CS_HREDRAW - avoids redrawing when resized.
 	wc.style = CS_OWNDC;	// (see g_hDC definition)
 	wc.lpfnWndProc = OnMessage;
-	wc.lpszClassName = L"WSDL";
+	wc.lpszClassName = L"WSDL{55752F43-0241-492C-8648-C7243397FCE4}";
 	wc.hInstance = hInst;
 	ATOM class_atom = RegisterClassW(&wc);
 	if(!class_atom)
@@ -256,8 +256,20 @@ static HWND wnd_CreateWindow(int w, int h)
 	const DWORD windowStyle = wnd_ChooseWindowStyle(fullscreen);
 	wnd_UpdateWindowDimensions(windowStyle, w, h);
 
-	// note: you can override the hardcoded window name via SDL_WM_SetCaption.
-	return CreateWindowExW(WS_EX_APPWINDOW, (LPCWSTR)(uintptr_t)class_atom, L"wsdl", windowStyle, 0, 0, w, h, 0, 0, hInst, 0);
+	// note: you can override the hard-coded window name via SDL_WM_SetCaption.
+	HWND hWnd = CreateWindowExW(WS_EX_APPWINDOW, (LPCWSTR)(uintptr_t)class_atom, L"wsdl", windowStyle, 0, 0, w, h, 0, 0, hInst, 0);
+	if(!wutil_IsValidHandle(hWnd))
+		DEBUG_WARN_ERR(ERR::FAIL);
+	return hWnd;
+}
+
+
+static RECT ClientRect(HWND hWnd)
+{
+	RECT rect;
+	ENSURE(wutil_IsValidHandle(hWnd));
+	WARN_IF_FALSE(GetClientRect(hWnd, &rect));
+	return rect;
 }
 
 
@@ -368,7 +380,7 @@ SDL_Surface* SDL_SetVideoMode(int w, int h, int bpp, Uint32 flags)
 	// get current mode settings
 	memset(&dm, 0, sizeof(dm));
 	dm.dmSize = sizeof(dm);
-	EnumDisplaySettings(0, ENUM_CURRENT_SETTINGS, &dm);
+	WARN_IF_FALSE(EnumDisplaySettings(0, ENUM_CURRENT_SETTINGS, &dm));
 	const int cur_w = (int)dm.dmPelsWidth, cur_h = (int)dm.dmPelsHeight;
 
 	// independent of resolution; app must always get bpp it wants
@@ -383,7 +395,7 @@ SDL_Surface* SDL_SetVideoMode(int w, int h, int bpp, Uint32 flags)
 	}
 	// the (possibly changed) mode will be (re)set at next WM_ACTIVATE
 
-	if(g_hWnd == (HWND)INVALID_HANDLE_VALUE)
+	if(!wutil_IsValidHandle(g_hWnd))
 	{
 		g_hWnd = wnd_CreateWindow(w, h);
 		if(!wutil_IsValidHandle(g_hWnd))
@@ -412,24 +424,19 @@ SDL_Surface* SDL_SetVideoMode(int w, int h, int bpp, Uint32 flags)
 		WARN_IF_FALSE(SetWindowLongW(g_hWnd, GWL_STYLE, windowStyle));
 		WARN_IF_FALSE(SetWindowPos(g_hWnd, 0, 0, 0, w, h, swp_flags));
 
+		LONG status;
 		if(fullscreen)
 		{
 			ShowWindow(g_hWnd, SW_RESTORE);
-			ChangeDisplaySettings(&dm, CDS_FULLSCREEN);
+			status = ChangeDisplaySettings(&dm, CDS_FULLSCREEN);
 		}
 		else
 		{
-			ChangeDisplaySettings(0, 0);
+			status = ChangeDisplaySettings(0, 0);
 			// don't ShowWindow with SW_MINIMIZE (we just want to update)
 		}
+		ENSURE(status == DISP_CHANGE_SUCCESSFUL);
 	}
-
-	// get the actual updated window size and return it
-	static SDL_Surface screen;
-	RECT rect;
-	WARN_IF_FALSE(GetClientRect(g_hWnd, &rect));
-	screen.w = rect.right;
-	screen.h = rect.bottom;
 
 	// (required for ogl_HaveExtension, but callers should also invoke
 	// ogl_Init in case the real SDL is being used.)
@@ -437,6 +444,15 @@ SDL_Surface* SDL_SetVideoMode(int w, int h, int bpp, Uint32 flags)
 	if(ogl_HaveExtension("WGL_EXT_swap_control") && pwglSwapIntervalEXT)
 		pwglSwapIntervalEXT(vsyncEnabled);
 
+	const RECT rect = ClientRect(g_hWnd);	// updated window size
+
+	static SDL_PixelFormat format;
+	format.BitsPerPixel = bpp;
+
+	static SDL_Surface screen;
+	screen.w = rect.right;
+	screen.h = rect.bottom;
+	screen.format = &format;
 	return &screen;
 }
 
@@ -463,7 +479,7 @@ static void video_Shutdown()
 
 void SDL_GL_SwapBuffers()
 {
-	SwapBuffers(g_hDC);
+	WARN_IF_FALSE(SwapBuffers(g_hDC));
 }
 
 
@@ -667,7 +683,7 @@ static LRESULT OnKey(HWND UNUSED(hWnd), UINT vk, BOOL fDown, int UNUSED(cRepeat)
 		// key is currently pressed.
 		const UINT scancode = flags;
 		u8 key_states[256];
-		GetKeyboardState(key_states);
+		WARN_IF_FALSE(GetKeyboardState(key_states));
 		WCHAR wchars[8];
 		int output_count = ToUnicode(vk, scancode, key_states, wchars, ARRAY_SIZE(wchars), 0);
 		// translation succeeded; queue each produced character
@@ -796,7 +812,8 @@ static LRESULT OnActivate(HWND hWnd, UINT state, HWND UNUSED(hWndActDeact), BOOL
 		if(fullscreen)
 		{
 			ShowWindow(g_hWnd, SW_RESTORE);
-			ChangeDisplaySettings(&dm, CDS_FULLSCREEN);
+			const LONG ret = ChangeDisplaySettings(&dm, CDS_FULLSCREEN);
+			ENSURE(ret == DISP_CHANGE_SUCCESSFUL);
 		}
 
 		// re-assert mouse grab state
@@ -815,8 +832,9 @@ static LRESULT OnActivate(HWND hWnd, UINT state, HWND UNUSED(hWndActDeact), BOOL
 		gammaRamp.RestoreOriginal();
 		if(fullscreen)
 		{
-			ChangeDisplaySettings(0, 0);
-			ShowWindow(g_hWnd, SW_MINIMIZE);
+			const LONG ret = ChangeDisplaySettings(0, 0);
+			ENSURE(ret == DISP_CHANGE_SUCCESSFUL);
+			WARN_IF_FALSE(ShowWindow(g_hWnd, SW_MINIMIZE));
 		}
 	}
 
@@ -924,8 +942,7 @@ static bool mouse_GetCoords(int screen_x, int screen_y, int& x, int& y)
 	}
 
 	{
-		RECT client_rect;
-		WARN_IF_FALSE(GetClientRect(g_hWnd, &client_rect));
+		const RECT client_rect = ClientRect(g_hWnd);
 		if(!PtInRect(&client_rect, client_pt))
 			return false;
 	}
@@ -948,8 +965,8 @@ static void mouse_Update()
 		return;
 
 	// don't use DirectInput, because we want to respect the user's mouse
-	// sensitivity settings. Windows messages are laggy, so query current
-	// position directly.
+	// sensitivity settings. Windows messages are prone to lag,
+	// so query current position directly.
 	// note: GetCursorPos fails if the desktop is switched (e.g. after
 	// pressing Ctrl+Alt+Del), which can be ignored.
 	POINT screen_pt;
@@ -1018,14 +1035,14 @@ static LRESULT OnMouseButton(HWND UNUSED(hWnd), UINT uMsg, int client_x, int cli
 	{
 		// grab mouse to ensure we get up events
 		if(++outstanding_press_events > 0)
-			SetCapture(g_hWnd);
+			(void)SetCapture(g_hWnd);	// (returns previous window)
 	}
 	else
 	{
 		// release after all up events received
 		if(--outstanding_press_events <= 0)
 		{
-			ReleaseCapture();
+			WARN_IF_FALSE(ReleaseCapture());
 			outstanding_press_events = 0;
 		}
 	}
@@ -1097,7 +1114,7 @@ int SDL_ShowCursor(int toggle)
 		// it maintains a counter.
 		if(cursor_visible != toggle)
 		{
-			ShowCursor(toggle);
+			(void)ShowCursor(toggle);	// (returns display counter)
 			cursor_visible = toggle;
 		}
 	}
@@ -1113,11 +1130,10 @@ SDL_GrabMode SDL_WM_GrabInput(SDL_GrabMode mode)
 	prevMode = mode;
 
 	if(mode == SDL_GRAB_OFF)
-		ClipCursor(0);
+		WARN_IF_FALSE(ClipCursor(0));
 	else
 	{
-		RECT clientRect;
-		WARN_IF_FALSE(GetClientRect(g_hWnd, &clientRect));
+		const RECT clientRect = ClientRect(g_hWnd);
 		POINT upperLeft = { clientRect.left, clientRect.top };
 		WARN_IF_FALSE(ClientToScreen(g_hWnd, &upperLeft));
 		POINT lowerRight = { clientRect.right, clientRect.bottom };
@@ -1199,7 +1215,7 @@ static LRESULT OnPaint(HWND hWnd)
 	// BeginPaint/EndPaint is unnecessary (see http://opengl.czweb.org/ch04/082-084.html)
 	// however, we at least need to validate the window to prevent
 	// continuous WM_PAINT messages.
-	ValidateRect(hWnd, 0);
+	WARN_IF_FALSE(ValidateRect(hWnd, 0));
 	return 0;
 }
 
@@ -1236,12 +1252,12 @@ static DefWindowProcDisposition OnSysCommand(WPARAM wParam)
 	{
 	case SC_SCREENSAVE:
 		// disable screen-saver in fullscreen mode (other applications
-		// may interfere with us, and have set the system-wide gamma)
+		// may interfere with us, and we have set the system-wide gamma)
 		if(fullscreen)
 			return kSkipDefWindowProc;
 		break;
 
-	// Alt+F4 or system menu doubleclick/exit
+	// Alt+F4 or system menu double-click / exit
 	case SC_CLOSE:
 		QueueQuitEvent();
 		break;
@@ -1320,7 +1336,7 @@ void SDL_PumpEvents()
 	MSG msg;
 	while(PeekMessageW(&msg, 0, 0, 0, PM_REMOVE))
 	{
-		DispatchMessageW(&msg);
+		(void)DispatchMessageW(&msg);	// (returns window procedure's return value)
 	}
 }
 
@@ -1406,7 +1422,7 @@ SDL_sem* SDL_CreateSemaphore(int cnt)
 void SDL_DestroySemaphore(SDL_sem* sem)
 {
 	HANDLE h = HANDLE_from_sem(sem);
-	CloseHandle(h);
+	WARN_IF_FALSE(CloseHandle(h));
 }
 
 int SDL_SemPost(SDL_sem* sem)

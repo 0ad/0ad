@@ -102,7 +102,7 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 	// Grab the current video settings
 	m_CurrentW = screen->w;
 	m_CurrentH = screen->h;
-	m_CurrentBPP = bpp; // getting bpp from surface not supported in wsdl
+	m_CurrentBPP = screen->format->BitsPerPixel;
 
 	g_xres = m_CurrentW;
 	g_yres = m_CurrentH;
