@@ -9,13 +9,20 @@ use File::Find;
 
 my $vfsroot = '../../../binaries/data/mods';
 
-sub get_file
+sub get_filename
 {
     my ($vfspath) = @_;
     my $fn = "$vfsroot/public/simulation/templates/$vfspath.xml";
     if (not -e $fn) {
         $fn = "$vfsroot/internal/simulation/templates/$vfspath.xml";
     }
+    return $fn;
+}
+
+sub get_file
+{
+    my ($vfspath) = @_;
+    my $fn = get_filename($vfspath);
     open my $f, $fn or die "Error loading $fn: $!";
     local $/;
     return <$f>;
