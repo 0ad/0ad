@@ -111,7 +111,7 @@ bool AreApicIdsReliable()
 }
 
 
-static size_t IndexFromApicId(const ApicId* apicIds, size_t apicId)
+static size_t IndexFromApicId(const ApicId* apicIds, ApicId apicId)
 {
 	ModuleInit(&apicInitState, InitApicIds);
 

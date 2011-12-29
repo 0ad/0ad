@@ -27,8 +27,10 @@
 #include "precompiled.h"
 #include "lib/sysdep/gfx.h"
 
+#define WSDL_NO_KEYSYM
 #include "lib/external_libraries/sdl.h"
 #include "lib/ogl.h"
+
 #if OS_WIN
 # include "lib/sysdep/os/win/wgfx.h"
 #endif

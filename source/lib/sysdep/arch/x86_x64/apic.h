@@ -33,7 +33,7 @@ typedef u8 ApicId;	// not necessarily contiguous values
  * feasible - mahaf_MapPhysicalMemory only works reliably on WinXP. we also
  * don't want to interfere with the OS's constant use of the APIC registers.
  **/
-LIB_API u8 GetApicId();
+LIB_API ApicId GetApicId();
 
 // if this returns false, apicId = contiguousId = processor.
 // otherwise, there are unspecified but bijective mappings between
