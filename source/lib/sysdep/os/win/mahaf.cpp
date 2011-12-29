@@ -293,10 +293,17 @@ static void StartDriver(const OsPath& driverPathname)
 			switch(GetLastError())
 			{
 			case ERROR_SERVICE_ALREADY_RUNNING:
-				break;	// ok, no action needed
+				// ok, no action needed
+				break;
 			case ERROR_ACCESS_DENIED:
-				break;	// Win7, can't start service; must use aken_install.bat
-			default:	// unexpected problem
+				// Win7, can't start service; must use aken_install.bat
+				break;
+			case ERROR_INVALID_IMAGE_HASH:
+				// Win7 x86 rejects our code signing certificate; must enable
+				// "test signing" mode via aken_install.bat
+				break;
+			default:
+				// unexpected problem
 				DEBUG_WARN_ERR(ERR::LOGIC);
 				break;
 			}

@@ -347,7 +347,7 @@ Status sys_StatusDescription(int user_err, wchar_t* buf, size_t max_chars)
 		return INFO::OK;
 	}
 
-	wchar_t message[200];
+	wchar_t message[400];
 	{
 		const LPCVOID source = 0;	// ignored (we're not using FROM_HMODULE etc.)
 		const DWORD lang_id = 0;	// look for neutral, then current locale
