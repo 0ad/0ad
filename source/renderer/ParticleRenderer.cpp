@@ -82,10 +82,15 @@ void ParticleRenderer::PrepareForRendering()
 	// renderer initialisation is complete, so load it the first time through here
 	if (!m->shader)
 	{
-		typedef std::map<CStr, CStr> Defines;
-		Defines defNull;
-		m->shader = g_Renderer.GetShaderManager().LoadProgram("particle", defNull);
-		m->shaderSolid = g_Renderer.GetShaderManager().LoadProgram("particle_solid", defNull);
+		// Only construct the shaders when shaders are supported and enabled; otherwise
+		// RenderParticles will never be called so it's safe to leave the shaders as null
+		if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+		{
+			typedef std::map<CStr, CStr> Defines;
+			Defines defNull;
+			m->shader = g_Renderer.GetShaderManager().LoadProgram("particle", defNull);
+			m->shaderSolid = g_Renderer.GetShaderManager().LoadProgram("particle_solid", defNull);
+		}
 	}
 
 	{
