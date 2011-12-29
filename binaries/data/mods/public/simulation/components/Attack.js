@@ -7,6 +7,9 @@ var bonusesSchema =
 				"<element>" +
 					"<anyName/>" +
 					"<interleave>" +
+						"<optional>" +
+							"<element name='Civ' a:help='If an entity has this civ then the bonus is applied'><text/></element>" +
+						"</optional>" +
 						"<element name='Classes' a:help='If an entity has all these classes then the bonus is applied'><text/></element>" +
 						"<element name='Multiplier' a:help='The attackers attack strength is multiplied by this'><ref name='nonNegativeDecimal'/></element>" +
 					"</interleave>" +
@@ -26,6 +29,7 @@ Attack.prototype.Schema =
 			"<RepeatTime>1000</RepeatTime>" +
 			"<Bonuses>" +
 				"<Bonus1>" +
+					"<Civ>pers</Civ>" +
 					"<Classes>Infantry</Classes>" +
 					"<Multiplier>1.5</Multiplier>" +
 				"</Bonus1>" +
@@ -170,11 +174,13 @@ Attack.prototype.GetAttackBonus = function(type, target)
 			var bonus = this.template[type].Bonuses[key];
 			
 			var hasClasses = true;
-			var classes = bonus.Classes.split(/\s+/);
-			for (var key in classes)
-				hasClasses = hasClasses && cmpIdentity.HasClass(classes[key]);
+			if (bonus.Classes){
+				var classes = bonus.Classes.split(/\s+/);
+				for (var key in classes)
+					hasClasses = hasClasses && cmpIdentity.HasClass(classes[key]);
+			}
 			
-			if (hasClasses)
+			if (hasClasses && (!bonus.Civ || bonus.Civ === cmpIdentity.GetCiv()))
 				attackBonus *= bonus.Multiplier;
 		}
 	}
