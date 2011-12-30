@@ -98,6 +98,8 @@ Identity.prototype.Schema =
 						"<value>City</value>" +
 						"<value>ConquestCritical</value>" +
 						"<value>Worker</value>" +
+						"<value>Female</value>" +
+						"<value>Healer</value>" +
 						"<value>CitizenSoldier</value>" +
 						"<value>Trade</value>" +
 						"<value>Warship</value>" +
