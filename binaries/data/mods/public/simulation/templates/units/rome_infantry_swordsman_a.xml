@@ -1,26 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/rome_infantry_swordsman_b">
   <Armour>
-    <Hack>7.0</Hack>
-    <Pierce>5.0</Pierce>
-    <Crush>10.0</Crush>
+    <Hack>6.0</Hack>
+    <Pierce>6.0</Pierce>
+    <Crush>6.0</Crush>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>17.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
+      <Hack>14.0</Hack>
     </Melee>
+    <Charge>
+      <Hack>28.0</Hack>
+    </Charge>
   </Attack>
   <Health>
-    <Max>105</Max>
+    <Max>110</Max>
   </Health>
   <Identity>
+    <Rank>Advanced</Rank>
     <SpecificName>Princips</SpecificName>
   </Identity>
   <Promotion>
-    <Entity>rome_infantry_swordsman_e</Entity>
+    <Entity>units/rome_infantry_swordsman_e</Entity>
   </Promotion>
+  <ResourceGatherer>
+    <BaseSpeed>0.75</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>7.0</WalkSpeed>
+    <Run>
+      <Speed>18.0</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/romans/infantry_swordsman_a.xml</Actor>
   </VisualActor>

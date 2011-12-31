@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry_melee_spearman">
-  <Health>
-    <Max>1000</Max>
-  </Health>
   <Identity>
     <Civ>rome</Civ>
 	<SelectionGroupName>units/rome_cavalry_spearman_b</SelectionGroupName>
@@ -11,7 +8,7 @@
     <History>Equites were the elite of Roman society, the added wealth stemming from that position enabling them to obtain horses and therefore serve as cavalry. They were formed into units of 30, known as turmae, armored in chain mail and often wearing fashionable Hellenistic helmets. They used a spear for throwing or over arm stabbing as well as a shield and sword for close combat.</History>
   </Identity>
   <Promotion>
-    <Entity>rome_cavalry_spearman_a</Entity>
+    <Entity>units/rome_cavalry_spearman_a</Entity>
   </Promotion>
   <VisualActor>
     <Actor>units/romans/cavalry_spearman_b.xml</Actor>

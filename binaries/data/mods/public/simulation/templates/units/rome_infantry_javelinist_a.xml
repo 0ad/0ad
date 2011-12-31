@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/rome_infantry_javelinist_b">
   <Armour>
-    <Hack>2.5</Hack>
+    <Hack>4.0</Hack>
     <Pierce>4.0</Pierce>
-    <Crush>3.5</Crush>
+    <Crush>4.0</Crush>
   </Armour>
   <Attack>
     <Ranged>
-      <Hack>0.0</Hack>
-      <Pierce>25.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>34</MaxRange>
-      <ProjectileSpeed>26.0</ProjectileSpeed>
+      <Pierce>30.0</Pierce>
+      <MaxRange>40</MaxRange>
     </Ranged>
   </Attack>
   <Health>
-    <Max>90</Max>
+    <Max>100</Max>
   </Health>
+  <Identity>
+    <Rank>Advanced</Rank>
+  </Identity>
   <Promotion>
-    <Entity>rome_infantry_javelinist_e</Entity>
+    <Entity>units/rome_infantry_javelinist_e</Entity>
   </Promotion>
-  <Stamina>
-    <Max>550</Max>
-  </Stamina>
+  <ResourceGatherer>
+    <BaseSpeed>0.75</BaseSpeed>
+  </ResourceGatherer>
   <UnitMotion>
     <WalkSpeed>8.5</WalkSpeed>
     <Run>
-      <Speed>16.5</Speed>
+      <Speed>17.0</Speed>
     </Run>
   </UnitMotion>
   <VisualActor>
