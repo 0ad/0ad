@@ -5,6 +5,12 @@
     <SpecificName>Saeptum</SpecificName>
     <History>A place for a farmer to pen his animals. Garrison a sheep, goat, or cow here to gain a trickle of the food resource. Garrisoning an animal here also "fattens" them so that they may be slaughtered and gathered for a quick burst of food.</History>
   </Identity>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      gaia/fauna_goat
+      gaia/fauna_sheep
+    </Entities>
+  </TrainingQueue>
   <VisualActor>
     <Actor>structures/plot_corral.xml</Actor>
   </VisualActor>
