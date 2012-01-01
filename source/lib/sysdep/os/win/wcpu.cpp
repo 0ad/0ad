@@ -80,7 +80,7 @@ Status wcpu_ReadFrequencyFromRegistry(u32& freqMhz)
 	if(RegOpenKeyExW(HKEY_LOCAL_MACHINE, L"HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0", 0, KEY_QUERY_VALUE, &hKey) != ERROR_SUCCESS)
 		return ERR::NOT_SUPPORTED;
 
-	DWORD size = sizeof(&freqMhz);
+	DWORD size = sizeof(freqMhz);
 	LONG ret = RegQueryValueExW(hKey, L"~MHz", 0, 0, (LPBYTE)&freqMhz, &size);
 
 	RegCloseKey(hKey);
