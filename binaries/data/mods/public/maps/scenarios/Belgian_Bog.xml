@@ -4,7 +4,7 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cirrus</SkySet>
-		<SunColour r="1.10156" g="0.881248" b="0.431984"/>
+		<SunColour r="1.10156" g="0.881248" b="0.427664"/>
 		<SunElevation angle="0.291456"/>
 		<SunRotation angle="-0.79767"/>
 		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="490.173" y="142.12" z="161.769"/>
+		<Position x="326.869" y="191.368" z="253.195"/>
 		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -3334,12 +3334,6 @@
 			<Position x="387.9095" z="298.4842"/>
 			<Orientation y="0.79572"/>
 		</Entity>
-		<Entity uid="681">
-			<Template>structures/celt_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="146.77022" z="519.03266"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="682">
 			<Template>structures/celt_civil_centre</Template>
 			<Player>1</Player>
@@ -3877,14 +3871,14 @@
 		<Entity uid="771">
 			<Template>gaia/flora_tree_aleppo_pine</Template>
 			<Player>0</Player>
-			<Position x="233.63923" z="173.6471"/>
-			<Orientation y="-2.44204"/>
+			<Position x="233.209" z="175.34441"/>
+			<Orientation y="-0.52852"/>
 		</Entity>
 		<Entity uid="772">
 			<Template>gaia/flora_tree_aleppo_pine</Template>
 			<Player>0</Player>
 			<Position x="227.34568" z="170.67682"/>
-			<Orientation y="-0.83852"/>
+			<Orientation y="-0.87813"/>
 		</Entity>
 		<Entity uid="773">
 			<Template>gaia/flora_tree_aleppo_pine</Template>
@@ -4960,18 +4954,6 @@
 			<Position x="850.23536" z="483.2761"/>
 			<Orientation y="-2.44721"/>
 		</Entity>
-		<Entity uid="967">
-			<Template>other/celt_longhouse</Template>
-			<Player>2</Player>
-			<Position x="177.47197" z="532.92566"/>
-			<Orientation y="-2.44555"/>
-		</Entity>
-		<Entity uid="969">
-			<Template>other/celt_longhouse</Template>
-			<Player>2</Player>
-			<Position x="166.14437" z="542.75293"/>
-			<Orientation y="-2.42032"/>
-		</Entity>
 		<Entity uid="970">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
@@ -5000,7 +4982,7 @@
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
 			<Position x="931.43464" z="491.59263"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="-0.00393"/>
 		</Entity>
 		<Entity uid="975">
 			<Template>gaia/flora_bush_berry</Template>
@@ -13753,19 +13735,19 @@
 		<Entity uid="2493">
 			<Template>gaia/special_treasure_wood</Template>
 			<Player>0</Player>
-			<Position x="125.0228" z="525.67756"/>
-			<Orientation y="2.35621"/>
+			<Position x="110.84935" z="528.33033"/>
+			<Orientation y="2.7933"/>
 		</Entity>
 		<Entity uid="2494">
 			<Template>gaia/special_treasure_wood</Template>
 			<Player>0</Player>
-			<Position x="125.11889" z="531.17359"/>
+			<Position x="117.02337" z="528.63367"/>
 			<Orientation y="-0.71753"/>
 		</Entity>
 		<Entity uid="2495">
 			<Template>gaia/special_treasure_wood</Template>
 			<Player>0</Player>
-			<Position x="128.955" z="528.64527"/>
+			<Position x="112.56153" z="537.9015"/>
 			<Orientation y="0.46299"/>
 		</Entity>
 		<Entity uid="2496">
@@ -22426,6 +22408,12 @@
 			<Template>gaia/geology_metal_tropic_slabs</Template>
 			<Player>0</Player>
 			<Position x="648.89606" z="300.65668"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4248">
+			<Template>structures/rome_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="149.65912" z="526.23511"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
