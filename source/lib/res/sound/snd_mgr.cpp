@@ -933,7 +933,7 @@ static Status SndData_validate(const SndData* sd)
 static Status SndData_to_string(const SndData* sd, wchar_t* buf)
 {
 	const wchar_t* type = (sd->type == SD_CLIP)? L"clip" : L"stream";
-	swprintf_s(buf, H_STRING_LEN, L"%ls; al_buf=%d", type, sd->al_buf);
+	swprintf_s(buf, H_STRING_LEN, L"%ls; al_buf=%u", type, sd->al_buf);
 	return INFO::OK;
 }
 
@@ -1309,7 +1309,7 @@ static Status VSrc_validate(const VSrc* vs)
 
 static Status VSrc_to_string(const VSrc* vs, wchar_t* buf)
 {
-	swprintf_s(buf, H_STRING_LEN, L"al_src = %d", vs->al_src);
+	swprintf_s(buf, H_STRING_LEN, L"al_src = %u", vs->al_src);
 	return INFO::OK;
 }
 

@@ -317,7 +317,7 @@ bool CNetServerWorker::RunStep()
 		// Report the client address
 		char hostname[256] = "(error)";
 		enet_address_get_host_ip(&event.peer->address, hostname, ARRAY_SIZE(hostname));
-		LOGMESSAGE(L"Net server: Received connection from %hs:%u", hostname, event.peer->address.port);
+		LOGMESSAGE(L"Net server: Received connection from %hs:%u", hostname, (unsigned int)event.peer->address.port);
 
 		// Set up a session object for this peer
 

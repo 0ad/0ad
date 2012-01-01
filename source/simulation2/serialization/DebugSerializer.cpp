@@ -161,7 +161,7 @@ void CDebugSerializer::PutRaw(const char* name, const u8* data, size_t len)
 	char buf[4];
 	for (size_t i = 0; i < len; ++i)
 	{
-		sprintf_s(buf, ARRAY_SIZE(buf), " %02x", data[i]);
+		sprintf_s(buf, ARRAY_SIZE(buf), " %02x", (unsigned int)data[i]);
 		m_Stream << buf;
 	}
 

@@ -252,7 +252,7 @@ private:
 
 				// Associate the frame number with the "frame" region
 				if (i == 0)
-					m_Storage.RecordAttributePrintf("%d", frame.num);
+					m_Storage.RecordAttributePrintf("%u", frame.num);
 			}
 
 			PopFrontFrame();
@@ -404,7 +404,7 @@ private:
 
 				// Associate the frame number with the "frame" region
 				if (i == 0)
-					m_Storage.RecordAttributePrintf("%d", frame.num);
+					m_Storage.RecordAttributePrintf("%u", frame.num);
 
 				// Advance by the elapsed time to the next event
 				GLuint64 queryElapsed = 0;
@@ -636,7 +636,7 @@ private:
 					m_Storage.Record(CProfiler2::ITEM_ENTER, lastTime, frame.events[i].id);
 
 					if (i == 0)
-						m_Storage.RecordAttributePrintf("%d", frame.num);
+						m_Storage.RecordAttributePrintf("%u", frame.num);
 
 					double elapsed = 0.0;
 
@@ -659,7 +659,7 @@ private:
 								ENSURE(counter.size == 4);
 								GLuint value;
 								memcpy(&value, buf + counter.offset, counter.size);
-								m_Storage.RecordAttributePrintf("%s: %d", counter.name.c_str(), value);
+								m_Storage.RecordAttributePrintf("%s: %u", counter.name.c_str(), value);
 							}
 							else if (counter.type == INTEL_PERFQUERIES_TYPE_UNSIGNED_INT64)
 							{
@@ -684,7 +684,7 @@ private:
 								GLuint value;
 								memcpy(&value, buf + counter.offset, counter.size);
 								ENSURE(value == 0 || value == 1);
-								m_Storage.RecordAttributePrintf("%s: %d", counter.name.c_str(), value);
+								m_Storage.RecordAttributePrintf("%s: %u", counter.name.c_str(), value);
 							}
 							else
 							{

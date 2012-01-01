@@ -401,7 +401,7 @@ void ShadowMapInternals::CreateTexture()
 
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
-		LOGWARNING(L"Framebuffer object incomplete: %04d", status);
+		LOGWARNING(L"Framebuffer object incomplete: 0x%04X", status);
 
 		// Disable shadow rendering (but let the user try again if they want)
 		g_Renderer.m_Options.m_Shadows = false;

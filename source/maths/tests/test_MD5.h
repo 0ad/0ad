@@ -26,7 +26,7 @@ public:
 	{
 		char digeststr[MD5::DIGESTSIZE*2+1];
 		for (size_t i = 0; i < MD5::DIGESTSIZE; ++i)
-			sprintf_s(digeststr+2*i, 3, "%02x", digest[i]);
+			sprintf_s(digeststr+2*i, 3, "%02x", (unsigned int)digest[i]);
 		return digeststr;
 	}
 

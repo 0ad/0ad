@@ -1060,7 +1060,7 @@ void CGUI::LoadXmlFile(const VfsPath& Filename, boost::unordered_set<VfsPath>& P
 	}
 	catch (PSERROR_GUI& e)
 	{
-		LOGERROR(L"Errors loading GUI file %ls (%d)", Filename.string().c_str(), e.getCode());
+		LOGERROR(L"Errors loading GUI file %ls (%u)", Filename.string().c_str(), e.getCode());
 		return;
 	}
 }
