@@ -2,7 +2,7 @@
 <Entity parent="units/rome_infantry_swordsman_a">
   <Armour>
     <Hack>8.0</Hack>
-    <Pierce>8.0</Pierce>
+    <Pierce>10.0</Pierce>
     <Crush>6.0</Crush>
   </Armour>
   <Attack>
@@ -26,7 +26,7 @@
   <UnitMotion>
     <WalkSpeed>6.5</WalkSpeed>
     <Run>
-      <Speed>16.8</Speed>
+      <Speed>13.0</Speed>
     </Run>
   </UnitMotion>
   <VisualActor>
