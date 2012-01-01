@@ -522,7 +522,7 @@ public:
 			debug_printf(L"# size = %d\n", (int)str.str().length());
 			debug_printf(L"# hash = ");
 			for (size_t i = 0; i < hash.size(); ++i)
-				debug_printf(L"%02x", (u8)hash[i]);
+				debug_printf(L"%02x", (unsigned int)(u8)hash[i]);
 			debug_printf(L"\n");
 		}
 

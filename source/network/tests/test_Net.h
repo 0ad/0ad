@@ -273,7 +273,7 @@ public:
 
 		for (size_t i = 0; ; ++i)
 		{
-			debug_printf(L"[%d]\n", client2B.GetCurrState());
+			debug_printf(L"[%u]\n", client2B.GetCurrState());
 			client2B.Poll();
 			if (client2B.GetCurrState() == NCS_PREGAME)
 				break;

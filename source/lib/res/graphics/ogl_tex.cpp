@@ -505,7 +505,7 @@ static Status OglTex_validate(const OglTex* ot)
 
 static Status OglTex_to_string(const OglTex* ot, wchar_t* buf)
 {
-	swprintf_s(buf, H_STRING_LEN, L"OglTex id=%d flags=%x", ot->id, ot->flags);
+	swprintf_s(buf, H_STRING_LEN, L"OglTex id=%u flags=%x", ot->id, (unsigned int)ot->flags);
 	return INFO::OK;
 }
 

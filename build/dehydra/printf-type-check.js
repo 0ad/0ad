@@ -125,24 +125,34 @@ function compare_format_type(ctype, functype, fmt, arg, loc) {
         error('Illegal %hs used in printf-style function', loc());
 
     if (functype == 'printf') {
-        if (t.match(/^[diouxXc]$/))
-            return (arg == 'int' || arg == 'unsigned int');
+        if (t.match(/^[dic]$/))
+            return (arg == 'int');
+        if (t.match(/^[ouxX]$/))
+            return (arg == 'unsigned int');
         if (t.match(/^lc$/))
             return (arg == 'int' || arg == 'unsigned int'); // spec says wint_t
-        if (t.match(/^l[diouxX]$/))
-            return (arg == 'long int' || arg == 'long unsigned int');
-        if (t.match(/^ll[diouxX]$/))
-            return (arg == 'long long int' || arg == 'long long unsigned int');
+        if (t.match(/^l[di]$/))
+            return (arg == 'long int');
+        if (t.match(/^l[ouxX]$/))
+            return (arg == 'long unsigned int');
+        if (t.match(/^ll[di]$/))
+            return (arg == 'long long int');
+        if (t.match(/^ll[ouxX]$/))
+            return (arg == 'long long unsigned int');
         if (t.match(/^[fFeEgGaA]$/))
             return (arg == 'double');
         if (t.match(/^p$/))
             return (arg.match(/\*$/));
         // ...
     } else if (functype == 'scanf') {
-        if (t.match(/^[dioux]$/))
+        if (t.match(/^[di]$/))
             return (arg == 'int*');
-        if (t.match(/^l[diouxX]$/))
+        if (t.match(/^[ouxX]$/))
+            return (arg == 'unsigned int*');
+        if (t.match(/^l[di]$/))
             return (arg == 'long int*');
+        if (t.match(/^l[ouxX]$/))
+            return (arg == 'long unsigned int*');
         if (t.match(/^z[diouxX]$/))
             return (arg == 'long unsigned int*'); // spec says size_t*
         if (t.match(/^[c[]$/))

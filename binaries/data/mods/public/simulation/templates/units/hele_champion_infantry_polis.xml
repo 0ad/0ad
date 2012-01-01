@@ -1,34 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_spearman">
   <Armour>
-    <Hack>12.0</Hack>
-    <Pierce>12.0</Pierce>
-    <Crush>12.0</Crush>
+    <Hack>15.0</Hack>
+    <Pierce>15.0</Pierce>
+    <Crush>15.0</Crush>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>10.0</Hack>
+      <Hack>12.0</Hack>
       <Pierce>15.0</Pierce>
       <MaxRange>6.0</MaxRange>
 	  <Bonuses>
 		<BonusCarths>
-		  <Classes>Cart</Classes>
+		  <Civ>cart</Civ>
+		  <Classes></Classes>
 		  <Multiplier>1.1</Multiplier>
 		</BonusCarths>
 		<BonusCelts>
-		  <Classes>Celt</Classes>
+		  <Civ>celt</Civ>
+		  <Classes></Classes>
 		  <Multiplier>1.1</Multiplier>
 		</BonusCelts>
 		<BonusIberians>
-		  <Classes>Iber</Classes>
+		  <Civ>iber</Civ>
+		  <Classes></Classes>
 		  <Multiplier>1.1</Multiplier>
 		</BonusIberians>
 		<BonusPersians>
-		  <Classes>Pers</Classes>
+		  <Civ>pers</Civ>
+		  <Classes></Classes>
 		  <Multiplier>1.1</Multiplier>
 		</BonusPersians>
 		<BonusRomans>
-		  <Classes>Rome</Classes>
+		  <Civ>rome</Civ>
+		  <Classes></Classes>
 		  <Multiplier>1.1</Multiplier>
 		</BonusRomans>
 	  </Bonuses>
@@ -39,23 +44,28 @@
       <MaxRange>6.0</MaxRange>
 	  <Bonuses>
 		<BonusCarths>
-		  <Classes>Cart</Classes>
+		  <Civ>cart</Civ>
+		  <Classes></Classes>
 		  <Multiplier>1.1</Multiplier>
 		</BonusCarths>
 		<BonusCelts>
-		  <Classes>Celt</Classes>
+		  <Civ>celt</Civ>
+		  <Classes></Classes>
 		  <Multiplier>1.1</Multiplier>
 		</BonusCelts>
 		<BonusIberians>
-		  <Classes>Iber</Classes>
+		  <Civ>iber</Civ>
+		  <Classes></Classes>
 		  <Multiplier>1.1</Multiplier>
 		</BonusIberians>
 		<BonusPersians>
-		  <Classes>Pers</Classes>
+		  <Civ>pers</Civ>
+		  <Classes></Classes>
 		  <Multiplier>1.1</Multiplier>
 		</BonusPersians>
 		<BonusRomans>
-		  <Classes>Rome</Classes>
+		  <Civ>rome</Civ>
+		  <Classes></Classes>
 		  <Multiplier>1.1</Multiplier>
 		</BonusRomans>
 	  </Bonuses>
@@ -69,7 +79,6 @@
   </Cost>
   <Identity>
     <Civ>hele</Civ>
-    <Classes datatype="tokens">Hele</Classes>
 	<GenericName>Spartan Hoplite</GenericName>
     <SpecificName>Spartiā́tēs</SpecificName>
     <Tooltip>Poleis Champion Spearman.

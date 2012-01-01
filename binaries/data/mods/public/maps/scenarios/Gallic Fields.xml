@@ -17,14 +17,14 @@
 				<Shininess>250</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>1</Murkiness>
-				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<Tint r="0.396078" g="0.47451" b="0.654902"/>
 				<ReflectionTint r="1" g="0.501961" b="0"/>
 				<ReflectionTintStrength>0.0996094</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="317.2" y="86.8316" z="288.926"/>
+		<Position x="317.749" y="87.1119" z="273.358"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -38,7 +38,7 @@
   "Name": "Gallic Fields",
   "PlayerData": [
     {
-      "AI": "",
+      "AI": "qbot",
       "Civ": "celt",
       "Colour": {
         "b": 156,
@@ -125,7 +125,7 @@
       "Team": 2
     },
     {
-      "AI": "qbot",
+      "AI": "",
       "Civ": "rome",
       "Colour": {
         "b": 48,
@@ -4820,18 +4820,6 @@
 			<Template>units/rome_legionnaire_marian</Template>
 			<Player>4</Player>
 			<Position x="84.05546" z="723.96753"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="812">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>4</Player>
-			<Position x="66.77526" z="741.66138"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="813">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>4</Player>
-			<Position x="64.374" z="737.09748"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="814">
@@ -16761,8 +16749,8 @@
 		<Entity uid="2808">
 			<Template>gaia/special_treasure_wood</Template>
 			<Player>0</Player>
-			<Position x="889.43226" z="542.04041"/>
-			<Orientation y="2.35621"/>
+			<Position x="886.02155" z="545.20008"/>
+			<Orientation y="-1.45566"/>
 		</Entity>
 		<Entity uid="2809">
 			<Template>gaia/special_treasure_wood</Template>
@@ -17843,6 +17831,18 @@
 			<Player>1</Player>
 			<Position x="318.73227" z="396.5698"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2994">
+			<Template>units/rome_centurio_imperial</Template>
+			<Player>4</Player>
+			<Position x="85.44774" z="718.5503"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2995">
+			<Template>units/rome_centurio_imperial</Template>
+			<Player>4</Player>
+			<Position x="983.80512" z="563.16175"/>
+			<Orientation y="-2.28647"/>
 		</Entity>
 	</Entities>
 	<Paths/>

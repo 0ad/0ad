@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="Base">
       <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="800"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="400"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="350"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="600"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="666"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="333"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="222"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="250"/>
         <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/horse_walk.psa" name="Walk" speed="17"/>
-        <animation file="quadraped/horse_gallop.psa" name="run" speed="8"/>
-        <animation file="quadraped/horse_attack_a.psa" name="melee" speed="100"/>
-        <animation file="quadraped/horse_attack_b.psa" name="melee" speed="100"/>
+        <animation file="quadraped/horse_walk.psa" name="carry_meat" speed="120"/>
+        <animation file="quadraped/horse_attack_a.psa" name="Idle" speed="400"/>
+        <animation file="quadraped/horse_attack_b.psa" name="Idle" speed="300"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="40"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="100"/>
+        <animation file="quadraped/horse_attack_a.psa" name="melee" speed="202"/>
+        <animation file="quadraped/horse_attack_b.psa" name="melee" speed="215"/>
         <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
       </animations>
       <mesh>skeletal/horse.pmd</mesh>
@@ -19,7 +28,6 @@
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="horse-texture-snipe">
       <texture>skeletal/horse_rome_snipe.dds</texture>
@@ -28,7 +36,6 @@
       <texture>skeletal/horse_rome_stripe.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="2" name="horse-color-white">
       <colour>255 255 255</colour>
@@ -40,7 +47,5 @@
       <colour>116 116 116</colour>
     </variant>
   </group>
-
   <material>objectcolor.xml</material>
-
 </actor>

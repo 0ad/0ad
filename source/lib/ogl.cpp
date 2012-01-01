@@ -391,7 +391,7 @@ void ogl_WarnIfError()
 	}
 
 	if(error_enountered)
-		debug_printf(L"OpenGL error(s) occurred: %04x\n", (int)first_error);
+		debug_printf(L"OpenGL error(s) occurred: %04x\n", (unsigned int)first_error);
 }
 #endif
 
@@ -430,7 +430,7 @@ bool ogl_SquelchError(GLenum err_to_ignore)
 	}
 
 	if(error_enountered)
-		debug_printf(L"OpenGL error(s) occurred: %04x\n", (int)first_error);
+		debug_printf(L"OpenGL error(s) occurred: %04x\n", (unsigned int)first_error);
 
 	return error_ignored;
 }

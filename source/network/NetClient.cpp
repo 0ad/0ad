@@ -266,7 +266,7 @@ bool CNetClient::HandleMessage(CNetMessage* message)
 
 		std::stringstream stream;
 
-		LOGMESSAGERENDER(L"Serializing game at turn %d for rejoining player", m_ClientTurnManager->GetCurrentTurn());
+		LOGMESSAGERENDER(L"Serializing game at turn %u for rejoining player", m_ClientTurnManager->GetCurrentTurn());
 		u32 turn = to_le32(m_ClientTurnManager->GetCurrentTurn());
 		stream.write((char*)&turn, sizeof(turn));
 
@@ -306,7 +306,7 @@ void CNetClient::LoadFinished()
 		stream.read((char*)&turn, sizeof(turn));
 		turn = to_le32(turn);
 
-		LOGMESSAGE(L"Rejoining client deserializing state at turn %d\n", turn);
+		LOGMESSAGE(L"Rejoining client deserializing state at turn %u\n", turn);
 
 		bool ok = m_Game->GetSimulation2()->DeserializeState(stream);
 		ENSURE(ok);
@@ -381,7 +381,7 @@ bool CNetClient::OnAuthenticate(void* context, CFsmEvent* event)
 
 	CAuthenticateResultMessage* message = (CAuthenticateResultMessage*)event->GetParamRef();
 
-	LOGMESSAGE(L"Net: Authentication result: host=%d, %ls", message->m_HostID, message->m_Message.c_str());
+	LOGMESSAGE(L"Net: Authentication result: host=%u, %ls", message->m_HostID, message->m_Message.c_str());
 
 	bool  isRejoining = (message->m_Code == ARC_OK_REJOINING);
 

@@ -112,7 +112,7 @@ void CNetClientSession::Poll()
 			// Report the server address
 			char hostname[256] = "(error)";
 			enet_address_get_host_ip(&event.peer->address, hostname, ARRAY_SIZE(hostname));
-			LOGMESSAGE(L"Net client: Connected to %hs:%u", hostname, event.peer->address.port);
+			LOGMESSAGE(L"Net client: Connected to %hs:%u", hostname, (unsigned int)event.peer->address.port);
 
 			m_Client.HandleConnect();
 

@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee_swordsman">
   <Armour>
-    <Hack>6.0</Hack>
-    <Pierce>5.0</Pierce>
-    <Crush>10.0</Crush>
+    <Pierce>6.0</Pierce>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>15.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
+      <Hack>12.0</Hack>
     </Melee>
+    <Charge>
+      <Hack>24.0</Hack>
+    </Charge>
   </Attack>
-  <Health>
-    <Max>95</Max>
-  </Health>
+  <Cost>
+    <Resources>
+      <metal>60</metal>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>rome</Civ>
 	<SelectionGroupName>units/rome_infantry_swordsman_b</SelectionGroupName>
 	<GenericName>Roman Swordsman</GenericName>
     <SpecificName>Hastatus</SpecificName>
+    <Icon>units/rome_infantry_swordsman.png</Icon>
     <History>The hastati were the first line of heavy infantry in the early Republican Roman army. They used pila and gladii as their main weapons, throwing the former into the enemy formation and then closing with the sword. For defence they used a large shield called a scutum and wore the best armor they could afford. Hastati were recruited from the young men of Rome, a small part of the 700,000 troops Rome could bring to bear against its opponents.</History>
   </Identity>
   <Promotion>
-    <Entity>rome_infantry_swordsman_a</Entity>
+    <Entity>units/rome_infantry_swordsman_a</Entity>
   </Promotion>
   <VisualActor>
     <Actor>units/romans/infantry_swordsman_b.xml</Actor>

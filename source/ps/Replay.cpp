@@ -166,7 +166,7 @@ void CReplayPlayer::Replay()
 		else if (type == "turn")
 		{
 			*m_Stream >> turn >> turnLength;
-			debug_printf(L"Turn %d (%d)... ", turn, turnLength);
+			debug_printf(L"Turn %u (%u)... ", turn, turnLength);
 		}
 		else if (type == "cmd")
 		{

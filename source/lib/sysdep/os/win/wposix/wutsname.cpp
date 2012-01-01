@@ -57,9 +57,9 @@ int uname(struct utsname* un)
 	SYSTEM_INFO si;
 	GetSystemInfo(&si);
 	if(si.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64)
-		strcpy_s(un->machine, ARRAY_SIZE(un->machine), "AMD64");
+		strcpy_s(un->machine, ARRAY_SIZE(un->machine), "x64");
 	else
-		strcpy_s(un->machine, ARRAY_SIZE(un->machine), "IA-32");
+		strcpy_s(un->machine, ARRAY_SIZE(un->machine), "x86");
 
 	return 0;
 }

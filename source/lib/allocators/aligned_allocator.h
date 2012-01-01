@@ -107,7 +107,7 @@ public:
 	// allocate uninitialized storage
 	pointer allocate(size_type numElements)
 	{
-		const size_type alignment = x86_x64::Caches(L1D)->entrySize;
+		const size_type alignment = x86_x64::Caches(x86_x64::L1D)->entrySize;
 		const size_type elementSize = round_up(sizeof(T), alignment);
 		const size_type size = numElements * elementSize;
 		pointer p = (pointer)rtl_AllocateAligned(size, alignment);

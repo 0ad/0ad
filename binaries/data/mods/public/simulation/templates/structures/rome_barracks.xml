@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_barracks">
+  <Cost>
+    <Resources>
+      <wood>100</wood>
+      <stone>200</stone>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>rome</Civ>
     <SpecificName>Castra</SpecificName>
@@ -7,10 +13,10 @@
   </Identity>
   <TrainingQueue>
     <Entities datatype="tokens">
-      units/rome_cavalry_spearman_b
       units/rome_infantry_swordsman_b
-      units/rome_infantry_javelinist_b
       units/rome_infantry_spearman_a
+      units/rome_infantry_javelinist_b
+      units/rome_cavalry_spearman_b
     </Entities>
   </TrainingQueue>
   <VisualActor>

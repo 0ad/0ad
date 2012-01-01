@@ -64,40 +64,15 @@ Identity.prototype.Schema =
 			"<list>" +
 				"<zeroOrMore>" +
 					"<choice>" +
-						"<value>Cart</value>" +
-						"<value>Celt</value>" +
-						"<value>Hele</value>" +
-						"<value>Iber</value>" +
-						"<value>Pers</value>" +
-						"<value>Rome</value>" +
 						"<value>Unit</value>" +
 						"<value>Infantry</value>" +
 						"<value>Melee</value>" +
-						"<value>InfantrySpearman</value>" +
-						"<value>InfantrySwordsman</value>" +
 						"<value>Cavalry</value>" +
-						"<value>CavalrySpearman</value>" +
-						"<value>CavalrySwordsman</value>" +
-						"<value>CavalrySkirmisher</value>" +
-						"<value>CavalryArcher</value>" +
 						"<value>Ranged</value>" +
-						"<value>InfantrySlinger</value>" +
-						"<value>InfantrySkirmisher</value>" +
-						"<value>InfantryArcher</value>" +
 						"<value>Mechanical</value>" +
 						"<value>Ship</value>" +
 						"<value>Siege</value>" +
 						"<value>Champion</value>" +
-						"<value>ChampionInfantry</value>" +
-						"<value>ChampionSpearman</value>" +
-						"<value>ChampionSwordsman</value>" +
-						"<value>ChampionSkirmisher</value>" +
-						"<value>ChampionArcher</value>" +
-						"<value>ChampionCavalry</value>" +
-						"<value>ChampionCavalrySpearman</value>" +
-						"<value>ChampionCavalrySwordsman</value>" +
-						"<value>ChampionCavalrySkirmisher</value>" +
-						"<value>ChampionCavalryArcher</value>" +
 						"<value>Hero</value>" +
 						"<value>Elephant</value>" +
 						"<value>Chariot</value>" +
@@ -123,6 +98,8 @@ Identity.prototype.Schema =
 						"<value>City</value>" +
 						"<value>ConquestCritical</value>" +
 						"<value>Worker</value>" +
+						"<value>Female</value>" +
+						"<value>Healer</value>" +
 						"<value>CitizenSoldier</value>" +
 						"<value>Trade</value>" +
 						"<value>Warship</value>" +
@@ -132,10 +109,6 @@ Identity.prototype.Schema =
 						"<value>DropsiteWood</value>" +
 						"<value>DropsiteStone</value>" +
 						"<value>DropsiteMetal</value>" +
-						"<value a:help='Primary weapon type'>Bow</value>" + // TODO: what are these used for?
-						"<value a:help='Primary weapon type'>Javelin</value>" +
-						"<value a:help='Primary weapon type'>Spear</value>" +
-						"<value a:help='Primary weapon type'>Sword</value>" +
 					"</choice>" +
 				"</zeroOrMore>" +
 			"</list>" +

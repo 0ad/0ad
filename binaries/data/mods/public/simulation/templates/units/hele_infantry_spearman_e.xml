@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/hele_infantry_spearman_a">
   <Armour>
-    <Hack>8.0</Hack>
-    <Pierce>11.0</Pierce>
-    <Crush>8.0</Crush>
+    <Hack>10.0</Hack>
+    <Pierce>13.0</Pierce>
+    <Crush>10.0</Crush>
   </Armour>
   <Attack>
     <Melee>
@@ -12,7 +12,7 @@
 	  <Bonuses>
 		<BonusInfMelee>
 		  <Classes>Infantry Melee</Classes>
-		  <Multiplier>1.2</Multiplier>
+		  <Multiplier>1.25</Multiplier>
 		</BonusInfMelee>
 	  </Bonuses>
     </Melee>
@@ -22,7 +22,7 @@
 	  <Bonuses>
 		<BonusInfMelee>
 		  <Classes>Infantry Melee</Classes>
-		  <Multiplier>1.2</Multiplier>
+		  <Multiplier>1.25</Multiplier>
 		</BonusInfMelee>
 	  </Bonuses>
     </Charge>

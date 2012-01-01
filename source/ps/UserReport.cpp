@@ -533,7 +533,7 @@ std::string CUserReporter::LoadUserID()
 		for (size_t i = 0; i < ARRAY_SIZE(bytes); ++i)
 		{
 			char hex[3];
-			sprintf_s(hex, ARRAY_SIZE(hex), "%02x", bytes[i]);
+			sprintf_s(hex, ARRAY_SIZE(hex), "%02x", (unsigned int)bytes[i]);
 			userID += hex;
 		}
 

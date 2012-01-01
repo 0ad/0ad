@@ -2,8 +2,8 @@
 <Entity parent="template_unit_champion_infantry">
   <Armour>
     <Hack>9.0</Hack>
-    <Pierce>6.0</Pierce>
-    <Crush>8.0</Crush>
+    <Pierce>8.0</Pierce>
+    <Crush>9.0</Crush>
   </Armour>
   <Attack>
     <Melee>
@@ -69,7 +69,7 @@ Counters Spear units and War Elephants.</Tooltip>
   <UnitMotion>
     <WalkSpeed>8.0</WalkSpeed>
     <Run>
-      <Speed>20.0</Speed>
+      <Speed>16.0</Speed>
       <Range>600.0</Range>
       <RangeMin>5.0</RangeMin>
     </Run>

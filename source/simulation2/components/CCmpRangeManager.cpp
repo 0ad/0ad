@@ -526,7 +526,7 @@ public:
 	{
 		if (m_Queries.find(tag) == m_Queries.end())
 		{
-			LOGERROR(L"CCmpRangeManager: DestroyActiveQuery called with invalid tag %d", tag);
+			LOGERROR(L"CCmpRangeManager: DestroyActiveQuery called with invalid tag %u", tag);
 			return;
 		}
 
@@ -538,7 +538,7 @@ public:
 		std::map<tag_t, Query>::iterator it = m_Queries.find(tag);
 		if (it == m_Queries.end())
 		{
-			LOGERROR(L"CCmpRangeManager: EnableActiveQuery called with invalid tag %d", tag);
+			LOGERROR(L"CCmpRangeManager: EnableActiveQuery called with invalid tag %u", tag);
 			return;
 		}
 
@@ -551,7 +551,7 @@ public:
 		std::map<tag_t, Query>::iterator it = m_Queries.find(tag);
 		if (it == m_Queries.end())
 		{
-			LOGERROR(L"CCmpRangeManager: DisableActiveQuery called with invalid tag %d", tag);
+			LOGERROR(L"CCmpRangeManager: DisableActiveQuery called with invalid tag %u", tag);
 			return;
 		}
 
@@ -594,7 +594,7 @@ public:
 		std::map<tag_t, Query>::iterator it = m_Queries.find(tag);
 		if (it == m_Queries.end())
 		{
-			LOGERROR(L"CCmpRangeManager: ResetActiveQuery called with invalid tag %d", tag);
+			LOGERROR(L"CCmpRangeManager: ResetActiveQuery called with invalid tag %u", tag);
 			return r;
 		}
 
@@ -777,11 +777,11 @@ public:
 	{
 		// Min range must be non-negative
 		if (minRange < entity_pos_t::Zero())
-			LOGWARNING(L"CCmpRangeManager: Invalid min range %f in query for entity %d", minRange.ToDouble(), source);
+			LOGWARNING(L"CCmpRangeManager: Invalid min range %f in query for entity %u", minRange.ToDouble(), source);
 
 		// Max range must be non-negative, or else -1
 		if (maxRange < entity_pos_t::Zero() && maxRange != entity_pos_t::FromInt(-1))
-			LOGWARNING(L"CCmpRangeManager: Invalid max range %f in query for entity %d", maxRange.ToDouble(), source);
+			LOGWARNING(L"CCmpRangeManager: Invalid max range %f in query for entity %u", maxRange.ToDouble(), source);
 
 		Query q;
 		q.enabled = false;
