@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.61.0 r42615</authoring_tool>
     </contributor>
-    <created>2012-01-01T18:11:31</created>
-    <modified>2012-01-01T18:11:31</modified>
+    <created>2012-01-01T23:58:15</created>
+    <modified>2012-01-01T23:58:15</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -112,6 +112,13 @@
             </technique_common>
           </bind_material>
         </instance_geometry>
+        <node id="prop_projectile" type="NODE">
+          <translate sid="location">1.75336e-8 3.11457 3.919208</translate>
+          <rotate sid="rotationZ">0 0 1 0</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 -32.23098</rotate>
+          <scale sid="scale">1 1 1</scale>
+        </node>
       </node>
     </visual_scene>
   </library_visual_scenes>

@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_siege_onager">
+  <Attack>
+    <Ranged>
+      <Hack>50.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>50.0</Crush>
+      <MaxRange>85</MaxRange>
+      <MinRange>65.0</MinRange>
+      <ProjectileSpeed>20.0</ProjectileSpeed>
+      <PrepareTime>5000</PrepareTime>
+      <RepeatTime>5000</RepeatTime>
+	  <Bonuses>
+		<BonusStruct>
+		  <Classes>Structure</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusStruct>
+	  </Bonuses>
+    </Ranged>
+  </Attack>
   <Footprint replace="">
-    <Square width="6.0" depth="11.0"/>
+    <Square width="6.0" depth="7.0"/>
     <Height>4.5</Height>
   </Footprint>
   <Identity>
-    <Civ>rome</Civ>
-    <SpecificName>Ballista</SpecificName>
-    <Icon>units/cart_mechanical_siege_ballista.png</Icon>
-	<History>The Ballista was a torsion powered heavy artillery piece that fired along a flat directory at long ranges. They could fire a extensive selection of shot, making the Ballista a versatile weapon against stationary or slow moving targets. The downside was the size of the device made them difficult to transport, deploy, and aim. By the Punic Wars era the usage of Ballistas had become regularized, though their numbers to each legion are unknown.</History>
+    <Civ>hele</Civ>
+    <SpecificName>Lithóbolos</SpecificName>
+    <Icon>units/hele_mechanical_siege_lithobolos.png</Icon>
   </Identity>
   <Obstruction>
     <Unit radius="3.5"/>
   </Obstruction>
+  <Vision>
+    <Range>94</Range>
+  </Vision>
   <VisualActor>
-    <Actor>units/carthaginians/siege_rock.xml</Actor>
+    <Actor>units/romans/siege_rock.xml</Actor>
   </VisualActor>
 </Entity>

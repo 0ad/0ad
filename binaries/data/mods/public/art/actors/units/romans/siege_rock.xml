@@ -5,6 +5,9 @@
     <variant frequency="100" name="rome ballista">
       <mesh>structural/rome_ballista.dae</mesh>
       <texture>structural/rome_ballista.png</texture>
+      <props>
+        <prop actor="props/units/weapons/rock_flaming.xml" attachpoint="projectile"/>
+      </props>
     </variant>
   </group>
 </actor>
