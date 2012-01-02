@@ -27,6 +27,7 @@
 #include "precompiled.h"
 #include "lib/sysdep/os/win/mahaf.h"
 
+#include "lib/config2.h"
 #include "lib/module_init.h"
 
 #include "lib/sysdep/os/win/wutil.h"
@@ -347,10 +348,12 @@ static Status Init()
 	if(wutil_HasCommandLineArgument(L"-wNoMahaf"))
 		return ERR::NOT_SUPPORTED;	// NOWARN
 
+#if CONFIG2_MAHAF_ATTEMPT_DRIVER_START
 	{
 		const OsPath driverPathname = DriverPathname();
 		StartDriver(driverPathname);
 	}
+#endif
 
 	{
 		const DWORD shareMode = 0;
