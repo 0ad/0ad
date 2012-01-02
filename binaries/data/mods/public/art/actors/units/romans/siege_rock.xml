@@ -6,6 +6,7 @@
       <mesh>structural/rome_ballista.dae</mesh>
       <texture>structural/rome_ballista.png</texture>
       <props>
+        <prop actor="props/units/weapons/rock_flaming.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/rock_flaming.xml" attachpoint="projectile"/>
       </props>
     </variant>

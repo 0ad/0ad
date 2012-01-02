@@ -2,11 +2,21 @@
 <Entity parent="template_unit_mechanical_siege_onager">
   <Attack>
     <Ranged>
+      <Hack>60.0</Hack>
+      <Crush>60.0</Crush>
       <MaxRange>84</MaxRange>
-      <MinRange>20.0</MinRange>
-      <ProjectileSpeed>20.0</ProjectileSpeed>
+      <MinRange>30.0</MinRange>
+      <ProjectileSpeed>22.0</ProjectileSpeed>
+      <RepeatTime>8000</RepeatTime>
     </Ranged>
   </Attack>
+  <Cost>
+    <BuildTime>40</BuildTime>
+    <Resources>
+      <wood>300</wood>
+      <stone>100</stone>
+    </Resources>
+  </Cost>
   <Footprint replace="">
     <Square width="6.0" depth="7.0"/>
     <Height>4.5</Height>
