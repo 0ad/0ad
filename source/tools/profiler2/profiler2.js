@@ -146,8 +146,8 @@ function refresh_thread(thread, callback_data)
 
 function rebuild_canvases()
 {
-    g_data.canvas_frames = $('<canvas width="1400" height="180"></canvas>').get(0);
-    g_data.canvas_zoom = $('<canvas width="1400" height="180"></canvas>').get(0);
+    g_data.canvas_frames = $('<canvas width="1600" height="128"></canvas>').get(0);
+    g_data.canvas_zoom = $('<canvas width="1600" height="128"></canvas>').get(0);
     g_data.text_output = $('<pre></pre>').get(0);
     
     set_frames_zoom_handlers(g_data.canvas_frames);
