@@ -57,7 +57,7 @@ MESSAGEHANDLER(InitGraphics)
 {
 	UNUSED2(msg);
 
-#if OS_LINUX || OS_MACOSX
+#if OS_LINUX || OS_MACOSX || (OS_WIN && !CONFIG2_WSDL)
 	// When using GLX (Linux), SDL has to load the GL library to find
 	// glXGetProcAddressARB before it can load any extensions.
 	// When running in Atlas, we skip the SDL video initialisation code
