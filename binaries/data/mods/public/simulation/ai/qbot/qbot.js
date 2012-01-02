@@ -22,18 +22,7 @@ function QBotAI(settings) {
 
 	this.productionQueues = [];
 	
-	this.priorities = {
-		house : 500,
-		citizenSoldier : 100,
-		villager : 100,
-		economicBuilding : 30,
-		field: 20,
-		advancedSoldier : 30,
-		siege : 10,
-		militaryBuilding : 50,
-		defenceBuilding: 17,
-		civilCentre: 1000
-	};
+	this.priorities = Config.priorities;
 	
 	this.queueManager = new QueueManager(this.queues, this.priorities);
 	
@@ -132,10 +121,8 @@ QBotAI.prototype.Deserialize = function(data)
 	this._entityMetadata = {};
 };
 
-var debugOn = false;
-
 function debug(output){
-	if (debugOn){
+	if (Config.debug){
 		if (typeof output === "string"){
 			warn(output);
 		}else{
