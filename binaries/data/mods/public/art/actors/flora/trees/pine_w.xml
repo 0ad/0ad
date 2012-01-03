@@ -2,8 +2,11 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="Base">
+    <variant frequency="5" name="snow1">
       <texture>gaia/pine_w.dds</texture>
+    </variant>
+    <variant frequency="4" name="snow2">
+      <texture>gaia/pine_w2.dds</texture>
     </variant>
   </group>
   <group>

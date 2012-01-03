@@ -7,9 +7,6 @@
  */
 
 var MilitaryAttackManager = function() {
-	this.targetSquadSize = 10;
-	this.targetScoutTowers = 10;
-
 	// these use the structure soldiers[unitId] = true|false to register the units
 	this.soldiers = {};
 	this.assigned = {};
@@ -26,21 +23,48 @@ var MilitaryAttackManager = function() {
 	this.lastAttackTime = 0;
 	
 	this.defenceManager = new Defence();
-	
-	this.defineUnitsAndBuildings();
 };
 
 MilitaryAttackManager.prototype.init = function(gameState) {
 	var civ = gameState.playerData.civ;
-	if (civ in this.uCivCitizenSoldier) {
-		this.uCitizenSoldier = this.uCivCitizenSoldier[civ];
-		this.uAdvanced = this.uCivAdvanced[civ];
-		this.uSiege = this.uCivSiege[civ];
-
-		this.bAdvanced = this.bCivAdvanced[civ];
-		this.bFort = this.bCivFort[civ];
+	
+	// load units and buildings from the config files
+	if (civ in Config.units.citizenSoldier){
+		this.uCitizenSoldier = Config.units.citizenSoldier[civ];
+	}else{
+		this.uCitizenSoldier = Config.units.citizenSoldier['default'];
 	}
 	
+	if (civ in Config.units.advanced){
+		this.uAdvanced = Config.units.advanced[civ];
+	}else{
+		this.uAdvanced = Config.units.advanced['default'];
+	}
+	
+	if (civ in Config.units.siege){
+		this.uSiege = Config.units.siege[civ];
+	}else{
+		this.uSiege = Config.units.siege['default'];
+	}
+	
+	if (civ in Config.buildings.moderate){
+		this.bModerate = Config.buildings.moderate[civ];
+	}else{
+		this.bModerate = Config.buildings.moderate['default'];
+	}
+	
+	if (civ in Config.buildings.advanced){
+		this.bAdvanced = Config.buildings.advanced[civ];
+	}else{
+		this.bAdvanced = Config.buildings.advanced['default'];
+	}
+	
+	if (civ in Config.buildings.fort){
+		this.bFort = Config.buildings.fort[civ];
+	}else{
+		this.bFort = Config.buildings.fort['default'];
+	}
+
 	for (var i in this.uCitizenSoldier){
 		this.uCitizenSoldier[i] = gameState.applyCiv(this.uCitizenSoldier[i]);
 	}
@@ -49,6 +73,9 @@ MilitaryAttackManager.prototype.init = function(gameState) {
 	}
 	for (var i in this.uSiege){
 		this.uSiege[i] = gameState.applyCiv(this.uSiege[i]);
+	}
+	for (var i in this.bAdvanced){
+		this.bAdvanced[i] = gameState.applyCiv(this.bAdvanced[i]);
 	}
 	for (var i in this.bFort){
 		this.bFort[i] = gameState.applyCiv(this.bFort[i]);
@@ -59,59 +86,11 @@ MilitaryAttackManager.prototype.init = function(gameState) {
 	};
 	// TODO: figure out how to make this generic
 	for (var i in this.attackManagers){
-		this.availableAttacks[i] = new this.attackManagers[i](gameState, this, 10, 10, this.getEconomicTargets);
+		this.availableAttacks[i] = new this.attackManagers[i](gameState, this);
 	}
 	
 	var filter = Filters.and(Filters.isEnemy(), Filters.byClassesOr(["CitizenSoldier", "Super", "Siege"]));
 	this.enemySoldiers = new EntityCollection(gameState.ai, gameState.entities._entities, filter, gameState);
-};
-
-MilitaryAttackManager.prototype.defineUnitsAndBuildings = function(){
-	// units
-	this.uCivCitizenSoldier= {};
-	this.uCivAdvanced = {};
-	this.uCivSiege = {};
-	
-	this.uCivCitizenSoldier.hele = [ "units/hele_infantry_spearman_b", "units/hele_infantry_javelinist_b", "units/hele_infantry_archer_b" ];
-	this.uCivAdvanced.hele = [ "units/hele_cavalry_swordsman_b", "units/hele_cavalry_javelinist_b", "units/hele_champion_cavalry_mace", "units/hele_champion_infantry_mace", "units/hele_champion_infantry_polis", "units/hele_champion_ranged_polis" , "units/thebes_sacred_band_hoplitai", "units/thespian_melanochitones","units/sparta_hellenistic_phalangitai", "units/thrace_black_cloak"];
-	this.uCivSiege.hele = [ "units/hele_mechanical_siege_oxybeles", "units/hele_mechanical_siege_lithobolos" ];
-
-	this.uCivCitizenSoldier.cart = [ "units/cart_infantry_spearman_b", "units/cart_infantry_archer_b" ];
-	this.uCivAdvanced.cart = [ "units/cart_cavalry_javelinist_b", "units/cart_champion_cavalry", "units/cart_infantry_swordsman_2_b", "units/cart_cavalry_spearman_b", "units/cart_infantry_javelinist_b", "units/cart_infantry_slinger_b", "units/cart_cavalry_swordsman_b", "units/cart_infantry_swordsman_b", "units/cart_cavalry_swordsman_2_b", "units/cart_sacred_band_cavalry"];
-	this.uCivSiege.cart = ["units/cart_mechanical_siege_ballista", "units/cart_mechanical_siege_oxybeles"];
-	
-	this.uCivCitizenSoldier.celt = [ "units/celt_infantry_spearman_b", "units/celt_infantry_javelinist_b" ];
-	this.uCivAdvanced.celt = [ "units/celt_cavalry_javelinist_b", "units/celt_cavalry_swordsman_b", "units/celt_champion_cavalry_gaul", "units/celt_champion_infantry_gaul", "units/celt_champion_cavalry_brit", "units/celt_champion_infantry_brit", "units/celt_fanatic" ];
-	this.uCivSiege.celt = ["units/celt_mechanical_siege_ram"];
-
-	this.uCivCitizenSoldier.iber = [ "units/iber_infantry_spearman_b", "units/iber_infantry_slinger_b", "units/iber_infantry_swordsman_b", "units/iber_infantry_javelinist_b" ];
-	this.uCivAdvanced.iber = ["units/iber_cavalry_spearman_b", "units/iber_champion_cavalry", "units/iber_champion_infantry" ];
-	this.uCivSiege.iber = ["units/iber_mechanical_siege_ram"];
-	
-	this.uCivCitizenSoldier.pers = [ "units/pers_infantry_spearman_b", "units/pers_infantry_archer_b", "units/pers_infantry_javelinist_b" ];
-	this.uCivAdvanced.pers = ["units/pers_cavalry_javelinist_b", "units/pers_champion_infantry", "units/pers_champion_cavalry", "units/pers_cavalry_spearman_b", "units/pers_cavalry_swordsman_b", "units/pers_cavalry_javelinist_b", "units/pers_cavalry_archer_b", "pers_kardakes_hoplite", "units/pers_kardakes_skirmisher", "units/pers_war_elephant" ];
-	this.uCivSiege.pers = ["units/pers_mechanical_siege_ram"];
-	//defaults
-	this.uCitizenSoldier = ["units/{civ}_infantry_spearman_b", "units/{civ}_infantry_slinger_b", "units/{civ}_infantry_swordsman_b", "units/{civ}_infantry_javelinist_b", "units/{civ}_infantry_archer_b" ];
-	this.uAdvanced = ["units/{civ}_cavalry_spearman_b", "units/{civ}_cavalry_javelinist_b", "units/{civ}_champion_cavalry", "units/{civ}_champion_infantry"];
-	this.uSiege = ["units/{civ}_mechanical_siege_oxybeles", "units/{civ}_mechanical_siege_lithobolos", "units/{civ}_mechanical_siege_ballista","units/{civ}_mechanical_siege_ram"];
-
-	// buildings
-	this.bModerate = [ "structures/{civ}_barracks" ]; //same for all civs
-
-	this.bCivAdvanced = {};
-	this.bCivAdvanced.hele = [ "structures/{civ}_gymnasion", "structures/{civ}_fortress" ];
-	this.bCivAdvanced.cart = [ "structures/{civ}_fortress", "structures/{civ}_embassy_celtic", "structures/{civ}_embassy_iberian", "structures/{civ}_embassy_italiote" ];
-	this.bCivAdvanced.celt = [ "structures/{civ}_kennel", "structures/{civ}_fortress_b", "structures/{civ}_fortress_g" ];
-	this.bCivAdvanced.iber = [ "structures/{civ}_fortress" ];
-	this.bCivAdvanced.pers = [ "structures/{civ}_fortress", "structures/{civ}_stables", "structures/{civ}_apadana" ];
-	
-	this.bCivFort = {};
-	this.bCivFort.hele = [ "structures/{civ}_fortress" ];
-	this.bCivFort.cart = [ "structures/{civ}_fortress" ];
-	this.bCivFort.celt = [ "structures/{civ}_fortress_b", "structures/{civ}_fortress_g" ];
-	this.bCivFort.iber = [ "structures/{civ}_fortress" ];
-	this.bCivFort.pers = [ "structures/{civ}_fortress" ];
 };
 
 /**
@@ -565,32 +544,15 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 	}
 	
 	// Look for attack plans which can be executed, only do this once every minute
-	if (gameState.getTimeElapsed() < 6.5*60*1000){
-		if (gameState.getTimeElapsed() - 60*1000 > this.lastAttackTime){
-			this.lastAttackTime = gameState.getTimeElapsed();
-			for (var i = 0; i < this.availableAttacks.length; i++){
-				if (this.availableAttacks[i].canExecute(gameState, this)){
-					// Make it so raids happen a bit randomly 
-					if (Math.random() < 0.35){
-						this.availableAttacks[i].execute(gameState, this);
-						this.currentAttacks.push(this.availableAttacks[i]);
-						debug("Raiding!");
-						this.availableAttacks.splice(i, 1, new this.attackManagers[i](gameState, this, 10, 10, this.getEconomicTargets));
-					}
-				}
-			}
+	for (var i = 0; i < this.availableAttacks.length; i++){
+		if (this.availableAttacks[i].canExecute(gameState, this)){
+			this.availableAttacks[i].execute(gameState, this);
+			this.currentAttacks.push(this.availableAttacks[i]);
+			debug("Attacking!");
 		}
-	}else{
-		for (var i = 0; i < this.availableAttacks.length; i++){
-			if (this.availableAttacks[i].canExecute(gameState, this)){
-				this.availableAttacks[i].execute(gameState, this);
-				this.currentAttacks.push(this.availableAttacks[i]);
-				debug("Attacking!");
-			}
-			this.availableAttacks.splice(i, 1, new this.attackManagers[i](gameState, this, 20, 60));
-		}
+		this.availableAttacks.splice(i, 1, new this.attackManagers[i](gameState, this));
 	}
-	
+
 	// Keep current attacks updated
 	for (i in this.currentAttacks){
 		this.currentAttacks[i].update(gameState, this, events);
