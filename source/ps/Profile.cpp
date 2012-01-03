@@ -343,7 +343,7 @@ const CProfileNode* CProfileNode::GetScriptChild( const char* childName ) const
 CProfileNode* CProfileNode::GetChild( const char* childName )
 {
 	profile_iterator it;
-	for( it = children.begin(); it != children.end(); it++ )
+	for( it = children.begin(); it != children.end(); ++it )
 		if( (*it)->name == childName )
 			return( *it );
 	
@@ -355,7 +355,7 @@ CProfileNode* CProfileNode::GetChild( const char* childName )
 CProfileNode* CProfileNode::GetScriptChild( const char* childName )
 {
 	profile_iterator it;
-	for( it = script_children.begin(); it != script_children.end(); it++ )
+	for( it = script_children.begin(); it != script_children.end(); ++it )
 		if( (*it)->name == childName )
 			return( *it );
 	
