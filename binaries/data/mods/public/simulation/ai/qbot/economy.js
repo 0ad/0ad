@@ -190,6 +190,11 @@ EconomyManager.prototype.reassignIdleWorkers = function(gameState) {
 					if (nearestDropsite){
 						dist += 5 * VectorDistance(supply.position, nearestDropsite.position());
 					}
+					
+					// Go for treasure as a priority
+					if (dist < 1200 && supply.type.generic == "treasure"){
+						dist /= 1000;
+					}
 
 					// Skip targets that are far too far away (e.g. in the
 					// enemy base), only do this for common supplies
@@ -208,7 +213,7 @@ EconomyManager.prototype.reassignIdleWorkers = function(gameState) {
 					if (a.dist != b.dist)
 						return a.dist - b.dist;
 
-					return false;
+					return 0;
 				});
 
 				// Start gathering the best resource (by distance from the dropsite and unit)
