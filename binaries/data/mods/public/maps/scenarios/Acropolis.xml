@@ -3,7 +3,7 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>sunny 1</SkySet>
+		<SkySet>cumulus</SkySet>
 		<SunColour r="0.921569" g="0.831373" b="0.737255"/>
 		<SunElevation angle="0.665748"/>
 		<SunRotation angle="-0.478602"/>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="486.762" y="108.053" z="397.926"/>
+		<Position x="488.281" y="130.571" z="289.252"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<particles>
+
+    <texture>art/textures/particles/blowing_snow.png</texture>
+    <blend mode="over"/>
+
+    <start_full/>
+
+    <constant name="emissionrate" value="0.2"/>
+    <uniform name="lifetime" min="15.0" max="25.0"/>
+
+    <uniform name="velocity.x" min="1.0" max="2.0"/>
+    <uniform name="size" min="25.0" max="30.0"/>
+
+</particles>
