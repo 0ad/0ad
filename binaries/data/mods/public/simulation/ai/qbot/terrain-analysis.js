@@ -23,7 +23,7 @@ function TerrainAnalysis(gameState){
 copyPrototype(TerrainAnalysis, Map);
 
 // Returns the (approximately) closest point which is passable by searching in a spiral pattern 
-TerrainAnalysis.prototype.findClosestPassablePoint = function(startPoint){
+TerrainAnalysis.prototype.findClosestPassablePoint = function(startPoint, quick){
 	var w = this.width;
 	var p = startPoint;
 	var direction = 1;
@@ -42,7 +42,7 @@ TerrainAnalysis.prototype.findClosestPassablePoint = function(startPoint){
 				p[j] += direction;
 				if (p[0] + w*p[1] > 0 && p[0] + w*p[1] < this.length &&
 						this.map[p[0] + w*p[1]] != 0){
-					if (this.countConnected(p, 10) >= 10){
+					if (quick || this.countConnected(p, 10) >= 10){
 						return p;
 					}
 				}
@@ -295,7 +295,7 @@ copyPrototype(Accessibility, TerrainAnalysis);
 // Return true if the given point is accessible from the point given when initialising the Accessibility object. #
 // If the given point is impassable the closest passable point is used.
 Accessibility.prototype.isAccessible = function(position){
-	var s = this.findClosestPassablePoint(this.gamePosToMapPos(position));
+	var s = this.findClosestPassablePoint(this.gamePosToMapPos(position), true);
 	
 	return this.map[s[0] + this.width * s[1]] === 1;
 };
