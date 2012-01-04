@@ -23,6 +23,10 @@
 # include <cxxabi.h>
 #endif
 
+#if defined(_MSC_VER)
+# pragma warning(disable:4996)	// deprecated CRT
+#endif
+
 #include "wx/wx.h"
 
 #include "GameInterface/Shareable.h"

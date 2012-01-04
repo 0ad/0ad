@@ -26,8 +26,8 @@
 # define HAVE_PCH 0
 #endif
 
-#if defined(_MSC_VER) && _MSC_VER >= 1400
-# pragma warning(disable: 6334) // TODO: what was this for?
+#if defined(_MSC_VER)
+# pragma warning(disable:4996)	// deprecated CRT
 #endif
 
 #if HAVE_PCH

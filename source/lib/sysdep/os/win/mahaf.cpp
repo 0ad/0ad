@@ -248,6 +248,8 @@ static void UninstallDriver()
 }
 
 
+#if CONFIG2_MAHAF_ATTEMPT_DRIVER_START
+
 static void StartDriver(const OsPath& driverPathname)
 {
 	const SC_HANDLE hSCM = OpenServiceControlManager(SC_MANAGER_CREATE_SERVICE);
@@ -337,6 +339,8 @@ static OsPath DriverPathname()
 	sprintf_s(filename, ARRAY_SIZE(filename), "aken%s%s.sys", bits, debug);
 	return wutil_ExecutablePath() / filename;
 }
+
+#endif // CONFIG2_MAHAF_ATTEMPT_DRIVER_START
 
 
 //-----------------------------------------------------------------------------
