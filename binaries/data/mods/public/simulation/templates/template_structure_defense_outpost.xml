@@ -1,57 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic">
   <Armour>
-    <Hack>15.0</Hack>
-    <Pierce>40.0</Pierce>
-    <Crush>15.0</Crush>
+    <Hack>5.0</Hack>
+    <Pierce>20.0</Pierce>
+    <Crush>10.0</Crush>
   </Armour>
-  <Attack>
-    <Ranged>
-      <Hack>0.0</Hack>
-      <Pierce>25.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>80.0</MaxRange>
-      <MinRange>16.0</MinRange>
-      <ProjectileSpeed>75.0</ProjectileSpeed>
-      <PrepareTime>1200</PrepareTime>
-      <RepeatTime>2000</RepeatTime>
-    </Ranged>
-  </Attack>
-  <BuildingAI>
-    <DefaultArrowCount>1</DefaultArrowCount>
-    <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
-  </BuildingAI>
+  <Attack disable=""/>
   <BuildRestrictions>
+    <Territory>neutral</Territory>
     <Category>ScoutTower</Category>
   </BuildRestrictions>
   <Cost>
-    <BuildTime>120</BuildTime>
+    <BuildTime>50</BuildTime>
     <Resources>
       <wood>100</wood>
-      <stone>100</stone>
+      <stone>0</stone>
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="7.5" depth="7.5"/>
+    <Square width="7.0" depth="7.0"/>
     <Height>15.0</Height>
   </Footprint>
   <GarrisonHolder>
-    <Max>5</Max>
+    <Max>1</Max>
 	<EjectHealth>0.1</EjectHealth>
 	<List datatype="tokens">Support Infantry</List>
 	<BuffHeal>1</BuffHeal>
   </GarrisonHolder>
   <Health>
-    <Max>1200</Max>
+    <Max>500</Max>
   </Health>
   <Identity>
-    <GenericName>Defense Tower</GenericName>
-    <Tooltip>Shoots arrows. Garrison to provide extra defense.</Tooltip>
+    <GenericName>Outpost</GenericName>
+    <Tooltip>Build in Neutral territory to gain vision of the map. Slowly loses health.</Tooltip>
     <Classes datatype="tokens">Village Defensive -ConquestCritical</Classes>
     <Icon>structures/outpost.png</Icon>
   </Identity>
   <Obstruction>
-    <Static width="7.0" depth="7.0"/>
+    <Static width="6.0" depth="6.0"/>
   </Obstruction>
   <Sound>
     <SoundGroups>
@@ -63,17 +49,16 @@
   <StatusBars>
     <BarWidth>6.0</BarWidth>
     <BarHeight>0.6</BarHeight>
-    <HeightOffset>21.0</HeightOffset>
+    <HeightOffset>18.0</HeightOffset>
   </StatusBars>
-  <TerritoryInfluence>
-    <Root>false</Root>
-    <Radius>32</Radius>
-    <Weight>65536</Weight>
-  </TerritoryInfluence>
+  <TerritoryDecay>
+    <HealthDecayRate>1</HealthDecayRate>
+  </TerritoryDecay>
   <Vision>
     <Range>80</Range>
   </Vision>
   <VisualActor>
+    <Actor>props/special/palisade_rocks_outpost.xml</Actor>
     <FoundationActor>structures/fndn_2x2.xml</FoundationActor>
   </VisualActor>
 </Entity>
