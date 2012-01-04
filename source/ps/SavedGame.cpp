@@ -70,7 +70,10 @@ Status SavedGames::Save(const std::wstring& prefix, CSimulation2& simulation, CG
 	simulation.GetScriptInterface().SetProperty(metadata.get(), "player", playerID);
 	simulation.GetScriptInterface().SetProperty(metadata.get(), "initAttributes", simulation.GetInitAttributes());
 	if (gui)
-		simulation.GetScriptInterface().SetProperty(metadata.get(), "gui", gui->GetSavedGameData());
+	{
+		CScriptVal guiMetadata = simulation.GetScriptInterface().CloneValueFromOtherContext(gui->GetScriptInterface(), gui->GetSavedGameData().get());
+		simulation.GetScriptInterface().SetProperty(metadata.get(), "gui", guiMetadata);
+	}
 	
 	std::string metadataString = simulation.GetScriptInterface().StringifyJSON(metadata.get(), true);
 	
