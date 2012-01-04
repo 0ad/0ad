@@ -23,6 +23,10 @@
 
 #include "wx/spinctrl.h"
 
+Brush g_Brush_Elevation; // shared between several elevation-related tools; other tools have their own brushes
+
+static Brush* g_Brush_CurrentlyActive = NULL; // only one brush can be active at once
+
 Brush::Brush()
 : m_Shape(CIRCLE), m_Size(4), m_Strength(1.f), m_IsActive(false)
 {
@@ -30,6 +34,26 @@ Brush::Brush()
 
 Brush::~Brush()
 {
+	// Avoid dangling pointers
+	if (g_Brush_CurrentlyActive == this)
+		g_Brush_CurrentlyActive = NULL;
+}
+
+void Brush::MakeActive()
+{
+	if (g_Brush_CurrentlyActive)
+		g_Brush_CurrentlyActive->m_IsActive = false;
+
+	g_Brush_CurrentlyActive = this;
+	m_IsActive = true;
+
+	Send();
+}
+
+void Brush::Send()
+{
+	if (m_IsActive)
+		POST_MESSAGE(Brush, (GetWidth(), GetHeight(), GetData()));
 }
 
 int Brush::GetWidth() const
@@ -224,24 +248,3 @@ void Brush::CreateUI(wxWindow* parent, wxSizer* sizer)
 	spinnerSizer->Add(new BrushStrengthCtrl(parent, *this), wxSizerFlags().Expand());
 	sizer->Add(spinnerSizer, wxSizerFlags().Expand());
 }
-
-void Brush::MakeActive()
-{
-	if (g_Brush_CurrentlyActive)
-		g_Brush_CurrentlyActive->m_IsActive = false;
-
-	g_Brush_CurrentlyActive = this;
-	m_IsActive = true;
-
-	Send();
-}
-
-void Brush::Send()
-{
-	if (m_IsActive)
-		POST_MESSAGE(Brush, (GetWidth(), GetHeight(), GetData()));
-}
-
-
-Brush g_Brush_Elevation;
-Brush* g_Brush_CurrentlyActive = NULL;
