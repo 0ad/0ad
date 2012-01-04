@@ -1,16 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
-      <mesh>structural/rome_ff.pmd</mesh>
+      <mesh>structural/rome_fortress.dae</mesh>
       <props>
-        <prop actor="props/structures/romans/fortress.xml" attachpoint="props_main"/>
+        <prop actor="props/structures/romans/fortress.xml" attachpoint="root"/>
       </props>
-      <texture>structural/rome_struct_1.dds</texture>
+      <texture>structural/rome_struct_2.png</texture>
     </variant>
   </group>
-
+  <material>player_trans.xml</material>
 </actor>
