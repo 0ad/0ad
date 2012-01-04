@@ -62,6 +62,4 @@ private:
 
 extern Brush g_Brush_Elevation;
 
-extern Brush* g_Brush_CurrentlyActive;
-
 #endif // INCLUDED_BRUSHES

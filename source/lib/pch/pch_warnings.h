@@ -20,6 +20,8 @@
 # if MSC_VERSION >= 1400
 #  pragma warning(disable:6011)	// dereferencing NULL pointer
 #  pragma warning(disable:6246)	// local declaration hides declaration of the same name in outer scope
+#  pragma warning(disable:6326)	// potential comparison of a constant with another constant
+#  pragma warning(disable:6334)	// sizeof operator applied to an expression with an operator might yield unexpected results
 # endif
 // .. Intel-specific
 # if ICC_VERSION

@@ -43,8 +43,6 @@
 
 #include <cstring>
 
-#include "lib/posix/posix.h"	// wcscasecmp
-
 namespace ERR
 {
 	const Status PATH_CHARACTER_ILLEGAL   = -100300;
@@ -127,12 +125,12 @@ public:
 
 	bool operator<(const Path& rhs) const
 	{
-		return wcscasecmp(path.c_str(), rhs.path.c_str()) < 0;
+		return path < rhs.path;
 	}
 
 	bool operator==(const Path& rhs) const
 	{
-		return wcscasecmp(path.c_str(), rhs.path.c_str()) == 0;
+		return path == rhs.path;
 	}
 
 	bool operator!=(const Path& rhs) const

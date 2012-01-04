@@ -1463,8 +1463,6 @@ bool CCmpUnitMotion::IsInTargetRange(entity_id_t target, entity_pos_t minRange, 
 	if (!cmpObstruction.null())
 		hasObstruction = cmpObstruction->GetObstructionSquare(obstruction);
 
-	entity_pos_t distance;
-
 	if (hasObstruction)
 	{
 		CFixedVector2D halfSize(obstruction.hw, obstruction.hh);

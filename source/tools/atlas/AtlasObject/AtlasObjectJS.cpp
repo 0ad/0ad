@@ -20,6 +20,10 @@
 
 #include "../AtlasScript/ScriptInterface.h"
 
+#if defined(_MSC_VER)
+# pragma warning(disable:4996)	// deprecated CRT
+#endif
+
 #include "wx/log.h"
 
 #include <sstream>
