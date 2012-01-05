@@ -428,7 +428,7 @@ for (var i = 0; i < types.length; ++i)
 	createAreasInAreas(
 		placer,
 		[painter, paintClass(clForest)], 
-		avoidClasses(clCity, 1, clWater, 3, clForest, 3, clHill, 0),
+		avoidClasses(clCity, 1, clWater, 3, clForest, 3, clHill, 1),
 		num, 20, areas
 	);
 }
@@ -439,14 +439,14 @@ log("Creating stone mines...");
 // create large stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
 createObjectGroupsByAreas(group, 0,
-	[avoidClasses(clWater, 0, clForest, 0, clHill, 0, clPlayer, 5, clRock, 1)],
+	[avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 5, clRock, 1)],
 	scaleByMapSize(4,16), 200, areas
 );
 
 // create small stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
 createObjectGroupsByAreas(group, 0,
-	[avoidClasses(clWater, 0, clForest, 0, clHill, 0, clPlayer, 5, clRock, 2)],
+	[avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 5, clRock, 2)],
 	scaleByMapSize(4,16), 200, areas
 );
 RMS.SetProgress(70);
@@ -455,7 +455,7 @@ log("Creating metal mines...");
 // create large metal quarries
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
 createObjectGroupsByAreas(group, 0,
-	[avoidClasses(clWater, 0, clForest, 0, clHill, 0, clPlayer, 5, clMetal, 2, clRock, 1)],
+	[avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 5, clMetal, 2, clRock, 1)],
 	scaleByMapSize(4,16), 200, areas
 );
 
@@ -502,7 +502,7 @@ for (var t in trees)
 {
 	group = new SimpleGroup([new SimpleObject(trees[t], 1,1, 0,1)], true, clForest);
 	createObjectGroupsByAreas(group, 0,
-		avoidClasses(clWater, 2, clForest, 2, clCity, 3, clBaseResource, 1, clRock, 1, clMetal, 1),
+		avoidClasses(clWater, 2, clForest, 2, clCity, 3, clBaseResource, 1, clRock, 1, clMetal, 1, clPlayer, 1, clHill, 1),
 		scaleByMapSize(2, 38), 50, areas
 	);
 }
@@ -514,7 +514,7 @@ group = new SimpleGroup(
 	true
 );
 createObjectGroupsByAreas(group, 0,
-	avoidClasses(clWater, 2, clForest, 2, clCity, 3, clBaseResource, 1, clRock, 1, clMetal, 1),
+	avoidClasses(clWater, 2, clForest, 2, clCity, 3, clBaseResource, 1, clRock, 1, clMetal, 1, clPlayer, 1, clHill, 1),
 	scaleByMapSize(5, 75), 50, areas
 );
 
@@ -525,7 +525,7 @@ group = new SimpleGroup(
 	true
 );
 createObjectGroupsByAreas(group, 0,
-	avoidClasses(clWater, 2, clForest, 1, clCity, 0, clBaseResource, 1, clRock, 1, clMetal, 1),
+	avoidClasses(clWater, 2, clForest, 1, clCity, 0, clBaseResource, 1, clRock, 1, clMetal, 1, clPlayer, 1, clHill, 1),
 	scaleByMapSize(5, 75), 50, areas
 );
 

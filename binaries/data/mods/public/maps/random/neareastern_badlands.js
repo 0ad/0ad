@@ -407,14 +407,14 @@ log("Creating stone mines...");
 // create large stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4), new RandomObject(aBushes, 2,4, 0,2)], true, clRock);
 createObjectGroups(group, 0,
-	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill1, 0)],
+	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill1, 1)],
 	scaleByMapSize(4,16), 100
 );
 
 // create small stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3), new RandomObject(aBushes, 2,4, 0,2)], true, clRock);
 createObjectGroups(group, 0,
-	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill1, 0)],
+	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill1, 1)],
 	scaleByMapSize(4,16), 100
 );
 
@@ -422,7 +422,7 @@ log("Creating metal mines...");
 // create large metal quarries
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4), new RandomObject(aBushes, 2,4, 0,2)], true, clMetal);
 createObjectGroups(group, 0,
-	[avoidClasses(clForest, 1, clPlayer, 10, clMetal, 10, clRock, 5, clHill1, 0)],
+	[avoidClasses(clForest, 1, clPlayer, 10, clMetal, 10, clRock, 5, clHill1, 1)],
 	scaleByMapSize(4,16), 100
 );
 
@@ -462,7 +462,7 @@ for (var i = 0; i < types.length; ++i)
 {
 	group = new SimpleGroup([new SimpleObject(types[i], 1,1, 0,0)], true);
 	createObjectGroups(group, 0,
-		avoidClasses(clForest, 0, clHill1, 1, clPlayer, 0, clMetal, 1, clRock, 1),
+		avoidClasses(clForest, 0, clHill1, 1, clPlayer, 4, clMetal, 1, clRock, 1),
 		num
 	);
 }
