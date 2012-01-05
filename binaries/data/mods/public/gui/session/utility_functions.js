@@ -127,6 +127,17 @@ function isDefensive(entState)
 	return false;
 }
 
+function isSupport(entState)
+{
+	if(entState.identity)
+	{
+		var classes = entState.identity.classes;
+		if(classes && classes.length)
+			return (classes.indexOf("Support") != -1);
+	}
+	return false;
+}
+
 function damageTypesToTextStacked(dmg)
 {
 	if (!dmg)
