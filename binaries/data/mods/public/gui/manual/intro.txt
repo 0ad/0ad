@@ -37,13 +37,14 @@ When you are ready to start, click the "Start game" button.
 [font="serif-bold-16"]Hotkeys:
 [font="serif-bold-14"]Always
 [font="serif-14"]Alt+F4: Close the game, without confirmation
+Alt + Enter: Toggle between fullscreen and windowed
 F9: Show/hide console
 Shift + F: Show/hide frame counter (FPS)
 F2: Take screenshot (in .png format, saved to %appdata%/0ad\data\screenshots on Windows)
 Shift+F2: Take huge screenshot (6400px*4800px, in .bmp format, saved to %appdata%/0ad\data\screenshots on Windows)
 
 [font="serif-bold-14"]In Game
-[font="serif-14"]Alt + Enter: Toggle between fullscreen and windowed
+[font="serif-14"]
 Double Left Click [on unit]: Select all of your units of the same kind and the same rank on the screen
 Triple Left Click [on unit]: Select all of your units of the same kind on the screen (even if they're different ranks)
 Alt + Double Left Click [on unit]: Select all your units of the same kind and rank on the entire map
@@ -66,7 +67,9 @@ Shift + Right Click: Queue the move/build/gather/etc order
 Shift + Left click when training unit/s: Add units in batches of five
 Shift + Left Click or Left Drag over unit on map: Add unit to selection
 Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection
+Alt + Left Drag over units on map: Only select military units
 Ctrl + Left Click on unit/group icon with multiple units selected: Deselect
+Right Click with a building/buildings selected: sets a rally point for units created/ungarrisoned from that building. 
 
 [font="serif-bold-14"]Overlays
 [font="serif-14"]G: Hide/show the GUI
@@ -95,3 +98,4 @@ Middle Mouse Button or / (ForwardSlash): Keep pressed and move the mouse to pan
 [font="serif-bold-14"]During Building Placement
 [font="serif-14"][: Rotate building 15 degrees counter-clockwise
 ]: Rotate building 15 degrees clockwise
+Left Drag: Rotate building using mouse (foundation will be placed on mouse release)
