@@ -337,35 +337,41 @@ for (var ix = 0; ix < mapSize; ix++)
 			addToClass(ix, iz, clCliff);
 		}
 		
-		// forests
-		if (diffH < 1 && minH > 1)
+		if (minH >= 7)
 		{
-			var forestNoise = (noise6.get(x,z) + 0.5*noise7.get(x,z)) / 1.5 * pn - 0.59;
-			
-			// Thin out trees a bit
-			if (forestNoise > 0 && randFloat() < 0.5)
+			addToClass(ix, iz, clCliff);
+		}
+		
+		// forests
+		if (getHeight(ix, iz) <11){
+			if (diffH < 2 && minH > 1)
 			{
-				if (minH > 5)
+				var forestNoise = (noise6.get(x,z) + 0.5*noise7.get(x,z)) / 1.5 * pn - 0.59;
+				
+				// Thin out trees a bit
+				if (forestNoise > 0 && randFloat() < 0.5)
 				{
-					var typeNoise = noise10.get(x,z);
-					
-					if (typeNoise < 0.43 && forestNoise < 0.05)
-						t = pPoplarForest;
-					else if (typeNoise < 0.63)
-						t = pMainForest;
-					else
-						t = pPineForest;
-					
-					addToClass(ix, iz, clForest);
-				}
-				else if (minH < 3)
-				{
-					t = pPalmForest;
-					addToClass(ix, iz, clForest);
+					if (minH < 11 && minH >= 4)
+					{
+						var typeNoise = noise10.get(x,z);
+						
+						if (typeNoise < 0.43 && forestNoise < 0.05)
+							t = pPoplarForest;
+						else if (typeNoise < 0.63)
+							t = pMainForest;
+						else
+							t = pPineForest;
+						
+						addToClass(ix, iz, clForest);
+					}
+					else if (minH < 4)
+					{
+						t = pPalmForest;
+						addToClass(ix, iz, clForest);
+					}
 				}
 			}
 		}
-		
 		// grass variations
 		if (t == tGrass)
 		{
@@ -414,9 +420,9 @@ for (var i = 1; i <= numPlayers; i++)
 	addToClass(ix, iz, clPlayer);
 	
 	// create the city patch, flatten area under TC
-	var cityRadius = 8;
+	var cityRadius = 11;
 	var placer = new ClumpPlacer(PI*cityRadius*cityRadius, 0.6, 0.3, 10, ix, iz);
-	var painter = new LayeredPainter([tGrass, tCity], [1]);
+	var painter = new LayeredPainter([tGrass, tCity], [4]);
 	var elevationPainter = new SmoothElevationPainter(
 		ELEVATION_SET,	// type
 		5,				// elevation
@@ -481,7 +487,7 @@ for (var i = 1; i <= numPlayers; i++)
 	{
 		mAngle = randFloat(0, TWO_PI);
 	}
-	var mDist = 15;
+	var mDist = 12;
 	var mX = round(fx + mDist * cos(mAngle));
 	var mZ = round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
@@ -530,7 +536,7 @@ group = new SimpleGroup(
 	new SimpleObject(aRockLarge, 0,1, 0,2)]
 );
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 0, clCliff, 0),
+	avoidClasses(clWater, 2, clCliff, 1),
 	scaleByMapSize(9, 146), 50
 );
 
@@ -540,14 +546,14 @@ log("Creating stone mines...");
 // create large stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clStone);
 createObjectGroups(group, 0,
-	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clStone, 15)],
+	[avoidClasses(clWater, 1, clForest, 1, clPlayer, 20, clStone, 15, clCliff, 3)],
 	scaleByMapSize(4,16), 100
 );
 
 // create small stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clStone);
 createObjectGroups(group, 0,
-	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clStone, 15)],
+	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clStone, 15, clCliff, 3)],
 	scaleByMapSize(4,16), 100
 );
 
@@ -555,7 +561,7 @@ log("Creating metal mines...");
 // create large metal quarries
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,2)], true, clMetal);
 createObjectGroups(group, 0,
-	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clMetal, 15, clStone, 5), 
+	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clMetal, 15, clStone, 5, clCliff, 3), 
 	 borderClasses(clCliff, 0, 5)],
 	scaleByMapSize(4,16), 100
 );
@@ -569,7 +575,7 @@ for (var t in trees)
 {
 	group = new SimpleGroup([new SimpleObject(trees[t], 1,1, 0,1)], true, clForest);
 	createObjectGroups(group, 0,
-		avoidClasses(clWater, 5, clCliff, 0, clForest, 1, clPlayer, 15, clMetal, 1, clStone, 1),
+		avoidClasses(clWater, 5, clCliff, 4, clForest, 1, clPlayer, 15, clMetal, 1, clStone, 1),
 		scaleByMapSize(2, 38), 50
 	);
 }
@@ -582,7 +588,7 @@ group = new SimpleGroup(
 	true
 );
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 4, clCliff, 2, clForest, 1, clPlayer, 15, clMetal, 1, clStone, 1),
+	avoidClasses(clWater, 4, clCliff, 4, clForest, 1, clPlayer, 15, clMetal, 1, clStone, 1),
 	scaleByMapSize(5, 75), 50
 );
 

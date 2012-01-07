@@ -444,6 +444,19 @@ function getPreferredEntities(ents)
 	return preferredEnts;
 }
 
+// Removes any support units from the passed list of entities
+function getMilitaryEntities(ents)
+{
+	var militaryEnts = [];
+	for each (var ent in ents)
+	{
+		var entState = GetEntityState(ent);
+		if (!isSupport(entState))
+			militaryEnts.push(ent);
+	}
+	return militaryEnts;
+}
+
 function handleInputBeforeGui(ev, hoveredObject)
 {
 	// Capture mouse position so we can use it for displaying cursors,
@@ -512,7 +525,16 @@ function handleInputBeforeGui(ev, hoveredObject)
 				var preferredEntities = getPreferredEntities(ents)
 
 				if (preferredEntities.length)
-					ents = preferredEntities;
+				{
+ 					ents = preferredEntities;
+
+					if(Engine.HotkeyIsPressed("selection.milonly"))
+					{
+						var militaryEntities = getMilitaryEntities(ents);
+						if(militaryEntities.length)
+							ents = militaryEntities;
+					}
+				}
 
 				// Remove the bandbox hover highlighting
 				g_Selection.setHighlightList([]);

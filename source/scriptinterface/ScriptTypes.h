@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -90,7 +90,7 @@
 
 #if JS_VERSION != 185
 #error Your compiler is trying to use an incorrect version of the SpiderMonkey library.
-#error The only version that works is the one in the libraries/spidermonkey-tip/ directory,
+#error The only version that works is the one in the libraries/spidermonkey/ directory,
 #error and it will not work with a typical system-installed version.
 #error Make sure you have got all the right files and include paths.
 #endif

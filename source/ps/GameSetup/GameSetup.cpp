@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -1050,7 +1050,8 @@ bool Autostart(const CmdLineArgs& args)
 		}
 		
 		// Random map definition will be loaded from JSON file, so we need to parse it
-		std::wstring scriptPath = L"maps/random/" + autoStartName.FromUTF8() + L".json";
+		std::wstring mapPath = L"maps/random/";
+		std::wstring scriptPath = mapPath + autoStartName.FromUTF8() + L".json";
 		CScriptValRooted scriptData = scriptInterface.ReadJSONFile(scriptPath);
 		if (!scriptData.undefined() && scriptInterface.GetProperty(scriptData.get(), "settings", settings))
 		{
@@ -1074,6 +1075,8 @@ bool Autostart(const CmdLineArgs& args)
 			mapSize = size.ToUInt();
 		}
 
+		scriptInterface.SetProperty(attrs.get(), "map", std::string(autoStartName));
+		scriptInterface.SetProperty(attrs.get(), "mapPath", mapPath);
 		scriptInterface.SetProperty(attrs.get(), "mapType", std::string("random"));
 		scriptInterface.SetProperty(settings.get(), "Seed", seed);									// Random seed
 		scriptInterface.SetProperty(settings.get(), "Size", mapSize);								// Random map size (in patches)

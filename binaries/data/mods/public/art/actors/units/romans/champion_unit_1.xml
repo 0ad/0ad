@@ -17,7 +17,6 @@
         <animation file="infantry/general/death/inf_07.psa" name="death" speed="400"/>
         <animation file="biped/inf_salute_c.psa" name="Promotion" speed="290"/>
       </animations>
-      <mesh>skeletal/m_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/rome_head_veteran.xml" attachpoint="head"/>
         <prop actor="props/units/heads/rome_monte_su.xml" attachpoint="helmet"/>
@@ -27,11 +26,29 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Armour-Scale-Brass">
+    <variant frequency="2" name="Scale-Brass">
+      <mesh>skeletal/m_tunic_long.dae</mesh>
       <texture>skeletal/rome_su1_extraordinarii.dds</texture>
     </variant>
-    <variant frequency="1" name="Armour-Cuirass">
+    <variant frequency="2" name="Cuirass&amp;pteruges">
+      <mesh>skeletal/m_tunic_long.dae</mesh>
       <texture>skeletal/rome_su1_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="Armour-Cuirass">
+      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <texture>skeletal/samnite_isp_e_1.dds</texture>
+    </variant>
+    <variant frequency="1" name="pectoral-tripledisc">
+      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <texture>skeletal/kart_csp_a_1.dds</texture>
+    </variant>
+    <variant frequency="1" name="pectoral-square">
+      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <texture>skeletal/kart_csp_a_2.dds</texture>
+    </variant>
+    <variant frequency="1" name="pectoral-muscle">
+      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <texture>skeletal/kart_csp_a_3.dds</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>
