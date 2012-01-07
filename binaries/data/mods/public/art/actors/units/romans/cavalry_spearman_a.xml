@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -25,15 +25,22 @@
       <mesh>skeletal/horse.pmd</mesh>
       <props>
         <prop actor="units/romans/cavalry_spearman_a_r.xml" attachpoint="rider"/>
+        <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="horse-texture-snipe">
-      <texture>skeletal/horse_rome_snipe.dds</texture>
+    <variant frequency="1" name="horse-texture-01">
+      <texture>skeletal/horse_rome_csp_01.png</texture>
     </variant>
-    <variant frequency="1" name="horse-texture-stripe">
-      <texture>skeletal/horse_rome_stripe.dds</texture>
+    <variant frequency="1" name="horse-texture-mane black">
+      <texture>skeletal/horse_rome_csp_02.png</texture>
+    </variant>
+    <variant frequency="1" name="horse-texture-snipe">
+      <texture>skeletal/horse_rome_csp_03.png</texture>
+    </variant>
+    <variant frequency="1" name="horse-texture-mane white">
+      <texture>skeletal/horse_rome_csp_04.png</texture>
     </variant>
   </group>
   <group>
