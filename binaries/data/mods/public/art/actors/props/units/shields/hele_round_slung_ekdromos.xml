@@ -7,7 +7,17 @@
       <props>
         <prop actor="props/units/shields/hele_round_slung_b.xml" attachpoint="root"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="h">
       <texture>props/shield/hele_round_h.dds</texture>
+    </variant>
+    <variant frequency="1" name="k">
+      <texture>props/shield/hele_round_k.dds</texture>
+    </variant>
+    <variant frequency="1" name="m">
+      <texture>props/shield/hele_round_m.dds</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>
