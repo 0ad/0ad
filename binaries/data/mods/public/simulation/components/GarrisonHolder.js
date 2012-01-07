@@ -26,7 +26,7 @@ GarrisonHolder.prototype.Init = function()
 	this.entities = [];
 	this.spaceOccupied = 0;
 	this.timer = undefined;
-	this.healRate = this.template.BuffHeal;
+	this.healRate = +this.template.BuffHeal;
 };
 
 /**
