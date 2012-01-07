@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+    
+  <group>
+    <variant frequency="100" name="palisade rocks outpost banners">
+      <animations/>
+      <mesh>props/palisade_rocks_outpost_banners.dae</mesh>
+      <texture>structural/pers_struct.dds</texture>
+    </variant>
+  </group>
+  
+  <material>player_trans.xml</material>
+
+</actor>
