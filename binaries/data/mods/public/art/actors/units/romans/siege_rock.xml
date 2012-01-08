@@ -3,6 +3,10 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="rome ballista">
+      <animations> 
+        <animation file="mechanical/rome_ballista_idle.dae" name="Idle" speed="100"/>
+        <animation event="0.8" file="mechanical/rome_ballista_atttack.dae" name="Melee" speed="100"/>
+      </animations> 
       <mesh>structural/rome_ballista.dae</mesh>
       <texture>structural/rome_ballista.png</texture>
       <props>
