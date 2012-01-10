@@ -24,7 +24,7 @@
   <Identity>
     <Civ>rome</Civ>
     <SpecificName>Ballista</SpecificName>
-    <Icon>units/hele_mechanical_siege_lithobolos.png</Icon>
+    <Icon>units/rome_mechanical_siege_ballista.png</Icon>
   </Identity>
   <Obstruction>
     <Unit radius="3.5"/>
@@ -33,6 +33,11 @@
     <BarWidth>4.0</BarWidth>
     <BarHeight>0.5</BarHeight>
   </StatusBars>
+  <Sound>
+    <SoundGroups>
+      <attack>attack/siege/ballist_attack.xml</attack>
+    </SoundGroups>
+  </Sound>
   <Vision>
     <Range>94</Range>
   </Vision>

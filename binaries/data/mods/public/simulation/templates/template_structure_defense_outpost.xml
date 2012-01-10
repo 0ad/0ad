@@ -21,12 +21,6 @@
     <Square width="7.0" depth="7.0"/>
     <Height>15.0</Height>
   </Footprint>
-  <GarrisonHolder>
-    <Max>1</Max>
-	<EjectHealth>0.1</EjectHealth>
-	<List datatype="tokens">Support Infantry</List>
-	<BuffHeal>1</BuffHeal>
-  </GarrisonHolder>
   <Health>
     <Max>500</Max>
   </Health>
@@ -39,6 +33,7 @@
   <Obstruction>
     <Static width="6.0" depth="6.0"/>
   </Obstruction>
+  <RallyPoint disable=""/>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_tower.xml</select>
