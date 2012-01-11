@@ -41,7 +41,7 @@ extern bool g_mouse_active;
  * it represents a pressed key.
  * Updated by GlobalsInputHandler in response to key press/release events.
  */
-extern bool g_keys[];
+extern std::map<int32_t, bool> g_keys;
 
 /**
  * g_mouse_buttons: Mouse buttons states, indexed by SDL_BUTTON_* constants.

@@ -24,7 +24,7 @@
 bool g_app_minimized = false;
 bool g_app_has_focus = true;
 
-bool g_keys[SDLK_LAST] = {0};
+std::map<int32_t, bool> g_keys;
 int g_mouse_x = 50, g_mouse_y = 50;
 bool g_mouse_active = true;
 

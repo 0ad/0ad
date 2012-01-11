@@ -156,8 +156,10 @@ bool CVideoMode::InitSDL()
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+#if !SDL_VERSION_ATLEAST(1, 3, 0)
 	SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, g_VSync ? 1 : 0);
-
+#endif
+	
 	if (!SetVideoMode(w, h, bpp, m_ConfigFullscreen))
 	{
 		// Fall back to a smaller depth buffer
@@ -167,6 +169,10 @@ bool CVideoMode::InitSDL()
 		if (!SetVideoMode(w, h, bpp, m_ConfigFullscreen))
 			return false;
 	}
+
+#if SDL_VERSION_ATLEAST(1, 3, 0)
+	SDL_GL_SetSwapInterval(g_VSync ? 1 : 0);
+#endif
 
 	// Work around a bug in the proprietary Linux ATI driver (at least versions 8.16.20 and 8.14.13).
 	// The driver appears to register its own atexit hook on context creation.
