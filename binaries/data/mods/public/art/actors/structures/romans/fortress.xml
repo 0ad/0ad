@@ -3,11 +3,25 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="Base">
+      <animations>
+        <animation event="0.5" load="0.0" name="attack" speed="100"/>
+      </animations>
       <mesh>structural/rome_fortress.dae</mesh>
       <props>
         <prop actor="props/structures/romans/fortress.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
       </props>
       <texture>structural/rome_struct_2.png</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_rome.xml" attachpoint="garrisoned"/>
+        <prop actor="props/special/common/garrison_flag_rome.xml" attachpoint="garrisoned2"/>
+      </props>
     </variant>
   </group>
   <material>player_trans.xml</material>
