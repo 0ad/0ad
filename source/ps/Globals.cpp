@@ -69,15 +69,7 @@ InReaction GlobalsInputHandler(const SDL_Event_* ev)
 
 	case SDL_KEYDOWN:
 	case SDL_KEYUP:
-		c = ev->ev.key.keysym.sym;
-		if(c < ARRAY_SIZE(g_keys))
-			g_keys[c] = (ev->ev.type == SDL_KEYDOWN);
-		else
-		{
-			// don't complain: this happens when the hotkey system
-			// spoofs keys (it assigns values starting from SDLK_LAST)
-			//debug_warn(L"invalid key");
-		}
+		g_keys[ev->ev.key.keysym.sym] = (ev->ev.type == SDL_KEYDOWN);
 		return IN_PASS;
 
 	default:
