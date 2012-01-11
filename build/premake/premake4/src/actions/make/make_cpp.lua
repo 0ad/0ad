@@ -248,7 +248,7 @@
 		-- set up precompiled headers
 		_.pchconfig(cfg)
 				
-		_p('  CFLAGS    += $(CPPFLAGS) $(ARCH) %s', table.concat(table.join(cc.getcflags(cfg), cfg.buildoptions), " "))
+		_p('  CFLAGS    += $(CPPFLAGS) %s', table.concat(table.join(cc.getcflags(cfg), cfg.buildoptions), " "))
 		_p('  CXXFLAGS  += $(CFLAGS) %s', table.concat(cc.getcxxflags(cfg), " "))
 		_p('  LDFLAGS   += %s', table.concat(table.join(cc.getldflags(cfg), cfg.linkoptions, cc.getlibdirflags(cfg)), " "))
 		_p('  LIBS      += %s %s', table.concat(cc.getlinkflags(cfg), " "), table.concat(cfg.gnuexternals, " "))
@@ -272,7 +272,7 @@
 			else
 				lddeps = '-Xlinker --start-group $(LDDEPS) -Xlinker --end-group'
 			end
-			_p('  LINKCMD    = $(%s) -o $(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES) $(ARCH) %s $(LIBS)', 
+			_p('  LINKCMD    = $(%s) -o $(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES) %s $(LIBS)', 
 			iif(cfg.language == "C", "CC", "CXX"), lddeps)
 		end
 		
