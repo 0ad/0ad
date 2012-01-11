@@ -28,6 +28,7 @@
 #include "lib/sysdep/gfx.h"
 
 #include <mach-o/dyld.h>
+#include <ApplicationServices/ApplicationServices.h>
 
 
 // "copy" text into the clipboard. replaces previous contents.
@@ -61,8 +62,40 @@ namespace gfx {
 
 Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq)
 {
-	// TODO Implement
-	return ERR::NOT_SUPPORTED;	// NOWARN
+	// TODO: This breaks 10.5 compatibility, as CGDisplayCopyDisplayMode
+	//  and CGDisplayModeCopyPixelEncoding were not available
+	CGDisplayModeRef currentMode = CGDisplayCopyDisplayMode(kCGDirectMainDisplay);
+
+	if(xres)
+		*xres = (int)CGDisplayPixelsWide(kCGDirectMainDisplay);
+
+	if(yres)
+		*yres = (int)CGDisplayPixelsHigh(kCGDirectMainDisplay);
+
+	if(bpp)
+	{
+		// CGDisplayBitsPerPixel was deprecated in OS X 10.6
+		CFStringRef pixelEncoding = CGDisplayModeCopyPixelEncoding(currentMode);
+		if (CFStringCompare(pixelEncoding, CFSTR(IO32BitDirectPixels), kCFCompareCaseInsensitive) == kCFCompareEqualTo)
+			*bpp = 32;
+		else if (CFStringCompare(pixelEncoding, CFSTR(IO16BitDirectPixels), kCFCompareCaseInsensitive) == kCFCompareEqualTo)
+			*bpp = 16;
+		else if (CFStringCompare(pixelEncoding, CFSTR(IO8BitIndexedPixels), kCFCompareCaseInsensitive) == kCFCompareEqualTo)
+			*bpp = 8;
+		else	// error
+			*bpp = 0;
+
+		// We're responsible for this
+		CFRelease(pixelEncoding);
+	}
+
+	if(freq)
+		*freq = (int)CGDisplayModeGetRefreshRate(currentMode);
+
+	// We're responsible for this
+	CGDisplayModeRelease(currentMode);
+
+	return INFO::OK;
 }
 
 Status GetMonitorSize(int* xres, int* yres, int* bpp, int* freq)
