@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
 
 #include "graphics/TextureManager.h"
 #include "lib/alignment.h"
-#include "lib/external_libraries/sdl.h"
+#include "lib/external_libraries/libsdl.h"
 #include "lib/file/vfs/vfs.h"
 #include "lib/res/h_mgr.h"
 #include "lib/tex/tex.h"

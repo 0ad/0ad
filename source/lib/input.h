@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2012 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -28,7 +28,7 @@
 #define INCLUDED_INPUT
 
 
-#include "lib/external_libraries/sdl_fwd.h"
+#include "lib/external_libraries/libsdl_fwd.h"
 
 // input handler return values.
 enum InReaction

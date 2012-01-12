@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@
 
 #include "CStr.h"
 #include "lib/input.h"
-#include "lib/external_libraries/sdl.h"	// see note below
+#include "lib/external_libraries/libsdl.h"	// see note below
 
 // note: we need the real SDL header - it defines SDL_USEREVENT, which is
 // required for our HOTKEY event type definition. this is OK since

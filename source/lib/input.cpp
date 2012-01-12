@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2012 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -30,7 +30,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "lib/external_libraries/sdl.h"
+#include "lib/external_libraries/libsdl.h"
 
 const size_t MAX_HANDLERS = 8;
 static InHandler handler_stack[MAX_HANDLERS];

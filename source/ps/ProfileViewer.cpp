@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@
 #include "ps/Font.h"
 #include "ps/Hotkey.h"
 #include "ps/Profile.h"
-#include "lib/external_libraries/sdl.h"
+#include "lib/external_libraries/libsdl.h"
 #include "lib/res/graphics/unifont.h"
 #include "renderer/Renderer.h"
 #include "scriptinterface/ScriptInterface.h"

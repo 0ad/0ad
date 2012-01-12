@@ -1,4 +1,4 @@
-/* Copyright (c) 2011 Wildfire Games
+/* Copyright (c) 2012 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -31,7 +31,7 @@
 #include <string.h>
 #include <stdarg.h>
 
-#include "lib/external_libraries/sdl.h"
+#include "lib/external_libraries/libsdl.h"
 #include "lib/debug.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/res/h_mgr.h"

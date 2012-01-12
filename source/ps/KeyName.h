@@ -19,7 +19,7 @@
 #define INCLUDED_KEYNAME
 
 // Need SDLK_* enum values.
-#include "lib/external_libraries/sdl.h"
+#include "lib/external_libraries/libsdl.h"
 
 class CStr8;
 
