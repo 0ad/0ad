@@ -32,7 +32,7 @@ ifeq ($(config),release)
   LIBS      += -lm -ldl 
   RESFLAGS  += $(DEFINES) $(INCLUDES) 
   LDDEPS    += 
-  LINKCMD    = $(CC) -o $(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES) -Xlinker --start-group $(LDDEPS) -Xlinker --end-group $(LIBS)
+  LINKCMD    = $(CC) -o $(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES) $(LDDEPS) $(LIBS)
   define PREBUILDCMDS
   endef
   define PRELINKCMDS
@@ -54,7 +54,7 @@ ifeq ($(config),debug)
   LIBS      += -lm -ldl 
   RESFLAGS  += $(DEFINES) $(INCLUDES) 
   LDDEPS    += 
-  LINKCMD    = $(CC) -o $(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES) -Xlinker --start-group $(LDDEPS) -Xlinker --end-group $(LIBS)
+  LINKCMD    = $(CC) -o $(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES) $(LDDEPS) $(LIBS)
   define PREBUILDCMDS
   endef
   define PRELINKCMDS
