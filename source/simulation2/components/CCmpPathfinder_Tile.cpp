@@ -218,7 +218,7 @@ static bool AtGoal(u16 i, u16 j, const ICmpPathfinder::Goal& goal)
 {
 	// Allow tiles slightly more than sqrt(2) from the actual goal,
 	// i.e. adjacent diagonally to the target tile
-	fixed tolerance = entity_pos_t::FromInt(CELL_SIZE*3/2);
+	fixed tolerance = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*3/2);
 
 	entity_pos_t x, z;
 	CCmpPathfinder::TileCenter(i, j, x, z);
@@ -387,7 +387,7 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 	// a large circle then the heuristics will aim us directly outwards);
 	// otherwise just aim at the center point. (We'll never try moving outwards to a square shape.)
 	if (goal.type == Goal::CIRCLE)
-		state.rGoal = (u16)(goal.hw / (int)CELL_SIZE).ToInt_RoundToZero();
+		state.rGoal = (u16)(goal.hw / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero();
 	else
 		state.rGoal = 0;
 

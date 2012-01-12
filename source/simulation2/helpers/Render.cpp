@@ -100,11 +100,11 @@ void SimRender::ConstructCircleOnGround(const CSimContext& context, float x, flo
 	}
 }
 
-// This method splits up a straight line into a number of line segments each having a length ~= CELL_SIZE
+// This method splits up a straight line into a number of line segments each having a length ~= TERRAIN_TILE_SIZE
 static void SplitLine(std::vector<std::pair<float, float> >& coords, float x1, float y1, float x2, float y2)
 {
 	float length = sqrtf(SQR(x1 - x2) + SQR(y1 - y2));
-	size_t pieces = ((int)length) / CELL_SIZE;
+	size_t pieces = ((int)length) / TERRAIN_TILE_SIZE;
 	if (pieces > 0)
 	{
 		float xPieceLength = (x1 - x2) / (float)pieces;

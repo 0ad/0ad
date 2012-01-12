@@ -227,8 +227,8 @@ public:
 	{
 		// Use 8x8 tile subdivisions
 		// (TODO: find the optimal number instead of blindly guessing)
-		m_UnitSubdivision.Reset(x1, z1, entity_pos_t::FromInt(8*CELL_SIZE));
-		m_StaticSubdivision.Reset(x1, z1, entity_pos_t::FromInt(8*CELL_SIZE));
+		m_UnitSubdivision.Reset(x1, z1, entity_pos_t::FromInt(8*TERRAIN_TILE_SIZE));
+		m_StaticSubdivision.Reset(x1, z1, entity_pos_t::FromInt(8*TERRAIN_TILE_SIZE));
 
 		for (std::map<u32, UnitShape>::iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
 		{
@@ -690,8 +690,8 @@ bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter,
  */
 static void NearestTile(entity_pos_t x, entity_pos_t z, u16& i, u16& j, u16 w, u16 h)
 {
-	i = (u16)clamp((x / (int)CELL_SIZE).ToInt_RoundToZero(), 0, w-1);
-	j = (u16)clamp((z / (int)CELL_SIZE).ToInt_RoundToZero(), 0, h-1);
+	i = (u16)clamp((x / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero(), 0, w-1);
+	j = (u16)clamp((z / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero(), 0, h-1);
 }
 
 /**
@@ -699,8 +699,8 @@ static void NearestTile(entity_pos_t x, entity_pos_t z, u16& i, u16& j, u16 w, u
  */
 static void TileCenter(u16 i, u16 j, entity_pos_t& x, entity_pos_t& z)
 {
-	x = entity_pos_t::FromInt(i*(int)CELL_SIZE + (int)CELL_SIZE/2);
-	z = entity_pos_t::FromInt(j*(int)CELL_SIZE + (int)CELL_SIZE/2);
+	x = entity_pos_t::FromInt(i*(int)TERRAIN_TILE_SIZE + (int)TERRAIN_TILE_SIZE/2);
+	z = entity_pos_t::FromInt(j*(int)TERRAIN_TILE_SIZE + (int)TERRAIN_TILE_SIZE/2);
 }
 
 bool CCmpObstructionManager::Rasterise(Grid<u8>& grid)
@@ -723,7 +723,7 @@ bool CCmpObstructionManager::Rasterise(Grid<u8>& grid)
 	// we maybe want to expand the square a bit so we're less likely to think there's
 	// free space between buildings when there isn't. But this is just a random guess
 	// and needs to be tweaked until everything works nicely.
-	//entity_pos_t expandPathfinding = entity_pos_t::FromInt(CELL_SIZE / 2);
+	//entity_pos_t expandPathfinding = entity_pos_t::FromInt(TERRAIN_TILE_SIZE / 2);
 	// Actually that's bad because units get stuck when the A* pathfinder thinks they're
 	// blocked on all sides, so it's better to underestimate
 	entity_pos_t expandPathfinding = entity_pos_t::FromInt(0);
@@ -731,7 +731,7 @@ bool CCmpObstructionManager::Rasterise(Grid<u8>& grid)
 	// For AI building foundation planning, we want to definitely block all
 	// potentially-obstructed tiles (so we don't blindly build on top of an obstruction),
 	// so we need to expand by at least 1/sqrt(2) of a tile
-	entity_pos_t expandFoundation = (entity_pos_t::FromInt(CELL_SIZE) * 3) / 4;
+	entity_pos_t expandFoundation = (entity_pos_t::FromInt(TERRAIN_TILE_SIZE) * 3) / 4;
 
 	for (std::map<u32, StaticShape>::iterator it = m_StaticShapes.begin(); it != m_StaticShapes.end(); ++it)
 	{

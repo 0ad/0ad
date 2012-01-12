@@ -277,8 +277,8 @@ public:
 	 */
 	void NearestTile(entity_pos_t x, entity_pos_t z, u16& i, u16& j)
 	{
-		i = (u16)clamp((x / (int)CELL_SIZE).ToInt_RoundToZero(), 0, m_MapSize-1);
-		j = (u16)clamp((z / (int)CELL_SIZE).ToInt_RoundToZero(), 0, m_MapSize-1);
+		i = (u16)clamp((x / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero(), 0, m_MapSize-1);
+		j = (u16)clamp((z / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero(), 0, m_MapSize-1);
 	}
 
 	/**
@@ -286,8 +286,8 @@ public:
 	 */
 	static void TileCenter(u16 i, u16 j, entity_pos_t& x, entity_pos_t& z)
 	{
-		x = entity_pos_t::FromInt(i*(int)CELL_SIZE + (int)CELL_SIZE/2);
-		z = entity_pos_t::FromInt(j*(int)CELL_SIZE + (int)CELL_SIZE/2);
+		x = entity_pos_t::FromInt(i*(int)TERRAIN_TILE_SIZE + (int)TERRAIN_TILE_SIZE/2);
+		z = entity_pos_t::FromInt(j*(int)TERRAIN_TILE_SIZE + (int)TERRAIN_TILE_SIZE/2);
 	}
 
 	static fixed DistanceToGoal(CFixedVector2D pos, const CCmpPathfinder::Goal& goal);

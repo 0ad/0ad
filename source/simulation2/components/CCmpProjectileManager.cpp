@@ -338,8 +338,8 @@ void CCmpProjectileManager::RenderSubmit(SceneCollector& collector, const CFrust
 	for (size_t i = 0; i < m_Projectiles.size(); ++i)
 	{
 		// Don't display projectiles outside the visible area
-		ssize_t posi = (ssize_t)(0.5f + m_Projectiles[i].pos.X / CELL_SIZE);
-		ssize_t posj = (ssize_t)(0.5f + m_Projectiles[i].pos.Z / CELL_SIZE);
+		ssize_t posi = (ssize_t)(0.5f + m_Projectiles[i].pos.X / TERRAIN_TILE_SIZE);
+		ssize_t posj = (ssize_t)(0.5f + m_Projectiles[i].pos.Z / TERRAIN_TILE_SIZE);
 		if (!losRevealAll && !los.IsVisible(posi, posj))
 			continue;
 

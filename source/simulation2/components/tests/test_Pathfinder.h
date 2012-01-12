@@ -118,7 +118,7 @@ public:
 		sim2.LoadDefaultScripts();
 		sim2.ResetState();
 
-		const entity_pos_t range = entity_pos_t::FromInt(CELL_SIZE*12);
+		const entity_pos_t range = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*12);
 
 		CmpPtr<ICmpObstructionManager> cmpObstructionMan(sim2, SYSTEM_ENTITY);
 		CmpPtr<ICmpPathfinder> cmpPathfinder(sim2, SYSTEM_ENTITY);

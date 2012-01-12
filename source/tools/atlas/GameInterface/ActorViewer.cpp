@@ -344,7 +344,7 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 		CmpPtr<ICmpPosition> cmpPosition(m.Simulation2, m.Entity);
 		if (!cmpPosition.null())
 		{
-			ssize_t c = CELL_SIZE * m.Terrain.GetPatchesPerSide()*PATCH_SIZE/2;
+			ssize_t c = TERRAIN_TILE_SIZE * m.Terrain.GetPatchesPerSide()*PATCH_SIZE/2;
 			cmpPosition->JumpTo(entity_pos_t::FromInt(c), entity_pos_t::FromInt(c));
 			cmpPosition->SetYRotation(entity_angle_t::Pi());
 		}
@@ -478,7 +478,7 @@ void ActorViewer::Render()
 		cmpVisual->GetBounds().GetCentre(centre);
 	else
 		centre.Y = 0.f;
-	centre.X = centre.Z = CELL_SIZE * m.Terrain.GetPatchesPerSide()*PATCH_SIZE/2;
+	centre.X = centre.Z = TERRAIN_TILE_SIZE * m.Terrain.GetPatchesPerSide()*PATCH_SIZE/2;
 
 	CCamera camera = View::GetView_Actor()->GetCamera();
 	camera.m_Orientation.Translate(centre.X, centre.Y, centre.Z);
@@ -541,9 +541,9 @@ void ActorViewer::Update(float dt)
 			float z = cmpPosition->GetPosition().Z.ToFloat();
 			z -= m.CurrentSpeed*dt;
 			// Wrap at the edges, so it doesn't run off into the horizon
-			ssize_t c = CELL_SIZE * m.Terrain.GetPatchesPerSide()*PATCH_SIZE/2;
-			if (z < c - CELL_SIZE*PATCH_SIZE * 0.1f)
-				z = c + CELL_SIZE*PATCH_SIZE * 0.1f;
+			ssize_t c = TERRAIN_TILE_SIZE * m.Terrain.GetPatchesPerSide()*PATCH_SIZE/2;
+			if (z < c - TERRAIN_TILE_SIZE*PATCH_SIZE * 0.1f)
+				z = c + TERRAIN_TILE_SIZE*PATCH_SIZE * 0.1f;
 			cmpPosition->JumpTo(cmpPosition->GetPosition().X, entity_pos_t::FromFloat(z));
 		}
 	}

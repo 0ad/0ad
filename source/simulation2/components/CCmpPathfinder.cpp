@@ -711,8 +711,8 @@ bool CCmpPathfinder::CheckBuildingPlacement(const IObstructionTestFilter& filter
 	if (!cmpObstruction->GetObstructionSquare(square))
 		return false;
 
-	// Expand bounds by 1/sqrt(2) tile (multiply by CELL_SIZE since we want world coordinates)
-	entity_pos_t expand = entity_pos_t::FromInt(2).Sqrt().Multiply(entity_pos_t::FromInt(CELL_SIZE / 2));
+	// Expand bounds by 1/sqrt(2) tile (multiply by TERRAIN_TILE_SIZE since we want world coordinates)
+	entity_pos_t expand = entity_pos_t::FromInt(2).Sqrt().Multiply(entity_pos_t::FromInt(TERRAIN_TILE_SIZE / 2));
 	CFixedVector2D halfSize(square.hw + expand, square.hh + expand);
 	CFixedVector2D halfBound = Geometry::GetHalfBoundingBox(square.u, square.v, halfSize);
 

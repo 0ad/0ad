@@ -68,7 +68,7 @@ public:
 	virtual CFixedVector3D CalcNormal(entity_pos_t x, entity_pos_t z)
 	{
 		CFixedVector3D normal;
-		m_Terrain->CalcNormalFixed((x / (int)CELL_SIZE).ToInt_RoundToZero(), (z / (int)CELL_SIZE).ToInt_RoundToZero(), normal);
+		m_Terrain->CalcNormalFixed((x / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero(), (z / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero(), normal);
 		return normal;
 	}
 
@@ -114,16 +114,16 @@ public:
 		if (!cmpObstructionManager.null())
 		{
 			cmpObstructionManager->SetBounds(entity_pos_t::Zero(), entity_pos_t::Zero(),
-					entity_pos_t::FromInt(tiles*(int)CELL_SIZE),
-					entity_pos_t::FromInt(tiles*(int)CELL_SIZE));
+					entity_pos_t::FromInt(tiles*(int)TERRAIN_TILE_SIZE),
+					entity_pos_t::FromInt(tiles*(int)TERRAIN_TILE_SIZE));
 		}
 
 		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
 		if (!cmpRangeManager.null())
 		{
 			cmpRangeManager->SetBounds(entity_pos_t::Zero(), entity_pos_t::Zero(),
-					entity_pos_t::FromInt(tiles*(int)CELL_SIZE),
-					entity_pos_t::FromInt(tiles*(int)CELL_SIZE),
+					entity_pos_t::FromInt(tiles*(int)TERRAIN_TILE_SIZE),
+					entity_pos_t::FromInt(tiles*(int)TERRAIN_TILE_SIZE),
 					vertices);
 		}
 

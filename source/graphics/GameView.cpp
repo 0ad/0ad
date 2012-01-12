@@ -61,7 +61,7 @@ extern int g_xres, g_yres;
 
 // Maximum distance outside the edge of the map that the camera's
 // focus point can be moved
-static const float CAMERA_EDGE_MARGIN = 2.0f*CELL_SIZE;
+static const float CAMERA_EDGE_MARGIN = 2.0f*TERRAIN_TILE_SIZE;
 
 /**
  * A value with exponential decay towards the target value.

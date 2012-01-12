@@ -43,7 +43,7 @@
  * towards, we'll pick one that's up to this far from the unit's current
  * position (to minimise the effects of grid-constrained movement)
  */
-static const entity_pos_t WAYPOINT_ADVANCE_MAX = entity_pos_t::FromInt(CELL_SIZE*8);
+static const entity_pos_t WAYPOINT_ADVANCE_MAX = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*8);
 
 /**
  * When advancing along the long path, we'll pick a new waypoint to move
@@ -58,27 +58,27 @@ static const int WAYPOINT_ADVANCE_LOOKAHEAD_TURNS = 4;
  * Maximum range to restrict short path queries to. (Larger ranges are slower,
  * smaller ranges might miss some legitimate routes around large obstacles.)
  */
-static const entity_pos_t SHORT_PATH_SEARCH_RANGE = entity_pos_t::FromInt(CELL_SIZE*10);
+static const entity_pos_t SHORT_PATH_SEARCH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*10);
 
 /**
  * When short-pathing to an intermediate waypoint, we aim for a circle of this radius
  * around the waypoint rather than expecting to reach precisely the waypoint itself
  * (since it might be inside an obstacle).
  */
-static const entity_pos_t SHORT_PATH_GOAL_RADIUS = entity_pos_t::FromInt(CELL_SIZE*3/2);
+static const entity_pos_t SHORT_PATH_GOAL_RADIUS = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*3/2);
 
 /**
  * If we are this close to our target entity/point, then think about heading
  * for it in a straight line instead of pathfinding.
  */
-static const entity_pos_t DIRECT_PATH_RANGE = entity_pos_t::FromInt(CELL_SIZE*4);
+static const entity_pos_t DIRECT_PATH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*4);
 
 /**
  * If we're following a target entity,
  * we will recompute our path if the target has moved
  * more than this distance from where we last pathed to.
  */
-static const entity_pos_t CHECK_TARGET_MOVEMENT_MIN_DELTA = entity_pos_t::FromInt(CELL_SIZE*4);
+static const entity_pos_t CHECK_TARGET_MOVEMENT_MIN_DELTA = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*4);
 
 /**
  * If we're following as part of a formation,
@@ -86,19 +86,19 @@ static const entity_pos_t CHECK_TARGET_MOVEMENT_MIN_DELTA = entity_pos_t::FromIn
  * we will recompute our path if the target has moved
  * more than this distance from where we last pathed to.
  */
-static const entity_pos_t CHECK_TARGET_MOVEMENT_MIN_DELTA_FORMATION = entity_pos_t::FromInt(CELL_SIZE*1);
+static const entity_pos_t CHECK_TARGET_MOVEMENT_MIN_DELTA_FORMATION = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*1);
 
 /**
  * If we're following something but it's more than this distance away along
  * our path, then don't bother trying to repath regardless of how much it has
  * moved, until we get this close to the end of our old path.
  */
-static const entity_pos_t CHECK_TARGET_MOVEMENT_AT_MAX_DIST = entity_pos_t::FromInt(CELL_SIZE*16);
+static const entity_pos_t CHECK_TARGET_MOVEMENT_AT_MAX_DIST = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*16);
 
 static const CColor OVERLAY_COLOUR_LONG_PATH(1, 1, 1, 1);
 static const CColor OVERLAY_COLOUR_SHORT_PATH(1, 0, 0, 1);
 
-static const entity_pos_t g_GoalDelta = entity_pos_t::FromInt(CELL_SIZE)/4; // for extending the goal outwards/inwards a little bit
+static const entity_pos_t g_GoalDelta = entity_pos_t::FromInt(TERRAIN_TILE_SIZE)/4; // for extending the goal outwards/inwards a little bit
 
 class CCmpUnitMotion : public ICmpUnitMotion
 {
@@ -1363,7 +1363,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 			goal.type = ICmpPathfinder::Goal::SQUARE;
 			goal.u = obstruction.u;
 			goal.v = obstruction.v;
-			entity_pos_t delta = std::max(goalDistance, m_Radius + entity_pos_t::FromInt(CELL_SIZE)/16); // ensure it's far enough to not intersect the building itself
+			entity_pos_t delta = std::max(goalDistance, m_Radius + entity_pos_t::FromInt(TERRAIN_TILE_SIZE)/16); // ensure it's far enough to not intersect the building itself
 			goal.hw = obstruction.hw + delta;
 			goal.hh = obstruction.hh + delta;
 		}
@@ -1411,7 +1411,7 @@ bool CCmpUnitMotion::MoveToTargetRange(entity_id_t target, entity_pos_t minRange
 				goal.type = ICmpPathfinder::Goal::SQUARE;
 				goal.u = obstruction.u;
 				goal.v = obstruction.v;
-				entity_pos_t delta = std::max(goalDistance, m_Radius + entity_pos_t::FromInt(CELL_SIZE)/16); // ensure it's far enough to not intersect the building itself
+				entity_pos_t delta = std::max(goalDistance, m_Radius + entity_pos_t::FromInt(TERRAIN_TILE_SIZE)/16); // ensure it's far enough to not intersect the building itself
 				goal.hw = obstruction.hw + delta;
 				goal.hh = obstruction.hh + delta;
 			}

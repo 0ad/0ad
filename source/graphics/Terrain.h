@@ -36,7 +36,7 @@ class CBoundingBoxAligned;
 // Terrain Constants:
 
 /// metres [world space units] per tile in x and z
-const ssize_t CELL_SIZE = 4;
+const ssize_t TERRAIN_TILE_SIZE = 4;
 
 /// number of u16 height units per metre
 const ssize_t HEIGHT_UNITS_PER_METRE = 732; // == approx int(256.0f/0.35f)
@@ -69,8 +69,8 @@ public:
 
 	float GetMinX() const { return 0.0f; }
 	float GetMinZ() const { return 0.0f; }
-	float GetMaxX() const { return (float)((m_MapSize-1) * CELL_SIZE); }
-	float GetMaxZ() const { return (float)((m_MapSize-1) * CELL_SIZE); }
+	float GetMaxX() const { return (float)((m_MapSize-1) * TERRAIN_TILE_SIZE); }
+	float GetMaxZ() const { return (float)((m_MapSize-1) * TERRAIN_TILE_SIZE); }
 
 	bool IsOnMap(float x, float z) const
 	{
@@ -113,14 +113,14 @@ public:
 	// calculate the vertex under a given position (rounding down coordinates)
 	static void CalcFromPosition(const CVector3D& pos, ssize_t& i, ssize_t& j)
 	{
-		i = (ssize_t)(pos.X/CELL_SIZE);
-		j = (ssize_t)(pos.Z/CELL_SIZE);
+		i = (ssize_t)(pos.X/TERRAIN_TILE_SIZE);
+		j = (ssize_t)(pos.Z/TERRAIN_TILE_SIZE);
 	}
 	// calculate the vertex under a given position (rounding down coordinates)
 	static void CalcFromPosition(float x, float z, ssize_t& i, ssize_t& j)
 	{
-		i = (ssize_t)(x/CELL_SIZE);
-		j = (ssize_t)(z/CELL_SIZE);
+		i = (ssize_t)(x/TERRAIN_TILE_SIZE);
+		j = (ssize_t)(z/TERRAIN_TILE_SIZE);
 	}
 	// calculate the normal at a given vertex
 	void CalcNormal(ssize_t i, ssize_t j, CVector3D& normal) const;
