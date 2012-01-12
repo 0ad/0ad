@@ -321,6 +321,8 @@ void CNetTurnManager::RewindTimeWarp()
 
 void CNetTurnManager::QuickSave()
 {
+	TIMER(L"QuickSave");
+	
 	std::stringstream stream;
 	bool ok = m_Simulation2.SerializeState(stream);
 	if (!ok)
@@ -336,6 +338,8 @@ void CNetTurnManager::QuickSave()
 
 void CNetTurnManager::QuickLoad()
 {
+	TIMER(L"QuickLoad");
+
 	if (m_QuickSaveState.empty())
 	{
 		LOGERROR(L"Cannot quickload game - no game was quicksaved");
