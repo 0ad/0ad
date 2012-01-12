@@ -34,14 +34,14 @@
 # include "lib/sysdep/os/win/wsdl.h"
 #else
 
-# include <SDL/SDL.h>
-# include <SDL/SDL_thread.h>
+# include "SDL.h"
+# include "SDL_thread.h"
 
 // if the compiler doesn't support inlining, this header will pull
 // in static bswap routines. doesn't matter - modern compilers
 // will strip them if unused, and this is more convenient than
 // another header that toggles between wsdl and SDL_endian.h.
-# include <SDL/SDL_endian.h>
+# include "SDL_endian.h"
 
 # if MSC_VERSION
 #  pragma comment(lib, "SDL")

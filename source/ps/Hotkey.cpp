@@ -184,7 +184,7 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 		if ((int)ev->ev.button.button <= SDL_BUTTON_WHEELDOWN)
 #endif
 		{
-			keycode = SDLK_LAST + (int)ev->ev.button.button;
+			keycode = CUSTOM_SDL_KEYCODE + (int)ev->ev.button.button;
 			break;
 		}
 		// fall through
@@ -243,7 +243,7 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 
 	bool consoleCapture = false;
 
-	if( g_Console->IsActive() && keycode < SDLK_LAST )
+	if( g_Console->IsActive() && keycode < CUSTOM_SDL_KEYCODE )
 		consoleCapture = true;
 
 	// Here's an interesting bit:
@@ -278,13 +278,13 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 		{
 			bool rqdState = !itKey->negated;
 
-			if( (int)itKey->code < SDLK_LAST )
+			if( (int)itKey->code < CUSTOM_SDL_KEYCODE )
 			{
 				if( g_keys[itKey->code] != rqdState ) accept = false;
 			}
 			else if( (int)itKey->code < UNIFIED_SHIFT )
 			{
-				if( g_mouse_buttons[itKey->code - SDLK_LAST] != rqdState ) accept = false;
+				if( g_mouse_buttons[itKey->code - CUSTOM_SDL_KEYCODE] != rqdState ) accept = false;
 			}
 			else if( (int)itKey->code < UNIFIED_LAST )
 			{
@@ -343,13 +343,13 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 		{
 			bool rqdState = !itKey->negated;
 
-			if( (int)itKey->code < SDLK_LAST )
+			if( (int)itKey->code < CUSTOM_SDL_KEYCODE )
 			{
 				if( g_keys[itKey->code] != rqdState ) accept = false;
 			}
 			else if( (int)itKey->code < UNIFIED_SHIFT )
 			{
-				if( g_mouse_buttons[itKey->code - SDLK_LAST] != rqdState ) accept = false;
+				if( g_mouse_buttons[itKey->code - CUSTOM_SDL_KEYCODE] != rqdState ) accept = false;
 			}
 			else if( (int)itKey->code < UNIFIED_LAST )
 			{

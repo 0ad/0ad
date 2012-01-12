@@ -453,18 +453,29 @@ extern_lib_defs = {
 	sdl = {
 		compile_settings = function()
 			if os.is("windows") then
-				add_default_include_paths("sdl")
+				includedirs { libraries_dir .. "sdl/include/SDL" }
 			else
+
+				-- Support SDL_CONFIG for overriding for the default PATH-based sdl-config
+				sdl_config_path = os.getenv("SDL_CONFIG")
+				if not sdl_config_path then
+					sdl_config_path = "sdl-config"
+				end
+
 				-- "pkg-config sdl --libs" appears to include both static and dynamic libs
 				-- when on MacPorts, which is bad, so use sdl-config instead
-				pkgconfig_cflags(nil, "sdl-config --cflags")
+				pkgconfig_cflags(nil, sdl_config_path.." --cflags")
 			end
 		end,
 		link_settings = function()
 			if os.is("windows") then
 				add_default_lib_paths("sdl")
 			else
-				pkgconfig_libs(nil, "sdl-config --libs")
+				sdl_config_path = os.getenv("SDL_CONFIG")
+				if not sdl_config_path then
+					sdl_config_path = "sdl-config"
+				end
+				pkgconfig_libs(nil, sdl_config_path.." --libs")
 			end
 		end,
 	},

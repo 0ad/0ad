@@ -41,17 +41,19 @@
 #include <stdlib.h>
 #include <Xatom.h>
 
-#include "SDL/SDL.h"
-#include "SDL/SDL_syswm.h"
+#include "SDL.h"
+#include "SDL_syswm.h"
 
 #include <algorithm>
 #undef Cursor
 #undef Status
 
-static Display *SDL_Display;
-static Window SDL_Window;
-static void (*Lock_Display)(void);
-static void (*Unlock_Display)(void);
+static Display *g_SDL_Display;
+static Window g_SDL_Window;
+#if !SDL_VERSION_ATLEAST(1, 3, 0)
+static void (*g_Lock_Display)(void);
+static void (*g_Unlock_Display)(void);
+#endif
 static wchar_t *selection_data=NULL;
 static size_t selection_size=0;
 
@@ -227,7 +229,11 @@ Status sys_clipboard_free(wchar_t *clip_buf)
  * @see x11_clipboard_init
  * @see sys_clipboard_set
  */
-int clipboard_filter(const SDL_Event *event)
+#if SDL_VERSION_ATLEAST(1, 3, 0)
+int clipboard_filter(void* UNUSED(userdata), SDL_Event* event)
+#else
+int clipboard_filter(const SDL_Event* event)
+#endif
 {
 	/* Pass on all non-window manager specific events immediately */
 	/* And do nothing if we don't actually have a clip-out to send out */
@@ -237,14 +243,19 @@ int clipboard_filter(const SDL_Event *event)
 	/* Handle window-manager specific clipboard events */
 	/* (Note: libsdl must be compiled with X11 support (SDL_VIDEO_DRIVER_X11 in SDL_config.h) -
 	   else you'll get errors like "'struct SDL_SysWMmsg' has no member named 'xevent'") */
-	switch (event->syswm.msg->event.xevent.type) {
+#if SDL_VERSION_ATLEAST(1, 3, 0)
+	XEvent* xevent = &event->syswm.msg->msg.x11.event;
+#else
+	XEvent* xevent = &event->syswm.msg->event.xevent;
+#endif
+	switch (xevent->type) {
 		/* Copy the selection from our buffer to the requested property, and
 		convert to the requested target format */
 		case SelectionRequest: {
 			XSelectionRequestEvent *req;
 			XEvent sevent;
 
-			req = &event->syswm.msg->event.xevent.xselectionrequest;
+			req = &xevent->xselectionrequest;
 			sevent.xselection.type = SelectionNotify;
 			sevent.xselection.display = req->display;
 			sevent.xselection.selection = req->selection;
@@ -257,21 +268,21 @@ int clipboard_filter(const SDL_Event *event)
 			if (req->target == XA_STRING)
 			{
 				size_t size = wcslen(selection_data);
-				u8 *buf = (u8 *)alloca(size);
+				u8* buf = (u8*)alloca(size);
 				
-				for (size_t i=0;i<size;i++)
+				for (size_t i = 0; i < size; i++)
 				{
-					buf[i] = selection_data[i]<0x100?selection_data[i]:'?';
+					buf[i] = selection_data[i] < 0x100 ? selection_data[i] : '?';
 				}
 			
-				XChangeProperty(SDL_Display, req->requestor, req->property,
-            		sevent.xselection.target, 8, PropModeReplace,
+				XChangeProperty(g_SDL_Display, req->requestor, req->property,
+					sevent.xselection.target, 8, PropModeReplace,
 					buf, size);
 				sevent.xselection.property = req->property;
 			}
 			// TODO Add more target formats
-			XSendEvent(SDL_Display,req->requestor,False,0,&sevent);
-			XSync(SDL_Display, False);
+			XSendEvent(g_SDL_Display, req->requestor, False, 0, &sevent);
+			XSync(g_SDL_Display, False);
 		}
 		break;
 	}
@@ -288,19 +299,25 @@ Status x11_clipboard_init()
 	SDL_SysWMinfo info;
 
 	SDL_VERSION(&info.version);
-	if ( SDL_GetWMInfo(&info) )
+	if (SDL_GetWMInfo(&info))
 	{
 		/* Save the information for later use */
-		if ( info.subsystem == SDL_SYSWM_X11 )
+		if (info.subsystem == SDL_SYSWM_X11)
 		{
-			SDL_Display = info.info.x11.display;
-			SDL_Window = info.info.x11.window;
-			Lock_Display = info.info.x11.lock_func;
-			Unlock_Display = info.info.x11.unlock_func;
+			g_SDL_Display = info.info.x11.display;
+			g_SDL_Window = info.info.x11.window;
+#if !SDL_VERSION_ATLEAST(1, 3, 0)
+			g_Lock_Display = info.info.x11.lock_func;
+			g_Unlock_Display = info.info.x11.unlock_func;
+#endif
 
 			/* Enable the special window hook events */
 			SDL_EventState(SDL_SYSWMEVENT, SDL_ENABLE);
+#if SDL_VERSION_ATLEAST(1, 3, 0)
+			SDL_SetEventFilter(clipboard_filter, NULL);
+#else
 			SDL_SetEventFilter(clipboard_filter);
+#endif
 
 			return INFO::OK;
 		}
@@ -339,14 +356,24 @@ Status sys_clipboard_set(const wchar_t *str)
 	selection_data = (wchar_t *)malloc(selection_size);
 	wcscpy(selection_data, str);
 
-	Lock_Display();
+#if !SDL_VERSION_ATLEAST(1, 3, 0)
+	g_Lock_Display();
+#endif
+
 	// Like for the clipboard_get code above, we rather use CLIPBOARD than
 	// PRIMARY - more windows'y behaviour there.
-	Atom clipboard_atom = XInternAtom(SDL_Display, "CLIPBOARD", False);
-	XSetSelectionOwner(SDL_Display, clipboard_atom, SDL_Window, CurrentTime);
-	XSetSelectionOwner(SDL_Display, XA_PRIMARY, SDL_Window, CurrentTime);
-	Unlock_Display();
-	
+	Atom clipboard_atom = XInternAtom(g_SDL_Display, "CLIPBOARD", False);
+	XSetSelectionOwner(g_SDL_Display, clipboard_atom, g_SDL_Window, CurrentTime);
+	XSetSelectionOwner(g_SDL_Display, XA_PRIMARY, g_SDL_Window, CurrentTime);
+
+#if !SDL_VERSION_ATLEAST(1, 3, 0)
+	g_Unlock_Display();
+#else
+	// SDL 1.3 doesn't have a lockable event thread, so it just uses
+	// XSync directly instead of lock_func/unlock_func
+	XSync(g_SDL_Display, False);
+#endif
+
 	return INFO::OK;
 }
 
