@@ -42,26 +42,26 @@ class TestTerrain : public CxxTest::TestSuite
 		SetVertex(terrain, 0, 0, 100);
 		SetVertex(terrain, 0, 1, 100);
 		SetVertex(terrain, 0, 2, 100);
-		SetVertex(terrain, 1, 0, 100 + CELL_SIZE*HEIGHT_UNITS_PER_METRE);
-		SetVertex(terrain, 1, 1, 100 + CELL_SIZE*HEIGHT_UNITS_PER_METRE);
-		SetVertex(terrain, 1, 2, 100 + CELL_SIZE*HEIGHT_UNITS_PER_METRE);
-		SetVertex(terrain, 2, 0, 100 + 2*CELL_SIZE*HEIGHT_UNITS_PER_METRE);
-		SetVertex(terrain, 2, 1, 100 + 2*CELL_SIZE*HEIGHT_UNITS_PER_METRE);
-		SetVertex(terrain, 2, 2, 100 + 2*CELL_SIZE*HEIGHT_UNITS_PER_METRE);
-		SetVertex(terrain, 3, 0, 100 + 2*CELL_SIZE*HEIGHT_UNITS_PER_METRE);
-		SetVertex(terrain, 3, 1, 100 + 2*CELL_SIZE*HEIGHT_UNITS_PER_METRE);
-		SetVertex(terrain, 3, 2, 100 + 2*CELL_SIZE*HEIGHT_UNITS_PER_METRE);
+		SetVertex(terrain, 1, 0, 100 + TERRAIN_TILE_SIZE*HEIGHT_UNITS_PER_METRE);
+		SetVertex(terrain, 1, 1, 100 + TERRAIN_TILE_SIZE*HEIGHT_UNITS_PER_METRE);
+		SetVertex(terrain, 1, 2, 100 + TERRAIN_TILE_SIZE*HEIGHT_UNITS_PER_METRE);
+		SetVertex(terrain, 2, 0, 100 + 2*TERRAIN_TILE_SIZE*HEIGHT_UNITS_PER_METRE);
+		SetVertex(terrain, 2, 1, 100 + 2*TERRAIN_TILE_SIZE*HEIGHT_UNITS_PER_METRE);
+		SetVertex(terrain, 2, 2, 100 + 2*TERRAIN_TILE_SIZE*HEIGHT_UNITS_PER_METRE);
+		SetVertex(terrain, 3, 0, 100 + 2*TERRAIN_TILE_SIZE*HEIGHT_UNITS_PER_METRE);
+		SetVertex(terrain, 3, 1, 100 + 2*TERRAIN_TILE_SIZE*HEIGHT_UNITS_PER_METRE);
+		SetVertex(terrain, 3, 2, 100 + 2*TERRAIN_TILE_SIZE*HEIGHT_UNITS_PER_METRE);
 
 	}
 
 	void SetHighPlateau(CTerrain& terrain, int height)
 	{
-		SetVertex(terrain, 4, 0, 100 + height*CELL_SIZE*HEIGHT_UNITS_PER_METRE);
-		SetVertex(terrain, 4, 1, 100 + height*CELL_SIZE*HEIGHT_UNITS_PER_METRE);
-		SetVertex(terrain, 4, 2, 100 + height*CELL_SIZE*HEIGHT_UNITS_PER_METRE);
-		SetVertex(terrain, 5, 0, 100 + height*CELL_SIZE*HEIGHT_UNITS_PER_METRE);
-		SetVertex(terrain, 5, 1, 100 + height*CELL_SIZE*HEIGHT_UNITS_PER_METRE);
-		SetVertex(terrain, 5, 2, 100 + height*CELL_SIZE*HEIGHT_UNITS_PER_METRE);
+		SetVertex(terrain, 4, 0, 100 + height*TERRAIN_TILE_SIZE*HEIGHT_UNITS_PER_METRE);
+		SetVertex(terrain, 4, 1, 100 + height*TERRAIN_TILE_SIZE*HEIGHT_UNITS_PER_METRE);
+		SetVertex(terrain, 4, 2, 100 + height*TERRAIN_TILE_SIZE*HEIGHT_UNITS_PER_METRE);
+		SetVertex(terrain, 5, 0, 100 + height*TERRAIN_TILE_SIZE*HEIGHT_UNITS_PER_METRE);
+		SetVertex(terrain, 5, 1, 100 + height*TERRAIN_TILE_SIZE*HEIGHT_UNITS_PER_METRE);
+		SetVertex(terrain, 5, 2, 100 + height*TERRAIN_TILE_SIZE*HEIGHT_UNITS_PER_METRE);
 	}
 
 public:
@@ -74,23 +74,23 @@ public:
 
 		float ground;
 
-		ground = terrain.GetExactGroundLevel(0.f, 1.5f*CELL_SIZE);
+		ground = terrain.GetExactGroundLevel(0.f, 1.5f*TERRAIN_TILE_SIZE);
 		TS_ASSERT_DELTA(ground, 100.f/HEIGHT_UNITS_PER_METRE, 0.01f);
 
-		ground = terrain.GetExactGroundLevel(0.5f*CELL_SIZE, 1.5f*CELL_SIZE);
-		TS_ASSERT_DELTA(ground, 100.f/HEIGHT_UNITS_PER_METRE+0.5f*CELL_SIZE, 0.01f);
+		ground = terrain.GetExactGroundLevel(0.5f*TERRAIN_TILE_SIZE, 1.5f*TERRAIN_TILE_SIZE);
+		TS_ASSERT_DELTA(ground, 100.f/HEIGHT_UNITS_PER_METRE+0.5f*TERRAIN_TILE_SIZE, 0.01f);
 
-		ground = terrain.GetExactGroundLevel(1.5f*CELL_SIZE, 1.5f*CELL_SIZE);
-		TS_ASSERT_DELTA(ground, 100.f/HEIGHT_UNITS_PER_METRE+1.5f*CELL_SIZE, 0.01f);
+		ground = terrain.GetExactGroundLevel(1.5f*TERRAIN_TILE_SIZE, 1.5f*TERRAIN_TILE_SIZE);
+		TS_ASSERT_DELTA(ground, 100.f/HEIGHT_UNITS_PER_METRE+1.5f*TERRAIN_TILE_SIZE, 0.01f);
 
-		ground = terrain.GetExactGroundLevel(2.5f*CELL_SIZE, 1.5f*CELL_SIZE);
-		TS_ASSERT_DELTA(ground, 100.f/HEIGHT_UNITS_PER_METRE+2.f*CELL_SIZE, 0.01f);
+		ground = terrain.GetExactGroundLevel(2.5f*TERRAIN_TILE_SIZE, 1.5f*TERRAIN_TILE_SIZE);
+		TS_ASSERT_DELTA(ground, 100.f/HEIGHT_UNITS_PER_METRE+2.f*TERRAIN_TILE_SIZE, 0.01f);
 
-		ground = terrain.GetExactGroundLevel(3.5f*CELL_SIZE, 1.5f*CELL_SIZE);
-		TS_ASSERT_DELTA(ground, 100.f/HEIGHT_UNITS_PER_METRE+11.f*CELL_SIZE, 0.01f);
+		ground = terrain.GetExactGroundLevel(3.5f*TERRAIN_TILE_SIZE, 1.5f*TERRAIN_TILE_SIZE);
+		TS_ASSERT_DELTA(ground, 100.f/HEIGHT_UNITS_PER_METRE+11.f*TERRAIN_TILE_SIZE, 0.01f);
 
-		ground = terrain.GetExactGroundLevel(4.5f*CELL_SIZE, 1.5f*CELL_SIZE);
-		TS_ASSERT_DELTA(ground, 100.f/HEIGHT_UNITS_PER_METRE+20.f*CELL_SIZE, 0.01f);
+		ground = terrain.GetExactGroundLevel(4.5f*TERRAIN_TILE_SIZE, 1.5f*TERRAIN_TILE_SIZE);
+		TS_ASSERT_DELTA(ground, 100.f/HEIGHT_UNITS_PER_METRE+20.f*TERRAIN_TILE_SIZE, 0.01f);
 	}
 
 	void test_GetExactGroundLevelFixed()
@@ -104,23 +104,23 @@ public:
 
 		fixed ground;
 
-		ground = terrain.GetExactGroundLevelFixed(fixed::FromFloat(0.f), fixed::FromFloat(1.5f*CELL_SIZE));
+		ground = terrain.GetExactGroundLevelFixed(fixed::FromFloat(0.f), fixed::FromFloat(1.5f*TERRAIN_TILE_SIZE));
 		TS_ASSERT_DELTA(ground.ToDouble(), 100.0/HEIGHT_UNITS_PER_METRE, maxDelta);
 
-		ground = terrain.GetExactGroundLevelFixed(fixed::FromFloat(0.5f*CELL_SIZE), fixed::FromFloat(1.5f*CELL_SIZE));
-		TS_ASSERT_DELTA(ground.ToDouble(), 100.0/HEIGHT_UNITS_PER_METRE+0.5*CELL_SIZE, maxDelta);
+		ground = terrain.GetExactGroundLevelFixed(fixed::FromFloat(0.5f*TERRAIN_TILE_SIZE), fixed::FromFloat(1.5f*TERRAIN_TILE_SIZE));
+		TS_ASSERT_DELTA(ground.ToDouble(), 100.0/HEIGHT_UNITS_PER_METRE+0.5*TERRAIN_TILE_SIZE, maxDelta);
 
-		ground = terrain.GetExactGroundLevelFixed(fixed::FromFloat(1.5f*CELL_SIZE), fixed::FromFloat(1.5f*CELL_SIZE));
-		TS_ASSERT_DELTA(ground.ToDouble(), 100.0/HEIGHT_UNITS_PER_METRE+1.5*CELL_SIZE, maxDelta);
+		ground = terrain.GetExactGroundLevelFixed(fixed::FromFloat(1.5f*TERRAIN_TILE_SIZE), fixed::FromFloat(1.5f*TERRAIN_TILE_SIZE));
+		TS_ASSERT_DELTA(ground.ToDouble(), 100.0/HEIGHT_UNITS_PER_METRE+1.5*TERRAIN_TILE_SIZE, maxDelta);
 
-		ground = terrain.GetExactGroundLevelFixed(fixed::FromFloat(2.5f*CELL_SIZE), fixed::FromFloat(1.5f*CELL_SIZE));
-		TS_ASSERT_DELTA(ground.ToDouble(), 100.0/HEIGHT_UNITS_PER_METRE+2.0*CELL_SIZE, maxDelta);
+		ground = terrain.GetExactGroundLevelFixed(fixed::FromFloat(2.5f*TERRAIN_TILE_SIZE), fixed::FromFloat(1.5f*TERRAIN_TILE_SIZE));
+		TS_ASSERT_DELTA(ground.ToDouble(), 100.0/HEIGHT_UNITS_PER_METRE+2.0*TERRAIN_TILE_SIZE, maxDelta);
 
-		ground = terrain.GetExactGroundLevelFixed(fixed::FromFloat(3.5f*CELL_SIZE), fixed::FromFloat(1.5f*CELL_SIZE));
-		TS_ASSERT_DELTA(ground.ToDouble(), 100.0/HEIGHT_UNITS_PER_METRE+11.0*CELL_SIZE, maxDelta);
+		ground = terrain.GetExactGroundLevelFixed(fixed::FromFloat(3.5f*TERRAIN_TILE_SIZE), fixed::FromFloat(1.5f*TERRAIN_TILE_SIZE));
+		TS_ASSERT_DELTA(ground.ToDouble(), 100.0/HEIGHT_UNITS_PER_METRE+11.0*TERRAIN_TILE_SIZE, maxDelta);
 
-		ground = terrain.GetExactGroundLevelFixed(fixed::FromFloat(4.5f*CELL_SIZE), fixed::FromFloat(1.5f*CELL_SIZE));
-		TS_ASSERT_DELTA(ground.ToDouble(), 100.0/HEIGHT_UNITS_PER_METRE+20.0*CELL_SIZE, maxDelta);
+		ground = terrain.GetExactGroundLevelFixed(fixed::FromFloat(4.5f*TERRAIN_TILE_SIZE), fixed::FromFloat(1.5f*TERRAIN_TILE_SIZE));
+		TS_ASSERT_DELTA(ground.ToDouble(), 100.0/HEIGHT_UNITS_PER_METRE+20.0*TERRAIN_TILE_SIZE, maxDelta);
 	}
 
 	void test_GetExactGroundLevelFixed_max()
@@ -139,7 +139,7 @@ public:
 		{
 			for (int xi = 0; xi < p; ++xi)
 			{
-				fixed ground = terrain.GetExactGroundLevelFixed(fixed::FromFloat(xi/(float)p*CELL_SIZE), fixed::FromFloat(zi/(float)p*CELL_SIZE));
+				fixed ground = terrain.GetExactGroundLevelFixed(fixed::FromFloat(xi/(float)p*TERRAIN_TILE_SIZE), fixed::FromFloat(zi/(float)p*TERRAIN_TILE_SIZE));
 				TS_ASSERT_DELTA(ground.ToDouble(), 65535.0/HEIGHT_UNITS_PER_METRE, maxDelta);
 			}
 		}
@@ -231,7 +231,7 @@ public:
 		EXPECT_DIRTY(false, 1, 2);
 		EXPECT_DIRTY(false, 2, 2);
 
-		terrain.FlattenArea(PATCH_SIZE*CELL_SIZE, 2*PATCH_SIZE*CELL_SIZE, PATCH_SIZE*CELL_SIZE+1, 2*PATCH_SIZE*CELL_SIZE-1);
+		terrain.FlattenArea(PATCH_SIZE*TERRAIN_TILE_SIZE, 2*PATCH_SIZE*TERRAIN_TILE_SIZE, PATCH_SIZE*TERRAIN_TILE_SIZE+1, 2*PATCH_SIZE*TERRAIN_TILE_SIZE-1);
 
 		EXPECT_DIRTY(true, 0, 0);
 		EXPECT_DIRTY(true, 1, 0);

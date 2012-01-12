@@ -426,12 +426,12 @@ void CCmpTerritoryManager::CalculateTerritories()
 
 			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), *eit);
 			CFixedVector2D pos = cmpPosition->GetPosition2D();
-			u16 i = (u16)clamp((pos.X / (int)CELL_SIZE).ToInt_RoundToNegInfinity(), 0, tilesW-1);
-			u16 j = (u16)clamp((pos.Y / (int)CELL_SIZE).ToInt_RoundToNegInfinity(), 0, tilesH-1);
+			u16 i = (u16)clamp((pos.X / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNegInfinity(), 0, tilesW-1);
+			u16 j = (u16)clamp((pos.Y / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNegInfinity(), 0, tilesH-1);
 
 			CmpPtr<ICmpTerritoryInfluence> cmpTerritoryInfluence(GetSimContext(), *eit);
 			u32 weight = cmpTerritoryInfluence->GetWeight();
-			u32 radius = cmpTerritoryInfluence->GetRadius() / CELL_SIZE;
+			u32 radius = cmpTerritoryInfluence->GetRadius() / TERRAIN_TILE_SIZE;
 			u32 falloff = weight / radius; // earlier check for GetRadius() == 0 prevents divide-by-zero
 
 			// TODO: we should have some maximum value on weight, to avoid overflow
@@ -483,8 +483,8 @@ void CCmpTerritoryManager::CalculateTerritories()
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), *it);
 
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
-		u16 i = (u16)clamp((pos.X / (int)CELL_SIZE).ToInt_RoundToNegInfinity(), 0, tilesW-1);
-		u16 j = (u16)clamp((pos.Y / (int)CELL_SIZE).ToInt_RoundToNegInfinity(), 0, tilesH-1);
+		u16 i = (u16)clamp((pos.X / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNegInfinity(), 0, tilesW-1);
+		u16 j = (u16)clamp((pos.Y / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNegInfinity(), 0, tilesH-1);
 
 		u8 owner = (u8)cmpOwnership->GetOwner();
 
@@ -538,8 +538,8 @@ void CCmpTerritoryManager::CalculateTerritories()
  */
 static void NearestTile(entity_pos_t x, entity_pos_t z, u16& i, u16& j, u16 w, u16 h)
 {
-	i = (u16)clamp((x / (int)CELL_SIZE).ToInt_RoundToZero(), 0, w-1);
-	j = (u16)clamp((z / (int)CELL_SIZE).ToInt_RoundToZero(), 0, h-1);
+	i = (u16)clamp((x / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero(), 0, w-1);
+	j = (u16)clamp((z / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero(), 0, h-1);
 }
 
 /**
@@ -547,8 +547,8 @@ static void NearestTile(entity_pos_t x, entity_pos_t z, u16& i, u16& j, u16 w, u
  */
 static void TileCenter(u16 i, u16 j, entity_pos_t& x, entity_pos_t& z)
 {
-	x = entity_pos_t::FromInt(i*(int)CELL_SIZE + (int)CELL_SIZE/2);
-	z = entity_pos_t::FromInt(j*(int)CELL_SIZE + (int)CELL_SIZE/2);
+	x = entity_pos_t::FromInt(i*(int)TERRAIN_TILE_SIZE + (int)TERRAIN_TILE_SIZE/2);
+	z = entity_pos_t::FromInt(j*(int)TERRAIN_TILE_SIZE + (int)TERRAIN_TILE_SIZE/2);
 }
 
 // TODO: would be nice not to duplicate those two functions from CCmpObstructionManager.cpp
@@ -639,7 +639,7 @@ std::vector<CCmpTerritoryManager::TerritoryBoundary> CCmpTerritoryManager::Compu
 
 				while (true)
 				{
-					points.push_back((CVector2D(ci, cj) + edgeOffsets[cdir]) * CELL_SIZE);
+					points.push_back((CVector2D(ci, cj) + edgeOffsets[cdir]) * TERRAIN_TILE_SIZE);
 
 					// Given that we're on an edge on a continuous boundary and aiming anticlockwise,
 					// we can either carry on straight or turn left or turn right, so examine each

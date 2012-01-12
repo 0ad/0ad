@@ -2,55 +2,55 @@
 
 <Scenario version="5">
 	<Environment>
+		<LightingModel>standard</LightingModel>
 		<SkySet>sunny</SkySet>
-		<SunColour r="1.5" g="1.5" b="1.5"/>
+		<SunColour r="0.867119" g="0.844179" b="0.75242"/>
 		<SunElevation angle="0.984816"/>
 		<SunRotation angle="-0.785396"/>
 		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
-		<UnitsAmbientColour r="0.486275" g="0.478431" b="0.427451"/>
+		<UnitsAmbientColour r="0.486275" g="0.47451" b="0.427451"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>5</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.246094</Murkiness>
-				<Tint r="0.447059" g="0.415686" b="0.321569"/>
+				<Tint r="0.447059" g="0.411765" b="0.321569"/>
 				<ReflectionTint r="0.611765" g="0.447059" b="0.219608"/>
 				<ReflectionTintStrength>0.458008</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="98.464" y="102.394" z="416.94"/>
+		<Position x="456.454" y="124.958" z="76.9093"/>
 		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-	{
-		"Name":"Sahel Watering Holes",
-		"Description":"The African savanna is chocked full of animal life for hunting, while the nearby mineral deposits are plentiful. The dry season is approaching and the watering holes are drying up.",
-		"PlayerData":
-		[
-			{
-				"Civ":"hele"
-			},
-			{
-				"AI": "qbot",
-				"Civ":"hele"
-			},
-			{
-				"AI": "qbot",
-				"Civ":"celt"
-			},
-			{
-				"AI": "qbot",
-				"Civ":"celt"
-			}
-		]
-	}
-	]]></ScriptSettings>
+{
+  "Name": "Sahel Watering Holes",
+  "Description": "The African savanna is chocked full of animal life for hunting, while the nearby mineral deposits are plentiful. The dry season is approaching and the watering holes are drying up.",
+  "PlayerData": [
+    {
+      "Civ": "hele"
+    },
+    {
+      "AI": "qbot",
+      "Civ": "hele"
+    },
+    {
+      "AI": "qbot",
+      "Civ": "celt"
+    },
+    {
+      "AI": "qbot",
+      "Civ": "celt"
+    }
+  ]
+}
+]]></ScriptSettings>
 	<Entities>
 		<Entity uid="14">
 			<Template>gaia/flora_tree_baobab</Template>

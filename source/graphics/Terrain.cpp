@@ -112,9 +112,9 @@ void CTerrain::CalcPosition(ssize_t i, ssize_t j, CVector3D& pos) const
 	ssize_t hi = clamp(i, (ssize_t)0, m_MapSize-1);
 	ssize_t hj = clamp(j, (ssize_t)0, m_MapSize-1);
 	u16 height = m_Heightmap[hj*m_MapSize + hi];
-	pos.X = float(i*CELL_SIZE);
+	pos.X = float(i*TERRAIN_TILE_SIZE);
 	pos.Y = float(height*HEIGHT_SCALE);
-	pos.Z = float(j*CELL_SIZE);
+	pos.Z = float(j*TERRAIN_TILE_SIZE);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -124,9 +124,9 @@ void CTerrain::CalcPositionFixed(ssize_t i, ssize_t j, CFixedVector3D& pos) cons
 	ssize_t hi = clamp(i, (ssize_t)0, m_MapSize-1);
 	ssize_t hj = clamp(j, (ssize_t)0, m_MapSize-1);
 	u16 height = m_Heightmap[hj*m_MapSize + hi];
-	pos.X = fixed::FromInt(i) * (int)CELL_SIZE;
+	pos.X = fixed::FromInt(i) * (int)TERRAIN_TILE_SIZE;
 	pos.Y = fixed::FromInt(height) / (int)HEIGHT_UNITS_PER_METRE;
-	pos.Z = fixed::FromInt(j) * (int)CELL_SIZE;
+	pos.Z = fixed::FromInt(j) * (int)TERRAIN_TILE_SIZE;
 }
 
 
@@ -226,11 +226,11 @@ void CTerrain::CalcNormalFixed(ssize_t i, ssize_t j, CFixedVector3D& normal) con
 CVector3D CTerrain::CalcExactNormal(float x, float z) const
 {
 	// Clamp to size-2 so we can use the tiles (xi,zi)-(xi+1,zi+1)
-	const ssize_t xi = clamp((ssize_t)floor(x/CELL_SIZE), (ssize_t)0, m_MapSize-2);
-	const ssize_t zi = clamp((ssize_t)floor(z/CELL_SIZE), (ssize_t)0, m_MapSize-2);
+	const ssize_t xi = clamp((ssize_t)floor(x/TERRAIN_TILE_SIZE), (ssize_t)0, m_MapSize-2);
+	const ssize_t zi = clamp((ssize_t)floor(z/TERRAIN_TILE_SIZE), (ssize_t)0, m_MapSize-2);
 
-	const float xf = clamp(x/CELL_SIZE-xi, 0.0f, 1.0f);
-	const float zf = clamp(z/CELL_SIZE-zi, 0.0f, 1.0f);
+	const float xf = clamp(x/TERRAIN_TILE_SIZE-xi, 0.0f, 1.0f);
+	const float zf = clamp(z/TERRAIN_TILE_SIZE-zi, 0.0f, 1.0f);
 
 	float h00 = m_Heightmap[zi*m_MapSize + xi];
 	float h01 = m_Heightmap[(zi+1)*m_MapSize + xi];
@@ -245,12 +245,12 @@ CVector3D CTerrain::CalcExactNormal(float x, float z) const
 		if (xf + zf <= 1.f)
 		{
 			// Lower-left triangle (don't use h11)
-			return -CVector3D(CELL_SIZE, (h10-h00)*HEIGHT_SCALE, 0).Cross(CVector3D(0, (h01-h00)*HEIGHT_SCALE, CELL_SIZE)).Normalized();
+			return -CVector3D(TERRAIN_TILE_SIZE, (h10-h00)*HEIGHT_SCALE, 0).Cross(CVector3D(0, (h01-h00)*HEIGHT_SCALE, TERRAIN_TILE_SIZE)).Normalized();
 		}
 		else
 		{
 			// Upper-right triangle (don't use h00)
-			return -CVector3D(CELL_SIZE, (h11-h01)*HEIGHT_SCALE, 0).Cross(CVector3D(0, (h11-h10)*HEIGHT_SCALE, CELL_SIZE)).Normalized();
+			return -CVector3D(TERRAIN_TILE_SIZE, (h11-h01)*HEIGHT_SCALE, 0).Cross(CVector3D(0, (h11-h10)*HEIGHT_SCALE, TERRAIN_TILE_SIZE)).Normalized();
 		}
 	}
 	else
@@ -258,12 +258,12 @@ CVector3D CTerrain::CalcExactNormal(float x, float z) const
 		if (xf <= zf)
 		{
 			// Upper-left triangle (don't use h10)
-			return -CVector3D(CELL_SIZE, (h11-h01)*HEIGHT_SCALE, 0).Cross(CVector3D(0, (h01-h00)*HEIGHT_SCALE, CELL_SIZE)).Normalized();
+			return -CVector3D(TERRAIN_TILE_SIZE, (h11-h01)*HEIGHT_SCALE, 0).Cross(CVector3D(0, (h01-h00)*HEIGHT_SCALE, TERRAIN_TILE_SIZE)).Normalized();
 		}
 		else
 		{
 			// Lower-right triangle (don't use h01)
-			return -CVector3D(CELL_SIZE, (h10-h00)*HEIGHT_SCALE, 0).Cross(CVector3D(0, (h11-h10)*HEIGHT_SCALE, CELL_SIZE)).Normalized();
+			return -CVector3D(TERRAIN_TILE_SIZE, (h10-h00)*HEIGHT_SCALE, 0).Cross(CVector3D(0, (h11-h10)*HEIGHT_SCALE, TERRAIN_TILE_SIZE)).Normalized();
 		}
 	}
 }
@@ -327,17 +327,17 @@ fixed CTerrain::GetSlopeFixed(ssize_t i, ssize_t j) const
 	            std::min(std::min(h00, h01), std::min(h10, h11));
 
 	// Compute fractional slope (being careful to avoid intermediate overflows)
-	return fixed::FromInt(delta / CELL_SIZE) / (int)HEIGHT_UNITS_PER_METRE;
+	return fixed::FromInt(delta / TERRAIN_TILE_SIZE) / (int)HEIGHT_UNITS_PER_METRE;
 }
 
 float CTerrain::GetExactGroundLevel(float x, float z) const
 {
 	// Clamp to size-2 so we can use the tiles (xi,zi)-(xi+1,zi+1)
-	const ssize_t xi = clamp((ssize_t)floor(x/CELL_SIZE), (ssize_t)0, m_MapSize-2);
-	const ssize_t zi = clamp((ssize_t)floor(z/CELL_SIZE), (ssize_t)0, m_MapSize-2);
+	const ssize_t xi = clamp((ssize_t)floor(x/TERRAIN_TILE_SIZE), (ssize_t)0, m_MapSize-2);
+	const ssize_t zi = clamp((ssize_t)floor(z/TERRAIN_TILE_SIZE), (ssize_t)0, m_MapSize-2);
 
-	const float xf = clamp(x/CELL_SIZE-xi, 0.0f, 1.0f);
-	const float zf = clamp(z/CELL_SIZE-zi, 0.0f, 1.0f);
+	const float xf = clamp(x/TERRAIN_TILE_SIZE-xi, 0.0f, 1.0f);
+	const float zf = clamp(z/TERRAIN_TILE_SIZE-zi, 0.0f, 1.0f);
 
 	float h00 = m_Heightmap[zi*m_MapSize + xi];
 	float h01 = m_Heightmap[(zi+1)*m_MapSize + xi];
@@ -378,13 +378,13 @@ float CTerrain::GetExactGroundLevel(float x, float z) const
 fixed CTerrain::GetExactGroundLevelFixed(fixed x, fixed z) const
 {
 	// Clamp to size-2 so we can use the tiles (xi,zi)-(xi+1,zi+1)
-	const ssize_t xi = clamp((ssize_t)(x / (int)CELL_SIZE).ToInt_RoundToZero(), (ssize_t)0, m_MapSize-2);
-	const ssize_t zi = clamp((ssize_t)(z / (int)CELL_SIZE).ToInt_RoundToZero(), (ssize_t)0, m_MapSize-2);
+	const ssize_t xi = clamp((ssize_t)(x / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero(), (ssize_t)0, m_MapSize-2);
+	const ssize_t zi = clamp((ssize_t)(z / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero(), (ssize_t)0, m_MapSize-2);
 
 	const fixed one = fixed::FromInt(1);
 
-	const fixed xf = clamp((x / (int)CELL_SIZE) - fixed::FromInt(xi), fixed::Zero(), one);
-	const fixed zf = clamp((z / (int)CELL_SIZE) - fixed::FromInt(zi), fixed::Zero(), one);
+	const fixed xf = clamp((x / (int)TERRAIN_TILE_SIZE) - fixed::FromInt(xi), fixed::Zero(), one);
+	const fixed zf = clamp((z / (int)TERRAIN_TILE_SIZE) - fixed::FromInt(zi), fixed::Zero(), one);
 
 	u16 h00 = m_Heightmap[zi*m_MapSize + xi];
 	u16 h01 = m_Heightmap[(zi+1)*m_MapSize + xi];
@@ -568,10 +568,10 @@ void CTerrain::SetHeightMap(u16* heightmap)
 // coords); return the average height of the flattened area
 float CTerrain::FlattenArea(float x0, float x1, float z0, float z1)
 {
-	const ssize_t tx0 = clamp(ssize_t(x0/CELL_SIZE),   (ssize_t)0, m_MapSize-1);
-	const ssize_t tx1 = clamp(ssize_t(x1/CELL_SIZE)+1, (ssize_t)0, m_MapSize-1);
-	const ssize_t tz0 = clamp(ssize_t(z0/CELL_SIZE),   (ssize_t)0, m_MapSize-1);
-	const ssize_t tz1 = clamp(ssize_t(z1/CELL_SIZE)+1, (ssize_t)0, m_MapSize-1);
+	const ssize_t tx0 = clamp(ssize_t(x0/TERRAIN_TILE_SIZE),   (ssize_t)0, m_MapSize-1);
+	const ssize_t tx1 = clamp(ssize_t(x1/TERRAIN_TILE_SIZE)+1, (ssize_t)0, m_MapSize-1);
+	const ssize_t tz0 = clamp(ssize_t(z0/TERRAIN_TILE_SIZE),   (ssize_t)0, m_MapSize-1);
+	const ssize_t tz1 = clamp(ssize_t(z1/TERRAIN_TILE_SIZE)+1, (ssize_t)0, m_MapSize-1);
 
 	size_t count=0;
 	double sum=0.0f;
@@ -645,11 +645,11 @@ CBoundingBoxAligned CTerrain::GetVertexesBound(ssize_t i0, ssize_t j0, ssize_t i
 	}
 
 	CBoundingBoxAligned bound;
-	bound[0].X = (float)(i0*CELL_SIZE);
+	bound[0].X = (float)(i0*TERRAIN_TILE_SIZE);
 	bound[0].Y = (float)(minH*HEIGHT_SCALE);
-	bound[0].Z = (float)(j0*CELL_SIZE);
-	bound[1].X = (float)(i1*CELL_SIZE);
+	bound[0].Z = (float)(j0*TERRAIN_TILE_SIZE);
+	bound[1].X = (float)(i1*TERRAIN_TILE_SIZE);
 	bound[1].Y = (float)(maxH*HEIGHT_SCALE);
-	bound[1].Z = (float)(j1*CELL_SIZE);
+	bound[1].Z = (float)(j1*TERRAIN_TILE_SIZE);
 	return bound;
 }

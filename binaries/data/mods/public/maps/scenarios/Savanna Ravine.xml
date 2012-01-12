@@ -2,16 +2,17 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>sunny</SkySet>
-		<SunColour r="1.5" g="1.5" b="1.5"/>
-		<SunElevation angle="0.785398"/>
-		<SunRotation angle="-0.785396"/>
+		<LightingModel>standard</LightingModel>
+		<SkySet>mountainous</SkySet>
+		<SunColour r="1.03649" g="1.00907" b="0.899387"/>
+		<SunElevation angle="0.613592"/>
+		<SunRotation angle="1.09219"/>
 		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>21.823</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
@@ -23,26 +24,25 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="602.352" y="103.489" z="110.5"/>
-		<Rotation angle="-0.0261136"/>
-		<Declination angle="0.523599"/>
+		<Position x="606.621" y="87.3049" z="166.541"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-	{
-		"Name":"Savanna Ravine",
-		"Description":"A wide-open Savanna map with a small ravine running down the center, which is easily forded.",
-		"PlayerData":
-		[
-			{
-				"Civ":"hele"
-			},
-			{
-				"AI": "qbot",
-				"Civ":"celt"
-			}
-		]
-	}
-	]]></ScriptSettings>
+{
+  "Name": "Savanna Ravine",
+  "Description": "A wide-open Savanna map with a small ravine running down the center, which is easily forded.",
+  "PlayerData": [
+    {
+      "Civ": "hele"
+    },
+    {
+      "AI": "qbot",
+      "Civ": "celt"
+    }
+  ]
+}
+]]></ScriptSettings>
 	<Entities>
 		<Entity uid="11">
 			<Template>gaia/flora_tree_baobab</Template>
@@ -3666,7 +3666,7 @@
 			<Template>gaia/geology_metal_savanna_slabs</Template>
 			<Player>0</Player>
 			<Position x="610.35071" z="212.23336"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="2.94407"/>
 		</Entity>
 		<Entity uid="678">
 			<Template>gaia/geology_metal_savanna_slabs</Template>

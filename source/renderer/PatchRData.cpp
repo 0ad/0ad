@@ -1124,8 +1124,8 @@ void CPatchRData::RenderPriorities()
 			terrain->CalcPosition(gx, gz, pos);
 
 			// Move a bit towards the center of the tile
-			pos.X += CELL_SIZE/4.f;
-			pos.Z += CELL_SIZE/4.f;
+			pos.X += TERRAIN_TILE_SIZE/4.f;
+			pos.Z += TERRAIN_TILE_SIZE/4.f;
 
 			float x, y;
 			camera->GetScreenCoordinates(pos, x, y);

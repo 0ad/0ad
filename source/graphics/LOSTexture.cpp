@@ -135,7 +135,7 @@ void CLOSTexture::ConstructTexture(int unit)
 		//   world pos ((mapsize-1)*cellsize, y, (mapsize-1)*cellsize)  (i.e. last vertex)
 		//     onto texcoord ((mapsize-0.5) / texsize, (mapsize-0.5) / texsize)  (i.e. middle of last texel)
 
-		float s = (m_MapSize-1) / (float)(m_TextureSize * (m_MapSize-1) * CELL_SIZE);
+		float s = (m_MapSize-1) / (float)(m_TextureSize * (m_MapSize-1) * TERRAIN_TILE_SIZE);
 		float t = 0.5f / m_TextureSize;
 		m_TextureMatrix.SetZero();
 		m_TextureMatrix._11 = s;

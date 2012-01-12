@@ -382,8 +382,8 @@ static void AddTerrainEdges(std::vector<Edge>& edgesAA, std::vector<Vertex>& ver
 				// (The inner edges are redundant but it's easier than trying to split the squares apart.)
 				if (any)
 				{
-					CFixedVector2D v0 = CFixedVector2D(fixed::FromInt(i * (int)CELL_SIZE) - r, fixed::FromInt(j * (int)CELL_SIZE) - r);
-					CFixedVector2D v1 = CFixedVector2D(fixed::FromInt((i+1) * (int)CELL_SIZE) + r, fixed::FromInt((j+1) * (int)CELL_SIZE) + r);
+					CFixedVector2D v0 = CFixedVector2D(fixed::FromInt(i * (int)TERRAIN_TILE_SIZE) - r, fixed::FromInt(j * (int)TERRAIN_TILE_SIZE) - r);
+					CFixedVector2D v1 = CFixedVector2D(fixed::FromInt((i+1) * (int)TERRAIN_TILE_SIZE) + r, fixed::FromInt((j+1) * (int)TERRAIN_TILE_SIZE) + r);
 					Edge e = { v0, v1 };
 					edgesAA.push_back(e);
 				}
@@ -409,32 +409,32 @@ static void AddTerrainEdges(std::vector<Edge>& edgesAA, std::vector<Vertex>& ver
 		{
 		case TileEdge::BOTTOM:
 		{
-			v0 = CFixedVector2D(fixed::FromInt(i * (int)CELL_SIZE) - r, fixed::FromInt(j * (int)CELL_SIZE) - r);
-			v1 = CFixedVector2D(fixed::FromInt((i+1) * (int)CELL_SIZE) + r, fixed::FromInt(j * (int)CELL_SIZE) - r);
+			v0 = CFixedVector2D(fixed::FromInt(i * (int)TERRAIN_TILE_SIZE) - r, fixed::FromInt(j * (int)TERRAIN_TILE_SIZE) - r);
+			v1 = CFixedVector2D(fixed::FromInt((i+1) * (int)TERRAIN_TILE_SIZE) + r, fixed::FromInt(j * (int)TERRAIN_TILE_SIZE) - r);
 			vert.p.X = v0.X - EDGE_EXPAND_DELTA; vert.p.Y = v0.Y - EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_TR; vertexes.push_back(vert);
 			vert.p.X = v1.X + EDGE_EXPAND_DELTA; vert.p.Y = v1.Y - EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_TL; vertexes.push_back(vert);
 			break;
 		}
 		case TileEdge::TOP:
 		{
-			v0 = CFixedVector2D(fixed::FromInt((i+1) * (int)CELL_SIZE) + r, fixed::FromInt((j+1) * (int)CELL_SIZE) + r);
-			v1 = CFixedVector2D(fixed::FromInt(i * (int)CELL_SIZE) - r, fixed::FromInt((j+1) * (int)CELL_SIZE) + r);
+			v0 = CFixedVector2D(fixed::FromInt((i+1) * (int)TERRAIN_TILE_SIZE) + r, fixed::FromInt((j+1) * (int)TERRAIN_TILE_SIZE) + r);
+			v1 = CFixedVector2D(fixed::FromInt(i * (int)TERRAIN_TILE_SIZE) - r, fixed::FromInt((j+1) * (int)TERRAIN_TILE_SIZE) + r);
 			vert.p.X = v0.X + EDGE_EXPAND_DELTA; vert.p.Y = v0.Y + EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_BL; vertexes.push_back(vert);
 			vert.p.X = v1.X - EDGE_EXPAND_DELTA; vert.p.Y = v1.Y + EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_BR; vertexes.push_back(vert);
 			break;
 		}
 		case TileEdge::LEFT:
 		{
-			v0 = CFixedVector2D(fixed::FromInt(i * (int)CELL_SIZE) - r, fixed::FromInt((j+1) * (int)CELL_SIZE) + r);
-			v1 = CFixedVector2D(fixed::FromInt(i * (int)CELL_SIZE) - r, fixed::FromInt(j * (int)CELL_SIZE) - r);
+			v0 = CFixedVector2D(fixed::FromInt(i * (int)TERRAIN_TILE_SIZE) - r, fixed::FromInt((j+1) * (int)TERRAIN_TILE_SIZE) + r);
+			v1 = CFixedVector2D(fixed::FromInt(i * (int)TERRAIN_TILE_SIZE) - r, fixed::FromInt(j * (int)TERRAIN_TILE_SIZE) - r);
 			vert.p.X = v0.X - EDGE_EXPAND_DELTA; vert.p.Y = v0.Y + EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_BR; vertexes.push_back(vert);
 			vert.p.X = v1.X - EDGE_EXPAND_DELTA; vert.p.Y = v1.Y - EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_TR; vertexes.push_back(vert);
 			break;
 		}
 		case TileEdge::RIGHT:
 		{
-			v0 = CFixedVector2D(fixed::FromInt((i+1) * (int)CELL_SIZE) + r, fixed::FromInt(j * (int)CELL_SIZE) - r);
-			v1 = CFixedVector2D(fixed::FromInt((i+1) * (int)CELL_SIZE) + r, fixed::FromInt((j+1) * (int)CELL_SIZE) + r);
+			v0 = CFixedVector2D(fixed::FromInt((i+1) * (int)TERRAIN_TILE_SIZE) + r, fixed::FromInt(j * (int)TERRAIN_TILE_SIZE) - r);
+			v1 = CFixedVector2D(fixed::FromInt((i+1) * (int)TERRAIN_TILE_SIZE) + r, fixed::FromInt((j+1) * (int)TERRAIN_TILE_SIZE) + r);
 			vert.p.X = v0.X + EDGE_EXPAND_DELTA; vert.p.Y = v0.Y - EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_TL; vertexes.push_back(vert);
 			vert.p.X = v1.X + EDGE_EXPAND_DELTA; vert.p.Y = v1.Y + EDGE_EXPAND_DELTA; vert.quadInward = QUADRANT_BL; vertexes.push_back(vert);
 			break;

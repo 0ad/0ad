@@ -831,8 +831,8 @@ void CCmpRallyPointRenderer::FixInvisibleWaypoints(std::vector<CVector2D>& coord
 	//for (std::vector<Waypoint>::iterator it = waypoints.begin(); it != waypoints.end();)
 	for(std::vector<CVector2D>::iterator it = coords.begin(); it != coords.end();)
 	{
-		int i = (fixed::FromFloat(it->X) / (int)CELL_SIZE).ToInt_RoundToNearest();
-		int j = (fixed::FromFloat(it->Y) / (int)CELL_SIZE).ToInt_RoundToNearest();
+		int i = (fixed::FromFloat(it->X) / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
+		int j = (fixed::FromFloat(it->Y) / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
 
 		bool explored = losQuerier.IsExplored(i, j);
 		if (!explored)
@@ -956,16 +956,16 @@ void CCmpRallyPointRenderer::GetVisibilitySegments(std::deque<SVisibilitySegment
 	// a new one at the next point.
 
 	bool lastVisible = losQuerier.IsExplored(
-		(fixed::FromFloat(m_Path[0].X) / (int) CELL_SIZE).ToInt_RoundToNearest(),
-		(fixed::FromFloat(m_Path[0].Y) / (int) CELL_SIZE).ToInt_RoundToNearest()
+		(fixed::FromFloat(m_Path[0].X) / (int) TERRAIN_TILE_SIZE).ToInt_RoundToNearest(),
+		(fixed::FromFloat(m_Path[0].Y) / (int) TERRAIN_TILE_SIZE).ToInt_RoundToNearest()
 	);
 	size_t curSegmentStartIndex = 0; // starting node index of the current segment
 
 	for (size_t k = 1; k < m_Path.size(); ++k)
 	{
 		// grab tile indices for this coord
-		int i = (fixed::FromFloat(m_Path[k].X) / (int)CELL_SIZE).ToInt_RoundToNearest();
-		int j = (fixed::FromFloat(m_Path[k].Y) / (int)CELL_SIZE).ToInt_RoundToNearest();
+		int i = (fixed::FromFloat(m_Path[k].X) / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
+		int j = (fixed::FromFloat(m_Path[k].Y) / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
 
 		bool nodeVisible = losQuerier.IsExplored(i, j);
 		if (nodeVisible != lastVisible)

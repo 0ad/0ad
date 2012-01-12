@@ -87,7 +87,7 @@ public:
 		// This tests that the incremental computation produces the correct result
 		// in various edge cases
 
-		cmp->SetBounds(entity_pos_t::FromInt(0), entity_pos_t::FromInt(0), entity_pos_t::FromInt(512), entity_pos_t::FromInt(512), 512/CELL_SIZE + 1);
+		cmp->SetBounds(entity_pos_t::FromInt(0), entity_pos_t::FromInt(0), entity_pos_t::FromInt(512), entity_pos_t::FromInt(512), 512/TERRAIN_TILE_SIZE + 1);
 		cmp->Verify();
 		{ CMessageCreate msg(100); cmp->HandleMessage(msg, false); }
 		cmp->Verify();

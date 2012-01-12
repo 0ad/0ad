@@ -503,7 +503,7 @@ public:
 	{
 		// Use 8x8 tile subdivisions
 		// (TODO: find the optimal number instead of blindly guessing)
-		m_Subdivision.Reset(x1, z1, entity_pos_t::FromInt(8*CELL_SIZE));
+		m_Subdivision.Reset(x1, z1, entity_pos_t::FromInt(8*TERRAIN_TILE_SIZE));
 
 		for (std::map<entity_id_t, EntityData>::const_iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
 		{
@@ -883,8 +883,8 @@ public:
 
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
 
-		int i = (pos.X / (int)CELL_SIZE).ToInt_RoundToNearest();
-		int j = (pos.Y / (int)CELL_SIZE).ToInt_RoundToNearest();
+		int i = (pos.X / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
+		int j = (pos.Y / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
 
 		// Reveal flag makes all positioned entities visible
 		if (GetLosRevealAll(player))
@@ -1090,15 +1090,15 @@ public:
 
 		// Compute top/bottom coordinates, and clamp to exclude the 1-tile border around the map
 		// (so that we never render the sharp edge of the map)
-		i32 j0 = ((pos.Y - visionRange)/(int)CELL_SIZE).ToInt_RoundToInfinity();
-		i32 j1 = ((pos.Y + visionRange)/(int)CELL_SIZE).ToInt_RoundToNegInfinity();
+		i32 j0 = ((pos.Y - visionRange)/(int)TERRAIN_TILE_SIZE).ToInt_RoundToInfinity();
+		i32 j1 = ((pos.Y + visionRange)/(int)TERRAIN_TILE_SIZE).ToInt_RoundToNegInfinity();
 		i32 j0clamp = std::max(j0, 1);
 		i32 j1clamp = std::min(j1, m_TerrainVerticesPerSide-2);
 
 		// Translate world coordinates into fractional tile-space coordinates
-		entity_pos_t x = pos.X / (int)CELL_SIZE;
-		entity_pos_t y = pos.Y / (int)CELL_SIZE;
-		entity_pos_t r = visionRange / (int)CELL_SIZE;
+		entity_pos_t x = pos.X / (int)TERRAIN_TILE_SIZE;
+		entity_pos_t y = pos.Y / (int)TERRAIN_TILE_SIZE;
+		entity_pos_t r = visionRange / (int)TERRAIN_TILE_SIZE;
 		entity_pos_t r2 = r.Square();
 
 		// Compute the integers on either side of x
@@ -1175,18 +1175,18 @@ public:
 		// so we can compute the difference between the removed/added strips
 		// and only have to touch tiles that have a net change.)
 
-		i32 j0_from = ((from.Y - visionRange)/(int)CELL_SIZE).ToInt_RoundToInfinity();
-		i32 j1_from = ((from.Y + visionRange)/(int)CELL_SIZE).ToInt_RoundToNegInfinity();
-		i32 j0_to = ((to.Y - visionRange)/(int)CELL_SIZE).ToInt_RoundToInfinity();
-		i32 j1_to = ((to.Y + visionRange)/(int)CELL_SIZE).ToInt_RoundToNegInfinity();
+		i32 j0_from = ((from.Y - visionRange)/(int)TERRAIN_TILE_SIZE).ToInt_RoundToInfinity();
+		i32 j1_from = ((from.Y + visionRange)/(int)TERRAIN_TILE_SIZE).ToInt_RoundToNegInfinity();
+		i32 j0_to = ((to.Y - visionRange)/(int)TERRAIN_TILE_SIZE).ToInt_RoundToInfinity();
+		i32 j1_to = ((to.Y + visionRange)/(int)TERRAIN_TILE_SIZE).ToInt_RoundToNegInfinity();
 		i32 j0clamp = std::max(std::min(j0_from, j0_to), 1);
 		i32 j1clamp = std::min(std::max(j1_from, j1_to), m_TerrainVerticesPerSide-2);
 
-		entity_pos_t x_from = from.X / (int)CELL_SIZE;
-		entity_pos_t y_from = from.Y / (int)CELL_SIZE;
-		entity_pos_t x_to = to.X / (int)CELL_SIZE;
-		entity_pos_t y_to = to.Y / (int)CELL_SIZE;
-		entity_pos_t r = visionRange / (int)CELL_SIZE;
+		entity_pos_t x_from = from.X / (int)TERRAIN_TILE_SIZE;
+		entity_pos_t y_from = from.Y / (int)TERRAIN_TILE_SIZE;
+		entity_pos_t x_to = to.X / (int)TERRAIN_TILE_SIZE;
+		entity_pos_t y_to = to.Y / (int)TERRAIN_TILE_SIZE;
+		entity_pos_t r = visionRange / (int)TERRAIN_TILE_SIZE;
 		entity_pos_t r2 = r.Square();
 
 		i32 xfloor_from = (x_from - entity_pos_t::Epsilon()).ToInt_RoundToNegInfinity();

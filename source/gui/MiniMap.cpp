@@ -149,8 +149,8 @@ void CMiniMap::GetMouseWorldCoordinates(float& x, float& z)
 	float angle = GetAngle();
 
 	// Scale world coordinates for shrunken square map
-	x = CELL_SIZE * m_MapSize * (m_MapScale * (cos(angle)*(px-0.5) - sin(angle)*(py-0.5)) + 0.5);
-	z = CELL_SIZE * m_MapSize * (m_MapScale * (cos(angle)*(py-0.5) + sin(angle)*(px-0.5)) + 0.5);
+	x = TERRAIN_TILE_SIZE * m_MapSize * (m_MapScale * (cos(angle)*(px-0.5) - sin(angle)*(py-0.5)) + 0.5);
+	z = TERRAIN_TILE_SIZE * m_MapSize * (m_MapScale * (cos(angle)*(py-0.5) + sin(angle)*(px-0.5)) + 0.5);
 }
 
 void CMiniMap::SetCameraPos()
@@ -206,8 +206,8 @@ void CMiniMap::DrawViewRect()
 		// convert to minimap space
 		float px=hitPt[i].X;
 		float pz=hitPt[i].Z;
-		ViewRect[i][0]=(m_CachedActualSize.GetWidth()*px/float(CELL_SIZE*m_MapSize));
-		ViewRect[i][1]=(m_CachedActualSize.GetHeight()*pz/float(CELL_SIZE*m_MapSize));
+		ViewRect[i][0]=(m_CachedActualSize.GetWidth()*px/float(TERRAIN_TILE_SIZE*m_MapSize));
+		ViewRect[i][1]=(m_CachedActualSize.GetHeight()*pz/float(TERRAIN_TILE_SIZE*m_MapSize));
 	}
 
 	// Enable Scissoring as to restrict the rectangle
@@ -372,8 +372,8 @@ void CMiniMap::Draw()
 	// (~70msec/frame on a GF4 rendering a thousand points)
 	glPointSize(3.f);
 
-	float sx = (float)m_Width / ((m_MapSize - 1) * CELL_SIZE);
-	float sy = (float)m_Height / ((m_MapSize - 1) * CELL_SIZE);
+	float sx = (float)m_Width / ((m_MapSize - 1) * TERRAIN_TILE_SIZE);
+	float sy = (float)m_Height / ((m_MapSize - 1) * TERRAIN_TILE_SIZE);
 
 	CSimulation2::InterfaceList ents = sim->GetEntitiesWithInterface(IID_Minimap);
 

@@ -26,7 +26,7 @@
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpUnitMotion.h"
 #include "simulation2/MessageTypes.h"
-#include "graphics/Terrain.h"	// For CELL_SIZE
+#include "graphics/Terrain.h"	// For TERRAIN_TILE_SIZE
 #include "maths/FixedVector2D.h"
 
 class CCmpFootprint : public ICmpFootprint
@@ -171,7 +171,7 @@ public:
 			for (i32 dist = 0; dist <= maxSpawningDistance; ++dist)
 			{
 				// The spawn point should be far enough from this footprint to fit the unit, plus a little gap
-				entity_pos_t clearance = spawnedRadius + entity_pos_t::FromInt(2 + (int)CELL_SIZE*dist);
+				entity_pos_t clearance = spawnedRadius + entity_pos_t::FromInt(2 + (int)TERRAIN_TILE_SIZE*dist);
 				entity_pos_t radius = m_Size0 + clearance;
 
 				// Try equally-spaced points around the circle in alternating directions, starting from the front
@@ -200,7 +200,7 @@ public:
 			for (i32 dist = 0; dist <= maxSpawningDistance; ++dist)
 			{
 				// The spawn point should be far enough from this footprint to fit the unit, plus a little gap
-				entity_pos_t clearance = spawnedRadius + entity_pos_t::FromInt(2 + (int)CELL_SIZE*dist);
+				entity_pos_t clearance = spawnedRadius + entity_pos_t::FromInt(2 + (int)TERRAIN_TILE_SIZE*dist);
 
 				for (i32 edge = 0; edge < 4; ++edge)
 				{

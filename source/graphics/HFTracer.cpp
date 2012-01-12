@@ -40,7 +40,7 @@ CHFTracer::CHFTracer(CTerrain *pTerrain):
 	m_pTerrain(pTerrain),
 	m_Heightfield(m_pTerrain->GetHeightMap()),
 	m_MapSize(m_pTerrain->GetVerticesPerSide()),
-	m_CellSize((float)CELL_SIZE),
+	m_CellSize((float)TERRAIN_TILE_SIZE),
 	m_HeightScale(HEIGHT_SCALE)
 {
 }

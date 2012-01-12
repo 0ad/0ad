@@ -22,7 +22,7 @@
 #include "simulation2/helpers/Position.h"
 #include "simulation2/helpers/Player.h"
 
-#include "graphics/Terrain.h" // for CELL_SIZE
+#include "graphics/Terrain.h" // for TERRAIN_TILE_SIZE
 
 /**
  * Provides efficient range-based queries of the game world,

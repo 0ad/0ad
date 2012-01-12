@@ -118,7 +118,7 @@ void CTerritoryTexture::ConstructTexture(int unit)
 		//   world pos (mapsize*cellsize, y, mapsize*cellsize)  (i.e. top-right of last tile)
 		//     onto texcoord (mapsize / texsize, mapsize / texsize)  (i.e. top-right of last texel)
 
-		float s = 1.f / (float)(m_TextureSize * CELL_SIZE);
+		float s = 1.f / (float)(m_TextureSize * TERRAIN_TILE_SIZE);
 		float t = 0.f;
 		m_TextureMatrix.SetZero();
 		m_TextureMatrix._11 = s;
