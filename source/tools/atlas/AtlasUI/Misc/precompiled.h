@@ -39,6 +39,10 @@
 # define WIN32_LEAN_AND_MEAN
 #endif
 
+#if defined(__GNUC__) && (__GNUC__*100 + __GNUC_MINOR__) >= 402 // (older GCCs don't support this pragma)
+# pragma GCC diagnostic ignored "-Wredundant-decls" // triggered by wx/geometry.h
+#endif
+
 // Include useful wx headers
 #include "wx/wxprec.h"
 
@@ -67,6 +71,10 @@
 #include "wx/treectrl.h"
 #include "wx/wfstream.h"
 #include "wx/zstream.h"
+
+#if defined(__GNUC__) && (__GNUC__*100 + __GNUC_MINOR__) >= 402
+# pragma GCC diagnostic warning "-Wredundant-decls" // re-enable
+#endif
 
 #include <vector>
 #include <string>

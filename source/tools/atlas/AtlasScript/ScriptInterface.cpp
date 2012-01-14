@@ -27,6 +27,10 @@
 # pragma warning(disable:4996)	// deprecated CRT
 #endif
 
+#if defined(__GNUC__) && (__GNUC__*100 + __GNUC_MINOR__) >= 402 // (older GCCs don't support this pragma)
+# pragma GCC diagnostic ignored "-Wredundant-decls" // triggered by wx/geometry.h
+#endif
+
 #include "wx/wx.h"
 
 #include "GameInterface/Shareable.h"
