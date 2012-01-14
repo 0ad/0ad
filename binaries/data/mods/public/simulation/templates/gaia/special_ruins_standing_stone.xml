@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_ruins">
+  <Footprint replace="">
+    <Circle radius="1.5"/>
+    <Height>2.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>gaia</Civ>
+    <GenericName>Stone Ruins</GenericName>
+    <SpecificName>Celtic Standing Stone</SpecificName>
+    <Icon>gaia/special_treasure.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Static width="2.0" depth="2.0"/>
+  </Obstruction>
+  <ResourceSupply>
+    <Amount>300</Amount>
+    <Type>stone.ruins</Type>
+  </ResourceSupply>
+  <VisualActor>
+    <Actor>props/special/eyecandy/standing_stones.xml</Actor>
+  </VisualActor>
+</Entity>

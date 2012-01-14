@@ -9,14 +9,6 @@
       </props>
       <texture>structural/rome_struct.dds</texture>
     </variant>
-    <variant frequency="100" name="House C">
-      <mesh>structural/rome_ho_c.pmd</mesh>
-      <texture>structural/rome_struct_1.dds</texture>
-    </variant>
-    <variant frequency="100" name="House New">
-      <mesh>structural/rome_house_b.dae</mesh>
-      <texture>structural/rome_struct_1.dds</texture>
-    </variant>
   </group>
   <material>player_trans.xml</material>
 </actor>

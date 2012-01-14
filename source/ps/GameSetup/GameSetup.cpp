@@ -21,7 +21,7 @@
 #include "lib/input.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
-#include "lib/external_libraries/sdl.h"
+#include "lib/external_libraries/libsdl.h"
 #include "lib/file/common/file_stats.h"
 #include "lib/res/h_mgr.h"
 #include "lib/res/graphics/cursor.h"

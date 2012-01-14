@@ -24,8 +24,6 @@
 #include "General/Datafile.h"
 
 #include "ActorEditor/ActorEditor.h"
-#include "ArchiveViewer/ArchiveViewer.h"
-#include "FileConverter/FileConverter.h"
 #include "ScenarioEditor/ScenarioEditor.h"
 #include "ErrorReporter/ErrorReporter.h"
 
@@ -203,15 +201,11 @@ public:
 
 		// Display the appropriate window
 		wxFrame* frame;
-#define MAYBE(t) if (g_InitialWindowType == _T(#t)) frame = new t(NULL); else
-		MAYBE(ActorEditor)
-#ifdef USE_AOE3ED
-		MAYBE(ArchiveViewer)
-		MAYBE(FileConverter)
-#endif
-#undef MAYBE
-		// else
-		if (g_InitialWindowType == _T("ScenarioEditor"))
+		if (g_InitialWindowType == _T("ActorEditor"))
+		{
+			frame = new ActorEditor(NULL);
+		}
+		else if (g_InitialWindowType == _T("ScenarioEditor"))
 		{
 			m_ScriptInterface = new ScriptInterface(&ScenarioEditorSubmitCommand);
 			frame = new ScenarioEditor(NULL, *m_ScriptInterface);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -43,7 +43,7 @@ CArchiveBuilder::CArchiveBuilder(const OsPath& mod, const OsPath& tempdir) :
 
 	m_VFS->Mount(L"cache/", m_TempDir/"_archivecache/");
 
-	m_VFS->Mount(L"", mod/"", VFS_MOUNT_MUST_EXIST);
+	m_VFS->Mount(L"", mod/"", VFS_MOUNT_MUST_EXIST | VFS_MOUNT_KEEP_DELETED);
 
 	// Collect the list of files before loading any base mods
 	vfs::ForEachFile(m_VFS, L"", &CollectFileCB, (uintptr_t)static_cast<void*>(this), 0, vfs::DIR_RECURSIVE);

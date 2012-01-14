@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2012 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -88,7 +88,8 @@ private:
 		if(name.Extension() == L".DELETED")
 		{
 			m_directory->RemoveFile(name.Basename());
-			return;
+			if(!(m_realDirectory->Flags() & VFS_MOUNT_KEEP_DELETED))
+				return;
 		}
 
 		const VfsFile file(name, (size_t)fileInfo.Size(), fileInfo.MTime(), m_realDirectory->Priority(), m_realDirectory);
@@ -121,7 +122,8 @@ private:
 		if(name.Extension() == L".DELETED")
 		{
 			directory->RemoveFile(name.Basename());
-			return;
+			if(!(this_->m_realDirectory->Flags() & VFS_MOUNT_KEEP_DELETED))
+				return;
 		}
 
 		const VfsFile file(name, (size_t)fileInfo.Size(), fileInfo.MTime(), this_->m_realDirectory->Priority(), archiveFile);

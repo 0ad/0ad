@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2012 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -57,7 +57,15 @@ enum VfsMountFlags
 	 * return ERR::VFS_DIR_NOT_FOUND if the given real path doesn't exist.
 	 * (the default behavior is to create all real directories in the path)
 	 **/
-	VFS_MOUNT_MUST_EXIST = 4
+	VFS_MOUNT_MUST_EXIST = 4,
+
+	/**
+	 * keep the files named "*.DELETED" visible in the VFS directories.
+	 * the standard behavior of hiding the file with the same name minus the
+	 * ".DELETED" suffix will still apply.
+	 * (the default behavior is to hide both the suffixed and unsuffixed files)
+	 **/
+	VFS_MOUNT_KEEP_DELETED = 8
 };
 
 // (member functions are thread-safe after the instance has been

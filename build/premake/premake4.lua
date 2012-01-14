@@ -1,7 +1,6 @@
 newoption { trigger = "atlas", description = "Include Atlas scenario editor projects" }
 newoption { trigger = "collada", description = "Include COLLADA projects (requires FCollada library)" }
 newoption { trigger = "coverage", description = "Enable code coverage data collection (GCC only)" }
-newoption { trigger = "aoe3ed", description = "Include AoE3Ed" }
 newoption { trigger = "icc", description = "Use Intel C++ Compiler (Linux only; should use either \"--cc icc\" or --without-pch too, and then set CXX=icpc before calling make)" }
 newoption { trigger = "outpath", description = "Location for generated project files" }
 newoption { trigger = "without-tests", description = "Disable generation of test projects" }
@@ -730,10 +729,6 @@ function setup_atlas_project(project_name, target_type, rel_source_dirs, rel_inc
 	project_add_contents(source_root, rel_source_dirs, rel_include_dirs, extra_params)
 	project_add_extern_libs(extern_libs, target_type)
 
-	if _OPTIONS["aoe3ed"] then
-		defines { "USE_AOE3ED" }
-	end
-
 	-- Platform Specifics
 	if os.is("windows") then
 		defines { "_UNICODE" }
@@ -812,12 +807,6 @@ function setup_atlas_projects()
 		"AtlasObject",
 		"AtlasScript",
 	}
-	if _OPTIONS["aoe3ed"] then
-		table.insert(atlas_src, "ArchiveViewer")
-		table.insert(atlas_src, "FileConverter")
-		table.insert(atlas_extra_links, "DatafileIO")
-		table.insert(atlas_extra_links, "xerces-c")
-	end
 
 	atlas_extern_libs = {
 		"boost",
@@ -830,9 +819,6 @@ function setup_atlas_projects()
 		"x11",
 		"zlib",
 	}
-	if _OPTIONS["aoe3ed"] then
-		table.insert(atlas_extern_libs, "devil")
-	end
 
 	setup_atlas_project("AtlasUI", "SharedLib", atlas_src,
 	{	-- include
@@ -847,25 +833,6 @@ function setup_atlas_projects()
 		extra_links = atlas_extra_links,
 		extra_files = { "Misc/atlas.rc" }
 	})
-
-	if _OPTIONS["aoe3ed"] then
-		setup_atlas_project("DatafileIO", "StaticLib",
-		{	-- src
-			".",
-			"BAR",
-			"DDT",
-			"SCN",
-			"Stream",
-			"XMB"
-		},{	-- include
-		},{	-- extern_libs
-			"devil",
-			"xerces",
-			"zlib"
-		},{	-- extra_params
-		})
-	end
-
 end
 
 
@@ -899,9 +866,6 @@ function setup_atlas_frontend_project (project_name)
 		project_add_manifest()
 
 	else -- Non-Windows, = Unix
-		if _OPTIONS["aoe3ed"] then
-			links { "DatafileIO" }
-		end
 		links { "AtlasObject" }
 	end
 
@@ -911,10 +875,6 @@ end
 
 function setup_atlas_frontends()
 	setup_atlas_frontend_project("ActorEditor")
-	if _OPTIONS["aoe3ed"] then
-		setup_atlas_frontend_project("ArchiveViewer")
-		setup_atlas_frontend_project("FileConverter")
-	end
 end
 
 
