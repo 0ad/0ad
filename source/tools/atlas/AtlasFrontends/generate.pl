@@ -8,15 +8,6 @@ my @progs = (
 		PROJECT_NAME	=> "ActorEditor",
 		WINDOW_NAME		=> "ActorEditor",
 	},
-	{
-		PROJECT_NAME	=> "FileConverter",
-		WINDOW_NAME		=> "FileConverter",
-	},
-	{
-		PROJECT_NAME	=> "ArchiveViewer",
-		WINDOW_NAME		=> "ArchiveViewer",
-	},
-
 );
 
 for my $p (@progs) {
