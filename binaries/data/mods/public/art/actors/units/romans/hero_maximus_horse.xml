@@ -25,13 +25,9 @@
       <props>
         <prop actor="units/romans/hero_maximus_r.xml" attachpoint="rider"/>
         <prop actor="props/units/hero_star.xml" attachpoint="root"/>
-        <prop actor="props/units/horse/pers_peytral.xml" attachpoint="chest"/>
+        <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="horse-texture">
-      <texture>skeletal/horse_rome_marcellus.dds</texture>
+      <texture>skeletal/horse_rome_maximus.png</texture>
     </variant>
   </group>
   <group>
