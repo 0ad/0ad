@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/pers_champion_infantry">
+  <Cost>
+    <BuildTime>5</BuildTime>
+    <Resources>
+      <wood>0</wood>
+	  <metal>80</metal>
+    </Resources>
+  </Cost>
+  <Identity>
+    <Civ>pers</Civ>
+    <GenericName>Persian Apple Bearer</GenericName>
+    <SpecificName>Arštibara</SpecificName>
+    <Icon>units/pers_arstibara.png</Icon>
+    <History>The Arštibara, or "Apple Bearers", are the elite palace guardsmen stationed at the great imperial cities of Susa and Persepolis. They are drawn from the ranks of the Immortals regiment and despite their elaborate dress are supreme warriors.</History>
+  </Identity>
+  <VisualActor>
+    <Actor>units/persians/apple_bearer.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -4,7 +4,7 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>sunny</SkySet>
-		<SunColour r="0.760784" g="0.745098" b="0.658824"/>
+		<SunColour r="0.756863" g="0.737255" b="0.658824"/>
 		<SunElevation angle="0.717903"/>
 		<SunRotation angle="-0.478602"/>
 		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
@@ -24,14 +24,14 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="485.134" y="96.303" z="90.7383"/>
+		<Position x="579.599" y="101.475" z="748.131"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "The Greeks and Romans square off on a richly detailed map of Southern Italy.\u000a\u000aScout the lands to find free Treasures and to secure new resources.",
+  "Description": "Arch enemies, Rome and Carthage, square off on a richly detailed map of Southern Italy.\u000a\u000aScout the lands to find free Treasures and to secure new resources.",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
@@ -56,7 +56,7 @@
     },
     {
       "AI": "qbot",
-      "Civ": "hele",
+      "Civ": "cart",
       "Colour": {
         "b": 168,
         "g": 64,
@@ -266,12 +266,6 @@
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
 			<Position x="338.85416" z="311.20112"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="77">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="468.99717" z="187.09055"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="78">
@@ -745,7 +739,7 @@
 		<Entity uid="156">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
 			<Player>0</Player>
-			<Position x="523.37781" z="513.25947"/>
+			<Position x="522.60084" z="514.78632"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="157">
@@ -5347,8 +5341,8 @@
 		<Entity uid="1033">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="654.6764" z="502.71558"/>
-			<Orientation y="1.31577"/>
+			<Position x="648.69782" z="493.46564"/>
+			<Orientation y="0.02231"/>
 		</Entity>
 		<Entity uid="1034">
 			<Template>gaia/flora_tree_carob</Template>
@@ -5527,7 +5521,7 @@
 		<Entity uid="1063">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="613.26758" z="497.41272"/>
+			<Position x="620.51685" z="502.29285"/>
 			<Orientation y="-2.50666"/>
 		</Entity>
 		<Entity uid="1064">
@@ -5569,7 +5563,7 @@
 		<Entity uid="1070">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="594.04462" z="493.99152"/>
+			<Position x="611.05964" z="499.98301"/>
 			<Orientation y="-0.83164"/>
 		</Entity>
 		<Entity uid="1071">
@@ -6391,8 +6385,8 @@
 		<Entity uid="1207">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="624.21308" z="536.80115"/>
-			<Orientation y="-2.2399"/>
+			<Position x="636.48908" z="496.4928"/>
+			<Orientation y="-0.22078"/>
 		</Entity>
 		<Entity uid="1208">
 			<Template>gaia/flora_tree_carob</Template>
@@ -8605,11 +8599,6 @@
 			<Player>0</Player>
 			<Position x="903.74085" z="798.02503"/>
 			<Orientation y="-2.65447"/>
-		</Entity>
-		<Entity uid="1594">
-			<Template>actor|props/flora/decals_flowers_daisies.xml</Template>
-			<Position x="358.35944" z="488.5229"/>
-			<Orientation y="0.30558"/>
 		</Entity>
 		<Entity uid="1595">
 			<Template>actor|props/flora/ferns.xml</Template>
@@ -11528,7 +11517,7 @@
 		</Entity>
 		<Entity uid="2178">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="933.79957" z="666.1966"/>
+			<Position x="935.62256" z="658.28058"/>
 			<Orientation y="-2.9013"/>
 		</Entity>
 		<Entity uid="2179">
@@ -13213,22 +13202,12 @@
 		</Entity>
 		<Entity uid="2515">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="912.17457" z="749.73975"/>
+			<Position x="904.44092" z="771.75647"/>
 			<Orientation y="2.56885"/>
-		</Entity>
-		<Entity uid="2516">
-			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="916.99854" z="740.62201"/>
-			<Orientation y="0.40714"/>
 		</Entity>
 		<Entity uid="2517">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
 			<Position x="918.14515" z="748.48938"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2518">
-			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="919.30878" z="752.35584"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2519">
@@ -17336,72 +17315,6 @@
 			<Position x="699.04493" z="619.12403"/>
 			<Orientation y="2.60706"/>
 		</Entity>
-		<Entity uid="3340">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="483.5005" z="167.8875"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3341">
-			<Template>units/hele_infantry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="479.11149" z="163.19275"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3342">
-			<Template>units/hele_infantry_spearman_a</Template>
-			<Player>2</Player>
-			<Position x="481.40574" z="165.65961"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3343">
-			<Template>units/hele_hero_themistocles</Template>
-			<Player>2</Player>
-			<Position x="486.24433" z="171.41996"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3344">
-			<Template>units/hele_cavalry_swordsman_e</Template>
-			<Player>2</Player>
-			<Position x="490.22977" z="176.66428"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3345">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="476.26069" z="167.0399"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3346">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="478.28415" z="168.87064"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3347">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="480.17261" z="171.08259"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3348">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="482.6189" z="173.36008"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3358">
-			<Template>gaia/special_treasure_stone</Template>
-			<Player>0</Player>
-			<Position x="868.8866" z="322.91092"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3359">
-			<Template>gaia/special_treasure_stone</Template>
-			<Player>0</Player>
-			<Position x="865.66004" z="318.12092"/>
-			<Orientation y="0.13526"/>
-		</Entity>
 		<Entity uid="3360">
 			<Template>gaia/special_treasure_golden_fleece</Template>
 			<Player>0</Player>
@@ -18249,36 +18162,6 @@
 			<Player>0</Player>
 			<Position x="265.58185" z="671.39594"/>
 			<Orientation y="2.34394"/>
-		</Entity>
-		<Entity uid="3519">
-			<Template>gaia/flora_tree_poplar_lombardy</Template>
-			<Player>0</Player>
-			<Position x="908.83863" z="725.92493"/>
-			<Orientation y="0.23826"/>
-		</Entity>
-		<Entity uid="3520">
-			<Template>gaia/flora_tree_poplar_lombardy</Template>
-			<Player>0</Player>
-			<Position x="912.98371" z="735.7345"/>
-			<Orientation y="0.49907"/>
-		</Entity>
-		<Entity uid="3521">
-			<Template>gaia/flora_tree_poplar_lombardy</Template>
-			<Player>0</Player>
-			<Position x="921.9673" z="748.79444"/>
-			<Orientation y="0.57122"/>
-		</Entity>
-		<Entity uid="3522">
-			<Template>gaia/flora_tree_poplar_lombardy</Template>
-			<Player>0</Player>
-			<Position x="928.9596" z="754.44086"/>
-			<Orientation y="1.18339"/>
-		</Entity>
-		<Entity uid="3523">
-			<Template>gaia/flora_tree_poplar_lombardy</Template>
-			<Player>0</Player>
-			<Position x="938.11255" z="757.84717"/>
-			<Orientation y="0.66878"/>
 		</Entity>
 		<Entity uid="3524">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
@@ -21922,13 +21805,13 @@
 		<Entity uid="4222">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="928.39197" z="725.85084"/>
+			<Position x="935.76008" z="696.19733"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4223">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="947.77814" z="730.73145"/>
+			<Position x="967.87488" z="699.78559"/>
 			<Orientation y="0.00921"/>
 		</Entity>
 		<Entity uid="4224">
@@ -23385,17 +23268,365 @@
 			<Position x="612.69965" z="842.5788"/>
 			<Orientation y="-2.2893"/>
 		</Entity>
-		<Entity uid="4512">
-			<Template>gaia/geology_stonemine_medit_quarry</Template>
-			<Player>0</Player>
-			<Position x="537.41858" z="838.30439"/>
+		<Entity uid="4514">
+			<Template>structures/cart_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="467.31083" z="187.18596"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="4513">
-			<Template>gaia/geology_stonemine_medit_quarry</Template>
+		<Entity uid="4516">
+			<Template>units/cart_cavalry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="491.2469" z="177.51886"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4517">
+			<Template>units/cart_hero_hamilcar</Template>
+			<Player>2</Player>
+			<Position x="488.02717" z="174.15181"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4518">
+			<Template>units/cart_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="478.99781" z="164.01713"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4519">
+			<Template>units/cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="481.42298" z="166.74659"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4520">
+			<Template>units/cart_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="483.76886" z="168.63071"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4521">
+			<Template>units/cart_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="475.97114" z="167.87955"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4522">
+			<Template>units/cart_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="478.56656" z="169.9245"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4523">
+			<Template>units/cart_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="480.70258" z="172.29992"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4524">
+			<Template>units/cart_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="483.00532" z="174.86071"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4525">
+			<Template>gaia/special_treasure_stone_statues_roman</Template>
 			<Player>0</Player>
-			<Position x="421.0134" z="187.16701"/>
-			<Orientation y="-0.1619"/>
+			<Position x="862.09638" z="311.146"/>
+			<Orientation y="-0.7521"/>
+		</Entity>
+		<Entity uid="4526">
+			<Template>gaia/special_treasure_stone_statues_roman</Template>
+			<Player>0</Player>
+			<Position x="866.87067" z="314.85868"/>
+			<Orientation y="-0.73076"/>
+		</Entity>
+		<Entity uid="4529">
+			<Template>gaia/special_treasure_stone_statues_roman</Template>
+			<Player>0</Player>
+			<Position x="871.7126" z="318.92243"/>
+			<Orientation y="-0.73322"/>
+		</Entity>
+		<Entity uid="4530">
+			<Template>gaia/special_treasure_stone_statues_roman</Template>
+			<Player>0</Player>
+			<Position x="877.3357" z="323.40345"/>
+			<Orientation y="-0.70604"/>
+		</Entity>
+		<Entity uid="4531">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="535.99946" z="841.26404"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4532">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="531.8183" z="831.53534"/>
+			<Orientation y="-0.38462"/>
+		</Entity>
+		<Entity uid="4533">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="540.79297" z="832.0329"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4534">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="416.30478" z="197.27051"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4535">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="421.83341" z="186.73676"/>
+			<Orientation y="-0.93741"/>
+		</Entity>
+		<Entity uid="4536">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="426.08689" z="194.1034"/>
+			<Orientation y="2.97136"/>
+		</Entity>
+		<Entity uid="4537">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="441.51767" z="484.98346"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4543">
+			<Template>gaia/geology_stone_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="519.61182" z="520.75214"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4544">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="898.20978" z="710.2707"/>
+			<Orientation y="-0.16568"/>
+		</Entity>
+		<Entity uid="4545">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="910.7674" z="713.27454"/>
+			<Orientation y="1.18424"/>
+		</Entity>
+		<Entity uid="4546">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="908.35956" z="727.48731"/>
+			<Orientation y="-0.07825"/>
+		</Entity>
+		<Entity uid="4547">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="913.79963" z="735.56366"/>
+			<Orientation y="-0.07299"/>
+		</Entity>
+		<Entity uid="4548">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="925.5326" z="728.41413"/>
+			<Orientation y="1.33564"/>
+		</Entity>
+		<Entity uid="4549">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="928.4662" z="752.0525"/>
+			<Orientation y="2.61265"/>
+		</Entity>
+		<Entity uid="4550">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="930.34638" z="744.01716"/>
+			<Orientation y="0.85943"/>
+		</Entity>
+		<Entity uid="4551">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="938.11438" z="734.39325"/>
+			<Orientation y="0.08971"/>
+		</Entity>
+		<Entity uid="4552">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="938.11774" z="740.79834"/>
+			<Orientation y="0.48435"/>
+		</Entity>
+		<Entity uid="4553">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="943.4087" z="747.43665"/>
+			<Orientation y="1.3219"/>
+		</Entity>
+		<Entity uid="4554">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="950.17011" z="749.44727"/>
+			<Orientation y="3.07949"/>
+		</Entity>
+		<Entity uid="4555">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="951.74512" z="742.82087"/>
+			<Orientation y="3.03707"/>
+		</Entity>
+		<Entity uid="4556">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="954.25886" z="737.27271"/>
+			<Orientation y="3.03391"/>
+		</Entity>
+		<Entity uid="4557">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="956.55616" z="724.55567"/>
+			<Orientation y="-2.85918"/>
+		</Entity>
+		<Entity uid="4558">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="953.13611" z="720.52894"/>
+			<Orientation y="-1.61019"/>
+		</Entity>
+		<Entity uid="4559">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="943.534" z="720.21894"/>
+			<Orientation y="-1.68615"/>
+		</Entity>
+		<Entity uid="4560">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="933.86261" z="718.69581"/>
+			<Orientation y="-2.18514"/>
+		</Entity>
+		<Entity uid="4561">
+			<Template>gaia/flora_tree_aleppo_pine</Template>
+			<Player>0</Player>
+			<Position x="929.71338" z="714.9944"/>
+			<Orientation y="-2.35637"/>
+		</Entity>
+		<Entity uid="4562">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="726.5746" z="500.22608"/>
+			<Orientation y="-0.10984"/>
+		</Entity>
+		<Entity uid="4563">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="732.51392" z="460.8797"/>
+			<Orientation y="-1.2619"/>
+		</Entity>
+		<Entity uid="4564">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="713.45417" z="225.13648"/>
+			<Orientation y="0.72184"/>
+		</Entity>
+		<Entity uid="4565">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="827.59241" z="232.6699"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4566">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="837.20942" z="138.36113"/>
+			<Orientation y="0.22007"/>
+		</Entity>
+		<Entity uid="4567">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="739.71613" z="75.1902"/>
+			<Orientation y="-1.88045"/>
+		</Entity>
+		<Entity uid="4568">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="723.86481" z="138.61678"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4569">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="682.63312" z="137.45574"/>
+			<Orientation y="-0.17161"/>
+		</Entity>
+		<Entity uid="4570">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="711.9806" z="341.40622"/>
+			<Orientation y="-1.19008"/>
+		</Entity>
+		<Entity uid="4571">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="756.49286" z="547.37146"/>
+			<Orientation y="0.67454"/>
+		</Entity>
+		<Entity uid="4572">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="815.27424" z="610.10169"/>
+			<Orientation y="-0.83529"/>
+		</Entity>
+		<Entity uid="4573">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="858.68171" z="636.26215"/>
+			<Orientation y="0.44349"/>
+		</Entity>
+		<Entity uid="4574">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="904.56043" z="487.47651"/>
+			<Orientation y="-1.82981"/>
+		</Entity>
+		<Entity uid="4575">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="950.08912" z="551.79029"/>
+			<Orientation y="0.33732"/>
+		</Entity>
+		<Entity uid="4576">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="866.74457" z="364.17286"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4577">
+			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
+			<Player>0</Player>
+			<Position x="845.67402" z="270.81202"/>
+			<Orientation y="-0.36637"/>
+		</Entity>
+		<Entity uid="4578">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="383.88352" z="201.88738"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4579">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="647.4466" z="862.97797"/>
+			<Orientation y="-0.31377"/>
+		</Entity>
+		<Entity uid="4580">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="107.77157" z="538.93952"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4581">
+			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
+			<Player>0</Player>
+			<Position x="662.32038" z="544.18042"/>
+			<Orientation y="-0.77717"/>
 		</Entity>
 	</Entities>
 	<Paths/>
