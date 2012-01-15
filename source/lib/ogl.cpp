@@ -286,6 +286,14 @@ const char* ogl_HaveExtensions(int dummy, ...)
 // some extension functions which our graphics code assumes exist.
 // it will render incorrectly but at least it shouldn't crash.
 
+#if CONFIG2_GLES
+
+static void enableDummyFunctions()
+{
+}
+
+#else
+
 static void GL_CALL_CONV dummy_glDrawRangeElementsEXT(GLenum mode, GLuint, GLuint, GLsizei count, GLenum type, GLvoid* indices)
 {
 	glDrawElements(mode, count, type, indices);
@@ -309,6 +317,26 @@ static void GL_CALL_CONV dummy_glMultiTexCoord3fARB(int, float s, float t, float
 	glTexCoord3f(s, t, r);
 }
 
+static void enableDummyFunctions()
+{
+	// fall back to the dummy functions when extensions (or equivalent core support) are missing
+
+	if(!ogl_HaveExtension("GL_EXT_draw_range_elements"))
+	{
+		pglDrawRangeElementsEXT = &dummy_glDrawRangeElementsEXT;
+	}
+
+	if(!ogl_HaveExtension("GL_ARB_multitexture"))
+	{
+		pglActiveTextureARB = &dummy_glActiveTextureARB;
+		pglClientActiveTextureARB = &dummy_glClientActiveTextureARB;
+		pglMultiTexCoord2fARB = &dummy_glMultiTexCoord2fARB;
+		pglMultiTexCoord3fARB = &dummy_glMultiTexCoord3fARB;
+	}
+}
+
+#endif	// #if CONFIG2_GLES
+
 static void importExtensionFunctions()
 {
 	// It should be safe to load the ARB function pointers even if the
@@ -331,20 +359,7 @@ static void importExtensionFunctions()
 #undef FUNC23
 #undef FUNC
 
-	// fall back to the dummy functions when extensions (or equivalent core support) are missing
-
-	if(!ogl_HaveExtension("GL_EXT_draw_range_elements"))
-	{
-		pglDrawRangeElementsEXT = &dummy_glDrawRangeElementsEXT;
-	}
-
-	if(!ogl_HaveExtension("GL_ARB_multitexture"))
-	{
-		pglActiveTextureARB = &dummy_glActiveTextureARB;
-		pglClientActiveTextureARB = &dummy_glClientActiveTextureARB;
-		pglMultiTexCoord2fARB = &dummy_glMultiTexCoord2fARB;
-		pglMultiTexCoord3fARB = &dummy_glMultiTexCoord3fARB;
-	}
+	enableDummyFunctions();
 }
 
 
@@ -359,10 +374,12 @@ static void dump_gl_error(GLenum err)
 	E(GL_INVALID_ENUM)
 	E(GL_INVALID_VALUE)
 	E(GL_INVALID_OPERATION)
+#if !CONFIG2_GLES
 	E(GL_STACK_OVERFLOW)
 	E(GL_STACK_UNDERFLOW)
+#endif
 	E(GL_OUT_OF_MEMORY)
-	E(GL_INVALID_FRAMEBUFFER_OPERATION_EXT)
+	E(GL_INVALID_FRAMEBUFFER_OPERATION)
 	default: debug_printf(L"Unknown GL error: %04x\n", err); break;
 	}
 #undef E
@@ -463,5 +480,7 @@ void ogl_Init()
 	importExtensionFunctions();
 
 	glGetIntegerv(GL_MAX_TEXTURE_SIZE, &ogl_max_tex_size);
+#if !CONFIG2_GLES
 	glGetIntegerv(GL_MAX_TEXTURE_UNITS, &ogl_max_tex_units);
+#endif
 }

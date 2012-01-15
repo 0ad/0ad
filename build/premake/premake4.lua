@@ -1,6 +1,7 @@
 newoption { trigger = "atlas", description = "Include Atlas scenario editor projects" }
 newoption { trigger = "collada", description = "Include COLLADA projects (requires FCollada library)" }
 newoption { trigger = "coverage", description = "Enable code coverage data collection (GCC only)" }
+newoption { trigger = "gles", description = "Use non-working OpenGL ES 2.0 mode" }
 newoption { trigger = "icc", description = "Use Intel C++ Compiler (Linux only; should use either \"--cc icc\" or --without-pch too, and then set CXX=icpc before calling make)" }
 newoption { trigger = "outpath", description = "Location for generated project files" }
 newoption { trigger = "without-tests", description = "Disable generation of test projects" }
@@ -140,6 +141,10 @@ function project_set_build_flags()
 		defines { "NDEBUG", "CONFIG_FINAL=1" }
 
 	configuration { }
+
+	if _OPTIONS["gles"] then
+		defines { "CONFIG2_GLES=1" }
+	end
 
 	-- required for the lowlevel library. must be set from all projects that use it, otherwise it assumes it is
 	-- being used as a DLL (which is currently not the case in 0ad)

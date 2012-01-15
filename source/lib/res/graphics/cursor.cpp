@@ -112,6 +112,10 @@ public:
 
 	void draw(int x, int y) const
 	{
+#if CONFIG2_GLES
+		UNUSED2(x); UNUSED2(y);
+#warning TODO: implement cursors for GLES
+#else
 		(void)ogl_tex_bind(ht);
 		glEnable(GL_TEXTURE_2D);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -125,6 +129,7 @@ public:
 		glTexCoord2i(1, 1); glVertex2i( x-hotspotx+w, y+hotspoty-h );
 		glTexCoord2i(0, 1); glVertex2i( x-hotspotx,   y+hotspoty-h );
 		glEnd();
+#endif
 	}
 
 	Status validate() const
@@ -239,7 +244,7 @@ static Status Cursor_validate(const Cursor* c)
 		WARN_RETURN(ERR::_2);
 		break;
 	}
-		
+
 	return INFO::OK;
 }
 

@@ -320,6 +320,9 @@ void glvwprintf(const wchar_t* fmt, va_list args)
 
 	ogl_WarnIfError();
 
+#if CONFIG2_GLES
+#warning TODO: implement unifont for GLES
+#else
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
@@ -335,6 +338,7 @@ void glvwprintf(const wchar_t* fmt, va_list args)
 
 	// Move into position for subsequent prints
 	glTranslatef((float)x, 0, 0);
+#endif
 
 	delete[] vertexes;
 }

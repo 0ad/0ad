@@ -65,9 +65,11 @@ static bool wrap_valid(GLint wrap)
 {
 	switch(wrap)
 	{
+#if !CONFIG2_GLES
 	case GL_CLAMP:
-	case GL_CLAMP_TO_EDGE:
 	case GL_CLAMP_TO_BORDER:
+#endif
+	case GL_CLAMP_TO_EDGE:
 	case GL_REPEAT:
 	case GL_MIRRORED_REPEAT:
 		return true;
@@ -103,8 +105,10 @@ static bool fmt_is_s3tc(GLenum fmt)
 	{
 	case GL_COMPRESSED_RGB_S3TC_DXT1_EXT:
 	case GL_COMPRESSED_RGBA_S3TC_DXT1_EXT:
+#if !CONFIG2_GLES
 	case GL_COMPRESSED_RGBA_S3TC_DXT3_EXT:
 	case GL_COMPRESSED_RGBA_S3TC_DXT5_EXT:
+#endif
 		return true;
 	default:
 		return false;
@@ -129,10 +133,12 @@ static GLint choose_fmt(size_t bpp, size_t flags)
 			return GL_COMPRESSED_RGBA_S3TC_DXT1_EXT;
 		case 1:
 			return GL_COMPRESSED_RGB_S3TC_DXT1_EXT;
+#if !CONFIG2_GLES
 		case 3:
 			return GL_COMPRESSED_RGBA_S3TC_DXT3_EXT;
 		case 5:
 			return GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
+#endif
 		default:
 			DEBUG_WARN_ERR(ERR::LOGIC);	// invalid DXT value
 			return 0;
@@ -149,10 +155,18 @@ static GLint choose_fmt(size_t bpp, size_t flags)
 		return GL_LUMINANCE_ALPHA;
 	case 24:
 		ENSURE(!alpha);
+#if CONFIG2_GLES
+		// GLES never supports BGR
+		ENSURE(!bgr);
+		return GL_RGB;
+#else
 		return bgr? GL_BGR : GL_RGB;
+#endif
 	case 32:
 		ENSURE(alpha);
-		return bgr? GL_BGRA : GL_RGBA;
+		// GLES can support BGRA via GL_EXT_texture_format_BGRA8888
+		// (TODO: can we rely on support for that extension?)
+		return bgr? GL_BGRA_EXT : GL_RGBA;
 	default:
 		DEBUG_WARN_ERR(ERR::LOGIC);	// invalid bpp
 		return 0;
@@ -218,6 +232,15 @@ static GLint choose_int_fmt(GLenum fmt, int q_flags)
 	if(fmt_is_s3tc(fmt))
 		return fmt;
 
+#if CONFIG2_GLES
+
+	UNUSED2(half_bpp);
+
+	// GLES only supports internal format == external format
+	return fmt;
+
+#else
+
 	switch(fmt)
 	{
 	// 8bpp
@@ -254,6 +277,8 @@ static GLint choose_int_fmt(GLenum fmt, int q_flags)
 	}
 
 	UNREACHABLE;
+
+#endif	// #if CONFIG2_GLES
 }
 
 
@@ -316,8 +341,10 @@ static void state_latch(OglTexState* ots)
 	// .. only CLAMP and REPEAT are guaranteed to be available.
 	//    if we're using one of the others, we squelch the error that
 	//    may have resulted if this GL implementation is old.
+#if !CONFIG2_GLES
 	if((wrap_s != GL_CLAMP && wrap_s != GL_REPEAT) || (wrap_t != GL_CLAMP && wrap_t != GL_REPEAT))
 		ogl_SquelchError(GL_INVALID_ENUM);
+#endif
 
 	// anisotropy
 	const GLfloat anisotropy = ots->anisotropy;
@@ -777,6 +804,7 @@ static Status get_mipmaps(Tex* t, GLint filter, int q_flags, int* plevels_to_ski
 		*plevels_to_skip = 0;	// t contains mipmaps
 	// OpenGL supports automatic generation; we need only
 	// activate that and upload the base image.
+#if !CONFIG2_GLES
 	else if(have_auto_mipmap_gen)
 	{
 		// note: we assume GL_GENERATE_MIPMAP and GL_GENERATE_MIPMAP_SGIS
@@ -784,6 +812,7 @@ static Status get_mipmaps(Tex* t, GLint filter, int q_flags, int* plevels_to_ski
 		// governing 'promoted' ARB extensions and just plain makes sense.
 		glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
 	}
+#endif
 	// image is S3TC-compressed and the previous 2 alternatives weren't
 	// available; we're going to cheat and just disable mipmapping.
 	// rationale: having tex_transform add mipmaps would be slow (since

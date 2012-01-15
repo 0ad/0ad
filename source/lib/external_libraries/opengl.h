@@ -27,6 +27,8 @@
 #ifndef INCLUDED_OPENGL
 #define INCLUDED_OPENGL
 
+#include "lib/config2.h" // CONFIG2_GLES
+
 #if OS_WIN
 // wgl.h is a private header and should only be included from here.
 // if this isn't defined, it'll complain.
@@ -34,7 +36,9 @@
 #include "lib/sysdep/os/win/wgl.h"
 #endif
 
-#if OS_MACOSX || OS_MAC
+#if CONFIG2_GLES
+# include <GLES2/gl2.h>
+#elif OS_MACOSX || OS_MAC
 # include <OpenGL/gl.h>
 #else
 # include <GL/gl.h>
@@ -53,7 +57,9 @@
 // including GL/glext.h.
 #undef GL_GLEXT_PROTOTYPES
 
-#if OS_MACOSX || OS_MAC
+#if CONFIG2_GLES
+# include <GLES2/gl2ext.h>
+#elif OS_MACOSX || OS_MAC
 # include <OpenGL/glext.h>
 #else
 # include <GL/glext.h>
