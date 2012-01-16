@@ -2,8 +2,18 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="rome aries">
+    <variant frequency="100" name="ariete romano">
+      <animations>
+        <animation file="mechanical/rome_ram_idle.dae" name="Idle" speed="100"/>
+        <animation file="mechanical/rome_ram_move.dae" name="Walk" speed="15"/>
+        <animation file="mechanical/rome_ram_move.dae" name="Run" speed="30"/>
+        <animation event="0.3" file="mechanical/rome_ram_attack.dae" name="Melee" speed="100"/>
+      </animations>
       <mesh>structural/rome_ram.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/rome_scutum_a.xml" attachpoint="shield_left"/>
+        <prop actor="props/units/shields/rome_scutum_e.xml" attachpoint="shield_right"/>
+      </props>
       <texture>structural/rome_ram.png</texture>
     </variant>
   </group>

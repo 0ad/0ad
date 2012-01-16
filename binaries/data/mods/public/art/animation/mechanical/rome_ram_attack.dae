@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.61.0 r42615</authoring_tool>
     </contributor>
-    <created>2012-01-16T23:20:16</created>
-    <modified>2012-01-16T23:20:16</modified>
+    <created>2012-01-16T23:19:45</created>
+    <modified>2012-01-16T23:19:45</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -59,25 +59,25 @@
   <library_animations>
     <animation id="SixWheeler_sixwheel_pose_matrix">
       <source id="SixWheeler_sixwheel_pose_matrix-input">
-        <float_array id="SixWheeler_sixwheel_pose_matrix-input-array" count="2">0.04166662 1.25</float_array>
+        <float_array id="SixWheeler_sixwheel_pose_matrix-input-array" count="6">0.04166662 0.125 0.4166666 0.5833333 0.875 1.25</float_array>
         <technique_common>
-          <accessor source="#SixWheeler_sixwheel_pose_matrix-input-array" count="2" stride="1">
+          <accessor source="#SixWheeler_sixwheel_pose_matrix-input-array" count="6" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="SixWheeler_sixwheel_pose_matrix-output">
-        <float_array id="SixWheeler_sixwheel_pose_matrix-output-array" count="32">1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1</float_array>
+        <float_array id="SixWheeler_sixwheel_pose_matrix-output-array" count="96">1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0.002509236 -0.9999969 0 0 0.9999969 0.002509236 0 0 0 0 1 1 0 0 0 0 0.02289611 -0.9997379 0 0 0.9997379 0.02289611 0 0 0 0 1 1 0 0 0 0 -0.01863873 -0.9998263 0 0 0.9998263 -0.01863873 0 0 0 0 1 1 0 0 0 0 -0.01121538 -0.9999371 0 0 0.9999371 -0.01121538 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#SixWheeler_sixwheel_pose_matrix-output-array" count="2" stride="16">
+          <accessor source="#SixWheeler_sixwheel_pose_matrix-output-array" count="6" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="SixWheeler_sixwheel_pose_matrix-interpolation">
-        <Name_array id="SixWheeler_sixwheel_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <Name_array id="SixWheeler_sixwheel_pose_matrix-interpolation-array" count="6">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#SixWheeler_sixwheel_pose_matrix-interpolation-array" count="2" stride="1">
+          <accessor source="#SixWheeler_sixwheel_pose_matrix-interpolation-array" count="6" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -88,6 +88,38 @@
         <input semantic="INTERPOLATION" source="#SixWheeler_sixwheel_pose_matrix-interpolation"/>
       </sampler>
       <channel source="#SixWheeler_sixwheel_pose_matrix-sampler" target="sixwheel/transform"/>
+    </animation>
+    <animation id="SixWheeler_weapon_pose_matrix">
+      <source id="SixWheeler_weapon_pose_matrix-input">
+        <float_array id="SixWheeler_weapon_pose_matrix-input-array" count="6">0.04166662 0.125 0.4166666 0.5833333 0.875 1.25</float_array>
+        <technique_common>
+          <accessor source="#SixWheeler_weapon_pose_matrix-input-array" count="6" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="SixWheeler_weapon_pose_matrix-output">
+        <float_array id="SixWheeler_weapon_pose_matrix-output-array" count="96">1 0 0 2.93156e-7 0 1 0 2.657657 0 0 1 0.003587365 0 0 0 1 1 0 0 2.93156e-7 0 1 0 2.657657 0 0 1 0.003587365 0 0 0 1 1 0 0 2.8932e-7 0 0.9895052 -0.1444973 2.42438 0 0.1444973 0.9895052 -1.013325 0 0 0 1 1 0 0 2.89661e-7 0 0.992204 0.1246241 2.445116 0 -0.1246241 0.992204 2.204725 0 0 0 1 1 0 0 2.93156e-7 0 1 0 2.657657 0 0 1 0.003587365 0 0 0 1 1 0 0 2.93156e-7 0 1 0 2.657657 0 0 1 0.003587365 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#SixWheeler_weapon_pose_matrix-output-array" count="6" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="SixWheeler_weapon_pose_matrix-interpolation">
+        <Name_array id="SixWheeler_weapon_pose_matrix-interpolation-array" count="6">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#SixWheeler_weapon_pose_matrix-interpolation-array" count="6" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="SixWheeler_weapon_pose_matrix-sampler">
+        <input semantic="INPUT" source="#SixWheeler_weapon_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#SixWheeler_weapon_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#SixWheeler_weapon_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#SixWheeler_weapon_pose_matrix-sampler" target="weapon/transform"/>
     </animation>
   </library_animations>
   <library_controllers>
