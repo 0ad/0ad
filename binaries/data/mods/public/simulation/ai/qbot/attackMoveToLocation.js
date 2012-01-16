@@ -129,7 +129,7 @@ AttackMoveToLocation.prototype.update = function(gameState, militaryManager, eve
 	
 	var units = EntityCollectionFromIds(gameState, this.idList);
 	
-	if (this.path.length === 0){
+	if (!this.path || this.path.length === 0){
 		var idleCount = 0;
 		var self = this;
 		units.forEach(function(ent){
