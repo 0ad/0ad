@@ -73,6 +73,10 @@ that of Atlas depending on commandline parameters.
 #include "scripting/ScriptingHost.h"
 #include "simulation2/Simulation2.h"
 
+#if OS_UNIX
+#include <unistd.h> // geteuid
+#endif // OS_UNIX
+
 extern bool g_GameRestarted;
 
 void kill_mainloop();
@@ -511,6 +515,22 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 
 int main(int argc, char* argv[])
 {
+#if OS_UNIX
+	// Don't allow people to run the game with root permissions,
+	//	because bad things can happen, check before we do anything
+	if (geteuid() == 0)
+	{
+		std::cerr << "********************************************************\n"
+				  << "WARNING: Attempted to run the game with root permission!\n"
+				  << "This is not allowed because it can alter home directory \n"
+				  << "permissions and opens your system to vulnerabilities.   \n"
+				  << "(You received this message because you were ether       \n"
+				  <<"  logged in as root or used e.g. the 'sudo' command.) \n"
+				  << "********************************************************\n\n";
+		return EXIT_FAILURE;
+	}
+#endif // OS_UNIX
+
 	EarlyInit();	// must come at beginning of main
 
 	RunGameOrAtlas(argc, const_cast<const char**>(argv));
