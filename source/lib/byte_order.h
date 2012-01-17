@@ -142,13 +142,13 @@ extern unsigned __int64 _byteswap_uint64(unsigned __int64);
 # define swap64 _byteswap_uint64
 #elif defined(linux)
 # include <asm/byteorder.h>
-# ifdef __arch__swab16
+# if defined(__arch__swab16) && !defined(swap16)
 #  define swap16 __arch__swab16
 # endif
-# ifdef __arch__swab32
+# if defined(__arch__swab32) && !defined(swap32)
 #  define swap32 __arch__swab32
 # endif
-# ifdef __arch__swab64
+# if defined(__arch__swab64) && !defined(swap64)
 #  define swap64 __arch__swab64
 # endif
 #endif

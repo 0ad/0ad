@@ -53,6 +53,12 @@
 #else
 # define OS_LINUX 0
 #endif
+// Android (subset of Linux)
+#if defined(__ANDROID__)
+# define OS_ANDROID 1
+#else
+# define OS_ANDROID 0
+#endif
 // Mac OS X
 #if (defined(__APPLE__) && defined(__MACH__))
 # define OS_MACOSX 1

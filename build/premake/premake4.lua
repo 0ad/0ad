@@ -28,6 +28,8 @@ else
 	arch = os.getenv("HOSTTYPE")
 	if arch == "x86_64" then
 		arch = "amd64"
+	elseif arch == "arm" then
+		arch = "arm"
 	else
 		os.execute("gcc -dumpmachine > .gccmachine.tmp")
 		local f = io.open(".gccmachine.tmp", "r")
@@ -205,14 +207,23 @@ function project_set_build_flags()
 				-- do something (?) so that ccache can handle compilation with PCH enabled
 				"-fpch-preprocess",
 
-				-- enable SSE intrinsics
-				"-msse",
-
 				-- don't omit frame pointers (for now), because performance will be impacted
 				-- negatively by the way this breaks profilers more than it will be impacted
 				-- positively by the optimisation
 				"-fno-omit-frame-pointer"
 			}
+
+			if arch == "x86" or arch == "amd64" then
+				buildoptions {
+					-- enable SSE intrinsics
+					"-msse"
+				}
+			end
+
+			if arch == "arm" then
+				-- disable warnings about va_list ABI change
+				buildoptions { "-Wno-psabi" }
+			end
 
 			if os.is("linux") then
 				linkoptions { "-Wl,--no-undefined", "-Wl,--as-needed" }
