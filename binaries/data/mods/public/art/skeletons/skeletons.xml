@@ -1056,4 +1056,69 @@ This skeleton is for the deer and any other similiar shaped animals with the exa
                 </bone> 
 	</skeleton>
 	
+	<standard_skeleton title="Ship One Row" id="shiponerow">
+                <bone name="one_row_main">
+                        <bone name="right_top_row"></bone>
+                        <bone name="left_top_row"></bone>
+                        <bone name="projectile"></bone>
+                </bone>
+	</standard_skeleton>
+	
+	<skeleton title="Ship One Row" target="shiponerow"> 
+                <identifier> 
+                        <root>shiponerow</root> 
+                </identifier> 
+                <bone name="one_row_main"><target>one_row_main</target> 
+                        <bone name="right_top_row"><target>right_top_row</target></bone> 
+                        <bone name="left_top_row"><target>left_top_row</target></bone> 
+                        <bone name="projectile"><target>projectile</target></bone> 
+                </bone> 
+	</skeleton>  
+	
+	<standard_skeleton title="Ship Two Row" id="shiptworow">
+                <bone name="two_row_main">
+                        <bone name="right_top_row"></bone>
+                        <bone name="right_bottom_row"></bone>
+                        <bone name="left_top_row"></bone>
+                        <bone name="left_bottom_row"></bone>
+                        <bone name="projectile"></bone>
+                </bone>
+	</standard_skeleton>
+	
+	<skeleton title="Ship Two Row" target="shiptworow"> 
+                <identifier> 
+                        <root>shiptworow</root> 
+                </identifier> 
+                <bone name="two_row_main"><target>two_row_main</target> 
+                        <bone name="right_top_row"><target>right_top_row</target></bone> 
+                        <bone name="right_bottom_row"><target>right_bottom_row</target></bone> 
+                        <bone name="left_top_row"><target>left_top_row</target></bone> 
+                        <bone name="left_bottom_row"><target>left_bottom_row</target></bone> 
+                        <bone name="projectile"><target>projectile</target></bone> 
+                </bone> 
+	</skeleton>  
+	
+	<standard_skeleton title="Ship Three Row" id="shipthreerow">
+                <bone name="three_row_main">
+                        <bone name="right_top_row"></bone>
+                        <bone name="right_bottom_row"></bone>
+                        <bone name="left_top_row"></bone>
+                        <bone name="left_bottom_row"></bone>
+                        <bone name="projectile"></bone>
+                </bone>
+	</standard_skeleton>
+	
+	<skeleton title="Ship Three Row" target="shipthreerow"> 
+                <identifier> 
+                        <root>shipthreerow</root> 
+                </identifier> 
+                <bone name="three_row_main"><target>three_row_main</target> 
+                        <bone name="right_top_row"><target>right_top_row</target></bone> 
+                        <bone name="right_bottom_row"><target>right_bottom_row</target></bone> 
+                        <bone name="left_top_row"><target>left_top_row</target></bone> 
+                        <bone name="left_bottom_row"><target>left_bottom_row</target></bone> 
+                        <bone name="projectile"><target>projectile</target></bone> 
+                </bone> 
+	</skeleton>  
+	
 </skeletons>
