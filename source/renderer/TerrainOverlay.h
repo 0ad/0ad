@@ -25,6 +25,7 @@
 
 struct CColor;
 class CTerrain;
+class CSimContext;
 
 /**
  * Base class for (relatively) simple drawing of
@@ -45,6 +46,8 @@ class TerrainOverlay
 {
 public:
 	virtual ~TerrainOverlay();
+private:
+	TerrainOverlay(){} // private default ctor (must be subclassed)
 
 protected:
 	/**
@@ -59,7 +62,7 @@ protected:
 	 *
 	 * @param priority  controls the order of drawing
 	 */
-	TerrainOverlay(int priority = 100);
+	TerrainOverlay(const CSimContext& simContext, int priority = 100);
 
 	/**
 	 * Override to perform processing at the start of the overlay rendering,

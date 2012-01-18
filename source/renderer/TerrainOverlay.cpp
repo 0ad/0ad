@@ -20,6 +20,7 @@
 #include "TerrainOverlay.h"
 
 #include "graphics/Terrain.h"
+#include "simulation2/system/SimContext.h"
 #include "lib/ogl.h"
 #include "maths/MathUtil.h"
 #include "ps/Game.h"
@@ -68,7 +69,8 @@ struct render1st
 
 static std::vector<std::pair<TerrainOverlay*, int> > g_TerrainOverlayList;
 
-TerrainOverlay::TerrainOverlay(int priority)
+TerrainOverlay::TerrainOverlay(const CSimContext& simContext, int priority /* = 100 */)
+	: m_Terrain(&simContext.GetTerrain())
 {
 	// Add to global list of overlays
 	g_TerrainOverlayList.push_back(std::make_pair(this, priority));
@@ -140,7 +142,8 @@ void TerrainOverlay::GetTileExtents(
 
 void TerrainOverlay::Render()
 {
-	m_Terrain = g_Game->GetWorld()->GetTerrain();
+	if (!m_Terrain)
+		return; // should never happen, but let's play it safe
 
 	StartRender();
 

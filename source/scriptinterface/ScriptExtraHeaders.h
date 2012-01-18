@@ -36,7 +36,9 @@
 #endif
 
 // Redefine signbit to fix build error in GCC
-#define signbit std::signbit
+#ifndef signbit
+# define signbit std::signbit
+#endif
 
 #include "js/jstypedarray.h"
 #include "js/jsdbgapi.h"

@@ -51,7 +51,17 @@
         <prop actor="props/units/weapons/gladus.xml" attachpoint="r_hand"/>
         <prop actor="props/units/weapons/pillum.xml" attachpoint="l_hand"/>
       </props>
-      <texture>skeletal/rome_isw_a.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="pectoral--plain">
+      <texture>skeletal/rome_isw_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="pectoral--muscle">
+      <texture>skeletal/rome_isw_b_2.dds</texture>
+    </variant>
+    <variant frequency="1" name="pectoral">
+      <texture>skeletal/rome_isw_b_3.dds</texture>
     </variant>
   </group>
   <group>

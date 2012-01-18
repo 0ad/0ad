@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_mechanical_siege_ram">
+  <Armour>
+    <Crush>10.0</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Crush>40.0</Crush>
+    </Melee>
+    <Charge>
+      <Crush>50.0</Crush>
+    </Charge>
+  </Attack>
+  <Cost>
+    <Resources>
+      <metal>150</metal>
+    </Resources>
+  </Cost>
+  <Footprint replace="">
+    <Square width="8.0" depth="12.0"/>
+    <Height>3.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <Max>5</Max>
+	<EjectHealth>0.1</EjectHealth>
+	<List datatype="tokens">Support Infantry</List>
+	<BuffHeal>1</BuffHeal>
+  </GarrisonHolder>
+  <Identity>
+    <Civ>rome</Civ>
+    <SpecificName>Aries</SpecificName>
+    <Tooltip>Roman Siege Ram</Tooltip>
+    <History>There are several famous sieges during the time of the Republic which required the use of extensive siege weaponry – Syracuse (212 BC), Carthage (148 – 146 BC) and Tigranocerta (68 BC) – they were all carried out successfully.</History>
+    <Icon>units/iber_mechanical_siege_ram.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Unit radius="4.0"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>units/romans/siege_ram.xml</Actor>
+  </VisualActor>
+</Entity>

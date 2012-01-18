@@ -24,11 +24,16 @@
  * OpenGL extension function declarations (X macros).
  */
 
-#if OS_MACOSX
-#include <OpenGL/glext.h>
+#include "lib/config2.h" // CONFIG2_GLES
+
+#if CONFIG2_GLES
+# include <GLES2/gl2ext.h>
+#elif OS_MACOSX
+# include <OpenGL/glext.h>
 #else
-#include <GL/glext.h>
+# include <GL/glext.h>
 #endif
+
 #if OS_WIN
 # include <GL/wglext.h>
 #endif
@@ -57,6 +62,17 @@ obvious that care must be taken (i.e. by being certain that the extension is
 actually supported).
 
 */
+
+#if CONFIG2_GLES
+
+// no GLES extensions used yet
+
+// some functions that are extensions in GL are core functions in GLES,
+// so we should use them without the function pointer indirection
+#define pglCompressedTexImage2DARB glCompressedTexImage2D
+#define pglActiveTextureARB glActiveTexture
+
+#else
 
 // were these defined as real functions in gl.h already?
 
@@ -271,6 +287,8 @@ FUNC(void, glBeginPerfQueryINTEL, (GLuint id))
 FUNC(void, glEndPerfQueryINTEL, (GLuint id))
 FUNC(void, glDeletePerfQueryINTEL, (GLuint id))
 FUNC(void, glGetPerfQueryDataINTEL, (GLuint id, GLenum requestType, GLuint maxLength, char *buffer, GLuint *length))
+
+#endif	// #if CONFIG_GLES2
 
 
 #if OS_WIN

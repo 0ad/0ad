@@ -93,4 +93,11 @@
 # define CONFIG2_MAHAF_ATTEMPT_DRIVER_START 0
 #endif
 
+// build in OpenGL ES 2.0 mode, instead of the default mode designed for
+// GL 1.1 + extensions.
+// this disables various features that are not supported by GLES.
+#ifndef CONFIG2_GLES
+# define CONFIG2_GLES 0
+#endif
+
 #endif	// #ifndef INCLUDED_CONFIG2

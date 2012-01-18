@@ -89,15 +89,12 @@ AttackMoveToLocation.prototype.execute = function(gameState, militaryManager){
 		// Find possible distinct paths to the enemy 
 		var pathFinder = new PathFinder(gameState);
 		var pathsToEnemy = pathFinder.getPaths(curPos, this.targetPos);
-		if (! pathsToEnemy){
-			pathsToEnemy = [this.targetPos];
+		if (!pathsToEnemy || !pathsToEnemy[0] || pathsToEnemy[0][0] === undefined || pathsToEnemy[0][1] === undefined){
+			pathsToEnemy = [[this.targetPos]];
 		}
 		
 		var rand = Math.floor(Math.random() * pathsToEnemy.length);
 		this.path = pathsToEnemy[rand];
-		if (! this.path || !this.path[0] || this.path[0][0] === undefined || this.path[0][1] === undefined){
-			pathsToEnemy = [this.targetPos];
-		}
 
 		pending.move(this.path[0][0], this.path[0][1]);
 	} else if (targets.length == 0 ) {
@@ -132,7 +129,7 @@ AttackMoveToLocation.prototype.update = function(gameState, militaryManager, eve
 	
 	var units = EntityCollectionFromIds(gameState, this.idList);
 	
-	if (this.path.length === 0){
+	if (!this.path || this.path.length === 0){
 		var idleCount = 0;
 		var self = this;
 		units.forEach(function(ent){

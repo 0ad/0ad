@@ -23,6 +23,7 @@
 #include "graphics/Overlay.h"
 #include "graphics/Terrain.h"
 #include "graphics/TextureManager.h"
+#include "graphics/TerritoryBoundary.h"
 #include "maths/MathUtil.h"
 #include "maths/Vector2D.h"
 #include "ps/Overlay.h"
@@ -53,7 +54,7 @@ class TerritoryOverlay : public TerrainOverlay
 public:
 	CCmpTerritoryManager& m_TerritoryManager;
 
-	TerritoryOverlay(CCmpTerritoryManager& manager) : m_TerritoryManager(manager) { }
+	TerritoryOverlay(CCmpTerritoryManager& manager);
 	virtual void StartRender();
 	virtual void ProcessTile(ssize_t i, ssize_t j);
 };
@@ -82,7 +83,7 @@ public:
 	float m_BorderThickness;
 	float m_BorderSeparation;
 
-	// Player ID in lower 7 bits; connected flag in high bit
+	// Player ID in lower 6 bits; connected flag in bit 7, processed flag in high bit
 	Grid<u8>* m_Territories;
 
 	// Set to true when territories change; will send a TerritoriesChanged message
@@ -247,14 +248,7 @@ public:
 	 */
 	void RasteriseInfluences(CComponentManager::InterfaceList& infls, Grid<u8>& grid);
 
-	struct TerritoryBoundary
-	{
-		bool connected;
-		player_id_t owner;
-		std::vector<CVector2D> points;
-	};
-
-	std::vector<TerritoryBoundary> ComputeBoundaries();
+	std::vector<STerritoryBoundary> ComputeBoundaries();
 
 	void UpdateBoundaryLines();
 
@@ -264,7 +258,6 @@ public:
 };
 
 REGISTER_COMPONENT_TYPE(TerritoryManager)
-
 
 /*
 We compute the territory influence of an entity with a kind of best-first search,
@@ -349,8 +342,9 @@ void CCmpTerritoryManager::CalculateTerritories()
 	Grid<u8> influenceGrid(tilesW, tilesH);
 
 	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
-	ICmpPathfinder::pass_class_t passClassUnrestricted = cmpPathfinder->GetPassabilityClass("unrestricted");
 	ICmpPathfinder::pass_class_t passClassDefault = cmpPathfinder->GetPassabilityClass("default");
+	ICmpPathfinder::pass_class_t passClassUnrestricted = cmpPathfinder->GetPassabilityClass("unrestricted");
+
 	const Grid<u16>& passGrid = cmpPathfinder->GetPassabilityGrid();
 	for (u16 j = 0; j < tilesH; ++j)
 	{
@@ -393,7 +387,7 @@ void CCmpTerritoryManager::CalculateTerritories()
 		if (owner <= 0)
 			continue;
 
-		// We only have 7 bits to store tile ownership, so ignore unrepresentable players
+		// We only have so many bits to store tile ownership, so ignore unrepresentable players
 		if (owner > TERRITORY_PLAYER_MASK)
 			continue;
 
@@ -592,153 +586,14 @@ void CCmpTerritoryManager::RasteriseInfluences(CComponentManager::InterfaceList&
 	}
 }
 
-std::vector<CCmpTerritoryManager::TerritoryBoundary> CCmpTerritoryManager::ComputeBoundaries()
+std::vector<STerritoryBoundary> CCmpTerritoryManager::ComputeBoundaries()
 {
 	PROFILE("ComputeBoundaries");
-
-	std::vector<CCmpTerritoryManager::TerritoryBoundary> boundaries;
 
 	CalculateTerritories();
 	ENSURE(m_Territories);
 
-	// Copy the territories grid so we can mess with it
-	Grid<u8> grid (*m_Territories);
-
-	// Some constants for the border walk
-	CVector2D edgeOffsets[] = {
-		CVector2D(0.5f, 0.0f),
-		CVector2D(1.0f, 0.5f),
-		CVector2D(0.5f, 1.0f),
-		CVector2D(0.0f, 0.5f)
-	};
-
-	// Try to find an assigned tile
-	for (u16 j = 0; j < grid.m_H; ++j)
-	{
-		for (u16 i = 0; i < grid.m_W; ++i)
-		{
-			u8 owner = grid.get(i, j);
-			if (owner)
-			{
-				// Found the first tile (which must be the lowest j value of any non-zero tile);
-				// start at the bottom edge of it and chase anticlockwise around the border until
-				// we reach the starting point again
-
-				boundaries.push_back(TerritoryBoundary());
-				boundaries.back().connected = (owner & TERRITORY_CONNECTED_MASK) != 0;
-				boundaries.back().owner = (owner & TERRITORY_PLAYER_MASK);
-				std::vector<CVector2D>& points = boundaries.back().points;
-
-				u8 dir = 0; // 0 == bottom edge of tile, 1 == right, 2 == top, 3 == left
-
-				u8 cdir = dir;
-				u16 ci = i, cj = j;
-
-				u16 maxi = (u16)(grid.m_W-1);
-				u16 maxj = (u16)(grid.m_H-1);
-
-				while (true)
-				{
-					points.push_back((CVector2D(ci, cj) + edgeOffsets[cdir]) * TERRAIN_TILE_SIZE);
-
-					// Given that we're on an edge on a continuous boundary and aiming anticlockwise,
-					// we can either carry on straight or turn left or turn right, so examine each
-					// of the three possible cases (depending on initial direction):
-					switch (cdir)
-					{
-					case 0:
-						if (ci < maxi && cj > 0 && grid.get(ci+1, cj-1) == owner)
-						{
-							++ci;
-							--cj;
-							cdir = 3;
-						}
-						else if (ci < maxi && grid.get(ci+1, cj) == owner)
-							++ci;
-						else
-							cdir = 1;
-						break;
-					case 1:
-						if (ci < maxi && cj < maxj && grid.get(ci+1, cj+1) == owner)
-						{
-							++ci;
-							++cj;
-							cdir = 0;
-						}
-						else if (cj < maxj && grid.get(ci, cj+1) == owner)
-							++cj;
-						else
-							cdir = 2;
-						break;
-					case 2:
-						if (ci > 0 && cj < maxj && grid.get(ci-1, cj+1) == owner)
-						{
-							--ci;
-							++cj;
-							cdir = 1;
-						}
-						else if (ci > 0 && grid.get(ci-1, cj) == owner)
-							--ci;
-						else
-							cdir = 3;
-						break;
-					case 3:
-						if (ci > 0 && cj > 0 && grid.get(ci-1, cj-1) == owner)
-						{
-							--ci;
-							--cj;
-							cdir = 2;
-						}
-						else if (cj > 0 && grid.get(ci, cj-1) == owner)
-							--cj;
-						else
-							cdir = 0;
-						break;
-					}
-
-					// Stop when we've reached the starting point again
-					if (ci == i && cj == j && cdir == dir)
-						break;
-				}
-
-				// Zero out this whole territory with a simple flood fill, so we don't
-				// process it a second time
-				std::vector<std::pair<u16, u16> > tileStack;
-
-#define MARK_AND_PUSH(i, j) STMT(grid.set(i, j, 0); tileStack.push_back(std::make_pair(i, j)); )
-
-				MARK_AND_PUSH(i, j);
-				while (!tileStack.empty())
-				{
-					int ti = tileStack.back().first;
-					int tj = tileStack.back().second;
-					tileStack.pop_back();
-
-					if (ti > 0 && grid.get(ti-1, tj) == owner)
-						MARK_AND_PUSH(ti-1, tj);
-					if (ti < maxi && grid.get(ti+1, tj) == owner)
-						MARK_AND_PUSH(ti+1, tj);
-					if (tj > 0 && grid.get(ti, tj-1) == owner)
-						MARK_AND_PUSH(ti, tj-1);
-					if (tj < maxj && grid.get(ti, tj+1) == owner)
-						MARK_AND_PUSH(ti, tj+1);
-
-					if (ti > 0 && tj > 0 && grid.get(ti-1, tj-1) == owner)
-						MARK_AND_PUSH(ti-1, tj-1);
-					if (ti > 0 && tj < maxj && grid.get(ti-1, tj+1) == owner)
-						MARK_AND_PUSH(ti-1, tj+1);
-					if (ti < maxi && tj > 0 && grid.get(ti+1, tj-1) == owner)
-						MARK_AND_PUSH(ti+1, tj-1);
-					if (ti < maxi && tj < maxj && grid.get(ti+1, tj+1) == owner)
-						MARK_AND_PUSH(ti+1, tj+1);
-				}
-
-#undef MARK_AND_PUSH
-			}
-		}
-	}
-
-	return boundaries;
+	return CTerritoryBoundaryCalculator::ComputeBoundaries(m_Territories);
 }
 
 void CCmpTerritoryManager::UpdateBoundaryLines()
@@ -751,7 +606,7 @@ void CCmpTerritoryManager::UpdateBoundaryLines()
 	if (!CRenderer::IsInitialised())
 		return;
 
-	std::vector<CCmpTerritoryManager::TerritoryBoundary> boundaries = ComputeBoundaries();
+	std::vector<STerritoryBoundary> boundaries = ComputeBoundaries();
 
 	CTextureProperties texturePropsBase("art/textures/misc/territory_border.png");
 	texturePropsBase.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE);
@@ -875,6 +730,10 @@ bool CCmpTerritoryManager::IsConnected(entity_pos_t x, entity_pos_t z)
 	return (m_Territories->get(i, j) & TERRITORY_CONNECTED_MASK) != 0;
 }
 
+TerritoryOverlay::TerritoryOverlay(CCmpTerritoryManager& manager)
+	: TerrainOverlay(manager.GetSimContext()), m_TerritoryManager(manager)
+{ }
+
 void TerritoryOverlay::StartRender()
 {
 	m_TerritoryManager.CalculateTerritories();
@@ -885,18 +744,18 @@ void TerritoryOverlay::ProcessTile(ssize_t i, ssize_t j)
 	if (!m_TerritoryManager.m_Territories)
 		return;
 
-	u8 id = m_TerritoryManager.m_Territories->get((int)i, (int)j);
+	u8 id = (m_TerritoryManager.m_Territories->get((int) i, (int) j) & ICmpTerritoryManager::TERRITORY_PLAYER_MASK);
 
 	float a = 0.2f;
 	switch (id)
 	{
-	case 0: break;
-	case 1: RenderTile(CColor(1, 0, 0, a), false); break;
-	case 2: RenderTile(CColor(0, 1, 0, a), false); break;
-	case 3: RenderTile(CColor(0, 0, 1, a), false); break;
-	case 4: RenderTile(CColor(1, 1, 0, a), false); break;
-	case 5: RenderTile(CColor(0, 1, 1, a), false); break;
-	case 6: RenderTile(CColor(1, 0, 1, a), false); break;
+	case 0:  break;
+	case 1:  RenderTile(CColor(1, 0, 0, a), false); break;
+	case 2:  RenderTile(CColor(0, 1, 0, a), false); break;
+	case 3:  RenderTile(CColor(0, 0, 1, a), false); break;
+	case 4:  RenderTile(CColor(1, 1, 0, a), false); break;
+	case 5:  RenderTile(CColor(0, 1, 1, a), false); break;
+	case 6:  RenderTile(CColor(1, 0, 1, a), false); break;
 	default: RenderTile(CColor(1, 1, 1, a), false); break;
 	}
 }

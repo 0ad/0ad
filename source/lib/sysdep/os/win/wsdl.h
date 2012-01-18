@@ -30,7 +30,7 @@
 #include "lib/lib_api.h"
 #include "lib/byte_order.h"
 #ifndef WSDL_NO_KEYSYM
-# include "SDL_keysym.h"
+# include "SDL/SDL_keysym.h"
 #endif
 
 typedef u8  Uint8;

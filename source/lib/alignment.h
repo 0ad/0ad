@@ -34,6 +34,7 @@ inline size_t Align(size_t n)
 //
 
 static const size_t vectorSize = 16;
+#define VECTOR_ALIGNED(type) ALIGNED(type, 16)	// ALIGNED() requires a literal; keep in sync with vectorSize
 
 #define ASSERT_VECTOR_MULTIPLE(size)\
 	ASSERT(IsAligned(size, vectorSize))
@@ -48,7 +49,7 @@ static const size_t vectorSize = 16;
 //
 
 static const size_t cacheLineSize = 64;	// (L2)
-# define CACHE_ALIGNED(type) ALIGNED(type, 64)	// ALIGNED() requires a literal; keep in sync with cacheLineSize
+#define CACHE_ALIGNED(type) ALIGNED(type, 64)	// ALIGNED() requires a literal; keep in sync with cacheLineSize
 
 
 

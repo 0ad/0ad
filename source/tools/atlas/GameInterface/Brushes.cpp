@@ -26,6 +26,8 @@
 #include "lib/ogl.h"
 #include "maths/MathUtil.h"
 #include "renderer/TerrainOverlay.h"
+#include "simulation2/Simulation2.h"
+#include "simulation2/system/SimContext.h"
 
 using namespace AtlasMessage;
 
@@ -33,7 +35,7 @@ class BrushTerrainOverlay : public TerrainOverlay
 {
 public:
 	BrushTerrainOverlay(const Brush* brush)
-		: TerrainOverlay(300), m_Brush(brush)
+		: TerrainOverlay(g_Game->GetSimulation2()->GetSimContext(), 300), m_Brush(brush)
 	{
 	}
 
