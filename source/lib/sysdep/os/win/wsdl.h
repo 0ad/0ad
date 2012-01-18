@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2012 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -30,7 +30,7 @@
 #include "lib/lib_api.h"
 #include "lib/byte_order.h"
 #ifndef WSDL_NO_KEYSYM
-# include "SDL/SDL_keysym.h"
+# include "SDL_keysym.h"
 #endif
 
 typedef u8  Uint8;
