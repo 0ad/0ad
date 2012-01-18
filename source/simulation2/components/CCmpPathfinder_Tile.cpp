@@ -103,7 +103,8 @@ class PathfinderOverlay : public TerrainOverlay
 public:
 	CCmpPathfinder& m_Pathfinder;
 
-	PathfinderOverlay(CCmpPathfinder& pathfinder) : m_Pathfinder(pathfinder)
+	PathfinderOverlay(CCmpPathfinder& pathfinder)
+		: TerrainOverlay(pathfinder.GetSimContext()), m_Pathfinder(pathfinder)
 	{
 	}
 

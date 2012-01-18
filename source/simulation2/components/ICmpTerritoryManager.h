@@ -29,8 +29,9 @@ class ICmpTerritoryManager : public IComponent
 public:
 	virtual bool NeedUpdate(size_t* dirtyID) = 0;
 
-	static const int TERRITORY_PLAYER_MASK = 0x7F;
-	static const int TERRITORY_CONNECTED_MASK = 0x80;
+	static const int TERRITORY_PLAYER_MASK = 0x3F;
+	static const int TERRITORY_CONNECTED_MASK = 0x40;
+	static const int TERRITORY_PROCESSED_MASK = 0x80; //< For internal use; marks a tile as processed.
 
 	/**
 	 * For each tile, the TERRITORY_PLAYER_MASK bits are player ID;
