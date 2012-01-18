@@ -4,7 +4,7 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>overcast</SkySet>
-		<SunColour r="0.963618" g="0.917532" b="0.816981"/>
+		<SunColour r="0.960784" g="0.913725" b="0.815686"/>
 		<SunElevation angle="0.920389"/>
 		<SunRotation angle="0.582913"/>
 		<TerrainAmbientColour r="0.356863" g="0.356863" b="0.356863"/>
@@ -18,13 +18,13 @@
 				<Waviness>8</Waviness>
 				<Murkiness>1</Murkiness>
 				<Tint r="0.866667" g="0.737255" b="0.466667"/>
-				<ReflectionTint r="0.756863" g="0.701961" b="0.52549"/>
+				<ReflectionTint r="0.756863" g="0.701961" b="0.521569"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="332.426" y="63.1073" z="362.156"/>
+		<Position x="1096.77" y="117.949" z="173.576"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -46,18 +46,6 @@
         "r": 80
       },
       "Name": "Player 1",
-      "StartingCamera": {
-        "Position": {
-          "x": 390.15,
-          "y": 20,
-          "z": 305.42
-        },
-        "Rotation": {
-          "x": 30,
-          "y": 0,
-          "z": 0
-        }
-      },
       "Team": -1
     },
     {
@@ -69,18 +57,6 @@
         "r": 150
       },
       "Name": "Player 2",
-      "StartingCamera": {
-        "Position": {
-          "x": 776.395,
-          "y": 20,
-          "z": 305.42
-        },
-        "Rotation": {
-          "x": 30,
-          "y": 0,
-          "z": 0
-        }
-      },
       "Team": -1
     },
     {
@@ -92,18 +68,6 @@
         "r": 50
       },
       "Name": "Player 3",
-      "StartingCamera": {
-        "Position": {
-          "x": 1133.84,
-          "y": 20,
-          "z": 305.42
-        },
-        "Rotation": {
-          "x": 30,
-          "y": 0,
-          "z": 0
-        }
-      },
       "Team": -1
     }
   ],
@@ -69994,7 +69958,7 @@
 		<Entity uid="14169">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="1173.50635" z="350.41178"/>
+			<Position x="1160.17298" z="370.66913"/>
 			<Orientation y="0.75582"/>
 		</Entity>
 		<Entity uid="14170">
