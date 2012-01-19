@@ -108,6 +108,9 @@ extern const char* ogl_ExtensionString();
 # define GL_TIME_ELAPSED 0x88BF
 # define GL_TIMESTAMP 0x8E28
 #endif
+#ifndef GL_ARB_framebuffer_object
+# define GL_INVALID_FRAMEBUFFER_OPERATION 0x0506
+#endif
 // Also need some more for OS X 10.5:
 #ifndef GL_EXT_texture_array
 # define GL_MAX_ARRAY_TEXTURE_LAYERS_EXT 0x88FF

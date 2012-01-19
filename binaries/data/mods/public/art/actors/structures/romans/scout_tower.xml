@@ -3,12 +3,27 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
+      <animations>
+        <animation event="0.5" load="0.0" name="melee" speed="100"/>
+      </animations>
       <mesh>structural/rome_scout_tower.dae</mesh>
       <props>
-        <prop actor="props/structures/romans/scout_tower.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/rome_scutum_e.xml" attachpoint="shield1"/>
+        <prop actor="props/units/shields/rome_parma_e.xml" attachpoint="shield2"/>
+        <prop actor="props/units/shields/rome_parma_a.xml" attachpoint="shield3"/>
       </props>
-      <texture>structural/rome_struct.dds</texture>
+      <texture>structural/rome_struct_2.png</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_rome.xml" attachpoint="garrisoned"/>
+      </props>
     </variant>
   </group>
   <material>player_trans.xml</material>

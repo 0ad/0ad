@@ -3,10 +3,10 @@
   <asset>
     <contributor>
       <author>Blender User</author>
-      <authoring_tool>Blender 2.60.0 r41226</authoring_tool>
+      <authoring_tool>Blender 2.61.0 r42615</authoring_tool>
     </contributor>
-    <created>2011-12-07T19:06:26</created>
-    <modified>2011-12-07T19:06:26</modified>
+    <created>2012-01-18T21:24:26</created>
+    <modified>2012-01-18T21:24:26</modified>
     <unit name="inch" meter="0.0254"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -59,25 +59,25 @@
   <library_animations>
     <animation id="TwoWheeler_twowheel_pose_matrix">
       <source id="TwoWheeler_twowheel_pose_matrix-input">
-        <float_array id="TwoWheeler_twowheel_pose_matrix-input-array" count="4">0.04166662 0.4166666 0.8333333 1.25</float_array>
+        <float_array id="TwoWheeler_twowheel_pose_matrix-input-array" count="31">0 0.04166662 0.08333331 0.125 0.1666666 0.2083333 0.25 0.2916666 0.3333333 0.375 0.4166666 0.4583333 0.5 0.5416667 0.5833333 0.625 0.6666667 0.7083333 0.75 0.7916667 0.8333333 0.875 0.9166667 0.9583333 1 1.041667 1.083333 1.125 1.166667 1.208333 1.25</float_array>
         <technique_common>
-          <accessor source="#TwoWheeler_twowheel_pose_matrix-input-array" count="4" stride="1">
+          <accessor source="#TwoWheeler_twowheel_pose_matrix-input-array" count="31" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="TwoWheeler_twowheel_pose_matrix-output">
-        <float_array id="TwoWheeler_twowheel_pose_matrix-output-array" count="64">1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1</float_array>
+        <float_array id="TwoWheeler_twowheel_pose_matrix-output-array" count="496">1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#TwoWheeler_twowheel_pose_matrix-output-array" count="4" stride="16">
+          <accessor source="#TwoWheeler_twowheel_pose_matrix-output-array" count="31" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="TwoWheeler_twowheel_pose_matrix-interpolation">
-        <Name_array id="TwoWheeler_twowheel_pose_matrix-interpolation-array" count="4">LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="TwoWheeler_twowheel_pose_matrix-interpolation-array" count="31">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#TwoWheeler_twowheel_pose_matrix-interpolation-array" count="4" stride="1">
+          <accessor source="#TwoWheeler_twowheel_pose_matrix-interpolation-array" count="31" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -91,25 +91,25 @@
     </animation>
     <animation id="TwoWheeler_r_wheel_pose_matrix">
       <source id="TwoWheeler_r_wheel_pose_matrix-input">
-        <float_array id="TwoWheeler_r_wheel_pose_matrix-input-array" count="4">0.04166662 0.4166666 0.8333333 1.25</float_array>
+        <float_array id="TwoWheeler_r_wheel_pose_matrix-input-array" count="31">0 0.04166662 0.08333331 0.125 0.1666666 0.2083333 0.25 0.2916666 0.3333333 0.375 0.4166666 0.4583333 0.5 0.5416667 0.5833333 0.625 0.6666667 0.7083333 0.75 0.7916667 0.8333333 0.875 0.9166667 0.9583333 1 1.041667 1.083333 1.125 1.166667 1.208333 1.25</float_array>
         <technique_common>
-          <accessor source="#TwoWheeler_r_wheel_pose_matrix-input-array" count="4" stride="1">
+          <accessor source="#TwoWheeler_r_wheel_pose_matrix-input-array" count="31" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="TwoWheeler_r_wheel_pose_matrix-output">
-        <float_array id="TwoWheeler_r_wheel_pose_matrix-output-array" count="64">1 0 0 -2.428472 0 1 0 1.875405 0 0 1 -4.104944 0 0 0 1 1 0 0 -2.428472 0 -0.5000002 -0.8660254 1.875405 0 0.8660254 -0.5000002 -4.104944 0 0 0 1 1 0 0 -2.428472 0 -0.5 0.8660256 1.875405 0 -0.8660256 -0.5 -4.104944 0 0 0 1 1 0 0 -2.428472 0 1 -3.177e-7 1.875405 0 3.177e-7 1 -4.104944 0 0 0 1</float_array>
+        <float_array id="TwoWheeler_r_wheel_pose_matrix-output-array" count="496">1 0 0 -2.428472 0 1 0 1.875405 0 0 1 -4.104944 0 0 0 1 1 0 0 -2.428472 0 0.9835165 -0.1808185 1.875405 0 0.1808185 0.9835165 -4.104944 0 0 0 1 1 0 0 -2.428472 0 0.9285714 -0.3711538 1.875405 0 0.3711538 0.9285714 -4.104944 0 0 0 1 1 0 0 -2.428472 0 0.8291139 -0.5590798 1.875405 0 0.5590798 0.8291139 -4.104944 0 0 0 1 1 0 0 -2.428472 0 0.6842105 -0.7292846 1.875405 0 0.7292846 0.6842105 -4.104944 0 0 0 1 1 0 0 -2.428472 0 0.5 -0.8660254 1.875405 0 0.8660254 0.5 -4.104944 0 0 0 1 1 0 0 -2.428472 0 0.2894736 -0.957186 1.875405 0 0.957186 0.2894736 -4.104944 0 0 0 1 1 0 0 -2.428472 0 0.06962031 -0.9975734 1.875405 0 0.9975734 0.06962031 -4.104944 0 0 0 1 1 0 0 -2.428472 0 -0.1428571 -0.9897432 1.875405 0 0.9897432 -0.1428571 -4.104944 0 0 0 1 1 0 0 -2.428472 0 -0.3351651 -0.9421597 1.875405 0 0.9421597 -0.3351651 -4.104944 0 0 0 1 1 0 0 -2.428472 0 -0.5000002 -0.8660254 1.875405 0 0.8660254 -0.5000002 -4.104944 0 0 0 1 1 0 0 -2.428472 0 -0.648352 -0.761341 1.875405 0 0.761341 -0.648352 -4.104944 0 0 0 1 1 0 0 -2.428472 0 -0.7857143 -0.6185894 1.875405 0 0.6185894 -0.7857143 -4.104944 0 0 0 1 1 0 0 -2.428472 0 -0.8987343 -0.4384937 1.875405 0 0.4384937 -0.8987343 -4.104944 0 0 0 1 1 0 0 -2.428472 0 -0.9736842 -0.2279012 1.875405 0 0.2279012 -0.9736842 -4.104944 0 0 0 1 1 0 0 -2.428472 0 -1 1.72064e-7 1.875405 0 -1.72064e-7 -1 -4.104944 0 0 0 1 1 0 0 -2.428472 0 -0.973684 0.2279016 1.875405 0 -0.2279016 -0.973684 -4.104944 0 0 0 1 1 0 0 -2.428472 0 -0.8987339 0.438494 1.875405 0 -0.438494 -0.8987339 -4.104944 0 0 0 1 1 0 0 -2.428472 0 -0.785714 0.6185897 1.875405 0 -0.6185897 -0.785714 -4.104944 0 0 0 1 1 0 0 -2.428472 0 -0.6483517 0.7613413 1.875405 0 -0.7613413 -0.6483517 -4.104944 0 0 0 1 1 0 0 -2.428472 0 -0.5 0.8660256 1.875405 0 -0.8660256 -0.5 -4.104944 0 0 0 1 1 0 0 -2.428472 0 -0.3351645 0.9421595 1.875405 0 -0.9421595 -0.3351645 -4.104944 0 0 0 1 1 0 0 -2.428472 0 -0.1428567 0.9897434 1.875405 0 -0.9897434 -0.1428567 -4.104944 0 0 0 1 1 0 0 -2.428472 0 0.06962049 0.9975736 1.875405 0 -0.9975736 0.06962049 -4.104944 0 0 0 1 1 0 0 -2.428472 0 0.2894739 0.9571859 1.875405 0 -0.9571859 0.2894739 -4.104944 0 0 0 1 1 0 0 -2.428472 0 0.5000002 0.8660253 1.875405 0 -0.8660253 0.5000002 -4.104944 0 0 0 1 1 0 0 -2.428472 0 0.6842108 0.7292844 1.875405 0 -0.7292844 0.6842108 -4.104944 0 0 0 1 1 0 0 -2.428472 0 0.8291141 0.5590795 1.875405 0 -0.5590795 0.8291141 -4.104944 0 0 0 1 1 0 0 -2.428472 0 0.9285716 0.3711534 1.875405 0 -0.3711534 0.9285716 -4.104944 0 0 0 1 1 0 0 -2.428472 0 0.9835165 0.1808182 1.875405 0 -0.1808182 0.9835165 -4.104944 0 0 0 1 1 0 0 -2.428472 0 1 -3.177e-7 1.875405 0 3.177e-7 1 -4.104944 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#TwoWheeler_r_wheel_pose_matrix-output-array" count="4" stride="16">
+          <accessor source="#TwoWheeler_r_wheel_pose_matrix-output-array" count="31" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="TwoWheeler_r_wheel_pose_matrix-interpolation">
-        <Name_array id="TwoWheeler_r_wheel_pose_matrix-interpolation-array" count="4">LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="TwoWheeler_r_wheel_pose_matrix-interpolation-array" count="31">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#TwoWheeler_r_wheel_pose_matrix-interpolation-array" count="4" stride="1">
+          <accessor source="#TwoWheeler_r_wheel_pose_matrix-interpolation-array" count="31" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -123,25 +123,25 @@
     </animation>
     <animation id="TwoWheeler_l_wheel_pose_matrix">
       <source id="TwoWheeler_l_wheel_pose_matrix-input">
-        <float_array id="TwoWheeler_l_wheel_pose_matrix-input-array" count="4">0.04166662 0.4166666 0.8333333 1.25</float_array>
+        <float_array id="TwoWheeler_l_wheel_pose_matrix-input-array" count="31">0 0.04166662 0.08333331 0.125 0.1666666 0.2083333 0.25 0.2916666 0.3333333 0.375 0.4166666 0.4583333 0.5 0.5416667 0.5833333 0.625 0.6666667 0.7083333 0.75 0.7916667 0.8333333 0.875 0.9166667 0.9583333 1 1.041667 1.083333 1.125 1.166667 1.208333 1.25</float_array>
         <technique_common>
-          <accessor source="#TwoWheeler_l_wheel_pose_matrix-input-array" count="4" stride="1">
+          <accessor source="#TwoWheeler_l_wheel_pose_matrix-input-array" count="31" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="TwoWheeler_l_wheel_pose_matrix-output">
-        <float_array id="TwoWheeler_l_wheel_pose_matrix-output-array" count="64">1 0 0 2.440203 0 1 0 1.875405 0 0 1 -4.104944 0 0 0 1 1 0 0 2.440203 0 -0.5000002 -0.8660254 1.875405 0 0.8660254 -0.5000002 -4.104944 0 0 0 1 1 0 0 2.440203 0 -0.5 0.8660256 1.875405 0 -0.8660256 -0.5 -4.104944 0 0 0 1 1 0 0 2.440203 0 1 -3.177e-7 1.875405 0 3.177e-7 1 -4.104944 0 0 0 1</float_array>
+        <float_array id="TwoWheeler_l_wheel_pose_matrix-output-array" count="496">1 0 0 2.440203 0 1 0 1.875405 0 0 1 -4.104944 0 0 0 1 1 0 0 2.440203 0 0.9835165 -0.1808185 1.875405 0 0.1808185 0.9835165 -4.104944 0 0 0 1 1 0 0 2.440203 0 0.9285714 -0.3711538 1.875405 0 0.3711538 0.9285714 -4.104944 0 0 0 1 1 0 0 2.440203 0 0.8291139 -0.5590798 1.875405 0 0.5590798 0.8291139 -4.104944 0 0 0 1 1 0 0 2.440203 0 0.6842105 -0.7292846 1.875405 0 0.7292846 0.6842105 -4.104944 0 0 0 1 1 0 0 2.440203 0 0.5 -0.8660254 1.875405 0 0.8660254 0.5 -4.104944 0 0 0 1 1 0 0 2.440203 0 0.2894736 -0.957186 1.875405 0 0.957186 0.2894736 -4.104944 0 0 0 1 1 0 0 2.440203 0 0.06962031 -0.9975734 1.875405 0 0.9975734 0.06962031 -4.104944 0 0 0 1 1 0 0 2.440203 0 -0.1428571 -0.9897432 1.875405 0 0.9897432 -0.1428571 -4.104944 0 0 0 1 1 0 0 2.440203 0 -0.3351651 -0.9421597 1.875405 0 0.9421597 -0.3351651 -4.104944 0 0 0 1 1 0 0 2.440203 0 -0.5000002 -0.8660254 1.875405 0 0.8660254 -0.5000002 -4.104944 0 0 0 1 1 0 0 2.440203 0 -0.648352 -0.761341 1.875405 0 0.761341 -0.648352 -4.104944 0 0 0 1 1 0 0 2.440203 0 -0.7857143 -0.6185894 1.875405 0 0.6185894 -0.7857143 -4.104944 0 0 0 1 1 0 0 2.440203 0 -0.8987343 -0.4384937 1.875405 0 0.4384937 -0.8987343 -4.104944 0 0 0 1 1 0 0 2.440203 0 -0.9736842 -0.2279012 1.875405 0 0.2279012 -0.9736842 -4.104944 0 0 0 1 1 0 0 2.440203 0 -1 1.72064e-7 1.875405 0 -1.72064e-7 -1 -4.104944 0 0 0 1 1 0 0 2.440203 0 -0.973684 0.2279016 1.875405 0 -0.2279016 -0.973684 -4.104944 0 0 0 1 1 0 0 2.440203 0 -0.8987339 0.438494 1.875405 0 -0.438494 -0.8987339 -4.104944 0 0 0 1 1 0 0 2.440203 0 -0.785714 0.6185897 1.875405 0 -0.6185897 -0.785714 -4.104944 0 0 0 1 1 0 0 2.440203 0 -0.6483517 0.7613413 1.875405 0 -0.7613413 -0.6483517 -4.104944 0 0 0 1 1 0 0 2.440203 0 -0.5 0.8660256 1.875405 0 -0.8660256 -0.5 -4.104944 0 0 0 1 1 0 0 2.440203 0 -0.3351645 0.9421595 1.875405 0 -0.9421595 -0.3351645 -4.104944 0 0 0 1 1 0 0 2.440203 0 -0.1428567 0.9897434 1.875405 0 -0.9897434 -0.1428567 -4.104944 0 0 0 1 1 0 0 2.440203 0 0.06962049 0.9975736 1.875405 0 -0.9975736 0.06962049 -4.104944 0 0 0 1 1 0 0 2.440203 0 0.2894739 0.9571859 1.875405 0 -0.9571859 0.2894739 -4.104944 0 0 0 1 1 0 0 2.440203 0 0.5000002 0.8660253 1.875405 0 -0.8660253 0.5000002 -4.104944 0 0 0 1 1 0 0 2.440203 0 0.6842108 0.7292844 1.875405 0 -0.7292844 0.6842108 -4.104944 0 0 0 1 1 0 0 2.440203 0 0.8291141 0.5590795 1.875405 0 -0.5590795 0.8291141 -4.104944 0 0 0 1 1 0 0 2.440203 0 0.9285716 0.3711534 1.875405 0 -0.3711534 0.9285716 -4.104944 0 0 0 1 1 0 0 2.440203 0 0.9835165 0.1808182 1.875405 0 -0.1808182 0.9835165 -4.104944 0 0 0 1 1 0 0 2.440203 0 1 -3.177e-7 1.875405 0 3.177e-7 1 -4.104944 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#TwoWheeler_l_wheel_pose_matrix-output-array" count="4" stride="16">
+          <accessor source="#TwoWheeler_l_wheel_pose_matrix-output-array" count="31" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="TwoWheeler_l_wheel_pose_matrix-interpolation">
-        <Name_array id="TwoWheeler_l_wheel_pose_matrix-interpolation-array" count="4">LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="TwoWheeler_l_wheel_pose_matrix-interpolation-array" count="31">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#TwoWheeler_l_wheel_pose_matrix-interpolation-array" count="4" stride="1">
+          <accessor source="#TwoWheeler_l_wheel_pose_matrix-interpolation-array" count="31" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>

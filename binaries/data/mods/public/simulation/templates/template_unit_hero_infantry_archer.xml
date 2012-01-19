@@ -5,6 +5,22 @@
     <Pierce>8.0</Pierce>
     <Crush>7.0</Crush>
   </Armour>
+  <Attack>
+    <Ranged>
+      <Pierce>40.0</Pierce>
+      <MaxRange>60</MaxRange>
+	  <Bonuses>
+		<BonusPrimary>
+		  <Classes>Infantry Sword</Classes>
+		  <Multiplier>3.0</Multiplier>
+		</BonusPrimary>
+		<BonusSecondary>
+		  <Classes>Cavalry Spear</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusSecondary>
+	  </Bonuses>
+    </Ranged>
+  </Attack>
   <Cost>
     <BuildTime>35</BuildTime>
   </Cost>
