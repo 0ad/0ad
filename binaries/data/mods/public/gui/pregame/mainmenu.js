@@ -34,7 +34,7 @@ function scrollBackgrounds(background)
 		var w = h*16/9; // width of background image
 	
 		// Offset the layers by oscillating amounts
-		var t = (t0 - new Date) / 1000;
+		var t = (t0 - new Date) / 700;
 		var speed = 1/20;
 		var off1 = 0.02 * w * (1+Math.cos(t*speed));
 		var off2 = 0.12 * w * (1+Math.cos(t*speed)) - h*6/9;
