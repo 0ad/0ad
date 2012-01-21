@@ -101,6 +101,17 @@ QUERYHANDLER(GenerateMap)
 		// Cancel loading
 		LDR_Cancel();
 
+		// Since map generation failed and we don't know why, use the blank map as a fallback
+
+		InitGame();
+
+		ScriptInterface& si = g_Game->GetSimulation2()->GetScriptInterface();
+		CScriptValRooted atts;
+		si.Eval("({})", atts);
+		si.SetProperty(atts.get(), "mapType", std::string("scenario"));
+		si.SetProperty(atts.get(), "map", std::wstring(L"_default"));
+		StartGame(atts);
+
 		msg->status = -1;
 	}
 }
