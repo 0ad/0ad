@@ -262,8 +262,10 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings.get(), "x86_tlbs", ConvertTLBs(scriptInterface));
 #endif
 
+	scriptInterface.SetProperty(settings.get(), "timer_resolution", timer_Resolution());
+
 	// Send the same data to the reporting system
-	g_UserReporter.SubmitReport("hwdetect", 9, scriptInterface.StringifyJSON(settings.get(), false));
+	g_UserReporter.SubmitReport("hwdetect", 10, scriptInterface.StringifyJSON(settings.get(), false));
 
 	// Run the detection script:
 

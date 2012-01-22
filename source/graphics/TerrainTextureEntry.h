@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,6 +25,7 @@
 
 #include "lib/res/handle.h"
 #include "lib/file/vfs/vfs_path.h"
+#include "maths/Matrix3D.h"
 #include "ps/CStr.h"
 
 class XMBElement;
@@ -46,6 +47,8 @@ private:
 	CTerrainPropertiesPtr m_pProperties;
 	
 	CTexturePtr m_Texture;
+
+	CMatrix3D m_TextureMatrix;
 	
 	// BGRA color of topmost mipmap level, for coloring minimap, or a color
 	// specified by the terrain properties
@@ -75,17 +78,16 @@ public:
 	const CTexturePtr& GetTexture() {
 		return m_Texture;
 	}
+
+	// Returns a matrix of the form [c 0 -s 0; -s 0 -c 0; 0 0 0 0; 0 0 0 1]
+	// mapping world-space (x,y,z,1) coordinates onto (u,v,0,1) texcoords
+	const float* GetTextureMatrix();
+
 	// Get mipmap color in BGRA format
 	u32 GetBaseColor() {
 		if (!m_BaseColorValid) BuildBaseColor();
 		return m_BaseColor;
 	}
-	
-	// ScEd wants to sort textures by their group's index. 
-	size_t GetType() const
-	{ return m_Groups[0]->GetIndex(); }
-	const GroupVector &GetGroups() const
-	{ return m_Groups; }
 };
 
 #endif 

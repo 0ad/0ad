@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant frequency="1" name="large">
+      <mesh>gaia/grass_large_1.dae</mesh>
+    </variant>
+    <variant frequency="1" name="massive">
+      <mesh>gaia/grass_large_2.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="taxture">
+      <texture>gaia/grass_tropic_a.png</texture>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

@@ -2,37 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="celt outpost a">
-      <animations>
-        <animation event="0.5" load="0" name="melee" speed="100"/>
-      </animations>
-      <mesh>structural/celt_outpost.dae</mesh>
+    <variant frequency="100" name="palisade rocks outpost">
+      <mesh>props/palisade_rocks_outpost.dae</mesh>
       <props>
-        <prop actor="props/structures/celts/outpost_windows.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/outpost_door.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/outpost_shields.xml" attachpoint="root"/>
-        <prop actor="units/celts/infantry_javelinist_e.xml" attachpoint="gar01"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/special/palisade_rocks_outpost_banners.xml" attachpoint="root"/>
       </props>
-    </variant>
-    <variant frequency="1" name="celt outpost b">
-      <animations>
-        <animation event="0.5" load="0" name="melee" speed="100"/>
-      </animations>
-      <mesh>structural/celt_outpost2.dae</mesh>
-      <props>
-        <prop actor="props/structures/celts/outpost2_windows.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/outpost_shields.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/outpost_door.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-      </props>
-    </variant>
-  </group>
-  <group>
-    <variant>
-      <texture>structural/celt_struct_1.dds</texture>
+      <texture>props/palisade_main.png</texture>
     </variant>
   </group>
   <group>

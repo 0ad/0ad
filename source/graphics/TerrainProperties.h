@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -56,6 +56,12 @@ private:
 
 	CStr m_MovementClass;
 
+	// Orientation of texture (in radians) (default pi/4 = 45 degrees)
+	float m_TextureAngle;
+
+	// Size of texture in metres (default 32m = 8 tiles)
+	float m_TextureSize;
+
 	// All terrain type groups we're a member of
 	GroupVector m_Groups;
 
@@ -85,6 +91,16 @@ public:
 	// Use HasBaseColor() to see if the value is valid.
 	// The color value is in BGRA format
 	u32 GetBaseColor();
+
+	float GetTextureAngle()
+	{
+		return m_TextureAngle;
+	}
+
+	float GetTextureSize()
+	{
+		return m_TextureSize;
+	}
 
 	CStr GetMovementClass() const
 	{

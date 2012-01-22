@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="palisade rocks outpost">
+      <mesh>props/palisade_rocks_outpost.dae</mesh>
+      <props>
+        <prop actor="props/special/palisade_rocks_outpost_banners.xml" attachpoint="root"/>
+      </props>
+      <texture>props/palisade_main.png</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_rome.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+</actor>

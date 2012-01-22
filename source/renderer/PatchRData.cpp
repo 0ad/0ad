@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -78,14 +78,6 @@ CPatchRData::~CPatchRData()
 	if (m_VBBlendIndices) g_VBMan.Release(m_VBBlendIndices);
 	if (m_VBWater) g_VBMan.Release(m_VBWater);
 	if (m_VBWaterIndices) g_VBMan.Release(m_VBWaterIndices);
-}
-
-const float uvFactor = 0.125f / sqrt(2.f);
-static void CalculateUV(float uv[2], ssize_t x, ssize_t z)
-{
-	// The UV axes are offset 45 degrees from XZ
-	uv[0] = ( x-z)*uvFactor;
-	uv[1] = (-x-z)*uvFactor;
 }
 
 /**
@@ -373,7 +365,6 @@ void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector
 
 	size_t index = blendVertices.size();
 
-	CalculateUV(dst.m_UVs, gx, gz);
 	terrain->CalcPosition(gx, gz, dst.m_Position);
 	terrain->CalcNormal(gx, gz, normal);
 	dst.m_DiffuseColor = lightEnv.EvaluateDiffuse(normal, includeSunColor);
@@ -381,7 +372,6 @@ void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector
 	dst.m_AlphaUVs[1] = vtx[0].m_AlphaUVs[1];
 	blendVertices.push_back(dst);
 
-	CalculateUV(dst.m_UVs, gx + 1, gz);
 	terrain->CalcPosition(gx + 1, gz, dst.m_Position);
 	terrain->CalcNormal(gx + 1, gz, normal);
 	dst.m_DiffuseColor = lightEnv.EvaluateDiffuse(normal, includeSunColor);
@@ -389,7 +379,6 @@ void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector
 	dst.m_AlphaUVs[1] = vtx[1].m_AlphaUVs[1];
 	blendVertices.push_back(dst);
 
-	CalculateUV(dst.m_UVs, gx + 1, gz + 1);
 	terrain->CalcPosition(gx + 1, gz + 1, dst.m_Position);
 	terrain->CalcNormal(gx + 1, gz + 1, normal);
 	dst.m_DiffuseColor = lightEnv.EvaluateDiffuse(normal, includeSunColor);
@@ -397,7 +386,6 @@ void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector
 	dst.m_AlphaUVs[1] = vtx[2].m_AlphaUVs[1];
 	blendVertices.push_back(dst);
 
-	CalculateUV(dst.m_UVs, gx, gz + 1);
 	terrain->CalcPosition(gx, gz + 1, dst.m_Position);
 	terrain->CalcNormal(gx, gz + 1, normal);
 	dst.m_DiffuseColor = lightEnv.EvaluateDiffuse(normal, includeSunColor);
@@ -552,7 +540,6 @@ void CPatchRData::BuildVertices()
 
 			// calculate vertex data
 			terrain->CalcPosition(ix,iz,vertices[v].m_Position);
-			CalculateUV(vertices[v].m_UVs, ix, iz);
 
 			// Calculate diffuse lighting for this vertex
 			// Ambient is added by the lighting pass (since ambient is the same
@@ -721,7 +708,7 @@ typedef POOLED_BATCH_MAP(CVertexBuffer*, IndexBufferBatches) VertexBufferBatches
 // Group batches by texture
 typedef POOLED_BATCH_MAP(CTerrainTextureEntry*, VertexBufferBatches) TextureBatches;
 
-void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches)
+void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, CShaderProgramPtr shader)
 {
 	Allocators::Arena<> arena(ARENA_SIZE);
 
@@ -758,9 +745,26 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches)
  	for (TextureBatches::iterator itt = batches.begin(); itt != batches.end(); ++itt)
 	{
 		if (itt->first)
+		{
 			itt->first->GetTexture()->Bind();
+
+			if (shader)
+			{
+				float c = itt->first->GetTextureMatrix()[0];
+				float ms = itt->first->GetTextureMatrix()[8];
+				shader->Uniform("textureTransform", c, ms, -ms, 0.f);
+			}
+			else
+			{
+				glMatrixMode(GL_TEXTURE);
+				glLoadMatrixf(itt->first->GetTextureMatrix());
+				glMatrixMode(GL_MODELVIEW);
+			}
+		}
 		else
+		{
 			g_Renderer.GetTextureManager().GetErrorTexture()->Bind();
+		}
 
 		for (VertexBufferBatches::iterator itv = itt->second.begin(); itv != itt->second.end(); ++itv)
 		{
@@ -768,7 +772,7 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches)
 			SBaseVertex *base = (SBaseVertex *)itv->first->Bind();
 			glVertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
 			glColorPointer(4, GL_UNSIGNED_BYTE, stride, &base->m_DiffuseColor);
-			glTexCoordPointer(2, GL_FLOAT, stride, &base->m_UVs[0]);
+			glTexCoordPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
 
 			for (IndexBufferBatches::iterator it = itv->second.begin(); it != itv->second.end(); ++it)
 			{
@@ -789,6 +793,13 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches)
 				g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 3;
 			}
 		}
+	}
+
+	if (!shader)
+	{
+		glMatrixMode(GL_TEXTURE);
+		glLoadIdentity();
+		glMatrixMode(GL_MODELVIEW);
 	}
 
 	CVertexBuffer::Unbind();
@@ -825,7 +836,7 @@ struct SBlendStackItem
 	SplatStack splats;
 };
 
-void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches)
+void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, CShaderProgramPtr shader)
 {
 	Allocators::Arena<> arena(ARENA_SIZE);
 
@@ -913,9 +924,27 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches)
  	for (BatchesStack::iterator itt = batches.begin(); itt != batches.end(); ++itt)
 	{
 		if (itt->m_Texture)
+		{
 			itt->m_Texture->GetTexture()->Bind();
+
+			if (shader)
+			{
+				float c = itt->m_Texture->GetTextureMatrix()[0];
+				float ms = itt->m_Texture->GetTextureMatrix()[8];
+				shader->Uniform("textureTransform", c, ms, -ms, 0.f);
+			}
+			else
+			{
+				pglClientActiveTextureARB(GL_TEXTURE0);
+				glMatrixMode(GL_TEXTURE);
+				glLoadMatrixf(itt->m_Texture->GetTextureMatrix());
+				glMatrixMode(GL_MODELVIEW);
+			}
+		}
 		else
+		{
 			g_Renderer.GetTextureManager().GetErrorTexture()->Bind();
+		}
 
 		for (VertexBufferBatches::iterator itv = itt->m_Batches.begin(); itv != itt->m_Batches.end(); ++itv)
 		{
@@ -931,7 +960,7 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches)
 				glColorPointer(4, GL_UNSIGNED_BYTE, stride, &base->m_DiffuseColor);
 
 				pglClientActiveTextureARB(GL_TEXTURE0);
-				glTexCoordPointer(2, GL_FLOAT, stride, &base->m_UVs[0]);
+				glTexCoordPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
 
 				pglClientActiveTextureARB(GL_TEXTURE1);
 				glTexCoordPointer(2, GL_FLOAT, stride, &base->m_AlphaUVs[0]);
@@ -957,6 +986,13 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches)
 	}
 
 	pglClientActiveTextureARB(GL_TEXTURE0);
+
+	if (!shader)
+	{
+		glMatrixMode(GL_TEXTURE);
+		glLoadIdentity();
+		glMatrixMode(GL_MODELVIEW);
+	}
 
 	CVertexBuffer::Unbind();
 }
@@ -990,6 +1026,8 @@ void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, int st
 
  	PROFILE_END("compute batches");
 
+	ENSURE(!(streamflags & ~(STREAM_POS|STREAM_COLOR|STREAM_POSTOUV1)));
+
  	// Render each batch
  	for (VertexBufferBatches::iterator itv = batches.begin(); itv != batches.end(); ++itv)
 	{
@@ -997,11 +1035,6 @@ void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, int st
 		SBaseVertex *base = (SBaseVertex *)itv->first->Bind();
 
 		glVertexPointer(3, GL_FLOAT, stride, &base->m_Position);
-		if (streamflags & STREAM_UV0)
-		{
-			pglClientActiveTextureARB(GL_TEXTURE0);
-			glTexCoordPointer(2, GL_FLOAT, stride, &base->m_UVs);
-		}
 		if (streamflags & STREAM_POSTOUV0)
 		{
 			pglClientActiveTextureARB(GL_TEXTURE0);

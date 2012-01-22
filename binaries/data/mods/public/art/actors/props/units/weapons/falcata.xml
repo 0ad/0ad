@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="Base">
       <texture>props/prop_weap.dds</texture>
     </variant>
   </group>
-
   <group>
+    <variant frequency="1" name="falcata-a">
+      <mesh>props/weap_falcata_a.pmd</mesh>
+    </variant>
     <variant frequency="1" name="falcata-bronze">
       <mesh>props/weap_falcata_b.pmd</mesh>
     </variant>
@@ -19,6 +19,11 @@
     <variant frequency="1" name="falcata-steel">
       <mesh>props/weap_falcata_d.pmd</mesh>
     </variant>
+    <variant frequency="&#9;1" name="falcata-e">
+      <mesh>props/weap_falcata_e.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="falcata-f">
+      <mesh>props/weap_falcata_f.pmd</mesh>
+    </variant>
   </group>
-
 </actor>

@@ -30,6 +30,14 @@
       <mesh>props/dude_head.pmd</mesh>
       <texture>props/head/pers_face_i.dds</texture>
     </variant>
+    <variant frequency="2" name="face-beard-large-j">
+      <mesh>props/head_beard_large.pmd</mesh>
+      <texture>props/head/pers_face_j.dds</texture>
+    </variant>
+    <variant frequency="1" name="face-beard-small-j">
+      <mesh>props/head_beard_small.pmd</mesh>
+      <texture>props/head/pers_face_j.dds</texture>
+    </variant>
   </group>
   <material>objectcolor.xml</material>
 </actor>

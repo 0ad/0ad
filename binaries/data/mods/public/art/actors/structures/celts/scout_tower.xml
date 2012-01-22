@@ -1,14 +1,46 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
+  <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <mesh>structural/celt_st.pmd</mesh>
+    <variant frequency="1" name="celt outpost a">
+      <animations>
+        <animation event="0.5" load="0" name="melee" speed="100"/>
+      </animations>
+      <mesh>structural/celt_outpost.dae</mesh>
       <props>
-        <prop actor="props/structures/celts/scout_tower.xml" attachpoint="props_main"/>
+        <prop actor="props/structures/celts/outpost_windows.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/outpost_door.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/outpost_shields.xml" attachpoint="root"/>
+        <prop actor="units/celts/infantry_javelinist_e.xml" attachpoint="gar01"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
       </props>
+    </variant>
+    <variant frequency="1" name="celt outpost b">
+      <animations>
+        <animation event="0.5" load="0" name="melee" speed="100"/>
+      </animations>
+      <mesh>structural/celt_outpost2.dae</mesh>
+      <props>
+        <prop actor="props/structures/celts/outpost2_windows.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/outpost_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/outpost_door.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant>
       <texture>structural/celt_struct_1.dds</texture>
     </variant>
   </group>
-
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_celt.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
 </actor>
