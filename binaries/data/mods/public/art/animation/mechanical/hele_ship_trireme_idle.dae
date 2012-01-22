@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.61.0 r42615</authoring_tool>
     </contributor>
-    <created>2012-01-22T21:42:52</created>
-    <modified>2012-01-22T21:42:52</modified>
+    <created>2012-01-22T21:28:25</created>
+    <modified>2012-01-22T21:28:25</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -302,7 +302,7 @@
           </technique_common>
         </source>
         <source id="shipthreerow_heletrireme-skin-bind_poses">
-          <float_array id="shipthreerow_heletrireme-skin-bind_poses-array" count="144">1 0 0 0 0 0 1 -0.7691296 0 -1 0 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0 0 1 -2.928659 0 -1 0 -9.269748 0 0 0 1 0 0 -1 0.6087131 1 1.34359e-7 0 -1.750019 1.34359e-7 -1 0 -6.58634e-7 0 0 0 1 0 0 -1 1.488989 1 1.34359e-7 0 -3.150019 1.34359e-7 -1 0 -9.13196e-7 0 0 0 1 0 0 -1 2.648377 1 1.34359e-7 0 -4.75002 1.34359e-7 -1 0 -1.2157e-6 0 0 0 1 1.78814e-7 0 1 -2.644797 -1 1.34359e-7 1.94707e-7 -4.82193 -1.34359e-7 -1 0 -1.40769e-6 0 0 0 1 1.78814e-7 0 1 -1.478254 -1 1.34359e-7 1.94707e-7 -3.22193 -1.34359e-7 -1 0 -9.0822e-7 0 0 0 1 2.08616e-7 0 1 -0.6051338 -1 1.34359e-7 1.94707e-7 -1.82193 -1.34359e-7 -1 0 -3.91274e-7 0 0 0 1</float_array>
+          <float_array id="shipthreerow_heletrireme-skin-bind_poses-array" count="144">1 0 0 0 0 0 1 -0.7691296 0 -1 0 0 0 0 0 1 1 0 0 0 0 0 1 0 0 -1 0 0 0 0 0 1 1 0 0 0 0 0 1 -2.928659 0 -1 0 -9.269748 0 0 0 1 0 0 -1 0.6087131 1 1.34359e-7 0 -1.750019 1.34359e-7 -1 0 -6.58634e-7 0 0 0 1 0 0 -1 1.488989 1 1.34359e-7 0 -3.150019 1.34359e-7 -1 0 -9.13196e-7 0 0 0 1 0 0 -1 2.648377 1 1.34359e-7 0 -4.75002 1.34359e-7 -1 0 -1.2157e-6 0 0 0 1 1.78814e-7 0 1 -2.644797 -1 1.34359e-7 1.94707e-7 -4.82193 -1.34359e-7 -1 0 -1.40769e-6 0 0 0 1 1.78814e-7 0 1 -1.478254 -1 1.34359e-7 1.94707e-7 -3.22193 -1.34359e-7 -1 0 -9.0822e-7 0 0 0 1 2.08616e-7 0 1 -0.6051338 -1 1.34359e-7 1.94707e-7 -1.82193 -1.34359e-7 -1 0 -3.91274e-7 0 0 0 1</float_array>
           <technique_common>
             <accessor source="#shipthreerow_heletrireme-skin-bind_poses-array" count="9" stride="16">
               <param name="TRANSFORM" type="float4x4"/>
@@ -341,7 +341,7 @@
         <node id="three_row_main" name="three_row_main" sid="three_row_main" type="JOINT">
           <matrix sid="transform">1 0 0 0 0 7.54979e-8 -1 0 0 1 7.54979e-8 0.7691296 0 0 0 1</matrix>
           <node id="prop_sail" name="prop_sail" sid="prop_sail" type="JOINT">
-            <matrix sid="transform">1 0 0 0 0 1.94707e-7 1 -0.7691296 0 -1 1.94707e-7 -1.33566e-7 0 0 0 1</matrix>
+            <matrix sid="transform">1 0 0 0 0 1 0 -0.7691296 0 0 1 -1.33566e-7 0 0 0 1</matrix>
           </node>
           <node id="prop_projectile" name="prop_projectile" sid="prop_projectile" type="JOINT">
             <matrix sid="transform">1 0 0 4.79512e-16 0 1 0 2.159529 0 0 1 9.269748 0 0 0 1</matrix>
