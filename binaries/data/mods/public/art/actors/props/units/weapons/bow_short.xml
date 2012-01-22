@@ -1,21 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="Base">
       <texture>props/prop_weap.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="bow-med">
       <mesh>props/weap_bow_a.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="bow-b">
+      <mesh>props/weap_bow_b.pmd</mesh>
     </variant>
     <variant frequency="1" name="bow-c">
       <mesh>props/weap_bow_c.pmd</mesh>
     </variant>
   </group>
-
 </actor>

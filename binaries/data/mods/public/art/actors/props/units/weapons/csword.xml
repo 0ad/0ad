@@ -1,17 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant frequency="1" name="a">
+    <variant frequency="1" name="sword a">
       <mesh>props/weap_csword_a.pmd</mesh>
-      <texture>props/prop_weap.dds</texture>
     </variant>
-    <variant frequency="1" name="b">
+    <variant frequency="1" name="sword b">
       <mesh>props/weap_csword_b.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="sword c">
+      <mesh>props/weap_csword_c.pmd</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="texture">
       <texture>props/prop_weap.dds</texture>
     </variant>
   </group>
-
 </actor>
