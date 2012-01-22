@@ -5,8 +5,9 @@
 
     <vertex file="terrain_common.vp">
         <uniform name="sunColor" loc="0" type="vec3"/>
-        <uniform name="losTransform" loc="1" type="vec2"/>
-        <uniform name="shadowTransform" loc="2" type="mat4"/>
+        <uniform name="textureTransform" loc="1" type="vec4"/>
+        <uniform name="losTransform" loc="2" type="vec2"/>
+        <uniform name="shadowTransform" loc="3" type="mat4"/>
     </vertex>
 
     <fragment file="terrain_common.fp">

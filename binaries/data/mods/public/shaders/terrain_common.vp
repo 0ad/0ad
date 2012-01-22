@@ -1,7 +1,8 @@
 !!ARBvp1.0
 PARAM sunColor = program.local[0];
-PARAM losTransform = program.local[1];
-PARAM shadowTransform[4] = { program.local[2..5] };
+PARAM textureTransform = program.local[1];
+PARAM losTransform = program.local[2];
+PARAM shadowTransform[4] = { program.local[3..6] };
 
 TEMP lighting;
 
@@ -24,7 +25,17 @@ MUL result.color, lighting, sunColor;
 
 //// Texture coordinates:
 
-MOV result.texcoord[0], vertex.texcoord[0];
+#ifdef DECAL
+  MOV result.texcoord[0], vertex.texcoord[0];
+#else
+  // Compute texcoords from position and terrain-texture-dependent transform.
+  // textureTransform is stored as [c, -s, s, 0],
+  // and we want texcoord = (x*c + z*-s, x*-s + z*-c, 0, 1)
+  DP3 result.texcoord[0].x, textureTransform.xyww, position.xzww;
+  DP3 result.texcoord[0].y, -textureTransform.zxww, position.xzww;
+  MOV result.texcoord[0].z, 0;
+  MOV result.texcoord[0].w, 1;
+#endif
 
 #ifdef BLEND
   MOV result.texcoord[1], vertex.texcoord[1];

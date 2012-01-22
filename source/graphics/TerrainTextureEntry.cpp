@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,17 +17,19 @@
 
 #include "precompiled.h"
 
-#include <map>
+#include "TerrainTextureEntry.h"
 
 #include "lib/utf8.h"
 #include "lib/ogl.h"
 #include "lib/res/graphics/ogl_tex.h"
 
-#include "TerrainTextureEntry.h"
-#include "TerrainTextureManager.h"
-#include "TerrainProperties.h"
-#include "Texture.h"
+#include "graphics/Terrain.h"
+#include "graphics/TerrainTextureManager.h"
+#include "graphics/TerrainProperties.h"
+#include "graphics/Texture.h"
 #include "renderer/Renderer.h"
+
+#include <map>
 
 CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr props, const VfsPath& path):
 	m_pProperties(props),
@@ -47,9 +49,23 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr props, const Vf
 	if (CRenderer::IsInitialised())
 		m_Texture = g_Renderer.GetTextureManager().CreateTexture(texture);
 
+	float texAngle = 0.f;
+	float texSize = 1.f;
+
 	if (m_pProperties)
+	{
 		m_Groups = m_pProperties->GetGroups();
+		texAngle = m_pProperties->GetTextureAngle();
+		texSize = m_pProperties->GetTextureSize();
+	}
 	
+	m_TextureMatrix.SetZero();
+	m_TextureMatrix._11 = cosf(texAngle) / texSize;
+	m_TextureMatrix._13 = -sinf(texAngle) / texSize;
+	m_TextureMatrix._21 = -sinf(texAngle) / texSize;
+	m_TextureMatrix._23 = -cosf(texAngle) / texSize;
+	m_TextureMatrix._44 = 1.f;
+
 	GroupVector::iterator it=m_Groups.begin();
 	for (;it!=m_Groups.end();++it)
 		(*it)->AddTerrain(this);
@@ -81,4 +97,9 @@ void CTerrainTextureEntry::BuildBaseColor()
 		m_BaseColor = m_Texture->GetBaseColour();
 		m_BaseColorValid = true;
 	}
+}
+
+const float* CTerrainTextureEntry::GetTextureMatrix()
+{
+	return &m_TextureMatrix._11;
 }

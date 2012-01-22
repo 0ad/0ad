@@ -227,7 +227,7 @@ void TerrainRenderer::RenderTerrain(bool filtered)
 	glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, one);
 	
 	PROFILE_START("render terrain base");
-	CPatchRData::RenderBases(visiblePatches);
+	CPatchRData::RenderBases(visiblePatches, CShaderProgramPtr());
 	PROFILE_END("render terrain base");
 
 	// render blends
@@ -260,7 +260,7 @@ void TerrainRenderer::RenderTerrain(bool filtered)
 
 	// render blend passes for each patch
 	PROFILE_START("render terrain blends");
-	CPatchRData::RenderBlends(visiblePatches);
+	CPatchRData::RenderBlends(visiblePatches, CShaderProgramPtr());
 	PROFILE_END("render terrain blends");
 
 	// Disable second texcoord array
@@ -402,10 +402,6 @@ void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* 
 	shader->BindTexture("losTex", los.GetTexture());
 	shader->Uniform("losTransform", los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
 
-	CTerritoryTexture& territory = g_Renderer.GetScene().GetTerritoryTexture();
-	shader->BindTexture("territoryTex", territory.GetTexture());
-	shader->Uniform("territoryTransform", territory.GetTextureMatrix()[0], territory.GetTextureMatrix()[12], 0.f, 0.f);
-
 	shader->Uniform("ambient", lightEnv.m_TerrainAmbientColor);
 	shader->Uniform("sunColor", lightEnv.m_SunColor);
 }
@@ -455,7 +451,7 @@ void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow, bool filtered)
 	PrepareShader(shaderBase, shadow);
 
 	PROFILE_START("render terrain base");
-	CPatchRData::RenderBases(visiblePatches);
+	CPatchRData::RenderBases(visiblePatches, shaderBase);
 	PROFILE_END("render terrain base");
 
 	shaderBase->Unbind();
@@ -481,7 +477,7 @@ void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow, bool filtered)
 
 	// render blend passes for each patch
 	PROFILE_START("render terrain blends");
-	CPatchRData::RenderBlends(visiblePatches);
+	CPatchRData::RenderBlends(visiblePatches, shaderBlend);
 	PROFILE_END("render terrain blends");
 
 	// Disable second texcoord array

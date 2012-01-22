@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include "graphics/SColor.h"
 #include "maths/Vector3D.h"
 #include "graphics/RenderableObject.h"
+#include "graphics/ShaderProgram.h"
 #include "VertexBufferManager.h"
 
 class CPatch;
@@ -43,8 +44,8 @@ public:
 
 	void RenderWater();
 
-	static void RenderBases(const std::vector<CPatchRData*>& patches);
-	static void RenderBlends(const std::vector<CPatchRData*>& patches);
+	static void RenderBases(const std::vector<CPatchRData*>& patches, CShaderProgramPtr shader);
+	static void RenderBlends(const std::vector<CPatchRData*>& patches, CShaderProgramPtr shader);
 	static void RenderStreams(const std::vector<CPatchRData*>& patches, int streamflags);
 
 	CPatch* GetPatch() { return m_Patch; }
@@ -70,12 +71,8 @@ private:
 		CVector3D m_Position;
 		// diffuse color from sunlight
 		SColor4ub m_DiffuseColor;
-		// vertex uvs for base texture
-		float m_UVs[2];
-		// add some padding since VBOs prefer power-of-two sizes
-		u32 m_Padding[2];
 	};
-	cassert(sizeof(SBaseVertex) == 32);
+	cassert(sizeof(SBaseVertex) == 16);
 
 	struct SSideVertex {
 		// vertex position
@@ -90,10 +87,10 @@ private:
 		CVector3D m_Position;
 		// diffuse color from sunlight
 		SColor4ub m_DiffuseColor;
-		// vertex uvs for base texture
-		float m_UVs[2];
 		// vertex uvs for alpha texture
 		float m_AlphaUVs[2];
+		// add some padding since VBOs prefer power-of-two sizes
+		u32 m_Padding[2];
 	};
 	cassert(sizeof(SBlendVertex) == 32);
 
