@@ -303,6 +303,19 @@ function project_create(project_name, target_type)
 end
 
 
+-- OSX creates a .app bundle if the project type of the main application is set to "WindowedApp".
+-- We don't want this because this bundle would be broken (it lacks all the resources and external dependencies, Info.plist etc...)
+-- Windows opens a console in the background if it's set to ConsoleApp, which is not what we want.
+-- I didn't check if this setting matters for linux, but WindowedApp works there.
+function get_main_project_target_type()
+	if os.is("macosx") then
+		return "ConsoleApp"
+	else
+		return "WindowedApp"		
+	end
+end
+
+
 -- source_root: rel_source_dirs and rel_include_dirs are relative to this directory
 -- rel_source_dirs: A table of subdirectories. All source files in these directories are added.
 -- rel_include_dirs: A table of subdirectories to be included.
@@ -659,7 +672,7 @@ used_extern_libs = {
 -- Bundles static libs together with main.cpp and builds game executable.
 function setup_main_exe ()
 
-	local target_type = "WindowedApp"
+	local target_type = get_main_project_target_type()
 	project_create("pyrogenesis", target_type)
 
 	links { "mocks_real" }
@@ -855,7 +868,7 @@ end
 -- Atlas 'frontend' tool-launching projects
 function setup_atlas_frontend_project (project_name)
 
-	local target_type = "WindowedApp"
+	local target_type = get_main_project_target_type()
 	project_create(project_name, target_type)
 	project_add_extern_libs({
 		"spidermonkey",
@@ -1040,7 +1053,7 @@ end
 
 function setup_tests()
 
-	local target_type = "WindowedApp"
+	local target_type = get_main_project_target_type()
 	project_create("test", target_type)
 
 	configure_cxxtestgen()
