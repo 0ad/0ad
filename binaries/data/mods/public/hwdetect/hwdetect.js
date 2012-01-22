@@ -269,7 +269,7 @@ function RunDetection(settings)
 
 global.RunHardwareDetection = function(settings)
 {
-	//print(JSON.stringify(settings, null, 1).length+"\n");
+	//print(JSON.stringify(settings, null, 1)+"\n");
 
 	var output = RunDetection(settings);
 
