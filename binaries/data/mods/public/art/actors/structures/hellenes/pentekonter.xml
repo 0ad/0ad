@@ -4,10 +4,14 @@
   <float/>
   <group>
     <variant frequency="1" name="Greek Pentekonter">
+      <animations>
+        <animation file="mechanical/hele_ship_pentekonter_idle.dae" name="Idle" speed="30"/>
+        <animation file="mechanical/hele_ship_pentekonter_move.dae" name="Walk" speed="10"/>
+      </animations>
       <mesh>structural/hele_ship_pentekonter.dae</mesh>
       <props>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/structures/hellenes/pentekonter_mainsail.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/pentekonter_mainsail.xml" attachpoint="sail"/>
       </props>
       <texture>structural/hele_pentekonter.png</texture>
     </variant>
