@@ -6,7 +6,8 @@
     <variant frequency="1" name="Greek Pentekonter">
       <animations>
         <animation file="mechanical/hele_ship_pentekonter_idle.dae" name="Idle" speed="30"/>
-        <animation file="mechanical/hele_ship_pentekonter_move.dae" name="Walk" speed="10"/>
+        <animation file="mechanical/hele_ship_pentekonter_move.dae" name="Walk" speed="8"/>
+        <animation file="mechanical/hele_ship_pentekonter_move.dae" name="Run" speed="10"/>
       </animations>
       <mesh>structural/hele_ship_pentekonter.dae</mesh>
       <props>
