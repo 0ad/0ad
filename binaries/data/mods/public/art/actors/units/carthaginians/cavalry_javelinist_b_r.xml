@@ -20,7 +20,14 @@
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="loaded-r_hand"/>
         <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="tunic1">
       <texture>skeletal/kart_cjv_b_1.dds</texture>
+    </variant>
+    <variant name="tunic2">
+      <texture>skeletal/kart_cjv_b_2.dds</texture>
     </variant>
   </group>
   <group>
