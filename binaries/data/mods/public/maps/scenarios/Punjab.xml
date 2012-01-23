@@ -3,11 +3,11 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>cumulus</SkySet>
-		<SunColour r="0.867119" g="0.844179" b="0.75242"/>
-		<SunElevation angle="0.717903"/>
+		<SkySet>cloudless</SkySet>
+		<SunColour r="1" g="1" b="1"/>
+		<SunElevation angle="0.773126"/>
 		<SunRotation angle="-0.374291"/>
-		<TerrainAmbientColour r="0.439216" g="0.454902" b="0.556863"/>
+		<TerrainAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
@@ -19,12 +19,12 @@
 				<Murkiness>1</Murkiness>
 				<Tint r="0.639216" g="0.54902" b="0.34902"/>
 				<ReflectionTint r="0.603922" g="0.529412" b="0.384314"/>
-				<ReflectionTintStrength>0.498047</ReflectionTintStrength>
+				<ReflectionTintStrength>0.525391</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="221.209" y="87.7817" z="540.175"/>
+		<Position x="215.43" y="98.8371" z="500.025"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>

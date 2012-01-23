@@ -4,7 +4,7 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>overcast</SkySet>
-		<SunColour r="0.960784" g="0.913725" b="0.815686"/>
+		<SunColour r="0.956863" g="0.909804" b="0.811765"/>
 		<SunElevation angle="0.920389"/>
 		<SunRotation angle="0.582913"/>
 		<TerrainAmbientColour r="0.356863" g="0.356863" b="0.356863"/>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="1096.77" y="117.949" z="173.576"/>
+		<Position x="338.472" y="69.6191" z="333.142"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -56097,8 +56097,8 @@
 		</Entity>
 		<Entity uid="11315">
 			<Template>actor|props/flora/plant_tropic_a.xml</Template>
-			<Position x="498.6006" z="259.77079"/>
-			<Orientation y="-2.32145"/>
+			<Position x="498.88752" z="258.56827"/>
+			<Orientation y="0.44985"/>
 		</Entity>
 		<Entity uid="11316">
 			<Template>actor|props/flora/plant_tropic_a.xml</Template>
@@ -56222,7 +56222,7 @@
 		</Entity>
 		<Entity uid="11341">
 			<Template>actor|props/flora/plant_tropic_a.xml</Template>
-			<Position x="588.8606" z="188.36457"/>
+			<Position x="548.66144" z="210.01821"/>
 			<Orientation y="1.13488"/>
 		</Entity>
 		<Entity uid="11342">
@@ -68762,7 +68762,7 @@
 		</Entity>
 		<Entity uid="13907">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="522.31897" z="262.78586"/>
+			<Position x="499.46628" z="263.3891"/>
 			<Orientation y="-2.81756"/>
 		</Entity>
 		<Entity uid="13908">
@@ -68782,12 +68782,12 @@
 		</Entity>
 		<Entity uid="13911">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="524.84778" z="255.86031"/>
+			<Position x="536.16272" z="272.09046"/>
 			<Orientation y="-1.5465"/>
 		</Entity>
 		<Entity uid="13912">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="517.49384" z="256.11332"/>
+			<Position x="520.42774" z="254.02228"/>
 			<Orientation y="-1.18342"/>
 		</Entity>
 		<Entity uid="13913">
@@ -68797,7 +68797,7 @@
 		</Entity>
 		<Entity uid="13914">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="509.28885" z="257.33475"/>
+			<Position x="503.11554" z="262.2782"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="13915">
@@ -68892,7 +68892,7 @@
 		</Entity>
 		<Entity uid="13937">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="519.00336" z="258.79502"/>
+			<Position x="523.00812" z="266.52384"/>
 			<Orientation y="2.16889"/>
 		</Entity>
 		<Entity uid="13938">
