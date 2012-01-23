@@ -3,12 +3,12 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>cumulus</SkySet>
-		<SunColour r="0.981817" g="0.940525" b="0.812063"/>
-		<SunElevation angle="0.785398"/>
-		<SunRotation angle="-0.785396"/>
-		<TerrainAmbientColour r="0.439216" g="0.454902" b="0.560784"/>
-		<UnitsAmbientColour r="0.447059" g="0.486275" b="0.552941"/>
+		<SkySet>cloudless</SkySet>
+		<SunColour r="1" g="1" b="1"/>
+		<SunElevation angle="0.773126"/>
+		<SunRotation angle="-0.374291"/>
+		<TerrainAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -17,14 +17,14 @@
 				<Shininess>250</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>1</Murkiness>
-				<Tint r="0.639216" g="0.552941" b="0.352941"/>
-				<ReflectionTint r="0.603922" g="0.533333" b="0.388235"/>
-				<ReflectionTintStrength>0.498047</ReflectionTintStrength>
+				<Tint r="0.639216" g="0.54902" b="0.34902"/>
+				<ReflectionTint r="0.603922" g="0.529412" b="0.384314"/>
+				<ReflectionTintStrength>0.525391</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="220.849" y="69.5092" z="554.88"/>
+		<Position x="215.43" y="98.8371" z="500.025"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -78,7 +78,7 @@
 		</Entity>
 		<Entity uid="13">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="156.7479" z="593.21552"/>
+			<Position x="154.78473" z="589.32166"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="14">
@@ -1042,19 +1042,19 @@
 		<Entity uid="191">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="171.58417" z="590.97303"/>
+			<Position x="174.6189" z="590.95447"/>
 			<Orientation y="-0.8744"/>
 		</Entity>
 		<Entity uid="192">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="169.26987" z="595.73743"/>
-			<Orientation y="-0.66915"/>
+			<Position x="162.20395" z="665.39167"/>
+			<Orientation y="-0.75953"/>
 		</Entity>
 		<Entity uid="193">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="161.3825" z="601.85438"/>
+			<Position x="194.23795" z="594.19935"/>
 			<Orientation y="0.11202"/>
 		</Entity>
 		<Entity uid="194">
@@ -6902,25 +6902,25 @@
 		<Entity uid="1296">
 			<Template>gaia/flora_tree_dead</Template>
 			<Player>0</Player>
-			<Position x="225.48514" z="405.52186"/>
-			<Orientation y="-2.42098"/>
+			<Position x="223.8998" z="402.54752"/>
+			<Orientation y="2.51873"/>
 		</Entity>
 		<Entity uid="1297">
 			<Template>gaia/flora_tree_dead</Template>
 			<Player>0</Player>
-			<Position x="221.9721" z="397.61994"/>
+			<Position x="217.94574" z="390.67063"/>
 			<Orientation y="-2.93195"/>
 		</Entity>
 		<Entity uid="1298">
 			<Template>gaia/flora_tree_dead</Template>
 			<Player>0</Player>
-			<Position x="217.69582" z="387.22034"/>
-			<Orientation y="-2.12603"/>
+			<Position x="222.45847" z="381.69745"/>
+			<Orientation y="-0.01342"/>
 		</Entity>
 		<Entity uid="1299">
 			<Template>gaia/flora_tree_dead</Template>
 			<Player>0</Player>
-			<Position x="218.27933" z="379.70807"/>
+			<Position x="218.23363" z="371.11622"/>
 			<Orientation y="2.22283"/>
 		</Entity>
 		<Entity uid="1300">
@@ -6938,7 +6938,7 @@
 		<Entity uid="1302">
 			<Template>gaia/flora_tree_dead</Template>
 			<Player>0</Player>
-			<Position x="226.84371" z="381.43107"/>
+			<Position x="229.45598" z="357.34504"/>
 			<Orientation y="-0.13938"/>
 		</Entity>
 		<Entity uid="1303">
@@ -8640,7 +8640,7 @@
 		</Entity>
 		<Entity uid="1642">
 			<Template>actor|props/flora/water_log.xml</Template>
-			<Position x="226.20444" z="382.98157"/>
+			<Position x="226.15082" z="373.05301"/>
 			<Orientation y="-2.5238"/>
 		</Entity>
 		<Entity uid="1643">

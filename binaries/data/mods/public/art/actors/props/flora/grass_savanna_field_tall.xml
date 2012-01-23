@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant frequency="1" name="massive">
+      <mesh>gaia/grass_large_2_tall.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="texture">
+      <texture>gaia/grass_savanna_a.png</texture>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>
