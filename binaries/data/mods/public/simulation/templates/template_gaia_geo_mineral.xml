@@ -16,4 +16,9 @@
     <Type>metal.ore</Type>
   </ResourceSupply>
   <Selectable/>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/resource/sel_metal.xml</select>
+    </SoundGroups>
+  </Sound>
 </Entity>

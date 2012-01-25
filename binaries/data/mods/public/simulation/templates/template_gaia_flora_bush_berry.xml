@@ -17,4 +17,9 @@
     <Type>food.fruit</Type>
   </ResourceSupply>
   <Selectable/>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/resource/sel_fruit.xml</select>
+    </SoundGroups>
+  </Sound>
 </Entity>

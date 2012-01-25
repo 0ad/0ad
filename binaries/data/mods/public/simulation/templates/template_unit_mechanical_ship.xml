@@ -45,11 +45,12 @@
   </ResourceGatherer>
   <Sound>
     <SoundGroups>
-      <trained>actor/ship/ship_select.xml</trained>
+      <trained>interface/alarm/alarm_create_warship.xml</trained>
       <select>actor/ship/ship_select.xml</select>
       <order_walk>actor/ship/ship_move.xml</order_walk>
       <order_attack>actor/ship/ship_move.xml</order_attack>
       <order_gather>actor/ship/ship_move.xml</order_gather>
+      <death>actor/ship/warship_death.xml</death>
     </SoundGroups>
   </Sound>
   <UnitMotion>
