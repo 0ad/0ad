@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.61.0 r42615</authoring_tool>
     </contributor>
-    <created>2012-01-25T22:39:22</created>
-    <modified>2012-01-25T22:39:22</modified>
+    <created>2012-01-25T22:46:19</created>
+    <modified>2012-01-25T22:46:19</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -98,25 +98,25 @@
   <library_animations>
     <animation id="shiptworow_left_bottom_row_pose_matrix">
       <source id="shiptworow_left_bottom_row_pose_matrix-input">
-        <float_array id="shiptworow_left_bottom_row_pose_matrix-input-array" count="2">0.04166662 1.25</float_array>
+        <float_array id="shiptworow_left_bottom_row_pose_matrix-input-array" count="6">0 0.08333331 0.1666666 0.5 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#shiptworow_left_bottom_row_pose_matrix-input-array" count="2" stride="1">
+          <accessor source="#shiptworow_left_bottom_row_pose_matrix-input-array" count="6" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="shiptworow_left_bottom_row_pose_matrix-output">
-        <float_array id="shiptworow_left_bottom_row_pose_matrix-output-array" count="32">2.09857e-7 1 0 3.923721 0 0 1 -4.32569 1 -2.09857e-7 0 -11 0 0 0 1 2.09857e-7 1 0 3.923721 0 0 1 -4.32569 1 -2.09857e-7 0 -11 0 0 0 1</float_array>
+        <float_array id="shiptworow_left_bottom_row_pose_matrix-output-array" count="96">2.09857e-7 1 0 3.923721 0 0 1 -4.32569 1 -2.09857e-7 0 -11 0 0 0 1 2.09857e-7 1 0 3.923721 0 0 1 -1.710504 1 -2.09857e-7 0 -11.68983 0 0 0 1 2.09857e-7 1 0 3.923721 0 0 1 0.4749533 1 -2.09857e-7 0 -11 0 0 0 1 2.09857e-7 1 0 3.923721 0 0 1 0.474952 1 -2.09857e-7 0 6 0 0 0 1 2.09857e-7 1 0 3.923721 0 0 1 -7.702764 1 -2.09857e-7 0 6 0 0 0 1 2.09857e-7 1 0 3.923721 0 0 1 -4.32569 1 -2.09857e-7 0 -11 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#shiptworow_left_bottom_row_pose_matrix-output-array" count="2" stride="16">
+          <accessor source="#shiptworow_left_bottom_row_pose_matrix-output-array" count="6" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="shiptworow_left_bottom_row_pose_matrix-interpolation">
-        <Name_array id="shiptworow_left_bottom_row_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <Name_array id="shiptworow_left_bottom_row_pose_matrix-interpolation-array" count="6">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#shiptworow_left_bottom_row_pose_matrix-interpolation-array" count="2" stride="1">
+          <accessor source="#shiptworow_left_bottom_row_pose_matrix-interpolation-array" count="6" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -130,25 +130,25 @@
     </animation>
     <animation id="shiptworow_left_top_row_pose_matrix">
       <source id="shiptworow_left_top_row_pose_matrix-input">
-        <float_array id="shiptworow_left_top_row_pose_matrix-input-array" count="2">0.04166662 1.25</float_array>
+        <float_array id="shiptworow_left_top_row_pose_matrix-input-array" count="6">0 0.08333331 0.1666666 0.5 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#shiptworow_left_top_row_pose_matrix-input-array" count="2" stride="1">
+          <accessor source="#shiptworow_left_top_row_pose_matrix-input-array" count="6" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="shiptworow_left_top_row_pose_matrix-output">
-        <float_array id="shiptworow_left_top_row_pose_matrix-output-array" count="32">2.09857e-7 1 0 4.185115 0 0 1 -6.016347 1 -2.09857e-7 0 -11 0 0 0 1 2.09857e-7 1 0 4.185115 0 0 1 -6.016347 1 -2.09857e-7 0 -11 0 0 0 1</float_array>
+        <float_array id="shiptworow_left_top_row_pose_matrix-output-array" count="96">2.09857e-7 1 0 4.185115 0 0 1 -6.016347 1 -2.09857e-7 0 -11 0 0 0 1 2.09857e-7 1 0 4.185115 0 0 1 -2.309608 1 -2.09857e-7 0 -11.68983 0 0 0 1 2.09857e-7 1 0 4.185115 0 0 1 0.7314099 1 -2.09857e-7 0 -11 0 0 0 1 2.09857e-7 1 0 4.185115 0 0 1 0.7314086 1 -2.09857e-7 0 6 0 0 0 1 2.09857e-7 1 0 4.185115 0 0 1 -7.446308 1 -2.09857e-7 0 6 0 0 0 1 2.09857e-7 1 0 4.185115 0 0 1 -6.016347 1 -2.09857e-7 0 -11 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#shiptworow_left_top_row_pose_matrix-output-array" count="2" stride="16">
+          <accessor source="#shiptworow_left_top_row_pose_matrix-output-array" count="6" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="shiptworow_left_top_row_pose_matrix-interpolation">
-        <Name_array id="shiptworow_left_top_row_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <Name_array id="shiptworow_left_top_row_pose_matrix-interpolation-array" count="6">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#shiptworow_left_top_row_pose_matrix-interpolation-array" count="2" stride="1">
+          <accessor source="#shiptworow_left_top_row_pose_matrix-interpolation-array" count="6" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -162,25 +162,25 @@
     </animation>
     <animation id="shiptworow_right_bottom_row_pose_matrix">
       <source id="shiptworow_right_bottom_row_pose_matrix-input">
-        <float_array id="shiptworow_right_bottom_row_pose_matrix-input-array" count="2">0.04166662 1.25</float_array>
+        <float_array id="shiptworow_right_bottom_row_pose_matrix-input-array" count="6">0 0.08333331 0.1666666 0.5 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#shiptworow_right_bottom_row_pose_matrix-input-array" count="2" stride="1">
+          <accessor source="#shiptworow_right_bottom_row_pose_matrix-input-array" count="6" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="shiptworow_right_bottom_row_pose_matrix-output">
-        <float_array id="shiptworow_right_bottom_row_pose_matrix-output-array" count="32">2.09857e-7 -1 0 -3.951642 0 0 1 -4.32569 -1 -2.09857e-7 0 -11 0 0 0 1 2.09857e-7 -1 0 -3.951642 0 0 1 -4.32569 -1 -2.09857e-7 0 -11 0 0 0 1</float_array>
+        <float_array id="shiptworow_right_bottom_row_pose_matrix-output-array" count="96">2.09857e-7 -1 0 -3.951642 0 0 1 -4.32569 -1 -2.09857e-7 0 -11 0 0 0 1 2.09857e-7 -1 0 -3.951642 0 0 1 -1.710504 -1 -2.09857e-7 0 -11.68983 0 0 0 1 2.09857e-7 -1 0 -3.951642 0 0 1 0.4749533 -1 -2.09857e-7 0 -11 0 0 0 1 2.09857e-7 -1 0 -3.951642 0 0 1 0.474952 -1 -2.09857e-7 0 6 0 0 0 1 2.09857e-7 -1 0 -3.951642 0 0 1 -7.702764 -1 -2.09857e-7 0 6 0 0 0 1 2.09857e-7 -1 0 -3.951642 0 0 1 -4.32569 -1 -2.09857e-7 0 -11 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#shiptworow_right_bottom_row_pose_matrix-output-array" count="2" stride="16">
+          <accessor source="#shiptworow_right_bottom_row_pose_matrix-output-array" count="6" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="shiptworow_right_bottom_row_pose_matrix-interpolation">
-        <Name_array id="shiptworow_right_bottom_row_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <Name_array id="shiptworow_right_bottom_row_pose_matrix-interpolation-array" count="6">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#shiptworow_right_bottom_row_pose_matrix-interpolation-array" count="2" stride="1">
+          <accessor source="#shiptworow_right_bottom_row_pose_matrix-interpolation-array" count="6" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -194,25 +194,25 @@
     </animation>
     <animation id="shiptworow_right_top_row_pose_matrix">
       <source id="shiptworow_right_top_row_pose_matrix-input">
-        <float_array id="shiptworow_right_top_row_pose_matrix-input-array" count="2">0.04166662 1.25</float_array>
+        <float_array id="shiptworow_right_top_row_pose_matrix-input-array" count="6">0 0.08333331 0.1666666 0.5 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#shiptworow_right_top_row_pose_matrix-input-array" count="2" stride="1">
+          <accessor source="#shiptworow_right_top_row_pose_matrix-input-array" count="6" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="shiptworow_right_top_row_pose_matrix-output">
-        <float_array id="shiptworow_right_top_row_pose_matrix-output-array" count="32">2.09857e-7 -1 0 -4.213035 0 0 1 -6.016347 -1 -2.09857e-7 0 -11 0 0 0 1 2.09857e-7 -1 0 -4.213035 0 0 1 -6.016347 -1 -2.09857e-7 0 -11 0 0 0 1</float_array>
+        <float_array id="shiptworow_right_top_row_pose_matrix-output-array" count="96">2.09857e-7 -1 0 -4.213035 0 0 1 -6.016347 -1 -2.09857e-7 0 -11 0 0 0 1 2.09857e-7 -1 0 -4.213035 0 0 1 -2.309608 -1 -2.09857e-7 0 -11.68983 0 0 0 1 2.09857e-7 -1 0 -4.213035 0 0 1 0.7314099 -1 -2.09857e-7 0 -11 0 0 0 1 2.09857e-7 -1 0 -4.213035 0 0 1 0.7314086 -1 -2.09857e-7 0 6 0 0 0 1 2.09857e-7 -1 0 -4.213035 0 0 1 -7.446308 -1 -2.09857e-7 0 6 0 0 0 1 2.09857e-7 -1 0 -4.213035 0 0 1 -6.016347 -1 -2.09857e-7 0 -11 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#shiptworow_right_top_row_pose_matrix-output-array" count="2" stride="16">
+          <accessor source="#shiptworow_right_top_row_pose_matrix-output-array" count="6" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="shiptworow_right_top_row_pose_matrix-interpolation">
-        <Name_array id="shiptworow_right_top_row_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <Name_array id="shiptworow_right_top_row_pose_matrix-interpolation-array" count="6">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#shiptworow_right_top_row_pose_matrix-interpolation-array" count="2" stride="1">
+          <accessor source="#shiptworow_right_top_row_pose_matrix-interpolation-array" count="6" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>

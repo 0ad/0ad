@@ -16,6 +16,11 @@
     <Type>wood.tree</Type>
   </ResourceSupply>
   <Selectable/>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/resource/sel_tree.xml</select>
+    </SoundGroups>
+  </Sound>
   <VisualActor>
     <SelectionShape>
       <Footprint/>

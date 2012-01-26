@@ -16,4 +16,9 @@
     <Type>stone.rock</Type>
   </ResourceSupply>
   <Selectable/>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/resource/sel_stone.xml</select>
+    </SoundGroups>
+  </Sound>
 </Entity>

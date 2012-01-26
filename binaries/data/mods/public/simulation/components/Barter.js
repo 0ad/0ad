@@ -12,7 +12,7 @@ const CONSTANT_DIFFERENCE = 10;
 
 // Additional difference of prices, added after each deal to specified resource price.
 // In percents.
-const DIFFERENCE_PER_DEAL = 1;
+const DIFFERENCE_PER_DEAL = 2;
 
 // Price difference which restored each restore timer tick
 // In percents.
