@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:58</created>
+    <modified>2012-01-26T22:20:58</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="quiver-Geometry" name="quiver-Geometry">
+      <mesh>
+        <source id="quiver-Geometry-Position">
+          <float_array count="93" id="quiver-Geometry-Position-array">0.5145620 0.1182800 -0.5163670 0.4847830 0.1678080 -0.5308790 -0.2047290 0.0529890 0.5261470 -0.1650420 -0.0130170 0.5454880 0.4091500 0.1973460 -0.5794420 -0.3055260 0.0923560 0.4614260 0.3319680 0.1895920 -0.6336070 -0.4083890 0.0820230 0.3892390 0.2984480 0.1490890 -0.6616460 -0.4530620 0.0280420 0.3518710 0.2984480 0.1490890 -0.6616460 0.3282260 0.0995610 -0.6471340 -0.4133750 -0.0379640 0.3712110 -0.4530620 0.0280420 0.3518710 0.4038590 0.0700230 -0.5985710 -0.3125780 -0.0773300 0.4359320 0.4810420 0.0777770 -0.5444060 -0.2097150 -0.0669970 0.5081190 0.5145620 0.1182800 -0.5163670 -0.1650420 -0.0130170 0.5454880 0.4825930 0.1471010 -0.6993470 -0.1650420 -0.0130170 0.5454880 0.4016380 0.1328260 -0.5819490 -0.2097150 -0.0669970 0.5081190 0.4825930 0.1471010 -0.6993470 -0.2047290 0.0529890 0.5261470 -0.3055260 0.0923560 0.4614260 -0.4083890 0.0820230 0.3892390 -0.4133750 -0.0379640 0.3712110 -0.3125780 -0.0773300 0.4359320 -0.4530620 0.0280420 0.3518710</float_array>
+          <technique_common>
+            <accessor count="31" source="quiver-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="quiver-Geometry-Normals">
+          <float_array count="93" id="quiver-Geometry-Normal-array">0.9600960 0.0921080 0.2640670 0.5203580 0.8362440 0.1729870 0.5456740 0.7169600 0.4338290 0.8006210 -0.3768640 0.4658110 0.1117540 0.9932660 -0.0305550 0.1062800 0.9793890 0.1717620 -0.2859890 0.8794220 -0.3805610 -0.2868310 0.9519300 -0.1075020 -0.5814290 -0.0253400 -0.8132030 -0.7631880 0.3834640 -0.5200960 -0.5814290 -0.0253400 -0.8132030 -0.2542870 -0.7893280 -0.5588370 -0.5182570 -0.7121260 -0.4735880 -0.7631880 0.3834640 -0.5200960 0.0996010 -0.9559990 -0.2759460 -0.0872080 -0.9760260 -0.1994190 0.5546190 -0.8320560 -0.0090000 0.3103900 -0.9477760 0.0733390 0.9600960 0.0921080 0.2640670 0.8006210 -0.3768640 0.4658110 0.5648630 0.0996000 -0.8191520 -0.8940300 0.1026720 -0.4360830 -0.5648630 -0.0996000 0.8191520 -0.4348110 0.8970120 -0.0794260 0.5648630 0.0996000 -0.8191520 -0.5051610 -0.7958690 -0.3337730 -0.0794260 -0.9925550 -0.0923320 0.3317750 -0.9151800 0.2288460 0.4021250 0.7777010 0.4831940 0.0025030 0.9789920 0.2038840 0.7386250 -0.1300740 0.6614480</float_array>
+          <technique_common>
+            <accessor count="31" source="quiver-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="quiver-Geometry-UV">
+          <float_array count="62" id="quiver-Geometry-UV-array">0.134412 0.102035 0.242205 0.102035 0.155619 0.867657 0.011961 0.867657 0.502441 0.102035 0.502441 0.867657 0.762677 0.102035 0.849262 0.867657 0.87047 0.102035 0.992921 0.867657 0.132513 0.102169 0.240306 0.102169 0.15372 0.867791 0.010062 0.867791 0.500542 0.102169 0.500542 0.867791 0.760778 0.102169 0.847363 0.867791 0.868571 0.102169 0.991022 0.867791 0.502441 0.00802 0.012724 0.931054 0.501857 0.93308 0.152955 0.971105 0.500542 0.008153 0.15902 0.892191 0.506145 0.87728 0.850758 0.895056 0.844693 0.97397 0.497568 0.988881 0.990989 0.935106</float_array>
+          <technique_common>
+            <accessor count="31" source="quiver-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="quiver-Geometry-Vertex">
+          <input semantic="POSITION" source="#quiver-Geometry-Position"/>
+        </vertices>
+        <triangles count="32" material="material0">
+          <input offset="0" semantic="VERTEX" source="#quiver-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#quiver-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#quiver-Geometry-UV"/>
+          <p>0 1 2 2 3 0 1 4 5 5 2 1 4 6 7 7 5 4 6 8 9 9 7 6 10 11 12 12 13 10 11 14 15 15 12 11 14 16 17 17 15 14 16 18 19 19 17 16 6 4 20 21 22 23 4 1 20 1 0 20 24 14 11 16 14 24 20 8 6 18 16 24 24 11 10 21 25 22 26 27 22 22 28 29 25 26 22 22 30 28 27 30 22 22 29 23</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="quiver" layer="L1" name="quiver">
+        <instance_geometry url="#quiver-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

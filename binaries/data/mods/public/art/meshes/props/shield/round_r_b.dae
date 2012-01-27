@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:54</created>
+    <modified>2012-01-26T22:20:54</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="round_r_b-Geometry" name="round_r_b-Geometry">
+      <mesh>
+        <source id="round_r_b-Geometry-Position">
+          <float_array count="30" id="round_r_b-Geometry-Position-array">0.2743800 -0.0107470 -0.8444560 -0.2743800 -0.0107470 -0.8444560 -0.7183370 -0.0107470 -0.5219020 0.7183370 -0.0107460 -0.5219030 0.8879130 -0.0107460 -0.0000000 0.7183370 -0.0107460 0.5219020 0.2743800 -0.0107460 0.8444560 -0.2743800 -0.0107470 0.8444560 -0.7183370 -0.0107470 0.5219020 -0.8879130 -0.0107470 -0.0000000</float_array>
+          <technique_common>
+            <accessor count="10" source="round_r_b-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="round_r_b-Geometry-Normals">
+          <float_array count="30" id="round_r_b-Geometry-Normal-array">-0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000</float_array>
+          <technique_common>
+            <accessor count="10" source="round_r_b-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="round_r_b-Geometry-UV">
+          <float_array count="20" id="round_r_b-Geometry-UV-array">0.345646 0.019711 0.654354 0.019711 0.904104 0.203165 0.095896 0.203165 0.0005 0.5 0.095896 0.796835 0.345646 0.980289 0.654354 0.980289 0.904104 0.796835 0.999501 0.5</float_array>
+          <technique_common>
+            <accessor count="10" source="round_r_b-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="round_r_b-Geometry-Vertex">
+          <input semantic="POSITION" source="#round_r_b-Geometry-Position"/>
+        </vertices>
+        <triangles count="8" material="material0">
+          <input offset="0" semantic="VERTEX" source="#round_r_b-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#round_r_b-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#round_r_b-Geometry-UV"/>
+          <p>0 1 2 3 0 2 4 3 2 5 4 2 6 5 2 7 6 2 8 7 2 8 2 9</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="round_r_b" layer="L1" name="round_r_b">
+        <instance_geometry url="#round_r_b-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

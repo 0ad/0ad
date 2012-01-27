@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:52</created>
+    <modified>2012-01-26T22:20:52</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="wrld_hay_la-Geometry" name="wrld_hay_la-Geometry">
+      <mesh>
+        <source id="wrld_hay_la-Geometry-Position">
+          <float_array count="75" id="wrld_hay_la-Geometry-Position-array">0.0000000 -0.1259250 1.8740170 -0.0000000 1.2635750 1.2166300 -1.0863550 0.7404140 1.2166300 0.0000000 -0.1259250 1.8740170 -1.3546620 -0.4351180 1.2166300 0.0000000 -0.1259250 1.8740170 -0.6028810 -1.3778210 1.2166300 0.0000000 -0.1259250 1.8740170 0.6028810 -1.3778210 1.2166300 0.0000000 -0.1259250 1.8740170 0.6028810 -1.3778210 1.2166300 1.3546620 -0.4351170 1.2166300 0.0000000 -0.1259250 1.8740170 1.0863550 0.7404140 1.2166300 0.0000000 -0.1259250 1.8740170 -0.0000000 1.2635750 1.2166300 -0.0000000 2.4172170 0.0058320 -1.9883090 1.4596980 0.0058320 -2.4793800 -0.6918270 0.0058320 -1.1034280 -2.4172170 0.0058320 1.1034280 -2.4172170 0.0058320 1.1034280 -2.4172170 0.0058320 2.4793800 -0.6918270 0.0058320 1.9883080 1.4596990 0.0058320 -0.0000000 2.4172170 0.0058320</float_array>
+          <technique_common>
+            <accessor count="25" source="wrld_hay_la-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_hay_la-Geometry-Normals">
+          <float_array count="75" id="wrld_hay_la-Geometry-Normal-array">0.0000000 -0.0000000 1.0000000 -0.0696740 0.6113370 0.7882980 -0.5214030 0.3266890 0.7882980 0.0000000 -0.0000000 1.0000000 -0.5805050 -0.2039630 0.7882980 0.0000000 -0.0000000 1.0000000 -0.2024750 -0.5810260 0.7882980 0.0000000 -0.0000000 1.0000000 0.3280230 -0.5205650 0.7882980 0.0000000 -0.0000000 1.0000000 0.3280230 -0.5205650 0.7882980 0.6115130 -0.0681080 0.7882980 0.0000000 -0.0000000 1.0000000 0.4345210 0.4356360 0.7882980 0.0000000 -0.0000000 1.0000000 -0.0696740 0.6113370 0.7882980 0.1154410 0.7191480 0.6852010 -0.4902760 0.5386370 0.6852010 -0.7268050 -0.0474790 0.6852010 -0.4160350 -0.5978420 0.6852010 0.2080180 -0.6980180 0.6852010 0.2080180 -0.6980180 0.6852010 0.6754290 -0.2725720 0.6852010 0.6342290 0.3581260 0.6852010 0.1154410 0.7191480 0.6852010</float_array>
+          <technique_common>
+            <accessor count="25" source="wrld_hay_la-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_hay_la-Geometry-UV">
+          <float_array count="50" id="wrld_hay_la-Geometry-UV-array">0.009327 1.009327 0.009327 0.504435 0.254778 0.504435 0.254778 1.009327 0.500229 0.504435 0.500229 1.009327 0.74568 0.504435 0.74568 1.009327 0.991131 0.504435 0.005608 1.006218 0.005608 0.510653 0.332927 0.510653 0.332927 1.006218 0.660246 0.510653 0.660246 1.006218 0.987564 0.510653 0.009327 -0.000457 0.254778 -0.000457 0.500229 -0.000457 0.74568 -0.000457 0.991131 -0.000457 0.005608 0.015087 0.332927 0.015087 0.660246 0.015087 0.987564 0.015087</float_array>
+          <technique_common>
+            <accessor count="25" source="wrld_hay_la-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_hay_la-Geometry-Vertex">
+          <input semantic="POSITION" source="#wrld_hay_la-Geometry-Position"/>
+        </vertices>
+        <triangles count="21" material="material0">
+          <input offset="0" semantic="VERTEX" source="#wrld_hay_la-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#wrld_hay_la-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#wrld_hay_la-Geometry-UV"/>
+          <p>0 1 2 3 2 4 5 4 6 7 6 8 9 10 11 12 11 13 14 13 15 1 16 17 1 17 2 2 17 18 2 18 4 4 18 19 4 19 6 6 19 20 6 20 8 10 21 22 10 22 11 11 22 23 11 23 13 13 23 24 13 24 15</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="wrld_hay_la" layer="L1" name="wrld_hay_la">
+        <instance_geometry url="#wrld_hay_la-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

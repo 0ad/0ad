@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:54</created>
+    <modified>2012-01-26T22:20:54</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="barrl_a_f-Geometry" name="barrl_a_f-Geometry">
+      <mesh>
+        <source id="barrl_a_f-Geometry-Position">
+          <float_array count="45" id="barrl_a_f-Geometry-Position-array">-0.4471740 -0.0281940 -1.2585810 0.4471740 -0.0281940 -1.2585810 0.5929720 -0.0281940 -0.6292900 -0.5929720 -0.0281940 -0.6292900 0.6426890 -0.0281940 0.0000000 0.4471740 -0.0281940 1.2585810 -0.4471740 -0.0281940 1.2585810 -0.5929720 -0.0281940 0.6292900 0.5929720 -0.0281940 0.6292900 -0.6426890 -0.0281940 0.0000000 -0.0163490 -0.1879210 -0.0054440 0.3707520 -0.0067210 -0.0054440 -0.0163480 -0.0067210 0.3704860 -0.4034480 -0.0067210 -0.0054440 -0.0163490 -0.0067210 -0.3813750</float_array>
+          <technique_common>
+            <accessor count="15" source="barrl_a_f-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="barrl_a_f-Geometry-Normals">
+          <float_array count="45" id="barrl_a_f-Geometry-Normal-array">0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 -0.0000000 -1.0000000 -0.0000000 0.4239480 -0.9056870 -0.0000010 -0.0000000 -0.9008180 0.4341970 -0.4239490 -0.9056860 0.0000000 -0.0000000 -0.9008180 -0.4341980</float_array>
+          <technique_common>
+            <accessor count="15" source="barrl_a_f-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="barrl_a_f-Geometry-UV">
+          <float_array count="30" id="barrl_a_f-Geometry-UV-array">0.124391 0.0005 0.885206 0.000499 0.979869 0.24845 0.039326 0.24845 1.004299 0.496401 0.885206 0.992302 0.124392 0.992302 0.039326 0.744352 0.97987 0.744351 0.017295 0.496401 0.489632 0.494256 0.796732 0.494256 0.489633 0.642379 0.196929 0.494256 0.489632 0.346133</float_array>
+          <technique_common>
+            <accessor count="15" source="barrl_a_f-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="barrl_a_f-Geometry-Vertex">
+          <input semantic="POSITION" source="#barrl_a_f-Geometry-Position"/>
+        </vertices>
+        <triangles count="12" material="material0">
+          <input offset="0" semantic="VERTEX" source="#barrl_a_f-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#barrl_a_f-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#barrl_a_f-Geometry-UV"/>
+          <p>0 1 2 3 0 2 3 2 4 5 6 7 8 5 7 8 7 9 4 8 9 3 4 9 10 11 12 10 12 13 10 13 14 10 14 11</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="barrl_a_f" layer="L1" name="barrl_a_f">
+        <instance_geometry url="#barrl_a_f-Geometry"/>
+        <node id="prop_back" name="prop_back">
+          <matrix sid="transform">1.0000000 0.0000000 0.0000000 0.0000000 0.0000000 1.0000000 -0.0000002 -0.0000000 0.0000000 0.0000002 1.0000000 0.0000000 0.0000000 0.0000000 0.0000000 1.0000000</matrix>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

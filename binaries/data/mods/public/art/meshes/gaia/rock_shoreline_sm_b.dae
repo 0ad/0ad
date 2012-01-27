@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:47</created>
+    <modified>2012-01-26T22:20:47</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="rock_shoreline_sm_b-Geometry" name="rock_shoreline_sm_b-Geometry">
+      <mesh>
+        <source id="rock_shoreline_sm_b-Geometry-Position">
+          <float_array count="51" id="rock_shoreline_sm_b-Geometry-Position-array">-0.4160390 -0.8289820 0.7406430 -0.6856510 -1.0573080 0.0108320 0.5229550 -0.4161080 0.0108320 1.1365550 0.1571860 0.0108320 0.5415490 0.3741600 0.5824740 -0.2661290 0.4494800 0.6372770 -0.4160390 -0.8289820 0.7406430 0.4671730 1.0320640 1.0427950 -0.9738570 0.6805780 0.0108320 -0.2765850 1.0573040 0.5268130 0.3370150 0.9904900 0.0108320 -1.1365540 0.8126080 0.6151340 -0.2765850 1.0573040 0.5268130 1.1365550 0.1571860 0.0108320 0.4671730 1.0320640 1.0427950 0.4671730 1.0320640 1.0427950 -0.6856510 -1.0573080 0.0108320</float_array>
+          <technique_common>
+            <accessor count="17" source="rock_shoreline_sm_b-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="rock_shoreline_sm_b-Geometry-Normals">
+          <float_array count="51" id="rock_shoreline_sm_b-Geometry-Normal-array">0.1057220 -0.4353050 0.8940540 -0.6890660 -0.7084920 0.1524030 0.5711630 -0.6534330 0.4967880 0.7921720 -0.1266270 0.5970160 0.3789010 -0.4132050 0.8280670 -0.0922750 -0.0223940 0.9954820 0.1057220 -0.4353050 0.8940540 0.3081750 0.3281470 0.8929430 -0.6153310 0.6976790 -0.3668960 -0.2740820 0.9073830 0.3186460 0.2109800 0.9570380 -0.1989090 -0.7113180 0.2366200 0.6618450 -0.2740820 0.9073830 0.3186460 0.7921720 -0.1266270 0.5970160 0.3081750 0.3281470 0.8929430 0.3081750 0.3281470 0.8929430 -0.6890660 -0.7084920 0.1524030</float_array>
+          <technique_common>
+            <accessor count="17" source="rock_shoreline_sm_b-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="rock_shoreline_sm_b-Geometry-UV">
+          <float_array count="34" id="rock_shoreline_sm_b-Geometry-UV-array">0.233445 0.157141 0.158053 -0.003109 0.456882 -0.003109 0.640145 0.004318 0.570483 0.177151 0.432578 0.289028 0.248581 0.075125 0.65094 0.333829 0.18025 0.465943 0.271574 0.651214 0.130454 0.755906 0.319815 0.461081 0.506624 0.401852 0.05596 0.996891 0.343437 0.835487 0.654739 0.270769 0.072769 0.096493</float_array>
+          <technique_common>
+            <accessor count="17" source="rock_shoreline_sm_b-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="rock_shoreline_sm_b-Geometry-Vertex">
+          <input semantic="POSITION" source="#rock_shoreline_sm_b-Geometry-Position"/>
+        </vertices>
+        <triangles count="15" material="material0">
+          <input offset="0" semantic="VERTEX" source="#rock_shoreline_sm_b-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#rock_shoreline_sm_b-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#rock_shoreline_sm_b-Geometry-UV"/>
+          <p>0 1 2 3 4 2 2 4 0 5 6 4 4 3 7 8 9 10 9 8 11 11 5 12 13 10 14 12 5 15 14 10 9 7 5 4 5 11 6 11 8 16 16 6 11</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="rock_shoreline_sm_b" layer="L1" name="rock_shoreline_sm_b">
+        <instance_geometry url="#rock_shoreline_sm_b-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

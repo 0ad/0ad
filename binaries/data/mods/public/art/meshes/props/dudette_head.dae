@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:49</created>
+    <modified>2012-01-26T22:20:49</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="dudette_head-Geometry" name="dudette_head-Geometry">
+      <mesh>
+        <source id="dudette_head-Geometry-Position">
+          <float_array count="96" id="dudette_head-Geometry-Position-array">0.0000830 -0.2346720 -0.0134050 -0.0000340 -0.1252920 -0.0292470 0.1126040 -0.0012990 0.0094890 0.0829150 -0.2105670 0.0013760 -0.1133400 -0.0012990 0.0094890 -0.0836510 -0.2105670 0.0013760 0.1549480 -0.2211690 0.2353540 0.1968920 -0.0032640 0.2611980 0.1917200 0.0404440 0.5064520 0.1029170 -0.1808240 0.4837830 0.0000820 -0.0261560 0.6127850 0.0000820 -0.2367410 0.4967620 0.0000830 -0.2981840 0.2352210 0.1381920 0.1610740 0.2916560 0.0000820 0.1086720 0.0516300 0.0000820 0.2258110 0.3018060 0.0000810 0.1950470 0.5159030 0.1126040 -0.0012990 0.0094890 -0.1556830 -0.2211690 0.2353540 -0.1036530 -0.1808240 0.4837830 -0.1924560 0.0404440 0.5064520 -0.1976280 -0.0032640 0.2611980 -0.1389280 0.1610740 0.2916560 -0.1133400 -0.0012990 0.0094890 -0.0007190 0.0712370 0.4239600 -0.2227800 0.2016750 0.3695590 -0.0034920 0.2826570 0.2440130 -0.1368780 0.1629300 0.6325970 0.1411040 0.1629300 0.6325970 -0.1368780 0.1629300 0.6325970 0.2270050 0.2016740 0.3695590 0.0009920 0.3845870 0.5210970</float_array>
+          <technique_common>
+            <accessor count="32" source="dudette_head-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="dudette_head-Geometry-Normals">
+          <float_array count="96" id="dudette_head-Geometry-Normal-array">0.0013240 -0.4412530 -0.8973820 0.0007410 -0.1433460 -0.9896720 0.7632400 0.1374460 -0.6313270 0.5903200 -0.6043620 -0.5350400 -0.7625850 0.1377150 -0.6320600 -0.5887000 -0.6054940 -0.5355460 0.8710600 -0.4888930 -0.0473130 0.9828370 0.0983110 -0.1560950 0.8861430 0.1210190 0.4473310 0.5938970 -0.6276360 0.5033490 0.0011980 -0.1494010 0.9887760 0.0017830 -0.7872040 0.6166900 0.0014510 -0.9999800 0.0061850 0.6855360 0.7134580 -0.1449770 0.0013760 0.8769440 -0.4805900 0.0012280 0.9884710 -0.1514030 0.0011740 0.8491630 0.5281290 0.7632400 0.1374460 -0.6313270 -0.8707090 -0.4895220 -0.0472750 -0.5921150 -0.6286160 0.5042240 -0.8856150 0.1214970 0.4482470 -0.9828370 0.0983100 -0.1560950 -0.6842550 0.7146800 -0.1450120 -0.7625850 0.1377150 -0.6320600 -0.0042020 -0.9679150 -0.2512440 -0.9418950 -0.0270490 -0.3348170 -0.0095950 0.1797620 -0.9836630 -0.5637510 -0.3247880 0.7594060 0.5601830 -0.3271490 0.7610320 -0.5637510 -0.3247880 0.7594060 0.9360240 -0.0261730 -0.3509610 -0.0050590 0.9629440 0.2696550</float_array>
+          <technique_common>
+            <accessor count="32" source="dudette_head-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="dudette_head-Geometry-UV">
+          <float_array count="64" id="dudette_head-Geometry-UV-array">0.0 0.238281 0.441406 0.101563 0.449219 0.195313 0.110935 0.280764 0.449219 0.195313 0.110935 0.280764 0.179688 0.558594 0.570313 0.597656 0.582031 0.851563 0.167969 0.902344 0.308594 0.988281 0.0 0.902344 0.0 0.558594 0.796875 0.753906 0.890625 0.480469 0.902344 0.898438 0.640625 0.988281 0.550781 0.207031 0.179688 0.558594 0.167969 0.902344 0.582031 0.851563 0.570313 0.597656 0.796875 0.753906 0.550781 0.207031 0.636057 0.994466 0.816931 0.888072 0.88312 0.980192 0.75736 0.805165 0.75736 0.805165 0.697789 0.722257 0.823549 0.897284 0.980977 0.643356</float_array>
+          <technique_common>
+            <accessor count="32" source="dudette_head-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="dudette_head-Geometry-Vertex">
+          <input semantic="POSITION" source="#dudette_head-Geometry-Position"/>
+        </vertices>
+        <triangles count="48" material="material0">
+          <input offset="0" semantic="VERTEX" source="#dudette_head-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#dudette_head-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#dudette_head-Geometry-UV"/>
+          <p>0 1 2 2 3 0 4 1 0 0 5 4 6 7 8 8 9 6 9 8 10 10 11 9 9 11 12 12 6 9 8 7 13 13 14 15 15 16 13 8 13 16 16 10 8 13 7 17 17 14 13 6 3 17 17 7 6 3 6 12 12 0 3 18 19 20 20 21 18 19 11 10 10 20 19 19 18 12 12 11 19 20 22 21 22 16 15 15 14 22 20 10 16 16 22 20 22 14 23 23 21 22 18 21 23 23 5 18 5 0 12 12 18 5 24 25 26 24 27 25 24 28 29 24 30 28 24 26 30 31 26 25 31 25 27 31 29 28 31 28 30 31 30 26</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="dudette_head" layer="L1" name="dudette_head">
+        <instance_geometry url="#dudette_head-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

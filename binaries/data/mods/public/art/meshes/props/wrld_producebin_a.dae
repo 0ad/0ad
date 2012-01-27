@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:52</created>
+    <modified>2012-01-26T22:20:52</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="wrld_producebin_a-Geometry" name="wrld_producebin_a-Geometry">
+      <mesh>
+        <source id="wrld_producebin_a-Geometry-Position">
+          <float_array count="99" id="wrld_producebin_a-Geometry-Position-array">-0.9109310 1.3157890 0.0344150 -0.9109310 -1.3157880 0.0344150 -0.9109310 -1.3157880 1.6133620 -0.9109310 1.3157890 1.6133620 -0.9109310 -1.3157880 0.0344150 0.9109320 -1.3157880 0.0344150 0.9109320 -1.3157880 1.6133620 -0.9109310 -1.3157880 1.6133620 0.9109320 -1.3157880 0.0344150 0.9109330 1.3157890 0.0344150 0.9109330 1.3157890 1.6133620 0.9109320 -1.3157880 1.6133620 0.9109330 1.3157890 0.0344150 -0.9109310 1.3157890 0.0344150 -0.9109310 1.3157890 1.6133620 0.9109330 1.3157890 1.6133620 -0.9109310 1.3157890 1.6133620 -0.9109310 -1.3157880 1.6133620 -0.6880160 -1.1242110 1.4624440 -0.6880170 1.1242110 1.4624440 0.9109320 -1.3157880 1.6133620 0.6880180 -1.1242110 1.4624440 0.9109330 1.3157890 1.6133620 0.6880180 1.1242110 1.4624440 -0.6880170 1.1242110 1.4624440 -0.6880160 -1.1242110 1.4624440 -0.4257260 0.0000000 1.7277830 0.0000010 0.0000000 1.8602570 0.6880180 -1.1242110 1.4624440 0.0000020 -0.6956320 1.7277830 0.6880180 1.1242110 1.4624440 0.4257280 0.0000000 1.7277830 0.0000010 0.6956320 1.7277830</float_array>
+          <technique_common>
+            <accessor count="33" source="wrld_producebin_a-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_producebin_a-Geometry-Normals">
+          <float_array count="99" id="wrld_producebin_a-Geometry-Normal-array">-1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 -0.0000000 -1.0000000 0.0000000 1.0000000 -0.0000000 0.0000000 1.0000000 -0.0000000 0.0000000 1.0000000 -0.0000000 0.0000000 1.0000000 -0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 -0.0000000 1.0000000 0.0000000 0.0000000 -0.6188140 0.7855370 0.0000000 0.6188160 0.7855360 -0.3338840 -0.2285690 0.9144820 -0.3338840 0.2285690 0.9144820 -0.5606220 0.0000000 0.8280720 0.3338850 -0.2285690 0.9144820 0.0000000 -0.6188140 0.7855370 0.3338840 0.2285690 0.9144820 -0.3338840 0.2285690 0.9144820 -0.3338840 -0.2285690 0.9144820 -0.4481480 -0.0000000 0.8939590 0.0000000 -0.0000000 1.0000000 0.3338850 -0.2285690 0.9144820 0.0000000 -0.3073160 0.9516080 0.3338840 0.2285690 0.9144820 0.4481480 0.0000000 0.8939590 0.0000000 0.3073160 0.9516080</float_array>
+          <technique_common>
+            <accessor count="33" source="wrld_producebin_a-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_producebin_a-Geometry-UV">
+          <float_array count="66" id="wrld_producebin_a-Geometry-UV-array">0.875 0.46875 1.0 0.46875 1.0 0.523438 0.875 0.523438 0.875 0.46875 0.935547 0.46875 0.935547 0.523438 0.875 0.523438 0.875 0.46875 1.0 0.46875 1.0 0.523438 0.875 0.523438 0.875 0.46875 0.935547 0.46875 0.935547 0.523438 0.875 0.523438 0.875 0.46875 1.0 0.46875 0.990234 0.474609 0.884766 0.474609 1.0 0.523438 0.990234 0.517578 0.875 0.523438 0.884766 0.517578 0.789063 0.058594 0.789063 0.001953 0.794922 0.029297 0.806641 0.029297 0.824219 0.001953 0.806641 0.015625 0.824219 0.058594 0.818359 0.029297 0.806641 0.052734</float_array>
+          <technique_common>
+            <accessor count="33" source="wrld_producebin_a-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_producebin_a-Geometry-Vertex">
+          <input semantic="POSITION" source="#wrld_producebin_a-Geometry-Position"/>
+        </vertices>
+        <triangles count="28" material="material0">
+          <input offset="0" semantic="VERTEX" source="#wrld_producebin_a-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#wrld_producebin_a-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#wrld_producebin_a-Geometry-UV"/>
+          <p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 16 17 18 18 19 16 17 20 21 21 18 17 20 22 23 23 21 20 22 16 19 19 23 22 24 25 26 25 27 26 27 24 26 25 28 29 28 27 29 27 25 29 28 30 31 30 27 31 27 28 31 30 24 32 24 27 32 27 30 32</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="wrld_producebin_a" layer="L1" name="wrld_producebin_a">
+        <instance_geometry url="#wrld_producebin_a-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

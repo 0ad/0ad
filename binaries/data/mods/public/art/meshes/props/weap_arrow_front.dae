@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:51</created>
+    <modified>2012-01-26T22:20:51</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="weap_arrow_front-Geometry" name="weap_arrow_front-Geometry">
+      <mesh>
+        <source id="weap_arrow_front-Geometry-Position">
+          <float_array count="120" id="weap_arrow_front-Geometry-Position-array">-0.0344740 -0.0344810 -1.2026720 -0.1049680 -0.0567770 -1.6024040 0.1049680 -0.0567770 -1.6024040 0.0344810 -0.0344810 -1.2026720 0.0344810 -0.0344810 -1.2026720 0.0344810 0.0344740 -1.2026720 0.0339350 0.0339360 -0.0848690 0.0339350 -0.0339350 -0.0848690 0.0273570 -0.0000010 0.1122370 -0.0000020 -0.0273580 0.1122370 -0.0344790 0.0344740 -1.2026720 -0.0339330 0.0339360 -0.0848690 -0.0000020 0.0273580 0.1122370 -0.0344740 -0.0344810 -1.2026720 -0.0339350 -0.0339360 -0.0848690 -0.0273570 0.0000010 0.1122370 0.1049680 0.0567770 -1.6024040 0.0344810 0.0344740 -1.2026720 -0.0344790 0.0344740 -1.2026720 -0.1049680 0.0567760 -1.6024040 -0.0000020 -0.0273580 0.1122370 0.0273570 -0.0000010 0.1122370 0.0994560 0.0000010 0.2328360 -0.0000020 -0.0198510 0.2328360 -0.0000030 0.0000010 0.4596090 0.0273570 -0.0000010 0.1122370 -0.0000020 0.0273580 0.1122370 -0.0000030 0.0198530 0.2328360 0.0994560 0.0000010 0.2328360 -0.0000030 0.0000010 0.4596090 -0.0000020 0.0273580 0.1122370 -0.0273570 0.0000010 0.1122370 -0.0994560 0.0000010 0.2328360 -0.0000030 0.0198530 0.2328360 -0.0000030 0.0000010 0.4596090 -0.0273570 0.0000010 0.1122370 -0.0000020 -0.0273580 0.1122370 -0.0000020 -0.0198510 0.2328360 -0.0994560 0.0000010 0.2328360 -0.0000030 0.0000010 0.4596090</float_array>
+          <technique_common>
+            <accessor count="40" source="weap_arrow_front-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="weap_arrow_front-Geometry-Normals">
+          <float_array count="120" id="weap_arrow_front-Geometry-Normal-array">-0.6930080 -0.7026310 0.1613980 -0.6930180 -0.7026200 0.1614060 0.6930200 -0.7026200 0.1613950 0.6930200 -0.7026200 0.1613950 0.8944270 -0.4472140 0.0006560 0.4472140 0.8944270 0.0006490 0.8069510 0.5888060 0.0462460 0.5888050 -0.8069510 0.0462440 0.9911650 -0.0000140 0.1326310 -0.0000230 -0.9911660 0.1326260 -0.8944350 0.4471980 0.0006500 -0.5888090 0.8069480 0.0462400 -0.0000080 0.9911660 0.1326310 -0.4471960 -0.8944360 0.0006520 -0.8069530 -0.5888030 0.0462420 -0.9911670 0.0000180 0.1326190 0.6930190 0.7026190 0.1614060 0.6930190 0.7026190 0.1614060 -0.6930410 0.7025950 0.1614110 -0.6930290 0.7026060 0.1614140 0.4537160 -0.8735930 -0.1760010 0.6512830 -0.6513310 -0.3893570 0.3696370 -0.9251700 -0.0861900 0.1952110 -0.9780230 0.0732380 0.1950190 -0.9770630 0.0855350 0.4721330 0.8807130 -0.0378790 0.7064300 0.7064160 0.0439700 0.3812230 0.9244720 0.0046120 0.1957160 0.9805390 -0.0154350 0.1950220 0.9770620 0.0855320 -0.4537470 0.8735710 -0.1760330 -0.6513200 0.6512720 -0.3893930 -0.3696610 0.9251590 -0.0862110 -0.1952210 0.9780220 0.0732270 -0.1950290 0.9770610 0.0855320 -0.4721610 -0.8806980 -0.0378720 -0.7064690 -0.7063770 0.0439700 -0.3812450 -0.9244620 0.0046170 -0.1957250 -0.9805370 -0.0154280 -0.1950310 -0.9770600 0.0855320</float_array>
+          <technique_common>
+            <accessor count="40" source="weap_arrow_front-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="weap_arrow_front-Geometry-UV">
+          <float_array count="80" id="weap_arrow_front-Geometry-UV-array">0.770914 0.00598 0.777363 0.026914 0.768334 0.026914 0.768334 0.00598 0.701172 0.294922 0.701172 0.291016 0.605469 0.291016 0.605469 0.294922 0.59375 0.291016 0.59375 0.294922 0.701172 0.294922 0.605469 0.294922 0.59375 0.294922 0.701172 0.298828 0.605469 0.298828 0.59375 0.298828 0.758016 0.026914 0.765755 0.00598 0.768334 0.00598 0.768334 0.026914 0.59375 0.291016 0.59375 0.292969 0.589844 0.300781 0.589844 0.287109 0.574219 0.292969 0.59375 0.292969 0.59375 0.294922 0.589844 0.294922 0.589844 0.300781 0.574219 0.292969 0.59375 0.294922 0.59375 0.292969 0.589844 0.285156 0.589844 0.294922 0.574219 0.292969 0.59375 0.292969 0.59375 0.291016 0.589844 0.287109 0.589844 0.285156 0.574219 0.292969</float_array>
+          <technique_common>
+            <accessor count="40" source="weap_arrow_front-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="weap_arrow_front-Geometry-Vertex">
+          <input semantic="POSITION" source="#weap_arrow_front-Geometry-Position"/>
+        </vertices>
+        <triangles count="36" material="material0">
+          <input offset="0" semantic="VERTEX" source="#weap_arrow_front-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#weap_arrow_front-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#weap_arrow_front-Geometry-UV"/>
+          <p>0 1 2 2 3 0 4 5 6 6 7 4 7 6 8 8 9 7 5 10 11 11 6 5 6 11 12 12 8 6 10 13 14 14 11 10 11 14 15 15 12 11 13 4 7 7 14 13 14 7 9 9 15 14 2 16 17 17 3 2 0 18 19 19 1 0 19 18 17 17 16 19 20 21 22 22 23 20 23 22 24 25 26 27 27 28 25 28 27 29 30 31 32 32 33 30 33 32 34 35 36 37 37 38 35 38 37 39</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="weap_arrow_front" layer="L1" name="weap_arrow_front">
+        <instance_geometry url="#weap_arrow_front-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

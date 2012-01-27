@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:54</created>
+    <modified>2012-01-26T22:20:54</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="scutum_b-Geometry" name="scutum_b-Geometry">
+      <mesh>
+        <source id="scutum_b-Geometry-Position">
+          <float_array count="63" id="scutum_b-Geometry-Position-array">-0.7054780 -0.0107690 -0.0224640 -0.6620090 -0.0107690 -0.6926390 0.0166710 -0.0107300 -0.0170280 -0.3201750 -0.0107300 -1.3021170 0.0197740 -0.0107260 -1.3379700 0.3606160 -0.0107300 -1.3021170 0.4887720 -0.0107410 -1.1763710 -0.4582140 -0.0107400 1.2006830 -0.5618190 -0.0107570 0.9873410 -0.6577500 -0.0107690 0.6563400 -0.5692200 -0.0107570 -0.9652550 -0.4600070 -0.0107410 -1.1769020 0.5936620 -0.0107580 -0.9657640 0.6667750 -0.0107700 -0.6926390 0.7123610 -0.0107700 -0.0224770 0.6667770 -0.0107690 0.6581640 0.5868900 -0.0107570 0.9882270 0.4866770 -0.0107400 1.2004030 -0.3307700 -0.0107290 1.3068750 0.3718450 -0.0107300 1.3068750 0.0202750 -0.0107250 1.3365960</float_array>
+          <technique_common>
+            <accessor count="21" source="scutum_b-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scutum_b-Geometry-Normals">
+          <float_array count="63" id="scutum_b-Geometry-Normal-array">-0.0000540 1.0000000 -0.0000000 -0.0000650 1.0000000 0.0000070 0.0000020 1.0000000 -0.0000000 -0.0000370 1.0000000 0.0000100 0.0000000 1.0000000 0.0000030 0.0000400 1.0000000 0.0000110 0.0000820 1.0000000 0.0000240 -0.0000840 1.0000000 -0.0000240 -0.0000860 1.0000000 -0.0000230 -0.0000640 1.0000000 -0.0000060 -0.0000850 1.0000000 0.0000240 -0.0000780 1.0000000 0.0000230 0.0000910 1.0000000 0.0000260 0.0000700 1.0000000 0.0000090 0.0000570 1.0000000 -0.0000000 0.0000680 1.0000000 -0.0000070 0.0000900 1.0000000 -0.0000240 0.0000880 1.0000000 -0.0000260 -0.0000400 1.0000000 -0.0000110 0.0000440 1.0000000 -0.0000120 0.0000000 1.0000000 -0.0000040</float_array>
+          <technique_common>
+            <accessor count="21" source="scutum_b-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="scutum_b-Geometry-UV">
+          <float_array count="42" id="scutum_b-Geometry-UV-array">0.0005 0.491866 0.031128 0.241543 0.518524 0.487683 0.271982 0.013891 0.511508 0.000499 0.751663 0.013891 0.841961 0.06086 0.17472 0.948734 0.101721 0.869047 0.034128 0.745412 0.096506 0.139715 0.173457 0.060661 0.915866 0.139525 0.967381 0.241543 0.999501 0.491861 0.967382 0.746093 0.911094 0.869378 0.840485 0.94863 0.264516 0.988399 0.759575 0.988399 0.511861 0.999501</float_array>
+          <technique_common>
+            <accessor count="21" source="scutum_b-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="scutum_b-Geometry-Vertex">
+          <input semantic="POSITION" source="#scutum_b-Geometry-Position"/>
+        </vertices>
+        <triangles count="20" material="material0">
+          <input offset="0" semantic="VERTEX" source="#scutum_b-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#scutum_b-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#scutum_b-Geometry-UV"/>
+          <p>0 2 1 3 2 4 5 2 6 7 2 8 2 9 8 2 0 9 1 2 10 10 2 11 11 2 3 4 2 5 6 2 12 12 2 13 13 2 14 14 2 15 16 2 17 18 2 7 17 2 19 20 2 18 2 20 19 2 16 15</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="scutum_b" layer="L1" name="scutum_b">
+        <instance_geometry url="#scutum_b-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

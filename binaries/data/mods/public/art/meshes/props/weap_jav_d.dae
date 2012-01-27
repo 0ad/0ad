@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:51</created>
+    <modified>2012-01-26T22:20:51</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="weap_jav_d-Geometry" name="weap_jav_d-Geometry">
+      <mesh>
+        <source id="weap_jav_d-Geometry-Position">
+          <float_array count="111" id="weap_jav_d-Geometry-Position-array">0.0319600 -0.0000000 -1.4262900 -0.0000000 -0.0319600 -1.4262900 -0.0319600 -0.0000000 -1.4262900 -0.0000000 0.0319600 -1.4262900 0.0319600 -0.0000000 -1.4262900 -0.0000000 0.0319600 -1.4262900 -0.0000000 0.0314560 0.3302230 0.0314560 -0.0000000 0.3302230 -0.0000000 0.0179320 0.6700440 0.0179320 -0.0000000 0.6700440 -0.0319600 -0.0000000 -1.4262900 -0.0314560 -0.0000000 0.3302230 -0.0121030 -0.0000000 0.6700440 -0.0000000 -0.0319600 -1.4262900 0.0000000 -0.0314560 0.3302230 0.0000000 -0.0179320 0.6700440 0.0000000 -0.0314560 0.3302230 0.0179320 -0.0000000 0.6700440 -0.0000000 0.0179320 0.6700440 -0.0014570 0.0581690 0.8386250 0.0101540 -0.0000000 0.8386250 0.0000000 -0.0000000 1.4262920 -0.0000000 0.0179320 0.6700440 -0.0121030 -0.0000000 0.6700440 -0.0130690 -0.0000000 0.8386250 -0.0014570 0.0581690 0.8386250 0.0000000 -0.0000000 1.4262920 -0.0121030 -0.0000000 0.6700440 0.0000000 -0.0179320 0.6700440 -0.0014570 -0.0581690 0.8386250 -0.0130690 -0.0000000 0.8386250 0.0000000 -0.0000000 1.4262920 0.0000000 -0.0179320 0.6700440 0.0179320 -0.0000000 0.6700440 0.0101540 -0.0000000 0.8386250 -0.0014570 -0.0581690 0.8386250 0.0000000 -0.0000000 1.4262920</float_array>
+          <technique_common>
+            <accessor count="37" source="weap_jav_d-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="weap_jav_d-Geometry-Normals">
+          <float_array count="111" id="weap_jav_d-Geometry-Normal-array">0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.9486840 0.3162260 0.0002720 -0.3162280 0.9486830 0.0002720 -0.0296020 0.9993140 0.0222700 0.9997990 -0.0000680 0.0200350 0.2840630 0.9580470 0.0381290 0.9480080 -0.3160030 0.0377300 -0.9486830 -0.3162290 0.0002720 -0.9990720 0.0338920 0.0265950 -0.9570970 0.2863430 0.0444100 0.3162260 -0.9486840 0.0002720 -0.0000650 -0.9997990 0.0200350 -0.3865870 -0.9209880 0.0482870 -0.0000650 -0.9997990 0.0200350 0.8810010 0.4692210 -0.0605800 0.6979340 0.6979330 -0.1605530 0.9247850 0.3789470 -0.0342390 0.9801810 0.1956540 0.0310730 0.9805130 0.1957210 0.0169420 -0.9223700 0.3850990 -0.0305400 -0.8288710 0.5594190 -0.0047500 -0.9464340 0.3226380 -0.0129190 -0.9805170 0.1957240 -0.0166690 -0.9804200 0.1957050 0.0218030 -0.9206980 -0.3831820 -0.0740790 -0.8207900 -0.5539800 -0.1393220 -0.9459830 -0.3215010 -0.0418740 -0.9806210 -0.1957460 0.0080920 -0.9804200 -0.1957060 0.0218030 0.8817450 -0.4717170 -0.0029330 0.7067310 -0.7067310 0.0326060 0.9246950 -0.3806900 0.0039280 0.9805990 -0.1957380 -0.0106420 0.9805130 -0.1957210 0.0169420</float_array>
+          <technique_common>
+            <accessor count="37" source="weap_jav_d-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="weap_jav_d-Geometry-UV">
+          <float_array count="74" id="weap_jav_d-Geometry-UV-array">0.634766 0.53125 0.646484 0.53125 0.646484 0.515625 0.634766 0.515625 0.634766 0.53125 0.623047 0.53125 0.623047 0.816216 0.634766 0.81611 0.623225 0.868781 0.635121 0.868959 0.634766 0.53125 0.634766 0.816216 0.635121 0.868603 0.646484 0.53125 0.646484 0.816216 0.646484 0.871094 0.646484 0.81611 0.629452 0.872517 0.6394 0.872695 0.639561 0.91424 0.629274 0.913885 0.629444 0.983485 0.6394 0.872695 0.629428 0.872517 0.629258 0.914063 0.639561 0.91424 0.629444 0.983485 0.629428 0.872517 0.619125 0.872517 0.619141 0.914063 0.629258 0.914063 0.629444 0.983485 0.619125 0.872517 0.629452 0.872517 0.629274 0.913885 0.619141 0.914063 0.629444 0.983485</float_array>
+          <technique_common>
+            <accessor count="37" source="weap_jav_d-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="weap_jav_d-Geometry-Vertex">
+          <input semantic="POSITION" source="#weap_jav_d-Geometry-Position"/>
+        </vertices>
+        <triangles count="30" material="material0">
+          <input offset="0" semantic="VERTEX" source="#weap_jav_d-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#weap_jav_d-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#weap_jav_d-Geometry-UV"/>
+          <p>0 1 2 2 3 0 4 5 6 6 7 4 7 6 8 8 9 7 5 10 11 11 6 5 6 11 12 12 8 6 10 13 14 14 11 10 11 14 15 15 12 11 13 4 7 7 16 13 16 7 9 9 15 16 17 18 19 19 20 17 20 19 21 22 23 24 24 25 22 25 24 26 27 28 29 29 30 27 30 29 31 32 33 34 34 35 32 35 34 36</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="weap_jav_d" layer="L1" name="weap_jav_d">
+        <instance_geometry url="#weap_jav_d-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

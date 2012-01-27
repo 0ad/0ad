@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:54</created>
+    <modified>2012-01-26T22:20:54</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="hex_b-Geometry" name="hex_b-Geometry">
+      <mesh>
+        <source id="hex_b-Geometry-Position">
+          <float_array count="18" id="hex_b-Geometry-Position-array">0.3105800 -0.0107470 -1.3740530 -0.3105800 -0.0107470 -1.3740530 -0.6447680 -0.0107470 -0.0004570 0.6447680 -0.0107460 -0.0004570 -0.3105800 -0.0107470 1.3731390 0.3105800 -0.0107460 1.3731390</float_array>
+          <technique_common>
+            <accessor count="6" source="hex_b-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hex_b-Geometry-Normals">
+          <float_array count="18" id="hex_b-Geometry-Normal-array">-0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000</float_array>
+          <technique_common>
+            <accessor count="6" source="hex_b-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hex_b-Geometry-UV">
+          <float_array count="12" id="hex_b-Geometry-UV-array">0.268966 0.0005 0.743954 0.000499 0.999501 0.495386 0.013419 0.495386 0.743954 0.990272 0.268966 0.990272</float_array>
+          <technique_common>
+            <accessor count="6" source="hex_b-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="hex_b-Geometry-Vertex">
+          <input semantic="POSITION" source="#hex_b-Geometry-Position"/>
+        </vertices>
+        <triangles count="4" material="material0">
+          <input offset="0" semantic="VERTEX" source="#hex_b-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#hex_b-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#hex_b-Geometry-UV"/>
+          <p>0 1 2 3 0 2 3 2 4 3 4 5</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="hex_b" layer="L1" name="hex_b">
+        <instance_geometry url="#hex_b-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

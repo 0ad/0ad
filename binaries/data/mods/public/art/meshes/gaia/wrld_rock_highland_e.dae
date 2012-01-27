@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:49</created>
+    <modified>2012-01-26T22:20:49</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="wrld_rock_highland_e-Geometry" name="wrld_rock_highland_e-Geometry">
+      <mesh>
+        <source id="wrld_rock_highland_e-Geometry-Position">
+          <float_array count="99" id="wrld_rock_highland_e-Geometry-Position-array">-0.5303300 0.4703510 0.6039260 -0.3809970 0.6838980 -0.1066820 -0.6838950 0.6032030 -0.1066820 0.0151550 0.5726750 -0.1066820 -0.3809970 0.6838980 -0.1066820 -0.5303300 0.4703510 0.6039260 0.1831520 0.3791220 0.5961940 0.6488730 0.2887850 0.1049760 0.7504090 0.1609560 0.4757780 -0.1875970 0.1176570 0.7590350 0.4682050 -0.0371870 0.6939600 0.1851100 0.1878680 0.7253310 0.2060120 -0.6838980 0.3702450 -0.0974950 -0.6523330 -0.1066820 0.1954060 -0.5994430 -0.1066820 -0.3680180 -0.5630820 -0.1066820 -0.0974950 -0.6523330 -0.1066820 0.2060120 -0.6838980 0.3702450 -0.6738970 -0.4236650 0.0427530 -0.6324150 -0.3855530 -0.1066820 -0.8120830 -0.1082740 -0.1066820 -0.7734600 -0.2764200 0.1509160 -0.2457600 -0.6266010 0.3836000 0.1747550 -0.4811560 0.6242190 -0.1875970 0.1176570 0.7590350 -0.6516680 0.0091560 0.5184150 -0.8284160 0.2802290 -0.1066820 0.1747550 -0.4811560 0.6242190 0.4749920 -0.2911820 0.6174780 0.5269400 -0.3505530 -0.1066820 0.8284160 0.0774870 0.2017310 0.6804890 -0.0094950 -0.1066820 0.4394390 0.3198960 -0.1066820</float_array>
+          <technique_common>
+            <accessor count="33" source="wrld_rock_highland_e-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_rock_highland_e-Geometry-Normals">
+          <float_array count="99" id="wrld_rock_highland_e-Geometry-Normal-array">-0.4414340 0.6355860 0.6333770 0.0025390 0.9575410 0.2882870 -0.6222400 0.7341550 0.2717220 0.3186280 0.9427620 0.0983710 0.0025390 0.9575410 0.2882870 -0.4414340 0.6355860 0.6333770 0.2836250 0.8330880 0.4748910 0.6199060 0.7617740 -0.1881950 0.7054710 0.3816240 0.5972210 -0.1372090 -0.1370680 0.9810130 0.3222210 -0.0350690 0.9460150 0.1941920 0.3826360 0.9032600 0.3283720 -0.9299350 0.1655100 -0.0707520 -0.9972730 -0.0209780 0.3944770 -0.9032830 -0.1687260 -0.3558390 -0.9309600 -0.0818000 -0.0707520 -0.9972730 -0.0209780 0.3283720 -0.9299350 0.1655100 -0.6889960 -0.7165830 -0.1085950 -0.6669830 -0.6563860 -0.3525490 -0.9867010 -0.1480650 0.0670720 -0.8554800 -0.4316390 0.2860790 -0.4109010 -0.7548240 0.5112740 0.0354810 -0.5512760 0.8335680 -0.1372090 -0.1370680 0.9810130 -0.7603470 -0.1434220 0.6334840 -0.9231370 0.1824440 0.3384250 0.0354810 -0.5512760 0.8335680 0.5504040 -0.4415270 0.7085970 0.7738090 -0.6207360 -0.1261240 0.9804210 -0.1927060 -0.0404930 0.8420660 0.1899120 -0.5048360 0.5816380 0.6575560 -0.4788720</float_array>
+          <technique_common>
+            <accessor count="33" source="wrld_rock_highland_e-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_rock_highland_e-Geometry-UV">
+          <float_array count="66" id="wrld_rock_highland_e-Geometry-UV-array">0.819331 0.071978 0.987586 0.451768 0.896592 0.408308 0.878839 0.410908 0.987587 0.454368 0.947338 0.790698 0.825539 0.713947 0.713741 0.511086 0.574115 0.708348 0.668046 0.996174 0.52773 0.801934 0.655052 0.804699 0.111505 0.78078 0.007918 0.537531 0.178535 0.541482 0.182777 0.343119 0.007918 0.534931 0.017697 0.141095 0.256744 0.29017 0.326628 0.544809 0.504164 0.307561 0.335263 0.274535 0.176654 0.126872 0.145084 0.005086 0.614221 -0.001435 0.551122 0.11245 0.713506 0.356947 0.193853 0.992504 0.339343 0.884227 0.323278 0.541482 0.553553 0.603513 0.540275 0.410908 0.731834 0.410908</float_array>
+          <technique_common>
+            <accessor count="33" source="wrld_rock_highland_e-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_rock_highland_e-Geometry-Vertex">
+          <input semantic="POSITION" source="#wrld_rock_highland_e-Geometry-Position"/>
+        </vertices>
+        <triangles count="40" material="material0">
+          <input offset="0" semantic="VERTEX" source="#wrld_rock_highland_e-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#wrld_rock_highland_e-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#wrld_rock_highland_e-Geometry-UV"/>
+          <p>0 1 2 3 4 5 5 6 3 6 7 3 8 7 6 9 10 11 8 6 11 11 10 8 5 9 11 11 6 5 12 13 14 15 16 17 18 19 15 20 19 18 18 21 20 21 18 22 15 17 22 22 18 15 17 23 22 24 25 22 22 23 24 22 25 21 2 26 0 20 25 0 0 26 20 25 24 0 20 21 25 9 27 28 28 10 9 28 27 12 8 10 28 12 14 29 30 29 31 8 28 30 12 29 30 30 28 12 8 30 7 31 32 7 7 30 31 7 32 3</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="wrld_rock_highland_e" layer="L1" name="wrld_rock_highland_e">
+        <instance_geometry url="#wrld_rock_highland_e-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:52</created>
+    <modified>2012-01-26T22:20:52</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="wrld_vase_e-Geometry" name="wrld_vase_e-Geometry">
+      <mesh>
+        <source id="wrld_vase_e-Geometry-Position">
+          <float_array count="105" id="wrld_vase_e-Geometry-Position-array">0.2833830 0.0000000 0.0000000 0.1416910 0.2454170 0.0000000 0.3130500 0.5422180 1.2111070 0.6260990 -0.0000000 1.2111070 -0.1416920 0.2454170 0.0000000 -0.3130500 0.5422180 1.2111070 -0.1416920 0.2454170 0.0000000 -0.2833830 -0.0000000 0.0000000 -0.6260990 -0.0000000 1.2111070 -0.3130500 0.5422180 1.2111070 -0.1416910 -0.2454170 0.0000000 -0.3130500 -0.5422180 1.2111070 0.1416920 -0.2454170 0.0000000 0.3130500 -0.5422180 1.2111070 0.0942660 0.1632740 1.5773220 0.1885320 -0.0000000 1.5773220 -0.0942660 0.1632740 1.5773220 -0.1885320 -0.0000000 1.5773220 -0.0942660 0.1632740 1.5773220 -0.0942660 -0.1632740 1.5773220 0.0942660 -0.1632740 1.5773220 0.1571960 0.2722710 2.0624680 0.3143920 -0.0000000 2.0624680 -0.1571960 0.2722710 2.0624680 -0.3143920 -0.0000000 2.0624680 -0.1571960 0.2722710 2.0624680 -0.1571960 -0.2722710 2.0624680 0.1571960 -0.2722710 2.0624680 -0.3143920 -0.0000000 2.0624680 -0.1571960 -0.2722710 2.0624680 0.0000000 -0.0000000 1.5441620 0.1571960 -0.2722710 2.0624680 0.3143920 -0.0000000 2.0624680 0.1571960 0.2722710 2.0624680 -0.1571960 0.2722710 2.0624680</float_array>
+          <technique_common>
+            <accessor count="35" source="wrld_vase_e-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_vase_e-Geometry-Normals">
+          <float_array count="105" id="wrld_vase_e-Geometry-Normal-array">0.9461310 0.1820830 -0.2677340 0.3153770 0.9104150 -0.2677340 0.5003280 0.8060630 0.3161260 0.9482340 -0.0302650 0.3161260 -0.6307540 0.7283320 -0.2677340 -0.4479070 0.8363280 0.3161260 -0.6307540 0.7283320 -0.2677340 -0.9461310 -0.1820830 -0.2677340 -0.9482340 0.0302650 0.3161250 -0.4479070 0.8363280 0.3161260 -0.3153770 -0.9104150 -0.2677340 -0.5003280 -0.8060630 0.3161250 0.6307540 -0.7283320 -0.2677340 0.4479070 -0.8363280 0.3161260 0.4459050 0.8334400 0.3264130 0.9447330 0.0305550 0.3264130 -0.4988280 0.8028860 0.3264130 -0.9447330 -0.0305550 0.3264130 -0.4988280 0.8028860 0.3264130 -0.4459060 -0.8334400 0.3264130 0.4988280 -0.8028860 0.3264130 0.6343920 0.7325330 -0.2468670 0.9515880 -0.1831330 -0.2468670 -0.3171960 0.9156660 -0.2468670 -0.9515880 0.1831330 -0.2468670 -0.3171960 0.9156660 -0.2468670 -0.6343920 -0.7325330 -0.2468670 0.3171960 -0.9156660 -0.2468670 0.8550030 0.0000000 0.5186240 0.4275010 0.7404540 0.5186240 0.0000000 0.0000000 1.0000000 -0.4275010 0.7404540 0.5186240 -0.8550020 0.0000000 0.5186240 -0.4275010 -0.7404540 0.5186240 0.4275010 -0.7404540 0.5186240</float_array>
+          <technique_common>
+            <accessor count="35" source="wrld_vase_e-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_vase_e-Geometry-UV">
+          <float_array count="70" id="wrld_vase_e-Geometry-UV-array">0.644663 0.007005 0.798839 0.007005 0.798839 0.176601 0.644663 0.176601 0.983324 0.007005 0.983324 0.176601 -0.002349 0.007005 0.151827 0.007005 0.151827 0.176601 -0.002349 0.176601 0.306002 0.007005 0.306002 0.176601 0.490488 0.007005 0.490488 0.176601 0.798839 0.322065 0.644663 0.322065 0.983324 0.322065 0.151827 0.322065 -0.002349 0.322065 0.306002 0.322065 0.490488 0.322065 0.798839 0.565464 0.644663 0.565464 0.983324 0.565464 0.151827 0.565464 -0.002349 0.565464 0.306002 0.565464 0.490488 0.565464 0.509087 0.877566 0.630174 0.759242 0.75126 0.877566 0.872347 0.759242 0.993433 0.877566 0.872347 0.99589 0.630174 0.99589</float_array>
+          <technique_common>
+            <accessor count="35" source="wrld_vase_e-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_vase_e-Geometry-Vertex">
+          <input semantic="POSITION" source="#wrld_vase_e-Geometry-Position"/>
+        </vertices>
+        <triangles count="42" material="material0">
+          <input offset="0" semantic="VERTEX" source="#wrld_vase_e-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#wrld_vase_e-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#wrld_vase_e-Geometry-UV"/>
+          <p>0 1 2 2 3 0 1 4 5 5 2 1 6 7 8 8 9 6 7 10 11 11 8 7 10 12 13 13 11 10 12 0 3 3 13 12 3 2 14 14 15 3 2 5 16 16 14 2 9 8 17 17 18 9 8 11 19 19 17 8 11 13 20 20 19 11 13 3 15 15 20 13 15 14 21 21 22 15 14 16 23 23 21 14 18 17 24 24 25 18 17 19 26 26 24 17 19 20 27 27 26 19 20 15 22 22 27 20 28 29 30 29 31 30 32 33 30 30 34 28 31 32 30 30 33 34</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="wrld_vase_e" layer="L1" name="wrld_vase_e">
+        <instance_geometry url="#wrld_vase_e-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

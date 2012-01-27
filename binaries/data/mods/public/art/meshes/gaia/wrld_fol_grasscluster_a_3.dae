@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:49</created>
+    <modified>2012-01-26T22:20:49</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="wrld_fol_grasscluster_a_3-Geometry" name="wrld_fol_grasscluster_a_3-Geometry">
+      <mesh>
+        <source id="wrld_fol_grasscluster_a_3-Geometry-Position">
+          <float_array count="48" id="wrld_fol_grasscluster_a_3-Geometry-Position-array">0.2403860 0.8258380 1.5700460 -0.6846850 0.8258380 -0.0033530 0.2403870 -1.3630640 1.5700460 -0.6846830 -1.3630640 -0.0033530 -1.2313640 0.6231550 1.5826090 -1.4214130 -0.2853510 0.0103590 0.9242850 0.2445030 1.5563350 0.7342360 -0.6640030 -0.0159160 -0.7783110 -0.8100310 1.5700470 0.1432390 -0.8906550 -0.0033530 -0.5875370 1.3705420 1.5700470 0.3340130 1.2899170 -0.0033530 1.0709830 -0.8871980 1.5826090 1.3394900 0.0012870 0.0103580 -1.0434610 -0.3221100 1.5563350 -0.7749530 0.5663750 -0.0159160</float_array>
+          <technique_common>
+            <accessor count="16" source="wrld_fol_grasscluster_a_3-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_fol_grasscluster_a_3-Geometry-Normals">
+          <float_array count="48" id="wrld_fol_grasscluster_a_3-Geometry-Normal-array">-0.8620440 -0.0000010 0.5068330 -0.8620440 -0.0000010 0.5068330 -0.8620440 -0.0000010 0.5068330 -0.8620440 -0.0000010 0.5068330 -0.1430020 -0.8493580 0.5080770 -0.1430020 -0.8493580 0.5080770 -0.1430020 -0.8493580 0.5080770 -0.1430020 -0.8493580 0.5080760 0.8587640 -0.0751320 0.5068330 0.8587640 -0.0751320 0.5068330 0.8587640 -0.0751320 0.5068330 0.8587640 -0.0751320 0.5068330 0.2164840 0.8336620 0.5080770 0.2164840 0.8336620 0.5080770 0.2164840 0.8336620 0.5080770 0.2164840 0.8336620 0.5080770</float_array>
+          <technique_common>
+            <accessor count="16" source="wrld_fol_grasscluster_a_3-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_fol_grasscluster_a_3-Geometry-UV">
+          <float_array count="32" id="wrld_fol_grasscluster_a_3-Geometry-UV-array">0.0 1.0 0.0 0.0 1.0 1.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 1.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 1.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 1.0 1.0 0.0</float_array>
+          <technique_common>
+            <accessor count="16" source="wrld_fol_grasscluster_a_3-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_fol_grasscluster_a_3-Geometry-Vertex">
+          <input semantic="POSITION" source="#wrld_fol_grasscluster_a_3-Geometry-Position"/>
+        </vertices>
+        <triangles count="8" material="material0">
+          <input offset="0" semantic="VERTEX" source="#wrld_fol_grasscluster_a_3-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#wrld_fol_grasscluster_a_3-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#wrld_fol_grasscluster_a_3-Geometry-UV"/>
+          <p>0 1 2 3 2 1 4 5 6 7 6 5 8 9 10 11 10 9 12 13 14 15 14 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="wrld_fol_grasscluster_a_3" layer="L1" name="wrld_fol_grasscluster_a_3">
+        <instance_geometry url="#wrld_fol_grasscluster_a_3-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:54</created>
+    <modified>2012-01-26T22:20:54</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="cermy_a_b-Geometry" name="cermy_a_b-Geometry">
+      <mesh>
+        <source id="cermy_a_b-Geometry-Position">
+          <float_array count="63" id="cermy_a_b-Geometry-Position-array">-0.4126790 -0.0107470 1.4661070 -0.1712710 -0.0107470 1.5486130 0.0000010 -0.0107470 0.0000010 0.1712730 -0.0107460 1.5486130 0.4126810 -0.0107470 -1.4661070 0.1712730 -0.0107470 -1.5486130 -0.1712710 -0.0107470 -1.5486130 -0.5163120 -0.0107470 -0.3046480 -0.5163120 -0.0107470 0.3046480 -0.5874960 -0.0107470 -0.9139430 -0.5874960 -0.0107470 0.9139430 -0.5529510 -0.0107470 1.3010970 0.5874980 -0.0107460 0.9139430 0.5163130 -0.0107460 0.3046480 0.5529540 -0.0107460 1.3010970 0.4126820 -0.0107460 1.4661080 0.5163130 -0.0107460 -0.3046480 0.5874980 -0.0107470 -0.9139430 0.5529540 -0.0107470 -1.3010960 -0.4126790 -0.0107470 -1.4661070 -0.5529510 -0.0107470 -1.3010960</float_array>
+          <technique_common>
+            <accessor count="21" source="cermy_a_b-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cermy_a_b-Geometry-Normals">
+          <float_array count="63" id="cermy_a_b-Geometry-Normal-array">-0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000</float_array>
+          <technique_common>
+            <accessor count="21" source="cermy_a_b-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cermy_a_b-Geometry-UV">
+          <float_array count="42" id="cermy_a_b-Geometry-UV-array">0.880549 0.969094 0.643579 0.995492 0.5 0.5 0.356422 0.995492 0.111287 0.030906 0.356421 0.004508 0.643579 0.004508 0.958798 0.402525 0.958798 0.597475 0.982846 0.207576 0.978066 0.792424 0.972454 0.916297 0.021935 0.792424 0.041203 0.597475 0.027547 0.916297 0.119452 0.969094 0.041202 0.402525 0.017154 0.207576 0.036455 0.083703 0.888712 0.030906 0.963544 0.083703</float_array>
+          <technique_common>
+            <accessor count="21" source="cermy_a_b-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cermy_a_b-Geometry-Vertex">
+          <input semantic="POSITION" source="#cermy_a_b-Geometry-Position"/>
+        </vertices>
+        <triangles count="20" material="material0">
+          <input offset="0" semantic="VERTEX" source="#cermy_a_b-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#cermy_a_b-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#cermy_a_b-Geometry-UV"/>
+          <p>0 1 2 1 3 2 4 5 2 2 5 6 2 7 8 2 9 7 2 8 10 2 10 11 2 11 0 2 12 13 2 14 12 2 15 14 2 3 15 2 13 16 2 16 17 2 17 18 2 18 4 2 6 19 2 19 20 2 20 9</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="cermy_a_b" layer="L1" name="cermy_a_b">
+        <instance_geometry url="#cermy_a_b-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

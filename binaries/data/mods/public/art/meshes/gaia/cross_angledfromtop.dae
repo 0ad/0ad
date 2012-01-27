@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:47</created>
+    <modified>2012-01-26T22:20:47</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="cross_angledfromtop-Geometry" name="cross_angledfromtop-Geometry">
+      <mesh>
+        <source id="cross_angledfromtop-Geometry-Position">
+          <float_array count="48" id="cross_angledfromtop-Geometry-Position-array">2.3395520 -1.1358260 0.1428170 2.4704570 0.3005830 4.0137720 -2.4704560 -0.3005760 -0.0044600 -2.3395520 1.1358340 3.8664950 1.1358290 2.3395550 0.1428170 -0.3005800 2.4704600 4.0137720 0.3005800 -2.4704540 -0.0044600 -1.1358290 -2.3395480 3.8664950 -2.3395510 1.1358320 0.1428170 -2.4704570 -0.3005760 4.0137720 2.4704560 0.3005820 -0.0044600 2.3395510 -1.1358270 3.8664950 -1.1358300 -2.3395480 0.1428170 0.3005790 -2.4704540 4.0137720 -0.3005820 2.4704600 -0.0044600 1.1358270 2.3395550 3.8664950</float_array>
+          <technique_common>
+            <accessor count="16" source="cross_angledfromtop-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cross_angledfromtop-Geometry-Normals">
+          <float_array count="48" id="cross_angledfromtop-Geometry-Normal-array">-0.1707320 -0.9218710 0.3478560 -0.1707330 -0.9218710 0.3478560 -0.1707330 -0.9218710 0.3478560 -0.1707330 -0.9218710 0.3478560 0.9218710 -0.1707320 0.3478560 0.9218710 -0.1707320 0.3478560 0.9218710 -0.1707320 0.3478560 0.9218710 -0.1707320 0.3478560 0.1707320 0.9218710 0.3478560 0.1707330 0.9218710 0.3478560 0.1707330 0.9218710 0.3478560 0.1707330 0.9218710 0.3478560 -0.9218710 0.1707320 0.3478560 -0.9218710 0.1707320 0.3478560 -0.9218710 0.1707320 0.3478560 -0.9218710 0.1707320 0.3478560</float_array>
+          <technique_common>
+            <accessor count="16" source="cross_angledfromtop-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cross_angledfromtop-Geometry-UV">
+          <float_array count="32" id="cross_angledfromtop-Geometry-UV-array">0.011261 0.009076 0.011261 0.991037 0.991094 0.009076 0.991094 0.991037 0.011261 0.009076 0.011261 0.991037 0.991094 0.009076 0.991094 0.991037 0.011261 0.009076 0.011261 0.991037 0.991094 0.009076 0.991094 0.991037 0.011261 0.009076 0.011261 0.991037 0.991094 0.009076 0.991094 0.991037</float_array>
+          <technique_common>
+            <accessor count="16" source="cross_angledfromtop-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cross_angledfromtop-Geometry-Vertex">
+          <input semantic="POSITION" source="#cross_angledfromtop-Geometry-Position"/>
+        </vertices>
+        <triangles count="8" material="material0">
+          <input offset="0" semantic="VERTEX" source="#cross_angledfromtop-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#cross_angledfromtop-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#cross_angledfromtop-Geometry-UV"/>
+          <p>0 1 2 3 2 1 4 5 6 7 6 5 8 9 10 11 10 9 12 13 14 15 14 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="cross_angledfromtop" layer="L1" name="cross_angledfromtop">
+        <instance_geometry url="#cross_angledfromtop-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

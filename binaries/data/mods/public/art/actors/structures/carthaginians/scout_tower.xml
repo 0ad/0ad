@@ -6,7 +6,7 @@
       <animations>
         <animation event="0.5" load="0" name="melee" speed="100"/>
       </animations>
-      <mesh>structural/kart_scout_tower.pmd</mesh>
+      <mesh>structural/kart_scout_tower.dae</mesh>
       <props>
         <prop actor="props/structures/carthaginians/scout_tower.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:49</created>
+    <modified>2012-01-26T22:20:49</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="head_hero_a-Geometry" name="head_hero_a-Geometry">
+      <mesh>
+        <source id="head_hero_a-Geometry-Position">
+          <float_array count="99" id="head_hero_a-Geometry-Position-array">0.1805490 0.0609910 0.5882700 0.1126690 -0.2041770 0.5573200 0.1485430 -0.2042820 0.3935540 0.2172790 0.0123360 0.3095480 -0.0023030 -0.0131450 0.6575390 -0.0023040 -0.2599900 0.5717670 -0.0023040 -0.2724230 0.3878520 0.1519380 0.2243180 0.3588580 -0.0023030 0.2104260 0.0975480 -0.0023020 0.2848550 0.3995520 -0.0023020 0.2019600 0.5796270 0.1305010 0.0145240 0.0293540 0.1558460 -0.2302280 0.2807780 0.1554550 -0.1811470 0.1319530 -0.0023040 -0.3228620 0.2806290 -0.0023040 -0.3413680 0.1891920 0.0449720 -0.2685000 0.1851860 -0.0023040 -0.0936090 -0.0126290 0.1181870 -0.2183450 0.0285630 -0.0023040 -0.2746820 -0.0007970 -0.1533590 -0.2044410 0.3925650 -0.1172770 -0.2041760 0.5573200 -0.1851550 0.0609920 0.5882700 -0.2218860 0.0123370 0.3095480 -0.1565430 0.2243190 0.3588580 -0.1351080 0.0145250 0.0293540 -0.1227960 -0.2183440 0.0285630 -0.1598060 -0.1810740 0.1304170 -0.0487340 -0.2687580 0.1845420 -0.1604550 -0.2302260 0.2807790 -0.0833610 -0.2333270 0.3376520 0.0783510 -0.2319230 0.3369850 -0.0023040 -0.2829040 0.1492100</float_array>
+          <technique_common>
+            <accessor count="33" source="head_hero_a-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="head_hero_a-Geometry-Normals">
+          <float_array count="99" id="head_hero_a-Geometry-Normal-array">0.8237800 0.1258980 0.5527530 0.6107830 -0.4954250 0.6176550 0.6919620 -0.7098950 0.1312890 0.9984190 -0.0257090 -0.0499840 0.0000000 -0.0713650 0.9974500 0.0001850 -0.8924970 0.4510540 0.0028940 -0.9906770 0.1362000 0.7162200 0.6978520 -0.0056840 0.0000030 0.9189340 -0.3944110 0.0000030 0.9962980 0.0859660 0.0000030 0.7324110 0.6808630 0.8415380 0.1891880 -0.5059850 0.7010790 -0.7109360 0.0553010 0.9559260 -0.1973600 -0.2173820 0.0003310 -0.9651910 0.2615470 -0.0018280 -0.8760330 -0.4822480 0.5552890 -0.8121470 -0.1790850 -0.0000000 -0.0397640 -0.9992090 0.6783110 -0.4994870 -0.5388950 0.0000160 -0.8664710 -0.4992270 -0.6933170 -0.7079110 0.1348140 -0.6106800 -0.4953030 0.6178550 -0.8237610 0.1259560 0.5527690 -0.9984080 -0.0254290 -0.0503380 -0.7162150 0.6978560 -0.0056830 -0.8412430 0.1894100 -0.5063920 -0.6781000 -0.4994120 -0.5392280 -0.9558310 -0.1969300 -0.2181860 -0.5561950 -0.8114610 -0.1793800 -0.7029680 -0.7093400 0.0516970 -0.4202550 -0.8636250 0.2784540 0.4192830 -0.8642940 0.2778450 -0.0000030 -0.8933870 -0.4492890</float_array>
+          <technique_common>
+            <accessor count="33" source="head_hero_a-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="head_hero_a-Geometry-UV">
+          <float_array count="66" id="head_hero_a-Geometry-UV-array">0.575467 0.856497 0.172379 0.925502 0.196262 0.696697 0.570261 0.605047 0.210938 1.0 0.0 0.924492 0.0 0.691992 0.733148 0.679146 0.875 0.417969 0.875 0.679688 0.875 1.0 0.538591 0.235494 0.210938 0.556103 0.210938 0.351048 0.0 0.556445 0.0 0.435946 0.05768 0.430518 0.320194 0.018074 0.210938 0.185225 0.0 0.185566 0.1964 0.695375 0.172379 0.925502 0.575467 0.856497 0.570261 0.605047 0.733148 0.679146 0.538591 0.235494 0.210938 0.185225 0.210938 0.34879 0.056647 0.429671 0.210938 0.556103 0.098895 0.628283 0.104938 0.631435 0.0 0.383253</float_array>
+          <technique_common>
+            <accessor count="33" source="head_hero_a-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="head_hero_a-Geometry-Vertex">
+          <input semantic="POSITION" source="#head_hero_a-Geometry-Position"/>
+        </vertices>
+        <triangles count="60" material="material0">
+          <input offset="0" semantic="VERTEX" source="#head_hero_a-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#head_hero_a-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#head_hero_a-Geometry-UV"/>
+          <p>0 1 2 2 3 0 4 5 1 1 0 4 5 6 2 2 1 5 0 3 7 7 8 9 9 10 7 10 4 0 0 7 10 11 8 7 7 3 11 3 12 13 13 11 3 14 15 16 16 12 14 17 11 18 18 19 17 20 21 22 22 23 20 4 22 21 21 5 4 20 6 5 5 21 20 22 24 23 24 10 9 9 8 24 10 24 22 22 4 10 25 23 24 24 8 25 25 26 27 28 15 14 14 29 28 17 19 26 26 25 17 23 29 20 20 29 30 30 6 20 31 12 2 2 6 31 2 12 3 26 28 29 29 27 26 12 16 18 18 13 12 14 12 31 31 6 14 30 29 14 14 6 30 19 32 28 28 26 19 16 32 19 19 18 16 15 28 32 32 16 15 27 29 23 23 25 27 13 18 11</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="head_hero_a" layer="L1" name="head_hero_a">
+        <instance_geometry url="#head_hero_a-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

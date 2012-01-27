@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:52</created>
+    <modified>2012-01-26T22:20:52</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="wrld_barrel_a-Geometry" name="wrld_barrel_a-Geometry">
+      <mesh>
+        <source id="wrld_barrel_a-Geometry-Position">
+          <float_array count="81" id="wrld_barrel_a-Geometry-Position-array">0.6356410 0.0000000 0.0000000 0.3178210 0.5504810 0.0000000 0.4345570 0.7526740 0.9311740 0.8691130 0.0000000 0.9311740 -0.3178200 0.5504810 0.0000000 -0.4345560 0.7526740 0.9311740 -0.3178200 0.5504810 0.0000000 -0.6356400 0.0000000 0.0000000 -0.8691120 0.0000000 0.9311740 -0.4345560 0.7526740 0.9311740 -0.3178200 -0.5504810 0.0000000 -0.4345560 -0.7526740 0.9311740 0.3178210 -0.5504810 0.0000000 0.4345570 -0.7526740 0.9311740 0.3178210 0.5504810 1.8623480 0.6356410 0.0000000 1.8623480 -0.3178200 0.5504810 1.8623480 -0.6356400 0.0000000 1.8623480 -0.3178200 0.5504810 1.8623480 -0.3178200 -0.5504810 1.8623480 0.3178210 -0.5504810 1.8623480 0.3178210 0.5504810 1.8623480 -0.3178200 0.5504810 1.8623480 -0.6356400 0.0000000 1.8623480 -0.3178200 -0.5504810 1.8623480 0.3178210 -0.5504810 1.8623480 0.6356410 0.0000000 1.8623480</float_array>
+          <technique_common>
+            <accessor count="27" source="wrld_barrel_a-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_barrel_a-Geometry-Normals">
+          <float_array count="81" id="wrld_barrel_a-Geometry-Normal-array">0.9535050 0.1835020 -0.2390710 0.3178350 0.9175110 -0.2390710 0.5000000 0.8660250 0.0000000 1.0000000 0.0000000 0.0000000 -0.6356700 0.7340080 -0.2390710 -0.5000000 0.8660250 -0.0000000 -0.6356700 0.7340080 -0.2390710 -0.9535050 -0.1835020 -0.2390710 -1.0000000 -0.0000000 -0.0000000 -0.5000000 0.8660250 -0.0000000 -0.3178350 -0.9175110 -0.2390710 -0.5000000 -0.8660250 0.0000000 0.6356700 -0.7340090 -0.2390710 0.5000000 -0.8660250 -0.0000000 0.6356700 0.7340090 0.2390710 0.9535050 -0.1835020 0.2390710 -0.3178350 0.9175110 0.2390710 -0.9535050 0.1835020 0.2390710 -0.3178350 0.9175110 0.2390710 -0.6356700 -0.7340090 0.2390710 0.3178350 -0.9175110 0.2390710 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000</float_array>
+          <technique_common>
+            <accessor count="27" source="wrld_barrel_a-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_barrel_a-Geometry-UV">
+          <float_array count="54" id="wrld_barrel_a-Geometry-UV-array">1.0 0.404297 1.0 0.4375 0.935547 0.4375 0.935547 0.404297 1.0 0.46875 0.935547 0.46875 1.0 0.28125 1.0 0.310547 0.935547 0.310547 0.935547 0.28125 1.0 0.341797 0.935547 0.341797 1.0 0.376953 0.935547 0.376953 0.875 0.4375 0.875 0.404297 0.875 0.46875 0.875 0.310547 0.875 0.28125 0.875 0.341797 0.875 0.376953 0.804688 0.310547 0.851563 0.310547 0.875 0.349609 0.851563 0.392578 0.804688 0.392578 0.78125 0.349609</float_array>
+          <technique_common>
+            <accessor count="27" source="wrld_barrel_a-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_barrel_a-Geometry-Vertex">
+          <input semantic="POSITION" source="#wrld_barrel_a-Geometry-Position"/>
+        </vertices>
+        <triangles count="28" material="material0">
+          <input offset="0" semantic="VERTEX" source="#wrld_barrel_a-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#wrld_barrel_a-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#wrld_barrel_a-Geometry-UV"/>
+          <p>0 1 2 2 3 0 1 4 5 5 2 1 6 7 8 8 9 6 7 10 11 11 8 7 10 12 13 13 11 10 12 0 3 3 13 12 3 2 14 14 15 3 2 5 16 16 14 2 9 8 17 17 18 9 8 11 19 19 17 8 11 13 20 20 19 11 13 3 15 15 20 13 21 22 23 23 24 25 21 23 25 26 21 25</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="wrld_barrel_a" layer="L1" name="wrld_barrel_a">
+        <instance_geometry url="#wrld_barrel_a-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

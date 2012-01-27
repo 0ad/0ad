@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:46</created>
+    <modified>2012-01-26T22:20:46</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="bush_sm_1-Geometry" name="bush_sm_1-Geometry">
+      <mesh>
+        <source id="bush_sm_1-Geometry-Position">
+          <float_array count="48" id="bush_sm_1-Geometry-Position-array">1.3718900 -0.7002520 0.0034060 1.4094480 0.4651960 2.6942370 -1.4095360 -0.4652000 -0.0595750 -1.3719770 0.7002500 2.6312550 0.7339430 1.2399710 -0.0927810 -0.5273590 1.2739170 2.2381630 0.5272700 -1.2739140 -0.1680040 -0.7340330 -1.2399680 2.1629410 -1.3719770 0.8121010 -0.0586060 -1.4095360 -0.5834350 2.5204090 1.4094470 0.5834330 -0.1418350 1.3718880 -0.8121020 2.4371800 -0.5236180 -1.2087570 -0.2350020 0.0869960 -1.2763910 2.3433530 -0.0870840 1.2763910 -0.2731940 0.5235290 1.2087600 2.3051610</float_array>
+          <technique_common>
+            <accessor count="16" source="bush_sm_1-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="bush_sm_1-Geometry-Normals">
+          <float_array count="48" id="bush_sm_1-Geometry-Normal-array">-0.0862100 -0.9137720 0.3969750 -0.0862100 -0.9137720 0.3969750 -0.0862100 -0.9137720 0.3969750 -0.0862100 -0.9137720 0.3969750 0.8756960 -0.0862100 0.4751050 0.8756960 -0.0862100 0.4751050 0.8756960 -0.0862100 0.4751050 0.8756960 -0.0862100 0.4751050 0.0862100 0.8756960 0.4751050 0.0862100 0.8756960 0.4751050 0.0862100 0.8756960 0.4751050 0.0862090 0.8756960 0.4751050 -0.9576030 0.1717640 0.2312880 -0.9576030 0.1717640 0.2312880 -0.9576030 0.1717640 0.2312880 -0.9576030 0.1717630 0.2312880</float_array>
+          <technique_common>
+            <accessor count="16" source="bush_sm_1-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="bush_sm_1-Geometry-UV">
+          <float_array count="32" id="bush_sm_1-Geometry-UV-array">0.008501 0.028658 0.008499 0.489969 0.988492 0.028633 0.988541 0.487558 0.015628 0.042273 0.015628 0.498681 0.958967 0.042272 0.962842 0.49874 0.015628 0.042273 0.015628 0.498681 0.958967 0.042272 0.962842 0.49874 0.015628 0.042273 0.015628 0.498681 0.958967 0.042272 0.962842 0.49874</float_array>
+          <technique_common>
+            <accessor count="16" source="bush_sm_1-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="bush_sm_1-Geometry-Vertex">
+          <input semantic="POSITION" source="#bush_sm_1-Geometry-Position"/>
+        </vertices>
+        <triangles count="8" material="material0">
+          <input offset="0" semantic="VERTEX" source="#bush_sm_1-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#bush_sm_1-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#bush_sm_1-Geometry-UV"/>
+          <p>0 1 2 3 2 1 4 5 6 7 6 5 8 9 10 11 10 9 12 13 14 15 14 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="bush_sm_1" layer="L1" name="bush_sm_1">
+        <instance_geometry url="#bush_sm_1-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

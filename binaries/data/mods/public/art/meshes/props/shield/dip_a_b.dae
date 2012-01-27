@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:54</created>
+    <modified>2012-01-26T22:20:54</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="dip_a_b-Geometry" name="dip_a_b-Geometry">
+      <mesh>
+        <source id="dip_a_b-Geometry-Position">
+          <float_array count="36" id="dip_a_b-Geometry-Position-array">0.6447680 -0.0107460 0.0032730 0.3105800 -0.0107470 -1.3665930 0.1679380 -0.0107470 -1.2532620 0.0045990 -0.0107470 -1.2102910 -0.1484830 -0.0107470 -1.2527700 -0.3105810 -0.0107470 -1.3665930 -0.6447680 -0.0107470 0.0032730 -0.3105800 -0.0107470 1.3731390 -0.1484820 -0.0107470 1.2593150 0.0046000 -0.0107470 1.2168370 0.1679390 -0.0107460 1.2598080 0.3105800 -0.0107460 1.3731390</float_array>
+          <technique_common>
+            <accessor count="12" source="dip_a_b-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="dip_a_b-Geometry-Normals">
+          <float_array count="36" id="dip_a_b-Geometry-Normal-array">-0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000</float_array>
+          <technique_common>
+            <accessor count="12" source="dip_a_b-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="dip_a_b-Geometry-UV">
+          <float_array count="24" id="dip_a_b-Geometry-UV-array">0.010097 0.497601 0.266504 0.0005 0.375947 0.041626 0.50127 0.057219 0.618723 0.041804 0.743093 0.0005 0.999501 0.497601 0.743093 0.994702 0.618723 0.953397 0.50127 0.937982 0.375947 0.953576 0.266505 0.994702</float_array>
+          <technique_common>
+            <accessor count="12" source="dip_a_b-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="dip_a_b-Geometry-Vertex">
+          <input semantic="POSITION" source="#dip_a_b-Geometry-Position"/>
+        </vertices>
+        <triangles count="10" material="material0">
+          <input offset="0" semantic="VERTEX" source="#dip_a_b-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#dip_a_b-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#dip_a_b-Geometry-UV"/>
+          <p>0 1 2 0 2 3 0 3 4 0 4 5 0 5 6 0 6 7 0 7 8 0 8 9 0 9 10 11 0 10</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="dip_a_b" layer="L1" name="dip_a_b">
+        <instance_geometry url="#dip_a_b-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

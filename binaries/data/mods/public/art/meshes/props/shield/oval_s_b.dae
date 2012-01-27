@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:54</created>
+    <modified>2012-01-26T22:20:54</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="oval_s_b-Geometry" name="oval_s_b-Geometry">
+      <mesh>
+        <source id="oval_s_b-Geometry-Position">
+          <float_array count="39" id="oval_s_b-Geometry-Position-array">-0.3197570 -0.0107470 -1.1709170 -0.5662610 -0.0107470 -0.7512020 -0.6830420 -0.0107470 -0.1593960 -0.6433460 -0.0107470 0.4689250 -0.4562670 -0.0107470 0.9898220 -0.1646630 -0.0107470 1.2839620 0.1646630 -0.0107460 1.2839620 0.4562670 -0.0107460 0.9898220 0.6433460 -0.0107460 0.4689250 0.6830420 -0.0107460 -0.1593960 0.5662610 -0.0107470 -0.7512020 0.0000000 -0.0107470 -1.3223880 0.3197570 -0.0107470 -1.1709170</float_array>
+          <technique_common>
+            <accessor count="13" source="oval_s_b-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="oval_s_b-Geometry-Normals">
+          <float_array count="39" id="oval_s_b-Geometry-Normal-array">-0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000</float_array>
+          <technique_common>
+            <accessor count="13" source="oval_s_b-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="oval_s_b-Geometry-UV">
+          <float_array count="26" id="oval_s_b-Geometry-UV-array">0.733834 0.058558 0.9141 0.219432 0.999501 0.446268 0.970471 0.687101 0.833663 0.886758 0.620416 0.9995 0.379584 0.999501 0.166337 0.886758 0.029529 0.687101 0.0005 0.446268 0.0859 0.219432 0.5 0.0005 0.266166 0.058558</float_array>
+          <technique_common>
+            <accessor count="13" source="oval_s_b-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="oval_s_b-Geometry-Vertex">
+          <input semantic="POSITION" source="#oval_s_b-Geometry-Position"/>
+        </vertices>
+        <triangles count="11" material="material0">
+          <input offset="0" semantic="VERTEX" source="#oval_s_b-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#oval_s_b-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#oval_s_b-Geometry-UV"/>
+          <p>0 1 2 2 3 4 4 5 6 2 4 6 6 7 8 8 9 10 6 8 10 2 6 10 0 2 10 11 0 10 12 11 10</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="oval_s_b" layer="L1" name="oval_s_b">
+        <instance_geometry url="#oval_s_b-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

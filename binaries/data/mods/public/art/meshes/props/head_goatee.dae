@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:49</created>
+    <modified>2012-01-26T22:20:49</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="head_goatee-Geometry" name="head_goatee-Geometry">
+      <mesh>
+        <source id="head_goatee-Geometry-Position">
+          <float_array count="69" id="head_goatee-Geometry-Position-array">0.1805480 0.0528890 0.5641060 0.1126700 -0.1934190 0.5331560 0.1705880 -0.2383290 0.2566150 0.2172790 0.0042340 0.2853840 -0.0023030 -0.0212480 0.6333750 -0.0023030 -0.2556640 0.5476040 -0.0023030 -0.3240600 0.2564660 0.1519370 0.2162160 0.3346940 -0.0023030 0.2023240 0.0733840 -0.0023030 0.2767520 0.3753880 -0.0023030 0.1938570 0.5554630 0.1234530 0.0064220 0.0051900 0.1283050 -0.2264470 0.0044000 -0.0023030 -0.3170330 0.0782350 -0.0023030 -0.3223380 -0.0764630 -0.0023030 -0.1017110 -0.0367930 -0.1851550 0.0528890 0.5641060 -0.2218860 0.0042340 0.2853840 -0.1751940 -0.2383290 0.2566150 -0.1172770 -0.1934190 0.5331560 -0.1565440 0.2162160 0.3346940 -0.1280600 0.0064220 0.0051900 -0.1329120 -0.2264470 0.0044000</float_array>
+          <technique_common>
+            <accessor count="23" source="head_goatee-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="head_goatee-Geometry-Normals">
+          <float_array count="69" id="head_goatee-Geometry-Normal-array">0.8215940 0.1248310 0.5562380 0.5855150 -0.5863730 0.5597660 0.8921620 -0.4516520 0.0076410 0.9925810 0.0720470 -0.0979400 0.0000000 -0.0825270 0.9965890 0.0000000 -0.7318640 0.6814500 -0.0000000 -0.9966300 0.0820220 0.7177210 0.6962520 -0.0105070 -0.0000000 0.9162770 -0.4005450 -0.0000000 0.9962980 0.0859660 -0.0000000 0.7324110 0.6808630 0.8548560 0.1841280 -0.4850960 0.7226740 -0.5121680 -0.4641400 -0.0000000 -0.9999960 -0.0029240 0.0000000 -0.6057110 -0.7956840 -0.0000000 0.0916720 -0.9957890 -0.8215940 0.1248310 0.5562380 -0.9925810 0.0720470 -0.0979400 -0.8921620 -0.4516520 0.0076410 -0.5855150 -0.5863730 0.5597660 -0.7177210 0.6962520 -0.0105070 -0.8548560 0.1841280 -0.4850960 -0.7226740 -0.5121680 -0.4641400</float_array>
+          <technique_common>
+            <accessor count="23" source="head_goatee-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="head_goatee-Geometry-UV">
+          <float_array count="46" id="head_goatee-Geometry-UV-array">0.575467 0.856497 0.172379 0.903354 0.210938 0.546875 0.570261 0.605047 0.210938 1.0 0.0 0.902344 0.0 0.519531 0.733148 0.679146 0.875 0.417969 0.875 0.679688 0.875 1.0 0.538591 0.235494 0.210938 0.179688 0.0 0.286988 0.0 0.152344 0.320194 0.018074 0.575467 0.856497 0.570261 0.605047 0.210938 0.546875 0.172379 0.903354 0.733148 0.679146 0.538591 0.235494 0.210938 0.179688</float_array>
+          <technique_common>
+            <accessor count="23" source="head_goatee-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="head_goatee-Geometry-Vertex">
+          <input semantic="POSITION" source="#head_goatee-Geometry-Position"/>
+        </vertices>
+        <triangles count="40" material="material0">
+          <input offset="0" semantic="VERTEX" source="#head_goatee-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#head_goatee-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#head_goatee-Geometry-UV"/>
+          <p>0 1 2 2 3 0 4 5 1 1 0 4 6 2 1 1 5 6 0 3 7 7 8 9 9 10 7 10 4 0 0 7 10 11 8 7 7 3 11 11 3 2 2 12 11 12 13 14 15 11 12 12 14 15 16 17 18 18 19 16 4 16 19 19 5 4 6 5 19 19 18 6 16 20 17 20 10 9 9 8 20 10 20 16 16 4 10 21 17 20 20 8 21 18 17 21 21 22 18 22 14 13 15 14 22 22 21 15 12 2 6 6 13 12 6 18 22 22 13 6</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="head_goatee" layer="L1" name="head_goatee">
+        <instance_geometry url="#head_goatee-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:47</created>
+    <modified>2012-01-26T22:20:47</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="cross_large_tall-Geometry" name="cross_large_tall-Geometry">
+      <mesh>
+        <source id="cross_large_tall-Geometry-Position">
+          <float_array count="48" id="cross_large_tall-Geometry-Position-array">-2.3566250 -1.4063430 5.7832540 -1.0106110 -2.2271790 -0.0710760 1.0106110 2.2271790 6.3400530 2.3566250 1.4063430 0.4857230 -2.3409180 0.2829890 6.3036560 -2.5764140 -0.8728920 0.4486580 2.5764140 0.8728920 5.8203190 2.3409180 -0.2829890 -0.0346790 2.7335190 1.1273680 5.7832540 1.5504910 2.1694670 -0.0710760 -1.2135150 -1.8662380 6.3400530 -2.3965430 -0.8241390 0.4857230 2.2562130 -0.6851860 6.3036560 2.6888490 0.4122410 0.4486570 -2.6888490 -0.4122410 5.8203190 -2.2562130 0.6851860 -0.0346790</float_array>
+          <technique_common>
+            <accessor count="16" source="cross_large_tall-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cross_large_tall-Geometry-Normals">
+          <float_array count="48" id="cross_large_tall-Geometry-Normal-array">0.6897920 -0.6781130 0.2536740 0.6897920 -0.6781130 0.2536740 0.6897920 -0.6781130 0.2536740 0.6897920 -0.6781130 0.2536740 0.1350840 -0.9730910 0.1866720 0.1350840 -0.9730910 0.1866720 0.1350840 -0.9730910 0.1866720 0.1350840 -0.9730910 0.1866720 -0.5615590 0.7875920 0.2536740 -0.5615590 0.7875920 0.2536740 -0.5615590 0.7875920 0.2536740 -0.5615590 0.7875920 0.2536740 0.0359430 0.9817640 0.1866720 0.0359430 0.9817640 0.1866720 0.0359430 0.9817640 0.1866720 0.0359430 0.9817640 0.1866720</float_array>
+          <technique_common>
+            <accessor count="16" source="cross_large_tall-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cross_large_tall-Geometry-UV">
+          <float_array count="32" id="cross_large_tall-Geometry-UV-array">0.0 1.0 0.0 0.0 1.0 1.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 1.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 1.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 1.0 1.0 0.0</float_array>
+          <technique_common>
+            <accessor count="16" source="cross_large_tall-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cross_large_tall-Geometry-Vertex">
+          <input semantic="POSITION" source="#cross_large_tall-Geometry-Position"/>
+        </vertices>
+        <triangles count="8" material="material0">
+          <input offset="0" semantic="VERTEX" source="#cross_large_tall-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#cross_large_tall-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#cross_large_tall-Geometry-UV"/>
+          <p>0 1 2 3 2 1 4 5 6 7 6 5 8 9 10 11 10 9 12 13 14 15 14 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="cross_large_tall" layer="L1" name="cross_large_tall">
+        <instance_geometry url="#cross_large_tall-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

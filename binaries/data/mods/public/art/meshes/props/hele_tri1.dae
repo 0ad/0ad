@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:50</created>
+    <modified>2012-01-26T22:20:50</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="hele_tri1-Geometry" name="hele_tri1-Geometry">
+      <mesh>
+        <source id="hele_tri1-Geometry-Position">
+          <float_array count="66" id="hele_tri1-Geometry-Position-array">0.0155460 11.2114940 8.0365270 0.2550930 11.1187360 7.8157210 0.8773980 9.1177620 9.0276430 0.0155460 9.4110490 9.7650490 -0.2240010 11.1187360 7.8157210 -0.8463050 9.1177620 9.0276430 -1.1706510 8.6783930 7.9854080 -0.6413120 10.8724350 7.2290410 0.6724040 10.8724350 7.2290410 1.2017440 8.6783930 7.9854070 0.8773980 9.1177620 9.0276430 0.2690650 11.1370090 7.8190990 0.0155460 11.2350390 8.0523710 0.0155460 9.4110490 9.7650490 -0.2379730 11.1370090 7.8190990 -0.8463050 9.1177620 9.0276430 -0.6663810 10.8847550 7.2186520 -1.1706510 8.6783930 7.9854080 0.6974730 10.8847550 7.2186520 -0.6663810 10.8847550 7.2186520 1.2017440 8.6783930 7.9854070 0.6974730 10.8847550 7.2186520</float_array>
+          <technique_common>
+            <accessor count="22" source="hele_tri1-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hele_tri1-Geometry-Normals">
+          <float_array count="66" id="hele_tri1-Geometry-Normal-array">-0.2781810 -0.6714940 -0.6868120 -0.7424620 -0.5005480 -0.4451990 -0.7851670 -0.4630540 -0.4112100 0.2892510 -0.6647400 -0.6888060 0.7877550 -0.4494730 -0.4212090 0.8125780 -0.4653060 -0.3510090 0.7277940 -0.4036260 -0.5544380 0.5574600 -0.3875910 -0.7341740 -0.7266020 -0.4198200 -0.5438760 -0.6707860 -0.3811600 -0.6362100 0.7732480 0.4790370 0.4154650 0.8281580 0.4158260 0.3758240 0.2793150 0.6634880 0.6940940 -0.2900450 0.6569650 0.6958950 -0.7151050 0.4997360 0.4887620 -0.8185080 0.4335420 0.3769430 -0.8832910 0.3762670 0.2796780 -0.9443360 0.2773300 0.1769670 -0.1994440 -0.3620290 -0.9105810 0.1994440 -0.3620290 -0.9105810 0.8867370 0.3563070 0.2945210 0.8267020 0.3437410 0.4454280</float_array>
+          <technique_common>
+            <accessor count="22" source="hele_tri1-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hele_tri1-Geometry-UV">
+          <float_array count="44" id="hele_tri1-Geometry-UV-array">0.911629 0.499989 0.908422 0.491724 0.982677 0.466058 0.993093 0.50054 0.908909 0.508442 0.982672 0.535111 0.965588 0.567838 0.899773 0.528765 0.899759 0.472678 0.966323 0.435047 0.982672 0.535111 0.908909 0.508442 0.911629 0.499989 0.993093 0.50054 0.908422 0.491724 0.982677 0.466058 0.899759 0.472678 0.966323 0.435047 0.897478 0.472041 0.896919 0.529848 0.965588 0.567838 0.899773 0.528765</float_array>
+          <technique_common>
+            <accessor count="22" source="hele_tri1-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="hele_tri1-Geometry-Vertex">
+          <input semantic="POSITION" source="#hele_tri1-Geometry-Position"/>
+        </vertices>
+        <triangles count="18" material="material0">
+          <input offset="0" semantic="VERTEX" source="#hele_tri1-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#hele_tri1-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#hele_tri1-Geometry-UV"/>
+          <p>0 1 2 2 3 0 4 0 3 3 5 4 6 7 4 4 5 6 2 1 8 8 9 2 10 11 12 12 13 10 13 12 14 14 15 13 15 14 16 16 17 15 18 9 8 7 6 19 20 21 11 11 10 20</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="hele_tri1" layer="L1" name="hele_tri1">
+        <instance_geometry url="#hele_tri1-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

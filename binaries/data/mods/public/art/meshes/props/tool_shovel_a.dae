@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:51</created>
+    <modified>2012-01-26T22:20:51</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="tool_shovel_a-Geometry" name="tool_shovel_a-Geometry">
+      <mesh>
+        <source id="tool_shovel_a-Geometry-Position">
+          <float_array count="84" id="tool_shovel_a-Geometry-Position-array">0.0106250 -0.0641150 -1.6588920 0.0587340 0.0260510 1.2322430 0.0106250 -0.0521800 1.2322430 0.0697440 0.0320190 -1.6588920 0.0697440 0.0320190 -1.6588920 -0.0374850 0.0260510 1.2322430 0.0587340 0.0260510 1.2322430 -0.0484940 0.0320190 -1.6588920 -0.0484940 0.0320190 -1.6588920 0.0106250 -0.0521800 1.2322430 -0.0374850 0.0260510 1.2322430 0.0106250 -0.0641150 -1.6588920 0.0017950 -0.0132020 1.1381080 0.0017950 -0.0353060 2.2529940 -0.1852180 -0.0509130 2.0779420 -0.2894020 -0.0509130 1.8288360 -0.3290540 -0.0509140 1.2942930 0.3326440 -0.0509130 1.2942930 0.2929920 -0.0509130 1.8288360 0.1893900 -0.0509130 2.0779420 0.0017950 -0.0353060 2.2529940 0.0017950 0.0203070 1.1381080 -0.1852180 -0.0509130 2.0779420 -0.2894020 -0.0509130 1.8288360 -0.3290540 -0.0509140 1.2942930 0.3326440 -0.0509130 1.2942930 0.2929920 -0.0509130 1.8288360 0.1893900 -0.0509130 2.0779420</float_array>
+          <technique_common>
+            <accessor count="28" source="tool_shovel_a-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="tool_shovel_a-Geometry-Normals">
+          <float_array count="84" id="tool_shovel_a-Geometry-Normal-array">0.4765280 -0.8791520 0.0036290 0.9996020 -0.0279780 0.0037490 -0.4765280 -0.8791520 0.0036290 0.4998010 0.8661330 0.0036910 0.4998010 0.8661330 0.0036910 -0.4998010 0.8661330 0.0036910 0.9996020 -0.0279780 0.0037490 -0.9996010 -0.0279780 0.0037490 -0.9996010 -0.0279780 0.0037490 -0.4765280 -0.8791520 0.0036290 -0.4998010 0.8661330 0.0036910 0.4765280 -0.8791520 0.0036290 0.0000220 -0.9998310 -0.0183900 0.0001570 -0.9998030 -0.0198230 0.0831720 -0.9962600 -0.0234250 0.0871820 -0.9960360 -0.0176260 0.1094620 -0.9939580 -0.0081190 -0.1094620 -0.9939580 -0.0081190 -0.0872710 -0.9960290 -0.0175880 -0.0831060 -0.9962660 -0.0233870 -0.0001980 0.9987580 0.0498210 -0.0000100 0.9992420 0.0389270 -0.1253030 0.9908500 0.0501530 -0.1628190 0.9861030 0.0330350 -0.2036030 0.9789370 0.0151030 0.2036020 0.9789370 0.0151020 0.1629850 0.9860780 0.0329620 0.1252730 0.9908570 0.0500820</float_array>
+          <technique_common>
+            <accessor count="28" source="tool_shovel_a-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="tool_shovel_a-Geometry-UV">
+          <float_array count="56" id="tool_shovel_a-Geometry-UV-array">0.816187 0.002455 0.995929 0.999925 0.816187 0.999925 0.995929 0.002455 0.74167 0.005541 0.930978 0.998228 0.74167 0.998228 0.930978 0.005541 0.616858 0.008628 0.777468 0.998923 0.616858 0.998923 0.777468 0.008628 0.305114 0.324347 0.305112 1.000742 0.052202 0.984282 0.004013 0.757272 0.002041 0.434074 0.608186 0.432437 0.601352 0.758914 0.555592 0.956407 0.306177 1.002515 0.302437 0.328588 0.562816 0.954646 0.603125 0.761512 0.603252 0.430869 0.00278 0.432531 0.011444 0.762975 0.057644 0.980183</float_array>
+          <technique_common>
+            <accessor count="28" source="tool_shovel_a-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="tool_shovel_a-Geometry-Vertex">
+          <input semantic="POSITION" source="#tool_shovel_a-Geometry-Position"/>
+        </vertices>
+        <triangles count="18" material="material0">
+          <input offset="0" semantic="VERTEX" source="#tool_shovel_a-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#tool_shovel_a-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#tool_shovel_a-Geometry-UV"/>
+          <p>0 1 2 0 3 1 4 5 6 4 7 5 8 9 10 8 11 9 12 13 14 12 14 15 12 15 16 12 17 18 12 18 19 12 19 13 20 21 22 22 21 23 23 21 24 25 21 26 26 21 27 27 21 20</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="tool_shovel_a" layer="L1" name="tool_shovel_a">
+        <instance_geometry url="#tool_shovel_a-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

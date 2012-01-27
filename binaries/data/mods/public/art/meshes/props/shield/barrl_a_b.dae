@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:54</created>
+    <modified>2012-01-26T22:20:54</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="barrl_a_b-Geometry" name="barrl_a_b-Geometry">
+      <mesh>
+        <source id="barrl_a_b-Geometry-Position">
+          <float_array count="30" id="barrl_a_b-Geometry-Position-array">0.4471740 -0.0107470 -1.2585810 -0.4471740 -0.0107470 -1.2585810 -0.5929720 -0.0107470 -0.6292900 0.5929720 -0.0107460 -0.6292900 -0.6426890 -0.0107470 0.0000000 -0.4471740 -0.0107470 1.2585810 0.4471740 -0.0107460 1.2585810 0.5929720 -0.0107460 0.6292900 -0.5929720 -0.0107470 0.6292900 0.6426890 -0.0107460 0.0000000</float_array>
+          <technique_common>
+            <accessor count="10" source="barrl_a_b-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="barrl_a_b-Geometry-Normals">
+          <float_array count="30" id="barrl_a_b-Geometry-Normal-array">-0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000 -0.0000000 1.0000000 -0.0000000</float_array>
+          <technique_common>
+            <accessor count="10" source="barrl_a_b-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="barrl_a_b-Geometry-UV">
+          <float_array count="20" id="barrl_a_b-Geometry-UV-array">0.124391 0.0005 0.885206 0.000499 0.979869 0.24845 0.039326 0.24845 1.004299 0.496401 0.885206 0.992302 0.124392 0.992302 0.039326 0.744352 0.97987 0.744351 0.017295 0.496401</float_array>
+          <technique_common>
+            <accessor count="10" source="barrl_a_b-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="barrl_a_b-Geometry-Vertex">
+          <input semantic="POSITION" source="#barrl_a_b-Geometry-Position"/>
+        </vertices>
+        <triangles count="8" material="material0">
+          <input offset="0" semantic="VERTEX" source="#barrl_a_b-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#barrl_a_b-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#barrl_a_b-Geometry-UV"/>
+          <p>0 1 2 3 0 2 3 2 4 5 6 7 8 5 7 8 7 9 4 8 9 3 4 9</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="barrl_a_b" layer="L1" name="barrl_a_b">
+        <instance_geometry url="#barrl_a_b-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

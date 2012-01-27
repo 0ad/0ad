@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:54</created>
+    <modified>2012-01-26T22:20:54</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="peltast_lboot-Geometry" name="peltast_lboot-Geometry">
+      <mesh>
+        <source id="peltast_lboot-Geometry-Position">
+          <float_array count="90" id="peltast_lboot-Geometry-Position-array">-0.1123090 0.0742870 0.3745550 -0.0850510 -0.0524590 0.2025480 0.0208400 -0.0490750 0.4147790 0.0208400 -0.0490750 0.4147790 0.1178400 -0.0366370 0.2483170 0.1355190 0.0842850 0.3936610 0.1355190 0.0842850 0.3936610 0.1357990 0.1290890 0.2304720 0.0615430 0.1880900 0.3682010 0.0615430 0.1880900 0.3682010 -0.0078960 0.2190710 0.2011670 -0.0595410 0.1903610 0.3653270 -0.0595410 0.1903610 0.3653270 -0.1373730 0.1375140 0.1979890 -0.1123090 0.0742870 0.3745550 -0.1123090 0.0742870 0.3745550 0.0208400 -0.0490750 0.4147790 -0.0850510 -0.0524590 0.2025480 0.0208400 -0.0490750 0.4147790 0.1355190 0.0842850 0.3936610 0.1178400 -0.0366370 0.2483170 0.1355190 0.0842850 0.3936610 0.0615430 0.1880900 0.3682010 0.1357990 0.1290890 0.2304720 0.0615430 0.1880900 0.3682010 -0.0595410 0.1903610 0.3653270 -0.0078960 0.2190710 0.2011670 -0.0595410 0.1903610 0.3653270 -0.1123090 0.0742870 0.3745550 -0.1373730 0.1375140 0.1979890</float_array>
+          <technique_common>
+            <accessor count="30" source="peltast_lboot-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="peltast_lboot-Geometry-Normals">
+          <float_array count="90" id="peltast_lboot-Geometry-Normal-array">-0.6908480 -0.6299910 0.3547410 -0.6908480 -0.6299910 0.3547410 -0.6908480 -0.6299910 0.3547410 0.7295670 -0.5667550 0.3827810 0.7295670 -0.5667550 0.3827810 0.7295670 -0.5667550 0.3827810 0.7834230 0.5989670 0.1657900 0.7834230 0.5989670 0.1657900 0.7834230 0.5989670 0.1657900 0.0142670 0.9841780 0.1766090 0.0142670 0.9841780 0.1766090 0.0142670 0.9841780 0.1766090 -0.8676480 0.4160740 0.2721570 -0.8676480 0.4160740 0.2721570 -0.8676480 0.4160740 0.2721570 0.6908480 0.6299910 -0.3547410 0.6908480 0.6299910 -0.3547410 0.6908480 0.6299910 -0.3547410 -0.7295670 0.5667550 -0.3827810 -0.7295670 0.5667550 -0.3827810 -0.7295670 0.5667550 -0.3827810 -0.7834240 -0.5989670 -0.1657900 -0.7834240 -0.5989670 -0.1657900 -0.7834240 -0.5989670 -0.1657900 -0.0142670 -0.9841780 -0.1766090 -0.0142670 -0.9841780 -0.1766090 -0.0142670 -0.9841780 -0.1766090 0.8676480 -0.4160740 -0.2721570 0.8676480 -0.4160740 -0.2721570 0.8676480 -0.4160740 -0.2721570</float_array>
+          <technique_common>
+            <accessor count="30" source="peltast_lboot-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="peltast_lboot-Geometry-UV">
+          <float_array count="60" id="peltast_lboot-Geometry-UV-array">0.00694 0.00871 0.988704 0.495549 0.00694 0.989257 0.00694 0.00871 0.988704 0.495549 0.00694 0.989257 0.00694 0.00871 0.988704 0.495549 0.00694 0.989257 0.00694 0.00871 0.988704 0.495549 0.00694 0.989257 0.00694 0.00871 0.988704 0.495549 0.00694 0.989257 0.00694 0.00871 0.00694 0.989257 0.988704 0.495549 0.00694 0.00871 0.00694 0.989257 0.988704 0.495549 0.00694 0.00871 0.00694 0.989257 0.988704 0.495549 0.00694 0.00871 0.00694 0.989257 0.988704 0.495549 0.00694 0.00871 0.00694 0.989257 0.988704 0.495549</float_array>
+          <technique_common>
+            <accessor count="30" source="peltast_lboot-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="peltast_lboot-Geometry-Vertex">
+          <input semantic="POSITION" source="#peltast_lboot-Geometry-Position"/>
+        </vertices>
+        <triangles count="10" material="material0">
+          <input offset="0" semantic="VERTEX" source="#peltast_lboot-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#peltast_lboot-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#peltast_lboot-Geometry-UV"/>
+          <p>0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="peltast_lboot" layer="L1" name="peltast_lboot">
+        <instance_geometry url="#peltast_lboot-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

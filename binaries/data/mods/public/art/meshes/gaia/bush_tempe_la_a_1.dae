@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:46</created>
+    <modified>2012-01-26T22:20:46</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="bush_tempe_la_a_1-Geometry" name="bush_tempe_la_a_1-Geometry">
+      <mesh>
+        <source id="bush_tempe_la_a_1-Geometry-Position">
+          <float_array count="36" id="bush_tempe_la_a_1-Geometry-Position-array">-3.9682570 2.9476390 3.1933900 0.3038280 -1.0688190 -1.1490470 3.6600280 2.9621190 3.7508110 3.1334590 3.9873270 3.1933920 -0.8829980 -0.2847540 -1.1490480 3.1479400 -3.6409560 3.7508120 3.9543760 -3.1792370 3.2652800 -0.3177040 0.8372210 -1.0771610 -3.6739080 -3.1937160 3.8226980 -3.1502580 -4.1267070 3.1933910 0.8662020 0.1453710 -1.1490480 -3.1647370 3.5015740 3.7508090</float_array>
+          <technique_common>
+            <accessor count="12" source="bush_tempe_la_a_1-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="bush_tempe_la_a_1-Geometry-Normals">
+          <float_array count="36" id="bush_tempe_la_a_1-Geometry-Normal-array">-0.0463080 -0.7556350 0.6533530 -0.0463080 -0.7556350 0.6533530 -0.0463080 -0.7556350 0.6533530 -0.7556360 0.0463080 0.6533530 -0.7556360 0.0463080 0.6533530 -0.7556360 0.0463080 0.6533530 0.0463080 0.7556360 0.6533530 0.0463080 0.7556360 0.6533530 0.0463080 0.7556360 0.6533530 0.7556350 -0.0463080 0.6533530 0.7556350 -0.0463080 0.6533530 0.7556350 -0.0463080 0.6533530</float_array>
+          <technique_common>
+            <accessor count="12" source="bush_tempe_la_a_1-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="bush_tempe_la_a_1-Geometry-UV">
+          <float_array count="24" id="bush_tempe_la_a_1-Geometry-UV-array">-0.555094 0.230541 1.274087 -0.182317 0.556508 1.555296 -0.555094 0.230541 1.274087 -0.182317 0.556508 1.555296 -0.555094 0.230541 1.274087 -0.182317 0.556508 1.555296 -0.555094 0.230541 1.274087 -0.182317 0.556508 1.555296</float_array>
+          <technique_common>
+            <accessor count="12" source="bush_tempe_la_a_1-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="bush_tempe_la_a_1-Geometry-Vertex">
+          <input semantic="POSITION" source="#bush_tempe_la_a_1-Geometry-Position"/>
+        </vertices>
+        <triangles count="4" material="material0">
+          <input offset="0" semantic="VERTEX" source="#bush_tempe_la_a_1-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#bush_tempe_la_a_1-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#bush_tempe_la_a_1-Geometry-UV"/>
+          <p>0 1 2 3 4 5 6 7 8 9 10 11</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="bush_tempe_la_a_1" layer="L1" name="bush_tempe_la_a_1">
+        <instance_geometry url="#bush_tempe_la_a_1-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

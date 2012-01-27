@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:54</created>
+    <modified>2012-01-26T22:20:54</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="hex_s_f-Geometry" name="hex_s_f-Geometry">
+      <mesh>
+        <source id="hex_s_f-Geometry-Position">
+          <float_array count="51" id="hex_s_f-Geometry-Position-array">-0.3105800 -0.0281940 -1.3740530 0.3105800 -0.0281940 -1.3740530 0.6447680 -0.0281940 -0.0004570 -0.6447680 -0.0281940 -0.0004570 0.3105800 -0.0281940 1.3731390 -0.3105800 -0.0281940 1.3731390 -0.3105800 -0.0281940 -1.3740530 0.3105800 -0.0281940 -1.3740530 0.6447680 -0.0281940 -0.0004570 -0.6447680 -0.0281940 -0.0004570 0.3105800 -0.0281940 1.3731390 -0.3105800 -0.0281940 1.3731390 -0.0009110 -0.1601570 -0.0087440 0.1076700 -0.0249540 -0.0087440 -0.0009110 -0.0249540 0.9827640 -0.1094920 -0.0249540 -0.0087440 -0.0009110 -0.0249530 -1.0002520</float_array>
+          <technique_common>
+            <accessor count="17" source="hex_s_f-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hex_s_f-Geometry-Normals">
+          <float_array count="51" id="hex_s_f-Geometry-Normal-array">0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 -0.0000000 -1.0000000 -0.0000000 0.7796890 -0.6261670 -0.0000000 -0.0000000 -0.9908300 0.1351100 -0.7796890 -0.6261670 -0.0000000 -0.0000000 -0.9908300 -0.1351110</float_array>
+          <technique_common>
+            <accessor count="17" source="hex_s_f-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hex_s_f-Geometry-UV">
+          <float_array count="34" id="hex_s_f-Geometry-UV-array">0.259394 0.0005 0.740606 0.000499 0.9995 0.5 0.0005 0.5 0.740606 0.9995 0.259394 0.999501 0.268966 0.0005 0.743954 0.000499 0.999501 0.495386 0.013419 0.495386 0.743954 0.990272 0.268966 0.990272 0.505763 0.4924 0.588793 0.4924 0.505764 0.849626 0.422734 0.4924 0.505763 0.135174</float_array>
+          <technique_common>
+            <accessor count="17" source="hex_s_f-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="hex_s_f-Geometry-Vertex">
+          <input semantic="POSITION" source="#hex_s_f-Geometry-Position"/>
+        </vertices>
+        <triangles count="12" material="material0">
+          <input offset="0" semantic="VERTEX" source="#hex_s_f-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#hex_s_f-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#hex_s_f-Geometry-UV"/>
+          <p>0 1 2 3 0 2 3 2 4 3 4 5 6 7 8 9 6 8 9 8 10 9 10 11 12 13 14 12 14 15 12 15 16 12 16 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="hex_s_f" layer="L1" name="hex_s_f">
+        <instance_geometry url="#hex_s_f-Geometry"/>
+        <node id="prop_back" name="prop_back">
+          <matrix sid="transform">1.0000000 0.0000000 0.0000000 0.0000000 0.0000000 1.0000000 -0.0000002 -0.0000000 0.0000000 0.0000002 1.0000000 0.0000000 0.0000000 0.0000000 0.0000000 1.0000000</matrix>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:52</created>
+    <modified>2012-01-26T22:20:52</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="wrld_well_water-Geometry" name="wrld_well_water-Geometry">
+      <mesh>
+        <source id="wrld_well_water-Geometry-Position">
+          <float_array count="18" id="wrld_well_water-Geometry-Position-array">-0.1096240 -0.0544030 0.0579970 1.6213520 -0.0544030 0.0579970 0.4252770 1.5918520 0.0579970 -1.5100120 0.9630380 0.0579970 -1.5100120 -1.0718450 0.0579970 0.4252770 -1.7006590 0.0579970</float_array>
+          <technique_common>
+            <accessor count="6" source="wrld_well_water-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_well_water-Geometry-Normals">
+          <float_array count="18" id="wrld_well_water-Geometry-Normal-array">0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000</float_array>
+          <technique_common>
+            <accessor count="6" source="wrld_well_water-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_well_water-Geometry-UV">
+          <float_array count="12" id="wrld_well_water-Geometry-UV-array">0.474994 0.5 1.000725 0.5 0.637454 1.0 0.049669 0.809017 0.049669 0.190983 0.637454 0.0</float_array>
+          <technique_common>
+            <accessor count="6" source="wrld_well_water-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_well_water-Geometry-Vertex">
+          <input semantic="POSITION" source="#wrld_well_water-Geometry-Position"/>
+        </vertices>
+        <triangles count="5" material="material0">
+          <input offset="0" semantic="VERTEX" source="#wrld_well_water-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#wrld_well_water-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#wrld_well_water-Geometry-UV"/>
+          <p>0 1 2 0 2 3 0 3 4 0 4 5 0 5 1</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="wrld_well_water" layer="L1" name="wrld_well_water">
+        <instance_geometry url="#wrld_well_water-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

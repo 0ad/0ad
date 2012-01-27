@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:58</created>
+    <modified>2012-01-26T22:20:58</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="r_sheath-Geometry" name="r_sheath-Geometry">
+      <mesh>
+        <source id="r_sheath-Geometry-Position">
+          <float_array count="84" id="r_sheath-Geometry-Position-array">-0.1040970 0.2432280 -0.5708790 0.0009880 -0.2372130 0.2767200 0.0428800 -0.1133450 0.3417380 -0.0622060 0.3670960 -0.5058610 -0.1109180 0.4321060 -0.7623230 -0.1489960 0.4401210 -0.7530590 -0.1002840 0.3751110 -0.4965970 0.0048020 -0.1053300 0.3510020 -0.1421750 0.2512440 -0.5616140 -0.0370900 -0.2291980 0.2859840 -0.1040970 0.2432280 -0.5708790 -0.1109180 0.4321060 -0.7623230 -0.1489960 0.4401210 -0.7530590 -0.1421750 0.2512440 -0.5616140 -0.1109180 0.4321060 -0.7623230 -0.0622060 0.3670960 -0.5058610 -0.1002840 0.3751110 -0.4965970 -0.1489960 0.4401210 -0.7530590 0.0428800 -0.1133450 0.3417380 0.0048020 -0.1053300 0.3510020 0.0428800 -0.1133450 0.3417380 0.0009880 -0.2372130 0.2767200 -0.0370900 -0.2291980 0.2859840 0.0048020 -0.1053300 0.3510020 0.0009880 -0.2372130 0.2767200 -0.1040970 0.2432280 -0.5708790 -0.1421750 0.2512440 -0.5616140 -0.0370900 -0.2291980 0.2859840</float_array>
+          <technique_common>
+            <accessor count="28" source="r_sheath-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="r_sheath-Geometry-Normals">
+          <float_array count="84" id="r_sheath-Geometry-Normal-array">0.9519500 -0.2003770 -0.2316020 0.9519500 -0.2003770 -0.2316020 0.9519500 -0.2003770 -0.2316020 0.9519500 -0.2003770 -0.2316020 0.9519500 -0.2003770 -0.2316020 -0.9519510 0.2003770 0.2316020 -0.9519500 0.2003770 0.2316020 -0.9519500 0.2003770 0.2316020 -0.9519510 0.2003770 0.2316020 -0.9519500 0.2003770 0.2316020 -0.3016150 -0.7445200 -0.5955830 -0.3052010 -0.6833140 -0.6632750 -0.3052010 -0.6833140 -0.6632760 -0.2954500 -0.7999540 -0.5222870 0.2469900 0.9494490 0.1937580 0.2758830 0.8894150 0.3644590 0.2624800 0.9234420 0.2799270 0.2469900 0.9494490 0.1937580 0.2868630 0.8482220 0.4452300 0.2868640 0.8482220 0.4452290 0.1072360 -0.4902750 0.8649460 0.1072360 -0.4902750 0.8649460 0.1072360 -0.4902750 0.8649460 0.1072360 -0.4902750 0.8649460 -0.2868630 -0.8482220 -0.4452300 -0.3016150 -0.7445200 -0.5955830 -0.2954500 -0.7999540 -0.5222870 -0.2868630 -0.8482220 -0.4452300</float_array>
+          <technique_common>
+            <accessor count="28" source="r_sheath-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="r_sheath-Geometry-UV">
+          <float_array count="56" id="r_sheath-Geometry-UV-array">0.765625 0.171875 0.765625 0.84375 -0.0 0.84375 -0.0 0.171875 0.375 0.0 0.375 0.0 0.765625 0.171875 0.765625 0.84375 -0.0 0.171875 -0.0 0.84375 1.0 0.0 1.0 0.171875 0.765625 0.171875 0.765625 0.0 0.765625 0.0 0.765625 0.171875 1.0 0.171875 1.0 0.0 0.765625 0.84375 1.0 0.84375 -0.0 0.84375 1.0 0.84375 1.0 1.0 -0.0 1.0 1.0 0.84375 1.0 0.171875 0.765625 0.171875 0.765625 0.84375</float_array>
+          <technique_common>
+            <accessor count="28" source="r_sheath-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="r_sheath-Geometry-Vertex">
+          <input semantic="POSITION" source="#r_sheath-Geometry-Position"/>
+        </vertices>
+        <triangles count="16" material="material0">
+          <input offset="0" semantic="VERTEX" source="#r_sheath-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#r_sheath-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#r_sheath-Geometry-UV"/>
+          <p>0 2 1 2 4 3 0 4 2 5 7 6 8 7 5 8 9 7 10 12 11 12 10 13 14 16 15 16 14 17 15 19 18 19 15 16 20 22 21 22 20 23 24 26 25 26 24 27</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="r_sheath" layer="L1" name="r_sheath">
+        <instance_geometry url="#r_sheath-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

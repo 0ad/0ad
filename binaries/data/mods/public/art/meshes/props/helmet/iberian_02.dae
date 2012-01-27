@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:53</created>
+    <modified>2012-01-26T22:20:53</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="iberian_02-Geometry" name="iberian_02-Geometry">
+      <mesh>
+        <source id="iberian_02-Geometry-Position">
+          <float_array count="33" id="iberian_02-Geometry-Position-array">-0.0043090 0.2664230 0.3772050 0.1344520 0.1947690 0.3090200 0.1135560 0.3986770 0.1793590 -0.1283780 0.3938650 0.1824190 -0.1410750 0.1869830 0.3139710 0.0834450 0.0710430 0.2036460 0.1906110 0.2779250 0.0720940 -0.0075360 0.4009730 -0.0061500 -0.2008480 0.2701390 0.0770440 -0.0868400 0.0662310 0.2067050 -0.0037020 0.1984850 0.0088600</float_array>
+          <technique_common>
+            <accessor count="11" source="iberian_02-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="iberian_02-Geometry-Normals">
+          <float_array count="33" id="iberian_02-Geometry-Normal-array">-0.0056780 0.6856790 0.7278820 0.9075130 0.1327520 0.3984940 0.5006650 0.8156960 0.2897860 -0.5273270 0.7972210 0.2938810 -0.9090750 0.1020200 0.4039490 0.7512900 -0.5842960 -0.3068580 0.8979700 -0.0330260 -0.4388160 -0.0206470 0.6553420 -0.7550500 -0.9001180 -0.0645240 -0.4308420 -0.7351170 -0.6052350 -0.3054400 -0.0016010 -0.4142250 -0.9101730</float_array>
+          <technique_common>
+            <accessor count="11" source="iberian_02-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="iberian_02-Geometry-UV">
+          <float_array count="22" id="iberian_02-Geometry-UV-array">0.499613 0.988411 0.133584 0.856916 0.284877 0.256089 0.714347 0.256089 0.86564 0.856916 0.011574 0.470821 0.07014 0.19948 0.499611 0.008895 0.929083 0.19948 0.98765 0.470821 0.498931 0.717266</float_array>
+          <technique_common>
+            <accessor count="11" source="iberian_02-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="iberian_02-Geometry-Vertex">
+          <input semantic="POSITION" source="#iberian_02-Geometry-Position"/>
+        </vertices>
+        <triangles count="14" material="material0">
+          <input offset="0" semantic="VERTEX" source="#iberian_02-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#iberian_02-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#iberian_02-Geometry-UV"/>
+          <p>0 1 2 0 2 3 0 3 4 1 5 6 2 6 7 3 7 8 4 8 9 6 2 1 7 3 2 8 4 3 10 7 6 10 8 7 10 9 8 10 6 5</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="iberian_02" layer="L1" name="iberian_02">
+        <instance_geometry url="#iberian_02-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

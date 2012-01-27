@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:47</created>
+    <modified>2012-01-26T22:20:47</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="stone_granite_la_c-Geometry" name="stone_granite_la_c-Geometry">
+      <mesh>
+        <source id="stone_granite_la_c-Geometry-Position">
+          <float_array count="75" id="stone_granite_la_c-Geometry-Position-array">-0.0830750 0.1575990 1.2298560 -0.2939030 0.6558640 1.1525100 -0.8363280 0.4177670 0.9403810 0.0165780 -0.6665100 0.9403810 0.3364830 -0.1328060 1.1525100 0.4592090 0.5367010 1.0735260 -0.7476670 -0.6075100 0.7740360 -0.4942560 -1.0892000 0.5827340 -1.1246420 -0.3005300 0.5827340 -1.0838030 -1.1264720 0.0088390 -1.4199390 1.3864330 0.0087900 -0.7700070 1.1118990 0.8472380 0.1905810 1.1593640 0.4646520 -0.0356040 1.4089460 0.0088140 1.0192290 0.6900760 0.5786230 1.3665340 0.7269880 0.0088390 1.3270920 0.1045380 0.4646520 1.1372070 -0.9869390 0.0087900 1.6691610 -0.1733010 0.0088140 -1.2893950 1.0335420 0.6010100 0.7127610 -0.4678950 0.8472380 0.5640650 -0.9412080 0.6010100 -1.6691620 0.1733060 0.0088140 0.0481690 -1.2330030 0.3914170 0.0356030 -1.4089420 0.0088140</float_array>
+          <technique_common>
+            <accessor count="25" source="stone_granite_la_c-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="stone_granite_la_c-Geometry-Normals">
+          <float_array count="75" id="stone_granite_la_c-Geometry-Normal-array">-0.1211280 -0.1042040 0.9871520 -0.1259190 0.2790650 0.9519810 -0.5339070 -0.0347220 0.8448300 0.0244100 -0.5177960 0.8551560 0.2757620 -0.2043320 0.9392570 0.3935960 0.3425220 0.8530890 -0.4560420 -0.3718130 0.8085670 -0.2401230 -0.7151850 0.6563920 -0.7106910 -0.2635110 0.6522880 -0.5242340 -0.6879680 0.5018760 -0.3625290 0.8073540 0.4655660 -0.1449940 0.6505130 0.7455260 0.2497600 0.8602090 0.4445900 0.2100910 0.8977090 0.3872720 0.5872430 0.5567170 0.5875470 0.6673000 0.6186160 0.4147580 0.7331010 -0.0049260 0.6801010 0.5398160 -0.6281600 0.5603690 0.7804360 -0.0601760 0.6223330 -0.6867390 0.2684570 0.6755150 0.5226070 -0.3383110 0.7825780 0.3342330 -0.6695800 0.6632880 -0.8274410 -0.0938450 0.5536560 0.0761300 -0.8633020 0.4989130 0.0558440 -0.9078210 0.4156240</float_array>
+          <technique_common>
+            <accessor count="25" source="stone_granite_la_c-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="stone_granite_la_c-Geometry-UV">
+          <float_array count="50" id="stone_granite_la_c-Geometry-UV-array">0.536502 0.539656 0.697102 0.629491 0.576353 0.774232 0.253838 0.46374 0.463199 0.400728 0.706772 0.40297 0.222273 0.690091 0.070409 0.588772 0.304312 0.817535 0.016979 0.758676 0.882901 0.99025 0.824717 0.794332 0.907114 0.516741 0.994853 0.593815 0.798964 0.24828 0.863673 0.136602 0.614347 0.12517 0.208628 0.118542 0.552592 0.00335 0.761656 0.941429 0.371238 0.27189 0.194804 0.288377 0.433499 1.00335 0.057008 0.422326 -0.002544 0.415993</float_array>
+          <technique_common>
+            <accessor count="25" source="stone_granite_la_c-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="stone_granite_la_c-Geometry-Vertex">
+          <input semantic="POSITION" source="#stone_granite_la_c-Geometry-Position"/>
+        </vertices>
+        <triangles count="40" material="material0">
+          <input offset="0" semantic="VERTEX" source="#stone_granite_la_c-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#stone_granite_la_c-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#stone_granite_la_c-Geometry-UV"/>
+          <p>0 1 2 3 4 0 5 1 0 0 4 5 3 0 6 6 7 3 2 8 6 6 0 2 9 7 6 6 8 9 10 11 12 12 13 10 5 14 12 12 11 5 15 13 12 12 14 15 16 14 5 17 18 16 15 14 16 16 18 15 2 1 11 11 19 2 11 1 5 10 19 11 5 4 20 20 16 5 3 21 20 20 4 3 17 16 20 20 21 17 9 8 22 2 19 22 22 8 2 22 19 10 17 21 23 23 24 17 3 7 23 23 21 3 9 24 23 23 7 9</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="stone_granite_la_c" layer="L1" name="stone_granite_la_c">
+        <instance_geometry url="#stone_granite_la_c-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

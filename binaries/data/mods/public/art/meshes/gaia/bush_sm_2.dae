@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:46</created>
+    <modified>2012-01-26T22:20:46</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="bush_sm_2-Geometry" name="bush_sm_2-Geometry">
+      <mesh>
+        <source id="bush_sm_2-Geometry-Position">
+          <float_array count="60" id="bush_sm_2-Geometry-Position-array">0.3329810 1.0043290 2.1555210 -0.7460830 1.0043270 0.3201980 0.3329840 -1.5489560 2.1555210 -0.7460810 -1.5489580 0.3201980 -1.3815550 0.7471060 2.1701750 -1.6032410 -0.3126370 0.3361920 1.1329420 0.3054220 2.1395260 0.9112570 -0.7543210 0.3055440 -0.8552980 -0.9464790 2.1555210 0.2196620 -1.0405240 0.3201980 -0.6327650 1.5970890 2.1555210 0.4421940 1.5030460 0.3201980 1.6010610 -1.0029420 1.7073680 1.0368860 0.0334470 -0.2436180 -0.6484580 -0.3437850 2.7193380 -1.2126320 0.6926050 0.7683500 -0.6138550 1.0524560 2.1555210 -1.4404680 0.3588450 0.3201980 1.0273670 -0.9034740 2.1555210 0.2007550 -1.5970850 0.3201980</float_array>
+          <technique_common>
+            <accessor count="20" source="bush_sm_2-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="bush_sm_2-Geometry-Normals">
+          <float_array count="60" id="bush_sm_2-Geometry-Normal-array">-0.8620450 -0.0000010 0.5068320 -0.8620440 -0.0000010 0.5068330 -0.8620440 -0.0000010 0.5068330 -0.8620440 -0.0000010 0.5068330 -0.1430010 -0.8493580 0.5080760 -0.1430010 -0.8493580 0.5080760 -0.1430010 -0.8493580 0.5080760 -0.1430020 -0.8493580 0.5080760 0.8587640 -0.0751320 0.5068330 0.8587640 -0.0751320 0.5068330 0.8587640 -0.0751320 0.5068330 0.8587640 -0.0751320 0.5068330 0.4010660 0.8519670 0.3365980 0.4010670 0.8519670 0.3365980 0.4010670 0.8519670 0.3365980 0.4010670 0.8519670 0.3365980 -0.6603640 -0.5541120 0.5068330 -0.6603640 -0.5541120 0.5068330 -0.6603640 -0.5541120 0.5068330 -0.6603640 -0.5541120 0.5068330</float_array>
+          <technique_common>
+            <accessor count="20" source="bush_sm_2-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="bush_sm_2-Geometry-UV">
+          <float_array count="40" id="bush_sm_2-Geometry-UV-array">0.025083 0.490715 0.025083 0.015655 0.972297 0.490775 0.968423 0.015653 0.025083 0.490715 0.025083 0.015655 0.972297 0.490775 0.968423 0.015653 0.025083 0.490715 0.025083 0.015655 0.972297 0.490775 0.968423 0.015653 0.025083 0.490715 0.025083 0.015655 0.972297 0.490775 0.968423 0.015653 0.025083 0.490715 0.025083 0.015655 0.972297 0.490775 0.968423 0.015653</float_array>
+          <technique_common>
+            <accessor count="20" source="bush_sm_2-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="bush_sm_2-Geometry-Vertex">
+          <input semantic="POSITION" source="#bush_sm_2-Geometry-Position"/>
+        </vertices>
+        <triangles count="10" material="material0">
+          <input offset="0" semantic="VERTEX" source="#bush_sm_2-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#bush_sm_2-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#bush_sm_2-Geometry-UV"/>
+          <p>0 1 2 3 2 1 4 5 6 7 6 5 8 9 10 11 10 9 12 13 14 15 14 13 16 17 18 19 18 17</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="bush_sm_2" layer="L1" name="bush_sm_2">
+        <instance_geometry url="#bush_sm_2-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

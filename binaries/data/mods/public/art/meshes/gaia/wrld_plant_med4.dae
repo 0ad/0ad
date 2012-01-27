@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:49</created>
+    <modified>2012-01-26T22:20:49</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="wrld_plant_med4-Geometry" name="wrld_plant_med4-Geometry">
+      <mesh>
+        <source id="wrld_plant_med4-Geometry-Position">
+          <float_array count="72" id="wrld_plant_med4-Geometry-Position-array">0.8501970 -2.2701660 6.0586330 0.8501970 -2.2701660 -0.0295150 -0.8501970 2.2701660 6.0586330 -0.8501970 2.2701660 -0.0295150 0.8501970 -2.2701660 -0.0295150 0.8501970 -2.2701660 6.0586330 -0.8501970 2.2701660 6.0586330 -0.8501970 2.2701660 -0.0295150 2.6961280 -0.0051230 6.0539230 2.6961280 0.0051240 -0.0248050 -2.6961280 -0.0051240 6.0539230 -2.6961280 0.0051230 -0.0248040 2.6961280 0.0051240 -0.0248050 2.6961280 -0.0051230 6.0539230 -2.6961280 -0.0051240 6.0539230 -2.6961280 0.0051230 -0.0248040 -1.4803440 -1.8964140 6.0887860 -1.5393630 -1.8964140 0.0012330 1.5393630 1.8964140 6.0278850 1.4803440 1.8964140 -0.0596680 0.4083880 -1.5527580 -1.0014420 1.7061910 -2.4815180 4.6348220 -0.4083880 1.5527580 7.0305610 -1.7061910 2.4815180 1.3942960</float_array>
+          <technique_common>
+            <accessor count="24" source="wrld_plant_med4-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_plant_med4-Geometry-Normals">
+          <float_array count="72" id="wrld_plant_med4-Geometry-Normal-array">0.9364800 0.3507200 0.0000000 0.9364800 0.3507200 0.0000000 0.9364800 0.3507200 0.0000000 0.9364800 0.3507200 0.0000000 -0.9364800 -0.3507200 -0.0000000 -0.9364800 -0.3507200 -0.0000000 -0.9364800 -0.3507200 -0.0000000 -0.9364800 -0.3507200 -0.0000000 -0.0000000 0.9999990 0.0016860 -0.0000000 0.9999990 0.0016860 -0.0000000 0.9999990 0.0016860 -0.0000000 0.9999990 0.0016860 0.0000000 -0.9999990 -0.0016860 0.0000000 -0.9999990 -0.0016860 0.0000000 -0.9999990 -0.0016860 0.0000000 -0.9999990 -0.0016860 0.7822490 -0.6229190 -0.0075840 0.7822490 -0.6229190 -0.0075840 0.7822490 -0.6229190 -0.0075840 0.7822490 -0.6229190 -0.0075840 -0.8513910 -0.5125240 0.1115860 -0.8513910 -0.5125240 0.1115860 -0.8513910 -0.5125240 0.1115860 -0.8513910 -0.5125240 0.1115860</float_array>
+          <technique_common>
+            <accessor count="24" source="wrld_plant_med4-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_plant_med4-Geometry-UV">
+          <float_array count="48" id="wrld_plant_med4-Geometry-UV-array">0.327447 0.996321 0.327447 0.527962 0.663355 0.996321 0.663355 0.527962 0.711921 0.540839 0.711921 0.963208 0.985283 0.963208 0.985283 0.540839 0.704562 0.492274 0.704562 0.009198 1.00184 0.492274 1.00184 0.009198 0.71376 0.005519 0.71376 0.490434 0.99816 0.490434 0.99816 0.005519 0.031273 0.479397 0.031273 0.0 0.299117 0.479397 0.299117 0.0 0.40103 0.009198 0.40103 0.490434 0.674393 0.490434 0.674393 0.009198</float_array>
+          <technique_common>
+            <accessor count="24" source="wrld_plant_med4-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_plant_med4-Geometry-Vertex">
+          <input semantic="POSITION" source="#wrld_plant_med4-Geometry-Position"/>
+        </vertices>
+        <triangles count="12" material="material0">
+          <input offset="0" semantic="VERTEX" source="#wrld_plant_med4-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#wrld_plant_med4-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#wrld_plant_med4-Geometry-UV"/>
+          <p>0 1 2 3 2 1 4 5 6 6 7 4 8 9 10 11 10 9 12 13 14 14 15 12 16 17 18 19 18 17 20 21 22 22 23 20</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="wrld_plant_med4" layer="L1" name="wrld_plant_med4">
+        <instance_geometry url="#wrld_plant_med4-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

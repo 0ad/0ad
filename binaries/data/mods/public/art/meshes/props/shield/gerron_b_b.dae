@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:54</created>
+    <modified>2012-01-26T22:20:54</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="gerron_b_b-Geometry" name="gerron_b_b-Geometry">
+      <mesh>
+        <source id="gerron_b_b-Geometry-Position">
+          <float_array count="114" id="gerron_b_b-Geometry-Position-array">-0.4356360 -0.0075540 -0.2250420 -0.0012260 -0.1421180 -0.0777860 -0.5340450 -0.0081870 -0.7364470 -0.4904440 -0.0081870 -0.3059450 -0.6479560 -0.0081870 -0.5004880 -0.4163260 -0.0071460 -0.0818680 -0.4379850 -0.0075540 0.0656250 -0.5961500 -0.0081870 0.1582100 -0.6753070 -0.0081870 0.1031050 -0.6479560 -0.0081870 0.3461180 -0.5340450 -0.0081870 0.5820770 -0.3642740 -0.0081870 0.7285440 -0.1727610 -0.0081870 0.7850830 -0.1727610 -0.0081870 0.7850830 0.0001100 -0.0081870 0.8087080 0.1729820 -0.0081870 0.7850830 0.3644320 -0.0081870 0.7285430 0.5341410 -0.0081870 0.5820770 0.6481150 -0.0081870 0.3461180 0.5069140 -0.0081870 0.1508460 0.4389120 -0.0075540 0.0656250 0.6755270 -0.0081870 0.1031050 0.5959790 -0.0081870 0.1582100 0.4066000 -0.0071460 -0.0818680 0.4365630 -0.0075540 -0.2250420 0.6481150 -0.0081870 -0.5004880 0.5020300 -0.0081870 -0.3059450 0.5935370 -0.0081870 -0.3093080 0.5341410 -0.0081870 -0.7364470 0.3644320 -0.0081870 -0.8829140 0.1729820 -0.0081870 -0.9394540 0.0001100 -0.0081870 -0.9630780 -0.1727620 -0.0081870 -0.9394530 -0.3642740 -0.0081870 -0.8829140 -0.5937080 -0.0081870 -0.3093080 -0.4953280 -0.0081870 0.1508470 0.6755270 -0.0081870 -0.2446020 -0.6753070 -0.0081870 -0.2446020</float_array>
+          <technique_common>
+            <accessor count="38" source="gerron_b_b-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="gerron_b_b-Geometry-Normals">
+          <float_array count="114" id="gerron_b_b-Geometry-Normal-array">0.2059290 0.9779290 -0.0353440 0.0257010 0.9996040 0.0114590 0.1018240 0.9946940 0.0146620 -0.0045280 0.9999900 0.0004590 -0.0000000 1.0000000 0.0000000 0.3092040 0.9509940 0.0017500 0.3354670 0.9302220 0.1488240 -0.0000000 1.0000000 0.0000000 -0.0000000 1.0000000 0.0000000 0.1353250 0.9892380 0.0556280 0.1285300 0.9869950 -0.0965450 0.0724040 0.9886530 -0.1316160 0.0213980 0.9885770 -0.1491890 0.0102080 0.9884210 -0.1513900 0.0000040 0.9887790 -0.1493850 -0.0315870 0.9886210 -0.1470730 -0.0723060 0.9886850 -0.1314310 nan nan nan nan nan nan 0.0033710 0.9999940 -0.0002130 -0.2064800 0.9774870 0.0434240 -0.0000000 1.0000000 0.0000000 nan nan nan -0.3141830 0.9493610 0.0013580 -0.2076900 0.9772360 -0.0433100 -0.0000000 1.0000000 0.0000000 0.0035520 0.9999940 0.0002650 -0.0000000 1.0000000 0.0000000 -0.1018680 0.9946890 0.0146990 -0.0723870 0.9886580 0.1315860 -0.0316280 0.9885910 0.1472650 0.0000040 0.9887490 0.1495830 0.0316440 0.9885770 0.1473580 0.0724850 0.9886260 0.1317710 -0.0000000 1.0000000 0.0000000 0.2503980 0.9503680 0.1846680 -0.0000000 1.0000000 0.0000000 -0.0000000 1.0000000 0.0000000</float_array>
+          <technique_common>
+            <accessor count="38" source="gerron_b_b-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="gerron_b_b-Geometry-UV">
+          <float_array count="76" id="gerron_b_b-Geometry-UV-array">0.822254 0.416633 0.500988 0.499661 0.895031 0.128283 0.862786 0.371016 0.979274 0.261326 0.807973 0.49736 0.823991 0.580522 0.940961 0.632725 0.999501 0.601654 0.979274 0.738674 0.895031 0.871717 0.769478 0.954301 0.627846 0.98618 0.627846 0.98618 0.5 0.9995 0.372154 0.98618 0.230568 0.954301 0.105061 0.871717 0.020772 0.738674 0.125196 0.628573 0.175487 0.580522 0.000499 0.601654 0.059329 0.632725 0.199383 0.49736 0.177224 0.416633 0.020772 0.261326 0.128808 0.371016 0.061135 0.36912 0.105061 0.128283 0.230568 0.045699 0.372154 0.01382 0.5 0.0005 0.627846 0.01382 0.769478 0.045699 0.939155 0.36912 0.866399 0.628573 0.000499 0.405604 0.999501 0.405604</float_array>
+          <technique_common>
+            <accessor count="38" source="gerron_b_b-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="gerron_b_b-Geometry-Vertex">
+          <input semantic="POSITION" source="#gerron_b_b-Geometry-Position"/>
+        </vertices>
+        <triangles count="39" material="material0">
+          <input offset="0" semantic="VERTEX" source="#gerron_b_b-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#gerron_b_b-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#gerron_b_b-Geometry-UV"/>
+          <p>0 1 2 3 0 2 3 2 4 5 6 1 7 8 9 1 10 11 1 12 13 13 14 1 15 16 1 17 18 18 17 18 19 17 19 20 17 20 1 18 21 22 22 18 18 23 24 1 25 26 27 28 29 1 30 31 1 32 33 1 4 34 3 1 16 17 1 6 35 1 35 9 1 9 10 1 11 12 1 14 15 1 20 23 1 0 5 22 19 18 27 36 25 26 25 28 24 26 28 1 24 28 1 29 30 1 31 32 1 33 2 4 37 34 9 35 7</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="gerron_b_b" layer="L1" name="gerron_b_b">
+        <instance_geometry url="#gerron_b_b-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

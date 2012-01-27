@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:49</created>
+    <modified>2012-01-26T22:20:49</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="head_helmet_face-Geometry" name="head_helmet_face-Geometry">
+      <mesh>
+        <source id="head_helmet_face-Geometry-Position">
+          <float_array count="39" id="head_helmet_face-Geometry-Position-array">0.1126690 -0.1853170 0.5573200 -0.0023040 -0.2475610 0.5717680 -0.0023040 -0.3159580 0.2806300 0.1527290 -0.2390820 0.2807630 0.1527290 -0.2163800 0.3660450 0.1283050 -0.2183450 0.0285640 0.1527290 -0.2252090 0.1742560 -0.0023040 -0.2451770 -0.0007970 -0.1560840 -0.2154080 0.3720270 -0.1560840 -0.2397030 0.2807620 -0.1172770 -0.1853160 0.5573200 -0.1560840 -0.2248560 0.1667820 -0.1329130 -0.2183440 0.0285640</float_array>
+          <technique_common>
+            <accessor count="13" source="head_helmet_face-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="head_helmet_face-Geometry-Normals">
+          <float_array count="39" id="head_helmet_face-Geometry-Normal-array">0.4591250 -0.8616940 0.2160720 -0.0000030 -0.9734970 0.2287010 -0.0000030 -0.9975280 0.0702660 0.4442450 -0.8959050 0.0000640 0.4319630 -0.8715390 0.2320070 0.3786250 -0.9121310 -0.1570360 0.4413310 -0.8898270 -0.1159080 -0.0000030 -0.9697980 -0.2439110 -0.4319690 -0.8715360 0.2320070 -0.4442520 -0.8959020 0.0000650 -0.4591300 -0.8616910 0.2160720 -0.4413400 -0.8898230 -0.1159080 -0.3786320 -0.9121280 -0.1570360</float_array>
+          <technique_common>
+            <accessor count="13" source="head_helmet_face-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="head_helmet_face-Geometry-UV">
+          <float_array count="26" id="head_helmet_face-Geometry-UV-array">0.172379 0.925502 0.0 0.924492 0.0 0.556445 0.18915 0.556139 0.199049 0.67 0.210938 0.185225 0.210938 0.399463 0.0 0.185566 0.198215 0.677991 0.187621 0.556141 0.172379 0.925502 0.210938 0.388473 0.210938 0.185225</float_array>
+          <technique_common>
+            <accessor count="13" source="head_helmet_face-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="head_helmet_face-Geometry-Vertex">
+          <input semantic="POSITION" source="#head_helmet_face-Geometry-Position"/>
+        </vertices>
+        <triangles count="12" material="material0">
+          <input offset="0" semantic="VERTEX" source="#head_helmet_face-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#head_helmet_face-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#head_helmet_face-Geometry-UV"/>
+          <p>0 1 2 2 3 4 0 2 4 5 6 3 5 3 2 5 2 7 8 9 2 10 8 2 10 2 1 9 11 12 2 9 12 2 12 7</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="head_helmet_face" layer="L1" name="head_helmet_face">
+        <instance_geometry url="#head_helmet_face-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

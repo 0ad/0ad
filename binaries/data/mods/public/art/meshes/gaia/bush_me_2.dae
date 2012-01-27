@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:46</created>
+    <modified>2012-01-26T22:20:46</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="bush_me_2-Geometry" name="bush_me_2-Geometry">
+      <mesh>
+        <source id="bush_me_2-Geometry-Position">
+          <float_array count="84" id="bush_me_2-Geometry-Position-array">-0.0623600 1.6331100 4.2420660 -2.2986660 0.6014150 0.8297940 2.2956630 -0.8080850 3.7475550 0.0593590 -1.8397830 0.3352840 -0.8332190 -1.7113490 5.0473010 1.4852220 -1.4878060 0.8109530 -1.3441470 1.2884680 4.8928180 0.9742920 1.5120100 0.6564690 2.2615560 -0.4752220 4.2788590 1.0347850 0.8032690 -0.2839590 0.0625270 -1.0060630 4.8613090 -1.1642480 0.2724310 0.2984900 1.1634470 -1.4415890 4.9823750 1.0859930 1.2756320 1.0570830 -1.0965530 -1.8875070 4.6681920 -1.1740020 0.8297130 0.7429000 -1.9245270 0.3631570 5.2604840 -0.6395410 -1.5796740 1.0264810 0.7123760 1.8875060 5.3374530 1.9973600 -0.0553240 1.1034490 1.2548540 -1.1286970 5.2931840 1.5612790 0.7769180 0.9182330 -0.9385950 -0.5353970 5.4456980 -0.6321690 1.3702200 1.0707480 1.1219590 1.4782460 5.4657880 -1.2000810 1.6606920 1.2294430 1.1042130 -1.5647160 5.3113060 -1.2178300 -1.3822710 1.0749610</float_array>
+          <technique_common>
+            <accessor count="28" source="bush_me_2-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="bush_me_2-Geometry-Normals">
+          <float_array count="84" id="bush_me_2-Geometry-Normal-array">-0.5432610 -0.6358160 0.5482750 -0.5432610 -0.6358150 0.5482760 -0.5432610 -0.6358150 0.5482760 -0.5432610 -0.6358150 0.5482760 0.8604290 0.1712630 0.4799270 0.8604290 0.1712630 0.4799270 0.8604290 0.1712630 0.4799270 0.8604290 0.1712640 0.4799270 -0.1469380 0.9414950 0.3033110 -0.1469370 0.9414950 0.3033110 -0.1469370 0.9414950 0.3033110 -0.1469370 0.9414950 0.3033110 -0.2346250 0.7970960 0.5564070 -0.2346260 0.7970960 0.5564070 -0.2346260 0.7970960 0.5564070 -0.2346260 0.7970960 0.5564060 0.4282110 -0.7650300 0.4810030 0.4282110 -0.7650300 0.4810030 0.4282110 -0.7650300 0.4810030 0.4282120 -0.7650300 0.4810030 0.2650900 0.8770690 0.4005960 0.2650910 0.8770690 0.4005960 0.2650910 0.8770690 0.4005960 0.2650910 0.8770690 0.4005960 -0.8770970 -0.0192490 0.4799280 -0.8770960 -0.0192490 0.4799280 -0.8770960 -0.0192490 0.4799280 -0.8770960 -0.0192490 0.4799290</float_array>
+          <technique_common>
+            <accessor count="28" source="bush_me_2-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="bush_me_2-Geometry-UV">
+          <float_array count="56" id="bush_me_2-Geometry-UV-array">0.032846 0.976974 0.032846 0.501913 0.98006 0.977033 0.976186 0.501911 0.032846 0.976974 0.032846 0.501913 0.98006 0.977033 0.976186 0.501911 0.032846 0.976974 0.032846 0.501913 0.98006 0.977033 0.976186 0.501911 0.019666 0.985521 0.019672 0.522973 0.996762 0.983089 0.996714 0.522948 0.013448 0.491206 0.013454 0.028658 0.990544 0.488773 0.990496 0.028633 0.023713 0.495823 0.023719 0.02371 0.967357 0.49334 0.967311 0.023684 0.032846 0.976974 0.032846 0.501913 0.98006 0.977033 0.976186 0.501911</float_array>
+          <technique_common>
+            <accessor count="28" source="bush_me_2-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="bush_me_2-Geometry-Vertex">
+          <input semantic="POSITION" source="#bush_me_2-Geometry-Position"/>
+        </vertices>
+        <triangles count="14" material="material0">
+          <input offset="0" semantic="VERTEX" source="#bush_me_2-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#bush_me_2-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#bush_me_2-Geometry-UV"/>
+          <p>0 1 2 3 2 1 4 5 6 7 6 5 8 9 10 11 10 9 12 13 14 15 14 13 16 17 18 19 18 17 20 21 22 23 22 21 24 25 26 27 26 25</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="bush_me_2" layer="L1" name="bush_me_2">
+        <instance_geometry url="#bush_me_2-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

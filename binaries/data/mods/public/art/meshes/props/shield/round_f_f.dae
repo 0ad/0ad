@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:54</created>
+    <modified>2012-01-26T22:20:54</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="round_f_f-Geometry" name="round_f_f-Geometry">
+      <mesh>
+        <source id="round_f_f-Geometry-Position">
+          <float_array count="66" id="round_f_f-Geometry-Position-array">-0.0013060 -0.1793360 -0.0027290 0.2088080 -0.0282040 -0.0475000 0.0421730 -0.0282040 0.2013220 -0.2114190 -0.0282040 0.0420420 -0.0447850 -0.0282040 -0.2067800 0.0002440 -0.0282100 -0.0002710 -0.4077480 -0.0282030 -0.3967710 -0.2249580 -0.0282030 -0.5227210 -0.5222060 -0.0282030 0.2249310 -0.5686180 -0.0282030 0.0078550 0.5289140 -0.0282030 0.2099150 0.4082360 -0.0282030 0.3962280 0.0083710 -0.0282030 0.5685900 -0.2099420 -0.0282030 0.5283980 -0.5284250 -0.0282030 -0.2104570 0.2104300 -0.0282030 -0.5289410 0.3967440 -0.0282030 -0.4082640 -0.0078830 -0.0282030 -0.5691330 0.2254460 -0.0282030 0.5221780 0.5226940 -0.0282030 -0.2254730 0.5691060 -0.0282030 -0.0083980 -0.3962550 -0.0282030 0.4077210</float_array>
+          <technique_common>
+            <accessor count="22" source="round_f_f-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="round_f_f-Geometry-Normals">
+          <float_array count="66" id="round_f_f-Geometry-Normal-array">-0.0000000 -1.0000000 0.0000000 0.5627450 -0.8178870 -0.1199090 0.1222570 -0.8098430 0.5737660 -0.5627460 -0.8178870 0.1199090 -0.1222580 -0.8098430 -0.5737660 -0.0000000 -1.0000000 -0.0000000 -0.0000080 -1.0000000 -0.0000080 -0.0000050 -1.0000000 -0.0000110 -0.0000110 -1.0000000 0.0000050 -0.0000120 -1.0000000 0.0000000 0.0000110 -1.0000000 0.0000040 0.0000080 -1.0000000 0.0000080 0.0000000 -1.0000000 0.0000120 -0.0000040 -1.0000000 0.0000110 -0.0000110 -1.0000000 -0.0000040 0.0000040 -1.0000000 -0.0000110 0.0000080 -1.0000000 -0.0000080 -0.0000000 -1.0000000 -0.0000120 0.0000050 -1.0000000 0.0000110 0.0000110 -1.0000000 -0.0000050 0.0000120 -1.0000000 -0.0000000 -0.0000080 -1.0000000 0.0000080</float_array>
+          <technique_common>
+            <accessor count="22" source="round_f_f-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="round_f_f-Geometry-UV">
+          <float_array count="44" id="round_f_f-Geometry-UV-array">0.503758 0.491333 0.699872 0.491333 0.503758 0.69159 0.307644 0.491333 0.503758 0.291076 0.5 0.5 0.853553 0.146447 0.96194 0.308658 0.308658 0.03806 0.5 0.0 0.308658 0.96194 0.146447 0.853553 0.0 0.5 0.03806 0.308658 0.691342 0.03806 0.96194 0.691342 0.853553 0.853553 1.0 0.5 0.03806 0.691342 0.691342 0.96194 0.5 1.0 0.146447 0.146447</float_array>
+          <technique_common>
+            <accessor count="22" source="round_f_f-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="round_f_f-Geometry-Vertex">
+          <input semantic="POSITION" source="#round_f_f-Geometry-Position"/>
+        </vertices>
+        <triangles count="20" material="material0">
+          <input offset="0" semantic="VERTEX" source="#round_f_f-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#round_f_f-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#round_f_f-Geometry-UV"/>
+          <p>0 1 2 0 2 3 0 3 4 0 4 1 5 6 7 8 9 5 10 11 5 5 12 13 14 6 5 5 15 16 7 17 5 5 11 18 17 15 5 5 18 12 16 19 5 20 10 5 5 13 21 9 14 5 5 19 20 21 8 5</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="round_f_f" layer="L1" name="round_f_f">
+        <instance_geometry url="#round_f_f-Geometry"/>
+        <node id="prop_back" name="prop_back">
+          <matrix sid="transform">1.0000000 0.0000000 0.0000000 0.0000000 0.0000000 1.0000000 -0.0000002 -0.0000000 0.0000000 0.0000002 1.0000000 0.0000000 0.0000000 0.0000000 0.0000000 1.0000000</matrix>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

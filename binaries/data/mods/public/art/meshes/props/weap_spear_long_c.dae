@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:52</created>
+    <modified>2012-01-26T22:20:52</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="weap_spear_long_c-Geometry" name="weap_spear_long_c-Geometry">
+      <mesh>
+        <source id="weap_spear_long_c-Geometry-Position">
+          <float_array count="111" id="weap_spear_long_c-Geometry-Position-array">-0.0000000 -0.0493940 -1.5013910 -0.0000000 0.0000000 -1.7873800 0.0493940 0.0000000 -1.5013910 0.0493940 0.0000000 -1.5013910 -0.0000000 0.0493940 -1.5013910 0.0000000 0.0486160 4.0319790 0.0486160 0.0000000 4.0319790 0.0000000 0.0277140 4.3717990 0.0277140 0.0000000 4.3717990 -0.0493940 0.0000000 -1.5013910 -0.0486160 -0.0000000 4.0319790 -0.0277140 0.0000000 4.3717990 -0.0000000 -0.0493940 -1.5013910 0.0000000 -0.0486160 4.0319790 0.0000000 -0.0277140 4.3717990 -0.0000000 0.0493940 -1.5013910 -0.0493940 0.0000000 -1.5013910 0.0277140 0.0000000 4.3717990 0.0000000 0.0277140 4.3717990 0.0000000 0.1514380 4.5403800 0.0302290 0.0000000 4.5403810 0.0000000 0.0000000 5.1280480 0.0000000 0.0277140 4.3717990 -0.0277140 0.0000000 4.3717990 -0.0302290 0.0000000 4.5403800 0.0000000 0.1514380 4.5403800 0.0000000 0.0000000 5.1280480 -0.0277140 0.0000000 4.3717990 0.0000000 -0.0277140 4.3717990 0.0000000 -0.1514380 4.5403810 -0.0302290 0.0000000 4.5403800 0.0000000 0.0000000 5.1280480 0.0000000 -0.0277140 4.3717990 0.0277140 0.0000000 4.3717990 0.0302290 0.0000000 4.5403810 0.0000000 -0.1514380 4.5403810 0.0000000 0.0000000 5.1280480</float_array>
+          <technique_common>
+            <accessor count="37" source="weap_spear_long_c-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="weap_spear_long_c-Geometry-Normals">
+          <float_array count="111" id="weap_spear_long_c-Geometry-Normal-array">0.0000000 -0.9854110 -0.1701940 0.0000000 0.0000000 -1.0000000 0.9854110 0.0000000 -0.1701940 0.9486830 0.3162280 0.0001330 -0.3162290 0.9486830 0.0001330 0.0001560 0.9995260 0.0307960 0.9995260 -0.0001570 0.0307960 0.3156910 0.9470720 0.0582540 0.9470720 -0.3156910 0.0582540 -0.9486830 -0.3162290 0.0001330 -0.9995260 0.0001550 0.0307960 -0.9470730 0.3156890 0.0582540 0.3162280 -0.9486830 0.0001330 -0.0001560 -0.9995260 0.0307960 -0.3156890 -0.9470730 0.0582550 -0.0000000 0.9854110 -0.1701940 -0.9854110 -0.0000000 -0.1701940 0.8608360 0.4407310 -0.2543960 0.6276250 0.6276250 -0.4606230 0.9197960 0.3621680 -0.1510270 0.9804970 0.1957190 0.0178850 0.9794090 0.1955020 0.0503790 -0.8782150 0.4715350 -0.0799580 -0.7070670 0.7070670 -0.0105480 -0.9238220 0.3811630 -0.0355920 -0.9796100 0.1955410 -0.0461270 -0.9794090 0.1955010 0.0503790 -0.8608360 -0.4407310 -0.2543960 -0.6276250 -0.6276250 -0.4606220 -0.9197960 -0.3621680 -0.1510270 -0.9804970 -0.1957180 0.0178850 -0.9794090 -0.1955010 0.0503790 0.8782150 -0.4715350 -0.0799570 0.7070680 -0.7070670 -0.0105480 0.9238220 -0.3811630 -0.0355920 0.9796100 -0.1955410 -0.0461270 0.9794090 -0.1955010 0.0503790</float_array>
+          <technique_common>
+            <accessor count="37" source="weap_spear_long_c-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="weap_spear_long_c-Geometry-UV">
+          <float_array count="74" id="weap_spear_long_c-Geometry-UV-array">0.434728 0.3366 0.422012 0.307061 0.422012 0.3366 0.422012 0.3366 0.402939 0.3366 0.402939 0.90228 0.422012 0.90228 0.402939 0.937226 0.423543 0.937226 0.415655 0.3366 0.415655 0.90228 0.415655 0.937226 0.434728 0.3366 0.434728 0.90228 0.434728 0.937226 0.402939 0.3366 0.415655 0.3366 0.410937 0.937637 0.422382 0.937616 0.422688 0.946925 0.41063 0.946904 0.410857 0.974203 0.422382 0.937616 0.410653 0.937552 0.410665 0.946904 0.422688 0.946925 0.410857 0.974203 0.410653 0.937552 0.399037 0.937723 0.398869 0.947195 0.410665 0.946904 0.410857 0.974203 0.399037 0.937723 0.410937 0.937637 0.41063 0.946904 0.398869 0.947195 0.410857 0.974203</float_array>
+          <technique_common>
+            <accessor count="37" source="weap_spear_long_c-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="weap_spear_long_c-Geometry-Vertex">
+          <input semantic="POSITION" source="#weap_spear_long_c-Geometry-Position"/>
+        </vertices>
+        <triangles count="32" material="material0">
+          <input offset="0" semantic="VERTEX" source="#weap_spear_long_c-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#weap_spear_long_c-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#weap_spear_long_c-Geometry-UV"/>
+          <p>0 1 2 3 4 5 5 6 3 6 5 7 7 8 6 4 9 10 10 5 4 5 10 11 11 7 5 9 12 13 13 10 9 10 13 14 14 11 10 12 3 6 6 13 12 13 6 8 8 14 13 15 2 1 0 16 1 1 16 15 17 18 19 19 20 17 20 19 21 22 23 24 24 25 22 25 24 26 27 28 29 29 30 27 30 29 31 32 33 34 34 35 32 35 34 36</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="weap_spear_long_c" layer="L1" name="weap_spear_long_c">
+        <instance_geometry url="#weap_spear_long_c-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

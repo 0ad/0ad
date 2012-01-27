@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:56</created>
+    <modified>2012-01-26T22:20:56</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="plot-Geometry" name="plot-Geometry">
+      <mesh>
+        <source id="plot-Geometry-Position">
+          <float_array count="12" id="plot-Geometry-Position-array">6.0041550 11.9733680 0.0999500 -5.9958450 11.9733690 0.0999500 6.0041540 -12.0266320 0.0999500 -5.9958460 -12.0266310 0.0999500</float_array>
+          <technique_common>
+            <accessor count="4" source="plot-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="plot-Geometry-Normals">
+          <float_array count="12" id="plot-Geometry-Normal-array">0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000</float_array>
+          <technique_common>
+            <accessor count="4" source="plot-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="plot-Geometry-UV">
+          <float_array count="8" id="plot-Geometry-UV-array">1.0 1.0 -0.0 1.0 1.0 0.0 0.0 0.0</float_array>
+          <technique_common>
+            <accessor count="4" source="plot-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="plot-Geometry-Vertex">
+          <input semantic="POSITION" source="#plot-Geometry-Position"/>
+        </vertices>
+        <triangles count="2" material="material0">
+          <input offset="0" semantic="VERTEX" source="#plot-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#plot-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#plot-Geometry-UV"/>
+          <p>0 1 2 3 2 1</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="plot" layer="L1" name="plot">
+        <instance_geometry url="#plot-Geometry"/>
+        <node id="prop_props_secondary" name="prop_props_secondary">
+          <matrix sid="transform">1.0000000 0.0000000 0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 0.0000000 0.0000000 1.0000000</matrix>
+        </node>
+        <node id="prop_props_main" name="prop_props_main">
+          <matrix sid="transform">1.0000000 0.0000000 0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 0.0000000 0.0000000 1.0000000</matrix>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
