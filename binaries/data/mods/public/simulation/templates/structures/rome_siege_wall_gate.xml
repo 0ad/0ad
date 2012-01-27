@@ -5,6 +5,9 @@
     <Pierce>35.0</Pierce>
     <Crush>10.0</Crush>
   </Armour>
+  <BuildRestrictions>
+    <Territory>own neutral enemy</Territory>
+  </BuildRestrictions>
   <Cost>
     <Resources>
       <wood>150</wood>
@@ -20,6 +23,7 @@
   </Health>
   <Identity>
     <Civ>rome</Civ>
+	<GenericName>Siege Wall Gate</GenericName>
     <SpecificName>Porta Circummunitio</SpecificName>
     <History>(Insert History Here)</History>
   </Identity>

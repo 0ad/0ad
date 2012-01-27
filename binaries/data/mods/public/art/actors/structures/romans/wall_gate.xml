@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>structural/hele_gate.dae</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/gate_props.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/gate_door.xml" attachpoint="root"/>
+        <prop actor="" attachpoint="gar01"/>
+        <prop actor="" attachpoint="gar02"/>
+        <prop actor="" attachpoint="gar03"/>
+        <prop actor="" attachpoint="gar04"/>
+        <prop actor="" attachpoint="gar05"/>
+      </props>
+      <texture>structural/hele_struct_b.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

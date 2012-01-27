@@ -5,6 +5,9 @@
     <Pierce>35.0</Pierce>
     <Crush>10.0</Crush>
   </Armour>
+  <BuildRestrictions>
+    <Territory>own neutral enemy</Territory>
+  </BuildRestrictions>
   <Cost>
     <Resources>
       <wood>150</wood>
@@ -20,7 +23,8 @@
   </Health>
   <Identity>
     <Civ>rome</Civ>
-    <SpecificName>Circummunitio</SpecificName>
+	<GenericName>Siege Wall</GenericName>
+    <SpecificName>Murus Latericius</SpecificName>
     <History>Quick building, but expensive wooden and earthen walls used to surround and siege an enemy town or fortified position. The most famous examples are the Roman sieges of the Iberian stronghold of Numantia and the Gallic stronghold of Alesia.</History>
   </Identity>
   <Obstruction>

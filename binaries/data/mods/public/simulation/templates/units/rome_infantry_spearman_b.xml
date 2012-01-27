@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee_spearman">
+  <Builder>
+    <Entities datatype="tokens">
+      structures/rome_army_camp
+      structures/rome_siege_wall
+    </Entities>
+  </Builder>
   <Identity>
     <Civ>rome</Civ>
 	<SelectionGroupName>units/rome_infantry_spearman_b</SelectionGroupName>

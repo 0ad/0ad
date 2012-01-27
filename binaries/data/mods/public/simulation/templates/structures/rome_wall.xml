@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall">
+  <Footprint>
+    <Square width="23.5" depth="6.5"/>
+    <Height>9.0</Height>
+  </Footprint>
   <Identity>
     <Civ>rome</Civ>
     <SpecificName>Moenia</SpecificName>
     <History>Quick building, but expensive wooden and earthen walls used to surround and siege an enemy town or fortified position. The most famous examples are the Roman sieges of the Iberian stronghold of Numantia and the Gallic stronghold of Alesia.</History>
   </Identity>
+  <Obstruction>
+    <Static width="23.0" depth="6.0"/>
+  </Obstruction>
   <VisualActor>
-    <Actor>structures/romans/siege_wall.xml</Actor>
+    <Actor>structures/romans/wall.xml</Actor>
   </VisualActor>
 </Entity>
