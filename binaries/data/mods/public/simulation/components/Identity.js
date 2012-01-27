@@ -100,6 +100,7 @@ Identity.prototype.Schema =
 						"<value>Worker</value>" +
 						"<value>Female</value>" +
 						"<value>Healer</value>" +
+						"<value>Slave</value>" +
 						"<value>CitizenSoldier</value>" +
 						"<value>Trade</value>" +
 						"<value>Warship</value>" +
