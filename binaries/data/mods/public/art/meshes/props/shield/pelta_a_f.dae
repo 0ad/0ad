@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:54</created>
+    <modified>2012-01-26T22:20:54</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="pelta_a_f-Geometry" name="pelta_a_f-Geometry">
+      <mesh>
+        <source id="pelta_a_f-Geometry-Position">
+          <float_array count="51" id="pelta_a_f-Geometry-Position-array">0.6594360 -0.0216980 0.2148230 0.6160750 -0.0216980 0.4210590 -0.0071410 -0.0216240 0.0211020 0.4575630 -0.0216980 0.6283650 0.2303870 -0.0216980 0.4283040 -0.0084590 -0.0216980 0.3701060 -0.2446690 -0.0216980 0.4283040 -0.4718450 -0.0216980 0.6283650 -0.6219340 -0.0216980 0.4383140 -0.6274720 -0.0216980 -0.0657160 -0.4999980 -0.0216980 -0.2719930 -0.2609820 -0.0216980 -0.4052510 -0.0075820 -0.0216980 -0.4334860 0.2467000 -0.0216980 -0.4052510 0.4857160 -0.0216980 -0.2719930 0.6161530 -0.0216980 -0.0574120 -0.6737180 -0.0216980 0.2148230</float_array>
+          <technique_common>
+            <accessor count="17" source="pelta_a_f-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="pelta_a_f-Geometry-Normals">
+          <float_array count="51" id="pelta_a_f-Geometry-Normal-array">-0.0001090 -1.0000000 -0.0000020 -0.0000910 -1.0000000 -0.0000410 -0.0000000 -1.0000000 -0.0000360 0.0001230 -1.0000000 -0.0002150 0.0001880 -1.0000000 -0.0002900 -0.0000000 -1.0000000 -0.0002100 -0.0001890 -1.0000000 -0.0002900 -0.0001240 -1.0000000 -0.0002150 0.0000900 -1.0000000 -0.0000430 0.0001120 -1.0000000 0.0000430 0.0000900 -1.0000000 0.0000980 0.0000450 -1.0000000 0.0001450 0.0000000 -1.0000000 0.0001610 -0.0000450 -1.0000000 0.0001450 -0.0000900 -1.0000000 0.0000980 -0.0001120 -1.0000000 0.0000420 0.0001090 -1.0000000 -0.0000020</float_array>
+          <technique_common>
+            <accessor count="17" source="pelta_a_f-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="pelta_a_f-Geometry-UV">
+          <float_array count="34" id="pelta_a_f-Geometry-UV-array">0.997316 0.610435 0.948442 0.819754 0.5 0.428181 0.805633 0.987487 0.667071 0.804728 0.500105 0.74779 0.33839 0.80036 0.194694 0.976784 0.056342 0.816439 0.035155 0.346502 0.135045 0.157894 0.314152 0.042353 0.49967 0.0005 0.684755 0.040169 0.854033 0.167723 0.967066 0.354314 0.003776 0.609343</float_array>
+          <technique_common>
+            <accessor count="17" source="pelta_a_f-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="pelta_a_f-Geometry-Vertex">
+          <input semantic="POSITION" source="#pelta_a_f-Geometry-Position"/>
+        </vertices>
+        <triangles count="16" material="material0">
+          <input offset="0" semantic="VERTEX" source="#pelta_a_f-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#pelta_a_f-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#pelta_a_f-Geometry-UV"/>
+          <p>0 1 2 3 4 2 4 5 2 6 7 2 7 8 2 9 10 2 10 11 2 12 13 2 13 14 2 15 0 2 5 6 2 1 3 2 8 16 2 2 14 15 2 16 9 2 11 12</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="pelta_a_f" layer="L1" name="pelta_a_f">
+        <instance_geometry url="#pelta_a_f-Geometry"/>
+        <node id="prop_back" name="prop_back">
+          <matrix sid="transform">1.0000000 0.0000000 0.0000000 0.0000000 0.0000000 1.0000000 -0.0000002 -0.0000000 0.0000000 0.0000002 1.0000000 0.0000000 0.0000000 0.0000000 0.0000000 1.0000000</matrix>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

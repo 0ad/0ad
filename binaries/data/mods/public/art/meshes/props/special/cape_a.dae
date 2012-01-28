@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:54</created>
+    <modified>2012-01-26T22:20:54</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="cape_a-Geometry" name="cape_a-Geometry">
+      <mesh>
+        <source id="cape_a-Geometry-Position">
+          <float_array count="72" id="cape_a-Geometry-Position-array">0.4322310 0.0678780 -0.4956520 0.4059260 0.0087720 0.0478820 0.0005580 0.0951380 0.0669230 0.0005570 0.1652930 -0.4956620 0.3692900 -0.1313650 0.3236160 0.0005580 -0.0998290 0.3692290 0.5015910 0.1765790 -0.9147130 0.0005570 0.2821150 -0.9223650 -0.4311150 0.0678750 -0.4956520 -0.4048100 0.0087700 0.0478820 -0.3681730 -0.1313680 0.3236160 -0.5004760 0.1765750 -0.9147130 0.4322310 0.0678780 -0.4956520 0.0005570 0.1652930 -0.4956620 0.0005580 0.0951380 0.0669230 0.4059260 0.0087720 0.0478820 0.3692900 -0.1313650 0.3236160 0.0005580 -0.0998290 0.3692290 0.5015910 0.1765790 -0.9147130 0.0005570 0.2821150 -0.9223650 -0.4311150 0.0678750 -0.4956520 -0.4048100 0.0087700 0.0478820 -0.3681730 -0.1313680 0.3236160 -0.5004760 0.1765750 -0.9147130</float_array>
+          <technique_common>
+            <accessor count="24" source="cape_a-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cape_a-Geometry-Normals">
+          <float_array count="72" id="cape_a-Geometry-Normal-array">-0.2146840 -0.9614120 -0.1720390 -0.2123330 -0.9314910 -0.2953620 0.0000030 -0.9465040 -0.3226910 0.0000030 -0.9744070 -0.2247910 -0.1716870 -0.8479120 -0.5015670 0.0000030 -0.8403830 -0.5419940 -0.2033880 -0.9415530 -0.2685360 0.0000030 -0.9645060 -0.2640600 0.2146900 -0.9614110 -0.1720390 0.2123390 -0.9314900 -0.2953620 0.1716920 -0.8479110 -0.5015670 0.2033930 -0.9415520 -0.2685360 0.2146840 0.9614120 0.1720390 -0.0000030 0.9744070 0.2247910 -0.0000030 0.9465040 0.3226910 0.2123330 0.9314910 0.2953620 0.1716870 0.8479120 0.5015670 -0.0000030 0.8403830 0.5419940 0.2033880 0.9415530 0.2685360 -0.0000030 0.9645060 0.2640600 -0.2146900 0.9614110 0.1720390 -0.2123390 0.9314900 0.2953620 -0.1716920 0.8479110 0.5015670 -0.2033930 0.9415520 0.2685360</float_array>
+          <technique_common>
+            <accessor count="24" source="cape_a-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cape_a-Geometry-UV">
+          <float_array count="48" id="cape_a-Geometry-UV-array">0.500075 0.326214 0.500072 0.74967 0.250757 0.749927 0.250757 0.326213 0.500067 0.996517 0.250757 0.997043 0.500085 0.007821 0.250757 0.00765 0.001433 0.326214 0.001471 0.74967 0.001524 0.996517 0.001333 0.007821 0.998426 0.326907 0.750689 0.326906 0.750689 0.750046 0.998422 0.749789 0.998417 0.996302 0.750689 0.996827 0.998435 0.008008 0.750689 0.007838 0.502945 0.326907 0.502982 0.749789 0.503035 0.996302 0.502845 0.008008</float_array>
+          <technique_common>
+            <accessor count="24" source="cape_a-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cape_a-Geometry-Vertex">
+          <input semantic="POSITION" source="#cape_a-Geometry-Position"/>
+        </vertices>
+        <triangles count="24" material="material0">
+          <input offset="0" semantic="VERTEX" source="#cape_a-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#cape_a-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#cape_a-Geometry-UV"/>
+          <p>0 1 2 2 3 0 4 5 2 2 1 4 6 0 3 3 7 6 8 3 2 2 9 8 10 9 2 2 5 10 11 7 3 3 8 11 12 13 14 14 15 12 16 15 14 14 17 16 18 19 13 13 12 18 20 21 14 14 13 20 22 17 14 14 21 22 23 20 13 13 19 23</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="cape_a" layer="L1" name="cape_a">
+        <instance_geometry url="#cape_a-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

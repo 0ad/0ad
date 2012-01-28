@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:54</created>
+    <modified>2012-01-26T22:20:54</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="celt_trader-Geometry" name="celt_trader-Geometry">
+      <mesh>
+        <source id="celt_trader-Geometry-Position">
+          <float_array count="9" id="celt_trader-Geometry-Position-array">-0.0061700 0.1135290 -0.6205320 -0.0675180 0.1813320 -0.6205320 0.0484180 0.1701170 -0.6205320</float_array>
+          <technique_common>
+            <accessor count="3" source="celt_trader-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="celt_trader-Geometry-Normals">
+          <float_array count="9" id="celt_trader-Geometry-Normal-array">0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000</float_array>
+          <technique_common>
+            <accessor count="3" source="celt_trader-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="celt_trader-Geometry-UV">
+          <float_array count="6" id="celt_trader-Geometry-UV-array">1.0 1.0 1.0 1.0 1.0 1.0</float_array>
+          <technique_common>
+            <accessor count="3" source="celt_trader-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="celt_trader-Geometry-Vertex">
+          <input semantic="POSITION" source="#celt_trader-Geometry-Position"/>
+        </vertices>
+        <triangles count="1" material="material0">
+          <input offset="0" semantic="VERTEX" source="#celt_trader-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#celt_trader-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#celt_trader-Geometry-UV"/>
+          <p>0 1 2</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="celt_trader" layer="L1" name="celt_trader">
+        <instance_geometry url="#celt_trader-Geometry"/>
+        <node id="prop_trader" name="prop_trader">
+          <matrix sid="transform">1.0000000 0.0000000 0.0000000 0.3993971 0.0000000 1.0000000 0.0000000 -0.0004480 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 0.0000000 0.0000000 1.0000000</matrix>
+        </node>
+        <node id="prop_donkey" name="prop_donkey">
+          <matrix sid="transform">1.0000000 0.0000000 0.0000000 -0.4077199 0.0000000 1.0000000 0.0000000 2.6762338 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 0.0000000 0.0000000 1.0000000</matrix>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

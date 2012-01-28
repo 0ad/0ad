@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:49</created>
+    <modified>2012-01-26T22:20:49</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="wrld_palm_date_leaves_a-Geometry" name="wrld_palm_date_leaves_a-Geometry">
+      <mesh>
+        <source id="wrld_palm_date_leaves_a-Geometry-Position">
+          <float_array count="81" id="wrld_palm_date_leaves_a-Geometry-Position-array">4.8403140 0.1339200 1.0043040 5.2051180 0.8609100 1.0355560 3.3581240 1.4454590 0.0315250 3.0969890 0.7107600 0.4809450 0.7012420 2.2752190 0.1610100 0.4382440 1.5402810 0.5990970 5.5761970 1.6182970 1.3156850 3.7489010 2.1968280 0.3705570 1.0901560 3.0263490 0.4887090 1.2549420 0.3401120 0.1241430 0.2473220 -0.8883290 0.3115320 0.7245520 -1.3397450 0.6817830 1.8405390 -0.0092120 0.1101790 -1.2375940 -2.6289580 -0.1582570 -0.7580270 -3.0785190 0.2028430 1.3643360 -1.6621310 0.4153690 2.4644110 -0.3507600 -0.1102660 -0.1205800 -3.4027590 -0.0544200 -4.5393300 -1.2941520 0.1241430 -2.9535570 -1.1957280 0.3115320 -2.9478700 -0.5388470 0.6817830 -4.6822000 -0.6274150 0.1101790 -0.6676790 -1.0981440 -0.1582570 -0.6649420 -0.4408150 0.2028420 -3.1473630 0.1492360 0.4153690 -4.8568250 0.0620620 -0.1102660 -0.8614850 0.2468190 -0.0544210</float_array>
+          <technique_common>
+            <accessor count="27" source="wrld_palm_date_leaves_a-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_palm_date_leaves_a-Geometry-Normals">
+          <float_array count="81" id="wrld_palm_date_leaves_a-Geometry-Normal-array">-0.2585150 0.3697740 0.8924330 -0.4745220 -0.0120430 0.8801610 -0.1786110 0.0574570 0.9822410 0.0988970 0.4899410 0.8661280 0.1087900 0.2009700 0.9735380 0.1807270 0.4550690 0.8719230 -0.4794750 -0.0880210 0.8731300 -0.3635650 -0.2018590 0.9094360 -0.0731810 -0.3725290 0.9251310 -0.0681570 0.3336370 0.9402350 -0.4296970 0.2507720 0.8674530 0.0237370 0.0173670 0.9995670 0.3189750 0.1269440 0.9392230 -0.4801450 0.1777700 0.8589870 -0.2933460 -0.0113690 0.9559390 0.3249730 -0.0947750 0.9409620 0.3645740 0.0664580 0.9288000 0.1716030 -0.3927220 0.9035050 -0.1979510 -0.2770820 0.9402350 0.1089010 -0.4854550 0.8674520 -0.0288820 0.0055600 0.9995670 -0.3101550 0.1471860 0.9392230 0.1967170 -0.4726980 0.8589870 0.2080570 -0.2071070 0.9559390 -0.1518500 0.3025410 0.9409620 -0.2969010 0.2217670 0.9288000 0.1707920 0.3930750 0.9035050</float_array>
+          <technique_common>
+            <accessor count="27" source="wrld_palm_date_leaves_a-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_palm_date_leaves_a-Geometry-UV">
+          <float_array count="54" id="wrld_palm_date_leaves_a-Geometry-UV-array">0.410006 0.012653 0.271618 0.012653 0.271615 0.506674 0.410003 0.506675 0.271612 1.000696 0.409999 1.000696 0.133231 0.012653 0.133228 0.506674 0.133225 1.000695 0.410006 0.012653 0.410003 0.506675 0.271615 0.506674 0.271618 0.012653 0.409999 1.000696 0.271612 1.000696 0.133228 0.506674 0.133231 0.012653 0.133225 1.000695 0.410006 0.012653 0.410003 0.506675 0.271615 0.506674 0.271618 0.012653 0.409999 1.000696 0.271612 1.000696 0.133228 0.506674 0.133231 0.012653 0.133225 1.000695</float_array>
+          <technique_common>
+            <accessor count="27" source="wrld_palm_date_leaves_a-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_palm_date_leaves_a-Geometry-Vertex">
+          <input semantic="POSITION" source="#wrld_palm_date_leaves_a-Geometry-Position"/>
+        </vertices>
+        <triangles count="24" material="material0">
+          <input offset="0" semantic="VERTEX" source="#wrld_palm_date_leaves_a-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#wrld_palm_date_leaves_a-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#wrld_palm_date_leaves_a-Geometry-UV"/>
+          <p>0 1 2 2 3 0 3 2 4 4 5 3 1 6 7 7 2 1 2 7 8 8 4 2 9 10 11 11 12 9 10 13 14 14 11 10 12 11 15 15 16 12 11 14 17 17 15 11 18 19 20 20 21 18 19 22 23 23 20 19 21 20 24 24 25 21 20 23 26 26 24 20</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="wrld_palm_date_leaves_a" layer="L1" name="wrld_palm_date_leaves_a">
+        <instance_geometry url="#wrld_palm_date_leaves_a-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

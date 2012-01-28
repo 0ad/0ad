@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:52</created>
+    <modified>2012-01-26T22:20:52</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="wrld_anvil-Geometry" name="wrld_anvil-Geometry">
+      <mesh>
+        <source id="wrld_anvil-Geometry-Position">
+          <float_array count="99" id="wrld_anvil-Geometry-Position-array">0.4139720 0.6022170 0.0013790 0.3465000 0.5112600 0.4573700 0.3465000 -0.5112600 0.4573700 0.4575350 -0.6794400 0.0013790 0.3465000 0.5112600 0.4573700 0.4139720 0.6022170 1.2164800 0.4575350 -0.6794400 1.2164800 0.3465000 -0.5112600 0.4573700 -0.4033690 0.5902660 0.0013790 -0.4396260 -0.6794400 0.0013790 -0.3285900 -0.5112600 0.4573700 -0.3285900 0.5112600 0.4573700 -0.3285900 0.5112600 0.4573700 -0.3285900 -0.5112600 0.4573700 -0.4396260 -0.6794400 1.2164800 -0.4033690 0.5902660 1.2164800 -0.4033690 0.5902660 1.2164800 -0.4396260 -0.6794400 1.2164800 -0.0024780 -0.6794400 1.2164800 0.0015120 0.7601450 1.2164800 0.4139720 0.6022170 1.2164800 0.3465000 0.5112600 0.4573700 -0.3285900 0.5112600 0.4573700 -0.4033690 0.5902660 1.2164800 0.0015120 0.7601450 1.2164800 0.3465000 -0.5112600 0.4573700 0.4575350 -0.6794400 1.2164800 0.0089550 -1.5256620 1.2154180 -0.0024780 -0.6794400 1.2164800 -0.4396260 -0.6794400 1.2164800 -0.3285900 -0.5112600 0.4573700 0.4575350 -0.6794400 1.2164800 0.4139720 0.6022170 1.2164800</float_array>
+          <technique_common>
+            <accessor count="33" source="wrld_anvil-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_anvil-Geometry-Normals">
+          <float_array count="99" id="wrld_anvil-Geometry-Normal-array">0.8591290 0.4470830 0.2490260 0.4326410 0.8726200 0.2266170 0.8619010 -0.3974060 0.3149530 0.4275770 -0.8093640 0.4026270 0.9927890 0.0169210 -0.1186750 0.9951380 0.0338250 -0.0925040 0.9927890 0.0169210 -0.1186750 0.9894710 -0.0000000 -0.1447310 -0.6796090 0.6862860 0.2591190 -0.6710410 -0.6275330 0.3948480 -0.6752470 -0.6367660 0.3722510 -0.6883430 0.6872970 0.2319630 -0.9923210 0.0142040 -0.1228680 -0.9894710 0.0000000 -0.1447310 -0.9923210 0.0142040 -0.1228680 -0.9944890 0.0283980 -0.1009210 -0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 -0.0000000 0.0000000 1.0000000 -0.0000000 0.0000000 1.0000000 0.1669050 0.9463630 -0.2766600 0.0000000 0.9928980 -0.1189690 -0.0207420 0.9713810 -0.2366210 -0.3834710 0.9139420 -0.1328950 -0.0318430 0.9537660 -0.2988580 0.5045570 -0.6182480 -0.6026540 0.6918500 -0.3675280 0.6215040 0.0000000 -0.8970930 0.4418410 -0.0000000 -0.0012540 0.9999990 -0.6918500 -0.3675280 0.6215040 -0.5045570 -0.6182480 -0.6026540 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000</float_array>
+          <technique_common>
+            <accessor count="33" source="wrld_anvil-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_anvil-Geometry-UV">
+          <float_array count="66" id="wrld_anvil-Geometry-UV-array">0.098988 0.113952 0.203833 0.307517 0.522616 0.307517 0.630661 0.113952 0.203833 0.307517 0.071154 0.707987 0.645421 0.707987 0.522616 0.307517 0.098988 0.113952 0.630661 0.113952 0.522616 0.307517 0.203833 0.307517 0.203833 0.307517 0.522616 0.307517 0.645421 0.707987 0.071154 0.707987 0.071154 0.707987 0.645421 0.707987 0.646528 0.789629 0.072261 0.789629 0.071154 0.707987 0.203833 0.307517 0.203833 0.307517 0.071154 0.707987 0.071154 0.707987 0.522616 0.307517 0.645421 0.707987 0.967994 0.864744 0.646528 0.789629 0.645421 0.707987 0.522616 0.307517 0.645421 0.707987 0.071154 0.707987</float_array>
+          <technique_common>
+            <accessor count="33" source="wrld_anvil-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_anvil-Geometry-Vertex">
+          <input semantic="POSITION" source="#wrld_anvil-Geometry-Position"/>
+        </vertices>
+        <triangles count="24" material="material0">
+          <input offset="0" semantic="VERTEX" source="#wrld_anvil-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#wrld_anvil-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#wrld_anvil-Geometry-UV"/>
+          <p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 3 2 10 10 9 3 16 17 18 18 19 16 20 21 22 22 23 24 20 22 24 1 0 8 8 11 1 25 26 27 28 29 27 29 30 27 30 25 27 27 26 28 31 32 19 19 18 31</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="wrld_anvil" layer="L1" name="wrld_anvil">
+        <instance_geometry url="#wrld_anvil-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

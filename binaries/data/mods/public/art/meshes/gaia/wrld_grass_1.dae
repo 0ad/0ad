@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:49</created>
+    <modified>2012-01-26T22:20:49</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="wrld_grass_1-Geometry" name="wrld_grass_1-Geometry">
+      <mesh>
+        <source id="wrld_grass_1-Geometry-Position">
+          <float_array count="96" id="wrld_grass_1-Geometry-Position-array">-0.0000000 0.6374230 0.0310550 -0.0000000 -0.6374230 0.0310550 -0.1823810 -0.6012210 1.7412950 0.1793800 0.5967420 1.7412950 -0.0173800 0.6374230 0.0310550 0.1630490 0.6039060 1.7412950 -0.1987120 -0.5940570 1.7412950 -0.0173800 -0.6374230 0.0310550 0.3622880 0.4509450 0.0310550 -0.3856330 -0.4505070 0.0310550 -0.4917170 -0.2666090 1.7412950 0.4669030 0.2721640 1.7412950 0.3499990 0.4657560 0.0310550 0.4595580 0.2911480 1.7412950 -0.4990610 -0.2476250 1.7412950 -0.3979220 -0.4356950 0.0310550 -0.4118980 0.4847000 0.0310550 -0.2510150 0.6230260 1.7412950 0.2318600 -0.6250730 1.7412950 0.3960280 -0.4890740 0.0310550 -0.3988260 0.5004550 0.0310550 0.4091000 -0.4733190 0.0310550 0.2486140 -0.6156570 1.7412950 -0.2342600 0.6324420 1.7412950 -0.5674620 -0.0084220 0.0310550 -0.5371300 0.2237700 1.7412950 0.5365430 -0.2472340 1.7412950 0.5751170 -0.0084220 0.0310550 -0.5674620 0.0138590 0.0310550 0.5751170 0.0138590 0.0310550 0.5428650 -0.2262970 1.7412950 -0.5308070 0.2447080 1.7412950</float_array>
+          <technique_common>
+            <accessor count="32" source="wrld_grass_1-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_grass_1-Geometry-Normals">
+          <float_array count="96" id="wrld_grass_1-Geometry-Normal-array">0.9892690 -0.1461060 -0.0003220 0.9943620 0.0000000 0.1060390 0.9892690 -0.1461060 -0.0003220 0.9518410 -0.2874370 -0.1066720 -0.9892690 0.1461070 0.0003160 -0.9519040 0.2874560 0.1060580 -0.9892690 0.1461070 0.0003160 -0.9944260 -0.0000000 -0.1054370 0.6405180 -0.7679400 -0.0023580 0.7644400 -0.6342440 0.1156160 0.6405180 -0.7679400 -0.0023580 0.4863960 -0.8654280 -0.1202210 -0.6405170 0.7679400 0.0023370 -0.4864380 0.8655010 0.1195250 -0.6405170 0.7679400 0.0023370 -0.7644980 0.6342920 -0.1149620 -0.8624000 -0.5062120 -0.0038620 -0.9263240 -0.3583840 0.1161260 -0.8624000 -0.5062120 -0.0038620 -0.7636900 -0.6336220 -0.1236930 0.8624010 0.5062120 0.0038800 0.7636240 0.6335670 0.1243870 0.8624010 0.5062120 0.0038800 0.9262520 0.3583560 -0.1167830 -0.2053440 -0.9786810 -0.0041050 -0.3983030 -0.9079470 0.1303320 -0.2053440 -0.9786810 -0.0041050 -0.0000000 -0.9903910 -0.1382950 0.2053450 0.9786810 0.0041140 0.0000000 0.9902840 0.1390580 0.2053450 0.9786810 0.0041140 0.3982630 0.9078570 -0.1310790</float_array>
+          <technique_common>
+            <accessor count="32" source="wrld_grass_1-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_grass_1-Geometry-UV">
+          <float_array count="64" id="wrld_grass_1-Geometry-UV-array">0.839844 0.458984 0.998047 0.458984 0.998047 0.736328 0.839844 0.736328 0.839844 0.458984 0.839844 0.736328 0.998047 0.736328 0.998047 0.458984 0.839844 0.458984 0.998047 0.458984 0.998047 0.736328 0.839844 0.736328 0.839844 0.458984 0.839844 0.736328 0.998047 0.736328 0.998047 0.458984 0.839844 0.75 0.839844 0.990234 0.998047 0.990234 0.998047 0.75 0.839844 0.75 0.998047 0.75 0.998047 0.990234 0.839844 0.990234 0.839844 0.75 0.839844 0.990234 0.998047 0.990234 0.998047 0.75 0.839844 0.75 0.998047 0.75 0.998047 0.990234 0.839844 0.990234</float_array>
+          <technique_common>
+            <accessor count="32" source="wrld_grass_1-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_grass_1-Geometry-Vertex">
+          <input semantic="POSITION" source="#wrld_grass_1-Geometry-Position"/>
+        </vertices>
+        <triangles count="16" material="material0">
+          <input offset="0" semantic="VERTEX" source="#wrld_grass_1-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#wrld_grass_1-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#wrld_grass_1-Geometry-UV"/>
+          <p>0 2 1 2 0 3 4 6 5 6 4 7 8 10 9 10 8 11 12 14 13 14 12 15 16 18 17 18 16 19 20 22 21 22 20 23 24 26 25 26 24 27 28 30 29 30 28 31</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="wrld_grass_1" layer="L1" name="wrld_grass_1">
+        <instance_geometry url="#wrld_grass_1-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

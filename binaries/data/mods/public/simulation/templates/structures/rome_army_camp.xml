@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special">
+  <Armour>
+    <Hack>10.0</Hack>
+    <Pierce>40.0</Pierce>
+    <Crush>20.0</Crush>
+  </Armour>
+  <Attack>
+    <Ranged>
+      <Hack>0.0</Hack>
+      <Pierce>25.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>80.0</MaxRange>
+      <MinRange>12.0</MinRange>
+      <ProjectileSpeed>75.0</ProjectileSpeed>
+      <PrepareTime>1200</PrepareTime>
+      <RepeatTime>2000</RepeatTime>
+    </Ranged>
+  </Attack>
+  <BuildingAI>
+    <DefaultArrowCount>1</DefaultArrowCount>
+    <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
+  </BuildingAI>
+  <BuildRestrictions>
+    <Territory>own neutral enemy</Territory>
+    <Category>Fortress</Category>
+  </BuildRestrictions>
+  <Cost>
+    <PopulationBonus>0</PopulationBonus>
+    <BuildTime>350</BuildTime>
+    <Resources>
+      <wood>1000</wood>
+      <stone>0</stone>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="28.0" depth="28.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <Max>20</Max>
+	<EjectHealth>0.1</EjectHealth>
+	<List datatype="tokens">Support Infantry Cavalry Siege</List>
+	<BuffHeal>1</BuffHeal>
+  </GarrisonHolder>
+  <Health>
+    <Max>3500</Max>
+  </Health>
+  <Identity>
+    <Civ>rome</Civ>
+    <GenericName>Entrenched Army Camp</GenericName>
+    <SpecificName>Castra Vellum</SpecificName>
+    <Icon>structures/fortress.png</Icon>
+	<Tooltip>A special building that can be built on enemy territory. Constructs Siege Weapons.</Tooltip>
+    <History>Sometimes it was a temporary camp built facing the route by which the army is to march, other times a defensive or offensive (for sieges) structure. Within this gate the tents of the first centuries or cohorts are pitched, and the dragons (ensigns of cohorts) and other ensigns planted. The Decumane gate is directly opposite to the Praetorian in the rear of the camp, and through this the soldiers are conducted to the place appointed for punishment or execution.</History>
+  </Identity>
+  <Obstruction>
+    <Static width="24.0" depth="24.0"/>
+  </Obstruction>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_fortress.xml</select>
+      <constructed>interface/complete/building/complete_fortress.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <TerritoryInfluence disable=""/>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+	  units/rome_mechanical_siege_ballista
+	  units/rome_mechanical_siege_scorpio
+	  units/rome_mechanical_siege_ram
+    </Entities>
+  </TrainingQueue>
+  <VisualActor>
+    <Actor>structures/romans/camp.xml</Actor>
+  </VisualActor>
+</Entity>

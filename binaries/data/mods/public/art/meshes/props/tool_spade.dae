@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:51</created>
+    <modified>2012-01-26T22:20:51</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="tool_spade-Geometry" name="tool_spade-Geometry">
+      <mesh>
+        <source id="tool_spade-Geometry-Position">
+          <float_array count="72" id="tool_spade-Geometry-Position-array">-0.0025220 -0.0267970 -0.1009390 0.0346030 0.0773090 0.9636520 -0.0025220 -0.0062810 0.9636520 0.0518160 0.0615630 -0.1009390 0.0518160 0.0615630 -0.1009390 -0.0396480 0.0773090 0.9636520 0.0346030 0.0773090 0.9636520 -0.0568610 0.0615630 -0.1009390 -0.0568610 0.0615630 -0.1009390 -0.0025220 -0.0062810 0.9636520 -0.0396480 0.0773090 0.9636520 -0.0025220 -0.0267970 -0.1009390 -0.1657860 0.0117520 0.6746370 -0.0000000 0.0687500 0.6794290 -0.0000000 -0.0046450 1.5318580 -0.1466390 0.0009110 1.1467990 0.1657870 0.0117520 0.6746370 0.1466400 0.0009110 1.1468000 -0.0000000 0.0687500 0.6794290 -0.1657860 0.0117520 0.6746370 -0.0000000 -0.0046450 1.5318580 -0.1466390 0.0009110 1.1467990 0.1657870 0.0117520 0.6746370 0.1466400 0.0009110 1.1468000</float_array>
+          <technique_common>
+            <accessor count="24" source="tool_spade-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="tool_spade-Geometry-Normals">
+          <float_array count="72" id="tool_spade-Geometry-Normal-array">0.5320930 -0.8463740 0.0229630 0.9991750 0.0397720 0.0082340 -0.5374890 -0.8429170 0.0244210 0.4997370 0.8661640 -0.0047310 0.4997370 0.8661640 -0.0047310 -0.4973150 0.8675570 -0.0047910 0.9991750 0.0397720 0.0082340 -0.9991680 0.0397620 0.0091010 -0.9991680 0.0397620 0.0091010 -0.5374890 -0.8429170 0.0244210 -0.4973150 0.8675570 -0.0047910 0.5320930 -0.8463740 0.0229630 0.1777780 -0.9826330 -0.0531770 -0.0639070 -0.9955270 -0.0695830 0.0569400 -0.9962850 -0.0646000 0.0250550 -0.9993990 -0.0239620 -0.3258280 -0.9447840 -0.0349050 -0.2558190 -0.9648740 -0.0597860 0.0639070 0.9955270 0.0695830 -0.1777780 0.9826330 0.0531770 -0.0569400 0.9962850 0.0646000 -0.0250550 0.9993990 0.0239620 0.3258280 0.9447840 0.0349050 0.2558190 0.9648740 0.0597860</float_array>
+          <technique_common>
+            <accessor count="24" source="tool_spade-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="tool_spade-Geometry-UV">
+          <float_array count="48" id="tool_spade-Geometry-UV-array">0.652645 0.000525 0.970217 1.000525 0.652645 1.000525 0.970217 0.000525 0.528877 0.000525 0.772891 1.000525 0.528877 1.000525 0.772891 0.000525 0.620524 0.005779 0.911825 0.990017 0.620524 0.990017 0.911825 0.005779 0.006305 0.016813 0.248857 0.016813 0.248857 0.985289 0.006305 0.985289 0.491408 0.016813 0.491408 0.985289 0.248857 0.016813 0.006305 0.016813 0.248857 0.985289 0.006305 0.985289 0.491408 0.016813 0.491408 0.985289</float_array>
+          <technique_common>
+            <accessor count="24" source="tool_spade-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="tool_spade-Geometry-Vertex">
+          <input semantic="POSITION" source="#tool_spade-Geometry-Position"/>
+        </vertices>
+        <triangles count="14" material="material0">
+          <input offset="0" semantic="VERTEX" source="#tool_spade-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#tool_spade-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#tool_spade-Geometry-UV"/>
+          <p>0 1 2 0 3 1 4 5 6 4 7 5 8 9 10 8 11 9 12 13 14 14 15 12 13 16 17 17 14 13 18 19 20 21 20 19 22 18 23 20 23 18</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="tool_spade" layer="L1" name="tool_spade">
+        <instance_geometry url="#tool_spade-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

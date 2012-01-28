@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:47</created>
+    <modified>2012-01-26T22:20:47</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="grass_la_tall_a-Geometry" name="grass_la_tall_a-Geometry">
+      <mesh>
+        <source id="grass_la_tall_a-Geometry-Position">
+          <float_array count="72" id="grass_la_tall_a-Geometry-Position-array">2.2252120 2.8612820 -0.0717660 1.6781180 3.8088740 3.1523500 -3.5588460 -0.4781460 -0.0717670 -4.1059390 0.4694460 3.1523490 -3.5858970 -0.4312930 -0.0717680 -3.0388050 -1.3788860 3.1523490 2.1981610 2.9081350 -0.0717670 2.7452550 1.9605420 3.1523490 2.2643200 -2.0703590 -0.0717670 2.8114120 -1.1227650 3.1523500 -3.5197370 1.2690690 -0.0717670 -2.9726450 2.2166620 3.1523490 -3.4926870 1.3159230 -0.0717680 -4.0397810 0.3683300 3.1523490 2.2913720 -2.0235050 -0.0717670 1.7442790 -2.9710980 3.1523490 0.7105990 -2.8294760 -0.0717670 1.8047850 -2.8294750 3.1523500 0.7105990 3.8493790 -0.0717670 1.8047850 3.8493800 3.1523500 0.7647020 3.8493790 -0.0717680 -0.3294850 3.8493810 3.1523500 0.7647010 -2.8294760 -0.0717670 -0.3294850 -2.8294770 3.1523490</float_array>
+          <technique_common>
+            <accessor count="24" source="grass_la_tall_a-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="grass_la_tall_a-Geometry-Normals">
+          <float_array count="72" id="grass_la_tall_a-Geometry-Normal-array">0.4734760 -0.8200850 0.3213720 0.4734760 -0.8200850 0.3213720 0.4734760 -0.8200850 0.3213720 0.4734760 -0.8200850 0.3213720 -0.4734760 0.8200850 0.3213730 -0.4734760 0.8200850 0.3213730 -0.4734760 0.8200850 0.3213730 -0.4734760 0.8200850 0.3213730 -0.4734760 -0.8200850 0.3213720 -0.4734770 -0.8200850 0.3213730 -0.4734770 -0.8200850 0.3213730 -0.4734770 -0.8200850 0.3213730 0.4734760 0.8200850 0.3213730 0.4734760 0.8200850 0.3213730 0.4734760 0.8200850 0.3213730 0.4734760 0.8200850 0.3213730 -0.9469530 0.0000000 0.3213720 -0.9469530 0.0000000 0.3213720 -0.9469530 0.0000000 0.3213720 -0.9469530 0.0000000 0.3213720 0.9469530 -0.0000000 0.3213730 0.9469530 -0.0000000 0.3213730 0.9469530 -0.0000000 0.3213730 0.9469530 0.0000000 0.3213720</float_array>
+          <technique_common>
+            <accessor count="24" source="grass_la_tall_a-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="grass_la_tall_a-Geometry-UV">
+          <float_array count="48" id="grass_la_tall_a-Geometry-UV-array">0.000212 -0.005571 0.000212 0.997638 0.995068 -0.005571 0.995068 0.997638 0.000212 -0.005571 0.000212 0.997638 0.995068 -0.005571 0.995068 0.997638 0.000212 -0.005571 0.000212 0.997638 0.995068 -0.005571 0.995068 0.997638 0.000212 -0.005571 0.000212 0.997638 0.995068 -0.005571 0.995068 0.997638 0.000212 -0.005571 0.000212 0.997638 0.995068 -0.005571 0.995068 0.997638 0.000212 -0.005571 0.000212 0.997638 0.995068 -0.005571 0.995068 0.997638</float_array>
+          <technique_common>
+            <accessor count="24" source="grass_la_tall_a-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="grass_la_tall_a-Geometry-Vertex">
+          <input semantic="POSITION" source="#grass_la_tall_a-Geometry-Position"/>
+        </vertices>
+        <triangles count="12" material="material0">
+          <input offset="0" semantic="VERTEX" source="#grass_la_tall_a-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#grass_la_tall_a-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#grass_la_tall_a-Geometry-UV"/>
+          <p>0 1 2 3 2 1 4 5 6 7 6 5 8 9 10 11 10 9 12 13 14 15 14 13 16 17 18 19 18 17 20 21 22 23 22 21</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="grass_la_tall_a" layer="L1" name="grass_la_tall_a">
+        <instance_geometry url="#grass_la_tall_a-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

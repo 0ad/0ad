@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:49</created>
+    <modified>2012-01-26T22:20:49</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="wrld_rock_snow1-Geometry" name="wrld_rock_snow1-Geometry">
+      <mesh>
+        <source id="wrld_rock_snow1-Geometry-Position">
+          <float_array count="60" id="wrld_rock_snow1-Geometry-Position-array">0.1852750 0.1300770 0.7388520 0.1915400 0.7926420 0.3467360 -0.3047580 0.2245030 0.4726750 -0.3438970 -0.3104030 0.6518110 0.1852750 0.1300770 0.7388520 -0.3438970 -0.3104030 0.6518110 0.2109260 -0.4609120 0.4220020 0.5696500 -0.2438660 0.5247240 0.5225300 0.2734870 0.4580760 0.1915400 0.7926420 0.3467360 0.1915400 0.9371210 0.0191820 -0.7421070 0.4974760 0.0014040 -0.7421070 0.4974760 0.0014040 -0.6219220 -0.6663900 -0.0135890 -0.1511790 -0.9371210 -0.0107030 0.6480350 -0.6608030 -0.0058330 0.6480350 -0.6608030 -0.0058330 0.7421070 0.4881770 0.0191820 0.7421070 0.4881770 0.0191820 0.1915400 0.9371210 0.0191820</float_array>
+          <technique_common>
+            <accessor count="20" source="wrld_rock_snow1-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_rock_snow1-Geometry-Normals">
+          <float_array count="60" id="wrld_rock_snow1-Geometry-Normal-array">0.1111330 0.0960230 0.9891560 0.0142170 0.7018560 0.7121770 -0.6220950 0.3070340 0.7202280 -0.3723120 -0.3628030 0.8542590 0.1111330 0.0960230 0.9891560 -0.3723120 -0.3628030 0.8542590 0.1813400 -0.6366150 0.7495580 0.6528220 -0.2385750 0.7189610 0.6787670 0.4112520 0.6083980 0.0142170 0.7018560 0.7121770 0.3605710 0.8054860 0.4702980 -0.5924230 0.4806390 0.6465450 -0.5924230 0.4806390 0.6465450 -0.7898760 -0.2376470 0.5653490 -0.0222380 -0.7586230 0.6511500 0.5750420 -0.6030440 0.5528690 0.5750420 -0.6030440 0.5528690 0.8501140 0.2512180 0.4628130 0.8501140 0.2512180 0.4628130 0.3605710 0.8054860 0.4702980</float_array>
+          <technique_common>
+            <accessor count="20" source="wrld_rock_snow1-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_rock_snow1-Geometry-UV">
+          <float_array count="40" id="wrld_rock_snow1-Geometry-UV-array">0.332985 0.464073 0.348131 0.666763 0.552214 0.547649 0.557929 0.333001 0.538784 0.545341 0.55615 0.336292 0.741501 0.315555 0.805019 0.546931 0.636146 0.782757 0.339291 0.668557 0.153756 0.898171 0.053028 0.405915 0.050386 0.400817 0.249502 0.028095 0.917701 0.111186 0.973911 0.526437 0.978804 0.534976 0.820996 0.940295 0.821825 0.9387 0.156442 0.898521</float_array>
+          <technique_common>
+            <accessor count="20" source="wrld_rock_snow1-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_rock_snow1-Geometry-Vertex">
+          <input semantic="POSITION" source="#wrld_rock_snow1-Geometry-Position"/>
+        </vertices>
+        <triangles count="18" material="material0">
+          <input offset="0" semantic="VERTEX" source="#wrld_rock_snow1-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#wrld_rock_snow1-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#wrld_rock_snow1-Geometry-UV"/>
+          <p>0 1 2 0 2 3 4 5 6 4 6 7 4 7 8 4 8 9 1 10 11 1 11 2 2 12 13 2 13 3 3 13 14 3 14 6 6 14 15 6 15 7 7 16 17 7 17 8 8 18 19 8 19 9</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="wrld_rock_snow1" layer="L1" name="wrld_rock_snow1">
+        <instance_geometry url="#wrld_rock_snow1-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

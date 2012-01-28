@@ -11,6 +11,12 @@
       <Hack>24.0</Hack>
     </Charge>
   </Attack>
+  <Builder>
+    <Entities datatype="tokens">
+      structures/rome_army_camp
+      structures/rome_siege_wall
+    </Entities>
+  </Builder>
   <Cost>
     <Resources>
       <metal>60</metal>

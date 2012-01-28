@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:53</created>
+    <modified>2012-01-26T22:20:53</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="wrld_wood_c-Geometry" name="wrld_wood_c-Geometry">
+      <mesh>
+        <source id="wrld_wood_c-Geometry-Position">
+          <float_array count="72" id="wrld_wood_c-Geometry-Position-array">-2.4752120 -0.1884280 0.0000000 -2.4752120 0.1884280 0.0000000 2.4752120 0.1884280 0.0000000 2.4752120 -0.1884280 0.0000000 -2.4752120 -0.1884280 0.3768480 2.4752120 -0.1884280 0.3768480 2.4752120 0.1884280 0.3768480 -2.4752120 0.1884280 0.3768480 -2.4752120 -0.1884280 0.0000000 2.4752120 -0.1884280 0.0000000 2.4752120 -0.1884280 0.3768480 -2.4752120 -0.1884280 0.3768480 2.4752120 -0.1884280 0.0000000 2.4752120 0.1884280 0.0000000 2.4752120 0.1884280 0.3768480 2.4752120 -0.1884280 0.3768480 2.4752120 0.1884280 0.0000000 -2.4752120 0.1884280 0.0000000 -2.4752120 0.1884280 0.3768480 2.4752120 0.1884280 0.3768480 -2.4752120 0.1884280 0.0000000 -2.4752120 -0.1884280 0.0000000 -2.4752120 -0.1884280 0.3768480 -2.4752120 0.1884280 0.3768480</float_array>
+          <technique_common>
+            <accessor count="24" source="wrld_wood_c-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_wood_c-Geometry-Normals">
+          <float_array count="72" id="wrld_wood_c-Geometry-Normal-array">0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 -0.0000000 -1.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 -0.0000000 1.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000</float_array>
+          <technique_common>
+            <accessor count="24" source="wrld_wood_c-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_wood_c-Geometry-UV">
+          <float_array count="48" id="wrld_wood_c-Geometry-UV-array">0.415022 0.003179 0.515393 0.003147 0.515393 0.998774 0.415022 0.998806 0.415022 0.998806 0.415022 0.003179 0.515393 0.003147 0.515393 0.998774 0.415022 0.998806 0.415022 0.003179 0.515393 0.003147 0.515393 0.998774 0.415022 0.40094 0.415022 0.108381 0.515393 0.108371 0.515393 0.40093 0.415022 0.998806 0.415022 0.003179 0.515393 0.003147 0.515393 0.998774 0.415022 0.40094 0.415022 0.108381 0.515393 0.108371 0.515393 0.40093</float_array>
+          <technique_common>
+            <accessor count="24" source="wrld_wood_c-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_wood_c-Geometry-Vertex">
+          <input semantic="POSITION" source="#wrld_wood_c-Geometry-Position"/>
+        </vertices>
+        <triangles count="12" material="material0">
+          <input offset="0" semantic="VERTEX" source="#wrld_wood_c-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#wrld_wood_c-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#wrld_wood_c-Geometry-UV"/>
+          <p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 16 17 18 18 19 16 20 21 22 22 23 20</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="wrld_wood_c" layer="L1" name="wrld_wood_c">
+        <instance_geometry url="#wrld_wood_c-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

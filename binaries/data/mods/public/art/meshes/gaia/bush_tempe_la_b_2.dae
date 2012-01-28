@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:47</created>
+    <modified>2012-01-26T22:20:47</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="bush_tempe_la_b_2-Geometry" name="bush_tempe_la_b_2-Geometry">
+      <mesh>
+        <source id="bush_tempe_la_b_2-Geometry-Position">
+          <float_array count="108" id="bush_tempe_la_b_2-Geometry-Position-array">3.6253690 4.2577870 4.8808790 -1.5541890 -0.9806420 -0.0792300 6.7607290 -3.3671570 2.0403400 7.5281080 2.0722420 1.8600350 -1.0459270 1.8102070 -0.4397290 2.3497650 -3.9724700 5.4216540 6.3578920 -3.7425320 2.6965790 1.4676240 1.6675380 -2.3717610 1.0064410 1.9849680 6.5171330 1.4899410 -2.5047880 6.4486000 1.4469250 -1.6538690 -2.3914070 5.8950910 4.0686320 2.7847590 3.8675760 4.0608200 5.9521820 -2.5539580 1.3288480 -3.1363500 -1.1375710 -6.0091880 5.5931690 5.1664250 -2.7811690 5.9521820 0.8655280 2.7144710 -3.1363510 -5.8558810 -0.5528770 5.5931690 -2.0609860 -5.5192250 5.9521820 3.0388930 -0.7557170 -3.1363510 -0.8018310 5.6553470 5.5931690 -5.2540020 1.9131460 5.9521820 -0.4904930 -3.1867330 -3.1363510 5.9205710 0.6539920 5.5931690 -7.7318750 0.5979580 1.3968720 0.1069280 -2.6535260 -1.2208930 -0.8894530 1.1408130 6.7751150 -4.5994720 4.1211760 4.0252700 -1.6206290 -0.8953000 -2.6704860 -2.2942770 -4.1405920 5.5963280 -1.0461110 0.3311390 7.0068940 -0.4815290 1.9082530 -1.7146680 -6.9867290 -3.1540980 1.6588920 -3.9197730 -4.6922430 4.5956050 1.8161680 0.4813740 0.2133290 -6.4107640 3.2961640 2.1421850</float_array>
+          <technique_common>
+            <accessor count="36" source="bush_tempe_la_b_2-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="bush_tempe_la_b_2-Geometry-Normals">
+          <float_array count="108" id="bush_tempe_la_b_2-Geometry-Normal-array">-0.3393840 -0.4477340 0.8272560 -0.3393840 -0.4477340 0.8272560 -0.3393840 -0.4477340 0.8272560 -0.2194650 0.6279540 0.7466650 -0.2194650 0.6279540 0.7466650 -0.2194650 0.6279540 0.7466650 0.7352400 0.6776630 0.0139470 0.7352400 0.6776630 0.0139470 0.7352400 0.6776630 0.0139470 0.8135460 -0.5784350 -0.0596380 0.8135460 -0.5784350 -0.0596380 0.8135460 -0.5784350 -0.0596380 -0.8046060 0.3837620 0.4531400 -0.8046060 0.3837620 0.4531400 -0.8046060 0.3837620 0.4531400 0.1624390 0.8765150 0.4531400 0.1624390 0.8765150 0.4531400 0.1624390 0.8765150 0.4531400 0.8873370 -0.0854270 0.4531400 0.8873370 -0.0854270 0.4531400 0.8873370 -0.0854270 0.4531400 -0.0854270 -0.8873370 0.4531400 -0.0854270 -0.8873370 0.4531400 -0.0854270 -0.8873370 0.4531400 -0.2376840 -0.8886900 0.3920920 -0.2376840 -0.8886900 0.3920920 -0.2376840 -0.8886900 0.3920920 -0.9349820 -0.2975810 -0.1930110 -0.9349820 -0.2975810 -0.1930110 -0.9349820 -0.2975810 -0.1930110 -0.5744690 0.8111700 0.1094950 -0.5744690 0.8111700 0.1094950 -0.5744690 0.8111700 0.1094950 0.3301190 0.3696860 0.8685350 0.3301190 0.3696860 0.8685350 0.3301190 0.3696860 0.8685350</float_array>
+          <technique_common>
+            <accessor count="36" source="bush_tempe_la_b_2-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="bush_tempe_la_b_2-Geometry-UV">
+          <float_array count="72" id="bush_tempe_la_b_2-Geometry-UV-array">-0.263847 0.974715 0.480018 -0.467664 1.232824 0.974715 -0.263847 0.974715 0.480018 -0.467664 1.232824 0.974715 -0.263847 0.974715 0.480018 -0.467664 1.232824 0.974715 -0.263847 0.974715 0.480018 -0.467664 1.232824 0.974715 -0.263847 0.974715 0.480018 -0.467664 1.232824 0.974715 -0.263847 0.974715 0.480018 -0.467664 1.232824 0.974715 -0.263847 0.974715 0.480018 -0.467664 1.232824 0.974715 -0.263847 0.974715 0.480018 -0.467664 1.232824 0.974715 -0.263847 0.974715 0.480018 -0.467664 1.232824 0.974715 -0.263847 0.974715 0.480018 -0.467664 1.232824 0.974715 -0.263847 0.974715 0.480018 -0.467664 1.232824 0.974715 -0.263847 0.974715 0.480018 -0.467664 1.232824 0.974715</float_array>
+          <technique_common>
+            <accessor count="36" source="bush_tempe_la_b_2-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="bush_tempe_la_b_2-Geometry-Vertex">
+          <input semantic="POSITION" source="#bush_tempe_la_b_2-Geometry-Position"/>
+        </vertices>
+        <triangles count="12" material="material0">
+          <input offset="0" semantic="VERTEX" source="#bush_tempe_la_b_2-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#bush_tempe_la_b_2-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#bush_tempe_la_b_2-Geometry-UV"/>
+          <p>0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="bush_tempe_la_b_2" layer="L1" name="bush_tempe_la_b_2">
+        <instance_geometry url="#bush_tempe_la_b_2-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

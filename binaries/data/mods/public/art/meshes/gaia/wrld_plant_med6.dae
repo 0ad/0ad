@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:49</created>
+    <modified>2012-01-26T22:20:49</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="wrld_plant_med6-Geometry" name="wrld_plant_med6-Geometry">
+      <mesh>
+        <source id="wrld_plant_med6-Geometry-Position">
+          <float_array count="48" id="wrld_plant_med6-Geometry-Position-array">0.9535780 -2.1879960 -0.5036030 0.9535780 -1.9171560 6.4329670 -0.5303530 2.1879960 6.7094060 -0.5303530 1.9171560 -0.2271640 1.8935630 0.4076420 6.6747920 2.3595050 0.4164460 0.2685290 -2.3871510 -0.4164460 6.5262450 -2.6317300 -0.4076420 0.3594310 1.7170700 0.1872130 -0.2082140 3.1251900 0.7826550 6.1787540 -1.7170740 -0.1872130 6.8852670 -3.1251940 -0.7826550 0.0372210 0.9535780 -1.9171560 6.4329670 0.9535780 -2.1879960 -0.5036030 -0.5303530 2.1879960 6.7094060 -0.5303530 1.9171560 -0.2271640</float_array>
+          <technique_common>
+            <accessor count="16" source="wrld_plant_med6-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_plant_med6-Geometry-Normals">
+          <float_array count="48" id="wrld_plant_med6-Geometry-Normal-array">-0.9400730 -0.3407140 0.0133030 -0.9400730 -0.3407140 0.0133030 -0.9400730 -0.3407140 0.0133030 -0.9400730 -0.3407140 0.0133030 -0.1886120 0.9819740 -0.0123690 -0.1627570 0.9866350 0.0078640 -0.1627570 0.9866350 0.0078640 -0.1627570 0.9866350 0.0078640 0.1983590 -0.9791260 0.0443480 0.2026980 -0.9781370 0.0465010 0.1983590 -0.9791260 0.0443480 0.1983590 -0.9791260 0.0443480 0.9400730 0.3407140 -0.0133030 0.9400730 0.3407140 -0.0133030 0.9400730 0.3407140 -0.0133030 0.9400730 0.3407140 -0.0133030</float_array>
+          <technique_common>
+            <accessor count="16" source="wrld_plant_med6-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_plant_med6-Geometry-UV">
+          <float_array count="32" id="wrld_plant_med6-Geometry-UV-array">0.71376 0.009198 0.71376 0.488595 0.983444 0.488595 0.983444 0.009198 0.003679 0.492274 0.003679 0.007358 0.345107 0.492274 0.345107 0.007358 0.040471 0.003679 0.040471 0.490434 0.278881 0.490434 0.278881 0.003679 0.71376 0.488595 0.71376 0.009198 0.983444 0.488595 0.983444 0.009198</float_array>
+          <technique_common>
+            <accessor count="16" source="wrld_plant_med6-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_plant_med6-Geometry-Vertex">
+          <input semantic="POSITION" source="#wrld_plant_med6-Geometry-Position"/>
+        </vertices>
+        <triangles count="8" material="material0">
+          <input offset="0" semantic="VERTEX" source="#wrld_plant_med6-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#wrld_plant_med6-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#wrld_plant_med6-Geometry-UV"/>
+          <p>0 1 2 2 3 0 4 5 6 7 6 5 8 9 10 10 11 8 12 13 14 15 14 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="wrld_plant_med6" layer="L1" name="wrld_plant_med6">
+        <instance_geometry url="#wrld_plant_med6-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

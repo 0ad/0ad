@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:55</created>
+    <modified>2012-01-26T22:20:55</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="gravestone-Geometry" name="gravestone-Geometry">
+      <mesh>
+        <source id="gravestone-Geometry-Position">
+          <float_array count="108" id="gravestone-Geometry-Position-array">1.5198080 0.4336280 -0.4336280 1.5198090 0.4336280 0.4336280 1.5198080 -0.4336280 0.4336280 1.5198080 -0.4336280 -0.4336280 1.5198080 -0.4336280 -0.4336280 1.5198080 -0.4336280 0.4336280 -0.4336280 -0.4336280 0.4336280 -0.4336280 -0.4336280 -0.4336280 -0.4336280 -0.4336280 -0.4336280 -0.4336280 -0.4336280 0.4336280 -0.4336280 0.4336280 0.4336280 -0.4336280 0.4336280 -0.4336280 1.5198090 0.4336280 0.4336280 1.5198080 0.4336280 -0.4336280 -0.4336280 0.4336280 -0.4336280 -0.4336280 0.4336280 0.4336280 -0.3377550 -0.3910640 1.3141110 -0.3377550 0.3910640 1.3141110 1.4239350 -0.3910640 1.3141110 -0.3377550 -0.3910640 1.3141110 -0.3377550 0.3910640 1.3141110 1.4239360 0.3910640 1.3141110 1.4239360 0.3910640 1.3141110 1.4239350 -0.3910640 1.3141110 0.9431700 0.1776210 1.9858710 0.9431690 -0.1776210 1.9858710 0.1430110 0.1776210 1.9858710 0.9431700 0.1776210 1.9858710 0.9431690 -0.1776210 1.9858710 0.1430110 -0.1776210 1.9858710 0.1430110 -0.1776210 1.9858710 0.1430110 0.1776210 1.9858710 0.9431700 0.1776210 1.9858710 0.1430110 0.1776210 1.9858710 0.1430110 -0.1776210 1.9858710 0.9431690 -0.1776210 1.9858710</float_array>
+          <technique_common>
+            <accessor count="36" source="gravestone-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="gravestone-Geometry-Normals">
+          <float_array count="108" id="gravestone-Geometry-Normal-array">1.0000000 0.0000000 0.0000000 0.9941240 -0.0000010 0.1082470 0.9941240 -0.0000010 0.1082470 1.0000000 0.0000000 0.0000000 -0.0000000 -1.0000000 0.0000000 -0.0000000 -0.9988340 0.0482850 -0.0000000 -0.9988340 0.0482850 -0.0000000 -1.0000000 0.0000000 -1.0000000 0.0000000 -0.0000000 -0.9941240 0.0000000 0.1082470 -0.9941240 0.0000000 0.1082470 -1.0000000 0.0000000 -0.0000000 0.0000000 0.9988340 0.0482850 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 0.9988340 0.0482850 -0.8131970 0.0000000 0.5819890 -0.8131970 0.0000000 0.5819890 -0.0000000 -0.9530480 0.3028180 -0.0000000 -0.9530480 0.3028180 0.0000000 0.9530480 0.3028180 0.0000000 0.9530480 0.3028180 0.8131970 -0.0000010 0.5819890 0.8131970 -0.0000010 0.5819890 0.8131970 -0.0000010 0.5819890 0.8131970 -0.0000010 0.5819890 0.0000000 0.9530480 0.3028180 0.0000000 0.9530480 0.3028180 -0.0000000 -0.9530480 0.3028180 -0.0000000 -0.9530480 0.3028180 -0.8131970 0.0000000 0.5819890 -0.8131970 0.0000000 0.5819890 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000</float_array>
+          <technique_common>
+            <accessor count="36" source="gravestone-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="gravestone-Geometry-UV">
+          <float_array count="72" id="gravestone-Geometry-UV-array">0.987565 0.03036 0.987565 0.322441 0.695484 0.322441 0.695484 0.03036 0.683133 0.03036 0.683133 0.322441 0.02524 0.322441 0.02524 0.03036 0.987324 0.030686 0.987324 0.322767 0.695243 0.322767 0.695243 0.030686 0.025094 0.323674 0.025094 0.031593 0.682987 0.031593 0.682987 0.323674 0.972989 0.619303 0.709578 0.619303 0.650844 0.618976 0.057529 0.618976 0.650698 0.62021 0.057383 0.62021 0.97323 0.618976 0.709819 0.618976 0.901345 0.898958 0.781704 0.898958 0.488782 0.84645 0.219299 0.84645 0.488928 0.845217 0.219445 0.845217 0.901104 0.899284 0.781463 0.899285 0.48777 0.846749 0.218287 0.846749 0.218286 0.96639 0.48777 0.96639</float_array>
+          <technique_common>
+            <accessor count="36" source="gravestone-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="gravestone-Geometry-Vertex">
+          <input semantic="POSITION" source="#gravestone-Geometry-Position"/>
+        </vertices>
+        <triangles count="26" material="material0">
+          <input offset="0" semantic="VERTEX" source="#gravestone-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#gravestone-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#gravestone-Geometry-UV"/>
+          <p>0 1 2 0 2 3 4 5 6 4 6 7 8 9 10 8 10 11 12 13 14 12 14 15 10 9 16 10 16 17 6 5 18 6 18 19 12 15 20 12 20 21 2 1 22 2 22 23 23 22 24 23 24 25 21 20 26 21 26 27 19 18 28 19 28 29 17 16 30 17 30 31 32 33 34 32 34 35</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="gravestone" layer="L1" name="gravestone">
+        <instance_geometry url="#gravestone-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

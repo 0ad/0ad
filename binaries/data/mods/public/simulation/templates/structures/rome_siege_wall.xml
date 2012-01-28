@@ -5,6 +5,9 @@
     <Pierce>35.0</Pierce>
     <Crush>10.0</Crush>
   </Armour>
+  <BuildRestrictions>
+    <Territory>own neutral enemy</Territory>
+  </BuildRestrictions>
   <Cost>
     <Resources>
       <wood>150</wood>
@@ -16,11 +19,14 @@
     <Height>7.0</Height>
   </Footprint>
   <Health>
-    <Max>1000</Max>
+    <Max>2000</Max>
   </Health>
   <Identity>
     <Civ>rome</Civ>
-    <SpecificName>Circummunitio</SpecificName>
+	<GenericName>Siege Wall</GenericName>
+    <SpecificName>Murus Latericius</SpecificName>
+    <Icon>gaia/special_palisade.png</Icon>
+	<Tooltip>A wooden and turf palisade buildable in enemy and neutral territories.</Tooltip>
     <History>Quick building, but expensive wooden and earthen walls used to surround and siege an enemy town or fortified position. The most famous examples are the Roman sieges of the Iberian stronghold of Numantia and the Gallic stronghold of Alesia.</History>
   </Identity>
   <Obstruction>

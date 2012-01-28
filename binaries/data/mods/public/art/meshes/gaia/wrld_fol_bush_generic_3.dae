@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:49</created>
+    <modified>2012-01-26T22:20:49</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="wrld_fol_bush_generic_3-Geometry" name="wrld_fol_bush_generic_3-Geometry">
+      <mesh>
+        <source id="wrld_fol_bush_generic_3-Geometry-Position">
+          <float_array count="48" id="wrld_fol_bush_generic_3-Geometry-Position-array">-2.3217850 0.3583550 -0.0168040 -2.3217840 -0.3583580 2.5949150 2.3217850 0.3583550 -0.0168040 2.3217860 -0.3583580 2.5949150 -0.3583560 -2.3217850 -0.0168040 0.3583570 -2.3217850 2.5949150 -0.3583560 2.3217840 -0.0168040 0.3583570 2.3217850 2.5949150 2.3217850 -0.3583560 -0.0168040 2.3217850 0.3583560 2.5949150 -2.3217840 -0.3583560 -0.0168040 -2.3217850 0.3583570 2.5949150 0.3583570 2.3217850 -0.0168040 -0.3583560 2.3217850 2.5949150 0.3583570 -2.3217830 -0.0168040 -0.3583560 -2.3217840 2.5949140</float_array>
+          <technique_common>
+            <accessor count="16" source="wrld_fol_bush_generic_3-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_fol_bush_generic_3-Geometry-Normals">
+          <float_array count="48" id="wrld_fol_bush_generic_3-Geometry-Normal-array">0.0000000 0.9643480 0.2646380 0.0000000 0.9643480 0.2646380 0.0000000 0.9643480 0.2646380 0.0000000 0.9643480 0.2646380 -0.9643480 0.0000000 0.2646380 -0.9643480 0.0000000 0.2646380 -0.9643480 0.0000000 0.2646380 -0.9643480 0.0000000 0.2646380 0.0000000 -0.9643480 0.2646380 -0.0000000 -0.9643480 0.2646380 -0.0000000 -0.9643480 0.2646380 -0.0000000 -0.9643480 0.2646380 0.9643480 0.0000000 0.2646380 0.9643480 -0.0000000 0.2646380 0.9643480 -0.0000000 0.2646380 0.9643480 -0.0000000 0.2646380</float_array>
+          <technique_common>
+            <accessor count="16" source="wrld_fol_bush_generic_3-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_fol_bush_generic_3-Geometry-UV">
+          <float_array count="32" id="wrld_fol_bush_generic_3-Geometry-UV-array">0.000212 -0.005571 0.000212 0.997638 0.995068 -0.005571 0.995068 0.997638 0.000212 -0.005571 0.000212 0.997638 0.995068 -0.005571 0.995068 0.997638 0.000212 -0.005571 0.000212 0.997638 0.995068 -0.005571 0.995068 0.997638 0.000212 -0.005571 0.000212 0.997638 0.995068 -0.005571 0.995068 0.997638</float_array>
+          <technique_common>
+            <accessor count="16" source="wrld_fol_bush_generic_3-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_fol_bush_generic_3-Geometry-Vertex">
+          <input semantic="POSITION" source="#wrld_fol_bush_generic_3-Geometry-Position"/>
+        </vertices>
+        <triangles count="8" material="material0">
+          <input offset="0" semantic="VERTEX" source="#wrld_fol_bush_generic_3-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#wrld_fol_bush_generic_3-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#wrld_fol_bush_generic_3-Geometry-UV"/>
+          <p>0 1 2 3 2 1 4 5 6 7 6 5 8 9 10 11 10 9 12 13 14 15 14 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="wrld_fol_bush_generic_3" layer="L1" name="wrld_fol_bush_generic_3">
+        <instance_geometry url="#wrld_fol_bush_generic_3-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

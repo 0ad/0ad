@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:54</created>
+    <modified>2012-01-26T22:20:54</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="round_f_b-Geometry" name="round_f_b-Geometry">
+      <mesh>
+        <source id="round_f_b-Geometry-Position">
+          <float_array count="51" id="round_f_b-Geometry-Position-array">0.0002720 -0.0107300 -0.0002440 0.3967710 -0.0107370 0.4077480 0.5227210 -0.0107370 0.2249580 -0.2249300 -0.0107370 0.5222060 -0.0078550 -0.0107370 0.5686180 -0.2099140 -0.0107370 -0.5289130 -0.3962280 -0.0107370 -0.4082360 -0.5685900 -0.0107370 -0.0083710 -0.5283980 -0.0107370 0.2099420 0.2104570 -0.0107370 0.5284260 0.5289410 -0.0107370 -0.2104300 0.4082640 -0.0107370 -0.3967430 0.5691330 -0.0107370 0.0078830 -0.5221780 -0.0107370 -0.2254460 0.2254730 -0.0107370 -0.5226940 0.0083980 -0.0107370 -0.5691060 -0.4077210 -0.0107370 0.3962560</float_array>
+          <technique_common>
+            <accessor count="17" source="round_f_b-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="round_f_b-Geometry-Normals">
+          <float_array count="51" id="round_f_b-Geometry-Normal-array">0.0000000 1.0000000 0.0000000 0.0000080 1.0000000 0.0000090 0.0000110 1.0000000 0.0000050 -0.0000050 1.0000000 0.0000110 -0.0000000 1.0000000 0.0000120 -0.0000040 1.0000000 -0.0000110 -0.0000080 1.0000000 -0.0000080 -0.0000120 1.0000000 0.0000000 -0.0000110 1.0000000 0.0000050 0.0000040 1.0000000 0.0000110 0.0000110 1.0000000 -0.0000040 0.0000090 1.0000000 -0.0000080 0.0000120 1.0000000 0.0000000 -0.0000110 1.0000000 -0.0000040 0.0000050 1.0000000 -0.0000110 0.0000000 1.0000000 -0.0000120 -0.0000080 1.0000000 0.0000080</float_array>
+          <technique_common>
+            <accessor count="17" source="round_f_b-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="round_f_b-Geometry-UV">
+          <float_array count="34" id="round_f_b-Geometry-UV-array">0.5 0.5 0.853553 0.146447 0.96194 0.308658 0.308658 0.03806 0.5 0.0 0.308658 0.96194 0.146447 0.853553 0.0 0.5 0.03806 0.308658 0.691342 0.03806 0.96194 0.691342 0.853553 0.853553 1.0 0.5 0.03806 0.691342 0.691342 0.96194 0.5 1.0 0.146447 0.146447</float_array>
+          <technique_common>
+            <accessor count="17" source="round_f_b-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="round_f_b-Geometry-Vertex">
+          <input semantic="POSITION" source="#round_f_b-Geometry-Position"/>
+        </vertices>
+        <triangles count="16" material="material0">
+          <input offset="0" semantic="VERTEX" source="#round_f_b-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#round_f_b-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#round_f_b-Geometry-UV"/>
+          <p>0 1 2 3 4 0 5 6 0 0 7 8 9 1 0 0 10 11 2 12 0 0 6 13 12 10 0 0 13 7 11 14 0 15 5 0 0 8 16 4 9 0 0 14 15 16 3 0</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="round_f_b" layer="L1" name="round_f_b">
+        <instance_geometry url="#round_f_b-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

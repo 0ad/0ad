@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:50</created>
+    <modified>2012-01-26T22:20:50</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="hele_saddle_fr2-Geometry" name="hele_saddle_fr2-Geometry">
+      <mesh>
+        <source id="hele_saddle_fr2-Geometry-Position">
+          <float_array count="24" id="hele_saddle_fr2-Geometry-Position-array">0.3364960 0.3978140 -1.7392120 0.5626520 0.2933490 -0.8362740 0.0175300 0.1275010 -0.8467120 -0.0786540 0.2125210 -1.6507690 0.3375090 0.4034700 -1.7382150 -0.0776410 0.2181770 -1.6497710 0.0185430 0.1331570 -0.8457140 0.5636640 0.2990050 -0.8352770</float_array>
+          <technique_common>
+            <accessor count="8" source="hele_saddle_fr2-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hele_saddle_fr2-Geometry-Normals">
+          <float_array count="24" id="hele_saddle_fr2-Geometry-Normal-array">0.3341650 -0.9285230 -0.1617980 0.2894220 -0.9398880 -0.1812300 0.3341650 -0.9285230 -0.1617980 0.3780700 -0.9148280 -0.1419590 -0.3341650 0.9285230 0.1617980 -0.3780700 0.9148280 0.1419590 -0.3341650 0.9285230 0.1617980 -0.2894220 0.9398880 0.1812300</float_array>
+          <technique_common>
+            <accessor count="8" source="hele_saddle_fr2-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hele_saddle_fr2-Geometry-UV">
+          <float_array count="16" id="hele_saddle_fr2-Geometry-UV-array">0.011763 0.529764 0.011763 0.070698 0.287142 0.131242 0.287142 0.529764 0.011763 0.529764 0.287142 0.529764 0.287142 0.131242 0.011763 0.070698</float_array>
+          <technique_common>
+            <accessor count="8" source="hele_saddle_fr2-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="hele_saddle_fr2-Geometry-Vertex">
+          <input semantic="POSITION" source="#hele_saddle_fr2-Geometry-Position"/>
+        </vertices>
+        <triangles count="4" material="material0">
+          <input offset="0" semantic="VERTEX" source="#hele_saddle_fr2-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#hele_saddle_fr2-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#hele_saddle_fr2-Geometry-UV"/>
+          <p>0 1 2 2 3 0 4 5 6 6 7 4</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="hele_saddle_fr2" layer="L1" name="hele_saddle_fr2">
+        <instance_geometry url="#hele_saddle_fr2-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

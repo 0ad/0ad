@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:46</created>
+    <modified>2012-01-26T22:20:46</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="bush_dese_a_2-Geometry" name="bush_dese_a_2-Geometry">
+      <mesh>
+        <source id="bush_dese_a_2-Geometry-Position">
+          <float_array count="15" id="bush_dese_a_2-Geometry-Position-array">0.0000110 0.0095520 -0.3877850 0.0414060 3.7967900 1.9408170 -3.7872270 0.0509470 1.9408170 -0.0413840 -3.7776860 1.9408170 3.7872490 -0.0318430 1.9408170</float_array>
+          <technique_common>
+            <accessor count="5" source="bush_dese_a_2-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="bush_dese_a_2-Geometry-Normals">
+          <float_array count="15" id="bush_dese_a_2-Geometry-Normal-array">0.0000000 0.0000000 1.0000000 -0.0057240 -0.5237160 0.8518740 0.5237160 -0.0057240 0.8518740 0.0057240 0.5237160 0.8518740 -0.5237160 0.0057240 0.8518740</float_array>
+          <technique_common>
+            <accessor count="5" source="bush_dese_a_2-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="bush_dese_a_2-Geometry-UV">
+          <float_array count="10" id="bush_dese_a_2-Geometry-UV-array">0.5 0.5 1.0 -0.0 0.0 0.0 0.0 1.0 1.0 1.0</float_array>
+          <technique_common>
+            <accessor count="5" source="bush_dese_a_2-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="bush_dese_a_2-Geometry-Vertex">
+          <input semantic="POSITION" source="#bush_dese_a_2-Geometry-Position"/>
+        </vertices>
+        <triangles count="4" material="material0">
+          <input offset="0" semantic="VERTEX" source="#bush_dese_a_2-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#bush_dese_a_2-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#bush_dese_a_2-Geometry-UV"/>
+          <p>0 1 2 0 2 3 0 3 4 0 4 1</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="bush_dese_a_2" layer="L1" name="bush_dese_a_2">
+        <instance_geometry url="#bush_dese_a_2-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

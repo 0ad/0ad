@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:53</created>
+    <modified>2012-01-26T22:20:53</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="rome_helmet_a-Geometry" name="rome_helmet_a-Geometry">
+      <mesh>
+        <source id="rome_helmet_a-Geometry-Position">
+          <float_array count="75" id="rome_helmet_a-Geometry-Position-array">-0.0035100 0.2875200 0.3147880 -0.1879090 0.2126040 0.3208950 -0.1780080 0.2280420 0.5015710 -0.0035110 0.2938750 0.4961030 -0.0974470 0.1490950 0.6650330 -0.0034820 0.1887010 0.6617250 -0.0034640 0.0140090 0.7352580 0.0904840 0.1490950 0.6650340 0.1617050 0.0083350 0.6767530 0.1709880 0.2280420 0.5015720 0.2380470 -0.0100670 0.5212430 0.1808880 0.2126040 0.3208950 0.2465160 -0.0262650 0.3405100 -0.2450620 -0.0100680 0.5212430 -0.1686620 0.0083350 0.6767520 -0.2535520 -0.0262710 0.3405150 -0.1669060 -0.1928620 0.5353960 -0.1143170 -0.1256890 0.6875160 -0.0034750 -0.1832300 0.6925610 0.1073650 -0.1256890 0.6875170 -0.2058140 -0.2160730 0.3561550 -0.0035140 -0.3254790 0.3651720 -0.0035050 -0.3012810 0.5449410 0.1598940 -0.1928620 0.5353970 0.1987900 -0.2160700 0.3561590</float_array>
+          <technique_common>
+            <accessor count="25" source="rome_helmet_a-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="rome_helmet_a-Geometry-Normals">
+          <float_array count="75" id="rome_helmet_a-Geometry-Normal-array">-0.0000010 0.9988030 -0.0489200 -0.8438700 0.5365400 -0.0027780 -0.6766250 0.6857410 0.2682110 0.0000040 0.9299410 0.3677100 -0.3827410 0.5649950 0.7309510 0.0000030 0.6401090 0.7682840 0.0000140 0.0960640 0.9953750 0.3827840 0.5650500 0.7308860 0.6844270 0.1260590 0.7181010 0.6766530 0.6857550 0.2681060 0.9670650 -0.0355190 0.2520390 0.8438790 0.5365260 -0.0028150 0.9861850 -0.1182320 0.1160210 -0.9670170 -0.0355020 0.2522260 -0.6842970 0.1260350 0.7182290 -0.9861730 -0.1182360 0.1161190 -0.7120360 -0.6236790 0.3225350 -0.5753700 -0.3707590 0.7290320 0.0000170 -0.6392610 0.7689900 0.5754730 -0.3708170 0.7289210 -0.7733140 -0.5853320 0.2436630 0.0000030 -0.9818850 0.1894790 0.0000170 -0.9167260 0.3995170 0.7120750 -0.6237000 0.3224110 0.7733450 -0.5853140 0.2436090</float_array>
+          <technique_common>
+            <accessor count="25" source="rome_helmet_a-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="rome_helmet_a-Geometry-UV">
+          <float_array count="50" id="rome_helmet_a-Geometry-UV-array">0.472884 0.114932 0.691853 0.196529 0.606207 0.289539 0.472884 0.234355 0.551684 0.352249 0.472884 0.319407 0.472884 0.451467 0.394084 0.352249 0.353796 0.48294 0.339562 0.289539 0.295334 0.507297 0.253916 0.196529 0.176158 0.502376 0.651414 0.509714 0.582191 0.483919 0.75513 0.50963 0.605259 0.588908 0.558021 0.543386 0.472884 0.585384 0.387747 0.543386 0.661119 0.656655 0.476797 0.758995 0.472884 0.656753 0.340509 0.588908 0.282809 0.650384</float_array>
+          <technique_common>
+            <accessor count="25" source="rome_helmet_a-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="rome_helmet_a-Geometry-Vertex">
+          <input semantic="POSITION" source="#rome_helmet_a-Geometry-Position"/>
+        </vertices>
+        <triangles count="40" material="material0">
+          <input offset="0" semantic="VERTEX" source="#rome_helmet_a-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#rome_helmet_a-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#rome_helmet_a-Geometry-UV"/>
+          <p>0 1 2 0 2 3 3 2 4 3 4 5 5 4 6 5 6 7 7 6 8 7 8 9 9 8 10 9 10 11 11 10 12 9 11 0 0 3 9 9 3 7 3 5 7 1 13 2 2 13 14 2 14 4 4 14 6 1 15 13 13 15 16 13 16 17 17 16 18 17 18 6 6 18 19 6 19 8 8 19 10 15 20 16 16 20 21 16 21 22 22 21 23 22 23 18 18 23 19 21 24 23 23 24 12 23 12 10 16 22 18 19 23 10 13 17 14 14 17 6</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="rome_helmet_a" layer="L1" name="rome_helmet_a">
+        <instance_geometry url="#rome_helmet_a-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

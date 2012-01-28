@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:53</created>
+    <modified>2012-01-26T22:20:53</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="hele_helmet_c-Geometry" name="hele_helmet_c-Geometry">
+      <mesh>
+        <source id="hele_helmet_c-Geometry-Position">
+          <float_array count="102" id="hele_helmet_c-Geometry-Position-array">-0.1859860 -0.0770740 0.0011070 -0.1511730 -0.3096380 -0.0643140 -0.2221690 -0.0216340 0.3410280 -0.1742630 -0.2806630 0.3819520 -0.2305150 0.0195930 0.4150980 -0.2053160 0.0742860 0.6329950 -0.1728290 0.2601900 0.4269500 0.0000000 0.2343650 0.6634130 0.0000000 0.3288450 0.4191600 0.1728290 0.2601900 0.4269510 0.0000000 0.2987180 0.1441640 0.2042870 0.0781300 0.1324120 0.2223810 0.0804720 0.3319920 0.2305150 0.0195930 0.4150990 0.2221690 -0.0216340 0.3410280 0.1742630 -0.2806630 0.3819520 0.1511720 -0.3096380 -0.0643140 0.1859860 -0.0770740 0.0011070 -0.2305150 0.0195930 0.4150980 -0.2223810 0.0804720 0.3319920 -0.1728290 0.2601900 0.4269500 -0.2042870 0.0781300 0.1324120 -0.2221690 -0.0216340 0.3410280 0.2305150 0.0195930 0.4150990 0.1728290 0.2601900 0.4269510 0.0000000 0.3288450 0.4191600 0.0000000 0.2343650 0.6634130 0.2221690 -0.0216340 0.3410280 0.0000000 -0.3531100 0.3816140 0.1282430 -0.2136490 0.6394570 0.2053150 0.0742860 0.6329950 0.0000000 -0.0100300 0.7573320 -0.1282430 -0.2136490 0.6394560 0.0000000 -0.2843530 0.6557380</float_array>
+          <technique_common>
+            <accessor count="34" source="hele_helmet_c-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hele_helmet_c-Geometry-Normals">
+          <float_array count="102" id="hele_helmet_c-Geometry-Normal-array">0.0000000 -0.3939190 0.9191450 -0.8479980 0.4239990 0.3179990 -0.9901050 -0.1269930 -0.0597120 -0.8912380 -0.4135570 0.1861890 -0.9992710 0.0134680 0.0357220 -0.8518030 0.1230720 0.5092010 -0.7801750 0.6215280 0.0709210 -0.0000000 0.7388520 0.6738680 -0.0000000 0.9913250 0.1314340 0.7801750 0.6215280 0.0709210 0.0166180 -0.2658920 -0.9638590 0.2042520 -0.8987080 -0.3880780 0.9943350 -0.0114160 -0.1056740 0.9992710 0.0134680 0.0357230 0.9901050 -0.1269930 -0.0597110 0.8912380 -0.4135560 0.1861900 -0.2782710 -0.6435030 -0.7130700 -0.0845720 0.2960020 -0.9514360 0.9706630 -0.2291390 -0.0728590 -0.9943350 -0.0114160 -0.1056760 0.7414560 -0.6705720 0.0239930 -0.1616570 -0.7274580 -0.6668370 0.9858230 0.1559720 0.0618480 -0.9706630 -0.2291390 -0.0728600 -0.7414560 -0.6705730 0.0239930 0.0000000 -0.9913250 -0.1314340 0.0000000 -0.9326570 -0.3607630 -0.9858230 0.1559720 0.0618480 0.0000000 -0.9595120 0.2816670 0.6077800 -0.5587210 0.5643000 0.8518030 0.1230730 0.5092010 -0.0000000 -0.0502960 0.9987340 -0.6077800 -0.5587210 0.5643000 -0.0000000 -0.7280190 0.6855570</float_array>
+          <technique_common>
+            <accessor count="34" source="hele_helmet_c-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hele_helmet_c-Geometry-UV">
+          <float_array count="68" id="hele_helmet_c-Geometry-UV-array">0.32862 0.081117 0.192359 0.059993 0.34633 0.284575 0.205736 0.466736 0.396574 0.510916 0.351272 0.882337 0.509878 0.637426 0.614963 0.972547 0.616214 0.68317 0.509878 0.637426 0.630956 0.308601 0.473075 0.128966 0.452077 0.286991 0.396574 0.510916 0.34633 0.284575 0.205736 0.466736 0.192359 0.059993 0.32862 0.081117 0.396574 0.510916 0.452077 0.286991 0.509878 0.637426 0.473075 0.128966 0.34633 0.284575 0.396574 0.510916 0.509878 0.637426 0.616214 0.68317 0.614963 0.972547 0.34633 0.284575 0.003201 0.459959 0.251744 0.822143 0.351272 0.882337 0.225068 0.987087 0.251744 0.822143 0.002299 0.787379</float_array>
+          <technique_common>
+            <accessor count="34" source="hele_helmet_c-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="hele_helmet_c-Geometry-Vertex">
+          <input semantic="POSITION" source="#hele_helmet_c-Geometry-Position"/>
+        </vertices>
+        <triangles count="50" material="material0">
+          <input offset="0" semantic="VERTEX" source="#hele_helmet_c-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#hele_helmet_c-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#hele_helmet_c-Geometry-UV"/>
+          <p>0 1 2 2 1 3 2 3 4 4 3 5 4 5 6 6 5 7 6 7 8 8 7 9 8 9 10 10 9 11 11 9 12 12 9 13 12 13 14 14 13 15 14 15 16 16 17 14 18 19 20 20 19 21 20 21 10 0 22 1 1 22 3 23 24 12 12 24 11 11 24 10 10 24 25 10 25 20 20 25 26 24 26 25 15 27 16 16 27 17 21 6 10 10 6 8 21 19 6 6 19 4 2 4 19 28 15 29 29 15 30 29 30 31 31 30 7 31 7 5 28 32 3 3 32 5 5 32 31 31 32 33 31 33 29 29 33 28 28 33 32 15 13 30 30 13 9 30 9 7</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="hele_helmet_c" layer="L1" name="hele_helmet_c">
+        <instance_geometry url="#hele_helmet_c-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

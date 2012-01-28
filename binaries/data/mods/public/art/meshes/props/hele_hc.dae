@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:50</created>
+    <modified>2012-01-26T22:20:50</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="hele_hc-Geometry" name="hele_hc-Geometry">
+      <mesh>
+        <source id="hele_hc-Geometry-Position">
+          <float_array count="24" id="hele_hc-Geometry-Position-array">7.0051560 -4.5213350 9.2836380 7.0066160 0.0059170 10.9167670 -7.0946620 0.0059170 10.9167690 -7.0939550 -4.5213350 9.2836380 7.0105850 4.5242630 9.2853700 -7.0959280 4.5242630 9.2853700 -7.0946620 0.0059170 10.9167690 7.0066160 0.0059170 10.9167670</float_array>
+          <technique_common>
+            <accessor count="8" source="hele_hc-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hele_hc-Geometry-Normals">
+          <float_array count="24" id="hele_hc-Geometry-Normal-array">0.0000000 -0.3393300 0.9406670 0.0000000 -0.3393300 0.9406680 0.0000000 -0.3393300 0.9406670 0.0000000 -0.3393300 0.9406670 0.0000000 0.3396030 0.9405690 0.0000000 0.3396030 0.9405690 0.0000000 0.3396030 0.9405690 0.0000000 0.3396030 0.9405690</float_array>
+          <technique_common>
+            <accessor count="8" source="hele_hc-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hele_hc-Geometry-UV">
+          <float_array count="16" id="hele_hc-Geometry-UV-array">0.033668 0.788822 0.033959 0.99969 0.645926 0.999614 0.645806 0.788776 0.033611 0.788795 0.645806 0.788776 0.645926 0.999614 0.033959 0.99969</float_array>
+          <technique_common>
+            <accessor count="8" source="hele_hc-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="hele_hc-Geometry-Vertex">
+          <input semantic="POSITION" source="#hele_hc-Geometry-Position"/>
+        </vertices>
+        <triangles count="4" material="material0">
+          <input offset="0" semantic="VERTEX" source="#hele_hc-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#hele_hc-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#hele_hc-Geometry-UV"/>
+          <p>0 1 2 2 3 0 4 5 6 6 7 4</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="hele_hc" layer="L1" name="hele_hc">
+        <instance_geometry url="#hele_hc-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

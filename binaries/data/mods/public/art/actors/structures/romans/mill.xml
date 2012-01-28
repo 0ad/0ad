@@ -2,12 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="100" name="mill">
       <mesh>structural/rome_mill.dae</mesh>
       <props>
         <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
       </props>
-      <texture>structural/rome_struct.dds</texture>
+      <texture>structural/rome_struct_2.png</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:47</created>
+    <modified>2012-01-26T22:20:47</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="reed_beach_a-Geometry" name="reed_beach_a-Geometry">
+      <mesh>
+        <source id="reed_beach_a-Geometry-Position">
+          <float_array count="24" id="reed_beach_a-Geometry-Position-array">-2.0766130 -1.7942010 3.6875410 -0.6085120 -2.3688340 -0.0756420 0.6085120 2.3688340 4.0454530 2.0766130 1.7942010 0.2822700 -2.3566740 0.0778870 4.0220570 -2.4905330 -1.0941200 0.2584440 2.4905330 1.0941200 3.7113660 2.3566740 -0.0778870 -0.0522460</float_array>
+          <technique_common>
+            <accessor count="8" source="reed_beach_a-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="reed_beach_a-Geometry-Normals">
+          <float_array count="24" id="reed_beach_a-Geometry-Normal-array">0.7629650 -0.5245830 0.3777530 0.7629650 -0.5245830 0.3777530 0.7629650 -0.5245830 0.3777530 0.7629650 -0.5245830 0.3777530 0.2141460 -0.9347640 0.2834740 0.2141460 -0.9347640 0.2834740 0.2141460 -0.9347640 0.2834740 0.2141460 -0.9347640 0.2834740</float_array>
+          <technique_common>
+            <accessor count="8" source="reed_beach_a-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="reed_beach_a-Geometry-UV">
+          <float_array count="16" id="reed_beach_a-Geometry-UV-array">0.0 1.0 0.0 0.0 1.0 1.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 1.0 1.0 0.0</float_array>
+          <technique_common>
+            <accessor count="8" source="reed_beach_a-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="reed_beach_a-Geometry-Vertex">
+          <input semantic="POSITION" source="#reed_beach_a-Geometry-Position"/>
+        </vertices>
+        <triangles count="4" material="material0">
+          <input offset="0" semantic="VERTEX" source="#reed_beach_a-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#reed_beach_a-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#reed_beach_a-Geometry-UV"/>
+          <p>0 1 2 3 2 1 4 5 6 7 6 5</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="reed_beach_a" layer="L1" name="reed_beach_a">
+        <instance_geometry url="#reed_beach_a-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

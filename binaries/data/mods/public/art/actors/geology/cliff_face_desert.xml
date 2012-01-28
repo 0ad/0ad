@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="straight_a">
+      <mesh>gaia/cliff_a.dae</mesh>
+    </variant>
+    <variant name="corner_inside">
+      <mesh>gaia/cliff_a_corner_inside.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant>
+      <texture>gaia/cliff_desert_a.dds</texture>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

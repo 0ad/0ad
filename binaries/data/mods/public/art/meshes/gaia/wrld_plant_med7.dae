@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:49</created>
+    <modified>2012-01-26T22:20:49</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="wrld_plant_med7-Geometry" name="wrld_plant_med7-Geometry">
+      <mesh>
+        <source id="wrld_plant_med7-Geometry-Position">
+          <float_array count="48" id="wrld_plant_med7-Geometry-Position-array">0.0000000 -2.2972490 7.8587430 0.0000000 -2.2972500 -0.1691300 -0.0000000 2.2972500 7.8587440 -0.0000000 2.2972490 -0.1691300 0.0000000 -2.2972500 -0.1691300 0.0000000 -2.2972490 7.8587430 -0.0000000 2.2972500 7.8587440 -0.0000000 2.2972490 -0.1691300 2.5549930 -0.0048550 7.8525320 2.5549930 0.0048550 -0.1629190 -2.5549930 -0.0048550 7.8525320 -2.5549930 0.0048550 -0.1629190 2.5549930 0.0048550 -0.1629190 2.5549930 -0.0048550 7.8525320 -2.5549930 -0.0048550 7.8525320 -2.5549930 0.0048550 -0.1629190</float_array>
+          <technique_common>
+            <accessor count="16" source="wrld_plant_med7-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_plant_med7-Geometry-Normals">
+          <float_array count="48" id="wrld_plant_med7-Geometry-Normal-array">1.0000000 0.0000000 -0.0000000 1.0000000 0.0000000 -0.0000000 1.0000000 0.0000000 -0.0000000 1.0000000 0.0000000 -0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 -0.0000000 0.9999990 0.0012110 -0.0000000 0.9999990 0.0012110 -0.0000000 0.9999990 0.0012110 -0.0000000 0.9999990 0.0012110 0.0000000 -0.9999990 -0.0012110 0.0000000 -0.9999990 -0.0012110 0.0000000 -0.9999990 -0.0012110 0.0000000 -0.9999990 -0.0012110</float_array>
+          <technique_common>
+            <accessor count="16" source="wrld_plant_med7-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_plant_med7-Geometry-UV">
+          <float_array count="32" id="wrld_plant_med7-Geometry-UV-array">0.0 0.497792 0.0 0.00184 0.339588 0.497792 0.339588 0.00184 0.711921 0.540839 0.711921 0.963208 0.985283 0.963208 0.985283 0.540839 0.395511 0.495953 0.395511 0.009198 0.676233 0.495953 0.676233 0.009198 0.71376 0.005519 0.71376 0.490434 0.99816 0.490434 0.99816 0.005519</float_array>
+          <technique_common>
+            <accessor count="16" source="wrld_plant_med7-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_plant_med7-Geometry-Vertex">
+          <input semantic="POSITION" source="#wrld_plant_med7-Geometry-Position"/>
+        </vertices>
+        <triangles count="8" material="material0">
+          <input offset="0" semantic="VERTEX" source="#wrld_plant_med7-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#wrld_plant_med7-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#wrld_plant_med7-Geometry-UV"/>
+          <p>0 1 2 3 2 1 4 5 6 6 7 4 8 9 10 11 10 9 12 13 14 14 15 12</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="wrld_plant_med7" layer="L1" name="wrld_plant_med7">
+        <instance_geometry url="#wrld_plant_med7-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

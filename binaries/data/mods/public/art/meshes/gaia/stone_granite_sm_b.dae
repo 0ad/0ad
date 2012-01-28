@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:48</created>
+    <modified>2012-01-26T22:20:48</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="stone_granite_sm_b-Geometry" name="stone_granite_sm_b-Geometry">
+      <mesh>
+        <source id="stone_granite_sm_b-Geometry-Position">
+          <float_array count="51" id="stone_granite_sm_b-Geometry-Position-array">0.5008610 -0.1029400 0.4260340 0.4300710 0.2020020 0.4260340 0.0470790 0.2673460 0.4950090 -0.4284840 -0.1102000 0.2790080 -0.0740950 -0.5577670 -0.0071290 -0.3704000 -0.4369230 -0.0071290 -0.3704000 -0.4369230 -0.0071290 -0.6680810 0.0785730 -0.0071290 0.6680800 -0.1029400 -0.0071290 0.6680800 -0.1029400 -0.0071290 0.3502060 -0.5022680 -0.0071290 -0.6680810 0.0785730 -0.0071290 -0.0473070 0.5577670 -0.0071010 0.4473150 0.5250950 -0.0071290 -0.0473070 0.5577670 -0.0071010 0.3502060 -0.5022680 -0.0071290 0.4473150 0.5250950 -0.0071290</float_array>
+          <technique_common>
+            <accessor count="17" source="stone_granite_sm_b-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="stone_granite_sm_b-Geometry-Normals">
+          <float_array count="51" id="stone_granite_sm_b-Geometry-Normal-array">0.3504580 -0.4258190 0.8341800 0.6564320 0.3946800 0.6429030 -0.0846250 0.4842050 0.8708520 -0.5128020 -0.1989890 0.8351270 -0.0988350 -0.6802030 0.7263300 -0.5694330 -0.5965510 0.5655730 -0.5694330 -0.5965510 0.5655730 -0.7485650 0.0518700 0.6610290 0.9417060 -0.0240570 0.3355760 0.9417060 -0.0240570 0.3355760 0.4580410 -0.7272690 0.5111530 -0.7485650 0.0518700 0.6610290 -0.3699500 0.7126680 0.5960220 0.4505150 0.7350100 0.5067500 -0.3699500 0.7126680 0.5960220 0.4580410 -0.7272690 0.5111530 0.4505150 0.7350100 0.5067500</float_array>
+          <technique_common>
+            <accessor count="17" source="stone_granite_sm_b-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="stone_granite_sm_b-Geometry-UV">
+          <float_array count="34" id="stone_granite_sm_b-Geometry-UV-array">0.54453 0.160397 0.704679 0.120844 0.839848 0.244186 0.795991 0.494997 0.46379 0.490505 0.619106 0.56189 0.623173 0.563705 0.942709 0.560636 0.494615 0.076877 0.470214 0.076877 0.373068 0.275813 0.948809 0.540672 0.999765 0.216181 0.857202 0.018653 1.007899 0.188957 0.383236 0.308481 0.845001 0.022283</float_array>
+          <technique_common>
+            <accessor count="17" source="stone_granite_sm_b-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="stone_granite_sm_b-Geometry-Vertex">
+          <input semantic="POSITION" source="#stone_granite_sm_b-Geometry-Position"/>
+        </vertices>
+        <triangles count="13" material="material0">
+          <input offset="0" semantic="VERTEX" source="#stone_granite_sm_b-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#stone_granite_sm_b-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#stone_granite_sm_b-Geometry-UV"/>
+          <p>0 1 2 3 0 2 4 3 5 0 3 4 6 3 7 1 0 8 9 0 10 11 3 12 2 13 14 3 2 12 2 1 13 15 0 4 16 1 8</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="stone_granite_sm_b" layer="L1" name="stone_granite_sm_b">
+        <instance_geometry url="#stone_granite_sm_b-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

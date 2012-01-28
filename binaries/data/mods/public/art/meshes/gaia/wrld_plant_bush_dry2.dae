@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:49</created>
+    <modified>2012-01-26T22:20:49</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="wrld_plant_bush_dry2-Geometry" name="wrld_plant_bush_dry2-Geometry">
+      <mesh>
+        <source id="wrld_plant_bush_dry2-Geometry-Position">
+          <float_array count="45" id="wrld_plant_bush_dry2-Geometry-Position-array">0.0000000 0.0000000 0.4360780 1.2944680 -1.4565490 2.7252070 1.4565490 1.2944680 2.7252070 -1.2944680 1.4565490 2.7252070 -1.4565500 -1.2944670 2.7252070 0.0000000 0.0000000 -0.0991350 0.6649440 -2.6211980 1.3018230 2.6211980 0.6649440 1.3018230 -0.6649450 2.6211990 1.3018230 -2.6211990 -0.6649440 1.3018230 0.0000000 0.0000000 1.6670800 1.1892450 0.0000000 3.9463750 0.0000000 1.1892440 3.9463750 -1.1892440 0.0000000 3.9463750 0.0000000 -1.1892430 3.9463750</float_array>
+          <technique_common>
+            <accessor count="15" source="wrld_plant_bush_dry2-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_plant_bush_dry2-Geometry-Normals">
+          <float_array count="45" id="wrld_plant_bush_dry2-Geometry-Normal-array">-0.0000000 0.0000000 1.0000000 -0.5058380 0.5691750 0.6482040 -0.5691750 -0.5058380 0.6482040 0.5058380 -0.5691750 0.6482040 0.5691740 0.5058380 0.6482040 -0.0000000 0.0000000 1.0000000 -0.1131090 0.4458750 0.8879200 -0.4458750 -0.1131090 0.8879200 0.1131090 -0.4458750 0.8879200 0.4458750 0.1131090 0.8879200 0.0000000 0.0000000 1.0000000 -0.8865770 0.0000000 0.4625800 0.0000000 -0.8865780 0.4625800 0.8865770 0.0000000 0.4625800 0.0000000 0.8865780 0.4625800</float_array>
+          <technique_common>
+            <accessor count="15" source="wrld_plant_bush_dry2-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_plant_bush_dry2-Geometry-UV">
+          <float_array count="30" id="wrld_plant_bush_dry2-Geometry-UV-array">0.495337 0.5 0.00485 0.993001 0.006953 0.004876 0.985823 0.006999 0.98372 0.995124 0.495337 0.5 0.002095 0.995771 0.004209 0.002095 0.988579 0.004229 0.986464 0.997906 0.495337 0.5 0.00485 0.993001 0.006953 0.004876 0.985823 0.006999 0.98372 0.995124</float_array>
+          <technique_common>
+            <accessor count="15" source="wrld_plant_bush_dry2-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_plant_bush_dry2-Geometry-Vertex">
+          <input semantic="POSITION" source="#wrld_plant_bush_dry2-Geometry-Position"/>
+        </vertices>
+        <triangles count="12" material="material0">
+          <input offset="0" semantic="VERTEX" source="#wrld_plant_bush_dry2-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#wrld_plant_bush_dry2-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#wrld_plant_bush_dry2-Geometry-UV"/>
+          <p>0 1 2 0 2 3 0 3 4 0 4 1 5 6 7 5 7 8 5 8 9 5 9 6 10 11 12 10 12 13 10 13 14 10 14 11</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="wrld_plant_bush_dry2" layer="L1" name="wrld_plant_bush_dry2">
+        <instance_geometry url="#wrld_plant_bush_dry2-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

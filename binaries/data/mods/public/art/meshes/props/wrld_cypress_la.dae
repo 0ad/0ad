@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:52</created>
+    <modified>2012-01-26T22:20:52</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="wrld_cypress_la-Geometry" name="wrld_cypress_la-Geometry">
+      <mesh>
+        <source id="wrld_cypress_la-Geometry-Position">
+          <float_array count="39" id="wrld_cypress_la-Geometry-Position-array">-0.6710260 -0.7054430 1.9066400 -0.3178810 0.4330970 8.2985490 -0.4510020 0.7054430 1.9066400 -0.3438640 -0.3077890 -0.0770570 -0.2747360 0.1355720 -0.0770570 0.6710240 -0.2176820 1.9066400 0.0778690 -0.1545270 -0.0770570 -0.6710260 -0.7054430 1.9066400 -0.3438640 -0.3077890 -0.0770570 -0.4533540 -0.4408710 8.2985490 0.3781320 -0.1395340 8.2985490 -0.4533540 -0.4408710 8.2985490 -0.2090540 -0.1439320 12.7282100</float_array>
+          <technique_common>
+            <accessor count="13" source="wrld_cypress_la-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_cypress_la-Geometry-Normals">
+          <float_array count="39" id="wrld_cypress_la-Geometry-Normal-array">-0.9877820 0.1537320 -0.0255700 -0.6441750 0.7609760 0.0771620 -0.3522350 0.9281440 -0.1203330 -0.9795550 0.1527440 -0.1309240 0.1558020 0.9529770 -0.2599240 0.9765010 -0.1729210 -0.1286240 0.7412770 -0.6262080 -0.2416020 0.3405230 -0.9369600 -0.0784200 0.3386150 -0.9317700 -0.1309370 -0.9875670 0.1530820 0.0357460 0.9834300 0.1653570 0.0743150 0.3408260 -0.9395520 0.0328500 -0.0790420 -0.0960670 0.9922320</float_array>
+          <technique_common>
+            <accessor count="13" source="wrld_cypress_la-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_cypress_la-Geometry-UV">
+          <float_array count="26" id="wrld_cypress_la-Geometry-UV-array">0.01169 0.572685 0.34939 0.835285 0.34939 0.572685 0.01169 0.501774 0.386913 0.501774 0.612047 0.572685 0.574524 0.501774 0.98727 0.572685 0.98727 0.501774 0.01169 0.835285 0.612047 0.835285 0.98727 0.835285 0.461957 1.002041</float_array>
+          <technique_common>
+            <accessor count="13" source="wrld_cypress_la-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_cypress_la-Geometry-Vertex">
+          <input semantic="POSITION" source="#wrld_cypress_la-Geometry-Position"/>
+        </vertices>
+        <triangles count="15" material="material0">
+          <input offset="0" semantic="VERTEX" source="#wrld_cypress_la-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#wrld_cypress_la-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#wrld_cypress_la-Geometry-UV"/>
+          <p>0 1 2 3 2 4 4 2 5 4 5 6 6 5 7 6 7 8 0 9 1 3 0 2 2 1 10 2 10 5 5 10 11 5 11 7 9 12 1 1 12 10 10 12 11</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="wrld_cypress_la" layer="L1" name="wrld_cypress_la">
+        <instance_geometry url="#wrld_cypress_la-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

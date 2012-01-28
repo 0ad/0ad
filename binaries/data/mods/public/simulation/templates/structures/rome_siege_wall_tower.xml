@@ -5,6 +5,9 @@
     <Pierce>35.0</Pierce>
     <Crush>10.0</Crush>
   </Armour>
+  <BuildRestrictions>
+    <Territory>own neutral enemy</Territory>
+  </BuildRestrictions>
   <Cost>
     <Resources>
       <wood>100</wood>
@@ -12,10 +15,11 @@
     </Resources>
   </Cost>
   <Health>
-    <Max>1000</Max>
+    <Max>2000</Max>
   </Health>
   <Identity>
     <Civ>rome</Civ>
+	<GenericName>Siege Wall Tower</GenericName>
     <SpecificName>Turris Circummunitio</SpecificName>
     <History>(Insert history here)</History>
   </Identity>

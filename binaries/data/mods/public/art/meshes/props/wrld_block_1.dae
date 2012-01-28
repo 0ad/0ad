@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:52</created>
+    <modified>2012-01-26T22:20:52</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="wrld_block_1-Geometry" name="wrld_block_1-Geometry">
+      <mesh>
+        <source id="wrld_block_1-Geometry-Position">
+          <float_array count="72" id="wrld_block_1-Geometry-Position-array">-0.3963730 -0.0840690 0.5269960 0.3959530 -0.0847750 0.5269960 0.3963790 0.3951910 0.5269960 -0.3959470 0.3958970 0.5269960 -0.3963720 -0.0840680 -0.0004830 0.3959530 -0.0847740 -0.0004830 0.3959530 -0.0847750 0.5269960 -0.3963730 -0.0840690 0.5269960 0.3959530 -0.0847740 -0.0004830 0.3963790 0.3951910 -0.0004830 0.3963790 0.3951910 0.5269960 0.3959530 -0.0847750 0.5269960 0.3963790 0.3951910 -0.0004830 -0.3959460 0.3958980 -0.0004830 -0.3959470 0.3958970 0.5269960 0.3963790 0.3951910 0.5269960 -0.3959460 0.3958980 -0.0004830 -0.3963720 -0.0840680 -0.0004830 -0.3963730 -0.0840690 0.5269960 -0.3959470 0.3958970 0.5269960 0.3959530 -0.0847740 -0.0004830 -0.3963720 -0.0840680 -0.0004830 0.3963790 0.3951910 -0.0004830 -0.3959460 0.3958980 -0.0004830</float_array>
+          <technique_common>
+            <accessor count="24" source="wrld_block_1-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_block_1-Geometry-Normals">
+          <float_array count="72" id="wrld_block_1-Geometry-Normal-array">0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 -0.0008910 -1.0000000 -0.0000010 -0.0008910 -1.0000000 -0.0000010 -0.0008910 -1.0000000 -0.0000010 -0.0008910 -1.0000000 -0.0000010 1.0000000 -0.0008870 -0.0000000 1.0000000 -0.0008870 -0.0000000 1.0000000 -0.0008870 -0.0000000 1.0000000 -0.0008870 -0.0000000 0.0008920 1.0000000 0.0000010 0.0008920 1.0000000 0.0000010 0.0008920 1.0000000 0.0000010 0.0008920 1.0000000 0.0000010 -1.0000000 0.0008880 -0.0000020 -1.0000000 0.0008880 -0.0000020 -1.0000000 0.0008880 -0.0000020 -1.0000000 0.0008880 -0.0000020 0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 -0.0000000 -1.0000000</float_array>
+          <technique_common>
+            <accessor count="24" source="wrld_block_1-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_block_1-Geometry-UV">
+          <float_array count="48" id="wrld_block_1-Geometry-UV-array">0.003494 0.001654 0.999449 0.001654 0.999449 0.998581 0.003494 0.998581 0.003494 0.001654 0.999449 0.001654 0.999449 0.998581 0.003494 0.998581 0.003494 0.001654 0.999449 0.001654 0.999449 0.998581 0.003494 0.998581 0.003494 0.001654 0.999449 0.001654 0.999449 0.998581 0.003494 0.998581 0.003494 0.001654 0.999449 0.001654 0.999449 0.998581 0.003494 0.998581 0.999449 0.001654 0.003494 0.001654 0.999449 0.998581 0.003494 0.998581</float_array>
+          <technique_common>
+            <accessor count="24" source="wrld_block_1-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_block_1-Geometry-Vertex">
+          <input semantic="POSITION" source="#wrld_block_1-Geometry-Position"/>
+        </vertices>
+        <triangles count="12" material="material0">
+          <input offset="0" semantic="VERTEX" source="#wrld_block_1-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#wrld_block_1-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#wrld_block_1-Geometry-UV"/>
+          <p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 16 17 18 18 19 16 20 21 22 23 22 21</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="wrld_block_1" layer="L1" name="wrld_block_1">
+        <instance_geometry url="#wrld_block_1-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

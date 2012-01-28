@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:49</created>
+    <modified>2012-01-26T22:20:49</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="wrld_fol_bush_generic_4-Geometry" name="wrld_fol_bush_generic_4-Geometry">
+      <mesh>
+        <source id="wrld_fol_bush_generic_4-Geometry-Position">
+          <float_array count="72" id="wrld_fol_bush_generic_4-Geometry-Position-array">-1.8279650 0.2821370 -0.0164970 -1.8279650 -0.2821390 2.5474580 1.8279640 0.2821370 -0.0164970 1.8279650 -0.2821390 2.5474580 -0.2821380 -1.8279650 -0.0164960 0.2821370 -1.8279640 2.5474580 -0.2821380 1.8279640 -0.0164960 0.2821370 1.8279640 2.5474580 1.8279640 -0.2821370 -0.0164960 1.8279640 0.2821380 2.5474580 -1.8279650 -0.2821380 -0.0164960 -1.8279650 0.2821380 2.5474580 0.2821370 1.8279650 -0.0164960 -0.2821380 1.8279650 2.5474580 0.2821370 -1.8279630 -0.0164960 -0.2821380 -1.8279640 2.5474580 0.9679000 -1.6324140 0.9844860 1.6732410 -0.8954710 4.5515290 -1.6732400 0.8954700 0.9844860 -0.9678990 1.6324130 4.5515280 -0.9346460 1.5394440 1.0058250 -1.6578560 1.0326610 4.3598180 1.6578590 -1.0326590 1.1761960 0.9346490 -1.5394420 4.5301880</float_array>
+          <technique_common>
+            <accessor count="24" source="wrld_fol_bush_generic_4-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_fol_bush_generic_4-Geometry-Normals">
+          <float_array count="72" id="wrld_fol_bush_generic_4-Geometry-Normal-array">0.0000000 0.9766280 0.2149360 0.0000000 0.9766280 0.2149360 0.0000000 0.9766280 0.2149360 0.0000000 0.9766280 0.2149360 -0.9766280 0.0000000 0.2149360 -0.9766280 0.0000000 0.2149360 -0.9766280 0.0000000 0.2149360 -0.9766280 0.0000000 0.2149360 0.0000000 -0.9766280 0.2149360 -0.0000000 -0.9766280 0.2149360 -0.0000000 -0.9766280 0.2149360 -0.0000000 -0.9766280 0.2149360 0.9766280 0.0000000 0.2149360 0.9766280 -0.0000000 0.2149360 0.9766280 -0.0000000 0.2149360 0.9766280 -0.0000000 0.2149360 -0.6647980 -0.6945820 0.2749550 -0.6647980 -0.6945820 0.2749550 -0.6647980 -0.6945820 0.2749550 -0.6647970 -0.6945820 0.2749550 0.6735460 0.6954690 0.2503190 0.6735460 0.6954690 0.2503190 0.6735460 0.6954690 0.2503190 0.6735460 0.6954690 0.2503190</float_array>
+          <technique_common>
+            <accessor count="24" source="wrld_fol_bush_generic_4-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_fol_bush_generic_4-Geometry-UV">
+          <float_array count="48" id="wrld_fol_bush_generic_4-Geometry-UV-array">0.000212 -0.005571 0.000212 0.997638 0.995068 -0.005571 0.995068 0.997638 0.000212 -0.005571 0.000212 0.997638 0.995068 -0.005571 0.995068 0.997638 0.000212 -0.005571 0.000212 0.997638 0.995068 -0.005571 0.995068 0.997638 0.000212 -0.005571 0.000212 0.997638 0.995068 -0.005571 0.995068 0.997638 0.000212 -0.005571 0.000212 0.997638 0.995068 -0.005571 0.995068 0.997638 0.000212 -0.005571 0.000212 0.997638 0.995068 -0.005571 0.995068 0.997638</float_array>
+          <technique_common>
+            <accessor count="24" source="wrld_fol_bush_generic_4-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_fol_bush_generic_4-Geometry-Vertex">
+          <input semantic="POSITION" source="#wrld_fol_bush_generic_4-Geometry-Position"/>
+        </vertices>
+        <triangles count="12" material="material0">
+          <input offset="0" semantic="VERTEX" source="#wrld_fol_bush_generic_4-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#wrld_fol_bush_generic_4-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#wrld_fol_bush_generic_4-Geometry-UV"/>
+          <p>0 1 2 3 2 1 4 5 6 7 6 5 8 9 10 11 10 9 12 13 14 15 14 13 16 17 18 19 18 17 20 21 22 23 22 21</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="wrld_fol_bush_generic_4" layer="L1" name="wrld_fol_bush_generic_4">
+        <instance_geometry url="#wrld_fol_bush_generic_4-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

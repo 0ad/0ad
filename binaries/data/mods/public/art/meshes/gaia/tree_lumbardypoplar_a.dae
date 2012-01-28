@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:48</created>
+    <modified>2012-01-26T22:20:48</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="tree_lumbardypoplar_a-Geometry" name="tree_lumbardypoplar_a-Geometry">
+      <mesh>
+        <source id="tree_lumbardypoplar_a-Geometry-Position">
+          <float_array count="51" id="tree_lumbardypoplar_a-Geometry-Position-array">0.1845360 -0.0025230 -0.0601550 0.4109440 0.0928400 13.4645300 0.4636260 -0.0111990 13.4580050 0.0836510 0.2266950 -0.0724710 0.0836510 0.2266950 -0.0724710 0.2852400 0.0929260 13.4562990 0.4109440 0.0928400 13.4645300 -0.0738740 0.2173330 -0.0916990 -0.1711820 0.2030700 -0.1035750 0.2272120 -0.0000910 13.4260170 -0.2761820 0.0173150 -0.1163910 0.2786990 -0.1257450 13.4315440 -0.1938390 -0.2400860 -0.1063410 0.4118240 -0.1248490 13.4662170 0.0929530 -0.2226640 -0.0713340 0.0929530 -0.2226640 -0.0713340 0.4118240 -0.1248490 13.4662170</float_array>
+          <technique_common>
+            <accessor count="17" source="tree_lumbardypoplar_a-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="tree_lumbardypoplar_a-Geometry-Normals">
+          <float_array count="51" id="tree_lumbardypoplar_a-Geometry-Normal-array">0.9852280 0.1700680 -0.0200570 0.6978550 0.7161670 -0.0101910 0.9918080 -0.1261110 -0.0203290 0.3355480 0.9420230 0.0009810 0.3355480 0.9420230 0.0009810 -0.2891500 0.9571110 0.0181590 0.6978550 0.7161670 -0.0101910 -0.1036970 0.9945380 0.0118810 -0.6826720 0.7301570 0.0288030 -0.9719090 0.2324890 0.0366350 -0.9969070 -0.0692000 0.0372550 -0.7438960 -0.6675780 0.0309770 -0.3598250 -0.9328010 0.0202200 0.3741080 -0.9273840 -0.0016620 0.7251120 -0.6885220 -0.0122310 0.7251120 -0.6885220 -0.0122310 0.3741080 -0.9273840 -0.0016620</float_array>
+          <technique_common>
+            <accessor count="17" source="tree_lumbardypoplar_a-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="tree_lumbardypoplar_a-Geometry-UV">
+          <float_array count="34" id="tree_lumbardypoplar_a-Geometry-UV-array">0.841571 0.005408 0.993121 0.999919 0.841571 0.999919 0.993121 0.005408 0.207181 0.001687 0.395983 1.001792 0.207181 1.001792 0.282 0.001687 0.395983 0.001687 0.584785 1.001792 0.584785 0.001687 0.773587 1.001792 0.773587 0.001687 0.962389 1.001792 0.962389 0.001687 0.690022 0.005408 0.690022 0.999919</float_array>
+          <technique_common>
+            <accessor count="17" source="tree_lumbardypoplar_a-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="tree_lumbardypoplar_a-Geometry-Vertex">
+          <input semantic="POSITION" source="#tree_lumbardypoplar_a-Geometry-Position"/>
+        </vertices>
+        <triangles count="13" material="material0">
+          <input offset="0" semantic="VERTEX" source="#tree_lumbardypoplar_a-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#tree_lumbardypoplar_a-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#tree_lumbardypoplar_a-Geometry-UV"/>
+          <p>0 1 2 0 3 1 4 5 6 7 8 5 8 9 5 8 10 9 10 11 9 10 12 11 12 13 11 12 14 13 15 2 16 15 0 2 4 7 5</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="tree_lumbardypoplar_a" layer="L1" name="tree_lumbardypoplar_a">
+        <instance_geometry url="#tree_lumbardypoplar_a-Geometry"/>
+        <node id="prop_tree" name="prop_tree">
+          <matrix sid="transform">1.0000000 0.0000000 0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 0.0000000 0.0000000 1.0000000</matrix>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

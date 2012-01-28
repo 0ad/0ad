@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:50</created>
+    <modified>2012-01-26T22:20:50</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="m_h_beard-Geometry" name="m_h_beard-Geometry">
+      <mesh>
+        <source id="m_h_beard-Geometry-Position">
+          <float_array count="96" id="m_h_beard-Geometry-Position-array">0.1805480 0.0521150 0.5641740 0.1126700 -0.1941930 0.5332240 0.1705880 -0.2391030 0.2566830 0.2172790 0.0034600 0.2854520 -0.0023030 -0.0220220 0.6334430 -0.0023030 -0.2564370 0.5476720 -0.0023030 -0.3248340 0.2565340 0.1519370 0.2154420 0.3347620 -0.0023030 0.2759790 0.3754560 -0.0023030 0.1930840 0.5555310 0.1389810 -0.2618210 0.0728100 0.1849170 -0.1927780 -0.1003460 0.1234530 0.0056480 0.0052580 -0.0023030 -0.3038540 0.0654290 -0.0023030 -0.3751750 -0.1297070 -0.0023030 -0.0872970 -0.0849040 0.1234530 0.0056480 0.0052580 0.1849170 -0.1927780 -0.1003460 -0.0023030 -0.3751750 -0.1297070 -0.1851550 0.0521150 0.5641740 -0.2218860 0.0034600 0.2854520 -0.1751940 -0.2391030 0.2566830 -0.1172770 -0.1941930 0.5332240 -0.1565440 0.2154420 0.3347620 -0.1280600 0.0056480 0.0052580 -0.2254290 0.1224940 -0.0048850 -0.1433250 -0.2617460 0.0711510 -0.1895240 -0.1927780 -0.1003460 -0.1280600 0.0056480 0.0052580 -0.1895240 -0.1927780 -0.1003460 0.2222550 0.1202610 -0.0056620 -0.0023030 0.3021370 -0.0695430</float_array>
+          <technique_common>
+            <accessor count="32" source="m_h_beard-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="m_h_beard-Geometry-Normals">
+          <float_array count="96" id="m_h_beard-Geometry-Normal-array">0.8215940 0.1248310 0.5562380 0.5855150 -0.5863730 0.5597660 0.8907360 -0.4531830 0.0348660 0.9925810 0.0720470 -0.0979400 0.0000000 -0.0825270 0.9965890 0.0000000 -0.7318640 0.6814500 0.0000210 -0.9949230 0.1006420 0.8038490 0.5732900 0.1586390 -0.0000000 0.9706190 0.2406220 -0.0000000 0.7324110 0.6808630 0.7468650 -0.6624920 -0.0574120 0.7783730 -0.6174520 0.1135300 0.9977550 -0.0567550 -0.0355390 0.0004760 -0.9986540 -0.0518580 0.0000000 -0.9392320 0.3432830 0.0000000 0.3428760 -0.9393810 0.2189750 0.5104080 -0.8315850 0.1149300 0.3406040 -0.9331560 0.0000000 0.1537800 -0.9881050 -0.8215940 0.1248310 0.5562380 -0.9925810 0.0720470 -0.0979400 -0.8907510 -0.4531700 0.0346430 -0.5855150 -0.5863730 0.5597660 -0.8035880 0.5740160 0.1573270 -0.9978290 -0.0550210 -0.0362000 -0.9786560 0.1225880 0.1649390 -0.7462650 -0.6631570 -0.0575330 -0.1149300 0.3406040 -0.9331560 -0.2189750 0.5104080 -0.8315850 -0.7774610 -0.6185310 0.1139020 0.9786780 0.1154580 0.1698760 0.0006150 0.9998810 -0.0153960</float_array>
+          <technique_common>
+            <accessor count="32" source="m_h_beard-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="m_h_beard-Geometry-UV">
+          <float_array count="64" id="m_h_beard-Geometry-UV-array">0.575467 0.856497 0.172379 0.903354 0.210938 0.546875 0.570261 0.605047 0.210938 1.0 0.0 0.902344 0.0 0.519531 0.733148 0.679146 0.875 0.679688 0.875 1.0 0.210938 0.266112 0.210938 0.115088 0.538591 0.235494 0.0 0.245714 0.0 0.111738 0.320194 0.018074 0.538591 0.235494 0.210938 0.115088 0.0 0.111738 0.575467 0.856497 0.570261 0.605047 0.210938 0.546875 0.172379 0.903354 0.733148 0.679146 0.538591 0.235494 0.656944 0.299691 0.210938 0.263774 0.210938 0.115088 0.538591 0.235494 0.210938 0.115088 0.653111 0.297612 0.875 0.417969</float_array>
+          <technique_common>
+            <accessor count="32" source="m_h_beard-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="m_h_beard-Geometry-Vertex">
+          <input semantic="POSITION" source="#m_h_beard-Geometry-Position"/>
+        </vertices>
+        <triangles count="46" material="material0">
+          <input offset="0" semantic="VERTEX" source="#m_h_beard-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#m_h_beard-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#m_h_beard-Geometry-UV"/>
+          <p>0 1 2 2 3 0 4 5 1 1 0 4 6 2 1 1 5 6 0 3 7 8 9 7 9 4 0 0 7 9 10 11 12 11 10 13 13 14 11 15 16 17 17 18 15 19 20 21 21 22 19 4 19 22 22 5 4 6 5 22 22 21 6 19 23 20 8 23 9 9 23 19 19 4 9 24 20 23 23 25 24 24 26 21 21 20 24 6 21 26 26 13 6 15 18 27 27 28 15 12 3 2 2 10 12 10 2 6 6 13 10 24 29 26 29 14 13 13 26 29 12 30 7 7 3 12 7 30 31 31 8 7 31 25 23 23 8 31</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="m_h_beard" layer="L1" name="m_h_beard">
+        <instance_geometry url="#m_h_beard-Geometry"/>
+        <node id="prop_helmet" name="prop_helmet">
+          <matrix sid="transform">1.0000000 0.0000024 0.0000005 0.0000007 -0.0000024 1.0000000 -0.0000000 0.0000000 -0.0000005 0.0000000 1.0000000 0.0000000 0.0000000 0.0000000 0.0000000 1.0000000</matrix>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

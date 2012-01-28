@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <contributor>
+      <author>PMD to COLLADA Converter</author>
+      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+    </contributor>
+    <created>2012-01-26T22:20:50</created>
+    <modified>2012-01-26T22:20:50</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_geometries>
+    <geometry id="iber_fc-Geometry" name="iber_fc-Geometry">
+      <mesh>
+        <source id="iber_fc-Geometry-Position">
+          <float_array count="99" id="iber_fc-Geometry-Position-array">2.0703690 -4.7243880 0.0344150 2.0703690 -2.0928110 0.0344150 2.0703690 -2.0928110 1.6133620 2.0703690 -4.7243880 1.6133620 2.0703690 -2.0928110 0.0344150 0.2485070 -2.0928110 0.0344150 0.2485070 -2.0928110 1.6133620 2.0703690 -2.0928110 1.6133620 0.2485070 -2.0928110 0.0344150 0.2485060 -4.7243880 0.0344150 0.2485060 -4.7243880 1.6133620 0.2485070 -2.0928110 1.6133620 0.2485060 -4.7243880 0.0344150 2.0703690 -4.7243880 0.0344150 2.0703690 -4.7243880 1.6133620 0.2485060 -4.7243880 1.6133620 2.0703690 -4.7243880 1.6133620 2.0703690 -2.0928110 1.6133620 1.8474540 -2.2843880 1.4624440 1.8474550 -4.5328100 1.4624440 0.2485070 -2.0928110 1.6133620 0.4714200 -2.2843880 1.4624440 0.2485060 -4.7243880 1.6133620 0.4714200 -4.5328100 1.4624440 1.8474550 -4.5328100 1.4624440 1.8474540 -2.2843880 1.4624440 1.5851640 -3.4085990 1.7277830 1.1594370 -3.4085990 1.8602570 0.4714200 -2.2843880 1.4624440 1.1594360 -2.7129670 1.7277830 0.4714200 -4.5328100 1.4624440 0.7337100 -3.4085990 1.7277830 1.1594370 -4.1042310 1.7277830</float_array>
+          <technique_common>
+            <accessor count="33" source="iber_fc-Geometry-Position-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="iber_fc-Geometry-Normals">
+          <float_array count="99" id="iber_fc-Geometry-Normal-array">1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000000 1.0000000 0.0000000 -0.0000000 1.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 0.0000000 -1.0000000 0.0000000 -0.0000000 -1.0000000 0.0000000 -0.0000000 0.6188140 0.7855370 0.0000000 -0.6188160 0.7855360 0.3338840 0.2285690 0.9144820 0.3338840 -0.2285690 0.9144820 0.5606220 -0.0000000 0.8280720 -0.3338850 0.2285690 0.9144820 0.0000000 0.6188140 0.7855370 -0.3338840 -0.2285690 0.9144820 0.3338840 -0.2285690 0.9144820 0.3338840 0.2285690 0.9144820 0.4481480 0.0000000 0.8939590 -0.0000000 0.0000000 1.0000000 -0.3338850 0.2285690 0.9144820 -0.0000000 0.3073160 0.9516080 -0.3338840 -0.2285690 0.9144820 -0.4481480 0.0000000 0.8939590 -0.0000000 -0.3073160 0.9516080</float_array>
+          <technique_common>
+            <accessor count="33" source="iber_fc-Geometry-Normal-array" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="iber_fc-Geometry-UV">
+          <float_array count="66" id="iber_fc-Geometry-UV-array">0.000545 0.000982 0.249899 0.000982 0.249899 0.112226 0.000545 0.112226 0.000545 0.000982 0.121326 0.000982 0.121326 0.112226 0.000545 0.112226 0.000545 0.000982 0.249899 0.000982 0.249899 0.112226 0.000545 0.112226 0.000545 0.000982 0.121326 0.000982 0.121326 0.112226 0.000545 0.112226 0.000545 0.000982 0.249899 0.000982 0.230419 0.012901 0.020026 0.012901 0.249899 0.112226 0.230419 0.100307 0.000545 0.112226 0.020026 0.100307 0.580282 0.12131 0.580282 0.004391 0.59187 0.060835 0.615045 0.060835 0.649808 0.004391 0.615045 0.032613 0.649808 0.12131 0.638221 0.060835 0.615045 0.109215</float_array>
+          <technique_common>
+            <accessor count="33" source="iber_fc-Geometry-UV-array" stride="2">
+              <param name="U" type="float"/>
+              <param name="V" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="iber_fc-Geometry-Vertex">
+          <input semantic="POSITION" source="#iber_fc-Geometry-Position"/>
+        </vertices>
+        <triangles count="28" material="material0">
+          <input offset="0" semantic="VERTEX" source="#iber_fc-Geometry-Vertex"/>
+          <input offset="0" semantic="NORMAL" source="#iber_fc-Geometry-Normals"/>
+          <input offset="0" semantic="TEXCOORD" source="#iber_fc-Geometry-UV"/>
+          <p>0 1 2 2 3 0 4 5 6 6 7 4 8 9 10 10 11 8 12 13 14 14 15 12 16 17 18 18 19 16 17 20 21 21 18 17 20 22 23 23 21 20 22 16 19 19 23 22 24 25 26 25 27 26 27 24 26 25 28 29 28 27 29 27 25 29 28 30 31 30 27 31 27 28 31 30 24 32 24 27 32 27 30 32</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="iber_fc" layer="L1" name="iber_fc">
+        <instance_geometry url="#iber_fc-Geometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
