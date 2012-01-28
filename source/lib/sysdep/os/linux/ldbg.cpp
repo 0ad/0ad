@@ -33,6 +33,28 @@
 #include "lib/sysdep/sysdep.h"
 #include "lib/debug.h"
 
+#if OS_ANDROID
+
+// Android NDK doesn't support backtrace()
+// TODO: use unwind.h or similar?
+
+void* debug_GetCaller(void* UNUSED(context), const wchar_t* UNUSED(lastFuncToSkip))
+{
+	return NULL;
+}
+
+Status debug_DumpStack(wchar_t* UNUSED(buf), size_t UNUSED(max_chars), void* UNUSED(context), const wchar_t* UNUSED(lastFuncToSkip))
+{
+	return ERR::NOT_SUPPORTED;
+}
+
+Status debug_ResolveSymbol(void* UNUSED(ptr_of_interest), wchar_t* UNUSED(sym_name), wchar_t* UNUSED(file), int* UNUSED(line))
+{
+	return ERR::NOT_SUPPORTED;
+}
+
+#else
+
 #include <execinfo.h>
 
 void* debug_GetCaller(void* UNUSED(context), const wchar_t* UNUSED(lastFuncToSkip))
@@ -122,6 +144,8 @@ Status debug_ResolveSymbol(void* ptr_of_interest, wchar_t* sym_name, wchar_t* fi
 		return ERR::FAIL;
 	}
 }
+
+#endif
 
 void debug_SetThreadName(char const* UNUSED(name))
 {

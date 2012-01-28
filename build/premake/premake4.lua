@@ -1,14 +1,18 @@
+newoption { trigger = "android", description = "Use non-working Android cross-compiling mode" }
 newoption { trigger = "atlas", description = "Include Atlas scenario editor projects" }
 newoption { trigger = "collada", description = "Include COLLADA projects (requires FCollada library)" }
 newoption { trigger = "coverage", description = "Enable code coverage data collection (GCC only)" }
 newoption { trigger = "gles", description = "Use non-working OpenGL ES 2.0 mode" }
 newoption { trigger = "icc", description = "Use Intel C++ Compiler (Linux only; should use either \"--cc icc\" or --without-pch too, and then set CXX=icpc before calling make)" }
 newoption { trigger = "outpath", description = "Location for generated project files" }
+newoption { trigger = "without-fam", description = "Disable use of FAM API on Linux" }
+newoption { trigger = "without-audio", description = "Disable use of OpenAL/Ogg/Vorbis APIs" }
 newoption { trigger = "without-tests", description = "Disable generation of test projects" }
 newoption { trigger = "without-pch", description = "Disable generation and usage of precompiled headers" }
 newoption { trigger = "with-system-nvtt", description = "Search standard paths for nvidia-texture-tools library, instead of using bundled copy" }
 newoption { trigger = "with-system-enet", description = "Search standard paths for libenet, instead of using bundled copy" }
 newoption { trigger = "with-system-mozjs185", description = "Search standard paths for libmozjs185, instead of using bundled copy" }
+
 newoption { trigger = "bindir", description = "Directory for executables (typically '/usr/games'); default is to be relocatable" }
 newoption { trigger = "datadir", description = "Directory for data files (typically '/usr/share/games/0ad'); default is ../data/ relative to executable" }
 newoption { trigger = "libdir", description = "Directory for libraries (typically '/usr/lib/games/0ad'); default is ./ relative to executable" }
@@ -20,7 +24,9 @@ dofile("extern_libs4.lua")
 
 -- detect CPU architecture (simplistic, currently only supports x86 and amd64)
 arch = "x86"
-if os.is("windows") then
+if _OPTIONS["android"] then
+	arch = "arm"
+elseif os.is("windows") then
 	if os.getenv("PROCESSOR_ARCHITECTURE") == "amd64" or os.getenv("PROCESSOR_ARCHITEW6432") == "amd64" then
 		arch = "amd64"
 	end
@@ -28,8 +34,6 @@ else
 	arch = os.getenv("HOSTTYPE")
 	if arch == "x86_64" then
 		arch = "amd64"
-	elseif arch == "arm" then
-		arch = "arm"
 	else
 		os.execute("gcc -dumpmachine > .gccmachine.tmp")
 		local f = io.open(".gccmachine.tmp", "r")
@@ -146,6 +150,14 @@ function project_set_build_flags()
 
 	if _OPTIONS["gles"] then
 		defines { "CONFIG2_GLES=1" }
+	end
+
+	if _OPTIONS["without-fam"] then
+		defines { "CONFIG2_FAM=0" }
+	end
+
+	if _OPTIONS["without-audio"] then
+		defines { "CONFIG2_AUDIO=0" }
 	end
 
 	-- required for the lowlevel library. must be set from all projects that use it, otherwise it assumes it is
@@ -586,14 +598,16 @@ function setup_all_libs ()
 	if arch == "amd64" then
 		table.insert(source_dirs, "lib/sysdep/arch/amd64");
 		table.insert(source_dirs, "lib/sysdep/arch/x86_x64");
-	else
+	elseif arch == "x86" then
 		table.insert(source_dirs, "lib/sysdep/arch/ia32");
 		table.insert(source_dirs, "lib/sysdep/arch/x86_x64");
+	elseif arch == "arm" then
+		table.insert(source_dirs, "lib/sysdep/arch/arm");
 	end
 
 	-- OS-specific
 	sysdep_dirs = {
-		linux = { "lib/sysdep/os/linux", "lib/sysdep/os/unix", "lib/sysdep/os/unix/x" },
+		linux = { "lib/sysdep/os/linux", "lib/sysdep/os/unix" },
 		-- note: RC file must be added to main_exe project.
 		-- note: don't add "lib/sysdep/os/win/aken.cpp" because that must be compiled with the DDK.
 		windows = { "lib/sysdep/os/win", "lib/sysdep/os/win/wposix", "lib/sysdep/os/win/whrt" },
@@ -601,6 +615,12 @@ function setup_all_libs ()
 	}
 	for i,v in pairs(sysdep_dirs[os.get()]) do
 		table.insert(source_dirs, v);
+	end
+	
+	if os.is("linux") then
+		if not _OPTIONS["android"] then
+			table.insert(source_dirs, "lib/sysdep/os/unix/x")
+		end
 	end
 
 	-- runtime-library-specific

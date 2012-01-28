@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2012 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -24,9 +24,26 @@
 
 #include <string>
 
+#include "lib/config2.h"
 #include "lib/sysdep/sysdep.h"
 #include "lib/sysdep/dir_watch.h"
 #include "ps/CLogger.h"
+
+#if !CONFIG2_FAM
+
+// stub implementations
+
+Status dir_watch_Add(const OsPath& UNUSED(path), PDirWatch& UNUSED(dirWatch))
+{
+	return INFO::OK;
+}
+
+Status dir_watch_Poll(DirWatchNotifications& UNUSED(notifications))
+{
+	return INFO::OK;
+}
+
+#else
 
 #include <fam.h>
 
@@ -241,3 +258,5 @@ Status dir_watch_Poll(DirWatchNotifications& notifications)
 	// nothing new; try again later
 	return INFO::OK;
 }
+
+#endif	// CONFIG2_FAM

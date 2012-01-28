@@ -1,6 +1,8 @@
 #include "precompiled.h"
 #include "ogg.h"
 
+#if CONFIG2_AUDIO
+
 #include "lib/external_libraries/openal.h"
 #include "lib/external_libraries/vorbis.h"
 
@@ -281,3 +283,5 @@ Status OpenOggNonstream(const PIVFS& vfs, const VfsPath& pathname, OggStreamPtr&
 	stream = tmp;
 	return INFO::OK;
 }
+
+#endif	// CONFIG2_AUDIO
