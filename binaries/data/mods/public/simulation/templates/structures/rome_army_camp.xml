@@ -57,6 +57,13 @@
   <Obstruction>
     <Static width="24.0" depth="24.0"/>
   </Obstruction>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_fortress.xml</select>
+      <constructed>interface/complete/building/complete_fortress.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
   <TerritoryInfluence disable=""/>
   <TrainingQueue>
     <Entities datatype="tokens">
