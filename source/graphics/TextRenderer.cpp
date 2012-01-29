@@ -56,7 +56,7 @@ void CTextRenderer::Translate(float x, float y, float z)
 	m_Transform = m_Transform * m;
 }
 
-void CTextRenderer::Color(CColor& color)
+void CTextRenderer::Color(const CColor& color)
 {
 	m_Color = color;
 }

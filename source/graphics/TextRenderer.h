@@ -30,12 +30,12 @@ public:
 	CTextRenderer();
 
 	void ResetTransform();
-	void Translate(float x, float y, float z);
-
 	CMatrix3D GetTransform();
 	void SetTransform(const CMatrix3D& transform);
 
-	void Color(CColor& color);
+	void Translate(float x, float y, float z);
+
+	void Color(const CColor& color);
 	void Font(const CStrW& font);
 
 	void Printf(const wchar_t* fmt, ...);
