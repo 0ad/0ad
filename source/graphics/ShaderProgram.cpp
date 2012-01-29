@@ -242,7 +242,7 @@ public:
 		pglDeleteShader(m_FragmentShader);
 	}
 
-	bool Compile(GLuint shader, const VfsPath& file, const CStr& code)
+	bool Compile(GLhandleARB shader, const VfsPath& file, const CStr& code)
 	{
 		ogl_WarnIfError();
 
@@ -480,9 +480,9 @@ private:
 	VfsPath m_FragmentFile;
 	std::map<CStr, CStr> m_Defines;
 
-	GLuint m_Program;
-	GLuint m_VertexShader;
-	GLuint m_FragmentShader;
+	GLhandleARB m_Program;
+	GLhandleARB m_VertexShader;
+	GLhandleARB m_FragmentShader;
 
 	std::map<CStr, GLenum> m_UniformTypes;
 	std::map<CStr, int> m_UniformLocations;
