@@ -79,7 +79,7 @@ Status ReloadChangedFiles()
 			VfsPath pathname;
 			RETURN_STATUS_IF_ERR(g_VFS->GetVirtualPath(notifications[i].Pathname(), pathname));
 			RETURN_STATUS_IF_ERR(g_VFS->RemoveFile(pathname));
-			RETURN_STATUS_IF_ERR(g_VFS->RepopulateDirectory(pathname.Parent()));
+			RETURN_STATUS_IF_ERR(g_VFS->RepopulateDirectory(pathname.Parent()/""));
 
 			// Tell each hotloadable system about this file change:
 
