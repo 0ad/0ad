@@ -50,8 +50,6 @@
 #include "renderer/VertexArray.h"
 #include "renderer/WaterManager.h"
 
-#include "lib/res/graphics/ogl_shader.h"
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // TerrainRenderer implementation
@@ -680,14 +678,9 @@ bool TerrainRenderer::RenderFancyWater()
 	glDisableClientState(GL_COLOR_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
 
-	// Unbind the LOS/refraction/reflection textures and the shader
-	g_Renderer.BindTexture(3, 0);
-	g_Renderer.BindTexture(2, 0);
-	g_Renderer.BindTexture(1, 0);
+	m->fancyWaterShader->Unbind();
 
 	pglActiveTextureARB(GL_TEXTURE0_ARB);
-
-	ogl_program_use(0);
 
 	glDisable(GL_BLEND);
 
