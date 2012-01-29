@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,17 +24,18 @@ CInput
 #include "CInput.h"
 #include "CGUIScrollBarVertical.h"
 
-#include "ps/Font.h"
+#include "graphics/TextRenderer.h"
 #include "lib/ogl.h"
-
 #include "lib/res/graphics/unifont.h"
 #include "lib/sysdep/clipboard.h"
-
-#include "ps/Hotkey.h"
 #include "ps/CLogger.h"
+#include "ps/Font.h"
 #include "ps/Globals.h"
+#include "ps/Hotkey.h"
 
 #include <sstream>
+
+extern int g_yres;
 
 //-------------------------------------------------------------------
 //  Constructor / Destructor
@@ -1031,19 +1032,8 @@ void CInput::Draw()
 			scroll = GetScrollBar(0).GetPos();
 		}
 
-		glEnable(GL_TEXTURE_2D);
-		glDisable(GL_CULL_FACE);
-
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glEnable(GL_BLEND);
-		glDisable(GL_ALPHA_TEST);
-
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-
 		CFont font(font_name);
 		font.Bind();
-
-		glPushMatrix();
 
 		// We'll have to setup clipping manually, since we're doing the rendering manually.
 		CRect cliparea(m_CachedActualSize);
@@ -1066,19 +1056,8 @@ void CInput::Draw()
 
 		if (cliparea != CRect())
 		{
-			double eq[4][4] = 
-			{ 
-				{  0.0,  1.0, 0.0, -cliparea.top },
-				{  1.0,  0.0, 0.0, -cliparea.left },
-				{  0.0, -1.0, 0.0, cliparea.bottom },
-				{ -1.0,  0.0, 0.0, cliparea.right }
-			};
-
-			for (int i=0; i<4; ++i)
-			{
-				glClipPlane(GL_CLIP_PLANE0+i, eq[i]);
-				glEnable(GL_CLIP_PLANE0+i);
-			}
+			glEnable(GL_SCISSOR_TEST);
+			glScissor(cliparea.left, g_yres - cliparea.bottom, cliparea.GetWidth(), cliparea.GetHeight());
 		}
 
 		// These are useful later.
@@ -1099,12 +1078,15 @@ void CInput::Draw()
 		float h = (float)font.GetHeight();
 		float ls = (float)font.GetLineSpacing();
 
+		CTextRenderer textRenderer;
+		textRenderer.Font(font_name);
+
 		// Set the Z to somewhat more, so we can draw a selected area between the
 		//  the control and the text.
-		glTranslatef((GLfloat)int(m_CachedActualSize.left) + buffer_zone, 
-					 (GLfloat)int(m_CachedActualSize.top+h) + buffer_zone, bz+0.1f);
-		
-		//glColor4f(1.f, 1.f, 1.f, 1.f);
+		textRenderer.Translate(
+			(float)(int)(m_CachedActualSize.left) + buffer_zone, 
+			(float)(int)(m_CachedActualSize.top+h) + buffer_zone,
+			bz+0.1f);
 		
 		// U+FE33: PRESENTATION FORM FOR VERTICAL LOW LINE
 		// (sort of like a | which is aligned to the left of most characters)
@@ -1234,20 +1216,8 @@ void CInput::Draw()
 								rect.right = m_CachedActualSize.right;
 						}
 
-						glPushMatrix();
-						guiLoadIdentity();
-						glEnable(GL_BLEND);
-						glDisable(GL_TEXTURE_2D);
-
 						if (sprite_selectarea)
 							GetGUI()->DrawSprite(*sprite_selectarea, cell_id, bz+0.05f, rect);
-
-						// Blend can have been reset
-						glEnable(GL_BLEND);
-						glEnable(GL_TEXTURE_2D);
-						glDisable(GL_ALPHA_TEST);
-
-						glPopMatrix();
 					}
 
 					if (i < (int)it->m_ListOfX.size())
@@ -1271,7 +1241,15 @@ void CInput::Draw()
 		buffered_y = -scroll;
 		
 		// Setup initial color (then it might change and change back, when drawing selected area)
-		glColor4f(color.r, color.g, color.b, color.a);
+		textRenderer.Color(color);
+
+		// Setup state for text rendering
+
+		glEnable(GL_TEXTURE_2D);
+		glDisable(GL_CULL_FACE);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_BLEND);
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
 		bool using_selected_color = false;
 		
@@ -1287,13 +1265,13 @@ void CInput::Draw()
 						break;
 				}
 
-				glPushMatrix();
+				CMatrix3D savedTransform = textRenderer.GetTransform();
 				
 				// Text must always be drawn in integer values. So we have to convert scroll
 				if (multiline)
-					glTranslatef(0.f, -(float)(int)scroll, 0.f);
+					textRenderer.Translate(0.f, -(float)(int)scroll, 0.f);
 				else
-					glTranslatef(-(float)(int)m_HorizontalScroll, 0.f, 0.f);
+					textRenderer.Translate(-(float)(int)m_HorizontalScroll, 0.f, 0.f);
 
 				// We might as well use 'i' here, because we need it
 				// (often compared against ints, so don't make it size_t)
@@ -1305,9 +1283,9 @@ void CInput::Draw()
 						{
 							// We still need to translate the OpenGL matrix
 							if (i == 0)
-								glTranslatef(it->m_ListOfX[i], 0.f, 0.f);
+								textRenderer.Translate(it->m_ListOfX[i], 0.f, 0.f);
 							else
-								glTranslatef(it->m_ListOfX[i] - it->m_ListOfX[i-1], 0.f, 0.f);
+								textRenderer.Translate(it->m_ListOfX[i] - it->m_ListOfX[i-1], 0.f, 0.f);
 
 							continue;
 						}
@@ -1318,16 +1296,16 @@ void CInput::Draw()
 						it->m_ListStart + i == VirtualTo)
 					{
 						using_selected_color = false;
-						glColor4f(color.r, color.g, color.b, color.a);
+						textRenderer.Color(color);
 					}
 
 					if (i != (int)it->m_ListOfX.size() &&
 						it->m_ListStart + i == m_iBufferPos)
 					{
 						// selecting only one, then we need only to draw a cursor.
-						glPushMatrix();
-						glwprintf(L"_");
-						glPopMatrix();
+						CMatrix3D t = textRenderer.GetTransform();
+						textRenderer.Printf(L"_");
+						textRenderer.SetTransform(t);
 					}
 
 					// Drawing selected area
@@ -1337,11 +1315,11 @@ void CInput::Draw()
 						using_selected_color == false)
 					{
 						using_selected_color = true;
-						glColor4f(color_selected.r, color_selected.g, color_selected.b, color_selected.a);
+						textRenderer.Color(color_selected);
 					}
 
 					if (i != (int)it->m_ListOfX.size())
-						glwprintf(L"%lc", (*pCaption)[it->m_ListStart + i]);
+						textRenderer.Printf(L"%lc", (*pCaption)[it->m_ListStart + i]);
 
 					// check it's now outside a one-liner, then we'll break
 					if (!multiline && i < (int)it->m_ListOfX.size())				
@@ -1353,25 +1331,26 @@ void CInput::Draw()
 
 				if (it->m_ListStart + (int)it->m_ListOfX.size() == m_iBufferPos)
 				{
-					glColor4f(color.r, color.g, color.b, color.a);
-					glwprintf(L"_");
+					textRenderer.Color(color);
+					textRenderer.Printf(L"_");
 
 					if (using_selected_color)
 					{
-						glColor4f(color_selected.r, color_selected.g, color_selected.b, color_selected.a);
+						textRenderer.Color(color_selected);
 					}
 				}
 
-				glPopMatrix();
+				textRenderer.SetTransform(savedTransform);
 			}
-			glTranslatef(0.f, ls, 0.f);	
+
+			textRenderer.Translate(0.f, ls, 0.f);	
 		}
 
-		glPopMatrix();
+		textRenderer.Render();
 
-		// Disable clipping
-		for (int i=0; i<4; ++i)
-			glDisable(GL_CLIP_PLANE0+i);
+		if (cliparea != CRect())
+			glDisable(GL_SCISSOR_TEST);
+
 		glDisable(GL_TEXTURE_2D);
 	}
 }

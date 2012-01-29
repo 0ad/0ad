@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -367,7 +367,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 	// If this object has zero size, there's nothing to render. (This happens
 	// with e.g. tooltips that have zero size before they're first drawn, so
 	// it isn't necessarily an error.)
-	if (Size.left==Size.right && Size.top==Size.bottom)
+	if (Size.left == Size.right && Size.top == Size.bottom)
 		return;
 
 
@@ -594,9 +594,14 @@ CRect SDrawCall::ComputeTexCoords() const
 	return TexCoords;
 }
 
-void GUIRenderer::Draw(DrawCalls &Calls)
+void GUIRenderer::Draw(DrawCalls &Calls, float Z)
 {
 	// Called every frame, to draw the object (based on cached calculations)
+
+	glPushMatrix();
+	CMatrix3D matrix = GetDefaultGuiMatrix();
+	matrix.Translate(0, 0, Z);
+	glLoadMatrixf(&matrix._11);
 
 	glDisable(GL_BLEND);
 
@@ -682,4 +687,6 @@ void GUIRenderer::Draw(DrawCalls &Calls)
 	}
 
 	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, 0.f);
+
+	glPopMatrix();
 }

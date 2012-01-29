@@ -50,14 +50,13 @@ GUI util
 
 class CClientArea;
 class CGUIString;
+class CMatrix3D;
 
 template <typename T>
 bool __ParseString(const CStrW& Value, T &tOutput);
 
-// Load Identity matrix and
-//  adapt (origio) to being in top left corner and down
-//  just like the mouse position
-void guiLoadIdentity();
+// Matrix with (0,0) in top-left of screen
+CMatrix3D GetDefaultGuiMatrix();
 
 //--------------------------------------------------------
 //  Forward declarations
