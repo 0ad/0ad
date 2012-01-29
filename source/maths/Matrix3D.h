@@ -79,11 +79,18 @@ public:
 	// NOTE: in this function definition, 'col' and 'row' represent the column and row into the 
 	// internal element matrix which is the transposed of the mathematical notation, so the first 
 	// and second arguments here are actually the row and column into the mathematical notation.
-	float& operator()(int col,int row) {
+	float& operator()(int col, int row)
+	{
 		return _data[row*4+col];
 	}
-	const float& operator()(int col,int row) const {
+	const float& operator()(int col, int row) const
+	{
 		return _data[row*4+col];
+	}
+
+	float operator[](int idx) const
+	{
+		return _data[idx];
 	}
 
 	// matrix multiplication

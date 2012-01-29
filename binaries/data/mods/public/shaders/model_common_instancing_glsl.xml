@@ -4,26 +4,11 @@
     <define name="USE_INSTANCING" value="1"/>
 
     <vertex file="model_common.vs">
-        <uniform name="sunDir" type="vec3"/>
-        <uniform name="sunColor" type="vec3"/>
-        <uniform name="losTransform" type="vec2"/>
-        <uniform name="shadowTransform" type="mat4"/>
-        <uniform name="instancingTransform" type="mat4"/>
         <stream name="pos"/>
         <stream name="normal"/>
         <stream name="uv0"/>
     </vertex>
 
-    <fragment file="model_common.fs">
-        <uniform name="baseTex" type="sampler2D"/>
-        <uniform name="shadowTex" type="sampler2DShadow"/>
-        <uniform name="losTex" type="sampler2D"/>
-
-        <uniform name="objectColor" type="vec3"/>
-        <uniform name="shadingColor" type="vec3"/>
-        <uniform name="ambient" type="vec3"/>
-        <uniform name="shadowOffsets1" type="vec4"/>
-        <uniform name="shadowOffsets2" type="vec4"/>
-    </fragment>
+    <fragment file="model_common.fs"/>
 
 </program>

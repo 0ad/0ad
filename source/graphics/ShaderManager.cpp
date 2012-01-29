@@ -82,21 +82,6 @@ CShaderProgramPtr CShaderManager::LoadProgram(const char* name, const std::map<C
 	return program;
 }
 
-static GLenum GetGLSLType(const CStr type)
-{
-	if (type == "float") return GL_FLOAT;
-	if (type == "vec2") return GL_FLOAT_VEC2;
-	if (type == "vec3") return GL_FLOAT_VEC3;
-	if (type == "vec4") return GL_FLOAT_VEC4;
-	if (type == "mat2") return GL_FLOAT_MAT2;
-	if (type == "mat3") return GL_FLOAT_MAT3;
-	if (type == "mat4") return GL_FLOAT_MAT4;
-	if (type == "sampler2D") return GL_SAMPLER_2D;
-	if (type == "sampler2DShadow") return GL_SAMPLER_2D;
-	if (type == "samplerCube") return GL_SAMPLER_CUBE;
-	return 0;
-}
-
 bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& baseDefines, CShaderProgramPtr& program)
 {
 	PROFILE2("loading shader");
@@ -155,9 +140,8 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 	VfsPath vertexFile;
 	VfsPath fragmentFile;
 	std::map<CStr, CStr> defines = baseDefines;
-	std::map<CStr, int> arbVertexUniforms;
-	std::map<CStr, int> arbFragmentUniforms;
-	std::map<CStr, GLenum> glslUniforms;
+	std::map<CStr, int> vertexUniforms;
+	std::map<CStr, int> fragmentUniforms;
 	int streamFlags = 0;
 
 	XERO_ITER_EL(Root, Child)
@@ -174,10 +158,7 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 			{
 				if (Param.GetNodeName() == el_uniform)
 				{
-					if (isGLSL)
-						glslUniforms[Param.GetAttributes().GetNamedItem(at_name)] = GetGLSLType(Param.GetAttributes().GetNamedItem(at_type));
-					else
-						arbVertexUniforms[Param.GetAttributes().GetNamedItem(at_name)] = Param.GetAttributes().GetNamedItem(at_loc).ToInt();
+					vertexUniforms[Param.GetAttributes().GetNamedItem(at_name)] = Param.GetAttributes().GetNamedItem(at_loc).ToInt();
 				}
 				else if (Param.GetNodeName() == el_stream)
 				{
@@ -211,19 +192,16 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 			{
 				if (Param.GetNodeName() == el_uniform)
 				{
-					if (isGLSL)
-						glslUniforms[Param.GetAttributes().GetNamedItem(at_name)] = GetGLSLType(Param.GetAttributes().GetNamedItem(at_type));
-					else
-						arbFragmentUniforms[Param.GetAttributes().GetNamedItem(at_name)] = Param.GetAttributes().GetNamedItem(at_loc).ToInt();
+					fragmentUniforms[Param.GetAttributes().GetNamedItem(at_name)] = Param.GetAttributes().GetNamedItem(at_loc).ToInt();
 				}
 			}
 		}
 	}
 
 	if (isGLSL)
-		program = CShaderProgramPtr(CShaderProgram::ConstructGLSL(vertexFile, fragmentFile, defines, glslUniforms, streamFlags));
+		program = CShaderProgramPtr(CShaderProgram::ConstructGLSL(vertexFile, fragmentFile, defines, streamFlags));
 	else
-		program = CShaderProgramPtr(CShaderProgram::ConstructARB(vertexFile, fragmentFile, defines, arbVertexUniforms, arbFragmentUniforms, streamFlags));
+		program = CShaderProgramPtr(CShaderProgram::ConstructARB(vertexFile, fragmentFile, defines, vertexUniforms, fragmentUniforms, streamFlags));
 
 	program->Reload();
 

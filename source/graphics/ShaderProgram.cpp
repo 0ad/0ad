@@ -19,6 +19,7 @@
 
 #include "ShaderProgram.h"
 
+#include "graphics/TextureManager.h"
 #include "lib/res/graphics/ogl_tex.h"
 #include "maths/Matrix3D.h"
 #include "maths/Vector3D.h"
@@ -223,12 +224,10 @@ class CShaderProgramGLSL : public CShaderProgram
 public:
 	CShaderProgramGLSL(const VfsPath& vertexFile, const VfsPath& fragmentFile,
 		const std::map<CStr, CStr>& defines,
-		const std::map<CStr, GLenum>& uniformTypes,
 		int streamflags) :
 	CShaderProgram(streamflags),
 		m_VertexFile(vertexFile), m_FragmentFile(fragmentFile),
-		m_Defines(defines),
-		m_UniformTypes(uniformTypes)
+		m_Defines(defines)
 	{
 		m_Program = 0;
 		m_VertexShader = pglCreateShaderObjectARB(GL_VERTEX_SHADER);
@@ -311,25 +310,31 @@ public:
 		ogl_WarnIfError();
 
 		m_UniformLocations.clear();
+		m_UniformTypes.clear();
 		m_Samplers.clear();
 
 		Bind();
 
-		for (std::map<CStr, GLenum>::iterator it = m_UniformTypes.begin(); it != m_UniformTypes.end(); ++it)
+		GLint numUniforms = 0;
+		pglGetProgramiv(m_Program, GL_ACTIVE_UNIFORMS, &numUniforms);
+		for (GLint i = 0; i < numUniforms; ++i)
 		{
-			int loc = pglGetUniformLocationARB(m_Program, it->first.c_str());
-			m_UniformLocations[it->first] = loc;
+			char name[256] = {0};
+			GLsizei nameLength = 0;
+			GLint size = 0;
+			GLenum type = 0;
+			pglGetActiveUniformARB(m_Program, i, ARRAY_SIZE(name), &nameLength, &size, &type, name);
 
-			if (loc != -1)
+			m_UniformLocations[name] = i;
+			m_UniformTypes[name] = type;
+
+			// Assign sampler uniforms to sequential texture units
+			if (type == GL_SAMPLER_2D || type == GL_SAMPLER_2D_SHADOW || type == GL_SAMPLER_CUBE)
 			{
-				// Assign in-use sampler uniforms to sequential texture units
-				if (it->second == GL_SAMPLER_2D || it->second == GL_SAMPLER_CUBE)
-				{
-					int unit = (int)m_Samplers.size();
-					m_Samplers[it->first].first = (it->second == GL_SAMPLER_CUBE ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D);
-					m_Samplers[it->first].second = unit;
-					pglUniform1iARB(loc, unit); // link uniform to unit
-				}
+				int unit = (int)m_Samplers.size();
+				m_Samplers[name].first = (type == GL_SAMPLER_CUBE ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D);
+				m_Samplers[name].second = unit;
+				pglUniform1iARB(i, unit); // link uniform to unit
 			}
 		}
 
@@ -501,10 +506,9 @@ CShaderProgram::CShaderProgram(int streamflags)
 
 /*static*/ CShaderProgram* CShaderProgram::ConstructGLSL(const VfsPath& vertexFile, const VfsPath& fragmentFile,
 	const std::map<CStr, CStr>& defines,
-	const std::map<CStr, GLenum>& uniformTypes,
 	int streamflags)
 {
-	return new CShaderProgramGLSL(vertexFile, fragmentFile, defines, uniformTypes, streamflags);
+	return new CShaderProgramGLSL(vertexFile, fragmentFile, defines, streamflags);
 }
 
 bool CShaderProgram::IsValid() const
@@ -517,6 +521,11 @@ int CShaderProgram::GetStreamFlags() const
 	return m_StreamFlags;
 }
 
+void CShaderProgram::BindTexture(texture_id_t id, CTexturePtr tex)
+{
+	BindTexture(id, tex->GetHandle());
+}
+
 void CShaderProgram::Uniform(Binding id, int v)
 {
 	Uniform(id, (float)v, (float)v, (float)v, (float)v);
@@ -525,6 +534,11 @@ void CShaderProgram::Uniform(Binding id, int v)
 void CShaderProgram::Uniform(Binding id, float v)
 {
 	Uniform(id, v, v, v, v);
+}
+
+void CShaderProgram::Uniform(Binding id, float v0, float v1)
+{
+	Uniform(id, v0, v1, 0.0f, 0.0f);
 }
 
 void CShaderProgram::Uniform(Binding id, const CVector3D& v)
@@ -545,6 +559,11 @@ void CShaderProgram::Uniform(uniform_id_t id, int v)
 void CShaderProgram::Uniform(uniform_id_t id, float v)
 {
 	Uniform(GetUniformBinding(id), v, v, v, v);
+}
+
+void CShaderProgram::Uniform(uniform_id_t id, float v0, float v1)
+{
+	Uniform(GetUniformBinding(id), v0, v1, 0.0f, 0.0f);
 }
 
 void CShaderProgram::Uniform(uniform_id_t id, const CVector3D& v)

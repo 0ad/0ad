@@ -18,6 +18,7 @@
 #ifndef INCLUDED_SHADERPROGRAM
 #define INCLUDED_SHADERPROGRAM
 
+#include "graphics/Texture.h"
 #include "lib/ogl.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "lib/res/handle.h"
@@ -74,7 +75,6 @@ public:
 	 */
 	static CShaderProgram* ConstructGLSL(const VfsPath& vertexFile, const VfsPath& fragmentFile,
 		const std::map<CStr, CStr>& defines,
-		const std::map<CStr, GLenum>& uniformTypes,
 		int streamflags);
 
 	/**
@@ -143,6 +143,8 @@ public:
 	 */
 	virtual bool HasTexture(texture_id_t id) = 0;
 
+	void BindTexture(texture_id_t id, CTexturePtr tex);
+
 	virtual void BindTexture(texture_id_t id, Handle tex) = 0;
 
 	virtual void BindTexture(texture_id_t id, GLuint tex) = 0;
@@ -157,11 +159,13 @@ public:
 
 	void Uniform(Binding id, int v);
 	void Uniform(Binding id, float v);
+	void Uniform(Binding id, float v0, float v1);
 	void Uniform(Binding id, const CVector3D& v);
 	void Uniform(Binding id, const CColor& v);
 
 	void Uniform(uniform_id_t id, int v);
 	void Uniform(uniform_id_t id, float v);
+	void Uniform(uniform_id_t id, float v0, float v1);
 	void Uniform(uniform_id_t id, const CVector3D& v);
 	void Uniform(uniform_id_t id, const CColor& v);
 	void Uniform(uniform_id_t id, float v0, float v1, float v2, float v3);

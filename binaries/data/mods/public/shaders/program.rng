@@ -19,7 +19,7 @@
                         <attribute name="file"><text/></attribute>
                         <zeroOrMore>
                             <choice>
-                                <ref name="uniformContentARB"/>
+                                <ref name="uniformContent"/>
                                 <element name="attrib">
                                     <attribute name="name"><text/></attribute>
                                     <attribute name="loc"><data type="integer"/></attribute>
@@ -32,7 +32,7 @@
                     <element name="fragment">
                         <attribute name="file"><text/></attribute>
                         <zeroOrMore>
-                            <ref name="uniformContentARB"/>
+                            <ref name="uniformContent"/>
                         </zeroOrMore>
                     </element>
                 </group>
@@ -46,7 +46,6 @@
                         <attribute name="file"><text/></attribute>
                         <zeroOrMore>
                             <choice>
-                                <ref name="uniformContentGLSL"/>
                                 <element name="attrib">
                                     <attribute name="name"><text/></attribute>
                                     <attribute name="loc"><data type="integer"/></attribute>
@@ -58,9 +57,6 @@
 
                     <element name="fragment">
                         <attribute name="file"><text/></attribute>
-                        <zeroOrMore>
-                            <ref name="uniformContentGLSL"/>
-                        </zeroOrMore>
                     </element>
 
                 </group>
@@ -69,30 +65,10 @@
 
     </start>
 
-    <define name="uniformContentARB">
+    <define name="uniformContent">
         <element name="uniform">
             <attribute name="name"><text/></attribute>
             <attribute name="loc"><data type="integer"/></attribute>
-            <attribute name="type">
-                <choice>
-                    <value>float</value>
-                    <value>vec2</value>
-                    <value>vec3</value>
-                    <value>vec4</value>
-                    <value>mat2</value>
-                    <value>mat3</value>
-                    <value>mat4</value>
-                    <value>sampler2D</value>
-                    <value>sampler2DShadow</value>
-                    <value>samplerCube</value>
-                </choice>
-            </attribute>
-        </element>
-    </define>
-
-    <define name="uniformContentGLSL">
-        <element name="uniform">
-            <attribute name="name"><text/></attribute>
             <attribute name="type">
                 <choice>
                     <value>float</value>
