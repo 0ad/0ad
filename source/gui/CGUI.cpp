@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -43,26 +43,26 @@ CGUI
 #include "MiniMap.h"
 #include "scripting/JSInterface_GUITypes.h"
 
-#include "ps/XML/Xeromyces.h"
-#include "ps/Font.h"
-
-#include "ps/Pyrogenesis.h"
+#include "graphics/TextRenderer.h"
 #include "lib/input.h"
 #include "lib/bits.h"
 #include "lib/timer.h"
 #include "lib/sysdep/sysdep.h"
-// TODO Gee: Whatever include CRect/CPos/CSize
-#include "ps/Overlay.h"
-#include "ps/Profile.h"
-
-#include "scripting/ScriptingHost.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "ps/CLogger.h"
+#include "ps/Filesystem.h"
+#include "ps/Font.h"
 #include "ps/Hotkey.h"
 #include "ps/Globals.h"
-#include "ps/Filesystem.h"
+#include "ps/Overlay.h"
+#include "ps/Profile.h"
+#include "ps/Pyrogenesis.h"
+#include "ps/XML/Xeromyces.h"
+#include "scripting/ScriptingHost.h"
+#include "scriptinterface/ScriptInterface.h"
+
+extern int g_yres;
 
 const double SELECT_DBLCLICK_RATE = 0.5;
-#include "ps/CLogger.h"
 
 void CGUI::ScriptingInit()
 {
@@ -443,9 +443,6 @@ void CGUI::Draw()
 	// Clear the depth buffer, so the GUI is
 	// drawn on top of everything else
 	glClear(GL_DEPTH_BUFFER_BIT);
-	glPushMatrix();
-
-	guiLoadIdentity();
 
 	try
 	{
@@ -457,7 +454,6 @@ void CGUI::Draw()
 	{
 		LOGERROR(L"GUI draw error: %hs", e.what());
 	}
-	glPopMatrix();
 }
 
 void CGUI::DrawSprite(const CGUISpriteInstance& Sprite,
@@ -472,13 +468,7 @@ void CGUI::DrawSprite(const CGUISpriteInstance& Sprite,
 
 	// TODO: Clipping?
 
-	glPushMatrix();
-	glTranslatef(0.0f, 0.0f, Z);
-
-	Sprite.Draw(Rect, CellID, m_Sprites);
-
-	glPopMatrix();
-
+	Sprite.Draw(Rect, CellID, m_Sprites, Z);
 }
 
 void CGUI::Destroy()
@@ -927,23 +917,11 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 
 	if (clipping != CRect())
 	{
-		double eq[4][4] = 
-		{ 
-			{  0.0,  1.0, 0.0, -clipping.top },
-			{  1.0,  0.0, 0.0, -clipping.left },
-			{  0.0, -1.0, 0.0, clipping.bottom },
-			{ -1.0,  0.0, 0.0, clipping.right }
-		};
-
-		for (int i=0; i<4; ++i)
-		{
-			glClipPlane(GL_CLIP_PLANE0+i, eq[i]);
-			glEnable(GL_CLIP_PLANE0+i);
-		}
+		glEnable(GL_SCISSOR_TEST);
+		glScissor(clipping.left, g_yres - clipping.bottom, clipping.GetWidth(), clipping.GetHeight());
 	}
 
-	CFont* font = NULL;
-	CStrW LastFontName;
+	CTextRenderer textRenderer;
 
 	for (std::vector<SGUIText::STextCall>::const_iterator it = Text.m_TextCalls.begin(); 
 		 it != Text.m_TextCalls.end(); 
@@ -953,30 +931,16 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 		if (it->m_pSpriteCall)
 			continue;
 
-		// Switch fonts when necessary, but remember the last one used
-		if (it->m_Font != LastFontName)
-		{
-			delete font;
-			font = new CFont(it->m_Font);
-			font->Bind();
-			LastFontName = it->m_Font;
-		}
-
 		CColor color = it->m_UseCustomColor ? it->m_Color : DefaultColor;
 
-		glPushMatrix();
-
-		// TODO Gee: (2004-09-04) Why are font corrupted if inputted float value?
-		glTranslatef((GLfloat)int(pos.x+it->m_Pos.x), (GLfloat)int(pos.y+it->m_Pos.y), z);
-		glColor4fv(color.FloatArray());
-		glwprintf(L"%ls", it->m_String.c_str()); // "%ls" is necessary in case m_String contains % symbols
-
-		glPopMatrix();
-
+		textRenderer.ResetTransform();
+		textRenderer.Translate((float)(int)(pos.x+it->m_Pos.x), (float)(int)(pos.y+it->m_Pos.y), z);
+		textRenderer.Color(color);
+		textRenderer.Font(it->m_Font);
+		textRenderer.Printf(L"%ls", it->m_String.c_str()); // "%ls" is necessary in case m_String contains % symbols
 	}
 
-	if (font)
-		delete font;
+	textRenderer.Render();
 
 	for (std::list<SGUIText::SSpriteCall>::iterator it=Text.m_SpriteCalls.begin(); 
 		 it!=Text.m_SpriteCalls.end(); 
@@ -985,15 +949,10 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 		DrawSprite(it->m_Sprite, it->m_CellID, z, it->m_Area + pos);
 	}
 
-	// TODO To whom it may concern: Thing were not reset, so
-	//  I added this line, modify if incorrect --
 	if (clipping != CRect())
-	{
-		for (int i=0; i<4; ++i)
-			glDisable(GL_CLIP_PLANE0+i);
-	}	
+		glDisable(GL_SCISSOR_TEST);
+
 	glDisable(GL_TEXTURE_2D);
-	// -- GL
 }
 
 bool CGUI::GetPreDefinedColor(const CStr& name, CColor &Output)

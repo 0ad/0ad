@@ -299,6 +299,10 @@ void CMiniMap::Draw()
 			RebuildTerrainTexture();
 	}
 
+	glPushMatrix();
+	CMatrix3D matrix = GetDefaultGuiMatrix();
+	glLoadMatrixf(&matrix._11);
+
 	const float x = m_CachedActualSize.left, y = m_CachedActualSize.bottom;
 	const float x2 = m_CachedActualSize.right, y2 = m_CachedActualSize.top;
 	const float z = GetBufferedZ();
@@ -414,6 +418,8 @@ void CMiniMap::Draw()
 	PROFILE_END("minimap units");
 
 	DrawViewRect();
+
+	glPopMatrix();
 
 	glPopMatrix();
 

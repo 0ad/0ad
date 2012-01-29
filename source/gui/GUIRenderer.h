@@ -79,7 +79,7 @@ namespace GUIRenderer
 {
 	void UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, const CRect& Size, int CellID, std::map<CStr, CGUISprite> &Sprites);
 
-	void Draw(DrawCalls &Calls);
+	void Draw(DrawCalls &Calls, float Z);
 }
 
 #endif // GUIRenderer_h

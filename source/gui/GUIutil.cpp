@@ -22,6 +22,7 @@ GUI utilities
 #include "precompiled.h"
 #include "GUI.h"
 #include "GUIManager.h"
+#include "maths/Matrix3D.h"
 #include "ps/Parser.h"
 
 extern int g_yres;
@@ -249,11 +250,13 @@ bool __ParseString<CGUIList>(const CStrW& UNUSED(Value), CGUIList& UNUSED(Output
 
 //--------------------------------------------------------
 
-void guiLoadIdentity()
+CMatrix3D GetDefaultGuiMatrix()
 {
-	glLoadIdentity();
-	glTranslatef(0.0f, (GLfloat)g_yres, -1000.0f);
-	glScalef(1.0f, -1.f, 1.0f);
+	CMatrix3D m;
+	m.SetIdentity();
+	m.Scale(1.0f, -1.f, 1.0f);
+	m.Translate(0.0f, (float)g_yres, -1000.0f);
+	return m;
 }
 
 //--------------------------------------------------------
