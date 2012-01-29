@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 
 #include "ShaderManager.h"
 
+#include "graphics/ShaderTechnique.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
@@ -29,6 +30,14 @@
 #include "renderer/Renderer.h"
 
 TIMER_ADD_CLIENT(tc_ShaderValidation);
+
+struct revcompare2nd
+{
+	template<typename S, typename T> bool operator()(const std::pair<S, T>& a, const std::pair<S, T>& b) const
+	{
+		return b.second < a.second;
+	}
+};
 
 CShaderManager::CShaderManager()
 {
@@ -71,6 +80,21 @@ CShaderProgramPtr CShaderManager::LoadProgram(const char* name, const std::map<C
 
 	m_Cache[key] = program;
 	return program;
+}
+
+static GLenum GetGLSLType(const CStr type)
+{
+	if (type == "float") return GL_FLOAT;
+	if (type == "vec2") return GL_FLOAT_VEC2;
+	if (type == "vec3") return GL_FLOAT_VEC3;
+	if (type == "vec4") return GL_FLOAT_VEC4;
+	if (type == "mat2") return GL_FLOAT_MAT2;
+	if (type == "mat3") return GL_FLOAT_MAT3;
+	if (type == "mat4") return GL_FLOAT_MAT4;
+	if (type == "sampler2D") return GL_SAMPLER_2D;
+	if (type == "sampler2DShadow") return GL_SAMPLER_2D;
+	if (type == "samplerCube") return GL_SAMPLER_CUBE;
+	return 0;
 }
 
 bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& baseDefines, CShaderProgramPtr& program)
@@ -131,8 +155,9 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 	VfsPath vertexFile;
 	VfsPath fragmentFile;
 	std::map<CStr, CStr> defines = baseDefines;
-	std::map<CStr, int> vertexUniforms;
-	std::map<CStr, int> fragmentUniforms;
+	std::map<CStr, int> arbVertexUniforms;
+	std::map<CStr, int> arbFragmentUniforms;
+	std::map<CStr, GLenum> glslUniforms;
 	int streamFlags = 0;
 
 	XERO_ITER_EL(Root, Child)
@@ -149,7 +174,10 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 			{
 				if (Param.GetNodeName() == el_uniform)
 				{
-					vertexUniforms[Param.GetAttributes().GetNamedItem(at_name)] = Param.GetAttributes().GetNamedItem(at_loc).ToInt();
+					if (isGLSL)
+						glslUniforms[Param.GetAttributes().GetNamedItem(at_name)] = GetGLSLType(Param.GetAttributes().GetNamedItem(at_type));
+					else
+						arbVertexUniforms[Param.GetAttributes().GetNamedItem(at_name)] = Param.GetAttributes().GetNamedItem(at_loc).ToInt();
 				}
 				else if (Param.GetNodeName() == el_stream)
 				{
@@ -182,15 +210,21 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 			XERO_ITER_EL(Child, Param)
 			{
 				if (Param.GetNodeName() == el_uniform)
-					fragmentUniforms[Param.GetAttributes().GetNamedItem(at_name)] = Param.GetAttributes().GetNamedItem(at_loc).ToInt();
+				{
+					if (isGLSL)
+						glslUniforms[Param.GetAttributes().GetNamedItem(at_name)] = GetGLSLType(Param.GetAttributes().GetNamedItem(at_type));
+					else
+						arbFragmentUniforms[Param.GetAttributes().GetNamedItem(at_name)] = Param.GetAttributes().GetNamedItem(at_loc).ToInt();
+				}
 			}
 		}
 	}
 
-	// TODO: add GLSL support
-	ENSURE(!isGLSL);
+	if (isGLSL)
+		program = CShaderProgramPtr(CShaderProgram::ConstructGLSL(vertexFile, fragmentFile, defines, glslUniforms, streamFlags));
+	else
+		program = CShaderProgramPtr(CShaderProgram::ConstructARB(vertexFile, fragmentFile, defines, arbVertexUniforms, arbFragmentUniforms, streamFlags));
 
-	program = CShaderProgramPtr(CShaderProgram::ConstructARB(vertexFile, fragmentFile, defines, vertexUniforms, fragmentUniforms, streamFlags));
 	program->Reload();
 
 //	m_HotloadFiles[xmlFilename].insert(program); // TODO: should reload somehow when the XML changes
@@ -198,6 +232,88 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 	m_HotloadFiles[fragmentFile].insert(program);
 
 	return true;
+}
+
+CShaderTechnique CShaderManager::LoadEffect(const char* name, const std::map<CStr, CStr>& baseDefines)
+{
+	PROFILE2("loading effect");
+	PROFILE2_ATTR("name: %s", name);
+
+	VfsPath xmlFilename = L"shaders/effects/" + wstring_from_utf8(name) + L".xml";
+
+	CXeromyces XeroFile;
+	PSRETURN ret = XeroFile.Load(g_VFS, xmlFilename);
+	if (ret != PSRETURN_OK)
+		return CShaderTechnique();
+
+	// Define all the elements and attributes used in the XML file
+#define EL(x) int el_##x = XeroFile.GetElementID(#x)
+#define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
+	EL(pass);
+	EL(require);
+	AT(shaders);
+	AT(shader);
+#undef AT
+#undef EL
+
+	XMBElement Root = XeroFile.GetRoot();
+
+	// Find all the techniques that we can use, and their preference
+
+	std::vector<std::pair<XMBElement, int> > usableTechs;
+
+	XERO_ITER_EL(Root, Technique)
+	{
+		int preference = 0;
+		bool isUsable = true;
+		XERO_ITER_EL(Technique, Child)
+		{
+			if (Child.GetNodeName() == el_require)
+			{
+				if (Child.GetAttributes().GetNamedItem(at_shaders) == "arb")
+				{
+					if (!g_Renderer.GetCapabilities().m_ARBProgram)
+						isUsable = false;
+				}
+				else if (Child.GetAttributes().GetNamedItem(at_shaders) == "glsl")
+				{
+					if (!g_Renderer.GetCapabilities().m_VertexShader || !g_Renderer.GetCapabilities().m_FragmentShader)
+						isUsable = false;
+
+					if (g_Renderer.m_Options.m_PreferGLSL)
+						preference += 100;
+					else
+						preference -= 100;
+				}
+			}
+		}
+
+		if (isUsable)
+			usableTechs.push_back(std::make_pair(Technique, preference));
+	}
+
+	if (usableTechs.empty())
+	{
+		debug_warn(L"Can't find a usable technique");
+		return CShaderTechnique();
+	}
+
+	// Sort by preference, tie-break on order of specification
+	std::stable_sort(usableTechs.begin(), usableTechs.end(), revcompare2nd());
+
+	CShaderTechnique tech;
+
+	XERO_ITER_EL(usableTechs[0].first, Child)
+	{
+		if (Child.GetNodeName() == el_pass)
+		{
+			CShaderProgramPtr shader = LoadProgram(Child.GetAttributes().GetNamedItem(at_shader).c_str(), baseDefines);
+			CShaderPass pass(shader);
+			tech.AddPass(pass);
+		}
+	}
+
+	return tech;
 }
 
 /*static*/ Status CShaderManager::ReloadChangedFileCB(void* param, const VfsPath& path)

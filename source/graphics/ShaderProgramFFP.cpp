@@ -124,7 +124,7 @@ public:
 
 	virtual void Uniform(Binding id, float v0, float v1, float v2, float v3)
 	{
-		if (id.fragment == ID_losTransform)
+		if (id.second == ID_losTransform)
 		{
 			pglActiveTextureARB(GL_TEXTURE2);
 			GLfloat texgenS1[4] = { v0, 0, 0, v1 };
@@ -132,7 +132,7 @@ public:
 			glTexGenfv(GL_S, GL_OBJECT_PLANE, texgenS1);
 			glTexGenfv(GL_T, GL_OBJECT_PLANE, texgenT1);
 		}
-		else if (id.fragment == ID_objectColor)
+		else if (id.second == ID_objectColor)
 		{
 			float c[] = { v0, v1, v2, v3 };
 			pglActiveTextureARB(GL_TEXTURE1);

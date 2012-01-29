@@ -2,13 +2,6 @@
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
     <start>
         <element name="program">
-            <attribute name="type">
-                <choice>
-                    <value>arb</value>
-                    <value>glsl</value>
-                </choice>
-            </attribute>
-
             <zeroOrMore>
                 <element name="define">
                     <attribute name="name"><text/></attribute>
@@ -16,43 +9,67 @@
                 </element>
             </zeroOrMore>
 
-            <element name="vertex">
-                <attribute name="file"><text/></attribute>
-                <zeroOrMore>
-                    <choice>
-                        <ref name="uniformContent"/>
-                        <element name="attrib">
-                            <attribute name="name"><text/></attribute>
-                            <attribute name="loc"><data type="integer"/></attribute>
-                        </element>
-                        <element name="stream">
-                            <attribute name="name">
-                                <choice>
-                                    <value>pos</value>
-                                    <value>normal</value>
-                                    <value>color</value>
-                                    <value>uv0</value>
-                                    <value>uv1</value>
-                                    <value>uv2</value>
-                                    <value>uv3</value>
-                                </choice>
-                            </attribute>
-                        </element>
-                    </choice>
-                </zeroOrMore>
-            </element>
+            <choice>
+                <group>
+                    <attribute name="type">
+                        <value>arb</value>
+                    </attribute>
 
-            <element name="fragment">
-                <attribute name="file"><text/></attribute>
-                <zeroOrMore>
-                    <ref name="uniformContent"/>
-                </zeroOrMore>
-            </element>
+                    <element name="vertex">
+                        <attribute name="file"><text/></attribute>
+                        <zeroOrMore>
+                            <choice>
+                                <ref name="uniformContentARB"/>
+                                <element name="attrib">
+                                    <attribute name="name"><text/></attribute>
+                                    <attribute name="loc"><data type="integer"/></attribute>
+                                </element>
+                                <ref name="streamContent"/>
+                            </choice>
+                        </zeroOrMore>
+                    </element>
 
+                    <element name="fragment">
+                        <attribute name="file"><text/></attribute>
+                        <zeroOrMore>
+                            <ref name="uniformContentARB"/>
+                        </zeroOrMore>
+                    </element>
+                </group>
+                
+                <group>
+                    <attribute name="type">
+                        <value>glsl</value>
+                    </attribute>
+
+                    <element name="vertex">
+                        <attribute name="file"><text/></attribute>
+                        <zeroOrMore>
+                            <choice>
+                                <ref name="uniformContentGLSL"/>
+                                <element name="attrib">
+                                    <attribute name="name"><text/></attribute>
+                                    <attribute name="loc"><data type="integer"/></attribute>
+                                </element>
+                                <ref name="streamContent"/>
+                            </choice>
+                        </zeroOrMore>
+                    </element>
+
+                    <element name="fragment">
+                        <attribute name="file"><text/></attribute>
+                        <zeroOrMore>
+                            <ref name="uniformContentGLSL"/>
+                        </zeroOrMore>
+                    </element>
+
+                </group>
+            </choice>
         </element>
+
     </start>
 
-    <define name="uniformContent">
+    <define name="uniformContentARB">
         <element name="uniform">
             <attribute name="name"><text/></attribute>
             <attribute name="loc"><data type="integer"/></attribute>
@@ -68,6 +85,42 @@
                     <value>sampler2D</value>
                     <value>sampler2DShadow</value>
                     <value>samplerCube</value>
+                </choice>
+            </attribute>
+        </element>
+    </define>
+
+    <define name="uniformContentGLSL">
+        <element name="uniform">
+            <attribute name="name"><text/></attribute>
+            <attribute name="type">
+                <choice>
+                    <value>float</value>
+                    <value>vec2</value>
+                    <value>vec3</value>
+                    <value>vec4</value>
+                    <value>mat2</value>
+                    <value>mat3</value>
+                    <value>mat4</value>
+                    <value>sampler2D</value>
+                    <value>sampler2DShadow</value>
+                    <value>samplerCube</value>
+                </choice>
+            </attribute>
+        </element>
+    </define>
+
+    <define name="streamContent">
+        <element name="stream">
+            <attribute name="name">
+                <choice>
+                    <value>pos</value>
+                    <value>normal</value>
+                    <value>color</value>
+                    <value>uv0</value>
+                    <value>uv1</value>
+                    <value>uv2</value>
+                    <value>uv3</value>
                 </choice>
             </attribute>
         </element>

@@ -121,6 +121,7 @@ public:
 		bool m_ShadowAlphaFix;
 		bool m_ARBProgramShadow;
 		bool m_ShadowPCF;
+		bool m_PreferGLSL;
 	} m_Options;
 
 	struct Caps {
@@ -317,6 +318,8 @@ protected:
 	void JSI_SetShadowAlphaFix(JSContext* ctx, jsval newval);
 	jsval JSI_GetShadowPCF(JSContext*);
 	void JSI_SetShadowPCF(JSContext* ctx, jsval newval);
+	jsval JSI_GetPreferGLSL(JSContext*);
+	void JSI_SetPreferGLSL(JSContext* ctx, jsval newval);
 	jsval JSI_GetSky(JSContext*);
 	void JSI_SetSky(JSContext* ctx, jsval newval);
 

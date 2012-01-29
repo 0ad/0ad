@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,6 +28,7 @@
 struct CColor;
 class CMatrix3D;
 class CVector3D;
+class CPreprocessor;
 
 // Vertex data stream flags
 enum
@@ -69,6 +70,14 @@ public:
 		int streamflags);
 
 	/**
+	 * Construct based on GLSL vertex/fragment shader files.
+	 */
+	static CShaderProgram* ConstructGLSL(const VfsPath& vertexFile, const VfsPath& fragmentFile,
+		const std::map<CStr, CStr>& defines,
+		const std::map<CStr, GLenum>& uniformTypes,
+		int streamflags);
+
+	/**
 	 * Construct an instance of a pre-defined fixed-function pipeline setup.
 	 */
 	static CShaderProgram* ConstructFFP(const std::string& id, const std::map<CStr, CStr>& defines);
@@ -79,21 +88,25 @@ public:
 
 	/**
 	 * Represents a uniform attribute binding.
+	 * ARB shaders store vertex location in 'first', fragment location in 'second'.
+	 * GLSL shaders store uniform location in 'first', data type in 'second'.
+	 * FFP shaders store -1 in 'first', index in 'second'.
+	 * Non-existent bindings must store -1 in both.
 	 */
 	struct Binding
 	{
-		Binding(int v, int f) : vertex((i16)v), fragment((i16)f) { }
+		Binding(int a, int b) : first(a), second(b) { }
 
-		Binding() : vertex(-1), fragment(-1) { }
+		Binding() : first(-1), second(-1) { }
 
 		/**
 		 * Returns whether this uniform attribute is active in the shader.
 		 * If not then there's no point calling Uniform() to set its value.
 		 */
-		bool Active() { return vertex != -1 || fragment != -1; }
+		bool Active() { return first != -1 || second != -1; }
 
-		i16 vertex;
-		i16 fragment;
+		int first;
+		int second;
 	};
 
 	virtual ~CShaderProgram() { }
@@ -156,6 +169,8 @@ public:
 
 protected:
 	CShaderProgram(int streamflags);
+
+	CStr Preprocess(CPreprocessor& preprocessor, const CStr& input);
 
 	bool m_IsValid;
 	int m_StreamFlags;

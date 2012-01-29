@@ -1074,6 +1074,13 @@ Status ogl_tex_bind(Handle ht, size_t unit)
 	return INFO::OK;
 }
 
+Status ogl_tex_get_texture_id(Handle ht, GLuint* id)
+{
+	*id = 0;
+	H_DEREF(ht, OglTex, ot);
+	*id = ot->id;
+	return INFO::OK;
+}
 
 // apply the specified transforms (as in tex_transform) to the image.
 // must be called before uploading (raises a warning if called afterwards).

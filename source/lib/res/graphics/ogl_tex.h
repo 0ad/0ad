@@ -433,6 +433,11 @@ extern Status ogl_tex_get_average_colour(Handle ht, u32* p);
 extern Status ogl_tex_bind(Handle ht, size_t unit = 0);
 
 /**
+* Return the GL handle of the loaded texture in *id, or 0 on failure.
+*/
+extern Status ogl_tex_get_texture_id(Handle ht, GLuint* id);
+
+/**
 * (partially) Transform pixel format of the texture.
 *
 * @param ht Texture handle.
