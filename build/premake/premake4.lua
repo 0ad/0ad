@@ -32,14 +32,14 @@ elseif os.is("windows") then
 	end
 else
 	arch = os.getenv("HOSTTYPE")
-	if arch == "x86_64" then
+	if arch == "x86_64" or arch == "amd64" then
 		arch = "amd64"
 	else
 		os.execute("gcc -dumpmachine > .gccmachine.tmp")
 		local f = io.open(".gccmachine.tmp", "r")
 		local machine = f:read("*line")
 		f:close()
-		if string.find(machine, "x86_64") == 1 then
+		if string.find(machine, "x86_64") == 1 or string.find(machine, "amd64") == 1 then
 			arch = "amd64"
 		elseif string.find(machine, "i.86") == 1 then
 			arch = "x86"
@@ -237,7 +237,7 @@ function project_set_build_flags()
 				buildoptions { "-Wno-psabi" }
 			end
 
-			if os.is("linux") then
+			if os.is("linux") or os.is("bsd") then
 				linkoptions { "-Wl,--no-undefined", "-Wl,--as-needed" }
 			end
 
@@ -284,15 +284,20 @@ function project_set_build_flags()
 			defines { "INSTALLED_LIBDIR=" .. _OPTIONS["libdir"] }
 		end
 
-		if os.is("linux") then
+		if os.is("linux") or os.is("bsd") then
 			-- To use our local SpiderMonkey library, it needs to be part of the
 			-- runtime dynamic linker path. Add it with -rpath to make sure it gets found.
 			if _OPTIONS["libdir"] then
-				linkoptions {"-Wl,-rpath=" .. _OPTIONS["libdir"] }
+				linkoptions {"-Wl,-rpath," .. _OPTIONS["libdir"] }
 			else
+				-- On FreeBSD we need to allow use of $ORIGIN
+				if os.is("bsd") then
+					linkoptions { "-Wl,-z,origin" }
+				end
+
 				-- Adding the executable path and taking care of correct escaping
 				if _ACTION == "gmake" then
-					linkoptions { "-Wl,-rpath='$$ORIGIN'" } 
+					linkoptions { "-Wl,-rpath,'$$ORIGIN'" } 
 				elseif _ACTION == "codeblocks" then
 					linkoptions { "-Wl,-R\\\\$$ORIGIN" }				
 				end
@@ -747,6 +752,25 @@ function setup_main_exe ()
 			linkoptions { "-rdynamic" }
 		configuration { }
 
+	elseif os.is("bsd") then
+
+		-- Libraries
+		links {
+			"fam",
+			"execinfo",
+			-- Utilities
+			"rt",
+		}
+
+		-- Threading support
+		buildoptions { "-pthread" }
+		linkoptions { "-pthread" }
+
+		-- For debug_resolve_symbol
+		configuration "Debug"
+			linkoptions { "-rdynamic" }
+		configuration { }
+
 	elseif os.is("macosx") then
 		links { "pthread" }
 	end
@@ -786,7 +810,7 @@ function setup_atlas_project(project_name, target_type, rel_source_dirs, rel_inc
 		-- required to use WinMain() on Windows, otherwise will default to main()
 		flags { "WinMain" }
 
-	elseif os.is("linux") then
+	elseif os.is("linux") or os.is("bsd") then
 		buildoptions { "-rdynamic", "-fPIC" }
 		linkoptions { "-fPIC", "-rdynamic" }
 	end
@@ -958,6 +982,14 @@ function setup_collada_project(project_name, target_type, rel_source_dirs, rel_i
 		buildoptions { "-rdynamic" }
 		linkoptions { "-rdynamic" }
 
+	elseif os.is("bsd") then
+		-- define BSD-something?
+
+		buildoptions { "-fno-strict-aliasing" }
+
+		buildoptions { "-rdynamic" }
+		linkoptions { "-rdynamic" }
+
 	elseif os.is("macosx") then
 		-- define MACOS-something?
 
@@ -1102,15 +1134,20 @@ function setup_tests()
 
 		project_add_manifest()
 
-	elseif os.is("linux") then
+	elseif os.is("linux") or os.is ("bsd") then
 
 		links {
 			"fam",
 			-- Utilities
 			"rt",
-			-- Dynamic libraries (needed for linking for gold)
-			"dl",
 		}
+
+		if os.is("linux") then
+			links {
+				-- Dynamic libraries (needed for linking for gold)
+				"dl",
+			}
+		end
 
 		-- Threading support
 		buildoptions { "-pthread" }

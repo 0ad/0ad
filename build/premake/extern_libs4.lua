@@ -109,6 +109,8 @@ local function add_default_links(def)
 		names = def.linux_names
 	elseif os.is("macosx") and def.osx_names then
 		names = def.osx_names
+	elseif os.is("bsd") and def.bsd_names then
+		names = def.bsd_names
 	elseif def.unix_names then
 		names = def.unix_names
 	end
@@ -188,7 +190,9 @@ end
 --      * win_names: table of import library / DLL names (no extension) when
 --   	  running on Windows.
 --      * unix_names: as above; shared object names when running on non-Windows.
---      * osx_names: as above; for OS X specificall (overrides unix_names if both are
+--      * osx_names: as above; for OS X specifically (overrides unix_names if both are
+--        specified)
+--      * bsd_names: as above; for BSD specifically (overrides unix_names if both are
 --        specified)
 --      * linux_names: ditto for Linux (overrides unix_names if both given)
 --      * dbg_suffix: changes the debug suffix from the above default.
@@ -213,6 +217,7 @@ extern_lib_defs = {
 			add_default_links({
 				unix_names = { "boost_signals-mt", "boost_filesystem-mt", "boost_system-mt" },
 				osx_names = { "boost_signals-mt", "boost_filesystem-mt", "boost_system-mt" },
+				bsd_names = { "boost_signals", "boost_filesystem", "boost_system" },
 			})
 		end,
 	},
@@ -524,7 +529,14 @@ extern_lib_defs = {
 				includedirs { libraries_dir.."wxwidgets/include/msvc" }
 				add_default_include_paths("wxwidgets")
 			else
-				pkgconfig_cflags(nil, "wx-config --unicode=yes --cxxflags")
+
+				-- Support WX_CONFIG for overriding for the default PATH-based wx-config
+				wx_config_path = os.getenv("WX_CONFIG")
+				if not wx_config_path then
+					wx_config_path = "wx-config"
+				end
+
+				pkgconfig_cflags(nil, wx_config_path.." --unicode=yes --cxxflags")
 			end
 		end,
 		link_settings = function()
@@ -536,7 +548,11 @@ extern_lib_defs = {
 					links { "wxmsw28u_gl" }
 				configuration { }
 			else
-				pkgconfig_libs(nil, "wx-config --unicode=yes --libs std,gl")
+				wx_config_path = os.getenv("WX_CONFIG")
+				if not wx_config_path then
+					wx_config_path = "wx-config"
+				end
+				pkgconfig_libs(nil, wx_config_path.." --unicode=yes --libs std,gl")
 			end
 		end,
 	},
