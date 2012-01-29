@@ -77,64 +77,30 @@ inherited from the parent node in this hierarchy.
 			<root>Bip01</root>
 		</identifier>
 		
-		<bone name="Bip01">
-			<target>root</target>
-			
-			<bone name="Bip01_Pelvis">
-				<target>pelvis</target>
-				
-				<bone name="Bip01_Spine">
-					<target>spine</target>
-					
-					<bone name="Bip01_Spine1">
-						<target>spine1</target>
-						
-						<bone name="Bip01_Neck">
-							<target>neck</target>
-							
-							<bone name="Bip01_Head">
-								<target>head</target>
-								
-								<bone name="Bip01_HeadNub"/>
-								
-								<bone name="Bip01_L_Clavicle">
-									<target>l_clavicle</target>
-									
-									<bone name="Bip01_L_UpperArm">
-										<target>l_upperarm</target>
-										
-										<bone name="Bip01_L_Forearm">
-											<target>l_forearm</target>
-											
-											<bone name="Bip01_L_Hand">
-												<target>l_hand</target>
-												
-												<bone name="Bip01_L_Finger0">
-												
-													<bone name="Bip01_L_Finger0Nub"/>
-													
+		<bone name="Bip01"><target>root</target>			
+			<bone name="Bip01_Pelvis"><target>pelvis</target>				
+				<bone name="Bip01_Spine"><target>spine</target>					
+					<bone name="Bip01_Spine1"><target>spine1</target>						
+						<bone name="Bip01_Neck"><target>neck</target>							
+							<bone name="Bip01_Head"><target>head</target>								
+								<bone name="Bip01_HeadNub"/>								
+								<bone name="Bip01_L_Clavicle"><target>l_clavicle</target>									
+									<bone name="Bip01_L_UpperArm"><target>l_upperarm</target>										
+										<bone name="Bip01_L_Forearm"><target>l_forearm</target>											
+											<bone name="Bip01_L_Hand"><target>l_hand</target>												
+												<bone name="Bip01_L_Finger0">												
+													<bone name="Bip01_L_Finger0Nub"/>													
 												</bone>
 											</bone>
 										</bone>
 									</bone>
-								</bone>
-								
-								<bone name="Bip01_R_Clavicle">
-									<target>r_clavicle</target>
-									
-									<bone name="Bip01_R_UpperArm">
-										<target>r_upperarm</target>
-										
-										<bone name="Bip01_R_Forearm">
-											<target>r_forearm</target>
-											
-											<bone name="Bip01_R_Hand">
-												<target>r_hand</target>
-												
-												<bone name="Bip01_R_Finger0">
-												
-													<bone name="Bip01_R_Finger0Nub"/>
-													
+								</bone>								
+								<bone name="Bip01_R_Clavicle"><target>r_clavicle</target>									
+									<bone name="Bip01_R_UpperArm"><target>r_upperarm</target>										
+										<bone name="Bip01_R_Forearm"><target>r_forearm</target>											
+											<bone name="Bip01_R_Hand"><target>r_hand</target>												
+												<bone name="Bip01_R_Finger0">												
+													<bone name="Bip01_R_Finger0Nub"/>													
 												</bone>
 											</bone>
 										</bone>
@@ -142,39 +108,21 @@ inherited from the parent node in this hierarchy.
 								</bone>
 							</bone>
 						</bone>
-					</bone>
-					
-					<bone name="Bip01_L_Thigh">
-						<target>l_thigh</target>
-						
-						<bone name="Bip01_L_Calf">
-							<target>l_calf</target>
-							
-							<bone name="Bip01_L_Foot">
-								<target>l_foot</target>
-								
-								<bone name="Bip01_L_Toe0">
-								
-									<bone name="Bip01_L_Toe0Nub"/>
-									
+					</bone>					
+					<bone name="Bip01_L_Thigh"><target>l_thigh</target>						
+						<bone name="Bip01_L_Calf"><target>l_calf</target>							
+							<bone name="Bip01_L_Foot"><target>l_foot</target>								
+								<bone name="Bip01_L_Toe0">								
+									<bone name="Bip01_L_Toe0Nub"/>									
 								</bone>
 							</bone>
 						</bone>
-					</bone>
-					
-					<bone name="Bip01_R_Thigh">
-						<target>r_thigh</target>
-						
-						<bone name="Bip01_R_Calf">
-							<target>r_calf</target>
-							
-							<bone name="Bip01_R_Foot">
-								<target>r_foot</target>
-								
-								<bone name="Bip01_R_Toe0">
-								
-									<bone name="Bip01_R_Toe0Nub"/>
-									
+					</bone>					
+					<bone name="Bip01_R_Thigh"><target>r_thigh</target>						
+						<bone name="Bip01_R_Calf"><target>r_calf</target>							
+							<bone name="Bip01_R_Foot"><target>r_foot</target>								
+								<bone name="Bip01_R_Toe0">								
+									<bone name="Bip01_R_Toe0Nub"/>									
 								</bone>
 							</bone>
 						</bone>

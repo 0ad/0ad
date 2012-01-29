@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,6 +36,7 @@
 #include "maths/Matrix3D.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
+#include "ps/ConfigDB.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "ps/Filesystem.h"
@@ -447,6 +448,10 @@ CRenderer::CRenderer()
 	m_Options.m_ShadowAlphaFix = true;
 	m_Options.m_ARBProgramShadow = true;
 	m_Options.m_ShadowPCF = false;
+	m_Options.m_PreferGLSL = false;
+
+	// TODO: be more consistent in use of the config system
+	CFG_GET_USER_VAL("preferglsl", Bool, m_Options.m_PreferGLSL);
 
 	m_ShadowZBias = 0.02f;
 	m_ShadowMapSize = 0;
@@ -565,12 +570,12 @@ void CRenderer::ReloadShaders()
 	defTransparent["USE_TRANSPARENT"] = "1";
 
 	// TODO: it'd be nicer to load this technique from an XML file or something
-	CShaderPass passTransparentOpaque(m->shaderManager.LoadProgram("model_common", defTransparent));
+	CShaderPass passTransparentOpaque(m->shaderManager.LoadProgram("model_common_arb", defTransparent));
 	passTransparentOpaque.AlphaFunc(GL_GREATER, 0.9375f);
 	passTransparentOpaque.BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	CShaderTechnique techTransparentOpaque(passTransparentOpaque);
 
-	CShaderPass passTransparentBlend(m->shaderManager.LoadProgram("model_common", defTransparent));
+	CShaderPass passTransparentBlend(m->shaderManager.LoadProgram("model_common_arb", defTransparent));
 	passTransparentBlend.AlphaFunc(GL_GREATER, 0.0f);
 	passTransparentBlend.DepthFunc(GL_LESS);
 	passTransparentBlend.BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -597,15 +602,15 @@ void CRenderer::ReloadShaders()
 	m->Model.ModShaderSolidTex = RenderModifierPtr(new ShaderRenderModifier(CShaderTechnique(m->shaderManager.LoadProgram(
 			"solid_tex", defNull))));
 
-	m->Model.ModShaderNormal = LitRenderModifierPtr(new ShaderRenderModifier(CShaderTechnique(m->shaderManager.LoadProgram(
-			"model_common", defBasic))));
-	m->Model.ModShaderNormalInstancing = LitRenderModifierPtr(new ShaderRenderModifier(CShaderTechnique(m->shaderManager.LoadProgram(
-			"model_common_instancing", defBasic))));
+	m->Model.ModShaderNormal =
+		LitRenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("model_normal", defBasic)));
+	m->Model.ModShaderNormalInstancing =
+		LitRenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("model_normal_instancing", defBasic)));
 
-	m->Model.ModShaderPlayer = LitRenderModifierPtr(new ShaderRenderModifier(CShaderTechnique(m->shaderManager.LoadProgram(
-			"model_common", defColored))));
-	m->Model.ModShaderPlayerInstancing = LitRenderModifierPtr(new ShaderRenderModifier(CShaderTechnique(m->shaderManager.LoadProgram(
-			"model_common_instancing", defColored))));
+	m->Model.ModShaderPlayer =
+		LitRenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("model_normal", defColored)));
+	m->Model.ModShaderPlayerInstancing =
+		LitRenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("model_normal_instancing", defColored)));
 
 	m->Model.ModShaderTransparent = LitRenderModifierPtr(new ShaderRenderModifier(
 			techTransparent));
@@ -2072,6 +2077,19 @@ void CRenderer::JSI_SetShadowPCF(JSContext* ctx, jsval newval)
 	ReloadShaders();
 }
 
+jsval CRenderer::JSI_GetPreferGLSL(JSContext*)
+{
+	return ToJSVal(m_Options.m_PreferGLSL);
+}
+
+void CRenderer::JSI_SetPreferGLSL(JSContext* ctx, jsval newval)
+{
+	if (!ToPrimitive(ctx, newval, m_Options.m_PreferGLSL))
+		return;
+
+	ReloadShaders();
+}
+
 jsval CRenderer::JSI_GetSky(JSContext*)
 {
 	return ToJSVal(m->skyManager.GetSkySet());
@@ -2097,6 +2115,7 @@ void CRenderer::ScriptingInit()
 	AddProperty(L"depthTextureBits", &CRenderer::JSI_GetDepthTextureBits, &CRenderer::JSI_SetDepthTextureBits);
 	AddProperty(L"shadowAlphaFix", &CRenderer::JSI_GetShadowAlphaFix, &CRenderer::JSI_SetShadowAlphaFix);
 	AddProperty(L"shadowPCF", &CRenderer::JSI_GetShadowPCF, &CRenderer::JSI_SetShadowPCF);
+	AddProperty(L"preferGLSL", &CRenderer::JSI_GetPreferGLSL, &CRenderer::JSI_SetPreferGLSL);
 	AddProperty(L"skipSubmit", &CRenderer::m_SkipSubmit);
 	AddProperty(L"skySet", &CRenderer::JSI_GetSky, &CRenderer::JSI_SetSky);
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<effect>
+
+    <technique>
+        <require shaders="arb"/>
+        <pass shader="model_common_arb"/>
+    </technique>
+
+    <technique>
+        <require shaders="glsl"/>
+        <pass shader="model_common_glsl"/>
+    </technique>
+
+</effect>

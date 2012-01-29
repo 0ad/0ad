@@ -91,10 +91,10 @@ GLuint CLOSTexture::GetTexture()
 	return m_Texture;
 }
 
-const float* CLOSTexture::GetTextureMatrix()
+const CMatrix3D& CLOSTexture::GetTextureMatrix()
 {
 	ENSURE(!m_Dirty);
-	return &m_TextureMatrix._11;
+	return m_TextureMatrix;
 }
 
 const float* CLOSTexture::GetMinimapTextureMatrix()

@@ -1,0 +1,73 @@
+Index: src/nvcore/nvcore.h
+===================================================================
+--- src/nvcore/nvcore.h	(revision 906)
++++ src/nvcore/nvcore.h	(revision 907)
+@@ -38,6 +38,9 @@
+ #if defined POSH_OS_LINUX
+ #	define NV_OS_LINUX 1
+ #	define NV_OS_UNIX 1
++#elif defined POSH_OS_FREEBSD
++#	define NV_OS_FREEBSD 1
++#	define NV_OS_UNIX 1
+ #elif defined POSH_OS_CYGWIN32
+ #	define NV_OS_CYGWIN 1
+ #elif defined POSH_OS_MINGW
+@@ -161,7 +164,7 @@
+ #elif NV_CC_GNUC
+ #	if NV_OS_LINUX
+ #		include "DefsGnucLinux.h"
+-#	elif NV_OS_DARWIN
++#	elif NV_OS_DARWIN || NV_OS_FREEBSD
+ #		include "DefsGnucDarwin.h"
+ #	elif NV_OS_MINGW
+ #		include "DefsGnucWin32.h"
+Index: src/nvcore/Debug.cpp
+===================================================================
+--- src/nvcore/Debug.cpp	(revision 906)
++++ src/nvcore/Debug.cpp	(revision 907)
+@@ -34,7 +34,7 @@
+ #	endif
+ #endif
+ 
+-#if NV_OS_DARWIN
++#if NV_OS_DARWIN || NV_OS_FREEBSD
+ #	include <unistd.h>	// getpid
+ #	include <sys/types.h>
+ #	include <sys/sysctl.h>	// sysctl
+@@ -199,6 +199,14 @@
+ 				return (void *) ucp->uc_mcontext->ss.eip;
+ #			endif
+ #		endif
++#	elif NV_OS_FREEBSD
++#		if NV_CPU_X86_64
++			ucontext_t * ucp = (ucontext_t *)secret;
++			return (void *)ucp->uc_mcontext.mc_rip;
++#		elif NV_CPU_X86
++			ucontext_t * ucp = (ucontext_t *)secret;
++			return (void *)ucp->uc_mcontext.mc_eip;
++#		endif
+ #	else
+ #		if NV_CPU_X86_64
+ 			// #define REG_RIP REG_INDEX(rip) // seems to be 16
+Index: src/nvmath/nvmath.h
+===================================================================
+--- src/nvmath/nvmath.h	(revision 906)
++++ src/nvmath/nvmath.h	(revision 907)
+@@ -115,7 +115,7 @@
+ {
+ #if NV_OS_WIN32
+ 	return _finite(f) != 0;
+-#elif NV_OS_DARWIN
++#elif NV_OS_DARWIN || NV_OS_FREEBSD
+ 	return isfinite(f);
+ #elif NV_OS_LINUX
+ 	return finitef(f);
+@@ -130,7 +130,7 @@
+ {
+ #if NV_OS_WIN32
+ 	return _isnan(f) != 0;
+-#elif NV_OS_DARWIN
++#elif NV_OS_DARWIN || NV_OS_FREEBSD
+ 	return isnan(f);
+ #elif NV_OS_LINUX
+ 	return isnanf(f);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -79,6 +79,7 @@ private:
 class CShaderTechnique
 {
 public:
+	CShaderTechnique();
 	CShaderTechnique(const CShaderPass& pass);
 	void AddPass(const CShaderPass& pass);
 

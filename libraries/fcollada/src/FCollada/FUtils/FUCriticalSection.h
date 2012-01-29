@@ -33,7 +33,7 @@ private:
 #elif defined (__APPLE__)
 	//Do something here.
 	MPCriticalRegionID criticalSection;
-#elif defined (LINUX)
+#elif defined (LINUX) || defined(__FreeBSD__)
 #else
 #warning "FUCriticalSection: Critical section not implemented for other platforms."
 #endif

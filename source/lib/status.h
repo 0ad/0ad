@@ -149,7 +149,6 @@ To summarize: +/-1SHHCC (S=subsystem, HH=header, CC=code number)
 12     res
   00CC h_mgr
   01CC tex
-  02CC ogl_shader
 
 13     sysdep
   00CC cpu

@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -50,8 +50,6 @@
 #include "renderer/VertexArray.h"
 #include "renderer/WaterManager.h"
 
-#include "lib/res/graphics/ogl_shader.h"
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // TerrainRenderer implementation
@@ -84,7 +82,7 @@ struct TerrainRendererInternals
 	std::vector<CDecalRData*> filteredDecals;
 
 	/// Fancy water shader
-	Handle fancyWaterShader;
+	CShaderProgramPtr fancyWaterShader;
 };
 
 
@@ -95,15 +93,10 @@ TerrainRenderer::TerrainRenderer()
 {
 	m = new TerrainRendererInternals();
 	m->phase = Phase_Submit;
-	m->fancyWaterShader = 0;
 }
 
 TerrainRenderer::~TerrainRenderer()
 {
-	if( m->fancyWaterShader )
-	{
-		ogl_program_free( m->fancyWaterShader );
-	}
 	delete m;
 }
 
@@ -335,7 +328,7 @@ void TerrainRenderer::RenderTerrain(bool filtered)
 	streamflags |= STREAM_POSTOUV1;
 
 	glMatrixMode(GL_TEXTURE);
-	glLoadMatrixf(losTexture.GetTextureMatrix());
+	glLoadMatrixf(&losTexture.GetTextureMatrix()._11);
 	glMatrixMode(GL_MODELVIEW);
 
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
@@ -611,16 +604,13 @@ bool TerrainRenderer::RenderFancyWater()
 	// If we're using fancy water, make sure its shader is loaded
 	if (!m->fancyWaterShader)
 	{
-		Handle h = ogl_program_load(g_VFS, L"shaders/water_high.xml");
-		if (h < 0)
+		std::map<CStr, CStr> defNull;
+		m->fancyWaterShader = g_Renderer.GetShaderManager().LoadProgram("water_high", defNull);
+		if (!m->fancyWaterShader)
 		{
 			LOGERROR(L"Failed to load water shader. Falling back to non-fancy water.\n");
 			g_Renderer.m_Options.m_FancyWater = false;
 			return false;
-		}
-		else
-		{
-			m->fancyWaterShader = h;
 		}
 	}
 
@@ -636,7 +626,9 @@ bool TerrainRenderer::RenderFancyWater()
 	double period = 1.6;
 	int curTex = (int)(time*60/period) % 60;
 
-	WaterMgr->m_NormalMap[curTex]->Bind();
+	m->fancyWaterShader->Bind();
+
+	m->fancyWaterShader->BindTexture("normalMap", WaterMgr->m_NormalMap[curTex]);
 
 	// Shift the texture coordinates by these amounts to make the water "flow"
 	float tx = -fmod(time, 81.0)/81.0;
@@ -649,63 +641,30 @@ bool TerrainRenderer::RenderFancyWater()
 	const CCamera& camera = g_Renderer.GetViewCamera();
 	CVector3D camPos = camera.m_Orientation.GetTranslation();
 
-	// Bind reflection and refraction textures on texture units 1 and 2
-	pglActiveTextureARB(GL_TEXTURE1_ARB);
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, WaterMgr->m_ReflectionTexture);
-	pglActiveTextureARB(GL_TEXTURE2_ARB);
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, WaterMgr->m_RefractionTexture);
+	// Bind reflection and refraction textures
+	m->fancyWaterShader->BindTexture("reflectionMap", WaterMgr->m_ReflectionTexture);
+	m->fancyWaterShader->BindTexture("refractionMap", WaterMgr->m_RefractionTexture);
 
-	losTexture.BindTexture(3);
-
-	// Bind water shader and set arguments
-	ogl_program_use(m->fancyWaterShader);
-
-	GLint ambient = ogl_program_get_uniform_location(m->fancyWaterShader, "ambient");
-	GLint sunDir = ogl_program_get_uniform_location(m->fancyWaterShader, "sunDir");
-	GLint sunColor = ogl_program_get_uniform_location(m->fancyWaterShader, "sunColor");
-	GLint cameraPos = ogl_program_get_uniform_location(m->fancyWaterShader, "cameraPos");
-	GLint shininess = ogl_program_get_uniform_location(m->fancyWaterShader, "shininess");
-	GLint specularStrength = ogl_program_get_uniform_location(m->fancyWaterShader, "specularStrength");
-	GLint waviness = ogl_program_get_uniform_location(m->fancyWaterShader, "waviness");
-	GLint murkiness = ogl_program_get_uniform_location(m->fancyWaterShader, "murkiness");
-	GLint fullDepth = ogl_program_get_uniform_location(m->fancyWaterShader, "fullDepth");
-	GLint tint = ogl_program_get_uniform_location(m->fancyWaterShader, "tint");
-	GLint reflectionTint = ogl_program_get_uniform_location(m->fancyWaterShader, "reflectionTint");
-	GLint reflectionTintStrength = ogl_program_get_uniform_location(m->fancyWaterShader, "reflectionTintStrength");
-	GLint translation = ogl_program_get_uniform_location(m->fancyWaterShader, "translation");
-	GLint repeatScale = ogl_program_get_uniform_location(m->fancyWaterShader, "repeatScale");
-	GLint reflectionMatrix = ogl_program_get_uniform_location(m->fancyWaterShader, "reflectionMatrix");
-	GLint refractionMatrix = ogl_program_get_uniform_location(m->fancyWaterShader, "refractionMatrix");
-	GLint losMatrix = ogl_program_get_uniform_location(m->fancyWaterShader, "losMatrix");
-	GLint normalMap = ogl_program_get_uniform_location(m->fancyWaterShader, "normalMap");
-	GLint reflectionMap = ogl_program_get_uniform_location(m->fancyWaterShader, "reflectionMap");
-	GLint refractionMap = ogl_program_get_uniform_location(m->fancyWaterShader, "refractionMap");
-	GLint losMap = ogl_program_get_uniform_location(m->fancyWaterShader, "losMap");
+	m->fancyWaterShader->BindTexture("losMap", losTexture.GetTexture());
 
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
-	pglUniform3fvARB(ambient, 1, &lightEnv.m_TerrainAmbientColor.X);
-	pglUniform3fvARB(sunDir, 1, &lightEnv.GetSunDir().X);
-	pglUniform3fvARB(sunColor, 1, &lightEnv.m_SunColor.X);
-	pglUniform1fARB(shininess, WaterMgr->m_Shininess);
-	pglUniform1fARB(specularStrength, WaterMgr->m_SpecularStrength);
-	pglUniform1fARB(waviness, WaterMgr->m_Waviness);
-	pglUniform1fARB(murkiness, WaterMgr->m_Murkiness);
-	pglUniform1fARB(fullDepth, WaterMgr->m_WaterFullDepth);
-	pglUniform3fvARB(tint, 1, WaterMgr->m_WaterTint.FloatArray());
-	pglUniform1fARB(reflectionTintStrength, WaterMgr->m_ReflectionTintStrength);
-	pglUniform3fvARB(reflectionTint, 1, WaterMgr->m_ReflectionTint.FloatArray());
-	pglUniform2fARB(translation, tx, ty);
-	pglUniform1fARB(repeatScale, 1.0f / repeatPeriod);
-	pglUniformMatrix4fvARB(reflectionMatrix, 1, false, &WaterMgr->m_ReflectionMatrix._11);
-	pglUniformMatrix4fvARB(refractionMatrix, 1, false, &WaterMgr->m_RefractionMatrix._11);
-	pglUniformMatrix4fvARB(losMatrix, 1, false, losTexture.GetTextureMatrix());
-	pglUniform1iARB(normalMap, 0);		// texture unit 0
-	pglUniform1iARB(reflectionMap, 1);	// texture unit 1
-	pglUniform1iARB(refractionMap, 2);	// texture unit 2
-	pglUniform1iARB(losMap, 3);			// texture unit 3
-	pglUniform3fvARB(cameraPos, 1, &camPos.X);
+	m->fancyWaterShader->Uniform("ambient", lightEnv.m_TerrainAmbientColor);
+	m->fancyWaterShader->Uniform("sunDir", lightEnv.GetSunDir());
+	m->fancyWaterShader->Uniform("sunColor", lightEnv.m_SunColor.X);
+	m->fancyWaterShader->Uniform("shininess", WaterMgr->m_Shininess);
+	m->fancyWaterShader->Uniform("specularStrength", WaterMgr->m_SpecularStrength);
+	m->fancyWaterShader->Uniform("waviness", WaterMgr->m_Waviness);
+	m->fancyWaterShader->Uniform("murkiness", WaterMgr->m_Murkiness);
+	m->fancyWaterShader->Uniform("fullDepth", WaterMgr->m_WaterFullDepth);
+	m->fancyWaterShader->Uniform("tint", WaterMgr->m_WaterTint);
+	m->fancyWaterShader->Uniform("reflectionTintStrength", WaterMgr->m_ReflectionTintStrength);
+	m->fancyWaterShader->Uniform("reflectionTint", WaterMgr->m_ReflectionTint);
+	m->fancyWaterShader->Uniform("translation", tx, ty);
+	m->fancyWaterShader->Uniform("repeatScale", 1.0f / repeatPeriod);
+	m->fancyWaterShader->Uniform("reflectionMatrix", WaterMgr->m_ReflectionMatrix);
+	m->fancyWaterShader->Uniform("refractionMatrix", WaterMgr->m_RefractionMatrix);
+	m->fancyWaterShader->Uniform("losMatrix", losTexture.GetTextureMatrix());
+	m->fancyWaterShader->Uniform("cameraPos", camPos);
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_COLOR_ARRAY);
@@ -719,14 +678,9 @@ bool TerrainRenderer::RenderFancyWater()
 	glDisableClientState(GL_COLOR_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
 
-	// Unbind the LOS/refraction/reflection textures and the shader
-	g_Renderer.BindTexture(3, 0);
-	g_Renderer.BindTexture(2, 0);
-	g_Renderer.BindTexture(1, 0);
+	m->fancyWaterShader->Unbind();
 
 	pglActiveTextureARB(GL_TEXTURE0_ARB);
-
-	ogl_program_use(0);
 
 	glDisable(GL_BLEND);
 
@@ -781,7 +735,7 @@ void TerrainRenderer::RenderSimpleWater()
 
 	// Multiply by LOS texture
 	losTexture.BindTexture(1);
-	const float *losMatrix = losTexture.GetTextureMatrix();
+	CMatrix3D losMatrix = losTexture.GetTextureMatrix();
 	GLfloat texgenS1[4] = { losMatrix[0], losMatrix[4], losMatrix[8], losMatrix[12] };
 	GLfloat texgenT1[4] = { losMatrix[1], losMatrix[5], losMatrix[9], losMatrix[13] };
 	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);

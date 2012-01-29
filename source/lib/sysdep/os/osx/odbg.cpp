@@ -45,5 +45,5 @@ Status debug_ResolveSymbol(void* UNUSED(ptr_of_interest), wchar_t* UNUSED(sym_na
 
 void debug_SetThreadName(char const* UNUSED(name))
 {
-    // Currently unimplemented
+	// Currently unimplemented
 }

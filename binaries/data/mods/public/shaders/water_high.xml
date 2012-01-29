@@ -1,8 +1,5 @@
-<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
-
-<Program>
-	<Shaders>
-		<Shader type="VERTEX_SHADER">shaders/water_high.vs</Shader>
-		<Shader type="FRAGMENT_SHADER">shaders/water_high.fs</Shader>
-	</Shaders>
-</Program>
+<?xml version="1.0" encoding="utf-8"?>
+<program type="glsl">
+    <vertex file="water_high.vs"/>
+    <fragment file="water_high.fs"/>
+</program>

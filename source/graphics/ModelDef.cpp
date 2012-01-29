@@ -157,26 +157,26 @@ void CModelDef::SkinPointsAndNormals_SSE(
 		col3 = _mm_load_ps(mtx._data + 12);
 		
 		// Loads and computes vertex coordinates.
-		vec0 = _mm_load1_ps(&vtx.m_Coords.X);
-		vec0 = _mm_mul_ps(col0, vec0);
-		vec1 = _mm_load1_ps(&vtx.m_Coords.Y);
-		vec1 = _mm_mul_ps(col1, vec1);
-		vec0 = _mm_add_ps(vec0, vec1);
-		vec1 = _mm_load1_ps(&vtx.m_Coords.Z);
-		vec1 = _mm_mul_ps(col2, vec1);
-		vec1 = _mm_add_ps(vec1, col3);
-		vec0 = _mm_add_ps(vec0, vec1);
+		vec0 = _mm_load1_ps(&vtx.m_Coords.X);	// v0 = [x, x, x, x]
+		vec0 = _mm_mul_ps(col0, vec0);			// v0 = [_11*x, _21*x, _31*x, _41*x]
+		vec1 = _mm_load1_ps(&vtx.m_Coords.Y);	// v1 = [y, y, y, y]
+		vec1 = _mm_mul_ps(col1, vec1);			// v1 = [_12*y, _22*y, _32*y, _42*y]
+		vec0 = _mm_add_ps(vec0, vec1);			// v0 = [_11*x + _12*y, ...]
+		vec1 = _mm_load1_ps(&vtx.m_Coords.Z);	// v1 = [z, z, z, z]
+		vec1 = _mm_mul_ps(col2, vec1);			// v1 = [_13*z, _23*z, _33*z, _43*z]
+		vec1 = _mm_add_ps(vec1, col3);			// v1 = [_13*z + _14, ...]
+		vec0 = _mm_add_ps(vec0, vec1);			// v0 = [_11*x + _12*y + _13*z + _14, ...]
 		_mm_store_ps((float*)(PositionData + PositionStride*j), vec0);
 
 		// Loads and computes normal vectors.
-		vec0 = _mm_load1_ps(&vtx.m_Norm.X);
-		vec0 = _mm_mul_ps(col0, vec0);
-		vec1 = _mm_load1_ps(&vtx.m_Norm.Y);
-		vec1 = _mm_mul_ps(col1, vec1);
-		vec0 = _mm_add_ps(vec0, vec1);
-		vec1 = _mm_load1_ps(&vtx.m_Norm.Z);
-		vec1 = _mm_mul_ps(col2, vec1);
-		vec0 = _mm_add_ps(vec0, vec1);
+		vec0 = _mm_load1_ps(&vtx.m_Norm.X);		// v0 = [x, x, x, x]
+		vec0 = _mm_mul_ps(col0, vec0);			// v0 = [_11*x, _21*x, _31*x, _41*x]
+		vec1 = _mm_load1_ps(&vtx.m_Norm.Y);		// v1 = [y, y, y, y]
+		vec1 = _mm_mul_ps(col1, vec1);			// v1 = [_12*y, _22*y, _32*y, _42*y]
+		vec0 = _mm_add_ps(vec0, vec1);			// v0 = [_11*x + _12*y, ...]
+		vec1 = _mm_load1_ps(&vtx.m_Norm.Z);		// v1 = [z, z, z, z]
+		vec1 = _mm_mul_ps(col2, vec1);			// v1 = [_13*z, _23*z, _33*z, _43*z]
+		vec0 = _mm_add_ps(vec0, vec1);			// v0 = [_11*x + _12*y + _13*z, ...]
 
 		// If there was more than one influence, the result is probably not going
 		// to be of unit length (since it's a weighted sum of several independent
@@ -188,11 +188,11 @@ void CModelDef::SkinPointsAndNormals_SSE(
 			// Normalization.
 			// vec1 = [x*x, y*y, z*z, ?*?]
 			vec1 = _mm_mul_ps(vec0, vec0);
-			// vec2 = [y*y, z*z, x*x, y*y]
-			vec2 = _mm_shuffle_ps(vec1, vec1, _MM_SHUFFLE(1, 2, 0, 1));
+			// vec2 = [y*y, z*z, x*x, ?*?]
+			vec2 = _mm_shuffle_ps(vec1, vec1, _MM_SHUFFLE(3, 0, 2, 1));
 			vec1 = _mm_add_ps(vec1, vec2);
-			// vec2 = [z*z, x*x, y*y, z*z]
-			vec2 = _mm_shuffle_ps(vec2, vec2, _MM_SHUFFLE(1, 2, 0, 1));
+			// vec2 = [z*z, x*x, y*y, ?*?]
+			vec2 = _mm_shuffle_ps(vec2, vec2, _MM_SHUFFLE(3, 0, 2, 1));
 			vec1 = _mm_add_ps(vec1, vec2);
 			// rsqrt(a) = 1 / sqrt(a)
 			vec1 = _mm_rsqrt_ps(vec1);

@@ -1,4 +1,4 @@
-/* Copyright (c) 2011 Wildfire Games
+/* Copyright (c) 2012 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -98,6 +98,17 @@ size_t os_cpu_MemoryAvailable()
 	return memoryAvailable;
 }
 
+#if OS_ANDROID
+// the current Android NDK (r7-crystax-4) doesn't support sched_setaffinity,
+// so provide a stub implementation instead
+
+uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t UNUSED(processorMask))
+{
+	// not yet implemented
+	return os_cpu_ProcessorMask();
+}
+
+#else
 
 // glibc __CPU_SETSIZE=1024 is smaller than required on some Linux (4096),
 // but the CONFIG_NR_CPUS in a header may not reflect the actual kernel,
@@ -167,6 +178,7 @@ uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask)
 	return previousProcessorMask;
 }
 
+#endif
 
 Status os_cpu_CallByEachCPU(OsCpuCallback cb, uintptr_t cbData)
 {

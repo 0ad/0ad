@@ -1,14 +1,18 @@
+newoption { trigger = "android", description = "Use non-working Android cross-compiling mode" }
 newoption { trigger = "atlas", description = "Include Atlas scenario editor projects" }
 newoption { trigger = "collada", description = "Include COLLADA projects (requires FCollada library)" }
 newoption { trigger = "coverage", description = "Enable code coverage data collection (GCC only)" }
 newoption { trigger = "gles", description = "Use non-working OpenGL ES 2.0 mode" }
 newoption { trigger = "icc", description = "Use Intel C++ Compiler (Linux only; should use either \"--cc icc\" or --without-pch too, and then set CXX=icpc before calling make)" }
 newoption { trigger = "outpath", description = "Location for generated project files" }
+newoption { trigger = "without-fam", description = "Disable use of FAM API on Linux" }
+newoption { trigger = "without-audio", description = "Disable use of OpenAL/Ogg/Vorbis APIs" }
 newoption { trigger = "without-tests", description = "Disable generation of test projects" }
 newoption { trigger = "without-pch", description = "Disable generation and usage of precompiled headers" }
 newoption { trigger = "with-system-nvtt", description = "Search standard paths for nvidia-texture-tools library, instead of using bundled copy" }
 newoption { trigger = "with-system-enet", description = "Search standard paths for libenet, instead of using bundled copy" }
 newoption { trigger = "with-system-mozjs185", description = "Search standard paths for libmozjs185, instead of using bundled copy" }
+
 newoption { trigger = "bindir", description = "Directory for executables (typically '/usr/games'); default is to be relocatable" }
 newoption { trigger = "datadir", description = "Directory for data files (typically '/usr/share/games/0ad'); default is ../data/ relative to executable" }
 newoption { trigger = "libdir", description = "Directory for libraries (typically '/usr/lib/games/0ad'); default is ./ relative to executable" }
@@ -20,22 +24,22 @@ dofile("extern_libs4.lua")
 
 -- detect CPU architecture (simplistic, currently only supports x86 and amd64)
 arch = "x86"
-if os.is("windows") then
+if _OPTIONS["android"] then
+	arch = "arm"
+elseif os.is("windows") then
 	if os.getenv("PROCESSOR_ARCHITECTURE") == "amd64" or os.getenv("PROCESSOR_ARCHITEW6432") == "amd64" then
 		arch = "amd64"
 	end
 else
 	arch = os.getenv("HOSTTYPE")
-	if arch == "x86_64" then
+	if arch == "x86_64" or arch == "amd64" then
 		arch = "amd64"
-	elseif arch == "arm" then
-		arch = "arm"
 	else
 		os.execute("gcc -dumpmachine > .gccmachine.tmp")
 		local f = io.open(".gccmachine.tmp", "r")
 		local machine = f:read("*line")
 		f:close()
-		if string.find(machine, "x86_64") == 1 then
+		if string.find(machine, "x86_64") == 1 or string.find(machine, "amd64") == 1 then
 			arch = "amd64"
 		elseif string.find(machine, "i.86") == 1 then
 			arch = "x86"
@@ -148,6 +152,14 @@ function project_set_build_flags()
 		defines { "CONFIG2_GLES=1" }
 	end
 
+	if _OPTIONS["without-fam"] then
+		defines { "CONFIG2_FAM=0" }
+	end
+
+	if _OPTIONS["without-audio"] then
+		defines { "CONFIG2_AUDIO=0" }
+	end
+
 	-- required for the lowlevel library. must be set from all projects that use it, otherwise it assumes it is
 	-- being used as a DLL (which is currently not the case in 0ad)
 	defines { "LIB_STATIC_LINK" }
@@ -225,7 +237,7 @@ function project_set_build_flags()
 				buildoptions { "-Wno-psabi" }
 			end
 
-			if os.is("linux") then
+			if os.is("linux") or os.is("bsd") then
 				linkoptions { "-Wl,--no-undefined", "-Wl,--as-needed" }
 			end
 
@@ -272,15 +284,20 @@ function project_set_build_flags()
 			defines { "INSTALLED_LIBDIR=" .. _OPTIONS["libdir"] }
 		end
 
-		if os.is("linux") then
+		if os.is("linux") or os.is("bsd") then
 			-- To use our local SpiderMonkey library, it needs to be part of the
 			-- runtime dynamic linker path. Add it with -rpath to make sure it gets found.
 			if _OPTIONS["libdir"] then
-				linkoptions {"-Wl,-rpath=" .. _OPTIONS["libdir"] }
+				linkoptions {"-Wl,-rpath," .. _OPTIONS["libdir"] }
 			else
+				-- On FreeBSD we need to allow use of $ORIGIN
+				if os.is("bsd") then
+					linkoptions { "-Wl,-z,origin" }
+				end
+
 				-- Adding the executable path and taking care of correct escaping
 				if _ACTION == "gmake" then
-					linkoptions { "-Wl,-rpath='$$ORIGIN'" } 
+					linkoptions { "-Wl,-rpath,'$$ORIGIN'" } 
 				elseif _ACTION == "codeblocks" then
 					linkoptions { "-Wl,-R\\\\$$ORIGIN" }				
 				end
@@ -586,14 +603,16 @@ function setup_all_libs ()
 	if arch == "amd64" then
 		table.insert(source_dirs, "lib/sysdep/arch/amd64");
 		table.insert(source_dirs, "lib/sysdep/arch/x86_x64");
-	else
+	elseif arch == "x86" then
 		table.insert(source_dirs, "lib/sysdep/arch/ia32");
 		table.insert(source_dirs, "lib/sysdep/arch/x86_x64");
+	elseif arch == "arm" then
+		table.insert(source_dirs, "lib/sysdep/arch/arm");
 	end
 
 	-- OS-specific
 	sysdep_dirs = {
-		linux = { "lib/sysdep/os/linux", "lib/sysdep/os/unix", "lib/sysdep/os/unix/x" },
+		linux = { "lib/sysdep/os/linux", "lib/sysdep/os/unix" },
 		-- note: RC file must be added to main_exe project.
 		-- note: don't add "lib/sysdep/os/win/aken.cpp" because that must be compiled with the DDK.
 		windows = { "lib/sysdep/os/win", "lib/sysdep/os/win/wposix", "lib/sysdep/os/win/whrt" },
@@ -601,6 +620,12 @@ function setup_all_libs ()
 	}
 	for i,v in pairs(sysdep_dirs[os.get()]) do
 		table.insert(source_dirs, v);
+	end
+	
+	if os.is("linux") then
+		if not _OPTIONS["android"] then
+			table.insert(source_dirs, "lib/sysdep/os/unix/x")
+		end
 	end
 
 	-- runtime-library-specific
@@ -727,6 +752,25 @@ function setup_main_exe ()
 			linkoptions { "-rdynamic" }
 		configuration { }
 
+	elseif os.is("bsd") then
+
+		-- Libraries
+		links {
+			"fam",
+			"execinfo",
+			-- Utilities
+			"rt",
+		}
+
+		-- Threading support
+		buildoptions { "-pthread" }
+		linkoptions { "-pthread" }
+
+		-- For debug_resolve_symbol
+		configuration "Debug"
+			linkoptions { "-rdynamic" }
+		configuration { }
+
 	elseif os.is("macosx") then
 		links { "pthread" }
 	end
@@ -766,7 +810,7 @@ function setup_atlas_project(project_name, target_type, rel_source_dirs, rel_inc
 		-- required to use WinMain() on Windows, otherwise will default to main()
 		flags { "WinMain" }
 
-	elseif os.is("linux") then
+	elseif os.is("linux") or os.is("bsd") then
 		buildoptions { "-rdynamic", "-fPIC" }
 		linkoptions { "-fPIC", "-rdynamic" }
 	end
@@ -938,6 +982,14 @@ function setup_collada_project(project_name, target_type, rel_source_dirs, rel_i
 		buildoptions { "-rdynamic" }
 		linkoptions { "-rdynamic" }
 
+	elseif os.is("bsd") then
+		-- define BSD-something?
+
+		buildoptions { "-fno-strict-aliasing" }
+
+		buildoptions { "-rdynamic" }
+		linkoptions { "-rdynamic" }
+
 	elseif os.is("macosx") then
 		-- define MACOS-something?
 
@@ -1082,15 +1134,20 @@ function setup_tests()
 
 		project_add_manifest()
 
-	elseif os.is("linux") then
+	elseif os.is("linux") or os.is ("bsd") then
 
 		links {
 			"fam",
 			-- Utilities
 			"rt",
-			-- Dynamic libraries (needed for linking for gold)
-			"dl",
 		}
+
+		if os.is("linux") then
+			links {
+				-- Dynamic libraries (needed for linking for gold)
+				"dl",
+			}
+		end
 
 		-- Threading support
 		buildoptions { "-pthread" }

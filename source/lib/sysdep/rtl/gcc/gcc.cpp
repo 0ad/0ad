@@ -25,8 +25,11 @@
 #include "lib/sysdep/rtl.h"
 #include "lib/bits.h"
 
-// Linux has posix_memalign, AFAIK our other gcc platforms do not have it.
-#define HAVE_POSIX_MEMALIGN OS_LINUX
+// Linux glibc has posix_memalign and (obsolete) memalign
+// Android libc has only memalign
+// OS X and BSD probably do not have either.
+#define HAVE_POSIX_MEMALIGN (OS_LINUX && !OS_ANDROID)
+#define HAVE_MEMALIGN OS_LINUX
 
 #if HAVE_POSIX_MEMALIGN
 
@@ -39,6 +42,18 @@ void* rtl_AllocateAligned(size_t size, size_t alignment)
 		return NULL;
 	}
 	return ptr;
+}
+
+void rtl_FreeAligned(void* alignedPointer)
+{
+	free(alignedPointer);
+}
+
+#elif HAVE_MEMALIGN
+
+void* rtl_AllocateAligned(size_t size, size_t alignment)
+{
+	return memalign(alignment, size);
 }
 
 void rtl_FreeAligned(void* alignedPointer)

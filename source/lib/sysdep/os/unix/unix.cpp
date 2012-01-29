@@ -349,9 +349,16 @@ std::wstring sys_get_user_name()
 		return std::wstring(logname, logname + strlen(logname));
 	// TODO: maybe we should do locale conversion?
 
+#if OS_ANDROID
+#warning TODO: sys_get_user_name: do something more appropriate and more thread-safe
+	char* buf = getlogin();
+	if (buf)
+		return std::wstring(buf, buf + strlen(buf));
+#else
 	char buf[256];
 	if (getlogin_r(buf, ARRAY_SIZE(buf)) == 0)
 		return std::wstring(buf, buf + strlen(buf));
+#endif
 
 	return L"";
 }

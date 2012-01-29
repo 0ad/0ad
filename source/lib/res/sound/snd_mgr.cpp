@@ -49,10 +49,12 @@
 
 #include "lib/timer.h"
 #include "lib/app_hooks.h"
-#include "lib/external_libraries/openal.h"
 #include "lib/sysdep/cpu.h"	// cpu_CAS
 
+#if CONFIG2_AUDIO
+
 #include "ogg.h"
+#include "lib/external_libraries/openal.h"
 
 
 static const size_t maxBufferSize = 64*KiB;
@@ -2037,3 +2039,28 @@ Status snd_update(const float* pos, const float* dir, const float* up)
 
 	return INFO::OK;
 }
+
+
+#else	// CONFIG2_AUDIO
+
+// Stub implementations of snd_mgr API:
+
+Status snd_dev_prepare_enum() { return ERR::NOT_SUPPORTED; }
+const char* snd_dev_next() { return NULL; }
+Status snd_dev_set(const char* alc_new_dev_name) { return INFO::OK; }
+Status snd_set_max_voices(size_t limit) { return INFO::OK; }
+Status snd_set_master_gain(float gain) { return INFO::OK; }
+Handle snd_open(const PIVFS& vfs, const VfsPath& pathname) { return ERR::FAIL; }
+Status snd_free(Handle& hvs) { return INFO::OK; }
+Status snd_play(Handle hvs, float static_pri) { return INFO::OK; }
+Status snd_set_pos(Handle hvs, float x, float y, float z, bool relative) { return INFO::OK; }
+Status snd_set_gain(Handle hs, float gain) { return INFO::OK; }
+Status snd_set_pitch(Handle hs, float pitch) { return INFO::OK; }
+Status snd_set_loop(Handle hvs, bool loop) { return INFO::OK; }
+Status snd_fade(Handle hvs, float initial_gain, float final_gain, float length, FadeType type) { return INFO::OK; }
+Status snd_disable(bool disabled) { return INFO::OK; }
+Status snd_update(const float* pos, const float* dir, const float* up) { return INFO::OK; }
+bool snd_is_playing(Handle hvs) { return false; }
+void snd_shutdown() { }
+
+#endif	// CONFIG2_AUDIO

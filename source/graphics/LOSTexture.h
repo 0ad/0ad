@@ -61,7 +61,7 @@ public:
 	 * coordinates, in the form expected by glLoadMatrixf.
 	 * This must only be called after BindTexture.
 	 */
-	const float* GetTextureMatrix();
+	const CMatrix3D& GetTextureMatrix();
 
 	/**
 	 * Returns a matrix to map (0,0)-(1,1) texture coordinates onto LOS texture

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<program type="glsl">
+
+    <define name="USE_INSTANCING" value="1"/>
+
+    <vertex file="model_common.vs">
+        <stream name="pos"/>
+        <stream name="normal"/>
+        <stream name="uv0"/>
+    </vertex>
+
+    <fragment file="model_common.fs"/>
+
+</program>

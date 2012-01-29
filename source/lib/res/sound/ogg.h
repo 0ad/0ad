@@ -1,6 +1,10 @@
 #ifndef INCLUDED_OGG
 #define INCLUDED_OGG
 
+#include "lib/config2.h"
+
+#if CONFIG2_AUDIO
+
 #include "lib/external_libraries/openal.h"
 #include "lib/file/vfs/vfs.h"
 
@@ -26,5 +30,7 @@ extern Status OpenOggStream(const OsPath& pathname, OggStreamPtr& stream);
  * that can cope with archived/compressed files.
  */
 extern Status OpenOggNonstream(const PIVFS& vfs, const VfsPath& pathname, OggStreamPtr& stream);
+
+#endif	// CONFIG2_AUDIO
 
 #endif // INCLUDED_OGG
