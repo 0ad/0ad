@@ -1,0 +1,15 @@
+Index: nvtt/CMakeLists.txt
+===================================================================
+--- nvtt/CMakeLists.txt	(revision 10975)
++++ nvtt/CMakeLists.txt	(working copy)
+@@ -44,6 +44,10 @@
+ ADD_DEFINITIONS(-DNVTT_EXPORTS)
+ 
+ IF(NVTT_SHARED)
++	IF(CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++		SET(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,-z,origin")
++	ENDIF(CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
++
+ 	ADD_DEFINITIONS(-DNVTT_SHARED=1)
+ 	ADD_LIBRARY(nvtt SHARED ${NVTT_SRCS})
+ ELSE(NVTT_SHARED)
