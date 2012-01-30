@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,7 +25,7 @@
 #endif
 #include "lib/precompiled.h"
 
-#if OS_LINUX
+#if OS_LINUX || OS_BSD
 #include "mocks/dlfcn.h"
 #include "mocks/unistd.h"
 #endif // OS_LINUX

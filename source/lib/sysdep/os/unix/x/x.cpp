@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2012 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -24,7 +24,7 @@
 
 #include "precompiled.h"
 
-#if OS_LINUX
+#if OS_LINUX || OS_BSD
 # define HAVE_X 1
 #else
 # define HAVE_X 0

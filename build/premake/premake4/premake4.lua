@@ -49,9 +49,13 @@
 		configuration "vs*"
 			defines     { "_CRT_SECURE_NO_WARNINGS" }
 
+		configuration "bsd"
+			defines     { "LUA_USE_POSIX", "LUA_USE_DLOPEN" }
+			links       { "m" }
+			
 		configuration "linux"
 			defines     { "LUA_USE_POSIX", "LUA_USE_DLOPEN" }
-			links       { "m", "dl" } 
+			links       { "m", "dl" }
 			
 		configuration "macosx"
 			defines     { "LUA_USE_MACOSX" }

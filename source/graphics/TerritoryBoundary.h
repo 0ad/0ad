@@ -63,4 +63,4 @@ public:
 	static std::vector<STerritoryBoundary> ComputeBoundaries(const Grid<u8>* territories);
 };
 
-#endif
+#endif // INCLUDED_TERRITORYBOUNDARY
