@@ -38,7 +38,8 @@ public:
 	CFont(const CStrW& name);
 	~CFont();
 
-	void Bind();
+	void Bind(size_t unit = 0);
+	bool HasRGB();
 	int GetLineSpacing();
 	int GetHeight();
 	int GetCharacterWidth(wchar_t c);

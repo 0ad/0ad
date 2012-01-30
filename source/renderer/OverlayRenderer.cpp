@@ -209,7 +209,7 @@ void OverlayRenderer::RenderOverlaysAfterWater()
 		CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
 
 		CShaderManager& shaderManager = g_Renderer.GetShaderManager();
-		CShaderProgramPtr shaderTexLineNormal(shaderManager.LoadProgram(shaderName, std::map<CStr, CStr>()));
+		CShaderProgramPtr shaderTexLineNormal(shaderManager.LoadProgram(shaderName));
 		CShaderProgramPtr shaderTexLineAlwaysVisible(shaderManager.LoadProgram(shaderName, defAlwaysVisible));
 
 		// ----------------------------------------------------------------------------------------

@@ -212,6 +212,41 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 	return true;
 }
 
+static GLenum ParseBlendFunc(const CStr& str)
+{
+	if (str == "zero")
+		return GL_ZERO;
+	if (str == "one")
+		return GL_ONE;
+	if (str == "src_color")
+		return GL_SRC_COLOR;
+	if (str == "one_minus_src_color")
+		return GL_ONE_MINUS_SRC_COLOR;
+	if (str == "dst_color")
+		return GL_DST_COLOR;
+	if (str == "one_minus_dst_color")
+		return GL_ONE_MINUS_DST_COLOR;
+	if (str == "src_alpha")
+		return GL_SRC_ALPHA;
+	if (str == "one_minus_src_alpha")
+		return GL_ONE_MINUS_SRC_ALPHA;
+	if (str == "dst_alpha")
+		return GL_DST_ALPHA;
+	if (str == "one_minus_dst_alpha")
+		return GL_ONE_MINUS_DST_ALPHA;
+	if (str == "constant_color")
+		return GL_CONSTANT_COLOR;
+	if (str == "one_minus_constant_color")
+		return GL_ONE_MINUS_CONSTANT_COLOR;
+	if (str == "constant_alpha")
+		return GL_CONSTANT_ALPHA;
+	if (str == "one_minus_constant_alpha")
+		return GL_ONE_MINUS_CONSTANT_ALPHA;
+	if (str == "src_alpha_saturate")
+		return GL_SRC_ALPHA_SATURATE;
+	return GL_ZERO;
+}
+
 CShaderTechnique CShaderManager::LoadEffect(const char* name, const std::map<CStr, CStr>& baseDefines)
 {
 	PROFILE2("loading effect");
@@ -229,8 +264,11 @@ CShaderTechnique CShaderManager::LoadEffect(const char* name, const std::map<CSt
 #define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
 	EL(pass);
 	EL(require);
+	EL(blend);
 	AT(shaders);
 	AT(shader);
+	AT(src);
+	AT(dst);
 #undef AT
 #undef EL
 
@@ -248,7 +286,14 @@ CShaderTechnique CShaderManager::LoadEffect(const char* name, const std::map<CSt
 		{
 			if (Child.GetNodeName() == el_require)
 			{
-				if (Child.GetAttributes().GetNamedItem(at_shaders) == "arb")
+				if (Child.GetAttributes().GetNamedItem(at_shaders) == "fixed")
+				{
+					// FFP not supported by OpenGL ES
+					#if CONFIG2_GLES
+						isUsable = false;
+					#endif
+				}
+				else if (Child.GetAttributes().GetNamedItem(at_shaders) == "arb")
 				{
 					if (!g_Renderer.GetCapabilities().m_ARBProgram)
 						isUsable = false;
@@ -287,6 +332,17 @@ CShaderTechnique CShaderManager::LoadEffect(const char* name, const std::map<CSt
 		{
 			CShaderProgramPtr shader = LoadProgram(Child.GetAttributes().GetNamedItem(at_shader).c_str(), baseDefines);
 			CShaderPass pass(shader);
+
+			XERO_ITER_EL(Child, Element)
+			{
+				if (Element.GetNodeName() == el_blend)
+				{
+					GLenum src = ParseBlendFunc(Element.GetAttributes().GetNamedItem(at_src));
+					GLenum dst = ParseBlendFunc(Element.GetAttributes().GetNamedItem(at_dst));
+					pass.BlendFunc(src, dst);
+				}
+			}
+
 			tech.AddPass(pass);
 		}
 	}

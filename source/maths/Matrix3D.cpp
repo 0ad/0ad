@@ -44,6 +44,17 @@ void CMatrix3D::SetZero ()
 	_41=0.0f; _42=0.0f; _43=0.0f; _44=0.0f;
 }
 
+void CMatrix3D::SetOrtho (float l, float r, float b, float t, float n, float f)
+{
+	// Based on OpenGL spec
+	*this = CMatrix3D(
+		2/(r-l), 0, 0, -(r+l)/(r-l),
+		0, 2/(t-b), 0, -(t+b)/(t-b),
+		0, 0, -2/(f-n), -(f+n)/(f-n),
+		0, 0, 0, 1
+	);
+}
+
 //The following clear the matrix and set the 
 //rotation of each of the 3 axes
 

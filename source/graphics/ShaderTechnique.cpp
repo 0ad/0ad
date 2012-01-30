@@ -146,5 +146,4 @@ CShaderProgramPtr CShaderTechnique::GetShader(int pass)
 {
 	ENSURE(0 <= pass && pass < (int)m_Passes.size());
 	return m_Passes[pass].GetShader();
-
 }

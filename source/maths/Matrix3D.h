@@ -177,6 +177,8 @@ public:
 	void SetIdentity();
 	// set this matrix to the zero matrix
 	void SetZero();
+	// set this matrix to the orthogonal projection matrix (as with glOrtho)
+	void SetOrtho(float l, float r, float b, float t, float n, float f);
 
 	// concatenate arbitrary matrix onto this matrix
 	void Concatenate(const CMatrix3D& m)

@@ -23,9 +23,10 @@
 #include "lib/res/graphics/unifont.h"
 #include "ps/Font.h"
 
-extern int g_yres;
+extern int g_xres, g_yres;
 
-CTextRenderer::CTextRenderer()
+CTextRenderer::CTextRenderer(const CShaderProgramPtr& shader) :
+	m_Shader(shader)
 {
 	ResetTransform();
 	Color(CColor(1.0f, 1.0f, 1.0f, 1.0f));
@@ -37,6 +38,10 @@ void CTextRenderer::ResetTransform()
 	m_Transform.SetIdentity();
 	m_Transform.Scale(1.0f, -1.f, 1.0f);
 	m_Transform.Translate(0.0f, (float)g_yres, -1000.0f);
+
+	CMatrix3D proj;
+	proj.SetOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.f, 1000.f);
+	m_Transform = proj * m_Transform;
 }
 
 CMatrix3D CTextRenderer::GetTransform()
@@ -101,16 +106,24 @@ void CTextRenderer::Render()
 	{
 		SBatch& batch = m_Batches[i];
 
-		batch.font->Bind();
+		int unit = m_Shader->GetTextureUnit("tex");
+		if (unit == -1) // just in case the shader doesn't use the sampler
+			continue;
 
-		glPushMatrix();
-		glLoadMatrixf(&batch.transform._11);
+		batch.font->Bind(unit);
 
-		glColor4fv(batch.color.FloatArray());
-		
-		glwprintf(L"%ls", batch.text.c_str());
+		m_Shader->Uniform("transform", batch.transform);
 
-		glPopMatrix();
+		// ALPHA-only textures will have .rgb sampled as 0, so we need to
+		// replace it with white (but not affect RGBA textures)
+		if (batch.font->HasRGB())
+			m_Shader->Uniform("colorAdd", CColor(0.0f, 0.0f, 0.0f, 0.0f));
+		else
+			m_Shader->Uniform("colorAdd", CColor(1.0f, 1.0f, 1.0f, 0.0f));
+
+		m_Shader->Uniform("colorMul", batch.color);
+
+		unifont_render(batch.text.c_str());
 	}
 
 	m_Batches.clear();

@@ -53,7 +53,7 @@ extern Status unifont_unload(Handle& h);
  *
  * Must be called before any glwprintf().
  **/
-extern Status unifont_bind(Handle h);
+extern Status unifont_bind(Handle h, size_t unit);
 
 /**
  * Output text at current OpenGL modelview pos.
@@ -80,6 +80,11 @@ extern void glwprintf(const wchar_t* fmt, ...) WPRINTF_ARGS(1);
 extern void glvwprintf(const wchar_t* fmt, va_list args) VWPRINTF_ARGS(1);
 
 /**
+ * Output text, and return advance distance (if @p advance not NULL).
+ */
+extern void unifont_render(const wchar_t* str, int* advance = NULL);
+
+/**
  * Determine pixel extents of a string.
  *
  * @param h
@@ -91,6 +96,11 @@ extern void glvwprintf(const wchar_t* fmt, va_list args) VWPRINTF_ARGS(1);
  * note: This is intended for the GUI (hence Unicode).
  **/
 Status unifont_stringsize(const Handle h, const wchar_t* text, int& width, int& height);
+
+/**
+ * @return whether the font is an RGBA texture, not an ALPHA texture.
+ **/
+bool unifont_has_rgb(const Handle h);
 
 /**
  * @return height [pixels] of the font.

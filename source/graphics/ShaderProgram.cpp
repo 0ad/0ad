@@ -173,6 +173,11 @@ public:
 		}
 	}
 
+	virtual int GetTextureUnit(texture_id_t id)
+	{
+		return GetUniformFragmentIndex(id);
+	}
+
 	virtual Binding GetUniformBinding(uniform_id_t id)
 	{
 		return Binding(GetUniformVertexIndex(id), GetUniformFragmentIndex(id));
@@ -436,6 +441,15 @@ public:
 
 		pglActiveTextureARB(GL_TEXTURE0 + it->second.second);
 		glBindTexture(it->second.first, tex);
+	}
+
+	virtual int GetTextureUnit(texture_id_t id)
+	{
+		std::map<CStr, std::pair<GLenum, int> >::iterator it = m_Samplers.find(id);
+		if (it == m_Samplers.end())
+			return -1;
+
+		return it->second.second;
 	}
 
 	virtual Binding GetUniformBinding(uniform_id_t id)

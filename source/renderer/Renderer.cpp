@@ -50,7 +50,6 @@
 #include "graphics/ModelDef.h"
 #include "graphics/ParticleManager.h"
 #include "graphics/ShaderManager.h"
-#include "graphics/ShaderTechnique.h"
 #include "graphics/Terrain.h"
 #include "graphics/Texture.h"
 #include "graphics/TextureManager.h"

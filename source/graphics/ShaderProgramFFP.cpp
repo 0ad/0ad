@@ -20,6 +20,7 @@
 #include "ShaderProgram.h"
 
 #include "lib/res/graphics/ogl_tex.h"
+#include "maths/Matrix3D.h"
 #include "maths/Vector3D.h"
 #include "ps/CLogger.h"
 #include "ps/Overlay.h"
@@ -82,6 +83,11 @@ public:
 		}
 	}
 
+	virtual int GetTextureUnit(texture_id_t id)
+	{
+		return GetUniformIndex(id);
+	}
+
 	virtual Binding GetUniformBinding(uniform_id_t id)
 	{
 		return Binding(-1, GetUniformIndex(id));
@@ -90,6 +96,8 @@ public:
 protected:
 	std::map<CStr, int> m_UniformIndexes;
 };
+
+//////////////////////////////////////////////////////////////////////////
 
 class CShaderProgramFFP_OverlayLine : public CShaderProgramFFP
 {
@@ -248,10 +256,79 @@ public:
 	}
 };
 
+//////////////////////////////////////////////////////////////////////////
+
+class CShaderProgramFFP_GuiText : public CShaderProgramFFP
+{
+	// Uniforms
+	enum
+	{
+		ID_transform,
+		ID_colorMul
+	};
+
+	bool m_IgnoreLos;
+
+public:
+	CShaderProgramFFP_GuiText() :
+		CShaderProgramFFP(STREAM_POS | STREAM_UV0)
+	{
+		m_UniformIndexes["transform"] = ID_transform;
+		m_UniformIndexes["colorMul"] = ID_colorMul;
+
+		// Texture units:
+		m_UniformIndexes["tex"] = 0;
+	}
+
+	virtual void Uniform(Binding id, float v0, float v1, float v2, float v3)
+	{
+		if (id.second == ID_colorMul)
+		{
+			glColor4f(v0, v1, v2, v3);
+		}
+	}
+
+	virtual void Uniform(Binding id, const CMatrix3D& v)
+	{
+		if (id.second == ID_transform)
+		{
+			glLoadMatrixf(&v._11);
+		}
+	}
+
+	virtual void Bind()
+	{
+		glMatrixMode(GL_PROJECTION);
+		glPushMatrix();
+		glLoadIdentity();
+		glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+
+		pglActiveTextureARB(GL_TEXTURE0);
+		glEnable(GL_TEXTURE_2D);
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	}
+
+	virtual void Unbind()
+	{
+		pglActiveTextureARB(GL_TEXTURE0);
+		glDisable(GL_TEXTURE_2D);
+
+		glMatrixMode(GL_PROJECTION);
+		glPopMatrix();
+		glMatrixMode(GL_MODELVIEW);
+		glPopMatrix();
+	}
+};
+
+//////////////////////////////////////////////////////////////////////////
+
 /*static*/ CShaderProgram* CShaderProgram::ConstructFFP(const std::string& id, const std::map<CStr, CStr>& defines)
 {
 	if (id == "overlayline")
 		return new CShaderProgramFFP_OverlayLine(defines);
+	if (id == "gui_text")
+		return new CShaderProgramFFP_GuiText();
 
 	LOGERROR(L"CShaderProgram::ConstructFFP: Invalid id '%hs'", id.c_str());
 	return NULL;
