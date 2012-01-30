@@ -124,10 +124,10 @@ public:
 		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 
 		glBegin(GL_QUADS);
-		glTexCoord2i(0, 0); glVertex2i( x-hotspotx,   y+hotspoty   );
 		glTexCoord2i(1, 0); glVertex2i( x-hotspotx+w, y+hotspoty   );
-		glTexCoord2i(1, 1); glVertex2i( x-hotspotx+w, y+hotspoty-h );
+		glTexCoord2i(0, 0); glVertex2i( x-hotspotx,   y+hotspoty   );
 		glTexCoord2i(0, 1); glVertex2i( x-hotspotx,   y+hotspoty-h );
+		glTexCoord2i(1, 1); glVertex2i( x-hotspotx+w, y+hotspoty-h );
 		glEnd();
 #endif
 	}
