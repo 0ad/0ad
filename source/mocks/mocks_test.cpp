@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@
 // Cause calls to be redirected to the real function by default
 #define DEFAULT(name) static T::Real_##name real_##name
 
-#if OS_LINUX
+#if OS_LINUX || OS_BSD
 
 #include "mocks/dlfcn.h"
 DEFAULT(dladdr);

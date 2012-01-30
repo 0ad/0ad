@@ -732,35 +732,26 @@ function setup_main_exe ()
 		-- see manifest.cpp
 		project_add_manifest()
 
-	elseif os.is("linux") then
+	elseif os.is("linux") or os.is("bsd") then
 
 		-- Libraries
 		links {
 			"fam",
 			-- Utilities
 			"rt",
-			-- Dynamic libraries (needed for linking for gold)
-			"dl",
 		}
 
-		-- Threading support
-		buildoptions { "-pthread" }
-		linkoptions { "-pthread" }
-
-		-- For debug_resolve_symbol
-		configuration "Debug"
-			linkoptions { "-rdynamic" }
-		configuration { }
-
-	elseif os.is("bsd") then
-
-		-- Libraries
-		links {
-			"fam",
-			"execinfo",
-			-- Utilities
-			"rt",
-		}
+		if os.is("linux") then
+			links {
+				-- Dynamic libraries (needed for linking for gold)
+				"dl",
+			}
+		elseif os.is("bsd") then
+			links {
+				-- Needed for backtrace* on FreeBSD
+				"execinfo",
+			}
+		end
 
 		-- Threading support
 		buildoptions { "-pthread" }
@@ -1146,6 +1137,11 @@ function setup_tests()
 			links {
 				-- Dynamic libraries (needed for linking for gold)
 				"dl",
+			}
+		elseif os.is("bsd") then
+			links {
+				-- Needed for backtrace* on FreeBSD
+				"execinfo",
 			}
 		end
 

@@ -47,7 +47,7 @@ public:
 	 * @param defines key/value set of preprocessor definitions
 	 * @return loaded program, or null pointer on error
 	 */
-	CShaderProgramPtr LoadProgram(const char* name, const std::map<CStr, CStr>& defines = std::map<CStr, CStr>());
+	CShaderProgramPtr LoadProgram(const char* name, const std::map<CStr, CStr>& defines = (std::map<CStr, CStr>()));
 
 	/**
 	 * Load a shader effect.
@@ -56,7 +56,7 @@ public:
 	 * @param defines key/value set of preprocessor definitions
 	 * @return loaded technique, or empty technique on error
 	 */
-	CShaderTechnique LoadEffect(const char* name, const std::map<CStr, CStr>& defines = std::map<CStr, CStr>());
+	CShaderTechnique LoadEffect(const char* name, const std::map<CStr, CStr>& defines = (std::map<CStr, CStr>()));
 
 private:
 	bool NewProgram(const char* name, const std::map<CStr, CStr>& defines, CShaderProgramPtr& program);

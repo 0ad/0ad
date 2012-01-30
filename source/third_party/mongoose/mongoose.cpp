@@ -37,6 +37,10 @@
 
 #undef DEBUG
 
+#if defined(__FreeBSD__)
+// Fix undefined PF_INET on FreeBSD
+#include <sys/socket.h>
+#endif
 
 // Copyright (c) 2004-2011 Sergey Lyubka
 //
