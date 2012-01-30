@@ -634,17 +634,17 @@ void GUIRenderer::Draw(DrawCalls &Calls, float Z)
 
 			glBegin(GL_QUADS);
 
-				glTexCoord2f(TexCoords.right, TexCoords.bottom);
-				glVertex3f(cit->m_Vertices.right, cit->m_Vertices.bottom, cit->m_DeltaZ);
-
 				glTexCoord2f(TexCoords.left, TexCoords.bottom);
 				glVertex3f(cit->m_Vertices.left, cit->m_Vertices.bottom, cit->m_DeltaZ);
 
-				glTexCoord2f(TexCoords.left, TexCoords.top);
-				glVertex3f(cit->m_Vertices.left, cit->m_Vertices.top, cit->m_DeltaZ);
+				glTexCoord2f(TexCoords.right, TexCoords.bottom);
+				glVertex3f(cit->m_Vertices.right, cit->m_Vertices.bottom, cit->m_DeltaZ);
 
 				glTexCoord2f(TexCoords.right, TexCoords.top);
 				glVertex3f(cit->m_Vertices.right, cit->m_Vertices.top, cit->m_DeltaZ);
+
+				glTexCoord2f(TexCoords.left, TexCoords.top);
+				glVertex3f(cit->m_Vertices.left, cit->m_Vertices.top, cit->m_DeltaZ);
 
 			glEnd();
 
@@ -664,10 +664,10 @@ void GUIRenderer::Draw(DrawCalls &Calls, float Z)
 			glColor4fv(cit->m_BackColor.FloatArray());
 
 			glBegin(GL_QUADS);
-				glVertex3f(cit->m_Vertices.right,	cit->m_Vertices.bottom,	cit->m_DeltaZ);
 				glVertex3f(cit->m_Vertices.left,	cit->m_Vertices.bottom,	cit->m_DeltaZ);
-				glVertex3f(cit->m_Vertices.left,	cit->m_Vertices.top,	cit->m_DeltaZ);
+				glVertex3f(cit->m_Vertices.right,	cit->m_Vertices.bottom,	cit->m_DeltaZ);
 				glVertex3f(cit->m_Vertices.right,	cit->m_Vertices.top,	cit->m_DeltaZ);
+				glVertex3f(cit->m_Vertices.left,	cit->m_Vertices.top,	cit->m_DeltaZ);
 			glEnd();
 
 

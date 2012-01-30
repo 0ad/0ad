@@ -24,6 +24,7 @@ CInput
 #include "CInput.h"
 #include "CGUIScrollBarVertical.h"
 
+#include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "lib/ogl.h"
 #include "lib/res/graphics/unifont.h"
@@ -32,6 +33,7 @@ CInput
 #include "ps/Font.h"
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
+#include "renderer/Renderer.h"
 
 #include <sstream>
 
@@ -1078,7 +1080,9 @@ void CInput::Draw()
 		float h = (float)font.GetHeight();
 		float ls = (float)font.GetLineSpacing();
 
-		CTextRenderer textRenderer;
+		CShaderTechnique tech = g_Renderer.GetShaderManager().LoadEffect("gui_text");
+		
+		CTextRenderer textRenderer(tech.GetShader(0));
 		textRenderer.Font(font_name);
 
 		// Set the Z to somewhat more, so we can draw a selected area between the
@@ -1243,13 +1247,7 @@ void CInput::Draw()
 		// Setup initial color (then it might change and change back, when drawing selected area)
 		textRenderer.Color(color);
 
-		// Setup state for text rendering
-
-		glEnable(GL_TEXTURE_2D);
-		glDisable(GL_CULL_FACE);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glEnable(GL_BLEND);
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+		tech.BeginPass(0);
 
 		bool using_selected_color = false;
 		
@@ -1351,7 +1349,7 @@ void CInput::Draw()
 		if (cliparea != CRect())
 			glDisable(GL_SCISSOR_TEST);
 
-		glDisable(GL_TEXTURE_2D);
+		tech.EndPass(0);
 	}
 }
 

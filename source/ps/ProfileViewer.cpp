@@ -188,10 +188,10 @@ void CProfileViewer::RenderProfile()
 	glDisable(GL_TEXTURE_2D);
 	glColor4ub(0,0,0,128);
 	glBegin(GL_QUADS);
-	glVertex2i(0, g_yres);
 	glVertex2i(estimate_width, g_yres);
-	glVertex2i(estimate_width, g_yres-estimate_height);
+	glVertex2i(0, g_yres);
 	glVertex2i(0, g_yres-estimate_height);
+	glVertex2i(estimate_width, g_yres-estimate_height);
 	glEnd();
 	glEnable(GL_TEXTURE_2D);
 

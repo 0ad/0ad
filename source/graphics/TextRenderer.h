@@ -18,6 +18,7 @@
 #ifndef INCLUDED_TEXTRENDERER
 #define INCLUDED_TEXTRENDERER
 
+#include "graphics/ShaderProgram.h"
 #include "maths/Matrix3D.h"
 #include "ps/CStr.h"
 #include "ps/Overlay.h"
@@ -27,7 +28,7 @@ class CFont;
 class CTextRenderer
 {
 public:
-	CTextRenderer();
+	CTextRenderer(const CShaderProgramPtr& shader);
 
 	void ResetTransform();
 	CMatrix3D GetTransform();
@@ -50,6 +51,8 @@ private:
 		shared_ptr<CFont> font;
 		std::wstring text;
 	};
+
+	CShaderProgramPtr m_Shader;
 
 	CMatrix3D m_Transform;
 

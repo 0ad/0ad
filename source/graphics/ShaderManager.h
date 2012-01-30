@@ -24,14 +24,13 @@
 #include <boost/weak_ptr.hpp>
 
 #include "graphics/ShaderProgram.h"
+#include "graphics/ShaderTechnique.h"
 
 #if USE_SHADER_XML_VALIDATION
 # include "ps/XML/RelaxNG.h"
 #endif
 
 #include <set>
-
-class CShaderTechnique;
 
 /**
  * Shader manager: loads and caches shader programs.
@@ -48,7 +47,7 @@ public:
 	 * @param defines key/value set of preprocessor definitions
 	 * @return loaded program, or null pointer on error
 	 */
-	CShaderProgramPtr LoadProgram(const char* name, const std::map<CStr, CStr>& defines);
+	CShaderProgramPtr LoadProgram(const char* name, const std::map<CStr, CStr>& defines = std::map<CStr, CStr>());
 
 	/**
 	 * Load a shader effect.
@@ -57,7 +56,7 @@ public:
 	 * @param defines key/value set of preprocessor definitions
 	 * @return loaded technique, or empty technique on error
 	 */
-	CShaderTechnique LoadEffect(const char* name, const std::map<CStr, CStr>& defines);
+	CShaderTechnique LoadEffect(const char* name, const std::map<CStr, CStr>& defines = std::map<CStr, CStr>());
 
 private:
 	bool NewProgram(const char* name, const std::map<CStr, CStr>& defines, CShaderProgramPtr& program);

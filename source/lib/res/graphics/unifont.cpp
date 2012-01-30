@@ -50,6 +50,8 @@ struct UniFont
 {
 	Handle ht; // Handle to font texture
 
+	bool HasRGB; // true if RGBA, false if ALPHA
+
 	glyphmap* glyphs;
 
 	int LineSpacing;
@@ -102,9 +104,15 @@ static Status UniFont_reload(UniFont* f, const PIVFS& vfs, const VfsPath& basena
 		std::string Format;
 		FNTStream >> Format;
 		if (Format == "rgba")
+		{
+			f->HasRGB = true;
 			fmt_ovr = GL_RGBA;
+		}
 		else if (Format == "a")
+		{
+			f->HasRGB = false;
 			fmt_ovr = GL_ALPHA;
+		}
 		else
 			debug_warn(L"Invalid .fnt format string");
 	}
@@ -214,11 +222,11 @@ Status unifont_unload(Handle& h)
 }
 
 
-Status unifont_bind(const Handle h)
+Status unifont_bind(const Handle h, size_t unit)
 {
 	H_DEREF(h, UniFont, f);
 
-	ogl_tex_bind(f->ht);
+	ogl_tex_bind(f->ht, unit);
 	BoundGlyphs = f->glyphs;
 
 	return INFO::OK;
@@ -236,6 +244,15 @@ int unifont_height(const Handle h)
 {
 	H_DEREF(h, UniFont, f);
 	return f->Height;
+}
+
+
+bool unifont_has_rgb(const Handle h)
+{
+	UniFont* const f = H_USER_DATA(h, UniFont);
+	if(!f)
+		return false;
+	return f->HasRGB;
 }
 
 
@@ -270,10 +287,19 @@ void glvwprintf(const wchar_t* fmt, va_list args)
 	// Make sure there's always null termination
 	buf[buf_size-1] = 0;
 
+	int advance = 0;
+	unifont_render(buf, &advance);
+
+	// Move into position for subsequent prints
+	glTranslatef((float)advance, 0, 0);
+}
+
+void unifont_render(const wchar_t* str, int* advance)
+{
 	ENSURE(BoundGlyphs != NULL); // You always need to bind something first
 
 	// Count the number of characters
-	size_t len = wcslen(buf);
+	size_t len = wcslen(str);
 	
 	// 0 glyphs -> nothing to do (avoid BoundsChecker warning)
 	if (!len)
@@ -281,11 +307,11 @@ void glvwprintf(const wchar_t* fmt, va_list args)
 
 	t2f_v2i* vertexes = new t2f_v2i[len*4];
 
-	i32 x = 0;
+	i16 x = 0;
 
 	for (size_t i = 0; i < len; ++i)
 	{
-		glyphmap::iterator it = BoundGlyphs->find(buf[i]);
+		glyphmap::iterator it = BoundGlyphs->find(str[i]);
 
 		if (it == BoundGlyphs->end())
 			it = BoundGlyphs->find(0xFFFD); // Use the missing glyph symbol
@@ -295,24 +321,24 @@ void glvwprintf(const wchar_t* fmt, va_list args)
 
 		const GlyphData& g = it->second;
 
-		vertexes[i*4].u = g.u0;
+		vertexes[i*4].u = g.u1;
 		vertexes[i*4].v = g.v0;
-		vertexes[i*4].x = g.x0 + x;
+		vertexes[i*4].x = g.x1 + x;
 		vertexes[i*4].y = g.y0;
 
-		vertexes[i*4+1].u = g.u1;
+		vertexes[i*4+1].u = g.u0;
 		vertexes[i*4+1].v = g.v0;
-		vertexes[i*4+1].x = g.x1 + x;
+		vertexes[i*4+1].x = g.x0 + x;
 		vertexes[i*4+1].y = g.y0;
 
-		vertexes[i*4+2].u = g.u1;
+		vertexes[i*4+2].u = g.u0;
 		vertexes[i*4+2].v = g.v1;
-		vertexes[i*4+2].x = g.x1 + x;
+		vertexes[i*4+2].x = g.x0 + x;
 		vertexes[i*4+2].y = g.y1;
 
-		vertexes[i*4+3].u = g.u0;
+		vertexes[i*4+3].u = g.u1;
 		vertexes[i*4+3].v = g.v1;
-		vertexes[i*4+3].x = g.x0 + x;
+		vertexes[i*4+3].x = g.x1 + x;
 		vertexes[i*4+3].y = g.y1;
 
 		x += g.xadvance;
@@ -335,10 +361,10 @@ void glvwprintf(const wchar_t* fmt, va_list args)
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
 	ogl_WarnIfError();
-
-	// Move into position for subsequent prints
-	glTranslatef((float)x, 0, 0);
 #endif
+
+	if (advance)
+		*advance = x;
 
 	delete[] vertexes;
 }

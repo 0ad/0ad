@@ -48,9 +48,14 @@ CFont::~CFont()
 	unifont_unload(h);
 }
 
-void CFont::Bind()
+void CFont::Bind(size_t unit)
 {
-	unifont_bind(h);
+	unifont_bind(h, unit);
+}
+
+bool CFont::HasRGB()
+{
+	return unifont_has_rgb(h);
 }
 
 int CFont::GetLineSpacing()

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<effect>
+
+    <technique>
+        <require shaders="fixed"/>
+        <pass shader="fixed:gui_text">
+            <blend src="src_alpha" dst="one_minus_src_alpha"/>
+        </pass>
+    </technique>
+
+    <technique>
+        <require shaders="glsl"/>
+        <pass shader="gui_text">
+            <blend src="src_alpha" dst="one_minus_src_alpha"/>
+        </pass>
+    </technique>
+
+</effect>

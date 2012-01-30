@@ -43,6 +43,7 @@ CGUI
 #include "MiniMap.h"
 #include "scripting/JSInterface_GUITypes.h"
 
+#include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "lib/input.h"
 #include "lib/bits.h"
@@ -57,6 +58,7 @@ CGUI
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/XML/Xeromyces.h"
+#include "renderer/Renderer.h"
 #include "scripting/ScriptingHost.h"
 #include "scriptinterface/ScriptInterface.h"
 
@@ -902,18 +904,9 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor, 
 					const CPos &pos, const float &z, const CRect &clipping)
 {
-	// TODO Gee: All these really necessary? Some
-	//  are defaults and if you changed them
-	//  the opposite value at the end of the functions,
-	//  some things won't be drawn correctly. 
-	glEnable(GL_TEXTURE_2D);
-	glDisable(GL_CULL_FACE);
+	CShaderTechnique tech = g_Renderer.GetShaderManager().LoadEffect("gui_text");
 
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glEnable(GL_BLEND);
-	glDisable(GL_ALPHA_TEST);
-
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	tech.BeginPass(0);
 
 	if (clipping != CRect())
 	{
@@ -921,7 +914,7 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 		glScissor(clipping.left, g_yres - clipping.bottom, clipping.GetWidth(), clipping.GetHeight());
 	}
 
-	CTextRenderer textRenderer;
+	CTextRenderer textRenderer(tech.GetShader(0));
 
 	for (std::vector<SGUIText::STextCall>::const_iterator it = Text.m_TextCalls.begin(); 
 		 it != Text.m_TextCalls.end(); 
@@ -952,7 +945,7 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 	if (clipping != CRect())
 		glDisable(GL_SCISSOR_TEST);
 
-	glDisable(GL_TEXTURE_2D);
+	tech.EndPass(0);
 }
 
 bool CGUI::GetPreDefinedColor(const CStr& name, CColor &Output)

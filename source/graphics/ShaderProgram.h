@@ -149,6 +149,8 @@ public:
 
 	virtual void BindTexture(texture_id_t id, GLuint tex) = 0;
 
+	virtual int GetTextureUnit(texture_id_t) = 0;
+
 	virtual Binding GetUniformBinding(uniform_id_t id) = 0;
 
 	// Uniform-setting methods that subclasses must define:

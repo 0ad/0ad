@@ -43,24 +43,36 @@ QBotAI.prototype.runInit = function(gameState){
 				this.modules[i].init(gameState);
 			}
 		}
-
-		var myCivCentres = gameState.getOwnEntities().filter(function(ent) {
-			return ent.hasClass("CivCentre");
-		});
-		
-		var filter = Filters.and(Filters.isEnemy(), Filters.byClass("CivCentre"));
-		var enemyCivCentres = gameState.getEntities().filter(function(ent) {
-			return ent.hasClass("CivCentre") && gameState.isEntityEnemy(ent);
-		});
-		
-		this.accessibility = new Accessibility(gameState, myCivCentres.toEntityArray()[0].position());
-		
-		var pathFinder = new PathFinder(gameState);
-		this.pathsToMe = pathFinder.getPaths(enemyCivCentres.toEntityArray()[0].position(), myCivCentres.toEntityArray()[0].position(), 'entryPoints');
 		
 		this.timer = new Timer();
 		
 		this.firstTime = false;
+		
+		var myKeyEntities = gameState.getOwnEntities().filter(function(ent) {
+			return ent.hasClass("CivCentre");
+		});
+		
+		if (myKeyEntities.length == 0){
+			myKeyEntities = gameState.getOwnEntities();
+		}
+		
+		var filter = Filters.and(Filters.isEnemy(), Filters.byClass("CivCentre"));
+		var enemyKeyEntities = gameState.getEntities().filter(function(ent) {
+			return ent.hasClass("CivCentre") && gameState.isEntityEnemy(ent);
+		});
+		
+		if (enemyKeyEntities.length == 0){
+			enemyKeyEntities = gameState.getEntities().filter(function(ent) {
+				return gameState.isEntityEnemy(ent);
+			});
+		}
+		
+		this.accessibility = new Accessibility(gameState, myKeyEntities.toEntityArray()[0].position());
+		
+		if (enemyKeyEntities.length == 0)
+			return;
+		var pathFinder = new PathFinder(gameState);
+		this.pathsToMe = pathFinder.getPaths(enemyKeyEntities.toEntityArray()[0].position(), myKeyEntities.toEntityArray()[0].position(), 'entryPoints');
 	}
 };
 
@@ -83,6 +95,10 @@ QBotAI.prototype.OnUpdate = function() {
 		Engine.ProfileStart("qBot");
 		
 		var gameState = new GameState(this);
+		
+		if (gameState.getOwnEntities().length === 0){
+			return; // With no entities to control the AI cannot do anything 
+		}
 		
 		// Run these updates before the init so they don't get hammered by the initial creation
 		// events at the start of the game.
