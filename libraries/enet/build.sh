@@ -3,15 +3,16 @@
 set -e
 
 JOBS=${JOBS:="-j2"}
+MAKE=${MAKE:="make"}
 
 echo "Building libenet..."
 echo
 
 cd src/
 
-./configure
+./configure SET_MAKE=${MAKE}
 
-make ${JOBS}
+${MAKE} ${JOBS}
 
 cd ../
 

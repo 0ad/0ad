@@ -18,6 +18,7 @@ echo "Building SpiderMonkey..."
 echo
 
 JOBS=${JOBS:="-j2"}
+MAKE=${MAKE:="make"}
 
 MAKE_OPTS="${JOBS}"
 
@@ -56,14 +57,14 @@ perl -i.bak -pe 's/^(LIBRARY_NAME\s+= mozjs185)(-ps-debug|-ps-release)?/$1-ps-de
 mkdir -p build-debug
 cd build-debug
 ../configure ${CONF_OPTS} --enable-debug --disable-optimize
-make ${MAKE_OPTS}
+${MAKE} ${MAKE_OPTS}
 cd ..
 
 perl -i.bak -pe 's/^(LIBRARY_NAME\s+= mozjs185)(-ps-debug|-ps-release)?/$1-ps-release/' Makefile.in
 mkdir -p build-release
 cd build-release
 ../configure ${CONF_OPTS} # --enable-gczeal --enable-debug-symbols
-make ${MAKE_OPTS}
+${MAKE} ${MAKE_OPTS}
 cd ..
 
 # Remove the library suffixes to avoid spurious SVN diffs
