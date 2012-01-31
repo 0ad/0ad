@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="346.301" y="86.8316" z="232.915"/>
+		<Position x="324.15" y="80.3313" z="293.641"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -123,6 +123,17 @@
         }
       },
       "Team": 2
+    },
+    {
+      "AI": "",
+      "Civ": "rome",
+      "Colour": {
+        "b": 39,
+        "g": 39,
+        "r": 131
+      },
+      "Name": "Roman Interlopers",
+      "Team": -1
     }
   ],
   "RevealMap": false
@@ -13762,7 +13773,7 @@
 		<Entity uid="2339">
 			<Template>gaia/flora_bush_temperate</Template>
 			<Player>0</Player>
-			<Position x="575.80683" z="844.4408"/>
+			<Position x="575.8462" z="845.42713"/>
 			<Orientation y="2.87238"/>
 		</Entity>
 		<Entity uid="2340">
@@ -14902,8 +14913,8 @@
 		<Entity uid="2529">
 			<Template>gaia/fauna_muskox</Template>
 			<Player>0</Player>
-			<Position x="990.61768" z="462.9875"/>
-			<Orientation y="0.32216"/>
+			<Position x="990.60822" z="462.97501"/>
+			<Orientation y="-2.8971"/>
 		</Entity>
 		<Entity uid="2530">
 			<Template>gaia/fauna_boar</Template>
@@ -15329,31 +15340,31 @@
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
 			<Position x="212.58674" z="417.64448"/>
-			<Orientation y="0.8134"/>
+			<Orientation y="-2.56809"/>
 		</Entity>
 		<Entity uid="2602">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="214.84578" z="424.50055"/>
-			<Orientation y="0.65505"/>
+			<Position x="214.85497" z="424.43345"/>
+			<Orientation y="2.22033"/>
 		</Entity>
 		<Entity uid="2603">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="219.45736" z="427.44526"/>
-			<Orientation y="2.76928"/>
+			<Position x="221.78852" z="428.00391"/>
+			<Orientation y="1.6795"/>
 		</Entity>
 		<Entity uid="2604">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="222.24184" z="420.3646"/>
-			<Orientation y="1.28481"/>
+			<Position x="222.18775" z="420.28937"/>
+			<Orientation y="-2.24235"/>
 		</Entity>
 		<Entity uid="2605">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
 			<Position x="227.50107" z="426.68928"/>
-			<Orientation y="1.0732"/>
+			<Orientation y="3.09617"/>
 		</Entity>
 		<Entity uid="2606">
 			<Template>gaia/flora_bush_berry</Template>
@@ -15376,8 +15387,8 @@
 		<Entity uid="2609">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="200.75681" z="311.10181"/>
-			<Orientation y="0.25951"/>
+			<Position x="202.98076" z="310.58988"/>
+			<Orientation y="1.76055"/>
 		</Entity>
 		<Entity uid="2610">
 			<Template>gaia/flora_bush_berry</Template>
@@ -15389,7 +15400,7 @@
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
 			<Position x="761.36854" z="345.5529"/>
-			<Orientation y="0.47252"/>
+			<Orientation y="2.71822"/>
 		</Entity>
 		<Entity uid="2612">
 			<Template>gaia/flora_bush_berry</Template>
@@ -15413,7 +15424,7 @@
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
 			<Position x="779.80561" z="352.94028"/>
-			<Orientation y="0.91832"/>
+			<Orientation y="-2.10523"/>
 		</Entity>
 		<Entity uid="2616">
 			<Template>gaia/flora_bush_berry</Template>
@@ -15484,25 +15495,25 @@
 		<Entity uid="2627">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="580.0229" z="850.38184"/>
+			<Position x="576.95551" z="854.9408"/>
 			<Orientation y="-3.06296"/>
 		</Entity>
 		<Entity uid="2628">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="578.52033" z="842.77265"/>
+			<Position x="569.97754" z="850.46381"/>
 			<Orientation y="-2.21944"/>
 		</Entity>
 		<Entity uid="2629">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="567.42286" z="835.36"/>
+			<Position x="569.32673" z="836.55243"/>
 			<Orientation y="0.84925"/>
 		</Entity>
 		<Entity uid="2630">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="575.30652" z="851.08558"/>
+			<Position x="575.77875" z="836.55243"/>
 			<Orientation y="0.70635"/>
 		</Entity>
 		<Entity uid="2631">
@@ -17651,6 +17662,162 @@
 			<Template>other/celt_tavern</Template>
 			<Player>1</Player>
 			<Position x="318.73227" z="396.5698"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2999">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="970.68488" z="556.81086"/>
+			<Orientation y="3.03232"/>
+		</Entity>
+		<Entity uid="3000">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="972.51838" z="558.22272"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3001">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="973.98511" z="559.8733"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3002">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="975.47876" z="561.45289"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3003">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="977.06482" z="563.13013"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3004">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="978.44092" z="564.00824"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3005">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="980.35376" z="565.84992"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3006">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="972.39826" z="554.17463"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3007">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="973.7862" z="555.21351"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3008">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="975.35413" z="556.52253"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3009">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="977.14277" z="557.90491"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3010">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="979.14362" z="560.13013"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3011">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="981.0542" z="562.00068"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3012">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="77.18448" z="734.07874"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3013">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="81.05483" z="729.54395"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3014">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="84.24665" z="726.56165"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3015">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="87.00104" z="723.6255"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3016">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="89.71207" z="721.23298"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3017">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="92.41475" z="718.40687"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3018">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="76.13277" z="728.19819"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3019">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="79.16231" z="724.68097"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3020">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="82.15836" z="722.10785"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3021">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="84.53042" z="719.02094"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3022">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="86.45192" z="717.38465"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3023">
+			<Template>units/rome_legionnaire_marian</Template>
+			<Player>4</Player>
+			<Position x="89.43009" z="714.60633"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3024">
+			<Template>units/rome_centurio_imperial</Template>
+			<Player>4</Player>
+			<Position x="92.5489" z="711.15864"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
