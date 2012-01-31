@@ -4,10 +4,10 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="1.02521" g="0.973483" b="0.81829"/>
+		<SunColour r="1.02521" g="0.972944" b="0.816148"/>
 		<SunElevation angle="0.825282"/>
 		<SunRotation angle="-0.785396"/>
-		<TerrainAmbientColour r="0.321569" g="0.392157" b="0.478431"/>
+		<TerrainAmbientColour r="0.321569" g="0.392157" b="0.47451"/>
 		<UnitsAmbientColour r="0.521569" g="0.521569" b="0.521569"/>
 		<Water>
 			<WaterBody>
@@ -16,15 +16,15 @@
 				<Height>18.2557</Height>
 				<Shininess>24.9023</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.826172</Murkiness>
-				<Tint r="0.568627" g="0.517647" b="0.423529"/>
-				<ReflectionTint r="0.396078" g="0.47451" b="0.654902"/>
+				<Murkiness>0.458008</Murkiness>
+				<Tint r="0.643137" g="0.482353" b="0.156863"/>
+				<ReflectionTint r="0.392157" g="0.47451" b="0.654902"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="660.399" y="88.2721" z="520.612"/>
+		<Position x="168.625" y="79.7402" z="32.1877"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -18163,7 +18163,7 @@
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
 			<Position x="718.80494" z="848.30286"/>
-			<Orientation y="-2.64878"/>
+			<Orientation y="-0.3186"/>
 		</Entity>
 		<Entity uid="3673">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
@@ -25392,8 +25392,8 @@
 		</Entity>
 		<Entity uid="5013">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="889.69141" z="997.86219"/>
-			<Orientation y="2.38804"/>
+			<Position x="894.43866" z="1004.04175"/>
+			<Orientation y="3.13517"/>
 		</Entity>
 		<Entity uid="5014">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -25407,22 +25407,22 @@
 		</Entity>
 		<Entity uid="5016">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="891.95014" z="984.24964"/>
+			<Position x="891.62958" z="985.60242"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5017">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="890.96192" z="977.79657"/>
+			<Position x="891.38294" z="980.21412"/>
 			<Orientation y="2.472"/>
 		</Entity>
 		<Entity uid="5018">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="892.6258" z="975.36377"/>
+			<Position x="894.85273" z="977.9391"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5019">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="887.81617" z="977.79072"/>
+			<Position x="887.91565" z="978.74793"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5020">
