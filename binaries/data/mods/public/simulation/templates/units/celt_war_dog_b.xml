@@ -10,17 +10,29 @@
       <Hack>20.0</Hack>
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
+	  <Bonuses>
+		<BonusHunt>
+		  <Classes>Animal</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusHunt>
+	  </Bonuses>
     </Melee>
     <Charge>
       <Hack>60.0</Hack>
       <Pierce>0.0</Pierce>
+	  <Bonuses>
+		<BonusHunt>
+		  <Classes>Animal</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusHunt>
+	  </Bonuses>
     </Charge>
   </Attack>
   <Cost>
     <BuildTime>10</BuildTime>
     <Population>1</Population>
     <Resources>
-      <food>110</food>
+      <food>100</food>
       <wood>0</wood>
     </Resources>
   </Cost>
@@ -44,8 +56,9 @@
     <Unit radius="1.0"/>
   </Obstruction>
   <Promotion>
-    <Entity>units/celt_cavalry_spearman_a</Entity>
+    <Entity>units/celt_war_dog_a</Entity>
   </Promotion>
+  <ResourceGatherer disable=""/>
   <Sound>
     <SoundGroups>
       <select>voice/celts/civ/civ_dog_bark.xml</select>
@@ -67,7 +80,7 @@
     </Run>
   </UnitMotion>
   <Vision>
-    <Range>80</Range>
+    <Range>40</Range>
   </Vision>
   <VisualActor>
     <Actor>units/celts/cavalry_spearman_b.xml</Actor>
