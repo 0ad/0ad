@@ -904,9 +904,9 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor, 
 					const CPos &pos, const float &z, const CRect &clipping)
 {
-	CShaderTechnique tech = g_Renderer.GetShaderManager().LoadEffect("gui_text");
+	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect("gui_text");
 
-	tech.BeginPass(0);
+	tech->BeginPass(0);
 
 	if (clipping != CRect())
 	{
@@ -914,7 +914,7 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 		glScissor(clipping.left, g_yres - clipping.bottom, clipping.GetWidth(), clipping.GetHeight());
 	}
 
-	CTextRenderer textRenderer(tech.GetShader(0));
+	CTextRenderer textRenderer(tech->GetShader(0));
 
 	for (std::vector<SGUIText::STextCall>::const_iterator it = Text.m_TextCalls.begin(); 
 		 it != Text.m_TextCalls.end(); 
@@ -945,7 +945,7 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 	if (clipping != CRect())
 		glDisable(GL_SCISSOR_TEST);
 
-	tech.EndPass(0);
+	tech->EndPass(0);
 }
 
 bool CGUI::GetPreDefinedColor(const CStr& name, CColor &Output)

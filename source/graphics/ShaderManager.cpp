@@ -67,8 +67,8 @@ CShaderManager::~CShaderManager()
 CShaderProgramPtr CShaderManager::LoadProgram(const char* name, const std::map<CStr, CStr>& defines)
 {
 	CacheKey key = { name, defines };
-	std::map<CacheKey, CShaderProgramPtr>::iterator it = m_Cache.find(key);
-	if (it != m_Cache.end())
+	std::map<CacheKey, CShaderProgramPtr>::iterator it = m_ProgramCache.find(key);
+	if (it != m_ProgramCache.end())
 		return it->second;
 
 	CShaderProgramPtr program;
@@ -78,7 +78,7 @@ CShaderProgramPtr CShaderManager::LoadProgram(const char* name, const std::map<C
 		program = CShaderProgramPtr();
 	}
 
-	m_Cache[key] = program;
+	m_ProgramCache[key] = program;
 	return program;
 }
 
@@ -247,17 +247,68 @@ static GLenum ParseBlendFunc(const CStr& str)
 	return GL_ZERO;
 }
 
-CShaderTechnique CShaderManager::LoadEffect(const char* name, const std::map<CStr, CStr>& baseDefines)
+CShaderManager::EffectContext CShaderManager::GetEffectContextAndVerifyCache()
+{
+	EffectContext cx;
+	cx.hasARB = g_Renderer.GetCapabilities().m_ARBProgram;
+	cx.hasGLSL = (g_Renderer.GetCapabilities().m_VertexShader && g_Renderer.GetCapabilities().m_FragmentShader);
+	cx.preferGLSL = g_Renderer.m_Options.m_PreferGLSL;
+
+	// If the context changed since last time, reload every effect
+	if (!(cx == m_EffectCacheContext))
+	{
+		m_EffectCacheContext = cx;
+		for (std::map<CacheKey, CShaderTechniquePtr>::iterator it = m_EffectCache.begin(); it != m_EffectCache.end(); ++it)
+		{
+			it->second->Reset();
+			NewEffect(it->first.name.c_str(), it->first.defines, cx, it->second);
+		}
+	}
+
+	return cx;
+}
+
+CShaderTechniquePtr CShaderManager::LoadEffect(const char* name, const std::map<CStr, CStr>& defines)
+{
+	EffectContext cx = GetEffectContextAndVerifyCache();
+
+	CacheKey key = { name, defines };
+	std::map<CacheKey, CShaderTechniquePtr>::iterator it = m_EffectCache.find(key);
+	if (it != m_EffectCache.end())
+		return it->second;
+
+	CShaderTechniquePtr tech(new CShaderTechnique());
+	if (!NewEffect(name, defines, cx, tech))
+	{
+		LOGERROR(L"Failed to load effect '%hs'", name);
+		tech = CShaderTechniquePtr();
+	}
+
+	m_EffectCache[key] = tech;
+	return tech;
+}
+
+bool CShaderManager::NewEffect(const char* name, const std::map<CStr, CStr>& baseDefines, const EffectContext& cx, CShaderTechniquePtr& tech)
 {
 	PROFILE2("loading effect");
 	PROFILE2_ATTR("name: %s", name);
+
+	// Shortcut syntax for effects that just contain a single shader
+	if (strncmp(name, "shader:", 7) == 0)
+	{
+		CShaderProgramPtr program = LoadProgram(name+7, baseDefines);
+		if (!program)
+			return false;
+		tech->AddPass(CShaderPass(program));
+		return true;
+	}
 
 	VfsPath xmlFilename = L"shaders/effects/" + wstring_from_utf8(name) + L".xml";
 
 	CXeromyces XeroFile;
 	PSRETURN ret = XeroFile.Load(g_VFS, xmlFilename);
 	if (ret != PSRETURN_OK)
-		return CShaderTechnique();
+		return false;
 
 	// Define all the elements and attributes used in the XML file
 #define EL(x) int el_##x = XeroFile.GetElementID(#x)
@@ -295,15 +346,15 @@ CShaderTechnique CShaderManager::LoadEffect(const char* name, const std::map<CSt
 				}
 				else if (Child.GetAttributes().GetNamedItem(at_shaders) == "arb")
 				{
-					if (!g_Renderer.GetCapabilities().m_ARBProgram)
+					if (!cx.hasARB)
 						isUsable = false;
 				}
 				else if (Child.GetAttributes().GetNamedItem(at_shaders) == "glsl")
 				{
-					if (!g_Renderer.GetCapabilities().m_VertexShader || !g_Renderer.GetCapabilities().m_FragmentShader)
+					if (!cx.hasGLSL)
 						isUsable = false;
 
-					if (g_Renderer.m_Options.m_PreferGLSL)
+					if (cx.preferGLSL)
 						preference += 100;
 					else
 						preference -= 100;
@@ -318,13 +369,11 @@ CShaderTechnique CShaderManager::LoadEffect(const char* name, const std::map<CSt
 	if (usableTechs.empty())
 	{
 		debug_warn(L"Can't find a usable technique");
-		return CShaderTechnique();
+		return false;
 	}
 
 	// Sort by preference, tie-break on order of specification
 	std::stable_sort(usableTechs.begin(), usableTechs.end(), revcompare2nd());
-
-	CShaderTechnique tech;
 
 	XERO_ITER_EL(usableTechs[0].first, Child)
 	{
@@ -343,11 +392,11 @@ CShaderTechnique CShaderManager::LoadEffect(const char* name, const std::map<CSt
 				}
 			}
 
-			tech.AddPass(pass);
+			tech->AddPass(pass);
 		}
 	}
 
-	return tech;
+	return true;
 }
 
 /*static*/ Status CShaderManager::ReloadChangedFileCB(void* param, const VfsPath& path)
@@ -368,6 +417,8 @@ Status CShaderManager::ReloadChangedFile(const VfsPath& path)
 				program->Reload();
 		}
 	}
+
+	// TODO: hotloading changes to shader XML files and effect XML files would be nice
 
 	return INFO::OK;
 }

@@ -56,13 +56,9 @@ public:
 	 * @param defines key/value set of preprocessor definitions
 	 * @return loaded technique, or empty technique on error
 	 */
-	CShaderTechnique LoadEffect(const char* name, const std::map<CStr, CStr>& defines = (std::map<CStr, CStr>()));
+	CShaderTechniquePtr LoadEffect(const char* name, const std::map<CStr, CStr>& defines = (std::map<CStr, CStr>()));
 
 private:
-	bool NewProgram(const char* name, const std::map<CStr, CStr>& defines, CShaderProgramPtr& program);
-
-	static Status ReloadChangedFileCB(void* param, const VfsPath& path);
-	Status ReloadChangedFile(const VfsPath& path);
 
 	struct CacheKey
 	{
@@ -77,7 +73,34 @@ private:
 		}
 	};
 
-	std::map<CacheKey, CShaderProgramPtr> m_Cache;
+	// A CShaderProgram contains expensive GL state, so we ought to cache it.
+	// The compiled state depends solely on the filename and list of defines,
+	// so we store that in CacheKey.
+	std::map<CacheKey, CShaderProgramPtr> m_ProgramCache;
+
+	// An effect isn't too expensive but it may be loaded many times per frame,
+	// so we ought to cache it anyway.
+	// For each effect we pick a technique at load time, dependent on various
+	// settings (e.g. GL shader extensions, or user's chosen graphics quality)
+	// which rarely change. We'll store that collection of settings in
+	// EffectContext and reload the effect cache whenever it changes.
+	struct EffectContext
+	{
+		bool hasARB;
+		bool hasGLSL;
+		bool preferGLSL;
+
+		bool operator==(const EffectContext& b) const
+		{
+			return hasARB == b.hasARB && hasGLSL == b.hasGLSL && preferGLSL == b.preferGLSL;
+		}
+	};
+
+	EffectContext GetEffectContextAndVerifyCache();
+
+	std::map<CacheKey, CShaderTechniquePtr> m_EffectCache;
+	EffectContext m_EffectCacheContext;
+
 
 	// Store the set of shaders that need to be reloaded when the given file is modified
 	typedef boost::unordered_map<VfsPath, std::set<boost::weak_ptr<CShaderProgram> > > HotloadFilesMap;
@@ -86,6 +109,12 @@ private:
 #if USE_SHADER_XML_VALIDATION
 	RelaxNGValidator m_Validator;
 #endif
+
+	bool NewProgram(const char* name, const std::map<CStr, CStr>& defines, CShaderProgramPtr& program);
+	bool NewEffect(const char* name, const std::map<CStr, CStr>& defines, const EffectContext& cx, CShaderTechniquePtr& tech);
+
+	static Status ReloadChangedFileCB(void* param, const VfsPath& path);
+	Status ReloadChangedFile(const VfsPath& path);
 };
 
 #endif // INCLUDED_SHADERMANAGER

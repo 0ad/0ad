@@ -1080,9 +1080,9 @@ void CInput::Draw()
 		float h = (float)font.GetHeight();
 		float ls = (float)font.GetLineSpacing();
 
-		CShaderTechnique tech = g_Renderer.GetShaderManager().LoadEffect("gui_text");
+		CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect("gui_text");
 		
-		CTextRenderer textRenderer(tech.GetShader(0));
+		CTextRenderer textRenderer(tech->GetShader(0));
 		textRenderer.Font(font_name);
 
 		// Set the Z to somewhat more, so we can draw a selected area between the
@@ -1247,7 +1247,7 @@ void CInput::Draw()
 		// Setup initial color (then it might change and change back, when drawing selected area)
 		textRenderer.Color(color);
 
-		tech.BeginPass(0);
+		tech->BeginPass(0);
 
 		bool using_selected_color = false;
 		
@@ -1349,7 +1349,7 @@ void CInput::Draw()
 		if (cliparea != CRect())
 			glDisable(GL_SCISSOR_TEST);
 
-		tech.EndPass(0);
+		tech->EndPass(0);
 	}
 }
 

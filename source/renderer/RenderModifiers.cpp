@@ -217,7 +217,7 @@ void SolidColorRenderModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(mod
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ShaderRenderModifier implementation
 
-ShaderRenderModifier::ShaderRenderModifier(const CShaderTechnique& technique) :
+ShaderRenderModifier::ShaderRenderModifier(const CShaderTechniquePtr& technique) :
 	m_Technique(technique)
 {
 }
@@ -228,9 +228,9 @@ ShaderRenderModifier::~ShaderRenderModifier()
 
 int ShaderRenderModifier::BeginPass(int pass)
 {
-	m_Technique.BeginPass(pass);
+	m_Technique->BeginPass(pass);
 
-	CShaderProgramPtr shader = m_Technique.GetShader(pass);
+	CShaderProgramPtr shader = m_Technique->GetShader(pass);
 
 	if (GetShadowMap() && shader->HasTexture("shadowTex"))
 	{
@@ -267,21 +267,21 @@ int ShaderRenderModifier::BeginPass(int pass)
 
 bool ShaderRenderModifier::EndPass(int pass)
 {
-	m_Technique.EndPass(pass);
+	m_Technique->EndPass(pass);
 
-	return (pass >= m_Technique.GetNumPasses()-1);
+	return (pass >= m_Technique->GetNumPasses()-1);
 }
 
 void ShaderRenderModifier::PrepareTexture(int pass, CTexturePtr& texture)
 {
-	CShaderProgramPtr shader = m_Technique.GetShader(pass);
+	CShaderProgramPtr shader = m_Technique->GetShader(pass);
 
 	shader->BindTexture("baseTex", texture->GetHandle());
 }
 
 void ShaderRenderModifier::PrepareModel(int pass, CModel* model)
 {
-	CShaderProgramPtr shader = m_Technique.GetShader(pass);
+	CShaderProgramPtr shader = m_Technique->GetShader(pass);
 
 	if (m_BindingInstancingTransform.Active())
 		shader->Uniform(m_BindingInstancingTransform, model->GetTransform());
