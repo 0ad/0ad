@@ -3,6 +3,7 @@
 set -e
 
 JOBS=${JOBS:="-j2"}
+MAKE=${MAKE:="make"}
 
 echo "Building NVTT..."
 echo
@@ -12,7 +13,7 @@ cd src/build/
 
 cmake .. -DNVTT_SHARED=1 -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles"
 
-make nvtt ${JOBS}
+${MAKE} nvtt ${JOBS}
 
 cd ../../
 

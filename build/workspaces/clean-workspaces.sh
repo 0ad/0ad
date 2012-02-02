@@ -1,5 +1,14 @@
 #!/bin/sh
 
+# FreeBSD's make is different than GNU make, so we allow overriding the make command.
+# If not set, MAKE will default to "gmake" on FreeBSD, or "make" on other OSes
+if [ "`uname -s`" = "FreeBSD" ]
+then
+  MAKE=${MAKE:="gmake"}
+else
+  MAKE=${MAKE:="make"}
+fi
+
 # (We don't attempt to clean up every last file here - output in
 # binaries/system/ will still be there, etc. This is mostly just
 # to quickly fix problems in the bundled dependencies.)
@@ -14,7 +23,7 @@ echo "Cleaning bundled third-party dependencies..."
 (cd ../../libraries/spidermonkey && rm -rf ./js-1.8.5)
 (cd ../../libraries/nvtt/src && rm -rf ./build)
 
-(cd ../premake/premake4/build/gmake.unix && make clean)
+(cd ../premake/premake4/build/gmake.unix && ${MAKE} clean)
 
 echo "Cleaning build output..."
 

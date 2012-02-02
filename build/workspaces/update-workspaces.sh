@@ -8,6 +8,15 @@ die()
 
 JOBS=${JOBS:="-j2"}
 
+# FreeBSD's make is different than GNU make, so we allow overriding the make command.
+# If not set, MAKE will default to "gmake" on FreeBSD, or "make" on other OSes
+if [ "`uname -s`" = "FreeBSD" ]
+then
+  MAKE=${MAKE:="gmake"}
+else
+  MAKE=${MAKE:="make"}
+fi
+
 # Parse command-line options:
 
 premake_args=""
@@ -44,24 +53,24 @@ echo "Updating bundled third-party dependencies..."
 echo
 
 # Build/update bundled external libraries
-(cd ../../libraries/fcollada/src && make ${JOBS}) || die "FCollada build failed"
+(cd ../../libraries/fcollada/src && ${MAKE} ${JOBS}) || die "FCollada build failed"
 echo
 if [ "$with_system_mozjs185" = "false" ]; then
-  (cd ../../libraries/spidermonkey && JOBS=${JOBS} ./build.sh) || die "SpiderMonkey build failed"
+  (cd ../../libraries/spidermonkey && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "SpiderMonkey build failed"
 fi
 echo
 if [ "$with_system_nvtt" = "false" ]; then
-  (cd ../../libraries/nvtt && JOBS=${JOBS} ./build.sh) || die "NVTT build failed"
+  (cd ../../libraries/nvtt && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "NVTT build failed"
 fi
 echo
 if [ "$with_system_enet" = "false" ]; then
-  (cd ../../libraries/enet && JOBS=${JOBS} ./build.sh) || die "ENet build failed"
+  (cd ../../libraries/enet && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "ENet build failed"
 fi
 echo
 
 # Now build premake and run it to create the makefiles
 cd ../premake/premake4
-make -C build/gmake.unix ${JOBS} || die "Premake build failed"
+${MAKE} -C build/gmake.unix ${JOBS} || die "Premake build failed"
 
 echo
 
