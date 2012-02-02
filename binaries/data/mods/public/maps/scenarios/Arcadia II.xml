@@ -4,7 +4,7 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cirrus</SkySet>
-		<SunColour r="0.791843" g="0.770895" b="0.687102"/>
+		<SunColour r="0.788235" g="0.768627" b="0.686275"/>
 		<SunElevation angle="0.951868"/>
 		<SunRotation angle="-0.532844"/>
 		<TerrainAmbientColour r="0.337255" g="0.403922" b="0.466667"/>
@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="613.331" y="102.336" z="485.034"/>
+		<Position x="126.995" y="85.4267" z="57.6226"/>
 		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -21668,12 +21668,6 @@
 			<Position x="103.36625" z="146.67057"/>
 			<Orientation y="-2.35462"/>
 		</Entity>
-		<Entity uid="4559">
-			<Template>units/celt_cavalry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="113.94562" z="111.68801"/>
-			<Orientation y="2.34278"/>
-		</Entity>
 		<Entity uid="4569">
 			<Template>gaia/fauna_deer</Template>
 			<Player>0</Player>
@@ -22516,6 +22510,12 @@
 			<Template>gaia/geology_stonemine_medit_quarry</Template>
 			<Player>0</Player>
 			<Position x="151.16021" z="154.75692"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4751">
+			<Template>units/celt_war_dog_b</Template>
+			<Player>2</Player>
+			<Position x="121.12722" z="125.14153"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>

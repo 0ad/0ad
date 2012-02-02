@@ -2,6 +2,7 @@
 
 <Scenario version="5">
 	<Environment>
+		<LightingModel>old</LightingModel>
 		<SkySet>cirrus</SkySet>
 		<SunColour r="1.5" g="1.5" b="1.5"/>
 		<SunElevation angle="0.591071"/>
@@ -23,23 +24,26 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="155.853" y="119.969" z="-48.4189"/>
+		<Position x="161.484" y="88.763" z="-0.393753"/>
 		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name":"Celts Sandbox",
-  "Description":"A showcase for all Celtic buildings and units. There are also a small number of enemy units to kill and some resources to gather.",
-  "Keywords": ["demo"],
-  "PlayerData":[{
-      "Civ":"celt"
+  "Name": "Celts Sandbox",
+  "Description": "A showcase for all Celtic buildings and units. There are also a small number of enemy units to kill and some resources to gather.",
+  "Keywords": [
+    "demo"
+  ],
+  "PlayerData": [
+    {
+      "Civ": "celt"
     },
     {
-      "Civ":"hele"
+      "Civ": "hele"
     }
   ],
-  "GameType":"endless"
+  "GameType": "endless"
 }
 ]]></ScriptSettings>
 	<Entities>
@@ -65,24 +69,6 @@
 			<Template>structures/celt_kennel</Template>
 			<Player>1</Player>
 			<Position x="113.99064" z="96.96375"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="18">
-			<Template>units/celt_cavalry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="119.74099" z="93.11167"/>
-			<Orientation y="1.77642"/>
-		</Entity>
-		<Entity uid="19">
-			<Template>units/celt_cavalry_spearman_a</Template>
-			<Player>1</Player>
-			<Position x="111.97506" z="87.50556"/>
-			<Orientation y="-0.61678"/>
-		</Entity>
-		<Entity uid="23">
-			<Template>units/celt_cavalry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="120.95054" z="98.40058"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="43">
@@ -478,7 +464,7 @@
 		<Entity uid="222">
 			<Template>units/celt_support_healer</Template>
 			<Player>1</Player>
-			<Position x="163.27295" z="51.83298"/>
+			<Position x="168.80031" z="46.27845"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="223">
@@ -973,36 +959,6 @@
 			<Position x="121.85868" z="113.35084"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="331">
-			<Template>units/celt_cavalry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="116.54921" z="87.36548"/>
-			<Orientation y="2.96595"/>
-		</Entity>
-		<Entity uid="332">
-			<Template>units/celt_cavalry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="110.09073" z="90.88297"/>
-			<Orientation y="-0.65683"/>
-		</Entity>
-		<Entity uid="333">
-			<Template>units/celt_cavalry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="104.254" z="97.80645"/>
-			<Orientation y="0.459"/>
-		</Entity>
-		<Entity uid="334">
-			<Template>units/celt_cavalry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="107.16358" z="102.23871"/>
-			<Orientation y="-2.71793"/>
-		</Entity>
-		<Entity uid="335">
-			<Template>units/celt_cavalry_spearman_a</Template>
-			<Player>1</Player>
-			<Position x="106.76247" z="90.8127"/>
-			<Orientation y="0.03522"/>
-		</Entity>
 		<Entity uid="336">
 			<Template>units/celt_cavalry_swordsman_b</Template>
 			<Player>1</Player>
@@ -1126,7 +1082,7 @@
 		<Entity uid="374">
 			<Template>structures/celt_dock</Template>
 			<Player>1</Player>
-			<Position x="107.28151" z="276.39298"/>
+			<Position x="110.86904" z="269.88956"/>
 			<Orientation y="-0.73821"/>
 		</Entity>
 		<Entity uid="375">
@@ -1212,6 +1168,96 @@
 			<Player>0</Player>
 			<Position x="289.53092" z="380.35117"/>
 			<Orientation y="-2.32058"/>
+		</Entity>
+		<Entity uid="398">
+			<Template>units/celt_war_dog_b</Template>
+			<Player>1</Player>
+			<Position x="112.49296" z="86.91614"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="399">
+			<Template>units/celt_war_dog_b</Template>
+			<Player>1</Player>
+			<Position x="115.07155" z="88.4877"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="400">
+			<Template>units/celt_war_dog_b</Template>
+			<Player>1</Player>
+			<Position x="116.34263" z="89.83977"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="401">
+			<Template>units/celt_war_dog_b</Template>
+			<Player>1</Player>
+			<Position x="117.4829" z="91.14512"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="402">
+			<Template>units/celt_war_dog_a</Template>
+			<Player>1</Player>
+			<Position x="114.76046" z="84.31563"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="403">
+			<Template>units/celt_war_dog_a</Template>
+			<Player>1</Player>
+			<Position x="116.38593" z="86.0257"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="404">
+			<Template>units/celt_war_dog_a</Template>
+			<Player>1</Player>
+			<Position x="117.9806" z="87.37064"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="405">
+			<Template>units/celt_war_dog_a</Template>
+			<Player>1</Player>
+			<Position x="119.30015" z="89.06054"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="406">
+			<Template>units/celt_war_dog_a</Template>
+			<Player>1</Player>
+			<Position x="117.43737" z="82.45788"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="407">
+			<Template>units/celt_war_dog_a</Template>
+			<Player>1</Player>
+			<Position x="118.86342" z="83.98446"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="408">
+			<Template>units/celt_war_dog_a</Template>
+			<Player>1</Player>
+			<Position x="120.4232" z="85.67627"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="409">
+			<Template>units/celt_war_dog_a</Template>
+			<Player>1</Player>
+			<Position x="122.21335" z="87.83152"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="410">
+			<Template>units/celt_war_dog_e</Template>
+			<Player>1</Player>
+			<Position x="109.41894" z="85.41668"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="411">
+			<Template>units/celt_war_dog_e</Template>
+			<Player>1</Player>
+			<Position x="112.4009" z="82.22364"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="412">
+			<Template>units/celt_war_dog_e</Template>
+			<Player>1</Player>
+			<Position x="114.88888" z="79.54703"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
