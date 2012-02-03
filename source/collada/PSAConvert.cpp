@@ -84,6 +84,7 @@ public:
 
 			// Count frames; don't include the last keyframe
 			size_t frameCount = (size_t)((timeEnd - timeStart) / frameLength - 0.5f);
+			REQUIRE(frameCount > 0, "animation must have frames");
 			// (TODO: sort out the timing/looping problems)
 
 			size_t boneCount = skeleton.GetBoneCount();
