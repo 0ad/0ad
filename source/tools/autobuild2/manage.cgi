@@ -211,17 +211,19 @@ sub generate_status_table {
     for my $item (@$instances) {
         $status .= qq{<tr>};
         for (@columns) {
-            if ($_->[0] eq 'launch_time') {
-                my $t = DateTime::Format::ISO8601->parse_datetime($item->{$_->[0]});
+            my $key = $_->[0];
+            my $val = $item->{$key} // '';
+            if ($key eq 'launch_time') {
+                my $t = DateTime::Format::ISO8601->parse_datetime($val);
                 my $now = DateTime->now();
                 my $diff = $now - $t;
                 my ($days, $hours, $minutes) = $diff->in_units('days', 'hours', 'minutes');
                 my $age = "$minutes minutes ago";
                 $age = "$hours hours, $age" if $hours;
                 $age = "$days days, $age" if $days;
-                $status .= qq{<td>$item->{$_->[0]} ($age)};
+                $status .= qq{<td>$val ($age)};
             } else {
-                $status .= qq{<td>$item->{$_->[0]}};
+                $status .= qq{<td>$val};
             }
         }
         $status .= qq{<td><a href="?action=console;instance_id=$item->{instance_id}">Console output</a>\n};
