@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2012-02-04T22:38:46Z</created>
+    <modified>2012-02-04T22:38:46Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__6-image" name="Map__6">
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\structural\rome_struct.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_02___Default" name="_02___Default">
+      <instance_effect url="#_02___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_02___Default-fx" name="_02___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__6-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="rome_market_str1_tran-lib" name="rome_market_str1_tranMesh">
+      <mesh>
+        <source id="rome_market_str1_tran-lib-Position">
+          <float_array id="rome_market_str1_tran-lib-Position-array" count="72">
+-13.101380 3.165355 8.580836
+-13.101380 3.165355 6.675219
+-13.101380 0.430900 6.675219
+-13.101380 0.430900 8.580837
+-7.098298 0.152590 8.580837
+-7.098298 0.152590 6.675219
+-9.763014 0.152591 6.675219
+-9.763014 0.152591 8.580837
+-10.230680 0.148101 8.580838
+-10.230680 0.148101 6.675220
+-12.895390 0.148102 6.675220
+-12.895390 0.148102 8.580837
+-7.098298 0.128510 8.580837
+-7.098298 0.128510 6.675219
+-9.763014 0.128510 6.675219
+-9.763014 0.128510 8.580837
+-10.230680 0.128511 8.580837
+-10.230680 0.128511 6.675220
+-12.895390 0.128511 6.675220
+-12.895390 0.128511 8.580838
+-13.126550 3.165355 8.580837
+-13.126550 3.165355 6.675219
+-13.126550 0.430900 6.675219
+-13.126550 0.430900 8.580836
+</float_array>
+          <technique_common>
+            <accessor source="#rome_market_str1_tran-lib-Position-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="rome_market_str1_tran-lib-Normal0">
+          <float_array id="rome_market_str1_tran-lib-Normal0-array" count="108">
+1.000000 -0.000000 -0.000000
+1.000000 -0.000000 -0.000000
+1.000000 -0.000000 -0.000000
+1.000000 -0.000000 -0.000000
+1.000000 -0.000000 -0.000000
+1.000000 -0.000000 -0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+-0.000000 -1.000000 0.000000
+-0.000000 -1.000000 0.000000
+-0.000000 -1.000000 0.000000
+-0.000000 -1.000000 0.000000
+-0.000000 -1.000000 0.000000
+-0.000000 -1.000000 0.000000
+-0.000000 -1.000000 0.000000
+-0.000000 -1.000000 0.000000
+-0.000000 -1.000000 0.000000
+-0.000000 -1.000000 0.000000
+-0.000000 -1.000000 0.000000
+-0.000000 -1.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#rome_market_str1_tran-lib-Normal0-array" count="36" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="rome_market_str1_tran-lib-UV0">
+          <float_array id="rome_market_str1_tran-lib-UV0-array" count="48">
+0.505613 0.510246
+0.505613 0.661501
+0.402355 0.661501
+0.402355 0.510246
+0.504087 0.511230
+0.504087 0.660518
+0.402172 0.660518
+0.402172 0.511230
+0.504087 0.511230
+0.402172 0.511230
+0.402172 0.660518
+0.504087 0.660518
+0.504087 0.511230
+0.504087 0.660518
+0.402172 0.660518
+0.402172 0.511230
+0.504087 0.511230
+0.402172 0.511230
+0.402172 0.660518
+0.504087 0.660518
+0.505613 0.510246
+0.505613 0.661501
+0.402355 0.661501
+0.402355 0.510246
+</float_array>
+          <technique_common>
+            <accessor source="#rome_market_str1_tran-lib-UV0-array" count="24" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="rome_market_str1_tran-lib-Vertex">
+          <input semantic="POSITION" source="#rome_market_str1_tran-lib-Position"/>
+        </vertices>
+        <polygons material="_02___Default" count="12">
+          <input semantic="VERTEX" offset="0" source="#rome_market_str1_tran-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#rome_market_str1_tran-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#rome_market_str1_tran-lib-UV0"/>
+          <p>0 0 0 3 1 1 2 2 2</p>
+          <p>2 3 2 1 4 3 0 5 0</p>
+          <p>7 6 4 4 7 5 5 8 6</p>
+          <p>5 9 6 6 10 7 7 11 4</p>
+          <p>8 12 8 9 13 9 10 14 10</p>
+          <p>10 15 10 11 16 11 8 17 8</p>
+          <p>12 18 12 15 19 13 14 20 14</p>
+          <p>14 21 14 13 22 15 12 23 12</p>
+          <p>19 24 16 18 25 17 17 26 18</p>
+          <p>17 27 18 16 28 19 19 29 16</p>
+          <p>23 30 20 20 31 21 21 32 22</p>
+          <p>21 33 22 22 34 23 23 35 20</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_lights>
+    <light id="SceneAmbient-lib" name="SceneAmbientMesh">
+      <technique_common>
+        <ambient>
+          <color>0.466667 0.466667 0.466667</color>
+        </ambient>
+      </technique_common>
+    </light>
+  </library_lights>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="rome_market_str1_tran" name="rome_market_str1_tran">
+        <matrix sid="matrix">1.120281 0.000000 0.000000 0.000000 0.000000 1.120281 0.000000 -1.042081 0.000000 0.000000 1.120281 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#rome_market_str1_tran-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_02___Default" target="#_02___Default"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+
