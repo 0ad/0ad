@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant frequency="100" name="Base">
-      <mesh>structural/rome_tc.dae</mesh>
+    <variant frequency="100" name="roman market">
+      <mesh>structural/rome_market_struct1.dae</mesh>
       <props>
-        <prop actor="props/structures/romans/market.xml" attachpoint="props_main"/>
+        <prop actor="props/structures/romans/market_nature.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/market_struct2.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/market_struct1_trans.xml" attachpoint="root"/>
       </props>
-      <texture>structural/rome_struct_1.dds</texture>
+      <texture>structural/rome_struct.png</texture>
     </variant>
   </group>
-
+  <material>player_trans.xml</material>
 </actor>
