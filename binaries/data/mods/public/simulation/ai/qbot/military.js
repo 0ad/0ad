@@ -448,17 +448,17 @@ MilitaryAttackManager.prototype.measureEnemyStrength = function(gameState){
 
 // Adds towers to the defenceBuilding queue
 MilitaryAttackManager.prototype.buildDefences = function(gameState, queues){ 
-	if (gameState.countEntitiesAndQueuedWithType(gameState.applyCiv('structures/{civ}_scout_tower'))
-			+ queues.defenceBuilding.totalLength() < gameState.getBuildLimits()["ScoutTower"]) {
+	if (gameState.countEntitiesAndQueuedWithType(gameState.applyCiv('structures/{civ}_defense_tower'))
+			+ queues.defenceBuilding.totalLength() < gameState.getBuildLimits()["DefenseTower"]) {
 		
 		
 		gameState.getOwnEntities().forEach(function(dropsiteEnt) {
-			if (dropsiteEnt.resourceDropsiteTypes() && dropsiteEnt.getMetadata("scoutTower") !== true){
+			if (dropsiteEnt.resourceDropsiteTypes() && dropsiteEnt.getMetadata("defenseTower") !== true){
 				var position = dropsiteEnt.position();
 				if (position){
-					queues.defenceBuilding.addItem(new BuildingConstructionPlan(gameState, 'structures/{civ}_scout_tower', position));
+					queues.defenceBuilding.addItem(new BuildingConstructionPlan(gameState, 'structures/{civ}_defense_tower', position));
 				}
-				dropsiteEnt.setMetadata("scoutTower", true);
+				dropsiteEnt.setMetadata("defenseTower", true);
 			}
 		});
 	}

@@ -35,7 +35,7 @@ BuildRestrictions.prototype.Schema =
 		"<choice>" +
 			"<value>CivilCentre</value>" +
 			"<value>House</value>" +
-			"<value>ScoutTower</value>" +
+			"<value>DefenseTower</value>" +
 			"<value>Farmstead</value>" +
 			"<value>Market</value>" +
 			"<value>Barracks</value>" +
