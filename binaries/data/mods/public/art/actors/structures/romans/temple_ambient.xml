@@ -3,14 +3,14 @@
   <castshadow/>
   <group>
     <variant>
-      <mesh>structural/rome_hc1.dae</mesh>
+      <mesh>structural/rome_hc.dae</mesh>
       <props>
         <prop actor="particle/flame_jav.xml" attachpoint="flame01"/>
         <prop actor="particle/smoke_small_light.xml" attachpoint="flame01"/>
         <prop actor="particle/flame_jav.xml" attachpoint="flame02"/>
         <prop actor="particle/smoke_small_light.xml" attachpoint="flame02"/>
       </props>
-      <texture>structural/rome_struct.png</texture>
+      <texture>structural/rome_hc_01.png</texture>
     </variant>
   </group>
   <group>
