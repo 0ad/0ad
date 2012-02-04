@@ -44,9 +44,9 @@ public:
 								"--------", 8, 5);
 
 		std::vector<STerritoryBoundary> boundaries = CTerritoryBoundaryCalculator::ComputeBoundaries(&grid);
-		TS_ASSERT_EQUALS(1, boundaries.size());
-		TS_ASSERT_EQUALS(18, boundaries[0].points.size()); // 2x6 + 2x3
-		TS_ASSERT_EQUALS(7, boundaries[0].owner);
+		TS_ASSERT_EQUALS(1U, boundaries.size());
+		TS_ASSERT_EQUALS(18U, boundaries[0].points.size()); // 2x6 + 2x3
+		TS_ASSERT_EQUALS((player_id_t)7, boundaries[0].owner);
 		TS_ASSERT_EQUALS(false, boundaries[0].connected); // high bits aren't set by GetGrid
 
 		// assumes CELL_SIZE is 4; dealt with in TestBoundaryPointsEqual
@@ -133,11 +133,11 @@ public:
 		TS_ASSERT_DIFFERS(twosOuter,   (STerritoryBoundary*) NULL);
 		TS_ASSERT_DIFFERS(threesOuter, (STerritoryBoundary*) NULL);
 
-		TS_ASSERT_EQUALS(onesOuter->points.size(), 20);
-		TS_ASSERT_EQUALS(onesInner0->points.size(), 4);
-		TS_ASSERT_EQUALS(onesInner2->points.size(), 4);
-		TS_ASSERT_EQUALS(twosOuter->points.size(), 4);
-		TS_ASSERT_EQUALS(threesOuter->points.size(), 4);
+		TS_ASSERT_EQUALS(onesOuter->points.size(), 20U);
+		TS_ASSERT_EQUALS(onesInner0->points.size(), 4U);
+		TS_ASSERT_EQUALS(onesInner2->points.size(), 4U);
+		TS_ASSERT_EQUALS(twosOuter->points.size(), 4U);
+		TS_ASSERT_EQUALS(threesOuter->points.size(), 4U);
 
 		int onesOuterExpectedPoints[][2] = {{6,4}, {10,4}, {14,4}, {18,4}, {22,4}, {26,4},
 		                                    {28,6}, {26,8}, {24,10}, {26,12}, {28,14},
@@ -214,10 +214,10 @@ public:
 		TS_ASSERT_DIFFERS(twosInner,   (STerritoryBoundary*) NULL);
 		TS_ASSERT_DIFFERS(threesOuter, (STerritoryBoundary*) NULL);
 
-		TS_ASSERT_EQUALS(onesOuter->points.size(), 8);
-		TS_ASSERT_EQUALS(twosOuter->points.size(), 22);
-		TS_ASSERT_EQUALS(twosInner->points.size(), 14);
-		TS_ASSERT_EQUALS(threesOuter->points.size(), 14);
+		TS_ASSERT_EQUALS(onesOuter->points.size(), 8U);
+		TS_ASSERT_EQUALS(twosOuter->points.size(), 22U);
+		TS_ASSERT_EQUALS(twosInner->points.size(), 14U);
+		TS_ASSERT_EQUALS(threesOuter->points.size(), 14U);
 		
 		// See if we need to swap the outer and inner edges of the twos territories (uses the extremely simplistic
 		// heuristic of comparing the amount of points to determine which one is the outer one and which one the inner
