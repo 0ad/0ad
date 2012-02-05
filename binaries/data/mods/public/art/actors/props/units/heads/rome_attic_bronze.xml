@@ -1,15 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant frequency="1" name="Helmet-Attic-Crested-Bronze">
-      <mesh>props/helmet/hele_helmet_s.dae</mesh>
-      <texture>props/helmet/rome_attic_bronze.dds</texture>
+    <variant frequency="1" name="Helmet-Attic-Crested_a">
+      <mesh>props/helmet/rome_hero_a.dae</mesh>
+    </variant>
+    <variant name="Helmet-Attic-Crested_b">
+      <mesh>props/helmet/rome_hero_b.dae</mesh>
     </variant>
   </group>
-
+  <group>
+    <variant frequency="1" name="yellow">
+      <texture>props/helmet/rome_hero_a.png</texture>
+    </variant>
+    <variant frequency="1" name="copper">
+      <texture>props/helmet/rome_hero_b.png</texture>
+    </variant>
+  </group>
   <material>player_trans.xml</material>
-
 </actor>
