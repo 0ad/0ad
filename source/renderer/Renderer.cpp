@@ -547,8 +547,6 @@ void CRenderer::ReloadShaders()
 
 	typedef std::map<CStr, CStr> Defines;
 
-	Defines defNull;
-
 	Defines defBasic;
 	if (m_Options.m_Shadows)
 	{
@@ -572,34 +570,34 @@ void CRenderer::ReloadShaders()
 	CShaderPass passTransparentOpaque(m->shaderManager.LoadProgram("model_common_arb", defTransparent));
 	passTransparentOpaque.AlphaFunc(GL_GREATER, 0.9375f);
 	passTransparentOpaque.BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	CShaderTechnique techTransparentOpaque(passTransparentOpaque);
+	CShaderTechniquePtr techTransparentOpaque(new CShaderTechnique(passTransparentOpaque));
 
 	CShaderPass passTransparentBlend(m->shaderManager.LoadProgram("model_common_arb", defTransparent));
 	passTransparentBlend.AlphaFunc(GL_GREATER, 0.0f);
 	passTransparentBlend.DepthFunc(GL_LESS);
 	passTransparentBlend.BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	passTransparentBlend.DepthMask(0);
-	CShaderTechnique techTransparentBlend(passTransparentBlend);
+	CShaderTechniquePtr techTransparentBlend(new CShaderTechnique(passTransparentBlend));
 
-	CShaderTechnique techTransparent(passTransparentOpaque);
-	techTransparent.AddPass(passTransparentBlend);
+	CShaderTechniquePtr techTransparent(new CShaderTechnique(passTransparentOpaque));
+	techTransparent->AddPass(passTransparentBlend);
 
 	CShaderPass passTransparentShadow(m->shaderManager.LoadProgram("solid_tex", defBasic));
 	passTransparentShadow.AlphaFunc(GL_GREATER, 0.4f);
-	CShaderTechnique techTransparentShadow(passTransparentShadow);
+	CShaderTechniquePtr techTransparentShadow(new CShaderTechnique(passTransparentShadow));
 
-	m->Model.ModShaderSolidColor = RenderModifierPtr(new ShaderRenderModifier(CShaderTechnique(m->shaderManager.LoadProgram(
-			"solid", defNull))));
-	m->Model.ModShaderSolidColorInstancing = RenderModifierPtr(new ShaderRenderModifier(CShaderTechnique(m->shaderManager.LoadProgram(
-			"solid_instancing", defNull))));
+	m->Model.ModShaderSolidColor =
+		RenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("shader:solid")));
+	m->Model.ModShaderSolidColorInstancing =
+		RenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("shader:solid_instancing")));
 
-	m->Model.ModShaderSolidPlayerColor = RenderModifierPtr(new ShaderRenderModifier(CShaderTechnique(m->shaderManager.LoadProgram(
-			"solid_player", defNull))));
-	m->Model.ModShaderSolidPlayerColorInstancing = RenderModifierPtr(new ShaderRenderModifier(CShaderTechnique(m->shaderManager.LoadProgram(
-			"solid_player_instancing", defNull))));
+	m->Model.ModShaderSolidPlayerColor =
+		RenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("shader:solid_player")));
+	m->Model.ModShaderSolidPlayerColorInstancing =
+		RenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("shader:solid_player_instancing")));
 
-	m->Model.ModShaderSolidTex = RenderModifierPtr(new ShaderRenderModifier(CShaderTechnique(m->shaderManager.LoadProgram(
-			"solid_tex", defNull))));
+	m->Model.ModShaderSolidTex =
+		RenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("shader:solid_tex")));
 
 	m->Model.ModShaderNormal =
 		LitRenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("model_normal", defBasic)));
@@ -611,14 +609,10 @@ void CRenderer::ReloadShaders()
 	m->Model.ModShaderPlayerInstancing =
 		LitRenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("model_normal_instancing", defColored)));
 
-	m->Model.ModShaderTransparent = LitRenderModifierPtr(new ShaderRenderModifier(
-			techTransparent));
-	m->Model.ModShaderTransparentOpaque = LitRenderModifierPtr(new ShaderRenderModifier(
-			techTransparentOpaque));
-	m->Model.ModShaderTransparentBlend = LitRenderModifierPtr(new ShaderRenderModifier(
-			techTransparentBlend));
-	m->Model.ModShaderTransparentShadow = LitRenderModifierPtr(new ShaderRenderModifier(
-			techTransparentShadow));
+	m->Model.ModShaderTransparent = LitRenderModifierPtr(new ShaderRenderModifier(techTransparent));
+	m->Model.ModShaderTransparentOpaque = LitRenderModifierPtr(new ShaderRenderModifier(techTransparentOpaque));
+	m->Model.ModShaderTransparentBlend = LitRenderModifierPtr(new ShaderRenderModifier(techTransparentBlend));
+	m->Model.ModShaderTransparentShadow = LitRenderModifierPtr(new ShaderRenderModifier(techTransparentShadow));
 
 	m->ShadersDirty = false;
 }
@@ -2085,8 +2079,6 @@ void CRenderer::JSI_SetPreferGLSL(JSContext* ctx, jsval newval)
 {
 	if (!ToPrimitive(ctx, newval, m_Options.m_PreferGLSL))
 		return;
-
-	ReloadShaders();
 }
 
 jsval CRenderer::JSI_GetSky(JSContext*)

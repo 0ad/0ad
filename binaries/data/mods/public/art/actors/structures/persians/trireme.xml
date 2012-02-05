@@ -4,10 +4,14 @@
   <float/>
   <group>
     <variant frequency="100" name="Base">
+      <animations>
+        <animation file="mechanical/pers_tri_idle.dae" name="Idle" speed="30"/>
+        <animation file="mechanical/pers_tri_move.dae" name="Walk" speed="6"/>
+        <animation file="mechanical/pers_tri_move.dae" name="Run" speed="8"/>
+      </animations>
       <mesh>structural/pers_tri.dae</mesh>
       <props>
-        <prop actor="props/structures/persians/trireme_oars.xml" attachpoint="root"/>
-        <prop actor="props/structures/persians/trireme_mast.xml" attachpoint="root"/>
+        <prop actor="props/structures/persians/trireme_mast.xml" attachpoint="sail"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <texture>structural/pers_tri.dds</texture>

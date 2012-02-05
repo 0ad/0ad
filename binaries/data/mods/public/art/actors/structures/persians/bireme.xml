@@ -4,9 +4,13 @@
   <float/>
   <group>
     <variant frequency="100" name="Base">
+      <animations>
+        <animation file="mechanical/pers_bir_idle.dae" name="Idle" speed="30"/>
+        <animation file="mechanical/pers_bir_move.dae" name="Walk" speed="6"/>
+        <animation file="mechanical/pers_bir_move.dae" name="Run" speed="8"/>
+      </animations>
       <mesh>structural/pers_bir.dae</mesh>
       <props>
-        <prop actor="props/structures/persians/bireme_oars.xml" attachpoint="root"/>
         <prop actor="props/structures/persians/bireme_mast.xml" attachpoint="root"/>
         <prop actor="props/structures/persians/bireme_fence.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>

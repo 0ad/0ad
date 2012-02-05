@@ -346,7 +346,7 @@ function project_add_contents(source_root, rel_source_dirs, rel_include_dirs, ex
 
 	for i,v in pairs(rel_source_dirs) do
 		local prefix = source_root..v.."/"
-		files { prefix.."*.cpp", prefix.."*.h", prefix.."*.inl", prefix.."*.js", prefix.."*.asm" }
+		files { prefix.."*.cpp", prefix.."*.h", prefix.."*.inl", prefix.."*.js", prefix.."*.asm", prefix.."*.mm" }
 	end
 
 	-- Put the project-specific PCH directory at the start of the

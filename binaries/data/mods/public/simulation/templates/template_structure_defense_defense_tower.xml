@@ -22,7 +22,7 @@
     <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
   </BuildingAI>
   <BuildRestrictions>
-    <Category>ScoutTower</Category>
+    <Category>DefenseTower</Category>
   </BuildRestrictions>
   <Cost>
     <BuildTime>120</BuildTime>
@@ -45,7 +45,7 @@
     <Max>1200</Max>
   </Health>
   <Identity>
-    <GenericName>Defense Tower</GenericName>
+    <GenericName>Tower</GenericName>
     <Tooltip>Shoots arrows. Garrison to provide extra defense.</Tooltip>
     <Classes datatype="tokens">Village Defensive -ConquestCritical</Classes>
     <Icon>structures/defense_tower.png</Icon>

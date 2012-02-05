@@ -194,7 +194,7 @@ public:
 class ShaderRenderModifier : public LitRenderModifier
 {
 public:
-	ShaderRenderModifier(const CShaderTechnique& technique);
+	ShaderRenderModifier(const CShaderTechniquePtr& technique);
 	~ShaderRenderModifier();
 
 	// Implementation
@@ -204,7 +204,7 @@ public:
 	void PrepareModel(int pass, CModel* model);
 
 private:
-	CShaderTechnique m_Technique;
+	CShaderTechniquePtr m_Technique;
 	CShaderProgram::Binding m_BindingInstancingTransform;
 	CShaderProgram::Binding m_BindingShadingColor;
 	CShaderProgram::Binding m_BindingObjectColor;

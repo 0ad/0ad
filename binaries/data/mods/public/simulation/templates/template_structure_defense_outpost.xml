@@ -7,7 +7,7 @@
   </Armour>
   <Attack disable=""/>
   <BuildRestrictions>
-    <Territory>neutral</Territory>
+    <Territory>own neutral</Territory>
     <Category>House</Category>
   </BuildRestrictions>
   <Cost>
@@ -18,7 +18,7 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="7.0" depth="7.0"/>
+    <Square width="9.0" depth="9.0"/>
     <Height>15.0</Height>
   </Footprint>
   <GarrisonHolder>
@@ -32,12 +32,12 @@
   </Health>
   <Identity>
     <GenericName>Outpost</GenericName>
-    <Tooltip>Build in Neutral territory to gain vision of the map. Slowly loses health.</Tooltip>
+    <Tooltip>Build in Neutral and Player territories to gain scout areas of the map. Slowly loses health while in Neutral territory.</Tooltip>
     <Classes datatype="tokens">Village Defensive -ConquestCritical</Classes>
     <Icon>structures/outpost.png</Icon>
   </Identity>
   <Obstruction>
-    <Static width="6.0" depth="6.0"/>
+    <Static width="6.5" depth="6.5"/>
   </Obstruction>
   <RallyPoint disable=""/>
   <Sound>

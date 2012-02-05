@@ -89,8 +89,12 @@ public:
 	void EndPass(int pass);
 	CShaderProgramPtr GetShader(int pass);
 
+	void Reset();
+
 private:
 	std::vector<CShaderPass> m_Passes;
 };
+
+typedef shared_ptr<CShaderTechnique> CShaderTechniquePtr;
 
 #endif // INCLUDED_SHADERTECHNIQUE
