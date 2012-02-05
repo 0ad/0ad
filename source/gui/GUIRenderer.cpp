@@ -632,19 +632,32 @@ void GUIRenderer::Draw(DrawCalls &Calls, float Z)
 
 			CRect TexCoords = cit->ComputeTexCoords();
 
+			// Ensure the quad has the correct winding order, and update texcoords to match
+			CRect Verts = cit->m_Vertices;
+			if (Verts.right < Verts.left)
+			{
+				std::swap(Verts.right, Verts.left);
+				std::swap(TexCoords.right, TexCoords.left);
+			}
+			if (Verts.bottom < Verts.top)
+			{
+				std::swap(Verts.bottom, Verts.top);
+				std::swap(TexCoords.bottom, TexCoords.top);
+			}
+
 			glBegin(GL_QUADS);
 
 				glTexCoord2f(TexCoords.left, TexCoords.bottom);
-				glVertex3f(cit->m_Vertices.left, cit->m_Vertices.bottom, cit->m_DeltaZ);
+				glVertex3f(Verts.left, Verts.bottom, cit->m_DeltaZ);
 
 				glTexCoord2f(TexCoords.right, TexCoords.bottom);
-				glVertex3f(cit->m_Vertices.right, cit->m_Vertices.bottom, cit->m_DeltaZ);
+				glVertex3f(Verts.right, Verts.bottom, cit->m_DeltaZ);
 
 				glTexCoord2f(TexCoords.right, TexCoords.top);
-				glVertex3f(cit->m_Vertices.right, cit->m_Vertices.top, cit->m_DeltaZ);
+				glVertex3f(Verts.right, Verts.top, cit->m_DeltaZ);
 
 				glTexCoord2f(TexCoords.left, TexCoords.top);
-				glVertex3f(cit->m_Vertices.left, cit->m_Vertices.top, cit->m_DeltaZ);
+				glVertex3f(Verts.left, Verts.top, cit->m_DeltaZ);
 
 			glEnd();
 
@@ -663,11 +676,18 @@ void GUIRenderer::Draw(DrawCalls &Calls, float Z)
 
 			glColor4fv(cit->m_BackColor.FloatArray());
 
+			// Ensure the quad has the correct winding order
+			CRect Verts = cit->m_Vertices;
+			if (Verts.right < Verts.left)
+				std::swap(Verts.right, Verts.left);
+			if (Verts.bottom < Verts.top)
+				std::swap(Verts.bottom, Verts.top);
+
 			glBegin(GL_QUADS);
-				glVertex3f(cit->m_Vertices.left,	cit->m_Vertices.bottom,	cit->m_DeltaZ);
-				glVertex3f(cit->m_Vertices.right,	cit->m_Vertices.bottom,	cit->m_DeltaZ);
-				glVertex3f(cit->m_Vertices.right,	cit->m_Vertices.top,	cit->m_DeltaZ);
-				glVertex3f(cit->m_Vertices.left,	cit->m_Vertices.top,	cit->m_DeltaZ);
+				glVertex3f(Verts.left, Verts.bottom, cit->m_DeltaZ);
+				glVertex3f(Verts.right, Verts.bottom, cit->m_DeltaZ);
+				glVertex3f(Verts.right, Verts.top, cit->m_DeltaZ);
+				glVertex3f(Verts.left, Verts.top, cit->m_DeltaZ);
 			glEnd();
 
 
@@ -675,10 +695,10 @@ void GUIRenderer::Draw(DrawCalls &Calls, float Z)
 			{
 				glColor4fv(cit->m_BorderColor.FloatArray());
 				glBegin(GL_LINE_LOOP);
-					glVertex3f(cit->m_Vertices.left + 0.5f, cit->m_Vertices.top + 0.5f, cit->m_DeltaZ);
-					glVertex3f(cit->m_Vertices.right - 0.5f, cit->m_Vertices.top + 0.5f, cit->m_DeltaZ);
-					glVertex3f(cit->m_Vertices.right - 0.5f, cit->m_Vertices.bottom - 0.5f, cit->m_DeltaZ);
-					glVertex3f(cit->m_Vertices.left + 0.5f, cit->m_Vertices.bottom - 0.5f, cit->m_DeltaZ);
+					glVertex3f(Verts.left + 0.5f, Verts.top + 0.5f, cit->m_DeltaZ);
+					glVertex3f(Verts.right - 0.5f, Verts.top + 0.5f, cit->m_DeltaZ);
+					glVertex3f(Verts.right - 0.5f, Verts.bottom - 0.5f, cit->m_DeltaZ);
+					glVertex3f(Verts.left + 0.5f, Verts.bottom - 0.5f, cit->m_DeltaZ);
 				glEnd();
 			}
 		}
