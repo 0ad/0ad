@@ -158,38 +158,45 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 				SetFocusedObject(pNearest);
 
 				if (pNearest)
-				{
 					ret = pNearest->SendEvent(GUIM_MOUSE_PRESS_LEFT, "mouseleftpress");
-				}
 				break;
 
 			case SDL_BUTTON_RIGHT:
 				if (pNearest)
-				{
 					ret = pNearest->SendEvent(GUIM_MOUSE_PRESS_RIGHT, "mouserightpress");
-				}
 				break;
 
+#if !SDL_VERSION_ATLEAST(2, 0, 0)
 			case SDL_BUTTON_WHEELDOWN: // wheel down
 				if (pNearest)
-				{
 					ret = pNearest->SendEvent(GUIM_MOUSE_WHEEL_DOWN, "mousewheeldown");
-				}
 				break;
 
 			case SDL_BUTTON_WHEELUP: // wheel up
 				if (pNearest)
-				{
 					ret = pNearest->SendEvent(GUIM_MOUSE_WHEEL_UP, "mousewheelup");
-				}
 				break;
-
+#endif
 			default:
 				break;
 			}
 		}
-		else 
-		if (ev->ev.type == SDL_MOUSEBUTTONUP)
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+		else if (ev->ev.type == SDL_MOUSEWHEEL)
+		{
+			if (ev->ev.wheel.y < 0)
+			{
+				if (pNearest)
+					ret = pNearest->SendEvent(GUIM_MOUSE_WHEEL_DOWN, "mousewheeldown");
+			}
+			else if (ev->ev.wheel.y > 0)
+			{
+				if (pNearest)
+					ret = pNearest->SendEvent(GUIM_MOUSE_WHEEL_UP, "mousewheelup");
+			}
+		}
+#endif
+		else if (ev->ev.type == SDL_MOUSEBUTTONUP)
 		{
 			switch (ev->ev.button.button)
 			{

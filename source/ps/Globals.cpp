@@ -41,6 +41,31 @@ InReaction GlobalsInputHandler(const SDL_Event_* ev)
 
 	switch(ev->ev.type)
 	{
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+	case SDL_WINDOWEVENT:
+		switch(ev->ev.window.event)
+		{
+		case SDL_WINDOWEVENT_MINIMIZED:
+			g_app_minimized = true;
+			break;
+		case SDL_WINDOWEVENT_RESTORED:
+			g_app_minimized = false;
+			break;
+		case SDL_WINDOWEVENT_FOCUS_GAINED:
+			g_app_has_focus = true;
+			break;
+		case SDL_WINDOWEVENT_FOCUS_LOST:
+			g_app_has_focus = false;
+			break;
+		case SDL_WINDOWEVENT_ENTER:
+			g_mouse_active = true;
+			break;
+		case SDL_WINDOWEVENT_LEAVE:
+			g_mouse_active = false;
+			break;
+		}
+		return IN_PASS;
+#else
 	case SDL_ACTIVEEVENT:
 		if(ev->ev.active.state & SDL_APPACTIVE)
 			g_app_minimized = (ev->ev.active.gain == 0);	// negated
@@ -49,6 +74,7 @@ InReaction GlobalsInputHandler(const SDL_Event_* ev)
 		if(ev->ev.active.state & SDL_APPMOUSEFOCUS)
 			g_mouse_active = (ev->ev.active.gain != 0);
 		return IN_PASS;
+#endif
 
 	case SDL_MOUSEMOTION:
 		g_mouse_x = ev->ev.motion.x;

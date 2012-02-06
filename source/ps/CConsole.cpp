@@ -625,7 +625,11 @@ void CConsole::ReceivedChatMessage(const wchar_t *szSender, const wchar_t *szMes
 	InsertMessage(L"%ls: %ls", szSender, szMessage);
 }
 
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+static bool isUnprintableChar(SDL_Keysym key)
+#else
 static bool isUnprintableChar(SDL_keysym key)
+#endif
 {
 	// U+0000 to U+001F are control characters
 	if (key.unicode < 0x20)
@@ -686,7 +690,7 @@ InReaction conInputHandler(const SDL_Event_* ev)
 	if (ev->ev.type != SDL_KEYDOWN)
 		return IN_PASS;
 
-	SDLKey sym = ev->ev.key.keysym.sym;
+	int sym = ev->ev.key.keysym.sym;
 
 	// Stop unprintable characters (ctrl+, alt+ and escape),
 	// also prevent ` and/or ~ appearing in console every time it's toggled.

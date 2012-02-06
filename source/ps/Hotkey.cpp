@@ -28,9 +28,15 @@
 
 static bool unified[UNIFIED_LAST - UNIFIED_SHIFT];
 
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+#define SDLKEY SDL_Keycode
+#else
+#define SDLKEY SDLKey
+#endif
+
 struct SKey
 {
-	SDLKey code; // keycode or MOUSE_ or UNIFIED_ value
+	SDLKEY code; // keycode or MOUSE_ or UNIFIED_ value
 	bool negated; // whether the key must be pressed (false) or unpressed (true)
 };
 
@@ -105,7 +111,7 @@ static void LoadConfigBindings()
 							continue;
 						}
 
-						SKey key = { (SDLKey)mapping, negateNext };
+						SKey key = { (SDLKEY)mapping, negateNext };
 						keyCombination.push_back(key);
 
 						negateNext = false;
@@ -176,9 +182,12 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 	case SDL_KEYUP:
 		keycode = (int)ev->ev.key.keysym.sym;
 		break;
+
 	case SDL_MOUSEBUTTONDOWN:
 	case SDL_MOUSEBUTTONUP:
-#if SDL_VERSION_ATLEAST(1, 2, 13)
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+		if ((int)ev->ev.button.button <= SDL_BUTTON_RIGHT)
+#elif SDL_VERSION_ATLEAST(1, 2, 13)
 		if ((int)ev->ev.button.button <= SDL_BUTTON_X2)
 #else
 		if ((int)ev->ev.button.button <= SDL_BUTTON_WHEELDOWN)
@@ -187,7 +196,23 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 			keycode = CUSTOM_SDL_KEYCODE + (int)ev->ev.button.button;
 			break;
 		}
-		// fall through
+		return IN_PASS;
+
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+	case SDL_MOUSEWHEEL:
+		if (ev->ev.wheel.y < 0)
+		{
+			keycode = MOUSE_WHEELUP;
+			break;
+		}
+		else if (ev->ev.wheel.y > 0)
+		{
+			keycode = MOUSE_WHEELDOWN;
+			break;
+		}
+		return IN_PASS;
+#endif
+
 	default:
 		return IN_PASS;
 	}
@@ -205,32 +230,30 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 	phantom.ev.type = ( ( ev->ev.type == SDL_KEYDOWN ) || ( ev->ev.type == SDL_MOUSEBUTTONDOWN ) ) ? SDL_KEYDOWN : SDL_KEYUP;
 	if( ( keycode == SDLK_LSHIFT ) || ( keycode == SDLK_RSHIFT ) )
 	{
-		phantom.ev.key.keysym.sym = (SDLKey)UNIFIED_SHIFT;
+		phantom.ev.key.keysym.sym = (SDLKEY)UNIFIED_SHIFT;
 		unified[0] = ( phantom.ev.type == SDL_KEYDOWN );
 		HotkeyInputHandler( &phantom );
 	}
 	else if( ( keycode == SDLK_LCTRL ) || ( keycode == SDLK_RCTRL ) )
 	{
-		phantom.ev.key.keysym.sym = (SDLKey)UNIFIED_CTRL;
+		phantom.ev.key.keysym.sym = (SDLKEY)UNIFIED_CTRL;
 		unified[1] = ( phantom.ev.type == SDL_KEYDOWN );
 		HotkeyInputHandler( &phantom );
 	}
 	else if( ( keycode == SDLK_LALT ) || ( keycode == SDLK_RALT ) )
 	{
-		phantom.ev.key.keysym.sym = (SDLKey)UNIFIED_ALT;
+		phantom.ev.key.keysym.sym = (SDLKEY)UNIFIED_ALT;
 		unified[2] = ( phantom.ev.type == SDL_KEYDOWN );
 		HotkeyInputHandler( &phantom );
 	}
-	else if( ( keycode == SDLK_LMETA ) || ( keycode == SDLK_RMETA ) )
-	{
-		phantom.ev.key.keysym.sym = (SDLKey)UNIFIED_META;
-		unified[3] = ( phantom.ev.type == SDL_KEYDOWN );
-		HotkeyInputHandler( &phantom );
-	}
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+	else if( ( keycode == SDLK_LGUI ) || ( keycode == SDLK_RGUI ) )
+#else
 	else if( ( keycode == SDLK_LSUPER ) || ( keycode == SDLK_RSUPER ) )
+#endif
 	{
-		phantom.ev.key.keysym.sym = (SDLKey)UNIFIED_SUPER;
-		unified[4] = ( phantom.ev.type == SDL_KEYDOWN );
+		phantom.ev.key.keysym.sym = (SDLKEY)UNIFIED_SUPER;
+		unified[3] = ( phantom.ev.type == SDL_KEYDOWN );
 		HotkeyInputHandler( &phantom );
 	}
 

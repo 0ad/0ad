@@ -35,6 +35,8 @@
 #include "lib/debug.h"
 #include "lib/sysdep/gfx.h"
 
+#include "ps/VideoMode.h"
+
 #define Cursor X__Cursor
 
 #include <Xlib.h>
@@ -299,7 +301,11 @@ Status x11_clipboard_init()
 	SDL_SysWMinfo info;
 
 	SDL_VERSION(&info.version);
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+	if (SDL_GetWindowWMInfo(g_VideoMode.GetWindow(), &info))
+#else
 	if (SDL_GetWMInfo(&info))
+#endif
 	{
 		/* Save the information for later use */
 		if (info.subsystem == SDL_SYSWM_X11)

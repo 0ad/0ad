@@ -94,6 +94,23 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 {
 	switch(ev->ev.type)
 	{
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+	case SDL_WINDOWEVENT:
+		switch(ev->ev.window.event)
+		{
+		case SDL_WINDOWEVENT_ENTER:
+			RenderCursor(true);
+			break;
+		case SDL_WINDOWEVENT_LEAVE:
+			RenderCursor(false);
+			break;
+		case SDL_WINDOWEVENT_RESIZED:
+			g_ResizedW = ev->ev.window.data1;
+			g_ResizedH = ev->ev.window.data2;
+			break;
+		}
+		break;
+#else
 	case SDL_ACTIVEEVENT:
 		if (ev->ev.active.state == SDL_APPMOUSEFOCUS)
 		{
@@ -106,13 +123,14 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 		}
 		break;
 
-	case SDL_QUIT:
-		kill_mainloop();
-		break;
-
 	case SDL_VIDEORESIZE:
 		g_ResizedW = ev->ev.resize.w;
 		g_ResizedH = ev->ev.resize.h;
+		break;
+#endif
+
+	case SDL_QUIT:
+		kill_mainloop();
 		break;
 
 	case SDL_HOTKEYDOWN:
@@ -389,7 +407,11 @@ static void Frame()
 		Render();
 
 		PROFILE3("swap buffers");
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+		SDL_GL_SwapWindow(g_VideoMode.GetWindow());
+#else
 		SDL_GL_SwapBuffers();
+#endif
 	}
 	ogl_WarnIfError();
 
