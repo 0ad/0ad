@@ -267,7 +267,9 @@ private:
 			}
 		}
 
-		if (evt.ButtonDown())
+		// Button down and double click appear to be mutually exclusive events,
+		//   meaning a second button down event is not sent before a double click
+		if (evt.ButtonDown() || evt.ButtonDClick())
 			POST_MESSAGE(GuiMouseButtonEvent, (evt.GetButton(), true, evt.GetPosition()));
 		else if (evt.ButtonUp())
 			POST_MESSAGE(GuiMouseButtonEvent, (evt.GetButton(), false, evt.GetPosition()));
