@@ -22,6 +22,7 @@
 #include "graphics/Camera.h"
 #include "graphics/GameView.h"
 #include "gui/GUIManager.h"
+#include "lib/config2.h"
 #include "lib/ogl.h"
 #include "lib/external_libraries/libsdl.h"
 #include "lib/sysdep/gfx.h"
@@ -41,7 +42,7 @@ static int DEFAULT_FULLSCREEN_H = 768;
 CVideoMode g_VideoMode;
 
 CVideoMode::CVideoMode() :
-	m_IsInitialised(false),
+	m_IsInitialised(false), m_Window(NULL),
 	m_PreferredW(0), m_PreferredH(0), m_PreferredBPP(0), m_PreferredFreq(0),
 	m_ConfigW(0), m_ConfigH(0), m_ConfigBPP(0), m_ConfigFullscreen(false), m_ConfigForceS3TCEnable(true),
 	m_WindowedW(DEFAULT_WINDOW_W), m_WindowedH(DEFAULT_WINDOW_H)
@@ -64,6 +65,48 @@ void CVideoMode::ReadConfig()
 
 bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 {
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN;
+	if (fullscreen)
+		flags |= SDL_WINDOW_FULLSCREEN;
+	else
+		flags |= SDL_WINDOW_RESIZABLE;
+
+	m_Window = SDL_CreateWindow("0 A.D.", 0, 0, w, h, flags);
+	if (!m_Window)
+	{
+		LOGERROR(L"SetVideoMode failed in SDL_CreateWindow: %dx%d:%d %d (\"%hs\")",
+			w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
+		return false;
+		// TODO: fall back to windowed mode
+	}
+
+	if (SDL_SetWindowDisplayMode(m_Window, NULL) < 0)
+	{
+		LOGERROR(L"SetVideoMode failed in SDL_SetWindowDisplayMode: %dx%d:%d %d (\"%hs\")",
+			w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
+		return false;
+	}
+
+	SDL_GLContext context = SDL_GL_CreateContext(m_Window);
+	if (!context)
+	{
+		LOGERROR(L"SetVideoMode failed in SDL_GL_CreateContext: %dx%d:%d %d (\"%hs\")",
+			w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
+		return false;
+	}
+
+	// Grab the current video settings
+	SDL_GetWindowSize(m_Window, &m_CurrentW, &m_CurrentH);
+	m_CurrentBPP = bpp;
+
+	if (fullscreen)
+		SDL_SetWindowGrab(m_Window, SDL_TRUE);
+	else
+		SDL_SetWindowGrab(m_Window, SDL_FALSE);
+
+#else // SDL 1.2:
+
 	Uint32 flags = SDL_OPENGL;
 	if (fullscreen)
 		flags |= SDL_FULLSCREEN;
@@ -92,17 +135,18 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 		}
 	}
 
-	if (fullscreen)
-		SDL_WM_GrabInput(SDL_GRAB_ON);
-	else
-		SDL_WM_GrabInput(SDL_GRAB_OFF);
-
-	m_IsFullscreen = fullscreen;
-
 	// Grab the current video settings
 	m_CurrentW = screen->w;
 	m_CurrentH = screen->h;
 	m_CurrentBPP = screen->format->BitsPerPixel;
+
+	if (fullscreen)
+		SDL_WM_GrabInput(SDL_GRAB_ON);
+	else
+		SDL_WM_GrabInput(SDL_GRAB_OFF);
+#endif
+
+	m_IsFullscreen = fullscreen;
 
 	g_xres = m_CurrentW;
 	g_yres = m_CurrentH;
@@ -160,6 +204,12 @@ bool CVideoMode::InitSDL()
 	SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, g_VSync ? 1 : 0);
 #endif
 	
+#if CONFIG2_GLES
+	// Require GLES 2.0
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+#endif
+
 	if (!SetVideoMode(w, h, bpp, m_ConfigFullscreen))
 	{
 		// Fall back to a smaller depth buffer
@@ -187,8 +237,15 @@ bool CVideoMode::InitSDL()
 	ogl_Init(); // required after each mode change
 	// (TODO: does that mean we need to call this when toggling fullscreen later?)
 
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+	u16 ramp[256];
+	SDL_CalculateGammaRamp(g_Gamma, ramp);
+	if (SDL_SetWindowGammaRamp(m_Window, ramp, ramp, ramp) < 0)
+		LOGWARNING(L"SDL_SetGamma failed");
+#else
 	if (SDL_SetGamma(g_Gamma, g_Gamma, g_Gamma) < 0)
 		LOGWARNING(L"SDL_SetGamma failed");
+#endif
 
 	m_IsInitialised = true;
 
@@ -409,4 +466,10 @@ int CVideoMode::GetDesktopFreq()
 {
 	ENSURE(m_IsInitialised);
 	return m_PreferredFreq;
+}
+
+SDL_Window* CVideoMode::GetWindow()
+{
+	ENSURE(m_IsInitialised);
+	return m_Window;
 }

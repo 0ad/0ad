@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -96,14 +96,17 @@ void Canvas::OnMouse(wxMouseEvent& evt)
 }
 
 BEGIN_EVENT_TABLE(Canvas, wxGLCanvas)
-	EVT_SIZE       (Canvas::OnResize)
-	EVT_LEFT_DOWN  (Canvas::OnMouse)
-	EVT_LEFT_UP    (Canvas::OnMouse)
-	EVT_RIGHT_DOWN (Canvas::OnMouse)
-	EVT_RIGHT_UP   (Canvas::OnMouse)
-	EVT_MIDDLE_DOWN(Canvas::OnMouse)
-	EVT_MIDDLE_UP  (Canvas::OnMouse)
-	EVT_MOUSEWHEEL (Canvas::OnMouse)
-	EVT_MOTION     (Canvas::OnMouse)
+	EVT_SIZE          (Canvas::OnResize)
+	EVT_LEFT_DCLICK   (Canvas::OnMouse)
+	EVT_LEFT_DOWN     (Canvas::OnMouse)
+	EVT_LEFT_UP       (Canvas::OnMouse)
+	EVT_RIGHT_DCLICK  (Canvas::OnMouse)
+	EVT_RIGHT_DOWN    (Canvas::OnMouse)
+	EVT_RIGHT_UP      (Canvas::OnMouse)
+	EVT_MIDDLE_DCLICK (Canvas::OnMouse)
+	EVT_MIDDLE_DOWN   (Canvas::OnMouse)
+	EVT_MIDDLE_UP     (Canvas::OnMouse)
+	EVT_MOUSEWHEEL    (Canvas::OnMouse)
+	EVT_MOTION        (Canvas::OnMouse)
 	EVT_MOUSE_CAPTURE_LOST(Canvas::OnMouseCaptureLost)
 END_EVENT_TABLE()

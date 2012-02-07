@@ -93,8 +93,12 @@ std::wstring DriverInfo()
 
 size_t MemorySizeMiB()
 {
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+	return 0;
+#else
 	// (maybe add the size of the framebuffer?)
 	return (SDL_GetVideoInfo()->video_mem) / 1048576;	// [MiB]
+#endif
 }
 
 }	// namespace gfx

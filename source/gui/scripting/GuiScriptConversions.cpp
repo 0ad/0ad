@@ -35,15 +35,19 @@ template<> jsval ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, SDL_Event_ 
 
 	switch (val.ev.type)
 	{
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+	case SDL_WINDOWEVENT: typeName = "windowevent"; break;
+#else
 	case SDL_ACTIVEEVENT: typeName = "activeevent"; break;
+	case SDL_VIDEOEXPOSE: typeName = "videoexpose"; break;
+	case SDL_VIDEORESIZE: typeName = "videoresize"; break;
+#endif
 	case SDL_KEYDOWN: typeName = "keydown"; break;
 	case SDL_KEYUP: typeName = "keyup"; break;
 	case SDL_MOUSEMOTION: typeName = "mousemotion"; break;
 	case SDL_MOUSEBUTTONDOWN: typeName = "mousebuttondown"; break;
 	case SDL_MOUSEBUTTONUP: typeName = "mousebuttonup"; break;
 	case SDL_QUIT: typeName = "quit"; break;
-	case SDL_VIDEOEXPOSE: typeName = "videoexpose"; break;
-	case SDL_VIDEORESIZE: typeName = "videoresize"; break;
 	case SDL_HOTKEYDOWN: typeName = "hotkeydown"; break;
 	case SDL_HOTKEYUP: typeName = "hotkeyup"; break;
 	default: typeName = "(unknown)"; break;
@@ -57,12 +61,14 @@ template<> jsval ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, SDL_Event_ 
 
 	switch (val.ev.type)
 	{
+#if !SDL_VERSION_ATLEAST(2, 0, 0)
 	case SDL_ACTIVEEVENT:
 	{
 		SET(obj, "gain", (int)val.ev.active.gain);
 		SET(obj, "state", (int)val.ev.active.state);
 		break;
 	}
+#endif
 	case SDL_KEYDOWN:
 	case SDL_KEYUP:
 	{

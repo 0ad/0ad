@@ -18,6 +18,8 @@
 #ifndef INCLUDED_VIDEOMODE
 #define INCLUDED_VIDEOMODE
 
+typedef struct SDL_Window SDL_Window;
+
 class CVideoMode
 {
 public:
@@ -71,6 +73,8 @@ public:
 	int GetDesktopBPP();
 	int GetDesktopFreq();
 
+	SDL_Window* GetWindow();
+
 private:
 	void ReadConfig();
 	int GetBestBPP();
@@ -83,6 +87,8 @@ private:
 	 * the right order.)
 	 */
 	bool m_IsInitialised;
+
+	SDL_Window* m_Window;
 
 	// Initial desktop settings
 	int m_PreferredW;
