@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="2" name="Cretan-Date-Palm-Patch-01">
+    <variant frequency="1" name="Cretan-Date-Palm-Patch-01">
       <mesh>gaia/tree_cretan_date_palm_patch_01.dae</mesh>
       <props>
         <prop actor="props/flora/decal_palms_patch.xml" attachpoint="root"/>
@@ -15,6 +15,9 @@
     </variant>
     <variant frequency="1" name="Palm Fronds-b">
       <texture>gaia/tree_palm_senegal_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="Palm Fronds-c">
+      <texture>gaia/tree_palm_senegal_c.dds</texture>
     </variant>
   </group>
   <material>basic_trans.xml</material>
