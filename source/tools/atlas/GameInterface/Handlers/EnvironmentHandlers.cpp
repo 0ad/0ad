@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,10 +38,10 @@ sEnvironmentSettings GetSettings()
 {
 	sEnvironmentSettings s;
 
-	CmpPtr<ICmpWaterManager> cmpWaterMan(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-	ENSURE(!cmpWaterMan.null());
+	CmpPtr<ICmpWaterManager> cmpWaterManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	ENSURE(cmpWaterManager);
 
-	s.waterheight = cmpWaterMan->GetExactWaterLevel(0, 0) / (65536.f * HEIGHT_SCALE);
+	s.waterheight = cmpWaterManager->GetExactWaterLevel(0, 0) / (65536.f * HEIGHT_SCALE);
 
 	WaterManager* wm = g_Renderer.GetWaterManager();
 	s.watershininess = wm->m_Shininess;
@@ -85,10 +85,10 @@ sEnvironmentSettings GetSettings()
 
 void SetSettings(const sEnvironmentSettings& s)
 {
-	CmpPtr<ICmpWaterManager> cmpWaterMan(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-	ENSURE(!cmpWaterMan.null());
+	CmpPtr<ICmpWaterManager> cmpWaterManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	ENSURE(cmpWaterManager);
 
-	cmpWaterMan->SetWaterLevel(entity_pos_t::FromFloat(s.waterheight * (65536.f * HEIGHT_SCALE)));
+	cmpWaterManager->SetWaterLevel(entity_pos_t::FromFloat(s.waterheight * (65536.f * HEIGHT_SCALE)));
 
 	WaterManager* wm = g_Renderer.GetWaterManager();
 	wm->m_Shininess = s.watershininess;

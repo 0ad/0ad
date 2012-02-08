@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -139,7 +139,7 @@ void CDecalRData::BuildArrays()
 			CVector3D pos;
 			m_Decal->m_Terrain->CalcPosition(i, j, pos);
 
-			if (decal.m_Floating && !cmpWaterManager.null())
+			if (decal.m_Floating && cmpWaterManager)
 				pos.Y = std::max(pos.Y, cmpWaterManager->GetExactWaterLevel(pos.X, pos.Z));
 
 			*Position = pos;

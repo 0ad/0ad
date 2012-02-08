@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -141,26 +141,26 @@ void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D 
 	if (!GetSimContext().HasUnitManager())
 		return; // do nothing if graphics are disabled
 
-	CmpPtr<ICmpVisual> sourceVisual(GetSimContext(), source);
-	if (sourceVisual.null())
+	CmpPtr<ICmpVisual> cmpSourceVisual(GetSimContext(), source);
+	if (!cmpSourceVisual)
 		return;
 
-	std::wstring name = sourceVisual->GetProjectileActor();
+	std::wstring name = cmpSourceVisual->GetProjectileActor();
 	if (name.empty())
 	{
 		// If the actor was actually loaded, complain that it doesn't have a projectile
-		if (!sourceVisual->GetActorShortName().empty())
-			LOGERROR(L"Unit with actor '%ls' launched a projectile but has no actor on 'projectile' attachpoint", sourceVisual->GetActorShortName().c_str());
+		if (!cmpSourceVisual->GetActorShortName().empty())
+			LOGERROR(L"Unit with actor '%ls' launched a projectile but has no actor on 'projectile' attachpoint", cmpSourceVisual->GetActorShortName().c_str());
 		return;
 	}
 
-	CVector3D sourceVec(sourceVisual->GetProjectileLaunchPoint());
+	CVector3D sourceVec(cmpSourceVisual->GetProjectileLaunchPoint());
 	if (!sourceVec)
 	{
 		// If there's no explicit launch point, take a guess based on the entity position
 
 		CmpPtr<ICmpPosition> sourcePos(GetSimContext(), source);
-		if (sourcePos.null())
+		if (!sourcePos)
 			return;
 
 		sourceVec = sourcePos->GetPosition();
@@ -175,11 +175,11 @@ void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D 
 	}
 	else
 	{
-		CmpPtr<ICmpPosition> targetPos(GetSimContext(), targetEnt);
-		if (targetPos.null())
+		CmpPtr<ICmpPosition> cmpTargetPosition(GetSimContext(), targetEnt);
+		if (!cmpTargetPosition)
 			return;
 
-		targetVec = CVector3D(targetPos->GetPosition());
+		targetVec = CVector3D(cmpTargetPosition->GetPosition());
 	}
 
 	Projectile projectile;
@@ -229,10 +229,10 @@ void CCmpProjectileManager::AdvanceProjectile(Projectile& projectile, float dt, 
 		// Track the target entity (if there is one, and it's still alive)
 		if (projectile.targetEnt != INVALID_ENTITY)
 		{
-			CmpPtr<ICmpPosition> targetPos(GetSimContext(), projectile.targetEnt);
-			if (!targetPos.null() && targetPos->IsInWorld())
+			CmpPtr<ICmpPosition> cmpTargetPosition(GetSimContext(), projectile.targetEnt);
+			if (cmpTargetPosition && cmpTargetPosition->IsInWorld())
 			{
-				CMatrix3D t = targetPos->GetInterpolatedTransform(frameOffset, false);
+				CMatrix3D t = cmpTargetPosition->GetInterpolatedTransform(frameOffset, false);
 				projectile.target = t.GetTranslation();
 				projectile.target.Y += 2.f; // TODO: ought to aim towards a random point in the solid body of the target
 
@@ -260,7 +260,7 @@ void CCmpProjectileManager::AdvanceProjectile(Projectile& projectile, float dt, 
 	if (projectile.timeLeft <= 0)
 	{
 		CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
-		if (!cmpTerrain.null())
+		if (cmpTerrain)
 		{
 			float h = cmpTerrain->GetExactGroundLevel(projectile.pos.X, projectile.pos.Z);
 			if (projectile.pos.Y < h)

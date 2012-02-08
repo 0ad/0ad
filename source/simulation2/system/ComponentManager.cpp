@@ -645,8 +645,8 @@ void CComponentManager::AddMockComponent(entity_id_t ent, InterfaceId iid, IComp
 
 entity_id_t CComponentManager::AddEntity(const std::wstring& templateName, entity_id_t ent)
 {
-	ICmpTemplateManager *tempMan = static_cast<ICmpTemplateManager*> (QueryInterface(SYSTEM_ENTITY, IID_TemplateManager));
-	if (!tempMan)
+	ICmpTemplateManager *cmpTemplateManager = static_cast<ICmpTemplateManager*> (QueryInterface(SYSTEM_ENTITY, IID_TemplateManager));
+	if (!cmpTemplateManager)
 	{
 		debug_warn(L"No ICmpTemplateManager loaded");
 		return INVALID_ENTITY;
@@ -654,7 +654,7 @@ entity_id_t CComponentManager::AddEntity(const std::wstring& templateName, entit
 
 	// TODO: should assert that ent doesn't exist
 
-	const CParamNode* tmpl = tempMan->LoadTemplate(ent, utf8_from_wstring(templateName), -1);
+	const CParamNode* tmpl = cmpTemplateManager->LoadTemplate(ent, utf8_from_wstring(templateName), -1);
 	if (!tmpl)
 		return INVALID_ENTITY; // LoadTemplate will have reported the error
 

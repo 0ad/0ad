@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -131,7 +131,7 @@ public:
 	void ConstructShape(float frameOffset)
 	{
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
-		if (cmpPosition.null())
+		if (!cmpPosition)
 			return;
 
 		if (!cmpPosition->IsInWorld())
@@ -141,7 +141,7 @@ public:
 		cmpPosition->GetInterpolatedPosition2D(frameOffset, x, z, rotY);
 
 		CmpPtr<ICmpFootprint> cmpFootprint(GetSimContext(), GetEntityId());
-		if (cmpFootprint.null())
+		if (!cmpFootprint)
 		{
 			// Default (this probably shouldn't happen) - just render an arbitrary-sized circle
 			SimRender::ConstructCircleOnGround(GetSimContext(), x, z, 2.f, m_Overlay, cmpPosition->IsFloating());
@@ -171,7 +171,7 @@ public:
 			if (!m_DebugSelectionBoxOverlay) m_DebugSelectionBoxOverlay = new SOverlayLine;
 
 			CmpPtr<ICmpVisual> cmpVisual(GetSimContext(), GetEntityId()); 
-			if (!cmpVisual.null()) 
+			if (cmpVisual) 
 			{
 				SimRender::ConstructBoxOutline(cmpVisual->GetBounds(), *m_DebugBoundingBoxOverlay);
 				m_DebugBoundingBoxOverlay->m_Thickness = 2; 

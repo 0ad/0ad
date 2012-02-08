@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -159,7 +159,7 @@ CObjectEntry* CObjectManager::FindObjectVariation(CObjectBase* base, const std::
 CTerrain* CObjectManager::GetTerrain()
 {
 	CmpPtr<ICmpTerrain> cmpTerrain(m_Simulation, SYSTEM_ENTITY);
-	if (cmpTerrain.null())
+	if (!cmpTerrain)
 		return NULL;
 	return cmpTerrain->GetCTerrain();
 }

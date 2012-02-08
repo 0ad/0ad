@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -52,7 +52,7 @@ void CTerritoryTexture::DeleteTexture()
 bool CTerritoryTexture::UpdateDirty()
 {
 	CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(m_Simulation, SYSTEM_ENTITY);
-	if (cmpTerritoryManager.null())
+	if (!cmpTerritoryManager)
 		return false;
 
 	return cmpTerritoryManager->NeedUpdate(&m_DirtyID);
@@ -89,7 +89,7 @@ const float* CTerritoryTexture::GetMinimapTextureMatrix()
 void CTerritoryTexture::ConstructTexture(int unit)
 {
 	CmpPtr<ICmpTerrain> cmpTerrain(m_Simulation, SYSTEM_ENTITY);
-	if (cmpTerrain.null())
+	if (!cmpTerrain)
 		return;
 
 	m_MapSize = cmpTerrain->GetVerticesPerSide() - 1;
@@ -145,7 +145,7 @@ void CTerritoryTexture::RecomputeTexture(int unit)
 	if (m_Texture)
 	{
 		CmpPtr<ICmpTerrain> cmpTerrain(m_Simulation, SYSTEM_ENTITY);
-		if (!cmpTerrain.null() && m_MapSize != (ssize_t)cmpTerrain->GetVerticesPerSide())
+		if (cmpTerrain && m_MapSize != (ssize_t)cmpTerrain->GetVerticesPerSide())
 			DeleteTexture();
 	}
 
@@ -158,7 +158,7 @@ void CTerritoryTexture::RecomputeTexture(int unit)
 	bitmap.resize(m_MapSize * m_MapSize * 4);
 
 	CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(m_Simulation, SYSTEM_ENTITY);
-	if (cmpTerritoryManager.null())
+	if (!cmpTerritoryManager)
 		return;
 
 	const Grid<u8> territories = cmpTerritoryManager->GetTerritoryGrid();
@@ -182,7 +182,7 @@ void CTerritoryTexture::GenerateBitmap(const Grid<u8>& territories, u8* bitmap, 
 	{
 		CColor color(1, 0, 1, 1);
 		CmpPtr<ICmpPlayer> cmpPlayer(m_Simulation, cmpPlayerManager->GetPlayerByID(p));
-		if (!cmpPlayer.null())
+		if (cmpPlayer)
 			color = cmpPlayer->GetColour();
 		colors.push_back(color);
 	}

@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -307,7 +307,7 @@ const Grid<u16>& CCmpPathfinder::GetPassabilityGrid()
 void CCmpPathfinder::UpdateGrid()
 {
 	CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
-	if (cmpTerrain.null())
+	if (!cmpTerrain)
 		return; // error
 
 	// If the terrain was resized then delete the old grid data
@@ -372,7 +372,7 @@ void CCmpPathfinder::UpdateGrid()
 		// Obstructions or terrain changed - we need to recompute passability
 		// TODO: only bother recomputing the region that has actually changed
 
-		CmpPtr<ICmpWaterManager> cmpWaterMan(GetSimContext(), SYSTEM_ENTITY);
+		CmpPtr<ICmpWaterManager> cmpWaterManager(GetSimContext(), SYSTEM_ENTITY);
 
 		// TOOD: these bits should come from ICmpTerrain
 		CTerrain& terrain = GetSimContext().GetTerrain();
@@ -389,7 +389,7 @@ void CCmpPathfinder::UpdateGrid()
 				fixed x, z;
 				TileCenter(i, j, x, z);
 				
-				bool underWater = !cmpWaterMan.null() && (cmpWaterMan->GetWaterLevel(x, z) > terrain.GetExactGroundLevelFixed(x, z));
+				bool underWater = cmpWaterManager && (cmpWaterManager->GetWaterLevel(x, z) > terrain.GetExactGroundLevelFixed(x, z));
 				waterGrid.set(i, j, underWater);
 			}
 		}
@@ -494,8 +494,8 @@ void CCmpPathfinder::UpdateGrid()
 				fixed height = terrain.GetExactGroundLevelFixed(x, z);
 
 				fixed water;
-				if (!cmpWaterMan.null())
-					water = cmpWaterMan->GetWaterLevel(x, z);
+				if (cmpWaterManager)
+					water = cmpWaterManager->GetWaterLevel(x, z);
 
 				fixed depth = water - height;
 
@@ -661,7 +661,7 @@ bool CCmpPathfinder::CheckUnitPlacement(const IObstructionTestFilter& filter,
 {
 	// Check unit obstruction
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
-	if (cmpObstructionManager.null())
+	if (!cmpObstructionManager)
 		return false;
 
 	if (cmpObstructionManager->TestUnitShape(filter, x, z, r, NULL))
@@ -693,7 +693,7 @@ bool CCmpPathfinder::CheckBuildingPlacement(const IObstructionTestFilter& filter
 {
 	// Check unit obstruction
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
-	if (cmpObstructionManager.null())
+	if (!cmpObstructionManager)
 		return false;
 
 	if (cmpObstructionManager->TestStaticShape(filter, x, z, a, w, h, NULL))
@@ -704,7 +704,7 @@ bool CCmpPathfinder::CheckBuildingPlacement(const IObstructionTestFilter& filter
 	UpdateGrid();
 
 	CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), id);
-	if (cmpObstruction.null())
+	if (!cmpObstruction)
 		return false;
 
 	ICmpObstructionManager::ObstructionSquare square;

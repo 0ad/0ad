@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -726,7 +726,7 @@ void CGameView::Update(float DeltaTime)
 	if (m->FollowEntity)
 	{
 		CmpPtr<ICmpPosition> cmpPosition(*(m->Game->GetSimulation2()), m->FollowEntity);
-		if (!cmpPosition.null() && cmpPosition->IsInWorld())
+		if (cmpPosition && cmpPosition->IsInWorld())
 		{
 			// Get the most recent interpolated position
 			float frameOffset = m->Game->GetSimulation2()->GetLastFrameOffset();
@@ -800,7 +800,7 @@ void CGameView::Update(float DeltaTime)
 		CVector3D desiredPivot = pivot;
 
 		CmpPtr<ICmpRangeManager> cmpRangeManager(*m->Game->GetSimulation2(), SYSTEM_ENTITY);
-		if (!cmpRangeManager.null() && cmpRangeManager->GetLosCircular())
+		if (cmpRangeManager && cmpRangeManager->GetLosCircular())
 		{
 			// Clamp to a circular region around the center of the map
 			float r = pTerrain->GetMaxX() / 2;

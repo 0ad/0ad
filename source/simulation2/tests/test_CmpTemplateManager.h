@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -241,15 +241,15 @@ public:
 		sim.LoadDefaultScripts();
 		sim.ResetState();
 
-		CmpPtr<ICmpTemplateManager> cmpTempMan(sim, SYSTEM_ENTITY);
-		TS_ASSERT(!cmpTempMan.null());
+		CmpPtr<ICmpTemplateManager> cmpTemplateManager(sim, SYSTEM_ENTITY);
+		TS_ASSERT(cmpTemplateManager);
 
-		std::vector<std::string> templates = cmpTempMan->FindAllTemplates(true);
+		std::vector<std::string> templates = cmpTemplateManager->FindAllTemplates(true);
 		for (size_t i = 0; i < templates.size(); ++i)
 		{
 			std::string name = templates[i];
 			printf("# %s\n", name.c_str());
-			const CParamNode* p = cmpTempMan->GetTemplate(name);
+			const CParamNode* p = cmpTemplateManager->GetTemplate(name);
 			TS_ASSERT(p != NULL);
 		}
 	}

@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -239,7 +239,7 @@ public:
 		if (m_Unit)
 		{
 			CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), GetEntityId());
-			if (!cmpOwnership.null())
+			if (cmpOwnership)
 				m_Unit->GetModel().SetPlayerID(cmpOwnership->GetOwner());
 		}
 	}
@@ -494,7 +494,7 @@ void CCmpVisualActor::InitSelectionShapeDescriptor(CModelAbstract& model, const 
 		else if (shapeNode.GetChild("Footprint").IsOk())
 		{
 			CmpPtr<ICmpFootprint> cmpFootprint(GetSimContext(), GetEntityId());
-			if (!cmpFootprint.null())
+			if (cmpFootprint)
 			{
 				ICmpFootprint::EShape fpShape;				// fp stands for "footprint"
 				entity_pos_t fpSize0, fpSize1, fpHeight;	// fp stands for "footprint"
@@ -558,7 +558,7 @@ void CCmpVisualActor::Update(fixed turnLength)
 	if (!m_AnimRunThreshold.IsZero())
 	{
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
-		if (cmpPosition.null() || !cmpPosition->IsInWorld())
+		if (!cmpPosition || !cmpPosition->IsInWorld())
 			return;
 
 		float speed = cmpPosition->GetDistanceTravelled().ToFloat() / turnLength.ToFloat();
@@ -590,7 +590,7 @@ void CCmpVisualActor::Interpolate(float frameTime, float frameOffset)
 		return;
 
 	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
-	if (cmpPosition.null())
+	if (!cmpPosition)
 		return;
 
 	// Disable rendering of the unit if it has no position
@@ -603,7 +603,7 @@ void CCmpVisualActor::Interpolate(float frameTime, float frameOffset)
 	// The 'always visible' flag means we should always render the unit
 	// (regardless of whether the LOS system thinks it's visible)
 	CmpPtr<ICmpVision> cmpVision(GetSimContext(), GetEntityId());
-	if (!cmpVision.null() && cmpVision->GetAlwaysVisible())
+	if (cmpVision && cmpVision->GetAlwaysVisible())
 	{
 		m_Visibility = ICmpRangeManager::VIS_VISIBLE;
 	}

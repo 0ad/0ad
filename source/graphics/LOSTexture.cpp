@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -106,7 +106,7 @@ const float* CLOSTexture::GetMinimapTextureMatrix()
 void CLOSTexture::ConstructTexture(int unit)
 {
 	CmpPtr<ICmpTerrain> cmpTerrain(m_Simulation, SYSTEM_ENTITY);
-	if (cmpTerrain.null())
+	if (!cmpTerrain)
 		return;
 
 	m_MapSize = cmpTerrain->GetVerticesPerSide();
@@ -162,7 +162,7 @@ void CLOSTexture::RecomputeTexture(int unit)
 	if (m_Texture)
 	{
 		CmpPtr<ICmpTerrain> cmpTerrain(m_Simulation, SYSTEM_ENTITY);
-		if (!cmpTerrain.null() && m_MapSize != (ssize_t)cmpTerrain->GetVerticesPerSide())
+		if (cmpTerrain && m_MapSize != (ssize_t)cmpTerrain->GetVerticesPerSide())
 			DeleteTexture();
 	}
 
@@ -175,7 +175,7 @@ void CLOSTexture::RecomputeTexture(int unit)
 	losData.resize(GetBitmapSize(m_MapSize, m_MapSize));
 
 	CmpPtr<ICmpRangeManager> cmpRangeManager(m_Simulation, SYSTEM_ENTITY);
-	if (cmpRangeManager.null())
+	if (!cmpRangeManager)
 		return;
 
 	ICmpRangeManager::CLosQuerier los (cmpRangeManager->GetLosQuerier(g_Game->GetPlayerID()));

@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -68,7 +68,7 @@ namespace
 
 		// Disable fog-of-war
 		CmpPtr<ICmpRangeManager> cmpRangeManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-		if (!cmpRangeManager.null())
+		if (cmpRangeManager)
 			cmpRangeManager->SetLosRevealAll(-1, true);
 	}
 }
@@ -212,7 +212,7 @@ BEGIN_COMMAND(ResizeMap)
 	void MakeDirty()
 	{
 		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-		if (!cmpTerrain.null())
+		if (cmpTerrain)
 			cmpTerrain->ReloadTerrain();
 
 		// The LOS texture won't normally get updated when running Atlas
@@ -232,7 +232,7 @@ BEGIN_COMMAND(ResizeMap)
 	void Do()
 	{
 		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-		if (cmpTerrain.null())
+		if (!cmpTerrain)
 		{
 			m_OldTiles = m_NewTiles = 0;
 		}

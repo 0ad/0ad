@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -253,14 +253,14 @@ public:
 		if (m_RelativeToGround)
 		{
 			CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
-			if (!cmpTerrain.null())
+			if (cmpTerrain)
 				baseY = cmpTerrain->GetGroundLevel(m_X, m_Z);
 
 			if (m_Floating)
 			{
-				CmpPtr<ICmpWaterManager> cmpWaterMan(GetSimContext(), SYSTEM_ENTITY);
-				if (!cmpWaterMan.null())
-					baseY = std::max(baseY, cmpWaterMan->GetWaterLevel(m_X, m_Z));
+				CmpPtr<ICmpWaterManager> cmpWaterManager(GetSimContext(), SYSTEM_ENTITY);
+				if (cmpWaterManager)
+					baseY = std::max(baseY, cmpWaterManager->GetWaterLevel(m_X, m_Z));
 			}
 		}
 
@@ -348,14 +348,14 @@ public:
 		if (m_RelativeToGround)
 		{
 			CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
-			if (!cmpTerrain.null())
+			if (cmpTerrain)
 				baseY = cmpTerrain->GetExactGroundLevel(x, z);
 
 			if (m_Floating || forceFloating)
 			{
-				CmpPtr<ICmpWaterManager> cmpWaterMan(GetSimContext(), SYSTEM_ENTITY);
-				if (!cmpWaterMan.null())
-					baseY = std::max(baseY, cmpWaterMan->GetExactWaterLevel(x, z));
+				CmpPtr<ICmpWaterManager> cmpWaterManager(GetSimContext(), SYSTEM_ENTITY);
+				if (cmpWaterManager)
+					baseY = std::max(baseY, cmpWaterManager->GetExactWaterLevel(x, z));
 			}
 		}
 

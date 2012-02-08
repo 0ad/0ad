@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simu
 	camera.BuildCameraRay(screenX, screenY, origin, dir);
 
 	CmpPtr<ICmpRangeManager> cmpRangeManager(simulation, SYSTEM_ENTITY);
-	ENSURE(!cmpRangeManager.null());
+	ENSURE(cmpRangeManager);
 
 	std::vector<std::pair<float, entity_id_t> > hits; // (dist^2, entity) pairs
 
@@ -48,7 +48,7 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simu
 			continue;
 
 		CmpPtr<ICmpVisual> cmpVisual(simulation.GetSimContext(), ent);
-		if (cmpVisual.null())
+		if (!cmpVisual)
 			continue;
 
 		CBoundingBoxOriented selectionBox = cmpVisual->GetSelectionBox();
@@ -87,7 +87,7 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simul
 		std::swap(sy0, sy1);
 
 	CmpPtr<ICmpRangeManager> cmpRangeManager(simulation, SYSTEM_ENTITY);
-	ENSURE(!cmpRangeManager.null());
+	ENSURE(cmpRangeManager);
 
 	std::vector<entity_id_t> hitEnts;
 
@@ -102,7 +102,7 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simul
 
 		// Ignore entities not owned by 'owner'
 		CmpPtr<ICmpOwnership> cmpOwnership(simulation.GetSimContext(), ent);
-		if (cmpOwnership.null() || cmpOwnership->GetOwner() != owner)
+		if (!cmpOwnership || cmpOwnership->GetOwner() != owner)
 			continue;
 
 		// Find the current interpolated model position.
@@ -110,7 +110,7 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simul
 		// that's better for users trying to select objects in busy areas)
 
 		CmpPtr<ICmpVisual> cmpVisual(simulation.GetSimContext(), ent);
-		if (cmpVisual.null())
+		if (!cmpVisual)
 			continue;
 
 		CVector3D position = cmpVisual->GetPosition();
@@ -158,7 +158,7 @@ std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simu
 
  		// Ignore entities not owned by 'owner'
  		CmpPtr<ICmpOwnership> cmpOwnership(simulation.GetSimContext(), ent);
- 		if (cmpOwnership.null() || cmpOwnership->GetOwner() != owner)
+ 		if (!cmpOwnership || cmpOwnership->GetOwner() != owner)
  			continue;
 
 		// Ignore off screen entities
@@ -166,7 +166,7 @@ std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simu
  		{
  			// Find the current interpolated model position.
 			CmpPtr<ICmpVisual> cmpVisual(simulation.GetSimContext(), ent);
-			if (cmpVisual.null())
+			if (!cmpVisual)
 				continue;
 			CVector3D position = cmpVisual->GetPosition();
 
@@ -180,7 +180,7 @@ std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simu
 			// Match by selection group name
 			// (This is relatively expensive since it involves script calls, so do it after all other tests)
 			CmpPtr<ICmpIdentity> cmpIdentity(simulation.GetSimContext(), ent);
-			if (cmpIdentity.null() || cmpIdentity->GetSelectionGroupName() != templateName)
+			if (!cmpIdentity || cmpIdentity->GetSelectionGroupName() != templateName)
 				continue;
 		}
 

@@ -271,7 +271,7 @@ void CMiniMap::Draw()
 
 	CSimulation2* sim = g_Game->GetSimulation2();
 	CmpPtr<ICmpRangeManager> cmpRangeManager(*sim, SYSTEM_ENTITY);
-	ENSURE(!cmpRangeManager.null());
+	ENSURE(cmpRangeManager);
 
 	// Set our globals in case they hadn't been set before
 	m_Camera      = g_Game->GetView()->GetCamera();
