@@ -237,35 +237,35 @@ void CBoundingBoxAligned::Expand(float amount)
 // Render the bounding box
 void CBoundingBoxAligned::Render() const
 {
-	glBegin(GL_QUADS);
-		glTexCoord2f(0, 0); glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[0].Z);
-		glTexCoord2f(1, 0); glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[0].Z);
-		glTexCoord2f(1, 1); glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[0].Z);
-		glTexCoord2f(0, 1); glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[0].Z);
+	std::vector<float> data;
 
-		glTexCoord2f(0, 0); glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[0].Z);
-		glTexCoord2f(1, 0); glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[0].Z);
-		glTexCoord2f(1, 1); glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[1].Z);
-		glTexCoord2f(0, 1); glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[1].Z);
+#define ADD_FACE(x, y, z) \
+	ADD_PT(0, 0, x, y, z); ADD_PT(1, 0, x, y, z); ADD_PT(1, 1, x, y, z); \
+	ADD_PT(1, 1, x, y, z); ADD_PT(0, 1, x, y, z); ADD_PT(0, 0, x, y, z);
+#define ADD_PT(u_, v_, x, y, z) \
+	STMT(int u = u_; int v = v_; \
+		data.push_back(u); \
+		data.push_back(v); \
+		data.push_back(m_Data[x].X); \
+		data.push_back(m_Data[y].Y); \
+		data.push_back(m_Data[z].Z); \
+	)
 
-		glTexCoord2f(0, 0); glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[1].Z);
-		glTexCoord2f(1, 0); glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[1].Z);
-		glTexCoord2f(1, 1); glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[0].Z);
-		glTexCoord2f(0, 1); glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[0].Z);
+	ADD_FACE(u, v, 0);
+	ADD_FACE(0, u, v);
+	ADD_FACE(u, 0, 1-v);
+	ADD_FACE(u, 1-v, 1);
+	ADD_FACE(1, u, 1-v);
+	ADD_FACE(u, 1, v);
 
-		glTexCoord2f(0, 0); glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[1].Z);
-		glTexCoord2f(1, 0); glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[1].Z);
-		glTexCoord2f(1, 1); glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[1].Z);
-		glTexCoord2f(0, 1); glVertex3f(m_Data[0].X, m_Data[0].Y, m_Data[1].Z);
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	
+	glTexCoordPointer(2, GL_FLOAT, 5*sizeof(float), &data[0]);
+	glVertexPointer(3, GL_FLOAT, 5*sizeof(float), &data[2]);
 
-		glTexCoord2f(0, 0); glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[1].Z);
-		glTexCoord2f(1, 0); glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[1].Z);
-		glTexCoord2f(1, 1); glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[0].Z);
-		glTexCoord2f(0, 1); glVertex3f(m_Data[1].X, m_Data[0].Y, m_Data[0].Z);
+	glDrawArrays(GL_TRIANGLES, 0, 6*6);
 
-		glTexCoord2f(0, 0); glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[0].Z);
-		glTexCoord2f(1, 0); glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[0].Z);
-		glTexCoord2f(1, 1); glVertex3f(m_Data[1].X, m_Data[1].Y, m_Data[1].Z);
-		glTexCoord2f(0, 1); glVertex3f(m_Data[0].X, m_Data[1].Y, m_Data[1].Z);
-	glEnd();
+	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }

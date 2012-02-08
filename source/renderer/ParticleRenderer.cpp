@@ -138,6 +138,8 @@ void ParticleRenderer::RenderParticles(bool solidColor)
 		emitter->RenderArray();
 	}
 
+	CVertexBuffer::Unbind();
+
 	pglBlendEquationEXT(GL_FUNC_ADD);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 

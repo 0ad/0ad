@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,6 +18,7 @@
 #ifndef GUIRenderer_h
 #define GUIRenderer_h
 
+#include "graphics/ShaderTechnique.h"
 #include "graphics/Texture.h"
 #include "lib/res/handle.h"
 #include "ps/Overlay.h"
@@ -39,7 +40,7 @@ namespace GUIRenderer
 
 	struct SDrawCall
 	{
-		SDrawCall(const SGUIImage* image) : m_Image(image), m_Effects(NULL) {}
+		SDrawCall(const SGUIImage* image) : m_Image(image) {}
 		CRect ComputeTexCoords() const;
 
 		const SGUIImage* m_Image;
@@ -52,7 +53,8 @@ namespace GUIRenderer
 
 		bool m_EnableBlending;
 
-		IGLState* m_Effects;
+		CShaderTechniquePtr m_Shader;
+		CColor m_ShaderColorParameter;
 
 		CRect m_Vertices;
 		float m_DeltaZ;
@@ -64,9 +66,7 @@ namespace GUIRenderer
 	class DrawCalls : public std::vector<SDrawCall>
 	{
 	public:
-		void clear();
 		DrawCalls();
-		~DrawCalls();
 		// Copy/assignment results in an empty list, not an actual copy
 		DrawCalls(const DrawCalls&);
 		const DrawCalls& operator=(const DrawCalls&);
