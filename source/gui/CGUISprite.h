@@ -66,7 +66,6 @@ struct SGUIImageEffects
 {
 	SGUIImageEffects() : m_Greyscale(false) {}
 	CColor m_AddColor;
-	CColor m_MultiplyColor;
 	bool m_Greyscale;
 };
 
@@ -116,7 +115,7 @@ struct SGUIImage
 	bool			m_RoundCoordinates;
 
 	/**
-	 * Texture wrapping mode (GL_REPEAT, GL_CLAMP_TO_BORDER, etc)
+	 * Texture wrapping mode (GL_REPEAT, GL_CLAMP_TO_EDGE, etc)
 	 */
 	GLint			m_WrapMode;
 

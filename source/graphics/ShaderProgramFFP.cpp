@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,11 +19,13 @@
 
 #include "ShaderProgram.h"
 
+#include "graphics/TextureManager.h"
 #include "lib/res/graphics/ogl_tex.h"
 #include "maths/Matrix3D.h"
 #include "maths/Vector3D.h"
 #include "ps/CLogger.h"
 #include "ps/Overlay.h"
+#include "renderer/Renderer.h"
 
 /**
  * CShaderProgramFFP allows rendering code to use the shader-based API
@@ -91,6 +93,14 @@ public:
 	virtual Binding GetUniformBinding(uniform_id_t id)
 	{
 		return Binding(-1, GetUniformIndex(id));
+	}
+
+	virtual void Uniform(Binding UNUSED(id), float UNUSED(v0), float UNUSED(v1), float UNUSED(v2), float UNUSED(v3))
+	{
+	}
+
+	virtual void Uniform(Binding UNUSED(id), const CMatrix3D& UNUSED(v))
+	{
 	}
 
 protected:
@@ -267,8 +277,6 @@ class CShaderProgramFFP_GuiText : public CShaderProgramFFP
 		ID_colorMul
 	};
 
-	bool m_IgnoreLos;
-
 public:
 	CShaderProgramFFP_GuiText() :
 		CShaderProgramFFP(STREAM_POS | STREAM_UV0)
@@ -283,17 +291,13 @@ public:
 	virtual void Uniform(Binding id, float v0, float v1, float v2, float v3)
 	{
 		if (id.second == ID_colorMul)
-		{
 			glColor4f(v0, v1, v2, v3);
-		}
 	}
 
 	virtual void Uniform(Binding id, const CMatrix3D& v)
 	{
 		if (id.second == ID_transform)
-		{
 			glLoadMatrixf(&v._11);
-		}
 	}
 
 	virtual void Bind()
@@ -323,12 +327,287 @@ public:
 
 //////////////////////////////////////////////////////////////////////////
 
+class CShaderProgramFFP_Gui_Base : public CShaderProgramFFP
+{
+protected:
+	// Uniforms
+	enum
+	{
+		ID_transform,
+		ID_color
+	};
+
+public:
+	CShaderProgramFFP_Gui_Base(int streamflags) :
+		CShaderProgramFFP(streamflags)
+	{
+		m_UniformIndexes["transform"] = ID_transform;
+		m_UniformIndexes["color"] = ID_color;
+
+		// Texture units:
+		m_UniformIndexes["tex"] = 0;
+	}
+
+	virtual void Uniform(Binding id, const CMatrix3D& v)
+	{
+		if (id.second == ID_transform)
+			glLoadMatrixf(&v._11);
+	}
+
+	virtual void Bind()
+	{
+		glMatrixMode(GL_PROJECTION);
+		glPushMatrix();
+		glLoadIdentity();
+		glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+	}
+
+	virtual void Unbind()
+	{
+		glMatrixMode(GL_PROJECTION);
+		glPopMatrix();
+		glMatrixMode(GL_MODELVIEW);
+		glPopMatrix();
+	}
+};
+
+class CShaderProgramFFP_GuiBasic : public CShaderProgramFFP_Gui_Base
+{
+public:
+	CShaderProgramFFP_GuiBasic() :
+		CShaderProgramFFP_Gui_Base(STREAM_POS | STREAM_UV0)
+	{
+	}
+
+	virtual void Bind()
+	{
+		CShaderProgramFFP_Gui_Base::Bind();
+
+		pglActiveTextureARB(GL_TEXTURE0);
+		glEnable(GL_TEXTURE_2D);
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+	}
+
+	virtual void Unbind()
+	{
+		pglActiveTextureARB(GL_TEXTURE0);
+		glDisable(GL_TEXTURE_2D);
+
+		CShaderProgramFFP_Gui_Base::Unbind();
+	}
+};
+
+class CShaderProgramFFP_GuiAdd : public CShaderProgramFFP_Gui_Base
+{
+public:
+	CShaderProgramFFP_GuiAdd() :
+		CShaderProgramFFP_Gui_Base(STREAM_POS | STREAM_UV0)
+	{
+	}
+
+	virtual void Uniform(Binding id, float v0, float v1, float v2, float v3)
+	{
+		if (id.second == ID_color)
+			glColor4f(v0, v1, v2, v3);
+	}
+
+	virtual void Bind()
+	{
+		CShaderProgramFFP_Gui_Base::Bind();
+
+		pglActiveTextureARB(GL_TEXTURE0);
+		glEnable(GL_TEXTURE_2D);
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_ADD);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_ADD);
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_TEXTURE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB, GL_SRC_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_TEXTURE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB, GL_SRC_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_ALPHA, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_ALPHA, GL_SRC_ALPHA);
+	}
+
+	virtual void Unbind()
+	{
+		glColor4f(1.f, 1.f, 1.f, 1.f);
+
+		pglActiveTextureARB(GL_TEXTURE0);
+		glDisable(GL_TEXTURE_2D);
+
+		CShaderProgramFFP_Gui_Base::Unbind();
+	}
+};
+
+class CShaderProgramFFP_GuiGrayscale : public CShaderProgramFFP_Gui_Base
+{
+public:
+	CShaderProgramFFP_GuiGrayscale() :
+		CShaderProgramFFP_Gui_Base(STREAM_POS | STREAM_UV0)
+	{
+	}
+
+	virtual void Bind()
+	{
+		CShaderProgramFFP_Gui_Base::Bind();
+
+		/*
+
+		For the main conversion, use GL_DOT3_RGB, which is defined as
+		    L = 4 * ((Arg0r - 0.5) * (Arg1r - 0.5)+
+		             (Arg0g - 0.5) * (Arg1g - 0.5)+
+			         (Arg0b - 0.5) * (Arg1b - 0.5))
+		where each of the RGB components is given the value 'L'.
+
+		Use the magical luminance formula
+		    L = 0.3R + 0.59G + 0.11B
+		to calculate the greyscale value.
+
+		But to work around the annoying "Arg0-0.5", we need to calculate
+		Arg0+0.5. But we also need to scale it into the range 0.5-1.0, else
+		Arg0>0.5 will be clamped to 1.0. So use GL_INTERPOLATE, which outputs:
+		    A0 * A2 + A1 * (1 - A2)
+		and set A2 = 0.5, A1 = 1.0, and A0 = texture (i.e. interpolating halfway
+		between the texture and {1,1,1}) giving
+		    A0/2 + 0.5
+		and use that as Arg0.
+		
+		So L = 4*(A0/2 * (Arg1-.5))
+		     = 2 (Rx+Gy+Bz)      (where Arg1 = {x+0.5, y+0.5, z+0.5})
+			 = 2x R + 2y G + 2z B
+			 = 0.3R + 0.59G + 0.11B
+		so e.g. 2y = 0.59 = 2(Arg1g-0.5) => Arg1g = 0.59/2+0.5
+		which fortunately doesn't get clamped.
+
+		So, just implement that:
+
+		*/
+
+		static const float GreyscaleDotColor[4] = {
+			0.3f / 2.f + 0.5f,
+			0.59f / 2.f + 0.5f,
+			0.11f / 2.f + 0.5f,
+			1.0f
+		};
+		static const float GreyscaleInterpColor0[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+		static const float GreyscaleInterpColor1[4] = { 0.5f, 0.5f, 0.5f, 1.0f };
+
+		pglActiveTextureARB(GL_TEXTURE0);
+		glEnable(GL_TEXTURE_2D);
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_TEXTURE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB, GL_SRC_COLOR);
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_INTERPOLATE);
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB, GL_CONSTANT);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB, GL_SRC_COLOR);
+		glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, GreyscaleInterpColor0);
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE2_RGB, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND2_RGB, GL_SRC_COLOR);
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_TEXTURE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
+
+		glColor4fv(GreyscaleInterpColor1);
+
+		pglActiveTextureARB(GL_TEXTURE1);
+		glEnable(GL_TEXTURE_2D);
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB, GL_SRC_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_DOT3_RGB);
+
+		// GL_DOT3_RGB requires GL_(EXT|ARB)_texture_env_dot3.
+		// We currently don't bother implementing a fallback because it's
+		// only lacking on Riva-class HW, but at least want the rest of the
+		// game to run there without errors. Therefore, squelch the
+		// OpenGL error that's raised if they aren't actually present.
+		// Note: higher-level code checks for this extension, but
+		// allows users the choice of continuing even if not present.
+		ogl_SquelchError(GL_INVALID_ENUM);
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_REPLACE);
+
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB, GL_CONSTANT);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB, GL_SRC_COLOR);
+		glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, GreyscaleDotColor);
+
+		// To activate the second texture unit, we have to have some kind
+		// of texture bound into it, but we don't actually use the texture data,
+		// so bind a dummy texture
+		g_Renderer.GetTextureManager().GetErrorTexture()->Bind(1);
+	}
+
+	virtual void Unbind()
+	{
+		glColor4f(1.f, 1.f, 1.f, 1.f);
+
+		pglActiveTextureARB(GL_TEXTURE1);
+		glDisable(GL_TEXTURE_2D);
+
+		pglActiveTextureARB(GL_TEXTURE0);
+		glDisable(GL_TEXTURE_2D);
+
+		CShaderProgramFFP_Gui_Base::Unbind();
+	}
+};
+
+class CShaderProgramFFP_GuiSolid : public CShaderProgramFFP_Gui_Base
+{
+public:
+	CShaderProgramFFP_GuiSolid() :
+		CShaderProgramFFP_Gui_Base(STREAM_POS)
+	{
+	}
+
+	virtual void Uniform(Binding id, float v0, float v1, float v2, float v3)
+	{
+		if (id.second == ID_color)
+			glColor4f(v0, v1, v2, v3);
+	}
+
+	virtual void Bind()
+	{
+		CShaderProgramFFP_Gui_Base::Bind();
+
+		pglActiveTextureARB(GL_TEXTURE0);
+		glDisable(GL_TEXTURE_2D);
+	}
+};
+
+//////////////////////////////////////////////////////////////////////////
+
 /*static*/ CShaderProgram* CShaderProgram::ConstructFFP(const std::string& id, const std::map<CStr, CStr>& defines)
 {
 	if (id == "overlayline")
 		return new CShaderProgramFFP_OverlayLine(defines);
 	if (id == "gui_text")
 		return new CShaderProgramFFP_GuiText();
+	if (id == "gui_basic")
+		return new CShaderProgramFFP_GuiBasic();
+	if (id == "gui_add")
+		return new CShaderProgramFFP_GuiAdd();
+	if (id == "gui_grayscale")
+		return new CShaderProgramFFP_GuiGrayscale();
+	if (id == "gui_solid")
+		return new CShaderProgramFFP_GuiSolid();
 
 	LOGERROR(L"CShaderProgram::ConstructFFP: Invalid id '%hs'", id.c_str());
 	return NULL;

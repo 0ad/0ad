@@ -1573,8 +1573,6 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 				image.m_WrapMode = GL_MIRRORED_REPEAT;
 			else if (attr_value == L"clamp_to_edge")
 				image.m_WrapMode = GL_CLAMP_TO_EDGE;
-			else if (attr_value == L"clamp_to_border")
-				image.m_WrapMode = GL_CLAMP_TO_BORDER;
 			else
 				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
 		}
@@ -1656,28 +1654,18 @@ void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImag
 		CStr attr_name (pFile->GetAttributeString(attr.Name));
 		CStrW attr_value (attr.Value.FromUTF8());
 
-#define COLOR(xml, mem, alpha) \
-		if (attr_name == xml) \
-		{ \
-			CColor color; \
-			if (!GUI<int>::ParseColor(attr_value, color, alpha)) \
-				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str()); \
-			else effects.m_##mem = color; \
-		} \
+		if (attr_name == "add_color")
+		{
+			CColor color;
+			if (!GUI<int>::ParseColor(attr_value, color, 0.f))
+				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
+			else effects.m_AddColor = color;
+		}
+		else if (attr_name == "grayscale")
+		{
+			effects.m_Greyscale = true;
+		}
 		else
-
-
-#define BOOL(xml, mem) \
-		if (attr_name == xml) \
-		{ \
-			effects.m_##mem = true; \
-		} \
-		else
-
-		COLOR("add_color", AddColor, 0.f)
-		COLOR("multiply_color", MultiplyColor, 255.f)
-		BOOL("grayscale", Greyscale)
-
 		{
 			debug_warn(L"Invalid data - DTD shouldn't allow this");
 		}

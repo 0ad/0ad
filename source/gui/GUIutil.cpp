@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,7 +25,7 @@ GUI utilities
 #include "maths/Matrix3D.h"
 #include "ps/Parser.h"
 
-extern int g_yres;
+extern int g_xres, g_yres;
 
 #include "ps/CLogger.h"
 
@@ -256,6 +256,11 @@ CMatrix3D GetDefaultGuiMatrix()
 	m.SetIdentity();
 	m.Scale(1.0f, -1.f, 1.0f);
 	m.Translate(0.0f, (float)g_yres, -1000.0f);
+
+	CMatrix3D proj;
+	proj.SetOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.f, 1000.f);
+	m = proj * m;
+
 	return m;
 }
 

@@ -302,35 +302,3 @@ void CBrush::Intersect(const CFrustum& frustum, CBrush& result) const
 
 	ENSURE(prev == &result);
 }
-
-
-///////////////////////////////////////////////////////////////////////////////
-// Dump the faces to OpenGL
-void CBrush::Render() const
-{
-	size_t firstInFace = no_vertex;
-
-	for(size_t i = 0; i < m_Faces.size(); ++i)
-	{
-		if (firstInFace == no_vertex)
-		{
-			glBegin(GL_POLYGON);
-			firstInFace = m_Faces[i];
-			continue;
-		}
-
-		const CVector3D& vertex = m_Vertices[m_Faces[i]];
-
-		glVertex3fv(&vertex.X);
-
-		if (firstInFace == m_Faces[i])
-		{
-			glEnd();
-			firstInFace = no_vertex;
-		}
-	}
-
-	ENSURE(firstInFace == no_vertex);
-}
-
-

@@ -19,6 +19,7 @@
 
 #include "GUIRenderer.h"
 
+#include "graphics/ShaderManager.h"
 #include "graphics/TextureManager.h"
 #include "gui/GUIutil.h"
 #include "lib/ogl.h"
@@ -33,22 +34,8 @@
 using namespace GUIRenderer;
 
 
-void DrawCalls::clear()
-{
-	for (iterator it = begin(); it != end(); ++it)
-	{
-		delete it->m_Effects;
-	}
-	std::vector<SDrawCall>::clear();
-}
-
 DrawCalls::DrawCalls()
 {
-}
-
-DrawCalls::~DrawCalls()
-{
-	clear();
 }
 
 // DrawCalls needs to be copyable, so it can be used in other copyable types.
@@ -68,293 +55,6 @@ const DrawCalls& DrawCalls::operator=(const DrawCalls&)
 	return *this;
 }
 
-
-
-// Implementations of graphical effects:
-
-
-const GLint TexScale1[3] = { 1, 1, 1 };
-const GLint TexScale2[3] = { 2, 2, 2 };
-const GLint TexScale4[3] = { 4, 4, 4 };
-
-class Effect_AddColor : public IGLState
-{
-	// Uses GL_COMBINE and GL_ADD/GL_SUBTRACT/GL_ADD_SIGNED, to allow
-	// addition/subtraction of colors.
-
-public:
-	Effect_AddColor(CColor c)
-	{
-		// If everything's in [0,1], use GL_ADD
-#define RANGE(lo,hi) c.r >= lo && c.r <= hi && c.g >= lo && c.g <= hi && c.b >= lo && c.b <= hi && c.a >= lo && c.a <= hi
-		if (RANGE(0.f, 1.f))
-		{
-			m_Color = c;
-			m_Method = ADD_NORMAL;
-		}
-		// If it's in [-1, 0] use GL_SUBTRACT
-		else if (RANGE(-1.f, 0.f))
-		{
-			m_Color = CColor(-c.r, -c.g, -c.b, -c.a);
-			m_Method = ADD_SUBTRACT;
-		}
-		// If it's in [-0.5, 0.5] use GL_ADD_SIGNED
-		else if (RANGE(-0.5f, 0.5f))
-		{
-			m_Color = CColor(c.r+0.5f, c.g+0.5f, c.b+0.5f, c.a+0.5f);
-			m_Method = ADD_SIGNED;
-		}
-		// Otherwise, complain.
-		else
-		{
-			LOGWARNING(L"add_color effect has some components above 127 and some below -127 - colours will be clamped");
-			m_Color = CColor(c.r+0.5f, c.g+0.5f, c.b+0.5f, c.a+0.5f);
-			m_Method = ADD_SIGNED;
-		}
-	}
-
-	~Effect_AddColor() {}
-
-	void Set(const CTexturePtr& tex)
-	{
-		glEnable(GL_TEXTURE_2D);
-
-		glColor4fv(m_Color.FloatArray());
-
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-
-		if (m_Method == ADD_NORMAL)
-		{
-			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_ADD);
-			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_ADD);
-		}
-		else
-		if (m_Method == ADD_SUBTRACT)
-		{
-			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_SUBTRACT);
-			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_SUBTRACT);
-		}
-		else // if (m_Method == ADD_SIGNED)
-		{
-			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_ADD_SIGNED);
-			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_ADD_SIGNED);
-		}
-
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_TEXTURE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB, GL_SRC_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_TEXTURE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
-
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB, GL_PREVIOUS);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB, GL_SRC_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_ALPHA, GL_PREVIOUS);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_ALPHA, GL_SRC_ALPHA);
-
-		tex->Bind();
-	}
-
-	void Unset()
-	{
-		glColor4f(1.f, 1.f, 1.f, 1.f);
-	}
-
-private:
-	CColor m_Color;
-	enum { ADD_NORMAL, ADD_SUBTRACT, ADD_SIGNED, ADD_SIGNED_DOUBLED } m_Method;
-};
-
-class Effect_MultiplyColor : public IGLState
-{
-	// Uses GL_MODULATE to do the multiplication; but since all colours are
-	// clamped to the range [0,1], it uses GL_RGB_SCALE to allow images to be
-	// multiplied by [0,4]. Alpha is assumed to always be [0,1].
-public:
-	Effect_MultiplyColor(CColor c)
-	{
-		if (c.r <= 1.f && c.g <= 1.f && c.b <= 1.f)
-		{
-			m_Color = c;
-			m_Scale = 1;
-		}
-		else if (c.r <= 2.f && c.g <= 2.f && c.b <= 2.f)
-		{
-			m_Color = CColor(c.r/2.f, c.g/2.f, c.b/2.f, c.a);
-			m_Scale = 2;
-		}
-		else
-		{
-			if (c.r <= 4.f && c.g <= 4.f && c.b <= 4.f)
-				;
-			else
-				// Oops - trying to multiply by >4
-				LOGWARNING(L"multiply_color effect has a component >1020 - colours will be clamped");
-
-			m_Color = CColor(c.r/4.f, c.g/4.f, c.b/4.f, c.a);
-			m_Scale = 4;
-		}
-	}
-	~Effect_MultiplyColor() {}
-	void Set(const CTexturePtr& tex)
-	{
-		glEnable(GL_TEXTURE_2D);
-
-		glColor4fv(m_Color.FloatArray());
-
-		if (m_Scale == 1)
-		{
-			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-		}
-		else
-		{
-			// Duplicate the effect of GL_MODULATE, but using GL_COMBINE
-			// so that GL_RGB_SCALE will work.
-			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_MODULATE);
-			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_MODULATE);
-			
-			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_TEXTURE);
-			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB, GL_SRC_COLOR);
-			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_TEXTURE);
-			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
-
-			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB, GL_PREVIOUS);
-			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB, GL_SRC_COLOR);
-			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_ALPHA, GL_PREVIOUS);
-			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_ALPHA, GL_SRC_ALPHA);
-
-			if (m_Scale == 2)
-				glTexEnviv(GL_TEXTURE_ENV, GL_RGB_SCALE, TexScale2);
-			else if (m_Scale == 4)
-				glTexEnviv(GL_TEXTURE_ENV, GL_RGB_SCALE, TexScale4);
-		}
-
-		tex->Bind();
-	}
-	void Unset()
-	{
-		if (m_Scale != 1)
-			glTexEnviv(GL_TEXTURE_ENV, GL_RGB_SCALE, TexScale1);
-
-		glColor4f(1.f, 1.f, 1.f, 1.f);
-	}
-private:
-	CColor m_Color;
-	int m_Scale;
-};
-
-#define X(n) (n##f/2.0f + 0.5f)
-const float GreyscaleDotColor[4] = { X(0.3), X(0.59), X(0.11), 1.0f };
-#undef X
-const float GreyscaleInterpColor0[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
-const float GreyscaleInterpColor1[4] = { 0.5f, 0.5f, 0.5f, 1.0f };
-
-class Effect_Greyscale : public IGLState
-{
-public:
-	~Effect_Greyscale() {}
-	void Set(const CTexturePtr& tex)
-	{
-		/*
-
-		For the main conversion, use GL_DOT3_RGB, which is defined as
-		    L = 4 * ((Arg0r - 0.5) * (Arg1r - 0.5)+
-		             (Arg0g - 0.5) * (Arg1g - 0.5)+
-			         (Arg0b - 0.5) * (Arg1b - 0.5))
-		where each of the RGB components is given the value 'L'.
-
-		Use the magical luminance formula
-		    L = 0.3R + 0.59G + 0.11B
-		to calculate the greyscale value.
-
-		But to work around the annoying "Arg0-0.5", we need to calculate
-		Arg0+0.5. But we also need to scale it into the range 0.5-1.0, else
-		Arg0>0.5 will be clamped to 1.0. So use GL_INTERPOLATE, which outputs:
-		    A0 * A2 + A1 * (1 - A2)
-		and set A2 = 0.5, A1 = 1.0, and A0 = texture (i.e. interpolating halfway
-		between the texture and {1,1,1}) giving
-		    A0/2 + 0.5
-		and use that as Arg0.
-		
-		So L = 4*(A0/2 * (Arg1-.5))
-		     = 2 (Rx+Gy+Bz)      (where Arg1 = {x+0.5, y+0.5, z+0.5})
-			 = 2x R + 2y G + 2z B
-			 = 0.3R + 0.59G + 0.11B
-		so e.g. 2y = 0.59 = 2(Arg1g-0.5) => Arg1g = 0.59/2+0.5
-		which fortunately doesn't get clamped.
-
-		So, just implement that:
-
-		*/
-
-		// TODO: Render all greyscale objects at the same time, to reduce
-		// the number of times the following code is called - it looks like
-		// a rather worrying amount of work for rendering a single button...
-
-		// Texture unit 0:
-
-		tex->Bind(0);
-
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_TEXTURE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB, GL_SRC_COLOR);
-
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_INTERPOLATE);
-
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB, GL_CONSTANT);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB, GL_SRC_COLOR);
-		glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, GreyscaleInterpColor0);
-
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE2_RGB, GL_PREVIOUS);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND2_RGB, GL_SRC_COLOR);
-
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_REPLACE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_TEXTURE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
-
-		glColor4fv(GreyscaleInterpColor1);
-
-		// Texture unit 1:
-
-		tex->Bind(1);
-
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_PREVIOUS);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB, GL_SRC_COLOR);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_PREVIOUS);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
-
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_DOT3_RGB);
-
-		// GL_DOT3_RGB requires GL_(EXT|ARB)_texture_env_dot3.
-		// We currently don't bother implementing a fallback because it's
-		// only lacking on Riva-class HW, but at least want the rest of the
-		// game to run there without errors. Therefore, squelch the
-		// OpenGL error that's raised if they aren't actually present.
-		// Note: higher-level code checks for this extension, but
-		// allows users the choice of continuing even if not present.
-		ogl_SquelchError(GL_INVALID_ENUM);
-
-		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_REPLACE);
-
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB, GL_CONSTANT);
-		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB, GL_SRC_COLOR);
-		glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, GreyscaleDotColor);
-
-	}
-	void Unset()
-	{
-		glDisable(GL_TEXTURE_2D);
-		pglActiveTextureARB(GL_TEXTURE0);
-
-		glColor4f(1.f, 1.f, 1.f, 1.f);
-	}
-};
-
-
-
-// Functions to perform drawing-related actions:
 
 void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, const CRect &Size, int CellID, std::map<CStr, CGUISprite> &Sprites)
 {
@@ -485,37 +185,34 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 		Call.m_BackColor = cit->m_BackColor;
 		Call.m_BorderColor = cit->m_Border ? cit->m_BorderColor : CColor();
 		Call.m_DeltaZ = cit->m_DeltaZ;
-		
-		if (cit->m_Effects)
+
+		if (!Call.m_HasTexture)
+		{
+			Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("shader:fixed:gui_solid");
+		}
+		else if (cit->m_Effects)
 		{
 			if (cit->m_Effects->m_AddColor != CColor())
 			{
-				Call.m_Effects = new Effect_AddColor(cit->m_Effects->m_AddColor);
+				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("shader:fixed:gui_add");
+				Call.m_ShaderColorParameter = cit->m_Effects->m_AddColor;
 				// Always enable blending if something's being subtracted from
 				// the alpha channel
 				if (cit->m_Effects->m_AddColor.a < 0.f)
 					Call.m_EnableBlending = true;
 			}
-			else if (cit->m_Effects->m_MultiplyColor != CColor())
-			{
-				Call.m_Effects = new Effect_MultiplyColor(cit->m_Effects->m_MultiplyColor);
-				// Always enable blending if the alpha channel is being multiplied
-				if (cit->m_Effects->m_AddColor.a != 1.f)
-					Call.m_EnableBlending = true;
-			}
 			else if (cit->m_Effects->m_Greyscale)
 			{
-				Call.m_Effects = new Effect_Greyscale;
+				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("shader:fixed:gui_grayscale");
 			}
 			else /* Slight confusion - why no effects? */
 			{
-				Call.m_Effects = NULL;
+				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("shader:fixed:gui_basic");
 			}
-
 		}
 		else
 		{
-			Call.m_Effects = NULL;
+			Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("shader:fixed:gui_basic");
 		}
 
 		Calls.push_back(Call);
@@ -598,33 +295,31 @@ void GUIRenderer::Draw(DrawCalls &Calls, float Z)
 {
 	// Called every frame, to draw the object (based on cached calculations)
 
-	glPushMatrix();
+	// TODO: batching by shader/texture/etc would be nice
+
 	CMatrix3D matrix = GetDefaultGuiMatrix();
-	matrix.Translate(0, 0, Z);
-	glLoadMatrixf(&matrix._11);
 
 	glDisable(GL_BLEND);
 
 	// Set LOD bias so mipmapped textures are prettier
+#if CONFIG2_GLES
+#warning TODO: implement GUI LOD bias for GLES
+#else
 	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, -1.f);
+#endif
 
 	// Iterate through each DrawCall, and execute whatever drawing code is being called
 	for (DrawCalls::const_iterator cit = Calls.begin(); cit != Calls.end(); ++cit)
 	{
 		if (cit->m_HasTexture)
 		{
-			// TODO: Handle the GL state in a nicer way
+			cit->m_Shader->BeginPass(0);
+			CShaderProgramPtr shader = cit->m_Shader->GetShader(0);
+			shader->Uniform("transform", matrix);
+			shader->Uniform("color", cit->m_ShaderColorParameter);
+			shader->BindTexture("tex", cit->m_Texture);
 
-			if (cit->m_Effects)
-				cit->m_Effects->Set(cit->m_Texture);
-			else
-			{
-				glEnable(GL_TEXTURE_2D);
-				glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-				cit->m_Texture->Bind();
-			}
-
-			if (cit->m_EnableBlending || cit->m_Texture->HasAlpha()) // (shouldn't call HasAlpha before Bind)
+			if (cit->m_EnableBlending || cit->m_Texture->HasAlpha()) // (shouldn't call HasAlpha before BindTexture)
 			{
 				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 				glEnable(GL_BLEND);
@@ -648,33 +343,33 @@ void GUIRenderer::Draw(DrawCalls &Calls, float Z)
 			glBegin(GL_QUADS);
 
 				glTexCoord2f(TexCoords.left, TexCoords.bottom);
-				glVertex3f(Verts.left, Verts.bottom, cit->m_DeltaZ);
+				glVertex3f(Verts.left, Verts.bottom, Z + cit->m_DeltaZ);
 
 				glTexCoord2f(TexCoords.right, TexCoords.bottom);
-				glVertex3f(Verts.right, Verts.bottom, cit->m_DeltaZ);
+				glVertex3f(Verts.right, Verts.bottom, Z + cit->m_DeltaZ);
 
 				glTexCoord2f(TexCoords.right, TexCoords.top);
-				glVertex3f(Verts.right, Verts.top, cit->m_DeltaZ);
+				glVertex3f(Verts.right, Verts.top, Z + cit->m_DeltaZ);
 
 				glTexCoord2f(TexCoords.left, TexCoords.top);
-				glVertex3f(Verts.left, Verts.top, cit->m_DeltaZ);
+				glVertex3f(Verts.left, Verts.top, Z + cit->m_DeltaZ);
 
 			glEnd();
 
-			if (cit->m_Effects)
-				cit->m_Effects->Unset();
+			cit->m_Shader->EndPass(0);
 		}
 		else
 		{
-			glDisable(GL_TEXTURE_2D);
+			cit->m_Shader->BeginPass(0);
+			CShaderProgramPtr shader = cit->m_Shader->GetShader(0);
+			shader->Uniform("transform", matrix);
+			shader->Uniform("color", cit->m_BackColor);
 
 			if (cit->m_EnableBlending)
 			{
 				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 				glEnable(GL_BLEND);
 			}
-
-			glColor4fv(cit->m_BackColor.FloatArray());
 
 			// Ensure the quad has the correct winding order
 			CRect Verts = cit->m_Vertices;
@@ -684,29 +379,32 @@ void GUIRenderer::Draw(DrawCalls &Calls, float Z)
 				std::swap(Verts.bottom, Verts.top);
 
 			glBegin(GL_QUADS);
-				glVertex3f(Verts.left, Verts.bottom, cit->m_DeltaZ);
-				glVertex3f(Verts.right, Verts.bottom, cit->m_DeltaZ);
-				glVertex3f(Verts.right, Verts.top, cit->m_DeltaZ);
-				glVertex3f(Verts.left, Verts.top, cit->m_DeltaZ);
+				glVertex3f(Verts.left, Verts.bottom, Z + cit->m_DeltaZ);
+				glVertex3f(Verts.right, Verts.bottom, Z + cit->m_DeltaZ);
+				glVertex3f(Verts.right, Verts.top, Z + cit->m_DeltaZ);
+				glVertex3f(Verts.left, Verts.top, Z + cit->m_DeltaZ);
 			glEnd();
-
 
 			if (cit->m_BorderColor != CColor())
 			{
-				glColor4fv(cit->m_BorderColor.FloatArray());
+				shader->Uniform("color", cit->m_BorderColor);
 				glBegin(GL_LINE_LOOP);
-					glVertex3f(Verts.left + 0.5f, Verts.top + 0.5f, cit->m_DeltaZ);
-					glVertex3f(Verts.right - 0.5f, Verts.top + 0.5f, cit->m_DeltaZ);
-					glVertex3f(Verts.right - 0.5f, Verts.bottom - 0.5f, cit->m_DeltaZ);
-					glVertex3f(Verts.left + 0.5f, Verts.bottom - 0.5f, cit->m_DeltaZ);
+					glVertex3f(Verts.left + 0.5f, Verts.top + 0.5f, Z + cit->m_DeltaZ);
+					glVertex3f(Verts.right - 0.5f, Verts.top + 0.5f, Z + cit->m_DeltaZ);
+					glVertex3f(Verts.right - 0.5f, Verts.bottom - 0.5f, Z + cit->m_DeltaZ);
+					glVertex3f(Verts.left + 0.5f, Verts.bottom - 0.5f, Z + cit->m_DeltaZ);
 				glEnd();
 			}
+
+			cit->m_Shader->EndPass(0);
 		}
 
 		glDisable(GL_BLEND);
 	}
 
+#if CONFIG2_GLES
+#warning TODO: implement GUI LOD bias for GLES
+#else
 	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, 0.f);
-
-	glPopMatrix();
+#endif
 }

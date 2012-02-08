@@ -75,14 +75,6 @@ public:
 	 */
 	void Intersect(const CFrustum& frustum, CBrush& result) const;
 
-	/**
-	 * Render: Renders the brush as OpenGL polygons.
-	 *
-	 * @note the winding of the brush faces is undefined (i.e. it is undefined which
-	 * sides of the faces are the front faces)
-	 */
-	void Render() const;
-
 private:
 	static const size_t no_vertex = ~0u;
 

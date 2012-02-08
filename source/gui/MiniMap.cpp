@@ -299,6 +299,10 @@ void CMiniMap::Draw()
 			RebuildTerrainTexture();
 	}
 
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	CMatrix3D matrix = GetDefaultGuiMatrix();
 	glLoadMatrixf(&matrix._11);
@@ -421,6 +425,10 @@ void CMiniMap::Draw()
 
 	glPopMatrix();
 
+
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
 	glPopMatrix();
 
 	// Reset everything back to normal

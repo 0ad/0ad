@@ -55,7 +55,7 @@ class CMatrix3D;
 template <typename T>
 bool __ParseString(const CStrW& Value, T &tOutput);
 
-// Matrix with (0,0) in top-left of screen
+// Model-view-projection matrix with (0,0) in top-left of screen
 CMatrix3D GetDefaultGuiMatrix();
 
 //--------------------------------------------------------
