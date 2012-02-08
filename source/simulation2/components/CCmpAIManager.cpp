@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -592,7 +592,7 @@ public:
 		// their implementation.
 		// (TODO: maybe cleverer AIs should be able to optionally retain FoW/SoD)
 		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
-		if (!cmpRangeManager.null())
+		if (cmpRangeManager)
 			cmpRangeManager->SetLosRevealAll(player, true);
 	}
 
@@ -605,7 +605,7 @@ public:
 		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 
 		CmpPtr<ICmpAIInterface> cmpAIInterface(GetSimContext(), SYSTEM_ENTITY);
-		ENSURE(!cmpAIInterface.null());
+		ENSURE(cmpAIInterface);
 
 		// Get the game state from AIInterface
 		CScriptVal state = cmpAIInterface->GetRepresentation();
@@ -614,7 +614,7 @@ public:
 		Grid<u16> dummyGrid;
 		const Grid<u16>* passabilityMap = &dummyGrid;
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
-		if (!cmpPathfinder.null())
+		if (cmpPathfinder)
 			passabilityMap = &cmpPathfinder->GetPassabilityGrid();
 
 		// Get the territory data
@@ -623,7 +623,7 @@ public:
 		Grid<u8> dummyGrid2;
 		const Grid<u8>* territoryMap = &dummyGrid2;
 		CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(GetSimContext(), SYSTEM_ENTITY);
-		if (!cmpTerritoryManager.null() && cmpTerritoryManager->NeedUpdate(&m_TerritoriesDirtyID))
+		if (cmpTerritoryManager && cmpTerritoryManager->NeedUpdate(&m_TerritoriesDirtyID))
 		{
 			territoryMap = &cmpTerritoryManager->GetTerritoryGrid();
 			territoryMapDirty = true;
@@ -642,7 +642,7 @@ public:
 		m_Worker.GetCommands(commands);
 
 		CmpPtr<ICmpCommandQueue> cmpCommandQueue(GetSimContext(), SYSTEM_ENTITY);
-		if (cmpCommandQueue.null())
+		if (!cmpCommandQueue)
 			return;
 
 		for (size_t i = 0; i < commands.size(); ++i)
@@ -664,7 +664,7 @@ private:
 	void StartLoadEntityTemplates()
 	{
 		CmpPtr<ICmpTemplateManager> cmpTemplateManager(GetSimContext(), SYSTEM_ENTITY);
-		ENSURE(!cmpTemplateManager.null());
+		ENSURE(cmpTemplateManager);
 
 		m_TemplateNames = cmpTemplateManager->FindAllTemplates(false);
 		m_TemplateLoadedIdx = 0;
@@ -678,7 +678,7 @@ private:
 			return false;
 
 		CmpPtr<ICmpTemplateManager> cmpTemplateManager(GetSimContext(), SYSTEM_ENTITY);
-		ENSURE(!cmpTemplateManager.null());
+		ENSURE(cmpTemplateManager);
 
 		const CParamNode* node = cmpTemplateManager->GetTemplateWithoutValidation(m_TemplateNames[m_TemplateLoadedIdx]);
 		if (node)
@@ -703,7 +703,7 @@ private:
 	void LoadPathfinderClasses(CScriptVal state)
 	{
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
-		if (cmpPathfinder.null())
+		if (!cmpPathfinder)
 			return;
 
 		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();

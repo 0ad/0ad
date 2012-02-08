@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -131,18 +131,18 @@ public:
 		const CFixedVector3D error(fixed::FromInt(-1), fixed::FromInt(-1), fixed::FromInt(-1));
 
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
-		if (cmpPosition.null() || !cmpPosition->IsInWorld())
+		if (!cmpPosition || !cmpPosition->IsInWorld())
 			return error;
 
 		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
-		if (cmpObstructionManager.null())
+		if (!cmpObstructionManager)
 			return error;
 
 		entity_pos_t spawnedRadius;
 		ICmpObstructionManager::tag_t spawnedTag;
 
 		CmpPtr<ICmpObstruction> cmpSpawnedObstruction(GetSimContext(), spawned);
-		if (!cmpSpawnedObstruction.null())
+		if (cmpSpawnedObstruction)
 		{
 			spawnedRadius = cmpSpawnedObstruction->GetUnitRadius();
 			spawnedTag = cmpSpawnedObstruction->GetObstruction();
@@ -151,12 +151,12 @@ public:
 
 		// Get passability class from UnitMotion
 		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), spawned);
-		if (cmpUnitMotion.null())
+		if (!cmpUnitMotion)
 			return error;
 
 		ICmpPathfinder::pass_class_t spawnedPass = cmpUnitMotion->GetPassabilityClass();
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
-		if (cmpPathfinder.null())
+		if (!cmpPathfinder)
 			return error;
 		
 		CFixedVector2D initialPos = cmpPosition->GetPosition2D();

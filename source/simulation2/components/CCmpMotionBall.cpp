@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -85,7 +85,7 @@ public:
 void CCmpMotionBall::Move(fixed dt)
 {
 	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
-	if (cmpPosition.null())
+	if (!cmpPosition)
 		return;
 
 	// TODO: this is all FP-unsafe

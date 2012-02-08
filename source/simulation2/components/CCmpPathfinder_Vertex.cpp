@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -855,7 +855,7 @@ bool CCmpPathfinder::CheckMovement(const IObstructionTestFilter& filter,
 	pass_class_t passClass)
 {
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
-	if (cmpObstructionManager.null())
+	if (!cmpObstructionManager)
 		return false;
 
 	if (cmpObstructionManager->TestLine(filter, x0, z0, x1, z1, r))

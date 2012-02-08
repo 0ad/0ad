@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -293,7 +293,7 @@ public:
 
 			// Ignore non-positional entities
 			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), ent);
-			if (cmpPosition.null())
+			if (!cmpPosition)
 				break;
 
 			// The newly-created entity will have owner -1 and position out-of-world
@@ -303,7 +303,7 @@ public:
 
 			// Store the LOS data, if any
 			CmpPtr<ICmpVision> cmpVision(GetSimContext(), ent);
-			if (!cmpVision.null())
+			if (cmpVision)
 			{
 				entdata.visionRange = cmpVision->GetRange();
 				entdata.retainInFog = (cmpVision->GetRetainInFog() ? 1 : 0);
@@ -570,7 +570,7 @@ public:
 		std::vector<entity_id_t> r;
 
 		CmpPtr<ICmpPosition> cmpSourcePosition(GetSimContext(), q.source);
-		if (cmpSourcePosition.null() || !cmpSourcePosition->IsInWorld())
+		if (!cmpSourcePosition || !cmpSourcePosition->IsInWorld())
 		{
 			// If the source doesn't have a position, then the result is just the empty list
 			return r;
@@ -602,7 +602,7 @@ public:
 		q.enabled = true;
 
 		CmpPtr<ICmpPosition> cmpSourcePosition(GetSimContext(), q.source);
-		if (cmpSourcePosition.null() || !cmpSourcePosition->IsInWorld())
+		if (!cmpSourcePosition || !cmpSourcePosition->IsInWorld())
 		{
 			// If the source doesn't have a position, then the result is just the empty list
 			q.lastMatch = r;
@@ -663,7 +663,7 @@ public:
 				continue;
 
 			CmpPtr<ICmpPosition> cmpSourcePosition(GetSimContext(), q.source);
-			if (cmpSourcePosition.null() || !cmpSourcePosition->IsInWorld())
+			if (!cmpSourcePosition || !cmpSourcePosition->IsInWorld())
 				continue;
 
 			std::vector<entity_id_t> r;
@@ -726,7 +726,7 @@ public:
 	void PerformQuery(const Query& q, std::vector<entity_id_t>& r)
 	{
 		CmpPtr<ICmpPosition> cmpSourcePosition(GetSimContext(), q.source);
-		if (cmpSourcePosition.null() || !cmpSourcePosition->IsInWorld())
+		if (!cmpSourcePosition || !cmpSourcePosition->IsInWorld())
 			return;
 		CFixedVector2D pos = cmpSourcePosition->GetPosition2D();
 
@@ -816,7 +816,7 @@ public:
 				Query& q = it->second;
 
 				CmpPtr<ICmpPosition> cmpSourcePosition(GetSimContext(), q.source);
-				if (cmpSourcePosition.null() || !cmpSourcePosition->IsInWorld())
+				if (!cmpSourcePosition || !cmpSourcePosition->IsInWorld())
 					continue;
 				CFixedVector2D pos = cmpSourcePosition->GetPosition2D();
 
@@ -837,7 +837,7 @@ public:
 				for (size_t i = 0; i < q.lastMatch.size(); ++i)
 				{
 					CmpPtr<ICmpPosition> cmpTargetPosition(GetSimContext(), q.lastMatch[i]);
-					if (cmpTargetPosition.null() || !cmpTargetPosition->IsInWorld())
+					if (!cmpTargetPosition || !cmpTargetPosition->IsInWorld())
 						continue;
 					CFixedVector2D targetPos = cmpTargetPosition->GetPosition2D();
 
@@ -878,7 +878,7 @@ public:
 
 		// Entities not with positions in the world are never visible
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), ent);
-		if (cmpPosition.null() || !cmpPosition->IsInWorld())
+		if (!cmpPosition || !cmpPosition->IsInWorld())
 			return VIS_HIDDEN;
 
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
@@ -906,7 +906,7 @@ public:
 		if (los.IsExplored(i, j))
 		{
 			CmpPtr<ICmpVision> cmpVision(GetSimContext(), ent);
-			if (forceRetainInFog || (!cmpVision.null() && cmpVision->GetRetainInFog()))
+			if (forceRetainInFog || (cmpVision && cmpVision->GetRetainInFog()))
 				return VIS_FOGGED;
 		}
 
@@ -951,7 +951,7 @@ public:
 	void UpdateTerritoriesLos()
 	{
 		CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(GetSimContext(), SYSTEM_ENTITY);
-		if (cmpTerritoryManager.null() || !cmpTerritoryManager->NeedUpdate(&m_TerritoriesDirtyID))
+		if (!cmpTerritoryManager || !cmpTerritoryManager->NeedUpdate(&m_TerritoriesDirtyID))
 			return;
 
 		const Grid<u8>& grid = cmpTerritoryManager->GetTerritoryGrid();

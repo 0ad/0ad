@@ -581,7 +581,7 @@ void CPatchRData::BuildSide(std::vector<SSideVertex>& vertices, CPatchSideFlags 
 
 		// Clamp the height to the water level
 		float waterHeight = 0.f;
-		if (!cmpWaterManager.null())
+		if (cmpWaterManager)
 			waterHeight = cmpWaterManager->GetExactWaterLevel(pos.X, pos.Z);
 		pos.Y = std::max(pos.Y, waterHeight);
 
@@ -1203,7 +1203,7 @@ void CPatchRData::BuildWater()
 	// We need to use this to access the water manager or we may not have the
 	// actual values but some compiled-in defaults
 	CmpPtr<ICmpWaterManager> cmpWaterManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-	if (cmpWaterManager.null())
+	if (!cmpWaterManager)
 		return;
 
 	// Build data for water

@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -197,11 +197,11 @@ public:
 	void MakeDirtyIfRelevantEntity(entity_id_t ent)
 	{
 		CmpPtr<ICmpSettlement> cmpSettlement(GetSimContext(), ent);
-		if (!cmpSettlement.null())
+		if (cmpSettlement)
 			MakeDirty();
 
 		CmpPtr<ICmpTerritoryInfluence> cmpTerritoryInfluence(GetSimContext(), ent);
-		if (!cmpTerritoryInfluence.null())
+		if (cmpTerritoryInfluence)
 			MakeDirty();
 	}
 
@@ -379,7 +379,7 @@ void CCmpTerritoryManager::CalculateTerritories()
 			continue;
 
 		CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), it->first);
-		if (cmpOwnership.null())
+		if (!cmpOwnership)
 			continue;
 
 		// Ignore Gaia and unassigned
@@ -393,7 +393,7 @@ void CCmpTerritoryManager::CalculateTerritories()
 
 		// Ignore if invalid position
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), it->first);
-		if (cmpPosition.null() || !cmpPosition->IsInWorld())
+		if (!cmpPosition || !cmpPosition->IsInWorld())
 			continue;
 
 		influenceEntities[owner].push_back(it->first);
@@ -559,7 +559,7 @@ void CCmpTerritoryManager::RasteriseInfluences(CComponentManager::InterfaceList&
 			continue;
 
 		CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), it->first);
-		if (cmpObstruction.null())
+		if (!cmpObstruction)
 			continue;
 
 		ICmpObstructionManager::ObstructionSquare square;
@@ -619,12 +619,12 @@ void CCmpTerritoryManager::UpdateBoundaryLines()
 	CTexturePtr textureMask = g_Renderer.GetTextureManager().CreateTexture(texturePropsMask);
 
 	CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
-	if (cmpTerrain.null())
+	if (!cmpTerrain)
 		return;
 	CTerrain* terrain = cmpTerrain->GetCTerrain();
 
 	CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSimContext(), SYSTEM_ENTITY);
-	if (cmpPlayerManager.null())
+	if (!cmpPlayerManager)
 		return;
 
 	for (size_t i = 0; i < boundaries.size(); ++i)
@@ -634,7 +634,7 @@ void CCmpTerritoryManager::UpdateBoundaryLines()
 
 		CColor color(1, 0, 1, 1);
 		CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(boundaries[i].owner));
-		if (!cmpPlayer.null())
+		if (cmpPlayer)
 			color = cmpPlayer->GetColour();
 
 		m_BoundaryLines.push_back(SBoundaryLine());

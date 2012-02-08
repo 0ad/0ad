@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -62,7 +62,7 @@ namespace
 			return false;
 
 		CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), unit->GetID());
-		if (cmpPosition.null())
+		if (!cmpPosition)
 			return false;
 		return cmpPosition->IsFloating();
 	}
@@ -77,10 +77,10 @@ QUERYHANDLER(GetObjectsList)
 {
 	std::vector<sObjectsListItem> objects;
 
-	CmpPtr<ICmpTemplateManager> cmp(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-	if (!cmp.null())
+	CmpPtr<ICmpTemplateManager> cmpTemplateManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	if (cmpTemplateManager)
 	{
-		std::vector<std::string> names = cmp->FindAllTemplates(true);
+		std::vector<std::string> names = cmpTemplateManager->FindAllTemplates(true);
 
 		for (std::vector<std::string>::iterator it = names.begin(); it != names.end(); ++it)
 		{
@@ -114,7 +114,7 @@ MESSAGEHANDLER(SetSelectionPreview)
 	for (size_t i = 0; i < g_Selection.size(); ++i)
 	{
 		CmpPtr<ICmpSelectable> cmpSelectable(*g_Game->GetSimulation2(), g_Selection[i]);
-		if (!cmpSelectable.null())
+		if (cmpSelectable)
 			cmpSelectable->SetSelectionHighlight(CColor(1, 1, 1, 0));
 	}
 
@@ -123,7 +123,7 @@ MESSAGEHANDLER(SetSelectionPreview)
 	for (size_t i = 0; i < g_Selection.size(); ++i)
 	{
 		CmpPtr<ICmpSelectable> cmpSelectable(*g_Game->GetSimulation2(), g_Selection[i]);
-		if (!cmpSelectable.null())
+		if (cmpSelectable)
 			cmpSelectable->SetSelectionHighlight(CColor(1, 1, 1, 1));
 	}
 }
@@ -136,10 +136,10 @@ QUERYHANDLER(GetObjectSettings)
 	sObjectSettings settings;
 	settings.player = 0;
 
-	CmpPtr<ICmpOwnership> cmpOwner (*simulation, view->GetEntityId(msg->id));
-	if (!cmpOwner.null())
+	CmpPtr<ICmpOwnership> cmpOwnership(*simulation, view->GetEntityId(msg->id));
+	if (cmpOwnership)
 	{
-		int32_t player = cmpOwner->GetOwner();
+		int32_t player = cmpOwnership->GetOwner();
 		if (player != -1)
 			settings.player = player;
 	}
@@ -201,11 +201,11 @@ BEGIN_COMMAND(SetObjectSettings)
 		View* view = View::GetView(msg->view);
 		CSimulation2* simulation = view->GetSimulation2();
 
-		CmpPtr<ICmpOwnership> cmpOwner (*simulation, view->GetEntityId(msg->id));
+		CmpPtr<ICmpOwnership> cmpOwnership(*simulation, view->GetEntityId(msg->id));
 		m_PlayerOld = 0;
-		if (!cmpOwner.null())
+		if (cmpOwnership)
 		{
-			int32_t player = cmpOwner->GetOwner();
+			int32_t player = cmpOwnership->GetOwner();
 			if (player != -1)
 				m_PlayerOld = player;
 		}
@@ -240,9 +240,9 @@ private:
 		View* view = View::GetView(msg->view);
 		CSimulation2* simulation = view->GetSimulation2();
 
-		CmpPtr<ICmpOwnership> cmpOwner (*simulation, view->GetEntityId(msg->id));
-		if (!cmpOwner.null())
-			cmpOwner->SetOwner(player);
+		CmpPtr<ICmpOwnership> cmpOwnership(*simulation, view->GetEntityId(msg->id));
+		if (cmpOwnership)
+			cmpOwnership->SetOwner(player);
 
 		// TODO: selections
 //		unit->SetActorSelections(selections);
@@ -304,11 +304,11 @@ MESSAGEHANDLER(ObjectPreview)
 	{
 		// Update the unit's position and orientation:
 
-		CmpPtr<ICmpPosition> cmpPos (*g_Game->GetSimulation2(), g_PreviewEntityID);
-		if (!cmpPos.null())
+		CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), g_PreviewEntityID);
+		if (cmpPosition)
 		{
-			CVector3D pos = GetUnitPos(msg->pos, cmpPos->IsFloating());
-			cmpPos->JumpTo(entity_pos_t::FromFloat(pos.X), entity_pos_t::FromFloat(pos.Z));
+			CVector3D pos = GetUnitPos(msg->pos, cmpPosition->IsFloating());
+			cmpPosition->JumpTo(entity_pos_t::FromFloat(pos.X), entity_pos_t::FromFloat(pos.Z));
 
 			float angle;
 			if (msg->usetarget)
@@ -322,14 +322,14 @@ MESSAGEHANDLER(ObjectPreview)
 				angle = msg->angle;
 			}
 
-			cmpPos->SetYRotation(entity_angle_t::FromFloat(angle));
+			cmpPosition->SetYRotation(entity_angle_t::FromFloat(angle));
 		}
 
 		// TODO: handle random variations somehow
 
-		CmpPtr<ICmpOwnership> cmpOwner (*g_Game->GetSimulation2(), g_PreviewEntityID);
-		if (!cmpOwner.null())
-			cmpOwner->SetOwner((player_id_t)msg->settings->player);
+		CmpPtr<ICmpOwnership> cmpOwnership(*g_Game->GetSimulation2(), g_PreviewEntityID);
+		if (cmpOwnership)
+			cmpOwnership->SetOwner((player_id_t)msg->settings->player);
 	}
 }
 
@@ -370,16 +370,16 @@ BEGIN_COMMAND(CreateObject)
 		if (m_EntityID == INVALID_ENTITY)
 			return;
 
-		CmpPtr<ICmpPosition> cmpPos (*g_Game->GetSimulation2(), m_EntityID);
-		if (!cmpPos.null())
+		CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), m_EntityID);
+		if (cmpPosition)
 		{
-			cmpPos->JumpTo(entity_pos_t::FromFloat(m_Pos.X), entity_pos_t::FromFloat(m_Pos.Z));
-			cmpPos->SetYRotation(entity_angle_t::FromFloat(m_Angle));
+			cmpPosition->JumpTo(entity_pos_t::FromFloat(m_Pos.X), entity_pos_t::FromFloat(m_Pos.Z));
+			cmpPosition->SetYRotation(entity_angle_t::FromFloat(m_Angle));
 		}
 
-		CmpPtr<ICmpOwnership> cmpOwner (*g_Game->GetSimulation2(), m_EntityID);
-		if (!cmpOwner.null())
-			cmpOwner->SetOwner(m_Player);
+		CmpPtr<ICmpOwnership> cmpOwnership(*g_Game->GetSimulation2(), m_EntityID);
+		if (cmpOwnership)
+			cmpOwnership->SetOwner(m_Player);
 
 		// TODO: handle random variations somehow
 	}
@@ -442,17 +442,17 @@ BEGIN_COMMAND(MoveObject)
 
 	void Do()
 	{
-		CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), (entity_id_t)msg->id);
-		if (cmpPos.null())
+		CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), (entity_id_t)msg->id);
+		if (!cmpPosition)
 		{
 			// error
 			m_PosOld = m_PosNew = CVector3D(0, 0, 0);
 		}
 		else
 		{
-			m_PosNew = GetUnitPos(msg->pos, cmpPos->IsFloating());
+			m_PosNew = GetUnitPos(msg->pos, cmpPosition->IsFloating());
 
-			CFixedVector3D pos = cmpPos->GetPosition();
+			CFixedVector3D pos = cmpPosition->GetPosition();
 			m_PosOld = CVector3D(pos.X.ToFloat(), pos.Y.ToFloat(), pos.Z.ToFloat());
 		}
 
@@ -461,11 +461,11 @@ BEGIN_COMMAND(MoveObject)
 
 	void SetPos(CVector3D& pos)
 	{
-		CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), (entity_id_t)msg->id);
-		if (cmpPos.null())
+		CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), (entity_id_t)msg->id);
+		if (!cmpPosition)
 			return;
 
-		cmpPos->JumpTo(entity_pos_t::FromFloat(pos.X), entity_pos_t::FromFloat(pos.Z));
+		cmpPosition->JumpTo(entity_pos_t::FromFloat(pos.X), entity_pos_t::FromFloat(pos.Z));
 	}
 
 	void Redo()
@@ -494,14 +494,14 @@ BEGIN_COMMAND(RotateObject)
 
 	void Do()
 	{
-		CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), (entity_id_t)msg->id);
-		if (cmpPos.null())
+		CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), (entity_id_t)msg->id);
+		if (!cmpPosition)
 			return;
 
-		m_AngleOld = cmpPos->GetRotation().Y.ToFloat();
+		m_AngleOld = cmpPosition->GetRotation().Y.ToFloat();
 		if (msg->usetarget)
 		{
-			CMatrix3D transform = cmpPos->GetInterpolatedTransform(0.f, false);
+			CMatrix3D transform = cmpPosition->GetInterpolatedTransform(0.f, false);
 			CVector3D pos = transform.GetTranslation();
 			CVector3D target = msg->target->GetWorldSpace(pos.Y);
 			m_AngleNew = atan2(target.X-pos.X, target.Z-pos.Z);
@@ -516,11 +516,11 @@ BEGIN_COMMAND(RotateObject)
 
 	void SetAngle(float angle)
 	{
-		CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), (entity_id_t)msg->id);
-		if (cmpPos.null())
+		CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), (entity_id_t)msg->id);
+		if (!cmpPosition)
 			return;
 
-		cmpPos->SetYRotation(entity_angle_t::FromFloat(angle));
+		cmpPosition->SetYRotation(entity_angle_t::FromFloat(angle));
 	}
 
 	void Redo()
@@ -570,7 +570,7 @@ BEGIN_COMMAND(DeleteObjects)
 	{
 		CSimulation2& sim = *g_Game->GetSimulation2();
 		CmpPtr<ICmpTemplateManager> cmpTemplateManager(sim, SYSTEM_ENTITY);
-		ENSURE(!cmpTemplateManager.null());
+		ENSURE(cmpTemplateManager);
 
 		std::vector<ObjectID> ids = *msg->ids;
 		for (size_t i = 0; i < ids.size(); ++i)
@@ -580,12 +580,12 @@ BEGIN_COMMAND(DeleteObjects)
 			obj.entityID = (entity_id_t)ids[i];
 			obj.templateName = cmpTemplateManager->GetCurrentTemplateName(obj.entityID);
 
-			CmpPtr<ICmpOwnership> cmpOwner(sim, obj.entityID);
-			if (!cmpOwner.null())
-				obj.owner = cmpOwner->GetOwner();
+			CmpPtr<ICmpOwnership> cmpOwnership(sim, obj.entityID);
+			if (cmpOwnership)
+				obj.owner = cmpOwnership->GetOwner();
 
 			CmpPtr<ICmpPosition> cmpPosition(sim, obj.entityID);
-			if (!cmpPosition.null())
+			if (cmpPosition)
 			{
 				obj.pos = cmpPosition->GetPosition();
 				obj.rot = cmpPosition->GetRotation();
@@ -610,16 +610,16 @@ BEGIN_COMMAND(DeleteObjects)
 			else
 			{
 				CmpPtr<ICmpPosition> cmpPosition(sim, oldObjects[i].entityID);
-				if (!cmpPosition.null())
+				if (cmpPosition)
 				{
 					cmpPosition->JumpTo(oldObjects[i].pos.X, oldObjects[i].pos.Z);
 					cmpPosition->SetXZRotation(oldObjects[i].rot.X, oldObjects[i].rot.Z);
 					cmpPosition->SetYRotation(oldObjects[i].rot.Y);
 				}
 
-				CmpPtr<ICmpOwnership> cmpOwner(sim, oldObjects[i].entityID);
-				if (!cmpOwner.null())
-					cmpOwner->SetOwner(oldObjects[i].owner);
+				CmpPtr<ICmpOwnership> cmpOwnership(sim, oldObjects[i].entityID);
+				if (cmpOwnership)
+					cmpOwnership->SetOwner(oldObjects[i].owner);
 			}
 		}
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -426,7 +426,7 @@ void CCmpRallyPointRenderer::UpdateMarker()
 		LOGERROR(L"Failed to create rally point marker entity");
 
 	CmpPtr<ICmpPosition> markerCmpPosition(GetSimContext(), m_MarkerEntityId);
-	if (!markerCmpPosition.null())
+	if (markerCmpPosition)
 	{
 		if (m_Displayed && IsSet())
 		{
@@ -440,7 +440,7 @@ void CCmpRallyPointRenderer::UpdateMarker()
 
 	// set rally point flag selection based on player civilization
 	CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), GetEntityId());
-	if (!cmpOwnership.null())
+	if (cmpOwnership)
 	{
 		player_id_t ownerId = cmpOwnership->GetOwner();
 		if (ownerId != INVALID_PLAYER && ownerId != m_LastOwner)
@@ -449,13 +449,13 @@ void CCmpRallyPointRenderer::UpdateMarker()
 			CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSimContext(), SYSTEM_ENTITY);
 			// cmpPlayerManager should not be null as long as this method is called on-demand instead of at Init() time
 			// (we can't rely on component initialization order in Init())
-			if (!cmpPlayerManager.null())
+			if (cmpPlayerManager)
 			{
 				CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(ownerId));
-				if (!cmpPlayer.null())
+				if (cmpPlayer)
 				{
 					CmpPtr<ICmpVisual> cmpVisualActor(GetSimContext(), m_MarkerEntityId);
-					if (!cmpVisualActor.null())
+					if (cmpVisualActor)
 					{
 						cmpVisualActor->SetUnitEntitySelection(CStrW(cmpPlayer->GetCiv()).ToUTF8());
 					}
@@ -474,7 +474,7 @@ void CCmpRallyPointRenderer::RecomputeRallyPointPath()
 		return; // no use computing a path if the rally point isn't set
 
 	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
-	if (cmpPosition.null() || !cmpPosition->IsInWorld())
+	if (!cmpPosition || !cmpPosition->IsInWorld())
 		return; // no point going on if this entity doesn't have a position or is outside of the world
 
 	CmpPtr<ICmpFootprint> cmpFootprint(GetSimContext(), GetEntityId());
@@ -533,7 +533,7 @@ void CCmpRallyPointRenderer::RecomputeRallyPointPath()
 		m_Path[i] = (m_Path[i] + m_Path[i-1]) / 2.0f;
 
 	// if there's a footprint, remove any points returned by the pathfinder that may be on obstructed footprint tiles
-	if (!cmpFootprint.null())
+	if (cmpFootprint)
 		FixFootprintWaypoints(m_Path, cmpPosition, cmpFootprint);
 
 	// Eliminate some consecutive waypoints that are visible from eachother. Reduce across a maximum distance of approx. 6 tiles 
@@ -737,8 +737,8 @@ void CCmpRallyPointRenderer::UpdateOverlayLines()
 
 void CCmpRallyPointRenderer::FixFootprintWaypoints(std::vector<CVector2D>& coords, CmpPtr<ICmpPosition> cmpPosition, CmpPtr<ICmpFootprint> cmpFootprint)
 {
-	ENSURE(!cmpPosition.null());
-	ENSURE(!cmpFootprint.null());
+	ENSURE(cmpPosition);
+	ENSURE(cmpFootprint);
 
 	// -----------------------------------------------------------------------------------------------------
 	// TODO: nasty fixed/float conversions everywhere
@@ -851,7 +851,7 @@ void CCmpRallyPointRenderer::ReduceSegmentsByVisibility(std::vector<CVector2D>& 
 	CmpPtr<ICmpPathfinder> cmpPathFinder(GetSimContext(), SYSTEM_ENTITY);
 	CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
 	CmpPtr<ICmpWaterManager> cmpWaterManager(GetSimContext(), SYSTEM_ENTITY);
-	ENSURE(!cmpPathFinder.null() && !cmpTerrain.null() && !cmpWaterManager.null());
+	ENSURE(cmpPathFinder && cmpTerrain && cmpWaterManager);
 
 	if (coords.size() < 3)
 		return;

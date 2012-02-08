@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ IComponent* QueryInterface(const CSimulation2& simulation, entity_id_t ent, int 
  *
  * @code
  * CmpPtr<ICmpPosition> cmpPosition(context, ent);
- * if (cmpPosition.null())
+ * if (!cmpPosition)
  *     // do something (maybe just silently abort; you should never crash if the
  *     // component is missing, even if you're sure it should never be missing)
  * @endcode
@@ -54,6 +54,11 @@ IComponent* QueryInterface(const CSimulation2& simulation, entity_id_t ent, int 
 template<typename T>
 class CmpPtr
 {
+private:
+	T* m;
+	typedef void (CmpPtr::*bool_type)() const;
+	void this_type_does_not_support_comparisions() const {}
+
 public:
 	CmpPtr(const CSimContext& context, entity_id_t ent)
 	{
@@ -67,10 +72,23 @@ public:
 
 	T* operator->() { return m; }
 
-	bool null() { return (m == NULL); }
-
-private:
-	T* m;
+	operator bool_type() const
+	{
+		return (m != NULL) ? &CmpPtr::this_type_does_not_support_comparisions : 0;
+	}
 };
+
+template<typename T, typename U>
+	bool operator!=(const CmpPtr<T>& lhs, const U& rhs)
+	{
+		lhs.this_type_does_not_support_comparisions();
+		return false;
+	}
+template<typename T, typename U>
+	bool operator==(const CmpPtr<T>& lhs, const U& rhs)
+	{
+		lhs.this_type_does_not_support_comparisions();
+		return false;
+	}
 
 #endif // INCLUDED_CMPPTR

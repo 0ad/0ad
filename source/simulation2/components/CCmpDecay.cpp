@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -123,7 +123,7 @@ public:
 			const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
 
 			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
-			if (cmpPosition.null() || !cmpPosition->IsInWorld())
+			if (!cmpPosition || !cmpPosition->IsInWorld())
 			{
 				// If there's no position (this usually shouldn't happen), destroy the unit immediately
 				GetSimContext().GetComponentManager().DestroyComponentsSoon(GetEntityId());
@@ -138,7 +138,7 @@ public:
 				m_TotalSinkDepth = 1.f; // minimum so we always sink at least a little
 
 				CmpPtr<ICmpVisual> cmpVisual(GetSimContext(), GetEntityId());
-				if (!cmpVisual.null())
+				if (cmpVisual)
 				{
 					CBoundingBoxAligned bound = cmpVisual->GetBounds();
 					m_TotalSinkDepth = std::max(m_TotalSinkDepth, bound[1].Y - bound[0].Y);
@@ -150,7 +150,7 @@ public:
 				CFixedVector3D pos = cmpPosition->GetPosition();
 
 				CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
-				if (!cmpTerrain.null())
+				if (cmpTerrain)
 				{
 					fixed ground = cmpTerrain->GetGroundLevel(pos.X, pos.Z);
 					m_TotalSinkDepth += std::max(0.f, (pos.Y - ground).ToFloat());

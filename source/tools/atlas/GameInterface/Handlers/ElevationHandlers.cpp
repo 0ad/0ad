@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -112,7 +112,7 @@ BEGIN_COMMAND(AlterElevation)
 	{
 		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
 		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-		if (!cmpTerrain.null())
+		if (cmpTerrain)
 			cmpTerrain->MakeDirty(m_i0, m_j0, m_i1, m_j1);
 	}
 
@@ -194,7 +194,7 @@ BEGIN_COMMAND(SmoothElevation)
 	{
 		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
 		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-		if (!cmpTerrain.null())
+		if (cmpTerrain)
 			cmpTerrain->MakeDirty(m_i0, m_j0, m_i1, m_j1);
 	}
 
@@ -306,7 +306,7 @@ BEGIN_COMMAND(FlattenElevation)
 	{
 		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
 		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-		if (!cmpTerrain.null())
+		if (cmpTerrain)
 			cmpTerrain->MakeDirty(m_i0, m_j0, m_i1, m_j1);
 	}
 

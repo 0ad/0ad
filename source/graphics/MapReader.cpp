@@ -288,14 +288,14 @@ int CMapReader::ApplyData()
 
 	CmpPtr<ICmpPlayerManager> cmpPlayerManager(*pSimContext, SYSTEM_ENTITY);
 
-	if (pGameView && !cmpPlayerManager.null())
+	if (pGameView && cmpPlayerManager)
 	{
 		// Default to global camera (with constraints)
 		pGameView->ResetCameraTarget(pGameView->GetCamera()->GetFocus());
 	
 		// TODO: Starting rotation?
 		CmpPtr<ICmpPlayer> cmpPlayer(*pSimContext, cmpPlayerManager->GetPlayerByID(m_PlayerID));
-		if (!cmpPlayer.null() && cmpPlayer->HasStartingCamera())
+		if (cmpPlayer && cmpPlayer->HasStartingCamera())
 		{
 			// Use player starting camera
 			CFixedVector3D pos = cmpPlayer->GetStartingCameraPos();
@@ -305,7 +305,7 @@ int CMapReader::ApplyData()
 		{
 			// Point camera at entity
 			CmpPtr<ICmpPosition> cmpPosition(*pSimContext, m_StartingCameraTarget);
-			if (!cmpPosition.null())
+			if (cmpPosition)
 			{
 				CFixedVector3D pos = cmpPosition->GetPosition();
 				pGameView->ResetCameraTarget(CVector3D(pos.X.ToFloat(), pos.Y.ToFloat(), pos.Z.ToFloat()));
@@ -314,7 +314,7 @@ int CMapReader::ApplyData()
 	}
 
 	CmpPtr<ICmpTerrain> cmpTerrain(*pSimContext, SYSTEM_ENTITY);
-	if (!cmpTerrain.null())
+	if (cmpTerrain)
 		cmpTerrain->ReloadTerrain();
 
 	return 0;
@@ -634,9 +634,9 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 					int element_name = waterelement.GetNodeName();
 					if (element_name == el_height)
 					{
-						CmpPtr<ICmpWaterManager> cmpWaterMan(*m_MapReader.pSimContext, SYSTEM_ENTITY);
-						ENSURE(!cmpWaterMan.null());
-						cmpWaterMan->SetWaterLevel(entity_pos_t::FromString(waterelement.GetText()));
+						CmpPtr<ICmpWaterManager> cmpWaterManager(*m_MapReader.pSimContext, SYSTEM_ENTITY);
+						ENSURE(cmpWaterManager);
+						cmpWaterManager->SetWaterLevel(entity_pos_t::FromString(waterelement.GetText()));
 						continue;
 					}
 
@@ -931,16 +931,16 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 		else
 		{
 			CmpPtr<ICmpPosition> cmpPosition(sim, ent);
-			if (!cmpPosition.null())
+			if (cmpPosition)
 			{
 				cmpPosition->JumpTo(Position.X, Position.Z);
 				cmpPosition->SetYRotation(Orientation.Y);
 				// TODO: other parts of the position
 			}
 
-			CmpPtr<ICmpOwnership> cmpOwner(sim, ent);
-			if (!cmpOwner.null())
-				cmpOwner->SetOwner(PlayerID);
+			CmpPtr<ICmpOwnership> cmpOwnership(sim, ent);
+			if (cmpOwnership)
+				cmpOwnership->SetOwner(PlayerID);
 
 			if (PlayerID == m_MapReader.m_PlayerID && (boost::algorithm::ends_with(TemplateName, L"civil_centre") || m_MapReader.m_StartingCameraTarget == INVALID_ENTITY))
 			{
@@ -1252,16 +1252,16 @@ int CMapReader::ParseEntities()
 		else
 		{
 			CmpPtr<ICmpPosition> cmpPosition(sim, ent);
-			if (!cmpPosition.null())
+			if (cmpPosition)
 			{
 				cmpPosition->JumpTo(currEnt.position.X, currEnt.position.Z);
 				cmpPosition->SetYRotation(currEnt.rotation.Y);
 				// TODO: other parts of the position
 			}
 
-			CmpPtr<ICmpOwnership> cmpOwner(sim, ent);
-			if (!cmpOwner.null())
-				cmpOwner->SetOwner(currEnt.playerID);
+			CmpPtr<ICmpOwnership> cmpOwnership(sim, ent);
+			if (cmpOwnership)
+				cmpOwnership->SetOwner(currEnt.playerID);
 
 			if (currEnt.playerID == m_PlayerID && (boost::algorithm::ends_with(currEnt.templateName, L"civil_centre") || m_StartingCameraTarget == INVALID_ENTITY))
 			{
@@ -1326,9 +1326,9 @@ int CMapReader::ParseEnvironment()
 	float waterHeight;
 	GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Height, waterHeight)
 
-	CmpPtr<ICmpWaterManager> cmpWaterMan(*pSimulation2, SYSTEM_ENTITY);
-	ENSURE(!cmpWaterMan.null());
-	cmpWaterMan->SetWaterLevel(entity_pos_t::FromFloat(waterHeight));
+	CmpPtr<ICmpWaterManager> cmpWaterManager(*pSimulation2, SYSTEM_ENTITY);
+	ENSURE(cmpWaterManager);
+	cmpWaterManager->SetWaterLevel(entity_pos_t::FromFloat(waterHeight));
 
 	// If we have graphics, get rest of settings
 	if (pWaterMan)

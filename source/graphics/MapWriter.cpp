@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -229,9 +229,9 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 						XML_Attribute("g", pWaterMan->m_WaterColor.g);
 						XML_Attribute("b", pWaterMan->m_WaterColor.b);
 					}
-					CmpPtr<ICmpWaterManager> cmpWaterMan(*pSimulation2, SYSTEM_ENTITY);
-					ENSURE(!cmpWaterMan.null());
-					XML_Setting("Height", cmpWaterMan->GetExactWaterLevel(0, 0));
+					CmpPtr<ICmpWaterManager> cmpWaterManager(*pSimulation2, SYSTEM_ENTITY);
+					ENSURE(cmpWaterManager);
+					XML_Setting("Height", cmpWaterManager->GetExactWaterLevel(0, 0));
 					XML_Setting("Shininess", pWaterMan->m_Shininess);
 					XML_Setting("Waviness", pWaterMan->m_Waviness);
 					XML_Setting("Murkiness", pWaterMan->m_Murkiness);
@@ -294,7 +294,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 			CSimulation2& sim = *pSimulation2;
 
 			CmpPtr<ICmpTemplateManager> cmpTemplateManager(sim, SYSTEM_ENTITY);
-			ENSURE(!cmpTemplateManager.null());
+			ENSURE(cmpTemplateManager);
 
 			// This will probably need to be changed in the future, but for now we'll
 			// just save all entities that have a position
@@ -312,12 +312,12 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 
 				XML_Setting("Template", cmpTemplateManager->GetCurrentTemplateName(ent));
 
-				CmpPtr<ICmpOwnership> cmpOwner(sim, ent);
-				if (!cmpOwner.null())
-					XML_Setting("Player", (int)cmpOwner->GetOwner());
+				CmpPtr<ICmpOwnership> cmpOwnership(sim, ent);
+				if (cmpOwnership)
+					XML_Setting("Player", (int)cmpOwnership->GetOwner());
 
 				CmpPtr<ICmpPosition> cmpPosition(sim, ent);
-				if (!cmpPosition.null())
+				if (cmpPosition)
 				{
 					CFixedVector3D pos = cmpPosition->GetPosition();
 					CFixedVector3D rot = cmpPosition->GetRotation();

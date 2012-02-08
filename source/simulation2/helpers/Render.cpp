@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,7 +39,7 @@ void SimRender::ConstructLineOnGround(const CSimContext& context, const std::vec
 	overlay.m_Coords.clear();
 
 	CmpPtr<ICmpTerrain> cmpTerrain(context, SYSTEM_ENTITY);
-	if (cmpTerrain.null())
+	if (!cmpTerrain)
 		return;
 
 	if (xz.size() < 2)
@@ -48,9 +48,9 @@ void SimRender::ConstructLineOnGround(const CSimContext& context, const std::vec
 	float water = 0.f;
 	if (floating)
 	{
-		CmpPtr<ICmpWaterManager> cmpWaterMan(context, SYSTEM_ENTITY);
-		if (!cmpWaterMan.null())
-			water = cmpWaterMan->GetExactWaterLevel(xz[0], xz[1]);
+		CmpPtr<ICmpWaterManager> cmpWaterManager(context, SYSTEM_ENTITY);
+		if (cmpWaterManager)
+			water = cmpWaterManager->GetExactWaterLevel(xz[0], xz[1]);
 	}
 
 	overlay.m_Coords.reserve(xz.size()/2 * 3);
@@ -72,15 +72,15 @@ void SimRender::ConstructCircleOnGround(const CSimContext& context, float x, flo
 	overlay.m_Coords.clear();
 
 	CmpPtr<ICmpTerrain> cmpTerrain(context, SYSTEM_ENTITY);
-	if (cmpTerrain.null())
+	if (!cmpTerrain)
 		return;
 
 	float water = 0.f;
 	if (floating)
 	{
-		CmpPtr<ICmpWaterManager> cmpWaterMan(context, SYSTEM_ENTITY);
-		if (!cmpWaterMan.null())
-			water = cmpWaterMan->GetExactWaterLevel(x, z);
+		CmpPtr<ICmpWaterManager> cmpWaterManager(context, SYSTEM_ENTITY);
+		if (cmpWaterManager)
+			water = cmpWaterManager->GetExactWaterLevel(x, z);
 	}
 
 	// Adapt the circle resolution to look reasonable for small and largeish radiuses
@@ -123,15 +123,15 @@ void SimRender::ConstructSquareOnGround(const CSimContext& context, float x, flo
 	overlay.m_Coords.clear();
 
 	CmpPtr<ICmpTerrain> cmpTerrain(context, SYSTEM_ENTITY);
-	if (cmpTerrain.null())
+	if (!cmpTerrain)
 		return;
 
 	float water = 0.f;
 	if (floating)
 	{
-		CmpPtr<ICmpWaterManager> cmpWaterMan(context, SYSTEM_ENTITY);
-		if (!cmpWaterMan.null())
-			water = cmpWaterMan->GetExactWaterLevel(x, z);
+		CmpPtr<ICmpWaterManager> cmpWaterManager(context, SYSTEM_ENTITY);
+		if (cmpWaterManager)
+			water = cmpWaterManager->GetExactWaterLevel(x, z);
 	}
 
 	float c = cosf(a);

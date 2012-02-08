@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -126,7 +126,7 @@ QUERYHANDLER(GetTerrainGroupPreviews)
 QUERYHANDLER(GetTerrainPassabilityClasses)
 {
 	CmpPtr<ICmpPathfinder> cmpPathfinder(*View::GetView_Game()->GetSimulation2(), SYSTEM_ENTITY);
-	if (!cmpPathfinder.null())
+	if (cmpPathfinder)
 	{
 		std::map<std::string, ICmpPathfinder::pass_class_t> classes = cmpPathfinder->GetPassabilityClasses();
 
@@ -236,7 +236,7 @@ BEGIN_COMMAND(PaintTerrain)
 	{
 		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_INDICES);
 		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-		if (!cmpTerrain.null())
+		if (cmpTerrain)
 			cmpTerrain->MakeDirty(m_i0, m_j0, m_i1, m_j1);
 	}
 
@@ -325,7 +325,7 @@ BEGIN_COMMAND(ReplaceTerrain)
 	{
 		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_INDICES);
 		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-		if (!cmpTerrain.null())
+		if (cmpTerrain)
 			cmpTerrain->MakeDirty(m_i0, m_j0, m_i1, m_j1);
 	}
 
@@ -404,7 +404,7 @@ BEGIN_COMMAND(FillTerrain)
 	{
 		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_INDICES);
 		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-		if (!cmpTerrain.null())
+		if (cmpTerrain)
 			cmpTerrain->MakeDirty(m_i0, m_j0, m_i1, m_j1);
 	}
 

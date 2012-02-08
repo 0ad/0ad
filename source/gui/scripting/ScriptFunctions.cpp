@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -95,8 +95,8 @@ CScriptVal GuiInterfaceCall(void* cbdata, std::wstring name, CScriptVal data)
 	CSimulation2* sim = g_Game->GetSimulation2();
 	ENSURE(sim);
 
-	CmpPtr<ICmpGuiInterface> gui(*sim, SYSTEM_ENTITY);
-	if (gui.null())
+	CmpPtr<ICmpGuiInterface> cmpGuiInterface(*sim, SYSTEM_ENTITY);
+	if (!cmpGuiInterface)
 		return JSVAL_VOID;
 
 	int player = -1;
@@ -104,7 +104,7 @@ CScriptVal GuiInterfaceCall(void* cbdata, std::wstring name, CScriptVal data)
 		player = g_Game->GetPlayerID();
 
 	CScriptValRooted arg (sim->GetScriptInterface().GetContext(), sim->GetScriptInterface().CloneValueFromOtherContext(guiManager->GetScriptInterface(), data.get()));
-	CScriptVal ret (gui->ScriptCall(player, name, arg.get()));
+	CScriptVal ret (cmpGuiInterface->ScriptCall(player, name, arg.get()));
 	return guiManager->GetScriptInterface().CloneValueFromOtherContext(sim->GetScriptInterface(), ret.get());
 }
 
@@ -117,13 +117,13 @@ void PostNetworkCommand(void* cbdata, CScriptVal cmd)
 	CSimulation2* sim = g_Game->GetSimulation2();
 	ENSURE(sim);
 
-	CmpPtr<ICmpCommandQueue> queue(*sim, SYSTEM_ENTITY);
-	if (queue.null())
+	CmpPtr<ICmpCommandQueue> cmpCommandQueue(*sim, SYSTEM_ENTITY);
+	if (!cmpCommandQueue)
 		return;
 
 	jsval cmd2 = sim->GetScriptInterface().CloneValueFromOtherContext(guiManager->GetScriptInterface(), cmd.get());
 
-	queue->PostNetworkCommand(cmd2);
+	cmpCommandQueue->PostNetworkCommand(cmd2);
 }
 
 std::vector<entity_id_t> PickEntitiesAtPoint(void* UNUSED(cbdata), int x, int y)

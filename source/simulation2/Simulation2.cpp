@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -448,7 +448,7 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 
 	// Start computing AI for the next turn
 	CmpPtr<ICmpAIManager> cmpAIManager(m_SimContext, SYSTEM_ENTITY);
-	if (!cmpAIManager.null())
+	if (cmpAIManager)
 		cmpAIManager->StartComputation();
 
 	++m_TurnNumber;
@@ -465,20 +465,20 @@ void CSimulation2Impl::UpdateComponents(CSimContext& simContext, fixed turnLengt
 	componentManager.BroadcastMessage(msgTurnStart);
 
 	CmpPtr<ICmpPathfinder> cmpPathfinder(simContext, SYSTEM_ENTITY);
-	if (!cmpPathfinder.null())
+	if (cmpPathfinder)
 		cmpPathfinder->FinishAsyncRequests();
 
 	// Push AI commands onto the queue before we use them
 	CmpPtr<ICmpAIManager> cmpAIManager(simContext, SYSTEM_ENTITY);
-	if (!cmpAIManager.null())
+	if (cmpAIManager)
 		cmpAIManager->PushCommands();
 
 	CmpPtr<ICmpCommandQueue> cmpCommandQueue(simContext, SYSTEM_ENTITY);
-	if (!cmpCommandQueue.null())
+	if (cmpCommandQueue)
 		cmpCommandQueue->FlushTurn(commands);
 
 	// Process newly generated move commands so the UI feels snappy
-	if (!cmpPathfinder.null())
+	if (cmpPathfinder)
 		cmpPathfinder->ProcessSameTurnMoves();
 
 	// Send all the update phases
@@ -492,7 +492,7 @@ void CSimulation2Impl::UpdateComponents(CSimContext& simContext, fixed turnLengt
 	}
 
 	// Process move commands for formations (group proxy)
-	if (!cmpPathfinder.null())
+	if (cmpPathfinder)
 		cmpPathfinder->ProcessSameTurnMoves();
 
 	{
@@ -505,7 +505,7 @@ void CSimulation2Impl::UpdateComponents(CSimContext& simContext, fixed turnLengt
 	}
 
 	// Process moves resulting from group proxy movement (unit needs to catch up or realign) and any others
-	if (!cmpPathfinder.null())
+	if (cmpPathfinder)
 		cmpPathfinder->ProcessSameTurnMoves();
 
 	// Clean up any entities destroyed during the simulation update

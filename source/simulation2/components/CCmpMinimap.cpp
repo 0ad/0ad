@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -170,10 +170,10 @@ public:
 
 			// Find the new player's colour
 			CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSimContext(), SYSTEM_ENTITY);
-			if (cmpPlayerManager.null())
+			if (!cmpPlayerManager)
 				break;
 			CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(msgData.to));
-			if (cmpPlayer.null())
+			if (!cmpPlayer)
 				break;
 			CColor colour = cmpPlayer->GetColour();
 			m_R = (u8)(colour.r*255.0);

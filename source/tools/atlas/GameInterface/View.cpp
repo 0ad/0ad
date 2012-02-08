@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -240,14 +240,14 @@ void ViewGame::Render()
 	// Update the pathfinder display if necessary
 	if (!m_DisplayPassability.empty())
 	{
-		CmpPtr<ICmpObstructionManager> cmpObstructionMan(*GetSimulation2(), SYSTEM_ENTITY);
-		if (!cmpObstructionMan.null())
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(*GetSimulation2(), SYSTEM_ENTITY);
+		if (cmpObstructionManager)
 		{
-			cmpObstructionMan->SetDebugOverlay(true);
+			cmpObstructionManager->SetDebugOverlay(true);
 		}
 
 		CmpPtr<ICmpPathfinder> cmpPathfinder(*GetSimulation2(), SYSTEM_ENTITY);
-		if (!cmpPathfinder.null())
+		if (cmpPathfinder)
 		{
 			cmpPathfinder->SetDebugOverlay(true);
 			// Kind of a hack to make it update the terrain grid
@@ -274,12 +274,12 @@ void ViewGame::SetParam(const std::wstring& name, const std::wstring& value)
 	{
 		m_DisplayPassability = CStrW(value).ToUTF8();
 
-		CmpPtr<ICmpObstructionManager> cmpObstructionMan(*GetSimulation2(), SYSTEM_ENTITY);
-		if (!cmpObstructionMan.null())
-			cmpObstructionMan->SetDebugOverlay(!value.empty());
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(*GetSimulation2(), SYSTEM_ENTITY);
+		if (cmpObstructionManager)
+			cmpObstructionManager->SetDebugOverlay(!value.empty());
 
 		CmpPtr<ICmpPathfinder> cmpPathfinder(*GetSimulation2(), SYSTEM_ENTITY);
-		if (!cmpPathfinder.null())
+		if (cmpPathfinder)
 			cmpPathfinder->SetDebugOverlay(!value.empty());
 	}
 	else if (name == L"renderpath")

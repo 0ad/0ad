@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -182,7 +182,7 @@ public:
 				break; // nothing needs to change
 
 			CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
-			if (cmpObstructionManager.null())
+			if (!cmpObstructionManager)
 				break; // error
 
 			if (data.inWorld && m_Tag.valid())
@@ -211,7 +211,7 @@ public:
 			if (m_Tag.valid())
 			{
 				CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
-				if (cmpObstructionManager.null())
+				if (!cmpObstructionManager)
 					break; // error
 
 				cmpObstructionManager->RemoveShape(m_Tag);
@@ -231,11 +231,11 @@ public:
 			// Construct the obstruction shape
 
 			CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
-			if (cmpObstructionManager.null())
+			if (!cmpObstructionManager)
 				return; // error
 
 			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
-			if (cmpPosition.null())
+			if (!cmpPosition)
 				return; // error
 
 			if (!cmpPosition->IsInWorld())
@@ -258,7 +258,7 @@ public:
 			if (m_Tag.valid())
 			{
 				CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
-				if (cmpObstructionManager.null())
+				if (!cmpObstructionManager)
 					return; // error
 
 				cmpObstructionManager->RemoveShape(m_Tag);
@@ -305,11 +305,11 @@ public:
 	virtual bool GetObstructionSquare(ICmpObstructionManager::ObstructionSquare& out)
 	{
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
-		if (cmpPosition.null())
+		if (!cmpPosition)
 			return false; // error
 
 		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
-		if (cmpObstructionManager.null())
+		if (!cmpObstructionManager)
 			return false; // error
 
 		if (!cmpPosition->IsInWorld())
@@ -334,7 +334,7 @@ public:
 	virtual bool CheckFoundation(std::string className)
 	{
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
-		if (cmpPosition.null())
+		if (!cmpPosition)
 			return false; // error
 
 		if (!cmpPosition->IsInWorld())
@@ -343,7 +343,7 @@ public:
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
 
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSimContext(), SYSTEM_ENTITY);
-		if (cmpPathfinder.null())
+		if (!cmpPathfinder)
 			return false; // error
 
 		// Get passability class
@@ -363,7 +363,7 @@ public:
 		std::vector<entity_id_t> ret;
 
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
-		if (cmpPosition.null())
+		if (!cmpPosition)
 			return ret; // error
 
 		if (!cmpPosition->IsInWorld())
@@ -372,7 +372,7 @@ public:
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
 
 		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
-		if (cmpObstructionManager.null())
+		if (!cmpObstructionManager)
 			return ret; // error
 
 		// Ignore collisions with self, or with non-construction-blocking obstructions
@@ -393,7 +393,7 @@ public:
 		if (m_Tag.valid() && m_Type == UNIT)
 		{
 			CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
-			if (!cmpObstructionManager.null())
+			if (cmpObstructionManager)
 				cmpObstructionManager->SetUnitMovingFlag(m_Tag, m_Moving);
 		}
 	}
@@ -405,7 +405,7 @@ public:
 		if (m_Tag.valid() && m_Type == UNIT)
 		{
 			CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
-			if (!cmpObstructionManager.null())
+			if (cmpObstructionManager)
 				cmpObstructionManager->SetUnitControlGroup(m_Tag, m_ControlGroup);
 		}
 	}

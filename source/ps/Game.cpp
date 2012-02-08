@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -328,7 +328,7 @@ void CGame::CachePlayerColours()
 	m_PlayerColours.clear();
 
 	CmpPtr<ICmpPlayerManager> cmpPlayerManager(*m_Simulation2, SYSTEM_ENTITY);
-	if (cmpPlayerManager.null())
+	if (!cmpPlayerManager)
 		return;
 
 	int numPlayers = cmpPlayerManager->GetNumPlayers();
@@ -337,7 +337,7 @@ void CGame::CachePlayerColours()
 	for (int i = 0; i < numPlayers; ++i)
 	{
 		CmpPtr<ICmpPlayer> cmpPlayer(*m_Simulation2, cmpPlayerManager->GetPlayerByID(i));
-		if (cmpPlayer.null())
+		if (!cmpPlayer)
 			m_PlayerColours[i] = BrokenColor;
 		else
 			m_PlayerColours[i] = cmpPlayer->GetColour();

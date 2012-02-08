@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -113,7 +113,7 @@ public:
 		}
 
 		CmpPtr<ICmpVisual> cmpVisual(Simulation2, Entity);
-		if (!cmpVisual.null())
+		if (cmpVisual)
 		{
 			// add selection box outlines manually
 			if (SelectionBoxEnabled)
@@ -210,7 +210,7 @@ void ActorViewerImpl::UpdatePropList()
 	Props.clear();
 
 	CmpPtr<ICmpVisual> cmpVisual(Simulation2, Entity);
-	if (!cmpVisual.null())
+	if (cmpVisual)
 	{
 		CUnit* unit = cmpVisual->GetUnit();
 		if (unit)
@@ -285,11 +285,11 @@ ActorViewer::ActorViewer()
 
 	// Tell the simulation we've already loaded the terrain
 	CmpPtr<ICmpTerrain> cmpTerrain(m.Simulation2, SYSTEM_ENTITY);
-	if (!cmpTerrain.null())
+	if (cmpTerrain)
 		cmpTerrain->ReloadTerrain();
 
 	CmpPtr<ICmpRangeManager> cmpRangeManager(m.Simulation2, SYSTEM_ENTITY);
-	if (!cmpRangeManager.null())
+	if (cmpRangeManager)
 		cmpRangeManager->SetLosRevealAll(-1, true);
 }
 
@@ -342,7 +342,7 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 			return;
 
 		CmpPtr<ICmpPosition> cmpPosition(m.Simulation2, m.Entity);
-		if (!cmpPosition.null())
+		if (cmpPosition)
 		{
 			ssize_t c = TERRAIN_TILE_SIZE * m.Terrain.GetPatchesPerSide()*PATCH_SIZE/2;
 			cmpPosition->JumpTo(entity_pos_t::FromInt(c), entity_pos_t::FromInt(c));
@@ -365,7 +365,7 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 		if (anim == "walk")
 		{
 			CmpPtr<ICmpUnitMotion> cmpUnitMotion(m.Simulation2, m.Entity);
-			if (!cmpUnitMotion.null())
+			if (cmpUnitMotion)
 				speed = cmpUnitMotion->GetWalkSpeed().ToFloat();
 			else
 				speed = 7.f; // typical unit speed
@@ -375,7 +375,7 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 		else if (anim == "run")
 		{
 			CmpPtr<ICmpUnitMotion> cmpUnitMotion(m.Simulation2, m.Entity);
-			if (!cmpUnitMotion.null())
+			if (cmpUnitMotion)
 				speed = cmpUnitMotion->GetRunSpeed().ToFloat();
 			else
 				speed = 12.f; // typical unit speed
@@ -415,7 +415,7 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 		}
 
 		CmpPtr<ICmpVisual> cmpVisual(m.Simulation2, m.Entity);
-		if (!cmpVisual.null())
+		if (cmpVisual)
 		{
 			// TODO: SetEntitySelection(anim)
 			cmpVisual->SelectAnimation(anim, false, fixed::FromFloat(speed), soundgroup);
@@ -474,7 +474,7 @@ void ActorViewer::Render()
 	// and half way up the model (assuming there is one)
 	CVector3D centre;
 	CmpPtr<ICmpVisual> cmpVisual(m.Simulation2, m.Entity);
-	if (!cmpVisual.null())
+	if (cmpVisual)
 		cmpVisual->GetBounds().GetCentre(centre);
 	else
 		centre.Y = 0.f;
@@ -535,7 +535,7 @@ void ActorViewer::Update(float dt)
 	if (m.WalkEnabled && m.CurrentSpeed)
 	{
 		CmpPtr<ICmpPosition> cmpPosition(m.Simulation2, m.Entity);
-		if (!cmpPosition.null())
+		if (cmpPosition)
 		{
 			// Move the model by speed*dt forwards
 			float z = cmpPosition->GetPosition().Z.ToFloat();
