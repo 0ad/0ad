@@ -7,6 +7,9 @@
         <stream name="pos"/>
         <stream name="normal"/>
         <stream name="uv0"/>
+        <attrib name="a_vertex" semantics="gl_Vertex"/>
+        <attrib name="a_normal" semantics="gl_Normal"/>
+        <attrib name="a_uv0" semantics="gl_MultiTexCoord0"/>
     </vertex>
 
     <fragment file="model_common.fs"/>

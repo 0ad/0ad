@@ -256,21 +256,6 @@ void OverlayRenderer::RenderTexturedOverlayLines(CShaderProgramPtr shaderTexLine
 {
 	int streamflags = shaderTexLine->GetStreamFlags();
 
-	if (streamflags & STREAM_POS)
-		glEnableClientState(GL_VERTEX_ARRAY);
-
-	if (streamflags & STREAM_UV0)
-	{
-		pglClientActiveTextureARB(GL_TEXTURE0);
-		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	}
-
-	if (streamflags & STREAM_UV1)
-	{
-		pglClientActiveTextureARB(GL_TEXTURE1);
-		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	}
-
 	for (size_t i = 0; i < m->texlines.size(); ++i)
 	{
 		SOverlayTexturedLine* line = m->texlines[i];
@@ -293,26 +278,21 @@ void OverlayRenderer::RenderTexturedOverlayLines(CShaderProgramPtr shaderTexLine
 		CTexturedLineRData::SVertex* vertexBase = reinterpret_cast<CTexturedLineRData::SVertex*>(rdata->m_VB->m_Owner->Bind());
 
 		if (streamflags & STREAM_POS)
-			glVertexPointer(3, GL_FLOAT, stride, &vertexBase->m_Position[0]);
+			shaderTexLine->VertexPointer(3, GL_FLOAT, stride, &vertexBase->m_Position[0]);
 
 		if (streamflags & STREAM_UV0)
-		{
-			pglClientActiveTextureARB(GL_TEXTURE0);
-			glTexCoordPointer(2, GL_FLOAT, stride, &vertexBase->m_UVs[0]);
-		}
+			shaderTexLine->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, &vertexBase->m_UVs[0]);
 
 		if (streamflags & STREAM_UV1)
-		{
-			pglClientActiveTextureARB(GL_TEXTURE1);
-			glTexCoordPointer(2, GL_FLOAT, stride, &vertexBase->m_UVs[0]);
-		}
+			shaderTexLine->TexCoordPointer(GL_TEXTURE1, 2, GL_FLOAT, stride, &vertexBase->m_UVs[0]);
 
 		u8* indexBase = rdata->m_VBIndices->m_Owner->Bind();
+
+		shaderTexLine->AssertPointersBound();
 		glDrawElements(GL_TRIANGLES, rdata->m_VBIndices->m_Count, GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*rdata->m_VBIndices->m_Index); 
+
 		g_Renderer.GetStats().m_OverlayTris += rdata->m_VBIndices->m_Count/3; 
-
 	}
-
 }
 
 void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)

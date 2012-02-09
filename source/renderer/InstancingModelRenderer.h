@@ -45,8 +45,8 @@ public:
 
 	void BeginPass(int streamflags);
 	void EndPass(int streamflags);
-	void PrepareModelDef(int streamflags, const CModelDefPtr& def);
-	void RenderModel(int streamflags, CModel* model, void* data);
+	void PrepareModelDef(CShaderProgramPtr& shader, int streamflags, const CModelDefPtr& def);
+	void RenderModel(CShaderProgramPtr& shader, int streamflags, CModel* model, void* data);
 
 protected:
 	InstancingModelRendererInternals* m;

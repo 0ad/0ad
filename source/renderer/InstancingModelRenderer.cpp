@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -99,9 +99,6 @@ IModelDef::IModelDef(const CModelDefPtr& mdef)
 
 struct InstancingModelRendererInternals
 {
-	/// Currently used RenderModifier
-	RenderModifierPtr modifier;
-
 	/// Previously prepared modeldef
 	IModelDef* imodeldef;
 
@@ -157,35 +154,17 @@ void InstancingModelRenderer::DestroyModelData(CModel* UNUSED(model), void* UNUS
 void InstancingModelRenderer::BeginPass(int streamflags)
 {
 	ENSURE(streamflags == (streamflags & (STREAM_POS|STREAM_NORMAL|STREAM_UV0)));
-
-	if (streamflags & STREAM_POS)
-		glEnableClientState(GL_VERTEX_ARRAY);
-
-	if (streamflags & STREAM_NORMAL)
-		glEnableClientState(GL_NORMAL_ARRAY);
-
-	if (streamflags & STREAM_UV0)
-		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
 // Cleanup rendering pass.
-void InstancingModelRenderer::EndPass(int streamflags)
+void InstancingModelRenderer::EndPass(int UNUSED(streamflags))
 {
-	if (streamflags & STREAM_POS)
-		glDisableClientState(GL_VERTEX_ARRAY);
-
-	if (streamflags & STREAM_NORMAL)
-		glDisableClientState(GL_NORMAL_ARRAY);
-
-	if (streamflags & STREAM_UV0)
-		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-
 	CVertexBuffer::Unbind();
 }
 
 
 // Prepare UV coordinates for this modeldef
-void InstancingModelRenderer::PrepareModelDef(int streamflags, const CModelDefPtr& def)
+void InstancingModelRenderer::PrepareModelDef(CShaderProgramPtr& shader, int streamflags, const CModelDefPtr& def)
 {
 	m->imodeldef = (IModelDef*)def->GetRenderData(m);
 
@@ -197,18 +176,20 @@ void InstancingModelRenderer::PrepareModelDef(int streamflags, const CModelDefPt
 	m->imodeldefIndexBase = m->imodeldef->m_IndexArray.Bind();
 
 	if (streamflags & STREAM_POS)
-		glVertexPointer(3, GL_FLOAT, stride, base + m->imodeldef->m_Position.offset);
+		shader->VertexPointer(3, GL_FLOAT, stride, base + m->imodeldef->m_Position.offset);
 
 	if (streamflags & STREAM_NORMAL)
-		glNormalPointer(GL_FLOAT, stride, base + m->imodeldef->m_Normal.offset);
+		shader->NormalPointer(GL_FLOAT, stride, base + m->imodeldef->m_Normal.offset);
 
 	if (streamflags & STREAM_UV0)
-		glTexCoordPointer(2, GL_FLOAT, stride, base + m->imodeldef->m_UV.offset);
+		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, base + m->imodeldef->m_UV.offset);
+
+	shader->AssertPointersBound();
 }
 
 
 // Render one model
-void InstancingModelRenderer::RenderModel(int UNUSED(streamflags), CModel* model, void* UNUSED(data))
+void InstancingModelRenderer::RenderModel(CShaderProgramPtr& UNUSED(shader), int UNUSED(streamflags), CModel* model, void* UNUSED(data))
 {
 	CModelDefPtr mdldef = model->GetModelDef();
 

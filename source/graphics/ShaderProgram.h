@@ -75,6 +75,7 @@ public:
 	 */
 	static CShaderProgram* ConstructGLSL(const VfsPath& vertexFile, const VfsPath& fragmentFile,
 		const std::map<CStr, CStr>& defines,
+		const std::map<CStr, int>& vertexAttribs,
 		int streamflags);
 
 	/**
@@ -173,6 +174,18 @@ public:
 	void Uniform(uniform_id_t id, float v0, float v1, float v2, float v3);
 	void Uniform(uniform_id_t id, const CMatrix3D& v);
 
+	// Vertex attribute pointers (equivalent to glVertexPointer etc):
+
+	virtual void VertexPointer(GLint size, GLenum type, GLsizei stride, void* pointer);
+	virtual void NormalPointer(GLenum type, GLsizei stride, void* pointer);
+	virtual void TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, void* pointer);
+
+	/**
+	 * Checks that all the required vertex attributes have been set.
+	 * Call this before calling glDrawArrays/glDrawElements etc to avoid potential crashes.
+	 */
+	void AssertPointersBound();
+
 protected:
 	CShaderProgram(int streamflags);
 
@@ -180,6 +193,11 @@ protected:
 
 	bool m_IsValid;
 	int m_StreamFlags;
+
+	// Non-GLSL client state handling:
+	void BindClientStates();
+	void UnbindClientStates();
+	int m_ValidStreams; // which streams have been specified via VertexPointer etc since the last Bind
 };
 
 typedef shared_ptr<CShaderProgram> CShaderProgramPtr;

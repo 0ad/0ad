@@ -48,7 +48,23 @@
                             <choice>
                                 <element name="attrib">
                                     <attribute name="name"><text/></attribute>
-                                    <attribute name="loc"><data type="integer"/></attribute>
+                                    <attribute name="semantics">
+                                        <choice>
+                                            <value>gl_Vertex</value>
+                                            <value>gl_Normal</value>
+                                            <value>gl_Color</value>
+                                            <value>gl_SecondaryColor</value>
+                                            <value>gl_FogCoord</value>
+                                            <value>gl_MultiTexCoord0</value>
+                                            <value>gl_MultiTexCoord1</value>
+                                            <value>gl_MultiTexCoord2</value>
+                                            <value>gl_MultiTexCoord3</value>
+                                            <value>gl_MultiTexCoord4</value>
+                                            <value>gl_MultiTexCoord5</value>
+                                            <value>gl_MultiTexCoord6</value>
+                                            <value>gl_MultiTexCoord7</value>
+                                        </choice>
+                                    </attribute>
                                 </element>
                                 <ref name="streamContent"/>
                             </choice>

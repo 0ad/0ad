@@ -184,6 +184,13 @@ void CMiniMap::FireWorldClickEvent(int button, int clicks)
 	UNUSED2(clicks);
 }
 
+#if CONFIG2_GLES
+#warning TODO: implement minimap for GLES
+void CMiniMap::Draw()
+{
+}
+#else
+
 // render view rect : John M. Mena
 // This sets up and draws the rectangle on the mini-map
 // which represents the view of the camera in the world.
@@ -436,6 +443,8 @@ void CMiniMap::Draw()
 	glEnable(GL_TEXTURE_2D);
 }
 
+#endif // CONFIG2_GLES
+
 void CMiniMap::CreateTextures()
 {
 	Destroy();
@@ -449,14 +458,14 @@ void CMiniMap::CreateTextures()
 	u32* texData = new u32[m_TextureSize * m_TextureSize];
 	for (ssize_t i = 0; i < m_TextureSize * m_TextureSize; ++i)
 		texData[i] = 0xFF000000;
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_TextureSize, m_TextureSize, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, texData);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_TextureSize, m_TextureSize, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, texData);
 	delete[] texData;
 
 	m_TerrainData = new u32[(m_MapSize - 1) * (m_MapSize - 1)];
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 	// Rebuild and upload both of them
 	RebuildTerrainTexture();

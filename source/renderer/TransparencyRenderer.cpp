@@ -330,7 +330,7 @@ void PolygonSortModelRenderer::EndPass(int streamflags)
 
 
 // Prepare for rendering models using this CModelDef
-void PolygonSortModelRenderer::PrepareModelDef(int streamflags, const CModelDefPtr& def)
+void PolygonSortModelRenderer::PrepareModelDef(CShaderProgramPtr& UNUSED(shader), int streamflags, const CModelDefPtr& def)
 {
 	if (streamflags & STREAM_UV0)
 	{
@@ -347,7 +347,7 @@ void PolygonSortModelRenderer::PrepareModelDef(int streamflags, const CModelDefP
 
 
 // Render one model
-void PolygonSortModelRenderer::RenderModel(int streamflags, CModel* model, void* data)
+void PolygonSortModelRenderer::RenderModel(CShaderProgramPtr& UNUSED(shader), int streamflags, CModel* model, void* data)
 {
 	CModelDefPtr mdef = model->GetModelDef();
 	PSModel* psmdl = (PSModel*)data;
@@ -529,6 +529,8 @@ void SortModelRenderer::Render(const RenderModifierPtr& modifier, int flags)
 		CModelDefPtr lastmdef;
 		CTexturePtr lasttex;
 
+		CShaderProgramPtr shader = modifier->GetShader(pass);
+
 		m->vertexRenderer->BeginPass(streamflags);
 
 		for(std::vector<SModel*>::iterator it = m->models.begin(); it != m->models.end(); ++it)
@@ -547,7 +549,7 @@ void SortModelRenderer::Render(const RenderModifierPtr& modifier, int flags)
 			// Prepare per-CModelDef data if changed
 			if (mdef != lastmdef)
 			{
-				m->vertexRenderer->PrepareModelDef(streamflags, mdef);
+				m->vertexRenderer->PrepareModelDef(shader, streamflags, mdef);
 				lastmdef = mdef;
 			}
 
@@ -561,7 +563,7 @@ void SortModelRenderer::Render(const RenderModifierPtr& modifier, int flags)
 			modifier->PrepareModel(pass, mdl);
 
 			// Render the model
-			m->vertexRenderer->RenderModel(streamflags, mdl, smdl->m_Data);
+			m->vertexRenderer->RenderModel(shader, streamflags, mdl, smdl->m_Data);
 		}
 
 		m->vertexRenderer->EndPass(streamflags);

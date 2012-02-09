@@ -442,9 +442,11 @@ void BatchModelRendererInternals::RenderAllModels(
 		const RenderModifierPtr& modifier, int filterflags,
 		int pass, int streamflags)
 {
+	CShaderProgramPtr shader = modifier->GetShader(pass);
+
 	for(BMRModelDefTracker* mdeftracker = submissions; mdeftracker; mdeftracker = mdeftracker->m_Next)
 	{
-		vertexRenderer->PrepareModelDef(streamflags, mdeftracker->m_ModelDef.lock());
+		vertexRenderer->PrepareModelDef(shader, streamflags, mdeftracker->m_ModelDef.lock());
 
 		for(size_t idx = 0; idx < mdeftracker->m_Slots; ++idx)
 		{
@@ -462,7 +464,7 @@ void BatchModelRendererInternals::RenderAllModels(
 					continue;
 
 				modifier->PrepareModel(pass, model);
-				vertexRenderer->RenderModel(streamflags, model, bmrdata->m_Data);
+				vertexRenderer->RenderModel(shader, streamflags, model, bmrdata->m_Data);
 			}
 		}
 	}

@@ -1,3 +1,5 @@
+#version 110
+
 uniform sampler2D baseTex;
 uniform sampler2DShadow shadowTex;
 uniform sampler2D losTex;
@@ -26,7 +28,7 @@ void main()
 
   // Apply player-coloring based on texture alpha
   #ifdef USE_OBJECTCOLOR
-    color *= mix(objectColor, 1.0, tex.a);
+    color *= mix(objectColor, vec3(1.0, 1.0, 1.0), tex.a);
   #endif
 
   #ifdef USE_SHADOW
@@ -38,7 +40,7 @@ void main()
         shadow2D(shadowTex, vec3(v_shadow.xy + shadowOffsets2.zw, v_shadow.z)).a
       ) * 0.25;
     #else
-      float shadow = shadow2D(shadowTex, v_shadow).a;
+      float shadow = shadow2D(shadowTex, v_shadow.xyz).a;
     #endif
   #else
     float shadow = 1.0;

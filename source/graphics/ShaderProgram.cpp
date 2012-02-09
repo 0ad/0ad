@@ -121,6 +121,8 @@ public:
 		glEnable(GL_FRAGMENT_PROGRAM_ARB);
 		pglBindProgramARB(GL_VERTEX_PROGRAM_ARB, m_VertexProgram);
 		pglBindProgramARB(GL_FRAGMENT_PROGRAM_ARB, m_FragmentProgram);
+
+		BindClientStates();
 	}
 
 	virtual void Unbind()
@@ -129,6 +131,8 @@ public:
 		glDisable(GL_FRAGMENT_PROGRAM_ARB);
 		pglBindProgramARB(GL_VERTEX_PROGRAM_ARB, 0);
 		pglBindProgramARB(GL_FRAGMENT_PROGRAM_ARB, 0);
+
+		UnbindClientStates();
 
 		// TODO: should unbind textures, probably
 	}
@@ -229,10 +233,12 @@ class CShaderProgramGLSL : public CShaderProgram
 public:
 	CShaderProgramGLSL(const VfsPath& vertexFile, const VfsPath& fragmentFile,
 		const std::map<CStr, CStr>& defines,
+		const std::map<CStr, int>& vertexAttribs,
 		int streamflags) :
 	CShaderProgram(streamflags),
 		m_VertexFile(vertexFile), m_FragmentFile(fragmentFile),
-		m_Defines(defines)
+		m_Defines(defines),
+		m_VertexAttribs(vertexAttribs)
 	{
 		m_Program = 0;
 		m_VertexShader = pglCreateShaderObjectARB(GL_VERTEX_SHADER);
@@ -291,6 +297,12 @@ public:
 		ogl_WarnIfError();
 		pglAttachObjectARB(m_Program, m_FragmentShader);
 		ogl_WarnIfError();
+
+		// Set up the attribute bindings explicitly, since apparently drivers
+		// don't always pick the most efficient bindings automatically,
+		// and also this lets us hardcode indexes into VertexPointer etc
+		for (std::map<CStr, int>::iterator it = m_VertexAttribs.begin(); it != m_VertexAttribs.end(); ++it)
+			pglBindAttribLocationARB(m_Program, it->second, it->first.c_str());
 
 		pglLinkProgramARB(m_Program);
 
@@ -397,11 +409,17 @@ public:
 	virtual void Bind()
 	{
 		pglUseProgramObjectARB(m_Program);
+
+		for (std::map<CStr, int>::iterator it = m_VertexAttribs.begin(); it != m_VertexAttribs.end(); ++it)
+			pglEnableVertexAttribArrayARB(it->second);
 	}
 
 	virtual void Unbind()
 	{
 		pglUseProgramObjectARB(0);
+
+		for (std::map<CStr, int>::iterator it = m_VertexAttribs.begin(); it != m_VertexAttribs.end(); ++it)
+			pglDisableVertexAttribArrayARB(it->second);
 
 		// TODO: should unbind textures, probably
 	}
@@ -489,10 +507,32 @@ public:
 		}
 	}
 
+	// Map the various fixed-function Pointer functions onto generic vertex attributes
+	// (matching the attribute indexes from ShaderManager's ParseAttribSemantics):
+
+	virtual void VertexPointer(GLint size, GLenum type, GLsizei stride, void* pointer)
+	{
+		pglVertexAttribPointerARB(0, size, type, GL_FALSE, stride, pointer);
+		m_ValidStreams |= STREAM_POS;
+	}
+
+	virtual void NormalPointer(GLenum type, GLsizei stride, void* pointer)
+	{
+		pglVertexAttribPointerARB(2, 3, type, GL_FALSE, stride, pointer);
+		m_ValidStreams |= STREAM_NORMAL;
+	}
+
+	virtual void TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, void* pointer)
+	{
+		pglVertexAttribPointerARB(8 + texture - GL_TEXTURE0, size, type, GL_FALSE, stride, pointer);
+		m_ValidStreams |= STREAM_UV0 << (texture - GL_TEXTURE0);
+	}
+
 private:
 	VfsPath m_VertexFile;
 	VfsPath m_FragmentFile;
 	std::map<CStr, CStr> m_Defines;
+	std::map<CStr, int> m_VertexAttribs;
 
 	GLhandleARB m_Program;
 	GLhandleARB m_VertexShader;
@@ -506,7 +546,7 @@ private:
 
 
 CShaderProgram::CShaderProgram(int streamflags)
-	: m_IsValid(false), m_StreamFlags(streamflags)
+	: m_IsValid(false), m_StreamFlags(streamflags), m_ValidStreams(0)
 {
 }
 
@@ -520,9 +560,10 @@ CShaderProgram::CShaderProgram(int streamflags)
 
 /*static*/ CShaderProgram* CShaderProgram::ConstructGLSL(const VfsPath& vertexFile, const VfsPath& fragmentFile,
 	const std::map<CStr, CStr>& defines,
+	const std::map<CStr, int>& vertexAttribs,
 	int streamflags)
 {
-	return new CShaderProgramGLSL(vertexFile, fragmentFile, defines, streamflags);
+	return new CShaderProgramGLSL(vertexFile, fragmentFile, defines, vertexAttribs, streamflags);
 }
 
 bool CShaderProgram::IsValid() const
@@ -600,6 +641,25 @@ void CShaderProgram::Uniform(uniform_id_t id, const CMatrix3D& v)
 	Uniform(GetUniformBinding(id), v);
 }
 
+void CShaderProgram::VertexPointer(GLint size, GLenum type, GLsizei stride, void* pointer)
+{
+	glVertexPointer(size, type, stride, pointer);
+	m_ValidStreams |= STREAM_POS;
+}
+
+void CShaderProgram::NormalPointer(GLenum type, GLsizei stride, void* pointer)
+{
+	glNormalPointer(type, stride, pointer);
+	m_ValidStreams |= STREAM_NORMAL;
+}
+
+void CShaderProgram::TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, void* pointer)
+{
+	pglActiveTextureARB(texture);
+	glTexCoordPointer(size, type, stride, pointer);
+	m_ValidStreams |= STREAM_UV0 << (texture - GL_TEXTURE0);
+}
+
 CStr CShaderProgram::Preprocess(CPreprocessor& preprocessor, const CStr& input)
 {
 	size_t len = 0;
@@ -620,3 +680,56 @@ CStr CShaderProgram::Preprocess(CPreprocessor& preprocessor, const CStr& input)
 	return ret;
 }
 
+void CShaderProgram::BindClientStates()
+{
+	ENSURE(m_StreamFlags == (m_StreamFlags & (STREAM_POS|STREAM_NORMAL|STREAM_COLOR|STREAM_UV0|STREAM_UV1)));
+
+	// Enable all the desired client states for non-GLSL rendering
+
+	if (m_StreamFlags & STREAM_POS)    glEnableClientState(GL_VERTEX_ARRAY);
+	if (m_StreamFlags & STREAM_NORMAL) glEnableClientState(GL_NORMAL_ARRAY);
+	if (m_StreamFlags & STREAM_COLOR)  glEnableClientState(GL_COLOR_ARRAY);
+
+	if (m_StreamFlags & STREAM_UV0)
+	{
+		pglClientActiveTextureARB(GL_TEXTURE0);
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	}
+
+	if (m_StreamFlags & STREAM_UV1)
+	{
+		pglClientActiveTextureARB(GL_TEXTURE1);
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		pglClientActiveTextureARB(GL_TEXTURE0);
+	}
+
+	// Rendering code must subsequently call VertexPointer etc for all of the streams
+	// that were activated in this function, else AssertPointersBound will complain
+	// that some arrays were unspecified
+	m_ValidStreams = 0;
+}
+
+void CShaderProgram::UnbindClientStates()
+{
+	if (m_StreamFlags & STREAM_POS)    glDisableClientState(GL_VERTEX_ARRAY);
+	if (m_StreamFlags & STREAM_NORMAL) glDisableClientState(GL_NORMAL_ARRAY);
+	if (m_StreamFlags & STREAM_COLOR)  glDisableClientState(GL_COLOR_ARRAY);
+
+	if (m_StreamFlags & STREAM_UV0)
+	{
+		pglClientActiveTextureARB(GL_TEXTURE0);
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	}
+
+	if (m_StreamFlags & STREAM_UV1)
+	{
+		pglClientActiveTextureARB(GL_TEXTURE1);
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+		pglClientActiveTextureARB(GL_TEXTURE0);
+	}
+}
+
+void CShaderProgram::AssertPointersBound()
+{
+	ENSURE(m_ValidStreams == m_StreamFlags);
+}

@@ -1,3 +1,5 @@
+#version 110
+
 uniform mat4 reflectionMatrix;
 uniform mat4 refractionMatrix;
 uniform mat4 losMatrix;

@@ -82,6 +82,29 @@ CShaderProgramPtr CShaderManager::LoadProgram(const char* name, const std::map<C
 	return program;
 }
 
+static GLenum ParseAttribSemantics(const CStr& str)
+{
+	// Map known semantics onto the attribute locations documented by NVIDIA
+	if (str == "gl_Vertex") return 0;
+	if (str == "gl_Normal") return 2;
+	if (str == "gl_Color") return 3;
+	if (str == "gl_SecondaryColor") return 4;
+	if (str == "gl_FogCoord") return 5;
+	if (str == "gl_MultiTexCoord0") return 8;
+	if (str == "gl_MultiTexCoord1") return 9;
+	if (str == "gl_MultiTexCoord2") return 10;
+	if (str == "gl_MultiTexCoord3") return 11;
+	if (str == "gl_MultiTexCoord4") return 12;
+	if (str == "gl_MultiTexCoord5") return 13;
+	if (str == "gl_MultiTexCoord6") return 14;
+	if (str == "gl_MultiTexCoord7") return 15;
+
+	// TODO: support user-defined semantics somehow
+
+	debug_warn("Invalid attribute semantics");
+	return 0;
+}
+
 bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& baseDefines, CShaderProgramPtr& program)
 {
 	PROFILE2("loading shader");
@@ -120,17 +143,18 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 	// Define all the elements and attributes used in the XML file
 #define EL(x) int el_##x = XeroFile.GetElementID(#x)
 #define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
-	EL(vertex);
-	EL(fragment);
-	EL(define);
-	EL(uniform);
 	EL(attrib);
+	EL(define);
+	EL(fragment);
 	EL(stream);
-	AT(type);
+	EL(uniform);
+	EL(vertex);
 	AT(file);
-	AT(name);
-	AT(value);
 	AT(loc);
+	AT(name);
+	AT(semantics);
+	AT(type);
+	AT(value);
 #undef AT
 #undef EL
 
@@ -142,6 +166,7 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 	std::map<CStr, CStr> defines = baseDefines;
 	std::map<CStr, int> vertexUniforms;
 	std::map<CStr, int> fragmentUniforms;
+	std::map<CStr, int> vertexAttribs;
 	int streamFlags = 0;
 
 	XERO_ITER_EL(Root, Child)
@@ -180,7 +205,8 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 				}
 				else if (Param.GetNodeName() == el_attrib)
 				{
-					// TODO: add support for vertex attributes
+					int attribLoc = ParseAttribSemantics(Param.GetAttributes().GetNamedItem(at_semantics));
+					vertexAttribs[Param.GetAttributes().GetNamedItem(at_name)] = attribLoc;
 				}
 			}
 		}
@@ -199,7 +225,7 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 	}
 
 	if (isGLSL)
-		program = CShaderProgramPtr(CShaderProgram::ConstructGLSL(vertexFile, fragmentFile, defines, streamFlags));
+		program = CShaderProgramPtr(CShaderProgram::ConstructGLSL(vertexFile, fragmentFile, defines, vertexAttribs, streamFlags));
 	else
 		program = CShaderProgramPtr(CShaderProgram::ConstructARB(vertexFile, fragmentFile, defines, vertexUniforms, fragmentUniforms, streamFlags));
 

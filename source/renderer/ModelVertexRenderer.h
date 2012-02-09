@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@
 #define INCLUDED_MODELVERTEXRENDERER
 
 #include "graphics/MeshManager.h"
+#include "graphics/ShaderProgram.h"
 
 class CModel;
 
@@ -147,7 +148,7 @@ public:
 	 * BeginPass.
 	 * @param def The model definition.
 	 */
-	virtual void PrepareModelDef(int streamflags, const CModelDefPtr& def) = 0;
+	virtual void PrepareModelDef(CShaderProgramPtr& shader, int streamflags, const CModelDefPtr& def) = 0;
 
 
 	/**
@@ -169,7 +170,7 @@ public:
 	 * that use the same CModelDef object and the same texture must
 	 * succeed.
 	 */
-	virtual void RenderModel(int streamflags, CModel* model, void* data) = 0;
+	virtual void RenderModel(CShaderProgramPtr& shader, int streamflags, CModel* model, void* data) = 0;
 };
 
 
