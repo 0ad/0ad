@@ -47,6 +47,10 @@ void RenderModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(model))
 {
 }
 
+CShaderProgramPtr RenderModifier::GetShader(int UNUSED(pass))
+{
+	return CShaderProgramPtr();
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // LitRenderModifier implementation
@@ -270,6 +274,11 @@ bool ShaderRenderModifier::EndPass(int pass)
 	m_Technique->EndPass(pass);
 
 	return (pass >= m_Technique->GetNumPasses()-1);
+}
+
+CShaderProgramPtr ShaderRenderModifier::GetShader(int pass)
+{
+	return m_Technique->GetShader(pass);
 }
 
 void ShaderRenderModifier::PrepareTexture(int pass, CTexturePtr& texture)

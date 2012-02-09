@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -205,7 +205,7 @@ void ShaderModelRenderer::EndPass(int streamflags)
 
 
 // Prepare UV coordinates for this modeldef
-void ShaderModelRenderer::PrepareModelDef(int streamflags, const CModelDefPtr& def)
+void ShaderModelRenderer::PrepareModelDef(CShaderProgramPtr& shader, int streamflags, const CModelDefPtr& def)
 {
 	m->shadermodeldef = (ShaderModelDef*)def->GetRenderData(m);
 
@@ -216,13 +216,13 @@ void ShaderModelRenderer::PrepareModelDef(int streamflags, const CModelDefPtr& d
 		u8* base = m->shadermodeldef->m_Array.Bind();
 		GLsizei stride = (GLsizei)m->shadermodeldef->m_Array.GetStride();
 
-		glTexCoordPointer(2, GL_FLOAT, stride, base + m->shadermodeldef->m_UV.offset);
+		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, base + m->shadermodeldef->m_UV.offset);
 	}
 }
 
 
 // Render one model
-void ShaderModelRenderer::RenderModel(int streamflags, CModel* model, void* data)
+void ShaderModelRenderer::RenderModel(CShaderProgramPtr& shader, int streamflags, CModel* model, void* data)
 {
 	CModelDefPtr mdldef = model->GetModelDef();
 	ShaderModel* shadermodel = (ShaderModel*)data;
@@ -233,10 +233,12 @@ void ShaderModelRenderer::RenderModel(int streamflags, CModel* model, void* data
 	u8* indexBase = m->shadermodeldef->m_IndexArray.Bind();
 
 	if (streamflags & STREAM_POS)
-		glVertexPointer(3, GL_FLOAT, stride, base + shadermodel->m_Position.offset);
+		shader->VertexPointer(3, GL_FLOAT, stride, base + shadermodel->m_Position.offset);
 
 	if (streamflags & STREAM_NORMAL)
-		glNormalPointer(GL_FLOAT, stride, base + shadermodel->m_Normal.offset);
+		shader->NormalPointer(GL_FLOAT, stride, base + shadermodel->m_Normal.offset);
+
+	shader->AssertPointersBound();
 
 	// render the lot
 	size_t numFaces = mdldef->GetNumFaces();

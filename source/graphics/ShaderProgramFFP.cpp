@@ -247,11 +247,14 @@ public:
 		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
 		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-		
+
+		BindClientStates();
 	}
 
 	virtual void Unbind()
 	{
+		UnbindClientStates();
+
 		pglActiveTextureARB(GL_TEXTURE2);
 		glDisable(GL_TEXTURE_2D);
 
@@ -311,10 +314,14 @@ public:
 		pglActiveTextureARB(GL_TEXTURE0);
 		glEnable(GL_TEXTURE_2D);
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
+		BindClientStates();
 	}
 
 	virtual void Unbind()
 	{
+		UnbindClientStates();
+
 		pglActiveTextureARB(GL_TEXTURE0);
 		glDisable(GL_TEXTURE_2D);
 
@@ -361,10 +368,14 @@ public:
 		glLoadIdentity();
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
+
+		BindClientStates();
 	}
 
 	virtual void Unbind()
 	{
+		UnbindClientStates();
+
 		glMatrixMode(GL_PROJECTION);
 		glPopMatrix();
 		glMatrixMode(GL_MODELVIEW);

@@ -1,3 +1,5 @@
+#version 110
+
 uniform vec3 ambient;
 uniform vec3 sunDir;
 uniform vec3 sunColor;

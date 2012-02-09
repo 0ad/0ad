@@ -240,7 +240,7 @@ void FixedFunctionModelRenderer::EndPass(int streamflags)
 
 
 // Prepare UV coordinates for this modeldef
-void FixedFunctionModelRenderer::PrepareModelDef(int streamflags, const CModelDefPtr& def)
+void FixedFunctionModelRenderer::PrepareModelDef(CShaderProgramPtr& UNUSED(shader), int streamflags, const CModelDefPtr& def)
 {
 	m->ffmodeldef = (FFModelDef*)def->GetRenderData(m);
 
@@ -257,7 +257,7 @@ void FixedFunctionModelRenderer::PrepareModelDef(int streamflags, const CModelDe
 
 
 // Render one model
-void FixedFunctionModelRenderer::RenderModel(int streamflags, CModel* model, void* data)
+void FixedFunctionModelRenderer::RenderModel(CShaderProgramPtr& UNUSED(shader), int streamflags, CModel* model, void* data)
 {
 	CModelDefPtr mdldef = model->GetModelDef();
 	FFModel* ffmodel = (FFModel*)data;

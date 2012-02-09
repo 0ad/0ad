@@ -291,7 +291,11 @@ void glvwprintf(const wchar_t* fmt, va_list args)
 	unifont_render(buf, &advance);
 
 	// Move into position for subsequent prints
+#if CONFIG2_GLES
+#warning TODO: implement unifont for GLES
+#else
 	glTranslatef((float)advance, 0, 0);
+#endif
 }
 
 void unifont_render(const wchar_t* str, int* advance)

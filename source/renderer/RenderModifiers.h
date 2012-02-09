@@ -73,6 +73,11 @@ public:
 	virtual bool EndPass(int pass) = 0;
 
 	/**
+	 * Return the shader for the given pass, or a null pointer if none.
+	 */
+	virtual CShaderProgramPtr GetShader(int pass);
+
+	/**
 	 * PrepareTexture: Called before rendering models that use the given
 	 * texture.
 	 *
@@ -200,6 +205,7 @@ public:
 	// Implementation
 	int BeginPass(int pass);
 	bool EndPass(int pass);
+	CShaderProgramPtr GetShader(int pass);
 	void PrepareTexture(int pass, CTexturePtr& texture);
 	void PrepareModel(int pass, CModel* model);
 

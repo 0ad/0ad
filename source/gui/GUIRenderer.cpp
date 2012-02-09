@@ -340,21 +340,20 @@ void GUIRenderer::Draw(DrawCalls &Calls, float Z)
 				std::swap(TexCoords.bottom, TexCoords.top);
 			}
 
-			glBegin(GL_QUADS);
+			std::vector<float> data;
+#define ADD(u, v, x, y, z) STMT(data.push_back(u); data.push_back(v); data.push_back(x); data.push_back(y); data.push_back(z))
+			ADD(TexCoords.left, TexCoords.bottom, Verts.left, Verts.bottom, Z + cit->m_DeltaZ);
+			ADD(TexCoords.right, TexCoords.bottom, Verts.right, Verts.bottom, Z + cit->m_DeltaZ);
+			ADD(TexCoords.right, TexCoords.top, Verts.right, Verts.top, Z + cit->m_DeltaZ);
 
-				glTexCoord2f(TexCoords.left, TexCoords.bottom);
-				glVertex3f(Verts.left, Verts.bottom, Z + cit->m_DeltaZ);
+			ADD(TexCoords.right, TexCoords.top, Verts.right, Verts.top, Z + cit->m_DeltaZ);
+			ADD(TexCoords.left, TexCoords.top, Verts.left, Verts.top, Z + cit->m_DeltaZ);
+			ADD(TexCoords.left, TexCoords.bottom, Verts.left, Verts.bottom, Z + cit->m_DeltaZ);
+#undef ADD
 
-				glTexCoord2f(TexCoords.right, TexCoords.bottom);
-				glVertex3f(Verts.right, Verts.bottom, Z + cit->m_DeltaZ);
-
-				glTexCoord2f(TexCoords.right, TexCoords.top);
-				glVertex3f(Verts.right, Verts.top, Z + cit->m_DeltaZ);
-
-				glTexCoord2f(TexCoords.left, TexCoords.top);
-				glVertex3f(Verts.left, Verts.top, Z + cit->m_DeltaZ);
-
-			glEnd();
+			shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 5*sizeof(float), &data[0]);
+			shader->VertexPointer(3, GL_FLOAT, 5*sizeof(float), &data[2]);
+			glDrawArrays(GL_TRIANGLES, 0, 6);
 
 			cit->m_Shader->EndPass(0);
 		}
@@ -378,23 +377,33 @@ void GUIRenderer::Draw(DrawCalls &Calls, float Z)
 			if (Verts.bottom < Verts.top)
 				std::swap(Verts.bottom, Verts.top);
 
-			glBegin(GL_QUADS);
-				glVertex3f(Verts.left, Verts.bottom, Z + cit->m_DeltaZ);
-				glVertex3f(Verts.right, Verts.bottom, Z + cit->m_DeltaZ);
-				glVertex3f(Verts.right, Verts.top, Z + cit->m_DeltaZ);
-				glVertex3f(Verts.left, Verts.top, Z + cit->m_DeltaZ);
-			glEnd();
+			std::vector<float> data;
+#define ADD(x, y, z) STMT(data.push_back(x); data.push_back(y); data.push_back(z))
+			ADD(Verts.left, Verts.bottom, Z + cit->m_DeltaZ);
+			ADD(Verts.right, Verts.bottom, Z + cit->m_DeltaZ);
+			ADD(Verts.right, Verts.top, Z + cit->m_DeltaZ);
+
+			ADD(Verts.right, Verts.top, Z + cit->m_DeltaZ);
+			ADD(Verts.left, Verts.top, Z + cit->m_DeltaZ);
+			ADD(Verts.left, Verts.bottom, Z + cit->m_DeltaZ);
+
+			shader->VertexPointer(3, GL_FLOAT, 3*sizeof(float), &data[0]);
+			glDrawArrays(GL_TRIANGLES, 0, 6);
 
 			if (cit->m_BorderColor != CColor())
 			{
 				shader->Uniform("color", cit->m_BorderColor);
-				glBegin(GL_LINE_LOOP);
-					glVertex3f(Verts.left + 0.5f, Verts.top + 0.5f, Z + cit->m_DeltaZ);
-					glVertex3f(Verts.right - 0.5f, Verts.top + 0.5f, Z + cit->m_DeltaZ);
-					glVertex3f(Verts.right - 0.5f, Verts.bottom - 0.5f, Z + cit->m_DeltaZ);
-					glVertex3f(Verts.left + 0.5f, Verts.bottom - 0.5f, Z + cit->m_DeltaZ);
-				glEnd();
+
+				data.clear();
+				ADD(Verts.left + 0.5f, Verts.top + 0.5f, Z + cit->m_DeltaZ);
+				ADD(Verts.right - 0.5f, Verts.top + 0.5f, Z + cit->m_DeltaZ);
+				ADD(Verts.right - 0.5f, Verts.bottom - 0.5f, Z + cit->m_DeltaZ);
+				ADD(Verts.left + 0.5f, Verts.bottom - 0.5f, Z + cit->m_DeltaZ);
+
+				shader->VertexPointer(3, GL_FLOAT, 3*sizeof(float), &data[0]);
+				glDrawArrays(GL_LINE_LOOP, 0, 4);
 			}
+#undef ADD
 
 			cit->m_Shader->EndPass(0);
 		}
