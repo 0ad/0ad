@@ -2,13 +2,12 @@
 <Entity parent="template_unit_mechanical_siege_ram">
   <Armour>
     <Pierce>25.0</Pierce>
-    <Crush>20.0</Crush>
+    <Crush>10.0</Crush>
   </Armour>
   <Cost>
-    <BuildTime>35</BuildTime>
+    <BuildTime>25</BuildTime>
     <Resources>
-      <wood>250</wood>
-      <metal>100</metal>
+      <metal>150</metal>
     </Resources>
   </Cost>
   <Footprint replace="">
@@ -16,13 +15,13 @@
     <Height>3.0</Height>
   </Footprint>
   <GarrisonHolder>
-    <Max>5</Max>
+    <Max>10</Max>
 	<EjectHealth>0.1</EjectHealth>
 	<List datatype="tokens">Support Infantry</List>
 	<BuffHeal>1</BuffHeal>
   </GarrisonHolder>
   <Health>
-    <Max>350</Max>
+    <Max>250</Max>
   </Health>
   <Identity>
     <Civ>celt</Civ>
