@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_barracks">
   <Cost>
+    <BuildTime>250</BuildTime>
     <Resources>
       <wood>0</wood>
       <stone>200</stone>
@@ -10,6 +11,9 @@
     <Square width="20.0" depth="18.0"/>
     <Height>5.0</Height>
   </Footprint>
+  <Health>
+    <Max>2500</Max>
+  </Health>
   <Identity>
     <Civ>pers</Civ>
 	<GenericName>Cavalry Stables</GenericName>

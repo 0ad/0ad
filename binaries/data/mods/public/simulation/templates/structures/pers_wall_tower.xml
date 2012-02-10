@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall_tower">
   <Cost>
-    <BuildTime>40</BuildTime>
-    <Resources>
-      <stone>250</stone>
-    </Resources>
+    <BuildTime>32</BuildTime>
   </Cost>
   <Footprint>
     <Square width="9.5" depth="9.5"/>
     <Height>18.0</Height>
   </Footprint>
   <Health>
-    <Max>7500</Max>
+    <Max>3125</Max>
   </Health>
   <Identity>
     <Civ>pers</Civ>
