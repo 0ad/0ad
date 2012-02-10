@@ -8,16 +8,8 @@ Identity.prototype.Schema =
 		"<SpecificName>Hoplite</SpecificName>" +
 		"<Icon>units/hele_infantry_spearman.png</Icon>" +
 	"</a:example>" +
-	"<element name='Civ' a:help='Civilisation that this unit is primarily associated with'>" +
-		"<choice>" +
-			"<value a:help='Gaia (world objects)'>gaia</value>" +
-			"<value a:help='Carthaginians'>cart</value>" +
-			"<value a:help='Celts'>celt</value>" +
-			"<value a:help='Hellenes'>hele</value>" +
-			"<value a:help='Iberians'>iber</value>" +
-			"<value a:help='Persians'>pers</value>" +
-			"<value a:help='Romans'>rome</value>" +
-		"</choice>" +
+	"<element name='Civ' a:help='Civilisation that this unit is primarily associated with, typically a 4-letter code. Choices include: gaia (world objects), cart (Carthaginians), celt (Celts), hele (Hellenes), iber (Iberians), pers (Persians), rome (Romans)'>" +
+		"<text/>" +
 	"</element>" +
 	"<element name='GenericName' a:help='Generic English-language name for this class of unit'>" +
 		"<text/>" +
@@ -57,88 +49,19 @@ Identity.prototype.Schema =
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
-		"<element name='Classes'>" +
+		"<element name='Classes' a:help='Optional list of space-separated classes applying to this entity. Choices include: Unit, Infantry, Melee, Cavalry, Ranged, Mechanical, Ship, Siege, Champion, Hero, Elephant, Chariot, Mercenary, Spear, Sword, Bow, Javelin, Sling, Support, Animal, Organic, Structure, Civic, CivCentre, Economic, Defensive, Gates, Wall, BarterMarket, Village, Town, City, ConquestCritical, Worker, Female, Healer, Slave, CitizenSoldier, Trade, Warship, SeaCreature, ForestPlant, DropsiteFood, DropsiteWood, DropsiteStone, DropsiteMetal'>" +
 			"<attribute name='datatype'>" +
 				"<value>tokens</value>" +
 			"</attribute>" +
-			"<list>" +
-				"<zeroOrMore>" +
-					"<choice>" +
-						"<value>Unit</value>" +
-						"<value>Infantry</value>" +
-						"<value>Melee</value>" +
-						"<value>Cavalry</value>" +
-						"<value>Ranged</value>" +
-						"<value>Mechanical</value>" +
-						"<value>Ship</value>" +
-						"<value>Siege</value>" +
-						"<value>Champion</value>" +
-						"<value>Hero</value>" +
-						"<value>Elephant</value>" +
-						"<value>Chariot</value>" +
-						"<value>Mercenary</value>" +
-						"<value>Spear</value>" +
-						"<value>Sword</value>" +
-						"<value>Bow</value>" +
-						"<value>Javelin</value>" +
-						"<value>Sling</value>" +
-						"<value>Support</value>" +
-						"<value>Animal</value>" +
-						"<value>Organic</value>" +
-						"<value>Structure</value>" +
-						"<value>Civic</value>" +
-						"<value>CivCentre</value>" +
-						"<value>Economic</value>" +
-						"<value>Defensive</value>" +
-						"<value>Gates</value>" +
-						"<value>Wall</value>" +
-						"<value>BarterMarket</value>" +
-						"<value>Village</value>" +
-						"<value>Town</value>" +
-						"<value>City</value>" +
-						"<value>ConquestCritical</value>" +
-						"<value>Worker</value>" +
-						"<value>Female</value>" +
-						"<value>Healer</value>" +
-						"<value>Slave</value>" +
-						"<value>CitizenSoldier</value>" +
-						"<value>Trade</value>" +
-						"<value>Warship</value>" +
-						"<value>SeaCreature</value>" +
-						"<value>ForestPlant</value>" +
-						"<value>DropsiteFood</value>" +
-						"<value>DropsiteWood</value>" +
-						"<value>DropsiteStone</value>" +
-						"<value>DropsiteMetal</value>" +
-					"</choice>" +
-				"</zeroOrMore>" +
-			"</list>" +
+			"<text/>" +
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
-		"<element name='Formations'>" +
+		"<element name='Formations' a:help='Optional list of space-separated formations this unit is allowed to use. Choices include: Loose, Box, ColumnClosed, LineClosed, ColumnOpen, LineOpen, Flank, Skirmish, Wedge, Testudo, Phalanx, Syntagma, Formation12'>" +
 			"<attribute name='datatype'>" +
 				"<value>tokens</value>" +
 			"</attribute>" +
-			"<list>" +
-				"<zeroOrMore>" +
-					"<choice>" +
-						"<value>Loose</value>" +
-						"<value>Box</value>" +
-						"<value>ColumnClosed</value>" +
-						"<value>LineClosed</value>" +
-						"<value>ColumnOpen</value>" +
-						"<value>LineOpen</value>" +
-						"<value>Flank</value>" +
-						"<value>Skirmish</value>" +
-						"<value>Wedge</value>" +
-						"<value>Testudo</value>" +
-						"<value>Phalanx</value>" +
-						"<value>Syntagma</value>" +
-						"<value>Formation12</value>" +
-					"</choice>" +
-				"</zeroOrMore>" +
-			"</list>" +
+			"<text/>" +
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
