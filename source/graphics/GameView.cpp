@@ -806,14 +806,14 @@ void CGameView::Update(float DeltaTime)
 			float r = pTerrain->GetMaxX() / 2;
 			CVector3D center(r, desiredPivot.Y, r);
 			float dist = (desiredPivot - center).Length();
-			if (dist > r + CAMERA_EDGE_MARGIN)
-				desiredPivot = center + (desiredPivot - center).Normalized() * (r + CAMERA_EDGE_MARGIN);
+			if (dist > r - CAMERA_EDGE_MARGIN)
+				desiredPivot = center + (desiredPivot - center).Normalized() * (r - CAMERA_EDGE_MARGIN);
 		}
 		else
 		{
 			// Clamp to the square edges of the map
-			desiredPivot.X = Clamp(desiredPivot.X, pTerrain->GetMinX() - CAMERA_EDGE_MARGIN, pTerrain->GetMaxX() + CAMERA_EDGE_MARGIN);
-			desiredPivot.Z = Clamp(desiredPivot.Z, pTerrain->GetMinZ() - CAMERA_EDGE_MARGIN, pTerrain->GetMaxZ() + CAMERA_EDGE_MARGIN);
+			desiredPivot.X = Clamp(desiredPivot.X, pTerrain->GetMinX() + CAMERA_EDGE_MARGIN, pTerrain->GetMaxX() - CAMERA_EDGE_MARGIN);
+			desiredPivot.Z = Clamp(desiredPivot.Z, pTerrain->GetMinZ() + CAMERA_EDGE_MARGIN, pTerrain->GetMaxZ() - CAMERA_EDGE_MARGIN);
 		}
 
 		// Update the position so that pivot is within the margin
