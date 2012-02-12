@@ -244,6 +244,8 @@ void CBrush::Slice(const CPlane& plane, CBrush& result) const
 		while(idx != 0)
 		{
 			ENSURE(idx < si.newv.size());
+			if (idx >= si.newv.size())
+				break;
 
 			if (si.newv[idx].neighb1 == prev)
 			{
