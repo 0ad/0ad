@@ -169,7 +169,7 @@ H_TYPE_DEFINE(Cursor);
 
 static void Cursor_init(Cursor* c, va_list args)
 {
-	c->forceGL = va_arg(args, bool);
+	c->forceGL = (va_arg(args, int) != 0);
 }
 
 static void Cursor_dtor(Cursor* c)
@@ -288,7 +288,7 @@ static Status Cursor_to_string(const Cursor* c, wchar_t* buf)
 
 static Handle cursor_load(const PIVFS& vfs, const VfsPath& name, bool forceGL)
 {
-	return h_alloc(H_Cursor, vfs, name, 0, forceGL);
+	return h_alloc(H_Cursor, vfs, name, 0, (int)forceGL);
 }
 
 static Status cursor_free(Handle& h)
