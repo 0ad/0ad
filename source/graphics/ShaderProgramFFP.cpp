@@ -624,15 +624,16 @@ public:
 	if (id == "solid")
 		return new CShaderProgramFFP_GuiSolid(); // works for non-GUI objects too
 
-	debug_warn(L"CShaderProgram::ConstructFFP: Invalid id '%hs'", id.c_str());
+	LOGERROR(L"CShaderProgram::ConstructFFP: '%hs': Invalid id", id.c_str());
+	debug_warn(L"CShaderProgram::ConstructFFP: Invalid id");
 	return NULL;
 }
 
 #else // CONFIG2_GLES
 
-/*static*/ CShaderProgram* CShaderProgram::ConstructFFP(const std::string& id, const std::map<CStr, CStr>& defines)
+/*static*/ CShaderProgram* CShaderProgram::ConstructFFP(const std::string& UNUSED(id), const std::map<CStr, CStr>& UNUSED(defines))
 {
-	debug_warn(L"CShaderProgram::ConstructFFP: '%hs': FFP not supported on this device", id.c_str());
+	debug_warn(L"CShaderProgram::ConstructFFP: FFP not supported on this device");
 	return NULL;
 }
 
