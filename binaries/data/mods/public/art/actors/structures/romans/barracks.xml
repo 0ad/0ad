@@ -4,12 +4,9 @@
   <castshadow/>
 
   <group>
-    <variant frequency="100" name="base">
-      <mesh>structural/rome_mc2.dae</mesh>
-      <props>
-        <prop actor="props/structures/romans/barracks.xml" attachpoint="root"/>
-      </props>
-      <texture>structural/rome_struct.dds</texture>
+    <variant frequency="100" name="barracks">
+      <mesh>structural/rome_barracks.dae</mesh>
+      <texture>structural/rome_struct_2.png</texture>
     </variant>
   </group>
 
