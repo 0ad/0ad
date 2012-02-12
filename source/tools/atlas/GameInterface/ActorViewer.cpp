@@ -488,33 +488,9 @@ void ActorViewer::Render()
 
 	g_Renderer.RenderScene(m);
 
-	// ....
-
-	glMatrixMode(GL_PROJECTION);
-	glPushMatrix();
-	glLoadIdentity();
-	glOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.f, 1000.f);
-
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glLoadIdentity();
-
-	glPushAttrib(GL_ENABLE_BIT);
-	glEnable(GL_TEXTURE_2D);
-	glDisable(GL_CULL_FACE);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glEnable(GL_BLEND);
-	glDisable(GL_ALPHA_TEST);
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-	glEnable(GL_TEXTURE_2D);
-
+	glDisable(GL_DEPTH_TEST);
 	g_ProfileViewer.RenderProfile();
-
-	glPopAttrib();
-	glMatrixMode(GL_PROJECTION);
-	glPopMatrix();
-	glMatrixMode(GL_MODELVIEW);
-	glPopMatrix();
+	glEnable(GL_DEPTH_TEST);
 
 	g_Renderer.EndFrame();
 

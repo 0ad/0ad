@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,6 +24,9 @@
 
 #include "CConsole.h"
 
+#include "graphics/ShaderManager.h"
+#include "graphics/TextRenderer.h"
+#include "gui/GUIutil.h"
 #include "lib/ogl.h"
 #include "lib/res/graphics/unifont.h"
 #include "lib/sysdep/clipboard.h"
@@ -36,6 +39,7 @@
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
 #include "ps/Pyrogenesis.h"
+#include "renderer/Renderer.h"
 #include "scripting/ScriptingHost.h"
 #include "scriptinterface/ScriptInterface.h"
 
@@ -52,7 +56,7 @@ CConsole::CConsole()
 	FlushBuffer();
 
 	m_iMsgHistPos = 1;
-	m_charsPerPage=0;
+	m_charsPerPage = 0;
 	
 	InsertMessage(L"[ 0 A.D. Console v0.14 ]");
 	InsertMessage(L"");
@@ -60,8 +64,6 @@ CConsole::CConsole()
 
 CConsole::~CConsole()
 {
-	m_deqMsgHistory.clear();
-	m_deqBufHistory.clear();
 	delete[] m_szBuffer;
 }
 
@@ -77,7 +79,7 @@ void CConsole::SetSize(float X, float Y, float W, float H)
 void CConsole::UpdateScreenSize(int w, int h)
 {
 	float height = h * 0.6f;
-	SetSize(0, h-height, (float)w, height);
+	SetSize(0, 0, (float)w, height);
 }
 
 
@@ -87,14 +89,14 @@ void CConsole::ToggleVisible()
 	m_bVisible = !m_bVisible;
 }
 
-void CConsole::SetVisible( bool visible )
+void CConsole::SetVisible(bool visible)
 {
-	if( visible != m_bVisible )
+	if (visible != m_bVisible)
 		m_bToggle = true;
 	m_bVisible = visible;
 }
 
-void CConsole::FlushBuffer(void)
+void CConsole::FlushBuffer()
 {
 	// Clear the buffer and set the cursor and length to 0
 	memset(m_szBuffer, '\0', sizeof(wchar_t) * CONSOLE_BUFFER_SIZE);
@@ -180,65 +182,78 @@ void CConsole::Render()
 	CFont font(CONSOLE_FONT);
 	font.Bind();
 
-	// animation: slide in from top of screen
-	const float MaxY = m_fHeight;
-	const float DeltaY = (1.0f - m_fVisibleFrac) * MaxY;
-
-	glPushMatrix();
-
-	glTranslatef(m_fX, m_fY + DeltaY, 0.0f); //Move to window position
-
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	DrawWindow();
-	DrawHistory();
-	DrawBuffer();
+	CShaderTechniquePtr solidTech = g_Renderer.GetShaderManager().LoadEffect("solid");
+	solidTech->BeginPass();
+	CShaderProgramPtr solidShader = solidTech->GetShader();
+
+	CMatrix3D transform = GetDefaultGuiMatrix();
+
+	// animation: slide in from top of screen
+	const float DeltaY = (1.0f - m_fVisibleFrac) * m_fHeight;
+	transform.PostTranslate(m_fX, m_fY - DeltaY, 0.0f); // move to window position
+	solidShader->Uniform("transform", transform);
+	
+	DrawWindow(solidShader);
+
+	solidTech->EndPass();
+	
+	CShaderTechniquePtr textTech = g_Renderer.GetShaderManager().LoadEffect("gui_text");
+	textTech->BeginPass();
+	CTextRenderer textRenderer(textTech->GetShader());
+	textRenderer.Font(CONSOLE_FONT);
+	textRenderer.SetTransform(transform);
+
+	DrawHistory(textRenderer);
+	DrawBuffer(textRenderer);
+
+	textRenderer.Render();
+
+	textTech->EndPass();
 
 	glDisable(GL_BLEND);
-
-	glPopMatrix();
 }
 
 
-void CConsole::DrawWindow()
+void CConsole::DrawWindow(CShaderProgramPtr& shader)
 {
-	// TODO:  Add texturing
-	glDisable(GL_TEXTURE_2D);
+	float boxVerts[] = {
+		m_fWidth, 0.0f,
+		1.0f, 0.0f,
+		1.0f, m_fHeight-1.0f,
+		m_fWidth, m_fHeight-1.0f
+	};
+
+	shader->VertexPointer(2, GL_FLOAT, 0, boxVerts);
 
 	// Draw Background
 	// Set the color to a translucent blue
-	glColor4f(0.0f, 0.0f, 0.5f, 0.6f);
-	glBegin(GL_QUADS);
-		glVertex2f(0.0f,		0.0f);
-		glVertex2f(m_fWidth-1.0f,	0.0f);
-		glVertex2f(m_fWidth-1.0f,	m_fHeight-1.0f);
-		glVertex2f(0.0f,		m_fHeight-1.0f);
-	glEnd();
+	shader->Uniform("color", 0.0f, 0.0f, 0.5f, 0.6f);
+	shader->AssertPointersBound();
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
 	// Draw Border
 	// Set the color to a translucent yellow
-	glColor4f(0.5f, 0.5f, 0.0f, 0.6f);
-	glBegin(GL_LINE_LOOP);
-		glVertex2f(0.0f,		0.0f);
-		glVertex2f(m_fWidth-1.0f,	0.0f);
-		glVertex2f(m_fWidth-1.0f,	m_fHeight-1.0f);
-		glVertex2f(0.0f,		m_fHeight-1.0f);
-	glEnd();
+	shader->Uniform("color", 0.5f, 0.5f, 0.0f, 0.6f);
+	shader->AssertPointersBound();
+	glDrawArrays(GL_LINE_LOOP, 0, 4);
 
 	if (m_fHeight > m_iFontHeight + 4)
 	{
-		glBegin(GL_LINES);
-			glVertex2f(0.0f,		(GLfloat)(m_iFontHeight + 4));
-			glVertex2f(m_fWidth,	(GLfloat)(m_iFontHeight + 4));
-		glEnd();
+		float lineVerts[] = {
+			0.0f, m_fHeight - (float)m_iFontHeight - 4.0f,
+			m_fWidth, m_fHeight - (float)m_iFontHeight - 4.0f
+		};
+		shader->VertexPointer(2, GL_FLOAT, 0, lineVerts);
+		shader->AssertPointersBound();
+		glDrawArrays(GL_LINES, 0, 2);
 	}
-
-	glEnable(GL_TEXTURE_2D);
 }
 
 
-void CConsole::DrawHistory()
+void CConsole::DrawHistory(CTextRenderer& textRenderer)
 {
 	int i = 1;
 
@@ -246,73 +261,63 @@ void CConsole::DrawHistory()
 
 	CScopeLock lock(m_Mutex); // needed for safe access to m_deqMsgHistory
 
-	glPushMatrix();
-		glColor3f(1.0f, 1.0f, 1.0f); //Set color of text
-		glTranslatef(9.0f, (float)m_iFontOffset, 0.0f); //move away from the border
+	textRenderer.Color(1.0f, 1.0f, 1.0f);
 
-		// Draw the text upside-down, because it's aligned with
-		// the GUI (which uses the top-left as (0,0))
-		glScalef(1.0f, -1.0f, 1.0f);
+	for (Iter = m_deqMsgHistory.begin();
+			Iter != m_deqMsgHistory.end()
+				&& (((i - m_iMsgHistPos + 1) * m_iFontHeight) < m_fHeight);
+			++Iter)
+	{
+		if (i >= m_iMsgHistPos)
+			textRenderer.PrintfAt(9.0f, m_fHeight - (float)m_iFontOffset - (float)m_iFontHeight * i, L"%ls", Iter->c_str());
 
-		for (Iter = m_deqMsgHistory.begin();
-			 Iter != m_deqMsgHistory.end()
-				 && (((i - m_iMsgHistPos + 1) * m_iFontHeight) < m_fHeight);
-			 ++Iter)
-		{
-			if (i >= m_iMsgHistPos){
-				glTranslatef(0.0f, -(float)m_iFontHeight, 0.0f);
-
-				glPushMatrix();
-					glwprintf(L"%ls", Iter->c_str());
-				glPopMatrix();
-			}
-
-			i++;
-		}
-	glPopMatrix();
+		i++;
+	}
 }
 
-//Renders the buffer to the screen.
-void CConsole::DrawBuffer(void)
+// Renders the buffer to the screen.
+void CConsole::DrawBuffer(CTextRenderer& textRenderer)
 {
-	if (m_fHeight < m_iFontHeight) return;
+	if (m_fHeight < m_iFontHeight)
+		return;
 
-	glPushMatrix();
-		glColor3f(1.0f, 1.0f, 0.0f);
-		glTranslatef(2.0f, (float)m_iFontOffset, 0);
-		glScalef(1.0f, -1.0f, 1.0f);
+	CMatrix3D savedTransform = textRenderer.GetTransform();
 
-		glwprintf(L"]");
+	textRenderer.Translate(2.0f, m_fHeight - (float)m_iFontOffset + 1.0f, 0.0f);
 
-		glColor3f(1.0f, 1.0f, 1.0f);
-		if (m_iBufferPos==0) DrawCursor();
+	textRenderer.Color(1.0f, 1.0f, 0.0f);
+	textRenderer.Printf(L"]");
 
-		for (int i = 0; i < m_iBufferLength; i++){
-				glwprintf(L"%lc", m_szBuffer[i]);
-				if (m_iBufferPos-1==i) DrawCursor();
-		}
-	glPopMatrix();
+	textRenderer.Color(1.0f, 1.0f, 1.0f);
+
+	if (m_iBufferPos == 0)
+		DrawCursor(textRenderer);
+
+	for (int i = 0; i < m_iBufferLength; i++)
+	{
+		textRenderer.Printf(L"%lc", m_szBuffer[i]);
+		if (m_iBufferPos-1 == i)
+			DrawCursor(textRenderer);
+	}
+
+	textRenderer.SetTransform(savedTransform);
 }
 
-
-void CConsole::DrawCursor(void)
+void CConsole::DrawCursor(CTextRenderer& textRenderer)
 {
-	// (glPushMatrix is necessary because glwprintf does glTranslatef)
-	glPushMatrix();
-		// Slightly translucent yellow
-		glColor4f(1.0f, 1.0f, 0.0f, 0.8f);
+	// Slightly translucent yellow
+	textRenderer.Color(1.0f, 1.0f, 0.0f, 0.8f);
 
-		// Cursor character is chosen to be an underscore
-		glwprintf(L"_");
+	// Cursor character is chosen to be an underscore
+	textRenderer.PrintfAt(0.0f, 0.0f, L"_");
 
-		// Revert to the standard text colour
-		glColor3f(1.0f, 1.0f, 1.0f);
-	glPopMatrix();
+	// Revert to the standard text colour
+	textRenderer.Color(1.0f, 1.0f, 1.0f);
 }
 
 
 //Inserts a character into the buffer.
-void CConsole::InsertChar(const int szChar, const wchar_t cooked )
+void CConsole::InsertChar(const int szChar, const wchar_t cooked)
 {
 	static int iHistoryPos = -1;
 
@@ -335,8 +340,9 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 
 			if (m_iBufferPos == m_iBufferLength)
 				m_szBuffer[m_iBufferPos - 1] = '\0';
-			else{
-				for(int j=m_iBufferPos-1; j<m_iBufferLength-1; j++)
+			else
+			{
+				for (int j = m_iBufferPos-1; j < m_iBufferLength-1; j++)
 					m_szBuffer[j] = m_szBuffer[j+1]; // move chars to left
 				m_szBuffer[m_iBufferLength-1] = '\0';
 			}

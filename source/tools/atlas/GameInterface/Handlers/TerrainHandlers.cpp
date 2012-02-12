@@ -68,6 +68,7 @@ QUERYHANDLER(GetTerrainGroupPreviews)
 
 		std::vector<unsigned char> buf (msg->imageWidth*msg->imageHeight*3);
 
+#if !CONFIG2_GLES
 		// It's not good to shrink the entire texture to fit the small preview
 		// window, since it's the fine details in the texture that are
 		// interesting; so just go down one mipmap level, then crop a chunk
@@ -75,24 +76,12 @@ QUERYHANDLER(GetTerrainGroupPreviews)
 
 		// Read the size of the texture. (Usually loads the texture from
 		// disk, which is slow.)
-		GLint w, h;
-		ssize_t level = 1; // level 0 is the original size
 		(*it)->GetTexture()->Bind();
-		glGetTexLevelParameteriv(GL_TEXTURE_2D, level, GL_TEXTURE_WIDTH,  &w);
-		glGetTexLevelParameteriv(GL_TEXTURE_2D, level, GL_TEXTURE_HEIGHT, &h);
+		int level = 1; // level 0 is the original size
+		int w = std::max(1, (int)(*it)->GetTexture()->GetWidth() >> level);
+		int h = std::max(1, (int)(*it)->GetTexture()->GetHeight() >> level);
 
-		if (w < msg->imageWidth || h < msg->imageHeight)
-		{
-			// Oops, too small to preview - just use a flat colour
-			u32 c = (*it)->GetBaseColor();
-			for (ssize_t i = 0; i < msg->imageWidth*msg->imageHeight; ++i)
-			{
-				buf[i*3+0] = (c>>16) & 0xff;
-				buf[i*3+1] = (c>>8) & 0xff;
-				buf[i*3+2] = (c>>0) & 0xff;
-			}
-		}
-		else
+		if (w >= msg->imageWidth && h >= msg->imageHeight)
 		{
 			// Read the whole texture into a new buffer
 			unsigned char* texdata = new unsigned char[w*h*3];
@@ -110,6 +99,19 @@ QUERYHANDLER(GetTerrainGroupPreviews)
 			}
 
 			delete[] texdata;
+		}
+		else
+#endif
+		{
+			// Too small to preview, or glGetTexImage not supported (on GLES)
+			// Just use a flat color instead
+			u32 c = (*it)->GetBaseColor();
+			for (ssize_t i = 0; i < msg->imageWidth*msg->imageHeight; ++i)
+			{
+				buf[i*3+0] = (c>>16) & 0xff;
+				buf[i*3+1] = (c>>8) & 0xff;
+				buf[i*3+2] = (c>>0) & 0xff;
+			}
 		}
 
 		previews.back().loaded = (*it)->GetTexture()->IsLoaded();

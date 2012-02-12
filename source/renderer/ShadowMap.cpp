@@ -529,8 +529,8 @@ const float* ShadowMap::GetFilterOffsets() const
 void ShadowMap::RenderDebugDisplay()
 {
 	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect("solid");
-	shaderTech->BeginPass(0);
-	CShaderProgramPtr shader = shaderTech->GetShader(0);
+	shaderTech->BeginPass();
+	CShaderProgramPtr shader = shaderTech->GetShader();
 
 	glDepthMask(0);
 	glDisable(GL_CULL_FACE);
@@ -565,7 +565,7 @@ void ShadowMap::RenderDebugDisplay()
 	shader->AssertPointersBound();
 	glDrawArrays(GL_LINES, 0, 8);
 
-	shaderTech->EndPass(0);
+	shaderTech->EndPass();
 
 #if 0
 	CMatrix3D InvTexTransform;

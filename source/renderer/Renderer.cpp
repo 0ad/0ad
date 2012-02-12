@@ -1488,14 +1488,14 @@ void CRenderer::RenderParticles()
 		m->particleRenderer.RenderParticles(true);
 
 		CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect("solid");
-		shaderTech->BeginPass(0);
-		CShaderProgramPtr shader = shaderTech->GetShader(0);
+		shaderTech->BeginPass();
+		CShaderProgramPtr shader = shaderTech->GetShader();
 		shader->Uniform("color", 0.0f, 1.0f, 0.0f, 1.0f);
 		shader->Uniform("transform", m_ViewCamera.GetViewProjection());
 
 		m->particleRenderer.RenderBounds(shader);
 
-		shaderTech->EndPass(0);
+		shaderTech->EndPass();
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}

@@ -32,6 +32,7 @@
 #include "graphics/Model.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TerritoryTexture.h"
+#include "graphics/TextRenderer.h"
 
 #include "maths/MathUtil.h"
 
@@ -803,11 +804,16 @@ void TerrainRenderer::RenderPriorities()
 
 	ENSURE(m->phase == Phase_Render);
 
-	CFont font(L"mono-stroke-10");
-	font.Bind();
+	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect("gui_text");
+	tech->BeginPass();
+	CTextRenderer textRenderer(tech->GetShader());
 
-	glColor3f(1, 1, 0);
+	textRenderer.Font(L"mono-stroke-10");
+	textRenderer.Color(1.0f, 1.0f, 0.0f);
 
 	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
-		m->visiblePatches[i]->RenderPriorities();
+		m->visiblePatches[i]->RenderPriorities(textRenderer);
+
+	textRenderer.Render();
+	tech->EndPass();
 }

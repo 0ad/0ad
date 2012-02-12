@@ -66,6 +66,11 @@ void CTextRenderer::Color(const CColor& color)
 	m_Color = color;
 }
 
+void CTextRenderer::Color(float r, float g, float b, float a)
+{
+	m_Color = CColor(r, g, b, a);
+}
+
 void CTextRenderer::Font(const CStrW& font)
 {
 	if (!m_Fonts[font])

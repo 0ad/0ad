@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2012 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -152,6 +152,9 @@ enum CursorKind
 
 struct Cursor
 {
+	// require kind == CK_OpenGL after reload
+	bool forceGL;
+
 	CursorKind kind;
 
 	// valid iff kind == CK_System
@@ -164,8 +167,9 @@ struct Cursor
 
 H_TYPE_DEFINE(Cursor);
 
-static void Cursor_init(Cursor* UNUSED(c), va_list UNUSED(args))
+static void Cursor_init(Cursor* c, va_list args)
 {
+	c->forceGL = va_arg(args, bool);
 }
 
 static void Cursor_dtor(Cursor* c)
@@ -208,7 +212,7 @@ static Status Cursor_reload(Cursor* c, const PIVFS& vfs, const VfsPath& name, Ha
 	const VfsPath pathnameImage = pathname.ChangeExtension(L".png");
 
 	// try loading as system cursor (2d, hardware accelerated)
-	if(load_sys_cursor(vfs, pathnameImage, hotspotx, hotspoty, &c->system_cursor) == INFO::OK)
+	if(!c->forceGL && load_sys_cursor(vfs, pathnameImage, hotspotx, hotspoty, &c->system_cursor) == INFO::OK)
 		c->kind = CK_System;
 	// fall back to GLCursor (system cursor code is disabled or failed)
 	else if(c->gl_cursor.create(vfs, pathnameImage, hotspotx, hotspoty) == INFO::OK)
@@ -282,9 +286,9 @@ static Status Cursor_to_string(const Cursor* c, wchar_t* buf)
 // in other words, we continually create/free the cursor resource in
 // cursor_draw and trust h_mgr's caching to absorb it.
 
-static Handle cursor_load(const PIVFS& vfs, const VfsPath& name)
+static Handle cursor_load(const PIVFS& vfs, const VfsPath& name, bool forceGL)
 {
-	return h_alloc(H_Cursor, vfs, name, 0);
+	return h_alloc(H_Cursor, vfs, name, 0, forceGL);
 }
 
 static Status cursor_free(Handle& h)
@@ -293,7 +297,7 @@ static Status cursor_free(Handle& h)
 }
 
 
-Status cursor_draw(const PIVFS& vfs, const wchar_t* name, int x, int y)
+Status cursor_draw(const PIVFS& vfs, const wchar_t* name, int x, int y, bool forceGL)
 {
 	// hide the cursor
 	if(!name)
@@ -302,7 +306,9 @@ Status cursor_draw(const PIVFS& vfs, const wchar_t* name, int x, int y)
 		return INFO::OK;
 	}
 
-	Handle hc = cursor_load(vfs, name);
+	Handle hc = cursor_load(vfs, name, forceGL);
+	// TODO: if forceGL changes at runtime after a cursor is first created,
+	// we might reuse a cached version of the cursor with the old forceGL flag
 
 	RETURN_STATUS_IF_ERR(hc); // silently ignore failures
 

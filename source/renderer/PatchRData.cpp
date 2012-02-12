@@ -25,6 +25,7 @@
 #include "graphics/LightEnv.h"
 #include "graphics/Patch.h"
 #include "graphics/Terrain.h"
+#include "graphics/TextRenderer.h"
 #include "lib/alignment.h"
 #include "lib/allocators/arena.h"
 #include "lib/res/graphics/unifont.h"
@@ -1141,7 +1142,7 @@ void CPatchRData::RenderSides()
 	CVertexBuffer::Unbind();
 }
 
-void CPatchRData::RenderPriorities()
+void CPatchRData::RenderPriorities(CTextRenderer& textRenderer)
 {
 	CTerrain* terrain = m_Patch->m_Parent;
 	CCamera* camera = g_Game->GetView()->GetCamera();
@@ -1163,15 +1164,7 @@ void CPatchRData::RenderPriorities()
 			float x, y;
 			camera->GetScreenCoordinates(pos, x, y);
 
-			glPushMatrix();
-			glTranslatef(x, g_yres - y, 0.f);
-
-			// Draw the text upside-down, because it's aligned with
-			// the GUI (which uses the top-left as (0,0))
-			glScalef(1.0f, -1.0f, 1.0f);
-
-			glwprintf(L"%d", m_Patch->m_MiniPatches[j][i].Priority);
-			glPopMatrix();
+			textRenderer.PrintfAt(x, y, L"%d", m_Patch->m_MiniPatches[j][i].Priority);
 		}
 	}
 }

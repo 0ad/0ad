@@ -27,6 +27,7 @@
 
 class CPatch;
 class CTerrainTextureEntry;
+class CTextRenderer;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // CPatchRData: class encapsulating logic for rendering terrain patches; holds per
@@ -40,7 +41,7 @@ public:
 	void Update();
 	void RenderOutline();
 	void RenderSides();
-	void RenderPriorities();
+	void RenderPriorities(CTextRenderer& textRenderer);
 
 	void RenderWater();
 

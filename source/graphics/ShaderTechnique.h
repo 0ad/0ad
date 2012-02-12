@@ -85,9 +85,9 @@ public:
 
 	int GetNumPasses();
 
-	void BeginPass(int pass);
-	void EndPass(int pass);
-	CShaderProgramPtr GetShader(int pass);
+	void BeginPass(int pass = 0);
+	void EndPass(int pass = 0);
+	CShaderProgramPtr GetShader(int pass = 0);
 
 	void Reset();
 

@@ -311,11 +311,12 @@ void GUIRenderer::Draw(DrawCalls &Calls, float Z)
 	// Iterate through each DrawCall, and execute whatever drawing code is being called
 	for (DrawCalls::const_iterator cit = Calls.begin(); cit != Calls.end(); ++cit)
 	{
+		cit->m_Shader->BeginPass();
+		CShaderProgramPtr shader = cit->m_Shader->GetShader();
+		shader->Uniform("transform", matrix);
+
 		if (cit->m_HasTexture)
 		{
-			cit->m_Shader->BeginPass(0);
-			CShaderProgramPtr shader = cit->m_Shader->GetShader(0);
-			shader->Uniform("transform", matrix);
 			shader->Uniform("color", cit->m_ShaderColorParameter);
 			shader->BindTexture("tex", cit->m_Texture);
 
@@ -354,14 +355,9 @@ void GUIRenderer::Draw(DrawCalls &Calls, float Z)
 			shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 5*sizeof(float), &data[0]);
 			shader->VertexPointer(3, GL_FLOAT, 5*sizeof(float), &data[2]);
 			glDrawArrays(GL_TRIANGLES, 0, 6);
-
-			cit->m_Shader->EndPass(0);
 		}
 		else
 		{
-			cit->m_Shader->BeginPass(0);
-			CShaderProgramPtr shader = cit->m_Shader->GetShader(0);
-			shader->Uniform("transform", matrix);
 			shader->Uniform("color", cit->m_BackColor);
 
 			if (cit->m_EnableBlending)
@@ -404,9 +400,9 @@ void GUIRenderer::Draw(DrawCalls &Calls, float Z)
 				glDrawArrays(GL_LINE_LOOP, 0, 4);
 			}
 #undef ADD
-
-			cit->m_Shader->EndPass(0);
 		}
+		
+		cit->m_Shader->EndPass();
 
 		glDisable(GL_BLEND);
 	}

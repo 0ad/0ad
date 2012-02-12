@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,8 @@
 #include "CLogger.h"
 #include "CConsole.h"
 #include "ConfigDB.h"
+#include "graphics/ShaderManager.h"
+#include "graphics/TextRenderer.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
@@ -27,6 +29,7 @@
 #include "lib/sysdep/sysdep.h"
 #include "ps/Font.h"
 #include "ps/Profile.h"
+#include "renderer/Renderer.h"
 
 #include <ctime>
 #include <iostream>
@@ -281,18 +284,19 @@ void CLogger::Render()
 
 	CleanupRenderQueue();
 
-	CFont font(L"mono-stroke-10");
+	CStrW font_name(L"mono-stroke-10");
+	CFont font(font_name);
 	int lineSpacing = font.GetLineSpacing();
-	font.Bind();
 
-	glPushMatrix();
+	CShaderTechniquePtr textTech = g_Renderer.GetShaderManager().LoadEffect("gui_text");
+	textTech->BeginPass();
 
-	glScalef(1.0f, -1.0f, 1.0f);
-	//Offset by 35 vertically to avoid the top bar.
-	glTranslatef(4.0f, 35.0f + (float)lineSpacing - g_yres, 0.0f);
+	CTextRenderer textRenderer(textTech->GetShader());
+	textRenderer.Font(font_name);
+	textRenderer.Color(1.0f, 1.0f, 1.0f);
 
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	// Offset by an extra 35px vertically to avoid the top bar.
+	textRenderer.Translate(4.0f, 35.0f + lineSpacing, 0.0f);
 
 	// (Lock must come after loading the CFont, since that might log error messages
 	// and attempt to lock the mutex recursively which is forbidden)
@@ -304,32 +308,34 @@ void CLogger::Render()
 		if (it->method == Normal)
 		{
 			type = L"info";
-			glColor3f(0.0f, 0.8f, 0.0f);
+			textRenderer.Color(0.0f, 0.8f, 0.0f);
 		}
 		else if (it->method == Warning)
 		{
 			type = L"warning";
-			glColor3f(1.0f, 1.0f, 0.0f);
+			textRenderer.Color(1.0f, 1.0f, 0.0f);
 		}
 		else
 		{
 			type = L"error";
-			glColor3f(1.0f, 0.0f, 0.0f);
+			textRenderer.Color(1.0f, 0.0f, 0.0f);
 		}
-		glPushMatrix();
 
-		glwprintf(L"[%8.3f] %ls: ", it->time, type);
+		CMatrix3D savedTransform = textRenderer.GetTransform();
+
+		textRenderer.Printf(L"[%8.3f] %ls: ", it->time, type);
 		// Display the actual message in white so it's more readable
-		glColor3f(1.0f, 1.0f, 1.0f);
-		glwprintf(L"%ls", it->message.c_str());
+		textRenderer.Color(1.0f, 1.0f, 1.0f);
+		textRenderer.Printf(L"%ls", it->message.c_str());
 
-		glPopMatrix();
-		glTranslatef(0.f, (float)lineSpacing, 0.f);
+		textRenderer.SetTransform(savedTransform);
+
+		textRenderer.Translate(0.0f, (float)lineSpacing, 0.0f);
 	}
 
-	glDisable(GL_BLEND);
+	textRenderer.Render();
 
-	glPopMatrix();
+	textTech->EndPass();
 }
 
 void CLogger::PushRenderMessage(ELogMethod method, const wchar_t* message)
