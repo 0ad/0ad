@@ -51,7 +51,7 @@ class CCamera
 		CMatrix3D& GetOrientation() { return m_Orientation; }
 		const CMatrix3D& GetOrientation() const { return m_Orientation; }
 
-		CMatrix3D GetViewProjection() { return m_ProjMat * m_Orientation.GetInverse(); }
+		CMatrix3D GetViewProjection() const { return m_ProjMat * m_Orientation.GetInverse(); }
 
 		// Updates the frustum planes. Should be called
 		// everytime the view or projection matrices are

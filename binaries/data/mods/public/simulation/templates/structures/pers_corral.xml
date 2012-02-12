@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_resource_corral">
+  <Cost>
+    <BuildTime>13</BuildTime>
+  </Cost>
   <Footprint>
     <Square width="18.0" depth="12.0"/>
     <Height>5.0</Height>
   </Footprint>
+  <Health>
+    <Max>125</Max>
+  </Health>
   <Identity>
     <Civ>pers</Civ>
     <SpecificName>Gaithastana</SpecificName>

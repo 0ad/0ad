@@ -314,6 +314,10 @@ void CMiniMap::Draw()
 	CMatrix3D matrix = GetDefaultGuiMatrix();
 	glLoadMatrixf(&matrix._11);
 
+	// Disable depth updates to prevent apparent z-fighting-related issues
+	// with some drivers causing units to get drawn behind the texture
+	glDepthMask(0);
+
 	const float x = m_CachedActualSize.left, y = m_CachedActualSize.bottom;
 	const float x2 = m_CachedActualSize.right, y2 = m_CachedActualSize.top;
 	const float z = GetBufferedZ();
@@ -441,6 +445,7 @@ void CMiniMap::Draw()
 	// Reset everything back to normal
 	glPointSize(1.0f);
 	glEnable(GL_TEXTURE_2D);
+	glDepthMask(1);
 }
 
 #endif // CONFIG2_GLES

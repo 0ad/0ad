@@ -29,6 +29,8 @@
 #include "ps/ConfigDB.h"
 #include "ps/Profiler2.h"
 
+#if !CONFIG2_GLES
+
 class CProfiler2GPU_base
 {
 	NONCOPYABLE(CProfiler2GPU_base);
@@ -854,3 +856,19 @@ void CProfiler2GPU::RegionLeave(const char* id)
 	if (m_ProfilerINTEL)
 		m_ProfilerINTEL->RegionLeave(id);
 }
+
+#else // CONFIG2_GLES
+
+CProfiler2GPU::CProfiler2GPU(CProfiler2& profiler) :
+	m_Profiler(profiler), m_ProfilerARB(NULL), m_ProfilerEXT(NULL), m_ProfilerINTEL(NULL)
+{
+}
+
+CProfiler2GPU::~CProfiler2GPU() { }
+
+void CProfiler2GPU::FrameStart() { }
+void CProfiler2GPU::FrameEnd() { }
+void CProfiler2GPU::RegionEnter(const char* UNUSED(id)) { }
+void CProfiler2GPU::RegionLeave(const char* UNUSED(id)) { }
+
+#endif

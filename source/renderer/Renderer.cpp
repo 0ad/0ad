@@ -1487,10 +1487,15 @@ void CRenderer::RenderParticles()
 
 		m->particleRenderer.RenderParticles(true);
 
-		glDisable(GL_TEXTURE_2D);
-		glColor3f(0.0f, 1.0f, 0.0f);
+		CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect("solid");
+		shaderTech->BeginPass(0);
+		CShaderProgramPtr shader = shaderTech->GetShader(0);
+		shader->Uniform("color", 0.0f, 1.0f, 0.0f, 1.0f);
+		shader->Uniform("transform", m_ViewCamera.GetViewProjection());
 
-		m->particleRenderer.RenderBounds();
+		m->particleRenderer.RenderBounds(shader);
+
+		shaderTech->EndPass(0);
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
@@ -1673,6 +1678,7 @@ void CRenderer::DisplayFrustum()
 {
 	glDepthMask(0);
 	glDisable(GL_CULL_FACE);
+	glDisable(GL_TEXTURE_2D);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

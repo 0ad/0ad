@@ -28,6 +28,8 @@
 #include "ps/Overlay.h"
 #include "ps/Preprocessor.h"
 
+#if !CONFIG2_GLES
+
 class CShaderProgramARB : public CShaderProgram
 {
 public:
@@ -227,6 +229,7 @@ private:
 	std::map<CStr, int> m_FragmentIndexes;
 };
 
+#endif // #if !CONFIG2_GLES
 
 class CShaderProgramGLSL : public CShaderProgram
 {
@@ -346,7 +349,12 @@ public:
 			m_UniformTypes[name] = type;
 
 			// Assign sampler uniforms to sequential texture units
-			if (type == GL_SAMPLER_2D || type == GL_SAMPLER_2D_SHADOW || type == GL_SAMPLER_CUBE)
+			if (type == GL_SAMPLER_2D
+			 || type == GL_SAMPLER_CUBE
+#if !CONFIG2_GLES
+			 || type == GL_SAMPLER_2D_SHADOW
+#endif
+			)
 			{
 				int unit = (int)m_Samplers.size();
 				m_Samplers[name].first = (type == GL_SAMPLER_CUBE ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D);
@@ -550,6 +558,17 @@ CShaderProgram::CShaderProgram(int streamflags)
 {
 }
 
+#if CONFIG2_GLES
+/*static*/ CShaderProgram* CShaderProgram::ConstructARB(const VfsPath& vertexFile, const VfsPath& fragmentFile,
+	const std::map<CStr, CStr>& UNUSED(defines),
+	const std::map<CStr, int>& UNUSED(vertexIndexes), const std::map<CStr, int>& UNUSED(fragmentIndexes),
+	int UNUSED(streamflags))
+{
+	LOGERROR(L"CShaderProgram::ConstructARB: '%ls'+'%ls': ARB shaders not supported on this device",
+		vertexFile.string().c_str(), fragmentFile.string().c_str());
+	return NULL;
+}
+#else
 /*static*/ CShaderProgram* CShaderProgram::ConstructARB(const VfsPath& vertexFile, const VfsPath& fragmentFile,
 	const std::map<CStr, CStr>& defines,
 	const std::map<CStr, int>& vertexIndexes, const std::map<CStr, int>& fragmentIndexes,
@@ -557,6 +576,7 @@ CShaderProgram::CShaderProgram(int streamflags)
 {
 	return new CShaderProgramARB(vertexFile, fragmentFile, defines, vertexIndexes, fragmentIndexes, streamflags);
 }
+#endif
 
 /*static*/ CShaderProgram* CShaderProgram::ConstructGLSL(const VfsPath& vertexFile, const VfsPath& fragmentFile,
 	const std::map<CStr, CStr>& defines,
@@ -641,25 +661,6 @@ void CShaderProgram::Uniform(uniform_id_t id, const CMatrix3D& v)
 	Uniform(GetUniformBinding(id), v);
 }
 
-void CShaderProgram::VertexPointer(GLint size, GLenum type, GLsizei stride, void* pointer)
-{
-	glVertexPointer(size, type, stride, pointer);
-	m_ValidStreams |= STREAM_POS;
-}
-
-void CShaderProgram::NormalPointer(GLenum type, GLsizei stride, void* pointer)
-{
-	glNormalPointer(type, stride, pointer);
-	m_ValidStreams |= STREAM_NORMAL;
-}
-
-void CShaderProgram::TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, void* pointer)
-{
-	pglActiveTextureARB(texture);
-	glTexCoordPointer(size, type, stride, pointer);
-	m_ValidStreams |= STREAM_UV0 << (texture - GL_TEXTURE0);
-}
-
 CStr CShaderProgram::Preprocess(CPreprocessor& preprocessor, const CStr& input)
 {
 	size_t len = 0;
@@ -678,6 +679,27 @@ CStr CShaderProgram::Preprocess(CPreprocessor& preprocessor, const CStr& input)
 		free(output);
 
 	return ret;
+}
+
+#if !CONFIG2_GLES
+
+void CShaderProgram::VertexPointer(GLint size, GLenum type, GLsizei stride, void* pointer)
+{
+	glVertexPointer(size, type, stride, pointer);
+	m_ValidStreams |= STREAM_POS;
+}
+
+void CShaderProgram::NormalPointer(GLenum type, GLsizei stride, void* pointer)
+{
+	glNormalPointer(type, stride, pointer);
+	m_ValidStreams |= STREAM_NORMAL;
+}
+
+void CShaderProgram::TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, void* pointer)
+{
+	pglActiveTextureARB(texture);
+	glTexCoordPointer(size, type, stride, pointer);
+	m_ValidStreams |= STREAM_UV0 << (texture - GL_TEXTURE0);
 }
 
 void CShaderProgram::BindClientStates()
@@ -729,7 +751,9 @@ void CShaderProgram::UnbindClientStates()
 	}
 }
 
+#endif // !CONFIG2_GLES
+
 void CShaderProgram::AssertPointersBound()
 {
-	ENSURE(m_ValidStreams == m_StreamFlags);
+	ENSURE((m_StreamFlags & ~m_ValidStreams) == 0);
 }

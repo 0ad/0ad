@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>skeletal/pig.dae</mesh>
+      <props>
+        <prop actor="particle/flame_catapult.xml" attachpoint="root"/>
+        <prop actor="particle/smoke.xml" attachpoint="root"/>
+      </props>
+      <texture>skeletal/animal_pig_a.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+</actor>

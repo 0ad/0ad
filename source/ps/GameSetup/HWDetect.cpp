@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -181,8 +181,11 @@ void RunHardwareDetection()
 #else
 	scriptInterface.SetProperty(settings.get(), "build_debug", 1);
 #endif
+	scriptInterface.SetProperty(settings.get(), "build_opengles", CONFIG2_GLES);
+
 	scriptInterface.SetProperty(settings.get(), "build_datetime", std::string(__DATE__ " " __TIME__));
 	scriptInterface.SetProperty(settings.get(), "build_revision", std::wstring(svn_revision));
+
 	scriptInterface.SetProperty(settings.get(), "build_msc", (int)MSC_VERSION);
 	scriptInterface.SetProperty(settings.get(), "build_icc", (int)ICC_VERSION);
 	scriptInterface.SetProperty(settings.get(), "build_gcc", (int)GCC_VERSION);
@@ -265,7 +268,7 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings.get(), "timer_resolution", timer_Resolution());
 
 	// Send the same data to the reporting system
-	g_UserReporter.SubmitReport("hwdetect", 10, scriptInterface.StringifyJSON(settings.get(), false));
+	g_UserReporter.SubmitReport("hwdetect", 11, scriptInterface.StringifyJSON(settings.get(), false));
 
 	// Run the detection script:
 
@@ -363,21 +366,28 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 	STRING(VENDOR);
 	STRING(RENDERER);
 	STRING(EXTENSIONS);
+#if !CONFIG2_GLES
 	INTEGER(MAX_LIGHTS);
 	INTEGER(MAX_CLIP_PLANES);
 	// Skip MAX_COLOR_MATRIX_STACK_DEPTH (only in imaging subset)
 	INTEGER(MAX_MODELVIEW_STACK_DEPTH);
 	INTEGER(MAX_PROJECTION_STACK_DEPTH);
 	INTEGER(MAX_TEXTURE_STACK_DEPTH);
+#endif
 	INTEGER(SUBPIXEL_BITS);
+#if !CONFIG2_GLES
 	INTEGER(MAX_3D_TEXTURE_SIZE);
+#endif
 	INTEGER(MAX_TEXTURE_SIZE);
 	INTEGER(MAX_CUBE_MAP_TEXTURE_SIZE);
+#if !CONFIG2_GLES
 	INTEGER(MAX_PIXEL_MAP_TABLE);
 	INTEGER(MAX_NAME_STACK_DEPTH);
 	INTEGER(MAX_LIST_NESTING);
 	INTEGER(MAX_EVAL_ORDER);
+#endif
 	INTEGER2(MAX_VIEWPORT_DIMS);
+#if !CONFIG2_GLES
 	INTEGER(MAX_ATTRIB_STACK_DEPTH);
 	INTEGER(MAX_CLIENT_ATTRIB_STACK_DEPTH);
 	INTEGER(AUX_BUFFERS);
@@ -385,16 +395,21 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 	BOOL(INDEX_MODE);
 	BOOL(DOUBLEBUFFER);
 	BOOL(STEREO);
+#endif
 	FLOAT2(ALIASED_POINT_SIZE_RANGE);
+#if !CONFIG2_GLES
 	FLOAT2(SMOOTH_POINT_SIZE_RANGE);
 	FLOAT(SMOOTH_POINT_SIZE_GRANULARITY);
+#endif
 	FLOAT2(ALIASED_LINE_WIDTH_RANGE);
+#if !CONFIG2_GLES
 	FLOAT2(SMOOTH_LINE_WIDTH_RANGE);
 	FLOAT(SMOOTH_LINE_WIDTH_GRANULARITY);
 	// Skip MAX_CONVOLUTION_WIDTH, MAX_CONVOLUTION_HEIGHT (only in imaging subset)
 	INTEGER(MAX_ELEMENTS_INDICES);
 	INTEGER(MAX_ELEMENTS_VERTICES);
 	INTEGER(MAX_TEXTURE_UNITS);
+#endif
 	INTEGER(SAMPLE_BUFFERS);
 	INTEGER(SAMPLES);
 	// TODO: compressed texture formats
@@ -402,13 +417,19 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 	INTEGER(GREEN_BITS);
 	INTEGER(BLUE_BITS);
 	INTEGER(ALPHA_BITS);
+#if !CONFIG2_GLES
 	INTEGER(INDEX_BITS);
+#endif
 	INTEGER(DEPTH_BITS);
 	INTEGER(STENCIL_BITS);
+#if !CONFIG2_GLES
 	INTEGER(ACCUM_RED_BITS);
 	INTEGER(ACCUM_GREEN_BITS);
 	INTEGER(ACCUM_BLUE_BITS);
 	INTEGER(ACCUM_ALPHA_BITS);
+#endif
+
+#if !CONFIG2_GLES
 
 	// Core OpenGL 2.0 (treated as extensions):
 
@@ -437,7 +458,9 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 	}
 
 	if (ogl_HaveExtension("GL_ARB_fragment_shader"))
+	{
 		INTEGER(MAX_FRAGMENT_UNIFORM_COMPONENTS_ARB);
+	}
 
 	if (ogl_HaveExtension("GL_ARB_vertex_shader") || ogl_HaveExtension("GL_ARB_fragment_shader") ||
 		ogl_HaveExtension("GL_ARB_vertex_program") || ogl_HaveExtension("GL_ARB_fragment_program"))
@@ -580,4 +603,20 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 		INTEGER(MAX_GEOMETRY_VARYING_COMPONENTS_ARB);
 		INTEGER(MAX_VERTEX_VARYING_COMPONENTS_ARB);
 	}
+
+#else // CONFIG2_GLES
+
+	// Core OpenGL ES 2.0:
+
+	STRING(SHADING_LANGUAGE_VERSION);
+	INTEGER(MAX_VERTEX_ATTRIBS);
+	INTEGER(MAX_VERTEX_UNIFORM_VECTORS);
+	INTEGER(MAX_VARYING_VECTORS);
+	INTEGER(MAX_COMBINED_TEXTURE_IMAGE_UNITS);
+	INTEGER(MAX_VERTEX_TEXTURE_IMAGE_UNITS);
+	INTEGER(MAX_FRAGMENT_UNIFORM_VECTORS);
+	INTEGER(MAX_TEXTURE_IMAGE_UNITS);
+	INTEGER(MAX_RENDERBUFFER_SIZE);
+
+#endif // CONFIG2_GLES
 }

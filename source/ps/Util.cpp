@@ -206,8 +206,10 @@ void WriteScreenshot(const VfsPath& extension)
 	// so read data from OpenGL in BMP format to obviate conversion.
 	if(extension == L".bmp")
 	{
+#if !CONFIG2_GLES // GLES doesn't support BGR
 		fmt = GL_BGR;
 		flags |= TEX_BGR;
+#endif
 	}
 
 	// Hide log messages and re-render
@@ -265,8 +267,10 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 	// so read data from OpenGL in BMP format to obviate conversion.
 	if(extension == L".bmp")
 	{
+#if !CONFIG2_GLES // GLES doesn't support BGR
 		fmt = GL_BGR;
 		flags |= TEX_BGR;
+#endif
 	}
 
 	const size_t img_size = img_w * img_h * bpp/8;
@@ -299,6 +303,7 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 		g_Game->GetView()->SetCameraProjection();
 	}
 
+#if !CONFIG2_GLES
 	// Temporarily move everything onto the front buffer, so the user can
 	// see the exciting progress as it renders (and can tell when it's finished).
 	// (It doesn't just use SwapBuffers, because it doesn't know whether to
@@ -308,6 +313,7 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 	glGetIntegerv(GL_DRAW_BUFFER, &oldDrawBuffer);
 	glDrawBuffer(GL_FRONT);
 	glReadBuffer(GL_FRONT);
+#endif
 
 	// Hide the cursor
 	CStrW oldCursor = g_CursorName;
@@ -341,9 +347,11 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 	// Restore the old cursor
 	g_CursorName = oldCursor;
 
+#if !CONFIG2_GLES
 	// Restore the buffer settings
 	glDrawBuffer(oldDrawBuffer);
 	glReadBuffer(oldReadBuffer);
+#endif
 
 	// Restore the viewport settings
 	{

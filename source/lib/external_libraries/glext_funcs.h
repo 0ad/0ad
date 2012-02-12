@@ -72,6 +72,33 @@ actually supported).
 #define pglCompressedTexImage2DARB glCompressedTexImage2D
 #define pglActiveTextureARB glActiveTexture
 
+#define pglAttachObjectARB glAttachShader
+#define pglBindAttribLocationARB glBindAttribLocation
+#define pglCompileShaderARB glCompileShader
+#define pglCreateProgramObjectARB glCreateProgram
+#define pglCreateShaderObjectARB glCreateShader
+#define pglDeleteProgram glDeleteProgram
+#define pglDeleteShader glDeleteShader
+#define pglDisableVertexAttribArrayARB glDisableVertexAttribArray
+#define pglEnableVertexAttribArrayARB glEnableVertexAttribArray
+#define pglGetActiveUniformARB glGetActiveUniform
+#define pglGetProgramiv glGetProgramiv
+#define pglGetProgramInfoLog glGetProgramInfoLog
+#define pglGetShaderiv glGetShaderiv
+#define pglGetShaderInfoLog glGetShaderInfoLog
+#define pglLinkProgramARB glLinkProgram
+#define pglShaderSourceARB glShaderSource
+#define pglUniform1fARB glUniform1i
+#define pglUniform2fARB glUniform2f
+#define pglUniform3fARB glUniform3f
+#define pglUniform4fARB glUniform4f
+#define pglUniform1iARB glUniform1i
+#define pglUniformMatrix4fvARB glUniformMatrix4fv
+#define pglUseProgramObjectARB glUseProgram
+#define pglVertexAttribPointerARB glVertexAttribPointer
+
+typedef GLuint GLhandleARB;
+
 #else
 
 // were these defined as real functions in gl.h already?

@@ -27,6 +27,9 @@
 
 #include "ProfileViewer.h"
 
+#include "gui/GUIutil.h"
+#include "graphics/ShaderManager.h"
+#include "graphics/TextRenderer.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/Font.h"
@@ -161,6 +164,8 @@ void CProfileViewer::RenderProfile()
 
 	PROFILE3_GPU("profile viewer");
 
+	glDisable(GL_DEPTH_TEST);
+
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -168,7 +173,8 @@ void CProfileViewer::RenderProfile()
 	const std::vector<ProfileColumn>& columns = table->GetColumns();
 	size_t numrows = table->GetNumberRows();
 
-	CFont font(L"mono-stroke-10");
+	CStrW font_name = L"mono-stroke-10";
+	CFont font(font_name);
 	font.Bind();
 	int lineSpacing = font.GetLineSpacing();
 
@@ -185,110 +191,136 @@ void CProfileViewer::RenderProfile()
 		estimate_height += 2;
 	estimate_height = lineSpacing*estimate_height;
 
-	glDisable(GL_TEXTURE_2D);
-	glColor4ub(0,0,0,128);
-	glBegin(GL_QUADS);
-	glVertex2i(estimate_width, g_yres);
-	glVertex2i(0, g_yres);
-	glVertex2i(0, g_yres-estimate_height);
-	glVertex2i(estimate_width, g_yres-estimate_height);
-	glEnd();
-	glEnable(GL_TEXTURE_2D);
+	CShaderTechniquePtr solidTech = g_Renderer.GetShaderManager().LoadEffect("solid");
+	solidTech->BeginPass(0);
+	CShaderProgramPtr solidShader = solidTech->GetShader(0);
+
+	solidShader->Uniform("color", 0.0f, 0.0f, 0.0f, 0.5f);
+
+	CMatrix3D transform = GetDefaultGuiMatrix();
+	solidShader->Uniform("transform", transform);
+
+	float backgroundVerts[] = {
+		(float)estimate_width, 0.0f,
+		0.0f, 0.0f,
+		0.0f, (float)estimate_height,
+		0.0f, (float)estimate_height,
+		(float)estimate_width, (float)estimate_height,
+		(float)estimate_width, 0.0f
+	};
+	solidShader->VertexPointer(2, GL_FLOAT, 0, backgroundVerts);
+	solidShader->AssertPointersBound();
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+
+	transform.PostTranslate(22.0f, lineSpacing*3.0f, 0.0f);
+	solidShader->Uniform("transform", transform);
+
+	// Draw row backgrounds
+	for (size_t row = 0; row < numrows; ++row)
+	{
+		if (row % 2)
+			solidShader->Uniform("color", 1.0f, 1.0f, 1.0f, 0.1f);
+		else
+			solidShader->Uniform("color", 0.0f, 0.0f, 0.0f, 0.1f);
+
+		float rowVerts[] = {
+			-22.f, 2.f,
+			estimate_width-22.f, 2.f,
+			estimate_width-22.f, 2.f-lineSpacing,
+
+			estimate_width-22.f, 2.f-lineSpacing,
+			-22.f, 2.f-lineSpacing,
+			-22.f, 2.f
+		};
+		solidShader->VertexPointer(2, GL_FLOAT, 0, rowVerts);
+		solidShader->AssertPointersBound();
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+
+		transform.PostTranslate(0.0f, lineSpacing, 0.0f);
+		solidShader->Uniform("transform", transform);
+	}
+
+	solidTech->EndPass(0);
 
 	// Print table and column titles
-	glPushMatrix();
-	glTranslatef(2.0f, g_yres - lineSpacing, 0.0f );
-	glScalef(1.0f, -1.0f, 1.0f);
-	glColor3ub(255, 255, 255);
 
-	glPushMatrix();
-	glwprintf(L"%hs", table->GetTitle().c_str());
-	glPopMatrix();
-	glTranslatef( 20.0f, lineSpacing, 0.0f );
+	CShaderTechniquePtr textTech = g_Renderer.GetShaderManager().LoadEffect("gui_text");
+	textTech->BeginPass(0);
 
-	glPushMatrix();
-	for(size_t col = 0; col < columns.size(); ++col)
+	CTextRenderer textRenderer(textTech->GetShader(0));
+	textRenderer.Font(font_name);
+	textRenderer.Color(CColor(1.0f, 1.0f, 1.0f, 1.0f));
+
+	textRenderer.PrintfAt(2.0f, lineSpacing, L"%hs", table->GetTitle().c_str());
+
+	textRenderer.Translate(22.0f, lineSpacing*2.0f, 0.0f);
+
+	float colX = 0.0f;
+	for (size_t col = 0; col < columns.size(); ++col)
 	{
 		CStr text = columns[col].title;
 		int w, h;
 		font.CalculateStringSize(text.FromUTF8(), w, h);
-		glPushMatrix();
+
+		float x = colX;
 		if (col > 0) // right-align all but the first column
-			glTranslatef(columns[col].width - w, 0, 0);
-		glwprintf(L"%hs", text.c_str());
-		glPopMatrix();
-		glTranslatef(columns[col].width, 0, 0);
+			x += columns[col].width - w;
+		textRenderer.PrintfAt(x, 0.0f, L"%hs", text.c_str());
+		
+		colX += columns[col].width;
 	}
-	glPopMatrix();
-	glTranslatef( 0.0f, lineSpacing, 0.0f );
+
+	textRenderer.Translate(0.0f, lineSpacing, 0.0f);
 
 	// Print rows
 	int currentExpandId = 1;
 
-	for(size_t row = 0; row < numrows; ++row)
+	for (size_t row = 0; row < numrows; ++row)
 	{
-		glPushMatrix();
-
-		glDisable(GL_TEXTURE_2D);
-		if (row % 2)
-			glColor4ub(255, 255, 255, 16);
-		else
-			glColor4ub(0, 0, 0, 16);
-		glBegin(GL_QUADS);
-		glVertex2i(-22.f, 2.f);
-		glVertex2i(estimate_width-22.f, 2.f);
-		glVertex2i(estimate_width-22.f, 2.f-lineSpacing);
-		glVertex2i(-22.f, 2.f-lineSpacing);
-		glEnd();
-		glEnable(GL_TEXTURE_2D);
-
 		if (table->IsHighlightRow(row))
-			glColor3ub(255, 128, 128);
+			textRenderer.Color(CColor(1.0f, 0.5f, 0.5f, 1.0f));
 		else
-			glColor3ub(255, 255, 255);
+			textRenderer.Color(CColor(1.0f, 1.0f, 1.0f, 1.0f));
 
 		if (table->GetChild(row))
 		{
-			glPushMatrix();
-			glTranslatef( -15.0f, 0.0f, 0.0f );
-			glwprintf(L"%d", currentExpandId);
-			glPopMatrix();
+			textRenderer.PrintfAt(-15.0f, 0.0f, L"%d", currentExpandId);
 			currentExpandId++;
 		}
 
-		for(size_t col = 0; col < columns.size(); ++col)
+		float colX = 0.0f;
+		for (size_t col = 0; col < columns.size(); ++col)
 		{
 			CStr text = table->GetCellText(row, col);
 			int w, h;
 			font.CalculateStringSize(text.FromUTF8(), w, h);
-			glPushMatrix();
+
+			float x = colX;
 			if (col > 0) // right-align all but the first column
-				glTranslatef(columns[col].width - w, 0, 0);
-			glwprintf(L"%hs", text.c_str());
-			glPopMatrix();
-			glTranslatef(columns[col].width, 0, 0);
+				x += columns[col].width - w;
+			textRenderer.PrintfAt(x, 0.0f, L"%hs", text.c_str());
+
+			colX += columns[col].width;
 		}
 
-		glPopMatrix();
-		glTranslatef( 0.0f, lineSpacing, 0.0f );
+		textRenderer.Translate(0.0f, lineSpacing, 0.0f);
 	}
-	glColor3ub(255, 255, 255);
+
+	textRenderer.Color(CColor(1.0f, 1.0f, 1.0f, 1.0f));
 
 	if (m->path.size() > 1)
 	{
-		glTranslatef( 0.0f, lineSpacing, 0.0f );
-		glPushMatrix();
-		glPushMatrix();
-		glTranslatef( -15.0f, 0.0f, 0.0f );
-		glwprintf( L"0" );
-		glPopMatrix();
-		glwprintf( L"back to parent" );
-		glPopMatrix();
+		textRenderer.Translate(0.0f, lineSpacing, 0.0f);
+		textRenderer.PrintfAt(-15.0f, 0.0f, L"0");
+		textRenderer.PrintfAt(0.0f, 0.0f, L"back to parent");
 	}
 
-	glPopMatrix();
+	textRenderer.Render();
+	textTech->EndPass(0);
 
 	glDisable(GL_BLEND);
+
+	glEnable(GL_DEPTH_TEST);
 }
 
 

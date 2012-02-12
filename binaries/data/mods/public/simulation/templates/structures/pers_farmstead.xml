@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic_farmstead">
+  <Cost>
+    <BuildTime>110</BuildTime>
+  </Cost>
   <Footprint>
     <Square width="20.0" depth="20.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <Health>
+    <Max>1100</Max>
+  </Health>
   <Identity>
     <Civ>pers</Civ>
     <SpecificName>Jowgah</SpecificName>

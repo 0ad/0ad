@@ -27,6 +27,8 @@
 #include "ps/Overlay.h"
 #include "renderer/Renderer.h"
 
+#if !CONFIG2_GLES
+
 /**
  * CShaderProgramFFP allows rendering code to use the shader-based API
  * even if the 'shader' is actually implemented with the fixed-function
@@ -619,7 +621,20 @@ public:
 		return new CShaderProgramFFP_GuiGrayscale();
 	if (id == "gui_solid")
 		return new CShaderProgramFFP_GuiSolid();
+	if (id == "solid")
+		return new CShaderProgramFFP_GuiSolid(); // works for non-GUI objects too
 
-	LOGERROR(L"CShaderProgram::ConstructFFP: Invalid id '%hs'", id.c_str());
+	LOGERROR(L"CShaderProgram::ConstructFFP: '%hs': Invalid id", id.c_str());
+	debug_warn(L"CShaderProgram::ConstructFFP: Invalid id");
 	return NULL;
 }
+
+#else // CONFIG2_GLES
+
+/*static*/ CShaderProgram* CShaderProgram::ConstructFFP(const std::string& UNUSED(id), const std::map<CStr, CStr>& UNUSED(defines))
+{
+	debug_warn(L"CShaderProgram::ConstructFFP: FFP not supported on this device");
+	return NULL;
+}
+
+#endif // CONFIG2_GLES
