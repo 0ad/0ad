@@ -183,6 +183,15 @@ void CMatrix3D::Translate(const CVector3D &vector)
 	_34 += vector.Z;
 }
 
+void CMatrix3D::PostTranslate(float x, float y, float z)
+{
+	// Equivalent to "m.SetTranslation(x, y, z); *this = *this * m;"
+	_14 += _11*x + _12*y + _13*z;
+	_24 += _21*x + _22*y + _23*z;
+	_34 += _31*x + _32*y + _33*z;
+	_44 += _41*x + _42*y + _43*z;
+}
+
 CVector3D CMatrix3D::GetTranslation() const
 {
 	return CVector3D(_14, _24, _34);

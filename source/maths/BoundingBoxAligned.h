@@ -24,6 +24,7 @@
 
 // necessary includes
 #include "Vector3D.h"
+#include "graphics/ShaderProgram.h"
 
 class CFrustum;
 class CMatrix3D;
@@ -131,9 +132,14 @@ public:
 	void IntersectFrustumConservative(const CFrustum& frustum);
 
 	/**
-	 * Render: Render the surfaces of the bound object as polygons.
+	 * Render: Render the surfaces of the bound object as triangles.
 	 */
-	void Render() const;
+	void Render(CShaderProgramPtr& shader) const;
+
+	/**
+	 * Render: Render the outline of the bound object as lines.
+	 */
+	void RenderOutline(CShaderProgramPtr& shader) const;
 
 private:
 	// Holds the minimal and maximal coordinate points in m_Data[0] and m_Data[1], respectively.

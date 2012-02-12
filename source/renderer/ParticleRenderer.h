@@ -22,6 +22,8 @@ class CParticleEmitter;
 
 struct ParticleRendererInternals;
 
+#include "graphics/ShaderProgram.h"
+
 /**
  * Render particles.
  */
@@ -56,7 +58,7 @@ public:
 	/**
 	 * Render bounding boxes for all the submitted emitters.
 	 */
-	void RenderBounds();
+	void RenderBounds(CShaderProgramPtr& shader);
 
 private:
 	ParticleRendererInternals* m;

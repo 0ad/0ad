@@ -232,6 +232,9 @@ public:
 	void Translate(float x, float y, float z);
 	void Translate(const CVector3D& vector);
 
+	// apply translation after this matrix (M = M * T)
+	void PostTranslate(float x, float y, float z);
+
 	// set this matrix to the given scaling matrix
 	void SetScaling(float x_scale, float y_scale, float z_scale);
 

@@ -30,17 +30,42 @@ class CTextRenderer
 public:
 	CTextRenderer(const CShaderProgramPtr& shader);
 
+	/**
+	 * Reset the text transform to the default, with (0,0) in the top-left of the screen.
+	 */
 	void ResetTransform();
+
 	CMatrix3D GetTransform();
+	
 	void SetTransform(const CMatrix3D& transform);
 
 	void Translate(float x, float y, float z);
 
+	/**
+	 * Set the color for subsequent print calls.
+	 */
 	void Color(const CColor& color);
+	
+	/**
+	 * Set the font for subsequent print calls.
+	 */
 	void Font(const CStrW& font);
 
+	/**
+	 * Print formatted text at (0,0) under the current transform,
+	 * and advance the transform by the width of the text.
+	 */
 	void Printf(const wchar_t* fmt, ...);
 
+	/**
+	 * Print formatted text at (x,y) under the current transform.
+	 * Does not alter the current transform.
+	 */
+	void PrintfAt(float x, float y, const wchar_t* fmt, ...);
+
+	/**
+	 * Render all of the previously printed text calls.
+	 */
 	void Render();
 
 private:

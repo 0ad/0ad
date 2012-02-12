@@ -157,13 +157,13 @@ void ParticleRenderer::RenderParticles(bool solidColor)
 	shader->Unbind();
 }
 
-void ParticleRenderer::RenderBounds()
+void ParticleRenderer::RenderBounds(CShaderProgramPtr& shader)
 {
 	for (size_t i = 0; i < m->emitters.size(); ++i)
 	{
 		CParticleEmitter* emitter = m->emitters[i];
 
 		CBoundingBoxAligned bounds = emitter->m_Type->CalculateBounds(emitter->GetPosition(), emitter->GetParticleBounds());
-		bounds.Render();
+		bounds.Render(shader);
 	}
 }

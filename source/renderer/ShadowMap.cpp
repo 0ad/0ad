@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,6 +27,7 @@
 #include "ps/Profile.h"
 
 #include "graphics/LightEnv.h"
+#include "graphics/ShaderManager.h"
 
 #include "maths/BoundingBoxAligned.h"
 #include "maths/MathUtil.h"
@@ -527,35 +528,44 @@ const float* ShadowMap::GetFilterOffsets() const
 //  - blue: objects in shadow
 void ShadowMap::RenderDebugDisplay()
 {
+	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect("solid");
+	shaderTech->BeginPass(0);
+	CShaderProgramPtr shader = shaderTech->GetShader(0);
+
 	glDepthMask(0);
 	glDisable(GL_CULL_FACE);
 
 	// Render shadow bound
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glMultMatrixf(&m->InvLightTransform._11);
+	shader->Uniform("transform", g_Renderer.GetViewCamera().GetViewProjection() * m->InvLightTransform);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glColor4ub(0,0,255,64);
-	m->ShadowBound.Render();
+	shader->Uniform("color", 0.0f, 0.0f, 1.0f, 0.25f);
+	m->ShadowBound.Render(shader);
 	glDisable(GL_BLEND);
 
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	glColor3ub(0,0,255);
-	m->ShadowBound.Render();
+	shader->Uniform("color", 0.0f, 0.0f, 1.0f, 1.0f);
+	m->ShadowBound.RenderOutline(shader);
 
-	glBegin(GL_LINES);
-		glVertex3f(0.0, 0.0, 0.0);
-		glVertex3f(0.0, 0.0, 50.0);
-	glEnd();
-	glBegin(GL_POLYGON);
-		glVertex3f(0.0, 0.0, 50.0);
-		glVertex3f(50.0, 0.0, 50.0);
-		glVertex3f(0.0, 50.0, 50.0);
-	glEnd();
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	glPopMatrix();
+	// Draw a funny line/triangle direction indicator thing for unknown reasons
+	float shadowLineVerts[] = {
+		0.0, 0.0, 0.0,
+		0.0, 0.0, 50.0,
+
+		0.0, 0.0, 50.0,
+		50.0, 0.0, 50.0,
+
+		50.0, 0.0, 50.0,
+		0.0, 50.0, 50.0,
+		
+		0.0, 50.0, 50.0,
+		0.0, 0.0, 50.0
+	};
+	shader->VertexPointer(3, GL_FLOAT, 0, shadowLineVerts);
+	shader->AssertPointersBound();
+	glDrawArrays(GL_LINES, 0, 8);
+
+	shaderTech->EndPass(0);
 
 #if 0
 	CMatrix3D InvTexTransform;

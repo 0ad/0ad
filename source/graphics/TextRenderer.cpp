@@ -84,9 +84,7 @@ void CTextRenderer::Printf(const wchar_t* fmt, ...)
 	va_end(args);
 
 	if (ret < 0)
-	{
-		debug_printf(L"glwprintf failed (buffer size exceeded?) - return value %d, errno %d\n", ret, errno);
-	}
+		debug_printf(L"CTextRenderer::Printf vswprintf failed (buffer size exceeded?) - return value %d, errno %d\n", ret, errno);
 
 	SBatch batch;
 	batch.transform = m_Transform;
@@ -98,6 +96,29 @@ void CTextRenderer::Printf(const wchar_t* fmt, ...)
 	int w, h;
 	batch.font->CalculateStringSize(batch.text, w, h);
 	Translate((float)w, 0.0f, 0.0f);
+}
+
+void CTextRenderer::PrintfAt(float x, float y, const wchar_t* fmt, ...)
+{
+	wchar_t buf[1024] = {0};
+
+	va_list args;
+	va_start(args, fmt);
+	int ret = vswprintf(buf, ARRAY_SIZE(buf)-1, fmt, args);
+	va_end(args);
+
+	if (ret < 0)
+		debug_printf(L"CTextRenderer::PrintfAt vswprintf failed (buffer size exceeded?) - return value %d, errno %d\n", ret, errno);
+
+	CMatrix3D translate;
+	translate.SetTranslation(x, y, 0.0f);
+
+	SBatch batch;
+	batch.transform = m_Transform * translate;
+	batch.color = m_Color;
+	batch.font = m_Font;
+	batch.text = buf;
+	m_Batches.push_back(batch);
 }
 
 void CTextRenderer::Render()
