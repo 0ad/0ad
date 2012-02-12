@@ -18,6 +18,12 @@
     <Square width="17.0" depth="17.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <GarrisonHolder>
+    <Max>10</Max>
+	<EjectHealth>0.1</EjectHealth>
+	<List datatype="tokens">Support</List>
+	<BuffHeal>1</BuffHeal>
+  </GarrisonHolder>
   <Health>
     <Max>1500</Max>
   </Health>
