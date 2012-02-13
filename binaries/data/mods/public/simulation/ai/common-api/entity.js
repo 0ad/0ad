@@ -148,8 +148,6 @@ var EntityTemplate = Class({
 		return +this._template.ResourceSupply.Amount;
 	},
 
-
-
 	resourceGatherRates: function() {
 		if (!this._template.ResourceGatherer)
 			return undefined;
@@ -164,14 +162,21 @@ var EntityTemplate = Class({
 			return undefined;
 		return this._template.ResourceDropsite.Types.split(/\s+/);
 	},
-
-
-	garrisonableClasses: function() {
+	
+	garrisonableClasses: function() 
+	{
 		if (!this._template.GarrisonHolder)
 			return undefined;
 		return this._template.GarrisonHolder.List._string.split(/\s+/);
 	},
-
+	
+	garrisonMax: function() 
+	{
+		if (!this._template.GarrisonHolder)
+			return undefined;
+		
+		return this._template.GarrisonHolder.Max;
+	},
 
 	/**
 	 * Returns whether this is an animal that is too difficult to hunt.
@@ -326,12 +331,17 @@ var Entity = Class({
 	resourceSupplyAmount: function() { return this._entity.resourceSupplyAmount; },
 
 	resourceCarrying: function() { return this._entity.resourceCarrying; },
+	
+//Garrison related
 
 	garrisoned: function() { return new EntityCollection(this._ai, this._entity.garrisoned); },
 
+	garrisonSpaceAvailable: function() 
+	{
+		return (this.garrisonMax() - this.garrisoned().length);
+	},
 
 	// TODO: visibility
-
 
 	move: function(x, z, queued) {
 		queued = queued || false;
