@@ -29,6 +29,7 @@
 #include "lib/sysdep/cursor.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/gfx.h"
+#include "lib/sysdep/os_cpu.h"
 #include "lib/tex/tex.h"
 #if OS_WIN
 #include "lib/sysdep/os/win/wversion.h"
@@ -97,7 +98,7 @@
 #include "ps/GameSetup/CmdLineArgs.h"
 #include "ps/GameSetup/HWDetect.h"
 
-#if !(OS_WIN || OS_MACOSX) // assume all other platforms use X11 for wxWidgets
+#if !(OS_WIN || OS_MACOSX || OS_ANDROID) // assume all other platforms use X11 for wxWidgets
 #define MUST_INIT_X11 1
 #include <X11/Xlib.h>
 #else

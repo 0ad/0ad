@@ -48,7 +48,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ModelRenderer implementation
 
+#if ARCH_X86_X64
 static bool g_EnableSSE = false;
+#endif
 
 void ModelRenderer::Init()
 {
@@ -97,10 +99,16 @@ void ModelRenderer::BuildPositionAndNormals(
 			return;
 		}
 
+#if ARCH_X86_X64
 		if (g_EnableSSE)
+		{
 			CModelDef::SkinPointsAndNormals_SSE(numVertices, Position, Normal, vertices, mdef->GetBlendIndices(), model->GetAnimatedBoneMatrices());
+		}
 		else
+#endif
+		{
 			CModelDef::SkinPointsAndNormals(numVertices, Position, Normal, vertices, mdef->GetBlendIndices(), model->GetAnimatedBoneMatrices());
+		}
 	}
 	else
 	{

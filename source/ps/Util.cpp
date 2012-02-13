@@ -101,8 +101,10 @@ void WriteSystemInfo()
 	// CPU
 	fprintf(f, "CPU            : %s, %s (%dx%dx%d)", un.machine, cpu_IdentifierString(), (int)topology::NumPackages(), (int)topology::CoresPerPackage(), (int)topology::LogicalPerCore());
 	double cpuClock = os_cpu_ClockFrequency();	// query OS (may fail)
+#if ARCH_X86_X64
 	if(cpuClock <= 0.0)
 		cpuClock = x86_x64::ClockFrequency();	// measure (takes a few ms)
+#endif
 	if(cpuClock > 0.0)
 	{
 		if(cpuClock < 1e9)
