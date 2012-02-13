@@ -747,9 +747,15 @@ static void detect_gl_upload_caps()
 	}
 	if(have_s3tc == -1)
 	{
+#if CONFIG2_GLES
+		// some GLES implementations have GL_EXT_texture_compression_dxt1
+		// but that only supports DXT1 so we can't use it anyway
+		have_s3tc = 0;
+#else
 		// note: we don't bother checking for GL_S3_s3tc - it is incompatible
 		// and irrelevant (was never widespread).
 		have_s3tc = ogl_HaveExtensions(0, "GL_ARB_texture_compression", "GL_EXT_texture_compression_s3tc", NULL) == 0;
+#endif
 	}
 	if(have_anistropy == -1)
 	{

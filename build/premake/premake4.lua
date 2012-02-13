@@ -673,6 +673,7 @@ end
 used_extern_libs = {
 	"opengl",
 	"sdl",
+	"x11",
 
 	"libjpg",
 	"libpng",

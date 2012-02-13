@@ -118,6 +118,7 @@ public:
 #else
 		(void)ogl_tex_bind(ht);
 		glEnable(GL_TEXTURE_2D);
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glEnable(GL_BLEND);
 		glDisable(GL_DEPTH_TEST);
@@ -129,6 +130,9 @@ public:
 		glTexCoord2i(0, 1); glVertex2i( x-hotspotx,   y+hotspoty-h );
 		glTexCoord2i(1, 1); glVertex2i( x-hotspotx+w, y+hotspoty-h );
 		glEnd();
+
+		glDisable(GL_BLEND);
+		glEnable(GL_DEPTH_TEST);
 #endif
 	}
 

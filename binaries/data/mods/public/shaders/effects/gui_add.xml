@@ -2,13 +2,13 @@
 <effect>
 
     <technique>
-        <require shaders="arb"/>
-        <pass shader="model_common_instancing_arb"/>
+        <require shaders="fixed"/>
+        <pass shader="fixed:gui_add"/>
     </technique>
 
     <technique>
         <require shaders="glsl"/>
-        <pass shader="model_common_instancing_glsl"/>
+        <pass shader="glsl/gui_add"/>
     </technique>
 
 </effect>

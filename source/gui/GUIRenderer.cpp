@@ -188,13 +188,13 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 
 		if (!Call.m_HasTexture)
 		{
-			Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("shader:fixed:gui_solid");
+			Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("gui_solid");
 		}
 		else if (cit->m_Effects)
 		{
 			if (cit->m_Effects->m_AddColor != CColor())
 			{
-				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("shader:fixed:gui_add");
+				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("gui_add");
 				Call.m_ShaderColorParameter = cit->m_Effects->m_AddColor;
 				// Always enable blending if something's being subtracted from
 				// the alpha channel
@@ -203,16 +203,16 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 			}
 			else if (cit->m_Effects->m_Greyscale)
 			{
-				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("shader:fixed:gui_grayscale");
+				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("gui_grayscale");
 			}
 			else /* Slight confusion - why no effects? */
 			{
-				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("shader:fixed:gui_basic");
+				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("gui_basic");
 			}
 		}
 		else
 		{
-			Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("shader:fixed:gui_basic");
+			Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("gui_basic");
 		}
 
 		Calls.push_back(Call);

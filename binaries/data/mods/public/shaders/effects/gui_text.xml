@@ -10,7 +10,7 @@
 
     <technique>
         <require shaders="glsl"/>
-        <pass shader="gui_text">
+        <pass shader="glsl/gui_text">
             <blend src="src_alpha" dst="one_minus_src_alpha"/>
         </pass>
     </technique>

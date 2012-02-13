@@ -89,6 +89,7 @@ actually supported).
 #define pglGetProgramInfoLog glGetProgramInfoLog
 #define pglGetShaderiv glGetShaderiv
 #define pglGetShaderInfoLog glGetShaderInfoLog
+#define pglGetUniformLocationARB glGetUniformLocation
 #define pglLinkProgramARB glLinkProgram
 #define pglShaderSourceARB glShaderSource
 #define pglUniform1fARB glUniform1i

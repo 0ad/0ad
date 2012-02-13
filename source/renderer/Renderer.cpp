@@ -455,6 +455,11 @@ CRenderer::CRenderer()
 	// TODO: be more consistent in use of the config system
 	CFG_GET_USER_VAL("preferglsl", Bool, m_Options.m_PreferGLSL);
 
+#if CONFIG2_GLES
+	// Override config option since GLES only supports GLSL
+	m_Options.m_PreferGLSL = true;
+#endif
+
 	m_ShadowZBias = 0.02f;
 	m_ShadowMapSize = 0;
 
@@ -547,6 +552,11 @@ void CRenderer::EnumCaps()
 void CRenderer::ReloadShaders()
 {
 	ENSURE(m->IsOpen);
+
+#if CONFIG2_GLES
+#warning TODO: move ARB shader programs to effect/technique files, and add GLSL versions
+	return;
+#endif
 
 	typedef std::map<CStr, CStr> Defines;
 
@@ -852,6 +862,11 @@ void CRenderer::BeginFrame()
 
 	// zero out all the per-frame stats
 	m_Stats.Reset();
+
+#if CONFIG2_GLES
+#warning TODO: move ARB shader programs to effect/technique files, and add GLSL versions
+	return;
+#endif
 
 	// choose model renderers for this frame
 
@@ -1653,6 +1668,9 @@ void CRenderer::EndFrame()
 	m->overlayRenderer.EndFrame();
 	m->particleRenderer.EndFrame();
 
+#if CONFIG2_GLES
+#warning TODO: move ARB shader programs to effect/technique files, and add GLSL versions
+#else
 	// Finish model renderers
 	m->Model.Normal->EndFrame();
 	m->Model.Player->EndFrame();
@@ -1661,6 +1679,7 @@ void CRenderer::EndFrame()
 	if (m->Model.Player != m->Model.PlayerInstancing)
 		m->Model.PlayerInstancing->EndFrame();
 	m->Model.Transp->EndFrame();
+#endif
 
 	ogl_tex_bind(0, 0);
 

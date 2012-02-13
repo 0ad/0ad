@@ -203,8 +203,8 @@ bool CVideoMode::InitSDL()
 #if !SDL_VERSION_ATLEAST(1, 3, 0)
 	SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, g_VSync ? 1 : 0);
 #endif
-	
-#if CONFIG2_GLES
+
+#if CONFIG2_GLES && SDL_VERSION_ATLEAST(1, 3, 0)
 	// Require GLES 2.0
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
