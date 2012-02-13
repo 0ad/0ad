@@ -335,8 +335,11 @@ public:
 
 		Bind();
 
+		ogl_WarnIfError();
+
 		GLint numUniforms = 0;
 		pglGetProgramiv(m_Program, GL_ACTIVE_UNIFORMS, &numUniforms);
+		ogl_WarnIfError();
 		for (GLint i = 0; i < numUniforms; ++i)
 		{
 			char name[256] = {0};
@@ -344,8 +347,11 @@ public:
 			GLint size = 0;
 			GLenum type = 0;
 			pglGetActiveUniformARB(m_Program, i, ARRAY_SIZE(name), &nameLength, &size, &type, name);
+			ogl_WarnIfError();
 
-			m_UniformLocations[name] = i;
+			GLint loc = pglGetUniformLocationARB(m_Program, name);
+
+			m_UniformLocations[name] = loc;
 			m_UniformTypes[name] = type;
 
 			// Assign sampler uniforms to sequential texture units
@@ -359,7 +365,8 @@ public:
 				int unit = (int)m_Samplers.size();
 				m_Samplers[name].first = (type == GL_SAMPLER_CUBE ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D);
 				m_Samplers[name].second = unit;
-				pglUniform1iARB(i, unit); // link uniform to unit
+				pglUniform1iARB(loc, unit); // link uniform to unit
+				ogl_WarnIfError();
 			}
 		}
 
