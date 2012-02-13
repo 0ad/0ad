@@ -6,11 +6,18 @@
       <stone>200</stone>
     </Resources>
   </Cost>
+  <Footprint>
+    <Square width="28.0" depth="28.0"/>
+    <Height>5.0</Height>
+  </Footprint>
   <Identity>
     <Civ>rome</Civ>
     <SpecificName>Armamentarium</SpecificName>
     <History>Romans specialised in the building of military camps and forts. A few of them still survive.</History>
   </Identity>
+  <Obstruction>
+    <Static width="24.0" depth="24.0"/>
+  </Obstruction>
   <TrainingQueue>
     <Entities datatype="tokens">
       units/rome_infantry_swordsman_b
@@ -20,6 +27,7 @@
     </Entities>
   </TrainingQueue>
   <VisualActor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
     <Actor>structures/romans/barracks.xml</Actor>
   </VisualActor>
 </Entity>

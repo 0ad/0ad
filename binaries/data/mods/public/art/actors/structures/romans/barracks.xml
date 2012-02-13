@@ -1,15 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="barracks">
       <mesh>structural/rome_barracks.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
+      </props>
       <texture>structural/rome_struct_2.png</texture>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>
