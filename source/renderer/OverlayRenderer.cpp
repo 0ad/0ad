@@ -163,6 +163,7 @@ void OverlayRenderer::RenderOverlaysBeforeWater()
 {
 	PROFILE3_GPU("overlays (before)");
 
+	pglActiveTextureARB(GL_TEXTURE0);
 	glDisable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
 

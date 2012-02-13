@@ -124,6 +124,10 @@ std::vector<CStrW> SkyManager::GetSkySets() const
 // Render sky
 void SkyManager::RenderSky()
 {
+#if CONFIG2_GLES
+#warning TODO: implement SkyManager::RenderSky for GLES
+#else
+
 	// Draw the sky as a small box around the camera position, with depth write enabled.
 	// This will be done before anything else is drawn so we'll be overlapped by everything else.
 
@@ -223,4 +227,6 @@ void SkyManager::RenderSky()
 	glPopMatrix();
 
 	glDepthMask( GL_TRUE );
+
+#endif
 }

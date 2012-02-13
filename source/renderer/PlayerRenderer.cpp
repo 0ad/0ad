@@ -30,6 +30,7 @@
 #include "graphics/TextureManager.h"
 
 
+#if !CONFIG2_GLES
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // FastPlayerColorRender
@@ -289,3 +290,5 @@ void SolidPlayerColorRender::PrepareModel(int UNUSED(pass), CModel* model)
 	// Send the player color
 	glColor3f(colour.r, colour.g, colour.b);
 }
+
+#endif // !CONFIG2_GLES

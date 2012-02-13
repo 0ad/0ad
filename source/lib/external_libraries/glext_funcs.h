@@ -70,6 +70,7 @@ actually supported).
 // some functions that are extensions in GL are core functions in GLES,
 // so we should use them without the function pointer indirection
 #define pglActiveTextureARB glActiveTexture
+#define pglBlendColorEXT glBlendColor
 #define pglBlendEquationEXT glBlendEquation
 #define pglClientActiveTextureARB glClientActiveTexture
 #define pglCompressedTexImage2DARB glCompressedTexImage2D

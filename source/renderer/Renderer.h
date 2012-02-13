@@ -242,9 +242,6 @@ public:
 	// return the current cull camera
 	const CCamera& GetCullCamera() const { return m_CullCamera; }
 
-	// get the current OpenGL model-view-projection matrix into the given float[]
-	CMatrix3D GetModelViewProjectionMatrix();
-
 	/**
 	 * GetWaterManager: Return the renderer's water manager.
 	 *

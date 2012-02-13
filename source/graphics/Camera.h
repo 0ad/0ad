@@ -44,6 +44,7 @@ class CCamera
 		
 		// Methods for projection
 		void SetProjection(float nearp, float farp, float fov);
+		void SetProjection(const CMatrix3D& matrix) { m_ProjMat = matrix; }
 		void SetProjectionTile(int tiles, int tile_x, int tile_y);
 		CMatrix3D& GetProjection() { return m_ProjMat; }
 		const CMatrix3D& GetProjection() const { return m_ProjMat; }

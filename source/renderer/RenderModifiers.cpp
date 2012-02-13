@@ -77,6 +77,8 @@ void LitRenderModifier::SetLightEnv(const CLightEnv* lightenv)
 }
 
 
+#if !CONFIG2_GLES
+
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // PlainRenderModifier implementation
 
@@ -131,62 +133,6 @@ void PlainRenderModifier::PrepareTexture(int UNUSED(pass), CTexturePtr& texture)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// WireframeRenderModifier implementation
-
-
-WireframeRenderModifier::WireframeRenderModifier()
-{
-}
-
-WireframeRenderModifier::~WireframeRenderModifier()
-{
-}
-
-int WireframeRenderModifier::BeginPass(int pass)
-{
-	ENSURE(pass == 0);
-
-	// first switch on wireframe
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-	// setup some renderstate ..
-	glDepthMask(0);
-	ogl_tex_bind(0, 0);
-	glColor4f(1,1,1,0.75f);
-	glLineWidth(1.0f);
-
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
-
-	return STREAM_POS;
-}
-
-
-bool WireframeRenderModifier::EndPass(int UNUSED(pass))
-{
-	// .. restore the renderstates
-	glDisable(GL_BLEND);
-	glDepthMask(1);
-
-	// restore fill mode, and we're done
-	glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
-
-	return true;
-}
-
-
-void WireframeRenderModifier::PrepareTexture(int UNUSED(pass), CTexturePtr& UNUSED(texture))
-{
-}
-
-
-void WireframeRenderModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(model))
-{
-}
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////
 // SolidColorRenderModifier implementation
 
 SolidColorRenderModifier::SolidColorRenderModifier()
@@ -217,6 +163,7 @@ void SolidColorRenderModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(mod
 {
 }
 
+#endif // !CONFIG2_GLES
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ShaderRenderModifier implementation
