@@ -1,45 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure">
-  <Armour>
-    <Hack>40.0</Hack>
-    <Pierce>50.0</Pierce>
-    <Crush>50.0</Crush>
-  </Armour>
-  <BuildRestrictions>
-    <Category>Special</Category>
-  </BuildRestrictions>
-  <Footprint>
-    <Square width="35.5" depth="35.5"/>
+<Entity parent="template_gaia_ruins">
+  <Footprint replace="">
+    <Square width="38.0" depth="38.0"/>
     <Height>10.0</Height>
   </Footprint>
-  <Health>
-    <Max>5000</Max>
-  </Health>
   <Identity>
     <Civ>gaia</Civ>
     <GenericName>Pyramid</GenericName>
     <SpecificName>Minor Pyramid</SpecificName>
     <History>A monumental ornamental structure built by the Egyptians of old.</History>
-	<Tooltip>What treasures lay within this monumental tomb?</Tooltip>
     <Icon>gaia/special_pyramid.png</Icon>
   </Identity>
-  <Loot>
-    <xp>100</xp>
-    <food>0</food>
-    <wood>0</wood>
-    <stone>10000</stone>
-    <metal>10000</metal>
-  </Loot>
   <Obstruction>
     <Static width="34.0" depth="34.0"/>
   </Obstruction>
+  <ResourceSupply>
+    <Amount>5000</Amount>
+    <Type>stone.ruins</Type>
+  </ResourceSupply>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_temple.xml</select>
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
-  <TerritoryDecay disable=""/>
+  <StatusBars>
+    <BarWidth>6.0</BarWidth>
+    <BarHeight>0.6</BarHeight>
+    <HeightOffset>12.0</HeightOffset>
+  </StatusBars>
   <Vision>
     <Range>40</Range>
     <RetainInFog>true</RetainInFog>
