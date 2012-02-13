@@ -32,7 +32,7 @@ public:
 
 	void Update();
 
-	void Render(const CShaderProgramPtr& shader);
+	void Render(const CShaderProgramPtr& shader, bool isDummyShader);
 
 	CModelDecal* GetDecal() { return m_Decal; }
 

@@ -369,6 +369,9 @@ void CCamera::LookAlong(CVector3D camera, CVector3D orientation, CVector3D up)
 // Render the camera's frustum
 void CCamera::Render(int intermediates) const
 {
+#if CONFIG2_GLES
+#warning TODO: implement camera frustum for GLES
+#else
 	CVector3D nearPoints[4];
 	CVector3D farPoints[4];
 
@@ -426,4 +429,5 @@ void CCamera::Render(int intermediates) const
 			glVertex3fv(&intermediatePoints[3].X);
 		glEnd();
 	}
+#endif
 }

@@ -626,16 +626,20 @@ bool CRenderer::Open(int width, int height)
 	EnumCaps();
 
 	// model rendering
+#if !CONFIG2_GLES
 	m->Model.VertexFF = ModelVertexRendererPtr(new FixedFunctionModelRenderer);
 	m->Model.VertexPolygonSort = ModelVertexRendererPtr(new PolygonSortModelRenderer);
+#endif
 	m->Model.VertexRendererShader = ModelVertexRendererPtr(new ShaderModelRenderer);
 	m->Model.VertexInstancingShader = ModelVertexRendererPtr(new InstancingModelRenderer);
 
+#if !CONFIG2_GLES
 	m->Model.pal_NormalFF = new BatchModelRenderer(m->Model.VertexFF);
 	m->Model.pal_PlayerFF = new BatchModelRenderer(m->Model.VertexFF);
 	m->Model.pal_TranspFF = new SortModelRenderer(m->Model.VertexFF);
 
 	m->Model.pal_TranspSortAll = new SortModelRenderer(m->Model.VertexPolygonSort);
+#endif
 
 	m->Model.pal_NormalShader = new BatchModelRenderer(m->Model.VertexRendererShader);
 	m->Model.pal_NormalInstancingShader = new BatchModelRenderer(m->Model.VertexInstancingShader);
@@ -649,9 +653,11 @@ bool CRenderer::Open(int width, int height)
 	m->Model.ModSolidColor = RenderModifierPtr(new SolidColorRenderModifier);
 	m->Model.ModSolidPlayerColor = RenderModifierPtr(new SolidPlayerColorRender);
 	m->Model.ModTransparentUnlit = RenderModifierPtr(new TransparentRenderModifier);
+#if !CONFIG2_GLES
 	m->Model.ModTransparentOpaqueUnlit = RenderModifierPtr(new TransparentOpaqueRenderModifier);
 	m->Model.ModTransparentBlendUnlit = RenderModifierPtr(new TransparentBlendRenderModifier);
 	m->Model.ModTransparentDepthShadow = RenderModifierPtr(new TransparentDepthShadowModifier);
+#endif
 
 	// Dimensions
 	m_Width = width;
@@ -938,18 +944,6 @@ void CRenderer::RenderShadowMap()
 	float shadowTransp = m_LightEnv->GetTerrainShadowTransparency();
 	glColor3f(shadowTransp, shadowTransp, shadowTransp);
 
-	// Figure out transparent rendering strategy
-	RenderModifierPtr transparentShadows;
-	if (GetRenderPath() == RP_SHADER)
-	{
-		transparentShadows = m->Model.ModShaderTransparentShadow;
-	}
-	else
-	{
-		transparentShadows = m->Model.ModTransparentDepthShadow;
-	}
-
-
 	{
 		PROFILE("render patches");
 		m->terrainRenderer->RenderPatches();
@@ -965,7 +959,7 @@ void CRenderer::RenderShadowMap()
 		PROFILE("render transparent models");
 		// disable face-culling for two-sided models
 		glDisable(GL_CULL_FACE);
-		m->Model.Transp->Render(transparentShadows, MODELFLAG_CASTSHADOWS);
+		m->Model.Transp->Render(m->Model.ModShaderTransparentShadow, MODELFLAG_CASTSHADOWS);
 		glEnable(GL_CULL_FACE);
 	}
 
@@ -1012,6 +1006,7 @@ void CRenderer::RenderPatches(const CFrustum* frustum)
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 
 		// setup some renderstate ..
+		pglActiveTextureARB(GL_TEXTURE0);
 		glDisable(GL_TEXTURE_2D);
 		glColor3f(0.5f, 0.5f, 1.0f);
 		glLineWidth(2.0f);

@@ -69,8 +69,10 @@ actually supported).
 
 // some functions that are extensions in GL are core functions in GLES,
 // so we should use them without the function pointer indirection
-#define pglCompressedTexImage2DARB glCompressedTexImage2D
 #define pglActiveTextureARB glActiveTexture
+#define pglBlendEquationEXT glBlendEquation
+#define pglClientActiveTextureARB glClientActiveTexture
+#define pglCompressedTexImage2DARB glCompressedTexImage2D
 
 #define pglAttachObjectARB glAttachShader
 #define pglBindAttribLocationARB glBindAttribLocation
@@ -96,6 +98,14 @@ actually supported).
 #define pglUniformMatrix4fvARB glUniformMatrix4fv
 #define pglUseProgramObjectARB glUseProgram
 #define pglVertexAttribPointerARB glVertexAttribPointer
+
+#define pglBindBufferARB glBindBuffer
+#define pglBufferDataARB glBufferData
+#define pglBufferSubDataARB glBufferSubData
+#define pglDeleteBuffersARB glDeleteBuffers
+#define pglGenBuffersARB glGenBuffers
+
+#define GL_CLAMP_TO_BORDER GL_CLAMP_TO_EDGE // TODO: should fix code that relies on GL_CLAMP_TO_BORDER
 
 typedef GLuint GLhandleARB;
 

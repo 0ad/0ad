@@ -66,7 +66,7 @@ void CDecalRData::Update()
 	}
 }
 
-void CDecalRData::Render(const CShaderProgramPtr& shader)
+void CDecalRData::Render(const CShaderProgramPtr& shader, bool isDummyShader)
 {
 	m_Decal->m_Decal.m_Texture->Bind(0);
 
@@ -86,14 +86,22 @@ void CDecalRData::Render(const CShaderProgramPtr& shader)
 
 	u8* indexBase = m_IndexArray.Bind();
 
-	if (!shader)
+#if !CONFIG2_GLES
+	if (isDummyShader)
+	{
 		glColor3fv(m_Decal->GetShadingColor().FloatArray());
+	}
 	else
+#endif
+	{
 		shader->Uniform("shadingColor", m_Decal->GetShadingColor());
+	}
 
-	glVertexPointer(3, GL_FLOAT, stride, base + m_Position.offset);
-	glColorPointer(4, GL_UNSIGNED_BYTE, stride, base + m_DiffuseColor.offset);
-	glTexCoordPointer(2, GL_FLOAT, stride, base + m_UV.offset);
+	shader->VertexPointer(3, GL_FLOAT, stride, base + m_Position.offset);
+	shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, base + m_DiffuseColor.offset);
+	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, base + m_UV.offset);
+
+	shader->AssertPointersBound();
 
 	if (!g_Renderer.m_SkipSubmit)
 	{

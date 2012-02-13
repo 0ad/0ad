@@ -526,8 +526,14 @@ public:
 
 	virtual void NormalPointer(GLenum type, GLsizei stride, void* pointer)
 	{
-		pglVertexAttribPointerARB(2, 3, type, GL_FALSE, stride, pointer);
+		pglVertexAttribPointerARB(2, 3, type, GL_TRUE, stride, pointer);
 		m_ValidStreams |= STREAM_NORMAL;
+	}
+
+	virtual void ColorPointer(GLint size, GLenum type, GLsizei stride, void* pointer)
+	{
+		pglVertexAttribPointerARB(3, size, type, GL_TRUE, stride, pointer);
+		m_ValidStreams |= STREAM_COLOR;
 	}
 
 	virtual void TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, void* pointer)
@@ -695,10 +701,17 @@ void CShaderProgram::NormalPointer(GLenum type, GLsizei stride, void* pointer)
 	m_ValidStreams |= STREAM_NORMAL;
 }
 
+void CShaderProgram::ColorPointer(GLint size, GLenum type, GLsizei stride, void* pointer)
+{
+	glColorPointer(size, type, stride, pointer);
+	m_ValidStreams |= STREAM_COLOR;
+}
+
 void CShaderProgram::TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, void* pointer)
 {
-	pglActiveTextureARB(texture);
+	pglClientActiveTextureARB(texture);
 	glTexCoordPointer(size, type, stride, pointer);
+	pglClientActiveTextureARB(GL_TEXTURE0);
 	m_ValidStreams |= STREAM_UV0 << (texture - GL_TEXTURE0);
 }
 

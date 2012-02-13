@@ -178,6 +178,7 @@ public:
 
 	virtual void VertexPointer(GLint size, GLenum type, GLsizei stride, void* pointer);
 	virtual void NormalPointer(GLenum type, GLsizei stride, void* pointer);
+	virtual void ColorPointer(GLint size, GLenum type, GLsizei stride, void* pointer);
 	virtual void TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, void* pointer);
 
 	/**

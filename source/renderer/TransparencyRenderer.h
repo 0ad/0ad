@@ -30,6 +30,8 @@
 
 struct PolygonSortModelRendererInternals;
 
+#if !CONFIG2_GLES
+
 /**
  * Class PolygonSortModelRenderer: Render animated models using only
  * OpenGL fixed function, sorting polygons from back to front.
@@ -58,8 +60,10 @@ private:
 	PolygonSortModelRendererInternals* m;
 };
 
-struct SortModelRendererInternals;
+#endif
 
+
+struct SortModelRendererInternals;
 
 /**
  * Class SortModelRenderer: Render models back-to-front from the
@@ -108,6 +112,8 @@ public:
 	void PrepareTexture(int pass, CTexturePtr& texture);
 	void PrepareModel(int pass, CModel* model);
 };
+
+#if !CONFIG2_GLES
 
 /**
  * Class TransparentOpaqueRenderModifier: Modifier for transparent models,
@@ -160,5 +166,7 @@ public:
 	void PrepareTexture(int pass, CTexturePtr& texture);
 	void PrepareModel(int pass, CModel* model);
 };
+
+#endif // !CONFIG2_GLES
 
 #endif

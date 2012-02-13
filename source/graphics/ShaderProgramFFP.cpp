@@ -111,6 +111,32 @@ protected:
 
 //////////////////////////////////////////////////////////////////////////
 
+/**
+ * A shader that does nothing but provide a shader-compatible interface to
+ * fixed-function features, for compatibility with existing fixed-function
+ * code that isn't fully ported to the shader API.
+ */
+class CShaderProgramFFP_Dummy : public CShaderProgramFFP
+{
+public:
+	CShaderProgramFFP_Dummy() :
+		CShaderProgramFFP(0)
+	{
+	}
+
+	virtual void Bind()
+	{
+		BindClientStates();
+	}
+
+	virtual void Unbind()
+	{
+		UnbindClientStates();
+	}
+};
+
+//////////////////////////////////////////////////////////////////////////
+
 class CShaderProgramFFP_OverlayLine : public CShaderProgramFFP
 {
 	// Uniforms
@@ -609,6 +635,8 @@ public:
 
 /*static*/ CShaderProgram* CShaderProgram::ConstructFFP(const std::string& id, const std::map<CStr, CStr>& defines)
 {
+	if (id == "dummy")
+		return new CShaderProgramFFP_Dummy();
 	if (id == "overlayline")
 		return new CShaderProgramFFP_OverlayLine(defines);
 	if (id == "gui_text")

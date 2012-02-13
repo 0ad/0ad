@@ -185,6 +185,9 @@ bool TerrainRenderer::CullPatches(const CFrustum* frustum)
 // Full-featured terrain rendering with blending and everything
 void TerrainRenderer::RenderTerrain(bool filtered)
 {
+#if CONFIG2_GLES
+	UNUSED2(filtered);
+#else
 	ENSURE(m->phase == Phase_Render);
 
 	std::vector<CPatchRData*>& visiblePatches = filtered ? m->filteredPatches : m->visiblePatches;
@@ -192,13 +195,16 @@ void TerrainRenderer::RenderTerrain(bool filtered)
 	if (visiblePatches.empty() && visibleDecals.empty())
 		return;
 
+	CShaderProgramPtr dummyShader = g_Renderer.GetShaderManager().LoadProgram("fixed:dummy");
+	dummyShader->Bind();
+
 	// render the solid black sides of the map first
 	g_Renderer.BindTexture(0, 0);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glColor3f(0, 0, 0);
 	PROFILE_START("render terrain sides");
 	for (size_t i = 0; i < visiblePatches.size(); ++i)
-		visiblePatches[i]->RenderSides();
+		visiblePatches[i]->RenderSides(dummyShader);
 	PROFILE_END("render terrain sides");
 
 	// switch on required client states
@@ -221,7 +227,7 @@ void TerrainRenderer::RenderTerrain(bool filtered)
 	glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, one);
 	
 	PROFILE_START("render terrain base");
-	CPatchRData::RenderBases(visiblePatches, CShaderProgramPtr());
+	CPatchRData::RenderBases(visiblePatches, dummyShader, true);
 	PROFILE_END("render terrain base");
 
 	// render blends
@@ -254,7 +260,7 @@ void TerrainRenderer::RenderTerrain(bool filtered)
 
 	// render blend passes for each patch
 	PROFILE_START("render terrain blends");
-	CPatchRData::RenderBlends(visiblePatches, CShaderProgramPtr());
+	CPatchRData::RenderBlends(visiblePatches, dummyShader, true);
 	PROFILE_END("render terrain blends");
 
 	// Disable second texcoord array
@@ -279,7 +285,7 @@ void TerrainRenderer::RenderTerrain(bool filtered)
 
 	PROFILE_START("render terrain decals");
 	for (size_t i = 0; i < visibleDecals.size(); ++i)
-		visibleDecals[i]->Render(CShaderProgramPtr());
+		visibleDecals[i]->Render(dummyShader, true);
 	PROFILE_END("render terrain decals");
 
 
@@ -346,7 +352,7 @@ void TerrainRenderer::RenderTerrain(bool filtered)
 	pglClientActiveTextureARB(GL_TEXTURE0);
 
 	PROFILE_START("render terrain streams");
-	CPatchRData::RenderStreams(visiblePatches, streamflags);
+	CPatchRData::RenderStreams(visiblePatches, dummyShader, streamflags);
 	PROFILE_END("render terrain streams");
 
 	glMatrixMode(GL_TEXTURE);
@@ -370,8 +376,10 @@ void TerrainRenderer::RenderTerrain(bool filtered)
 	glDisableClientState(GL_COLOR_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-}
 
+	dummyShader->Unbind();
+#endif
+}
 
 ///////////////////////////////////////////////////////////////////
 
@@ -380,6 +388,8 @@ void TerrainRenderer::RenderTerrain(bool filtered)
  */
 void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* shadow)
 {
+	shader->Uniform("transform", g_Renderer.GetViewCamera().GetViewProjection());
+
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 
 	if (shadow)
@@ -429,23 +439,24 @@ void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow, bool filtered)
 	CShaderProgramPtr shaderDecal(shaderManager.LoadProgram("terrain_decal", defBasic));
 
 	// render the solid black sides of the map first
-	g_Renderer.BindTexture(0, 0);
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glColor3f(0, 0, 0);
+	CShaderTechniquePtr techSolid = g_Renderer.GetShaderManager().LoadEffect("solid");
+	techSolid->BeginPass();
+	CShaderProgramPtr shaderSolid = techSolid->GetShader();
+	shaderSolid->Uniform("transform", g_Renderer.GetViewCamera().GetViewProjection());
+	shaderSolid->Uniform("color", 0.0f, 0.0f, 0.0f, 1.0f);
+
 	PROFILE_START("render terrain sides");
 	for (size_t i = 0; i < visiblePatches.size(); ++i)
-		visiblePatches[i]->RenderSides();
+		visiblePatches[i]->RenderSides(shaderSolid);
 	PROFILE_END("render terrain sides");
 
-	// switch on required client states
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY); // diffuse lighting colours
+	techSolid->EndPass();
 
 	shaderBase->Bind();
 	PrepareShader(shaderBase, shadow);
 
 	PROFILE_START("render terrain base");
-	CPatchRData::RenderBases(visiblePatches, shaderBase);
+	CPatchRData::RenderBases(visiblePatches, shaderBase, false);
 	PROFILE_END("render terrain base");
 
 	shaderBase->Unbind();
@@ -458,10 +469,6 @@ void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow, bool filtered)
 	// switch on the composite alpha map texture
 	(void)ogl_tex_bind(g_Renderer.m_hCompositeAlphaMap, 1);
 
-	// switch on second uv set
-	pglClientActiveTextureARB(GL_TEXTURE1);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
 	// switch on blending
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -471,12 +478,8 @@ void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow, bool filtered)
 
 	// render blend passes for each patch
 	PROFILE_START("render terrain blends");
-	CPatchRData::RenderBlends(visiblePatches, shaderBlend);
+	CPatchRData::RenderBlends(visiblePatches, shaderBlend, false);
 	PROFILE_END("render terrain blends");
-
-	// Disable second texcoord array
-	pglClientActiveTextureARB(GL_TEXTURE1);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
 	shaderBlend->Unbind();
 
@@ -485,13 +488,9 @@ void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow, bool filtered)
 	shaderDecal->Bind();
 	PrepareShader(shaderDecal, shadow);
 
-	g_Renderer.BindTexture(1, 0);
-	pglActiveTextureARB(GL_TEXTURE0);
-	pglClientActiveTextureARB(GL_TEXTURE0);
-
 	PROFILE_START("render terrain decals");
 	for (size_t i = 0; i < visibleDecals.size(); ++i)
-		visibleDecals[i]->Render(shaderDecal);
+		visibleDecals[i]->Render(shaderDecal, false);
 	PROFILE_END("render terrain decals");
 
 	shaderDecal->Unbind();
@@ -501,14 +500,9 @@ void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow, bool filtered)
 	g_Renderer.BindTexture(2, 0);
 	g_Renderer.BindTexture(3, 0);
 
-	pglClientActiveTextureARB(GL_TEXTURE0);
-	pglActiveTextureARB(GL_TEXTURE0);
 	glDepthMask(1);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glDisable(GL_BLEND);
-	glDisableClientState(GL_COLOR_ARRAY);
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
 
@@ -522,9 +516,18 @@ void TerrainRenderer::RenderPatches(bool filtered)
 	if (visiblePatches.empty())
 		return;
 
+#if CONFIG2_GLES
+#warning TODO: implement TerrainRenderer::RenderPatches for GLES
+#else
+	CShaderProgramPtr dummyShader = g_Renderer.GetShaderManager().LoadProgram("fixed:dummy");
+	dummyShader->Bind();
+
 	glEnableClientState(GL_VERTEX_ARRAY);
-	CPatchRData::RenderStreams(visiblePatches, STREAM_POS);
+	CPatchRData::RenderStreams(visiblePatches, dummyShader, STREAM_POS);
 	glDisableClientState(GL_VERTEX_ARRAY);
+
+	dummyShader->Unbind();
+#endif
 }
 
 
@@ -538,10 +541,14 @@ void TerrainRenderer::RenderOutlines(bool filtered)
 	if (visiblePatches.empty())
 		return;
 
+#if CONFIG2_GLES
+#warning TODO: implement TerrainRenderer::RenderOutlines for GLES
+#else
 	glEnableClientState(GL_VERTEX_ARRAY);
 	for (size_t i = 0; i < visiblePatches.size(); ++i)
 		visiblePatches[i]->RenderOutline();
 	glDisableClientState(GL_VERTEX_ARRAY);
+#endif
 }
 
 
@@ -637,7 +644,9 @@ bool TerrainRenderer::RenderFancyWater()
 	float repeatPeriod = WaterMgr->m_RepeatPeriod;
 
 	// Set the proper LOD bias
+#if !CONFIG2_GLES
 	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
+#endif
 
 	const CCamera& camera = g_Renderer.GetViewCamera();
 	CVector3D camPos = camera.m_Orientation.GetTranslation();
@@ -667,21 +676,15 @@ bool TerrainRenderer::RenderFancyWater()
 	m->fancyWaterShader->Uniform("losMatrix", losTexture.GetTextureMatrix());
 	m->fancyWaterShader->Uniform("cameraPos", camPos);
 
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-
 	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
 	{
 		CPatchRData* data = m->visiblePatches[i];
-		data->RenderWater();
+		data->RenderWater(m->fancyWaterShader);
 	}
-
-	glDisableClientState(GL_COLOR_ARRAY);
-	glDisableClientState(GL_VERTEX_ARRAY);
 
 	m->fancyWaterShader->Unbind();
 
-	pglActiveTextureARB(GL_TEXTURE0_ARB);
+	pglActiveTextureARB(GL_TEXTURE0);
 
 	glDisable(GL_BLEND);
 
@@ -690,6 +693,7 @@ bool TerrainRenderer::RenderFancyWater()
 
 void TerrainRenderer::RenderSimpleWater()
 {
+#if !CONFIG2_GLES
 	PROFILE3_GPU("simple water");
 
 	WaterManager* WaterMgr = g_Renderer.GetWaterManager();
@@ -759,17 +763,22 @@ void TerrainRenderer::RenderSimpleWater()
 	// Set the proper LOD bias
 	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
 
+	CShaderProgramPtr dummyShader = g_Renderer.GetShaderManager().LoadProgram("fixed:dummy");
+	dummyShader->Bind();
+
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_COLOR_ARRAY);
 
 	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
 	{
 		CPatchRData* data = m->visiblePatches[i];
-		data->RenderWater();
+		data->RenderWater(dummyShader);
 	}
 
 	glDisableClientState(GL_COLOR_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
+
+	dummyShader->Unbind();
 
 	g_Renderer.BindTexture(1, 0);
 
@@ -786,6 +795,7 @@ void TerrainRenderer::RenderSimpleWater()
 
 	glDisable(GL_BLEND);
 	glDisable(GL_TEXTURE_2D);
+#endif
 }
 
 ///////////////////////////////////////////////////////////////////

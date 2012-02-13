@@ -31,17 +31,7 @@ class CMaterial
 public:
 	CMaterial();
 
-	void Bind();
-	void Unbind();
-
 	const CStr& GetTexture() { return m_Texture; }
-	const CStr& GetVertexProgram() { return m_VertexProgram; }
-	const CStr& GetFragmentProgram() { return m_FragmentProgram; }
-	SMaterialColor GetDiffuse();
-	SMaterialColor GetAmbient();
-	SMaterialColor GetSpecular();
-	SMaterialColor GetEmissive();
-	float GetSpecularPower() { return m_SpecularPower; }
 
 	bool UsesAlpha() { return m_Alpha; }
 
@@ -60,29 +50,11 @@ public:
 	void SetUseTextureColor(bool use);
 
 	void SetTexture(const CStr& texture);
-	void SetVertexProgram(const CStr& prog);
-	void SetFragmentProgram(const CStr& prog);
-	void SetDiffuse(const SMaterialColor& color);
-	void SetAmbient(const SMaterialColor& color);
-	void SetSpecular(const SMaterialColor& color);
-	void SetEmissive(const SMaterialColor& color);
-	void SetSpecularPower(float power);
 	void SetUsesAlpha(bool flag);
 
 private:
-	// Various reflective color properties
-	SMaterialColor m_Diffuse;
-	SMaterialColor m_Ambient;
-	SMaterialColor m_Specular;
-	SMaterialColor m_Emissive;
-	float m_SpecularPower;
-
 	// Path to the materials texture
 	CStr m_Texture;
-
-	// Paths to vertex/fragment programs
-	CStr m_VertexProgram;
-	CStr m_FragmentProgram;
 
 	// Alpha required flag
 	bool m_Alpha;
