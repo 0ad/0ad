@@ -687,7 +687,30 @@ CStr CShaderProgram::Preprocess(CPreprocessor& preprocessor, const CStr& input)
 	return ret;
 }
 
-#if !CONFIG2_GLES
+#if CONFIG2_GLES
+
+// These should all be overridden by CShaderProgramGLSL
+void CShaderProgram::VertexPointer(GLint UNUSED(size), GLenum UNUSED(type), GLsizei UNUSED(stride), void* UNUSED(pointer))
+{
+	debug_warn("CShaderProgram::VertexPointer should be overridden");
+}
+void CShaderProgram::NormalPointer(GLenum UNUSED(type), GLsizei UNUSED(stride), void* UNUSED(pointer))
+{
+	debug_warn("CShaderProgram::NormalPointer should be overridden");
+}
+void CShaderProgram::ColorPointer(GLint UNUSED(size), GLenum UNUSED(type), GLsizei UNUSED(stride), void* UNUSED(pointer))
+{
+	debug_warn("CShaderProgram::ColorPointer should be overridden");
+}
+void CShaderProgram::TexCoordPointer(GLenum UNUSED(texture), GLint UNUSED(size), GLenum UNUSED(type), GLsizei UNUSED(stride), void* UNUSED(pointer))
+{
+	debug_warn("CShaderProgram::TexCoordPointer should be overridden");
+}
+
+#else
+
+// These are overridden by CShaderProgramGLSL, but fixed-function and ARB shaders
+// both use the fixed-function vertex attribute pointers:
 
 void CShaderProgram::VertexPointer(GLint size, GLenum type, GLsizei stride, void* pointer)
 {

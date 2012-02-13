@@ -163,6 +163,9 @@ void OverlayRenderer::RenderOverlaysBeforeWater()
 {
 	PROFILE3_GPU("overlays (before)");
 
+#if CONFIG2_GLES
+#warning TODO: implement OverlayRenderer::RenderOverlaysBeforeWater for GLES
+#else
 	pglActiveTextureARB(GL_TEXTURE0);
 	glDisable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
@@ -186,6 +189,7 @@ void OverlayRenderer::RenderOverlaysBeforeWater()
 
 	glLineWidth(1.f);
 	glDisable(GL_BLEND);
+#endif
 }
 
 void OverlayRenderer::RenderOverlaysAfterWater()
@@ -242,11 +246,6 @@ void OverlayRenderer::RenderOverlaysAfterWater()
 		g_Renderer.BindTexture(0, 0);
 
 		CVertexBuffer::Unbind();
-		glDisableClientState(GL_VERTEX_ARRAY);
-		pglClientActiveTextureARB(GL_TEXTURE1);
-		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-		pglClientActiveTextureARB(GL_TEXTURE0);
-		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
 		glDepthMask(1);
 		glDisable(GL_BLEND);
@@ -300,6 +299,9 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 {
 	PROFILE3_GPU("overlays (fg)");
 
+#if CONFIG2_GLES
+#warning TODO: implement OverlayRenderer::RenderForegroundOverlays for GLES
+#else
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
 	glDisable(GL_DEPTH_TEST);
@@ -338,6 +340,7 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_BLEND);
 	glDisable(GL_TEXTURE_2D);
+#endif
 }
 
 void CTexturedLineRData::Update()

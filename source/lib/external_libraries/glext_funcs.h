@@ -106,6 +106,17 @@ actually supported).
 #define pglDeleteBuffersARB glDeleteBuffers
 #define pglGenBuffersARB glGenBuffers
 
+#define pglBindFramebufferEXT glBindFramebuffer
+#define pglCheckFramebufferStatusEXT glCheckFramebufferStatus
+#define pglDeleteFramebuffersEXT glDeleteFramebuffers
+#define pglFramebufferTexture2DEXT glFramebufferTexture2D
+#define pglGenFramebuffersEXT glGenFramebuffers
+
+#define GL_DEPTH_ATTACHMENT_EXT GL_DEPTH_ATTACHMENT
+#define GL_COLOR_ATTACHMENT0_EXT GL_COLOR_ATTACHMENT0
+#define GL_FRAMEBUFFER_COMPLETE_EXT GL_FRAMEBUFFER_COMPLETE
+#define GL_FRAMEBUFFER_EXT GL_FRAMEBUFFER
+
 #define GL_CLAMP_TO_BORDER GL_CLAMP_TO_EDGE // TODO: should fix code that relies on GL_CLAMP_TO_BORDER
 
 typedef GLuint GLhandleARB;

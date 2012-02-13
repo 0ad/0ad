@@ -375,7 +375,7 @@ public:
 		const CMatrix3D& proj = camera.GetProjection();
 
 #if CONFIG2_GLES
-#warning TODO: fix CRenderer camera handling for GLES (don't use global matrixes)
+#warning TODO: fix CRenderer camera handling for GLES (do not use global matrixes)
 #else
 		glMatrixMode(GL_PROJECTION);
 		glLoadMatrixf(&proj._11);

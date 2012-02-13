@@ -25,6 +25,8 @@
 
 #include "renderer/ModelVertexRenderer.h"
 
+#if !CONFIG2_GLES
+
 struct FixedFunctionModelRendererInternals;
 
 /**
@@ -51,5 +53,6 @@ private:
 	FixedFunctionModelRendererInternals* m;
 };
 
+#endif // !CONFIG2_GLES
 
 #endif // INCLUDED_FIXEDFUNCTIONMODELRENDERER

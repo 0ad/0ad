@@ -177,29 +177,11 @@ void ShaderModelRenderer::DestroyModelData(CModel* UNUSED(model), void* data)
 void ShaderModelRenderer::BeginPass(int streamflags)
 {
 	ENSURE(streamflags == (streamflags & (STREAM_POS|STREAM_NORMAL|STREAM_UV0)));
-
-	if (streamflags & STREAM_POS)
-		glEnableClientState(GL_VERTEX_ARRAY);
-
-	if (streamflags & STREAM_NORMAL)
-		glEnableClientState(GL_NORMAL_ARRAY);
-
-	if (streamflags & STREAM_UV0)
-		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
 // Cleanup one rendering pass
 void ShaderModelRenderer::EndPass(int streamflags)
 {
-	if (streamflags & STREAM_POS)
-		glDisableClientState(GL_VERTEX_ARRAY);
-
-	if (streamflags & STREAM_NORMAL)
-		glDisableClientState(GL_NORMAL_ARRAY);
-
-	if (streamflags & STREAM_UV0)
-		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-
 	CVertexBuffer::Unbind();
 }
 
@@ -245,8 +227,13 @@ void ShaderModelRenderer::RenderModel(CShaderProgramPtr& shader, int streamflags
 
 	if (!g_Renderer.m_SkipSubmit)
 	{
+		// Draw with DrawRangeElements where available, since it might be more efficient
+#if CONFIG2_GLES
+		glDrawElements(GL_TRIANGLES, (GLsizei)numFaces*3, GL_UNSIGNED_SHORT, indexBase);
+#else
 		pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdldef->GetNumVertices()-1,
-					   (GLsizei)numFaces*3, GL_UNSIGNED_SHORT, indexBase);
+			(GLsizei)numFaces*3, GL_UNSIGNED_SHORT, indexBase);
+#endif
 	}
 
 	// bump stats
