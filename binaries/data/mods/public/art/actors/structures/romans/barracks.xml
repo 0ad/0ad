@@ -10,5 +10,13 @@
       <texture>structural/rome_struct_2.png</texture>
     </variant>
   </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_rome.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
   <material>player_trans.xml</material>
 </actor>
