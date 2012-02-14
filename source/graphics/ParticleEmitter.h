@@ -103,7 +103,7 @@ public:
 	/**
 	 * Draw the vertex array.
 	 */
-	void RenderArray();
+	void RenderArray(CShaderProgramPtr& shader);
 
 	/**
 	 * Stop this emitter emitting new particles, and pass responsibility for rendering

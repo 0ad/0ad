@@ -97,6 +97,9 @@ void TerrainOverlay::RenderOverlays()
 
 	PROFILE3_GPU("terrain overlays");
 
+#if CONFIG2_GLES
+#warning TODO: implement TerrainOverlay::RenderOverlays for GLES
+#else
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glDepthMask(GL_FALSE);
@@ -119,6 +122,7 @@ void TerrainOverlay::RenderOverlays()
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glDepthMask(GL_TRUE);
 	glDisable(GL_BLEND);
+#endif
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -186,6 +190,10 @@ void TerrainOverlay::RenderTile(const CColor& colour, bool draw_hidden, ssize_t 
 		glEnable(GL_CULL_FACE);
 	}
 	
+#if CONFIG2_GLES
+#warning TODO: implement TerrainOverlay::RenderTile for GLES
+#else
+
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	CVector3D pos;
@@ -212,6 +220,8 @@ void TerrainOverlay::RenderTile(const CColor& colour, bool draw_hidden, ssize_t 
 			m_Terrain->CalcPosition(i,   j,   pos); glVertex3fv(pos.GetFloatArray());
 		}
 	glEnd();
+
+#endif
 }
 
 void TerrainOverlay::RenderTileOutline(const CColor& colour, int line_width, bool draw_hidden)
@@ -232,6 +242,10 @@ void TerrainOverlay::RenderTileOutline(const CColor& colour, int line_width, boo
 		glEnable(GL_CULL_FACE);
 	}
 
+#if CONFIG2_GLES
+#warning TODO: implement TerrainOverlay::RenderTileOutline for GLES
+#else
+
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	if (line_width != 1)
@@ -248,4 +262,6 @@ void TerrainOverlay::RenderTileOutline(const CColor& colour, int line_width, boo
 
 	if (line_width != 1)
 		glLineWidth(1.0f);
+
+#endif
 }

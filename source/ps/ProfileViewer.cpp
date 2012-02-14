@@ -164,8 +164,6 @@ void CProfileViewer::RenderProfile()
 
 	PROFILE3_GPU("profile viewer");
 
-	glDisable(GL_DEPTH_TEST);
-
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -192,8 +190,8 @@ void CProfileViewer::RenderProfile()
 	estimate_height = lineSpacing*estimate_height;
 
 	CShaderTechniquePtr solidTech = g_Renderer.GetShaderManager().LoadEffect("solid");
-	solidTech->BeginPass(0);
-	CShaderProgramPtr solidShader = solidTech->GetShader(0);
+	solidTech->BeginPass();
+	CShaderProgramPtr solidShader = solidTech->GetShader();
 
 	solidShader->Uniform("color", 0.0f, 0.0f, 0.0f, 0.5f);
 
@@ -240,16 +238,16 @@ void CProfileViewer::RenderProfile()
 		solidShader->Uniform("transform", transform);
 	}
 
-	solidTech->EndPass(0);
+	solidTech->EndPass();
 
 	// Print table and column titles
 
 	CShaderTechniquePtr textTech = g_Renderer.GetShaderManager().LoadEffect("gui_text");
-	textTech->BeginPass(0);
+	textTech->BeginPass();
 
-	CTextRenderer textRenderer(textTech->GetShader(0));
+	CTextRenderer textRenderer(textTech->GetShader());
 	textRenderer.Font(font_name);
-	textRenderer.Color(CColor(1.0f, 1.0f, 1.0f, 1.0f));
+	textRenderer.Color(1.0f, 1.0f, 1.0f);
 
 	textRenderer.PrintfAt(2.0f, lineSpacing, L"%hs", table->GetTitle().c_str());
 
@@ -278,9 +276,9 @@ void CProfileViewer::RenderProfile()
 	for (size_t row = 0; row < numrows; ++row)
 	{
 		if (table->IsHighlightRow(row))
-			textRenderer.Color(CColor(1.0f, 0.5f, 0.5f, 1.0f));
+			textRenderer.Color(1.0f, 0.5f, 0.5f);
 		else
-			textRenderer.Color(CColor(1.0f, 1.0f, 1.0f, 1.0f));
+			textRenderer.Color(1.0f, 1.0f, 1.0f);
 
 		if (table->GetChild(row))
 		{
@@ -306,7 +304,7 @@ void CProfileViewer::RenderProfile()
 		textRenderer.Translate(0.0f, lineSpacing, 0.0f);
 	}
 
-	textRenderer.Color(CColor(1.0f, 1.0f, 1.0f, 1.0f));
+	textRenderer.Color(1.0f, 1.0f, 1.0f);
 
 	if (m->path.size() > 1)
 	{
@@ -316,7 +314,7 @@ void CProfileViewer::RenderProfile()
 	}
 
 	textRenderer.Render();
-	textTech->EndPass(0);
+	textTech->EndPass();
 
 	glDisable(GL_BLEND);
 

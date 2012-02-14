@@ -25,6 +25,7 @@
 #include "graphics/LightEnv.h"
 #include "graphics/Patch.h"
 #include "graphics/Terrain.h"
+#include "graphics/TextRenderer.h"
 #include "lib/alignment.h"
 #include "lib/allocators/arena.h"
 #include "lib/res/graphics/unifont.h"
@@ -708,7 +709,7 @@ typedef POOLED_BATCH_MAP(CVertexBuffer*, IndexBufferBatches) VertexBufferBatches
 // Group batches by texture
 typedef POOLED_BATCH_MAP(CTerrainTextureEntry*, VertexBufferBatches) TextureBatches;
 
-void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, CShaderProgramPtr shader)
+void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, CShaderProgramPtr& shader, bool isDummyShader)
 {
 	Allocators::Arena<> arena(ARENA_SIZE);
 
@@ -748,17 +749,19 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, CShaderP
 		{
 			itt->first->GetTexture()->Bind();
 
-			if (shader)
-			{
-				float c = itt->first->GetTextureMatrix()[0];
-				float ms = itt->first->GetTextureMatrix()[8];
-				shader->Uniform("textureTransform", c, ms, -ms, 0.f);
-			}
-			else
+#if !CONFIG2_GLES
+			if (isDummyShader)
 			{
 				glMatrixMode(GL_TEXTURE);
 				glLoadMatrixf(itt->first->GetTextureMatrix());
 				glMatrixMode(GL_MODELVIEW);
+			}
+			else
+#endif
+			{
+				float c = itt->first->GetTextureMatrix()[0];
+				float ms = itt->first->GetTextureMatrix()[8];
+				shader->Uniform("textureTransform", c, ms, -ms, 0.f);
 			}
 		}
 		else
@@ -770,9 +773,11 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, CShaderP
 		{
 			GLsizei stride = sizeof(SBaseVertex);
 			SBaseVertex *base = (SBaseVertex *)itv->first->Bind();
-			glVertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
-			glColorPointer(4, GL_UNSIGNED_BYTE, stride, &base->m_DiffuseColor);
-			glTexCoordPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
+			shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
+			shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, &base->m_DiffuseColor);
+			shader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, &base->m_Position[0]);
+
+			shader->AssertPointersBound();
 
 			for (IndexBufferBatches::iterator it = itv->second.begin(); it != itv->second.end(); ++it)
 			{
@@ -795,12 +800,14 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, CShaderP
 		}
 	}
 
-	if (!shader)
+#if !CONFIG2_GLES
+	if (isDummyShader)
 	{
 		glMatrixMode(GL_TEXTURE);
 		glLoadIdentity();
 		glMatrixMode(GL_MODELVIEW);
 	}
+#endif
 
 	CVertexBuffer::Unbind();
 }
@@ -836,7 +843,7 @@ struct SBlendStackItem
 	SplatStack splats;
 };
 
-void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, CShaderProgramPtr shader)
+void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, CShaderProgramPtr& shader, bool isDummyShader)
 {
 	Allocators::Arena<> arena(ARENA_SIZE);
 
@@ -927,18 +934,20 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, CShader
 		{
 			itt->m_Texture->GetTexture()->Bind();
 
-			if (shader)
-			{
-				float c = itt->m_Texture->GetTextureMatrix()[0];
-				float ms = itt->m_Texture->GetTextureMatrix()[8];
-				shader->Uniform("textureTransform", c, ms, -ms, 0.f);
-			}
-			else
+#if !CONFIG2_GLES
+			if (isDummyShader)
 			{
 				pglClientActiveTextureARB(GL_TEXTURE0);
 				glMatrixMode(GL_TEXTURE);
 				glLoadMatrixf(itt->m_Texture->GetTextureMatrix());
 				glMatrixMode(GL_MODELVIEW);
+			}
+			else
+#endif
+			{
+				float c = itt->m_Texture->GetTextureMatrix()[0];
+				float ms = itt->m_Texture->GetTextureMatrix()[8];
+				shader->Uniform("textureTransform", c, ms, -ms, 0.f);
 			}
 		}
 		else
@@ -955,16 +964,13 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, CShader
 				GLsizei stride = sizeof(SBlendVertex);
 				SBlendVertex *base = (SBlendVertex *)itv->first->Bind();
 
-				glVertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
-
-				glColorPointer(4, GL_UNSIGNED_BYTE, stride, &base->m_DiffuseColor);
-
-				pglClientActiveTextureARB(GL_TEXTURE0);
-				glTexCoordPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
-
-				pglClientActiveTextureARB(GL_TEXTURE1);
-				glTexCoordPointer(2, GL_FLOAT, stride, &base->m_AlphaUVs[0]);
+				shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
+				shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, &base->m_DiffuseColor);
+				shader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, &base->m_Position[0]);
+				shader->TexCoordPointer(GL_TEXTURE1, 2, GL_FLOAT, stride, &base->m_AlphaUVs[0]);
 			}
+
+			shader->AssertPointersBound();
 
 			for (IndexBufferBatches::iterator it = itv->second.begin(); it != itv->second.end(); ++it)
 			{
@@ -985,19 +991,20 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, CShader
 		}
 	}
 
-	pglClientActiveTextureARB(GL_TEXTURE0);
-
-	if (!shader)
+#if !CONFIG2_GLES
+	if (isDummyShader)
 	{
+		pglClientActiveTextureARB(GL_TEXTURE0);
 		glMatrixMode(GL_TEXTURE);
 		glLoadIdentity();
 		glMatrixMode(GL_MODELVIEW);
 	}
+#endif
 
 	CVertexBuffer::Unbind();
 }
 
-void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, int streamflags)
+void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, CShaderProgramPtr& shader, int streamflags)
 {
 	// Each batch has a list of index counts, and a list of pointers-to-first-indexes
 	typedef std::pair<std::vector<GLint>, std::vector<void*> > BatchElements;
@@ -1034,31 +1041,15 @@ void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, int st
 		GLsizei stride = sizeof(SBaseVertex);
 		SBaseVertex *base = (SBaseVertex *)itv->first->Bind();
 
-		glVertexPointer(3, GL_FLOAT, stride, &base->m_Position);
+		shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position);
 		if (streamflags & STREAM_POSTOUV0)
-		{
-			pglClientActiveTextureARB(GL_TEXTURE0);
-			glTexCoordPointer(3, GL_FLOAT, stride, &base->m_Position);
-		}
+			shader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, &base->m_Position);
 		if (streamflags & STREAM_POSTOUV1)
-		{
-			pglClientActiveTextureARB(GL_TEXTURE1);
-			glTexCoordPointer(3, GL_FLOAT, stride, &base->m_Position);
-		}
-		if (streamflags & STREAM_POSTOUV2)
-		{
-			pglClientActiveTextureARB(GL_TEXTURE2);
-			glTexCoordPointer(3, GL_FLOAT, stride, &base->m_Position);
-		}
-		if (streamflags & STREAM_POSTOUV3)
-		{
-			pglClientActiveTextureARB(GL_TEXTURE3);
-			glTexCoordPointer(3, GL_FLOAT, stride, &base->m_Position);
-		}
+			shader->TexCoordPointer(GL_TEXTURE1, 3, GL_FLOAT, stride, &base->m_Position);
 		if (streamflags & STREAM_COLOR)
-		{
-			glColorPointer(4, GL_UNSIGNED_BYTE, stride, &base->m_DiffuseColor);
-		}
+			shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, &base->m_DiffuseColor);
+
+		shader->AssertPointersBound();
 
 		for (IndexBufferBatches::iterator it = itv->second.begin(); it != itv->second.end(); ++it)
 		{
@@ -1076,8 +1067,6 @@ void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, int st
 			g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 3;
 		}
 	}
-
-	pglClientActiveTextureARB(GL_TEXTURE0);
 
 	CVertexBuffer::Unbind();
 }
@@ -1114,11 +1103,15 @@ void CPatchRData::RenderOutline()
 		line.push_back(pos);
 	}
 
+#if CONFIG2_GLES
+#warning TODO: implement CPatchRData::RenderOutlines for GLES
+#else
 	glVertexPointer(3, GL_FLOAT, sizeof(CVector3D), &line[0]);
 	glDrawArrays(GL_LINE_STRIP, 0, line.size());
+#endif
 }
 
-void CPatchRData::RenderSides()
+void CPatchRData::RenderSides(CShaderProgramPtr& shader)
 {
 	ENSURE(m_UpdateFlags==0);
 
@@ -1129,7 +1122,9 @@ void CPatchRData::RenderSides()
 
 	// setup data pointers
 	GLsizei stride = sizeof(SSideVertex);
-	glVertexPointer(3, GL_FLOAT, stride, &base->m_Position);
+	shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position);
+
+	shader->AssertPointersBound();
 
 	if (!g_Renderer.m_SkipSubmit)
 		glDrawArrays(GL_TRIANGLE_STRIP, m_VBSides->m_Index, (GLsizei)m_VBSides->m_Count);
@@ -1141,7 +1136,7 @@ void CPatchRData::RenderSides()
 	CVertexBuffer::Unbind();
 }
 
-void CPatchRData::RenderPriorities()
+void CPatchRData::RenderPriorities(CTextRenderer& textRenderer)
 {
 	CTerrain* terrain = m_Patch->m_Parent;
 	CCamera* camera = g_Game->GetView()->GetCamera();
@@ -1163,15 +1158,7 @@ void CPatchRData::RenderPriorities()
 			float x, y;
 			camera->GetScreenCoordinates(pos, x, y);
 
-			glPushMatrix();
-			glTranslatef(x, g_yres - y, 0.f);
-
-			// Draw the text upside-down, because it's aligned with
-			// the GUI (which uses the top-left as (0,0))
-			glScalef(1.0f, -1.0f, 1.0f);
-
-			glwprintf(L"%d", m_Patch->m_MiniPatches[j][i].Priority);
-			glPopMatrix();
+			textRenderer.PrintfAt(x, y, L"%d", m_Patch->m_MiniPatches[j][i].Priority);
 		}
 	}
 }
@@ -1313,7 +1300,7 @@ void CPatchRData::BuildWater()
 	m_VBWaterIndices->m_Owner->UpdateChunkVertices(m_VBWaterIndices, &water_indices[0]);
 }
 
-void CPatchRData::RenderWater()
+void CPatchRData::RenderWater(CShaderProgramPtr& shader)
 {
 	ASSERT(m_UpdateFlags==0);
 
@@ -1324,14 +1311,21 @@ void CPatchRData::RenderWater()
 
 	// setup data pointers
 	GLsizei stride = sizeof(SWaterVertex);
-	glColorPointer(4, GL_UNSIGNED_BYTE, stride, &base[m_VBWater->m_Index].m_DepthData);
-	glVertexPointer(3, GL_FLOAT, stride, &base[m_VBWater->m_Index].m_Position);
+	shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, &base[m_VBWater->m_Index].m_DepthData);
+	shader->VertexPointer(3, GL_FLOAT, stride, &base[m_VBWater->m_Index].m_Position);
+
+	shader->AssertPointersBound();
 
 	// render
-	if (!g_Renderer.m_SkipSubmit) {
+	if (!g_Renderer.m_SkipSubmit)
+	{
 		u8* indexBase = m_VBWaterIndices->m_Owner->Bind();
+#if CONFIG2_GLES
+#warning TODO: fix CPatchRData::RenderWater for GLES (avoid GL_QUADS)
+#else
 		glDrawElements(GL_QUADS, (GLsizei) m_VBWaterIndices->m_Count,
 			GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(m_VBWaterIndices->m_Index));
+#endif
 	}
 
 	// bump stats

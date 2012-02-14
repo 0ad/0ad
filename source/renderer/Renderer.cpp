@@ -294,7 +294,6 @@ public:
 		ModelVertexRendererPtr VertexInstancingShader;
 
 		// generic RenderModifiers that are supposed to be used directly
-		RenderModifierPtr ModWireframe;
 		RenderModifierPtr ModSolidColor;
 		RenderModifierPtr ModSolidPlayerColor;
 		RenderModifierPtr ModTransparentDepthShadow;
@@ -375,11 +374,15 @@ public:
 		camera.m_Orientation.GetInverse(view);
 		const CMatrix3D& proj = camera.GetProjection();
 
+#if CONFIG2_GLES
+#warning TODO: fix CRenderer camera handling for GLES (do not use global matrixes)
+#else
 		glMatrixMode(GL_PROJECTION);
 		glLoadMatrixf(&proj._11);
 
 		glMatrixMode(GL_MODELVIEW);
 		glLoadMatrixf(&view._11);
+#endif
 
 		const SViewPort &vp = camera.GetViewPort();
 		glViewport((GLint)vp.m_X,(GLint)vp.m_Y,(GLsizei)vp.m_Width,(GLsizei)vp.m_Height);
@@ -451,6 +454,11 @@ CRenderer::CRenderer()
 
 	// TODO: be more consistent in use of the config system
 	CFG_GET_USER_VAL("preferglsl", Bool, m_Options.m_PreferGLSL);
+
+#if CONFIG2_GLES
+	// Override config option since GLES only supports GLSL
+	m_Options.m_PreferGLSL = true;
+#endif
 
 	m_ShadowZBias = 0.02f;
 	m_ShadowMapSize = 0;
@@ -545,6 +553,11 @@ void CRenderer::ReloadShaders()
 {
 	ENSURE(m->IsOpen);
 
+#if CONFIG2_GLES
+#warning TODO: move ARB shader programs to effect/technique files, and add GLSL versions
+	return;
+#endif
+
 	typedef std::map<CStr, CStr> Defines;
 
 	Defines defBasic;
@@ -626,16 +639,20 @@ bool CRenderer::Open(int width, int height)
 	EnumCaps();
 
 	// model rendering
+#if !CONFIG2_GLES
 	m->Model.VertexFF = ModelVertexRendererPtr(new FixedFunctionModelRenderer);
 	m->Model.VertexPolygonSort = ModelVertexRendererPtr(new PolygonSortModelRenderer);
+#endif
 	m->Model.VertexRendererShader = ModelVertexRendererPtr(new ShaderModelRenderer);
 	m->Model.VertexInstancingShader = ModelVertexRendererPtr(new InstancingModelRenderer);
 
+#if !CONFIG2_GLES
 	m->Model.pal_NormalFF = new BatchModelRenderer(m->Model.VertexFF);
 	m->Model.pal_PlayerFF = new BatchModelRenderer(m->Model.VertexFF);
 	m->Model.pal_TranspFF = new SortModelRenderer(m->Model.VertexFF);
 
 	m->Model.pal_TranspSortAll = new SortModelRenderer(m->Model.VertexPolygonSort);
+#endif
 
 	m->Model.pal_NormalShader = new BatchModelRenderer(m->Model.VertexRendererShader);
 	m->Model.pal_NormalInstancingShader = new BatchModelRenderer(m->Model.VertexInstancingShader);
@@ -643,7 +660,7 @@ bool CRenderer::Open(int width, int height)
 	m->Model.pal_PlayerInstancingShader = new BatchModelRenderer(m->Model.VertexInstancingShader);
 	m->Model.pal_TranspShader = new SortModelRenderer(m->Model.VertexRendererShader);
 
-	m->Model.ModWireframe = RenderModifierPtr(new WireframeRenderModifier);
+#if !CONFIG2_GLES
 	m->Model.ModPlainUnlit = RenderModifierPtr(new PlainRenderModifier);
 	SetFastPlayerColor(true);
 	m->Model.ModSolidColor = RenderModifierPtr(new SolidColorRenderModifier);
@@ -652,6 +669,7 @@ bool CRenderer::Open(int width, int height)
 	m->Model.ModTransparentOpaqueUnlit = RenderModifierPtr(new TransparentOpaqueRenderModifier);
 	m->Model.ModTransparentBlendUnlit = RenderModifierPtr(new TransparentBlendRenderModifier);
 	m->Model.ModTransparentDepthShadow = RenderModifierPtr(new TransparentDepthShadowModifier);
+#endif
 
 	// Dimensions
 	m_Width = width;
@@ -817,6 +835,7 @@ CRenderer::RenderPath CRenderer::GetRenderPathByName(const CStr& name)
 // SetFastPlayerColor
 void CRenderer::SetFastPlayerColor(bool fast)
 {
+#if !CONFIG2_GLES
 	m_FastPlayerColor = fast;
 
 	if (m_FastPlayerColor)
@@ -832,6 +851,7 @@ void CRenderer::SetFastPlayerColor(bool fast)
 		m->Model.ModPlayerUnlit = RenderModifierPtr(new FastPlayerColorRender);
 	else
 		m->Model.ModPlayerUnlit = RenderModifierPtr(new SlowPlayerColorRender);
+#endif
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -842,6 +862,11 @@ void CRenderer::BeginFrame()
 
 	// zero out all the per-frame stats
 	m_Stats.Reset();
+
+#if CONFIG2_GLES
+#warning TODO: move ARB shader programs to effect/technique files, and add GLSL versions
+	return;
+#endif
 
 	// choose model renderers for this frame
 
@@ -935,20 +960,12 @@ void CRenderer::RenderShadowMap()
 
 	m->shadow->BeginRender();
 
+#if CONFIG2_GLES
+#warning TODO: implement shadow transparency for GLES
+#else
 	float shadowTransp = m_LightEnv->GetTerrainShadowTransparency();
 	glColor3f(shadowTransp, shadowTransp, shadowTransp);
-
-	// Figure out transparent rendering strategy
-	RenderModifierPtr transparentShadows;
-	if (GetRenderPath() == RP_SHADER)
-	{
-		transparentShadows = m->Model.ModShaderTransparentShadow;
-	}
-	else
-	{
-		transparentShadows = m->Model.ModTransparentDepthShadow;
-	}
-
+#endif
 
 	{
 		PROFILE("render patches");
@@ -965,11 +982,13 @@ void CRenderer::RenderShadowMap()
 		PROFILE("render transparent models");
 		// disable face-culling for two-sided models
 		glDisable(GL_CULL_FACE);
-		m->Model.Transp->Render(transparentShadows, MODELFLAG_CASTSHADOWS);
+		m->Model.Transp->Render(m->Model.ModShaderTransparentShadow, MODELFLAG_CASTSHADOWS);
 		glEnable(GL_CULL_FACE);
 	}
 
+#if !CONFIG2_GLES
 	glColor3f(1.0, 1.0, 1.0);
+#endif
 
 	m->shadow->EndRender();
 }
@@ -987,11 +1006,15 @@ void CRenderer::RenderPatches(const CFrustum* frustum)
 		filtered = true;
 	}
 
+#if CONFIG2_GLES
+#warning TODO: implement wireface/edged rendering mode GLES
+#else
 	// switch on wireframe if we need it
 	if (m_TerrainRenderMode == WIREFRAME)
 	{
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	}
+#endif
 
 	// render all the patches, including blend pass
 	if (GetRenderPath() == RP_SHADER)
@@ -1000,6 +1023,7 @@ void CRenderer::RenderPatches(const CFrustum* frustum)
 		m->terrainRenderer->RenderTerrain(filtered);
 
 
+#if !CONFIG2_GLES
 	if (m_TerrainRenderMode == WIREFRAME)
 	{
 		// switch wireframe off again
@@ -1012,6 +1036,7 @@ void CRenderer::RenderPatches(const CFrustum* frustum)
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 
 		// setup some renderstate ..
+		pglActiveTextureARB(GL_TEXTURE0);
 		glDisable(GL_TEXTURE_2D);
 		glColor3f(0.5f, 0.5f, 1.0f);
 		glLineWidth(2.0f);
@@ -1030,6 +1055,7 @@ void CRenderer::RenderPatches(const CFrustum* frustum)
 		glLineWidth(1.0f);
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
+#endif
 }
 
 class CModelCuller : public CModelFilter
@@ -1058,14 +1084,17 @@ void CRenderer::RenderModels(const CFrustum* frustum)
 		m->FilterModels(culler, flags);
 	}
 
+#if !CONFIG2_GLES
 	if (m_ModelRenderMode == WIREFRAME)
 	{
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	}
+#endif
 
 	m->CallModelRenderers(m->Model.ModNormal, m->Model.ModNormalInstancing,
 			m->Model.ModPlayer, m->Model.ModPlayerInstancing, flags);
 
+#if !CONFIG2_GLES
 	if (m_ModelRenderMode == WIREFRAME)
 	{
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -1081,6 +1110,7 @@ void CRenderer::RenderModels(const CFrustum* frustum)
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
+#endif
 }
 
 void CRenderer::RenderTransparentModels(ETransparentMode transparentMode, const CFrustum* frustum)
@@ -1095,11 +1125,13 @@ void CRenderer::RenderTransparentModels(ETransparentMode transparentMode, const 
 		m->Model.Transp->Filter(culler, flags);
 	}
 
+#if !CONFIG2_GLES
 	// switch on wireframe if we need it
 	if (m_ModelRenderMode == WIREFRAME)
 	{
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	}
+#endif
 
 	// disable face culling for two-sided models in sub-renders
 	if (flags)
@@ -1115,6 +1147,7 @@ void CRenderer::RenderTransparentModels(ETransparentMode transparentMode, const 
 	if (flags)
 		glEnable(GL_CULL_FACE);
 
+#if !CONFIG2_GLES
 	if (m_ModelRenderMode == WIREFRAME)
 	{
 		// switch wireframe off again
@@ -1130,22 +1163,8 @@ void CRenderer::RenderTransparentModels(ETransparentMode transparentMode, const 
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
+#endif
 }
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// GetModelViewProjectionMatrix: save the current OpenGL model-view-projection matrix
-CMatrix3D CRenderer::GetModelViewProjectionMatrix()
-{
-	CMatrix3D proj;
-	CMatrix3D view;
-
-	glGetFloatv(GL_PROJECTION_MATRIX, &proj._11);
-	glGetFloatv(GL_MODELVIEW_MATRIX, &view._11);
-
-	return proj*view;
-}
-
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1154,25 +1173,19 @@ CMatrix3D CRenderer::GetModelViewProjectionMatrix()
 // - worldPlane is a clip plane in world space (worldPlane.Dot(v) >= 0 for any vector v passing the clipping test)
 void CRenderer::SetObliqueFrustumClipping(const CVector4D& worldPlane)
 {
-	float matrix[16];
-	CVector4D q;
-
 	// First, we'll convert the given clip plane to camera space, then we'll 
 	// Get the view matrix and normal matrix (top 3x3 part of view matrix)
 	CMatrix3D normalMatrix = m_ViewCamera.m_Orientation.GetTranspose();
 	CVector4D camPlane = normalMatrix.Transform(worldPlane);
 
-	// Grab the current projection matrix from OpenGL
-	{
-	PROFILE3("get proj matrix (oblique clipping)"); // sometimes the vsync delay gets accounted here
-	glGetFloatv(GL_PROJECTION_MATRIX, matrix);
-	}
+	CMatrix3D matrix = m_ViewCamera.GetProjection();
 
 	// Calculate the clip-space corner point opposite the clipping plane
 	// as (sgn(camPlane.x), sgn(camPlane.y), 1, 1) and
 	// transform it into camera space by multiplying it
 	// by the inverse of the projection matrix
-    
+
+	CVector4D q;
 	q.m_X = (sgn(camPlane.m_X) - matrix[8]/matrix[11]) / matrix[0];
 	q.m_Y = (sgn(camPlane.m_Y) - matrix[9]/matrix[11]) / matrix[5];
 	q.m_Z = 1.0f/matrix[11];
@@ -1187,11 +1200,9 @@ void CRenderer::SetObliqueFrustumClipping(const CVector4D& worldPlane)
 	matrix[10] = c.m_Z - matrix[11];
 	matrix[14] = c.m_W;
 
-	// Load it back into OpenGL
-	glMatrixMode(GL_PROJECTION);
-	glLoadMatrixf(matrix);
-
-	glMatrixMode(GL_MODELVIEW);
+	// Load it back into the camera
+	m_ViewCamera.SetProjection(matrix);
+	m->SetOpenGLCamera(m_ViewCamera);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1232,7 +1243,7 @@ SScreenRect CRenderer::RenderReflections(const CBoundingBoxAligned& scissor)
 	SetObliqueFrustumClipping(camPlane);
 
 	// Save the model-view-projection matrix so the shaders can use it for projective texturing
-	wm.m_ReflectionMatrix = GetModelViewProjectionMatrix();
+	wm.m_ReflectionMatrix = m_ViewCamera.GetViewProjection();
 
 	SScreenRect screenScissor;
 	screenScissor.x1 = (GLint)floor((scissor[0].X*0.5f+0.5f)*vp.m_Width);
@@ -1264,7 +1275,7 @@ SScreenRect CRenderer::RenderReflections(const CBoundingBoxAligned& scissor)
 		glDisable(GL_SCISSOR_TEST);
 
 		// Copy the image to a texture
-		pglActiveTextureARB(GL_TEXTURE0_ARB);
+		pglActiveTextureARB(GL_TEXTURE0);
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, wm.m_ReflectionTexture);
 		glCopyTexSubImage2D(GL_TEXTURE_2D, 0,
@@ -1316,7 +1327,7 @@ SScreenRect CRenderer::RenderRefractions(const CBoundingBoxAligned &scissor)
 	SetObliqueFrustumClipping(camPlane);
 
 	// Save the model-view-projection matrix so the shaders can use it for projective texturing
-	wm.m_RefractionMatrix = GetModelViewProjectionMatrix();
+	wm.m_RefractionMatrix = m_ViewCamera.GetViewProjection();
 
 	SScreenRect screenScissor;
 	screenScissor.x1 = (GLint)floor((scissor[0].X*0.5f+0.5f)*vp.m_Width);
@@ -1342,7 +1353,7 @@ SScreenRect CRenderer::RenderRefractions(const CBoundingBoxAligned &scissor)
 		glDisable(GL_SCISSOR_TEST);
 
 		// Copy the image to a texture
-		pglActiveTextureARB(GL_TEXTURE0_ARB);
+		pglActiveTextureARB(GL_TEXTURE0);
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, wm.m_RefractionTexture);
 		glCopyTexSubImage2D(GL_TEXTURE_2D, 0,
@@ -1404,10 +1415,14 @@ void CRenderer::RenderSilhouettes()
 		PROFILE("render transparent occluders");
 		if (GetRenderPath() == RP_SHADER)
 		{
+#if CONFIG2_GLES
+#warning TODO: implement occluder alpha testing for GLES
+#else
 			glEnable(GL_ALPHA_TEST);
 			glAlphaFunc(GL_GREATER, 0.4f);
 			m->Model.Transp->Render(m->Model.ModShaderSolidTex, MODELFLAG_SILHOUETTE_OCCLUDER);
 			glDisable(GL_ALPHA_TEST);
+#endif
 		}
 		else
 		{
@@ -1478,6 +1493,7 @@ void CRenderer::RenderParticles()
 
 	m->particleRenderer.RenderParticles();
 
+#if !CONFIG2_GLES
 	if (m_ModelRenderMode == EDGED_FACES)
 	{
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -1488,17 +1504,18 @@ void CRenderer::RenderParticles()
 		m->particleRenderer.RenderParticles(true);
 
 		CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect("solid");
-		shaderTech->BeginPass(0);
-		CShaderProgramPtr shader = shaderTech->GetShader(0);
+		shaderTech->BeginPass();
+		CShaderProgramPtr shader = shaderTech->GetShader();
 		shader->Uniform("color", 0.0f, 1.0f, 0.0f, 1.0f);
 		shader->Uniform("transform", m_ViewCamera.GetViewProjection());
 
 		m->particleRenderer.RenderBounds(shader);
 
-		shaderTech->EndPass(0);
+		shaderTech->EndPass();
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
+#endif
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1621,9 +1638,11 @@ void CRenderer::RenderSubmissions()
 
 	RenderSilhouettes();
 
+#if !CONFIG2_GLES
 	// Clean up texture blend mode so particles and other things render OK 
 	// (really this should be cleaned up by whoever set it)
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+#endif
 
 	// render debug lines
 	if (m_DisplayFrustum)
@@ -1649,6 +1668,9 @@ void CRenderer::EndFrame()
 	m->overlayRenderer.EndFrame();
 	m->particleRenderer.EndFrame();
 
+#if CONFIG2_GLES
+#warning TODO: move ARB shader programs to effect/technique files, and add GLSL versions
+#else
 	// Finish model renderers
 	m->Model.Normal->EndFrame();
 	m->Model.Player->EndFrame();
@@ -1657,6 +1679,7 @@ void CRenderer::EndFrame()
 	if (m->Model.Player != m->Model.PlayerInstancing)
 		m->Model.PlayerInstancing->EndFrame();
 	m->Model.Transp->EndFrame();
+#endif
 
 	ogl_tex_bind(0, 0);
 
@@ -1676,6 +1699,9 @@ void CRenderer::EndFrame()
 //  - red: bounds of shadow casting objects
 void CRenderer::DisplayFrustum()
 {
+#if CONFIG2_GLES
+#warning TODO: implement CRenderer::DisplayFrustum for GLES
+#else
 	glDepthMask(0);
 	glDisable(GL_CULL_FACE);
 	glDisable(GL_TEXTURE_2D);
@@ -1693,6 +1719,7 @@ void CRenderer::DisplayFrustum()
 
 	glEnable(GL_CULL_FACE);
 	glDepthMask(1);
+#endif
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1952,7 +1979,7 @@ int CRenderer::LoadAlphaMaps()
 	m_hCompositeAlphaMap = ogl_tex_wrap(&t, g_VFS, key);
 	(void)ogl_tex_set_filter(m_hCompositeAlphaMap, GL_LINEAR);
 	(void)ogl_tex_set_wrap  (m_hCompositeAlphaMap, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);
-	int ret = ogl_tex_upload(m_hCompositeAlphaMap, 0, 0, GL_INTENSITY);
+	int ret = ogl_tex_upload(m_hCompositeAlphaMap, GL_ALPHA, 0, 0);
 
 	return ret;
 }

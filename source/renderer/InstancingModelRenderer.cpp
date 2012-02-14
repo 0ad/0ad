@@ -198,8 +198,13 @@ void InstancingModelRenderer::RenderModel(CShaderProgramPtr& UNUSED(shader), int
 
 	if (!g_Renderer.m_SkipSubmit)
 	{
+		// Draw with DrawRangeElements where available, since it might be more efficient
+#if CONFIG2_GLES
+		glDrawElements(GL_TRIANGLES, (GLsizei)numFaces*3, GL_UNSIGNED_SHORT, m->imodeldefIndexBase);
+#else
 		pglDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdldef->GetNumVertices()-1,
 				(GLsizei)numFaces*3, GL_UNSIGNED_SHORT, m->imodeldefIndexBase);
+#endif
 	}
 
 	// bump stats

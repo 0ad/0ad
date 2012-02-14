@@ -803,14 +803,20 @@ var UnitFsmSpec = {
 						// Save the current order's data in case we need it later
 						var oldType = this.order.data.type;
 						var oldTarget = this.order.data.target;
+						var oldTemplate = this.order.data.template;
 
 						// Try the next queued order if there is any
 						if (this.FinishOrder())
 							return;
 
 						// Try to find another nearby target of the same specific type
-						var nearby = this.FindNearbyResource(function (ent, type) {
-							return (ent != oldTarget && type.specific == oldType.specific);
+						// Also don't switch to a different type of huntable animal
+						var nearby = this.FindNearbyResource(function (ent, type, template) {
+							return (
+								ent != oldTarget
+								&& type.specific == oldType.specific
+								&& (type.specific != "meat" || oldTemplate == template)
+							);
 						});
 						if (nearby)
 						{
@@ -837,10 +843,15 @@ var UnitFsmSpec = {
 
 				"MoveCompleted": function(msg) {
 						var resourceType = this.order.data.type;
+						var resourceTemplate = this.order.data.template;
 						
 						// Try to find another nearby target of the same specific type
-						var nearby = this.FindNearbyResource(function (ent, type) {
-							return (type.specific == resourceType);
+						// Also don't switch to a different type of huntable animal
+						var nearby = this.FindNearbyResource(function (ent, type, template) {
+							return (
+								type.specific == resourceType
+								&& (type.specific != "meat" || resourceTemplate == template)
+							);
 						});
 						
 						// If there is a nearby resource start gathering
@@ -945,6 +956,7 @@ var UnitFsmSpec = {
 
 						// Save the current order's type in case we need it later
 						var oldType = this.order.data.type;
+						var oldTemplate = this.order.data.template;
 
 						// Give up on this order and try our next queued order
 						if (this.FinishOrder())
@@ -953,9 +965,12 @@ var UnitFsmSpec = {
 						// No remaining orders - pick a useful default behaviour
 
 						// Try to find a new resource of the same specific type near our current position:
-
-						var nearby = this.FindNearbyResource(function (ent, type) {
-							return (type.specific == oldType.specific);
+						// Also don't switch to a different type of huntable animal
+						var nearby = this.FindNearbyResource(function (ent, type, template) {
+							return (
+								type.specific == oldType.specific
+								&& (type.specific != "meat" || oldTemplate == template)
+							);
 						});
 						if (nearby)
 						{
@@ -1117,7 +1132,9 @@ var UnitFsmSpec = {
 				{
 					var cmpResourceDropsite = Engine.QueryInterface(msg.data.newentity, IID_ResourceDropsite);
 					var types = cmpResourceDropsite.GetTypes();
-					var nearby = this.FindNearbyResource(function (ent, type) {
+					// TODO: Slightly undefined behavior here, we don't know what type of resource will be collected,
+					//   may cause problems for AIs (especially hunting fast animals), but avoid ugly hacks to fix that!
+					var nearby = this.FindNearbyResource(function (ent, type, template) {
 						return (types.indexOf(type.generic) != -1);
 					});
 					if (nearby)
@@ -1403,19 +1420,6 @@ UnitAI.prototype.IsFormationController = function()
 UnitAI.prototype.IsAnimal = function()
 {
 	return (this.template.NaturalBehaviour ? true : false);
-};
-
-/**
- * Returns whether this is an animal that is too difficult to hunt.
- * (Currently this just includes skittish animals, which are probably
- * too fast to chase.)
- */
-UnitAI.prototype.IsUnhuntable = function()
-{
-	// return (this.template.NaturalBehaviour && this.template.NaturalBehaviour == "skittish");
-	// Actually, since the AI is currently rubbish at hunting, skip all animals
-	// that aren't really weak:
-	return this.IsAnimal() && Engine.QueryInterface(this.entity, IID_Health).GetMaxHitpoints() >= 10;
 };
 
 UnitAI.prototype.IsIdle = function()
@@ -1774,18 +1778,15 @@ UnitAI.prototype.FindNearbyResource = function(filter)
 	if (cmpOwnership)
 		players.push(cmpOwnership.GetOwner());
 
-	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var nearby = rangeMan.ExecuteQuery(this.entity, 0, range, players, IID_ResourceSupply);
+	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var nearby = cmpRangeManager.ExecuteQuery(this.entity, 0, range, players, IID_ResourceSupply);
 	for each (var ent in nearby)
 	{
-		// Never automatically pick resources that are animals that are too hard to hunt
-		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-		if (cmpUnitAI && cmpUnitAI.IsUnhuntable())
-			continue;
-
 		var cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
 		var type = cmpResourceSupply.GetType();
-		if (filter(ent, type))
+		var template = cmpTemplateManager.GetCurrentTemplateName(ent);
+		if (filter(ent, type, template))
 			return ent;
 	}
 
@@ -2336,6 +2337,11 @@ UnitAI.prototype.Gather = function(target, queued)
 	var cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
 	var type = cmpResourceSupply.GetType();
 
+	// Also save the target entity's template, so that if it's an animal,
+	// we won't go from hunting slow safe animals to dangerous fast ones
+	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	var template = cmpTemplateManager.GetCurrentTemplateName(target);
+
 	// Remember the position of our target, if any, in case it disappears
 	// later and we want to head to its last known position
 	// (TODO: if the target moves a lot (e.g. it's an animal), maybe we
@@ -2345,7 +2351,7 @@ UnitAI.prototype.Gather = function(target, queued)
 	if (cmpPosition && cmpPosition.IsInWorld())
 		lastPos = cmpPosition.GetPosition();
 
-	this.AddOrder("Gather", { "target": target, "type": type, "lastPos": lastPos }, queued);
+	this.AddOrder("Gather", { "target": target, "type": type, "template": template, "lastPos": lastPos }, queued);
 };
 
 UnitAI.prototype.GatherNearPosition = function(position, type, queued)

@@ -19,6 +19,9 @@
  * Implements the in-game console with scripting support.
  */
 
+#ifndef INCLUDED_CCONSOLE
+#define INCLUDED_CCONSOLE
+
 #include <stdarg.h>
 #include <string>
 #include <deque>
@@ -29,8 +32,10 @@
 #include "ps/CStr.h"
 #include "ps/ThreadUtil.h"
 
-#ifndef INCLUDED_CCONSOLE
-#define INCLUDED_CCONSOLE
+class CShaderProgram;
+typedef shared_ptr<CShaderProgram> CShaderProgramPtr;
+
+class CTextRenderer;
 
 #define CONSOLE_BUFFER_SIZE 1024 // for text being typed into the console
 #define CONSOLE_MESSAGE_SIZE 1024 // for messages being printed into the console
@@ -54,7 +59,7 @@ public:
 	void UpdateScreenSize(int w, int h);
 
 	void ToggleVisible();
-	void SetVisible( bool visible );
+	void SetVisible(bool visible);
 
 	void Update(float DeltaTime);
 
@@ -67,7 +72,7 @@ public:
 
 	void SetBuffer(const wchar_t* szMessage);
 
-	void UseHistoryFile( const VfsPath& filename, int historysize );
+	void UseHistoryFile(const VfsPath& filename, int historysize);
 
 	// Only returns a pointer to the buffer; copy out of here if you want to keep it.
 	const wchar_t* GetBuffer();
@@ -113,10 +118,10 @@ private:
 	void ToLower(wchar_t* szMessage, size_t iSize = 0);
 	void Trim(wchar_t* szMessage, const wchar_t cChar = 32, size_t iSize = 0);
 
-	void DrawHistory();
-	void DrawWindow();
-	void DrawBuffer();
-	void DrawCursor();
+	void DrawWindow(CShaderProgramPtr& shader);
+	void DrawHistory(CTextRenderer& textRenderer);
+	void DrawBuffer(CTextRenderer& textRenderer);
+	void DrawCursor(CTextRenderer& textRenderer);
 
 	bool IsEOB() { return (m_iBufferPos == m_iBufferLength); } // Is end of Buffer?
 	bool IsBOB() { return (m_iBufferPos == 0); } // Is beginning of Buffer?

@@ -91,6 +91,10 @@ void CCinemaPath::DrawSpline(const CVector4D& RGBA, int smoothness, bool lines) 
 	float start = MaxDistance / smoothness;
 	float time=0;
 	
+#if CONFIG2_GLES
+#warning TODO: do something about CCinemaPath on GLES
+#else
+
 	glColor4f( RGBA.m_X, RGBA.m_Y, RGBA.m_Z, RGBA.m_W );
 	if ( lines )
 	{	
@@ -133,7 +137,10 @@ void CCinemaPath::DrawSpline(const CVector4D& RGBA, int smoothness, bool lines) 
 		glPointSize(1.0f);
 		glDisable(GL_POINT_SMOOTH);
 	}
+
+#endif
 }
+
 void CCinemaPath::MoveToPointAt(float t, float nodet, const CVector3D& startRotation)
 {
 	CCamera *Cam = g_Game->GetView()->GetCamera();

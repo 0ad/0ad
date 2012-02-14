@@ -351,7 +351,7 @@ void ShadowMapInternals::CreateTexture()
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, Width, Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, Width, Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
 	}
 
 	glGenTextures(1, &Texture);
@@ -362,22 +362,28 @@ void ShadowMapInternals::CreateTexture()
 	switch(DepthTextureBits)
 	{
 	case 16: format = GL_DEPTH_COMPONENT16; break;
+#if !CONFIG2_GLES
 	case 24: format = GL_DEPTH_COMPONENT24; break;
 	case 32: format = GL_DEPTH_COMPONENT32; break;
+#endif
 	default: format = GL_DEPTH_COMPONENT; break;
 	}
 
 	glTexImage2D(GL_TEXTURE_2D, 0, format, Width, Height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, NULL);
 
+#if CONFIG2_GLES
+#warning TODO: implement shadows with non-depth textures and explicit comparisons in the GLSL
+#else
 	glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_INTENSITY);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
+#endif
 
 	// set texture parameters
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 	// bind to framebuffer object
 	glBindTexture(GL_TEXTURE_2D, 0);
@@ -391,10 +397,16 @@ void ShadowMapInternals::CreateTexture()
 	}
 	else
 	{
+#if CONFIG2_GLES
+#warning TODO: figure out whether the glDrawBuffer/glReadBuffer stuff is needed, since it is not supported by GLES
+#else
 		glDrawBuffer(GL_NONE);
+#endif
 	}
 
+#if !CONFIG2_GLES
 	glReadBuffer(GL_NONE);
+#endif
 
 	GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 
@@ -447,6 +459,9 @@ void ShadowMap::BeginRender()
 	// setup viewport
 	glViewport(0, 0, m->EffectiveWidth, m->EffectiveHeight);
 
+#if CONFIG2_GLES
+#warning TODO: implement ShdaowMap::BeginRender GLES
+#else
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 	glLoadMatrixf(&m->LightProjection._11);
@@ -454,6 +469,7 @@ void ShadowMap::BeginRender()
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	glLoadMatrixf(&m->LightTransform._11);
+#endif
 
 	glEnable(GL_SCISSOR_TEST);
 	glScissor(1,1, m->EffectiveWidth-2, m->EffectiveHeight-2);
@@ -475,11 +491,13 @@ void ShadowMap::EndRender()
 
 	glColorMask(1,1,1,1);
 
+#if !CONFIG2_GLES
 	// restore matrix stack
 	glPopMatrix();
 	glMatrixMode(GL_PROJECTION);
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
+#endif
 }
 
 
@@ -529,8 +547,8 @@ const float* ShadowMap::GetFilterOffsets() const
 void ShadowMap::RenderDebugDisplay()
 {
 	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect("solid");
-	shaderTech->BeginPass(0);
-	CShaderProgramPtr shader = shaderTech->GetShader(0);
+	shaderTech->BeginPass();
+	CShaderProgramPtr shader = shaderTech->GetShader();
 
 	glDepthMask(0);
 	glDisable(GL_CULL_FACE);
@@ -565,7 +583,7 @@ void ShadowMap::RenderDebugDisplay()
 	shader->AssertPointersBound();
 	glDrawArrays(GL_LINES, 0, 8);
 
-	shaderTech->EndPass(0);
+	shaderTech->EndPass();
 
 #if 0
 	CMatrix3D InvTexTransform;
@@ -600,6 +618,9 @@ void ShadowMap::RenderDebugDisplay()
 #endif
 
 	// Render the shadow map
+#if CONFIG2_GLES
+#warning TODO: implement ShadowMap::RenderDebugDisplay for GLES
+#else
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 	glLoadIdentity();
@@ -626,6 +647,7 @@ void ShadowMap::RenderDebugDisplay()
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
 	glPopMatrix();
+#endif
 
 	glEnable(GL_DEPTH_TEST);
 	glDepthMask(1);

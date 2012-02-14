@@ -8,6 +8,9 @@
         <uniform name="textureTransform" loc="1" type="vec4"/>
         <uniform name="losTransform" loc="2" type="vec2"/>
         <uniform name="shadowTransform" loc="3" type="mat4"/>
+        <stream name="pos"/>
+        <stream name="color"/>
+        <stream name="uv0"/>
     </vertex>
 
     <fragment file="terrain_common.fp">

@@ -25,61 +25,15 @@
 
 CMaterial NullMaterial;
 
-// Values as taken straight from the Blue Book (god bless the Blue Book)
-static SMaterialColor IdentityDiffuse(0.8f, 0.8f, 0.8f, 1.0f);
-static SMaterialColor IdentityAmbient(0.2f, 0.2f, 0.2f, 1.0f);
-static SMaterialColor IdentitySpecular(0.0f, 0.0f, 0.0f, 1.0f);
-static SMaterialColor IdentityEmissive(0.0f, 0.0f, 0.0f, 1.0f);
-
 static SMaterialColor BrokenColor(0.3f, 0.3f, 0.3f, 1.0f);
 
-CMaterial::CMaterial()
-	: m_Diffuse(IdentityDiffuse),
-	m_Ambient(IdentityAmbient),
-	m_Specular(IdentitySpecular),
-	m_Emissive(IdentityEmissive),
-	m_SpecularPower(0.0f),
+CMaterial::CMaterial() :
 	m_Alpha(false),
 	m_PlayerID(INVALID_PLAYER),
 	m_TextureColor(BrokenColor),
 	m_UsePlayerColor(false),
 	m_UseTextureColor(false)
 {
-}
-
-void CMaterial::Bind()
-{
-    glMaterialf(GL_FRONT, GL_SHININESS, m_SpecularPower);
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, &m_Diffuse.r);
-    glMaterialfv(GL_FRONT, GL_AMBIENT, &m_Ambient.r);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, &m_Specular.r);
-    glMaterialfv(GL_FRONT, GL_EMISSION, &m_Emissive.r);
-
-    ogl_WarnIfError();
-}
-
-void CMaterial::Unbind()
-{
-}
-
-SMaterialColor CMaterial::GetDiffuse()
-{
-    return m_Diffuse;
-}
-
-SMaterialColor CMaterial::GetAmbient()
-{
-    return m_Ambient;
-}
-
-SMaterialColor CMaterial::GetSpecular()
-{
-    return m_Specular;
-}
-
-SMaterialColor CMaterial::GetEmissive()
-{
-    return m_Emissive;
 }
 
 SMaterialColor CMaterial::GetObjectColor()
@@ -122,41 +76,6 @@ void CMaterial::SetTextureColor(const CColor& colour)
 void CMaterial::SetTexture(const CStr& texture)
 {
     m_Texture = texture;
-}
-
-void CMaterial::SetVertexProgram(const CStr& prog)
-{
-    m_VertexProgram = prog;
-}
-
-void CMaterial::SetFragmentProgram(const CStr& prog)
-{
-    m_FragmentProgram = prog;
-}
-
-void CMaterial::SetDiffuse(const SMaterialColor& color)
-{
-	m_Diffuse = color;
-}
-
-void CMaterial::SetAmbient(const SMaterialColor& color)
-{
-	m_Ambient = color;
-}
-
-void CMaterial::SetSpecular(const SMaterialColor& color)
-{
-	m_Specular = color;
-}
-
-void CMaterial::SetEmissive(const SMaterialColor& color)
-{
-	m_Emissive = color;
-}
-
-void CMaterial::SetSpecularPower(float power)
-{
-    m_SpecularPower = power;
 }
 
 void CMaterial::SetUsesAlpha(bool flag)

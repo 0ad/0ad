@@ -69,8 +69,11 @@ actually supported).
 
 // some functions that are extensions in GL are core functions in GLES,
 // so we should use them without the function pointer indirection
-#define pglCompressedTexImage2DARB glCompressedTexImage2D
 #define pglActiveTextureARB glActiveTexture
+#define pglBlendColorEXT glBlendColor
+#define pglBlendEquationEXT glBlendEquation
+#define pglClientActiveTextureARB glClientActiveTexture
+#define pglCompressedTexImage2DARB glCompressedTexImage2D
 
 #define pglAttachObjectARB glAttachShader
 #define pglBindAttribLocationARB glBindAttribLocation
@@ -86,6 +89,7 @@ actually supported).
 #define pglGetProgramInfoLog glGetProgramInfoLog
 #define pglGetShaderiv glGetShaderiv
 #define pglGetShaderInfoLog glGetShaderInfoLog
+#define pglGetUniformLocationARB glGetUniformLocation
 #define pglLinkProgramARB glLinkProgram
 #define pglShaderSourceARB glShaderSource
 #define pglUniform1fARB glUniform1i
@@ -96,6 +100,25 @@ actually supported).
 #define pglUniformMatrix4fvARB glUniformMatrix4fv
 #define pglUseProgramObjectARB glUseProgram
 #define pglVertexAttribPointerARB glVertexAttribPointer
+
+#define pglBindBufferARB glBindBuffer
+#define pglBufferDataARB glBufferData
+#define pglBufferSubDataARB glBufferSubData
+#define pglDeleteBuffersARB glDeleteBuffers
+#define pglGenBuffersARB glGenBuffers
+
+#define pglBindFramebufferEXT glBindFramebuffer
+#define pglCheckFramebufferStatusEXT glCheckFramebufferStatus
+#define pglDeleteFramebuffersEXT glDeleteFramebuffers
+#define pglFramebufferTexture2DEXT glFramebufferTexture2D
+#define pglGenFramebuffersEXT glGenFramebuffers
+
+#define GL_DEPTH_ATTACHMENT_EXT GL_DEPTH_ATTACHMENT
+#define GL_COLOR_ATTACHMENT0_EXT GL_COLOR_ATTACHMENT0
+#define GL_FRAMEBUFFER_COMPLETE_EXT GL_FRAMEBUFFER_COMPLETE
+#define GL_FRAMEBUFFER_EXT GL_FRAMEBUFFER
+
+#define GL_CLAMP_TO_BORDER GL_CLAMP_TO_EDGE // TODO: should fix code that relies on GL_CLAMP_TO_BORDER
 
 typedef GLuint GLhandleARB;
 

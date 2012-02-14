@@ -188,13 +188,13 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 
 		if (!Call.m_HasTexture)
 		{
-			Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("shader:fixed:gui_solid");
+			Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("gui_solid");
 		}
 		else if (cit->m_Effects)
 		{
 			if (cit->m_Effects->m_AddColor != CColor())
 			{
-				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("shader:fixed:gui_add");
+				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("gui_add");
 				Call.m_ShaderColorParameter = cit->m_Effects->m_AddColor;
 				// Always enable blending if something's being subtracted from
 				// the alpha channel
@@ -203,16 +203,16 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 			}
 			else if (cit->m_Effects->m_Greyscale)
 			{
-				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("shader:fixed:gui_grayscale");
+				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("gui_grayscale");
 			}
 			else /* Slight confusion - why no effects? */
 			{
-				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("shader:fixed:gui_basic");
+				Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("gui_basic");
 			}
 		}
 		else
 		{
-			Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("shader:fixed:gui_basic");
+			Call.m_Shader = g_Renderer.GetShaderManager().LoadEffect("gui_basic");
 		}
 
 		Calls.push_back(Call);
@@ -311,11 +311,12 @@ void GUIRenderer::Draw(DrawCalls &Calls, float Z)
 	// Iterate through each DrawCall, and execute whatever drawing code is being called
 	for (DrawCalls::const_iterator cit = Calls.begin(); cit != Calls.end(); ++cit)
 	{
+		cit->m_Shader->BeginPass();
+		CShaderProgramPtr shader = cit->m_Shader->GetShader();
+		shader->Uniform("transform", matrix);
+
 		if (cit->m_HasTexture)
 		{
-			cit->m_Shader->BeginPass(0);
-			CShaderProgramPtr shader = cit->m_Shader->GetShader(0);
-			shader->Uniform("transform", matrix);
 			shader->Uniform("color", cit->m_ShaderColorParameter);
 			shader->BindTexture("tex", cit->m_Texture);
 
@@ -354,14 +355,9 @@ void GUIRenderer::Draw(DrawCalls &Calls, float Z)
 			shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 5*sizeof(float), &data[0]);
 			shader->VertexPointer(3, GL_FLOAT, 5*sizeof(float), &data[2]);
 			glDrawArrays(GL_TRIANGLES, 0, 6);
-
-			cit->m_Shader->EndPass(0);
 		}
 		else
 		{
-			cit->m_Shader->BeginPass(0);
-			CShaderProgramPtr shader = cit->m_Shader->GetShader(0);
-			shader->Uniform("transform", matrix);
 			shader->Uniform("color", cit->m_BackColor);
 
 			if (cit->m_EnableBlending)
@@ -404,9 +400,9 @@ void GUIRenderer::Draw(DrawCalls &Calls, float Z)
 				glDrawArrays(GL_LINE_LOOP, 0, 4);
 			}
 #undef ADD
-
-			cit->m_Shader->EndPass(0);
 		}
+		
+		cit->m_Shader->EndPass();
 
 		glDisable(GL_BLEND);
 	}

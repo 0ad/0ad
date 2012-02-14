@@ -2,7 +2,7 @@
 <Entity parent="template_unit_champion_infantry_swordsman">
   <Armour>
     <Hack>5.0</Hack>
-    <Pierce>10.0</Pierce>
+    <Pierce>11.0</Pierce>
   </Armour>
   <Attack>
     <Melee>
@@ -51,7 +51,7 @@
 	<GenericName>Athenian Light Hoplite</GenericName>
     <SpecificName>Ékdromos Athēnaïkós</SpecificName>
     <Tooltip>Poleis Champion Raider.
-Counters Support Units and Ranged Units. Countered by Melee Cavalry. Fast Move Speed.</Tooltip>
+Counters Support Units, Spear units, and Ranged Units (if they can catch them). Countered by Archers.</Tooltip>
     <History>Ekdromos (literally: out runner) was a development of the Hoplite. Development of the Hoplite took many twists and turns based on the changing dynamics on the field of battle. Once armies began using Peltasts imported from Thrace something had to be done to counter this barrage of javelins thrown into the midst of a phalanx. The Thebans began to increase the armor of their hoplites, but the Athenians took a completely different approach and lightened the load for their infantry. The Ekdromoi would dash out from the phalanx, close with the enemy ranged units at speed, and cut them down at will. This approach also worked to harass more heavily armed troops as well, the enemy carrying too much weight to catch the vexatious Ekdromoi.</History>
     <Icon>units/hele_champion_ranged_polis.png</Icon>
   </Identity>

@@ -88,7 +88,11 @@ public:
 		return _data[row*4+col];
 	}
 
-	float operator[](int idx) const
+	float& operator[](int idx)
+	{
+		return _data[idx];
+	}
+	const float& operator[](int idx) const
 	{
 		return _data[idx];
 	}

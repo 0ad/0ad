@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <program type="arb">
 
-    <vertex file="particle.vp"/>
+    <vertex file="particle.vp">
+        <stream name="pos"/>
+        <stream name="color"/>
+        <stream name="uv0"/>
+        <stream name="uv1"/>
+    </vertex>
 
     <fragment file="particle.fp">
         <uniform name="baseTex" loc="0" type="sampler2D"/>

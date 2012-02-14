@@ -29,6 +29,7 @@
 #include "lib/sysdep/cursor.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/gfx.h"
+#include "lib/sysdep/os_cpu.h"
 #include "lib/tex/tex.h"
 #if OS_WIN
 #include "lib/sysdep/os/win/wversion.h"
@@ -97,7 +98,7 @@
 #include "ps/GameSetup/CmdLineArgs.h"
 #include "ps/GameSetup/HWDetect.h"
 
-#if !(OS_WIN || OS_MACOSX) // assume all other platforms use X11 for wxWidgets
+#if !(OS_WIN || OS_MACOSX || OS_ANDROID) // assume all other platforms use X11 for wxWidgets
 #define MUST_INIT_X11 1
 #include <X11/Xlib.h>
 #else
@@ -223,23 +224,6 @@ void Render()
 
 	ogl_WarnIfError();
 
-	// set up overlay mode
-	glPushAttrib(GL_ENABLE_BIT);
-	glEnable(GL_TEXTURE_2D);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glEnable(GL_BLEND);
-
-	glMatrixMode(GL_PROJECTION);
-	glPushMatrix();
-	glLoadIdentity();
-	glOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.f, 1000.f);
-
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glLoadIdentity();
-
-	ogl_WarnIfError();
-
 	g_Renderer.RenderTextOverlays();
 
 	if (g_DoRenderGui)
@@ -249,14 +233,7 @@ void Render()
 
 	// Text:
 
-	// Use the GL_ALPHA texture as the alpha channel with a flat colouring
-	glDisable(GL_ALPHA_TEST);
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-	// Added --
-	glEnable(GL_TEXTURE_2D);
-	// -- GL
-
-	glLoadIdentity();
+ 	glDisable(GL_DEPTH_TEST);
 
 	g_Console->Render();
 
@@ -280,21 +257,44 @@ void Render()
 		CStrW cursorName = g_CursorName;
 		if (cursorName.empty())
 		{
-			cursor_draw(g_VFS, NULL, g_mouse_x, g_yres-g_mouse_y);
+			cursor_draw(g_VFS, NULL, g_mouse_x, g_yres-g_mouse_y, false);
 		}
 		else
 		{
-			if (cursor_draw(g_VFS, cursorName.c_str(), g_mouse_x, g_yres-g_mouse_y) < 0)
+			bool forceGL = false;
+			CFG_GET_USER_VAL("nohwcursor", Bool, forceGL);
+
+#if CONFIG2_GLES
+#warning TODO: implement cursors for GLES
+#else
+			// set up transform for GL cursor
+			glMatrixMode(GL_PROJECTION);
+			glPushMatrix();
+			glLoadIdentity();
+			glMatrixMode(GL_MODELVIEW);
+			glPushMatrix();
+			glLoadIdentity();
+			CMatrix3D transform;
+			transform.SetOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.f, 1000.f);
+			glLoadMatrixf(&transform._11);
+#endif
+
+			if (cursor_draw(g_VFS, cursorName.c_str(), g_mouse_x, g_yres-g_mouse_y, forceGL) < 0)
 				LOGWARNING(L"Failed to draw cursor '%ls'", cursorName.c_str());
+
+#if CONFIG2_GLES
+#warning TODO: implement cursors for GLES
+#else
+			// restore transform
+			glMatrixMode(GL_PROJECTION);
+			glPopMatrix();
+			glMatrixMode(GL_MODELVIEW);
+			glPopMatrix();
+#endif
 		}
 	}
 
-	// restore
-	glMatrixMode(GL_PROJECTION);
-	glPopMatrix();
-	glMatrixMode(GL_MODELVIEW);
-	glPopMatrix();
-	glPopAttrib();
+	glEnable(GL_DEPTH_TEST);
 
 	g_Renderer.EndFrame();
 
@@ -546,7 +546,7 @@ static void ShutdownPs()
 	SAFE_DELETE(g_Console);
 
 	// disable the special Windows cursor, or free textures for OGL cursors
-	cursor_draw(g_VFS, 0, g_mouse_x, g_yres-g_mouse_y);
+	cursor_draw(g_VFS, 0, g_mouse_x, g_yres-g_mouse_y, false);
 }
 
 

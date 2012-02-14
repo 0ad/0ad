@@ -335,8 +335,11 @@ public:
 
 		Bind();
 
+		ogl_WarnIfError();
+
 		GLint numUniforms = 0;
 		pglGetProgramiv(m_Program, GL_ACTIVE_UNIFORMS, &numUniforms);
+		ogl_WarnIfError();
 		for (GLint i = 0; i < numUniforms; ++i)
 		{
 			char name[256] = {0};
@@ -344,8 +347,11 @@ public:
 			GLint size = 0;
 			GLenum type = 0;
 			pglGetActiveUniformARB(m_Program, i, ARRAY_SIZE(name), &nameLength, &size, &type, name);
+			ogl_WarnIfError();
 
-			m_UniformLocations[name] = i;
+			GLint loc = pglGetUniformLocationARB(m_Program, name);
+
+			m_UniformLocations[name] = loc;
 			m_UniformTypes[name] = type;
 
 			// Assign sampler uniforms to sequential texture units
@@ -359,7 +365,8 @@ public:
 				int unit = (int)m_Samplers.size();
 				m_Samplers[name].first = (type == GL_SAMPLER_CUBE ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D);
 				m_Samplers[name].second = unit;
-				pglUniform1iARB(i, unit); // link uniform to unit
+				pglUniform1iARB(loc, unit); // link uniform to unit
+				ogl_WarnIfError();
 			}
 		}
 
@@ -526,8 +533,14 @@ public:
 
 	virtual void NormalPointer(GLenum type, GLsizei stride, void* pointer)
 	{
-		pglVertexAttribPointerARB(2, 3, type, GL_FALSE, stride, pointer);
+		pglVertexAttribPointerARB(2, 3, type, GL_TRUE, stride, pointer);
 		m_ValidStreams |= STREAM_NORMAL;
+	}
+
+	virtual void ColorPointer(GLint size, GLenum type, GLsizei stride, void* pointer)
+	{
+		pglVertexAttribPointerARB(3, size, type, GL_TRUE, stride, pointer);
+		m_ValidStreams |= STREAM_COLOR;
 	}
 
 	virtual void TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, void* pointer)
@@ -681,7 +694,30 @@ CStr CShaderProgram::Preprocess(CPreprocessor& preprocessor, const CStr& input)
 	return ret;
 }
 
-#if !CONFIG2_GLES
+#if CONFIG2_GLES
+
+// These should all be overridden by CShaderProgramGLSL
+void CShaderProgram::VertexPointer(GLint UNUSED(size), GLenum UNUSED(type), GLsizei UNUSED(stride), void* UNUSED(pointer))
+{
+	debug_warn("CShaderProgram::VertexPointer should be overridden");
+}
+void CShaderProgram::NormalPointer(GLenum UNUSED(type), GLsizei UNUSED(stride), void* UNUSED(pointer))
+{
+	debug_warn("CShaderProgram::NormalPointer should be overridden");
+}
+void CShaderProgram::ColorPointer(GLint UNUSED(size), GLenum UNUSED(type), GLsizei UNUSED(stride), void* UNUSED(pointer))
+{
+	debug_warn("CShaderProgram::ColorPointer should be overridden");
+}
+void CShaderProgram::TexCoordPointer(GLenum UNUSED(texture), GLint UNUSED(size), GLenum UNUSED(type), GLsizei UNUSED(stride), void* UNUSED(pointer))
+{
+	debug_warn("CShaderProgram::TexCoordPointer should be overridden");
+}
+
+#else
+
+// These are overridden by CShaderProgramGLSL, but fixed-function and ARB shaders
+// both use the fixed-function vertex attribute pointers:
 
 void CShaderProgram::VertexPointer(GLint size, GLenum type, GLsizei stride, void* pointer)
 {
@@ -695,10 +731,17 @@ void CShaderProgram::NormalPointer(GLenum type, GLsizei stride, void* pointer)
 	m_ValidStreams |= STREAM_NORMAL;
 }
 
+void CShaderProgram::ColorPointer(GLint size, GLenum type, GLsizei stride, void* pointer)
+{
+	glColorPointer(size, type, stride, pointer);
+	m_ValidStreams |= STREAM_COLOR;
+}
+
 void CShaderProgram::TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, void* pointer)
 {
-	pglActiveTextureARB(texture);
+	pglClientActiveTextureARB(texture);
 	glTexCoordPointer(size, type, stride, pointer);
+	pglClientActiveTextureARB(GL_TEXTURE0);
 	m_ValidStreams |= STREAM_UV0 << (texture - GL_TEXTURE0);
 }
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<program type="glsl">
+
+    <vertex file="glsl/gui_solid.vs">
+        <stream name="pos"/>
+        <attrib name="a_vertex" semantics="gl_Vertex"/>
+    </vertex>
+
+    <fragment file="glsl/gui_solid.fs"/>
+
+</program>

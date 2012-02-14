@@ -429,13 +429,20 @@ extern_lib_defs = {
 			if os.is("windows") then
 				add_default_lib_paths("opengl")
 			end
-			add_default_links({
-				win_names  = { "opengl32", "gdi32" },
-				unix_names = { "GL", "X11" },
-				osx_frameworks = { "OpenGL" },
-				dbg_suffix = "",
-				no_delayload = 1, -- delayload seems to cause errors on startup
-			})
+			if _OPTIONS["gles"] then
+				add_default_links({
+					unix_names = { "GLESv2" },
+					dbg_suffix = "",
+				})
+			else
+				add_default_links({
+					win_names  = { "opengl32", "gdi32" },
+					unix_names = { "GL" },
+					osx_frameworks = { "OpenGL" },
+					dbg_suffix = "",
+					no_delayload = 1, -- delayload seems to cause errors on startup
+				})
+			end
 		end,
 	},
 	sdl = {

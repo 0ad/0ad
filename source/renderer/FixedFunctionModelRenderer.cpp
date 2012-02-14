@@ -38,6 +38,7 @@
 #include "renderer/RenderModifiers.h"
 #include "renderer/VertexArray.h"
 
+#if !CONFIG2_GLES
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // FixedFunctionModelRenderer implementation
@@ -283,3 +284,5 @@ void FixedFunctionModelRenderer::RenderModel(CShaderProgramPtr& UNUSED(shader), 
 	g_Renderer.m_Stats.m_DrawCalls++;
 	g_Renderer.m_Stats.m_ModelTris += numFaces;
 }
+
+#endif // !CONFIG2_GLES

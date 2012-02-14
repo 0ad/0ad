@@ -6,4 +6,9 @@
         <pass shader="fixed:solid"/>
     </technique>
 
+    <technique>
+        <require shaders="glsl"/>
+        <pass shader="glsl/gui_solid"/>
+    </technique>
+
 </effect>

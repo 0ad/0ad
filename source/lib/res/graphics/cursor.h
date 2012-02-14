@@ -39,10 +39,11 @@
  *		  mouse Y coordinate to be subtracted from the client area height.
  *		  Making the caller responsible for this avoids a dependency on
  *		  the g_yres global variable.)
+ * @param forceGL Require the OpenGL cursor implementation, not hardware cursor
  *
  * Uses a hardware mouse cursor where available, otherwise a
  * portable OpenGL implementation.
  **/
-extern Status cursor_draw(const PIVFS& vfs, const wchar_t* name, int x, int y);
+extern Status cursor_draw(const PIVFS& vfs, const wchar_t* name, int x, int y, bool forceGL);
 
 #endif	// #ifndef INCLUDED_GRAPHICS_CURSOR

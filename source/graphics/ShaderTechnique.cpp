@@ -29,11 +29,15 @@ void CShaderPass::Bind()
 {
 	m_Shader->Bind();
 
+#if !CONFIG2_GLES
 	if (m_HasAlpha)
 	{
 		glEnable(GL_ALPHA_TEST);
 		glAlphaFunc(m_AlphaFunc, m_AlphaRef);
 	}
+#endif
+	// TODO: maybe emit some warning if GLSL shaders try to use alpha test;
+	// the test should be done inside the shader itself
 
 	if (m_HasBlend)
 	{
@@ -55,15 +59,13 @@ void CShaderPass::Unbind()
 {
 	m_Shader->Unbind();
 
+#if !CONFIG2_GLES
 	if (m_HasAlpha)
-	{
 		glDisable(GL_ALPHA_TEST);
-	}
+#endif
 
 	if (m_HasBlend)
-	{
 		glDisable(GL_BLEND);
-	}
 
 	if (m_HasColorMask)
 		glColorMask(1, 1, 1, 1);

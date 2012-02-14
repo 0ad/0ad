@@ -139,6 +139,8 @@ private:
 };
 
 
+#if !CONFIG2_GLES
+
 /**
  * Class PlainRenderModifier: RenderModifier that simply uses opaque textures
  * modulated by primary color. It is used for normal, no-frills models.
@@ -153,23 +155,6 @@ public:
 	int BeginPass(int pass);
 	bool EndPass(int pass);
 	void PrepareTexture(int pass, CTexturePtr& texture);
-};
-
-
-/**
- * Class WireframeRenderModifier: RenderModifier that renders wireframe models.
- */
-class WireframeRenderModifier : public RenderModifier
-{
-public:
-	WireframeRenderModifier();
-	~WireframeRenderModifier();
-
-	// Implementation
-	int BeginPass(int pass);
-	bool EndPass(int pass);
-	void PrepareTexture(int pass, CTexturePtr& texture);
-	void PrepareModel(int pass, CModel* model);
 };
 
 
@@ -191,6 +176,8 @@ public:
 	void PrepareTexture(int pass, CTexturePtr& texture);
 	void PrepareModel(int pass, CModel* model);
 };
+
+#endif // !CONFIG2_GLES
 
 /**
  * A RenderModifier that can be used with any CShaderTechnique.

@@ -25,6 +25,7 @@
 
 #include "RenderModifiers.h"
 
+#if !CONFIG2_GLES
 
 /**
  * Class FastPlayerColorRender: Render models fully textured and lit
@@ -94,5 +95,6 @@ public:
 	void PrepareModel(int pass, CModel* model);
 };
 
+#endif // !CONFIG2_GLES
 
 #endif

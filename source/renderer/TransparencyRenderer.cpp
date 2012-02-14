@@ -48,6 +48,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // PolygonSortModelRenderer implementation
 
+#if !CONFIG2_GLES
 
 /**
  * Struct PSModelDef: Per-CModelDef data for the polygon sort vertex renderer
@@ -373,6 +374,7 @@ void PolygonSortModelRenderer::RenderModel(CShaderProgramPtr& UNUSED(shader), in
 	g_Renderer.m_Stats.m_ModelTris += numFaces;
 }
 
+#endif // !CONFIG2_GLES
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -589,6 +591,8 @@ void SortModelRenderer::Filter(CModelFilter& filter, int passed, int flags)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TransparentRenderModifier implementation
 
+#if !CONFIG2_GLES
+
 TransparentRenderModifier::TransparentRenderModifier()
 {
 }
@@ -717,6 +721,7 @@ void TransparentOpaqueRenderModifier::PrepareModel(int UNUSED(pass), CModel* UNU
 	// No per-model setup necessary
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TransparentBlendRenderModifier implementation
 
@@ -829,3 +834,5 @@ void TransparentDepthShadowModifier::PrepareModel(int UNUSED(pass), CModel* UNUS
 {
 	// No per-model setup necessary
 }
+
+#endif // !CONFIG2_GLES

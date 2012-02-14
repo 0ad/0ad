@@ -27,6 +27,7 @@
 
 class CPatch;
 class CTerrainTextureEntry;
+class CTextRenderer;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // CPatchRData: class encapsulating logic for rendering terrain patches; holds per
@@ -39,14 +40,14 @@ public:
 
 	void Update();
 	void RenderOutline();
-	void RenderSides();
-	void RenderPriorities();
+	void RenderSides(CShaderProgramPtr& shader);
+	void RenderPriorities(CTextRenderer& textRenderer);
 
-	void RenderWater();
+	void RenderWater(CShaderProgramPtr& shader);
 
-	static void RenderBases(const std::vector<CPatchRData*>& patches, CShaderProgramPtr shader);
-	static void RenderBlends(const std::vector<CPatchRData*>& patches, CShaderProgramPtr shader);
-	static void RenderStreams(const std::vector<CPatchRData*>& patches, int streamflags);
+	static void RenderBases(const std::vector<CPatchRData*>& patches, CShaderProgramPtr& shader, bool isDummyShader);
+	static void RenderBlends(const std::vector<CPatchRData*>& patches, CShaderProgramPtr& shader, bool isDummyShader);
+	static void RenderStreams(const std::vector<CPatchRData*>& patches, CShaderProgramPtr& shader, int streamflags);
 
 	CPatch* GetPatch() { return m_Patch; }
 

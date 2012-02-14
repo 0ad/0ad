@@ -153,7 +153,7 @@ void CParticleEmitter::Bind()
 	glBlendFunc(m_Type->m_BlendFuncSrc, m_Type->m_BlendFuncDst);
 }
 
-void CParticleEmitter::RenderArray()
+void CParticleEmitter::RenderArray(CShaderProgramPtr& shader)
 {
 	// Some drivers apparently don't like count=0 in glDrawArrays here,
 	// so skip all drawing in that case
@@ -164,19 +164,21 @@ void CParticleEmitter::RenderArray()
 
 	GLsizei stride = (GLsizei)m_VertexArray.GetStride();
 
-	glVertexPointer(3, GL_FLOAT, stride, base + m_AttributePos.offset);
+	shader->VertexPointer(3, GL_FLOAT, stride, base + m_AttributePos.offset);
 
 	// Pass the sin/cos axis components as texcoords for no particular reason
 	// other than that they fit. (Maybe this should be glVertexAttrib* instead?)
-	pglClientActiveTextureARB(GL_TEXTURE1);
-	glTexCoordPointer(2, GL_FLOAT, stride, base + m_AttributeAxis.offset);
+	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, base + m_AttributeUV.offset);
+	shader->TexCoordPointer(GL_TEXTURE1, 2, GL_FLOAT, stride, base + m_AttributeAxis.offset);
 
-	pglClientActiveTextureARB(GL_TEXTURE0);
-	glTexCoordPointer(2, GL_FLOAT, stride, base + m_AttributeUV.offset);
+	shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, base + m_AttributeColor.offset);
 
-	glColorPointer(4, GL_UNSIGNED_BYTE, stride, base + m_AttributeColor.offset);
-
+	shader->AssertPointersBound();
+#if CONFIG2_GLES
+#warning TODO: change CParticleEmitter to use (indexed?) triangles instead of quads, for GLES
+#else
 	glDrawArrays(GL_QUADS, 0, m_Particles.size()*4);
+#endif
 
 	g_Renderer.GetStats().m_DrawCalls++;
 	g_Renderer.GetStats().m_Particles += m_Particles.size();
