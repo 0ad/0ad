@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Roman Corral">
+      <mesh>structural/rome_corral.dae</mesh>
+      <props>
+        <prop actor="props/structures/romans/corral_plants.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/corral_wood.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/corral_mud.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/rome_struct_2.png</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
