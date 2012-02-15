@@ -540,6 +540,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 // so rename main() to a different symbol that the wrapper library can load
 #undef main
 #define main pyrogenesis_main
+extern "C" __attribute__((visibility ("default"))) int main(int argc, char* argv[]);
 #endif
 
 extern "C" int main(int argc, char* argv[])
