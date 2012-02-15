@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,16 +21,7 @@
 #include "lib/res/handle.h"
 
 class CStrW;
-
-/*
-
-To use CFont:
-
-CFont font("name");
-font.Bind();
-glwprintf(L"Hello world");
-
-*/
+struct UnifontGlyphData;
 
 class CFont
 {
@@ -38,12 +29,13 @@ public:
 	CFont(const CStrW& name);
 	~CFont();
 
-	void Bind(size_t unit = 0);
 	bool HasRGB();
 	int GetLineSpacing();
 	int GetHeight();
 	int GetCharacterWidth(wchar_t c);
 	void CalculateStringSize(const CStrW& string, int& w, int& h);
+	const std::map<u16, UnifontGlyphData>& GetGlyphs();
+	Handle GetTexture();
 
 private:
 	Handle h;

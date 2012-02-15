@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2012 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -35,16 +35,7 @@
 #include "ogl_tex.h"
 #include "lib/res/h_mgr.h"
 
-struct GlyphData
-{
-	float u0, v0, u1, v1;
-	i16 x0, y0, x1, y1;
-	i16 xadvance;
-};
-
-typedef std::map<u16, GlyphData> glyphmap;
-
-static glyphmap* BoundGlyphs = NULL;
+typedef std::map<u16, UnifontGlyphData> glyphmap;
 
 struct UniFont
 {
@@ -149,7 +140,7 @@ static Status UniFont_reload(UniFont* f, const PIVFS& vfs, const VfsPath& basena
 		GLfloat w = (GLfloat)Width  / (GLfloat)TextureWidth;
 		GLfloat h = (GLfloat)Height / (GLfloat)TextureHeight;
 
-		GlyphData g = { u, -v, u+w, -v+h, (i16)OffsetX, (i16)-OffsetY, (i16)(OffsetX+Width), (i16)(-OffsetY+Height), (i16)Advance };
+		UnifontGlyphData g = { u, -v, u+w, -v+h, (i16)OffsetX, (i16)-OffsetY, (i16)(OffsetX+Width), (i16)(-OffsetY+Height), (i16)Advance };
 		(*f->glyphs)[(u16)Codepoint] = g;
 	}
 
@@ -212,24 +203,7 @@ Handle unifont_load(const PIVFS& vfs, const VfsPath& pathname, size_t flags)
 Status unifont_unload(Handle& h)
 {
 	H_DEREF(h, UniFont, f);
-
-	// unbind ourself, so people will get errors if
-	// they draw more text without binding a new font
-	if (BoundGlyphs == f->glyphs)
-		BoundGlyphs = NULL;
-
 	return h_free(h, H_UniFont);
-}
-
-
-Status unifont_bind(const Handle h, size_t unit)
-{
-	H_DEREF(h, UniFont, f);
-
-	ogl_tex_bind(f->ht, unit);
-	BoundGlyphs = f->glyphs;
-
-	return INFO::OK;
 }
 
 
@@ -267,122 +241,6 @@ int unifont_character_width(const Handle h, wchar_t c)
 	return it->second.xadvance;
 }
 
-
-struct t2f_v2i
-{
-	float u, v;
-	i16 x, y;
-};
-
-void glvwprintf(const wchar_t* fmt, va_list args)
-{
-	const int buf_size = 1024;
-	wchar_t buf[buf_size];
-
-	int ret = vswprintf(buf, buf_size-1, fmt, args);
-	if(ret < 0) {
-		debug_printf(L"glwprintf failed (buffer size exceeded?) - return value %d, errno %d\n", ret, errno);
-	}
-
-	// Make sure there's always null termination
-	buf[buf_size-1] = 0;
-
-	int advance = 0;
-	unifont_render(buf, &advance);
-
-	// Move into position for subsequent prints
-#if CONFIG2_GLES
-#warning TODO: implement unifont for GLES
-#else
-	glTranslatef((float)advance, 0, 0);
-#endif
-}
-
-void unifont_render(const wchar_t* str, int* advance)
-{
-	ENSURE(BoundGlyphs != NULL); // You always need to bind something first
-
-	// Count the number of characters
-	size_t len = wcslen(str);
-	
-	// 0 glyphs -> nothing to do (avoid BoundsChecker warning)
-	if (!len)
-		return;
-
-	t2f_v2i* vertexes = new t2f_v2i[len*4];
-
-	i16 x = 0;
-
-	for (size_t i = 0; i < len; ++i)
-	{
-		glyphmap::iterator it = BoundGlyphs->find(str[i]);
-
-		if (it == BoundGlyphs->end())
-			it = BoundGlyphs->find(0xFFFD); // Use the missing glyph symbol
-
-		if (it == BoundGlyphs->end()) // Missing the missing glyph symbol - give up
-			continue;
-
-		const GlyphData& g = it->second;
-
-		vertexes[i*4].u = g.u1;
-		vertexes[i*4].v = g.v0;
-		vertexes[i*4].x = g.x1 + x;
-		vertexes[i*4].y = g.y0;
-
-		vertexes[i*4+1].u = g.u0;
-		vertexes[i*4+1].v = g.v0;
-		vertexes[i*4+1].x = g.x0 + x;
-		vertexes[i*4+1].y = g.y0;
-
-		vertexes[i*4+2].u = g.u0;
-		vertexes[i*4+2].v = g.v1;
-		vertexes[i*4+2].x = g.x0 + x;
-		vertexes[i*4+2].y = g.y1;
-
-		vertexes[i*4+3].u = g.u1;
-		vertexes[i*4+3].v = g.v1;
-		vertexes[i*4+3].x = g.x1 + x;
-		vertexes[i*4+3].y = g.y1;
-
-		x += g.xadvance;
-	}
-
-	ogl_WarnIfError();
-
-#if CONFIG2_GLES
-#warning TODO: implement unifont for GLES
-#else
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
-	glVertexPointer(2, GL_SHORT, sizeof(t2f_v2i), (u8*)vertexes + offsetof(t2f_v2i, x));
-	glTexCoordPointer(2, GL_FLOAT, sizeof(t2f_v2i), (u8*)vertexes + offsetof(t2f_v2i, u));
-
-	glDrawArrays(GL_QUADS, 0, (GLsizei)len*4);
-
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-
-	ogl_WarnIfError();
-#endif
-
-	if (advance)
-		*advance = x;
-
-	delete[] vertexes;
-}
-
-
-void glwprintf(const wchar_t* fmt, ...)
-{
-	va_list args;
-	va_start(args, fmt);
-	glvwprintf(fmt, args);
-	va_end(args);
-}
-
-
 Status unifont_stringsize(const Handle h, const wchar_t* text, int& width, int& height)
 {
 	H_DEREF(h, UniFont, f);
@@ -409,4 +267,29 @@ Status unifont_stringsize(const Handle h, const wchar_t* text, int& width, int& 
 	}
 
 	return INFO::OK;
+}
+
+const glyphmap& unifont_get_glyphs(const Handle h)
+{
+	UniFont* const f = H_USER_DATA(h, UniFont);
+	if(!f)
+	{
+		DEBUG_WARN_ERR(ERR::INVALID_HANDLE);
+		static glyphmap dummy;
+		return dummy;
+	}
+
+	return *f->glyphs;
+}
+
+Handle unifont_get_texture(const Handle h)
+{
+	UniFont* const f = H_USER_DATA(h, UniFont);
+	if(!f)
+	{
+		DEBUG_WARN_ERR(ERR::INVALID_HANDLE);
+		return 0;
+	}
+
+	return f->ht;
 }

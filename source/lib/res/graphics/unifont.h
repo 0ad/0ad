@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2012 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -49,42 +49,6 @@ extern Handle unifont_load(const PIVFS& vfs, const VfsPath& pathname, size_t fla
 extern Status unifont_unload(Handle& h);
 
 /**
- * Use a font for all subsequent glwprintf() calls.
- *
- * Must be called before any glwprintf().
- **/
-extern Status unifont_bind(Handle h, size_t unit);
-
-/**
- * Output text at current OpenGL modelview pos.
- *
- * @param fmt - see fprintf
- *
- * this assumes an environment roughly like:
- * glEnable(GL_TEXTURE_2D);
- * glDisable(GL_CULL_FACE);
- * glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
- * glEnable(GL_BLEND);
- * glDisable(GL_ALPHA_TEST);
- * glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
- **/
-extern void glwprintf(const wchar_t* fmt, ...) WPRINTF_ARGS(1);
-
-/**
- * Varargs version of glwprintf.
- *
- * @param fmt
- * @param args
- * @see vfprintf
- **/
-extern void glvwprintf(const wchar_t* fmt, va_list args) VWPRINTF_ARGS(1);
-
-/**
- * Output text, and return advance distance (if @p advance not NULL).
- */
-extern void unifont_render(const wchar_t* str, int* advance = NULL);
-
-/**
  * Determine pixel extents of a string.
  *
  * @param h
@@ -116,5 +80,25 @@ int unifont_character_width(const Handle h, wchar_t c);
  * @return spacing in pixels from one line of text to the next.
  **/
 int unifont_linespacing(const Handle h);
+
+// Raw access to font data (since it's convenient to move as much of the
+// processing as possible to outside lib/):
+
+struct UnifontGlyphData
+{
+	float u0, v0, u1, v1;
+	i16 x0, y0, x1, y1;
+	i16 xadvance;
+};
+
+/**
+ * @return glyph data for all glyphs in this font.
+ */
+const std::map<u16, UnifontGlyphData>& unifont_get_glyphs(const Handle h);
+
+/**
+ * @return texture handle for this font.
+ */
+Handle unifont_get_texture(const Handle h);
 
 #endif // INCLUDED_UNIFONT

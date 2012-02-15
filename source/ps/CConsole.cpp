@@ -180,7 +180,6 @@ void CConsole::Render()
 	PROFILE3_GPU("console");
 
 	CFont font(CONSOLE_FONT);
-	font.Bind();
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
