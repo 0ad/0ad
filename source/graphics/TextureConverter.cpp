@@ -29,6 +29,8 @@
 #include "ps/Profiler2.h"
 #include "ps/XML/Xeromyces.h"
 
+#if CONFIG2_NVTT
+
 #include "nvtt/nvtt.h"
 
 /**
@@ -75,6 +77,8 @@ struct CTextureConverter::ConversionResult
 	BufferOutputHandler output;
 	bool ret; // true if the conversion succeeded
 };
+
+#endif // CONFIG2_NVTT
 
 void CTextureConverter::Settings::Hash(MD5& hash)
 {
@@ -273,7 +277,9 @@ CTextureConverter::CTextureConverter(PIVFS vfs, bool highQuality) :
 {
 	// Verify that we are running with at least the version we were compiled with,
 	// to avoid bugs caused by ABI changes
+#if CONFIG2_NVTT
 	ENSURE(nvtt::version() >= NVTT_VERSION);
+#endif
 
 	// Set up the worker thread:
 
@@ -355,6 +361,8 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 		}
 	}
 
+#if CONFIG2_NVTT
+
 	shared_ptr<ConversionRequest> request(new ConversionRequest);
 	request->dest = dest;
 	request->texture = texture;
@@ -428,10 +436,16 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 	SDL_SemPost(m_WorkerSem);
 
 	return true;
+
+#else
+	LOGERROR(L"Failed to convert texture \"%ls\" (NVTT not available)", src.string().c_str());
+	return false;
+#endif
 }
 
 bool CTextureConverter::Poll(CTexturePtr& texture, VfsPath& dest, bool& ok)
 {
+#if CONFIG2_NVTT
 	shared_ptr<ConversionResult> result;
 
 	// Grab the first result (if any)
@@ -473,6 +487,10 @@ bool CTextureConverter::Poll(CTexturePtr& texture, VfsPath& dest, bool& ok)
 	dest = result->dest;
 	ok = true;
 	return true;
+
+#else // #if CONFIG2_NVTT
+	return false;
+#endif
 }
 
 bool CTextureConverter::IsBusy()
@@ -490,6 +508,8 @@ void* CTextureConverter::RunThread(void* data)
 	g_Profiler2.RegisterCurrentThread("texconv");
 
 	CTextureConverter* textureConverter = static_cast<CTextureConverter*>(data);
+
+#if CONFIG2_NVTT
 
 	// Wait until the main thread wakes us up
 	while (SDL_SemWait(textureConverter->m_WorkerSem) == 0)
@@ -540,6 +560,8 @@ void* CTextureConverter::RunThread(void* data)
 		textureConverter->m_ResultQueue.push_back(result);
 		pthread_mutex_unlock(&textureConverter->m_WorkerMutex);
 	}
+
+#endif
 
 	return NULL;
 }

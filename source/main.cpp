@@ -535,7 +535,14 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	CXeromyces::Terminate();
 }
 
-int main(int argc, char* argv[])
+#if OS_ANDROID
+// In Android we compile the engine as a shared library, not an executable,
+// so rename main() to a different symbol that the wrapper library can load
+#undef main
+#define main pyrogenesis_main
+#endif
+
+extern "C" int main(int argc, char* argv[])
 {
 #if OS_UNIX
 	// Don't allow people to run the game with root permissions,

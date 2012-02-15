@@ -29,7 +29,9 @@
 #include "lib/sysdep/snd.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/os_cpu.h"
+#if ARCH_X86_X64
 #include "lib/sysdep/arch/x86_x64/topology.h"
+#endif
 #include "lib/sysdep/smbios.h"
 #include "lib/tex/tex.h"
 
@@ -99,7 +101,10 @@ void WriteSystemInfo()
 	fprintf(f, "OS             : %s %s (%s)\n", un.sysname, un.release, un.version);
 
 	// CPU
-	fprintf(f, "CPU            : %s, %s (%dx%dx%d)", un.machine, cpu_IdentifierString(), (int)topology::NumPackages(), (int)topology::CoresPerPackage(), (int)topology::LogicalPerCore());
+	fprintf(f, "CPU            : %s, %s", un.machine, cpu_IdentifierString());
+#if ARCH_X86_X64
+	fprintf(f, " (%dx%dx%d)", (int)topology::NumPackages(), (int)topology::CoresPerPackage(), (int)topology::LogicalPerCore());
+#endif
 	double cpuClock = os_cpu_ClockFrequency();	// query OS (may fail)
 #if ARCH_X86_X64
 	if(cpuClock <= 0.0)

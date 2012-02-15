@@ -225,10 +225,15 @@ bool ogl_HaveVersion(const char* desired_version)
 		return false;
 	}
 
-	// guaranteed to be of the form major.minor[.release].
+	// guaranteed to be of the form "major.minor[.release][ vendor-specific]"
+	// or "OpenGL ES major.minor[.release][ vendor-specific]".
+	// we won't distinguish GLES 2.0 from GL 2.0, but that's okay since
+	// they're close enough.
 	const char* version = (const char*)glGetString(GL_VERSION);
 	int major, minor;
-	if(!version || sscanf_s(version, "%d.%d", &major, &minor) != 2)
+	if(!version ||
+	    (sscanf_s(version, "%d.%d", &major, &minor) != 2 &&
+		 sscanf_s(version, "OpenGL ES %d.%d", &major, &minor) != 2))
 	{
 		DEBUG_WARN_ERR(ERR::LOGIC);	// GL_VERSION invalid
 		return false;

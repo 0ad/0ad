@@ -24,6 +24,7 @@
 #if OS_WIN
 # include "lib/sysdep/os/win/wutil.h"	// wutil_AppdataPath
 #endif
+#include "ps/CLogger.h"
 
 
 Paths::Paths(const CmdLineArgs& args)
@@ -48,7 +49,13 @@ Paths::Paths(const CmdLineArgs& args)
 	}
 	else
 	{
-#if OS_WIN
+#if OS_ANDROID
+		const OsPath appdata = OsPath("/sdcard/0ad/appdata");
+		m_data = appdata/"data"/"";
+		m_config = appdata/"config"/"";
+		m_cache = appdata/"cache"/"";
+		m_logs = appdata/"logs"/"";
+#elif OS_WIN
 		const OsPath appdata = wutil_AppdataPath() / subdirectoryName/"";
 		m_data = appdata/"data"/"";
 		m_config = appdata/"config"/"";
@@ -72,6 +79,10 @@ Paths::Paths(const CmdLineArgs& args)
 
 /*static*/ OsPath Paths::Root(const OsPath& argv0)
 {
+#if OS_ANDROID
+	return OsPath("/sdcard/0ad"); // TODO: this is kind of bogus
+#else
+
 	// get full path to executable
 	OsPath pathname = sys_ExecutablePathname();	// safe, but requires OS-specific implementation
 	if(pathname.empty())	// failed, use argv[0] instead
@@ -84,11 +95,16 @@ Paths::Paths(const CmdLineArgs& args)
 
 	// make sure it's valid
 	if(!FileExists(pathname))
+	{
+		LOGERROR(L"Cannot find executable (expected at '%ls')", pathname.string().c_str());
 		WARN_IF_ERR(StatusFromErrno());
+	}
 
 	for(size_t i = 0; i < 2; i++)	// remove "system/name.exe"
 		pathname = pathname.Parent();
 	return pathname;
+
+#endif
 }
 
 

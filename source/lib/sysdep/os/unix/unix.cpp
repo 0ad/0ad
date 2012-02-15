@@ -65,7 +65,7 @@ void sys_display_msg(const wchar_t* caption, const wchar_t* msg)
 	fprintf(stderr, "%ls: %ls\n", caption, msg); // must not use fwprintf, since stderr is byte-oriented
 }
 
-#if OS_MACOSX
+#if OS_MACOSX || OS_ANDROID
 static ErrorReactionInternal try_gui_display_error(const wchar_t* text, bool manual_break, bool allow_suppress, bool no_continue)
 {
 	// TODO: implement this, in a way that doesn't rely on X11
@@ -204,7 +204,7 @@ static ErrorReactionInternal try_gui_display_error(const wchar_t* text, bool man
 
 ErrorReactionInternal sys_display_error(const wchar_t* text, size_t flags)
 {
-	printf("%ls\n\n", text);
+	debug_printf(L"%ls\n\n", text);
 
 	const bool manual_break   = (flags & DE_MANUAL_BREAK  ) != 0;
 	const bool allow_suppress = (flags & DE_ALLOW_SUPPRESS) != 0;
@@ -215,6 +215,14 @@ ErrorReactionInternal sys_display_error(const wchar_t* text, size_t flags)
 	if (ret != ERI_NOT_IMPLEMENTED)
 		return ret;
 
+#if OS_ANDROID
+	// Android has no easy way to get user input here,
+	// so continue or exit automatically
+	if(no_continue)
+		abort();
+	else
+		return ERI_CONTINUE;
+#else
 	// Otherwise fall back to the terminal-based input
 
 	// Loop until valid input given:
@@ -259,6 +267,7 @@ ErrorReactionInternal sys_display_error(const wchar_t* text, size_t flags)
 			return ERI_EXIT;	// placebo; never reached
 		}
 	}
+#endif
 }
 
 

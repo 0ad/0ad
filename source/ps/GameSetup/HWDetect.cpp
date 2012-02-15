@@ -170,11 +170,13 @@ void RunHardwareDetection()
 
 	scriptInterface.SetProperty(settings.get(), "os_unix", OS_UNIX);
 	scriptInterface.SetProperty(settings.get(), "os_linux", OS_LINUX);
+	scriptInterface.SetProperty(settings.get(), "os_android", OS_ANDROID);
 	scriptInterface.SetProperty(settings.get(), "os_macosx", OS_MACOSX);
 	scriptInterface.SetProperty(settings.get(), "os_win", OS_WIN);
 
 	scriptInterface.SetProperty(settings.get(), "arch_ia32", ARCH_IA32);
 	scriptInterface.SetProperty(settings.get(), "arch_amd64", ARCH_AMD64);
+	scriptInterface.SetProperty(settings.get(), "arch_arm", ARCH_ARM);
 
 #ifdef NDEBUG
 	scriptInterface.SetProperty(settings.get(), "build_debug", 0);

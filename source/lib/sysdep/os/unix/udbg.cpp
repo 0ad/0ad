@@ -36,6 +36,7 @@ symbol lookups and backtraces)
 #include "lib/timer.h"
 #include "lib/sysdep/sysdep.h"
 #include "lib/debug.h"
+#include "lib/utf8.h"
 
 
 Status debug_CaptureContext(void* UNUSED(context))
@@ -87,11 +88,28 @@ void udbg_launch_debugger()
 	}
 }
 
+#if OS_ANDROID
+
+#include <android/log.h>
+
+void debug_puts(const wchar_t* text)
+{
+	// The Android logger doesn't like "%ls" format strings, so convert
+	// the message to UTF-8 before outputting
+	Status err;
+	std::string str = utf8_from_wstring(text, &err);
+	__android_log_print(ANDROID_LOG_WARN, "pyrogenesis", "%s", str.c_str());
+}
+
+#else
+
 void debug_puts(const wchar_t* text)
 {
 	printf("%ls", text); // must not use printf, since stdout is byte-oriented
 	fflush(stdout);
 }
+
+#endif
 
 int debug_IsPointerBogus(const void* UNUSED(p))
 {
