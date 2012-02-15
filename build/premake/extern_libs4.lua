@@ -105,6 +105,8 @@ local function add_default_links(def)
 		if def.win_names then
 			names = def.win_names
 		end
+	elseif _OPTIONS["android"] and def.android_names then
+		names = def.android_names
 	elseif os.is("linux") and def.linux_names then
 		names = def.linux_names
 	elseif os.is("macosx") and def.osx_names then
@@ -215,9 +217,18 @@ extern_lib_defs = {
 				add_default_lib_paths("boost")
 			end
 			add_default_links({
-				unix_names = { "boost_signals-mt", "boost_filesystem-mt", "boost_system-mt" },
-				osx_names = { "boost_signals-mt", "boost_filesystem-mt", "boost_system-mt" },
-				bsd_names = { "boost_signals", "boost_filesystem", "boost_system" },
+				android_names = { "boost_filesystem-gcc-mt", "boost_system-gcc-mt" },
+				unix_names = { "boost_filesystem-mt", "boost_system-mt" },
+				bsd_names = { "boost_filesystem", "boost_system" },
+			})
+		end,
+	},
+	boost_signals = {
+		link_settings = function()
+			add_default_links({
+				android_names = { "boost_signals-gcc-mt" },
+				unix_names = { "boost_signals-mt" },
+				bsd_names = { "boost_signals" },
 			})
 		end,
 	},
@@ -449,8 +460,7 @@ extern_lib_defs = {
 		compile_settings = function()
 			if os.is("windows") then
 				includedirs { libraries_dir .. "sdl/include/SDL" }
-			else
-
+			elseif not _OPTIONS["android"] then
 				-- Support SDL_CONFIG for overriding for the default PATH-based sdl-config
 				sdl_config_path = os.getenv("SDL_CONFIG")
 				if not sdl_config_path then
@@ -465,7 +475,7 @@ extern_lib_defs = {
 		link_settings = function()
 			if os.is("windows") then
 				add_default_lib_paths("sdl")
-			else
+			elseif not _OPTIONS["android"] then
 				sdl_config_path = os.getenv("SDL_CONFIG")
 				if not sdl_config_path then
 					sdl_config_path = "sdl-config"
@@ -477,7 +487,9 @@ extern_lib_defs = {
 	spidermonkey = {
 		compile_settings = function()
 			if _OPTIONS["with-system-mozjs185"] then
-				pkgconfig_cflags("mozjs185")
+				if not _OPTIONS["android"] then
+					pkgconfig_cflags("mozjs185")
+				end
 				defines { "WITH_SYSTEM_MOZJS185" }
 			else
 				if os.is("windows") then
@@ -494,7 +506,11 @@ extern_lib_defs = {
 		end,
 		link_settings = function()
 			if _OPTIONS["with-system-mozjs185"] then
-				pkgconfig_libs("mozjs185")
+				if _OPTIONS["android"] then
+					links { "mozjs185-1.0" }
+				else
+					pkgconfig_libs("mozjs185")
+				end
 			else
 				configuration "Debug"
 			  		links { "mozjs185-ps-debug" }

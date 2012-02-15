@@ -180,7 +180,7 @@ void ShaderModelRenderer::BeginPass(int streamflags)
 }
 
 // Cleanup one rendering pass
-void ShaderModelRenderer::EndPass(int streamflags)
+void ShaderModelRenderer::EndPass(int UNUSED(streamflags))
 {
 	CVertexBuffer::Unbind();
 }

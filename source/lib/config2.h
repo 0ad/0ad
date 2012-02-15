@@ -110,4 +110,9 @@
 # define CONFIG2_AUDIO 1
 #endif
 
+// allow use of NVTT
+#ifndef CONFIG2_NVTT
+# define CONFIG2_NVTT 1
+#endif
+
 #endif	// #ifndef INCLUDED_CONFIG2

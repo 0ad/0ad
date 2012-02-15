@@ -1,19 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <mesh>structural/rome_fc.dae</mesh>
       <props>
-        <prop actor="props/structures/romans/farmstead.xml" attachpoint="props_main"/>
-        <prop actor="props/structures/romans/farmstead_hay.xml" attachpoint="hay"/>
+        <prop actor="props/structures/decals/iber_corral_mud.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/farmstead_wood.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/farmstead_plants.xml" attachpoint="root"/>
       </props>
-      <texture>structural/rome_struct_1.dds</texture>
+      <texture>structural/rome_struct_2.png</texture>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>

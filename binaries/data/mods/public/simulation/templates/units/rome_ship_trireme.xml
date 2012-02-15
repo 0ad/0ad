@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_mechanical_ship_trireme">
+  <Identity>
+    <Civ>rome</Civ>
+    <SpecificName>Triremis Romanum</SpecificName>
+    <Tooltip>Medium Warship.
+Ramming Secondary Attack.</Tooltip>
+    <History>The Trireme was the most common warship of the Mediterranean – it was used by Phoenicians, Greeks, Carthaginians and Romans alike. The Romans were already using these vessels by the beginning of the Punic Wars, and underwent a number of modifications. These remain controversial, but it seems that Triremes remained the mainstay of the fleet for this era.</History>
+    <Icon>units/hele_ship_trireme.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/hellenes/trireme.xml</Actor>
+  </VisualActor>
+</Entity>

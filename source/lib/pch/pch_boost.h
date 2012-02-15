@@ -15,6 +15,10 @@
 # define BOOST_ALL_DYN_LINK
 #endif
 
+// don't compile get_system_category() etc, since we don't use them and they
+// sometimes cause problems when linking
+#define BOOST_SYSTEM_NO_DEPRECATED
+
 // the following boost libraries have been included in TR1 and are
 // thus deemed usable:
 #define BOOST_FILESYSTEM_VERSION 2

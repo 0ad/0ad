@@ -54,7 +54,11 @@ template<class T> class OverrunProtector
 	NONCOPYABLE(OverrunProtector);	// const member
 public:
 	OverrunProtector()
+#if CONFIG2_ALLOCATORS_OVERRUN_PROTECTION
 		: object(new(vm::Allocate(sizeof(T))) T())
+#else
+		: object(new T())
+#endif
 	{
 		lock();
 	}
@@ -62,8 +66,12 @@ public:
 	~OverrunProtector()
 	{
 		unlock();
+#if CONFIG2_ALLOCATORS_OVERRUN_PROTECTION
 		object->~T();	// call dtor (since we used placement new)
 		vm::Free(object, sizeof(T));
+#else
+		delete object;
+#endif
 	}
 
 	T* get() const

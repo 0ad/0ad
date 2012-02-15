@@ -1,0 +1,24 @@
+--- libxml2-2.7.8/Makefile.in	2010-11-04 17:28:16.000000000 +0000
++++ libxml2-2.7.8/Makefile.in	2012-01-29 16:24:38.308456208 +0000
+@@ -36,19 +36,19 @@
+ PRE_UNINSTALL = :
+ POST_UNINSTALL = :
+ build_triplet = @build@
+ host_triplet = @host@
+ noinst_PROGRAMS = testSchemas$(EXEEXT) testRelax$(EXEEXT) \
+ 	testSAX$(EXEEXT) testHTML$(EXEEXT) testXPath$(EXEEXT) \
+ 	testURI$(EXEEXT) testThreads$(EXEEXT) testC14N$(EXEEXT) \
+ 	testAutomata$(EXEEXT) testRegexp$(EXEEXT) testReader$(EXEEXT) \
+-	testapi$(EXEEXT) testModule$(EXEEXT) runtest$(EXEEXT) \
++	testapi$(EXEEXT) testModule$(EXEEXT) \
+ 	runsuite$(EXEEXT) testchar$(EXEEXT) testdict$(EXEEXT) \
+-	runxmlconf$(EXEEXT) testrecurse$(EXEEXT)
++	runxmlconf$(EXEEXT)
+ bin_PROGRAMS = xmllint$(EXEEXT) xmlcatalog$(EXEEXT)
+ subdir = .
+ DIST_COMMON = README $(am__configure_deps) $(srcdir)/Makefile.am \
+ 	$(srcdir)/Makefile.in $(srcdir)/config.h.in \
+ 	$(srcdir)/libxml-2.0-uninstalled.pc.in \
+ 	$(srcdir)/libxml-2.0.pc.in $(srcdir)/libxml.spec.in \
+ 	$(srcdir)/xml2-config.in $(top_srcdir)/configure AUTHORS \
+ 	COPYING ChangeLog INSTALL NEWS TODO acconfig.h config.guess \

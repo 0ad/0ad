@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_dock">
+  <Footprint>
+    <Square width="24.0" depth="28.0"/>
+    <Height>8.0</Height>
+  </Footprint>
   <Identity>
     <Civ>rome</Civ>
     <SpecificName>Portus</SpecificName>
     <History>Being an inland city, Rome was still connected to the port of Ostia through means of the Tiber. Merchant ships from all over the Mediterranean arrived at Ostia, bringing all kinds of luxurious goods. The construction of a reliable harbour was planned by Julius Caesar and carried out by Claudius.</History>
   </Identity>
+  <Obstruction>
+    <Static width="20.0" depth="24.0"/>
+  </Obstruction>
   <TrainingQueue>
     <Entities datatype="tokens">
+      units/rome_ship_bireme
+      units/rome_ship_trireme
       units/rome_ship_quinquereme
     </Entities>
   </TrainingQueue>

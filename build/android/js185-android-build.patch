@@ -1,0 +1,21 @@
+--- js/src/assembler/wtf/Platform.h	2012-02-13 22:50:06.343654548 +0000
++++ js/src/assembler/wtf/Platform.h	2012-02-13 22:50:44.631173638 +0000
+@@ -332,17 +332,17 @@
+ /* Note that for this platform PLATFORM(WIN_OS) is also defined. */
+ #if defined(_WIN32_WCE)
+ #define WTF_PLATFORM_WINCE 1
+ #endif
+ 
+ /* PLATFORM(LINUX) */
+ /* Operating system level dependencies for Linux-like systems that */
+ /* should be used regardless of operating environment */
+-#ifdef __linux__
++#if defined(__linux__) && !defined(ANDROID)
+ #define WTF_PLATFORM_LINUX 1
+ #endif
+ 
+ /* PLATFORM(FREEBSD) */
+ /* Operating system level dependencies for FreeBSD-like systems that */
+ /* should be used regardless of operating environment */
+ #ifdef __FreeBSD__
+ #define WTF_PLATFORM_FREEBSD 1

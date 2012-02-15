@@ -38,8 +38,44 @@ struct WDIR
 	wdirent ent;
 };
 
+#if OS_ANDROID
+
+// The Crystax NDK seems to do weird things with opendir etc.
+// To avoid that, load the symbols directly from the real libc
+// and use them instead.
+
+#include <dlfcn.h>
+
+static void* libc;
+static DIR* (*libc_opendir)(const char*);
+static dirent* (*libc_readdir)(DIR*);
+static int (*libc_closedir)(DIR*);
+
+void init_libc()
+{
+	if (libc)
+		return;
+	libc = dlopen("/system/lib/libc.so", RTLD_LAZY);
+	ENSURE(libc);
+	libc_opendir = (DIR*(*)(const char*))dlsym(libc, "opendir");
+	libc_readdir = (dirent*(*)(DIR*))dlsym(libc, "readdir");
+	libc_closedir = (int(*)(DIR*))dlsym(libc, "closedir");
+	ENSURE(libc_opendir && libc_readdir && libc_closedir);
+}
+
+#define opendir libc_opendir
+#define readdir libc_readdir
+#define closedir libc_closedir
+
+#else
+
+void init_libc() { }
+
+#endif
+
 WDIR* wopendir(const OsPath& path)
 {
+	init_libc();
 	DIR* d = opendir(OsString(path).c_str());
 	if(!d)
 		return 0;

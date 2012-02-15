@@ -7,6 +7,7 @@ newoption { trigger = "icc", description = "Use Intel C++ Compiler (Linux only; 
 newoption { trigger = "outpath", description = "Location for generated project files" }
 newoption { trigger = "without-fam", description = "Disable use of FAM API on Linux" }
 newoption { trigger = "without-audio", description = "Disable use of OpenAL/Ogg/Vorbis APIs" }
+newoption { trigger = "without-nvtt", description = "Disable use of NVTT" }
 newoption { trigger = "without-tests", description = "Disable generation of test projects" }
 newoption { trigger = "without-pch", description = "Disable generation and usage of precompiled headers" }
 newoption { trigger = "with-system-nvtt", description = "Search standard paths for nvidia-texture-tools library, instead of using bundled copy" }
@@ -160,6 +161,10 @@ function project_set_build_flags()
 		defines { "CONFIG2_AUDIO=0" }
 	end
 
+	if _OPTIONS["without-nvtt"] then
+		defines { "CONFIG2_NVTT=0" }
+	end
+
 	-- required for the lowlevel library. must be set from all projects that use it, otherwise it assumes it is
 	-- being used as a DLL (which is currently not the case in 0ad)
 	defines { "LIB_STATIC_LINK" }
@@ -235,6 +240,9 @@ function project_set_build_flags()
 			if arch == "arm" then
 				-- disable warnings about va_list ABI change
 				buildoptions { "-Wno-psabi" }
+
+				-- target Cortex-A9 CPUs with NEON
+				buildoptions { "-mthumb -mcpu=cortex-a9 -mfpu=neon -mfloat-abi=softfp" }
 			end
 
 			if os.is("linux") or os.is("bsd") then
@@ -325,7 +333,9 @@ end
 -- Windows opens a console in the background if it's set to ConsoleApp, which is not what we want.
 -- I didn't check if this setting matters for linux, but WindowedApp works there.
 function get_main_project_target_type()
-	if os.is("macosx") then
+	if _OPTIONS["android"] then
+		return "SharedLib"
+	elseif os.is("macosx") then
 		return "ConsoleApp"
 	else
 		return "WindowedApp"		
@@ -533,12 +543,14 @@ function setup_all_libs ()
 		"renderer"
 	}
 	extern_libs = {
-		"nvtt",
 		"opengl",
 		"sdl",	-- key definitions
 		"spidermonkey",	-- for graphics/scripting
 		"boost"
 	}
+	if not _OPTIONS["without-nvtt"] then
+		table.insert(extern_libs, "nvtt")
+	end
 	setup_static_lib_project("graphics", source_dirs, extern_libs, {})
 
 
@@ -592,12 +604,15 @@ function setup_all_libs ()
 		"opengl",
 		"libpng",
 		"zlib",
-		"openal",
-		"vorbis",
 		"libjpg",
 		"valgrind",
 		"cxxtest",
 	}
+
+        if not _OPTIONS["without-audio"] then
+		table.insert(extern_libs, "openal")
+		table.insert(extern_libs, "vorbis")
+	end
 
 	-- CPU architecture-specific
 	if arch == "amd64" then
@@ -624,7 +639,9 @@ function setup_all_libs ()
 	end
 	
 	if os.is("linux") then
-		if not _OPTIONS["android"] then
+		if _OPTIONS["android"] then
+			table.insert(source_dirs, "lib/sysdep/os/android")
+		else
 			table.insert(source_dirs, "lib/sysdep/os/unix/x")
 		end
 	end
@@ -673,7 +690,6 @@ end
 used_extern_libs = {
 	"opengl",
 	"sdl",
-	"x11",
 
 	"libjpg",
 	"libpng",
@@ -682,9 +698,6 @@ used_extern_libs = {
 	"spidermonkey",
 	"libxml2",
 
-	"openal",
-	"vorbis",
-
 	"boost",
 	"cxxtest",
 	"comsuppw",
@@ -692,9 +705,20 @@ used_extern_libs = {
 	"libcurl",
 
 	"valgrind",
-
-	"nvtt",
 }
+
+if os.is("unix") and not _OPTIONS["android"] then
+	table.insert(used_extern_libs, "x11")
+end
+
+if not _OPTIONS["without-audio"] then
+	table.insert(used_extern_libs, "openal")
+	table.insert(used_extern_libs, "vorbis")
+end
+
+if not _OPTIONS["without-nvtt"] then
+	table.insert(used_extern_libs, "nvtt")
+end
 
 -- Bundles static libs together with main.cpp and builds game executable.
 function setup_main_exe ()
@@ -736,12 +760,18 @@ function setup_main_exe ()
 
 	elseif os.is("linux") or os.is("bsd") then
 
-		-- Libraries
-		links {
-			"fam",
-			-- Utilities
-			"rt",
-		}
+	        if not _OPTIONS["without-fam"] then
+			links { "fam" }
+		end
+
+		if not _OPTIONS["android"] then
+			links { "rt" }
+		end
+
+		if _OPTIONS["android"] then
+			-- NDK's STANDALONE-TOOLCHAIN.html says this is required
+			linkoptions { "-Wl,--fix-cortex-a8" }
+		end
 
 		if os.is("linux") then
 			links {
@@ -757,7 +787,9 @@ function setup_main_exe ()
 
 		-- Threading support
 		buildoptions { "-pthread" }
-		linkoptions { "-pthread" }
+		if not _OPTIONS["android"] then
+			linkoptions { "-pthread" }
+		end
 
 		-- For debug_resolve_symbol
 		configuration "Debug"
@@ -876,6 +908,7 @@ function setup_atlas_projects()
 
 	atlas_extern_libs = {
 		"boost",
+		"boost_signals",
 		"comsuppw",
 		--"ffmpeg", -- disabled for now because it causes too many build difficulties
 		"libxml2",
