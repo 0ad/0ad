@@ -217,9 +217,18 @@ extern_lib_defs = {
 				add_default_lib_paths("boost")
 			end
 			add_default_links({
-				android_names = { "boost_signals-gcc-mt", "boost_filesystem-gcc-mt", "boost_system-gcc-mt" },
-				unix_names = { "boost_signals-mt", "boost_filesystem-mt", "boost_system-mt" },
-				bsd_names = { "boost_signals", "boost_filesystem", "boost_system" },
+				android_names = { "boost_filesystem-gcc-mt", "boost_system-gcc-mt" },
+				unix_names = { "boost_filesystem-mt", "boost_system-mt" },
+				bsd_names = { "boost_filesystem", "boost_system" },
+			})
+		end,
+	},
+	boost_signals = {
+		link_settings = function()
+			add_default_links({
+				android_names = { "boost_signals-gcc-mt" },
+				unix_names = { "boost_signals-mt" },
+				bsd_names = { "boost_signals" },
 			})
 		end,
 	},
@@ -451,8 +460,7 @@ extern_lib_defs = {
 		compile_settings = function()
 			if os.is("windows") then
 				includedirs { libraries_dir .. "sdl/include/SDL" }
-			else
-
+			elseif not _OPTIONS["android"] then
 				-- Support SDL_CONFIG for overriding for the default PATH-based sdl-config
 				sdl_config_path = os.getenv("SDL_CONFIG")
 				if not sdl_config_path then
@@ -467,7 +475,7 @@ extern_lib_defs = {
 		link_settings = function()
 			if os.is("windows") then
 				add_default_lib_paths("sdl")
-			else
+			elseif not _OPTIONS["android"] then
 				sdl_config_path = os.getenv("SDL_CONFIG")
 				if not sdl_config_path then
 					sdl_config_path = "sdl-config"

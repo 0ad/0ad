@@ -908,6 +908,7 @@ function setup_atlas_projects()
 
 	atlas_extern_libs = {
 		"boost",
+		"boost_signals",
 		"comsuppw",
 		--"ffmpeg", -- disabled for now because it causes too many build difficulties
 		"libxml2",

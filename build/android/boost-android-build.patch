@@ -1,0 +1,43 @@
+--- temp/MysticTreeGames-Boost-for-Android-70838fc/build-android.sh	2011-10-16 14:34:17.000000000 +0100
++++ temp/MysticTreeGames-Boost-for-Android-70838fc/build-android.sh	2012-02-15 16:40:59.846370550 +0000
+@@ -104,19 +104,19 @@
+         ;;
+     windows|cygwin)
+         Platfrom=windows-x86
+         ;;
+     *)  # let's play safe here
+         Platfrom=linux-x86
+ esac
+ 
+-CXXPATH=$AndroidNDKRoot/build/prebuilt/$Platfrom/arm-eabi-4.4.0/bin/arm-eabi-g++
+-CXXFLAGS=-I$AndroidNDKRoot/build/platforms/android-8/arch-arm/usr/include
+-TOOLSET=gcc-androidR4
++CXXPATH=$AndroidNDKRoot/bin/arm-linux-androideabi-g++
++CXXFLAGS=-I$AndroidNDKRoot/sysroot/usr/include
++TOOLSET=gcc-androidR5
+ if [ -n "$NDK_R5" ]; then
+ 	CXXPATH=$AndroidNDKRoot/toolchains/arm-linux-androideabi-4.4.3/prebuilt/$Platfrom/bin/arm-linux-androideabi-g++
+ 	CXXFLAGS="-I$AndroidNDKRoot/platforms/android-8/arch-arm/usr/include \
+ 				-I$AndroidNDKRoot/sources/cxx-stl/gnu-libstdc++/include \
+ 				-I$AndroidNDKRoot/sources/cxx-stl/gnu-libstdc++/libs/armeabi/include \
+ 				-I$AndroidNDKRoot/sources/wchar-support/include"
+ 	TOOLSET=gcc-androidR5
+ fi
+@@ -210,16 +210,17 @@
+ # ---------------
+ 
+ # Build boost for android
+ echo "Building boost for android"
+ cd $BOOST_DIR
+ env PATH=`dirname $CXXPATH`:$PATH \
+  AndroidNDKRoot=$AndroidNDKRoot NO_BZIP2=1 \
+  ./bjam toolset=$TOOLSET \
++ --with-filesystem --with-system \
+  cxxflags="$CXXFLAGS" \
+  link=static threading=multi --layout=versioned install 2>&1 | tee -a $PROGDIR/build.log
+ if [ $? != 0 ] ; then
+ 	dump "ERROR: Failed to build boost for android!"
+ 	exit 1
+ fi
+ cd $PROGDIR
+ dump "Done!"
