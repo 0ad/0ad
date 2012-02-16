@@ -16,8 +16,12 @@
 #endif
 
 // don't compile get_system_category() etc, since we don't use them and they
-// sometimes cause problems when linking
-#define BOOST_SYSTEM_NO_DEPRECATED
+// sometimes cause problems when linking.
+// But Filesystem <= 1.43 requires boost::system::posix, so only disable if newer
+#include <boost/version.hpp>
+#if BOOST_VERSION >= 104400
+# define BOOST_SYSTEM_NO_DEPRECATED
+#endif
 
 // the following boost libraries have been included in TR1 and are
 // thus deemed usable:

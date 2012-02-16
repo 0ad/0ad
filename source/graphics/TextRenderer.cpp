@@ -91,6 +91,9 @@ void CTextRenderer::Printf(const wchar_t* fmt, ...)
 	if (ret < 0)
 		debug_printf(L"CTextRenderer::Printf vswprintf failed (buffer size exceeded?) - return value %d, errno %d\n", ret, errno);
 
+	if (ret == 0)
+		return; // empty string; don't bother storing
+
 	SBatch batch;
 	batch.transform = m_Transform;
 	batch.color = m_Color;
@@ -115,6 +118,9 @@ void CTextRenderer::PrintfAt(float x, float y, const wchar_t* fmt, ...)
 	if (ret < 0)
 		debug_printf(L"CTextRenderer::PrintfAt vswprintf failed (buffer size exceeded?) - return value %d, errno %d\n", ret, errno);
 
+	if (ret == 0)
+		return; // empty string; don't bother storing
+
 	CMatrix3D translate;
 	translate.SetTranslation(x, y, 0.0f);
 
@@ -126,17 +132,28 @@ void CTextRenderer::PrintfAt(float x, float y, const wchar_t* fmt, ...)
 	m_Batches.push_back(batch);
 }
 
+struct t2f_v2i
+{
+	t2f_v2i() : u(0), v(0), x(0), y(0) { }
+	float u, v;
+	i16 x, y;
+};
+
 void CTextRenderer::Render()
 {
+	std::vector<u16> indexes;
+	std::vector<t2f_v2i> vertexes;
+
 	for (size_t i = 0; i < m_Batches.size(); ++i)
 	{
 		SBatch& batch = m_Batches[i];
 
-		int unit = m_Shader->GetTextureUnit("tex");
-		if (unit == -1) // just in case the shader doesn't use the sampler
+		if (batch.text.empty()) // avoid zero-length arrays
 			continue;
 
-		batch.font->Bind(unit);
+		const std::map<u16, UnifontGlyphData>& glyphs = batch.font->GetGlyphs();
+
+		m_Shader->BindTexture("tex", batch.font->GetTexture());
 
 		m_Shader->Uniform("transform", batch.transform);
 
@@ -149,7 +166,59 @@ void CTextRenderer::Render()
 
 		m_Shader->Uniform("colorMul", batch.color);
 
-		unifont_render(batch.text.c_str());
+		vertexes.clear();
+		vertexes.resize(batch.text.size()*4);
+
+		indexes.clear();
+		indexes.resize(batch.text.size()*6);
+
+		i16 x = 0;
+		for (size_t i = 0; i < batch.text.size(); ++i)
+		{
+			std::map<u16, UnifontGlyphData>::const_iterator it = glyphs.find(batch.text[i]);
+
+			if (it == glyphs.end())
+				it = glyphs.find(0xFFFD); // Use the missing glyph symbol
+
+			if (it == glyphs.end()) // Missing the missing glyph symbol - give up
+				continue;
+
+			const UnifontGlyphData& g = it->second;
+
+			vertexes[i*4].u = g.u1;
+			vertexes[i*4].v = g.v0;
+			vertexes[i*4].x = g.x1 + x;
+			vertexes[i*4].y = g.y0;
+
+			vertexes[i*4+1].u = g.u0;
+			vertexes[i*4+1].v = g.v0;
+			vertexes[i*4+1].x = g.x0 + x;
+			vertexes[i*4+1].y = g.y0;
+
+			vertexes[i*4+2].u = g.u0;
+			vertexes[i*4+2].v = g.v1;
+			vertexes[i*4+2].x = g.x0 + x;
+			vertexes[i*4+2].y = g.y1;
+
+			vertexes[i*4+3].u = g.u1;
+			vertexes[i*4+3].v = g.v1;
+			vertexes[i*4+3].x = g.x1 + x;
+			vertexes[i*4+3].y = g.y1;
+
+			indexes[i*6+0] = i*4+0;
+			indexes[i*6+1] = i*4+1;
+			indexes[i*6+2] = i*4+2;
+			indexes[i*6+3] = i*4+2;
+			indexes[i*6+4] = i*4+3;
+			indexes[i*6+5] = i*4+0;
+
+			x += g.xadvance;
+		}
+
+		m_Shader->VertexPointer(2, GL_SHORT, sizeof(t2f_v2i), &vertexes[0].x);
+		m_Shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, sizeof(t2f_v2i), &vertexes[0].u);
+
+		glDrawElements(GL_TRIANGLES, indexes.size(), GL_UNSIGNED_SHORT, &indexes[0]);
 	}
 
 	m_Batches.clear();

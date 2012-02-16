@@ -48,11 +48,6 @@ CFont::~CFont()
 	unifont_unload(h);
 }
 
-void CFont::Bind(size_t unit)
-{
-	unifont_bind(h, unit);
-}
-
 bool CFont::HasRGB()
 {
 	return unifont_has_rgb(h);
@@ -76,4 +71,14 @@ int CFont::GetCharacterWidth(wchar_t c)
 void CFont::CalculateStringSize(const CStrW& string, int& width, int& height)
 {
 	unifont_stringsize(h, string.c_str(), width, height);
+}
+
+const std::map<u16, UnifontGlyphData>& CFont::GetGlyphs()
+{
+	return unifont_get_glyphs(h);
+}
+
+Handle CFont::GetTexture()
+{
+	return unifont_get_texture(h);
 }

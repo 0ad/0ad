@@ -1035,7 +1035,6 @@ void CInput::Draw()
 		}
 
 		CFont font(font_name);
-		font.Bind();
 
 		// We'll have to setup clipping manually, since we're doing the rendering manually.
 		CRect cliparea(m_CachedActualSize);

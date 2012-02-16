@@ -110,6 +110,41 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 			break;
 		}
 		break;
+
+	case SDL_FINGERDOWN:
+	case SDL_FINGERUP:
+	case SDL_FINGERMOTION:
+		// Map finger events onto the mouse, for basic testing
+		debug_printf(L"finger %s tid=%lld fid=%lld s=%d x=%d y=%d dx=%d dy=%d p=%d\n",
+			ev->ev.type == SDL_FINGERDOWN ? "down" :
+			ev->ev.type == SDL_FINGERUP ? "up" :
+			ev->ev.type == SDL_FINGERMOTION ? "motion" : "?",
+			ev->ev.tfinger.touchId, ev->ev.tfinger.fingerId, ev->ev.tfinger.state,
+			ev->ev.tfinger.x, ev->ev.tfinger.y, ev->ev.tfinger.dx, ev->ev.tfinger.dy, ev->ev.tfinger.pressure);
+
+		if ((ev->ev.type == SDL_FINGERDOWN || ev->ev.type == SDL_FINGERUP) && ev->ev.tfinger.fingerId == 0)
+		{
+			SDL_Event_ ev2;
+			ev2.ev.type = (ev->ev.type == SDL_FINGERDOWN ? SDL_MOUSEBUTTONDOWN : SDL_MOUSEBUTTONUP);
+			ev2.ev.button.button = SDL_BUTTON_LEFT;
+			ev2.ev.button.state = (ev->ev.type == SDL_FINGERDOWN ? SDL_PRESSED : SDL_RELEASED);
+			ev2.ev.button.x = g_xres * (ev->ev.tfinger.x/32768.0f);
+			ev2.ev.button.y = g_yres * (ev->ev.tfinger.y/32768.0f);
+			SDL_PushEvent(&ev2.ev);
+		}
+		if (ev->ev.type == SDL_FINGERMOTION && ev->ev.tfinger.fingerId == 0)
+		{
+			SDL_Event_ ev2;
+			ev2.ev.type = SDL_MOUSEMOTION;
+			ev2.ev.motion.state = 0;
+			ev2.ev.motion.x = g_xres * (ev->ev.tfinger.x/32768.0f);
+			ev2.ev.motion.y = g_yres * (ev->ev.tfinger.y/32768.0f);
+			ev2.ev.motion.xrel = g_xres * (ev->ev.tfinger.dx/32768.0f);
+			ev2.ev.motion.yrel = g_yres * (ev->ev.tfinger.dy/32768.0f);
+			SDL_PushEvent(&ev2.ev);
+		}
+		break;
+
 #else
 	case SDL_ACTIVEEVENT:
 		if (ev->ev.active.state == SDL_APPMOUSEFOCUS)

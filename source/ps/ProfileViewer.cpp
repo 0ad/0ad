@@ -173,7 +173,6 @@ void CProfileViewer::RenderProfile()
 
 	CStrW font_name = L"mono-stroke-10";
 	CFont font(font_name);
-	font.Bind();
 	int lineSpacing = font.GetLineSpacing();
 
 	// Render background

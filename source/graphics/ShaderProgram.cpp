@@ -398,6 +398,13 @@ public:
 		CStr vertexCode = Preprocess(preprocessor, vertexFile.GetAsString());
 		CStr fragmentCode = Preprocess(preprocessor, fragmentFile.GetAsString());
 
+#if CONFIG2_GLES
+		// Ugly hack to replace desktop GLSL 1.10 with GLSL ES 1.00,
+		// and also to set default float precision for fragment shaders
+		vertexCode.Replace("#version 110\n", "#version 100\n");
+		fragmentCode.Replace("#version 110\n", "#version 100\nprecision highp float;\n");
+#endif
+
 		if (!Compile(m_VertexShader, m_VertexFile, vertexCode))
 			return;
 
