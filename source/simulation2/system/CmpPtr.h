@@ -56,39 +56,44 @@ class CmpPtr
 {
 private:
 	T* m;
+
+	// "Safe Bool Idiom" based on http://www.artima.com/cppsource/safebool.html
+	// to allow "if (cmp)" and "if (!cmp)" etc, without also allowing "int i = cmp"
+	// or "if (cmp1 == cmp2)" etc.
 	typedef void (CmpPtr::*bool_type)() const;
-	void this_type_does_not_support_comparisions() const {}
+	void this_type_does_not_support_comparisons() const {}
 
 public:
 	CmpPtr(const CSimContext& context, entity_id_t ent)
 	{
-		m = static_cast<T*> (QueryInterface(context, ent, T::GetInterfaceId()));
+		m = static_cast<T*>(QueryInterface(context, ent, T::GetInterfaceId()));
 	}
 
 	CmpPtr(const CSimulation2& simulation, entity_id_t ent)
 	{
-		m = static_cast<T*> (QueryInterface(simulation, ent, T::GetInterfaceId()));
+		m = static_cast<T*>(QueryInterface(simulation, ent, T::GetInterfaceId()));
 	}
 
 	T* operator->() { return m; }
 
 	operator bool_type() const
 	{
-		return (m != NULL) ? &CmpPtr::this_type_does_not_support_comparisions : 0;
+		return (m != NULL) ? &CmpPtr::this_type_does_not_support_comparisons : 0;
 	}
 };
 
 template<typename T, typename U>
-	bool operator!=(const CmpPtr<T>& lhs, const U& rhs)
-	{
-		lhs.this_type_does_not_support_comparisions();
-		return false;
-	}
+bool operator!=(const CmpPtr<T>& lhs, const U& rhs)
+{
+	lhs.this_type_does_not_support_comparisons();
+	return false;
+}
+
 template<typename T, typename U>
-	bool operator==(const CmpPtr<T>& lhs, const U& rhs)
-	{
-		lhs.this_type_does_not_support_comparisions();
-		return false;
-	}
+bool operator==(const CmpPtr<T>& lhs, const U& rhs)
+{
+	lhs.this_type_does_not_support_comparisons();
+	return false;
+}
 
 #endif // INCLUDED_CMPPTR

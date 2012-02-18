@@ -1,23 +1,44 @@
-COMMAND LINE OPTIONS:
+COMMAND LINE OPTIONS
 
+Basic gameplay:
 -autostart			load a map instead of showing main menu (see below)
--buildarchive		unused?
--conf:KEY=VALUE		set a config value (overrides the contents of system.cfg)
--entgraph			unused?
--g=F				set the gamma correction to 'F' (default 1.0)
--listfiles			unused?
+-editor				launch the Atlas scenario editor
 -mod NAME			start the game using NAME mod
+-quickstart			load faster (disables audio and some system info logging)
+
+Autostart:
+-autostart=NAME					map NAME for scenario, or rms name for random map
+-autostart-ai=PLAYER:AI			adds named AI to the given PLAYER (e.g. 2:testbot)
+Multiplayer:
+-autostart-playername=NAME		multiplayer local player NAME (default 'anonymous')
+-autostart-host					multiplayer host mode
+-autostart-players=NUMBER		multiplayer host: NUMBER of client players (default 2)
+-autostart-client				multiplayer client mode
+-autostart-ip=IP				multiplayer client: connect to this host IP
+Random maps only:
+-autostart-random				random map
+-autostart-random=SEED			random map with SEED value (default 0, use -1 for random)
+-autostart-size=TILES			random map SIZE in tiles (default 192)
+-autostart-players=NUMBER		NUMBER of players on random map
+
+Configuration:
+-conf:KEY=VALUE		set a config value (overrides the contents of system.cfg)
+-g=F				set the gamma correction to 'F' (default 1.0)
 -nosound			disable audio
 -onlyPublicFiles	force game to use only the public (default) mod
--profile=NAME		?
--quickstart			load faster (disables audio and some system info logging)
 -shadows			enable shadows
 -vsync				enable VSync, i.e. lock FPS to monitor refresh rate
 -xres=N				set screen X resolution to 'N'
 -yres=N				set screen Y resolution to 'N'
 
--editor				launch the Atlas scenario editor
-
+Advanced / diagnostic:
+-dumpSchema			creates a file entity.rng in the working directory, containing
+					  complete entity XML schema, used by various analysis tools
+-entgraph			(disabled)
+-listfiles			(disabled)
+-profile=NAME		(disabled)
+-replay=PATH		non-visual replay of previous game, used for analysis purposes
+					  PATH is system path to commands.txt containing simulation log
 
 Windows-specific:
 -wQpcTscSafe		allow timing via QueryPerformanceCounter despite the fact
@@ -35,16 +56,8 @@ Windows-specific:
 					timer backends. specify this if problems are observed with
 					one of the abovementioned subsystems.
 
+Archive builder:
+-archivebuild=PATH				system PATH of the base directory containing mod data to be archived/precached
+-archivebuild-output=PATH		system PATH to output of the resulting .zip archive (use with archivebuild)
+-buildarchive					(disabled)
 
-Autostart options:
--autostart=NAME					map name for scenario, or rms name for random map
--autostart-playername=NAME		multiplayer player name
--autostart-host					multiplayer host mode
--autostart-players=NUMBER		number of players
--autostart-client				multiplayer client mode
--autostart-ip=IP				multiplayer connect to given IP
--autostart-ai=PLAYER:AI			adds named AI to the given player (such as 2:testbot)
-Random maps only:
--autostart-random				random map
--autostart-random=SEED			random map with seed value (default 0, use -1 for random)
--autostart-size=TILES			random map size in tiles (default 192)

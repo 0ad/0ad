@@ -3,8 +3,8 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>sunny</SkySet>
-		<SunColour r="0.778814" g="0.758211" b="0.675797"/>
+		<SkySet>sunny 1</SkySet>
+		<SunColour r="0.776471" g="0.756863" b="0.67451"/>
 		<SunElevation angle="0.877437"/>
 		<SunRotation angle="-0.824594"/>
 		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
@@ -16,17 +16,17 @@
 				<Height>19.7246</Height>
 				<Shininess>0</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.199219</Murkiness>
-				<Tint r="0.568627" g="0.517647" b="0.423529"/>
+				<Murkiness>1</Murkiness>
+				<Tint r="0.564706" g="0.513726" b="0.419608"/>
 				<ReflectionTint r="0.611765" g="0.447059" b="0.219608"/>
 				<ReflectionTintStrength>0.199219</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="226.919" y="94.5928" z="602.538"/>
-		<Rotation angle="0.0197465"/>
-		<Declination angle="0.523599"/>
+		<Position x="322.034" y="134.957" z="324.278"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -68,7 +68,7 @@
 		<Entity uid="13">
 			<Template>structures/hele_civil_centre</Template>
 			<Player>3</Player>
-			<Position x="190.44742" z="199.42658"/>
+			<Position x="190.39187" z="199.30643"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="14">
@@ -1553,47 +1553,11 @@
 			<Position x="315.5181" z="613.05567"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="307">
-			<Template>gaia/geology_stone_desert_small</Template>
-			<Player>0</Player>
-			<Position x="261.29706" z="479.48414"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="308">
 			<Template>gaia/geology_stone_desert_small</Template>
 			<Player>0</Player>
 			<Position x="261.16474" z="461.10755"/>
 			<Orientation y="0.1394"/>
-		</Entity>
-		<Entity uid="309">
-			<Template>gaia/geology_stone_desert_small</Template>
-			<Player>0</Player>
-			<Position x="293.98337" z="487.27375"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="310">
-			<Template>gaia/geology_stone_desert_small</Template>
-			<Player>0</Player>
-			<Position x="308.84275" z="502.84375"/>
-			<Orientation y="0.23302"/>
-		</Entity>
-		<Entity uid="311">
-			<Template>gaia/geology_stone_desert_small</Template>
-			<Player>0</Player>
-			<Position x="317.9033" z="516.5417"/>
-			<Orientation y="-2.56801"/>
-		</Entity>
-		<Entity uid="312">
-			<Template>gaia/geology_stone_desert_small</Template>
-			<Player>0</Player>
-			<Position x="281.116" z="473.11161"/>
-			<Orientation y="0.10383"/>
-		</Entity>
-		<Entity uid="314">
-			<Template>gaia/geology_stone_desert_small</Template>
-			<Player>0</Player>
-			<Position x="273.9654" z="491.53241"/>
-			<Orientation y="-1.07503"/>
 		</Entity>
 		<Entity uid="322">
 			<Template>gaia/fauna_elephant_african_bush</Template>
@@ -10466,11 +10430,6 @@
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="312.39737" z="499.51246"/>
 			<Orientation y="-2.427"/>
-		</Entity>
-		<Entity uid="2199">
-			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="305.31562" z="493.28577"/>
-			<Orientation y="-2.37514"/>
 		</Entity>
 		<Entity uid="2200">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -20826,6 +20785,30 @@
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
 			<Position x="143.89502" z="753.48383"/>
 			<Orientation y="1.58671"/>
+		</Entity>
+		<Entity uid="4359">
+			<Template>gaia/geology_stonemine_desert_quarry</Template>
+			<Player>0</Player>
+			<Position x="797.92493" z="403.67624"/>
+			<Orientation y="-1.23061"/>
+		</Entity>
+		<Entity uid="4360">
+			<Template>gaia/geology_stonemine_desert_quarry</Template>
+			<Player>0</Player>
+			<Position x="906.21027" z="627.91175"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4361">
+			<Template>gaia/geology_stonemine_desert_quarry</Template>
+			<Player>0</Player>
+			<Position x="974.72291" z="47.4256"/>
+			<Orientation y="0.6437"/>
+		</Entity>
+		<Entity uid="4362">
+			<Template>gaia/geology_stonemine_desert_quarry</Template>
+			<Player>0</Player>
+			<Position x="756.62409" z="997.18042"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
