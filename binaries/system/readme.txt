@@ -37,8 +37,10 @@ Advanced / diagnostic:
 -entgraph			(disabled)
 -listfiles			(disabled)
 -profile=NAME		(disabled)
--replay=PATH		non-visual replay of previous game, used for analysis purposes
+-replay=PATH		non-visual replay of a previous game, used for analysis purposes
 					  PATH is system path to commands.txt containing simulation log
+-writableRoot		store runtime game data in root data directory
+					  (only use if you have write permissions on that directory)
 
 Windows-specific:
 -wQpcTscSafe		allow timing via QueryPerformanceCounter despite the fact
