@@ -4,19 +4,19 @@
     <texture>art/textures/particles/dust_256a.png</texture>
     <blend mode="over"/>
 
-    <constant name="emissionrate" value="40.0"/>
-    <uniform name="lifetime" min="20.0" max="30.0"/>
+    <constant name="emissionrate" value="50.0"/>
+    <uniform name="lifetime" min="10.0" max="25.0"/>
 
     <uniform name="position.x" min="-14.0" max="14.0"/>
     <uniform name="position.z" min="-14.0" max="14.0"/>
-    <constant name="position.y" value="2.0"/>
+    <constant name="position.y" value="4.0"/>
 
     <uniform name="angle" min="-3.14" max="3.14"/>
 
-    <uniform name="velocity.x" min="-1.5" max="1.0"/>
+    <uniform name="velocity.x" min="-1.0" max="1.0"/>
     <uniform name="velocity.y" min="1.5" max="2.0"/>
-    <uniform name="velocity.z" min="-1.5" max="1.0"/>
-    <uniform name="velocity.angle" min="-2.0" max="3.0"/>
+    <uniform name="velocity.z" min="-1.0" max="1.0"/>
+    <uniform name="velocity.angle" min="-1.5" max="1.5"/>
 
     <uniform name="size" min="5.0" max="17.5"/>
 
