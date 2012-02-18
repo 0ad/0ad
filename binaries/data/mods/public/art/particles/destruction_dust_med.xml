@@ -4,8 +4,8 @@
     <texture>art/textures/particles/dust_256a.png</texture>
     <blend mode="over"/>
 
-    <constant name="emissionrate" value="50.0"/>
-    <uniform name="lifetime" min="10.0" max="25.0"/>
+    <constant name="emissionrate" value="75.0"/>
+    <uniform name="lifetime" min="5.0" max="10.0"/>
 
     <uniform name="position.x" min="-14.0" max="14.0"/>
     <uniform name="position.z" min="-14.0" max="14.0"/>
