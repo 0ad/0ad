@@ -14,9 +14,6 @@
       <wood>300</wood>
     </Resources>
   </Cost>
-  <Decay>
-    <DelayTime>1.5</DelayTime>
-  </Decay>
   <Footprint>
     <Square width="19.0" depth="19.0"/>
     <Height>5.0</Height>
@@ -32,7 +29,7 @@
   </Health>
   <Identity>
     <GenericName>Barracks</GenericName>
-    <Tooltip>Train Citizen-Soldiers. Garrison: 10.</Tooltip>
+    <Tooltip>Train citizen-soldiers. Research military improvements. Garrison: 10.</Tooltip>
     <Classes datatype="tokens">Town</Classes>
     <Icon>structures/barracks.png</Icon>
   </Identity>

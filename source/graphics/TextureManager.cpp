@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -276,6 +276,7 @@ public:
 
 			// No source file or archive cache was found, so we can't load the
 			// real texture at all - return the error texture instead
+			LOGERROR(L"CCacheLoader failed to find archived or source file for: \"%ls\"", texture->m_Properties.m_Path.string().c_str());
 			texture->SetHandle(m_ErrorHandle);
 			return true;
 		}

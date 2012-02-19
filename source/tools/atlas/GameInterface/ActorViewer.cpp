@@ -37,6 +37,7 @@
 #include "graphics/UnitManager.h"
 #include "graphics/Overlay.h"
 #include "maths/MathUtil.h"
+#include "ps/Filesystem.h"
 #include "ps/Font.h"
 #include "ps/CLogger.h"
 #include "ps/GameSetup/Config.h"
@@ -61,7 +62,7 @@ public:
 	ActorViewerImpl() :
 		Entity(INVALID_ENTITY),
 		Terrain(),
-		ColladaManager(),
+		ColladaManager(g_VFS),
 		MeshManager(ColladaManager),
 		SkeletonAnimManager(ColladaManager),
 		UnitManager(),

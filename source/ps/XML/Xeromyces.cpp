@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -102,6 +102,7 @@ PSRETURN CXeromyces::Load(const PIVFS& vfs, const VfsPath& filename)
 
 		// No source file or archive cache was found, so we can't load the
 		// XML file at all
+		LOGERROR(L"CCacheLoader failed to find archived or source file for: \"%ls\"", filename.string().c_str());
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 

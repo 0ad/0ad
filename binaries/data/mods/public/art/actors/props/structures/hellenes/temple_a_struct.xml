@@ -7,5 +7,18 @@
       <texture>structural/hele_struct.dds</texture>
     </variant>
   </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_hele.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+    <variant name="death">
+      <props>
+        <prop attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
   <material>player_trans.xml</material>
 </actor>

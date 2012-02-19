@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -102,7 +102,7 @@ public:
 	void setUp()
 	{
 		initVfs();
-		colladaManager = new CColladaManager();
+		colladaManager = new CColladaManager(g_VFS);
 		meshManager = new CMeshManager(*colladaManager);
 	}
 
@@ -166,8 +166,8 @@ public:
 		copyFile(srcDAE, testDAE);
 		copyFile(srcSkeletonDefs, testSkeletonDefs);
 
-		VfsPath daeName1 = colladaManager->GetLoadableFilename(testBase, CColladaManager::PMD);
-		VfsPath daeName2 = colladaManager->GetLoadableFilename(testBase, CColladaManager::PMD);
+		VfsPath daeName1 = colladaManager->GetLoadablePath(testBase, CColladaManager::PMD);
+		VfsPath daeName2 = colladaManager->GetLoadablePath(testBase, CColladaManager::PMD);
 		TS_ASSERT(!daeName1.empty());
 		TS_ASSERT_PATH_EQUALS(daeName1, daeName2);
 		// TODO: it'd be nice to test that it really isn't doing the DAE->PMD

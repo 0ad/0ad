@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,10 +41,13 @@ Status CCacheLoader::TryLoadingCached(const VfsPath& sourcePath, const MD5& init
 	}
 
 	// Fail if no source or archive cache
+	// Note: this is not always an error case, because for instance there
+	//	are some uncached .pmd/psa files in the game with no source .dae.
+	//	This test fails (correctly) in that  valid situation, so it seems
+	//	best to leave the error handling to the caller.
 	Status err = m_VFS->GetFileInfo(sourcePath, NULL);
 	if (err < 0)
 	{
-		LOGERROR(L"Failed to find file: \"%ls\"", sourcePath.string().c_str());
 		return err;
 	}
 

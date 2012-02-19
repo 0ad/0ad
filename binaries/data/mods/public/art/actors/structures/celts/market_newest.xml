@@ -14,4 +14,18 @@
       <texture>structural/celt_struct_1.dds</texture>
     </variant>
   </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/market_newest_prop_1.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/market_newest_props_new.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/market_newest_props_wooden.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
 </actor>

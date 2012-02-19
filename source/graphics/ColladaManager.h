@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,17 +18,18 @@
 #ifndef INCLUDED_COLLADAMANAGER
 #define INCLUDED_COLLADAMANAGER
 
-#include "lib/file/vfs/vfs_path.h"
+#include "lib/file/vfs/vfs.h"
 
 class CStr8;
 class CColladaManagerImpl;
+class MD5;
 
 class CColladaManager
 {
 public:
 	enum FileType { PMD, PSA };
 
-	CColladaManager();
+	CColladaManager(const PIVFS& vfs);
 	~CColladaManager();
 
 	/**
@@ -40,12 +41,36 @@ public:
 	 * @param type FileType, .pmd or .psa
 	 *
 	 * @return full VFS path (including extension) of file to load; or empty
-	 * string if there was a problem and it could not be loaded.
+	 * string if there was a problem and it could not be loaded. Doesn't knowingly
+	 * return an invalid path.
 	 */
-	VfsPath GetLoadableFilename(const VfsPath& pathnameNoExtension, FileType type);
+	VfsPath GetLoadablePath(const VfsPath& pathnameNoExtension, FileType type);
+
+	/**
+	 * Converts DAE to archive cached .pmd/psa and outputs the resulting path
+	 * (used by archive builder)
+	 *
+	 * @param sourcePath[in] path of the .dae to load
+	 * @param type[in] FileType, .pmd or .psa
+	 * @param archiveCachePath[out] output path of the cached file
+	 *
+	 * @return true if COLLADA converter completed successfully; or false if it failed
+	 */
+	bool GenerateCachedFile(const VfsPath& sourcePath, FileType type, VfsPath& archiveCachePath);
 
 private:
+	/**
+	 * Creates MD5 hash key from skeletons.xml info and COLLADA converter version,
+	 * used to invalidate cached .pmd/psas
+	 *
+	 * @param hash[out] resulting MD5 hash
+	 * @param version[out] version passed to CCacheLoader, used if code change should force
+	 *		  cache invalidation
+	 */
+	void PrepareCacheKey(MD5& hash, u32& version);
+
 	CColladaManagerImpl* m;
+	PIVFS m_VFS;
 };
 
 #endif // INCLUDED_COLLADAMANAGER
