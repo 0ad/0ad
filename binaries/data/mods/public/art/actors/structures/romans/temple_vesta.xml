@@ -2,12 +2,29 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="100" name="vesta">
       <mesh>structural/rome_vesta.dae</mesh>
       <props>
-        <prop actor="props/structures/romans/temple.xml" attachpoint="root"/>
+        <prop actor="particle/flame_jav.xml" attachpoint="fire"/>
+        <prop actor="particle/smoke_small_light.xml" attachpoint="smoke"/>
       </props>
-      <texture>structural/rome_struct_1.dds</texture>
+      <texture>structural/rome_struct.png</texture>
     </variant>
   </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_rome.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
 </actor>
