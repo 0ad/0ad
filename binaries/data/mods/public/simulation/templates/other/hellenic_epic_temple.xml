@@ -1,32 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="structures/hele_temple">
   <Cost>
-    <BuildTime>300</BuildTime>
+    <BuildTime>500</BuildTime>
     <Resources>
       <food>0</food>
       <wood>0</wood>
-      <stone>500</stone>
+      <stone>1000</stone>
       <metal>500</metal>
     </Resources>
   </Cost>
+  <Decay>
+    <Inactive/>
+    <DelayTime>0.0</DelayTime>
+    <SinkRate>2.0</SinkRate>
+    <SinkAccel>9.0</SinkAccel>
+  </Decay>
   <Footprint>
     <Square width="28.0" depth="58.0"/>
     <Height>12.0</Height>
   </Footprint>
+  <GarrisonHolder>
+    <Max>30</Max>
+  </GarrisonHolder>
   <Health>
     <Max>5000</Max>
   </Health>
   <Identity>
     <Civ>hele</Civ>
     <GenericName>Epic Temple</GenericName>
-    <SpecificName>Naos</SpecificName>
+    <SpecificName>Naos Parthenos</SpecificName>
     <History>The Hellenes built marvelous temples in order to honour their polytheistic pantheon. While all gods were venerated, a specific patron deity was supposed to watch over each polis.</History>
+    <Tooltip>Train healers. Garrison up to 30 units to heal them at a quick rate.</Tooltip>
   </Identity>
   <Loot>
     <xp>50</xp>
     <food>0</food>
     <wood>0</wood>
-    <stone>500</stone>
+    <stone>200</stone>
     <metal>500</metal>
   </Loot>
   <Obstruction>

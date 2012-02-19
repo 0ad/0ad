@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2010-10-25T01:38:11Z</created>
-    <modified>2010-10-25T01:38:11Z</modified>
+    <created>2012-02-19T02:12:03Z</created>
+    <modified>2012-02-19T02:12:03Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -17,10 +17,10 @@
   </asset>
   <library_images>
     <image id="Map__301-image" name="Map__301">
-      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\Meshes\meshes\structural\hellenes\Map__50_Mix.tga</init_from>
+      <init_from>file://C:\Users\Michael\Wildfire Games\Art SVN\art\meshes\structural\hellenes\Map__50_Mix.tga</init_from>
     </image>
     <image id="Map__302-image" name="Map__302">
-      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\props\hele_wonder_rooftile.png</init_from>
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\props\hele_wonder_rooftile.png</init_from>
     </image>
   </library_images>
   <library_materials>
@@ -86,26 +86,26 @@
       <mesh>
         <source id="par_roof_1_-lib-Position">
           <float_array id="par_roof_1_-lib-Position-array" count="60">
-1.229720 -2.639795 -0.200250
-1.229720 2.639626 -0.200250
-1.229720 -2.639795 -0.143840
-1.229720 2.639626 -0.143840
--0.000003 -0.879983 0.200250
-1.229720 -0.879922 -0.143840
-1.229720 0.879930 -0.143840
-1.229720 -0.879922 -0.200250
-1.229720 0.879930 -0.200250
--1.229720 0.879930 -0.200250
--1.229720 -0.879922 -0.200250
--1.229720 0.879930 -0.143840
--1.229720 -0.879922 -0.143840
-0.000000 0.879983 0.200250
-0.000000 -2.639950 0.200250
-0.000000 2.639950 0.200250
--1.229720 2.639626 -0.143840
--1.229720 -2.639795 -0.143840
--1.229720 2.639626 -0.200250
--1.229720 -2.639795 -0.200250
+1.230797 -2.640428 1.569476
+1.230797 2.638993 1.569476
+1.230797 -2.640428 1.625885
+1.230797 2.638993 1.625885
+0.001074 -0.880616 1.969976
+1.230797 -0.880555 1.625885
+1.230797 0.879297 1.625885
+1.230797 -0.880555 1.569476
+1.230797 0.879297 1.569476
+-1.228643 0.879297 1.569476
+-1.228643 -0.880555 1.569476
+-1.228643 0.879297 1.625885
+-1.228643 -0.880555 1.625885
+0.001077 0.879350 1.969976
+0.001077 -2.640583 1.969976
+0.001077 2.639317 1.969976
+-1.228643 2.638993 1.625885
+-1.228643 -2.640428 1.625885
+-1.228643 2.638993 1.569476
+-1.228643 -2.640428 1.569476
 </float_array>
           <technique_common>
             <accessor source="#par_roof_1_-lib-Position-array" count="20" stride="3">
@@ -267,20 +267,14 @@
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
       <node id="par_roof_1_" name="par_roof_1_">
-        <translate sid="translate">0.013965 -0.006122 -0.016809</translate>
-        <scale sid="scale">9.862178 9.862178 9.862178</scale>
-        <node id="par_roof_1_-Pivot" name="par_roof_1_-Pivot">
-          <translate>0.000000 0.000000 1.771430</translate>
-          <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
-          <instance_geometry url="#par_roof_1_-lib">
-            <bind_material>
-              <technique_common>
-                <instance_material symbol="Map__302-Material" target="#Map__302-Material"/>
-                <instance_material symbol="_08___Default" target="#_08___Default"/>
-              </technique_common>
-            </bind_material>
-          </instance_geometry>
-        </node>
+        <matrix sid="matrix">9.862178 0.000000 0.000000 0.000000 0.000000 9.862178 0.000000 0.000000 0.000000 0.000000 9.862178 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#par_roof_1_-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_08___Default" target="#_08___Default"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
       </node>
     </visual_scene>
   </library_visual_scenes>

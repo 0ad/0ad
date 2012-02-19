@@ -17,14 +17,14 @@
 				<Shininess>1.46484</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.800781</Murkiness>
-				<Tint r="0.411765" g="0.470588" b="0.372549"/>
-				<ReflectionTint r="0.396078" g="0.47451" b="0.654902"/>
+				<Tint r="0.411765" g="0.466667" b="0.368627"/>
+				<ReflectionTint r="0.392157" g="0.47451" b="0.654902"/>
 				<ReflectionTintStrength>0.199219</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="522.533" y="104.608" z="398.972"/>
+		<Position x="709.973" y="115.813" z="584.959"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -190,12 +190,6 @@
 			<Position x="418.30146" z="774.98096"/>
 			<Orientation y="0.43082"/>
 		</Entity>
-		<Entity uid="36">
-			<Template>gaia/geology_stonemine_desert_quarry</Template>
-			<Player>0</Player>
-			<Position x="161.76447" z="793.7226"/>
-			<Orientation y="-1.645"/>
-		</Entity>
 		<Entity uid="37">
 			<Template>gaia/geology_stonemine_desert_quarry</Template>
 			<Player>0</Player>
@@ -210,7 +204,7 @@
 		</Entity>
 		<Entity uid="42">
 			<Template>actor|particle/blowing_sand.xml</Template>
-			<Position x="103.75243" z="413.07911"/>
+			<Position x="12.61115" z="51.33"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="43">
@@ -5460,12 +5454,12 @@
 		</Entity>
 		<Entity uid="953">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="155.18212" z="801.62671"/>
+			<Position x="158.11037" z="711.89136"/>
 			<Orientation y="2.19744"/>
 		</Entity>
 		<Entity uid="954">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="165.70287" z="794.51319"/>
+			<Position x="164.76413" z="777.2917"/>
 			<Orientation y="2.28147"/>
 		</Entity>
 		<Entity uid="955">
@@ -5475,7 +5469,7 @@
 		</Entity>
 		<Entity uid="956">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="176.76224" z="794.66028"/>
+			<Position x="171.24909" z="705.86207"/>
 			<Orientation y="-2.24715"/>
 		</Entity>
 		<Entity uid="957">
@@ -6297,14 +6291,14 @@
 		<Entity uid="1123">
 			<Template>other/obelisk</Template>
 			<Player>0</Player>
-			<Position x="147.88285" z="681.50416"/>
-			<Orientation y="2.35621"/>
+			<Position x="150.59145" z="701.17505"/>
+			<Orientation y="2.02854"/>
 		</Entity>
 		<Entity uid="1124">
 			<Template>other/obelisk</Template>
 			<Player>0</Player>
-			<Position x="822.1905" z="409.22168"/>
-			<Orientation y="2.35621"/>
+			<Position x="135.30622" z="709.41272"/>
+			<Orientation y="2.0511"/>
 		</Entity>
 		<Entity uid="1135">
 			<Template>actor|flora/trees/palm_cretan_date_patch.xml</Template>
@@ -6585,6 +6579,24 @@
 			<Template>units/pers_kardakes_hoplite</Template>
 			<Player>2</Player>
 			<Position x="323.46488" z="237.99115"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1185">
+			<Template>other/pyramid_great</Template>
+			<Player>0</Player>
+			<Position x="161.11092" z="745.37836"/>
+			<Orientation y="-2.67196"/>
+		</Entity>
+		<Entity uid="1186">
+			<Template>structures/rome_arch</Template>
+			<Player>1</Player>
+			<Position x="756.88874" z="773.92792"/>
+			<Orientation y="2.50576"/>
+		</Entity>
+		<Entity uid="1187">
+			<Template>other/pers_apartment_block</Template>
+			<Player>2</Player>
+			<Position x="257.60026" z="224.05524"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>

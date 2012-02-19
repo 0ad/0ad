@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Temple B">
+      <mesh>structural/hele_temple_b_base.dae</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/temple_b_columns.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/temple_b_struct.xml" attachpoint="root"/>
+      </props>
+      <texture>props/hele_tile_c.dds</texture>
+    </variant>
+  </group>
+</actor>
