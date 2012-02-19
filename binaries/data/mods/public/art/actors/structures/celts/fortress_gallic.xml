@@ -28,5 +28,20 @@
         <prop actor="props/special/common/garrison_flag_celt.xml" attachpoint="garrisoned"/>
       </props>
     </variant>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/barracks_color.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/fortress_a2.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/fortress_a4.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/fortress_a3.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/fortress_a1.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/fortress_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/fortress_a5.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/celt_fortress.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
 </actor>
