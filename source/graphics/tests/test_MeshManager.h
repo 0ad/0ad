@@ -126,6 +126,7 @@ public:
 	void test_load_pmd_with_extension()
 	{
 		copyFile(srcPMD, testPMD);
+		copyFile(srcSkeletonDefs, testSkeletonDefs);
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testPMD);
 		TS_ASSERT(modeldef);
@@ -135,6 +136,7 @@ public:
 	void test_load_pmd_without_extension()
 	{
 		copyFile(srcPMD, testPMD);
+		copyFile(srcSkeletonDefs, testSkeletonDefs);
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testBase);
 		TS_ASSERT(modeldef);
@@ -144,6 +146,7 @@ public:
 	void test_caching()
 	{
 		copyFile(srcPMD, testPMD);
+		copyFile(srcSkeletonDefs, testSkeletonDefs);
 
 		CModelDefPtr modeldef1 = meshManager->GetMesh(testPMD);
 		CModelDefPtr modeldef2 = meshManager->GetMesh(testPMD);
@@ -209,6 +212,7 @@ public:
 	{
 		TestLogger logger;
 
+		copyFile(srcSkeletonDefs, testSkeletonDefs);
 		CModelDefPtr modeldef = meshManager->GetMesh(testPMD);
 		TS_ASSERT(! modeldef);
 	}
@@ -217,6 +221,7 @@ public:
 	{
 		TestLogger logger;
 
+		copyFile(srcSkeletonDefs, testSkeletonDefs);
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
 		TS_ASSERT(! modeldef);
 	}
