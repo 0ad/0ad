@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,8 @@
 
 #include "graphics/ModelDef.h"
 #include "lib/fnv_hash.h"
+#include "maths/MD5.h"
+#include "ps/CacheLoader.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/DllLoader.h"
@@ -62,8 +64,8 @@ class CColladaManagerImpl
 	int (*convert_dae_to_psa)(const char* dae, Collada::OutputFn psa_writer, void* cb_data);
 
 public:
-	CColladaManagerImpl()
-		: dll("Collada")
+	CColladaManagerImpl(const PIVFS& vfs)
+		: dll("Collada"), m_VFS(vfs)
 	{
 	}
 
@@ -109,7 +111,7 @@ public:
 			set_logger(ColladaLog, static_cast<void*>(&skeletonPath));
 
 			CVFSFile skeletonFile;
-			if (skeletonFile.Load(g_VFS, skeletonPath) != PSRETURN_OK)
+			if (skeletonFile.Load(m_VFS, skeletonPath) != PSRETURN_OK)
 			{
 				LOGERROR(L"Failed to read skeleton definitions");
 				dll.Unload();
@@ -123,10 +125,6 @@ public:
 				dll.Unload();
 				return false;
 			}
-
-			// TODO: the cached PMD/PSA files should probably be invalidated when
-			// the skeleton definition file is changed, else people will get confused
-			// as to why it's not picking up their changes
 		}
 
 		// Set the filename for the logger to report
@@ -137,17 +135,24 @@ public:
 		CStr daeData;
 		{
 			CVFSFile daeFile;
-			if (daeFile.Load(g_VFS, daeFilename) != PSRETURN_OK)
+			if (daeFile.Load(m_VFS, daeFilename) != PSRETURN_OK)
 				return false;
 			daeData = daeFile.GetAsString();
 		}
 
 		// Do the conversion into a memory buffer
+		// We need to check the result, as archive builder needs to know if the source dae
+		//	was sucessfully converted to .pmd/psa
+		int result = -1;
 		WriteBuffer writeBuffer;
 		switch (type)
 		{
-		case CColladaManager::PMD: convert_dae_to_pmd(daeData.c_str(), ColladaOutput, &writeBuffer); break;
-		case CColladaManager::PSA: convert_dae_to_psa(daeData.c_str(), ColladaOutput, &writeBuffer); break;
+		case CColladaManager::PMD:
+			result = convert_dae_to_pmd(daeData.c_str(), ColladaOutput, &writeBuffer);
+			break;
+		case CColladaManager::PSA:
+			result = convert_dae_to_psa(daeData.c_str(), ColladaOutput, &writeBuffer);
+			break;
 		}
 
 		// don't create zero-length files (as happens in test_invalid_dae when
@@ -155,16 +160,19 @@ public:
 		// logic warns when asked to load such.
 		if (writeBuffer.Size())
 		{
-			Status ret = g_VFS->CreateFile(pmdFilename, writeBuffer.Data(), writeBuffer.Size());
+			Status ret = m_VFS->CreateFile(pmdFilename, writeBuffer.Data(), writeBuffer.Size());
 			ENSURE(ret == INFO::OK);
 		}
 
-		return true;
+		return (result == 0);
 	}
+
+private:
+	PIVFS m_VFS;
 };
 
-CColladaManager::CColladaManager()
-: m(new CColladaManagerImpl())
+CColladaManager::CColladaManager(const PIVFS& vfs)
+: m(new CColladaManagerImpl(vfs)), m_VFS(vfs)
 {
 }
 
@@ -173,7 +181,33 @@ CColladaManager::~CColladaManager()
 	delete m;
 }
 
-VfsPath CColladaManager::GetLoadableFilename(const VfsPath& pathnameNoExtension, FileType type)
+void CColladaManager::PrepareCacheKey(MD5& hash, u32& version)
+{
+	// Include skeletons.xml file info in the hash
+	VfsPath skeletonPath("art/skeletons/skeletons.xml");
+	FileInfo fileInfo;
+
+	// This will cause an assertion failure if skeletons.xml doesn't exist,
+	//	because fileinfo is not a NULL pointer, which is annoying but that
+	//	should never happen, unless there really is a problem
+	if (m_VFS->GetFileInfo(skeletonPath, &fileInfo) != INFO::OK)
+	{
+		LOGERROR(L"Failed to stat '%ls' for DAE caching", skeletonPath.string().c_str());
+		// We can continue, something else will break if we try loading a skeletal model
+	}
+	else
+	{
+		u64 skeletonsModifyTime = (u64)fileInfo.MTime() & ~1; // skip lowest bit, since zip and FAT don't preserve it
+		u64 skeletonsSize = (u64)fileInfo.Size();	
+		hash.Update((const u8*)&skeletonsModifyTime, sizeof(skeletonsModifyTime));
+		hash.Update((const u8*)&skeletonsSize, sizeof(skeletonsSize));
+	}
+
+	// Add converter version to the hash
+	version = COLLADA_CONVERTER_VERSION;
+}
+
+VfsPath CColladaManager::GetLoadablePath(const VfsPath& pathnameNoExtension, FileType type)
 {
 	std::wstring extn;
 	switch (type)
@@ -185,21 +219,30 @@ VfsPath CColladaManager::GetLoadableFilename(const VfsPath& pathnameNoExtension,
 
 	/*
 
-	If there is a .dae file:
-		* Calculate a hash to identify it.
-		* Look for a cached .pmd file matching that hash.
-		* If it exists, load it. Else, convert the .dae into .pmd and load it.
-	Otherwise, if there is a (non-cache) .pmd file:
-		* Load it.
-	Else, fail.
+	Algorithm:
+	* Calculate hash of skeletons.xml and converter version.
+	* Use CCacheLoader to check for archived or loose cached .pmd/psa.
+	* If cached version exists:
+		* Return pathname of cached .pmd/psa.
+	* Else, if source .dae for this model exists:
+		* Convert it to cached .pmd/psa.
+		* If converter succeeded:
+			* Return pathname of cached .pmd/psa.
+		* Else, fail (return empty path).
+	* Else, if uncached .pmd/psa exists:
+		* Return pathname of uncached .pmd/psa.
+	* Else, fail (return empty path).
 
-	The hash calculation ought to be fast, since normally (during development)
-	the .dae file will exist but won't have changed recently and so the cache
-	would be used. Hence, just hash the file's size, mtime, and the converter
-	version number (so updates of the converter can cause regeneration of .pmds)
-	instead of the file's actual contents.
+	Since we use CCacheLoader which automatically hashes file size and mtime,
+	and handles archived files and loose cache, when preparing the cache key
+	we add converter version number (so updates of the converter cause
+	regeneration of the .pmd/psa) and the global skeletons.xml file size and
+	mtime, as modelers frequently change the contents of skeletons.xml and get
+	perplexed if the in-game models haven't updated as expected (we don't know
+	which models were affected by the skeletons.xml change, if any, so we just
+	regenerate all of them)
 
-	TODO (maybe): The .dae -> .pmd conversion may fail (e.g. if the .dae is
+	TODO (maybe): The .dae -> .pmd/psa conversion may fail (e.g. if the .dae is
 	invalid or unsupported), but it may take a long time to start the conversion
 	then realise it's not going to work. That will delay the loading of the game
 	every time, which is annoying, so maybe it should cache the error message
@@ -208,64 +251,70 @@ VfsPath CColladaManager::GetLoadableFilename(const VfsPath& pathnameNoExtension,
 
 	*/
 
-	// (TODO: the comments and variable names say "pmd" but actually they can
-	// be "psa" too.)
+	// Now we're looking for cached files
+	CCacheLoader cacheLoader(m_VFS, extn);
+	MD5 hash;
+	u32 version;
+	PrepareCacheKey(hash, version);
 
-	VfsPath dae(pathnameNoExtension.ChangeExtension(L".dae"));
-	if (! VfsFileExists(dae))
+	VfsPath cachePath;
+	VfsPath sourcePath = pathnameNoExtension.ChangeExtension(L".dae");
+	Status ret = cacheLoader.TryLoadingCached(sourcePath, hash, version, cachePath);
+	if (ret == INFO::OK)
 	{
-		// No .dae - got to use the .pmd, assuming there is one
-		return pathnameNoExtension.ChangeExtension(extn);
+		// Found a valid cached version
+		return cachePath;
+	}
+	else if (ret == INFO::SKIPPED)
+	{
+		// No valid cached version was found - but source .dae exists
+		// We'll try converting it
+	}
+	else
+	{
+		// No valid cached version was found, and no source .dae exists
+		ENSURE(ret < 0);
+		
+		// Check if source (uncached) .pmd/psa exists
+		sourcePath = pathnameNoExtension.ChangeExtension(extn);
+		if (m_VFS->GetFileInfo(sourcePath, NULL) != INFO::OK)
+		{
+			// Broken reference, the caller will need to handle this
+			return L"";
+		}
+		else
+		{
+			return sourcePath;
+		}
 	}
 
-	// There is a .dae - see if there's an up-to-date cached copy
-
-	FileInfo fileInfo;
-	if (g_VFS->GetFileInfo(dae, &fileInfo) < 0)
+	// We have a source .dae and invalid cached version, so regenerate cached version
+	if (! m->Convert(sourcePath, cachePath, type))
 	{
-		// This shouldn't occur for any sensible reasons
-		LOGERROR(L"Failed to stat DAE file '%ls'", dae.string().c_str());
-		return VfsPath();
+		// The COLLADA converter failed for some reason, this will need to be handled
+		//	by the caller
+		return L"";
 	}
 
-	// Build a struct of all the data we want to hash.
-	// (Use ints and not time_t/off_t because we don't care about overflow
-	// but do care about the fields not being 64-bit aligned)
-	// (Remove the lowest bit of mtime because some things round it to a
-	// resolution of 2 seconds)
-#pragma pack(push, 1)
-	struct { int version; int mtime; int size; } hashSource
-		= { COLLADA_CONVERTER_VERSION, (int)fileInfo.MTime() & ~1, (int)fileInfo.Size() };
-	cassert(sizeof(hashSource) == sizeof(int) * 3); // no padding, because that would be bad
-#pragma pack(pop)
+	return cachePath;
+}
 
-	// Calculate the hash, convert to hex
-	u32 hash = fnv_hash(static_cast<void*>(&hashSource), sizeof(hashSource));
-	wchar_t hashString[9];
-	swprintf_s(hashString, ARRAY_SIZE(hashString), L"%08x", hash);
-	std::wstring extension(L"_");
-	extension += hashString;
-	extension += extn;
-
-	// realDaePath_ is "[..]/mods/whatever/art/meshes/whatever.dae"
-	OsPath realDaePath_;
-	Status ret = g_VFS->GetRealPath(dae, realDaePath_);
-	ENSURE(ret == INFO::OK);
-	wchar_t realDaeBuf[PATH_MAX];
-	wcscpy_s(realDaeBuf, ARRAY_SIZE(realDaeBuf), realDaePath_.string().c_str());
-	std::replace(realDaeBuf, realDaeBuf+ARRAY_SIZE(realDaeBuf), '\\', '/');
-	const wchar_t* realDaePath = wcsstr(realDaeBuf, L"mods/");
-
-	// cachedPmdVfsPath is "cache/mods/whatever/art/meshes/whatever_{hash}.pmd"
-	VfsPath cachedPmdVfsPath = VfsPath("cache") / realDaePath;
-	cachedPmdVfsPath = cachedPmdVfsPath.ChangeExtension(extension);
-
-	// If it's not in the cache, we'll have to create it first
-	if (! VfsFileExists(cachedPmdVfsPath))
+bool CColladaManager::GenerateCachedFile(const VfsPath& sourcePath, FileType type, VfsPath& archiveCachePath)
+{
+	std::wstring extn;
+	switch (type)
 	{
-		if (! m->Convert(dae, cachedPmdVfsPath, type))
-			return L""; // failed to convert
+	case PMD: extn = L".pmd"; break;
+	case PSA: extn = L".psa"; break;
+		// no other alternatives
 	}
 
-	return cachedPmdVfsPath;
+	CCacheLoader cacheLoader(m_VFS, extn);
+	MD5 hash;
+	u32 version;
+	PrepareCacheKey(hash, version);
+
+	archiveCachePath = cacheLoader.ArchiveCachePath(sourcePath);
+
+	return m->Convert(sourcePath, VfsPath("cache") / archiveCachePath, type);
 }

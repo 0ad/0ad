@@ -41,6 +41,7 @@
 #include "maths/Matrix3D.h"
 #include "maths/Quaternion.h"
 #include "ps/ConfigDB.h"
+#include "ps/Filesystem.h"
 #include "ps/Game.h"
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
@@ -152,7 +153,7 @@ class CGameViewImpl : public CJSObject<CGameViewImpl>
 public:
 	CGameViewImpl(CGame* game)
 		: Game(game),
-		ColladaManager(), MeshManager(ColladaManager), SkeletonAnimManager(ColladaManager),
+		ColladaManager(g_VFS), MeshManager(ColladaManager), SkeletonAnimManager(ColladaManager),
 		ObjectManager(MeshManager, SkeletonAnimManager, *game->GetSimulation2()),
 		LOSTexture(*game->GetSimulation2()),
 		TerritoryTexture(*game->GetSimulation2()),

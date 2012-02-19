@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -49,7 +49,7 @@ CModelDefPtr CMeshManager::GetMesh(const VfsPath& pathname)
 
 	PROFILE("load mesh");
 
-	VfsPath pmdFilename = m_ColladaManager.GetLoadableFilename(name, CColladaManager::PMD);
+	VfsPath pmdFilename = m_ColladaManager.GetLoadablePath(name, CColladaManager::PMD);
 
 	if (pmdFilename.empty())
 	{

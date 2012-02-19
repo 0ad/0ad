@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -46,7 +46,7 @@ public:
 	 * Attempts to find a valid cached which can be loaded.
 	 * Returns INFO::OK and sets loadPath to the cached file if there is one.
 	 * Returns INFO::SKIPPED and sets loadPath to the desire loose cache name if there isn't one.
-	 * Returns a value < 0 on error (e.g. the source file doesn't exist).
+	 * Returns a value < 0 on error (e.g. the source file doesn't exist). No error is logged or thrown.
 	 */
 	Status TryLoadingCached(const VfsPath& sourcePath, const MD5& initialHash, u32 version, VfsPath& loadPath);
 

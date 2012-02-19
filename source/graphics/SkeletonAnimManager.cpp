@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -61,7 +61,7 @@ CSkeletonAnimDef* CSkeletonAnimManager::GetAnimation(const VfsPath& pathname)
 	CSkeletonAnimDef* def = NULL;
 
 	// Find the file to load
-	VfsPath psaFilename = m_ColladaManager.GetLoadableFilename(name, CColladaManager::PSA);
+	VfsPath psaFilename = m_ColladaManager.GetLoadablePath(name, CColladaManager::PSA);
 
 	if (psaFilename.empty())
 	{

@@ -20,6 +20,7 @@
 #include "ArchiveBuilder.h"
 
 #include "graphics/TextureManager.h"
+#include "graphics/ColladaManager.h"
 #include "lib/tex/tex_codec.h"
 #include "lib/file/archive/archive_zip.h"
 #include "lib/file/vfs/vfs_util.h"
@@ -41,7 +42,7 @@ CArchiveBuilder::CArchiveBuilder(const OsPath& mod, const OsPath& tempdir) :
 
 	DeleteDirectory(m_TempDir/"_archivecache"); // clean up in case the last run failed
 
-	m_VFS->Mount(L"cache/", m_TempDir/"_archivecache/");
+	m_VFS->Mount(L"cache/", m_TempDir/"_archivecache"/"");
 
 	m_VFS->Mount(L"", mod/"", VFS_MOUNT_MUST_EXIST | VFS_MOUNT_KEEP_DELETED);
 
@@ -76,7 +77,9 @@ void CArchiveBuilder::Build(const OsPath& archive)
 
 	// Use CTextureManager instead of CTextureConverter directly,
 	// so it can deal with all the loading of settings.xml files
-	CTextureManager texman(m_VFS, true, true);
+	CTextureManager textureManager(m_VFS, true, true);
+
+	CColladaManager colladaManager(m_VFS);
 
 	CXeromyces xero;
 
@@ -99,7 +102,7 @@ void CArchiveBuilder::Build(const OsPath& archive)
 		{
 			VfsPath cachedPath;
 			debug_printf(L"Converting texture %ls\n", realPath.string().c_str());
-			bool ok = texman.GenerateCachedTexture(path, cachedPath);
+			bool ok = textureManager.GenerateCachedTexture(path, cachedPath);
 			ENSURE(ok);
 
 			OsPath cachedRealPath;
@@ -113,7 +116,42 @@ void CArchiveBuilder::Build(const OsPath& archive)
 			continue;
 		}
 
-		// TODO: should cache DAE->PMD and DAE->PSA conversions too
+		// Convert DAE models and store the new cached version instead of the original
+		if (path.Extension() == L".dae")
+		{
+			CColladaManager::FileType type;
+
+			if (boost::algorithm::starts_with(path.string(), L"art/meshes/"))
+				type = CColladaManager::PMD;
+			else if (boost::algorithm::starts_with(path.string(), L"art/animation/"))
+				type = CColladaManager::PSA;
+			else
+			{
+				// Unknown type of DAE, just add to archive and continue
+				writer->AddFile(realPath, path);
+				continue;
+			}
+			
+			VfsPath cachedPath;
+			debug_printf(L"Converting model %ls\n", realPath.string().c_str());
+			bool ok = colladaManager.GenerateCachedFile(path, type, cachedPath);
+			
+			// The DAE might fail to convert for whatever reason, and in that case
+			//	it can't be used in the game, so we just exclude it
+			//  (alternatively we could throw release blocking errors on useless files)
+			if (ok)
+			{
+				OsPath cachedRealPath;
+				ret = m_VFS->GetRealPath(VfsPath("cache")/cachedPath, cachedRealPath);
+				ENSURE(ret == INFO::OK);
+
+				writer->AddFile(cachedRealPath, cachedPath);
+			}
+
+			// We don't want to store the original file too (since it's a
+			// large waste of space), so skip to the next file
+			continue;
+		}
 
 		debug_printf(L"Adding %ls\n", realPath.string().c_str());
 		writer->AddFile(realPath, path);
