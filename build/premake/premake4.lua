@@ -707,7 +707,7 @@ used_extern_libs = {
 	"valgrind",
 }
 
-if os.is("unix") and not _OPTIONS["android"] then
+if not os.is("windows") and not _OPTIONS["android"] then
 	table.insert(used_extern_libs, "x11")
 end
 
