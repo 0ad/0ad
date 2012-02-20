@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_temple">
   <Footprint replace="">
-    <Circle radius="12.0"/>
+    <Circle radius="11.0"/>
     <Height>12.0</Height>
   </Footprint>
   <Identity>
@@ -12,7 +12,7 @@
 	<Tooltip>Build this temple to greatly increase the loyalty of your buildings and female-citizens (helps prevent their capture).</Tooltip>
   </Identity>
   <Obstruction>
-    <Static width="20.0" depth="20.0"/>
+    <Static width="19.0" depth="19.0"/>
   </Obstruction>
   <VisualActor>
     <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
