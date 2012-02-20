@@ -24,6 +24,17 @@
         <prop actor="props/special/common/garrison_flag_rome.xml" attachpoint="garrisoned"/>
       </props>
     </variant>
+    <variant name="death">
+      <props>
+        <prop attachpoint="garrisoned"/>
+        <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/rome_cc_trans.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/rome_cc_statues.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_7x7.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <material>player_trans.xml</material>
 </actor>

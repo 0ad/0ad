@@ -26,6 +26,19 @@
         <prop actor="props/special/common/garrison_flag_hele.xml" attachpoint="garrisoned"/>
       </props>
     </variant>
+    <variant name="death">
+      <props>
+        <prop attachpoint="garrisoned"/>
+        <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/civic_centre_props.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/civic_centre_tiles2.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/civic_centre_trees.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/civic_centre_round.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/civic_centre_shields.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <material>player_trans.xml</material>
 </actor>
