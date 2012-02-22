@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" name="Greek Pentekonter">
+      <animations>
+        <animation file="mechanical/hele_ship_pentekonter_idle.dae" name="Idle" speed="30"/>
+        <animation file="mechanical/hele_ship_pentekonter_move.dae" name="Walk" speed="8"/>
+        <animation file="mechanical/hele_ship_pentekonter_move.dae" name="Run" speed="10"/>
+      </animations>
+      <mesh>structural/hele_ship_pentekonter.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/structures/romans/bireme_sail.xml" attachpoint="sail"/>
+      </props>
+      <texture>structural/hele_pentekonter.png</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

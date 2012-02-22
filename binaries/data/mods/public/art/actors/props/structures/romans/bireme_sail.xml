@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="mesh">
+      <mesh>props/hele_pentekonter_sail.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="sail_spqr">
+      <texture>props/rome_sail_a.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
