@@ -5,11 +5,14 @@
     <variant frequency="1" name="firea">
       <mesh>structural/iber_fireship.dae</mesh>
       <props>
-        <prop actor="particle/flame.xml" attachpoint="fire1"/>
+        <prop actor="particle/flame_med.xml" attachpoint="fire1"/>
+        <prop actor="particle/smoke_med.xml" attachpoint="fire1"/>
         <prop actor="particle/flame.xml" attachpoint="fire2"/>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="fire3"/>
-        <prop actor="particle/flame.xml" attachpoint="fire4"/>
+        <prop actor="" attachpoint="fire3"/>
+        <prop actor="particle/flame_jav.xml" attachpoint="fire4"/>
+        <prop actor="particle/smoke_jav.xml" attachpoint="fire4"/>
         <prop actor="particle/flame.xml" attachpoint="fire5"/>
+        <prop actor="particle/smoke_catapult.xml" attachpoint="fire5"/>
       </props>
       <texture>structural/iber_ship.dds</texture>
     </variant>
@@ -17,14 +20,15 @@
       <mesh>structural/iber_fireship.dae</mesh>
       <props>
         <prop actor="particle/flame_jav.xml" attachpoint="fire1"/>
+        <prop actor="particle/smoke.xml" attachpoint="fire1"/>
         <prop actor="particle/flame.xml" attachpoint="fire2"/>
-        <prop actor="particle/flame_jav.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="fire3"/>
-        <prop actor="particle/flame.xml" attachpoint="fire4"/>
-        <prop actor="particle/flame.xml" attachpoint="fire5"/>
+        <prop actor="particle/flame_med.xml" attachpoint="fire3"/>
+        <prop actor="particle/smoke_med.xml" attachpoint="fire3"/>
+        <prop actor="particle/flame_jav.xml" attachpoint="fire5"/>
+        <prop actor="particle/smoke_jav.xml" attachpoint="fire5"/>
       </props>
       <texture>structural/iber_ship.dds</texture>
     </variant>
   </group>
+  <material>player_trans.xml</material>
 </actor>
-

@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_ship_trireme">
-  <Armour>
-    <Pierce>30.0</Pierce>
-    <Crush>30.0</Crush>
-  </Armour>
   <Cost>
     <BuildTime>40</BuildTime>
   </Cost>
@@ -15,7 +11,7 @@
     <Max>40</Max>
   </GarrisonHolder>
   <Health>
-    <Max>900</Max>
+    <Max>1600</Max>
   </Health>
   <Identity>
     <Civ>celt</Civ>
