@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_mechanical_ship_fire">
+  <Identity>
+    <Civ>iber</Civ>
+    <SpecificName>Iberian Fire Ship</SpecificName>
+    <History>Need History</History>
+    <Icon>units/iber_ship_fire.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/iberians/fireship.xml</Actor>
+  </VisualActor>
+</Entity>

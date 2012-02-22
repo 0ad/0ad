@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical">
+  <Armour>
+    <Pierce>25.0</Pierce>
+  </Armour>
   <Cost>
     <Population>3</Population>
   </Cost>

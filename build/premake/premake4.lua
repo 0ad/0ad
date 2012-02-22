@@ -707,7 +707,7 @@ used_extern_libs = {
 	"valgrind",
 }
 
-if os.is("unix") and not _OPTIONS["android"] then
+if not os.is("windows") and not _OPTIONS["android"] then
 	table.insert(used_extern_libs, "x11")
 end
 
@@ -817,12 +817,6 @@ function setup_atlas_project(project_name, target_type, rel_source_dirs, rel_inc
 	if not extra_params["pch_dir"] then
 		extra_params["pch_dir"] = source_root
 	end
-	
-	-- install_name settings aren't really supported yet by premake, but there are plans for the future.
-	-- we currently use this hack to work around some bugs with wrong install_names.
-	if target_type == "SharedLib" and os.is("macosx") then
-		linkoptions { "-install_name @executable_path/lib"..project_name..".dylib" }		
-	end
 
 	project_add_contents(source_root, rel_source_dirs, rel_include_dirs, extra_params)
 	project_add_extern_libs(extern_libs, target_type)
@@ -838,6 +832,13 @@ function setup_atlas_project(project_name, target_type, rel_source_dirs, rel_inc
 	elseif os.is("linux") or os.is("bsd") then
 		buildoptions { "-rdynamic", "-fPIC" }
 		linkoptions { "-fPIC", "-rdynamic" }
+
+	elseif os.is("macosx") then
+		-- install_name settings aren't really supported yet by premake, but there are plans for the future.
+		-- we currently use this hack to work around some bugs with wrong install_names.
+		if target_type == "SharedLib" then
+			linkoptions { "-install_name @executable_path/lib"..project_name..".dylib" }		
+		end
 	end
 
 end
@@ -1018,6 +1019,12 @@ function setup_collada_project(project_name, target_type, rel_source_dirs, rel_i
 
 	elseif os.is("macosx") then
 		-- define MACOS-something?
+
+		-- install_name settings aren't really supported yet by premake, but there are plans for the future.
+		-- we currently use this hack to work around some bugs with wrong install_names.
+		if target_type == "SharedLib" then
+			linkoptions { "-install_name @executable_path/lib"..project_name..".dylib" }		
+		end
 
 		buildoptions { "-fno-strict-aliasing" }
 

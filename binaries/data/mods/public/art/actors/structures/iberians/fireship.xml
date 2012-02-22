@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="firea">
+      <mesh>structural/iber_fireship.dae</mesh>
+      <props>
+        <prop actor="particle/flame_med.xml" attachpoint="fire1"/>
+        <prop actor="particle/smoke_med.xml" attachpoint="fire1"/>
+        <prop actor="particle/flame.xml" attachpoint="fire2"/>
+        <prop actor="" attachpoint="fire3"/>
+        <prop actor="particle/flame_jav.xml" attachpoint="fire4"/>
+        <prop actor="particle/smoke_jav.xml" attachpoint="fire4"/>
+        <prop actor="particle/flame.xml" attachpoint="fire5"/>
+        <prop actor="particle/smoke_catapult.xml" attachpoint="fire5"/>
+      </props>
+      <texture>structural/iber_ship.dds</texture>
+    </variant>
+    <variant frequency="1" name="fireb">
+      <mesh>structural/iber_fireship.dae</mesh>
+      <props>
+        <prop actor="particle/flame_jav.xml" attachpoint="fire1"/>
+        <prop actor="particle/smoke.xml" attachpoint="fire1"/>
+        <prop actor="particle/flame.xml" attachpoint="fire2"/>
+        <prop actor="particle/flame_med.xml" attachpoint="fire3"/>
+        <prop actor="particle/smoke_med.xml" attachpoint="fire3"/>
+        <prop actor="particle/flame_jav.xml" attachpoint="fire5"/>
+        <prop actor="particle/smoke_jav.xml" attachpoint="fire5"/>
+      </props>
+      <texture>structural/iber_ship.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

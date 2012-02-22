@@ -812,10 +812,9 @@ void CCmpRallyPointRenderer::FixFootprintWaypoints(std::vector<CVector2D>& coord
 			}
 
 			// add a point right on the edge of the footprint so that it links up nicely with the rest of the path
-			CFixedVector2D radiusEdgePoint(fixed::FromFloat(coords.back().X), fixed::FromFloat(coords.back().Y));
-			radiusEdgePoint.Normalize(footprintSize1);
-			CVector2D footprintEdge((center.X + radiusEdgePoint.X).ToFloat(), (center.Y + radiusEdgePoint.Y).ToFloat());
-			coords.push_back(footprintEdge);
+			CVector2D centerVec2D(center.X.ToFloat(), center.Y.ToFloat());
+			CVector2D centerToLast(coords.back() - centerVec2D);
+			coords.push_back(centerVec2D + (centerToLast.Normalized() * footprintSize0.ToFloat()));
 		}
 		break;
 	}

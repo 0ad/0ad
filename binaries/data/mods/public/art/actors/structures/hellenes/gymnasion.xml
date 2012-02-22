@@ -14,5 +14,26 @@
       <texture>structural/hele_struct.dds</texture>
     </variant>
   </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_hele.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+    <variant name="death">
+      <props>
+        <prop attachpoint="garrisoned"/>
+        <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/gym_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/gym_props.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/gym_tiles.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/gym_trees.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
   <material>player_trans.xml</material>
 </actor>

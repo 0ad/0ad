@@ -76,7 +76,7 @@ CSkeletonAnimDef* CSkeletonAnimManager::GetAnimation(const VfsPath& pathname)
 		}
 		catch (PSERROR_File&)
 		{
-			// ignore errors (they'll be logged elsewhere)
+			LOGERROR(L"Could not load animation '%ls'", psaFilename.string().c_str());
 		}
 	}
 
