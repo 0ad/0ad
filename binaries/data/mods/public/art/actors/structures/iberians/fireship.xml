@@ -5,6 +5,7 @@
     <variant frequency="1" name="firea">
       <mesh>structural/iber_fireship.dae</mesh>
       <props>
+        <prop actor="props/structures/iberians/fireship_wood.xml" attachpoint="root"/>
         <prop actor="particle/flame_med.xml" attachpoint="fire1"/>
         <prop actor="particle/smoke_med.xml" attachpoint="fire1"/>
         <prop actor="particle/flame.xml" attachpoint="fire2"/>
@@ -19,6 +20,7 @@
     <variant frequency="1" name="fireb">
       <mesh>structural/iber_fireship.dae</mesh>
       <props>
+        <prop actor="props/structures/iberians/fireship_wood.xml" attachpoint="root"/>
         <prop actor="particle/flame_jav.xml" attachpoint="fire1"/>
         <prop actor="particle/smoke.xml" attachpoint="fire1"/>
         <prop actor="particle/flame.xml" attachpoint="fire2"/>
