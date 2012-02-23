@@ -12,5 +12,16 @@
       <texture>structural/hele_struct_1.dds</texture>
     </variant>
   </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
   <material>player_trans.xml</material>
 </actor>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special">
+  <Cost>
+    <BuildTime>200</BuildTime>
+    <Resources>
+      <wood>0</wood>
+      <stone>200</stone>
+      <metal>400</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="40.0" depth="17.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Health>
+    <Max>4000</Max>
+  </Health>
+  <Identity>
+    <Civ>pers</Civ>
+    <SpecificName>Ishtar Gate of Babylon</SpecificName>
+    <Tooltip>Special Imperial Roman building.</Tooltip>
+    <History>N/A.</History>
+    <Icon>structures/gate.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Static width="36.0" depth="13.0"/>
+  </Obstruction>
+  <TerritoryInfluence>
+    <Root>true</Root>
+  </TerritoryInfluence>
+  <VisualActor>
+    <Actor>special/pers_ishtar_gate.xml</Actor>
+    <FoundationActor>structures/fndn_wall.xml</FoundationActor>
+  </VisualActor>
+</Entity>
