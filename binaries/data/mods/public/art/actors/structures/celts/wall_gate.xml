@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="celt-gate">
       <mesh>structural/celt_gate.dae</mesh>
       <texture>structural/celt_wall_gate.dds</texture>
     </variant>
   </group>
-
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
 </actor>

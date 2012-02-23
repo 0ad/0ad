@@ -11,4 +11,16 @@
       <texture>structural/iber_struct.dds</texture>
     </variant>
   </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/iberians/gate_door_1.xml" attachpoint="root"/>
+        <prop actor="props/structures/iberians/gate_shields.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
 </actor>

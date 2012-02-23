@@ -12,5 +12,18 @@
       <texture>structural/rome_struct_2.png</texture>
     </variant>
   </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/iber_corral_mud.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/farmstead_wood.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/farmstead_plants.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
   <material>player_trans.xml</material>
 </actor>

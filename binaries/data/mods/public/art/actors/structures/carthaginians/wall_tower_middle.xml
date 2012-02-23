@@ -18,6 +18,14 @@
         <prop actor="props/special/common/garrison_flag_kart.xml" attachpoint="garrisoned"/>
       </props>
     </variant>
+    <variant name="death">
+      <props>
+        <prop attachpoint="garrisoned"/>
+        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <material>player_trans.xml</material>
 </actor>

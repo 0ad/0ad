@@ -13,11 +13,23 @@
     <variant frequency="1" name="Farmstead B">
       <mesh>structural/iber_farmstead_b.dae</mesh>
       <props>
-        <prop actor="props/structures/iberians/farmstead_b_hay.xml" attachpoint="root"/>
+        <prop actor="props/structures/iberians/farmstead_hay.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/farmstead_mud.xml" attachpoint="root"/>
       </props>
       <texture>structural/iber_struct.dds</texture>
     </variant>
   </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/iberians/farmstead_hay.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/farmstead_mud.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>  
   <material>player_trans.xml</material>
 </actor>

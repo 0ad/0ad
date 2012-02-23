@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="roman siege wall gate">
       <mesh>structural/rome_siege_gate.dae</mesh>
@@ -12,5 +10,14 @@
       <texture>structural/rome_special_1.dds</texture>
     </variant>
   </group>
-
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
 </actor>

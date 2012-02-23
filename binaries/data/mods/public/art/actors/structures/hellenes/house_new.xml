@@ -50,5 +50,15 @@
       <texture>structural/hele_struct_b.png</texture>
     </variant>
   </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_smoke_small.xml" attachpoint="dust"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="dust"/>
+        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="dust"/>
+      </props>
+    </variant>
+  </group>
   <material>player_trans.xml</material>
 </actor>

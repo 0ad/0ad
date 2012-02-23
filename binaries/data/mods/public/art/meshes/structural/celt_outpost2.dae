@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2011-07-14T22:55:06Z</created>
-    <modified>2011-07-14T22:55:06Z</modified>
+    <created>2012-02-23T03:25:52Z</created>
+    <modified>2012-02-23T03:25:52Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -16,7 +16,7 @@
     <up_axis>Y_UP</up_axis>
   </asset>
   <library_images>
-    <image id="Map__358_image_image-image" name="Map__358_image_image">
+    <image id="Map__358_image_image_image-image" name="Map__358_image_image_image">
       <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\structural\celt_struct_1.dds</init_from>
     </image>
   </library_images>
@@ -37,7 +37,7 @@
               <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
             </ambient>
             <diffuse>
-              <texture texture="Map__358_image_image-image" texcoord="CHANNEL0">
+              <texture texture="Map__358_image_image_image-image" texcoord="CHANNEL0">
                 <extra>
                   <technique profile="MAYA">
                     <wrapU sid="wrapU0">TRUE</wrapU>
@@ -6465,6 +6465,9 @@
         </node>
         <node id="prop_garrisoned" name="prop_garrisoned">
           <matrix sid="matrix">0.404669 0.000000 0.000000 0.865969 0.000000 0.404669 0.000000 0.027975 0.000000 0.000000 0.404669 6.726372 0.000000 0.000000 0.000000 1.000000</matrix>
+        </node>
+        <node id="prop_dust" name="prop_dust">
+          <matrix sid="matrix">0.404669 0.000000 0.000000 -0.005452 0.000000 0.404669 0.000000 0.000000 0.000000 -0.000000 0.404669 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
         </node>
       </node>
     </visual_scene>

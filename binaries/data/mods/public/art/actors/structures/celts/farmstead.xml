@@ -13,4 +13,18 @@
       <texture>structural/celt_struct_1.dds</texture>
     </variant>
   </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/farmstead.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/farmstead_shield.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/farmstead_hoe.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/farmstead_mud.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
 </actor>

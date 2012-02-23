@@ -3,7 +3,13 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="Base">
-      <mesh>skeletal/horse.pmd</mesh>
+      <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="idle" speed="100"/>
+        <animation file="quadraped/horse_idle_a.psa" name="idle" speed="200"/>
+        <animation file="quadraped/horse_idle_a.psa" name="idle" speed="150"/>
+        <animation file="quadraped/horse_death.psa" name="death" speed="245"/>
+      </animations>
+	  <mesh>skeletal/horse.pmd</mesh>
     </variant>
   </group>
   <group>

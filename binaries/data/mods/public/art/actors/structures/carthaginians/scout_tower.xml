@@ -9,6 +9,7 @@
       <mesh>structural/kart_scout_tower.dae</mesh>
       <props>
         <prop actor="props/structures/carthaginians/scout_tower.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
@@ -20,6 +21,16 @@
     <variant name="garrisoned">
       <props>
         <prop actor="props/special/common/garrison_flag_kart.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+    <variant name="death">
+      <props>
+        <prop attachpoint="garrisoned"/>
+        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/carthaginians/scout_tower.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
