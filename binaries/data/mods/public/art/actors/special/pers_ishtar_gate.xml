@@ -2,22 +2,10 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Ishat Gate">
+    <variant frequency="100" name="Ishtar Gate">
       <colour>58 98 203</colour>
       <mesh>structural/pers_ishtar.dae</mesh>
       <texture>structural/pers_struct.dds</texture>
-    </variant>
-  </group>
-  <group>
-    <variant name="Idle"/>
-    <variant name="death">
-      <props>
-        <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/carthaginians/civil_centre_palms.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
-      </props>
     </variant>
   </group>
   <material>objectcolor.xml</material>
