@@ -66,19 +66,18 @@ for (var i=0; i < numPlayers; i++)
 	createObjectGroup(group, id);
 	
 	// create starting units
-	var uDist = 8;
-	var uAngle = -BUILDING_ANGlE + randFloat(-PI/8, PI/8);
+	var uDist = 6;
+	var uSpace = 2;
 	for (var j = 1; j < civEntities.length; ++j)
 	{
+		var uAngle = -BUILDING_ANGlE + PI * (j - 1) / 2;
 		var count = (civEntities[j].Count !== undefined ? civEntities[j].Count : 1);
-		var ux = round(fx + uDist * cos(uAngle));
-		var uz = round(fz + uDist * sin(uAngle));
-		group = new SimpleGroup(	// elements (type, min/max count, min/max distance)
-			[new SimpleObject(civEntities[j].Template, count,count, 1,ceil(count/2))],
-			true, null, ux, uz
-		);
-		createObjectGroup(group, id);
-		uAngle += PI/4;
+		for (var numberofentities = 0; numberofentities < count; numberofentities++)
+		{
+			var ux = fx + uDist * cos(uAngle) + numberofentities * uSpace * cos(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * cos(uAngle + PI/2));
+			var uz = fz + uDist * sin(uAngle) + numberofentities * uSpace * sin(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * sin(uAngle + PI/2));
+			placeObject(ux, uz, civEntities[j].Template, id, (j % 2 - 1) * PI + uAngle);
+		}
 	}
 }
 
