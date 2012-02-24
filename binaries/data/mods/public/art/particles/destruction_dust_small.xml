@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<particles>
+
+    <texture>art/textures/particles/dust_256a.png</texture>
+    <blend mode="over"/>
+
+    <constant name="emissionrate" value="30.0"/>
+    <uniform name="lifetime" min="3.0" max="8.0"/>
+
+    <uniform name="position.x" min="-7.0" max="7.0"/>
+    <uniform name="position.z" min="-7.0" max="7.0"/>
+    <constant name="position.y" value="4.0"/>
+
+    <uniform name="angle" min="-3.14" max="3.14"/>
+
+    <uniform name="velocity.x" min="-1.0" max="1.0"/>
+    <uniform name="velocity.y" min="1.5" max="2.0"/>
+    <uniform name="velocity.z" min="-1.0" max="1.0"/>
+    <uniform name="velocity.angle" min="-1.5" max="1.5"/>
+
+    <uniform name="size" min="5.0" max="15.0"/>
+
+    <force y="-0.15"/>
+
+</particles>

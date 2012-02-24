@@ -177,7 +177,16 @@ var EntityTemplate = Class({
 		
 		return this._template.GarrisonHolder.Max;
 	},
-
+ 
+	//"Population Bonus" is how much a building raises your population cap. 
+	getPopulationBonus: function()
+	{ 
+		if(!this._template.Cost) 
+			return undefined;
+		
+		return this._template.Cost.PopulationBonus; 
+	}, 
+ 	
 	/**
 	 * Returns whether this is an animal that is too difficult to hunt.
 	 * (Currently this just includes skittish animals, which are probably
@@ -286,9 +295,9 @@ var Entity = Class({
 	},
 
 	hitpoints: function() { return this._entity.hitpoints; },
-	isHurt: function() { return this.hitpoints < this.maxHitpoints; },
-	needsHeal: function() { return this.isHurt && this.isHealable; },
-	needsRepair: function() { return this.isHurt && this.isRepairable; },
+	isHurt: function() { return this.hitpoints() < this.maxHitpoints(); },
+	needsHeal: function() { return this.isHurt() && this.isHealable(); },
+	needsRepair: function() { return this.isHurt() && this.isRepairable(); },
 
 	/**
 	 * Returns the current training queue state, of the form
@@ -340,8 +349,33 @@ var Entity = Class({
 	{
 		return (this.garrisonMax() - this.garrisoned().length);
 	},
+	
+	canGarrisonInto: function(target)  
+	{ 
+		var allowedClasses = target.garrisonableClasses();
+		// return false if the target is full or doesn't have any allowed classes 
+		if( target.garrisonSpaceAvaliable() <=0 || allowedClasses == undefined )
+			return false;
+		
+		// Check that this unit is a member of at least one of the allowed garrison classes
+		var hasClasses = this.classes();
+		for( var i = 0; i < hasClasses.length; i++)
+		{ 
+			var hasClass = hasClasses[i];
+			if( allowedClasses.indexOf(hasClass) >= 0 )
+				return true;
+		}
+		
+		return false;
+	}, 
 
 	// TODO: visibility
+	
+	attack: function(target) 
+	{  
+		Engine.PostCommand({"type": "attack", "entities": [this.id()], "target": target.id(), "queued": false});  
+		return this;  
+	}, 
 
 	move: function(x, z, queued) {
 		queued = queued || false;
@@ -389,6 +423,23 @@ var Entity = Class({
 		});
 		return this;
 	},
+	
+	//ungarrison a specific unit in this building 
+	unload: function(unit)  
+	{ 
+		if (!this._template.GarrisonHolder) 
+			return;
+		
+		Engine.PostCommand({"type": "unload", "garrisonHolder": this.id(), "entity": unit.id()}); 
+	}, 
+
+	unloadAll: function()  
+	{ 
+		if (!this._template.GarrisonHolder)
+			return;
+		
+		Engine.PostCommand({"type": "unload-all", "garrisonHolder": this.id()});
+	}, 
 
 	construct: function(template, x, z, angle) {
 		// TODO: verify this unit can construct this, just for internal

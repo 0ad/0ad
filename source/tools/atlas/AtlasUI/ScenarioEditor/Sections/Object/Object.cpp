@@ -308,14 +308,30 @@ private:
 	Observable<AtObj>& m_MapSettings;
 	wxArrayString m_Players;
 
+	void SetSelection(size_t playerID)
+	{
+		// This control may not be loaded yet (before first display)
+		//	or may have less items than we expect, which could cause
+		//	an assertion failure, so handle that here
+		if (playerID < GetCount())
+		{
+			wxComboBox::SetSelection((int)playerID);
+		}
+		else
+		{
+			// Invalid selection
+			wxComboBox::SetSelection(wxNOT_FOUND);
+		}
+	}
+
 	void OnObjectSettingsChange(const ObjectSettings& settings)
 	{
-		SetSelection((long)settings.GetPlayerID());
+		SetSelection(settings.GetPlayerID());
 	}
 
 	void OnMapSettingsChange(const AtObj& settings)
 	{
-		// Adjust displayed number of players
+		// Reload displayed player names
 		Clear();
 		size_t numPlayers = settings["PlayerData"]["item"].count();
 		for (size_t i = 0; i <= numPlayers && i < m_Players.Count(); ++i)
@@ -323,16 +339,7 @@ private:
 			Append(m_Players[i]);
 		}
 
-		// The control may not have entries yet
-		if (m_ObjectSettings.GetPlayerID() >= GetCount())
-		{
-			// Invalid player
-			SetSelection((long)GetCount()-1);
-		}
-		else
-		{
-			SetSelection((long)m_ObjectSettings.GetPlayerID());
-		}
+		SetSelection(m_ObjectSettings.GetPlayerID());
 	}
 
 	void OnSelect(wxCommandEvent& evt)

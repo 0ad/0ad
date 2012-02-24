@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2011-05-20T15:40:29Z</created>
-    <modified>2011-05-20T15:40:29Z</modified>
+    <created>2012-02-23T03:47:42Z</created>
+    <modified>2012-02-23T03:47:42Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -16,7 +16,7 @@
     <up_axis>Y_UP</up_axis>
   </asset>
   <library_images>
-    <image id="Map__2_image-image" name="Map__2_image">
+    <image id="Map__2_image_image-image" name="Map__2_image_image">
       <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\structural\hele_struct_b.dds</init_from>
     </image>
   </library_images>
@@ -37,7 +37,7 @@
               <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
             </ambient>
             <diffuse>
-              <texture texture="Map__2_image-image" texcoord="CHANNEL0">
+              <texture texture="Map__2_image_image-image" texcoord="CHANNEL0">
                 <extra>
                   <technique profile="MAYA">
                     <wrapU sid="wrapU0">TRUE</wrapU>
@@ -1827,7 +1827,7 @@
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
       <node id="default" name="default">
-        <matrix sid="matrix">-1.000000 0.000000 -0.000000 0.000000 -0.000000 -0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
+        <matrix sid="matrix">-1.000000 -0.000000 -0.000000 0.000000 -0.000000 -0.000000 1.000000 0.000000 -0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
         <instance_geometry url="#default-lib">
           <bind_material>
             <technique_common>
@@ -1835,6 +1835,9 @@
             </technique_common>
           </bind_material>
         </instance_geometry>
+        <node id="prop_dust" name="prop_dust">
+          <matrix sid="matrix">-1.000000 0.000000 -0.000000 -0.000000 -0.000000 -1.000000 0.000000 0.000000 -0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
+        </node>
       </node>
     </visual_scene>
   </library_visual_scenes>

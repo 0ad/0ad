@@ -5,6 +5,11 @@
     <variant frequency="1" name="Zebra">
       <mesh>skeletal/zebra.dae</mesh>
       <texture>skeletal/animal_zebra.dds</texture>
+      <animations>
+        <animation file="quadraped/zebra_idle.dae" name="idle" speed="30" />
+        <animation file="quadraped/zebra_walk.dae" name="walk" speed="30" />
+        <animation file="quadraped/zebra_run.dae" name="run" speed="25" />
+      </animations>
     </variant>
   </group>
   <group>
