@@ -184,7 +184,7 @@ void CConsole::Render()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	CShaderTechniquePtr solidTech = g_Renderer.GetShaderManager().LoadEffect("solid");
+	CShaderTechniquePtr solidTech = g_Renderer.GetShaderManager().LoadEffect("gui_solid");
 	solidTech->BeginPass();
 	CShaderProgramPtr solidShader = solidTech->GetShader();
 
@@ -268,7 +268,7 @@ void CConsole::DrawHistory(CTextRenderer& textRenderer)
 			++Iter)
 	{
 		if (i >= m_iMsgHistPos)
-			textRenderer.PrintfAt(9.0f, m_fHeight - (float)m_iFontOffset - (float)m_iFontHeight * i, L"%ls", Iter->c_str());
+			textRenderer.Put(9.0f, m_fHeight - (float)m_iFontOffset - (float)m_iFontHeight * i, Iter->c_str());
 
 		i++;
 	}
@@ -285,7 +285,7 @@ void CConsole::DrawBuffer(CTextRenderer& textRenderer)
 	textRenderer.Translate(2.0f, m_fHeight - (float)m_iFontOffset + 1.0f, 0.0f);
 
 	textRenderer.Color(1.0f, 1.0f, 0.0f);
-	textRenderer.Printf(L"]");
+	textRenderer.PutAdvance(L"]");
 
 	textRenderer.Color(1.0f, 1.0f, 1.0f);
 
@@ -294,7 +294,7 @@ void CConsole::DrawBuffer(CTextRenderer& textRenderer)
 
 	for (int i = 0; i < m_iBufferLength; i++)
 	{
-		textRenderer.Printf(L"%lc", m_szBuffer[i]);
+		textRenderer.PrintfAdvance(L"%lc", m_szBuffer[i]);
 		if (m_iBufferPos-1 == i)
 			DrawCursor(textRenderer);
 	}
@@ -308,7 +308,7 @@ void CConsole::DrawCursor(CTextRenderer& textRenderer)
 	textRenderer.Color(1.0f, 1.0f, 0.0f, 0.8f);
 
 	// Cursor character is chosen to be an underscore
-	textRenderer.PrintfAt(0.0f, 0.0f, L"_");
+	textRenderer.Put(0.0f, 0.0f, L"_");
 
 	// Revert to the standard text colour
 	textRenderer.Color(1.0f, 1.0f, 1.0f);

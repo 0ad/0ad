@@ -922,6 +922,7 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 	}
 
 	CTextRenderer textRenderer(tech->GetShader());
+	textRenderer.Translate(0.0f, 0.0f, z);
 
 	for (std::vector<SGUIText::STextCall>::const_iterator it = Text.m_TextCalls.begin(); 
 		 it != Text.m_TextCalls.end(); 
@@ -933,11 +934,9 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 
 		CColor color = it->m_UseCustomColor ? it->m_Color : DefaultColor;
 
-		textRenderer.ResetTransform();
-		textRenderer.Translate((float)(int)(pos.x+it->m_Pos.x), (float)(int)(pos.y+it->m_Pos.y), z);
 		textRenderer.Color(color);
 		textRenderer.Font(it->m_Font);
-		textRenderer.Printf(L"%ls", it->m_String.c_str()); // "%ls" is necessary in case m_String contains % symbols
+		textRenderer.Put((float)(int)(pos.x+it->m_Pos.x), (float)(int)(pos.y+it->m_Pos.y), it->m_String.c_str());
 	}
 
 	textRenderer.Render();

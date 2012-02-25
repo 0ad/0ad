@@ -79,7 +79,7 @@ void CTextRenderer::Font(const CStrW& font)
 	m_Font = m_Fonts[font];
 }
 
-void CTextRenderer::Printf(const wchar_t* fmt, ...)
+void CTextRenderer::PrintfAdvance(const wchar_t* fmt, ...)
 {
 	wchar_t buf[1024] = {0};
 
@@ -91,20 +91,9 @@ void CTextRenderer::Printf(const wchar_t* fmt, ...)
 	if (ret < 0)
 		debug_printf(L"CTextRenderer::Printf vswprintf failed (buffer size exceeded?) - return value %d, errno %d\n", ret, errno);
 
-	if (ret == 0)
-		return; // empty string; don't bother storing
-
-	SBatch batch;
-	batch.transform = m_Transform;
-	batch.color = m_Color;
-	batch.font = m_Font;
-	batch.text = buf;
-	m_Batches.push_back(batch);
-
-	int w, h;
-	batch.font->CalculateStringSize(batch.text, w, h);
-	Translate((float)w, 0.0f, 0.0f);
+	PutAdvance(buf);
 }
+
 
 void CTextRenderer::PrintfAt(float x, float y, const wchar_t* fmt, ...)
 {
@@ -118,7 +107,21 @@ void CTextRenderer::PrintfAt(float x, float y, const wchar_t* fmt, ...)
 	if (ret < 0)
 		debug_printf(L"CTextRenderer::PrintfAt vswprintf failed (buffer size exceeded?) - return value %d, errno %d\n", ret, errno);
 
-	if (ret == 0)
+	Put(x, y, buf);
+}
+
+void CTextRenderer::PutAdvance(const wchar_t* buf)
+{
+	Put(0.0f, 0.0f, buf);
+
+	int w, h;
+	m_Font->CalculateStringSize(buf, w, h);
+	Translate((float)w, 0.0f, 0.0f);
+}
+
+void CTextRenderer::Put(float x, float y, const wchar_t* buf)
+{
+	if (buf[0] == 0)
 		return; // empty string; don't bother storing
 
 	CMatrix3D translate;

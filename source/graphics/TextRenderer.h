@@ -60,13 +60,25 @@ public:
 	 * Print formatted text at (0,0) under the current transform,
 	 * and advance the transform by the width of the text.
 	 */
-	void Printf(const wchar_t* fmt, ...);
+	void PrintfAdvance(const wchar_t* fmt, ...);
 
 	/**
 	 * Print formatted text at (x,y) under the current transform.
 	 * Does not alter the current transform.
 	 */
 	void PrintfAt(float x, float y, const wchar_t* fmt, ...);
+
+	/**
+	 * Print text at (0,0) under the current transform,
+	 * and advance the transform by the width of the text.
+	 */
+	void PutAdvance(const wchar_t* buf);
+
+	/**
+	 * Print text at (x,y) under the current transform,
+	 * and advance the transform by the width of the text.
+	 */
+	void Put(float x, float y, const wchar_t* buf);
 
 	/**
 	 * Render all of the previously printed text calls.

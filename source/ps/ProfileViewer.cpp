@@ -188,7 +188,7 @@ void CProfileViewer::RenderProfile()
 		estimate_height += 2;
 	estimate_height = lineSpacing*estimate_height;
 
-	CShaderTechniquePtr solidTech = g_Renderer.GetShaderManager().LoadEffect("solid");
+	CShaderTechniquePtr solidTech = g_Renderer.GetShaderManager().LoadEffect("gui_solid");
 	solidTech->BeginPass();
 	CShaderProgramPtr solidShader = solidTech->GetShader();
 
@@ -255,14 +255,14 @@ void CProfileViewer::RenderProfile()
 	float colX = 0.0f;
 	for (size_t col = 0; col < columns.size(); ++col)
 	{
-		CStr text = columns[col].title;
+		CStrW text = columns[col].title.FromUTF8();
 		int w, h;
-		font.CalculateStringSize(text.FromUTF8(), w, h);
+		font.CalculateStringSize(text.c_str(), w, h);
 
 		float x = colX;
 		if (col > 0) // right-align all but the first column
 			x += columns[col].width - w;
-		textRenderer.PrintfAt(x, 0.0f, L"%hs", text.c_str());
+		textRenderer.Put(x, 0.0f, text.c_str());
 		
 		colX += columns[col].width;
 	}
@@ -288,14 +288,14 @@ void CProfileViewer::RenderProfile()
 		float colX = 0.0f;
 		for (size_t col = 0; col < columns.size(); ++col)
 		{
-			CStr text = table->GetCellText(row, col);
+			CStrW text = table->GetCellText(row, col).FromUTF8();
 			int w, h;
-			font.CalculateStringSize(text.FromUTF8(), w, h);
+			font.CalculateStringSize(text.c_str(), w, h);
 
 			float x = colX;
 			if (col > 0) // right-align all but the first column
 				x += columns[col].width - w;
-			textRenderer.PrintfAt(x, 0.0f, L"%hs", text.c_str());
+			textRenderer.Put(x, 0.0f, text.c_str());
 
 			colX += columns[col].width;
 		}
@@ -308,8 +308,8 @@ void CProfileViewer::RenderProfile()
 	if (m->path.size() > 1)
 	{
 		textRenderer.Translate(0.0f, lineSpacing, 0.0f);
-		textRenderer.PrintfAt(-15.0f, 0.0f, L"0");
-		textRenderer.PrintfAt(0.0f, 0.0f, L"back to parent");
+		textRenderer.Put(-15.0f, 0.0f, L"0");
+		textRenderer.Put(0.0f, 0.0f, L"back to parent");
 	}
 
 	textRenderer.Render();
