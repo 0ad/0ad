@@ -3,21 +3,13 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Zebra">
+      <animations>
+        <animation file="quadraped/zebra_idle.dae" name="idle" speed="30"/>
+        <animation file="quadraped/zebra_walk.dae" name="walk" speed="30"/>
+        <animation file="quadraped/zebra_run.dae" name="run" speed="12"/>
+      </animations>
       <mesh>skeletal/zebra.dae</mesh>
       <texture>skeletal/animal_zebra.dds</texture>
-      <animations>
-        <animation file="quadraped/zebra_idle.dae" name="idle" speed="30" />
-        <animation file="quadraped/zebra_walk.dae" name="walk" speed="30" />
-        <animation file="quadraped/zebra_run.dae" name="run" speed="25" />
-      </animations>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="100" name="Idle"/>
-    <variant name="death">
-      <props>
-        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
-      </props>
     </variant>
   </group>
   <group>
