@@ -1,5 +1,5 @@
 ANDROID=${HOME}/android
-NDK=${ANDROID}/android-ndk-r7-crystax-4
+NDK=${ANDROID}/android-ndk-r7-crystax-5.beta2
 SDK=${ANDROID}/android-sdk-linux
 TOOLCHAIN=${ANDROID}/toolchain-0ad
 SYSROOT=${TOOLCHAIN}/sysroot
