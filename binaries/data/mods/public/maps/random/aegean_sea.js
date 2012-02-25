@@ -1,6 +1,6 @@
 RMS.LoadLibrary("rmgen");
 
-//TILE_CENTERED_HEIGHT_MAP = true;
+TILE_CENTERED_HEIGHT_MAP = true;
 
 const tCity = "medit_city_pavement";
 const tCityPlaza = "medit_city_pavement";

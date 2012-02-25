@@ -31,7 +31,16 @@ function Map(size, baseHeight)
 	}
 
 	// Create 2D array for heightmap
-	var mapSize = size+1;
+	var mapSize;
+	if (TILE_CENTERED_HEIGHT_MAP)
+	{
+		mapSize = size;
+	}
+	else
+	{
+		mapSize = size+1;
+	}
+	
 	this.height = new Array(mapSize);
 	for (var i = 0; i < mapSize; i++)
 	{
@@ -108,10 +117,17 @@ Map.prototype.validT = function(x, z)
 	}
 };
 
-// Check bounds on height map (size + 1 by size + 1)
+// Check bounds on height map if TILE_CENTERED_HEIGHT_MAP==false then this is (size + 1 by size + 1) otherwise (size, size)
 Map.prototype.validH = function(x, z)
 {
-	return x >= 0 && z >= 0 && x <= this.size && z <= this.size;
+	if (TILE_CENTERED_HEIGHT_MAP)
+	{
+		return x >= 0 && z >= 0 && x < this.size && z < this.size;
+	}
+	else
+	{
+		return x >= 0 && z >= 0 && x <= this.size && z <= this.size;
+	}
 };
 
 // Check bounds on tile class
@@ -266,6 +282,28 @@ Map.prototype.getExactHeight = function(x, z)
 	return ( 1 - zf ) * ( ( 1 - xf ) * h00 + xf * h10 ) + zf * ( ( 1 - xf ) * h01 + xf * h11 ) ;
 };
 
+// Converts from the tile centered height map to the corner based height map, used when TILE_CENTERED_HEIGHT_MAP = true
+Map.prototype.cornerHeight = function(x, z)
+{
+	var count = 0;
+	var sumHeight = 0;
+	
+	var dirs = [[-1,-1], [-1,0], [0,-1], [0,0]];
+	for each (var dir in dirs)
+	{
+		if (this.validH(x + dir[0], z + dir[1]))
+		{
+			count++;
+			sumHeight += this.height[x + dir[0]][z + dir[1]];
+		}
+	}
+	
+	if (count == 0)
+		return 0;
+	
+	return sumHeight / count;
+};
+
 Map.prototype.getMapData = function()
 {
 	var data = {};
@@ -305,7 +343,15 @@ Map.prototype.getMapData = function()
 	{
 		for (var z = 0; z < mapSize; z++)
 		{
-			var intHeight = Math.floor((this.height[x][z] + SEA_LEVEL) * HEIGHT_UNITS_PER_METRE);
+			var intHeight;
+			if (TILE_CENTERED_HEIGHT_MAP)
+			{
+				intHeight = Math.floor((this.cornerHeight(x, z) + SEA_LEVEL) * HEIGHT_UNITS_PER_METRE);
+			}
+			else
+			{
+				intHeight = Math.floor((this.height[x][z] + SEA_LEVEL) * HEIGHT_UNITS_PER_METRE);
+			}
 			
 			// Prevent under/overflow in terrain data
 			if (intHeight > 0xFFFF)
