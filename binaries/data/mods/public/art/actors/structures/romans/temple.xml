@@ -9,6 +9,8 @@
         <prop actor="particle/smoke_small_light.xml" attachpoint="flame01"/>
         <prop actor="particle/flame_jav.xml" attachpoint="flame02"/>
         <prop actor="particle/smoke_small_light.xml" attachpoint="flame02"/>
+        <prop actor="props/structures/romans/rome_temple_ashes.xml" attachpoint="flame01"/>
+        <prop actor="props/structures/romans/rome_temple_ashes.xml" attachpoint="flame02"/>
       </props>
       <texture>structural/rome_struct.png</texture>
     </variant>
