@@ -33,6 +33,7 @@ var FsmSpec = {
 	},
 
 	// Define the behaviour for the 'STATENAME' state:
+	// Names of states may only contain the characters A-Z
 	"STATENAME": {
 
 		"MessageName1": function(msg) {
