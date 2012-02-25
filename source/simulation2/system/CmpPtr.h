@@ -83,14 +83,14 @@ public:
 };
 
 template<typename T, typename U>
-bool operator!=(const CmpPtr<T>& lhs, const U& rhs)
+bool operator!=(const CmpPtr<T>& lhs, const U& UNUSED(rhs))
 {
 	lhs.this_type_does_not_support_comparisons();
 	return false;
 }
 
 template<typename T, typename U>
-bool operator==(const CmpPtr<T>& lhs, const U& rhs)
+bool operator==(const CmpPtr<T>& lhs, const U& UNUSED(rhs))
 {
 	lhs.this_type_does_not_support_comparisons();
 	return false;
