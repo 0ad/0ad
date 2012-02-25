@@ -32,7 +32,6 @@ var tmpEntityCollection = function(baseAI, entities, filter, gameState){
 	this._ai = baseAI;
 	this._entities = entities;
 	if (filter){
-		var tmp = 3;
 		this.filterFunc = filter;
 		this._entities = this.filter(function(ent){
 				return filter(ent, gameState);
@@ -49,7 +48,7 @@ var tmpEntityCollection = function(baseAI, entities, filter, gameState){
 			if (this._length === undefined)
 			{
 				this._length = 0;
-				for (var id in entities)
+				for (var id in this._entities)
 					++this._length;
 			}
 			return this._length;
