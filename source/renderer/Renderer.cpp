@@ -322,7 +322,6 @@ public:
 		RenderModifierPtr ModShaderSolidColorInstancing;
 		RenderModifierPtr ModShaderSolidPlayerColor;
 		RenderModifierPtr ModShaderSolidPlayerColorInstancing;
-		RenderModifierPtr ModShaderSolidTex;
 		LitRenderModifierPtr ModShaderNormal;
 		LitRenderModifierPtr ModShaderNormalInstancing;
 		LitRenderModifierPtr ModShaderPlayer;
@@ -553,11 +552,6 @@ void CRenderer::ReloadShaders()
 {
 	ENSURE(m->IsOpen);
 
-#if CONFIG2_GLES
-#warning TODO: move ARB shader programs to effect/technique files, and add GLSL versions
-	return;
-#endif
-
 	typedef std::map<CStr, CStr> Defines;
 
 	Defines defBasic;
@@ -576,41 +570,15 @@ void CRenderer::ReloadShaders()
 	Defines defColored = defBasic;
 	defColored["USE_OBJECTCOLOR"] = "1";
 
-	Defines defTransparent = defBasic;
-	defTransparent["USE_TRANSPARENT"] = "1";
-
-	// TODO: it'd be nicer to load this technique from an XML file or something
-	CShaderPass passTransparentOpaque(m->shaderManager.LoadProgram("model_common_arb", defTransparent));
-	passTransparentOpaque.AlphaFunc(GL_GREATER, 0.9375f);
-	passTransparentOpaque.BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	CShaderTechniquePtr techTransparentOpaque(new CShaderTechnique(passTransparentOpaque));
-
-	CShaderPass passTransparentBlend(m->shaderManager.LoadProgram("model_common_arb", defTransparent));
-	passTransparentBlend.AlphaFunc(GL_GREATER, 0.0f);
-	passTransparentBlend.DepthFunc(GL_LESS);
-	passTransparentBlend.BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	passTransparentBlend.DepthMask(0);
-	CShaderTechniquePtr techTransparentBlend(new CShaderTechnique(passTransparentBlend));
-
-	CShaderTechniquePtr techTransparent(new CShaderTechnique(passTransparentOpaque));
-	techTransparent->AddPass(passTransparentBlend);
-
-	CShaderPass passTransparentShadow(m->shaderManager.LoadProgram("solid_tex", defBasic));
-	passTransparentShadow.AlphaFunc(GL_GREATER, 0.4f);
-	CShaderTechniquePtr techTransparentShadow(new CShaderTechnique(passTransparentShadow));
-
 	m->Model.ModShaderSolidColor =
-		RenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("shader:solid")));
+		RenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("model_solid")));
 	m->Model.ModShaderSolidColorInstancing =
-		RenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("shader:solid_instancing")));
+		RenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("model_solid_instancing")));
 
 	m->Model.ModShaderSolidPlayerColor =
-		RenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("shader:solid_player")));
+		RenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("model_solid_player")));
 	m->Model.ModShaderSolidPlayerColorInstancing =
-		RenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("shader:solid_player_instancing")));
-
-	m->Model.ModShaderSolidTex =
-		RenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("shader:solid_tex")));
+		RenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("model_solid_player_instancing")));
 
 	m->Model.ModShaderNormal =
 		LitRenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("model_normal", defBasic)));
@@ -622,10 +590,14 @@ void CRenderer::ReloadShaders()
 	m->Model.ModShaderPlayerInstancing =
 		LitRenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("model_normal_instancing", defColored)));
 
-	m->Model.ModShaderTransparent = LitRenderModifierPtr(new ShaderRenderModifier(techTransparent));
-	m->Model.ModShaderTransparentOpaque = LitRenderModifierPtr(new ShaderRenderModifier(techTransparentOpaque));
-	m->Model.ModShaderTransparentBlend = LitRenderModifierPtr(new ShaderRenderModifier(techTransparentBlend));
-	m->Model.ModShaderTransparentShadow = LitRenderModifierPtr(new ShaderRenderModifier(techTransparentShadow));
+	m->Model.ModShaderTransparent =
+		LitRenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("model_transparent", defBasic)));
+	m->Model.ModShaderTransparentOpaque =
+		LitRenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("model_transparent_opaque", defBasic)));
+	m->Model.ModShaderTransparentBlend =
+		LitRenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("model_transparent_blend", defBasic)));
+	m->Model.ModShaderTransparentShadow =
+		LitRenderModifierPtr(new ShaderRenderModifier(m->shaderManager.LoadEffect("model_transparent_shadow", defBasic)));
 
 	m->ShadersDirty = false;
 }
@@ -784,7 +756,7 @@ void CRenderer::SetRenderPath(RenderPath rp)
 	// Renderer has been opened, so validate the selected renderpath
 	if (rp == RP_DEFAULT)
 	{
-		if (m_Caps.m_ARBProgram)
+		if (m_Caps.m_ARBProgram || (m_Caps.m_VertexShader && m_Caps.m_FragmentShader && m_Options.m_PreferGLSL))
 			rp = RP_SHADER;
 		else
 			rp = RP_FIXED;
@@ -792,7 +764,7 @@ void CRenderer::SetRenderPath(RenderPath rp)
 
 	if (rp == RP_SHADER)
 	{
-		if (!m_Caps.m_ARBProgram)
+		if (!(m_Caps.m_ARBProgram || (m_Caps.m_VertexShader && m_Caps.m_FragmentShader && m_Options.m_PreferGLSL)))
 		{
 			LOGWARNING(L"Falling back to fixed function\n");
 			rp = RP_FIXED;
@@ -862,11 +834,6 @@ void CRenderer::BeginFrame()
 
 	// zero out all the per-frame stats
 	m_Stats.Reset();
-
-#if CONFIG2_GLES
-#warning TODO: move ARB shader programs to effect/technique files, and add GLSL versions
-	return;
-#endif
 
 	// choose model renderers for this frame
 
@@ -1415,14 +1382,7 @@ void CRenderer::RenderSilhouettes()
 		PROFILE("render transparent occluders");
 		if (GetRenderPath() == RP_SHADER)
 		{
-#if CONFIG2_GLES
-#warning TODO: implement occluder alpha testing for GLES
-#else
-			glEnable(GL_ALPHA_TEST);
-			glAlphaFunc(GL_GREATER, 0.4f);
-			m->Model.Transp->Render(m->Model.ModShaderSolidTex, MODELFLAG_SILHOUETTE_OCCLUDER);
-			glDisable(GL_ALPHA_TEST);
-#endif
+			m->Model.Transp->Render(m->Model.ModShaderTransparentShadow, MODELFLAG_SILHOUETTE_OCCLUDER);
 		}
 		else
 		{
@@ -1503,7 +1463,7 @@ void CRenderer::RenderParticles()
 
 		m->particleRenderer.RenderParticles(true);
 
-		CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect("solid");
+		CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect("gui_solid");
 		shaderTech->BeginPass();
 		CShaderProgramPtr shader = shaderTech->GetShader();
 		shader->Uniform("color", 0.0f, 1.0f, 0.0f, 1.0f);
@@ -1668,9 +1628,6 @@ void CRenderer::EndFrame()
 	m->overlayRenderer.EndFrame();
 	m->particleRenderer.EndFrame();
 
-#if CONFIG2_GLES
-#warning TODO: move ARB shader programs to effect/technique files, and add GLSL versions
-#else
 	// Finish model renderers
 	m->Model.Normal->EndFrame();
 	m->Model.Player->EndFrame();
@@ -1679,7 +1636,6 @@ void CRenderer::EndFrame()
 	if (m->Model.Player != m->Model.PlayerInstancing)
 		m->Model.PlayerInstancing->EndFrame();
 	m->Model.Transp->EndFrame();
-#endif
 
 	ogl_tex_bind(0, 0);
 

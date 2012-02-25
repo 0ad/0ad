@@ -1,5 +1,6 @@
 #version 110
 
+uniform mat4 transform;
 uniform vec3 sunDir;
 uniform vec3 sunColor;
 uniform vec2 losTransform;
@@ -25,7 +26,7 @@ void main()
     vec3 normal = a_normal;
   #endif
 
-  gl_Position = gl_ModelViewProjectionMatrix * position;
+  gl_Position = transform * position;
 
   v_lighting = max(0.0, dot(normal, -sunDir)) * sunColor;
   v_tex = a_uv0;

@@ -183,6 +183,8 @@ int ShaderRenderModifier::BeginPass(int pass)
 
 	CShaderProgramPtr shader = m_Technique->GetShader(pass);
 
+	shader->Uniform("transform", g_Renderer.GetViewCamera().GetViewProjection());
+
 	if (GetShadowMap() && shader->HasTexture("shadowTex"))
 	{
 		shader->BindTexture("shadowTex", GetShadowMap()->GetTexture());

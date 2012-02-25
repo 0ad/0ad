@@ -709,7 +709,7 @@ typedef POOLED_BATCH_MAP(CVertexBuffer*, IndexBufferBatches) VertexBufferBatches
 // Group batches by texture
 typedef POOLED_BATCH_MAP(CTerrainTextureEntry*, VertexBufferBatches) TextureBatches;
 
-void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, CShaderProgramPtr& shader, bool isDummyShader)
+void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader, bool isDummyShader)
 {
 	Allocators::Arena<> arena(ARENA_SIZE);
 
@@ -843,7 +843,7 @@ struct SBlendStackItem
 	SplatStack splats;
 };
 
-void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, CShaderProgramPtr& shader, bool isDummyShader)
+void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader, bool isDummyShader)
 {
 	Allocators::Arena<> arena(ARENA_SIZE);
 
@@ -1004,7 +1004,7 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, CShader
 	CVertexBuffer::Unbind();
 }
 
-void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, CShaderProgramPtr& shader, int streamflags)
+void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader, int streamflags)
 {
 	// Each batch has a list of index counts, and a list of pointers-to-first-indexes
 	typedef std::pair<std::vector<GLint>, std::vector<void*> > BatchElements;

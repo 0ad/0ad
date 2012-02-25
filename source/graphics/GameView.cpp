@@ -50,6 +50,7 @@
 #include "ps/LoaderThunks.h"
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
+#include "ps/TouchInput.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
@@ -630,6 +631,11 @@ static void ClampDistance(CGameViewImpl* m, bool smooth)
 
 void CGameView::Update(float DeltaTime)
 {
+	// If camera movement is being handled by the touch-input system,
+	// then we should stop to avoid conflicting with it
+	if (g_TouchInput.IsEnabled())
+		return;
+
 	if (!g_app_has_focus)
 		return;
 

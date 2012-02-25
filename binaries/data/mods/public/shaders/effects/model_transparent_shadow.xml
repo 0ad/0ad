@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<effect>
+
+    <technique>
+        <require shaders="arb"/>
+        <pass shader="solid_tex">
+            <alpha func="greater" ref="0.4"/>
+        </pass>
+    </technique>
+
+    <technique>
+        <require shaders="glsl"/>
+        <pass shader="glsl/model_solid_tex">
+            <define name="REQUIRE_ALPHA_GREATER" value="0.4"/>
+        </pass>
+    </technique>
+
+</effect>

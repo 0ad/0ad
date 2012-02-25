@@ -3,12 +3,14 @@
 
     <technique>
         <require shaders="arb"/>
-        <pass shader="model_common_arb"/>
+        <pass shader="solid_instancing"/>
     </technique>
 
     <technique>
         <require shaders="glsl"/>
-        <pass shader="glsl/model_common"/>
+        <pass shader="glsl/model_solid">
+          <define name="USE_INSTANCING" value="1"/>
+        </pass>
     </technique>
 
 </effect>

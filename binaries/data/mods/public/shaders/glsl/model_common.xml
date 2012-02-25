@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <program type="glsl">
 
-    <define name="USE_INSTANCING" value="1"/>
-
-    <vertex file="model_common.vs">
+    <vertex file="glsl/model_common.vs">
         <stream name="pos"/>
         <stream name="normal"/>
         <stream name="uv0"/>
@@ -12,6 +10,6 @@
         <attrib name="a_uv0" semantics="gl_MultiTexCoord0"/>
     </vertex>
 
-    <fragment file="model_common.fs"/>
+    <fragment file="glsl/model_common.fs"/>
 
 </program>

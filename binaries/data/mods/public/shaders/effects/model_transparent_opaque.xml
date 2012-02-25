@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<effect>
+
+    <technique>
+        <require shaders="arb"/>
+        <pass shader="model_common_arb">
+            <define name="USE_TRANSPARENT" value="1"/>
+            <alpha func="greater" ref="0.9375"/>
+            <blend src="src_alpha" dst="one_minus_src_alpha"/>
+        </pass>
+    </technique>
+
+    <technique>
+        <require shaders="glsl"/>
+        <pass shader="glsl/model_common">
+            <define name="USE_TRANSPARENT" value="1"/>
+            <define name="REQUIRE_ALPHA_GREATER" value="0.9375"/>
+            <blend src="src_alpha" dst="one_minus_src_alpha"/>
+        </pass>
+    </technique>
+
+</effect>
