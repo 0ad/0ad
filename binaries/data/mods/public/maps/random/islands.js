@@ -282,27 +282,9 @@ if((numPlayers>=6)||(i==startingPlaces[numPlayers-1][nPlayer])){
 	// get civ specific starting entities
 	var civEntities = getStartingEntities(id-1);
 	
-	// create the TC
-	var group = new SimpleGroup(	// elements (type, min/max count, min/max distance)
-		[new SimpleObject(civEntities[0].Template, 1,1, 0,0, BUILDING_ANGlE, BUILDING_ANGlE)],
-		true, null, ix, iz
-	);
-	createObjectGroup(group, id);
-	
 	// create starting units
-	var uDist = 6;
-	var uSpace = 2;
-	for (var j = 1; j < civEntities.length; ++j)
-	{
-		var uAngle = -BUILDING_ANGlE + PI * (j - 1) / 2;
-		var count = (civEntities[j].Count !== undefined ? civEntities[j].Count : 1);
-		for (var numberofentities = 0; numberofentities < count; numberofentities++)
-		{
-			var ux = fx + uDist * cos(uAngle) + numberofentities * uSpace * cos(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * cos(uAngle + PI/2));
-			var uz = fz + uDist * sin(uAngle) + numberofentities * uSpace * sin(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * sin(uAngle + PI/2));
-			placeObject(ux, uz, civEntities[j].Template, id, (j % 2 - 1) * PI + uAngle);
-		}
-	}
+	createStartingPlayerEntities(fx, fz, id, civEntities, BUILDING_ANGlE)
+
 
     nPlayer++;
 }

@@ -1,48 +1,6 @@
 RMS.LoadLibrary("rmgen");
 
 //TILE_CENTERED_HEIGHT_MAP = true;
-function rndRiver(f, seed)
-{
-	var rndRq = seed;
-	var rndRw = rndRq;
-	var rndRe = 0;
-	var rndRr = f-floor(f);
-	var rndRa = 0;
-	for (var rndRx=0; rndRx<=floor(f); rndRx++)
-	{
-		rndRw = 10*(rndRw-floor(rndRw));
-	}
-	if (rndRx%2==0)
-	{
-		var rndRs = -1;
-	}
-	else
-	{
-		var rndRs = 1;
-	}
-	rndRe = (floor(rndRw))%5;
-	if (rndRe==0)
-	{
-		rndRa = (rndRs)*2.3*(rndRr)*(rndRr-1)*(rndRr-0.5)*(rndRr-0.5);
-	}
-	else if (rndRe==1)
-	{
-		rndRa = (rndRs)*2.6*(rndRr)*(rndRr-1)*(rndRr-0.3)*(rndRr-0.7);
-	}
-	else if (rndRe==2)
-	{
-		rndRa = (rndRs)*22*(rndRr)*(rndRr-1)*(rndRr-0.2)*(rndRr-0.3)*(rndRr-0.3)*(rndRr-0.8);
-	}
-	else if (rndRe==3)
-	{
-		rndRa = (rndRs)*180*(rndRr)*(rndRr-1)*(rndRr-0.2)*(rndRr-0.2)*(rndRr-0.4)*(rndRr-0.6)*(rndRr-0.6)*(rndRr-0.8);
-	}
-	else if (rndRe==4)
-	{
-		rndRa = (rndRs)*2.6*(rndRr)*(rndRr-1)*(rndRr-0.5)*(rndRr-0.7);
-	}
-	return rndRa;
-}
 
 const tCity = "medit_city_pavement";
 const tCityPlaza = "medit_city_pavement";
@@ -173,27 +131,8 @@ for (var i = 0; i < numPlayers; i++)
 	// get civ specific starting entities
 	var civEntities = getStartingEntities(id-1);
 	
-	// create the TC
-	var group = new SimpleGroup(	// elements (type, min/max count, min/max distance, min/max angle)
-		[new SimpleObject(civEntities[0].Template, 1,1, 0,0, BUILDING_ANGlE, BUILDING_ANGlE)],
-		true, null, ix, iz
-	);
-	createObjectGroup(group, id);
-	
 	// create starting units
-	var uDist = 6;
-	var uSpace = 2;
-	for (var j = 1; j < civEntities.length; ++j)
-	{
-		var uAngle = -BUILDING_ANGlE + PI * (j - 1) / 2;
-		var count = (civEntities[j].Count !== undefined ? civEntities[j].Count : 1);
-		for (var numberofentities = 0; numberofentities < count; numberofentities++)
-		{
-			var ux = fx + uDist * cos(uAngle) + numberofentities * uSpace * cos(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * cos(uAngle + PI/2));
-			var uz = fz + uDist * sin(uAngle) + numberofentities * uSpace * sin(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * sin(uAngle + PI/2));
-			placeObject(ux, uz, civEntities[j].Template, id, (j % 2 - 1) * PI + uAngle);
-		}
-	}
+	createStartingPlayerEntities(fx, fz, id, civEntities, BUILDING_ANGlE)
 	
 	// create animals
 	for (var j = 0; j < 2; ++j)
@@ -202,7 +141,7 @@ for (var i = 0; i < numPlayers; i++)
 		var aDist = 7;
 		var aX = round(fx + aDist * cos(aAngle));
 		var aZ = round(fz + aDist * sin(aAngle));
-		group = new SimpleGroup(
+		var group = new SimpleGroup(
 			[new SimpleObject(oChicken, 5,5, 0,3)],
 			true, clBaseResource, aX, aZ
 		);

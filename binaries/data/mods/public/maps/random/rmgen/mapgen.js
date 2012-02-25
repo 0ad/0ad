@@ -1,5 +1,3 @@
-var TILE_CENTERED_HEIGHT_MAP = false;
-
 var g_Map;
 
 var g_Environment = {

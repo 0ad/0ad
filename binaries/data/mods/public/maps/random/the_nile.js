@@ -1,105 +1,71 @@
 RMS.LoadLibrary("rmgen");
 
-function rndRiver(f, seed)
-{
-	var rndRq = seed;
-	var rndRw = rndRq;
-	var rndRe = 0;
-	var rndRr = f-floor(f);
-	var rndRa = 0;
-	for (var rndRx=0; rndRx<=floor(f); rndRx++)
-	{
-		rndRw = 10*(rndRw-floor(rndRw));
-	}
-	if (rndRx%2==0)
-	{
-		var rndRs = -1;
-	}
-	else
-	{
-		var rndRs = 1;
-	}
-	rndRe = (floor(rndRw))%5;
-	if (rndRe==0)
-	{
-		rndRa = (rndRs)*2.3*(rndRr)*(rndRr-1)*(rndRr-0.5)*(rndRr-0.5);
-	}
-	else if (rndRe==1)
-	{
-		rndRa = (rndRs)*2.6*(rndRr)*(rndRr-1)*(rndRr-0.3)*(rndRr-0.7);
-	}
-	else if (rndRe==2)
-	{
-		rndRa = (rndRs)*22*(rndRr)*(rndRr-1)*(rndRr-0.2)*(rndRr-0.3)*(rndRr-0.3)*(rndRr-0.8);
-	}
-	else if (rndRe==3)
-	{
-		rndRa = (rndRs)*180*(rndRr)*(rndRr-1)*(rndRr-0.2)*(rndRr-0.2)*(rndRr-0.4)*(rndRr-0.6)*(rndRr-0.6)*(rndRr-0.8);
-	}
-	else if (rndRe==4)
-	{
-		rndRa = (rndRs)*2.6*(rndRr)*(rndRr-1)*(rndRr-0.5)*(rndRr-0.7);
-	}
-	return rndRa;
-}
 
-const tCity = "desert_city_tile";
-const tCityPlaza = "desert_city_tile_plaza";
-const tSand = ["desert_dirt_rough", "desert_dirt_rough_2", "desert_sand_dunes_50", "desert_sand_smooth"];
-const tDunes = "desert_sand_dunes_100";
-const tFineSand = "desert_sand_smooth";
-const tCliff = ["desert_cliff_badlands", "desert_cliff_badlands_2"];
-const tForestFloor = "desert_forestfloor_palms";
-const tGrass = "desert_dirt_rough_2";
-const tGrassSand50 = "desert_sand_dunes_50";
-const tGrassSand25 = "desert_dirt_rough";
-const tDirt = "desert_dirt_rough";
-const tDirtCracks = "desert_dirt_cracks";
-const tShore = "desert_sand_wet";
-const tLush = "desert_grass_a";
-const tSLush = "desert_grass_a_sand";
-const tSDry = "desert_plants_b";
+var tCity = "desert_city_tile";
+var tCityPlaza = "desert_city_tile_plaza";
+var tSand = ["desert_dirt_rough", "desert_dirt_rough_2", "desert_sand_dunes_50", "desert_sand_smooth"];
+var tDunes = "desert_sand_dunes_100";
+var tFineSand = "desert_sand_smooth";
+var tCliff = ["desert_cliff_badlands", "desert_cliff_badlands_2"];
+var tForestFloor = "desert_forestfloor_palms";
+var tGrass = "desert_dirt_rough_2";
+var tGrassSand50 = "desert_sand_dunes_50";
+var tGrassSand25 = "desert_dirt_rough";
+var tDirt = "desert_dirt_rough";
+var tDirtCracks = "desert_dirt_cracks";
+var tShore = "desert_sand_wet";
+var tLush = "desert_grass_a";
+var tSLush = "desert_grass_a_sand";
+var tSDry = "desert_plants_b";
 // gaia entities
-const oBerryBush = "gaia/flora_bush_berry";
-const oChicken = "gaia/fauna_chicken";
-const oCamel = "gaia/fauna_camel";
-const oFish = "gaia/fauna_fish";
-const oGazelle = "gaia/fauna_gazelle";
-const oGiraffe = "gaia/fauna_giraffe";
-const oGoat = "gaia/fauna_goat";
-const oWildebeest = "gaia/fauna_wildebeest";
-const oStoneLarge = "gaia/geology_stonemine_desert_badlands_quarry";
-const oStoneSmall = "gaia/geology_stone_desert_small";
-const oMetalLarge = "gaia/geology_metal_desert_slabs";
-const oDatePalm = "gaia/flora_tree_date_palm";
-const oSDatePalm = "gaia/flora_tree_cretan_date_palm_short";
-const eObelisk = "other/obelisk";
-const ePyramid = "other/pyramid_minor";
-const oWood = "gaia/special_treasure_wood";
-const oFood = "gaia/special_treasure_food_bin";
+var oBerryBush = "gaia/flora_bush_berry";
+var oChicken = "gaia/fauna_chicken";
+var oCamel = "gaia/fauna_camel";
+var oFish = "gaia/fauna_fish";
+var oGazelle = "gaia/fauna_gazelle";
+var oGiraffe = "gaia/fauna_giraffe";
+var oGoat = "gaia/fauna_goat";
+var oWildebeest = "gaia/fauna_wildebeest";
+var oStoneLarge = "gaia/geology_stonemine_desert_badlands_quarry";
+var oStoneSmall = "gaia/geology_stone_desert_small";
+var oMetalLarge = "gaia/geology_metal_desert_slabs";
+var oDatePalm = "gaia/flora_tree_date_palm";
+var oSDatePalm = "gaia/flora_tree_cretan_date_palm_short";
+var eObelisk = "other/obelisk";
+var ePyramid = "other/pyramid_minor";
+var oWood = "gaia/special_treasure_wood";
+var oFood = "gaia/special_treasure_food_bin";
 
 // decorative props
-const aBush1 = "actor|props/flora/bush_desert_a.xml";
-const aBush2 = "actor|props/flora/bush_desert_dry_a.xml";
-const aBush3 = "actor|props/flora/bush_medit_sm_dry.xml";
-const aBush4 = "actor|props/flora/plant_desert_a.xml";
-const aBushes = [aBush1, aBush2, aBush3, aBush4];
-const aDecorativeRock = "actor|geology/stone_desert_med.xml";
-const aReeds = "actor|props/flora/reeds_pond_lush_a.xml";
-const aLillies = "actor|props/flora/water_lillies.xml";
+var aBush1 = "actor|props/flora/bush_desert_a.xml";
+var aBush2 = "actor|props/flora/bush_desert_dry_a.xml";
+var aBush3 = "actor|props/flora/bush_medit_sm_dry.xml";
+var aBush4 = "actor|props/flora/plant_desert_a.xml";
+var aBushes = [aBush1, aBush2, aBush3, aBush4];
+var aDecorativeRock = "actor|geology/stone_desert_med.xml";
+var aReeds = "actor|props/flora/reeds_pond_lush_a.xml";
+var aLillies = "actor|props/flora/water_lillies.xml";
 
 // terrain + entity (for painting)
 var pForest = [tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERRAIN_SEPARATOR + oSDatePalm, tForestFloor];
 var pForestOasis = [tGrass + TERRAIN_SEPARATOR + oDatePalm, tGrass + TERRAIN_SEPARATOR + oSDatePalm, tGrass];
 
-const BUILDING_ANGlE = 0.75*PI;
+var BUILDING_ANGlE = 0.75*PI;
 
 log("Initializing map...");
 
 InitMap();
 
-var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
+if (mapSize < 256)
+{
+	var aPlants = "actor|props/flora/grass_tropical.xml";
+}
+else
+{
+	var aPlants = "actor|props/flora/grass_tropic_field_tall.xml";
+}
+var numPlayers = getNumPlayers();
 var mapArea = mapSize*mapSize;
 
 // create tile classes
@@ -181,27 +147,8 @@ for (var i = 0; i < numPlayers; i++)
 	// get civ specific starting entities
 	var civEntities = getStartingEntities(id-1);
 	
-	// create the TC
-	var group = new SimpleGroup(	// elements (type, min/max count, min/max distance, min/max angle)
-		[new SimpleObject(civEntities[0].Template, 1,1, 0,0, BUILDING_ANGlE, BUILDING_ANGlE)],
-		true, null, ix, iz
-	);
-	createObjectGroup(group, id);
-	
 	// create starting units
-	var uDist = 6;
-	var uSpace = 2;
-	for (var j = 1; j < civEntities.length; ++j)
-	{
-		var uAngle = -BUILDING_ANGlE + PI * (j - 1) / 2;
-		var count = (civEntities[j].Count !== undefined ? civEntities[j].Count : 1);
-		for (var numberofentities = 0; numberofentities < count; numberofentities++)
-		{
-			var ux = fx + uDist * cos(uAngle) + numberofentities * uSpace * cos(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * cos(uAngle + PI/2));
-			var uz = fz + uDist * sin(uAngle) + numberofentities * uSpace * sin(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * sin(uAngle + PI/2));
-			placeObject(ux, uz, civEntities[j].Template, id, (j % 2 - 1) * PI + uAngle);
-		}
-	}
+	createStartingPlayerEntities(fx, fz, id, civEntities, BUILDING_ANGlE)
 	
 	// create animals
 	for (var j = 0; j < 2; ++j)
@@ -210,7 +157,7 @@ for (var i = 0; i < numPlayers; i++)
 		var aDist = 7;
 		var aX = round(fx + aDist * cos(aAngle));
 		var aZ = round(fz + aDist * sin(aAngle));
-		group = new SimpleGroup(
+		var group = new SimpleGroup(
 			[new SimpleObject(oChicken, 5,5, 0,3)],
 			true, clBaseResource, aX, aZ
 		);
@@ -292,6 +239,8 @@ var theta = randFloat(0, 1);
 var seed = randFloat(2,3);
 var theta2 = randFloat(0, 1);
 var seed2 = randFloat(2,3);
+var rifp = 0;
+var rifp2 = 0;
 for (ix = 0; ix < mapSize; ix++)
 {
 	for (iz = 0; iz < mapSize; iz++)
@@ -317,12 +266,29 @@ for (ix = 0; ix < mapSize; ix++)
 		{
 			if (xk < cu+((1.05-WATER_WIDTH)/2))
 			{
-				h = -3 + 200.0* abs(cu+((1.05-WATER_WIDTH)/2-xk));	
-			
+				h = -3 + 200.0* abs(cu+((1.05-WATER_WIDTH)/2-xk));
+				if ((h < 0.1)&&(h>-0.2))
+				{
+					if (rifp%2 == 0)
+					{
+						rifp = 0;
+						placeObject(ix, iz, aPlants, 0, randFloat(0,TWO_PI));
+					}
+					++rifp;
+				}
 			}
 			else if (xk > (cu+(0.95+WATER_WIDTH)/2))
 			{
 				h = -3 + 200.0*(xk-(cu+((0.95+WATER_WIDTH)/2)));
+				if ((h < 0.1)&&(h>-0.2))
+				{
+					if (rifp2%2 == 0)
+					{
+						rifp2 = 0;
+						placeObject(ix, iz, aPlants, 0, randFloat(0,TWO_PI));
+					}
+					++rifp2;
+				}
 			}
 			else
 			{
@@ -643,12 +609,12 @@ createObjectGroups(
 
 // Set environment
 setSkySet("sunny");
-setSunColour(0.873, 0.846, 0.674);	
-setWaterColour(0.312, 0.562, 0.652);		
-setWaterTint(0.412, 0.212, 0.212);				
-setWaterReflectionTint(0.447, 0.202, 0.222);	
-setWaterMurkiness(1.0);
-setWaterReflectionTintStrength(0.677);
+setSunColour(0.711, 0.746, 0.574);	
+setWaterColour(0.292, 0.347, 0.691);		
+setWaterTint(0.550, 0.543, 0.437);				
+setWaterReflectionTint(0.562, 0.511, 0.425);	
+setWaterMurkiness(0.83);
+setWaterReflectionTintStrength(0.377);
 
 // Export map data
 ExportMap();

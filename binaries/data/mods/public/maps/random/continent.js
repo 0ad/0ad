@@ -1,338 +1,48 @@
 RMS.LoadLibrary("rmgen");
 
 //random terrain textures
-var rt = randInt(1,7);
-//temperate
-if (rt == 1){
-var tGrass = ["temp_grass_long_b"];
-var tGrassPForest = "temp_forestfloor_pine";
-var tGrassDForest = "temp_plants_bog";
-var tCliff = ["temp_cliff_a", "temp_cliff_b"];
-var tGrassA = "temp_grass_d";
-var tGrassB = "temp_grass_c";
-var tGrassC = "temp_grass_clovers_2";
-var tHill = ["temp_dirt_gravel", "temp_dirt_gravel_b"];
-var tDirt = ["temp_dirt_gravel", "temp_dirt_gravel_b"];
-var tRoad = "temp_road";
-var tRoadWild = "temp_road_overgrown";
-var tGrassPatch = "temp_grass_plants";
-var tShoreBlend = "temp_mud_plants";
-var tShore = "sand_grass_25";
-var tWater = "medit_sand_wet";
+var rt = randomizeBiome();
+
+var tGrass = rBiomeT1();
+var tGrassPForest = rBiomeT2();
+var tGrassDForest = rBiomeT3();
+var tCliff = rBiomeT4();
+var tGrassA = rBiomeT5();
+var tGrassB = rBiomeT6();
+var tGrassC = rBiomeT7();
+var tHill = rBiomeT8();
+var tDirt = rBiomeT9();
+var tRoad = rBiomeT10();
+var tRoadWild = rBiomeT11();
+var tGrassPatch = rBiomeT12();
+var tShoreBlend = rBiomeT13();
+var tShore = rBiomeT14();
+var tWater = rBiomeT15();
 
 // gaia entities
-var oOak = "gaia/flora_tree_oak";
-var oOakLarge = "gaia/flora_tree_oak_large";
-var oApple = "gaia/flora_tree_apple";
-var oPine = "gaia/flora_tree_pine";
-var oAleppoPine = "gaia/flora_tree_aleppo_pine";
-var oBerryBush = "gaia/flora_bush_berry";
-var oChicken = "gaia/fauna_chicken";
-var oDeer = "gaia/fauna_deer";
-var oFish = "gaia/fauna_fish";
-var oSheep = "gaia/fauna_sheep";
-var oStoneLarge = "gaia/geology_stonemine_medit_quarry";
-var oStoneSmall = "gaia/geology_stone_mediterranean";
-var oMetalLarge = "gaia/geology_metal_mediterranean_slabs";
+var oOak = rBiomeE1();
+var oOakLarge = rBiomeE2();
+var oApple = rBiomeE3();
+var oPine = rBiomeE4();
+var oAleppoPine = rBiomeE5();
+var oBerryBush = rBiomeE6();
+var oChicken = rBiomeE7();
+var oDeer = rBiomeE8();
+var oFish = rBiomeE9();
+var oSheep = rBiomeE10();
+var oStoneLarge = rBiomeE11();
+var oStoneSmall = rBiomeE12();
+var oMetalLarge = rBiomeE13();
 
 // decorative props
-var aGrass = "actor|props/flora/grass_soft_large_tall.xml";
-var aGrassShort = "actor|props/flora/grass_soft_large.xml";
-var aReeds = "actor|props/flora/reeds_pond_lush_a.xml";
-var aLillies = "actor|props/flora/pond_lillies_large.xml";
-var aRockLarge = "actor|geology/stone_granite_large.xml";
-var aRockMedium = "actor|geology/stone_granite_med.xml";
-var aBushMedium = "actor|props/flora/bush_medit_me.xml";
-var aBushSmall = "actor|props/flora/bush_medit_sm.xml";
-
-// terrain + entity (for painting)
-
-}
-//snowy
-else if (rt == 2)
-{
-setSunColour(0.550, 0.601, 0.644);				// a little darker
-
-var tGrass = ["polar_snow_b", "snow grass 75", "snow rocks", "snow forest"];
-var tGrassPForest = "polar_tundra_snow";
-var tGrassDForest = "polar_tundra_snow";
-var tCliff = ["polar_cliff_a", "polar_cliff_b"];
-var tGrassA = "snow grass 2";
-var tGrassB = "polar_snow_a";
-var tGrassC = "polar_ice_snow";
-var tHill = ["polar_snow_rocks", "polar_cliff_snow"];
-var tDirt = ["polar_ice_b", "polar_ice_c"];
-var tRoad = "new_alpine_citytile";
-var tRoadWild = "polar_ice_cracked";
-var tGrassPatch = "snow grass 2";
-var tShoreBlend = "polar_ice";
-var tShore = "snow_glacial_01";
-var tWater = "polar_ice_c";
-
-// gaia entities
-var oOak = "gaia/flora_tree_pine_w";
-var oOakLarge = "gaia/flora_tree_pine_w";
-var oApple = "gaia/flora_tree_pine_w";
-var oPine = "gaia/flora_tree_pine_w";
-var oAleppoPine = "gaia/flora_tree_pine";
-var oBerryBush = "gaia/flora_bush_berry";
-var oChicken = "gaia/fauna_chicken";
-var oDeer = "gaia/fauna_muskox";
-var oFish = "gaia/fauna_fish_tuna";
-var oSheep = "gaia/fauna_walrus";
-var oStoneLarge = "gaia/geology_stone_alpine_a";
-var oStoneSmall = "gaia/geology_stone_alpine_a";
-var oMetalLarge = "gaia/geology_metal_alpine";
-
-// decorative props
-var aGrass = "actor|props/flora/grass_soft_dry_small_tall.xml";
-var aGrassShort = "actor|props/flora/grass_soft_dry_large.xml";
-var aRockLarge = "actor|geology/stone_granite_large.xml";
-var aRockMedium = "actor|geology/stone_granite_med.xml";
-var aBushMedium = "actor|props/flora/bush_desert_dry_a.xml";
-var aBushSmall = "actor|props/flora/bush_desert_dry_a.xml";
-
-// terrain + entity (for painting)
-
-}
-//desert
-else if (rt == 3)
-{
-setSunColour(0.733, 0.746, 0.574);	
-
-var tGrass = ["desert_dirt_rough", "desert_dirt_rough_2", "desert_sand_dunes_50", "desert_sand_smooth"];
-var tGrassPForest = "forestfloor_dirty";
-var tGrassDForest = "desert_forestfloor_palms";
-var tCliff = ["desert_cliff_1", "desert_cliff_2", "desert_cliff_3", "desert_cliff_4", "desert_cliff_5"];
-var tGrassA = ["desert_dirt_persia_1", "desert_dirt_persia_2"];
-var tGrassB = "dirta";
-var tGrassC = "medit_dirt_dry";
-var tHill = ["desert_dirt_rocks_1", "desert_dirt_rocks_2", "desert_dirt_rocks_3"];
-var tDirt = ["desert_lakebed_dry", "desert_lakebed_dry_b"];
-var tRoad = "desert_city_tile";
-var tRoadWild = "desert_city_tile";
-var tGrassPatch = "desert_dirt_rough";
-var tShoreBlend = "desert_shore_stones";
-var tShore = "dirta";
-var tWater = "desert_sand_wet";
-
-// gaia entities
-var oOak = "gaia/flora_tree_cretan_date_palm_short";
-var oOakLarge = "gaia/flora_tree_cretan_date_palm_tall";
-var oApple = "gaia/flora_tree_fig";
-var oPine = "gaia/flora_tree_dead";
-var oAleppoPine = "gaia/flora_tree_date_palm";
-var oBerryBush = "gaia/flora_bush_grapes";
-var oChicken = "gaia/fauna_chicken";
-var oDeer = "gaia/fauna_camel";
-var oFish = "gaia/fauna_fish";
-var oSheep = "gaia/fauna_gazelle";
-var oStoneLarge = "gaia/geology_stonemine_desert_quarry";
-var oStoneSmall = "gaia/geology_stone_desert_small";
-var oMetalLarge = "gaia/geology_metal_desert_slabs";
-
-// decorative props
-var aGrass = "actor|props/flora/grass_soft_dry_small_tall.xml";
-var aGrassShort = "actor|props/flora/grass_soft_dry_large.xml";
-var aRockLarge = "actor|geology/stone_desert_med.xml";
-var aRockMedium = "actor|geology/stone_desert_med.xml";
-var aBushMedium = "actor|props/flora/bush_desert_dry_a.xml";
-var aBushSmall = "actor|props/flora/bush_desert_dry_a.xml";
-// terrain + entity (for painting)
-}
-//alpine
-else if (rt == 4)
-{
-var tGrass = ["alpine_dirt_grass_50"];
-var tGrassPForest = "alpine_forrestfloor";
-var tGrassDForest = "alpine_forrestfloor";
-var tCliff = ["alpine_cliff_a", "alpine_cliff_b", "alpine_cliff_c"];
-var tGrassA = "alpine_grass_rocky";
-var tGrassB = ["alpine_grass_snow_50", "alpine_dirt_snow"];
-var tGrassC = ["alpine_snow_a", "alpine_snow_b"];
-var tHill = "alpine_cliff_snow";
-var tDirt = ["alpine_dirt", "alpine_grass_d"];
-var tRoad = "new_alpine_citytile";
-var tRoadWild = "new_alpine_citytile";
-var tGrassPatch = "new_alpine_grass_a";
-var tShoreBlend = "alpine_shore_rocks";
-var tShore = "alpine_shore_rocks_grass_50";
-var tWater = "alpine_shore_rocks";
-
-// gaia entities
-var oOak = "gaia/flora_tree_pine";
-var oOakLarge = "gaia/flora_tree_pine";
-var oApple = "gaia/flora_tree_pine";
-var oPine = "gaia/flora_tree_pine";
-var oAleppoPine = "gaia/flora_tree_pine";
-var oBerryBush = "gaia/flora_bush_berry";
-var oChicken = "gaia/fauna_chicken";
-var oDeer = "gaia/fauna_goat";
-var oFish = "gaia/fauna_fish_tuna";
-var oSheep = "gaia/fauna_deer";
-var oStoneLarge = "gaia/geology_stone_alpine_a";
-var oStoneSmall = "gaia/geology_stone_alpine_a";
-var oMetalLarge = "gaia/geology_metal_alpine";
-
-// decorative props
-var aGrass = "actor|props/flora/grass_soft_dry_small_tall.xml";
-var aGrassShort = "actor|props/flora/grass_soft_dry_large.xml";
-var aRockLarge = "actor|geology/stone_granite_large.xml";
-var aRockMedium = "actor|geology/stone_granite_med.xml";
-var aBushMedium = "actor|props/flora/bush_desert_dry_a.xml";
-var aBushSmall = "actor|props/flora/bush_desert_dry_a.xml";
-
-// terrain + entity (for painting)
-}
-//medit
-else if (rt == 5){
-var tGrass = ["medit_grass_field_a", "medit_grass_field_b"];
-var tGrassPForest = "medit_plants_dirt";
-var tGrassDForest = "medit_grass_shrubs";
-var tCliff = ["medit_cliff_grass", "medit_cliff_greek", "medit_cliff_greek_2", "medit_cliff_aegean", "medit_cliff_italia", "medit_cliff_italia_grass"];
-var tGrassA = "medit_grass_field_b";
-var tGrassB = "medit_grass_field_brown";
-var tGrassC = "medit_grass_field_dry";
-var tHill = ["medit_rocks_grass_shrubs", "medit_rocks_shrubs"];
-var tDirt = ["medit_dirt", "medit_dirt_b"];
-var tRoad = "medit_city_tile";
-var tRoadWild = "medit_city_tile";
-var tGrassPatch = "medit_grass_wild";
-var tShoreBlend = "medit_sand";
-var tShore = "sand_grass_25";
-var tWater = "medit_sand_wet";
-
-// gaia entities
-var oOak = "gaia/flora_tree_cretan_date_palm_short";
-var oOakLarge = "gaia/flora_tree_medit_fan_palm";
-var oApple = "gaia/flora_tree_apple";
-var oPine = "gaia/flora_tree_cypress";
-var oAleppoPine = "gaia/flora_tree_aleppo_pine";
-var oBerryBush = "gaia/flora_bush_berry";
-var oChicken = "gaia/fauna_chicken";
-var oDeer = "gaia/fauna_deer";
-var oFish = "gaia/fauna_fish";
-var oSheep = "gaia/fauna_sheep";
-var oStoneLarge = "gaia/geology_stonemine_medit_quarry";
-var oStoneSmall = "gaia/geology_stone_mediterranean";
-var oMetalLarge = "gaia/geology_metal_mediterranean_slabs";
-
-// decorative props
-var aGrass = "actor|props/flora/grass_soft_large_tall.xml";
-var aGrassShort = "actor|props/flora/grass_soft_large.xml";
-var aReeds = "actor|props/flora/reeds_pond_lush_a.xml";
-var aLillies = "actor|props/flora/pond_lillies_large.xml";
-var aRockLarge = "actor|geology/stone_granite_large.xml";
-var aRockMedium = "actor|geology/stone_granite_med.xml";
-var aBushMedium = "actor|props/flora/bush_medit_me.xml";
-var aBushSmall = "actor|props/flora/bush_medit_sm.xml";
-
-// terrain + entity (for painting)
-
-}
-//savanah
-else if (rt == 6)
-{
-var tGrass = ["savanna_grass_a", "savanna_grass_b"];
-var tGrassPForest = "savanna_forestfloor_a";
-var tGrassDForest = "savanna_forestfloor_b";
-var tCliff = ["savanna_cliff_a", "savanna_cliff_b"];
-var tGrassA = "savanna_shrubs_a";
-var tGrassB = "savanna_dirt_rocks_b";
-var tGrassC = "dirt_brown_e";
-var tHill = ["savanna_grass_a", "savanna_grass_b"];
-var tDirt = ["savanna_dirt_rocks_b", "dirt_brown_e"];
-var tRoad = "savanna_tile_a";
-var tRoadWild = "savanna_tile_a";
-var tGrassPatch = "savanna_grass_a";
-var tShoreBlend = "savanna_riparian";
-var tShore = "savanna_riparian_bank";
-var tWater = "savanna_riparian_wet";
-
-// gaia entities
-var oOak = "gaia/flora_tree_baobab";
-var oOakLarge = "gaia/flora_tree_baobab";
-var oApple = "gaia/flora_tree_baobab";
-var oPine = "gaia/flora_tree_baobab";
-var oAleppoPine = "gaia/flora_tree_baobab";
-var oBerryBush = "gaia/flora_bush_grapes";
-var oChicken = "gaia/fauna_chicken";
-var rts = randInt(1,4);
-if (rts==1){
-var oDeer = "gaia/fauna_wildebeest";
-}
-else if (rts==2)
-{
-var oDeer = "gaia/fauna_zebra";
-}
-else if (rts==3)
-{
-var oDeer = "gaia/fauna_giraffe";
-}
-else if (rts==4)
-{
-var oDeer = "gaia/fauna_elephant_african_bush";
-}
-var oFish = "gaia/fauna_fish";
-var oSheep = "gaia/fauna_gazelle";
-var oStoneLarge = "gaia/geology_stonemine_desert_quarry";
-var oStoneSmall = "gaia/geology_stone_savanna_small";
-var oMetalLarge = "gaia/geology_metal_savanna_slabs";
-
-// decorative props
-var aGrass = "actor|props/flora/grass_savanna.xml";
-var aGrassShort = "actor|props/flora/grass_medit_field.xml";
-var aRockLarge = "actor|geology/stone_savanna_med.xml";
-var aRockMedium = "actor|geology/stone_savanna_med.xml";
-var aBushMedium = "actor|props/flora/bush_desert_dry_a.xml";
-var aBushSmall = "actor|props/flora/bush_dry_a.xml";
-// terrain + entity (for painting)
-}
-else if (rt == 7){
-var tGrass = ["tropic_grass_c", "tropic_grass_c", "tropic_grass_c", "tropic_grass_c", "tropic_grass_plants", "tropic_plants", "tropic_plants_b"];
-var tGrassPForest = "tropic_plants_c";
-var tGrassDForest = "tropic_plants_c";
-var tCliff = ["tropic_cliff_a", "tropic_cliff_a", "tropic_cliff_a", "tropic_cliff_a_plants"];
-var tGrassA = "tropic_grass_c";
-var tGrassB = "tropic_grass_plants";
-var tGrassC = "tropic_plants";
-var tHill = ["tropic_cliff_grass"];
-var tDirt = ["tropic_dirt_a", "tropic_dirt_a_plants"];
-var tRoad = "tropic_citytile_a";
-var tRoadWild = "tropic_citytile_plants";
-var tGrassPatch = "tropic_plants_b";
-var tShoreBlend = "temp_mud_plants";
-var tShore = "tropic_beach_dry";
-var tWater = "tropic_beach_wet";
-
-// gaia entities
-var oOak = "gaia/flora_tree_poplar";
-var oOakLarge = "gaia/flora_tree_poplar";
-var oApple = "gaia/flora_tree_poplar";
-var oPine = "gaia/flora_tree_cretan_date_palm_short";
-var oAleppoPine = "gaia/flora_tree_cretan_date_palm_tall";
-var oBerryBush = "gaia/flora_bush_berry";
-var oChicken = "gaia/fauna_chicken";
-var oDeer = "gaia/fauna_deer";
-var oFish = "gaia/fauna_fish";
-var oSheep = "gaia/fauna_tiger";
-var oStoneLarge = "gaia/geology_stonemine_tropic_quarry";
-var oStoneSmall = "gaia/geology_stone_tropic_a";
-var oMetalLarge = "gaia/geology_metal_tropic_slabs";
-
-// decorative props
-var aGrass = "actor|props/flora/plant_tropic_a.xml";
-var aGrassShort = "actor|props/flora/plant_lg.xml";
-var aReeds = "actor|props/flora/reeds_pond_lush_b.xml";
-var aLillies = "actor|props/flora/water_lillies.xml";
-var aRockLarge = "actor|geology/stone_granite_large.xml";
-var aRockMedium = "actor|geology/stone_granite_med.xml";
-var aBushMedium = "actor|props/flora/plant_tropic_large.xml";
-var aBushSmall = "actor|props/flora/plant_tropic_large.xml";
-
-// terrain + entity (for painting)
-
-}
+var aGrass = rBiomeA1();
+var aGrassShort = rBiomeA2();
+var aReeds = rBiomeA3();
+var aLillies = rBiomeA4();
+var aRockLarge = rBiomeA5();
+var aRockMedium = rBiomeA6();
+var aBushMedium = rBiomeA7();
+var aBushSmall = rBiomeA8();
 
 var pForestD = [tGrassDForest + TERRAIN_SEPARATOR + oOak, tGrassDForest + TERRAIN_SEPARATOR + oOakLarge, tGrassDForest];
 var pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oPine, tGrassPForest + TERRAIN_SEPARATOR + oAleppoPine, tGrassPForest];
@@ -443,28 +153,8 @@ for (var i = 0; i < numPlayers; i++)
 	// get civ specific starting entities
 	var civEntities = getStartingEntities(id-1);
 	
-	// create the TC
-	var group = new SimpleGroup(	// elements (type, min/max count, min/max distance, min/max angle)
-		[new SimpleObject(civEntities[0].Template, 1,1, 0,0, BUILDING_ANGlE, BUILDING_ANGlE)],
-		true, null, ix, iz
-	);
-	createObjectGroup(group, id);
-	
 	// create starting units
-	// create starting units
-	var uDist = 6;
-	var uSpace = 2;
-	for (var j = 1; j < civEntities.length; ++j)
-	{
-		var uAngle = -BUILDING_ANGlE + PI * (j - 1) / 2;
-		var count = (civEntities[j].Count !== undefined ? civEntities[j].Count : 1);
-		for (var numberofentities = 0; numberofentities < count; numberofentities++)
-		{
-			var ux = fx + uDist * cos(uAngle) + numberofentities * uSpace * cos(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * cos(uAngle + PI/2));
-			var uz = fz + uDist * sin(uAngle) + numberofentities * uSpace * sin(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * sin(uAngle + PI/2));
-			placeObject(ux, uz, civEntities[j].Template, id, (j % 2 - 1) * PI + uAngle);
-		}
-	}
+	createStartingPlayerEntities(fx, fz, id, civEntities, BUILDING_ANGlE)
 	
 	// create animals
 	for (var j = 0; j < 2; ++j)
@@ -473,7 +163,7 @@ for (var i = 0; i < numPlayers; i++)
 		var aDist = 7;
 		var aX = round(fx + aDist * cos(aAngle));
 		var aZ = round(fz + aDist * sin(aAngle));
-		group = new SimpleGroup(
+		var group = new SimpleGroup(
 			[new SimpleObject(oChicken, 5,5, 0,3)],
 			true, clBaseResource, aX, aZ
 		);
