@@ -4,7 +4,7 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="0.741176" g="0.721569" b="0.643137"/>
+		<SunColour r="0.737255" g="0.721569" b="0.639216"/>
 		<SunElevation angle="0.708699"/>
 		<SunRotation angle="-0.0122718"/>
 		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="406.208" y="248.452" z="-52.746"/>
-		<Rotation angle="-0.0960964"/>
-		<Declination angle="0.572652"/>
+		<Position x="875.801" y="125.643" z="523.157"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -90,7 +90,7 @@
     },
     {
       "AI": "qbot",
-      "Civ": "cart",
+      "Civ": "iber",
       "Colour": {
         "b": 75,
         "g": 230,
@@ -569,7 +569,7 @@
 		<Entity uid="2992">
 			<Template>structures/rome_civil_centre</Template>
 			<Player>1</Player>
-			<Position x="653.15516" z="337.81827"/>
+			<Position x="653.5943" z="337.95813"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3009">
