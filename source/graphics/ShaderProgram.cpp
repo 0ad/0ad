@@ -268,27 +268,31 @@ public:
 
 		GLint ok = 0;
 		pglGetShaderiv(shader, GL_COMPILE_STATUS, &ok);
-		if (!ok)
+
+		GLint length = 0;
+		pglGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
+
+		// Apparently sometimes GL_INFO_LOG_LENGTH is incorrectly reported as 0
+		// (http://code.google.com/p/android/issues/detail?id=9953)
+		if (!ok && length == 0)
+			length = 4096;
+
+		if (length > 1)
 		{
-			GLint length = 0;
-			pglGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
-
-			// Apparently sometimes GL_INFO_LOG_LENGTH is incorrectly reported as 0
-			// (http://code.google.com/p/android/issues/detail?id=9953)
-			if (length == 0)
-				length = 4096;
-
 			char* infolog = new char[length];
 			pglGetShaderInfoLog(shader, length, NULL, infolog);
-			LOGERROR(L"Failed to compile shader '%ls':\n%hs", file.string().c_str(), infolog);
-			delete[] infolog;
 
-			return false;
+			if (ok)
+				LOGMESSAGE(L"Info when compiling shader '%ls':\n%hs", file.string().c_str(), infolog);
+			else
+				LOGERROR(L"Failed to compile shader '%ls':\n%hs", file.string().c_str(), infolog);
+
+			delete[] infolog;
 		}
 
 		ogl_WarnIfError();
 
-		return true;
+		return (ok ? true : false);
 	}
 
 	bool Link()
@@ -311,23 +315,30 @@ public:
 
 		GLint ok = 0;
 		pglGetProgramiv(m_Program, GL_LINK_STATUS, &ok);
-		if (!ok)
+
+		GLint length = 0;
+		pglGetProgramiv(m_Program, GL_INFO_LOG_LENGTH, &length);
+
+		if (!ok && length == 0)
+			length = 4096;
+
+		if (length > 1)
 		{
-			GLint length = 0;
-			pglGetProgramiv(m_Program, GL_INFO_LOG_LENGTH, &length);
-
-			if (length == 0)
-				length = 4096;
-
 			char* infolog = new char[length];
 			pglGetProgramInfoLog(m_Program, length, NULL, infolog);
-			LOGERROR(L"Failed to link program '%ls'+'%ls':\n%hs", m_VertexFile.string().c_str(), m_FragmentFile.string().c_str(), infolog);
-			delete[] infolog;
 
-			return false;
+			if (ok)
+				LOGMESSAGE(L"Info when linking program '%ls'+'%ls':\n%hs", m_VertexFile.string().c_str(), m_FragmentFile.string().c_str(), infolog);
+			else
+				LOGERROR(L"Failed to link program '%ls'+'%ls':\n%hs", m_VertexFile.string().c_str(), m_FragmentFile.string().c_str(), infolog);
+			
+			delete[] infolog;
 		}
 
 		ogl_WarnIfError();
+
+		if (!ok)
+			return false;
 
 		m_UniformLocations.clear();
 		m_UniformTypes.clear();
@@ -402,7 +413,9 @@ public:
 		// Ugly hack to replace desktop GLSL 1.10 with GLSL ES 1.00,
 		// and also to set default float precision for fragment shaders
 		vertexCode.Replace("#version 110\n", "#version 100\n");
-		fragmentCode.Replace("#version 110\n", "#version 100\nprecision highp float;\n");
+		vertexCode.Replace("#version 110\r\n", "#version 100\n");
+		fragmentCode.Replace("#version 110\n", "#version 100\nprecision mediump float;\n");
+		fragmentCode.Replace("#version 110\r\n", "#version 100\nprecision mediump float;\n");
 #endif
 
 		if (!Compile(m_VertexShader, m_VertexFile, vertexCode))

@@ -26,7 +26,12 @@
 class CShaderPass
 {
 public:
-	CShaderPass(const CShaderProgramPtr& shader);
+	CShaderPass();
+
+	/**
+	 * Set the shader program used for rendering with this pass.
+	 */
+	void SetShader(const CShaderProgramPtr& shader) { m_Shader = shader; }
 
 	// Add various bits of GL state to the pass:
 	void AlphaFunc(GLenum func, GLclampf ref);
@@ -36,7 +41,7 @@ public:
 	void DepthFunc(GLenum func);
 
 	/**
-	 * Set all the GL state that was previously specified on this pass.
+	 * Set up all the GL state that was previously specified on this pass.
 	 */
 	void Bind();
 
