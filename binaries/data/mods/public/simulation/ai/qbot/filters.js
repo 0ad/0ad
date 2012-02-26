@@ -53,5 +53,31 @@ var Filters = {
 		return function(ent){
 			return ent.isIdle();
 		};
+	},
+	
+	byDistance: function(startPoint, dist){
+		return function(ent){
+			if (!ent.position()){
+				return false;
+			}else{
+				return (VectorDistance(startPoint, ent.position()) < dist);
+			}
+		};
+	},
+	
+	byResource: function(resourceType){
+		return function(ent){
+			var type = ent.resourceSupplyType();
+			if (!type)
+				return false;
+			var amount = ent.resourceSupplyAmount();
+			if (!amount)
+				return false;
+			
+			if (type.generic == "treasure")
+				return (resourceType == type.specific);
+			else
+				return (resourceType == type.generic);
+		};
 	}
 };

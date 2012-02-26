@@ -323,10 +323,10 @@ void CLogger::Render()
 
 		CMatrix3D savedTransform = textRenderer.GetTransform();
 
-		textRenderer.Printf(L"[%8.3f] %ls: ", it->time, type);
+		textRenderer.PrintfAdvance(L"[%8.3f] %ls: ", it->time, type);
 		// Display the actual message in white so it's more readable
 		textRenderer.Color(1.0f, 1.0f, 1.0f);
-		textRenderer.Printf(L"%ls", it->message.c_str());
+		textRenderer.Put(0.0f, 0.0f, it->message.c_str());
 
 		textRenderer.SetTransform(savedTransform);
 

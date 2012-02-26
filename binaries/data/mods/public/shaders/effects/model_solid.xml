@@ -2,13 +2,13 @@
 <effect>
 
     <technique>
-        <require shaders="fixed"/>
-        <pass shader="fixed:solid"/>
+        <require shaders="arb"/>
+        <pass shader="solid"/>
     </technique>
 
     <technique>
         <require shaders="glsl"/>
-        <pass shader="glsl/gui_solid"/>
+        <pass shader="glsl/model_solid"/>
     </technique>
 
 </effect>

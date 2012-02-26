@@ -33,7 +33,7 @@ public:
 	int GetLineSpacing();
 	int GetHeight();
 	int GetCharacterWidth(wchar_t c);
-	void CalculateStringSize(const CStrW& string, int& w, int& h);
+	void CalculateStringSize(const wchar_t* string, int& w, int& h);
 	const std::map<u16, UnifontGlyphData>& GetGlyphs();
 	Handle GetTexture();
 

@@ -110,6 +110,7 @@ void TerrainOverlay::RenderOverlays()
 	glPolygonOffset(-1.f, -1.f);
 	glEnable(GL_POLYGON_OFFSET_LINE);
 
+	pglActiveTextureARB(GL_TEXTURE0);
 	glDisable(GL_TEXTURE_2D);
 
 	std::for_each(g_TerrainOverlayList.begin(), g_TerrainOverlayList.end(),

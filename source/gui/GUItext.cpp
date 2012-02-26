@@ -237,7 +237,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 			CSize size;
 			int cx, cy;
 			CFont font (TextCall.m_Font);
-			font.CalculateStringSize(TextCall.m_String, cx, cy);
+			font.CalculateStringSize(TextCall.m_String.c_str(), cx, cy);
 			// For anything other than the first line, the line spacing
 			// needs to be considered rather than just the height of the text
 			if (! FirstLine)

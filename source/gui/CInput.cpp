@@ -1300,9 +1300,7 @@ void CInput::Draw()
 						it->m_ListStart + i == m_iBufferPos)
 					{
 						// selecting only one, then we need only to draw a cursor.
-						CMatrix3D t = textRenderer.GetTransform();
-						textRenderer.Printf(L"_");
-						textRenderer.SetTransform(t);
+						textRenderer.Put(0.0f, 0.0f, L"_");
 					}
 
 					// Drawing selected area
@@ -1316,7 +1314,7 @@ void CInput::Draw()
 					}
 
 					if (i != (int)it->m_ListOfX.size())
-						textRenderer.Printf(L"%lc", (*pCaption)[it->m_ListStart + i]);
+						textRenderer.PrintfAdvance(L"%lc", (*pCaption)[it->m_ListStart + i]);
 
 					// check it's now outside a one-liner, then we'll break
 					if (!multiline && i < (int)it->m_ListOfX.size())				
@@ -1329,7 +1327,7 @@ void CInput::Draw()
 				if (it->m_ListStart + (int)it->m_ListOfX.size() == m_iBufferPos)
 				{
 					textRenderer.Color(color);
-					textRenderer.Printf(L"_");
+					textRenderer.PutAdvance(L"_");
 
 					if (using_selected_color)
 					{

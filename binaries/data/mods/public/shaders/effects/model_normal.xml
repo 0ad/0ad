@@ -8,7 +8,7 @@
 
     <technique>
         <require shaders="glsl"/>
-        <pass shader="model_common_glsl"/>
+        <pass shader="glsl/model_common"/>
     </technique>
 
 </effect>

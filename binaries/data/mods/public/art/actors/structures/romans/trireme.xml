@@ -3,34 +3,19 @@
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation file="mechanical/kart_ship_trireme_idle.dae" name="Idle" speed="30"/>
-        <animation file="mechanical/kart_ship_trireme_move.dae" name="Walk" speed="6"/>
-        <animation file="mechanical/kart_ship_trireme_move.dae" name="Run" speed="8"/>
-      </animations>
-      <mesh>structural/kart_ship_trireme.dae</mesh>
+    <variant frequency="1" name="Rome Trireme">
+      <mesh>structural/rome_trireme.dae</mesh>
       <props>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/structures/romans/trireme_mainsail.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/trireme_foresail.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/trireme_shroud.xml" attachpoint="root"/>
       </props>
-      <texture>structural/kart_trireme.dds</texture>
     </variant>
   </group>
   <group>
-    <variant frequency="2" name="tent">
-      <props>
-        <prop actor="props/structures/carthaginians/trireme_frontsail.xml" attachpoint="root"/>
-        <prop actor="props/structures/romans/trireme_mainsail.xml" attachpoint="root"/>
-        <prop actor="props/structures/carthaginians/trireme_tent.xml" attachpoint="root"/>
-        <prop actor="props/structures/carthaginians/trireme_shrouds.xml" attachpoint="root"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="no tent">
-      <props>
-        <prop actor="props/structures/carthaginians/trireme_frontsail.xml" attachpoint="root"/>
-        <prop actor="props/structures/romans/trireme_mainsail.xml" attachpoint="root"/>
-        <prop actor="props/structures/carthaginians/trireme_shrouds.xml" attachpoint="root"/>
-      </props>
+    <variant frequency="1" name="Blue Eye">
+      <texture>structural/rome_trireme.png</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>

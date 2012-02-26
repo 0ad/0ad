@@ -19,8 +19,7 @@
 
 #include "ShaderTechnique.h"
 
-CShaderPass::CShaderPass(const CShaderProgramPtr& shader) :
-	m_Shader(shader),
+CShaderPass::CShaderPass() :
 	m_HasAlpha(false), m_HasBlend(false), m_HasColorMask(false), m_HasDepthMask(false), m_HasDepthFunc(false)
 {
 }

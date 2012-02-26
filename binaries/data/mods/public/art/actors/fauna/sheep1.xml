@@ -12,10 +12,6 @@
         <animation file="quadraped/sheep_death.dae" name="Death" speed="90"/>
       </animations>
       <mesh>skeletal/sheep.dae</mesh>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="100" name="Texture">
       <texture>skeletal/animal_sheep_a.dds</texture>
     </variant>
   </group>
@@ -27,4 +23,5 @@
       </props>
     </variant>
   </group>
+  <material>player_trans.xml</material>
 </actor>

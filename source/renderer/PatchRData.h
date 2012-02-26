@@ -45,9 +45,9 @@ public:
 
 	void RenderWater(CShaderProgramPtr& shader);
 
-	static void RenderBases(const std::vector<CPatchRData*>& patches, CShaderProgramPtr& shader, bool isDummyShader);
-	static void RenderBlends(const std::vector<CPatchRData*>& patches, CShaderProgramPtr& shader, bool isDummyShader);
-	static void RenderStreams(const std::vector<CPatchRData*>& patches, CShaderProgramPtr& shader, int streamflags);
+	static void RenderBases(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader, bool isDummyShader);
+	static void RenderBlends(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader, bool isDummyShader);
+	static void RenderStreams(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader, int streamflags);
 
 	CPatch* GetPatch() { return m_Patch; }
 

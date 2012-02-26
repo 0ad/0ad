@@ -78,6 +78,11 @@ void ParticleRenderer::PrepareForRendering()
 {
 	PROFILE3("prepare particles");
 
+#if CONFIG2_GLES
+#warning TODO: implement particles for GLES
+	return;
+#endif
+
 	// Can't load the shader in the constructor because it's called before the
 	// renderer initialisation is complete, so load it the first time through here
 	if (!m->shader)
@@ -113,6 +118,11 @@ void ParticleRenderer::PrepareForRendering()
 
 void ParticleRenderer::RenderParticles(bool solidColor)
 {
+#if CONFIG2_GLES
+#warning TODO: implement particles for GLES
+	return;
+#endif
+
 	CShaderProgramPtr shader = solidColor ? m->shaderSolid : m->shader;
 
 	shader->Bind();

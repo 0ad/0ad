@@ -196,6 +196,11 @@ void OverlayRenderer::RenderOverlaysAfterWater()
 {
 	PROFILE3_GPU("overlays (after)");
 
+#if CONFIG2_GLES
+#warning TODO: implement OverlayRenderer::RenderOverlaysAfterWater for GLES
+	return;
+#endif
+
 	if (!m->texlines.empty())
 	{
 		glEnable(GL_TEXTURE_2D);

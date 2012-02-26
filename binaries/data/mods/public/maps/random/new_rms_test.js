@@ -58,29 +58,12 @@ for (var i=0; i < numPlayers; i++)
 	// get civ specific starting entities
 	var civEntities = getStartingEntities(id-1);
 	
-	// create the TC
-	var group = new SimpleGroup(	// elements (type, min/max count, min/max distance, min/max angle)
-		[new SimpleObject(civEntities[0].Template, 1,1, 0,0, BUILDING_ANGlE, BUILDING_ANGlE)],
-		true, null, ix, iz
-	);
-	createObjectGroup(group, id);
-	
 	// create starting units
-	var uDist = 8;
-	var uAngle = -BUILDING_ANGlE + randFloat(-PI/8, PI/8);
-	for (var j = 1; j < civEntities.length; ++j)
-	{
-		var count = (civEntities[j].Count !== undefined ? civEntities[j].Count : 1);
-		var ux = round(fx + uDist * cos(uAngle));
-		var uz = round(fz + uDist * sin(uAngle));
-		group = new SimpleGroup(	// elements (type, min/max count, min/max distance)
-			[new SimpleObject(civEntities[j].Template, count,count, 1,ceil(count/2))],
-			true, null, ux, uz
-		);
-		createObjectGroup(group, id);
-		uAngle += PI/4;
-	}
+	createStartingPlayerEntities(fx, fz, id, civEntities, BUILDING_ANGlE)
+	
 }
+
+
 
 // Export map data
 ExportMap();

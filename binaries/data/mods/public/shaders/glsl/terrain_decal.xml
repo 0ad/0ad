@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <program type="glsl">
 
-    <vertex file="model_common.vs">
+    <define name="DECAL" value="1"/>
+
+    <vertex file="glsl/terrain_common.vs">
         <stream name="pos"/>
-        <stream name="normal"/>
+        <stream name="color"/>
         <stream name="uv0"/>
         <attrib name="a_vertex" semantics="gl_Vertex"/>
-        <attrib name="a_normal" semantics="gl_Normal"/>
+        <attrib name="a_color" semantics="gl_Color"/>
         <attrib name="a_uv0" semantics="gl_MultiTexCoord0"/>
     </vertex>
 
-    <fragment file="model_common.fs"/>
+    <fragment file="glsl/terrain_common.fs"/>
 
 </program>

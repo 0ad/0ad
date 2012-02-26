@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
-  <float/>
   <group>
-    <variant frequency="100" name="Base">
-      <mesh>props/kart_trireme_mainsail.dae</mesh>
+    <variant frequency="100" name="mesh">
+      <mesh>props/rome_trireme_mainsail.dae</mesh>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="main sail - SPQR">
+    <variant frequency="1" name="sail-spqr">
       <texture>props/rome_sail_a.dds</texture>
     </variant>
   </group>

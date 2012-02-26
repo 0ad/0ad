@@ -4,7 +4,7 @@ set -e
 set -o nounset
 
 ANDROID=$HOME/android
-NDK=$ANDROID/android-ndk-r7-crystax-4
+NDK=$ANDROID/android-ndk-r7-crystax-5.beta2
 SDK=$ANDROID/android-sdk-linux
 TOOLCHAIN=$ANDROID/toolchain-0ad
 
@@ -106,9 +106,9 @@ if [ "$build_curl" = "true" ]; then
 fi
 
 if [ "$build_libpng" = "true" ]; then
-  rm -rf temp/libpng-1.5.7
-  tar xvf files/libpng-1.5.7.tar.xz -C temp/
-  pushd temp/libpng-1.5.7
+  rm -rf temp/libpng-1.5.8
+  tar xvf files/libpng-1.5.8.tar.xz -C temp/
+  pushd temp/libpng-1.5.8
   ./configure --host=arm-linux-eabi --with-sysroot=$SYSROOT --prefix=$SYSROOT/usr/local CFLAGS="$CFLAGS"
   make $JOBS
   make install

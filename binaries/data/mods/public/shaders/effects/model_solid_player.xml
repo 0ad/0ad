@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<effect>
+
+    <technique>
+        <require shaders="arb"/>
+        <pass shader="solid_player"/>
+    </technique>
+
+    <technique>
+        <require shaders="glsl"/>
+        <pass shader="glsl/model_solid_player"/>
+    </technique>
+
+</effect>

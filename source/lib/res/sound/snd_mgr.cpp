@@ -2050,7 +2050,7 @@ const char* snd_dev_next() { return NULL; }
 Status snd_dev_set(const char* alc_new_dev_name) { return INFO::OK; }
 Status snd_set_max_voices(size_t limit) { return INFO::OK; }
 Status snd_set_master_gain(float gain) { return INFO::OK; }
-Handle snd_open(const PIVFS& vfs, const VfsPath& pathname) { return ERR::FAIL; }
+Handle snd_open(const PIVFS& vfs, const VfsPath& pathname) { return 0; }
 Status snd_free(Handle& hvs) { return INFO::OK; }
 Status snd_play(Handle hvs, float static_pri) { return INFO::OK; }
 Status snd_set_pos(Handle hvs, float x, float y, float z, bool relative) { return INFO::OK; }

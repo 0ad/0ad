@@ -546,7 +546,7 @@ const float* ShadowMap::GetFilterOffsets() const
 //  - blue: objects in shadow
 void ShadowMap::RenderDebugDisplay()
 {
-	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect("solid");
+	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect("gui_solid");
 	shaderTech->BeginPass();
 	CShaderProgramPtr shader = shaderTech->GetShader();
 

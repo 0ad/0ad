@@ -68,9 +68,9 @@ int CFont::GetCharacterWidth(wchar_t c)
 	return unifont_character_width(h, c);
 }
 
-void CFont::CalculateStringSize(const CStrW& string, int& width, int& height)
+void CFont::CalculateStringSize(const wchar_t* string, int& width, int& height)
 {
-	unifont_stringsize(h, string.c_str(), width, height);
+	unifont_stringsize(h, string, width, height);
 }
 
 const std::map<u16, UnifontGlyphData>& CFont::GetGlyphs()

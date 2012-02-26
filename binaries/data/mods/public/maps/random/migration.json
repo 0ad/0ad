@@ -1,0 +1,11 @@
+{
+	"settings" : {
+		"Name" : "Migration",
+		"Script" : "migration.js",
+		"Description" : "Players start in small islands in the western part of the map. There is a big continent in the west ready for expansion.",
+		"BaseTerrain" : ["medit_sand_wet"],
+		"BaseHeight" : -5,
+		"CircularMap" : true,
+		"XXXXXX" : "Optionally define other things here, like we would for a scenario"
+	}
+}

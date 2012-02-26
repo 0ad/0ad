@@ -69,13 +69,13 @@ public:
 };
 
 template<typename T, typename U>
-	bool operator!=(const AtSmartPtr<T>& lhs, const U& rhs)
+	bool operator!=(const AtSmartPtr<T>& lhs, const U&)
 	{
 		lhs.this_type_does_not_support_comparisions();
 		return false;
 	}
 template<typename T, typename U>
-	bool operator==(const AtSmartPtr<T>& lhs, const U& rhs)
+	bool operator==(const AtSmartPtr<T>& lhs, const U&)
 	{
 		lhs.this_type_does_not_support_comparisions();
 		return false;

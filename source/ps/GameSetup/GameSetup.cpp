@@ -49,6 +49,7 @@
 #include "ps/Profile.h"
 #include "ps/ProfileViewer.h"
 #include "ps/Profiler2.h"
+#include "ps/TouchInput.h"
 #include "ps/UserReport.h"
 #include "ps/Util.h"
 #include "ps/VideoMode.h"
@@ -533,6 +534,8 @@ static void InitInput()
 	// hotkey handler so that input boxes can be typed in without
 	// setting off hotkeys.
 	in_add_handler(gui_handler);
+
+	in_add_handler(touch_input_handler);
 
 	// must be registered after (called before) the GUI which relies on these globals
 	in_add_handler(GlobalsInputHandler);
@@ -1022,6 +1025,13 @@ bool Autostart(const CmdLineArgs& args)
 	 */
 
 	CStr autoStartName = args.Get("autostart");
+
+#if OS_ANDROID
+	// HACK: currently the most convenient way to test maps on Android;
+	// should find a better solution
+	autoStartName = "Oasis";
+#endif
+
 	if (autoStartName.empty())
 	{
 		return false;

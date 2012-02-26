@@ -1,7 +1,9 @@
 #version 110
 
 uniform sampler2D baseTex;
+#ifdef USE_SHADOW
 uniform sampler2DShadow shadowTex;
+#endif
 uniform sampler2D losTex;
 uniform vec3 objectColor;
 uniform vec3 shadingColor;
@@ -22,6 +24,11 @@ void main()
     gl_FragColor.a = tex.a;
   #else
     gl_FragColor.a = 1.0;
+  #endif
+  
+  #ifdef REQUIRE_ALPHA_GREATER
+    if (gl_FragColor.a <= REQUIRE_ALPHA_GREATER)
+      discard;
   #endif
 
   vec3 color = tex.rgb;

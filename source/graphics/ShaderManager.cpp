@@ -238,6 +238,28 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 	return true;
 }
 
+static GLenum ParseComparisonFunc(const CStr& str)
+{
+	if (str == "never")
+		return GL_NEVER;
+	if (str == "always")
+		return GL_ALWAYS;
+	if (str == "less")
+		return GL_LESS;
+	if (str == "lequal")
+		return GL_LEQUAL;
+	if (str == "equal")
+		return GL_EQUAL;
+	if (str == "gequal")
+		return GL_GEQUAL;
+	if (str == "greater")
+		return GL_GREATER;
+	if (str == "notequal")
+		return GL_NOTEQUAL;
+	debug_warn("Invalid comparison func");
+	return GL_ALWAYS;
+}
+
 static GLenum ParseBlendFunc(const CStr& str)
 {
 	if (str == "zero")
@@ -270,6 +292,7 @@ static GLenum ParseBlendFunc(const CStr& str)
 		return GL_ONE_MINUS_CONSTANT_ALPHA;
 	if (str == "src_alpha_saturate")
 		return GL_SRC_ALPHA_SATURATE;
+	debug_warn("Invalid blend func");
 	return GL_ZERO;
 }
 
@@ -325,7 +348,9 @@ bool CShaderManager::NewEffect(const char* name, const std::map<CStr, CStr>& bas
 		CShaderProgramPtr program = LoadProgram(name+7, baseDefines);
 		if (!program)
 			return false;
-		tech->AddPass(CShaderPass(program));
+		CShaderPass pass;
+		pass.SetShader(program);
+		tech->AddPass(pass);
 		return true;
 	}
 
@@ -339,13 +364,21 @@ bool CShaderManager::NewEffect(const char* name, const std::map<CStr, CStr>& bas
 	// Define all the elements and attributes used in the XML file
 #define EL(x) int el_##x = XeroFile.GetElementID(#x)
 #define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
+	EL(alpha);
+	EL(blend);
+	EL(define);
+	EL(depth);
 	EL(pass);
 	EL(require);
-	EL(blend);
-	AT(shaders);
-	AT(shader);
-	AT(src);
 	AT(dst);
+	AT(func);
+	AT(ref);
+	AT(shader);
+	AT(shaders);
+	AT(src);
+	AT(mask);
+	AT(name);
+	AT(value);
 #undef AT
 #undef EL
 
@@ -405,18 +438,40 @@ bool CShaderManager::NewEffect(const char* name, const std::map<CStr, CStr>& bas
 	{
 		if (Child.GetNodeName() == el_pass)
 		{
-			CShaderProgramPtr shader = LoadProgram(Child.GetAttributes().GetNamedItem(at_shader).c_str(), baseDefines);
-			CShaderPass pass(shader);
+			std::map<CStr, CStr> defines = baseDefines;
+
+			CShaderPass pass;
 
 			XERO_ITER_EL(Child, Element)
 			{
-				if (Element.GetNodeName() == el_blend)
+				if (Element.GetNodeName() == el_define)
+				{
+					defines[Element.GetAttributes().GetNamedItem(at_name)] = Element.GetAttributes().GetNamedItem(at_value);
+				}
+				else if (Element.GetNodeName() == el_alpha)
+				{
+					GLenum func = ParseComparisonFunc(Element.GetAttributes().GetNamedItem(at_func));
+					float ref = Element.GetAttributes().GetNamedItem(at_ref).ToFloat();
+					pass.AlphaFunc(func, ref);
+				}
+				else if (Element.GetNodeName() == el_blend)
 				{
 					GLenum src = ParseBlendFunc(Element.GetAttributes().GetNamedItem(at_src));
 					GLenum dst = ParseBlendFunc(Element.GetAttributes().GetNamedItem(at_dst));
 					pass.BlendFunc(src, dst);
 				}
+				else if (Element.GetNodeName() == el_depth)
+				{
+					if (!Element.GetAttributes().GetNamedItem(at_func).empty())
+						pass.DepthFunc(ParseComparisonFunc(Element.GetAttributes().GetNamedItem(at_func)));
+
+					if (!Element.GetAttributes().GetNamedItem(at_mask).empty())
+						pass.DepthMask(Element.GetAttributes().GetNamedItem(at_mask) == "true" ? 1 : 0);
+				}
 			}
+
+			// Load the shader program after we've read all the possibly-relevant <define>s
+			pass.SetShader(LoadProgram(Child.GetAttributes().GetNamedItem(at_shader).c_str(), defines));
 
 			tech->AddPass(pass);
 		}

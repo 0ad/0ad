@@ -117,7 +117,7 @@ EconomyManager.prototype.reassignIdleWorkers = function(gameState) {
 	});
 	
 	if (idleWorkers.length) {
-		var resourceSupplies = gameState.findResourceSupplies();
+		var resourceSupplies;
 		var territoryMap = Map.createTerritoryMap(gameState); 
 
 		idleWorkers.forEach(function(ent) {
@@ -130,33 +130,52 @@ EconomyManager.prototype.reassignIdleWorkers = function(gameState) {
 			//debug("Most Needed Resources: " + uneval(types));
 			for ( var typeKey in types) {
 				var type = types[typeKey];
-				// Make sure there are actually some resources of that type
-				if (!resourceSupplies[type]){
-					debug("No " + type + " found!");
-					continue;
-				}
-				var numSupplies = resourceSupplies[type].length;
 
 				// TODO: we should care about gather rates of workers
 				
 				// Find the nearest dropsite for this resource from the worker
 				var nearestDropsite = undefined;
+				var nearbyResources = undefined;
 				var minDropsiteDist = Math.min(); // set to infinity initially
 				gameState.getOwnEntities().forEach(function(dropsiteEnt) {
 					if (dropsiteEnt.resourceDropsiteTypes() && dropsiteEnt.resourceDropsiteTypes().indexOf(type) !== -1){
-						if (dropsiteEnt.position() && dropsiteEnt.getMetadata("resourceQuantity_" + type) > 0){
+						var nearby = dropsiteEnt.getMetadata("nearbyResources_" + type);
+						if (dropsiteEnt.position() && nearby && nearby.length > 0){
 							var dist = VectorDistance(ent.position(), dropsiteEnt.position());
 							if (dist < minDropsiteDist){
 								nearestDropsite = dropsiteEnt;
 								minDropsiteDist = dist;
+								nearbyResources = nearby;
 							}
 						}
 					}
 				});
 				
+				if (!nearbyResources){
+					resourceSupplies = resourceSupplies || gameState.findResourceSupplies();
+					nearbyResources = resourceSupplies[type];
+				}
+				
+				// Make sure there are actually some resources of that type
+				if (!nearbyResources){
+					debug("No " + type + " found!");
+					continue;
+				}
+				var numSupplies = nearbyResources.length;
+				
 				var workerPosition = ent.position();
 				var supplies = [];
-				resourceSupplies[type].forEach(function(supply) {
+				
+				nearbyResources.forEach(function(supply) {
+					if (! supply.entity){
+						supply = {
+							"entity" : supply,
+							"amount" : supply.resourceSupplyAmount(),
+							"type" : supply.resourceSupplyType(),
+							"position" : supply.position()
+						};
+					}
+					
 					// Skip targets that are too hard to hunt
 					if (supply.entity.isUnhuntable()){
 						return;
@@ -406,6 +425,33 @@ EconomyManager.prototype.updateResourceConcentrations = function(gameState){
 	}
 };
 
+// Stores lists of nearby resources
+EconomyManager.prototype.updateNearbyResources = function(gameState){
+	var self = this;
+	var resources = ["food", "wood", "stone", "metal"];
+	var resourceSupplies;
+	var radius = 64;
+	for (key in resources){
+		var resource = resources[key];
+		gameState.getOwnEntities().forEach(function(ent) {
+			if (ent.resourceDropsiteTypes() && ent.resourceDropsiteTypes().indexOf(resource) !== -1
+					&& ent.getMetadata("nearbyResources_" + resource) === undefined){
+				if (!ent.position()){
+					return;
+				}
+				
+				var filterRes = Filters.byResource(resource);
+				var filterPos = Filters.byDistance(ent.position(), radius);
+				var filter = Filters.and(filterRes, filterPos);
+				
+				var collection = new EntityCollection(gameState.ai, gameState.entities._entities, filter, gameState);
+				
+				ent.setMetadata("nearbyResources_" + resource, collection);
+			}
+		});
+	}
+};
+
 //return the number of resource dropsites with an acceptable amount of the resource nearby
 EconomyManager.prototype.checkResourceConcentrations = function(gameState, resource){
 	//TODO: make these values adaptive 
@@ -484,6 +530,7 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 	Engine.ProfileStart("Update Resource Maps and Concentrations");
 	this.updateResourceMaps(gameState, events);
 	this.updateResourceConcentrations(gameState);
+	this.updateNearbyResources(gameState);
 	Engine.ProfileStop();
 	
 	this.buildDropsites(gameState, queues);
