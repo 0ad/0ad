@@ -19,6 +19,11 @@ var tGrassPatch = rBiomeT12();
 var tShoreBlend = rBiomeT13();
 var tShore = rBiomeT14();
 var tWater = rBiomeT15();
+if (rt == 2)
+{
+	tShore = "alpine_shore_rocks_icy";
+	tWater = "alpine_shore_rocks";
+}
 
 // gaia entities
 var oOak = rBiomeE1();
@@ -273,7 +278,16 @@ for (var c = 0 ; c < numPlayers ; c++)
 	riverAngle[c] = startAngle + (((2 * c + 1) / (numPlayers * 2)) * TWO_PI );
 	PX[c] = round(fractionToTiles(0.5 + 0.5 * cos(riverAngle[c])));
 	PZ[c] = round(fractionToTiles(0.5 + 0.5 * sin(riverAngle[c])));	
+	log (playerIDs[c], ",,," ,playerIDs[0]);
 	isRiver[c][numPlayers]=1;
+	/*if ((c == numPlayers-1)&&(!areAllies(playerIDs[c]-1, playerIDs[0]-1)))
+	{
+		isRiver[c][numPlayers]=1;
+	}
+	else if ((c < numPlayers-1)&&(!areAllies(playerIDs[c]-1, playerIDs[c+1]-1)))
+	{
+		isRiver[c][numPlayers]=1;
+	}*/
 }
 
 //theta is the start value for rndRiver function. seed implies 
