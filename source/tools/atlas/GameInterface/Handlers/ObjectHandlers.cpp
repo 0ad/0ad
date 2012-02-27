@@ -94,7 +94,7 @@ QUERYHANDLER(GetObjectsList)
 }
 
 
-static std::vector<ObjectID> g_Selection;
+static std::vector<entity_id_t> g_Selection;
 
 MESSAGEHANDLER(SetSelectionPreview)
 {
@@ -427,7 +427,7 @@ QUERYHANDLER(PickObject)
 	
 	// Normally this function would be called with a player ID to check LOS,
 	//	but in Atlas the entire map is revealed, so just pass INVALID_PLAYER
-	std::vector<AtlasMessage::ObjectID> ents = EntitySelection::PickEntitiesAtPoint(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), x, y, INVALID_PLAYER, msg->selectActors);
+	std::vector<entity_id_t> ents = EntitySelection::PickEntitiesAtPoint(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), x, y, INVALID_PLAYER, msg->selectActors);
 
 	// Multiple entities may have been picked, but they are sorted by distance,
 	//	so only take the first one
@@ -488,12 +488,12 @@ QUERYHANDLER(PickSimilarObjects)
 BEGIN_COMMAND(MoveObjects)
 {
 	// Mapping from object to position
-	typedef std::map<AtlasMessage::ObjectID, CVector3D> ObjectPositionMap;
+	typedef std::map<entity_id_t, CVector3D> ObjectPositionMap;
 	ObjectPositionMap m_PosOld, m_PosNew;
 
 	void Do()
 	{
-		std::vector<ObjectID> ids = *msg->ids;
+		std::vector<entity_id_t> ids = *msg->ids;
 
 		// All selected objects move relative to a pivot object,
 		//	so get its position and whether it's floating
@@ -654,7 +654,7 @@ BEGIN_COMMAND(DeleteObjects)
 		CmpPtr<ICmpTemplateManager> cmpTemplateManager(sim, SYSTEM_ENTITY);
 		ENSURE(cmpTemplateManager);
 
-		std::vector<ObjectID> ids = *msg->ids;
+		std::vector<entity_id_t> ids = *msg->ids;
 		for (size_t i = 0; i < ids.size(); ++i)
 		{
 			OldObject obj;
@@ -712,7 +712,7 @@ END_COMMAND(DeleteObjects)
 
 QUERYHANDLER(GetPlayerObjects)
 {
-	std::vector<ObjectID> ids;
+	std::vector<entity_id_t> ids;
 	player_id_t playerID = msg->player;
 
 	const CSimulation2::InterfaceListUnordered& cmps = g_Game->GetSimulation2()->GetEntitiesWithInterfaceUnordered(IID_Ownership);

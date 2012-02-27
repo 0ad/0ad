@@ -83,7 +83,7 @@ struct Colour
 SHAREABLE_STRUCT(Colour);
 
 
-typedef size_t ObjectID;
+typedef unsigned int ObjectID;
 inline bool ObjectIDIsValid(ObjectID id) { return (id != 0); }
 
 
