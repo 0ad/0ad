@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -369,9 +369,9 @@ void CCmpTemplateManager::ConstructTemplateActor(const std::string& actorName, C
 	// Copy the actor template
 	out = m_TemplateFileData[templateName];
 
-	// Initialise the actor's name
+	// Initialise the actor's name and make it an Atlas selectable entity.
 	std::string name = utf8_from_wstring(CParamNode::EscapeXMLString(wstring_from_utf8(actorName)));
-	std::string xml = "<Entity><VisualActor><Actor>" + name + "</Actor></VisualActor></Entity>";
+	std::string xml = "<Entity><VisualActor><Actor>" + name + "</Actor></VisualActor><Selectable><EditorOnly/></Selectable></Entity>";
 	CParamNode::LoadXMLString(out, xml.c_str());
 }
 

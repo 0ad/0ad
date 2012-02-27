@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -484,15 +484,31 @@ COMMAND(FillTerrain, NOMERGE,
 //////////////////////////////////////////////////////////////////////////
 
 QUERY(PickObject,
-	  ((Position, pos))
-	  ,
-	  ((ObjectID, id))
-	  ((int, offsetx))  // offset of object centre from input position
-	  ((int, offsety)) //
-	  );
-
-COMMAND(MoveObject, MERGE,
+		((Position, pos))
+		((bool, selectActors))
+		,
 		((ObjectID, id))
+		((int, offsetx))  // offset of object centre from input position
+		((int, offsety)) //
+		);
+
+QUERY(PickObjectsInRect,
+		((Position, start))
+		((Position, end))
+		((bool, selectActors))
+		,
+		((std::vector<ObjectID>, ids))
+		);
+
+QUERY(PickSimilarObjects,
+		((ObjectID, id))
+		,
+		((std::vector<ObjectID>, ids))
+		);
+
+COMMAND(MoveObjects, MERGE,
+		((std::vector<ObjectID>, ids))
+		((ObjectID, pivot))
 		((Position, pos))
 		);
 
@@ -512,11 +528,11 @@ MESSAGE(SetSelectionPreview,
 		);
 
 QUERY(GetObjectSettings,
-	  ((int, view)) // eRenderView
-	  ((ObjectID, id))
-	  ,
-	  ((sObjectSettings, settings))
-	  );
+		((int, view)) // eRenderView
+		((ObjectID, id))
+		,
+		((sObjectSettings, settings))
+		);
 
 COMMAND(SetObjectSettings, NOMERGE,
 		((int, view)) // eRenderView
@@ -528,6 +544,14 @@ QUERY(GetPlayerObjects,
 		((int, player))
 		,
 		((std::vector<ObjectID>, ids))
+		);
+
+MESSAGE(SetBandbox,
+		((bool, show))
+		((int, sx0))
+		((int, sy0))
+		((int, sx1))
+		((int, sy1))
 		);
 
 //////////////////////////////////////////////////////////////////////////

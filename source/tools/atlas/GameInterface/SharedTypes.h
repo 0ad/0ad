@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -84,7 +84,7 @@ SHAREABLE_STRUCT(Colour);
 
 
 typedef size_t ObjectID;
-inline bool ObjectIDIsValid(ObjectID id) { return (id != ~(size_t)0); }
+inline bool ObjectIDIsValid(ObjectID id) { return (id != 0); }
 
 
 struct sCinemaSplineNode

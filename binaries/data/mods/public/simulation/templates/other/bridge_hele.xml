@@ -20,7 +20,9 @@
   <Obstruction>
     <Static width="59" depth="15"/>
   </Obstruction>
-  <Selectable disable=""/>
+  <Selectable>
+    <EditorOnly/>
+  </Selectable>
   <Vision>
     <Range>72</Range>
     <RetainInFog>true</RetainInFog>

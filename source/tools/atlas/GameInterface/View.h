@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -37,6 +37,7 @@ public:
 	virtual ~View();
 	virtual void Update(float UNUSED(frameLength)) { };
 	virtual void Render() { };
+	virtual void DrawOverlays() { };
 	virtual CCamera& GetCamera() = 0;
 	virtual CSimulation2* GetSimulation2() { return NULL; }
 	virtual entity_id_t GetEntityId(AtlasMessage::ObjectID obj) { return (entity_id_t)obj; }
@@ -76,6 +77,7 @@ public:
 	virtual ~ViewGame();
 	virtual void Update(float frameLength);
 	virtual void Render();
+	virtual void DrawOverlays();
 	virtual CCamera& GetCamera();
 	virtual CSimulation2* GetSimulation2();
 	virtual bool WantsHighFramerate();
@@ -87,11 +89,21 @@ public:
 	void SaveState(const std::wstring& label);
 	void RestoreState(const std::wstring& label);
 	std::wstring DumpState(bool binary);
+	void SetBandbox(bool visible, float x0, float y0, float x1, float y1);
 
 private:
 	float m_SpeedMultiplier;
 	std::map<std::wstring, SimState*> m_SavedStates;
 	std::string m_DisplayPassability;
+
+	typedef struct SBandboxVertex
+	{
+		SBandboxVertex(float x, float y, u8 r, u8 g, u8 b, u8 a) : x(x), y(y), r(r), g(g), b(b), a(a) {}
+		u8 r, g, b, a;
+		float x, y;
+	} SBandboxVertex;
+	
+	std::vector<SBandboxVertex> m_BandboxArray;
 };
 
 class ActorViewer;

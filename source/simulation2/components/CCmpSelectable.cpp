@@ -48,6 +48,7 @@ public:
 	SOverlayLine m_Overlay;
 	SOverlayLine* m_DebugBoundingBoxOverlay;
 	SOverlayLine* m_DebugSelectionBoxOverlay;
+	bool m_EditorOnly;
 
 	CCmpSelectable()
 		: m_DebugBoundingBoxOverlay(NULL), m_DebugSelectionBoxOverlay(NULL)
@@ -66,11 +67,16 @@ public:
 		return
 			"<a:help>Allows this entity to be selected by the player.</a:help>"
 			"<a:example/>"
-			"<empty/>";
+			"<optional>"
+				"<element name='EditorOnly' a:help='If this element is present, the entity is only selectable in Atlas'>"
+					"<empty/>"
+				"</element>"
+			"</optional>";
 	}
 
-	virtual void Init(const CParamNode& UNUSED(paramNode))
+	virtual void Init(const CParamNode& paramNode)
 	{
+		m_EditorOnly = paramNode.GetChild("EditorOnly").IsOk();
 	}
 
 	virtual void Deinit()
@@ -110,6 +116,11 @@ public:
 			break;
 		}
 		}
+	}
+
+	virtual bool IsEditorOnly()
+	{
+		return m_EditorOnly;
 	}
 
 	virtual void SetSelectionHighlight(CColor color)
