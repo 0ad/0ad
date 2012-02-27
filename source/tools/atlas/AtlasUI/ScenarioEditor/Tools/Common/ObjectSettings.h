@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,7 +36,7 @@ class ObjectSettings
 public:
 	ObjectSettings(Observable<std::vector<AtlasMessage::ObjectID> >& selectedObjects, int view);
 
-	size_t GetPlayerID() const;
+	int GetPlayerID() const;
 	void SetPlayerID(int playerID);
 
 	void SetView(int view);
@@ -61,7 +61,7 @@ private:
 	int m_View;
 
 	// 0 = gaia, 1..inf = normal players
-	size_t m_PlayerID;
+	int m_PlayerID;
 
 	// Set of user-chosen actor selections, potentially a superset of any single
 	// actor's possible variants (since it doesn't get reset if you select

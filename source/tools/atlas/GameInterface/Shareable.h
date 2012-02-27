@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -92,7 +92,7 @@ public:
 
 SHAREABLE_PRIMITIVE(unsigned char);
 SHAREABLE_PRIMITIVE(int);
-SHAREABLE_PRIMITIVE(size_t);
+SHAREABLE_PRIMITIVE(unsigned int);
 SHAREABLE_PRIMITIVE(long);
 SHAREABLE_PRIMITIVE(bool);
 SHAREABLE_PRIMITIVE(float);
