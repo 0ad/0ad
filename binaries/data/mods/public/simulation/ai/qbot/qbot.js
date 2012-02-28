@@ -137,6 +137,17 @@ QBotAI.prototype.Deserialize = function(data)
 	this._entityMetadata = {};
 };
 
+// Override the default serializer
+QBotAI.prototype.Serialize = function()
+{
+	return {
+		_rawEntities: this._rawEntities,
+		_ownEntities: this._ownEntities,
+		_entityMetadata: {} // We store fancy data structures in entity metadata so 
+		                    //don't try and serialize it
+	};
+};
+
 function debug(output){
 	if (Config.debug){
 		if (typeof output === "string"){
