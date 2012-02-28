@@ -451,7 +451,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsid id, JSBool
 		{
 			JSBool value;
 			if (JS_ValueToBoolean(cx, *vp, &value) == JS_TRUE)
-				GUI<bool>::SetSetting(e, propName, value||0); // ||0 to avoid int-to-bool compiler warnings
+				GUI<bool>::SetSetting(e, propName, value == JS_TRUE);
 			else
 			{
 				JS_ReportError(cx, "Cannot convert value to bool");
