@@ -18,6 +18,7 @@
 #include "precompiled.h"
 
 #include <cfloat>
+#include <map>
 
 #include "MessageHandler.h"
 #include "../CommandProc.h"
@@ -31,7 +32,6 @@
 #include "graphics/ObjectManager.h"
 #include "graphics/Terrain.h"
 #include "graphics/Unit.h"
-#include "graphics/UnitManager.h"
 #include "lib/ogl.h"
 #include "maths/MathUtil.h"
 #include "maths/Matrix3D.h"
@@ -43,8 +43,11 @@
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPosition.h"
+#include "simulation2/components/ICmpPlayer.h"
+#include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpSelectable.h"
 #include "simulation2/components/ICmpTemplateManager.h"
+#include "simulation2/helpers/Selection.h"
 
 
 namespace AtlasMessage {
@@ -54,22 +57,6 @@ namespace
 	bool SortObjectsList(const sObjectsListItem& a, const sObjectsListItem& b)
 	{
 		return wcscmp(a.name.c_str(), b.name.c_str()) < 0;
-	}
-
-	bool IsFloating(const CUnit* unit)
-	{
-		if (! unit)
-			return false;
-
-		CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), unit->GetID());
-		if (!cmpPosition)
-			return false;
-		return cmpPosition->IsFloating();
-	}
-
-	CUnitManager& GetUnitManager()
-	{
-		return g_Game->GetWorld()->GetUnitManager();
 	}
 }
 
@@ -107,24 +94,61 @@ QUERYHANDLER(GetObjectsList)
 }
 
 
-static std::vector<ObjectID> g_Selection;
+static std::vector<entity_id_t> g_Selection;
 
 MESSAGEHANDLER(SetSelectionPreview)
 {
+	CSimulation2& sim = *g_Game->GetSimulation2();
+
+	// Cache player colours for performance
+	typedef std::map<player_id_t, CColor> PlayerColourMap;
+	PlayerColourMap playerColours;
+
+	CmpPtr<ICmpPlayerManager> cmpPlayerManager(sim, SYSTEM_ENTITY);
+	
+	// Clear old selection rings
 	for (size_t i = 0; i < g_Selection.size(); ++i)
 	{
-		CmpPtr<ICmpSelectable> cmpSelectable(*g_Game->GetSimulation2(), g_Selection[i]);
+		CmpPtr<ICmpSelectable> cmpSelectable(sim, g_Selection[i]);
 		if (cmpSelectable)
 			cmpSelectable->SetSelectionHighlight(CColor(1, 1, 1, 0));
 	}
 
 	g_Selection = *msg->ids;
 
+	// Set new selection rings
 	for (size_t i = 0; i < g_Selection.size(); ++i)
 	{
-		CmpPtr<ICmpSelectable> cmpSelectable(*g_Game->GetSimulation2(), g_Selection[i]);
-		if (cmpSelectable)
-			cmpSelectable->SetSelectionHighlight(CColor(1, 1, 1, 1));
+		entity_id_t ent = g_Selection[i];
+		CmpPtr<ICmpSelectable> cmpSelectable(sim, ent);
+		if (!cmpSelectable)
+			continue;
+
+		// Default to white for ownerless entities
+		CColor colour(1.0f, 1.0f, 1.0f, 1.0f);
+
+		CmpPtr<ICmpOwnership> cmpOwnership(sim, ent);
+		if (cmpOwnership && cmpPlayerManager)
+		{
+			player_id_t owner = cmpOwnership->GetOwner();
+			if (playerColours.find(owner) != playerColours.end())
+			{
+				colour = playerColours[owner];
+			}
+			else
+			{
+				// Add colour to cache
+				entity_id_t playerEnt = cmpPlayerManager->GetPlayerByID(owner);
+				CmpPtr<ICmpPlayer> cmpPlayer(sim, playerEnt);
+				if (cmpPlayer)
+				{
+					colour = cmpPlayer->GetColour();
+					playerColours[owner] = colour;
+				}
+			}
+		}
+
+		cmpSelectable->SetSelectionHighlight(colour);
 	}
 }
 
@@ -401,71 +425,129 @@ QUERYHANDLER(PickObject)
 	float x, y;
 	msg->pos->GetScreenSpace(x, y);
 	
-	CVector3D rayorigin, raydir;
-	g_Game->GetView()->GetCamera()->BuildCameraRay((int)x, (int)y, rayorigin, raydir);
+	// Normally this function would be called with a player ID to check LOS,
+	//	but in Atlas the entire map is revealed, so just pass INVALID_PLAYER
+	std::vector<entity_id_t> ents = EntitySelection::PickEntitiesAtPoint(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), x, y, INVALID_PLAYER, msg->selectActors);
 
-	CUnit* target = GetUnitManager().PickUnit(rayorigin, raydir);
-
-	if (target)
-		msg->id = target->GetID();
-	else
-		msg->id = INVALID_ENTITY;
-
-	if (target)
+	// Multiple entities may have been picked, but they are sorted by distance,
+	//	so only take the first one
+	if (!ents.empty())
 	{
-		// Get screen coordinates of the point on the ground underneath the
-		// object's model-centre, so that callers know the offset to use when
-		// working out the screen coordinates to move the object to.
-		
-		CVector3D centre = target->GetModel().GetTransform().GetTranslation();
+		msg->id = ents[0];
 
-		centre.Y = g_Game->GetWorld()->GetTerrain()->GetExactGroundLevel(centre.X, centre.Z);
-		if (IsFloating(target))
-			centre.Y = std::max(centre.Y, g_Renderer.GetWaterManager()->m_WaterHeight);
+		// Calculate offset of object from original mouse click position
+		//	so it gets moved by that offset
+		CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), (entity_id_t)ents[0]);
+		if (!cmpPosition || !cmpPosition->IsInWorld())
+		{
+			// error
+			msg->offsetx = msg->offsety = 0;
+		}
+		else
+		{
+			CFixedVector3D fixed = cmpPosition->GetPosition();
+			CVector3D centre = CVector3D(fixed.X.ToFloat(), fixed.Y.ToFloat(), fixed.Z.ToFloat());
 
-		float cx, cy;
-		g_Game->GetView()->GetCamera()->GetScreenCoordinates(centre, cx, cy);
+			float cx, cy;
+			g_Game->GetView()->GetCamera()->GetScreenCoordinates(centre, cx, cy);
 
-		msg->offsetx = (int)(cx - x);
-		msg->offsety = (int)(cy - y);
+			msg->offsetx = (int)(cx - x);
+			msg->offsety = (int)(cy - y);
+		}
 	}
 	else
 	{
-		msg->offsetx = msg->offsety = 0;
+		// No entity picked
+		msg->id = INVALID_ENTITY;
 	}
 }
 
 
-BEGIN_COMMAND(MoveObject)
+QUERYHANDLER(PickObjectsInRect)
 {
-	CVector3D m_PosOld, m_PosNew;
+	float x0, y0, x1, y1;
+	msg->start->GetScreenSpace(x0, y0);
+	msg->end->GetScreenSpace(x1, y1);
+
+	// Since owner selections are meaningless in Atlas, use INVALID_PLAYER
+	msg->ids = EntitySelection::PickEntitiesInRect(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), x0, y0, x1, y1, INVALID_PLAYER, msg->selectActors);
+}
+
+
+QUERYHANDLER(PickSimilarObjects)
+{
+	CmpPtr<ICmpTemplateManager> cmpTemplateManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	ENSURE(cmpTemplateManager);
+	std::string templateName = cmpTemplateManager->GetCurrentTemplateName((entity_id_t)msg->id);
+
+	// Since owner selections are meaningless in Atlas, use INVALID_PLAYER
+	msg->ids = EntitySelection::PickSimilarEntities(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), templateName, INVALID_PLAYER, false, true, true);
+}
+
+
+BEGIN_COMMAND(MoveObjects)
+{
+	// Mapping from object to position
+	typedef std::map<entity_id_t, CVector3D> ObjectPositionMap;
+	ObjectPositionMap m_PosOld, m_PosNew;
 
 	void Do()
 	{
-		CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), (entity_id_t)msg->id);
-		if (!cmpPosition)
-		{
-			// error
-			m_PosOld = m_PosNew = CVector3D(0, 0, 0);
-		}
-		else
-		{
-			m_PosNew = GetUnitPos(msg->pos, cmpPosition->IsFloating());
+		std::vector<entity_id_t> ids = *msg->ids;
 
-			CFixedVector3D pos = cmpPosition->GetPosition();
-			m_PosOld = CVector3D(pos.X.ToFloat(), pos.Y.ToFloat(), pos.Z.ToFloat());
+		// All selected objects move relative to a pivot object,
+		//	so get its position and whether it's floating
+		CVector3D pivotPos(0, 0, 0);
+		bool pivotFloating = false;
+
+		CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), (entity_id_t)msg->pivot);
+		if (cmpPosition && cmpPosition->IsInWorld())
+		{
+			pivotFloating = cmpPosition->IsFloating();
+			CFixedVector3D pivotFixed = cmpPosition->GetPosition();
+			pivotPos = CVector3D(pivotFixed.X.ToFloat(), pivotFixed.Y.ToFloat(), pivotFixed.Z.ToFloat());
+		}
+
+		// Calculate directional vector of movement for pivot object,
+		//	we apply the same movement to all objects
+		CVector3D targetPos = GetUnitPos(msg->pos, pivotFloating);
+		CVector3D dir = targetPos - pivotPos;
+
+		for (size_t i = 0; i < ids.size(); ++i)
+		{
+			entity_id_t id = (entity_id_t)ids[i];
+			CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), id);
+			if (!cmpPosition || !cmpPosition->IsInWorld())
+			{
+				// error
+				m_PosOld[id] = m_PosNew[id] = CVector3D(0, 0, 0);
+			}
+			else
+			{
+				// Calculate this object's position
+				CFixedVector3D posFixed = cmpPosition->GetPosition();
+				CVector3D pos = CVector3D(posFixed.X.ToFloat(), posFixed.Y.ToFloat(), posFixed.Z.ToFloat());
+				m_PosNew[id] = pos + dir;
+				m_PosOld[id] = pos;			
+			}
 		}
 
 		SetPos(m_PosNew);
 	}
 
-	void SetPos(CVector3D& pos)
+	void SetPos(ObjectPositionMap& map)
 	{
-		CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), (entity_id_t)msg->id);
-		if (!cmpPosition)
-			return;
+		ObjectPositionMap::iterator it;
+		for (it = map.begin(); it != map.end(); ++it)
+		{
+			CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), (entity_id_t)it->first);
+			if (!cmpPosition)
+				return;
 
-		cmpPosition->JumpTo(entity_pos_t::FromFloat(pos.X), entity_pos_t::FromFloat(pos.Z));
+			// Set 2D position, ignoring height
+			CVector3D pos = it->second;
+			cmpPosition->JumpTo(entity_pos_t::FromFloat(pos.X), entity_pos_t::FromFloat(pos.Z));
+		}
 	}
 
 	void Redo()
@@ -478,14 +560,14 @@ BEGIN_COMMAND(MoveObject)
 		SetPos(m_PosOld);
 	}
 
-	void MergeIntoPrevious(cMoveObject* prev)
+	void MergeIntoPrevious(cMoveObjects* prev)
 	{
-		// TODO: do something valid if prev unit != this unit
-		ENSURE(prev->msg->id == msg->id);
+		// TODO: do something valid if prev selection != this selection
+		ENSURE(*(prev->msg->ids) == *(msg->ids));
 		prev->m_PosNew = m_PosNew;
 	}
 };
-END_COMMAND(MoveObject)
+END_COMMAND(MoveObjects)
 
 
 BEGIN_COMMAND(RotateObject)
@@ -572,7 +654,7 @@ BEGIN_COMMAND(DeleteObjects)
 		CmpPtr<ICmpTemplateManager> cmpTemplateManager(sim, SYSTEM_ENTITY);
 		ENSURE(cmpTemplateManager);
 
-		std::vector<ObjectID> ids = *msg->ids;
+		std::vector<entity_id_t> ids = *msg->ids;
 		for (size_t i = 0; i < ids.size(); ++i)
 		{
 			OldObject obj;
@@ -630,7 +712,7 @@ END_COMMAND(DeleteObjects)
 
 QUERYHANDLER(GetPlayerObjects)
 {
-	std::vector<ObjectID> ids;
+	std::vector<entity_id_t> ids;
 	player_id_t playerID = msg->player;
 
 	const CSimulation2::InterfaceListUnordered& cmps = g_Game->GetSimulation2()->GetEntitiesWithInterfaceUnordered(IID_Ownership);
@@ -643,6 +725,11 @@ QUERYHANDLER(GetPlayerObjects)
 	}
 
 	msg->ids = ids;
+}
+
+MESSAGEHANDLER(SetBandbox)
+{
+	View::GetView_Game()->SetBandbox(msg->show, (float)msg->sx0, (float)msg->sy0, (float)msg->sx1, (float)msg->sy1);
 }
 
 }

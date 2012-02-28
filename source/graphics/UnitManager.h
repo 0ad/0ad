@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -55,10 +55,6 @@ public:
 	// return the units
 	const std::vector<CUnit*>& GetUnits() const { return m_Units; }
 	
-	// iterate through units testing given ray against bounds of each unit; 
-	// return the closest unit, or null if everything missed
-	CUnit* PickUnit(const CVector3D& origin, const CVector3D& dir) const;
-
 	void SetObjectManager(CObjectManager& objectManager) { m_ObjectManager = &objectManager; }
 
 private:

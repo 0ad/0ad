@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -83,42 +83,6 @@ void CUnitManager::DeleteAll()
 		delete m_Units[i];
 	}
 	m_Units.clear();
-}
-
-
-///////////////////////////////////////////////////////////////////////////////
-// PickUnit: iterate through units testing given ray against bounds of each 
-// unit; return the closest unit, or null if everything missed
-CUnit* CUnitManager::PickUnit(const CVector3D& origin, const CVector3D& dir) const
-{
-	// closest object found so far
-	CUnit* hit = 0;
-	// closest approach offset (easier to pick small stuff in forests than standard ScEd style selection)
-	float minrel = FLT_MAX;
-
-	for (size_t i=0; i<m_Units.size(); i++) {
-		CUnit* unit = m_Units[i];
-		float tmin, tmax;
-		
-		const CBoundingBoxOriented& selectionBox = unit->GetModel().GetSelectionBox();
-		if (selectionBox.RayIntersect(origin, dir, tmin, tmax))
-		{
-			// Point of closest approach
-			// TODO: this next bit is virtually identical to Selection::PickEntitiesAtPoint; might be useful to factor it out and 
-			// reuse it
-			CVector3D delta = selectionBox.m_Center - origin;
-			float distance = delta.Dot(dir);
-			CVector3D closest = origin + dir * distance;
-			CVector3D offset = selectionBox.m_Center - closest;
-
-			float rel = offset.Length();
-			if (rel < minrel) {
-				hit = unit;
-				minrel = rel;
-			}
-		}
-	}
-	return hit;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

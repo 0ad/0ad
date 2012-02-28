@@ -99,6 +99,10 @@
 #include "ps/GameSetup/CmdLineArgs.h"
 #include "ps/GameSetup/HWDetect.h"
 
+#include "tools/atlas/GameInterface/GameLoop.h"
+#include "tools/atlas/GameInterface/View.h"
+
+
 #if !(OS_WIN || OS_MACOSX || OS_ANDROID) // assume all other platforms use X11 for wxWidgets
 #define MUST_INIT_X11 1
 #include <X11/Xlib.h>
@@ -231,6 +235,13 @@ void Render()
 		g_GUI->Draw();
 
 	ogl_WarnIfError();
+
+	// If we're in Atlas game view, render special overlays (e.g. editor bandbox)
+	if (g_GameLoop && g_GameLoop->view)
+	{
+		g_GameLoop->view->DrawOverlays();
+		ogl_WarnIfError();
+	}
 
 	// Text:
 

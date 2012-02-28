@@ -28,7 +28,7 @@
 #include "simulation2/components/ICmpSelectable.h"
 #include "simulation2/components/ICmpVisual.h"
 
-std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simulation, const CCamera& camera, int screenX, int screenY, int player)
+std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simulation, const CCamera& camera, int screenX, int screenY, player_id_t player, bool allowEditorSelectables)
 {
 	CVector3D origin, dir;
 	camera.BuildCameraRay(screenX, screenY, origin, dir);
@@ -43,6 +43,10 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simu
 	{
 		entity_id_t ent = it->first;
 
+		// Check if this entity is only selectable in Atlas
+		if (static_cast<ICmpSelectable*>(it->second)->IsEditorOnly() && !allowEditorSelectables)
+			continue;
+
 		// Ignore entities hidden by LOS (or otherwise hidden, e.g. when not IsInWorld)
 		if (cmpRangeManager->GetLosVisibility(ent, player) == ICmpRangeManager::VIS_HIDDEN)
 			continue;
@@ -51,18 +55,39 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simu
 		if (!cmpVisual)
 			continue;
 
+		CVector3D center;
+		float tmin, tmax;
+
 		CBoundingBoxOriented selectionBox = cmpVisual->GetSelectionBox();
 		if (selectionBox.IsEmpty())
-			continue;
+		{
+			if (!allowEditorSelectables)
+				continue;
 
-		float tmin, tmax;
-		if (!selectionBox.RayIntersect(origin, dir, tmin, tmax))
-			continue;
+			// Fall back to using old AABB selection method for decals
+			//	see: http://trac.wildfiregames.com/ticket/1032
+			CBoundingBoxAligned aABBox = cmpVisual->GetBounds();
+			if (aABBox.IsEmpty())
+				continue;
+
+			if (!aABBox.RayIntersect(origin, dir, tmin, tmax))
+				continue;
+
+			aABBox.GetCentre(center);
+		}
+		else
+		{
+			if (!selectionBox.RayIntersect(origin, dir, tmin, tmax))
+				continue;
+
+			center = selectionBox.m_Center;
+		}
 
 		// Find the perpendicular distance from the object's centre to the picker ray
 
-		CVector3D closest = origin + dir * (selectionBox.m_Center - origin).Dot(dir);
-		float dist2 = (closest - selectionBox.m_Center).LengthSquared();
+		float dist2;
+		CVector3D closest = origin + dir * (center - origin).Dot(dir);
+		dist2 = (closest - center).LengthSquared();
 
 		hits.push_back(std::make_pair(dist2, ent));
 	}
@@ -78,7 +103,7 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simu
 	return hitEnts;
 }
 
-std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simulation, const CCamera& camera, int sx0, int sy0, int sx1, int sy1, int owner)
+std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simulation, const CCamera& camera, int sx0, int sy0, int sx1, int sy1, player_id_t owner, bool allowEditorSelectables)
 {
 	// Make sure sx0 <= sx1, and sy0 <= sy1
 	if (sx0 > sx1)
@@ -96,13 +121,17 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simul
 	{
 		entity_id_t ent = it->first;
 
+		// Check if this entity is only selectable in Atlas
+		if (static_cast<ICmpSelectable*>(it->second)->IsEditorOnly() && !allowEditorSelectables)
+			continue;
+
 		// Ignore entities hidden by LOS (or otherwise hidden, e.g. when not IsInWorld)
 		if (cmpRangeManager->GetLosVisibility(ent, owner) == ICmpRangeManager::VIS_HIDDEN)
 			continue;
 
 		// Ignore entities not owned by 'owner'
 		CmpPtr<ICmpOwnership> cmpOwnership(simulation.GetSimContext(), ent);
-		if (!cmpOwnership || cmpOwnership->GetOwner() != owner)
+		if (owner != INVALID_PLAYER && (!cmpOwnership || cmpOwnership->GetOwner() != owner))
 			continue;
 
 		// Find the current interpolated model position.
@@ -132,7 +161,7 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simul
 	return hitEnts;
 }
 
-std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simulation, const CCamera& camera, const std::string& templateName, int owner, bool includeOffScreen, bool matchRank)
+std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simulation, const CCamera& camera, const std::string& templateName, player_id_t owner, bool includeOffScreen, bool matchRank, bool allowEditorSelectables)
 {
 	CmpPtr<ICmpTemplateManager> cmpTemplateManager(simulation, SYSTEM_ENTITY);
 	CmpPtr<ICmpRangeManager> cmpRangeManager(simulation, SYSTEM_ENTITY);
@@ -143,6 +172,10 @@ std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simu
 	for (CSimulation2::InterfaceListUnordered::const_iterator it = ents.begin(); it != ents.end(); ++it)
 	{
  		entity_id_t ent = it->first;
+
+		// Check if this entity is only selectable in Atlas
+		if (static_cast<ICmpSelectable*>(it->second)->IsEditorOnly() && !allowEditorSelectables)
+			continue;
 
 		if (matchRank)
 		{
@@ -156,14 +189,14 @@ std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simu
 		if (cmpRangeManager->GetLosVisibility(ent, owner) == ICmpRangeManager::VIS_HIDDEN)
 			continue;
 
- 		// Ignore entities not owned by 'owner'
- 		CmpPtr<ICmpOwnership> cmpOwnership(simulation.GetSimContext(), ent);
- 		if (!cmpOwnership || cmpOwnership->GetOwner() != owner)
- 			continue;
+		// Ignore entities not owned by 'owner'
+		CmpPtr<ICmpOwnership> cmpOwnership(simulation.GetSimContext(), ent);
+		if (owner != INVALID_PLAYER && (!cmpOwnership || cmpOwnership->GetOwner() != owner))
+			continue;
 
 		// Ignore off screen entities
- 		if (!includeOffScreen)
- 		{
+		if (!includeOffScreen)
+		{
  			// Find the current interpolated model position.
 			CmpPtr<ICmpVisual> cmpVisual(simulation.GetSimContext(), ent);
 			if (!cmpVisual)
@@ -173,7 +206,7 @@ std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simu
 			// Reject if it's not on-screen (e.g. it's behind the camera)
 			if (!camera.GetFrustum().IsPointVisible(position))
 				continue;
- 		}
+		}
 
 		if (!matchRank)
 		{

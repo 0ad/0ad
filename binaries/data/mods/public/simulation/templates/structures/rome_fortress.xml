@@ -3,8 +3,7 @@
   <Identity>
     <Civ>rome</Civ>
     <SpecificName>Castellum</SpecificName>
-    <History>Fortified city.</History>
-	<Tooltip>Train heroes and champions.</Tooltip>
+    <History>Fortified auxillary camp.</History>
   </Identity>
   <TrainingQueue>
     <Entities datatype="tokens">
@@ -13,6 +12,9 @@
       units/rome_hero_scipio
       units/rome_champion_infantry
       units/rome_champion_cavalry
+	  units/rome_mechanical_siege_ballista
+	  units/rome_mechanical_siege_scorpio
+	  units/rome_mechanical_siege_ram
     </Entities>
   </TrainingQueue>
   <VisualActor>

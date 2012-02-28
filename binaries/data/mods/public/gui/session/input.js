@@ -852,15 +852,6 @@ function handleInputAfterGui(ev)
 					if (!doubleClicked)
 					{
 						// If double click hasn't already occurred, this is a double click.
-						// Select units matching exact template name (same rank)
-						templateToMatch = Engine.GuiInterfaceCall("GetEntityState", selectedEntity).template;
-						doubleClicked = true;
-						// Reset the timer so the user has an extra period 'doubleClickTimer' to do a triple-click
-						doubleClickTimer = now.getTime();
-					}
-					else
-					{
-						// Double click has already occurred, so this is a triple click.
 						// Select similar units regardless of rank
 						templateToMatch = Engine.GuiInterfaceCall("GetEntityState", selectedEntity).identity.selectionGroupName;
 						if (templateToMatch)
@@ -871,6 +862,16 @@ function handleInputAfterGui(ev)
 						{	// No selection group name defined, so fall back to exact match
 							templateToMatch = Engine.GuiInterfaceCall("GetEntityState", selectedEntity).template;
 						}
+
+						doubleClicked = true;
+						// Reset the timer so the user has an extra period 'doubleClickTimer' to do a triple-click
+						doubleClickTimer = now.getTime();
+					}
+					else
+					{
+						// Double click has already occurred, so this is a triple click.
+						// Select units matching exact template name (same rank)
+						templateToMatch = Engine.GuiInterfaceCall("GetEntityState", selectedEntity).template;
 					}
 
 					// TODO: Should we handle "control all units" here as well?

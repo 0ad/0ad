@@ -166,7 +166,7 @@ static void delete_pair_2nd(std::pair<T,S> v)
 }
 
 ViewGame::ViewGame()
-: m_SpeedMultiplier(0.f)
+	: m_SpeedMultiplier(0.f)
 {
 	ENSURE(g_Game);
 }
@@ -262,6 +262,49 @@ void ViewGame::Render()
 	Atlas_GLSwapBuffers((void*)g_GameLoop->glCanvas);
 }
 
+void ViewGame::DrawOverlays()
+{
+#if CONFIG2_GLES
+#warning TODO: implement Atlas game overlays for GLES
+#else
+	// Set up transform for overlays
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+	CMatrix3D transform;
+	transform.SetIdentity();
+	transform.Scale(1.0f, -1.f, 1.0f);
+	transform.Translate(0.0f, (float)g_yres, -1000.0f);
+	CMatrix3D proj;
+	proj.SetOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.f, 1000.f);
+	transform = proj * transform;
+	glLoadMatrixf(&transform._11);
+
+	if (m_BandboxArray.size() > 0)
+	{
+		glEnableClientState(GL_COLOR_ARRAY);
+		glEnableClientState(GL_VERTEX_ARRAY);
+
+		// Render bandbox as array of lines
+		glVertexPointer(2, GL_FLOAT, sizeof(SBandboxVertex), &m_BandboxArray[0].x);
+		glColorPointer(4, GL_UNSIGNED_BYTE, sizeof(SBandboxVertex), &m_BandboxArray[0].r);
+
+		glDrawArrays(GL_LINES, 0, m_BandboxArray.size());
+
+		glDisableClientState(GL_VERTEX_ARRAY);
+		glDisableClientState(GL_COLOR_ARRAY);
+	}
+
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
+#endif
+}
+
 void ViewGame::SetParam(const std::wstring& name, bool value)
 {
 	if (name == L"priorities")
@@ -350,6 +393,39 @@ std::wstring ViewGame::DumpState(bool binary)
 		if (! g_Game->GetSimulation2()->DumpDebugState(stream))
 			return L"(internal error)";
 		return wstring_from_utf8(stream.str());
+	}
+}
+
+void ViewGame::SetBandbox(bool visible, float x0, float y0, float x1, float y1)
+{
+	m_BandboxArray.clear();
+
+	if (visible)
+	{
+		// Make sure corners are arranged in correct order
+		if (x0 > x1)
+			std::swap(x0, x1);
+		if (y0 > y1)
+			std::swap(y0, y1);
+
+		// Bandbox is draw as lines comprising two rectangles
+		SBandboxVertex vert[] = {
+			// Black - outer rectangle
+			SBandboxVertex(x0, y0, 0, 0, 0, 255), SBandboxVertex(x1, y0, 0, 0, 0, 255), SBandboxVertex(x1, y1, 0, 0, 0, 255), SBandboxVertex(x0, y1, 0, 0, 0, 255),
+			// White - inner rectangle
+			SBandboxVertex(x0+1.0f, y0+1.0f, 255, 255, 255, 255), SBandboxVertex(x1-1.0f, y0+1.0f, 255, 255, 255, 255), SBandboxVertex(x1-1.0f, y1-1.0f, 255, 255, 255, 255), SBandboxVertex(x0+1.0f, y1-1.0f, 255, 255, 255, 255)
+		};
+
+		for (size_t i = 0; i < 4; ++i)
+		{
+			m_BandboxArray.push_back(vert[i]);
+			m_BandboxArray.push_back(vert[(i+1)%4]);
+		}
+		for (size_t i = 0; i < 4; ++i)
+		{
+			m_BandboxArray.push_back(vert[i+4]);
+			m_BandboxArray.push_back(vert[(i+1)%4+4]);
+		}
 	}
 }
 

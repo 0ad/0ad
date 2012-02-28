@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall_tower">
   <Footprint>
-    <Square width="7.5" depth="7.5"/>
-    <Height>15.0</Height>
+    <Square width="11" depth="11"/>
+    <Height>18.0</Height>
   </Footprint>
   <Identity>
     <Civ>rome</Civ>
@@ -10,7 +10,7 @@
     <History>(Insert history here)</History>
   </Identity>
   <Obstruction>
-    <Static width="7.0" depth="7.0"/>
+    <Static width="9.5" depth="9.5"/>
   </Obstruction>
   <VisualActor>
     <Actor>structures/romans/wall_turret.xml</Actor>

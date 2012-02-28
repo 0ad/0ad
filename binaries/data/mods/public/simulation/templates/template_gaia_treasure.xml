@@ -22,5 +22,7 @@
     <Amount>300</Amount>
     <Type>treasure.metal</Type>
   </ResourceSupply>
-  <Selectable/>
+  <Selectable>
+    <EditorOnly disable=""/>
+  </Selectable>
 </Entity>

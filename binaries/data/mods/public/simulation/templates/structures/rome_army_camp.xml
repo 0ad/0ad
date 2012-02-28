@@ -51,7 +51,7 @@
     <GenericName>Entrenched Army Camp</GenericName>
     <SpecificName>Castra Vellum</SpecificName>
     <Icon>structures/fortress.png</Icon>
-	<Tooltip>Build anywhere on the map, even in enemy territory. Constructs siege weapons.</Tooltip>
+	<Tooltip>Build anywhere on the map, even in enemy territory. Constructs siege weapons and trains citizen-soldiers.</Tooltip>
     <History>Sometimes it was a temporary camp built facing the route by which the army is to march, other times a defensive or offensive (for sieges) structure. Within this gate the tents of the first centuries or cohorts are pitched, and the dragons (ensigns of cohorts) and other ensigns planted. The Decumane gate is directly opposite to the Praetorian in the rear of the camp, and through this the soldiers are conducted to the place appointed for punishment or execution.</History>
   </Identity>
   <Obstruction>
@@ -59,14 +59,18 @@
   </Obstruction>
   <Sound>
     <SoundGroups>
-      <select>interface/select/building/sel_fortress.xml</select>
-      <constructed>interface/complete/building/complete_fortress.xml</constructed>
+      <select>interface/select/building/sel_broch.xml</select>
+      <constructed>interface/complete/building/complete_broch.xml</constructed>
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
   <TerritoryInfluence disable=""/>
   <TrainingQueue>
     <Entities datatype="tokens">
+      units/rome_infantry_swordsman_b
+      units/rome_infantry_spearman_a
+      units/rome_infantry_javelinist_b
+      units/rome_cavalry_spearman_b
 	  units/rome_mechanical_siege_ballista
 	  units/rome_mechanical_siege_scorpio
 	  units/rome_mechanical_siege_ram

@@ -21,7 +21,9 @@
     <Floating>false</Floating>
     <TurnRate>6.0</TurnRate>
   </Position>
-  <Selectable/>
+  <Selectable>
+    <EditorOnly disable=""/>
+  </Selectable>
   <TerritoryInfluence>
     <OverrideCost>64</OverrideCost>
     <Root>false</Root>

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,6 +25,11 @@ struct CColor;
 class ICmpSelectable : public IComponent
 {
 public:
+	/**
+	 * Returns true if the entity is only selectable in Atlas editor, e.g. a decorative visual actor.
+	 */
+	virtual bool IsEditorOnly() = 0;
+
 	/**
 	 * Set the color of the selection highlight (typically a circle/square
 	 * around the unit). Set a = 0 to disable.

@@ -78,7 +78,7 @@ public:
 		const CParamNode* actor = tempMan->LoadTemplate(ent2, "actor|example1", -1);
 		TS_ASSERT(actor != NULL);
 		TS_ASSERT_WSTR_EQUALS(actor->ToXML(),
-				L"<VisualActor><Actor>example1</Actor><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder></VisualActor>");
+				L"<Selectable><EditorOnly></EditorOnly></Selectable><VisualActor><Actor>example1</Actor><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder></VisualActor>");
 
 		const CParamNode* preview = tempMan->LoadTemplate(ent2, "preview|unit", -1);
 		TS_ASSERT(preview != NULL);
@@ -104,6 +104,7 @@ public:
 		const CParamNode* previewactor = tempMan->LoadTemplate(ent2, "preview|actor|example2", -1);
 		TS_ASSERT(previewactor != NULL);
 		TS_ASSERT_WSTR_EQUALS(previewactor->ToXML(),
+				// the actor's <Selectable> element is not part of the preview element subset, hence not included
 				L"<Vision><AlwaysVisible>true</AlwaysVisible><Range>0</Range><RetainInFog>false</RetainInFog></Vision>"
 				L"<VisualActor><Actor>example2</Actor><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder></VisualActor>");
 	}

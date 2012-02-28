@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@ ObjectSettings::ObjectSettings(Observable<std::vector<AtlasMessage::ObjectID> >&
  	m_Conn = m_SelectedObjects.RegisterObserver(0, &ObjectSettings::OnSelectionChange, this);
 }
 
-size_t ObjectSettings::GetPlayerID() const
+int ObjectSettings::GetPlayerID() const
 {
 	return m_PlayerID;
 }

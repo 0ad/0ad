@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Jagged">
+      <mesh>gaia/geo_stonemine_large.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Mesa">
+      <mesh>gaia/geo_desert_02.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="rock texture">
+      <texture>gaia/stone_alpine_a.dds</texture>
+    </variant>
+  </group>
+</actor>
