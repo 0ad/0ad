@@ -89,8 +89,10 @@ public:
 		// reconstructed by the GUI soon enough, I think)
 	}
 
-	virtual void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& UNUSED(deserialize))
+	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
 	{
+		// Need to call Init to reload the template properties
+		Init(paramNode);
 	}
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
