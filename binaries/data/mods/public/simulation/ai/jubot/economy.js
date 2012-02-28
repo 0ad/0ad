@@ -21,303 +21,364 @@ var EconomyManager = Class({
 		};
 	},
 
-	villageBuildingList: function (gameState) {
-			if (gameState.displayCiv() == "hele"){
-		this.villageBuildings = [
-			{
-				"template": "structures/{civ}_scout_tower",
-				"priority": 105,
-				"count": 1,
-			},
+	villageBuildingList: function (gameState)
+	{
+		// Hele building list
+		if (gameState.displayCiv() == "hele")
+		{
+			this.villageBuildings = [
 				{
-				"template": "structures/{civ}_field",
-				"priority": 103,
-				"count": 1,
-			},
-			{
-				"template": "structures/{civ}_barracks",
-				"priority": 101,
-				"count": 1,
-			},
-			{
-				"template": "structures/{civ}_field",
-				"priority": 70,
-				"count": 2,
-			},
-		];
-			}
-			// Celt building list
-			else if (gameState.displayCiv() == "celt"){
-		this.villageBuildings = [
-			{
-				"template": "structures/{civ}_scout_tower",
-				"priority": 105,
-				"count": 1,
-			},
+					"template": "structures/{civ}_defense_tower",
+					"priority": 105,
+					"count": 1,
+				},
+					{
+					"template": "structures/{civ}_field",
+					"priority": 103,
+					"count": 1,
+				},
 				{
-				"template": "structures/{civ}_field",
-				"priority": 103,
-				"count": 1,
-			},
-			{
-				"template": "structures/{civ}_barracks",
-				"priority": 101,
-				"count": 1,
-			},
-			{
-				"template": "structures/{civ}_field",
-				"priority": 70,
-				"count": 2,
-			},
-		];
-			}
-			// Carthage building list
-			else if (gameState.displayCiv() == "cart"){
-		this.villageBuildings = [
-			{
-				"template": "structures/{civ}_scout_tower",
-				"priority": 105,
-				"count": 1,
-			},
+					"template": "structures/{civ}_barracks",
+					"priority": 101,
+					"count": 1,
+				},
 				{
-				"template": "structures/{civ}_field",
-				"priority": 103,
-				"count": 1,
-			},
-			{
-				"template": "structures/{civ}_barracks",
-				"priority": 101,
-				"count": 1,
-			},
-			{
-				"template": "structures/{civ}_field",
-				"priority": 70,
-				"count": 2,
-			},
-		];
-			}
-			// Iberian building list
-			else if (gameState.displayCiv() == "iber"){
-		this.villageBuildings = [
-			{
-				"template": "structures/{civ}_scout_tower",
-				"priority": 105,
-				"count": 1,
-			},
+					"template": "structures/{civ}_field",
+					"priority": 70,
+					"count": 2,
+				},
+			];
+		}
+		// Celt building list
+		else if (gameState.displayCiv() == "celt")
+		{
+			this.villageBuildings = [
 				{
-				"template": "structures/{civ}_field",
-				"priority": 103,
-				"count": 1,
-			},
-			{
-				"template": "structures/{civ}_barracks",
-				"priority": 101,
-				"count": 1,
-			},
-			{
-				"template": "structures/{civ}_field",
-				"priority": 70,
-				"count": 2,
-			},
-		];
-			}
-			// Persian building list
-			else if (gameState.displayCiv() == "pers"){
-		this.villageBuildings = [
-			{
-				"template": "structures/{civ}_scout_tower",
-				"priority": 105,
-				"count": 1,
-			},
+					"template": "structures/{civ}_defense_tower",
+					"priority": 105,
+					"count": 1,
+				},
+					{
+					"template": "structures/{civ}_field",
+					"priority": 103,
+					"count": 1,
+				},
 				{
-				"template": "structures/{civ}_field",
-				"priority": 103,
-				"count": 1,
-			},
-			{
-				"template": "structures/{civ}_barracks",
-				"priority": 101,
-				"count": 1,
-			},
-			{
-				"template": "structures/{civ}_field",
-				"priority": 70,
-				"count": 2,
-			},
-		];
-			}
-
-			// Fallback option just in case
-		else {
-		this.villageBuildings = [
-			{
-				"template": "structures/{civ}_scout_tower",
-				"priority": 105,
-				"count": 1,
-			},
+					"template": "structures/{civ}_barracks",
+					"priority": 101,
+					"count": 1,
+				},
 				{
-				"template": "structures/{civ}_field",
-				"priority": 100,
-				"count": 2,
-			},
-			{
-				"template": "structures/{civ}_barracks",
-				"priority": 99,
-				"count": 1,
-			},
-			{
-				"template": "structures/{civ}_scout_tower",
-				"priority": 60,
-				"count": 4,
-			},
-			{
-				"template": "structures/{civ}_field",
-				"priority": 40,
-				"count": 5,
-			},
-		];
-			}
+					"template": "structures/{civ}_field",
+					"priority": 70,
+					"count": 2,
+				},
+			];
+		}
+		// Carthage building list
+		else if (gameState.displayCiv() == "cart")
+		{
+			this.villageBuildings = [
+				{
+					"template": "structures/{civ}_defense_tower",
+					"priority": 105,
+					"count": 1,
+				},
+					{
+					"template": "structures/{civ}_field",
+					"priority": 103,
+					"count": 1,
+				},
+				{
+					"template": "structures/{civ}_barracks",
+					"priority": 101,
+					"count": 1,
+				},
+				{
+					"template": "structures/{civ}_field",
+					"priority": 70,
+					"count": 2,
+				},
+			];
+		}
+		// Iberian building list
+		else if (gameState.displayCiv() == "iber")
+		{
+			this.villageBuildings = [
+				{
+					"template": "structures/{civ}_defense_tower",
+					"priority": 105,
+					"count": 1,
+				},
+					{
+					"template": "structures/{civ}_field",
+					"priority": 103,
+					"count": 1,
+				},
+				{
+					"template": "structures/{civ}_barracks",
+					"priority": 101,
+					"count": 1,
+				},
+				{
+					"template": "structures/{civ}_field",
+					"priority": 70,
+					"count": 2,
+				},
+			];
+		}
+		// Persian building list
+		else if (gameState.displayCiv() == "pers")
+		{
+			this.villageBuildings = [
+				{
+					"template": "structures/{civ}_defense_tower",
+					"priority": 105,
+					"count": 1,
+				},
+					{
+					"template": "structures/{civ}_field",
+					"priority": 103,
+					"count": 1,
+				},
+				{
+					"template": "structures/{civ}_barracks",
+					"priority": 101,
+					"count": 1,
+				},
+				{
+					"template": "structures/{civ}_field",
+					"priority": 70,
+					"count": 2,
+				},
+			];
+		}
+		// Roman building list
+		else if (gameState.displayCiv() == "rome")
+		{
+			this.villageBuildings = [
+				{
+					"template": "structures/{civ}_defense_tower",
+					"priority": 105,
+					"count": 1,
+				},
+					{
+					"template": "structures/{civ}_field",
+					"priority": 103,
+					"count": 1,
+				},
+				{
+					"template": "structures/{civ}_barracks",
+					"priority": 101,
+					"count": 1,
+				},
+				{
+					"template": "structures/{civ}_field",
+					"priority": 70,
+					"count": 2,
+				},
+			];
+		}
+		// Fallback option just in case
+		else
+		{
+			this.villageBuildings = [
+				{
+					"template": "structures/{civ}_defense_tower",
+					"priority": 105,
+					"count": 1,
+				},
+					{
+					"template": "structures/{civ}_field",
+					"priority": 100,
+					"count": 2,
+				},
+				{
+					"template": "structures/{civ}_barracks",
+					"priority": 99,
+					"count": 1,
+				},
+				{
+					"template": "structures/{civ}_defense_tower",
+					"priority": 60,
+					"count": 4,
+				},
+				{
+					"template": "structures/{civ}_field",
+					"priority": 40,
+					"count": 5,
+				},
+			];
+		}
 	},
 	
-	checkBuildingList: function (gameState) {
-			if (gameState.displayCiv() == "hele"){
-		this.targetBuildings = [
-			{
-				"template": "structures/hele_gymnasion",
-				"priority": 80,
-				"count": 1,
-			},
-			{
-				"template": "structures/{civ}_field",
-				"priority": 70,
-				"count": 2,
-			},
-			{
-				"template": "structures/hele_fortress",
-				"priority": 60,
-				"count": 1,
-			},
-			{
-				"template": "structures/{civ}_field",
-				"priority": 40,
-				"count": 3,
-			},
-		];
-			}
-			// Celt building list
-			else if (gameState.displayCiv() == "celt"){
-		this.targetBuildings = [
-			{
-				"template": "structures/{civ}_barracks",
-				"priority": 90,
-				"count": 1,
-			},
-			{
-				"template": "structures/celt_fortress_b",
-				"priority": 80,
-				"count": 1,
-			},
-		];
-			}
-			// Carthage building list
-			else if (gameState.displayCiv() == "cart"){
-		this.targetBuildings = [
-			{
-				"template": "structures/cart_fortress",
-				"priority": 80,
-				"count": 1,
-			},
-			{
-				"template": "structures/cart_temple",
-				"priority": 75,
-				"count": 1,
-			},
-			{
-				"template": "structures/cart_embassy_celtic",
-				"priority": 50,
-				"count": 1,
-			},
-			{
-				"template": "structures/cart_embassy_iberian",
-				"priority": 50,
-				"count": 1,
-			},
-			{
-				"template": "structures/cart_embassy_italiote",
-				"priority": 50,
-				"count": 1,
-			},
-		];
-			}
-			// Celt building list
-			else if (gameState.displayCiv() == "iber"){
-		this.targetBuildings = [
-			{
-				"template": "structures/iber_fortress",
-				"priority": 80,
-				"count": 1,
-			},
-		];
-			}
-
-			// Perian building list
-			else if (gameState.displayCiv() == "pers"){
-		this.targetBuildings = [
-			{
-				"template": "structures/pers_fortress",
-				"priority": 80,
-				"count": 1,
-			},
-			{
-				"template": "structures/pers_stables",
-				"priority": 75,
-				"count": 1,
-			},
-			{
-				"template": "structures/pers_apadana",
-				"priority": 50,
-				"count": 1,
-			},
-		];
-			}
-			// Fallback option just in case
-		else {
-		this.targetBuildings = [
+	checkBuildingList: function (gameState)
+	{
+		// Hele building list
+		if (gameState.displayCiv() == "hele")
+		{
+			this.targetBuildings = [
 				{
-				"template": "structures/{civ}_field",
-				"priority": 100,
-				"count": 2,
-			},
-			{
-				"template": "structures/{civ}_barracks",
-				"priority": 99,
-				"count": 1,
-			},
-			{
-				"template": "structures/{civ}_scout_tower",
-				"priority": 60,
-				"count": 4,
-			},
-			{
-				"template": "structures/{civ}_field",
-				"priority": 40,
-				"count": 5,
-			},
-		];
-			}
+					"template": "structures/hele_gymnasion",
+					"priority": 80,
+					"count": 1,
+				},
+				{
+					"template": "structures/{civ}_field",
+					"priority": 70,
+					"count": 2,
+				},
+				{
+					"template": "structures/hele_fortress",
+					"priority": 60,
+					"count": 1,
+				},
+				{
+					"template": "structures/{civ}_field",
+					"priority": 40,
+					"count": 3,
+				},
+			];
+		}
+		// Celt building list
+		else if (gameState.displayCiv() == "celt")
+		{
+			this.targetBuildings = [
+				{
+					"template": "structures/{civ}_barracks",
+					"priority": 90,
+					"count": 1,
+				},
+				{
+					"template": "structures/celt_fortress_b",
+					"priority": 80,
+					"count": 1,
+				},
+				{
+					"template": "structures/celt_kennel",
+					"priority": 75,
+					"count": 1,
+				},
+			];
+		}
+		// Carthage building list
+		else if (gameState.displayCiv() == "cart")
+		{
+			this.targetBuildings = [
+				{
+					"template": "structures/cart_fortress",
+					"priority": 80,
+					"count": 1,
+				},
+				{
+					"template": "structures/cart_temple",
+					"priority": 75,
+					"count": 1,
+				},
+				{
+					"template": "structures/cart_embassy_celtic",
+					"priority": 50,
+					"count": 1,
+				},
+				{
+					"template": "structures/cart_embassy_iberian",
+					"priority": 50,
+					"count": 1,
+				},
+				{
+					"template": "structures/cart_embassy_italiote",
+					"priority": 50,
+					"count": 1,
+				},
+			];
+		}
+		// Iberian building list
+		else if (gameState.displayCiv() == "iber")
+		{
+			this.targetBuildings = [
+				{
+					"template": "structures/iber_fortress",
+					"priority": 80,
+					"count": 1,
+				},
+			];
+		}
+		// Perian building list
+		else if (gameState.displayCiv() == "pers")
+		{
+			this.targetBuildings = [
+				{
+					"template": "structures/pers_fortress",
+					"priority": 80,
+					"count": 1,
+				},
+				{
+					"template": "structures/pers_stables",
+					"priority": 75,
+					"count": 1,
+				},
+				{
+					"template": "structures/pers_apadana",
+					"priority": 50,
+					"count": 1,
+				},
+			];
+		}
+		// Roman building list
+		else if (gameState.displayCiv() == "rome")
+		{
+			this.targetBuildings = [
+				{
+					"template": "structures/rome_fortress",
+					"priority": 80,
+					"count": 1,
+				},
+				{
+					"template": "structures/rome_army_camp",
+					"priority": 75,
+					"count": 1,
+				},
+			];
+		}
+		// Fallback option just in case
+		else
+		{
+			this.targetBuildings = [
+					{
+					"template": "structures/{civ}_field",
+					"priority": 100,
+					"count": 2,
+				},
+				{
+					"template": "structures/{civ}_barracks",
+					"priority": 99,
+					"count": 1,
+				},
+				{
+					"template": "structures/{civ}_defense_tower",
+					"priority": 60,
+					"count": 4,
+				},
+				{
+					"template": "structures/{civ}_field",
+					"priority": 40,
+					"count": 5,
+				},
+			];
+		}
 	},
 	
 	
 	buildMoreBuildings: function(gameState, planGroups)
 	{
 		var numCCs = gameState.countEntitiesAndQueuedWithType(gameState.applyCiv("structures/{civ}_civil_centre"));
-			if (numCCs < 1)
-			{
-				planGroups.economyConstruction.addPlan(1000,
-					new BuildingConstructionPlan(gameState, "structures/{civ}_civil_centre", 1)
-				);
-				return;
-			}
+		if (numCCs < 1)
+		{
+			planGroups.economyConstruction.addPlan(1000,
+				new BuildingConstructionPlan(gameState, "structures/{civ}_civil_centre", 1)
+			);
+			return;
+		}
 		// Limit ourselves to constructing two buildings at a time
 		if (gameState.findFoundations().length > 0)
 			return;
@@ -326,11 +387,12 @@ var EconomyManager = Class({
 		var poplim = gameState.getPopulationLimit();
 		var space = poplim - pop;
 		
-		if (space < 9) {
-				planGroups.economyConstruction.addPlan(160,
-					new BuildingConstructionPlan(gameState, "structures/{civ}_house", 1)
-				);
-				return;
+		if (space < 9)
+		{
+			planGroups.economyConstruction.addPlan(160,
+				new BuildingConstructionPlan(gameState, "structures/{civ}_house", 1)
+			);
+			return;
 		}
 		
 		if (gameState.findFoundations().length > 0)
@@ -341,7 +403,7 @@ var EconomyManager = Class({
 		{
 			var numBuildings = gameState.countEntitiesAndQueuedWithType(gameState.applyCiv(building.template));
 			
-		var wantedtotal = building.count * numCCs;
+			var wantedtotal = building.count * numCCs;
 			// If we have too few, build another
 			if (numBuildings < wantedtotal && building.template != gameState.applyCiv("structures/{civ}_field"))
 			{
@@ -392,104 +454,159 @@ var EconomyManager = Class({
 		var miliNo = gameState.countEntitiesAndQueuedWithRole("militia");
 		var workNo = gameState.countEntitiesAndQueuedWithRole("worker");
 		
-		if (miliNo > workNo){
-		workNumMod = workNumMod - 0.6;
+		if (miliNo > workNo)
+		{
+			workNumMod = workNumMod - 0.6;
 		}
-		if (gameState.getTimeElapsed() < 150 * 100){
-		workNumMod = workNumMod - 0.6;
+		if (gameState.getTimeElapsed() < 150 * 100)
+		{
+			workNumMod = workNumMod - 0.6;
 		}
 		// If we have too few, train another
 //		print("Want "+this.targetNumWorkers+" workers; got "+numWorkers+"\n");
 		if (numWorkers < this.baseNumWorkers)
 		{
-		var priority = 180;
+			var priority = 180;
 		}
 		else if (numWorkers < this.targetNumWorkers)
 		{
-		var priority = 140;
+			var priority = 140;
 		}
 
-		if (gameState.displayCiv() == "hele" || gameState.displayCiv() == "celt"){
-			if (workNumMod < 0.95){
-			planGroups.economyPersonnel.addPlan(priority,
-				new UnitTrainingPlan(gameState,
-					"units/{civ}_support_female_citizen", 2, { "role": "worker" })
-			);
+		// Hele and Celt training list
+		if (gameState.displayCiv() == "hele" || gameState.displayCiv() == "celt")
+		{
+			if (workNumMod < 0.95)
+			{
+				planGroups.economyPersonnel.addPlan(priority,
+					new UnitTrainingPlan(gameState,
+						"units/{civ}_support_female_citizen", 2, { "role": "worker" })
+				);
 			}
-			else if (workNumMod > 1.6) {
-			planGroups.economyPersonnel.addPlan(priority,
-				new UnitTrainingPlan(gameState,
-					"units/{civ}_infantry_spearman_b", 2, { "role": "militia" })
-			);
+			else if (workNumMod > 1.6)
+			{
+				planGroups.economyPersonnel.addPlan(priority,
+					new UnitTrainingPlan(gameState,
+						"units/{civ}_infantry_spearman_b", 2, { "role": "militia" })
+				);
 			}
-			else {
-			planGroups.economyPersonnel.addPlan(priority,
-				new UnitTrainingPlan(gameState,
-					"units/{civ}_infantry_javelinist_b", 2, { "role": "militia" })
-			);
-			}
-		}
-		else if (gameState.displayCiv() == "cart"){
-			if (workNumMod < 0.95){
-			planGroups.economyPersonnel.addPlan(priority,
-				new UnitTrainingPlan(gameState,
-					"units/{civ}_support_female_citizen", 2, { "role": "worker" })
-			);
-			}
-			else if (workNumMod > 1.6) {
-			planGroups.economyPersonnel.addPlan(priority,
-				new UnitTrainingPlan(gameState,
-					"units/{civ}_infantry_spearman_b", 2, { "role": "militia" })
-			);
-			}
-			else {
-			planGroups.economyPersonnel.addPlan(priority,
-				new UnitTrainingPlan(gameState,
-					"units/{civ}_infantry_archer_b", 2, { "role": "militia" })
-			);
+			else
+			{
+				planGroups.economyPersonnel.addPlan(priority,
+					new UnitTrainingPlan(gameState,
+						"units/{civ}_infantry_javelinist_b", 2, { "role": "militia" })
+				);
 			}
 		}
-		else if (gameState.displayCiv() == "iber"){
-			if (workNumMod < 0.95){
-			planGroups.economyPersonnel.addPlan(priority,
-				new UnitTrainingPlan(gameState,
-					"units/{civ}_support_female_citizen", 2, { "role": "worker" })
-			);
+		// Carthage training list
+		else if (gameState.displayCiv() == "cart")
+		{
+			if (workNumMod < 0.95)
+			{
+				planGroups.economyPersonnel.addPlan(priority,
+					new UnitTrainingPlan(gameState,
+						"units/{civ}_support_female_citizen", 2, { "role": "worker" })
+				);
 			}
-			else if (workNumMod > 1.6) {
-			planGroups.economyPersonnel.addPlan(priority,
-				new UnitTrainingPlan(gameState,
-					"units/{civ}_infantry_swordsman_b", 2, { "role": "militia" })
-			);
+			else if (workNumMod > 1.6)
+			{
+				planGroups.economyPersonnel.addPlan(priority,
+					new UnitTrainingPlan(gameState,
+						"units/{civ}_infantry_spearman_b", 2, { "role": "militia" })
+				);
 			}
-			else {
-			planGroups.economyPersonnel.addPlan(priority,
-				new UnitTrainingPlan(gameState,
-					"units/{civ}_infantry_javelinist_b", 2, { "role": "militia" })
-			);
-			}
-		}
-		else if (gameState.displayCiv() == "pers"){
-			if (workNumMod < 0.95){
-			planGroups.economyPersonnel.addPlan(priority,
-				new UnitTrainingPlan(gameState,
-					"units/{civ}_support_female_citizen", 2, { "role": "worker" })
-			);
-			}
-			else if (workNumMod > 1.6) {
-			planGroups.economyPersonnel.addPlan(priority,
-				new UnitTrainingPlan(gameState,
-					"units/{civ}_infantry_spearman_b", 2, { "role": "militia" })
-			);
-			}
-			else {
-			planGroups.economyPersonnel.addPlan(priority,
-				new UnitTrainingPlan(gameState,
-					"units/{civ}_infantry_archer_b", 2, { "role": "militia" })
-			);
+			else
+			{
+				planGroups.economyPersonnel.addPlan(priority,
+					new UnitTrainingPlan(gameState,
+						"units/{civ}_infantry_archer_b", 2, { "role": "militia" })
+				);
 			}
 		}
-		else {
+		// Iberian training list
+		else if (gameState.displayCiv() == "iber")
+		{
+			if (workNumMod < 0.95)
+			{
+				planGroups.economyPersonnel.addPlan(priority,
+					new UnitTrainingPlan(gameState,
+						"units/{civ}_support_female_citizen", 2, { "role": "worker" })
+				);
+			}
+			else if (workNumMod > 1.6)
+			{
+				planGroups.economyPersonnel.addPlan(priority,
+					new UnitTrainingPlan(gameState,
+						"units/{civ}_infantry_swordsman_b", 2, { "role": "militia" })
+				);
+			}
+			else
+			{
+				planGroups.economyPersonnel.addPlan(priority,
+					new UnitTrainingPlan(gameState,
+						"units/{civ}_infantry_javelinist_b", 2, { "role": "militia" })
+				);
+			}
+		}
+		// Persian training list
+		else if (gameState.displayCiv() == "pers")
+		{
+			if (workNumMod < 0.95)
+			{
+				planGroups.economyPersonnel.addPlan(priority,
+					new UnitTrainingPlan(gameState,
+						"units/{civ}_support_female_citizen", 2, { "role": "worker" })
+				);
+			}
+			else if (workNumMod > 1.6)
+			{
+				planGroups.economyPersonnel.addPlan(priority,
+					new UnitTrainingPlan(gameState,
+						"units/{civ}_infantry_spearman_b", 2, { "role": "militia" })
+				);
+			}
+			else
+			{
+				planGroups.economyPersonnel.addPlan(priority,
+					new UnitTrainingPlan(gameState,
+						"units/{civ}_infantry_archer_b", 2, { "role": "militia" })
+				);
+			}
+		}
+		// Roman training list
+		else if (gameState.displayCiv() == "rome")
+		{
+			if (workNumMod < 0.95)
+			{
+				planGroups.economyPersonnel.addPlan(priority,
+					new UnitTrainingPlan(gameState,
+						"units/{civ}_support_female_citizen", 2, { "role": "worker" })
+				);
+			}
+			else if (workNumMod > 1.3)
+			{
+				planGroups.economyPersonnel.addPlan(priority,
+					new UnitTrainingPlan(gameState,
+						"units/{civ}_infantry_swordsman_b", 2, { "role": "militia" })
+				);
+			}
+			else if (workNumMod > 1.6)
+			{
+				planGroups.economyPersonnel.addPlan(priority,
+					new UnitTrainingPlan(gameState,
+						"units/{civ}_infantry_spearman_b", 2, { "role": "militia" })
+				);
+			}
+			else
+			{
+				planGroups.economyPersonnel.addPlan(priority,
+					new UnitTrainingPlan(gameState,
+						"units/{civ}_infantry_javelinist_b", 2, { "role": "militia" })
+				);
+			}
+		}
+		else
+		{
 			planGroups.economyPersonnel.addPlan(priority,
 				new UnitTrainingPlan(gameState,
 					"units/{civ}_support_female_citizen", 2, { "role": "worker" })
@@ -533,45 +650,53 @@ var EconomyManager = Class({
 		var roleless = gameState.getOwnEntitiesWithRole(undefined);
 
 
-		roleless.forEach(function(ent) {
-			if (ent.hasClass("Worker")){
-				ent.setMetadata("role", "worker");
-				}
-			else if (ent.hasClass("CitizenSoldier") && ent.hasClass("Infantry")){
-				var currentPosition = ent.position();
-			var targets = gameState.entities.filter(function(enten) {
-				var foeposition = enten.position();
-				if (foeposition){
-				var dist = SquareVectorDistance(foeposition, currentPosition);
-				return (enten.isEnemy() && enten.owner()!= 0 && dist < 2500);
-				}
-				else {
-				return false;
-				}
-			});
-			if (targets.length == 0){
-			// If we're clear go back to work
-				ent.setMetadata("role", "militia");
-				}
-			else {
-			// If not, go home!
-			var targets = gameState.entities.filter(function(squeak) {
-				return (!squeak.isEnemy() && squeak.hasClass("Village"));
-			});
-					// If we have a target, move to it
-			if (targets.length)
+		roleless.forEach(function(ent)
+		{
+			if (ent.hasClass("Worker"))
 			{
-				var targetrandomiser = Math.floor(Math.random()*targets.length);
-				var target = targets.toEntityArray()[targetrandomiser];
-				var targetPos = target.position();
-				// TODO: this should be an attack-move command
-				ent.move(targetPos[0], targetPos[1]);
+				ent.setMetadata("role", "worker");
 			}
-			}
+			else if (ent.hasClass("CitizenSoldier") && ent.hasClass("Infantry"))
+			{
+				var currentPosition = ent.position();
+				var targets = gameState.entities.filter(function(enten) {
+					var foeposition = enten.position();
+					if (foeposition)
+					{
+						var dist = SquareVectorDistance(foeposition, currentPosition);
+						return (enten.isEnemy() && enten.owner()!= 0 && dist < 2500);
+					}
+					else
+					{
+						return false;
+					}
+				});
+				if (targets.length == 0)
+				{
+					// If we're clear go back to work
+					ent.setMetadata("role", "militia");
 				}
-			else {
+				else
+				{
+					// If not, go home!
+					var targets = gameState.entities.filter(function(squeak) {
+						return (!squeak.isEnemy() && squeak.hasClass("Village"));
+					});
+					// If we have a target, move to it
+					if (targets.length)
+					{
+						var targetrandomiser = Math.floor(Math.random()*targets.length);
+						var target = targets.toEntityArray()[targetrandomiser];
+						var targetPos = target.position();
+						// TODO: this should be an attack-move command
+						ent.move(targetPos[0], targetPos[1]);
+					}
+				}
+			}
+			else
+			{
 				ent.setMetadata("role", "randomcannonfodder");
-				}
+			}
 		});
 	},
 
@@ -581,11 +706,12 @@ var EconomyManager = Class({
 
 		var allWorkers = gameState.getOwnEntitiesWithTwoRoles("worker", "militia")
 		allWorkers.forEach(function(worker){
-		var shallIstop = Math.random();
-		if (shallIstop > 0.9975){
-		var targetPos = worker.position();	
-		worker.move(targetPos[0], targetPos[1]);
-		}
+			var shallIstop = Math.random();
+			if (shallIstop > 0.9975)
+			{
+				var targetPos = worker.position();	
+				worker.move(targetPos[0], targetPos[1]);
+			}
 		});
 		// Search for idle workers, and tell them to gather resources
 		// Maybe just pick a random nearby resource type at first;
@@ -623,61 +749,67 @@ var EconomyManager = Class({
 						if (supply.entity.hasClass("SeaCreature"))
 							return;
 		
-		var distcheck = 10000000000;
-		var supplydistcheck = 100000000000;
-		gameState.getOwnEntities().forEach(function(centre) {
-			if (centre.hasClass("CivCentre"))
-			{
-					var centrePosition = centre.position();
-							var currentsupplydistcheck = SquareVectorDistance(supply.position, centrePosition);
-							if (currentsupplydistcheck < currentsupplydistcheck){
-							supplydistcheck = currentsupplydistcheck;
+						var distcheck = 10000000000;
+						var supplydistcheck = 100000000000;
+						gameState.getOwnEntities().forEach(function(centre) {
+							if (centre.hasClass("CivCentre"))
+							{
+								var centrePosition = centre.position();
+								var currentsupplydistcheck = SquareVectorDistance(supply.position, centrePosition);
+								if (currentsupplydistcheck < currentsupplydistcheck)
+								{
+									supplydistcheck = currentsupplydistcheck;
+								}
+								var currentdistcheck = SquareVectorDistance(supply.position, centrePosition);
+								if (currentdistcheck < distcheck)
+								{
+									distcheck = currentdistcheck;
+								}
+								// Skip targets that are far too far away (e.g. in the enemy base)
 							}
-							var currentdistcheck = SquareVectorDistance(supply.position, centrePosition);
-							if (currentdistcheck < distcheck){
-							distcheck = currentdistcheck;
+							else if (centre.hasClass("DropsiteFood") && type == "food")
+							{
+								var centrePosition = centre.position();
+								var currentsupplydistcheck = SquareVectorDistance(supply.position, centrePosition);
+								if (currentsupplydistcheck < currentsupplydistcheck)
+								{
+									supplydistcheck = currentsupplydistcheck;
+								}
+								// Skip targets that are far too far away (e.g. in the enemy base)
 							}
-						// Skip targets that are far too far away (e.g. in the enemy base)
-			}
-						else if (centre.hasClass("DropsiteFood") && type == "food")
-			{
-					var centrePosition = centre.position();
-							var currentsupplydistcheck = SquareVectorDistance(supply.position, centrePosition);
-							if (currentsupplydistcheck < currentsupplydistcheck){
-							supplydistcheck = currentsupplydistcheck;
+							else if (centre.hasClass("DropsiteWood") && type == "wood")
+							{
+								var centrePosition = centre.position();
+								var currentsupplydistcheck = SquareVectorDistance(supply.position, centrePosition);
+								if (currentsupplydistcheck < currentsupplydistcheck)
+								{
+									supplydistcheck = currentsupplydistcheck;
+								}
+								// Skip targets that are far too far away (e.g. in the enemy base)
 							}
-						// Skip targets that are far too far away (e.g. in the enemy base)
-			}
-						else if (centre.hasClass("DropsiteWood") && type == "wood")
-			{
-					var centrePosition = centre.position();
-							var currentsupplydistcheck = SquareVectorDistance(supply.position, centrePosition);
-							if (currentsupplydistcheck < currentsupplydistcheck){
-							supplydistcheck = currentsupplydistcheck;
+							else if (centre.hasClass("DropsiteStone") && type == "stone")
+							{
+								var centrePosition = centre.position();
+								var currentsupplydistcheck = SquareVectorDistance(supply.position, centrePosition);
+								if (currentsupplydistcheck < currentsupplydistcheck)
+								{
+									supplydistcheck = currentsupplydistcheck;
+								}
+								// Skip targets that are far too far away (e.g. in the enemy base)
 							}
-						// Skip targets that are far too far away (e.g. in the enemy base)
-			}
-						else if (centre.hasClass("DropsiteStone") && type == "stone")
-			{
-					var centrePosition = centre.position();
-							var currentsupplydistcheck = SquareVectorDistance(supply.position, centrePosition);
-							if (currentsupplydistcheck < currentsupplydistcheck){
-							supplydistcheck = currentsupplydistcheck;
+							else if (centre.hasClass("DropsiteMetal") && type == "metal")
+							{
+								var centrePosition = centre.position();
+								var currentsupplydistcheck = SquareVectorDistance(supply.position, centrePosition);
+								if (currentsupplydistcheck < currentsupplydistcheck)
+								{
+									supplydistcheck = currentsupplydistcheck;
+								}
+								// Skip targets that are far too far away (e.g. in the enemy base)
 							}
-						// Skip targets that are far too far away (e.g. in the enemy base)
-			}
-						else if (centre.hasClass("DropsiteMetal") && type == "metal")
-			{
-					var centrePosition = centre.position();
-							var currentsupplydistcheck = SquareVectorDistance(supply.position, centrePosition);
-							if (currentsupplydistcheck < currentsupplydistcheck){
-							supplydistcheck = currentsupplydistcheck;
-							}
-						// Skip targets that are far too far away (e.g. in the enemy base)
-			}
-		});
+						});
 						if (distcheck > 500000)
-						return;
+							return;
 							
 						var dist = SquareVectorDistance(supply.position, workerPosition);
 
@@ -696,90 +828,100 @@ var EconomyManager = Class({
 						return false;
 					});
 					
-					if (type == "food"){
-					var whatshallwebuild = "structures/{civ}_farmstead"
+					if (type == "food")
+					{
+						var whatshallwebuild = "structures/{civ}_farmstead"
 					}
-					else {
-					var whatshallwebuild = "structures/{civ}_mill"
+					else
+					{
+						var whatshallwebuild = "structures/{civ}_mill"
 					}
-					
 					
 					// Start gathering
 					if (supplies.length)
 					{
-					// THIS SHOULD BE A GLOBAL VARIABLE
-					var currentposformill = supplies[0].entity.position();
-					var distcheckoldII = 1000000000;
-					// CHECK DISTANCE
-					gameState.getOwnEntities().forEach(function(centre) {
-						if (centre.hasClass("CivCentre"))
-						{
+						// THIS SHOULD BE A GLOBAL VARIABLE
+						var currentposformill = supplies[0].entity.position();
+						var distcheckoldII = 1000000000;
+						// CHECK DISTANCE
+						gameState.getOwnEntities().forEach(function(centre) {
+							if (centre.hasClass("CivCentre"))
+							{
 								var centrePosition = centre.position();
 								var distcheckII = SquareVectorDistance(currentposformill, centrePosition);
-									if (distcheckII < distcheckoldII){
+								if (distcheckII < distcheckoldII)
+								{
 									distcheckoldII = distcheckII;
-									}
-						}
-						else if (centre.hasClass("DropsiteFood") && type == "food")
-						{
+								}
+							}
+							else if (centre.hasClass("DropsiteFood") && type == "food")
+							{
 								var centrePosition = centre.position();
 								var distcheckII = SquareVectorDistance(currentposformill, centrePosition);
-									if (distcheckII < distcheckoldII){
+								if (distcheckII < distcheckoldII)
+								{
 									distcheckoldII = distcheckII;
-									}
-						}
-						else if (centre.hasClass("DropsiteWood") && type == "wood")
-						{
+								}
+							}
+							else if (centre.hasClass("DropsiteWood") && type == "wood")
+							{
 								var centrePosition = centre.position();
 								var distcheckII = SquareVectorDistance(currentposformill, centrePosition);
-									if (distcheckII < distcheckoldII){
+								if (distcheckII < distcheckoldII)
+								{
 									distcheckoldII = distcheckII;
-									}
-						}
-						else if (centre.hasClass("DropsiteMetal") && type == "metal")
-						{
+								}
+							}
+							else if (centre.hasClass("DropsiteMetal") && type == "metal")
+							{
 								var centrePosition = centre.position();
 								var distcheckII = SquareVectorDistance(currentposformill, centrePosition);
-									if (distcheckII < distcheckoldII){
+								if (distcheckII < distcheckoldII)
+								{
 									distcheckoldII = distcheckII;
-									}
-						}
-						else if (centre.hasClass("DropsiteStone") && type == "stone")
-						{
+								}
+							}
+							else if (centre.hasClass("DropsiteStone") && type == "stone")
+							{
 								var centrePosition = centre.position();
 								var distcheckII = SquareVectorDistance(currentposformill, centrePosition);
-									if (distcheckII < distcheckoldII){
+								if (distcheckII < distcheckoldII)
+								{
 									distcheckoldII = distcheckII;
-									}
+								}
+							}
+						});
+						var foundationsyes = false;
+						if (gameState.findFoundations().length > 1)
+						{
+							foundationsyes = false;
 						}
-					});
-					var foundationsyes = false;
-					if (gameState.findFoundations().length > 1){
-					foundationsyes = false;
-					}
-					else{
-					foundationsyes = true;
-					}
-					//warn(type + " is the resource and " + distcheckoldII + " is the distance.");
-					
-					if (distcheckoldII > 5000 && foundationsyes == true){
-					//JuBotAI.prototype.chat("Building Mill");
-						planGroups.economyConstruction.addPlan(100,
-						new BuildingConstructionPlanEcon(gameState, whatshallwebuild, 1, currentposformill)
-						);
-						//JuBotAI.prototype.chat("Gathering");
-						ent.gather(supplies[0].entity);
-						ent.setMetadata("subrole", "gatherer");
-						ent.setMetadata("gather-type", type);
-						return;
-					}
-					else {
-					//JuBotAI.prototype.chat("Gathering");
-					ent.gather(supplies[0].entity);
-					ent.setMetadata("subrole", "gatherer");
-					ent.setMetadata("gather-type", type);
-					return;
-					}
+						else
+						{
+							foundationsyes = true;
+						}
+						//warn(type + " is the resource and " + distcheckoldII + " is the distance.");
+						
+						if (distcheckoldII > 5000 && foundationsyes == true)
+						{
+							//JuBotAI.prototype.chat("Building Mill");
+							planGroups.economyConstruction.addPlan(100,
+								new BuildingConstructionPlanEcon(gameState, whatshallwebuild, 1, currentposformill)
+							);
+							//JuBotAI.prototype.chat("Gathering");
+							ent.gather(supplies[0].entity);
+							ent.setMetadata("subrole", "gatherer");
+							ent.setMetadata("gather-type", type);
+							return;
+						}
+						else
+						{
+							//JuBotAI.prototype.chat("Gathering");
+							ent.gather(supplies[0].entity);
+							ent.setMetadata("subrole", "gatherer");
+							ent.setMetadata("gather-type", type);
+							return;
+						}
 					}
 				}
 
@@ -828,26 +970,29 @@ var EconomyManager = Class({
 			ent.setMetadata("subrole", "builder");
 		});
 	},
-// This function recalls builders to the CC every 2 minutes; theoretically, this prevents the issue where they build a farm and people try to cross it and there's a traffic jam which wrecks the AI economy.
+	// This function recalls builders to the CC every 2 minutes; theoretically, this prevents the issue where they build a farm and people try to cross it and there's a traffic jam which wrecks the AI economy.
 	buildRegroup: function(gameState, planGroups)
 	{
-			if (gameState.getTimeElapsed() > this.changetimeRegBui){
+		if (gameState.getTimeElapsed() > this.changetimeRegBui)
+		{
 			var buildregroupers = gameState.getOwnEntitiesWithTwoRoles("worker", "militia");
 			buildregroupers.forEach(function(shirk) {
-			if (shirk.getMetadata("subrole") == "builder"){
-			var targets = gameState.entities.filter(function(ent) {
-				return (!ent.isEnemy() && ent.hasClass("CivCentre"));
-			});
-			if (targets.length){
-				var target = targets.toEntityArray()[0];
-				var targetPos = target.position();
-				shirk.move(targetPos[0], targetPos[1]);
-			}
-			}
+				if (shirk.getMetadata("subrole") == "builder")
+				{
+					var targets = gameState.entities.filter(function(ent) {
+						return (!ent.isEnemy() && ent.hasClass("CivCentre"));
+					});
+					if (targets.length)
+					{
+						var target = targets.toEntityArray()[0];
+						var targetPos = target.position();
+						shirk.move(targetPos[0], targetPos[1]);
+					}
+				}
 			});
 			// Wait 4 mins to do this again.
 			this.changetimeRegBui = this.changetimeRegBui + (120*1000);
-			}
+		}
 	},
 
 	update: function(gameState, planGroups)
