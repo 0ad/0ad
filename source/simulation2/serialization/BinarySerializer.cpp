@@ -132,7 +132,23 @@ void CBinarySerializerScriptImpl::HandleScriptVal(jsval val)
 	}
 	case JSTYPE_FUNCTION:
 	{
-		LOGERROR(L"Cannot serialise JS objects of type 'function'");
+		// We can't serialise functions, but we can at least name the offender (hopefully)
+		const jschar* funcname = NULL;
+		size_t length = 0;
+		JSFunction* func = JS_ValueToFunction(cx, val);
+		if (func)
+		{
+			JSString* string = JS_GetFunctionId(func);
+			if (string)
+			{
+				funcname = JS_GetStringCharsAndLength(cx, string, &length);
+			}
+		}
+
+		if (!funcname || !length)
+			funcname = L"(unnamed)";
+
+		LOGERROR(L"Cannot serialise JS objects of type 'function': %ls", funcname);
 		throw PSERROR_Serialize_InvalidScriptValue();
 	}
 	case JSTYPE_STRING:
