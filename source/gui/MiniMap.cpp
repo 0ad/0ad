@@ -500,7 +500,8 @@ void CMiniMap::RebuildTerrainTexture()
 
 			if(avgHeight < waterHeight)
 			{
-				*dataPtr++ = 0xff304080;		// TODO: perhaps use the renderer's water color?
+				// Set water as constant color for consistency on different maps
+				*dataPtr++ = 0xff5078a0;
 			}
 			else
 			{
