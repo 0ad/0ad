@@ -21,7 +21,8 @@
  */
 
 /**
- * @file New profiler (complementing the older CProfileManager)
+ * @file
+ * New profiler (complementing the older CProfileManager)
  * 
  * The profiler is designed for analysing framerate fluctuations or glitches,
  * and temporal relationships between threads.

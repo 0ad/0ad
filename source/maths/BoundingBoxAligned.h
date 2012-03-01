@@ -43,7 +43,7 @@ public:
 	}
 
 	/**
-	 * Transforms these bounds according to the specified transformation matrix @m, and writes the axis-aligned bounds
+	 * Transforms these bounds according to the specified transformation matrix @p m, and writes the axis-aligned bounds
 	 * of that result to @p result.
 	 */
 	void Transform(const CMatrix3D& m, CBoundingBoxAligned& result) const;
@@ -86,15 +86,15 @@ public:
 	}
 
 	/**
-	 * Returns true if the ray originating in @p origin and with unit direction vector @p dir intersects this AABB, false otherwise.
-	 * Additionally, returns the distance in the positive direction from the origin of the ray to the entry and exit points in 
-	 * the bounding box in @p tmin and @p tmax. If the origin is inside the box, then this is counted as an intersection and one 
-	 * of @p tMin and @p tMax may be negative. 
-	 * 
+	 * Check if a given ray intersects this AABB.
 	 * See also Real-Time Rendering, Third Edition by T. Akenine-Moller, p. 741--742.
-	 * 
-	 * @param origin Origin of the ray.
-	 * @param dir Direction vector of the ray, defining the positive direction of the ray. Must be of unit length.
+	 *
+	 * @param[in] origin Origin of the ray.
+	 * @param[in] dir Direction vector of the ray, defining the positive direction of the ray. Must be of unit length.
+	 * @param[out] tmin,tmax distance in the positive direction from the origin of the ray to the entry and exit points in 
+	 *	the bounding box. If the origin is inside the box, then this is counted as an intersection and one of @p tMin and @p tMax may be negative.
+	 *
+	 * @return true if the ray originating in @p origin and with unit direction vector @p dir intersects this AABB, false otherwise.
 	 */
 	bool RayIntersect(const CVector3D& origin, const CVector3D& dir, float& tmin, float& tmax) const;
 

@@ -37,9 +37,6 @@ class ShaderModelRenderer : public ModelVertexRenderer
 public:
 	/**
 	 * HWLightingModelRenderer: Constructor.
-	 *
-	 * @param colorIsDiffuseOnly if true, the primary color sent to the fragment stage
-	 * contains only the diffuse term, and not the ambient
 	 */
 	ShaderModelRenderer();
 	~ShaderModelRenderer();

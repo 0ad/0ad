@@ -91,7 +91,7 @@ struct IArchiveWriter
 	 * @param pathname the actual file to add
 	 * @param pathnameInArchive the name to store in the archive
 	 **/
-	virtual Status AddFile(const OsPath& pathname, const Path& pathameInArchive) = 0;
+	virtual Status AddFile(const OsPath& pathname, const Path& pathnameInArchive) = 0;
 
 	/**
 	 * add a file to the archive, when it is already in memory and not on disk.

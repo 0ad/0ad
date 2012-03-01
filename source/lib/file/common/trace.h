@@ -110,7 +110,7 @@ struct ITrace
 	/**
 	 * load entries from file.
 	 *
-	 * @param osPathname (native, absolute)
+	 * @param pathname (native, absolute)
 	 *
 	 * replaces any existing entries.
 	 **/

@@ -42,8 +42,8 @@
 #include "simulation2/serialization/SerializeTemplates.h"
 
 /**
- * @file Player AI interface.
- *
+ * @file
+ * Player AI interface.
  * AI is primarily scripted, and the CCmpAIManager component defined here
  * takes care of managing all the scripts.
  *
@@ -66,6 +66,9 @@
  * is designed to hopefully support threading when we want it.
  */
 
+/**
+ * Implements worker thread for CCmpAIManager.
+ */
 class CAIWorker
 {
 private:
@@ -515,7 +518,9 @@ private:
 };
 
 
-
+/**
+ * Implementation of ICmpAIManager.
+ */
 class CCmpAIManager : public ICmpAIManager
 {
 public:

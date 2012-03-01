@@ -139,11 +139,9 @@ static const char* alc_dev_name = 0;
 /**
  * tell OpenAL to use the specified device in future.
  *
- * @param alc_new_dev_name Device name.
+ * @param alc_new_dev_name Device name; if 0, it reverts to OpenAL's default
+ *	choice, which will also be used if this routine is never called.
  * @return Status
- *
- * name = 0 reverts to OpenAL's default choice, which will also
- * be used if this routine is never called.
  *
  * the device name is typically taken from a config file at init-time;
  * the snd_dev * enumeration routines below are used to present a list
@@ -359,8 +357,8 @@ static int al_bufs_outstanding;
  *
  * @param data raw sound data buffer
  * @param size size of buffer in bytes
- * @param al_fmt AL_FORMAT_ * describing the sound data
- * @param al_freq sampling frequency (typically 22050 Hz)
+ * @param fmt AL_FORMAT_ * describing the sound data
+ * @param freq sampling frequency (typically 22050 Hz)
  * @return ALuint buffer name
  */
 static ALuint al_buf_alloc(ALvoid* data, ALsizei size, ALenum fmt, ALsizei freq)
@@ -1140,7 +1138,6 @@ static FadeRet fade(FadeInfo& fi, double cur_time, float& out_val)
 /**
  * Is the fade operation currently active?
  *
- * @param FadeInfo
  * @return bool
  */
 static bool fade_is_active(FadeInfo& fi)
@@ -1319,7 +1316,7 @@ static Status VSrc_to_string(const VSrc* vs, wchar_t* buf)
 /**
  * open and return a handle to a sound instance.
  *
- * @param pathname. if a text file (extension ".txt"),
+ * @param pathname if a text file (extension ".txt"),
  * it is assumed to be a definition file containing the
  * sound file name and its gain (0.0 .. 1.0).
  * otherwise, it is taken to be the sound file name and
@@ -1473,7 +1470,6 @@ static Status list_free_all()
  * Send the VSrc properties to OpenAL (when we actually have a source).
  * called by snd_set * and vsrc_grant.
  *
- * @param VSrc*
  */
 static void vsrc_latch(VSrc* vs)
 {
@@ -1535,7 +1531,6 @@ static void vsrc_latch(VSrc* vs)
 /**
  * Dequeue any of the VSrc's sound buffers that are finished playing.
  *
- * @param VSrc*
  * @return int number of entries that were removed.
  */
 static int vsrc_deque_finished_bufs(VSrc* vs)

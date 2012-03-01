@@ -94,25 +94,26 @@ public:
 	/**
 	 * Register a static shape.
 	 * @param ent entity ID associated with this shape (or INVALID_ENTITY if none)
-	 * @param x X coordinate of center, in world space
-	 * @param z Z coordinate of center, in world space
+	 * @param x,z coordinates of center, in world space
 	 * @param a angle of rotation (clockwise from +Z direction)
 	 * @param w width (size along X axis)
 	 * @param h height (size along Z axis)
 	 * @param flags a set of EFlags values
 	 * @return a valid tag for manipulating the shape
+	 * @see StaticShape
 	 */
 	virtual tag_t AddStaticShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h, flags_t flags) = 0;
 
 	/**
 	 * Register a unit shape.
 	 * @param ent entity ID associated with this shape (or INVALID_ENTITY if none)
-	 * @param x X coordinate of center, in world space
-	 * @param z Z coordinate of center, in world space
-	 * @param r radius (half the unit's width/height)
+	 * @param x,z coordinates of center, in world space
+	 * @param r radius of circle or half the unit's width/height
 	 * @param flags a set of EFlags values
-	 * @param moving whether the unit is currently moving through the world or is stationary
+	 * @param group control group (typically the owner entity, or a formation controller entity
+	 *	- units ignore collisions with others in the same group)
 	 * @return a valid tag for manipulating the shape
+	 * @see UnitShape
 	 */
 	virtual tag_t AddUnitShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_angle_t r, flags_t flags, entity_id_t group) = 0;
 

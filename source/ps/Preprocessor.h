@@ -46,18 +46,18 @@ THE SOFTWARE.
  *
  * Here's a list of supported features:
  * <ul>
- * <li>Fast memory allocation-less operation (mostly).
- * <li>Line continuation (backslash-newline) is swallowed.
+ * <li>Fast memory allocation-less operation (mostly).</li>
+ * <li>Line continuation (backslash-newline) is swallowed.</li>
  * <li>Line numeration is fully preserved by inserting empty lines where
  *     required. This is crucial if, say, GLSL compiler reports you an error
- *     with a line number.
- * <li>#define: Parametrized and non-parametrized macros. Invoking a macro with
- *     less arguments than it takes assignes empty values to missing arguments.
- * <li>#undef: Forget defined macros
- * <li>#ifdef/#ifndef/#else/#endif: Conditional suppression of parts of code.
- * <li>#if: Supports numeric expression of any complexity, also supports the
- *     defined() pseudo-function.
- * <ul>
+ *     with a line number.</li>
+ * <li>\#define: Parametrized and non-parametrized macros. Invoking a macro with
+ *     less arguments than it takes assignes empty values to missing arguments.</li>
+ * <li>\#undef: Forget defined macros</li>
+ * <li>\#ifdef/\#ifndef/\#else/\#endif: Conditional suppression of parts of code.</li>
+ * <li>\#if: Supports numeric expression of any complexity, also supports the
+ *     defined() pseudo-function.</li>
+ * </ul>
  */
 class CPreprocessor
 {
@@ -243,7 +243,7 @@ class CPreprocessor
     Token HandleDirective (Token &iToken, int iLine);
 
     /**
-     * Handle a #define directive.
+     * Handle a \#define directive.
      * @param iBody
      *     The body of the directive (everything after the directive
      *     until end of line).
@@ -267,7 +267,7 @@ class CPreprocessor
     bool HandleUnDef (Token &iBody, int iLine);
 
     /**
-     * Handle an #ifdef directive.
+     * Handle an \#ifdef directive.
      * @param iBody
      *     The body of the directive (everything after the directive
      *     until end of line).
@@ -279,7 +279,7 @@ class CPreprocessor
     bool HandleIfDef (Token &iBody, int iLine);
 
     /**
-     * Handle an #if directive.
+     * Handle an \#if directive.
      * @param iBody
      *     The body of the directive (everything after the directive
      *     until end of line).
@@ -291,7 +291,7 @@ class CPreprocessor
     bool HandleIf (Token &iBody, int iLine);
 
     /**
-     * Handle an #else directive.
+     * Handle an \#else directive.
      * @param iBody
      *     The body of the directive (everything after the directive
      *     until end of line).
@@ -303,7 +303,7 @@ class CPreprocessor
     bool HandleElse (Token &iBody, int iLine);
 
     /**
-     * Handle an #endif directive.
+     * Handle an \#endif directive.
      * @param iBody
      *     The body of the directive (everything after the directive
      *     until end of line).

@@ -31,10 +31,9 @@ namespace Geometry
 {
 
 /**
- * Returns true if @p point is inside the square with rotated X axis unit vector @p u and rotated Z axis unit vector @p v,
- * and half dimensions specified by @p halfSizes. Currently assumes the @p u and @p v vectors are perpendicular. Can also
- * be used for rectangles.
+ * Checks if a point is inside the given rotated square or rectangle.
  *
+ * @note Currently assumes the @p u and @p v vectors are perpendicular.
  * @param point point vector of the point that is to be tested relative to the origin (center) of the shape.
  * @param u rotated X axis unit vector relative to the absolute XZ plane. Indicates the orientation of the rectangle. If not rotated,
  *          this value is the absolute X axis unit vector (1,0). If rotated by angle theta, this should be (cos theta, -sin theta), as
@@ -42,7 +41,10 @@ namespace Geometry
  * @param v rotated Z axis unit vector relative to the absolute XZ plane. Indicates the orientation of the rectangle. If not rotated,
  *          this value is the absolute Z axis unit vector (0,1). If rotated by angle theta, this should be (sin theta, cos theta), as
  *          the absolute Z axis points down in the unit circle.
- * @param halfSizes Holds half the dimensions of the shape along the u and v vectors, respectively.
+ * @param halfSize Holds half the dimensions of the shape along the u and v vectors, respectively.
+ *
+ * @return true if @p point is inside the square with rotated X axis unit vector @p u and rotated Z axis unit vector @p v,
+ * and half dimensions specified by @p halfSizes.
  */
 bool PointIsInSquare(CFixedVector2D point, CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize);
 
@@ -51,16 +53,18 @@ CFixedVector2D GetHalfBoundingBox(CFixedVector2D u, CFixedVector2D v, CFixedVect
 fixed DistanceToSquare(CFixedVector2D point, CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize);
 
 /**
- * Returns the point that is closest to @p point on the edge of the square specified by orientation unit vectors @p u and @p v and half
- * dimensions @p halfSize, relative to the center of the square. Currently assumes the @p u and @p v vectors are perpendicular.
- * Can also be used for rectangles.
+ * Find point closest to the given point on the edge of the given square or rectangle.
  *
+ * @note Currently assumes the @p u and @p v vectors are perpendicular.
  * @param point point vector of the point we want to get the nearest edge point for, relative to the origin (center) of the shape.
  * @param u rotated X axis unit vector, relative to the absolute XZ plane. Indicates the orientation of the shape. If not rotated,
  *          this value is the absolute X axis unit vector (1,0). If rotated by angle theta, this should be (cos theta, -sin theta).
  * @param v rotated Z axis unit vector, relative to the absolute XZ plane. Indicates the orientation of the shape. If not rotated,
  *          this value is the absolute Z axis unit vector (0,1). If rotated by angle theta, this should be (sin theta, cos theta).
- * @param halfSizes Holds half the dimensions of the shape along the u and v vectors, respectively.
+ * @param halfSize Holds half the dimensions of the shape along the u and v vectors, respectively.
+ *
+ * @return point that is closest to @p point on the edge of the square specified by orientation unit vectors @p u and @p v and half
+ *	dimensions @p halfSize, relative to the center of the square
  */
 CFixedVector2D NearestPointOnSquare(CFixedVector2D point, CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize);
 
