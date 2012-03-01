@@ -80,7 +80,7 @@
 
 		<!-- Find idle warrior - TODO: Potentially move this to own UI button? -->
 		<object hotkey="selection.idlewarrior">
-			<action on="Press">findIdleUnit(["Hero", "Super", "CitizenSoldier", "Siege", "Warship"]);</action>
+			<action on="Press">findIdleUnit(["Hero", "Champion", "CitizenSoldier", "Siege", "Warship"]);</action>
 		</object>
 
 		<!-- ================================  ================================ -->
@@ -494,7 +494,7 @@
 					>
 						<!-- TODO: should highlight the button if there's non-zero idle workers -->
 						<object size="0 0 100% 100%" type="image" sprite="idleWorker" ghost="true" />
-						<action on="Press">findIdleUnit(["Worker", "Trade", "CitizenSoldier"]);</action>
+						<action on="Press">findIdleUnit(["Female", "Trade", "FishingBoat", "CitizenSoldier", "Healer"]);</action>
 					</object>
 				</object>
 			</object>
