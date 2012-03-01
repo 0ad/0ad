@@ -57,23 +57,39 @@ namespace SimRender
 {
 
 /**
- * Updates @p overlay so that it represents the given line (a list of x, z coordinate pairs),
- * flattened on the terrain (or on the water if @p floating).
+ * Constructs overlay line from given points, conforming to terrain.
+ *
+ * @param[in] xz List of x,z coordinate pairs representing the line.
+ * @param[in,out] overlay Updated overlay line now conforming to terrain.
+ * @param[in] floating If true, the line conforms to water as well.
+ * @param[in] heightOffset Height above terrain to offset the line.
  */
 void ConstructLineOnGround(const CSimContext& context, const std::vector<float>& xz,
 		SOverlayLine& overlay,
 		bool floating, float heightOffset = 0.25f);
 
 /**
- * Updates @p overlay so that it represents the given circle, flattened on the terrain.
+ * Constructs overlay line as a circle with given center and radius, conforming to terrain.
+ *
+ * @param[in] x,z Coordinates of center of circle.
+ * @param[in] radius Radius of circle to construct.
+ * @param[in,out] overlay Updated overlay line representing this circle.
+ * @param[in] floating If true, the circle conforms to water as well.
+ * @param[in] heightOffset Height above terrain to offset the circle.
  */
 void ConstructCircleOnGround(const CSimContext& context, float x, float z, float radius,
 		SOverlayLine& overlay,
 		bool floating, float heightOffset = 0.25f);
 
 /**
- * Updates @p overlay so that it represents the given square, flattened on the terrain.
- * @p x and @p z are position of center, @p w and @p h are size of rectangle, @p a is clockwise angle.
+ * Constructs overlay line as rectangle with given center and dimensions, conforming to terrain.
+ *
+ * @param[in] x,z Coordinates of center of rectangle.
+ * @param[in] w,h Width/height dimensions of the rectangle.
+ * @param[in] a Clockwise angle to orient the rectangle.
+ * @param[in,out] overlay Updated overlay line representing this rectangle.
+ * @param[in] floating If true, the rectangle conforms to water as well.
+ * @param[in] heightOffset Height above terrain to offset the rectangle.
  */
 void ConstructSquareOnGround(const CSimContext& context, float x, float z, float w, float h, float a,
 		SOverlayLine& overlay,
@@ -81,53 +97,70 @@ void ConstructSquareOnGround(const CSimContext& context, float x, float z, float
 
 /**
  * Constructs a solid outline of an arbitrarily-aligned box.
+ *
+ * @param[in] box
+ * @param[in,out] overlayLine Updated overlay line representing the oriented box.
  */
 void ConstructBoxOutline(const CBoundingBoxOriented& box, SOverlayLine& overlayLine);
 
 /**
  * Constructs a solid outline of an axis-aligned bounding box.
+ *
+ * @param[in] bound
+ * @param[in,out] overlayLine Updated overlay line representing the AABB.
  */
 void ConstructBoxOutline(const CBoundingBoxAligned& bound, SOverlayLine& overlayLine);
 
 /**
- * Constructs a simple gimbal outline of radius @p radius at @p center in @p out.
- * @param numSteps The amount of steps to trace a circle's complete outline. Must be a (strictly) positive multiple of four. 
+ * Constructs a simple gimbal outline with the given radius and center.
+ *
+ * @param[in] center
+ * @param[in] radius
+ * @param[in,out] out Updated overlay line representing the gimbal.
+ * @param[in] numSteps The amount of steps to trace a circle's complete outline. Must be a (strictly) positive multiple of four. 
  *     For small radii, you can get away with small values; setting this to 4 will create a diamond shape.
  */
 void ConstructGimbal(const CVector3D& center, float radius, SOverlayLine& out, size_t numSteps = 16);
 
 /**
- * Constructs XYZ axis marker overlay lines for the coordinate system specified by @p coordSystem and writes them to @p outX,
- * @p outY and @p outZ. The overlay lines are colored RGB for the XYZ axes, respectively.
+ * Constructs 3D axis marker overlay lines for the given coordinate system.
+ * The overlay lines are colored RGB for the XYZ axes, respectively.
+ *
+ * @param[in] coordSystem Specifies the coordinate system.
+ * @param[out] outX,outY,outZ Constructed overlay lines for each axes.
  */
 void ConstructAxesMarker(const CMatrix3D& coordSystem, SOverlayLine& outX, SOverlayLine& outY, SOverlayLine& outZ);
 
 /**
- * Updates @p points so each point is averaged with its neighbours, resulting in
+ * Updates the given points so each point is averaged with its neighbours, resulting in
  * a somewhat smoother curve, assuming the points are roughly equally spaced.
- * If @p closed then the points are treated as a closed path (the last is connected
- * to the first).
+ *
+ * @param[in,out] points List of points to smooth.
+ * @param[in] closed if true, then the points are treated as a closed path (the last is connected
+ *	to the first).
  */
 void SmoothPointsAverage(std::vector<CVector2D>& points, bool closed);
 
 /**
- * Updates @p points to include intermediate points interpolating between the original
+ * Updates the given points to include intermediate points interpolating between the original
  * control points, using a rounded nonuniform spline.
- * The points are also shifted by @p offset in a direction 90 degrees clockwise from
- * the direction of the curve.
- * If @p closed then the points are treated as a closed path (the last is connected
- * to the first).
- * @param segmentSamples Amount of intermediate points to sample between every two control points.
+ *
+ * @param[in,out] points List of points to interpolate.
+ * @param[in] closed if true, then the points are treated as a closed path (the last is connected
+ *	to the first).
+ * @param[in] offset The points are shifted by this distance in a direction 90 degrees clockwise from
+ *	the direction of the curve.
+ * @param[in] segmentSamples Amount of intermediate points to sample between every two control points.
  */
 void InterpolatePointsRNS(std::vector<CVector2D>& points, bool closed, float offset, int segmentSamples = 4);
 
 /**
- * Creates a dashed line from the line specified by @points so that each dash is of length
- * @p dashLength, and each blank inbetween is of length @p blankLength. The dashed line returned as a list of smaller lines
- * in @p dashedLineOut.
+ * Creates a dashed line from the given line, dash length, and blank space between.
  *
- * @param dashLength Length of a single dash. Must be strictly positive.
- * @param blankLength Length of a single blank between dashes. Must be strictly positive.
+ * @param[in] linePoints List of points specifying the input line.
+ * @param[out] dashedLineOut The dashed line returned as a list of smaller lines
+ * @param[in] dashLength Length of a single dash. Must be strictly positive.
+ * @param[in] blankLength Length of a single blank between dashes. Must be strictly positive.
  */
 void ConstructDashedLine(const std::vector<CVector2D>& linePoints, SDashedLine& dashedLineOut, const float dashLength, const float blankLength);
 

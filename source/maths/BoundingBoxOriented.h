@@ -51,17 +51,16 @@ public:
 	explicit CBoundingBoxOriented(const CBoundingBoxAligned& bound);
 
 	/**
-	 * Returns true if the ray originating in @p origin and with unit direction vector @p dir intersects this box, false otherwise.
-	 * Additionally, returns the distance in the positive direction from the origin of the ray to the entry and exit points in the 
-	 * box in @p tMin and @p tMax. If the origin is inside the box, then this is counted as an intersection and one of @p tMin and
-	 * @p tMax may be negative. 
-	 * 
-	 * Should not be used if IsEmpty() is true.
+	 * Check if a given ray intersects this box.
 	 * See also Real-Time Rendering, Third Edition by T. Akenine-Möller, p. 741--742.
-	 * 
+	 * Should not be used if IsEmpty() is true.
 	 *
-	 * @param origin Origin of the ray.
-	 * @param dir Direction vector of the ray, defining the positive direction of the ray. Must be of unit length.
+	 * @param[in] origin Origin of the ray.
+	 * @param[in] dir Direction vector of the ray, defining the positive direction of the ray. Must be of unit length.
+	 * @param[out] tMin,tMax distance in the positive direction from the origin of the ray to the entry and exit points in the 
+	 * box. If the origin is inside the box, then this is counted as an intersection and one of @p tMin and @p tMax may be negative.
+	 *
+	 * @return true if the ray originating in @p origin and with unit direction vector @p dir intersects this box, false otherwise.
 	 */
 	bool RayIntersect(const CVector3D& origin, const CVector3D& dir, float& tMin, float& tMax) const;
 

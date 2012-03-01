@@ -34,8 +34,10 @@ public:
 	void Shutdown();
 	
 	/**
-	 * Try to allocate a buffer of given number of vertices (each of given size),
-	 * and with the given type.
+	 * Try to allocate a vertex buffer of the given size and type.
+	 *
+	 * @param vertexSize size of each vertex in the buffer
+	 * @param numVertices number of vertices in the buffer
 	 * @param usage typically GL_STATIC_DRAW or GL_DYNAMIC_DRAW
 	 * @param target typically GL_ARRAY_BUFFER or GL_ELEMENT_ARRAY_BUFFER
 	 * @return chunk, or NULL if no free chunks available

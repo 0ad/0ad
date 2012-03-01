@@ -79,6 +79,8 @@ public:
 	 * Constructor.
 	 * @param nativeScopeName Name of global object that functions (via RegisterFunction) will
 	 *   be placed into, as a scoping mechanism; typically "Engine"
+	 * @param debugName Name of this interface for CScriptStats purposes.
+	 * @param runtime ScriptRuntime to use when initializing this interface.
 	 */
 	ScriptInterface(const char* nativeScopeName, const char* debugName, const shared_ptr<ScriptRuntime>& runtime);
 

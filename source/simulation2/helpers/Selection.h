@@ -36,33 +36,50 @@ namespace EntitySelection
 
 /**
  * Finds all selectable entities under the given screen coordinates.
- * Returns list ordered by closeness of picking, closest first.
- * Restricted to entities in the LOS of @p player, but with any owner.
- * (For Atlas selections this value is ignored as the whole map is revealed).
- * If @p allowEditorSelectables then all entities with the IID_Selectable interface
- * will be selected, else only selectable entities without the EditorOnly flag set.
+ * 
+ * @param camera use this view to convert screen to world coordinates.
+ * @param screenX,screenY 2D screen coordinates.
+ * @param player player whose LOS will be used when selecting entities. In Atlas
+ *	this value is ignored as the whole map is revealed.
+ * @param allowEditorSelectables if true, all entities with the ICmpSelectable interface
+ *	will be selected (including decorative actors), else only those selectable ingame.
+ *
+ * @return ordered list of selected entities with the closest first.
  */
 std::vector<entity_id_t> PickEntitiesAtPoint(CSimulation2& simulation, const CCamera& camera, int screenX, int screenY, player_id_t player, bool allowEditorSelectables);
 
 /**
  * Finds all selectable entities within the given screen coordinate rectangle,
- * that belong to player @p owner.
- * If @p owner is INVALID_PLAYER then ownership is ignored.
- * If @p allowEditorSelectables then all entities with the IID_Selectable interface
- * will be selected, else only selectable entities without the EditorOnly flag set.
- * Returns unordered list.
+ * belonging to the given player. Used for bandboxing.
+ *
+ * @param camera use this view to convert screen to world coordinates.
+ * @param sx0,sy0,sx1,sy1 diagonally opposite corners of the rectangle in 2D screen coordinates.
+ * @param owner player whose entities we are selecting. Ownership is ignored if
+ *	INVALID_PLAYER is used.
+ * @param allowEditorSelectables if true, all entities with the ICmpSelectable interface
+ *	will be selected (including decorative actors), else only those selectable ingame.
+ *
+ * @return unordered list of selected entities.
  */
 std::vector<entity_id_t> PickEntitiesInRect(CSimulation2& simulation, const CCamera& camera, int sx0, int sy0, int sx1, int sy1, player_id_t owner, bool allowEditorSelectables);
 
 /**
- * Finds all entities with the given entity template name, that belong to player @p owner.
- * If @p owner is INVALID_PLAYER then ownership is ignored.
- * If @p includeOffScreen then all entities visible in the world will be selected,
- * else only entities visible on the screen will be selected.
- * If @p matchRank then only entities that exactly match @p templateName will be selected,
- * else entities with matching SelectionGroupName will be selected.
- * If @p allowEditorSelectables then all entities with the IID_Selectable interface
- * will be selected, else only selectable entities without the EditorOnly flag set.
+ * Finds all entities with the given entity template name, belonging to the given player.
+ * 
+ * @param camera use this view to convert screen to world coordinates.
+ * @param templateName the name of the template to match, or the selection group name
+ *	for similar matching.
+ * @param owner player whose entities we are selecting. Ownership is ignored if
+ *	INVALID_PLAYER is used.
+ * @param includeOffScreen if true, then all entities visible in the world will be selected,
+ *	else only entities visible to the camera will be selected.
+ * @param matchRank if true, only entities that exactly match templateName will be selected,
+ *	else entities with matching SelectionGroupName will be selected.
+ * @param allowEditorSelectables if true, all entities with the ICmpSelectable interface
+ *	will be selected (including decorative actors), else only those selectable ingame.
+ *
+ * @return unordered list of selected entities.
+ * @see ICmpIdentity
  */
 std::vector<entity_id_t> PickSimilarEntities(CSimulation2& simulation, const CCamera& camera, const std::string& templateName, player_id_t owner, bool includeOffScreen, bool matchRank, bool allowEditorSelectables);
 

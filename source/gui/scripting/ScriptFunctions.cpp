@@ -395,6 +395,10 @@ void CameraFollow(void* UNUSED(cbdata), entity_id_t entityid)
 		g_Game->GetView()->CameraFollow(entityid, false);
 }
 
+/**
+ * Start / stop first-person camera following mode
+ * @param entityid unit id to follow. If zero, stop following mode
+ */
 void CameraFollowFPS(void* UNUSED(cbdata), entity_id_t entityid)
 {
 	if (g_Game && g_Game->GetView())

@@ -47,8 +47,24 @@
 
 #include "scriptinterface/ScriptExtraHeaders.h"
 
+/**
+ * @file
+ * Abstractions of various SpiderMonkey features.
+ * Engine code should be using functions of these interfaces rather than
+ * directly accessing the underlying JS api.
+ */
+
 ////////////////////////////////////////////////////////////////
 
+/**
+ * Abstraction around a SpiderMonkey JSRuntime.
+ * Each ScriptRuntime can be used to initialize several ScriptInterface
+ * contexts which can then share data, but a single ScriptRuntime should
+ * only be used on a single thread.
+ *
+ * (One means to share data between threads and runtimes is to create
+ * a ScriptInterface::StructuredClone.)
+ */
 class ScriptRuntime
 {
 public:

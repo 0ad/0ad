@@ -50,9 +50,9 @@ public:
 	 * Converts DAE to archive cached .pmd/psa and outputs the resulting path
 	 * (used by archive builder)
 	 *
-	 * @param sourcePath[in] path of the .dae to load
-	 * @param type[in] FileType, .pmd or .psa
-	 * @param archiveCachePath[out] output path of the cached file
+	 * @param[in] sourcePath path of the .dae to load
+	 * @param[in] type FileType, .pmd or .psa
+	 * @param[out] archiveCachePath output path of the cached file
 	 *
 	 * @return true if COLLADA converter completed successfully; or false if it failed
 	 */
@@ -63,8 +63,8 @@ private:
 	 * Creates MD5 hash key from skeletons.xml info and COLLADA converter version,
 	 * used to invalidate cached .pmd/psas
 	 *
-	 * @param hash[out] resulting MD5 hash
-	 * @param version[out] version passed to CCacheLoader, used if code change should force
+	 * @param[out] hash resulting MD5 hash
+	 * @param[out] version version passed to CCacheLoader, used if code change should force
 	 *		  cache invalidation
 	 */
 	void PrepareCacheKey(MD5& hash, u32& version);

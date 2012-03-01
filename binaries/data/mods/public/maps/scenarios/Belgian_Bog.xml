@@ -4,7 +4,7 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cirrus</SkySet>
-		<SunColour r="1.10156" g="0.881248" b="0.427664"/>
+		<SunColour r="1.10156" g="0.881248" b="0.423345"/>
 		<SunElevation angle="0.291456"/>
 		<SunRotation angle="-0.79767"/>
 		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="326.869" y="191.368" z="253.195"/>
+		<Position x="487.205" y="62.7463" z="82.3468"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -15766,7 +15766,7 @@
 		</Entity>
 		<Entity uid="2915">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="482.71412" z="299.52991"/>
+			<Position x="486.00464" z="297.16486"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2916">
@@ -22256,7 +22256,7 @@
 		</Entity>
 		<Entity uid="4221">
 			<Template>actor|props/flora/water_lillies.xml</Template>
-			<Position x="481.17081" z="302.51673"/>
+			<Position x="481.3024" z="299.04435"/>
 			<Orientation y="-2.05721"/>
 		</Entity>
 		<Entity uid="4222">
@@ -22410,10 +22410,20 @@
 			<Position x="648.89606" z="300.65668"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="4248">
-			<Template>structures/rome_civil_centre</Template>
+		<Entity uid="4249">
+			<Template>structures/celt_civil_centre</Template>
 			<Player>2</Player>
-			<Position x="149.65912" z="526.23511"/>
+			<Position x="148.12224" z="519.38196"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4250">
+			<Template>actor|props/flora/grass_tropic_field.xml</Template>
+			<Position x="468.0683" z="316.11323"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4251">
+			<Template>actor|props/flora/grass_tropic_field.xml</Template>
+			<Position x="482.96277" z="294.1966"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
