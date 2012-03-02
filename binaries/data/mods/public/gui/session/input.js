@@ -528,10 +528,10 @@ function handleInputBeforeGui(ev, hoveredObject)
 				{
  					ents = preferredEntities;
 
-					if(Engine.HotkeyIsPressed("selection.milonly"))
+					if (Engine.HotkeyIsPressed("selection.milonly"))
 					{
 						var militaryEntities = getMilitaryEntities(ents);
-						if(militaryEntities.length)
+						if (militaryEntities.length)
 							ents = militaryEntities;
 					}
 				}
