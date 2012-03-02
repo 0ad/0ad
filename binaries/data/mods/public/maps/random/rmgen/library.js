@@ -403,6 +403,66 @@ function getCivCode(player)
 	return g_MapSettings.PlayerData[player].Civ;
 }
 
+function areAllies(player1, player2)
+{
+	if ((g_MapSettings.PlayerData[player1].Team == undefined)||(g_MapSettings.PlayerData[player2].Team == undefined)||(g_MapSettings.PlayerData[player2].Team == -1)||(g_MapSettings.PlayerData[player1].Team == -1))
+	{
+		return 0;
+	}
+	else
+	{
+		return (g_MapSettings.PlayerData[player1].Team === g_MapSettings.PlayerData[player2].Team);
+	}
+}
+
+function getPlayerTeam(player)
+{
+	return g_MapSettings.PlayerData[player].Team
+}
+
+function sortPlayers(source)
+{
+	if (!source.length)
+		return [];
+
+	var result = new Array(0);
+	var team = new Array(5);
+	for (var q = 0; q < 5; q++)
+	{
+		team[q] = new Array(1);
+	}
+
+	for (var i = -1; i < 4; i++)
+	{
+		for (var j = 0; j < source.length; j++)
+		{
+			if (getPlayerTeam(j) == i)
+			{
+				team[i+1].unshift(j+1);
+			}
+		}
+		team[i+1].pop();
+		result=result.concat(shuffleArray(team[i+1]))
+	}
+	return result;
+}
+
+function primeSortPlayers(source)
+{
+	if (!source.length)
+		return [];
+
+	var prime = new Array(source.length);
+
+	for (var i = 0; i < round(source.length/2); i++)
+	{
+		prime[2*i]=source[i];
+		prime[2*i+1]=source[7-i];
+	}
+
+	return prime;
+}
+
 function getStartingEntities(player)
 {	
 	var civ = getCivCode(player);
@@ -506,3 +566,63 @@ function borderClasses(/*class1, idist1, odist1, class2, idist2, odist2, etc*/)
 		return new AndConstraint(ar);
 	}
 }
+
+// Checks if the given tile is in class "id"
+function checkIfInClass(x, z, id)
+{
+	var tileClass = getTileClass(id);
+	if (tileClass !== null)
+	{
+		if (tileClass.countMembersInRadius(x, z, 1) !== null)
+		{
+			return tileClass.countMembersInRadius(x, z, 1);
+		}
+		else
+		{
+			return 0;
+		}
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+
+// Function to get the distance between 2 points
+function getDistance(x1, z1, x2, z2)
+{
+	return Math.pow(Math.pow(x1 - x2, 2) + Math.pow(z1 - z2, 2), 1/2)
+}
+
+// Returns the abgle between two points in radians. --Warning:This can cause sync problems in cross-platform multiplayer games--
+function getAngle(x1, z1, x2, z2)
+{
+        var vector = [x2 - x1, z2 - z1];
+        var output = 0;
+        if (vector[0] !== 0 || vector[1] !== 0)
+        {
+                var output = Math.acos(vector[0]/getDistance(x1, z1, x2, z2));
+                if (vector[1] > 0) {output = PI + (PI - Math.acos(vector[0]/getDistance(x1, z1, x2, z2)))};
+        };
+        return (output + PI/2) % (2*PI);
+};
+
+// Returns the tangent of angle between the line that is created by two points and the X+ axis.
+function getDirection(x1, z1, x2, z2)
+{
+	if (x1 == x2)
+	{
+		return 100000;
+	}
+	else
+	{
+		return (z1-z2)/(x1-x2);
+	}
+}
+
+function getTerrainTexture(x, y)
+{
+	return g_Map.texture[x][z];
+}
+
