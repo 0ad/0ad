@@ -72,16 +72,16 @@ MESSAGEHANDLER(ScrollConstant)
 	}
 	else
 	{
-		g_GameLoop->input.scrollSpeed[msg->dir] = msg->speed;
+		g_AtlasGameLoop->input.scrollSpeed[msg->dir] = msg->speed;
 	}
 }
 
-// TODO: change all these g_Game->...GetCamera() bits to use the current View's
+// TODO: change all these g_Game->...GetCamera() bits to use the current AtlasView's
 // camera instead.
 
 MESSAGEHANDLER(Scroll)
 {
-	if (!g_Game || g_Game->GetView()->GetCinema()->IsPlaying()) // TODO: do this better (probably a separate View class for cinematics)
+	if (!g_Game || g_Game->GetView()->GetCinema()->IsPlaying()) // TODO: do this better (probably a separate AtlasView class for cinematics)
 		return;
 
 	static CVector3D targetPos;
@@ -134,7 +134,7 @@ MESSAGEHANDLER(SmoothZoom)
 	if (!g_Game || g_Game->GetView()->GetCinema()->IsPlaying())
 		return;
 
-	g_GameLoop->input.zoomDelta += msg->amount;
+	g_AtlasGameLoop->input.zoomDelta += msg->amount;
 }
 
 MESSAGEHANDLER(RotateAround)
@@ -193,7 +193,7 @@ MESSAGEHANDLER(RotateAround)
 MESSAGEHANDLER(LookAt)
 {
 	// TODO: different camera depending on msg->view
-	CCamera& camera = View::GetView_Actor()->GetCamera();
+	CCamera& camera = AtlasView::GetView_Actor()->GetCamera();
 
 	CVector3D tgt = msg->target->GetWorldSpace();
 	CVector3D eye = msg->pos->GetWorldSpace();

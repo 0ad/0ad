@@ -481,7 +481,7 @@ void ActorViewer::Render()
 		centre.Y = 0.f;
 	centre.X = centre.Z = TERRAIN_TILE_SIZE * m.Terrain.GetPatchesPerSide()*PATCH_SIZE/2;
 
-	CCamera camera = View::GetView_Actor()->GetCamera();
+	CCamera camera = AtlasView::GetView_Actor()->GetCamera();
 	camera.m_Orientation.Translate(centre.X, centre.Y, centre.Z);
 	camera.UpdateFrustum();
 	

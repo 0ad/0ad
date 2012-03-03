@@ -154,7 +154,7 @@ MESSAGEHANDLER(SetSelectionPreview)
 
 QUERYHANDLER(GetObjectSettings)
 {
-	View* view = View::GetView(msg->view);
+	AtlasView* view = AtlasView::GetView(msg->view);
 	CSimulation2* simulation = view->GetSimulation2();
 
 	sObjectSettings settings;
@@ -222,7 +222,7 @@ BEGIN_COMMAND(SetObjectSettings)
 	{
 		sObjectSettings settings = msg->settings;
 
-		View* view = View::GetView(msg->view);
+		AtlasView* view = AtlasView::GetView(msg->view);
 		CSimulation2* simulation = view->GetSimulation2();
 
 		CmpPtr<ICmpOwnership> cmpOwnership(*simulation, view->GetEntityId(msg->id));
@@ -261,7 +261,7 @@ BEGIN_COMMAND(SetObjectSettings)
 private:
 	void Set(player_id_t player, const std::set<CStr>& UNUSED(selections))
 	{
-		View* view = View::GetView(msg->view);
+		AtlasView* view = AtlasView::GetView(msg->view);
 		CSimulation2* simulation = view->GetSimulation2();
 
 		CmpPtr<ICmpOwnership> cmpOwnership(*simulation, view->GetEntityId(msg->id));
@@ -729,7 +729,7 @@ QUERYHANDLER(GetPlayerObjects)
 
 MESSAGEHANDLER(SetBandbox)
 {
-	View::GetView_Game()->SetBandbox(msg->show, (float)msg->sx0, (float)msg->sy0, (float)msg->sx1, (float)msg->sy1);
+	AtlasView::GetView_Game()->SetBandbox(msg->show, (float)msg->sx0, (float)msg->sy0, (float)msg->sx1, (float)msg->sy1);
 }
 
 }

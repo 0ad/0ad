@@ -237,9 +237,9 @@ void Render()
 	ogl_WarnIfError();
 
 	// If we're in Atlas game view, render special overlays (e.g. editor bandbox)
-	if (g_GameLoop && g_GameLoop->view)
+	if (g_AtlasGameLoop && g_AtlasGameLoop->view)
 	{
-		g_GameLoop->view->DrawOverlays();
+		g_AtlasGameLoop->view->DrawOverlays();
 		ogl_WarnIfError();
 	}
 

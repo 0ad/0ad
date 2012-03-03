@@ -45,7 +45,7 @@ MESSAGEHANDLER(Init)
 	
 	g_Quickstart = true;
 
-	Init(g_GameLoop->args, g_InitFlags);
+	Init(g_AtlasGameLoop->args, g_InitFlags);
 
 	// Initialise some graphics state for Atlas.
 	// (This must be done after Init loads the config DB,
@@ -75,7 +75,7 @@ MESSAGEHANDLER(InitGraphics)
 
 	ogl_Init();
 
-	InitGraphics(g_GameLoop->args, g_InitFlags);
+	InitGraphics(g_AtlasGameLoop->args, g_InitFlags);
 
 #if OS_WIN
 	// HACK (to stop things looking very ugly when scrolling) - should
@@ -94,8 +94,8 @@ MESSAGEHANDLER(Shutdown)
 	// we kill the EntityManager
 	GetCommandProc().Destroy();
 
-	View::DestroyViews();
-	g_GameLoop->view = View::GetView_None();
+	AtlasView::DestroyViews();
+	g_AtlasGameLoop->view = AtlasView::GetView_None();
 
 	int flags = 0;
 	Shutdown(flags);
@@ -105,36 +105,36 @@ MESSAGEHANDLER(Shutdown)
 QUERYHANDLER(Exit)
 {
 	UNUSED2(msg);
-	g_GameLoop->running = false;
+	g_AtlasGameLoop->running = false;
 }
 
 
 MESSAGEHANDLER(RenderEnable)
 {
-	g_GameLoop->view = View::GetView(msg->view);
+	g_AtlasGameLoop->view = AtlasView::GetView(msg->view);
 }
 
 MESSAGEHANDLER(SetViewParamB)
 {
-	View* view = View::GetView(msg->view);
+	AtlasView* view = AtlasView::GetView(msg->view);
 	view->SetParam(*msg->name, msg->value);
 }
 
 MESSAGEHANDLER(SetViewParamI)
 {
-	View* view = View::GetView(msg->view);
+	AtlasView* view = AtlasView::GetView(msg->view);
 	view->SetParam(*msg->name, msg->value);
 }
 
 MESSAGEHANDLER(SetViewParamC)
 {
-	View* view = View::GetView(msg->view);
+	AtlasView* view = AtlasView::GetView(msg->view);
 	view->SetParam(*msg->name, msg->value);
 }
 
 MESSAGEHANDLER(SetViewParamS)
 {
-	View* view = View::GetView(msg->view);
+	AtlasView* view = AtlasView::GetView(msg->view);
 	view->SetParam(*msg->name, *msg->value);
 }
 
@@ -148,12 +148,12 @@ MESSAGEHANDLER(SetActorViewer)
 		// alright.)
 		// Should replace this with proper actor hot-loading system, or something.
 
-		View::GetView_Actor()->GetActorViewer().SetActor(L"", L"");
-		View::GetView_Actor()->GetActorViewer().UnloadObjects();
+		AtlasView::GetView_Actor()->GetActorViewer().SetActor(L"", L"");
+		AtlasView::GetView_Actor()->GetActorViewer().UnloadObjects();
 //		vfs_reload_changed_files();
 	}
-	View::GetView_Actor()->SetSpeedMultiplier(msg->speed);
-	View::GetView_Actor()->GetActorViewer().SetActor(*msg->id, *msg->animation);
+	AtlasView::GetView_Actor()->SetSpeedMultiplier(msg->speed);
+	AtlasView::GetView_Actor()->GetActorViewer().SetActor(*msg->id, *msg->animation);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -164,8 +164,8 @@ MESSAGEHANDLER(SetCanvas)
 	// else we'll get GL errors when trying to render to 0x0
 	CVideoMode::UpdateRenderer(msg->width, msg->height);
 
-	g_GameLoop->glCanvas = msg->canvas;
-	Atlas_GLSetCurrent(const_cast<void*>(g_GameLoop->glCanvas));
+	g_AtlasGameLoop->glCanvas = msg->canvas;
+	Atlas_GLSetCurrent(const_cast<void*>(g_AtlasGameLoop->glCanvas));
 }
 
 
@@ -175,7 +175,7 @@ MESSAGEHANDLER(ResizeScreen)
 
 #if OS_MACOSX
 	// OS X seems to require this to update the GL canvas
-	Atlas_GLSetCurrent(const_cast<void*>(g_GameLoop->glCanvas));
+	Atlas_GLSetCurrent(const_cast<void*>(g_AtlasGameLoop->glCanvas));
 #endif
 }
 

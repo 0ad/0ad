@@ -22,14 +22,14 @@
 
 extern void (*Atlas_GLSetCurrent)(void* context);
 
-class View;
+class AtlasView;
 
 struct GameLoopState
 {
 	CmdLineArgs args;
 
 	bool running; // whether the Atlas game loop is still running
-	View* view; // current 'view' (controls updates, rendering, etc)
+	AtlasView* view; // current 'view' (controls updates, rendering, etc)
 
 	const void* glCanvas; // the wxGlCanvas to draw on
 	float frameLength; // smoothed to avoid large jumps
@@ -41,6 +41,6 @@ struct GameLoopState
 	} input;
 };
 
-extern GameLoopState* g_GameLoop;
+extern GameLoopState* g_AtlasGameLoop;
 
 #endif // INCLUDED_GAMELOOP
