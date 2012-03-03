@@ -30,14 +30,17 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Armour: Black Reinforced">
+    <variant frequency="2" name="Armour: Black Reinforced">
       <texture>skeletal/thespian_a.dds</texture>
     </variant>
-    <variant frequency="2" name="Armour: Black Corselet">
+    <variant frequency="4" name="Armour: Black Corselet">
       <texture>skeletal/thespian_b.dds</texture>
     </variant>
-    <variant frequency="1" name="Armour: Black Cuirass">
+    <variant frequency="2" name="Armour: Black Cuirass">
       <texture>skeletal/thespian_c.dds</texture>
+    </variant>
+    <variant frequency="1" name="Armour: White">
+      <texture>skeletal/hele_isp_a_1.dds</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>

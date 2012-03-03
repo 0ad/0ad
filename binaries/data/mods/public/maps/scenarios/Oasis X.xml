@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="311.908" y="90.3424" z="140.14"/>
+		<Position x="353.453" y="173.52" z="53.9766"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -6381,37 +6381,37 @@
 		<Entity uid="1233">
 			<Template>other/unfinished_greek_temple</Template>
 			<Player>0</Player>
-			<Position x="663.71839" z="192.01111"/>
+			<Position x="663.76594" z="191.95156"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1234">
 			<Template>gaia/special_ruins_column_doric</Template>
 			<Player>0</Player>
-			<Position x="619.5464" z="160.14258"/>
-			<Orientation y="-1.79145"/>
+			<Position x="656.22577" z="178.23121"/>
+			<Orientation y="-0.68525"/>
 		</Entity>
 		<Entity uid="1235">
 			<Template>gaia/special_ruins_column_doric</Template>
 			<Player>0</Player>
-			<Position x="626.5381" z="151.34743"/>
+			<Position x="698.48145" z="262.7718"/>
 			<Orientation y="2.30878"/>
 		</Entity>
 		<Entity uid="1236">
 			<Template>gaia/special_ruins_column_doric</Template>
 			<Player>0</Player>
-			<Position x="637.93506" z="146.79482"/>
-			<Orientation y="2.12552"/>
+			<Position x="690.35572" z="260.67188"/>
+			<Orientation y="-1.21116"/>
 		</Entity>
 		<Entity uid="1237">
 			<Template>gaia/special_ruins_column_doric</Template>
 			<Player>0</Player>
-			<Position x="642.26673" z="156.3802"/>
+			<Position x="654.07367" z="206.54174"/>
 			<Orientation y="-2.55344"/>
 		</Entity>
 		<Entity uid="1238">
 			<Template>gaia/special_ruins_column_doric</Template>
 			<Player>0</Player>
-			<Position x="632.62726" z="162.90276"/>
+			<Position x="706.32697" z="256.54438"/>
 			<Orientation y="0.75252"/>
 		</Entity>
 		<Entity uid="1239">
@@ -7579,6 +7579,12 @@
 			<Player>0</Player>
 			<Position x="841.34089" z="655.58161"/>
 			<Orientation y="-1.57081"/>
+		</Entity>
+		<Entity uid="1478">
+			<Template>structures/iber_sb1</Template>
+			<Player>1</Player>
+			<Position x="266.33167" z="220.10177"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>

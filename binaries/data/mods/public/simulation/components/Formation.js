@@ -3,7 +3,7 @@ function Formation() {}
 Formation.prototype.Schema =
 	"<a:component type='system'/><empty/>";
 
-var g_ColumnDistanceThreshold = 96; // distance at which we'll switch between column/box formations
+var g_ColumnDistanceThreshold = 128; // distance at which we'll switch between column/box formations
 
 Formation.prototype.Init = function()
 {

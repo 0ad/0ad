@@ -1,15 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant frequency="1" name="base">
+    <variant frequency="1" name="props">
       <mesh>props/pers_alt_build_01_prop.dae</mesh>
       <texture>structural/pers_struct.dds</texture>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>
