@@ -613,6 +613,14 @@ void ScriptInterface::ReplaceNondeterministicFunctions(boost::rand48& rng)
 	}
 	// Store the RNG in a slot which is sort-of-guaranteed to be unused by the JS engine
 	JS_SetReservedSlot(m->m_cx, JS_GetFunctionObject(random), 0, PRIVATE_TO_JSVAL(&rng));
+	
+	// Load a script which replaces some of the system dependent trig functions
+	VfsPath path("globalscripts/Math.js");
+	if (!this->LoadGlobalScriptFile(path))
+	{
+	    LOGERROR(L"ReplaceNondeterministicFunctions: failed to load globalscripts/Math.js");
+	    return;
+	}
 }
 
 void ScriptInterface::Register(const char* name, JSNative fptr, size_t nargs)
