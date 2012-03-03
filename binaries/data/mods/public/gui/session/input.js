@@ -370,11 +370,11 @@ function determineAction(x, y, fromMinimap)
 			return {"type": "build", "cursor": "action-build", "target": target};
 		else if (getActionInfo("repair", target).possible)
 			return {"type": "build", "cursor": "action-repair", "target": target};
-		else if((actionInfo = getActionInfo("set-rallypoint", target)).possible)
+		else if ((actionInfo = getActionInfo("set-rallypoint", target)).possible)
 			return {"type": "set-rallypoint", "cursor": actionInfo.cursor, "data": actionInfo.data, "position": actionInfo.position};
 		else if (getActionInfo("attack", target).possible)
 			return {"type": "attack", "cursor": "action-attack", "target": target};
-		else if(getActionInfo("unset-rallypoint", target).possible)
+		else if (getActionInfo("unset-rallypoint", target).possible)
 			return {"type": "unset-rallypoint"};
 		else if (getActionInfo("move", target).possible)
 			return {"type": "move"};
@@ -528,10 +528,10 @@ function handleInputBeforeGui(ev, hoveredObject)
 				{
  					ents = preferredEntities;
 
-					if(Engine.HotkeyIsPressed("selection.milonly"))
+					if (Engine.HotkeyIsPressed("selection.milonly"))
 					{
 						var militaryEntities = getMilitaryEntities(ents);
-						if(militaryEntities.length)
+						if (militaryEntities.length)
 							ents = militaryEntities;
 					}
 				}

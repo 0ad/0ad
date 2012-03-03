@@ -30,7 +30,7 @@ RallyPoint.prototype.SetData = function(data)
 
 // Returns the data associated with this rally point.  Uses the data structure:
 // {"type": "walk/gather/garrison/...", "target": targetEntityId, "resourceType": "tree/fruit/ore/..."} where target 
-// and resourceType (specific resource type) are optional, also target may be an invalid entity, check for existance.
+// and resourceType (specific resource type) are optional, also target may be an invalid entity, check for existence.
 RallyPoint.prototype.GetData = function()
 {
 	return this.data;

@@ -317,7 +317,7 @@ var UnitFsmSpec = {
 		}
 	},
 	
-	"Order.GatherNearPosition": function(msg){
+	"Order.GatherNearPosition": function(msg) {
 		// Move the unit to the position to gather from.
 		this.MoveToPoint(this.order.data.x, this.order.data.z);
 		this.SetNextState("INDIVIDUAL.GATHER.WALKING");
@@ -416,9 +416,9 @@ var UnitFsmSpec = {
 			cmpFormation.Disband();
 		},
 		
-		"Order.GatherNearPosition": function(msg){
+		"Order.GatherNearPosition": function(msg) {
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			cmpFormation.CallMemberFunction("GatherNearPosition", [[msg.data.x, msg.data.z], msg.data.type, false]);
+			cmpFormation.CallMemberFunction("GatherNearPosition", [msg.data.x, msg.data.z, msg.data.type, false]);
 			cmpFormation.Disband();
 		},
 
@@ -835,35 +835,34 @@ var UnitFsmSpec = {
 				},
 			},
 			
-			// Walking to a good place to gather resoruce near, ued by gatherNearPosition
+			// Walking to a good place to gather resources near, used by GatherNearPosition
 			"WALKING": {
 				"enter": function() {
 					this.SelectAnimation("move");
 				},
 
 				"MoveCompleted": function(msg) {
-						var resourceType = this.order.data.type;
-						var resourceTemplate = this.order.data.template;
-						
-						// Try to find another nearby target of the same specific type
-						// Also don't switch to a different type of huntable animal
-						var nearby = this.FindNearbyResource(function (ent, type, template) {
-							return (
-								type.specific == resourceType
-								&& (type.specific != "meat" || resourceTemplate == template)
-							);
-						});
-						
-						// If there is a nearby resource start gathering
-						if (nearby)
-						{
-							this.Gather(nearby, false);
-							return;
-						}
-						
-						// Couldn't find nearby resources, so give up
-						this.FinishOrder();
+					var resourceType = this.order.data.type;
+					var resourceTemplate = this.order.data.template;
 
+					// Try to find another nearby target of the same specific type
+					// Also don't switch to a different type of huntable animal
+					var nearby = this.FindNearbyResource(function (ent, type, template) {
+						return (
+							type.specific == resourceType
+							&& (type.specific != "meat" || resourceTemplate == template)
+						);
+					});
+
+					// If there is a nearby resource start gathering
+					if (nearby)
+					{
+						this.Gather(nearby, false);
+						return;
+					}
+
+					// Couldn't find nearby resources, so give up
+					this.FinishOrder();
 				},
 			},
 
@@ -2354,9 +2353,9 @@ UnitAI.prototype.Gather = function(target, queued)
 	this.AddOrder("Gather", { "target": target, "type": type, "template": template, "lastPos": lastPos }, queued);
 };
 
-UnitAI.prototype.GatherNearPosition = function(position, type, queued)
+UnitAI.prototype.GatherNearPosition = function(x, z, type, queued)
 {
-	this.AddOrder("GatherNearPosition", { "type": type, "x": position[0], "z": position[1] }, queued);
+	this.AddOrder("GatherNearPosition", { "type": type, "x": x, "z": z }, queued);
 }
 
 UnitAI.prototype.ReturnResource = function(target, queued)

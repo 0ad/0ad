@@ -95,10 +95,10 @@ function ProcessCommand(player, cmd)
 		});
 		break;
 		
-	case "gatherNearPosition":
+	case "gather-near-position":
 		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
-			cmpUnitAI.GatherNearPosition([cmd.x, cmd.z], cmd.resourceType, cmd.queued);
+			cmpUnitAI.GatherNearPosition(cmd.x, cmd.z, cmd.resourceType, cmd.queued);
 		});
 		break;
 

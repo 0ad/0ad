@@ -102,7 +102,7 @@ for (var i = 0; i < numPlayers; i++)
 {
 	playerIDs.push(i+1);
 }
-playerIDs = shuffleArray(playerIDs);
+playerIDs = sortPlayers(playerIDs);
 
 //array holding starting islands based on number of players
 var startingPlaces=[[0],[0,3],[0,2,4],[0,1,3,4],[0,1,2,3,4],[0,1,2,3,4,5]];

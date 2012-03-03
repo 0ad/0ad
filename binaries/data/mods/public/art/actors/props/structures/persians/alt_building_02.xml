@@ -1,28 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="persian-alt-building-02">
       <mesh>props/pers_alt_build_02.dae</mesh>
       <texture>structural/pers_struct.dds</texture>
+      <prop actor="props/structures/persians/alt_building_02_prop.xml" attachpoint="root"/>
     </variant>
   </group>
-
   <group>
-    <variant frequency="1" name="house-plain">
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
       <props>
-        <prop attachpoint="root"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="house-merch">
-      <props>
-        <prop actor="props/structures/persians/alt_building_02_prop.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/persians/alt_building_05_baskets.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>

@@ -287,7 +287,7 @@ TrainingQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 			var rallyPos = cmpRallyPoint.GetPosition();
 			if (rallyPos)
 			{
-				ProcessCommand(cmpOwnership.GetOwner(), getRallyPointCommand(cmpRallyPoint, spawnedEnts));
+				ProcessCommand(cmpOwnership.GetOwner(), GetRallyPointCommand(cmpRallyPoint, spawnedEnts));
 			}
 		}
 

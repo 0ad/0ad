@@ -191,7 +191,7 @@ GarrisonHolder.prototype.OrderWalkToRallyPoint = function(entities)
 		var rallyPos = cmpRallyPoint.GetPosition();
 		if (rallyPos)
 		{
-			ProcessCommand(cmpOwnership.GetOwner(), getRallyPointCommand(cmpRallyPoint, entities));
+			ProcessCommand(cmpOwnership.GetOwner(), GetRallyPointCommand(cmpRallyPoint, entities));
 		}
 	}
 };

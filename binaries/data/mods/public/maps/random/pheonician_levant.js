@@ -76,7 +76,7 @@ for (var i = 0; i < numPlayers; i++)
 {
 	playerIDs.push(i+1);
 }
-playerIDs = shuffleArray(playerIDs);
+playerIDs = sortPlayers(playerIDs);
 
 // place players
 
