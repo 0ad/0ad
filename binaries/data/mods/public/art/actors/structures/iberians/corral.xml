@@ -5,10 +5,23 @@
     <variant name="Iberian Corral">
       <mesh>structural/iber_corral.dae</mesh>
       <props>
+        <prop actor="props/structures/iberians/farmstead_b_hay.xml" attachpoint="hay1"/>
+        <prop actor="props/structures/iberians/farmstead_hay.xml" attachpoint="hay2"/>
         <prop actor="props/structures/decals/iber_corral_mud.xml" attachpoint="root"/>
       </props>
-      <texture>structural/iber_struct.dds</texture>
     </variant>
+    <variant name="Iberian Corral 02">
+      <mesh>structural/iber_corral_02.dae</mesh>
+      <props>
+        <prop actor="props/structures/iberians/farmstead_hay.xml" attachpoint="hay"/>
+        <prop actor="props/structures/decals/iber_corral_mud.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="iber struct texture">
+      <texture>structural/iber_struct.dds</texture>
+	</variant>
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
