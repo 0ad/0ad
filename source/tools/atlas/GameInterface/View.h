@@ -28,13 +28,13 @@
 class CUnit;
 class CSimulation2;
 
-class ViewGame;
-class ViewActor;
+class AtlasViewGame;
+class AtlasViewActor;
 
-class View
+class AtlasView
 {
 public:
-	virtual ~View();
+	virtual ~AtlasView();
 	virtual void Update(float UNUSED(frameLength)) { };
 	virtual void Render() { };
 	virtual void DrawOverlays() { };
@@ -49,18 +49,18 @@ public:
 	virtual void SetParam(const std::wstring& name, const std::wstring& value);
 
 	// These always return a valid (not NULL) object
-	static View* GetView(int /*eRenderView*/ view);
-	static View* GetView_None();
-	static ViewGame* GetView_Game();
-	static ViewActor* GetView_Actor();
+	static AtlasView* GetView(int /*eRenderView*/ view);
+	static AtlasView* GetView_None();
+	static AtlasViewGame* GetView_Game();
+	static AtlasViewActor* GetView_Actor();
 
-	// Invalidates any View objects previously returned by this class
+	// Invalidates any AtlasView objects previously returned by this class
 	static void DestroyViews();
 };
 
 //////////////////////////////////////////////////////////////////////////
 
-class ViewNone : public View
+class AtlasViewNone : public AtlasView
 {
 public:
 	virtual CCamera& GetCamera() { return dummyCamera; }
@@ -68,13 +68,15 @@ private:
 	CCamera dummyCamera;
 };
 
+//////////////////////////////////////////////////////////////////////////
+
 class SimState;
 
-class ViewGame : public View
+class AtlasViewGame : public AtlasView
 {
 public:
-	ViewGame();
-	virtual ~ViewGame();
+	AtlasViewGame();
+	virtual ~AtlasViewGame();
 	virtual void Update(float frameLength);
 	virtual void Render();
 	virtual void DrawOverlays();
@@ -106,13 +108,15 @@ private:
 	std::vector<SBandboxVertex> m_BandboxArray;
 };
 
+//////////////////////////////////////////////////////////////////////////
+
 class ActorViewer;
 
-class ViewActor : public View
+class AtlasViewActor : public AtlasView
 {
 public:
-	ViewActor();
-	~ViewActor();
+	AtlasViewActor();
+	~AtlasViewActor();
 
 	virtual void Update(float frameLength);
 	virtual void Render();

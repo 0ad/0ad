@@ -71,7 +71,7 @@ MessagePasser* AtlasMessage::g_MessagePasser = NULL;
 static InputProcessor g_Input;
 
 static GameLoopState state;
-GameLoopState* g_GameLoop = &state;
+GameLoopState* g_AtlasGameLoop = &state;
 
 
 static ErrorReactionInternal AtlasDisplayError(const wchar_t* text, size_t flags)
@@ -126,7 +126,7 @@ static void* RunEngine(void* data)
 
 	state.args = args;
 	state.running = true;
-	state.view = View::GetView_None();
+	state.view = AtlasView::GetView_None();
 	state.glCanvas = NULL;
 
 	double last_activity = timer_Time();
@@ -320,7 +320,7 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 	ThreadUtil::SetMainThread();
 
 	// Clean up
-	View::DestroyViews();
+	AtlasView::DestroyViews();
 	ScriptingHost::FinalShutdown();
 
 	return true;

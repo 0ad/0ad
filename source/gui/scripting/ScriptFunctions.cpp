@@ -136,6 +136,11 @@ std::vector<entity_id_t> PickFriendlyEntitiesInRect(void* UNUSED(cbdata), int x0
 	return EntitySelection::PickEntitiesInRect(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), x0, y0, x1, y1, player, false);
 }
 
+std::vector<entity_id_t> PickFriendlyEntitiesOnScreen(void* cbdata, int player)
+{
+	return PickFriendlyEntitiesInRect(cbdata, 0, 0, g_xres, g_yres, player);
+}
+
 std::vector<entity_id_t> PickSimilarFriendlyEntities(void* UNUSED(cbdata), std::string templateName, bool includeOffScreen, bool matchRank)
 {
 	return EntitySelection::PickSimilarEntities(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), templateName, g_Game->GetPlayerID(), includeOffScreen, matchRank, false);
@@ -344,6 +349,11 @@ std::vector<CScriptValRooted> GetSavedGames(void* cbdata)
 	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
 
 	return SavedGames::GetSavedGames(guiManager->GetScriptInterface());
+}
+
+bool DeleteSavedGame(void* UNUSED(cbdata), std::wstring name)
+{
+	return SavedGames::DeleteSavedGame(name);
 }
 
 void OpenURL(void* UNUSED(cbdata), std::string url)
@@ -564,6 +574,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	// Entity picking
 	scriptInterface.RegisterFunction<std::vector<entity_id_t>, int, int, &PickEntitiesAtPoint>("PickEntitiesAtPoint");
 	scriptInterface.RegisterFunction<std::vector<entity_id_t>, int, int, int, int, int, &PickFriendlyEntitiesInRect>("PickFriendlyEntitiesInRect");
+	scriptInterface.RegisterFunction<std::vector<entity_id_t>, int, &PickFriendlyEntitiesOnScreen>("PickFriendlyEntitiesOnScreen");
 	scriptInterface.RegisterFunction<std::vector<entity_id_t>, std::string, bool, bool, &PickSimilarFriendlyEntities>("PickSimilarFriendlyEntities");
 	scriptInterface.RegisterFunction<CFixedVector3D, int, int, &GetTerrainAtPoint>("GetTerrainAtPoint");
 
@@ -582,6 +593,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	// Saved games
 	scriptInterface.RegisterFunction<CScriptVal, std::wstring, &StartSavedGame>("StartSavedGame");
 	scriptInterface.RegisterFunction<std::vector<CScriptValRooted>, &GetSavedGames>("GetSavedGames");
+	scriptInterface.RegisterFunction<bool, std::wstring, &DeleteSavedGame>("DeleteSavedGame");
 	scriptInterface.RegisterFunction<void, &SaveGame>("SaveGame");
 	scriptInterface.RegisterFunction<void, &QuickSave>("QuickSave");
 	scriptInterface.RegisterFunction<void, &QuickLoad>("QuickLoad");

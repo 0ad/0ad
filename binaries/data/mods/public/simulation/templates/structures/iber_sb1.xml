@@ -35,6 +35,9 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
+  <TerritoryInfluence>
+    <Root>true</Root>
+  </TerritoryInfluence>
   <VisualActor>
     <Actor>structures/iberians/sb_1.xml</Actor>
     <FoundationActor>structures/fndn_2x2.xml</FoundationActor>

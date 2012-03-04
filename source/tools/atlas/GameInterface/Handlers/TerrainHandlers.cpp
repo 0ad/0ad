@@ -127,7 +127,7 @@ QUERYHANDLER(GetTerrainGroupPreviews)
 
 QUERYHANDLER(GetTerrainPassabilityClasses)
 {
-	CmpPtr<ICmpPathfinder> cmpPathfinder(*View::GetView_Game()->GetSimulation2(), SYSTEM_ENTITY);
+	CmpPtr<ICmpPathfinder> cmpPathfinder(*AtlasView::GetView_Game()->GetSimulation2(), SYSTEM_ENTITY);
 	if (cmpPathfinder)
 	{
 		std::map<std::string, ICmpPathfinder::pass_class_t> classes = cmpPathfinder->GetPassabilityClasses();

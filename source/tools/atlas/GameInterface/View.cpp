@@ -46,40 +46,40 @@ extern int g_xres, g_yres;
 
 //////////////////////////////////////////////////////////////////////////
 
-void View::SetParam(const std::wstring& UNUSED(name), bool UNUSED(value))
+void AtlasView::SetParam(const std::wstring& UNUSED(name), bool UNUSED(value))
 {
 }
 
-void View::SetParam(const std::wstring& UNUSED(name), const AtlasMessage::Colour& UNUSED(value))
+void AtlasView::SetParam(const std::wstring& UNUSED(name), const AtlasMessage::Colour& UNUSED(value))
 {
 }
 
-void View::SetParam(const std::wstring& UNUSED(name), const std::wstring& UNUSED(value))
+void AtlasView::SetParam(const std::wstring& UNUSED(name), const std::wstring& UNUSED(value))
 {
 }
 
-void View::SetParam(const std::wstring& UNUSED(name), int UNUSED(value))
+void AtlasView::SetParam(const std::wstring& UNUSED(name), int UNUSED(value))
 {
 }
 
 //////////////////////////////////////////////////////////////////////////
 
-ViewActor::ViewActor()
+AtlasViewActor::AtlasViewActor()
 : m_SpeedMultiplier(1.f), m_ActorViewer(new ActorViewer())
 {
 }
 
-ViewActor::~ViewActor()
+AtlasViewActor::~AtlasViewActor()
 {
 	delete m_ActorViewer;
 }
 
-void ViewActor::Update(float frameLength)
+void AtlasViewActor::Update(float frameLength)
 {
 	m_ActorViewer->Update(frameLength * m_SpeedMultiplier);
 }
 
-void ViewActor::Render()
+void AtlasViewActor::Render()
 {
 	SViewPort vp = { 0, 0, g_xres, g_yres };
 	CCamera& camera = GetCamera();
@@ -88,25 +88,25 @@ void ViewActor::Render()
 	camera.UpdateFrustum();
 
 	m_ActorViewer->Render();
-	Atlas_GLSwapBuffers((void*)g_GameLoop->glCanvas);
+	Atlas_GLSwapBuffers((void*)g_AtlasGameLoop->glCanvas);
 }
 
-CCamera& ViewActor::GetCamera()
+CCamera& AtlasViewActor::GetCamera()
 {
 	return m_Camera;
 }
 
-CSimulation2* ViewActor::GetSimulation2()
+CSimulation2* AtlasViewActor::GetSimulation2()
 {
 	return m_ActorViewer->GetSimulation2();
 }
 
-entity_id_t ViewActor::GetEntityId(AtlasMessage::ObjectID UNUSED(obj))
+entity_id_t AtlasViewActor::GetEntityId(AtlasMessage::ObjectID UNUSED(obj))
 {
 	return m_ActorViewer->GetEntity();
 }
 
-bool ViewActor::WantsHighFramerate()
+bool AtlasViewActor::WantsHighFramerate()
 {
 	if (m_SpeedMultiplier != 0.f)
 		return true;
@@ -114,17 +114,17 @@ bool ViewActor::WantsHighFramerate()
 	return false;
 }
 
-void ViewActor::SetSpeedMultiplier(float speed)
+void AtlasViewActor::SetSpeedMultiplier(float speed)
 {
 	m_SpeedMultiplier = speed;
 }
 
-ActorViewer& ViewActor::GetActorViewer()
+ActorViewer& AtlasViewActor::GetActorViewer()
 {
 	return *m_ActorViewer;
 }
 
-void ViewActor::SetParam(const std::wstring& name, bool value)
+void AtlasViewActor::SetParam(const std::wstring& name, bool value)
 {
 	if (name == L"wireframe")
 		g_Renderer.SetModelRenderMode(value ? WIREFRAME : SOLID);
@@ -142,13 +142,13 @@ void ViewActor::SetParam(const std::wstring& name, bool value)
 		m_ActorViewer->SetAxesMarkerEnabled(value);
 }
 
-void ViewActor::SetParam(const std::wstring& name, int value)
+void AtlasViewActor::SetParam(const std::wstring& name, int value)
 {
 	if (name == L"prop_points")
 		m_ActorViewer->SetPropPointsMode(value);
 }
 
-void ViewActor::SetParam(const std::wstring& name, const AtlasMessage::Colour& value)
+void AtlasViewActor::SetParam(const std::wstring& name, const AtlasMessage::Colour& value)
 {
 	if (name == L"background")
 	{
@@ -165,23 +165,23 @@ static void delete_pair_2nd(std::pair<T,S> v)
 	delete v.second;
 }
 
-ViewGame::ViewGame()
+AtlasViewGame::AtlasViewGame()
 	: m_SpeedMultiplier(0.f)
 {
 	ENSURE(g_Game);
 }
 
-ViewGame::~ViewGame()
+AtlasViewGame::~AtlasViewGame()
 {
 	std::for_each(m_SavedStates.begin(), m_SavedStates.end(), delete_pair_2nd<std::wstring, SimState*>);
 }
 
-CSimulation2* ViewGame::GetSimulation2()
+CSimulation2* AtlasViewGame::GetSimulation2()
 {
 	return g_Game->GetSimulation2();
 }
 
-void ViewGame::Update(float frameLength)
+void AtlasViewGame::Update(float frameLength)
 {
 	float actualFrameLength = frameLength * m_SpeedMultiplier;
 
@@ -229,7 +229,7 @@ void ViewGame::Update(float frameLength)
 		g_Game->GetView()->GetCinema()->Update(frameLength);
 }
 
-void ViewGame::Render()
+void AtlasViewGame::Render()
 {
 	SViewPort vp = { 0, 0, g_xres, g_yres };
 	CCamera& camera = GetCamera();
@@ -259,10 +259,10 @@ void ViewGame::Render()
 	}
 
 	::Render();
-	Atlas_GLSwapBuffers((void*)g_GameLoop->glCanvas);
+	Atlas_GLSwapBuffers((void*)g_AtlasGameLoop->glCanvas);
 }
 
-void ViewGame::DrawOverlays()
+void AtlasViewGame::DrawOverlays()
 {
 #if CONFIG2_GLES
 #warning TODO: implement Atlas game overlays for GLES
@@ -305,13 +305,13 @@ void ViewGame::DrawOverlays()
 #endif
 }
 
-void ViewGame::SetParam(const std::wstring& name, bool value)
+void AtlasViewGame::SetParam(const std::wstring& name, bool value)
 {
 	if (name == L"priorities")
 		g_Renderer.SetDisplayTerrainPriorities(value);
 }
 
-void ViewGame::SetParam(const std::wstring& name, const std::wstring& value)
+void AtlasViewGame::SetParam(const std::wstring& name, const std::wstring& value)
 {
 	if (name == L"passability")
 	{
@@ -331,12 +331,12 @@ void ViewGame::SetParam(const std::wstring& name, const std::wstring& value)
 	}
 }
 
-CCamera& ViewGame::GetCamera()
+CCamera& AtlasViewGame::GetCamera()
 {
 	return *g_Game->GetView()->GetCamera();
 }
 
-bool ViewGame::WantsHighFramerate()
+bool AtlasViewGame::WantsHighFramerate()
 {
 	if (g_Game->GetView()->GetCinema()->IsPlaying())
 		return true;
@@ -347,18 +347,18 @@ bool ViewGame::WantsHighFramerate()
 	return false;
 }
 
-void ViewGame::SetSpeedMultiplier(float speed)
+void AtlasViewGame::SetSpeedMultiplier(float speed)
 {
 	m_SpeedMultiplier = speed;
 }
 
-void ViewGame::SaveState(const std::wstring& label)
+void AtlasViewGame::SaveState(const std::wstring& label)
 {
 	delete m_SavedStates[label]; // in case it already exists
 	m_SavedStates[label] = SimState::Freeze();
 }
 
-void ViewGame::RestoreState(const std::wstring& label)
+void AtlasViewGame::RestoreState(const std::wstring& label)
 {
 	SimState* simState = m_SavedStates[label];
 	if (! simState)
@@ -367,7 +367,7 @@ void ViewGame::RestoreState(const std::wstring& label)
 	simState->Thaw();
 }
 
-std::wstring ViewGame::DumpState(bool binary)
+std::wstring AtlasViewGame::DumpState(bool binary)
 {
 	std::stringstream stream;
 	if (binary)
@@ -396,7 +396,7 @@ std::wstring ViewGame::DumpState(bool binary)
 	}
 }
 
-void ViewGame::SetBandbox(bool visible, float x0, float y0, float x1, float y1)
+void AtlasViewGame::SetBandbox(bool visible, float x0, float y0, float x1, float y1)
 {
 	m_BandboxArray.clear();
 
@@ -431,49 +431,49 @@ void ViewGame::SetBandbox(bool visible, float x0, float y0, float x1, float y1)
 
 //////////////////////////////////////////////////////////////////////////
 
-ViewNone* view_None = NULL;
-ViewGame* view_Game = NULL;
-ViewActor* view_Actor = NULL;
+AtlasViewNone* view_None = NULL;
+AtlasViewGame* view_Game = NULL;
+AtlasViewActor* view_Actor = NULL;
 
-View::~View()
+AtlasView::~AtlasView()
 {
 }
 
-View* View::GetView(int /*eRenderView*/ view)
+AtlasView* AtlasView::GetView(int /*eRenderView*/ view)
 {
 	switch (view)
 	{
-	case AtlasMessage::eRenderView::NONE:  return View::GetView_None();
-	case AtlasMessage::eRenderView::GAME:  return View::GetView_Game();
-	case AtlasMessage::eRenderView::ACTOR: return View::GetView_Actor();
+	case AtlasMessage::eRenderView::NONE:  return AtlasView::GetView_None();
+	case AtlasMessage::eRenderView::GAME:  return AtlasView::GetView_Game();
+	case AtlasMessage::eRenderView::ACTOR: return AtlasView::GetView_Actor();
 	default:
 		debug_warn(L"Invalid view type");
-		return View::GetView_None();
+		return AtlasView::GetView_None();
 	}
 }
 
-View* View::GetView_None()
+AtlasView* AtlasView::GetView_None()
 {
 	if (! view_None)
-		view_None = new ViewNone();
+		view_None = new AtlasViewNone();
 	return view_None;
 }
 
-ViewGame* View::GetView_Game()
+AtlasViewGame* AtlasView::GetView_Game()
 {
 	if (! view_Game)
-		view_Game = new ViewGame();
+		view_Game = new AtlasViewGame();
 	return view_Game;
 }
 
-ViewActor* View::GetView_Actor()
+AtlasViewActor* AtlasView::GetView_Actor()
 {
 	if (! view_Actor)
-		view_Actor = new ViewActor();
+		view_Actor = new AtlasViewActor();
 	return view_Actor;
 }
 
-void View::DestroyViews()
+void AtlasView::DestroyViews()
 {
 	delete view_None; view_None = NULL;
 	delete view_Game; view_Game = NULL;

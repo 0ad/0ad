@@ -68,18 +68,18 @@ QUERYHANDLER(CinemaRecord)
 
 	int num_frames = msg->framerate * msg->duration;
 
-	View::GetView_Game()->SaveState(L"cinema_record");
+	AtlasView::GetView_Game()->SaveState(L"cinema_record");
 
 	// Set it to update the simulation at normal speed
-	View::GetView_Game()->SetSpeedMultiplier(1.f);
+	AtlasView::GetView_Game()->SetSpeedMultiplier(1.f);
 
 	for (int frame = 0; frame < num_frames; ++frame)
 	{
-		View::GetView_Game()->Update(1.f / msg->framerate);
+		AtlasView::GetView_Game()->Update(1.f / msg->framerate);
 
 		manager->MoveToPointAt((float)frame/msg->framerate);
 		Render();
-		Atlas_GLSwapBuffers((void*)g_GameLoop->glCanvas);
+		Atlas_GLSwapBuffers((void*)g_AtlasGameLoop->glCanvas);
 
 		glReadPixels(0, 0, w, h, GL_RGB, GL_UNSIGNED_BYTE, img);
 
@@ -100,9 +100,9 @@ QUERYHANDLER(CinemaRecord)
 	}
 
 	// Pause the game once we've finished
-	View::GetView_Game()->SetSpeedMultiplier(0.f);
+	AtlasView::GetView_Game()->SetSpeedMultiplier(0.f);
 
-	View::GetView_Game()->RestoreState(L"cinema_record");
+	AtlasView::GetView_Game()->RestoreState(L"cinema_record");
 	// TODO: delete the saved state now that we don't need it any more
 
 	delete[] img;
@@ -125,22 +125,22 @@ QUERYHANDLER(Ping)
 
 MESSAGEHANDLER(SimStateSave)
 {
-	View::GetView_Game()->SaveState(*msg->label);
+	AtlasView::GetView_Game()->SaveState(*msg->label);
 }
 
 MESSAGEHANDLER(SimStateRestore)
 {
-	View::GetView_Game()->RestoreState(*msg->label);
+	AtlasView::GetView_Game()->RestoreState(*msg->label);
 }
 
 QUERYHANDLER(SimStateDebugDump)
 {
-	msg->dump = View::GetView_Game()->DumpState(msg->binary);
+	msg->dump = AtlasView::GetView_Game()->DumpState(msg->binary);
 }
 
 MESSAGEHANDLER(SimPlay)
 {
-	View::GetView_Game()->SetSpeedMultiplier(msg->speed);
+	AtlasView::GetView_Game()->SetSpeedMultiplier(msg->speed);
 }
 
 MESSAGEHANDLER(JavaScript)

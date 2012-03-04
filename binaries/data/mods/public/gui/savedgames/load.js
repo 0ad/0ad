@@ -27,6 +27,7 @@ function init()
 	{
 		gameSelection.list = [ "No saved games found" ];
 		getGUIObjectByName("loadGameButton").enabled = false;
+		getGUIObjectByName("deleteGameButton").enabled = false;
 		return;
 	}
 
@@ -52,4 +53,27 @@ function loadGame()
 		"isNetworked" : false,
 		"playerAssignments": metadata.gui.playerAssignments
 	});
+}
+
+function deleteGame()
+{
+	var gameSelection = getGUIObjectByName("gameSelection");
+	var gameLabel = gameSelection.list[gameSelection.selected];
+	var gameID = gameSelection.list_data[gameSelection.selected];
+
+	// Ask for confirmation
+	var btCaptions = ["Yes", "No"];
+	var btCode = [function(){ reallyDeleteGame(gameID); }, null];
+	messageBox(500, 200, "\""+gameLabel+"\"\nSaved game will be permanently deleted, are you sure?", "DELETE", 0, btCaptions, btCode);
+}
+
+function reallyDeleteGame(gameID)
+{
+	if (!Engine.DeleteSavedGame(gameID))
+	{
+		warn("Could not delete saved game '"+gameID+"'");
+	}
+
+	// Run init again to refresh saved game list
+	init();
 }

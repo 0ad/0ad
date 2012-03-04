@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,14 +23,60 @@ class ScriptInterface;
 class CScriptValRooted;
 class CGUIManager;
 
+/**
+ * @file
+ * Contains functions for managing saved game archives.
+ *
+ * A saved game is simply a zip archive with the extension '0adsave'
+ * and containing two files:
+ * <ul>
+ *  <li>metadata.json - JSON data file containing the game metadata</li>
+ *	<li>simulation.dat - the serialized simulation state data</li>
+ * </ul>
+ */
+
 namespace SavedGames
 {
 
-Status Save(const std::wstring& prefix, CSimulation2& simulation, CGUIManager* gui, int playerIDo);
+/**
+ * Create new saved game archive with given prefix and simulation data
+ *
+ * @param prefix Create new numbered file starting with this prefix
+ * @param simulation
+ * @param gui if not NULL, store some UI-related data with the saved game
+ * @param playerID ID of the player who saved this file
+ * @return INFO::OK if successfully saved, else an error Status
+ */
+Status Save(const std::wstring& prefix, CSimulation2& simulation, CGUIManager* gui, int playerID);
 
+/**
+ * Load saved game archive with the given name
+ *
+ * @param name filename of saved game (without path or extension)
+ * @param scriptInterface
+ * @param[out] metadata object containing metadata associated with saved game,
+ *	parsed from metadata.json inside the archive.
+ * @param[out] savedState serialized simulation state stored as string of bytes,
+ *	loaded from simulation.dat inside the archive.
+ * @return INFO::OK if successfully loaded, else an error Status
+ */
 Status Load(const std::wstring& name, ScriptInterface& scriptInterface, CScriptValRooted& metadata, std::string& savedState);
 
+/**
+ * Get list of saved games for GUI script usage
+ *
+ * @param scriptInterface the ScriptInterface in which to create the return data.
+ * @return list of objects containing saved game data
+ */
 std::vector<CScriptValRooted> GetSavedGames(ScriptInterface& scriptInterface);
+
+/**
+ * Permanently deletes the saved game archive with the given name
+ *
+ * @param name filename of saved game (without path or extension)
+ * @return true if deletion was successful, or false on error
+ */
+bool DeleteSavedGame(const std::wstring& name);
 
 }
 
