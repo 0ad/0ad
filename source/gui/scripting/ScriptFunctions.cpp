@@ -351,6 +351,11 @@ std::vector<CScriptValRooted> GetSavedGames(void* cbdata)
 	return SavedGames::GetSavedGames(guiManager->GetScriptInterface());
 }
 
+bool DeleteSavedGame(void* UNUSED(cbdata), std::wstring name)
+{
+	return SavedGames::DeleteSavedGame(name);
+}
+
 void OpenURL(void* UNUSED(cbdata), std::string url)
 {
 	sys_open_url(url);
@@ -588,6 +593,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	// Saved games
 	scriptInterface.RegisterFunction<CScriptVal, std::wstring, &StartSavedGame>("StartSavedGame");
 	scriptInterface.RegisterFunction<std::vector<CScriptValRooted>, &GetSavedGames>("GetSavedGames");
+	scriptInterface.RegisterFunction<bool, std::wstring, &DeleteSavedGame>("DeleteSavedGame");
 	scriptInterface.RegisterFunction<void, &SaveGame>("SaveGame");
 	scriptInterface.RegisterFunction<void, &QuickSave>("QuickSave");
 	scriptInterface.RegisterFunction<void, &QuickLoad>("QuickLoad");

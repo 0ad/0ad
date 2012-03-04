@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -100,6 +100,9 @@ Status SavedGames::Save(const std::wstring& prefix, CSimulation2& simulation, CG
 	return INFO::OK;
 }
 
+/**
+ * Helper class for retrieving data from saved game archives
+ */
 class CGameLoader
 {
 	NONCOPYABLE(CGameLoader);
@@ -201,4 +204,26 @@ std::vector<CScriptValRooted> SavedGames::GetSavedGames(ScriptInterface& scriptI
 	}
 
 	return games;
+}
+
+bool SavedGames::DeleteSavedGame(const std::wstring& name)
+{
+	const VfsPath basename(L"saves/" + name);
+	const VfsPath filename = basename.ChangeExtension(L".0adsave");
+	OsPath realpath;
+
+	// Make sure it exists in VFS and find its real path
+	if (!VfsFileExists(filename) || g_VFS->GetRealPath(filename, realpath) != INFO::OK)
+		return false; // Error
+
+	// Remove from VFS
+	if (g_VFS->RemoveFile(filename) != INFO::OK)
+		return false; // Error
+
+	// Delete actual file
+	if (wunlink(realpath) != 0)
+		return false; // Error
+
+	// Successfully deleted file
+	return true;
 }
