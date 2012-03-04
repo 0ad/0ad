@@ -417,7 +417,14 @@ function areAllies(player1, player2)
 
 function getPlayerTeam(player)
 {
-	return g_MapSettings.PlayerData[player].Team
+	if (g_MapSettings.PlayerData[player].Team == undefined)
+	{
+		return -1;
+	}
+	else
+	{
+		return g_MapSettings.PlayerData[player].Team;
+	}
 }
 
 function sortPlayers(source)
@@ -623,6 +630,6 @@ function getDirection(x1, z1, x2, z2)
 
 function getTerrainTexture(x, y)
 {
-	return g_Map.texture[x][z];
+	return g_Map.getTerrain(x, y);
 }
 

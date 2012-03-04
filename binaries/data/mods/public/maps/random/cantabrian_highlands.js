@@ -204,7 +204,7 @@ for (var i = 0; i < numPlayers; i++)
 	for (var j = 0; j < num; j++)
 	{
 		var tAngle = randFloat(0, TWO_PI);
-		var tDist = randFloat(6, radius - 2);
+		var tDist = randFloat(6, radius - 2.1);
 		var tX = round(fx + tDist * cos(tAngle));
 		var tZ = round(fz + tDist * sin(tAngle));
 		group = new SimpleGroup(
