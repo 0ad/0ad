@@ -1895,11 +1895,11 @@ UnitAI.prototype.SelectAnimation = function(name, once, speed, sound)
 	}
 
 	// Set default values if unspecified
-	if (typeof once == "undefined")
+	if (once === undefined)
 		once = false;
-	if (typeof speed == "undefined")
+	if (speed === undefined)
 		speed = 1.0;
-	if (typeof soundgroup == "undefined")
+	if (soundgroup === undefined)
 		soundgroup = "";
 
 	cmpVisual.SelectAnimation(name, once, speed, soundgroup);
