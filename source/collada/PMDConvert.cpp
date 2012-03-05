@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -252,39 +252,74 @@ public:
 					// guaranteed by ReduceInfluences; necessary for avoiding
 					// out-of-bounds writes to the VertexBlend
 
+				if (vertexInfluences[i].GetPairCount() == 0)
+				{
+					// Blender exports some models with vertices that have no influences,
+					//	which I've not found details about in the COLLADA spec, however,
+					//	it seems to work OK to treat these vertices the same as if they
+					//	were only influenced by the bind-shape matrix (see comment below),
+					//	so we use the same special case here.
+					influences.bones[0] = (uint8)jointCount;
+					influences.weights[0] = 1.0f;
+				}
+
 				for (size_t j = 0; j < vertexInfluences[i].GetPairCount(); ++j)
 				{
-					uint32 jointIdx = vertexInfluences[i].GetPair(j)->jointIndex;
-					REQUIRE(jointIdx <= 0xFF, "sensible number of joints (<256)"); // because we only have a u8 to store them in
-
-					// Find the joint on the skeleton, after checking it really exists
-					FCDSceneNode* joint = NULL;
-					if (jointIdx < controllerInstance.GetJointCount())
-						joint = controllerInstance.GetJoint(jointIdx);
-
-					// Complain on error
-					if (! joint)
+					if (vertexInfluences[i].GetPair(j)->jointIndex == -1)
 					{
-						if (! hasComplainedAboutNonexistentJoints)
+						// This is a special case we must handle, according to the COLLADA spec:
+						//	"An index of -1 into the array of joints refers to the bind shape"
+						//
+						//	which basically means when skinning the vertex it's relative to the
+						//	bind-shape transform instead of an animated bone. Since our skinning
+						//	is in world space, we will have already applied the bind-shape transform,
+						//	so we don't have to worry about that, though we DO have to apply the
+						//	world space transform of the model for the indicated vertex.
+						//
+						//	To indicate this special case, we use a bone ID set to the total number
+						//	of bones in the model, which will have a special "bone matrix" reserved
+						//	that contains the world space transform of the model during skinning.
+						//	(see http://trac.wildfiregames.com/ticket/1012)
+						influences.bones[j] = (uint8)jointCount;
+						influences.weights[j] = vertexInfluences[i].GetPair(j)->weight;
+					}
+					else
+					{
+						// Check for less than 254 joints because we store them in a u8,
+						//	0xFF is a reserved value (no influence), and we reserve one slot
+						//	for the above special case.
+						uint32 jointIdx = vertexInfluences[i].GetPair(j)->jointIndex;
+						REQUIRE(jointIdx < 0xFE, "sensible number of joints (<254)");
+
+						// Find the joint on the skeleton, after checking it really exists
+						FCDSceneNode* joint = NULL;
+						if (jointIdx < controllerInstance.GetJointCount())
+							joint = controllerInstance.GetJoint(jointIdx);
+
+						// Complain on error
+						if (! joint)
 						{
-							Log(LOG_WARNING, "Vertexes influenced by nonexistent joint");
-							hasComplainedAboutNonexistentJoints = true;
+							if (! hasComplainedAboutNonexistentJoints)
+							{
+								Log(LOG_WARNING, "Vertexes influenced by nonexistent joint");
+								hasComplainedAboutNonexistentJoints = true;
+							}
+							continue;
 						}
-						continue;
-					}
 
-					// Store into the VertexBlend
-					int boneId = skeleton.GetBoneID(joint->GetName().c_str());
-					if (boneId < 0)
-					{
-						// The relevant joint does exist, but it's not a recognised
-						// bone in our chosen skeleton structure
-						Log(LOG_ERROR, "Vertex influenced by unrecognised bone '%s'", joint->GetName().c_str());
-						continue;
-					}
+						// Store into the VertexBlend
+						int boneId = skeleton.GetBoneID(joint->GetName().c_str());
+						if (boneId < 0)
+						{
+							// The relevant joint does exist, but it's not a recognised
+							// bone in our chosen skeleton structure
+							Log(LOG_ERROR, "Vertex influenced by unrecognised bone '%s'", joint->GetName().c_str());
+							continue;
+						}
 
-					influences.bones[j] = (uint8)boneId;
-					influences.weights[j] = vertexInfluences[i].GetPair(j)->weight;
+						influences.bones[j] = (uint8)boneId;
+						influences.weights[j] = vertexInfluences[i].GetPair(j)->weight;
+					}
 				}
 
 				boneWeights.push_back(influences);
@@ -522,6 +557,10 @@ public:
 	/**
 	 * Applies world-space transform to vertex data and transforms Collada's right-handed
 	 *	Y-up / Z-up coordinates to the game's left-handed Y-up coordinate system
+	 *
+	 * TODO: Maybe we should use FCDocumentTools::StandardizeUpAxisAndLength in addition
+	 *		to this, so we'd only have one up-axis case to worry about, but it doesn't seem to
+	 *		correctly adjust the prop points in Y_UP models.
 	 */
 	static void TransformStaticModel(float* position, float* normal, size_t vertexCount,
 		const FMMatrix44& transform, bool yUp)
@@ -563,6 +602,10 @@ public:
 	/**
 	 * Applies world-space transform to vertex data and transforms Collada's right-handed
 	 *	Y-up / Z-up coordinates to the game's left-handed Y-up coordinate system
+	 *
+	 * TODO: Maybe we should use FCDocumentTools::StandardizeUpAxisAndLength in addition
+	 *		to this, so we'd only have one up-axis case to worry about, but it doesn't seem to
+	 *		correctly adjust the prop points in Y_UP models.
 	 */
 	static void TransformSkinnedModel(float* position, float* normal, size_t vertexCount,
 		std::vector<BoneTransform>& bones, std::vector<PropPoint>& propPoints,

@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -209,7 +209,15 @@ void CModelDef::BlendBoneMatrices(
 	for (size_t i = 0; i < m_NumBlends; ++i)
 	{
 		const SVertexBlend& blend = m_pBlends[i];
-		CMatrix3D& boneMatrix = boneMatrices[m_NumBones + i];
+		CMatrix3D& boneMatrix = boneMatrices[m_NumBones + 1 + i];
+		
+		// Note: there is a special case of joint influence, in which the vertex
+		//	is influenced by the bind-shape matrix instead of a particular bone,
+		//	which we indicate by setting the bone ID to the total number of bones.
+		//	It should be blended with the world space transform and we have already
+		//	set up this matrix in boneMatrices.
+		//	(see http://trac.wildfiregames.com/ticket/1012)
+
 		boneMatrix.Blend(boneMatrices[blend.m_Bone[0]], blend.m_Weight[0]);
 		boneMatrix.AddBlend(boneMatrices[blend.m_Bone[1]], blend.m_Weight[1]);
 		for (size_t j = 2; j < SVertexBlend::SIZE && blend.m_Bone[j] != 0xFF; ++j)
@@ -301,7 +309,10 @@ CModelDef* CModelDef::Load(const VfsPath& filename, const VfsPath& name)
 				}
 				if (j >= blends.size())
 					blends.push_back(blend);
-				mdef->m_pBlendIndices[i] = mdef->m_NumBones + j;
+				// This index is offset by one to allow the special case of a
+				//	weighted influence relative to the bind-shape rather than
+				//	a particular bone. See comment in BlendBoneMatrices.
+				mdef->m_pBlendIndices[i] = mdef->m_NumBones + 1 + j;
 			}
 		}
 
