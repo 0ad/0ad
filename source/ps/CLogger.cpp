@@ -25,7 +25,6 @@
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
-#include "lib/res/graphics/unifont.h"
 #include "lib/sysdep/sysdep.h"
 #include "ps/Font.h"
 #include "ps/Profile.h"

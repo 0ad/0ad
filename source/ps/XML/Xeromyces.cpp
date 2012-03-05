@@ -62,24 +62,15 @@ void CXeromyces::Terminate()
 	g_XeromycesStarted = false;
 }
 
-void CXeromyces::PrepareCacheKey(MD5& hash, u32& version)
-{
-	// We don't have anything special to add into the hash
-	UNUSED2(hash);
-
-	// Arbitrary version number - change this if we update the code and
-	// need to invalidate old users' caches
-	version = 1;
-}
-
 PSRETURN CXeromyces::Load(const PIVFS& vfs, const VfsPath& filename)
 {
 	ENSURE(g_XeromycesStarted);
 
 	CCacheLoader cacheLoader(vfs, L".xmb");
-	MD5 hash;
-	u32 version;
-	PrepareCacheKey(hash, version);
+
+	// Arbitrary version number - change this if we update the code and
+	// need to invalidate old users' caches
+	u32 version = 1;
 
 	VfsPath xmbPath;
 	Status ret = cacheLoader.TryLoadingCached(filename, MD5(), version, xmbPath);
@@ -113,9 +104,6 @@ PSRETURN CXeromyces::Load(const PIVFS& vfs, const VfsPath& filename)
 bool CXeromyces::GenerateCachedXMB(const PIVFS& vfs, const VfsPath& sourcePath, VfsPath& archiveCachePath)
 {
 	CCacheLoader cacheLoader(vfs, L".xmb");
-	MD5 hash;
-	u32 version;
-	PrepareCacheKey(hash, version);
 
 	archiveCachePath = cacheLoader.ArchiveCachePath(sourcePath);
 

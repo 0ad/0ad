@@ -106,7 +106,7 @@ Barter.prototype.ExchangeResources = function(playerEntity, resourceToSell, reso
 		this.priceDifferences[resourceToBuy] = Math.min(99-CONSTANT_DIFFERENCE, Math.max(CONSTANT_DIFFERENCE-99, this.priceDifferences[resourceToBuy]));
 	}
 
-	if (this.restoreTimer == undefined)
+	if (this.restoreTimer === undefined)
 	{
 		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		this.restoreTimer = cmpTimer.SetInterval(this.entity, IID_Barter, "ProgressTimeout", RESTORE_TIMER_INTERVAL, RESTORE_TIMER_INTERVAL, {});

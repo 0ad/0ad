@@ -36,7 +36,6 @@
 #include "ps/Hotkey.h"
 #include "ps/Profile.h"
 #include "lib/external_libraries/libsdl.h"
-#include "lib/res/graphics/unifont.h"
 #include "renderer/Renderer.h"
 #include "scriptinterface/ScriptInterface.h"
 

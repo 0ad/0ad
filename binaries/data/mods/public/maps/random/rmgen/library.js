@@ -405,9 +405,9 @@ function getCivCode(player)
 
 function areAllies(player1, player2)
 {
-	if ((g_MapSettings.PlayerData[player1].Team == undefined)||(g_MapSettings.PlayerData[player2].Team == undefined)||(g_MapSettings.PlayerData[player2].Team == -1)||(g_MapSettings.PlayerData[player1].Team == -1))
+	if ((g_MapSettings.PlayerData[player1].Team === undefined) || (g_MapSettings.PlayerData[player2].Team === undefined) || (g_MapSettings.PlayerData[player2].Team == -1) || (g_MapSettings.PlayerData[player1].Team == -1))
 	{
-		return 0;
+		return false;
 	}
 	else
 	{
@@ -417,7 +417,7 @@ function areAllies(player1, player2)
 
 function getPlayerTeam(player)
 {
-	if (g_MapSettings.PlayerData[player].Team == undefined)
+	if (g_MapSettings.PlayerData[player].Team === undefined)
 	{
 		return -1;
 	}

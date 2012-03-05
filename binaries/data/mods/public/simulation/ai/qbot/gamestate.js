@@ -236,7 +236,7 @@ GameState.prototype.findBuilders = function(template) {
 
 GameState.prototype.findFoundations = function(template) {
 	return this.getOwnEntities().filter(function(ent) {
-		return (typeof ent.foundationProgress() !== "undefined");
+		return (ent.foundationProgress() !== undefined);
 	});
 };
 

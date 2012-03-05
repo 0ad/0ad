@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -84,7 +84,8 @@ bool CModel::InitModel(const CModelDefPtr& modeldef)
 		size_t numBlends = modeldef->GetNumBlends();
 
 		// allocate matrices for bone transformations
-		m_BoneMatrices = (CMatrix3D*)rtl_AllocateAligned(sizeof(CMatrix3D) * (numBones + numBlends), 16);
+		// (one extra matrix is used for the special case of bind-shape relative weighting)
+		m_BoneMatrices = (CMatrix3D*)rtl_AllocateAligned(sizeof(CMatrix3D) * (numBones + 1 + numBlends), 16);
 		for (size_t i = 0; i < numBones + numBlends; ++i)
 		{
 			m_BoneMatrices[i].SetIdentity();
@@ -397,6 +398,14 @@ void CModel::ValidatePosition()
 		{
 			m_BoneMatrices[i] = m_BoneMatrices[i] * m_InverseBindBoneMatrices[i];
 		}
+
+		// Note: there is a special case of joint influence, in which the vertex
+		//	is influenced by the bind-shape transform instead of a particular bone,
+		//	which we indicate with the blending bone ID set to the total number
+		//	of bones. But since we're skinning in world space, we use the model's
+		//	world space transform and store that matrix in this special index.
+		//	(see http://trac.wildfiregames.com/ticket/1012)
+		m_BoneMatrices[m_pModelDef->GetNumBones()] = m_Transform;
 
 		m_pModelDef->BlendBoneMatrices(m_BoneMatrices);
 	}

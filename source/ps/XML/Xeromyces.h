@@ -72,8 +72,6 @@ public:
 	static void Terminate();
 
 private:
-	void PrepareCacheKey(MD5& hash, u32& version);
-
 	PSRETURN ConvertFile(const PIVFS& vfs, const VfsPath& filename, const VfsPath& xmbPath);
 
 	bool ReadXMBFile(const PIVFS& vfs, const VfsPath& filename);

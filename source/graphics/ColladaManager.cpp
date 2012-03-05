@@ -310,9 +310,6 @@ bool CColladaManager::GenerateCachedFile(const VfsPath& sourcePath, FileType typ
 	}
 
 	CCacheLoader cacheLoader(m_VFS, extn);
-	MD5 hash;
-	u32 version;
-	PrepareCacheKey(hash, version);
 
 	archiveCachePath = cacheLoader.ArchiveCachePath(sourcePath);
 

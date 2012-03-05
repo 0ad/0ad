@@ -28,7 +28,6 @@
 #include "graphics/TextRenderer.h"
 #include "gui/GUIutil.h"
 #include "lib/ogl.h"
-#include "lib/res/graphics/unifont.h"
 #include "lib/sysdep/clipboard.h"
 #include "maths/MathUtil.h"
 #include "network/NetClient.h"
@@ -178,8 +177,6 @@ void CConsole::Render()
 	if (! (m_bVisible || m_bToggle) ) return;
 
 	PROFILE3_GPU("console");
-
-	CFont font(CONSOLE_FONT);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

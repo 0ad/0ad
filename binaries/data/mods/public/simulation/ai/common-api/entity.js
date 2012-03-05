@@ -1,7 +1,6 @@
 var EntityTemplate = Class({
 
-	_init: function(template)
-	{
+	_init: function(template) {
 		this._template = template;
 	},
 
@@ -163,15 +162,13 @@ var EntityTemplate = Class({
 		return this._template.ResourceDropsite.Types.split(/\s+/);
 	},
 	
-	garrisonableClasses: function() 
-	{
+	garrisonableClasses: function() {
 		if (!this._template.GarrisonHolder)
 			return undefined;
 		return this._template.GarrisonHolder.List._string.split(/\s+/);
 	},
 	
-	garrisonMax: function() 
-	{
+	garrisonMax: function() {
 		if (!this._template.GarrisonHolder)
 			return undefined;
 		
@@ -179,9 +176,8 @@ var EntityTemplate = Class({
 	},
  
 	//"Population Bonus" is how much a building raises your population cap. 
-	getPopulationBonus: function()
-	{ 
-		if(!this._template.Cost) 
+	getPopulationBonus: function() { 
+		if (!this._template.Cost) 
 			return undefined;
 		
 		return this._template.Cost.PopulationBonus; 
@@ -243,8 +239,7 @@ var EntityTemplate = Class({
 var Entity = Class({
 	_super: EntityTemplate,
 
-	_init: function(baseAI, entity)
-	{
+	_init: function(baseAI, entity) {
 		this._super.call(this, baseAI.GetTemplate(entity.template));
 
 		this._ai = baseAI;
@@ -289,8 +284,8 @@ var Entity = Class({
 	position: function() { return this._entity.position; },
 
 	isIdle: function() {
-		if (typeof this._entity.idle === "undefined")
-			return undefined;
+		if (this._entity.idle === undefined)
+			return undefined; // Prevent warning about reference to undefined property
 		return this._entity.idle;
 	},
 
@@ -317,22 +312,25 @@ var Entity = Class({
 	},
 
 	foundationProgress: function() {
-		if (typeof this._entity.foundationProgress === "undefined")
-			return undefined;
+		if (this._entity.foundationProgress === undefined)
+			return undefined; // Prevent warning about reference to undefined property
 		return this._entity.foundationProgress;
 	},
 
 	owner: function() {
 		return this._entity.owner;
 	},
+
 	isOwn: function() {
-		if (typeof this._entity.owner === "undefined")
+		if (this._entity.owner === undefined)
 			return false;
 		return this._entity.owner === this._ai._player;
 	},
+
 	isFriendly: function() {
 		return this.isOwn(); // TODO: diplomacy
 	},
+
 	isEnemy: function() {
 		return !this.isOwn(); // TODO: diplomacy
 	},
@@ -340,7 +338,7 @@ var Entity = Class({
 	resourceSupplyAmount: function() { return this._entity.resourceSupplyAmount; },
 
 	resourceCarrying: function() { return this._entity.resourceCarrying; },
-	
+
 //Garrison related
 
 	garrisoned: function() { return new EntityCollection(this._ai, this._entity.garrisoned); },
@@ -349,20 +347,19 @@ var Entity = Class({
 	{
 		return (this.garrisonMax() - this.garrisoned().length);
 	},
-	
-	canGarrisonInto: function(target)  
-	{ 
+
+	canGarrisonInto: function(target) {
 		var allowedClasses = target.garrisonableClasses();
 		// return false if the target is full or doesn't have any allowed classes 
-		if( target.garrisonSpaceAvaliable() <=0 || allowedClasses == undefined )
+		if (target.garrisonSpaceAvaliable() <=0 || allowedClasses === undefined)
 			return false;
 		
 		// Check that this unit is a member of at least one of the allowed garrison classes
 		var hasClasses = this.classes();
-		for( var i = 0; i < hasClasses.length; i++)
+		for (var i = 0; i < hasClasses.length; i++)
 		{ 
 			var hasClass = hasClasses[i];
-			if( allowedClasses.indexOf(hasClass) >= 0 )
+			if (allowedClasses.indexOf(hasClass) >= 0)
 				return true;
 		}
 		
@@ -370,9 +367,8 @@ var Entity = Class({
 	}, 
 
 	// TODO: visibility
-	
-	attack: function(target) 
-	{  
+
+	attack: function(target) {
 		Engine.PostCommand({"type": "attack", "entities": [this.id()], "target": target.id(), "queued": false});  
 		return this;  
 	}, 
@@ -400,8 +396,7 @@ var Entity = Class({
 		return this;
 	},
 
-	train: function(type, count, metadata)
-	{
+	train: function(type, count, metadata) {
 		var trainable = this.trainableEntities();
 		if (!trainable)
 		{
@@ -423,18 +418,16 @@ var Entity = Class({
 		});
 		return this;
 	},
-	
+
 	//ungarrison a specific unit in this building 
-	unload: function(unit)  
-	{ 
+	unload: function(unit) {
 		if (!this._template.GarrisonHolder) 
 			return;
 		
 		Engine.PostCommand({"type": "unload", "garrisonHolder": this.id(), "entity": unit.id()}); 
 	}, 
 
-	unloadAll: function()  
-	{ 
+	unloadAll: function() {
 		if (!this._template.GarrisonHolder)
 			return;
 		

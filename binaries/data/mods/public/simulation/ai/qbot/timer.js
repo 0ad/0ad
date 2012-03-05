@@ -48,7 +48,7 @@ var Timer = function() {
 	// Check if a alarm has reached its interval.
 	this.checkTimer = function(gameState,id) {
 		var alarm = get_alarm(id);
-		if (alarm == undefined)
+		if (alarm === undefined)
 			return false;
 		if (!alarm.active)
 			return false;

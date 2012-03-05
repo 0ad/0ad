@@ -24,14 +24,14 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="643.668" y="79.7402" z="231.195"/>
+		<Position x="797.105" y="82.5112" z="577.596"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by a lush oasis.",
+  "Description": "2 vs. 1 on an old favorite. An otherwise wide-open, flat desert map is pierced in the center by a lush oasis. Ruins lie to the Southwest which can be plundered for resources. Player 1 is handicapped against his 2 rivals for an extra challenge.",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
@@ -39,11 +39,11 @@
   "PlayerData": [
     {
       "AI": "",
-      "Civ": "celt",
+      "Civ": "rome",
       "Colour": {
-        "b": 200,
-        "g": 46,
-        "r": 46
+        "b": 39,
+        "g": 39,
+        "r": 131
       },
       "Name": "Player 1",
       "Resources": {
@@ -52,24 +52,41 @@
         "stone": 300,
         "wood": 300
       },
-      "Team": -1
+      "Team": 0
     },
     {
       "AI": "qbot",
-      "Civ": "rome",
+      "Civ": "celt",
       "Colour": {
-        "b": 20,
-        "g": 20,
-        "r": 150
+        "b": 200,
+        "g": 46,
+        "r": 46
       },
       "Name": "Player 2",
       "Resources": {
-        "food": 300,
-        "metal": 300,
-        "stone": 300,
-        "wood": 300
+        "food": 1000,
+        "metal": 1500,
+        "stone": 1500,
+        "wood": 1500
       },
-      "Team": -1
+      "Team": 1
+    },
+    {
+      "AI": "qbot",
+      "Civ": "iber",
+      "Colour": {
+        "b": 5,
+        "g": 165,
+        "r": 50
+      },
+      "Name": "Player 3",
+      "Resources": {
+        "food": 1000,
+        "metal": 1500,
+        "stone": 1500,
+        "wood": 1500
+      },
+      "Team": 1
     }
   ],
   "RevealMap": false
@@ -2335,157 +2352,157 @@
 		<Entity uid="492">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="205.91468" z="720.14332"/>
+			<Position x="248.73353" z="712.82703"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="493">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="196.83382" z="719.78486"/>
+			<Position x="239.65265" z="712.46857"/>
 			<Orientation y="-0.21482"/>
 		</Entity>
 		<Entity uid="494">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="191.12053" z="712.59205"/>
+			<Position x="233.93937" z="705.27576"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="495">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="189.65845" z="704.6775"/>
+			<Position x="233.4791" z="692.3335"/>
 			<Orientation y="2.99604"/>
 		</Entity>
 		<Entity uid="496">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="196.64783" z="692.8816"/>
+			<Position x="239.46666" z="685.56531"/>
 			<Orientation y="1.6948"/>
 		</Entity>
 		<Entity uid="497">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="204.36211" z="693.53931"/>
+			<Position x="247.62745" z="685.87256"/>
 			<Orientation y="-0.9221"/>
 		</Entity>
 		<Entity uid="498">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="211.894" z="694.47706"/>
+			<Position x="256.4274" z="683.66645"/>
 			<Orientation y="1.24941"/>
 		</Entity>
 		<Entity uid="499">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="216.49233" z="696.88166"/>
+			<Position x="262.27997" z="683.53394"/>
 			<Orientation y="-1.95203"/>
 		</Entity>
 		<Entity uid="500">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="221.56644" z="702.44751"/>
+			<Position x="268.39905" z="689.1269"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="501">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="223.03234" z="712.76832"/>
+			<Position x="265.85117" z="705.45203"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="502">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="217.59557" z="719.91645"/>
+			<Position x="260.41446" z="712.60016"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="503">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="191.69436" z="696.3625"/>
+			<Position x="229.78885" z="688.10981"/>
 			<Orientation y="0.37615"/>
 		</Entity>
 		<Entity uid="504">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="212.7204" z="723.29242"/>
+			<Position x="255.53928" z="715.97614"/>
 			<Orientation y="-2.6061"/>
 		</Entity>
 		<Entity uid="505">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="195.07348" z="713.35145"/>
+			<Position x="237.89231" z="706.03516"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="506">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="202.31522" z="717.22352"/>
+			<Position x="245.13405" z="709.90723"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="507">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="224.0165" z="709.29462"/>
+			<Position x="264.98981" z="694.59272"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="508">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="211.71903" z="713.5005"/>
+			<Position x="254.53785" z="706.18421"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="509">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="201.50034" z="710.65931"/>
+			<Position x="250.80338" z="684.84314"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="510">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="194.72493" z="706.69294"/>
+			<Position x="237.54377" z="699.37665"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="511">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="197.97678" z="701.22248"/>
+			<Position x="240.79561" z="693.9062"/>
 			<Orientation y="0.8129"/>
 		</Entity>
 		<Entity uid="512">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="202.3187" z="697.88209"/>
+			<Position x="245.13753" z="690.5658"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="513">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="209.93593" z="700.11744"/>
+			<Position x="252.7548" z="692.80115"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="514">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="215.51519" z="706.43445"/>
+			<Position x="258.33408" z="699.11817"/>
 			<Orientation y="-2.93583"/>
 		</Entity>
 		<Entity uid="515">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="207.60564" z="707.33027"/>
+			<Position x="250.42441" z="700.01398"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="516">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="201.39133" z="706.43512"/>
+			<Position x="244.21016" z="699.11884"/>
 			<Orientation y="1.0998"/>
 		</Entity>
 		<Entity uid="517">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="215.25692" z="700.20582"/>
+			<Position x="260.09125" z="690.34406"/>
 			<Orientation y="-1.1959"/>
 		</Entity>
 		<Entity uid="518">
@@ -3259,31 +3276,31 @@
 		<Entity uid="659">
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
-			<Position x="186.35877" z="717.96058"/>
+			<Position x="229.1776" z="710.6443"/>
 			<Orientation y="-2.59308"/>
 		</Entity>
 		<Entity uid="660">
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
-			<Position x="185.35181" z="706.26038"/>
+			<Position x="228.17064" z="698.9441"/>
 			<Orientation y="3.05556"/>
 		</Entity>
 		<Entity uid="661">
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
-			<Position x="202.63442" z="687.37989"/>
+			<Position x="245.45325" z="680.0636"/>
 			<Orientation y="0.74357"/>
 		</Entity>
 		<Entity uid="662">
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
-			<Position x="226.64501" z="712.32966"/>
+			<Position x="269.46384" z="705.01337"/>
 			<Orientation y="-2.29856"/>
 		</Entity>
 		<Entity uid="663">
 			<Template>gaia/fauna_gazelle</Template>
 			<Player>0</Player>
-			<Position x="214.43538" z="713.42847"/>
+			<Position x="257.25431" z="706.11219"/>
 			<Orientation y="0.33075"/>
 		</Entity>
 		<Entity uid="664">
@@ -3409,8 +3426,8 @@
 		<Entity uid="684">
 			<Template>gaia/fauna_camel</Template>
 			<Player>0</Player>
-			<Position x="328.63651" z="752.08228"/>
-			<Orientation y="2.35276"/>
+			<Position x="268.62714" z="841.4527"/>
+			<Orientation y="0.2521"/>
 		</Entity>
 		<Entity uid="685">
 			<Template>gaia/fauna_camel</Template>
@@ -4807,28 +4824,28 @@
 		</Entity>
 		<Entity uid="952">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="155.38491" z="796.28382"/>
+			<Position x="267.61725" z="713.20411"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="953">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="158.11037" z="711.89136"/>
+			<Position x="237.04366" z="679.95105"/>
 			<Orientation y="2.19744"/>
 		</Entity>
 		<Entity uid="954">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="164.76413" z="777.2917"/>
+			<Position x="272.31605" z="686.14295"/>
 			<Orientation y="2.28147"/>
 		</Entity>
 		<Entity uid="955">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="179.15392" z="785.37421"/>
+			<Position x="233.95383" z="725.23865"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="956">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="171.24909" z="705.86207"/>
-			<Orientation y="-2.24715"/>
+			<Position x="251.18403" z="680.86188"/>
+			<Orientation y="0.25329"/>
 		</Entity>
 		<Entity uid="957">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
@@ -5774,37 +5791,37 @@
 		</Entity>
 		<Entity uid="1169">
 			<Template>structures/rome_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="795.27735" z="670.18683"/>
+			<Player>1</Player>
+			<Position x="795.08924" z="670.2754"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1170">
 			<Template>units/rome_support_female_citizen</Template>
-			<Player>2</Player>
+			<Player>1</Player>
 			<Position x="803.79017" z="646.69654"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1171">
 			<Template>units/rome_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="806.3606" z="649.85248"/>
+			<Player>1</Player>
+			<Position x="806.43628" z="649.73121"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1172">
 			<Template>units/rome_support_female_citizen</Template>
-			<Player>2</Player>
+			<Player>1</Player>
 			<Position x="809.18128" z="652.99476"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1173">
 			<Template>units/rome_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="811.47083" z="655.11774"/>
+			<Player>1</Player>
+			<Position x="811.71485" z="655.21033"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1174">
 			<Template>units/rome_support_female_citizen</Template>
-			<Player>2</Player>
+			<Player>1</Player>
 			<Position x="814.10462" z="658.34064"/>
 			<Orientation y="2.35621"/>
 		</Entity>
@@ -7006,91 +7023,61 @@
 		</Entity>
 		<Entity uid="1439">
 			<Template>structures/celt_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="300.36982" z="264.87806"/>
+			<Player>2</Player>
+			<Position x="301.45551" z="265.86475"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1440">
 			<Template>units/celt_support_female_citizen</Template>
-			<Player>1</Player>
+			<Player>2</Player>
 			<Position x="319.0634" z="248.937"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1441">
 			<Template>units/celt_support_female_citizen</Template>
-			<Player>1</Player>
+			<Player>2</Player>
 			<Position x="321.72574" z="251.64557"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1442">
 			<Template>units/celt_support_female_citizen</Template>
-			<Player>1</Player>
+			<Player>2</Player>
 			<Position x="310.78531" z="239.9196"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1443">
 			<Template>units/celt_support_female_citizen</Template>
-			<Player>1</Player>
+			<Player>2</Player>
 			<Position x="313.48197" z="242.5045"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1444">
 			<Template>units/celt_support_female_citizen</Template>
-			<Player>1</Player>
+			<Player>2</Player>
 			<Position x="316.37845" z="245.84049"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1445">
-			<Template>units/celt_fanatic</Template>
-			<Player>1</Player>
-			<Position x="323.14866" z="243.55448"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1446">
-			<Template>units/celt_fanatic</Template>
-			<Player>1</Player>
-			<Position x="325.72916" z="246.85335"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1447">
-			<Template>units/celt_fanatic</Template>
-			<Player>1</Player>
-			<Position x="314.8331" z="235.39954"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1448">
-			<Template>units/celt_fanatic</Template>
-			<Player>1</Player>
-			<Position x="317.28046" z="237.60105"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1449">
-			<Template>units/celt_fanatic</Template>
-			<Player>1</Player>
-			<Position x="320.05909" z="240.85488"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1450">
 			<Template>structures/rome_temple_vesta</Template>
-			<Player>2</Player>
-			<Position x="864.79914" z="649.31092"/>
-			<Orientation y="-2.67019"/>
+			<Player>1</Player>
+			<Position x="748.94471" z="628.75013"/>
+			<Orientation y="2.56141"/>
 		</Entity>
 		<Entity uid="1451">
 			<Template>other/celt_tavern</Template>
-			<Player>1</Player>
-			<Position x="264.4275" z="223.72535"/>
+			<Player>2</Player>
+			<Position x="264.35181" z="223.84473"/>
 			<Orientation y="2.29551"/>
 		</Entity>
 		<Entity uid="1452">
 			<Template>units/rome_centurio_imperial</Template>
-			<Player>2</Player>
-			<Position x="810.93854" z="639.47425"/>
+			<Player>1</Player>
+			<Position x="811.6598" z="639.55958"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1453">
 			<Template>units/rome_centurio_imperial</Template>
-			<Player>2</Player>
+			<Player>1</Player>
 			<Position x="815.89777" z="644.84815"/>
 			<Orientation y="2.35621"/>
 		</Entity>
@@ -7597,6 +7584,198 @@
 			<Player>0</Player>
 			<Position x="490.02424" z="160.91735"/>
 			<Orientation y="-0.92057"/>
+		</Entity>
+		<Entity uid="1542">
+			<Template>structures/iber_civil_centre</Template>
+			<Player>3</Player>
+			<Position x="323.19776" z="737.59223"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1543">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="329.02768" z="717.5005"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1544">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="332.23441" z="720.79712"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1545">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="334.50669" z="722.89411"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1546">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="337.18061" z="725.38794"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1547">
+			<Template>units/iber_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="340.36991" z="728.71906"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1553">
+			<Template>units/iber_cavalry_javelinist_b</Template>
+			<Player>3</Player>
+			<Position x="350.27756" z="727.30756"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1554">
+			<Template>units/celt_cavalry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="329.89271" z="251.67878"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1555">
+			<Template>units/cart_cavalry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="823.41889" z="651.29792"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1557">
+			<Template>structures/rome_arch</Template>
+			<Player>1</Player>
+			<Position x="837.0619" z="685.44227"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1558">
+			<Template>units/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="813.60084" z="642.23542"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1560">
+			<Template>units/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="809.6839" z="637.27668"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1561">
+			<Template>units/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="816.30323" z="635.94599"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1562">
+			<Template>units/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="818.089" z="637.89661"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1563">
+			<Template>units/rome_centurio_imperial</Template>
+			<Player>1</Player>
+			<Position x="814.287" z="634.2173"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1564">
+			<Template>structures/iber_sb1</Template>
+			<Player>3</Player>
+			<Position x="297.79822" z="711.7765"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1565">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>3</Player>
+			<Position x="313.34363" z="799.12623"/>
+			<Orientation y="3.00866"/>
+		</Entity>
+		<Entity uid="1566">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>3</Player>
+			<Position x="328.59467" z="792.34412"/>
+			<Orientation y="-0.04101"/>
+		</Entity>
+		<Entity uid="1567">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>3</Player>
+			<Position x="331.39884" z="797.78583"/>
+			<Orientation y="2.83597"/>
+		</Entity>
+		<Entity uid="1568">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>3</Player>
+			<Position x="336.24784" z="788.49323"/>
+			<Orientation y="-0.792"/>
+		</Entity>
+		<Entity uid="1569">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>3</Player>
+			<Position x="340.60285" z="795.1225"/>
+			<Orientation y="1.63642"/>
+		</Entity>
+		<Entity uid="1570">
+			<Template>gaia/flora_bush_berry</Template>
+			<Player>3</Player>
+			<Position x="320.90006" z="795.0326"/>
+			<Orientation y="-2.91184"/>
+		</Entity>
+		<Entity uid="1571">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="314.921" z="235.91189"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1572">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="317.46821" z="237.81296"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1573">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="320.22663" z="240.21146"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1574">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="322.44654" z="243.07453"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1575">
+			<Template>units/celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="325.60685" z="245.2411"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1576">
+			<Template>units/iber_infantry_spearman_e</Template>
+			<Player>3</Player>
+			<Position x="334.6084" z="713.2699"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1577">
+			<Template>units/iber_infantry_spearman_e</Template>
+			<Player>3</Player>
+			<Position x="336.4162" z="715.79236"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1578">
+			<Template>units/iber_infantry_spearman_e</Template>
+			<Player>3</Player>
+			<Position x="338.93033" z="717.41291"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1579">
+			<Template>units/iber_infantry_spearman_e</Template>
+			<Player>3</Player>
+			<Position x="341.22733" z="720.13831"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1580">
+			<Template>units/iber_infantry_spearman_e</Template>
+			<Player>3</Player>
+			<Position x="344.1214" z="723.068"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>

@@ -236,22 +236,6 @@ function blendSubmenuIntoMain(topPosition, bottomPosition)
 	bottomSprite.size = "100%-2 " + (bottomPosition) + " 100% 100%";
 }
 
-// Reveals submenu
-//function openMainMenuSubWindow (windowName)
-//{
-//	guiUnHide("pgSubWindow");
-//	guiUnHide(windowName);
-//}
-
-// Hides submenu
-//function closeMainMenuSubWindow (windowName)
-//{
-//	guiHide("pgSubWindow");
-//	guiHide(windowName);
-//}
-
-
-
 /*
  * FUNCTIONS BELOW DO NOT WORK YET
  */

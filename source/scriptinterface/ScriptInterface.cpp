@@ -616,10 +616,14 @@ void ScriptInterface::ReplaceNondeterministicFunctions(boost::rand48& rng)
 	
 	// Load a script which replaces some of the system dependent trig functions
 	VfsPath path("globalscripts/Math.js");
-	if (!this->LoadGlobalScriptFile(path))
-	{
-	    LOGERROR(L"ReplaceNondeterministicFunctions: failed to load globalscripts/Math.js");
-	    return;
+	
+	// This function is called from tests scripts without the VFS set up so silently fail because every other option seems worse
+	if (g_VFS && VfsFileExists(path) ){
+		if (!this->LoadGlobalScriptFile(path))
+		{
+			LOGERROR(L"ReplaceNondeterministicFunctions: failed to load globalscripts/Math.js");
+			return;
+		}
 	}
 }
 
