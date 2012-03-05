@@ -27,7 +27,6 @@ CInput
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "lib/ogl.h"
-#include "lib/res/graphics/unifont.h"
 #include "lib/sysdep/clipboard.h"
 #include "ps/CLogger.h"
 #include "ps/Font.h"

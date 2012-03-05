@@ -28,7 +28,6 @@
 #include "graphics/TextRenderer.h"
 #include "lib/alignment.h"
 #include "lib/allocators/arena.h"
-#include "lib/res/graphics/unifont.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/Game.h"

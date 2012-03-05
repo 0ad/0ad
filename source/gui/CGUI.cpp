@@ -25,8 +25,6 @@ CGUI
 
 #include <stdarg.h>
 
-#include "lib/res/graphics/unifont.h"
-
 #include "GUI.h"
 
 // Types - when including them into the engine.

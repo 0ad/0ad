@@ -28,7 +28,6 @@
 #include "graphics/TextRenderer.h"
 #include "gui/GUIutil.h"
 #include "lib/ogl.h"
-#include "lib/res/graphics/unifont.h"
 #include "lib/sysdep/clipboard.h"
 #include "maths/MathUtil.h"
 #include "network/NetClient.h"
