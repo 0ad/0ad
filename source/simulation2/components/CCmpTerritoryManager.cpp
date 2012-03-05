@@ -83,7 +83,9 @@ public:
 	float m_BorderThickness;
 	float m_BorderSeparation;
 
-	// Player ID in lower 6 bits; connected flag in bit 7, processed flag in high bit
+	// Player ID in bits 0-5 (TERRITORY_PLAYER_MASK);
+	// connected flag in bit 6 (TERRITORY_CONNECTED_MASK);
+	// processed flag in bit 7 (TERRITORY_PROCESSED_MASK)
 	Grid<u8>* m_Territories;
 
 	// Set to true when territories change; will send a TerritoriesChanged message
