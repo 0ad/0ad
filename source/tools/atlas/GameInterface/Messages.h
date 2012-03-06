@@ -216,7 +216,8 @@ MESSAGE(MessageTrace,
 		);
 
 MESSAGE(Screenshot,
-		((int, tiles)) // the final image will be (640*tiles)x(480*tiles)
+		((bool, big))
+		((int, tiles)) // For big screenshots: the final image will be (640*tiles)x(480*tiles)
 		);
 
 #ifndef MESSAGES_SKIP_STRUCTS
