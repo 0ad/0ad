@@ -111,12 +111,21 @@
 		-- per-file rules
 		for _, file in ipairs(prj.files) do
 			if path.iscppfile(file) then
-				_p('$(OBJDIR)/%s.o: %s $(GCH) | prebuild', _MAKE.esc(path.getbasename(file)), _MAKE.esc(file))
+				-- Don't use PCH for Obj-C/C++ files (we could but we'd have to compile them separately
+				-- and there's no advantage to that yet)
+				local gchobj = '$(GCH)'
+				local pchincludes = '$(PCHINCLUDES)'
+				if (path.getextension(file) == ".mm" or path.getextension(file) == ".m") then
+					gchobj = ''
+					pchincludes = ''
+				end
+
+				_p('$(OBJDIR)/%s.o: %s %s | prebuild', _MAKE.esc(path.getbasename(file)), _MAKE.esc(file), gchobj)
 				_p('\t@echo $(notdir $<)')
 				if (path.iscfile(file)) then
-					_p('\t$(SILENT) $(CC) $(PCHINCLUDES) $(CFLAGS) -MF $(OBJDIR)/%s.d -MT "$@" -o "$@" -c "$<"', _MAKE.esc(path.getbasename(file)))
+					_p('\t$(SILENT) $(CC) %s $(CFLAGS) -MF $(OBJDIR)/%s.d -MT "$@" -o "$@" -c "$<"', pchincludes, _MAKE.esc(path.getbasename(file)))
 				else
-					_p('\t$(SILENT) $(CXX) $(PCHINCLUDES) $(CXXFLAGS) -MF $(OBJDIR)/%s.d -MT "$@" -o "$@" -c "$<"', _MAKE.esc(path.getbasename(file)))
+					_p('\t$(SILENT) $(CXX) %s $(CXXFLAGS) -MF $(OBJDIR)/%s.d -MT "$@" -o "$@" -c "$<"', pchincludes, _MAKE.esc(path.getbasename(file)))
 				end
 			elseif (path.getextension(file) == ".rc") then
 				_p('$(OBJDIR)/%s.res: %s', _MAKE.esc(path.getbasename(file)), _MAKE.esc(file))
