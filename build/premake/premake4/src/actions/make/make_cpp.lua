@@ -322,7 +322,7 @@
 		if prj.language == "C" then
 			_p('\t$(SILENT) $(CC) $(CFLAGS) -o "$@" -c "$<"')
 		else
-			_p('\t$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"')
+			_p('\t$(SILENT) $(CXX) $(CXXFLAGS) -x c++-header -o "$@" -c "$<"')
 		end
 		_p('endif')
 		_p('')
