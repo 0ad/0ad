@@ -9,9 +9,8 @@
         <animation file="quadraped/peacock_feeding.dae" name="feeding" speed="15"/>
         <animation file="quadraped/peacock_feeding_transition.dae" name="feeding_transition" speed="60"/>
         <animation file="quadraped/peacock_walk.dae" name="walk" speed="25"/>
+        <animation file="quadraped/peacock_walk.dae" name="run" speed="30"/>
         <animation file="quadraped/peacock_walk_feeding.dae" name="walk_feeding" speed="25"/>
-        <!--<animation file="quadraped/boar_run.dae" name="Run" speed="8"/>
-        <animation file="quadraped/boar_death.dae" name="Death" speed="75"/>-->
       </animations>
       <mesh>skeletal/peacock.dae</mesh>
       <texture>skeletal/animal_peacock.png</texture>
@@ -27,4 +26,3 @@
   </group>
   <material>basic_trans.xml</material>
 </actor>
-
