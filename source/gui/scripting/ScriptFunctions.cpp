@@ -505,7 +505,7 @@ void SetCameraTarget(void* UNUSED(cbdata), float x, float y, float z)
 int Crash(void* UNUSED(cbdata))
 {
 	debug_printf(L"Crashing at user's request.\n");
-	return *(int*)0;
+	return *(volatile int*)0;
 }
 
 void DebugWarn(void* UNUSED(cbdata))
