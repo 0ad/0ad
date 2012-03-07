@@ -464,7 +464,7 @@ function primeSortPlayers(source)
 	for (var i = 0; i < round(source.length/2); i++)
 	{
 		prime[2*i]=source[i];
-		prime[2*i+1]=source[7-i];
+		prime[2*i+1]=source[source.length-1-i];
 	}
 
 	return prime;
