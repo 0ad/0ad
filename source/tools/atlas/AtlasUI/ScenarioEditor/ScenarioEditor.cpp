@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -313,6 +313,7 @@ enum
 	ID_Wireframe,
 	ID_MessageTrace,
 	ID_Screenshot,
+	ID_BigScreenshot,
 	ID_JavaScript,
 	ID_CameraReset,
 	ID_RenderPathFixed,
@@ -340,6 +341,7 @@ BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 	EVT_MENU(ID_Wireframe, ScenarioEditor::OnWireframe)
 	EVT_MENU(ID_MessageTrace, ScenarioEditor::OnMessageTrace)
 	EVT_MENU(ID_Screenshot, ScenarioEditor::OnScreenshot)
+	EVT_MENU(ID_BigScreenshot, ScenarioEditor::OnScreenshot)
 	EVT_MENU(ID_JavaScript, ScenarioEditor::OnJavaScript)
 	EVT_MENU(ID_CameraReset, ScenarioEditor::OnCameraReset)
 	EVT_MENU(ID_DumpState, ScenarioEditor::OnDumpState)
@@ -438,6 +440,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 		menuMisc->AppendCheckItem(ID_Wireframe, _("&Wireframe"));
 		menuMisc->AppendCheckItem(ID_MessageTrace, _("Message debug trace"));
 		menuMisc->Append(ID_Screenshot, _("&Screenshot"));
+		menuMisc->Append(ID_BigScreenshot, _("Big screenshot"));
 		menuMisc->Append(ID_JavaScript, _("&JS console"));
 		menuMisc->Append(ID_CameraReset, _("&Reset camera"));
 
@@ -821,9 +824,17 @@ void ScenarioEditor::OnMessageTrace(wxCommandEvent& event)
 	POST_MESSAGE(MessageTrace, (event.IsChecked()));
 }
 
-void ScenarioEditor::OnScreenshot(wxCommandEvent& WXUNUSED(event))
+void ScenarioEditor::OnScreenshot(wxCommandEvent& event)
 {
-	POST_MESSAGE(Screenshot, (10));
+	switch (event.GetId())
+	{
+	case ID_BigScreenshot:
+		POST_MESSAGE(Screenshot, (true, 10));
+		break;
+	case ID_Screenshot:
+		POST_MESSAGE(Screenshot, (false, 0));
+		break;
+	}
 }
 
 void ScenarioEditor::OnJavaScript(wxCommandEvent& WXUNUSED(event))
