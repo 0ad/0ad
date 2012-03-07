@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.61.0 r42615</authoring_tool>
     </contributor>
-    <created>2012-01-08T09:58:42</created>
-    <modified>2012-01-08T09:58:42</modified>
+    <created>2012-03-07T23:23:31</created>
+    <modified>2012-03-07T23:23:31</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -98,25 +98,25 @@
   <library_animations>
     <animation id="ballista_main_pose_matrix">
       <source id="ballista_main_pose_matrix-input">
-        <float_array id="ballista_main_pose_matrix-input-array" count="14">0.04166662 0.08333331 0.125 0.2083333 0.2916666 0.375 0.4583333 0.5416667 0.625 0.7083333 0.7916667 0.9583333 1 1.25</float_array>
+        <float_array id="ballista_main_pose_matrix-input-array" count="19">0.04166662 0.125 0.2083333 0.3333333 0.4166666 0.5 0.625 0.6666667 0.8333333 1 1.041667 1.166667 1.25 1.333333 1.541667 1.666667 1.875 1.916667 2.5</float_array>
         <technique_common>
-          <accessor source="#ballista_main_pose_matrix-input-array" count="14" stride="1">
+          <accessor source="#ballista_main_pose_matrix-input-array" count="19" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="ballista_main_pose_matrix-output">
-        <float_array id="ballista_main_pose_matrix-output-array" count="224">1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1</float_array>
+        <float_array id="ballista_main_pose_matrix-output-array" count="304">1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#ballista_main_pose_matrix-output-array" count="14" stride="16">
+          <accessor source="#ballista_main_pose_matrix-output-array" count="19" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="ballista_main_pose_matrix-interpolation">
-        <Name_array id="ballista_main_pose_matrix-interpolation-array" count="14">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="ballista_main_pose_matrix-interpolation-array" count="19">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#ballista_main_pose_matrix-interpolation-array" count="14" stride="1">
+          <accessor source="#ballista_main_pose_matrix-interpolation-array" count="19" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -128,27 +128,59 @@
       </sampler>
       <channel source="#ballista_main_pose_matrix-sampler" target="main/transform"/>
     </animation>
+    <animation id="ballista_weapon_pose_matrix">
+      <source id="ballista_weapon_pose_matrix-input">
+        <float_array id="ballista_weapon_pose_matrix-input-array" count="19">0.04166662 0.125 0.2083333 0.3333333 0.4166666 0.5 0.625 0.6666667 0.8333333 1 1.041667 1.166667 1.25 1.333333 1.541667 1.666667 1.875 1.916667 2.5</float_array>
+        <technique_common>
+          <accessor source="#ballista_weapon_pose_matrix-input-array" count="19" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="ballista_weapon_pose_matrix-output">
+        <float_array id="ballista_weapon_pose_matrix-output-array" count="304">1 0 0 0 0 0.8386706 0.5446391 5.222004 0 -0.5446391 0.8386706 0.02661764 0 0 0 1 0.9999693 -0.00107187 -0.007772803 0 0.005176007 0.8346198 0.5508022 5.222004 0.005896925 -0.5508255 0.8345996 0.02661764 0 0 0 1 0.9998769 -0.002086162 -0.01555281 0 0.01039516 0.8305181 0.5568947 5.222004 0.0117551 -0.5569878 0.8304375 0.02661764 0 0 0 1 0.9999994 -1.66007e-4 -0.001134812 0 7.58723e-4 0.8377626 0.5460341 5.222004 8.6006e-4 -0.5460346 0.8377622 0.02661764 0 0 0 1 0.99998 8.93399e-4 0.006258308 0 -0.004133582 0.841419 0.5403675 5.222004 -0.004783093 -0.5403826 0.8414059 0.02661764 0 0 0 1 0.9999999 -7.90446e-5 -5.1546e-4 0 3.47561e-4 0.8379297 0.5457781 5.222004 3.88778e-4 -0.5457782 0.8379296 0.02661764 0 0 0 1 0.9999041 -0.001847803 -0.01372504 0 0.009169816 0.8310225 0.5561632 5.222004 0.01037812 -0.5562357 0.8309597 0.02661764 0 0 0 1 0.9999048 -0.001858353 -0.01367491 0 0.009138226 0.8316945 0.5551584 5.222004 0.01034164 -0.5552305 0.8316323 0.02661764 0 0 0 1 0.9999186 -0.001887917 -0.01261883 0 0.008458673 0.8385128 0.5448163 5.222004 0.009552478 -0.5448787 0.8384605 0.02661764 0 0 0 1 0.9999319 -0.001623034 -0.0115531 0 0.007749557 0.8326424 0.5537567 5.222004 0.008720815 -0.5538086 0.8325984 0.02661764 0 0 0 1 0.9999412 -0.001455664 -0.01074135 0 0.007181167 0.8312404 0.5558667 5.222004 0.008119463 -0.5559113 0.831202 0.02661764 0 0 0 1 0.9999269 -0.002406597 0.01185071 0 -0.004640698 0.828588 0.5598397 5.222004 -0.01116663 -0.5598537 0.8285163 0.02661764 0 0 0 1 0.9997388 -0.00306344 0.02265006 0 -0.01016092 0.8280981 0.5604912 5.222004 -0.02047353 -0.5605749 0.8278506 0.02661764 0 0 0 1 0.9997832 -0.002773642 0.02063947 0 -0.009241998 0.8290489 0.5590999 5.222004 -0.01866191 -0.5591694 0.8288435 0.02661764 0 0 0 1 0.9999898 -5.70297e-4 0.004475295 0 -0.001974463 0.8366057 0.5478019 5.222004 -0.004056453 -0.5478051 0.8365961 0.02661764 0 0 0 1 1 0 0 0 0 0.8386706 0.5446391 5.222004 0 -0.5446391 0.8386706 0.02661764 0 0 0 1 1 0 0 0 0 0.8386706 0.5446391 5.222004 0 -0.5446391 0.8386706 0.02661764 0 0 0 1 1 0 0 0 0 0.9205049 0.3907312 5.222004 0 -0.3907312 0.9205049 0.02661764 0 0 0 1 1 0 0 0 0 0.8386706 0.5446391 5.222004 0 -0.5446391 0.8386706 0.02661764 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#ballista_weapon_pose_matrix-output-array" count="19" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="ballista_weapon_pose_matrix-interpolation">
+        <Name_array id="ballista_weapon_pose_matrix-interpolation-array" count="19">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#ballista_weapon_pose_matrix-interpolation-array" count="19" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="ballista_weapon_pose_matrix-sampler">
+        <input semantic="INPUT" source="#ballista_weapon_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#ballista_weapon_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#ballista_weapon_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#ballista_weapon_pose_matrix-sampler" target="weapon/transform"/>
+    </animation>
     <animation id="ballista_lever_pose_matrix">
       <source id="ballista_lever_pose_matrix-input">
-        <float_array id="ballista_lever_pose_matrix-input-array" count="14">0.04166662 0.08333331 0.125 0.2083333 0.2916666 0.375 0.4583333 0.5416667 0.625 0.7083333 0.7916667 0.9583333 1 1.25</float_array>
+        <float_array id="ballista_lever_pose_matrix-input-array" count="19">0.04166662 0.125 0.2083333 0.3333333 0.4166666 0.5 0.625 0.6666667 0.8333333 1 1.041667 1.166667 1.25 1.333333 1.541667 1.666667 1.875 1.916667 2.5</float_array>
         <technique_common>
-          <accessor source="#ballista_lever_pose_matrix-input-array" count="14" stride="1">
+          <accessor source="#ballista_lever_pose_matrix-input-array" count="19" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="ballista_lever_pose_matrix-output">
-        <float_array id="ballista_lever_pose_matrix-output-array" count="224">1 0 0 0 0 1 0 1.773935 0 0 1 -8.695909 0 0 0 1 1 0 0 0 0 0.4999998 0.8660255 1.773935 0 -0.8660255 0.4999998 -8.695909 0 0 0 1 1 0 0 0 0 -0.4999999 0.8660252 1.773935 0 -0.8660253 -0.5 -8.695909 0 0 0 1 1 0 0 0 0 -0.5 -0.8660256 1.773935 0 0.8660256 -0.5 -8.695909 0 0 0 1 1 0 0 0 0 1 2.97344e-7 1.773935 0 -3.29807e-7 1 -8.695909 0 0 0 1 1 0 0 0 0 -0.4999999 0.8660252 1.773935 0 -0.8660253 -0.5 -8.695909 0 0 0 1 1 0 0 0 0 -0.5 -0.8660256 1.773935 0 0.8660256 -0.5 -8.695909 0 0 0 1 1 0 0 0 0 1 2.97344e-7 1.773935 0 -3.29807e-7 1 -8.695909 0 0 0 1 1 0 0 0 0 -0.4999999 0.8660252 1.773935 0 -0.8660253 -0.5 -8.695909 0 0 0 1 1 0 0 0 0 -0.5 -0.8660256 1.773935 0 0.8660256 -0.5 -8.695909 0 0 0 1 1 0 0 0 0 1 2.97344e-7 1.773935 0 -3.29807e-7 1 -8.695909 0 0 0 1 1 0 0 0 0 1 2.97344e-7 1.773935 0 -3.29807e-7 1 -8.695909 0 0 0 1 1 0 0 0 0 1 0 1.773935 0 0 1 -8.695909 0 0 0 1 1 0 0 0 0 1 0 1.773935 0 0 1 -8.695909 0 0 0 1</float_array>
+        <float_array id="ballista_lever_pose_matrix-output-array" count="304">1 0 0 0 0 1 4.79773e-7 1.773935 0 -5.12236e-7 1 -8.695909 0 0 0 1 0.9999047 0.01145195 -0.007713198 0 -0.01307982 0.6067049 -0.7948195 1.773935 -0.004422605 0.7948447 0.6067969 -8.695909 0 0 0 1 0.9996306 0.01034021 -0.02513307 0 -0.01659804 -0.4999932 -0.8658704 1.773935 -0.02151966 0.8659678 -0.4996369 -8.695909 0 0 0 1 0.9996562 0.00837475 -0.02484607 0 0.02570426 -0.4999657 0.865664 1.773935 -0.005172371 -0.866005 -0.5000092 -8.695909 0 0 0 1 0.9997279 0.007077097 -0.02222913 0 0.01708853 0.426507 0.9043229 1.773935 0.01588088 -0.9044567 0.42627 -8.695909 0 0 0 1 0.9996686 0.008939743 -0.02414143 0 -0.008937478 0.99996 2.0222e-4 1.773935 0.02414226 1.35424e-5 0.9997085 -8.695909 0 0 0 1 0.9989908 0.01888006 -0.04075551 0 -0.03790551 -0.1324062 -0.9904704 1.773935 -0.02409642 0.9910157 -0.1315569 -8.695909 0 0 0 1 0.998768 0.01799201 -0.04624611 0 -0.03106153 -0.5001175 -0.8654003 1.773935 -0.03869879 0.8657706 -0.4989425 -8.695909 0 0 0 1 0.9990684 -0.003863334 -0.04298245 0 0.03529763 -0.4998788 0.8653758 1.773935 -0.02482926 -0.8660868 -0.4992768 -8.695909 0 0 0 1 0.9995968 0.00857824 -0.02706849 0 -0.008576154 0.9999632 1.93001e-4 1.773935 0.02706915 3.91958e-5 0.9996336 -8.695909 0 0 0 1 0.9996228 0.001486659 -0.02742189 0 -0.01502287 0.8654832 -0.5007126 1.773935 0.02298873 0.5009357 0.8651791 -8.695909 0 0 0 1 0.9999212 -0.005295157 -0.01138037 0 -0.01250332 -0.4999501 -0.8659641 1.773935 -0.001104176 0.8660382 -0.4999769 -8.695909 0 0 0 1 0.999872 0.01597845 -8.23148e-4 0 0.01598989 -0.9997334 0.01665198 1.773935 -5.56856e-4 -0.01666295 -0.999861 -8.695909 0 0 0 1 0.9995147 0.03044992 -0.006566941 0 0.02092134 -0.500026 0.8657576 1.773935 0.02307862 -0.8654749 -0.5004205 -8.695909 0 0 0 1 0.9995288 0.02743232 -0.01377493 0 -0.02742838 0.9996236 4.75969e-4 1.773935 0.01378285 -9.79519e-5 0.999905 -8.695909 0 0 0 1 0.9995288 0.02743232 -0.01377493 0 -0.02742838 0.9996236 4.75969e-4 1.773935 0.01378285 -9.79519e-5 0.999905 -8.695909 0 0 0 1 0.9995288 0.02743232 -0.01377493 0 -0.02742838 0.9996236 4.75969e-4 1.773935 0.01378285 -9.79519e-5 0.999905 -8.695909 0 0 0 1 0.9995288 0.02743232 -0.01377493 0 -0.02742838 0.9996236 4.75969e-4 1.773935 0.01378285 -9.79519e-5 0.999905 -8.695909 0 0 0 1 0.9995288 0.02743232 -0.01377493 0 -0.02742838 0.9996236 4.75969e-4 1.773935 0.01378285 -9.79519e-5 0.999905 -8.695909 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#ballista_lever_pose_matrix-output-array" count="14" stride="16">
+          <accessor source="#ballista_lever_pose_matrix-output-array" count="19" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="ballista_lever_pose_matrix-interpolation">
-        <Name_array id="ballista_lever_pose_matrix-interpolation-array" count="14">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="ballista_lever_pose_matrix-interpolation-array" count="19">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#ballista_lever_pose_matrix-interpolation-array" count="14" stride="1">
+          <accessor source="#ballista_lever_pose_matrix-interpolation-array" count="19" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -162,25 +194,25 @@
     </animation>
     <animation id="ballista_arm_left_pose_matrix">
       <source id="ballista_arm_left_pose_matrix-input">
-        <float_array id="ballista_arm_left_pose_matrix-input-array" count="14">0.04166662 0.08333331 0.125 0.2083333 0.2916666 0.375 0.4583333 0.5416667 0.625 0.7083333 0.7916667 0.9583333 1 1.25</float_array>
+        <float_array id="ballista_arm_left_pose_matrix-input-array" count="19">0.04166662 0.125 0.2083333 0.3333333 0.4166666 0.5 0.625 0.6666667 0.8333333 1 1.041667 1.166667 1.25 1.333333 1.541667 1.666667 1.875 1.916667 2.5</float_array>
         <technique_common>
-          <accessor source="#ballista_arm_left_pose_matrix-input-array" count="14" stride="1">
+          <accessor source="#ballista_arm_left_pose_matrix-input-array" count="19" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="ballista_arm_left_pose_matrix-output">
-        <float_array id="ballista_arm_left_pose_matrix-output-array" count="224">1 0 0 1.6235 0 1 0 1.987384 0 0 1 1.411516 0 0 0 1 0.9984348 0 0.05592834 1.6235 0 1 0 1.987384 -0.05592834 0 0.9984349 1.411516 0 0 0 1 0.9936594 0 0.1124325 1.6235 0 1 0 1.987384 -0.1124325 0 0.9936594 1.411516 0 0 0 1 0.9741096 0 0.2260763 1.6235 0 1 0 1.987384 -0.2260763 0 0.9741096 1.411516 0 0 0 1 0.940927 0 0.3386095 1.6235 0 1 0 1.987384 -0.3386095 0 0.940927 1.411516 0 0 0 1 0.8942372 0 0.4475933 1.6235 0 1 0 1.987384 -0.4475933 0 0.8942372 1.411516 0 0 0 1 0.8347457 0 0.5506357 1.6235 0 1 0 1.987384 -0.5506357 0 0.8347457 1.411516 0 0 0 1 0.7637079 0 0.6455619 1.6235 0 1 0 1.987384 -0.6455619 0 0.7637079 1.411516 0 0 0 1 0.6828425 0 0.7305656 1.6235 0 1 0 1.987384 -0.7305656 0 0.6828425 1.411516 0 0 0 1 0.5941991 0 0.804318 1.6235 0 1 0 1.987384 -0.804318 0 0.5941991 1.411516 0 0 0 1 0.4999999 0 0.8660255 1.6235 0 1 0 1.987384 -0.8660255 0 0.4999999 1.411516 0 0 0 1 0.4999999 0 0.8660255 1.6235 0 1 0 1.987384 -0.8660255 0 0.4999999 1.411516 0 0 0 1 1 0 0 1.6235 0 1 0 1.987384 0 0 1 1.411516 0 0 0 1 1 0 0 1.6235 0 1 0 1.987384 0 0 1 1.411516 0 0 0 1</float_array>
+        <float_array id="ballista_arm_left_pose_matrix-output-array" count="304">1 0 0 1.6235 0 1 0 1.987384 0 0 1 1.411516 0 0 0 1 0.9984348 0 0.05592834 1.6235 0 1 0 1.987384 -0.05592834 0 0.9984349 1.411516 0 0 0 1 0.9936594 0 0.1124325 1.6235 0 1 0 1.987384 -0.1124325 0 0.9936594 1.411516 0 0 0 1 0.9802675 0 0.1976755 1.6235 0 1 0 1.987384 -0.1976755 0 0.9802675 1.411516 0 0 0 1 0.9670969 0 0.2544082 1.6235 0 1 0 1.987384 -0.2544082 0 0.9670969 1.411516 0 0 0 1 0.9505037 0 0.3107132 1.6235 0 1 0 1.987384 -0.3107132 0 0.9505037 1.411516 0 0 0 1 0.91924 0 0.3936977 1.6235 0 1 0 1.987384 -0.3936977 0 0.91924 1.411516 0 0 0 1 0.9071473 0 0.4208132 1.6235 0 1 0 1.987384 -0.4208132 0 0.9071473 1.411516 0 0 0 1 0.8507589 0 0.5255562 1.6235 0 1 0 1.987384 -0.5255562 0 0.8507589 1.411516 0 0 0 1 0.7824627 0 0.6226976 1.6235 0 1 0 1.987384 -0.6226976 0 0.7824627 1.411516 0 0 0 1 0.763708 0 0.6455618 1.6235 0 1 0 1.987384 -0.6455618 0 0.763708 1.411516 0 0 0 1 0.7038724 0 0.7103265 1.6235 0 1 0 1.987384 -0.7103265 0 0.7038724 1.411516 0 0 0 1 0.6613258 0 0.7500988 1.6235 0 1 0 1.987384 -0.7500988 0 0.6613258 1.411516 0 0 0 1 0.6169692 0 0.7869873 1.6235 0 1 0 1.987384 -0.7869873 0 0.6169692 1.411516 0 0 0 1 0.5 0 0.8660255 1.6235 0 1 0 1.987384 -0.8660255 0 0.5 1.411516 0 0 0 1 0.5 0 0.8660255 1.6235 0 1 0 1.987384 -0.8660255 0 0.5 1.411516 0 0 0 1 0.5 0 0.8660255 1.6235 0 1 0 1.987384 -0.8660255 0 0.5 1.411516 0 0 0 1 1 0 0 1.6235 0 1 0 1.987384 0 0 1 1.411516 0 0 0 1 1 0 0 1.6235 0 1 0 1.987384 0 0 1 1.411516 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#ballista_arm_left_pose_matrix-output-array" count="14" stride="16">
+          <accessor source="#ballista_arm_left_pose_matrix-output-array" count="19" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="ballista_arm_left_pose_matrix-interpolation">
-        <Name_array id="ballista_arm_left_pose_matrix-interpolation-array" count="14">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="ballista_arm_left_pose_matrix-interpolation-array" count="19">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#ballista_arm_left_pose_matrix-interpolation-array" count="14" stride="1">
+          <accessor source="#ballista_arm_left_pose_matrix-interpolation-array" count="19" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -194,25 +226,25 @@
     </animation>
     <animation id="ballista_arm_right_pose_matrix">
       <source id="ballista_arm_right_pose_matrix-input">
-        <float_array id="ballista_arm_right_pose_matrix-input-array" count="14">0.04166662 0.08333331 0.125 0.2083333 0.2916666 0.375 0.4583333 0.5416667 0.625 0.7083333 0.7916667 0.9583333 1 1.25</float_array>
+        <float_array id="ballista_arm_right_pose_matrix-input-array" count="19">0.04166662 0.125 0.2083333 0.3333333 0.4166666 0.5 0.625 0.6666667 0.8333333 1 1.041667 1.166667 1.25 1.333333 1.541667 1.666667 1.875 1.916667 2.5</float_array>
         <technique_common>
-          <accessor source="#ballista_arm_right_pose_matrix-input-array" count="14" stride="1">
+          <accessor source="#ballista_arm_right_pose_matrix-input-array" count="19" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="ballista_arm_right_pose_matrix-output">
-        <float_array id="ballista_arm_right_pose_matrix-output-array" count="224">1 0 0 -1.621046 0 1 0 1.987384 0 0 1 1.411516 0 0 0 1 0.9984348 0 -0.05592834 -1.621046 0 1 0 1.987384 0.05592834 0 0.9984349 1.411516 0 0 0 1 0.9936594 0 -0.1124325 -1.621046 0 1 0 1.987384 0.1124325 0 0.9936594 1.411516 0 0 0 1 0.9741096 0 -0.2260763 -1.621046 0 1 0 1.987384 0.2260763 0 0.9741096 1.411516 0 0 0 1 0.940927 0 -0.3386095 -1.621046 0 1 0 1.987384 0.3386095 0 0.940927 1.411516 0 0 0 1 0.8942372 0 -0.4475933 -1.621046 0 1 0 1.987384 0.4475933 0 0.8942372 1.411516 0 0 0 1 0.8347457 0 -0.5506357 -1.621046 0 1 0 1.987384 0.5506357 0 0.8347457 1.411516 0 0 0 1 0.7637079 0 -0.6455619 -1.621046 0 1 0 1.987384 0.6455619 0 0.7637079 1.411516 0 0 0 1 0.6828425 0 -0.7305656 -1.621046 0 1 0 1.987384 0.7305656 0 0.6828425 1.411516 0 0 0 1 0.5941991 0 -0.804318 -1.621046 0 1 0 1.987384 0.804318 0 0.5941991 1.411516 0 0 0 1 0.4999999 0 -0.8660255 -1.621046 0 1 0 1.987384 0.8660255 0 0.4999999 1.411516 0 0 0 1 0.4999999 0 -0.8660255 -1.621046 0 1 0 1.987384 0.8660255 0 0.4999999 1.411516 0 0 0 1 1 0 0 -1.621046 0 1 0 1.987384 0 0 1 1.411516 0 0 0 1 1 0 0 -1.621046 0 1 0 1.987384 0 0 1 1.411516 0 0 0 1</float_array>
+        <float_array id="ballista_arm_right_pose_matrix-output-array" count="304">1 0 0 -1.621046 0 1 0 1.987384 0 0 1 1.411516 0 0 0 1 0.9984348 0 -0.05592834 -1.621046 0 1 0 1.987384 0.05592834 0 0.9984349 1.411516 0 0 0 1 0.9936594 0 -0.1124325 -1.621046 0 1 0 1.987384 0.1124325 0 0.9936594 1.411516 0 0 0 1 0.9802675 0 -0.1976755 -1.621046 0 1 0 1.987384 0.1976755 0 0.9802675 1.411516 0 0 0 1 0.9670969 0 -0.2544082 -1.621046 0 1 0 1.987384 0.2544082 0 0.9670969 1.411516 0 0 0 1 0.9505037 0 -0.3107132 -1.621046 0 1 0 1.987384 0.3107132 0 0.9505037 1.411516 0 0 0 1 0.91924 0 -0.3936977 -1.621046 0 1 0 1.987384 0.3936977 0 0.91924 1.411516 0 0 0 1 0.9071473 0 -0.4208132 -1.621046 0 1 0 1.987384 0.4208132 0 0.9071473 1.411516 0 0 0 1 0.8507589 0 -0.5255562 -1.621046 0 1 0 1.987384 0.5255562 0 0.8507589 1.411516 0 0 0 1 0.7824627 0 -0.6226976 -1.621046 0 1 0 1.987384 0.6226976 0 0.7824627 1.411516 0 0 0 1 0.763708 0 -0.6455618 -1.621046 0 1 0 1.987384 0.6455618 0 0.763708 1.411516 0 0 0 1 0.7038724 0 -0.7103265 -1.621046 0 1 0 1.987384 0.7103265 0 0.7038724 1.411516 0 0 0 1 0.6613258 0 -0.7500988 -1.621046 0 1 0 1.987384 0.7500988 0 0.6613258 1.411516 0 0 0 1 0.6169692 0 -0.7869873 -1.621046 0 1 0 1.987384 0.7869873 0 0.6169692 1.411516 0 0 0 1 0.5 0 -0.8660255 -1.621046 0 1 0 1.987384 0.8660255 0 0.5 1.411516 0 0 0 1 0.5 0 -0.8660255 -1.621046 0 1 0 1.987384 0.8660255 0 0.5 1.411516 0 0 0 1 0.5 0 -0.8660255 -1.621046 0 1 0 1.987384 0.8660255 0 0.5 1.411516 0 0 0 1 1 0 0 -1.621046 0 1 0 1.987384 0 0 1 1.411516 0 0 0 1 1 0 0 -1.621046 0 1 0 1.987384 0 0 1 1.411516 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#ballista_arm_right_pose_matrix-output-array" count="14" stride="16">
+          <accessor source="#ballista_arm_right_pose_matrix-output-array" count="19" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="ballista_arm_right_pose_matrix-interpolation">
-        <Name_array id="ballista_arm_right_pose_matrix-interpolation-array" count="14">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="ballista_arm_right_pose_matrix-interpolation-array" count="19">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#ballista_arm_right_pose_matrix-interpolation-array" count="14" stride="1">
+          <accessor source="#ballista_arm_right_pose_matrix-interpolation-array" count="19" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -226,25 +258,25 @@
     </animation>
     <animation id="ballista_sling_left_pose_matrix">
       <source id="ballista_sling_left_pose_matrix-input">
-        <float_array id="ballista_sling_left_pose_matrix-input-array" count="14">0.04166662 0.08333331 0.125 0.2083333 0.2916666 0.375 0.4583333 0.5416667 0.625 0.7083333 0.7916667 0.9583333 1 1.25</float_array>
+        <float_array id="ballista_sling_left_pose_matrix-input-array" count="19">0.04166662 0.125 0.2083333 0.3333333 0.4166666 0.5 0.625 0.6666667 0.8333333 1 1.041667 1.166667 1.25 1.333333 1.541667 1.666667 1.875 1.916667 2.5</float_array>
         <technique_common>
-          <accessor source="#ballista_sling_left_pose_matrix-input-array" count="14" stride="1">
+          <accessor source="#ballista_sling_left_pose_matrix-input-array" count="19" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="ballista_sling_left_pose_matrix-output">
-        <float_array id="ballista_sling_left_pose_matrix-output-array" count="224">1 0 0 1.150439 0 1 0 1.987384 0 0 1 0.1742534 0 0 0 1 1 0 0 1.150439 0 1 0 1.987384 0 0 1 0.1742534 0 0 0 1 1 0 0 1.150439 0 1 0 1.976473 0 0 1 -0.08810842 0 0 0 1 1 0 0 1.150439 0 1 0 1.954652 0 0 1 -0.6128324 0 0 0 1 1 0 0 1.150439 0 1 0 1.93283 0 0 1 -1.137556 0 0 0 1 1 0 0 1.150439 0 1 0 1.911009 0 0 1 -1.66228 0 0 0 1 1 0 0 1.150439 0 1 0 1.889187 0 0 1 -2.187004 0 0 0 1 1 0 0 1.150439 0 1 0 1.867366 0 0 1 -2.711728 0 0 0 1 1 0 0 1.150439 0 1 0 1.845545 0 0 1 -3.236452 0 0 0 1 1 0 0 1.150439 0 1 0 1.823723 0 0 1 -3.761176 0 0 0 1 1 0 0 1.150439 0 1 0 1.801902 0 0 1 -4.2859 0 0 0 1 1 0 0 1.150439 0 1 0 1.801902 0 0 1 -4.2859 0 0 0 1 1 0 0 1.150439 0 1 0 1.987384 0 0 1 0.1742534 0 0 0 1 1 0 0 1.150439 0 1 0 1.987384 0 0 1 0.1742534 0 0 0 1</float_array>
+        <float_array id="ballista_sling_left_pose_matrix-output-array" count="304">1 0 0 1.150439 0 1 0 1.987384 0 0 1 0.1742534 0 0 0 1 1 0 0 1.150439 0 1 0 1.987384 0 0 1 0.1742534 0 0 0 1 1 0 0 1.150439 0 1 0 1.976473 0 0 1 -0.08810842 0 0 0 1 1 0 0 1.150439 0 1 0 1.960107 0 0 1 -0.4816517 0 0 0 1 1 0 0 1.150439 0 1 0 1.949196 0 0 1 -0.7440136 0 0 0 1 1 0 0 1.150439 0 1 0 1.938285 0 0 1 -1.006376 0 0 0 1 1 0 0 1.150439 0 1 0 1.921919 0 0 1 -1.399919 0 0 0 1 1 0 0 1.150439 0 1 0 1.916464 0 0 1 -1.5311 0 0 0 1 1 0 0 1.150439 0 1 0 1.894642 0 0 1 -2.055824 0 0 0 1 1 0 0 1.150439 0 1 0 1.872821 0 0 1 -2.580548 0 0 0 1 1 0 0 1.150439 0 1 0 1.867366 0 0 1 -2.711728 0 0 0 1 1 0 0 1.150439 0 1 0 1.851 0 0 1 -3.105271 0 0 0 1 1 0 0 1.150439 0 1 0 1.840089 0 0 1 -3.367633 0 0 0 1 1 0 0 1.150439 0 1 0 1.829179 0 0 1 -3.629995 0 0 0 1 1 0 0 1.150439 0 1 0 1.801902 0 0 1 -4.2859 0 0 0 1 1 0 0 1.150439 0 1 0 1.801902 0 0 1 -4.2859 0 0 0 1 1 0 0 1.150439 0 1 0 1.801902 0 0 1 -4.2859 0 0 0 1 1 0 0 1.150439 0 1 0 1.987384 0 0 1 0.1742534 0 0 0 1 1 0 0 1.150439 0 1 0 1.987384 0 0 1 0.1742534 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#ballista_sling_left_pose_matrix-output-array" count="14" stride="16">
+          <accessor source="#ballista_sling_left_pose_matrix-output-array" count="19" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="ballista_sling_left_pose_matrix-interpolation">
-        <Name_array id="ballista_sling_left_pose_matrix-interpolation-array" count="14">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="ballista_sling_left_pose_matrix-interpolation-array" count="19">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#ballista_sling_left_pose_matrix-interpolation-array" count="14" stride="1">
+          <accessor source="#ballista_sling_left_pose_matrix-interpolation-array" count="19" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -258,25 +290,25 @@
     </animation>
     <animation id="ballista_sling_pose_matrix">
       <source id="ballista_sling_pose_matrix-input">
-        <float_array id="ballista_sling_pose_matrix-input-array" count="14">0.04166662 0.08333331 0.125 0.2083333 0.2916666 0.375 0.4583333 0.5416667 0.625 0.7083333 0.7916667 0.9583333 1 1.25</float_array>
+        <float_array id="ballista_sling_pose_matrix-input-array" count="19">0.04166662 0.125 0.2083333 0.3333333 0.4166666 0.5 0.625 0.6666667 0.8333333 1 1.041667 1.166667 1.25 1.333333 1.541667 1.666667 1.875 1.916667 2.5</float_array>
         <technique_common>
-          <accessor source="#ballista_sling_pose_matrix-input-array" count="14" stride="1">
+          <accessor source="#ballista_sling_pose_matrix-input-array" count="19" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="ballista_sling_pose_matrix-output">
-        <float_array id="ballista_sling_pose_matrix-output-array" count="224">1 0 0 4.33507e-6 0 1 0 1.987384 0 0 1 0.1243169 0 0 0 1 1 0 0 4.34186e-6 0 1 0 1.989051 0 0 1 -0.149907 0 0 0 1 1 0 0 4.34133e-6 0 1 0 1.973625 0 0 1 -0.5103141 0 0 0 1 1 0 0 4.34028e-6 0 1 0 1.942771 0 0 1 -1.231129 0 0 0 1 1 0 0 4.33922e-6 0 1 0 1.911918 0 0 1 -1.951944 0 0 0 1 1 0 0 4.33816e-6 0 1 0 1.881064 0 0 1 -2.672758 0 0 0 1 1 0 0 4.33711e-6 0 1 0 1.850211 0 0 1 -3.393573 0 0 0 1 1 0 0 4.33605e-6 0 1 0 1.819357 0 0 1 -4.114388 0 0 0 1 1 0 0 4.335e-6 0 1 0 1.788504 0 0 1 -4.835202 0 0 0 1 1 0 0 4.33394e-6 0 1 0 1.75765 0 0 1 -5.556017 0 0 0 1 1 0 0 4.33288e-6 0 1 0 1.726797 0 0 1 -6.276831 0 0 0 1 1 0 0 4.33288e-6 0 1 0 1.726797 0 0 1 -6.276831 0 0 0 1 1 0 0 4.33507e-6 0 1 0 1.987384 0 0 1 0.1243169 0 0 0 1 1 0 0 4.33507e-6 0 1 0 1.987384 0 0 1 0.1243169 0 0 0 1</float_array>
+        <float_array id="ballista_sling_pose_matrix-output-array" count="304">1 0 0 4.33507e-6 0 1 0 1.987384 0 0 1 0.1243169 0 0 0 1 1 0 0 4.33507e-6 0 1 0 1.989051 0 0 1 -0.1499069 0 0 0 1 1 0 0 4.33507e-6 0 1 0 1.973625 0 0 1 -0.5103144 0 0 0 1 1 0 0 4.33507e-6 0 1 0 1.950485 0 0 1 -1.050925 0 0 0 1 1 0 0 4.33507e-6 0 1 0 1.935058 0 0 1 -1.411333 0 0 0 1 1 0 0 4.33507e-6 0 1 0 1.919631 0 0 1 -1.77174 0 0 0 1 1 0 0 4.33507e-6 0 1 0 1.896491 0 0 1 -2.312351 0 0 0 1 1 0 0 4.33507e-6 0 1 0 1.888778 0 0 1 -2.492554 0 0 0 1 1 0 0 4.33507e-6 0 1 0 1.857924 0 0 1 -3.213369 0 0 0 1 1 0 0 4.33507e-6 0 1 0 1.827071 0 0 1 -3.934184 0 0 0 1 1 0 0 4.33507e-6 0 1 0 1.819357 0 0 1 -4.114388 0 0 0 1 1 0 0 4.33507e-6 0 1 0 1.796217 0 0 1 -4.654998 0 0 0 1 1 0 0 4.33507e-6 0 1 0 1.78079 0 0 1 -5.015406 0 0 0 1 1 0 0 4.33507e-6 0 1 0 1.765364 0 0 1 -5.375813 0 0 0 1 1 0 0 4.33507e-6 0 1 0 1.726797 0 0 1 -6.276831 0 0 0 1 1 0 0 4.33507e-6 0 1 0 1.726797 0 0 1 -6.276831 0 0 0 1 1 0 0 4.33507e-6 0 1 0 1.726797 0 0 1 -6.276831 0 0 0 1 1 0 0 4.33507e-6 0 1 0 1.987384 0 0 1 0.1243169 0 0 0 1 1 0 0 4.33507e-6 0 1 0 1.987384 0 0 1 0.1243169 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#ballista_sling_pose_matrix-output-array" count="14" stride="16">
+          <accessor source="#ballista_sling_pose_matrix-output-array" count="19" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="ballista_sling_pose_matrix-interpolation">
-        <Name_array id="ballista_sling_pose_matrix-interpolation-array" count="14">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="ballista_sling_pose_matrix-interpolation-array" count="19">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#ballista_sling_pose_matrix-interpolation-array" count="14" stride="1">
+          <accessor source="#ballista_sling_pose_matrix-interpolation-array" count="19" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -290,25 +322,25 @@
     </animation>
     <animation id="ballista_sling_right_pose_matrix">
       <source id="ballista_sling_right_pose_matrix-input">
-        <float_array id="ballista_sling_right_pose_matrix-input-array" count="14">0.04166662 0.08333331 0.125 0.2083333 0.2916666 0.375 0.4583333 0.5416667 0.625 0.7083333 0.7916667 0.9583333 1 1.25</float_array>
+        <float_array id="ballista_sling_right_pose_matrix-input-array" count="19">0.04166662 0.125 0.2083333 0.3333333 0.4166666 0.5 0.625 0.6666667 0.8333333 1 1.041667 1.166667 1.25 1.333333 1.541667 1.666667 1.875 1.916667 2.5</float_array>
         <technique_common>
-          <accessor source="#ballista_sling_right_pose_matrix-input-array" count="14" stride="1">
+          <accessor source="#ballista_sling_right_pose_matrix-input-array" count="19" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="ballista_sling_right_pose_matrix-output">
-        <float_array id="ballista_sling_right_pose_matrix-output-array" count="224">1 0 0 -1.150638 0 1 0 1.987384 0 0 1 0.174515 0 0 0 1 1 0 0 -1.150638 0 1 0 1.987384 0 0 1 0.174515 0 0 0 1 1 0 0 -1.150638 0 1 0 1.976473 0 0 1 -0.08784681 0 0 0 1 1 0 0 -1.150638 0 1 0 1.954652 0 0 1 -0.6125708 0 0 0 1 1 0 0 -1.150638 0 1 0 1.93283 0 0 1 -1.137295 0 0 0 1 1 0 0 -1.150638 0 1 0 1.911009 0 0 1 -1.662019 0 0 0 1 1 0 0 -1.150638 0 1 0 1.889188 0 0 1 -2.186743 0 0 0 1 1 0 0 -1.150638 0 1 0 1.867366 0 0 1 -2.711467 0 0 0 1 1 0 0 -1.150638 0 1 0 1.845545 0 0 1 -3.236191 0 0 0 1 1 0 0 -1.150638 0 1 0 1.823723 0 0 1 -3.760915 0 0 0 1 1 0 0 -1.150638 0 1 0 1.801902 0 0 1 -4.285639 0 0 0 1 1 0 0 -1.150638 0 1 0 1.801902 0 0 1 -4.285639 0 0 0 1 1 0 0 -1.150638 0 1 0 1.987384 0 0 1 0.174515 0 0 0 1 1 0 0 -1.150638 0 1 0 1.987384 0 0 1 0.174515 0 0 0 1</float_array>
+        <float_array id="ballista_sling_right_pose_matrix-output-array" count="304">1 0 0 -1.150638 0 1 0 1.987384 0 0 1 0.174515 0 0 0 1 1 0 0 -1.150638 0 1 0 1.987384 0 0 1 0.174515 0 0 0 1 1 0 0 -1.150638 0 1 0 1.976473 0 0 1 -0.08784681 0 0 0 1 1 0 0 -1.150638 0 1 0 1.960107 0 0 1 -0.4813899 0 0 0 1 1 0 0 -1.150638 0 1 0 1.949196 0 0 1 -0.7437518 0 0 0 1 1 0 0 -1.150638 0 1 0 1.938285 0 0 1 -1.006114 0 0 0 1 1 0 0 -1.150638 0 1 0 1.921919 0 0 1 -1.399657 0 0 0 1 1 0 0 -1.150638 0 1 0 1.916464 0 0 1 -1.530838 0 0 0 1 1 0 0 -1.150638 0 1 0 1.894642 0 0 1 -2.055562 0 0 0 1 1 0 0 -1.150638 0 1 0 1.872821 0 0 1 -2.580286 0 0 0 1 1 0 0 -1.150638 0 1 0 1.867366 0 0 1 -2.711467 0 0 0 1 1 0 0 -1.150638 0 1 0 1.851 0 0 1 -3.10501 0 0 0 1 1 0 0 -1.150638 0 1 0 1.840089 0 0 1 -3.367372 0 0 0 1 1 0 0 -1.150638 0 1 0 1.829178 0 0 1 -3.629733 0 0 0 1 1 0 0 -1.150638 0 1 0 1.801902 0 0 1 -4.285639 0 0 0 1 1 0 0 -1.150638 0 1 0 1.801902 0 0 1 -4.285639 0 0 0 1 1 0 0 -1.150638 0 1 0 1.801902 0 0 1 -4.285639 0 0 0 1 1 0 0 -1.150638 0 1 0 1.987384 0 0 1 0.174515 0 0 0 1 1 0 0 -1.150638 0 1 0 1.987384 0 0 1 0.174515 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#ballista_sling_right_pose_matrix-output-array" count="14" stride="16">
+          <accessor source="#ballista_sling_right_pose_matrix-output-array" count="19" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="ballista_sling_right_pose_matrix-interpolation">
-        <Name_array id="ballista_sling_right_pose_matrix-interpolation-array" count="14">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="ballista_sling_right_pose_matrix-interpolation-array" count="19">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#ballista_sling_right_pose_matrix-interpolation-array" count="14" stride="1">
+          <accessor source="#ballista_sling_right_pose_matrix-interpolation-array" count="19" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -375,7 +407,7 @@
           <node id="weapon" name="weapon" sid="weapon" type="JOINT">
             <matrix sid="transform">1 0 0 0 0 0.8386706 0.5446391 5.222004 0 -0.5446391 0.8386706 0.02661769 0 0 0 1</matrix>
             <node id="lever" name="lever" sid="lever" type="JOINT">
-              <matrix sid="transform">1 0 0 -4.23177e-9 0 0.9999999 0 1.773935 0 -3.2463e-8 1 -8.695909 0 0 0 1</matrix>
+              <matrix sid="transform">0.9995288 0.02743234 -0.01377498 -4.23177e-9 -0.02742838 0.9996236 4.75969e-4 1.773935 0.01378286 -9.79519e-5 0.999905 -8.695909 0 0 0 1</matrix>
             </node>
             <node id="arm_left" name="arm_left" sid="arm_left" type="JOINT">
               <matrix sid="transform">1 0 0 1.6235 0 0.9999999 0 1.987384 0 -3.2463e-8 1 1.411516 0 0 0 1</matrix>
