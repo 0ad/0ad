@@ -14,8 +14,11 @@
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="105"/>
         <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="90"/>
         <animation file="biped/inf_sword_ready_b.dae" name="Idle" speed="95"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_off_03.psa" name="melee" speed="150"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="melee" speed="150"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="melee" speed="140"/>
         <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="melee" speed="150"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="melee" speed="145"/>
+        <animation event="0.5" file="biped/not used/inf_2sword_attack_e.psa" name="melee" speed="100"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Walk" speed="44"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="25"/>
         <animation file="infantry/sword/move/run/isw_s_def_02.psa" name="Run" speed="30"/>
