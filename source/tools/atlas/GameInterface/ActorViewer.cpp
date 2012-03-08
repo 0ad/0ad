@@ -490,6 +490,7 @@ void ActorViewer::Render()
 	g_Renderer.RenderScene(m);
 
 	glDisable(GL_DEPTH_TEST);
+	g_Logger->Render();
 	g_ProfileViewer.RenderProfile();
 	glEnable(GL_DEPTH_TEST);
 
