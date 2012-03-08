@@ -49,7 +49,7 @@ Identity.prototype.Schema =
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
-		"<element name='Classes' a:help='Optional list of space-separated classes applying to this entity. Choices include: Unit, Infantry, Melee, Cavalry, Ranged, Mechanical, Ship, Siege, Champion, Hero, Elephant, Chariot, Mercenary, Spear, Sword, Bow, Javelin, Sling, Support, Animal, Organic, Structure, Civic, CivCentre, Economic, Defensive, Gates, Wall, BarterMarket, Village, Town, City, ConquestCritical, Worker, Female, Healer, Slave, CitizenSoldier, Trade, Warship, SeaCreature, ForestPlant, DropsiteFood, DropsiteWood, DropsiteStone, DropsiteMetal'>" +
+		"<element name='Classes' a:help='Optional list of space-separated classes applying to this entity. Choices include: Unit, Infantry, Melee, Cavalry, Ranged, Mechanical, Ship, Siege, Champion, Hero, Elephant, Chariot, Mercenary, Spear, Sword, Bow, Javelin, Sling, Support, Animal, Organic, Structure, Civic, CivCentre, Economic, Defensive, Gates, Wall, BarterMarket, Village, Town, City, ConquestCritical, Worker, Female, Healer, Slave, CitizenSoldier, Trade, Market, NavalMarket, Warship, SeaCreature, ForestPlant, DropsiteFood, DropsiteWood, DropsiteStone, DropsiteMetal'>" +
 			"<attribute name='datatype'>" +
 				"<value>tokens</value>" +
 			"</attribute>" +

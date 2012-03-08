@@ -135,6 +135,14 @@ function displaySingle(entState, template)
 	//		getGUIObjectByName("resourceCarryingText").hidden = true;
 	//	}
 	}
+	// Use the same indicators for traders
+	else if (entState.trader && entState.trader.goods.amount > 0)
+	{
+		getGUIObjectByName("resourceCarryingIcon").hidden = false;
+		getGUIObjectByName("resourceCarryingText").hidden = false;
+		getGUIObjectByName("resourceCarryingIcon").cell_id = RESOURCE_ICON_CELL_IDS[entState.trader.goods.type];
+		getGUIObjectByName("resourceCarryingText").caption = entState.trader.goods.amount;
+	}
 	else
 	{
 		getGUIObjectByName("resourceCarryingIcon").hidden = true;

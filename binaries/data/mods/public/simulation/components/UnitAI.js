@@ -341,7 +341,15 @@ var UnitFsmSpec = {
 			return;
 		}
 	},
-	
+
+	"Order.Trade": function(msg) {
+		if (this.MoveToMarket(this.order.data.firstMarket))
+		{
+			// We've started walking to the first market
+			this.SetNextState("INDIVIDUAL.TRADE.APPROACHINGFIRSTMARKET");
+		}
+	},
+
 	"Order.Repair": function(msg) {
 		// Try to move within range
 		if (this.MoveToTargetRange(this.order.data.target, IID_Builder))
@@ -1058,6 +1066,34 @@ var UnitFsmSpec = {
 
 					// Oh no, couldn't find any drop sites. Give up on returning.
 					this.FinishOrder();
+				},
+			},
+		},
+
+		"TRADE": {
+			"Attacked": function(msg) {
+				// Ignore attack
+				// TODO: Inform player
+			},
+
+			"APPROACHINGFIRSTMARKET": {
+				"enter": function () {
+					this.SelectAnimation("move");
+				},
+
+				"MoveCompleted": function() {
+					this.PerformTradeAndMoveToNextMarket(this.order.data.firstMarket, this.order.data.secondMarket, "INDIVIDUAL.TRADE.APPROACHINGSECONDMARKET");
+				},
+			},
+
+			"APPROACHINGSECONDMARKET": {
+				"enter": function () {
+					this.SelectAnimation("move");
+				},
+
+				"MoveCompleted": function() {
+					this.order.data.firstPass = false;
+					this.PerformTradeAndMoveToNextMarket(this.order.data.secondMarket, this.order.data.firstMarket, "INDIVIDUAL.TRADE.APPROACHINGFIRSTMARKET");
 				},
 			},
 		},
@@ -2369,6 +2405,79 @@ UnitAI.prototype.ReturnResource = function(target, queued)
 	this.AddOrder("ReturnResource", { "target": target }, queued);
 };
 
+UnitAI.prototype.SetupTradeRoute = function(target, queued)
+{
+	if (!this.CanTrade(target))
+	{
+		this.WalkToTarget(target, queued);
+		return;
+	}
+
+	var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
+	var marketsChanged = cmpTrader.SetTargetMarket(target);
+	if (marketsChanged)
+	{
+		if (cmpTrader.HasBothMarkets())
+			this.AddOrder("Trade", { "firstMarket": cmpTrader.GetFirstMarket(), "secondMarket": cmpTrader.GetSecondMarket() }, queued);
+		else
+			this.WalkToTarget(cmpTrader.GetFirstMarket(), queued);
+	}
+}
+
+UnitAI.prototype.MoveToMarket = function(targetMarket)
+{
+	if (this.MoveToTarget(targetMarket))
+	{
+		// We've started walking to the market
+		return true;
+	}
+	else
+	{
+		// We can't reach the market.
+		// Give up.
+		this.StopMoving();
+		this.StopTrading();
+		return false;
+	}
+}
+
+UnitAI.prototype.PerformTradeAndMoveToNextMarket = function(currentMarket, nextMarket, nextFsmStateName)
+{
+	if (!this.CanTrade(currentMarket))
+	{
+		this.StopTrading();
+		return;
+	}
+
+	if (this.CheckTargetRange(currentMarket, IID_Trader))
+	{
+		this.PerformTrade();
+		if (this.MoveToMarket(nextMarket))
+		{
+			// We've started walking to the next market
+			this.SetNextState(nextFsmStateName);
+		}
+	}
+	else
+	{
+		// If the current market is not reached try again
+		this.MoveToMarket(currentMarket);
+	}
+}
+
+UnitAI.prototype.PerformTrade = function()
+{
+	var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
+	cmpTrader.PerformTrade();
+}
+
+UnitAI.prototype.StopTrading = function()
+{
+	this.FinishOrder();
+	var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
+	cmpTrader.StopTrading();
+}
+
 UnitAI.prototype.Repair = function(target, autocontinue, queued)
 {
 	if (!this.CanRepair(target))
@@ -2587,6 +2696,21 @@ UnitAI.prototype.CanReturnResource = function(target, checkCarriedResource)
 
 	return true;
 };
+
+UnitAI.prototype.CanTrade = function(target)
+{
+	// Formation controllers should always respond to commands
+	// (then the individual units can make up their own minds)
+	if (this.IsFormationController())
+		return true;
+
+	// Verify that we're able to respond to Trade commands
+	var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
+	if (!cmpTrader || !cmpTrader.CanTrade(target))
+		return false;
+
+	return true;
+}
 
 UnitAI.prototype.CanRepair = function(target)
 {

@@ -404,6 +404,21 @@ function ProcessCommand(player, cmd)
 		}
 		break;
 
+	case "setup-trade-route":
+		for each (var ent in cmd.entities)
+		{
+			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+			if (cmpUnitAI)
+				cmpUnitAI.SetupTradeRoute(cmd.target);
+		}
+		break;
+
+	case "select-trading-goods":
+		var cmpTrader = Engine.QueryInterface(cmd.trader, IID_Trader);
+		if (cmpTrader)
+			cmpTrader.SetPreferredGoods(cmd.preferredGoods);
+		break;
+
 	case "barter":
 		var cmpBarter = Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter);
 		cmpBarter.ExchangeResources(playerEnt, cmd.sell, cmd.buy, cmd.amount);

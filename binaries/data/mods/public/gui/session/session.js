@@ -185,7 +185,7 @@ function onTick()
 		handleNetMessage(message);
 	}
 
-	updateCursor();
+	updateCursorAndTooltip();
 
 	// If the selection changed, we need to regenerate the sim display
 	if (g_Selection.dirty)
