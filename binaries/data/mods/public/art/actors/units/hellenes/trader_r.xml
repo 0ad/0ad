@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations>
-        <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="200"/>
-        <animation file="biped/dudewalk_swordshield.psa" name="Walk" speed="75"/>
-        <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="70"/>
-        <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
+        <animation file="biped/inf_pack_idle.dae" name="Idle" speed="200"/>
+        <animation file="biped/inf_pack_walk.dae" name="Walk" speed="20"/>
+        <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
       </animations>
       <mesh>skeletal/m_dress_a.pmd</mesh>
       <props>
@@ -19,7 +16,5 @@
       <texture>skeletal/hele_trd.dds</texture>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>
