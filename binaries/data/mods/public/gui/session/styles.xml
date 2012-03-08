@@ -161,6 +161,16 @@
 		tooltip_style="snToolTip"
 	/>
 
+	<style name="informationTooltip"
+		anchor="top"
+		buffer_zone="4"
+		font="serif-bold-14"
+		maxwidth="300"
+		offset="16 32"
+		sprite="BackgroundInformationTooltip"
+		textcolor="255 255 255"
+	/>
+
 	<!-- ================================  ================================ -->
 	<!-- Misc Styles -->
 	<!-- ================================  ================================ -->

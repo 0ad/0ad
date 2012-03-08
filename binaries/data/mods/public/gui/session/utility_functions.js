@@ -83,6 +83,17 @@ function updatePlayerDataRemove(players, hostGuid)
 			player.offline = true;
 }
 
+function hasClass(entState, className)
+{
+	if (entState.identity)
+	{
+		var classes = entState.identity.classes;
+		if (classes && classes.length)
+			return (classes.indexOf(className) != -1);
+	}
+	return false;
+}
+
 function isUnit(entState)
 {
 	if (entState.identity)

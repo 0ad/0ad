@@ -458,6 +458,11 @@
 		</object>
 
 		<!-- ================================  ================================ -->
+		<!-- Information tooltip -->
+		<!-- ================================  ================================ -->
+		<object name="informationTooltip" type="tooltip" independent="true" style="informationTooltip"/>
+
+		<!-- ================================  ================================ -->
 		<!-- START of BOTTOM PANEL -->
 		<!-- ================================  ================================ -->
 
@@ -596,7 +601,6 @@
 						<!-- Resource carrying icon/counter -->
 						<object size="0 40 48 88" type="image" name="resourceCarryingIcon" style="resourceIcon"/>
 						<object size="0 80 48 100" type="text" name="resourceCarryingText" style="statsText"/>
-
 					</object>
 
 					<!-- Big unit icon -->
@@ -746,6 +750,18 @@
 						<repeat count="24">
 							<object name="unitTrainingButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
 								<object name="unitTrainingIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
+							</object>
+						</repeat>
+					</object>
+				</object>
+
+				<object name="unitTradingPanel"
+					size="14 12 100% 100%"
+				>
+					<object size="0 0 100% 100%">
+						<repeat count="4">
+							<object name="unitTradingButton[n]" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
+								<object name="unitTradingIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
 							</object>
 						</repeat>
 					</object>

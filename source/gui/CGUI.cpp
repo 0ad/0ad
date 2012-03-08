@@ -443,6 +443,7 @@ void CGUI::Initialize()
 	AddObjectType("input",			&CInput::ConstructObject);
 	AddObjectType("list",			&CList::ConstructObject);
 	AddObjectType("dropdown",		&CDropDown::ConstructObject);
+	AddObjectType("tooltip",		&CTooltip::ConstructObject);
 }
 
 void CGUI::Draw()

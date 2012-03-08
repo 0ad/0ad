@@ -185,6 +185,15 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		};
 	}
 
+	var cmpTrader = Engine.QueryInterface(ent, IID_Trader);
+	if (cmpTrader)
+	{
+		ret.trader = {
+			"goods": cmpTrader.GetGoods(),
+			"preferredGoods": cmpTrader.GetPreferredGoods()
+		};
+	}
+
 	var cmpFoundation = Engine.QueryInterface(ent, IID_Foundation);
 	if (cmpFoundation)
 	{
@@ -680,6 +689,52 @@ GuiInterface.prototype.FindIdleUnit = function(player, data)
 	return 0;
 };
 
+GuiInterface.prototype.GetTradingDetails = function(player, data)
+{
+	var cmpEntityTrader = Engine.QueryInterface(data.trader, IID_Trader);
+	if (!cmpEntityTrader || !cmpEntityTrader.CanTrade(data.target))
+		return null;
+	var firstMarket = cmpEntityTrader.GetFirstMarket();
+	var secondMarket = cmpEntityTrader.GetSecondMarket();
+	var result = null;
+	if (data.target === firstMarket)
+	{
+		result = {
+			"type": "is first",
+			"goods": cmpEntityTrader.GetPreferredGoods(),
+			"hasBothMarkets": cmpEntityTrader.HasBothMarkets()
+		};
+		if (cmpEntityTrader.HasBothMarkets())
+			result.gain = cmpEntityTrader.GetGain();
+	}
+	else if (data.target === secondMarket)
+	{
+		result = {
+			"type": "is second",
+			"gain": cmpEntityTrader.GetGain(),
+			"goods": cmpEntityTrader.GetPreferredGoods()
+		};
+	}
+	else if (firstMarket)
+	{
+		result = {"type": "set first"};
+	}
+	else if (secondMarket)
+	{
+		result = {
+			"type": "set second",
+			"gain": cmpEntityTrader.CalculateGain(firstMarket, data.target),
+			"goods": cmpEntityTrader.GetPreferredGoods()
+		};
+	}
+	else
+	{
+		// Else both markets are not null and target is different from them
+		result = {"type": "set first"};
+	}
+	return result;
+};
+
 GuiInterface.prototype.SetPathfinderDebugOverlay = function(player, enabled)
 {
 	var cmpPathfinder = Engine.QueryInterface(SYSTEM_ENTITY, IID_Pathfinder);
@@ -738,6 +793,7 @@ var exposedFunctions = {
 	"GetFoundationSnapData": 1,
 	"PlaySound": 1,
 	"FindIdleUnit": 1,
+	"GetTradingDetails": 1,
 
 	"SetPathfinderDebugOverlay": 1,
 	"SetObstructionDebugOverlay": 1,

@@ -52,8 +52,11 @@ const doublePressTime = 500;
 var doublePressTimer = 0;
 var prevHotkey = 0;
 
-function updateCursor()
+function updateCursorAndTooltip()
 {
+	var cursorSet = false;
+	var tooltipSet = false;
+	var informationTooltip = getGUIObjectByName("informationTooltip");
 	if (!mouseIsOverObject)
 	{
 		var action = determineAction(mouseX, mouseY);
@@ -64,13 +67,22 @@ function updateCursor()
 				if (action.cursor)
 				{
 					Engine.SetCursor(action.cursor);
-					return;
+					cursorSet = true;
+				}
+				if (action.tooltip)
+				{
+					tooltipSet = true;
+					informationTooltip.caption = action.tooltip;
+					informationTooltip.hidden = false;
 				}
 			}
 		}
 	}
 
-	Engine.SetCursor("arrow-default");
+	if (!cursorSet)
+		Engine.SetCursor("arrow-default");
+	if (!tooltipSet)
+		informationTooltip.hidden = true;
 }
 
 function updateBuildingPlacementPreview()
@@ -255,6 +267,36 @@ function getActionInfo(action, target)
 				}
 			}
 			break;
+		case "setup-trade-route":
+			// If ground or sea trade possible
+			if ((entState.trader && hasClass(entState, "Organic") && (playerOwned || allyOwned) && hasClass(targetState, "Market")) ||
+				(entState.trader && hasClass(entState, "Ship") && (playerOwned || allyOwned) && hasClass(targetState, "NavalMarket")))
+			{
+				var tradingData = {"trader": entState.id, "target": target};
+				var tradingDetails = Engine.GuiInterfaceCall("GetTradingDetails", tradingData);
+				var tooltip;
+				switch (tradingDetails.type)
+				{
+				case "is first":
+					tooltip = "First trade market.";
+					if (tradingDetails.hasBothMarkets)
+						tooltip += " Gain: " + tradingDetails.gain + " " + tradingDetails.goods + ". Click to establish another route."
+					else
+						tooltip += " Click on another market to establish a trade route."
+					break;
+				case "is second":
+					tooltip = "Second trade market. Gain: " + tradingDetails.gain + " " + tradingDetails.goods + "." + " Click to establish another route.";
+					break;
+				case "set first":
+					tooltip = "Set as first trade market";
+					break;
+				case "set second":
+					tooltip = "Set as second trade market. Gain: " + tradingDetails.gain + " " + tradingDetails.goods + ".";
+					break;
+				}
+				return {"possible": true, "tooltip": tooltip};
+			}
+			break;
 		case "gather":
 			if (targetState.resourceSupply && (playerOwned || gaiaOwned))
 			{
@@ -278,6 +320,7 @@ function getActionInfo(action, target)
 		case "attack":
 			if (entState.attack && targetState.hitpoints && enemyOwned)
 				return {"possible": true};
+			break;
 		}
 	}
 	if (action == "move")
@@ -362,7 +405,9 @@ function determineAction(x, y, fromMinimap)
 	else
 	{
 		var actionInfo = undefined;
-		if ((actionInfo = getActionInfo("gather", target)).possible)
+		if ((actionInfo = getActionInfo("setup-trade-route", target)).possible)
+			return {"type": "setup-trade-route", "cursor": "action-setup-trade-route", "tooltip": actionInfo.tooltip, "target": target};
+		else if ((actionInfo = getActionInfo("gather", target)).possible)
 			return {"type": "gather", "cursor": actionInfo.cursor, "target": target};
 		else if ((actionInfo = getActionInfo("returnresource", target)).possible)
 			return {"type": "returnresource", "cursor": actionInfo.cursor, "target": target};
@@ -963,7 +1008,6 @@ function handleInputAfterGui(ev)
 				updateBuildingPlacementPreview();
 				break;
 			}
-
 			break;
 
 		}
@@ -1007,6 +1051,10 @@ function doAction(action, ev)
 	case "returnresource":
 		Engine.PostNetworkCommand({"type": "returnresource", "entities": selection, "target": action.target, "queued": queued});
 		Engine.GuiInterfaceCall("PlaySound", { "name": "order_gather", "entity": selection[0] });
+		return true;
+
+	case "setup-trade-route":
+		Engine.PostNetworkCommand({"type": "setup-trade-route", "entities": selection, "target": action.target});
 		return true;
 
 	case "garrison":
@@ -1101,12 +1149,17 @@ function startBuildingPlacement(buildEntType)
 	inputState = INPUT_BUILDING_PLACEMENT;
 }
 
+// Called by GUI when user changes preferred trading goods
+function selectTradingPreferredGoods(data)
+{
+	Engine.PostNetworkCommand({"type": "select-trading-goods", "trader": data.trader, "preferredGoods": data.preferredGoods});
+}
+
 // Called by GUI when user clicks exchange resources button
 function exchangeResources(command)
 {
 	Engine.PostNetworkCommand({"type": "barter", "sell": command.sell, "buy": command.buy, "amount": command.amount});
 }
-
 
 // Batch training:
 // When the user shift-clicks, we set these variables and switch to INPUT_BATCHTRAINING

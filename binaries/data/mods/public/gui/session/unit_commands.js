@@ -13,6 +13,9 @@ const COMMANDS_PANEL_WIDTH = 228;
 const UNIT_PANEL_BASE = -52; // QUEUE: The offset above the main panel (will often be negative)
 const UNIT_PANEL_HEIGHT = 44; // QUEUE: The height needed for a row of buttons
 
+// Trading constants
+const TRADING_RESOURCES = ["food", "wood", "stone", "metal"];
+
 // Barter constants
 const BARTER_RESOURCE_AMOUNT_TO_SELL = 100;
 const BARTER_BUNCH_MULTIPLIER = 5;
@@ -20,10 +23,10 @@ const BARTER_RESOURCES = ["food", "wood", "stone", "metal"];
 const BARTER_ACTIONS = ["Sell", "Buy"];
 
 // The number of currently visible buttons (used to optimise showing/hiding)
-var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Formation": 0, "Garrison": 0, "Barter": 0, "Training": 0, "Construction": 0, "Command": 0, "Stance": 0};
+var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Formation": 0, "Garrison": 0, "Training": 0, "Barter": 0, "Trading": 0, "Construction": 0, "Command": 0, "Stance": 0};
 
 // Unit panels are panels with row(s) of buttons
-var g_unitPanels = ["Selection", "Queue", "Formation", "Garrison", "Barter", "Training", "Construction", "Research", "Stance", "Command"];
+var g_unitPanels = ["Selection", "Queue", "Formation", "Garrison", "Training", "Barter", "Trading", "Construction", "Research", "Stance", "Command"];
 
 // Indexes of resources to sell and buy on barter panel
 var g_barterSell = 0;
@@ -132,6 +135,7 @@ function selectBarterResourceToSell(resourceIndex)
 function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 {
 	usedPanels[guiName] = 1;
+
 	var numberOfItems = items.length;
 	var selection = g_Selection.toList();
 	var garrisonGroups = new EntityGroups();
@@ -389,6 +393,25 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	g_unitPanelButtons[guiName] = numButtons;
 }
 
+// Sets up "unit trading panel" - special case for setupUnitPanel
+function setupUnitTradingPanel(unitEntState)
+{
+	for (var i = 0; i < TRADING_RESOURCES.length; i++)
+	{
+		var resource = TRADING_RESOURCES[i];
+		var button = getGUIObjectByName("unitTradingButton["+i+"]");
+		button.size = (i * 46) + " 0 " + ((i + 1) * 46) + " 46";
+		var selectTradingPreferredGoodsData = { "trader": unitEntState.id, "preferredGoods": resource };
+		button.onpress = (function(e){ return function() { selectTradingPreferredGoods(e); } })(selectTradingPreferredGoodsData);
+		button.enabled = true;
+		button.tooltip = "Set " + resource + " as trading goods";
+		var icon = getGUIObjectByName("unitTradingIcon["+i+"]");
+		var preferredGoods = unitEntState.trader.preferredGoods;
+		var imageNameSuffix = (resource == preferredGoods) ? "selected" : "inactive";
+		icon.sprite = "stretched:session/resources/" + resource + "_" + imageNameSuffix + ".png";
+	}
+}
+
 // Sets up "unit barter panel" - special case for setupUnitPanel
 function setupUnitBarterPanel(unitEntState)
 {
@@ -527,6 +550,12 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		if (entState.training && entState.training.queue.length)
 			setupUnitPanel("Queue", usedPanels, entState, entState.training.queue,
 				function (item) { removeFromTrainingQueue(entState.id, item.id); } );
+
+		if (entState.trader)
+		{
+			usedPanels["Trading"] = 1;
+			setupUnitTradingPanel(entState);
+		}
 
 //		supplementalDetailsPanel.hidden = false;
 //		commandsPanel.hidden = isInvisible;
