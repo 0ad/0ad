@@ -44,7 +44,7 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simu
 		entity_id_t ent = it->first;
 
 		// Check if this entity is only selectable in Atlas
-		if (static_cast<ICmpSelectable*>(it->second)->IsEditorOnly() && !allowEditorSelectables)
+		if (!allowEditorSelectables && static_cast<ICmpSelectable*>(it->second)->IsEditorOnly())
 			continue;
 
 		// Ignore entities hidden by LOS (or otherwise hidden, e.g. when not IsInWorld)
