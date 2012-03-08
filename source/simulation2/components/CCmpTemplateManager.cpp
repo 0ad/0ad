@@ -204,7 +204,13 @@ const CParamNode* CCmpTemplateManager::GetTemplate(std::string templateName)
 	{
 		// Compute validity, if it's not computed before
 		if (m_TemplateSchemaValidity.find(templateName) == m_TemplateSchemaValidity.end())
+		{
 			m_TemplateSchemaValidity[templateName] = m_Validator.Validate(wstring_from_utf8(templateName), m_TemplateFileData[templateName].ToXML());
+
+			// Show error on the first failure to validate the template
+			if (!m_TemplateSchemaValidity[templateName])
+				LOGERROR(L"Failed to validate entity template '%hs'", templateName.c_str());
+		}
 		// Refuse to return invalid templates
 		if (!m_TemplateSchemaValidity[templateName])
 			return NULL;
