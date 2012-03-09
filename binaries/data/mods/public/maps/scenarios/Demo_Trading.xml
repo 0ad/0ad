@@ -18,13 +18,13 @@
 				<Waviness>8</Waviness>
 				<Murkiness>0.548828</Murkiness>
 				<Tint r="0" g="1" b="1"/>
-				<ReflectionTint r="0.396078" g="0.47451" b="0.654902"/>
+				<ReflectionTint r="0.392157" g="0.47451" b="0.654902"/>
 				<ReflectionTintStrength>0.186523</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="657.195" y="161.903" z="-22.5399"/>
+		<Position x="627.145" y="163.377" z="-137.668"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -181,7 +181,7 @@
 		</Entity>
 		<Entity uid="32">
 			<Template>structures/pers_dock</Template>
-			<Player>1</Player>
+			<Player>2</Player>
 			<Position x="889.62293" z="494.06116"/>
 			<Orientation y="2.09946"/>
 		</Entity>
@@ -190,6 +190,12 @@
 			<Player>1</Player>
 			<Position x="706.63154" z="157.96402"/>
 			<Orientation y="2.97275"/>
+		</Entity>
+		<Entity uid="34">
+			<Template>structures/rome_dock</Template>
+			<Player>1</Player>
+			<Position x="907.58985" z="530.24756"/>
+			<Orientation y="1.6155"/>
 		</Entity>
 	</Entities>
 	<Paths/>
