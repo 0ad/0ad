@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="5">
+	<Environment>
+		<LightingModel>standard</LightingModel>
+		<SkySet>default</SkySet>
+		<SunColour r="0.74902" g="0.74902" b="0.74902"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785396"/>
+		<TerrainAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="346.836" y="145.416" z="159.281"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "CircularMap": true,
+  "Description": "A demonstration of the new trading feature.",
+  "GameType": "endless",
+  "Keywords": [
+    "demo"
+  ],
+  "LockTeams": true,
+  "Name": "Trading Demo",
+  "PlayerData": [
+    {
+      "AI": "",
+      "Civ": "rome",
+      "Colour": {
+        "b": 200,
+        "g": 46,
+        "r": 46
+      },
+      "Name": "Player 1",
+      "Team": 0
+    },
+    {
+      "AI": "qbot",
+      "Civ": "pers",
+      "Colour": {
+        "b": 20,
+        "g": 20,
+        "r": 150
+      },
+      "Name": "Player 2",
+      "Team": 0
+    },
+    {
+      "AI": "qbot",
+      "Civ": "cart",
+      "Colour": {
+        "b": 0,
+        "g": 255,
+        "r": 255
+      },
+      "Name": "Player 3",
+      "Team": 0
+    }
+  ],
+  "RevealMap": true
+}
+]]></ScriptSettings>
+	<Entities>
+		<Entity uid="11">
+			<Template>structures/rome_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="298.7692" z="349.78394"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="12">
+			<Template>structures/rome_market</Template>
+			<Player>1</Player>
+			<Position x="332.58622" z="385.14295"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>structures/rome_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="614.87684" z="217.36403"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>structures/rome_market</Template>
+			<Player>1</Player>
+			<Position x="659.9773" z="247.14557"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>structures/pers_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="744.82508" z="537.00538"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>structures/pers_market</Template>
+			<Player>2</Player>
+			<Position x="775.5876" z="506.4651"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="17">
+			<Template>units/cart_support_trader</Template>
+			<Player>1</Player>
+			<Position x="660.29444" z="208.19225"/>
+			<Orientation y="0.8967"/>
+		</Entity>
+		<Entity uid="18">
+			<Template>units/rome_support_trader</Template>
+			<Player>1</Player>
+			<Position x="675.43714" z="220.56246"/>
+			<Orientation y="-1.69542"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>units/hele_support_trader</Template>
+			<Player>1</Player>
+			<Position x="654.88166" z="217.38692"/>
+			<Orientation y="0.91961"/>
+		</Entity>
+		<Entity uid="24">
+			<Template>structures/cart_civil_centre</Template>
+			<Player>3</Player>
+			<Position x="429.94532" z="663.73511"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="25">
+			<Template>structures/cart_market</Template>
+			<Player>3</Player>
+			<Position x="398.97446" z="629.10291"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>units/pers_support_trader</Template>
+			<Player>1</Player>
+			<Position x="339.16761" z="341.50831"/>
+			<Orientation y="1.10511"/>
+		</Entity>
+		<Entity uid="27">
+			<Template>units/pers_support_trader</Template>
+			<Player>1</Player>
+			<Position x="355.53483" z="361.31861"/>
+			<Orientation y="-2.13637"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+</Scenario>
