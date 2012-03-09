@@ -2,13 +2,20 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <mesh>skeletal/celt_trader.dae</mesh>
+    <variant frequency="100" name="Trader Cart">
+      <animations>
+        <animation file="mechanical/trader_cart_idle.dae" name="Idle" speed="100"/>
+        <animation file="mechanical/trader_cart_move.dae" name="Walk" speed="10"/>
+        <animation file="mechanical/trader_cart_move.dae" name="Run" speed="10"/>
+      </animations>
+      <mesh>skeletal/trader_cart.dae</mesh>
       <props>
+        <prop actor="units/romans/trader_h.xml" attachpoint="horse"/>
         <prop actor="units/hellenes/trader_r.xml" attachpoint="trader"/>
-        <prop actor="units/romans/trader_h.xml" attachpoint="donkey"/>
+        <prop actor="props/special/eyecandy/crate_a.xml" attachpoint="goodsa"/>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="goodsb"/>
       </props>
-      <texture>null_white.dds</texture>
+      <texture>structural/rome_ram.png</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>

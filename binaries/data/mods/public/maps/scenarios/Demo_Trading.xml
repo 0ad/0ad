@@ -3,7 +3,7 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>default</SkySet>
+		<SkySet>cumulus</SkySet>
 		<SunColour r="0.74902" g="0.74902" b="0.74902"/>
 		<SunElevation angle="0.785398"/>
 		<SunRotation angle="-0.785396"/>
@@ -13,18 +13,18 @@
 			<WaterBody>
 				<Type>default</Type>
 				<Colour r="0.294118" g="0.34902" b="0.694118"/>
-				<Height>5</Height>
+				<Height>15.6328</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.45</Murkiness>
-				<Tint r="0.27451" g="0.294118" b="0.584314"/>
-				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
-				<ReflectionTintStrength>0</ReflectionTintStrength>
+				<Murkiness>0.548828</Murkiness>
+				<Tint r="0" g="1" b="1"/>
+				<ReflectionTint r="0.396078" g="0.47451" b="0.654902"/>
+				<ReflectionTintStrength>0.186523</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="346.836" y="145.416" z="159.281"/>
+		<Position x="657.195" y="161.903" z="-22.5399"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -98,7 +98,7 @@
 		<Entity uid="14">
 			<Template>structures/rome_market</Template>
 			<Player>1</Player>
-			<Position x="659.9773" z="247.14557"/>
+			<Position x="556.0782" z="180.62423"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="15">
@@ -154,6 +154,42 @@
 			<Player>1</Player>
 			<Position x="355.53483" z="361.31861"/>
 			<Orientation y="-2.13637"/>
+		</Entity>
+		<Entity uid="28">
+			<Template>units/pers_support_trader</Template>
+			<Player>1</Player>
+			<Position x="669.6482" z="210.24886"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="29">
+			<Template>units/celt_support_trader</Template>
+			<Player>1</Player>
+			<Position x="649.05884" z="204.26146"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="30">
+			<Template>units/iber_support_trader</Template>
+			<Player>1</Player>
+			<Position x="651.19428" z="206.73446"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="31">
+			<Template>structures/rome_dock</Template>
+			<Player>1</Player>
+			<Position x="674.07496" z="159.3642"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="32">
+			<Template>structures/pers_dock</Template>
+			<Player>1</Player>
+			<Position x="889.62293" z="494.06116"/>
+			<Orientation y="2.09946"/>
+		</Entity>
+		<Entity uid="33">
+			<Template>units/rome_ship_merchant</Template>
+			<Player>1</Player>
+			<Position x="706.63154" z="157.96402"/>
+			<Orientation y="2.97275"/>
 		</Entity>
 	</Entities>
 	<Paths/>
