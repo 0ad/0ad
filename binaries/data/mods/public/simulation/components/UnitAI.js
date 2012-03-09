@@ -374,9 +374,7 @@ var UnitFsmSpec = {
 		}
 		else
 		{
-			// TODO: this is probably bogus if the unit was
-			// unable to move at all - we need to do some range checks
-			// before actually garrisoning
+			// We do a range check before actually garrisoning
 			this.StopMoving();
 			this.SetNextState("INDIVIDUAL.GARRISON.GARRISONED");
 		}
@@ -1232,18 +1230,36 @@ var UnitFsmSpec = {
 			"GARRISONED": {
 				"enter": function() {
 					var target = this.order.data.target;
-					// Check that we can still garrison here and that garrisoning succeeds
 					var cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
-					if (this.CanGarrison(target) && cmpGarrisonHolder.Garrison(this.entity))
+
+					// Check that we can garrison here
+					if (this.CanGarrison(target))
 					{
-						this.isGarrisoned = true;
+						// Check that we're in range of the garrison target
+						if (this.CheckGarrisonRange(target))
+						{
+							// Check that garrisoning succeeds
+							if (cmpGarrisonHolder.Garrison(this.entity))
+							{
+								this.isGarrisoned = true;
+								return;
+							}
+						}
+						else
+						{
+							// Unable to reach the target, try again
+							// (or follow if it's a moving target)
+							if (this.MoveToTarget(target))
+							{
+								this.SetNextState("APPROACHING");
+								return;
+							}
+						}
 					}
-					else
-					{
-						// Garrisoning failed for some reason, so finish the order
-						if (this.FinishOrder())
-							return;
-					}
+
+					// Garrisoning failed for some reason, so finish the order
+					this.FinishOrder();
+					return;
 				},
 				
 				"Order.Ungarrison": function() {
@@ -2008,6 +2024,15 @@ UnitAI.prototype.CheckTargetRange = function(target, iid, type)
 	return cmpUnitMotion.IsInTargetRange(target, range.min, range.max);
 };
 
+UnitAI.prototype.CheckGarrisonRange = function(target)
+{
+	var cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
+	var range = cmpGarrisonHolder.GetLoadingRange();
+
+	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion.IsInTargetRange(target, range.min, range.max);
+}
+
 /**
  * Returns true if the target entity is visible through the FoW/SoD.
  */
@@ -2516,7 +2541,9 @@ UnitAI.prototype.SwitchToStance = function(stance)
 	this.SetHeldPosition(pos.x, pos.z);
 
 	this.SetStance(stance);
-	if (stance == "stand" || stance == "defensive" || stance == "passive")
+	// Stop moving if switching to stand ground
+	// TODO: Also stop existing orders in a sensible way
+	if (stance == "stand")
 		this.StopMoving();
 
 	// Reset the range query, since the range depends on stance

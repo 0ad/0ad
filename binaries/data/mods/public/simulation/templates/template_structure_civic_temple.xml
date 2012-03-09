@@ -27,9 +27,10 @@
   </Footprint>
   <GarrisonHolder>
     <Max>15</Max>
-	<EjectHealth>0.1</EjectHealth>
-	<List datatype="tokens">Support Infantry Cavalry</List>
-	<BuffHeal>2</BuffHeal>
+    <EjectHealth>0.1</EjectHealth>
+    <List datatype="tokens">Support Infantry Cavalry</List>
+    <BuffHeal>2</BuffHeal>
+    <LoadingRange>2</LoadingRange>
   </GarrisonHolder>
   <Health>
     <Max>2000</Max>

@@ -1,20 +1,23 @@
 function GarrisonHolder() {}
 
 GarrisonHolder.prototype.Schema =
-	"<element name='Max'>" +
+	"<element name='Max' a:help='Maximum number of entities which can be garrisoned inside this holder'>" +
 		"<data type='positiveInteger'/>" +
 	"</element>" +
-	"<element name='List'>" +
+	"<element name='List' a:help='Classes of entities which are allowed to garrison inside this holder (from Identity)'>" +
 		"<attribute name='datatype'>" +
 			"<value>tokens</value>" +
 		"</attribute>" +
 		"<text/>" +
 	"</element>" +
-	"<element name='EjectHealth'>" +
+	"<element name='EjectHealth' a:help='Percentage of maximum health below which this holder no longer allows garrisoning'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" + 
-	"<element name='BuffHeal'>" +
+	"<element name='BuffHeal' a:help='Number of hit points that will be restored to this holder&apos;s garrisoned units each second'>" +
 		"<data type='positiveInteger'/>" +
+	"</element>" +
+	"<element name='LoadingRange' a:help='The maximum distance from this holder at which entities are allowed to garrison. Should be about 2.0 for land entities and preferably greater for ships'>" +
+		"<ref name='nonNegativeDecimal'/>" +
 	"</element>";
 
 /**
@@ -27,6 +30,15 @@ GarrisonHolder.prototype.Init = function()
 	this.spaceOccupied = 0;
 	this.timer = undefined;
 	this.healRate = +this.template.BuffHeal;
+};
+
+/**
+ * Return range at which entities can garrison here
+ */
+GarrisonHolder.prototype.GetLoadingRange = function()
+{
+	var max = +this.template.LoadingRange;
+	return { "max": max, "min": 0 };
 };
 
 /**
