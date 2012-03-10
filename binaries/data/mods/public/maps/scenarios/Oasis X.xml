@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="780.141" y="65.6354" z="607.551"/>
-		<Rotation angle="0.0140353"/>
-		<Declination angle="0.595426"/>
+		<Position x="312.548" y="98.2036" z="147.319"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -39,7 +39,7 @@
   "PlayerData": [
     {
       "AI": "",
-      "Civ": "iber",
+      "Civ": "rome",
       "Colour": {
         "b": 200,
         "g": 46,
@@ -56,7 +56,7 @@
     },
     {
       "AI": "qbot",
-      "Civ": "rome",
+      "Civ": "iber",
       "Colour": {
         "b": 20,
         "g": 20,
@@ -6182,44 +6182,44 @@
 		</Entity>
 		<Entity uid="1169">
 			<Template>structures/rome_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="795.27735" z="670.18683"/>
+			<Player>1</Player>
+			<Position x="298.69111" z="274.3816"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1170">
 			<Template>units/rome_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="803.79017" z="646.69654"/>
+			<Player>1</Player>
+			<Position x="307.20392" z="250.89133"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1171">
 			<Template>units/rome_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="806.3606" z="649.85248"/>
+			<Player>1</Player>
+			<Position x="309.77436" z="254.04719"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1172">
 			<Template>units/rome_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="809.18128" z="652.99476"/>
+			<Player>1</Player>
+			<Position x="312.59504" z="257.18952"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1173">
 			<Template>units/rome_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="811.47083" z="655.11774"/>
+			<Player>1</Player>
+			<Position x="314.88459" z="259.31244"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1174">
 			<Template>units/rome_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="814.10462" z="658.34064"/>
+			<Player>1</Player>
+			<Position x="317.51838" z="262.53541"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1186">
 			<Template>structures/rome_arch</Template>
-			<Player>2</Player>
-			<Position x="770.41327" z="636.86707"/>
+			<Player>1</Player>
+			<Position x="273.8271" z="241.0618"/>
 			<Orientation y="2.34218"/>
 		</Entity>
 		<Entity uid="1188">
@@ -7414,98 +7414,98 @@
 		</Entity>
 		<Entity uid="1450">
 			<Template>structures/iber_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="297.49555" z="265.86146"/>
+			<Player>2</Player>
+			<Position x="780.36561" z="671.37378"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1451">
 			<Template>units/iber_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="307.49817" z="244.91825"/>
+			<Player>2</Player>
+			<Position x="790.31977" z="650.41163"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1452">
 			<Template>units/iber_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="310.04194" z="248.0865"/>
+			<Player>2</Player>
+			<Position x="792.912" z="653.59882"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1453">
 			<Template>units/iber_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="312.07694" z="250.13102"/>
+			<Player>2</Player>
+			<Position x="794.94697" z="655.64332"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1454">
 			<Template>units/iber_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="313.98398" z="252.91074"/>
+			<Player>2</Player>
+			<Position x="796.85407" z="658.4231"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1455">
 			<Template>units/iber_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="316.57438" z="255.4148"/>
+			<Player>2</Player>
+			<Position x="799.4444" z="660.92713"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1456">
 			<Template>units/iber_champion_infantry</Template>
-			<Player>1</Player>
-			<Position x="311.44816" z="240.81135"/>
+			<Player>2</Player>
+			<Position x="794.31818" z="646.32367"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1457">
 			<Template>units/iber_champion_infantry</Template>
-			<Player>1</Player>
-			<Position x="314.0525" z="243.60897"/>
+			<Player>2</Player>
+			<Position x="796.92255" z="649.12134"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1458">
 			<Template>units/iber_champion_infantry</Template>
-			<Player>1</Player>
-			<Position x="316.25947" z="245.7142"/>
+			<Player>2</Player>
+			<Position x="799.16523" z="651.36915"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1459">
 			<Template>units/iber_champion_infantry</Template>
-			<Player>1</Player>
-			<Position x="318.56955" z="248.34401"/>
+			<Player>2</Player>
+			<Position x="801.43964" z="653.85633"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1460">
 			<Template>units/iber_champion_infantry</Template>
-			<Player>1</Player>
-			<Position x="320.88797" z="251.10253"/>
+			<Player>2</Player>
+			<Position x="803.758" z="656.61487"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1461">
 			<Template>units/rome_champion_infantry</Template>
-			<Player>2</Player>
-			<Position x="810.76624" z="640.48188"/>
+			<Player>1</Player>
+			<Position x="314.18" z="244.67658"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1462">
 			<Template>units/rome_champion_infantry</Template>
-			<Player>2</Player>
-			<Position x="814.15595" z="644.11231"/>
+			<Player>1</Player>
+			<Position x="317.56977" z="248.3071"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1463">
 			<Template>units/rome_champion_infantry</Template>
-			<Player>2</Player>
-			<Position x="816.45862" z="646.74183"/>
+			<Player>1</Player>
+			<Position x="319.87238" z="250.93662"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1464">
 			<Template>units/rome_champion_infantry</Template>
-			<Player>2</Player>
-			<Position x="819.23725" z="649.38654"/>
+			<Player>1</Player>
+			<Position x="322.65107" z="253.58127"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1465">
 			<Template>units/rome_champion_infantry</Template>
-			<Player>2</Player>
-			<Position x="822.69855" z="652.03657"/>
+			<Player>1</Player>
+			<Position x="326.11237" z="256.23127"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1466">
@@ -7582,14 +7582,14 @@
 		</Entity>
 		<Entity uid="1478">
 			<Template>structures/iber_sb1</Template>
-			<Player>1</Player>
-			<Position x="324.15125" z="237.99833"/>
+			<Player>2</Player>
+			<Position x="806.96662" z="643.45997"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1479">
 			<Template>other/pyramid_minor</Template>
 			<Player>0</Player>
-			<Position x="184.89167" z="347.98374"/>
+			<Position x="175.31911" z="364.01706"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1480">
