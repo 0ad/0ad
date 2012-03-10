@@ -2,7 +2,8 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>sunny</SkySet>
+		<LightingModel>old</LightingModel>
+		<SkySet>cumulus</SkySet>
 		<SunColour r="1.5" g="1.5" b="1.5"/>
 		<SunElevation angle="0.785398"/>
 		<SunRotation angle="-0.785396"/>
@@ -11,21 +12,21 @@
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>24.1311</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.45</Murkiness>
+				<Murkiness>0.661133</Murkiness>
 				<Tint r="0" g="0.6" b="0.666667"/>
-				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="913.108" y="123.094" z="687.519"/>
+		<Position x="865.389" y="120.158" z="237.963"/>
 		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
