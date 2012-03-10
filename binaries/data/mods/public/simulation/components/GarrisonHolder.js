@@ -14,7 +14,7 @@ GarrisonHolder.prototype.Schema =
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" + 
 	"<element name='BuffHeal' a:help='Number of hit points that will be restored to this holder&apos;s garrisoned units each second'>" +
-		"<data type='positiveInteger'/>" +
+		"<data type='nonNegativeInteger'/>" +
 	"</element>" +
 	"<element name='LoadingRange' a:help='The maximum distance from this holder at which entities are allowed to garrison. Should be about 2.0 for land entities and preferably greater for ships'>" +
 		"<ref name='nonNegativeDecimal'/>" +
@@ -123,7 +123,7 @@ GarrisonHolder.prototype.Garrison = function(entity)
 	if (this.GetCapacity() < this.spaceOccupied + 1)
 		return false;
 
-	if (!this.timer)
+	if (!this.timer && this.healRate > 0)
 	{
  		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		this.timer = cmpTimer.SetTimeout(this.entity, IID_GarrisonHolder, "HealTimeout", 1000, {});
@@ -298,8 +298,8 @@ GarrisonHolder.prototype.HasEnoughHealth = function()
 	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health)
 	var hitpoints = cmpHealth.GetHitpoints();
 	var maxHitpoints = cmpHealth.GetMaxHitpoints();
-	var ejectHitpoints = parseInt(parseFloat(this.template.EjectHealth) * maxHitpoints);
-	return hitpoints > ejectHitpoints; 
+	var ejectHitpoints = Math.floor((+this.template.EjectHealth) * maxHitpoints);
+	return hitpoints > ejectHitpoints;
 };
 
 /**
