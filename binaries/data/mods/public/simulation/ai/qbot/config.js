@@ -1,4 +1,4 @@
-var Config = {
+var baseConfig = {
 	"attack" : {
 		"minAttackSize" : 20, // attackMoveToLocation
 		"maxAttackSize" : 60, // attackMoveToLocation
@@ -27,7 +27,8 @@ var Config = {
 					"structures/{civ}_embassy_iberian", "structures/{civ}_embassy_italiote" ],
 			"celt" : [ "structures/{civ}_kennel", "structures/{civ}_fortress_b", "structures/{civ}_fortress_g" ],
 			"iber" : [ "structures/{civ}_fortress" ],
-			"pers" : [ "structures/{civ}_fortress", "structures/{civ}_stables", "structures/{civ}_apadana" ]
+			"pers" : [ "structures/{civ}_fortress", "structures/{civ}_stables", "structures/{civ}_apadana" ],
+			"rome" : [ "structures/{civ}_army_camp", "structures/{civ}_fortress" ]
 		},
 		"fort" : {
 			"default" : [ "structures/{civ}_fortress" ],
@@ -47,7 +48,9 @@ var Config = {
 			"iber" : [ "units/iber_infantry_spearman_b", "units/iber_infantry_slinger_b",
 					"units/iber_infantry_swordsman_b", "units/iber_infantry_javelinist_b" ],
 			"pers" : [ "units/pers_infantry_spearman_b", "units/pers_infantry_archer_b",
-					"units/pers_infantry_javelinist_b" ]
+					"units/pers_infantry_javelinist_b" ],
+			"rome" : [ "units/rome_infantry_swordsman_b", "units/rome_infantry_spearman_a", 
+			           "units/rome_infantry_javelinist_b" ]
 		},
 		"advanced" : {
 			"default" : [ "units/{civ}_cavalry_spearman_b", "units/{civ}_cavalry_javelinist_b",
@@ -62,18 +65,20 @@ var Config = {
 					"units/cart_infantry_javelinist_b", "units/cart_infantry_slinger_b",
 					"units/cart_cavalry_swordsman_b", "units/cart_infantry_swordsman_b",
 					"units/cart_cavalry_swordsman_2_b", "units/cart_sacred_band_cavalry" ],
-			"celt" : [ "units/celt_cavalry_javelinist_b", "units/celt_cavalry_swordsman_b",
+			"celt" : [ "units/celt_cavalry_javelinist_b", "units/celt_cavalry_swordsman_b", "celt_cavalry_spearman_b",
 					"units/celt_champion_cavalry_gaul", "units/celt_champion_infantry_gaul",
 					"units/celt_champion_cavalry_brit", "units/celt_champion_infantry_brit", "units/celt_fanatic" ],
 			"iber" : [ "units/iber_cavalry_spearman_b", "units/iber_champion_cavalry", "units/iber_champion_infantry" ],
 			"pers" : [ "units/pers_cavalry_javelinist_b", "units/pers_champion_infantry",
 					"units/pers_champion_cavalry", "units/pers_cavalry_spearman_b", "units/pers_cavalry_swordsman_b",
 					"units/pers_cavalry_javelinist_b", "units/pers_cavalry_archer_b", "units/pers_kardakes_hoplite",
-					"units/pers_kardakes_skirmisher", "units/pers_war_elephant" ]
+					"units/pers_kardakes_skirmisher", "units/pers_war_elephant" ],
+			"rome" : [ "units/rome_cavalry_spearman_b", "units/rome_champion_infantry", "units/rome_champion_cavalry" ]
 		},
 		"siege" : {
 			"default" : [ "units/{civ}_mechanical_siege_oxybeles", "units/{civ}_mechanical_siege_lithobolos",
-					"units/{civ}_mechanical_siege_ballista", "units/{civ}_mechanical_siege_ram" ]
+					"units/{civ}_mechanical_siege_ballista", "units/{civ}_mechanical_siege_ram", 
+					"units/{civ}_mechanical_siege_scorpio" ]
 		}
 	},
 
@@ -93,3 +98,9 @@ var Config = {
 	
 	"debug" : false
 };
+
+var Config = {
+		"debug": false
+};
+
+Config.__proto__ = baseConfig;
