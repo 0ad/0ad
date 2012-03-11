@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="627.145" y="163.377" z="-137.668"/>
+		<Position x="675.535" y="79.2005" z="819.33"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -196,6 +196,30 @@
 			<Player>1</Player>
 			<Position x="907.58985" z="530.24756"/>
 			<Orientation y="1.6155"/>
+		</Entity>
+		<Entity uid="35">
+			<Template>structures/cart_market</Template>
+			<Player>3</Player>
+			<Position x="661.1775" z="937.72828"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="36">
+			<Template>structures/rome_market</Template>
+			<Player>1</Player>
+			<Position x="712.4444" z="924.86213"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="37">
+			<Template>structures/rome_arch</Template>
+			<Player>1</Player>
+			<Position x="732.74286" z="941.79377"/>
+			<Orientation y="-2.40792"/>
+		</Entity>
+		<Entity uid="38">
+			<Template>structures/rome_arch</Template>
+			<Player>3</Player>
+			<Position x="675.77662" z="967.2721"/>
+			<Orientation y="2.28844"/>
 		</Entity>
 	</Entities>
 	<Paths/>
