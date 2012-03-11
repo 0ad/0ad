@@ -6,17 +6,17 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2012-02-19T01:04:43Z</created>
-    <modified>2012-02-19T01:04:43Z</modified>
+    <created>2012-03-10T01:04:31Z</created>
+    <modified>2012-03-10T01:04:31Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
     <keywords></keywords>
     <unit meter="0.025400"/>
-    <up_axis>Z_UP</up_axis>
+    <up_axis>Y_UP</up_axis>
   </asset>
   <library_images>
-    <image id="Map__301_image-image" name="Map__301_image">
+    <image id="Map__301_image_image-image" name="Map__301_image_image">
       <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\structural\hele_struct.dds</init_from>
     </image>
   </library_images>
@@ -37,7 +37,7 @@
               <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
             </ambient>
             <diffuse>
-              <texture texture="Map__301_image-image" texcoord="CHANNEL0">
+              <texture texture="Map__301_image_image-image" texcoord="CHANNEL0">
                 <extra>
                   <technique profile="MAYA">
                     <wrapU sid="wrapU0">TRUE</wrapU>
@@ -1296,7 +1296,7 @@
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
       <node id="Object01" name="Object01">
-        <matrix sid="matrix">-0.000000 -0.002721 0.000000 0.004152 0.002721 -0.000000 0.000000 -0.000009 0.000000 0.000000 0.002721 -0.007849 0.000000 0.000000 0.000000 1.000000</matrix>
+        <matrix sid="matrix">0.000000 -0.002721 0.000000 0.004152 0.000000 0.000000 0.002721 -0.007849 -0.002721 -0.000000 0.000000 0.000009 0.000000 0.000000 0.000000 1.000000</matrix>
         <instance_geometry url="#Object01-lib">
           <bind_material>
             <technique_common>
@@ -1304,9 +1304,6 @@
             </technique_common>
           </bind_material>
         </instance_geometry>
-        <node id="prop_garrisoned" name="prop_garrisoned">
-          <matrix sid="matrix">-0.000060 367.511963 0.000000 -4814.817871 -367.511963 -0.000060 0.000000 -2221.251221 0.000000 0.000000 367.511963 4846.036621 0.000000 0.000000 0.000000 1.000000</matrix>
-        </node>
       </node>
     </visual_scene>
   </library_visual_scenes>

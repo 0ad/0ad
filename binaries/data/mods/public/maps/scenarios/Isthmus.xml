@@ -24,8 +24,8 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="551.553" y="327.567" z="-116.185"/>
-		<Rotation angle="-0.10677"/>
+		<Position x="262.02" y="72.9908" z="379.598"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -1405,7 +1405,7 @@
 		<Entity uid="341">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="315.56312" z="331.95081"/>
+			<Position x="316.14243" z="332.79197"/>
 			<Orientation y="-1.34081"/>
 		</Entity>
 		<Entity uid="342">
@@ -2553,42 +2553,6 @@
 			<Player>0</Player>
 			<Position x="812.26465" z="783.79267"/>
 			<Orientation y="-2.49947"/>
-		</Entity>
-		<Entity uid="622">
-			<Template>special/territory_block</Template>
-			<Player>0</Player>
-			<Position x="511.26835" z="385.08167"/>
-			<Orientation y="-1.59505"/>
-		</Entity>
-		<Entity uid="623">
-			<Template>special/territory_block</Template>
-			<Player>0</Player>
-			<Position x="501.41895" z="504.2928"/>
-			<Orientation y="-1.68767"/>
-		</Entity>
-		<Entity uid="624">
-			<Template>special/territory_block</Template>
-			<Player>0</Player>
-			<Position x="507.8213" z="428.69282"/>
-			<Orientation y="1.46048"/>
-		</Entity>
-		<Entity uid="625">
-			<Template>special/territory_block</Template>
-			<Player>0</Player>
-			<Position x="584.18592" z="449.89722"/>
-			<Orientation y="1.34604"/>
-		</Entity>
-		<Entity uid="626">
-			<Template>special/territory_block</Template>
-			<Player>0</Player>
-			<Position x="592.92811" z="411.43653"/>
-			<Orientation y="1.37928"/>
-		</Entity>
-		<Entity uid="627">
-			<Template>special/territory_block</Template>
-			<Player>0</Player>
-			<Position x="575.659" z="489.1902"/>
-			<Orientation y="1.37414"/>
 		</Entity>
 		<Entity uid="628">
 			<Template>gaia/geology_metal_mediterranean_slabs</Template>
@@ -5005,23 +4969,11 @@
 			<Position x="871.41321" z="519.34522"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="1067">
-			<Template>special/territory_block</Template>
-			<Player>0</Player>
-			<Position x="568.21351" z="523.81141"/>
-			<Orientation y="-1.7863"/>
-		</Entity>
-		<Entity uid="1068">
-			<Template>special/territory_block</Template>
-			<Player>0</Player>
-			<Position x="596.10224" z="379.52311"/>
-			<Orientation y="1.39251"/>
-		</Entity>
-		<Entity uid="1069">
-			<Template>special/territory_block</Template>
-			<Player>0</Player>
-			<Position x="504.58973" z="462.9055"/>
-			<Orientation y="-1.64654"/>
+		<Entity uid="1070">
+			<Template>special/territory_pull</Template>
+			<Player>1</Player>
+			<Position x="323.55384" z="328.00696"/>
+			<Orientation y="-1.39661"/>
 		</Entity>
 	</Entities>
 	<Paths/>

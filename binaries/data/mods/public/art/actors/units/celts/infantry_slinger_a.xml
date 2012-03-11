@@ -15,27 +15,28 @@
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="5"/>
         <animation file="infantry/sword/move/run/isw_s_def_02.psa" name="Run" speed="10"/>
         <animation file="infantry/sword/move/run/isw_s_em_03.psa" name="Run" speed="10"/>
-        <animation file="infantry/general/chop.psa" name="gather_tree" speed="200"/>
+        <animation event="0.23" file="infantry/general/chop.psa" name="gather_tree" speed="250"/>
         <animation file="biped/hoe.psa" name="gather_grain" speed="300"/>
         <animation file="infantry/general/forage.psa" name="gather_fruit" speed="110"/>
         <animation file="infantry/general/forage.psa" name="gather_meat" speed="110"/>
-        <animation file="infantry/general/mine.psa" name="gather_rock" speed="200"/>
-        <animation file="infantry/general/mine.psa" name="gather_ore" speed="200"/>
-		<animation file="infantry/general/mine.psa" name="gather_ruins" speed="200"/>
-        <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="220"/>
+        <animation event="0.43" file="infantry/general/mine.psa" load="" name="gather_rock" speed="200"/>
+        <animation event="0.43" file="infantry/general/mine.psa" name="gather_ore" speed="200"/>
+        <animation event="0.43" file="infantry/general/mine.psa" name="gather_ruins" speed="200"/>
+        <animation event="0.6" file="infantry/general/dude/dudebuild.psa" name="Build" speed="220"/>
         <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
         <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
         <animation file="infantry/general/death/inf_03.psa" name="Death" speed="500"/>
         <animation file="infantry/general/death/inf_04.psa" name="Death" speed="400"/>
         <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
         <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
+        <animation file="biped/inf_salute_c.psa" name="Promotion" speed="288"/>
       </animations>
       <mesh>skeletal/m_pants.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_lime.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/sling.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/weapons/slingrock.xml" attachpoint="projectile"/>		
-        <prop actor="props/units/shields/celt_buckler_a.xml" attachpoint="shield"/>	
+        <prop actor="props/units/weapons/slingrock.xml" attachpoint="projectile"/>
+        <prop actor="props/units/shields/celt_buckler_a.xml" attachpoint="shield"/>
       </props>
     </variant>
   </group>
@@ -130,7 +131,7 @@
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
       </props>
     </variant>
-	<variant name="gather_ruins">
+    <variant name="gather_ruins">
       <props>
         <prop attachpoint="shield"/>
         <prop attachpoint="r_hand"/>

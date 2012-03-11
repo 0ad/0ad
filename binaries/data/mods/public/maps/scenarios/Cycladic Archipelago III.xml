@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="447.038" y="131.042" z="258.722"/>
+		<Position x="447.152" y="131.654" z="272.624"/>
 		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -48,9 +48,9 @@
       "AI": "",
       "Civ": "hele",
       "Colour": {
-        "b": 252,
-        "g": 185,
-        "r": 131
+        "b": 200,
+        "g": 46,
+        "r": 46
       },
       "Name": "Samos",
       "PopulationLimit": 300,
@@ -59,7 +59,8 @@
         "metal": 1000,
         "stone": 500,
         "wood": 1000
-      }
+      },
+      "Team": -1
     },
     {
       "AI": "",
@@ -76,7 +77,8 @@
         "metal": 1000,
         "stone": 500,
         "wood": 1000
-      }
+      },
+      "Team": -1
     }
   ],
   "RevealMap": false,

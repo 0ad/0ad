@@ -1,20 +1,23 @@
 function GarrisonHolder() {}
 
 GarrisonHolder.prototype.Schema =
-	"<element name='Max'>" +
+	"<element name='Max' a:help='Maximum number of entities which can be garrisoned inside this holder'>" +
 		"<data type='positiveInteger'/>" +
 	"</element>" +
-	"<element name='List'>" +
+	"<element name='List' a:help='Classes of entities which are allowed to garrison inside this holder (from Identity)'>" +
 		"<attribute name='datatype'>" +
 			"<value>tokens</value>" +
 		"</attribute>" +
 		"<text/>" +
 	"</element>" +
-	"<element name='EjectHealth'>" +
+	"<element name='EjectHealth' a:help='Percentage of maximum health below which this holder no longer allows garrisoning'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" + 
-	"<element name='BuffHeal'>" +
-		"<data type='positiveInteger'/>" +
+	"<element name='BuffHeal' a:help='Number of hit points that will be restored to this holder&apos;s garrisoned units each second'>" +
+		"<data type='nonNegativeInteger'/>" +
+	"</element>" +
+	"<element name='LoadingRange' a:help='The maximum distance from this holder at which entities are allowed to garrison. Should be about 2.0 for land entities and preferably greater for ships'>" +
+		"<ref name='nonNegativeDecimal'/>" +
 	"</element>";
 
 /**
@@ -27,6 +30,15 @@ GarrisonHolder.prototype.Init = function()
 	this.spaceOccupied = 0;
 	this.timer = undefined;
 	this.healRate = +this.template.BuffHeal;
+};
+
+/**
+ * Return range at which entities can garrison here
+ */
+GarrisonHolder.prototype.GetLoadingRange = function()
+{
+	var max = +this.template.LoadingRange;
+	return { "max": max, "min": 0 };
 };
 
 /**
@@ -111,7 +123,7 @@ GarrisonHolder.prototype.Garrison = function(entity)
 	if (this.GetCapacity() < this.spaceOccupied + 1)
 		return false;
 
-	if (!this.timer)
+	if (!this.timer && this.healRate > 0)
 	{
  		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		this.timer = cmpTimer.SetTimeout(this.entity, IID_GarrisonHolder, "HealTimeout", 1000, {});
@@ -286,8 +298,8 @@ GarrisonHolder.prototype.HasEnoughHealth = function()
 	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health)
 	var hitpoints = cmpHealth.GetHitpoints();
 	var maxHitpoints = cmpHealth.GetMaxHitpoints();
-	var ejectHitpoints = parseInt(parseFloat(this.template.EjectHealth) * maxHitpoints);
-	return hitpoints > ejectHitpoints; 
+	var ejectHitpoints = Math.floor((+this.template.EjectHealth) * maxHitpoints);
+	return hitpoints > ejectHitpoints;
 };
 
 /**

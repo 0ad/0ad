@@ -17,9 +17,10 @@
   </Footprint>
   <GarrisonHolder>
     <Max>10</Max>
-	<EjectHealth>0.1</EjectHealth>
-	<List datatype="tokens">Animal</List>
-	<BuffHeal>1</BuffHeal>
+    <EjectHealth>0.1</EjectHealth>
+    <List datatype="tokens">Animal</List>
+    <BuffHeal>1</BuffHeal>
+    <LoadingRange>2</LoadingRange>
   </GarrisonHolder>
   <Health>
     <Max>500</Max>

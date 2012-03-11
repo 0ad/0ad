@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="5">
+	<Environment>
+		<LightingModel>standard</LightingModel>
+		<SkySet>cumulus</SkySet>
+		<SunColour r="0.74902" g="0.74902" b="0.74902"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785396"/>
+		<TerrainAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Height>15.6328</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.548828</Murkiness>
+				<Tint r="0" g="1" b="1"/>
+				<ReflectionTint r="0.392157" g="0.47451" b="0.654902"/>
+				<ReflectionTintStrength>0.186523</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="675.535" y="79.2005" z="819.33"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "CircularMap": true,
+  "Description": "A demonstration of the new trading feature.",
+  "GameType": "endless",
+  "Keywords": [
+    "demo"
+  ],
+  "LockTeams": true,
+  "Name": "Trading Demo",
+  "PlayerData": [
+    {
+      "AI": "",
+      "Civ": "rome",
+      "Colour": {
+        "b": 200,
+        "g": 46,
+        "r": 46
+      },
+      "Name": "Player 1",
+      "Team": 0
+    },
+    {
+      "AI": "qbot",
+      "Civ": "pers",
+      "Colour": {
+        "b": 20,
+        "g": 20,
+        "r": 150
+      },
+      "Name": "Player 2",
+      "Team": 0
+    },
+    {
+      "AI": "qbot",
+      "Civ": "cart",
+      "Colour": {
+        "b": 0,
+        "g": 255,
+        "r": 255
+      },
+      "Name": "Player 3",
+      "Team": 0
+    }
+  ],
+  "RevealMap": true
+}
+]]></ScriptSettings>
+	<Entities>
+		<Entity uid="11">
+			<Template>structures/rome_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="298.7692" z="349.78394"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="12">
+			<Template>structures/rome_market</Template>
+			<Player>1</Player>
+			<Position x="332.58622" z="385.14295"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>structures/rome_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="614.87684" z="217.36403"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>structures/rome_market</Template>
+			<Player>1</Player>
+			<Position x="556.0782" z="180.62423"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>structures/pers_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="744.82508" z="537.00538"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>structures/pers_market</Template>
+			<Player>2</Player>
+			<Position x="775.5876" z="506.4651"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="17">
+			<Template>units/cart_support_trader</Template>
+			<Player>1</Player>
+			<Position x="660.29444" z="208.19225"/>
+			<Orientation y="0.8967"/>
+		</Entity>
+		<Entity uid="18">
+			<Template>units/rome_support_trader</Template>
+			<Player>1</Player>
+			<Position x="675.43714" z="220.56246"/>
+			<Orientation y="-1.69542"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>units/hele_support_trader</Template>
+			<Player>1</Player>
+			<Position x="654.88166" z="217.38692"/>
+			<Orientation y="0.91961"/>
+		</Entity>
+		<Entity uid="24">
+			<Template>structures/cart_civil_centre</Template>
+			<Player>3</Player>
+			<Position x="429.94532" z="663.73511"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="25">
+			<Template>structures/cart_market</Template>
+			<Player>3</Player>
+			<Position x="398.97446" z="629.10291"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>units/pers_support_trader</Template>
+			<Player>1</Player>
+			<Position x="339.16761" z="341.50831"/>
+			<Orientation y="1.10511"/>
+		</Entity>
+		<Entity uid="27">
+			<Template>units/pers_support_trader</Template>
+			<Player>1</Player>
+			<Position x="355.53483" z="361.31861"/>
+			<Orientation y="-2.13637"/>
+		</Entity>
+		<Entity uid="28">
+			<Template>units/pers_support_trader</Template>
+			<Player>1</Player>
+			<Position x="669.6482" z="210.24886"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="29">
+			<Template>units/celt_support_trader</Template>
+			<Player>1</Player>
+			<Position x="649.05884" z="204.26146"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="30">
+			<Template>units/iber_support_trader</Template>
+			<Player>1</Player>
+			<Position x="651.19428" z="206.73446"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="31">
+			<Template>structures/rome_dock</Template>
+			<Player>1</Player>
+			<Position x="674.07496" z="159.3642"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="32">
+			<Template>structures/pers_dock</Template>
+			<Player>2</Player>
+			<Position x="889.62293" z="494.06116"/>
+			<Orientation y="2.09946"/>
+		</Entity>
+		<Entity uid="33">
+			<Template>units/rome_ship_merchant</Template>
+			<Player>1</Player>
+			<Position x="706.63154" z="157.96402"/>
+			<Orientation y="2.97275"/>
+		</Entity>
+		<Entity uid="34">
+			<Template>structures/rome_dock</Template>
+			<Player>1</Player>
+			<Position x="907.58985" z="530.24756"/>
+			<Orientation y="1.6155"/>
+		</Entity>
+		<Entity uid="35">
+			<Template>structures/cart_market</Template>
+			<Player>3</Player>
+			<Position x="661.1775" z="937.72828"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="36">
+			<Template>structures/rome_market</Template>
+			<Player>1</Player>
+			<Position x="712.4444" z="924.86213"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="37">
+			<Template>structures/rome_arch</Template>
+			<Player>1</Player>
+			<Position x="732.74286" z="941.79377"/>
+			<Orientation y="-2.40792"/>
+		</Entity>
+		<Entity uid="38">
+			<Template>structures/rome_arch</Template>
+			<Player>3</Player>
+			<Position x="675.77662" z="967.2721"/>
+			<Orientation y="2.28844"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+</Scenario>

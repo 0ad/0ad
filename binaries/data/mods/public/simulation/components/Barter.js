@@ -57,7 +57,7 @@ Barter.prototype.PlayerHasMarket = function(playerEntity)
 	{
 		var cmpFoundation = Engine.QueryInterface(entity, IID_Foundation);
 		var cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
-		if (!cmpFoundation && cmpIdentity.HasClass("BarterMarket"))
+		if (!cmpFoundation && cmpIdentity && cmpIdentity.HasClass("BarterMarket"))
 			return true;
 	}
 	return false;

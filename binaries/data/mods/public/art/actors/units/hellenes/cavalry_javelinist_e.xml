@@ -15,12 +15,19 @@
       <mesh>skeletal/horse.pmd</mesh>
       <props>
         <prop actor="units/hellenes/cavalry_javelinist_e_r.xml" attachpoint="rider"/>
+        <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="hyppikon-horse-texture-plain">
       <texture>skeletal/horse_hele_csw_e_1.dds</texture>
+    </variant>
+    <variant frequency="1" name="hyppikon-horse-texture-plain2">
+      <texture>skeletal/horse_hele_csw_e_2.png</texture>
+    </variant>
+    <variant frequency="1" name="hyppikon-horse-texture-blaze">
+      <texture>skeletal/horse_hele_csw_e_3.png</texture>
     </variant>
   </group>
   <group>

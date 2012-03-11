@@ -715,11 +715,11 @@ GuiInterface.prototype.GetTradingDetails = function(player, data)
 			"goods": cmpEntityTrader.GetPreferredGoods()
 		};
 	}
-	else if (firstMarket)
+	else if (!firstMarket)
 	{
 		result = {"type": "set first"};
 	}
-	else if (secondMarket)
+	else if (!secondMarket)
 	{
 		result = {
 			"type": "set second",

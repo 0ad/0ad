@@ -2,19 +2,20 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="100" name="Trader Cart">
       <animations>
-        <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="200"/>
-        <animation file="biped/dudewalk_swordshield.psa" name="Walk" speed="75"/>
-        <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="70"/>
-        <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
+        <animation file="mechanical/trader_cart_idle.dae" name="Idle" speed="100"/>
+        <animation file="mechanical/trader_cart_move.dae" name="Walk" speed="10"/>
+        <animation file="mechanical/trader_cart_move.dae" name="Run" speed="10"/>
       </animations>
-      <mesh>skeletal/m_dress_a.pmd</mesh>
+      <mesh>skeletal/trader_cart.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_hele_a.xml" attachpoint="head"/>
-        <prop actor="props/units/heads/hele_straw.xml" attachpoint="helmet"/>
+        <prop actor="units/romans/trader_h.xml" attachpoint="horse"/>
+        <prop actor="units/hellenes/trader_r.xml" attachpoint="trader"/>
+        <prop actor="props/special/eyecandy/crate_a.xml" attachpoint="goodsa"/>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="goodsb"/>
       </props>
-      <texture>skeletal/hele_trd.dds</texture>
+      <texture>structural/rome_ram.png</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>

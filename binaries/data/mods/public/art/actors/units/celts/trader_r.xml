@@ -1,13 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations>
         <animation file="biped/inf_pack_idle.dae" name="Idle" speed="200"/>
-        <animation file="biped/inf_pack_walk.dae" name="Walk" speed="20"/>
+        <animation file="biped/inf_pack_walk.dae" name="Walk" speed="30"/>
         <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
       </animations>
       <mesh>skeletal/m_pants_tunic.dae</mesh>
@@ -18,7 +16,5 @@
       <texture>skeletal/celt_trader_01.dds</texture>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>

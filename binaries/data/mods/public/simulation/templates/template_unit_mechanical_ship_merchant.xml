@@ -16,13 +16,14 @@
     <EjectHealth>0</EjectHealth>
     <List datatype="tokens">Support Infantry Cavalry</List>
     <BuffHeal>1</BuffHeal>
+    <LoadingRange>10</LoadingRange>
   </GarrisonHolder>
   <Health>
     <Max>400</Max>
   </Health>
   <Identity>
     <GenericName>Merchantman</GenericName>
-    <Tooltip>Gather profitable aquatic treasures.</Tooltip>
+    <Tooltip>Trade between docks. Garrison a Trader aboard for additional profit (+20% for each garrisoned). Gather profitable aquatic treasures.</Tooltip>
     <Classes datatype="tokens">Trade</Classes>
   </Identity>
   <ResourceGatherer>
