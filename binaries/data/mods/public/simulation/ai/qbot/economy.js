@@ -158,74 +158,86 @@ EconomyManager.prototype.reassignIdleWorkers = function(gameState) {
 				
 				// Make sure there are actually some resources of that type
 				if (!nearbyResources){
-					debug("No " + type + " found!");
+					debug("No " + type + " found! (1)");
 					continue;
 				}
 				var numSupplies = nearbyResources.length;
 				
 				var workerPosition = ent.position();
 				var supplies = [];
+				var count = 0;
 				
-				nearbyResources.forEach(function(supply) {
-					if (! supply.entity){
-						supply = {
-							"entity" : supply,
-							"amount" : supply.resourceSupplyAmount(),
-							"type" : supply.resourceSupplyType(),
-							"position" : supply.position()
-						};
+				while (supplies.length == 0 && count <= 1){
+					if (count != 0){
+						resourceSupplies = resourceSupplies || gameState.findResourceSupplies();
+						nearbyResources = resourceSupplies[type];
+						if (!nearbyResources){
+							debug("No " + type + " found! (2)");
+							continue;
+						}
 					}
-					
-					// Skip targets that are too hard to hunt
-					if (supply.entity.isUnhuntable()){
-						return;
-					}
-					
-					// And don't go for the bloody fish! TODO: remove after alpha 8
-					if (supply.entity.hasClass("SeaCreature")){
-						return;
-					}
-					
-					// Don't go for floating treasures since we won't be able to reach them and it kills the pathfinder.
-					if (supply.entity.templateName() == "other/special_treasure_shipwreck_debris" || 
-							supply.entity.templateName() == "other/special_treasure_shipwreck" ){
-						return;
-					}
-					
-					// Check we can actually reach the resource
-					if (!gameState.ai.accessibility.isAccessible(supply.position)){
-						return;
-					}
-					
-					// Don't gather in enemy territory
-					var territory = territoryMap.point(supply.position);
-					if (territory != 0 && gameState.isPlayerEnemy(territory)){
-						return;
-					}
-					
-					// measure the distance to the resource
-					var dist = VectorDistance(supply.position, workerPosition);
-					// Add on a factor for the nearest dropsite if one exists
-					if (nearestDropsite){
-						dist += 5 * VectorDistance(supply.position, nearestDropsite.position());
-					}
-					
-					// Go for treasure as a priority
-					if (dist < 1200 && supply.type.generic == "treasure"){
-						dist /= 1000;
-					}
-
-					// Skip targets that are far too far away (e.g. in the
-					// enemy base), only do this for common supplies
-					if (dist > 6072 && numSupplies > 100){
-						return;
-					}
-
-					supplies.push({
-						dist : dist,
-						entity : supply.entity
+					count += 1;
+					nearbyResources.forEach(function(supply) {
+						if (! supply.entity){
+							supply = {
+								"entity" : supply,
+								"amount" : supply.resourceSupplyAmount(),
+								"type" : supply.resourceSupplyType(),
+								"position" : supply.position()
+							};
+						}
+						
+						// Skip targets that are too hard to hunt
+						if (supply.entity.isUnhuntable()){
+							return;
+						}
+						
+						// And don't go for the bloody fish! TODO: remove after alpha 8
+						if (supply.entity.hasClass("SeaCreature")){
+							return;
+						}
+						
+						// Don't go for floating treasures since we won't be able to reach them and it kills the pathfinder.
+						if (supply.entity.templateName() == "other/special_treasure_shipwreck_debris" || 
+								supply.entity.templateName() == "other/special_treasure_shipwreck" ){
+							return;
+						}
+						
+						// Check we can actually reach the resource
+						if (!gameState.ai.accessibility.isAccessible(supply.position)){
+							return;
+						}
+						
+						// Don't gather in enemy territory
+						var territory = territoryMap.point(supply.position);
+						if (territory != 0 && gameState.isPlayerEnemy(territory)){
+							return;
+						}
+						
+						// measure the distance to the resource
+						var dist = VectorDistance(supply.position, workerPosition);
+						// Add on a factor for the nearest dropsite if one exists
+						if (nearestDropsite){
+							dist += 5 * VectorDistance(supply.position, nearestDropsite.position());
+						}
+						
+						// Go for treasure as a priority
+						if (dist < 1200 && supply.type.generic == "treasure"){
+							dist /= 1000;
+						}
+	
+						// Skip targets that are far too far away (e.g. in the
+						// enemy base), only do this for common supplies
+						if (dist > 6072 && numSupplies > 100){
+							return;
+						}
+	
+						supplies.push({
+							dist : dist,
+							entity : supply.entity
+						});
 					});
-				});
+				}
 
 				supplies.sort(function(a, b) {
 					// Prefer smaller distances
@@ -242,7 +254,7 @@ EconomyManager.prototype.reassignIdleWorkers = function(gameState) {
 					ent.setMetadata("gather-type", type);
 					return;
 				}else{
-					debug("No " + type + " found!");
+					debug("No " + type + " found! (3)");
 				}
 			}
 
