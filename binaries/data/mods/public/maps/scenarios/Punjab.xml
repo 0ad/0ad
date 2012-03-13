@@ -4,10 +4,10 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cloudless</SkySet>
-		<SunColour r="1" g="1" b="1"/>
+		<SunColour r="0.85098" g="0.792157" b="0.592157"/>
 		<SunElevation angle="0.773126"/>
 		<SunRotation angle="-0.374291"/>
-		<TerrainAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.552941"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="211.392" y="79.7402" z="551.307"/>
+		<Position x="219.124" y="81.5623" z="539.553"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -618,17 +618,17 @@
 		</Entity>
 		<Entity uid="111">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="125.68453" z="729.56916"/>
+			<Position x="122.22211" z="732.02021"/>
 			<Orientation y="0.28483"/>
 		</Entity>
 		<Entity uid="112">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="149.53743" z="755.33375"/>
+			<Position x="155.0934" z="771.672"/>
 			<Orientation y="2.3252"/>
 		</Entity>
 		<Entity uid="113">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="143.27416" z="703.74543"/>
+			<Position x="152.24788" z="700.40302"/>
 			<Orientation y="0.73989"/>
 		</Entity>
 		<Entity uid="114">
@@ -638,7 +638,7 @@
 		</Entity>
 		<Entity uid="115">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="179.93087" z="786.27186"/>
+			<Position x="181.89222" z="790.55286"/>
 			<Orientation y="0.34758"/>
 		</Entity>
 		<Entity uid="116">
@@ -648,12 +648,12 @@
 		</Entity>
 		<Entity uid="117">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="132.75156" z="811.1056"/>
+			<Position x="127.4074" z="824.2898"/>
 			<Orientation y="0.32642"/>
 		</Entity>
 		<Entity uid="118">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="177.38035" z="832.37281"/>
+			<Position x="173.94063" z="842.52424"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="119">
@@ -663,7 +663,7 @@
 		</Entity>
 		<Entity uid="120">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="216.46155" z="715.18775"/>
+			<Position x="220.65354" z="711.05304"/>
 			<Orientation y="-2.228"/>
 		</Entity>
 		<Entity uid="121">
@@ -693,7 +693,7 @@
 		</Entity>
 		<Entity uid="126">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="196.14557" z="873.98298"/>
+			<Position x="202.39373" z="882.6919"/>
 			<Orientation y="0.37157"/>
 		</Entity>
 		<Entity uid="127">
@@ -708,7 +708,7 @@
 		</Entity>
 		<Entity uid="129">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="302.85502" z="757.94239"/>
+			<Position x="305.79657" z="760.34174"/>
 			<Orientation y="0.45792"/>
 		</Entity>
 		<Entity uid="130">
@@ -12158,17 +12158,17 @@
 		</Entity>
 		<Entity uid="2299">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="342.9911" z="775.29957"/>
+			<Position x="354.01188" z="773.78327"/>
 			<Orientation y="0.45095"/>
 		</Entity>
 		<Entity uid="2300">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="322.79102" z="805.85145"/>
+			<Position x="323.50791" z="810.03101"/>
 			<Orientation y="-1.85511"/>
 		</Entity>
 		<Entity uid="2301">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="314.17753" z="850.03657"/>
+			<Position x="315.02533" z="858.86231"/>
 			<Orientation y="0.11533"/>
 		</Entity>
 		<Entity uid="2302">
@@ -12178,7 +12178,7 @@
 		</Entity>
 		<Entity uid="2303">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="316.09421" z="889.6537"/>
+			<Position x="328.41367" z="905.13093"/>
 			<Orientation y="-2.7369"/>
 		</Entity>
 		<Entity uid="2304">
@@ -27314,8 +27314,8 @@
 		</Entity>
 		<Entity uid="4935">
 			<Template>actor|props/flora/bush_tropic_a.xml</Template>
-			<Position x="363.12165" z="791.85254"/>
-			<Orientation y="2.35621"/>
+			<Position x="329.61979" z="788.47669"/>
+			<Orientation y="0.85605"/>
 		</Entity>
 		<Entity uid="4936">
 			<Template>actor|props/flora/bush_tropic_a.xml</Template>

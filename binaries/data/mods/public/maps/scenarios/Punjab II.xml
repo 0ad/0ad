@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="224.623" y="69.3464" z="532.858"/>
+		<Position x="778.365" y="98.2464" z="289.264"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -28683,66 +28683,6 @@
 			<Position x="853.47114" z="183.03113"/>
 			<Orientation y="-0.28377"/>
 		</Entity>
-		<Entity uid="5204">
-			<Template>gaia/fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="846.17511" z="609.50666"/>
-			<Orientation y="-2.42733"/>
-		</Entity>
-		<Entity uid="5205">
-			<Template>gaia/fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="837.8863" z="600.76655"/>
-			<Orientation y="-2.5697"/>
-		</Entity>
-		<Entity uid="5206">
-			<Template>gaia/fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="831.23719" z="585.73151"/>
-			<Orientation y="3.09592"/>
-		</Entity>
-		<Entity uid="5207">
-			<Template>gaia/fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="838.90253" z="586.90815"/>
-			<Orientation y="0.67914"/>
-		</Entity>
-		<Entity uid="5208">
-			<Template>gaia/fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="845.3415" z="596.42646"/>
-			<Orientation y="0.77352"/>
-		</Entity>
-		<Entity uid="5209">
-			<Template>gaia/fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="168.63236" z="311.12604"/>
-			<Orientation y="-2.67336"/>
-		</Entity>
-		<Entity uid="5210">
-			<Template>gaia/fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="161.96595" z="297.97626"/>
-			<Orientation y="-2.74604"/>
-		</Entity>
-		<Entity uid="5211">
-			<Template>gaia/fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="159.79921" z="292.37708"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="5212">
-			<Template>gaia/fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="168.42905" z="295.64966"/>
-			<Orientation y="0.27036"/>
-		</Entity>
-		<Entity uid="5213">
-			<Template>gaia/fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="170.87914" z="307.42582"/>
-			<Orientation y="-1.26996"/>
-		</Entity>
 		<Entity uid="5214">
 			<Template>gaia/fauna_horse</Template>
 			<Player>0</Player>
@@ -29789,6 +29729,126 @@
 			<Template>actor|particle/rain_shower.xml</Template>
 			<Position x="137.59816" z="746.58509"/>
 			<Orientation y="3.04081"/>
+		</Entity>
+		<Entity uid="5396">
+			<Template>gaia/fauna_peacock</Template>
+			<Player>0</Player>
+			<Position x="160.31368" z="304.22757"/>
+			<Orientation y="-2.55068"/>
+		</Entity>
+		<Entity uid="5397">
+			<Template>gaia/fauna_peacock</Template>
+			<Player>0</Player>
+			<Position x="156.55913" z="291.66648"/>
+			<Orientation y="0.22262"/>
+		</Entity>
+		<Entity uid="5398">
+			<Template>gaia/fauna_peacock</Template>
+			<Player>0</Player>
+			<Position x="171.68998" z="299.41239"/>
+			<Orientation y="-0.71987"/>
+		</Entity>
+		<Entity uid="5399">
+			<Template>gaia/fauna_peacock</Template>
+			<Player>0</Player>
+			<Position x="187.19173" z="449.96735"/>
+			<Orientation y="-2.36092"/>
+		</Entity>
+		<Entity uid="5400">
+			<Template>gaia/fauna_peacock</Template>
+			<Player>0</Player>
+			<Position x="248.8862" z="479.96985"/>
+			<Orientation y="0.7602"/>
+		</Entity>
+		<Entity uid="5401">
+			<Template>gaia/fauna_peacock</Template>
+			<Player>0</Player>
+			<Position x="230.49634" z="658.35138"/>
+			<Orientation y="-2.77683"/>
+		</Entity>
+		<Entity uid="5402">
+			<Template>gaia/fauna_peacock</Template>
+			<Player>0</Player>
+			<Position x="179.1036" z="647.89515"/>
+			<Orientation y="0.75603"/>
+		</Entity>
+		<Entity uid="5403">
+			<Template>gaia/fauna_peacock</Template>
+			<Player>0</Player>
+			<Position x="372.87262" z="761.22095"/>
+			<Orientation y="-1.7884"/>
+		</Entity>
+		<Entity uid="5404">
+			<Template>gaia/fauna_peacock</Template>
+			<Player>0</Player>
+			<Position x="360.59125" z="654.45112"/>
+			<Orientation y="0.75042"/>
+		</Entity>
+		<Entity uid="5405">
+			<Template>gaia/fauna_peacock</Template>
+			<Player>0</Player>
+			<Position x="350.62095" z="483.8567"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5406">
+			<Template>gaia/fauna_peacock</Template>
+			<Player>0</Player>
+			<Position x="854.92847" z="388.92145"/>
+			<Orientation y="-2.52941"/>
+		</Entity>
+		<Entity uid="5407">
+			<Template>gaia/fauna_peacock</Template>
+			<Player>0</Player>
+			<Position x="776.56452" z="404.41327"/>
+			<Orientation y="0.30431"/>
+		</Entity>
+		<Entity uid="5408">
+			<Template>gaia/fauna_peacock</Template>
+			<Player>0</Player>
+			<Position x="825.1772" z="594.41865"/>
+			<Orientation y="0.50603"/>
+		</Entity>
+		<Entity uid="5409">
+			<Template>gaia/fauna_peacock</Template>
+			<Player>0</Player>
+			<Position x="850.13135" z="607.6147"/>
+			<Orientation y="-2.46151"/>
+		</Entity>
+		<Entity uid="5410">
+			<Template>gaia/fauna_peacock</Template>
+			<Player>0</Player>
+			<Position x="875.22864" z="585.16016"/>
+			<Orientation y="0.6852"/>
+		</Entity>
+		<Entity uid="5411">
+			<Template>gaia/fauna_peacock</Template>
+			<Player>0</Player>
+			<Position x="668.98682" z="149.39956"/>
+			<Orientation y="0.87996"/>
+		</Entity>
+		<Entity uid="5412">
+			<Template>gaia/fauna_peacock</Template>
+			<Player>0</Player>
+			<Position x="722.15015" z="72.58057"/>
+			<Orientation y="-2.65207"/>
+		</Entity>
+		<Entity uid="5413">
+			<Template>gaia/fauna_peacock</Template>
+			<Player>0</Player>
+			<Position x="804.92597" z="220.27504"/>
+			<Orientation y="0.8906"/>
+		</Entity>
+		<Entity uid="5414">
+			<Template>gaia/fauna_peacock</Template>
+			<Player>0</Player>
+			<Position x="702.76868" z="292.68598"/>
+			<Orientation y="-0.53264"/>
+		</Entity>
+		<Entity uid="5415">
+			<Template>gaia/fauna_peacock</Template>
+			<Player>0</Player>
+			<Position x="725.78577" z="397.9787"/>
+			<Orientation y="-2.96753"/>
 		</Entity>
 	</Entities>
 	<Paths/>
