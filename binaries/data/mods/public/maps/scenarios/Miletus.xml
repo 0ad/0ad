@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="225.878" y="79.7402" z="155.183"/>
+		<Position x="308.587" y="125.769" z="-20.6812"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -6032,73 +6032,73 @@
 		<Entity uid="1295">
 			<Template>units/rome_legionnaire_imperial</Template>
 			<Player>2</Player>
-			<Position x="15.78792" z="51.98154"/>
+			<Position x="15.33684" z="52.27466"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1296">
 			<Template>units/rome_legionnaire_imperial</Template>
 			<Player>2</Player>
-			<Position x="17.39582" z="54.63465"/>
+			<Position x="16.94474" z="54.92777"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1297">
 			<Template>units/rome_legionnaire_imperial</Template>
 			<Player>2</Player>
-			<Position x="19.44942" z="57.07641"/>
+			<Position x="18.99834" z="57.36953"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1298">
 			<Template>units/rome_legionnaire_imperial</Template>
 			<Player>2</Player>
-			<Position x="20.8384" z="59.3585"/>
+			<Position x="20.38732" z="59.65162"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1299">
 			<Template>units/rome_legionnaire_imperial</Template>
 			<Player>2</Player>
-			<Position x="23.45255" z="56.89808"/>
+			<Position x="23.00147" z="57.1912"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1300">
 			<Template>units/rome_legionnaire_imperial</Template>
 			<Player>2</Player>
-			<Position x="22.06977" z="53.62313"/>
+			<Position x="21.61869" z="53.91625"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1301">
 			<Template>units/rome_legionnaire_imperial</Template>
 			<Player>2</Player>
-			<Position x="20.05925" z="51.41965"/>
+			<Position x="19.60817" z="51.71277"/>
 			<Orientation y="2.51706"/>
 		</Entity>
 		<Entity uid="1302">
 			<Template>units/rome_legionnaire_imperial</Template>
 			<Player>2</Player>
-			<Position x="18.22904" z="49.08252"/>
+			<Position x="17.77796" z="49.37565"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1303">
 			<Template>units/rome_legionnaire_imperial</Template>
 			<Player>2</Player>
-			<Position x="20.84147" z="46.13479"/>
+			<Position x="20.39039" z="46.42791"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1304">
 			<Template>units/rome_legionnaire_imperial</Template>
 			<Player>2</Player>
-			<Position x="22.64715" z="49.6178"/>
+			<Position x="22.19607" z="49.91092"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1305">
 			<Template>units/rome_legionnaire_imperial</Template>
 			<Player>2</Player>
-			<Position x="24.59713" z="51.73993"/>
+			<Position x="24.14605" z="52.03306"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1306">
 			<Template>units/rome_legionnaire_imperial</Template>
 			<Player>2</Player>
-			<Position x="26.3507" z="54.04212"/>
+			<Position x="25.89962" z="54.33524"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1307">
@@ -6670,6 +6670,18 @@
 			<Player>1</Player>
 			<Position x="98.88323" z="397.69077"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1403">
+			<Template>units/rome_ship_bireme</Template>
+			<Player>2</Player>
+			<Position x="35.77845" z="718.29664"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1404">
+			<Template>units/rome_ship_trireme</Template>
+			<Player>2</Player>
+			<Position x="115.25162" z="711.9994"/>
+			<Orientation y="-2.5694"/>
 		</Entity>
 	</Entities>
 	<Paths/>

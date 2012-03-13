@@ -4,11 +4,11 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cloudless</SkySet>
-		<SunColour r="0.872212" g="0.841062" b="0.631909"/>
+		<SunColour r="0.870588" g="0.839216" b="0.631373"/>
 		<SunElevation angle="0.714084"/>
 		<SunRotation angle="0.371709"/>
 		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
-		<UnitsAmbientColour r="0.458824" g="0.490196" b="0.541176"/>
+		<UnitsAmbientColour r="0.458824" g="0.486275" b="0.537255"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -24,17 +24,20 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="919.411" y="78.6174" z="787.662"/>
+		<Position x="915.133" y="84.4292" z="818.898"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name": "Cycladic Archipelago",
+  "CircularMap": true,
   "Description": "Multiplayer map. A small islands map. Sail the Aegean Sea and claim the many islands and islets within it. Find treasures and fight pirates!",
+  "GameType": "conquest",
   "Keywords": [
     "naval"
   ],
+  "LockTeams": false,
+  "Name": "Cycladic Archipelago I",
   "PlayerData": [
     {
       "AI": "",
@@ -53,7 +56,7 @@
       "Civ": "hele"
     }
   ],
-  "CircularMap": true
+  "RevealMap": false
 }
 ]]></ScriptSettings>
 	<Entities>

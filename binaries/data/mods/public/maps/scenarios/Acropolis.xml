@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="488.281" y="130.571" z="289.252"/>
+		<Position x="486.762" y="108.053" z="397.926"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -32,8 +32,10 @@
 {
   "CircularMap": true,
   "Description": "Four Greek cities duke it out on a gigantic round map. Each city starts on a large flat plateau, or 'Acropolis' and comes with a group of important civic buildings and a battalion of soldiers. The map represents central Greece around the area of Boeotia and Attica.",
+  "GameType": "conquest",
   "Keywords": [],
-  "Name": "Acropolis",
+  "LockTeams": false,
+  "Name": "Acropolis I",
   "PlayerData": [
     {
       "AI": "",
@@ -103,7 +105,8 @@
       },
       "Team": 1
     }
-  ]
+  ],
+  "RevealMap": false
 }
 ]]></ScriptSettings>
 	<Entities>
