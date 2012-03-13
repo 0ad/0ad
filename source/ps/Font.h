@@ -20,6 +20,8 @@
 
 #include "lib/res/handle.h"
 
+#include <map>
+
 class CStrW;
 struct UnifontGlyphData;
 
