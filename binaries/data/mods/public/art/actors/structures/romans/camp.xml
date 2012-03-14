@@ -2,19 +2,24 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="100" name="Roman Army Camp">
       <animations>
-        <animation event="0.5" load="0.0" name="attack" speed="100"/>
+        <animation event="0.5" load="0.0" name="Attack" speed="100"/>
       </animations>
-      <mesh>structural/rome_armycamp.dae</mesh>
+      <mesh>structural/rome_camp_palisade.dae</mesh>
       <props>
-        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
+        <prop actor="props/special/eyecandy/campfire_decal.xml" attachpoint="root"/>
+        <prop actor="props/special/eyecandy/campfire.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/camp_turf.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/camp_struct2.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/camp_tents.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/camp_tentflaps.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/camp_struct2_trans.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/special/common/garrison_flag_rome.xml" attachpoint="flag1"/>
-        <prop actor="props/special/common/garrison_flag_rome.xml" attachpoint="flag2"/>
       </props>
-      <texture>structural/rome_special_1.dds</texture>
+      <texture>props/palisade_main.png</texture>
     </variant>
   </group>
   <group>
@@ -22,15 +27,28 @@
     <variant name="garrisoned">
       <props>
         <prop actor="props/special/common/garrison_flag_rome.xml" attachpoint="garrisoned"/>
+        <prop actor="props/special/common/garrison_flag_rome.xml" attachpoint="garrisoned2"/>
+        <prop actor="props/special/common/garrison_flag_rome.xml" attachpoint="garrisoned3"/>
+        <prop actor="props/special/common/garrison_flag_rome.xml" attachpoint="garrisoned4"/>
       </props>
     </variant>
     <variant name="death">
       <props>
         <prop attachpoint="garrisoned"/>
+        <prop attachpoint="garrisoned2"/>
+        <prop attachpoint="garrisoned3"/>
+        <prop attachpoint="garrisoned4"/>
         <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
+        <prop actor="props/special/eyecandy/campfire_decal.xml" attachpoint="root"/>
+        <prop actor="props/special/eyecandy/campfire.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/camp_turf.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/camp_struct2.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/camp_tents.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/camp_tentflaps.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/camp_struct2_trans.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
