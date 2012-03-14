@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="191.198" y="101.382" z="679.239"/>
+		<Position x="1056.2" y="69.7552" z="294.772"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -37064,6 +37064,30 @@
 			<Template>actor|props/flora/reeds_pond_lush_a.xml</Template>
 			<Position x="787.48511" z="531.06867"/>
 			<Orientation y="1.39698"/>
+		</Entity>
+		<Entity uid="7223">
+			<Template>units/pers_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="1051.55091" z="353.5746"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="7224">
+			<Template>units/pers_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="1053.69898" z="356.08677"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="7225">
+			<Template>units/pers_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="1057.06458" z="358.5842"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="7226">
+			<Template>units/pers_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="1059.29407" z="361.64304"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
