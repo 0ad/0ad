@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="1243.37" y="106.922" z="425.263"/>
+		<Position x="191.198" y="101.382" z="679.239"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -76,6 +76,10 @@
         "r": 132
       },
       "Name": "Player 3",
+      "Resources": {
+        "food": 400,
+        "wood": 400
+      },
       "Team": -1
     },
     {
@@ -87,6 +91,10 @@
         "r": 46
       },
       "Name": "Player 4",
+      "Resources": {
+        "food": 400,
+        "wood": 400
+      },
       "Team": -1
     }
   ],
