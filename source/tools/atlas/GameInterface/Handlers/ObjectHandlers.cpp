@@ -478,10 +478,17 @@ QUERYHANDLER(PickSimilarObjects)
 {
 	CmpPtr<ICmpTemplateManager> cmpTemplateManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
 	ENSURE(cmpTemplateManager);
-	std::string templateName = cmpTemplateManager->GetCurrentTemplateName((entity_id_t)msg->id);
 
-	// Since owner selections are meaningless in Atlas, use INVALID_PLAYER
-	msg->ids = EntitySelection::PickSimilarEntities(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), templateName, INVALID_PLAYER, false, true, true);
+	entity_id_t ent = msg->id;
+	std::string templateName = cmpTemplateManager->GetCurrentTemplateName(ent);
+
+	// If unit has ownership, only pick units from the same player
+	player_id_t owner = INVALID_PLAYER;
+	CmpPtr<ICmpOwnership> cmpOwnership(*g_Game->GetSimulation2(), ent);
+	if (cmpOwnership)
+		owner = cmpOwnership->GetOwner();
+
+	msg->ids = EntitySelection::PickSimilarEntities(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), templateName, owner, false, true, true);
 }
 
 

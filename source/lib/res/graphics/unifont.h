@@ -28,6 +28,7 @@
 #define INCLUDED_UNIFONT
 
 #include <stdarg.h>	// va_list
+#include <map>
 
 #include "lib/res/handle.h"
 #include "lib/file/vfs/vfs.h"

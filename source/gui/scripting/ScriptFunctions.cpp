@@ -213,7 +213,6 @@ CScriptVal StartSavedGame(void* cbdata, std::wstring name)
 	CScriptValRooted metadata;
 	std::string savedState;
 	Status err = SavedGames::Load(name, guiManager->GetScriptInterface(), metadata, savedState);
-	WARN_IF_ERR(err);
 	if (err < 0)
 		return CScriptVal();
 

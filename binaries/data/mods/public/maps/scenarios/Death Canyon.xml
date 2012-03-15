@@ -24,22 +24,26 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="370.774" y="153.697" z="84.1804"/>
-		<Rotation angle="0.0100727"/>
-		<Declination angle="0.531379"/>
+		<Position x="669.244" y="132.895" z="699.811"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name": "Death Canyon",
+  "CircularMap": true,
   "Description": "A deep rocky canyon slicing through the desert.\u000a\u000aEach player starts their colony on a plateau on either side of the ravine.",
+  "GameType": "conquest",
+  "Keywords": [],
+  "LockTeams": false,
+  "Name": "Death Canyon I",
   "PlayerData": [
     {
       "Civ": "celt",
       "Resources": {
         "food": 250,
-        "wood": 250,
         "metal": 300,
-        "stone": 250
+        "stone": 250,
+        "wood": 250
       }
     },
     {
@@ -47,14 +51,12 @@
       "Civ": "iber",
       "Resources": {
         "food": 250,
-        "wood": 250,
         "metal": 300,
-        "stone": 250
+        "stone": 250,
+        "wood": 250
       }
     }
   ],
-  "CircularMap": true,
-  "Keywords": [],
   "RevealMap": false
 }
 ]]></ScriptSettings>

@@ -26,6 +26,7 @@ function init()
 	if (savedGames.length == 0)
 	{
 		gameSelection.list = [ "No saved games found" ];
+		gameSelection.selected = 0;
 		getGUIObjectByName("loadGameButton").enabled = false;
 		getGUIObjectByName("deleteGameButton").enabled = false;
 		return;
@@ -47,12 +48,21 @@ function loadGame()
 	var gameID = gameSelection.list_data[gameSelection.selected];
 
 	var metadata = Engine.StartSavedGame(gameID);
-
-	Engine.SwitchGuiPage("page_loading.xml", {
-		"attribs": metadata.initAttributes,
-		"isNetworked" : false,
-		"playerAssignments": metadata.gui.playerAssignments
-	});
+	if (!metadata)
+	{
+		// Probably the file wasn't found
+		// Show error and refresh saved game list
+		error("Could not load saved game '"+gameID+"'");
+		init();
+	}
+	else
+	{
+		Engine.SwitchGuiPage("page_loading.xml", {
+			"attribs": metadata.initAttributes,
+			"isNetworked" : false,
+			"playerAssignments": metadata.gui.playerAssignments
+		});
+	}
 }
 
 function deleteGame()
@@ -71,7 +81,7 @@ function reallyDeleteGame(gameID)
 {
 	if (!Engine.DeleteSavedGame(gameID))
 	{
-		warn("Could not delete saved game '"+gameID+"'");
+		error("Could not delete saved game '"+gameID+"'");
 	}
 
 	// Run init again to refresh saved game list

@@ -144,6 +144,10 @@ Status SavedGames::Load(const std::wstring& name, ScriptInterface& scriptInterfa
 	const VfsPath basename(L"saves/" + name);
 	const VfsPath filename = basename.ChangeExtension(L".0adsave");
 
+	// Don't crash just because file isn't found, this can happen if the file is deleted from the OS
+	if (!VfsFileExists(filename))
+		return ERR::FILE_NOT_FOUND;
+
 	OsPath realPath;
 	WARN_RETURN_STATUS_IF_ERR(g_VFS->GetRealPath(filename, realPath));
 

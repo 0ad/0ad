@@ -630,6 +630,6 @@ function getDirection(x1, z1, x2, z2)
 
 function getTerrainTexture(x, y)
 {
-	return g_Map.getTerrain(x, y);
+	return g_Map.getTexture(x, y);
 }
 

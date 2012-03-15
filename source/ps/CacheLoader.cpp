@@ -43,7 +43,7 @@ Status CCacheLoader::TryLoadingCached(const VfsPath& sourcePath, const MD5& init
 	// Fail if no source or archive cache
 	// Note: this is not always an error case, because for instance there
 	//	are some uncached .pmd/psa files in the game with no source .dae.
-	//	This test fails (correctly) in that  valid situation, so it seems
+	//	This test fails (correctly) in that valid situation, so it seems
 	//	best to leave the error handling to the caller.
 	Status err = m_VFS->GetFileInfo(sourcePath, NULL);
 	if (err < 0)
