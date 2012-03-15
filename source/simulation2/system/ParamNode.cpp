@@ -20,6 +20,7 @@
 #include "ParamNode.h"
 
 #include "lib/utf8.h"
+#include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Filesystem.h"
 #include "ps/XML/Xeromyces.h"
@@ -122,10 +123,19 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element)
 				for (size_t i = 0; i < newTokens.size(); ++i)
 				{
 					if (newTokens[i][0] == L'-')
-						tokens.erase(std::find(tokens.begin(), tokens.end(), newTokens[i].substr(1)));
+					{
+						std::vector<std::wstring>::iterator tokenIt = std::find(tokens.begin(), tokens.end(), newTokens[i].substr(1));
+						if (tokenIt != tokens.end())
+							tokens.erase(tokenIt);
+						else
+							LOGWARNING(L"[ParamNode] Could not remove token '%ls' from node '%ls'; not present in list nor inherited (possible typo?)",
+								newTokens[i].substr(1).c_str(), name.c_str());
+					}
 					else
+					{
 						if (std::find(oldTokens.begin(), oldTokens.end(), newTokens[i]) == oldTokens.end())
 							tokens.push_back(newTokens[i]);
+					}
 				}
 
 				node.m_Value = boost::algorithm::join(tokens, L" ");
