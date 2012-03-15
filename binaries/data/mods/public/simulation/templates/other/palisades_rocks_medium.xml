@@ -4,7 +4,7 @@
     <BuildTime>12</BuildTime>
   </Cost>
   <Footprint>
-    <Square width="5" depth="5"/>
+    <Square width="10" depth="3.0"/>
     <Height>9.0</Height>
   </Footprint>
   <Health>
@@ -12,14 +12,14 @@
   </Health>
   <Identity>
     <Civ>gaia</Civ>
-    <SpecificName>Palisade Tower</SpecificName>
+    <SpecificName>Palisade</SpecificName>
     <History>A cheap, quick defensive structure constructed with sharpened tree trunks</History>
     <Icon>gaia/special_palisade.png</Icon>
-	</Identity>
+  </Identity>
   <Obstruction>
-    <Static width="4.0" depth="4.0"/>
+    <Static width="9" depth="2.0"/>
   </Obstruction>
   <VisualActor>
-    <Actor>props/special/palisade_rocks_tower.xml</Actor>
+    <Actor>props/special/palisade_rocks_medium.xml</Actor>
   </VisualActor>
 </Entity>
