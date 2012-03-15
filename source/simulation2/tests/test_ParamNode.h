@@ -117,6 +117,21 @@ public:
 		TS_ASSERT_WSTR_EQUALS(node.ToXML(), L"<test><a datatype=\"tokens\">x z w</a><b datatype=\"tokens\">a b c d</b><c datatype=\"tokens\">n o</c></test>");
 	}
 
+	void test_overlay_remove_nonexistent_token()
+	{
+		// regression test; this used to cause a crash because of a failure to check whether the token being removed was present
+		CParamNode node;
+		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test> <a datatype='tokens'>-nonexistenttoken X</a></test>"), PSRETURN_OK);
+		TS_ASSERT_WSTR_EQUALS(node.ToXML(), L"<test><a datatype=\"tokens\">X</a></test>");
+	}
+
+	void test_overlay_remove_empty_token()
+	{
+		CParamNode node;
+		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test> <a datatype='tokens'>  Y  -  X </a></test>"), PSRETURN_OK);
+		TS_ASSERT_WSTR_EQUALS(node.ToXML(), L"<test><a datatype=\"tokens\">Y X</a></test>");
+	}
+
 	void test_types()
 	{
 		CParamNode node;
