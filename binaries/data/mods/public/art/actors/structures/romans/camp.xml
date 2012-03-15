@@ -8,8 +8,7 @@
       </animations>
       <mesh>structural/rome_camp_palisade.dae</mesh>
       <props>
-        <prop actor="props/special/eyecandy/campfire_decal.xml" attachpoint="root"/>
-        <prop actor="props/special/eyecandy/campfire.xml" attachpoint="root"/>
+        <prop actor="props/special/eyecandy/campfire_prop.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/camp_turf.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/camp_struct2.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/camp_tents.xml" attachpoint="root"/>
@@ -41,8 +40,7 @@
         <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
-        <prop actor="props/special/eyecandy/campfire_decal.xml" attachpoint="root"/>
-        <prop actor="props/special/eyecandy/campfire.xml" attachpoint="root"/>
+        <prop actor="props/special/eyecandy/campfire_prop.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/camp_turf.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/camp_struct2.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/camp_tents.xml" attachpoint="root"/>
