@@ -97,6 +97,7 @@ QBotAI.prototype.OnUpdate = function() {
 		var gameState = new GameState(this);
 		
 		if (gameState.getOwnEntities().length === 0){
+			Engine.ProfileStop();
 			return; // With no entities to control the AI cannot do anything 
 		}
 		

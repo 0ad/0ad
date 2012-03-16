@@ -192,7 +192,7 @@ EconomyManager.prototype.reassignIdleWorkers = function(gameState) {
 							return;
 						}
 						
-						// And don't go for the bloody fish! TODO: remove after alpha 8
+						// And don't go for the bloody fish! TODO: better accessibility checks 
 						if (supply.entity.hasClass("SeaCreature")){
 							return;
 						}
