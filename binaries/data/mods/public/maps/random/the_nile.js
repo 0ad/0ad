@@ -1,6 +1,5 @@
 RMS.LoadLibrary("rmgen");
 
-
 var tCity = "desert_city_tile";
 var tCityPlaza = "desert_city_tile_plaza";
 var tSand = ["desert_dirt_rough", "desert_dirt_rough_2", "desert_sand_dunes_50", "desert_sand_smooth"];

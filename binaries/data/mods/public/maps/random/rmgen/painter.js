@@ -410,3 +410,27 @@ TileClassPainter.prototype.paint = function(area)
 		this.tileClass.add(pt.x, pt.z);
 	}
 };
+
+/////////////////////////////////////////////////////////////////////////////
+//	TileClassUnPainter
+//
+//	Class for unpainting tileClasses over an area
+//
+//	tileClass: TileClass object
+//
+/////////////////////////////////////////////////////////////////////////////
+
+function TileClassUnPainter(tileClass)
+{
+	this.tileClass = tileClass;
+}
+
+TileClassUnPainter.prototype.paint = function(area)
+{
+	var length = area.points.length;
+	for (var i=0; i < length; i++)
+	{
+		var pt = area.points[i];
+		this.tileClass.remove(pt.x, pt.z);
+	}
+};
