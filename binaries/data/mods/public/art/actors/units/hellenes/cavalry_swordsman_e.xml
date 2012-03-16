@@ -50,5 +50,13 @@
       <colour>251 254 146</colour>
     </variant>
   </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Run">
+      <props>
+        <prop actor="particle/dust_cav.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
   <material>objectcolor.xml</material>
 </actor>

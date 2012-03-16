@@ -42,7 +42,6 @@
       <texture>skeletal/horse_celt_stripe_a.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="horse-color-black">
       <colour>41 41 41</colour>
@@ -55,6 +54,14 @@
     </variant>
     <variant frequency="1" name="horse-color-brown">
       <colour>211 123 44</colour>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Run">
+      <props>
+        <prop actor="particle/dust_cav.xml" attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <material>objectcolor.xml</material>

@@ -47,5 +47,11 @@
         <prop attachpoint="root"/>
       </props>
     </variant>
+    <variant name="Run">
+      <props>
+        <prop actor="particle/dust_cav.xml" attachpoint="root"/>
+        <prop actor="props/units/hero_star.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
 </actor>

@@ -32,5 +32,13 @@
       <texture>skeletal/horse_kart_csw_b_1.dds</texture>
     </variant>
   </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Run">
+      <props>
+        <prop actor="particle/dust_cav.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
   <material>objectcolor.xml</material>
 </actor>

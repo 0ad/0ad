@@ -22,7 +22,11 @@
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="carry_meat"/>
+    <variant name="Run">
+      <props>
+        <prop actor="particle/dust_cav.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <material>player_trans.xml</material>
 </actor>
