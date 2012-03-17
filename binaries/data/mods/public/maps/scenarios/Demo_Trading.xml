@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="675.535" y="79.2005" z="819.33"/>
+		<Position x="666.383" y="137.472" z="57.0001"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -220,6 +220,12 @@
 			<Player>3</Player>
 			<Position x="675.77662" z="967.2721"/>
 			<Orientation y="2.28844"/>
+		</Entity>
+		<Entity uid="39">
+			<Template>units/cart_ship_merchant</Template>
+			<Player>1</Player>
+			<Position x="729.31904" z="164.53486"/>
+			<Orientation y="-2.85058"/>
 		</Entity>
 	</Entities>
 	<Paths/>
