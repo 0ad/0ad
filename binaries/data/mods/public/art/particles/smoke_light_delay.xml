@@ -4,7 +4,7 @@
     <texture>art/textures/particles/smoke_128b.png</texture>
     <blend mode="over"/>
 
-    <constant name="emissionrate" value="5.0"/>
+    <constant name="emissionrate" value="4.0"/>
     <uniform name="lifetime" min="30.0" max="35.0"/>
 
     <constant name="position.y" value="2.0"/>
@@ -13,7 +13,7 @@
 
     <uniform name="velocity.x" min="-0.3" max="0.3"/>
     <uniform name="velocity.y" min="1.5" max="2.0"/>
-    <uniform name="velocity.z" min="-0.5" max="0.5"/>
+    <uniform name="velocity.z" min="-0.3" max="0.3"/>
     <uniform name="velocity.angle" min="-2.0" max="2.0"/>
 
     <uniform name="size" min="3.0" max="4.5"/>

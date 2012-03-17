@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_temple">
+  <Footprint>
+    <Square width="24.0" depth="44.0"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <Max>30</Max>
+  </GarrisonHolder>
+  <Identity>
+    <Civ>rome</Civ>
+    <GenericName>Temple of Mars</GenericName>
+    <SpecificName>Aedes Martis</SpecificName>
+    <History>Roman temples in general were not meant for congregational worship. Instead the temple housed a statue of whatever deity the temple was dedicated to and what was needed to carry out the ceremonial and cultic practice necessary for worship. Any actual worship activity was performed outside.</History>
+    <Tooltip>Train healers. Garrison up to 30 units to heal them at a quick rate.</Tooltip>
+  </Identity>
+  <Obstruction>
+    <Static width="20.0" depth="40.0"/>
+  </Obstruction>
+  <TerritoryInfluence>
+    <Root>false</Root>
+    <Radius>52</Radius>
+  </TerritoryInfluence>
+  <VisualActor>
+    <Actor>structures/romans/temple_mars.xml</Actor>
+  </VisualActor>
+</Entity>

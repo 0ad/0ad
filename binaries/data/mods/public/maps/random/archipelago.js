@@ -242,7 +242,7 @@ createAreas(
 	placer,
 	[terrainPainter, elevationPainter, paintClass(clLand)], 
 	null,
-	scaleByMapSize(10, 50)
+	scaleByMapSize(2, 5)*randInt(8,14)
 );
 
 paintTerrainBasedOnHeight(1, 3, 0, tShore);
@@ -346,6 +346,9 @@ RMS.SetProgress(50);
 // create dirt patches
 log("Creating dirt patches...");
 var sizes = [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)];
+var numb = 1;
+if (rt == 6)
+	numb = 3
 for (var i = 0; i < sizes.length; i++)
 {
 	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
@@ -357,7 +360,7 @@ for (var i = 0; i < sizes.length; i++)
 		placer,
 		[painter, paintClass(clDirt)],
 		[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 0), stayClasses(clLand, 4)],
-		scaleByMapSize(15, 45)
+		numb*scaleByMapSize(15, 45)
 	);
 }
 
@@ -372,7 +375,7 @@ for (var i = 0; i < sizes.length; i++)
 		placer,
 		painter,
 		[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 0), stayClasses(clLand, 4)],
-		scaleByMapSize(15, 45)
+		numb*scaleByMapSize(15, 45)
 	);
 }
 RMS.SetProgress(55);

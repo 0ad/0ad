@@ -213,7 +213,7 @@ for (var i = 0; i < numPlayers; i++)
 {
 	// create the oases
 	log("Creating oases...");
-	var oRadius = scaleByMapSize(15, 60);
+	var oRadius = scaleByMapSize(16, 60);
 	placer = new ClumpPlacer(PI*oRadius*oRadius*0.185, 0.6, 0.15, 0, mapSize*(0.5 + 0.18*cos(playerAngle[i]) + scaleByMapSize(1, 4)*cos(playerAngle[i])/100), mapSize*(0.5 + 0.18*sin(playerAngle[i]) + scaleByMapSize(1, 4)*sin(playerAngle[i])/100));
 	painter = new LayeredPainter([tSLush ,[tLush, pForest], [tLush, pForestOasis], tShore, tShore, tWaterDeep], [2, 2, 1, 3, 1]);
 	var elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, -3, 8);
@@ -264,14 +264,14 @@ log("Creating stone mines...");
 // create large stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 0,2, 0,4), new SimpleObject(oStoneLarge, 1,1, 0,4)], true, clRock);
 createObjectGroups(group, 0,
-	avoidClasses(clForest, 1, clPlayer, 12, clRock, 10, clWater, 1),
+	avoidClasses(clForest, 1, clPlayer, 26, clRock, 10, clWater, 1),
 	2*scaleByMapSize(4,16), 100
 );
 
 // create small stone quarries
 group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3)], true, clRock);
 createObjectGroups(group, 0,
-	avoidClasses(clForest, 1, clPlayer, 12, clRock, 10, clWater, 1),
+	avoidClasses(clForest, 1, clPlayer, 26, clRock, 10, clWater, 1),
 	2*scaleByMapSize(4,16), 100
 );
 
@@ -279,7 +279,7 @@ log("Creating metal mines...");
 // create large metal quarries
 group = new SimpleGroup([new SimpleObject(oMetalLarge, 1,1, 0,4)], true, clMetal);
 createObjectGroups(group, 0,
-	avoidClasses(clForest, 1, clPlayer, 12, clMetal, 10, clRock, 5, clWater, 1),
+	avoidClasses(clForest, 1, clPlayer, 26, clMetal, 10, clRock, 5, clWater, 1),
 	2*scaleByMapSize(4,16), 100
 );
 
@@ -292,7 +292,41 @@ group = new SimpleGroup(
 createObjectGroups(
 	group, 0,
 	avoidClasses(clWater, 1, clForest, 0, clPlayer, 0, clPond, 1),
-	scaleByMapSize(16, 262), 50
+	5*scaleByMapSize(16, 262), 50
+);
+
+// create shrubs
+log("Creating shrubs...");
+group = new SimpleGroup(
+	[new SimpleObject(aBush2, 1,2, 0,1), new SimpleObject(aBush1, 1,3, 0,2), new SimpleObject(aBush4, 1,2, 0,1), new SimpleObject(aBush3, 1,3, 0,2)],
+	true
+);
+createObjectGroups(
+	group, 0,
+	avoidClasses(clWater, 1, clPlayer, 0, clPond, 1),
+	scaleByMapSize(10, 100), 50
+);
+
+// create small decorative rocks on mines
+log("Creating small decorative rocks...");
+group = new SimpleGroup(
+	[new SimpleObject(aDecorativeRock, 1,3, 0,1)],
+	true
+);
+createObjectGroups(
+	group, 0,
+	stayClasses(clRock, 0),
+	5*scaleByMapSize(16, 262), 50
+);
+
+group = new SimpleGroup(
+	[new SimpleObject(aDecorativeRock, 1,3, 0,1)],
+	true
+);
+createObjectGroups(
+	group, 0,
+	stayClasses(clMetal, 0),
+	5*scaleByMapSize(16, 262), 50
 );
 
 // create gazelles
@@ -300,7 +334,7 @@ log("Creating gazelles...");
 group = new SimpleGroup([new SimpleObject(oGazelle, 5,7, 0,4)], true, clFood);
 createObjectGroups(group, 0,
 	borderClasses(clWater, 8, 5),
-	3*scaleByMapSize(5,20), 50
+	6*scaleByMapSize(5,20), 50
 );
 
 // create goats
@@ -308,7 +342,7 @@ log("Creating goats...");
 group = new SimpleGroup([new SimpleObject(oGoat, 2,4, 0,3)], true, clFood);
 createObjectGroups(group, 0,
 	borderClasses(clWater, 8, 5),
-	3*scaleByMapSize(5,20), 50
+	5*scaleByMapSize(5,20), 50
 );
 
 // create treasures
@@ -329,13 +363,13 @@ createObjectGroups(group, 0,
 log("Creating camels...");
 group = new SimpleGroup([new SimpleObject(oCamel, 2,4, 0,2)], true, clFood);
 createObjectGroups(group, 0,
-	borderClasses(clWater, 8, 5),
-	3*scaleByMapSize(5,20), 50
+	borderClasses(clWater, 14, 5),
+	5*scaleByMapSize(5,20), 50
 );
 
 // Set environment
 setSkySet("sunny");
-setSunColour(0.711, 0.746, 0.574);	
+setSunColour(0.746, 0.718, 0.539);	
 setWaterColour(0.292, 0.347, 0.691);		
 setWaterTint(0.550, 0.543, 0.437);				
 setWaterReflectionTint(0.562, 0.511, 0.425);	
