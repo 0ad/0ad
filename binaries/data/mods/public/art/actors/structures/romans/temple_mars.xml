@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Rome Temple Big">
+      <mesh>structural/rome_temple_big.dae</mesh>
+      <props>
+        <prop actor="props/structures/romans/rome_temple_big_statues.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/rome_struct.png</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
