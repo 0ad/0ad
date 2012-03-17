@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="804.326" y="83.0745" z="567.057"/>
+		<Position x="807.436" y="70.8927" z="584.209"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -7066,13 +7066,13 @@
 		<Entity uid="1452">
 			<Template>units/rome_centurio_imperial</Template>
 			<Player>1</Player>
-			<Position x="811.6598" z="639.55958"/>
+			<Position x="810.41327" z="638.13044"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1453">
 			<Template>units/rome_centurio_imperial</Template>
 			<Player>1</Player>
-			<Position x="815.89777" z="644.84815"/>
+			<Position x="814.37458" z="641.74604"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1454">
@@ -7642,13 +7642,7 @@
 		<Entity uid="1558">
 			<Template>units/rome_centurio_imperial</Template>
 			<Player>1</Player>
-			<Position x="813.60084" z="642.23542"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1560">
-			<Template>units/rome_centurio_imperial</Template>
-			<Player>1</Player>
-			<Position x="809.6839" z="637.27668"/>
+			<Position x="812.37714" z="639.95746"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1561">
@@ -7770,6 +7764,36 @@
 			<Player>3</Player>
 			<Position x="344.1214" z="723.068"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1581">
+			<Template>structures/rome_tent</Template>
+			<Player>1</Player>
+			<Position x="553.89771" z="824.51746"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1582">
+			<Template>structures/rome_tent</Template>
+			<Player>1</Player>
+			<Position x="681.82166" z="265.60648"/>
+			<Orientation y="2.53681"/>
+		</Entity>
+		<Entity uid="1583">
+			<Template>structures/rome_tent</Template>
+			<Player>1</Player>
+			<Position x="655.6385" z="267.74048"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1587">
+			<Template>structures/rome_tent</Template>
+			<Player>1</Player>
+			<Position x="169.97907" z="513.20472"/>
+			<Orientation y="2.1717"/>
+		</Entity>
+		<Entity uid="1588">
+			<Template>other/celt_tavern</Template>
+			<Player>3</Player>
+			<Position x="361.42362" z="757.73591"/>
+			<Orientation y="-2.31411"/>
 		</Entity>
 	</Entities>
 	<Paths/>

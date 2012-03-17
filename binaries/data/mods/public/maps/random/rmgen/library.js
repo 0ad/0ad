@@ -508,10 +508,27 @@ function addToClass(x, z, id)
 	}
 }
 
+// Remove point from the given class by id
+function removeFromClass(x, z, id)
+{
+	var tileClass = getTileClass(id);
+	
+	if (tileClass !== null)
+	{
+		tileClass.remove(x, z);
+	}
+}
+
 // Create a painter for the given class
 function paintClass(id)
 {
 	return new TileClassPainter(getTileClass(id));
+}
+
+// Create a painter for the given class
+function unPaintClass(id)
+{
+	return new TileClassUnPainter(getTileClass(id));
 }
 
 // Create an avoid constraint for the given classes by the given distances

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations>
@@ -19,7 +17,6 @@
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="7" name="feet">
       <texture>skeletal/horse_celt_feet_b.dds</texture>
@@ -43,7 +40,6 @@
       <texture>skeletal/horse_celt_stripe_b.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="2" name="black">
       <colour>81 81 85</colour>
@@ -64,7 +60,13 @@
       <colour>255 148 89</colour>
     </variant>
   </group>
-
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Run">
+      <props>
+        <prop actor="particle/dust_cav.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
   <material>objectcolor.xml</material>
-
 </actor>

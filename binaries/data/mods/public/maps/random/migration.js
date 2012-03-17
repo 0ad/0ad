@@ -34,6 +34,7 @@ var oSheep = rBiomeE10();
 var oStoneLarge = rBiomeE11();
 var oStoneSmall = rBiomeE12();
 var oMetalLarge = rBiomeE13();
+var oWood = "gaia/special_treasure_wood";
 
 // decorative props
 var aGrass = rBiomeA1();
@@ -182,6 +183,17 @@ for (var i = 0; i < numPlayers; i++)
 	);
 	createObjectGroup(group, 0);
 	
+	// create woods
+	var bbAngle = randFloat(0, TWO_PI);
+	var bbDist = 13;
+	var bbX = round(fx + bbDist * cos(bbAngle));
+	var bbZ = round(fz + bbDist * sin(bbAngle));
+	group = new SimpleGroup(
+		[new SimpleObject(oWood, 7,7, 0,3)],
+		true, clBaseResource, bbX, bbZ
+	);
+	createObjectGroup(group, 0);
+	
 	// create metal mine
 	var mAngle = bbAngle;
 	while(abs(mAngle - bbAngle) < PI/3)
@@ -208,7 +220,7 @@ for (var i = 0; i < numPlayers; i++)
 	createObjectGroup(group, 0);
 	var hillSize = PI * radius * radius;
 	// create starting straggler trees
-	var num = hillSize / 50;
+	var num = hillSize / 100;
 	for (var j = 0; j < num; j++)
 	{
 		var tAngle = randFloat(0, TWO_PI);
