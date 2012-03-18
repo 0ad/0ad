@@ -76,6 +76,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 	{
 		// Sprite not found. Check whether this a special sprite:
 		//     "stretched:filename.ext" - stretched image
+		//     "stretched:grayscale:filename.ext" - stretched grayscale image
 		//     "colour:r g b a"         - solid colour
 		//
 		// and if so, try to create it as a new sprite.
@@ -83,8 +84,18 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 		{
 			// TODO: Should check (nicely) that this is a valid file?
 			SGUIImage Image;
-
-			Image.m_TextureName = VfsPath("art/textures/ui") / wstring_from_utf8(SpriteName.substr(10));
+			
+			// Allow grayscale images for disabled portraits
+			if (SpriteName.substr(10, 10) == "grayscale:")
+			{
+				Image.m_TextureName = VfsPath("art/textures/ui") / wstring_from_utf8(SpriteName.substr(20));
+				Image.m_Effects = new SGUIImageEffects;
+				Image.m_Effects->m_Greyscale = true;
+			}
+			else
+			{
+				Image.m_TextureName = VfsPath("art/textures/ui") / wstring_from_utf8(SpriteName.substr(10));
+			}
 
 			CClientArea ca(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
 			Image.m_Size = ca;
