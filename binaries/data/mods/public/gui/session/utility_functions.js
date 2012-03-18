@@ -94,61 +94,6 @@ function hasClass(entState, className)
 	return false;
 }
 
-function isUnit(entState)
-{
-	if (entState.identity)
-	{
-		var classes = entState.identity.classes;
-		if (classes && classes.length)
-			return (classes.indexOf("Unit") != -1);
-	}
-	return false;
-}
-
-function isAnimal(entState)
-{
-	if (entState.identity)
-	{
-		var classes = entState.identity.classes;
-		if (classes && classes.length)
-			return (classes.indexOf("Animal") != -1);
-	}
-	return false;
-}
-
-function isStructure(entState)
-{
-	if (entState.identity)
-	{
-		var classes = entState.identity.classes;
-		if (classes && classes.length)
-			return (classes.indexOf("Structure") != -1);
-	}
-	return false;
-}
-
-function isDefensive(entState)
-{
-	if (entState.identity)
-	{
-		var classes = entState.identity.classes;
-		if (classes && classes.length)
-			return (classes.indexOf("Defensive") != -1);
-	}
-	return false;
-}
-
-function isSupport(entState)
-{
-	if (entState.identity)
-	{
-		var classes = entState.identity.classes;
-		if (classes && classes.length)
-			return (classes.indexOf("Support") != -1);
-	}
-	return false;
-}
-
 function damageTypesToTextStacked(dmg)
 {
 	if (!dmg)
@@ -253,7 +198,7 @@ function getEntityCommandsList(entState)
 		"icon": "kill_small.png"
 	});
 	
-	if (isUnit(entState))
+	if (hasClass(entState, "Unit"))
 	{
 		commands.push({
 			"name": "garrison",
