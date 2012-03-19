@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2012 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -23,9 +23,9 @@
 #include "precompiled.h"
 #include "lib/sysdep/cursor.h"
 
+#include "lib/sysdep/gfx.h"
 #include "lib/sysdep/os/win/win.h"
 #include "lib/sysdep/os/win/wutil.h"
-
 
 static sys_cursor cursor_from_HICON(HICON hIcon)
 {
@@ -48,7 +48,7 @@ static HCURSOR HCURSOR_from_cursor(sys_cursor cursor)
 }
 
 
-Status sys_cursor_create(int w, int h, void* bgra_img, int hx, int hy, sys_cursor* cursor)
+static Status sys_cursor_create_common(int w, int h, void* bgra_img, void* mask_img, int hx, int hy, sys_cursor* cursor)
 {
 	*cursor = 0;
 
@@ -60,7 +60,7 @@ Status sys_cursor_create(int w, int h, void* bgra_img, int hx, int hy, sys_curso
 
 	// CreateIconIndirect doesn't access this; we just need to pass
 	// an empty bitmap.
-	HBITMAP hbmMask = CreateBitmap(w, h, 1, 1, 0);
+	HBITMAP hbmMask = CreateBitmap(w, h, 1, 1, mask_img);
 
 	// create the cursor (really an icon; they differ only in
 	// fIcon and the hotspot definitions).
@@ -83,11 +83,27 @@ Status sys_cursor_create(int w, int h, void* bgra_img, int hx, int hy, sys_curso
 	return INFO::OK;
 }
 
+Status sys_cursor_create(int w, int h, void* bgra_img, int hx, int hy, sys_cursor* cursor)
+{
+	// alpha-blended cursors do not work on a 16-bit display
+	// (they get drawn as a black square), so refuse to load the
+	// cursor in that case
+	int bpp = 0;
+	RETURN_STATUS_IF_ERR(gfx::GetVideoMode(NULL, NULL, &bpp, NULL));
+	if (bpp <= 16)
+		return ERR::FAIL;
+
+	return sys_cursor_create_common(w, h, bgra_img, NULL, hx, hy, cursor);
+}
 
 Status sys_cursor_create_empty(sys_cursor* cursor)
 {
+	// the mask gets ignored on 32-bit displays, but is used on 16-bit displays;
+	// setting it to 0xFF makes the cursor invisible (though I'm not quite
+	// sure why it's that way round)
 	u8 bgra_img[] = {0, 0, 0, 0};
-	return sys_cursor_create(1, 1, bgra_img, 0, 0, cursor);
+	u8 mask_img[] = {0xFF};
+	return sys_cursor_create_common(1, 1, bgra_img, mask_img, 0, 0, cursor);
 }
 
 
