@@ -27,8 +27,8 @@
 
 struct ParticleRendererInternals
 {
-	CShaderProgramPtr shader;
-	CShaderProgramPtr shaderSolid;
+	CShaderTechniquePtr shader;
+	CShaderTechniquePtr shaderSolid;
 	std::vector<CParticleEmitter*> emitters;
 };
 
@@ -78,11 +78,6 @@ void ParticleRenderer::PrepareForRendering()
 {
 	PROFILE3("prepare particles");
 
-#if CONFIG2_GLES
-#warning TODO: implement particles for GLES
-	return;
-#endif
-
 	// Can't load the shader in the constructor because it's called before the
 	// renderer initialisation is complete, so load it the first time through here
 	if (!m->shader)
@@ -91,8 +86,8 @@ void ParticleRenderer::PrepareForRendering()
 		// RenderParticles will never be called so it's safe to leave the shaders as null
 		if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
 		{
-			m->shader = g_Renderer.GetShaderManager().LoadProgram("particle");
-			m->shaderSolid = g_Renderer.GetShaderManager().LoadProgram("particle_solid");
+			m->shader = g_Renderer.GetShaderManager().LoadEffect("particle");
+			m->shaderSolid = g_Renderer.GetShaderManager().LoadEffect("particle_solid");
 		}
 	}
 
@@ -118,14 +113,11 @@ void ParticleRenderer::PrepareForRendering()
 
 void ParticleRenderer::RenderParticles(bool solidColor)
 {
-#if CONFIG2_GLES
-#warning TODO: implement particles for GLES
-	return;
-#endif
+	CShaderTechniquePtr shader = solidColor ? m->shaderSolid : m->shader;
 
-	CShaderProgramPtr shader = solidColor ? m->shaderSolid : m->shader;
+	shader->BeginPass();
 
-	shader->Bind();
+	shader->GetShader()->Uniform("transform", g_Renderer.GetViewCamera().GetViewProjection());
 
 	if (!solidColor)
 		glEnable(GL_BLEND);
@@ -136,7 +128,7 @@ void ParticleRenderer::RenderParticles(bool solidColor)
 		CParticleEmitter* emitter = m->emitters[i];
 
 		emitter->Bind();
-		emitter->RenderArray(shader);
+		emitter->RenderArray(shader->GetShader());
 	}
 
 	CVertexBuffer::Unbind();
@@ -147,7 +139,7 @@ void ParticleRenderer::RenderParticles(bool solidColor)
 	glDisable(GL_BLEND);
 	glDepthMask(1);
 
-	shader->Unbind();
+	shader->EndPass();
 }
 
 void ParticleRenderer::RenderBounds(CShaderProgramPtr& shader)

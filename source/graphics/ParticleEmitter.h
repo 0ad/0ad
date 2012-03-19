@@ -103,7 +103,7 @@ public:
 	/**
 	 * Draw the vertex array.
 	 */
-	void RenderArray(CShaderProgramPtr& shader);
+	void RenderArray(const CShaderProgramPtr& shader);
 
 	/**
 	 * Stop this emitter emitting new particles, and pass responsibility for rendering
@@ -134,6 +134,8 @@ public:
 private:
 	/// Bounding box of the current particle center points
 	CBoundingBoxAligned m_ParticleBounds;
+
+	VertexIndexArray m_IndexArray;
 
 	VertexArray m_VertexArray;
 	VertexArray::Attribute m_AttributePos;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -113,10 +113,15 @@ public:
 	const CMatrix3D& GetTextureMatrix() const;
 
 	/**
-	 * RenderDebugDisplay: Visualize shadow mapping calculations to help in
+	 * Visualize shadow mapping calculations to help in
 	 * debugging and optimal shadow map usage.
 	 */
-	void RenderDebugDisplay();
+	void RenderDebugBounds();
+
+	/**
+	 * Visualize shadow map texture to help in debugging.
+	 */
+	void RenderDebugTexture();
 
 	/**
 	 * Get offsets for PCF filtering.

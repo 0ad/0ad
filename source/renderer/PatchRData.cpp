@@ -746,7 +746,7 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CS
 	{
 		if (itt->first)
 		{
-			itt->first->GetTexture()->Bind();
+			shader->BindTexture("baseTex", itt->first->GetTexture());
 
 #if !CONFIG2_GLES
 			if (isDummyShader)
@@ -765,7 +765,7 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CS
 		}
 		else
 		{
-			g_Renderer.GetTextureManager().GetErrorTexture()->Bind();
+			shader->BindTexture("baseTex", g_Renderer.GetTextureManager().GetErrorTexture());
 		}
 
 		for (VertexBufferBatches::iterator itv = itt->second.begin(); itv != itt->second.end(); ++itv)
@@ -931,7 +931,7 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
 	{
 		if (itt->m_Texture)
 		{
-			itt->m_Texture->GetTexture()->Bind();
+			shader->BindTexture("baseTex", itt->m_Texture->GetTexture());
 
 #if !CONFIG2_GLES
 			if (isDummyShader)
@@ -951,7 +951,7 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
 		}
 		else
 		{
-			g_Renderer.GetTextureManager().GetErrorTexture()->Bind();
+			shader->BindTexture("baseTex", g_Renderer.GetTextureManager().GetErrorTexture());
 		}
 
 		for (VertexBufferBatches::iterator itv = itt->m_Batches.begin(); itv != itt->m_Batches.end(); ++itv)

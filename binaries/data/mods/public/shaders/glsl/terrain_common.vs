@@ -30,6 +30,9 @@ void main()
   float c = textureTransform.x;
   float s = -textureTransform.y;
   v_tex = vec2(a_vertex.x * c + a_vertex.z * -s, a_vertex.x * -s + a_vertex.z * -c);
+  
+  // XXX: Ugly hack to hide some precision issues in GLES
+  v_tex = mod(v_tex, vec2(9.0, 9.0));
 #endif
 
 #ifdef BLEND
