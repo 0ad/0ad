@@ -509,7 +509,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 			zip = mod.Filename().ChangeExtension(L".zip");
 
 		CArchiveBuilder builder(mod, paths.Cache());
-		builder.Build(zip);
+		builder.Build(zip, args.Has("archivebuild-compress"));
 
 		CXeromyces::Terminate();
 		return;

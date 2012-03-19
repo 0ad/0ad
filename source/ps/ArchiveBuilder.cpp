@@ -64,14 +64,14 @@ void CArchiveBuilder::AddBaseMod(const OsPath& mod)
 	m_VFS->Mount(L"", mod/"", VFS_MOUNT_MUST_EXIST);
 }
 
-void CArchiveBuilder::Build(const OsPath& archive)
+void CArchiveBuilder::Build(const OsPath& archive, bool compress)
 {
-	// Disable zip compression because it significantly hurts download size
-	// for releases (which re-compress all files with better compression
+	// By default we disable zip compression because it significantly hurts download
+	// size for releases (which re-compress all files with better compression
 	// algorithms) - it's probably most important currently to optimise for
 	// download size rather than install size or startup performance.
 	// (See http://trac.wildfiregames.com/ticket/671)
-	const bool noDeflate = true;
+	const bool noDeflate = !compress;
 
 	PIArchiveWriter writer = CreateArchiveWriter_Zip(archive, noDeflate);
 

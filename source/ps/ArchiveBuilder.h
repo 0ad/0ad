@@ -52,8 +52,9 @@ public:
 	/**
 	 * Do all the processing and packing of files into the archive.
 	 * @param archive path of .zip file to generate (will be overwritten if it exists)
+	 * @param compress whether to compress the contents of the .zip file
 	 */
-	void Build(const OsPath& archive);
+	void Build(const OsPath& archive, bool compress);
 
 private:
 	static Status CollectFileCB(const VfsPath& pathname, const FileInfo& fileInfo, const uintptr_t cbData);
