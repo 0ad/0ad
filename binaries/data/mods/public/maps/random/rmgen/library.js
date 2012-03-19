@@ -617,7 +617,7 @@ function getDistance(x1, z1, x2, z2)
 // Returns the angle of the vector between point 1 and point 2.  The angle is anticlockwise from the positive x axis.
 function getAngle(x1, z1, x2, z2)
 {
-	return output = Math.atan2(z2 - z1, x2 - x1);
+	return Math.atan2(z2 - z1, x2 - x1);
 }
 
 // Returns the gradient of the line between point 1 and 2 in the form dz/dx
