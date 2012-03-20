@@ -27,9 +27,9 @@
   </BuildRestrictions>
   <Cost>
     <PopulationBonus>5</PopulationBonus>
-    <BuildTime>350</BuildTime>
+    <BuildTime>160</BuildTime>
     <Resources>
-      <wood>600</wood>
+      <wood>400</wood>
       <stone>0</stone>
     </Resources>
   </Cost>
@@ -40,6 +40,7 @@
   <GarrisonHolder>
     <Max>40</Max>
     <List datatype="tokens">Support Infantry Cavalry Siege</List>
+    <BuffHeal>1</BuffHeal>
   </GarrisonHolder>
   <Health>
     <Max>3500</Max>
@@ -49,7 +50,7 @@
     <GenericName>Entrenched Army Camp</GenericName>
     <SpecificName>Castra Vellum</SpecificName>
     <Icon>structures/fortress.png</Icon>
-	<Tooltip>Build anywhere on the map, even in enemy territory. Constructs siege weapons and trains citizen-soldiers.</Tooltip>
+	<Tooltip>Build anywhere on the map, even in enemy territory. Constructs siege weapons and trains citizen-soldiers. Heals garrisoned units slowly.</Tooltip>
     <History>Sometimes it was a temporary camp built facing the route by which the army is to march, other times a defensive or offensive (for sieges) structure. Within this gate the tents of the first centuries or cohorts are pitched, and the dragons (ensigns of cohorts) and other ensigns planted. The Decumane gate is directly opposite to the Praetorian in the rear of the camp, and through this the soldiers are conducted to the place appointed for punishment or execution.</History>
   </Identity>
   <Obstruction>
@@ -63,7 +64,7 @@
     </SoundGroups>
   </Sound>
   <TerritoryDecay>
-    <HealthDecayRate>4</HealthDecayRate>
+    <HealthDecayRate>5</HealthDecayRate>
   </TerritoryDecay>
   <TerritoryInfluence disable=""/>
   <TrainingQueue>
@@ -77,6 +78,9 @@
 	  units/rome_mechanical_siege_ram
     </Entities>
   </TrainingQueue>
+  <Vision>
+    <Range>60</Range>
+  </Vision>
   <VisualActor>
     <FoundationActor>structures/fndn_8x8.xml</FoundationActor>
     <Actor>structures/romans/camp.xml</Actor>

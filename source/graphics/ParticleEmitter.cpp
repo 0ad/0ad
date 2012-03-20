@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,6 +28,7 @@
 CParticleEmitter::CParticleEmitter(const CParticleEmitterTypePtr& type) :
 	m_Type(type), m_Active(true), m_NextParticleIdx(0), m_EmissionRoundingError(0.f),
 	m_LastUpdateTime(type->m_Manager.GetCurrentTime()),
+	m_IndexArray(GL_DYNAMIC_DRAW),
 	m_VertexArray(GL_DYNAMIC_DRAW)
 {
 	// If we should start with particles fully emitted, pretend that we
@@ -60,6 +61,21 @@ CParticleEmitter::CParticleEmitter(const CParticleEmitterTypePtr& type) :
 
 	m_VertexArray.SetNumVertices(m_Type->m_MaxParticles * 4);
 	m_VertexArray.Layout();
+
+	m_IndexArray.SetNumVertices(m_Type->m_MaxParticles * 6);
+	m_IndexArray.Layout();
+	VertexArrayIterator<u16> index = m_IndexArray.GetIterator();
+	for (size_t i = 0; i < m_Type->m_MaxParticles; ++i)
+	{
+		*index++ = i*4 + 0;
+		*index++ = i*4 + 1;
+		*index++ = i*4 + 2;
+		*index++ = i*4 + 2;
+		*index++ = i*4 + 3;
+		*index++ = i*4 + 0;
+	}
+	m_IndexArray.Upload();
+	m_IndexArray.FreeBackingStore();
 }
 
 void CParticleEmitter::UpdateArrayData()
@@ -153,13 +169,14 @@ void CParticleEmitter::Bind()
 	glBlendFunc(m_Type->m_BlendFuncSrc, m_Type->m_BlendFuncDst);
 }
 
-void CParticleEmitter::RenderArray(CShaderProgramPtr& shader)
+void CParticleEmitter::RenderArray(const CShaderProgramPtr& shader)
 {
 	// Some drivers apparently don't like count=0 in glDrawArrays here,
 	// so skip all drawing in that case
 	if (m_Particles.empty())
 		return;
 
+	u8* indexBase = m_IndexArray.Bind();
 	u8* base = m_VertexArray.Bind();
 
 	GLsizei stride = (GLsizei)m_VertexArray.GetStride();
@@ -174,11 +191,7 @@ void CParticleEmitter::RenderArray(CShaderProgramPtr& shader)
 	shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, base + m_AttributeColor.offset);
 
 	shader->AssertPointersBound();
-#if CONFIG2_GLES
-#warning TODO: change CParticleEmitter to use (indexed?) triangles instead of quads, for GLES
-#else
-	glDrawArrays(GL_QUADS, 0, m_Particles.size()*4);
-#endif
+	glDrawElements(GL_TRIANGLES, (GLsizei)(m_Particles.size() * 6), GL_UNSIGNED_SHORT, indexBase);
 
 	g_Renderer.GetStats().m_DrawCalls++;
 	g_Renderer.GetStats().m_Particles += m_Particles.size();

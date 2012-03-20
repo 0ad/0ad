@@ -111,7 +111,8 @@ Paths::Paths(const CmdLineArgs& args)
 /*static*/ OsPath Paths::XDG_Path(const char* envname, const OsPath& home, const OsPath& defaultPath)
 {
 	const char* path = getenv(envname);
-	if(path)
+	// Use if set and non-empty
+	if(path && path[0] != '\0')
 	{
 		if(path[0] != '/')	// relative to $HOME
 			return home / path/"";

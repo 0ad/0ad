@@ -239,6 +239,9 @@ public:
 
 	// return the current view camera
 	const CCamera& GetViewCamera() const { return m_ViewCamera; }
+	// replace the current view camera
+	void SetViewCamera(const CCamera& camera) { m_ViewCamera = camera; }
+
 	// return the current cull camera
 	const CCamera& GetCullCamera() const { return m_CullCamera; }
 

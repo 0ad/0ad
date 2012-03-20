@@ -541,11 +541,15 @@ void CRenderer::EnumCaps()
 			m_Caps.m_FragmentShader = true;
 	}
 
+#if CONFIG2_GLES
+	m_Caps.m_Shadows = true;
+#else
 	if (0 == ogl_HaveExtensions(0, "GL_ARB_shadow", "GL_ARB_depth_texture", "GL_EXT_framebuffer_object", NULL))
 	{
 		if (ogl_max_tex_units >= 4)
 			m_Caps.m_Shadows = true;
 	}
+#endif
 }
 
 void CRenderer::ReloadShaders()
@@ -562,6 +566,9 @@ void CRenderer::ReloadShaders()
 			defBasic["USE_FP_SHADOW"] = "1";
 		if (m_Options.m_ShadowPCF)
 			defBasic["USE_SHADOW_PCF"] = "1";
+#if !CONFIG2_GLES
+		defBasic["USE_SHADOW_SAMPLER"] = "1";
+#endif
 	}
 
 	if (m_LightEnv)
@@ -958,6 +965,8 @@ void CRenderer::RenderShadowMap()
 #endif
 
 	m->shadow->EndRender();
+
+	m->SetOpenGLCamera(m_ViewCamera);
 }
 
 void CRenderer::RenderPatches(const CFrustum* frustum)
@@ -1223,7 +1232,7 @@ SScreenRect CRenderer::RenderReflections(const CBoundingBoxAligned& scissor)
 		glEnable(GL_SCISSOR_TEST);
 		glScissor(screenScissor.x1, screenScissor.y1, screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
 
-		glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 		glFrontFace(GL_CW);
 
@@ -1608,7 +1617,8 @@ void CRenderer::RenderSubmissions()
 	if (m_DisplayFrustum)
 	{
 		DisplayFrustum();
-		m->shadow->RenderDebugDisplay();
+		m->shadow->RenderDebugBounds();
+		m->shadow->RenderDebugTexture();
 		ogl_WarnIfError();
 	}
 
@@ -1802,16 +1812,18 @@ Scene& CRenderer::GetScene()
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BindTexture: bind a GL texture object to current active unit
-void CRenderer::BindTexture(int unit,GLuint tex)
+void CRenderer::BindTexture(int unit, GLuint tex)
 {
 	pglActiveTextureARB(GL_TEXTURE0+unit);
 
-	glBindTexture(GL_TEXTURE_2D,tex);
+	glBindTexture(GL_TEXTURE_2D, tex);
+#if !CONFIG2_GLES
 	if (tex) {
 		glEnable(GL_TEXTURE_2D);
 	} else {
 		glDisable(GL_TEXTURE_2D);
 	}
+#endif
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

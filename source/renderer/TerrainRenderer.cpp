@@ -408,6 +408,8 @@ void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* 
 
 	shader->Uniform("ambient", lightEnv.m_TerrainAmbientColor);
 	shader->Uniform("sunColor", lightEnv.m_SunColor);
+
+	shader->BindTexture("blendTex", g_Renderer.m_hCompositeAlphaMap);
 }
 
 void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow, bool filtered)
@@ -430,6 +432,9 @@ void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow, bool filtered)
 			defBasic["USE_FP_SHADOW"] = "1";
 		if (g_Renderer.m_Options.m_ShadowPCF)
 			defBasic["USE_SHADOW_PCF"] = "1";
+#if !CONFIG2_GLES
+		defBasic["USE_SHADOW_SAMPLER"] = "1";
+#endif
 	}
 
 	defBasic["LIGHTING_MODEL_" + g_Renderer.GetLightEnv().GetLightingModel()] = "1";
@@ -465,9 +470,6 @@ void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow, bool filtered)
 
 	techBlend->BeginPass();
 	PrepareShader(techBlend->GetShader(), shadow);
-
-	// switch on the composite alpha map texture
-	(void)ogl_tex_bind(g_Renderer.m_hCompositeAlphaMap, 1);
 
 	// switch on blending
 	glEnable(GL_BLEND);

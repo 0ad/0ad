@@ -38,12 +38,16 @@ Math.atan = function(a)
 		sign = -1;
 		a *= -1;
 	}
-	if (a > 1){
+	
+	if (a > 1)
+	{
 		// tan(pi/2 - x) = 1/tan(x)
 		inverted = true;
 		a = 1/a;
 	}
-	if (a > tanPiBy12){
+	
+	if (a > tanPiBy12)
+	{
 		// tan(x-pi/6) = (tan(x) - tan(pi/6)) / (1 + tan(pi/6)tan(x))
 		tanPiBy6Shift = Math.PI/6;
 		a = (a - tanPiBy6) / (1 + tanPiBy6*a);
@@ -112,4 +116,19 @@ Math.atan2 = function(y,x)
 		else
 			return r;
 	}
+};
+
+Math.acos = function()
+{
+	error("Math.acos() does not have a synchronization safe implementation");
+};
+
+Math.asin = function()
+{
+	error("Math.asin() does not have a synchronization safe implementation");
+};
+
+Math.tan = function()
+{
+	error("Math.tan() does not have a synchronization safe implementation");
 };

@@ -27,6 +27,10 @@
 #	include <signal.h>
 #endif
 
+#if NV_OS_LINUX || NV_OS_DARWIN || NV_OS_FREEBSD
+#	include <unistd.h>	// getpid
+#endif
+
 #if NV_OS_LINUX && defined(HAVE_EXECINFO_H)
 #	include <execinfo.h> // backtrace
 #	if NV_CC_GNUC // defined(HAVE_CXXABI_H)
@@ -35,7 +39,6 @@
 #endif
 
 #if NV_OS_DARWIN || NV_OS_FREEBSD
-#	include <unistd.h>	// getpid
 #	include <sys/types.h>
 #	include <sys/sysctl.h>	// sysctl
 #	include <sys/ucontext.h>

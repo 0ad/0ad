@@ -21,6 +21,7 @@
 
 #include "precompiled.h"
 
+#include "gui/GUIutil.h"
 #include "lib/bits.h"
 #include "lib/ogl.h"
 #include "ps/CLogger.h"
@@ -78,6 +79,10 @@ struct ShadowMapInternals
 	// When m_ShadowAlphaFix is true, we use DummyTexture to store a useless
 	// alpha texture which is attached to the FBO as a workaround.
 	GLuint DummyTexture;
+
+	// Copy of renderer's standard view camera, saved between
+	// BeginRender and EndRender while we replace it with the shadow camera
+	CCamera SavedViewCamera;
 
 	float FilterOffsets[8];
 
@@ -233,7 +238,7 @@ void ShadowMapInternals::CalcShadowMatrices()
 
 	// minimum Z bound must not be clipped too much, because objects that lie outside
 	// the shadow bounds cannot cast shadows either
-	// the 2.0 is rather arbitrary: it should be big enough so that we won't accidently miss
+	// the 2.0 is rather arbitrary: it should be big enough so that we won't accidentally miss
 	// a shadow generator, and small enough not to affect Z precision
 	ShadowBound[0].Z = minZ - 2.0;
 
@@ -317,9 +322,8 @@ void ShadowMapInternals::CreateTexture()
 	}
 	else
 	{
-		// get shadow map size as next power of two up from view width and height
-		Width = (int)round_up_to_pow2((unsigned)g_Renderer.GetWidth());
-		Height = (int)round_up_to_pow2((unsigned)g_Renderer.GetHeight());
+		// get shadow map size as next power of two up from view width/height
+		Width = Height = (int)round_up_to_pow2((unsigned)std::max(g_Renderer.GetWidth(), g_Renderer.GetHeight()));
 	}
 	// Clamp to the maximum texture size
 	Width = std::min(Width, (int)ogl_max_tex_size);
@@ -359,31 +363,42 @@ void ShadowMapInternals::CreateTexture()
 
 	GLenum format;
 
-	switch(DepthTextureBits)
+#if CONFIG2_GLES
+	format = GL_DEPTH_COMPONENT;
+#else
+	switch (DepthTextureBits)
 	{
 	case 16: format = GL_DEPTH_COMPONENT16; break;
-#if !CONFIG2_GLES
 	case 24: format = GL_DEPTH_COMPONENT24; break;
 	case 32: format = GL_DEPTH_COMPONENT32; break;
-#endif
 	default: format = GL_DEPTH_COMPONENT; break;
 	}
-
-	glTexImage2D(GL_TEXTURE_2D, 0, format, Width, Height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, NULL);
-
-#if CONFIG2_GLES
-#warning TODO: implement shadows with non-depth textures and explicit comparisons in the GLSL
-#else
-	glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_INTENSITY);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
 #endif
+
+	glTexImage2D(GL_TEXTURE_2D, 0, format, Width, Height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
+	// GLES requires type == UNSIGNED_SHORT or UNSIGNED_INT
 
 	// set texture parameters
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+#if CONFIG2_GLES
+	// GLES doesn't do depth comparisons, so treat it as a
+	// basic unfiltered depth texture
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+#else
+	// Enable automatic depth comparisons
+	glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_INTENSITY);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
+
+	// Use GL_LINEAR to trigger automatic PCF on some devices
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+#endif
+
+	ogl_WarnIfError();
 
 	// bind to framebuffer object
 	glBindTexture(GL_TEXTURE_2D, 0);
@@ -407,6 +422,8 @@ void ShadowMapInternals::CreateTexture()
 #if !CONFIG2_GLES
 	glReadBuffer(GL_NONE);
 #endif
+
+	ogl_WarnIfError();
 
 	GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 
@@ -452,22 +469,27 @@ void ShadowMap::BeginRender()
 	// clear buffers
 	{
 		PROFILE("clear depth texture");
-		glClear(GL_DEPTH_BUFFER_BIT);
+		// In case we used m_ShadowAlphaFix, we ought to clear the unused
+		// color buffer too, else Mali 400 drivers get confused.
+		// Might as well clear stencil too for completeness.
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 		glColorMask(0,0,0,0);
 	}
 
 	// setup viewport
 	glViewport(0, 0, m->EffectiveWidth, m->EffectiveHeight);
 
-#if CONFIG2_GLES
-#warning TODO: implement ShdaowMap::BeginRender GLES
-#else
-	glMatrixMode(GL_PROJECTION);
-	glPushMatrix();
-	glLoadMatrixf(&m->LightProjection._11);
+	m->SavedViewCamera = g_Renderer.GetViewCamera();
 
+	CCamera c = m->SavedViewCamera;
+	c.SetProjection(m->LightProjection);
+	c.GetOrientation() = m->InvLightTransform;
+	g_Renderer.SetViewCamera(c);
+
+#if !CONFIG2_GLES
+	glMatrixMode(GL_PROJECTION);
+	glLoadMatrixf(&m->LightProjection._11);
 	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
 	glLoadMatrixf(&m->LightTransform._11);
 #endif
 
@@ -482,6 +504,8 @@ void ShadowMap::EndRender()
 {
 	glDisable(GL_SCISSOR_TEST);
 
+	g_Renderer.SetViewCamera(m->SavedViewCamera);
+
 	{
 		PROFILE("unbind framebuffer");
 		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
@@ -490,14 +514,6 @@ void ShadowMap::EndRender()
 	glViewport(0, 0, g_Renderer.GetWidth(), g_Renderer.GetHeight());
 
 	glColorMask(1,1,1,1);
-
-#if !CONFIG2_GLES
-	// restore matrix stack
-	glPopMatrix();
-	glMatrixMode(GL_PROJECTION);
-	glPopMatrix();
-	glMatrixMode(GL_MODELVIEW);
-#endif
 }
 
 
@@ -542,9 +558,8 @@ const float* ShadowMap::GetFilterOffsets() const
 }
 
 //////////////////////////////////////////////////////////////////////////////
-// RenderDebugDisplay: debug visualizations
-//  - blue: objects in shadow
-void ShadowMap::RenderDebugDisplay()
+
+void ShadowMap::RenderDebugBounds()
 {
 	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect("gui_solid");
 	shaderTech->BeginPass();
@@ -617,36 +632,48 @@ void ShadowMap::RenderDebugDisplay()
 	glPopMatrix();
 #endif
 
-	// Render the shadow map
-#if CONFIG2_GLES
-#warning TODO: implement ShadowMap::RenderDebugDisplay for GLES
-#else
-	glMatrixMode(GL_PROJECTION);
-	glPushMatrix();
-	glLoadIdentity();
-	glOrtho(0.0, 1.0, 1.0, 0.0, -1.0, 1.0);
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glLoadIdentity();
+	glEnable(GL_CULL_FACE);
+	glDepthMask(1);
+}
+
+void ShadowMap::RenderDebugTexture()
+{
+	glDepthMask(0);
 
 	glDisable(GL_DEPTH_TEST);
+
+#if !CONFIG2_GLES
 	g_Renderer.BindTexture(0, m->Texture);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
-	glColor3f(1.0f, 1.0f, 1.0f);
-	glBegin(GL_QUADS);
-		glTexCoord2f(0.0f, 0.0f); glVertex2f(0.0f, 0.0f);
-		glTexCoord2f(1.0f, 0.0f); glVertex2f(0.2f, 0.0f);
-		glTexCoord2f(1.0f, 1.0f); glVertex2f(0.2f, 0.2f);
-		glTexCoord2f(0.0f, 1.0f); glVertex2f(0.0f, 0.2f);
-	glEnd();
+#endif
+
+	CShaderTechniquePtr texTech = g_Renderer.GetShaderManager().LoadEffect("gui_basic");
+	texTech->BeginPass();
+	CShaderProgramPtr texShader = texTech->GetShader();
+
+	texShader->Uniform("transform", GetDefaultGuiMatrix());
+	texShader->BindTexture("tex", m->Texture);
+
+	float s = 256.f;
+	float boxVerts[] = {
+ 		0,0, 0,s, s,0,
+		s,0, 0,s, s,s
+	};
+	float boxUV[] = {
+		0,0, 0,1, 1,0,
+		1,0, 0,1, 1,1
+	};
+
+	texShader->VertexPointer(2, GL_FLOAT, 0, boxVerts);
+	texShader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, boxUV);
+	texShader->AssertPointersBound();
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+
+	texTech->EndPass();
+
+#if !CONFIG2_GLES
+	g_Renderer.BindTexture(0, m->Texture);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
-
-	glEnable(GL_CULL_FACE);
-
-	glMatrixMode(GL_PROJECTION);
-	glPopMatrix();
-	glMatrixMode(GL_MODELVIEW);
-	glPopMatrix();
 #endif
 
 	glEnable(GL_DEPTH_TEST);

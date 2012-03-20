@@ -52,6 +52,7 @@ namespace AtlasMessage
 // Loaded from DLL:
 void (*Atlas_StartWindow)(const wchar_t* type);
 void (*Atlas_SetDataDirectory)(const wchar_t* path);
+void (*Atlas_SetConfigDirectory)(const wchar_t* path);
 void (*Atlas_SetMessagePasser)(MessagePasser*);
 void (*Atlas_GLSetCurrent)(void* cavas);
 void (*Atlas_GLSwapBuffers)(void* canvas);
@@ -277,6 +278,7 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 		dll.LoadSymbol("Atlas_StartWindow", Atlas_StartWindow);
 		dll.LoadSymbol("Atlas_SetMessagePasser", Atlas_SetMessagePasser);
 		dll.LoadSymbol("Atlas_SetDataDirectory", Atlas_SetDataDirectory);
+		dll.LoadSymbol("Atlas_SetConfigDirectory", Atlas_SetConfigDirectory);
 		dll.LoadSymbol("Atlas_GLSetCurrent", Atlas_GLSetCurrent);
 		dll.LoadSymbol("Atlas_GLSwapBuffers", Atlas_GLSwapBuffers);
 		dll.LoadSymbol("Atlas_NotifyEndOfFrame", Atlas_NotifyEndOfFrame);
@@ -302,6 +304,9 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 	// Tell Atlas the location of the data directory
 	const Paths paths(args);
 	Atlas_SetDataDirectory(paths.RData().string().c_str());
+
+	// Tell Atlas the location of the user config directory
+	Atlas_SetConfigDirectory(paths.Config().string().c_str());
 
 	// Run the engine loop in a new thread
 	pthread_t engineThread;

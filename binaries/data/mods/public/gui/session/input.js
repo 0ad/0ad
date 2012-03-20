@@ -255,7 +255,7 @@ function getActionInfo(action, target)
 		switch (action)
 		{
 		case "garrison":
-			if (isUnit(entState) && targetState.garrisonHolder && playerOwned)
+			if (hasClass(entState, "Unit") && targetState.garrisonHolder && playerOwned)
 			{
 				var allowedClasses = targetState.garrisonHolder.allowedClasses;
 				for each (var unitClass in entState.identity.classes)
@@ -474,7 +474,7 @@ function getPreferredEntities(ents)
 		var entState = GetEntityState(ent);
 		if (!entState)
 			continue;
-		if (isUnit(entState))
+		if (hasClass(entState, "Unit"))
 			preferredEnts.push(ent);
 
 		entStateList.push(entState);
@@ -483,7 +483,7 @@ function getPreferredEntities(ents)
 	// If there are no units, check if there are defensive entities in the selection
 	if (!preferredEnts.length)
 		for (var i = 0; i < ents.length; i++)
-			if (isDefensive(entStateList[i]))
+			if (hasClass(entStateList[i], "Defensive"))
 				preferredEnts.push(ents[i]);
 
 	return preferredEnts;
@@ -496,7 +496,7 @@ function getMilitaryEntities(ents)
 	for each (var ent in ents)
 	{
 		var entState = GetEntityState(ent);
-		if (!isSupport(entState))
+		if (!hasClass(entState, "Support"))
 			militaryEnts.push(ent);
 	}
 	return militaryEnts;
@@ -1355,7 +1355,7 @@ function setCameraFollow(entity)
 	if (entity)
 	{
 		var entState = GetEntityState(entity);
-		if (entState && isUnit(entState))
+		if (entState && hasClass(entState, "Unit"))
 		{
 			Engine.CameraFollow(entity);
 			return;

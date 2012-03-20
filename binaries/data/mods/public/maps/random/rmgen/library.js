@@ -51,11 +51,6 @@ function sin(x)
 	return Math.sin(x);
 }
 
-function tan(x)
-{
-	return Math.tan(x);
-}
-
 function abs(x) {
 	return Math.abs(x);
 }
@@ -613,31 +608,24 @@ function checkIfInClass(x, z, id)
 }
 
 
-// Function to get the distance between 2 points
+// Returns the distance between 2 points
 function getDistance(x1, z1, x2, z2)
 {
-	return Math.pow(Math.pow(x1 - x2, 2) + Math.pow(z1 - z2, 2), 1/2)
+	return Math.pow(Math.pow(x1 - x2, 2) + Math.pow(z1 - z2, 2), 1/2);
 }
 
-// Returns the abgle between two points in radians. --Warning:This can cause sync problems in cross-platform multiplayer games--
+// Returns the angle of the vector between point 1 and point 2.  The angle is anticlockwise from the positive x axis.
 function getAngle(x1, z1, x2, z2)
 {
-        var vector = [x2 - x1, z2 - z1];
-        var output = 0;
-        if (vector[0] !== 0 || vector[1] !== 0)
-        {
-                var output = Math.acos(vector[0]/getDistance(x1, z1, x2, z2));
-                if (vector[1] > 0) {output = PI + (PI - Math.acos(vector[0]/getDistance(x1, z1, x2, z2)))};
-        };
-        return (output + PI/2) % (2*PI);
-};
+	return Math.atan2(z2 - z1, x2 - x1);
+}
 
-// Returns the tangent of angle between the line that is created by two points and the X+ axis.
-function getDirection(x1, z1, x2, z2)
+// Returns the gradient of the line between point 1 and 2 in the form dz/dx
+function getGradient(x1, z1, x2, z2)
 {
-	if (x1 == x2)
+	if (x1 == x2 && z1 == z2)
 	{
-		return 100000;
+		return 0;
 	}
 	else
 	{

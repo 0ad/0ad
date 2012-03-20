@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -112,6 +112,13 @@ ATLASDLLIMPEXP void Atlas_SetDataDirectory(const wchar_t* path)
 	g_HasSetDataDirectory = true;
 }
 
+wxString g_ConfigDir;
+ATLASDLLIMPEXP void Atlas_SetConfigDirectory(const wchar_t* path)
+{
+	wxFileName config (path);
+	g_ConfigDir = config.GetPath(wxPATH_GET_SEPARATOR);
+}
+
 ATLASDLLIMPEXP void Atlas_StartWindow(const wchar_t* type)
 {
 	// Initialise libxml2
@@ -188,8 +195,31 @@ public:
 			wxHandleFatalExceptions();
 #endif
 
+#ifndef __WXMSW__ // On Windows we use the registry so don't attempt to set the path.
+		// When launching a standalone executable g_ConfigDir may not be
+		// set. In this case we default to the XDG base dir spec and use
+		// 0ad/config/ as the config directory.
+		wxString configPath;
+		if (!g_ConfigDir.IsEmpty())
+		{
+			configPath = g_ConfigDir;
+		}
+		else
+		{
+			wxString xdgConfigHome;
+			if (wxGetEnv(_T("XDG_CONFIG_HOME"), &xdgConfigHome) && !xdgConfigHome.IsEmpty())
+				configPath = xdgConfigHome + _T("/0ad/config/");
+			else
+				configPath = wxFileName::GetHomeDir() + _T("/.config/0ad/config/");
+		}
+#endif
+
 		// Initialise the global config file
-		wxConfigBase::Set(new wxConfig(_T("Atlas Editor"), _T("Wildfire Games")));
+		wxConfigBase::Set(new wxConfig(_T("Atlas Editor"), _T("Wildfire Games")
+#ifndef __WXMSW__ // On Windows we use wxRegConfig and setting this changes the Registry key
+			, configPath + _T("atlas.ini")
+#endif
+			));
 
 		if (! g_HasSetDataDirectory)
 		{

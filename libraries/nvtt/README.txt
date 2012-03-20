@@ -8,3 +8,4 @@ plus some patches:
   issue139.patch (fixes http://code.google.com/p/nvidia-texture-tools/issues/detail?id=139)
   png-api.patch (partially from NVTT SVN r1248 - fixes build with libpng 1.5)
   cmake-freebsd.patch (fixes build on FreeBSD)
+  gcc47-unistd.patch (fixes build on GCC 4.7)

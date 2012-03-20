@@ -512,7 +512,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		}
 
 		var formations = getEntityFormationsList(entState);
-		if (isUnit(entState) && !isAnimal(entState) && !entState.garrisonHolder && formations.length)
+		if (hasClass(entState, "Unit") && !hasClass(entState, "Animal") && !entState.garrisonHolder && formations.length)
 		{
 			setupUnitPanel("Formation", usedPanels, entState, formations,
 				function (item) { performFormation(entState.id, item); } );
@@ -521,7 +521,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		// TODO: probably should load the stance list from a data file,
 		// and/or vary depending on what units are selected
 		var stances = ["violent", "aggressive", "passive", "defensive", "stand"];
-		if (isUnit(entState) && !isAnimal(entState) && !entState.garrisonHolder && stances.length)
+		if (hasClass(entState, "Unit") && !hasClass(entState, "Animal") && !entState.garrisonHolder && stances.length)
 		{
 			setupUnitPanel("Stance", usedPanels, entState, stances,
 				function (item) { performStance(entState.id, item); } );
