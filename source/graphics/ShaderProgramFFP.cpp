@@ -122,6 +122,8 @@ public:
 	CShaderProgramFFP_Dummy() :
 		CShaderProgramFFP(0)
 	{
+		// Texture units, for when this shader is used with terrain:
+		m_UniformIndexes["baseTex"] = 0;
 	}
 
 	virtual void Bind()
