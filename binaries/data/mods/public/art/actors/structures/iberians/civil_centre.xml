@@ -12,6 +12,7 @@
         <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="particle/smoke_jav.xml" attachpoint="smoke"/>
       </props>
       <texture>structural/iber_struct.dds</texture>
     </variant>
