@@ -362,9 +362,30 @@ GuiInterface.prototype.GetNextNotification = function()
 		return "";
 };
 
+GuiInterface.prototype.GetFormationRequirements = function(player, data)
+{
+	return GetFormationRequirements(data.formationName);
+};
+
 GuiInterface.prototype.CanMoveEntsIntoFormation = function(player, data)
 {
 	return CanMoveEntsIntoFormation(data.ents, data.formationName);
+};
+
+GuiInterface.prototype.IsFormationSelected = function(player, data)
+{
+	for each (var ent in data.ents)
+	{
+		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		if (cmpUnitAI)
+		{
+			// GetLastFormationName is named in a strange way as it (also) is
+			// the value of the current formation (see Formation.js LoadFormation)
+			if (cmpUnitAI.GetLastFormationName() == data.formationName)
+				return true;
+		}
+	}
+	return false;
 };
 
 GuiInterface.prototype.IsStanceSelected = function(player, data)
@@ -783,7 +804,9 @@ var exposedFunctions = {
 	"GetTemplateData": 1,
 	"GetNextNotification": 1,
 
+	"GetFormationRequirements": 1,
 	"CanMoveEntsIntoFormation": 1,
+	"IsFormationSelected": 1,
 	"IsStanceSelected": 1,
 
 	"SetSelectionHighlight": 1,
