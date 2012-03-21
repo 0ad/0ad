@@ -226,7 +226,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 
 			case GARRISON:
 				var name = getEntityName(template);
-				var tooltip = "Unload " + getEntityName(template);
+				var tooltip = "Unload " + getEntityName(template) + "\nSingle-click to unload 1. Shift-click to unload all of this type.";
 				var count = garrisonGroups.getCount(item);
 				getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
 				break;
@@ -304,24 +304,47 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		// Get icon image
 		if (guiName == "Formation")
 		{
-			icon.cell_id = getFormationCellId(item);
 			var formationOk = Engine.GuiInterfaceCall("CanMoveEntsIntoFormation", {
 				"ents": g_Selection.toList(),
 				"formationName": item
 			});
 
-			icon.enabled = formationOk;
 			button.enabled = formationOk;
-			if (!icon.enabled)
-			{
-				icon.sprite = "formation_disabled";
-				button.tooltip += " (disabled)";
-			}
-			else
-			{
-				icon.sprite = "formation";
-			}
-		}
+			if (!formationOk)
+ 			{
+				icon.sprite = "stretched:session/icons/formations/formation-"+item.replace(/\s+/,'').toLowerCase()+".png";
+				
+				// Display a meaningful tooltip why the formation is disabled
+				var requirements = Engine.GuiInterfaceCall("GetFormationRequirements", {
+					"formationName": item
+				});
+
+ 				button.tooltip += " (disabled)";
+				if (requirements.count > 1)
+					button.tooltip += "\n" + requirements.count + " units required";
+				if (requirements.classesRequired)
+				{
+					button.tooltip += "\nOnly units of type";
+					for each (var classRequired in requirements.classesRequired)
+					{
+						button.tooltip += " " + classRequired;
+					}
+					button.tooltip += " allowed.";
+				}
+ 			}
+ 			else
+ 			{
+				var formationSelected = Engine.GuiInterfaceCall("IsFormationSelected", {
+					"ents": g_Selection.toList(),
+					"formationName": item
+				});
+				
+				if (formationSelected)
+					icon.sprite = "stretched:session/icons/formations/formation-"+item.replace(/\s+/,'').toLowerCase()+"-selected.png";
+				else
+					icon.sprite = "stretched:session/icons/formations/formation-"+item.replace(/\s+/,'').toLowerCase()+"-available.png";
+ 			}
+ 		}
 		else if (guiName == "Stance")
 		{
 			var stanceSelected = Engine.GuiInterfaceCall("IsStanceSelected", {
@@ -329,16 +352,13 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				"stance": item
 			});
 
-			icon.cell_id = i;
 			if (stanceSelected)
-				icon.sprite = "snIconSheetStanceButton";
+				icon.sprite = "stretched:session/icons/single/stance-"+item+"-select.png";
 			else
-				icon.sprite = "snIconSheetStanceButtonDisabled";
+				icon.sprite = "stretched:session/icons/single/stance-"+item+".png";
 		}
 		else if (guiName == "Command")
 		{
-			//icon.cell_id = i;
-			//icon.cell_id = getCommandCellId(item);
 			icon.sprite = "stretched:session/icons/single/" + item.icon;
 
 		}
@@ -508,7 +528,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			var groups = new EntityGroups();
 			groups.add(entState.garrisonHolder.entities);
 			setupUnitPanel("Garrison", usedPanels, entState, groups.getTemplateNames(),
-				function (item) { unload(entState.id, groups.getEntsByName(item)[0]); } );
+				function (item) { unload(entState.id, groups.getEntsByName(item)); } );
 		}
 
 		var formations = getEntityFormationsList(entState);
@@ -520,7 +540,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 
 		// TODO: probably should load the stance list from a data file,
 		// and/or vary depending on what units are selected
-		var stances = ["violent", "aggressive", "passive", "defensive", "stand"];
+		var stances = ["violent", "aggressive", "passive", "defensive", "standground"];
 		if (hasClass(entState, "Unit") && !hasClass(entState, "Animal") && !entState.garrisonHolder && stances.length)
 		{
 			setupUnitPanel("Stance", usedPanels, entState, stances,

@@ -337,13 +337,21 @@ function ProcessCommand(player, cmd)
 		if (CanControlUnit(cmd.garrisonHolder, player, controlAllUnits))
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(cmd.garrisonHolder, IID_GarrisonHolder);
-			if (!cmpGarrisonHolder || !cmpGarrisonHolder.Unload(cmd.entity))
+			var notUngarrisoned = 0;
+			for each (ent in cmd.entities)
+			{
+				if (!cmpGarrisonHolder || !cmpGarrisonHolder.Unload(ent))
+				{
+					notUngarrisoned++;
+				}
+			}
+			if (notUngarrisoned != 0)
 			{
 				var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
-				var notification = {"player": cmpPlayer.GetPlayerID(), "message": "Unable to ungarrison unit"};
+				var notification = {"player": cmpPlayer.GetPlayerID(), "message": (notUngarrisoned == 1 ? "Unable to ungarrison unit" : "Unable to ungarrison units")};
 				var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 				cmpGUIInterface.PushNotification(notification);
-			}	
+			}
 		}
 		else if (g_DebugCommands)
 		{
@@ -584,92 +592,83 @@ function GetFormationUnitAIs(ents)
 		}
 		else
 		{
-			cmpFormation.LoadFormation("Loose");
+			cmpFormation.LoadFormation("Scatter");
 		}
 	}
 
 	return nonformedUnitAIs.concat(Engine.QueryInterface(formationEnt, IID_UnitAI));
 }
 
+function GetFormationRequirements(formationName)
+{
+	var countRequired = 1;
+ 	var classesRequired;
+	switch(formationName)
+	{
+	case "Scatter":
+	case "Column Closed":
+	case "Line Closed":
+	case "Column Open":
+	case "Line Open":
+	case "Battle Line":
+		break;
+	case "Box":
+		countRequired = 4;
+		break;
+	case "Flank":
+		countRequired = 8;
+		break;
+	case "Skirmish":
+		classesRequired = ["Ranged"];
+		break;
+	case "Wedge":
+		countRequired = 3;
+ 		classesRequired = ["Cavalry"];
+		break;
+	case "Phalanx":
+		countRequired = 10;
+ 		classesRequired = ["Melee", "Infantry"];
+		break;
+	case "Syntagma":
+		countRequired = 9;
+ 		classesRequired = ["Melee", "Infantry"]; // TODO: pike only
+		break;
+	case "Testudo":
+		countRequired = 9;
+ 		classesRequired = ["Melee", "Infantry"];
+		break;
+	default:
+		// We encountered a unknown formation -> warn the user
+		warn("Commands.js: GetFormationRequirements: unknown formation: " + formationName);
+ 		return false;
+ 	}
+	return { "count": countRequired, "classesRequired": classesRequired };
+}
+
+
 function CanMoveEntsIntoFormation(ents, formationName)
 {
 	var count = ents.length;
-	var classesRequired;
 
 	// TODO: should check the player's civ is allowed to use this formation
 
-	if (formationName == "Loose")
-	{
-		return true;
-	}
-	else if (formationName == "Box")
-	{
-		if (count < 4)
-			return false;
-	}
-	else if (formationName == "Column Closed")
-	{
-	}
-	else if (formationName == "Line Closed")
-	{
-	}
-	else if (formationName == "Column Open")
-	{
-	}
-	else if (formationName == "Line Open")
-	{
-	}
-	else if (formationName == "Flank")
-	{
-		if (count < 8)
-			return false;
-	}
-	else if (formationName == "Skirmish")
-	{
-		classesRequired = ["Ranged"];
-	}
-	else if (formationName == "Wedge")
-	{
-		if (count < 3)
-			return false;
-		classesRequired = ["Cavalry"];
-	}
-	else if (formationName == "Formation12")
-	{
-	}
-	else if (formationName == "Phalanx")
-	{
-		if (count < 10)
-			return false;
-		classesRequired = ["Melee", "Infantry"];
-	}
-	else if (formationName == "Syntagma")
-	{
-		if (count < 9)
-			return false;
-		classesRequired = ["Melee", "Infantry"]; // TODO: pike only
-	}
-	else if (formationName == "Testudo")
-	{
-		if (count < 9)
-			return false;
-		classesRequired = ["Melee", "Infantry"];
-	}
-	else
-	{
+	var requirements = GetFormationRequirements(formationName);
+	if (!requirements)
 		return false;
-	}
+	
+	if (count < requirements.count)
+		return false;
 
-	var looseOnlyUnits = true;
+	var scatterOnlyUnits = true;
 	for each (var ent in ents)
 	{
 		var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
 		if (cmpIdentity)
 		{
 			var classes = cmpIdentity.GetClassesList();
-			if (looseOnlyUnits && (classes.indexOf("Worker") == -1 || classes.indexOf("Support") == -1))
-				looseOnlyUnits = false;
-			for each (var classRequired in classesRequired)
+			if (scatterOnlyUnits && (classes.indexOf("Worker") == -1 || classes.indexOf("Support") == -1))
+				scatterOnlyUnits = false;
+			for each (var classRequired in requirements.classesRequired)
 			{
 				if (classes.indexOf(classRequired) == -1)
 				{
@@ -679,7 +678,7 @@ function CanMoveEntsIntoFormation(ents, formationName)
 		}
 	}
 
-	if (looseOnlyUnits)
+	if (scatterOnlyUnits)
 		return false;
 
 	return true;
@@ -703,5 +702,6 @@ function FilterEntityList(entities, player, controlAll)
 	return entities.filter(function(ent) { return CanControlUnit(ent, player, controlAll);} );
 }
 
+Engine.RegisterGlobal("GetFormationRequirements", GetFormationRequirements);
 Engine.RegisterGlobal("CanMoveEntsIntoFormation", CanMoveEntsIntoFormation);
 Engine.RegisterGlobal("ProcessCommand", ProcessCommand);

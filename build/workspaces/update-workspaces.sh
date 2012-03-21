@@ -6,6 +6,16 @@ die()
   exit 1
 }
 
+# Check for whitespace in absolute path; this will cause problems in the
+# SpiderMonkey build (https://bugzilla.mozilla.org/show_bug.cgi?id=459089)
+# and maybe elsewhere, so we just forbid it
+SCRIPT=$(readlink -f "$0")
+SCRIPTPATH=`dirname "$SCRIPT"`
+case "$SCRIPTPATH" in
+  *\ * )
+    die "Absolute path contains whitespace, which will break the build - move the game to a path without spaces" ;;
+esac
+
 JOBS=${JOBS:="-j2"}
 
 # FreeBSD's make is different than GNU make, so we allow overriding the make command.

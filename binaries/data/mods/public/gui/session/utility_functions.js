@@ -121,41 +121,6 @@ function damageTypesToText(dmg)
 	return dmgArray.join("[font=\"serif-12\"], [/font]");
 }
 
-function getFormationCellId(formationName)
-{
-	switch (formationName)
-	{
-	case "Loose":
-		return 0;
-	case "Box":
-		return 1;
-	case "Column Closed":
-		return 2;
-	case "Line Closed":
-		return 3;
-	case "Column Open":
-		return 4;
-	case "Line Open":
-		return 5;
-	case "Flank":
-		return 6;
-	case "Skirmish":
-		return 7;
-	case "Wedge":
-		return 8;
-	case "Testudo":
-		return 9;
-	case "Phalanx":
-		return 10;
-	case "Syntagma":
-		return 11;
-	case "Formation12":
-		return 12;
-	default:
-		return -1;
-	}
-}
-
 function getEntityFormationsList(entState)
 {
 	var civ = g_Players[entState.player].civ;
@@ -167,7 +132,7 @@ function getCivFormations(civ)
 {
 	// TODO: this should come from the civ JSON files instead
 
-	var civFormations = ["Loose", "Box", "Column Closed", "Line Closed", "Column Open", "Line Open", "Flank", "Skirmish", "Wedge", "Formation12"];
+	var civFormations = ["Scatter", "Box", "Column Closed", "Line Closed", "Column Open", "Line Open", "Flank", "Skirmish", "Wedge", "Battle Line"];
 	if (civ == "hele")
 	{
 		civFormations.push("Phalanx");

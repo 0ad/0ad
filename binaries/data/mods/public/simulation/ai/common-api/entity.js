@@ -424,7 +424,7 @@ var Entity = Class({
 		if (!this._template.GarrisonHolder) 
 			return;
 		
-		Engine.PostCommand({"type": "unload", "garrisonHolder": this.id(), "entity": unit.id()}); 
+		Engine.PostCommand({"type": "unload", "garrisonHolder": this.id(), "entities": [unit.id()]}); 
 	}, 
 
 	unloadAll: function() {

@@ -9,7 +9,7 @@ UnitAI.prototype.Schema =
 			"<value>aggressive</value>" +
 			"<value>defensive</value>" +
 			"<value>passive</value>" +
-			"<value>stand</value>" +
+			"<value>standground</value>" +
 		"</choice>" +
 	"</element>" +
 	"<element name='FormationController'>" +
@@ -98,7 +98,7 @@ var g_Stances = {
 		respondStandGround: false,
 		respondHoldGround: false,
 	},
-	"stand": {
+	"standground": {
 		targetVisibleEnemies: true,
 		targetAttackers: true,
 		respondFlee: false,
@@ -2543,7 +2543,7 @@ UnitAI.prototype.SwitchToStance = function(stance)
 	this.SetStance(stance);
 	// Stop moving if switching to stand ground
 	// TODO: Also stop existing orders in a sensible way
-	if (stance == "stand")
+	if (stance == "standground")
 		this.StopMoving();
 
 	// Reset the range query, since the range depends on stance

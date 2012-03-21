@@ -271,7 +271,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 			cols = 6;
 		shape = "opensquare";
 	}
-	else if (this.formationName == "Loose")
+	else if (this.formationName == "Scatter")
 	{
 		var width = Math.sqrt(count) * separation * 5;
 
@@ -418,7 +418,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 		var cols = Math.ceil(Math.sqrt(count));
 		shape = "square";
 	}
-	else if (this.formationName == "Formation12")
+	else if (this.formationName == "Battle Line")
 	{
 		if (count <= 5)
 			cols = count;
