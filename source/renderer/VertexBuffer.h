@@ -27,8 +27,11 @@
 #include <list>
 #include <vector>
 
-// absolute maximum (bytewise) size of each GL vertex buffer object
-#define MAX_VB_SIZE_BYTES		(512*1024)
+// Absolute maximum (bytewise) size of each GL vertex buffer object.
+// Make it large enough for the maximum feasible mesh size (64K vertexes,
+// 32 bytes per vertex in ShaderModelRenderer).
+// TODO: measure what influence this has on performance
+#define MAX_VB_SIZE_BYTES		(2*1024*1024)
 
 ///////////////////////////////////////////////////////////////////////////////
 // CVertexBuffer: encapsulation of ARB_vertex_buffer_object, also supplying 
