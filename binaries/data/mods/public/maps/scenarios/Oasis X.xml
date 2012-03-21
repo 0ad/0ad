@@ -24,8 +24,8 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="818.581" y="78.8381" z="512.687"/>
-		<Rotation angle="-0.200048"/>
+		<Position x="771.104" y="99.9883" z="527.149"/>
+		<Rotation angle="0.159991"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -205,8 +205,8 @@
 		<Entity uid="64">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
 			<Player>0</Player>
-			<Position x="830.4444" z="714.8396"/>
-			<Orientation y="2.50882"/>
+			<Position x="830.32386" z="713.98694"/>
+			<Orientation y="-0.07435"/>
 		</Entity>
 		<Entity uid="65">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
@@ -6153,7 +6153,7 @@
 		<Entity uid="1188">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="856.21229" z="731.13947"/>
+			<Position x="836.40064" z="708.6161"/>
 			<Orientation y="-1.20778"/>
 		</Entity>
 		<Entity uid="1189">
@@ -6207,25 +6207,25 @@
 		<Entity uid="1197">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="887.12867" z="737.64441"/>
-			<Orientation y="-0.82914"/>
+			<Position x="884.58265" z="720.56287"/>
+			<Orientation y="-2.0957"/>
 		</Entity>
 		<Entity uid="1198">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="873.55774" z="724.69263"/>
+			<Position x="861.4358" z="736.72547"/>
 			<Orientation y="0.41085"/>
 		</Entity>
 		<Entity uid="1199">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="866.40473" z="730.19465"/>
+			<Position x="871.86884" z="733.63691"/>
 			<Orientation y="-1.31931"/>
 		</Entity>
 		<Entity uid="1200">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="842.48871" z="748.99231"/>
+			<Position x="821.97352" z="739.82923"/>
 			<Orientation y="-0.22585"/>
 		</Entity>
 		<Entity uid="1201">
@@ -6261,7 +6261,7 @@
 		<Entity uid="1206">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="866.76868" z="744.16443"/>
+			<Position x="868.16633" z="738.8974"/>
 			<Orientation y="0.91623"/>
 		</Entity>
 		<Entity uid="1207">
@@ -6381,8 +6381,8 @@
 		<Entity uid="1245">
 			<Template>gaia/special_treasure_stone_statues_roman</Template>
 			<Player>0</Player>
-			<Position x="155.9939" z="163.1149"/>
-			<Orientation y="0.71612"/>
+			<Position x="708.76905" z="514.47156"/>
+			<Orientation y="-0.2651"/>
 		</Entity>
 		<Entity uid="1246">
 			<Template>actor|particle/blowing_sand.xml</Template>
@@ -7514,12 +7514,6 @@
 			<Position x="175.31911" z="364.01706"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="1480">
-			<Template>other/pyramid_minor</Template>
-			<Player>0</Player>
-			<Position x="638.33655" z="703.3213"/>
-			<Orientation y="1.19082"/>
-		</Entity>
 		<Entity uid="1481">
 			<Template>structures/iber_wall</Template>
 			<Player>2</Player>
@@ -7735,6 +7729,48 @@
 			<Player>2</Player>
 			<Position x="790.18622" z="724.44166"/>
 			<Orientation y="-0.00075"/>
+		</Entity>
+		<Entity uid="1526">
+			<Template>structures/rome_tent</Template>
+			<Player>1</Player>
+			<Position x="621.7555" z="306.51362"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1527">
+			<Template>structures/rome_tent</Template>
+			<Player>1</Player>
+			<Position x="177.66214" z="517.44397"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1528">
+			<Template>structures/rome_tent</Template>
+			<Player>1</Player>
+			<Position x="674.85401" z="166.56861"/>
+			<Orientation y="-2.4251"/>
+		</Entity>
+		<Entity uid="1529">
+			<Template>structures/rome_tent</Template>
+			<Player>1</Player>
+			<Position x="529.2635" z="841.68256"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1530">
+			<Template>structures/rome_tent</Template>
+			<Player>1</Player>
+			<Position x="850.42579" z="427.48322"/>
+			<Orientation y="-0.161"/>
+		</Entity>
+		<Entity uid="1531">
+			<Template>structures/rome_tent</Template>
+			<Player>1</Player>
+			<Position x="862.32831" z="432.5152"/>
+			<Orientation y="-2.28951"/>
+		</Entity>
+		<Entity uid="1534">
+			<Template>structures/rome_tent</Template>
+			<Player>1</Player>
+			<Position x="439.02155" z="637.99146"/>
+			<Orientation y="-2.30761"/>
 		</Entity>
 	</Entities>
 	<Paths/>
