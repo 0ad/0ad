@@ -337,13 +337,21 @@ function ProcessCommand(player, cmd)
 		if (CanControlUnit(cmd.garrisonHolder, player, controlAllUnits))
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(cmd.garrisonHolder, IID_GarrisonHolder);
-			if (!cmpGarrisonHolder || !cmpGarrisonHolder.Unload(cmd.entity))
+			var notUngarrisoned = 0;
+			for each (ent in cmd.entities)
+			{
+				if (!cmpGarrisonHolder || !cmpGarrisonHolder.Unload(ent))
+				{
+					notUngarrisoned++;
+				}
+			}
+			if (notUngarrisoned != 0)
 			{
 				var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
-				var notification = {"player": cmpPlayer.GetPlayerID(), "message": "Unable to ungarrison unit"};
+				var notification = {"player": cmpPlayer.GetPlayerID(), "message": (notUngarrisoned == 1 ? "Unable to ungarrison unit" : "Unable to ungarrison units")};
 				var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 				cmpGUIInterface.PushNotification(notification);
-			}	
+			}
 		}
 		else if (g_DebugCommands)
 		{

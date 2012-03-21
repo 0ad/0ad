@@ -1403,9 +1403,12 @@ function findIdleUnit(classes)
 	resetIdleUnit();
 }
 
-function unload(garrisonHolder, entity)
+function unload(garrisonHolder, entities)
 {
-	Engine.PostNetworkCommand({"type": "unload", "entity": entity, "garrisonHolder": garrisonHolder});
+	if (Engine.HotkeyIsPressed("session.unloadtype"))
+		Engine.PostNetworkCommand({"type": "unload", "entities": entities, "garrisonHolder": garrisonHolder});
+	else
+		Engine.PostNetworkCommand({"type": "unload", "entities": [entities[0]], "garrisonHolder": garrisonHolder});
 }
 
 function unloadAll(garrisonHolder)
