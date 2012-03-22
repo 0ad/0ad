@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2012 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -251,7 +251,9 @@ bool wutil_HasCommandLineArgument(const wchar_t* arg)
 // (NB: wutil_Init is called before static ctors => use placement new)
 static OsPath* systemPath;
 static OsPath* executablePath;
-static OsPath* appdataPath;
+static OsPath* localAppdataPath;
+static OsPath* roamingAppdataPath;
+static OsPath* personalPath;
 
 const OsPath& wutil_SystemPath()
 {
@@ -263,11 +265,33 @@ const OsPath& wutil_ExecutablePath()
 	return *executablePath;
 }
 
-const OsPath& wutil_AppdataPath()
+const OsPath& wutil_LocalAppdataPath()
 {
-	return *appdataPath;
+	return *localAppdataPath;
 }
 
+const OsPath& wutil_RoamingAppdataPath()
+{
+	return *roamingAppdataPath;
+}
+
+const OsPath& wutil_PersonalPath()
+{
+	return *personalPath;
+}
+
+// Helper to avoid duplicating this setup
+static OsPath* GetFolderPath(int csidl)
+{
+	HWND hwnd = 0;	// ignored unless a dial-up connection is needed to access the folder
+	HANDLE token = 0;
+	wchar_t path[MAX_PATH];	// mandated by SHGetFolderPathW
+	const HRESULT ret = SHGetFolderPathW(hwnd, csidl, token, 0, path);
+	ENSURE(SUCCEEDED(ret));
+	if(GetLastError() == ERROR_NO_TOKEN)	// avoid polluting last error
+		SetLastError(0);
+	return new(wutil_Allocate(sizeof(OsPath))) OsPath(path);
+}
 
 static void GetDirectories()
 {
@@ -286,17 +310,14 @@ static void GetDirectories()
 	// executable's directory
 	executablePath = new(wutil_Allocate(sizeof(OsPath))) OsPath(sys_ExecutablePathname().Parent());
 
-	// application data
-	{
-		HWND hwnd = 0;	// ignored unless a dial-up connection is needed to access the folder
-		HANDLE token = 0;
-		wchar_t path[MAX_PATH];	// mandated by SHGetFolderPathW
-		const HRESULT ret = SHGetFolderPathW(hwnd, CSIDL_APPDATA, token, 0, path);
-		ENSURE(SUCCEEDED(ret));
-		if(GetLastError() == ERROR_NO_TOKEN)	// avoid polluting last error
-			SetLastError(0);
-		appdataPath = new(wutil_Allocate(sizeof(OsPath))) OsPath(path);
-	}
+	// roaming application data
+	roamingAppdataPath = GetFolderPath(CSIDL_APPDATA);
+
+	// local application data
+	localAppdataPath = GetFolderPath(CSIDL_LOCAL_APPDATA);
+
+	// my documents
+	personalPath = GetFolderPath(CSIDL_PERSONAL);
 }
 
 
@@ -306,8 +327,12 @@ static void FreeDirectories()
 	wutil_Free(systemPath);
 	executablePath->~OsPath();
 	wutil_Free(executablePath);
-	appdataPath->~OsPath();
-	wutil_Free(appdataPath);
+	localAppdataPath->~OsPath();
+	wutil_Free(localAppdataPath);
+	roamingAppdataPath->~OsPath();
+	wutil_Free(roamingAppdataPath);
+	personalPath->~OsPath();
+	wutil_Free(personalPath);
 }
 
 

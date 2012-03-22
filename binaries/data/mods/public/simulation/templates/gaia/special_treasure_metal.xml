@@ -14,6 +14,11 @@
     <Amount>300</Amount>
     <Type>treasure.metal</Type>
   </ResourceSupply>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/resource/sel_metal.xml</select>
+    </SoundGroups>
+  </Sound>
   <VisualActor>
     <Actor>props/special/eyecandy/barrel_a.xml</Actor>
   </VisualActor>

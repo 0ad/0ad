@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2012 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -159,7 +159,9 @@ extern bool wutil_HasCommandLineArgument(const wchar_t* arg);
 
 extern const OsPath& wutil_SystemPath();
 extern const OsPath& wutil_ExecutablePath();
-extern const OsPath& wutil_AppdataPath();
+extern const OsPath& wutil_LocalAppdataPath();
+extern const OsPath& wutil_RoamingAppdataPath();
+extern const OsPath& wutil_PersonalPath();
 
 
 //-----------------------------------------------------------------------------

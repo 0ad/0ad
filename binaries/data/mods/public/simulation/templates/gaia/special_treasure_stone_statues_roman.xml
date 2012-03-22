@@ -17,6 +17,11 @@
     <Amount>300</Amount>
     <Type>treasure.stone</Type>
   </ResourceSupply>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_universal.xml</select>
+    </SoundGroups>
+  </Sound>
   <VisualActor>
     <Actor>props/special/eyecandy/statues_roman.xml</Actor>
   </VisualActor>
