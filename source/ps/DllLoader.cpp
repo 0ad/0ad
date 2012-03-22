@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,6 +24,10 @@
 #include "ps/CStr.h"
 #include "ps/CLogger.h"
 #include "ps/GameSetup/Config.h"
+
+#if OS_MACOSX
+# include "lib/sysdep/os/osx/osx_bundle.h"
+#endif
 
 static void* const HANDLE_UNAVAILABLE = (void*)-1;
 
@@ -70,8 +74,23 @@ static CStr extensions[] = {
 static CStr GenerateFilename(const CStr& name, const CStr& suffix, const CStr& extension)
 {
 	CStr n;
+
 	if (!g_Libdir.empty())
 		n = g_Libdir + "/";
+
+#if OS_MACOSX
+	// On OS X, we might be in a bundle in which case the lib directory is ../Frameworks
+	//  relative to the binary, so we use a helper function to get the system path
+	if (osx_IsAppBundleValid())
+	{
+		CStr frameworksPath = osx_GetBundleFrameworksPath();
+		if (!frameworksPath.empty())
+		{
+			n = frameworksPath + "/";
+		}
+	}
+#endif
+
 	n += prefix + name + suffix + extension;
 	return n;
 }

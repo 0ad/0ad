@@ -179,8 +179,8 @@ Section "Uninstall"
 
   RMDir "$INSTDIR"
 
-  RMDir /r "$APPDATA\0ad\cache"
-  RMDir /r "$APPDATA\0ad\logs"
+  RMDir /r "$LOCALAPPDATA\0ad\cache"
+  RMDir /r "$LOCALAPPDATA\0ad\logs"
   ; leave the other directories (screenshots, config files, etc)
 
   !insertmacro MUI_STARTMENU_GETFOLDER Application $StartMenuFolder

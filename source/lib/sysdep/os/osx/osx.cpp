@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2012 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -26,6 +26,7 @@
 
 #include "lib/sysdep/sysdep.h"
 #include "lib/sysdep/gfx.h"
+#include "osx_bundle.h"
 
 #include <mach-o/dyld.h>
 #include <ApplicationServices/ApplicationServices.h>
@@ -109,25 +110,26 @@ Status GetMonitorSize(int* xres, int* yres, int* bpp, int* freq)
 
 OsPath sys_ExecutablePathname()
 {
-	static char name[PATH_MAX];
-	static bool init = false;
-	if ( !init )
+	OsPath path;
+
+	// On OS X we might be a bundle, return the bundle path as the executable name,
+	//	i.e. /path/to/0ad.app instead of /path/to/0ad.app/Contents/MacOS/pyrogenesis
+	if (osx_IsAppBundleValid())
 	{
-		init = true;
+		path = osx_GetBundlePath();
+		ENSURE(!path.empty());
+	}
+	else
+	{
 		char temp[PATH_MAX];
 		u32 size = PATH_MAX;
-		if (_NSGetExecutablePath( temp, &size ))
-			return OsPath();
-		realpath(temp, name);
+		if (_NSGetExecutablePath(temp, &size) == 0)
+		{
+			char name[PATH_MAX];
+			realpath(temp, name);
+			path = OsPath(name);
+		}
 	}
-	
-	// On OS X, we might be in a bundle. In this case set its name as our name.
-	char* app = strstr(name, ".app");
-	if (app) {
-		// Remove everything after the .app
-		*(app + strlen(".app")) = '\0';
-		debug_printf(L"app bundle name: %hs\n", name);
-	}
-	
-	return name;
+
+	return path;
 }
