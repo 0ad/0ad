@@ -22,6 +22,11 @@
     <Amount>300</Amount>
     <Type>treasure.metal</Type>
   </ResourceSupply>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_universal.xml</select>
+    </SoundGroups>
+  </Sound>
   <Selectable>
     <EditorOnly disable=""/>
   </Selectable>

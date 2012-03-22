@@ -12,6 +12,13 @@
   <Obstruction>
     <Unit radius="1.5"/>
   </Obstruction>
+  <Sound>
+    <SoundGroups>
+      <select>actor/fauna/animal/camel.xml</select>
+      <order_walk>actor/fauna/movement/camel.xml</order_walk>
+      <death>actor/fauna/movement/camel.xml</death>
+    </SoundGroups>
+  </Sound>
   <ResourceSupply>
     <Amount>200</Amount>
   </ResourceSupply>

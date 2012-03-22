@@ -25,6 +25,13 @@
   <Obstruction>
     <Static width="18.0" depth="9.0"/>
   </Obstruction>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_theater.xml</select>
+      <constructed>interface/complete/building/complete_theatre.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
   <TerritoryInfluence>
     <Root>true</Root>
   </TerritoryInfluence>
