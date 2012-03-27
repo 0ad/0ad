@@ -391,7 +391,7 @@ void CCmpRallyPointRenderer::Init(const CParamNode& paramNode)
 	// ---------------------------------------------------------------------------------------------
 	// load some textures
 
-	if (g_Renderer.IsInitialised())
+	if (CRenderer::IsInitialised())
 	{
 		CTextureProperties texturePropsBase(m_LineTexturePath);
 		texturePropsBase.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE);

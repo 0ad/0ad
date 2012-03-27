@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="rome merchant ship">
+      <mesh>structural/rome_merch_ship.dae</mesh>
+      <props>
+        <prop actor="props/structures/romans/merchant_shrouds.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/merchant_sail.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/rome_merch_ship.png</texture>
+    </variant>
+  </group>
+</actor>
