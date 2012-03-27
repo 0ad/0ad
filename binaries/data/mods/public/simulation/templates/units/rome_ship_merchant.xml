@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_ship_merchant">
   <Footprint replace="">
-    <Square width="8.0" depth="24.0"/>
+    <Square width="12.0" depth="24.0"/>
     <Height>8.0</Height>
   </Footprint>
   <Identity>
@@ -11,9 +11,9 @@
     <Icon>units/hele_ship_merchant.png</Icon>
   </Identity>
   <Obstruction>
-    <Unit radius="6.0"/>
+    <Unit radius="8.0"/>
   </Obstruction>
   <VisualActor>
-    <Actor>structures/hellenes/merchant_new.xml</Actor>
+    <Actor>structures/romans/merchantman.xml</Actor>
   </VisualActor>
 </Entity>
