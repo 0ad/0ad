@@ -4,7 +4,7 @@
     <BuildTime>25</BuildTime>
   </Cost>
   <Footprint>
-    <Square width="25.0" depth="10.0"/>
+    <Square width="26.0" depth="9.0"/>
     <Height>9.0</Height>
   </Footprint>
   <Health>
@@ -16,9 +16,9 @@
     <History>These were the massive walls that Nebuchadnezzar built to protect the city. It is said that two four-horse chariots could easily pass by each other. Babylon, although not an official royal residence (there were 4 of them all together), was a preferred place for holidays.</History>
   </Identity>
   <Obstruction>
-    <Static width="22.0" depth="7.0"/>
+    <Static width="24.0" depth="7.0"/>
   </Obstruction>
   <VisualActor>
-    <Actor>structures/persians/wall.xml</Actor>
+    <Actor>structures/persians/wall_medium.xml</Actor>
   </VisualActor>
 </Entity>

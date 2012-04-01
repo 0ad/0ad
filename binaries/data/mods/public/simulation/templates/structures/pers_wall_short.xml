@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defense_wall_gate">
+<Entity parent="template_structure_defense_wall">
   <Cost>
-    <BuildTime>38</BuildTime>
+    <BuildTime>25</BuildTime>
   </Cost>
   <Footprint>
-    <Square width="38.5" depth="9.0"/>
+    <Square width="14.0" depth="8.0"/>
     <Height>9.0</Height>
   </Footprint>
   <Health>
@@ -12,13 +12,13 @@
   </Health>
   <Identity>
     <Civ>pers</Civ>
-    <SpecificName>Duvitaparnam</SpecificName>
+    <SpecificName>Dida</SpecificName>
     <History>Persepolis, the Persian royal capital, was constructed on an immense man-made terrace with strong defensive walls.</History>
   </Identity>
   <Obstruction>
-    <Static width="37.0" depth="7.0"/>
+    <Static width="13.0" depth="7.0"/>
   </Obstruction>
   <VisualActor>
-    <Actor>structures/persians/wall_gate.xml</Actor>
+    <Actor>structures/persians/wall_short.xml</Actor>
   </VisualActor>
 </Entity>
