@@ -2,9 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="celt gate">
-      <mesh>structural/celt_wall_gate.dae</mesh>
-      <texture>structural/celt_murus.png</texture>
+    <variant>
+      <mesh>structural/celt_old_wall_tower.dae</mesh>
+      <props>
+        <prop actor="props/structures/celts/wall_turret.xml" attachpoint="props_main"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+      </props>
+      <texture>structural/celt_wall.dds</texture>
     </variant>
   </group>
   <group>

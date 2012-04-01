@@ -2,14 +2,9 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="wall-med-middle">
-      <mesh>structural/celt_wall_med.dae</mesh>
-      <props>
-        <prop actor="props/structures/celts/wall_2.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/wall_1.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/wall_med_shields.xml" attachpoint="root"/>
-      </props>
-      <texture>structural/celt_wall.dds</texture>
+    <variant frequency="100" name="celt wall short">
+      <mesh>structural/celt_wall_short.dae</mesh>
+      <texture>structural/celt_murus.png</texture>
     </variant>
   </group>
   <group>
