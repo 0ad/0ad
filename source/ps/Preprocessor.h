@@ -108,10 +108,10 @@ class CPreprocessor
         /// Token length in bytes
         size_t Length;
 
-        Token () : Allocated (0), String (NULL)
+        Token () : Type (TK_ERROR), Allocated (0), String (NULL), Length (0)
         { }
 
-        Token (Kind iType) : Type (iType), Allocated (0), String (NULL)
+        Token (Kind iType) : Type (iType), Allocated (0), String (NULL), Length (0)
         { }
 
         Token (Kind iType, const char *iString, size_t iLength) :
