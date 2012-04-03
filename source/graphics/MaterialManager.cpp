@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,94 +21,53 @@
 #include "ps/XML/Xeromyces.h"
 #include "MaterialManager.h"
 
-static bool ParseUsage(CStr temp)
+CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 {
-    temp = temp.LowerCase().Trim(PS_TRIM_BOTH);
-    if(temp == "blend" ||
-        temp == "true" ||
-        temp == "yes" ||
-        temp.ToInt() > 0)
-        return true;
+	if (pathname.empty())
+		return CMaterial();
 
-    return false;
-}
-
-CMaterialManager::CMaterialManager()
-{
-}
-
-CMaterialManager::~CMaterialManager()
-{
-	std::map<VfsPath, CMaterial*>::iterator iter;
-	for(iter = m_Materials.begin(); iter != m_Materials.end(); iter++)
-		delete (*iter).second;
-
-	m_Materials.clear();
-}
-
-CMaterial& CMaterialManager::LoadMaterial(const VfsPath& pathname)
-{
-	if(pathname.empty())
-		return NullMaterial;
-
-	std::map<VfsPath, CMaterial*>::iterator iter = m_Materials.find(pathname);
-	if(iter != m_Materials.end())
-	{
-		if((*iter).second)
-			return *(*iter).second;
-	}
+	std::map<VfsPath, CMaterial>::iterator iter = m_Materials.find(pathname);
+	if (iter != m_Materials.end())
+		return iter->second;
 
 	CXeromyces xeroFile;
-	if(xeroFile.Load(g_VFS, pathname) != PSRETURN_OK)
-		return NullMaterial;
+	if (xeroFile.Load(g_VFS, pathname) != PSRETURN_OK)
+		return CMaterial();
 
 	#define EL(x) int el_##x = xeroFile.GetElementID(#x)
 	#define AT(x) int at_##x = xeroFile.GetAttributeID(#x)
-	EL(texture);
-	EL(alpha);
-	AT(usage);
+	EL(alpha_blending);
+	EL(define);
+	EL(shader);
+	AT(effect);
+	AT(name);
+	AT(value);
 	#undef AT
 	#undef EL
 
-	CMaterial *material = NULL;
-	try
-	{
-		XMBElement root = xeroFile.GetRoot();
-		XMBElementList childNodes = root.GetChildNodes();
-		material = new CMaterial();
+	CMaterial material;
 
-		for(int i = 0; i < childNodes.Count; i++)
+	XMBElement root = xeroFile.GetRoot();
+	XMBElementList childNodes = root.GetChildNodes();
+	
+	XERO_ITER_EL(root, node)
+	{
+		int token = node.GetNodeName();
+		XMBAttributeList attrs = node.GetAttributes();
+		if (token == el_alpha_blending)
 		{
-			XMBElement node = childNodes.Item(i);
-			int token = node.GetNodeName();
-			XMBAttributeList attrs = node.GetAttributes();
-			CStr temp;
-			if(token == el_texture)
-			{
-				CStr value(node.GetText());
-				material->SetTexture(value);
-			}
-			else if(token == el_alpha)
-			{
-				temp = CStr(attrs.GetNamedItem(at_usage));
-
-				// Determine whether the alpha is used for basic transparency or player color
-				if (temp == "playercolor")
-					material->SetUsePlayerColor(true);
-				else if (temp == "objectcolor")
-					material->SetUseTextureColor(true);
-				else
-					material->SetUsesAlpha(ParseUsage(temp));
-			}
+			material.SetUsesAlphaBlending(true);
 		}
-
-		m_Materials[pathname] = material;
+		else if (token == el_shader)
+		{
+			material.SetShaderEffect(attrs.GetNamedItem(at_effect));
+		}
+		else if (token == el_define)
+		{
+			material.AddShaderDefine(attrs.GetNamedItem(at_name).c_str(), attrs.GetNamedItem(at_value).c_str());
+		}
 	}
-	catch(...)
-	{
-		SAFE_DELETE(material);
-		throw;
-	}
 
-	return *material;
+	m_Materials[pathname] = material;
+	return material;
 }

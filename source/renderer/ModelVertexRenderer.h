@@ -27,6 +27,7 @@
 #include "graphics/ShaderProgram.h"
 
 class CModel;
+class CModelRData;
 
 /**
  * Class ModelVertexRenderer: Normal ModelRenderer implementations delegate
@@ -47,19 +48,19 @@ public:
 	 * CreateModelData: Create internal data for one model.
 	 *
 	 * ModelRenderer implementations must call this once for every
-	 * model that will later be rendered.
+	 * model that will later be rendered, with @p key set to a value
+	 * that's unique to that ModelRenderer.
 	 *
 	 * ModelVertexRenderer implementations should use this function to
 	 * create per-CModel and per-CModelDef data like vertex arrays.
 	 *
+	 * @param key An opaque pointer to pass to the CModelRData constructor
 	 * @param model The model.
 	 *
-	 * @return An opaque pointer that will be passed to other
-	 * ModelVertexRenderer functions whenever the CModel is passed again.
-	 * Note that returning 0 is allowed and does not indicate an error
-	 * condition.
+	 * @return A new CModelRData that will be passed into other
+	 * ModelVertexRenderer functions whenever the same CModel is used again.
 	 */
-	virtual void* CreateModelData(CModel* model) = 0;
+	virtual CModelRData* CreateModelData(const void* key, CModel* model) = 0;
 
 
 	/**
@@ -81,25 +82,7 @@ public:
 	 * the frame. The value is the same as the value of the model's
 	 * CRenderData::m_UpdateFlags.
 	 */
-	virtual void UpdateModelData(CModel* model, void* data, int updateflags) = 0;
-
-
-	/**
-	 * DestroyModelData: Release all per-model data that has been allocated
-	 * by CreateModelData or UpdateModelData.
-	 *
-	 * ModelRenderer implementations must ensure that this function is
-	 * called exactly once for every call to CreateModelData. This can be
-	 * achieved by deriving from CModelRData and calling DestroyModelData
-	 * in the derived class' destructor.
-	 *
-	 * ModelVertexRenderer implementations need not track the CModel
-	 * instances for which per-model data has been created.
-	 *
-	 * @param model The model.
-	 * @param data Private data as returned by CreateModelData.
-	 */
-	virtual void DestroyModelData(CModel* model, void* data) = 0;
+	virtual void UpdateModelData(CModel* model, CModelRData* data, int updateflags) = 0;
 
 
 	/**
@@ -148,7 +131,7 @@ public:
 	 * BeginPass.
 	 * @param def The model definition.
 	 */
-	virtual void PrepareModelDef(CShaderProgramPtr& shader, int streamflags, const CModelDefPtr& def) = 0;
+	virtual void PrepareModelDef(const CShaderProgramPtr& shader, int streamflags, const CModelDef& def) = 0;
 
 
 	/**
@@ -170,7 +153,7 @@ public:
 	 * that use the same CModelDef object and the same texture must
 	 * succeed.
 	 */
-	virtual void RenderModel(CShaderProgramPtr& shader, int streamflags, CModel* model, void* data) = 0;
+	virtual void RenderModel(const CShaderProgramPtr& shader, int streamflags, CModel* model, CModelRData* data) = 0;
 };
 
 

@@ -195,7 +195,7 @@ void TerrainRenderer::RenderTerrain(bool filtered)
 	if (visiblePatches.empty() && visibleDecals.empty())
 		return;
 
-	CShaderProgramPtr dummyShader = g_Renderer.GetShaderManager().LoadProgram("fixed:dummy");
+	CShaderProgramPtr dummyShader = g_Renderer.GetShaderManager().LoadProgram("fixed:dummy", CShaderDefines());
 	dummyShader->Bind();
 
 	// render the solid black sides of the map first
@@ -250,7 +250,7 @@ void TerrainRenderer::RenderTerrain(bool filtered)
 
 	// switch on blending
 	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	// no need to write to the depth buffer a second time
 	glDepthMask(0);
@@ -295,13 +295,18 @@ void TerrainRenderer::RenderTerrain(bool filtered)
 	pglClientActiveTextureARB(GL_TEXTURE0);
 	glEnableClientState(GL_COLOR_ARRAY); // diffuse lighting colours
 
-	glBlendFunc(GL_DST_COLOR, GL_ZERO);
+	// The vertex color is scaled by 0.5 to permit overbrightness without clamping.
+	// We therefore need to draw clamp((texture*lighting)*2.0), where 'texture'
+	// is what previous passes drew onto the framebuffer, and 'lighting' is the
+	// color computed by this pass.
+	// We can do that with blending by getting it to draw dst*src + src*dst:
+	glBlendFunc(GL_DST_COLOR, GL_SRC_COLOR);
 
-	// GL_TEXTURE_ENV_COLOR requires four floats, so we shouldn't use the RGBColor directly
+	// Scale the ambient color by 0.5 to match the vertex diffuse colors
 	float terrainAmbientColor[4] = {
-		lightEnv.m_TerrainAmbientColor.X,
-		lightEnv.m_TerrainAmbientColor.Y,
-		lightEnv.m_TerrainAmbientColor.Z,
+		lightEnv.m_TerrainAmbientColor.X * 0.5f,
+		lightEnv.m_TerrainAmbientColor.Y * 0.5f,
+		lightEnv.m_TerrainAmbientColor.Z * 0.5f,
 		1.f
 	};
 
@@ -370,6 +375,7 @@ void TerrainRenderer::RenderTerrain(bool filtered)
 
 	pglClientActiveTextureARB(GL_TEXTURE0);
 	pglActiveTextureARB(GL_TEXTURE0);
+
 	glDepthMask(1);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glDisable(GL_BLEND);
@@ -412,7 +418,7 @@ void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* 
 	shader->BindTexture("blendTex", g_Renderer.m_hCompositeAlphaMap);
 }
 
-void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow, bool filtered)
+void TerrainRenderer::RenderTerrainShader(const CShaderDefines& context, ShadowMap* shadow, bool filtered)
 {
 	ENSURE(m->phase == Phase_Render);
 
@@ -423,25 +429,9 @@ void TerrainRenderer::RenderTerrainShader(ShadowMap* shadow, bool filtered)
 
 	CShaderManager& shaderManager = g_Renderer.GetShaderManager();
 
-	typedef std::map<CStr, CStr> Defines;
-	Defines defBasic;
-	if (shadow)
-	{
-		defBasic["USE_SHADOW"] = "1";
-		if (g_Renderer.m_Caps.m_ARBProgramShadow && g_Renderer.m_Options.m_ARBProgramShadow)
-			defBasic["USE_FP_SHADOW"] = "1";
-		if (g_Renderer.m_Options.m_ShadowPCF)
-			defBasic["USE_SHADOW_PCF"] = "1";
-#if !CONFIG2_GLES
-		defBasic["USE_SHADOW_SAMPLER"] = "1";
-#endif
-	}
-
-	defBasic["LIGHTING_MODEL_" + g_Renderer.GetLightEnv().GetLightingModel()] = "1";
-
-	CShaderTechniquePtr techBase(shaderManager.LoadEffect("terrain_base", defBasic));
-	CShaderTechniquePtr techBlend(shaderManager.LoadEffect("terrain_blend", defBasic));
-	CShaderTechniquePtr techDecal(shaderManager.LoadEffect("terrain_decal", defBasic));
+	CShaderTechniquePtr techBase(shaderManager.LoadEffect(CStrIntern("terrain_base"), context, CShaderDefines()));
+	CShaderTechniquePtr techBlend(shaderManager.LoadEffect(CStrIntern("terrain_blend"), context, CShaderDefines()));
+	CShaderTechniquePtr techDecal(shaderManager.LoadEffect(CStrIntern("terrain_decal"), context, CShaderDefines()));
 
 	// render the solid black sides of the map first
 	CShaderTechniquePtr techSolid = g_Renderer.GetShaderManager().LoadEffect("gui_solid");
@@ -521,7 +511,7 @@ void TerrainRenderer::RenderPatches(bool filtered)
 #if CONFIG2_GLES
 #warning TODO: implement TerrainRenderer::RenderPatches for GLES
 #else
-	CShaderProgramPtr dummyShader = g_Renderer.GetShaderManager().LoadProgram("fixed:dummy");
+	CShaderProgramPtr dummyShader = g_Renderer.GetShaderManager().LoadProgram("fixed:dummy", CShaderDefines());
 	dummyShader->Bind();
 
 	glEnableClientState(GL_VERTEX_ARRAY);
@@ -614,8 +604,7 @@ bool TerrainRenderer::RenderFancyWater()
 	// If we're using fancy water, make sure its shader is loaded
 	if (!m->fancyWaterShader)
 	{
-		std::map<CStr, CStr> defNull;
-		m->fancyWaterShader = g_Renderer.GetShaderManager().LoadProgram("water_high", defNull);
+		m->fancyWaterShader = g_Renderer.GetShaderManager().LoadProgram("glsl/water_high", CShaderDefines());
 		if (!m->fancyWaterShader)
 		{
 			LOGERROR(L"Failed to load water shader. Falling back to non-fancy water.\n");
@@ -628,7 +617,7 @@ bool TerrainRenderer::RenderFancyWater()
 	CLOSTexture& losTexture = g_Renderer.GetScene().GetLOSTexture();
 	
 	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 
@@ -644,11 +633,6 @@ bool TerrainRenderer::RenderFancyWater()
 	float tx = -fmod(time, 81.0)/81.0;
 	float ty = -fmod(time, 34.0)/34.0;
 	float repeatPeriod = WaterMgr->m_RepeatPeriod;
-
-	// Set the proper LOD bias
-#if !CONFIG2_GLES
-	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
-#endif
 
 	const CCamera& camera = g_Renderer.GetViewCamera();
 	CVector3D camPos = camera.m_Orientation.GetTranslation();
@@ -762,10 +746,7 @@ void TerrainRenderer::RenderSimpleWater()
 	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 
-	// Set the proper LOD bias
-	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
-
-	CShaderProgramPtr dummyShader = g_Renderer.GetShaderManager().LoadProgram("fixed:dummy");
+	CShaderProgramPtr dummyShader = g_Renderer.GetShaderManager().LoadProgram("fixed:dummy", CShaderDefines());
 	dummyShader->Bind();
 
 	glEnableClientState(GL_VERTEX_ARRAY);

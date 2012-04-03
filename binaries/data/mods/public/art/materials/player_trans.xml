@@ -1,5 +1,5 @@
-<Material>
-    <Alpha
-        usage="playercolor"
-    />
-</Material>
+<?xml version="1.0" encoding="utf-8"?>
+<material>
+    <shader effect="model"/>
+    <define name="USE_PLAYERCOLOR" value="1"/>
+</material>

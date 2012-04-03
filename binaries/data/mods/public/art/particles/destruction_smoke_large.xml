@@ -5,7 +5,7 @@
     <blend mode="over"/>
 
     <constant name="emissionrate" value="30.0"/>
-    <uniform name="lifetime" min="15.0" max="20.0"/>
+    <uniform name="lifetime" min="10.0" max="15.0"/>
 
     <uniform name="position.x" min="-6.0" max="6.0"/>
     <uniform name="position.z" min="-6.0" max="6.0"/>

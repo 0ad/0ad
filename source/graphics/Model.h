@@ -90,18 +90,14 @@ public:
 	void UpdateTo(float time);
 
 	// get the model's geometry data
-	CModelDefPtr GetModelDef() { return m_pModelDef; }
+	const CModelDefPtr& GetModelDef() { return m_pModelDef; }
 
-	// set the model's texture
-	void SetTexture(const CTexturePtr& tex) { m_Texture=tex; }
 	// set the model's material
 	void SetMaterial(const CMaterial &material);
 	// set the model's player ID, recursively through props
 	void SetPlayerID(player_id_t id);
 	// set the models mod color
 	virtual void SetShadingColor(const CColor& colour);
-	// get the model's texture
-	CTexturePtr& GetTexture() { return m_Texture; }
 	// get the model's material
 	CMaterial& GetMaterial() { return m_Material; }
 
@@ -259,8 +255,6 @@ private:
 
 	// object flags
 	int m_Flags;
-	// texture used by model
-	CTexturePtr m_Texture;
 	// model's material
 	CMaterial m_Material;
 	// pointer to the model's raw 3d data

@@ -80,6 +80,7 @@ public:
 		componentManager.SubscribeToMessageType(MT_RenderSubmit);
 		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
 		componentManager.SubscribeToMessageType(MT_TurnStart);
+		componentManager.SubscribeToMessageType(MT_Destroy);
 		// TODO: should probably also listen to movement messages (unlikely to happen in-game, but might occur inside atlas)
 	}
 
@@ -237,6 +238,15 @@ public:
 		case MT_TurnStart:
 			{
 				UpdateOverlayLines(); // check for changes to the SoD and update the overlay lines accordingly
+			}
+			break;
+		case MT_Destroy:
+			{
+				if (m_MarkerEntityId != INVALID_ENTITY)
+				{
+					GetSimContext().GetComponentManager().DestroyComponentsSoon(m_MarkerEntityId);
+					m_MarkerEntityId = INVALID_ENTITY;
+				}
 			}
 			break;
 		}

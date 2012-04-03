@@ -118,15 +118,15 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	CModel* model = new CModel(objectManager.GetSkeletonAnimManager());
 	delete m_Model;
 	m_Model = model;
-	model->SetMaterial(g_MaterialManager.LoadMaterial(m_Base->m_Material));
-	model->GetMaterial().SetTextureColor(m_Color);
+	model->SetMaterial(g_Renderer.GetMaterialManager().LoadMaterial(m_Base->m_Material));
+	model->GetMaterial().SetObjectColor(m_Color);
 	model->InitModel(modeldef);
 
 	CTextureProperties textureProps(m_TextureName);
 	textureProps.SetWrap(GL_CLAMP_TO_EDGE);
 	CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 	texture->Prefetch(); // if we've loaded this model we're probably going to render it soon, so prefetch its texture
-	model->SetTexture(texture);
+	model->GetMaterial().SetDiffuseTexture(texture);
 
 	// calculate initial object space bounds, based on vertex positions
 	model->CalcStaticObjectBounds();

@@ -1,5 +1,6 @@
-<Material>
-    <Alpha
-        usage="blend"
-    />
-</Material>
+<?xml version="1.0" encoding="utf-8"?>
+<material>
+    <alpha_blending/>
+    <shader effect="model_transparent"/>
+    <define name="USE_TRANSPARENT" value="1"/>
+</material>

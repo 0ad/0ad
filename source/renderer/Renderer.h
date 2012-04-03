@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -37,6 +37,7 @@ class CPatch;
 class CMaterial;
 class CModel;
 class CLightEnv;
+class CShaderDefines;
 
 class RenderPathVertexShader;
 class WaterManager;
@@ -44,6 +45,7 @@ class SkyManager;
 class CTextureManager;
 class CShaderManager;
 class CParticleManager;
+class CMaterialManager;
 
 // rendering modes
 enum ERenderMode { WIREFRAME, SOLID, EDGED_FACES };
@@ -75,7 +77,6 @@ public:
 		OPT_NOVBO,
 		OPT_SHADOWS,
 		OPT_FANCYWATER,
-		OPT_LODBIAS,
 		OPT_SHADOWPCF
 	};
 
@@ -116,7 +117,6 @@ public:
 		bool m_NoVBO;
 		bool m_Shadows;
 		bool m_FancyWater;
-		float m_LodBias;
 		RenderPath m_RenderPath;
 		bool m_ShadowAlphaFix;
 		bool m_ARBProgramShadow;
@@ -147,7 +147,6 @@ public:
 	// set/get boolean renderer option
 	void SetOptionBool(enum Option opt,bool value);
 	bool GetOptionBool(enum Option opt) const;
-	void SetOptionFloat(enum Option opt, float val);
 	void SetRenderPath(RenderPath rp);
 	RenderPath GetRenderPath() const { return m_Options.m_RenderPath; }
 	static CStr GetRenderPathName(RenderPath rp);
@@ -265,16 +264,7 @@ public:
 
 	CParticleManager& GetParticleManager();
 
-	/**
-	 * SetFastPlayerColor: Tell the renderer which path to take for
-	 * player colored models. Both paths should provide the same visual
-	 * quality, however the slow path runs on older hardware using multi-pass.
-	 *
-	 * @param fast true if the fast path should be used from now on. If fast
-	 * is true but the OpenGL implementation does not support it, a warning
-	 * is printed and the slow path is used instead.
-	 */
-	void SetFastPlayerColor(bool fast);
+	CMaterialManager& GetMaterialManager();
 
 	/**
 	 * GetCapabilities: Return which OpenGL capabilities are available and enabled.
@@ -282,8 +272,6 @@ public:
 	 * @return capabilities structure
 	 */
 	const Caps& GetCapabilities() const { return m_Caps; }
-
-	bool GetDisableCopyShadow() const { return m_DisableCopyShadow; }
 
 	static void ScriptingInit();
 
@@ -298,7 +286,7 @@ protected:
 	friend class SortModelRenderer;
 	friend class RenderPathVertexShader;
 	friend class HWLightingModelRenderer;
-	friend class ShaderModelRenderer;
+	friend class ShaderModelVertexRenderer;
 	friend class InstancingModelRenderer;
 	friend class ShaderInstancingModelRenderer;
 	friend class TerrainRenderer;
@@ -306,8 +294,6 @@ protected:
 	// scripting
 	// TODO: Perhaps we could have a version of AddLocalProperty for function-driven
 	// properties? Then we could hide these function in the private implementation class.
-	jsval JSI_GetFastPlayerColor(JSContext*);
-	void JSI_SetFastPlayerColor(JSContext* ctx, jsval newval);
 	jsval JSI_GetRenderPath(JSContext*);
 	void JSI_SetRenderPath(JSContext* ctx, jsval newval);
 	jsval JSI_GetDepthTextureBits(JSContext*);
@@ -337,22 +323,22 @@ protected:
 	void RenderSubmissions();
 
 	// patch rendering stuff
-	void RenderPatches(const CFrustum* frustum = 0);
+	void RenderPatches(const CShaderDefines& context, const CFrustum* frustum = 0);
 
 	// model rendering stuff
-	void RenderModels(const CFrustum* frustum = 0);
-	void RenderTransparentModels(ETransparentMode transparentMode, const CFrustum* frustum = 0);
+	void RenderModels(const CShaderDefines& context, const CFrustum* frustum = 0);
+	void RenderTransparentModels(const CShaderDefines& context, ETransparentMode transparentMode, const CFrustum* frustum = 0);
 
-	void RenderSilhouettes();
+	void RenderSilhouettes(const CShaderDefines& context);
 
 	void RenderParticles();
 
 	// shadow rendering stuff
-	void RenderShadowMap();
+	void RenderShadowMap(const CShaderDefines& context);
 
 	// render water reflection and refraction textures
-	SScreenRect RenderReflections(const CBoundingBoxAligned& scissor);
-	SScreenRect RenderRefractions(const CBoundingBoxAligned& scissor);
+	SScreenRect RenderReflections(const CShaderDefines& context, const CBoundingBoxAligned& scissor);
+	SScreenRect RenderRefractions(const CShaderDefines& context, const CBoundingBoxAligned& scissor);
 
 	// debugging
 	void DisplayFrustum();
@@ -411,9 +397,6 @@ protected:
 	// per-frame renderer stats
 	Stats m_Stats;
 
-	/// If false, use a multipass fallback for player colors.
-	bool m_FastPlayerColor;
-
 	/**
 	 * m_WaterManager: the WaterManager object used for water textures and settings
 	 * (e.g. water color, water height)
@@ -426,27 +409,12 @@ protected:
 	SkyManager* m_SkyManager;
 
 	/**
-	 * m_SortAllTransparent: If true, all transparent models are
-	 * rendered using the TransparencyRenderer which performs sorting.
-	 *
-	 * Otherwise, transparent models are rendered using the faster
-	 * batching renderer when possible.
-	 */
-	bool m_SortAllTransparent;
-
-	/**
 	 * m_DisplayFrustum: Render the cull frustum and other data that may be interesting
 	 * to evaluate culling and shadow map calculations
 	 *
 	 * Can be controlled from JS via renderer.displayFrustum
 	 */
 	bool m_DisplayFrustum;
-
-	/**
-	 * m_DisableCopyShadow: For debugging purpose:
-	 * Disable copying of shadow data into the shadow texture (when EXT_fbo is not available)
-	 */
-	bool m_DisableCopyShadow;
 
 	/**
 	 * Enable rendering of terrain tile priority text overlay, for debugging.

@@ -65,8 +65,6 @@ void CModel::ReleaseData()
 	m_Props.clear();
 
 	m_pModelDef = CModelDefPtr();
-
-	m_Texture.reset();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -560,7 +558,6 @@ CModelAbstract* CModel::Clone() const
 	CModel* clone = new CModel(m_SkeletonAnimManager);
 	clone->m_ObjectBounds = m_ObjectBounds;
 	clone->InitModel(m_pModelDef);
-	clone->SetTexture(m_Texture);
 	clone->SetMaterial(m_Material);
 	clone->SetAnimation(m_Anim);
 	clone->SetFlags(m_Flags);
@@ -605,9 +602,6 @@ void CModel::SetMaterial(const CMaterial &material)
 void CModel::SetPlayerID(player_id_t id)
 {
 	CModelAbstract::SetPlayerID(id);
-
-	if (id != INVALID_PLAYER)
-		m_Material.SetPlayerID(id);
 
 	for (std::vector<Prop>::iterator it = m_Props.begin(); it != m_Props.end(); ++it)
 		it->m_Model->SetPlayerID(id);

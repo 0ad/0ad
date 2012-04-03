@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,13 +40,13 @@ friend class CMapReader;
 friend class CXMLReader;
 private:
 	/**
-	 * m_Elevation: Height of sun above the horizon, in radians.
+	 * Height of sun above the horizon, in radians.
 	 * For example, an elevation of M_PI/2 means the sun is straight up.
 	 */
 	float m_Elevation;
 
 	/**
-	 * m_Rotation: Direction of sun on the compass, in radians.
+	 * Direction of sun on the compass, in radians.
 	 * For example, a rotation of zero means the sun is in the direction (0,0,-1)
 	 * and a rotation of M_PI/2 means the sun is in the direction (1,0,0) (not taking
 	 * elevation into account).
@@ -54,13 +54,9 @@ private:
 	float m_Rotation;
 
 	/**
-	 * m_TerrainShadowTransparency: Fraction of diffuse light that reaches shadowed terrain.
-	 * A value of 0.0 means shadowed polygons get only ambient light, while a value of 1.0
-	 * means shadows don't have any effect at all.
-	 * TODO: probably delete this, since it's never used and always set to 0.0.
+	 * Vector corresponding to m_Elevation and m_Rotation.
+	 * Updated by CalculateSunDirection.
 	 */
-	float m_TerrainShadowTransparency;
-
 	CVector3D m_SunDir;
 
 	/**
@@ -80,89 +76,54 @@ public:
 	float GetElevation() const { return m_Elevation; }
 	float GetRotation() const { return m_Rotation; }
 	const CVector3D& GetSunDir() const { return m_SunDir; }
-	float GetTerrainShadowTransparency() const { return m_TerrainShadowTransparency; }
 	const std::string& GetLightingModel() const { return m_LightingModel; }
 
 	void SetElevation(float f);
 	void SetRotation(float f);
 
-	void SetTerrainShadowTransparency(float f);
-
 	void SetLightingModel(const std::string& model) { m_LightingModel = model; }
 
 	/**
-	 * EvaluateTerrain: Calculate brightness of a point of the terrain with the given normal
-	 * vector.
+	 * Calculate brightness of a point of a unit with the given normal vector,
+	 * for rendering with CPU lighting.
 	 * The resulting color contains both ambient and diffuse light.
+	 * To cope with sun overbrightness, the color is scaled by 0.5.
 	 *
 	 * @param normal normal vector (must have length 1)
-	 * @param color resulting color
 	 */
-	void EvaluateTerrain(const CVector3D& normal, RGBColor& color) const
+	RGBColor EvaluateUnitScaled(const CVector3D& normal) const
 	{
 		float dot = -normal.Dot(m_SunDir);
 
-		color = m_TerrainAmbientColor;
+		RGBColor color = m_UnitsAmbientColor;
 		if (dot > 0)
 			color += m_SunColor * dot;
+
+		return color * 0.5f;
 	}
 
 	/**
-	 * EvaluateUnit: Calculate brightness of a point of a unit with the given normal
-	 * vector.
-	 * The resulting color contains both ambient and diffuse light.
+	 * Compute the diffuse sun lighting color on terrain, for rendering with CPU lighting.
+	 * To cope with sun overbrightness, the color is scaled by 0.5.
 	 *
 	 * @param normal normal vector (must have length 1)
-	 * @param color resulting color
 	 */
-	void EvaluateUnit(const CVector3D& normal, RGBColor& color) const
+	SColor4ub EvaluateTerrainDiffuseScaled(const CVector3D& normal) const
 	{
 		float dot = -normal.Dot(m_SunDir);
-
-		color = m_UnitsAmbientColor;
-		if (dot > 0)
-			color += m_SunColor * dot;
+		return ConvertRGBColorTo4ub(m_SunColor * dot * 0.5f);
 	}
 
 	/**
-	 * EvaluateDirect: Like EvaluateTerrain and EvaluateUnit, but return only the direct
-	 * sunlight term without ambient.
+	 * Compute the diffuse sun lighting factor on terrain, for rendering with shader lighting.
 	 *
 	 * @param normal normal vector (must have length 1)
-	 * @param color resulting color
 	 */
-	void EvaluateDirect(const CVector3D& normal, RGBColor& color) const
+	SColor4ub EvaluateTerrainDiffuseFactor(const CVector3D& normal) const
 	{
 		float dot = -normal.Dot(m_SunDir);
-
-		if (dot > 0)
-			color = m_SunColor * dot;
-		else
-			color = CVector3D(0,0,0);
-	}
-
-	/**
-	 * Compute the diffuse sun lighting.
-	 * If @p includeSunColor is set, the return value includes the sun color.
-	 * (If sun overbrightness is enabled, this might result in clamping).
-	 * Otherwise it returns a factor that the sun color should be multiplied by.
-	 */
-	SColor4ub EvaluateDiffuse(const CVector3D& normal, bool includeSunColor) const
-	{
-		float dot = -normal.Dot(m_SunDir);
-
-		if (dot <= 0)
-			return SColor4ub(0, 0, 0, 255);
-
-		if (includeSunColor)
-		{
-			return ConvertRGBColorTo4ub(m_SunColor * dot);
-		}
-		else
-		{
-			int c = clamp((int)(dot * 255), 0, 255);
-			return SColor4ub(c, c, c, 255);
-		}
+		int c = clamp((int)(dot * 255), 0, 255);
+		return SColor4ub(c, c, c, 255);
 	}
 
 	// Comparison operators
@@ -170,7 +131,6 @@ public:
 	{
 		return m_Elevation == o.m_Elevation &&
 			m_Rotation == o.m_Rotation &&
-			m_TerrainShadowTransparency == o.m_TerrainShadowTransparency &&
 			m_LightingModel == o.m_LightingModel &&
 			m_SunColor == o.m_SunColor &&
 			m_TerrainAmbientColor == o.m_TerrainAmbientColor &&
@@ -186,4 +146,4 @@ private:
 	void CalculateSunDirection();
 };
 
-#endif
+#endif // INCLUDED_LIGHTENV

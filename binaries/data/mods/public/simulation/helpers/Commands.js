@@ -532,11 +532,12 @@ function GetFormationUnitAIs(ents)
 	var formationEnt = undefined;
 	if (formation.ids.length == 1)
 	{
-		// Selected units all belong to the same formation.
-		// Check that it doesn't have any other members
+		// Selected units either belong to this formation or have no formation
+		// Check that all its members are selected
 		var fid = formation.ids[0];
 		var cmpFormation = Engine.QueryInterface(+fid, IID_Formation);
-		if (cmpFormation && cmpFormation.GetMemberCount() == formation.entities.length)
+		if (cmpFormation && cmpFormation.GetMemberCount() == formation.members[fid].length
+			&& cmpFormation.GetMemberCount() == formation.entities.length)
 		{
 			// The whole formation was selected, so reuse its controller for this command
 			formationEnt = +fid;

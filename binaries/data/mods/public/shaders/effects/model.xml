@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<effect>
+
+    <technique>
+        <require context="MODE_SHADOWCAST || MODE_SILHOUETTEOCCLUDER"/>
+        <require shaders="arb"/>
+        <pass shader="arb/model_solid"/>
+    </technique>
+
+    <technique>
+        <require context="MODE_SHADOWCAST || MODE_SILHOUETTEOCCLUDER"/>
+        <require shaders="glsl"/>
+        <pass shader="glsl/model_solid"/>
+    </technique>
+
+    <technique>
+        <require context="MODE_SHADOWCAST || MODE_SILHOUETTEOCCLUDER"/>
+        <require shaders="fixed"/>
+        <define name="USE_PLAYERCOLOR" value="0"/>
+        <define name="USE_OBJECTCOLOR" value="0"/>
+        <pass shader="fixed:model_solid"/>
+    </technique>
+
+
+    <technique>
+        <require context="MODE_SILHOUETTEDISPLAY || MODE_WIREFRAME"/>
+        <require shaders="arb"/>
+        <pass shader="arb/model_solid_player"/>
+    </technique>
+
+    <technique>
+        <require context="MODE_SILHOUETTEDISPLAY || MODE_WIREFRAME"/>
+        <require shaders="glsl"/>
+        <pass shader="glsl/model_solid_player"/>
+    </technique>
+
+    <technique>
+        <require context="MODE_SILHOUETTEDISPLAY || MODE_WIREFRAME"/>
+        <require shaders="fixed"/>
+        <define name="USE_PLAYERCOLOR" value="1"/>
+        <define name="USE_OBJECTCOLOR" value="0"/>
+        <pass shader="fixed:model_solid"/>
+    </technique>
+
+
+    <technique>
+        <require shaders="arb"/>
+        <pass shader="arb/model_common"/>
+    </technique>
+
+    <technique>
+        <require shaders="glsl"/>
+        <pass shader="glsl/model_common"/>
+    </technique>
+
+    <technique>
+        <require context="USE_PLAYERCOLOR || USE_OBJECTCOLOR"/>
+        <require shaders="fixed"/>
+        <pass shader="fixed:model_color"/>
+    </technique>
+
+    <technique>
+        <require shaders="fixed"/>
+        <pass shader="fixed:model"/>
+    </technique>
+
+</effect>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<program type="arb">
+
+    <vertex file="arb/solid.vp">
+        <uniform if="USE_INSTANCING" name="instancingTransform" loc="0" type="mat4"/>
+        <stream name="pos"/>
+    </vertex>
+
+    <fragment file="arb/solid_color.fp">
+        <uniform name="playerColor" loc="0" type="vec3"/>
+    </fragment>
+
+</program>

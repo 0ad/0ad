@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<program type="arb">
+
+    <vertex file="arb/solid_tex.vp">
+        <uniform if="USE_INSTANCING" name="instancingTransform" loc="0" type="mat4"/>
+        <stream name="pos"/>
+        <stream name="uv0"/>
+    </vertex>
+
+    <fragment file="arb/solid_tex.fp">
+        <uniform name="baseTex" loc="0" type="sampler2D"/>
+    </fragment>
+
+</program>

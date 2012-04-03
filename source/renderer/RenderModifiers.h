@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,10 @@
  * RenderModifiers can affect the fragment stage behaviour of some
  * ModelRenderers. This file defines some common RenderModifiers in
  * addition to the base class.
+ * 
+ * TODO: See comment in CRendererInternals::Models - we no longer use multiple
+ * subclasses of RenderModifier, so most of the stuff here is unnecessary
+ * abstraction which should probably be cleaned up.
  */
 
 #ifndef INCLUDED_RENDERMODIFIERS
@@ -56,26 +60,7 @@ public:
 	 * @return The streamflags that indicate which vertex components
 	 * are required by the fragment stages (see STREAM_XYZ constants).
 	 */
-	virtual int BeginPass(int pass) = 0;
-
-	/**
-	 * EndPass: Cleanup OpenGL state after the given pass. This function
-	 * may indicate that additional passes are needed.
-	 *
-	 * Must be implemented by derived classes.
-	 *
-	 * @param pass The current pass number (pass == 0 is the first pass)
-	 *
-	 * @return true if rendering is complete, false if an additional pass
-	 * is needed. If false is returned, BeginPass is then called with an
-	 * increased pass number.
-	 */
-	virtual bool EndPass(int pass) = 0;
-
-	/**
-	 * Return the shader for the given pass, or a null pointer if none.
-	 */
-	virtual CShaderProgramPtr GetShader(int pass);
+	virtual void BeginPass(const CShaderProgramPtr& shader) = 0;
 
 	/**
 	 * PrepareTexture: Called before rendering models that use the given
@@ -86,7 +71,7 @@ public:
 	 * @param pass The current pass number (pass == 0 is the first pass)
 	 * @param texture The texture used by subsequent models
 	 */
-	virtual void PrepareTexture(int pass, CTexturePtr& texture) = 0;
+	virtual void PrepareTexture(const CShaderProgramPtr& shader, CTexture& texture) = 0;
 
 	/**
 	 * PrepareModel: Called before rendering the given model.
@@ -96,7 +81,7 @@ public:
 	 * @param pass The current pass number (pass == 0 is the first pass)
 	 * @param model The model that is about to be rendered.
 	 */
-	virtual void PrepareModel(int pass, CModel* model);
+	virtual void PrepareModel(const CShaderProgramPtr& shader, CModel* model) = 0;
 };
 
 
@@ -138,70 +123,25 @@ private:
 	const CLightEnv* m_LightEnv;
 };
 
-
-#if !CONFIG2_GLES
-
 /**
- * Class PlainRenderModifier: RenderModifier that simply uses opaque textures
- * modulated by primary color. It is used for normal, no-frills models.
- */
-class PlainRenderModifier : public RenderModifier
-{
-public:
-	PlainRenderModifier();
-	~PlainRenderModifier();
-
-	// Implementation
-	int BeginPass(int pass);
-	bool EndPass(int pass);
-	void PrepareTexture(int pass, CTexturePtr& texture);
-};
-
-
-/**
- * Class SolidColorRenderModifier: Render all models using the same
- * solid color without lighting.
- *
- * You have to specify the color using a glColor*() calls before rendering.
- */
-class SolidColorRenderModifier : public RenderModifier
-{
-public:
-	SolidColorRenderModifier();
-	~SolidColorRenderModifier();
-
-	// Implementation
-	int BeginPass(int pass);
-	bool EndPass(int pass);
-	void PrepareTexture(int pass, CTexturePtr& texture);
-	void PrepareModel(int pass, CModel* model);
-};
-
-#endif // !CONFIG2_GLES
-
-/**
- * A RenderModifier that can be used with any CShaderTechnique.
- * Uniforms and textures get set appropriately.
+ * A RenderModifier that sets uniforms and textures appropriately for rendering models.
  */
 class ShaderRenderModifier : public LitRenderModifier
 {
 public:
-	ShaderRenderModifier(const CShaderTechniquePtr& technique);
-	~ShaderRenderModifier();
+	ShaderRenderModifier();
 
 	// Implementation
-	int BeginPass(int pass);
-	bool EndPass(int pass);
-	CShaderProgramPtr GetShader(int pass);
-	void PrepareTexture(int pass, CTexturePtr& texture);
-	void PrepareModel(int pass, CModel* model);
+	void BeginPass(const CShaderProgramPtr& shader);
+	void PrepareTexture(const CShaderProgramPtr& shader, CTexture& texture);
+	void PrepareModel(const CShaderProgramPtr& shader, CModel* model);
 
 private:
-	CShaderTechniquePtr m_Technique;
 	CShaderProgram::Binding m_BindingInstancingTransform;
 	CShaderProgram::Binding m_BindingShadingColor;
 	CShaderProgram::Binding m_BindingObjectColor;
 	CShaderProgram::Binding m_BindingPlayerColor;
+	CShaderProgram::Binding m_BindingBaseTex;
 };
 
 #endif // INCLUDED_RENDERMODIFIERS

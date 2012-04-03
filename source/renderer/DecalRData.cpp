@@ -138,7 +138,8 @@ void CDecalRData::BuildArrays()
 	VertexArrayIterator<SColor4ub> DiffuseColor = m_DiffuseColor.GetIterator<SColor4ub>();
 	VertexArrayIterator<float[2]> UV = m_UV.GetIterator<float[2]>();
 
-	bool includeSunColor = (g_Renderer.GetRenderPath() != CRenderer::RP_SHADER);
+	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
+	bool cpuLighting = (g_Renderer.GetRenderPath() == CRenderer::RP_FIXED);
 
 	for (ssize_t j = j0; j <= j1; ++j)
 	{
@@ -155,7 +156,7 @@ void CDecalRData::BuildArrays()
 
 			CVector3D normal;
 			m_Decal->m_Terrain->CalcNormal(i, j, normal);
-			*DiffuseColor = g_Renderer.GetLightEnv().EvaluateDiffuse(normal, includeSunColor);
+			*DiffuseColor = cpuLighting ? lightEnv.EvaluateTerrainDiffuseScaled(normal) : lightEnv.EvaluateTerrainDiffuseFactor(normal);
 			++DiffuseColor;
 
 			// Map from world space back into decal texture space

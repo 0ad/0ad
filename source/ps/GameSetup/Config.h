@@ -51,9 +51,7 @@ extern bool g_FancyWater;
 // flag to switch on shadow PCF
 extern bool g_ShadowPCF;
 
-extern float g_LodBias;
 extern float g_Gamma;
-extern bool g_EntGraph;
 // name of configured render path (depending on OpenGL extensions, this may not be
 // the render path that is actually in use right now)
 extern CStr g_RenderPath;

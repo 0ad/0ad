@@ -74,7 +74,7 @@ struct SortEmitterDistance
 	CMatrix3D worldToCam;
 };
 
-void ParticleRenderer::PrepareForRendering()
+void ParticleRenderer::PrepareForRendering(const CShaderDefines& context)
 {
 	PROFILE3("prepare particles");
 
@@ -86,8 +86,8 @@ void ParticleRenderer::PrepareForRendering()
 		// RenderParticles will never be called so it's safe to leave the shaders as null
 		if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
 		{
-			m->shader = g_Renderer.GetShaderManager().LoadEffect("particle");
-			m->shaderSolid = g_Renderer.GetShaderManager().LoadEffect("particle_solid");
+			m->shader = g_Renderer.GetShaderManager().LoadEffect(CStrIntern("particle"), context, CShaderDefines());
+			m->shaderSolid = g_Renderer.GetShaderManager().LoadEffect(CStrIntern("particle_solid"), context, CShaderDefines());
 		}
 	}
 

@@ -23,6 +23,7 @@
 #include <boost/unordered_map.hpp>
 #include <boost/weak_ptr.hpp>
 
+#include "graphics/ShaderDefines.h"
 #include "graphics/ShaderProgram.h"
 #include "graphics/ShaderTechnique.h"
 
@@ -47,23 +48,33 @@ public:
 	 * @param defines key/value set of preprocessor definitions
 	 * @return loaded program, or null pointer on error
 	 */
-	CShaderProgramPtr LoadProgram(const char* name, const std::map<CStr, CStr>& defines = (std::map<CStr, CStr>()));
+	CShaderProgramPtr LoadProgram(const char* name, const CShaderDefines& defines);
 
 	/**
 	 * Load a shader effect.
 	 * Effects can be implemented via many techniques; this returns the best usable technique.
 	 * @param name name of effect XML specification (file is loaded from shaders/effects/${name}.xml)
-	 * @param defines key/value set of preprocessor definitions
+	 * @param defines1,defines2 key/value set of preprocessor definitions; defines2 has higher precedence
 	 * @return loaded technique, or empty technique on error
 	 */
-	CShaderTechniquePtr LoadEffect(const char* name, const std::map<CStr, CStr>& defines = (std::map<CStr, CStr>()));
+	CShaderTechniquePtr LoadEffect(CStrIntern name, const CShaderDefines& defines1, const CShaderDefines& defines2);
+
+	/**
+	 * Load a shader effect, with no defines.
+	 */
+	CShaderTechniquePtr LoadEffect(const char* name);
+
+	/**
+	 * Returns the number of shader effects that are currently loaded.
+	 */
+	size_t GetNumEffectsLoaded();
 
 private:
 
 	struct CacheKey
 	{
 		std::string name;
-		std::map<CStr, CStr> defines;
+		CShaderDefines defines;
 
 		bool operator<(const CacheKey& k) const
 		{
@@ -76,31 +87,32 @@ private:
 	// A CShaderProgram contains expensive GL state, so we ought to cache it.
 	// The compiled state depends solely on the filename and list of defines,
 	// so we store that in CacheKey.
+	// TODO: is this cache useful when we already have an effect cache?
 	std::map<CacheKey, CShaderProgramPtr> m_ProgramCache;
 
-	// An effect isn't too expensive but it may be loaded many times per frame,
-	// so we ought to cache it anyway.
-	// For each effect we pick a technique at load time, dependent on various
-	// settings (e.g. GL shader extensions, or user's chosen graphics quality)
-	// which rarely change. We'll store that collection of settings in
-	// EffectContext and reload the effect cache whenever it changes.
-	struct EffectContext
+	/**
+	 * Key for effect cache lookups.
+	 * This stores two separate CShaderDefines because the renderer typically
+	 * has one set from the rendering context and one set from the material;
+	 * by handling both separately here, we avoid the cost of having to merge
+	 * the two sets into a single one before doing the cache lookup.
+	 */
+	struct EffectCacheKey
 	{
-		bool hasARB;
-		bool hasGLSL;
-		bool preferGLSL;
+		CStrIntern name;
+		CShaderDefines defines1;
+		CShaderDefines defines2;
 
-		bool operator==(const EffectContext& b) const
-		{
-			return hasARB == b.hasARB && hasGLSL == b.hasGLSL && preferGLSL == b.preferGLSL;
-		}
+		bool operator==(const EffectCacheKey& b) const;
 	};
 
-	EffectContext GetEffectContextAndVerifyCache();
+	struct EffectCacheKeyHash
+	{
+		size_t operator()(const EffectCacheKey& key) const;
+	};
 
-	std::map<CacheKey, CShaderTechniquePtr> m_EffectCache;
-	EffectContext m_EffectCacheContext;
-
+	typedef boost::unordered_map<EffectCacheKey, CShaderTechniquePtr, EffectCacheKeyHash> EffectCacheMap;
+	EffectCacheMap m_EffectCache;
 
 	// Store the set of shaders that need to be reloaded when the given file is modified
 	typedef boost::unordered_map<VfsPath, std::set<boost::weak_ptr<CShaderProgram> > > HotloadFilesMap;
@@ -110,8 +122,8 @@ private:
 	RelaxNGValidator m_Validator;
 #endif
 
-	bool NewProgram(const char* name, const std::map<CStr, CStr>& defines, CShaderProgramPtr& program);
-	bool NewEffect(const char* name, const std::map<CStr, CStr>& defines, const EffectContext& cx, CShaderTechniquePtr& tech);
+	bool NewProgram(const char* name, const CShaderDefines& defines, CShaderProgramPtr& program);
+	bool NewEffect(const char* name, const CShaderDefines& defines, CShaderTechniquePtr& tech);
 
 	static Status ReloadChangedFileCB(void* param, const VfsPath& path);
 	Status ReloadChangedFile(const VfsPath& path);

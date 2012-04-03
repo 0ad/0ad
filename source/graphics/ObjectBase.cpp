@@ -257,6 +257,9 @@ bool CObjectBase::Load(const VfsPath& pathname)
 		}
 	}
 
+	if (m_Material.empty())
+		m_Material = VfsPath("art/materials/default.xml");
+
 	return true;
 }
 

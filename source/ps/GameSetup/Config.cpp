@@ -39,10 +39,8 @@ bool g_Shadows = false;
 bool g_ShadowPCF = false;
 bool g_FancyWater = false;
 
-float g_LodBias = 0.0f;
 float g_Gamma = 1.0f;
 
-bool g_EntGraph = false;
 CStr g_RenderPath = "default";
 
 int g_xres, g_yres;
@@ -80,8 +78,6 @@ static void LoadGlobals()
 	CFG_GET_USER_VAL("fancywater", Bool, g_FancyWater);
 	CFG_GET_USER_VAL("renderpath", String, g_RenderPath);
 
-	CFG_GET_USER_VAL("lodbias", Float, g_LodBias);
-
 	float gain = -1.0f;
 	CFG_GET_USER_VAL("sound.mastergain", Float, gain);
 	if(gain >= 0.0f)
@@ -114,9 +110,6 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 			g_ConfigDB.CreateValue(CFG_COMMAND, name)->m_String = value;
 		}
 	}
-
-	if (args.Has("entgraph"))
-		g_EntGraph = true;
 
 	if (args.Has("g"))
 	{

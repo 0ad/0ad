@@ -21,6 +21,7 @@
                             <choice>
                                 <ref name="uniformContent"/>
                                 <element name="attrib">
+                                    <ref name="conditional"/>
                                     <attribute name="name"><text/></attribute>
                                     <attribute name="loc"><data type="integer"/></attribute>
                                 </element>
@@ -47,6 +48,7 @@
                         <zeroOrMore>
                             <choice>
                                 <element name="attrib">
+                                    <ref name="conditional"/>
                                     <attribute name="name"><text/></attribute>
                                     <attribute name="semantics">
                                         <choice>
@@ -83,6 +85,7 @@
 
     <define name="uniformContent">
         <element name="uniform">
+            <ref name="conditional"/>
             <attribute name="name"><text/></attribute>
             <attribute name="loc"><data type="integer"/></attribute>
             <attribute name="type">
@@ -104,6 +107,7 @@
 
     <define name="streamContent">
         <element name="stream">
+            <ref name="conditional"/>
             <attribute name="name">
                 <choice>
                     <value>pos</value>
@@ -116,6 +120,12 @@
                 </choice>
             </attribute>
         </element>
+    </define>
+
+    <define name="conditional">
+        <optional>
+            <attribute name="if"><text/></attribute>
+        </optional>
     </define>
 
 </grammar>

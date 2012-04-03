@@ -19,6 +19,7 @@
 
 #include "ShaderProgram.h"
 
+#include "graphics/ShaderDefines.h"
 #include "graphics/TextureManager.h"
 #include "lib/res/graphics/ogl_tex.h"
 #include "maths/Matrix3D.h"
@@ -63,11 +64,13 @@ public:
 		return it->second;
 	}
 
-	virtual bool HasTexture(texture_id_t id)
+	virtual Binding GetTextureBinding(uniform_id_t id)
 	{
-		if (GetUniformIndex(id) != -1)
-			return true;
-		return false;
+		int index = GetUniformIndex(id);
+		if (index == -1)
+			return Binding();
+		else
+			return Binding((int)GL_TEXTURE_2D, index);
 	}
 
 	virtual void BindTexture(texture_id_t id, Handle tex)
@@ -87,9 +90,11 @@ public:
 		}
 	}
 
-	virtual int GetTextureUnit(texture_id_t id)
+	virtual void BindTexture(Binding id, Handle tex)
 	{
-		return GetUniformIndex(id);
+		int index = id.second;
+		if (index != -1)
+			ogl_tex_bind(tex, index);
 	}
 
 	virtual Binding GetUniformBinding(uniform_id_t id)
@@ -151,7 +156,7 @@ class CShaderProgramFFP_OverlayLine : public CShaderProgramFFP
 	bool m_IgnoreLos;
 
 public:
-	CShaderProgramFFP_OverlayLine(const std::map<CStr, CStr>& defines) :
+	CShaderProgramFFP_OverlayLine(const CShaderDefines& defines) :
 		CShaderProgramFFP(STREAM_POS | STREAM_UV0 | STREAM_UV1)
 	{
 		m_UniformIndexes["losTransform"] = ID_losTransform;
@@ -162,7 +167,7 @@ public:
 		m_UniformIndexes["maskTex"] = 1;
 		m_UniformIndexes["losTex"] = 2;
 
-		m_IgnoreLos = (defines.find(CStr("IGNORE_LOS")) != defines.end());
+		m_IgnoreLos = (defines.GetInt("IGNORE_LOS") != 0);
 	}
 
 	bool IsIgnoreLos()
@@ -635,7 +640,282 @@ public:
 
 //////////////////////////////////////////////////////////////////////////
 
-/*static*/ CShaderProgram* CShaderProgram::ConstructFFP(const std::string& id, const std::map<CStr, CStr>& defines)
+/**
+ * Common functionality for model rendering in the fixed renderpath.
+ */
+class CShaderProgramFFP_Model_Base : public CShaderProgramFFP
+{
+protected:
+	// Uniforms
+	enum
+	{
+		ID_transform,
+		ID_objectColor,
+		ID_playerColor
+	};
+
+public:
+	CShaderProgramFFP_Model_Base(const CShaderDefines& defines, int streamflags)
+		: CShaderProgramFFP(streamflags)
+	{
+		m_UniformIndexes["transform"] = ID_transform;
+
+		if (defines.GetInt("USE_OBJECTCOLOR"))
+			m_UniformIndexes["objectColor"] = ID_objectColor;
+
+		if (defines.GetInt("USE_PLAYERCOLOR"))
+			m_UniformIndexes["playerColor"] = ID_playerColor;
+
+		// Texture units:
+		m_UniformIndexes["baseTex"] = 0;
+	}
+
+	virtual void Uniform(Binding id, const CMatrix3D& v)
+	{
+		if (id.second == ID_transform)
+			glLoadMatrixf(&v._11);
+	}
+
+	virtual void Bind()
+	{
+		glMatrixMode(GL_PROJECTION);
+		glPushMatrix();
+		glLoadIdentity();
+		glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+
+		BindClientStates();
+	}
+
+	virtual void Unbind()
+	{
+		UnbindClientStates();
+
+		glMatrixMode(GL_PROJECTION);
+		glPopMatrix();
+		glMatrixMode(GL_MODELVIEW);
+		glPopMatrix();
+	}
+};
+
+/**
+ * Basic non-recolored diffuse-textured model rendering.
+ */
+class CShaderProgramFFP_Model : public CShaderProgramFFP_Model_Base
+{
+public:
+	CShaderProgramFFP_Model(const CShaderDefines& defines)
+		: CShaderProgramFFP_Model_Base(defines, STREAM_POS | STREAM_COLOR | STREAM_UV0)
+	{
+	}
+
+	virtual void Bind()
+	{
+		// Set up texture environment for base pass - modulate texture and vertex color
+		pglActiveTextureARB(GL_TEXTURE0);
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_MODULATE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_TEXTURE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB, GL_SRC_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB, GL_PRIMARY_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB, GL_SRC_COLOR);
+
+		// Copy alpha channel from texture
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_TEXTURE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
+
+		// The vertex color is scaled by 0.5 to permit overbrightness without clamping.
+		// We therefore need to scale by 2.0 after the modulation, and before any
+		// further clamping, to get the right color.
+		float scale2[] = { 2.0f, 2.0f, 2.0f };
+		glTexEnvfv(GL_TEXTURE_ENV, GL_RGB_SCALE, scale2);
+
+		CShaderProgramFFP_Model_Base::Bind();
+	}
+
+	virtual void Unbind()
+	{
+		CShaderProgramFFP_Model_Base::Unbind();
+
+		pglActiveTextureARB(GL_TEXTURE0);
+
+		// Revert the scaling to default
+		float scale1[] = { 1.0f, 1.0f, 1.0f };
+		glTexEnvfv(GL_TEXTURE_ENV, GL_RGB_SCALE, scale1);
+	}
+};
+
+/**
+ * Player-coloring diffuse-textured model rendering.
+ */
+class CShaderProgramFFP_ModelColor : public CShaderProgramFFP_Model_Base
+{
+public:
+	CShaderProgramFFP_ModelColor(const CShaderDefines& defines)
+		: CShaderProgramFFP_Model_Base(defines, STREAM_POS | STREAM_COLOR | STREAM_UV0)
+	{
+	}
+
+	virtual void Uniform(Binding id, float v0, float v1, float v2, float v3)
+	{
+		if (id.second == ID_objectColor || id.second == ID_playerColor)
+		{
+			// (Player color and object color are mutually exclusive)
+			float color[] = { v0, v1, v2, v3 };
+			glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, color);
+		}
+	}
+
+	virtual void Bind()
+	{
+		// Player color uses a single pass with three texture environments
+		// Note: This uses ARB_texture_env_crossbar (which is checked in GameSetup),
+		// and it requires MAX_TEXTURE_IMAGE_UNITS >= 3 (which only excludes GF2MX/GF4MX)
+		//
+		// We calculate: Result = Color*Texture*(PlayerColor*(1-Texture.a) + 1.0*Texture.a)
+		// Algebra gives us:
+		// Result = (1 - ((1 - PlayerColor) * (1 - Texture.a)))*Texture*Color
+
+		// TexEnv #0
+		pglActiveTextureARB(GL_TEXTURE0);
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_MODULATE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_TEXTURE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB, GL_ONE_MINUS_SRC_ALPHA);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB, GL_CONSTANT);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB, GL_ONE_MINUS_SRC_COLOR);
+
+		// Don't care about alpha; set it to something harmless
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
+
+		// TexEnv #1
+		pglActiveTextureARB(GL_TEXTURE1);
+		glEnable(GL_TEXTURE_2D);
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_MODULATE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB, GL_ONE_MINUS_SRC_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB, GL_PRIMARY_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB, GL_SRC_COLOR);
+
+		// Don't care about alpha; set it to something harmless
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
+
+		// TexEnv #2
+		pglActiveTextureARB(GL_TEXTURE2);
+		glEnable(GL_TEXTURE_2D);
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_MODULATE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB, GL_SRC_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB, GL_TEXTURE0);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB, GL_SRC_COLOR);
+
+		// Don't care about alpha; set it to something harmless
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
+
+		float color[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+		glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, color);
+
+		// Scale colors at the end of all the computation (see CShaderProgramFFP_Model::Bind)
+		float scale[] = { 2.0f, 2.0f, 2.0f };
+		glTexEnvfv(GL_TEXTURE_ENV, GL_RGB_SCALE, scale);
+
+		// Need to bind some kind of texture to enable the texture units.
+		// Unit 0 has baseTex, but the others need a texture.
+		g_Renderer.GetTextureManager().GetErrorTexture()->Bind(1);
+		g_Renderer.GetTextureManager().GetErrorTexture()->Bind(2);
+
+		CShaderProgramFFP_Model_Base::Bind();
+	}
+
+	virtual void Unbind()
+	{
+		CShaderProgramFFP_Model_Base::Unbind();
+
+		pglActiveTextureARB(GL_TEXTURE2);
+		glDisable(GL_TEXTURE_2D);
+
+		float scale[] = { 1.0f, 1.0f, 1.0f };
+		glTexEnvfv(GL_TEXTURE_ENV, GL_RGB_SCALE, scale);
+
+		pglActiveTextureARB(GL_TEXTURE1);
+		glDisable(GL_TEXTURE_2D);
+
+		pglActiveTextureARB(GL_TEXTURE0);
+	}
+};
+
+/**
+ * Optionally-player-colored untextured model rendering.
+ */
+class CShaderProgramFFP_ModelSolid : public CShaderProgramFFP_Model_Base
+{
+public:
+	CShaderProgramFFP_ModelSolid(const CShaderDefines& defines)
+		: CShaderProgramFFP_Model_Base(defines, STREAM_POS)
+	{
+	}
+
+	virtual void Uniform(Binding id, float v0, float v1, float v2, float v3)
+	{
+		if (id.second == ID_playerColor)
+		{
+			float color[] = { v0, v1, v2, v3 };
+			glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, color);
+		}
+	}
+
+	virtual void Bind()
+	{
+		float color[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+		glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, color);
+
+		pglActiveTextureARB(GL_TEXTURE0);
+		glEnable(GL_TEXTURE_2D);
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_CONSTANT);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB, GL_SRC_COLOR);
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_CONSTANT);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA, GL_SRC_ALPHA);
+
+		CShaderProgramFFP_Model_Base::Bind();
+	}
+};
+
+/**
+ * Plain unlit texture model rendering, for e.g. alpha-blended shadow casters.
+ */
+class CShaderProgramFFP_ModelSolidTex : public CShaderProgramFFP_Model_Base
+{
+public:
+	CShaderProgramFFP_ModelSolidTex(const CShaderDefines& defines)
+		: CShaderProgramFFP_Model_Base(defines, STREAM_POS | STREAM_UV0)
+	{
+	}
+
+	virtual void Bind()
+	{
+		pglActiveTextureARB(GL_TEXTURE0);
+		glEnable(GL_TEXTURE_2D);
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+
+		CShaderProgramFFP_Model_Base::Bind();
+	}
+};
+
+//////////////////////////////////////////////////////////////////////////
+
+/*static*/ CShaderProgram* CShaderProgram::ConstructFFP(const std::string& id, const CShaderDefines& defines)
 {
 	if (id == "dummy")
 		return new CShaderProgramFFP_Dummy();
@@ -653,6 +933,14 @@ public:
 		return new CShaderProgramFFP_GuiSolid();
 	if (id == "solid")
 		return new CShaderProgramFFP_GuiSolid(); // works for non-GUI objects too
+	if (id == "model")
+		return new CShaderProgramFFP_Model(defines);
+	if (id == "model_color")
+		return new CShaderProgramFFP_ModelColor(defines);
+	if (id == "model_solid")
+		return new CShaderProgramFFP_ModelSolid(defines);
+	if (id == "model_solid_tex")
+		return new CShaderProgramFFP_ModelSolidTex(defines);
 
 	LOGERROR(L"CShaderProgram::ConstructFFP: '%hs': Invalid id", id.c_str());
 	debug_warn(L"CShaderProgram::ConstructFFP: Invalid id");
@@ -661,7 +949,7 @@ public:
 
 #else // CONFIG2_GLES
 
-/*static*/ CShaderProgram* CShaderProgram::ConstructFFP(const std::string& UNUSED(id), const std::map<CStr, CStr>& UNUSED(defines))
+/*static*/ CShaderProgram* CShaderProgram::ConstructFFP(const std::string& UNUSED(id), const CShaderDefines& UNUSED(defines))
 {
 	debug_warn(L"CShaderProgram::ConstructFFP: FFP not supported on this device");
 	return NULL;

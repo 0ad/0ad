@@ -3,7 +3,7 @@
 
     <technique>
         <require shaders="arb"/>
-        <pass shader="terrain_base"/>
+        <pass shader="arb/terrain_base"/>
     </technique>
 
     <technique>

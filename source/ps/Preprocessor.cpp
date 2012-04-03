@@ -1131,8 +1131,14 @@ Done:
         rc = HandleElse (t, iLine);
     else if (IS_DIRECTIVE ("endif"))
         rc = HandleEndIf (t, iLine);
+
     else
     {
+        // elif is tricky to support because the EnableOutput stack doesn't
+        // contain enough data to tell whether any previous branch matched
+        if (IS_DIRECTIVE ("elif"))
+            Error (iLine, "Unsupported preprocessor directive #elif");
+
         //Error (iLine, "Unknown preprocessor directive", &iToken);
         //return Token (Token::TK_ERROR);
 
