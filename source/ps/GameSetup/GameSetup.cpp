@@ -581,7 +581,6 @@ static void InitRenderer()
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS,g_Shadows);
 	g_Renderer.SetOptionBool(CRenderer::OPT_FANCYWATER,g_FancyWater);
 	g_Renderer.SetRenderPath(CRenderer::GetRenderPathByName(g_RenderPath));
-	g_Renderer.SetOptionFloat(CRenderer::OPT_LODBIAS, g_LodBias);
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWPCF, g_ShadowPCF);
 
 	// create terrain related stuff
@@ -659,12 +658,6 @@ void Shutdown(int UNUSED(flags))
 
 	in_reset_handlers();
 
-	// destroy actor related stuff
-	TIMER_BEGIN(L"shutdown actor stuff");
-	delete &g_MaterialManager;
-	TIMER_END(L"shutdown actor stuff");
-
-	// destroy terrain related stuff
 	TIMER_BEGIN(L"shutdown TexMan");
 	delete &g_TexMan;
 	TIMER_END(L"shutdown TexMan");

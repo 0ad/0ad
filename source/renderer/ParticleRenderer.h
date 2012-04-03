@@ -43,7 +43,7 @@ public:
 	 * Must be called after all Submit calls for a frame, and before
 	 * any rendering calls.
 	 */
-	void PrepareForRendering();
+	void PrepareForRendering(const CShaderDefines& context);
 
 	/**
 	 * Reset the list of submitted overlays.

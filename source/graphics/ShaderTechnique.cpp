@@ -113,12 +113,8 @@ void CShaderPass::DepthFunc(GLenum func)
 
 
 CShaderTechnique::CShaderTechnique()
+	: m_SortByDistance(false)
 {
-}
-
-CShaderTechnique::CShaderTechnique(const CShaderPass& pass)
-{
-	m_Passes.push_back(pass);
 }
 
 void CShaderTechnique::AddPass(const CShaderPass& pass)
@@ -126,7 +122,7 @@ void CShaderTechnique::AddPass(const CShaderPass& pass)
 	m_Passes.push_back(pass);
 }
 
-int CShaderTechnique::GetNumPasses()
+int CShaderTechnique::GetNumPasses() const
 {
 	return m_Passes.size();
 }
@@ -143,13 +139,24 @@ void CShaderTechnique::EndPass(int pass)
 	m_Passes[pass].Unbind();
 }
 
-CShaderProgramPtr CShaderTechnique::GetShader(int pass)
+const CShaderProgramPtr& CShaderTechnique::GetShader(int pass) const
 {
 	ENSURE(0 <= pass && pass < (int)m_Passes.size());
 	return m_Passes[pass].GetShader();
 }
 
+bool CShaderTechnique::GetSortByDistance() const
+{
+	return m_SortByDistance;
+}
+
+void CShaderTechnique::SetSortByDistance(bool enable)
+{
+	m_SortByDistance = enable;
+}
+
 void CShaderTechnique::Reset()
 {
+	m_SortByDistance = false;
 	m_Passes.clear();
 }

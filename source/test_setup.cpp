@@ -78,6 +78,8 @@ class MiscSetup : public CxxTest::GlobalFixture
 		setlocale(LC_CTYPE, "UTF-8");
 #endif
 
+		ThreadUtil::SetMainThread();
+
 		g_Profiler2.Initialise();
 
 		return true;

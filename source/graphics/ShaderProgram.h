@@ -30,6 +30,7 @@ struct CColor;
 class CMatrix3D;
 class CVector3D;
 class CPreprocessor;
+class CShaderDefines;
 
 // Vertex data stream flags
 enum
@@ -49,12 +50,13 @@ enum
 
 /**
  * A compiled vertex+fragment shader program.
- * The implementation may use GL_ARB_{vertex,fragment}_program (assembly syntax)
- * or GL_ARB_{vertex,fragment}_shader (GLSL); the difference is hidden from the caller.
+ * The implementation may use GL_ARB_{vertex,fragment}_program (ARB assembly syntax)
+ * or GL_ARB_{vertex,fragment}_shader (GLSL), or may use hard-coded fixed-function
+ * multitexturing setup code; the difference is hidden from the caller.
  *
- * Texture/uniform IDs are typically strings, corresponding to the names defined
- * in the shader .xml file. Alternatively (and more efficiently, if used extremely
- * frequently), call GetUniformBinding and pass its return value as the ID.
+ * Texture/uniform IDs are typically strings, corresponding to the names defined in
+ * the shader .xml file. Alternatively (and more efficiently, if used very frequently),
+ * call GetTextureBinding/GetUniformBinding and pass its return value as the ID.
  * Setting uniforms that the shader .xml doesn't support is harmless.
  */
 class CShaderProgram
@@ -66,7 +68,7 @@ public:
 	 * Construct based on ARB vertex/fragment program files.
 	 */
 	static CShaderProgram* ConstructARB(const VfsPath& vertexFile, const VfsPath& fragmentFile,
-		const std::map<CStr, CStr>& defines,
+		const CShaderDefines& defines,
 		const std::map<CStr, int>& vertexIndexes, const std::map<CStr, int>& fragmentIndexes,
 		int streamflags);
 
@@ -74,24 +76,26 @@ public:
 	 * Construct based on GLSL vertex/fragment shader files.
 	 */
 	static CShaderProgram* ConstructGLSL(const VfsPath& vertexFile, const VfsPath& fragmentFile,
-		const std::map<CStr, CStr>& defines,
+		const CShaderDefines& defines,
 		const std::map<CStr, int>& vertexAttribs,
 		int streamflags);
 
 	/**
 	 * Construct an instance of a pre-defined fixed-function pipeline setup.
 	 */
-	static CShaderProgram* ConstructFFP(const std::string& id, const std::map<CStr, CStr>& defines);
+	static CShaderProgram* ConstructFFP(const std::string& id, const CShaderDefines& defines);
 
 	typedef const char* attrib_id_t;
 	typedef const char* texture_id_t;
 	typedef const char* uniform_id_t;
 
 	/**
-	 * Represents a uniform attribute binding.
-	 * ARB shaders store vertex location in 'first', fragment location in 'second'.
-	 * GLSL shaders store uniform location in 'first', data type in 'second'.
-	 * FFP shaders store -1 in 'first', index in 'second'.
+	 * Represents a uniform attribute or texture binding.
+	 * For uniforms:
+	 *  - ARB shaders store vertex location in 'first', fragment location in 'second'.
+	 *  - GLSL shaders store uniform location in 'first', data type in 'second'.
+	 *  - FFP shaders store -1 in 'first', index in 'second'.
+	 * For textures, all store texture target (e.g. GL_TEXTURE_2D) in 'first', texture unit in 'second'.
 	 * Non-existent bindings must store -1 in both.
 	 */
 	struct Binding
@@ -139,18 +143,15 @@ public:
 	// TODO: implement vertex attributes
 	GLuint GetAttribIndex(attrib_id_t id);
 
-	/**
-	 * Returns whether the shader needs the texture with the given name.
-	 */
-	virtual bool HasTexture(texture_id_t id) = 0;
 
+	virtual Binding GetTextureBinding(texture_id_t id) = 0;
+
+	// Variants of texture binding:
 	void BindTexture(texture_id_t id, CTexturePtr tex);
-
 	virtual void BindTexture(texture_id_t id, Handle tex) = 0;
-
 	virtual void BindTexture(texture_id_t id, GLuint tex) = 0;
+	virtual void BindTexture(Binding id, Handle tex) = 0;
 
-	virtual int GetTextureUnit(texture_id_t) = 0;
 
 	virtual Binding GetUniformBinding(uniform_id_t id) = 0;
 

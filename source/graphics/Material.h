@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,54 +18,47 @@
 #ifndef INCLUDED_MATERIAL
 #define INCLUDED_MATERIAL
 
+#include "graphics/ShaderDefines.h"
+#include "graphics/Texture.h"
 #include "ps/CStr.h"
+#include "ps/CStrIntern.h"
 #include "ps/Overlay.h"
 #include "simulation2/helpers/Player.h"
-
-// FIXME: This material system is almost entirely unused and probably broken
-
-typedef CColor SMaterialColor;
 
 class CMaterial
 {
 public:
 	CMaterial();
 
-	const CStr& GetTexture() { return m_Texture; }
+	// Whether this material's shaders use alpha blending, in which case
+	// models using this material need to be rendered in a special order
+	// relative to the alpha-blended water plane
+	void SetUsesAlphaBlending(bool flag) { m_AlphaBlending = flag; }
+ 	bool UsesAlphaBlending() { return m_AlphaBlending; }
 
-	bool UsesAlpha() { return m_Alpha; }
+	// Color used for "objectColor" in shaders when USE_OBJECTCOLOR is set,
+	// to allow e.g. variations in horse colorings
+	void SetObjectColor(const CColor &colour);
+	CColor GetObjectColor() { return m_ObjectColor; }
 
-	// Determines whether or not the model goes into the PlayerRenderer
-	bool IsPlayer() { return (m_UseTextureColor || m_UsePlayerColor); }
+	void SetDiffuseTexture(const CTexturePtr& texture);
+	const CTexturePtr& GetDiffuseTexture() const { return m_DiffuseTexture; }
 
-	// Get the player colour or texture colour to be applied to this object
-	SMaterialColor GetObjectColor();
-	// Get the player colour
-	SMaterialColor GetPlayerColor();
+	void SetShaderEffect(const CStr& effect);
+	CStrIntern GetShaderEffect() const { return m_ShaderEffect; }
 
-	void SetPlayerID(player_id_t id);
-	void SetTextureColor(const CColor &colour);
-
-	void SetUsePlayerColor(bool use);
-	void SetUseTextureColor(bool use);
-
-	void SetTexture(const CStr& texture);
-	void SetUsesAlpha(bool flag);
+	void AddShaderDefine(const char* key, const char* value);
+	const CShaderDefines& GetShaderDefines() const { return m_ShaderDefines; }
 
 private:
-	// Path to the materials texture
-	CStr m_Texture;
+	CTexturePtr m_DiffuseTexture;
+	CStrIntern m_ShaderEffect;
+	CShaderDefines m_ShaderDefines;
 
-	// Alpha required flag
-	bool m_Alpha;
+	bool m_AlphaBlending;
 
 	player_id_t m_PlayerID;
-	SMaterialColor m_TextureColor; // used as an alternative to the per-player colour
-
-	bool m_UsePlayerColor;
-	bool m_UseTextureColor;
+	CColor m_ObjectColor;
 };
-
-extern CMaterial NullMaterial;
 
 #endif

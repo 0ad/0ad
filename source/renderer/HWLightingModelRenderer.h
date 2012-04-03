@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,27 +29,23 @@ struct ShaderModelRendererInternals;
 
 /**
  * Render animated models using a ShaderRenderModifier.
- * This just passes through the vertex data directly; the modifier is responsible
+ * This computes and binds per-vertex data; the modifier is responsible
  * for setting any shader uniforms etc.
  */
-class ShaderModelRenderer : public ModelVertexRenderer
+class ShaderModelVertexRenderer : public ModelVertexRenderer
 {
 public:
-	/**
-	 * HWLightingModelRenderer: Constructor.
-	 */
-	ShaderModelRenderer();
-	~ShaderModelRenderer();
+	ShaderModelVertexRenderer(bool cpuLighting);
+	~ShaderModelVertexRenderer();
 
 	// Implementations
-	void* CreateModelData(CModel* model);
-	void UpdateModelData(CModel* model, void* data, int updateflags);
-	void DestroyModelData(CModel* model, void* data);
+	CModelRData* CreateModelData(const void* key, CModel* model);
+	void UpdateModelData(CModel* model, CModelRData* data, int updateflags);
 
 	void BeginPass(int streamflags);
 	void EndPass(int streamflags);
-	void PrepareModelDef(CShaderProgramPtr& shader, int streamflags, const CModelDefPtr& def);
-	void RenderModel(CShaderProgramPtr& shader, int streamflags, CModel* model, void* data);
+	void PrepareModelDef(const CShaderProgramPtr& shader, int streamflags, const CModelDef& def);
+	void RenderModel(const CShaderProgramPtr& shader, int streamflags, CModel* model, CModelRData* data);
 
 protected:
 	ShaderModelRendererInternals* m;

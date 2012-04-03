@@ -19,6 +19,7 @@
 
 #include "ShaderProgram.h"
 
+#include "graphics/ShaderManager.h"
 #include "graphics/TextureManager.h"
 #include "lib/res/graphics/ogl_tex.h"
 #include "maths/Matrix3D.h"
@@ -34,7 +35,7 @@ class CShaderProgramARB : public CShaderProgram
 {
 public:
 	CShaderProgramARB(const VfsPath& vertexFile, const VfsPath& fragmentFile,
-		const std::map<CStr, CStr>& defines,
+		const CShaderDefines& defines,
 		const std::map<CStr, int>& vertexIndexes, const std::map<CStr, int>& fragmentIndexes,
 		int streamflags) :
 		CShaderProgram(streamflags),
@@ -68,7 +69,7 @@ public:
 		{
 			GLint errPos = 0;
 			glGetIntegerv(GL_PROGRAM_ERROR_POSITION_ARB, &errPos);
-			int errLine = std::count(code.begin(), code.begin() + errPos + 1, '\n') + 1;
+			int errLine = std::count(code.begin(), code.begin() + std::min((int)code.length(), errPos + 1), '\n') + 1;
 			char* errStr = (char*)glGetString(GL_PROGRAM_ERROR_STRING_ARB);
 			LOGERROR(L"Failed to compile %hs program '%ls' (line %d):\n%hs", targetName, file.string().c_str(), errLine, errStr);
 			return false;
@@ -94,8 +95,9 @@ public:
 			return;
 
 		CPreprocessor preprocessor;
-		for (std::map<CStr, CStr>::iterator it = m_Defines.begin(); it != m_Defines.end(); ++it)
-			preprocessor.Define(it->first.c_str(), it->second.c_str());
+		std::map<CStr, CStr> definesMap = m_Defines.GetMap();
+		for (std::map<CStr, CStr>::const_iterator it = definesMap.begin(); it != definesMap.end(); ++it)
+			preprocessor.Define(it->first.c_str(), it->first.length(), it->second.c_str(), it->second.length());
 
 		CStr vertexCode = Preprocess(preprocessor, vertexFile.GetAsString());
 		CStr fragmentCode = Preprocess(preprocessor, fragmentFile.GetAsString());
@@ -155,18 +157,25 @@ public:
 		return it->second;
 	}
 
-	virtual bool HasTexture(texture_id_t id)
+	virtual Binding GetTextureBinding(texture_id_t id)
 	{
-		if (GetUniformFragmentIndex(id) != -1)
-			return true;
-		return false;
+		int index = GetUniformFragmentIndex(id);
+		if (index == -1)
+			return Binding();
+		else
+			return Binding((int)GL_TEXTURE_2D, index);
 	}
 
 	virtual void BindTexture(texture_id_t id, Handle tex)
 	{
 		int index = GetUniformFragmentIndex(id);
 		if (index != -1)
-			ogl_tex_bind(tex, index);
+		{
+			GLuint h;
+			ogl_tex_get_texture_id(tex, &h);
+			pglActiveTextureARB(GL_TEXTURE0+index);
+			glBindTexture(GL_TEXTURE_2D, h);
+		}
 	}
 
 	virtual void BindTexture(texture_id_t id, GLuint tex)
@@ -174,14 +183,16 @@ public:
 		int index = GetUniformFragmentIndex(id);
 		if (index != -1)
 		{
-			pglActiveTextureARB((int)(GL_TEXTURE0+index));
+			pglActiveTextureARB(GL_TEXTURE0+index);
 			glBindTexture(GL_TEXTURE_2D, tex);
 		}
 	}
 
-	virtual int GetTextureUnit(texture_id_t id)
+	virtual void BindTexture(Binding id, Handle tex)
 	{
-		return GetUniformFragmentIndex(id);
+		int index = id.second;
+		if (index != -1)
+			ogl_tex_bind(tex, index);
 	}
 
 	virtual Binding GetUniformBinding(uniform_id_t id)
@@ -220,7 +231,7 @@ public:
 private:
 	VfsPath m_VertexFile;
 	VfsPath m_FragmentFile;
-	std::map<CStr, CStr> m_Defines;
+	CShaderDefines m_Defines;
 
 	GLuint m_VertexProgram;
 	GLuint m_FragmentProgram;
@@ -231,11 +242,16 @@ private:
 
 #endif // #if !CONFIG2_GLES
 
+//////////////////////////////////////////////////////////////////////////
+
+TIMER_ADD_CLIENT(tc_ShaderGLSLCompile);
+TIMER_ADD_CLIENT(tc_ShaderGLSLLink);
+
 class CShaderProgramGLSL : public CShaderProgram
 {
 public:
 	CShaderProgramGLSL(const VfsPath& vertexFile, const VfsPath& fragmentFile,
-		const std::map<CStr, CStr>& defines,
+		const CShaderDefines& defines,
 		const std::map<CStr, int>& vertexAttribs,
 		int streamflags) :
 	CShaderProgram(streamflags),
@@ -258,6 +274,8 @@ public:
 
 	bool Compile(GLhandleARB shader, const VfsPath& file, const CStr& code)
 	{
+		TIMER_ACCRUE(tc_ShaderGLSLCompile);
+
 		ogl_WarnIfError();
 
 		const char* code_string = code.c_str();
@@ -297,6 +315,8 @@ public:
 
 	bool Link()
 	{
+		TIMER_ACCRUE(tc_ShaderGLSLLink);
+
 		ENSURE(!m_Program);
 		m_Program = pglCreateProgramObjectARB();
 
@@ -403,8 +423,16 @@ public:
 			return;
 
 		CPreprocessor preprocessor;
-		for (std::map<CStr, CStr>::iterator it = m_Defines.begin(); it != m_Defines.end(); ++it)
-			preprocessor.Define(it->first.c_str(), it->second.c_str());
+		std::map<CStr, CStr> definesMap = m_Defines.GetMap();
+		for (std::map<CStr, CStr>::const_iterator it = definesMap.begin(); it != definesMap.end(); ++it)
+			preprocessor.Define(it->first.c_str(), it->first.length(), it->second.c_str(), it->second.length());
+
+#if CONFIG2_GLES
+		// GLES defines the macro "GL_ES" in its GLSL preprocessor,
+		// but since we run our own preprocessor first, we need to explicitly
+		// define it here
+		preprocessor.Define("GL_ES", "1");
+#endif
 
 		CStr vertexCode = Preprocess(preprocessor, vertexFile.GetAsString());
 		CStr fragmentCode = Preprocess(preprocessor, fragmentFile.GetAsString());
@@ -467,11 +495,13 @@ public:
 		return it->second;
 	}
 
-	virtual bool HasTexture(texture_id_t id)
+	virtual Binding GetTextureBinding(texture_id_t id)
 	{
-		if (GetUniformLocation(id) != -1)
-			return true;
-		return false;
+		std::map<CStr, std::pair<GLenum, int> >::iterator it = m_Samplers.find(id);
+		if (it == m_Samplers.end())
+			return Binding();
+		else
+			return Binding((int)it->second.first, it->second.second);
 	}
 
 	virtual void BindTexture(texture_id_t id, Handle tex)
@@ -496,13 +526,15 @@ public:
 		glBindTexture(it->second.first, tex);
 	}
 
-	virtual int GetTextureUnit(texture_id_t id)
+	virtual void BindTexture(Binding id, Handle tex)
 	{
-		std::map<CStr, std::pair<GLenum, int> >::iterator it = m_Samplers.find(id);
-		if (it == m_Samplers.end())
-			return -1;
+		if (id.second == -1)
+			return;
 
-		return it->second.second;
+		GLuint h;
+		ogl_tex_get_texture_id(tex, &h);
+		pglActiveTextureARB(GL_TEXTURE0 + id.second);
+		glBindTexture(id.first, h);
 	}
 
 	virtual Binding GetUniformBinding(uniform_id_t id)
@@ -572,7 +604,7 @@ public:
 private:
 	VfsPath m_VertexFile;
 	VfsPath m_FragmentFile;
-	std::map<CStr, CStr> m_Defines;
+	CShaderDefines m_Defines;
 	std::map<CStr, int> m_VertexAttribs;
 
 	GLhandleARB m_Program;
@@ -584,7 +616,7 @@ private:
 	std::map<CStr, std::pair<GLenum, int> > m_Samplers; // texture target & unit chosen for each uniform sampler
 };
 
-
+//////////////////////////////////////////////////////////////////////////
 
 CShaderProgram::CShaderProgram(int streamflags)
 	: m_IsValid(false), m_StreamFlags(streamflags), m_ValidStreams(0)
@@ -593,7 +625,7 @@ CShaderProgram::CShaderProgram(int streamflags)
 
 #if CONFIG2_GLES
 /*static*/ CShaderProgram* CShaderProgram::ConstructARB(const VfsPath& vertexFile, const VfsPath& fragmentFile,
-	const std::map<CStr, CStr>& UNUSED(defines),
+	const CShaderDefines& UNUSED(defines),
 	const std::map<CStr, int>& UNUSED(vertexIndexes), const std::map<CStr, int>& UNUSED(fragmentIndexes),
 	int UNUSED(streamflags))
 {
@@ -603,7 +635,7 @@ CShaderProgram::CShaderProgram(int streamflags)
 }
 #else
 /*static*/ CShaderProgram* CShaderProgram::ConstructARB(const VfsPath& vertexFile, const VfsPath& fragmentFile,
-	const std::map<CStr, CStr>& defines,
+	const CShaderDefines& defines,
 	const std::map<CStr, int>& vertexIndexes, const std::map<CStr, int>& fragmentIndexes,
 	int streamflags)
 {
@@ -612,7 +644,7 @@ CShaderProgram::CShaderProgram(int streamflags)
 #endif
 
 /*static*/ CShaderProgram* CShaderProgram::ConstructGLSL(const VfsPath& vertexFile, const VfsPath& fragmentFile,
-	const std::map<CStr, CStr>& defines,
+	const CShaderDefines& defines,
 	const std::map<CStr, int>& vertexAttribs,
 	int streamflags)
 {

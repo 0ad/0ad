@@ -560,7 +560,6 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 	EL(sunrotation);
 	EL(terrainambientcolour);
 	EL(unitsambientcolour);
-	EL(terrainshadowtransparency);
 	EL(water);
 	EL(waterbody);
 	EL(type);
@@ -619,10 +618,6 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 				attrs.GetNamedItem(at_r).ToFloat(),
 				attrs.GetNamedItem(at_g).ToFloat(),
 				attrs.GetNamedItem(at_b).ToFloat());
-		}
-		else if (element_name == el_terrainshadowtransparency)
-		{
-			m_MapReader.m_LightEnv.SetTerrainShadowTransparency(element.GetText().ToFloat());
 		}
 		else if (element_name == el_water)
 		{

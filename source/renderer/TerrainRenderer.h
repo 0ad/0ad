@@ -96,7 +96,7 @@ public:
 	 * @param shadow A prepared shadow map, in case rendering with shadows is enabled.
 	 * @param filtered If true then only render objects that passed CullPatches.
 	 */
-	void RenderTerrainShader(ShadowMap* shadow, bool filtered = false);
+	void RenderTerrainShader(const CShaderDefines& context, ShadowMap* shadow, bool filtered = false);
 
 	/**
 	 * RenderPatches: Render all patches un-textured as polygons.

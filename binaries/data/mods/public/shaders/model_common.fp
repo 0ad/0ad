@@ -15,6 +15,10 @@
 
 #ifdef USE_OBJECTCOLOR
   PARAM objectColor = program.local[0];
+#else
+#ifdef USE_PLAYERCOLOR
+  PARAM playerColor = program.local[0];
+#endif
 #endif
 
 PARAM shadingColor = program.local[1];
@@ -36,12 +40,17 @@ TEX tex, fragment.texcoord[0], texture[0], 2D;
   MOV result.color.a, tex;
 #endif
 
-// Apply player-coloring based on texture alpha
+// Apply coloring based on texture alpha
 #ifdef USE_OBJECTCOLOR
   LRP temp.rgb, objectColor, 1.0, tex.a;
   MUL color.rgb, tex, temp;
 #else
+#ifdef USE_PLAYERCOLOR
+  LRP temp.rgb, playerColor, 1.0, tex.a;
+  MUL color.rgb, tex, temp;
+#else
   MOV color.rgb, tex;
+#endif
 #endif
 
 // Compute color = texture * (ambient + diffuse*shadow)

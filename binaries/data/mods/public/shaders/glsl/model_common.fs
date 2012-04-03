@@ -11,7 +11,14 @@ uniform sampler2D losTex;
   #endif
 #endif
 
-uniform vec3 objectColor;
+#ifdef USE_OBJECTCOLOR
+  uniform vec3 objectColor;
+#else
+#ifdef USE_PLAYERCOLOR
+  uniform vec3 playerColor;
+#endif
+#endif
+
 uniform vec3 shadingColor;
 uniform vec3 ambient;
 uniform vec4 shadowOffsets1;
@@ -72,9 +79,13 @@ void main()
 
   vec3 color = tex.rgb;
 
-  // Apply player-coloring based on texture alpha
+  // Apply-coloring based on texture alpha
   #ifdef USE_OBJECTCOLOR
     color *= mix(objectColor, vec3(1.0, 1.0, 1.0), tex.a);
+  #else
+  #ifdef USE_PLAYERCOLOR
+    color *= mix(playerColor, vec3(1.0, 1.0, 1.0), tex.a);
+  #endif
   #endif
 
   color *= v_lighting * get_shadow() + ambient;

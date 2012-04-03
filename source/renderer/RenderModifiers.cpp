@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,18 +41,6 @@
 #include <boost/algorithm/string.hpp>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// RenderModifier implementation
-
-void RenderModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(model))
-{
-}
-
-CShaderProgramPtr RenderModifier::GetShader(int UNUSED(pass))
-{
-	return CShaderProgramPtr();
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////
 // LitRenderModifier implementation
 
 LitRenderModifier::LitRenderModifier()
@@ -76,116 +64,18 @@ void LitRenderModifier::SetLightEnv(const CLightEnv* lightenv)
 	m_LightEnv = lightenv;
 }
 
-
-#if !CONFIG2_GLES
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-// PlainRenderModifier implementation
-
-PlainRenderModifier::PlainRenderModifier()
-{
-}
-
-PlainRenderModifier::~PlainRenderModifier()
-{
-}
-
-int PlainRenderModifier::BeginPass(int pass)
-{
-	ENSURE(pass == 0);
-
-	// set up texture environment for base pass - modulate texture and primary color
-	pglActiveTextureARB(GL_TEXTURE0);
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PRIMARY_COLOR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
-
-	// Set the proper LOD bias
-	glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, g_Renderer.m_Options.m_LodBias);
-
-	// pass one through as alpha; transparent textures handled specially by TransparencyRenderer
-	// (gl_constant means the colour comes from the gl_texture_env_color)
-	glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
-	glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_CONSTANT);
-	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
-
-	float color[] = { 1.0, 1.0, 1.0, 1.0 };
-	glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, color);
-
-	return STREAM_POS|STREAM_COLOR|STREAM_UV0;
-}
-
-bool PlainRenderModifier::EndPass(int UNUSED(pass))
-{
-	// We didn't modify blend state or higher texenvs, so we don't have
-	// to reset OpenGL state here.
-
-	return true;
-}
-
-void PlainRenderModifier::PrepareTexture(int UNUSED(pass), CTexturePtr& texture)
-{
-	texture->Bind(0);
-}
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-// SolidColorRenderModifier implementation
-
-SolidColorRenderModifier::SolidColorRenderModifier()
-{
-}
-
-SolidColorRenderModifier::~SolidColorRenderModifier()
-{
-}
-
-int SolidColorRenderModifier::BeginPass(int UNUSED(pass))
-{
-	ogl_tex_bind(0, 0);
-
-	return STREAM_POS;
-}
-
-bool SolidColorRenderModifier::EndPass(int UNUSED(pass))
-{
-	return true;
-}
-
-void SolidColorRenderModifier::PrepareTexture(int UNUSED(pass), CTexturePtr& UNUSED(texture))
-{
-}
-
-void SolidColorRenderModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(model))
-{
-}
-
-#endif // !CONFIG2_GLES
-
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ShaderRenderModifier implementation
 
-ShaderRenderModifier::ShaderRenderModifier(const CShaderTechniquePtr& technique) :
-	m_Technique(technique)
+ShaderRenderModifier::ShaderRenderModifier()
 {
 }
 
-ShaderRenderModifier::~ShaderRenderModifier()
+void ShaderRenderModifier::BeginPass(const CShaderProgramPtr& shader)
 {
-}
-
-int ShaderRenderModifier::BeginPass(int pass)
-{
-	m_Technique->BeginPass(pass);
-
-	CShaderProgramPtr shader = m_Technique->GetShader(pass);
-
 	shader->Uniform("transform", g_Renderer.GetViewCamera().GetViewProjection());
 
-	if (GetShadowMap() && shader->HasTexture("shadowTex"))
+	if (GetShadowMap() && shader->GetTextureBinding("shadowTex").Active())
 	{
 		shader->BindTexture("shadowTex", GetShadowMap()->GetTexture());
 		shader->Uniform("shadowTransform", GetShadowMap()->GetTextureMatrix());
@@ -202,7 +92,7 @@ int ShaderRenderModifier::BeginPass(int pass)
 		shader->Uniform("sunColor", GetLightEnv()->m_SunColor);
 	}
 
-	if (shader->HasTexture("losTex"))
+	if (shader->GetTextureBinding("losTex").Active())
 	{
 		CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
 		shader->BindTexture("losTex", los.GetTexture());
@@ -214,33 +104,17 @@ int ShaderRenderModifier::BeginPass(int pass)
 	m_BindingShadingColor = shader->GetUniformBinding("shadingColor");
 	m_BindingObjectColor = shader->GetUniformBinding("objectColor");
 	m_BindingPlayerColor = shader->GetUniformBinding("playerColor");
-
-	return shader->GetStreamFlags();
+	m_BindingBaseTex = shader->GetTextureBinding("baseTex");
 }
 
-bool ShaderRenderModifier::EndPass(int pass)
+void ShaderRenderModifier::PrepareTexture(const CShaderProgramPtr& shader, CTexture& texture)
 {
-	m_Technique->EndPass(pass);
-
-	return (pass >= m_Technique->GetNumPasses()-1);
+	if (m_BindingBaseTex.Active())
+		shader->BindTexture(m_BindingBaseTex, texture.GetHandle());
 }
 
-CShaderProgramPtr ShaderRenderModifier::GetShader(int pass)
+void ShaderRenderModifier::PrepareModel(const CShaderProgramPtr& shader, CModel* model)
 {
-	return m_Technique->GetShader(pass);
-}
-
-void ShaderRenderModifier::PrepareTexture(int pass, CTexturePtr& texture)
-{
-	CShaderProgramPtr shader = m_Technique->GetShader(pass);
-
-	shader->BindTexture("baseTex", texture->GetHandle());
-}
-
-void ShaderRenderModifier::PrepareModel(int pass, CModel* model)
-{
-	CShaderProgramPtr shader = m_Technique->GetShader(pass);
-
 	if (m_BindingInstancingTransform.Active())
 		shader->Uniform(m_BindingInstancingTransform, model->GetTransform());
 
@@ -251,5 +125,5 @@ void ShaderRenderModifier::PrepareModel(int pass, CModel* model)
 		shader->Uniform(m_BindingObjectColor, model->GetMaterial().GetObjectColor());
 
 	if (m_BindingPlayerColor.Active())
-		shader->Uniform(m_BindingPlayerColor, model->GetMaterial().GetPlayerColor());
+		shader->Uniform(m_BindingPlayerColor, g_Game->GetPlayerColour(model->GetPlayerID()));
 }

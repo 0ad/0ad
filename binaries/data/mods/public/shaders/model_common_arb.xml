@@ -6,6 +6,7 @@
         <uniform name="sunColor" loc="1" type="vec3"/>
         <uniform name="losTransform" loc="2" type="vec2"/>
         <uniform name="shadowTransform" loc="3" type="mat4"/>
+        <uniform if="USE_INSTANCING" name="instancingTransform" loc="7" type="mat4"/>
         <stream name="pos"/>
         <stream name="normal"/>
         <stream name="uv0"/>
@@ -16,7 +17,8 @@
         <uniform name="shadowTex" loc="1" type="sampler2DShadow"/>
         <uniform name="losTex" loc="2" type="sampler2D"/>
 
-        <uniform name="objectColor" loc="0" type="vec3"/>
+        <uniform if="USE_OBJECTCOLOR" name="objectColor" loc="0" type="vec3"/>
+        <uniform if="USE_PLAYERCOLOR" name="playerColor" loc="0" type="vec3"/>
         <uniform name="shadingColor" loc="1" type="vec3"/>
         <uniform name="ambient" loc="2" type="vec3"/>
         <uniform name="shadowOffsets1" loc="3" type="vec4"/>

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,7 +29,6 @@
 CLightEnv::CLightEnv()
 	: m_Elevation(DEGTORAD(45)),
 	m_Rotation(DEGTORAD(315)),
-	m_TerrainShadowTransparency(0.0),
 	m_LightingModel("standard"),
 	m_SunColor(1.5, 1.5, 1.5),
 	m_TerrainAmbientColor(0x50/255.f, 0x60/255.f, 0x85/255.f),
@@ -50,16 +49,11 @@ void CLightEnv::SetRotation(float f)
 	CalculateSunDirection();
 }
 
-void CLightEnv::SetTerrainShadowTransparency(float f)
-{
-	m_TerrainShadowTransparency = f;
-}
-
 void CLightEnv::CalculateSunDirection()
 {
-	m_SunDir.Y=-float(sin(m_Elevation));
-	float scale=1+m_SunDir.Y;
-	m_SunDir.X=scale*float(sin(m_Rotation));
-	m_SunDir.Z=scale*float(cos(m_Rotation));
+	m_SunDir.Y = -sinf(m_Elevation);
+	float scale = 1 + m_SunDir.Y;
+	m_SunDir.X = scale * sinf(m_Rotation);
+	m_SunDir.Z = scale * cosf(m_Rotation);
 	m_SunDir.Normalize();
 }

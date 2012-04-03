@@ -23,7 +23,9 @@
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
+#include "ps/CStrIntern.h"
 #include "ps/Filesystem.h"
+#include "ps/Preprocessor.h"
 #include "ps/Profile.h"
 #include "ps/XML/Xeromyces.h"
 #include "ps/XML/XMLWriter.h"
@@ -64,7 +66,7 @@ CShaderManager::~CShaderManager()
 	UnregisterFileReloadFunc(ReloadChangedFileCB, this);
 }
 
-CShaderProgramPtr CShaderManager::LoadProgram(const char* name, const std::map<CStr, CStr>& defines)
+CShaderProgramPtr CShaderManager::LoadProgram(const char* name, const CShaderDefines& defines)
 {
 	CacheKey key = { name, defines };
 	std::map<CacheKey, CShaderProgramPtr>::iterator it = m_ProgramCache.find(key);
@@ -105,7 +107,37 @@ static GLenum ParseAttribSemantics(const CStr& str)
 	return 0;
 }
 
-bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& baseDefines, CShaderProgramPtr& program)
+static bool CheckPreprocessorConditional(CPreprocessor& preprocessor, const CStr& expr)
+{
+	// Construct a dummy program so we can trigger the preprocessor's expression
+	// code without modifying its public API.
+	// Be careful that the API buggily returns a statically allocated pointer
+	// (which we will try to free()) if the input just causes it to append a single
+	// sequence of newlines to the output; the "\n" after the "#endif" is enough
+	// to avoid this case.
+	CStr input = "#if ";
+	input += expr;
+	input += "\n1\n#endif\n";
+
+	size_t len = 0;
+	char* output = preprocessor.Parse(input.c_str(), input.size(), len);
+
+	if (!output)
+	{
+		LOGERROR(L"Failed to parse conditional expression '%hs'", expr.c_str());
+		return false;
+	}
+
+	bool ret = (memchr(output, '1', len) != NULL);
+
+	// Free output if it's not inside the source string
+	if (!(output >= input.c_str() && output < input.c_str() + input.size()))
+		free(output);
+
+	return ret;
+}
+
+bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefines, CShaderProgramPtr& program)
 {
 	PROFILE2("loading shader");
 	PROFILE2_ATTR("name: %s", name);
@@ -150,6 +182,7 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 	EL(uniform);
 	EL(vertex);
 	AT(file);
+	AT(if);
 	AT(loc);
 	AT(name);
 	AT(semantics);
@@ -158,12 +191,17 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 #undef AT
 #undef EL
 
+	CPreprocessor preprocessor;
+	std::map<CStr, CStr> baseDefinesMap = baseDefines.GetMap();
+	for (std::map<CStr, CStr>::const_iterator it = baseDefinesMap.begin(); it != baseDefinesMap.end(); ++it)
+		preprocessor.Define(it->first.c_str(), it->first.length(), it->second.c_str(), it->second.length());
+
 	XMBElement Root = XeroFile.GetRoot();
 
 	bool isGLSL = (Root.GetAttributes().GetNamedItem(at_type) == "glsl");
 	VfsPath vertexFile;
 	VfsPath fragmentFile;
-	std::map<CStr, CStr> defines = baseDefines;
+	CShaderDefines defines = baseDefines;
 	std::map<CStr, int> vertexUniforms;
 	std::map<CStr, int> fragmentUniforms;
 	std::map<CStr, int> vertexAttribs;
@@ -173,7 +211,7 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 	{
 		if (Child.GetNodeName() == el_define)
 		{
-			defines[Child.GetAttributes().GetNamedItem(at_name)] = Child.GetAttributes().GetNamedItem(at_value);
+			defines.Add(Child.GetAttributes().GetNamedItem(at_name).c_str(), Child.GetAttributes().GetNamedItem(at_value).c_str());
 		}
 		else if (Child.GetNodeName() == el_vertex)
 		{
@@ -181,13 +219,19 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 
 			XERO_ITER_EL(Child, Param)
 			{
+				XMBAttributeList Attrs = Param.GetAttributes();
+
+				CStr cond = Attrs.GetNamedItem(at_if);
+				if (!cond.empty() && !CheckPreprocessorConditional(preprocessor, cond))
+					continue;
+
 				if (Param.GetNodeName() == el_uniform)
 				{
-					vertexUniforms[Param.GetAttributes().GetNamedItem(at_name)] = Param.GetAttributes().GetNamedItem(at_loc).ToInt();
+					vertexUniforms[Attrs.GetNamedItem(at_name)] = Attrs.GetNamedItem(at_loc).ToInt();
 				}
 				else if (Param.GetNodeName() == el_stream)
 				{
-					CStr StreamName = Param.GetAttributes().GetNamedItem(at_name);
+					CStr StreamName = Attrs.GetNamedItem(at_name);
 					if (StreamName == "pos")
 						streamFlags |= STREAM_POS;
 					else if (StreamName == "normal")
@@ -205,8 +249,8 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 				}
 				else if (Param.GetNodeName() == el_attrib)
 				{
-					int attribLoc = ParseAttribSemantics(Param.GetAttributes().GetNamedItem(at_semantics));
-					vertexAttribs[Param.GetAttributes().GetNamedItem(at_name)] = attribLoc;
+					int attribLoc = ParseAttribSemantics(Attrs.GetNamedItem(at_semantics));
+					vertexAttribs[Attrs.GetNamedItem(at_name)] = attribLoc;
 				}
 			}
 		}
@@ -216,9 +260,15 @@ bool CShaderManager::NewProgram(const char* name, const std::map<CStr, CStr>& ba
 
 			XERO_ITER_EL(Child, Param)
 			{
+				XMBAttributeList Attrs = Param.GetAttributes();
+
+				CStr cond = Attrs.GetNamedItem(at_if);
+				if (!cond.empty() && !CheckPreprocessorConditional(preprocessor, cond))
+					continue;
+
 				if (Param.GetNodeName() == el_uniform)
 				{
-					fragmentUniforms[Param.GetAttributes().GetNamedItem(at_name)] = Param.GetAttributes().GetNamedItem(at_loc).ToInt();
+					fragmentUniforms[Attrs.GetNamedItem(at_name)] = Attrs.GetNamedItem(at_loc).ToInt();
 				}
 			}
 		}
@@ -296,40 +346,43 @@ static GLenum ParseBlendFunc(const CStr& str)
 	return GL_ZERO;
 }
 
-CShaderManager::EffectContext CShaderManager::GetEffectContextAndVerifyCache()
+size_t CShaderManager::EffectCacheKeyHash::operator()(const EffectCacheKey& key) const
 {
-	EffectContext cx;
-	cx.hasARB = g_Renderer.GetCapabilities().m_ARBProgram;
-	cx.hasGLSL = (g_Renderer.GetCapabilities().m_VertexShader && g_Renderer.GetCapabilities().m_FragmentShader);
-	cx.preferGLSL = g_Renderer.m_Options.m_PreferGLSL;
-
-	// If the context changed since last time, reload every effect
-	if (!(cx == m_EffectCacheContext))
-	{
-		m_EffectCacheContext = cx;
-		for (std::map<CacheKey, CShaderTechniquePtr>::iterator it = m_EffectCache.begin(); it != m_EffectCache.end(); ++it)
-		{
-			it->second->Reset();
-			NewEffect(it->first.name.c_str(), it->first.defines, cx, it->second);
-		}
-	}
-
-	return cx;
+	size_t hash = 0;
+	boost::hash_combine(hash, key.name.GetHash());
+	boost::hash_combine(hash, key.defines1.GetHash());
+	boost::hash_combine(hash, key.defines2.GetHash());
+	return hash;
 }
 
-CShaderTechniquePtr CShaderManager::LoadEffect(const char* name, const std::map<CStr, CStr>& defines)
+bool CShaderManager::EffectCacheKey::operator==(const EffectCacheKey& b) const
 {
-	EffectContext cx = GetEffectContextAndVerifyCache();
+	return (name == b.name && defines1 == b.defines1 && defines2 == b.defines2);
+}
 
-	CacheKey key = { name, defines };
-	std::map<CacheKey, CShaderTechniquePtr>::iterator it = m_EffectCache.find(key);
+CShaderTechniquePtr CShaderManager::LoadEffect(const char* name)
+{
+	return LoadEffect(CStrIntern(name), CShaderDefines(), CShaderDefines());
+}
+
+CShaderTechniquePtr CShaderManager::LoadEffect(CStrIntern name, const CShaderDefines& defines1, const CShaderDefines& defines2)
+{
+	// Return the cached effect, if there is one
+	EffectCacheKey key = { name, defines1, defines2 };
+	EffectCacheMap::iterator it = m_EffectCache.find(key);
 	if (it != m_EffectCache.end())
 		return it->second;
 
+	// First time we've seen this key, so construct a new effect:
+
+	// Merge the two sets of defines, so NewEffect doesn't have to care about the split
+	CShaderDefines defines(defines1);
+	defines.Add(defines2);
+
 	CShaderTechniquePtr tech(new CShaderTechnique());
-	if (!NewEffect(name, defines, cx, tech))
+	if (!NewEffect(name.c_str(), defines, tech))
 	{
-		LOGERROR(L"Failed to load effect '%hs'", name);
+		LOGERROR(L"Failed to load effect '%hs'", name.c_str());
 		tech = CShaderTechniquePtr();
 	}
 
@@ -337,7 +390,7 @@ CShaderTechniquePtr CShaderManager::LoadEffect(const char* name, const std::map<
 	return tech;
 }
 
-bool CShaderManager::NewEffect(const char* name, const std::map<CStr, CStr>& baseDefines, const EffectContext& cx, CShaderTechniquePtr& tech)
+bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefines, CShaderTechniquePtr& tech)
 {
 	PROFILE2("loading effect");
 	PROFILE2_ATTR("name: %s", name);
@@ -370,6 +423,8 @@ bool CShaderManager::NewEffect(const char* name, const std::map<CStr, CStr>& bas
 	EL(depth);
 	EL(pass);
 	EL(require);
+	EL(sort_by_distance);
+	AT(context);
 	AT(dst);
 	AT(func);
 	AT(ref);
@@ -381,6 +436,17 @@ bool CShaderManager::NewEffect(const char* name, const std::map<CStr, CStr>& bas
 	AT(value);
 #undef AT
 #undef EL
+
+	// Read some defines that influence how we pick techniques
+	bool hasARB = (baseDefines.GetInt("SYS_HAS_ARB") != 0);
+	bool hasGLSL = (baseDefines.GetInt("SYS_HAS_GLSL") != 0);
+	bool preferGLSL = (baseDefines.GetInt("SYS_PREFER_GLSL") != 0);
+
+	// Prepare the preprocessor for conditional tests
+	CPreprocessor preprocessor;
+	std::map<CStr, CStr> baseDefinesMap = baseDefines.GetMap();
+	for (std::map<CStr, CStr>::const_iterator it = baseDefinesMap.begin(); it != baseDefinesMap.end(); ++it)
+		preprocessor.Define(it->first.c_str(), it->first.length(), it->second.c_str(), it->second.length());
 
 	XMBElement Root = XeroFile.GetRoot();
 
@@ -394,29 +460,37 @@ bool CShaderManager::NewEffect(const char* name, const std::map<CStr, CStr>& bas
 		bool isUsable = true;
 		XERO_ITER_EL(Technique, Child)
 		{
+			XMBAttributeList Attrs = Child.GetAttributes();
+
 			if (Child.GetNodeName() == el_require)
 			{
-				if (Child.GetAttributes().GetNamedItem(at_shaders) == "fixed")
+				if (Attrs.GetNamedItem(at_shaders) == "fixed")
 				{
 					// FFP not supported by OpenGL ES
 					#if CONFIG2_GLES
 						isUsable = false;
 					#endif
 				}
-				else if (Child.GetAttributes().GetNamedItem(at_shaders) == "arb")
+				else if (Attrs.GetNamedItem(at_shaders) == "arb")
 				{
-					if (!cx.hasARB)
+					if (!hasARB)
 						isUsable = false;
 				}
-				else if (Child.GetAttributes().GetNamedItem(at_shaders) == "glsl")
+				else if (Attrs.GetNamedItem(at_shaders) == "glsl")
 				{
-					if (!cx.hasGLSL)
+					if (!hasGLSL)
 						isUsable = false;
 
-					if (cx.preferGLSL)
+					if (preferGLSL)
 						preference += 100;
 					else
 						preference -= 100;
+				}
+				else if (!Attrs.GetNamedItem(at_context).empty())
+				{
+					CStr cond = Attrs.GetNamedItem(at_context);
+					if (!CheckPreprocessorConditional(preprocessor, cond))
+						isUsable = false;
 				}
 			}
 		}
@@ -434,11 +508,21 @@ bool CShaderManager::NewEffect(const char* name, const std::map<CStr, CStr>& bas
 	// Sort by preference, tie-break on order of specification
 	std::stable_sort(usableTechs.begin(), usableTechs.end(), revcompare2nd());
 
+	CShaderDefines techDefines = baseDefines;
+	
 	XERO_ITER_EL(usableTechs[0].first, Child)
 	{
-		if (Child.GetNodeName() == el_pass)
+		if (Child.GetNodeName() == el_define)
 		{
-			std::map<CStr, CStr> defines = baseDefines;
+			techDefines.Add(Child.GetAttributes().GetNamedItem(at_name).c_str(), Child.GetAttributes().GetNamedItem(at_value).c_str());
+		}
+		else if (Child.GetNodeName() == el_sort_by_distance)
+		{
+			tech->SetSortByDistance(true);
+		}
+		else if (Child.GetNodeName() == el_pass)
+		{
+			CShaderDefines passDefines = techDefines;
 
 			CShaderPass pass;
 
@@ -446,7 +530,7 @@ bool CShaderManager::NewEffect(const char* name, const std::map<CStr, CStr>& bas
 			{
 				if (Element.GetNodeName() == el_define)
 				{
-					defines[Element.GetAttributes().GetNamedItem(at_name)] = Element.GetAttributes().GetNamedItem(at_value);
+					passDefines.Add(Element.GetAttributes().GetNamedItem(at_name).c_str(), Element.GetAttributes().GetNamedItem(at_value).c_str());
 				}
 				else if (Element.GetNodeName() == el_alpha)
 				{
@@ -471,13 +555,18 @@ bool CShaderManager::NewEffect(const char* name, const std::map<CStr, CStr>& bas
 			}
 
 			// Load the shader program after we've read all the possibly-relevant <define>s
-			pass.SetShader(LoadProgram(Child.GetAttributes().GetNamedItem(at_shader).c_str(), defines));
+			pass.SetShader(LoadProgram(Child.GetAttributes().GetNamedItem(at_shader).c_str(), passDefines));
 
 			tech->AddPass(pass);
 		}
 	}
 
 	return true;
+}
+
+size_t CShaderManager::GetNumEffectsLoaded()
+{
+	return m_EffectCache.size();
 }
 
 /*static*/ Status CShaderManager::ReloadChangedFileCB(void* param, const VfsPath& path)

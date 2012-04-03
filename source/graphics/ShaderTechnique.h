@@ -21,7 +21,8 @@
 #include "graphics/ShaderProgram.h"
 
 /**
- * Implements a render pass consisting of various GL state changes and a shader.
+ * Implements a render pass consisting of various GL state changes and a shader,
+ * used by CShaderTechnique.
  */
 class CShaderPass
 {
@@ -50,7 +51,7 @@ public:
 	 */
 	void Unbind();
 
-	CShaderProgramPtr GetShader() { return m_Shader; }
+	const CShaderProgramPtr& GetShader() const { return m_Shader; }
 
 private:
 	CShaderProgramPtr m_Shader;
@@ -78,26 +79,34 @@ private:
 
 /**
  * Implements a render technique consisting of a sequence of passes.
- * In theory these should probably be loaded from an XML file or something,
- * but currently you have to construct them manually.
+ * CShaderManager loads these from shader effect XML files.
  */
 class CShaderTechnique
 {
 public:
 	CShaderTechnique();
-	CShaderTechnique(const CShaderPass& pass);
 	void AddPass(const CShaderPass& pass);
 
-	int GetNumPasses();
+	int GetNumPasses() const;
 
 	void BeginPass(int pass = 0);
 	void EndPass(int pass = 0);
-	CShaderProgramPtr GetShader(int pass = 0);
+	const CShaderProgramPtr& GetShader(int pass = 0) const;
+
+	/**
+	 * Whether this technique uses alpha blending that requires objects to be
+	 * drawn from furthest to nearest.
+	 */
+	bool GetSortByDistance() const;
+
+	void SetSortByDistance(bool enable);
 
 	void Reset();
 
 private:
 	std::vector<CShaderPass> m_Passes;
+
+	bool m_SortByDistance;
 };
 
 typedef shared_ptr<CShaderTechnique> CShaderTechniquePtr;

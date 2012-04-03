@@ -54,7 +54,6 @@ struct IModelDef : public CModelDefRPrivate
 	/// Indices are the same for all models, so share them
 	VertexIndexArray m_IndexArray;
 
-
 	IModelDef(const CModelDefPtr& mdef);
 };
 
@@ -121,7 +120,7 @@ InstancingModelRenderer::~InstancingModelRenderer()
 
 
 // Build modeldef data if necessary - we have no per-CModel data
-void* InstancingModelRenderer::CreateModelData(CModel* model)
+CModelRData* InstancingModelRenderer::CreateModelData(const void* key, CModel* model)
 {
 	CModelDefPtr mdef = model->GetModelDef();
 	IModelDef* imodeldef = (IModelDef*)mdef->GetRenderData(m);
@@ -134,19 +133,13 @@ void* InstancingModelRenderer::CreateModelData(CModel* model)
 		mdef->SetRenderData(m, imodeldef);
 	}
 
-	return NULL;
+	return new CModelRData(key);
 }
 
 
-void InstancingModelRenderer::UpdateModelData(CModel* UNUSED(model), void* UNUSED(data), int UNUSED(updateflags))
+void InstancingModelRenderer::UpdateModelData(CModel* UNUSED(model), CModelRData* UNUSED(data), int UNUSED(updateflags))
 {
 	// We have no per-CModel data
-}
-
-
-void InstancingModelRenderer::DestroyModelData(CModel* UNUSED(model), void* UNUSED(data))
-{
-	// We have no per-CModel data, and per-CModelDef data is deleted by the CModelDef
 }
 
 
@@ -164,9 +157,9 @@ void InstancingModelRenderer::EndPass(int UNUSED(streamflags))
 
 
 // Prepare UV coordinates for this modeldef
-void InstancingModelRenderer::PrepareModelDef(CShaderProgramPtr& shader, int streamflags, const CModelDefPtr& def)
+void InstancingModelRenderer::PrepareModelDef(const CShaderProgramPtr& shader, int streamflags, const CModelDef& def)
 {
-	m->imodeldef = (IModelDef*)def->GetRenderData(m);
+	m->imodeldef = (IModelDef*)def.GetRenderData(m);
 
 	ENSURE(m->imodeldef);
 
@@ -189,7 +182,7 @@ void InstancingModelRenderer::PrepareModelDef(CShaderProgramPtr& shader, int str
 
 
 // Render one model
-void InstancingModelRenderer::RenderModel(CShaderProgramPtr& UNUSED(shader), int UNUSED(streamflags), CModel* model, void* UNUSED(data))
+void InstancingModelRenderer::RenderModel(const CShaderProgramPtr& UNUSED(shader), int UNUSED(streamflags), CModel* model, CModelRData* UNUSED(data))
 {
 	CModelDefPtr mdldef = model->GetModelDef();
 

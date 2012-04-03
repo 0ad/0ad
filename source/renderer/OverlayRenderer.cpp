@@ -201,6 +201,8 @@ void OverlayRenderer::RenderOverlaysAfterWater()
 	return;
 #endif
 
+	ogl_WarnIfError();
+
 	if (!m->texlines.empty())
 	{
 		glEnable(GL_TEXTURE_2D);
@@ -213,13 +215,13 @@ void OverlayRenderer::RenderOverlaysAfterWater()
 		else
 			shaderName = "fixed:overlayline";
 
-		std::map<CStr, CStr> defAlwaysVisible;
-		defAlwaysVisible.insert(std::make_pair(CStr("IGNORE_LOS"), CStr("1")));
+		CShaderDefines defAlwaysVisible;
+		defAlwaysVisible.Add("IGNORE_LOS", "1");
 
 		CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
 
 		CShaderManager& shaderManager = g_Renderer.GetShaderManager();
-		CShaderProgramPtr shaderTexLineNormal(shaderManager.LoadProgram(shaderName));
+		CShaderProgramPtr shaderTexLineNormal(shaderManager.LoadProgram(shaderName, CShaderDefines()));
 		CShaderProgramPtr shaderTexLineAlwaysVisible(shaderManager.LoadProgram(shaderName, defAlwaysVisible));
 
 		// ----------------------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,10 +15,6 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Implementation of ModelRenderer and BatchModelRenderer
- */
-
 #include "precompiled.h"
 
 #include "lib/ogl.h"
@@ -32,6 +28,7 @@
 #include "graphics/LightEnv.h"
 #include "graphics/Model.h"
 #include "graphics/ModelDef.h"
+#include "graphics/ShaderManager.h"
 #include "graphics/TextureManager.h"
 
 #include "renderer/ModelRenderer.h"
@@ -89,7 +86,6 @@ void ModelRenderer::BuildPositionAndNormals(
 	if (model->IsSkinned())
 	{
 		// boned model - calculate skinned vertex positions/normals
-		PROFILE( "skinning bones" );
 
 		// Avoid the noisy warnings that occur inside SkinPoint/SkinNormal in
 		// some broken situations
@@ -137,11 +133,10 @@ void ModelRenderer::BuildColor4ub(
 	size_t numVertices = mdef->GetNumVertices();
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 	CColor shadingColor = model->GetShadingColor();
-	RGBColor tempcolor;
 
 	for (size_t j=0; j<numVertices; j++)
 	{
-		lightEnv.EvaluateUnit(Normal[j], tempcolor);
+		RGBColor tempcolor = lightEnv.EvaluateUnitScaled(Normal[j]);
 		tempcolor.X *= shadingColor.r;
 		tempcolor.Y *= shadingColor.g;
 		tempcolor.Z *= shadingColor.b;
@@ -185,326 +180,438 @@ void ModelRenderer::BuildIndices(
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// BatchModelRenderer implementation
-
-
-/// See BatchModelRendererInternals::phase
-enum BMRPhase {
-	/// Currently allow calls to Submit and PrepareModels
-	BMRSubmit,
-
-	/// Allow calls to rendering and EndFrame
-	BMRRender
-};
+// ShaderModelRenderer implementation
 
 
 /**
- * Struct BMRModelData: Per-CModel render data used by the BatchModelRenderer.
- */
-struct BMRModelData : public CModelRData
-{
-	BMRModelData(BatchModelRendererInternals* bmri, CModel* model)
-	: CModelRData(bmri, model), m_BMRI(bmri), m_Data(0), m_Next(0) { }
-	virtual ~BMRModelData();
-
-	/// Back-link to "our" modelrenderer
-	BatchModelRendererInternals* m_BMRI;
-
-	/// Private data created by derived class' CreateModelData
-	void* m_Data;
-
-	/// Next model in the per-ModelDefTracker-slot linked list.
-	BMRModelData* m_Next;
-};
-
-
-/**
- * Class BMRModelDefTracker: Per-CModelDef data used by the BatchModelRenderer.
- *
- * Note that classes that derive from BatchModelRenderer should use
- * their own per-CModelDef data if necessary.
- */
-struct BMRModelDefTracker : public CModelDefRPrivate
-{
-	BMRModelDefTracker(const CModelDefPtr& mdef)
-	: m_ModelDef(mdef), m_Next(0), m_Slots(0) { }
-
-	/// Back-link to the CModelDef object
-	boost::weak_ptr<CModelDef> m_ModelDef;
-
-	/// Pointer to the next ModelDefTracker that has submitted models.
-	BMRModelDefTracker* m_Next;
-
-	/// Number of slots used in m_ModelSlots
-	size_t m_Slots;
-
-	/// Each slot contains a linked list of model data objects, up to m_Slots-1
-	// At the end of the frame, m_Slots is reset to 0, but m_ModelSlots stays
-	// the same size (we assume the same number of slots is going to be used
-	// next frame)
-	std::vector<BMRModelData*> m_ModelSlots;
-};
-
-
-
-/**
- * Struct BatchModelRendererInternals: Internal data of the BatchModelRenderer
+ * Internal data of the ShaderModelRenderer.
  *
  * Separated into the source file to increase implementation hiding (and to
  * avoid some causes of recompiles).
  */
-struct BatchModelRendererInternals
+struct ShaderModelRendererInternals
 {
-	BatchModelRendererInternals(BatchModelRenderer* r) : m_Renderer(r) { }
+	ShaderModelRendererInternals(ShaderModelRenderer* r) : m_Renderer(r) { }
 
 	/// Back-link to "our" renderer
-	BatchModelRenderer* m_Renderer;
+	ShaderModelRenderer* m_Renderer;
 
 	/// ModelVertexRenderer used for vertex transformations
 	ModelVertexRendererPtr vertexRenderer;
 
-	/// Track the current "phase" of the frame (only for debugging purposes)
-	BMRPhase phase;
-
-	/// Linked list of ModelDefTrackers that have submitted models
-	BMRModelDefTracker* submissions;
-
-	/// Helper functions
-	void ThunkDestroyModelData(CModel* model, void* data)
-	{
-		vertexRenderer->DestroyModelData(model, data);
-	}
-
-	void RenderAllModels(const RenderModifierPtr& modifier, int filterflags, int pass, int streamflags);
-	void FilterAllModels(CModelFilter& filter, int passed, int filterflags);
+	/// List of submitted models for rendering in this frame
+	std::vector<CModel*> submissions;
 };
-
-BMRModelData::~BMRModelData()
-{
-	m_BMRI->ThunkDestroyModelData(GetModel(), m_Data);
-}
 
 
 // Construction/Destruction
-BatchModelRenderer::BatchModelRenderer(ModelVertexRendererPtr vertexrenderer)
+ShaderModelRenderer::ShaderModelRenderer(ModelVertexRendererPtr vertexrenderer)
 {
-	m = new BatchModelRendererInternals(this);
+	m = new ShaderModelRendererInternals(this);
 	m->vertexRenderer = vertexrenderer;
-	m->phase = BMRSubmit;
-	m->submissions = 0;
 }
 
-BatchModelRenderer::~BatchModelRenderer()
+ShaderModelRenderer::~ShaderModelRenderer()
 {
 	delete m;
 }
 
 // Submit one model.
-void BatchModelRenderer::Submit(CModel* model)
+void ShaderModelRenderer::Submit(CModel* model)
 {
-	ENSURE(m->phase == BMRSubmit);
-
-	ogl_WarnIfError();
-
 	CModelDefPtr mdef = model->GetModelDef();
-	BMRModelDefTracker* mdeftracker = (BMRModelDefTracker*)mdef->GetRenderData(m);
 	CModelRData* rdata = (CModelRData*)model->GetRenderData();
-	BMRModelData* bmrdata = 0;
 
-	// Ensure model def data and model data exist
-	if (!mdeftracker)
+	// Ensure model data is valid
+	const void* key = m->vertexRenderer.get();
+	if (!rdata || rdata->GetKey() != key)
 	{
-		mdeftracker = new BMRModelDefTracker(mdef);
-		mdef->SetRenderData(m, mdeftracker);
-	}
-
-	if (rdata && rdata->GetKey() == m)
-	{
-		bmrdata = (BMRModelData*)rdata;
-	}
-	else
-	{
-		bmrdata = new BMRModelData(m, model);
-		bmrdata->m_Data = m->vertexRenderer->CreateModelData(model);
-		rdata = bmrdata;
-		model->SetRenderData(bmrdata);
+		rdata = m->vertexRenderer->CreateModelData(key, model);
+		model->SetRenderData(rdata);
 		model->SetDirty(~0u);
 	}
 
-	// Add the model def tracker to the submission list if necessary
-	if (!mdeftracker->m_Slots)
-	{
-		mdeftracker->m_Next = m->submissions;
-		m->submissions = mdeftracker;
-	}
-
-	// Add the bmrdata to the modeldef list
-	CTexturePtr tex = model->GetTexture();
-	size_t idx;
-
-	for(idx = 0; idx < mdeftracker->m_Slots; ++idx)
-	{
-		BMRModelData* in = mdeftracker->m_ModelSlots[idx];
-
-		if (in->GetModel()->GetTexture() == tex)
-			break;
-	}
-
-	if (idx >= mdeftracker->m_Slots)
-	{
-		++mdeftracker->m_Slots;
-		if (mdeftracker->m_Slots > mdeftracker->m_ModelSlots.size())
-		{
-			mdeftracker->m_ModelSlots.push_back(0);
-			ENSURE(mdeftracker->m_ModelSlots.size() == mdeftracker->m_Slots);
-		}
-		mdeftracker->m_ModelSlots[idx] = 0;
-	}
-
-	bmrdata->m_Next = mdeftracker->m_ModelSlots[idx];
-	mdeftracker->m_ModelSlots[idx] = bmrdata;
-
-	ogl_WarnIfError();
+	m->submissions.push_back(model);
 }
 
 
 // Call update for all submitted models and enter the rendering phase
-void BatchModelRenderer::PrepareModels()
+void ShaderModelRenderer::PrepareModels()
 {
-	ENSURE(m->phase == BMRSubmit);
-
-	for(BMRModelDefTracker* mdeftracker = m->submissions; mdeftracker; mdeftracker = mdeftracker->m_Next)
+	for (size_t i = 0; i < m->submissions.size(); ++i)
 	{
-		for(size_t idx = 0; idx < mdeftracker->m_Slots; ++idx)
-		{
-			for(BMRModelData* bmrdata = mdeftracker->m_ModelSlots[idx]; bmrdata; bmrdata = bmrdata->m_Next)
-			{
-				CModel* model = bmrdata->GetModel();
+		CModel* model = m->submissions[i];
 
-				ENSURE(model->GetRenderData() == bmrdata);
+ 		CModelRData* rdata = static_cast<CModelRData*>(model->GetRenderData());
+ 		ENSURE(rdata->GetKey() == m->vertexRenderer.get());
 
-				m->vertexRenderer->UpdateModelData(
-						model, bmrdata->m_Data,
-						bmrdata->m_UpdateFlags);
-				bmrdata->m_UpdateFlags = 0;
-			}
-		}
+		m->vertexRenderer->UpdateModelData(model, rdata, rdata->m_UpdateFlags);
+		rdata->m_UpdateFlags = 0;
 	}
-
-	m->phase = BMRRender;
 }
 
 
 // Clear the submissions list
-void BatchModelRenderer::EndFrame()
+void ShaderModelRenderer::EndFrame()
 {
-	static size_t mostslots = 1;
+	m->submissions.clear();
+}
 
-	for(BMRModelDefTracker* mdeftracker = m->submissions; mdeftracker; mdeftracker = mdeftracker->m_Next)
+
+// Helper structs for ShaderModelRenderer::Render():
+
+struct SMRSortByDistItem
+{
+	size_t techIdx;
+	CModel* model;
+	float dist;
+};
+
+struct SMRBatchModel
+{
+	bool operator()(CModel* a, CModel* b)
 	{
-		if (mdeftracker->m_Slots > mostslots)
-		{
-			mostslots = mdeftracker->m_Slots;
-			//debug_printf(L"BatchModelRenderer: SubmissionSlots maximum: %u\n", mostslots);
-		}
-		mdeftracker->m_Slots = 0;
+		if (a->GetModelDef() < b->GetModelDef())
+			return true;
+		if (b->GetModelDef() < a->GetModelDef())
+			return false;
+
+		if (a->GetMaterial().GetDiffuseTexture() < b->GetMaterial().GetDiffuseTexture())
+			return true;
+		if (b->GetMaterial().GetDiffuseTexture() < a->GetMaterial().GetDiffuseTexture())
+			return false;
+
+		return false;
 	}
-	m->submissions = 0;
+};
 
-	m->phase = BMRSubmit;
-}
-
-
-// Return whether we models have been submitted this frame
-bool BatchModelRenderer::HaveSubmissions()
+struct SMRCompareSortByDistItem
 {
-	return m->submissions != 0;
-}
+	bool operator()(const SMRSortByDistItem& a, const SMRSortByDistItem& b)
+	{
+		// Prefer items with greater distance, so we draw back-to-front
+		return (a.dist > b.dist);
 
+		// (Distances will almost always be distinct, so we don't need to bother
+		// tie-breaking on modeldef/texture/etc)
+	}
+};
 
-// Render models, outer loop for multi-passing
-void BatchModelRenderer::Render(const RenderModifierPtr& modifier, int flags)
+struct SMRMaterialBucketKey
 {
-	ENSURE(m->phase == BMRRender);
+	SMRMaterialBucketKey(CStrIntern effect, const CShaderDefines& defines)
+		: effect(effect), defines(defines) { }
 
-	if (!HaveSubmissions())
+	CStrIntern effect;
+	const CShaderDefines& defines;
+
+	bool operator==(const SMRMaterialBucketKey& b) const
+	{
+		return (effect == b.effect && defines == b.defines);
+	}
+
+private:
+	SMRMaterialBucketKey& operator=(const SMRMaterialBucketKey&);
+};
+
+struct SMRMaterialBucketKeyHash
+{
+	size_t operator()(const SMRMaterialBucketKey& key) const
+	{
+		size_t hash = 0;
+		boost::hash_combine(hash, key.effect.GetHash());
+		boost::hash_combine(hash, key.defines.GetHash());
+		return hash;
+	}
+};
+
+struct SMRTechBucket
+{
+	CShaderTechniquePtr tech;
+	CModel** models;
+	size_t numModels;
+
+	// Model list is stored as pointers, not as a std::vector,
+	// so that sorting lists of this struct is fast
+};
+
+struct SMRCompareTechBucket
+{
+	bool operator()(const SMRTechBucket& a, const SMRTechBucket& b)
+	{
+		return a.tech < b.tech;
+	}
+};
+
+void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShaderDefines& context, int flags)
+{
+	if (m->submissions.empty())
 		return;
 
-	int pass = 0;
+	CMatrix3D worldToCam;
+	g_Renderer.GetViewCamera().m_Orientation.GetInverse(worldToCam);
 
-	do
+	/*
+	 * Rendering approach:
+	 * 
+	 * m->submissions contains the list of CModels to render.
+	 * 
+	 * The data we need to render a model is:
+	 *  - CShaderTechnique
+	 *  - CTexture
+	 *  - CModelDef (mesh data)
+	 *  - CModel (model instance data)
+	 * 
+	 * For efficient rendering, we need to batch the draw calls to minimise state changes.
+	 * (Texture changes are assumed to be cheaper than binding new mesh data,
+	 * and shader changes are assumed to be most expensive.)
+	 * First, group all models that share a technique to render them together.
+	 * Within those groups, sub-group by CModelDef.
+	 * Within those sub-groups, sub-sub-group by CTexture.
+	 * 
+	 * Alpha-blended models have to be sorted by distance from camera,
+	 * then we can batch as long as the order is preserved.
+	 * Non-alpha-blended models can be arbitrarily reordered to maximise batching.
+	 * 
+	 * For each model, the CShaderTechnique is derived from:
+	 *  - The current global 'context' defines
+	 *  - The CModel's material's defines
+	 *  - The CModel's material's shader effect name
+	 * 
+	 * There are a smallish number of materials, and a smaller number of techniques.
+	 * 
+	 * To minimise technique lookups, we first group models by material,
+	 * in 'materialBuckets' (a hash table).
+	 * 
+	 * For each material bucket we then look up the appropriate shader technique.
+	 * If the technique requires sort-by-distance, the model is added to the
+	 * 'sortByDistItems' list with its computed distance.
+	 * Otherwise, the bucket's list of models is sorted by modeldef+texture,
+	 * then the technique and model list is added to 'techBuckets'.
+	 * 
+	 * 'techBuckets' is then sorted by technique, to improve batching when multiple
+	 * materials map onto the same technique.
+	 * 
+	 * (Note that this isn't perfect batching: we don't sort across models in
+	 * multiple buckets that share a technique. In practice that shouldn't reduce
+	 * batching much (we rarely have one mesh used with multiple materials),
+	 * and it saves on copying and lets us sort smaller lists.)
+	 * 
+	 * Extra tech buckets are added for the sorted-by-distance models without reordering.
+	 * Finally we render by looping over each tech bucket, then looping over the model
+	 * list in each, rebinding the GL state whenever it changes.
+	 */
+
+ 	typedef boost::unordered_map<SMRMaterialBucketKey, std::vector<CModel*>, SMRMaterialBucketKeyHash> MaterialBuckets_t;
+	MaterialBuckets_t materialBuckets;
+
 	{
-		int streamflags = modifier->BeginPass(pass);
+		PROFILE3("bucketing by material");
 
-		m->vertexRenderer->BeginPass(streamflags);
-
-		m->RenderAllModels(modifier, flags, pass, streamflags);
-
-		m->vertexRenderer->EndPass(streamflags);
-	} while(!modifier->EndPass(pass++));
-}
-
-
-// Render one frame worth of models
-void BatchModelRendererInternals::RenderAllModels(
-		const RenderModifierPtr& modifier, int filterflags,
-		int pass, int streamflags)
-{
-	CShaderProgramPtr shader = modifier->GetShader(pass);
-
-	for(BMRModelDefTracker* mdeftracker = submissions; mdeftracker; mdeftracker = mdeftracker->m_Next)
-	{
-		vertexRenderer->PrepareModelDef(shader, streamflags, mdeftracker->m_ModelDef.lock());
-
-		for(size_t idx = 0; idx < mdeftracker->m_Slots; ++idx)
+		for (size_t i = 0; i < m->submissions.size(); ++i)
 		{
-			BMRModelData* bmrdata = mdeftracker->m_ModelSlots[idx];
+			CModel* model = m->submissions[i];
 
-			modifier->PrepareTexture(pass, bmrdata->GetModel()->GetTexture());
+			SMRMaterialBucketKey key(model->GetMaterial().GetShaderEffect(), model->GetMaterial().GetShaderDefines());
+			std::vector<CModel*>& bucketItems = materialBuckets[key];
+			bucketItems.push_back(model);
+		}
+	}
 
-			for(; bmrdata; bmrdata = bmrdata->m_Next)
+	std::vector<SMRSortByDistItem> sortByDistItems;
+
+	std::vector<CShaderTechniquePtr> sortByDistTechs;
+		// indexed by sortByDistItems[i].techIdx
+		// (which stores indexes instead of CShaderTechniquePtr directly
+		// to avoid the shared_ptr copy cost when sorting; maybe it'd be better
+		// if we just stored raw CShaderTechnique* and assumed the shader manager
+		// will keep it alive long enough)
+
+	std::vector<SMRTechBucket> techBuckets;
+
+	{
+		PROFILE3("processing material buckets");
+		for (MaterialBuckets_t::iterator it = materialBuckets.begin(); it != materialBuckets.end(); ++it)
+		{
+			CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(it->first.effect, context, it->first.defines);
+			if (tech->GetSortByDistance())
 			{
-				CModel* model = bmrdata->GetModel();
+				// Add the tech into a vector so we can index it
+				// (There might be duplicates in this list, but that doesn't really matter)
+				if (sortByDistTechs.empty() || sortByDistTechs.back() != tech)
+					sortByDistTechs.push_back(tech);
+				size_t techIdx = sortByDistTechs.size()-1;
 
-				ENSURE(bmrdata->GetKey() == this);
+				// Add each model into sortByDistItems
+				for (size_t i = 0; i < it->second.size(); ++i)
+				{
+					SMRSortByDistItem itemWithDist;
+					itemWithDist.techIdx = techIdx;
 
-				if (filterflags && !(model->GetFlags() & filterflags))
-					continue;
+					CModel* model = it->second[i];
+					itemWithDist.model = model;
 
-				modifier->PrepareModel(pass, model);
-				vertexRenderer->RenderModel(shader, streamflags, model, bmrdata->m_Data);
+					CVector3D modelpos = model->GetTransform().GetTranslation();
+					itemWithDist.dist = worldToCam.Transform(modelpos).Z;
+
+					sortByDistItems.push_back(itemWithDist);
+				}
+			}
+			else
+			{
+				// Sort model list by modeldef+texture, for batching
+				std::sort(it->second.begin(), it->second.end(), SMRBatchModel());
+
+				// Add a tech bucket pointing at this model list
+				SMRTechBucket techBucket = { tech, &it->second[0], it->second.size() };
+				techBuckets.push_back(techBucket);
 			}
 		}
 	}
-}
 
-void BatchModelRenderer::Filter(CModelFilter& filter, int passed, int flags)
-{
-	if (!HaveSubmissions())
-		return;
-
-	m->FilterAllModels(filter, passed, flags);
-}
-
-// Recompute filter flags
-void BatchModelRendererInternals::FilterAllModels(CModelFilter& filter, int passed, int filterflags)
-{
-	for(BMRModelDefTracker* mdeftracker = submissions; mdeftracker; mdeftracker = mdeftracker->m_Next)
 	{
-		for(size_t idx = 0; idx < mdeftracker->m_Slots; ++idx)
-		{
-			BMRModelData* bmrdata = mdeftracker->m_ModelSlots[idx];
-			for(; bmrdata; bmrdata = bmrdata->m_Next)
-			{
-				CModel* model = bmrdata->GetModel();
-				if (filterflags && !(model->GetFlags() & filterflags))
-					continue;
+		PROFILE3("sorting tech buckets");
+		// Sort by technique, for better batching
+		std::sort(techBuckets.begin(), techBuckets.end(), SMRCompareTechBucket());
+	}
 
-				if (filter.Filter(model))
-					model->SetFlags(model->GetFlags() | passed);
-				else
-					model->SetFlags(model->GetFlags() & ~passed);
-			}
+	// List of models corresponding to sortByDistItems[i].model
+	// (This exists primarily because techBuckets wants a CModel**;
+	// we could avoid the cost of copying into this list by adding
+	// a stride length into techBuckets and not requiring contiguous CModel*s)
+	std::vector<CModel*> sortByDistModels;
+
+	if (!sortByDistItems.empty())
+	{
+		{
+			PROFILE3("sorting items by dist");
+			std::sort(sortByDistItems.begin(), sortByDistItems.end(), SMRCompareSortByDistItem());
 		}
+
+		{
+			PROFILE3("batching dist-sorted items");
+
+			sortByDistModels.reserve(sortByDistItems.size());
+
+			// Find runs of distance-sorted models that share a technique,
+			// and create a new tech bucket for each run
+
+			size_t start = 0; // start of current run
+			size_t currentTechIdx = sortByDistItems[start].techIdx;
+
+			for (size_t end = 0; end < sortByDistItems.size(); ++end)
+			{
+				sortByDistModels.push_back(sortByDistItems[end].model);
+
+				size_t techIdx = sortByDistItems[end].techIdx;
+				if (techIdx != currentTechIdx)
+				{
+					// Start of a new run - push the old run into a new tech bucket
+					SMRTechBucket techBucket = { sortByDistTechs[currentTechIdx], &sortByDistModels[start], end-start };
+					techBuckets.push_back(techBucket);
+					start = end;
+					currentTechIdx = techIdx;
+				}
+			}
+
+			// Add the tech bucket for the final run
+			SMRTechBucket techBucket = { sortByDistTechs[currentTechIdx], &sortByDistModels[start], sortByDistItems.size()-start };
+			techBuckets.push_back(techBucket);
+		}
+	}
+
+	{
+		PROFILE3("rendering bucketed submissions");
+
+		size_t idxTechStart = 0;
+
+		while (idxTechStart < techBuckets.size())
+		{
+			CShaderTechniquePtr currentTech = techBuckets[idxTechStart].tech;
+
+			// Find runs [idxTechStart, idxTechEnd) in techBuckets of the same technique
+			size_t idxTechEnd;
+			for (idxTechEnd = idxTechStart + 1; idxTechEnd < techBuckets.size(); ++idxTechEnd)
+			{
+				if (techBuckets[idxTechEnd].tech != currentTech)
+					break;
+			}
+
+			// For each of the technique's passes, render all the models in this run
+			for (int pass = 0; pass < currentTech->GetNumPasses(); ++pass)
+			{
+				currentTech->BeginPass(pass);
+
+				const CShaderProgramPtr& shader = currentTech->GetShader(pass);
+				int streamflags = shader->GetStreamFlags();
+
+				modifier->BeginPass(shader);
+
+				m->vertexRenderer->BeginPass(streamflags);
+
+				CTexture* currentTex = NULL;
+				CModelDef* currentModeldef = NULL;
+				// (Texture needs to be rebound after binding a new shader, so we
+				// can't move currentTex outside of this loop to reduce state changes)
+
+				for (size_t idx = idxTechStart; idx < idxTechEnd; ++idx)
+				{
+					CModel** models = techBuckets[idx].models;
+					size_t numModels = techBuckets[idx].numModels;
+					for (size_t i = 0; i < numModels; ++i)
+					{
+						CModel* model = models[i];
+
+						if (flags && !(model->GetFlags() & flags))
+							continue;
+
+						// Bind texture when it changes
+						CTexture* newTex = model->GetMaterial().GetDiffuseTexture().get();
+						if (newTex != currentTex)
+						{
+							currentTex = newTex;
+							modifier->PrepareTexture(shader, *currentTex);
+						}
+
+						// Bind modeldef when it changes
+						CModelDef* newModeldef = model->GetModelDef().get();
+						if (newModeldef != currentModeldef)
+						{
+							currentModeldef = newModeldef;
+							m->vertexRenderer->PrepareModelDef(shader, streamflags, *currentModeldef);
+						}
+
+						modifier->PrepareModel(shader, model);
+
+						CModelRData* rdata = static_cast<CModelRData*>(model->GetRenderData());
+						ENSURE(rdata->GetKey() == m->vertexRenderer.get());
+
+						m->vertexRenderer->RenderModel(shader, streamflags, model, rdata);
+					}
+				}
+
+				m->vertexRenderer->EndPass(streamflags);
+
+				currentTech->EndPass(pass);
+			}
+
+			idxTechStart = idxTechEnd;
+		}
+	}
+}
+
+void ShaderModelRenderer::Filter(CModelFilter& filter, int passed, int flags)
+{
+	for (size_t i = 0; i < m->submissions.size(); ++i)
+	{
+		CModel* model = m->submissions[i];
+
+		if (flags && !(model->GetFlags() & flags))
+			continue;
+
+		if (filter.Filter(model))
+			model->SetFlags(model->GetFlags() | passed);
+		else
+			model->SetFlags(model->GetFlags() & ~passed);
 	}
 }

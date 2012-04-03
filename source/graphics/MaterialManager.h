@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,20 +19,15 @@
 #define INCLUDED_MATERIALMANAGER
 
 #include <map>
-#include "ps/Singleton.h"
 #include "Material.h"
 
-#define g_MaterialManager CMaterialManager::GetSingleton()
-
-class CMaterialManager : public Singleton<CMaterialManager>
+class CMaterialManager
 {
 public:
-	CMaterialManager();
-	~CMaterialManager();
+	CMaterial LoadMaterial(const VfsPath& pathname);
 
-	CMaterial& LoadMaterial(const VfsPath& pathname);
 private:
-    std::map<VfsPath, CMaterial*> m_Materials;
+	std::map<VfsPath, CMaterial> m_Materials;
 };
 
-#endif
+#endif // INCLUDED_MATERIALMANAGER

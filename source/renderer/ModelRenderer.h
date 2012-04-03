@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,7 +40,11 @@ typedef shared_ptr<LitRenderModifier> LitRenderModifierPtr;
 class ModelVertexRenderer;
 typedef shared_ptr<ModelVertexRenderer> ModelVertexRendererPtr;
 
+class ModelRenderer;
+typedef shared_ptr<ModelRenderer> ModelRendererPtr;
+
 class CModel;
+class CShaderDefines;
 
 class CModelFilter
 {
@@ -66,7 +70,7 @@ public:
 class CModelRData : public CRenderData
 {
 public:
-	CModelRData(const void* key, CModel* model) : m_Key(key), m_Model(model) { }
+	CModelRData(const void* key) : m_Key(key) { }
 
 	/**
 	 * GetKey: Retrieve the key that can be used to identify the
@@ -76,20 +80,9 @@ public:
 	 */
 	const void* GetKey() const { return m_Key; }
 
-	/**
-	 * GetModel: Retrieve the model that this render data object
-	 * belongs to.
-	 *
-	 * @return The model pointer that was passed to the constructor.
-	 */
-	CModel* GetModel() const { return m_Model; }
-
 private:
 	/// The key for model renderer identification
 	const void* m_Key;
-
-	/// The model this object was created for
-	CModel* m_Model;
 };
 
 
@@ -157,13 +150,6 @@ public:
 	virtual void EndFrame() = 0;
 
 	/**
-	 * HaveSubmissions: Return whether any models have been submitted this frame.
-	 *
-	 * @return true if models have been submitted, false otherwise.
-	 */
-	virtual bool HaveSubmissions() = 0;
-
-	/**
 	 * Render: Render submitted models, using the given RenderModifier to setup
 	 * the fragment stage.
 	 *
@@ -180,7 +166,7 @@ public:
 	 * If flags is non-zero, only models that contain flags in their
 	 * CModel::GetFlags() are rendered.
 	 */
-	virtual void Render(const RenderModifierPtr& modifier, int flags) = 0;
+	virtual void Render(const RenderModifierPtr& modifier, const CShaderDefines& context, int flags) = 0;
 
 	/**
 	 * Filter: Filter submitted models, setting the passed flags on any models
@@ -270,35 +256,32 @@ public:
 };
 
 
-struct BatchModelRendererInternals;
+struct ShaderModelRendererInternals;
 
 /**
- * Class BatchModelRenderer: Model renderer that sorts submitted models
- * by CModelDef and texture for batching, and uses a ModelVertexRenderer
- * (e.g. FixedFunctionModelRenderer) to manage model vertices.
- *
- * @note Deriving from this class is highly discouraged. Specialize
- * using ModelVertexRendererPtr and RenderModifier instead.
+ * Implementation of ModelRenderer that loads the appropriate shaders for
+ * rendering each model, and that batches by shader (and by mesh and texture).
+ * 
+ * Note that the term "Shader" is somewhat misleading, as this handled
+ * fixed-function rendering using the same API as real GLSL/ARB shaders.
  */
-class BatchModelRenderer : public ModelRenderer
+class ShaderModelRenderer : public ModelRenderer
 {
-	friend struct BatchModelRendererInternals;
+	friend struct ShaderModelRendererInternals;
 
 public:
-	BatchModelRenderer(ModelVertexRendererPtr vertexrender);
-	virtual ~BatchModelRenderer();
+	ShaderModelRenderer(ModelVertexRendererPtr vertexrender);
+	virtual ~ShaderModelRenderer();
 
 	// Batching implementations
 	virtual void Submit(CModel* model);
 	virtual void PrepareModels();
 	virtual void EndFrame();
-	virtual bool HaveSubmissions();
-	virtual void Render(const RenderModifierPtr& modifier, int flags);
+	virtual void Render(const RenderModifierPtr& modifier, const CShaderDefines& context, int flags);
 	virtual void Filter(CModelFilter& filter, int passed, int flags);
 
 private:
-	BatchModelRendererInternals* m;
+	ShaderModelRendererInternals* m;
 };
-
 
 #endif // INCLUDED_MODELRENDERER
