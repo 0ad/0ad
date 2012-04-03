@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <program type="arb">
 
-    <vertex file="particle.vp">
+    <vertex file="arb/particle.vp">
         <stream name="pos"/>
         <stream name="uv0"/>
         <stream name="uv1"/>
     </vertex>
 
-    <fragment file="solid.fp"/>
+    <fragment file="arb/solid.fp"/>
 
 </program>

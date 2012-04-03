@@ -3,7 +3,7 @@
 
     <technique>
         <require shaders="arb"/>
-        <pass shader="particle"/>
+        <pass shader="arb/particle"/>
     </technique>
 
     <technique>

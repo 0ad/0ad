@@ -604,7 +604,7 @@ bool TerrainRenderer::RenderFancyWater()
 	// If we're using fancy water, make sure its shader is loaded
 	if (!m->fancyWaterShader)
 	{
-		m->fancyWaterShader = g_Renderer.GetShaderManager().LoadProgram("water_high", CShaderDefines());
+		m->fancyWaterShader = g_Renderer.GetShaderManager().LoadProgram("glsl/water_high", CShaderDefines());
 		if (!m->fancyWaterShader)
 		{
 			LOGERROR(L"Failed to load water shader. Falling back to non-fancy water.\n");

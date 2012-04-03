@@ -211,7 +211,7 @@ void OverlayRenderer::RenderOverlaysAfterWater()
 
 		const char* shaderName;
 		if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
-			shaderName = "overlayline";
+			shaderName = "arb/overlayline";
 		else
 			shaderName = "fixed:overlayline";
 

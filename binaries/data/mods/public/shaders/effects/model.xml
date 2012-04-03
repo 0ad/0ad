@@ -4,7 +4,7 @@
     <technique>
         <require context="MODE_SHADOWCAST || MODE_SILHOUETTEOCCLUDER"/>
         <require shaders="arb"/>
-        <pass shader="solid"/>
+        <pass shader="arb/model_solid"/>
     </technique>
 
     <technique>
@@ -25,7 +25,7 @@
     <technique>
         <require context="MODE_SILHOUETTEDISPLAY || MODE_WIREFRAME"/>
         <require shaders="arb"/>
-        <pass shader="solid_player"/>
+        <pass shader="arb/model_solid_player"/>
     </technique>
 
     <technique>
@@ -45,7 +45,7 @@
 
     <technique>
         <require shaders="arb"/>
-        <pass shader="model_common_arb"/>
+        <pass shader="arb/model_common"/>
     </technique>
 
     <technique>
