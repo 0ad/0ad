@@ -2,10 +2,15 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="base">
-      <mesh>structural/iber_wall_turret.dae</mesh>
+    <variant frequency="100" name="wall tower">
+      <animations>
+        <animation event="0.5" load="0.0" name="melee" speed="100"/>
+      </animations>
+      <mesh>structural/iber_wall_tower.dae</mesh>
       <props>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/structures/iberians/wall_tower_shields.xml" attachpoint="root"/>
       </props>
       <texture>structural/iber_struct.dds</texture>
     </variant>
