@@ -109,6 +109,14 @@ AttackMoveToLocation.prototype.execute = function(gameState, militaryManager){
 // This removes idle units from the attack
 AttackMoveToLocation.prototype.update = function(gameState, militaryManager, events){
 	
+	if (!this.targetPos){
+		for (var idKey in this.idList){
+			var id = this.idList[idKey];
+			militaryManager.unassignUnit(id);
+		}
+		this.idList = [];
+	}
+	
 	// keep the list of units in good order by pruning ids with no corresponding entities (i.e. dead units)
 	var removeList = [];
 	var totalHealth = 0;

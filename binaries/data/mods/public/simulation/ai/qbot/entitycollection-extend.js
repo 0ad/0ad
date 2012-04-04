@@ -22,11 +22,6 @@ function EntityCollectionFromIds(gameState, idList){
 	return new EntityCollection(gameState.ai, ents);
 }
 
-EntityCollection.prototype.attackMove = function(x, z){
-	Engine.PostCommand({"type": "attack-move", "entities": this.toIdArray(), "x": x, "z": z, "queued": false});
-	return this;
-};
-
 // Do naughty stuff to replace the entity collection constructor for updating entity collections
 var tmpEntityCollection = function(baseAI, entities, filter, gameState){
 	this._ai = baseAI;
@@ -56,11 +51,11 @@ var tmpEntityCollection = function(baseAI, entities, filter, gameState){
 	});
 };
 
-tmpEntityCollection.prototype = new EntityCollection;
-EntityCollection = tmpEntityCollection;
+//tmpEntityCollection.prototype = new EntityCollection;
+//EntityCollection = tmpEntityCollection;
 
 // Keeps an EntityCollection with a filter function up to date by watching for events
-EntityCollection.prototype.update = function(gameState, events){
+tmpEntityCollection.prototype.update = function(gameState, events){
 	if (!this.filterFunc)
 		return;
 	for (var i in events){

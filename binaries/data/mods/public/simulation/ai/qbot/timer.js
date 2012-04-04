@@ -1,11 +1,11 @@
 //The Timer class // The instance of this class is created in the qBot object under the name 'timer'
 //The methods that are available to call from this instance are:
-//timer.setTimer				: Creates a new timer with the given interval (miliseconds).
-//												Optional set dalay or a limited repeat value.
-//timer.checkTimer			: Gives true if called at the time of the interval.
-//timer.clearTimer			: Deletes the timer permanently. No way to get the same timer back.
-//timer.activateTimer		: Sets the status of a deactivated timer to active.
-//timer.deactivateTimer	: Deactivates a timer. Deactivated timers will never give true.
+//timer.setTimer           : Creates a new timer with the given interval (miliseconds).
+//                             Optionally set dalay or a limited repeat value.
+//timer.checkTimer         : Gives true if called at the time of the interval.
+//timer.clearTimer         : Deletes the timer permanently. No way to get the same timer back.
+//timer.activateTimer      : Sets the status of a deactivated timer to active.
+//timer.deactivateTimer    : Deactivates a timer. Deactivated timers will never give true.
 
 
 //-EmjeR-// Timer class //

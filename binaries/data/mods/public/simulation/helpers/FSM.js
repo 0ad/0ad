@@ -224,13 +224,15 @@ function FSM(spec)
 	process(this, spec, [], {});
 }
 
-FSM.prototype.Init = function(obj, initialState)
+FSM.prototype.Init = function(obj, initialState, stateChangedCallback)
 {
 	this.deferFromState = undefined;
 	
 	obj.fsmStateName = "";
 	obj.fsmNextState = undefined;
 	this.SwitchToNextState(obj, initialState);
+	
+	this.stateChangedCallback = stateChangedCallback;
 };
 
 FSM.prototype.SetNextState = function(obj, state)
@@ -305,6 +307,11 @@ FSM.prototype.LookupState = function(currentStateName, stateName)
 	return stateName;
 };
 
+FSM.prototype.GetCurrentState = function(obj)
+{
+	return obj.fsmStateName;
+};
+
 FSM.prototype.SwitchToNextState = function(obj, nextStateName)
 {
 	var fromState = this.decompose[obj.fsmStateName];
@@ -329,7 +336,11 @@ FSM.prototype.SwitchToNextState = function(obj, nextStateName)
 		{
 			obj.fsmStateName = fromState[i];
 			if (leave.apply(obj))
+			{
+				if (this.stateChangedCallback)
+					this.stateChangedCallback.apply(obj);
 				return;
+			}
 		}
 	}
 
@@ -340,11 +351,18 @@ FSM.prototype.SwitchToNextState = function(obj, nextStateName)
 		{
 			obj.fsmStateName = toState[i];
 			if (enter.apply(obj))
+			{
+				if (this.stateChangedCallback)
+					this.stateChangedCallback.apply(obj);
 				return;
+			}
 		}
 	}
 
 	obj.fsmStateName = nextStateName;
+	
+	if (this.stateChangedCallback)
+		this.stateChangedCallback.apply(obj);
 };
 
 Engine.RegisterGlobal("FSM", FSM);

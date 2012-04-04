@@ -8,12 +8,6 @@
 
 var MilitaryAttackManager = function() {
 	// these use the structure soldiers[unitId] = true|false to register the units
-	this.soldiers = {};
-	this.assigned = {};
-	this.unassigned = {};
-	this.garrisoned = {};
-	this.enemyAttackers = {};
-
 	this.attackManagers = [AttackMoveToLocation];
 	this.availableAttacks = [];
 	this.currentAttacks = [];
@@ -29,23 +23,6 @@ MilitaryAttackManager.prototype.init = function(gameState) {
 	var civ = gameState.playerData.civ;
 	
 	// load units and buildings from the config files
-	if (civ in Config.units.citizenSoldier){
-		this.uCitizenSoldier = Config.units.citizenSoldier[civ];
-	}else{
-		this.uCitizenSoldier = Config.units.citizenSoldier['default'];
-	}
-	
-	if (civ in Config.units.advanced){
-		this.uAdvanced = Config.units.advanced[civ];
-	}else{
-		this.uAdvanced = Config.units.advanced['default'];
-	}
-	
-	if (civ in Config.units.siege){
-		this.uSiege = Config.units.siege[civ];
-	}else{
-		this.uSiege = Config.units.siege['default'];
-	}
 	
 	if (civ in Config.buildings.moderate){
 		this.bModerate = Config.buildings.moderate[civ];
@@ -65,15 +42,6 @@ MilitaryAttackManager.prototype.init = function(gameState) {
 		this.bFort = Config.buildings.fort['default'];
 	}
 
-	for (var i in this.uCitizenSoldier){
-		this.uCitizenSoldier[i] = gameState.applyCiv(this.uCitizenSoldier[i]);
-	}
-	for (var i in this.uAdvanced){
-		this.uAdvanced[i] = gameState.applyCiv(this.uAdvanced[i]);
-	}
-	for (var i in this.uSiege){
-		this.uSiege[i] = gameState.applyCiv(this.uSiege[i]);
-	}
 	for (var i in this.bAdvanced){
 		this.bAdvanced[i] = gameState.applyCiv(this.bAdvanced[i]);
 	}
@@ -89,41 +57,62 @@ MilitaryAttackManager.prototype.init = function(gameState) {
 		this.availableAttacks[i] = new this.attackManagers[i](gameState, this);
 	}
 	
-	var filter = Filters.and(Filters.isEnemy(), Filters.byClassesOr(["CitizenSoldier", "Super", "Siege"]));
-	this.enemySoldiers = new EntityCollection(gameState.ai, gameState.entities._entities, filter, gameState);
+	var enemies = gameState.getEnemyEntities();
+	var filter = Filters.byClassesOr(["CitizenSoldier", "Super", "Siege"]);
+	this.enemySoldiers = enemies.filter(filter); // TODO: cope with diplomacy changes
+	this.enemySoldiers.registerUpdates();
 };
 
 /**
  * @param (GameState) gameState
+ * @param (string) soldierTypes
  * @returns array of soldiers for which training buildings exist
  */
-MilitaryAttackManager.prototype.findTrainableUnits = function(gameState, soldierTypes){
-	var ret = [];
+MilitaryAttackManager.prototype.findTrainableUnits = function(gameState, soldierType){
+	var allTrainable = [];
 	gameState.getOwnEntities().forEach(function(ent) {
 		var trainable = ent.trainableEntities();
 		for (var i in trainable){
-			if (soldierTypes.indexOf(trainable[i]) !== -1){
-				if (ret.indexOf(trainable[i]) === -1){
-					ret.push(trainable[i]);
-				}
-			} 
+			if (allTrainable.indexOf(trainable[i]) === -1){
+				allTrainable.push(trainable[i]);
+			}
 		}
-		return true;
 	});
+	
+	var ret = [];
+	for (var i in allTrainable){
+		var template = gameState.getTemplate(allTrainable[i]);
+		if (soldierType == this.getSoldierType(template)){
+			ret.push(allTrainable[i]);
+		}
+	}
 	return ret;
+};
+
+// Returns the type of a soldier, either citizenSoldier, advanced or siege 
+MilitaryAttackManager.prototype.getSoldierType = function(ent){
+	if (ent.hasClass("CitizenSoldier") && !ent.hasClass("Cavalry")){
+		return "citizenSoldier";
+	}else if (ent.hasClass("Super") || ent.hasClass("Hero") || ent.hasClass("CitizenSoldier")){
+		return "advanced";
+	}else if (ent.hasClass("Siege")){
+		return "siege";
+	}else{
+		return undefined;
+	}
 };
 
 /**
  * Returns the unit type we should begin training. (Currently this is whatever
  * we have least of.)
  */
-MilitaryAttackManager.prototype.findBestNewUnit = function(gameState, queue, soldierTypes) {
-	var units = this.findTrainableUnits(gameState, soldierTypes);
+MilitaryAttackManager.prototype.findBestNewUnit = function(gameState, queue, soldierType) {
+	var units = this.findTrainableUnits(gameState, soldierType);
 	// Count each type
 	var types = [];
 	for ( var tKey in units) {
 		var t = units[tKey];
-		types.push([t, gameState.countEntitiesAndQueuedWithType(gameState.applyCiv(t))
+		types.push([t, gameState.countEntitiesAndQueuedByType(gameState.applyCiv(t))
 						+ queue.countAllByType(gameState.applyCiv(t)) ]);
 	}
 
@@ -139,89 +128,13 @@ MilitaryAttackManager.prototype.findBestNewUnit = function(gameState, queue, sol
 };
 
 MilitaryAttackManager.prototype.registerSoldiers = function(gameState) {
-	var soldiers = gameState.getOwnEntitiesWithRole("soldier");
+	var soldiers = gameState.getOwnEntitiesByRole("soldier");
 	var self = this;
 
 	soldiers.forEach(function(ent) {
-		ent.setMetadata("role", "registeredSoldier");
-		self.soldiers[ent.id()] = true;
-		self.unassigned[ent.id()] = true;
+		ent.setMetadata("role", "military");
+		ent.setMetadata("military", "unassigned");
 	});
-};
-
-// Ungarrisons all units
-MilitaryAttackManager.prototype.ungarrisonAll = function(gameState) {
-	debug("ungarrison units");
-	
-	this.getGarrisonBuildings(gameState).forEach(function(bldg){
-		bldg.unloadAll();
-	});
-	
-	for ( var i in this.garrisoned)	{
-		if(this.assigned[i]) {
-			this.unassignUnit(i);
-		}
-		if (this.entity(i)){
-			this.entity(i).setMetadata("subrole","idle");
-		}
-	}
-	this.garrisoned = {};
-};
-
-//Garrisons citizens
-MilitaryAttackManager.prototype.garrisonCitizens = function(gameState) {
-	var self = this;
-	debug("garrison Citizens"); 
-	gameState.getOwnEntities().forEach(function(ent) {
-		var dogarrison = false;
-		// Look for workers which have a position (i.e. not garrisoned)
-		if(ent.hasClass("Worker") && ent.position()) {
-			for (id in self.enemyAttackers) {
-				if(self.entity(id).visionRange() >= VectorDistance(self.entity(id).position(),ent.position())) {
-					dogarrison = true;
-					break;
-				}
-			}
-			if(dogarrison) {
-				self.garrisonUnit(gameState,ent.id());
-			}
-		}
-		return true;
-	});
-};
-
-// garrison the soldiers
-MilitaryAttackManager.prototype.garrisonSoldiers = function(gameState) {
-	debug("garrison Soldiers"); 
-	var units = this.getAvailableUnits(this.countAvailableUnits());
-	for (var i in units) {
-		this.garrisonUnit(gameState,units[i]);
-		if(!this.garrisoned[units[i]]) {
-			this.unassignUnit(units[i]);
-		}
-	}
-};
-
-MilitaryAttackManager.prototype.garrisonUnit = function(gameState,id) {
-	if (this.entity(id).position() === undefined){
-		return;
-	}
- 	var garrisonBuildings = this.getGarrisonBuildings(gameState).toEntityArray();
-	var bldgDistance = [];
-	for (var i in garrisonBuildings) {
-		var bldg = garrisonBuildings[i];
-		if(bldg.garrisoned().length <= bldg.garrisonMax()) {
-			bldgDistance.push([i,VectorDistance(bldg.position(),this.entity(id).position())]);
-		}
-	}
-	if(bldgDistance.length > 0) {
-		bldgDistance.sort(function(a,b) { return (a[1]-b[1]); });
-		var building = garrisonBuildings[bldgDistance[0][0]];
-		//debug("garrison id "+id+"into building "+building.id()+"walking distance "+bldgDistance[0][1]);
-		this.entity(id).garrison(building);
-		this.garrisoned[id] = true;
-		this.entity(id).setMetadata("subrole","garrison");
-	}
 };
 
 // return count of enemy buildings for a given building class
@@ -232,96 +145,63 @@ MilitaryAttackManager.prototype.getEnemyBuildings = function(gameState,cls) {
 	return targets;
 };
 
-// return count of own buildings for a given building class
-MilitaryAttackManager.prototype.getGarrisonBuildings = function(gameState) {
-	var targets = gameState.getOwnEntities().filter(function(ent) {
-			return (ent.hasClass("Structure") && ent.garrisonableClasses());
-		});
-	return targets;
-};
-
 // return n available units and makes these units unavailable
 MilitaryAttackManager.prototype.getAvailableUnits = function(n, filter) {
 	var ret = [];
 	var count = 0;
-	for (var i in this.unassigned) {
-		if (this.unassigned[i]){
-			var ent = this.entity(i);
-			if (filter){
-				if (!filter(ent)){
-					continue;
-				}
-			}
-			ret.push(+i);
-			delete this.unassigned[i];
-			this.assigned[i] = true;
-			ent.setMetadata("role", "assigned");
-			ent.setMetadata("subrole", "unavailable");
-			count++;
-			if (count >= n) {
-				break;
+	this.getUnassignedUnits().forEach(function(ent){
+		if (filter){
+			if (!filter(ent)){
+				return;
 			}
 		}
-	}
+		
+		ret.push(ent.id());
+		ent.setMetadata("military", "assigned");
+		ent.setMetadata("role", "military");
+		count++;
+		if (count >= n) {
+			return;
+		}
+	});
 	return ret;
 };
 
 // Takes a single unit id, and marks it unassigned
 MilitaryAttackManager.prototype.unassignUnit = function(unit){
-	this.unassigned[unit] = true;
-	this.assigned[unit] = false;
+	this.entity(unit).setMetadata("military", "unassigned");
 };
 
 // Takes an array of unit id's and marks all of them unassigned 
 MilitaryAttackManager.prototype.unassignUnits = function(units){
 	for (var i in units){
-		this.unassigned[units[i]] = true;
-		this.assigned[units[i]] = false;
+		this.unassignUnit(units[i]);
 	}
+};
+
+MilitaryAttackManager.prototype.getUnassignedUnits = function(){
+	return this.gameState.getOwnEntitiesByMetadata("military", "unassigned");
 };
 
 MilitaryAttackManager.prototype.countAvailableUnits = function(filter){
 	var count = 0;
-	for (var i in this.unassigned){
-		if (this.unassigned[i]){
-			if (filter){
-				if (filter(this.entity(i))){
-					count += 1;
-				}
-			}else{
-				count += 1;				
+	this.getUnassignedUnits().forEach(function(ent){
+		if (filter){
+			if (filter(ent)){
+				count += 1;
 			}
+		}else{
+			count += 1;
 		}
-	}
+	});
 	return count;
-};
-
-MilitaryAttackManager.prototype.handleEvents = function(gameState, events) {
-	var myCivCentres = gameState.getOwnEntities().filter(function(ent) {
-		return ent.hasClass("CivCentre");
-	}).toEntityArray();
-	var pos = undefined;
-	if (myCivCentres.length > 0 && myCivCentres[0].position()){
-		pos = myCivCentres[0].position();
-	}
-	
-	for (var i in events) {
-		var e = events[i];
-
-		if (e.type === "Destroy") {
-			var id = e.msg.entity;
-			delete this.unassigned[id];
-			delete this.assigned[id];
-			delete this.soldiers[id];
-		}
-	}
 };
 
 // Takes an entity id and returns an entity object or false if there is no entity with that id
 // Also sends a debug message warning if the id has no entity
 MilitaryAttackManager.prototype.entity = function(id) {
 	if (this.gameState.entities._entities[id]) {
-		return new Entity(this.gameState.ai, this.gameState.entities._entities[id]);
+		return this.gameState.entities._entities[id]; // TODO: make this nicer
 	}else{
 		//debug("Entity " + id + " requested does not exist");
 	}
@@ -388,11 +268,10 @@ MilitaryAttackManager.prototype.getUnitStrength = function(ent){
 // Returns the  strength of the available units of ai army
 MilitaryAttackManager.prototype.measureAvailableStrength = function(){
 	var  strength = 0.0;
-	for (var i in this.unassigned){
-		if (this.unassigned[i] && this.entity(i)){
-			strength += this.getUnitStrength(this.entity(i));
-		}
-	}
+	var self = this;
+	this.getUnassignedUnits(this.gameState).forEach(function(ent){
+		strength += self.getUnitStrength(ent);
+	});
 	return strength;
 };
 
@@ -448,7 +327,7 @@ MilitaryAttackManager.prototype.measureEnemyStrength = function(gameState){
 
 // Adds towers to the defenceBuilding queue
 MilitaryAttackManager.prototype.buildDefences = function(gameState, queues){ 
-	if (gameState.countEntitiesAndQueuedWithType(gameState.applyCiv('structures/{civ}_defense_tower'))
+	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv('structures/{civ}_defense_tower'))
 			+ queues.defenceBuilding.totalLength() < gameState.getBuildLimits()["DefenseTower"]) {
 		
 		
@@ -465,11 +344,11 @@ MilitaryAttackManager.prototype.buildDefences = function(gameState, queues){
 	
 	var numFortresses = 0;
 	for (var i in this.bFort){
-		numFortresses += gameState.countEntitiesAndQueuedWithType(gameState.applyCiv(this.bFort[i]));
+		numFortresses += gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bFort[i]));
 	}
 	
 	if (numFortresses + queues.defenceBuilding.totalLength() < gameState.getBuildLimits()["Fortress"]) {
-		if (gameState.countEntitiesWithType(gameState.applyCiv("units/{civ}_support_female_citizen")) > gameState.ai.modules[0].targetNumWorkers * 0.5){
+		if (gameState.countEntitiesByType(gameState.applyCiv("units/{civ}_support_female_citizen")) > gameState.ai.modules[0].targetNumWorkers * 0.5){
 			if (gameState.getTimeElapsed() > 350 * 1000 * numFortresses){
 				if (gameState.ai.pathsToMe && gameState.ai.pathsToMe.length > 0){
 					var position = gameState.ai.pathsToMe.shift();
@@ -484,11 +363,9 @@ MilitaryAttackManager.prototype.buildDefences = function(gameState, queues){
 };
 
 MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
-
+	var self = this;
 	Engine.ProfileStart("military update");
 	this.gameState = gameState;
-
-	this.handleEvents(gameState, events);
 
 	// this.attackElephants(gameState);
 	this.registerSoldiers(gameState);
@@ -497,9 +374,10 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 	
 	this.defenceManager.update(gameState, events, this);
 	
+	Engine.ProfileStart("Train Units");
 	// Continually try training new units, in batches of 5
 	if (queues.citizenSoldier.length() < 6) {
-		var newUnit = this.findBestNewUnit(gameState, queues.citizenSoldier, this.uCitizenSoldier);
+		var newUnit = this.findBestNewUnit(gameState, queues.citizenSoldier, "citizenSoldier");
 		if (newUnit){
 			queues.citizenSoldier.addItem(new UnitTrainingPlan(gameState, newUnit, {
 				"role" : "soldier"
@@ -507,7 +385,7 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 		}
 	}
 	if (queues.advancedSoldier.length() < 2) {
-		var newUnit = this.findBestNewUnit(gameState, queues.advancedSoldier, this.uAdvanced);
+		var newUnit = this.findBestNewUnit(gameState, queues.advancedSoldier, "advanced");
 		if (newUnit){
 			queues.advancedSoldier.addItem(new UnitTrainingPlan(gameState, newUnit, {
 				"role" : "soldier"
@@ -515,59 +393,68 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 		}
 	}
 	if (queues.siege.length() < 4) {
-		var newUnit = this.findBestNewUnit(gameState, queues.siege, this.uSiege);
+		var newUnit = this.findBestNewUnit(gameState, queues.siege, "siege");
 		if (newUnit){
 			queues.siege.addItem(new UnitTrainingPlan(gameState, newUnit, {
 				"role" : "soldier"
 			}, 2));
 		}
 	}
-
+	Engine.ProfileStop();
+	
 	// Build more military buildings
 	// TODO: make military building better
-	if (gameState.countEntitiesWithType(gameState.applyCiv("units/{civ}_support_female_citizen")) > 30) {
-		if (gameState.countEntitiesAndQueuedWithType(gameState.applyCiv(this.bModerate[0]))
+	Engine.ProfileStart("Build buildings");
+	if (gameState.countEntitiesByType(gameState.applyCiv("units/{civ}_support_female_citizen")) > 30) {
+		if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bModerate[0]))
 				+ queues.militaryBuilding.totalLength() < 1) {
 			queues.militaryBuilding.addItem(new BuildingConstructionPlan(gameState, this.bModerate[0]));
 		}
 	}
 	//build advanced military buildings
-	if (gameState.countEntitiesWithType(gameState.applyCiv("units/{civ}_support_female_citizen")) > 
+	if (gameState.countEntitiesByType(gameState.applyCiv("units/{civ}_support_female_citizen")) > 
 			gameState.ai.modules[0].targetNumWorkers * 0.7){
 		if (queues.militaryBuilding.totalLength() === 0){
 			for (var i in this.bAdvanced){
-				if (gameState.countEntitiesAndQueuedWithType(gameState.applyCiv(this.bAdvanced[i])) < 1){
+				if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bAdvanced[i])) < 1){
 					queues.militaryBuilding.addItem(new BuildingConstructionPlan(gameState, this.bAdvanced[i]));
 				}
 			}
 		}
 	}
+	Engine.ProfileStop();
 	
+	Engine.ProfileStart("Plan new attacks");
 	// Look for attack plans which can be executed, only do this once every minute
 	for (var i = 0; i < this.availableAttacks.length; i++){
 		if (this.availableAttacks[i].canExecute(gameState, this)){
 			this.availableAttacks[i].execute(gameState, this);
 			this.currentAttacks.push(this.availableAttacks[i]);
-			debug("Attacking!");
+			//debug("Attacking!");
 		}
 		this.availableAttacks.splice(i, 1, new this.attackManagers[i](gameState, this));
 	}
-
+	Engine.ProfileStop();
+	
+	Engine.ProfileStart("Update attacks");
 	// Keep current attacks updated
 	for (i in this.currentAttacks){
 		this.currentAttacks[i].update(gameState, this, events);
 	}
+	Engine.ProfileStop();
 	
-	// Set unassigned to be workers
-	for (var i in this.unassigned){
-		if (this.entity(i).hasClass("CitizenSoldier") && ! this.entity(i).hasClass("Cavalry")){
-			this.entity(i).setMetadata("role", "worker");
+	Engine.ProfileStart("Use idle military as workers");
+	// Set unassigned to be workers TODO: fix this so it doesn't scan all units every time
+	this.getUnassignedUnits(gameState).forEach(function(ent){
+		if (self.getSoldierType(ent) === "citizenSoldier"){
+			ent.setMetadata("role", "worker");
 		}
-	}
+	});
+	Engine.ProfileStop();
 	
 	// Dynamically change priorities
-	
-	var females = gameState.countEntitiesWithType(gameState.applyCiv("units/{civ}_support_female_citizen"));
+	Engine.ProfileStart("Change Priorities");
+	var females = gameState.countEntitiesByType(gameState.applyCiv("units/{civ}_support_female_citizen"));
 	var femalesTarget = gameState.ai.modules[0].targetNumWorkers;
 	var enemyStrength = this.measureEnemyStrength(gameState);
 	var availableStrength = this.measureAvailableStrength();
@@ -582,6 +469,7 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 	if (females/femalesTarget > 0.7){
 		gameState.ai.priorities.defenceBuilding = 70;
 	}
+	Engine.ProfileStop();
 	
 	Engine.ProfileStop();
 };
