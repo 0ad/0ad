@@ -44,7 +44,7 @@ const aDecorativeRock = "actor|geology/stone_granite_med.xml";
 // terrain + entity (for painting)
 var pForest = [tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERRAIN_SEPARATOR + oSDatePalm, tForestFloor];
 
-const BUILDING_ANGlE = 0.75*PI;
+const BUILDING_ANGlE = -PI/4;
 
 log("Initializing map...");
 

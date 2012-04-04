@@ -38,7 +38,7 @@ const aDecorativeRock = "actor|geology/stone_desert_med.xml";
 const pForestO = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor];
 const pForestD = [tForestFloor + TERRAIN_SEPARATOR + oDead, tForestFloor + TERRAIN_SEPARATOR + oDead, tForestFloor];
 
-const BUILDING_ANGlE = 0.75*PI;
+const BUILDING_ANGlE = -PI/4;
 
 log("Initializing map...");
 

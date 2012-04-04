@@ -44,7 +44,7 @@ var aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 
 var pForestD = [tGrassDForest + TERRAIN_SEPARATOR + oBeech, tGrassDForest];
 var pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oOak, tGrassPForest];
-const BUILDING_ANGlE = 0.75*PI;
+const BUILDING_ANGlE = -PI/4;
 
 // initialize map
 
@@ -103,13 +103,13 @@ for (var i=0; i < numPlayers; i++)
 	var uSpace = 2;
 	for (var j = 1; j < startEntities.length - 1; ++j)
 	{
-		var uAngle = -BUILDING_ANGlE + PI * (j - 1) / 2;
+		var uAngle = BUILDING_ANGlE - PI * (2-j) / 2;
 		var count = (startEntities[j].Count !== undefined ? startEntities[j].Count : 1);
 		for (var numberofentities = 0; numberofentities < count; numberofentities++)
 		{
 			var ux = playerX[i] + uDist * cos(uAngle) + numberofentities * uSpace * cos(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * cos(uAngle + PI/2));
 			var uz = playerZ[i] + uDist * sin(uAngle) + numberofentities * uSpace * sin(uAngle + PI/2) - (0.75 * uSpace * floor(count / 2) * sin(uAngle + PI/2));
-			placeObject(ux, uz, startEntities[j].Template, i+1, (j % 2 - 1) * PI + uAngle);
+			placeObject(ux, uz, startEntities[j].Template, i+1, uAngle);
 		}
 	}
 	// create resources

@@ -50,7 +50,7 @@ var aLillies = "actor|props/flora/water_lillies.xml";
 var pForest = [tLush + TERRAIN_SEPARATOR + oDatePalm, tLush + TERRAIN_SEPARATOR + oSDatePalm, tLush];
 var pForestOasis = [tLush + TERRAIN_SEPARATOR + oDatePalm, tLush + TERRAIN_SEPARATOR + oSDatePalm, tLush];
 
-var BUILDING_ANGlE = 0.75*PI;
+const BUILDING_ANGlE = -PI/4;
 
 log("Initializing map...");
 

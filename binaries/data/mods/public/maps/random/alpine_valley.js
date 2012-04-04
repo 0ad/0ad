@@ -68,7 +68,7 @@ var aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 
 var pForestD = [tGrassDForest + TERRAIN_SEPARATOR + oPine, tGrassDForest];
 var pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oPine, tGrassPForest];
-const BUILDING_ANGlE = 0.75*PI;
+const BUILDING_ANGlE = -PI/4;
 
 // initialize map
 
