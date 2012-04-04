@@ -94,9 +94,15 @@ static CStrInternInternals* GetString(const char* str, size_t len)
 	// to be thread-safe, preferably without sacrificing performance.)
 	ENSURE(ThreadUtil::IsMainThread());
 
+#if BOOST_VERSION >= 104200
 	StringsKeyProxy proxy = { str, len };
 	boost::unordered_map<StringsKey, shared_ptr<CStrInternInternals> >::iterator it =
 		g_Strings.find(proxy, StringsKeyProxyHash(), StringsKeyProxyEq());
+#else
+	// Boost <= 1.41 doesn't support the new find(), so do a slightly less efficient lookup
+	boost::unordered_map<StringsKey, shared_ptr<CStrInternInternals> >::iterator it =
+		g_Strings.find(str);
+#endif
 
 	if (it != g_Strings.end())
 		return it->second.get();
