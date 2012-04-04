@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>skeletal/f_tights.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/misc_head_ninja_fem.xml" attachpoint="head"/>
+      </props>
+      <texture>skeletal/ninja_female.png</texture>
+    </variant>
+  </group>
+</actor>
