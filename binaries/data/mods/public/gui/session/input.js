@@ -269,12 +269,14 @@ function getActionInfo(action, target)
 			break;
 		case "setup-trade-route":
 			// If ground or sea trade possible
-			if ((entState.trader && hasClass(entState, "Organic") && (playerOwned || allyOwned) && hasClass(targetState, "Market")) ||
-				(entState.trader && hasClass(entState, "Ship") && (playerOwned || allyOwned) && hasClass(targetState, "NavalMarket")))
+			if (!targetState.foundation && ((entState.trader && hasClass(entState, "Organic") && (playerOwned || allyOwned) && hasClass(targetState, "Market")) ||
+				(entState.trader && hasClass(entState, "Ship") && (playerOwned || allyOwned) && hasClass(targetState, "NavalMarket"))))
 			{
 				var tradingData = {"trader": entState.id, "target": target};
 				var tradingDetails = Engine.GuiInterfaceCall("GetTradingDetails", tradingData);
 				var tooltip;
+				if (tradingDetails === null)
+					return {"possible": false};
 				switch (tradingDetails.type)
 				{
 				case "is first":

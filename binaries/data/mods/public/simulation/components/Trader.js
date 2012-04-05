@@ -166,6 +166,10 @@ Trader.prototype.CanTrade = function(target)
 	// Check that the target exists
 	if (!cmpTargetIdentity)
 		return false;
+	// Check that the target is not a foundation
+	var cmpTargetFoundation = Engine.QueryInterface(target, IID_Foundation);
+	if (cmpTargetFoundation)
+		return false;
 	var landTradingPossible = cmpTraderIdentity.HasClass("Organic") && cmpTargetIdentity.HasClass("Market");
 	var seaTradingPossible = cmpTraderIdentity.HasClass("Ship") && cmpTargetIdentity.HasClass("NavalMarket");
 	if (!landTradingPossible && !seaTradingPossible)
