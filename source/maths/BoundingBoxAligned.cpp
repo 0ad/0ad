@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -217,6 +217,12 @@ void CBoundingBoxAligned::Transform(const CMatrix3D& transform, CBoundingBoxOrie
 // Intersect with the given frustum in a conservative manner
 void CBoundingBoxAligned::IntersectFrustumConservative(const CFrustum& frustum)
 {
+	// if this bound is empty, then the result must be empty (we should not attempt to intersect with
+	// a brush, may cause crashes due to the numeric representation of empty bounds -- see 
+	// http://trac.wildfiregames.com/ticket/1027)
+	if (IsEmpty())
+		return;
+
 	CBrush brush(*this);
 	CBrush buf;
 
