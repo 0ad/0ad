@@ -56,21 +56,19 @@ QBotAI.prototype.runInit = function(gameState){
 			myKeyEntities = gameState.getOwnEntities();
 		}
 		
-		var filter = Filters.and(Filters.isEnemy(), Filters.byClass("CivCentre"));
-		var enemyKeyEntities = gameState.getEntities().filter(function(ent) {
-			return ent.hasClass("CivCentre") && gameState.isEntityEnemy(ent);
-		});
+		
+		var filter = Filters.byClass("CivCentre");
+		var enemyKeyEntities = gameState.getEnemyEntities().filter(filter);
 		
 		if (enemyKeyEntities.length == 0){
-			enemyKeyEntities = gameState.getEntities().filter(function(ent) {
-				return gameState.isEntityEnemy(ent);
-			});
+			enemyKeyEntities = gameState.getEnemyEntities();
 		}
 		
 		this.accessibility = new Accessibility(gameState, myKeyEntities.toEntityArray()[0].position());
 		
 		if (enemyKeyEntities.length == 0)
 			return;
+		
 		var pathFinder = new PathFinder(gameState);
 		this.pathsToMe = pathFinder.getPaths(enemyKeyEntities.toEntityArray()[0].position(), myKeyEntities.toEntityArray()[0].position(), 'entryPoints');
 	}
@@ -159,11 +157,11 @@ function debug(output){
 	}
 }
 
-function copyPrototype(descendant, parent) {  
-    var sConstructor = parent.toString();  
-    var aMatch = sConstructor.match( /\s*function (.*)\(/ );  
-    if ( aMatch != null ) { descendant.prototype[aMatch[1]] = parent; }  
-    for (var m in parent.prototype) {  
-        descendant.prototype[m] = parent.prototype[m];  
-    }  
+function copyPrototype(descendant, parent) {
+    var sConstructor = parent.toString();
+    var aMatch = sConstructor.match( /\s*function (.*)\(/ );
+    if ( aMatch != null ) { descendant.prototype[aMatch[1]] = parent; }
+    for (var m in parent.prototype) {
+        descendant.prototype[m] = parent.prototype[m];
+    }
 }

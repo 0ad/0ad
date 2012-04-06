@@ -105,6 +105,20 @@ AIProxy.prototype.OnUnitIdleChanged = function(msg)
 	this.changes.idle = msg.idle;
 };
 
+AIProxy.prototype.OnUnitAIStateChanged = function(msg)
+{
+	this.NotifyChange();
+
+	this.changes.unitAIState = msg.to;
+};
+
+AIProxy.prototype.OnUnitAIOrderDataChanged = function(msg)
+{
+	this.NotifyChange();
+
+	this.changes.unitAIOrderData = msg.to;
+};
+
 AIProxy.prototype.OnTrainingQueueChanged = function(msg)
 {
 	this.NotifyChange();
@@ -168,6 +182,10 @@ AIProxy.prototype.GetFullRepresentation = function()
 	{
 		// Updated by OnUnitIdleChanged
 		ret.idle = cmpUnitAI.IsIdle();
+		// Updated by OnUnitAIStateChanged
+		ret.unitAIState = cmpUnitAI.GetCurrentState();
+		// Updated by OnUnitAIOrderDataChanged
+		ret.unitAIOrderData = cmpUnitAI.GetOrderData();
 	}
 
 	var cmpTrainingQueue = Engine.QueryInterface(this.entity, IID_TrainingQueue);

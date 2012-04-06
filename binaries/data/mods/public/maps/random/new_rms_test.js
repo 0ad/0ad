@@ -1,6 +1,6 @@
 RMS.LoadLibrary("rmgen");
 
-const BUILDING_ANGlE = 0.75*PI;
+const BUILDING_ANGlE = -PI/4;
 
 // initialize map
 

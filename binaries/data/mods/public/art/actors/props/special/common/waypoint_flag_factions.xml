@@ -3,10 +3,10 @@
   <castshadow/>
   <group>
     <variant frequency="100">
+      <animations>
+        <animation file="mechanical/waypoint_flag_idle.dae" name="Idle" speed="30"/>
+      </animations>
       <mesh>props/waypoint_flag.dae</mesh>
-      <animations> 
-        <animation file="mechanical/waypoint_flag_idle.dae" name="Idle" speed="30"/>		
-      </animations> 
     </variant>
   </group>
   <group>
@@ -27,6 +27,12 @@
     </variant>
     <variant name="waypoint_romans">
       <texture>props/banner_romans.png</texture>
+    </variant>
+    <variant name="waypoint_spartans">
+      <texture>props/banner_spartans.png</texture>
+    </variant>
+    <variant name="waypoint_macedonians">
+      <texture>props/banner_macedonians.png</texture>
     </variant>
   </group>
   <material>basic_trans.xml</material>

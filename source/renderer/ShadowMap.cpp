@@ -224,10 +224,18 @@ void ShadowMap::AddShadowedBound(const CBoundingBoxAligned& bounds)
 void ShadowMapInternals::CalcShadowMatrices()
 {
 	CRenderer& renderer = g_Renderer;
-
 	float minZ = ShadowBound[0].Z;
 
 	ShadowBound.IntersectFrustumConservative(LightspaceCamera.GetFrustum());
+
+	// ShadowBound might have been empty to begin with, producing an empty result
+	if (ShadowBound.IsEmpty())
+	{
+		// no-op
+		LightProjection.SetIdentity();
+		TextureMatrix = LightTransform;
+		return;
+	}
 
 	// round off the shadow boundaries to sane increments to help reduce swim effect
 	float boundInc = 16.0f;
@@ -270,14 +278,14 @@ void ShadowMapInternals::CalcShadowMatrices()
 	LightProjection._34 = shift.Z * scale.Z + renderer.m_ShadowZBias;
 	LightProjection._44 = 1.0;
 
-
 	// Calculate texture matrix by creating the clip space to texture coordinate matrix
 	// and then concatenating all matrices that have been calculated so far
-	CMatrix3D lightToTex;
+
 	float texscalex = scale.X * 0.5f * (float)EffectiveWidth / (float)Width;
 	float texscaley = scale.Y * 0.5f * (float)EffectiveHeight / (float)Height;
 	float texscalez = scale.Z * 0.5f;
 
+	CMatrix3D lightToTex;
 	lightToTex.SetZero();
 	lightToTex._11 = texscalex;
 	lightToTex._14 = (offsetX - ShadowBound[0].X) * texscalex;

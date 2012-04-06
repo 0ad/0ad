@@ -126,6 +126,7 @@ public:
 	 *
 	 * @note While not in the spirit of this function's purpose, a no-op would be a correct
 	 * implementation of this function.
+	 * @note If this bound is empty, the result is the empty bound.
 	 *
 	 * @param frustum the frustum to intersect with
 	 */

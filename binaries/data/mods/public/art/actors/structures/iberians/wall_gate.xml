@@ -2,11 +2,10 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="base">
-      <mesh>structural/iber_wall_gate_new.dae</mesh>
+    <variant frequency="100" name="gate">
+      <mesh>structural/iber_wall_gate.dae</mesh>
       <props>
-        <prop actor="props/structures/iberians/gate_door_1.xml" attachpoint="root"/>
-        <prop actor="props/structures/iberians/gate_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/iberians/wall_gate_shields.xml" attachpoint="root"/>
       </props>
       <texture>structural/iber_struct.dds</texture>
     </variant>
@@ -23,4 +22,5 @@
       </props>
     </variant>
   </group>
+  <material>player_trans.xml</material>
 </actor>

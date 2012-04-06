@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,16 +18,30 @@
 #include "lib/self_test.h"
 
 #include "maths/BoundingBoxAligned.h"
+#include "maths/BoundingBoxOriented.h"
 
 class TestBound : public CxxTest::TestSuite 
 {
 public:
-	void test_empty()
+	void test_empty_aabb()
 	{
 		CBoundingBoxAligned bound;
 		TS_ASSERT(bound.IsEmpty());
 		bound += CVector3D(1, 2, 3);
 		TS_ASSERT(! bound.IsEmpty());
+		bound.SetEmpty();
+		TS_ASSERT(bound.IsEmpty());
+	}
+
+	void test_empty_obb()
+	{
+		CBoundingBoxOriented bound;
+		TS_ASSERT(bound.IsEmpty());
+		bound.m_Basis[0] = CVector3D(1,0,0);
+		bound.m_Basis[1] = CVector3D(0,1,0);
+		bound.m_Basis[2] = CVector3D(0,0,1);
+		bound.m_HalfSizes = CVector3D(1,2,3);
+		TS_ASSERT(!bound.IsEmpty());
 		bound.SetEmpty();
 		TS_ASSERT(bound.IsEmpty());
 	}

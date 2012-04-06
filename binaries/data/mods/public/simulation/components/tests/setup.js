@@ -47,9 +47,16 @@ Engine.DestroyEntity = function(ent)
 	// TODO: should send Destroy message
 };
 
-// TODO:
-//  Engine.PostMessage
-//  Engine.BroadcastMessage
+Engine.PostMessage = function(ent, iid, message)
+{
+	// TODO: make this send a message if necessary
+};
+
+
+Engine.BroadcastMessage = function(iid, message)
+{
+	// TODO: make this send a message if necessary
+}; 
 
 global.ResetState = function()
 {

@@ -1486,12 +1486,17 @@ UnitAI.prototype.IsGarrisoned = function()
 UnitAI.prototype.OnCreate = function()
 {
 	if (this.IsAnimal())
-		UnitFsm.Init(this, "ANIMAL.FEEDING");
+		UnitFsm.Init(this, "ANIMAL.FEEDING", this.StateChanged);
 	else if (this.IsFormationController())
-		UnitFsm.Init(this, "FORMATIONCONTROLLER.IDLE");
+		UnitFsm.Init(this, "FORMATIONCONTROLLER.IDLE", this.StateChanged);
 	else
-		UnitFsm.Init(this, "INDIVIDUAL.IDLE");
+		UnitFsm.Init(this, "INDIVIDUAL.IDLE", this.StateChanged);
 };
+
+UnitAI.prototype.StateChanged = function()
+{
+	Engine.PostMessage(this.entity, MT_UnitAIStateChanged, { "to": this.GetCurrentState()});
+}
 
 UnitAI.prototype.OnOwnershipChanged = function(msg)
 {
@@ -1557,6 +1562,11 @@ UnitAI.prototype.DeferMessage = function(msg)
 	UnitFsm.DeferMessage(this, msg);
 };
 
+UnitAI.prototype.GetCurrentState = function()
+{
+	return UnitFsm.GetCurrentState(this);
+};
+
 /**
  * Call when the current order has been completed (or failed).
  * Removes the current order from the queue, and processes the
@@ -1576,6 +1586,8 @@ UnitAI.prototype.FinishOrder = function()
 		var ret = UnitFsm.ProcessMessage(this,
 			{"type": "Order."+this.order.type, "data": this.order.data}
 		);
+		
+		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData()});
 
 		// If the order was rejected then immediately take it off
 		// and process the remaining queue
@@ -1610,6 +1622,8 @@ UnitAI.prototype.PushOrder = function(type, data)
 		var ret = UnitFsm.ProcessMessage(this,
 			{"type": "Order."+this.order.type, "data": this.order.data}
 		);
+		
+		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData()});
 
 		// If the order was rejected then immediately take it off
 		// and process the remaining queue
@@ -1640,6 +1654,8 @@ UnitAI.prototype.PushOrderFront = function(type, data)
 		var ret = UnitFsm.ProcessMessage(this,
 			{"type": "Order."+this.order.type, "data": this.order.data}
 		);
+		
+		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData()});
 
 		// If the order was rejected then immediately take it off again;
 		// assume the previous active order is still valid (the short-lived
@@ -1680,6 +1696,16 @@ UnitAI.prototype.AddOrders = function(orders)
 	{
 		this.PushOrder(order.type, order.data);
 	}
+}
+
+UnitAI.prototype.GetOrderData = function()
+{
+	if (this.order && this.order.data)
+	{
+		return eval(uneval(this.order.data)); // return a copy
+	}
+	else
+		return undefined;
 }
 
 UnitAI.prototype.TimerHandler = function(data, lateness)

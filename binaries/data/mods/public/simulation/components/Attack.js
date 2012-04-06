@@ -225,6 +225,9 @@ Attack.prototype.PerformAttack = function(type, target)
 
 		// Find the distance to the target
 		var selfPosition = Engine.QueryInterface(this.entity, IID_Position).GetPosition();
+		var cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
+		if (!cmpTargetPosition)
+			return;
 		var targetPosition = Engine.QueryInterface(target, IID_Position).GetPosition();
 		var horizDistance = Math.sqrt(Math.pow(targetPosition.x - selfPosition.x, 2) + Math.pow(targetPosition.z - selfPosition.z, 2));
 

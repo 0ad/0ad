@@ -13,7 +13,23 @@ var GameState = function(ai) {
 	this.playerData = ai.playerData;
 	this.buildingsBuilt = 0;
 	
+	if (!this.ai._gameStateStore){
+		this.ai._gameStateStore = {};
+	}
+	this.store = this.ai._gameStateStore;
+	
 	this.cellSize = 4; // Size of each map tile
+	
+	this.turnCache = {};
+};
+
+GameState.prototype.updatingCollection = function(id, filter, collection){
+	if (!this.store[id]){
+		this.store[id] = collection.filter(filter);
+		this.store[id].registerUpdates();
+	}
+	
+	return this.store[id];
 };
 
 GameState.prototype.getTimeElapsed = function() {
@@ -21,8 +37,10 @@ GameState.prototype.getTimeElapsed = function() {
 };
 
 GameState.prototype.getTemplate = function(type) {
-	if (!this.templates[type])
+	if (!this.templates[type]){
 		return null;
+	}
+	
 	return new EntityTemplate(this.templates[type]);
 };
 
@@ -58,8 +76,9 @@ GameState.prototype.getPopulationMax = function() {
 };
 
 GameState.prototype.getPassabilityClassMask = function(name) {
-	if (!(name in this.ai.passabilityClasses))
+	if (!(name in this.ai.passabilityClasses)){
 		error("Tried to use invalid passability class name '" + name + "'");
+	}
 	return this.ai.passabilityClasses[name];
 };
 
@@ -73,6 +92,16 @@ GameState.prototype.isPlayerAlly = function(id) {
 
 GameState.prototype.isPlayerEnemy = function(id) {
 	return this.playerData.isEnemy[id];
+};
+
+GameState.prototype.getEnemies = function(){
+	var ret = [];
+	for (i in this.playerData.isEnemy){
+		if (this.playerData.isEnemy[i]){
+			ret.push(i);
+		}
+	}
+	return ret;
 };
 
 GameState.prototype.isEntityAlly = function(ent) {
@@ -103,7 +132,36 @@ GameState.prototype.isEntityOwn = function(ent) {
 };
 
 GameState.prototype.getOwnEntities = function() {
-	return new EntityCollection(this.ai, this.ai._ownEntities);
+	if (!this.store.ownEntities){
+		this.store.ownEntities = this.getEntities().filter(Filters.byOwner(this.player));
+		this.store.ownEntities.registerUpdates();
+	}
+	
+	return this.store.ownEntities;
+};
+
+GameState.prototype.getEnemyEntities = function() {
+	var diplomacyChange = false;
+	var enemies = this.getEnemies();
+	if (this.store.enemies){
+		if (this.store.enemies.length != enemies.length){
+			diplomacyChange = true;
+		}else{
+			for (var i  = 0; i < enemies.length; i++){
+				if (enemies[i] !== this.store.enemies[i]){
+					diplomacyChange = true;
+				}
+			}
+		}
+	}
+	if (diplomacyChange || !this.store.enemyEntities){
+		var filter = Filters.byOwners(enemies);
+		this.store.enemyEntities = this.getEntities().filter(filter);
+		this.store.enemyEntities.registerUpdates();
+		this.store.enemies = enemies;
+	}
+	
+	return this.store.enemyEntities;
 };
 
 GameState.prototype.getEntities = function() {
@@ -119,51 +177,49 @@ GameState.prototype.getEntityById = function(id){
 	return undefined;
 };
 
-GameState.prototype.getOwnEntitiesWithRole = Memoize('getOwnEntitiesWithRole', function(role) {
-	var metas = this.ai._entityMetadata;
-	if (role === undefined)
-		return this.getOwnEntities().filter_raw(function(ent) {
-			var metadata = metas[ent.id];
-			if (!metadata || !('role' in metadata))
-				return true;
-			return (metadata.role === undefined);
-		});
-	else
-		return this.getOwnEntities().filter_raw(function(ent) {
-			var metadata = metas[ent.id];
-			if (!metadata || !('role' in metadata))
-				return false;
-			return (metadata.role === role);
-		});
-});
-
-GameState.prototype.countEntitiesWithType = function(type) {
-	var count = 0;
-	this.getOwnEntities().forEach(function(ent) {
-		var t = ent.templateName();
-		if (t == type)
-			++count;
-	});
-	return count;
+GameState.prototype.getOwnEntitiesByMetadata = function(key, value){
+	if (!this.store[key + "-" + value]){
+		var filter = Filters.byMetadata(key, value);
+		this.store[key + "-" + value] = this.getOwnEntities().filter(filter);
+		this.store[key + "-" + value].registerUpdates();
+	}
+	
+	return this.store[key + "-" + value];
 };
 
-GameState.prototype.countEntitiesAndQueuedWithType = function(type) {
-	var foundationType = "foundation|" + type;
-	var count = 0;
-	this.getOwnEntities().forEach(function(ent) {
+GameState.prototype.getOwnEntitiesByRole = function(role){
+	return this.getOwnEntitiesByMetadata("role", role);
+};
 
-		var t = ent.templateName();
-		if (t == type || t == foundationType)
-			++count;
+// TODO: fix this so it picks up not in use training stuff
+GameState.prototype.getOwnTrainingFacilities = function(){
+	return this.updatingCollection("own-training-facilities", Filters.byTrainingQueue(), this.getOwnEntities());
+};
 
-		var queue = ent.trainingQueue();
-		if (queue) {
-			queue.forEach(function(item) {
-				if (item.template == type)
-					count += item.count;
-			});
-		}
+GameState.prototype.getOwnEntitiesByType = function(type){
+	var filter = Filters.byType(type);
+	return this.updatingCollection("own-by-type-" + type, filter, this.getOwnEntities());
+};
+
+GameState.prototype.countEntitiesByType = function(type) {
+	return this.getOwnEntitiesByType(type).length;
+};
+
+GameState.prototype.countEntitiesAndQueuedByType = function(type) {
+	var count = this.countEntitiesByType(type);
+	
+	// Count building foundations
+	count += this.countEntitiesByType("foundation|" + type);
+	
+	// Count entities in building production queues
+	this.getOwnTrainingFacilities().forEach(function(ent){
+		ent.trainingQueue().forEach(function(item) {
+			if (item.template == type){
+				count += item.count;
+			}
+		});
 	});
+	
 	return count;
 };
 
@@ -178,20 +234,19 @@ GameState.prototype.countFoundationsWithType = function(type) {
 	return count;
 };
 
-GameState.prototype.countEntitiesAndQueuedWithRole = function(role) {
-	var count = 0;
-	this.getOwnEntities().forEach(function(ent) {
+GameState.prototype.countOwnEntitiesByRole = function(role) {
+	return this.getOwnEntitiesByRole(role).length;
+};
 
-		if (ent.getMetadata("role") == role)
-			++count;
-
-		var queue = ent.trainingQueue();
-		if (queue) {
-			queue.forEach(function(item) {
-				if (item.metadata && item.metadata.role == role)
-					count += item.count;
-			});
-		}
+GameState.prototype.countOwnEntitiesAndQueuedWithRole = function(role) {
+	var count = this.countOwnEntitiesByRole(role);
+	
+	// Count entities in building production queues
+	this.getOwnTrainingFacilities().forEach(function(ent) {
+		ent.trainingQueue().forEach(function(item) {
+			if (item.metadata && item.metadata.role == role)
+				count += item.count;
+		});
 	});
 	return count;
 };
@@ -201,10 +256,9 @@ GameState.prototype.countEntitiesAndQueuedWithRole = function(role) {
  * already too busy.
  */
 GameState.prototype.findTrainers = function(template) {
-	var maxQueueLength = 2; // avoid tying up resources in giant training
-	// queues
-
-	return this.getOwnEntities().filter(function(ent) {
+	var maxQueueLength = 2; // avoid tying up resources in giant training queues
+	
+	return this.getOwnTrainingFacilities().filter(function(ent) {
 
 		var trainable = ent.trainableEntities();
 		if (!trainable || trainable.indexOf(template) == -1)
@@ -234,41 +288,17 @@ GameState.prototype.findBuilders = function(template) {
 	});
 };
 
-GameState.prototype.findFoundations = function(template) {
-	return this.getOwnEntities().filter(function(ent) {
-		return (ent.foundationProgress() !== undefined);
-	});
+GameState.prototype.getOwnFoundations = function() {
+	return this.updatingCollection("ownFoundations", Filters.isFoundation(), this.getOwnEntities());
 };
 
-GameState.prototype.findResourceSupplies = function() {
-	var supplies = {};
-	this.entities.forEach(function(ent) {
-		var type = ent.resourceSupplyType();
-		if (!type)
-			return;
-		var amount = ent.resourceSupplyAmount();
-		if (!amount)
-			return;
-
-		var reportedType;
-		if (type.generic == "treasure")
-			reportedType = type.specific;
-		else
-			reportedType = type.generic;
-
-		if (!supplies[reportedType])
-			supplies[reportedType] = [];
-
-		supplies[reportedType].push({
-			"entity" : ent,
-			"amount" : amount,
-			"type" : type,
-			"position" : ent.position()
-		});
-	});
-	return supplies;
+GameState.prototype.getOwnDropsites = function(resource){
+	return this.updatingCollection("dropsite-own-" + resource, Filters.isDropsite(resource), this.getOwnEntities());
 };
 
+GameState.prototype.getResourceSupplies = function(resource){
+	return this.updatingCollection("resource-" + resource, Filters.byResource(resource), this.getEntities());
+};
 
 GameState.prototype.getBuildLimits = function() {
 	return this.playerData.buildLimits;
@@ -278,6 +308,7 @@ GameState.prototype.getBuildCounts = function() {
 	return this.playerData.buildCounts;
 };
 
+// Checks whether the maximum number of buildings have been cnstructed for a certain catergory
 GameState.prototype.isBuildLimitReached = function(category) {
 	if(this.playerData.buildLimits[category] === undefined || this.playerData.buildCounts[category] === undefined)
 		return false;

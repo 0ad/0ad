@@ -326,6 +326,8 @@ Map.prototype.getMapData = function()
 	// Now other entities
 	for (var i = 0; i < this.objects.length; ++i)
 	{
+		// Change rotation from simple 2d to 3d befor giving to engine
+		this.objects[i].rotation.y = PI/2 - this.objects[i].rotation.y;
 		entities.push(this.objects[i]);
 	}
 	data["entities"] = entities;

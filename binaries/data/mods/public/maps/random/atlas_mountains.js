@@ -45,7 +45,7 @@ const aAleppoPine = "actor|flora/trees/aleppo_pine.xml";
 const pForestD = [tGrassDForest + TERRAIN_SEPARATOR + oCarob, tGrassDForest];
 const pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oAleppoPine, tGrassPForest];
 
-const BUILDING_ANGlE = 0.75*PI;
+const BUILDING_ANGlE = -PI/4;
 
 // initialize map
 
