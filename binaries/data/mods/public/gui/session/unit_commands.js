@@ -312,7 +312,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			button.enabled = formationOk;
 			if (!formationOk)
  			{
-				icon.sprite = "stretched:session/icons/formations/formation-"+item.replace(/\s+/,'').toLowerCase()+".png";
+				icon.sprite = "stretched:grayscale:session/icons/formations/formation-"+item.replace(/\s+/,'').toLowerCase()+".png";
 				
 				// Display a meaningful tooltip why the formation is disabled
 				var requirements = Engine.GuiInterfaceCall("GetFormationRequirements", {
@@ -342,7 +342,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				if (formationSelected)
 					icon.sprite = "stretched:session/icons/formations/formation-"+item.replace(/\s+/,'').toLowerCase()+"-selected.png";
 				else
-					icon.sprite = "stretched:session/icons/formations/formation-"+item.replace(/\s+/,'').toLowerCase()+"-available.png";
+					icon.sprite = "stretched:session/icons/formations/formation-"+item.replace(/\s+/,'').toLowerCase()+".png";
  			}
  		}
 		else if (guiName == "Stance")
