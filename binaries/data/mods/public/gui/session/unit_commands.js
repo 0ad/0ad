@@ -414,14 +414,14 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 }
 
 // Sets up "unit trading panel" - special case for setupUnitPanel
-function setupUnitTradingPanel(unitEntState)
+function setupUnitTradingPanel(unitEntState, selection)
 {
 	for (var i = 0; i < TRADING_RESOURCES.length; i++)
 	{
 		var resource = TRADING_RESOURCES[i];
 		var button = getGUIObjectByName("unitTradingButton["+i+"]");
 		button.size = (i * 46) + " 0 " + ((i + 1) * 46) + " 46";
-		var selectTradingPreferredGoodsData = { "trader": unitEntState.id, "preferredGoods": resource };
+		var selectTradingPreferredGoodsData = { "entities": selection, "preferredGoods": resource };
 		button.onpress = (function(e){ return function() { selectTradingPreferredGoods(e); } })(selectTradingPreferredGoodsData);
 		button.enabled = true;
 		button.tooltip = "Set " + resource + " as trading goods";
@@ -574,7 +574,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		if (entState.trader)
 		{
 			usedPanels["Trading"] = 1;
-			setupUnitTradingPanel(entState);
+			setupUnitTradingPanel(entState, selection);
 		}
 
 //		supplementalDetailsPanel.hidden = false;
