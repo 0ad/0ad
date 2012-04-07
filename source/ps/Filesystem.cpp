@@ -96,6 +96,7 @@ Status ReloadChangedFiles()
 
 
 CVFSFile::CVFSFile()
+	: m_BufferSize(0)
 {
 }
 
@@ -116,6 +117,8 @@ PSRETURN CVFSFile::Load(const PIVFS& vfs, const VfsPath& filename)
 	if (ret != INFO::OK)
 	{
 		LOGERROR(L"CVFSFile: file %ls couldn't be opened (vfs_load: %lld)", filename.string().c_str(), (long long)ret);
+		m_Buffer.reset();
+		m_BufferSize = 0;
 		return PSRETURN_CVFSFile_LoadFailed;
 	}
 
@@ -124,14 +127,6 @@ PSRETURN CVFSFile::Load(const PIVFS& vfs, const VfsPath& filename)
 
 const u8* CVFSFile::GetBuffer() const
 {
-	// Die in a very obvious way, to avoid subtle problems caused by
-	// accidentally forgetting to check that the open succeeded
-	if (!m_Buffer)
-	{
-		debug_warn(L"GetBuffer() called with no file loaded");
-		throw PSERROR_CVFSFile_InvalidBufferAccess();
-	}
-
 	return m_Buffer.get();
 }
 
