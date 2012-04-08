@@ -86,7 +86,7 @@ typename CShaderParams<value_t>::SItems* CShaderParams<value_t>::GetInterned(con
 {
 	ENSURE(ThreadUtil::IsMainThread()); // s_InternedItems is not thread-safe
 
-	InternedItems_t::iterator it = s_InternedItems.find(items);
+	typename InternedItems_t::iterator it = s_InternedItems.find(items);
 	if (it != s_InternedItems.end())
 		return it->second.get();
 
@@ -113,10 +113,10 @@ void CShaderParams<value_t>::Set(CStrIntern name, const value_t& value)
 {
 	SItems items = *m_Items;
 
-	SItems::Item addedItem = std::make_pair(name, value);
+	typename SItems::Item addedItem = std::make_pair(name, value);
 
 	// Add the new item in a way that preserves the sortedness and uniqueness of item names
-	for (std::vector<SItems::Item>::iterator it = items.items.begin(); ; ++it)
+	for (typename std::vector<typename SItems::Item>::iterator it = items.items.begin(); ; ++it)
 	{
 		if (it == items.items.end() || addedItem.first < it->first)
 		{
@@ -234,8 +234,8 @@ void CShaderUniforms::BindUniforms(const CShaderProgramPtr& shader) const
 
 // Explicit instantiations:
 
-boost::unordered_map<CShaderParams<CStrIntern>::SItems, shared_ptr<CShaderParams<CStrIntern>::SItems> > CShaderParams<CStrIntern>::s_InternedItems;
-boost::unordered_map<CShaderParams<CVector4D>::SItems, shared_ptr<CShaderParams<CVector4D>::SItems> > CShaderParams<CVector4D>::s_InternedItems;
+template<> CShaderParams<CStrIntern>::InternedItems_t CShaderParams<CStrIntern>::s_InternedItems = CShaderParams<CStrIntern>::InternedItems_t();
+template<> CShaderParams<CVector4D>::InternedItems_t CShaderParams<CVector4D>::s_InternedItems = CShaderParams<CVector4D>::InternedItems_t();
 
 template class CShaderParams<CStrIntern>;
 template class CShaderParams<CVector4D>;
