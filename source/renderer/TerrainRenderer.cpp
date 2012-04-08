@@ -395,6 +395,7 @@ void TerrainRenderer::RenderTerrain(bool filtered)
 void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* shadow)
 {
 	shader->Uniform("transform", g_Renderer.GetViewCamera().GetViewProjection());
+	shader->Uniform("cameraPos", g_Renderer.GetViewCamera().GetOrientation().GetTranslation());
 
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 
@@ -407,6 +408,10 @@ void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* 
 		shader->Uniform("shadowOffsets1", offsets[0], offsets[1], offsets[2], offsets[3]);
 		shader->Uniform("shadowOffsets2", offsets[4], offsets[5], offsets[6], offsets[7]);
 	}
+
+	shader->Uniform("ambient", lightEnv.m_UnitsAmbientColor);
+	shader->Uniform("sunDir", lightEnv.GetSunDir());
+	shader->Uniform("sunColor", lightEnv.m_SunColor);
 
 	CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
 	shader->BindTexture("losTex", los.GetTexture());
@@ -562,25 +567,25 @@ CBoundingBoxAligned TerrainRenderer::ScissorWater(const CMatrix3D &viewproj)
 		CVector4D v4 = viewproj.Transform(CVector4D(waterBounds[1].X, waterBounds[1].Y, waterBounds[1].Z, 1.0f));
 		CBoundingBoxAligned screenBounds;
 		#define ADDBOUND(v1, v2, v3, v4) \
-			if (v1[2] >= -v1[3]) \
-				screenBounds += CVector3D(v1[0], v1[1], v1[2]) * (1.0f / v1[3]); \
+			if (v1.Z >= -v1.W) \
+				screenBounds += CVector3D(v1.X, v1.Y, v1.Z) * (1.0f / v1.W); \
 			else \
 			{ \
-				float t = v1[2] + v1[3]; \
-				if (v2[2] > -v2[3]) \
+				float t = v1.Z + v1.W; \
+				if (v2.Z > -v2.W) \
 				{ \
-					CVector4D c2 = v1 + (v2 - v1) * (t / (t - (v2[2] + v2[3]))); \
-					screenBounds += CVector3D(c2[0], c2[1], c2[2]) * (1.0f / c2[3]); \
+					CVector4D c2 = v1 + (v2 - v1) * (t / (t - (v2.Z + v2.W))); \
+					screenBounds += CVector3D(c2.X, c2.Y, c2.Z) * (1.0f / c2.W); \
 				} \
-				if (v3[2] > -v3[3]) \
+				if (v3.Z > -v3.W) \
 				{ \
-					CVector4D c3 = v1 + (v3 - v1) * (t / (t - (v3[2] + v3[3]))); \
-					screenBounds += CVector3D(c3[0], c3[1], c3[2]) * (1.0f / c3[3]); \
+					CVector4D c3 = v1 + (v3 - v1) * (t / (t - (v3.Z + v3.W))); \
+					screenBounds += CVector3D(c3.X, c3.Y, c3.Z) * (1.0f / c3.W); \
 				} \
-				if (v4[2] > -v4[3]) \
+				if (v4.Z > -v4.W) \
 				{ \
-					CVector4D c4 = v1 + (v4 - v1) * (t / (t - (v4[2] + v4[3]))); \
-					screenBounds += CVector3D(c4[0], c4[1], c4[2]) * (1.0f / c4[3]); \
+					CVector4D c4 = v1 + (v4 - v1) * (t / (t - (v4.Z + v4.W))); \
+					screenBounds += CVector3D(c4.X, c4.Y, c4.Z) * (1.0f / c4.W); \
 				} \
 			}
 		ADDBOUND(v1, v2, v3, v4);

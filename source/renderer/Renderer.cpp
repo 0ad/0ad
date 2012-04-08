@@ -971,19 +971,19 @@ void CRenderer::SetObliqueFrustumClipping(const CVector4D& worldPlane)
 	// by the inverse of the projection matrix
 
 	CVector4D q;
-	q.m_X = (sgn(camPlane.m_X) - matrix[8]/matrix[11]) / matrix[0];
-	q.m_Y = (sgn(camPlane.m_Y) - matrix[9]/matrix[11]) / matrix[5];
-	q.m_Z = 1.0f/matrix[11];
-	q.m_W = (1.0f - matrix[10]/matrix[11]) / matrix[14];
+	q.X = (sgn(camPlane.X) - matrix[8]/matrix[11]) / matrix[0];
+	q.Y = (sgn(camPlane.Y) - matrix[9]/matrix[11]) / matrix[5];
+	q.Z = 1.0f/matrix[11];
+	q.W = (1.0f - matrix[10]/matrix[11]) / matrix[14];
 
 	// Calculate the scaled plane vector
 	CVector4D c = camPlane * (2.0f * matrix[11] / camPlane.Dot(q));
 
 	// Replace the third row of the projection matrix
-	matrix[2] = c.m_X;
-	matrix[6] = c.m_Y;
-	matrix[10] = c.m_Z - matrix[11];
-	matrix[14] = c.m_W;
+	matrix[2] = c.X;
+	matrix[6] = c.Y;
+	matrix[10] = c.Z - matrix[11];
+	matrix[14] = c.W;
 
 	// Load it back into the camera
 	m_ViewCamera.SetProjection(matrix);

@@ -137,6 +137,11 @@ const char* CStrIntern::c_str() const
 	return m->data.c_str();
 }
 
+size_t CStrIntern::length() const
+{
+	return m->data.length();
+}
+
 const std::string& CStrIntern::string() const
 {
 	return m->data;

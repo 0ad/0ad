@@ -16,10 +16,13 @@
  */
 
 #include "precompiled.h"
+
+#include "MaterialManager.h"
+
 #include "lib/ogl.h"
+#include "maths/Vector4D.h"
 #include "ps/Filesystem.h"
 #include "ps/XML/Xeromyces.h"
-#include "MaterialManager.h"
 
 CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 {
@@ -39,6 +42,7 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 	EL(alpha_blending);
 	EL(define);
 	EL(shader);
+	EL(uniform);
 	AT(effect);
 	AT(name);
 	AT(value);
@@ -65,6 +69,13 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 		else if (token == el_define)
 		{
 			material.AddShaderDefine(attrs.GetNamedItem(at_name).c_str(), attrs.GetNamedItem(at_value).c_str());
+		}
+		else if (token == el_uniform)
+		{
+			std::stringstream str(attrs.GetNamedItem(at_value));
+			CVector4D vec;
+			str >> vec.X >> vec.Y >> vec.Z >> vec.W;
+			material.AddStaticUniform(attrs.GetNamedItem(at_name).c_str(), vec);
 		}
 	}
 

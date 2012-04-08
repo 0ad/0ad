@@ -36,11 +36,6 @@ public:
 	void SetUsesAlphaBlending(bool flag) { m_AlphaBlending = flag; }
  	bool UsesAlphaBlending() { return m_AlphaBlending; }
 
-	// Color used for "objectColor" in shaders when USE_OBJECTCOLOR is set,
-	// to allow e.g. variations in horse colorings
-	void SetObjectColor(const CColor &colour);
-	CColor GetObjectColor() { return m_ObjectColor; }
-
 	void SetDiffuseTexture(const CTexturePtr& texture);
 	const CTexturePtr& GetDiffuseTexture() const { return m_DiffuseTexture; }
 
@@ -50,15 +45,18 @@ public:
 	void AddShaderDefine(const char* key, const char* value);
 	const CShaderDefines& GetShaderDefines() const { return m_ShaderDefines; }
 
+	void AddStaticUniform(const char* key, const CVector4D& value);
+	const CShaderUniforms& GetStaticUniforms() const { return m_StaticUniforms; }
+
 private:
 	CTexturePtr m_DiffuseTexture;
 	CStrIntern m_ShaderEffect;
 	CShaderDefines m_ShaderDefines;
+	CShaderUniforms m_StaticUniforms;
 
 	bool m_AlphaBlending;
 
 	player_id_t m_PlayerID;
-	CColor m_ObjectColor;
 };
 
 #endif

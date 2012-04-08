@@ -95,7 +95,7 @@ void CCinemaPath::DrawSpline(const CVector4D& RGBA, int smoothness, bool lines) 
 #warning TODO: do something about CCinemaPath on GLES
 #else
 
-	glColor4f( RGBA.m_X, RGBA.m_Y, RGBA.m_Z, RGBA.m_W );
+	glColor4f( RGBA.X, RGBA.Y, RGBA.Z, RGBA.W );
 	if ( lines )
 	{	
 		glLineWidth(1.8f);

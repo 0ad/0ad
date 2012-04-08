@@ -31,6 +31,7 @@ class CMatrix3D;
 class CVector3D;
 class CPreprocessor;
 class CShaderDefines;
+class CStrIntern;
 
 // Vertex data stream flags
 enum
@@ -69,7 +70,7 @@ public:
 	 */
 	static CShaderProgram* ConstructARB(const VfsPath& vertexFile, const VfsPath& fragmentFile,
 		const CShaderDefines& defines,
-		const std::map<CStr, int>& vertexIndexes, const std::map<CStr, int>& fragmentIndexes,
+		const std::map<CStrIntern, int>& vertexIndexes, const std::map<CStrIntern, int>& fragmentIndexes,
 		int streamflags);
 
 	/**
@@ -77,7 +78,7 @@ public:
 	 */
 	static CShaderProgram* ConstructGLSL(const VfsPath& vertexFile, const VfsPath& fragmentFile,
 		const CShaderDefines& defines,
-		const std::map<CStr, int>& vertexAttribs,
+		const std::map<CStrIntern, int>& vertexAttribs,
 		int streamflags);
 
 	/**
@@ -154,6 +155,7 @@ public:
 
 
 	virtual Binding GetUniformBinding(uniform_id_t id) = 0;
+	virtual Binding GetUniformBinding(CStrIntern id) = 0;
 
 	// Uniform-setting methods that subclasses must define:
 	virtual void Uniform(Binding id, float v0, float v1, float v2, float v3) = 0;

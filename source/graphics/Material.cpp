@@ -23,14 +23,8 @@ static CColor BrokenColor(0.3f, 0.3f, 0.3f, 1.0f);
 
 CMaterial::CMaterial() :
 	m_AlphaBlending(false),
-	m_PlayerID(INVALID_PLAYER),
-	m_ObjectColor(BrokenColor)
+	m_PlayerID(INVALID_PLAYER)
 {
-}
-
-void CMaterial::SetObjectColor(const CColor& colour)
-{
-	m_ObjectColor = colour;
 }
 
 void CMaterial::SetDiffuseTexture(const CTexturePtr& texture)
@@ -46,4 +40,9 @@ void CMaterial::SetShaderEffect(const CStr& effect)
 void CMaterial::AddShaderDefine(const char* key, const char* value)
 {
 	m_ShaderDefines.Add(key, value);
+}
+
+void CMaterial::AddStaticUniform(const char* key, const CVector4D& value)
+{
+	m_StaticUniforms.Add(key, value);
 }

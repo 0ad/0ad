@@ -2,11 +2,12 @@
 <program type="arb">
 
     <vertex file="arb/model_common.vp">
-        <uniform name="sunDir" loc="0" type="vec3"/>
-        <uniform name="sunColor" loc="1" type="vec3"/>
-        <uniform name="losTransform" loc="2" type="vec2"/>
-        <uniform name="shadowTransform" loc="3" type="mat4"/>
-        <uniform if="USE_INSTANCING" name="instancingTransform" loc="7" type="mat4"/>
+        <uniform name="cameraPos" loc="0" type="vec3"/>
+        <uniform name="sunDir" loc="1" type="vec3"/>
+        <uniform name="sunColor" loc="2" type="vec3"/>
+        <uniform name="losTransform" loc="3" type="vec2"/>
+        <uniform name="shadowTransform" loc="4" type="mat4"/>
+        <uniform if="USE_INSTANCING" name="instancingTransform" loc="8" type="mat4"/>
         <stream name="pos"/>
         <stream name="normal"/>
         <stream name="uv0"/>
@@ -23,6 +24,8 @@
         <uniform name="ambient" loc="2" type="vec3"/>
         <uniform name="shadowOffsets1" loc="3" type="vec4"/>
         <uniform name="shadowOffsets2" loc="4" type="vec4"/>
+        <uniform name="specularPower" loc="5" type="float"/>
+        <uniform name="specularColor" loc="6" type="vec3"/>
     </fragment>
 
 </program>

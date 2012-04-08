@@ -20,6 +20,7 @@
 
 #include <map>
 #include "Material.h"
+#include "lib/file/vfs/vfs_path.h"
 
 class CMaterialManager
 {

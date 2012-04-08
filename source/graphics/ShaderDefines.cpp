@@ -19,70 +19,101 @@
 
 #include "ShaderDefines.h"
 
+#include "maths/Vector4D.h"
 #include "ps/ThreadUtil.h"
 
-#include <boost/unordered_map.hpp>
+size_t hash_value(const CStrIntern& v)
+{
+	return v.GetHash();
+}
 
-size_t hash_value(const CShaderDefines::SItems& items)
+size_t hash_value(const CVector4D& v)
+{
+	size_t hash = 0;
+	boost::hash_combine(hash, v.X);
+	boost::hash_combine(hash, v.Y);
+	boost::hash_combine(hash, v.Z);
+	boost::hash_combine(hash, v.W);
+	return hash;
+}
+
+size_t hash_value(const CShaderParams<CStrIntern>::SItems& items)
 {
 	return items.hash;
 }
 
-bool operator==(const CShaderDefines::SItems& a, const CShaderDefines::SItems& b)
+size_t hash_value(const CShaderParams<CVector4D>::SItems& items)
+{
+	return items.hash;
+}
+
+bool operator==(const CShaderParams<CStrIntern>::SItems& a, const CShaderParams<CStrIntern>::SItems& b)
 {
 	return a.items == b.items;
 }
 
+bool operator==(const CShaderParams<CVector4D>::SItems& a, const CShaderParams<CVector4D>::SItems& b)
+{
+	return a.items == b.items;
+}
+
+template<typename value_t>
 struct ItemNameCmp
 {
-	typedef CShaderDefines::SItems::Item first_argument_type;
-	typedef CShaderDefines::SItems::Item second_argument_type;
-	bool operator()(const CShaderDefines::SItems::Item& a, const CShaderDefines::SItems::Item& b) const
+	typedef typename CShaderParams<value_t>::SItems::Item Item;
+
+	typedef Item first_argument_type;
+	typedef Item second_argument_type;
+	bool operator()(const Item& a, const Item& b) const
 	{
 		return a.first < b.first;
 	}
 };
 
+template<typename value_t>
 struct ItemNameGeq
 {
-	bool operator()(const CShaderDefines::SItems::Item& a, const CShaderDefines::SItems::Item& b) const
+	typedef typename CShaderParams<value_t>::SItems::Item Item;
+
+	bool operator()(const Item& a, const Item& b) const
 	{
 		return !(b.first < a.first);
 	}
 };
 
-typedef boost::unordered_map<CShaderDefines::SItems, shared_ptr<CShaderDefines::SItems> > InternedItems_t;
-static InternedItems_t g_InternedItems;
-
-CShaderDefines::SItems* CShaderDefines::GetInterned(const SItems& items)
+template<typename value_t>
+typename CShaderParams<value_t>::SItems* CShaderParams<value_t>::GetInterned(const SItems& items)
 {
-	ENSURE(ThreadUtil::IsMainThread()); // g_InternedItems is not thread-safe
+	ENSURE(ThreadUtil::IsMainThread()); // s_InternedItems is not thread-safe
 
-	InternedItems_t::iterator it = g_InternedItems.find(items);
-	if (it != g_InternedItems.end())
+	InternedItems_t::iterator it = s_InternedItems.find(items);
+	if (it != s_InternedItems.end())
 		return it->second.get();
 
 	// Sanity test: the items list is meant to be sorted by name.
 	// This is a reasonable place to verify that, since this will be called once per distinct SItems.
-	ENSURE(std::adjacent_find(items.items.begin(), items.items.end(), std::binary_negate<ItemNameCmp>(ItemNameCmp())) == items.items.end());
+	typedef ItemNameCmp<value_t> Cmp;
+	ENSURE(std::adjacent_find(items.items.begin(), items.items.end(), std::binary_negate<Cmp>(Cmp())) == items.items.end());
 
 	shared_ptr<SItems> ptr(new SItems(items));
-	g_InternedItems.insert(std::make_pair(items, ptr));
+	s_InternedItems.insert(std::make_pair(items, ptr));
 	return ptr.get();
 }
 
-CShaderDefines::CShaderDefines()
+template<typename value_t>
+CShaderParams<value_t>::CShaderParams()
 {
 	SItems items;
 	items.RecalcHash();
 	m_Items = GetInterned(items);
 }
 
-void CShaderDefines::Add(const char* name, const char* value)
+template<typename value_t>
+void CShaderParams<value_t>::Set(CStrIntern name, const value_t& value)
 {
 	SItems items = *m_Items;
 
-	SItems::Item addedItem = std::make_pair(CStrIntern(name), CStrIntern(value));
+	SItems::Item addedItem = std::make_pair(name, value);
 
 	// Add the new item in a way that preserves the sortedness and uniqueness of item names
 	for (std::vector<SItems::Item>::iterator it = items.items.begin(); ; ++it)
@@ -103,27 +134,53 @@ void CShaderDefines::Add(const char* name, const char* value)
 	m_Items = GetInterned(items);
 }
 
-void CShaderDefines::Add(const CShaderDefines& defines)
+template<typename value_t>
+void CShaderParams<value_t>::SetMany(const CShaderParams& params)
 {
 	SItems items;
 	// set_union merges the two sorted lists into a new sorted list;
 	// if two items are equivalent (i.e. equal names, possibly different values)
 	// then the one from the first list is kept
 	std::set_union(
-		defines.m_Items->items.begin(), defines.m_Items->items.end(),
+		params.m_Items->items.begin(), params.m_Items->items.end(),
 		m_Items->items.begin(), m_Items->items.end(),
 		std::inserter(items.items, items.items.begin()),
-		ItemNameCmp());
+		ItemNameCmp<value_t>());
 	items.RecalcHash();
 	m_Items = GetInterned(items);
 }
 
-std::map<CStr, CStr> CShaderDefines::GetMap() const
+template<typename value_t>
+std::map<CStrIntern, value_t> CShaderParams<value_t>::GetMap() const
 {
-	std::map<CStr, CStr> ret;
+	std::map<CStrIntern, value_t> ret;
 	for (size_t i = 0; i < m_Items->items.size(); ++i)
-		ret[m_Items->items[i].first.string()] = m_Items->items[i].second.string();
+		ret[m_Items->items[i].first] = m_Items->items[i].second;
 	return ret;
+}
+
+template<typename value_t>
+size_t CShaderParams<value_t>::GetHash() const
+{
+	return m_Items->hash;
+}
+
+template<typename value_t>
+void CShaderParams<value_t>::SItems::RecalcHash()
+{
+	size_t h = 0;
+	for (size_t i = 0; i < items.size(); ++i)
+	{
+		boost::hash_combine(h, items[i].first);
+		boost::hash_combine(h, items[i].second);
+	}
+	hash = h;
+}
+
+
+void CShaderDefines::Add(const char* name, const char* value)
+{
+	Set(CStrIntern(name), CStrIntern(value));
 }
 
 int CShaderDefines::GetInt(const char* name) const
@@ -142,18 +199,43 @@ int CShaderDefines::GetInt(const char* name) const
 	return 0;
 }
 
-size_t CShaderDefines::GetHash() const
+
+void CShaderUniforms::Add(const char* name, const CVector4D& value)
 {
-	return m_Items->hash;
+	Set(CStrIntern(name), value);
 }
 
-void CShaderDefines::SItems::RecalcHash()
+CVector4D CShaderUniforms::GetVector(const char* name) const
 {
-	size_t h = 0;
+	CStrIntern nameIntern(name);
+	for (size_t i = 0; i < m_Items->items.size(); ++i)
+	{
+		if (m_Items->items[i].first == nameIntern)
+		{
+			return m_Items->items[i].second;
+		}
+	}
+	return CVector4D();
+}
+
+void CShaderUniforms::BindUniforms(const CShaderProgramPtr& shader) const
+{
+	const std::vector<SItems::Item>& items = m_Items->items;
 	for (size_t i = 0; i < items.size(); ++i)
 	{
-		boost::hash_combine(h, items[i].first.GetHash());
-		boost::hash_combine(h, items[i].second.GetHash());
+		CShaderProgram::Binding binding = shader->GetUniformBinding(items[i].first);
+		if (binding.Active())
+		{
+			CVector4D v = items[i].second;
+			shader->Uniform(binding, v.X, v.Y, v.Z, v.W);
+		}
 	}
-	hash = h;
 }
+
+// Explicit instantiations:
+
+boost::unordered_map<CShaderParams<CStrIntern>::SItems, shared_ptr<CShaderParams<CStrIntern>::SItems> > CShaderParams<CStrIntern>::s_InternedItems;
+boost::unordered_map<CShaderParams<CVector4D>::SItems, shared_ptr<CShaderParams<CVector4D>::SItems> > CShaderParams<CVector4D>::s_InternedItems;
+
+template class CShaderParams<CStrIntern>;
+template class CShaderParams<CVector4D>;

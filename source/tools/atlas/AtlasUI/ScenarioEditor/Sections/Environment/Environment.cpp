@@ -252,7 +252,6 @@ void EnvironmentSidebar::OnFirstDisplay()
 
 
 	std::vector<std::wstring> lightingModels;
-	lightingModels.push_back(L"old");
 	lightingModels.push_back(L"standard");
 	m_LightingModelList->SetChoices(lightingModels);
 

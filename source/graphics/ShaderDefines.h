@@ -18,47 +18,48 @@
 #ifndef INCLUDED_SHADERDEFINES
 #define INCLUDED_SHADERDEFINES
 
+#include "graphics/ShaderProgram.h"
 #include "ps/CStr.h"
 #include "ps/CStrIntern.h"
 
+#include <boost/unordered_map.hpp>
+
+class CVector4D;
+
 /**
- * Represents a mapping of name to value strings, for use with
- * \#if and \#ifdef and similar conditionals in shaders.
+ * Represents a mapping of name strings to value, for use with
+ * CShaderDefines (values are strings) and CShaderUniforms (values are vec4s).
  * 
- * Stored as interned vectors of string-pairs, to support high performance
+ * Stored as interned vectors of name-value pairs, to support high performance
  * comparison operators.
  *
  * Not thread-safe - must only be used from the main thread.
  */
-class CShaderDefines
+template<typename value_t>
+class CShaderParams
 {
 public:
 	/**
 	 * Create an empty map of defines.
 	 */
-	CShaderDefines();
+	CShaderParams();
 
 	/**
-	 * Add a name and associated value to the map of defines.
+	 * Add a name and associated value to the map of parameters.
 	 * If the name is already defined, its value will be replaced.
 	 */
-	void Add(const char* name, const char* value);
-	
-	/**
-	 * Add all the names and values from another set of defines.
-	 * If any name is already defined in this object, its value will be replaced.
-	 */
-	void Add(const CShaderDefines& defines);
+	void Set(CStrIntern name, const value_t& value);
 
 	/**
-	 * Return the value for the given name as an integer, or 0 if not defined.
+	 * Add all the names and values from another set of parameters.
+	 * If any name is already defined in this object, its value will be replaced.
 	 */
-	int GetInt(const char* name) const;
+	void SetMany(const CShaderParams& params);
 
 	/**
 	 * Return a copy of the current name/value mapping.
 	 */
-	std::map<CStr, CStr> GetMap() const;
+	std::map<CStrIntern, value_t> GetMap() const;
 
 	/**
 	 * Return a hash of the current mapping.
@@ -70,23 +71,31 @@ public:
 	 * The order may be different each time the application is run
 	 * (it is based on interned memory addresses).
 	 */
-	bool operator<(const CShaderDefines& b) const
+	bool operator<(const CShaderParams& b) const
 	{
 		return m_Items < b.m_Items;
 	}
 
 	/**
-	 * Equality comparison.
+	 * Fast equality comparison.
 	 */
-	bool operator==(const CShaderDefines& b) const
+	bool operator==(const CShaderParams& b) const
 	{
 		return m_Items == b.m_Items;
+	}
+
+	/**
+	 * Fast inequality comparison.
+	 */
+	bool operator!=(const CShaderParams& b) const
+	{
+		return m_Items != b.m_Items;
 	}
 
 	struct SItems
 	{
 		// Name/value pair
-		typedef std::pair<CStrIntern, CStrIntern> Item;
+		typedef std::pair<CStrIntern, value_t> Item;
 		
 		// Sorted by name; no duplicated names
 		std::vector<Item> items;
@@ -96,8 +105,12 @@ public:
 		void RecalcHash();
 	};
 
-private:
+protected:
  	SItems* m_Items; // interned value
+
+private:
+	typedef boost::unordered_map<SItems, shared_ptr<SItems> > InternedItems_t;
+	static InternedItems_t s_InternedItems;
 
 	/**
 	 * Returns a pointer to an SItems equal to @p items.
@@ -105,6 +118,53 @@ private:
 	 * for any subsequent requests for an equal items list.
 	 */
 	static SItems* GetInterned(const SItems& items);
+};
+
+/**
+ * Represents a mapping of name strings to value strings, for use with
+ * \#if and \#ifdef and similar conditionals in shaders.
+ *
+ * Not thread-safe - must only be used from the main thread.
+ */
+class CShaderDefines : public CShaderParams<CStrIntern>
+{
+public:
+	/**
+	 * Add a name and associated value to the map of defines.
+	 * If the name is already defined, its value will be replaced.
+	 */
+	void Add(const char* name, const char* value);
+
+	/**
+	 * Return the value for the given name as an integer, or 0 if not defined.
+	 */
+	int GetInt(const char* name) const;
+};
+
+/**
+ * Represents a mapping of name strings to value CVector4Ds, for use with
+ * uniforms in shaders.
+ *
+ * Not thread-safe - must only be used from the main thread.
+ */
+class CShaderUniforms : public CShaderParams<CVector4D>
+{
+public:
+	/**
+	 * Add a name and associated value to the map of uniforms.
+	 * If the name is already defined, its value will be replaced.
+	 */
+	void Add(const char* name, const CVector4D& value);
+
+	/**
+	 * Return the value for the given name, or (0,0,0,0) if not defined.
+	 */
+	CVector4D GetVector(const char* name) const;
+
+	/**
+	 * Bind the collection of uniforms onto the given shader.
+	 */
+	void BindUniforms(const CShaderProgramPtr& shader) const;
 };
 
 #endif // INCLUDED_SHADERDEFINES

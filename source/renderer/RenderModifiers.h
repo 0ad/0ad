@@ -139,7 +139,6 @@ public:
 private:
 	CShaderProgram::Binding m_BindingInstancingTransform;
 	CShaderProgram::Binding m_BindingShadingColor;
-	CShaderProgram::Binding m_BindingObjectColor;
 	CShaderProgram::Binding m_BindingPlayerColor;
 	CShaderProgram::Binding m_BindingBaseTex;
 };
