@@ -407,37 +407,66 @@ var MilitaryAttackManager = Class({
 		
 	trainDefenderSquad: function(gameState, planGroups)
 	{
-		var pendingdefense = gameState.getOwnEntitiesWithRole("defenders");
-		//JuBotAI.prototype.chat("Number of defenders is" + pendingdefense.length);
-			if (pendingdefense.length < this.defsquadmin && gameState.displayCiv() == "iber"){
-			planGroups.economyPersonnel.addPlan(500,
-				new UnitTrainingPlan(gameState,
-					"units/{civ}_infantry_swordsman_b", 3, { "role": "defenders" })
-			);
+		var trainup = 0;
+		var pendingdefense = gameState.countEntitiesAndQueuedWithRole("defenders");
+		var targets = gameState.entities.filter(function(ent) {
+			return (!ent.isEnemy() && ent.hasClass("GarrisonTower"));
+		});
+		if (targets.length)
+		{
+			targets.forEach(function(tower) {
+			var defno = tower.garrisoned().length;
+			var defneed = 3 - defno;
+			warn("Need " + defneed + " men in the tower, with " + pendingdefense + " available.");
+			if (defneed >= 1) {
+				if (pendingdefense >= 1) {
+					gameState.getOwnEntitiesWithRole("defenders").forEach(function(ent) {
+						ent.garrison(tower);
+						ent.setMetadata("role", "towerGuard");
+					});
+				}
+				else {
+				trainup = 1;
+				}
+				}
+				});
 			}
-			else if (pendingdefense.length < this.defsquadmin){
-			planGroups.economyPersonnel.addPlan(500,
-				new UnitTrainingPlan(gameState,
-					"units/{civ}_infantry_spearman_b", 3, { "role": "defenders" })
-			);
-		//JuBotAI.prototype.chat("Training defenders");
-			}
-			else if (pendingdefense.length < this.defsquad && gameState.displayCiv() == "iber"){
-			planGroups.economyPersonnel.addPlan(150,
-				new UnitTrainingPlan(gameState,
-					"units/{civ}_infantry_swordsman_b", 3, { "role": "defenders" })
-			);
-		//JuBotAI.prototype.chat("Training defenders");
-			}
-			else if (pendingdefense.length < this.defsquad){
-			planGroups.economyPersonnel.addPlan(150,
-				new UnitTrainingPlan(gameState,
-					"units/{civ}_infantry_spearman_b", 3, { "role": "defenders" })
-			);
-		//JuBotAI.prototype.chat("Training defenders");
-			}
+		if (trainup == 1){
+			if (gameState.displayCiv() == "hele"){
+				this.trainSomeDefenders(gameState, planGroups, "units/{civ}_infantry_archer_b");
+				}
+			else if  (gameState.displayCiv() == "cart"){
+				this.trainSomeDefenders(gameState, planGroups, "units/{civ}_infantry_archer_b");
+				}
+			else if  (gameState.displayCiv() == "rome"){
+				this.trainSomeDefenders(gameState, planGroups, "units/{civ}_infantry_javelinist_b");
+				}
+			else if  (gameState.displayCiv() == "iber"){
+				this.trainSomeDefenders(gameState, planGroups, "units/{civ}_infantry_javelinist_b");
+				}
+			else if  (gameState.displayCiv() == "celt"){
+				this.trainSomeDefenders(gameState, planGroups, "units/{civ}_infantry_javelinist_b");
+				}
+			else if  (gameState.displayCiv() == "pers"){
+				this.trainSomeDefenders(gameState, planGroups, "units/{civ}_infantry_archer_b");
+				}
+			else {
+				this.trainSomeDefenders(gameState, planGroups, "units/{civ}_infantry_javelinist_b");
+				}
+		}
 	},
 	
+	trainSomeDefenders: function(gameState, planGroups, type)
+	{
+			var trainers = gameState.findTrainers(gameState.applyCiv(type));
+			if (trainers.length != 0){
+			planGroups.economyPersonnel.addPlan(150,
+				new UnitTrainingPlan(gameState,
+					type, 2, { "role": "defenders" })
+			);
+			}
+	},
+		
 	trainSomeTroops: function(gameState, planGroups, type)
 	{
 			var trainers = gameState.findTrainers(gameState.applyCiv(type));
@@ -822,7 +851,7 @@ var MilitaryAttackManager = Class({
 		this.combatcheck(gameState, planGroups, "attack_3p2");
 		this.combatcheck(gameState, planGroups, "attack_3p3");
 		this.combatcheckMilitia(gameState, planGroups, "militia");
-		//this.trainDefenderSquad(gameState, planGroups);
+		this.trainDefenderSquad(gameState, planGroups);
 		this.trainAttackSquad(gameState, planGroups);
 		this.regroup(gameState, planGroups);
 		this.defenseregroup(gameState, planGroups);

@@ -14,6 +14,11 @@ var GameState = Class({
 		this.entities = ai.entities;
 		this.player = ai.player;
 		this.playerData = ai.playerData;
+	
+		if (!this.ai._gameStateStore){
+			this.ai._gameStateStore = {};
+		}
+		this.store = this.ai._gameStateStore;
 	},
 
 	getTimeElapsed: function()
@@ -60,10 +65,19 @@ var GameState = Class({
 		return this.ai.territoryMap;
 	},
 
-	getOwnEntities: (function()
+	getEntities: function() {
+		return this.entities;
+	},
+
+	getOwnEntities: function()
 	{
-		return new EntityCollection(this.ai, this.ai._ownEntities);
-	}),
+	if (!this.store.ownEntities){
+		this.store.ownEntities = this.getEntities().filter(Filters.byOwner(this.player));
+		this.store.ownEntities.registerUpdates();
+	}
+	
+	return this.store.ownEntities;
+	},
 
 	getOwnEntitiesWithRole: Memoize('getOwnEntitiesWithRole', function(role)
 	{

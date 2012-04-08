@@ -3,7 +3,7 @@ var EconomyManager = Class({
 	_init: function()
 	{
 		this.baseNumWorkers = 30; // minimum number of workers we want
-		this.targetNumWorkers = 55; // minimum number of workers we want
+		this.targetNumWorkers = 75; // minimum number of workers we want
 		this.targetNumBuilders = 6; // number of workers we want working on construction
 		this.changetimeRegBui = 180*1000;
 		this.changetimeWorkers = 60*1000;
