@@ -56,9 +56,9 @@ public:
 		m_IsValid = true;
 	}
 
-	int GetUniformIndex(uniform_id_t id)
+	int GetUniformIndex(CStrIntern id)
 	{
-		std::map<CStr, int>::iterator it = m_UniformIndexes.find(id);
+		std::map<CStrIntern, int>::iterator it = m_UniformIndexes.find(id);
 		if (it == m_UniformIndexes.end())
 			return -1;
 		return it->second;
@@ -66,7 +66,7 @@ public:
 
 	virtual Binding GetTextureBinding(uniform_id_t id)
 	{
-		int index = GetUniformIndex(id);
+		int index = GetUniformIndex(CStrIntern(id));
 		if (index == -1)
 			return Binding();
 		else
@@ -75,14 +75,14 @@ public:
 
 	virtual void BindTexture(texture_id_t id, Handle tex)
 	{
-		int index = GetUniformIndex(id);
+		int index = GetUniformIndex(CStrIntern(id));
 		if (index != -1)
 			ogl_tex_bind(tex, index);
 	}
 
 	virtual void BindTexture(texture_id_t id, GLuint tex)
 	{
-		int index = GetUniformIndex(id);
+		int index = GetUniformIndex(CStrIntern(id));
 		if (index != -1)
 		{
 			pglActiveTextureARB((int)(GL_TEXTURE0+index));
@@ -99,6 +99,11 @@ public:
 
 	virtual Binding GetUniformBinding(uniform_id_t id)
 	{
+		return Binding(-1, GetUniformIndex(CStrIntern(id)));
+	}
+
+	virtual Binding GetUniformBinding(CStrIntern id)
+	{
 		return Binding(-1, GetUniformIndex(id));
 	}
 
@@ -111,7 +116,12 @@ public:
 	}
 
 protected:
-	std::map<CStr, int> m_UniformIndexes;
+	std::map<CStrIntern, int> m_UniformIndexes;
+
+	void SetUniformIndex(const char* id, int value)
+	{
+		m_UniformIndexes[CStrIntern(id)] = value;
+	}
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -128,7 +138,7 @@ public:
 		CShaderProgramFFP(0)
 	{
 		// Texture units, for when this shader is used with terrain:
-		m_UniformIndexes["baseTex"] = 0;
+		SetUniformIndex("baseTex", 0);
 	}
 
 	virtual void Bind()
@@ -159,13 +169,13 @@ public:
 	CShaderProgramFFP_OverlayLine(const CShaderDefines& defines) :
 		CShaderProgramFFP(STREAM_POS | STREAM_UV0 | STREAM_UV1)
 	{
-		m_UniformIndexes["losTransform"] = ID_losTransform;
-		m_UniformIndexes["objectColor"] = ID_objectColor;
+		SetUniformIndex("losTransform", ID_losTransform);
+		SetUniformIndex("objectColor", ID_objectColor);
 
 		// Texture units:
-		m_UniformIndexes["baseTex"] = 0;
-		m_UniformIndexes["maskTex"] = 1;
-		m_UniformIndexes["losTex"] = 2;
+		SetUniformIndex("baseTex", 0);
+		SetUniformIndex("maskTex", 1);
+		SetUniformIndex("losTex", 2);
 
 		m_IgnoreLos = (defines.GetInt("IGNORE_LOS") != 0);
 	}
@@ -319,11 +329,11 @@ public:
 	CShaderProgramFFP_GuiText() :
 		CShaderProgramFFP(STREAM_POS | STREAM_UV0)
 	{
-		m_UniformIndexes["transform"] = ID_transform;
-		m_UniformIndexes["colorMul"] = ID_colorMul;
+		SetUniformIndex("transform", ID_transform);
+		SetUniformIndex("colorMul", ID_colorMul);
 
 		// Texture units:
-		m_UniformIndexes["tex"] = 0;
+		SetUniformIndex("tex", 0);
 	}
 
 	virtual void Uniform(Binding id, float v0, float v1, float v2, float v3)
@@ -383,11 +393,11 @@ public:
 	CShaderProgramFFP_Gui_Base(int streamflags) :
 		CShaderProgramFFP(streamflags)
 	{
-		m_UniformIndexes["transform"] = ID_transform;
-		m_UniformIndexes["color"] = ID_color;
+		SetUniformIndex("transform", ID_transform);
+		SetUniformIndex("color", ID_color);
 
 		// Texture units:
-		m_UniformIndexes["tex"] = 0;
+		SetUniformIndex("tex", 0);
 	}
 
 	virtual void Uniform(Binding id, const CMatrix3D& v)
@@ -658,16 +668,16 @@ public:
 	CShaderProgramFFP_Model_Base(const CShaderDefines& defines, int streamflags)
 		: CShaderProgramFFP(streamflags)
 	{
-		m_UniformIndexes["transform"] = ID_transform;
+		SetUniformIndex("transform", ID_transform);
 
 		if (defines.GetInt("USE_OBJECTCOLOR"))
-			m_UniformIndexes["objectColor"] = ID_objectColor;
+			SetUniformIndex("objectColor", ID_objectColor);
 
 		if (defines.GetInt("USE_PLAYERCOLOR"))
-			m_UniformIndexes["playerColor"] = ID_playerColor;
+			SetUniformIndex("playerColor", ID_playerColor);
 
 		// Texture units:
-		m_UniformIndexes["baseTex"] = 0;
+		SetUniformIndex("baseTex", 0);
 	}
 
 	virtual void Uniform(Binding id, const CMatrix3D& v)

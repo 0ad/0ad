@@ -74,6 +74,7 @@ ShaderRenderModifier::ShaderRenderModifier()
 void ShaderRenderModifier::BeginPass(const CShaderProgramPtr& shader)
 {
 	shader->Uniform("transform", g_Renderer.GetViewCamera().GetViewProjection());
+	shader->Uniform("cameraPos", g_Renderer.GetViewCamera().GetOrientation().GetTranslation());
 
 	if (GetShadowMap() && shader->GetTextureBinding("shadowTex").Active())
 	{
@@ -102,7 +103,6 @@ void ShaderRenderModifier::BeginPass(const CShaderProgramPtr& shader)
 
 	m_BindingInstancingTransform = shader->GetUniformBinding("instancingTransform");
 	m_BindingShadingColor = shader->GetUniformBinding("shadingColor");
-	m_BindingObjectColor = shader->GetUniformBinding("objectColor");
 	m_BindingPlayerColor = shader->GetUniformBinding("playerColor");
 	m_BindingBaseTex = shader->GetTextureBinding("baseTex");
 }
@@ -120,9 +120,6 @@ void ShaderRenderModifier::PrepareModel(const CShaderProgramPtr& shader, CModel*
 
 	if (m_BindingShadingColor.Active())
 		shader->Uniform(m_BindingShadingColor, model->GetShadingColor());
-
-	if (m_BindingObjectColor.Active())
-		shader->Uniform(m_BindingObjectColor, model->GetMaterial().GetObjectColor());
 
 	if (m_BindingPlayerColor.Active())
 		shader->Uniform(m_BindingPlayerColor, g_Game->GetPlayerColour(model->GetPlayerID()));

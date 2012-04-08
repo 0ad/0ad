@@ -52,6 +52,11 @@ public:
 	const char* c_str() const;
 
 	/**
+	 * Returns length of string in bytes.
+	 */
+	size_t length() const;
+
+	/**
 	 * Returns as std::string.
 	 */
 	const std::string& string() const;

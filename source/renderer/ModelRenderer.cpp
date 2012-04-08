@@ -281,7 +281,7 @@ struct SMRBatchModel
 		if (b->GetMaterial().GetDiffuseTexture() < a->GetMaterial().GetDiffuseTexture())
 			return false;
 
-		return false;
+		return a->GetMaterial().GetStaticUniforms() < b->GetMaterial().GetStaticUniforms();
 	}
 };
 
@@ -359,15 +359,17 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 	 * The data we need to render a model is:
 	 *  - CShaderTechnique
 	 *  - CTexture
+	 *  - CShaderUniforms
 	 *  - CModelDef (mesh data)
 	 *  - CModel (model instance data)
 	 * 
 	 * For efficient rendering, we need to batch the draw calls to minimise state changes.
-	 * (Texture changes are assumed to be cheaper than binding new mesh data,
+	 * (Uniform and texture changes are assumed to be cheaper than binding new mesh data,
 	 * and shader changes are assumed to be most expensive.)
 	 * First, group all models that share a technique to render them together.
 	 * Within those groups, sub-group by CModelDef.
 	 * Within those sub-groups, sub-sub-group by CTexture.
+	 * Within those sub-sub-groups, sub-sub-sub-group by CShaderUniforms.
 	 * 
 	 * Alpha-blended models have to be sorted by distance from camera,
 	 * then we can batch as long as the order is preserved.
@@ -386,7 +388,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 	 * For each material bucket we then look up the appropriate shader technique.
 	 * If the technique requires sort-by-distance, the model is added to the
 	 * 'sortByDistItems' list with its computed distance.
-	 * Otherwise, the bucket's list of models is sorted by modeldef+texture,
+	 * Otherwise, the bucket's list of models is sorted by modeldef+texture+uniforms,
 	 * then the technique and model list is added to 'techBuckets'.
 	 * 
 	 * 'techBuckets' is then sorted by technique, to improve batching when multiple
@@ -434,6 +436,11 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 		for (MaterialBuckets_t::iterator it = materialBuckets.begin(); it != materialBuckets.end(); ++it)
 		{
 			CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(it->first.effect, context, it->first.defines);
+
+			// Skip invalid techniques (e.g. from data file errors)
+			if (!tech)
+				continue;
+
 			if (tech->GetSortByDistance())
 			{
 				// Add the tech into a vector so we can index it
@@ -551,6 +558,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 
 				CTexture* currentTex = NULL;
 				CModelDef* currentModeldef = NULL;
+				CShaderUniforms currentStaticUniforms;
 				// (Texture needs to be rebound after binding a new shader, so we
 				// can't move currentTex outside of this loop to reduce state changes)
 
@@ -579,6 +587,14 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 						{
 							currentModeldef = newModeldef;
 							m->vertexRenderer->PrepareModelDef(shader, streamflags, *currentModeldef);
+						}
+
+						// Bind all uniforms when any change
+						CShaderUniforms newStaticUniforms = model->GetMaterial().GetStaticUniforms();
+						if (newStaticUniforms != currentStaticUniforms)
+						{
+							currentStaticUniforms = newStaticUniforms;
+							currentStaticUniforms.BindUniforms(shader);
 						}
 
 						modifier->PrepareModel(shader, model);

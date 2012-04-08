@@ -1,20 +1,20 @@
-#version 110
+#version 120
 
 uniform sampler2D baseTex;
 uniform sampler2D losTex;
 
-#ifdef USE_SHADOW
-  #ifdef USE_SHADOW_SAMPLER
+#if USE_SHADOW
+  #if USE_SHADOW_SAMPLER
     uniform sampler2DShadow shadowTex;
   #else
     uniform sampler2D shadowTex;
   #endif
 #endif
 
-#ifdef USE_OBJECTCOLOR
+#if USE_OBJECTCOLOR
   uniform vec3 objectColor;
 #else
-#ifdef USE_PLAYERCOLOR
+#if USE_PLAYERCOLOR
   uniform vec3 playerColor;
 #endif
 #endif
@@ -29,11 +29,18 @@ varying vec2 v_tex;
 varying vec4 v_shadow;
 varying vec2 v_los;
 
+#if USE_SPECULAR
+  uniform float specularPower;
+  uniform vec3 specularColor;
+  varying vec3 v_normal;
+  varying vec3 v_half;
+#endif
+
 float get_shadow()
 {
-  #ifdef USE_SHADOW
-    #ifdef USE_SHADOW_SAMPLER
-      #ifdef USE_SHADOW_PCF
+  #if USE_SHADOW
+    #if USE_SHADOW_SAMPLER
+      #if USE_SHADOW_PCF
         return 0.25 * (
           shadow2D(shadowTex, vec3(v_shadow.xy + shadowOffsets1.xy, v_shadow.z)).a +
           shadow2D(shadowTex, vec3(v_shadow.xy + shadowOffsets1.zw, v_shadow.z)).a +
@@ -46,7 +53,7 @@ float get_shadow()
     #else
       if (v_shadow.z >= 1.0)
         return 1.0;
-      #ifdef USE_SHADOW_PCF
+      #if USE_SHADOW_PCF
         return (
           (v_shadow.z <= texture2D(shadowTex, v_shadow.xy + shadowOffsets1.xy).x ? 0.25 : 0.0) +
           (v_shadow.z <= texture2D(shadowTex, v_shadow.xy + shadowOffsets1.zw).x ? 0.25 : 0.0) +
@@ -66,7 +73,7 @@ void main()
 {
   vec4 tex = texture2D(baseTex, v_tex);
 
-  #ifdef USE_TRANSPARENT
+  #if USE_TRANSPARENT
     gl_FragColor.a = tex.a;
   #else
     gl_FragColor.a = 1.0;
@@ -77,22 +84,36 @@ void main()
       discard;
   #endif
 
-  vec3 color = tex.rgb;
+  vec3 texdiffuse = tex.rgb;
 
   // Apply-coloring based on texture alpha
-  #ifdef USE_OBJECTCOLOR
-    color *= mix(objectColor, vec3(1.0, 1.0, 1.0), tex.a);
+  #if USE_OBJECTCOLOR
+    texdiffuse *= mix(objectColor, vec3(1.0, 1.0, 1.0), tex.a);
   #else
-  #ifdef USE_PLAYERCOLOR
-    color *= mix(playerColor, vec3(1.0, 1.0, 1.0), tex.a);
+  #if USE_PLAYERCOLOR
+    texdiffuse *= mix(playerColor, vec3(1.0, 1.0, 1.0), tex.a);
   #endif
   #endif
 
-  color *= v_lighting * get_shadow() + ambient;
- 
-  color *= texture2D(losTex, v_los).a;
+  vec3 sundiffuse = v_lighting;
+
+  #if USE_SPECULAR
+    // Interpolated v_normal needs to be re-normalized since it varies
+    // significantly between adjacent vertexes;
+    // v_half changes very gradually so don't bother normalizing that
+    vec3 specular = specularColor * pow(max(0.0, dot(normalize(v_normal), v_half)), specularPower);
+  #else
+    vec3 specular = vec3(0.0);
+  #endif
+
+  vec3 color = (texdiffuse * sundiffuse + specular) * get_shadow() + texdiffuse * ambient;
+
+  #if !IGNORE_LOS
+    float los = texture2D(losTex, v_los).a;
+    color *= los;
+  #endif
 
   color *= shadingColor;
-    
+
   gl_FragColor.rgb = color;
 }

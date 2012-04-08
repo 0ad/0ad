@@ -57,7 +57,6 @@ extern Status ReloadChangedFiles();
 ERROR_GROUP(CVFSFile);
 ERROR_TYPE(CVFSFile, LoadFailed);
 ERROR_TYPE(CVFSFile, AlreadyLoaded);
-ERROR_TYPE(CVFSFile, InvalidBufferAccess);
 
 // Reads a file, then gives read-only access to the contents
 class CVFSFile

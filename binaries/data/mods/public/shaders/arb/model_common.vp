@@ -1,14 +1,28 @@
 !!ARBvp1.0
-PARAM sunDir = program.local[0];
-PARAM sunColor = program.local[1];
-PARAM losTransform = program.local[2];
-PARAM shadowTransform[4] = { program.local[3..6] };
+
+PARAM cameraPos = program.local[0];
+PARAM sunDir = program.local[1];
+PARAM sunColor = program.local[2];
+PARAM losTransform = program.local[3];
+PARAM shadowTransform[4] = { program.local[4..7] };
+#if USE_INSTANCING
+  PARAM instancingTransform[4] = { program.local[8..11] };
+#endif
+
+TEMP temp;
 TEMP lighting;
 
+OUTPUT v_tex = result.texcoord[0];
+OUTPUT v_shadow = result.texcoord[1];
+OUTPUT v_los = result.texcoord[2];
+#if USE_SPECULAR
+  OUTPUT v_normal = result.texcoord[3];
+  OUTPUT v_half = result.texcoord[4];
+#endif
+  
 //// Compute position and normal:
 
-#ifdef USE_INSTANCING
-  PARAM instancingTransform[4] = { program.local[7..10] };
+#if USE_INSTANCING
   TEMP position;
   TEMP normal;
   DP4 position.x, instancingTransform[0], vertex.position;
@@ -38,17 +52,35 @@ MUL lighting, lighting, 0.5;
 // Apply light colour
 MUL result.color, lighting, sunColor;
 
-//// Texture coordinates:
+#if USE_SPECULAR
+  // eyeVec = normalize(cameraPos - position);
+  TEMP eyeVec;
+  SUB eyeVec.xyz, cameraPos, position;
+  DP3 eyeVec.w, eyeVec, eyeVec;
+  RSQ eyeVec.w, eyeVec.w;
+  MUL eyeVec.xyz, eyeVec, eyeVec.w;
 
-MOV result.texcoord[0], vertex.texcoord[0];
+  // v_half = normalize(-sunDir + eyeVec);
+  TEMP half;
+  SUB half.xyz, eyeVec, sunDir;
+  DP3 half.w, half, half;
+  RSQ half.w, half.w;
+  MUL v_half.xyz, half, half.w;
 
-#ifdef USE_SHADOW
-  DP4 result.texcoord[1].x, shadowTransform[0], position;
-  DP4 result.texcoord[1].y, shadowTransform[1], position;
-  DP4 result.texcoord[1].z, shadowTransform[2], position;
-  DP4 result.texcoord[1].w, shadowTransform[3], position;
+  MOV v_normal, normal;
 #endif
 
-MAD result.texcoord[2], position.xzzz, losTransform.x, losTransform.y;
+//// Texture coordinates:
+
+MOV v_tex, vertex.texcoord[0];
+
+#if USE_SHADOW
+  DP4 v_shadow.x, shadowTransform[0], position;
+  DP4 v_shadow.y, shadowTransform[1], position;
+  DP4 v_shadow.z, shadowTransform[2], position;
+  DP4 v_shadow.w, shadowTransform[3], position;
+#endif
+
+MAD v_los, position.xzzz, losTransform.x, losTransform.y;
 
 END

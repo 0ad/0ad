@@ -152,7 +152,7 @@ COMPONENT(Vision)
 // Note: this component relies on the Footprint component being initialized before itself. See the comments above for
 // the Footprint component to find out why.
 INTERFACE(Visual)
-COMPONENT(VisualActor) // must be after Ownership (dependency in Deserialize)
+COMPONENT(VisualActor) // must be after Ownership (dependency in Deserialize) and Vision (dependency in Init)
 
 INTERFACE(WaterManager)
 COMPONENT(WaterManager)

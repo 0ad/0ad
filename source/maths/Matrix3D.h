@@ -293,10 +293,10 @@ public:
 
 	void Transform(const CVector4D& vector, CVector4D& result) const
 	{
-		result[0] = _11*vector[0] + _12*vector[1] + _13*vector[2] + _14*vector[3];
-		result[1] = _21*vector[0] + _22*vector[1] + _23*vector[2] + _24*vector[3];
-		result[2] = _31*vector[0] + _32*vector[1] + _33*vector[2] + _34*vector[3];
-		result[3] = _41*vector[0] + _42*vector[1] + _43*vector[2] + _44*vector[3];
+		result.X = _11*vector.X + _12*vector.Y + _13*vector.Z + _14*vector.W;
+		result.Y = _21*vector.X + _22*vector.Y + _23*vector.Z + _24*vector.W;
+		result.Z = _31*vector.X + _32*vector.Y + _33*vector.Z + _34*vector.W;
+		result.W = _41*vector.X + _42*vector.Y + _43*vector.Z + _44*vector.W;
 	}
 
 	// rotate a vector by this matrix

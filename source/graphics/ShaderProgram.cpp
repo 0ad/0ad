@@ -36,7 +36,7 @@ class CShaderProgramARB : public CShaderProgram
 public:
 	CShaderProgramARB(const VfsPath& vertexFile, const VfsPath& fragmentFile,
 		const CShaderDefines& defines,
-		const std::map<CStr, int>& vertexIndexes, const std::map<CStr, int>& fragmentIndexes,
+		const std::map<CStrIntern, int>& vertexIndexes, const std::map<CStrIntern, int>& fragmentIndexes,
 		int streamflags) :
 		CShaderProgram(streamflags),
 		m_VertexFile(vertexFile), m_FragmentFile(fragmentFile),
@@ -95,8 +95,8 @@ public:
 			return;
 
 		CPreprocessor preprocessor;
-		std::map<CStr, CStr> definesMap = m_Defines.GetMap();
-		for (std::map<CStr, CStr>::const_iterator it = definesMap.begin(); it != definesMap.end(); ++it)
+		std::map<CStrIntern, CStrIntern> definesMap = m_Defines.GetMap();
+		for (std::map<CStrIntern, CStrIntern>::const_iterator it = definesMap.begin(); it != definesMap.end(); ++it)
 			preprocessor.Define(it->first.c_str(), it->first.length(), it->second.c_str(), it->second.length());
 
 		CStr vertexCode = Preprocess(preprocessor, vertexFile.GetAsString());
@@ -141,17 +141,17 @@ public:
 		// TODO: should unbind textures, probably
 	}
 
-	int GetUniformVertexIndex(uniform_id_t id)
+	int GetUniformVertexIndex(CStrIntern id)
 	{
-		std::map<CStr, int>::iterator it = m_VertexIndexes.find(id);
+		std::map<CStrIntern, int>::iterator it = m_VertexIndexes.find(id);
 		if (it == m_VertexIndexes.end())
 			return -1;
 		return it->second;
 	}
 
-	int GetUniformFragmentIndex(uniform_id_t id)
+	int GetUniformFragmentIndex(CStrIntern id)
 	{
-		std::map<CStr, int>::iterator it = m_FragmentIndexes.find(id);
+		std::map<CStrIntern, int>::iterator it = m_FragmentIndexes.find(id);
 		if (it == m_FragmentIndexes.end())
 			return -1;
 		return it->second;
@@ -159,7 +159,7 @@ public:
 
 	virtual Binding GetTextureBinding(texture_id_t id)
 	{
-		int index = GetUniformFragmentIndex(id);
+		int index = GetUniformFragmentIndex(CStrIntern(id));
 		if (index == -1)
 			return Binding();
 		else
@@ -168,7 +168,7 @@ public:
 
 	virtual void BindTexture(texture_id_t id, Handle tex)
 	{
-		int index = GetUniformFragmentIndex(id);
+		int index = GetUniformFragmentIndex(CStrIntern(id));
 		if (index != -1)
 		{
 			GLuint h;
@@ -180,7 +180,7 @@ public:
 
 	virtual void BindTexture(texture_id_t id, GLuint tex)
 	{
-		int index = GetUniformFragmentIndex(id);
+		int index = GetUniformFragmentIndex(CStrIntern(id));
 		if (index != -1)
 		{
 			pglActiveTextureARB(GL_TEXTURE0+index);
@@ -196,6 +196,12 @@ public:
 	}
 
 	virtual Binding GetUniformBinding(uniform_id_t id)
+	{
+		CStrIntern idIntern(id);
+		return Binding(GetUniformVertexIndex(idIntern), GetUniformFragmentIndex(idIntern));
+	}
+
+	virtual Binding GetUniformBinding(CStrIntern id)
 	{
 		return Binding(GetUniformVertexIndex(id), GetUniformFragmentIndex(id));
 	}
@@ -236,8 +242,8 @@ private:
 	GLuint m_VertexProgram;
 	GLuint m_FragmentProgram;
 
-	std::map<CStr, int> m_VertexIndexes;
-	std::map<CStr, int> m_FragmentIndexes;
+	std::map<CStrIntern, int> m_VertexIndexes;
+	std::map<CStrIntern, int> m_FragmentIndexes;
 };
 
 #endif // #if !CONFIG2_GLES
@@ -252,7 +258,7 @@ class CShaderProgramGLSL : public CShaderProgram
 public:
 	CShaderProgramGLSL(const VfsPath& vertexFile, const VfsPath& fragmentFile,
 		const CShaderDefines& defines,
-		const std::map<CStr, int>& vertexAttribs,
+		const std::map<CStrIntern, int>& vertexAttribs,
 		int streamflags) :
 	CShaderProgram(streamflags),
 		m_VertexFile(vertexFile), m_FragmentFile(fragmentFile),
@@ -328,7 +334,7 @@ public:
 		// Set up the attribute bindings explicitly, since apparently drivers
 		// don't always pick the most efficient bindings automatically,
 		// and also this lets us hardcode indexes into VertexPointer etc
-		for (std::map<CStr, int>::iterator it = m_VertexAttribs.begin(); it != m_VertexAttribs.end(); ++it)
+		for (std::map<CStrIntern, int>::iterator it = m_VertexAttribs.begin(); it != m_VertexAttribs.end(); ++it)
 			pglBindAttribLocationARB(m_Program, it->second, it->first.c_str());
 
 		pglLinkProgramARB(m_Program);
@@ -360,8 +366,7 @@ public:
 		if (!ok)
 			return false;
 
-		m_UniformLocations.clear();
-		m_UniformTypes.clear();
+		m_Uniforms.clear();
 		m_Samplers.clear();
 
 		Bind();
@@ -382,8 +387,8 @@ public:
 
 			GLint loc = pglGetUniformLocationARB(m_Program, name);
 
-			m_UniformLocations[name] = loc;
-			m_UniformTypes[name] = type;
+			CStrIntern nameIntern(name);
+			m_Uniforms[nameIntern] = std::make_pair(loc, type);
 
 			// Assign sampler uniforms to sequential texture units
 			if (type == GL_SAMPLER_2D
@@ -394,8 +399,8 @@ public:
 			)
 			{
 				int unit = (int)m_Samplers.size();
-				m_Samplers[name].first = (type == GL_SAMPLER_CUBE ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D);
-				m_Samplers[name].second = unit;
+				m_Samplers[nameIntern].first = (type == GL_SAMPLER_CUBE ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D);
+				m_Samplers[nameIntern].second = unit;
 				pglUniform1iARB(loc, unit); // link uniform to unit
 				ogl_WarnIfError();
 			}
@@ -423,8 +428,8 @@ public:
 			return;
 
 		CPreprocessor preprocessor;
-		std::map<CStr, CStr> definesMap = m_Defines.GetMap();
-		for (std::map<CStr, CStr>::const_iterator it = definesMap.begin(); it != definesMap.end(); ++it)
+		std::map<CStrIntern, CStrIntern> definesMap = m_Defines.GetMap();
+		for (std::map<CStrIntern, CStrIntern>::const_iterator it = definesMap.begin(); it != definesMap.end(); ++it)
 			preprocessor.Define(it->first.c_str(), it->first.length(), it->second.c_str(), it->second.length());
 
 #if CONFIG2_GLES
@@ -438,12 +443,16 @@ public:
 		CStr fragmentCode = Preprocess(preprocessor, fragmentFile.GetAsString());
 
 #if CONFIG2_GLES
-		// Ugly hack to replace desktop GLSL 1.10 with GLSL ES 1.00,
+		// Ugly hack to replace desktop GLSL 1.10/1.20 with GLSL ES 1.00,
 		// and also to set default float precision for fragment shaders
 		vertexCode.Replace("#version 110\n", "#version 100\n");
 		vertexCode.Replace("#version 110\r\n", "#version 100\n");
+		vertexCode.Replace("#version 120\n", "#version 100\n");
+		vertexCode.Replace("#version 120\r\n", "#version 100\n");
 		fragmentCode.Replace("#version 110\n", "#version 100\nprecision mediump float;\n");
 		fragmentCode.Replace("#version 110\r\n", "#version 100\nprecision mediump float;\n");
+		fragmentCode.Replace("#version 120\n", "#version 100\nprecision mediump float;\n");
+		fragmentCode.Replace("#version 120\r\n", "#version 100\nprecision mediump float;\n");
 #endif
 
 		if (!Compile(m_VertexShader, m_VertexFile, vertexCode))
@@ -473,7 +482,7 @@ public:
 	{
 		pglUseProgramObjectARB(m_Program);
 
-		for (std::map<CStr, int>::iterator it = m_VertexAttribs.begin(); it != m_VertexAttribs.end(); ++it)
+		for (std::map<CStrIntern, int>::iterator it = m_VertexAttribs.begin(); it != m_VertexAttribs.end(); ++it)
 			pglEnableVertexAttribArrayARB(it->second);
 	}
 
@@ -481,23 +490,15 @@ public:
 	{
 		pglUseProgramObjectARB(0);
 
-		for (std::map<CStr, int>::iterator it = m_VertexAttribs.begin(); it != m_VertexAttribs.end(); ++it)
+		for (std::map<CStrIntern, int>::iterator it = m_VertexAttribs.begin(); it != m_VertexAttribs.end(); ++it)
 			pglDisableVertexAttribArrayARB(it->second);
 
 		// TODO: should unbind textures, probably
 	}
 
-	int GetUniformLocation(uniform_id_t id)
-	{
-		std::map<CStr, int>::iterator it = m_UniformLocations.find(id);
-		if (it == m_UniformLocations.end())
-			return -1;
-		return it->second;
-	}
-
 	virtual Binding GetTextureBinding(texture_id_t id)
 	{
-		std::map<CStr, std::pair<GLenum, int> >::iterator it = m_Samplers.find(id);
+		std::map<CStrIntern, std::pair<GLenum, int> >::iterator it = m_Samplers.find(CStrIntern(id));
 		if (it == m_Samplers.end())
 			return Binding();
 		else
@@ -506,7 +507,7 @@ public:
 
 	virtual void BindTexture(texture_id_t id, Handle tex)
 	{
-		std::map<CStr, std::pair<GLenum, int> >::iterator it = m_Samplers.find(id);
+		std::map<CStrIntern, std::pair<GLenum, int> >::iterator it = m_Samplers.find(CStrIntern(id));
 		if (it == m_Samplers.end())
 			return;
 
@@ -518,7 +519,7 @@ public:
 
 	virtual void BindTexture(texture_id_t id, GLuint tex)
 	{
-		std::map<CStr, std::pair<GLenum, int> >::iterator it = m_Samplers.find(id);
+		std::map<CStrIntern, std::pair<GLenum, int> >::iterator it = m_Samplers.find(CStrIntern(id));
 		if (it == m_Samplers.end())
 			return;
 
@@ -539,11 +540,20 @@ public:
 
 	virtual Binding GetUniformBinding(uniform_id_t id)
 	{
-		int loc = GetUniformLocation(id);
-		if (loc == -1)
+		std::map<CStrIntern, std::pair<int, GLenum> >::iterator it = m_Uniforms.find(CStrIntern(id));
+		if (it == m_Uniforms.end())
 			return Binding();
 		else
-			return Binding(loc, m_UniformTypes[id]);
+			return Binding(it->second.first, (int)it->second.second);
+	}
+
+	virtual Binding GetUniformBinding(CStrIntern id)
+	{
+		std::map<CStrIntern, std::pair<int, GLenum> >::iterator it = m_Uniforms.find(id);
+		if (it == m_Uniforms.end())
+			return Binding();
+		else
+			return Binding(it->second.first, (int)it->second.second);
 	}
 
 	virtual void Uniform(Binding id, float v0, float v1, float v2, float v3)
@@ -605,15 +615,14 @@ private:
 	VfsPath m_VertexFile;
 	VfsPath m_FragmentFile;
 	CShaderDefines m_Defines;
-	std::map<CStr, int> m_VertexAttribs;
+	std::map<CStrIntern, int> m_VertexAttribs;
 
 	GLhandleARB m_Program;
 	GLhandleARB m_VertexShader;
 	GLhandleARB m_FragmentShader;
 
-	std::map<CStr, GLenum> m_UniformTypes;
-	std::map<CStr, int> m_UniformLocations;
-	std::map<CStr, std::pair<GLenum, int> > m_Samplers; // texture target & unit chosen for each uniform sampler
+	std::map<CStrIntern, std::pair<int, GLenum> > m_Uniforms;
+	std::map<CStrIntern, std::pair<GLenum, int> > m_Samplers; // texture target & unit chosen for each uniform sampler
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -626,7 +635,7 @@ CShaderProgram::CShaderProgram(int streamflags)
 #if CONFIG2_GLES
 /*static*/ CShaderProgram* CShaderProgram::ConstructARB(const VfsPath& vertexFile, const VfsPath& fragmentFile,
 	const CShaderDefines& UNUSED(defines),
-	const std::map<CStr, int>& UNUSED(vertexIndexes), const std::map<CStr, int>& UNUSED(fragmentIndexes),
+	const std::map<CStrIntern, int>& UNUSED(vertexIndexes), const std::map<CStrIntern, int>& UNUSED(fragmentIndexes),
 	int UNUSED(streamflags))
 {
 	LOGERROR(L"CShaderProgram::ConstructARB: '%ls'+'%ls': ARB shaders not supported on this device",
@@ -636,7 +645,7 @@ CShaderProgram::CShaderProgram(int streamflags)
 #else
 /*static*/ CShaderProgram* CShaderProgram::ConstructARB(const VfsPath& vertexFile, const VfsPath& fragmentFile,
 	const CShaderDefines& defines,
-	const std::map<CStr, int>& vertexIndexes, const std::map<CStr, int>& fragmentIndexes,
+	const std::map<CStrIntern, int>& vertexIndexes, const std::map<CStrIntern, int>& fragmentIndexes,
 	int streamflags)
 {
 	return new CShaderProgramARB(vertexFile, fragmentFile, defines, vertexIndexes, fragmentIndexes, streamflags);
@@ -645,7 +654,7 @@ CShaderProgram::CShaderProgram(int streamflags)
 
 /*static*/ CShaderProgram* CShaderProgram::ConstructGLSL(const VfsPath& vertexFile, const VfsPath& fragmentFile,
 	const CShaderDefines& defines,
-	const std::map<CStr, int>& vertexAttribs,
+	const std::map<CStrIntern, int>& vertexAttribs,
 	int streamflags)
 {
 	return new CShaderProgramGLSL(vertexFile, fragmentFile, defines, vertexAttribs, streamflags);

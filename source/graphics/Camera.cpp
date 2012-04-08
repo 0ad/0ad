@@ -195,8 +195,8 @@ void CCamera::GetScreenCoordinates(const CVector3D& world, float& x, float& y) c
 
 	CVector4D screenspace = transform.Transform(CVector4D(world.X, world.Y, world.Z, 1.0f));
 
-	x = screenspace.m_X / screenspace.m_W;
-	y = screenspace.m_Y / screenspace.m_W;
+	x = screenspace.X / screenspace.W;
+	y = screenspace.Y / screenspace.W;
 	x = (x + 1) * 0.5f * g_Renderer.GetWidth();
 	y = (1 - y) * 0.5f * g_Renderer.GetHeight();
 }

@@ -422,9 +422,12 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "select-trading-goods":
-		var cmpTrader = Engine.QueryInterface(cmd.trader, IID_Trader);
-		if (cmpTrader)
-			cmpTrader.SetPreferredGoods(cmd.preferredGoods);
+		for each (var ent in cmd.entities)
+		{
+			var cmpTrader = Engine.QueryInterface(ent, IID_Trader);
+			if (cmpTrader)
+				cmpTrader.SetPreferredGoods(cmd.preferredGoods);
+		}
 		break;
 
 	case "barter":

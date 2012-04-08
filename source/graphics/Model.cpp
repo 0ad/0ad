@@ -589,6 +589,10 @@ void CModel::SetTransform(const CMatrix3D& transform)
 void CModel::AddFlagsRec(int flags)
 {
 	m_Flags |= flags;
+
+	if (flags & MODELFLAG_IGNORE_LOS)
+		m_Material.AddShaderDefine("IGNORE_LOS", "1");
+
 	for (size_t i = 0; i < m_Props.size(); ++i)
 		if (m_Props[i].m_Model->ToCModel())
 			m_Props[i].m_Model->ToCModel()->AddFlagsRec(flags);

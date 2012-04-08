@@ -1154,7 +1154,7 @@ function startBuildingPlacement(buildEntType)
 // Called by GUI when user changes preferred trading goods
 function selectTradingPreferredGoods(data)
 {
-	Engine.PostNetworkCommand({"type": "select-trading-goods", "trader": data.trader, "preferredGoods": data.preferredGoods});
+	Engine.PostNetworkCommand({"type": "select-trading-goods", "entities": data.entities, "preferredGoods": data.preferredGoods});
 }
 
 // Called by GUI when user clicks exchange resources button

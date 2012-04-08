@@ -19,6 +19,8 @@
 
 #include "graphics/ShaderManager.h"
 
+#include "maths/Vector4D.h"
+
 class TestShaderManager : public CxxTest::TestSuite
 {
 public:
@@ -79,11 +81,34 @@ public:
 
 		TS_ASSERT(defines1 == defines2);
 
-		defines2.Add(defines1);
+		defines2.SetMany(defines1);
 		TS_ASSERT(defines1 == defines2);
 
 		CShaderDefines defines3;
-		defines3.Add(defines1);
+		defines3.SetMany(defines1);
 		TS_ASSERT(defines1 == defines3);
+	}
+
+	void test_uniforms()
+	{
+		CShaderUniforms uniforms1;
+		CShaderUniforms uniforms2;
+		CShaderUniforms uniforms3;
+		TS_ASSERT(uniforms1 == uniforms1);
+
+		uniforms1.Add("FOO", CVector4D(1.0f, 0.0f, 0.0f, 0.0f));
+
+		TS_ASSERT_EQUALS(uniforms1.GetVector("FOO"), CVector4D(1.0f, 0.0f, 0.0f, 0.0f));
+		TS_ASSERT_EQUALS(uniforms2.GetVector("FOO"), CVector4D(0.0f, 0.0f, 0.0f, 0.0f));
+
+		TS_ASSERT(!(uniforms1 == uniforms2));
+
+		uniforms2.Add("FOO", CVector4D(0.0f, 1.0f, 0.0f, 0.0f));
+
+		TS_ASSERT(!(uniforms1 == uniforms2));
+
+		uniforms2.Add("FOO", CVector4D(1.0f, 0.0f, 0.0f, 0.0f)); // override old value
+
+		TS_ASSERT(uniforms1 == uniforms2);
 	}
 };

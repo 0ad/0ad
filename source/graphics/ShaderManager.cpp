@@ -192,8 +192,8 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 #undef EL
 
 	CPreprocessor preprocessor;
-	std::map<CStr, CStr> baseDefinesMap = baseDefines.GetMap();
-	for (std::map<CStr, CStr>::const_iterator it = baseDefinesMap.begin(); it != baseDefinesMap.end(); ++it)
+	std::map<CStrIntern, CStrIntern> baseDefinesMap = baseDefines.GetMap();
+	for (std::map<CStrIntern, CStrIntern>::const_iterator it = baseDefinesMap.begin(); it != baseDefinesMap.end(); ++it)
 		preprocessor.Define(it->first.c_str(), it->first.length(), it->second.c_str(), it->second.length());
 
 	XMBElement Root = XeroFile.GetRoot();
@@ -202,9 +202,9 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 	VfsPath vertexFile;
 	VfsPath fragmentFile;
 	CShaderDefines defines = baseDefines;
-	std::map<CStr, int> vertexUniforms;
-	std::map<CStr, int> fragmentUniforms;
-	std::map<CStr, int> vertexAttribs;
+	std::map<CStrIntern, int> vertexUniforms;
+	std::map<CStrIntern, int> fragmentUniforms;
+	std::map<CStrIntern, int> vertexAttribs;
 	int streamFlags = 0;
 
 	XERO_ITER_EL(Root, Child)
@@ -227,7 +227,7 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 
 				if (Param.GetNodeName() == el_uniform)
 				{
-					vertexUniforms[Attrs.GetNamedItem(at_name)] = Attrs.GetNamedItem(at_loc).ToInt();
+					vertexUniforms[CStrIntern(Attrs.GetNamedItem(at_name))] = Attrs.GetNamedItem(at_loc).ToInt();
 				}
 				else if (Param.GetNodeName() == el_stream)
 				{
@@ -250,7 +250,7 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 				else if (Param.GetNodeName() == el_attrib)
 				{
 					int attribLoc = ParseAttribSemantics(Attrs.GetNamedItem(at_semantics));
-					vertexAttribs[Attrs.GetNamedItem(at_name)] = attribLoc;
+					vertexAttribs[CStrIntern(Attrs.GetNamedItem(at_name))] = attribLoc;
 				}
 			}
 		}
@@ -268,7 +268,7 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 
 				if (Param.GetNodeName() == el_uniform)
 				{
-					fragmentUniforms[Attrs.GetNamedItem(at_name)] = Attrs.GetNamedItem(at_loc).ToInt();
+					fragmentUniforms[CStrIntern(Attrs.GetNamedItem(at_name))] = Attrs.GetNamedItem(at_loc).ToInt();
 				}
 			}
 		}
@@ -377,7 +377,7 @@ CShaderTechniquePtr CShaderManager::LoadEffect(CStrIntern name, const CShaderDef
 
 	// Merge the two sets of defines, so NewEffect doesn't have to care about the split
 	CShaderDefines defines(defines1);
-	defines.Add(defines2);
+	defines.SetMany(defines2);
 
 	CShaderTechniquePtr tech(new CShaderTechnique());
 	if (!NewEffect(name.c_str(), defines, tech))
@@ -444,8 +444,8 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 
 	// Prepare the preprocessor for conditional tests
 	CPreprocessor preprocessor;
-	std::map<CStr, CStr> baseDefinesMap = baseDefines.GetMap();
-	for (std::map<CStr, CStr>::const_iterator it = baseDefinesMap.begin(); it != baseDefinesMap.end(); ++it)
+	std::map<CStrIntern, CStrIntern> baseDefinesMap = baseDefines.GetMap();
+	for (std::map<CStrIntern, CStrIntern>::const_iterator it = baseDefinesMap.begin(); it != baseDefinesMap.end(); ++it)
 		preprocessor.Define(it->first.c_str(), it->first.length(), it->second.c_str(), it->second.length());
 
 	XMBElement Root = XeroFile.GetRoot();

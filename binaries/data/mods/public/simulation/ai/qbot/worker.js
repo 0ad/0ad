@@ -96,7 +96,11 @@ Worker.prototype.startGathering = function(gameState){
 	});
 	
 	if (nearestSupply) {
-		ent.gather(nearestSupply);
+		if (!gameState.ai.accessibility.isAccessible(nearestSupply.position())){
+			nearestSupply.setMetadata("inaccessible", true);
+		}else{
+			ent.gather(nearestSupply);
+		}
 	}else{
 		debug("No " + resource + " found! (2)");
 	}

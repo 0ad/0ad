@@ -39,7 +39,7 @@ class CPlane
 {
 	public:
 		CPlane ();
-		CPlane (const CVector4D& coeffs) : m_Norm(coeffs[0], coeffs[1], coeffs[2]), m_Dist(coeffs[3]) { }
+		CPlane (const CVector4D& coeffs) : m_Norm(coeffs.X, coeffs.Y, coeffs.Z), m_Dist(coeffs.W) { }
 
 		//sets the plane equation from 3 points on that plane
 		void Set (const CVector3D &p1, const CVector3D &p2, const CVector3D &p3);
