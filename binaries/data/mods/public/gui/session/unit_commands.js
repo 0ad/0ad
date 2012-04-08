@@ -30,7 +30,6 @@ var g_unitPanels = ["Selection", "Queue", "Formation", "Garrison", "Training", "
 
 // Indexes of resources to sell and buy on barter panel
 var g_barterSell = 0;
-var g_barterBuy = 1;
 
 // Lay out a row of centered buttons (does not work inside a loop like the other function)
 function layoutButtonRowCentered(rowNumber, guiName, startIndex, endIndex, width)
@@ -119,16 +118,6 @@ function layoutButtonRow(rowNumber, guiName, buttonSideLength, buttonSpacer, sta
 			colNumber++;
 		}
 	}
-}
-
-function selectBarterResourceToSell(resourceIndex)
-{
-	g_barterSell = resourceIndex;
-	// g_barterBuy should be set to different value in case if it is the same as g_barterSell
-	// (it is no make sense to exchange resource to the same one).
-	// We change it cyclic to next value.
-	if (g_barterBuy == g_barterSell)
-		g_barterBuy = (g_barterBuy + 1) % BARTER_RESOURCES.length;
 }
 
 // Sets up "unit panels" - the panels with rows of icons (Helper function for updateUnitDisplay)
@@ -446,10 +435,9 @@ function setupUnitBarterPanel(unitEntState)
 		// One pass for 'sell' row and another for 'buy'
 		for (var j = 0; j < 2; j++)
 		{
-			var selectedResourceIndex = [g_barterSell, g_barterBuy][j];
 			var action = BARTER_ACTIONS[j];
 
-			var imageNameSuffix = (i == selectedResourceIndex) ? "selected" : "inactive";
+			var imageNameSuffix = (j == 0 && i == g_barterSell) ? "selected" : "inactive";
 			var icon = getGUIObjectByName("unitBarter" + action + "Icon["+i+"]");
 
 			var button = getGUIObjectByName("unitBarter" + action + "Button["+i+"]");
@@ -475,20 +463,18 @@ function setupUnitBarterPanel(unitEntState)
 			var amount;
 			if (j == 0)
 			{
-				button.onpress = (function(i){ return function() { selectBarterResourceToSell(i); } })(i);
+				button.onpress = (function(i){ return function() { g_barterSell = i; } })(i);
 				amount = (i == g_barterSell) ? "-" + amountToSell : "";
 			}
 			else
 			{
-				button.onpress = (function(i){ return function() { g_barterBuy = i; } })(i);
+				var exchangeResourcesParameters = { "sell": BARTER_RESOURCES[g_barterSell], "buy": BARTER_RESOURCES[i], "amount": amountToSell };
+				button.onpress = (function(exchangeResourcesParameters){ return function() { exchangeResources(exchangeResourcesParameters); } })(exchangeResourcesParameters);
 				amount = amountToBuy;
 			}
 			getGUIObjectByName("unitBarter" + action + "Amount["+i+"]").caption = amount;
 		}
 	}
-	var performDealButton = getGUIObjectByName("PerformDealButton");
-	var exchangeResourcesParameters = { "sell": BARTER_RESOURCES[g_barterSell], "buy": BARTER_RESOURCES[g_barterBuy], "amount": amountToSell };
-	performDealButton.onpress = function() { exchangeResources(exchangeResourcesParameters) };
 }
 
 // Updates right Unit Commands Panel - runs in the main session loop via updateSelectionDetails()
