@@ -152,15 +152,23 @@ public:
 		m_Unit = GetSimContext().GetUnitManager().CreateUnit(m_ActorName, GetActorSeed(), selections);
 		if (m_Unit)
 		{
-			u32 modelFlags = 0;
-			if (paramNode.GetChild("SilhouetteDisplay").ToBool())
-				modelFlags |= MODELFLAG_SILHOUETTE_DISPLAY;
-			if (paramNode.GetChild("SilhouetteOccluder").ToBool())
-				modelFlags |= MODELFLAG_SILHOUETTE_OCCLUDER;
-
 			CModelAbstract& model = m_Unit->GetModel();
 			if (model.ToCModel())
+			{
+				u32 modelFlags = 0;
+
+				if (paramNode.GetChild("SilhouetteDisplay").ToBool())
+					modelFlags |= MODELFLAG_SILHOUETTE_DISPLAY;
+
+				if (paramNode.GetChild("SilhouetteOccluder").ToBool())
+					modelFlags |= MODELFLAG_SILHOUETTE_OCCLUDER;
+
+				CmpPtr<ICmpVision> cmpVision(GetSimContext(), GetEntityId());
+				if (cmpVision && cmpVision->GetAlwaysVisible())
+					modelFlags |= MODELFLAG_IGNORE_LOS;
+
 				model.ToCModel()->AddFlagsRec(modelFlags);
+			}
 
 			// Initialize the model's selection shape descriptor. This currently relies on the component initialization order; the 
 			// Footprint component must be initialized before this component (VisualActor) to support the ability to use the footprint

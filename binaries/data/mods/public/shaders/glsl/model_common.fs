@@ -108,8 +108,10 @@ void main()
 
   vec3 color = (texdiffuse * sundiffuse + specular) * get_shadow() + texdiffuse * ambient;
 
-  float los = texture2D(losTex, v_los).a;
-  color *= los;
+  #if !IGNORE_LOS
+    float los = texture2D(losTex, v_los).a;
+    color *= los;
+  #endif
 
   color *= shadingColor;
 

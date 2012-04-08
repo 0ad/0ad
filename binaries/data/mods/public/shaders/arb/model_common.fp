@@ -116,9 +116,11 @@ TEX tex, v_tex, texture[0], 2D;
   #endif
 #endif
 
-// Multiply everything by the LOS texture
-TEX tex.a, v_los, texture[2], 2D;
-MUL color.rgb, color, tex.a;
+#if !IGNORE_LOS
+  // Multiply everything by the LOS texture
+  TEX tex.a, v_los, texture[2], 2D;
+  MUL color.rgb, color, tex.a;
+#endif
 
 MUL result.color.rgb, color, shadingColor;
 
