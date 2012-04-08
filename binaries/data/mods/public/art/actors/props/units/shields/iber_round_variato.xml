@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/shield/round_b_f.dae</mesh>
@@ -11,11 +9,10 @@
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="texture">
       <texture>props/shield/iber_round_m.dds</texture>
     </variant>
   </group>
-
+  <material>basic_spec.xml</material>
 </actor>
