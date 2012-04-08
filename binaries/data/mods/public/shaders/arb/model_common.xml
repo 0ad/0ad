@@ -26,6 +26,7 @@
         <uniform name="shadowOffsets2" loc="4" type="vec4"/>
         <uniform name="specularPower" loc="5" type="float"/>
         <uniform name="specularColor" loc="6" type="vec3"/>
+        <uniform name="sunColor" loc="7" type="vec3"/>
     </fragment>
 
 </program>

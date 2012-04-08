@@ -29,6 +29,7 @@ PARAM ambient = program.local[2];
   ATTRIB v_half = fragment.texcoord[4];
   PARAM specularPower = program.local[5];
   PARAM specularColor = program.local[6];
+  PARAM sunColor = program.local[7];
 #endif
 
 TEMP tex;
@@ -57,9 +58,10 @@ TEX tex, v_tex, texture[0], 2D;
 #endif
 
 #if USE_SPECULAR
-  // specular = specularColor * pow(max(0.0, dot(normalize(v_normal), v_half)), specularPower);
+  // specular = sunColor * specularColor * pow(max(0.0, dot(normalize(v_normal), v_half)), specularPower);
   TEMP specular;
   TEMP normal;
+  MUL specular.rgb, specularColor, sunColor;
   DP3 normal.w, v_normal, v_normal;
   RSQ normal.w, normal.w;
   MUL normal.xyz, v_normal, normal.w;
@@ -68,7 +70,7 @@ TEX tex, v_tex, texture[0], 2D;
   LG2 temp.y, temp.y;
   MUL temp.y, temp.y, specularPower.x;
   EX2 temp.y, temp.y;
-  MUL specular.rgb, specularColor, temp.y;
+  MUL specular.rgb, specular, temp.y;
 #endif
 
 // color = (texdiffuse * sundiffuse + specular) * get_shadow() + texdiffuse * ambient;
