@@ -278,17 +278,17 @@ function getRankIconSprite(entState)
 	{
 		if ("Elite" == entState.identity.rank)
 		{
-			return "stretched:session/icons/single/rank3.png";
+			return "stretched:session/icons/rank3.png";
 		}
 		else if ("Advanced" == entState.identity.rank)
 		{
-			return "stretched:session/icons/single/rank2.png";
+			return "stretched:session/icons/rank2.png";
 		}
 		else if (entState.identity.classes &&
 			entState.identity.classes.length &&
 			-1 != entState.identity.classes.indexOf("CitizenSoldier"))
 		{
-			return "stretched:session/icons/single/rank1.png";
+			return "stretched:session/icons/rank1.png";
 		}
 	}
 
