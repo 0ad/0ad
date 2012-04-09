@@ -97,7 +97,7 @@ You can automatically send us anonymous feedback that will help us fix bugs, and
 			</object>
 			<object type="button" style="StoneButton" size="8 100%-36 146 100%-8">
 				Enable feedback
-				<action on="Press">Engine.SetUserReportEnabled(true);</action>
+				<action on="Press">EnableUserReport(true);</action>
 			</object>
 			<object type="button" style="StoneButton" size="100%-146 100%-36 100%-8 100%-8">
 				Technical details
@@ -149,7 +149,7 @@ Status: $status.
 
 			<object type="button" style="StoneButton" size="8 100%-36 146 100%-8">
 				Disable feedback
-				<action on="Press">Engine.SetUserReportEnabled(false);</action>
+				<action on="Press">EnableUserReport(false);</action>
 			</object>
 			<object type="button" style="StoneButton" size="100%-146 100%-36 100%-8 100%-8">
 				Technical details

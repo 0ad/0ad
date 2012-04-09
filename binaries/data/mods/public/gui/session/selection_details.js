@@ -1,5 +1,3 @@
-const RESOURCE_ICON_CELL_IDS = {food : 0, wood : 1, stone : 2, metal : 3};
-
 function layoutSelectionSingle()
 {
 	getGUIObjectByName("detailsAreaSingle").hidden = false;
@@ -126,7 +124,7 @@ function displaySingle(entState, template)
 	//	{
 			getGUIObjectByName("resourceCarryingIcon").hidden = false;
 			getGUIObjectByName("resourceCarryingText").hidden = false;
-			getGUIObjectByName("resourceCarryingIcon").cell_id = RESOURCE_ICON_CELL_IDS[carried.type];
+			getGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/resources/"+carried.type+".png";
 			getGUIObjectByName("resourceCarryingText").caption = carried.amount + "/" + carried.max;
 	//	}
 	//	else
@@ -140,7 +138,7 @@ function displaySingle(entState, template)
 	{
 		getGUIObjectByName("resourceCarryingIcon").hidden = false;
 		getGUIObjectByName("resourceCarryingText").hidden = false;
-		getGUIObjectByName("resourceCarryingIcon").cell_id = RESOURCE_ICON_CELL_IDS[entState.trader.goods.type];
+		getGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/resources/"+entState.trader.goods.type+".png";
 		getGUIObjectByName("resourceCarryingText").caption = entState.trader.goods.amount;
 	}
 	else

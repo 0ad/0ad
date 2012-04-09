@@ -294,31 +294,31 @@
 			>
 				<!-- Food -->
 				<object size="0 0 90 100%" type="image" style="resourceCounter" tooltip="Food" tooltip_style="sessionToolTipBold">
-					<object size="0 -4 40 36" type="image" style="resourceIcon" cell_id="0"/>
+					<object size="0 -4 40 36" type="image" sprite="stretched:session/icons/resources/food.png"/>
 					<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceFood"/>
 				</object>
 
 				<!-- Wood -->
 				<object size="90 0 180 100%" type="image" style="resourceCounter" tooltip="Wood" tooltip_style="sessionToolTipBold">
-					<object size="0 -4 40 36" type="image" style="resourceIcon" cell_id="1"/>
+					<object size="0 -4 40 36" type="image" sprite="stretched:session/icons/resources/wood.png"/>
 					<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceWood"/>
 				</object>
 
 				<!-- Stone -->
 				<object size="180 0 270 100%" type="image" style="resourceCounter" tooltip="Stone" tooltip_style="sessionToolTipBold">
-					<object size="0 -4 40 36" type="image" style="resourceIcon" cell_id="2"/>
+					<object size="0 -4 40 36" type="image" sprite="stretched:session/icons/resources/stone.png"/>
 					<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceStone"/>
 				</object>
 
 				<!-- Metal -->
 				<object size="270 0 360 100%"  type="image" style="resourceCounter" tooltip="Metal" tooltip_style="sessionToolTipBold">
-					<object size="0 -4 40 36" type="image" style="resourceIcon" cell_id="3"/>
+					<object size="0 -4 40 36" type="image" sprite="stretched:session/icons/resources/metal.png"/>
 					<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceMetal"/>
 				</object>
 
 				<!-- Population -->
 				<object size="360 0 450 100%" type="image" style="resourceCounter" tooltip="Population (current / limit)" tooltip_style="sessionToolTipBold">
-					<object size="0 -4 40 34" type="image" style="resourceIcon" cell_id="4"/>
+					<object size="0 -4 40 34" type="image" sprite="stretched:session/icons/resources/population.png"/>
 					<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourcePop"/>
 				</object>
 			</object>
@@ -515,7 +515,8 @@
 					<object size="0 0 100% 100%">
 						<repeat count="16">
 							<object name="unitFormationButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBottomBold" z="100">
-								<object name="unitFormationIcon[n]" type="image" style="formationIcon" ghost="true" size="3 3 33 33"/>
+								<object name="unitFormationIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
+								<object name="unitFormationSelection[n]" hidden="true" type="image" ghost="true" size="3 3 33 33" sprite="stretched:session/icons/corners.png"/>
 							</object>
 						</repeat>
 					</object>
@@ -543,6 +544,7 @@
 							<object name="unitBarterSellButton[n]" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottomBold">
 								<object name="unitBarterSellIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
 								<object name="unitBarterSellAmount[n]" ghost="true" style="resourceText" type="text" size="0 0 100% 50%"/>
+								<object name="unitBarterSellSelection[n]" hidden="true" type="image" ghost="true" size="3 3 43 43" sprite="stretched:session/icons/corners.png"/>
 							</object>
 						</repeat>
 					</object>
@@ -566,6 +568,7 @@
 						<repeat count="5">
 							<object name="unitStanceButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBottomBold" z="100">
 								<object name="unitStanceIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
+								<object name="unitStanceSelection[n]" hidden="true" type="image" ghost="true" size="3 3 33 33" sprite="stretched:session/icons/corners.png"/>
 							</object>
 						</repeat>
 					</object>
@@ -596,7 +599,7 @@
 						<object size="0 0 48 48" type="image" name="armourIcon" sprite="stretched:session/icons/stances/defensive.png" tooltip_style="sessionToolTip"/>
 
 						<!-- Resource carrying icon/counter -->
-						<object size="0 40 48 88" type="image" name="resourceCarryingIcon" style="resourceIcon"/>
+						<object size="0 40 48 88" type="image" name="resourceCarryingIcon"/>
 						<object size="0 80 48 100" type="text" name="resourceCarryingText" style="statsText"/>
 					</object>
 
@@ -759,6 +762,7 @@
 						<repeat count="4">
 							<object name="unitTradingButton[n]" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
 								<object name="unitTradingIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
+								<object name="unitTradingSelection[n]" hidden="true" type="image" ghost="true" size="3 3 43 43" sprite="stretched:session/icons/corners.png"/>
 							</object>
 						</repeat>
 					</object>

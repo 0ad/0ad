@@ -14,6 +14,8 @@ function init()
 
 	// initialize currentSubmenuType with placeholder to avoid null when switching
 	currentSubmenuType = "submenuSinglePlayer";
+
+	EnableUserReport(Engine.IsUserReportEnabled());
 }
 
 var t0 = new Date;
@@ -140,18 +142,17 @@ function onTick()
 
 	if (Engine.IsUserReportEnabled())
 	{
-		getGUIObjectByName("userReportDisabled").hidden = true;
-		getGUIObjectByName("userReportEnabled").hidden = false;
-
-		getGUIObjectByName("userReportEnabledText").caption =
+		getGUIObjectByName("userReportEnabledText").caption = 
 			userReportEnabledText.replace(/\$status/,
 				formatUserReportStatus(Engine.GetUserReportStatus()));
 	}
-	else
-	{
-		getGUIObjectByName("userReportDisabled").hidden = false;
-		getGUIObjectByName("userReportEnabled").hidden = true;
-	}
+}
+
+function EnableUserReport(Enabled)
+{
+	getGUIObjectByName("userReportDisabled").hidden = Enabled;
+ 	getGUIObjectByName("userReportEnabled").hidden = !Enabled;
+ 	Engine.SetUserReportEnabled(Enabled);
 }
 
 
