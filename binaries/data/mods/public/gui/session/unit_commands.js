@@ -301,7 +301,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			button.enabled = formationOk;
 			if (!formationOk)
  			{
-				icon.sprite = "stretched:grayscale:session/icons/formations/formation-"+item.replace(/\s+/,'').toLowerCase()+".png";
+				icon.sprite = "stretched:grayscale:session/icons/formations/"+item.replace(/\s+/,'').toLowerCase()+".png";
 				
 				// Display a meaningful tooltip why the formation is disabled
 				var requirements = Engine.GuiInterfaceCall("GetFormationRequirements", {
@@ -329,9 +329,11 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				});
 				
 				if (formationSelected)
-					icon.sprite = "stretched:session/icons/formations/formation-"+item.replace(/\s+/,'').toLowerCase()+"-selected.png";
+					// TODO: add another layer on top displaying icons/corners.png
+					// If doing this move the icon.sprite code out of the if (!formationOk) else block
+					icon.sprite = "stretched:session/icons/formations/"+item.replace(/\s+/,'').toLowerCase()+"-selected.png";
 				else
-					icon.sprite = "stretched:session/icons/formations/formation-"+item.replace(/\s+/,'').toLowerCase()+".png";
+					icon.sprite = "stretched:session/icons/formations/"+item.replace(/\s+/,'').toLowerCase()+".png";
  			}
  		}
 		else if (guiName == "Stance")
@@ -342,9 +344,10 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			});
 
 			if (stanceSelected)
-				icon.sprite = "stretched:session/icons/single/stance-"+item+"-select.png";
+				// TODO: add another layer on top displaying icons/corners.png
+				icon.sprite = "stretched:session/icons/stances/"+item+"-selected.png";
 			else
-				icon.sprite = "stretched:session/icons/single/stance-"+item+".png";
+				icon.sprite = "stretched:session/icons/stances/"+item+".png";
 		}
 		else if (guiName == "Command")
 		{
@@ -416,8 +419,11 @@ function setupUnitTradingPanel(unitEntState, selection)
 		button.tooltip = "Set " + resource + " as trading goods";
 		var icon = getGUIObjectByName("unitTradingIcon["+i+"]");
 		var preferredGoods = unitEntState.trader.preferredGoods;
-		var imageNameSuffix = (resource == preferredGoods) ? "selected" : "inactive";
-		icon.sprite = "stretched:session/resources/" + resource + "_" + imageNameSuffix + ".png";
+		// TODO: We should remove this and add another layer on top of the button that displays
+		// icons/corners.png to mark the selected button.
+		var imageNameSuffix = (resource == preferredGoods) ? "_selected" : "";
+		var grayscale = (resource != preferredGoods) ? "grayscale:" : "";
+		icon.sprite = "stretched:"+grayscale+"session/icons/resources/" + resource + imageNameSuffix + ".png";
 	}
 }
 
@@ -437,7 +443,11 @@ function setupUnitBarterPanel(unitEntState)
 		{
 			var action = BARTER_ACTIONS[j];
 
-			var imageNameSuffix = (j == 0 && i == g_barterSell) ? "selected" : "inactive";
+			// TODO: We should remove this and add another layer on top of the button that displays
+			// icons/corners.png to mark the selected button.
+			var imageNameSuffix = (j == 0 && i == g_barterSell)  ? "_selected" : "";
+			// We gray out the not selected icons in 'sell' row
+			var grayscale = (j == 0 && i != g_barterSell) ? "grayscale:" : "";
 			var icon = getGUIObjectByName("unitBarter" + action + "Icon["+i+"]");
 
 			var button = getGUIObjectByName("unitBarter" + action + "Button["+i+"]");
@@ -455,7 +465,7 @@ function setupUnitBarterPanel(unitEntState)
 			{
 				button.enabled = true;
 				button.tooltip = action + " " + resource;
-				icon.sprite = "stretched:session/resources/" + resource + "_" + imageNameSuffix + ".png";
+				icon.sprite = "stretched:"+grayscale+"session/icons/resources/" + resource + imageNameSuffix + ".png";
 				var sellPrice = unitEntState.barterMarket.prices["sell"][BARTER_RESOURCES[g_barterSell]];
 				var buyPrice = unitEntState.barterMarket.prices["buy"][resource];
 				amountToBuy = "+" + Math.round(sellPrice / buyPrice * amountToSell);

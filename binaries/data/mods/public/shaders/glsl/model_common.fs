@@ -32,6 +32,7 @@ varying vec2 v_los;
 #if USE_SPECULAR
   uniform float specularPower;
   uniform vec3 specularColor;
+  uniform vec3 sunColor;
   varying vec3 v_normal;
   varying vec3 v_half;
 #endif
@@ -101,7 +102,7 @@ void main()
     // Interpolated v_normal needs to be re-normalized since it varies
     // significantly between adjacent vertexes;
     // v_half changes very gradually so don't bother normalizing that
-    vec3 specular = specularColor * pow(max(0.0, dot(normalize(v_normal), v_half)), specularPower);
+    vec3 specular = sunColor * specularColor * pow(max(0.0, dot(normalize(v_normal), v_half)), specularPower);
   #else
     vec3 specular = vec3(0.0);
   #endif

@@ -590,10 +590,10 @@
 					<!-- Stats -->
 					<object size="8 36 50%-48 100%" name="statsArea" type="image">
 						<!-- Attack icon -->
-						<object hidden="true" size="0 0 48 48" type="image" name="attackIcon" sprite="stretched:session/icons/single/stance-aggressive.png" tooltip_style="sessionToolTip"/>
+						<object hidden="true" size="0 0 48 48" type="image" name="attackIcon" sprite="stretched:session/icons/stances/aggressive.png" tooltip_style="sessionToolTip"/>
  
 						<!-- Armour icon "0 48 48 96"-->
-						<object size="0 0 48 48" type="image" name="armourIcon" sprite="stretched:session/icons/single/stance-defensive.png" tooltip_style="sessionToolTip"/>
+						<object size="0 0 48 48" type="image" name="armourIcon" sprite="stretched:session/icons/stances/defensive.png" tooltip_style="sessionToolTip"/>
 
 						<!-- Resource carrying icon/counter -->
 						<object size="0 40 48 88" type="image" name="resourceCarryingIcon" style="resourceIcon"/>
