@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="2" name="helmet-hellenistic-thracian-crest">
       <mesh>props/helmet/mace_helmet_hellenistic_a.dae</mesh>
@@ -17,7 +15,5 @@
       <texture>props/helmet/mace_d1.dds</texture>
     </variant>
   </group>
-
-  <material>player_trans.xml</material>
-
+  <material>playercolor_spec.xml</material>
 </actor>
