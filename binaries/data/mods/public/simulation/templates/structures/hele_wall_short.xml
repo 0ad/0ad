@@ -4,11 +4,11 @@
     <BuildTime>22</BuildTime>
   </Cost>
   <Footprint>
-    <Square width="26.0" depth="7.0"/>
+    <Square width="14.0" depth="7.0"/>
     <Height>9.0</Height>
   </Footprint>
   <Health>
-    <Max>2210</Max>
+    <Max>3300</Max>
   </Health>
   <Identity>
     <Civ>hele</Civ>
@@ -16,9 +16,9 @@
     <History>All Hellenic cities were surrounded by stone walls for protection against enemy raids. Some of these fortifications, like the Athenian Long Walls, for example, were massive structures.</History>
   </Identity>
   <Obstruction>
-    <Static width="24.0" depth="6.0"/>
+    <Static width="13.0" depth="6.0"/>
   </Obstruction>
   <VisualActor>
-    <Actor>structures/hellenes/wall_medium.xml</Actor>
+    <Actor>structures/hellenes/wall_short.xml</Actor>
   </VisualActor>
 </Entity>
