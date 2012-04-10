@@ -586,9 +586,6 @@ static void InitRenderer()
 	// create terrain related stuff
 	new CTerrainTextureManager;
 
-	// create the material manager
-	new CMaterialManager;
-
 	g_Renderer.Open(g_xres,g_yres);
 
 	// Setup lighting environment. Since the Renderer accesses the
