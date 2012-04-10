@@ -206,7 +206,7 @@ function getActionInfo(action, target)
 			data.target = target;
 			cursor = "action-garrison";
 		}
-		else if (targetState.resourceSupply && (playerOwned || gaiaOwned))
+		else if (targetState.resourceSupply)
 		{
 			var resourceType = targetState.resourceSupply.type.specific;
 			if (targetState.resourceSupply.type.generic === "treasure")
@@ -300,7 +300,7 @@ function getActionInfo(action, target)
 			}
 			break;
 		case "gather":
-			if (targetState.resourceSupply && (playerOwned || gaiaOwned))
+			if (targetState.resourceSupply)
 			{
 				var resource = findGatherType(entState.resourceGatherRates, targetState.resourceSupply);
 				if (resource)

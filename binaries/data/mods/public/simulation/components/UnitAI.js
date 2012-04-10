@@ -1868,12 +1868,11 @@ UnitAI.prototype.FindNearbyResource = function(filter)
 {
 	var range = 64; // TODO: what's a sensible number?
 
-	// Accept any resources owned by Gaia
+	var playerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	// We accept resources owned by Gaia or any player
 	var players = [0];
-	// Also accept resources owned by this unit's player:
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (cmpOwnership)
-		players.push(cmpOwnership.GetOwner());
+	for (var i = 1; i < playerMan.GetNumPlayers(); ++i)
+		players.push(i);
 
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
@@ -2728,10 +2727,8 @@ UnitAI.prototype.CanGather = function(target)
 	if (!cmpResourceGatherer.GetTargetGatherRate(target))
 		return false;
 
-	// Verify that the target is owned by gaia or this entity's player
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership || (!IsOwnedByGaia(target) && !IsOwnedByPlayer(cmpOwnership.GetOwner(), target)))
-		return false;
+	// No need to verify ownership as we should be able to gather from
+	// a target regardless of ownership.
 
 	return true;
 };
