@@ -6,10 +6,12 @@ varying vec2 v_tex;
 
 void main()
 {
-  gl_FragColor = texture2D(baseTex, v_tex);
+  vec4 tex = texture2D(baseTex, v_tex);
 
-  #ifdef REQUIRE_ALPHA_GREATER
-    if (gl_FragColor.a <= REQUIRE_ALPHA_GREATER)
+  #ifdef REQUIRE_ALPHA_GEQUAL
+    if (tex.a < REQUIRE_ALPHA_GEQUAL)
       discard;
   #endif
+
+  gl_FragColor = tex;
 }

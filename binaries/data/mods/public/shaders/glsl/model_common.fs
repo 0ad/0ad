@@ -74,17 +74,18 @@ void main()
 {
   vec4 tex = texture2D(baseTex, v_tex);
 
+  // Alpha-test as early as possible
+  #ifdef REQUIRE_ALPHA_GEQUAL
+    if (tex.a < REQUIRE_ALPHA_GEQUAL)
+      discard;
+  #endif
+
   #if USE_TRANSPARENT
     gl_FragColor.a = tex.a;
   #else
     gl_FragColor.a = 1.0;
   #endif
   
-  #ifdef REQUIRE_ALPHA_GREATER
-    if (gl_FragColor.a <= REQUIRE_ALPHA_GREATER)
-      discard;
-  #endif
-
   vec3 texdiffuse = tex.rgb;
 
   // Apply-coloring based on texture alpha
