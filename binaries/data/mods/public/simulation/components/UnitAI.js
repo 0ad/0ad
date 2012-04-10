@@ -152,9 +152,9 @@ var UnitFsmSpec = {
 
 	// Called when being told to walk as part of a formation
 	"Order.FormationWalk": function(msg) {
-		if (this.IsAnimal())
+		// Let players move captured domestic animals around
+		if (this.IsAnimal() && !this.IsDomestic())
 		{
-			// TODO: let players move captured animals around
 			this.FinishOrder();
 			return;
 		}
@@ -177,22 +177,25 @@ var UnitFsmSpec = {
 	// (these will switch the unit out of formation mode)
 
 	"Order.Walk": function(msg) {
-		if (this.IsAnimal())
+		// Let players move captured domestic animals around
+		if (this.IsAnimal() && !this.IsDomestic())
 		{
-			// TODO: let players move captured animals around
 			this.FinishOrder();
 			return;
 		}
 
 		this.SetHeldPosition(this.order.data.x, this.order.data.z);
 		this.MoveToPoint(this.order.data.x, this.order.data.z);
-		this.SetNextState("INDIVIDUAL.WALKING");
+		if (this.IsAnimal())
+			this.SetNextState("ANIMAL.WALKING");
+		else
+			this.SetNextState("INDIVIDUAL.WALKING");
 	},
 
 	"Order.WalkToTarget": function(msg) {
-		if (this.IsAnimal())
+		// Let players move captured domestic animals around
+		if (this.IsAnimal() && !this.IsDomestic())
 		{
-			// TODO: let players move captured animals around
 			this.FinishOrder();
 			return;
 		}
@@ -201,7 +204,10 @@ var UnitFsmSpec = {
 		if (ok)
 		{
 			// We've started walking to the given point
-			this.SetNextState("INDIVIDUAL.WALKING");
+			if (this.IsAnimal())
+				this.SetNextState("ANIMAL.WALKING");
+			else
+				this.SetNextState("INDIVIDUAL.WALKING");
 		}
 		else
 		{
@@ -473,7 +479,10 @@ var UnitFsmSpec = {
 				return;
 
 			// No orders left, we're an individual now
-			this.SetNextState("INDIVIDUAL.IDLE");
+			if (this.IsAnimal())
+				this.SetNextState("ANIMAL.IDLE");
+			else
+				this.SetNextState("INDIVIDUAL.IDLE");
 		},
 
 		// Override the LeaveFoundation order since we're not doing
@@ -1446,6 +1455,9 @@ var UnitFsmSpec = {
 		"FLEEING": "INDIVIDUAL.FLEEING", // reuse the same fleeing behaviour for animals
 
 		"COMBAT": "INDIVIDUAL.COMBAT", // reuse the same combat behaviour for animals
+		
+		"WALKING": "INDIVIDUAL.WALKING",	// reuse the same walking behaviour for animals
+							// only used for domestic animals
 	},
 };
 
@@ -1471,6 +1483,14 @@ UnitAI.prototype.IsFormationController = function()
 UnitAI.prototype.IsAnimal = function()
 {
 	return (this.template.NaturalBehaviour ? true : false);
+};
+
+UnitAI.prototype.IsDomestic = function()
+{
+	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
+	if (!cmpIdentity)
+		return false;
+	return cmpIdentity.HasClass("Domestic");
 };
 
 UnitAI.prototype.IsIdle = function()
