@@ -2,9 +2,9 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="persian crown">
-      <mesh>props/helmet/pers_crown.dae</mesh>
-      <texture>props/helmet/pers_crown.png</texture>
+    <variant frequency="100" name="Base">
+      <mesh>props/shield/round_m_b.dae</mesh>
+      <texture>props/shield/hele_round_back.dds</texture>
     </variant>
   </group>
   <material>basic_spec.xml</material>
