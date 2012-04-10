@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="helmet-d">
       <mesh>props/helmet/mace_helmet_d.dae</mesh>
@@ -14,13 +12,10 @@
       <mesh>props/helmet/mace_helmet_f.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="texture">
       <texture>props/helmet/kart_b.dds</texture>
     </variant>
   </group>
-
-  <material>player_trans.xml</material>
-
+  <material>playercolor_spec.xml</material>
 </actor>
