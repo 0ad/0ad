@@ -98,7 +98,7 @@ public:
 	/**
 	 * Bind rendering state (textures and blend modes).
 	 */
-	void Bind();
+	void Bind(const CShaderProgramPtr& shader);
 
 	/**
 	 * Draw the vertex array.

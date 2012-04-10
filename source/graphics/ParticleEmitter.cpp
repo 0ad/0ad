@@ -162,9 +162,9 @@ void CParticleEmitter::UpdateArrayData()
 	m_VertexArray.Upload();
 }
 
-void CParticleEmitter::Bind()
+void CParticleEmitter::Bind(const CShaderProgramPtr& shader)
 {
-	m_Type->m_Texture->Bind();
+	shader->BindTexture("baseTex", m_Type->m_Texture);
 	pglBlendEquationEXT(m_Type->m_BlendEquation);
 	glBlendFunc(m_Type->m_BlendFuncSrc, m_Type->m_BlendFuncDst);
 }
