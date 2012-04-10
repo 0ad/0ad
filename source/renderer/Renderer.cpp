@@ -409,9 +409,11 @@ CRenderer::CRenderer()
 	m_Options.m_ARBProgramShadow = true;
 	m_Options.m_ShadowPCF = false;
 	m_Options.m_PreferGLSL = false;
+	m_Options.m_ForceAlphaTest = false;
 
 	// TODO: be more consistent in use of the config system
 	CFG_GET_USER_VAL("preferglsl", Bool, m_Options.m_PreferGLSL);
+	CFG_GET_USER_VAL("forcealphatest", Bool, m_Options.m_ForceAlphaTest);
 
 #if CONFIG2_GLES
 	// Override config option since GLES only supports GLSL

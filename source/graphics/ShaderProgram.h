@@ -29,7 +29,6 @@
 struct CColor;
 class CMatrix3D;
 class CVector3D;
-class CPreprocessor;
 class CShaderDefines;
 class CStrIntern;
 
@@ -192,8 +191,6 @@ public:
 
 protected:
 	CShaderProgram(int streamflags);
-
-	CStr Preprocess(CPreprocessor& preprocessor, const CStr& input);
 
 	bool m_IsValid;
 	int m_StreamFlags;

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
-    <shader effect="model_transparent"/>
+    <alternative material="alphatest_spec.xml" if="CFG_FORCE_ALPHATEST"/>
 
+    <shader effect="model_transparent"/>
     <alpha_blending/>
     <define name="USE_TRANSPARENT" value="1"/>
 

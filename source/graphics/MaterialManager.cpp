@@ -22,7 +22,9 @@
 #include "lib/ogl.h"
 #include "maths/Vector4D.h"
 #include "ps/Filesystem.h"
+#include "ps/PreprocessorWrapper.h"
 #include "ps/XML/Xeromyces.h"
+#include "renderer/Renderer.h"
 
 CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 {
@@ -40,10 +42,13 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 	#define EL(x) int el_##x = xeroFile.GetElementID(#x)
 	#define AT(x) int at_##x = xeroFile.GetAttributeID(#x)
 	EL(alpha_blending);
+	EL(alternative);
 	EL(define);
 	EL(shader);
 	EL(uniform);
 	AT(effect);
+	AT(if);
+	AT(material);
 	AT(name);
 	AT(value);
 	#undef AT
@@ -54,11 +59,22 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 	XMBElement root = xeroFile.GetRoot();
 	XMBElementList childNodes = root.GetChildNodes();
 	
+	CPreprocessorWrapper preprocessor;
+	preprocessor.AddDefine("CFG_FORCE_ALPHATEST", g_Renderer.m_Options.m_ForceAlphaTest ? "1" : "0");
+
 	XERO_ITER_EL(root, node)
 	{
 		int token = node.GetNodeName();
 		XMBAttributeList attrs = node.GetAttributes();
-		if (token == el_alpha_blending)
+		if (token == el_alternative)
+		{
+			if (preprocessor.TestConditional(attrs.GetNamedItem(at_if)))
+			{
+				material = LoadMaterial(VfsPath("art/materials") / attrs.GetNamedItem(at_material).FromUTF8());
+				break;
+			}
+		}
+		else if (token == el_alpha_blending)
 		{
 			material.SetUsesAlphaBlending(true);
 		}
