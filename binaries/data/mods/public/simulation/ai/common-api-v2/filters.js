@@ -63,6 +63,13 @@ var Filters = {
 		"dynamicProperties": ['owner']};
 	},
 	
+	byNotOwner: function(owner){
+		return {"func" : function(ent){
+			return (ent.owner() != owner);
+		}, 
+		"dynamicProperties": ['owner']};
+	},
+	
 	byOwners: function(owners){
 		return {"func" : function(ent){
 			return (owners.indexOf(ent.owner()) !== -1);
