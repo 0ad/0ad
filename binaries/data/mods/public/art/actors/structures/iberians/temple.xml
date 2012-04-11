@@ -5,23 +5,30 @@
     <variant frequency="100" name="Base">
       <mesh>structural/iber_temple.dae</mesh>
       <props>
-        <prop actor="props/structures/iberians/temple.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/iber_scutum_isp.xml" attachpoint="shield1"/>
+        <prop actor="props/units/shields/iber_round_su1.xml" attachpoint="shield2"/>
+        <prop actor="props/units/shields/iber_scutum_isp_e.xml" attachpoint="shield3"/>
       </props>
       <texture>structural/iber_struct.dds</texture>
     </variant>
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_iber.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
     <variant name="death">
       <props>
         <prop attachpoint="garrisoned"/>
         <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/iberians/temple.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
+  <material>player_trans.xml</material>
 </actor>

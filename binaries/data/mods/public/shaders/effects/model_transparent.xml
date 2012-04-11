@@ -5,7 +5,7 @@
         <require context="MODE_SHADOWCAST || MODE_SILHOUETTEOCCLUDER"/>
         <require shaders="arb"/>
         <pass shader="arb/model_solid_tex">
-            <alpha func="greater" ref="0.4"/>
+            <define name="REQUIRE_ALPHA_GEQUAL" value="0.4"/>
         </pass>
     </technique>
 
@@ -13,7 +13,7 @@
         <require context="MODE_SHADOWCAST || MODE_SILHOUETTEOCCLUDER"/>
         <require shaders="glsl"/>
         <pass shader="glsl/model_solid_tex">
-            <define name="REQUIRE_ALPHA_GREATER" value="0.4"/>
+            <define name="REQUIRE_ALPHA_GEQUAL" value="0.4"/>
         </pass>
     </technique>
 
@@ -23,7 +23,7 @@
         <define name="USE_PLAYERCOLOR" value="0"/>
         <define name="USE_OBJECTCOLOR" value="0"/>
         <pass shader="fixed:model_solid_tex">
-            <alpha func="greater" ref="0.4"/>
+            <alpha func="gequal" ref="0.4"/>
         </pass>
     </technique>
 
@@ -61,7 +61,7 @@
         <require shaders="arb"/>
         <pass shader="arb/model_common">
             <define name="USE_TRANSPARENT" value="1"/>
-            <alpha func="greater" ref="0.4"/>
+            <define name="REQUIRE_ALPHA_GEQUAL" value="0.4"/>
         </pass>
     </technique>
 
@@ -70,7 +70,7 @@
         <require shaders="glsl"/>
         <pass shader="glsl/model_common">
             <define name="USE_TRANSPARENT" value="1"/>
-            <define name="REQUIRE_ALPHA_GREATER" value="0.4"/>
+            <define name="REQUIRE_ALPHA_GEQUAL" value="0.4"/>
         </pass>
     </technique>
 
@@ -78,7 +78,7 @@
         <require context="USE_ALPHATEST"/>
         <require shaders="fixed"/>
         <pass shader="fixed:model">
-            <alpha func="greater" ref="0.4"/>
+            <alpha func="gequal" ref="0.4"/>
         </pass>
     </technique>
 
@@ -89,7 +89,7 @@
         <require shaders="arb"/>
         <pass shader="arb/model_common">
             <define name="USE_TRANSPARENT" value="1"/>
-            <alpha func="greater" ref="0.9375"/>
+            <define name="REQUIRE_ALPHA_GEQUAL" value="0.9375"/>
         </pass>
     </technique>
 
@@ -98,7 +98,7 @@
         <require shaders="glsl"/>
         <pass shader="glsl/model_common">
             <define name="USE_TRANSPARENT" value="1"/>
-            <define name="REQUIRE_ALPHA_GREATER" value="0.9375"/>
+            <define name="REQUIRE_ALPHA_GEQUAL" value="0.9375"/>
         </pass>
     </technique>
 
@@ -106,7 +106,7 @@
         <require context="ALPHABLEND_PASS_OPAQUE"/>
         <require shaders="fixed"/>
         <pass shader="fixed:model">
-            <alpha func="greater" ref="0.9375"/>
+            <alpha func="gequal" ref="0.9375"/>
         </pass>
     </technique>
 
@@ -118,7 +118,7 @@
         <sort_by_distance/>
         <pass shader="arb/model_common">
             <define name="USE_TRANSPARENT" value="1"/>
-            <alpha func="greater" ref="0.0"/>
+            <define name="REQUIRE_ALPHA_GEQUAL" value="0.05"/>
             <blend src="src_alpha" dst="one_minus_src_alpha"/>
             <depth func="less" mask="false"/>
         </pass>
@@ -130,7 +130,7 @@
         <sort_by_distance/>
         <pass shader="glsl/model_common">
             <define name="USE_TRANSPARENT" value="1"/>
-            <define name="REQUIRE_ALPHA_GREATER" value="0.0"/>
+            <define name="REQUIRE_ALPHA_GEQUAL" value="0.05"/>
             <blend src="src_alpha" dst="one_minus_src_alpha"/>
             <depth func="less" mask="false"/>
         </pass>
@@ -142,7 +142,7 @@
         <sort_by_distance/>
         <pass shader="fixed:model">
             <define name="USE_TRANSPARENT" value="1"/>
-            <alpha func="greater" ref="0.0"/>
+            <alpha func="gequal" ref="0.05"/>
             <blend src="src_alpha" dst="one_minus_src_alpha"/>
             <depth func="less" mask="false"/>
         </pass>

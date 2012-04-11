@@ -25,7 +25,7 @@ MUL result.color, lighting, sunColor;
 
 //// Texture coordinates:
 
-#ifdef DECAL
+#if DECAL
   MOV result.texcoord[0], vertex.texcoord[0];
 #else
   // Compute texcoords from position and terrain-texture-dependent transform.
@@ -37,11 +37,11 @@ MUL result.color, lighting, sunColor;
   MOV result.texcoord[0].w, 1;
 #endif
 
-#ifdef BLEND
+#if BLEND
   MOV result.texcoord[1], vertex.texcoord[1];
 #endif
 
-#ifdef USE_SHADOW
+#if USE_SHADOW
   DP4 result.texcoord[2].x, shadowTransform[0], position;
   DP4 result.texcoord[2].y, shadowTransform[1], position;
   DP4 result.texcoord[2].z, shadowTransform[2], position;

@@ -2,16 +2,25 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant>
+    <variant frequency="100" name="Gate A">
       <mesh>structural/hele_gate.dae</mesh>
       <props>
-        <prop actor="props/structures/hellenes/gate_props.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/gate_door.xml" attachpoint="root"/>
-        <prop actor="" attachpoint="gar01"/>
-        <prop actor="" attachpoint="gar02"/>
-        <prop actor="" attachpoint="gar03"/>
-        <prop actor="" attachpoint="gar04"/>
-        <prop actor="" attachpoint="gar05"/>
+        <prop actor="props/units/shields/hele_round_a.xml" attachpoint="shield_a"/>
+        <prop actor="props/units/shields/hele_round_b.xml" attachpoint="shield_b"/>
+        <prop actor="props/units/shields/hele_round_e.xml" attachpoint="shield_c"/>
+        <prop actor="props/units/shields/hele_round_a.xml" attachpoint="shield_d"/>
+      </props>
+      <texture>structural/hele_struct_b.dds</texture>
+    </variant>
+    <variant frequency="100" name="Gate B">
+      <mesh>structural/hele_gate.dae</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/gate_door.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/hele_round_e.xml" attachpoint="shield_a"/>
+        <prop actor="props/units/shields/hele_round_a.xml" attachpoint="shield_b"/>
+        <prop actor="props/units/shields/hele_round_b.xml" attachpoint="shield_c"/>
+        <prop actor="props/units/shields/hele_round_e.xml" attachpoint="shield_d"/>
       </props>
       <texture>structural/hele_struct_b.dds</texture>
     </variant>

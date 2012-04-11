@@ -127,7 +127,7 @@ void ParticleRenderer::RenderParticles(bool solidColor)
 	{
 		CParticleEmitter* emitter = m->emitters[i];
 
-		emitter->Bind();
+		emitter->Bind(shader->GetShader());
 		emitter->RenderArray(shader->GetShader());
 	}
 

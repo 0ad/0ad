@@ -152,9 +152,9 @@ var UnitFsmSpec = {
 
 	// Called when being told to walk as part of a formation
 	"Order.FormationWalk": function(msg) {
-		if (this.IsAnimal())
+		// Let players move captured domestic animals around
+		if (this.IsAnimal() && !this.IsDomestic())
 		{
-			// TODO: let players move captured animals around
 			this.FinishOrder();
 			return;
 		}
@@ -177,22 +177,25 @@ var UnitFsmSpec = {
 	// (these will switch the unit out of formation mode)
 
 	"Order.Walk": function(msg) {
-		if (this.IsAnimal())
+		// Let players move captured domestic animals around
+		if (this.IsAnimal() && !this.IsDomestic())
 		{
-			// TODO: let players move captured animals around
 			this.FinishOrder();
 			return;
 		}
 
 		this.SetHeldPosition(this.order.data.x, this.order.data.z);
 		this.MoveToPoint(this.order.data.x, this.order.data.z);
-		this.SetNextState("INDIVIDUAL.WALKING");
+		if (this.IsAnimal())
+			this.SetNextState("ANIMAL.WALKING");
+		else
+			this.SetNextState("INDIVIDUAL.WALKING");
 	},
 
 	"Order.WalkToTarget": function(msg) {
-		if (this.IsAnimal())
+		// Let players move captured domestic animals around
+		if (this.IsAnimal() && !this.IsDomestic())
 		{
-			// TODO: let players move captured animals around
 			this.FinishOrder();
 			return;
 		}
@@ -201,7 +204,10 @@ var UnitFsmSpec = {
 		if (ok)
 		{
 			// We've started walking to the given point
-			this.SetNextState("INDIVIDUAL.WALKING");
+			if (this.IsAnimal())
+				this.SetNextState("ANIMAL.WALKING");
+			else
+				this.SetNextState("INDIVIDUAL.WALKING");
 		}
 		else
 		{
@@ -473,7 +479,10 @@ var UnitFsmSpec = {
 				return;
 
 			// No orders left, we're an individual now
-			this.SetNextState("INDIVIDUAL.IDLE");
+			if (this.IsAnimal())
+				this.SetNextState("ANIMAL.IDLE");
+			else
+				this.SetNextState("INDIVIDUAL.IDLE");
 		},
 
 		// Override the LeaveFoundation order since we're not doing
@@ -1446,6 +1455,9 @@ var UnitFsmSpec = {
 		"FLEEING": "INDIVIDUAL.FLEEING", // reuse the same fleeing behaviour for animals
 
 		"COMBAT": "INDIVIDUAL.COMBAT", // reuse the same combat behaviour for animals
+		
+		"WALKING": "INDIVIDUAL.WALKING",	// reuse the same walking behaviour for animals
+							// only used for domestic animals
 	},
 };
 
@@ -1471,6 +1483,14 @@ UnitAI.prototype.IsFormationController = function()
 UnitAI.prototype.IsAnimal = function()
 {
 	return (this.template.NaturalBehaviour ? true : false);
+};
+
+UnitAI.prototype.IsDomestic = function()
+{
+	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
+	if (!cmpIdentity)
+		return false;
+	return cmpIdentity.HasClass("Domestic");
 };
 
 UnitAI.prototype.IsIdle = function()
@@ -1848,12 +1868,11 @@ UnitAI.prototype.FindNearbyResource = function(filter)
 {
 	var range = 64; // TODO: what's a sensible number?
 
-	// Accept any resources owned by Gaia
+	var playerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	// We accept resources owned by Gaia or any player
 	var players = [0];
-	// Also accept resources owned by this unit's player:
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (cmpOwnership)
-		players.push(cmpOwnership.GetOwner());
+	for (var i = 1; i < playerMan.GetNumPlayers(); ++i)
+		players.push(i);
 
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
@@ -2708,10 +2727,8 @@ UnitAI.prototype.CanGather = function(target)
 	if (!cmpResourceGatherer.GetTargetGatherRate(target))
 		return false;
 
-	// Verify that the target is owned by gaia or this entity's player
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership || (!IsOwnedByGaia(target) && !IsOwnedByPlayer(cmpOwnership.GetOwner(), target)))
-		return false;
+	// No need to verify ownership as we should be able to gather from
+	// a target regardless of ownership.
 
 	return true;
 };

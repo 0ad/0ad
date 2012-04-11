@@ -25,7 +25,7 @@
 #include "ps/CLogger.h"
 #include "ps/CStrIntern.h"
 #include "ps/Filesystem.h"
-#include "ps/Preprocessor.h"
+#include "ps/PreprocessorWrapper.h"
 #include "ps/Profile.h"
 #include "ps/XML/Xeromyces.h"
 #include "ps/XML/XMLWriter.h"
@@ -107,36 +107,6 @@ static GLenum ParseAttribSemantics(const CStr& str)
 	return 0;
 }
 
-static bool CheckPreprocessorConditional(CPreprocessor& preprocessor, const CStr& expr)
-{
-	// Construct a dummy program so we can trigger the preprocessor's expression
-	// code without modifying its public API.
-	// Be careful that the API buggily returns a statically allocated pointer
-	// (which we will try to free()) if the input just causes it to append a single
-	// sequence of newlines to the output; the "\n" after the "#endif" is enough
-	// to avoid this case.
-	CStr input = "#if ";
-	input += expr;
-	input += "\n1\n#endif\n";
-
-	size_t len = 0;
-	char* output = preprocessor.Parse(input.c_str(), input.size(), len);
-
-	if (!output)
-	{
-		LOGERROR(L"Failed to parse conditional expression '%hs'", expr.c_str());
-		return false;
-	}
-
-	bool ret = (memchr(output, '1', len) != NULL);
-
-	// Free output if it's not inside the source string
-	if (!(output >= input.c_str() && output < input.c_str() + input.size()))
-		free(output);
-
-	return ret;
-}
-
 bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefines, CShaderProgramPtr& program)
 {
 	PROFILE2("loading shader");
@@ -191,10 +161,8 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 #undef AT
 #undef EL
 
-	CPreprocessor preprocessor;
-	std::map<CStrIntern, CStrIntern> baseDefinesMap = baseDefines.GetMap();
-	for (std::map<CStrIntern, CStrIntern>::const_iterator it = baseDefinesMap.begin(); it != baseDefinesMap.end(); ++it)
-		preprocessor.Define(it->first.c_str(), it->first.length(), it->second.c_str(), it->second.length());
+	CPreprocessorWrapper preprocessor;
+	preprocessor.AddDefines(baseDefines);
 
 	XMBElement Root = XeroFile.GetRoot();
 
@@ -222,7 +190,7 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 				XMBAttributeList Attrs = Param.GetAttributes();
 
 				CStr cond = Attrs.GetNamedItem(at_if);
-				if (!cond.empty() && !CheckPreprocessorConditional(preprocessor, cond))
+				if (!cond.empty() && !preprocessor.TestConditional(cond))
 					continue;
 
 				if (Param.GetNodeName() == el_uniform)
@@ -263,7 +231,7 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 				XMBAttributeList Attrs = Param.GetAttributes();
 
 				CStr cond = Attrs.GetNamedItem(at_if);
-				if (!cond.empty() && !CheckPreprocessorConditional(preprocessor, cond))
+				if (!cond.empty() && !preprocessor.TestConditional(cond))
 					continue;
 
 				if (Param.GetNodeName() == el_uniform)
@@ -443,10 +411,8 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 	bool preferGLSL = (baseDefines.GetInt("SYS_PREFER_GLSL") != 0);
 
 	// Prepare the preprocessor for conditional tests
-	CPreprocessor preprocessor;
-	std::map<CStrIntern, CStrIntern> baseDefinesMap = baseDefines.GetMap();
-	for (std::map<CStrIntern, CStrIntern>::const_iterator it = baseDefinesMap.begin(); it != baseDefinesMap.end(); ++it)
-		preprocessor.Define(it->first.c_str(), it->first.length(), it->second.c_str(), it->second.length());
+	CPreprocessorWrapper preprocessor;
+	preprocessor.AddDefines(baseDefines);
 
 	XMBElement Root = XeroFile.GetRoot();
 
@@ -489,7 +455,7 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 				else if (!Attrs.GetNamedItem(at_context).empty())
 				{
 					CStr cond = Attrs.GetNamedItem(at_context);
-					if (!CheckPreprocessorConditional(preprocessor, cond))
+					if (!preprocessor.TestConditional(cond))
 						isUsable = false;
 				}
 			}

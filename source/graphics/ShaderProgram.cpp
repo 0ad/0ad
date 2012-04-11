@@ -27,7 +27,7 @@
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/Overlay.h"
-#include "ps/Preprocessor.h"
+#include "ps/PreprocessorWrapper.h"
 
 #if !CONFIG2_GLES
 
@@ -94,13 +94,11 @@ public:
 		if (fragmentFile.Load(g_VFS, m_FragmentFile) != PSRETURN_OK)
 			return;
 
-		CPreprocessor preprocessor;
-		std::map<CStrIntern, CStrIntern> definesMap = m_Defines.GetMap();
-		for (std::map<CStrIntern, CStrIntern>::const_iterator it = definesMap.begin(); it != definesMap.end(); ++it)
-			preprocessor.Define(it->first.c_str(), it->first.length(), it->second.c_str(), it->second.length());
+		CPreprocessorWrapper preprocessor;
+		preprocessor.AddDefines(m_Defines);
 
-		CStr vertexCode = Preprocess(preprocessor, vertexFile.GetAsString());
-		CStr fragmentCode = Preprocess(preprocessor, fragmentFile.GetAsString());
+		CStr vertexCode = preprocessor.Preprocess(vertexFile.GetAsString());
+		CStr fragmentCode = preprocessor.Preprocess(fragmentFile.GetAsString());
 
 //		printf(">>>\n%s<<<\n", vertexCode.c_str());
 //		printf(">>>\n%s<<<\n", fragmentCode.c_str());
@@ -427,10 +425,8 @@ public:
 		if (fragmentFile.Load(g_VFS, m_FragmentFile) != PSRETURN_OK)
 			return;
 
-		CPreprocessor preprocessor;
-		std::map<CStrIntern, CStrIntern> definesMap = m_Defines.GetMap();
-		for (std::map<CStrIntern, CStrIntern>::const_iterator it = definesMap.begin(); it != definesMap.end(); ++it)
-			preprocessor.Define(it->first.c_str(), it->first.length(), it->second.c_str(), it->second.length());
+		CPreprocessorWrapper preprocessor;
+		preprocessor.AddDefines(m_Defines);
 
 #if CONFIG2_GLES
 		// GLES defines the macro "GL_ES" in its GLSL preprocessor,
@@ -439,8 +435,8 @@ public:
 		preprocessor.Define("GL_ES", "1");
 #endif
 
-		CStr vertexCode = Preprocess(preprocessor, vertexFile.GetAsString());
-		CStr fragmentCode = Preprocess(preprocessor, fragmentFile.GetAsString());
+		CStr vertexCode = preprocessor.Preprocess(vertexFile.GetAsString());
+		CStr fragmentCode = preprocessor.Preprocess(fragmentFile.GetAsString());
 
 #if CONFIG2_GLES
 		// Ugly hack to replace desktop GLSL 1.10/1.20 with GLSL ES 1.00,
@@ -733,26 +729,6 @@ void CShaderProgram::Uniform(uniform_id_t id, float v0, float v1, float v2, floa
 void CShaderProgram::Uniform(uniform_id_t id, const CMatrix3D& v)
 {
 	Uniform(GetUniformBinding(id), v);
-}
-
-CStr CShaderProgram::Preprocess(CPreprocessor& preprocessor, const CStr& input)
-{
-	size_t len = 0;
-	char* output = preprocessor.Parse(input.c_str(), input.size(), len);
-
-	if (!output)
-	{
-		LOGERROR(L"Shader preprocessing failed");
-		return "";
-	}
-
-	CStr ret(output, len);
-
-	// Free output if it's not inside the source string
-	if (!(output >= input.c_str() && output < input.c_str() + input.size()))
-		free(output);
-
-	return ret;
 }
 
 #if CONFIG2_GLES

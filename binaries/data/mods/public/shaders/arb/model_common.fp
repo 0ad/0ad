@@ -40,6 +40,13 @@ TEMP color;
 TEMP shadow;
 
 TEX tex, v_tex, texture[0], 2D;
+
+// Alpha-test as early as possible
+#ifdef REQUIRE_ALPHA_GEQUAL
+  SUB temp.x, tex.a, REQUIRE_ALPHA_GEQUAL;
+  KIL temp.x; // discard if < 0.0
+#endif
+
 #if USE_TRANSPARENT
   MOV result.color.a, tex;
 #endif

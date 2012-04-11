@@ -68,7 +68,7 @@ void CDecalRData::Update()
 
 void CDecalRData::Render(const CShaderProgramPtr& shader, bool isDummyShader)
 {
-	m_Decal->m_Decal.m_Texture->Bind(0);
+	shader->BindTexture("baseTex", m_Decal->m_Decal.m_Texture);
 
 	// TODO: Need to handle floating decals correctly. In particular, we need
 	// to render non-floating before water and floating after water (to get

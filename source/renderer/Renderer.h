@@ -122,6 +122,7 @@ public:
 		bool m_ARBProgramShadow;
 		bool m_ShadowPCF;
 		bool m_PreferGLSL;
+		bool m_ForceAlphaTest;
 	} m_Options;
 
 	struct Caps {

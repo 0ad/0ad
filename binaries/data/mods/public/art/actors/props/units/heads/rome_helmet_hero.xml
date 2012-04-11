@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <group>
     <variant frequency="1" name="helmet hero 1">
       <mesh>props/helmet/rome_hero_a.dae</mesh>
@@ -27,7 +26,5 @@
       <texture>props/helmet/rome_hero_c.png</texture>
     </variant>
   </group>
-
-  <material>player_trans.xml</material>
-
+  <material>playercolor_spec.xml</material>
 </actor>
