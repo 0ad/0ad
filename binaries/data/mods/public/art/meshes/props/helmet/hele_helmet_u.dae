@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2012-04-10T19:04:04Z</created>
-    <modified>2012-04-10T19:04:04Z</modified>
+    <created>2012-04-11T01:00:44Z</created>
+    <modified>2012-04-11T01:00:44Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -16,7 +16,7 @@
     <up_axis>Y_UP</up_axis>
   </asset>
   <library_images>
-    <image id="Map__35-image" name="Map__35">
+    <image id="Map__35_image-image" name="Map__35_image">
       <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\props\helmet\hele_a2.dds</init_from>
     </image>
   </library_images>
@@ -37,7 +37,7 @@
               <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
             </ambient>
             <diffuse>
-              <texture texture="Map__35-image" texcoord="CHANNEL0">
+              <texture texture="Map__35_image-image" texcoord="CHANNEL0">
                 <extra>
                   <technique profile="MAYA">
                     <wrapU sid="wrapU0">TRUE</wrapU>
@@ -831,7 +831,7 @@
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
       <node id="hele_helmet_u" name="hele_helmet_u">
-        <matrix sid="matrix">0.949823 0.000000 0.000000 0.000000 0.000000 0.000000 0.949823 0.000000 0.000000 -0.949823 0.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
+        <matrix sid="matrix">0.968202 0.000000 0.000000 0.000000 0.000000 0.000000 0.968202 -0.008732 0.000000 -0.968202 0.000000 -0.005328 0.000000 0.000000 0.000000 1.000000</matrix>
         <instance_geometry url="#hele_helmet_u-lib">
           <bind_material>
             <technique_common>
