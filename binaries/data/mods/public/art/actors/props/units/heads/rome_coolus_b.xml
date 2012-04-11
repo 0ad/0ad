@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="helmet-coolus-simple">
       <mesh>props/helmet/rome_coolus_a.dae</mesh>
@@ -33,7 +31,5 @@
       <texture>props/helmet/rome-e-coolus-centurion.dds</texture>
     </variant>
   </group>
-
-  <material>player_trans.xml</material>
-
+  <material>playercolor_spec.xml</material>
 </actor>

@@ -1,12 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base"/>
   </group>
-
   <group>
     <variant frequency="3" name="plume">
       <mesh>props/helmet/rome_helmet_g.dae</mesh>
@@ -18,7 +15,6 @@
       <mesh>props/helmet/rome_helmet_i.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="helmet-cross-brace">
       <texture>props/helmet/rome-b.dds</texture>
@@ -27,7 +23,5 @@
       <texture>props/helmet/rome-d.dds</texture>
     </variant>
   </group>
-
-  <material>player_trans.xml</material>
-
+  <material>playercolor_spec.xml</material>
 </actor>
