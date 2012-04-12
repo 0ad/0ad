@@ -224,11 +224,14 @@ Attack.prototype.PerformAttack = function(type, target)
 		//horizSpeed /= 8; gravity /= 8; // slow it down for testing
 
 		// Find the distance to the target
-		var selfPosition = Engine.QueryInterface(this.entity, IID_Position).GetPosition();
-		var cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
-		if (!cmpTargetPosition)
+		var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+		if (!cmpPosition || !cmpPosition.IsInWorld())
 			return;
-		var targetPosition = Engine.QueryInterface(target, IID_Position).GetPosition();
+		var selfPosition = cmpPosition.GetPosition();
+		var cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
+		if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld())
+			return;
+		var targetPosition = cmpTargetPosition.GetPosition();
 		var horizDistance = Math.sqrt(Math.pow(targetPosition.x - selfPosition.x, 2) + Math.pow(targetPosition.z - selfPosition.z, 2));
 
 		// Compute the real target point (based on accuracy)
