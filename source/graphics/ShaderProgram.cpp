@@ -232,6 +232,12 @@ public:
 		}
 	}
 
+	virtual void Uniform(Binding id, size_t count, const CMatrix3D* v)
+	{
+		ENSURE(count == 1);
+		Uniform(id, v[0]);
+	}
+
 private:
 	VfsPath m_VertexFile;
 	VfsPath m_FragmentFile;
@@ -580,6 +586,17 @@ public:
 		}
 	}
 
+	virtual void Uniform(Binding id, size_t count, const CMatrix3D* v)
+	{
+		if (id.first != -1)
+		{
+			if (id.second == GL_FLOAT_MAT4)
+				pglUniformMatrix4fvARB(id.first, count, GL_FALSE, &v->_11);
+			else
+				LOGERROR(L"CShaderProgramGLSL::Uniform(): Invalid uniform type (expected mat4)");
+		}
+	}
+
 	// Map the various fixed-function Pointer functions onto generic vertex attributes
 	// (matching the attribute indexes from ShaderManager's ParseAttribSemantics):
 
@@ -605,6 +622,24 @@ public:
 	{
 		pglVertexAttribPointerARB(8 + texture - GL_TEXTURE0, size, type, GL_FALSE, stride, pointer);
 		m_ValidStreams |= STREAM_UV0 << (texture - GL_TEXTURE0);
+	}
+
+	virtual void VertexAttribPointer(const char* id, GLint size, GLenum type, GLboolean normalized, GLsizei stride, void* pointer)
+	{
+		std::map<CStrIntern, int>::iterator it = m_VertexAttribs.find(CStrIntern(id));
+		if (it != m_VertexAttribs.end())
+		{
+			pglVertexAttribPointerARB(it->second, size, type, normalized, stride, pointer);
+		}
+	}
+
+	virtual void VertexAttribIPointer(const char* id, GLint size, GLenum type, GLsizei stride, void* pointer)
+	{
+		std::map<CStrIntern, int>::iterator it = m_VertexAttribs.find(CStrIntern(id));
+		if (it != m_VertexAttribs.end())
+		{
+			pglVertexAttribIPointerEXT(it->second, size, type, stride, pointer);
+		}
 	}
 
 private:
@@ -731,6 +766,11 @@ void CShaderProgram::Uniform(uniform_id_t id, const CMatrix3D& v)
 	Uniform(GetUniformBinding(id), v);
 }
 
+void CShaderProgram::Uniform(uniform_id_t id, size_t count, const CMatrix3D* v)
+{
+	Uniform(GetUniformBinding(id), count, v);
+}
+
 #if CONFIG2_GLES
 
 // These should all be overridden by CShaderProgramGLSL
@@ -780,6 +820,18 @@ void CShaderProgram::TexCoordPointer(GLenum texture, GLint size, GLenum type, GL
 	glTexCoordPointer(size, type, stride, pointer);
 	pglClientActiveTextureARB(GL_TEXTURE0);
 	m_ValidStreams |= STREAM_UV0 << (texture - GL_TEXTURE0);
+}
+
+void CShaderProgram::VertexAttribPointer(const char* UNUSED(id), GLint UNUSED(size), GLenum UNUSED(type),
+	GLboolean UNUSED(normalized), GLsizei UNUSED(stride), void* UNUSED(pointer))
+{
+	debug_warn("Shader type doesn't support VertexAttribPointer");
+}
+
+void CShaderProgram::VertexAttribIPointer(const char* UNUSED(id), GLint UNUSED(size), GLenum UNUSED(type),
+	GLsizei UNUSED(stride), void* UNUSED(pointer))
+{
+	debug_warn("Shader type doesn't support VertexAttribIPointer");
 }
 
 void CShaderProgram::BindClientStates()

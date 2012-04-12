@@ -115,6 +115,10 @@ public:
 	{
 	}
 
+	virtual void Uniform(Binding UNUSED(id), size_t UNUSED(count), const CMatrix3D* UNUSED(v))
+	{
+	}
+
 protected:
 	std::map<CStrIntern, int> m_UniformIndexes;
 

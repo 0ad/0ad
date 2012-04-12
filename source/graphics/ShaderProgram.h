@@ -159,6 +159,7 @@ public:
 	// Uniform-setting methods that subclasses must define:
 	virtual void Uniform(Binding id, float v0, float v1, float v2, float v3) = 0;
 	virtual void Uniform(Binding id, const CMatrix3D& v) = 0;
+	virtual void Uniform(Binding id, size_t count, const CMatrix3D* v) = 0;
 
 	// Convenient uniform-setting wrappers:
 
@@ -175,6 +176,7 @@ public:
 	void Uniform(uniform_id_t id, const CColor& v);
 	void Uniform(uniform_id_t id, float v0, float v1, float v2, float v3);
 	void Uniform(uniform_id_t id, const CMatrix3D& v);
+	void Uniform(uniform_id_t id, size_t count, const CMatrix3D* v);
 
 	// Vertex attribute pointers (equivalent to glVertexPointer etc):
 
@@ -182,6 +184,8 @@ public:
 	virtual void NormalPointer(GLenum type, GLsizei stride, void* pointer);
 	virtual void ColorPointer(GLint size, GLenum type, GLsizei stride, void* pointer);
 	virtual void TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, void* pointer);
+	virtual void VertexAttribPointer(const char* id, GLint size, GLenum type, GLboolean normalized, GLsizei stride, void* pointer);
+	virtual void VertexAttribIPointer(const char* id, GLint size, GLenum type, GLsizei stride, void* pointer);
 
 	/**
 	 * Checks that all the required vertex attributes have been set.
