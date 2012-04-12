@@ -51,43 +51,41 @@ var MilitaryAttackManager = Class({
 	regroup: function(gameState, planGroups)
 	{
 			if (gameState.getTimeElapsed() > this.changetimeReg && this.killstrat != 3){
-			var regroupneeded = gameState.getOwnEntitiesWithRole("attack");
+			var regroupneeded = gameState.getOwnRoleGroup("attack");
 				regroupneeded.forEach(function(ent) {
 					ent.setMetadata("role", "attack-pending");
 				});
-			var regroupneeded = gameState.getOwnEntitiesWithRole("attack_3p1");
+			var regroupneeded = gameState.getOwnRoleGroup("attack_3p1");
 				regroupneeded.forEach(function(ent) {
 					ent.setMetadata("role", "attack-pending");
 				});
-			var regroupneeded = gameState.getOwnEntitiesWithRole("attack_3p2");
+			var regroupneeded = gameState.getOwnRoleGroup("attack_3p2");
 				regroupneeded.forEach(function(ent) {
 					ent.setMetadata("role", "attack-pending");
 				});
-			var regroupneeded = gameState.getOwnEntitiesWithRole("attack_3p3");
+			var regroupneeded = gameState.getOwnRoleGroup("attack_3p3");
 				regroupneeded.forEach(function(ent) {
 					ent.setMetadata("role", "attack-pending");
 				});
-			var regroupneeded = gameState.getOwnEntitiesWithRole("attack-pending_3p1");
+			var regroupneeded = gameState.getOwnRoleGroup("attack-pending_3p1");
 				regroupneeded.forEach(function(ent) {
 					ent.setMetadata("role", "attack-pending");
 				});
-			var regroupneeded = gameState.getOwnEntitiesWithRole("attack-pending_3p2");
+			var regroupneeded = gameState.getOwnRoleGroup("attack-pending_3p2");
 				regroupneeded.forEach(function(ent) {
 					ent.setMetadata("role", "attack-pending");
 				});
-			var regroupneeded = gameState.getOwnEntitiesWithRole("attack-pending_3p3");
+			var regroupneeded = gameState.getOwnRoleGroup("attack-pending_3p3");
 				regroupneeded.forEach(function(ent) {
 					ent.setMetadata("role", "attack-pending");
 				});
-			var regroupneeded = gameState.getOwnEntitiesWithRole("fighting");
+			var regroupneeded = gameState.getOwnRoleGroup("fighting");
 				regroupneeded.forEach(function(ent) {
 					ent.setMetadata("role", "attack-pending");
 				});
-			var regroupneededPartB = gameState.getOwnEntitiesWithRole("attack-pending");
+			var regroupneededPartB = gameState.getOwnRoleGroup("attack-pending");
 				//Find a friendsly CC
-			var targets = gameState.entities.filter(function(ent) {
-				return (!ent.isEnemy() && ent.hasClass("CivCentre"));
-			});
+			var targets = gameState.getOwnWithClass("CivCentre");
 			if (targets.length){
 				var target = targets.toEntityArray()[0];
 				var targetPos = target.position();
@@ -99,7 +97,7 @@ var MilitaryAttackManager = Class({
 			this.changetimeReg = this.changetimeReg + (60*4000);
 			}
 			else if (gameState.getTimeElapsed() > this.changetimeReg && this.killstrat == 3){
-			var regroupneeded = gameState.getOwnEntitiesWithRole("attack");
+			var regroupneeded = gameState.getOwnRoleGroup("attack");
 				regroupneeded.forEach(function(ent) {
 					var section = Math.random();
 					if (section < 0.3){
@@ -112,7 +110,7 @@ var MilitaryAttackManager = Class({
 					ent.setMetadata("role", "attack-pending_3p3");
 					}
 				});
-			var regroupneeded = gameState.getOwnEntitiesWithRole("attack-pending");
+			var regroupneeded = gameState.getOwnRoleGroup("attack-pending");
 				regroupneeded.forEach(function(ent) {
 					var section = Math.random();
 					if (section < 0.3){
@@ -125,19 +123,19 @@ var MilitaryAttackManager = Class({
 					ent.setMetadata("role", "attack-pending_3p3");
 					}
 				});
-			var regroupneeded = gameState.getOwnEntitiesWithRole("attack_3p1");
+			var regroupneeded = gameState.getOwnRoleGroup("attack_3p1");
 				regroupneeded.forEach(function(ent) {
 					ent.setMetadata("role", "attack-pending_3p1");
 				});
-			var regroupneeded = gameState.getOwnEntitiesWithRole("attack_3p2");
+			var regroupneeded = gameState.getOwnRoleGroup("attack_3p2");
 				regroupneeded.forEach(function(ent) {
 					ent.setMetadata("role", "attack-pending_3p2");
 				});
-			var regroupneeded = gameState.getOwnEntitiesWithRole("attack_3p3");
+			var regroupneeded = gameState.getOwnRoleGroup("attack_3p3");
 				regroupneeded.forEach(function(ent) {
 					ent.setMetadata("role", "attack-pending_3p3");
 				});
-			var regroupneeded = gameState.getOwnEntitiesWithRole("fighting");
+			var regroupneeded = gameState.getOwnRoleGroup("fighting");
 				regroupneeded.forEach(function(ent) {
 					var section = Math.random();
 					if (section < 0.3){
@@ -152,11 +150,9 @@ var MilitaryAttackManager = Class({
 				});
 				// MOVE THEM ALL
 				// GROUP ONE
-			var regroupneededPartB = gameState.getOwnEntitiesWithRole("attack-pending_3p1");
+			var regroupneededPartB = gameState.getOwnRoleGroup("attack-pending_3p1");
 				//Find a friendsly CC
-			var targets = gameState.entities.filter(function(ent) {
-				return (!ent.isEnemy() && ent.hasClass("CivCentre"));
-			});
+			var targets = gameState.getOwnWithClass("CivCentre");
 			if (targets.length){
 				var target = targets.toEntityArray()[0];
 				var targetPos = target.position();
@@ -165,11 +161,9 @@ var MilitaryAttackManager = Class({
 				regroupneededPartB.move(targetPos[0], targetPos[1]);
 			}
 				// MOVING GROUP TWO
-			var regroupneededPartB = gameState.getOwnEntitiesWithRole("attack-pending_3p2");
+			var regroupneededPartB = gameState.getOwnRoleGroup("attack-pending_3p2");
 				//Find a friendsly CC
-			var targets = gameState.entities.filter(function(ent) {
-				return (!ent.isEnemy() && ent.hasClass("CivCentre"));
-			});
+			var targets = gameState.getOwnWithClass("CivCentre");
 			if (targets.length){
 				var target = targets.toEntityArray()[0];
 				var targetPos = target.position();
@@ -178,11 +172,9 @@ var MilitaryAttackManager = Class({
 				regroupneededPartB.move(targetPos[0], targetPos[1]);
 			}
 				// MOVING GROUP THREE
-			var regroupneededPartB = gameState.getOwnEntitiesWithRole("attack-pending_3p3");
+			var regroupneededPartB = gameState.getOwnRoleGroup("attack-pending_3p3");
 				//Find a friendsly CC
-			var targets = gameState.entities.filter(function(ent) {
-				return (!ent.isEnemy() && ent.hasClass("CivCentre"));
-			});
+			var targets = gameState.getOwnWithClass("CivCentre");
 			if (targets.length){
 				var target = targets.toEntityArray()[0];
 				var targetPos = target.position();
@@ -197,10 +189,10 @@ var MilitaryAttackManager = Class({
 	
 	combatcheck: function(gameState, planGroups, assaultgroup)
 	{
-			var regroupneeded = gameState.getOwnEntitiesWithRole(assaultgroup);
+			var regroupneeded = gameState.getOwnRoleGroup(assaultgroup);
 				regroupneeded.forEach(function(troop) {
 				var currentPosition = troop.position();
-			var targets = gameState.entities.filter(function(ent) {
+			var targets = gameState.getJustEnemies().filter(function(ent) {
 				var foeposition = ent.position();
 				if (foeposition){
 				var dist = SquareVectorDistance(foeposition, currentPosition);
@@ -271,26 +263,26 @@ var MilitaryAttackManager = Class({
 	
 	combatcheckMilitia: function(gameState, planGroups, assaultgroup)
 	{
-			var regroupneeded = gameState.getOwnEntitiesWithRole(assaultgroup);
+			var regroupneeded = gameState.getOwnRoleGroup(assaultgroup);
 				regroupneeded.forEach(function(troop) {
 				var currentPosition = troop.position();
 			// Find nearby enemies
-			var targets = gameState.entities.filter(function(ent) {
+			var targets = gameState.getJustEnemies().filter(function(ent) {
 				var foeposition = ent.position();
 				if (foeposition){
 				var dist = SquareVectorDistance(foeposition, currentPosition);
-				return (ent.isEnemy() && ent.owner()!= 0 && dist < 2500);
+				return (dist < 2500);
 				}
 				else {
 				return false;
 				}
 			});
 			// Check that some of our own buildings are nearby
-			var ownbuildings = gameState.getOwnEntities().filter(function(ent) {
+			var ownbuildings = gameState.getOwnWithClass("Village").filter(function(ent) {
 				var foeposition = ent.position();
 				if (foeposition){
 				var dist = SquareVectorDistance(foeposition, currentPosition);
-				return (dist < 2500 && ent.hasClass("Village"));
+				return (dist < 2500);
 				}
 				else {
 				return false;
@@ -328,7 +320,7 @@ var MilitaryAttackManager = Class({
 				var targetPos = target.position();
 			}
 			// Change 'em back to militia
-			var defenseregroupers = gameState.getOwnEntitiesWithRole("militiafighter");
+			var defenseregroupers = gameState.getOwnRoleGroup("militiafighter");
 		defenseregroupers.forEach(function(ent) {
 			// If we have a target to go home to, move to it
 				ent.move(targetPos[0], targetPos[1]);
@@ -342,11 +334,9 @@ var MilitaryAttackManager = Class({
 	waitingregroup: function(gameState, planGroups)
 	{
 			if (gameState.getTimeElapsed() > this.changetimeRegWaiting){
-			var regroupneededPartC = gameState.getOwnEntitiesWithRole("attack-pending");
+			var regroupneededPartC = gameState.getOwnRoleGroup("attack-pending");
 				//Find a friendsly CC
-			var targets = gameState.entities.filter(function(ent) {
-				return (!ent.isEnemy() && ent.hasClass("Village"));
-			});
+			var targets = gameState.getOwnWithClass("Village");
 					// If we have a target, move to it
 			if (targets.length)
 			{
@@ -356,11 +346,9 @@ var MilitaryAttackManager = Class({
 				// TODO: this should be an attack-move command
 				regroupneededPartC.move(targetPos[0], targetPos[1]);
 			}
-			var regroupneededPartC = gameState.getOwnEntitiesWithRole("attack-pending_3p1");
+			var regroupneededPartC = gameState.getOwnRoleGroup("attack-pending_3p1");
 				//Find a friendsly CC
-			var targets = gameState.entities.filter(function(ent) {
-				return (!ent.isEnemy() && ent.hasClass("Village"));
-			});
+			var targets = gameState.getOwnWithClass("Village");
 					// If we have a target, move to it
 			if (targets.length)
 			{
@@ -370,11 +358,9 @@ var MilitaryAttackManager = Class({
 				// TODO: this should be an attack-move command
 				regroupneededPartC.move(targetPos[0], targetPos[1]);
 			}
-			var regroupneededPartC = gameState.getOwnEntitiesWithRole("attack-pending_3p2");
+			var regroupneededPartC = gameState.getOwnRoleGroup("attack-pending_3p2");
 				//Find a friendsly CC
-			var targets = gameState.entities.filter(function(ent) {
-				return (!ent.isEnemy() && ent.hasClass("Village"));
-			});
+			var targets = gameState.getOwnWithClass("Village");
 					// If we have a target, move to it
 			if (targets.length)
 			{
@@ -384,11 +370,9 @@ var MilitaryAttackManager = Class({
 				// TODO: this should be an attack-move command
 				regroupneededPartC.move(targetPos[0], targetPos[1]);
 			}
-			var regroupneededPartC = gameState.getOwnEntitiesWithRole("attack-pending_3p3");
+			var regroupneededPartC = gameState.getOwnRoleGroup("attack-pending_3p3");
 				//Find a friendsly CC
-			var targets = gameState.entities.filter(function(ent) {
-				return (!ent.isEnemy() && ent.hasClass("Village"));
-			});
+			var targets = gameState.getOwnWithClass("Village");
 					// If we have a target, move to it
 			if (targets.length)
 			{
@@ -409,24 +393,46 @@ var MilitaryAttackManager = Class({
 	{
 		var trainup = 0;
 		var pendingdefense = gameState.countEntitiesAndQueuedWithRole("defenders");
-		var targets = gameState.entities.filter(function(ent) {
-			return (!ent.isEnemy() && ent.hasClass("GarrisonTower"));
-		});
+			var targets = gameState.getOwnWithClass("GarrisonTower");
 		if (targets.length)
 		{
 			targets.forEach(function(tower) {
+			if (tower.foundationProgress() === undefined){
 			var defno = tower.garrisoned().length;
 			var defneed = 3 - defno;
-			warn("Need " + defneed + " men in the tower, with " + pendingdefense + " available.");
+			//warn("Need " + defneed + " men in the tower, with " + pendingdefense + " available.");
 			if (defneed >= 1) {
 				if (pendingdefense >= 1) {
-					gameState.getOwnEntitiesWithRole("defenders").forEach(function(ent) {
+					gameState.getOwnRoleGroup("defenders").forEach(function(ent) {
 						ent.garrison(tower);
 						ent.setMetadata("role", "towerGuard");
 					});
 				}
 				else {
 				trainup = 1;
+				}
+				}
+				}
+				});
+			}
+		var targetsII = gameState.getOwnWithClass("GarrisonFortress");
+		if (targetsII.length)
+		{
+			targetsII.forEach(function(tower) {
+			if (tower.foundationProgress() === undefined){
+			var defno = tower.garrisoned().length;
+			var defneed = 6 - defno;
+			//warn("Need " + defneed + " men in the tower, with " + pendingdefense + " available.");
+			if (defneed >= 1) {
+				if (pendingdefense >= 1) {
+					gameState.getOwnRoleGroup("defenders").forEach(function(ent) {
+						ent.garrison(tower);
+						ent.setMetadata("role", "towerGuard");
+					});
+				}
+				else {
+				trainup = 1;
+				}
 				}
 				}
 				});

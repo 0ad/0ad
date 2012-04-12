@@ -69,6 +69,15 @@ var GameState = Class({
 		return this.entities;
 	},
 
+	updatingCollection: function(id, filter, collection){
+	if (!this.store[id]){
+		this.store[id] = collection.filter(filter);
+		this.store[id].registerUpdates();
+	}
+	
+	return this.store[id];
+	},
+
 	getOwnEntities: function()
 	{
 	if (!this.store.ownEntities){
@@ -78,6 +87,69 @@ var GameState = Class({
 	
 	return this.store.ownEntities;
 	},
+
+	getOwnRoleGroup: function(role) {
+	return this.updatingCollection("RoleGroup" + role, Filters.byMetadata("role", role), this.getOwnEntities());
+	},
+
+	getOwnWithClass: function(aclass) {
+	return this.updatingCollection("RoleGroup" + aclass, Filters.byClass(aclass), this.getOwnEntities());
+	},
+
+	getNotGaia: function() {
+	var collection = this.updatingCollection("NotGaia", Filters.byNotOwner(0), this.getEntities());
+	return collection;
+	},
+
+	getJustEnemies: function() {
+	var collection = this.updatingCollection("JustEnemies", Filters.byNotOwner(this.player), this.getNotGaia());
+	//warn(collection.length + " enemy unit objects")
+	return collection;
+	},
+	
+	// These get enemies things are copied from qbot, to avoid duplication of a ton of effort (yay laziness)
+	getEnemies: function(){
+	var ret = [];
+	for (i in this.playerData.isEnemy){
+		if (this.playerData.isEnemy[i]){
+			ret.push(i);
+		}
+	}
+	return ret;
+	},
+
+	getEnemyEntities: function() {
+	var diplomacyChange = false;
+	var enemies = this.getEnemies();
+	warn(enemies.length + " enemy factions")
+	if (this.store.enemies){
+		if (this.store.enemies.length != enemies.length){
+			diplomacyChange = true;
+		}
+		else{
+			for (var i  = 0; i < enemies.length; i++){
+				if (enemies[i] !== this.store.enemies[i]){
+					diplomacyChange = true;
+				}
+			}
+		}
+	}
+	if (!this.store.enemyEntities){
+		var filter = Filters.byOwners(enemies);
+		this.store.enemyEntities = this.getEntities().filter(filter);
+		this.store.enemyEntities.registerUpdates();
+		this.store.enemies = enemies;
+	}
+	if (diplomacyChange == true){
+		var filter = Filters.byOwners(enemies);
+		this.store.enemyEntities = this.getEntities().filter(filter);
+		this.store.enemyEntities.registerUpdates();
+		this.store.enemies = enemies;
+	}
+	warn(this.store.enemyEntities.length + " enemy objects")
+	return this.store.enemyEntities;
+},
+/// Laziness ends here.
 
 	getOwnEntitiesWithRole: Memoize('getOwnEntitiesWithRole', function(role)
 	{

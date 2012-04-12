@@ -372,6 +372,9 @@ var EconomyManager = Class({
 	buildMoreBuildings: function(gameState, planGroups)
 	{
 		var numCCs = gameState.countEntitiesAndQueuedWithType(gameState.applyCiv("structures/{civ}_civil_centre"));
+		var numMills = gameState.countEntitiesAndQueuedWithType(gameState.applyCiv("structures/{civ}_mill"));
+		var numFarmsteads = gameState.countEntitiesAndQueuedWithType(gameState.applyCiv("structures/{civ}_farmstead"));
+		var defensequot = numMills + numFarmsteads
 		if (numCCs < 1)
 		{
 			planGroups.economyConstruction.addPlan(1000,
@@ -397,6 +400,15 @@ var EconomyManager = Class({
 		
 		if (gameState.findFoundations().length > 0)
 			return;	
+			
+		var numTowers = gameState.countEntitiesAndQueuedWithType(gameState.applyCiv("structures/{civ}_defense_tower"));
+		if (numTowers < defensequot)
+		{
+			planGroups.economyConstruction.addPlan(150,
+				new BuildingConstructionPlanDefensePoints(gameState, "structures/{civ}_defense_tower", 1)
+			);
+			return;
+		}
 			
 		// START BY GETTING ALL CCs UP TO SMALL VILLAGE LEVEL
 		for each (var building in this.villageBuildings)
@@ -625,11 +637,11 @@ var EconomyManager = Class({
 		for (var type in this.gatherWeights)
 			numGatherers[type] = 0;
 
-		gameState.getOwnEntitiesWithRole("worker").forEach(function(ent) {
+		gameState.getOwnRoleGroup("worker").forEach(function(ent) {
 			if (ent.getMetadata("subrole") === "gatherer")
 				numGatherers[ent.getMetadata("gather-type")] += 1;
 		});
-		gameState.getOwnEntitiesWithRole("militia").forEach(function(ent) {
+		gameState.getOwnRoleGroup("militia").forEach(function(ent) {
 			if (ent.getMetadata("subrole") === "gatherer")
 				numGatherers[ent.getMetadata("gather-type")] += 1;
 		});
@@ -647,7 +659,7 @@ var EconomyManager = Class({
 
 	reassignRolelessUnits: function(gameState)
 	{
-		var roleless = gameState.getOwnEntitiesWithRole(undefined);
+		var roleless = gameState.getOwnRoleGroup(undefined);
 
 
 		roleless.forEach(function(ent)
@@ -659,12 +671,12 @@ var EconomyManager = Class({
 			else if (ent.hasClass("CitizenSoldier") && ent.hasClass("Infantry"))
 			{
 				var currentPosition = ent.position();
-				var targets = gameState.entities.filter(function(enten) {
+				var targets = gameState.getJustEnemies().filter(function(enten) {
 					var foeposition = enten.position();
 					if (foeposition)
 					{
 						var dist = SquareVectorDistance(foeposition, currentPosition);
-						return (enten.isEnemy() && enten.owner()!= 0 && dist < 2500);
+						return (dist < 2500);
 					}
 					else
 					{
