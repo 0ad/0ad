@@ -35,7 +35,7 @@ struct InstancingModelRendererInternals;
 class InstancingModelRenderer : public ModelVertexRenderer
 {
 public:
-	InstancingModelRenderer();
+	InstancingModelRenderer(bool gpuSkinning);
 	~InstancingModelRenderer();
 
 	// Implementations

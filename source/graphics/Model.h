@@ -189,10 +189,6 @@ public:
 		return m_BoneMatrices;
 	}
 
-	const CMatrix3D* GetInverseBindBoneMatrices() { 
-		return m_InverseBindBoneMatrices;
-	}
-
 	/**
 	 * Load raw animation frame animation from given file, and build an
 	 * animation specific to this model.
@@ -278,8 +274,6 @@ private:
 	 * @see SPropPoint
 	 */
 	CMatrix3D* m_BoneMatrices;
-	// inverse matrices for the bind pose's bones; null if not skeletal
-	CMatrix3D* m_InverseBindBoneMatrices;
 	// list of current props on model
 	std::vector<Prop> m_Props;
 

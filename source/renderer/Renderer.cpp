@@ -288,17 +288,18 @@ public:
 		// Submitted models are split on two axes:
 		//  - Normal vs Transp[arent] - alpha-blended models are stored in a separate
 		//    list so we can draw them above/below the alpha-blended water plane correctly
-		//  - Instancing vs [not instancing] - with hardware lighting we don't need to
+		//  - Skinned vs Unskinned - with hardware lighting we don't need to
 		//    duplicate mesh data per model instance (except for skinned models),
 		//    so non-skinned models get different ModelVertexRenderers
 
-		ModelRendererPtr Normal;
-		ModelRendererPtr NormalInstancing;
-		ModelRendererPtr Transp;
-		ModelRendererPtr TranspInstancing;
+		ModelRendererPtr NormalSkinned;
+		ModelRendererPtr NormalUnskinned; // == NormalSkinned if unskinned shader instancing not supported
+		ModelRendererPtr TranspSkinned;
+		ModelRendererPtr TranspUnskinned; // == TranspSkinned if unskinned shader instancing not supported
 
 		ModelVertexRendererPtr VertexRendererShader;
 		ModelVertexRendererPtr VertexInstancingShader;
+		ModelVertexRendererPtr VertexGPUSkinningShader;
 
 		LitRenderModifierPtr ModShader;
 	} Model;
@@ -339,12 +340,20 @@ public:
 	 */
 	void CallModelRenderers(const CShaderDefines& context, int flags)
 	{
-		CShaderDefines contextInstancing = context;
-		contextInstancing.Add("USE_INSTANCING", "1");
+		CShaderDefines contextSkinned = context;
+		if (g_Renderer.m_Options.m_GPUSkinning)
+		{
+			contextSkinned.Add("USE_INSTANCING", "1");
+			contextSkinned.Add("USE_GPU_SKINNING", "1");
+		}
+		Model.NormalSkinned->Render(Model.ModShader, contextSkinned, flags);
 
-		Model.Normal->Render(Model.ModShader, context, flags);
-		if (Model.NormalInstancing)
-			Model.NormalInstancing->Render(Model.ModShader, contextInstancing, flags);
+		if (Model.NormalUnskinned != Model.NormalSkinned)
+		{
+			CShaderDefines contextUnskinned = context;
+			contextUnskinned.Add("USE_INSTANCING", "1");
+			Model.NormalUnskinned->Render(Model.ModShader, contextUnskinned, flags);
+		}
 	}
 
 	/**
@@ -352,12 +361,20 @@ public:
 	 */
 	void CallTranspModelRenderers(const CShaderDefines& context, int flags)
 	{
-		CShaderDefines contextInstancing = context;
-		contextInstancing.Add("USE_INSTANCING", "1");
+		CShaderDefines contextSkinned = context;
+		if (g_Renderer.m_Options.m_GPUSkinning)
+		{
+			contextSkinned.Add("USE_INSTANCING", "1");
+			contextSkinned.Add("USE_GPU_SKINNING", "1");
+		}
+		Model.TranspSkinned->Render(Model.ModShader, contextSkinned, flags);
 
-		Model.Transp->Render(Model.ModShader, context, flags);
-		if (Model.TranspInstancing)
-			Model.TranspInstancing->Render(Model.ModShader, contextInstancing, flags);
+		if (Model.TranspUnskinned != Model.TranspSkinned)
+		{
+			CShaderDefines contextUnskinned = context;
+			contextUnskinned.Add("USE_INSTANCING", "1");
+			Model.TranspUnskinned->Render(Model.ModShader, contextUnskinned, flags);
+		}
 	}
 
 	/**
@@ -365,9 +382,9 @@ public:
 	 */
 	void FilterModels(CModelFilter& filter, int passed, int flags = 0)
 	{
-		Model.Normal->Filter(filter, passed, flags);
-		if (Model.NormalInstancing)
-			Model.NormalInstancing->Filter(filter, passed, flags);
+		Model.NormalSkinned->Filter(filter, passed, flags);
+		if (Model.NormalUnskinned != Model.NormalSkinned)
+			Model.NormalUnskinned->Filter(filter, passed, flags);
 	}
 
 	/**
@@ -375,9 +392,9 @@ public:
 	 */
 	void FilterTranspModels(CModelFilter& filter, int passed, int flags = 0)
 	{
-		Model.Transp->Filter(filter, passed, flags);
-		if (Model.TranspInstancing)
-			Model.TranspInstancing->Filter(filter, passed, flags);
+		Model.TranspSkinned->Filter(filter, passed, flags);
+		if (Model.TranspUnskinned != Model.TranspSkinned)
+			Model.TranspUnskinned->Filter(filter, passed, flags);
 	}
 };
 
@@ -410,10 +427,12 @@ CRenderer::CRenderer()
 	m_Options.m_ShadowPCF = false;
 	m_Options.m_PreferGLSL = false;
 	m_Options.m_ForceAlphaTest = false;
+	m_Options.m_GPUSkinning = false;
 
 	// TODO: be more consistent in use of the config system
 	CFG_GET_USER_VAL("preferglsl", Bool, m_Options.m_PreferGLSL);
 	CFG_GET_USER_VAL("forcealphatest", Bool, m_Options.m_ForceAlphaTest);
+	CFG_GET_USER_VAL("gpuskinning", Bool, m_Options.m_GPUSkinning);
 
 #if CONFIG2_GLES
 	// Override config option since GLES only supports GLSL
@@ -535,21 +554,31 @@ void CRenderer::ReloadShaders()
 
 	bool cpuLighting = (GetRenderPath() == RP_FIXED);
 	m->Model.VertexRendererShader = ModelVertexRendererPtr(new ShaderModelVertexRenderer(cpuLighting));
-	m->Model.VertexInstancingShader = ModelVertexRendererPtr(new InstancingModelRenderer);
+	m->Model.VertexInstancingShader = ModelVertexRendererPtr(new InstancingModelRenderer(false));
 
-	m->Model.Normal = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexRendererShader));
-	m->Model.Transp = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexRendererShader));
+	if (GetRenderPath() == RP_SHADER && m_Options.m_GPUSkinning) // TODO: should check caps and GLSL etc too
+	{
+		m->Model.VertexGPUSkinningShader = ModelVertexRendererPtr(new InstancingModelRenderer(true));
+		m->Model.NormalSkinned = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexGPUSkinningShader));
+		m->Model.TranspSkinned = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexGPUSkinningShader));
+	}
+	else
+	{
+		m->Model.VertexGPUSkinningShader.reset();
+		m->Model.NormalSkinned = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexRendererShader));
+		m->Model.TranspSkinned = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexRendererShader));
+	}
 
 	// Use instancing renderers in shader mode
 	if (GetRenderPath() == RP_SHADER)
 	{
-		m->Model.NormalInstancing = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexInstancingShader));
-		m->Model.TranspInstancing = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexInstancingShader));
+		m->Model.NormalUnskinned = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexInstancingShader));
+		m->Model.TranspUnskinned = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexInstancingShader));
 	}
 	else
 	{
-		m->Model.NormalInstancing.reset();
-		m->Model.TranspInstancing.reset();
+		m->Model.NormalUnskinned = m->Model.NormalSkinned;
+		m->Model.TranspUnskinned = m->Model.TranspSkinned;
 	}
 
 	m->ShadersDirty = false;
@@ -1310,12 +1339,12 @@ void CRenderer::RenderSubmissions()
 	// Prepare model renderers
 	{
 	PROFILE3("prepare models");
-	m->Model.Normal->PrepareModels();
-	m->Model.Transp->PrepareModels();
-	if (m->Model.NormalInstancing)
-		m->Model.NormalInstancing->PrepareModels();
-	if (m->Model.TranspInstancing)
-		m->Model.TranspInstancing->PrepareModels();
+	m->Model.NormalSkinned->PrepareModels();
+	m->Model.TranspSkinned->PrepareModels();
+	if (m->Model.NormalUnskinned != m->Model.NormalSkinned)
+		m->Model.NormalUnskinned->PrepareModels();
+	if (m->Model.TranspUnskinned != m->Model.TranspSkinned)
+		m->Model.TranspUnskinned->PrepareModels();
 	}
 
 	m->terrainRenderer.PrepareForRendering();
@@ -1441,12 +1470,12 @@ void CRenderer::EndFrame()
 	m->particleRenderer.EndFrame();
 
 	// Finish model renderers
-	m->Model.Normal->EndFrame();
-	m->Model.Transp->EndFrame();
-	if (m->Model.NormalInstancing)
-		m->Model.NormalInstancing->EndFrame();
-	if (m->Model.TranspInstancing)
-		m->Model.TranspInstancing->EndFrame();
+	m->Model.NormalSkinned->EndFrame();
+	m->Model.TranspSkinned->EndFrame();
+	if (m->Model.NormalUnskinned != m->Model.NormalSkinned)
+		m->Model.NormalUnskinned->EndFrame();
+	if (m->Model.TranspUnskinned != m->Model.TranspSkinned)
+		m->Model.TranspUnskinned->EndFrame();
 
 	ogl_tex_bind(0, 0);
 
@@ -1560,24 +1589,21 @@ void CRenderer::SubmitNonRecursive(CModel* model)
 	// Tricky: The call to GetWorldBounds() above can invalidate the position
 	model->ValidatePosition();
 
-	bool canUseInstancing = false;
-
-	if (model->GetModelDef()->GetNumBones() == 0)
-		canUseInstancing = true;
+	bool requiresSkinning = (model->GetModelDef()->GetNumBones() != 0);
 
 	if (model->GetMaterial().UsesAlphaBlending())
 	{
-		if (canUseInstancing && m->Model.TranspInstancing)
-			m->Model.TranspInstancing->Submit(model);
+		if (requiresSkinning)
+			m->Model.TranspSkinned->Submit(model);
 		else
-			m->Model.Transp->Submit(model);
+			m->Model.TranspUnskinned->Submit(model);
 	}
 	else
 	{
-		if (canUseInstancing && m->Model.NormalInstancing)
-			m->Model.NormalInstancing->Submit(model);
+		if (requiresSkinning)
+			m->Model.NormalSkinned->Submit(model);
 		else
-			m->Model.Normal->Submit(model);
+			m->Model.NormalUnskinned->Submit(model);
 	}
 }
 

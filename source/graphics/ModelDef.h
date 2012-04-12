@@ -134,6 +134,8 @@ public:
 // information of a model
 class CModelDef
 {
+	NONCOPYABLE(CModelDef);
+
 public:
 	// current file version given to saved animations
 	enum { FILE_VERSION = 3 };
@@ -170,6 +172,7 @@ public:
 	// accessor: get bone data
 	size_t GetNumBones() const { return m_NumBones; }
 	CBoneState* GetBones() const { return m_Bones; }
+	CMatrix3D* GetInverseBindBoneMatrices() { return m_InverseBindBoneMatrices; }
 
 	// accessor: get blend data
 	size_t GetNumBlends() const { return m_NumBlends; }
@@ -259,6 +262,7 @@ public:
 	// bone data - default model pose
 	size_t m_NumBones;
 	CBoneState* m_Bones;
+	CMatrix3D* m_InverseBindBoneMatrices;
 	// blend data
 	size_t m_NumBlends;
 	SVertexBlend *m_pBlends;

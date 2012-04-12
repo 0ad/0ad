@@ -50,15 +50,17 @@ struct IModelDef : public CModelDefRPrivate
 	VertexArray::Attribute m_Position;
 	VertexArray::Attribute m_Normal;
 	VertexArray::Attribute m_UV;
+	VertexArray::Attribute m_BlendJoints; // valid iff gpuSkinning == true
+	VertexArray::Attribute m_BlendWeights; // valid iff gpuSkinning == true
 
 	/// Indices are the same for all models, so share them
 	VertexIndexArray m_IndexArray;
 
-	IModelDef(const CModelDefPtr& mdef);
+	IModelDef(const CModelDefPtr& mdef, bool gpuSkinning);
 };
 
 
-IModelDef::IModelDef(const CModelDefPtr& mdef)
+IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning)
 	: m_IndexArray(GL_STATIC_DRAW), m_Array(GL_STATIC_DRAW)
 {
 	size_t numVertices = mdef->GetNumVertices();
@@ -75,6 +77,17 @@ IModelDef::IModelDef(const CModelDefPtr& mdef)
 	m_UV.elems = 2;
 	m_Array.AddAttribute(&m_UV);
 
+	if (gpuSkinning)
+	{
+		m_BlendJoints.type = GL_UNSIGNED_BYTE;
+		m_BlendJoints.elems = 4;
+		m_Array.AddAttribute(&m_BlendJoints);
+
+		m_BlendWeights.type = GL_UNSIGNED_BYTE;
+		m_BlendWeights.elems = 4;
+		m_Array.AddAttribute(&m_BlendWeights);
+	}
+
 	m_Array.SetNumVertices(numVertices);
 	m_Array.Layout();
 
@@ -84,6 +97,21 @@ IModelDef::IModelDef(const CModelDefPtr& mdef)
 
 	ModelRenderer::CopyPositionAndNormals(mdef, Position, Normal);
 	ModelRenderer::BuildUV(mdef, UVit);
+
+	if (gpuSkinning)
+	{
+		VertexArrayIterator<u8[4]> BlendJoints = m_BlendJoints.GetIterator<u8[4]>();
+		VertexArrayIterator<u8[4]> BlendWeights = m_BlendWeights.GetIterator<u8[4]>();
+		for (size_t i = 0; i < numVertices; ++i)
+		{
+			const SModelVertex& vtx = mdef->GetVertices()[i];
+			for (size_t j = 0; j < 4; ++j)
+			{
+				BlendJoints[i][j] = vtx.m_Blend.m_Bone[j];
+				BlendWeights[i][j] = (u8)(255.f * vtx.m_Blend.m_Weight[j]);
+			}
+		}
+	}
 
 	m_Array.Upload();
 	m_Array.FreeBackingStore();
@@ -98,6 +126,8 @@ IModelDef::IModelDef(const CModelDefPtr& mdef)
 
 struct InstancingModelRendererInternals
 {
+	bool gpuSkinning;
+
 	/// Previously prepared modeldef
 	IModelDef* imodeldef;
 
@@ -107,9 +137,10 @@ struct InstancingModelRendererInternals
 
 
 // Construction and Destruction
-InstancingModelRenderer::InstancingModelRenderer()
+InstancingModelRenderer::InstancingModelRenderer(bool gpuSkinning)
 {
 	m = new InstancingModelRendererInternals;
+	m->gpuSkinning = gpuSkinning;
 	m->imodeldef = 0;
 }
 
@@ -125,11 +156,14 @@ CModelRData* InstancingModelRenderer::CreateModelData(const void* key, CModel* m
 	CModelDefPtr mdef = model->GetModelDef();
 	IModelDef* imodeldef = (IModelDef*)mdef->GetRenderData(m);
 
-	ENSURE(!model->IsSkinned());
+	if (m->gpuSkinning)
+ 		ENSURE(model->IsSkinned());
+	else
+		ENSURE(!model->IsSkinned());
 
 	if (!imodeldef)
 	{
-		imodeldef = new IModelDef(mdef);
+		imodeldef = new IModelDef(mdef, m->gpuSkinning);
 		mdef->SetRenderData(m, imodeldef);
 	}
 
@@ -177,14 +211,32 @@ void InstancingModelRenderer::PrepareModelDef(const CShaderProgramPtr& shader, i
 	if (streamflags & STREAM_UV0)
 		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, base + m->imodeldef->m_UV.offset);
 
+	// GPU skinning requires extra attributes to compute positions/normals
+	if (m->gpuSkinning)
+	{
+		shader->VertexAttribIPointer("a_skinJoints", 4, GL_UNSIGNED_BYTE, stride, base + m->imodeldef->m_BlendJoints.offset);
+		shader->VertexAttribPointer("a_skinWeights", 4, GL_UNSIGNED_BYTE, GL_TRUE, stride, base + m->imodeldef->m_BlendWeights.offset);
+	}
+
 	shader->AssertPointersBound();
 }
 
 
 // Render one model
-void InstancingModelRenderer::RenderModel(const CShaderProgramPtr& UNUSED(shader), int UNUSED(streamflags), CModel* model, CModelRData* UNUSED(data))
+void InstancingModelRenderer::RenderModel(const CShaderProgramPtr& shader, int UNUSED(streamflags), CModel* model, CModelRData* UNUSED(data))
 {
 	CModelDefPtr mdldef = model->GetModelDef();
+
+	if (m->gpuSkinning)
+	{
+		// Bind matrices for current animation state.
+		// Add 1 to NumBones because of the special 'root' bone.
+		// HACK: NVIDIA drivers return uniform name with "[0]", Intel Windows drivers without;
+		// try uploading both names since one of them should work, and this is easier than
+		// canonicalising the uniform names in CShaderProgramGLSL
+ 		shader->Uniform("skinBlendMatrices[0]", mdldef->GetNumBones() + 1, model->GetAnimatedBoneMatrices());
+		shader->Uniform("skinBlendMatrices", mdldef->GetNumBones() + 1, model->GetAnimatedBoneMatrices());
+	}
 
 	// render the lot
 	size_t numFaces = mdldef->GetNumFaces();
