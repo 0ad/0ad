@@ -1,4 +1,9 @@
+#if USE_GPU_SKINNING
+// Skinning requires GLSL 1.30 for ivec4 vertex attributes
+#version 130
+#else
 #version 120
+#endif
 
 uniform mat4 transform;
 uniform vec3 cameraPos;
@@ -22,14 +27,39 @@ attribute vec3 a_vertex;
 attribute vec3 a_normal;
 attribute vec2 a_uv0;
 
+#if USE_GPU_SKINNING
+  const int MAX_INFLUENCES = 4;
+  const int MAX_BONES = 64;
+  uniform mat4 skinBlendMatrices[MAX_BONES];
+  attribute ivec4 a_skinJoints;
+  attribute vec4 a_skinWeights;
+#endif
+
+varying vec4 debugx;
+
 void main()
 {
+  #if USE_GPU_SKINNING
+    vec3 p = vec3(0.0);
+    vec3 n = vec3(0.0);
+    for (int i = 0; i < MAX_INFLUENCES; ++i) {
+      int joint = a_skinJoints[i];
+      if (joint != 0xff) {
+        mat4 m = skinBlendMatrices[joint];
+        p += vec3(m * vec4(a_vertex, 1.0)) * a_skinWeights[i];
+        n += vec3(m * vec4(a_normal, 0.0)) * a_skinWeights[i];
+      }
+    }
+    vec4 position = instancingTransform * vec4(p, 1.0);
+    vec3 normal = mat3(instancingTransform) * normalize(n);
+  #else
   #if USE_INSTANCING
     vec4 position = instancingTransform * vec4(a_vertex, 1.0);
     vec3 normal = mat3(instancingTransform) * a_normal;
   #else
     vec4 position = vec4(a_vertex, 1.0);
     vec3 normal = a_normal;
+  #endif
   #endif
 
   gl_Position = transform * position;

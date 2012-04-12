@@ -35,12 +35,13 @@
 #include "lib/sysdep/rtl.h"
 #include "ps/Profile.h"
 #include "ps/CLogger.h"
+#include "renderer/Renderer.h"
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Constructor
 CModel::CModel(CSkeletonAnimManager& skeletonAnimManager)
 	: m_Flags(0), m_Anim(NULL), m_AnimTime(0),
-	m_BoneMatrices(NULL), m_InverseBindBoneMatrices(NULL),
+	m_BoneMatrices(NULL),
 	m_AmmoPropPoint(NULL), m_AmmoLoadedProp(0),
 	m_SkeletonAnimManager(skeletonAnimManager)
 {
@@ -58,7 +59,6 @@ CModel::~CModel()
 void CModel::ReleaseData()
 {
 	rtl_FreeAligned(m_BoneMatrices);
-	delete[] m_InverseBindBoneMatrices;
 
 	for (size_t i = 0; i < m_Props.size(); ++i)
 		delete m_Props[i].m_Model;
@@ -84,20 +84,9 @@ bool CModel::InitModel(const CModelDefPtr& modeldef)
 		// allocate matrices for bone transformations
 		// (one extra matrix is used for the special case of bind-shape relative weighting)
 		m_BoneMatrices = (CMatrix3D*)rtl_AllocateAligned(sizeof(CMatrix3D) * (numBones + 1 + numBlends), 16);
-		for (size_t i = 0; i < numBones + numBlends; ++i)
+		for (size_t i = 0; i < numBones + 1 + numBlends; ++i)
 		{
 			m_BoneMatrices[i].SetIdentity();
-		}
-
-		m_InverseBindBoneMatrices = new CMatrix3D[numBones];
-
-		// store default pose until animation assigned
-		CBoneState* defpose = modeldef->GetBones();
-		for (size_t i = 0; i < numBones; ++i)
-		{
-			m_InverseBindBoneMatrices[i].SetIdentity();
-			m_InverseBindBoneMatrices[i].Translate(-defpose[i].m_Translation);
-			m_InverseBindBoneMatrices[i].Rotate(defpose[i].m_Rotation.GetInverse());
 		}
 	}
 
@@ -344,27 +333,39 @@ void CModel::ValidatePosition()
 		ENSURE(m_pModelDef->GetNumBones() == m_Anim->m_AnimDef->GetNumKeys());
 	
 		m_Anim->m_AnimDef->BuildBoneMatrices(m_AnimTime, m_BoneMatrices, !(m_Flags & MODELFLAG_NOLOOPANIMATION));
-	
-		// add world-space transformation to m_BoneMatrices
-		const CMatrix3D& transform = GetTransform();
-		for (size_t i = 0; i < m_pModelDef->GetNumBones(); i++)
-			m_BoneMatrices[i].Concatenate(transform);
 	}
 	else if (m_BoneMatrices)
 	{
 		// Bones but no animation - probably a buggy actor forgot to set up the animation,
 		// so just render it in its bind pose
 
-		const CMatrix3D& transform = GetTransform();
 		for (size_t i = 0; i < m_pModelDef->GetNumBones(); i++)
 		{
 			m_BoneMatrices[i].SetIdentity();
 			m_BoneMatrices[i].Rotate(m_pModelDef->GetBones()[i].m_Rotation);
 			m_BoneMatrices[i].Translate(m_pModelDef->GetBones()[i].m_Translation);
-			m_BoneMatrices[i].Concatenate(transform);
 		}
 	}
-	
+
+	// For CPU skinning, we precompute as much as possible so that the only
+	// per-vertex work is a single matrix*vec multiplication.
+	// For GPU skinning, we try to minimise CPU work by doing most computation
+	// in the vertex shader instead.
+	// Using g_Renderer.m_Options to detect CPU vs GPU is a bit hacky,
+	// and this doesn't allow the setting to change at runtime, but there isn't
+	// an obvious cleaner way to determine what data needs to be computed,
+	// and GPU skinning is a rarely-used experimental feature anyway.
+	bool worldSpaceBoneMatrices = !g_Renderer.m_Options.m_GPUSkinning;
+	bool computeBlendMatrices = !g_Renderer.m_Options.m_GPUSkinning;
+
+	if (m_BoneMatrices && worldSpaceBoneMatrices)
+	{
+		// add world-space transformation to m_BoneMatrices
+		const CMatrix3D transform = GetTransform();
+		for (size_t i = 0; i < m_pModelDef->GetNumBones(); i++)
+			m_BoneMatrices[i].Concatenate(transform);
+	}
+
 	// our own position is now valid; now we can safely update our props' positions without fearing 
 	// that doing so will cause a revalidation of this model (see recursion above).
 	m_PositionValid = true;
@@ -377,8 +378,10 @@ void CModel::ValidatePosition()
 		CMatrix3D proptransform = prop.m_Point->m_Transform;;
 		if (prop.m_Point->m_BoneIndex != 0xff)
 		{
-			// m_BoneMatrices[i] already have world transform pre-applied (see above)
-			proptransform.Concatenate(m_BoneMatrices[prop.m_Point->m_BoneIndex]);
+			CMatrix3D boneMatrix = m_BoneMatrices[prop.m_Point->m_BoneIndex];
+			if (!worldSpaceBoneMatrices)
+				boneMatrix.Concatenate(GetTransform());
+			proptransform.Concatenate(boneMatrix);
 		}
 		else
 		{
@@ -394,7 +397,7 @@ void CModel::ValidatePosition()
 	{
 		for (size_t i = 0; i < m_pModelDef->GetNumBones(); i++)
 		{
-			m_BoneMatrices[i] = m_BoneMatrices[i] * m_InverseBindBoneMatrices[i];
+			m_BoneMatrices[i] = m_BoneMatrices[i] * m_pModelDef->GetInverseBindBoneMatrices()[i];
 		}
 
 		// Note: there is a special case of joint influence, in which the vertex
@@ -405,7 +408,8 @@ void CModel::ValidatePosition()
 		//	(see http://trac.wildfiregames.com/ticket/1012)
 		m_BoneMatrices[m_pModelDef->GetNumBones()] = m_Transform;
 
-		m_pModelDef->BlendBoneMatrices(m_BoneMatrices);
+		if (computeBlendMatrices)
+			m_pModelDef->BlendBoneMatrices(m_BoneMatrices);
 	}
 }
 

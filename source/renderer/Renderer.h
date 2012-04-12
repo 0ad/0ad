@@ -123,6 +123,7 @@ public:
 		bool m_ShadowPCF;
 		bool m_PreferGLSL;
 		bool m_ForceAlphaTest;
+		bool m_GPUSkinning;
 	} m_Options;
 
 	struct Caps {

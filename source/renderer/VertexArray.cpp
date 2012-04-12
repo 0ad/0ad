@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -144,6 +144,26 @@ VertexArrayIterator<u16> VertexArray::Attribute::GetIterator<u16>() const
 	ENSURE(elems >= 1);
 
 	return vertexArray->MakeIterator<u16>(this);
+}
+
+template<>
+VertexArrayIterator<u8> VertexArray::Attribute::GetIterator<u8>() const
+{
+	ENSURE(vertexArray);
+	ENSURE(type == GL_UNSIGNED_BYTE);
+	ENSURE(elems >= 1);
+
+	return vertexArray->MakeIterator<u8>(this);
+}
+
+template<>
+VertexArrayIterator<u8[4]> VertexArray::Attribute::GetIterator<u8[4]>() const
+{
+	ENSURE(vertexArray);
+	ENSURE(type == GL_UNSIGNED_BYTE);
+	ENSURE(elems >= 4);
+
+	return vertexArray->MakeIterator<u8[4]>(this);
 }
 
 

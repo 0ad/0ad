@@ -140,7 +140,7 @@ void CModelDef::SkinPointsAndNormals_SSE(
 	ASSERT((intptr_t)newPoseMatrices % 16 == 0);
 	ASSERT((intptr_t)PositionData % 16 == 0);
 	ASSERT((intptr_t)PositionStride % 16 == 0);
- 	ASSERT((intptr_t)NormalData % 16 == 0);
+	ASSERT((intptr_t)NormalData % 16 == 0);
 	ASSERT((intptr_t)NormalStride % 16 == 0);
 
 	__m128 col0, col1, col2, col3, vec0, vec1, vec2;
@@ -219,17 +219,15 @@ void CModelDef::BlendBoneMatrices(
 		//	(see http://trac.wildfiregames.com/ticket/1012)
 
 		boneMatrix.Blend(boneMatrices[blend.m_Bone[0]], blend.m_Weight[0]);
-		boneMatrix.AddBlend(boneMatrices[blend.m_Bone[1]], blend.m_Weight[1]);
-		for (size_t j = 2; j < SVertexBlend::SIZE && blend.m_Bone[j] != 0xFF; ++j)
-		{
+		for (size_t j = 1; j < SVertexBlend::SIZE && blend.m_Bone[j] != 0xFF; ++j)
 			boneMatrix.AddBlend(boneMatrices[blend.m_Bone[j]], blend.m_Weight[j]);
-		}
 	}
 }
 
 // CModelDef Constructor
 CModelDef::CModelDef() :
-	m_NumVertices(0), m_pVertices(0), m_NumFaces(0), m_pFaces(0), m_NumBones(0), m_Bones(0),
+	m_NumVertices(0), m_pVertices(0), m_NumFaces(0), m_pFaces(0),
+	m_NumBones(0), m_Bones(0), m_InverseBindBoneMatrices(NULL),
 	m_NumBlends(0), m_pBlends(0), m_pBlendIndices(0),
 	m_Name(L"[not loaded]")
 {
@@ -243,6 +241,7 @@ CModelDef::~CModelDef()
 	delete[] m_pVertices;
 	delete[] m_pFaces;
 	delete[] m_Bones;
+	delete[] m_InverseBindBoneMatrices;
 	delete[] m_pBlends;
 	delete[] m_pBlendIndices;
 }
@@ -379,6 +378,16 @@ CModelDef* CModelDef::Load(const VfsPath& filename, const VfsPath& name)
 				mdef->m_pVertices[i].m_Norm = SkinNormal(mdef->m_pVertices[i], &bindPose[0]);
 			}
 		}
+	}
+
+	// Compute the inverse bind-pose matrices, needed by the skinning code
+	mdef->m_InverseBindBoneMatrices = new CMatrix3D[mdef->m_NumBones];
+	CBoneState* defpose = mdef->GetBones();
+	for (size_t i = 0; i < mdef->m_NumBones; ++i)
+	{
+		mdef->m_InverseBindBoneMatrices[i].SetIdentity();
+		mdef->m_InverseBindBoneMatrices[i].Translate(-defpose[i].m_Translation);
+		mdef->m_InverseBindBoneMatrices[i].Rotate(defpose[i].m_Rotation.GetInverse());
 	}
 
 	return mdef.release();
