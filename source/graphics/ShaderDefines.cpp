@@ -22,6 +22,8 @@
 #include "maths/Vector4D.h"
 #include "ps/ThreadUtil.h"
 
+#include <sstream>
+
 size_t hash_value(const CStrIntern& v)
 {
 	return v.GetHash();
