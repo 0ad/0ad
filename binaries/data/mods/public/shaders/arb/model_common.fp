@@ -77,12 +77,13 @@ TEX tex, v_tex, texture[0], 2D;
   LG2 temp.y, temp.y;
   MUL temp.y, temp.y, specularPower.x;
   EX2 temp.y, temp.y;
+  // TODO: why not just use POW here? (should test performance first)
   MUL specular.rgb, specular, temp.y;
 #endif
 
 // color = (texdiffuse * sundiffuse + specular) * get_shadow() + texdiffuse * ambient;
 // (sundiffuse is 2*fragment.color due to clamp-avoidance in the vertex program)
-#if USE_SHADOW
+#if USE_SHADOW && !DISABLE_RECEIVE_SHADOWS
   #if USE_FP_SHADOW
     #if USE_SHADOW_PCF
       MOV offset.zw, v_shadow;

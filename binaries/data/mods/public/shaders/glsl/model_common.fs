@@ -39,7 +39,7 @@ varying vec2 v_los;
 
 float get_shadow()
 {
-  #if USE_SHADOW
+  #if USE_SHADOW && !DISABLE_RECEIVE_SHADOWS
     #if USE_SHADOW_SAMPLER
       #if USE_SHADOW_PCF
         return 0.25 * (
