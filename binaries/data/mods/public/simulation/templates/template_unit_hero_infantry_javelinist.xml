@@ -7,7 +7,7 @@
   </Armour>
   <Attack>
     <Ranged>
-      <Pierce>50.0</Pierce>
+      <Pierce>55.0</Pierce>
 	  <Bonuses>
 		<BonusPrimary>
 		  <Classes>Infantry Spear</Classes>
@@ -30,7 +30,14 @@
   </Attack>
   <Cost>
     <BuildTime>35</BuildTime>
+    <Resources>
+      <wood>200</wood>
+    </Resources>
   </Cost>
+  <Health>
+    <Max>750</Max>
+    <RegenRate>0.5</RegenRate>
+  </Health>
   <Identity>
     <Classes datatype="tokens">Hero</Classes>
     <GenericName>Hero Skirmisher</GenericName>

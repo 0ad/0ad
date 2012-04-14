@@ -1,35 +1,27 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant frequency="1" name="mesh-a">
-      <mesh>gaia/palm_desert_a.dae</mesh>
-    </variant>
-    <variant frequency="1" name="mesh-b">
-      <mesh>gaia/palm_desert_b.dae</mesh>
-    </variant>
-    <variant frequency="1" name="mesh-c">
-      <mesh>gaia/palm_desert_c.dae</mesh>
-    </variant>
-    <variant frequency="1" name="mesh-d">
-      <mesh>gaia/palm_desert_d.dae</mesh>
+    <variant frequency="100" name="texture">
+      <texture>gaia/tree_palm_2_a.png</texture>
     </variant>
   </group>
-
   <group>
-    <variant frequency="1" name="texture-palm-brown">
-      <texture>gaia/tree_palm_a.dds</texture>
+    <variant frequency="2" name="tropical palm straight">
+      <mesh>gaia/tree_palm_tropical_01.dae</mesh>
     </variant>
-    <variant frequency="4" name="texture-palm-b">
-      <texture>gaia/tree_palm_b.dds</texture>
+    <variant frequency="1" name="tropical palm bent">
+      <mesh>gaia/tree_palm_tropical_02.dae</mesh>
     </variant>
-    <variant frequency="2" name="texture-palm-c">
-      <texture>gaia/tree_palm_c.dds</texture>
+    <variant frequency="1" name="tropical palm dual swayed">
+      <mesh>gaia/tree_palm_tropical_03.dae</mesh>
+    </variant>
+    <variant frequency="1" name="tropical palm dual">
+      <mesh>gaia/tree_palm_tropical_04.dae</mesh>
+    </variant>
+    <variant frequency="1" name="tropical palm triple">
+      <mesh>gaia/tree_palm_tropical_05.dae</mesh>
     </variant>
   </group>
-
-  <material>basic_trans.xml</material>
-
+  <material>alphatest.xml</material>
 </actor>
