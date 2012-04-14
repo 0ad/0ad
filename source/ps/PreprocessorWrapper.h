@@ -19,6 +19,7 @@
 #define INCLUDED_PREPROCESSORWRAPPER
 
 #include "ps/Preprocessor.h"
+#include "ps/CStr.h"
 
 class CShaderDefines;
 

@@ -26,6 +26,8 @@
 #include "ps/XML/Xeromyces.h"
 #include "renderer/Renderer.h"
 
+#include <sstream>
+
 CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 {
 	if (pathname.empty())
@@ -57,7 +59,6 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 	CMaterial material;
 
 	XMBElement root = xeroFile.GetRoot();
-	XMBElementList childNodes = root.GetChildNodes();
 	
 	CPreprocessorWrapper preprocessor;
 	preprocessor.AddDefine("CFG_FORCE_ALPHATEST", g_Renderer.m_Options.m_ForceAlphaTest ? "1" : "0");

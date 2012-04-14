@@ -34,8 +34,7 @@
 CObjectBase::CObjectBase(CObjectManager& objectManager)
 : m_ObjectManager(objectManager)
 {
-	m_Properties.m_CastShadows = true;
-	m_Properties.m_AutoFlatten = false;
+	m_Properties.m_CastShadows = false;
 	m_Properties.m_FloatOnWater = false;
 }
 
@@ -245,7 +244,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 		}
 		else if (child_name == el_castshadow)
 		{
-			m_Properties.m_CastShadows = true; // TODO: this is the default, so it's a bit useless
+			m_Properties.m_CastShadows = true;
 		}
 		else if (child_name == el_float)
 		{

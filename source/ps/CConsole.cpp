@@ -265,7 +265,7 @@ void CConsole::DrawHistory(CTextRenderer& textRenderer)
 			++Iter)
 	{
 		if (i >= m_iMsgHistPos)
-			textRenderer.Put(9.0f, m_fHeight - (float)m_iFontOffset - (float)m_iFontHeight * i, Iter->c_str());
+			textRenderer.Put(9.0f, m_fHeight - (float)m_iFontOffset - (float)m_iFontHeight * (i - m_iMsgHistPos + 1), Iter->c_str());
 
 		i++;
 	}

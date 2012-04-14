@@ -143,8 +143,6 @@ public:
 	CStrW m_ShortName;
 
 	struct {
-		// automatically flatten terrain when applying object
-		bool m_AutoFlatten;
 		// cast shadows from this object
 		bool m_CastShadows;
 		// float on top of water
