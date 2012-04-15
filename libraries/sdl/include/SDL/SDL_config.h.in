@@ -1,6 +1,6 @@
 /*
     SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2006 Sam Lantinga
+    Copyright (C) 1997-2012 Sam Lantinga
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -131,11 +131,13 @@
 #undef HAVE_VSNPRINTF
 #undef HAVE_ICONV
 #undef HAVE_SIGACTION
+#undef HAVE_SA_SIGACTION
 #undef HAVE_SETJMP
 #undef HAVE_NANOSLEEP
 #undef HAVE_CLOCK_GETTIME
-#undef HAVE_DLVSYM
 #undef HAVE_GETPAGESIZE
+#undef HAVE_MPROTECT
+#undef HAVE_SEM_TIMEDWAIT
 
 #else
 /* We may need some replacement for stdarg.h here */
@@ -175,6 +177,7 @@
 #undef SDL_AUDIO_DRIVER_MINT
 #undef SDL_AUDIO_DRIVER_MMEAUDIO
 #undef SDL_AUDIO_DRIVER_NAS
+#undef SDL_AUDIO_DRIVER_NAS_DYNAMIC
 #undef SDL_AUDIO_DRIVER_OSS
 #undef SDL_AUDIO_DRIVER_OSS_SOUNDCARD_H
 #undef SDL_AUDIO_DRIVER_PAUD
@@ -201,13 +204,13 @@
 #undef SDL_CDROM_WIN32
 
 /* Enable various input drivers */
+#undef SDL_INPUT_LINUXEV
 #undef SDL_INPUT_TSLIB
 #undef SDL_JOYSTICK_BEOS
 #undef SDL_JOYSTICK_DC
 #undef SDL_JOYSTICK_DUMMY
 #undef SDL_JOYSTICK_IOKIT
 #undef SDL_JOYSTICK_LINUX
-#undef SDL_JOYSTICK_LINUXEV
 #undef SDL_JOYSTICK_MACOS
 #undef SDL_JOYSTICK_MINT
 #undef SDL_JOYSTICK_OS2
@@ -252,6 +255,7 @@
 /* Enable various video drivers */
 #undef SDL_VIDEO_DRIVER_AALIB
 #undef SDL_VIDEO_DRIVER_BWINDOW
+#undef SDL_VIDEO_DRIVER_CACA
 #undef SDL_VIDEO_DRIVER_DC
 #undef SDL_VIDEO_DRIVER_DDRAW
 #undef SDL_VIDEO_DRIVER_DGA
@@ -268,6 +272,7 @@
 #undef SDL_VIDEO_DRIVER_PHOTON
 #undef SDL_VIDEO_DRIVER_PICOGUI
 #undef SDL_VIDEO_DRIVER_PS2GS
+#undef SDL_VIDEO_DRIVER_PS3
 #undef SDL_VIDEO_DRIVER_QTOPIA
 #undef SDL_VIDEO_DRIVER_QUARTZ
 #undef SDL_VIDEO_DRIVER_RISCOS
@@ -278,7 +283,6 @@
 #undef SDL_VIDEO_DRIVER_WSCONS
 #undef SDL_VIDEO_DRIVER_X11
 #undef SDL_VIDEO_DRIVER_X11_DGAMOUSE
-#undef SDL_VIDEO_DRIVER_X11_DPMS
 #undef SDL_VIDEO_DRIVER_X11_DYNAMIC
 #undef SDL_VIDEO_DRIVER_X11_DYNAMIC_XEXT
 #undef SDL_VIDEO_DRIVER_X11_DYNAMIC_XRANDR
@@ -296,6 +300,9 @@
 #undef SDL_VIDEO_OPENGL_WGL
 #undef SDL_VIDEO_OPENGL_OSMESA
 #undef SDL_VIDEO_OPENGL_OSMESA_DYNAMIC
+
+/* Disable screensaver */
+#undef SDL_VIDEO_DISABLE_SCREENSAVER
 
 /* Enable assembly routines */
 #undef SDL_ASSEMBLY_ROUTINES

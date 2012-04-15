@@ -1,6 +1,6 @@
 /*
     SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2006 Sam Lantinga
+    Copyright (C) 1997-2012 Sam Lantinga
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -171,6 +171,9 @@ typedef unsigned int uintptr_t;
 #define SDL_VIDEO_OPENGL	1
 #define SDL_VIDEO_OPENGL_WGL	1
 #endif
+
+/* Disable screensaver */
+#define SDL_VIDEO_DISABLE_SCREENSAVER	1
 
 /* Enable assembly routines (Win64 doesn't have inline asm) */
 #ifndef _WIN64
