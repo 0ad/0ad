@@ -54,11 +54,8 @@ var mapCenterX = mapRadius;
 var mapCenterZ = mapRadius;
 
 // Setup players and bases
-var fortresses = false;
 var numPlayers = getNumPlayers();
 var baseRadius = 20;
-if (fortresses == true)
-	baseRadius = 30;
 var minPlayerRadius = min(mapRadius-1.5*baseRadius, 5*mapRadius/8);
 var maxPlayerRadius = min(mapRadius-baseRadius, 3*mapRadius/4);
 const BUILDING_ANlE = -PI/4;
@@ -77,8 +74,6 @@ var radiusEC = max(mapRadius/8, baseRadius/2);
 var pathSucsessRadius = baseRadius/2;
 var pathAngleOff = PI/2;
 var pathWidth = 5; // This is not really the path's sickness in tiles but the number of tiles in the clumbs of the path
-if (fortresses == true)
-	pathSucsessRadius = baseRadius;;
 
 // Setup additional resources
 var resourceRadius = 2*mapRadius/3; // 3*mapRadius/8;
@@ -104,14 +99,6 @@ for (var i=0; i < numPlayers; i++)
 	var placer = new ClumpPlacer(2*baseRadius*baseRadius, 2/3, 1/8, 10, x, z);
 	var painter = [new LayeredPainter([terrainBaseBorder, terrainBase], [baseRadius/4]), paintClass(clPlayer)];
 	createArea(placer, painter);
-	// Place fortresses
-	if (fortresses == true)
-	{
-		// Place fortresses
-		new wallTool(civ, "small").place(x, z, i+1, BUILDING_ANlE);
-		// if (civ == "iber")
-			// new wallTool("iber").setGenericFortress(x, z, i+1, 20, PI/6);
-	};
 	// Place starting resources
 	var distToSL = 10;
 	var resStartAngle = playerAngle[i] + PI;
@@ -123,8 +110,8 @@ for (var i=0; i < numPlayers; i++)
 		var placeZ = z + distToSL*sin(resStartAngle + rIndex*resAddAngle + angleOff);
 		placeObject(placeX, placeZ, startingResourcees[rIndex], 0, randFloat(0, 2*PI));
 		addToClass(round(placeX), round(placeZ), clBaseResource);
-	};
-};
+	}
+}
 
 RMS.SetProgress(10);
 
@@ -190,14 +177,14 @@ for (var i = 0; i < maxI; i++)
 			{
 				x += round(cos(angle + randFloat(-pathAngleOff, pathAngleOff)));
 				z += round(sin(angle + randFloat(-pathAngleOff, pathAngleOff)));
-			};
+			}
 			if (getDistance(x, z, targetX, targetZ) < pathSucsessRadius)
 				targetReached = true;
 			tries++;
 
-		};
-	};
-};
+		}
+	}
+}
 
 RMS.SetProgress(50);
 
@@ -216,8 +203,8 @@ for (var i=0; i < numPlayers; i++)
 		var placer = new ClumpPlacer(40, 1/2, 1/8, 1, placeX, placeZ);
 		var painter = [new LayeredPainter([terrainHillBorder, terrainHill], [1]), new ElevationPainter(1+randFloat()), paintClass(clHill)];
 		createArea(placer, painter);
-	};
-};
+	}
+}
 
 RMS.SetProgress(60);
 
@@ -255,19 +242,16 @@ for (var x = 0; x < mapSize; x++)
 				var placer = new ClumpPlacer(1, 1.0, 1.0, 1, x, z);
 				var painter = [new TerrainPainter(terrainWood), new ElevationPainter(randFloat()), paintClass(clForest)];
 				createArea(placer, painter, avoidClasses(clPath, 2, clHill, 1));
-			};
-		};
+			}
+		}
 		// General hight map
 		var hVarMiddleHill = mapSize/64 * (1+cos(3*PI/2 * radius/mapRadius));
 		var hVarHills = 5*(1+sin(x/10)*sin(z/10));
 		setHeight(x, z, getHeight(x, z) + hVarMiddleHill + hVarHills + 1);
-	};
-};
+	}
+}
 
 RMS.SetProgress(95);
-
-// Test linear wall
-// new wallTool("palisades").placeLinearWall(mapCenterX, mapCenterZ, playerStartLocX[0], playerStartLocZ[0], 0, ["tower", "wall"])
 
 
 // Export map data

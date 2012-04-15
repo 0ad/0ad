@@ -153,32 +153,26 @@ for (var i=0; i < numPlayers; i++)
 	// Base texture
 	var placer = new ClumpPlacer(PI*baseRadius*baseRadius/4, 1/2, 1/8, 10, playerX[i], playerZ[i]);
 	createArea(placer,[new TerrainPainter(tRoad), paintClass(clPlayer)]);
-	// Place fortresses
-	// new wallTool(civ, "medium").place(x, z, i+1, buildAngle);
 	
-	// Place fortresses Spahbod (custom fortress method, standart for this case but no function "setFortress" implemented yet)
-	var fType = new fortress('Spahbod'+civ);
+	// Place custom fortress
 	if (civ == "celt" || civ == "iber")
 	{
-		fType.wall = ['entry', 'wall', 'wall',
+		var wall = ['entryTower', 'wall', 'wall',
 			'cornerIn', 'wall', 'barracks', 'wall', 'gate', 'wall', 'house', 'wall',
-			'cornerIn', 'wall', 'house', 'wall', 'entry', 'wall', 'house', 'wall',
+			'cornerIn', 'wall', 'house', 'wall', 'entryTower', 'wall', 'house', 'wall',
 			'cornerIn', 'wall', 'house', 'wall', 'gate', 'wall', 'house', 'wall',
 			'cornerIn', 'wall', 'house', 'wall'];
 	}
 	else
 	{
-		fType.wall = ['entry', 'wall', 'wall',
+		var wall = ['entryTower', 'wall', 'wall',
 			'cornerIn', 'wall', 'barracks', 'wall', 'gate', 'wall', 'wall',
-			'cornerIn', 'wall', 'house', 'wall', 'entry', 'wall', 'wall',
+			'cornerIn', 'wall', 'house', 'wall', 'entryTower', 'wall', 'wall',
 			'cornerIn', 'wall', 'house', 'wall', 'gate', 'wall', 'wall',
 			'cornerIn', 'wall', 'house', 'wall'];
-	};
-	var fort = new wallTool(civ);
-	fort.setFortress(fType);
-	fort.place(playerX[i], playerZ[i], i+1, BUILDING_ANGlE);
-
-};
+	}
+	placeCustomFortress(playerX[i], playerZ[i], new Fortress("Spahbod", wall), civ, i+1, BUILDING_ANGlE);
+}
 
 // create lakes
 log("Creating lakes...");
