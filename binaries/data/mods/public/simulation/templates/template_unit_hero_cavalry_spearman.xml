@@ -24,6 +24,14 @@
 		  <Classes>Siege</Classes>
 		  <Multiplier>2.0</Multiplier>
 		</BonusSiege>
+		<ElephantStench>
+		  <Classes>Elephant</Classes>
+		  <Multiplier>0.5</Multiplier>
+		</ElephantStench>
+		<CamelStench>
+		  <Classes>Camel</Classes>
+		  <Multiplier>0.5</Multiplier>
+		</CamelStench>
 	  </Bonuses>
     </Melee>
     <Charge>
@@ -40,10 +48,14 @@
 		  <Classes>Infantry Javelin</Classes>
 		  <Multiplier>1.5</Multiplier>
 		</BonusSecondary>
-		<BonusSiege>
-		  <Classes>Siege</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusSiege>
+		<ElephantStench>
+		  <Classes>Elephant</Classes>
+		  <Multiplier>0.5</Multiplier>
+		</ElephantStench>
+		<CamelStench>
+		  <Classes>Camel</Classes>
+		  <Multiplier>0.5</Multiplier>
+		</CamelStench>
 	  </Bonuses>
     </Charge>
   </Attack>
