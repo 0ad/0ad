@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -113,6 +113,14 @@ public:
 	// and choosing randomly where a choice is necessary. 
 	std::set<CStr> CalculateRandomVariation(uint32_t seed, const std::set<CStr>& initialSelections);
 
+	// Given a prioritized vector of selection string sets that partially specify
+	// a variation, calculates a remaining set of selection strings such that the resulting 
+	// set merged with the initial selections fully specifies an exact variation of
+	// the actor. The resulting selections are selected randomly, but only where a choice
+	// is necessary (i.e. where there are multiple variants but the initial selections,
+	// applied in priority order, fail to select one).
+	std::set<CStr> CalculateRandomRemainingSelections(uint32_t seed, const std::vector<std::set<CStr> >& initialSelections);
+
 	// Get a list of variant groups for this object, plus for all possible
 	// props. Duplicated groups are removed, if several props share the same
 	// variant names.
@@ -158,7 +166,7 @@ private:
 	// so use a better one that appears to avoid those patterns
 	typedef boost::mt19937 rng_t;
 
-	std::set<CStr> CalculateRandomVariation(rng_t& rng, const std::set<CStr>& initialSelections);
+	std::set<CStr> CalculateRandomRemainingSelections(rng_t& rng, const std::vector<std::set<CStr> >& initialSelections);
 
 	std::vector< std::vector<Variant> > m_VariantGroups;
 	CObjectManager& m_ObjectManager;
