@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="128.339" y="174.336" z="295.224"/>
+		<Position x="842.538" y="131.405" z="147.513"/>
 		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -58,7 +58,7 @@
       "Team": -1
     },
     {
-      "AI": "jubot",
+      "AI": "",
       "Civ": "hele",
       "Colour": {
         "b": 20,
@@ -2287,126 +2287,6 @@
 			<Position x="743.11078" z="353.413"/>
 			<Orientation y="3.12455"/>
 		</Entity>
-		<Entity uid="440">
-			<Template>units/sparta_hellenistic_phalangitai</Template>
-			<Player>2</Player>
-			<Position x="932.30506" z="592.521"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="441">
-			<Template>units/sparta_hellenistic_phalangitai</Template>
-			<Player>2</Player>
-			<Position x="934.73188" z="593.60138"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="442">
-			<Template>units/sparta_hellenistic_phalangitai</Template>
-			<Player>2</Player>
-			<Position x="936.11994" z="594.97156"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="443">
-			<Template>units/sparta_hellenistic_phalangitai</Template>
-			<Player>2</Player>
-			<Position x="937.09553" z="596.08387"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="444">
-			<Template>units/sparta_hellenistic_phalangitai</Template>
-			<Player>2</Player>
-			<Position x="938.08265" z="596.78638"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="445">
-			<Template>units/sparta_hellenistic_phalangitai</Template>
-			<Player>2</Player>
-			<Position x="939.56782" z="597.92261"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="446">
-			<Template>units/sparta_hellenistic_phalangitai</Template>
-			<Player>2</Player>
-			<Position x="941.482" z="599.65528"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="447">
-			<Template>units/sparta_hellenistic_phalangitai</Template>
-			<Player>2</Player>
-			<Position x="942.86042" z="600.38752"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="448">
-			<Template>units/sparta_hellenistic_phalangitai</Template>
-			<Player>2</Player>
-			<Position x="944.55097" z="601.57197"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="449">
-			<Template>units/sparta_hellenistic_phalangitai</Template>
-			<Player>2</Player>
-			<Position x="947.17908" z="604.29615"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="450">
-			<Template>units/sparta_hellenistic_phalangitai</Template>
-			<Player>2</Player>
-			<Position x="948.357" z="599.65528"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="451">
-			<Template>units/sparta_hellenistic_phalangitai</Template>
-			<Player>2</Player>
-			<Position x="946.66822" z="597.7798"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="452">
-			<Template>units/sparta_hellenistic_phalangitai</Template>
-			<Player>2</Player>
-			<Position x="944.98157" z="596.22388"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="453">
-			<Template>units/sparta_hellenistic_phalangitai</Template>
-			<Player>2</Player>
-			<Position x="942.97095" z="594.2837"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="454">
-			<Template>units/sparta_hellenistic_phalangitai</Template>
-			<Player>2</Player>
-			<Position x="941.7168" z="593.05945"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="455">
-			<Template>units/sparta_hellenistic_phalangitai</Template>
-			<Player>2</Player>
-			<Position x="940.46052" z="591.98597"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="456">
-			<Template>units/sparta_hellenistic_phalangitai</Template>
-			<Player>2</Player>
-			<Position x="939.01679" z="590.53211"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="457">
-			<Template>units/sparta_hellenistic_phalangitai</Template>
-			<Player>2</Player>
-			<Position x="937.81867" z="589.74964"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="458">
-			<Template>units/sparta_hellenistic_phalangitai</Template>
-			<Player>2</Player>
-			<Position x="936.4596" z="588.46186"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="459">
-			<Template>units/sparta_hellenistic_phalangitai</Template>
-			<Player>2</Player>
-			<Position x="934.33222" z="587.5724"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="460">
 			<Template>units/thespian_melanochitones</Template>
 			<Player>2</Player>
@@ -4466,150 +4346,6 @@
 			<Template>units/rome_legionnaire_marian</Template>
 			<Player>2</Player>
 			<Position x="508.22593" z="867.89563"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="818">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="498.75931" z="657.5705"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="819">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="500.59873" z="657.44935"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="820">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="502.65311" z="657.66443"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="821">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="504.08765" z="657.87989"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="822">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="505.50702" z="658.31177"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="823">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="506.9964" z="657.87983"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="824">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="499.14145" z="653.63843"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="825">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="500.65302" z="653.84723"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="826">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="502.24952" z="654.26581"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="827">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="503.85126" z="654.68573"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="828">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="505.5438" z="655.31824"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="829">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="507.37635" z="654.89997"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="830">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="499.71888" z="650.141"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="831">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="501.31101" z="650.34412"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="832">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="502.76636" z="650.95527"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="833">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="503.96137" z="651.15967"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="834">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="505.81681" z="651.9806"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="835">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="507.86237" z="651.77485"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="836">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="500.16025" z="646.93586"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="837">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="502.24967" z="646.93586"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="838">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="503.52475" z="647.1338"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="839">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="505.14933" z="647.92865"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="840">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="506.81598" z="648.32801"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="841">
-			<Template>units/mace_champion_infantry_sele</Template>
-			<Player>2</Player>
-			<Position x="508.43134" z="648.12818"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="843">

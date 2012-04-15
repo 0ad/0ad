@@ -24,8 +24,8 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="161.484" y="88.763" z="-0.393753"/>
-		<Rotation angle="0"/>
+		<Position x="129.414" y="100.335" z="-16.5152"/>
+		<Rotation angle="0.150519"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -161,22 +161,16 @@
 			<Position x="99.6823" z="67.66796"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="170">
-			<Template>structures/celt_wall</Template>
-			<Player>1</Player>
-			<Position x="72.16187" z="140.30916"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="171">
 			<Template>structures/celt_wall_gate</Template>
 			<Player>1</Player>
-			<Position x="97.76597" z="166.8151"/>
+			<Position x="88.38744" z="163.50345"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="172">
 			<Template>structures/celt_wall_tower</Template>
 			<Player>1</Player>
-			<Position x="57.94274" z="132.12317"/>
+			<Position x="57.63105" z="132.60425"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="173">
@@ -206,7 +200,7 @@
 		<Entity uid="177">
 			<Template>structures/celt_corral</Template>
 			<Player>1</Player>
-			<Position x="114.21766" z="186.34971"/>
+			<Position x="129.25626" z="191.18407"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="178">
@@ -1257,6 +1251,24 @@
 			<Template>units/celt_war_dog_e</Template>
 			<Player>1</Player>
 			<Position x="114.88888" z="79.54703"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="413">
+			<Template>structures/celt_wall_medium</Template>
+			<Player>1</Player>
+			<Position x="67.73157" z="142.777"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="414">
+			<Template>structures/celt_wall_tower</Template>
+			<Player>1</Player>
+			<Position x="78.0634" z="153.09935"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="415">
+			<Template>structures/celt_wall_tower</Template>
+			<Player>1</Player>
+			<Position x="98.82732" z="173.09462"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>

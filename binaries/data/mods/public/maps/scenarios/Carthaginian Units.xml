@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="339.26" y="84.6987" z="316.135"/>
+		<Position x="286.295" y="81.9231" z="291.682"/>
 		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -40,28 +40,26 @@
   "Name": "Carthaginian Units",
   "PlayerData": [
     {
-      "Civ": "hele"
+      "AI": "",
+      "Civ": "hele",
+      "Colour": {
+        "b": 200,
+        "g": 46,
+        "r": 46
+      },
+      "Name": "Player 1",
+      "Team": -1
     },
     {
-      "Civ": "hele"
-    },
-    {
-      "Civ": "hele"
-    },
-    {
-      "Civ": "hele"
-    },
-    {
-      "Civ": "hele"
-    },
-    {
-      "Civ": "hele"
-    },
-    {
-      "Civ": "hele"
-    },
-    {
-      "Civ": "hele"
+      "AI": "",
+      "Civ": "hele",
+      "Colour": {
+        "b": 20,
+        "g": 20,
+        "r": 150
+      },
+      "Name": "Player 2",
+      "Team": -1
     }
   ],
   "RevealMap": false

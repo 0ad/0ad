@@ -2,9 +2,10 @@
 
 <Scenario version="5">
 	<Environment>
+		<LightingModel>old</LightingModel>
 		<SkySet>cirrus</SkySet>
-		<SunColour r="1.47461" g="1.47461" b="1.47461"/>
-		<SunElevation angle="0.558369"/>
+		<SunColour r="1.13477" g="1.13477" b="1.13477"/>
+		<SunElevation angle="0.613592"/>
 		<SunRotation angle="1.22718"/>
 		<TerrainAmbientColour r="0.337255" g="0.403922" b="0.466667"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
@@ -23,24 +24,40 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="481.052" y="94.5231" z="345.045"/>
-		<Rotation angle="0.3432"/>
-		<Declination angle="0.523599"/>
+		<Position x="470.736" y="106.568" z="328.359"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name": "Bridge demo",
   "Description": "Demo map showing how to simulate bridges in the Atlas map editor.",
+  "GameType": "endless",
   "Keywords": [
     "demo"
   ],
-  "GameType": "endless",
+  "Name": "Bridge demo",
   "PlayerData": [
     {
-      "Civ": "hele"
+      "AI": "",
+      "Civ": "hele",
+      "Colour": {
+        "b": 200,
+        "g": 46,
+        "r": 46
+      },
+      "Name": "Bridge Demo",
+      "Team": -1
     },
     {
-      "Civ": "celt"
+      "AI": "",
+      "Civ": "celt",
+      "Colour": {
+        "b": 20,
+        "g": 20,
+        "r": 150
+      },
+      "Name": "Other",
+      "Team": -1
     }
   ]
 }
@@ -22228,13 +22245,13 @@
 		<Entity uid="4756">
 			<Template>units/hele_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="515.97571" z="459.70884"/>
+			<Position x="512.45014" z="460.50287"/>
 			<Orientation y="-1.76986"/>
 		</Entity>
 		<Entity uid="4761">
 			<Template>units/hele_infantry_spearman_b</Template>
 			<Player>1</Player>
-			<Position x="533.0124" z="462.36097"/>
+			<Position x="512.4383" z="465.52298"/>
 			<Orientation y="-1.7767"/>
 		</Entity>
 		<Entity uid="4764">
@@ -22252,7 +22269,7 @@
 		<Entity uid="4770">
 			<Template>units/hele_hero_leonidas</Template>
 			<Player>1</Player>
-			<Position x="520.42017" z="466.7761"/>
+			<Position x="517.69819" z="465.94925"/>
 			<Orientation y="-1.67417"/>
 		</Entity>
 		<Entity uid="4779">

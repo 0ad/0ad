@@ -2,6 +2,7 @@
 
 <Scenario version="5">
 	<Environment>
+		<LightingModel>old</LightingModel>
 		<SkySet>sunny</SkySet>
 		<SunColour r="1.5" g="1.5" b="1.5"/>
 		<SunElevation angle="0.785398"/>
@@ -11,43 +12,38 @@
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>58.4393</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.491211</Murkiness>
-				<Tint r="0.721569" g="0.772549" b="0.862745"/>
-				<ReflectionTint r="0.447059" g="0.545098" b="0.729412"/>
+				<Tint r="0.721569" g="0.768627" b="0.858824"/>
+				<ReflectionTint r="0.447059" g="0.541176" b="0.729412"/>
 				<ReflectionTintStrength>0.199219</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="231.213" y="119.286" z="56.221"/>
+		<Position x="216.967" y="90.62" z="116.156"/>
 		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
-	{
-		"Name":"Fishing Demo",
-		"Description":"Test out fishing with a fishing boat. Still in development.",
-		"Keywords": ["demo"],
-		"PlayerData":
-		[
-			{
-				"Civ":"celt"
-			}
-		],
-		"GameType":"endless"
-	}
-	]]></ScriptSettings>
+{
+  "Name": "Fishing Demo",
+  "Description": "Test out fishing with a fishing boat. Still in development.",
+  "Keywords": [
+    "demo"
+  ],
+  "PlayerData": [
+    {
+      "Civ": "celt"
+    }
+  ],
+  "GameType": "endless"
+}
+]]></ScriptSettings>
 	<Entities>
-		<Entity uid="11">
-			<Template>units/celt_ship_trireme</Template>
-			<Player>1</Player>
-			<Position x="194.90995" z="190.18613"/>
-			<Orientation y="1.8871"/>
-		</Entity>
 		<Entity uid="14">
 			<Template>gaia/fauna_fish</Template>
 			<Player>0</Player>
@@ -63,14 +59,182 @@
 		<Entity uid="26">
 			<Template>units/hele_ship_fishing</Template>
 			<Player>1</Player>
-			<Position x="246.02141" z="172.59205"/>
+			<Position x="241.45402" z="169.56719"/>
 			<Orientation y="-1.86446"/>
 		</Entity>
 		<Entity uid="27">
 			<Template>units/celt_ship_fishing</Template>
 			<Player>1</Player>
-			<Position x="221.42496" z="180.82381"/>
-			<Orientation y="-2.76288"/>
+			<Position x="224.03321" z="174.33687"/>
+			<Orientation y="-3.05439"/>
+		</Entity>
+		<Entity uid="28">
+			<Template>units/iber_ship_fishing</Template>
+			<Player>1</Player>
+			<Position x="205.81162" z="172.31514"/>
+			<Orientation y="2.65847"/>
+		</Entity>
+		<Entity uid="29">
+			<Template>units/pers_ship_fishing</Template>
+			<Player>1</Player>
+			<Position x="192.14934" z="165.32908"/>
+			<Orientation y="2.11207"/>
+		</Entity>
+		<Entity uid="30">
+			<Template>gaia/fauna_fish</Template>
+			<Player>1</Player>
+			<Position x="189.92811" z="190.7655"/>
+			<Orientation y="3.06882"/>
+		</Entity>
+		<Entity uid="31">
+			<Template>gaia/fauna_fish</Template>
+			<Player>1</Player>
+			<Position x="199.85386" z="192.66678"/>
+			<Orientation y="-0.30146"/>
+		</Entity>
+		<Entity uid="32">
+			<Template>gaia/fauna_fish</Template>
+			<Player>1</Player>
+			<Position x="206.33385" z="153.90766"/>
+			<Orientation y="0.6793"/>
+		</Entity>
+		<Entity uid="33">
+			<Template>gaia/fauna_fish</Template>
+			<Player>1</Player>
+			<Position x="180.81722" z="164.8594"/>
+			<Orientation y="2.3881"/>
+		</Entity>
+		<Entity uid="34">
+			<Template>gaia/fauna_fish</Template>
+			<Player>1</Player>
+			<Position x="166.451" z="193.05451"/>
+			<Orientation y="0.66594"/>
+		</Entity>
+		<Entity uid="35">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>1</Player>
+			<Position x="218.15723" z="196.66153"/>
+			<Orientation y="-2.07917"/>
+		</Entity>
+		<Entity uid="36">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>1</Player>
+			<Position x="239.43522" z="188.92421"/>
+			<Orientation y="1.1629"/>
+		</Entity>
+		<Entity uid="37">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>1</Player>
+			<Position x="238.94228" z="146.73633"/>
+			<Orientation y="-1.93244"/>
+		</Entity>
+		<Entity uid="38">
+			<Template>gaia/fauna_fish_tilapia</Template>
+			<Player>1</Player>
+			<Position x="210.28002" z="137.49518"/>
+			<Orientation y="1.46961"/>
+		</Entity>
+		<Entity uid="39">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>1</Player>
+			<Position x="192.14966" z="143.67966"/>
+			<Orientation y="1.05936"/>
+		</Entity>
+		<Entity uid="40">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>1</Player>
+			<Position x="240.85225" z="190.39252"/>
+			<Orientation y="2.61901"/>
+		</Entity>
+		<Entity uid="41">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>1</Player>
+			<Position x="257.8787" z="180.52582"/>
+			<Orientation y="-1.78248"/>
+		</Entity>
+		<Entity uid="42">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>1</Player>
+			<Position x="250.83605" z="159.73172"/>
+			<Orientation y="1.24582"/>
+		</Entity>
+		<Entity uid="43">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>1</Player>
+			<Position x="185.3383" z="206.6843"/>
+			<Orientation y="-2.07433"/>
+		</Entity>
+		<Entity uid="44">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>1</Player>
+			<Position x="162.6803" z="163.82677"/>
+			<Orientation y="1.02945"/>
+		</Entity>
+		<Entity uid="45">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>1</Player>
+			<Position x="181.23015" z="145.66922"/>
+			<Orientation y="-1.96319"/>
+		</Entity>
+		<Entity uid="46">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>1</Player>
+			<Position x="206.3748" z="209.41071"/>
+			<Orientation y="1.11243"/>
+		</Entity>
+		<Entity uid="47">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>1</Player>
+			<Position x="246.9563" z="212.30082"/>
+			<Orientation y="-1.92952"/>
+		</Entity>
+		<Entity uid="48">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>1</Player>
+			<Position x="229.98774" z="129.82511"/>
+			<Orientation y="1.35044"/>
+		</Entity>
+		<Entity uid="49">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>1</Player>
+			<Position x="191.67136" z="126.28237"/>
+			<Orientation y="-1.58507"/>
+		</Entity>
+		<Entity uid="50">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>1</Player>
+			<Position x="163.26981" z="219.39936"/>
+			<Orientation y="-2.1753"/>
+		</Entity>
+		<Entity uid="51">
+			<Template>gaia/fauna_fish_tuna</Template>
+			<Player>1</Player>
+			<Position x="271.383" z="205.63178"/>
+			<Orientation y="2.35369"/>
+		</Entity>
+		<Entity uid="52">
+			<Template>gaia/fauna_fish</Template>
+			<Player>1</Player>
+			<Position x="155.4682" z="181.39966"/>
+			<Orientation y="-2.87171"/>
+		</Entity>
+		<Entity uid="53">
+			<Template>gaia/fauna_fish</Template>
+			<Player>1</Player>
+			<Position x="177.37697" z="124.57396"/>
+			<Orientation y="-2.23105"/>
+		</Entity>
+		<Entity uid="54">
+			<Template>gaia/fauna_fish</Template>
+			<Player>1</Player>
+			<Position x="260.33661" z="129.5618"/>
+			<Orientation y="-1.84864"/>
+		</Entity>
+		<Entity uid="55">
+			<Template>gaia/fauna_fish</Template>
+			<Player>1</Player>
+			<Position x="287.14448" z="196.70893"/>
+			<Orientation y="-2.38967"/>
 		</Entity>
 	</Entities>
 	<Paths/>
