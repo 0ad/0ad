@@ -15,6 +15,30 @@ function BaseAI(settings)
 	this._entityCollectionsUID = 0;
 }
 
+//Return a simple object (using no classes etc) that will be serialized
+//into saved games
+BaseAI.prototype.Serialize = function()
+{
+	return {
+		_rawEntities: this._rawEntities,
+		_ownEntities: this._ownEntities,
+		_entityMetadata: this._entityMetadata,
+	};
+
+	// TODO: ought to get the AI script subclass to serialize its own state
+};
+
+//Called after the constructor when loading a saved game, with 'data' being
+//whatever Serialize() returned
+BaseAI.prototype.Deserialize = function(data)
+{
+	this._rawEntities = data._rawEntities;
+	this._ownEntities = data._ownEntities;
+	this._entityMetadata = data._entityMetadata;
+
+	// TODO: ought to get the AI script subclass to deserialize its own state
+};
+
 // Components that will be disabled in foundation entity templates.
 // (This is a bit yucky and fragile since it's the inverse of
 // CCmpTemplateManager::CopyFoundationSubset and only includes components
