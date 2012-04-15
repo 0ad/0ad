@@ -4,29 +4,29 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>default</SkySet>
-		<SunColour r="0.852941" g="0.776471" b="0.635294"/>
+		<SunColour r="0.85098" g="0.776471" b="0.631373"/>
 		<SunElevation angle="0.785398"/>
 		<SunRotation angle="-0.785396"/>
-		<TerrainAmbientColour r="0.34902" g="0.427451" b="0.52549"/>
+		<TerrainAmbientColour r="0.34902" g="0.427451" b="0.521569"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>5</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.45</Murkiness>
-				<Tint r="0.278431" g="0.298039" b="0.588235"/>
-				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
+				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="438.211" y="118.389" z="54.7918"/>
+		<Position x="441.106" y="72.859" z="126.673"/>
 		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -258,433 +258,433 @@
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="194">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="458.28513" z="203.27497"/>
 			<Orientation y="-0.95234"/>
 		</Entity>
 		<Entity uid="195">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="459.79493" z="204.60972"/>
 			<Orientation y="-0.6386"/>
 		</Entity>
 		<Entity uid="196">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="461.19282" z="205.89283"/>
 			<Orientation y="-0.73986"/>
 		</Entity>
 		<Entity uid="197">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="462.53312" z="207.43717"/>
 			<Orientation y="-0.56952"/>
 		</Entity>
 		<Entity uid="198">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="464.07682" z="208.86214"/>
 			<Orientation y="-0.82451"/>
 		</Entity>
 		<Entity uid="199">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="456.85428" z="201.94928"/>
 			<Orientation y="-0.96621"/>
 		</Entity>
 		<Entity uid="200">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="458.43064" z="200.38895"/>
 			<Orientation y="-0.67325"/>
 		</Entity>
 		<Entity uid="201">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="459.76017" z="199.20899"/>
 			<Orientation y="-0.87146"/>
 		</Entity>
 		<Entity uid="202">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="465.64386" z="207.29183"/>
 			<Orientation y="-0.79053"/>
 		</Entity>
 		<Entity uid="203">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="467.07773" z="206.16411"/>
 			<Orientation y="-0.73746"/>
 		</Entity>
 		<Entity uid="204">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="468.3697" z="204.4853"/>
 			<Orientation y="-0.82738"/>
 		</Entity>
 		<Entity uid="205">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="469.63505" z="203.20104"/>
 			<Orientation y="-0.67072"/>
 		</Entity>
 		<Entity uid="206">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="471.2682" z="201.60718"/>
 			<Orientation y="-0.83198"/>
 		</Entity>
 		<Entity uid="207">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="463.98115" z="205.8115"/>
 			<Orientation y="-0.7607"/>
 		</Entity>
 		<Entity uid="208">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="465.27982" z="204.65111"/>
 			<Orientation y="-0.61661"/>
 		</Entity>
 		<Entity uid="209">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="466.94288" z="203.3262"/>
 			<Orientation y="-0.82796"/>
 		</Entity>
 		<Entity uid="210">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="468.24732" z="202.04647"/>
 			<Orientation y="-0.91964"/>
 		</Entity>
 		<Entity uid="211">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="469.71354" z="200.47844"/>
 			<Orientation y="-0.67225"/>
 		</Entity>
 		<Entity uid="212">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="462.69651" z="204.38639"/>
 			<Orientation y="-0.83455"/>
 		</Entity>
 		<Entity uid="213">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="464.0965" z="203.26352"/>
 			<Orientation y="-0.84168"/>
 		</Entity>
 		<Entity uid="214">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="465.44639" z="202.04647"/>
 			<Orientation y="-0.70704"/>
 		</Entity>
 		<Entity uid="215">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="466.93537" z="200.61625"/>
 			<Orientation y="-0.65375"/>
 		</Entity>
 		<Entity uid="216">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="468.27024" z="199.14902"/>
 			<Orientation y="-0.85288"/>
 		</Entity>
 		<Entity uid="217">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="461.24909" z="203.10764"/>
 			<Orientation y="-0.7016"/>
 		</Entity>
 		<Entity uid="218">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="462.5229" z="202.04647"/>
 			<Orientation y="-0.87273"/>
 		</Entity>
 		<Entity uid="219">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="463.86051" z="200.47844"/>
 			<Orientation y="-0.69214"/>
 		</Entity>
 		<Entity uid="220">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="465.28223" z="199.22637"/>
 			<Orientation y="-0.82012"/>
 		</Entity>
 		<Entity uid="221">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="466.72443" z="197.82993"/>
 			<Orientation y="-0.68354"/>
 		</Entity>
 		<Entity uid="222">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="459.93485" z="201.7526"/>
 			<Orientation y="-0.69487"/>
 		</Entity>
 		<Entity uid="223">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="461.27149" z="200.56101"/>
 			<Orientation y="-0.82009"/>
 		</Entity>
 		<Entity uid="224">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="462.77683" z="199.02076"/>
 			<Orientation y="-0.86184"/>
 		</Entity>
 		<Entity uid="225">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="464.12085" z="197.78185"/>
 			<Orientation y="-0.77518"/>
 		</Entity>
 		<Entity uid="226">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="465.37354" z="196.40516"/>
 			<Orientation y="-0.7622"/>
 		</Entity>
 		<Entity uid="227">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="461.1425" z="197.72477"/>
 			<Orientation y="-0.67235"/>
 		</Entity>
 		<Entity uid="228">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="462.56772" z="196.33176"/>
 			<Orientation y="-0.76684"/>
 		</Entity>
 		<Entity uid="229">
-			<Template>units/mace_hypaspist</Template>
+			<Template>units/mace_thureophoros</Template>
 			<Player>1</Player>
 			<Position x="463.99482" z="195.14939"/>
 			<Orientation y="-0.68624"/>
 		</Entity>
 		<Entity uid="230">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="497.77186" z="242.63483"/>
 			<Orientation y="-0.71828"/>
 		</Entity>
 		<Entity uid="231">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="499.44397" z="241.21015"/>
 			<Orientation y="-0.57369"/>
 		</Entity>
 		<Entity uid="232">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="500.76752" z="240.11797"/>
 			<Orientation y="-0.76092"/>
 		</Entity>
 		<Entity uid="233">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="502.27762" z="238.65262"/>
 			<Orientation y="-0.59543"/>
 		</Entity>
 		<Entity uid="234">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="503.75345" z="237.25564"/>
 			<Orientation y="-0.79589"/>
 		</Entity>
 		<Entity uid="235">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="496.40522" z="241.449"/>
 			<Orientation y="-0.89475"/>
 		</Entity>
 		<Entity uid="236">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="495.2689" z="240.11797"/>
 			<Orientation y="-0.96447"/>
 		</Entity>
 		<Entity uid="237">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="493.8076" z="238.86451"/>
 			<Orientation y="-0.99656"/>
 		</Entity>
 		<Entity uid="238">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="492.43241" z="237.31197"/>
 			<Orientation y="-0.60605"/>
 		</Entity>
 		<Entity uid="239">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="490.87507" z="235.89693"/>
 			<Orientation y="-0.78646"/>
 		</Entity>
 		<Entity uid="240">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="497.92426" z="239.80846"/>
 			<Orientation y="-0.74273"/>
 		</Entity>
 		<Entity uid="241">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="499.33136" z="238.69471"/>
 			<Orientation y="-0.84737"/>
 		</Entity>
 		<Entity uid="242">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="500.83042" z="237.28977"/>
 			<Orientation y="-0.69228"/>
 		</Entity>
 		<Entity uid="243">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="502.26053" z="236.03301"/>
 			<Orientation y="-0.6809"/>
 		</Entity>
 		<Entity uid="244">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="496.7906" z="238.40661"/>
 			<Orientation y="-0.67606"/>
 		</Entity>
 		<Entity uid="245">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="497.97464" z="237.18789"/>
 			<Orientation y="-0.73378"/>
 		</Entity>
 		<Entity uid="246">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="499.34421" z="235.87295"/>
 			<Orientation y="-0.64982"/>
 		</Entity>
 		<Entity uid="247">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="500.80253" z="234.57412"/>
 			<Orientation y="-0.73957"/>
 		</Entity>
 		<Entity uid="248">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="495.05781" z="236.95197"/>
 			<Orientation y="-0.72434"/>
 		</Entity>
 		<Entity uid="249">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="496.49228" z="235.80925"/>
 			<Orientation y="-0.7195"/>
 		</Entity>
 		<Entity uid="250">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="497.98011" z="234.5741"/>
 			<Orientation y="-0.53003"/>
 		</Entity>
 		<Entity uid="251">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="499.26951" z="233.07136"/>
 			<Orientation y="-0.63877"/>
 		</Entity>
 		<Entity uid="252">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="493.76221" z="235.80925"/>
 			<Orientation y="-0.71755"/>
 		</Entity>
 		<Entity uid="253">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="495.07682" z="234.42472"/>
 			<Orientation y="-0.82045"/>
 		</Entity>
 		<Entity uid="254">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="496.53702" z="233.12714"/>
 			<Orientation y="-0.6079"/>
 		</Entity>
 		<Entity uid="255">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="497.95417" z="231.64779"/>
 			<Orientation y="-0.6076"/>
 		</Entity>
 		<Entity uid="256">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="492.25019" z="234.42472"/>
 			<Orientation y="-0.5077"/>
 		</Entity>
 		<Entity uid="257">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="493.57731" z="232.98798"/>
 			<Orientation y="-0.64225"/>
 		</Entity>
 		<Entity uid="258">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="495.09736" z="231.69965"/>
 			<Orientation y="-0.41665"/>
 		</Entity>
 		<Entity uid="259">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="496.57776" z="230.32212"/>
 			<Orientation y="-0.59893"/>
 		</Entity>
 		<Entity uid="260">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="498.0493" z="228.79319"/>
 			<Orientation y="-0.73491"/>
 		</Entity>
 		<Entity uid="261">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="499.68928" z="229.80164"/>
 			<Orientation y="-0.62381"/>
 		</Entity>
 		<Entity uid="262">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="500.83832" z="231.30158"/>
 			<Orientation y="-0.66208"/>
 		</Entity>
 		<Entity uid="263">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="502.34125" z="232.71076"/>
 			<Orientation y="-0.7395"/>
 		</Entity>
 		<Entity uid="264">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="503.74711" z="233.92833"/>
 			<Orientation y="-0.60355"/>
 		</Entity>
 		<Entity uid="265">
-			<Template>units/mace_argyraspis</Template>
+			<Template>units/mace_thorakites</Template>
 			<Player>1</Player>
 			<Position x="505.01401" z="235.59617"/>
 			<Orientation y="-0.67551"/>
@@ -1528,6 +1528,186 @@
 			<Player>2</Player>
 			<Position x="435.88212" z="310.8108"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="415">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="450.88123" z="196.48415"/>
+			<Orientation y="-0.6593"/>
+		</Entity>
+		<Entity uid="416">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="452.22443" z="194.46711"/>
+			<Orientation y="-0.6275"/>
+		</Entity>
+		<Entity uid="417">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="453.39271" z="192.52318"/>
+			<Orientation y="-0.5171"/>
+		</Entity>
+		<Entity uid="418">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="454.38617" z="190.60662"/>
+			<Orientation y="-0.64559"/>
+		</Entity>
+		<Entity uid="419">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="455.24515" z="188.53315"/>
+			<Orientation y="-0.75457"/>
+		</Entity>
+		<Entity uid="420">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="449.16932" z="195.21796"/>
+			<Orientation y="-0.38596"/>
+		</Entity>
+		<Entity uid="421">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="447.16294" z="194.5018"/>
+			<Orientation y="-0.49175"/>
+		</Entity>
+		<Entity uid="422">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="445.55011" z="193.47995"/>
+			<Orientation y="-0.48934"/>
+		</Entity>
+		<Entity uid="423">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="443.97416" z="192.41663"/>
+			<Orientation y="-0.50716"/>
+		</Entity>
+		<Entity uid="424">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="449.93107" z="193.53489"/>
+			<Orientation y="-0.30036"/>
+		</Entity>
+		<Entity uid="425">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="451.37525" z="191.60294"/>
+			<Orientation y="-0.48234"/>
+		</Entity>
+		<Entity uid="426">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="452.24778" z="189.53975"/>
+			<Orientation y="-0.29357"/>
+		</Entity>
+		<Entity uid="427">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="453.2089" z="187.68322"/>
+			<Orientation y="-0.34061"/>
+		</Entity>
+		<Entity uid="428">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="442.0131" z="191.71515"/>
+			<Orientation y="-0.8064"/>
+		</Entity>
+		<Entity uid="429">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="447.86365" z="192.86869"/>
+			<Orientation y="-0.22713"/>
+		</Entity>
+		<Entity uid="430">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="446.2115" z="191.9572"/>
+			<Orientation y="-0.14876"/>
+		</Entity>
+		<Entity uid="431">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="444.72092" z="191.12934"/>
+			<Orientation y="-0.19945"/>
+		</Entity>
+		<Entity uid="432">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="442.79395" z="190.07615"/>
+			<Orientation y="-0.6714"/>
+		</Entity>
+		<Entity uid="433">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="449.25977" z="191.17536"/>
+			<Orientation y="-0.63512"/>
+		</Entity>
+		<Entity uid="434">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="450.07547" z="189.28385"/>
+			<Orientation y="-0.29363"/>
+		</Entity>
+		<Entity uid="435">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="450.9633" z="187.41352"/>
+			<Orientation y="-0.53144"/>
+		</Entity>
+		<Entity uid="436">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="447.28562" z="190.41684"/>
+			<Orientation y="-0.5656"/>
+		</Entity>
+		<Entity uid="437">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="448.50156" z="188.62485"/>
+			<Orientation y="-0.67788"/>
+		</Entity>
+		<Entity uid="438">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="449.30332" z="186.62067"/>
+			<Orientation y="-0.21531"/>
+		</Entity>
+		<Entity uid="439">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="445.62098" z="189.66225"/>
+			<Orientation y="-0.49056"/>
+		</Entity>
+		<Entity uid="440">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="446.5767" z="188.04287"/>
+			<Orientation y="-0.29719"/>
+		</Entity>
+		<Entity uid="441">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="447.46058" z="185.85254"/>
+			<Orientation y="-0.5674"/>
+		</Entity>
+		<Entity uid="442">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="443.81974" z="188.78452"/>
+			<Orientation y="-0.39396"/>
+		</Entity>
+		<Entity uid="443">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="444.77622" z="186.8273"/>
+			<Orientation y="-0.37218"/>
+		</Entity>
+		<Entity uid="444">
+			<Template>units/mace_thorakites</Template>
+			<Player>1</Player>
+			<Position x="445.75712" z="185.22748"/>
+			<Orientation y="-0.36638"/>
 		</Entity>
 	</Entities>
 	<Paths/>
