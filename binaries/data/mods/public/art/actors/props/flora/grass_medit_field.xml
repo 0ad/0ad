@@ -1,8 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
-  <castshadow/>
-
   <group>
     <variant name="small-short-a">
       <mesh>gaia/grass_sm_a.dae</mesh>
@@ -29,7 +26,6 @@
       <mesh>gaia/grass_la_tall_b.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant name="Dry">
       <texture>gaia/grass_field_dry.dds</texture>
@@ -44,7 +40,5 @@
       <texture>gaia/grass_field_medit_flowering.dds</texture>
     </variant>
   </group>
-
   <material>basic_trans.xml</material>
-
 </actor>
