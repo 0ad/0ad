@@ -152,6 +152,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		case STANCE:
 			if (numberOfItems > 5)
 				numberOfItems =  5;
+
 		case FORMATION:
 			if (numberOfItems > 16)
 				numberOfItems =  16;
@@ -453,13 +454,15 @@ function setupUnitBarterPanel(unitEntState)
 			// In 'buy' row show black icon in place corresponding to selected resource in 'sell' row
 			if (j == 1 && i == g_barterSell)
 			{
-				button.enabled = false;
-				button.tooltip = "";
-				icon.sprite = "";
-				amountToBuy = "";
+				button.hidden = true;
+				//button.enabled = false;
+				//button.tooltip = "";
+				//icon.sprite = "";
+				//amountToBuy = "";
 			}
 			else
 			{
+				button.hidden = false;
 				button.enabled = true;
 				button.tooltip = action + " " + resource;
 				icon.sprite = "stretched:"+grayscale+"session/icons/resources/" + resource + ".png";
