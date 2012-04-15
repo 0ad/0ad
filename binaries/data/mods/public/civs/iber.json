@@ -15,14 +15,14 @@
 			"Technologies":
 			[
 				{
-					"Name": "Falarica del Fuego",
-					"History": "'Flaming Javelin' Iberian tribesmen were noted for wrapping bundles of grass about the shafts of their throwing spears, soaking that in some sort of flammable pitch, then setting it afire just before throwing.",
+					"Name": "Suzko Txabalina",
+					"History": "Iberian tribesmen were noted for wrapping bundles of grass about the shafts of their throwing spears, soaking that in some sort of flammable pitch, then setting it afire just before throwing.",
 					"Description": "Causes targets struck to become inflamed and lose hitpoints at a constant rate until and if either healed or repaired, as appropriate." 
 				},
 				{
-					"Name": "Maestros Herreros",
-					"History": "'Master Iron Workers' The Iberians were known to produce the finest iron and steel implements and weapons of the age.",
-					"Description": "CO -50% any Ore." 
+					"Name": "Maisu Burdina Langileak",
+					"History": "The Iberians were known to produce the finest iron and steel implements and weapons of the age. The famous 'Toledo Steel.'",
+					"Description": "Metal costs for units and technologies reduced by 50%." 
 				} 
 			],
 			"Heroes":
@@ -54,34 +54,34 @@
 	"CivBonuses":
 	[
 		{
-			"Name": "El Pedregal",
-			"History": "'The Rocky Place' With exception to alluvial plains and river valleys, stone is abundant in the Iberian Peninsula and was greatly used in construction of structures of all types.",
-			"Description": "Stone CO -33% any structure or Tech requiring the resource." 
+			"Name": "Harritsu Leku",
+			"History": "With exception to alluvial plains and river valleys, stone is abundant in the Iberian Peninsula and was greatly used in construction of structures of all types.",
+			"Description": "The Iberian player starts the match with a powerful prefabricated circuit of stone walls."
 		},
 		{
-			"Name": "Manada de Caballos",
-			"History": "'Horse Herd' Not unlike Numidia in North Africa, the Iberian Peninsula was known as 'horse country', capable of producing up to 100,000 new mounts each year.",
+			"Name": "Zaldi Saldoa",
+			"History": "Not unlike Numidia in North Africa, the Iberian Peninsula was known as 'horse country', capable of producing up to 100,000 new mounts each year.",
 			"Description": "As long as horses remain corralled, the resource cost of training horse-mounted units (cavalry) is reduced by 5% per animal corralled." 
 		} 
 	],
 	"TeamBonuses":
 	[
 		{
-			"Name": "Mercenario",
+			"Name": "Saripeko",
 			"History": "The Iberians were long known to provide mercenary soldiers to other nations to serve as auxiliaries to their armies in foreign wars. Carthage is the most well known example, and we have evidence of them serving in such a capacity in Aquitania.",
-			"Description": "Infantry and Cavalry Citizen Soldier Javelinists civ CO -50%." 
+			"Description": "Infantry and Cavalry Citizen Soldier Javelinists civ cost -50%." 
 		} 
 	],
 	"Structures":
 	[
 		{
-			"Name": "Monumento Venerado",
+			"Name": "Gur Oroigarri",
 			"Class": "",
 			"Emblem": "",
 			"History": "'Revered Monument' The Iberians were a religious people who built small monuments to their various gods. These monuments could also serve as family tombs.",
 			"Requirements": "",
 			"Phase": "",
-			"Special": "" 
+			"Special": "Defensive Aura - Gives all Iberian units and buildings within vision range of the monument a 10-15% attack boost. Build Limit: Only 5 may be built per map."
 		} 
 	],
 	"StartEntities":
