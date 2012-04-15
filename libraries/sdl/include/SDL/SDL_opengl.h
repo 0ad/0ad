@@ -1,6 +1,6 @@
 /*
     SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2006 Sam Lantinga
+    Copyright (C) 1997-2012 Sam Lantinga
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -20,7 +20,9 @@
     slouken@libsdl.org
 */
 
-/* This is a simple file to encapsulate the OpenGL API headers */
+/** @file SDL_opengl.h
+ *  This is a simple file to encapsulate the OpenGL API headers
+ */
 
 #include "SDL_config.h"
 
@@ -48,10 +50,12 @@
 #undef __glext_h_
 #endif
 
-/* This file taken from "GLext.h" from the Jeff Molofee OpenGL tutorials.
-   It is included here because glext.h is not available on some systems.
-   If you don't want this version included, simply define "NO_SDL_GLEXT"
+/** @name GLext.h
+ *  This file taken from "GLext.h" from the Jeff Molofee OpenGL tutorials.
+ *  It is included here because glext.h is not available on some systems.
+ *  If you don't want this version included, simply define "NO_SDL_GLEXT"
  */
+/*@{*/
 #ifndef NO_SDL_GLEXT
 #if !defined(__glext_h_) && !defined(GL_GLEXT_LEGACY)
 #define __glext_h_
@@ -3104,20 +3108,34 @@ typedef char GLchar;			/* native character */
 
 #ifndef GL_VERSION_1_5
 /* GL types for handling large vertex buffer objects */
+#ifdef __APPLE__
+typedef long GLintptr;
+typedef long GLsizeiptr;
+#else
 typedef ptrdiff_t GLintptr;
 typedef ptrdiff_t GLsizeiptr;
+#endif
 #endif
 
 #ifndef GL_ARB_vertex_buffer_object
 /* GL types for handling large vertex buffer objects */
+#ifdef __APPLE__
+typedef long GLintptrARB;
+typedef long GLsizeiptrARB;
+#else
 typedef ptrdiff_t GLintptrARB;
 typedef ptrdiff_t GLsizeiptrARB;
+#endif
 #endif
 
 #ifndef GL_ARB_shader_objects
 /* GL types for handling shader object handles and program/shader text */
 typedef char GLcharARB;		/* native character */
+#if defined(__APPLE__)
+typedef void *GLhandleARB;	/* shader object handle */
+#else
 typedef unsigned int GLhandleARB;	/* shader object handle */
+#endif
 #endif
 
 /* GL types for "half" precision (s10e5) float data in host memory */
@@ -6549,3 +6567,4 @@ typedef void (APIENTRYP PFNGLSTRINGMARKERGREMEDYPROC) (GLsizei len, const GLvoid
 
 #endif
 #endif /* NO_SDL_GLEXT */
+/*@}*/

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-  <castshadow/>
   <group>
     <variant name="a">
       <mesh>gaia/grass_sm_tall_a.dae</mesh>
@@ -14,5 +13,5 @@
       <texture>gaia/grass_field_dry.dds</texture>
     </variant>
   </group>
-  <material>alphatest.xml</material>
+  <material>basic_trans.xml</material>
 </actor>

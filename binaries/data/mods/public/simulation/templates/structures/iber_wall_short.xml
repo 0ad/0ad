@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall">
+  <Cost>
+    <BuildTime>10</BuildTime>
+  </Cost>
   <Footprint>
     <Square width="14" depth="9"/>
     <Height>9.0</Height>
   </Footprint>
+  <Health>
+    <Max>1000</Max>
+  </Health>
   <Identity>
     <Civ>iber</Civ>
     <SpecificName>Muro Ancho</SpecificName>

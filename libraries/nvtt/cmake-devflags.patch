@@ -1,0 +1,176 @@
+From: hasufell <julian.ospald@googlemail.com>
+Date: Wed Apr 11 21:49:58 UTC 2012
+Subject: various cmake fixes
+
+fix hardcoded install paths for BINDIR and LIBDIR
+make cg, cuda, glew, glut and openexr controllable and not automagic
+
+--- src/nvcore/CMakeLists.txt
++++ src/nvcore/CMakeLists.txt
+@@ -42,6 +42,6 @@
+ TARGET_LINK_LIBRARIES(nvcore ${LIBS})
+ 
+ INSTALL(TARGETS nvcore
+-	RUNTIME DESTINATION bin
+-	LIBRARY DESTINATION lib
+-	ARCHIVE DESTINATION lib/static)
++	RUNTIME DESTINATION ${BINDIR}
++	LIBRARY DESTINATION ${LIBDIR}
++	ARCHIVE DESTINATION ${LIBDIR})
+--- src/nvimage/CMakeLists.txt
++++ src/nvimage/CMakeLists.txt
+@@ -62,7 +62,7 @@
+ TARGET_LINK_LIBRARIES(nvimage ${LIBS} nvcore nvmath posh)
+ 
+ INSTALL(TARGETS nvimage
+-	RUNTIME DESTINATION bin
+-	LIBRARY DESTINATION lib
+-	ARCHIVE DESTINATION lib/static)
++	RUNTIME DESTINATION ${BINDIR}
++	LIBRARY DESTINATION ${LIBDIR} 
++	ARCHIVE DESTINATION ${LIBDIR})
+ 
+--- src/nvmath/CMakeLists.txt
++++ src/nvmath/CMakeLists.txt
+@@ -28,6 +28,6 @@
+ TARGET_LINK_LIBRARIES(nvmath ${LIBS} nvcore)
+ 
+ INSTALL(TARGETS nvmath
+-	RUNTIME DESTINATION bin
+-	LIBRARY DESTINATION lib
+-	ARCHIVE DESTINATION lib/static)
++	RUNTIME DESTINATION ${BINDIR}
++	LIBRARY DESTINATION ${LIBDIR}
++	ARCHIVE DESTINATION ${LIBDIR})
+--- src/nvtt/CMakeLists.txt
++++ src/nvtt/CMakeLists.txt
+@@ -53,9 +53,9 @@
+ TARGET_LINK_LIBRARIES(nvtt ${LIBS} nvcore nvmath nvimage squish)
+ 
+ INSTALL(TARGETS nvtt 
+-	RUNTIME DESTINATION bin
+-	LIBRARY DESTINATION lib
+-	ARCHIVE DESTINATION lib/static)
++	RUNTIME DESTINATION ${BINDIR}
++	LIBRARY DESTINATION ${LIBDIR}
++	ARCHIVE DESTINATION ${LIBDIR})
+ 
+ INSTALL(FILES nvtt.h DESTINATION include/nvtt)
+ 
+--- src/CMakeLists.txt
++++ src/CMakeLists.txt
+@@ -5,6 +5,13 @@
+ SUBDIRS(nvtt)
+ 
+ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
++
++# initial variables
++SET(GLUT TRUE CACHE BOOL "")
++SET(GLEW TRUE CACHE BOOL "")
++SET(CG TRUE CACHE BOOL "")
++SET(CUDA TRUE CACHE BOOL "")
++SET(OPENEXR TRUE CACHE BOOL "")
+ 
+ # OpenGL
+ INCLUDE(FindOpenGL)
+@@ -15,13 +22,15 @@
+ ENDIF(OPENGL_FOUND)
+ 
+ # GLUT
+-INCLUDE(${NV_CMAKE_DIR}/FindGLUT.cmake)
+-#INCLUDE(FindGLUT)
+-IF(GLUT_FOUND)
+-	MESSAGE(STATUS "Looking for GLUT - found")
+-ELSE(GLUT_FOUND)
+-	MESSAGE(STATUS "Looking for GLUT - not found")
+-ENDIF(GLUT_FOUND)
++IF(GLUT)
++	INCLUDE(${NV_CMAKE_DIR}/FindGLUT.cmake)
++	#INCLUDE(FindGLUT)
++	IF(GLUT_FOUND)
++		MESSAGE(STATUS "Looking for GLUT - found")
++	ELSE(GLUT_FOUND)
++		MESSAGE(STATUS "Looking for GLUT - not found")
++	ENDIF(GLUT_FOUND)
++ENDIF(GLUT)
+ 
+ # DirectX
+ INCLUDE(${NV_CMAKE_DIR}/FindDirectX.cmake)
+@@ -32,29 +41,35 @@
+ ENDIF(DX10_FOUND)
+ 
+ # GLEW
+-INCLUDE(${NV_CMAKE_DIR}/FindGLEW.cmake)
+-IF(GLEW_FOUND)
+-	MESSAGE(STATUS "Looking for GLEW - found")
+-ELSE(GLEW_FOUND)
+-	MESSAGE(STATUS "Looking for GLEW - not found")
+-ENDIF(GLEW_FOUND)
++IF(GLEW)
++	INCLUDE(${NV_CMAKE_DIR}/FindGLEW.cmake)
++	IF(GLEW_FOUND)
++		MESSAGE(STATUS "Looking for GLEW - found")
++	ELSE(GLEW_FOUND)
++		MESSAGE(STATUS "Looking for GLEW - not found")
++	ENDIF(GLEW_FOUND)
++ENDIF(GLEW)
+ 
+ # Cg
+-INCLUDE(${NV_CMAKE_DIR}/FindCg.cmake)
+-IF(CG_FOUND)
+-	MESSAGE(STATUS "Looking for Cg - found")
+-ELSE(CG_FOUND)
+-	MESSAGE(STATUS "Looking for Cg - not found")
+-ENDIF(CG_FOUND)
++IF(CG)
++	INCLUDE(${NV_CMAKE_DIR}/FindCg.cmake)
++	IF(CG_FOUND)
++		MESSAGE(STATUS "Looking for Cg - found")
++	ELSE(CG_FOUND)
++		MESSAGE(STATUS "Looking for Cg - not found")
++	ENDIF(CG_FOUND)
++ENDIF(CG)
+ 
+ # CUDA
+-INCLUDE(${NV_CMAKE_DIR}/FindCUDA.cmake)
+-IF(CUDA_FOUND)
+-	SET(HAVE_CUDA ${CUDA_FOUND} CACHE BOOL "Set to TRUE if CUDA is found, FALSE otherwise")
+-	MESSAGE(STATUS "Looking for CUDA - found")
+-ELSE(CUDA_FOUND)
+-	MESSAGE(STATUS "Looking for CUDA - not found")
+-ENDIF(CUDA_FOUND)
++IF(CUDA)
++	INCLUDE(${NV_CMAKE_DIR}/FindCUDA.cmake)
++	IF(CUDA_FOUND)
++		SET(HAVE_CUDA ${CUDA_FOUND} CACHE BOOL "Set to TRUE if CUDA is found, FALSE otherwise")
++		MESSAGE(STATUS "Looking for CUDA - found")
++	ELSE(CUDA_FOUND)
++		MESSAGE(STATUS "Looking for CUDA - not found")
++	ENDIF(CUDA_FOUND)
++ENDIF(CUDA)
+ 
+ # Maya
+ INCLUDE(${NV_CMAKE_DIR}/FindMaya.cmake)
+@@ -93,13 +108,15 @@
+ ENDIF(TIFF_FOUND)
+ 
+ # OpenEXR
+-INCLUDE(${NV_CMAKE_DIR}/FindOpenEXR.cmake)
+-IF(OPENEXR_FOUND)
+-	SET(HAVE_OPENEXR ${OPENEXR_FOUND} CACHE BOOL "Set to TRUE if OpenEXR is found, FALSE otherwise")
+-	MESSAGE(STATUS "Looking for OpenEXR - found")
+-ELSE(OPENEXR_FOUND)
+-	MESSAGE(STATUS "Looking for OpenEXR - not found")
+-ENDIF(OPENEXR_FOUND)
++IF(OPENEXR)
++	INCLUDE(${NV_CMAKE_DIR}/FindOpenEXR.cmake)
++	IF(OPENEXR_FOUND)
++		SET(HAVE_OPENEXR ${OPENEXR_FOUND} CACHE BOOL "Set to TRUE if OpenEXR is found, FALSE otherwise")
++		MESSAGE(STATUS "Looking for OpenEXR - found")
++	ELSE(OPENEXR_FOUND)
++		MESSAGE(STATUS "Looking for OpenEXR - not found")
++	ENDIF(OPENEXR_FOUND)
++ENDIF(OPENEXR)
+ 
+ # Qt
+ FIND_PACKAGE(Qt4)

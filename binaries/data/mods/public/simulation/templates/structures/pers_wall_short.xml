@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall">
   <Cost>
-    <BuildTime>25</BuildTime>
+    <BuildTime>13</BuildTime>
   </Cost>
   <Footprint>
     <Square width="14.0" depth="8.0"/>
     <Height>9.0</Height>
   </Footprint>
   <Health>
-    <Max>3750</Max>
+    <Max>1250</Max>
   </Health>
   <Identity>
     <Civ>pers</Civ>

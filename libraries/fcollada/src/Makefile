@@ -7,14 +7,14 @@ OS_DEFINE ?= -DLINUX
 PIC_FLAGS ?= -fpic
 endif
 
-CXX := g++
-CXXFLAGS := -fvisibility=hidden -W -Wall -Wno-unused-parameter -Wno-unused-function $(OS_DEFINE) $(PIC_FLAGS) $(CPPFLAGS)
+CXX ?= g++
+CXXFLAGS += -fvisibility=hidden -W -Wall -Wno-unused-parameter -Wno-unused-function $(OS_DEFINE) $(PIC_FLAGS) $(CPPFLAGS)
 CXXFLAGS_DEBUG := -O0 -g -D_DEBUG -DRETAIL
 CXXFLAGS_RELEASE := -O1 -DNDEBUG -DRETAIL
 # (-O2 with gcc 4.3 causes linker errors when using this library, for unknown reasons, so stick with -O1)
 CXXFLAGS_TEST := -O0 -g -D_DEBUG
-LIBS := `pkg-config libxml-2.0 --libs`
-INCLUDES := -IFCollada `pkg-config libxml-2.0 --cflags`
+LIBS += `pkg-config libxml-2.0 --libs`
+INCLUDES += -IFCollada `pkg-config libxml-2.0 --cflags`
 INCLUDES_TEST := -IFCollada/FColladaTest $(INCLUDES)
 
 # FCollada is not aliasing-safe, so disallow dangerous optimisations

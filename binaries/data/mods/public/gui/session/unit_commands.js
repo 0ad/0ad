@@ -152,6 +152,8 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		case STANCE:
 			if (numberOfItems > 5)
 				numberOfItems =  5;
+			break;
+
 		case FORMATION:
 			if (numberOfItems > 16)
 				numberOfItems =  16;
@@ -450,17 +452,14 @@ function setupUnitBarterPanel(unitEntState)
 			var button = getGUIObjectByName("unitBarter" + action + "Button["+i+"]");
 			button.size = (i * 46) + " 0 " + ((i + 1) * 46) + " 46";
 			var amountToBuy;
-			// In 'buy' row show black icon in place corresponding to selected resource in 'sell' row
+			// We don't display a button in 'buy' row if the same resource is selected in 'sell' row
 			if (j == 1 && i == g_barterSell)
 			{
-				button.enabled = false;
-				button.tooltip = "";
-				icon.sprite = "";
-				amountToBuy = "";
+				button.hidden = true;
 			}
 			else
 			{
-				button.enabled = true;
+				button.hidden = false;
 				button.tooltip = action + " " + resource;
 				icon.sprite = "stretched:"+grayscale+"session/icons/resources/" + resource + ".png";
 				var sellPrice = unitEntState.barterMarket.prices["sell"][BARTER_RESOURCES[g_barterSell]];
@@ -487,8 +486,6 @@ function setupUnitBarterPanel(unitEntState)
 // Updates right Unit Commands Panel - runs in the main session loop via updateSelectionDetails()
 function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, selection)
 {
-	//var isInvisible = true;
-
 	// Panels that are active
 	var usedPanels = {};
 
@@ -496,17 +493,6 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 	var player = Engine.GetPlayerID();
 	if (entState.player == player || g_DevSettings.controlAll)
 	{
-		if (entState.attack) // TODO - this should be based on some AI properties
-		{
-			//usedPanels["Stance"] = 1;
-			//usedPanels["Formation"] = 1;
-			// (These are disabled since they're not implemented yet)
-		}
-		else // TODO - this should be based on various other things
-		{
-			//usedPanels["Research"] = 1;
-		}
-
 		if (selection.length > 1)
 			setupUnitPanel("Selection", usedPanels, entState, g_Selection.groups.getTemplateNames(),
 				function (entType) { changePrimarySelectionGroup(entType); } );
@@ -550,14 +536,12 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		if (entState.buildEntities && entState.buildEntities.length)
 		{
 			setupUnitPanel("Construction", usedPanels, entState, entState.buildEntities, startBuildingPlacement);
-//			isInvisible = false;
 		}
 
 		if (entState.training && entState.training.entities.length)
 		{
 			setupUnitPanel("Training", usedPanels, entState, entState.training.entities,
 				function (trainEntType) { addToTrainingQueue(entState.id, trainEntType); } );
-//			isInvisible = false;
 		}
 
 		if (entState.training && entState.training.queue.length)
@@ -569,15 +553,6 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			usedPanels["Trading"] = 1;
 			setupUnitTradingPanel(entState, selection);
 		}
-
-//		supplementalDetailsPanel.hidden = false;
-//		commandsPanel.hidden = isInvisible;
-	}
-	else
-	{
-		getGUIObjectByName("stamina").hidden = true;
-//		supplementalDetailsPanel.hidden = true;
-//		commandsPanel.hidden = true;
 	}
 
 	// Hides / unhides Unit Panels (panels should be grouped by type, not by order, but we will leave that for another time)
