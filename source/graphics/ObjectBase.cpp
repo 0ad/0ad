@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -337,14 +337,14 @@ std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CS
 
 		// Remember which props were chosen, so we can call CalculateVariationKey on them
 		// at the end.
-		CObjectBase::Variant& var ((*grp)[match]);
-		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
+		Variant& var ((*grp)[match]);
+		for (std::vector<Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 		{
 			// Erase all existing props which are overridden by this variant:
-			for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
+			for (std::vector<Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 				chosenProps.erase(it->m_PropPointName);
 			// and then insert the new ones:
-			for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
+			for (std::vector<Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 				if (! it->m_ModelName.empty())
 					chosenProps.insert(make_pair(it->m_PropPointName, it->m_ModelName));
 		}
@@ -439,13 +439,23 @@ std::set<CStr> CObjectBase::CalculateRandomVariation(uint32_t seed, const std::s
 {
 	rng_t rng;
 	rng.seed(seed);
-	return CalculateRandomVariation(rng, initialSelections);
+
+	std::set<CStr> remainingSelections = CalculateRandomRemainingSelections(rng, std::vector<std::set<CStr> >(1, initialSelections));
+	remainingSelections.insert(initialSelections.begin(), initialSelections.end());
+
+	return remainingSelections; // now actually a complete set of selections
 }
 
-std::set<CStr> CObjectBase::CalculateRandomVariation(rng_t& rng, const std::set<CStr>& initialSelections)
+std::set<CStr> CObjectBase::CalculateRandomRemainingSelections(uint32_t seed, const std::vector<std::set<CStr> >& initialSelections)
 {
-	std::set<CStr> selections = initialSelections;
+	rng_t rng;
+	rng.seed(seed);
+	return CalculateRandomRemainingSelections(rng, initialSelections);
+}
 
+std::set<CStr> CObjectBase::CalculateRandomRemainingSelections(rng_t& rng, const std::vector<std::set<CStr> >& initialSelections)
+{
+	std::set<CStr> remainingSelections;
 	std::multimap<CStr, CStrW> chosenProps;
 
 	// Calculate a complete list of selections, so there is at least one
@@ -458,7 +468,7 @@ std::set<CStr> CObjectBase::CalculateRandomVariation(rng_t& rng, const std::set<
 	// When choosing randomly, make use of each variant's frequency. If all
 	// variants have frequency 0, treat them as if they were 1.
 
-	for (std::vector<std::vector<CObjectBase::Variant> >::iterator grp = m_VariantGroups.begin();
+	for (std::vector<std::vector<Variant> >::iterator grp = m_VariantGroups.begin();
 		grp != m_VariantGroups.end();
 		++grp)
 	{
@@ -477,15 +487,22 @@ std::set<CStr> CObjectBase::CalculateRandomVariation(rng_t& rng, const std::set<
 		else
 		{
 			// See if a variant (or several, but we only care about the first)
-			// is already matched by the selections we've made
+			// is already matched by the selections we've made, keeping their
+			// priority order into account
 
-			for (size_t i = 0; i < grp->size(); ++i)
+			for (size_t s = 0; s < initialSelections.size(); ++s)
 			{
-				if (selections.count((*grp)[i].m_VariantName))
+				for (size_t i = 0; i < grp->size(); ++i)
 				{
-					match = (int)i;
-					break;
+					if (initialSelections[s].count((*grp)[i].m_VariantName))
+					{
+						match = (int)i;
+						break;
+					}
 				}
+
+				if (match >= 0)
+					break;
 			}
 
 			// If there was one, we don't need to do anything now because there's
@@ -511,11 +528,14 @@ std::set<CStr> CObjectBase::CalculateRandomVariation(rng_t& rng, const std::set<
 					randNum -= (allZero ? 1 : (*grp)[i].m_Frequency);
 					if (randNum < 0)
 					{
-						selections.insert((*grp)[i].m_VariantName);
-						// (If this change to 'selections' interferes with earlier
-						// choices, then we'll get some non-fatal inconsistencies
-						// that just break the randomness. But that shouldn't
-						// happen, much.)
+						remainingSelections.insert((*grp)[i].m_VariantName);
+						// (If this change to 'remainingSelections' interferes with earlier choices, then 
+						// we'll get some non-fatal inconsistencies that just break the randomness. But that
+						// shouldn't happen, much.)
+						// (As an example, suppose you have a group with variants "a" and "b", and another
+						// with variants "a" and "c"; now if random selection choses "b" for the first
+						// and "a" for the second, then the selection of "a" from the second group will
+						// cause "a" to be used in the first instead of the "b").
 						match = (int)i;
 						break;
 					}
@@ -528,14 +548,14 @@ std::set<CStr> CObjectBase::CalculateRandomVariation(rng_t& rng, const std::set<
 
 		// Remember which props were chosen, so we can call CalculateRandomVariation on them
 		// at the end.
-		CObjectBase::Variant& var ((*grp)[match]);
-		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
+		Variant& var ((*grp)[match]);
+		for (std::vector<Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 		{
 			// Erase all existing props which are overridden by this variant:
-			for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
+			for (std::vector<Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 				chosenProps.erase(it->m_PropPointName);
 			// and then insert the new ones:
-			for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
+			for (std::vector<Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 				if (! it->m_ModelName.empty())
 					chosenProps.insert(make_pair(it->m_PropPointName, it->m_ModelName));
 		}
@@ -547,13 +567,12 @@ std::set<CStr> CObjectBase::CalculateRandomVariation(rng_t& rng, const std::set<
 		CObjectBase* prop = m_ObjectManager.FindObjectBase(it->second);
 		if (prop)
 		{
-			std::set<CStr> propSelections = prop->CalculateRandomVariation(rng, selections);
-			// selections = union(propSelections, selections)
-			std::set<CStr> newSelections;
-			std::set_union(propSelections.begin(), propSelections.end(),
-				selections.begin(), selections.end(),
-				std::inserter(newSelections, newSelections.begin()));
-			selections.swap(newSelections);
+			std::vector<std::set<CStr> > propInitialSelections = initialSelections;
+			if (remainingSelections.size() > 0)
+				propInitialSelections.push_back(remainingSelections);
+
+			std::set<CStr> propRemainingSelections = prop->CalculateRandomRemainingSelections(rng, propInitialSelections);
+			remainingSelections.insert(propRemainingSelections.begin(), propRemainingSelections.end());
 
 			// Add the prop's used files to our own (recursively) so we can hotload
 			// when any prop is changed
@@ -561,7 +580,7 @@ std::set<CStr> CObjectBase::CalculateRandomVariation(rng_t& rng, const std::set<
 		}
 	}
 
-	return selections;
+	return remainingSelections;
 }
 
 std::vector<std::vector<CStr> > CObjectBase::GetVariantGroups() const

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -104,6 +104,16 @@ void CUnit::ReloadObject()
 	// TODO: push world selections (seasons, etc) (and reload whenever they're changed)
 	selections.push_back(m_EntitySelections);
 	selections.push_back(m_ActorSelections);
+
+	// randomly select any remain selections necessary to completely identify a variation (e.g., the new selection
+	// made might define some additional props that require a random variant choice). Also, FindObjectVariation
+	// expects the selectors passed to it to be complete.
+	// see http://trac.wildfiregames.com/ticket/979
+	
+	// Use the entity ID as randomization seed (same as when the unit was first created)
+	std::set<CStr> remainingSelections = m_Object->m_Base->CalculateRandomRemainingSelections(m_ID, selections);
+	if (remainingSelections.size() > 0)
+		selections.push_back(remainingSelections);
 
 	// If these selections give a different object, change this unit to use it
 	CObjectEntry* newObject = m_ObjectManager.FindObjectVariation(m_Object->m_Base, selections);
