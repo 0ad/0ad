@@ -2,23 +2,10 @@ function layoutSelectionSingle()
 {
 	getGUIObjectByName("detailsAreaSingle").hidden = false;
 	getGUIObjectByName("detailsAreaMultiple").hidden = true;
-
-//	getGUIObjectByName("specific").hidden = false;
-//	getGUIObjectByName("iconBorder").hidden = false;
-
-	//getGUIObjectByName("attackIcon").size = "0 0 48 48";
-	//getGUIObjectByName("armourIcon").size = "0 48 48 96";
-	//getGUIObjectByName("barsArea").size = "50%+48 40 100% 136"
 }
 
 function layoutSelectionMultiple()
 {
-//	getGUIObjectByName("specific").hidden = true;
-//	getGUIObjectByName("iconBorder").hidden = true;
-
-	//getGUIObjectByName("attackIcon").size = "-4 10 32 46";
-	//getGUIObjectByName("armourIcon").size = "-4 46 32 82";
-	//getGUIObjectByName("barsArea").size = "50%+60 40 100% 136"
 	getGUIObjectByName("detailsAreaMultiple").hidden = false;
 	getGUIObjectByName("detailsAreaSingle").hidden = true;
 }
@@ -63,6 +50,22 @@ function displaySingle(entState, template)
 	{
 		getGUIObjectByName("health").hidden = true;
 	}
+	
+	// TODO: Stamina
+	// getGUIObjectByName("staminaBar");
+	var player = Engine.GetPlayerID();
+	if (entState.player == player || g_DevSettings.controlAll)
+	{
+		//if (entState.stamina !== undefined)
+			getGUIObjectByName("stamina").hidden = false;
+		//else
+		//	getGUIObjectByName("stamina").hidden = true;
+	}
+	else
+	{
+		getGUIObjectByName("stamina").hidden = true;
+	}
+
 	
 	// Experience
 	if (entState.promotion)
@@ -118,20 +121,13 @@ function displaySingle(entState, template)
 	// Resource carrying
 	if (entState.resourceCarrying && entState.resourceCarrying.length)
 	{
-		// (we should only be carrying one resource type at once, so just display the first)
+		// We should only be carrying one resource type at once, so just display the first
 		var carried = entState.resourceCarrying[0];
-	//	if (carried.amount >= 1)
-	//	{
-			getGUIObjectByName("resourceCarryingIcon").hidden = false;
-			getGUIObjectByName("resourceCarryingText").hidden = false;
-			getGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/resources/"+carried.type+".png";
-			getGUIObjectByName("resourceCarryingText").caption = carried.amount + "/" + carried.max;
-	//	}
-	//	else
-	//	{
-	//		getGUIObjectByName("resourceCarryingIcon").hidden = true;
-	//		getGUIObjectByName("resourceCarryingText").hidden = true;
-	//	}
+
+		getGUIObjectByName("resourceCarryingIcon").hidden = false;
+		getGUIObjectByName("resourceCarryingText").hidden = false;
+		getGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/resources/"+carried.type+".png";
+		getGUIObjectByName("resourceCarryingText").caption = carried.amount + "/" + carried.max;
 	}
 	// Use the same indicators for traders
 	else if (entState.trader && entState.trader.goods.amount > 0)
@@ -167,9 +163,8 @@ function displaySingle(entState, template)
 	getGUIObjectByName("specific").tooltip = genericName;
 	getGUIObjectByName("player").tooltip = civName;
 	getGUIObjectByName("health").tooltip = hitpoints;
-//	getGUIObjectByName("attackIcon").tooltip = damageTypesToText(entState.attack);
 	getGUIObjectByName("armourIcon").tooltip = "[font=\"serif-bold-16\"]Attack: [/font]" + damageTypesToText(entState.attack) + 
-																		"\n[font=\"serif-bold-16\"]Armor: [/font]" + damageTypesToText(entState.armour);
+		"\n[font=\"serif-bold-16\"]Armor: [/font]" + damageTypesToText(entState.armour);
 
 	// Icon Tooltip
 	var iconTooltip = "";
@@ -222,6 +217,9 @@ function displayMultiple(selection, template)
 	{
 		getGUIObjectByName("healthMultiple").hidden = true;
 	}
+	
+	// TODO: Stamina
+	// getGUIObjectByName("staminaBarMultiple");
 
 	getGUIObjectByName("numberOfUnits").caption = selection.length;
 
@@ -249,7 +247,6 @@ function updateSelectionDetails()
 		supplementalDetailsPanel.hidden = true;
 		detailsPanel.hidden = true;
 		commandsPanel.hidden = true;
-//		getGUIObjectByName("unitSelectionPanel").hidden = true;
 		return;
 	}
 
@@ -267,15 +264,6 @@ function updateSelectionDetails()
 		displaySingle(entState, template);
 	else
 		displayMultiple(selection, template);
-
-	var player = Engine.GetPlayerID();
-	if (entState.player == player || g_DevSettings.controlAll)
-	{
-		//if (entState.stamina != undefined)
-			getGUIObjectByName("stamina").hidden = false;
-		//else
-		//	getGUIObjectByName("stamina").hidden = true;
-	}
 
 	// Show Panels
 	supplementalDetailsPanel.hidden = false;
