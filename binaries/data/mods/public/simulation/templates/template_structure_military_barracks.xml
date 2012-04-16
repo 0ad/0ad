@@ -34,6 +34,13 @@
     <Classes datatype="tokens">Town</Classes>
     <Icon>structures/barracks.png</Icon>
   </Identity>
+  <Loot>
+    <xp>100</xp>
+    <food>0</food>
+    <wood>30</wood>
+    <stone>10</stone>
+    <metal>0</metal>
+  </Loot>
   <Obstruction>
     <Static width="17.0" depth="17.0"/>
   </Obstruction>
