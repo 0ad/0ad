@@ -170,7 +170,7 @@ GameState.prototype.getEntities = function() {
 
 GameState.prototype.getEntityById = function(id){
 	if (this.entities._entities[id]) {
-		return new Entity(this.ai, this.entities._entities[id]);
+		return this.entities._entities[id];
 	}else{
 		//debug("Entity " + id + " requested does not exist");
 	}
