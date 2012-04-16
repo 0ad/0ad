@@ -47,7 +47,7 @@ void Canvas::OnResize(wxSizeEvent&)
 void Canvas::InitSize()
 {
 	m_SuppressResize = false;
-	SetSize(320, 240);
+	SetSize(GetClientSize());
 }
 
 
