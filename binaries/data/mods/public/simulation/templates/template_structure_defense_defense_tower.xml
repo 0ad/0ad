@@ -51,6 +51,13 @@
     <Classes datatype="tokens">Village Defensive GarrisonTower -ConquestCritical</Classes>
     <Icon>structures/defense_tower.png</Icon>
   </Identity>
+  <Loot>
+    <xp>100</xp>
+    <food>0</food>
+    <wood>10</wood>
+    <stone>10</stone>
+    <metal>0</metal>
+  </Loot>
   <Obstruction>
     <Static width="7.0" depth="7.0"/>
   </Obstruction>

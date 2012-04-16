@@ -27,6 +27,13 @@
     <Classes datatype="tokens">Town Market BarterMarket</Classes>
     <Icon>structures/market.png</Icon>
   </Identity>
+  <Loot>
+    <xp>100</xp>
+    <food>25</food>
+    <wood>25</wood>
+    <stone>25</stone>
+    <metal>25</metal>
+  </Loot>
   <Obstruction>
     <Static width="17.0" depth="17.0"/>
   </Obstruction>

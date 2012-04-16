@@ -529,14 +529,6 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 	// else to do))
 	m_Timer.SetOwner(this);
 	m_Timer.Start(20);
-
-#ifdef __WXGTK__
-	// TODO: Is this necessary?
-	// HACK: because of how we fiddle with stuff earlier to make sure the canvas
-	// is displayed, the layout gets messed up, and it only seems to be fixable
-	// by changing the window's size
-	SetSize(GetSize() + wxSize(1, 0));
-#endif
 }
 
 wxToolBar* ScenarioEditor::OnCreateToolBar(long style, wxWindowID id, const wxString& WXUNUSED(name))
