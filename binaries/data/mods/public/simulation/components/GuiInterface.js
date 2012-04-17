@@ -155,6 +155,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.hitpoints = cmpHealth.GetHitpoints();
 		ret.maxHitpoints = cmpHealth.GetMaxHitpoints();
 		ret.needsRepair = cmpHealth.IsRepairable() && (cmpHealth.GetHitpoints() < cmpHealth.GetMaxHitpoints());
+		ret.needsHeal = !cmpHealth.IsUnhealable();
 	}
 
 	var cmpAttack = Engine.QueryInterface(ent, IID_Attack);
@@ -271,6 +272,15 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	{
 		var cmpBarter = Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter);
 		ret.barterMarket = { "prices": cmpBarter.GetPrices() };
+	}
+
+	var cmpHeal = Engine.QueryInterface(ent, IID_Heal);
+	if (cmpHeal)
+	{
+		ret.Healer = { 
+			"unhealableClasses": cmpHeal.GetUnhealableClasses(),
+			"healableClasses": cmpHeal.GetHealableClasses(),
+		};
 	}
 
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,11 +35,13 @@ std::string ICmpRangeManager::GetLosVisibility_wrapper(entity_id_t ent, int play
 
 BEGIN_INTERFACE_WRAPPER(RangeManager)
 DEFINE_INTERFACE_METHOD_5("ExecuteQuery", std::vector<entity_id_t>, ICmpRangeManager, ExecuteQuery, entity_id_t, entity_pos_t, entity_pos_t, std::vector<int>, int)
-DEFINE_INTERFACE_METHOD_5("CreateActiveQuery", ICmpRangeManager::tag_t, ICmpRangeManager, CreateActiveQuery, entity_id_t, entity_pos_t, entity_pos_t, std::vector<int>, int)
+DEFINE_INTERFACE_METHOD_6("CreateActiveQuery", ICmpRangeManager::tag_t, ICmpRangeManager, CreateActiveQuery, entity_id_t, entity_pos_t, entity_pos_t, std::vector<int>, int, u8)
 DEFINE_INTERFACE_METHOD_1("DestroyActiveQuery", void, ICmpRangeManager, DestroyActiveQuery, ICmpRangeManager::tag_t)
 DEFINE_INTERFACE_METHOD_1("EnableActiveQuery", void, ICmpRangeManager, EnableActiveQuery, ICmpRangeManager::tag_t)
 DEFINE_INTERFACE_METHOD_1("DisableActiveQuery", void, ICmpRangeManager, DisableActiveQuery, ICmpRangeManager::tag_t)
 DEFINE_INTERFACE_METHOD_1("ResetActiveQuery", std::vector<entity_id_t>, ICmpRangeManager, ResetActiveQuery, ICmpRangeManager::tag_t)
+DEFINE_INTERFACE_METHOD_3("SetEntityFlag", void, ICmpRangeManager, SetEntityFlag, entity_id_t, std::string, bool)
+DEFINE_INTERFACE_METHOD_1("GetEntityFlagMask", u8, ICmpRangeManager, GetEntityFlagMask, std::string)
 DEFINE_INTERFACE_METHOD_1("GetEntitiesByPlayer", std::vector<entity_id_t>, ICmpRangeManager, GetEntitiesByPlayer, player_id_t)
 DEFINE_INTERFACE_METHOD_1("SetDebugOverlay", void, ICmpRangeManager, SetDebugOverlay, bool)
 DEFINE_INTERFACE_METHOD_2("SetLosRevealAll", void, ICmpRangeManager, SetLosRevealAll, player_id_t, bool)

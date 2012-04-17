@@ -131,6 +131,10 @@ var UnitFsmSpec = {
 	"LosRangeUpdate": function(msg) {
 		// ignore newly-seen units by default
 	},
+	
+	"LosHealRangeUpdate": function(msg) {
+		// ignore newly-seen injured units by default
+	},
 
 	"Attacked": function(msg) {
 		// ignore attacker
@@ -289,6 +293,43 @@ var UnitFsmSpec = {
 		this.FinishOrder();
 	},
 
+	"Order.Heal": function(msg) {
+		// Check the target is alive
+		if (!this.TargetIsAlive(this.order.data.target))
+		{
+			this.FinishOrder();
+			return;
+		}
+
+		// Check if the target is in range
+		if (this.CheckTargetRange(this.order.data.target, IID_Heal))
+		{
+			this.StopMoving();
+			this.SetNextState("INDIVIDUAL.HEAL.HEALING");
+			return;
+		}
+
+		// If we can't reach the target, but are standing ground,
+		// then abandon this heal order
+		if (this.GetStance().respondStandGround && !this.order.data.force)
+		{
+			this.FinishOrder();
+			return;
+		}
+
+		// Try to move within heal range
+		if (this.MoveToTargetRange(this.order.data.target, IID_Heal))
+		{
+			// We've started walking to the given point
+			this.SetNextState("INDIVIDUAL.HEAL.APPROACHING");
+			return;
+		}
+
+		// We can't reach the target, and can't move towards it,
+		// so abandon this heal order
+		this.FinishOrder();
+	},
+
 	"Order.Gather": function(msg) {
 		
 		// If the target is still alive, we need to kill it first
@@ -411,6 +452,13 @@ var UnitFsmSpec = {
 			// TODO: we should wait until the target is killed, then
 			// move on to the next queued order.
 			// Don't bother now, just disband the formation immediately.
+			cmpFormation.Disband();
+		},
+
+		"Order.Heal": function(msg) {
+			// TODO: see notes in Order.Attack
+			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			cmpFormation.CallMemberFunction("Heal", [msg.data.target, false]);
 			cmpFormation.Disband();
 		},
 
@@ -556,6 +604,13 @@ var UnitFsmSpec = {
 				// remain idle
 				this.StartTimer(1000);
 
+				// If a unit can heal and attack we first want to heal wounded units,
+				// so check if we are a healer and find whether there's anybody nearby to heal.
+				// (If anyone approaches later it'll be handled via LosHealRangeUpdate.)
+				// If anyone in sight gets hurt that will be handled via LosHealRangeUpdate.
+				if (this.IsHealer() && this.FindNewHealTargets())
+					return true; // (abort the FSM transition since we may have already switched state)
+
 				// If we entered the idle state we must have nothing better to do,
 				// so immediately check whether there's anybody nearby to attack.
 				// (If anyone approaches later, it'll be handled via LosRangeUpdate.)
@@ -569,6 +624,8 @@ var UnitFsmSpec = {
 			"leave": function() {
 				var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 				rangeMan.DisableActiveQuery(this.losRangeQuery);
+				if (this.losHealRangeQuery)
+					rangeMan.DisableActiveQuery(this.losHealRangeQuery);
 
 				this.StopTimer();
 
@@ -585,6 +642,10 @@ var UnitFsmSpec = {
 					// Start attacking one of the newly-seen enemy (if any)
 					this.RespondToTargetedEntities(msg.data.added);
 				}
+			},
+			
+			"LosHealRangeUpdate": function(msg) {
+				this.RespondToHealableEntities(msg.data.added);
 			},
 
 			"Timer": function(msg) {
@@ -1007,6 +1068,124 @@ var UnitFsmSpec = {
 					}
 				},
 			},
+		},
+
+		"HEAL": {
+			"EntityRenamed": function(msg) {
+				if (this.order.data.target == msg.entity)
+					this.order.data.target = msg.newentity;
+			},
+
+			"Attacked": function(msg) {
+				// If we stand ground we will rather die than flee
+				if (!this.GetStance().respondStandGround)
+					this.Flee(msg.data.attacker, false);
+			},
+
+			"APPROACHING": {
+				"enter": function () {
+					this.SelectAnimation("move");
+					this.StartTimer(1000, 1000);
+				},
+
+				"leave": function() {
+					this.StopTimer();
+				},
+
+				"Timer": function(msg) {
+					if (this.ShouldAbandonChase(this.order.data.target, this.order.data.force))
+					{
+						this.StopMoving();
+						this.FinishOrder();
+
+						// Return to our original position
+						if (this.GetStance().respondHoldGround)
+							this.WalkToHeldPosition();
+					}
+				},
+
+				"MoveCompleted": function() {
+					this.SetNextState("HEALING");
+				},
+			},
+
+			"HEALING": {
+				"enter": function() {
+					var cmpHeal = Engine.QueryInterface(this.entity, IID_Heal);
+					this.healTimers = cmpHeal.GetTimers();
+					this.SelectAnimation("heal", false, 1.0, "heal");
+					this.SetAnimationSync(this.healTimers.prepare, this.healTimers.repeat);
+					this.StartTimer(this.healTimers.prepare, this.healTimers.repeat);
+					// TODO if .prepare is short, players can cheat by cycling heal/stop/heal
+					// to beat the .repeat time; should enforce a minimum time
+					// see comment in ATTACKING.enter
+					this.FaceTowardsTarget(this.order.data.target);
+				},
+
+				"leave": function() {
+					this.StopTimer();
+				},
+
+				"Timer": function(msg) {
+					var target = this.order.data.target;
+					// Check the target is still alive and healable
+					if (this.TargetIsAlive(target) && this.CanHeal(target))
+					{
+						// Check if we can still reach the target
+						if (this.CheckTargetRange(target, IID_Heal))
+						{
+							this.FaceTowardsTarget(target);
+							var cmpHeal = Engine.QueryInterface(this.entity, IID_Heal);
+							cmpHeal.PerformHeal(target);
+							return;
+						}
+						// Can't reach it - try to chase after it
+						if (this.ShouldChaseTargetedEntity(target, this.order.data.force))
+						{
+							if (this.MoveToTargetRange(target, IID_Heal))
+							{
+								this.SetNextState("HEAL.CHASING");
+								return;
+							}
+						}
+					}
+					// Can't reach it, healed to max hp or doesn't exist any more - give up
+					if (this.FinishOrder())
+						return;
+
+					// Heal another one
+					if (this.FindNewHealTargets())
+						return;
+					
+					// Return to our original position
+					if (this.GetStance().respondHoldGround)
+						this.WalkToHeldPosition();
+				},
+			},
+			"CHASING": {
+				"enter": function () {
+					this.SelectAnimation("move");
+					this.StartTimer(1000, 1000);
+				},
+
+				"leave": function () {
+					this.StopTimer();
+				},
+				"Timer": function(msg) {
+					if (this.ShouldAbandonChase(this.order.data.target, this.order.data.force))
+					{
+						this.StopMoving();
+						this.FinishOrder();
+
+						// Return to our original position
+						if (this.GetStance().respondHoldGround)
+							this.WalkToHeldPosition();
+					}
+				},
+				"MoveCompleted": function () {
+					this.SetNextState("HEALING");
+				},
+			},  
 		},
 
 		// Returning to dropsite
@@ -1493,6 +1672,11 @@ UnitAI.prototype.IsDomestic = function()
 	return cmpIdentity.HasClass("Domestic");
 };
 
+UnitAI.prototype.IsHealer = function()
+{
+	return Engine.QueryInterface(this.entity, IID_Heal);
+};
+
 UnitAI.prototype.IsIdle = function()
 {
 	return this.isIdle;
@@ -1521,6 +1705,8 @@ UnitAI.prototype.StateChanged = function()
 UnitAI.prototype.OnOwnershipChanged = function(msg)
 {
 	this.SetupRangeQuery();
+	if (this.IsHealer())
+		this.SetupHealRangeQuery();
 };
 
 UnitAI.prototype.OnDestroy = function()
@@ -1532,6 +1718,8 @@ UnitAI.prototype.OnDestroy = function()
 	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (this.losRangeQuery)
 		rangeMan.DestroyActiveQuery(this.losRangeQuery);
+	if (this.losHealRangeQuery)
+		rangeMan.DestroyActiveQuery(this.losHealRangeQuery);
 };
 
 // Set up a range query for all enemy units within LOS range
@@ -1564,10 +1752,45 @@ UnitAI.prototype.SetupRangeQuery = function()
 		}
 	}
 
-	var range = this.GetQueryRange();
+	var range = this.GetQueryRange(IID_Attack);
 
-	this.losRangeQuery = rangeMan.CreateActiveQuery(this.entity, range.min, range.max, players, IID_DamageReceiver);
+	this.losRangeQuery = rangeMan.CreateActiveQuery(this.entity, range.min, range.max, players, IID_DamageReceiver, rangeMan.GetEntityFlagMask("normal"));
 	rangeMan.EnableActiveQuery(this.losRangeQuery);
+};
+
+// Set up a range query for all own or ally units within LOS range
+// which can be healed.
+// This should be called whenever our ownership changes.
+UnitAI.prototype.SetupHealRangeQuery = function()
+{
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	var owner = cmpOwnership.GetOwner();
+
+	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var playerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+
+	if (this.losHealRangeQuery)
+		rangeMan.DestroyActiveQuery(this.losHealRangeQuery);
+
+	var players = [owner];
+
+	if (owner != -1)
+	{
+		// If unit not just killed, get ally players via diplomacy
+		var cmpPlayer = Engine.QueryInterface(playerMan.GetPlayerByID(owner), IID_Player);
+		var numPlayers = playerMan.GetNumPlayers();
+		for (var i = 1; i < numPlayers; ++i)
+		{
+			// Exclude gaia and enemies
+			if (cmpPlayer.IsAlly(i))
+				players.push(i);
+		}
+	}
+
+	var range = this.GetQueryRange(IID_Heal);
+
+	this.losHealRangeQuery = rangeMan.CreateActiveQuery(this.entity, range.min, range.max, players, IID_Health, rangeMan.GetEntityFlagMask("injured"));
+	rangeMan.EnableActiveQuery(this.losHealRangeQuery);
 };
 
 //// FSM linkage functions ////
@@ -1814,6 +2037,8 @@ UnitAI.prototype.OnRangeUpdate = function(msg)
 {
 	if (msg.tag == this.losRangeQuery)
 		UnitFsm.ProcessMessage(this, {"type": "LosRangeUpdate", "data": msg});
+	else if (msg.tag == this.losHealRangeQuery)
+		UnitFsm.ProcessMessage(this, {"type": "LosHealRangeUpdate", "data": msg});
 };
 
 //// Helper functions to be called by the FSM ////
@@ -2227,6 +2452,27 @@ UnitAI.prototype.RespondToTargetedEntities = function(ents)
 };
 
 /**
+ * Try to respond to healable entities.
+ * Returns true if it responded.
+ */
+UnitAI.prototype.RespondToHealableEntities = function(ents)
+{
+	if (!ents.length)
+		return false;
+
+	for each (var ent in ents)
+	{
+		if (this.CanHeal(ent))
+		{
+			this.PushOrderFront("Heal", { "target": ent, "force": false });
+			return true;
+		}
+	}
+
+	return false;
+};
+
+/**
  * Returns true if we should stop following the target entity.
  */
 UnitAI.prototype.ShouldAbandonChase = function(target, force)
@@ -2341,6 +2587,7 @@ UnitAI.prototype.ComputeWalkingDistance = function()
 		case "Flee":
 		case "LeaveFoundation":
 		case "Attack":
+		case "Heal":
 		case "Gather":
 		case "ReturnResource":
 		case "Repair":
@@ -2403,7 +2650,12 @@ UnitAI.prototype.Attack = function(target, queued)
 {
 	if (!this.CanAttack(target))
 	{
-		this.WalkToTarget(target, queued);
+		// We don't want to let healers walk to the target unit so they can be easily killed.
+		// Instead we just let them get into healing range.
+		if (this.IsHealer())
+			this.MoveToTargetRange(target, IID_Heal);
+		else
+			this.WalkToTarget(target, queued);
 		return;
 	}
 
@@ -2463,6 +2715,17 @@ UnitAI.prototype.GatherNearPosition = function(x, z, type, queued)
 {
 	this.AddOrder("GatherNearPosition", { "type": type, "x": x, "z": z }, queued);
 }
+
+UnitAI.prototype.Heal = function(target, queued)
+{
+	if (!this.CanHeal(target))
+	{
+		this.WalkToTarget(target, queued);
+		return;
+	}
+	
+	this.AddOrder("Heal", { "target": target, "force": true }, queued);
+};
 
 UnitAI.prototype.ReturnResource = function(target, queued)
 {
@@ -2575,7 +2838,7 @@ UnitAI.prototype.SetStance = function(stance)
 		this.stance = stance;
 	else
 		error("UnitAI: Setting to invalid stance '"+stance+"'");
-}
+};
 
 UnitAI.prototype.SwitchToStance = function(stance)
 {
@@ -2593,7 +2856,11 @@ UnitAI.prototype.SwitchToStance = function(stance)
 
 	// Reset the range query, since the range depends on stance
 	this.SetupRangeQuery();
-}
+	// Just if we are a healer
+	// TODO maybe move those two to a SetupRangeQuerys()
+	if (this.IsHealer())
+		this.SetupHealRangeQuery();
+};
 
 /**
  * Resets losRangeQuery, and if there are some targets in range that we can
@@ -2614,15 +2881,39 @@ UnitAI.prototype.FindNewTargets = function()
 	return this.RespondToTargetedEntities(ents);
 };
 
-UnitAI.prototype.GetQueryRange = function()
+/**
+ * Resets losHealRangeQuery, and if there are some targets in range that we can heal
+ * then we start healing and this returns true; otherwise, returns false.
+ */
+UnitAI.prototype.FindNewHealTargets = function()
+{
+	if (!this.losHealRangeQuery)
+		return false;
+	
+	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var ents = rangeMan.ResetActiveQuery(this.losHealRangeQuery);
+	
+	for each (var ent in ents)
+	{
+		if (this.CanHeal(ent))
+		{
+			this.PushOrderFront("Heal", { "target": ent, "force": false });
+			return true;
+		}
+	}
+	// We haven't found any target to heal
+	return false;
+};
+
+UnitAI.prototype.GetQueryRange = function(iid)
 {
 	var ret = { "min": 0, "max": 0 };
 	if (this.GetStance().respondStandGround)
 	{
-		var cmpRanged = Engine.QueryInterface(this.entity, IID_Attack);
+		var cmpRanged = Engine.QueryInterface(this.entity, iid);
 		if (!cmpRanged)
 			return ret;
-		var range = cmpRanged.GetRange(cmpRanged.GetBestAttack());
+		var range = iid !== IID_Attack ? cmpRanged.GetRange() : cmpRanged.GetRange(cmpRanged.GetBestAttack());
 		ret.min = range.min;
 		ret.max = range.max;
 	}
@@ -2636,15 +2927,26 @@ UnitAI.prototype.GetQueryRange = function()
 	}
 	else if (this.GetStance().respondHoldGround)
 	{
-		var cmpRanged = Engine.QueryInterface(this.entity, IID_Attack);
+		var cmpRanged = Engine.QueryInterface(this.entity, iid);
 		if (!cmpRanged)
 			return ret;
-		var range = cmpRanged.GetRange(cmpRanged.GetBestAttack());
+		var range = iid !== IID_Attack ? cmpRanged.GetRange() : cmpRanged.GetRange(cmpRanged.GetBestAttack());
 		var cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
 		if (!cmpVision)
 			return ret;
 		var halfvision = cmpVision.GetRange() / 2;
 		ret.max = range.max + halfvision;
+	}
+	// We probably have stance 'passive' and we wouldn't have a range,
+	// but as it is the default for healers we need to set it to something sane.
+	else if (iid === IID_Heal)
+	{
+		var cmpRanged = Engine.QueryInterface(this.entity, iid);
+		if (!cmpRanged)
+			return ret;
+		var range = cmpRanged.GetRange();
+		ret.min = range.min;
+		ret.max = range.max;
 	}
 	return ret;
 };
@@ -2729,6 +3031,59 @@ UnitAI.prototype.CanGather = function(target)
 
 	// No need to verify ownership as we should be able to gather from
 	// a target regardless of ownership.
+
+	return true;
+};
+
+UnitAI.prototype.CanHeal = function(target)
+{
+	// Formation controllers should always respond to commands
+	// (then the individual units can make up their own minds)
+	if (this.IsFormationController())
+		return true;
+
+	// Verify that we're able to respond to Heal commands
+	var cmpHeal = Engine.QueryInterface(this.entity, IID_Heal);
+	if (!cmpHeal)
+		return false;
+
+	// Verify that the target is alive
+	if (!this.TargetIsAlive(target))
+		return false;
+
+	// Verify that the target is owned by the same player as the entity or of an ally
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership || !(IsOwnedByPlayer(cmpOwnership.GetOwner(), target) || IsOwnedByAllyOfPlayer(cmpOwnership.GetOwner(), target)))
+		return false;
+
+	// Verify that the target is not unhealable (or at max health)
+	var cmpHealth = Engine.QueryInterface(target, IID_Health);
+	if (!cmpHealth || cmpHealth.IsUnhealable())
+		return false;
+
+	// Verify that the target has no unhealable class
+	var cmpIdentity = Engine.QueryInterface(target, IID_Identity);
+	if (!cmpIdentity)
+		return false;
+	for each (var unhealableClass in cmpHeal.GetUnhealableClasses())
+	{
+		if (cmpIdentity.HasClass(unhealableClass) != -1)
+		{
+			return false;
+		}
+	}
+
+	// Verify that the target is a healable class
+	var healable = false;
+	for each (var healableClass in cmpHeal.GetHealableClasses())
+	{
+		if (cmpIdentity.HasClass(healableClass) != -1)
+		{
+			healable = true;
+		}
+	}
+	if (!healable)
+		return false;
 
 	return true;
 };

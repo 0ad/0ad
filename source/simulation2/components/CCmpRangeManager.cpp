@@ -50,6 +50,7 @@ struct Query
 	u32 ownersMask;
 	i32 interface;
 	std::vector<entity_id_t> lastMatch;
+	u8 flagsMask;
 };
 
 /**
@@ -69,12 +70,13 @@ static u32 CalcOwnerMask(i32 owner)
  */
 struct EntityData
 {
-	EntityData() : retainInFog(0), owner(-1), inWorld(0) { }
+	EntityData() : retainInFog(0), owner(-1), inWorld(0), flags(1) { }
 	entity_pos_t x, z;
 	entity_pos_t visionRange;
 	u8 retainInFog; // boolean
 	i8 owner;
 	u8 inWorld; // boolean
+	u8 flags; // See GetEntityFlagMask
 };
 
 cassert(sizeof(EntityData) == 16);
@@ -95,6 +97,7 @@ struct SerializeQuery
 		serialize.NumberU32_Unbounded("owners mask", value.ownersMask);
 		serialize.NumberI32_Unbounded("interface", value.interface);
 		SerializeVector<SerializeU32_Unbounded>()(serialize, "last match", value.lastMatch);
+		serialize.NumberU8("flagsMask", value.flagsMask, 0, -1);
 	}
 };
 
@@ -112,6 +115,7 @@ struct SerializeEntityData
 		serialize.NumberU8("retain in fog", value.retainInFog, 0, 1);
 		serialize.NumberI8_Unbounded("owner", value.owner);
 		serialize.NumberU8("in world", value.inWorld, 0, 1);
+		serialize.NumberU8("flags", value.flags, 0, -1);
 	}
 };
 
@@ -514,10 +518,10 @@ public:
 
 	virtual tag_t CreateActiveQuery(entity_id_t source,
 		entity_pos_t minRange, entity_pos_t maxRange,
-		std::vector<int> owners, int requiredInterface)
+		std::vector<int> owners, int requiredInterface, u8 flags)
 	{
 		tag_t id = m_QueryNext++;
-		m_Queries[id] = ConstructQuery(source, minRange, maxRange, owners, requiredInterface);
+		m_Queries[id] = ConstructQuery(source, minRange, maxRange, owners, requiredInterface, flags);
 
 		return id;
 	}
@@ -565,7 +569,7 @@ public:
 	{
 		PROFILE("ExecuteQuery");
 
-		Query q = ConstructQuery(source, minRange, maxRange, owners, requiredInterface);
+		Query q = ConstructQuery(source, minRange, maxRange, owners, requiredInterface, GetEntityFlagMask("normal"));
 
 		std::vector<entity_id_t> r;
 
@@ -709,6 +713,10 @@ public:
 		if (!entity.inWorld)
 			return false;
 
+		// Ignore entities that don't match the current flags
+		if (!(entity.flags & q.flagsMask))
+			return false;
+
 		// Ignore self
 		if (id == q.source)
 			return false;
@@ -773,7 +781,7 @@ public:
 
 	Query ConstructQuery(entity_id_t source,
 		entity_pos_t minRange, entity_pos_t maxRange,
-		const std::vector<int>& owners, int requiredInterface)
+		const std::vector<int>& owners, int requiredInterface, u8 flagsMask)
 	{
 		// Min range must be non-negative
 		if (minRange < entity_pos_t::Zero())
@@ -794,6 +802,7 @@ public:
 			q.ownersMask |= CalcOwnerMask(owners[i]);
 
 		q.interface = requiredInterface;
+		q.flagsMask = flagsMask;
 
 		return q;
 	}
@@ -858,6 +867,42 @@ public:
 
 		for (size_t i = 0; i < m_DebugOverlayLines.size(); ++i)
 			collector.Submit(&m_DebugOverlayLines[i]);
+	}
+	
+	virtual u8 GetEntityFlagMask(std::string identifier)
+	{
+		CStr id = CStr(identifier);
+
+		if (id == "normal")
+			return 1;
+		if (id == "injured")
+			return 2;
+
+		LOGWARNING(L"CCmpRangeManager: Invalid flag identifier %s", id.c_str());
+		return 0;
+	}
+	
+	virtual void SetEntityFlag(entity_id_t ent, std::string identifier, bool value)
+	{
+		std::map<entity_id_t, EntityData>::iterator it = m_EntityData.find(ent);
+
+		// We don't have this entity
+		if (it == m_EntityData.end())
+			return;
+
+		u8 flag = GetEntityFlagMask(identifier);
+
+		// We don't have a flag set
+		if (flag == 0)
+		{
+			LOGWARNING(L"CCmpRangeManager: Invalid flag identifier %s for entity %u", identifier.c_str(), ent);
+			return;
+		}
+
+		if (value)
+			it->second.flags |= flag;
+		else
+			it->second.flags &= !flag;
 	}
 
 	// ****************************************************************

@@ -268,9 +268,9 @@ EConfigNamespace CConfigDB::GetValueNamespace(EConfigNamespace ns, const CStr& n
 	return CFG_LAST;
 }
 
-std::vector<std::pair<CStr, CConfigValueSet> > CConfigDB::GetValuesWithPrefix(EConfigNamespace ns, const CStr& prefix)
+std::map<CStr, CConfigValueSet> CConfigDB::GetValuesWithPrefix(EConfigNamespace ns, const CStr& prefix)
 {
-	std::vector<std::pair<CStr, CConfigValueSet> > ret;
+	std::map<CStr, CConfigValueSet> ret;
 
 	if (ns < 0 || ns >= CFG_LAST)
 	{
@@ -278,18 +278,14 @@ std::vector<std::pair<CStr, CConfigValueSet> > CConfigDB::GetValuesWithPrefix(EC
 		return ret;
 	}
 
-	for (TConfigMap::iterator it = m_Map[CFG_COMMAND].begin(); it != m_Map[CFG_COMMAND].end(); ++it)
-	{
-		if (boost::algorithm::starts_with(it->first, prefix))
-			ret.push_back(std::make_pair(it->first, it->second));
-	}
-
-	for (int search_ns = ns; search_ns >= 0; search_ns--)
+	// Loop upwards so that values in later namespaces can override
+	// values in earlier namespaces
+	for (int search_ns = 0; search_ns <= ns; search_ns++)
 	{
 		for (TConfigMap::iterator it = m_Map[search_ns].begin(); it != m_Map[search_ns].end(); ++it)
 		{
 			if (boost::algorithm::starts_with(it->first, prefix))
-				ret.push_back(std::make_pair(it->first, it->second));
+				ret[it->first] = it->second;
 		}
 	}
 

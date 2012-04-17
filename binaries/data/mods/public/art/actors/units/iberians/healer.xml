@@ -8,6 +8,7 @@
         <animation file="female/f_walk_01.dae" name="Walk" speed="30"/>
         <animation file="female/f_walk_01.dae" name="Run" speed="45"/>
         <animation file="female/f_death_01.dae" name="Death" speed="120"/>
+        <animation file="female/f_salute_01.dae" name="Heal" speed="30"/>
       </animations>
       <props>
         <prop actor="props/units/heads/head_iber_healer.xml" attachpoint="head"/>

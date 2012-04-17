@@ -299,6 +299,29 @@ function getActionInfo(action, target)
 				return {"possible": true, "tooltip": tooltip};
 			}
 			break;
+		case "heal":
+			// The check if the target is unhealable is done by targetState.needsHeal
+			if (entState.Healer && hasClass(targetState, "Unit") && targetState.needsHeal && (playerOwned || allyOwned))
+			{
+				var unhealableClasses = entState.Healer.unhealableClasses;
+				for each (var unitClass in targetState.identity.classes)
+				{
+					if (unhealableClasses.indexOf(unitClass) != -1)
+					{
+						return {"possible": false};
+					}
+				}
+				
+				var healableClasses = entState.Healer.healableClasses;
+				for each (var unitClass in targetState.identity.classes)
+				{
+					if (healableClasses.indexOf(unitClass) != -1)
+					{
+						return {"possible": true};
+					}
+				}
+			}
+			break;
 		case "gather":
 			if (targetState.resourceSupply)
 			{
@@ -419,6 +442,8 @@ function determineAction(x, y, fromMinimap)
 			return {"type": "build", "cursor": "action-repair", "target": target};
 		else if ((actionInfo = getActionInfo("set-rallypoint", target)).possible)
 			return {"type": "set-rallypoint", "cursor": actionInfo.cursor, "data": actionInfo.data, "position": actionInfo.position};
+		else if (getActionInfo("heal", target).possible)
+			return {"type": "heal", "cursor": "action-heal", "target": target};
 		else if (getActionInfo("attack", target).possible)
 			return {"type": "attack", "cursor": "action-attack", "target": target};
 		else if (getActionInfo("unset-rallypoint", target).possible)
@@ -1037,6 +1062,12 @@ function doAction(action, ev)
 	case "attack":
 		Engine.PostNetworkCommand({"type": "attack", "entities": selection, "target": action.target, "queued": queued});
 		Engine.GuiInterfaceCall("PlaySound", { "name": "order_attack", "entity": selection[0] });
+		return true;
+
+	case "heal":
+		Engine.PostNetworkCommand({"type": "heal", "entities": selection, "target": action.target, "queued": queued});
+		// TODO: Play a sound?
+//		Engine.GuiInterfaceCall("PlaySound", { "name": "order_heal", "entity": selection[0] });
 		return true;
 
 	case "build": // (same command as repair)

@@ -4,10 +4,10 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cumulus</SkySet>
-		<SunColour r="0.737255" g="0.721569" b="0.639216"/>
+		<SunColour r="0.812132" g="0.794853" b="0.704136"/>
 		<SunElevation angle="0.708699"/>
 		<SunRotation angle="-0.0122718"/>
-		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<TerrainAmbientColour r="0.380392" g="0.439216" b="0.470588"/>
 		<UnitsAmbientColour r="0.458824" g="0.458824" b="0.458824"/>
 		<Water>
 			<WaterBody>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="965.311" y="262.718" z="253.09"/>
+		<Position x="653.401" y="91.2274" z="217.935"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -1307,7 +1307,7 @@
 		<Entity uid="3131">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="819.9737" z="750.86731"/>
+			<Position x="852.62708" z="737.05665"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3132">
@@ -1337,7 +1337,7 @@
 		<Entity uid="3136">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="862.80646" z="868.85633"/>
+			<Position x="857.17432" z="863.36445"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3137">
@@ -1367,7 +1367,7 @@
 		<Entity uid="3141">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="860.38038" z="876.3617"/>
+			<Position x="882.81897" z="877.28864"/>
 			<Orientation y="0.40644"/>
 		</Entity>
 		<Entity uid="3142">
@@ -4117,7 +4117,7 @@
 		<Entity uid="3619">
 			<Template>other/obelisk</Template>
 			<Player>0</Player>
-			<Position x="873.78669" z="713.00867"/>
+			<Position x="863.97327" z="637.22767"/>
 			<Orientation y="-2.03243"/>
 		</Entity>
 		<Entity uid="3620">
@@ -4609,7 +4609,7 @@
 		<Entity uid="3701">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="836.09113" z="736.89966"/>
+			<Position x="858.76514" z="713.96076"/>
 			<Orientation y="-1.5313"/>
 		</Entity>
 		<Entity uid="3702">
@@ -6955,7 +6955,7 @@
 		<Entity uid="4107">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="1014.19141" z="718.4303"/>
+			<Position x="1023.93427" z="708.84296"/>
 			<Orientation y="0.3139"/>
 		</Entity>
 		<Entity uid="4108">
@@ -6967,20 +6967,20 @@
 		<Entity uid="4109">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="1036.58716" z="786.2436"/>
+			<Position x="1061.0276" z="790.23346"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4110">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="1016.46387" z="817.4994"/>
+			<Position x="1040.9043" z="821.48926"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4111">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="1003.16169" z="826.18262"/>
-			<Orientation y="2.35621"/>
+			<Position x="1004.92035" z="803.24775"/>
+			<Orientation y="-0.9859"/>
 		</Entity>
 		<Entity uid="4112">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
@@ -6997,13 +6997,13 @@
 		<Entity uid="4114">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="1024.78931" z="822.04493"/>
+			<Position x="1049.22974" z="826.0348"/>
 			<Orientation y="-0.88526"/>
 		</Entity>
 		<Entity uid="4115">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="974.79987" z="874.14051"/>
+			<Position x="972.14472" z="866.92145"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4116">
@@ -7015,19 +7015,19 @@
 		<Entity uid="4117">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
 			<Player>0</Player>
-			<Position x="1015.65131" z="791.00324"/>
+			<Position x="1040.0918" z="794.99311"/>
 			<Orientation y="-0.64956"/>
 		</Entity>
 		<Entity uid="4118">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
 			<Player>0</Player>
-			<Position x="1018.4087" z="803.49311"/>
+			<Position x="1042.84913" z="807.48298"/>
 			<Orientation y="0.76558"/>
 		</Entity>
 		<Entity uid="4119">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
 			<Player>0</Player>
-			<Position x="1026.37012" z="789.1009"/>
+			<Position x="1050.81055" z="793.09076"/>
 			<Orientation y="2.59502"/>
 		</Entity>
 		<Entity uid="4120">
@@ -7603,43 +7603,43 @@
 		<Entity uid="4215">
 			<Template>gaia/fauna_giraffe_infant</Template>
 			<Player>0</Player>
-			<Position x="883.93543" z="693.69758"/>
+			<Position x="794.21406" z="713.54993"/>
 			<Orientation y="-2.34884"/>
 		</Entity>
 		<Entity uid="4216">
 			<Template>gaia/fauna_giraffe_infant</Template>
 			<Player>0</Player>
-			<Position x="857.57538" z="705.7328"/>
+			<Position x="835.69111" z="692.62836"/>
 			<Orientation y="0.59583"/>
 		</Entity>
 		<Entity uid="4217">
 			<Template>gaia/fauna_giraffe</Template>
 			<Player>0</Player>
-			<Position x="836.59821" z="676.32923"/>
+			<Position x="797.53418" z="727.55811"/>
 			<Orientation y="2.91474"/>
 		</Entity>
 		<Entity uid="4218">
 			<Template>gaia/fauna_giraffe</Template>
 			<Player>0</Player>
-			<Position x="840.92737" z="661.22773"/>
+			<Position x="806.44916" z="736.92524"/>
 			<Orientation y="0.62063"/>
 		</Entity>
 		<Entity uid="4219">
 			<Template>gaia/fauna_giraffe</Template>
 			<Player>0</Player>
-			<Position x="850.31043" z="677.65101"/>
+			<Position x="800.4928" z="740.4319"/>
 			<Orientation y="2.3977"/>
 		</Entity>
 		<Entity uid="4220">
 			<Template>gaia/fauna_giraffe</Template>
 			<Player>0</Player>
-			<Position x="857.76996" z="689.62873"/>
+			<Position x="851.42115" z="686.48108"/>
 			<Orientation y="-0.10392"/>
 		</Entity>
 		<Entity uid="4221">
 			<Template>gaia/fauna_giraffe</Template>
 			<Player>0</Player>
-			<Position x="870.27607" z="697.97913"/>
+			<Position x="785.22254" z="723.24097"/>
 			<Orientation y="-1.73787"/>
 		</Entity>
 		<Entity uid="4222">
@@ -8115,6 +8115,234 @@
 			<Player>0</Player>
 			<Position x="388.61387" z="376.1092"/>
 			<Orientation y="-0.34002"/>
+		</Entity>
+		<Entity uid="4301">
+			<Template>structures/iber_wall_long</Template>
+			<Player>4</Player>
+			<Position x="1023.67847" z="730.34198"/>
+			<Orientation y="1.97501"/>
+		</Entity>
+		<Entity uid="4302">
+			<Template>structures/iber_wall_long</Template>
+			<Player>4</Player>
+			<Position x="975.03992" z="689.65595"/>
+			<Orientation y="2.74369"/>
+		</Entity>
+		<Entity uid="4303">
+			<Template>structures/iber_wall_long</Template>
+			<Player>4</Player>
+			<Position x="940.33692" z="685.55555"/>
+			<Orientation y="-2.99451"/>
+		</Entity>
+		<Entity uid="4305">
+			<Template>structures/iber_wall_long</Template>
+			<Player>4</Player>
+			<Position x="855.04755" z="725.47016"/>
+			<Orientation y="-2.51853"/>
+		</Entity>
+		<Entity uid="4306">
+			<Template>structures/iber_wall_long</Template>
+			<Player>4</Player>
+			<Position x="827.30793" z="746.14881"/>
+			<Orientation y="0.64832"/>
+		</Entity>
+		<Entity uid="4308">
+			<Template>structures/iber_wall_medium</Template>
+			<Player>4</Player>
+			<Position x="804.58075" z="764.61896"/>
+			<Orientation y="-2.3979"/>
+		</Entity>
+		<Entity uid="4309">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="794.47455" z="774.52332"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4310">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="810.74598" z="759.2923"/>
+			<Orientation y="-0.85151"/>
+		</Entity>
+		<Entity uid="4311">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="840.84717" z="735.36268"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4312">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="867.29523" z="715.96961"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4313">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="898.72114" z="700.16126"/>
+			<Orientation y="0.542"/>
+		</Entity>
+		<Entity uid="4314">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="923.59925" z="687.02497"/>
+			<Orientation y="-2.71177"/>
+		</Entity>
+		<Entity uid="4315">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="958.48981" z="682.89393"/>
+			<Orientation y="-0.17333"/>
+		</Entity>
+		<Entity uid="4316">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="992.75007" z="697.04767"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4317">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="1016.40815" z="715.18976"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4318">
+			<Template>structures/iber_wall_medium</Template>
+			<Player>4</Player>
+			<Position x="910.14649" z="693.3711"/>
+			<Orientation y="-2.6629"/>
+		</Entity>
+		<Entity uid="4319">
+			<Template>structures/iber_wall_long</Template>
+			<Player>4</Player>
+			<Position x="1028.73682" z="766.33283"/>
+			<Orientation y="-1.66402"/>
+		</Entity>
+		<Entity uid="4320">
+			<Template>structures/iber_wall_long</Template>
+			<Player>4</Player>
+			<Position x="1023.45527" z="802.75068"/>
+			<Orientation y="-1.76563"/>
+		</Entity>
+		<Entity uid="4322">
+			<Template>structures/iber_wall_long</Template>
+			<Player>4</Player>
+			<Position x="987.06342" z="862.58582"/>
+			<Orientation y="0.88974"/>
+		</Entity>
+		<Entity uid="4323">
+			<Template>structures/iber_wall_long</Template>
+			<Player>4</Player>
+			<Position x="964.58735" z="889.7757"/>
+			<Orientation y="-2.27454"/>
+		</Entity>
+		<Entity uid="4324">
+			<Template>structures/iber_wall_medium</Template>
+			<Player>4</Player>
+			<Position x="939.57929" z="903.33149"/>
+			<Orientation y="3.08236"/>
+		</Entity>
+		<Entity uid="4325">
+			<Template>structures/iber_wall_long</Template>
+			<Player>4</Player>
+			<Position x="909.90723" z="898.95191"/>
+			<Orientation y="2.93075"/>
+		</Entity>
+		<Entity uid="4326">
+			<Template>structures/iber_wall_long</Template>
+			<Player>4</Player>
+			<Position x="876.73536" z="886.69904"/>
+			<Orientation y="2.6285"/>
+		</Entity>
+		<Entity uid="4328">
+			<Template>structures/iber_wall_medium</Template>
+			<Player>4</Player>
+			<Position x="852.63337" z="876.35553"/>
+			<Orientation y="2.92818"/>
+		</Entity>
+		<Entity uid="4329">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="837.36847" z="873.30787"/>
+			<Orientation y="2.90838"/>
+		</Entity>
+		<Entity uid="4330">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="862.51496" z="878.81501"/>
+			<Orientation y="-1.93844"/>
+		</Entity>
+		<Entity uid="4331">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="891.87409" z="895.40894"/>
+			<Orientation y="-0.21584"/>
+		</Entity>
+		<Entity uid="4332">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="927.80762" z="903.48316"/>
+			<Orientation y="3.12607"/>
+		</Entity>
+		<Entity uid="4333">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="951.9021" z="904.68128"/>
+			<Orientation y="-2.91788"/>
+		</Entity>
+		<Entity uid="4334">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="975.70014" z="877.48847"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4335">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="998.45203" z="849.85084"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4336">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="1019.74183" z="822.26117"/>
+			<Orientation y="-1.6743"/>
+		</Entity>
+		<Entity uid="4337">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="1027.23096" z="786.09052"/>
+			<Orientation y="1.28618"/>
+		</Entity>
+		<Entity uid="4338">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="1031.23658" z="748.94983"/>
+			<Orientation y="-1.58072"/>
+		</Entity>
+		<Entity uid="4339">
+			<Template>structures/iber_dock</Template>
+			<Player>4</Player>
+			<Position x="831.00757" z="813.90021"/>
+			<Orientation y="-0.95078"/>
+		</Entity>
+		<Entity uid="4340">
+			<Template>structures/pers_dock</Template>
+			<Player>2</Player>
+			<Position x="643.831" z="767.9079"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4341">
+			<Template>structures/hele_dock</Template>
+			<Player>3</Player>
+			<Position x="452.37522" z="505.65162"/>
+			<Orientation y="1.52646"/>
+		</Entity>
+		<Entity uid="4342">
+			<Template>structures/rome_dock</Template>
+			<Player>1</Player>
+			<Position x="546.75513" z="398.34842"/>
+			<Orientation y="-1.1682"/>
 		</Entity>
 	</Entities>
 	<Paths/>

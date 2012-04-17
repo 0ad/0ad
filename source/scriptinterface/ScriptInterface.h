@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,7 +38,7 @@ class AutoGCRooter;
 // Set the maximum number of function arguments that can be handled
 // (This should be as small as possible (for compiler efficiency),
 // but as large as necessary for all wrapped functions)
-#define SCRIPT_INTERFACE_MAX_ARGS 6
+#define SCRIPT_INTERFACE_MAX_ARGS 7
 
 // TODO: what's a good default?
 #define DEFAULT_RUNTIME_SIZE 16 * 1024 * 1024

@@ -108,11 +108,11 @@ public:
 	EConfigNamespace GetValueNamespace(EConfigNamespace ns, const CStr& name);
 
 	/**
-	 * Retrieve a vector of values corresponding to settings whose names begin
+	 * Retrieve a map of values corresponding to settings whose names begin
 	 * with the given prefix;
 	 * will search all namespaces from system up to the specified namespace.
 	 */
-	std::vector<std::pair<CStr, CConfigValueSet> > GetValuesWithPrefix(EConfigNamespace ns, const CStr& prefix);
+	std::map<CStr, CConfigValueSet> GetValuesWithPrefix(EConfigNamespace ns, const CStr& prefix);
 
 	/**
 	 * Create a new config value in the specified namespace. If such a

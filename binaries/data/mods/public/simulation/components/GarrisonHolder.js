@@ -320,7 +320,8 @@ GarrisonHolder.prototype.HealTimeout = function(data)
 			var cmpHealth = Engine.QueryInterface(entity, IID_Health);
 			if (cmpHealth)
 			{
-				if (cmpHealth.GetHitpoints() < cmpHealth.GetMaxHitpoints())
+				// We do not want to heal unhealable units
+				if (!cmpHealth.IsUnhealable())
 					cmpHealth.Increase(this.healRate);
 			}
 		}

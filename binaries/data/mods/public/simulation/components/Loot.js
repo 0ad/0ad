@@ -21,7 +21,7 @@ Loot.prototype.Serialize = null; // we have no dynamic state to save
 
 Loot.prototype.GetXp = function()
 {
-	return this.template.xp;
+	return +(this.template.xp || 0);
 };
 
 Loot.prototype.GetResources = function()

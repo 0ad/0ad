@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -87,6 +87,16 @@ template<> bool ScriptInterface::FromJSVal<u16>(JSContext* cx, jsval v, u16& out
 	if (!JS_ValueToUint16(cx, v, &ret))
 		return false;
 	out = ret;
+	return true;
+}
+
+template<> bool ScriptInterface::FromJSVal<u8>(JSContext* cx, jsval v, u8& out)
+{
+	uint16 ret;
+	WARN_IF_NOT(JSVAL_IS_NUMBER(v), v);
+	if (!JS_ValueToUint16(cx, v, &ret))
+		return false;
+	out = (u8)ret;
 	return true;
 }
 
@@ -192,6 +202,11 @@ template<> jsval ScriptInterface::ToJSVal<i32>(JSContext* UNUSED(cx), const i32&
 }
 
 template<> jsval ScriptInterface::ToJSVal<u16>(JSContext* UNUSED(cx), const u16& val)
+{
+	return INT_TO_JSVAL(val);
+}
+
+template<> jsval ScriptInterface::ToJSVal<u8>(JSContext* UNUSED(cx), const u8& val)
 {
 	return INT_TO_JSVAL(val);
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -96,10 +96,11 @@ public:
 	 * @param maxRange non-negative maximum distance in metres (inclusive); or -1.0 to ignore distance.
 	 * @param owners list of player IDs that matching entities may have; -1 matches entities with no owner.
 	 * @param requiredInterface if non-zero, an interface ID that matching entities must implement.
+	 * @param flags if a entity in range has one of the flags set it will show up.
 	 * @return unique non-zero identifier of query.
 	 */
 	virtual tag_t CreateActiveQuery(entity_id_t source,
-		entity_pos_t minRange, entity_pos_t maxRange, std::vector<int> owners, int requiredInterface) = 0;
+		entity_pos_t minRange, entity_pos_t maxRange, std::vector<int> owners, int requiredInterface, u8 flags) = 0;
 
 	/**
 	 * Destroy a query and clean up resources. This must be called when an entity no longer needs its
@@ -141,6 +142,19 @@ public:
 	 * Toggle the rendering of debug info.
 	 */
 	virtual void SetDebugOverlay(bool enabled) = 0;
+
+	/**
+	 * Returns the mask for the specified identifier.
+	 */
+	virtual u8 GetEntityFlagMask(std::string identifier) = 0;
+
+	/**
+	 * Set the flag specified by the identifier to the supplied value for the entity
+	 * @param ent the entity whose flags will be modified.
+	 * @param identifier the flag to be modified.
+	 * @param value to which the flag will be set.
+	 */
+	virtual void SetEntityFlag(entity_id_t ent, std::string identifier, bool value) = 0;
 
 	// LOS interface:
 
