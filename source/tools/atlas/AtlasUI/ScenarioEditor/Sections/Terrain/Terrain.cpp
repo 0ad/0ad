@@ -101,7 +101,7 @@ public:
 
 		m_Sizer->Clear(true);
 
-		AtlasMessage::qGetTerrainTexturePreview qry(m_TextureName.wc_str(), imageWidth, imageHeight);
+		AtlasMessage::qGetTerrainTexturePreview qry((std::wstring)m_TextureName.wc_str(), imageWidth, imageHeight);
 		qry.Post();
 
 		AtlasMessage::sTerrainTexturePreview preview = qry.preview;
