@@ -97,7 +97,7 @@ struct SerializeQuery
 		serialize.NumberU32_Unbounded("owners mask", value.ownersMask);
 		serialize.NumberI32_Unbounded("interface", value.interface);
 		SerializeVector<SerializeU32_Unbounded>()(serialize, "last match", value.lastMatch);
-		serialize.NumberU8("flagsMask", value.flagsMask, 0, -1);
+		serialize.NumberU8_Unbounded("flagsMask", value.flagsMask);
 	}
 };
 
@@ -115,7 +115,7 @@ struct SerializeEntityData
 		serialize.NumberU8("retain in fog", value.retainInFog, 0, 1);
 		serialize.NumberI8_Unbounded("owner", value.owner);
 		serialize.NumberU8("in world", value.inWorld, 0, 1);
-		serialize.NumberU8("flags", value.flags, 0, -1);
+		serialize.NumberU8_Unbounded("flags", value.flags);
 	}
 };
 
@@ -871,14 +871,12 @@ public:
 	
 	virtual u8 GetEntityFlagMask(std::string identifier)
 	{
-		CStr id = CStr(identifier);
-
-		if (id == "normal")
+		if (identifier == "normal")
 			return 1;
-		if (id == "injured")
+		if (identifier == "injured")
 			return 2;
 
-		LOGWARNING(L"CCmpRangeManager: Invalid flag identifier %s", id.c_str());
+		LOGWARNING(L"CCmpRangeManager: Invalid flag identifier %hs", identifier.c_str());
 		return 0;
 	}
 	
@@ -895,14 +893,14 @@ public:
 		// We don't have a flag set
 		if (flag == 0)
 		{
-			LOGWARNING(L"CCmpRangeManager: Invalid flag identifier %s for entity %u", identifier.c_str(), ent);
+			LOGWARNING(L"CCmpRangeManager: Invalid flag identifier %hs for entity %u", identifier.c_str(), ent);
 			return;
 		}
 
 		if (value)
 			it->second.flags |= flag;
 		else
-			it->second.flags &= !flag;
+			it->second.flags &= ~flag;
 	}
 
 	// ****************************************************************
