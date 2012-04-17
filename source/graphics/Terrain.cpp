@@ -536,10 +536,12 @@ void CTerrain::Resize(ssize_t size)
 // InitialisePatches: initialise patch data
 void CTerrain::InitialisePatches()
 {
-	for (ssize_t j=0;j<m_MapSizePatches;j++) {
-		for (ssize_t i=0;i<m_MapSizePatches;i++) {
-			CPatch* patch=GetPatch(i,j);	// can't fail
-			patch->Initialize(this,i,j);
+	for (ssize_t j = 0; j < m_MapSizePatches; j++)
+	{
+		for (ssize_t i = 0; i < m_MapSizePatches; i++)
+		{
+			CPatch* patch = GetPatch(i, j);	// can't fail
+			patch->Initialize(this, i, j);
 		}
 	}
 }
@@ -550,12 +552,14 @@ void CTerrain::InitialisePatches()
 void CTerrain::SetHeightMap(u16* heightmap)
 {
 	// keep a copy of the given heightmap
-	memcpy(m_Heightmap,heightmap,m_MapSize*m_MapSize*sizeof(u16));
+	memcpy(m_Heightmap, heightmap, m_MapSize*m_MapSize*sizeof(u16));
 
 	// recalculate patch bounds, invalidate vertices
-	for (ssize_t j=0;j<m_MapSizePatches;j++) {
-		for (ssize_t i=0;i<m_MapSizePatches;i++) {
-			CPatch* patch=GetPatch(i,j);	// can't fail
+	for (ssize_t j = 0; j < m_MapSizePatches; j++)
+	{
+		for (ssize_t i = 0; i < m_MapSizePatches; i++)
+		{
+			CPatch* patch = GetPatch(i, j);	// can't fail
 			patch->InvalidateBounds();
 			patch->SetDirty(RENDERDATA_UPDATE_VERTICES);
 		}
@@ -567,14 +571,17 @@ void CTerrain::SetHeightMap(u16* heightmap)
 
 void CTerrain::MakeDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1, int dirtyFlags)
 {
-	// flag vertex data as dirty for affected patches, and rebuild bounds of these patches
-	ssize_t pi0 = clamp((i0/PATCH_SIZE)-1, (ssize_t)0, m_MapSizePatches);
-	ssize_t pi1 = clamp((i1/PATCH_SIZE)+1, (ssize_t)0, m_MapSizePatches);
-	ssize_t pj0 = clamp((j0/PATCH_SIZE)-1, (ssize_t)0, m_MapSizePatches);
-	ssize_t pj1 = clamp((j1/PATCH_SIZE)+1, (ssize_t)0, m_MapSizePatches);
-	for (ssize_t j = pj0; j < pj1; j++) {
-		for (ssize_t i = pi0; i < pi1; i++) {
-			CPatch* patch = GetPatch(i,j);	// can't fail (i,j were clamped)
+	// Finds the inclusive limits of the patches that include the specified range of tiles
+	ssize_t pi0 = clamp( i0   /PATCH_SIZE, (ssize_t)0, m_MapSizePatches-1);
+	ssize_t pi1 = clamp((i1-1)/PATCH_SIZE, (ssize_t)0, m_MapSizePatches-1);
+	ssize_t pj0 = clamp( j0   /PATCH_SIZE, (ssize_t)0, m_MapSizePatches-1);
+	ssize_t pj1 = clamp((j1-1)/PATCH_SIZE, (ssize_t)0, m_MapSizePatches-1);
+
+	for (ssize_t j = pj0; j <= pj1; j++)
+	{
+		for (ssize_t i = pi0; i <= pi1; i++)
+		{
+			CPatch* patch = GetPatch(i, j);	// can't fail (i,j were clamped)
 			if (dirtyFlags & RENDERDATA_UPDATE_VERTICES)
 				patch->CalcBounds();
 			patch->SetDirty(dirtyFlags);
@@ -584,9 +591,11 @@ void CTerrain::MakeDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1, int dir
 
 void CTerrain::MakeDirty(int dirtyFlags)
 {
-	for (ssize_t j = 0; j < m_MapSizePatches; j++) {
-		for (ssize_t i = 0; i < m_MapSizePatches; i++) {
-			CPatch* patch = GetPatch(i,j);	// can't fail
+	for (ssize_t j = 0; j < m_MapSizePatches; j++)
+	{
+		for (ssize_t i = 0; i < m_MapSizePatches; i++)
+		{
+			CPatch* patch = GetPatch(i, j);	// can't fail
 			if (dirtyFlags & RENDERDATA_UPDATE_VERTICES)
 				patch->CalcBounds();
 			patch->SetDirty(dirtyFlags);
