@@ -62,12 +62,12 @@ std::map<std::string, bool> g_HotkeyStatus;
 // all key combinations that trigger it.
 static void LoadConfigBindings()
 {
-	std::vector<std::pair<CStr, CConfigValueSet> > bindings = g_ConfigDB.GetValuesWithPrefix( CFG_USER, CStr( "hotkey." ));
+	std::map<CStr, CConfigValueSet> bindings = g_ConfigDB.GetValuesWithPrefix( CFG_COMMAND, "hotkey." );
 
 	CParser multikeyParser;
 	multikeyParser.InputTaskType( "multikey", "<[~$arg(_negate)]$value_+_>_[~$arg(_negate)]$value" );
 
-	for( std::vector<std::pair<CStr, CConfigValueSet> >::iterator bindingsIt = bindings.begin(); bindingsIt != bindings.end(); ++bindingsIt )
+	for( std::map<CStr, CConfigValueSet>::iterator bindingsIt = bindings.begin(); bindingsIt != bindings.end(); ++bindingsIt )
 	{
 		std::string hotkeyName = bindingsIt->first.substr(7); // strip the "hotkey." prefix
 
