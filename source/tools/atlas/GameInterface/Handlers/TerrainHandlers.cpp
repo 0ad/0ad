@@ -51,74 +51,81 @@ QUERYHANDLER(GetTerrainGroups)
 	msg->groupNames = groupNames;
 }
 
-static bool CompareTerrain(const sTerrainGroupPreview& a, const sTerrainGroupPreview& b) 
+static bool CompareTerrain(const sTerrainTexturePreview& a, const sTerrainTexturePreview& b)
 {
 	return (wcscmp(a.name.c_str(), b.name.c_str()) < 0);
 }
 
+static sTerrainTexturePreview GetPreview(CTerrainTextureEntry* tex, int width, int height)
+{
+	sTerrainTexturePreview preview;
+	preview.name = tex->GetTag().FromUTF8();
+
+	std::vector<unsigned char> buf (width*height*3);
+
+#if !CONFIG2_GLES
+	// It's not good to shrink the entire texture to fit the small preview
+	// window, since it's the fine details in the texture that are
+	// interesting; so just go down one mipmap level, then crop a chunk
+	// out of the middle.
+
+	// Read the size of the texture. (Usually loads the texture from
+	// disk, which is slow.)
+	tex->GetTexture()->Bind();
+	int level = 1; // level 0 is the original size
+	int w = std::max(1, (int)tex->GetTexture()->GetWidth() >> level);
+	int h = std::max(1, (int)tex->GetTexture()->GetHeight() >> level);
+
+	if (w >= width && h >= height)
+	{
+		// Read the whole texture into a new buffer
+		unsigned char* texdata = new unsigned char[w*h*3];
+		glGetTexImage(GL_TEXTURE_2D, level, GL_RGB, GL_UNSIGNED_BYTE, texdata);
+
+		// Extract the middle section (as a representative preview),
+		// and copy into buf
+		unsigned char* texdata_ptr = texdata + (w*(h - height)/2 + (w - width)/2) * 3;
+		unsigned char* buf_ptr = &buf[0];
+		for (ssize_t y = 0; y < height; ++y)
+		{
+			memcpy(buf_ptr, texdata_ptr, width*3);
+			buf_ptr += width*3;
+			texdata_ptr += w*3;
+		}
+
+		delete[] texdata;
+	}
+	else
+#endif
+	{
+		// Too small to preview, or glGetTexImage not supported (on GLES)
+		// Just use a flat color instead
+		u32 c = tex->GetBaseColor();
+		for (ssize_t i = 0; i < width*height; ++i)
+		{
+			buf[i*3+0] = (c>>16) & 0xff;
+			buf[i*3+1] = (c>>8) & 0xff;
+			buf[i*3+2] = (c>>0) & 0xff;
+		}
+	}
+
+	preview.loaded = tex->GetTexture()->IsLoaded();
+	preview.imageWidth = width;
+	preview.imageHeight = height;
+	preview.imageData = buf;
+
+	return preview;
+}
+
 QUERYHANDLER(GetTerrainGroupPreviews)
 {
-	std::vector<sTerrainGroupPreview> previews;
+	std::vector<sTerrainTexturePreview> previews;
 
 	CTerrainGroup* group = g_TexMan.FindGroup(CStrW(*msg->groupName).ToUTF8());
 	for (std::vector<CTerrainTextureEntry*>::const_iterator it = group->GetTerrains().begin(); it != group->GetTerrains().end(); ++it)
 	{
-		previews.push_back(sTerrainGroupPreview());
-		previews.back().name = (*it)->GetTag().FromUTF8();
-
-		std::vector<unsigned char> buf (msg->imageWidth*msg->imageHeight*3);
-
-#if !CONFIG2_GLES
-		// It's not good to shrink the entire texture to fit the small preview
-		// window, since it's the fine details in the texture that are
-		// interesting; so just go down one mipmap level, then crop a chunk
-		// out of the middle.
-
-		// Read the size of the texture. (Usually loads the texture from
-		// disk, which is slow.)
-		(*it)->GetTexture()->Bind();
-		int level = 1; // level 0 is the original size
-		int w = std::max(1, (int)(*it)->GetTexture()->GetWidth() >> level);
-		int h = std::max(1, (int)(*it)->GetTexture()->GetHeight() >> level);
-
-		if (w >= msg->imageWidth && h >= msg->imageHeight)
-		{
-			// Read the whole texture into a new buffer
-			unsigned char* texdata = new unsigned char[w*h*3];
-			glGetTexImage(GL_TEXTURE_2D, level, GL_RGB, GL_UNSIGNED_BYTE, texdata);
-
-			// Extract the middle section (as a representative preview),
-			// and copy into buf
-			unsigned char* texdata_ptr = texdata + (w*(h - msg->imageHeight)/2 + (w - msg->imageWidth)/2) * 3;
-			unsigned char* buf_ptr = &buf[0];
-			for (ssize_t y = 0; y < msg->imageHeight; ++y)
-			{
-				memcpy(buf_ptr, texdata_ptr, msg->imageWidth*3);
-				buf_ptr += msg->imageWidth*3;
-				texdata_ptr += w*3;
-			}
-
-			delete[] texdata;
-		}
-		else
-#endif
-		{
-			// Too small to preview, or glGetTexImage not supported (on GLES)
-			// Just use a flat color instead
-			u32 c = (*it)->GetBaseColor();
-			for (ssize_t i = 0; i < msg->imageWidth*msg->imageHeight; ++i)
-			{
-				buf[i*3+0] = (c>>16) & 0xff;
-				buf[i*3+1] = (c>>8) & 0xff;
-				buf[i*3+2] = (c>>0) & 0xff;
-			}
-		}
-
-		previews.back().loaded = (*it)->GetTexture()->IsLoaded();
-		previews.back().imageWidth = msg->imageWidth;
-		previews.back().imageHeight = msg->imageHeight;
-		previews.back().imageData = buf;
-	}
+		previews.push_back(GetPreview(*it, msg->imageWidth, msg->imageHeight));
+ 	}
 
 	// Sort the list alphabetically by name
 	std::sort(previews.begin(), previews.end(), CompareTerrain);
@@ -136,6 +143,42 @@ QUERYHANDLER(GetTerrainPassabilityClasses)
 		for (std::map<std::string, ICmpPathfinder::pass_class_t>::iterator it = classes.begin(); it != classes.end(); ++it)
 			classNames.push_back(CStr(it->first).FromUTF8());
 		msg->classNames = classNames;
+	}
+}
+
+QUERYHANDLER(GetTerrainTexture)
+{
+	ssize_t x, y;
+	g_CurrentBrush.m_Centre = msg->pos->GetWorldSpace();
+	g_CurrentBrush.GetCentre(x, y);
+
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+	CMiniPatch* tile = terrain->GetTile(x, y);
+	if (tile)
+	{
+		CTerrainTextureEntry* tex = tile->GetTextureEntry();
+		msg->texture = tex->GetTag().FromUTF8();
+	}
+	else
+	{
+		msg->texture = std::wstring();
+	}
+}
+
+QUERYHANDLER(GetTerrainTexturePreview)
+{
+	CTerrainTextureEntry* tex = g_TexMan.FindTexture(CStrW(*msg->name).ToUTF8());
+	if (tex)
+	{
+		msg->preview = GetPreview(tex, msg->imageWidth, msg->imageHeight);
+	}
+	else
+	{
+		sTerrainTexturePreview noPreview;
+		noPreview.name = std::wstring();
+		noPreview.imageHeight = 0;
+		noPreview.imageWidth = 0;
+		msg->preview = noPreview;
 	}
 }
 

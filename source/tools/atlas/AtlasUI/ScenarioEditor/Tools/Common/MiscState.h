@@ -25,7 +25,7 @@ namespace AtlasMessage
 	typedef unsigned int ObjectID;
 }
 
-extern wxString g_SelectedTexture;
+extern Observable<wxString> g_SelectedTexture;
 
 extern Observable<std::vector<AtlasMessage::ObjectID> > g_SelectedObjects;
 
