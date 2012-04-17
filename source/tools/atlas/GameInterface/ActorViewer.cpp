@@ -48,6 +48,7 @@
 #include "renderer/WaterManager.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/components/ICmpTerrain.h"
@@ -314,7 +315,7 @@ void ActorViewer::UnloadObjects()
 	m.ObjectManager.UnloadObjects();
 }
 
-void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
+void ActorViewer::SetActor(const CStrW& name, const CStrW& animation, player_id_t playerID)
 {
 	bool needsAnimReload = false;
 
@@ -349,6 +350,10 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 			cmpPosition->JumpTo(entity_pos_t::FromInt(c), entity_pos_t::FromInt(c));
 			cmpPosition->SetYRotation(entity_angle_t::Pi());
 		}
+
+		CmpPtr<ICmpOwnership> cmpOwnership(m.Simulation2, m.Entity);
+		if (cmpOwnership)
+			cmpOwnership->SetOwner(playerID);
 
 		needsAnimReload = true;
 	}

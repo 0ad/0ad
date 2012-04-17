@@ -148,12 +148,12 @@ MESSAGEHANDLER(SetActorViewer)
 		// alright.)
 		// Should replace this with proper actor hot-loading system, or something.
 
-		AtlasView::GetView_Actor()->GetActorViewer().SetActor(L"", L"");
+		AtlasView::GetView_Actor()->GetActorViewer().SetActor(L"", L"", -1);
 		AtlasView::GetView_Actor()->GetActorViewer().UnloadObjects();
 //		vfs_reload_changed_files();
 	}
 	AtlasView::GetView_Actor()->SetSpeedMultiplier(msg->speed);
-	AtlasView::GetView_Actor()->GetActorViewer().SetActor(*msg->id, *msg->animation);
+	AtlasView::GetView_Actor()->GetActorViewer().SetActor(*msg->id, *msg->animation, msg->playerID);
 }
 
 //////////////////////////////////////////////////////////////////////////
