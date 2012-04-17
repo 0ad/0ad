@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -77,6 +77,12 @@
 	{ scriptname, \
 		ScriptInterface::callMethod<rettype, arg1, arg2, arg3, arg4, arg5, &class_##classname, classname, &classname::methodname>, \
 		5, \
+		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT },
+
+#define DEFINE_INTERFACE_METHOD_6(scriptname, rettype, classname, methodname, arg1, arg2, arg3, arg4, arg5, arg6) \
+	{ scriptname, \
+		ScriptInterface::callMethod<rettype, arg1, arg2, arg3, arg4, arg5, arg6, &class_##classname, classname, &classname::methodname>, \
+		6, \
 		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT },
 
 #endif // INCLUDED_INTERFACE_SCRIPTED

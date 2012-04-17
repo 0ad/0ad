@@ -5,6 +5,7 @@ Engine.LoadComponentScript("interfaces/BuildLimits.js");
 Engine.LoadComponentScript("interfaces/DamageReceiver.js");
 Engine.LoadComponentScript("interfaces/Foundation.js");
 Engine.LoadComponentScript("interfaces/GarrisonHolder.js");
+Engine.LoadComponentScript("interfaces/Heal.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/Promotion.js");
 Engine.LoadComponentScript("interfaces/RallyPoint.js");
@@ -271,6 +272,7 @@ AddMock(10, IID_Health, {
 	GetHitpoints: function() { return 50; },
 	GetMaxHitpoints: function() { return 60; },
 	IsRepairable: function() { return false; },
+	IsUnhealable: function() { return false; },
 });
 
 AddMock(10, IID_Identity, {
@@ -304,6 +306,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
 	hitpoints: 50,
 	maxHitpoints: 60,
 	needsRepair: false,
+	needsHeal: true,
 	buildEntities: ["test1", "test2"],
 	barterMarket: {
 		prices: { "buy": {"food":150}, "sell": {"food":25} },

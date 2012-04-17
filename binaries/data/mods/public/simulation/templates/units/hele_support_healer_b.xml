@@ -5,7 +5,11 @@
     <SpecificName>Hiereús</SpecificName>
     <History>The art of medicine was widely practised in Classical Greece. Hippocrates was the first physician to separate religion and superstition from actual medicine, and many others followed his lead.</History>
     <Icon>units/hele_support_healer.png</Icon>
+    <Rank>Basic</Rank>
   </Identity>
+  <Promotion>
+    <Entity>units/hele_support_healer_a</Entity>
+  </Promotion>
   <VisualActor>
     <Actor>units/hellenes/healer.xml</Actor>
   </VisualActor>

@@ -25,7 +25,7 @@ Health.prototype.Schema =
 			"<value a:help='Remain in the world with 0 health'>remain</value>" +
 		"</choice>" +
 	"</element>" +
-	"<element name='Healable' a:help='Indicates that the entity can be healed by healer units'>" +
+	"<element name='Unhealable' a:help='Indicates that the entity can not be healed by healer units'>" +
 		"<data type='boolean'/>" +
 	"</element>" +
 	"<element name='Repairable' a:help='Indicates that the entity can be repaired by builder units'>" +
@@ -63,6 +63,15 @@ Health.prototype.SetHitpoints = function(value)
 
 	var old = this.hitpoints;
 	this.hitpoints = Math.max(1, Math.min(this.GetMaxHitpoints(), value));
+	
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	if (cmpRangeManager)
+	{
+		if (this.hitpoints < this.GetMaxHitpoints())
+			cmpRangeManager.SetEntityFlag(this.entity, "injured", true);
+		else
+			cmpRangeManager.SetEntityFlag(this.entity, "injured", false);
+	}
 
 	Engine.PostMessage(this.entity, MT_HealthChanged, { "from": old, "to": this.hitpoints });
 };
@@ -70,6 +79,13 @@ Health.prototype.SetHitpoints = function(value)
 Health.prototype.IsRepairable = function()
 {
 	return (this.template.Repairable == "true");
+};
+
+Health.prototype.IsUnhealable = function()
+{
+	return (this.template.Unhealable == "true"
+		|| this.GetHitpoints() <= 0
+		|| this.GetHitpoints() >= this.GetMaxHitpoints());
 };
 
 Health.prototype.Kill = function()
@@ -80,6 +96,12 @@ Health.prototype.Kill = function()
 Health.prototype.Reduce = function(amount)
 {
 	var state = { "killed": false };
+	if (amount >= 0 && this.hitpoints == this.GetMaxHitpoints())
+	{
+		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		if (cmpRangeManager)
+			cmpRangeManager.SetEntityFlag(this.entity, "injured", true);
+	}
 	if (amount >= this.hitpoints)
 	{
 		// If this is the first time we reached 0, then die.
@@ -131,12 +153,21 @@ Health.prototype.Increase = function(amount)
 {
 	// If we're already dead, don't allow resurrection
 	if (this.hitpoints == 0)
-		return;
+		return undefined;
 
 	var old = this.hitpoints;
 	this.hitpoints = Math.min(this.hitpoints + amount, this.GetMaxHitpoints());
+	
+	if (this.hitpoints == this.GetMaxHitpoints())
+	{
+		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		if (cmpRangeManager)
+			cmpRangeManager.SetEntityFlag(this.entity, "injured", false);
+	}
 
 	Engine.PostMessage(this.entity, MT_HealthChanged, { "from": old, "to": this.hitpoints });
+	// We return the old and the actual hp
+	return { "old": old, "new": this.hitpoints};
 };
 
 //// Private functions ////

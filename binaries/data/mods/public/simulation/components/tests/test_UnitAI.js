@@ -4,6 +4,7 @@ Engine.LoadHelperScript("Player.js");
 Engine.LoadComponentScript("interfaces/Attack.js");
 Engine.LoadComponentScript("interfaces/DamageReceiver.js");
 Engine.LoadComponentScript("interfaces/Formation.js");
+Engine.LoadComponentScript("interfaces/Heal.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/ResourceSupply.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
@@ -33,12 +34,13 @@ function TestFormationExiting(mode)
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
-		CreateActiveQuery: function(ent, minRange, maxRange, players, iid) {
+		CreateActiveQuery: function(ent, minRange, maxRange, players, iid, flags) {
 			return 1;
 		},
 		EnableActiveQuery: function(id) { },
 		ResetActiveQuery: function(id) { if (mode == 0) return []; else return [enemy]; },
 		DisableActiveQuery: function(id) { },
+		GetEntityFlagMask: function(identifier) { },
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_PlayerManager, {

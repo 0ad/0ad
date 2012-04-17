@@ -5,12 +5,13 @@
     <Pierce>2.0</Pierce>
     <Crush>2.0</Crush>
   </Armour>
-  <Auras>
-    <Heal>
-      <Radius>20</Radius>
-      <Speed>2000</Speed>
-    </Heal>
-  </Auras>
+  <Heal>
+    <Range>30</Range>
+    <HP>5</HP>
+    <Rate>2000</Rate>
+    <UnhealableClasses datatype="tokens"/>
+    <HealableClasses datatype="tokens">Organic</HealableClasses>
+  </Heal>
   <Cost>
     <Resources>
       <metal>120</metal>
@@ -23,8 +24,11 @@
   <Identity>
     <Classes datatype="tokens">Healer</Classes>
     <GenericName>Healer</GenericName>
-    <Tooltip>Heal units within his Aura. (Not implemented yet)</Tooltip>
+    <Tooltip>Heals units.</Tooltip>
   </Identity>
+  <Promotion>
+    <RequiredXp>100</RequiredXp>
+  </Promotion>
   <Sound>
     <SoundGroups>
       <select>voice/hellenes/civ/civ_male_select.xml</select>

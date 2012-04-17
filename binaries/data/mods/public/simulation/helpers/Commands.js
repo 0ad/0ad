@@ -66,6 +66,20 @@ function ProcessCommand(player, cmd)
 		});
 		break;
 
+	case "heal":
+		if (g_DebugCommands && !(IsOwnedByPlayer(player, cmd.target) || IsOwnedByAllyOfPlayer(player, cmd.target)))
+		{
+			// This check is for debugging only!
+			warn("Invalid command: heal target is not owned by player "+player+" or their ally: "+uneval(cmd));
+		}
+
+		// See UnitAI.CanHeal for target checks
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
+			cmpUnitAI.Heal(cmd.target, cmd.queued);
+		});
+		break;
+
 	case "repair":
 		// This covers both repairing damaged buildings, and constructing unfinished foundations
 		if (g_DebugCommands && !IsOwnedByAllyOfPlayer(player, cmd.target))
