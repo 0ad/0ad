@@ -128,10 +128,6 @@ public:
 
 	CVector3D CalcExactNormal(float x, float z) const;
 
-	// flatten out an area of terrain (specified in world space coords); return
-	// the average height of the flattened area
-	float FlattenArea(float x0, float x1, float z0, float z1);
-
 	// mark a specific square of tiles as dirty - use this after modifying the heightmap
 	void MakeDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1, int dirtyFlags);
 	// mark the entire map as dirty

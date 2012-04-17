@@ -564,37 +564,6 @@ void CTerrain::SetHeightMap(u16* heightmap)
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// FlattenArea: flatten out an area of terrain (specified in world space
-// coords); return the average height of the flattened area
-float CTerrain::FlattenArea(float x0, float x1, float z0, float z1)
-{
-	const ssize_t tx0 = clamp(ssize_t(x0/TERRAIN_TILE_SIZE),   (ssize_t)0, m_MapSize-1);
-	const ssize_t tx1 = clamp(ssize_t(x1/TERRAIN_TILE_SIZE)+1, (ssize_t)0, m_MapSize-1);
-	const ssize_t tz0 = clamp(ssize_t(z0/TERRAIN_TILE_SIZE),   (ssize_t)0, m_MapSize-1);
-	const ssize_t tz1 = clamp(ssize_t(z1/TERRAIN_TILE_SIZE)+1, (ssize_t)0, m_MapSize-1);
-
-	size_t count=0;
-	double sum=0.0f;
-	for (ssize_t z=tz0;z<=tz1;z++) {
-		for (ssize_t x=tx0;x<=tx1;x++) {
-			sum+=m_Heightmap[z*m_MapSize + x];
-			count++;
-		}
-	}
-	const u16 avgY = u16(sum/count);
-
-	for (ssize_t z=tz0;z<=tz1;z++) {
-		for (ssize_t x=tx0;x<=tx1;x++) {
-			m_Heightmap[z*m_MapSize + x]=avgY;
-		}
-	}
-
-	MakeDirty(tx0, tz0, tx1, tz1, RENDERDATA_UPDATE_VERTICES);
-
-	return avgY*HEIGHT_SCALE;
-}
-
-///////////////////////////////////////////////////////////////////////////////
 
 void CTerrain::MakeDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1, int dirtyFlags)
 {
