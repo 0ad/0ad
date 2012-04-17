@@ -373,6 +373,9 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 
 	// wxLog::SetTraceMask(wxTraceMessages);
 
+	g_SelectedTexture = _T("grass1_spring");
+	g_SelectedTexture.NotifyObservers();
+
 	SetOpenFilename(_T(""));
 
 #if defined(__WXMSW__)

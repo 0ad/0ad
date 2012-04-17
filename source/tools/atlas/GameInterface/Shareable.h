@@ -118,7 +118,7 @@ SHAREABLE_PRIMITIVE(void*);
 // Shareable containers must have shareable contents - but it's easy to forget
 // to declare them, so make sure the errors are almost readable, like:
 //   "use of undefined type 'REQUIRE_TYPE_TO_BE_SHAREABLE_FAILURE<T,__formal>
-//      with [ T=AtlasMessage::sTerrainGroupPreview, __formal=false ]"
+//      with [ T=AtlasMessage::sTerrainTexturePreview, __formal=false ]"
 //
 // (Implementation based on boost/static_assert)
 template <typename T, bool> struct REQUIRE_TYPE_TO_BE_SHAREABLE_FAILURE;

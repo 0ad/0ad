@@ -260,7 +260,7 @@ QUERY(GetTerrainGroups,
 	  );
 
 #ifndef MESSAGES_SKIP_STRUCTS
-struct sTerrainGroupPreview
+struct sTerrainTexturePreview
 {
 	Shareable<std::wstring> name;
 	Shareable<bool> loaded;
@@ -268,7 +268,7 @@ struct sTerrainGroupPreview
 	Shareable<int> imageHeight;
 	Shareable<std::vector<unsigned char> > imageData; // RGB*width*height
 };
-SHAREABLE_STRUCT(sTerrainGroupPreview);
+SHAREABLE_STRUCT(sTerrainTexturePreview);
 #endif
 
 QUERY(GetTerrainGroupPreviews,
@@ -276,13 +276,21 @@ QUERY(GetTerrainGroupPreviews,
 	  ((int, imageWidth))
 	  ((int, imageHeight))
 	  ,
-	  ((std::vector<sTerrainGroupPreview>, previews))
+	  ((std::vector<sTerrainTexturePreview>, previews))
 	  );
 
 QUERY(GetTerrainPassabilityClasses,
 	  , // no inputs
 	  ((std::vector<std::wstring>, classNames))
 	  );
+
+QUERY(GetTerrainTexturePreview,
+		((std::wstring, name))
+		((int, imageWidth))
+		((int, imageHeight))
+		,
+		((sTerrainTexturePreview, preview))
+		);
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -340,6 +348,7 @@ COMMAND(CreateObject, NOMERGE,
 MESSAGE(SetActorViewer,
 		((std::wstring, id))
 		((std::wstring, animation))
+		((int, playerID))
 		((float, speed))
 		((bool, flushcache)) // true => unload all actor files before starting the preview (because we don't have proper hotloading yet)
 		);
@@ -479,6 +488,12 @@ COMMAND(ReplaceTerrain, NOMERGE,
 
 COMMAND(FillTerrain, NOMERGE,
 		((Position, pos))
+		((std::wstring, texture))
+		);
+
+QUERY(GetTerrainTexture,
+		((Position, pos))
+		,
 		((std::wstring, texture))
 		);
 

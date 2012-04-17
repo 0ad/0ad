@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,10 +31,18 @@ class PaintTerrain : public StateDrivenTool<PaintTerrain>
 
 	Position m_Pos;
 
+	// Brush for eyedropper preview
+	//	(it's confusing if we use the arbitrarily sized paint brush)
+	Brush m_EyedropperBrush;
+
+	static const wxKeyCode EYEDROPPER_HOTKEY = WXK_SHIFT;
+
 public:
 	PaintTerrain()
 	{
 		SetState(&Waiting);
+
+		m_EyedropperBrush.SetSquare(2);
 	}
 
 
@@ -49,9 +57,21 @@ public:
 		POST_MESSAGE(BrushPreview, (false, Position()));
 	}
 
-
 	struct sWaiting : public State
 	{
+		bool OnKey(PaintTerrain* obj, wxKeyEvent& evt, KeyEventType type)
+		{
+			if (type == KEY_DOWN && evt.GetKeyCode() == EYEDROPPER_HOTKEY)
+			{
+				SET_STATE(Eyedropper);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
 		bool OnMouse(PaintTerrain* obj, wxMouseEvent& evt)
 		{
 			if (evt.LeftDown())
@@ -135,6 +155,56 @@ public:
 		int GetPriority() { return AtlasMessage::ePaintTerrainPriority::LOW; }
 	}
 	PaintingLow;
+
+	struct sEyedropper : public State
+	{
+		void OnEnter(PaintTerrain* obj)
+		{
+			obj->m_EyedropperBrush.MakeActive();
+		}
+
+		void OnLeave(PaintTerrain* WXUNUSED(obj))
+		{
+			g_Brush_Elevation.MakeActive();
+		}
+
+		bool OnKey(PaintTerrain* obj, wxKeyEvent& evt, KeyEventType type)
+		{
+			if (type == KEY_UP && evt.GetKeyCode() == EYEDROPPER_HOTKEY)
+			{
+				SET_STATE(Waiting);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		bool OnMouse(PaintTerrain* WXUNUSED(obj), wxMouseEvent& evt)
+		{
+			if (evt.ButtonDown() || evt.Dragging())
+			{
+				POST_MESSAGE(BrushPreview, (true, evt.GetPosition()));
+				AtlasMessage::qGetTerrainTexture qry(evt.GetPosition());
+				qry.Post();
+
+				g_SelectedTexture = wxString(qry.texture.c_str());
+				g_SelectedTexture.NotifyObservers();
+				return true;
+			}
+			else if (evt.Moving())
+			{
+				POST_MESSAGE(BrushPreview, (true, Position(evt.GetPosition())));
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
+	Eyedropper;
 };
 
 IMPLEMENT_DYNAMIC_CLASS(PaintTerrain, StateDrivenTool<PaintTerrain>);

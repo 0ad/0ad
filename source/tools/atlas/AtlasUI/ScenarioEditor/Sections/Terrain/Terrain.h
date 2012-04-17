@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,6 +17,8 @@
 
 #include "../Common/Sidebar.h"
 
+class TexturePreviewPanel;
+
 class TerrainSidebar : public Sidebar
 {
 public:
@@ -31,6 +33,8 @@ private:
 	void OnResizeMap(wxCommandEvent& evt);
 
 	wxChoice* m_PassabilityChoice;
+	TexturePreviewPanel* m_TexturePreview;
 
 	DECLARE_EVENT_TABLE();
 };
+

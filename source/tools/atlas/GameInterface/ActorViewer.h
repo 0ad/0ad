@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 #define INCLUDED_ACTORVIEWER
 
 #include "simulation2/system/Entity.h"
+#include "simulation2/helpers/Player.h"
 
 struct ActorViewerImpl;
 struct SColor4ub;
@@ -34,7 +35,7 @@ public:
 
 	CSimulation2* GetSimulation2();
 	entity_id_t GetEntity();
-	void SetActor(const CStrW& id, const CStrW& animation);
+	void SetActor(const CStrW& id, const CStrW& animation, player_id_t playerID);
 	void UnloadObjects();
 	void SetBackgroundColour(const SColor4ub& colour);
 	void SetWalkEnabled(bool enabled);

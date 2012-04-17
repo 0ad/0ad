@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -45,7 +45,6 @@ private:
 	TextureNotebook* m_Textures;
 };
 
-
 enum
 {
 	ID_Passability = 1,
@@ -59,6 +58,118 @@ static wxWindow* Tooltipped(wxWindow* window, const wxString& tip)
 	window->SetToolTip(tip);
 	return window;
 }
+
+// Add spaces into the displayed name so there are more wrapping opportunities
+static wxString FormatTextureName(wxString name)
+{
+	if (name.Len())
+		name[0] = wxToupper(name[0]);
+	name.Replace(_T("_"), _T(" "));
+
+	return name;
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+class TexturePreviewPanel : public wxPanel
+{
+private:
+	static const int imageWidth = 120;
+	static const int imageHeight = 40;
+
+public:
+	TexturePreviewPanel(wxWindow* parent)
+		: wxPanel(parent, wxID_ANY), m_Timer(this)
+	{
+		m_Conn = g_SelectedTexture.RegisterObserver(0, &TexturePreviewPanel::OnTerrainChange, this);
+		m_Sizer = new wxStaticBoxSizer(wxVERTICAL, this, _T("Texture"));
+		SetSizer(m_Sizer);
+
+		// Use placeholder bitmap for now
+		m_Sizer->Add(new wxStaticBitmap(this, wxID_ANY, wxNullBitmap), wxSizerFlags(1).Expand());
+	}
+
+	void LoadPreview()
+	{
+		if (m_TextureName.IsEmpty())
+		{
+			// If we haven't got a texture yet, copy the global
+			m_TextureName = g_SelectedTexture;
+		}
+
+		Freeze();
+
+		m_Sizer->Clear(true);
+
+		AtlasMessage::qGetTerrainTexturePreview qry((std::wstring)m_TextureName.wc_str(), imageWidth, imageHeight);
+		qry.Post();
+
+		AtlasMessage::sTerrainTexturePreview preview = qry.preview;
+
+		// Check for invalid/missing texture - shouldn't happen
+		if (!wxString(qry.preview->name.c_str()).IsEmpty())
+		{
+			// Construct the wrapped-text label
+			wxStaticText* label = new wxStaticText(this, wxID_ANY, FormatTextureName(*qry.preview->name), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER);
+			label->Wrap(m_Sizer->GetSize().GetX());
+
+			unsigned char* buf = (unsigned char*)(malloc(preview.imageData.GetSize()));
+			// imagedata.GetBuffer() gives a Shareable<unsigned char>*, which
+			// is stored the same as a unsigned char*, so we can just copy it.
+			memcpy(buf, preview.imageData.GetBuffer(), preview.imageData.GetSize());
+			wxImage img(qry.preview->imageWidth, qry.preview->imageHeight, buf);
+
+			wxStaticBitmap* bitmap = new wxStaticBitmap(this, wxID_ANY, wxBitmap(img), wxDefaultPosition, wxSize(qry.preview->imageWidth, qry.preview->imageHeight), wxBORDER_SIMPLE);
+			m_Sizer->Add(bitmap, wxSizerFlags(1).Align(wxALIGN_CENTRE));
+			m_Sizer->Add(label, wxSizerFlags().Expand());
+		
+			// We have to force the sidebar to layout manually
+			GetParent()->Layout();
+
+			if (preview.loaded && m_Timer.IsRunning())
+			{
+				m_Timer.Stop();
+			}
+			else if (!preview.loaded && !m_Timer.IsRunning())
+			{
+				m_Timer.Start(2000);
+			}
+		}
+
+		Layout();
+		Thaw();
+	}
+
+	void OnTerrainChange(const wxString& texture)
+	{
+		// Check if texture really changed, to avoid doing this too often
+		if (texture != m_TextureName)
+		{
+			// Load new texture preview
+			m_TextureName = texture;
+			LoadPreview();
+		}
+	}
+
+	void OnTimer(wxTimerEvent& WXUNUSED(evt))
+	{
+		LoadPreview();
+	}
+
+private:
+	ObservableScopedConnection m_Conn;
+	wxSizer* m_Sizer;
+	wxTimer m_Timer;
+	wxString m_TextureName;
+
+	DECLARE_EVENT_TABLE();
+};
+
+BEGIN_EVENT_TABLE(TexturePreviewPanel, wxPanel)
+	EVT_TIMER(wxID_ANY, TexturePreviewPanel::OnTimer)
+END_EVENT_TABLE();
+
+//////////////////////////////////////////////////////////////////////////
 
 TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer) :
 	Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer)
@@ -84,7 +195,7 @@ TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebar
 		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Texture tools"));
 		wxSizer* gridSizer = new wxGridSizer(3);
 		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), this, _("Paint"), _T("PaintTerrain")),
-			_("Brush with left mouse button to paint texture dominantly,\nright mouse button to paint submissively")), wxSizerFlags().Expand());
+			_("Brush with left mouse button to paint texture dominantly,\nright mouse button to paint submissively.\nShift-left-click for eyedropper tool")), wxSizerFlags().Expand());
 		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), this, _("Replace"), _T("ReplaceTerrain")),
 			_("Replace all of a terrain texture with a new one")), wxSizerFlags().Expand());
 		gridSizer->Add(Tooltipped(new ToolButton(scenarioEditor.GetToolManager(), this, _("Fill"), _T("FillTerrain")),
@@ -97,6 +208,10 @@ TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebar
 		/////////////////////////////////////////////////////////////////////////
 		// Brush settings
 		wxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Brush"));
+
+		m_TexturePreview = new TexturePreviewPanel(this);
+		sizer->Add(m_TexturePreview, wxSizerFlags(1).Expand());
+
 		g_Brush_Elevation.CreateUI(this, sizer);
 		m_MainSizer->Add(sizer, wxSizerFlags().Expand().Border(wxTOP, 10));
 	}
@@ -145,6 +260,7 @@ void TerrainSidebar::OnFirstDisplay()
 		m_PassabilityChoice->Append(passClasses[i].c_str());
 
 	static_cast<TerrainBottomBar*>(m_BottomBar)->LoadTerrain();
+	m_TexturePreview->LoadPreview();
 }
 
 void TerrainSidebar::OnPassabilityChoice(wxCommandEvent& evt)
@@ -245,7 +361,7 @@ public:
 		AtlasMessage::qGetTerrainGroupPreviews qry((std::wstring)m_Name.wc_str(), imageWidth, imageHeight);
 		qry.Post();
 
-		std::vector<AtlasMessage::sTerrainGroupPreview> previews = *qry.previews;
+		std::vector<AtlasMessage::sTerrainTexturePreview> previews = *qry.previews;
 
 		bool allLoaded = true;
 
@@ -254,15 +370,10 @@ public:
 			if (!previews[i].loaded)
 				allLoaded = false;
 
-			// Construct the wrapped-text label
 			wxString name = previews[i].name.c_str();
 
-			// Add spaces into the displayed name so there are more wrapping opportunities
-			wxString labelText = name;
-			if (labelText.Len())
-				labelText[0] = wxToupper(labelText[0]);
-			labelText.Replace(_T("_"), _T(" "));
-			wxStaticText* label = new wxStaticText(m_ScrolledPanel, wxID_ANY, labelText, wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER);
+			// Construct the wrapped-text label
+			wxStaticText* label = new wxStaticText(m_ScrolledPanel, wxID_ANY, FormatTextureName(name), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER);
 			label->Wrap(imageWidth);
 
 			unsigned char* buf = (unsigned char*)(malloc(previews[i].imageData.GetSize()));
@@ -303,6 +414,7 @@ public:
 		wxButton* button = wxDynamicCast(evt.GetEventObject(), wxButton);
 		wxString name = static_cast<wxStringClientData*>(button->GetClientObject())->GetData();
 		g_SelectedTexture = name;
+		g_SelectedTexture.NotifyObservers();
 
 		if (m_LastTerrainSelection)
 			m_LastTerrainSelection->SetBackgroundColour(wxNullColour);

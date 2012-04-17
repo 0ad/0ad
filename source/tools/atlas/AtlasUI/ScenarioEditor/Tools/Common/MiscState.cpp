@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,6 @@
 
 #include "MiscState.h"
 
-wxString g_SelectedTexture = _T("grass1_spring");
+Observable<wxString> g_SelectedTexture;
 
 Observable<std::vector<AtlasMessage::ObjectID> > g_SelectedObjects;

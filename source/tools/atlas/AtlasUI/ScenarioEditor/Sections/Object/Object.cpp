@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -97,9 +97,11 @@ private:
 
 struct ObjectSidebarImpl
 {
-	ObjectSidebarImpl() :
+	ObjectSidebarImpl(ScenarioEditor& scenarioEditor) :
 		m_ObjectListBox(NULL), m_ActorViewerActive(false),
-		m_ActorViewerEntity(_T("actor|structures/fndn_1x1.xml")), m_ActorViewerAnimation(_T("idle")), m_ActorViewerSpeed(0.f)
+		m_ActorViewerEntity(_T("actor|structures/fndn_1x1.xml")),
+		m_ActorViewerAnimation(_T("idle")), m_ActorViewerSpeed(0.f),
+		m_ObjectSettings(scenarioEditor.GetObjectSettings())
 	{
 	}
 
@@ -111,10 +113,11 @@ struct ObjectSidebarImpl
 	wxString m_ActorViewerEntity;
 	wxString m_ActorViewerAnimation;
 	float m_ActorViewerSpeed;
+	Observable<ObjectSettings>& m_ObjectSettings;
 
 	void ActorViewerPostToGame()
 	{
-		POST_MESSAGE(SetActorViewer, ((std::wstring)m_ActorViewerEntity.wc_str(), (std::wstring)m_ActorViewerAnimation.wc_str(), m_ActorViewerSpeed, false));
+		POST_MESSAGE(SetActorViewer, ((std::wstring)m_ActorViewerEntity.wc_str(), (std::wstring)m_ActorViewerAnimation.wc_str(), m_ObjectSettings.GetPlayerID(), m_ActorViewerSpeed, false));
 	}
 };
 
@@ -124,7 +127,7 @@ ObjectSidebar::ObjectSidebar(
 	wxWindow* bottomBarContainer
 )
 	: Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer),
-	  p(new ObjectSidebarImpl())
+	  p(new ObjectSidebarImpl(scenarioEditor))
 {
 	wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
 	sizer->Add(new wxStaticText(this, wxID_ANY, _("Filter")), wxSizerFlags().Align(wxALIGN_CENTER));
