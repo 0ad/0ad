@@ -5,3 +5,7 @@ Engine.RegisterInterface("Foundation");
 // Units can watch for this and change task once it's complete.
 // Data: { entity: 123, newentity: 234 }
 Engine.RegisterMessageType("ConstructionFinished");
+
+// Message of the form { "to", 59 }, as the percentage complete
+// sent whenever the foundations progress changes.
+Engine.RegisterMessageType("FoundationProgressChanged");

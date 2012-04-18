@@ -95,6 +95,8 @@ ResourceGatherer.prototype.GiveResources = function(resources)
 	{
 		this.carrying[resource.type] = +(resource.amount);
 	}
+	
+	Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
 };
 
 /**
@@ -193,6 +195,8 @@ ResourceGatherer.prototype.PerformGather = function(target)
 	var cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
 	if (cmpStatisticsTracker)
 		cmpStatisticsTracker.IncreaseResourceGatheredCounter(type.generic, status.amount, type.specific);
+	
+	Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
 
 	// Tell the target we're gathering from it
 	Engine.PostMessage(target, MT_ResourceGather,
@@ -269,6 +273,8 @@ ResourceGatherer.prototype.CommitResources = function(types)
 			delete this.carrying[type];
 		}
 	}
+	
+	Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
 };
 
 /**
@@ -279,6 +285,8 @@ ResourceGatherer.prototype.CommitResources = function(types)
 ResourceGatherer.prototype.DropResources = function()
 {
 	this.carrying = {};
+	
+	Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
 };
 
 Engine.RegisterComponentType(IID_ResourceGatherer, "ResourceGatherer", ResourceGatherer);
