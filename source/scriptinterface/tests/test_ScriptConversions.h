@@ -129,13 +129,13 @@ public:
 		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<i32>(cx, 2147483646))); // JSVAL_INT_MAX-1
 		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<i32>(cx, 2147483647))); // JSVAL_INT_MAX
 		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<i32>(cx, -2147483647))); // JSVAL_INT_MIN+1
-		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<i32>(cx, -(i64)2147483648))); // JSVAL_INT_MIN
+		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<i32>(cx, -(i64)2147483648u))); // JSVAL_INT_MIN
 
 		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<u32>(cx, 0)));
 
-		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<u32>(cx, 2147483646))); // JSVAL_INT_MAX-1
-		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<u32>(cx, 2147483647))); // JSVAL_INT_MAX
-		TS_ASSERT(JSVAL_IS_DOUBLE(ScriptInterface::ToJSVal<u32>(cx, 2147483648))); // JSVAL_INT_MAX+1
+		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<u32>(cx, 2147483646u))); // JSVAL_INT_MAX-1
+		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<u32>(cx, 2147483647u))); // JSVAL_INT_MAX
+		TS_ASSERT(JSVAL_IS_DOUBLE(ScriptInterface::ToJSVal<u32>(cx, 2147483648u))); // JSVAL_INT_MAX+1
 	}
 
 	void test_nonfinite()
