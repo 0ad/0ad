@@ -355,11 +355,21 @@ EconomyManager.prototype.checkResourceConcentrations = function(gameState, resou
 	return count;
 };
 
+EconomyManager.prototype.buildMarket = function(gameState, queues){
+	if (gameState.getTimeElapsed() > 600 * 1000){
+		if (queues.economicBuilding.totalLength() === 0 && 
+			gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_market")) === 0){ 
+			//only ever build one mill/CC/market at a time
+			queues.economicBuilding.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_market"));
+		}
+	}
+};
+
 EconomyManager.prototype.buildDropsites = function(gameState, queues){
 	if (queues.economicBuilding.totalLength() === 0 && 
 			gameState.countFoundationsWithType(gameState.applyCiv("structures/{civ}_mill")) === 0 &&
 			gameState.countFoundationsWithType(gameState.applyCiv("structures/{civ}_civil_centre")) === 0){ 
-			//only ever build one mill/CC at a time
+			//only ever build one mill/CC/market at a time
 		if (gameState.getTimeElapsed() > 30 * 1000){
 			for (var resource in this.dropsiteNumbers){
 				if (this.checkResourceConcentrations(gameState, resource) < this.dropsiteNumbers[resource]){
@@ -422,6 +432,8 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 	Engine.ProfileStart("Build new Dropsites");
 	this.buildDropsites(gameState, queues);
 	Engine.ProfileStop();
+	
+	this.buildMarket(gameState, queues);
 	
 	// TODO: implement a timer based system for this
 	this.setCount += 1;
