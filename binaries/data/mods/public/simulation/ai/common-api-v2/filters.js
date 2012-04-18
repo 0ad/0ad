@@ -72,7 +72,12 @@ var Filters = {
 	
 	byOwners: function(owners){
 		return {"func" : function(ent){
-			return (owners.indexOf(ent.owner()) !== -1);
+			for (var i in owners){
+				if (ent.owner() == +owners[i]){
+					return true;
+				}
+			}
+			return false;
 		}, 
 		"dynamicProperties": ['owner']};
 	},

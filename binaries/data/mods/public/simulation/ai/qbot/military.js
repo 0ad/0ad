@@ -149,13 +149,16 @@ MilitaryAttackManager.prototype.getEnemyBuildings = function(gameState,cls) {
 MilitaryAttackManager.prototype.getAvailableUnits = function(n, filter) {
 	var ret = [];
 	var count = 0;
-	this.getUnassignedUnits().forEach(function(ent){
-		if (filter){
-			if (!filter(ent)){
-				return;
-			}
-		}
-		
+	
+	var units = undefined;
+	
+	if (filter){
+		units = this.getUnassignedUnits().filter(filter);
+	}else{
+		units = this.getUnassignedUnits();
+	}
+	
+	units.forEach(function(ent){
 		ret.push(ent.id());
 		ent.setMetadata("military", "assigned");
 		ent.setMetadata("role", "military");
@@ -185,16 +188,11 @@ MilitaryAttackManager.prototype.getUnassignedUnits = function(){
 
 MilitaryAttackManager.prototype.countAvailableUnits = function(filter){
 	var count = 0;
-	this.getUnassignedUnits().forEach(function(ent){
-		if (filter){
-			if (filter(ent)){
-				count += 1;
-			}
-		}else{
-			count += 1;
-		}
-	});
-	return count;
+	if (filter){
+		return this.getUnassignedUnits().filter(filter).length;
+	}else{
+		return this.getUnassignedUnits().length;
+	}
 };
 
 // Takes an entity id and returns an entity object or false if there is no entity with that id

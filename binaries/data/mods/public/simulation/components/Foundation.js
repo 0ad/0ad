@@ -158,6 +158,8 @@ Foundation.prototype.Build = function(builderEnt, work)
 	this.buildProgress += amount;
 	if (this.buildProgress > 1.0)
 		this.buildProgress = 1.0;
+		
+	Engine.PostMessage(this.entity, MT_FoundationProgressChanged, { "to": this.GetBuildPercentage() });
 
 	// Add an appropriate proportion of hitpoints
 	var targetHP = Math.max(0, Math.min(this.maxHitpoints, Math.floor(this.maxHitpoints * this.buildProgress)));

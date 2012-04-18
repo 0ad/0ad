@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="formation-01">
       <mesh>gaia/geo_medit_01.dae</mesh>
@@ -23,7 +21,6 @@
       <mesh>gaia/geo_medit_06.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="medit_stone_a">
       <texture>gaia/metal_medit_a.dds</texture>
@@ -35,7 +32,6 @@
       <texture>gaia/metal_medit_c.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="decal">
       <props>
@@ -43,5 +39,5 @@
       </props>
     </variant>
   </group>
-
+  <material>basic_spec.xml</material>
 </actor>

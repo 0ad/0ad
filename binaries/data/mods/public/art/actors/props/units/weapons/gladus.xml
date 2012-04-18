@@ -1,14 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="Base">
       <texture>props/prop_weap.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="gladius-plain">
       <mesh>props/weap_gladus_c.dae</mesh>
@@ -29,5 +26,5 @@
       <mesh>props/weap_gladus_h.dae</mesh>
     </variant>
   </group>
-
+  <material>basic_spec.xml</material>
 </actor>

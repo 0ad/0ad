@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="2" name="formation-a">
       <mesh>gaia/stonemine_granite_a.dae</mesh>
@@ -29,5 +27,5 @@
       <texture>gaia/metal_tropic_hi.dds</texture>
     </variant>
   </group>
-
+  <material>basic_spec.xml</material>
 </actor>

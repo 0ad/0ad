@@ -270,7 +270,7 @@ protected:
 BEGIN_COMMAND(PaintTerrain)
 {
 	TerrainArray m_TerrainDelta;
-	ssize_t m_i0, m_j0, m_i1, m_j1;
+	ssize_t m_i0, m_j0, m_i1, m_j1; // dirtied tiles (inclusive lower bound, exclusive upper)
 
 	cPaintTerrain()
 	{
@@ -324,10 +324,10 @@ BEGIN_COMMAND(PaintTerrain)
 			}
 		}
 
-		m_i0 = x0;
-		m_j0 = y0;
-		m_i1 = x0 + g_CurrentBrush.m_W;
-		m_j1 = y0 + g_CurrentBrush.m_H;
+		m_i0 = x0 - 1;
+		m_j0 = y0 - 1;
+		m_i1 = x0 + g_CurrentBrush.m_W + 1;
+		m_j1 = y0 + g_CurrentBrush.m_H + 1;
 		MakeDirty();
 	}
 
@@ -359,7 +359,7 @@ END_COMMAND(PaintTerrain)
 BEGIN_COMMAND(ReplaceTerrain)
 {
 	TerrainArray m_TerrainDelta;
-	ssize_t m_i0, m_j0, m_i1, m_j1;
+	ssize_t m_i0, m_j0, m_i1, m_j1; // dirtied tiles (inclusive lower bound, exclusive upper)
 
 	cReplaceTerrain()
 	{
@@ -407,10 +407,10 @@ BEGIN_COMMAND(ReplaceTerrain)
 			{
 				if (m_TerrainDelta.GetTexEntry(i, j) == replacedTex)
 				{
-					m_i0 = std::min(m_i0, i);
-					m_j0 = std::min(m_j0, j);
-					m_i1 = std::max(m_i1, i+1);
-					m_j1 = std::max(m_j1, j+1);
+					m_i0 = std::min(m_i0, i-1);
+					m_j0 = std::min(m_j0, j-1);
+					m_i1 = std::max(m_i1, i+2);
+					m_j1 = std::max(m_j1, j+2);
 					m_TerrainDelta.PaintTile(i, j, texentry, m_TerrainDelta.GetPriority(i, j));
 				}
 			}
@@ -438,7 +438,7 @@ END_COMMAND(ReplaceTerrain)
 BEGIN_COMMAND(FillTerrain)
 {
 	TerrainArray m_TerrainDelta;
-	ssize_t m_i0, m_j0, m_i1, m_j1;
+	ssize_t m_i0, m_j0, m_i1, m_j1; // dirtied tiles (inclusive lower bound, exclusive upper)
 
 	cFillTerrain()
 	{
@@ -500,10 +500,10 @@ BEGIN_COMMAND(FillTerrain)
 			if (m_TerrainDelta.GetTexEntry(i, j) == replacedTex)
 			{
 				// Found a tile to replace: adjust bounds and paint it
-				m_i0 = std::min(m_i0, (ssize_t)i);
-				m_j0 = std::min(m_j0, (ssize_t)j);
-				m_i1 = std::max(m_i1, (ssize_t)i+1);
-				m_j1 = std::max(m_j1, (ssize_t)j+1);
+				m_i0 = std::min(m_i0, (ssize_t)i-1);
+				m_j0 = std::min(m_j0, (ssize_t)j-1);
+				m_i1 = std::max(m_i1, (ssize_t)i+2);
+				m_j1 = std::max(m_j1, (ssize_t)j+2);
 				m_TerrainDelta.PaintTile(i, j, texentry, m_TerrainDelta.GetPriority(i, j));
 
 				// Visit 4 adjacent tiles (could visit 8 if we want to count diagonal adjacency)
