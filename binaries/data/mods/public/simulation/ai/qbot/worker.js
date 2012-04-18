@@ -10,7 +10,8 @@ Worker.prototype.update = function(gameState) {
 	var subrole = this.ent.getMetadata("subrole");
 	
 	if (subrole === "gatherer"){
-		if (!(this.ent.unitAIState().split(".")[1] === "GATHER" && this.getResourceType(this.ent.unitAIOrderData().type) === this.ent.getMetadata("gather-type"))
+		if (!(this.ent.unitAIState().split(".")[1] === "GATHER" && this.ent.unitAIOrderData().type 
+				&& this.getResourceType(this.ent.unitAIOrderData().type) === this.ent.getMetadata("gather-type"))
 				&& !(this.ent.unitAIState().split(".")[1] === "RETURNRESOURCE")){
 			// TODO: handle combat for hunting animals
 			Engine.ProfileStart("Start Gathering");

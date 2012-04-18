@@ -29,8 +29,6 @@ function QBotAI(settings) {
 	this.firstTime = true;
 
 	this.savedEvents = [];
-	
-	this.toUpdate = [];
 }
 
 QBotAI.prototype = new BaseAI();
@@ -74,10 +72,6 @@ QBotAI.prototype.runInit = function(gameState){
 	}
 };
 
-QBotAI.prototype.registerUpdate = function(obj){
-	this.toUpdate.push(obj);
-};
-
 QBotAI.prototype.OnUpdate = function() {
 	if (this.gameFinished){
 		return;
@@ -97,12 +91,6 @@ QBotAI.prototype.OnUpdate = function() {
 		if (gameState.getOwnEntities().length === 0){
 			Engine.ProfileStop();
 			return; // With no entities to control the AI cannot do anything 
-		}
-		
-		// Run these updates before the init so they don't get hammered by the initial creation
-		// events at the start of the game.
-		for (var i = 0; i < this.toUpdate.length; i++){
-			this.toUpdate[i].update(gameState, this.savedEvents);
 		}
 		
 		this.runInit(gameState);
