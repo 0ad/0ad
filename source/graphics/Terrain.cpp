@@ -57,6 +57,8 @@ CTerrain::~CTerrain()
 // ReleaseData: delete any data allocated by this terrain
 void CTerrain::ReleaseData()
 {
+	m_HeightMipmap.ReleaseData();
+
 	delete[] m_Heightmap;
 	delete[] m_Patches;
 }
@@ -65,29 +67,35 @@ void CTerrain::ReleaseData()
 ///////////////////////////////////////////////////////////////////////////////
 // Initialise: initialise this terrain to the given size
 // using given heightmap to setup elevation data
-bool CTerrain::Initialize(ssize_t patchesPerSide,const u16* data)
+bool CTerrain::Initialize(ssize_t patchesPerSide, const u16* data)
 {
 	// clean up any previous terrain
 	ReleaseData();
 
 	// store terrain size
-	m_MapSize=patchesPerSide*PATCH_SIZE+1;
-	m_MapSizePatches=patchesPerSide;
+	m_MapSize = patchesPerSide*PATCH_SIZE+1;
+	m_MapSizePatches = patchesPerSide;
 	// allocate data for new terrain
-	m_Heightmap=new u16[m_MapSize*m_MapSize];
-	m_Patches=new CPatch[m_MapSizePatches*m_MapSizePatches];
+	m_Heightmap = new u16[m_MapSize*m_MapSize];
+	m_Patches = new CPatch[m_MapSizePatches*m_MapSizePatches];
 
 	// given a heightmap?
-	if (data) {
+	if (data)
+	{
 		// yes; keep a copy of it
-		memcpy(m_Heightmap,data,m_MapSize*m_MapSize*sizeof(u16));
-	} else {
+		memcpy(m_Heightmap, data, m_MapSize*m_MapSize*sizeof(u16));
+	}
+	else
+	{
 		// build a flat terrain
-		memset(m_Heightmap,0,m_MapSize*m_MapSize*sizeof(u16));
+		memset(m_Heightmap, 0, m_MapSize*m_MapSize*sizeof(u16));
 	}
 
 	// setup patch parents, indices etc
 	InitialisePatches();
+
+	// initialise mipmap
+	m_HeightMipmap.Initialize(m_MapSize, m_Heightmap);
 
 	return true;
 }
@@ -330,6 +338,17 @@ fixed CTerrain::GetSlopeFixed(ssize_t i, ssize_t j) const
 	return fixed::FromInt(delta / TERRAIN_TILE_SIZE) / (int)HEIGHT_UNITS_PER_METRE;
 }
 
+float CTerrain::GetFilteredGroundLevel(float x, float z, float radius) const
+{
+	// convert to [0,1] interval
+	float nx = x / (TERRAIN_TILE_SIZE*m_MapSize);
+	float nz = z / (TERRAIN_TILE_SIZE*m_MapSize);
+	float nr = radius / (TERRAIN_TILE_SIZE*m_MapSize);
+
+	// get trilinear filtered mipmap height
+	return HEIGHT_SCALE * m_HeightMipmap.GetTrilinearGroundLevel(nx, nz, nr);
+}
+
 float CTerrain::GetExactGroundLevel(float x, float z) const
 {
 	// Clamp to size-2 so we can use the tiles (xi,zi)-(xi+1,zi+1)
@@ -530,6 +549,9 @@ void CTerrain::Resize(ssize_t size)
 
 	// initialise all the new patches
 	InitialisePatches();
+
+	// initialise mipmap
+	m_HeightMipmap.Initialize(m_MapSize,m_Heightmap);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -564,6 +586,9 @@ void CTerrain::SetHeightMap(u16* heightmap)
 			patch->SetDirty(RENDERDATA_UPDATE_VERTICES);
 		}
 	}
+
+	// update mipmap
+	m_HeightMipmap.Update(m_Heightmap);
 }
 
 
@@ -587,6 +612,9 @@ void CTerrain::MakeDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1, int dir
 			patch->SetDirty(dirtyFlags);
 		}
 	}
+
+	if (m_Heightmap)
+		m_HeightMipmap.Update(m_Heightmap, i0, j0, i1, j1);
 }
 
 void CTerrain::MakeDirty(int dirtyFlags)
@@ -601,6 +629,9 @@ void CTerrain::MakeDirty(int dirtyFlags)
 			patch->SetDirty(dirtyFlags);
 		}
 	}
+
+	if (m_Heightmap)
+		m_HeightMipmap.Update(m_Heightmap);
 }
 
 CBoundingBoxAligned CTerrain::GetVertexesBound(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1)

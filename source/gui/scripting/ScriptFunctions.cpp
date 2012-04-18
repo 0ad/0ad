@@ -531,6 +531,15 @@ void DumpSimState(void* UNUSED(cbdata))
 	g_Game->GetSimulation2()->DumpDebugState(file);
 }
 
+void DumpTerrainMipmap(void* UNUSED(cbdata))
+{
+	VfsPath filename(L"screenshots/terrainmipmap.png");
+	g_Game->GetWorld()->GetTerrain()->GetHeightMipmap().DumpToDisk(filename);
+	OsPath realPath;
+	g_VFS->GetRealPath(filename, realPath);
+	LOGMESSAGERENDER(L"Terrain mipmap written to '%ls'", realPath.string().c_str());
+}
+
 void EnableTimeWarpRecording(void* UNUSED(cbdata), unsigned int numTurns)
 {
 	g_Game->GetTurnManager()->EnableTimeWarpRecording(numTurns);
@@ -628,6 +637,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, &DebugWarn>("DebugWarn");
 	scriptInterface.RegisterFunction<void, &ForceGC>("ForceGC");
 	scriptInterface.RegisterFunction<void, &DumpSimState>("DumpSimState");
+	scriptInterface.RegisterFunction<void, &DumpTerrainMipmap>("DumpTerrainMipmap");
 	scriptInterface.RegisterFunction<void, unsigned int, &EnableTimeWarpRecording>("EnableTimeWarpRecording");
 	scriptInterface.RegisterFunction<void, &RewindTimeWarp>("RewindTimeWarp");
 	scriptInterface.RegisterFunction<void, bool, &SetBoundingBoxDebugOverlay>("SetBoundingBoxDebugOverlay");

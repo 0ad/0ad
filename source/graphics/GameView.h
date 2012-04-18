@@ -85,6 +85,8 @@ public:
 	void CameraFollow(entity_id_t entity, bool firstPerson);
 	entity_id_t GetFollowedEntity();
 
+	CVector3D GetSmoothPivot(CCamera &camera) const;
+
 	float GetNear() const;
 	float GetFar() const;
 	float GetFOV() const;
