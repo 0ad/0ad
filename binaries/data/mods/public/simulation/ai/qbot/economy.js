@@ -64,7 +64,7 @@ EconomyManager.prototype.reassignRolelessUnits = function(gameState) {
 	roleless.forEach(function(ent) {
 		if (ent.hasClass("Worker")){
 			ent.setMetadata("role", "worker");
-		}else if(ent.hasClass("CitizenSoldier") || ent.hasClass("Super")){
+		}else if(ent.hasClass("CitizenSoldier") || ent.hasClass("Champion")){
 			ent.setMetadata("role", "soldier");
 		}else{
 			ent.setMetadata("role", "unknown");
