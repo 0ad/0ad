@@ -56,7 +56,7 @@ public:
 		brush.Slice(plane, result);
 
 		// verify that the resulting brush consists of exactly our 8 expected, unique vertices
-		TS_ASSERT_EQUALS(8, result.GetVertices().size());
+		TS_ASSERT_EQUALS((size_t)8, result.GetVertices().size());
 		size_t LBF = GetUniqueVertexIndex(result, CVector3D(0, 0, 0)); // left-bottom-front <=> XYZ
 		size_t RBF = GetUniqueVertexIndex(result, CVector3D(1, 0, 0)); // right-bottom-front
 		size_t RBB = GetUniqueVertexIndex(result, CVector3D(1, 0, 0.5f)); // right-bottom-back
@@ -86,7 +86,7 @@ public:
 		brush.Slice(plane, result);
 
 		// verify that the resulting brush consists of exactly our 8 expected, unique vertices
-		TS_ASSERT_EQUALS(8, result.GetVertices().size());
+		TS_ASSERT_EQUALS((size_t)8, result.GetVertices().size());
 		size_t LBF = GetUniqueVertexIndex(result, CVector3D(0, 0, 0)); // left-bottom-front <=> XYZ
 		size_t RBF = GetUniqueVertexIndex(result, CVector3D(1, 0, 0)); // right-bottom-front
 		size_t RBB = GetUniqueVertexIndex(result, CVector3D(1, 0, 1)); // right-bottom-back
@@ -115,12 +115,12 @@ public:
 		CBrush result;
 		brush.Slice(plane, result);
 
-		TS_ASSERT_EQUALS(0, result.GetVertices().size());
+		TS_ASSERT_EQUALS((size_t)0, result.GetVertices().size());
 		
 		std::vector<std::vector<size_t> > faces;
 		result.GetFaces(faces);
 
-		TS_ASSERT_EQUALS(0, faces.size());
+		TS_ASSERT_EQUALS((size_t)0, faces.size());
 	}
 
 private:

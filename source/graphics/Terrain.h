@@ -25,6 +25,7 @@
 #include "maths/Vector3D.h"
 #include "maths/Fixed.h"
 #include "graphics/SColor.h"
+#include "graphics/HeightMipmap.h"
 
 class CPatch;
 class CMiniPatch;
@@ -84,6 +85,7 @@ public:
 	fixed GetVertexGroundLevelFixed(ssize_t i, ssize_t j) const;
 	float GetExactGroundLevel(float x, float z) const;
 	fixed GetExactGroundLevelFixed(fixed x, fixed z) const;
+	float GetFilteredGroundLevel(float x, float z, float radius) const;
 
 	// get the approximate slope (0 = horizontal, 0.5 = 30 degrees, 1.0 = 45 degrees, etc)
 	fixed GetSlopeFixed(ssize_t i, ssize_t j) const;
@@ -151,6 +153,8 @@ public:
 	// set the base colour for the terrain
 	void SetBaseColour(SColor4ub colour) { m_BaseColour = colour; }
 
+	const CHeightMipmap& GetHeightMipmap() const { return m_HeightMipmap; }
+
 private:
 	// delete any data allocated by this terrain
 	void ReleaseData();
@@ -167,6 +171,8 @@ private:
 	u16* m_Heightmap;
 	// base colour (usually white)
 	SColor4ub m_BaseColour;
+	// heightmap mipmap
+	CHeightMipmap m_HeightMipmap;
 };
 
 #endif

@@ -58,6 +58,10 @@ public:
 
 			char buf[4];
 			char* target = &buf[bytesToWrite];
+			// GCC sometimes warns "array subscript is above array bounds [-Warray-bounds]"
+			// for the above line, which is a false positive - the C++ standard allows a
+			// pointer to just after the last element in an array, as long as it's not
+			// dereferenced (which it isn't here)
 			switch (bytesToWrite)
 			{
 			case 4: *--target = ((ch | 0x80) & 0xBF); ch >>= 6;

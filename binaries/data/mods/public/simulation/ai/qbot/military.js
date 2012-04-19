@@ -58,7 +58,7 @@ MilitaryAttackManager.prototype.init = function(gameState) {
 	}
 	
 	var enemies = gameState.getEnemyEntities();
-	var filter = Filters.byClassesOr(["CitizenSoldier", "Super", "Siege"]);
+	var filter = Filters.byClassesOr(["CitizenSoldier", "Champion", "Siege"]);
 	this.enemySoldiers = enemies.filter(filter); // TODO: cope with diplomacy changes
 	this.enemySoldiers.registerUpdates();
 };
@@ -93,7 +93,7 @@ MilitaryAttackManager.prototype.findTrainableUnits = function(gameState, soldier
 MilitaryAttackManager.prototype.getSoldierType = function(ent){
 	if (ent.hasClass("CitizenSoldier") && !ent.hasClass("Cavalry")){
 		return "citizenSoldier";
-	}else if (ent.hasClass("Super") || ent.hasClass("Hero") || ent.hasClass("CitizenSoldier")){
+	}else if (ent.hasClass("Champion") || ent.hasClass("CitizenSoldier")){
 		return "advanced";
 	}else if (ent.hasClass("Siege")){
 		return "siege";

@@ -246,6 +246,15 @@ inline T round_up_to_pow2(T x)
 }
 
 /**
+ * round down to next larger power of two.
+ **/
+template<typename T>
+inline T round_down_to_pow2(T x)
+{
+	return T(1) << floor_log2(x);
+}
+
+/**
  * round number up/down to the next given multiple.
  *
  * @param n Number to round.

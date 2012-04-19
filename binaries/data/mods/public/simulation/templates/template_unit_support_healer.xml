@@ -6,7 +6,7 @@
     <Crush>2.0</Crush>
   </Armour>
   <Heal>
-    <Range>5</Range>
+    <Range>12</Range>
     <HP>5</HP>
     <Rate>2000</Rate>
     <UnhealableClasses datatype="tokens"/>
@@ -44,6 +44,6 @@
     <WalkSpeed>7.5</WalkSpeed>
   </UnitMotion>
   <Vision>
-    <Range>48</Range>
+    <Range>30</Range>
   </Vision>
 </Entity>

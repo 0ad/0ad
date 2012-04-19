@@ -190,6 +190,8 @@ public:
 		JoystickRotateY(-1),
 		JoystickZoomIn(-1),
 		JoystickZoomOut(-1),
+		HeightSmoothness(0.5f),
+		HeightMin(16.f),
 
 		PosX(0, 0, 0.01f),
 		PosY(0, 0, 0.01f),
@@ -289,6 +291,8 @@ public:
 	int JoystickRotateY;
 	int JoystickZoomIn;
 	int JoystickZoomOut;
+	float HeightSmoothness;
+	float HeightMin;
 
 	////////////////////////////////////////
 	// Camera Controls State
@@ -426,6 +430,9 @@ int CGameView::Initialize()
 	CFG_GET_SYS_VAL("joystick.camera.zoom.in", Int, m->JoystickZoomIn);
 	CFG_GET_SYS_VAL("joystick.camera.zoom.out", Int, m->JoystickZoomOut);
 
+	CFG_GET_SYS_VAL("view.height.smoothness", Float, m->HeightSmoothness);
+	CFG_GET_SYS_VAL("view.height.min", Float, m->HeightMin);
+
 	CFG_GET_SYS_VAL("view.pos.smoothness", Float, m->PosX.m_Smoothness);
 	CFG_GET_SYS_VAL("view.pos.smoothness", Float, m->PosY.m_Smoothness);
 	CFG_GET_SYS_VAL("view.pos.smoothness", Float, m->PosZ.m_Smoothness);
@@ -509,7 +516,7 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 			if(bounds[1].Y < waterHeight) {
 				bounds[1].Y = waterHeight;
 			}
-			
+
 			if (!m->Culling || frustum.IsBoxVisible (CVector3D(0,0,0), bounds)) {
 				//c->Submit(patch);
 
@@ -595,38 +602,67 @@ void CGameView::UnloadResources()
 	g_Renderer.GetWaterManager()->UnloadWaterTextures();
 }
 
-
-static void ClampDistance(CGameViewImpl* m, bool smooth)
+static void FocusHeight(CGameViewImpl* m, bool smooth)
 {
+	/*
+		The camera pivot height is moved towards ground level.
+		To prevent excessive zoom when looking over a cliff,
+		the target ground level is the maximum of the ground level at the camera's near and pivot points.
+		The ground levels are filtered to achieve smooth camera movement.
+		The filter radius is proportional to the zoom level.
+		The camera height is clamped to prevent map penetration.
+	*/
+
 	if (!m->ConstrainCamera)
 		return;
 
 	CCamera targetCam = m->ViewCamera;
 	SetupCameraMatrixSmoothRot(m, &targetCam.m_Orientation);
 
-	CVector3D forwards = targetCam.m_Orientation.GetIn();
+	const CVector3D position = targetCam.m_Orientation.GetTranslation();
+	const CVector3D forwards = targetCam.m_Orientation.GetIn();
 
-	CVector3D delta = targetCam.GetFocus() - targetCam.m_Orientation.GetTranslation();
+	// horizontal view radius
+	const float radius = sqrtf(forwards.X * forwards.X + forwards.Z * forwards.Z) * m->Zoom.GetSmoothedValue();
+	const float near_radius = radius * m->HeightSmoothness;
+	const float pivot_radius = radius * m->HeightSmoothness;
 
-	float dist = delta.Dot(forwards);
-	float clampedDist = Clamp(dist, m->ViewZoomMin, m->ViewZoomMax);
-	float diff = clampedDist - dist;
+	const CVector3D nearPoint = position + forwards * m->ViewNear;
+	const CVector3D pivotPoint = position + forwards * m->Zoom.GetSmoothedValue();
 
-	if (!diff)
+	const float ground = m->Game->GetWorld()->GetTerrain()->GetExactGroundLevel(nearPoint.X, nearPoint.Z);
+
+	// filter ground levels for smooth camera movement
+	const float filtered_near_ground = m->Game->GetWorld()->GetTerrain()->GetFilteredGroundLevel(nearPoint.X, nearPoint.Z, near_radius);
+	const float filtered_pivot_ground = m->Game->GetWorld()->GetTerrain()->GetFilteredGroundLevel(pivotPoint.X, pivotPoint.Z, pivot_radius);
+
+	// filtered maximum visible ground level in view
+	const float filtered_ground = std::max(filtered_near_ground, filtered_pivot_ground);
+
+	// target camera height above pivot point
+	const float pivot_height = -forwards.Y * (m->Zoom.GetSmoothedValue() - m->ViewNear);
+	// minimum camera height above filtered ground level
+	const float min_height = (m->HeightMin + ground - filtered_ground);
+
+	const float target_height = std::max(pivot_height, min_height);
+	const float height = (nearPoint.Y - filtered_ground);
+	const float diff = target_height - height;
+	if (fabsf(diff) < 0.0001f)
 		return;
 
 	if (smooth)
 	{
-		m->PosX.AddSmoothly(forwards.X * -diff);
-		m->PosY.AddSmoothly(forwards.Y * -diff);
-		m->PosZ.AddSmoothly(forwards.Z * -diff);
+		m->PosY.AddSmoothly(diff);
 	}
 	else
 	{
-		m->PosX.Add(forwards.X * -diff);
-		m->PosY.Add(forwards.Y * -diff);
-		m->PosZ.Add(forwards.Z * -diff);
+		m->PosY.Add(diff);
 	}
+}
+
+CVector3D CGameView::GetSmoothPivot(CCamera& camera) const
+{
+	return camera.m_Orientation.GetTranslation() + camera.m_Orientation.GetIn() * m->Zoom.GetSmoothedValue();
 }
 
 void CGameView::Update(float DeltaTime)
@@ -759,7 +795,7 @@ void CGameView::Update(float DeltaTime)
 				CCamera targetCam = m->ViewCamera;
 				SetupCameraMatrixSmoothRot(m, &targetCam.m_Orientation);
 
-				CVector3D pivot = targetCam.GetFocus();
+				CVector3D pivot = GetSmoothPivot(targetCam);
 				CVector3D delta = pos - pivot;
 				m->PosX.AddSmoothly(delta.X);
 				m->PosY.AddSmoothly(delta.Y);
@@ -774,11 +810,14 @@ void CGameView::Update(float DeltaTime)
 	}
 
 	if (HotkeyIsPressed("camera.zoom.in"))
-		m->Zoom.AddSmoothly(m->ViewZoomSpeed * DeltaTime);
-	if (HotkeyIsPressed("camera.zoom.out"))
 		m->Zoom.AddSmoothly(-m->ViewZoomSpeed * DeltaTime);
+	if (HotkeyIsPressed("camera.zoom.out"))
+		m->Zoom.AddSmoothly(m->ViewZoomSpeed * DeltaTime);
 
-	float zoomDelta = m->Zoom.Update(DeltaTime);
+	if (m->ConstrainCamera)
+		m->Zoom.ClampSmoothly(m->ViewZoomMin, m->ViewZoomMax);
+
+	float zoomDelta = -m->Zoom.Update(DeltaTime);
 	if (zoomDelta)
 	{
 		CVector3D forwards = m->ViewCamera.m_Orientation.GetIn();
@@ -790,7 +829,7 @@ void CGameView::Update(float DeltaTime)
 	if (m->ConstrainCamera)
 		m->RotateX.ClampSmoothly(DEGTORAD(m->ViewRotateXMin), DEGTORAD(m->ViewRotateXMax));
 
-	ClampDistance(m, true);
+	FocusHeight(m, true);
 
 	// Ensure the ViewCamera focus is inside the map with the chosen margins
 	// if not so - apply margins to the camera
@@ -801,7 +840,7 @@ void CGameView::Update(float DeltaTime)
 
 		CTerrain* pTerrain = m->Game->GetWorld()->GetTerrain();
 
-		CVector3D pivot = targetCam.GetFocus();
+		CVector3D pivot = GetSmoothPivot(targetCam);
 		CVector3D delta = targetCam.m_Orientation.GetTranslation() - pivot;
 
 		CVector3D desiredPivot = pivot;
@@ -846,7 +885,7 @@ void CGameView::Update(float DeltaTime)
 
 			CVector3D upwards(0.0f, 1.0f, 0.0f);
 
-			CVector3D pivot = targetCam.GetFocus();
+			CVector3D pivot = GetSmoothPivot(targetCam);
 			CVector3D delta = targetCam.m_Orientation.GetTranslation() - pivot;
 
 			CQuaternion q;
@@ -869,7 +908,7 @@ void CGameView::Update(float DeltaTime)
 		{
 			CVector3D rightwards = targetCam.m_Orientation.GetLeft() * -1.0f;
 
-			CVector3D pivot = m->ViewCamera.GetFocus();
+			CVector3D pivot = GetSmoothPivot(targetCam);
 			CVector3D delta = targetCam.m_Orientation.GetTranslation() - pivot;
 
 			CQuaternion q;
@@ -919,13 +958,13 @@ void CGameView::MoveCameraTarget(const CVector3D& target)
 	CCamera targetCam = m->ViewCamera;
 	SetupCameraMatrixNonSmooth(m, &targetCam.m_Orientation);
 
-	CVector3D pivot = targetCam.GetFocus();
+	CVector3D pivot = GetSmoothPivot(targetCam);
 	CVector3D delta = target - pivot;
-	
+
 	m->PosX.SetValueSmoothly(delta.X + m->PosX.GetValue());
 	m->PosZ.SetValueSmoothly(delta.Z + m->PosZ.GetValue());
 
-	ClampDistance(m, false);
+	FocusHeight(m, false);
 
 	// Break out of following mode so the camera really moves to the target
 	m->FollowEntity = INVALID_ENTITY;
@@ -944,8 +983,9 @@ void CGameView::ResetCameraTarget(const CVector3D& target)
 	m->PosZ.SetValue(target.Z - delta.Z);
 	m->RotateX.SetValue(DEGTORAD(m->ViewRotateXDefault));
 	m->RotateY.SetValue(DEGTORAD(m->ViewRotateYDefault));
+	m->Zoom.SetValue(m->ViewZoomDefault);
 
-	ClampDistance(m, false);
+	FocusHeight(m, false);
 
 	SetupCameraMatrixSmooth(m, &m->ViewCamera.m_Orientation);
 	m->ViewCamera.UpdateFrustum();
@@ -961,9 +1001,11 @@ void CGameView::ResetCameraAngleZoom()
 
 	// Compute the zoom adjustment to get us back to the default
 	CVector3D forwards = targetCam.m_Orientation.GetIn();
-	CVector3D delta = targetCam.GetFocus() - targetCam.m_Orientation.GetTranslation();
+
+	CVector3D pivot = GetSmoothPivot(targetCam);
+	CVector3D delta = pivot - targetCam.m_Orientation.GetTranslation();
 	float dist = delta.Dot(forwards);
-	m->Zoom.AddSmoothly(dist - m->ViewZoomDefault);
+	m->Zoom.AddSmoothly(m->ViewZoomDefault - dist);
 
 	// Reset orientations to default
 	m->RotateX.SetValueSmoothly(DEGTORAD(m->ViewRotateXDefault));
@@ -1049,12 +1091,12 @@ InReaction CGameView::HandleEvent(const SDL_Event_* ev)
 		// and we never get to see the "down" state inside Update().
 		else if (hotkey == "camera.zoom.wheel.in")
 		{
-			m->Zoom.AddSmoothly(m->ViewZoomSpeedWheel);
+			m->Zoom.AddSmoothly(-m->ViewZoomSpeedWheel);
 			return IN_HANDLED;
 		}
 		else if (hotkey == "camera.zoom.wheel.out")
 		{
-			m->Zoom.AddSmoothly(-m->ViewZoomSpeedWheel);
+			m->Zoom.AddSmoothly(m->ViewZoomSpeedWheel);
 			return IN_HANDLED;
 		}
 		else if (hotkey == "camera.rotate.wheel.cw")
