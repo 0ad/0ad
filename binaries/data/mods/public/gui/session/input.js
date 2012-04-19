@@ -1340,24 +1340,20 @@ function performGroup(action, groupId)
 	{
 	case "snap":
 	case "select":
+	case "add":
 		var toSelect = [];
 		g_Groups.update();
 		for (var ent in g_Groups.groups[groupId].ents)
 			toSelect.push(+ent);
 
-		g_Selection.reset();
+		if (action != "add")
+			g_Selection.reset();
+
 		g_Selection.addList(toSelect);
 
 		if (action == "snap" && toSelect.length)
 			Engine.CameraFollow(toSelect[0]);
 		break;
-
-	case "add":
-		var selection = g_Selection.toList();
-		g_Groups.addEntities(groupId, selection);
-		updateGroups();
-		break;
-
 	case "save":
 		var selection = g_Selection.toList();
 		g_Groups.groups[groupId].reset();
