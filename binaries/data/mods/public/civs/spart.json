@@ -1,0 +1,104 @@
+{
+	"Code":"spart",
+	"Name":"Spartans",
+	"Emblem":"session/portraits/emblems/emblem_spartans.png",
+	"History":"Sparta, or Lacedaemon, was a prominent city-state in ancient Greece, situated on the banks of the River Eurotas in Laconia, in south-eastern Peloponnese. It emerged as a political entity around the 10th century BC, when the invading Dorians subjugated the local, non-Dorian population. From c. 650 BC it rose to become the dominant military land-power in ancient Greece. Given its military pre-eminence, Sparta was recognized as the overall leader of the combined Greek forces during the Greco-Persian Wars. Between 431 and 404 BC, Sparta was the principal enemy of Athens during the Peloponnesian Wars, from which it emerged victorious, though at great cost. Sparta's defeat by Thebes in the Battle of Leuctra in 371 BC ended Sparta's prominent role in Greece. However, it maintained its political independence until the Roman conquest of Greece in 146 BC.",
+	"Music":[
+			{"File":"hellenes_peace_1.ogg", "Type":"peace"},
+			{"File":"hellenic_battle_2.ogg", "Type":"battle"}
+		],
+	"Factions":
+	[
+		{
+			"Name":"Spartans",
+			"Description":"",
+			"Technologies":
+			[
+				{
+					"Name":"Feminine Mystique",
+					"History":"Spartan women were some of the freest in the ancient world. They could own land and slaves and even exercise naked like Spartan men. It is said that only Spartan women gave birth to real men. Such tough as nails women more than once helped save their city from disaster, for example when after a lost battle against Pyrrhus of Epirus they overnight built an earthen rampart to protect the city while their men slept in preparation for the next day's siege.",
+					"Description":"Spartan female citizens cannot be captured and will doggedly fight back against any attackers."
+				},
+				{
+					"Name":"Tyrtean Paeans",
+					"History":"Shortly after the great naval victories at Salamis and Mykale, the Greek city-states instituted the so-called Delian League in 478 B.C., whose purpose was to push the Persians out of the Aegean region. The allied states contributed ships and money, while the Athenians offered their entire navy.",
+					"Description":"Units move faster in formation."
+				}
+			],
+			"Heroes":
+			[
+				{
+					"Name":"Leonidas I",
+					"Class":"",
+					"Armament":"",
+					"Emblem":"",
+					"History":"The king of Sparta, whom fought and died at the battle of Thermopylae in 480 B.C. He successfully blocked the way of the huge Persian army through the narrow passage with his 7000 men, until Xerxes was made aware of a secret unobstructed path. Finding the enemy at his rear, Leonidas sent home most of his troops, choosing to stay behind with 300 hand-picked hoplites and win time for the others to withdraw."
+				},
+				{
+					"Name":"Brasidas",
+					"Class":"",
+					"Armament":"",
+					"Emblem":"",
+					"History":"Because of Brasidas' unorthodox use of light-armed troops, Helot Skirmishers have a greater attack and speed while he lives."
+				},
+				{
+					"Name":"Agis III",
+					"Class":"",
+					"Armament":"",
+					"Emblem":"",
+					"History":"."
+				}
+			]
+		}
+	],
+	"CivBonuses":
+	[
+		{
+			"Name":"Othismos",
+			"History":"The Spartans were undisputed masters of phalanx warfare. The Spartans were so feared for their discipline that the enemy army would sometimes break up and run away before a single shield clashed. 'Othismos' refers to the point in a phalanx battle where both sides try to shove each other out of formation, attempting to breaking up the enemy lines and routing them.",
+			"Description":"Spartans can make use of the Phalanx formation without researching a technology."
+		},
+		{
+			"Name":"Laws of Lycurgus",
+			"History":"Under the Constitution written by the mythical law-giver Lycurgus, the institution of The Agoge was established, where Spartans were trained from the age of 6 to be superior warriors in defense of the Spartan state.",
+			"Description":"All citizen-soldiers trained in the City Phase start life at the Elite rank, but the population cap is reduced by 10%."
+		}
+	],
+	"TeamBonuses":
+	[
+		{
+			"Name":"Peloponnesian League",
+			"History":"Much of the Peloponnese was subject to Sparta in one way or another. This loose confederation, with Sparta as its leader, was later dubbed the Peloponnesian League by historians, but in ancient times was called 'The Lacedaemonians and their allies.'",
+			"Description":"Allied team members can train Spartiates from their fortresses."
+		}
+	],
+	"Structures":
+	[
+		{
+			"Name":"Syssiton",
+			"Class":"",
+			"Emblem":"",
+			"History":"The Syssiton was the Mess Hall for full-blooded Spartiates. Every Spartan peer, even kings, belonged to one.",
+			"Requirements":"",
+			"Phase":"",
+			"Special":"Train heroes and champion units and research technologies related to them."
+		}
+	],
+	"StartEntities":
+	[
+		{
+			"Template": "structures/spart_civil_centre"
+		},
+		{
+			"Template": "units/spart_support_female_citizen",
+			"Count": 4
+		},
+		{
+			"Template": "units/spart_infantry_spearman_b",
+			"Count": 4
+		},
+		{
+			"Template": "units/spart_cavalry_javelinist_b"
+		}
+	]
+}

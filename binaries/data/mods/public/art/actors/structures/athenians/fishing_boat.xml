@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" name="Greek Fishing Boata">
+      <animations>
+        <animation file="mechanical/rowing_boat_move.dae" name="Walk" speed="10"/>
+        <animation file="mechanical/rowing_boat_move.dae" name="Run" speed="10"/>
+        <animation file="mechanical/rowing_boat_move.dae" name="carry_food" speed="10"/>
+      </animations>
+      <mesh>structural/hele_fishing_boat.dae</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/fisherman_body.xml" attachpoint="root"/>
+        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
+      </props>
+      <texture>structural/hele_fishing_boat.dds</texture>
+    </variant>
+    <variant frequency="1" name="Greek Fishing Boatb">
+      <animations>
+        <animation file="mechanical/rowing_boat_move.dae" name="Walk" speed="10"/>
+        <animation file="mechanical/rowing_boat_move.dae" name="Run" speed="10"/>
+        <animation file="mechanical/rowing_boat_move.dae" name="carry_food" speed="10"/>
+      </animations>
+      <mesh>structural/hele_fishing_boat.dae</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/fisherman_body.xml" attachpoint="root"/>
+        <prop actor="props/units/heads/head_hele_e.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/hele_straw.xml" attachpoint="head"/>
+      </props>
+      <texture>structural/hele_fishing_boat.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

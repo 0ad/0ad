@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special">
+  <Cost>
+    <BuildTime>220</BuildTime>
+    <Resources>
+      <wood>0</wood>
+      <stone>200</stone>
+      <metal>200</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="30.0" depth="30.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Health>
+    <Max>2200</Max>
+  </Health>
+  <Identity>
+    <Civ>spart</Civ>
+	<GenericName>Military Mess Hall</GenericName>
+    <SpecificName>Syssíton</SpecificName>
+    <Tooltip>Train Spartan heroes and Spartiate champion hoplites.</Tooltip>
+    <History>The Syssítia was where full-blooded Spartans were barracked and dined together, even Spartan kings.</History>
+    <Icon>structures/gymnasion.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Static width="28.0" depth="28.0"/>
+  </Obstruction>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_gymnasium.xml</select>
+      <constructed>interface/complete/building/complete_gymnasium.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/hele_hero_leonidas
+      units/spart_champion_infantry_spear
+    </Entities>
+  </TrainingQueue>
+  <VisualActor>
+    <Actor>structures/hellenes/gymnasion.xml</Actor>
+    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+  </VisualActor>
+</Entity>

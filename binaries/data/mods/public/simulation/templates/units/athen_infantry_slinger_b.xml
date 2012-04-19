@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_ranged_slinger">
+  <Builder>
+    <Entities datatype="tokens">
+      structures/athen_gymnasion
+      structures/athen_theatron
+      structures/athen_prytaneion
+    </Entities>
+  </Builder>
+  <Identity>
+    <Civ>athen</Civ>
+    <SelectionGroupName>units/athen_infantry_slinger_b</SelectionGroupName>
+    <GenericName>Athenian Militia</GenericName>
+    <SpecificName>Psilós Athēnaïkós</SpecificName>
+    <History></History>
+    <Icon>units/hele_infantry_slinger.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/athen_infantry_slinger_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/athenians/infantry_slinger_b.xml</Actor>
+  </VisualActor>
+</Entity>

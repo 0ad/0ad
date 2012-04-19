@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_melee_spearman">
+  <Armour>
+    <Pierce>9.0</Pierce>
+  </Armour>
+  <Attack>
+    <Melee>
+      <MaxRange>6.0</MaxRange>
+    </Melee>
+    <Charge>
+      <MaxRange>6.0</MaxRange>
+    </Charge>
+  </Attack>
+  <Cost>
+    <Resources>
+      <wood>60</wood>
+    </Resources>
+  </Cost>
+  <Identity>
+    <Civ>mace</Civ>
+    <SelectionGroupName>units/mace_infantry_spearman_b</SelectionGroupName>
+	<GenericName>Foot Companion</GenericName>
+    <SpecificName>Pezétairos</SpecificName>
+    <History>'Foot Companions', these were the elite troops from the Macedonian phalanx, whom carried their Sarissas with both hands, the white shields being attached to their armour. The Sarissa and the new tactics they used were developed by Philip II under Theban influence. If properly protected by cavalry on both sides, the Pezhetairoi were virtually invincible to any kind of enemy unit. They were always deployed in deep formations of 16+.</History>
+    <Icon>units/hele_champion_infantry_mace.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/mace_infantry_spearman_a</Entity>
+  </Promotion>
+  <UnitMotion>
+    <WalkSpeed>6.5</WalkSpeed>
+    <Run>
+      <Speed>13.0</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/macedonians/infantry_spearman_b.xml</Actor>
+  </VisualActor>
+</Entity>

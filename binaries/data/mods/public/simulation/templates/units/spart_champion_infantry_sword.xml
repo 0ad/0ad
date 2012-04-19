@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_melee_swordsman">
+  <Armour>
+    <Hack>6.0</Hack>
+    <Pierce>11.0</Pierce>
+  </Armour>
+  <Attack>
+    <Melee>
+	  <Bonuses>
+		<BonusSupport>
+		  <Classes>Support</Classes>
+		  <Multiplier>1.25</Multiplier>
+		</BonusSupport>
+		<BonusPrimary>
+		  <Classes>Spear</Classes>
+		  <Multiplier>1.25</Multiplier>
+		</BonusPrimary>
+		<BonusSecondary>
+		  <Classes>Ranged</Classes>
+		  <Multiplier>1.25</Multiplier>
+		</BonusSecondary>
+		<BonusTertiary>
+		  <Classes>Elephant</Classes>
+		  <Multiplier>1.25</Multiplier>
+		</BonusTertiary>
+	  </Bonuses>
+    </Melee>
+    <Charge>
+	  <Bonuses>
+		<BonusSupport>
+		  <Classes>Support</Classes>
+		  <Multiplier>1.25</Multiplier>
+		</BonusSupport>
+		<BonusRanged>
+		  <Classes>Ranged</Classes>
+		  <Multiplier>1.25</Multiplier>
+		</BonusRanged>
+		<BonusPrimary>
+		  <Classes>Spear</Classes>
+		  <Multiplier>1.25</Multiplier>
+		</BonusPrimary>
+		<BonusSecondary>
+		  <Classes>Elephant</Classes>
+		  <Multiplier>1.25</Multiplier>
+		</BonusSecondary>
+	  </Bonuses>
+    </Charge>
+  </Attack>
+  <Builder>
+    <Entities datatype="tokens">
+      -structures/{civ}_wall
+      -structures/{civ}_wall_gate
+      -structures/{civ}_wall_tower
+	  structures/spart_syssiton
+    </Entities>
+  </Builder>
+  <Cost>
+    <BuildTime>12</BuildTime>
+    <Resources>
+      <metal>70</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>120</Max>
+  </Health>
+  <Identity>
+    <Civ>spart</Civ>
+	<GenericName>Skiritai Commando</GenericName>
+    <SpecificName>Ékdromos Skiritis</SpecificName>
+    <Rank>Elite</Rank>
+    <Tooltip>A swordsman trained at the Elite rank.
+Counters Support Units, Spear units, and Ranged Units (if they can catch them). Countered by Archers and Cavalry Spearmen.</Tooltip>
+    <History>The Skiritai were commandos in the Spartan army. They lead the vanguard on campaign and held the vital left flank of the Spartan infantry line.</History>
+    <Icon>units/spart_champion_infantry_sword.png</Icon>
+  </Identity>
+  <Promotion disable=""/>
+  <ResourceGatherer>
+    <BaseSpeed>0.5</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>12.0</WalkSpeed>
+    <Run>
+      <Speed>20.0</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/spartans/champion_infantry_sword.xml</Actor>
+  </VisualActor>
+</Entity>

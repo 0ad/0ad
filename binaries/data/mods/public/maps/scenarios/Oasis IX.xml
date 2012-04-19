@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="771.446" y="153.045" z="366.636"/>
+		<Position x="335.157" y="91.2024" z="611.618"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -3126,7 +3126,7 @@
 		<Entity uid="685">
 			<Template>gaia/fauna_camel</Template>
 			<Player>0</Player>
-			<Position x="384.43882" z="697.96558"/>
+			<Position x="363.71885" z="700.12665"/>
 			<Orientation y="0.60497"/>
 		</Entity>
 		<Entity uid="686">
@@ -5297,12 +5297,6 @@
 			<Position x="818.48346" z="703.99573"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="1124">
-			<Template>other/obelisk</Template>
-			<Player>0</Player>
-			<Position x="262.11438" z="772.3061"/>
-			<Orientation y="2.0511"/>
-		</Entity>
 		<Entity uid="1137">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
@@ -7314,6 +7308,192 @@
 			<Player>3</Player>
 			<Position x="361.42362" z="757.73591"/>
 			<Orientation y="-2.31411"/>
+		</Entity>
+		<Entity uid="1589">
+			<Template>structures/iber_wall_long</Template>
+			<Player>3</Player>
+			<Position x="304.4419" z="829.51172"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1590">
+			<Template>structures/iber_wall_medium</Template>
+			<Player>3</Player>
+			<Position x="329.96473" z="846.06092"/>
+			<Orientation y="2.80645"/>
+		</Entity>
+		<Entity uid="1591">
+			<Template>structures/iber_wall_medium</Template>
+			<Player>3</Player>
+			<Position x="351.93992" z="846.08417"/>
+			<Orientation y="-2.76941"/>
+		</Entity>
+		<Entity uid="1592">
+			<Template>structures/iber_wall_long</Template>
+			<Player>3</Player>
+			<Position x="374.50934" z="829.45289"/>
+			<Orientation y="-2.3342"/>
+		</Entity>
+		<Entity uid="1593">
+			<Template>structures/iber_wall_long</Template>
+			<Player>3</Player>
+			<Position x="397.96802" z="760.49524"/>
+			<Orientation y="1.58887"/>
+		</Entity>
+		<Entity uid="1594">
+			<Template>structures/iber_wall_long</Template>
+			<Player>3</Player>
+			<Position x="393.6987" z="724.9723"/>
+			<Orientation y="1.81714"/>
+		</Entity>
+		<Entity uid="1595">
+			<Template>structures/iber_wall_medium</Template>
+			<Player>3</Player>
+			<Position x="386.88776" z="693.98023"/>
+			<Orientation y="1.78856"/>
+		</Entity>
+		<Entity uid="1596">
+			<Template>structures/iber_wall_long</Template>
+			<Player>3</Player>
+			<Position x="372.64466" z="671.57422"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1597">
+			<Template>structures/iber_wall_medium</Template>
+			<Player>3</Player>
+			<Position x="318.83695" z="648.07862"/>
+			<Orientation y="2.86411"/>
+		</Entity>
+		<Entity uid="1598">
+			<Template>structures/iber_wall_long</Template>
+			<Player>3</Player>
+			<Position x="291.14405" z="657.9073"/>
+			<Orientation y="0.63424"/>
+		</Entity>
+		<Entity uid="1599">
+			<Template>structures/iber_wall_long</Template>
+			<Player>3</Player>
+			<Position x="269.25867" z="684.73511"/>
+			<Orientation y="1.1094"/>
+		</Entity>
+		<Entity uid="1600">
+			<Template>structures/iber_wall_medium</Template>
+			<Player>3</Player>
+			<Position x="256.3241" z="711.93226"/>
+			<Orientation y="1.16691"/>
+		</Entity>
+		<Entity uid="1601">
+			<Template>structures/iber_wall_long</Template>
+			<Player>3</Player>
+			<Position x="277.91117" z="800.9939"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1602">
+			<Template>structures/iber_wall_long</Template>
+			<Player>3</Player>
+			<Position x="258.01218" z="776.56366"/>
+			<Orientation y="2.07045"/>
+		</Entity>
+		<Entity uid="1603">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>3</Player>
+			<Position x="306.54477" z="645.83527"/>
+			<Orientation y="-2.89895"/>
+		</Entity>
+		<Entity uid="1604">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>3</Player>
+			<Position x="277.3647" z="668.42646"/>
+			<Orientation y="1.07016"/>
+		</Entity>
+		<Entity uid="1605">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>3</Player>
+			<Position x="260.24085" z="702.49097"/>
+			<Orientation y="-0.41135"/>
+		</Entity>
+		<Entity uid="1606">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>3</Player>
+			<Position x="250.69454" z="725.04365"/>
+			<Orientation y="1.34646"/>
+		</Entity>
+		<Entity uid="1607">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>3</Player>
+			<Position x="248.52875" z="760.8589"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1608">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>3</Player>
+			<Position x="265.9286" z="790.68641"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1609">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>3</Player>
+			<Position x="291.64271" z="816.2505"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1610">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>3</Player>
+			<Position x="317.55524" z="842.15229"/>
+			<Orientation y="2.73102"/>
+		</Entity>
+		<Entity uid="1611">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>3</Player>
+			<Position x="340.03757" z="850.78205"/>
+			<Orientation y="-0.21116"/>
+		</Entity>
+		<Entity uid="1612">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>3</Player>
+			<Position x="362.27408" z="842.88947"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1613">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>3</Player>
+			<Position x="387.65561" z="815.72181"/>
+			<Orientation y="1.01938"/>
+		</Entity>
+		<Entity uid="1614">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>3</Player>
+			<Position x="398.65528" z="781.47938"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1615">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>3</Player>
+			<Position x="397.78068" z="743.23792"/>
+			<Orientation y="1.57657"/>
+		</Entity>
+		<Entity uid="1616">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>3</Player>
+			<Position x="389.69312" z="707.80439"/>
+			<Orientation y="-1.11503"/>
+		</Entity>
+		<Entity uid="1617">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>3</Player>
+			<Position x="384.03745" z="684.31763"/>
+			<Orientation y="1.86431"/>
+		</Entity>
+		<Entity uid="1618">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>3</Player>
+			<Position x="358.73392" z="658.31745"/>
+			<Orientation y="-2.74735"/>
+		</Entity>
+		<Entity uid="1619">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>3</Player>
+			<Position x="329.30039" z="651.2887"/>
+			<Orientation y="2.89127"/>
 		</Entity>
 	</Entities>
 	<Paths/>
