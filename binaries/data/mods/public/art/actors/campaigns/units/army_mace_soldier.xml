@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="mace soldier">
+      <mesh>props/campaigns/pedestal_mace_1.dae</mesh>
+      <props>
+        <prop actor="campaigns/units/mace_soldier.xml" attachpoint="soldier"/>
+      </props>
+      <texture>campaigns/units/pedestal_mace_1.png</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Melee">
+      <props>
+        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

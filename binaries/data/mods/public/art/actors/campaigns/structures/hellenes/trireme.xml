@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant name="campaign hele trireme">
+      <mesh>structural/campaigns/hele_trireme.dae</mesh>
+      <props>
+        <prop actor="campaigns/props/structures/hele_trireme_sail.xml" attachpoint="root"/>
+      </props>
+      <texture>campaigns/structures/hele_trireme.png</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Palm Trees Clump 1">
+      <mesh>gaia/campaigns/trees_palm_01.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Palm Trees Clump 2">
+      <mesh>gaia/campaigns/trees_palm_02.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="palms a">
+      <texture>gaia/tree_palm_senegal_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="palms b">
+      <texture>gaia/tree_palm_senegal_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="palms c">
+      <texture>gaia/tree_palm_senegal_c.dds</texture>
+    </variant>
+    <variant frequency="1" name="palms d">
+      <texture>gaia/tree_palm_senegal_d.dds</texture>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

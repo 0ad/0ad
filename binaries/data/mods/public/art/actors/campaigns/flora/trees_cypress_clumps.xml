@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Cypress Trees Clump 1">
+      <mesh>gaia/campaigns/trees_cypress_01.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Cypress Trees Clump 2">
+      <mesh>gaia/campaigns/trees_cypress_02.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant name="texture">
+      <texture>gaia/prop_tree_cypess_big.dds</texture>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>
