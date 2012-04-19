@@ -367,7 +367,7 @@ function playRandomAmbient(type)
 //			currentAmbient = newRandomSound("ambient", "temperate_", "dayscape");
 
 			const AMBIENT = "audio/ambient/dayscape/day_temperate_gen_03.ogg";
-			currentAmbient = new Sound(AMBIENT);
+			currentAmbient = new AmbientSound(AMBIENT);
 
 			if (currentAmbient)
 			{

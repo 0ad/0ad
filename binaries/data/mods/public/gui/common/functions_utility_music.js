@@ -66,6 +66,20 @@ function newRandomSound(soundType, soundSubType, soundPrePath)
 
 	//console.write("Playing " + randomSoundPath + " ...");
 
+	switch (soundType)
+	{
+		case "music":
+			return new MusicSound(randomSoundPath);
+		break;
+		case "ambient":
+			return new AmbientSound(randomSoundPath);
+		break;
+		case "effect":
+            console.write ("am loading effect '*"+randomSoundPath+"*'");
+		break;
+		default:
+		break;
+	}
 	return new Sound(randomSoundPath);
 }
 
