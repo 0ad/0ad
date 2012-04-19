@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="mesh">
+      <mesh>props/hele_trireme_mainsail.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="sail_scorpion">
+      <texture>props/spart_sail_a.png</texture>
+    </variant>
+    <variant frequency="1" name="sail_dokana">
+      <texture>props/spart_sail_b.png</texture>
+    </variant>
+    <variant frequency="2" name="sail_lamda">
+      <texture>props/spart_sail_c.png</texture>
+    </variant>
+    <variant frequency="1" name="sail_gorgon">
+      <texture>props/spart_sail_d.png</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

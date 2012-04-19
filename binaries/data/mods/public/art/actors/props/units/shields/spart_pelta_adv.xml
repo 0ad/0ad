@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="pelta-small">
+      <mesh>props/shield/pelta_a_f.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/pelta_a_back.xml" attachpoint="back"/>
+      </props>
+      <texture>props/shield/spart_pelta_b.png</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

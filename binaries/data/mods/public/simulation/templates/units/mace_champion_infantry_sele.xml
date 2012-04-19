@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_infantry_pikeman">
+  <Identity>
+    <Civ>mace</Civ>
+	<GenericName>Bronze Shield Pikeman</GenericName>
+    <SpecificName>Chalkaspides</SpecificName>
+    <History>The Seleucids and Macedonians each had a corps of elite pikeman called "Chalkaspides."</History>
+    <Icon>units/mace_champion_infantry_sele.png</Icon>
+  </Identity>
+  <Vision>
+    <Range>88</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>units/macedonians/mace_champion_infantry_sele.xml</Actor>
+  </VisualActor>
+</Entity>

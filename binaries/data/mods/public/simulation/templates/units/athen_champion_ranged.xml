@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_infantry_archer">
+  <Cost>
+    <Resources>
+      <food>0</food>
+      <wood>75</wood>
+      <stone>0</stone>
+      <metal>50</metal>
+    </Resources>
+  </Cost>
+  <Identity>
+    <Civ>athen</Civ>
+	<GenericName>Scythian Archer</GenericName>
+    <SpecificName>Toxotes Skithikos</SpecificName>
+    <Tooltip>Mercenary Champion Archer.
+Counter Swordsmen and Cavalry Spearmen. Countered by Cavalry Swordsmen and Cavalry Skirmishers.</Tooltip>
+    <History>The Athenian employed Scythian archers as city police and auxillary troops.</History>
+    <Icon>units/athen_champion_ranged.png</Icon>
+  </Identity>
+  <Looter disable=""/>
+  <VisualActor>
+    <Actor>units/athenians/champion_unit_ranged.xml</Actor>
+  </VisualActor>
+</Entity>

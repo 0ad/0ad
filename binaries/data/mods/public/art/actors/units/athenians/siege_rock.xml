@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant>
+      <mesh>structural/hele_sr.dae</mesh>
+      <texture>structural/hele_siege.dds</texture>
+      <props>
+        <prop actor="props/units/weapons/rock_flaming.xml" attachpoint="projectile"/>
+      </props>
+    </variant>
+  </group>
+
+</actor>

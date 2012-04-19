@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_infantry_swordsman">
+  <Identity>
+    <Civ>athen</Civ>
+	<GenericName>Athenian Marine</GenericName>
+    <SpecificName>Épibastēs  Athēnaïkós</SpecificName>
+    <Tooltip>Champion Swordsmen. Trained from Athenian Triremes.
+Counters Support Units, Spear units, and Ranged Units (if they can catch them). Countered by Archers.</Tooltip>
+    <History>.</History>
+    <Icon>units/hele_champion_ranged_polis.png</Icon>
+  </Identity>
+  <UnitMotion>
+    <WalkSpeed>12.0</WalkSpeed>
+    <Run>
+      <Speed>20.0</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/athenians/champion_unit_marine.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_mechanical_siege_onager">
+  <Attack>
+    <Ranged>
+      <Hack>50.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>50.0</Crush>
+      <MaxRange>12</MaxRange>
+      <MinRange>8.0</MinRange>
+      <ProjectileSpeed>10.0</ProjectileSpeed>
+      <PrepareTime>2000</PrepareTime>
+      <RepeatTime>2000</RepeatTime>
+    </Ranged>
+  </Attack>
+  <Footprint replace="">
+    <Square width="6.0" depth="20.0"/>
+    <Height>4.5</Height>
+  </Footprint>
+  <Identity>
+    <Civ>theb</Civ>
+    <GenericName>Fire Raiser</GenericName>
+    <SpecificName>Pyro-something</SpecificName>
+    <Icon>units/hele_mechanical_siege_lithobolos.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Unit radius="3.5"/>
+  </Obstruction>
+  <Vision>
+    <Range>60</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>units/thebans/siege_fireraiser.xml</Actor>
+  </VisualActor>
+</Entity>

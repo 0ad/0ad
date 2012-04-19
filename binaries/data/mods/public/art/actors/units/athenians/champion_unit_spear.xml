@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="infantry/spear/idle/isp_01.psa" name="Idle" speed="100"/>
+        <animation file="infantry/spear/idle/isp_01.psa" name="Idle" speed="90"/>
+        <animation file="infantry/spear/idle/isp_01.psa" name="Idle" speed="85"/>
+        <animation file="infantry/spear/idle/isp_01.psa" name="Idle" speed="50"/>
+        <animation file="infantry/spear/idle/isp_01.psa" name="Idle" speed="110"/>
+        <animation file="biped/walk_spearshield.psa" name="Walk" speed="120"/>
+        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="40"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="Attack" speed="111"/>
+        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
+        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
+        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
+      </animations>
+      <mesh>skeletal/m_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/hele_su3.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/shields/athen_round_epilektos.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="epilektos-01">
+      <texture>skeletal/athen_epilektos_1.png</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

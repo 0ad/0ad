@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_ranged_javelinist">
+  <Attack>
+    <Ranged>
+      <MaxRange>44.0</MaxRange>
+    </Ranged>
+  </Attack>
+  <Builder>
+    <Entities datatype="tokens">
+      structures/athen_gymnasion
+      structures/athen_theatron
+      structures/athen_prytaneion
+    </Entities>
+  </Builder>
+  <Cost>
+    <Resources>
+      <food>0</food>
+	  <wood>50</wood>
+	  <metal>50</metal>
+    </Resources>
+  </Cost>
+  <Identity>
+    <Civ>athen</Civ>
+    <SelectionGroupName>units/athen_infantry_javelinist_b</SelectionGroupName>
+    <GenericName>Thracian Peltast</GenericName>
+    <SpecificName>Peltastḗs Thrâx</SpecificName>
+    <History>Peltasts were javelinists originating in Thrace but their form of combat was widely copied by the Hellenes, Macedonians, and Persians. Equipped with a small oval or crescent shield, a peltast would charge at enemy formations whilst hurling his javelins then fall back to avoid close combat. They wore no armor and were at a significant disadvantage against heavy infantry and cavalry, relying on their speed and skill for survival. Thracians sold their services to Hellene cities as mercenaries and added a much needed ranged and skirmishing ability to Hellenic armies.</History>
+    <Icon>units/hele_infantry_javelinist.png</Icon>
+  </Identity>
+  <Looter disable=""/>
+  <Promotion>
+    <Entity>units/athen_infantry_javelinist_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/athenians/infantry_javelinist_b.xml</Actor>
+  </VisualActor>
+</Entity>

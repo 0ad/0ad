@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="base">
+      <mesh>props/shield/aspis_sm_f.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/mace_round_back_red.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="shield mace a">
+      <texture>props/shield/mace_round_a1.png</texture>
+    </variant>
+    <variant frequency="1" name="shield mace b">
+      <texture>props/shield/mace_round_b1.png</texture>
+    </variant>
+  </group>
+  <material>playercolor_spec.xml</material>
+</actor>

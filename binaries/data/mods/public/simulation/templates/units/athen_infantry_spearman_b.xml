@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_melee_spearman">
+  <Armour>
+    <Pierce>9.0</Pierce>
+  </Armour>
+  <Attack>
+    <Melee>
+      <MaxRange>6.0</MaxRange>
+    </Melee>
+    <Charge>
+      <MaxRange>6.0</MaxRange>
+    </Charge>
+  </Attack>
+  <Builder>
+    <Entities datatype="tokens">
+      structures/athen_gymnasion
+      structures/athen_theatron
+      structures/athen_prytaneion
+    </Entities>
+  </Builder>
+  <Cost>
+    <Resources>
+      <wood>60</wood>
+    </Resources>
+  </Cost>
+  <Identity>
+    <Civ>athen</Civ>
+	<SelectionGroupName>units/athen_infantry_spearman_b</SelectionGroupName>
+    <GenericName>Athenian Hoplite</GenericName>
+	<SpecificName>Hoplī́tēs Athēnaïkós</SpecificName>
+    <History>Hoplites were the very symbol of Hellenic prestige and citizenship, armed with a spear and a large round bronze-coated shield known as an aspis. Armor was heavy, with bronze helmets and a cuirass of either bronze or linen, in addition to greaves. Hoplites fought in a tight formation called a phalanx, guarding each other with their shields while they attacked the enemy with their 2.5 meter spear or short iron sword.</History>
+    <Icon>units/hele_infantry_spearman.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/athen_infantry_spearman_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/athenians/infantry_spearman_b.xml</Actor>
+  </VisualActor>
+</Entity>

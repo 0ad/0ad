@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="base">
+      <mesh>props/shield/aspis_sm_f.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/hele_round_back.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="h">
+      <texture>props/shield/hele_round_h.dds</texture>
+    </variant>
+    <variant frequency="1" name="k">
+      <texture>props/shield/hele_round_k.dds</texture>
+    </variant>
+    <variant frequency="1" name="m">
+      <texture>props/shield/hele_round_m.dds</texture>
+    </variant>
+    <variant frequency="1" name="shield-ah-alpha">
+      <texture>props/shield/hele_round_ah.dds</texture>
+    </variant>
+  </group>
+  <material>playercolor_spec.xml</material>
+</actor>

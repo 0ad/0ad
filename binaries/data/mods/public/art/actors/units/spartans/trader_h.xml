@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="100"/>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="200"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="150"/>
+        <animation file="quadraped/horse_walk.psa" name="Run" speed="100"/>
+        <animation file="quadraped/horse_death.psa" name="death" speed="250"/>
+      </animations>
+      <mesh>skeletal/horse.pmd</mesh>
+      <props>
+        <prop actor="props/units/horse_back_blanket.xml" attachpoint="rider"/>
+        <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="horse 1">
+      <texture>skeletal/horse_hele_csw_e_1.dds</texture>
+    </variant>
+    <variant frequency="1" name="horse 2">
+      <texture>skeletal/horse_hele_csw_e_2.png</texture>
+    </variant>
+    <variant frequency="1" name="horse 3">
+      <texture>skeletal/horse_hele_csw_e_3.png</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="15" name="white">
+      <colour>255 255 255</colour>
+    </variant>
+    <variant frequency="16" name="black">
+      <colour>44 39 37</colour>
+    </variant>
+    <variant frequency="17" name="brown">
+      <colour>115 89 55</colour>
+    </variant>
+    <variant frequency="16" name="chestnut">
+      <colour>204 138 94</colour>
+    </variant>
+    <variant frequency="17" name="dun">
+      <colour>210 185 138</colour>
+    </variant>
+    <variant frequency="17" name="gray">
+      <colour>138 138 138</colour>
+    </variant>
+    <variant frequency="17" name="tan">
+      <colour>171 157 107</colour>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>
