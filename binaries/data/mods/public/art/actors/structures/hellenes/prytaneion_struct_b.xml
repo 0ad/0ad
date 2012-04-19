@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant frequency="1" name="prytaneion struct b">
+      <mesh>structural/hele_Prytaneion_structB.dae</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/prytaneion.xml" attachpoint="root"/>
+        <prop actor="structures/hellenes/prytaneion_struct.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/hele_struct_b.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

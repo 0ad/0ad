@@ -1430,6 +1430,17 @@ var UnitFsmSpec = {
 							if (cmpGarrisonHolder.Garrison(this.entity))
 							{
 								this.isGarrisoned = true;
+								
+								// Check if we are garrisoned in a dropsite
+								var cmpResourceDropsite = Engine.QueryInterface(target, IID_ResourceDropsite);
+								if (cmpResourceDropsite)
+								{
+									// Dump any resources we can
+									var dropsiteTypes = cmpResourceDropsite.GetTypes();
+									var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+									cmpResourceGatherer.CommitResources(dropsiteTypes);
+								}
+								
 								return;
 							}
 						}
