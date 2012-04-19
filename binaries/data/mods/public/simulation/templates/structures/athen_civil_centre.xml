@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_civil_centre">
+  <Cost>
+    <BuildTime>330</BuildTime>
+  </Cost>
+  <Health>
+    <Max>3300</Max>
+  </Health>
+  <Identity>
+    <Civ>athen</Civ>
+    <SpecificName>Agorā́</SpecificName>
+    <History>The most important place in most Classical Greek poleis, the Agora served many purposes; it was a place for public speeches and was the stage for civic life and commercial interests.</History>
+  </Identity>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/athen_infantry_spearman_b
+      units/athen_infantry_slinger_b
+      units/athen_cavalry_javelinist_b
+	</Entities>
+  </TrainingQueue>
+  <VisualActor>
+    <Actor>structures/athenians/civic_centre_new.xml</Actor>
+  </VisualActor>
+</Entity>

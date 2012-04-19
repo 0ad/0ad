@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special">
+  <Cost>
+    <BuildTime>550</BuildTime>
+    <Resources>
+      <wood>200</wood>
+      <stone>500</stone>
+    </Resources>
+  </Cost>
+  <Footprint replace="">
+    <Circle radius="26.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Health>
+    <Max>5500</Max>
+  </Health>
+  <Identity>
+    <Civ>athen</Civ>
+	<GenericName>Greek Theater</GenericName>
+    <SpecificName>Théātron</SpecificName>
+    <Tooltip>Take advantage of the Hellenisation civ bonus. (Currently a useless structure)</Tooltip>
+    <History>Greek theatres were places where the immortal tragedies of Aeschylus, Sophocles and many other talented dramatists were staged to the delight of the populace. They were instrumental in enriching Hellenic culture.</History>
+    <Icon>structures/theatron.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Static width="52.0" depth="52.0"/>
+  </Obstruction>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_theater.xml</select>
+      <constructed>interface/complete/building/complete_theatre.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <VisualActor>
+    <Actor>structures/athenians/theatron.xml</Actor>
+    <FoundationActor>structures/fndn_theatron.xml</FoundationActor>
+  </VisualActor>
+</Entity>
