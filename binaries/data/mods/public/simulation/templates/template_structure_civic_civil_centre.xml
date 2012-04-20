@@ -62,6 +62,7 @@
 		CivCentre
 	</Classes>
     <Icon>structures/civic_centre.png</Icon>
+    <RequiredTechnology>town_phase</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>200</xp>
@@ -89,11 +90,16 @@
     <Radius>180</Radius>
     <Weight>65536</Weight>
   </TerritoryInfluence>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/{civ}_support_female_citizen
     </Entities>
-  </TrainingQueue>
+    <Technologies datatype="tokens">
+      town_phase
+      city_phase
+      plough
+    </Technologies>
+  </ProductionQueue>
   <Vision>
     <Range>90</Range>
   </Vision>

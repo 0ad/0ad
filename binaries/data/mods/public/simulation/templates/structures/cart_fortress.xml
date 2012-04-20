@@ -13,7 +13,7 @@
   <Obstruction>
     <Static width="26.0" depth="28.0"/>
   </Obstruction>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/cart_hero_hamilcar
       units/cart_hero_hannibal
@@ -22,7 +22,7 @@
       units/cart_mechanical_siege_ballista
       units/cart_mechanical_siege_oxybeles
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/carthaginians/fortress.xml</Actor>
   </VisualActor>

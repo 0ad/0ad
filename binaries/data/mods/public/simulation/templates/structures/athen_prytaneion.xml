@@ -34,13 +34,13 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/athen_hero_themistocles
       units/athen_hero_pericles
       units/athen_hero_xenophon
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/athenians/prytaneion.xml</Actor>
   </VisualActor>

@@ -19,13 +19,13 @@
   <Obstruction>
     <Static width="22.0" depth="23.0"/>
   </Obstruction>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/cart_infantry_spearman_b
       units/cart_infantry_archer_b
 	  units/cart_cavalry_javelinist_b
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/carthaginians/barracks.xml</Actor>
     <FoundationActor>structures/fndn_5x5.xml</FoundationActor>

@@ -35,14 +35,14 @@
     <Radius>300</Radius>
     <Weight>35000</Weight>
   </TerritoryInfluence>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       -units/{civ}_support_female_citizen
       campaigns/army_mace_hero_alexander
       campaigns/army_mace_standard
       units/{civ}_support_trader
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <VisualActor>
     <Actor>campaigns/structures/hellenes/settlement_curtainwall.xml</Actor>
   </VisualActor>

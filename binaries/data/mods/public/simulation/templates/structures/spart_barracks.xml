@@ -15,14 +15,14 @@
     <SpecificName>Stratēgeîon</SpecificName>
     <History>The Stratigeion was the main military headquarters, where important decisions were taken and plans for battles discussed by the Hellene Generals, or "Strategoi".</History>
   </Identity>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/spart_infantry_spearman_b
       units/spart_champion_infantry_sword
       units/spart_infantry_javelinist_b
       units/spart_cavalry_javelinist_b
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/hellenes/barracks.xml</Actor>
   </VisualActor>

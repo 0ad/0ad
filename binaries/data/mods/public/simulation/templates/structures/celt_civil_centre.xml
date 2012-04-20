@@ -12,13 +12,13 @@
   <Obstruction>
     <Static width="25.0" depth="25.0"/>
   </Obstruction>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/celt_infantry_spearman_b
       units/celt_infantry_javelinist_b
       units/celt_cavalry_javelinist_b
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/celts/civic_centre.xml</Actor>
   </VisualActor>

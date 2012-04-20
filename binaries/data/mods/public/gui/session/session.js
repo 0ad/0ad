@@ -15,7 +15,7 @@ var g_DevSettings = {
 
 // Indicate when one of the current player's training queues is blocked
 // (this is used to support population counter blinking)
-var g_IsTrainingQueueBlocked = false;
+var g_IsTrainingBlocked = false;
 
 // Cache EntityStates
 var g_EntityStates = {}; // {id:entState}
@@ -51,6 +51,20 @@ function GetTemplateData(templateName)
 	}
 
 	return g_TemplateData[templateName];
+}
+
+// Cache TechnologyData
+var g_TechnologyData = {}; // {id:template}
+
+function GetTechnologyData(technologyName)
+{
+	if (!(technologyName in g_TechnologyData))
+	{
+		var template = Engine.GuiInterfaceCall("GetTechnologyData", technologyName);
+		g_TechnologyData[technologyName] = template;
+	}
+
+	return g_TechnologyData[technologyName];
 }
 
 // Init
@@ -210,7 +224,7 @@ function onTick()
 	global.music.updateTimer();
 
 	// When training is blocked, flash population (alternates colour every 500msec)
-	if (g_IsTrainingQueueBlocked && (Date.now() % 1000) < 500)
+	if (g_IsTrainingBlocked && (Date.now() % 1000) < 500)
 		getGUIObjectByName("resourcePop").textcolor = POPULATION_ALERT_COLOR;
 	else
 		getGUIObjectByName("resourcePop").textcolor = DEFAULT_POPULATION_COLOR;
@@ -283,6 +297,7 @@ function onSimulationUpdate()
 	g_Selection.dirty = false;
 	g_EntityStates = {};
 	g_TemplateData = {};
+	g_TechnologyData = {};
 
 	var simState = Engine.GuiInterfaceCall("GetSimulationState");
 
@@ -371,7 +386,7 @@ function updatePlayerDisplay(simState)
 	getGUIObjectByName("resourceMetal").caption = playerState.resourceCounts.metal;
 	getGUIObjectByName("resourcePop").caption = playerState.popCount + "/" + playerState.popLimit;
 
-	g_IsTrainingQueueBlocked = playerState.trainingQueueBlocked;
+	g_IsTrainingBlocked = playerState.trainingBlocked;
 }
 
 function updateTimeElapsedCounter(simState)

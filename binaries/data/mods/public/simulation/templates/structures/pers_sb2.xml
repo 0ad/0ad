@@ -40,13 +40,13 @@ Train War Elephants and Kardakes mercenaries.</Tooltip>
     <Root>false</Root>
     <Radius>38</Radius>
   </TerritoryInfluence>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
 	  units/pers_kardakes_hoplite
 	  units/pers_kardakes_skirmisher
 	  units/pers_war_elephant
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/persians/sb2.xml</Actor>
     <FoundationActor>structures/fndn_6x6.xml</FoundationActor>

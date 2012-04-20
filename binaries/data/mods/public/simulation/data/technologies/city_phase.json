@@ -1,0 +1,13 @@
+{
+	"genericName": "City Phase",
+	"specificName": {
+		"generic": "Generic Specific City Name",
+		"hele": "Greek City"
+	},
+	"description": "Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology.",
+	"cost": {"food": 0, "wood": 0, "stone": 50, "metal": 0},
+	"supersedes": "town_phase",
+	"icon": "city_phase.png",
+	"researchTime": 10,
+	"tooltip": "Advance to City Phase"
+}

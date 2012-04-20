@@ -119,12 +119,12 @@ AIProxy.prototype.OnUnitAIOrderDataChanged = function(msg)
 	this.changes.unitAIOrderData = msg.to;
 };
 
-AIProxy.prototype.OnTrainingQueueChanged = function(msg)
+AIProxy.prototype.OnProductionQueueChanged = function(msg)
 {
 	this.NotifyChange();
 
-	var cmpTrainingQueue = Engine.QueryInterface(this.entity, IID_TrainingQueue);
-	this.changes.trainingQueue = cmpTrainingQueue.GetQueue();
+	var cmpProductionQueue = Engine.QueryInterface(this.entity, IID_ProductionQueue);
+	this.changes.trainingQueue = cmpProductionQueue.GetQueue();
 };
 
 AIProxy.prototype.OnGarrisonedUnitsChanged = function(msg)
@@ -206,11 +206,11 @@ AIProxy.prototype.GetFullRepresentation = function()
 		ret.unitAIOrderData = cmpUnitAI.GetOrderData();
 	}
 
-	var cmpTrainingQueue = Engine.QueryInterface(this.entity, IID_TrainingQueue);
-	if (cmpTrainingQueue)
+	var cmpProductionQueue = Engine.QueryInterface(this.entity, IID_ProductionQueue);
+	if (cmpProductionQueue)
 	{
-		// Updated by OnTrainingQueueChanged
-		ret.trainingQueue = cmpTrainingQueue.GetQueue();
+		// Updated by OnProductionQueueChanged
+		ret.trainingQueue = cmpProductionQueue.GetQueue();
 	}
 
 	var cmpFoundation = Engine.QueryInterface(this.entity, IID_Foundation);

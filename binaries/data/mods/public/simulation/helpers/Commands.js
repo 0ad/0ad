@@ -135,9 +135,18 @@ function ProcessCommand(player, cmd)
 		// Verify that the building can be controlled by the player
 		if (CanControlUnit(cmd.entity, player, controlAllUnits))
 		{
-			var queue = Engine.QueryInterface(cmd.entity, IID_TrainingQueue);
-			if (queue)
-				queue.AddBatch(cmd.template, +cmd.count, cmd.metadata);
+			var cmpTechMan = QueryOwnerInterface(cmd.entity, IID_TechnologyManager);
+			// TODO: Enable this check once the AI gets technology support
+			if (cmpTechMan.CanProduce(cmd.template) || true)
+			{
+				var queue = Engine.QueryInterface(cmd.entity, IID_ProductionQueue);
+				if (queue)
+					queue.AddBatch(cmd.template, "unit", +cmd.count, cmd.metadata);
+			}
+			else if (g_DebugCommands)
+			{
+				warn("Invalid command: training requires unresearched technology: " + uneval(cmd));
+			}
 		}
 		else if (g_DebugCommands)
 		{
@@ -145,17 +154,40 @@ function ProcessCommand(player, cmd)
 		}
 		break;
 
-	case "stop-train":
+	case "research":
 		// Verify that the building can be controlled by the player
 		if (CanControlUnit(cmd.entity, player, controlAllUnits))
 		{
-			var queue = Engine.QueryInterface(cmd.entity, IID_TrainingQueue);
+			var cmpTechMan = QueryOwnerInterface(cmd.entity, IID_TechnologyManager);
+			// TODO: Enable this check once the AI gets technology support
+			if (cmpTechMan.CanResearch(cmd.template) || true)
+			{
+				var queue = Engine.QueryInterface(cmd.entity, IID_ProductionQueue);
+				if (queue)
+					queue.AddBatch(cmd.template, "technology");
+			}
+			else if (g_DebugCommands)
+			{
+				warn("Invalid command: Requirements to research technology are not met: " + uneval(cmd));
+			}
+		}
+		else if (g_DebugCommands)
+		{
+			warn("Invalid command: research building cannot be controlled by player "+player+": "+uneval(cmd));
+		}
+		break;
+
+	case "stop-production":
+		// Verify that the building can be controlled by the player
+		if (CanControlUnit(cmd.entity, player, controlAllUnits))
+		{
+			var queue = Engine.QueryInterface(cmd.entity, IID_ProductionQueue);
 			if (queue)
 				queue.RemoveBatch(cmd.id);
 		}
 		else if (g_DebugCommands)
 		{
-			warn("Invalid command: training building cannot be controlled by player "+player+": "+uneval(cmd));
+			warn("Invalid command: production building cannot be controlled by player "+player+": "+uneval(cmd));
 		}
 		break;
 
@@ -232,6 +264,22 @@ function ProcessCommand(player, cmd)
 			// Remove the foundation because the construction was aborted
 			Engine.DestroyEntity(ent);
 			break;
+		}
+		
+		var cmpTechMan = QueryPlayerIDInterface(player, IID_TechnologyManager);
+		// TODO: Enable this check once the AI gets technology support
+		if (!cmpTechMan.CanProduce(cmd.template) && false)
+		{
+			if (g_DebugCommands)
+			{
+				warn("Invalid command: required technology check failed for player "+player+": "+uneval(cmd));
+			}
+
+			var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+			cmpGuiInterface.PushNotification({ "player": player, "message": "Building's technology requirements are not met." });
+
+			// Remove the foundation because the construction was aborted
+			Engine.DestroyEntity(ent);
 		}
 
 		// TODO: AI has no visibility info

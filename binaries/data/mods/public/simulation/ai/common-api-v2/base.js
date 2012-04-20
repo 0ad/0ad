@@ -44,7 +44,7 @@ BaseAI.prototype.Deserialize = function(data)
 // CCmpTemplateManager::CopyFoundationSubset and only includes components
 // that our EntityTemplate class currently uses.)
 var g_FoundationForbiddenComponents = {
-	"TrainingQueue": 1,
+	"ProductionQueue": 1,
 	"ResourceSupply": 1,
 	"ResourceDropsite": 1,
 	"GarrisonHolder": 1,

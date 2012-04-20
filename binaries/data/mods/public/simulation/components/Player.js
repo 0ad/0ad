@@ -12,7 +12,7 @@ Player.prototype.Init = function()
 	this.popUsed = 0; // population of units owned or trained by this player
 	this.popBonuses = 0; // sum of population bonuses of player's entities
 	this.maxPop = 300; // maximum population
-	this.trainingQueueBlocked = false; // indicates whether any training queue is currently blocked
+	this.trainingBlocked = false; // indicates whether any training queue is currently blocked
 	this.resourceCount = {
 		"food": 1000,	
 		"wood": 1000,	
@@ -104,19 +104,19 @@ Player.prototype.GetMaxPopulation = function()
 	return this.maxPop;
 };
 
-Player.prototype.IsTrainingQueueBlocked = function()
+Player.prototype.IsTrainingBlocked = function()
 {
-	return this.trainingQueueBlocked;
+	return this.trainingBlocked;
 };
 
-Player.prototype.BlockTrainingQueue = function()
+Player.prototype.BlockTraining = function()
 {
-	this.trainingQueueBlocked = true;
+	this.trainingBlocked = true;
 };
 
-Player.prototype.UnBlockTrainingQueue = function()
+Player.prototype.UnBlockTraining = function()
 {
-	this.trainingQueueBlocked = false;
+	this.trainingBlocked = false;
 };
 
 Player.prototype.SetResourceCounts = function(resources)
@@ -221,16 +221,6 @@ Player.prototype.GetDiplomacy = function()
 Player.prototype.SetDiplomacy = function(dipl)
 {
 	this.diplomacy = dipl;
-};
-
-Player.prototype.GetPhase = function()
-{
-	return this.phase;
-};
-
-Player.prototype.SetPhase = function(p)
-{
-	this.phase = p;
 };
 
 Player.prototype.GetStartingCameraPos = function()

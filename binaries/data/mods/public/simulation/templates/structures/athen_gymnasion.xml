@@ -33,12 +33,12 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/athen_champion_infantry
       units/athen_champion_ranged
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/athenians/gymnasion.xml</Actor>
     <FoundationActor>structures/fndn_6x6.xml</FoundationActor>

@@ -233,6 +233,7 @@ private:
 	static int Script_AddLocalEntity(void* cbdata, std::string templateName);
 	static void Script_DestroyEntity(void* cbdata, int ent);
 	static CScriptVal Script_ReadJSONFile(void* cbdata, std::wstring fileName);
+	static std::vector<std::string> Script_FindJSONFiles(void* cbdata, std::wstring subPath);
 
 	CMessage* ConstructMessage(int mtid, CScriptVal data);
 	void SendGlobalMessage(entity_id_t ent, const CMessage& msg) const;

@@ -33,12 +33,12 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/hele_hero_leonidas
       units/spart_champion_infantry_spear
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/hellenes/gymnasion.xml</Actor>
     <FoundationActor>structures/fndn_6x6.xml</FoundationActor>

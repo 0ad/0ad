@@ -19,7 +19,7 @@
   <Obstruction>
     <Static width="27.0" depth="27.0"/>
   </Obstruction>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/iber_hero_caros
       units/iber_hero_indibil
@@ -28,7 +28,7 @@
       units/iber_champion_cavalry
 	  units/iber_mechanical_siege_ram
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/iberians/fortress.xml</Actor>
   </VisualActor>
