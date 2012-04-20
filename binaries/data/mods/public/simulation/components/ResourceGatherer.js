@@ -79,7 +79,7 @@ ResourceGatherer.prototype.GetCarryingStatus = function()
 		ret.push({
 			"type": type,
 			"amount": this.carrying[type],
-			"max": +this.template.Capacities[type]
+			"max": +this.GetCapacities()[type]
 		});
 	}
 	return ret;
@@ -135,13 +135,17 @@ ResourceGatherer.prototype.OnTechnologyModificationChange = function(msg)
 	var player = cmpOwnership.GetOwner();
 	
 	if (msg.component === "ResourceGatherer" && msg.player === player)
+	{
 		delete this.gatherRatesCache;
+		delete this.capacitiesCache;
+	}
 };
 
 // Remove any cached template data which is based on technology data
 ResourceGatherer.prototype.OnOwnershipChanged = function(msg)
 {
 	delete this.gatherRatesCache;
+	delete this.capacitiesCache;
 };
 
 ResourceGatherer.prototype.GetGatherRates = function()
@@ -159,6 +163,22 @@ ResourceGatherer.prototype.GetGatherRates = function()
 	}
 	
 	return this.gatherRatesCache;
+};
+
+ResourceGatherer.prototype.GetCapacities = function()
+{
+	if (!this.capacitiesCache)
+	{
+		this.capacitiesCache = {};
+		var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+		
+		for (var r in this.template.Capacities)
+		{
+			this.capacitiesCache[r] = cmpTechMan.ApplyModifications("ResourceGatherer/Capacities/" + r, this.template.Capacities[r], this.entity);
+		}
+	}
+	
+	return this.capacitiesCache;
 };
 
 ResourceGatherer.prototype.GetRange = function()
@@ -209,7 +229,7 @@ ResourceGatherer.prototype.PerformGather = function(target)
 		this.carrying[type.generic] = 0;
 
 	// Find the maximum so we won't exceed our capacity
-	var maxGathered = this.template.Capacities[type.generic] - this.carrying[type.generic];
+	var maxGathered = this.GetCapacities()[type.generic] - this.carrying[type.generic];
 
 	var status = cmpResourceSupply.TakeResources(Math.min(rate, maxGathered));
 
@@ -233,7 +253,7 @@ ResourceGatherer.prototype.PerformGather = function(target)
 	return {
 		"amount": status.amount,
 		"exhausted": status.exhausted,
-		"filled": (this.carrying[type.generic] >= this.template.Capacities[type.generic])
+		"filled": (this.carrying[type.generic] >= this.GetCapacities()[type.generic])
 	};
 };
 
@@ -267,7 +287,7 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 ResourceGatherer.prototype.CanCarryMore = function(type)
 {
 	var amount = (this.carrying[type] || 0);
-	return (amount < this.template.Capacities[type]);
+	return (amount < this.GetCapacities()[type]);
 };
 
 /**

@@ -196,7 +196,7 @@ Attack.prototype.GetRange = function(type)
 		var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 		
 		var max = cmpTechMan.ApplyModifications("Attack/" + type + "/MaxRange", +this.template[type].MaxRange, this.entity);
-		var min = cmpTechMan.ApplyModifications("Attack/" + type + "/MinRange", +this.template[type].MinRange, this.entity);
+		var min = cmpTechMan.ApplyModifications("Attack/" + type + "/MinRange", +(this.template[type].MinRange || 0), this.entity);
 		
 		this.attackCache.Range[type] = { "max": max, "min": min };
 	}
