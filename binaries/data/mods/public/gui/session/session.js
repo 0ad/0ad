@@ -77,6 +77,10 @@ function init(initData, hotloadData)
 	getGUIObjectByName("civIcon").sprite = "stretched:"+g_CivData[g_Players[Engine.GetPlayerID()].civ].Emblem;
 	initMenuPosition(); // set initial position
 
+	// If in Atlas editor, disable the exit button
+	if (Engine.IsAtlasRunning())
+		getGUIObjectByName("menuExitButton").enabled = false;
+
 	if (hotloadData)
 	{
 		g_Selection.selected = hotloadData.selection;
@@ -230,9 +234,20 @@ function checkPlayerState()
 			closeMenu();
 			closeOpenDialogs();
 
-			var btCaptions = ["Yes", "No"];
-			var btCode = [leaveGame, null];
-			messageBox(400, 200, "Do you want to quit?", "DEFEATED!", 0, btCaptions, btCode);
+			if (Engine.IsAtlasRunning())
+			{
+				// If we're in Atlas, we can't leave the game
+				var btCaptions = ["OK"];
+				var btCode = [null];
+				var message = "Press OK to continue";
+			}
+			else
+			{
+				var btCaptions = ["Yes", "No"];
+				var btCode = [leaveGame, null];
+				var message = "Do you want to quit?";
+			}
+			messageBox(400, 200, message, "DEFEATED!", 0, btCaptions, btCode);
 		}
 		else if (playerState.state == "won")
 		{
@@ -245,9 +260,20 @@ function checkPlayerState()
 			if (!getGUIObjectByName("devCommandsRevealMap").checked)
 				getGUIObjectByName("devCommandsRevealMap").checked = true;
 
-			var btCaptions = ["Yes", "No"];
-			var btCode = [leaveGame, null];
-			messageBox(400, 200, "Do you want to quit?", "VICTORIOUS!", 0, btCaptions, btCode);
+			if (Engine.IsAtlasRunning())
+			{
+				// If we're in Atlas, we can't leave the game
+				var btCaptions = ["OK"];
+				var btCode = [null];
+				var message = "Press OK to continue";
+			}
+			else
+			{
+				var btCaptions = ["Yes", "No"];
+				var btCode = [leaveGame, null];
+				var message = "Do you want to quit?";
+			}
+			messageBox(400, 200, message, "VICTORIOUS!", 0, btCaptions, btCode);
 		}
 	}
 }

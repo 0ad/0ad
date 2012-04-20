@@ -43,6 +43,7 @@
 #include "ps/UserReport.h"
 #include "ps/GameSetup/Atlas.h"
 #include "ps/GameSetup/Config.h"
+#include "tools/atlas/GameInterface/GameLoop.h"
 
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpAIManager.h"
@@ -370,6 +371,11 @@ bool AtlasIsAvailable(void* UNUSED(cbdata))
 	return ATLAS_IsAvailable();
 }
 
+bool IsAtlasRunning(void* UNUSED(cbdata))
+{
+	return (g_AtlasGameLoop && g_AtlasGameLoop->running);
+}
+
 CScriptVal LoadMapSettings(void* cbdata, VfsPath pathname)
 {
 	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
@@ -613,6 +619,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, std::string, &OpenURL>("OpenURL");
 	scriptInterface.RegisterFunction<void, &RestartInAtlas>("RestartInAtlas");
 	scriptInterface.RegisterFunction<bool, &AtlasIsAvailable>("AtlasIsAvailable");
+	scriptInterface.RegisterFunction<bool, &IsAtlasRunning>("IsAtlasRunning");
 	scriptInterface.RegisterFunction<CScriptVal, VfsPath, &LoadMapSettings>("LoadMapSettings");
 	scriptInterface.RegisterFunction<CScriptVal, &GetMapSettings>("GetMapSettings");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollow>("CameraFollow");
