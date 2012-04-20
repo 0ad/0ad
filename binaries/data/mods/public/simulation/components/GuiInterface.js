@@ -53,11 +53,11 @@ GuiInterface.prototype.GetSimulationState = function(player)
 		// Work out what phase we are in
 		var cmpTechMan = Engine.QueryInterface(playerEnt, IID_TechnologyManager);
 		var phase = "";
-		if (cmpTechMan.IsTechnologyResearched("city"))
+		if (cmpTechMan.IsTechnologyResearched("city_phase"))
 			phase = "city";
-		else if (cmpTechMan.IsTechnologyResearched("town"))
+		else if (cmpTechMan.IsTechnologyResearched("town_phase"))
 			phase = "town";
-		else if (cmpTechMan.IsTechnologyResearched("village"))
+		else if (cmpTechMan.IsTechnologyResearched("village_phase"))
 			phase = "village";
 		
 		// store player ally/enemy data as arrays
