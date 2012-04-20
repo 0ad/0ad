@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,6 +26,8 @@ class AtlasView;
 
 struct GameLoopState
 {
+	GameLoopState() : running(false) {};
+
 	CmdLineArgs args;
 
 	bool running; // whether the Atlas game loop is still running

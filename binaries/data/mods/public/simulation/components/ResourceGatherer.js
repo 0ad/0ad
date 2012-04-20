@@ -125,19 +125,47 @@ ResourceGatherer.prototype.GetLastCarriedType = function()
 		return undefined;
 };
 
+// Remove any cached template data which is based on technology data
+ResourceGatherer.prototype.OnTechnologyModificationChange = function(msg)
+{
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership)
+		return;
+	
+	var player = cmpOwnership.GetOwner();
+	
+	if (msg.component === "ResourceGatherer" && msg.player === player)
+		delete this.gatherRatesCache;
+};
+
+// Remove any cached template data which is based on technology data
+ResourceGatherer.prototype.OnOwnershipChanged = function(msg)
+{
+	delete this.gatherRatesCache;
+};
+
 ResourceGatherer.prototype.GetGatherRates = function()
 {
-	var ret = {};
-	for (var r in this.template.Rates)
-		ret[r] = this.template.Rates[r] * this.template.BaseSpeed;
-	return ret;
+	if (!this.gatherRatesCache)
+	{
+		this.gatherRatesCache = {};
+		var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+		var baseSpeed = cmpTechMan.ApplyModifications("ResourceGatherer/BaseSpeed", this.template.BaseSpeed, this.entity);
+		for (var r in this.template.Rates)
+		{
+			var rate = cmpTechMan.ApplyModifications("ResourceGatherer/Rates/" + r, this.template.Rates[r], this.entity);
+			this.gatherRatesCache[r] = rate * baseSpeed;
+		}
+	}
+	
+	return this.gatherRatesCache;
 };
 
 ResourceGatherer.prototype.GetRange = function()
 {
 	return { "max": +this.template.MaxDistance, "min": 0 };
 	// maybe this should depend on the unit or target or something?
-}
+};
 
 /**
  * Try to gather treasure
@@ -223,13 +251,13 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 	var type = cmpResourceSupply.GetType();
 
 	var rate;
-	if (type.specific && this.template.Rates[type.generic+"."+type.specific])
-		rate = this.template.Rates[type.generic+"."+type.specific];
+	if (type.specific && this.GetGatherRates()[type.generic+"."+type.specific])
+		rate = this.GetGatherRates()[type.generic+"."+type.specific];
 	else
-		rate = this.template.Rates[type.generic];
+		rate = this.GetGatherRates()[type.generic];
 
-	return (rate || 0) * this.template.BaseSpeed;
-}
+	return (rate || 0);
+};
 
 /**
  * Returns whether this unit can carry more of the given type of resource.

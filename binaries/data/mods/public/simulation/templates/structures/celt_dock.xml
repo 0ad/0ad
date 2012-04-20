@@ -15,11 +15,11 @@
   <Obstruction>
     <Static width="10.0" depth="22.0"/>
   </Obstruction>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/celt_ship_trireme
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/celts/dock_new.xml</Actor>
     <FoundationActor>structures/fndn_celt_dock.xml</FoundationActor>

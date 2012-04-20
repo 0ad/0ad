@@ -16,7 +16,7 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/celt_hero_brennus
       units/celt_hero_britomartus
@@ -25,7 +25,7 @@
       units/celt_champion_infantry_gaul
 	  units/celt_mechanical_siege_ram
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/celts/fortress_gallic.xml</Actor>
   </VisualActor>

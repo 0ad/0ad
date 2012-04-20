@@ -21,7 +21,7 @@
   <Obstruction>
     <Static width="28.0" depth="28.0"/>
   </Obstruction>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/cart_infantry_swordsman_b
       units/cart_infantry_javelinist_b
@@ -29,7 +29,7 @@
       units/cart_cavalry_swordsman_b
       units/cart_cavalry_spearman_b
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/carthaginians/embassy.xml</Actor>
     <FoundationActor>structures/fndn_5x5.xml</FoundationActor>

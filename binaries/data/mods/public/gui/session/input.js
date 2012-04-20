@@ -764,7 +764,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 		case "hotkeyup":
 			if (ev.hotkey == "session.batchtrain")
 			{
-				flushTrainingQueueBatch();
+				flushTrainingBatch();
 				inputState = INPUT_NORMAL;
 			}
 			break;
@@ -1202,13 +1202,13 @@ var batchTrainingType;
 var batchTrainingCount;
 const batchIncrementSize = 5;
 
-function flushTrainingQueueBatch()
+function flushTrainingBatch()
 {
 	Engine.PostNetworkCommand({"type": "train", "entity": batchTrainingEntity, "template": batchTrainingType, "count": batchTrainingCount});
 }
 
 // Called by GUI when user clicks training button
-function addToTrainingQueue(entity, trainEntType)
+function addTrainingToQueue(entity, trainEntType)
 {
 	if (Engine.HotkeyIsPressed("session.batchtrain"))
 	{
@@ -1223,7 +1223,7 @@ function addToTrainingQueue(entity, trainEntType)
 			// Otherwise start a new one
 			else
 			{
-				flushTrainingQueueBatch();
+				flushTrainingBatch();
 				// fall through to create the new batch
 			}
 		}
@@ -1239,9 +1239,15 @@ function addToTrainingQueue(entity, trainEntType)
 	}
 }
 
+// Called by GUI when user clicks research button
+function addResearchToQueue(entity, researchType)
+{
+	Engine.PostNetworkCommand({"type": "research", "entity": entity, "template": researchType});
+}
+
 // Returns the number of units that will be present in a batch if the user clicks
 // the training button with shift down
-function getTrainingQueueBatchStatus(entity, trainEntType)
+function getTrainingBatchStatus(entity, trainEntType)
 {
 	if (inputState == INPUT_BATCHTRAINING && batchTrainingEntity == entity && batchTrainingType == trainEntType)
 		return [batchTrainingCount, batchIncrementSize];
@@ -1250,9 +1256,9 @@ function getTrainingQueueBatchStatus(entity, trainEntType)
 }
 
 // Called by GUI when user clicks production queue item
-function removeFromTrainingQueue(entity, id)
+function removeFromProductionQueue(entity, id)
 {
-	Engine.PostNetworkCommand({"type": "stop-train", "entity": entity, "id": id});
+	Engine.PostNetworkCommand({"type": "stop-production", "entity": entity, "id": id});
 }
 
 // Called by unit selection buttons

@@ -12,12 +12,12 @@
     <History>The Susa Chateau was a fortress in the administrative capital of Susa, which was reconstructed by a French archaeologist in 1890 with the use of original building material.</History>
 	<Tooltip>Train Champion Units and Construct Siege Rams.</Tooltip>
   </Identity>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/pers_champion_cavalry
 	  units/pers_mechanical_siege_ram
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/persians/fortress.xml</Actor>
   </VisualActor>

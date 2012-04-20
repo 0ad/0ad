@@ -57,12 +57,12 @@
     </SoundGroups>
   </Sound>
   <TerritoryDecay disable=""/>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/{civ}_ship_fishing
       units/{civ}_ship_merchant
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <Vision>
     <Range>40</Range>
   </Vision>

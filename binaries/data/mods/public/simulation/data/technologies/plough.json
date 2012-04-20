@@ -1,0 +1,12 @@
+{
+	"genericName": "Plough",
+	"description": "A horse drawn instrument to turn the sod.",
+	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 0},
+	"requirements": {"tech": "town_phase"},
+	"requirementsTooltip": "Requires Town Phase",
+	"icon": "plough.png",
+	"researchTime": 10,
+	"tooltip": "Discover the Plough",
+	"modifications": [{"value": "ResourceGatherer/Rates/food.grain", "multiplier": 15}],
+	"affects": ["Female"]
+}

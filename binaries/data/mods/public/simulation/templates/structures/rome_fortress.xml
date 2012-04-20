@@ -5,7 +5,7 @@
     <SpecificName>Castellum</SpecificName>
     <History>Fortified auxillary camp.</History>
   </Identity>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/rome_hero_marcellus
       units/rome_hero_maximus
@@ -16,7 +16,7 @@
 	  units/rome_mechanical_siege_scorpio
 	  units/rome_mechanical_siege_ram
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/romans/fortress.xml</Actor>
   </VisualActor>

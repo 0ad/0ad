@@ -29,7 +29,7 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/celt_hero_boudicca
       units/celt_hero_caratacos
@@ -38,7 +38,7 @@
       units/celt_champion_infantry_brit
 	  units/celt_mechanical_siege_ram
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <Vision>
     <Range>100</Range>
   </Vision>

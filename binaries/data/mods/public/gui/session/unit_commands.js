@@ -4,6 +4,7 @@ const QUEUE = "Queue";
 const GARRISON = "Garrison";
 const FORMATION = "Formation";
 const TRAINING = "Training";
+const RESEARCH = "Research";
 const CONSTRUCTION = "Construction";
 const COMMAND = "Command";
 const STANCE = "Stance";
@@ -23,7 +24,7 @@ const BARTER_RESOURCES = ["food", "wood", "stone", "metal"];
 const BARTER_ACTIONS = ["Sell", "Buy"];
 
 // The number of currently visible buttons (used to optimise showing/hiding)
-var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Formation": 0, "Garrison": 0, "Training": 0, "Barter": 0, "Trading": 0, "Construction": 0, "Command": 0, "Stance": 0};
+var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Formation": 0, "Garrison": 0, "Training": 0, "Research": 0, "Barter": 0, "Trading": 0, "Construction": 0, "Command": 0, "Stance": 0};
 
 // Unit panels are panels with row(s) of buttons
 var g_unitPanels = ["Selection", "Queue", "Formation", "Garrison", "Training", "Barter", "Trading", "Construction", "Research", "Stance", "Command"];
@@ -163,6 +164,11 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			if (numberOfItems > 24)
 				numberOfItems =  24;
 			break;
+		
+		case RESEARCH:
+			if (numberOfItems > 8)
+				numberOfItems =  8;
+			break;
 
 		case CONSTRUCTION:
 			if (numberOfItems > 24)
@@ -183,13 +189,54 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	for (i = 0; i < numberOfItems; i++)
 	{
 		var item = items[i];
-		var entType = ((guiName == "Queue")? item.template : item);
-		var template;
-		if (guiName != "Formation" && guiName != "Command" && guiName != "Stance")
+		
+		// If a tech has been researched it leaves an empty slot
+		if (guiName == RESEARCH && !item)
 		{
-			template = GetTemplateData(entType);
-			if (!template)
-				continue; // ignore attempts to use invalid templates (an error should have been reported already)
+			getGUIObjectByName("unit"+guiName+"Button["+i+"]").hidden = true;
+			continue;
+		}
+		
+		// Get the entity type and load the template for that type if necessary
+		var entType;
+		var template;
+		switch (guiName)
+		{
+			case QUEUE:
+				// The queue can hold both technologies and units so we need to use the correct code for
+				// loading the templates
+				if (item.unitTemplate)
+				{
+					entType = item.unitTemplate;
+					template = GetTemplateData(entType);
+				}
+				else if (item.technologyTemplate)
+				{
+					entType = item.technologyTemplate;
+					template = GetTechnologyData(entType);
+				}
+			
+				if (!template)
+					continue; // ignore attempts to use invalid templates (an error should have been
+					          // reported already)
+				break;
+			case RESEARCH:
+				entType = item;
+				template = GetTechnologyData(entType);
+				if (!template)
+					continue; // ignore attempts to use invalid templates (an error should have been
+					          // reported already)
+				break;
+			case SELECTION:
+			case GARRISON:
+			case TRAINING:
+			case CONSTRUCTION:
+				entType = item;
+				template = GetTemplateData(entType);
+				if (!template)
+					continue; // ignore attempts to use invalid templates (an error should have been
+					          // reported already)
+				break;
 		}
 
 		switch (guiName)
@@ -233,7 +280,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				if (template.tooltip)
 					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
 
-				var [batchSize, batchIncrement] = getTrainingQueueBatchStatus(unitEntState.id, entType);
+				var [batchSize, batchIncrement] = getTrainingBatchStatus(unitEntState.id, entType);
 				var trainNum = batchSize ? batchSize+batchIncrement : batchIncrement;
 
 				tooltip += "\n" + getEntityCost(template);
@@ -249,6 +296,15 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 
 				tooltip += "\n\n[font=\"serif-bold-13\"]Shift-click[/font][font=\"serif-13\"] to train " + trainNum + ".[/font]";
 
+				break;
+				
+			case RESEARCH:
+				var tooltip = getEntityNameWithGenericType(template);
+
+				if (template.tooltip)
+					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
+
+				tooltip += "\n" + getEntityCost(template);
 				break;
 
 			case CONSTRUCTION:
@@ -352,7 +408,25 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		}
 		else if (template.icon)
 		{
-			icon.sprite = "stretched:session/portraits/" + template.icon;
+			var grayscale = "";
+			button.enabled = true;
+			
+			if (template.requiredTechnology && !Engine.GuiInterfaceCall("IsTechnologyResearched", template.requiredTechnology))
+			{
+				button.enabled = false;
+				var techName = getEntityName(GetTechnologyData(template.requiredTechnology));
+				button.tooltip += "\nRequires " + techName;
+				grayscale = "grayscale:";
+			}
+			
+			if (guiName == RESEARCH && !Engine.GuiInterfaceCall("CheckTechnologyRequirements", entType))
+			{
+				button.enabled = false;
+				button.tooltip += "\n" + GetTechnologyData(entType).requirementsTooltip;
+				grayscale = "grayscale:";
+			}
+			
+			icon.sprite = "stretched:" + grayscale + "session/portraits/" + template.icon;
 		}
 		else
 		{
@@ -537,16 +611,22 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		{
 			setupUnitPanel("Construction", usedPanels, entState, entState.buildEntities, startBuildingPlacement);
 		}
-
-		if (entState.training && entState.training.entities.length)
+		
+		if (entState.production && entState.production.entities.length)
 		{
-			setupUnitPanel("Training", usedPanels, entState, entState.training.entities,
-				function (trainEntType) { addToTrainingQueue(entState.id, trainEntType); } );
+			setupUnitPanel("Training", usedPanels, entState, entState.production.entities,
+				function (trainEntType) { addTrainingToQueue(entState.id, trainEntType); } );
+		}
+		
+		if (entState.production && entState.production.technologies.length)
+		{
+			setupUnitPanel("Research", usedPanels, entState, entState.production.technologies,
+				function (researchType) { addResearchToQueue(entState.id, researchType); } );
 		}
 
-		if (entState.training && entState.training.queue.length)
-			setupUnitPanel("Queue", usedPanels, entState, entState.training.queue,
-				function (item) { removeFromTrainingQueue(entState.id, item.id); } );
+		if (entState.production && entState.production.queue.length)
+			setupUnitPanel("Queue", usedPanels, entState, entState.production.queue,
+				function (item) { removeFromProductionQueue(entState.id, item.id); } );
 
 		if (entState.trader)
 		{
