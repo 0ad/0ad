@@ -121,18 +121,14 @@ QBotAI.prototype.OnUpdate = function() {
 QBotAI.prototype.Deserialize = function(data)
 {
 	BaseAI.prototype.Deserialize.call(this, data);
-	this._entityMetadata = {};
 };
 
 // Override the default serializer
 QBotAI.prototype.Serialize = function()
 {
-	return {
-		_rawEntities: this._rawEntities,
-		_ownEntities: this._ownEntities,
-		_entityMetadata: {} // We store fancy data structures in entity metadata so 
-		                    //don't try and serialize it
-	};
+	var ret = BaseAI.prototype.Serialize.call(this);
+	ret._entityMetadata = {};
+	return ret;
 };
 
 function debug(output){
