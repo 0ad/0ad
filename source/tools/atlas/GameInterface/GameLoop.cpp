@@ -309,7 +309,6 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 	Atlas_SetConfigDirectory(paths.Config().string().c_str());
 
 	// Run the engine loop in a new thread
-	g_AtlasGameLoop->running = true;
 	pthread_t engineThread;
 	pthread_create(&engineThread, NULL, RunEngine, reinterpret_cast<void*>(const_cast<CmdLineArgs*>(&args)));
 
