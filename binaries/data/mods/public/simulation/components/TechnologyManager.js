@@ -16,6 +16,9 @@ TechnologyManager.prototype.Init = function ()
 	//                     {"add": 2}
 	//                 ]}
 	this.modifications = {};
+	this.modificationCache = {}; // Caches the values after technologies have been applied
+	                             // e.g. { "Attack/Melee/Hack" : {5: 10, 7: 12, ...}, ...}
+	                             // where 5 and 7 are entity id's
 	
 	this.typeCounts = {}; // stores the number of entities of each type 
 	this.classCounts = {}; // stores the number of entities of each Class
@@ -190,6 +193,8 @@ TechnologyManager.prototype.OnGlobalOwnershipChanged = function (msg)
 					delete this.typeCountsByClass[classes[i]][template];
 			}
 		}
+		
+		this.clearModificationCache(msg.entity);
 	}
 };
 	
@@ -232,14 +237,23 @@ TechnologyManager.prototype.ResearchTechnology = function (tech)
 			if (!this.modifications[modification.value])
 				this.modifications[modification.value] = [];
 			
-			var mod = {"affects": affects};
+			var modAffects = [];
+			if (modification.affects)
+			{
+				for (var j in modification.affects)
+					modAffects.push(modification.affects[j].split(/\s+/));
+			}
+			
+			var mod = {"affects": affects.concat(modAffects)};
+			
 			// copy the modification data into our new data structure
 			for (var j in modification)
-				if (j !== "value")
+				if (j !== "value" && j !== "affects")
 					mod[j] = modification[j];
 			
 			this.modifications[modification.value].push(mod);
 			modifiedComponents[modification.value.split("/")[0]] = true;
+			this.modificationCache[modification.value] = {};
 		}
 	}
 	
@@ -252,8 +266,29 @@ TechnologyManager.prototype.ResearchTechnology = function (tech)
 	this.UpdateAutoResearch();
 };
 
+// Clears the cached data for an entity from the modifications cache
+TechnologyManager.prototype.clearModificationCache = function(ent)
+{
+	for (var valueName in this.modificationCache)
+		delete this.modificationCache[valueName][ent];
+};
+
+// Caching layer in front of ApplyModificationsWorker
 TechnologyManager.prototype.ApplyModifications = function(valueName, curValue, ent)
-{	
+{
+	if (!this.modificationCache[valueName])
+		this.modificationCache[valueName] = {};
+	
+	if (!this.modificationCache[valueName][ent])
+		this.modificationCache[valueName][ent] = this.ApplyModificationsWorker(valueName, curValue, ent);
+	
+	return this.modificationCache[valueName][ent];
+}
+
+// The code to actually apply the modification
+TechnologyManager.prototype.ApplyModificationsWorker = function(valueName, curValue, ent)
+{
+	
 	// Get all modifications to this value
 	var modifications = this.modifications[valueName];
 	if (!modifications) // no modifications so return the original value
