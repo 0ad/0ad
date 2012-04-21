@@ -33,6 +33,7 @@
     <Tooltip>Train citizen-soldiers. Research military improvements. Garrison: 10.</Tooltip>
     <Classes datatype="tokens">Town</Classes>
     <Icon>structures/barracks.png</Icon>
+	<RequiredTechnology>town_phase</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>100</xp>

@@ -26,6 +26,7 @@
     <GenericName>City Wall</GenericName>
     <Tooltip>Wall off your town for a stout defense.</Tooltip>
     <Icon>structures/wall.png</Icon>
+	<RequiredTechnology>town_phase</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>100</xp>

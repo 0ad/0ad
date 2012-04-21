@@ -50,6 +50,7 @@
     <Tooltip>Shoots arrows. Garrison to provide extra defense.</Tooltip>
     <Classes datatype="tokens">Town Defensive GarrisonTower -ConquestCritical</Classes>
     <Icon>structures/defense_tower.png</Icon>
+	<RequiredTechnology>town_phase</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>100</xp>
