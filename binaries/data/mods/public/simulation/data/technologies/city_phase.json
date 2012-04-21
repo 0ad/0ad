@@ -10,9 +10,9 @@
 	"description": "Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology.",
 	"cost": {"food": 0, "wood": 0, "stone": 500, "metal": 500},
 	"requirements": { "class": "Town", "numberOfTypes": 3 },
-	"requirementsTooltip": "Requires 4 different types of town structures.",
+	"requirementsTooltip": "Requires 3 different types of town structures.",
 	"supersedes": "town_phase",
 	"icon": "city_phase.png",
 	"researchTime": 30,
-	"tooltip": "Advance to City Phase."
+	"tooltip": "Advance to City Phase, which unlocks more structures and units."
 }
