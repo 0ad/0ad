@@ -607,18 +607,29 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			setupUnitBarterPanel(entState);
 		}
 
-		if (entState.buildEntities && entState.buildEntities.length)
+		var buildableEnts = [];
+		var trainableEnts = [];
+		var state;
+		// Get all buildable and trainable entities
+		for (var i in selection)
 		{
-			setupUnitPanel(CONSTRUCTION, usedPanels, entState, entState.buildEntities, startBuildingPlacement);
+			if ((state = GetEntityState(selection[i])) && state.buildEntities && state.buildEntities.length)
+				buildableEnts = buildableEnts.concat(state.buildEntities);
+			if ((state = GetEntityState(selection[i])) && state.production && state.production.entities.length)
+				trainableEnts = trainableEnts.concat(state.production.entities);
 		}
 		
-		if (entState.production && entState.production.entities.length)
-		{
-			setupUnitPanel(TRAINING, usedPanels, entState, entState.production.entities,
+		// Remove duplicates
+		removeDupes(buildableEnts);
+		removeDupes(trainableEnts);
+
+		if (buildableEnts.length && ((trainableEnts.length && hasClass(entState, "Unit")) || !trainableEnts.length))
+			setupUnitPanel(CONSTRUCTION, usedPanels, entState, buildableEnts, startBuildingPlacement);
+		else if (trainableEnts.length)
+			setupUnitPanel(TRAINING, usedPanels, entState, trainableEnts,
 				function (trainEntType) { addTrainingToQueue(selection, trainEntType); } );
-		}
 		
-		if (entState.production && entState.production.technologies.length)
+		if (entState.production && entState.production.technologies.length && selection.length == 1)
 		{
 			setupUnitPanel(RESEARCH, usedPanels, entState, entState.production.technologies,
 				function (researchType) { addResearchToQueue(entState.id, researchType); } );

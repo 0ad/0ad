@@ -226,3 +226,16 @@ function timeToString(time)
 	return hours + ':' + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds);
 }
 
+// ====================================================================
+
+function removeDupes(array)
+{
+	for (var i = 0; i < array.length; i++)
+	{
+		if (array.indexOf(array[i]) < i)
+		{
+			array.splice(i, 1);
+			i--;
+		}
+	}
+}
