@@ -26,10 +26,8 @@
 #include <stdio.h>
 #include <wchar.h>
 
-#include "lib/external_libraries/libsdl.h"
 #include "lib/utf8.h"
 #include "lib/sysdep/sysdep.h"
-#include "lib/sysdep/cursor.h"
 #include "udbg.h"
 
 #include <boost/algorithm/string/replace.hpp>
@@ -44,7 +42,6 @@
 #else
 #define URL_OPEN_COMMAND "xdg-open"
 #endif
-
 
 bool sys_IsDebuggerPresent()
 {
@@ -281,60 +278,6 @@ Status sys_StatusDescription(int err, wchar_t* buf, size_t max_chars)
 	// libc's strerror(). if we ever end up needing translation of
 	// e.g. Qt or X errors, that'd go here.
 	return ERR::FAIL;
-}
-
-// stub for sys_cursor_create - we don't need to implement this (SDL/X11 only
-// has monochrome cursors so we need to use the software cursor anyways)
-
-// note: do not return ERR_NOT_IMPLEMENTED or similar because that
-// would result in WARN_ERRs.
-Status sys_cursor_create(size_t w, size_t h, void* bgra_img, size_t hx, size_t hy, sys_cursor* cursor)
-{
-	UNUSED2(w);
-	UNUSED2(h);
-	UNUSED2(hx);
-	UNUSED2(hy);
-	UNUSED2(bgra_img);
-
-	*cursor = 0;
-	return INFO::OK;
-}
-
-// returns a dummy value representing an empty cursor
-Status sys_cursor_create_empty(sys_cursor* cursor)
-{
-	*cursor = (void*)1; // any non-zero value, since the cursor NULL has special meaning
-	return INFO::OK;
-}
-
-// replaces the current system cursor with the one indicated. need only be
-// called once per cursor; pass 0 to restore the default.
-Status sys_cursor_set(sys_cursor cursor)
-{
-	if (cursor) // dummy empty cursor
-		SDL_ShowCursor(SDL_DISABLE);
-	else // restore default cursor
-		SDL_ShowCursor(SDL_ENABLE);
-
-	return INFO::OK;
-}
-
-// destroys the indicated cursor and frees its resources. if it is
-// currently the system cursor, the default cursor is restored first.
-Status sys_cursor_free(sys_cursor cursor)
-{
-	// bail now to prevent potential confusion below; there's nothing to do.
-	if(!cursor)
-		return INFO::OK;
-
-	SDL_ShowCursor(SDL_ENABLE);
-
-	return INFO::OK;
-}
-
-Status sys_cursor_reset()
-{
-	return INFO::OK;
 }
 
 // note: just use the sector size: Linux aio doesn't really care about
