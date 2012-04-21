@@ -3,9 +3,9 @@
   <castshadow/>
   <group>
     <variant>
-      <mesh>structural/celt_old_wall_tower.dae</mesh>
+      <mesh>structural/celt_slope_wall_tower.dae</mesh>
       <props>
-        <prop actor="props/structures/celts/wall_turret.xml" attachpoint="props_main"/>
+        <prop actor="props/structures/celts/slope_wall_tower_props.xml" attachpoint="props_main"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <texture>structural/celt_wall.dds</texture>

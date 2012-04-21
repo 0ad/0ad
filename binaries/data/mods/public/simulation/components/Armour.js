@@ -49,12 +49,45 @@ Armour.prototype.TakeDamage = function(hack, pierce, crush)
 
 Armour.prototype.GetArmourStrengths = function()
 {
-	// Convert attack values to numbers
-	return {
-		hack: +this.template.Hack,
-		pierce: +this.template.Pierce,
-		crush: +this.template.Crush
-	};
+	if (!this.armourCache)
+	{
+		// Work out the armour values with technology effects
+		var self = this;
+		
+		var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+		var applyTechs = function(type)
+		{
+			var allComponent = cmpTechMan.ApplyModifications("Armour/All", +self.template[type], self.entity) - self.template[type];
+			return allComponent + cmpTechMan.ApplyModifications("Armour/" + type, +self.template[type], self.entity);
+		};
+		
+		this.armourCache = {
+			hack: applyTechs("Hack"),
+			pierce: applyTechs("Pierce"),
+			crush: applyTechs("Crush")
+		};
+	}
+	
+	return this.armourCache;
+};
+
+// Remove any cached template data which is based on technology data
+Armour.prototype.OnTechnologyModificationChange = function(msg)
+{
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership)
+		return;
+	
+	var player = cmpOwnership.GetOwner();
+	
+	if (msg.component === "Armour" && msg.player === player)
+		delete this.armourCache;
+};
+
+// Remove any cached template data which is based on technology data
+Armour.prototype.OnOwnershipChanged = function(msg)
+{
+	delete this.armourCache;
 };
 
 Engine.RegisterComponentType(IID_DamageReceiver, "Armour", Armour);

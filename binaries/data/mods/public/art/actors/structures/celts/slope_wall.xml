@@ -2,12 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="wall-med-middle">
-      <mesh>structural/celt_old_wall.dae</mesh>
+    <variant frequency="100" name="celt_slope_wall">
+      <mesh>structural/celt_slope_wall.dae</mesh>
       <props>
-        <prop actor="props/structures/celts/wall_2.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/wall_1.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/wall_med_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/slope_wall_prop_2.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/slope_wall_prop_1.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/slope_wall_shields.xml" attachpoint="root"/>
       </props>
       <texture>structural/celt_wall.dds</texture>
     </variant>

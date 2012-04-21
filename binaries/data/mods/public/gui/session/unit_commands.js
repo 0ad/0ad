@@ -615,7 +615,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		if (entState.production && entState.production.entities.length)
 		{
 			setupUnitPanel("Training", usedPanels, entState, entState.production.entities,
-				function (trainEntType) { addTrainingToQueue(entState.id, trainEntType); } );
+				function (trainEntType) { addTrainingToQueue(selection, trainEntType); } );
 		}
 		
 		if (entState.production && entState.production.technologies.length)

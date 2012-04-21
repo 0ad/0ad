@@ -411,7 +411,7 @@ var Entity = Class({
 
 		Engine.PostCommand({
 			"type": "train",
-			"entity": this.id(),
+			"entities": [this.id()],
 			"template": type,
 			"count": count,
 			"metadata": metadata

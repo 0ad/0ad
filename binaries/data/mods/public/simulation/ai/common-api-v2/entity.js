@@ -323,9 +323,17 @@ var Entity = Class({
 		return !this.isOwn(); // TODO: diplomacy
 	},
 
-	resourceSupplyAmount: function() { return this._entity.resourceSupplyAmount; },
+	resourceSupplyAmount: function() {
+		if(this._entity.resourceSupplyAmount === undefined)
+			return undefined;
+		return this._entity.resourceSupplyAmount;
+	},
 
-	resourceCarrying: function() { return this._entity.resourceCarrying; },
+	resourceCarrying: function() {
+		if(this._entity.resourceCarrying === undefined)
+			return undefined;
+		return this._entity.resourceCarrying; 
+	},
 
 	garrisoned: function() { return new EntityCollection(this._ai, this._entity.garrisoned); },
 
@@ -380,7 +388,7 @@ var Entity = Class({
 
 		Engine.PostCommand({
 			"type": "train",
-			"entity": this.id(),
+			"entities": [this.id()],
 			"template": type,
 			"count": count,
 			"metadata": metadata
