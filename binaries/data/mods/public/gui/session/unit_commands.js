@@ -166,8 +166,8 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			break;
 		
 		case RESEARCH:
-			if (numberOfItems > 8)
-				numberOfItems =  8;
+			if (numberOfItems > 16)
+				numberOfItems =  16;
 			break;
 
 		case CONSTRUCTION:

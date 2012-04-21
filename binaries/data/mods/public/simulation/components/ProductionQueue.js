@@ -94,7 +94,7 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 		return [];
 	
 	var techs = string.split(/\s+/);
-	var ret = [];
+	var techList = [];
 	var superseded = {}; // Stores the tech which supersedes the key 
 	
 	// Add any top level technologies to an array which corresponds to the displayed icons
@@ -104,25 +104,68 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 		var tech = techs[i];
 		var template = cmpTechMan.GetTechnologyTemplate(tech);
 		if (!template.supersedes || techs.indexOf(template.supersedes) === -1)
-			ret.push(tech);
+			techList.push(tech);
 		else
 			superseded[template.supersedes] = tech;
 	}
 	
 	// Now make researched/in progress techs invisible
-	for (var i in ret)
+	for (var i in techList)
 	{
-		var tech = ret[i];
-		while (cmpTechMan.IsTechnologyResearched(tech) || cmpTechMan.IsInProgress(tech))
+		var tech = techList[i];
+		while (this.IsTechnologyResearchedOrInProgress(tech))
 		{
 			tech = superseded[tech];
 		}
-
 		
-		ret[i] = tech;
+		techList[i] = tech;
+	}
+	
+	var ret = []
+	
+	// TODO: Move GUI specific logic somewhere in the GUI code
+	// This inserts the techs into the correct positions to line up the tehnology pairs
+	for (var i = 0; i < 8; i++)
+	{
+		var tech = techList[i];
+		if (!tech)
+		{
+			ret[i] = undefined;
+			continue;
+		}
+		
+		var template = cmpTechMan.GetTechnologyTemplate(tech);
+		if (template.top)
+		{
+			ret[i] = template.top;
+			ret[i+8] = template.bottom;
+		}
+		else
+		{
+			ret[i] = tech;
+		}
 	}
 	
 	return ret;
+};
+
+ProductionQueue.prototype.IsTechnologyResearchedOrInProgress = function(tech)
+{
+	if (!tech)
+		return false;
+	
+	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	
+	var template = cmpTechMan.GetTechnologyTemplate(tech);
+	if (template.top)
+	{
+		return (cmpTechMan.IsTechnologyResearched(template.top) || cmpTechMan.IsInProgress(template.top)
+			|| cmpTechMan.IsTechnologyResearched(template.bottom) || cmpTechMan.IsInProgress(template.bottom))
+	}
+	else
+	{
+		return (cmpTechMan.IsTechnologyResearched(tech) || cmpTechMan.IsInProgress(tech))
+	}
 };
 
 /*
