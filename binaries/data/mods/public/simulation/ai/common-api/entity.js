@@ -59,7 +59,7 @@ var EntityTemplate = Class({
 	},
 
 	maxHitpoints: function() { return this._template.Health.Max; },
-	isHealable: function() { return this._template.Health.Healable === "true"; },
+	isHealable: function() { return this._template.Health.Unhealable !== "true"; },
 	isRepairable: function() { return this._template.Health.Repairable === "true"; },
 
 
