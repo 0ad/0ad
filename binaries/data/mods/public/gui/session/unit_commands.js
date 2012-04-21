@@ -350,7 +350,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		button.onpress = (function(e){ return function() { callback(e) } })(item);
 
 		// Get icon image
-		if (guiName == "Formation")
+		if (guiName == FORMATION)
 		{
 			var formationOk = Engine.GuiInterfaceCall("CanMoveEntsIntoFormation", {
 				"ents": g_Selection.toList(),
@@ -391,7 +391,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			icon.sprite = "stretched:"+grayscale+"session/icons/formations/"+item.replace(/\s+/,'').toLowerCase()+".png";
 			
  		}
-		else if (guiName == "Stance")
+		else if (guiName == STANCE)
 		{
 			var stanceSelected = Engine.GuiInterfaceCall("IsStanceSelected", {
 				"ents": g_Selection.toList(),
@@ -401,7 +401,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			selection.hidden = !stanceSelected;
 			icon.sprite = "stretched:session/icons/stances/"+item+".png";
 		}
-		else if (guiName == "Command")
+		else if (guiName == COMMAND)
 		{
 			icon.sprite = "stretched:session/icons/" + item.icon;
 
@@ -411,7 +411,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			var grayscale = "";
 			button.enabled = true;
 			
-			if (template.requiredTechnology && !Engine.GuiInterfaceCall("IsTechnologyResearched", template.requiredTechnology))
+			if (guiName != SELECTION && template.requiredTechnology && !Engine.GuiInterfaceCall("IsTechnologyResearched", template.requiredTechnology))
 			{
 				button.enabled = false;
 				var techName = getEntityName(GetTechnologyData(template.requiredTechnology));
@@ -439,9 +439,9 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	var numButtons = i;
 
 	var rowLength = 8;
-	if (guiName == "Selection")
+	if (guiName == SELECTION)
 		rowLength = 4;
-	else if (guiName == "Formation" || guiName == "Garrison" || guiName == "Command")
+	else if (guiName == FORMATION || guiName == GARRISON || guiName == COMMAND)
 		rowLength = 4;
 
 	var numRows = Math.ceil(numButtons / rowLength);
@@ -449,7 +449,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	var buttonSpacer = buttonSideLength+1;
 
 	// Layout buttons
-	if (guiName == "Command")
+	if (guiName == COMMAND)
 	{
 		layoutButtonRowCentered(0, guiName, 0, numButtons, COMMANDS_PANEL_WIDTH);
 	}
@@ -460,7 +460,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	}
 
 	// Resize Queue panel if needed
-	if (guiName == "Queue") // or garrison
+	if (guiName == QUEUE) // or garrison
 	{
 		var panel = getGUIObjectByName("unitQueuePanel");
 		var size = panel.size;
@@ -568,26 +568,26 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 	if (entState.player == player || g_DevSettings.controlAll)
 	{
 		if (selection.length > 1)
-			setupUnitPanel("Selection", usedPanels, entState, g_Selection.groups.getTemplateNames(),
+			setupUnitPanel(SELECTION, usedPanels, entState, g_Selection.groups.getTemplateNames(),
 				function (entType) { changePrimarySelectionGroup(entType); } );
 
 		var commands = getEntityCommandsList(entState);
 		if (commands.length)
-			setupUnitPanel("Command", usedPanels, entState, commands,
+			setupUnitPanel(COMMAND, usedPanels, entState, commands,
 				function (item) { performCommand(entState.id, item.name); } );
 
 		if (entState.garrisonHolder)
 		{
 			var groups = new EntityGroups();
 			groups.add(entState.garrisonHolder.entities);
-			setupUnitPanel("Garrison", usedPanels, entState, groups.getTemplateNames(),
+			setupUnitPanel(GARRISON, usedPanels, entState, groups.getTemplateNames(),
 				function (item) { unload(entState.id, groups.getEntsByName(item)); } );
 		}
 
 		var formations = getEntityFormationsList(entState);
 		if (hasClass(entState, "Unit") && !hasClass(entState, "Animal") && !entState.garrisonHolder && formations.length)
 		{
-			setupUnitPanel("Formation", usedPanels, entState, formations,
+			setupUnitPanel(FORMATION, usedPanels, entState, formations,
 				function (item) { performFormation(entState.id, item); } );
 		}
 
@@ -596,7 +596,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		var stances = ["violent", "aggressive", "passive", "defensive", "standground"];
 		if (hasClass(entState, "Unit") && !hasClass(entState, "Animal") && !entState.garrisonHolder && stances.length)
 		{
-			setupUnitPanel("Stance", usedPanels, entState, stances,
+			setupUnitPanel(STANCE, usedPanels, entState, stances,
 				function (item) { performStance(entState.id, item); } );
 		}
 
@@ -609,23 +609,23 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 
 		if (entState.buildEntities && entState.buildEntities.length)
 		{
-			setupUnitPanel("Construction", usedPanels, entState, entState.buildEntities, startBuildingPlacement);
+			setupUnitPanel(CONSTRUCTION, usedPanels, entState, entState.buildEntities, startBuildingPlacement);
 		}
 		
 		if (entState.production && entState.production.entities.length)
 		{
-			setupUnitPanel("Training", usedPanels, entState, entState.production.entities,
+			setupUnitPanel(TRAINING, usedPanels, entState, entState.production.entities,
 				function (trainEntType) { addTrainingToQueue(selection, trainEntType); } );
 		}
 		
 		if (entState.production && entState.production.technologies.length)
 		{
-			setupUnitPanel("Research", usedPanels, entState, entState.production.technologies,
+			setupUnitPanel(RESEARCH, usedPanels, entState, entState.production.technologies,
 				function (researchType) { addResearchToQueue(entState.id, researchType); } );
 		}
 
 		if (entState.production && entState.production.queue.length)
-			setupUnitPanel("Queue", usedPanels, entState, entState.production.queue,
+			setupUnitPanel(QUEUE, usedPanels, entState, entState.production.queue,
 				function (item) { removeFromProductionQueue(entState.id, item.id); } );
 
 		if (entState.trader)
