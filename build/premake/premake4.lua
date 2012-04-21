@@ -707,8 +707,9 @@ used_extern_libs = {
 	"valgrind",
 }
 
-if not os.is("windows") and not _OPTIONS["android"] then
+if not os.is("windows") and not _OPTIONS["android"] and not os.is("macosx") then
 	table.insert(used_extern_libs, "x11")
+	table.insert(used_extern_libs, "xcursor")
 end
 
 if not _OPTIONS["without-audio"] then
@@ -760,7 +761,7 @@ function setup_main_exe ()
 
 	elseif os.is("linux") or os.is("bsd") then
 
-	        if not _OPTIONS["without-fam"] then
+		if not _OPTIONS["without-fam"] then
 			links { "fam" }
 		end
 
@@ -797,7 +798,10 @@ function setup_main_exe ()
 		configuration { }
 
 	elseif os.is("macosx") then
+
 		links { "pthread" }
+		linkoptions { "-framework ApplicationServices", "-framework Cocoa", "-framework CoreFoundation" }
+
 	end
 end
 

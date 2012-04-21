@@ -39,7 +39,7 @@
 // On Windows, allow runtime choice between system cursors and OpenGL
 // cursors (Windows = more responsive, OpenGL = more consistent with what
 // the game sees)
-#if OS_WIN
+#if OS_WIN || OS_UNIX
 # define ALLOW_SYS_CURSOR 1
 #else
 # define ALLOW_SYS_CURSOR 0
