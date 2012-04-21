@@ -1438,7 +1438,8 @@ var UnitFsmSpec = {
 									// Dump any resources we can
 									var dropsiteTypes = cmpResourceDropsite.GetTypes();
 									var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-									cmpResourceGatherer.CommitResources(dropsiteTypes);
+									if (cmpResourceGatherer)
+										cmpResourceGatherer.CommitResources(dropsiteTypes);
 								}
 								
 								return;
