@@ -1,13 +1,18 @@
 {
 	"genericName": "City Phase",
 	"specificName": {
-		"generic": "Generic Specific City Name",
-		"hele": "Greek City"
+		"generic": "City Phase Upgrade",
+		"hele": "Megalopolis",
+		"mace": "Megalopolis",
+		"spart": "Megalopolis",
+		"athen": "Megalopolis"
 	},
 	"description": "Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology.",
-	"cost": {"food": 0, "wood": 0, "stone": 50, "metal": 0},
+	"cost": {"food": 0, "wood": 0, "stone": 500, "metal": 500},
+	"requirements": { "class": "Town", "numberOfTypes": 3 },
+	"requirementsTooltip": "Requires 4 different types of town structures.",
 	"supersedes": "town_phase",
 	"icon": "city_phase.png",
-	"researchTime": 10,
+	"researchTime": 30,
 	"tooltip": "Advance to City Phase"
 }
