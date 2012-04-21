@@ -31,10 +31,6 @@ class CFixedVector3D;
 class ICmpPlayer : public IComponent
 {
 public:
-	virtual void SetName(const std::wstring& name) = 0;
-	virtual void SetCiv(const std::wstring& civcode) = 0;
-	virtual void SetColour(u8 r, u8 g, u8 b) = 0;
-
 	virtual CColor GetColour() = 0;
 	virtual std::wstring GetCiv() = 0;
 	virtual CFixedVector3D GetStartingCameraPos() = 0;
