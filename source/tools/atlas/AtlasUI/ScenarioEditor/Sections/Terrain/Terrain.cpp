@@ -485,11 +485,7 @@ public:
 
 		for (size_t i = 0; i < m_TerrainGroups.GetCount(); ++i)
 		{
-			wxString visibleName = m_TerrainGroups[i];
-			// Format name slightly
-			if (visibleName.Len())
-				visibleName[0] = wxToupper(visibleName[0]);
-			visibleName.Replace(_T("_"), _T(" "));
+			wxString visibleName = FormatTextureName(m_TerrainGroups[i]);
 			AddPage(new TextureNotebookPage(m_ScenarioEditor, this, m_TerrainGroups[i]), visibleName);
 		}
 

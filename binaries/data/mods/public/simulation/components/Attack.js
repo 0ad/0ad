@@ -136,91 +136,41 @@ Attack.prototype.GetBestAttack = function()
 
 Attack.prototype.GetTimers = function(type)
 {
-	if (!this.attackCache)
-		this.attackCache = {};
-		
-	if (!this.attackCache.Timers)
-		this.attackCache.Timers = {};
+	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 	
-	if (!this.attackCache.Timers[type]){
-		var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-		
-		var prepare = cmpTechMan.ApplyModifications("Attack/" + type + "/PrepareTime", +(this.template[type].PrepareTime||0), this.entity);
-		var repeat = cmpTechMan.ApplyModifications("Attack/" + type + "/RepeatTime", +(this.template[type].RepeatTime||1000), this.entity);
-		
-		this.attackCache.Timers[type] = { "prepare": prepare, "repeat": repeat, "recharge": repeat - prepare };
-	}
+	var prepare = cmpTechMan.ApplyModifications("Attack/" + type + "/PrepareTime", +(this.template[type].PrepareTime||0), this.entity);
+	var repeat = cmpTechMan.ApplyModifications("Attack/" + type + "/RepeatTime", +(this.template[type].RepeatTime||1000), this.entity);
 	
-	return this.attackCache.Timers[type];
+	return { "prepare": prepare, "repeat": repeat, "recharge": repeat - prepare };
 };
 
 Attack.prototype.GetAttackStrengths = function(type)
 {
-	if (!this.attackCache)
-		this.attackCache = {};
+	// Work out the attack values with technology effects
+	var self = this;
 	
-	if (!this.attackCache.Strengths)
-		this.attackCache.Strengths = {};
-	
-	if (!this.attackCache.Strengths[type])
+	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	var applyTechs = function(damageType)
 	{
-		// Work out the attack values with technology effects
-		var self = this;
-		
-		var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-		var applyTechs = function(damageType)
-		{
-			var allComponent = cmpTechMan.ApplyModifications("Attack/" + type + "/All", (+self.template[type][damageType] || 0), self.entity) - self.template[type][damageType];
-			return allComponent + cmpTechMan.ApplyModifications("Attack/" + type + "/" + damageType, (+self.template[type][damageType] || 0), self.entity);
-		};
-		
-		this.attackCache.Strengths[type] = {
-			hack: applyTechs("Hack"),
-			pierce: applyTechs("Pierce"),
-			crush: applyTechs("Crush")
-		};
-	}
+		var allComponent = cmpTechMan.ApplyModifications("Attack/" + type + "/All", (+self.template[type][damageType] || 0), self.entity) - self.template[type][damageType];
+		return allComponent + cmpTechMan.ApplyModifications("Attack/" + type + "/" + damageType, (+self.template[type][damageType] || 0), self.entity);
+	};
 	
-	return this.attackCache.Strengths[type];
+	return {
+		hack: applyTechs("Hack"),
+		pierce: applyTechs("Pierce"),
+		crush: applyTechs("Crush")
+	};
 };
 
 Attack.prototype.GetRange = function(type)
 {
-	if (!this.attackCache)
-		this.attackCache = {};
-		
-	if (!this.attackCache.Range)
-		this.attackCache.Range = {};
+	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 	
-	if (!this.attackCache.Range[type]){
-		var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-		
-		var max = cmpTechMan.ApplyModifications("Attack/" + type + "/MaxRange", +this.template[type].MaxRange, this.entity);
-		var min = cmpTechMan.ApplyModifications("Attack/" + type + "/MinRange", +(this.template[type].MinRange || 0), this.entity);
-		
-		this.attackCache.Range[type] = { "max": max, "min": min };
-	}
+	var max = cmpTechMan.ApplyModifications("Attack/" + type + "/MaxRange", +this.template[type].MaxRange, this.entity);
+	var min = cmpTechMan.ApplyModifications("Attack/" + type + "/MinRange", +(this.template[type].MinRange || 0), this.entity);
 	
-	return this.attackCache.Range[type];
-};
-
-// Remove any cached template data which is based on technology data
-Attack.prototype.OnTechnologyModificationChange = function(msg)
-{
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership)
-		return;
-	
-	var player = cmpOwnership.GetOwner();
-	
-	if (msg.component === "Attack" && msg.player === player)
-		delete this.attackCache;
-};
-
-// Remove any cached template data which is based on technology data
-Attack.prototype.OnOwnershipChanged = function(msg)
-{
-	delete this.attackCache;
+	return { "max": max, "min": min };
 };
 
 // Calculate the attack damage multiplier against a target

@@ -40,6 +40,7 @@
     <Tooltip>Train healers. Garrison up to 20 units to heal them at a quick rate.</Tooltip>
     <Classes datatype="tokens">Town</Classes>
     <Icon>structures/temple.png</Icon>
+	<RequiredTechnology>town_phase</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>100</xp>

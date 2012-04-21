@@ -48,6 +48,11 @@
 #include <X11/Xlib.h>
 #endif
 
+// If enabled, we'll try to use wxDebugReport to report fatal exceptions.
+// But this is broken on Linux and can cause the UI to deadlock (see comment
+// in OnFatalException), and it's never especially useful, so don't use it.
+#define USE_WX_FATAL_EXCEPTION_REPORT 0
+
 // Shared memory allocation functions
 ATLASDLLIMPEXP void* ShareableMalloc(size_t n)
 {
@@ -190,7 +195,7 @@ public:
 	{
 // 		_CrtSetBreakAlloc(5632);
 
-#if wxUSE_ON_FATAL_EXCEPTION
+#if wxUSE_ON_FATAL_EXCEPTION && USE_WX_FATAL_EXCEPTION_REPORT
 		if (! wxIsDebuggerRunning())
 			wxHandleFatalExceptions();
 #endif
@@ -272,9 +277,12 @@ public:
 		return true;
 	}
 
-#if wxUSE_DEBUGREPORT
+#if wxUSE_DEBUGREPORT && USE_WX_FATAL_EXCEPTION_REPORT
 	virtual void OnFatalException()
 	{
+		// NOTE: At least on Linux, this might be called from a thread other
+		// than the UI thread, so it's not safe to use any wx objects here
+
 		wxDebugReport report;
 		wxDebugReportPreviewStd preview;
 

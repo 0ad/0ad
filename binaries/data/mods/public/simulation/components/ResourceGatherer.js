@@ -125,60 +125,34 @@ ResourceGatherer.prototype.GetLastCarriedType = function()
 		return undefined;
 };
 
-// Remove any cached template data which is based on technology data
-ResourceGatherer.prototype.OnTechnologyModificationChange = function(msg)
-{
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership)
-		return;
-	
-	var player = cmpOwnership.GetOwner();
-	
-	if (msg.component === "ResourceGatherer" && msg.player === player)
-	{
-		delete this.gatherRatesCache;
-		delete this.capacitiesCache;
-	}
-};
-
-// Remove any cached template data which is based on technology data
-ResourceGatherer.prototype.OnOwnershipChanged = function(msg)
-{
-	delete this.gatherRatesCache;
-	delete this.capacitiesCache;
-};
-
 ResourceGatherer.prototype.GetGatherRates = function()
 {
-	if (!this.gatherRatesCache)
+	var ret = {};
+	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	
+	var baseSpeed = cmpTechMan.ApplyModifications("ResourceGatherer/BaseSpeed", this.template.BaseSpeed, this.entity);
+	
+	for (var r in this.template.Rates)
 	{
-		this.gatherRatesCache = {};
-		var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-		var baseSpeed = cmpTechMan.ApplyModifications("ResourceGatherer/BaseSpeed", this.template.BaseSpeed, this.entity);
-		for (var r in this.template.Rates)
-		{
-			var rate = cmpTechMan.ApplyModifications("ResourceGatherer/Rates/" + r, this.template.Rates[r], this.entity);
-			this.gatherRatesCache[r] = rate * baseSpeed;
-		}
+		var rate = cmpTechMan.ApplyModifications("ResourceGatherer/Rates/" + r, this.template.Rates[r], this.entity);
+		ret[r] = rate * baseSpeed;
 	}
 	
-	return this.gatherRatesCache;
+	return ret;
 };
 
 ResourceGatherer.prototype.GetCapacities = function()
 {
-	if (!this.capacitiesCache)
+
+	var ret = {};
+	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	
+	for (var r in this.template.Capacities)
 	{
-		this.capacitiesCache = {};
-		var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-		
-		for (var r in this.template.Capacities)
-		{
-			this.capacitiesCache[r] = cmpTechMan.ApplyModifications("ResourceGatherer/Capacities/" + r, this.template.Capacities[r], this.entity);
-		}
+		ret[r] = cmpTechMan.ApplyModifications("ResourceGatherer/Capacities/" + r, this.template.Capacities[r], this.entity);
 	}
 	
-	return this.capacitiesCache;
+	return ret;
 };
 
 ResourceGatherer.prototype.GetRange = function()
