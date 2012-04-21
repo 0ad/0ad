@@ -132,25 +132,30 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "train":
-		// Verify that the building can be controlled by the player
-		if (CanControlUnit(cmd.entity, player, controlAllUnits))
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		// Verify that the building(s) can be controlled by the player
+		if (entities.length > 0)
 		{
-			var cmpTechMan = QueryOwnerInterface(cmd.entity, IID_TechnologyManager);
-			// TODO: Enable this check once the AI gets technology support
-			if (cmpTechMan.CanProduce(cmd.template) || true)
+			for each (var ent in entities)
 			{
-				var queue = Engine.QueryInterface(cmd.entity, IID_ProductionQueue);
-				if (queue)
-					queue.AddBatch(cmd.template, "unit", +cmd.count, cmd.metadata);
-			}
-			else if (g_DebugCommands)
-			{
-				warn("Invalid command: training requires unresearched technology: " + uneval(cmd));
+				var cmpTechMan = QueryOwnerInterface(ent, IID_TechnologyManager);
+				// TODO: Enable this check once the AI gets technology support
+				if (cmpTechMan.CanProduce(cmd.template) || true)
+				{
+					var queue = Engine.QueryInterface(ent, IID_ProductionQueue);
+					// Check if the building can train the unit
+					if (queue && queue.GetEntitiesList().indexOf(cmd.template) != -1)
+						queue.AddBatch(cmd.template, "unit", +cmd.count, cmd.metadata);
+				}
+				else
+				{
+					warn("Invalid command: training requires unresearched technology: " + uneval(cmd));
+				}
 			}
 		}
 		else if (g_DebugCommands)
 		{
-			warn("Invalid command: training building cannot be controlled by player "+player+": "+uneval(cmd));
+			warn("Invalid command: training building(s) cannot be controlled by player "+player+": "+uneval(cmd));
 		}
 		break;
 

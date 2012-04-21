@@ -1197,25 +1197,37 @@ function exchangeResources(command)
 // Batch training:
 // When the user shift-clicks, we set these variables and switch to INPUT_BATCHTRAINING
 // When the user releases shift, or clicks on a different training button, we create the batched units
-var batchTrainingEntity;
+var batchTrainingEntities;
 var batchTrainingType;
 var batchTrainingCount;
 const batchIncrementSize = 5;
 
 function flushTrainingBatch()
 {
-	Engine.PostNetworkCommand({"type": "train", "entity": batchTrainingEntity, "template": batchTrainingType, "count": batchTrainingCount});
+	Engine.PostNetworkCommand({"type": "train", "entities": batchTrainingEntities, "template": batchTrainingType, "count": batchTrainingCount});
 }
 
 // Called by GUI when user clicks training button
-function addTrainingToQueue(entity, trainEntType)
+function addTrainingToQueue(selection, trainEntType)
 {
 	if (Engine.HotkeyIsPressed("session.batchtrain"))
 	{
 		if (inputState == INPUT_BATCHTRAINING)
 		{
-			// If we're already creating a batch of this unit, then just extend it
-			if (batchTrainingEntity == entity && batchTrainingType == trainEntType)
+			// Check if we are training in the same building(s) as the last batch
+			var sameEnts = false;
+			if (batchTrainingEntities.length == selection.length)
+			{
+				// NOTE: We just check if the arrays are the same and if the order is the same
+				// If the order changed, we have a new selection and we should create a new batch.
+				for (var i = 0; i < batchTrainingEntities.length; ++i)
+				{
+					if (!(sameEnts = batchTrainingEntities[i] == selection[i]))
+						break;
+				}
+			}
+			// If we're already creating a batch of this unit (in the same building(s)), then just extend it
+			if (sameEnts && batchTrainingType == trainEntType)
 			{
 				batchTrainingCount += batchIncrementSize;
 				return;
@@ -1228,14 +1240,14 @@ function addTrainingToQueue(entity, trainEntType)
 			}
 		}
 		inputState = INPUT_BATCHTRAINING;
-		batchTrainingEntity = entity;
+		batchTrainingEntities = selection;
 		batchTrainingType = trainEntType;
 		batchTrainingCount = batchIncrementSize;
 	}
 	else
 	{
 		// Non-batched - just create a single entity
-		Engine.PostNetworkCommand({"type": "train", "entity": entity, "template": trainEntType, "count": 1});
+		Engine.PostNetworkCommand({"type": "train", "template": trainEntType, "count": 1, "entities": selection});
 	}
 }
 
@@ -1249,7 +1261,7 @@ function addResearchToQueue(entity, researchType)
 // the training button with shift down
 function getTrainingBatchStatus(entity, trainEntType)
 {
-	if (inputState == INPUT_BATCHTRAINING && batchTrainingEntity == entity && batchTrainingType == trainEntType)
+	if (inputState == INPUT_BATCHTRAINING && batchTrainingEntities.indexOf(entity) != -1 && batchTrainingType == trainEntType)
 		return [batchTrainingCount, batchIncrementSize];
 	else
 		return [0, batchIncrementSize];
