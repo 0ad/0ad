@@ -614,7 +614,14 @@ void CTerrain::MakeDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1, int dir
 	}
 
 	if (m_Heightmap)
-		m_HeightMipmap.Update(m_Heightmap, i0, j0, i1, j1);
+	{
+		m_HeightMipmap.Update(m_Heightmap,
+			clamp(i0, (ssize_t)0, m_MapSize-1),
+			clamp(j0, (ssize_t)0, m_MapSize-1),
+			clamp(i1, (ssize_t)1, m_MapSize),
+			clamp(j1, (ssize_t)1, m_MapSize)
+		);
+	}
 }
 
 void CTerrain::MakeDirty(int dirtyFlags)
