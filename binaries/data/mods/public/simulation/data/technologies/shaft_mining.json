@@ -2,7 +2,7 @@
 	"genericName": "Shaft Mining",
 	"description": "Increases metal gathering rates",
 	"cost": {"food": 0, "wood": 50, "stone": 0, "metal": 50},
-	"requirements": {"tech": "town_phase"},
+	"requirements": {"tech": "phase_town"},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "mining_metal.png",
 	"researchTime": 20,

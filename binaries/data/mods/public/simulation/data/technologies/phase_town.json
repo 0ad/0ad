@@ -4,7 +4,7 @@
 	"cost": { "food": 500, "wood": 500, "stone": 0, "metal": 0 },
 	"requirements": { "class": "Village", "numberOfTypes": 4 },
 	"requirementsTooltip": "Requires any 3 different types of village structures (Farm fields do not count).",
-	"supersedes": "village_phase",
+	"supersedes": "phase_village",
 	"icon": "town_phase.png",
 	"researchTime": 30,
 	"tooltip": "Advance to Town Phase, which unlocks more structures and units."

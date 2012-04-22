@@ -2,7 +2,7 @@
 	"genericName": "Helots",
 	"description": "Increases stone gathering rates",
 	"cost": {"food": 0, "wood": 50, "stone": 50, "metal": 0},
-	"requirements": {"tech": "town_phase"},
+	"requirements": {"tech": "phase_town"},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "mining_stone.png",
 	"researchTime": 20,

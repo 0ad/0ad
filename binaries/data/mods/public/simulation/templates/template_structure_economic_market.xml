@@ -26,7 +26,7 @@
     <Tooltip>Create trade units to trade between other markets. Barter resources.</Tooltip>
     <Classes datatype="tokens">Town Market BarterMarket</Classes>
     <Icon>structures/market.png</Icon>
-	<RequiredTechnology>town_phase</RequiredTechnology>
+	<RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>100</xp>
