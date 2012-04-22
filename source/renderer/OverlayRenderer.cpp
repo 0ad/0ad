@@ -68,13 +68,18 @@ struct QuadBatchKey
 class QuadBatchData : public CRenderData
 {
 public:
-	QuadBatchData() : m_IndicesBase(0) { }
+	QuadBatchData() : m_IndicesBase(0), m_NumRenderQuads(0) { }
 
-	/// Holds the quad overlay structures to be rendered during this batch.
-	/// Must be cleared after each frame.
+	/// Holds the quad overlay structures requested to be rendered in this batch. Must be cleared
+	/// after each frame.
 	std::vector<SOverlayQuad*> m_Quads;
+
 	/// Start index of this batch into the dedicated quad indices VertexArray (see OverlayInternals).
 	size_t m_IndicesBase;
+	/// Amount of quads to actually render in this batch. Potentially (although unlikely to be)
+	/// different from m_Quads.size() due to restrictions on the total amount of quads that can be
+	/// rendered. Must be reset after each frame.
+	size_t m_NumRenderQuads;
 };
 
 struct OverlayRendererInternals
@@ -271,7 +276,10 @@ void OverlayRenderer::EndFrame()
 	// Empty the batch rendering data structures, but keep their key mappings around for the next frames
 	for (OverlayRendererInternals::QuadBatchMap::iterator it = m->quadBatchMap.begin(); it != m->quadBatchMap.end(); it++)
 	{
-		it->second.m_Quads.clear();
+		QuadBatchData& quadBatchData = (it->second);
+		quadBatchData.m_Quads.clear();
+		quadBatchData.m_NumRenderQuads = 0;
+		quadBatchData.m_IndicesBase = 0;
 	}
 }
 
@@ -297,6 +305,7 @@ void OverlayRenderer::PrepareForRendering()
 	}
 
 	// Group quad overlays by their texture/mask combination for efficient rendering
+	// TODO: consider doing this directly in Submit()
 	for (size_t i = 0; i < m->quads.size(); ++i)
 	{
 		SOverlayQuad* const quad = m->quads[i];
@@ -316,18 +325,21 @@ void OverlayRenderer::PrepareForRendering()
 	VertexArrayIterator<short[2]> vertexUV = m->quadAttributeUV.GetIterator<short[2]>();
 
 	size_t indicesIdx = 0;
+	size_t totalNumQuads = 0;
 
 	for (OverlayRendererInternals::QuadBatchMap::iterator it = m->quadBatchMap.begin(); it != m->quadBatchMap.end(); ++it)
 	{
 		QuadBatchData& batchRenderData = (it->second);
+		batchRenderData.m_NumRenderQuads = 0;
+
 		if (batchRenderData.m_Quads.empty())
 			continue;
 
-		// Remember our current index into the (entire) indices array as our base offset for this batch
+		// Remember the current index into the (entire) indices array as our base offset for this batch
 		batchRenderData.m_IndicesBase = indicesIdx;
 
 		// points to the index where each iteration's vertices will be appended
-		for (size_t i = 0; i < batchRenderData.m_Quads.size(); i++)
+		for (size_t i = 0; i < batchRenderData.m_Quads.size() && totalNumQuads < OverlayRendererInternals::MAX_QUAD_OVERLAYS; i++)
 		{
 			const SOverlayQuad* quad = batchRenderData.m_Quads[i];
 
@@ -359,6 +371,9 @@ void OverlayRenderer::PrepareForRendering()
 			*vertexColor++ = quadColor;
 
 			indicesIdx += 6;
+
+			totalNumQuads++;
+			batchRenderData.m_NumRenderQuads++;
 		}
 	}
 
@@ -558,10 +573,9 @@ void OverlayRenderer::RenderQuadOverlays()
 		for (OverlayRendererInternals::QuadBatchMap::iterator it = m->quadBatchMap.begin(); it != m->quadBatchMap.end(); it++)
 		{
 			QuadBatchData& batchRenderData = it->second;
-			const size_t batchNumQuads = batchRenderData.m_Quads.size();
+			const size_t batchNumQuads = batchRenderData.m_NumRenderQuads;
 
 			// Careful; some drivers don't like drawing calls with 0 stuff to draw.
-			// Also needed to ensure that batchRenderData.m_IndicesBase is valid (see PrepareForRendering).
 			if (batchNumQuads == 0)
 				continue;
 
