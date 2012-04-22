@@ -126,7 +126,7 @@ var EntityTemplate = Class({
 	},
 
 	trainableEntities: function() {
-		if (!this._template.ProductionQueue)
+		if (!this._template.ProductionQueue || !this._template.ProductionQueue.Entities) 
 			return undefined;
 		var civ = this.civ();
 		var templates = this._template.ProductionQueue.Entities._string.replace(/\{civ\}/g, civ).split(/\s+/);
