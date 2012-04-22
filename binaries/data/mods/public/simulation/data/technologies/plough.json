@@ -1,12 +1,12 @@
 {
-	"genericName": "Plough",
+	"genericName": "Iron Plough",
 	"description": "A horse drawn instrument to turn the sod.",
-	"cost": {"food": 50, "wood": 50, "stone": 0, "metal": 0},
+	"cost": {"food": 0, "wood": 50, "stone": 0, "metal": 50},
 	"requirements": {"tech": "town_phase"},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "plough.png",
-	"researchTime": 10,
-	"tooltip": "Discover the Plough",
+	"researchTime": 20,
+	"tooltip": "Equip your citizens with iron ploughs. +25% farming rate.",
 	"modifications": [{"value": "ResourceGatherer/Rates/food.grain", "multiplier": 1.25}],
-	"affects": ["Female"]
+	"affects": ["Citizen"]
 }
