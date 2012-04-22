@@ -4,7 +4,11 @@ function QBotAI(settings) {
 
 	this.turn = 0;
 
-	this.modules = [ new EconomyManager(), new MilitaryAttackManager(), new HousingManager() ];
+	this.modules = {
+			"economy": new EconomyManager(), 
+			"military": new MilitaryAttackManager(), 
+			"housing": new HousingManager()
+	};
 
 	// this.queues cannot be modified past initialisation or queue-manager will break
 	this.queues = {
@@ -36,7 +40,7 @@ QBotAI.prototype = new BaseAI();
 //Some modules need the gameState to fully initialise
 QBotAI.prototype.runInit = function(gameState){
 	if (this.firstTime){
-		for (var i = 0; i < this.modules.length; i++){
+		for (var i in this.modules){
 			if (this.modules[i].init){
 				this.modules[i].init(gameState);
 			}
@@ -95,9 +99,11 @@ QBotAI.prototype.OnUpdate = function() {
 		
 		this.runInit(gameState);
 		
-		for (var i = 0; i < this.modules.length; i++){
+		for (var i in this.modules){
 			this.modules[i].update(gameState, this.queues, this.savedEvents);
 		}
+		
+		this.updateDynamicPriorities(gameState, this.queues);
 		
 		this.queueManager.update(gameState);
 		
@@ -115,6 +121,29 @@ QBotAI.prototype.OnUpdate = function() {
 	}
 
 	this.turn++;
+};
+
+QBotAI.prototype.updateDynamicPriorities = function(gameState, queues){
+	// Dynamically change priorities
+	Engine.ProfileStart("Change Priorities");
+	var females = gameState.countEntitiesByType(gameState.applyCiv("units/{civ}_support_female_citizen"));
+	var femalesTarget = this.modules["economy"].targetNumWorkers;
+	var enemyStrength = this.modules["military"].measureEnemyStrength(gameState);
+	var availableStrength = this.modules["military"].measureAvailableStrength();
+	
+	var additionalPriority = (enemyStrength - availableStrength) * 5;
+	additionalPriority = Math.min(Math.max(additionalPriority, -50), 220);
+	
+	var advancedProportion = (availableStrength / 40) * (females/femalesTarget);
+	advancedProportion = Math.min(advancedProportion, 0.7);
+	
+	this.priorities.citizenSoldier = (1-advancedProportion) * (150 + additionalPriority) + 1;
+	this.priorities.advancedSoldier = advancedProportion * (150 + additionalPriority) + 1;
+	
+	if (females/femalesTarget > 0.7){
+		this.priorities.defenceBuilding = 70;
+	}
+	Engine.ProfileStop();
 };
 
 // TODO: Remove override when the whole AI state is serialised
