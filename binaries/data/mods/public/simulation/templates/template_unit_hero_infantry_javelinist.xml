@@ -34,6 +34,10 @@
       <wood>200</wood>
     </Resources>
   </Cost>
+  <Footprint>
+    <Circle radius="2.0"/>
+    <Height>2.5</Height>
+  </Footprint>
   <Health>
     <Max>750</Max>
     <RegenRate>0.5</RegenRate>
@@ -52,4 +56,12 @@
   <Minimap>
     <Type>hero</Type>
   </Minimap>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>star/256x256.png</MainTexture>
+        <MainTextureMask>star/256x256_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
 </Entity>

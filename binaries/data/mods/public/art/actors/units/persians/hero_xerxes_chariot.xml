@@ -11,7 +11,6 @@
       <mesh>structural/pers_chariot_e.dae</mesh>
       <props>
         <prop actor="props/units/pers_chariot_hero_emblem.xml" attachpoint="root"/>
-        <prop actor="props/units/hero_star.xml" attachpoint="root"/>
         <prop actor="units/persians/pers_chariot_archer_e_h1.xml" attachpoint="horse1"/>
         <prop actor="units/persians/pers_chariot_archer_e_h2.xml" attachpoint="horse2"/>
         <prop actor="units/persians/pers_chariot_archer_e_h3.xml" attachpoint="horse3"/>
@@ -26,13 +25,12 @@
     <variant frequency="100" name="Idle"/>
     <variant name="Death">
       <props>
-        <prop attachpoint="root"/>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
       </props>
     </variant>
     <variant name="Run">
       <props>
         <prop actor="particle/dust_cav.xml" attachpoint="root"/>
-        <prop actor="props/units/hero_star.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
