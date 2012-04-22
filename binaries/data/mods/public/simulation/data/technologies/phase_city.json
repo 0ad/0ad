@@ -11,7 +11,7 @@
 	"cost": {"food": 0, "wood": 0, "stone": 1000, "metal": 1000},
 	"requirements": { "class": "Town", "numberOfTypes": 3 },
 	"requirementsTooltip": "Requires any 3 different types of town structures.",
-	"supersedes": "town_phase",
+	"supersedes": "phase_town",
 	"icon": "city_phase.png",
 	"researchTime": 60,
 	"tooltip": "Advance to City Phase, which unlocks more structures and units."

@@ -152,8 +152,9 @@ Attack.prototype.GetAttackStrengths = function(type)
 	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 	var applyTechs = function(damageType)
 	{
-		var allComponent = cmpTechMan.ApplyModifications("Attack/" + type + "/All", (+self.template[type][damageType] || 0), self.entity) - self.template[type][damageType];
-		return allComponent + cmpTechMan.ApplyModifications("Attack/" + type + "/" + damageType, (+self.template[type][damageType] || 0), self.entity);
+		// All causes caching problems so disable it for now.
+		//var allComponent = cmpTechMan.ApplyModifications("Attack/" + type + "/All", (+self.template[type][damageType] || 0), self.entity) - self.template[type][damageType];
+		return cmpTechMan.ApplyModifications("Attack/" + type + "/" + damageType, (+self.template[type][damageType] || 0), self.entity);
 	};
 	
 	return {

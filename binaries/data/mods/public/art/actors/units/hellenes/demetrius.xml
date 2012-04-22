@@ -20,7 +20,6 @@
         <prop actor="props/units/weapons/spear_long.xml" attachpoint="r_hand"/>
         <prop actor="props/units/heads/hele_demetrius.xml" attachpoint="helmet"/>
         <prop actor="props/units/shields/hele_round_demetrius.xml" attachpoint="shield"/>
-        <prop actor="props/units/hero_star.xml" attachpoint="root"/>
       </props>
       <texture>skeletal/hele_demetrius.dds</texture>
     </variant>
@@ -29,7 +28,7 @@
     <variant frequency="100" name="Idle"/>
     <variant name="Death">
       <props>
-        <prop attachpoint="root"/>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

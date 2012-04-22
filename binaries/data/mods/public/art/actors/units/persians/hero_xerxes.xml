@@ -26,7 +26,6 @@
         <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/units/pers_quiver_xerxes.xml" attachpoint="back"/>
-        <prop actor="props/units/hero_star.xml" attachpoint="root"/>
       </props>
       <texture>skeletal/pers_hero_xerxes.png</texture>
     </variant>
@@ -42,7 +41,7 @@
     </variant>
     <variant name="death">
       <props>
-        <prop actor="" attachpoint="root"/>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
       </props>
     </variant>
     <variant name="carry_meat">

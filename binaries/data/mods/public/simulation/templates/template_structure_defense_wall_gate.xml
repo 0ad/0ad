@@ -26,7 +26,7 @@
     <Tooltip>Allow units access through a city wall. (Currently not a working feature).</Tooltip>
     <Classes datatype="tokens">Town -ConquestCritical Gates</Classes>
     <Icon>structures/gate.png</Icon>
-	<RequiredTechnology>town_phase</RequiredTechnology>
+	<RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>100</xp>

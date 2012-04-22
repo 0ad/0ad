@@ -22,7 +22,6 @@
         <prop actor="props/units/heads/head_athen_pericles.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spear_lance.xml" attachpoint="r_hand"/>
         <prop actor="props/units/shields/athen_aspis_pericles.xml" attachpoint="shield"/>
-        <prop actor="props/units/hero_star.xml" attachpoint="root"/>
         <prop actor="props/units/cape_hd.xml" attachpoint="shoulders"/>
       </props>
       <texture>skeletal/hele_isp_e_f.dds</texture>
@@ -30,9 +29,9 @@
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="Death">
+    <variant name="death">
       <props>
-        <prop attachpoint="root"/>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

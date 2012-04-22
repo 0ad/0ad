@@ -23,9 +23,9 @@
 #include "maths/Vector2D.h"
 #include "maths/Vector3D.h"
 #include "ps/Overlay.h" // CColor  (TODO: that file has nothing to do with overlays, it should be renamed)
-#include "simulation2/components/ICmpFootprint.h"
 
 class CTerrain;
+class CSimContext;
 
 /**
  * Line-based overlay, with world-space coordinates, rendered in the world
@@ -39,8 +39,13 @@ struct SOverlayLine
 	std::vector<float> m_Coords; // (x, y, z) vertex coordinate triples; shape is not automatically closed
 	u8 m_Thickness; // in pixels
 
-	void PushCoords(const float x, const float y, const float z) { m_Coords.push_back(x); m_Coords.push_back(y); m_Coords.push_back(z); }
 	void PushCoords(const CVector3D& v) { PushCoords(v.X, v.Y, v.Z); }
+	void PushCoords(const float x, const float y, const float z)
+	{
+		m_Coords.push_back(x);
+		m_Coords.push_back(y);
+		m_Coords.push_back(z);
+	}
 };
 
 /**
@@ -54,9 +59,10 @@ struct SOverlayTexturedLine
 		LINECAP_FLAT, ///< no line ending; abrupt stop of the line (aka. butt ending)
 
 		/**
-		 * Semi-circular line ending. The texture is mapped by curving the left vertical edge around the semi-circle's rim. That is,
-		 * the center point has UV coordinates (0.5;0.5), and the rim vertices all have U coordinate 0 and a V coordinate that ranges
-		 * from 0 to 1 as the rim is traversed.
+		 * Semi-circular line ending. The texture is mapped by curving the left vertical edge
+		 * around the semi-circle's rim. That is, the center point has UV coordinates (0.5;0.5),
+		 * and the rim vertices all have U coordinate 0 and a V coordinate that ranges from 0 to
+		 * 1 as the rim is traversed.
 		 */
 		LINECAP_ROUND,
 		LINECAP_SHARP, ///< sharp point ending
@@ -70,21 +76,31 @@ struct SOverlayTexturedLine
 
 	CTexturePtr m_TextureBase;
 	CTexturePtr m_TextureMask;
-	CColor m_Color; ///< Color to apply to the line texture
-	std::vector<float> m_Coords; ///< (x, z) vertex coordinate pairs; y is computed automatically
-	float m_Thickness; ///< Half-width of the line, in world-space units
 
-	bool m_Closed; ///< Should this line be treated as a closed loop? (if set, the end cap settings are ignored)
-	bool m_AlwaysVisible; ///< Should this line be rendered even under the SoD?
-	LineCapType m_StartCapType; ///< LineCapType to be used at the start of the line
-	LineCapType m_EndCapType; ///< LineCapType to be used at the end of the line
+	/// Color to apply to the line texture, where indicated by the mask.
+	CColor m_Color;
+	/// (x, z) vertex coordinate pairs; y is computed automatically.
+	std::vector<float> m_Coords;
+	/// Half-width of the line, in world-space units.
+	float m_Thickness;
+	/// Should this line be treated as a closed loop? If set, any end cap settings are ignored.
+	bool m_Closed;
+	/// Should this line be rendered fully visible at all times, even under the SoD?
+	bool m_AlwaysVisible;
 
-	const CSimContext* m_SimContext; /// Simulation context applicable for this overlay line; used to obtain terrain information
-	shared_ptr<CRenderData> m_RenderData; ///< Cached renderer data (shared_ptr so that copies/deletes are automatic)
+	LineCapType m_StartCapType;
+	LineCapType m_EndCapType;
+
+	/// Simulation context applicable for this overlay line; used to obtain terrain information
+	/// during automatic computation of Y coordinates.
+	const CSimContext* m_SimContext;
+	/// Cached renderer data (shared_ptr so that copies/deletes are automatic).
+	shared_ptr<CRenderData> m_RenderData;
 
 	/**
-	 * Converts a string line cap type into its corresponding LineCap enum value, and returns the resulting value.
-	 * If the input string is unrecognized, a warning is issued and a default value is returned.
+	 * Converts a string line cap type into its corresponding LineCap enum value, and returns
+	 * the resulting value. If the input string is unrecognized, a warning is issued and a
+	 * default value is returned.
 	 */
 	static LineCapType StrToLineCapType(const std::wstring& str);
 
@@ -109,9 +125,9 @@ struct SOverlaySprite
 };
 
 /**
- * Rectangular single-quad terrain overlay, with world space coordinates. The vertices of the quad
- * are not required to be coplanar; the quad is arbitrarily triangulated with no effort being made to
- * find a best fit to the underlying terrain.
+ * Rectangular single-quad terrain overlay, in world space coordinates. The vertices of the quad
+ * are not required to be coplanar; the quad is arbitrarily triangulated with no effort being made
+ * to find a best fit to the underlying terrain.
  */
 struct SOverlayQuad
 {

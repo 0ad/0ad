@@ -62,7 +62,7 @@
 		CivCentre
 	</Classes>
     <Icon>structures/civic_centre.png</Icon>
-    <RequiredTechnology>town_phase</RequiredTechnology>
+    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>200</xp>
@@ -79,8 +79,8 @@
       units/{civ}_support_female_citizen
     </Entities>
     <Technologies datatype="tokens">
-      town_phase
-      city_phase
+      phase_town
+      phase_city
     </Technologies>
   </ProductionQueue>
   <ResourceDropsite>

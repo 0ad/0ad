@@ -25,7 +25,6 @@
         <prop actor="props/units/heads/head_iber_su1.xml" attachpoint="head"/>
         <prop actor="props/units/shields/iber_scutum_hero.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/hero_star.xml" attachpoint="root"/>
       </props>
       <texture>skeletal/iber_hero_indibil.dds</texture>
     </variant>
@@ -34,7 +33,7 @@
     <variant frequency="100" name="Idle"/>
     <variant name="Death">
       <props>
-        <prop attachpoint="root"/>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

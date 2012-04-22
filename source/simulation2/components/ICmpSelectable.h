@@ -54,9 +54,14 @@ public:
 
 	/**
 	 * Set the color of the selection highlight (typically a circle/square
-	 * around the unit). Set a = 0 to disable.
+	 * around the unit). Set a = 0 to disable the highlight.
 	 */
 	virtual void SetSelectionHighlight(CColor color) = 0;
+
+	/**
+	 * Set the alpha of the selection highlight. Set to 0 to disable the highlight.
+	 */
+	virtual void SetSelectionHighlightAlpha(float alpha) = 0;
 
 	DECLARE_INTERFACE_TYPE(Selectable)
 

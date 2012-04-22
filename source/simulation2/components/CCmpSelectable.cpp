@@ -147,10 +147,14 @@ public:
 		m_Color.r = color.r;
 		m_Color.g = color.g;
 		m_Color.b = color.b;
+		SetSelectionHighlightAlpha(color.a);
+	}
 
+	virtual void SetSelectionHighlightAlpha(float alpha)
+	{
 		// set up fading from the current value (as the baseline) to the target value
 		m_FadeBaselineAlpha = m_Color.a;
-		m_FadeDeltaAlpha = color.a - m_FadeBaselineAlpha;
+		m_FadeDeltaAlpha = alpha - m_FadeBaselineAlpha;
 		m_FadeProgress = 0.f;
 	}
 

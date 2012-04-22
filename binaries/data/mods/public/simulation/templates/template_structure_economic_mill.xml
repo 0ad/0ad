@@ -37,6 +37,12 @@
   <Obstruction>
     <Static width="13.0" depth="13.0"/>
   </Obstruction>
+  <ProductionQueue>
+    <Technologies datatype="tokens">
+	  shaft_mining
+	  helots
+    </Technologies>
+  </ProductionQueue>
   <RallyPoint disable=""/>
   <ResourceDropsite>
     <Types>wood stone metal</Types>
