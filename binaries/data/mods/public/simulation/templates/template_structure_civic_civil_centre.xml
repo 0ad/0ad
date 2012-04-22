@@ -74,6 +74,16 @@
   <Obstruction>
     <Static width="30.0" depth="30.0"/>
   </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/{civ}_support_female_citizen
+    </Entities>
+    <Technologies datatype="tokens">
+      town_phase
+      city_phase
+      plough
+    </Technologies>
+  </ProductionQueue>
   <ResourceDropsite>
     <Types>food wood stone metal</Types>
   </ResourceDropsite>
@@ -90,16 +100,6 @@
     <Radius>180</Radius>
     <Weight>65536</Weight>
   </TerritoryInfluence>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      units/{civ}_support_female_citizen
-    </Entities>
-    <Technologies datatype="tokens">
-      town_phase
-      city_phase
-      plough
-    </Technologies>
-  </ProductionQueue>
   <Vision>
     <Range>90</Range>
   </Vision>
