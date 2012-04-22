@@ -495,7 +495,6 @@ GuiInterface.prototype.IsStanceSelected = function(player, data)
 GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 {
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-
 	var playerColours = {}; // cache of owner -> colour map
 	
 	for each (var ent in cmd.entities)
@@ -504,14 +503,7 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 		if (!cmpSelectable)
 			continue;
 
-		if (cmd.alpha == 0)
-		{
-			cmpSelectable.SetSelectionHighlight({"r":0, "g":0, "b":0, "a":0});
-			continue;
-		}
-
 		// Find the entity's owner's colour:
-
 		var owner = -1;
 		var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 		if (cmpOwnership)

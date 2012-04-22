@@ -41,7 +41,7 @@
   </Health>
   <Identity>
     <GenericName>Infantry</GenericName>
-    <Classes datatype="tokens">Infantry CitizenSoldier Organic</Classes>
+    <Classes datatype="tokens">Infantry CitizenSoldier Citizen Organic</Classes>
     <Rank>Basic</Rank>
   </Identity>
   <Loot>
@@ -70,6 +70,14 @@
       <metal.ore>1</metal.ore>
     </Rates>
   </ResourceGatherer>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>circle/128x128.png</MainTexture>
+        <MainTextureMask>circle/128x128_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <Sound>
     <SoundGroups>
       <select>voice/hellenes/civ/civ_male_select.xml</select>

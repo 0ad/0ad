@@ -121,7 +121,7 @@ public:
 		Y /= mag;
 	}
 
-	CVector2D Normalized()
+	CVector2D Normalized() const
 	{
 		float mag = Length();
 		return CVector2D(X / mag, Y / mag);
@@ -130,7 +130,7 @@ public:
 	/**
 	 * Returns a version of this vector rotated counterclockwise by @p angle radians.
 	 */
-	CVector2D Rotated(float angle)
+	CVector2D Rotated(float angle) const
 	{
 		float c = cosf(angle);
 		float s = sinf(angle);

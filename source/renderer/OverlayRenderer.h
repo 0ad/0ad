@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 struct SOverlayLine;
 struct SOverlayTexturedLine;
 struct SOverlaySprite;
+struct SOverlayQuad;
 class CCamera;
 
 struct OverlayRendererInternals;
@@ -39,18 +40,31 @@ public:
 
 	/**
 	 * Add a line overlay for rendering in this frame.
+	 * @param overlay Must be non-null. The pointed-to object must remain valid at least
+	 *                until the end of the frame.
 	 */
 	void Submit(SOverlayLine* overlay);
 
 	/**
 	 * Add a textured line overlay for rendering in this frame.
+	 * @param overlay Must be non-null. The pointed-to object must remain valid at least
+	 *                until the end of the frame.
 	 */
 	void Submit(SOverlayTexturedLine* overlay);
 
 	/**
 	 * Add a sprite overlay for rendering in this frame.
+	 * @param overlay Must be non-null. The pointed-to object must remain valid at least
+	 *                until the end of the frame.
 	 */
 	void Submit(SOverlaySprite* overlay);
+
+	/**
+	 * Add a textured quad overlay for rendering in this frame.
+	 * @param overlay Must be non-null. The pointed-to object must remain valid at least
+	 *                until the end of the frame.
+	 */
+	void Submit(SOverlayQuad* overlay);
 
 	/**
 	 * Prepare internal data structures for rendering.
@@ -88,11 +102,24 @@ public:
 private:
 	
 	/**
-	 * Helper method; renders those overlay lines currently registered in the internals (i.e. in m->texlines) for which the
-	 * always visible flag equals @alwaysVisible. Used for batch rendering the overlay lines by their alwaysVisible status,
-	 * because this requires a separate shader to be used.
+	 * Helper method; renders all overlay lines currently registered in the internals. Batch-
+	 * renders textured overlay lines batched according to their visibility status by delegating
+	 * to RenderTexturedOverlayLines(CShaderProgramPtr, bool).
+	 */
+	void RenderTexturedOverlayLines();
+
+	/**
+	 * Helper method; renders those overlay lines currently registered in the internals (i.e.
+	 * in m->texlines) for which the 'always visible' flag equals @p alwaysVisible. Used for
+	 * batch rendering the overlay lines according to their alwaysVisible status, as this
+	 * requires a separate shader to be used.
 	 */
 	void RenderTexturedOverlayLines(CShaderProgramPtr shader, bool alwaysVisible);
+
+	/**
+	 * Helper method; batch-renders all registered quad overlays, batched by their texture for effiency.
+	 */
+	void RenderQuadOverlays();
 
 private:
 	OverlayRendererInternals* m;

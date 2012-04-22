@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@
  */
 
 #include "maths/Fixed.h"
+#include "maths/MathUtil.h"
 
 class CFixedVector2D;
 
@@ -51,6 +52,14 @@ bool PointIsInSquare(CFixedVector2D point, CFixedVector2D u, CFixedVector2D v, C
 CFixedVector2D GetHalfBoundingBox(CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize);
 
 fixed DistanceToSquare(CFixedVector2D point, CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize);
+
+/**
+ * Given a circle of radius @p radius, and a chord of length @p chordLength on this circle, computes the central angle formed by 
+ * connecting the chord's endpoints to the center of the circle.
+ * 
+ * @param radius Radius of the circle; must be strictly positive.
+ */
+float ChordToCentralAngle(const float chordLength, const float radius);
 
 /**
  * Find point closest to the given point on the edge of the given square or rectangle.

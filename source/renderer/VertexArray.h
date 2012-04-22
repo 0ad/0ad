@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -134,7 +134,7 @@ class VertexArray
 public:
 	struct Attribute
 	{
-		// Data type. Currently supported: GL_FLOAT, GL_UNSIGNED_BYTE
+		// Data type. Currently supported: GL_FLOAT, GL_SHORT, GL_UNSIGNED_SHORT, GL_UNSIGNED_BYTE.
 		GLenum type;
 		// How many elements per vertex (e.g. 3 for RGB, 2 for UV)
 		GLuint elems;
@@ -146,8 +146,10 @@ public:
 
 		Attribute() : type(0), elems(0), offset(0), vertexArray(0) { }
 	
-		// Get an iterator for the given attribute that initially points at the first vertex.
-		// Supported types T: CVector3D, CVector4D, float[2], SColor3ub, SColor4ub
+		// Get an iterator over the backing store for the given attribute that 
+		// initially points at the first vertex.
+		// Supported types T: CVector3D, CVector4D, float[2], SColor3ub, SColor4ub,
+		// u16, u16[2], u8, u8[4], short, short[2].
 		// This function verifies at runtime that the requested type T matches
 		// the attribute definition passed to AddAttribute().
 		template<typename T>
@@ -171,7 +173,8 @@ public:
 	// attributes.
 	// All vertex data is lost when a vertex array is re-layouted.
 	void Layout();
-	// (Re-)Upload the attributes of the vertex array.
+	// (Re-)Upload the attributes of the vertex array from the backing store to
+	// the underlying VBO object.
 	void Upload();
 	// Bind this array, returns the base address for calls to glVertexPointer etc.
 	u8* Bind();
@@ -204,13 +207,14 @@ private:
  * A VertexArray that is specialised to handle 16-bit array indices.
  * Call Bind() and pass the return value to the indices parameter of
  * glDrawElements/glDrawRangeElements/glMultiDrawElements.
- * Use CVertexBuffer::Unbind() to unbind the array.
+ * Use CVertexBuffer::Unbind() to unbind the array when done.
  */
 class VertexIndexArray : public VertexArray
 {
 public:
 	VertexIndexArray(GLenum usage);
 
+	/// Gets the iterator over the (only) attribute in this array, i.e. a u16.
 	VertexArrayIterator<u16> GetIterator() const;
 
 private:

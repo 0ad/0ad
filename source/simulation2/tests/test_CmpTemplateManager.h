@@ -78,7 +78,8 @@ public:
 		const CParamNode* actor = tempMan->LoadTemplate(ent2, "actor|example1", -1);
 		TS_ASSERT(actor != NULL);
 		TS_ASSERT_WSTR_EQUALS(actor->ToXML(),
-				L"<Selectable><EditorOnly></EditorOnly></Selectable><VisualActor><Actor>example1</Actor><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder></VisualActor>");
+				L"<Selectable><EditorOnly></EditorOnly><Overlay><Texture><MainTexture>actor.png</MainTexture><MainTextureMask>actor_mask.png</MainTextureMask></Texture></Overlay></Selectable>"
+				L"<VisualActor><Actor>example1</Actor><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder></VisualActor>");
 
 		const CParamNode* preview = tempMan->LoadTemplate(ent2, "preview|unit", -1);
 		TS_ASSERT(preview != NULL);

@@ -111,6 +111,7 @@ MESSAGEHANDLER(SetSelectionPreview)
 	{
 		CmpPtr<ICmpSelectable> cmpSelectable(sim, g_Selection[i]);
 		if (cmpSelectable)
+			// TODO: change only alpha component
 			cmpSelectable->SetSelectionHighlight(CColor(1, 1, 1, 0));
 	}
 

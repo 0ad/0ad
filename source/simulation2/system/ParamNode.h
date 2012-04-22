@@ -20,6 +20,7 @@
 
 #include "lib/file/vfs/vfs_path.h"
 #include "maths/Fixed.h"
+#include "ps/CStrIntern.h"
 #include "ps/Errors.h"
 #include "scriptinterface/ScriptVal.h"
 
@@ -169,6 +170,12 @@ public:
 	const std::string ToUTF8() const;
 
 	/**
+	 * Returns the content of this node as an internalized 8-bit string. Should only be used for
+	 * predictably small and frequently-used strings.
+	 */
+	const CStrIntern ToUTF8Intern() const;
+
+	/**
 	 * Parses the content of this node as an integer
 	 */
 	int ToInt() const;
@@ -177,6 +184,11 @@ public:
 	 * Parses the content of this node as a fixed-point number
 	 */
 	fixed ToFixed() const;
+
+	/**
+	 * Parses the content of this node as a floating-point number
+	 */
+	float ToFloat() const;
 
 	/**
 	 * Parses the content of this node as a boolean ("true" == true, anything else == false)

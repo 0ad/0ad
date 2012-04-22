@@ -27,7 +27,6 @@ public:
 	fixed X, Y;
 
 	CFixedVector2D() { }
-
 	CFixedVector2D(fixed X, fixed Y) : X(X), Y(Y) { }
 
 	/// Vector equality

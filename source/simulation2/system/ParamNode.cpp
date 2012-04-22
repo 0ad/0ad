@@ -205,6 +205,11 @@ const std::string CParamNode::ToUTF8() const
 	return utf8_from_wstring(m_Value);
 }
 
+const CStrIntern CParamNode::ToUTF8Intern() const
+{
+	return CStrIntern(utf8_from_wstring(m_Value));
+}
+
 int CParamNode::ToInt() const
 {
 	int ret = 0;
@@ -217,6 +222,15 @@ int CParamNode::ToInt() const
 fixed CParamNode::ToFixed() const
 {
 	return fixed::FromString(CStrW(m_Value));
+}
+
+float CParamNode::ToFloat() const 
+{
+	float ret = 0;
+	std::wstringstream strm;
+	strm << m_Value;
+	strm >> ret;
+	return ret;
 }
 
 bool CParamNode::ToBool() const
