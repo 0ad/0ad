@@ -30,7 +30,7 @@ TechnologyManager.prototype.Init = function ()
 	this.autoResearchTech = {};
 	for (var key in this.allTechs)
 	{
-		if (this.allTechs[key].autoResearch)
+		if (this.allTechs[key].autoResearch || this.allTechs[key].top)
 			this.autoResearchTech[key] = this.allTechs[key];
 	}
 	
@@ -42,7 +42,8 @@ TechnologyManager.prototype.UpdateAutoResearch = function ()
 {
 	for (var key in this.autoResearchTech)
 	{
-		if (this.CanResearch(key))
+		if ((this.allTechs[key].autoResearch && this.CanResearch(key))
+			|| (this.allTechs[key].top && (this.IsTechnologyResearched(this.allTechs[key].top) || this.IsTechnologyResearched(this.allTechs[key].bottom))))
 		{
 			delete this.autoResearchTech[key];
 			this.ResearchTechnology(key);
@@ -82,14 +83,18 @@ TechnologyManager.prototype.CanResearch = function (tech)
 		warn("Technology \"" + tech + "\" does not exist");
 		return false;
 	}
-		
+	
 	// The technology which this technology supersedes is required
 	if (template.supersedes && !this.IsTechnologyResearched(template.supersedes))
+		return false;
+	
+	if (template.pair && !this.CanResearch(template.pair))
 		return false;
 	
 	return this.CheckTechnologyRequirements(template.requirements);
 };
 
+// Private function for checking a set of requirements is met
 TechnologyManager.prototype.CheckTechnologyRequirements = function (reqs)
 {
 	// If there are no requirements then all requirements are met
