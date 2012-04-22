@@ -316,6 +316,7 @@ protected:
 	void Submit(SOverlayLine* overlay);
 	void Submit(SOverlayTexturedLine* overlay);
 	void Submit(SOverlaySprite* overlay);
+	void Submit(SOverlayQuad* overlay);
 	void Submit(CModelDecal* decal);
 	void Submit(CParticleEmitter* emitter);
 	void SubmitNonRecursive(CModel* model);

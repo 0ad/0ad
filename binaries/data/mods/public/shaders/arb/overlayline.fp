@@ -4,13 +4,16 @@ TEMP base;
 TEMP mask;
 TEMP color;
 
-
 // Combine base texture and color, using mask texture
 TEX base, fragment.texcoord[0], texture[0], 2D;
 TEX mask, fragment.texcoord[0], texture[1], 2D;
-LRP color.rgb, mask, objectColor, base;
+#if USE_OBJECTCOLOR
+  LRP color.rgb, mask, objectColor, base;
+#else
+  LRP color.rgb, mask, fragment.color, base;
+#endif
 
-#ifdef IGNORE_LOS
+#if IGNORE_LOS
   MOV result.color.rgb, color;
 #else
   // Multiply RGB by LOS texture (alpha channel)
@@ -19,9 +22,11 @@ LRP color.rgb, mask, objectColor, base;
   MUL result.color.rgb, color, los.a;
 #endif
 
-// Use alpha from base texture, combined with the object color alpha.
-// The latter is usually 1, so this basically comes down to base.a
-MUL result.color.a, objectColor.a, base.a;
-
+// Use alpha from base texture, combined with the object color/fragment alpha.
+#if USE_OBJECTCOLOR
+  MUL result.color.a, objectColor.a, base.a;
+#else
+  MUL result.color.a, fragment.color.a, base.a;
+#endif
 
 END

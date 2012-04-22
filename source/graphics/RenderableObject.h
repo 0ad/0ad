@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -57,14 +57,16 @@ class CRenderableObject
 
 public:
 	// constructor
-	CRenderableObject() : m_RenderData(0), m_BoundsValid(false) {
+	CRenderableObject() : m_RenderData(0), m_BoundsValid(false)
+	{
 		m_Transform.SetIdentity();
 	}
 	// destructor
 	virtual ~CRenderableObject() { delete m_RenderData; }
 
 	// set object transform
-	virtual void SetTransform(const CMatrix3D& transform) {
+	virtual void SetTransform(const CMatrix3D& transform)
+	{
 		if (m_Transform == transform)
 			return;
 		// store transform, calculate inverse
@@ -82,8 +84,10 @@ public:
 
 	// mark some part of the renderdata as dirty, and requiring
 	// an update on next render
-	void SetDirty(u32 dirtyflags) {
-		if (m_RenderData) m_RenderData->m_UpdateFlags|=dirtyflags;
+	void SetDirty(u32 dirtyflags)
+	{
+		if (m_RenderData)
+			m_RenderData->m_UpdateFlags |= dirtyflags;
 	}
 
 	/**
@@ -98,7 +102,8 @@ public:
 	virtual void CalcBounds() = 0;
 
 	/// Returns the world-space axis-aligned bounds of this object.
-	const CBoundingBoxAligned& GetWorldBounds() {
+	const CBoundingBoxAligned& GetWorldBounds()
+	{
 		RecalculateBoundsIfNecessary();
 		return m_WorldBounds;
 	}
@@ -111,7 +116,8 @@ public:
 	virtual void InvalidateBounds() { m_BoundsValid = false; }
 
 	// Set the object renderdata and free previous renderdata, if any.
-	void SetRenderData(CRenderData* renderdata) {
+	void SetRenderData(CRenderData* renderdata)
+	{
 		delete m_RenderData;
 		m_RenderData = renderdata;
 	}

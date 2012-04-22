@@ -136,7 +136,7 @@ public:
 
 	/**
 	 * Returns bitset of STREAM_* value, indicating what vertex data streams the
-	 * vertex shader needs.
+	 * vertex shader needs (e.g. position, color, UV, ...).
 	 */
 	int GetStreamFlags() const;
 

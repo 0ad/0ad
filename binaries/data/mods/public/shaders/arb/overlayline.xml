@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <program type="arb">
 
+	<!-- This shader is used for rendering overlay lines (e.g. territory boundaries), and also for 
+	rendering the unit selection ring quad overlays, since they are almost identical. The only
+	difference is that in unit selection ring mode, the uniform objectColor is ignored and instead
+	replaced by a color stream from the vertices. The USE_OBJECTCOLOR define is used to switch
+	between either mode. -->
+	
     <vertex file="arb/overlayline.vp">
         <stream name="pos"/>
         <stream name="uv0"/>
+        <stream name="color" if="!USE_OBJECTCOLOR"/>
         <uniform name="losTransform" loc="0" type="vec2"/>
     </vertex>
 
@@ -11,7 +18,7 @@
         <uniform name="baseTex" loc="0" type="sampler2D"/>
         <uniform name="maskTex" loc="1" type="sampler2D"/>
         <uniform name="losTex" loc="2" type="sampler2D"/>
-        <uniform name="objectColor" loc="0" type="vec3"/>
+        <uniform name="objectColor" loc="0" type="vec3" if="USE_OBJECTCOLOR"/>
     </fragment>
 
 </program>

@@ -20,17 +20,26 @@
 #include "simulation2/system/Component.h"
 #include "ICmpSelectable.h"
 
-#include "ICmpPosition.h"
-#include "ICmpFootprint.h"
-#include "ICmpVisual.h"
-#include "simulation2/MessageTypes.h"
-#include "simulation2/helpers/Render.h"
-
 #include "graphics/Overlay.h"
+#include "graphics/Terrain.h"
+#include "graphics/TextureManager.h"
+#include "maths/Ease.h"
 #include "maths/MathUtil.h"
 #include "maths/Matrix3D.h"
 #include "maths/Vector3D.h"
+#include "maths/Vector2D.h"
 #include "renderer/Scene.h"
+#include "renderer/Renderer.h"
+#include "simulation2/MessageTypes.h"
+#include "simulation2/components/ICmpPosition.h"
+#include "simulation2/components/ICmpFootprint.h"
+#include "simulation2/components/ICmpVisual.h"
+#include "simulation2/components/ICmpTerrain.h"
+#include "simulation2/components/ICmpOwnership.h"
+#include "simulation2/components/ICmpPlayer.h"
+#include "simulation2/components/ICmpPlayerManager.h"
+#include "simulation2/components/ICmpWaterManager.h"
+#include "simulation2/helpers/Render.h"
 
 class CCmpSelectable : public ICmpSelectable
 {
@@ -39,27 +48,29 @@ public:
 	{
 		componentManager.SubscribeToMessageType(MT_Interpolate);
 		componentManager.SubscribeToMessageType(MT_RenderSubmit);
+		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
+		componentManager.SubscribeToMessageType(MT_PositionChanged);
 		// TODO: it'd be nice if we didn't get these messages except in the rare
 		// cases where we're actually drawing a selection highlight
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(Selectable)
 
-	SOverlayLine m_Overlay;
-	SOverlayLine* m_DebugBoundingBoxOverlay;
-	SOverlayLine* m_DebugSelectionBoxOverlay;
-	bool m_EditorOnly;
-
 	CCmpSelectable()
-		: m_DebugBoundingBoxOverlay(NULL), m_DebugSelectionBoxOverlay(NULL)
+		: m_DebugBoundingBoxOverlay(NULL), m_DebugSelectionBoxOverlay(NULL), 
+		  m_BuildingOverlay(NULL), m_UnitOverlay(NULL),
+		  m_FadeBaselineAlpha(0.f), m_FadeDeltaAlpha(0.f), m_FadeProgress(0.f)
 	{
-		m_Overlay.m_Thickness = 2;
-		m_Overlay.m_Color = CColor(0, 0, 0, 0);
+		m_Color = CColor(0, 0, 0, m_FadeBaselineAlpha);
+		m_LastRealTime = 0;
 	}
 
-	~CCmpSelectable(){
+	~CCmpSelectable()
+	{
 		delete m_DebugBoundingBoxOverlay;
 		delete m_DebugSelectionBoxOverlay;
+		delete m_BuildingOverlay;
+		delete m_UnitOverlay;
 	}
 
 	static std::string GetSchema()
@@ -71,17 +82,51 @@ public:
 				"<element name='EditorOnly' a:help='If this element is present, the entity is only selectable in Atlas'>"
 					"<empty/>"
 				"</element>"
-			"</optional>";
+			"</optional>"
+			"<element name='Overlay' a:help='Specifies the type of overlay to be displayed when this entity is selected'>"
+				"<choice>"
+					"<element name='Texture' a:help='Displays a texture underneath the entity.'>"
+						"<element name='MainTexture' a:help='Texture to display underneath the entity. Filepath relative to art/textures/selection/.'><text/></element>"
+						"<element name='MainTextureMask' a:help='Mask texture that controls where to apply player color. Filepath relative to art/textures/selection/.'><text/></element>"
+					"</element>"
+					"<element name='Outline' a:help='Traces the outline of the entity with a line texture.'>"
+						"<element name='LineTexture' a:help='Texture to apply to the line. Filepath relative to art/textures/selection/.'><text/></element>"
+						"<element name='LineTextureMask' a:help='Texture that controls where to apply player color. Filepath relative to art/textures/selection/.'><text/></element>"
+						"<element name='LineThickness' a:help='Thickness of the line, in world units.'><ref name='positiveDecimal'/></element>"
+					"</element>"
+				"</choice>"
+			"</element>";
 	}
 
 	virtual void Init(const CParamNode& paramNode)
 	{
 		m_EditorOnly = paramNode.GetChild("EditorOnly").IsOk();
+
+		const CParamNode& textureNode = paramNode.GetChild("Overlay").GetChild("Texture");
+		const CParamNode& outlineNode = paramNode.GetChild("Overlay").GetChild("Outline");
+
+		const char* textureBasePath = "art/textures/selection/";
+
+		// Save some memory by using interned file paths in these descriptors (almost all actors and
+		// entities have this component, and many use the same textures).
+		if (textureNode.IsOk())
+		{
+			// textured quad mode (dynamic, for units)
+			m_OverlayDescriptor.m_Type = ICmpSelectable::DYNAMIC_QUAD;
+			m_OverlayDescriptor.m_QuadTexture = CStrIntern(textureBasePath + textureNode.GetChild("MainTexture").ToUTF8());
+			m_OverlayDescriptor.m_QuadTextureMask = CStrIntern(textureBasePath + textureNode.GetChild("MainTextureMask").ToUTF8());
+		}
+		else if (outlineNode.IsOk())
+		{
+			// textured outline mode (static, for buildings)
+			m_OverlayDescriptor.m_Type = ICmpSelectable::STATIC_OUTLINE;
+			m_OverlayDescriptor.m_LineTexture = CStrIntern(textureBasePath + outlineNode.GetChild("LineTexture").ToUTF8());
+			m_OverlayDescriptor.m_LineTextureMask = CStrIntern(textureBasePath + outlineNode.GetChild("LineTextureMask").ToUTF8());
+			m_OverlayDescriptor.m_LineThickness = outlineNode.GetChild("LineThickness").ToFloat();
+		}
 	}
 
-	virtual void Deinit()
-	{
-	}
+	virtual void Deinit() { }
 
 	virtual void Serialize(ISerializer& UNUSED(serialize))
 	{
@@ -95,29 +140,18 @@ public:
 		Init(paramNode);
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global));
+
+	virtual void SetSelectionHighlight(CColor color)
 	{
-		switch (msg.GetType())
-		{
-		case MT_Interpolate:
-		{
-			if (m_Overlay.m_Color.a > 0)
-			{
-				float offset = static_cast<const CMessageInterpolate&> (msg).offset;
-				ConstructShape(offset);
-			}
-			break;
-		}
-		case MT_RenderSubmit:
-		{
-			if (m_Overlay.m_Color.a > 0)
-			{
-				const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
-				RenderSubmit(msgData.collector);
-			}
-			break;
-		}
-		}
+		m_Color.r = color.r;
+		m_Color.g = color.g;
+		m_Color.b = color.b;
+
+		// set up fading from the current value (as the baseline) to the target value
+		m_FadeBaselineAlpha = m_Color.a;
+		m_FadeDeltaAlpha = color.a - m_FadeBaselineAlpha;
+		m_FadeProgress = 0.f;
 	}
 
 	virtual bool IsEditorOnly()
@@ -125,58 +159,349 @@ public:
 		return m_EditorOnly;
 	}
 
-	virtual void SetSelectionHighlight(CColor color)
+	void RenderSubmit(SceneCollector& collector);
+
+	/**
+	 * Called from RenderSubmit if using a static outline; responsible for ensuring that the static overlay 
+	 * is up-to-date before it is rendered. Has no effect unless the static overlay is explicitly marked as
+	 * invalid first (see InvalidateStaticOverlay).
+	 */
+	void UpdateStaticOverlay();
+
+	/**
+	 * Called from the interpolation handler; responsible for ensuring the dynamic overlay (provided we're
+	 * using one) is up-to-date and ready to be submitted to the next rendering run.
+	 */
+	void UpdateDynamicOverlay(float frameOffset);
+
+	/// Explicitly invalidates the static overlay.
+	void InvalidateStaticOverlay();
+
+private:
+	SOverlayDescriptor m_OverlayDescriptor;
+	SOverlayTexturedLine* m_BuildingOverlay;
+	SOverlayQuad* m_UnitOverlay;
+
+	SOverlayLine* m_DebugBoundingBoxOverlay;
+	SOverlayLine* m_DebugSelectionBoxOverlay;
+
+	bool m_EditorOnly;
+	
+	/// Current selection overlay color. Alpha component is subject to fading.
+	CColor m_Color;
+	/// Baseline alpha value to start fading from. Constant during a single fade.
+	float m_FadeBaselineAlpha;
+	/// Delta between target and baseline alpha. Constant during a single fade. Can be positive or negative.
+	float m_FadeDeltaAlpha;
+	/// Linear time progress of the fade, between 0 and m_FadeDuration.
+	float m_FadeProgress;
+	/// Total duration of a single fade, in seconds. Assumed constant for now; feel free to change this into
+	/// a member variable if you need to adjust it per component.
+	static const double FADE_DURATION;
+	double m_LastRealTime; // temporary member, only here to support the TODO case in HandleMessage.
+};
+
+const double CCmpSelectable::FADE_DURATION = 0.3;
+
+void CCmpSelectable::HandleMessage(const CMessage& msg, bool UNUSED(global))
+{
+	switch (msg.GetType())
 	{
-		m_Overlay.m_Color = color;
-
-		if (color.a == 0 && !m_Overlay.m_Coords.empty())
+	case MT_Interpolate:
 		{
-			// Delete the overlay data to save memory (we don't want hundreds of bytes
-			// times thousands of units when the selections are not being rendered any more)
-			std::vector<float> empty;
-			m_Overlay.m_Coords.swap(empty);
-			ENSURE(m_Overlay.m_Coords.capacity() == 0);
-		}
+			// TODO: temporary solution using real elapsed time instead of simulation time to prevent
+			// the overlay fades from not happening in atlas while the simulation is paused. As a cleaner
+			// solution, we should add a field to CMessageInterpolate that holds an elapsed real time delta.
+			//static double lastRealTime = 0;
+			const double currentRealTime = timer_Time();
+			float deltaRealTime = (float)(currentRealTime - m_LastRealTime);
+			m_LastRealTime = currentRealTime;
 
-		// TODO: it'd be nice to fade smoothly (but quickly) from transparent to solid
+			if (m_FadeDeltaAlpha != 0.f)
+			{
+				m_FadeProgress += deltaRealTime;
+				if (m_FadeProgress >= FADE_DURATION)
+				{
+					const float targetAlpha = m_FadeBaselineAlpha + m_FadeDeltaAlpha;
+
+					// stop the fade
+					m_Color.a = targetAlpha;
+					m_FadeBaselineAlpha = targetAlpha;
+					m_FadeDeltaAlpha = 0.f;
+					m_FadeProgress = FADE_DURATION; // will need to be reset to start the next fade again
+				}
+				else
+				{
+					m_Color.a = Ease::QuartOut(m_FadeProgress, m_FadeBaselineAlpha, m_FadeDeltaAlpha, FADE_DURATION);
+				}
+			}
+
+			// update dynamic overlay only when visible
+			if (m_Color.a > 0)
+			{
+				const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
+				UpdateDynamicOverlay(msgData.offset);
+			}
+
+			break;
+		}
+	case MT_OwnershipChanged: 
+		{
+			const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
+
+			// don't update color if there's no new owner (e.g. the unit died)
+			if (msgData.to == INVALID_PLAYER)
+				break;
+
+			// update the selection highlight color
+			CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSimContext(), SYSTEM_ENTITY);
+			if (!cmpPlayerManager)
+				break;
+
+			CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(msgData.to));
+			if (!cmpPlayer)
+				break;
+
+			// Update the highlight color, while keeping the current alpha target value intact
+			// (i.e. baseline + delta), so that any ongoing fades simply continue with the new color.
+			CColor color = cmpPlayer->GetColour();
+			SetSelectionHighlight(CColor(color.r, color.g, color.b, m_FadeBaselineAlpha + m_FadeDeltaAlpha));
+		}
+		// fall-through
+	case MT_PositionChanged:
+		{
+			InvalidateStaticOverlay();
+			break;
+		}
+	case MT_RenderSubmit:
+		{
+			const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
+			RenderSubmit(msgData.collector);
+
+			break;
+		}
+	}
+}
+
+void CCmpSelectable::InvalidateStaticOverlay()
+{
+	SAFE_DELETE(m_BuildingOverlay);
+}
+
+void CCmpSelectable::UpdateStaticOverlay()
+{
+	// Static overlays are allocated once and not updated until they are explicitly deleted again
+	// (see InvalidateStaticOverlay). Since they are expected to change rarely (if ever) during
+	// normal gameplay, this saves us doing all the work below on each frame.
+	
+	if (m_BuildingOverlay || m_OverlayDescriptor.m_Type != STATIC_OUTLINE)
+		return;
+	
+	if (!CRenderer::IsInitialised())
+		return;
+
+	entity_id_t entityId = GetEntityId();
+	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), entityId);
+	CmpPtr<ICmpFootprint> cmpFootprint(GetSimContext(), entityId);
+	if (!cmpFootprint || !cmpPosition || !cmpPosition->IsInWorld())
+		return;
+
+	CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
+	if (!cmpTerrain)
+		return; // should never happen
+
+	// grab position/footprint data
+	CFixedVector2D position = cmpPosition->GetPosition2D();
+	CFixedVector3D rotation = cmpPosition->GetRotation();
+
+	ICmpFootprint::EShape fpShape;
+	entity_pos_t fpSize0_fixed, fpSize1_fixed, fpHeight_fixed;
+	cmpFootprint->GetShape(fpShape, fpSize0_fixed, fpSize1_fixed, fpHeight_fixed);
+
+	CTextureProperties texturePropsBase(m_OverlayDescriptor.m_LineTexture.c_str()); 
+	texturePropsBase.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE); 
+	texturePropsBase.SetMaxAnisotropy(4.f);
+
+	CTextureProperties texturePropsMask(m_OverlayDescriptor.m_LineTextureMask.c_str());
+	texturePropsMask.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE); 
+	texturePropsMask.SetMaxAnisotropy(4.f);
+
+	// -------------------------------------------------------------------------------------
+
+	m_BuildingOverlay = new SOverlayTexturedLine;
+	m_BuildingOverlay->m_AlwaysVisible = false;
+	m_BuildingOverlay->m_Closed = true;
+	m_BuildingOverlay->m_SimContext = &GetSimContext();
+	m_BuildingOverlay->m_Thickness = m_OverlayDescriptor.m_LineThickness;
+	m_BuildingOverlay->m_TextureBase = g_Renderer.GetTextureManager().CreateTexture(texturePropsBase);
+	m_BuildingOverlay->m_TextureMask = g_Renderer.GetTextureManager().CreateTexture(texturePropsMask);
+
+	CVector2D origin(position.X.ToFloat(), position.Y.ToFloat());
+
+	switch (fpShape)
+	{
+	case ICmpFootprint::SQUARE:
+		{
+			float s = sinf(-rotation.Y.ToFloat());
+			float c = cosf(-rotation.Y.ToFloat());
+			CVector2D unitX(c, s);
+			CVector2D unitZ(-s, c);
+
+			// add half the line thickness to the radius so that we get an 'outside' stroke of the footprint shape
+			const float halfSizeX = fpSize0_fixed.ToFloat()/2.f + m_BuildingOverlay->m_Thickness/2.f;
+			const float halfSizeZ = fpSize1_fixed.ToFloat()/2.f + m_BuildingOverlay->m_Thickness/2.f;
+
+			std::vector<CVector2D> points;
+			points.push_back(CVector2D(origin + unitX *  halfSizeX    + unitZ *(-halfSizeZ)));
+			points.push_back(CVector2D(origin + unitX *(-halfSizeX)   + unitZ *(-halfSizeZ)));
+			points.push_back(CVector2D(origin + unitX *(-halfSizeX)   + unitZ *  halfSizeZ));
+			points.push_back(CVector2D(origin + unitX *  halfSizeX    + unitZ *  halfSizeZ));
+
+			SimRender::SubdividePoints(points, TERRAIN_TILE_SIZE/3.f, m_BuildingOverlay->m_Closed);
+			m_BuildingOverlay->PushCoords(points);
+		}
+		break;
+	case ICmpFootprint::CIRCLE:
+		{
+			const float radius = fpSize0_fixed.ToFloat() + m_BuildingOverlay->m_Thickness/3.f;
+			if (radius > 0) // prevent catastrophic failure
+			{
+				float stepAngle;
+				unsigned numSteps;
+				SimRender::AngularStepFromChordLen(TERRAIN_TILE_SIZE/3.f, radius, stepAngle, numSteps);
+
+				for (unsigned i = 0; i < numSteps; i++) // '<' is sufficient because the line is closed automatically
+				{
+					float angle = i * stepAngle;
+					float px = origin.X + radius * sinf(angle);
+					float pz = origin.Y + radius * cosf(angle);
+
+					m_BuildingOverlay->PushCoords(px, pz);
+				}
+			}
+		}
+		break;
 	}
 
-	void ConstructShape(float frameOffset)
+	ENSURE(m_BuildingOverlay);
+}
+
+void CCmpSelectable::UpdateDynamicOverlay(float frameOffset)
+{
+	// Dynamic overlay lines are allocated once and never deleted. Since they are expected to change frequently,
+	// they are assumed dirty on every call to this function, and we should therefore use this function more
+	// thoughtfully than calling it right before every frame render.
+	
+	if (m_OverlayDescriptor.m_Type != DYNAMIC_QUAD)
+		return;
+
+	if (!CRenderer::IsInitialised())
+		return;
+
+	entity_id_t entityId = GetEntityId();
+	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), entityId);
+	CmpPtr<ICmpFootprint> cmpFootprint(GetSimContext(), entityId);
+	if (!cmpFootprint || !cmpPosition || !cmpPosition->IsInWorld())
+		return;
+
+	float rotY;
+	CVector2D position;
+	cmpPosition->GetInterpolatedPosition2D(frameOffset, position.X, position.Y, rotY);
+
+	CmpPtr<ICmpWaterManager> cmpWaterManager(GetSimContext(), SYSTEM_ENTITY);
+	CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
+	ENSURE(cmpWaterManager && cmpTerrain);
+
+	CTerrain* terrain = cmpTerrain->GetCTerrain();
+	ENSURE(terrain);
+
+	ICmpFootprint::EShape fpShape;
+	entity_pos_t fpSize0_fixed, fpSize1_fixed, fpHeight_fixed;
+	cmpFootprint->GetShape(fpShape, fpSize0_fixed, fpSize1_fixed, fpHeight_fixed);
+
+	// ---------------------------------------------------------------------------------
+
+	if (!m_UnitOverlay)
 	{
-		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
-		if (!cmpPosition)
-			return;
+		m_UnitOverlay = new SOverlayQuad;
 
-		if (!cmpPosition->IsInWorld())
-			return;
+		// Assuming we don't need the capability of swapping textures on-demand.
+		CTextureProperties texturePropsBase(m_OverlayDescriptor.m_QuadTexture.c_str()); 
+		texturePropsBase.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE); 
+		texturePropsBase.SetMaxAnisotropy(4.f);
 
-		float x, z, rotY;
-		cmpPosition->GetInterpolatedPosition2D(frameOffset, x, z, rotY);
+		CTextureProperties texturePropsMask(m_OverlayDescriptor.m_QuadTextureMask.c_str());
+		texturePropsMask.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE); 
+		texturePropsMask.SetMaxAnisotropy(4.f);
 
-		CmpPtr<ICmpFootprint> cmpFootprint(GetSimContext(), GetEntityId());
-		if (!cmpFootprint)
+		m_UnitOverlay->m_Texture = g_Renderer.GetTextureManager().CreateTexture(texturePropsBase);
+		m_UnitOverlay->m_TextureMask = g_Renderer.GetTextureManager().CreateTexture(texturePropsMask);
+	}
+
+	m_UnitOverlay->m_Color = m_Color;
+
+	// TODO: some code duplication here :< would be nice to factor out getting the corner points of an 
+	// entity based on its footprint sizes (and regardless of whether it's a circle or a square)
+
+	float s = sinf(-rotY);
+	float c = cosf(-rotY);
+	CVector2D unitX(c, s);
+	CVector2D unitZ(-s, c);
+
+	float halfSizeX = fpSize0_fixed.ToFloat();
+	float halfSizeZ = fpSize1_fixed.ToFloat();
+	if (fpShape == ICmpFootprint::SQUARE)
+	{
+		halfSizeX /= 2.0f;
+		halfSizeZ /= 2.0f;
+	}
+
+	std::vector<CVector2D> points;
+	points.push_back(CVector2D(position + unitX *(-halfSizeX)   + unitZ *  halfSizeZ));  // top left
+	points.push_back(CVector2D(position + unitX *(-halfSizeX)   + unitZ *(-halfSizeZ))); // bottom left
+	points.push_back(CVector2D(position + unitX *  halfSizeX    + unitZ *(-halfSizeZ))); // bottom right
+	points.push_back(CVector2D(position + unitX *  halfSizeX    + unitZ *  halfSizeZ));  // top right
+
+	for (int i=0; i < 4; i++)
+	{
+		float quadY = std::max(
+			terrain->GetExactGroundLevel(points[i].X, points[i].Y),
+			cmpWaterManager->GetExactWaterLevel(points[i].X, points[i].Y)
+		);
+
+		m_UnitOverlay->m_Corners[i] = CVector3D(points[i].X, quadY, points[i].Y);
+	}
+}
+
+void CCmpSelectable::RenderSubmit(SceneCollector& collector)
+{
+	// don't render selection overlay if it's not gonna be visible
+	if (m_Color.a > 0)
+	{
+		switch (m_OverlayDescriptor.m_Type)
 		{
-			// Default (this probably shouldn't happen) - just render an arbitrary-sized circle
-			SimRender::ConstructCircleOnGround(GetSimContext(), x, z, 2.f, m_Overlay, cmpPosition->IsFloating());
-		}
-		else
-		{
-			ICmpFootprint::EShape shape;
-			entity_pos_t size0, size1, height;
-			cmpFootprint->GetShape(shape, size0, size1, height);
-
-			if (shape == ICmpFootprint::SQUARE)
-				SimRender::ConstructSquareOnGround(GetSimContext(), x, z, size0.ToFloat(), size1.ToFloat(), rotY, m_Overlay, cmpPosition->IsFloating());
-			else
-				SimRender::ConstructCircleOnGround(GetSimContext(), x, z, size0.ToFloat(), m_Overlay, cmpPosition->IsFloating());
+			case STATIC_OUTLINE:
+				{
+					UpdateStaticOverlay();
+					m_BuildingOverlay->m_Color = m_Color; // done separately so alpha changes don't require a full update call
+					collector.Submit(m_BuildingOverlay);
+				}
+				break;
+			case DYNAMIC_QUAD:
+				{
+					if (m_UnitOverlay)
+						collector.Submit(m_UnitOverlay);
+				}
+				break;
+			default:
+				break;
 		}
 	}
 
-	void RenderSubmit(SceneCollector& collector)
+	// Render bounding box debug overlays if we have a positive target alpha value. This ensures
+	// that the debug overlays respond immediately to deselection without delay from fading out.
+	if (m_FadeBaselineAlpha + m_FadeDeltaAlpha > 0)
 	{
-		// (This is only called if a > 0)
-		collector.Submit(&m_Overlay);
-
 		if (ICmpSelectable::ms_EnableDebugOverlays)
 		{
 			// allocate debug overlays on-demand
@@ -205,6 +530,6 @@ public:
 			if (m_DebugSelectionBoxOverlay) SAFE_DELETE(m_DebugSelectionBoxOverlay);
 		}
 	}
-};
+}
 
 REGISTER_COMPONENT_TYPE(Selectable)

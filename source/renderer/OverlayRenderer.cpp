@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,34 +19,154 @@
 
 #include "OverlayRenderer.h"
 
-#include "maths/MathUtil.h"
-#include "maths/Quaternion.h"
-#include "maths/Vector2D.h"
+#include <boost/unordered_map.hpp>
 #include "graphics/LOSTexture.h"
 #include "graphics/Overlay.h"
 #include "graphics/Terrain.h"
 #include "graphics/TextureManager.h"
 #include "lib/ogl.h"
+#include "maths/MathUtil.h"
+#include "maths/Quaternion.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "renderer/Renderer.h"
+#include "renderer/VertexArray.h"
 #include "renderer/VertexBuffer.h"
 #include "renderer/VertexBufferManager.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpWaterManager.h"
+#include "simulation2/system/SimContext.h"
+
+/**
+ * As a general TODO, some of the code here still uses g_VBMan manually.
+ * For consistency with other parts of the engine, it'd be nice to switch
+ * over to the cleaner and more readable VertexArray API.
+ */
+
+/**
+ * Key used to group quads into batches for more efficient rendering. Currently groups by the combination
+ * of the main texture and the texture mask, to minimize texture swapping during rendering.
+ */
+struct QuadBatchKey
+{
+	QuadBatchKey (const CTexturePtr& texture, const CTexturePtr& textureMask)
+		: m_Texture(texture), m_TextureMask(textureMask)
+	{ }
+
+	bool operator==(const QuadBatchKey& other) const
+	{
+		return (m_Texture == other.m_Texture && m_TextureMask == other.m_TextureMask);
+	}
+
+	CTexturePtr m_Texture;
+	CTexturePtr m_TextureMask;
+};
+
+/**
+ * Holds information about a single quad rendering batch.
+ */
+class QuadBatchData : public CRenderData
+{
+public:
+	QuadBatchData() : m_IndicesBase(0) { }
+
+	/// Holds the quad overlay structures to be rendered during this batch.
+	/// Must be cleared after each frame.
+	std::vector<SOverlayQuad*> m_Quads;
+	/// Start index of this batch into the dedicated quad indices VertexArray (see OverlayInternals).
+	size_t m_IndicesBase;
+};
 
 struct OverlayRendererInternals
 {
+	typedef boost::unordered_map<QuadBatchKey, QuadBatchData> QuadBatchMap;
+
+	OverlayRendererInternals();
+	~OverlayRendererInternals(){ }
+
 	std::vector<SOverlayLine*> lines;
 	std::vector<SOverlayTexturedLine*> texlines;
 	std::vector<SOverlaySprite*> sprites;
+	std::vector<SOverlayQuad*> quads;
+
+	QuadBatchMap quadBatchMap;
+
+	// Dedicated vertex/index buffers for rendering all quads (to within the limits set by
+	// MAX_QUAD_OVERLAYS).
+	VertexArray quadVertices;
+	VertexArray::Attribute quadAttributePos;
+	VertexArray::Attribute quadAttributeColor;
+	VertexArray::Attribute quadAttributeUV;
+	VertexIndexArray quadIndices;
+
+	/// Maximum amount of quad overlays we support for rendering. This limit is set to be able to 
+	/// render all quads from a single dedicated VB without having to reallocate it, which is much
+	/// faster in the typical case of rendering only a handful of quads. When modifying this value,
+	/// you must take care for the new amount of quads to fit in a single VBO (which is not likely
+	/// to be a problem).
+	static const size_t MAX_QUAD_OVERLAYS = 1024;
+
+	// Sets of commonly-(re)used shader defines.
+	CShaderDefines defsOverlayLineNormal;
+	CShaderDefines defsOverlayLineAlwaysVisible;
+	CShaderDefines defsQuadOverlay;
+
+	/// Small vertical offset of overlays from terrain to prevent visual glitches
+	static const float OVERLAY_VOFFSET;
 };
+
+const float OverlayRendererInternals::OVERLAY_VOFFSET = 0.2f;
+
+OverlayRendererInternals::OverlayRendererInternals()
+	: quadVertices(GL_DYNAMIC_DRAW), quadIndices(GL_DYNAMIC_DRAW)
+{
+	quadAttributePos.elems = 3;
+	quadAttributePos.type = GL_FLOAT;
+	quadVertices.AddAttribute(&quadAttributePos);
+
+	quadAttributeColor.elems = 4;
+	quadAttributeColor.type = GL_FLOAT;
+	quadVertices.AddAttribute(&quadAttributeColor);
+
+	quadAttributeUV.elems = 2;
+	quadAttributeUV.type = GL_SHORT; // don't use GL_UNSIGNED_SHORT here, TexCoordPointer won't accept it
+	quadVertices.AddAttribute(&quadAttributeUV);
+
+	quadVertices.SetNumVertices(MAX_QUAD_OVERLAYS * 4);
+	quadVertices.Layout(); // allocate backing store
+
+	quadIndices.SetNumVertices(MAX_QUAD_OVERLAYS * 6);
+	quadIndices.Layout(); // allocate backing store
+
+	// Since the quads in the vertex array are independent and always consist of exactly 4 vertices per quad, the
+	// indices are always the same; we can therefore fill in all the indices once and pretty much forget about
+	// them. We then also no longer need its backing store, since we never change any indices afterwards.
+	VertexArrayIterator<u16> index = quadIndices.GetIterator();
+	for (size_t i = 0; i < MAX_QUAD_OVERLAYS; ++i)
+	{
+		*index++ = i*4 + 0;
+		*index++ = i*4 + 1;
+		*index++ = i*4 + 2;
+		*index++ = i*4 + 2;
+		*index++ = i*4 + 3;
+		*index++ = i*4 + 0;
+	}
+	quadIndices.Upload();
+	quadIndices.FreeBackingStore();
+
+	// Note that we're reusing the textured overlay line shader for the quad overlay rendering. This
+	// is because their code is almost identical; the only difference is that for the quad overlays
+	// we want to use a vertex color stream as opposed to an objectColor uniform. To this end, the
+	// shader has been set up to switch between the two behaviours based on the USE_OBJECTCOLOR define.
+	defsOverlayLineNormal.Add("USE_OBJECTCOLOR", "1");
+	defsOverlayLineAlwaysVisible.Add("USE_OBJECTCOLOR", "1");
+	defsOverlayLineAlwaysVisible.Add("IGNORE_LOS", "1");
+}
 
 class CTexturedLineRData : public CRenderData
 {
 public:
-	CTexturedLineRData(SOverlayTexturedLine* line) :
-		m_Line(line), m_VB(NULL), m_VBIndices(NULL), m_Raise(.2f)
+	CTexturedLineRData(SOverlayTexturedLine* line) : m_Line(line), m_VB(NULL), m_VBIndices(NULL)
 	{ }
 
 	~CTexturedLineRData()
@@ -62,7 +182,7 @@ public:
 		SVertex(CVector3D pos, float u, float v) : m_Position(pos) { m_UVs[0] = u; m_UVs[1] = v; }
 		CVector3D m_Position;
 		GLfloat m_UVs[2];
-		float _padding[3]; // 5 floats up till now, so pad with another 3 floats to get a power of 2
+		float _padding[3]; // get a pow2 struct size
 	};
 	cassert(sizeof(SVertex) == 32);
 
@@ -91,9 +211,15 @@ public:
 	SOverlayTexturedLine* m_Line;
 	CVertexBuffer::VBChunk* m_VB;
 	CVertexBuffer::VBChunk* m_VBIndices;
-
-	float m_Raise; // small vertical offset of line from terrain to prevent visual glitches
 };
+
+static size_t hash_value(const QuadBatchKey& d)
+{
+	size_t seed = 0;
+	boost::hash_combine(seed, d.m_Texture);
+	boost::hash_combine(seed, d.m_TextureMask);
+	return seed;
+}
 
 OverlayRenderer::OverlayRenderer()
 {
@@ -128,13 +254,25 @@ void OverlayRenderer::Submit(SOverlaySprite* overlay)
 	m->sprites.push_back(overlay);
 }
 
+void OverlayRenderer::Submit(SOverlayQuad* overlay)
+{
+	m->quads.push_back(overlay);
+}
+
 void OverlayRenderer::EndFrame()
 {
 	m->lines.clear();
 	m->texlines.clear();
 	m->sprites.clear();
+	m->quads.clear();
 	// this should leave the capacity unchanged, which is okay since it
 	// won't be very large or very variable
+	
+	// Empty the batch rendering data structures, but keep their key mappings around for the next frames
+	for (OverlayRendererInternals::QuadBatchMap::iterator it = m->quadBatchMap.begin(); it != m->quadBatchMap.end(); it++)
+	{
+		it->second.m_Quads.clear();
+	}
 }
 
 void OverlayRenderer::PrepareForRendering()
@@ -157,6 +295,75 @@ void OverlayRenderer::PrepareForRendering()
 			// any of the parameters after first submitting the line.
 		}
 	}
+
+	// Group quad overlays by their texture/mask combination for efficient rendering
+	for (size_t i = 0; i < m->quads.size(); ++i)
+	{
+		SOverlayQuad* const quad = m->quads[i];
+
+		QuadBatchKey textures(quad->m_Texture, quad->m_TextureMask);
+		QuadBatchData& batchRenderData = m->quadBatchMap[textures]; // will create entry if it doesn't already exist
+
+		// add overlay to list of quads
+		batchRenderData.m_Quads.push_back(quad);
+	}
+
+	const CVector3D vOffset(0, OverlayRendererInternals::OVERLAY_VOFFSET, 0);
+
+	// Write quad overlay vertices/indices to VA backing store
+	VertexArrayIterator<CVector3D> vertexPos = m->quadAttributePos.GetIterator<CVector3D>();
+	VertexArrayIterator<CVector4D> vertexColor = m->quadAttributeColor.GetIterator<CVector4D>();
+	VertexArrayIterator<short[2]> vertexUV = m->quadAttributeUV.GetIterator<short[2]>();
+
+	size_t indicesIdx = 0;
+
+	for (OverlayRendererInternals::QuadBatchMap::iterator it = m->quadBatchMap.begin(); it != m->quadBatchMap.end(); ++it)
+	{
+		QuadBatchData& batchRenderData = (it->second);
+		if (batchRenderData.m_Quads.empty())
+			continue;
+
+		// Remember our current index into the (entire) indices array as our base offset for this batch
+		batchRenderData.m_IndicesBase = indicesIdx;
+
+		// points to the index where each iteration's vertices will be appended
+		for (size_t i = 0; i < batchRenderData.m_Quads.size(); i++)
+		{
+			const SOverlayQuad* quad = batchRenderData.m_Quads[i];
+
+			// TODO: this is kind of ugly, the iterator should use a type that can have quad->m_Color assigned
+			// to it directly
+			const CVector4D quadColor(quad->m_Color.r, quad->m_Color.g, quad->m_Color.b, quad->m_Color.a);
+
+			*vertexPos++ = quad->m_Corners[0] + vOffset;
+			*vertexPos++ = quad->m_Corners[1] + vOffset;
+			*vertexPos++ = quad->m_Corners[2] + vOffset;
+			*vertexPos++ = quad->m_Corners[3] + vOffset;
+			
+			(*vertexUV)[0] = 0;
+			(*vertexUV)[1] = 0;
+			++vertexUV;
+			(*vertexUV)[0] = 0;
+			(*vertexUV)[1] = 1;
+			++vertexUV;
+			(*vertexUV)[0] = 1;
+			(*vertexUV)[1] = 1;
+			++vertexUV;
+			(*vertexUV)[0] = 1;
+			(*vertexUV)[1] = 0;
+			++vertexUV;
+
+			*vertexColor++ = quadColor;
+			*vertexColor++ = quadColor;
+			*vertexColor++ = quadColor;
+			*vertexColor++ = quadColor;
+
+			indicesIdx += 6;
+		}
+	}
+
+	m->quadVertices.Upload();
+	// don't free the backing store! we'll overwrite it on the next frame to save a reallocation.
 }
 
 void OverlayRenderer::RenderOverlaysBeforeWater()
@@ -196,36 +403,41 @@ void OverlayRenderer::RenderOverlaysAfterWater()
 {
 	PROFILE3_GPU("overlays (after)");
 
+	RenderTexturedOverlayLines();
+	RenderQuadOverlays();
+}
+
+void OverlayRenderer::RenderTexturedOverlayLines()
+{
 #if CONFIG2_GLES
-#warning TODO: implement OverlayRenderer::RenderOverlaysAfterWater for GLES
+#warning TODO: implement OverlayRenderer::RenderTexturedOverlayLines for GLES
 	return;
 #endif
+	if (m->texlines.empty())
+		return;
 
 	ogl_WarnIfError();
 
-	if (!m->texlines.empty())
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_BLEND);
+	glDepthMask(0);
+
+	const char* shaderName;
+	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+		shaderName = "arb/overlayline";
+	else
+		shaderName = "fixed:overlayline";
+
+	CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
+
+	CShaderManager& shaderManager = g_Renderer.GetShaderManager();
+	CShaderProgramPtr shaderTexLineNormal(shaderManager.LoadProgram(shaderName, m->defsOverlayLineNormal));
+	CShaderProgramPtr shaderTexLineAlwaysVisible(shaderManager.LoadProgram(shaderName, m->defsOverlayLineAlwaysVisible));
+
+	// ----------------------------------------------------------------------------------------
+
+	if (shaderTexLineNormal)
 	{
-		glEnable(GL_TEXTURE_2D);
-		glEnable(GL_BLEND);
-		glDepthMask(0);
-
-		const char* shaderName;
-		if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
-			shaderName = "arb/overlayline";
-		else
-			shaderName = "fixed:overlayline";
-
-		CShaderDefines defAlwaysVisible;
-		defAlwaysVisible.Add("IGNORE_LOS", "1");
-
-		CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
-
-		CShaderManager& shaderManager = g_Renderer.GetShaderManager();
-		CShaderProgramPtr shaderTexLineNormal(shaderManager.LoadProgram(shaderName, CShaderDefines()));
-		CShaderProgramPtr shaderTexLineAlwaysVisible(shaderManager.LoadProgram(shaderName, defAlwaysVisible));
-
-		// ----------------------------------------------------------------------------------------
-
 		shaderTexLineNormal->Bind();
 		shaderTexLineNormal->BindTexture("losTex", los.GetTexture());
 		shaderTexLineNormal->Uniform("losTransform", los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
@@ -234,12 +446,14 @@ void OverlayRenderer::RenderOverlaysAfterWater()
 		RenderTexturedOverlayLines(shaderTexLineNormal, false);
 
 		shaderTexLineNormal->Unbind();
+	}
 
-		// ----------------------------------------------------------------------------------------
+	// ----------------------------------------------------------------------------------------
 
+	if (shaderTexLineAlwaysVisible)
+	{
 		shaderTexLineAlwaysVisible->Bind();
-		// TODO: losTex and losTransform are unused in the always visible shader, but I'm not sure if it's worthwhile messing 
-		// with it just to remove these calls
+		// TODO: losTex and losTransform are unused in the always visible shader; see if these can be safely omitted
 		shaderTexLineAlwaysVisible->BindTexture("losTex", los.GetTexture());
 		shaderTexLineAlwaysVisible->Uniform("losTransform", los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
 
@@ -247,16 +461,18 @@ void OverlayRenderer::RenderOverlaysAfterWater()
 		RenderTexturedOverlayLines(shaderTexLineAlwaysVisible, true);
 
 		shaderTexLineAlwaysVisible->Unbind();
-
-		// TODO: the shader should probably be responsible for unbinding its textures
-		g_Renderer.BindTexture(1, 0);
-		g_Renderer.BindTexture(0, 0);
-
-		CVertexBuffer::Unbind();
-
-		glDepthMask(1);
-		glDisable(GL_BLEND);
 	}
+
+	// ----------------------------------------------------------------------------------------
+
+	// TODO: the shaders should probably be responsible for unbinding their textures
+	g_Renderer.BindTexture(1, 0);
+	g_Renderer.BindTexture(0, 0);
+
+	CVertexBuffer::Unbind();
+
+	glDepthMask(1);
+	glDisable(GL_BLEND);
 }
 
 void OverlayRenderer::RenderTexturedOverlayLines(CShaderProgramPtr shaderTexLine, bool alwaysVisible)
@@ -298,8 +514,96 @@ void OverlayRenderer::RenderTexturedOverlayLines(CShaderProgramPtr shaderTexLine
 		shaderTexLine->AssertPointersBound();
 		glDrawElements(GL_TRIANGLES, rdata->m_VBIndices->m_Count, GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*rdata->m_VBIndices->m_Index); 
 
+		g_Renderer.GetStats().m_DrawCalls++;
 		g_Renderer.GetStats().m_OverlayTris += rdata->m_VBIndices->m_Count/3; 
 	}
+}
+
+void OverlayRenderer::RenderQuadOverlays()
+{
+	if (m->quadBatchMap.empty())
+		return;
+
+	ogl_WarnIfError();
+
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_BLEND);
+	glDepthMask(0);
+
+	const char* shaderName;
+	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+		shaderName = "arb/overlayline";
+	else
+		shaderName = "fixed:overlayline";
+
+	CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
+
+	CShaderManager& shaderManager = g_Renderer.GetShaderManager();
+	CShaderProgramPtr shader(shaderManager.LoadProgram(shaderName, m->defsQuadOverlay));
+
+	// ----------------------------------------------------------------------------------------
+
+	if (shader)
+	{
+		shader->Bind();
+		shader->BindTexture("losTex", los.GetTexture());
+		shader->Uniform("losTransform", los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
+
+		// Base offsets (in bytes) of the two backing stores relative to their owner VBO
+		u8* indexBase = m->quadIndices.Bind();
+		u8* vertexBase = m->quadVertices.Bind();
+		GLsizei indexStride = m->quadIndices.GetStride();
+		GLsizei vertexStride = m->quadVertices.GetStride();
+
+		for (OverlayRendererInternals::QuadBatchMap::iterator it = m->quadBatchMap.begin(); it != m->quadBatchMap.end(); it++)
+		{
+			QuadBatchData& batchRenderData = it->second;
+			const size_t batchNumQuads = batchRenderData.m_Quads.size();
+
+			// Careful; some drivers don't like drawing calls with 0 stuff to draw.
+			// Also needed to ensure that batchRenderData.m_IndicesBase is valid (see PrepareForRendering).
+			if (batchNumQuads == 0)
+				continue;
+
+			const QuadBatchKey& maskPair = it->first;
+
+			shader->BindTexture("baseTex", maskPair.m_Texture->GetHandle());
+			shader->BindTexture("maskTex", maskPair.m_TextureMask->GetHandle());
+
+			int streamflags = shader->GetStreamFlags(); ogl_WarnIfError();
+
+			if (streamflags & STREAM_POS)
+				shader->VertexPointer(m->quadAttributePos.elems, m->quadAttributePos.type, vertexStride, vertexBase + m->quadAttributePos.offset);
+
+			if (streamflags & STREAM_UV0)
+				shader->TexCoordPointer(GL_TEXTURE0, m->quadAttributeUV.elems, m->quadAttributeUV.type, vertexStride, vertexBase + m->quadAttributeUV.offset);
+
+			if (streamflags & STREAM_UV1)
+				shader->TexCoordPointer(GL_TEXTURE1, m->quadAttributeUV.elems, m->quadAttributeUV.type, vertexStride, vertexBase + m->quadAttributeUV.offset);
+			
+			if (streamflags & STREAM_COLOR)
+				shader->ColorPointer(m->quadAttributeColor.elems, m->quadAttributeColor.type, vertexStride, vertexBase + m->quadAttributeColor.offset);
+			
+			shader->AssertPointersBound();
+			glDrawElements(GL_TRIANGLES, (GLsizei)(batchNumQuads * 6), GL_UNSIGNED_SHORT, indexBase + indexStride * batchRenderData.m_IndicesBase);
+
+			g_Renderer.GetStats().m_DrawCalls++;
+			g_Renderer.GetStats().m_OverlayTris += batchNumQuads*2;
+		}
+
+		shader->Unbind();
+	}
+
+	// ----------------------------------------------------------------------------------------
+
+	// TODO: the shader should probably be responsible for unbinding its textures
+	g_Renderer.BindTexture(1, 0);
+	g_Renderer.BindTexture(0, 0);
+
+	CVertexBuffer::Unbind();
+
+	glDepthMask(1);
+	glDisable(GL_BLEND);
 }
 
 void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
@@ -339,6 +643,9 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 
 		glVertexPointer(3, GL_FLOAT, sizeof(float)*3, &pos[0].X);
 		glDrawArrays(GL_QUADS, 0, (GLsizei)4);
+
+		g_Renderer.GetStats().m_DrawCalls++;
+		g_Renderer.GetStats().m_OverlayTris += 2;
 	}
 
 	glDisableClientState(GL_VERTEX_ARRAY);
@@ -363,8 +670,14 @@ void CTexturedLineRData::Update()
 		m_VBIndices = NULL;
 	}
 
-	CTerrain* terrain = m_Line->m_Terrain;
-	CmpPtr<ICmpWaterManager> cmpWaterManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	if (!m_Line->m_SimContext)
+	{
+		debug_warn(L"[OverlayRenderer] No SimContext set for textured overlay line, cannot render (no terrain data)");
+		return;
+	}
+
+	const CTerrain& terrain = m_Line->m_SimContext->GetTerrain();
+	CmpPtr<ICmpWaterManager> cmpWaterManager(*m_Line->m_SimContext, SYSTEM_ENTITY);
 
 	float v = 0.f;
 	std::vector<SVertex> vertices;
@@ -400,18 +713,18 @@ void CTexturedLineRData::Update()
 	// TODO: if we ever support more than one water level per map, recompute this per point
 	float w = cmpWaterManager->GetExactWaterLevel(p0.X, p0.Z);
 
-	p0.Y = terrain->GetExactGroundLevel(p0.X, p0.Z);
+	p0.Y = terrain.GetExactGroundLevel(p0.X, p0.Z);
 	if (p0.Y < w)
 		p0.Y = w;
 
-	p1.Y = terrain->GetExactGroundLevel(p1.X, p1.Z);
+	p1.Y = terrain.GetExactGroundLevel(p1.X, p1.Z);
 	if (p1.Y < w)
 	{
 		p1.Y = w;
 		p1floating = true;
 	}
 
-	p2.Y = terrain->GetExactGroundLevel(p2.X, p2.Z);
+	p2.Y = terrain.GetExactGroundLevel(p2.X, p2.Z);
 	if (p2.Y < w)
 	{
 		p2.Y = w;
@@ -428,7 +741,7 @@ void CTexturedLineRData::Update()
 		if (p1floating)
 			norm = CVector3D(0, 1, 0);
 		else
-			norm = m_Line->m_Terrain->CalcExactNormal(p1.X, p1.Z);
+			norm = terrain.CalcExactNormal(p1.X, p1.Z);
 
 		CVector3D b = ((p1 - p0).Normalized() + (p2 - p1).Normalized()).Cross(norm);
 
@@ -447,8 +760,8 @@ void CTexturedLineRData::Update()
 		// What the code below does is push the indices for a quad composed of two triangles in each iteration. The two triangles 
 		// of each quad are indexed using the winding orders (BR, BL, TR) and (TR, BL, TR) (where BR is bottom-right of this
 		// iteration's quad, TR top-right etc).
-		SVertex vertex1(p1 + b + norm*m_Raise, 0.f, v);
-		SVertex vertex2(p1 - b + norm*m_Raise, 1.f, v);
+		SVertex vertex1(p1 + b + norm*OverlayRendererInternals::OVERLAY_VOFFSET, 0.f, v);
+		SVertex vertex2(p1 - b + norm*OverlayRendererInternals::OVERLAY_VOFFSET, 1.f, v);
 		vertices.push_back(vertex1);
 		vertices.push_back(vertex2);
 
@@ -497,7 +810,7 @@ void CTexturedLineRData::Update()
 		else
 			p2 = CVector3D(m_Line->m_Coords[((i+2) % n)*2], 0, m_Line->m_Coords[((i+2) % n)*2+1]);
 
-		p2.Y = terrain->GetExactGroundLevel(p2.X, p2.Z);
+		p2.Y = terrain.GetExactGroundLevel(p2.X, p2.Z);
 		if (p2.Y < w)
 		{
 			p2.Y = w;
@@ -540,6 +853,7 @@ void CTexturedLineRData::Update()
 
 		for (unsigned i = 0; i < capIndices.size(); i++)
 			capIndices[i] += vertices.size();
+
 		vertices.insert(vertices.end(), capVertices.begin(), capVertices.end());
 		indices.insert(indices.end(), capIndices.begin(), capIndices.end());
 
@@ -560,6 +874,7 @@ void CTexturedLineRData::Update()
 
 		for (unsigned i = 0; i < capIndices.size(); i++)
 			capIndices[i] += vertices.size();
+
 		vertices.insert(vertices.end(), capVertices.begin(), capVertices.end());
 		indices.insert(indices.end(), capIndices.begin(), capIndices.end());
 	}
@@ -595,10 +910,10 @@ void CTexturedLineRData::CreateLineCap(const CVector3D& corner1, const CVector3D
 	// That is to say, when viewed from the top, we will have something like
 	//                                                 .
 	//  this:                     and not like this:  /|
-	//         ____.                                 / |
+	//         ----+                                 / |
 	//             |                                /  .
 	//             |                                  /
-	//         ____.                                 /
+	//         ----+                                 /
 	//
 
 	int roundCapPoints = 8; // amount of points to sample along the semicircle for rounded caps (including corner points)

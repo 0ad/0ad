@@ -19,17 +19,18 @@
 
 #include "Render.h"
 
-#include "simulation2/Simulation2.h"
-#include "simulation2/components/ICmpTerrain.h"
-#include "simulation2/components/ICmpWaterManager.h"
 #include "graphics/Overlay.h"
 #include "graphics/Terrain.h"
 #include "maths/BoundingBoxAligned.h"
 #include "maths/BoundingBoxOriented.h"
 #include "maths/MathUtil.h"
+#include "maths/Quaternion.h"
 #include "maths/Vector2D.h"
 #include "ps/Profile.h"
-#include "maths/Quaternion.h"
+#include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpTerrain.h"
+#include "simulation2/components/ICmpWaterManager.h"
+#include "simulation2/helpers/Geometry.h"
 
 void SimRender::ConstructLineOnGround(const CSimContext& context, const std::vector<float>& xz,
 		SOverlayLine& overlay, bool floating, float heightOffset)
@@ -343,7 +344,7 @@ static CVector2D EvaluateSpline(float t, CVector2D a0, CVector2D a1, CVector2D a
 	return p + CVector2D(dp.Y*-offset, dp.X*offset);
 }
 
-void SimRender::InterpolatePointsRNS(std::vector<CVector2D>& points, bool closed, float offset, int segmentSamples)
+void SimRender::InterpolatePointsRNS(std::vector<CVector2D>& points, bool closed, float offset, int segmentSamples /* = 4 */)
 {
 	PROFILE("InterpolatePointsRNS");
 	ENSURE(segmentSamples > 0);
@@ -381,7 +382,6 @@ void SimRender::InterpolatePointsRNS(std::vector<CVector2D>& points, bool closed
 
 	for (size_t i = 0; i < imax; ++i)
 	{
-
 		// Get the relevant points for this spline segment; each step interpolates the segment between p1 and p2; p0 and p3 are the points
 		// before p1 and after p2, respectively; they're needed to compute tangents and whatnot.
 		CVector2D p0; // normally points[(i-1+n)%n], but it's a bit more complicated due to open/closed paths -- see below
@@ -520,4 +520,51 @@ void SimRender::ConstructDashedLine(const std::vector<CVector2D>& keyPoints, SDa
 
 	}
 
+}
+
+void SimRender::AngularStepFromChordLen(const float maxChordLength, const float radius, float& out_stepAngle, unsigned& out_numSteps)
+{
+	float maxAngle = Geometry::ChordToCentralAngle(maxChordLength, radius);
+	out_numSteps = ceilf(float(2*M_PI)/maxAngle);
+	out_stepAngle = float(2*M_PI)/out_numSteps;
+}
+
+// TODO: this serves a similar purpose to SplitLine above, but is more general. Also, SplitLine seems to be implemented more
+// efficiently, might be nice to take some cues from it
+void SimRender::SubdividePoints(std::vector<CVector2D>& points, float maxSegmentLength, bool closed)
+{
+	size_t numControlPoints = points.size();
+	if (numControlPoints < 2)
+		return;
+
+	ENSURE(maxSegmentLength > 0);
+
+	size_t endIndex = numControlPoints;
+	if (!closed && numControlPoints > 2)
+		endIndex--;
+
+	std::vector<CVector2D> newPoints;
+
+	for (size_t i = 0; i < endIndex; i++)
+	{
+		const CVector2D& curPoint = points[i];
+		const CVector2D& nextPoint = points[(i+1) % numControlPoints];
+		const CVector2D line(nextPoint - curPoint);
+		CVector2D lineDirection = line.Normalized();
+
+		// include control point i + a list of intermediate points between i and i + 1 (excluding i+1 itself)
+		newPoints.push_back(curPoint);
+
+		// calculate how many intermediate points are needed so that each segment is of length <= maxSegmentLength
+		float lineLength = line.Length();
+		size_t numSegments = (size_t) ceilf(lineLength / maxSegmentLength);
+		float segmentLength = lineLength / numSegments;
+
+		for (size_t s = 1; s < numSegments; ++s) // start at one, we already included curPoint
+		{
+			newPoints.push_back(curPoint + lineDirection * (s * segmentLength));
+		}
+	}
+
+	points.swap(newPoints);
 }

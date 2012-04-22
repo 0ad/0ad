@@ -22,6 +22,7 @@
 #include "lib/sysdep/rtl.h"
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
+#include "graphics/Color.h"
 #include "graphics/SColor.h"
 #include "renderer/VertexArray.h"
 #include "renderer/VertexBuffer.h"
@@ -73,7 +74,10 @@ void VertexArray::SetNumVertices(size_t num)
 // Add vertex attributes like Position, Normal, UV
 void VertexArray::AddAttribute(Attribute* attr)
 {
-	ENSURE((attr->type == GL_FLOAT || attr->type == GL_UNSIGNED_SHORT || attr->type == GL_UNSIGNED_BYTE) && "Unsupported attribute type");
+	ENSURE(
+		(attr->type == GL_FLOAT || attr->type == GL_SHORT || attr->type == GL_UNSIGNED_SHORT || attr->type == GL_UNSIGNED_BYTE)
+		&& "Unsupported attribute type"
+	);
 	ENSURE(attr->elems >= 1 && attr->elems <= 4);
 
 	attr->vertexArray = this;
@@ -147,6 +151,16 @@ VertexArrayIterator<u16> VertexArray::Attribute::GetIterator<u16>() const
 }
 
 template<>
+VertexArrayIterator<u16[2]> VertexArray::Attribute::GetIterator<u16[2]>() const
+{
+	ENSURE(vertexArray);
+	ENSURE(type == GL_UNSIGNED_SHORT);
+	ENSURE(elems >= 2);
+
+	return vertexArray->MakeIterator<u16[2]>(this);
+}
+
+template<>
 VertexArrayIterator<u8> VertexArray::Attribute::GetIterator<u8>() const
 {
 	ENSURE(vertexArray);
@@ -166,7 +180,25 @@ VertexArrayIterator<u8[4]> VertexArray::Attribute::GetIterator<u8[4]>() const
 	return vertexArray->MakeIterator<u8[4]>(this);
 }
 
+template<>
+VertexArrayIterator<short> VertexArray::Attribute::GetIterator<short>() const
+{
+	ENSURE(vertexArray);
+	ENSURE(type == GL_SHORT);
+	ENSURE(elems >= 1);
 
+	return vertexArray->MakeIterator<short>(this);
+}
+
+template<>
+VertexArrayIterator<short[2]> VertexArray::Attribute::GetIterator<short[2]>() const
+{
+	ENSURE(vertexArray);
+	ENSURE(type == GL_SHORT);
+	ENSURE(elems >= 2);
+
+	return vertexArray->MakeIterator<short[2]>(this);
+}
 
 static size_t RoundStride(size_t stride)
 {
@@ -205,6 +237,9 @@ void VertexArray::Layout()
 		{
 		case GL_UNSIGNED_BYTE:
 			attrSize = sizeof(GLubyte);
+			break;
+		case GL_SHORT:
+			attrSize = sizeof(GLshort);
 			break;
 		case GL_UNSIGNED_SHORT:
 			attrSize = sizeof(GLushort);

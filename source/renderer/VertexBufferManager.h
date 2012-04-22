@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,8 +30,6 @@
 class CVertexBufferManager
 {
 public:
-	// Explicit shutdown of the vertex buffer subsystem
-	void Shutdown();
 	
 	/**
 	 * Try to allocate a vertex buffer of the given size and type.
@@ -44,17 +42,23 @@ public:
 	 */
 	CVertexBuffer::VBChunk* Allocate(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target);
 
-	// return given chunk to its owner
+	/// Returns the given @p chunk to its owning buffer
 	void Release(CVertexBuffer::VBChunk* chunk);
 
-	// return list of all buffers
+	/// Returns a list of all buffers
 	const std::list<CVertexBuffer*>& GetBufferList() const { return m_Buffers; }
 
 	size_t GetBytesReserved();
 	size_t GetBytesAllocated();
 
+	/// Returns the maximum possible size of a single vertex buffer
+	size_t GetMaxBufferSize() const { return MAX_VB_SIZE_BYTES; }
+
+	/// Explicit shutdown of the vertex buffer subsystem; releases all currently-allocated buffers.
+	void Shutdown();
+
 private:
-	// list of all known vertex buffers
+	/// List of all known vertex buffers
 	std::list<CVertexBuffer*> m_Buffers;
 };
 

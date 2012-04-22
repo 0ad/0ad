@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,20 +33,22 @@
 // TODO: measure what influence this has on performance
 #define MAX_VB_SIZE_BYTES		(2*1024*1024)
 
-///////////////////////////////////////////////////////////////////////////////
-// CVertexBuffer: encapsulation of ARB_vertex_buffer_object, also supplying 
-// some additional functionality for sharing buffers between multiple objects
+/**
+ * CVertexBuffer: encapsulation of ARB_vertex_buffer_object, also supplying 
+ * some additional functionality for sharing buffers between multiple objects
+ */
 class CVertexBuffer
 {
 public:
-	// VBChunk: describes a portion of this vertex buffer
+
+	/// VBChunk: describes a portion of this vertex buffer
 	struct VBChunk
 	{
-		// owning buffer
+		/// Owning (parent) vertex buffer
 		CVertexBuffer* m_Owner;
-		// start index of this chunk in owner
+		/// Start index of this chunk in owner
 		size_t m_Index;
-		// number of vertices used by chunk
+		/// Number of vertices used by chunk
 		size_t m_Count;
 
 	private:
@@ -62,24 +64,24 @@ public:
 	CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target);
 	~CVertexBuffer();
 
-	// bind to this buffer; return pointer to address required as parameter
-	// to glVertexPointer ( + etc) calls
+	/// Bind to this buffer; return pointer to address required as parameter
+	/// to glVertexPointer ( + etc) calls
 	u8* Bind();
 
-	// get the address that Bind() will return, without actually binding
+	/// Get the address that Bind() will return, without actually binding
 	u8* GetBindAddress();
 
-	// unbind any currently-bound buffer, so glVertexPointer etc calls will not attempt to use it
+	/// Unbind any currently-bound buffer, so glVertexPointer etc calls will not attempt to use it
 	static void Unbind();
 
-	// update vertex data for given chunk
+	/// Update vertex data for given chunk. Transfers the provided data to the actual OpenGL vertex buffer.
 	void UpdateChunkVertices(VBChunk* chunk, void* data);
 
 	size_t GetVertexSize() const { return m_VertexSize; }
-
 	size_t GetBytesReserved() const;
 	size_t GetBytesAllocated() const;
 
+	/// Returns true if this vertex buffer is compatible with the specified vertex type and intended usage.
 	bool CompatibleVertexType(size_t vertexSize, GLenum usage, GLenum target);
 
 	void DumpStatus();
@@ -87,29 +89,29 @@ public:
 protected:
 	friend class CVertexBufferManager;		// allow allocate only via CVertexBufferManager
 	
-	// try to allocate a buffer of given number of vertices (each of given size), 
-	// and with the given type - return null if no free chunks available
+	/// Try to allocate a buffer of given number of vertices (each of given size), 
+	/// and with the given type - return null if no free chunks available
 	VBChunk* Allocate(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target);
-	// return given chunk to this buffer
+	/// Return given chunk to this buffer
 	void Release(VBChunk* chunk);
 	
 	
 private:	
-	// vertex size of this vertex buffer
+	/// Vertex size of this vertex buffer
 	size_t m_VertexSize;
-	// number of vertices of above size in this buffer
+	/// Number of vertices of above size in this buffer
 	size_t m_MaxVertices;
-	// list of free chunks in this buffer
+	/// List of free chunks in this buffer
 	std::list<VBChunk*> m_FreeList;
-	// available free vertices - total of all free vertices in the free list
+	/// Available free vertices - total of all free vertices in the free list
 	size_t m_FreeVertices;
-	// handle to the actual GL vertex buffer object
+	/// Handle to the actual GL vertex buffer object
 	GLuint m_Handle;
-	// raw system memory for systems not supporting VBOs
+	/// Raw system memory for systems not supporting VBOs
 	u8* m_SysMem;
-	// usage type of the buffer (GL_STATIC_DRAW etc)
+	/// Usage type of the buffer (GL_STATIC_DRAW etc)
 	GLenum m_Usage;
-	// buffer target (GL_ARRAY_BUFFER, GL_ELEMENT_ARRAY_BUFFER)
+	/// Buffer target (GL_ARRAY_BUFFER, GL_ELEMENT_ARRAY_BUFFER)
 	GLenum m_Target;
 };
 

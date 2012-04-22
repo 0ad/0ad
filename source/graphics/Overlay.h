@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,8 +20,10 @@
 
 #include "graphics/RenderableObject.h"
 #include "graphics/Texture.h"
+#include "maths/Vector2D.h"
 #include "maths/Vector3D.h"
 #include "ps/Overlay.h" // CColor  (TODO: that file has nothing to do with overlays, it should be renamed)
+#include "simulation2/components/ICmpFootprint.h"
 
 class CTerrain;
 
@@ -35,11 +37,9 @@ struct SOverlayLine
 
 	CColor m_Color;
 	std::vector<float> m_Coords; // (x, y, z) vertex coordinate triples; shape is not automatically closed
-	u8 m_Thickness; // pixels
+	u8 m_Thickness; // in pixels
 
-	/// Utility function; pushes three vertex coordinates at once onto the coordinates array
 	void PushCoords(const float x, const float y, const float z) { m_Coords.push_back(x); m_Coords.push_back(y); m_Coords.push_back(z); }
-	/// Utility function; pushes a vertex location onto the coordinates array
 	void PushCoords(const CVector3D& v) { PushCoords(v.X, v.Y, v.Z); }
 };
 
@@ -64,10 +64,10 @@ struct SOverlayTexturedLine
 	};
 
 	SOverlayTexturedLine()
-		: m_Terrain(NULL), m_Thickness(1.0f), m_Closed(false), m_AlwaysVisible(false), m_StartCapType(LINECAP_FLAT), m_EndCapType(LINECAP_FLAT)
-	{}
+		: m_SimContext(NULL), m_Thickness(1.0f), m_Closed(false), m_AlwaysVisible(false),
+		  m_StartCapType(LINECAP_FLAT), m_EndCapType(LINECAP_FLAT)
+	{ }
 
-	CTerrain* m_Terrain;
 	CTexturePtr m_TextureBase;
 	CTexturePtr m_TextureMask;
 	CColor m_Color; ///< Color to apply to the line texture
@@ -79,6 +79,7 @@ struct SOverlayTexturedLine
 	LineCapType m_StartCapType; ///< LineCapType to be used at the start of the line
 	LineCapType m_EndCapType; ///< LineCapType to be used at the end of the line
 
+	const CSimContext* m_SimContext; /// Simulation context applicable for this overlay line; used to obtain terrain information
 	shared_ptr<CRenderData> m_RenderData; ///< Cached renderer data (shared_ptr so that copies/deletes are automatic)
 
 	/**
@@ -86,6 +87,14 @@ struct SOverlayTexturedLine
 	 * If the input string is unrecognized, a warning is issued and a default value is returned.
 	 */
 	static LineCapType StrToLineCapType(const std::wstring& str);
+
+	void PushCoords(const float x, const float z) { m_Coords.push_back(x); m_Coords.push_back(z); }
+	void PushCoords(const CVector2D& v) { PushCoords(v.X, v.Y); }
+	void PushCoords(const std::vector<CVector2D>& points)
+	{
+		for (size_t i = 0; i < points.size(); ++i)
+			PushCoords(points[i]);
+	}
 };
 
 /**
@@ -97,6 +106,19 @@ struct SOverlaySprite
 	CTexturePtr m_Texture;
 	CVector3D m_Position; // base position
 	float m_X0, m_Y0, m_X1, m_Y1; // billboard corner coordinates, relative to base position
+};
+
+/**
+ * Rectangular single-quad terrain overlay, with world space coordinates. The vertices of the quad
+ * are not required to be coplanar; the quad is arbitrarily triangulated with no effort being made to
+ * find a best fit to the underlying terrain.
+ */
+struct SOverlayQuad
+{
+	CTexturePtr m_Texture;
+	CTexturePtr m_TextureMask;
+	CVector3D m_Corners[4];
+	CColor m_Color;
 };
 
 // TODO: OverlayText

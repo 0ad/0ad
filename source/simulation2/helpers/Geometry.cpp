@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -43,6 +43,11 @@ CFixedVector2D Geometry::GetHalfBoundingBox(CFixedVector2D u, CFixedVector2D v, 
 		u.X.Multiply(halfSize.X).Absolute() + v.X.Multiply(halfSize.Y).Absolute(),
 		u.Y.Multiply(halfSize.X).Absolute() + v.Y.Multiply(halfSize.Y).Absolute()
 	);
+}
+
+float Geometry::ChordToCentralAngle(const float chordLength, const float radius)
+{
+	return acosf(1.f - SQR(chordLength)/(2.f*SQR(radius))); // cfr. law of cosines
 }
 
 fixed Geometry::DistanceToSquare(CFixedVector2D point, CFixedVector2D u, CFixedVector2D v, CFixedVector2D halfSize)
