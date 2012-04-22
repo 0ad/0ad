@@ -7,12 +7,13 @@
 		"mace": "Xyston",
 		"spart": "Xyston",
 		"athen": "Xyston"
+		"rome": "Hasta"
 	},
 	"description": "A long spear made specifically for cavalry.",
 	"cost": {"food": 0, "wood": 25, "stone": 0, "metal": 135},
 	"requirements": {"tech": "city_phase"},
 	"requirementsTooltip": "Unlocked in City Phase.",
-	"icon": "plough.png",
+	"icon": "arrow.png",
 	"researchTime": 20,
 	"tooltip": "Melee Cavalry +2 Hack Attack.",
 	"modifications": [{"value": "Attack/Melee/Hack", "add": 2.0}],
