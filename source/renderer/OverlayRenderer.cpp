@@ -584,7 +584,7 @@ void OverlayRenderer::RenderQuadOverlays()
 			shader->BindTexture("baseTex", maskPair.m_Texture->GetHandle());
 			shader->BindTexture("maskTex", maskPair.m_TextureMask->GetHandle());
 
-			int streamflags = shader->GetStreamFlags(); ogl_WarnIfError();
+			int streamflags = shader->GetStreamFlags();
 
 			if (streamflags & STREAM_POS)
 				shader->VertexPointer(m->quadAttributePos.elems, m->quadAttributePos.type, vertexStride, vertexBase + m->quadAttributePos.offset);
