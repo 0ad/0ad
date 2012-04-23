@@ -123,7 +123,7 @@ AddMock(101, IID_BuildLimits, {
 });
 
 AddMock(101, IID_TechnologyManager, {
-	IsTechnologyResearched: function(tech) { if (tech == "village_phase") return true; else return false; },
+	IsTechnologyResearched: function(tech) { if (tech == "phase_village") return true; else return false; },
 });
 
 AddMock(101, IID_StatisticsTracker, {
