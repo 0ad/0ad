@@ -577,16 +577,16 @@ static void InitRenderer()
 	new CRenderer;
 
 	// set renderer options from command line options - NOVBO must be set before opening the renderer
-	g_Renderer.SetOptionBool(CRenderer::OPT_NOVBO,g_NoGLVBO);
-	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS,g_Shadows);
-	g_Renderer.SetOptionBool(CRenderer::OPT_FANCYWATER,g_FancyWater);
+	g_Renderer.SetOptionBool(CRenderer::OPT_NOVBO, g_NoGLVBO);
+	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, g_Shadows);
+	g_Renderer.SetOptionBool(CRenderer::OPT_FANCYWATER, g_FancyWater);
 	g_Renderer.SetRenderPath(CRenderer::GetRenderPathByName(g_RenderPath));
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWPCF, g_ShadowPCF);
 
 	// create terrain related stuff
 	new CTerrainTextureManager;
 
-	g_Renderer.Open(g_xres,g_yres);
+	g_Renderer.Open(g_xres, g_yres);
 
 	// Setup lighting environment. Since the Renderer accesses the
 	// lighting environment through a pointer, this has to be done before
@@ -596,10 +596,10 @@ static void InitRenderer()
 	// I haven't seen the camera affecting GUI rendering and such, but the
 	// viewport has to be updated according to the video mode
 	SViewPort vp;
-	vp.m_X=0;
-	vp.m_Y=0;
-	vp.m_Width=g_xres;
-	vp.m_Height=g_yres;
+	vp.m_X = 0;
+	vp.m_Y = 0;
+	vp.m_Width = g_xres;
+	vp.m_Height = g_yres;
 	g_Renderer.SetViewport(vp);
 
 	ColorActivateFastImpl();
