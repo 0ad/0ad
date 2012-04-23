@@ -10,7 +10,7 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "mining_metal.png",
 	"researchTime": 20,
-	"tooltip": "+25% metal gathering rate.",
+	"tooltip": "Strike a vein of precious silver. +25% metal gathering rate.",
 	"modifications": [{"value": "ResourceGatherer/Rates/metal/ore", "multiplier": 1.25}],
 	"affects": ["Worker"]
 }
