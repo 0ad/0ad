@@ -118,6 +118,11 @@ struct OverlayRendererInternals
 
 	/// Small vertical offset of overlays from terrain to prevent visual glitches
 	static const float OVERLAY_VOFFSET;
+
+	/// Performs one-time setup. Called from CRenderer::Open, after graphics capabilities have
+	/// been detected. Note that no VBOs must be created before this is called, since the shader
+	/// path and graphics capabilities are not guaranteed to be stable before this point.
+	void Initialize();
 };
 
 const float OverlayRendererInternals::OVERLAY_VOFFSET = 0.2f;
@@ -137,6 +142,21 @@ OverlayRendererInternals::OverlayRendererInternals()
 	quadAttributeUV.type = GL_SHORT; // don't use GL_UNSIGNED_SHORT here, TexCoordPointer won't accept it
 	quadVertices.AddAttribute(&quadAttributeUV);
 
+	// Note that we're reusing the textured overlay line shader for the quad overlay rendering. This
+	// is because their code is almost identical; the only difference is that for the quad overlays
+	// we want to use a vertex color stream as opposed to an objectColor uniform. To this end, the
+	// shader has been set up to switch between the two behaviours based on the USE_OBJECTCOLOR define.
+	defsOverlayLineNormal.Add("USE_OBJECTCOLOR", "1");
+	defsOverlayLineAlwaysVisible.Add("USE_OBJECTCOLOR", "1");
+	defsOverlayLineAlwaysVisible.Add("IGNORE_LOS", "1");
+}
+
+void OverlayRendererInternals::Initialize()
+{
+	// Perform any initialization after graphics capabilities have been detected. Notably,
+	// only at this point can we safely allocate VBOs (in contrast to e.g. in the constructor),
+	// because their creation depends on the shader path, which is not reliably set before this point.
+	
 	quadVertices.SetNumVertices(MAX_QUAD_OVERLAYS * 4);
 	quadVertices.Layout(); // allocate backing store
 
@@ -158,14 +178,6 @@ OverlayRendererInternals::OverlayRendererInternals()
 	}
 	quadIndices.Upload();
 	quadIndices.FreeBackingStore();
-
-	// Note that we're reusing the textured overlay line shader for the quad overlay rendering. This
-	// is because their code is almost identical; the only difference is that for the quad overlays
-	// we want to use a vertex color stream as opposed to an objectColor uniform. To this end, the
-	// shader has been set up to switch between the two behaviours based on the USE_OBJECTCOLOR define.
-	defsOverlayLineNormal.Add("USE_OBJECTCOLOR", "1");
-	defsOverlayLineAlwaysVisible.Add("USE_OBJECTCOLOR", "1");
-	defsOverlayLineAlwaysVisible.Add("IGNORE_LOS", "1");
 }
 
 class CTexturedLineRData : public CRenderData
@@ -234,6 +246,11 @@ OverlayRenderer::OverlayRenderer()
 OverlayRenderer::~OverlayRenderer()
 {
 	delete m;
+}
+
+void OverlayRenderer::Initialize()
+{
+	m->Initialize();
 }
 
 void OverlayRenderer::Submit(SOverlayLine* line)

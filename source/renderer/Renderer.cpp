@@ -618,6 +618,10 @@ bool CRenderer::Open(int width, int height)
 	// Validate the currently selected render path
 	SetRenderPath(m_Options.m_RenderPath);
 
+	// Let component renderers perform one-time initialization after graphics capabilities and
+	// the shader path have been determined.
+	m->overlayRenderer.Initialize();
+
 	return true;
 }
 

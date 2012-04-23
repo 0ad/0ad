@@ -39,6 +39,12 @@ public:
 	~OverlayRenderer();
 
 	/**
+	 * Performs one-time initialization. Called by CRenderer::Open after graphics
+	 * capabilities and the shader path have been determined (notably VBO support).
+	 */
+	void Initialize();
+
+	/**
 	 * Add a line overlay for rendering in this frame.
 	 * @param overlay Must be non-null. The pointed-to object must remain valid at least
 	 *                until the end of the frame.
