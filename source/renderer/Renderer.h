@@ -77,7 +77,8 @@ public:
 		OPT_NOVBO,
 		OPT_SHADOWS,
 		OPT_FANCYWATER,
-		OPT_SHADOWPCF
+		OPT_SHADOWPCF,
+		OPT_PARTICLES
 	};
 
 	enum RenderPath {
@@ -121,6 +122,7 @@ public:
 		bool m_ShadowAlphaFix;
 		bool m_ARBProgramShadow;
 		bool m_ShadowPCF;
+		bool m_Particles;
 		bool m_PreferGLSL;
 		bool m_ForceAlphaTest;
 		bool m_GPUSkinning;
@@ -147,7 +149,7 @@ public:
 	void Resize(int width,int height);
 
 	// set/get boolean renderer option
-	void SetOptionBool(enum Option opt,bool value);
+	void SetOptionBool(enum Option opt, bool value);
 	bool GetOptionBool(enum Option opt) const;
 	void SetRenderPath(RenderPath rp);
 	RenderPath GetRenderPath() const { return m_Options.m_RenderPath; }

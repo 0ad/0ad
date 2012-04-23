@@ -38,6 +38,7 @@ bool g_PauseOnFocusLoss = false;
 bool g_Shadows = false;
 bool g_ShadowPCF = false;
 bool g_FancyWater = false;
+bool g_Particles = false;
 
 float g_Gamma = 1.0f;
 
@@ -77,6 +78,7 @@ static void LoadGlobals()
 	CFG_GET_USER_VAL("shadowpcf", Bool, g_ShadowPCF);
 	CFG_GET_USER_VAL("fancywater", Bool, g_FancyWater);
 	CFG_GET_USER_VAL("renderpath", String, g_RenderPath);
+	CFG_GET_USER_VAL("particles", Bool, g_Particles);
 
 	float gain = -1.0f;
 	CFG_GET_USER_VAL("sound.mastergain", Float, gain);
