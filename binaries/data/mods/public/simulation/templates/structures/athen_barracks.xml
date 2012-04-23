@@ -13,7 +13,7 @@
   <Identity>
     <Civ>athen</Civ>
     <SpecificName>Stratēgeîon</SpecificName>
-    <History>The Stratigeion was the main military headquarters, where important decisions were taken and plans for battles discussed by the Hellene Generals, or "Strategoi".</History>
+    <History>The Strategeion was the main military headquarters, where important decisions were taken and plans for battles discussed by the Hellene Generals, or "Strategoi".</History>
   </Identity>
   <ProductionQueue>
     <Entities datatype="tokens">
@@ -23,9 +23,6 @@
       units/athen_cavalry_swordsman_b
       units/athen_cavalry_javelinist_b
     </Entities>
-    <Technologies datatype="tokens">
-	  hele_pair_cav_01
-    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/athenians/barracks.xml</Actor>

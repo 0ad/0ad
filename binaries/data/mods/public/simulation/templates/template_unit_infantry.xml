@@ -45,7 +45,7 @@
   </Health>
   <Identity>
     <GenericName>Infantry</GenericName>
-    <Classes datatype="tokens">Infantry CitizenSoldier Citizen Organic</Classes>
+    <Classes datatype="tokens">Infantry CitizenSoldier Worker Organic</Classes>
     <Rank>Basic</Rank>
   </Identity>
   <Loot>
@@ -71,7 +71,7 @@
 	  <wood.ruins>5</wood.ruins>
       <stone.rock>0.75</stone.rock>
 	  <stone.ruins>5</stone.ruins>
-      <metal.ore>1</metal.ore>
+      <metal.ore>0.75</metal.ore>
     </Rates>
   </ResourceGatherer>
   <Selectable>
