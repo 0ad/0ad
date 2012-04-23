@@ -408,11 +408,11 @@ CRenderer::CRenderer()
 
 	g_ProfileViewer.AddRootTable(&m->profileTable);
 
-	m_Width=0;
-	m_Height=0;
-	m_TerrainRenderMode=SOLID;
-	m_ModelRenderMode=SOLID;
-	m_ClearColor[0]=m_ClearColor[1]=m_ClearColor[2]=m_ClearColor[3]=0;
+	m_Width = 0;
+	m_Height = 0;
+	m_TerrainRenderMode = SOLID;
+	m_ModelRenderMode = SOLID;
+	m_ClearColor[0] = m_ClearColor[1] = m_ClearColor[2] = m_ClearColor[3] = 0;
 
 	m_DisplayFrustum = false;
 	m_DisplayTerrainPriorities = false;
@@ -425,6 +425,7 @@ CRenderer::CRenderer()
 	m_Options.m_ShadowAlphaFix = true;
 	m_Options.m_ARBProgramShadow = true;
 	m_Options.m_ShadowPCF = false;
+	m_Options.m_Particles = false;
 	m_Options.m_PreferGLSL = false;
 	m_Options.m_ForceAlphaTest = false;
 	m_Options.m_GPUSkinning = false;
@@ -449,7 +450,7 @@ CRenderer::CRenderer()
 	m_hCompositeAlphaMap = 0;
 
 	m_Stats.Reset();
-
+	AddLocalProperty(L"particles", &m_Options.m_Particles, false);
 	AddLocalProperty(L"fancyWater", &m_Options.m_FancyWater, false);
 	AddLocalProperty(L"horizonHeight", &m->skyManager.m_HorizonHeight, false);
 	AddLocalProperty(L"waterMurkiness", &m->waterManager.m_Murkiness, false);
@@ -641,18 +642,21 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 {
 	switch (opt) {
 		case OPT_NOVBO:
-			m_Options.m_NoVBO=value;
+			m_Options.m_NoVBO = value;
 			break;
 		case OPT_SHADOWS:
-			m_Options.m_Shadows=value;
+			m_Options.m_Shadows = value;
 			MakeShadersDirty();
 			break;
 		case OPT_FANCYWATER:
-			m_Options.m_FancyWater=value;
+			m_Options.m_FancyWater = value;
 			break;
 		case OPT_SHADOWPCF:
-			m_Options.m_ShadowPCF=value;
+			m_Options.m_ShadowPCF = value;
 			MakeShadersDirty();
+			break;
+		case OPT_PARTICLES:
+			m_Options.m_Particles = value;
 			break;
 		default:
 			debug_warn(L"CRenderer::SetOptionBool: unknown option");
@@ -673,6 +677,8 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 			return m_Options.m_FancyWater;
 		case OPT_SHADOWPCF:
 			return m_Options.m_ShadowPCF;
+		case OPT_PARTICLES:
+			return m_Options.m_Particles;
 		default:
 			debug_warn(L"CRenderer::GetOptionBool: unknown option");
 			break;
@@ -1437,8 +1443,11 @@ void CRenderer::RenderSubmissions()
 	ogl_WarnIfError();
 
 	// particles are transparent so render after water
-	RenderParticles();
-	ogl_WarnIfError();
+	if (m_Options.m_Particles)
+	{
+		RenderParticles();
+		ogl_WarnIfError();
+	}
 
 	RenderSilhouettes(context);
 
