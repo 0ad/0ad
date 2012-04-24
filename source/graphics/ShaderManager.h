@@ -35,6 +35,9 @@
 
 /**
  * Shader manager: loads and caches shader programs.
+ * 
+ * For a high-level overview of shaders and materials, see
+ * http://trac.wildfiregames.com/wiki/MaterialSystem
  */
 class CShaderManager
 {
@@ -60,7 +63,7 @@ public:
 	CShaderTechniquePtr LoadEffect(CStrIntern name, const CShaderDefines& defines1, const CShaderDefines& defines2);
 
 	/**
-	 * Load a shader effect, with no defines.
+	 * Load a shader effect, with default system defines (from CRenderer::GetSystemShaderDefines).
 	 */
 	CShaderTechniquePtr LoadEffect(const char* name);
 

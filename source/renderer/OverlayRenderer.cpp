@@ -409,6 +409,10 @@ void OverlayRenderer::RenderOverlaysBeforeWater()
 	glDisable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
 
+	// Ignore z so that we draw behind terrain (but don't disable GL_DEPTH_TEST
+	// since we still want to write to the z buffer)
+	glDepthFunc(GL_ALWAYS);
+
 	for (size_t i = 0; i < m->lines.size(); ++i)
 	{
 		SOverlayLine* line = m->lines[i];
@@ -427,6 +431,7 @@ void OverlayRenderer::RenderOverlaysBeforeWater()
 	glDisableClientState(GL_VERTEX_ARRAY);
 
 	glLineWidth(1.f);
+	glDepthFunc(GL_LEQUAL);
 	glDisable(GL_BLEND);
 #endif
 }

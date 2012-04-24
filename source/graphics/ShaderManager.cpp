@@ -334,7 +334,7 @@ bool CShaderManager::EffectCacheKey::operator==(const EffectCacheKey& b) const
 
 CShaderTechniquePtr CShaderManager::LoadEffect(const char* name)
 {
-	return LoadEffect(CStrIntern(name), CShaderDefines(), CShaderDefines());
+	return LoadEffect(CStrIntern(name), g_Renderer.GetSystemShaderDefines(), CShaderDefines());
 }
 
 CShaderTechniquePtr CShaderManager::LoadEffect(CStrIntern name, const CShaderDefines& defines1, const CShaderDefines& defines2)

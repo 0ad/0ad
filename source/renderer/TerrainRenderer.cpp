@@ -387,6 +387,70 @@ void TerrainRenderer::RenderTerrain(bool filtered)
 #endif
 }
 
+void TerrainRenderer::RenderTerrainOverlayTexture(CMatrix3D& textureMatrix)
+{
+#if CONFIG2_GLES
+#warning TODO: implement TerrainRenderer::RenderTerrainOverlayTexture for GLES
+	UNUSED2(textureMatrix);
+#else
+	ENSURE(m->phase == Phase_Render);
+
+	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches;
+
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glDepthMask(0);
+
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+
+	glMatrixMode(GL_TEXTURE);
+	glLoadMatrixf(&textureMatrix._11);
+	glMatrixMode(GL_MODELVIEW);
+
+	CShaderProgramPtr dummyShader = g_Renderer.GetShaderManager().LoadProgram("fixed:dummy", CShaderDefines());
+	dummyShader->Bind();
+	CPatchRData::RenderStreams(visiblePatches, dummyShader, STREAM_POS|STREAM_POSTOUV0);
+	dummyShader->Unbind();
+
+	// To make the overlay visible over water, render an additional map-sized
+	// water-height patch
+	CBoundingBoxAligned waterBounds;
+	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
+	{
+		CPatchRData* data = m->visiblePatches[i];
+		waterBounds += data->GetWaterBounds();
+	}
+	if (!waterBounds.IsEmpty())
+	{
+		float h = g_Renderer.GetWaterManager()->m_WaterHeight + 0.05f; // add a delta to avoid z-fighting
+		float waterPos[] = {
+			waterBounds[0].X, h, waterBounds[0].Z,
+			waterBounds[1].X, h, waterBounds[0].Z,
+			waterBounds[0].X, h, waterBounds[1].Z,
+			waterBounds[1].X, h, waterBounds[1].Z
+		};
+		glVertexPointer(3, GL_FLOAT, 3*sizeof(float), waterPos);
+		glTexCoordPointer(3, GL_FLOAT, 3*sizeof(float), waterPos);
+		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+	}
+
+	glMatrixMode(GL_TEXTURE);
+	glLoadIdentity();
+	glMatrixMode(GL_MODELVIEW);
+
+	glDepthMask(1);
+	glDisable(GL_BLEND);
+	glDisableClientState(GL_COLOR_ARRAY);
+	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+#endif
+}
+
+
 ///////////////////////////////////////////////////////////////////
 
 /**

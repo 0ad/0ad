@@ -327,7 +327,7 @@ function updateGroups()
 			button.hidden = true;
 		else
 			button.hidden = false;
-		button.onpress = (function(i) { return function() { performGroup("select", i); } })(i);
+		button.onpress = (function(i) { return function() { performGroup((Engine.HotkeyIsPressed("selection.add") ? "add" : "select"), i); } })(i);
 		button.ondoublepress = (function(i) { return function() { performGroup("snap", i); } })(i);
 	}
 	var numButtons = i;

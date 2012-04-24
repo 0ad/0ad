@@ -438,7 +438,7 @@ public:
 		// GLES defines the macro "GL_ES" in its GLSL preprocessor,
 		// but since we run our own preprocessor first, we need to explicitly
 		// define it here
-		preprocessor.Define("GL_ES", "1");
+		preprocessor.AddDefine("GL_ES", "1");
 #endif
 
 		CStr vertexCode = preprocessor.Preprocess(vertexFile.GetAsString());
@@ -638,7 +638,11 @@ public:
 		std::map<CStrIntern, int>::iterator it = m_VertexAttribs.find(CStrIntern(id));
 		if (it != m_VertexAttribs.end())
 		{
+#if CONFIG2_GLES
+			debug_warn(L"glVertexAttribIPointer not supported on GLES");
+#else
 			pglVertexAttribIPointerEXT(it->second, size, type, stride, pointer);
+#endif
 		}
 	}
 
@@ -771,9 +775,27 @@ void CShaderProgram::Uniform(uniform_id_t id, size_t count, const CMatrix3D* v)
 	Uniform(GetUniformBinding(id), count, v);
 }
 
+
+// These should all be overridden by CShaderProgramGLSL, and not used
+// if a non-GLSL shader was loaded instead:
+
+void CShaderProgram::VertexAttribPointer(const char* UNUSED(id), GLint UNUSED(size), GLenum UNUSED(type),
+	GLboolean UNUSED(normalized), GLsizei UNUSED(stride), void* UNUSED(pointer))
+{
+	debug_warn("Shader type doesn't support VertexAttribPointer");
+}
+
+void CShaderProgram::VertexAttribIPointer(const char* UNUSED(id), GLint UNUSED(size), GLenum UNUSED(type),
+	GLsizei UNUSED(stride), void* UNUSED(pointer))
+{
+	debug_warn("Shader type doesn't support VertexAttribIPointer");
+}
+
 #if CONFIG2_GLES
 
 // These should all be overridden by CShaderProgramGLSL
+// (GLES doesn't support any other types of shader program):
+
 void CShaderProgram::VertexPointer(GLint UNUSED(size), GLenum UNUSED(type), GLsizei UNUSED(stride), void* UNUSED(pointer))
 {
 	debug_warn("CShaderProgram::VertexPointer should be overridden");
@@ -794,7 +816,8 @@ void CShaderProgram::TexCoordPointer(GLenum UNUSED(texture), GLint UNUSED(size),
 #else
 
 // These are overridden by CShaderProgramGLSL, but fixed-function and ARB shaders
-// both use the fixed-function vertex attribute pointers:
+// both use the fixed-function vertex attribute pointers so we'll share their
+// definitions here:
 
 void CShaderProgram::VertexPointer(GLint size, GLenum type, GLsizei stride, void* pointer)
 {
@@ -820,18 +843,6 @@ void CShaderProgram::TexCoordPointer(GLenum texture, GLint size, GLenum type, GL
 	glTexCoordPointer(size, type, stride, pointer);
 	pglClientActiveTextureARB(GL_TEXTURE0);
 	m_ValidStreams |= STREAM_UV0 << (texture - GL_TEXTURE0);
-}
-
-void CShaderProgram::VertexAttribPointer(const char* UNUSED(id), GLint UNUSED(size), GLenum UNUSED(type),
-	GLboolean UNUSED(normalized), GLsizei UNUSED(stride), void* UNUSED(pointer))
-{
-	debug_warn("Shader type doesn't support VertexAttribPointer");
-}
-
-void CShaderProgram::VertexAttribIPointer(const char* UNUSED(id), GLint UNUSED(size), GLenum UNUSED(type),
-	GLsizei UNUSED(stride), void* UNUSED(pointer))
-{
-	debug_warn("Shader type doesn't support VertexAttribIPointer");
 }
 
 void CShaderProgram::BindClientStates()
