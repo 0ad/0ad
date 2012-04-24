@@ -45,6 +45,7 @@ class SkyManager;
 class CTextureManager;
 class CShaderManager;
 class CParticleManager;
+class TerrainRenderer;
 class CMaterialManager;
 
 // rendering modes
@@ -268,7 +269,11 @@ public:
 
 	CParticleManager& GetParticleManager();
 
+	TerrainRenderer& GetTerrainRenderer();
+
 	CMaterialManager& GetMaterialManager();
+
+	CShaderDefines GetSystemShaderDefines();
 
 	/**
 	 * GetCapabilities: Return which OpenGL capabilities are available and enabled.

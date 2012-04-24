@@ -521,11 +521,27 @@ void CRenderer::EnumCaps()
 #endif
 }
 
+CShaderDefines CRenderer::GetSystemShaderDefines()
+{
+	CShaderDefines defines;
+
+	if (GetRenderPath() == RP_SHADER && m_Caps.m_ARBProgram)
+		defines.Add("SYS_HAS_ARB", "1");
+
+	if (GetRenderPath() == RP_SHADER && m_Caps.m_VertexShader && m_Caps.m_FragmentShader)
+		defines.Add("SYS_HAS_GLSL", "1");
+
+	if (m_Options.m_PreferGLSL)
+		defines.Add("SYS_PREFER_GLSL", "1");
+
+	return defines;
+}
+
 void CRenderer::ReloadShaders()
 {
 	ENSURE(m->IsOpen);
 
-	m->globalContext = CShaderDefines();
+	m->globalContext = GetSystemShaderDefines();
 
 	if (m_Caps.m_Shadows && m_Options.m_Shadows)
 	{
@@ -541,15 +557,6 @@ void CRenderer::ReloadShaders()
 
 	if (m_LightEnv)
 		m->globalContext.Add(("LIGHTING_MODEL_" + m_LightEnv->GetLightingModel()).c_str(), "1");
-
-	if (GetRenderPath() == RP_SHADER && m_Caps.m_ARBProgram)
-		m->globalContext.Add("SYS_HAS_ARB", "1");
-
-	if (GetRenderPath() == RP_SHADER && m_Caps.m_VertexShader && m_Caps.m_FragmentShader)
-		m->globalContext.Add("SYS_HAS_GLSL", "1");
-
-	if (m_Options.m_PreferGLSL)
-		m->globalContext.Add("SYS_PREFER_GLSL", "1");
 
 	m->Model.ModShader = LitRenderModifierPtr(new ShaderRenderModifier());
 
@@ -1407,7 +1414,7 @@ void CRenderer::RenderSubmissions()
 	ogl_WarnIfError();
 
 	// render debug-related terrain overlays
-	TerrainOverlay::RenderOverlays();
+	ITerrainOverlay::RenderOverlaysBeforeWater();
 	ogl_WarnIfError();
 
 	// render other debug-related overlays before water (so they can be seen when underwater)
@@ -1437,6 +1444,10 @@ void CRenderer::RenderSubmissions()
 		RenderTransparentModels(context, TRANSPARENT);
 		ogl_WarnIfError();
 	}
+
+	// render debug-related terrain overlays
+	ITerrainOverlay::RenderOverlaysAfterWater();
+	ogl_WarnIfError();
 
 	// render some other overlays after water (so they can be displayed on top of water)
 	m->overlayRenderer.RenderOverlaysAfterWater();
@@ -1947,6 +1958,11 @@ CShaderManager& CRenderer::GetShaderManager()
 CParticleManager& CRenderer::GetParticleManager()
 {
 	return m->particleManager;
+}
+
+TerrainRenderer& CRenderer::GetTerrainRenderer()
+{
+	return m->terrainRenderer;
 }
 
 CMaterialManager& CRenderer::GetMaterialManager()

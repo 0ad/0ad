@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,9 +23,44 @@
 #ifndef INCLUDED_TERRAINOVERLAY
 #define INCLUDED_TERRAINOVERLAY
 
+#include "lib/ogl.h"
+
 struct CColor;
 class CTerrain;
 class CSimContext;
+
+/**
+ * Common interface for terrain-tile-based and texture-based debug overlays.
+ *
+ * An overlay object will be rendered for as long as it is allocated
+ * (it is automatically registered/deregistered by constructor/destructor).
+ */
+class ITerrainOverlay
+{
+	NONCOPYABLE(ITerrainOverlay);
+
+public:
+	virtual ~ITerrainOverlay();
+
+	virtual void RenderBeforeWater() { }
+
+	virtual void RenderAfterWater() { }
+
+	/**
+	 * Draw all ITerrainOverlay objects that exist
+	 * and that should be drawn before water.
+	 */
+	static void RenderOverlaysBeforeWater();
+
+	/**
+	 * Draw all ITerrainOverlay objects that exist
+	 * and that should be drawn after water.
+	 */
+	static void RenderOverlaysAfterWater();
+
+protected:
+	ITerrainOverlay(int priority);
+};
 
 /**
  * Base class for (relatively) simple drawing of
@@ -37,18 +72,9 @@ class CSimContext;
  * it is drawn.
  * Override ProcessTile to do your processing for each tile, which should call
  * RenderTile and RenderTileOutline as appropriate.
- * See the end of TerrainOverlay.h for an example.
- *
- * A TerrainOverlay object will be rendered for as long as it exists.
- *
  */
-class TerrainOverlay
+class TerrainOverlay : public ITerrainOverlay
 {
-public:
-	virtual ~TerrainOverlay();
-private:
-	TerrainOverlay(){} // private default ctor (must be subclassed)
-
 protected:
 	/**
 	 * Construct the object and register it with the global
@@ -128,20 +154,9 @@ protected:
 	 */
 	void RenderTileOutline(const CColor& colour, int line_width, bool draw_hidden, ssize_t i, ssize_t j);
 	
-public:
-	/**
-	 * Draw all TerrainOverlay objects that exist.
-	 */
-	static void RenderOverlays();
-
 private:
-	/// Copying not allowed.
-	TerrainOverlay(const TerrainOverlay&);
-
-	friend struct render1st;
-
 	// Process all tiles
-	void Render();
+	virtual void RenderBeforeWater();
 
 	// Temporary storage of tile coordinates, so ProcessTile doesn't need to
 	// pass it to RenderTile/etc (and doesn't have a chance to get it wrong)
@@ -150,40 +165,33 @@ private:
 	CTerrain* m_Terrain;
 };
 
-
-/* Example usage:
-
-class ExampleTerrainOverlay : public TerrainOverlay
+/**
+ * Base class for texture-based terrain overlays, with an arbitrary number of
+ * texels per terrain tile, intended for debugging purposes.
+ * Subclasses must implement BuildTextureRGBA which will be called each frame.
+ */
+class TerrainTextureOverlay : public ITerrainOverlay
 {
 public:
-	char random[1021];
+	TerrainTextureOverlay(float texelsPerTile, int priority = 100);
 
-	ExampleTerrainOverlay()
-	{
-		for (size_t i = 0; i < ARRAY_SIZE(random); ++i)
-			random[i] = rand(0, 5);
-	}
+	virtual ~TerrainTextureOverlay();
 
-	virtual void GetTileExtents(
-		ssize_t& min_i_inclusive, ssize_t& min_j_inclusive,
-		ssize_t& max_i_inclusive, ssize_t& max_j_inclusive)
-	{
-		min_i_inclusive = 5;
-		min_j_inclusive = 10;
-		max_i_inclusive = 70;
-		max_j_inclusive = 50;
-	}
+protected:
+	/**
+	 * Called each frame to generate the texture to render on the terrain.
+	 * @p data is w*h*4 bytes, where w and h are the terrain size multiplied
+	 * by texelsPerTile. @p data defaults to fully transparent, and should
+	 * be filled with data in RGBA order.
+	 */
+	virtual void BuildTextureRGBA(u8* data, size_t w, size_t h) = 0;
 
-	virtual void ProcessTile(ssize_t i, ssize_t j)
-	{
-		if (!random[(i*97+j*101) % ARRAY_SIZE(random)])
-			return;
-		RenderTile(CColor(random[(i*79+j*13) % ARRAY_SIZE(random)]/4.f, 1, 0, 0.3f), false);
-		RenderTileOutline(CColor(1, 1, 1, 1), 1, true);
-	}
+private:
+	void RenderAfterWater();
+
+	float m_TexelsPerTile;
+	GLuint m_Texture;
+	GLsizei m_TextureW, m_TextureH;
 };
-
-ExampleTerrainOverlay test; // or allocate it dynamically somewhere
-*/
 
 #endif // INCLUDED_TERRAINOVERLAY
