@@ -237,7 +237,7 @@ function RunDetection(settings)
 	// (with a fairly arbitrary cutoff for Intels)
 	if ((os_unix && GL_RENDERER.match(/^(Software Rasterizer|Gallium \S* on llvmpipe|Mesa X11|Apple Software Renderer)$/)) ||
 		(os_unix && GL_RENDERER.match(/^Mesa DRI R[123]00 /)) ||
-		(os_macosx && IsWorseThanIntelMac(GL_RENDERER, "Intel HD 3000 Graphics")) ||
+		(os_macosx && IsWorseThanIntelMac(GL_RENDERER, "Intel HD Graphics 3000")) ||
 		(os_unix && IsWorseThanIntelMesa(GL_RENDERER, "Intel(R) Ironlake Desktop")) ||
 		(os_win && IsWorseThanIntelWindows(GL_RENDERER, "Intel(R) HD Graphics"))
 	)
@@ -249,7 +249,7 @@ function RunDetection(settings)
 	// Fragment-shader water is really slow on most Intel devices,
 	// so disable it (with a fairly arbitrary cutoff)
 	if ((os_unix && GL_RENDERER.match(/^(Software Rasterizer|Gallium \S* on llvmpipe|Apple Software Renderer)$/)) ||
-		(os_macosx && IsWorseThanIntelMac(GL_RENDERER, "Intel HD 3000 Graphics")) ||
+		(os_macosx && IsWorseThanIntelMac(GL_RENDERER, "Intel HD Graphics 3000")) ||
 		(os_unix && IsWorseThanIntelMesa(GL_RENDERER, "Intel(R) Sandybridge Desktop")) ||
 		(os_win && IsWorseThanIntelWindows(GL_RENDERER, "Intel(R) Graphics Media Accelerator HD"))
 	)
