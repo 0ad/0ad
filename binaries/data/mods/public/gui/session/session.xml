@@ -740,6 +740,7 @@
 						<repeat count="16">
 							<object name="unitResearchButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
 								<object name="unitResearchIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
+								<object name="unitResearchSelection[n]" hidden="true" type="image" ghost="true" size="3 3 43 43" sprite="colour: 255 0 0 127"/>
 							</object>
 						</repeat>
 						<repeat count="8">

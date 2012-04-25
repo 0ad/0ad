@@ -127,6 +127,12 @@ function layoutRow(objectName, rowNumber, guiName, objectSideWidth, objectSpacer
 	}
 }
 
+// Set the visibility of the object
+function setOverlay(object, value)
+{
+	object.hidden = !value;
+}
+
 // Sets up "unit panels" - the panels with rows of icons (Helper function for updateUnitDisplay)
 function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 {
@@ -400,6 +406,14 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			button1.hidden = false;
 			button1.tooltip = tooltip1;
 			button1.onpress = (function(e){ return function() { callback(e) } })(item.bottom);
+
+			// We add a red overlay to the paired button (we reuse the selection for that)
+			button1.onmouseenter = (function(e){ return function() { setOverlay(e, true) } })(selection);
+			button1.onmouseleave = (function(e){ return function() { setOverlay(e, false) } })(selection);
+
+			var selection1 = getGUIObjectByName("unit"+guiName+"Selection["+(i+rowLength)+"]");;
+			button.onmouseenter = (function(e){ return function() { setOverlay(e, true) } })(selection1);
+			button.onmouseleave = (function(e){ return function() { setOverlay(e, false) } })(selection1);
 
 			pair.hidden = false;
 		}
