@@ -98,27 +98,39 @@ function layoutButtonRowCentered(rowNumber, guiName, startIndex, endIndex, width
 }
 
 // Lay out button rows
-function layoutButtonRow(rowNumber, guiName, buttonSideLength, buttonSpacer, startIndex, endIndex)
+function layoutButtonRow(rowNumber, guiName, buttonSideWidth, buttonSpacer, startIndex, endIndex)
+{
+	layoutRow("Button", rowNumber, guiName, buttonSideWidth, buttonSpacer, buttonSideWidth, buttonSpacer, startIndex, endIndex);
+}
+
+// Lay out rows
+function layoutRow(objectName, rowNumber, guiName, objectSideWidth, objectSpacerWidth, objectSideHeight, objectSpacerHeight, startIndex, endIndex)
 {
 	var colNumber = 0;
 
 	for (var i = startIndex; i < endIndex; i++)
 	{
-		var button = getGUIObjectByName("unit"+guiName+"Button["+i+"]");
+		var button = getGUIObjectByName("unit"+guiName+objectName+"["+i+"]");
 
 		if (button)
 		{
 			var size = button.size;
 
-			size.left = buttonSpacer*colNumber;
-			size.right = buttonSpacer*colNumber + buttonSideLength;
-			size.top = buttonSpacer*rowNumber;
-			size.bottom = buttonSpacer*rowNumber + buttonSideLength;
+			size.left = objectSpacerWidth*colNumber;
+			size.right = objectSpacerWidth*colNumber + objectSideWidth;
+			size.top = objectSpacerHeight*rowNumber;
+			size.bottom = objectSpacerHeight*rowNumber + objectSideHeight;
 
 			button.size = size;
 			colNumber++;
 		}
 	}
+}
+
+// Set the visibility of the object
+function setOverlay(object, value)
+{
+	object.hidden = !value;
 }
 
 // Sets up "unit panels" - the panels with rows of icons (Helper function for updateUnitDisplay)
@@ -129,6 +141,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	var numberOfItems = items.length;
 	var selection = g_Selection.toList();
 	var garrisonGroups = new EntityGroups();
+	var pairs = false;
 
 	// Determine how many buttons there should be
 	switch (guiName)
@@ -164,10 +177,10 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			if (numberOfItems > 24)
 				numberOfItems =  24;
 			break;
-		
+
 		case RESEARCH:
-			if (numberOfItems > 16)
-				numberOfItems =  16;
+			if (numberOfItems > 8)
+				numberOfItems =  8;
 			break;
 
 		case CONSTRUCTION:
@@ -184,6 +197,12 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			break;
 	}
 
+	var rowLength = 8;
+	if (guiName == SELECTION)
+		rowLength = 4;
+	else if (guiName == FORMATION || guiName == GARRISON || guiName == COMMAND)
+		rowLength = 4;
+
 	// Make buttons
 	var i;
 	for (i = 0; i < numberOfItems; i++)
@@ -194,12 +213,17 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		if (guiName == RESEARCH && !item)
 		{
 			getGUIObjectByName("unit"+guiName+"Button["+i+"]").hidden = true;
+			// We also remove the paired tech and the pair symbol
+			getGUIObjectByName("unit"+guiName+"Button["+(i+rowLength)+"]").hidden = true;
+			getGUIObjectByName("unit"+guiName+"Pair["+i+"]").hidden = true;
 			continue;
 		}
 		
 		// Get the entity type and load the template for that type if necessary
 		var entType;
 		var template;
+		var entType1;
+		var template1;
 		switch (guiName)
 		{
 			case QUEUE:
@@ -221,11 +245,26 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 					          // reported already)
 				break;
 			case RESEARCH:
-				entType = item;
+				if (item.pair)
+				{
+					pairs = true;
+					entType1 = item.bottom;
+					template1 = GetTechnologyData(entType1);
+					if (!template1)
+						continue; // ignore attempts to use invalid templates (an error should have been
+						          // reported already)
+					
+					entType = item.top;
+				}
+				else
+				{
+					entType = item;
+				}
 				template = GetTechnologyData(entType);
 				if (!template)
 					continue; // ignore attempts to use invalid templates (an error should have been
 					          // reported already)
+				
 				break;
 			case SELECTION:
 			case GARRISON:
@@ -300,11 +339,19 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				
 			case RESEARCH:
 				var tooltip = getEntityNameWithGenericType(template);
-
 				if (template.tooltip)
 					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
 
 				tooltip += "\n" + getEntityCost(template);
+
+				if (item.pair)
+				{
+					var tooltip1 = getEntityNameWithGenericType(template1);
+					if (template1.tooltip)
+						tooltip1 += "\n[font=\"serif-13\"]" + template1.tooltip + "[/font]";
+
+					tooltip1 += "\n" + getEntityCost(template1);
+				}
 				break;
 
 			case CONSTRUCTION:
@@ -341,13 +388,35 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 
 		// Button
 		var button = getGUIObjectByName("unit"+guiName+"Button["+i+"]");
+		var button1 = getGUIObjectByName("unit"+guiName+"Button["+(i+rowLength)+"]");
 		var icon = getGUIObjectByName("unit"+guiName+"Icon["+i+"]");
 		var selection = getGUIObjectByName("unit"+guiName+"Selection["+i+"]");
+		var pair = getGUIObjectByName("unit"+guiName+"Pair["+i+"]");
 		button.hidden = false;
 		button.tooltip = tooltip;
 
 		// Button Function (need nested functions to get the closure right)
 		button.onpress = (function(e){ return function() { callback(e) } })(item);
+
+		if (item.pair)
+		{
+			button.onpress = (function(e){ return function() { callback(e) } })(item.top);
+
+			var icon1 = getGUIObjectByName("unit"+guiName+"Icon["+(i+rowLength)+"]");
+			button1.hidden = false;
+			button1.tooltip = tooltip1;
+			button1.onpress = (function(e){ return function() { callback(e) } })(item.bottom);
+
+			// We add a red overlay to the paired button (we reuse the selection for that)
+			button1.onmouseenter = (function(e){ return function() { setOverlay(e, true) } })(selection);
+			button1.onmouseleave = (function(e){ return function() { setOverlay(e, false) } })(selection);
+
+			var selection1 = getGUIObjectByName("unit"+guiName+"Selection["+(i+rowLength)+"]");;
+			button.onmouseenter = (function(e){ return function() { setOverlay(e, true) } })(selection1);
+			button.onmouseleave = (function(e){ return function() { setOverlay(e, false) } })(selection1);
+
+			pair.hidden = false;
+		}
 
 		// Get icon image
 		if (guiName == FORMATION)
@@ -427,6 +496,27 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			}
 			
 			icon.sprite = "stretched:" + grayscale + "session/portraits/" + template.icon;
+			
+			if (guiName == RESEARCH)
+			{
+				if (item.pair)
+				{
+					grayscale = "";
+					button1.enabled = true;
+					if (guiName == RESEARCH && !Engine.GuiInterfaceCall("CheckTechnologyRequirements", entType1))
+					{
+						button1.enabled = false;
+						button1.tooltip += "\n" + GetTechnologyData(entType1).requirementsTooltip;
+						grayscale = "grayscale:";
+					}
+					icon1.sprite = "stretched:" + grayscale + "session/portraits/" +template1.icon;
+				}
+				else
+				{
+					pair.hidden = true;
+					button1.hidden = true;
+				}
+			}
 		}
 		else
 		{
@@ -438,13 +528,12 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	// Position the visible buttons (TODO: if there's lots, maybe they should be squeezed together to fit)
 	var numButtons = i;
 
-	var rowLength = 8;
-	if (guiName == SELECTION)
-		rowLength = 4;
-	else if (guiName == FORMATION || guiName == GARRISON || guiName == COMMAND)
-		rowLength = 4;
-
 	var numRows = Math.ceil(numButtons / rowLength);
+	
+	// If we have paired buttons we need to align one more row
+	if (pairs)
+		numRows++;
+
 	var buttonSideLength = getGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
 	var buttonSpacer = buttonSideLength+1;
 
@@ -457,6 +546,18 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	{
 		for (var i = 0; i < numRows; i++)
 			layoutButtonRow(i, guiName, buttonSideLength, buttonSpacer, rowLength*i, rowLength*(i+1) );
+	}
+	
+	// Layout pair icons
+	if (guiName == RESEARCH)
+	{
+		var pairSize = getGUIObjectByName("unit"+guiName+"Pair[0]").size;
+		var pairSideWidth = pairSize.right;
+		var pairSideHeight = pairSize.bottom;
+		var pairSpacerHeight = pairSideHeight + 1;
+		var pairSpacerWidth = pairSideWidth + 1;
+
+		layoutRow("Pair", 0, guiName, pairSideWidth, pairSpacerWidth, pairSideHeight, pairSpacerHeight, 0, rowLength);
 	}
 
 	// Resize Queue panel if needed
@@ -471,6 +572,16 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	// Hide any buttons we're no longer using
 	for (i = numButtons; i < g_unitPanelButtons[guiName]; ++i)
 		getGUIObjectByName("unit"+guiName+"Button["+i+"]").hidden = true;
+
+	// Hide unused pair buttons and symbols
+	if (guiName == RESEARCH)
+	{
+		for (i = numButtons; i < g_unitPanelButtons[guiName]; ++i)
+		{
+			getGUIObjectByName("unit"+guiName+"Button["+(i+rowLength)+"]").hidden = true;
+			getGUIObjectByName("unit"+guiName+"Pair["+i+"]").hidden = true;
+		}
+	}
 
 	g_unitPanelButtons[guiName] = numButtons;
 }
