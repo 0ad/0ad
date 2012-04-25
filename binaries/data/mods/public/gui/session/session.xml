@@ -742,6 +742,11 @@
 								<object name="unitResearchIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
 							</object>
 						</repeat>
+						<repeat count="8">
+							<object name="unitResearchPair[n]" hidden="true" size="0 0 46 92">
+								<object name="unitResearchPairIcon[n]" type="image" ghost="true" size="8 38 38 54" sprite="stretched:session/icons/vertical_pair.png"/>
+							</object>
+						</repeat>
 					</object>
 				</object>
 

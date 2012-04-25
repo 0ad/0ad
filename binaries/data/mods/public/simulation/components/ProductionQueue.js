@@ -123,9 +123,8 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 	
 	var ret = []
 	
-	// TODO: Move GUI specific logic somewhere in the GUI code
 	// This inserts the techs into the correct positions to line up the tehnology pairs
-	for (var i = 0; i < 8; i++)
+	for (var i = 0; i < techList.length; i++)
 	{
 		var tech = techList[i];
 		if (!tech)
@@ -136,14 +135,9 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 		
 		var template = cmpTechMan.GetTechnologyTemplate(tech);
 		if (template.top)
-		{
-			ret[i] = template.top;
-			ret[i+8] = template.bottom;
-		}
+			ret[i] = {"pair": true, "top": template.top, "bottom": template.bottom};
 		else
-		{
 			ret[i] = tech;
-		}
 	}
 	
 	return ret;
