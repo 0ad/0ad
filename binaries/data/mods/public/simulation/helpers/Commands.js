@@ -33,6 +33,12 @@ function ProcessCommand(player, cmd)
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGuiInterface.PushNotification({"type": "chat", "player": player, "message": cmd.message});
 		break;
+		
+	case "quit":
+		// Let the AI exit the game for testing purposes
+		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGuiInterface.PushNotification({"type": "quit"});
+		break;
 
 	case "control-all":
 		cmpPlayer.SetControlAllUnits(cmd.flag);
@@ -500,6 +506,16 @@ function ProcessCommand(player, cmd)
 	case "barter":
 		var cmpBarter = Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter);
 		cmpBarter.ExchangeResources(playerEnt, cmd.sell, cmd.buy, cmd.amount);
+		break;
+		
+	case "set-shading-color":
+		// Debug command to make an entity brightly colored
+		for each (var ent in cmd.entities)
+		{
+			var cmpVisual = Engine.QueryInterface(ent, IID_Visual)
+			if (cmpVisual)
+				cmpVisual.SetShadingColour(cmd.rgb[0], cmd.rgb[1], cmd.rgb[2], 0) // alpha isn't used so just send 0
+		}
 		break;
 
 	default:
