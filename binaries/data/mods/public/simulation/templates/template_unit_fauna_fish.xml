@@ -23,6 +23,15 @@
     <Amount>1000</Amount>
     <Type>food.fish</Type>
   </ResourceSupply>
+  <Selectable>
+    <EditorOnly disable=""/>
+    <Overlay>
+      <Texture>
+        <MainTexture>circle/256x256.png</MainTexture>
+        <MainTextureMask>circle/256x256_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <UnitAI disable=""/>
   <UnitMotion disable=""/>
 </Entity>
