@@ -23,7 +23,7 @@
 #include "lib/timer.h"
 #include "lib/res/sound/snd_mgr.h"
 #include "Config.h"
-
+#include "soundmanager/CSoundManager.h"
 
 // (these variables are documented in the header.)
 
@@ -81,9 +81,18 @@ static void LoadGlobals()
 	CFG_GET_USER_VAL("particles", Bool, g_Particles);
 
 	float gain = -1.0f;
+	float musicGain = -1.0f;
+	float ambientGain = -1.0f;
+	float actionGain = -1.0f;
 	CFG_GET_USER_VAL("sound.mastergain", Float, gain);
-	if(gain >= 0.0f)
-		WARN_IF_ERR(snd_set_master_gain(gain));
+	CFG_GET_USER_VAL("sound.musicgain", Float, musicGain);
+	CFG_GET_USER_VAL("sound.ambientgain", Float, ambientGain);
+	CFG_GET_USER_VAL("sound.actiongain", Float, actionGain);
+
+    g_SoundManager->setMasterGain( gain );
+    g_SoundManager->setMusicGain( musicGain );
+    g_SoundManager->setAmbientGain( ambientGain );
+    g_SoundManager->setActionGain( actionGain );
 }
 
 
