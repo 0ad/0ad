@@ -29,7 +29,6 @@ GarrisonHolder.prototype.Init = function()
 	this.entities = [];
 	this.spaceOccupied = 0;
 	this.timer = undefined;
-	this.healRate = +this.template.BuffHeal;
 };
 
 /**
@@ -64,7 +63,17 @@ GarrisonHolder.prototype.GetAllowedClassesList = function()
  */
 GarrisonHolder.prototype.GetCapacity = function()
 {
-	return this.template.Max;
+	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	return cmpTechMan.ApplyModifications("GarrisonHolder/Max", this.template.Max, this.entity);
+};
+
+/**
+ * Get the heal rate with which garrisoned units will be healed
+ */
+GarrisonHolder.prototype.GetHealRate = function()
+{
+	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	return cmpTechMan.ApplyModifications("GarrisonHolder/BuffHeal", this.template.BuffHeal, this.entity);
 };
 
 /**
@@ -123,7 +132,7 @@ GarrisonHolder.prototype.Garrison = function(entity)
 	if (this.GetCapacity() < this.spaceOccupied + 1)
 		return false;
 
-	if (!this.timer && this.healRate > 0)
+	if (!this.timer && this.GetHealRate() > 0)
 	{
  		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		this.timer = cmpTimer.SetTimeout(this.entity, IID_GarrisonHolder, "HealTimeout", 1000, {});
@@ -322,7 +331,7 @@ GarrisonHolder.prototype.HealTimeout = function(data)
 			{
 				// We do not want to heal unhealable units
 				if (!cmpHealth.IsUnhealable())
-					cmpHealth.Increase(this.healRate);
+					cmpHealth.Increase(this.GetHealRate());
 			}
 		}
 		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);

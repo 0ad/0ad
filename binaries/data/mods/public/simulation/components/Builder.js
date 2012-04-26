@@ -40,7 +40,7 @@ Builder.prototype.GetRange = function()
 {
 	return { "max": 2, "min": 0 };
 	// maybe this should depend on the unit or target or something?
-}
+};
 
 /**
  * Build/repair the target entity. This should only be called after a successful range check.
@@ -49,7 +49,8 @@ Builder.prototype.GetRange = function()
  */
 Builder.prototype.PerformBuilding = function(target)
 {
-	var rate = +this.template.Rate;
+	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	var rate = cmpTechMan.ApplyModifications("Builder/Rate", this.template.Rate, this.entity);
 
 	// If it's a foundation, then build it
 	var cmpFoundation = Engine.QueryInterface(target, IID_Foundation);
