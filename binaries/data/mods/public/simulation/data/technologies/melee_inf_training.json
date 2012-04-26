@@ -1,0 +1,13 @@
+{
+	"pair": "pair_inf_01",
+	"genericName": "Melee Infantry Training",
+	"description": "Training increases damage of melee infantry units.",
+	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 50},
+	"requirements": {"tech": "phase_town"},
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "sword.png",
+	"researchTime": 20,
+	"tooltip": "Melee Infantry +1 Attack.",
+	"modifications": [{"value": "Attack/Melee/Hack", "add": 1.0}],
+	"affects": ["Infantry Melee"]
+}

@@ -27,6 +27,11 @@ function handleNotifications()
 			"text": notification.message
 		});
 	}
+	else if (notification.type == "quit")
+	{
+		// Used for AI testing
+		exit();
+	}
 	else
 	{
 		// Only display notifications directed to this player

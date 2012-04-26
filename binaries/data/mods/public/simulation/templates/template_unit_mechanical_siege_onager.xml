@@ -29,6 +29,10 @@
       <stone>100</stone>
     </Resources>
   </Cost>
+  <Footprint replace="">
+    <Square width="10.0" depth="15.0"/>
+    <Height>4.5</Height>
+  </Footprint>
   <Health>
     <Max>300</Max>
   </Health>
@@ -43,6 +47,14 @@
     <stone>10</stone>
     <metal>0</metal>
   </Loot>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>circle/256x256.png</MainTexture>
+        <MainTextureMask>circle/256x256_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <Sound>
     <SoundGroups>
       <attack>attack/siege/ballist_attack.xml</attack>

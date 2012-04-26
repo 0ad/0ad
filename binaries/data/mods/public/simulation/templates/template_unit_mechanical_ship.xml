@@ -43,6 +43,15 @@
       <metal>20</metal>
     </Capacities>
   </ResourceGatherer>
+  <Selectable>
+    <EditorOnly disable=""/>
+    <Overlay>
+      <Texture>
+        <MainTexture>circle/256x256.png</MainTexture>
+        <MainTextureMask>circle/256x256_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <Sound>
     <SoundGroups>
       <trained>interface/alarm/alarm_create_warship.xml</trained>
