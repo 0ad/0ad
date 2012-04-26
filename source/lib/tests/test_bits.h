@@ -24,15 +24,16 @@
 
 #include "lib/bits.h"
 
-#define EQUALS(actual, expected) ENSURE((actual) == (expected))
+//#define EQUALS(actual, expected) ENSURE((actual) == (expected))
+#define EQUALS TS_ASSERT_EQUALS
 
 class TestBits : public CxxTest::TestSuite 
 {
 public:
 	void test_Bit()
 	{
-		EQUALS(Bit<unsigned>(0), 1);
-		EQUALS(Bit<unsigned>(8), 0x100);
+		EQUALS(Bit<unsigned>(0), 1u);
+		EQUALS(Bit<unsigned>(8), 0x100u);
 		EQUALS(Bit<u32>(31), u32(0x80000000ul));
 		EQUALS(Bit<u64>(1), u64(2));
 		EQUALS(Bit<u64>(32), u64(0x100000000ull));
@@ -57,11 +58,11 @@ public:
 		EQUALS(bit_mask<u16>(0), 0);
 		EQUALS(bit_mask<u16>(2), 0x3);
 		EQUALS(bit_mask<u16>(16), 0xFFFF);
-		EQUALS(bit_mask<u32>(0), 0);
-		EQUALS(bit_mask<u32>(2), 0x3);
+		EQUALS(bit_mask<u32>(0), 0u);
+		EQUALS(bit_mask<u32>(2), 0x3u);
 		EQUALS(bit_mask<u32>(32), 0xFFFFFFFFul);
-		EQUALS(bit_mask<u64>(0), 0);
-		EQUALS(bit_mask<u64>(2), 0x3);
+		EQUALS(bit_mask<u64>(0), 0u);
+		EQUALS(bit_mask<u64>(2), 0x3u);
 		EQUALS(bit_mask<u64>(32), 0xFFFFFFFFull);
 		EQUALS(bit_mask<u64>(64), 0xFFFFFFFFFFFFFFFFull);
 	}
@@ -85,20 +86,20 @@ public:
 
 	void test_PopulationCount()
 	{
-		EQUALS(PopulationCount<u8>(0), 0);
-		EQUALS(PopulationCount<u8>(4), 1);
-		EQUALS(PopulationCount<u8>(0x28), 2);
-		EQUALS(PopulationCount<u8>(0xFF), 8);
-		EQUALS(PopulationCount<u32>(0x0ul), 0);
-		EQUALS(PopulationCount<u32>(0x8ul), 1);
-		EQUALS(PopulationCount<u32>(0xFFFFul), 16);
-		EQUALS(PopulationCount<u32>(0xFFFFFFFFul), 32);
-		EQUALS(PopulationCount<u64>(0x0ull), 0);
-		EQUALS(PopulationCount<u64>(0x10ull), 1);
-		EQUALS(PopulationCount<u64>(0xFFFFull), 16);
-		EQUALS(PopulationCount<u64>(0xFFFFFFFFull), 32);
-		EQUALS(PopulationCount<u64>(0xFFFFFFFFFFFFFFFEull), 63);
-		EQUALS(PopulationCount<u64>(0xFFFFFFFFFFFFFFFFull), 64);
+		EQUALS(PopulationCount<u8>(0), 0u);
+		EQUALS(PopulationCount<u8>(4), 1u);
+		EQUALS(PopulationCount<u8>(0x28), 2u);
+		EQUALS(PopulationCount<u8>(0xFF), 8u);
+		EQUALS(PopulationCount<u32>(0x0ul), 0u);
+		EQUALS(PopulationCount<u32>(0x8ul), 1u);
+		EQUALS(PopulationCount<u32>(0xFFFFul), 16u);
+		EQUALS(PopulationCount<u32>(0xFFFFFFFFul), 32u);
+		EQUALS(PopulationCount<u64>(0x0ull), 0u);
+		EQUALS(PopulationCount<u64>(0x10ull), 1u);
+		EQUALS(PopulationCount<u64>(0xFFFFull), 16u);
+		EQUALS(PopulationCount<u64>(0xFFFFFFFFull), 32u);
+		EQUALS(PopulationCount<u64>(0xFFFFFFFFFFFFFFFEull), 63u);
+		EQUALS(PopulationCount<u64>(0xFFFFFFFFFFFFFFFFull), 64u);
 	}
 
 	void test_is_pow2()
@@ -133,6 +134,14 @@ public:
 		EQUALS(round_up_to_pow2(127u), 128u);
 		EQUALS(round_up_to_pow2(128u), 128u);
 		EQUALS(round_up_to_pow2(129u), 256u);
+	}
+
+	void test_round_down_to_pow2()
+	{
+		EQUALS(round_down_to_pow2(1u), 1u);
+		EQUALS(round_down_to_pow2(127u), 64u);
+		EQUALS(round_down_to_pow2(128u), 128u);
+		EQUALS(round_down_to_pow2(129u), 128u);
 	}
 
 	void test_round_up()

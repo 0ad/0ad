@@ -620,11 +620,6 @@ void CCmpTerritoryManager::UpdateBoundaryLines()
 	texturePropsMask.SetMaxAnisotropy(2.f);
 	CTexturePtr textureMask = g_Renderer.GetTextureManager().CreateTexture(texturePropsMask);
 
-	CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
-	if (!cmpTerrain)
-		return;
-	CTerrain* terrain = cmpTerrain->GetCTerrain();
-
 	CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSimContext(), SYSTEM_ENTITY);
 	if (!cmpPlayerManager)
 		return;
@@ -642,7 +637,7 @@ void CCmpTerritoryManager::UpdateBoundaryLines()
 		m_BoundaryLines.push_back(SBoundaryLine());
 		m_BoundaryLines.back().connected = boundaries[i].connected;
 		m_BoundaryLines.back().color = color;
-		m_BoundaryLines.back().overlay.m_Terrain = terrain;
+		m_BoundaryLines.back().overlay.m_SimContext = &GetSimContext();
 		m_BoundaryLines.back().overlay.m_TextureBase = textureBase;
 		m_BoundaryLines.back().overlay.m_TextureMask = textureMask;
 		m_BoundaryLines.back().overlay.m_Color = color;
@@ -650,7 +645,6 @@ void CCmpTerritoryManager::UpdateBoundaryLines()
 		m_BoundaryLines.back().overlay.m_Closed = true;
 
 		SimRender::SmoothPointsAverage(boundaries[i].points, m_BoundaryLines.back().overlay.m_Closed);
-
 		SimRender::InterpolatePointsRNS(boundaries[i].points, m_BoundaryLines.back().overlay.m_Closed, m_BorderSeparation);
 
 		std::vector<float>& points = m_BoundaryLines.back().overlay.m_Coords;

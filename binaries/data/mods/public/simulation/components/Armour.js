@@ -49,11 +49,21 @@ Armour.prototype.TakeDamage = function(hack, pierce, crush)
 
 Armour.prototype.GetArmourStrengths = function()
 {
-	// Convert attack values to numbers
+	// Work out the armour values with technology effects
+	var self = this;
+	
+	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	var applyTechs = function(type)
+	{
+		// All causes caching problems so disable it for now.
+		// var allComponent = cmpTechMan.ApplyModifications("Armour/All", +self.template[type], self.entity) - self.template[type];
+		return cmpTechMan.ApplyModifications("Armour/" + type, +self.template[type], self.entity);
+	};
+	
 	return {
-		hack: +this.template.Hack,
-		pierce: +this.template.Pierce,
-		crush: +this.template.Crush
+		hack: applyTechs("Hack"),
+		pierce: applyTechs("Pierce"),
+		crush: applyTechs("Crush")
 	};
 };
 

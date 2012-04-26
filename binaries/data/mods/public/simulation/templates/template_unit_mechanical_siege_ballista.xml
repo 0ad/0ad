@@ -30,6 +30,10 @@
     </Resources>
 	<Population>2</Population>
   </Cost>
+  <Footprint replace="">
+    <Square width="8.0" depth="9.0"/>
+    <Height>2.0</Height>
+  </Footprint>
   <Health>
     <Max>200</Max>
   </Health>
@@ -44,6 +48,14 @@
     <stone>0</stone>
     <metal>10</metal>
   </Loot>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>circle/256x256.png</MainTexture>
+        <MainTextureMask>circle/256x256_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <UnitMotion>
     <WalkSpeed>6.5</WalkSpeed>
     <Run>

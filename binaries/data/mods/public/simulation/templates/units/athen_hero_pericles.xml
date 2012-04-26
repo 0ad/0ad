@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero_infantry_spearman">
+  <Auras>
+    <Fear>
+      <Radius>20</Radius>
+      <Bonus>5</Bonus>
+    </Fear>
+  </Auras>
+  <Identity>
+    <Civ>athen</Civ>
+	<GenericName>Pericles</GenericName>
+    <SpecificName>Periklēs</SpecificName>
+    <Tooltip>Hero Aura: Buildings construct much faster within his vision. Temples are much cheaper during his lifetime.</Tooltip>
+    <History>.</History>
+    <Icon>units/athen_hero_pericles.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/athenians/pericles.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_civil_centre">
+  <Cost>
+    <BuildTime>330</BuildTime>
+  </Cost>
+  <Health>
+    <Max>3300</Max>
+  </Health>
+  <Identity>
+    <Civ>mace</Civ>
+    <SpecificName>Agorā́</SpecificName>
+    <History>The most important place in most Classical Greek poleis, the Agora served many purposes; it was a place for public speeches and was the stage for civic life and commercial interests.</History>
+  </Identity>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/mace_infantry_spearman_b
+      units/mace_infantry_javelinist_b
+      units/mace_cavalry_spearman_b
+	</Entities>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>structures/hellenes/civic_centre_new.xml</Actor>
+  </VisualActor>
+</Entity>

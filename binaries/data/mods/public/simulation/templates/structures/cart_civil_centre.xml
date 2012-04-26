@@ -5,13 +5,13 @@
     <SpecificName>Merkāz</SpecificName>
     <History>Carthiginian's History</History>
   </Identity>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/cart_infantry_spearman_b
       units/cart_infantry_archer_b
       units/cart_cavalry_javelinist_b
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/carthaginians/civil_centre.xml</Actor>
   </VisualActor>

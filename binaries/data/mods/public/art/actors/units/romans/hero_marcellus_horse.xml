@@ -24,7 +24,6 @@
       <mesh>skeletal/horse.pmd</mesh>
       <props>
         <prop actor="units/romans/hero_marcellus_r.xml" attachpoint="rider"/>
-        <prop actor="props/units/hero_star.xml" attachpoint="root"/>
         <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
       </props>
     </variant>
@@ -38,13 +37,12 @@
     <variant frequency="100" name="Idle"/>
     <variant name="Death">
       <props>
-        <prop attachpoint="root"/>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
       </props>
     </variant>
     <variant name="Run">
       <props>
         <prop actor="particle/dust_cav.xml" attachpoint="root"/>
-        <prop actor="props/units/hero_star.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

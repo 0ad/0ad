@@ -1,0 +1,16 @@
+{
+	"pair": "pair_gather_03",	
+	"genericName": "Silver Mining",
+	"specificName": {
+		"athen": "Mines of Laureion"
+	},
+	"description": "Increases metal gathering rates.",
+	"cost": {"food": 35, "wood": 35, "stone": 35, "metal": 0},
+	"requirements": {"tech": "phase_city"},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "mining_metal.png",
+	"researchTime": 20,
+	"tooltip": "Strike a vein of precious silver. +25% metal gathering rate.",
+	"modifications": [{"value": "ResourceGatherer/Rates/metal/ore", "multiplier": 1.25}],
+	"affects": ["Worker"]
+}

@@ -764,7 +764,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 		case "hotkeyup":
 			if (ev.hotkey == "session.batchtrain")
 			{
-				flushTrainingQueueBatch();
+				flushTrainingBatch();
 				inputState = INPUT_NORMAL;
 			}
 			break;
@@ -1197,25 +1197,37 @@ function exchangeResources(command)
 // Batch training:
 // When the user shift-clicks, we set these variables and switch to INPUT_BATCHTRAINING
 // When the user releases shift, or clicks on a different training button, we create the batched units
-var batchTrainingEntity;
+var batchTrainingEntities;
 var batchTrainingType;
 var batchTrainingCount;
 const batchIncrementSize = 5;
 
-function flushTrainingQueueBatch()
+function flushTrainingBatch()
 {
-	Engine.PostNetworkCommand({"type": "train", "entity": batchTrainingEntity, "template": batchTrainingType, "count": batchTrainingCount});
+	Engine.PostNetworkCommand({"type": "train", "entities": batchTrainingEntities, "template": batchTrainingType, "count": batchTrainingCount});
 }
 
 // Called by GUI when user clicks training button
-function addToTrainingQueue(entity, trainEntType)
+function addTrainingToQueue(selection, trainEntType)
 {
 	if (Engine.HotkeyIsPressed("session.batchtrain"))
 	{
 		if (inputState == INPUT_BATCHTRAINING)
 		{
-			// If we're already creating a batch of this unit, then just extend it
-			if (batchTrainingEntity == entity && batchTrainingType == trainEntType)
+			// Check if we are training in the same building(s) as the last batch
+			var sameEnts = false;
+			if (batchTrainingEntities.length == selection.length)
+			{
+				// NOTE: We just check if the arrays are the same and if the order is the same
+				// If the order changed, we have a new selection and we should create a new batch.
+				for (var i = 0; i < batchTrainingEntities.length; ++i)
+				{
+					if (!(sameEnts = batchTrainingEntities[i] == selection[i]))
+						break;
+				}
+			}
+			// If we're already creating a batch of this unit (in the same building(s)), then just extend it
+			if (sameEnts && batchTrainingType == trainEntType)
 			{
 				batchTrainingCount += batchIncrementSize;
 				return;
@@ -1223,36 +1235,42 @@ function addToTrainingQueue(entity, trainEntType)
 			// Otherwise start a new one
 			else
 			{
-				flushTrainingQueueBatch();
+				flushTrainingBatch();
 				// fall through to create the new batch
 			}
 		}
 		inputState = INPUT_BATCHTRAINING;
-		batchTrainingEntity = entity;
+		batchTrainingEntities = selection;
 		batchTrainingType = trainEntType;
 		batchTrainingCount = batchIncrementSize;
 	}
 	else
 	{
 		// Non-batched - just create a single entity
-		Engine.PostNetworkCommand({"type": "train", "entity": entity, "template": trainEntType, "count": 1});
+		Engine.PostNetworkCommand({"type": "train", "template": trainEntType, "count": 1, "entities": selection});
 	}
+}
+
+// Called by GUI when user clicks research button
+function addResearchToQueue(entity, researchType)
+{
+	Engine.PostNetworkCommand({"type": "research", "entity": entity, "template": researchType});
 }
 
 // Returns the number of units that will be present in a batch if the user clicks
 // the training button with shift down
-function getTrainingQueueBatchStatus(entity, trainEntType)
+function getTrainingBatchStatus(entity, trainEntType)
 {
-	if (inputState == INPUT_BATCHTRAINING && batchTrainingEntity == entity && batchTrainingType == trainEntType)
+	if (inputState == INPUT_BATCHTRAINING && batchTrainingEntities.indexOf(entity) != -1 && batchTrainingType == trainEntType)
 		return [batchTrainingCount, batchIncrementSize];
 	else
 		return [0, batchIncrementSize];
 }
 
 // Called by GUI when user clicks production queue item
-function removeFromTrainingQueue(entity, id)
+function removeFromProductionQueue(entity, id)
 {
-	Engine.PostNetworkCommand({"type": "stop-train", "entity": entity, "id": id});
+	Engine.PostNetworkCommand({"type": "stop-production", "entity": entity, "id": id});
 }
 
 // Called by unit selection buttons
@@ -1340,24 +1358,20 @@ function performGroup(action, groupId)
 	{
 	case "snap":
 	case "select":
+	case "add":
 		var toSelect = [];
 		g_Groups.update();
 		for (var ent in g_Groups.groups[groupId].ents)
 			toSelect.push(+ent);
 
-		g_Selection.reset();
+		if (action != "add")
+			g_Selection.reset();
+
 		g_Selection.addList(toSelect);
 
 		if (action == "snap" && toSelect.length)
 			Engine.CameraFollow(toSelect[0]);
 		break;
-
-	case "add":
-		var selection = g_Selection.toList();
-		g_Groups.addEntities(groupId, selection);
-		updateGroups();
-		break;
-
 	case "save":
 		var selection = g_Selection.toList();
 		g_Groups.groups[groupId].reset();

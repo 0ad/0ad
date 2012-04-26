@@ -101,7 +101,7 @@ protected:
 BEGIN_COMMAND(AlterElevation)
 {
 	TerrainArray m_TerrainDelta;
-	ssize_t m_i0, m_j0, m_i1, m_j1;
+	ssize_t m_i0, m_j0, m_i1, m_j1; // dirtied tiles (inclusive lower bound, exclusive upper)
 
 	cAlterElevation()
 	{
@@ -148,8 +148,8 @@ BEGIN_COMMAND(AlterElevation)
 			}
 		}
 
-		m_i0 = x0;
-		m_j0 = y0;
+		m_i0 = x0 - 1;
+		m_j0 = y0 - 1;
 		m_i1 = x0 + g_CurrentBrush.m_W;
 		m_j1 = y0 + g_CurrentBrush.m_H;
 		MakeDirty();
@@ -183,7 +183,7 @@ END_COMMAND(AlterElevation)
 BEGIN_COMMAND(SmoothElevation)
 {
 	TerrainArray m_TerrainDelta;
-	ssize_t m_i0, m_j0, m_i1, m_j1;
+	ssize_t m_i0, m_j0, m_i1, m_j1; // dirtied tiles (inclusive lower bound, exclusive upper)
 
 	cSmoothElevation()
 	{
@@ -262,8 +262,8 @@ BEGIN_COMMAND(SmoothElevation)
 
 		m_i0 = x0;
 		m_j0 = y0;
-		m_i1 = x0 + g_CurrentBrush.m_W;
-		m_j1 = y0 + g_CurrentBrush.m_H;
+		m_i1 = x0 + g_CurrentBrush.m_W - 1;
+		m_j1 = y0 + g_CurrentBrush.m_H - 1;
 		MakeDirty();
 	}
 
@@ -295,7 +295,7 @@ END_COMMAND(SmoothElevation)
 BEGIN_COMMAND(FlattenElevation)
 {
 	TerrainArray m_TerrainDelta;
-	ssize_t m_i0, m_j0, m_i1, m_j1;
+	ssize_t m_i0, m_j0, m_i1, m_j1; // dirtied tiles (inclusive lower bound, exclusive upper)
 
 	cFlattenElevation()
 	{
@@ -326,15 +326,17 @@ BEGIN_COMMAND(FlattenElevation)
 		g_CurrentBrush.GetBottomLeft(x0, y0);
 
 		for (ssize_t dy = 0; dy < g_CurrentBrush.m_H; ++dy)
+		{
 			for (ssize_t dx = 0; dx < g_CurrentBrush.m_W; ++dx)
 			{
 				float b = g_CurrentBrush.Get(dx, dy);
 				if (b)
 					m_TerrainDelta.MoveVertexTowards(x0+dx, y0+dy, height, 1 + (int)(b*amount));
 			}
+		}
 
-		m_i0 = x0;
-		m_j0 = y0;
+		m_i0 = x0 - 1;
+		m_j0 = y0 - 1;
 		m_i1 = x0 + g_CurrentBrush.m_W;
 		m_j1 = y0 + g_CurrentBrush.m_H;
 		MakeDirty();

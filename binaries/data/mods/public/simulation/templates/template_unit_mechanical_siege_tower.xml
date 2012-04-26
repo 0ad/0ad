@@ -22,7 +22,16 @@
   </BuildingAI>
   <Cost>
     <Population>5</Population>
+    <BuildTime>50</BuildTime>
+    <Resources>
+      <wood>500</wood>
+      <metal>300</metal>
+    </Resources>
   </Cost>
+  <Footprint replace="">
+    <Square width="15.0" depth="15.0"/>
+    <Height>20.0</Height>
+  </Footprint>
   <GarrisonHolder>
     <Max>20</Max>
     <EjectHealth>0.1</EjectHealth>
@@ -37,6 +46,17 @@
     <GenericName>Siege Tower</GenericName>
     <Tooltip>A mobile missile platform.</Tooltip>
   </Identity>
+  <Obstruction>
+    <Unit radius="4.0"/>
+  </Obstruction>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>circle/256x256.png</MainTexture>
+        <MainTextureMask>circle/256x256_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <Sound>
     <SoundGroups>
       <select>attack/siege/siege_select.xml</select>

@@ -23,7 +23,7 @@
     <SinkAccel>0.0</SinkAccel>
   </Decay>
   <Footprint>
-    <Circle radius="1.0"/>
+    <Circle radius="1.5"/>
     <Height>2.5</Height>
   </Footprint>
   <Health>
@@ -80,6 +80,14 @@
       <metal>20</metal>
     </Capacities>
   </ResourceGatherer>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>circle/128x128.png</MainTexture>
+        <MainTextureMask>circle/128x128_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <StatusBars>
     <BarWidth>2.0</BarWidth>
     <BarHeight>0.333</BarHeight>

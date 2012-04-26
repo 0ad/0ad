@@ -408,11 +408,11 @@ CRenderer::CRenderer()
 
 	g_ProfileViewer.AddRootTable(&m->profileTable);
 
-	m_Width=0;
-	m_Height=0;
-	m_TerrainRenderMode=SOLID;
-	m_ModelRenderMode=SOLID;
-	m_ClearColor[0]=m_ClearColor[1]=m_ClearColor[2]=m_ClearColor[3]=0;
+	m_Width = 0;
+	m_Height = 0;
+	m_TerrainRenderMode = SOLID;
+	m_ModelRenderMode = SOLID;
+	m_ClearColor[0] = m_ClearColor[1] = m_ClearColor[2] = m_ClearColor[3] = 0;
 
 	m_DisplayFrustum = false;
 	m_DisplayTerrainPriorities = false;
@@ -425,6 +425,7 @@ CRenderer::CRenderer()
 	m_Options.m_ShadowAlphaFix = true;
 	m_Options.m_ARBProgramShadow = true;
 	m_Options.m_ShadowPCF = false;
+	m_Options.m_Particles = false;
 	m_Options.m_PreferGLSL = false;
 	m_Options.m_ForceAlphaTest = false;
 	m_Options.m_GPUSkinning = false;
@@ -449,7 +450,7 @@ CRenderer::CRenderer()
 	m_hCompositeAlphaMap = 0;
 
 	m_Stats.Reset();
-
+	AddLocalProperty(L"particles", &m_Options.m_Particles, false);
 	AddLocalProperty(L"fancyWater", &m_Options.m_FancyWater, false);
 	AddLocalProperty(L"horizonHeight", &m->skyManager.m_HorizonHeight, false);
 	AddLocalProperty(L"waterMurkiness", &m->waterManager.m_Murkiness, false);
@@ -520,11 +521,27 @@ void CRenderer::EnumCaps()
 #endif
 }
 
+CShaderDefines CRenderer::GetSystemShaderDefines()
+{
+	CShaderDefines defines;
+
+	if (GetRenderPath() == RP_SHADER && m_Caps.m_ARBProgram)
+		defines.Add("SYS_HAS_ARB", "1");
+
+	if (GetRenderPath() == RP_SHADER && m_Caps.m_VertexShader && m_Caps.m_FragmentShader)
+		defines.Add("SYS_HAS_GLSL", "1");
+
+	if (m_Options.m_PreferGLSL)
+		defines.Add("SYS_PREFER_GLSL", "1");
+
+	return defines;
+}
+
 void CRenderer::ReloadShaders()
 {
 	ENSURE(m->IsOpen);
 
-	m->globalContext = CShaderDefines();
+	m->globalContext = GetSystemShaderDefines();
 
 	if (m_Caps.m_Shadows && m_Options.m_Shadows)
 	{
@@ -540,15 +557,6 @@ void CRenderer::ReloadShaders()
 
 	if (m_LightEnv)
 		m->globalContext.Add(("LIGHTING_MODEL_" + m_LightEnv->GetLightingModel()).c_str(), "1");
-
-	if (GetRenderPath() == RP_SHADER && m_Caps.m_ARBProgram)
-		m->globalContext.Add("SYS_HAS_ARB", "1");
-
-	if (GetRenderPath() == RP_SHADER && m_Caps.m_VertexShader && m_Caps.m_FragmentShader)
-		m->globalContext.Add("SYS_HAS_GLSL", "1");
-
-	if (m_Options.m_PreferGLSL)
-		m->globalContext.Add("SYS_PREFER_GLSL", "1");
 
 	m->Model.ModShader = LitRenderModifierPtr(new ShaderRenderModifier());
 
@@ -618,6 +626,10 @@ bool CRenderer::Open(int width, int height)
 	// Validate the currently selected render path
 	SetRenderPath(m_Options.m_RenderPath);
 
+	// Let component renderers perform one-time initialization after graphics capabilities and
+	// the shader path have been determined.
+	m->overlayRenderer.Initialize();
+
 	return true;
 }
 
@@ -637,18 +649,21 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 {
 	switch (opt) {
 		case OPT_NOVBO:
-			m_Options.m_NoVBO=value;
+			m_Options.m_NoVBO = value;
 			break;
 		case OPT_SHADOWS:
-			m_Options.m_Shadows=value;
+			m_Options.m_Shadows = value;
 			MakeShadersDirty();
 			break;
 		case OPT_FANCYWATER:
-			m_Options.m_FancyWater=value;
+			m_Options.m_FancyWater = value;
 			break;
 		case OPT_SHADOWPCF:
-			m_Options.m_ShadowPCF=value;
+			m_Options.m_ShadowPCF = value;
 			MakeShadersDirty();
+			break;
+		case OPT_PARTICLES:
+			m_Options.m_Particles = value;
 			break;
 		default:
 			debug_warn(L"CRenderer::SetOptionBool: unknown option");
@@ -669,6 +684,8 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 			return m_Options.m_FancyWater;
 		case OPT_SHADOWPCF:
 			return m_Options.m_ShadowPCF;
+		case OPT_PARTICLES:
+			return m_Options.m_Particles;
 		default:
 			debug_warn(L"CRenderer::GetOptionBool: unknown option");
 			break;
@@ -1397,7 +1414,7 @@ void CRenderer::RenderSubmissions()
 	ogl_WarnIfError();
 
 	// render debug-related terrain overlays
-	TerrainOverlay::RenderOverlays();
+	ITerrainOverlay::RenderOverlaysBeforeWater();
 	ogl_WarnIfError();
 
 	// render other debug-related overlays before water (so they can be seen when underwater)
@@ -1428,13 +1445,20 @@ void CRenderer::RenderSubmissions()
 		ogl_WarnIfError();
 	}
 
+	// render debug-related terrain overlays
+	ITerrainOverlay::RenderOverlaysAfterWater();
+	ogl_WarnIfError();
+
 	// render some other overlays after water (so they can be displayed on top of water)
 	m->overlayRenderer.RenderOverlaysAfterWater();
 	ogl_WarnIfError();
 
 	// particles are transparent so render after water
-	RenderParticles();
-	ogl_WarnIfError();
+	if (m_Options.m_Particles)
+	{
+		RenderParticles();
+		ogl_WarnIfError();
+	}
 
 	RenderSilhouettes(context);
 
@@ -1565,6 +1589,11 @@ void CRenderer::Submit(SOverlayTexturedLine* overlay)
 }
 
 void CRenderer::Submit(SOverlaySprite* overlay)
+{
+	m->overlayRenderer.Submit(overlay);
+}
+
+void CRenderer::Submit(SOverlayQuad* overlay)
 {
 	m->overlayRenderer.Submit(overlay);
 }
@@ -1929,6 +1958,11 @@ CShaderManager& CRenderer::GetShaderManager()
 CParticleManager& CRenderer::GetParticleManager()
 {
 	return m->particleManager;
+}
+
+TerrainRenderer& CRenderer::GetTerrainRenderer()
+{
+	return m->terrainRenderer;
 }
 
 CMaterialManager& CRenderer::GetMaterialManager()

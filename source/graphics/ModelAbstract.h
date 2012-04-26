@@ -89,7 +89,7 @@ public:
 	virtual void SetDirtyRec(int dirtyflags) = 0;
 
 	/// Returns world space bounds of this object and all child objects.
-	virtual const CBoundingBoxAligned GetWorldBoundsRec() { return GetWorldBounds(); }
+	virtual const CBoundingBoxAligned GetWorldBoundsRec() { return GetWorldBounds(); } // default implementation
 
 	/**
 	 * Returns the world-space selection box of this model. Used primarily for hittesting against against a selection ray. The 

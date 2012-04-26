@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -136,6 +136,13 @@ public:
 	 * Render priority text for all submitted patches, for debugging.
 	 */
 	void RenderPriorities();
+
+	/**
+	 * Render texture unit 0 over the terrain mesh, with UV coords calculated
+	 * by the given texture matrix.
+	 * Intended for use by TerrainTextureOverlay.
+	 */
+	void RenderTerrainOverlayTexture(CMatrix3D& textureMatrix);
 
 private:
 	TerrainRendererInternals* m;

@@ -1,4 +1,4 @@
-/* Copyright (c) 2011 Wildfire Games
+/* Copyright (c) 2012 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -98,6 +98,16 @@ var g_IntelWindowsChipsets = [
 // Determined manually from data reports.
 // See http://en.wikipedia.org/wiki/Intel_GMA for useful listing.
 
+var g_IntelMacChipsets = [
+	"Intel GMA 950",
+	"Intel GMA X3100",
+	"Intel HD Graphics",
+	"Intel HD Graphics 3000",
+	"Unknown Intel Chipset",
+];
+// Determined manually from data reports.
+// See http://support.apple.com/kb/HT3246 for useful listing.
+
 function IsWorseThanIntelMesa(renderer, chipset)
 {
 	var target = g_IntelMesaChipsets.indexOf(chipset);
@@ -128,6 +138,22 @@ function IsWorseThanIntelWindows(renderer, chipset)
 	return false;
 }
 
+function IsWorseThanIntelMac(renderer, chipset)
+{
+	var target = g_IntelMacChipsets.indexOf(chipset);
+	if (target == -1)
+		error("Invalid chipset "+chipset);
+
+	// GL_RENDERER is "$chipset OpenGL Engine"
+	for (var i = 0; i < target; ++i)
+	{
+		var str = g_IntelMacChipsets[i]+" OpenGL Engine";
+		if (renderer == str)
+			return true;
+	}
+
+	return false;
+}
 
 function RunDetection(settings)
 {
@@ -209,8 +235,9 @@ function RunDetection(settings)
 	//   Intel 4500MHD
 	// In the interests of performance, we'll disable them on lots of devices
 	// (with a fairly arbitrary cutoff for Intels)
-	if ((os_unix && GL_RENDERER.match(/^(Software Rasterizer|Gallium \S* on llvmpipe|Mesa X11)$/)) ||
+	if ((os_unix && GL_RENDERER.match(/^(Software Rasterizer|Gallium \S* on llvmpipe|Mesa X11|Apple Software Renderer)$/)) ||
 		(os_unix && GL_RENDERER.match(/^Mesa DRI R[123]00 /)) ||
+		(os_macosx && IsWorseThanIntelMac(GL_RENDERER, "Intel HD Graphics 3000")) ||
 		(os_unix && IsWorseThanIntelMesa(GL_RENDERER, "Intel(R) Ironlake Desktop")) ||
 		(os_win && IsWorseThanIntelWindows(GL_RENDERER, "Intel(R) HD Graphics"))
 	)
@@ -221,7 +248,8 @@ function RunDetection(settings)
 
 	// Fragment-shader water is really slow on most Intel devices,
 	// so disable it (with a fairly arbitrary cutoff)
-	if ((os_unix && GL_RENDERER.match(/^(Software Rasterizer|Gallium \S* on llvmpipe)$/)) ||
+	if ((os_unix && GL_RENDERER.match(/^(Software Rasterizer|Gallium \S* on llvmpipe|Apple Software Renderer)$/)) ||
+		(os_macosx && IsWorseThanIntelMac(GL_RENDERER, "Intel HD Graphics 3000")) ||
 		(os_unix && IsWorseThanIntelMesa(GL_RENDERER, "Intel(R) Sandybridge Desktop")) ||
 		(os_win && IsWorseThanIntelWindows(GL_RENDERER, "Intel(R) Graphics Media Accelerator HD"))
 	)

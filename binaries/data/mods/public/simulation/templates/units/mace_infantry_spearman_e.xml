@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/mace_infantry_spearman_a">
+  <Armour>
+    <Hack>13.0</Hack>
+    <Pierce>13.0</Pierce>
+    <Crush>13.0</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+	  <Bonuses>
+		<BonusInfMelee>
+		  <Classes>Infantry Melee</Classes>
+		  <Multiplier>1.25</Multiplier>
+		</BonusInfMelee>
+	  </Bonuses>
+    </Melee>
+    <Charge>
+	  <Bonuses>
+		<BonusInfMelee>
+		  <Classes>Infantry Melee</Classes>
+		  <Multiplier>1.25</Multiplier>
+		</BonusInfMelee>
+	  </Bonuses>
+    </Charge>
+  </Attack>
+  <Health>
+    <Max>120</Max>
+  </Health>
+  <Identity>
+    <Rank>Elite</Rank>
+  </Identity>
+  <Promotion disable=""/>
+  <ResourceGatherer>
+    <BaseSpeed>0.5</BaseSpeed>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>5.0</WalkSpeed>
+    <Run>
+      <Speed>10.0</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/macedonians/infantry_spearman_e.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -12,11 +12,11 @@
   <Obstruction>
     <Static width="14.0" depth="24.0"/>
   </Obstruction>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/iber_ship_fire
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/iberians/dock.xml</Actor>
     <FoundationActor>structures/fndn_dock_iber.xml</FoundationActor>

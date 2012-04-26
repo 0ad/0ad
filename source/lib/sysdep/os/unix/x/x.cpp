@@ -34,6 +34,7 @@
 
 #include "lib/debug.h"
 #include "lib/sysdep/gfx.h"
+#include "lib/sysdep/cursor.h"
 
 #include "ps/VideoMode.h"
 
@@ -42,6 +43,7 @@
 #include <Xlib.h>
 #include <stdlib.h>
 #include <Xatom.h>
+#include <Xcursor/Xcursor.h>
 
 #include "SDL.h"
 #include "SDL_syswm.h"
@@ -147,7 +149,7 @@ Expansions:
 wchar_t *sys_clipboard_get()
 {
 	Display *disp=XOpenDisplay(NULL);
-	if (!disp)
+	if(!disp)
 		return NULL;
 
 	// We use CLIPBOARD as the default, since the CLIPBOARD semantics are much
@@ -155,7 +157,7 @@ wchar_t *sys_clipboard_get()
 	Atom selSource=XInternAtom(disp, "CLIPBOARD", False);
 
 	Window selOwner=XGetSelectionOwner(disp, selSource);
-	if (selOwner == None)
+	if(selOwner == None)
 	{
 		// However, since many apps don't use CLIPBOARD, but use PRIMARY instead
 		// we use XA_PRIMARY as a fallback clipboard. This is true for xterm,
@@ -163,7 +165,7 @@ wchar_t *sys_clipboard_get()
 		selSource=XA_PRIMARY;
 		selOwner=XGetSelectionOwner(disp, selSource);
 	}
-	if (selOwner != None) {
+	if(selOwner != None) {
 		Atom pty=XInternAtom(disp, "SelectionPropertyTemp", False);
 		XConvertSelection(disp, selSource, XA_STRING, pty, selOwner, CurrentTime);
 		XFlush(disp);
@@ -171,7 +173,7 @@ wchar_t *sys_clipboard_get()
 		Atom type;
 		int format=0, result=0;
 		unsigned long len=0, bytes_left=0, dummy=0;
-		unsigned char *data=NULL;
+		u8 *data=NULL;
 		
 		// Get the length of the property and some attributes
 		// bytes_left will contain the length of the selection
@@ -183,22 +185,22 @@ wchar_t *sys_clipboard_get()
 			&format,		// return format
 			&len, &bytes_left,
 			&data);
-		if (result != Success)
+		if(result != Success)
 			debug_printf(L"clipboard_get: result: %d type:%lu len:%lu format:%d bytes_left:%lu\n", 
 				result, type, len, format, bytes_left);
-		if (result == Success && bytes_left > 0)
+		if(result == Success && bytes_left > 0)
 		{
 			result = XGetWindowProperty (disp, selOwner, 
 				pty, 0, bytes_left, 0,
 				AnyPropertyType, &type, &format,
 				&len, &dummy, &data);
 			
-			if (result == Success)
+			if(result == Success)
 			{
 				debug_printf(L"clipboard_get: XGetWindowProperty succeeded, returning data\n");
 				debug_printf(L"clipboard_get: data was: \"%hs\", type was %lu, XA_STRING atom is %lu\n", data, type, XA_STRING);
 				
-				if (type == XA_STRING) //Latin-1: Just copy into low byte of wchar_t
+				if(type == XA_STRING) //Latin-1: Just copy into low byte of wchar_t
 				{
 					wchar_t *ret=(wchar_t *)malloc((bytes_left+1)*sizeof(wchar_t));
 					std::copy(data, data+bytes_left, ret);
@@ -239,7 +241,7 @@ int clipboard_filter(const SDL_Event* event)
 {
 	/* Pass on all non-window manager specific events immediately */
 	/* And do nothing if we don't actually have a clip-out to send out */
-	if (event->type != SDL_SYSWMEVENT || !selection_data)
+	if(event->type != SDL_SYSWMEVENT || !selection_data)
 		return 1;
 
 	/* Handle window-manager specific clipboard events */
@@ -250,7 +252,7 @@ int clipboard_filter(const SDL_Event* event)
 #else
 	XEvent* xevent = &event->syswm.msg->event.xevent;
 #endif
-	switch (xevent->type) {
+	switch(xevent->type) {
 		/* Copy the selection from our buffer to the requested property, and
 		convert to the requested target format */
 		case SelectionRequest: {
@@ -267,12 +269,12 @@ int clipboard_filter(const SDL_Event* event)
 			sevent.xselection.time = req->time;
 			// Simply strip all non-Latin1 characters and replace with '?'
 			// We should support XA_UTF8
-			if (req->target == XA_STRING)
+			if(req->target == XA_STRING)
 			{
 				size_t size = wcslen(selection_data);
 				u8* buf = (u8*)alloca(size);
 				
-				for (size_t i = 0; i < size; i++)
+				for(size_t i = 0; i < size; i++)
 				{
 					buf[i] = selection_data[i] < 0x100 ? selection_data[i] : '?';
 				}
@@ -302,13 +304,13 @@ Status x11_clipboard_init()
 
 	SDL_VERSION(&info.version);
 #if SDL_VERSION_ATLEAST(2, 0, 0)
-	if (SDL_GetWindowWMInfo(g_VideoMode.GetWindow(), &info))
+	if(SDL_GetWindowWMInfo(g_VideoMode.GetWindow(), &info))
 #else
-	if (SDL_GetWMInfo(&info))
+	if(SDL_GetWMInfo(&info))
 #endif
 	{
 		/* Save the information for later use */
-		if (info.subsystem == SDL_SYSWM_X11)
+		if(info.subsystem == SDL_SYSWM_X11)
 		{
 			g_SDL_Display = info.info.x11.display;
 			g_SDL_Window = info.info.x11.window;
@@ -352,7 +354,7 @@ Status sys_clipboard_set(const wchar_t *str)
 
 	debug_printf(L"sys_clipboard_set: %ls\n", str);
 
-	if (selection_data)
+	if(selection_data)
 	{
 		free(selection_data);
 		selection_data = NULL;
@@ -382,5 +384,136 @@ Status sys_clipboard_set(const wchar_t *str)
 
 	return INFO::OK;
 }
+
+struct sys_cursor_impl
+{
+	XcursorImage* image;
+	X__Cursor cursor;
+};
+
+static XcursorPixel cursor_pixel_to_x11_format(const XcursorPixel& bgra_pixel)
+{
+	BOOST_STATIC_ASSERT(sizeof(XcursorPixel) == 4 * sizeof(u8));
+	XcursorPixel ret;
+	u8* dst = reinterpret_cast<u8*>(&ret);
+	const u8* b = reinterpret_cast<const u8*>(&bgra_pixel);
+	const u8 a = b[3];
+
+	for(size_t i = 0; i < 3; ++i)
+		*dst++ = (b[i]) * a / 255;
+	*dst = a;
+	return ret;
+}
+
+static bool get_wminfo(SDL_SysWMinfo& wminfo)
+{
+	SDL_VERSION(&wminfo.version);
+	const int ret = SDL_GetWMInfo(&wminfo);
+	if(ret == 1)
+		return true;
+
+	if(ret == -1)
+	{
+		debug_printf(L"SDL_GetWMInfo failed\n");
+		return false;
+	}
+	if(ret == 0)
+	{
+		debug_printf(L"SDL_GetWMInfo is not implemented on this platform\n");
+		return false;
+	}
+
+	debug_printf(L"SDL_GetWMInfo returned an unknown value: %d\n", ret);
+	return false;
+}
+
+Status sys_cursor_create(int w, int h, void* bgra_img, int hx, int hy, sys_cursor* cursor)
+{
+	debug_printf(L"Using Xcursor to sys_cursor_create %d x %d cursor\n", w, h);
+	XcursorImage* image = XcursorImageCreate(w, h);
+	if(!image)
+		WARN_RETURN(ERR::FAIL);
+
+	const XcursorPixel* bgra_img_begin = reinterpret_cast<XcursorPixel*>(bgra_img);
+	std::transform(bgra_img_begin, bgra_img_begin + (w*h), image->pixels,
+				   cursor_pixel_to_x11_format);
+	image->xhot = hx;
+	image->yhot = hy;
+
+	SDL_SysWMinfo wminfo;
+	if(!get_wminfo(wminfo))
+		WARN_RETURN(ERR::FAIL);
+
+	sys_cursor_impl* impl = new sys_cursor_impl;
+	impl->image = image;
+	impl->cursor = XcursorImageLoadCursor(wminfo.info.x11.display, image);
+	if(impl->cursor == None)
+		WARN_RETURN(ERR::FAIL);
+
+	*cursor = static_cast<sys_cursor>(impl);
+	return INFO::OK;
+}
+
+// returns a dummy value representing an empty cursor
+Status sys_cursor_create_empty(sys_cursor* cursor)
+{
+	static u8 transparent_bgra[] = { 0x0, 0x0, 0x0, 0x0 };
+
+	return sys_cursor_create(1, 1, static_cast<void*>(transparent_bgra), 0, 0, cursor);
+}
+
+// replaces the current system cursor with the one indicated. need only be
+// called once per cursor; pass 0 to restore the default.
+Status sys_cursor_set(sys_cursor cursor)
+{
+	if(!cursor) // restore default cursor
+		SDL_ShowCursor(SDL_DISABLE);
+	else
+	{
+		SDL_SysWMinfo wminfo;
+		if(!get_wminfo(wminfo))
+			WARN_RETURN(ERR::FAIL);
+
+		wminfo.info.x11.lock_func();
+		SDL_ShowCursor(SDL_ENABLE);
+		// wminfo.info.x11.window is sometimes 0, in which case
+		// it causes a crash; in these cases use fswindow instead
+		Window& window = wminfo.info.x11.window ? wminfo.info.x11.window : wminfo.info.x11.fswindow;
+		XDefineCursor(wminfo.info.x11.display, window,
+					  static_cast<sys_cursor_impl*>(cursor)->cursor);
+		wminfo.info.x11.unlock_func();
+	}
+
+	return INFO::OK;
+}
+
+// destroys the indicated cursor and frees its resources. if it is
+// currently the system cursor, the default cursor is restored first.
+Status sys_cursor_free(sys_cursor cursor)
+{
+	// bail now to prevent potential confusion below; there's nothing to do.
+	if(!cursor)
+		return INFO::OK;
+
+	sys_cursor_set(0); // restore default cursor
+	sys_cursor_impl* impl = static_cast<sys_cursor_impl*>(cursor);
+
+	XcursorImageDestroy(impl->image);
+
+	SDL_SysWMinfo wminfo;
+	if(!get_wminfo(wminfo))
+		return ERR::FAIL;
+	XFreeCursor(wminfo.info.x11.display, impl->cursor);
+
+	delete impl;
+
+	return INFO::OK;
+}
+
+Status sys_cursor_reset()
+{
+	return INFO::OK;
+}
+
 
 #endif	// #if HAVE_X

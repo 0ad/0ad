@@ -29,6 +29,7 @@
     <Tooltip>Build upon a shoreline to construct naval vessels and to open sea trade.</Tooltip>
     <Classes datatype="tokens">Town Market NavalMarket</Classes>
     <Icon>structures/dock.png</Icon>
+	<RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>100</xp>
@@ -57,12 +58,12 @@
     </SoundGroups>
   </Sound>
   <TerritoryDecay disable=""/>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/{civ}_ship_fishing
       units/{civ}_ship_merchant
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <Vision>
     <Range>40</Range>
   </Vision>

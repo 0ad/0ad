@@ -59,7 +59,7 @@ var EntityTemplate = Class({
 	},
 
 	maxHitpoints: function() { return this._template.Health.Max; },
-	isHealable: function() { return this._template.Health.Healable === "true"; },
+	isHealable: function() { return this._template.Health.Unhealable !== "true"; },
 	isRepairable: function() { return this._template.Health.Repairable === "true"; },
 
 
@@ -126,10 +126,10 @@ var EntityTemplate = Class({
 	},
 
 	trainableEntities: function() {
-		if (!this._template.TrainingQueue)
+		if (!this._template.ProductionQueue || !this._template.ProductionQueue.Entities) 
 			return undefined;
 		var civ = this.civ();
-		var templates = this._template.TrainingQueue.Entities._string.replace(/\{civ\}/g, civ).split(/\s+/);
+		var templates = this._template.ProductionQueue.Entities._string.replace(/\{civ\}/g, civ).split(/\s+/);
 		return templates;
 	},
 
@@ -411,7 +411,7 @@ var Entity = Class({
 
 		Engine.PostCommand({
 			"type": "train",
-			"entity": this.id(),
+			"entities": [this.id()],
 			"template": type,
 			"count": count,
 			"metadata": metadata

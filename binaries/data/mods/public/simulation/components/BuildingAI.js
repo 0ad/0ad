@@ -76,7 +76,7 @@ BuildingAI.prototype.SetupRangeQuery = function(owner)
 	if (cmpAttack)
 	{
 		var range = cmpAttack.GetRange("Ranged");
-		this.enemyUnitsQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, 0);
+		this.enemyUnitsQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, 0, cmpRangeManager.GetEntityFlagMask("normal"));
 		cmpRangeManager.EnableActiveQuery(this.enemyUnitsQuery);
 	}
 };

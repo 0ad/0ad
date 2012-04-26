@@ -39,6 +39,7 @@ class CTerritoryTexture;
 struct SOverlayLine;
 struct SOverlayTexturedLine;
 struct SOverlaySprite;
+struct SOverlayQuad;
 
 class SceneCollector;
 
@@ -102,6 +103,11 @@ public:
 	 * Submit a sprite overlay.
 	 */
 	virtual void Submit(SOverlaySprite* overlay) = 0;
+
+	/**
+	 * Submit a textured quad overlay.
+	 */
+	virtual void Submit(SOverlayQuad* overlay) = 0;
 
 	/**
 	 * Submit a terrain decal.

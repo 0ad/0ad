@@ -33,6 +33,7 @@
     <Tooltip>Train citizen-soldiers. Research military improvements. Garrison: 10.</Tooltip>
     <Classes datatype="tokens">Town</Classes>
     <Icon>structures/barracks.png</Icon>
+	<RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>100</xp>
@@ -44,6 +45,12 @@
   <Obstruction>
     <Static width="17.0" depth="17.0"/>
   </Obstruction>
+  <ProductionQueue>
+    <Technologies datatype="tokens">
+	  pair_cav_01
+	  pair_inf_01
+    </Technologies>
+  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_barracks.xml</select>

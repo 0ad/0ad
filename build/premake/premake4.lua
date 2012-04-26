@@ -711,8 +711,9 @@ used_extern_libs = {
 	"valgrind",
 }
 
-if not os.is("windows") and not _OPTIONS["android"] then
+if not os.is("windows") and not _OPTIONS["android"] and not os.is("macosx") then
 	table.insert(used_extern_libs, "x11")
+	table.insert(used_extern_libs, "xcursor")
 end
 
 if not _OPTIONS["without-audio"] then
@@ -764,7 +765,7 @@ function setup_main_exe ()
 
 	elseif os.is("linux") or os.is("bsd") then
 
-	        if not _OPTIONS["without-fam"] then
+		if not _OPTIONS["without-fam"] then
 			links { "fam" }
 		end
 
@@ -801,7 +802,10 @@ function setup_main_exe ()
 		configuration { }
 
 	elseif os.is("macosx") then
+
 		links { "pthread" }
+		linkoptions { "-framework ApplicationServices", "-framework Cocoa", "-framework CoreFoundation" }
+
 	end
 end
 
@@ -1160,6 +1164,9 @@ function setup_tests()
 	project_add_contents(source_root, {}, {}, extra_params)
 	project_add_extern_libs(used_extern_libs, target_type)
 
+	-- TODO: should fix the duplication between this OS-specific linking
+	-- code, and the similar version in setup_main_exe
+
 	if os.is("windows") then
 		-- from "lowlevel" static lib; must be added here to be linked in
 		files { source_root.."lib/sysdep/os/win/error_dialog.rc" }
@@ -1171,13 +1178,20 @@ function setup_tests()
 
 		project_add_manifest()
 
-	elseif os.is("linux") or os.is ("bsd") then
+	elseif os.is("linux") or os.is("bsd") then
 
-		links {
-			"fam",
-			-- Utilities
-			"rt",
-		}
+		if not _OPTIONS["without-fam"] then
+			links { "fam" }
+		end
+
+		if not _OPTIONS["android"] then
+			links { "rt" }
+		end
+
+		if _OPTIONS["android"] then
+			-- NDK's STANDALONE-TOOLCHAIN.html says this is required
+			linkoptions { "-Wl,--fix-cortex-a8" }
+		end
 
 		if os.is("linux") then
 			links {
@@ -1193,7 +1207,9 @@ function setup_tests()
 
 		-- Threading support
 		buildoptions { "-pthread" }
-		linkoptions { "-pthread" }
+		if not _OPTIONS["android"] then
+			linkoptions { "-pthread" }
+		end
 
 		-- For debug_resolve_symbol
 		configuration "Debug"

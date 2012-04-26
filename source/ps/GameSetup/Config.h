@@ -50,6 +50,8 @@ extern bool g_Shadows;
 extern bool g_FancyWater;
 // flag to switch on shadow PCF
 extern bool g_ShadowPCF;
+// flag to switch on particles rendering
+extern bool g_Particles;
 
 extern float g_Gamma;
 // name of configured render path (depending on OpenGL extensions, this may not be

@@ -32,14 +32,14 @@
     <Root>true</Root>
     <Radius>38</Radius>
   </TerritoryInfluence>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
 	  units/pers_hero_cyrus
 	  units/pers_hero_darius
 	  units/pers_hero_xerxes
       units/pers_champion_infantry
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/persians/sb1_new.xml</Actor>
     <FoundationActor>structures/fndn_6x6.xml</FoundationActor>

@@ -6,7 +6,7 @@
     <Crush>2.0</Crush>
   </Armour>
   <Heal>
-    <Range>30</Range>
+    <Range>12</Range>
     <HP>5</HP>
     <Rate>2000</Rate>
     <UnhealableClasses datatype="tokens"/>
@@ -14,7 +14,7 @@
   </Heal>
   <Cost>
     <Resources>
-      <metal>120</metal>
+      <metal>200</metal>
     </Resources>
   </Cost>
   <Health>
@@ -24,10 +24,11 @@
   <Identity>
     <Classes datatype="tokens">Healer</Classes>
     <GenericName>Healer</GenericName>
-    <Tooltip>Heals units.</Tooltip>
+    <Tooltip>Heal units.</Tooltip>
+    <Rank>Basic</Rank>
   </Identity>
   <Promotion>
-    <RequiredXp>100</RequiredXp>
+    <RequiredXp>200</RequiredXp>
   </Promotion>
   <Sound>
     <SoundGroups>
@@ -40,9 +41,9 @@
     </SoundGroups>
   </Sound>
   <UnitMotion>
-    <WalkSpeed>6.5</WalkSpeed>
+    <WalkSpeed>7.5</WalkSpeed>
   </UnitMotion>
   <Vision>
-    <Range>48</Range>
+    <Range>30</Range>
   </Vision>
 </Entity>

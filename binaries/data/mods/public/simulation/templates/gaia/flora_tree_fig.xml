@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_gaia_flora_tree">
   <Footprint>
-    <Circle radius="3.5"/>
+    <Circle radius="4.0"/>
     <Height>10.0</Height>
   </Footprint>
   <Identity>
@@ -14,6 +14,14 @@
     <Amount>500</Amount>
     <Type>food.fruit</Type>
   </ResourceSupply>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>circle/256x256.png</MainTexture>
+        <MainTextureMask>circle/256x256_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <VisualActor>
     <Actor>flora/trees/fig.xml</Actor>
   </VisualActor>

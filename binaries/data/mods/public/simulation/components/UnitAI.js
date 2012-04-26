@@ -735,7 +735,7 @@ var UnitFsmSpec = {
 				},
 
 				"Timer": function(msg) {
-					if (this.ShouldAbandonChase(this.order.data.target, this.order.data.force))
+					if (this.ShouldAbandonChase(this.order.data.target, this.order.data.force, IID_Attack))
 					{
 						this.StopMoving();
 						this.FinishOrder();
@@ -848,7 +848,7 @@ var UnitFsmSpec = {
 				},
 
 				"Timer": function(msg) {
-					if (this.ShouldAbandonChase(this.order.data.target, this.order.data.force))
+					if (this.ShouldAbandonChase(this.order.data.target, this.order.data.force, IID_Attack))
 					{
 						this.StopMoving();
 						this.FinishOrder();
@@ -1093,7 +1093,7 @@ var UnitFsmSpec = {
 				},
 
 				"Timer": function(msg) {
-					if (this.ShouldAbandonChase(this.order.data.target, this.order.data.force))
+					if (this.ShouldAbandonChase(this.order.data.target, this.order.data.force, IID_Heal))
 					{
 						this.StopMoving();
 						this.FinishOrder();
@@ -1172,7 +1172,7 @@ var UnitFsmSpec = {
 					this.StopTimer();
 				},
 				"Timer": function(msg) {
-					if (this.ShouldAbandonChase(this.order.data.target, this.order.data.force))
+					if (this.ShouldAbandonChase(this.order.data.target, this.order.data.force, IID_Heal))
 					{
 						this.StopMoving();
 						this.FinishOrder();
@@ -1430,6 +1430,18 @@ var UnitFsmSpec = {
 							if (cmpGarrisonHolder.Garrison(this.entity))
 							{
 								this.isGarrisoned = true;
+								
+								// Check if we are garrisoned in a dropsite
+								var cmpResourceDropsite = Engine.QueryInterface(target, IID_ResourceDropsite);
+								if (cmpResourceDropsite)
+								{
+									// Dump any resources we can
+									var dropsiteTypes = cmpResourceDropsite.GetTypes();
+									var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+									if (cmpResourceGatherer)
+										cmpResourceGatherer.CommitResources(dropsiteTypes);
+								}
+								
 								return;
 							}
 						}
@@ -2344,10 +2356,10 @@ UnitAI.prototype.FaceTowardsTarget = function(target)
 	}
 }
 
-UnitAI.prototype.CheckTargetDistanceFromHeldPosition = function(target, type)
+UnitAI.prototype.CheckTargetDistanceFromHeldPosition = function(target, iid, type)
 {
-	var cmpRanged = Engine.QueryInterface(this.entity, IID_Attack);
-	var range = cmpRanged.GetRange(type);
+	var cmpRanged = Engine.QueryInterface(this.entity, iid);
+	var range = iid !== IID_Attack ? cmpRanged.GetRange() : cmpRanged.GetRange(type);
 
 	var cmpPosition = Engine.QueryInterface(target, IID_Position);
 	if (!cmpPosition || !cmpPosition.IsInWorld())
@@ -2414,7 +2426,7 @@ UnitAI.prototype.AttackEntityInZone = function(ents)
 	var type = this.GetBestAttack();
 	for each (var target in ents)
 	{
-		if (this.CanAttack(target) && this.CheckTargetDistanceFromHeldPosition(target, type))
+		if (this.CanAttack(target) && this.CheckTargetDistanceFromHeldPosition(target, IID_Attack, type))
 		{
 			this.PushOrderFront("Attack", { "target": target, "force": false });
 			return true;
@@ -2475,12 +2487,12 @@ UnitAI.prototype.RespondToHealableEntities = function(ents)
 /**
  * Returns true if we should stop following the target entity.
  */
-UnitAI.prototype.ShouldAbandonChase = function(target, force)
+UnitAI.prototype.ShouldAbandonChase = function(target, force, iid)
 {
 	// Stop if we're in hold-ground mode and it's too far from the holding point
 	if (this.GetStance().respondHoldGround)
 	{
-		if (!this.CheckTargetDistanceFromHeldPosition(target, this.attackType))
+		if (!this.CheckTargetDistanceFromHeldPosition(target, iid, this.attackType))
 			return true;
 	}
 
@@ -2941,12 +2953,11 @@ UnitAI.prototype.GetQueryRange = function(iid)
 	// but as it is the default for healers we need to set it to something sane.
 	else if (iid === IID_Heal)
 	{
-		var cmpRanged = Engine.QueryInterface(this.entity, iid);
-		if (!cmpRanged)
+		var cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
+		if (!cmpVision)
 			return ret;
-		var range = cmpRanged.GetRange();
-		ret.min = range.min;
-		ret.max = range.max;
+		var range = cmpVision.GetRange();
+		ret.max = range;
 	}
 	return ret;
 };

@@ -93,7 +93,7 @@ var GameState = Class({
 	},
 
 	getOwnWithClass: function(aclass) {
-	return this.updatingCollection("RoleGroup" + aclass, Filters.byClass(aclass), this.getOwnEntities());
+	return this.updatingCollection("ClassGroup" + aclass, Filters.byClass(aclass), this.getOwnEntities());
 	},
 
 	getNotGaia: function() {
@@ -103,6 +103,12 @@ var GameState = Class({
 
 	getJustEnemies: function() {
 	var collection = this.updatingCollection("JustEnemies", Filters.byNotOwner(this.player), this.getNotGaia());
+	//warn(collection.length + " enemy unit objects")
+	return collection;
+	},
+	
+	getEnemiesWithClass: function(aclass) {
+	var collection = this.updatingCollection("EnemyClassGroup" + aclass, Filters.byClass(aclass), this.getJustEnemies());
 	//warn(collection.length + " enemy unit objects")
 	return collection;
 	},

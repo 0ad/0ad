@@ -1,0 +1,18 @@
+{
+	"genericName": "City Phase",
+	"specificName": {
+		"generic": "City Phase Upgrade",
+		"hele": "Megalopolis",
+		"mace": "Megalopolis",
+		"spart": "Megalopolis",
+		"athen": "Megalopolis"
+	},
+	"description": "Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology.",
+	"cost": {"food": 0, "wood": 0, "stone": 1000, "metal": 1000},
+	"requirements": { "class": "Town", "numberOfTypes": 3 },
+	"requirementsTooltip": "Requires any 3 different types of town structures.",
+	"supersedes": "phase_town",
+	"icon": "city_phase.png",
+	"researchTime": 60,
+	"tooltip": "Advance to City Phase, which unlocks more structures and units."
+}

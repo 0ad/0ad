@@ -40,6 +40,7 @@
     <Tooltip>Train healers. Garrison up to 20 units to heal them at a quick rate.</Tooltip>
     <Classes datatype="tokens">Town</Classes>
     <Icon>structures/temple.png</Icon>
+	<RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>100</xp>
@@ -63,11 +64,11 @@
     <Radius>40</Radius>
     <Weight>65536</Weight>
   </TerritoryInfluence>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/{civ}_support_healer_b
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <Vision>
     <Range>40</Range>
   </Vision>

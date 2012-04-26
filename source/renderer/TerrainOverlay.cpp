@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,13 +20,16 @@
 #include "TerrainOverlay.h"
 
 #include "graphics/Terrain.h"
-#include "simulation2/system/SimContext.h"
+#include "lib/bits.h"
 #include "lib/ogl.h"
 #include "maths/MathUtil.h"
 #include "ps/Game.h"
 #include "ps/Overlay.h"
 #include "ps/Profile.h"
 #include "ps/World.h"
+#include "renderer/Renderer.h"
+#include "renderer/TerrainRenderer.h"
+#include "simulation2/system/SimContext.h"
 
 #include <algorithm>
 
@@ -54,23 +57,13 @@ private:
 	const equal1st& operator=(const equal1st& rhs);
 };
 
-/// Functor for calling ->Render on pairs' firsts.
-struct render1st
-{
-	template<typename S, typename T> void operator()(const std::pair<S, T>& a) const
-	{
-		a.first->Render();
-	}
-};
-
 //////////////////////////////////////////////////////////////////////////
 
 // Global overlay list management:
 
-static std::vector<std::pair<TerrainOverlay*, int> > g_TerrainOverlayList;
+static std::vector<std::pair<ITerrainOverlay*, int> > g_TerrainOverlayList;
 
-TerrainOverlay::TerrainOverlay(const CSimContext& simContext, int priority /* = 100 */)
-	: m_Terrain(&simContext.GetTerrain())
+ITerrainOverlay::ITerrainOverlay(int priority)
 {
 	// Add to global list of overlays
 	g_TerrainOverlayList.push_back(std::make_pair(this, priority));
@@ -81,52 +74,43 @@ TerrainOverlay::TerrainOverlay(const CSimContext& simContext, int priority /* = 
 		compare2nd());
 }
 
-TerrainOverlay::~TerrainOverlay()
+ITerrainOverlay::~ITerrainOverlay()
 {
-	std::vector<std::pair<TerrainOverlay*, int> >::iterator newEnd =
+	std::vector<std::pair<ITerrainOverlay*, int> >::iterator newEnd =
 		std::remove_if(g_TerrainOverlayList.begin(), g_TerrainOverlayList.end(),
-			equal1st<TerrainOverlay*>(this));
+			equal1st<ITerrainOverlay*>(this));
 	g_TerrainOverlayList.erase(newEnd, g_TerrainOverlayList.end());
 }
 
 
-void TerrainOverlay::RenderOverlays()
+void ITerrainOverlay::RenderOverlaysBeforeWater()
 {
-	if (g_TerrainOverlayList.size() == 0)
+	if (g_TerrainOverlayList.empty())
 		return;
 
-	PROFILE3_GPU("terrain overlays");
+	PROFILE3_GPU("terrain overlays (before)");
 
-#if CONFIG2_GLES
-#warning TODO: implement TerrainOverlay::RenderOverlays for GLES
-#else
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glDepthMask(GL_FALSE);
-	// To ensure that outlines are drawn on top of the terrain correctly (and
-	// don't Z-fight and flicker nastily), draw them as QUADS with the LINE
-	// PolygonMode, and use PolygonOffset to pull them towards the camera.
-	// (See e.g. http://www.opengl.org/resources/faq/technical/polygonoffset.htm)
-	glPolygonOffset(-1.f, -1.f);
-	glEnable(GL_POLYGON_OFFSET_LINE);
+	for (size_t i = 0; i < g_TerrainOverlayList.size(); ++i)
+		g_TerrainOverlayList[i].first->RenderBeforeWater();
+}
 
-	pglActiveTextureARB(GL_TEXTURE0);
-	glDisable(GL_TEXTURE_2D);
+void ITerrainOverlay::RenderOverlaysAfterWater()
+{
+	if (g_TerrainOverlayList.empty())
+		return;
 
-	std::for_each(g_TerrainOverlayList.begin(), g_TerrainOverlayList.end(),
-		render1st());
+	PROFILE3_GPU("terrain overlays (after)");
 
-	// Clean up state changes
-	glEnable(GL_CULL_FACE);
-	glEnable(GL_DEPTH_TEST);
-	glDisable(GL_POLYGON_OFFSET_LINE);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	glDepthMask(GL_TRUE);
-	glDisable(GL_BLEND);
-#endif
+	for (size_t i = 0; i < g_TerrainOverlayList.size(); ++i)
+		g_TerrainOverlayList[i].first->RenderAfterWater();
 }
 
 //////////////////////////////////////////////////////////////////////////
+
+TerrainOverlay::TerrainOverlay(const CSimContext& simContext, int priority /* = 100 */)
+	: ITerrainOverlay(priority), m_Terrain(&simContext.GetTerrain())
+{
+}
 
 void TerrainOverlay::StartRender()
 {
@@ -145,10 +129,26 @@ void TerrainOverlay::GetTileExtents(
 	max_i_inclusive = max_j_inclusive = m_Terrain->GetTilesPerSide()-1;
 }
 
-void TerrainOverlay::Render()
+void TerrainOverlay::RenderBeforeWater()
 {
 	if (!m_Terrain)
 		return; // should never happen, but let's play it safe
+
+#if CONFIG2_GLES
+#warning TODO: implement TerrainOverlay::RenderOverlays for GLES
+#else
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glDepthMask(GL_FALSE);
+	// To ensure that outlines are drawn on top of the terrain correctly (and
+	// don't Z-fight and flicker nastily), draw them as QUADS with the LINE
+	// PolygonMode, and use PolygonOffset to pull them towards the camera.
+	// (See e.g. http://www.opengl.org/resources/faq/technical/polygonoffset.htm)
+	glPolygonOffset(-1.f, -1.f);
+	glEnable(GL_POLYGON_OFFSET_LINE);
+
+	pglActiveTextureARB(GL_TEXTURE0);
+	glDisable(GL_TEXTURE_2D);
 
 	StartRender();
 
@@ -167,6 +167,15 @@ void TerrainOverlay::Render()
 			ProcessTile(m_i, m_j);
 
 	EndRender();
+
+	// Clean up state changes
+	glEnable(GL_CULL_FACE);
+	glEnable(GL_DEPTH_TEST);
+	glDisable(GL_POLYGON_OFFSET_LINE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glDepthMask(GL_TRUE);
+	glDisable(GL_BLEND);
+#endif
 }
 
 void TerrainOverlay::RenderTile(const CColor& colour, bool draw_hidden)
@@ -265,4 +274,58 @@ void TerrainOverlay::RenderTileOutline(const CColor& colour, int line_width, boo
 		glLineWidth(1.0f);
 
 #endif
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+TerrainTextureOverlay::TerrainTextureOverlay(float texelsPerTile, int priority) :
+	ITerrainOverlay(priority), m_TexelsPerTile(texelsPerTile), m_Texture(0), m_TextureW(0), m_TextureH(0)
+{
+	glGenTextures(1, &m_Texture);
+}
+
+TerrainTextureOverlay::~TerrainTextureOverlay()
+{
+	glDeleteTextures(1, &m_Texture);
+}
+
+void TerrainTextureOverlay::RenderAfterWater()
+{
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+
+	ssize_t w = (ssize_t)(terrain->GetTilesPerSide() * m_TexelsPerTile);
+	ssize_t h = (ssize_t)(terrain->GetTilesPerSide() * m_TexelsPerTile);
+
+	pglActiveTextureARB(GL_TEXTURE0);
+
+	// Recreate the texture with new size if necessary
+	if (round_up_to_pow2(w) != m_TextureW || round_up_to_pow2(h) != m_TextureH)
+	{
+		m_TextureW = round_up_to_pow2(w);
+		m_TextureH = round_up_to_pow2(h);
+
+		glBindTexture(GL_TEXTURE_2D, m_Texture);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_TextureW, m_TextureH, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	}
+
+	u8* data = (u8*)calloc(w * h, 4);
+	BuildTextureRGBA(data, w, h);
+
+	glBindTexture(GL_TEXTURE_2D, m_Texture);
+	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, w, h, GL_RGBA, GL_UNSIGNED_BYTE, data);
+
+	free(data);
+
+	CMatrix3D matrix;
+	matrix.SetZero();
+	matrix._11 = m_TexelsPerTile / (m_TextureW * TERRAIN_TILE_SIZE);
+	matrix._23 = m_TexelsPerTile / (m_TextureH * TERRAIN_TILE_SIZE);
+	matrix._44 = 1;
+
+	g_Renderer.GetTerrainRenderer().RenderTerrainOverlayTexture(matrix);
 }

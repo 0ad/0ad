@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="base">
+      <animations>
+        <animation file="biped/inf_hoplite_idle_a.psa" name="Idle" speed="200"/>
+        <animation file="biped/inf_hoplite_walk.psa" name="Walk" speed="120"/>
+        <animation event="0.5" file="biped/inf_hoplite_atk_a.psa" name="melee" speed="200"/>
+        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
+        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="700"/>
+        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="500"/>
+        <animation file="infantry/general/death/inf_04.psa" name="Death" speed="400"/>
+        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="500"/>
+        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="400"/>
+        <animation file="biped/inf_hoplite_shield_run_a.psa" name="Run" speed="30"/>
+      </animations>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_hele_h.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/cape_long_ragged.xml" attachpoint="shoulders"/>
+      </props>
+      <texture>skeletal/hele_spartitiate_a.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="10" name="homoioi">
+      <props>
+        <prop actor="props/units/heads/hele_su1.xml" attachpoint="helmet"/>
+        <prop actor="props/units/shields/hele_aspis_spartan.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="champion">
+      <props>
+        <prop actor="props/units/heads/hele_su1_champ.xml" attachpoint="helmet"/>
+        <prop actor="props/units/shields/hele_round_spartiate_dokana.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Melee">
+      <props>
+        <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
+    <variant name="Walk">
+      <props>
+        <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
+    <variant name="Run">
+      <props>
+        <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

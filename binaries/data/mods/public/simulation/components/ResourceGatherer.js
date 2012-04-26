@@ -79,7 +79,7 @@ ResourceGatherer.prototype.GetCarryingStatus = function()
 		ret.push({
 			"type": type,
 			"amount": this.carrying[type],
-			"max": +this.template.Capacities[type]
+			"max": +this.GetCapacities()[type]
 		});
 	}
 	return ret;
@@ -95,6 +95,8 @@ ResourceGatherer.prototype.GiveResources = function(resources)
 	{
 		this.carrying[resource.type] = +(resource.amount);
 	}
+	
+	Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
 };
 
 /**
@@ -126,8 +128,30 @@ ResourceGatherer.prototype.GetLastCarriedType = function()
 ResourceGatherer.prototype.GetGatherRates = function()
 {
 	var ret = {};
+	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	
+	var baseSpeed = cmpTechMan.ApplyModifications("ResourceGatherer/BaseSpeed", this.template.BaseSpeed, this.entity);
+	
 	for (var r in this.template.Rates)
-		ret[r] = this.template.Rates[r] * this.template.BaseSpeed;
+	{
+		var rate = cmpTechMan.ApplyModifications("ResourceGatherer/Rates/" + r, this.template.Rates[r], this.entity);
+		ret[r] = rate * baseSpeed;
+	}
+	
+	return ret;
+};
+
+ResourceGatherer.prototype.GetCapacities = function()
+{
+
+	var ret = {};
+	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	
+	for (var r in this.template.Capacities)
+	{
+		ret[r] = cmpTechMan.ApplyModifications("ResourceGatherer/Capacities/" + r, this.template.Capacities[r], this.entity);
+	}
+	
 	return ret;
 };
 
@@ -135,7 +159,7 @@ ResourceGatherer.prototype.GetRange = function()
 {
 	return { "max": +this.template.MaxDistance, "min": 0 };
 	// maybe this should depend on the unit or target or something?
-}
+};
 
 /**
  * Try to gather treasure
@@ -179,7 +203,7 @@ ResourceGatherer.prototype.PerformGather = function(target)
 		this.carrying[type.generic] = 0;
 
 	// Find the maximum so we won't exceed our capacity
-	var maxGathered = this.template.Capacities[type.generic] - this.carrying[type.generic];
+	var maxGathered = this.GetCapacities()[type.generic] - this.carrying[type.generic];
 
 	var status = cmpResourceSupply.TakeResources(Math.min(rate, maxGathered));
 
@@ -193,6 +217,8 @@ ResourceGatherer.prototype.PerformGather = function(target)
 	var cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
 	if (cmpStatisticsTracker)
 		cmpStatisticsTracker.IncreaseResourceGatheredCounter(type.generic, status.amount, type.specific);
+	
+	Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
 
 	// Tell the target we're gathering from it
 	Engine.PostMessage(target, MT_ResourceGather,
@@ -201,7 +227,7 @@ ResourceGatherer.prototype.PerformGather = function(target)
 	return {
 		"amount": status.amount,
 		"exhausted": status.exhausted,
-		"filled": (this.carrying[type.generic] >= this.template.Capacities[type.generic])
+		"filled": (this.carrying[type.generic] >= this.GetCapacities()[type.generic])
 	};
 };
 
@@ -219,13 +245,13 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 	var type = cmpResourceSupply.GetType();
 
 	var rate;
-	if (type.specific && this.template.Rates[type.generic+"."+type.specific])
-		rate = this.template.Rates[type.generic+"."+type.specific];
+	if (type.specific && this.GetGatherRates()[type.generic+"."+type.specific])
+		rate = this.GetGatherRates()[type.generic+"."+type.specific];
 	else
-		rate = this.template.Rates[type.generic];
+		rate = this.GetGatherRates()[type.generic];
 
-	return (rate || 0) * this.template.BaseSpeed;
-}
+	return (rate || 0);
+};
 
 /**
  * Returns whether this unit can carry more of the given type of resource.
@@ -235,7 +261,7 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 ResourceGatherer.prototype.CanCarryMore = function(type)
 {
 	var amount = (this.carrying[type] || 0);
-	return (amount < this.template.Capacities[type]);
+	return (amount < this.GetCapacities()[type]);
 };
 
 /**
@@ -269,6 +295,8 @@ ResourceGatherer.prototype.CommitResources = function(types)
 			delete this.carrying[type];
 		}
 	}
+	
+	Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
 };
 
 /**
@@ -279,6 +307,8 @@ ResourceGatherer.prototype.CommitResources = function(types)
 ResourceGatherer.prototype.DropResources = function()
 {
 	this.carrying = {};
+	
+	Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
 };
 
 Engine.RegisterComponentType(IID_ResourceGatherer, "ResourceGatherer", ResourceGatherer);

@@ -610,7 +610,7 @@ void CCmpRallyPointRenderer::ConstructOverlayLines()
 			// construct solid textured overlay line along a subset of the full path points from startPointIdx to endPointIdx
 			SOverlayTexturedLine overlayLine;
 			overlayLine.m_Thickness = m_LineThickness;
-			overlayLine.m_Terrain = cmpTerrain->GetCTerrain();
+			overlayLine.m_SimContext = &GetSimContext();
 			overlayLine.m_TextureBase = m_Texture;
 			overlayLine.m_TextureMask = m_TextureMask;
 			overlayLine.m_Color = m_LineColor;
@@ -634,14 +634,14 @@ void CCmpRallyPointRenderer::ConstructOverlayLines()
 		}
 		else
 		{
-			// construct dashed line from startPointIdx to endPointIdx, add textured overlay lines for it to the render list
+			// construct dashed line from startPointIdx to endPointIdx; add textured overlay lines for it to the render list
 			std::vector<CVector2D> straightLine;
 			straightLine.push_back(m_Path[segment.m_StartIndex]);
 			straightLine.push_back(m_Path[segment.m_EndIndex]);
 
-			// We always want to have the dashed line end at either point with a full dash (i.e. not a cleared space), so that the dashed
-			// area is visually obvious. That implies that we want at least So, let's do some calculations to see what size we should make 
-			// the dashes and clears.
+			// We always want to the dashed line to end at either point with a full dash (i.e. not a cleared space), so that the dashed
+			// area is visually obvious. This requires some calculations to see what size we should make the dashes and clears for them
+			// to fit exactly.
 
 			float maxDashSize = 3.f;
 			float maxClearSize = 3.f;
@@ -652,8 +652,8 @@ void CCmpRallyPointRenderer::ConstructOverlayLines()
 
 			float distance = (m_Path[segment.m_StartIndex] - m_Path[segment.m_EndIndex]).Length(); // straight-line distance between the points
 
-			// see how many pairs (dash + clear) can fit into the distance unmodified. Then check the remaining distance; if it's not exactly
-			// a dash size's worth (and it likely won't be), then adjust the dash/clear sizes slightly so that it is.
+			// See how many pairs (dash + clear) of unmodified size can fit into the distance. Then check the remaining distance; if it's not exactly
+			// a dash size's worth (which it probably won't be), then adjust the dash/clear sizes slightly so that it is.
 			int numFitUnmodified = floor(distance/(dashSize + clearSize));
 			float remainderDistance = distance - (numFitUnmodified * (dashSize + clearSize));
 
@@ -682,7 +682,7 @@ void CCmpRallyPointRenderer::ConstructOverlayLines()
 				SOverlayTexturedLine dashOverlay;
 
 				dashOverlay.m_Thickness = m_LineThickness;
-				dashOverlay.m_Terrain = cmpTerrain->GetCTerrain();
+				dashOverlay.m_SimContext = &GetSimContext();
 				dashOverlay.m_TextureBase = m_Texture;
 				dashOverlay.m_TextureMask = m_TextureMask;
 				dashOverlay.m_Color = m_LineDashColor;
@@ -767,7 +767,7 @@ void CCmpRallyPointRenderer::FixFootprintWaypoints(std::vector<CVector2D>& coord
 	{
 	case ICmpFootprint::SQUARE:
 		{
-			// in this case, footprintSize0 and 1 respectively indicate the (unrotated) size along the X and Z axes
+			// in this case, footprintSize0 and 1 indicate the size along the X and Z axes, respectively.
 
 			// the building's footprint could be rotated any which way, so let's get the rotation around the Y axis
 			// and the rotated unit vectors in the X/Z plane of the shape's footprint
@@ -837,7 +837,6 @@ void CCmpRallyPointRenderer::FixInvisibleWaypoints(std::vector<CVector2D>& coord
 	player_id_t currentPlayer = GetSimContext().GetCurrentDisplayedPlayer();
 	CLosQuerier losQuerier(cmpRangeMgr->GetLosQuerier(currentPlayer));
 
-	//for (std::vector<Waypoint>::iterator it = waypoints.begin(); it != waypoints.end();)
 	for(std::vector<CVector2D>::iterator it = coords.begin(); it != coords.end();)
 	{
 		int i = (fixed::FromFloat(it->X) / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();

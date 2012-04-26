@@ -58,6 +58,9 @@ enum
  * the shader .xml file. Alternatively (and more efficiently, if used very frequently),
  * call GetTextureBinding/GetUniformBinding and pass its return value as the ID.
  * Setting uniforms that the shader .xml doesn't support is harmless.
+ * 
+ * For a high-level overview of shaders and materials, see
+ * http://trac.wildfiregames.com/wiki/MaterialSystem
  */
 class CShaderProgram
 {
@@ -136,7 +139,7 @@ public:
 
 	/**
 	 * Returns bitset of STREAM_* value, indicating what vertex data streams the
-	 * vertex shader needs.
+	 * vertex shader needs (e.g. position, color, UV, ...).
 	 */
 	int GetStreamFlags() const;
 

@@ -23,6 +23,12 @@
   </Position>
   <Selectable>
     <EditorOnly disable=""/>
+    <Overlay>
+      <Texture>
+        <MainTexture>circle/128x128.png</MainTexture>
+        <MainTextureMask>circle/128x128_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
   </Selectable>
   <TerritoryInfluence>
     <OverrideCost>0</OverrideCost>
@@ -33,6 +39,6 @@
   <VisualActor>
     <SilhouetteDisplay>false</SilhouetteDisplay>
     <SilhouetteOccluder>true</SilhouetteOccluder>
-    <Actor>structures/hellenes/wall_med.xml</Actor>
+    <Actor>structures/hellenes/wall_medium.xml</Actor>
   </VisualActor>
 </Entity>

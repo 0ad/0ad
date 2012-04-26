@@ -33,10 +33,11 @@ CVertexBuffer::CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target)
 {
 	size_t size = MAX_VB_SIZE_BYTES;
 
-	if (target == GL_ARRAY_BUFFER)
+	if (target == GL_ARRAY_BUFFER) // vertex data buffer
 	{
 		// We want to store 16-bit indices to any vertex in a buffer, so the
-		// buffer must never be bigger than vertexSize*64K bytes
+		// buffer must never be bigger than vertexSize*64K bytes since we can 
+		// address at most 64K of them with 16-bit indices
 		size = std::min(size, vertexSize*65536);
 	}
 
@@ -54,13 +55,13 @@ CVertexBuffer::CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target)
 	}
 
 	// store max/free vertex counts
-	m_MaxVertices=m_FreeVertices=size/vertexSize;
+	m_MaxVertices = m_FreeVertices = size/vertexSize;
 	
 	// create sole free chunk
-	VBChunk* chunk=new VBChunk;
-	chunk->m_Owner=this;
-	chunk->m_Count=m_FreeVertices;
-	chunk->m_Index=0;
+	VBChunk* chunk = new VBChunk;
+	chunk->m_Owner = this;
+	chunk->m_Count = m_FreeVertices;
+	chunk->m_Index = 0;
 	m_FreeList.push_front(chunk);
 }
 
@@ -100,11 +101,11 @@ CVertexBuffer::VBChunk* CVertexBuffer::Allocate(size_t vertexSize, size_t numVer
 		return 0;
 
 	// trawl free list looking for first free chunk with enough space
-	VBChunk* chunk=0;
+	VBChunk* chunk = 0;
 	typedef std::list<VBChunk*>::iterator Iter;
-	for (Iter iter=m_FreeList.begin();iter!=m_FreeList.end();++iter) {
-		if (numVertices<=(*iter)->m_Count) {
-			chunk=*iter;
+	for (Iter iter = m_FreeList.begin(); iter != m_FreeList.end(); ++iter) {
+		if (numVertices <= (*iter)->m_Count) {
+			chunk = *iter;
 			// remove this chunk from the free list
 			m_FreeList.erase(iter);
 			m_FreeVertices -= chunk->m_Count;
@@ -173,7 +174,7 @@ void CVertexBuffer::Release(VBChunk* chunk)
 
 ///////////////////////////////////////////////////////////////////////////////
 // UpdateChunkVertices: update vertex data for given chunk
-void CVertexBuffer::UpdateChunkVertices(VBChunk* chunk,void* data)
+void CVertexBuffer::UpdateChunkVertices(VBChunk* chunk, void* data)
 {
 	if (g_Renderer.m_Caps.m_VBO)
 	{

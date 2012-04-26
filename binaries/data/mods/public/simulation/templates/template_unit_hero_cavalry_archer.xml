@@ -35,6 +35,10 @@
       <metal>100</metal>
     </Resources>
   </Cost>
+  <Footprint>
+    <Circle radius="3.0"/>
+    <Height>3.0</Height>
+  </Footprint>
   <Health>
     <Max>1000</Max>
     <RegenRate>0.5</RegenRate>
@@ -53,6 +57,14 @@
   <Minimap>
     <Type>hero</Type>
   </Minimap>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>star/256x256.png</MainTexture>
+        <MainTextureMask>star/256x256_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <UnitMotion>
     <WalkSpeed>11.0</WalkSpeed>
     <Run>

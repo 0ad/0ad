@@ -37,6 +37,13 @@
   <Obstruction>
     <Static width="13.0" depth="13.0"/>
   </Obstruction>
+  <ProductionQueue>
+    <Technologies datatype="tokens">
+	  pair_gather_01
+	  pair_gather_02
+	  pair_gather_03
+    </Technologies>
+  </ProductionQueue>
   <RallyPoint disable=""/>
   <ResourceDropsite>
     <Types>wood stone metal</Types>

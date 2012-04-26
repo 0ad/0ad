@@ -588,7 +588,7 @@ var EconomyManager = Class({
 		// Roman training list
 		else if (gameState.displayCiv() == "rome")
 		{
-			if (workNumMod < 0.95)
+			if (workNumMod < 0.99)
 			{
 				planGroups.economyPersonnel.addPlan(priority,
 					new UnitTrainingPlan(gameState,
@@ -691,7 +691,7 @@ var EconomyManager = Class({
 				else
 				{
 					// If not, go home!
-					var targets = gameState.entities.filter(function(squeak) {
+					var targets = gameState.getOwnEntities().filter(function(squeak) {
 						return (!squeak.isEnemy() && squeak.hasClass("Village"));
 					});
 					// If we have a target, move to it
@@ -991,7 +991,7 @@ var EconomyManager = Class({
 			buildregroupers.forEach(function(shirk) {
 				if (shirk.getMetadata("subrole") == "builder")
 				{
-					var targets = gameState.entities.filter(function(ent) {
+					var targets = gameState.getOwnEntities().filter(function(ent) {
 						return (!ent.isEnemy() && ent.hasClass("CivCentre"));
 					});
 					if (targets.length)

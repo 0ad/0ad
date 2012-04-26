@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_support_slave">
+  <Identity>
+    <Civ>athen</Civ>
+    <SpecificName>Doulos</SpecificName>
+    <History>Slavery played a major role in ancient civilization.</History>
+  </Identity>
+  <VisualActor>
+    <Actor>units/global/slave.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -26,6 +26,7 @@
     <Tooltip>Create trade units to trade between other markets. Barter resources.</Tooltip>
     <Classes datatype="tokens">Town Market BarterMarket</Classes>
     <Icon>structures/market.png</Icon>
+	<RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>100</xp>
@@ -49,11 +50,11 @@
     <Radius>40</Radius>
     <Weight>65536</Weight>
   </TerritoryInfluence>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/{civ}_support_trader
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <Vision>
     <Range>32</Range>
   </Vision>

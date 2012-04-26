@@ -68,6 +68,11 @@ Identity.prototype.Schema =
 		"<element name='Icon'>" +
 			"<text/>" +
 		"</element>" +
+	"</optional>" +
+	"<optional>" +
+		"<element name='RequiredTechnology' a:help='Optional name of a technology which must be researched before the entity can be produced'>" +
+			"<text/>" +
+		"</element>" +
 	"</optional>";
 
 
@@ -126,6 +131,6 @@ Identity.prototype.CanUseFormation = function(name)
 Identity.prototype.GetSelectionGroupName = function()
 {
 	return (this.template.SelectionGroupName || "");
-}
+};
 
 Engine.RegisterComponentType(IID_Identity, "Identity", Identity);

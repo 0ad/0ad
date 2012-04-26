@@ -11,7 +11,7 @@
  ********************************************************************
 
  function: #ifdef jail to whip a few platforms into the UNIX ideal.
- last mod: $Id: os_types.h,v 1.11 2002/07/19 08:25:51 msmith Exp $
+ last mod: $Id: os_types.h 17712 2010-12-03 17:10:02Z xiphmont $
 
  ********************************************************************/
 #ifndef _OS_TYPES_H
@@ -24,59 +24,122 @@
 #define _ogg_realloc realloc
 #define _ogg_free    free
 
-#ifdef _WIN32 
+#if defined(_WIN32) 
 
-#  ifndef __GNUC__
-   /* MSVC/Borland */
-   typedef __int64 ogg_int64_t;
-   typedef __int32 ogg_int32_t;
-   typedef unsigned __int32 ogg_uint32_t;
-   typedef __int16 ogg_int16_t;
+#  if defined(__CYGWIN__)
+#    include <stdint.h>
+     typedef int16_t ogg_int16_t;
+     typedef uint16_t ogg_uint16_t;
+     typedef int32_t ogg_int32_t;
+     typedef uint32_t ogg_uint32_t;
+     typedef int64_t ogg_int64_t;
+     typedef uint64_t ogg_uint64_t;
+#  elif defined(__MINGW32__)
+#    include <sys/types.h>
+     typedef short ogg_int16_t;
+     typedef unsigned short ogg_uint16_t;
+     typedef int ogg_int32_t;
+     typedef unsigned int ogg_uint32_t;
+     typedef long long ogg_int64_t;
+     typedef unsigned long long ogg_uint64_t;
+#  elif defined(__MWERKS__)
+     typedef long long ogg_int64_t;
+     typedef int ogg_int32_t;
+     typedef unsigned int ogg_uint32_t;
+     typedef short ogg_int16_t;
+     typedef unsigned short ogg_uint16_t;
 #  else
-   /* Cygwin */
-   #include <_G_config.h>
-   typedef _G_int64_t ogg_int64_t;
-   typedef _G_int32_t ogg_int32_t;
-   typedef _G_uint32_t ogg_uint32_t;
-   typedef _G_int16_t ogg_int16_t;
+     /* MSVC/Borland */
+     typedef __int64 ogg_int64_t;
+     typedef __int32 ogg_int32_t;
+     typedef unsigned __int32 ogg_uint32_t;
+     typedef __int16 ogg_int16_t;
+     typedef unsigned __int16 ogg_uint16_t;
 #  endif
 
 #elif defined(__MACOS__)
 
 #  include <sys/types.h>
    typedef SInt16 ogg_int16_t;
+   typedef UInt16 ogg_uint16_t;
    typedef SInt32 ogg_int32_t;
    typedef UInt32 ogg_uint32_t;
    typedef SInt64 ogg_int64_t;
 
 #elif (defined(__APPLE__) && defined(__MACH__)) /* MacOS X Framework build */
 
-#  include <sys/types.h>
+#  include <inttypes.h>
    typedef int16_t ogg_int16_t;
+   typedef uint16_t ogg_uint16_t;
    typedef int32_t ogg_int32_t;
-   typedef u_int32_t ogg_uint32_t;
+   typedef uint32_t ogg_uint32_t;
    typedef int64_t ogg_int64_t;
+
+#elif defined(__HAIKU__)
+
+  /* Haiku */
+#  include <sys/types.h>
+   typedef short ogg_int16_t;
+   typedef unsigned short ogg_uint16_t;
+   typedef int ogg_int32_t;
+   typedef unsigned int ogg_uint32_t;
+   typedef long long ogg_int64_t;
 
 #elif defined(__BEOS__)
 
    /* Be */
 #  include <inttypes.h>
    typedef int16_t ogg_int16_t;
+   typedef uint16_t ogg_uint16_t;
    typedef int32_t ogg_int32_t;
-   typedef u_int32_t ogg_uint32_t;
+   typedef uint32_t ogg_uint32_t;
    typedef int64_t ogg_int64_t;
 
 #elif defined (__EMX__)
 
    /* OS/2 GCC */
    typedef short ogg_int16_t;
+   typedef unsigned short ogg_uint16_t;
    typedef int ogg_int32_t;
    typedef unsigned int ogg_uint32_t;
    typedef long long ogg_int64_t;
 
+#elif defined (DJGPP)
+
+   /* DJGPP */
+   typedef short ogg_int16_t;
+   typedef int ogg_int32_t;
+   typedef unsigned int ogg_uint32_t;
+   typedef long long ogg_int64_t;
+
+#elif defined(R5900)
+
+   /* PS2 EE */
+   typedef long ogg_int64_t;
+   typedef int ogg_int32_t;
+   typedef unsigned ogg_uint32_t;
+   typedef short ogg_int16_t;
+
+#elif defined(__SYMBIAN32__)
+
+   /* Symbian GCC */
+   typedef signed short ogg_int16_t;
+   typedef unsigned short ogg_uint16_t;
+   typedef signed int ogg_int32_t;
+   typedef unsigned int ogg_uint32_t;
+   typedef long long int ogg_int64_t;
+
+#elif defined(__TMS320C6X__)
+
+   /* TI C64x compiler */
+   typedef signed short ogg_int16_t;
+   typedef unsigned short ogg_uint16_t;
+   typedef signed int ogg_int32_t;
+   typedef unsigned int ogg_uint32_t;
+   typedef long long int ogg_int64_t;
+
 #else
 
-#  include <sys/types.h>
 #  include <ogg/config_types.h>
 
 #endif

@@ -4,6 +4,7 @@ const QUEUE = "Queue";
 const GARRISON = "Garrison";
 const FORMATION = "Formation";
 const TRAINING = "Training";
+const RESEARCH = "Research";
 const CONSTRUCTION = "Construction";
 const COMMAND = "Command";
 const STANCE = "Stance";
@@ -23,7 +24,7 @@ const BARTER_RESOURCES = ["food", "wood", "stone", "metal"];
 const BARTER_ACTIONS = ["Sell", "Buy"];
 
 // The number of currently visible buttons (used to optimise showing/hiding)
-var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Formation": 0, "Garrison": 0, "Training": 0, "Barter": 0, "Trading": 0, "Construction": 0, "Command": 0, "Stance": 0};
+var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Formation": 0, "Garrison": 0, "Training": 0, "Research": 0, "Barter": 0, "Trading": 0, "Construction": 0, "Command": 0, "Stance": 0};
 
 // Unit panels are panels with row(s) of buttons
 var g_unitPanels = ["Selection", "Queue", "Formation", "Garrison", "Training", "Barter", "Trading", "Construction", "Research", "Stance", "Command"];
@@ -97,27 +98,39 @@ function layoutButtonRowCentered(rowNumber, guiName, startIndex, endIndex, width
 }
 
 // Lay out button rows
-function layoutButtonRow(rowNumber, guiName, buttonSideLength, buttonSpacer, startIndex, endIndex)
+function layoutButtonRow(rowNumber, guiName, buttonSideWidth, buttonSpacer, startIndex, endIndex)
+{
+	layoutRow("Button", rowNumber, guiName, buttonSideWidth, buttonSpacer, buttonSideWidth, buttonSpacer, startIndex, endIndex);
+}
+
+// Lay out rows
+function layoutRow(objectName, rowNumber, guiName, objectSideWidth, objectSpacerWidth, objectSideHeight, objectSpacerHeight, startIndex, endIndex)
 {
 	var colNumber = 0;
 
 	for (var i = startIndex; i < endIndex; i++)
 	{
-		var button = getGUIObjectByName("unit"+guiName+"Button["+i+"]");
+		var button = getGUIObjectByName("unit"+guiName+objectName+"["+i+"]");
 
 		if (button)
 		{
 			var size = button.size;
 
-			size.left = buttonSpacer*colNumber;
-			size.right = buttonSpacer*colNumber + buttonSideLength;
-			size.top = buttonSpacer*rowNumber;
-			size.bottom = buttonSpacer*rowNumber + buttonSideLength;
+			size.left = objectSpacerWidth*colNumber;
+			size.right = objectSpacerWidth*colNumber + objectSideWidth;
+			size.top = objectSpacerHeight*rowNumber;
+			size.bottom = objectSpacerHeight*rowNumber + objectSideHeight;
 
 			button.size = size;
 			colNumber++;
 		}
 	}
+}
+
+// Set the visibility of the object
+function setOverlay(object, value)
+{
+	object.hidden = !value;
 }
 
 // Sets up "unit panels" - the panels with rows of icons (Helper function for updateUnitDisplay)
@@ -128,6 +141,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	var numberOfItems = items.length;
 	var selection = g_Selection.toList();
 	var garrisonGroups = new EntityGroups();
+	var pairs = false;
 
 	// Determine how many buttons there should be
 	switch (guiName)
@@ -164,6 +178,11 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				numberOfItems =  24;
 			break;
 
+		case RESEARCH:
+			if (numberOfItems > 8)
+				numberOfItems =  8;
+			break;
+
 		case CONSTRUCTION:
 			if (numberOfItems > 24)
 				numberOfItems =  24;
@@ -178,18 +197,85 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			break;
 	}
 
+	var rowLength = 8;
+	if (guiName == SELECTION)
+		rowLength = 4;
+	else if (guiName == FORMATION || guiName == GARRISON || guiName == COMMAND)
+		rowLength = 4;
+
 	// Make buttons
 	var i;
 	for (i = 0; i < numberOfItems; i++)
 	{
 		var item = items[i];
-		var entType = ((guiName == "Queue")? item.template : item);
-		var template;
-		if (guiName != "Formation" && guiName != "Command" && guiName != "Stance")
+		
+		// If a tech has been researched it leaves an empty slot
+		if (guiName == RESEARCH && !item)
 		{
-			template = GetTemplateData(entType);
-			if (!template)
-				continue; // ignore attempts to use invalid templates (an error should have been reported already)
+			getGUIObjectByName("unit"+guiName+"Button["+i+"]").hidden = true;
+			// We also remove the paired tech and the pair symbol
+			getGUIObjectByName("unit"+guiName+"Button["+(i+rowLength)+"]").hidden = true;
+			getGUIObjectByName("unit"+guiName+"Pair["+i+"]").hidden = true;
+			continue;
+		}
+		
+		// Get the entity type and load the template for that type if necessary
+		var entType;
+		var template;
+		var entType1;
+		var template1;
+		switch (guiName)
+		{
+			case QUEUE:
+				// The queue can hold both technologies and units so we need to use the correct code for
+				// loading the templates
+				if (item.unitTemplate)
+				{
+					entType = item.unitTemplate;
+					template = GetTemplateData(entType);
+				}
+				else if (item.technologyTemplate)
+				{
+					entType = item.technologyTemplate;
+					template = GetTechnologyData(entType);
+				}
+			
+				if (!template)
+					continue; // ignore attempts to use invalid templates (an error should have been
+					          // reported already)
+				break;
+			case RESEARCH:
+				if (item.pair)
+				{
+					pairs = true;
+					entType1 = item.bottom;
+					template1 = GetTechnologyData(entType1);
+					if (!template1)
+						continue; // ignore attempts to use invalid templates (an error should have been
+						          // reported already)
+					
+					entType = item.top;
+				}
+				else
+				{
+					entType = item;
+				}
+				template = GetTechnologyData(entType);
+				if (!template)
+					continue; // ignore attempts to use invalid templates (an error should have been
+					          // reported already)
+				
+				break;
+			case SELECTION:
+			case GARRISON:
+			case TRAINING:
+			case CONSTRUCTION:
+				entType = item;
+				template = GetTemplateData(entType);
+				if (!template)
+					continue; // ignore attempts to use invalid templates (an error should have been
+					          // reported already)
+				break;
 		}
 
 		switch (guiName)
@@ -233,7 +319,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				if (template.tooltip)
 					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
 
-				var [batchSize, batchIncrement] = getTrainingQueueBatchStatus(unitEntState.id, entType);
+				var [batchSize, batchIncrement] = getTrainingBatchStatus(unitEntState.id, entType);
 				var trainNum = batchSize ? batchSize+batchIncrement : batchIncrement;
 
 				tooltip += "\n" + getEntityCost(template);
@@ -249,6 +335,23 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 
 				tooltip += "\n\n[font=\"serif-bold-13\"]Shift-click[/font][font=\"serif-13\"] to train " + trainNum + ".[/font]";
 
+				break;
+				
+			case RESEARCH:
+				var tooltip = getEntityNameWithGenericType(template);
+				if (template.tooltip)
+					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
+
+				tooltip += "\n" + getEntityCost(template);
+
+				if (item.pair)
+				{
+					var tooltip1 = getEntityNameWithGenericType(template1);
+					if (template1.tooltip)
+						tooltip1 += "\n[font=\"serif-13\"]" + template1.tooltip + "[/font]";
+
+					tooltip1 += "\n" + getEntityCost(template1);
+				}
 				break;
 
 			case CONSTRUCTION:
@@ -285,16 +388,38 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 
 		// Button
 		var button = getGUIObjectByName("unit"+guiName+"Button["+i+"]");
+		var button1 = getGUIObjectByName("unit"+guiName+"Button["+(i+rowLength)+"]");
 		var icon = getGUIObjectByName("unit"+guiName+"Icon["+i+"]");
 		var selection = getGUIObjectByName("unit"+guiName+"Selection["+i+"]");
+		var pair = getGUIObjectByName("unit"+guiName+"Pair["+i+"]");
 		button.hidden = false;
 		button.tooltip = tooltip;
 
 		// Button Function (need nested functions to get the closure right)
 		button.onpress = (function(e){ return function() { callback(e) } })(item);
 
+		if (item.pair)
+		{
+			button.onpress = (function(e){ return function() { callback(e) } })(item.top);
+
+			var icon1 = getGUIObjectByName("unit"+guiName+"Icon["+(i+rowLength)+"]");
+			button1.hidden = false;
+			button1.tooltip = tooltip1;
+			button1.onpress = (function(e){ return function() { callback(e) } })(item.bottom);
+
+			// We add a red overlay to the paired button (we reuse the selection for that)
+			button1.onmouseenter = (function(e){ return function() { setOverlay(e, true) } })(selection);
+			button1.onmouseleave = (function(e){ return function() { setOverlay(e, false) } })(selection);
+
+			var selection1 = getGUIObjectByName("unit"+guiName+"Selection["+(i+rowLength)+"]");;
+			button.onmouseenter = (function(e){ return function() { setOverlay(e, true) } })(selection1);
+			button.onmouseleave = (function(e){ return function() { setOverlay(e, false) } })(selection1);
+
+			pair.hidden = false;
+		}
+
 		// Get icon image
-		if (guiName == "Formation")
+		if (guiName == FORMATION)
 		{
 			var formationOk = Engine.GuiInterfaceCall("CanMoveEntsIntoFormation", {
 				"ents": g_Selection.toList(),
@@ -335,7 +460,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			icon.sprite = "stretched:"+grayscale+"session/icons/formations/"+item.replace(/\s+/,'').toLowerCase()+".png";
 			
  		}
-		else if (guiName == "Stance")
+		else if (guiName == STANCE)
 		{
 			var stanceSelected = Engine.GuiInterfaceCall("IsStanceSelected", {
 				"ents": g_Selection.toList(),
@@ -345,14 +470,53 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			selection.hidden = !stanceSelected;
 			icon.sprite = "stretched:session/icons/stances/"+item+".png";
 		}
-		else if (guiName == "Command")
+		else if (guiName == COMMAND)
 		{
 			icon.sprite = "stretched:session/icons/" + item.icon;
 
 		}
 		else if (template.icon)
 		{
-			icon.sprite = "stretched:session/portraits/" + template.icon;
+			var grayscale = "";
+			button.enabled = true;
+			
+			if (guiName != SELECTION && template.requiredTechnology && !Engine.GuiInterfaceCall("IsTechnologyResearched", template.requiredTechnology))
+			{
+				button.enabled = false;
+				var techName = getEntityName(GetTechnologyData(template.requiredTechnology));
+				button.tooltip += "\nRequires " + techName;
+				grayscale = "grayscale:";
+			}
+			
+			if (guiName == RESEARCH && !Engine.GuiInterfaceCall("CheckTechnologyRequirements", entType))
+			{
+				button.enabled = false;
+				button.tooltip += "\n" + GetTechnologyData(entType).requirementsTooltip;
+				grayscale = "grayscale:";
+			}
+			
+			icon.sprite = "stretched:" + grayscale + "session/portraits/" + template.icon;
+			
+			if (guiName == RESEARCH)
+			{
+				if (item.pair)
+				{
+					grayscale = "";
+					button1.enabled = true;
+					if (guiName == RESEARCH && !Engine.GuiInterfaceCall("CheckTechnologyRequirements", entType1))
+					{
+						button1.enabled = false;
+						button1.tooltip += "\n" + GetTechnologyData(entType1).requirementsTooltip;
+						grayscale = "grayscale:";
+					}
+					icon1.sprite = "stretched:" + grayscale + "session/portraits/" +template1.icon;
+				}
+				else
+				{
+					pair.hidden = true;
+					button1.hidden = true;
+				}
+			}
 		}
 		else
 		{
@@ -364,18 +528,17 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	// Position the visible buttons (TODO: if there's lots, maybe they should be squeezed together to fit)
 	var numButtons = i;
 
-	var rowLength = 8;
-	if (guiName == "Selection")
-		rowLength = 4;
-	else if (guiName == "Formation" || guiName == "Garrison" || guiName == "Command")
-		rowLength = 4;
-
 	var numRows = Math.ceil(numButtons / rowLength);
+	
+	// If we have paired buttons we need to align one more row
+	if (pairs)
+		numRows++;
+
 	var buttonSideLength = getGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
 	var buttonSpacer = buttonSideLength+1;
 
 	// Layout buttons
-	if (guiName == "Command")
+	if (guiName == COMMAND)
 	{
 		layoutButtonRowCentered(0, guiName, 0, numButtons, COMMANDS_PANEL_WIDTH);
 	}
@@ -384,9 +547,21 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		for (var i = 0; i < numRows; i++)
 			layoutButtonRow(i, guiName, buttonSideLength, buttonSpacer, rowLength*i, rowLength*(i+1) );
 	}
+	
+	// Layout pair icons
+	if (guiName == RESEARCH)
+	{
+		var pairSize = getGUIObjectByName("unit"+guiName+"Pair[0]").size;
+		var pairSideWidth = pairSize.right;
+		var pairSideHeight = pairSize.bottom;
+		var pairSpacerHeight = pairSideHeight + 1;
+		var pairSpacerWidth = pairSideWidth + 1;
+
+		layoutRow("Pair", 0, guiName, pairSideWidth, pairSpacerWidth, pairSideHeight, pairSpacerHeight, 0, rowLength);
+	}
 
 	// Resize Queue panel if needed
-	if (guiName == "Queue") // or garrison
+	if (guiName == QUEUE) // or garrison
 	{
 		var panel = getGUIObjectByName("unitQueuePanel");
 		var size = panel.size;
@@ -397,6 +572,16 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	// Hide any buttons we're no longer using
 	for (i = numButtons; i < g_unitPanelButtons[guiName]; ++i)
 		getGUIObjectByName("unit"+guiName+"Button["+i+"]").hidden = true;
+
+	// Hide unused pair buttons and symbols
+	if (guiName == RESEARCH)
+	{
+		for (i = numButtons; i < g_unitPanelButtons[guiName]; ++i)
+		{
+			getGUIObjectByName("unit"+guiName+"Button["+(i+rowLength)+"]").hidden = true;
+			getGUIObjectByName("unit"+guiName+"Pair["+i+"]").hidden = true;
+		}
+	}
 
 	g_unitPanelButtons[guiName] = numButtons;
 }
@@ -494,26 +679,26 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 	if (entState.player == player || g_DevSettings.controlAll)
 	{
 		if (selection.length > 1)
-			setupUnitPanel("Selection", usedPanels, entState, g_Selection.groups.getTemplateNames(),
+			setupUnitPanel(SELECTION, usedPanels, entState, g_Selection.groups.getTemplateNames(),
 				function (entType) { changePrimarySelectionGroup(entType); } );
 
 		var commands = getEntityCommandsList(entState);
 		if (commands.length)
-			setupUnitPanel("Command", usedPanels, entState, commands,
+			setupUnitPanel(COMMAND, usedPanels, entState, commands,
 				function (item) { performCommand(entState.id, item.name); } );
 
 		if (entState.garrisonHolder)
 		{
 			var groups = new EntityGroups();
 			groups.add(entState.garrisonHolder.entities);
-			setupUnitPanel("Garrison", usedPanels, entState, groups.getTemplateNames(),
+			setupUnitPanel(GARRISON, usedPanels, entState, groups.getTemplateNames(),
 				function (item) { unload(entState.id, groups.getEntsByName(item)); } );
 		}
 
 		var formations = getEntityFormationsList(entState);
 		if (hasClass(entState, "Unit") && !hasClass(entState, "Animal") && !entState.garrisonHolder && formations.length)
 		{
-			setupUnitPanel("Formation", usedPanels, entState, formations,
+			setupUnitPanel(FORMATION, usedPanels, entState, formations,
 				function (item) { performFormation(entState.id, item); } );
 		}
 
@@ -522,7 +707,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		var stances = ["violent", "aggressive", "passive", "defensive", "standground"];
 		if (hasClass(entState, "Unit") && !hasClass(entState, "Animal") && !entState.garrisonHolder && stances.length)
 		{
-			setupUnitPanel("Stance", usedPanels, entState, stances,
+			setupUnitPanel(STANCE, usedPanels, entState, stances,
 				function (item) { performStance(entState.id, item); } );
 		}
 
@@ -533,20 +718,37 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			setupUnitBarterPanel(entState);
 		}
 
-		if (entState.buildEntities && entState.buildEntities.length)
+		var buildableEnts = [];
+		var trainableEnts = [];
+		var state;
+		// Get all buildable and trainable entities
+		for (var i in selection)
 		{
-			setupUnitPanel("Construction", usedPanels, entState, entState.buildEntities, startBuildingPlacement);
+			if ((state = GetEntityState(selection[i])) && state.buildEntities && state.buildEntities.length)
+				buildableEnts = buildableEnts.concat(state.buildEntities);
+			if ((state = GetEntityState(selection[i])) && state.production && state.production.entities.length)
+				trainableEnts = trainableEnts.concat(state.production.entities);
+		}
+		
+		// Remove duplicates
+		removeDupes(buildableEnts);
+		removeDupes(trainableEnts);
+
+		if (buildableEnts.length && ((trainableEnts.length && hasClass(entState, "Unit")) || !trainableEnts.length))
+			setupUnitPanel(CONSTRUCTION, usedPanels, entState, buildableEnts, startBuildingPlacement);
+		else if (trainableEnts.length)
+			setupUnitPanel(TRAINING, usedPanels, entState, trainableEnts,
+				function (trainEntType) { addTrainingToQueue(selection, trainEntType); } );
+		
+		if (entState.production && entState.production.technologies.length && selection.length == 1)
+		{
+			setupUnitPanel(RESEARCH, usedPanels, entState, entState.production.technologies,
+				function (researchType) { addResearchToQueue(entState.id, researchType); } );
 		}
 
-		if (entState.training && entState.training.entities.length)
-		{
-			setupUnitPanel("Training", usedPanels, entState, entState.training.entities,
-				function (trainEntType) { addToTrainingQueue(entState.id, trainEntType); } );
-		}
-
-		if (entState.training && entState.training.queue.length)
-			setupUnitPanel("Queue", usedPanels, entState, entState.training.queue,
-				function (item) { removeFromTrainingQueue(entState.id, item.id); } );
+		if (entState.production && entState.production.queue.length)
+			setupUnitPanel(QUEUE, usedPanels, entState, entState.production.queue,
+				function (item) { removeFromProductionQueue(entState.id, item.id); } );
 
 		if (entState.trader)
 		{

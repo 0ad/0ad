@@ -33,14 +33,14 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/hele_champion_cavalry_mace
       units/hele_champion_infantry_mace
       units/hele_champion_infantry_polis
       units/hele_champion_swordsman_polis
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/hellenes/gymnasion.xml</Actor>
     <FoundationActor>structures/fndn_6x6.xml</FoundationActor>

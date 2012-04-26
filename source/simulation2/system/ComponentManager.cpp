@@ -81,6 +81,7 @@ CComponentManager::CComponentManager(CSimContext& context, bool skipScriptFuncti
 		m_ScriptInterface.RegisterFunction<int, std::string, CComponentManager::Script_AddLocalEntity> ("AddLocalEntity");
 		m_ScriptInterface.RegisterFunction<void, int, CComponentManager::Script_DestroyEntity> ("DestroyEntity");
 		m_ScriptInterface.RegisterFunction<CScriptVal, std::wstring, CComponentManager::Script_ReadJSONFile> ("ReadJSONFile");
+		m_ScriptInterface.RegisterFunction<std::vector<std::string>, std::wstring, CComponentManager::Script_FindJSONFiles> ("FindJSONFiles");
 	}
 
 	// Define MT_*, IID_* as script globals, and store their names
@@ -943,4 +944,35 @@ CScriptVal CComponentManager::Script_ReadJSONFile(void* cbdata, std::wstring fil
 	VfsPath path = VfsPath("simulation/data") / fileName;
 
 	return componentManager->GetScriptInterface().ReadJSONFile(path).get();
+}
+
+std::vector<std::string> CComponentManager::Script_FindJSONFiles(void* UNUSED(cbdata), std::wstring subPath)
+{
+	VfsPath path(L"simulation/data/" + subPath + L"/");
+	VfsPaths pathnames;
+
+	std::vector<std::string> templates;
+
+	// Find all simulation/data/{subPath}/*.json
+	Status ret = vfs::GetPathnames(g_VFS, path, L"*.json", pathnames);
+	if (ret == INFO::OK)
+	{
+		for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
+		{
+			// Strip the .json extension
+			VfsPath pathstem = it->ChangeExtension(L"");
+			// Strip the root from the path
+			std::wstring name = pathstem.string().substr(path.string().length());
+
+			templates.push_back(std::string(name.begin(), name.end()));
+		}
+	}
+	else
+	{
+		// Some error reading directory
+		wchar_t error[200];
+		LOGERROR(L"Error reading directory '%ls': %ls", path.string().c_str(), StatusDescription(ret, error, ARRAY_SIZE(error)));
+	}
+
+	return templates;
 }

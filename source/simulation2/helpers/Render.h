@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -76,6 +76,7 @@ void ConstructLineOnGround(const CSimContext& context, const std::vector<float>&
  * @param[in,out] overlay Updated overlay line representing this circle.
  * @param[in] floating If true, the circle conforms to water as well.
  * @param[in] heightOffset Height above terrain to offset the circle.
+ * @param heightOffset The vertical offset to apply to points, to raise the line off the terrain a bit.
  */
 void ConstructCircleOnGround(const CSimContext& context, float x, float z, float radius,
 		SOverlayLine& overlay,
@@ -96,7 +97,7 @@ void ConstructSquareOnGround(const CSimContext& context, float x, float z, float
 		bool floating, float heightOffset = 0.25f);
 
 /**
- * Constructs a solid outline of an arbitrarily-aligned box.
+ * Constructs a solid outline of an arbitrarily-aligned bounding @p box.
  *
  * @param[in] box
  * @param[in,out] overlayLine Updated overlay line representing the oriented box.
@@ -104,12 +105,12 @@ void ConstructSquareOnGround(const CSimContext& context, float x, float z, float
 void ConstructBoxOutline(const CBoundingBoxOriented& box, SOverlayLine& overlayLine);
 
 /**
- * Constructs a solid outline of an axis-aligned bounding box.
+ * Constructs a solid outline of an axis-aligned bounding @p box.
  *
  * @param[in] bound
  * @param[in,out] overlayLine Updated overlay line representing the AABB.
  */
-void ConstructBoxOutline(const CBoundingBoxAligned& bound, SOverlayLine& overlayLine);
+void ConstructBoxOutline(const CBoundingBoxAligned& box, SOverlayLine& overlayLine);
 
 /**
  * Constructs a simple gimbal outline with the given radius and center.
@@ -124,7 +125,7 @@ void ConstructGimbal(const CVector3D& center, float radius, SOverlayLine& out, s
 
 /**
  * Constructs 3D axis marker overlay lines for the given coordinate system.
- * The overlay lines are colored RGB for the XYZ axes, respectively.
+ * The XYZ axes are colored RGB, respectively.
  *
  * @param[in] coordSystem Specifies the coordinate system.
  * @param[out] outX,outY,outZ Constructed overlay lines for each axes.
@@ -162,7 +163,33 @@ void InterpolatePointsRNS(std::vector<CVector2D>& points, bool closed, float off
  * @param[in] dashLength Length of a single dash. Must be strictly positive.
  * @param[in] blankLength Length of a single blank between dashes. Must be strictly positive.
  */
-void ConstructDashedLine(const std::vector<CVector2D>& linePoints, SDashedLine& dashedLineOut, const float dashLength, const float blankLength);
+void ConstructDashedLine(const std::vector<CVector2D>& linePoints, SDashedLine& dashedLineOut,
+		const float dashLength, const float blankLength);
+
+/**
+ * Computes angular step parameters @p out_stepAngle and @p out_numSteps, given a @p maxChordLength on a circle of radius @p radius.
+ * The resulting values satisfy @p out_numSteps * @p out_stepAngle = 2*PI.
+ * 
+ * This function is used to find the angular step parameters when drawing a circle outline approximated by several connected chords;
+ * it returns the step angle and number of steps such that the length of each resulting chord is less than or equal to @p maxChordLength.
+ * By stating that each chord cannot be longer than a particular length, a certain level of visual smoothness of the resulting circle
+ * outline can be guaranteed independently of the radius of the outline.
+ * 
+ * @param radius Radius of the circle. Must be strictly positive.
+ * @param maxChordLength Desired maximum length of individual chords. Must be strictly positive.
+ */
+void AngularStepFromChordLen(const float maxChordLength, const float radius, float& out_stepAngle, unsigned& out_numSteps);
+
+/**
+ * Subdivides a list of @p points into segments of maximum length @p maxSegmentLength that are of equal size between every two
+ * control points. The resulting subdivided list of points is written back to @p points.
+ * 
+ * @param points The list of intermediate points to subdivide.
+ * @param maxSegmentLength The maximum length of a single segment after subdivision. Must be strictly positive.
+ * @param closed Should the provided list of points be treated as a closed shape? If true, the resulting list of points will include
+ *        extra subdivided points between the last and the first point.
+ */
+void SubdividePoints(std::vector<CVector2D>& points, float maxSegmentLength, bool closed);
 
 } // namespace
 

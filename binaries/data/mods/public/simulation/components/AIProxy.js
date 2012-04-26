@@ -119,13 +119,13 @@ AIProxy.prototype.OnUnitAIOrderDataChanged = function(msg)
 	this.changes.unitAIOrderData = msg.to;
 };
 
-AIProxy.prototype.OnTrainingQueueChanged = function(msg)
+AIProxy.prototype.OnProductionQueueChanged = function(msg)
 {
 	this.NotifyChange();
 
-	var cmpTrainingQueue = Engine.QueryInterface(this.entity, IID_TrainingQueue);
-	this.changes.trainingQueue = cmpTrainingQueue.GetQueue();
-}
+	var cmpProductionQueue = Engine.QueryInterface(this.entity, IID_ProductionQueue);
+	this.changes.trainingQueue = cmpProductionQueue.GetQueue();
+};
 
 AIProxy.prototype.OnGarrisonedUnitsChanged = function(msg)
 {
@@ -133,7 +133,25 @@ AIProxy.prototype.OnGarrisonedUnitsChanged = function(msg)
 	
 	var cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
 	this.changes.garrisoned = cmpGarrisonHolder.GetEntities();
-}
+};
+
+AIProxy.prototype.OnResourceSupplyChanged = function(msg)
+{
+	this.NotifyChange();
+	this.changes.resourceSupplyAmount = msg.to;
+};
+
+AIProxy.prototype.OnResourceCarryingChanged = function(msg)
+{
+	this.NotifyChange();
+	this.changes.resourceCarrying = msg.to;
+};
+
+AIProxy.prototype.OnFoundationProgressChanged = function(msg)
+{
+	this.NotifyChange();
+	this.changes.foundationProgress = msg.to;
+};
 
 // TODO: event handlers for all the other things
 
@@ -188,34 +206,38 @@ AIProxy.prototype.GetFullRepresentation = function()
 		ret.unitAIOrderData = cmpUnitAI.GetOrderData();
 	}
 
-	var cmpTrainingQueue = Engine.QueryInterface(this.entity, IID_TrainingQueue);
-	if (cmpTrainingQueue)
+	var cmpProductionQueue = Engine.QueryInterface(this.entity, IID_ProductionQueue);
+	if (cmpProductionQueue)
 	{
-		// Updated by OnTrainingQueueChanged
-		ret.trainingQueue = cmpTrainingQueue.GetQueue();
+		// Updated by OnProductionQueueChanged
+		ret.trainingQueue = cmpProductionQueue.GetQueue();
 	}
 
 	var cmpFoundation = Engine.QueryInterface(this.entity, IID_Foundation);
 	if (cmpFoundation)
 	{
+		// Updated by OnFoundationProgressChanged
 		ret.foundationProgress = cmpFoundation.GetBuildPercentage();
 	}
 
 	var cmpResourceSupply = Engine.QueryInterface(this.entity, IID_ResourceSupply);
 	if (cmpResourceSupply)
 	{
+		// Updated by OnResourceSupplyChanged
 		ret.resourceSupplyAmount = cmpResourceSupply.GetCurrentAmount();
 	}
 
 	var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
 	if (cmpResourceGatherer)
 	{
+		// Updated by OnResourceCarryingChanged
 		ret.resourceCarrying = cmpResourceGatherer.GetCarryingStatus();
 	}
 
 	var cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
 	if (cmpGarrisonHolder)
 	{
+		// Updated by OnGarrisonedUnitsChanged
 		ret.garrisoned = cmpGarrisonHolder.GetEntities();
 	}
 

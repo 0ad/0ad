@@ -19,9 +19,15 @@ function BaseAI(settings)
 //into saved games
 BaseAI.prototype.Serialize = function()
 {
+	var rawEntities = {};
+	
+	for (var id in this._entities)
+	{
+		rawEntities[id] = this._entities[id]._entity;
+	}
+	
 	return {
-		_rawEntities: this._rawEntities,
-		_ownEntities: this._ownEntities,
+		_rawEntities: rawEntities,
 		_entityMetadata: this._entityMetadata,
 	};
 
@@ -32,9 +38,14 @@ BaseAI.prototype.Serialize = function()
 //whatever Serialize() returned
 BaseAI.prototype.Deserialize = function(data)
 {
-	this._rawEntities = data._rawEntities;
-	this._ownEntities = data._ownEntities;
+	var rawEntities = data._rawEntities;
 	this._entityMetadata = data._entityMetadata;
+	this._entities = {}
+	
+	for (var id in rawEntities)
+	{
+		this._entities[id] = new Entity(this, rawEntities[id]);
+	}
 
 	// TODO: ought to get the AI script subclass to deserialize its own state
 };
@@ -44,7 +55,7 @@ BaseAI.prototype.Deserialize = function(data)
 // CCmpTemplateManager::CopyFoundationSubset and only includes components
 // that our EntityTemplate class currently uses.)
 var g_FoundationForbiddenComponents = {
-	"TrainingQueue": 1,
+	"ProductionQueue": 1,
 	"ResourceSupply": 1,
 	"ResourceDropsite": 1,
 	"GarrisonHolder": 1,
@@ -86,9 +97,7 @@ BaseAI.prototype.HandleMessage = function(state)
 		this._entities = {};
 		for (var id in state.entities)
 		{
-			var ent = new Entity(this, state.entities[id]);
-
-			this._entities[id] = ent;
+			this._entities[id] = new Entity(this, state.entities[id]);
 		}
 	}
 	else

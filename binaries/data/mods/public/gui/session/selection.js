@@ -258,17 +258,28 @@ EntitySelection.prototype.checkRenamedEntities = function()
 
 EntitySelection.prototype.addList = function(ents)
 {
-	var selectionSize = this.toList().length;
+	var selection = this.toList();
+	var playerID = Engine.GetPlayerID();
+
+	// If someone else's player is the sole selected unit, don't allow adding to the selection
+	if (!g_DevSettings.controlAll && selection.length == 1)
+	{
+		var firstEntState = GetEntityState(selection[0]);
+		if (firstEntState && firstEntState.player != playerID)
+			return;
+	}
+
+	// Allow selecting things not belong to this player (enemy, ally, gaia)
+	var allowUnownedSelect = g_DevSettings.controlAll || (ents.length == 1 && selection.length == 0);
+
 	var i = 1;
 	var added = [];
-	var playerID = Engine.GetPlayerID();
-	var allowEnemySelections = g_DevSettings.controlAll || (ents.length == 1 && selectionSize == 0);
 
 	for each (var ent in ents)
 	{
 		// Only add entities we own to our selection
 		var entState = GetEntityState(ent);
-		if (!this.selected[ent] && (selectionSize + i) <= MAX_SELECTION_SIZE && (allowEnemySelections || (entState && entState.player == playerID)))
+		if (!this.selected[ent] && (selection.length + i) <= MAX_SELECTION_SIZE && (allowUnownedSelect || (entState && entState.player == playerID)))
 		{
 			added.push(ent);
 			this.selected[ent] = ent;

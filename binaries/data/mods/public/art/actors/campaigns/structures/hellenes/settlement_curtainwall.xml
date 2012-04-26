@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="hele_curtain_wall">
+      <animations>
+        <animation event="0.5" load="0.0" name="melee" speed="100"/>
+      </animations>
+      <mesh>structural/campaign_curtainwall_hele.dae</mesh>
+      <props>
+        <prop actor="campaigns/structures/hellenes/settlement_curtainwall_gates.xml" attachpoint="root"/>
+        <prop actor="campaigns/structures/hellenes/settlement_curtainwall_towers.xml" attachpoint="root"/>
+        <prop actor="campaigns/structures/hellenes/settlement_houses.xml" attachpoint="root"/>
+        <prop actor="campaigns/structures/hellenes/settlement_houses2.xml" attachpoint="root"/>
+        <prop actor="campaigns/structures/hellenes/settlement_temple.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front_flame.xml" attachpoint="projectile"/>
+      </props>
+      <texture>structural/rome_struct_2.png</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

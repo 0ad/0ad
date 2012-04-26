@@ -377,7 +377,14 @@ void CCmpTemplateManager::ConstructTemplateActor(const std::string& actorName, C
 
 	// Initialise the actor's name and make it an Atlas selectable entity.
 	std::string name = utf8_from_wstring(CParamNode::EscapeXMLString(wstring_from_utf8(actorName)));
-	std::string xml = "<Entity><VisualActor><Actor>" + name + "</Actor></VisualActor><Selectable><EditorOnly/></Selectable></Entity>";
+	std::string xml = "<Entity>"
+	                      "<VisualActor><Actor>" + name + "</Actor></VisualActor>"
+	                      "<Selectable>"
+	                          "<EditorOnly/>"
+	                          "<Overlay><Texture><MainTexture>actor.png</MainTexture><MainTextureMask>actor_mask.png</MainTextureMask></Texture></Overlay>"
+	                      "</Selectable>"
+	                  "</Entity>";
+
 	CParamNode::LoadXMLString(out, xml.c_str());
 }
 

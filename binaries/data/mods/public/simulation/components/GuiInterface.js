@@ -50,6 +50,16 @@ GuiInterface.prototype.GetSimulationState = function(player)
 		var cmpPlayerBuildLimits = Engine.QueryInterface(playerEnt, IID_BuildLimits);
 		var cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
 		
+		// Work out what phase we are in
+		var cmpTechMan = Engine.QueryInterface(playerEnt, IID_TechnologyManager);
+		var phase = "";
+		if (cmpTechMan.IsTechnologyResearched("phase_city"))
+			phase = "city";
+		else if (cmpTechMan.IsTechnologyResearched("phase_town"))
+			phase = "town";
+		else if (cmpTechMan.IsTechnologyResearched("phase_village"))
+			phase = "village";
+		
 		// store player ally/enemy data as arrays
 		var allies = [];
 		var enemies = [];
@@ -66,10 +76,10 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"popLimit": cmpPlayer.GetPopulationLimit(),
 			"popMax": cmpPlayer.GetMaxPopulation(),
 			"resourceCounts": cmpPlayer.GetResourceCounts(),
-			"trainingQueueBlocked": cmpPlayer.IsTrainingQueueBlocked(),
+			"trainingBlocked": cmpPlayer.IsTrainingBlocked(),
 			"state": cmpPlayer.GetState(),
 			"team": cmpPlayer.GetTeam(),
-			"phase": cmpPlayer.GetPhase(),
+			"phase": phase,
 			"isAlly": allies,
 			"isEnemy": enemies,
 			"buildLimits": cmpPlayerBuildLimits.GetLimits(),
@@ -177,12 +187,13 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.buildEntities = cmpBuilder.GetEntitiesList();
 	}
 
-	var cmpTrainingQueue = Engine.QueryInterface(ent, IID_TrainingQueue);
-	if (cmpTrainingQueue)
+	var cmpProductionQueue = Engine.QueryInterface(ent, IID_ProductionQueue);
+	if (cmpProductionQueue)
 	{
-		ret.training = {
-			"entities": cmpTrainingQueue.GetEntitiesList(),
-			"queue": cmpTrainingQueue.GetQueue(),
+		ret.production = {
+			"entities": cmpProductionQueue.GetEntitiesList(),
+			"technologies": cmpProductionQueue.GetTechnologiesList(),
+			"queue": cmpProductionQueue.GetQueue(),
 		};
 	}
 
@@ -346,6 +357,7 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 		};
 		ret.icon = template.Identity.Icon;
 		ret.tooltip =  template.Identity.Tooltip;
+		ret.requiredTechnology = template.Identity.RequiredTechnology;
 	}
 
 	if (template.UnitMotion)
@@ -357,6 +369,74 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 	}
 
 	return ret;
+};
+
+GuiInterface.prototype.GetTechnologyData = function(player, name)
+{
+	var cmpTechTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
+	var template = cmpTechTempMan.GetTemplate(name);
+	
+	if (!template)
+	{
+		warn("Tried to get data for invalid technology: " + name);
+		return null;
+	}
+	
+	var ret = {};
+	
+	// Get specific name for this civ or else the generic specific name 
+	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
+	var specific = undefined;
+	if (template.specificName)
+	{
+		if (template.specificName[cmpPlayer.GetCiv()])
+			specific = template.specificName[cmpPlayer.GetCiv()];
+		else
+			specific = template.specificName['generic'];
+	}
+	
+	ret.name = {
+		"specific": specific,
+		"generic": template.genericName,
+	};
+	ret.icon = "technologies/" + template.icon;
+	ret.cost = {
+		"food": +template.cost.food,
+		"wood": +template.cost.wood,
+		"metal": +template.cost.metal,
+		"stone": +template.cost.stone,
+	}
+	ret.tooltip = template.tooltip;
+	
+	if (template.requirementsTooltip)
+		ret.requirementsTooltip = template.requirementsTooltip;
+	else
+		ret.requirementsTooltip = "";
+	
+	ret.description = template.description;
+	
+	return ret;
+};
+
+GuiInterface.prototype.IsTechnologyResearched = function(player, tech)
+{
+	var cmpTechMan = QueryPlayerIDInterface(player, IID_TechnologyManager);
+	
+	if (!cmpTechMan)
+		return false;
+	
+	return cmpTechMan.IsTechnologyResearched(tech);
+};
+
+// Checks whether the requirements for this technology have been met
+GuiInterface.prototype.CheckTechnologyRequirements = function(player, tech)
+{
+	var cmpTechMan = QueryPlayerIDInterface(player, IID_TechnologyManager);
+	
+	if (!cmpTechMan)
+		return false;
+	
+	return cmpTechMan.CanResearch(tech);
 };
 
 GuiInterface.prototype.PushNotification = function(notification)
@@ -415,7 +495,6 @@ GuiInterface.prototype.IsStanceSelected = function(player, data)
 GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 {
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-
 	var playerColours = {}; // cache of owner -> colour map
 	
 	for each (var ent in cmd.entities)
@@ -424,14 +503,7 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 		if (!cmpSelectable)
 			continue;
 
-		if (cmd.alpha == 0)
-		{
-			cmpSelectable.SetSelectionHighlight({"r":0, "g":0, "b":0, "a":0});
-			continue;
-		}
-
 		// Find the entity's owner's colour:
-
 		var owner = -1;
 		var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 		if (cmpOwnership)
@@ -812,6 +884,9 @@ var exposedFunctions = {
 	"ClearRenamedEntities": 1,
 	"GetEntityState": 1,
 	"GetTemplateData": 1,
+	"GetTechnologyData": 1,
+	"IsTechnologyResearched": 1,
+	"CheckTechnologyRequirements": 1,
 	"GetNextNotification": 1,
 
 	"GetFormationRequirements": 1,

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero_infantry_swordsman">
+  <Armour>
+    <Crush>20.0</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <MaxRange>7.0</MaxRange>
+	</Melee>
+  </Attack>
+  <Cost>
+    <Resources>
+      <metal>300</metal>
+    </Resources>
+  </Cost>
+  <Decay>
+    <Inactive/>
+    <DelayTime>0.0</DelayTime>
+    <SinkRate>3.0</SinkRate>
+    <SinkAccel>9.8</SinkAccel>
+  </Decay>
+  <Footprint>
+    <Circle radius="6.0"/>
+    <Height>6.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>spart</Civ>
+    <GenericName>Army of Leonidas I.</GenericName>
+    <SpecificName>Army of Leonidas I</SpecificName>
+    <Tooltip>This is what an army would look like on the Strat Map.</Tooltip>
+    <History>The most powerful hero of them all - son of Philip II, king of Macedonia (336 BC - 323 BC). After conquering the rest of the Thracians and quelling the unrest of the Greeks, Alexander embarked on a world-conquest march. Defeating the Persian forces at Granicus (334 BC), Issus (333 BC) and Gaugamela (331 BC), he became master of the Persian Empire. Entering India, he defeated king Porus at Hydaspes (326 BC), but his weary troops made him halt. Died in Babylon at the age of 33 while planning a campaign against Arabia.</History>
+    <Icon>units/hele_hero_leonidas.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Unit radius="4.0"/>
+  </Obstruction>
+  <StatusBars>
+    <BarWidth>6.0</BarWidth>
+    <BarHeight>0.6</BarHeight>
+    <HeightOffset>12.0</HeightOffset>
+  </StatusBars>
+  <Vision>
+    <Range>60</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>campaigns/units/army_spart_hero_leonidas.xml</Actor>
+  </VisualActor>
+</Entity>

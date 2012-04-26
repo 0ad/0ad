@@ -1032,7 +1032,7 @@ void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, const 
 
  	PROFILE_END("compute batches");
 
-	ENSURE(!(streamflags & ~(STREAM_POS|STREAM_COLOR|STREAM_POSTOUV1)));
+	ENSURE(!(streamflags & ~(STREAM_POS|STREAM_COLOR|STREAM_POSTOUV0|STREAM_POSTOUV1)));
 
  	// Render each batch
  	for (VertexBufferBatches::iterator itv = batches.begin(); itv != batches.end(); ++itv)

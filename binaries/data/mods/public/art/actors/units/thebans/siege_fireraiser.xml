@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="boeotian fireraiser">
+      <animations>
+        <animation event="0.5" file="mechanical/celt_siege_ram_attack.dae" load="0.0" name="attack" speed="100"/>
+      </animations>
+      <mesh>structural/fireraiser.dae</mesh>
+      <props>
+        <prop actor="particle/smoke.xml" attachpoint="smoke"/>
+        <prop actor="particle/flame.xml" attachpoint="smoke"/>
+        <prop actor="particle/flame_large.xml" attachpoint="projectile"/>
+        <prop actor="units/hellenes/trader_r.xml" attachpoint="operator2"/>
+        <prop actor="" attachpoint="operator1"/>
+      </props>
+      <texture>structural/fireraiser.png</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

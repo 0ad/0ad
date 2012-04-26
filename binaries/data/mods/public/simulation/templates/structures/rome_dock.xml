@@ -12,13 +12,13 @@
   <Obstruction>
     <Static width="20.0" depth="24.0"/>
   </Obstruction>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/rome_ship_bireme
       units/rome_ship_trireme
       units/rome_ship_quinquereme
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/romans/dock.xml</Actor>
   </VisualActor>

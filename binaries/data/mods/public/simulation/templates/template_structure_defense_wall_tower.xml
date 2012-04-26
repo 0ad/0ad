@@ -49,6 +49,7 @@
     <Tooltip>Shoots arrows. Garrison to defend a city wall against attackers.</Tooltip>
     <Classes datatype="tokens">Town Defensive -ConquestCritical</Classes>
     <Icon>structures/tower.png</Icon>
+	<RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>100</xp>

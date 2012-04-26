@@ -43,6 +43,7 @@
 #include "ps/UserReport.h"
 #include "ps/GameSetup/Atlas.h"
 #include "ps/GameSetup/Config.h"
+#include "tools/atlas/GameInterface/GameLoop.h"
 
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpAIManager.h"
@@ -370,6 +371,11 @@ bool AtlasIsAvailable(void* UNUSED(cbdata))
 	return ATLAS_IsAvailable();
 }
 
+bool IsAtlasRunning(void* UNUSED(cbdata))
+{
+	return (g_AtlasGameLoop && g_AtlasGameLoop->running);
+}
+
 CScriptVal LoadMapSettings(void* cbdata, VfsPath pathname)
 {
 	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
@@ -531,6 +537,15 @@ void DumpSimState(void* UNUSED(cbdata))
 	g_Game->GetSimulation2()->DumpDebugState(file);
 }
 
+void DumpTerrainMipmap(void* UNUSED(cbdata))
+{
+	VfsPath filename(L"screenshots/terrainmipmap.png");
+	g_Game->GetWorld()->GetTerrain()->GetHeightMipmap().DumpToDisk(filename);
+	OsPath realPath;
+	g_VFS->GetRealPath(filename, realPath);
+	LOGMESSAGERENDER(L"Terrain mipmap written to '%ls'", realPath.string().c_str());
+}
+
 void EnableTimeWarpRecording(void* UNUSED(cbdata), unsigned int numTurns)
 {
 	g_Game->GetTurnManager()->EnableTimeWarpRecording(numTurns);
@@ -604,6 +619,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, std::string, &OpenURL>("OpenURL");
 	scriptInterface.RegisterFunction<void, &RestartInAtlas>("RestartInAtlas");
 	scriptInterface.RegisterFunction<bool, &AtlasIsAvailable>("AtlasIsAvailable");
+	scriptInterface.RegisterFunction<bool, &IsAtlasRunning>("IsAtlasRunning");
 	scriptInterface.RegisterFunction<CScriptVal, VfsPath, &LoadMapSettings>("LoadMapSettings");
 	scriptInterface.RegisterFunction<CScriptVal, &GetMapSettings>("GetMapSettings");
 	scriptInterface.RegisterFunction<void, entity_id_t, &CameraFollow>("CameraFollow");
@@ -628,6 +644,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, &DebugWarn>("DebugWarn");
 	scriptInterface.RegisterFunction<void, &ForceGC>("ForceGC");
 	scriptInterface.RegisterFunction<void, &DumpSimState>("DumpSimState");
+	scriptInterface.RegisterFunction<void, &DumpTerrainMipmap>("DumpTerrainMipmap");
 	scriptInterface.RegisterFunction<void, unsigned int, &EnableTimeWarpRecording>("EnableTimeWarpRecording");
 	scriptInterface.RegisterFunction<void, &RewindTimeWarp>("RewindTimeWarp");
 	scriptInterface.RegisterFunction<void, bool, &SetBoundingBoxDebugOverlay>("SetBoundingBoxDebugOverlay");

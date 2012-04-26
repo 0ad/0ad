@@ -136,25 +136,41 @@ Attack.prototype.GetBestAttack = function()
 
 Attack.prototype.GetTimers = function(type)
 {
-	var prepare = +(this.template[type].PrepareTime || 0);
-	var repeat = +(this.template[type].RepeatTime || 1000);
+	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	
+	var prepare = cmpTechMan.ApplyModifications("Attack/" + type + "/PrepareTime", +(this.template[type].PrepareTime||0), this.entity);
+	var repeat = cmpTechMan.ApplyModifications("Attack/" + type + "/RepeatTime", +(this.template[type].RepeatTime||1000), this.entity);
+	
 	return { "prepare": prepare, "repeat": repeat, "recharge": repeat - prepare };
 };
 
 Attack.prototype.GetAttackStrengths = function(type)
 {
-	// Convert attack values to numbers, default 0 if unspecified
+	// Work out the attack values with technology effects
+	var self = this;
+	
+	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	var applyTechs = function(damageType)
+	{
+		// All causes caching problems so disable it for now.
+		//var allComponent = cmpTechMan.ApplyModifications("Attack/" + type + "/All", (+self.template[type][damageType] || 0), self.entity) - self.template[type][damageType];
+		return cmpTechMan.ApplyModifications("Attack/" + type + "/" + damageType, (+self.template[type][damageType] || 0), self.entity);
+	};
+	
 	return {
-		hack: +(this.template[type].Hack || 0),
-		pierce: +(this.template[type].Pierce || 0),
-		crush: +(this.template[type].Crush || 0)
+		hack: applyTechs("Hack"),
+		pierce: applyTechs("Pierce"),
+		crush: applyTechs("Crush")
 	};
 };
 
 Attack.prototype.GetRange = function(type)
 {
-	var max = +this.template[type].MaxRange;
-	var min = +(this.template[type].MinRange || 0);
+	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	
+	var max = cmpTechMan.ApplyModifications("Attack/" + type + "/MaxRange", +this.template[type].MaxRange, this.entity);
+	var min = cmpTechMan.ApplyModifications("Attack/" + type + "/MinRange", +(this.template[type].MinRange || 0), this.entity);
+	
 	return { "max": max, "min": min };
 };
 

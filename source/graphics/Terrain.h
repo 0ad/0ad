@@ -25,6 +25,7 @@
 #include "maths/Vector3D.h"
 #include "maths/Fixed.h"
 #include "graphics/SColor.h"
+#include "graphics/HeightMipmap.h"
 
 class CPatch;
 class CMiniPatch;
@@ -84,6 +85,7 @@ public:
 	fixed GetVertexGroundLevelFixed(ssize_t i, ssize_t j) const;
 	float GetExactGroundLevel(float x, float z) const;
 	fixed GetExactGroundLevelFixed(fixed x, fixed z) const;
+	float GetFilteredGroundLevel(float x, float z, float radius) const;
 
 	// get the approximate slope (0 = horizontal, 0.5 = 30 degrees, 1.0 = 45 degrees, etc)
 	fixed GetSlopeFixed(ssize_t i, ssize_t j) const;
@@ -128,11 +130,14 @@ public:
 
 	CVector3D CalcExactNormal(float x, float z) const;
 
-	// flatten out an area of terrain (specified in world space coords); return
-	// the average height of the flattened area
-	float FlattenArea(float x0, float x1, float z0, float z1);
-
-	// mark a specific square of tiles as dirty - use this after modifying the heightmap
+	// Mark a specific square of tiles (inclusive lower bound, exclusive upper bound)
+	// as dirty - use this after modifying the heightmap.
+	// If you modify a vertex (i,j), you should dirty tiles
+	// from (i-1, j-1) [inclusive] to (i+1, j+1) [exclusive]
+	// since their geometry depends on that vertex.
+	// If you modify a tile (i,j), you should dirty tiles
+	// from (i-1, j-1) [inclusive] to (i+2, j+2) [exclusive]
+	// since their texture blends depend on that tile.
 	void MakeDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1, int dirtyFlags);
 	// mark the entire map as dirty
 	void MakeDirty(int dirtyFlags);
@@ -147,6 +152,8 @@ public:
 	SColor4ub GetBaseColour() const { return m_BaseColour; }
 	// set the base colour for the terrain
 	void SetBaseColour(SColor4ub colour) { m_BaseColour = colour; }
+
+	const CHeightMipmap& GetHeightMipmap() const { return m_HeightMipmap; }
 
 private:
 	// delete any data allocated by this terrain
@@ -164,6 +171,8 @@ private:
 	u16* m_Heightmap;
 	// base colour (usually white)
 	SColor4ub m_BaseColour;
+	// heightmap mipmap
+	CHeightMipmap m_HeightMipmap;
 };
 
 #endif

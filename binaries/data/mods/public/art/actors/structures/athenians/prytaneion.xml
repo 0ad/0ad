@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="prytaneion struct b">
+      <mesh>structural/hele_Prytaneion_structB.dae</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/prytaneion.xml" attachpoint="root"/>
+        <prop actor="structures/hellenes/prytaneion_struct.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/prytaneion_tiles.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/hele_struct_b.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_hele.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+    <variant name="death">
+      <props>
+        <prop actor="" attachpoint="garrisoned"/>
+        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

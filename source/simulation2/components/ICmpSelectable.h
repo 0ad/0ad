@@ -18,6 +18,7 @@
 #ifndef INCLUDED_ICMPSELECTABLE
 #define INCLUDED_ICMPSELECTABLE
 
+#include "ps/CStrIntern.h"
 #include "simulation2/system/Interface.h"
 
 struct CColor;
@@ -25,6 +26,27 @@ struct CColor;
 class ICmpSelectable : public IComponent
 {
 public:
+
+	enum EOverlayType {
+		/// A single textured quad overlay, intended for entities that move around much, like units (e.g. foot soldiers, etc).
+		DYNAMIC_QUAD,
+		/// A more complex textured line overlay, composed of several textured line segments. Intended for entities that do not
+		/// move often, such as buildings (structures).
+		STATIC_OUTLINE,
+	};
+
+	struct SOverlayDescriptor
+	{
+		EOverlayType m_Type;
+		CStrIntern m_QuadTexture;
+		CStrIntern m_QuadTextureMask;
+		CStrIntern m_LineTexture;
+		CStrIntern m_LineTextureMask;
+		float m_LineThickness;
+		
+		SOverlayDescriptor() : m_LineThickness(0) { }
+	};
+
 	/**
 	 * Returns true if the entity is only selectable in Atlas editor, e.g. a decorative visual actor.
 	 */
@@ -32,9 +54,14 @@ public:
 
 	/**
 	 * Set the color of the selection highlight (typically a circle/square
-	 * around the unit). Set a = 0 to disable.
+	 * around the unit). Set a = 0 to disable the highlight.
 	 */
 	virtual void SetSelectionHighlight(CColor color) = 0;
+
+	/**
+	 * Set the alpha of the selection highlight. Set to 0 to disable the highlight.
+	 */
+	virtual void SetSelectionHighlightAlpha(float alpha) = 0;
 
 	DECLARE_INTERFACE_TYPE(Selectable)
 

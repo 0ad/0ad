@@ -18,7 +18,7 @@
       structures/{civ}_civil_centre
       structures/{civ}_barracks
       structures/{civ}_dock
-      structures/{civ}_scout_tower
+      structures/{civ}_defense_tower
       structures/{civ}_wall
       structures/{civ}_wall_tower
       structures/{civ}_wall_gate
@@ -39,7 +39,7 @@
     <Unhealable>true</Unhealable>
   </Health>
   <Identity>
-    <Classes datatype="tokens">Slave</Classes>
+    <Classes datatype="tokens">Slave Worker</Classes>
     <GenericName>Slave</GenericName>
     <Icon>units/global_slave.png</Icon>
 	<Tooltip>Econ unit with a finite life span.</Tooltip>

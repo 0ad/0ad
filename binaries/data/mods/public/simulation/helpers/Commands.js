@@ -33,6 +33,12 @@ function ProcessCommand(player, cmd)
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGuiInterface.PushNotification({"type": "chat", "player": player, "message": cmd.message});
 		break;
+		
+	case "quit":
+		// Let the AI exit the game for testing purposes
+		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGuiInterface.PushNotification({"type": "quit"});
+		break;
 
 	case "control-all":
 		cmpPlayer.SetControlAllUnits(cmd.flag);
@@ -132,30 +138,67 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "train":
-		// Verify that the building can be controlled by the player
-		if (CanControlUnit(cmd.entity, player, controlAllUnits))
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		// Verify that the building(s) can be controlled by the player
+		if (entities.length > 0)
 		{
-			var queue = Engine.QueryInterface(cmd.entity, IID_TrainingQueue);
-			if (queue)
-				queue.AddBatch(cmd.template, +cmd.count, cmd.metadata);
+			for each (var ent in entities)
+			{
+				var cmpTechMan = QueryOwnerInterface(ent, IID_TechnologyManager);
+				// TODO: Enable this check once the AI gets technology support
+				if (cmpTechMan.CanProduce(cmd.template) || true)
+				{
+					var queue = Engine.QueryInterface(ent, IID_ProductionQueue);
+					// Check if the building can train the unit
+					if (queue && queue.GetEntitiesList().indexOf(cmd.template) != -1)
+						queue.AddBatch(cmd.template, "unit", +cmd.count, cmd.metadata);
+				}
+				else
+				{
+					warn("Invalid command: training requires unresearched technology: " + uneval(cmd));
+				}
+			}
 		}
 		else if (g_DebugCommands)
 		{
-			warn("Invalid command: training building cannot be controlled by player "+player+": "+uneval(cmd));
+			warn("Invalid command: training building(s) cannot be controlled by player "+player+": "+uneval(cmd));
 		}
 		break;
 
-	case "stop-train":
+	case "research":
 		// Verify that the building can be controlled by the player
 		if (CanControlUnit(cmd.entity, player, controlAllUnits))
 		{
-			var queue = Engine.QueryInterface(cmd.entity, IID_TrainingQueue);
+			var cmpTechMan = QueryOwnerInterface(cmd.entity, IID_TechnologyManager);
+			// TODO: Enable this check once the AI gets technology support
+			if (cmpTechMan.CanResearch(cmd.template) || true)
+			{
+				var queue = Engine.QueryInterface(cmd.entity, IID_ProductionQueue);
+				if (queue)
+					queue.AddBatch(cmd.template, "technology");
+			}
+			else if (g_DebugCommands)
+			{
+				warn("Invalid command: Requirements to research technology are not met: " + uneval(cmd));
+			}
+		}
+		else if (g_DebugCommands)
+		{
+			warn("Invalid command: research building cannot be controlled by player "+player+": "+uneval(cmd));
+		}
+		break;
+
+	case "stop-production":
+		// Verify that the building can be controlled by the player
+		if (CanControlUnit(cmd.entity, player, controlAllUnits))
+		{
+			var queue = Engine.QueryInterface(cmd.entity, IID_ProductionQueue);
 			if (queue)
 				queue.RemoveBatch(cmd.id);
 		}
 		else if (g_DebugCommands)
 		{
-			warn("Invalid command: training building cannot be controlled by player "+player+": "+uneval(cmd));
+			warn("Invalid command: production building cannot be controlled by player "+player+": "+uneval(cmd));
 		}
 		break;
 
@@ -232,6 +275,22 @@ function ProcessCommand(player, cmd)
 			// Remove the foundation because the construction was aborted
 			Engine.DestroyEntity(ent);
 			break;
+		}
+		
+		var cmpTechMan = QueryPlayerIDInterface(player, IID_TechnologyManager);
+		// TODO: Enable this check once the AI gets technology support
+		if (!cmpTechMan.CanProduce(cmd.template) && false)
+		{
+			if (g_DebugCommands)
+			{
+				warn("Invalid command: required technology check failed for player "+player+": "+uneval(cmd));
+			}
+
+			var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+			cmpGuiInterface.PushNotification({ "player": player, "message": "Building's technology requirements are not met." });
+
+			// Remove the foundation because the construction was aborted
+			Engine.DestroyEntity(ent);
 		}
 
 		// TODO: AI has no visibility info
@@ -447,6 +506,16 @@ function ProcessCommand(player, cmd)
 	case "barter":
 		var cmpBarter = Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter);
 		cmpBarter.ExchangeResources(playerEnt, cmd.sell, cmd.buy, cmd.amount);
+		break;
+		
+	case "set-shading-color":
+		// Debug command to make an entity brightly colored
+		for each (var ent in cmd.entities)
+		{
+			var cmpVisual = Engine.QueryInterface(ent, IID_Visual)
+			if (cmpVisual)
+				cmpVisual.SetShadingColour(cmd.rgb[0], cmd.rgb[1], cmd.rgb[2], 0) // alpha isn't used so just send 0
+		}
 		break;
 
 	default:

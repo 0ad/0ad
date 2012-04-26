@@ -41,6 +41,11 @@
   <Obstruction>
     <Static width="9.5" depth="19.75"/>
   </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      gaia/fauna_sheep
+    </Entities>
+  </ProductionQueue>
   <RallyPoint disable=""/>
   <ResourceSupply>
     <KillBeforeGather>false</KillBeforeGather>

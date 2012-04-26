@@ -34,7 +34,7 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/hele_hero_alexander
       units/hele_hero_demetrius
@@ -43,7 +43,7 @@
       units/hele_hero_themistocles
       units/hele_hero_xenophon
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/hellenes/tholos.xml</Actor>
   </VisualActor>

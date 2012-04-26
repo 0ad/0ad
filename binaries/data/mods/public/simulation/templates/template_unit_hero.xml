@@ -47,6 +47,14 @@
   <Minimap>
     <Type>hero</Type>
   </Minimap>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>star/256x256.png</MainTexture>
+        <MainTextureMask>star/256x256_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <Sound>
     <SoundGroups>
       <attack>attack/weapon/sword.xml</attack>

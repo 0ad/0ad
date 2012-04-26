@@ -7,12 +7,13 @@ Engine.LoadComponentScript("interfaces/Foundation.js");
 Engine.LoadComponentScript("interfaces/GarrisonHolder.js");
 Engine.LoadComponentScript("interfaces/Heal.js");
 Engine.LoadComponentScript("interfaces/Health.js");
+Engine.LoadComponentScript("interfaces/ProductionQueue.js");
 Engine.LoadComponentScript("interfaces/Promotion.js");
 Engine.LoadComponentScript("interfaces/RallyPoint.js");
 Engine.LoadComponentScript("interfaces/ResourceDropsite.js");
 Engine.LoadComponentScript("interfaces/ResourceGatherer.js");
 Engine.LoadComponentScript("interfaces/ResourceSupply.js");
-Engine.LoadComponentScript("interfaces/TrainingQueue.js");
+Engine.LoadComponentScript("interfaces/TechnologyManager.js")
 Engine.LoadComponentScript("interfaces/Trader.js")
 Engine.LoadComponentScript("interfaces/Timer.js");
 Engine.LoadComponentScript("interfaces/StatisticsTracker.js");
@@ -49,7 +50,6 @@ AddMock(SYSTEM_ENTITY, IID_Timer, {
 	SetTimeout: function(ent, iid, funcname, time, data) { return 0; },
 });
 
-
 AddMock(100, IID_Player, {
 	GetName: function() { return "Player 1"; },
 	GetCiv: function() { return "gaia"; },
@@ -58,11 +58,10 @@ AddMock(100, IID_Player, {
 	GetPopulationLimit: function() { return 20; },
 	GetMaxPopulation: function() { return 200; },
 	GetResourceCounts: function() { return { food: 100 }; },
-	IsTrainingQueueBlocked: function() { return false; },
+	IsTrainingBlocked: function() { return false; },
 	GetState: function() { return "active"; },
 	GetTeam: function() { return -1; },
 	GetDiplomacy: function() { return [-1, 1]; },
-	GetPhase: function() { return ""; },
 	GetConquestCriticalEntitiesCount: function() { return 1; },
 	IsAlly: function() { return false; },
 	IsEnemy: function() { return true; },
@@ -71,6 +70,10 @@ AddMock(100, IID_Player, {
 AddMock(100, IID_BuildLimits, {
 	GetLimits: function() { return {"Foo": 10}; },
 	GetCounts: function() { return {"Foo": 5}; },
+});
+
+AddMock(100, IID_TechnologyManager, {
+	IsTechnologyResearched: function(tech) { return false; },
 });
 
 AddMock(100, IID_StatisticsTracker, {
@@ -105,11 +108,10 @@ AddMock(101, IID_Player, {
 	GetPopulationLimit: function() { return 30; },
 	GetMaxPopulation: function() { return 300; },
 	GetResourceCounts: function() { return { food: 200 }; },
-	IsTrainingQueueBlocked: function() { return false; },
+	IsTrainingBlocked: function() { return false; },
 	GetState: function() { return "active"; },
 	GetTeam: function() { return -1; },
 	GetDiplomacy: function() { return [-1, 1]; },
-	GetPhase: function() { return "village"; },
 	GetConquestCriticalEntitiesCount: function() { return 1; },
 	IsAlly: function() { return true; },
 	IsEnemy: function() { return false; },
@@ -118,6 +120,10 @@ AddMock(101, IID_Player, {
 AddMock(101, IID_BuildLimits, {
 	GetLimits: function() { return {"Bar": 20}; },
 	GetCounts: function() { return {"Bar": 0}; },
+});
+
+AddMock(101, IID_TechnologyManager, {
+	IsTechnologyResearched: function(tech) { if (tech == "phase_village") return true; else return false; },
 });
 
 AddMock(101, IID_StatisticsTracker, {
@@ -157,7 +163,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			popLimit: 20,
 			popMax: 200,
 			resourceCounts: { food: 100 },
-			trainingQueueBlocked: false,
+			trainingBlocked: false,
 			state: "active",
 			team: -1,
 			phase: "",
@@ -174,7 +180,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			popLimit: 30,
 			popMax: 300,
 			resourceCounts: { food: 200 },
-			trainingQueueBlocked: false,
+			trainingBlocked: false,
 			state: "active",
 			team: -1,
 			phase: "village",
@@ -198,7 +204,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			popLimit: 20,
 			popMax: 200,
 			resourceCounts: { food: 100 },
-			trainingQueueBlocked: false,
+			trainingBlocked: false,
 			state: "active",
 			team: -1,
 			phase: "",
@@ -231,7 +237,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			popLimit: 30,
 			popMax: 300,
 			resourceCounts: { food: 200 },
-			trainingQueueBlocked: false,
+			trainingBlocked: false,
 			state: "active",
 			team: -1,
 			phase: "village",

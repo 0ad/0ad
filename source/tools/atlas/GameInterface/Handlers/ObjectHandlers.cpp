@@ -111,7 +111,7 @@ MESSAGEHANDLER(SetSelectionPreview)
 	{
 		CmpPtr<ICmpSelectable> cmpSelectable(sim, g_Selection[i]);
 		if (cmpSelectable)
-			cmpSelectable->SetSelectionHighlight(CColor(1, 1, 1, 0));
+			cmpSelectable->SetSelectionHighlightAlpha(0);
 	}
 
 	g_Selection = *msg->ids;

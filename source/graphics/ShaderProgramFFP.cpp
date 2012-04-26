@@ -168,10 +168,11 @@ class CShaderProgramFFP_OverlayLine : public CShaderProgramFFP
 	};
 
 	bool m_IgnoreLos;
+	bool m_UseObjectColor;
 
 public:
 	CShaderProgramFFP_OverlayLine(const CShaderDefines& defines) :
-		CShaderProgramFFP(STREAM_POS | STREAM_UV0 | STREAM_UV1)
+		CShaderProgramFFP(0) // will be set manually in initializer below
 	{
 		SetUniformIndex("losTransform", ID_losTransform);
 		SetUniformIndex("objectColor", ID_objectColor);
@@ -182,6 +183,11 @@ public:
 		SetUniformIndex("losTex", 2);
 
 		m_IgnoreLos = (defines.GetInt("IGNORE_LOS") != 0);
+		m_UseObjectColor = (defines.GetInt("USE_OBJECTCOLOR") != 0);
+
+		m_StreamFlags = STREAM_POS | STREAM_UV0 | STREAM_UV1;
+		if (!m_UseObjectColor)
+			m_StreamFlags |= STREAM_COLOR;
 	}
 
 	bool IsIgnoreLos()
@@ -219,11 +225,11 @@ public:
 	virtual void Bind()
 	{
 		// RGB channels:
-		//   Unit 0: Load base texture
-		//   Unit 1: Load mask texture; interpolate with objectColor & base
+		//   Unit 0: Sample base texture
+		//   Unit 1: Sample mask texture; interpolate with [objectColor or vertexColor] and base, depending on USE_OBJECTCOLOR
 		//   Unit 2: (Load LOS texture; multiply) if not #IGNORE_LOS, pass through otherwise
 		// Alpha channel:
-		//   Unit 0: Load base texture
+		//   Unit 0: Sample base texture
 		//   Unit 1: Multiply by objectColor
 		//   Unit 2: Pass through
 
@@ -231,10 +237,12 @@ public:
 		glEnable(GL_TEXTURE_2D);
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 
+		// Sample base texture RGB
 		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
 		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_TEXTURE);
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
 
+		// Sample base texture Alpha
 		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
 		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
@@ -244,20 +252,22 @@ public:
 		pglActiveTextureARB(GL_TEXTURE1);
 		glEnable(GL_TEXTURE_2D);
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
-		// Uniform() sets GL_TEXTURE_ENV_COLOR
 
-		// load mask texture; interpolate with objectColor and base; GL_INTERPOLATE takes 3 arguments:
-		// a0 * a2 + a1 * (1 - a2)
+		// RGB: interpolate component-wise between [objectColor or vertexColor] and base using mask:
+		//   a0 * a2 + a1 * (1 - a2)
+		// Overridden implementation of Uniform() sets GL_TEXTURE_ENV_COLOR to objectColor, which
+		// is referenced as GL_CONSTANT (see spec)
 		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_INTERPOLATE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_CONSTANT);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, m_UseObjectColor ? GL_CONSTANT : GL_PRIMARY_COLOR);
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
 		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_PREVIOUS);
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_COLOR);
 		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE2_RGB_ARB, GL_TEXTURE);
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND2_RGB_ARB, GL_SRC_COLOR);
 
+		// ALPHA: Multiply base alpha with [objectColor or vertexColor] alpha
 		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_MODULATE);
-		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_CONSTANT);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, m_UseObjectColor ? GL_CONSTANT : GL_PRIMARY_COLOR);
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_ALPHA_ARB, GL_PREVIOUS);
 		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_ALPHA_ARB, GL_SRC_ALPHA);
@@ -278,12 +288,12 @@ public:
 		}
 		else
 		{
-			// multiply RGB with LoS texture alpha channel
+			// Multiply RGB result up till now with LoS texture alpha channel
 			glEnable(GL_TEXTURE_GEN_S);
 			glEnable(GL_TEXTURE_GEN_T);
 			glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
 			glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
-			// Uniform() sets GL_OBJECT_PLANE values
+			// Overridden implementation of Uniform() sets GL_OBJECT_PLANE values
 			
 			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
 			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);

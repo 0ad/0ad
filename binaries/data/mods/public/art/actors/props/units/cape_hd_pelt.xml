@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Cape medium">
+      <mesh>props/cape_hd_medium.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Cape long ragged">
+      <mesh>props/cape_hd_ragged.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Pelt Brown">
+      <texture>props/cape_hd_pelt_brown.png</texture>
+    </variant>
+    <variant frequency="1" name="Pelt Gray">
+      <texture>props/cape_hd_pelt_gray.png</texture>
+    </variant>
+  </group>
+</actor>

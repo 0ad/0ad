@@ -9,9 +9,11 @@
     <Civ>cart</Civ>
     <GenericName>Naval Shipyard</GenericName>
     <SpecificName>Cothon</SpecificName>
+    <Classes datatype="tokens">-City Town</Classes>
     <History>The structure is based upon the centre island of the inner harbour constructed to house the war fleet of the Carthaginian navy at Carthage.</History>
 	<Tooltip>Construct and repair mighty warships.</Tooltip>
     <Icon>structures/uber_dock.png</Icon>
+	<RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Cost>
     <PopulationBonus>10</PopulationBonus>
@@ -46,13 +48,13 @@
   </Sound>
   <TerritoryDecay disable=""/>
   <TerritoryInfluence disable=""/>
-  <TrainingQueue>
+  <ProductionQueue>
     <Entities datatype="tokens">
       units/cart_ship_bireme
       units/cart_ship_trireme
       units/cart_ship_quinquereme
     </Entities>
-  </TrainingQueue>
+  </ProductionQueue>
   <Vision>
     <Range>100</Range>
   </Vision>
