@@ -141,7 +141,6 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	var numberOfItems = items.length;
 	var selection = g_Selection.toList();
 	var garrisonGroups = new EntityGroups();
-	var pairs = false;
 
 	// Determine how many buttons there should be
 	switch (guiName)
@@ -247,14 +246,13 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			case RESEARCH:
 				if (item.pair)
 				{
-					pairs = true;
-					entType1 = item.bottom;
+					entType1 = item.top;
 					template1 = GetTechnologyData(entType1);
 					if (!template1)
 						continue; // ignore attempts to use invalid templates (an error should have been
 						          // reported already)
 					
-					entType = item.top;
+					entType = item.bottom;
 				}
 				else
 				{
@@ -400,12 +398,12 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 
 		if (item.pair)
 		{
-			button.onpress = (function(e){ return function() { callback(e) } })(item.top);
+			button.onpress = (function(e){ return function() { callback(e) } })(item.bottom);
 
 			var icon1 = getGUIObjectByName("unit"+guiName+"Icon["+(i+rowLength)+"]");
 			button1.hidden = false;
 			button1.tooltip = tooltip1;
-			button1.onpress = (function(e){ return function() { callback(e) } })(item.bottom);
+			button1.onpress = (function(e){ return function() { callback(e) } })(item.top);
 
 			// We add a red overlay to the paired button (we reuse the selection for that)
 			button1.onmouseenter = (function(e){ return function() { setOverlay(e, true) } })(selection);
@@ -529,18 +527,29 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 	var numButtons = i;
 
 	var numRows = Math.ceil(numButtons / rowLength);
-	
-	// If we have paired buttons we need to align one more row
-	if (pairs)
-		numRows++;
 
 	var buttonSideLength = getGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
-	var buttonSpacer = buttonSideLength+1;
 
+	// We sort pairs upside down, so get the size from the topmost button.
+	if (guiName == RESEARCH)
+		buttonSideLength = getGUIObjectByName("unit"+guiName+"Button["+(rowLength*numRows)+"]").size.bottom;
+
+	var buttonSpacer = buttonSideLength+1;
+	
 	// Layout buttons
 	if (guiName == COMMAND)
 	{
 		layoutButtonRowCentered(0, guiName, 0, numButtons, COMMANDS_PANEL_WIDTH);
+	}
+	else if (guiName == RESEARCH)
+	{
+		// We support pairs so we need to add a row
+		numRows++;
+		// Layout rows from bottom to top
+		for (var i = 0, j = numRows; i < numRows; i++, j--)
+		{
+			layoutButtonRow(i, guiName, buttonSideLength, buttonSpacer, rowLength*(j-1), rowLength*j);
+		}
 	}
 	else
 	{

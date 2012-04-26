@@ -1,0 +1,20 @@
+{
+	"pair": "pair_inf_02",	
+	"genericName": "Ranged Infantry Skirmishers",
+	"specificName": {
+		"hele": "Akontistes",
+		"mace": "Akontistes",
+		"spart": "Akontistes",
+		"athen": "Akontistes",
+		"theb": "Akontistes"
+	},
+	"description": "Training increases damage of infantry skirmisher units.",
+	"cost": {"food": 0, "wood": 100, "stone": 0, "metal": 0},
+	"requirements": {"tech": "phase_city"},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "arrow.png",
+	"researchTime": 20,
+	"tooltip": "Skirmisher infantry +2 pierce attack.",
+	"modifications": [{"value": "Attack/Ranged/Pierce", "add": 2.0}],
+	"affects": ["Infantry Javelin"]
+}
