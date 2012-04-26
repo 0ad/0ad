@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <OpenAL/al.h>
+#include "lib/debug.h"
 #include "CSoundManager.h"
 //#include "AL/alut.h"
 #include "soundmanager/items/CSoundItem.h"
@@ -36,6 +37,11 @@ CSoundManager::CSoundManager(OsPath& resourcePath)
     mItems = new ItemsList;
     mCurrentEnvirons    = 0;
     mCurrentTune        = 0;
+    mGain      = 1;
+    mMusicGain      = 1;
+    mAmbientGain      = 1;
+    mActionGain      = 1;
+
     debug_printf(L"initiate manager at: %ls\n\n", resourcePath.string().c_str());
 
 	alc_init();
@@ -84,11 +90,29 @@ Status CSoundManager::alc_init()
 	// (e.g. DS3D, native, MMSYSTEM) - needed when reporting OpenAL bugs.
 	const char* dev_name = (const char*)alcGetString(alc_dev, ALC_DEVICE_SPECIFIER);
 	wchar_t buf[200];
-	swprintf_s(buf, ARRAY_SIZE(buf), L"SND| alc_init: success, using %hs\n", dev_name);
+	swprintf(buf, ARRAY_SIZE(buf), L"SND| alc_init: success, using %hs\n", dev_name);
 //	ah_log(buf);
 
 	return ret;
 }
+
+void CSoundManager::setMasterGain( float gain)
+{
+    mGain = gain;
+}
+void CSoundManager::setMusicGain( float gain)
+{
+    mMusicGain = gain;
+}
+void CSoundManager::setAmbientGain( float gain)
+{
+    mAmbientGain = gain;
+}
+void CSoundManager::setActionGain( float gain)
+{
+    mActionGain = gain;
+}
+
 
 ISoundItem* CSoundManager::loadItem( OsPath& itemPath )
 {
@@ -175,17 +199,31 @@ void CSoundManager::InitListener()
     alListenerfv(AL_ORIENTATION,listenerOri);
 }
 
+void CSoundManager::playActionItem( ISoundItem* anItem )
+{
+    if ( anItem )
+    {
+        if ( mActionGain > 0 ) {
+            anItem->setGain( mGain * mActionGain );
+            anItem->play();
+        }
+    }
+}
 void CSoundManager::setMusicItem( ISoundItem* anItem )
 {
     if ( mCurrentTune ) {
-        mCurrentTune->stopAndDelete();
+        mCurrentTune->fadeAndDelete(5.00);
         mCurrentTune = NULL;
     }
     idleTask();
     if ( anItem )
     {
-        mCurrentTune = anItem;
-        mCurrentTune->playLoop();
+        if ( mMusicGain > 0 ) {
+            mCurrentTune = anItem;
+            mCurrentTune->setGain( 0 );
+            mCurrentTune->playLoop();
+            mCurrentTune->fadeToIn( mGain * mMusicGain, 3.00 );
+        }
     }
 }
 
@@ -199,8 +237,12 @@ void CSoundManager::setAmbientItem( ISoundItem* anItem )
     
     if ( anItem )
     {
-        mCurrentEnvirons = anItem;
-        mCurrentEnvirons->playLoop();
+        if ( mAmbientGain > 0 ) {
+            mCurrentEnvirons = anItem;
+            mCurrentEnvirons->setGain( 0 );
+            mCurrentEnvirons->playLoop();
+            mCurrentTune->fadeToIn( mGain * mAmbientGain, 3.00 );
+        }
     }
 }
 

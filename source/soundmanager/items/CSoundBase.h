@@ -25,6 +25,11 @@ protected:
     bool                mLastPlay;
     bool                mLooping;
     
+    double        mStartFadeTime;
+    double        mEndFadeTime;
+    ALfloat     mStartVolume;
+    ALfloat     mEndVolume;
+
 public:
     CSoundBase      ();
     
@@ -33,6 +38,7 @@ public:
     virtual bool    initOpenAL();
     virtual void    resetVars();
 
+    virtual void    setGain     (ALfloat gain);
     virtual void setLastPlay( bool last );
 
     void    play            ();
@@ -41,18 +47,25 @@ public:
     void    playLoop        ();
     void    stop            ();
     void    stopAndDelete    ();
+    void    fadeToIn        ( ALfloat newVolume, double fadeDuration);
 
     void    playAsMusic      ();
     void    playAsAmbient    ();
 
     const char*   Name();
+    std::string getName();
 
     virtual bool getLooping     ();
     virtual void setLooping     ( bool loops );
+    virtual bool isPlaying();
+    virtual void setLocation (const CVector3D& position);
+    virtual void    fadeAndDelete    ( double fadeTime );
 
 protected:
 
     void setNameFromPath(  char* fileLoc );
+    void resetFade();
+    bool handleFade();
 
     
 };

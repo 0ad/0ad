@@ -33,7 +33,6 @@
 #define INCLUDED_JAMBIENTSOUND
 
 #include "scripting/ScriptableObject.h"
-#include "lib/res/handle.h"
 #include "soundmanager/items/ISoundItem.h"
 
 class JAmbientSound : public CJSObject<JAmbientSound>

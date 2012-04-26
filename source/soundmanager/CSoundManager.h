@@ -31,6 +31,10 @@ protected:
     ISoundItem*         mCurrentEnvirons;
     ItemsList*          mItems;
     OsPath              mResourcePath;
+    float               mGain;
+    float               mMusicGain;
+    float               mAmbientGain;
+    float               mActionGain;
     
 public:
      CSoundManager      (OsPath& resourcePath);
@@ -53,7 +57,12 @@ public:
 
     void        setMusicItem( ISoundItem* anItem );
     void        setAmbientItem( ISoundItem* anItem );
+    void        playActionItem( ISoundItem* anItem );
 
+    void        setMasterGain( float gain);
+    void        setMusicGain( float gain);
+    void        setAmbientGain( float gain);
+    void        setActionGain( float gain);
 	
 protected:
     void    InitListener();

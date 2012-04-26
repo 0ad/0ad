@@ -93,7 +93,10 @@ static float RandFloat(float min, float max)
 
 void CSMSoundGroup::UploadPropertiesAndPlay(ISoundItem* hSound, const CVector3D& position)
 {
-    hSound->play();
+    hSound->setLocation( position );
+    
+    
+    g_SoundManager->playActionItem( hSound );
 }
 
 
@@ -112,7 +115,9 @@ void CSMSoundGroup::PlayNext(const CVector3D& position)
     
     m_index = (size_t)rand(0, (size_t)filenames.size());
     // (note: previously snd_group[m_index] was used in place of hs)
-    
+
+    debug_printf(L"do play next:%ls\n\n", filenames[m_index].c_str() );
+
     UploadPropertiesAndPlay( snd_group[m_index], position);
 }
 
@@ -126,6 +131,8 @@ void CSMSoundGroup::Reload()
 	for(size_t i = 0; i < filenames.size(); i++)
     {
         OsPath  thePath = OsPath( m_filepath/filenames[i] );
+        debug_printf(L"will load sound handle:%ls\n\n", thePath.string().c_str() );
+
         ISoundItem* temp = g_SoundManager->loadItem( thePath );
         snd_group.push_back(temp);
     }
@@ -144,7 +151,7 @@ void CSMSoundGroup::Update(float TimeSinceLastFrame)
 
 bool CSMSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 {
-    LOGERROR(L"loading sound group '%ls'", pathnameXML.string().c_str());
+    LOGERROR(L"loading new sound group '%ls'", pathnameXML.string().c_str());
 
 	CXeromyces XeroFile;
 	if (XeroFile.Load(g_VFS, pathnameXML) != PSRETURN_OK)

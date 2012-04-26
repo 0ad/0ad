@@ -36,6 +36,8 @@ CSoundItem::~CSoundItem()
 
 bool CSoundItem::idleTask()
 {
+    handleFade();
+
     if ( mLastPlay )
     {
         int proc_state;

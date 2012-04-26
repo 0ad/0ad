@@ -15,12 +15,10 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "precompiled.h"
 #include "JSound.h"
 #include "maths/Vector3D.h"
 
 #include "lib/utf8.h"
-#include "lib/res/sound/snd_mgr.h"
 #include "lib/res/h_mgr.h"	// h_filename
 #include "ps/Filesystem.h"
 

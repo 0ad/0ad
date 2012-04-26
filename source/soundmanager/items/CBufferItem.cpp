@@ -37,6 +37,8 @@ CBufferItem::~CBufferItem()
 
 bool CBufferItem::idleTask()
 {
+    handleFade();
+    
     if ( mLastPlay )
     {
         int proc_state;

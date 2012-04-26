@@ -15,7 +15,6 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "precompiled.h"
 #include "JAmbientSound.h"
 #include "maths/Vector3D.h"
 

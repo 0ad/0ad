@@ -69,9 +69,9 @@ CSoundData* CSoundData::soundDataFromFile( OsPath& itemPath )
     {
        	if ( fExt == ".ogg" )
             answer = soundDataFromOgg( itemPath );
-// 		else if ( fExt == ".wav" )
+ 		else if ( fExt == ".wav" )
 //          answer = soundDataFromWAV( itemPath );
-
+//
     
         if ( answer && answer->isOneShot() )
             (*CSoundData::sSoundData)[itemPath.string()] = answer;
@@ -97,18 +97,6 @@ CSoundData* CSoundData::soundDataFromOgg(OsPath& itemPath )
     return answer;
 }
 
-
-//CSoundData* CSoundData::soundDataFromWAV( OsPath& itemPath )
-//{
-//    CSoundData* answer = NULL;
-//    CWAVData*   wavAnswer = new CWAVData();
-
-//    if ( wavAnswer->InitWAVFile( itemPath.string().c_str() ) ) {
-//        answer = wavAnswer;
-//    }
-    
-//    return answer;
-//}
 
 ALsizei CSoundData::getBufferCount()
 {

@@ -36,6 +36,8 @@ CStreamItem::~CStreamItem()
 
 bool CStreamItem::idleTask()
 {
+    handleFade();
+
     int proc_state;
     alGetSourceiv( mALSource, AL_SOURCE_STATE, &proc_state);
     
