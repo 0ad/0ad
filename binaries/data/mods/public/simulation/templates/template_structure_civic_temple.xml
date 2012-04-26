@@ -68,6 +68,9 @@
     <Entities datatype="tokens">
       units/{civ}_support_healer_b
     </Entities>
+    <Technologies datatype="tokens">
+	  pair_heal_01
+    </Technologies>
   </ProductionQueue>
   <Vision>
     <Range>40</Range>
