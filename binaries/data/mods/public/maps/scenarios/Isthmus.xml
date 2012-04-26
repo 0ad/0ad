@@ -14,9 +14,9 @@
 				<Type>default</Type>
 				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>19.6197</Height>
-				<Shininess>150</Shininess>
+				<Shininess>24.9023</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.548828</Murkiness>
+				<Murkiness>0.695313</Murkiness>
 				<Tint r="0" g="1" b="1"/>
 				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="262.02" y="72.9908" z="379.598"/>
+		<Position x="266.395" y="91.2117" z="318.227"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -39,7 +39,7 @@
   "PlayerData": [
     {
       "AI": "",
-      "Civ": "hele",
+      "Civ": "spart",
       "Colour": {
         "b": 200,
         "g": 46,
@@ -895,8 +895,8 @@
 		<Entity uid="209">
 			<Template>gaia/flora_tree_carob</Template>
 			<Player>0</Player>
-			<Position x="200.55924" z="263.54215"/>
-			<Orientation y="1.03901"/>
+			<Position x="185.84023" z="244.06357"/>
+			<Orientation y="2.97287"/>
 		</Entity>
 		<Entity uid="212">
 			<Template>gaia/flora_tree_carob</Template>
@@ -1441,7 +1441,7 @@
 		<Entity uid="347">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="506.71525" z="367.38712"/>
+			<Position x="471.87159" z="385.39463"/>
 			<Orientation y="2.52918"/>
 		</Entity>
 		<Entity uid="355">
@@ -1705,7 +1705,7 @@
 		<Entity uid="404">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="229.5039" z="261.75559"/>
+			<Position x="208.68041" z="228.13648"/>
 			<Orientation y="-3.07099"/>
 		</Entity>
 		<Entity uid="405">
@@ -2017,7 +2017,7 @@
 		<Entity uid="475">
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
-			<Position x="952.70478" z="375.6027"/>
+			<Position x="890.8097" z="367.08118"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="476">
@@ -2060,12 +2060,6 @@
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
 			<Position x="529.28217" z="472.2038"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="517">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="236.61005" z="453.0987"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="518">
@@ -3169,13 +3163,13 @@
 		<Entity uid="730">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
 			<Player>0</Player>
-			<Position x="177.7494" z="300.36078"/>
+			<Position x="162.9105" z="309.96796"/>
 			<Orientation y="-2.9435"/>
 		</Entity>
 		<Entity uid="731">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
 			<Player>0</Player>
-			<Position x="173.17277" z="286.46464"/>
+			<Position x="166.50153" z="285.86219"/>
 			<Orientation y="-2.77172"/>
 		</Entity>
 		<Entity uid="732">
@@ -4861,60 +4855,6 @@
 			<Position x="153.78705" z="328.78382"/>
 			<Orientation y="0.2739"/>
 		</Entity>
-		<Entity uid="1049">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="245.31302" z="425.00174"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1050">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="249.9521" z="430.51761"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1051">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="254.15116" z="434.50193"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1052">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="259.33808" z="439.68213"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1053">
-			<Template>units/hele_infantry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="250.46105" z="419.56443"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1054">
-			<Template>units/hele_infantry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="254.3508" z="424.20807"/>
-			<Orientation y="2.38459"/>
-		</Entity>
-		<Entity uid="1055">
-			<Template>units/hele_infantry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="258.04554" z="429.099"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1056">
-			<Template>units/hele_infantry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="262.60248" z="434.21506"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1057">
-			<Template>units/hele_cavalry_swordsman_b</Template>
-			<Player>1</Player>
-			<Position x="266.62952" z="440.16861"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="1058">
 			<Template>units/rome_support_female_citizen</Template>
 			<Player>2</Player>
@@ -4974,6 +4914,66 @@
 			<Player>1</Player>
 			<Position x="323.55384" z="328.00696"/>
 			<Orientation y="-1.39661"/>
+		</Entity>
+		<Entity uid="1071">
+			<Template>structures/spart_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="237.85698" z="449.34235"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1072">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="246.36777" z="427.01813"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1073">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="249.55983" z="430.36841"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1074">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="252.48008" z="433.68506"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1075">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="256.74515" z="438.31235"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1076">
+			<Template>units/spart_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="250.87359" z="422.973"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1077">
+			<Template>units/spart_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="256.46662" z="430.36841"/>
+			<Orientation y="2.42144"/>
+		</Entity>
+		<Entity uid="1078">
+			<Template>units/spart_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="253.1734" z="426.2487"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1079">
+			<Template>units/spart_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="259.28739" z="433.22669"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1080">
+			<Template>units/spart_cavalry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="265.10935" z="441.10193"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>

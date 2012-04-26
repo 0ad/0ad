@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="317.019" y="122.324" z="76.0992"/>
-		<Rotation angle="-0.109441"/>
-		<Declination angle="0.532942"/>
+		<Position x="298.798" y="63.7661" z="215.793"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -68,7 +68,7 @@
     },
     {
       "AI": "qbot",
-      "Civ": "hele",
+      "Civ": "mace",
       "Colour": {
         "b": 20,
         "g": 20,
@@ -104,12 +104,6 @@
 			<Template>structures/cart_civil_centre</Template>
 			<Player>1</Player>
 			<Position x="672.85706" z="810.60547"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="12">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="283.80533" z="283.51752"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="21">
@@ -6339,30 +6333,6 @@
 			<Position x="332.96622" z="236.74888"/>
 			<Orientation y="-0.78367"/>
 		</Entity>
-		<Entity uid="1127">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="297.18467" z="265.86597"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1128">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="301.95432" z="269.76993"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1129">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="305.26105" z="273.05146"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1130">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="293.33051" z="263.59742"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="1131">
 			<Template>units/cart_support_female_citizen</Template>
 			<Player>1</Player>
@@ -6511,6 +6481,36 @@
 			<Player>1</Player>
 			<Position x="732.68989" z="766.48951"/>
 			<Orientation y="-2.34728"/>
+		</Entity>
+		<Entity uid="1157">
+			<Template>structures/mace_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="284.45322" z="282.865"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1158">
+			<Template>units/mace_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="292.74805" z="260.81061"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1159">
+			<Template>units/mace_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="298.36902" z="265.49631"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1160">
+			<Template>units/mace_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="302.27714" z="269.33039"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1161">
+			<Template>units/mace_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="306.53736" z="273.95716"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>

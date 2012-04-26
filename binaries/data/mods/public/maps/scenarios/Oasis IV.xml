@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="1001.1" y="79.7402" z="861.868"/>
+		<Position x="960.84" y="91.3151" z="149.285"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -97,7 +97,7 @@
     },
     {
       "AI": "qbot",
-      "Civ": "hele",
+      "Civ": "spart",
       "Colour": {
         "b": 5,
         "g": 165,
@@ -9936,12 +9936,6 @@
 			<Position x="921.2486" z="988.34504"/>
 			<Orientation y="0.56493"/>
 		</Entity>
-		<Entity uid="1825">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>3</Player>
-			<Position x="938.54377" z="270.8794"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="1827">
 			<Template>gaia/geology_stonemine_desert_quarry</Template>
 			<Player>0</Player>
@@ -15611,30 +15605,6 @@
 			<Position x="918.48633" z="688.01563"/>
 			<Orientation y="0.48981"/>
 		</Entity>
-		<Entity uid="2909">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>3</Player>
-			<Position x="944.95557" z="247.45893"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2910">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>3</Player>
-			<Position x="948.45466" z="250.77482"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2911">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>3</Player>
-			<Position x="952.30488" z="255.88581"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2912">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>3</Player>
-			<Position x="956.62824" z="261.20926"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="2917">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
 			<Player>0</Player>
@@ -15839,30 +15809,6 @@
 			<Position x="319.34528" z="308.14945"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="2955">
-			<Template>units/thespian_melanochitones</Template>
-			<Player>3</Player>
-			<Position x="950.0633" z="243.0424"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2956">
-			<Template>units/thespian_melanochitones</Template>
-			<Player>3</Player>
-			<Position x="952.88508" z="245.55845"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2957">
-			<Template>units/thespian_melanochitones</Template>
-			<Player>3</Player>
-			<Position x="955.98853" z="249.58404"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2958">
-			<Template>units/thespian_melanochitones</Template>
-			<Player>3</Player>
-			<Position x="960.28486" z="253.44188"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="2959">
 			<Template>units/celt_fanatic</Template>
 			<Player>4</Player>
@@ -15940,6 +15886,60 @@
 			<Player>0</Player>
 			<Position x="955.91108" z="955.84626"/>
 			<Orientation y="-2.30755"/>
+		</Entity>
+		<Entity uid="2972">
+			<Template>structures/spart_civil_centre</Template>
+			<Player>3</Player>
+			<Position x="936.87037" z="266.1389"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2973">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>3</Player>
+			<Position x="949.1692" z="243.53286"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2974">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>3</Player>
+			<Position x="952.14393" z="246.11324"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2975">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>3</Player>
+			<Position x="954.84913" z="250.00557"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2976">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>3</Player>
+			<Position x="958.69611" z="253.66492"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2977">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="945.14002" z="248.69445"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2978">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="948.5409" z="251.13663"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2979">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="951.48993" z="253.63373"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2980">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="954.92682" z="257.11124"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
