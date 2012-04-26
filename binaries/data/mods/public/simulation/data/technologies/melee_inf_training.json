@@ -1,6 +1,13 @@
 {
 	"pair": "pair_inf_01",
 	"genericName": "Infantry Training",
+	"specificName": {
+		"hele": "Hoplomachia",
+		"mace": "Hoplomachia",
+		"spart": "Hoplomachia",
+		"athen": "Hoplomachia",
+		"theb": "Hoplomachia"
+	},
 	"description": "Training increases damage of melee infantry units.",
 	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 50},
 	"requirements": {"tech": "phase_town"},

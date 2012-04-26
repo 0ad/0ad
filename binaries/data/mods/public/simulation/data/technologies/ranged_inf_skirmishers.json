@@ -1,6 +1,13 @@
 {
 	"pair": "pair_inf_02",	
 	"genericName": "Ranged Infantry Skirmishers",
+	"specificName": {
+		"hele": "Akontistès",
+		"mace": "Akontistès",
+		"spart": "Akontistès",
+		"athen": "Akontistès",
+		"theb": "Akontistès"
+	},
 	"description": "Training increases damage of infantry skirmisher units.",
 	"cost": {"food": 0, "wood": 100, "stone": 0, "metal": 0},
 	"requirements": {"tech": "phase_city"},
