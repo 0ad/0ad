@@ -11,7 +11,7 @@ var EconomyManager = function() {
 };
 // More initialisation for stuff that needs the gameState
 EconomyManager.prototype.init = function(gameState){
-	this.targetNumWorkers = Math.floor(gameState.getPopulationMax()/3);
+	this.targetNumWorkers = Math.max(Math.floor(gameState.getPopulationMax()/3), 1);
 };
 
 EconomyManager.prototype.trainMoreWorkers = function(gameState, queues) {

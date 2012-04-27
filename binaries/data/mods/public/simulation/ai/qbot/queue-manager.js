@@ -196,6 +196,14 @@ QueueManager.prototype.printQueues = function(gameState){
 };
 
 QueueManager.prototype.update = function(gameState) {
+	
+	for (var i in this.priorities){
+		if (!(this.priorities[i] > 0)){
+			this.priorities[i] = 1;  // TODO: make the Queue Manager not die when priorities are zero.
+			warn("QueueManager received bad priorities, please report this error: " + uneval(this.priorities));
+		}
+	}
+	
 	Engine.ProfileStart("Queue Manager");
 	//this.printQueues(gameState);
 	
@@ -259,12 +267,12 @@ QueueManager.prototype.update = function(gameState) {
 			}
 			
 		}
-
 		this.affordableToOutQueue(gameState);
 	} while (this.curItemQueue.length === 0);
 	Engine.ProfileStop();
 
 	Engine.ProfileStart("Execute items");
+	
 	// Handle output queues by executing items where possible
 	for (p in this.queues) {
 		while (this.queues[p].outQueueLength() > 0) {
