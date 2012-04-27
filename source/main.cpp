@@ -383,17 +383,17 @@ static void Frame()
 		// coincide in position and orientation.
 		float down[3] = { -up[0], -up[1], -up[2] };
 
-		{
-			PROFILE3("sound update");
-			if (snd_update(pos, dir, down) < 0)
-				debug_printf(L"snd_update failed\n");
-		}
+//		{
+//			PROFILE3("sound update");
+//			if (snd_update(pos, dir, down) < 0)
+//				debug_printf(L"snd_update failed\n");
+//		}
 	}
 	else
 	{
-		PROFILE3("sound update (0)");
-		if (snd_update(0, 0, 0) < 0)
-			debug_printf(L"snd_update (pos=0 version) failed\n");
+//		PROFILE3("sound update (0)");
+//		if (snd_update(0, 0, 0) < 0)
+//			debug_printf(L"snd_update (pos=0 version) failed\n");
 	}
 
 	// Immediately flush any messages produced by simulation code
@@ -477,8 +477,6 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	// run non-visual simulation replay if requested
 	if (args.Has("replay"))
 	{
-		snd_disable(true);
-
 		Paths paths(args);
 		g_VFS = CreateVfs(20 * MiB);
 		g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE);

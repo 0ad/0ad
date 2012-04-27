@@ -213,11 +213,11 @@ function RunDetection(settings)
 	}
 
 	// http://trac.wildfiregames.com/ticket/685
-	if (os_macosx)
-	{
-		warnings.push("Audio has been disabled, due to problems with OpenAL on OS X.");
-		disable_audio = true;
-	}
+//	if (os_macosx)
+//	{
+//		warnings.push("Audio has been disabled, due to problems with OpenAL on OS X.");
+//		disable_audio = true;
+//	}
 
 	// http://trac.wildfiregames.com/ticket/684
 	// https://bugs.freedesktop.org/show_bug.cgi?id=24047

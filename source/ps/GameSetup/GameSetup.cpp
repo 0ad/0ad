@@ -698,7 +698,7 @@ void Shutdown(int UNUSED(flags))
 	// resource
 	// first shut down all resource owners, and then the handle manager.
 	TIMER_BEGIN(L"resource modules");
-		snd_shutdown();
+		delete g_SoundManager;
 
 		g_VFS.reset();
 
@@ -937,7 +937,7 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 		// speed up startup by disabling all sound
 		// (OpenAL init will be skipped).
 		// must be called before first snd_open.
-		snd_disable(true);
+		g_SoundManager->setEnabled( false );
 	}
 
 	g_GUI = new CGUIManager(g_ScriptingHost.GetScriptInterface());

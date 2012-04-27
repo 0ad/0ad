@@ -11,7 +11,7 @@
 
 #include <string>
 #include <OpenAL/al.h>
-#include "Vector3D.h"
+#include "maths/Vector3D.h"
 
 class ISoundItem
 {
