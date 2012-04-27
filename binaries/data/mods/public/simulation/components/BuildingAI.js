@@ -17,7 +17,7 @@ BuildingAI.prototype.Schema =
  */
 BuildingAI.prototype.Init = function()
 {
-	if (this.template.DefaultArrowCount > 0 || this.template.GarrisonArrowMultiplier > 0)
+	if (this.GetDefaultArrowCount() > 0 || this.GetGarrisonArrowMultiplier() > 0)
 	{
 		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		this.currentRound = 0;
@@ -105,6 +105,24 @@ BuildingAI.prototype.OnRangeUpdate = function(msg)
 	}
 };
 
+BuildingAI.prototype.GetDefaultArrowCount = function()
+{
+	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	if (cmpTechMan)
+		return cmpTechMan.ApplyModifications("BuildingAI/DefaultArrowCount", this.template.DefaultArrowCount, this.entity);
+	else
+		return +this.template.DefaultArrowCount;
+};
+
+BuildingAI.prototype.GetGarrisonArrowMultiplier = function()
+{
+	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	if (cmpTechMan)
+		return cmpTechMan.ApplyModifications("BuildingAI/GarrisonArrowMultiplier", this.template.GarrisonArrowMultiplier, this.entity);
+	else
+		return +this.template.GarrisonArrowMultiplier;
+};
+
 /**
  * Returns the number of arrows which needs to be fired.
  * DefaultArrowCount + Garrisoned Archers(ie., any unit capable 
@@ -112,11 +130,11 @@ BuildingAI.prototype.OnRangeUpdate = function(msg)
  */
 BuildingAI.prototype.GetArrowCount = function()
 {
-	var count = +this.template.DefaultArrowCount;
+	var count = this.GetDefaultArrowCount();
 	var cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
 	if (cmpGarrisonHolder)
 	{
-		count += Math.round(cmpGarrisonHolder.GetGarrisonedArcherCount() * +this.template.GarrisonArrowMultiplier);
+		count += Math.round(cmpGarrisonHolder.GetGarrisonedArcherCount() * this.GetGarrisonArrowMultiplier());
 	}
 	return count;
 };

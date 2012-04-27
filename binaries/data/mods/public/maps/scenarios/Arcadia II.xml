@@ -4,7 +4,7 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cirrus</SkySet>
-		<SunColour r="0.788235" g="0.768627" b="0.686275"/>
+		<SunColour r="0.784314" g="0.764706" b="0.686275"/>
 		<SunElevation angle="0.951868"/>
 		<SunRotation angle="-0.532844"/>
 		<TerrainAmbientColour r="0.337255" g="0.403922" b="0.466667"/>
@@ -24,24 +24,39 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="126.995" y="85.4267" z="57.6226"/>
+		<Position x="618.203" y="63.7477" z="568.733"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name": "Arcadia 2",
   "Description": "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. Players start on either side of a mountainous region rich in resources. A Stoa with a +10 population bonus helps players jumpstart building their new colonies.",
+  "Keywords": [],
+  "Name": "Arcadia 2",
   "PlayerData": [
     {
-      "Civ": "hele"
+      "AI": "",
+      "Civ": "spart",
+      "Colour": {
+        "b": 200,
+        "g": 46,
+        "r": 46
+      },
+      "Name": "Player 1",
+      "Team": -1
     },
     {
       "AI": "qbot",
-      "Civ": "celt"
+      "Civ": "celt",
+      "Colour": {
+        "b": 20,
+        "g": 20,
+        "r": 150
+      },
+      "Name": "Player 2",
+      "Team": -1
     }
-  ],
-  "Keywords": []
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>
@@ -1221,12 +1236,6 @@
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
 			<Position x="440.16672" z="735.54352"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="403">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="603.57728" z="639.87623"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="408">
@@ -7010,48 +7019,6 @@
 			<Player>0</Player>
 			<Position x="246.92746" z="353.02631"/>
 			<Orientation y="-2.44898"/>
-		</Entity>
-		<Entity uid="1589">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="613.28779" z="617.08869"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1590">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="616.61084" z="619.90876"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1591">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="619.27808" z="622.38764"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1592">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="617.80341" z="613.18299"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1593">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="620.2547" z="615.64814"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1594">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="622.71167" z="618.30304"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1595">
-			<Template>units/hele_cavalry_swordsman_e</Template>
-			<Player>1</Player>
-			<Position x="623.29175" z="612.05677"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1621">
 			<Template>gaia/geology_stone_mediterranean</Template>
@@ -22516,6 +22483,54 @@
 			<Template>units/celt_war_dog_b</Template>
 			<Player>2</Player>
 			<Position x="121.12722" z="125.14153"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4752">
+			<Template>structures/spart_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="604.39026" z="637.39661"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4753">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="612.5633" z="619.4928"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4754">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="615.30042" z="620.83411"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4755">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="617.83796" z="623.41419"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4756">
+			<Template>units/spart_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="616.63794" z="614.44721"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4757">
+			<Template>units/spart_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="618.94465" z="616.93903"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4758">
+			<Template>units/spart_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="621.05408" z="619.383"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4759">
+			<Template>units/spart_cavalry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="624.60065" z="612.29273"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>

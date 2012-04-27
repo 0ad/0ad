@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="1378.03" y="88.8292" z="435.256"/>
+		<Position x="362.09" y="70.5112" z="343.296"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -39,7 +39,7 @@
   "PlayerData": [
     {
       "AI": "",
-      "Civ": "hele",
+      "Civ": "mace",
       "Colour": {
         "b": 200,
         "g": 46,
@@ -596,12 +596,6 @@
 			<Player>0</Player>
 			<Position x="680.21375" z="1164.06263"/>
 			<Orientation y="1.07319"/>
-		</Entity>
-		<Entity uid="93">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="331.30512" z="428.71967"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="94">
 			<Template>structures/iber_civil_centre</Template>
@@ -21267,42 +21261,6 @@
 			<Position x="329.05304" z="508.80774"/>
 			<Orientation y="-1.43244"/>
 		</Entity>
-		<Entity uid="5311">
-			<Template>units/hele_infantry_archer_b</Template>
-			<Player>1</Player>
-			<Position x="344.6247" z="407.8043"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="5312">
-			<Template>units/hele_infantry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="341.4043" z="403.66016"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="5313">
-			<Template>units/hele_infantry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="337.28821" z="399.09272"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="5314">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="303.99762" z="454.46686"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="5315">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="307.06482" z="458.1613"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="5316">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="310.39322" z="463.55286"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="5317">
 			<Template>units/iber_support_female_citizen</Template>
 			<Player>2</Player>
@@ -21343,12 +21301,6 @@
 			<Template>units/iber_cavalry_spearman_b</Template>
 			<Player>2</Player>
 			<Position x="778.88715" z="286.95514"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="5331">
-			<Template>units/hele_cavalry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="350.91617" z="414.07935"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5332">
@@ -65734,6 +65686,54 @@
 			<Player>2</Player>
 			<Position x="686.75995" z="250.62533"/>
 			<Orientation y="-0.56542"/>
+		</Entity>
+		<Entity uid="15070">
+			<Template>structures/mace_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="329.01468" z="429.1277"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="15071">
+			<Template>units/mace_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="303.46891" z="452.10886"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="15072">
+			<Template>units/mace_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="307.04651" z="454.52912"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="15073">
+			<Template>units/mace_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="310.94074" z="457.72062"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="15074">
+			<Template>units/mace_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="342.35807" z="411.56684"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="15075">
+			<Template>units/mace_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="339.36176" z="409.18857"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="15076">
+			<Template>units/mace_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="336.12681" z="406.36493"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="15077">
+			<Template>units/mace_cavalry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="346.49021" z="416.84284"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>

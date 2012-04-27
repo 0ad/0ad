@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="700.607" y="79.7402" z="712.78"/>
+		<Position x="303.047" y="63.5944" z="207.075"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -68,7 +68,7 @@
     },
     {
       "AI": "qbot",
-      "Civ": "hele",
+      "Civ": "athen",
       "Colour": {
         "b": 20,
         "g": 20,
@@ -100,12 +100,6 @@
 }
 ]]></ScriptSettings>
 	<Entities>
-		<Entity uid="12">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="283.80533" z="283.51752"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="21">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
@@ -6255,30 +6249,6 @@
 			<Position x="672.06647" z="805.59302"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="1158">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="294.35953" z="259.51923"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1159">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="297.14451" z="262.1489"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1160">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="299.74033" z="264.455"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1161">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="302.94867" z="267.61411"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="1162">
 			<Template>units/pers_infantry_spearman_e</Template>
 			<Player>1</Player>
@@ -9113,6 +9083,36 @@
 		<Entity uid="1729">
 			<Template>actor|particle/blowing_sand.xml</Template>
 			<Position x="560.53028" z="247.57648"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1730">
+			<Template>structures/athen_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="286.04667" z="278.94971"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1731">
+			<Template>units/athen_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="294.22818" z="257.90864"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1732">
+			<Template>units/athen_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="297.20411" z="260.63593"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1733">
+			<Template>units/athen_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="299.50971" z="263.08606"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1734">
+			<Template>units/athen_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="302.49503" z="266.10563"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
