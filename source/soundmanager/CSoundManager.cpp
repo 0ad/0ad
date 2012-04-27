@@ -6,11 +6,8 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#include <iostream>
 #include <OpenAL/al.h>
-#include "lib/debug.h"
 #include "CSoundManager.h"
-//#include "AL/alut.h"
 #include "soundmanager/items/CSoundItem.h"
 #include "soundmanager/items/CBufferItem.h"
 #include "soundmanager/items/CStreamItem.h"
@@ -31,17 +28,17 @@ void CSoundManager::ScriptingInit()
 
 CSoundManager::CSoundManager(OsPath& resourcePath)
 {
-//    alutInit( NULL, NULL);
     mResourcePath = resourcePath;
     
     mItems = new ItemsList;
     mCurrentEnvirons    = 0;
     mCurrentTune        = 0;
-    mGain      = 1;
-    mMusicGain      = 1;
-    mAmbientGain      = 1;
-    mActionGain      = 1;
-
+    mGain               = 1;
+    mMusicGain          = 1;
+    mAmbientGain        = 1;
+    mActionGain         = 1;
+    mEnabled            = true;
+    
     debug_printf(L"initiate manager at: %ls\n\n", resourcePath.string().c_str());
 
 	alc_init();
@@ -198,12 +195,16 @@ void CSoundManager::InitListener()
     alListenerfv(AL_VELOCITY,listenerVel);
     alListenerfv(AL_ORIENTATION,listenerOri);
 }
+void CSoundManager::setEnabled( bool doEnable )
+{
+    mEnabled = doEnable;
+}
 
 void CSoundManager::playActionItem( ISoundItem* anItem )
 {
     if ( anItem )
     {
-        if ( mActionGain > 0 ) {
+        if ( mEnabled && ( mActionGain > 0 ) ) {
             anItem->setGain( mGain * mActionGain );
             anItem->play();
         }
@@ -218,7 +219,7 @@ void CSoundManager::setMusicItem( ISoundItem* anItem )
     idleTask();
     if ( anItem )
     {
-        if ( mMusicGain > 0 ) {
+        if ( mEnabled && ( mMusicGain > 0 ) ) {
             mCurrentTune = anItem;
             mCurrentTune->setGain( 0 );
             mCurrentTune->playLoop();
@@ -237,7 +238,7 @@ void CSoundManager::setAmbientItem( ISoundItem* anItem )
     
     if ( anItem )
     {
-        if ( mAmbientGain > 0 ) {
+        if ( mEnabled && ( mAmbientGain > 0 ) ) {
             mCurrentEnvirons = anItem;
             mCurrentEnvirons->setGain( 0 );
             mCurrentEnvirons->playLoop();

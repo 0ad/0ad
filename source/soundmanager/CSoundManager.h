@@ -35,7 +35,8 @@ protected:
     float               mMusicGain;
     float               mAmbientGain;
     float               mActionGain;
-    
+    bool                mEnabled;
+
 public:
      CSoundManager      (OsPath& resourcePath);
     ~CSoundManager      ();
@@ -64,6 +65,7 @@ public:
     void        setAmbientGain( float gain);
     void        setActionGain( float gain);
 	
+    void        setEnabled( bool doEnable );
 protected:
     void    InitListener();
 	virtual Status alc_init();
