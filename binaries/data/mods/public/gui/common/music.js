@@ -152,7 +152,7 @@ Music.prototype.switchMusic = function(track, fadeInPeriod, isLooping)
 		this.currentMusic = null;
 	}
 
-	this.currentMusic = new Sound(this.RELATIVE_MUSIC_PATH + track);
+	this.currentMusic = new MusicSound(this.RELATIVE_MUSIC_PATH + track);
 
 	if (this.currentMusic)
 	{

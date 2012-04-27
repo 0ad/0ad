@@ -24,7 +24,7 @@
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpRangeManager.h"
-#include "sound/SoundGroup.h"
+#include "soundmanager/js/SMSoundGroup.h"
 
 class CCmpSoundManager : public ICmpSoundManager
 {
@@ -36,7 +36,7 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(SoundManager)
 
-	std::map<std::wstring, CSoundGroup*> m_SoundGroups;
+	std::map<std::wstring, CSMSoundGroup*> m_SoundGroups;
 
 	static std::string GetSchema()
 	{
@@ -49,7 +49,7 @@ public:
 
 	virtual void Deinit()
 	{
-		for (std::map<std::wstring, CSoundGroup*>::iterator it = m_SoundGroups.begin(); it != m_SoundGroups.end(); ++it)
+		for (std::map<std::wstring, CSMSoundGroup*>::iterator it = m_SoundGroups.begin(); it != m_SoundGroups.end(); ++it)
 			delete it->second;
 		m_SoundGroups.clear();
 	}
@@ -76,7 +76,7 @@ public:
 			// or on some other timer?
 			const CMessageUpdate& msgData = static_cast<const CMessageUpdate&> (msg);
 			float t = msgData.turnLength.ToFloat();
-			for (std::map<std::wstring, CSoundGroup*>::iterator it = m_SoundGroups.begin(); it != m_SoundGroups.end(); ++it)
+			for (std::map<std::wstring, CSMSoundGroup*>::iterator it = m_SoundGroups.begin(); it != m_SoundGroups.end(); ++it)
 				if (it->second)
 					it->second->Update(t);
 			break;
@@ -87,10 +87,10 @@ public:
 	virtual void PlaySoundGroup(std::wstring name, entity_id_t source)
 	{
 		// Make sure the sound group is loaded
-		CSoundGroup* group;
+		CSMSoundGroup* group;
 		if (m_SoundGroups.find(name) == m_SoundGroups.end())
 		{
-			group = new CSoundGroup();
+			group = new CSMSoundGroup();
 			if (!group->LoadSoundGroup(L"audio/" + name))
 			{
 				LOGERROR(L"Failed to load sound group '%ls'", name.c_str());

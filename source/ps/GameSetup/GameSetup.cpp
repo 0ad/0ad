@@ -102,6 +102,7 @@
 #include "tools/atlas/GameInterface/GameLoop.h"
 #include "tools/atlas/GameInterface/View.h"
 
+#include "soundmanager/CSoundManager.h"
 
 #if !(OS_WIN || OS_MACOSX || OS_ANDROID) // assume all other platforms use X11 for wxWidgets
 #define MUST_INIT_X11 1
@@ -202,6 +203,8 @@ void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 void Render()
 {
 	PROFILE3("render");
+
+	g_SoundManager->idleTask();
 
 	ogl_WarnIfError();
 
@@ -330,7 +333,8 @@ static void RegisterJavascriptInterfaces()
 {
 	// maths
 	JSI_Vector3D::init();
-
+	
+	CSoundManager::ScriptingInit();
 	// graphics
 	CGameView::ScriptingInit();
 
@@ -338,7 +342,7 @@ static void RegisterJavascriptInterfaces()
 	CRenderer::ScriptingInit();
 
 	// sound
-	JSI_Sound::ScriptingInit();
+//	JSI_Sound::ScriptingInit();
 
 	// ps
 	JSI_Console::init();
@@ -476,6 +480,9 @@ static void InitVfs(const CmdLineArgs& args)
 		g_VFS->Mount(L"", modLoosePath / modName/"", flags, priority);
 		g_VFS->Mount(L"", modArchivePath / modName/"", flags, priority);
 	}
+	
+	OsPath apth = paths.RData()/"mods/public";
+	g_SoundManager = new CSoundManager( apth );
 
 	// note: don't bother with g_VFS->TextRepresentation - directories
 	// haven't yet been populated and are empty.
@@ -691,7 +698,7 @@ void Shutdown(int UNUSED(flags))
 	// resource
 	// first shut down all resource owners, and then the handle manager.
 	TIMER_BEGIN(L"resource modules");
-		snd_shutdown();
+		delete g_SoundManager;
 
 		g_VFS.reset();
 
@@ -930,7 +937,7 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 		// speed up startup by disabling all sound
 		// (OpenAL init will be skipped).
 		// must be called before first snd_open.
-		snd_disable(true);
+		g_SoundManager->setEnabled( false );
 	}
 
 	g_GUI = new CGUIManager(g_ScriptingHost.GetScriptInterface());

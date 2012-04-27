@@ -45,6 +45,7 @@
 #include "simulation2/components/ICmpPlayerManager.h"
 
 #include "gui/GUIManager.h"
+#include "soundmanager/CSoundManager.h"
 
 extern bool g_GameRestarted;
 
@@ -299,6 +300,7 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 	if (doInterpolate)
 	{
 		m_TurnManager->Interpolate(deltaTime);
+		g_SoundManager->idleTask();
 	}
 	
 	// TODO: maybe we should add a CCmpParticleInterface that passes the interpolation commands
