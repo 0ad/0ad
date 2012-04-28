@@ -279,6 +279,10 @@ TechnologyManager.prototype.clearModificationCache = function(ent)
 };
 
 // Caching layer in front of ApplyModificationsWorker
+//	Note: be careful with the type of curValue, if it should be a numerical
+//		value and is derived from template data, you must convert the string
+//		from the template to a number using the + operator, before calling
+//		this function!
 TechnologyManager.prototype.ApplyModifications = function(valueName, curValue, ent)
 {
 	if (!this.modificationCache[valueName])
@@ -293,7 +297,6 @@ TechnologyManager.prototype.ApplyModifications = function(valueName, curValue, e
 // The code to actually apply the modification
 TechnologyManager.prototype.ApplyModificationsWorker = function(valueName, curValue, ent)
 {
-	
 	// Get all modifications to this value
 	var modifications = this.modifications[valueName];
 	if (!modifications) // no modifications so return the original value
@@ -303,7 +306,7 @@ TechnologyManager.prototype.ApplyModificationsWorker = function(valueName, curVa
 	var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
 	var classes = cmpIdentity.GetClassesList();
 	
-	var retValue = +curValue;
+	var retValue = curValue;
 	
 	for (var i in modifications)
 	{
@@ -329,7 +332,7 @@ TechnologyManager.prototype.ApplyModificationsWorker = function(valueName, curVa
 		{
 			// Nothing is cumulative so that ordering doesn't matter as much as possible
 			if (modification.multiplier)
-				retValue += (modification.multiplier - 1) * +curValue;
+				retValue += (modification.multiplier - 1) * curValue;
 			else if (modification.add)
 				retValue += modification.add;
 			else if (modification.replace) // This will depend on ordering because there is no choice
