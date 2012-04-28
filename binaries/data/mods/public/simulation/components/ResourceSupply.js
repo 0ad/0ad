@@ -33,7 +33,7 @@ ResourceSupply.prototype.Schema =
 
 ResourceSupply.prototype.Init = function()
 {
-	// Current resource amount (non-negative; can be a fractional amount)
+	// Current resource amount (non-negative)
 	this.amount = this.GetMaxAmount();
 };
 
@@ -54,16 +54,11 @@ ResourceSupply.prototype.GetCurrentAmount = function()
 
 ResourceSupply.prototype.TakeResources = function(rate)
 {
-	// Internally we handle fractional resource amounts (to be accurate
-	// over long periods of time), but want to return integers (so players
-	// have a nice simple integer amount of resources). So return the
-	// difference between rounded values:
+	// 'rate' should be a non-negative integer
 
 	var old = this.amount;
 	this.amount = Math.max(0, old - rate);
-
-	// (use ceil instead of floor so that we continue returning non-zero values even if 0 < amount < 1)
-	var change = Math.ceil(old) - Math.ceil(this.amount);
+	var change = old - this.amount;
 
 	// Remove entities that have been exhausted
 	if (this.amount == 0)
@@ -71,7 +66,7 @@ ResourceSupply.prototype.TakeResources = function(rate)
 
 	Engine.PostMessage(this.entity, MT_ResourceSupplyChanged, { "from": old, "to": this.amount });
 
-	return { "amount": change, "exhausted": (old == 0) };
+	return { "amount": change, "exhausted": (this.amount == 0) };
 };
 
 ResourceSupply.prototype.GetType = function()

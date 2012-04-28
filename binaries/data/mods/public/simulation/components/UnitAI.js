@@ -944,14 +944,40 @@ var UnitFsmSpec = {
 
 			"GATHERING": {
 				"enter": function() {
-					this.StartTimer(1000, 1000);
+					var target = this.order.data.target;
+					
+					// Calculate timing based on gather rates
+					// This allows the gather rate to control how often we gather, instead of how much.
+					var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+					var rate = cmpResourceGatherer.GetTargetGatherRate(target);
+
+					if (!rate)
+					{
+						// Try to find another target if the current one stopped existing
+						if (!Engine.QueryInterface(target, IID_Identity))
+						{
+							// Let the Timer logic handle this
+							this.StartTimer(0);
+							return;
+						}
+						
+						// No rate, give up on gathering
+						this.FinishOrder();
+						return;
+					}
+
+					// Scale timing interval based on rate, and start timer
+					// The offset should be at least as long as the repeat time so we use the same value for both.
+					var offset = 1000/rate;
+					var repeat = offset;
+					this.StartTimer(offset, repeat);
 
 					// We want to start the gather animation as soon as possible,
 					// but only if we're actually at the target and it's still alive
 					// (else it'll look like we're chopping empty air).
 					// (If it's not alive, the Timer handler will deal with sending us
 					// off to a different target.)
-					if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer))
+					if (this.CheckTargetRange(target, IID_ResourceGatherer))
 					{
 						var typename = "gather_" + this.order.data.type.specific;
 						this.SelectAnimation(typename, false, 1.0, typename);
@@ -964,6 +990,8 @@ var UnitFsmSpec = {
 
 				"Timer": function(msg) {
 					var target = this.order.data.target;
+					var resourceTemplate = this.order.data.template;
+					var resourceType = this.order.data.type;
 					// Check we can still reach and gather from the target
 					if (this.CheckTargetRange(target, IID_ResourceGatherer) && this.CanGather(target))
 					{
@@ -977,20 +1005,17 @@ var UnitFsmSpec = {
 						
 						// If we've already got some resources but they're the wrong type,
 						// drop them first to ensure we're only ever carrying one type
-						if (cmpResourceGatherer.IsCarryingAnythingExcept(this.order.data.type.generic))
+						if (cmpResourceGatherer.IsCarryingAnythingExcept(resourceType.generic))
 							cmpResourceGatherer.DropResources();
 
 						// Collect from the target
 						var status = cmpResourceGatherer.PerformGather(target);
 
-						// TODO: if exhausted, we should probably stop immediately
-						// and choose a new target
-
 						// If we've collected as many resources as possible,
 						// return to the nearest dropsite
 						if (status.filled)
 						{
-							var nearby = this.FindNearestDropsite(this.order.data.type.generic);
+							var nearby = this.FindNearestDropsite(resourceType.generic);
 							if (nearby)
 							{
 								// (Keep this Gather order on the stack so we'll
@@ -1001,6 +1026,22 @@ var UnitFsmSpec = {
 
 							// Oh no, couldn't find any drop sites. Give up on gathering.
 							this.FinishOrder();
+						}
+
+						// If the target is exhausted, we switch to a new target
+						if (status.exhausted)
+						{
+							var nearby = this.FindNearbyResource(function (ent, type, template) {
+								return (
+									type.specific == resourceType.specific
+									&& (type.specific != "meat" || resourceTemplate == template)
+								);
+							});
+							if (nearby)
+							{
+								this.Gather(nearby, true);
+								return;
+							}
 						}
 					}
 					else
@@ -1029,10 +1070,6 @@ var UnitFsmSpec = {
 
 						// We're already in range, or can't get anywhere near it.
 
-						// Save the current order's type in case we need it later
-						var oldType = this.order.data.type;
-						var oldTemplate = this.order.data.template;
-
 						// Give up on this order and try our next queued order
 						if (this.FinishOrder())
 							return;
@@ -1043,8 +1080,8 @@ var UnitFsmSpec = {
 						// Also don't switch to a different type of huntable animal
 						var nearby = this.FindNearbyResource(function (ent, type, template) {
 							return (
-								type.specific == oldType.specific
-								&& (type.specific != "meat" || oldTemplate == template)
+								type.specific == resourceType.specific
+								&& (type.specific != "meat" || resourceTemplate == template)
 							);
 						});
 						if (nearby)
@@ -1057,7 +1094,7 @@ var UnitFsmSpec = {
 						// drop it off, and if not then we might as well head to the dropsite
 						// anyway because that's a nice enough place to congregate and idle
 
-						var nearby = this.FindNearestDropsite(oldType.generic);
+						var nearby = this.FindNearestDropsite(resourceType.generic);
 						if (nearby)
 						{
 							this.PushOrderFront("ReturnResource", { "target": nearby });
@@ -1712,7 +1749,7 @@ UnitAI.prototype.OnCreate = function()
 UnitAI.prototype.StateChanged = function()
 {
 	Engine.PostMessage(this.entity, MT_UnitAIStateChanged, { "to": this.GetCurrentState()});
-}
+};
 
 UnitAI.prototype.OnOwnershipChanged = function(msg)
 {
@@ -1943,7 +1980,7 @@ UnitAI.prototype.ReplaceOrder = function(type, data)
 UnitAI.prototype.GetOrders = function()
 {
 	return this.orderQueue.slice();
-}
+};
 
 UnitAI.prototype.AddOrders = function(orders)
 {
@@ -1951,7 +1988,7 @@ UnitAI.prototype.AddOrders = function(orders)
 	{
 		this.PushOrder(order.type, order.data);
 	}
-}
+};
 
 UnitAI.prototype.GetOrderData = function()
 {
@@ -1961,7 +1998,7 @@ UnitAI.prototype.GetOrderData = function()
 	}
 	else
 		return undefined;
-}
+};
 
 UnitAI.prototype.TimerHandler = function(data, lateness)
 {
@@ -1969,11 +2006,6 @@ UnitAI.prototype.TimerHandler = function(data, lateness)
 	if (data.timerRepeat === undefined)
 	{
 		this.timer = undefined;
-	}
-	else
-	{
-		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		this.timer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "TimerHandler", data.timerRepeat - lateness, data);
 	}
 
 	UnitFsm.ProcessMessage(this, {"type": "Timer", "data": data, "lateness": lateness});
@@ -1992,7 +2024,10 @@ UnitAI.prototype.StartTimer = function(offset, repeat)
 	var data = { "timerRepeat": repeat };
 
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	this.timer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "TimerHandler", offset, data);
+    if (repeat === undefined)
+    	this.timer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "TimerHandler", offset, data);
+    else
+        this.timer = cmpTimer.SetInterval(this.entity, IID_UnitAI, "TimerHandler", offset, repeat, data);
 };
 
 /**
@@ -2033,7 +2068,7 @@ UnitAI.prototype.OnGlobalConstructionFinished = function(msg)
 UnitAI.prototype.OnGlobalEntityRenamed = function(msg)
 {
 	UnitFsm.ProcessMessage(this, {"type": "EntityRenamed", "entity": msg.entity, "newentity": msg.newentity});
-}
+};
 
 UnitAI.prototype.OnAttacked = function(msg)
 {
@@ -2313,7 +2348,7 @@ UnitAI.prototype.CheckGarrisonRange = function(target)
 
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	return cmpUnitMotion.IsInTargetRange(target, range.min, range.max);
-}
+};
 
 /**
  * Returns true if the target entity is visible through the FoW/SoD.
@@ -2354,7 +2389,7 @@ UnitAI.prototype.FaceTowardsTarget = function(target)
 		if (cmpUnitMotion)
 			cmpUnitMotion.FaceTowardsPoint(targetpos.x, targetpos.z);
 	}
-}
+};
 
 UnitAI.prototype.CheckTargetDistanceFromHeldPosition = function(target, iid, type)
 {
@@ -2726,7 +2761,7 @@ UnitAI.prototype.Gather = function(target, queued)
 UnitAI.prototype.GatherNearPosition = function(x, z, type, queued)
 {
 	this.AddOrder("GatherNearPosition", { "type": type, "x": x, "z": z }, queued);
-}
+};
 
 UnitAI.prototype.Heal = function(target, queued)
 {
@@ -2767,7 +2802,7 @@ UnitAI.prototype.SetupTradeRoute = function(target, queued)
 		else
 			this.WalkToTarget(cmpTrader.GetFirstMarket(), queued);
 	}
-}
+};
 
 UnitAI.prototype.MoveToMarket = function(targetMarket)
 {
@@ -2784,7 +2819,7 @@ UnitAI.prototype.MoveToMarket = function(targetMarket)
 		this.StopTrading();
 		return false;
 	}
-}
+};
 
 UnitAI.prototype.PerformTradeAndMoveToNextMarket = function(currentMarket, nextMarket, nextFsmStateName)
 {
@@ -2808,20 +2843,20 @@ UnitAI.prototype.PerformTradeAndMoveToNextMarket = function(currentMarket, nextM
 		// If the current market is not reached try again
 		this.MoveToMarket(currentMarket);
 	}
-}
+};
 
 UnitAI.prototype.PerformTrade = function()
 {
 	var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
 	cmpTrader.PerformTrade();
-}
+};
 
 UnitAI.prototype.StopTrading = function()
 {
 	this.FinishOrder();
 	var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
 	cmpTrader.StopTrading();
-}
+};
 
 UnitAI.prototype.Repair = function(target, autocontinue, queued)
 {
@@ -3146,7 +3181,7 @@ UnitAI.prototype.CanTrade = function(target)
 		return false;
 
 	return true;
-}
+};
 
 UnitAI.prototype.CanRepair = function(target)
 {
