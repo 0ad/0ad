@@ -214,8 +214,8 @@ private:
 		// feels like a fairly natural solution to me, since I can use
 		// e.g. brush-editing controls normally, and then move the mouse to
 		// see the brush outline and magically get given back full control
-		// of the camera. Only do that when part of our window has focus.
-		if (evt.Moving() && wxWindow::FindFocus())
+		// of the camera.
+		if (evt.Moving())
 			SetFocus();
 
 		if (m_ScenarioEditor.GetToolManager().GetCurrentTool()->OnMouse(evt))
