@@ -166,10 +166,15 @@ Attack.prototype.GetAttackStrengths = function(type)
 
 Attack.prototype.GetRange = function(type)
 {
+	var max = +this.template[type].MaxRange;
+	var min = +(this.template[type].MinRange || 0);
+
 	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-	
-	var max = cmpTechMan.ApplyModifications("Attack/" + type + "/MaxRange", +this.template[type].MaxRange, this.entity);
-	var min = cmpTechMan.ApplyModifications("Attack/" + type + "/MinRange", +(this.template[type].MinRange || 0), this.entity);
+	if (cmpTechMan)
+	{
+		max = cmpTechMan.ApplyModifications("Attack/" + type + "/MaxRange", max, this.entity);
+		min = cmpTechMan.ApplyModifications("Attack/" + type + "/MinRange", min, this.entity);
+	}
 	
 	return { "max": max, "min": min };
 };
