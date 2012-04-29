@@ -1,10 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="roman siege wall tower">
-      <mesh>structural/rome_siege_tower.dae</mesh>
-      <texture>structural/rome_special_1.dds</texture>
+    <variant name="siege wall tower">
+      <animations>
+        <animation event="0.5" load="0.0" name="melee" speed="100"/>
+      </animations>
+      <mesh>structural/siege_walltwr_wood.dae</mesh>
+      <props>
+        <prop actor="props/structures/romans/siege_walls_turf_tower.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/siege_walls_tower_banners.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+      </props>
+      <texture>structural/siege_walls_wood.png</texture>
     </variant>
   </group>
   <group>
@@ -12,14 +21,6 @@
     <variant name="garrisoned">
       <props>
         <prop actor="props/special/common/garrison_flag_rome.xml" attachpoint="garrisoned"/>
-      </props>
-    </variant>
-    <variant name="death">
-      <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

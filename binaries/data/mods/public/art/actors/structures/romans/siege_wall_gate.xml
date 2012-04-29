@@ -1,23 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="roman siege wall gate">
-      <mesh>structural/rome_siege_gate.dae</mesh>
+    <variant name="siege wall gate">
+      <mesh>structural/siege_gate_wood.dae</mesh>
       <props>
-        <prop actor="structures/romans/siege_wall_gate_door.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/siege_walls_turf_gate.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/siege_walls_gate_banners.xml" attachpoint="root"/>
       </props>
-      <texture>structural/rome_special_1.dds</texture>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="100" name="Idle"/>
-    <variant name="death">
-      <props>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-      </props>
+      <texture>structural/siege_walls_wood.png</texture>
     </variant>
   </group>
 </actor>

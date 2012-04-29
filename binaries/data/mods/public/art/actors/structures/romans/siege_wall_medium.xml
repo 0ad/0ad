@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="siege wall medium">
+      <mesh>structural/siege_medium_wood.dae</mesh>
+      <props>
+        <prop actor="props/structures/romans/siege_walls_turf_medium.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/siege_walls_medium_banners.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/siege_walls_wood.png</texture>
+    </variant>
+  </group>
+</actor>
