@@ -30,6 +30,7 @@ function TestFormationExiting(mode)
 
 
 	AddMock(SYSTEM_ENTITY, IID_Timer, {
+		SetInterval: function() { },
 		SetTimeout: function() { },
 	});
 
