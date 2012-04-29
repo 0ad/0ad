@@ -164,10 +164,14 @@ function QueryOwnerInterface(ent, iid)
 	if (!cmpOwnership)
 		return null;
 
-	var playerEnt = cmpPlayerManager.GetPlayerByID(cmpOwnership.GetOwner());
+	var owner = cmpOwnership.GetOwner();
+	if (owner == -1)
+		return null;
+
+	var playerEnt = cmpPlayerManager.GetPlayerByID(owner);
 	if (!playerEnt)
 		return null;
-	
+
 	return Engine.QueryInterface(playerEnt, iid);
 }
 
@@ -183,7 +187,7 @@ function QueryPlayerIDInterface(id, iid)
 	var playerEnt = cmpPlayerManager.GetPlayerByID(id);
 	if (!playerEnt)
 		return null;
-	
+
 	return Engine.QueryInterface(playerEnt, iid);
 }
 

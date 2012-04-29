@@ -14,6 +14,10 @@
       <stone>0</stone>
     </Resources>
   </Cost>
+  <Footprint>
+    <Square width="10.0" depth="10.0"/>
+    <Height>14.0</Height>
+  </Footprint>
   <Health>
     <Max>2000</Max>
   </Health>
@@ -23,6 +27,12 @@
     <SpecificName>Turris Circummunitio</SpecificName>
     <History>(Insert history here)</History>
   </Identity>
+  <Obstruction>
+    <Static width="7.0" depth="7.0"/>
+  </Obstruction>
+  <TerritoryDecay>
+    <HealthDecayRate>1</HealthDecayRate>
+  </TerritoryDecay>
   <VisualActor>
     <Actor>structures/romans/siege_wall_tower.xml</Actor>
     <FoundationActor>structures/fndn_1x1.xml</FoundationActor>

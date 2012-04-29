@@ -30,7 +30,7 @@ ResourceGatherer.prototype.Schema =
 			"<optional><element name='wood' a:help='Wood gather rate'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='stone' a:help='Stone gather rate'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='metal' a:help='Metal gather rate'><ref name='positiveDecimal'/></element></optional>" +
-			"<optional><element name='treasure' a:help='Treasure gather rate (only presense on value makes sense, size is ignored)'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='treasure' a:help='Treasure gather rate (only presense on value makes sense, size is only used to determine the delay before gathering, so it should be set to 1)'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='food.fish' a:help='Fish gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='food.fruit' a:help='Fruit gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
 			"<optional><element name='food.grain' a:help='Grain gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
@@ -187,13 +187,14 @@ ResourceGatherer.prototype.TryInstantGather = function(target)
 /**
  * Gather from the target entity. This should only be called after a successful range check,
  * and if the target has a compatible ResourceSupply.
- * It should be called at a rate of once per second.
+ * Call interval will be determined by gather rate, so always gather 1 amount when called.
  */
 ResourceGatherer.prototype.PerformGather = function(target)
 {
-	var rate = this.GetTargetGatherRate(target);
-	if (!rate)
+	if (!this.GetTargetGatherRate(target))
 		return { "exhausted": true };
+
+	var gatherAmount = 1;
 
 	var cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
 	var type = cmpResourceSupply.GetType();
@@ -205,7 +206,7 @@ ResourceGatherer.prototype.PerformGather = function(target)
 	// Find the maximum so we won't exceed our capacity
 	var maxGathered = this.GetCapacities()[type.generic] - this.carrying[type.generic];
 
-	var status = cmpResourceSupply.TakeResources(Math.min(rate, maxGathered));
+	var status = cmpResourceSupply.TakeResources(Math.min(gatherAmount, maxGathered));
 
 	this.carrying[type.generic] += status.amount;
 
@@ -244,12 +245,14 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 
 	var type = cmpResourceSupply.GetType();
 
-	var rate;
-	if (type.specific && this.GetGatherRates()[type.generic+"."+type.specific])
-		rate = this.GetGatherRates()[type.generic+"."+type.specific];
-	else
-		rate = this.GetGatherRates()[type.generic];
+	var rates = this.GetGatherRates();
 
+	var rate;
+	if (type.specific && rates[type.generic+"."+type.specific])
+		rate = rates[type.generic+"."+type.specific];
+	else
+		rate = rates[type.generic];
+	
 	return (rate || 0);
 };
 
