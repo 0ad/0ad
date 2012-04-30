@@ -63,6 +63,12 @@
   <Obstruction>
     <Static width="25.0" depth="25.0"/>
   </Obstruction>
+  <ProductionQueue>
+    <Technologies datatype="tokens">
+	  siege_attack
+	  siege_armor
+    </Technologies>
+  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_fortress.xml</select>
