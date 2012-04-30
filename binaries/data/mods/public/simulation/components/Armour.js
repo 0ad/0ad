@@ -33,10 +33,12 @@ Armour.prototype.TakeDamage = function(hack, pierce, crush)
 {
 	if (this.invulnerable) 
 		return { "killed": false };
+
 	// Adjust damage values based on armour
-	var adjHack = Math.max(0, hack - this.template.Hack);
-	var adjPierce = Math.max(0, pierce - this.template.Pierce);
-	var adjCrush = Math.max(0, crush - this.template.Crush);
+	var armourStrengths = this.GetArmourStrengths();
+	var adjHack = Math.max(0, hack - armourStrengths.hack);
+	var adjPierce = Math.max(0, pierce - armourStrengths.pierce);
+	var adjCrush = Math.max(0, crush - armourStrengths.crush);
 
 	// Total is sum of individual damages, with minimum damage 1
 	//	Round to nearest integer, since HP is integral
