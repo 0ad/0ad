@@ -517,6 +517,10 @@ var UnitFsmSpec = {
 
 	// States for entities moving as part of a formation:
 	"FORMATIONMEMBER": {
+		"HealthChanged": function(msg) {
+			if (this.IsAnimal() && msg.to == 0)
+				this.SetNextState("ANIMAL.CORPSE");
+		},
 
 		"FormationLeave": function(msg) {
 			// Stop moving as soon as the formation disbands
