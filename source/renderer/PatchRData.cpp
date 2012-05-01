@@ -836,7 +836,7 @@ struct SBlendStackItem
 	{
 	}
 
-	typedef std::vector<CPatchRData::SSplat, ProxyAllocator<CPatchRData::SSplat*, Allocators::Arena<> > > SplatStack;
+	typedef std::vector<CPatchRData::SSplat, ProxyAllocator<CPatchRData::SSplat, Allocators::Arena<> > > SplatStack;
 	CVertexBuffer::VBChunk* vertices;
 	CVertexBuffer::VBChunk* indices;
 	SplatStack splats;
@@ -846,7 +846,7 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
 {
 	Allocators::Arena<> arena(ARENA_SIZE);
 
-	typedef std::vector<SBlendBatch, ProxyAllocator<SBlendBatch*, Allocators::Arena<> > > BatchesStack;
+	typedef std::vector<SBlendBatch, ProxyAllocator<SBlendBatch, Allocators::Arena<> > > BatchesStack;
 	BatchesStack batches((BatchesStack::allocator_type(arena)));
 
  	PROFILE_START("compute batches");
@@ -855,7 +855,7 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
  	// to avoid heavy reallocations
  	batches.reserve(256);
 
-	typedef std::vector<SBlendStackItem, ProxyAllocator<SBlendStackItem*, Allocators::Arena<> > > BlendStacks;
+	typedef std::vector<SBlendStackItem, ProxyAllocator<SBlendStackItem, Allocators::Arena<> > > BlendStacks;
 	BlendStacks blendStacks((BlendStacks::allocator_type(arena)));
 	blendStacks.reserve(patches.size());
 

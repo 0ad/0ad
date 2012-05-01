@@ -85,7 +85,10 @@ function TestFormationExiting(mode)
 	AddMock(unit, IID_Attack, {
 		GetRange: function() { return 10; },
 		GetBestAttack: function() { return "melee"; },
+		GetBestAttackAgainst: function(t) { return "melee"; },
 		GetTimers: function() { return { "prepare": 500, "repeat": 1000 }; },
+		CanAttack: function(v) { return true; },
+		CompareEntitiesByPreference: function(a, b) { return 0; },
 	});
 
 	unitAI.OnCreate();

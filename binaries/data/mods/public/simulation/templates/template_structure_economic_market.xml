@@ -38,6 +38,11 @@
   <Obstruction>
     <Static width="17.0" depth="17.0"/>
   </Obstruction>
+  <ProductionQueue>
+    <Technologies datatype="tokens">
+      armor_trade_convoys
+    </Technologies>
+  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_market.xml</select>

@@ -171,7 +171,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	var cmpAttack = Engine.QueryInterface(ent, IID_Attack);
 	if (cmpAttack)
 	{
-		var type = cmpAttack.GetBestAttack(); // TODO: how should we decide which attack to show?
+		var type = cmpAttack.GetBestAttack(); // TODO: how should we decide which attack to show? show all?
 		ret.attack = cmpAttack.GetAttackStrengths(type);
 	}
 
@@ -273,9 +273,8 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	if (cmpUnitAI)
 	{
 		ret.unitAI = {
-			// TODO: reading properties directly is kind of violating abstraction
-			"state": cmpUnitAI.fsmStateName,
-			"orders": cmpUnitAI.orderQueue,
+			"state": cmpUnitAI.GetCurrentState(),
+			"orders": cmpUnitAI.GetOrders(),
 		};
 	}
 
@@ -838,6 +837,15 @@ GuiInterface.prototype.GetTradingDetails = function(player, data)
 	return result;
 };
 
+GuiInterface.prototype.CanAttack = function(player, data)
+{
+	var cmpAttack = Engine.QueryInterface(data.entity, IID_Attack);
+	if (!cmpAttack)
+		return false;
+
+	return cmpAttack.CanAttack(data.target);
+};
+
 GuiInterface.prototype.SetPathfinderDebugOverlay = function(player, enabled)
 {
 	var cmpPathfinder = Engine.QueryInterface(SYSTEM_ENTITY, IID_Pathfinder);
@@ -902,6 +910,7 @@ var exposedFunctions = {
 	"PlaySound": 1,
 	"FindIdleUnit": 1,
 	"GetTradingDetails": 1,
+	"CanAttack": 1,
 
 	"SetPathfinderDebugOverlay": 1,
 	"SetObstructionDebugOverlay": 1,

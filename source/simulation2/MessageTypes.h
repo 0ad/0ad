@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include "simulation2/system/Entity.h"
 #include "simulation2/system/Message.h"
 
+#include "simulation2/helpers/Player.h"
 #include "simulation2/helpers/Position.h"
 
 #include "simulation2/components/ICmpPathfinder.h"
@@ -220,14 +221,14 @@ class CMessageOwnershipChanged : public CMessage
 public:
 	DEFAULT_MESSAGE_IMPL(OwnershipChanged)
 
-	CMessageOwnershipChanged(entity_id_t entity, int32_t from, int32_t to) :
+	CMessageOwnershipChanged(entity_id_t entity, player_id_t from, player_id_t to) :
 		entity(entity), from(from), to(to)
 	{
 	}
 
 	entity_id_t entity;
-	int32_t from;
-	int32_t to;
+	player_id_t from;
+	player_id_t to;
 };
 
 /**
@@ -355,6 +356,23 @@ public:
 
 	u32 ticket;
 	ICmpPathfinder::Path path;
+};
+
+/**
+ * Sent by technology manager when a technology is researched that modifies a component.
+ */
+class CMessageTechnologyModification : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(TechnologyModification)
+
+	CMessageTechnologyModification(std::wstring component, player_id_t player) :
+		component(component), player(player)
+	{
+	}
+
+	std::wstring component;
+	player_id_t player;
 };
 
 #endif // INCLUDED_MESSAGETYPES

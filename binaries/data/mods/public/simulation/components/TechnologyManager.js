@@ -266,7 +266,7 @@ TechnologyManager.prototype.ResearchTechnology = function (tech)
 	var player = cmpPlayer.GetPlayerID();
 	
 	for (var component in modifiedComponents)
-		Engine.BroadcastMessage(MT_TechnologyModificationChange, { "component": component, "player": player });
+		Engine.BroadcastMessage(MT_TechnologyModification, { "component": component, "player": player });
 	
 	this.UpdateAutoResearch();
 };

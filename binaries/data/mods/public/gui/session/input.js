@@ -344,7 +344,7 @@ function getActionInfo(action, target)
 			break;
 		case "attack":
 			if (entState.attack && targetState.hitpoints && enemyOwned)
-				return {"possible": true};
+				return {"possible": Engine.GuiInterfaceCall("CanAttack", {"entity": entState.id, "target": target})};
 			break;
 		}
 	}

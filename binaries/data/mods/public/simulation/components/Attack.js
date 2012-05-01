@@ -18,6 +18,26 @@ var bonusesSchema =
 		"</element>" +
 	"</optional>";
 
+var preferredClassesSchema =
+	"<optional>" +
+		"<element name='PreferredClasses' a:help='Space delimited list of classes preferred for attacking. If an entity has any of theses classes, it is preferred. The classes are in decending order of preference.'>" +
+			"<attribute name='datatype'>" +
+				"<value>tokens</value>" +
+			"</attribute>" +
+			"<text/>" +
+		"</element>" +
+	"</optional>";
+
+var restrictedClassesSchema =
+	"<optional>" +
+		"<element name='RestrictedClasses' a:help='Space delimited list of classes that cannot be attacked by this entity. If target entity has any of these classes, it cannot be attacked'>" +
+			"<attribute name='datatype'>" +
+				"<value>tokens</value>" +
+			"</attribute>" +
+			"<text/>" +
+		"</element>" +
+	"</optional>";
+
 Attack.prototype.Schema =
 	"<a:help>Controls the attack abilities and strengths of the unit.</a:help>" +
 	"<a:example>" +
@@ -38,6 +58,8 @@ Attack.prototype.Schema =
 					"<Multiplier>1.5</Multiplier>" +
 				"</BonusCavMelee>" +
 			"</Bonuses>" +
+			"<RestrictedClasses datatype=\"tokens\">Champion</RestrictedClasses>" +
+			"<PreferredClasses datatype=\"tokens\">Cavalry Infantry</PreferredClasses>" +
 		"</Melee>" +
 		"<Ranged>" +
 			"<Hack>0.0</Hack>" +
@@ -54,6 +76,7 @@ Attack.prototype.Schema =
 					"<Multiplier>2</Multiplier>" +
 				"</Bonus1>" +
 			"</Bonuses>" +
+			"<RestrictedClasses datatype=\"tokens\">Champion</RestrictedClasses>" +
 		"</Ranged>" +
 		"<Charge>" +
 			"<Hack>10.0</Hack>" +
@@ -74,6 +97,8 @@ Attack.prototype.Schema =
 					"<data type='positiveInteger'/>" +
 				"</element>" +
 				bonusesSchema +
+				preferredClassesSchema +
+				restrictedClassesSchema +
 			"</interleave>" +
 		"</element>" +
 	"</optional>" +
@@ -95,6 +120,8 @@ Attack.prototype.Schema =
 					"<ref name='nonNegativeDecimal'/>" +
 				"</element>" +
 				bonusesSchema +
+				preferredClassesSchema +
+				restrictedClassesSchema +
 			"</interleave>" +
 		"</element>" +
 	"</optional>" +
@@ -107,6 +134,8 @@ Attack.prototype.Schema =
 				"<element name='MaxRange'><ref name='nonNegativeDecimal'/></element>" + // TODO: how do these work?
 				"<element name='MinRange'><ref name='nonNegativeDecimal'/></element>" +
 				bonusesSchema +
+				preferredClassesSchema +
+				restrictedClassesSchema +
 			"</interleave>" +
 		"</element>" +
 	"</optional>";
@@ -117,6 +146,89 @@ Attack.prototype.Init = function()
 
 Attack.prototype.Serialize = null; // we have no dynamic state to save
 
+Attack.prototype.GetAttackTypes = function()
+{
+	var ret = [];
+	if (this.template.Charge) ret.push("Charge");
+	if (this.template.Melee) ret.push("Melee");
+	if (this.template.Ranged) ret.push("Ranged");
+	return ret;
+};
+
+Attack.prototype.GetPreferredClasses = function(type)
+{
+	if (this.template[type] && this.template[type].PreferredClasses)
+	{
+		return this.template[type].PreferredClasses._string.split(/\s+/);
+	}
+	return [];
+};
+
+Attack.prototype.GetRestrictedClasses = function(type)
+{
+	if (this.template[type] && this.template[type].RestrictedClasses)
+	{
+		return this.template[type].RestrictedClasses._string.split(/\s+/);
+	}
+	return [];
+};
+
+Attack.prototype.CanAttack = function(target)
+{
+	const cmpIdentity = Engine.QueryInterface(target, IID_Identity);
+	if (!cmpIdentity) 
+		return undefined;
+
+	const targetClasses = cmpIdentity.GetClassesList();
+
+	for each (var type in this.GetAttackTypes())
+	{
+		var canAttack = true;
+		var restrictedClasses = this.GetRestrictedClasses(type);
+
+		for each (var targetClass in targetClasses)
+		{
+			if (restrictedClasses.indexOf(targetClass) != -1)
+			{
+				canAttack = false;
+				break;
+			}
+		}
+		if (canAttack)
+		{
+			return true;
+		}
+	}
+
+	return false;
+};
+
+/**
+ * Returns null if we have no preference or the lowest index of a preferred class.
+ */
+Attack.prototype.GetPreference = function(target)
+{
+	const cmpIdentity = Engine.QueryInterface(target, IID_Identity);
+	if (!cmpIdentity) 
+		return undefined;
+
+	const targetClasses = cmpIdentity.GetClassesList();
+	
+	var minPref = null;
+	for each (var type in this.GetAttackTypes())
+	{
+		for each (var targetClass in targetClasses)
+		{
+			var pref = this.GetPreferredClasses(type).indexOf(targetClass);
+			if (pref != -1 && (minPref === null || minPref > pref))
+			{
+				minPref = pref;
+			}
+		}
+	}
+	return minPref;
+};
+
 /**
  * Return the type of the best attack.
  * TODO: this should probably depend on range, target, etc,
@@ -124,14 +236,35 @@ Attack.prototype.Serialize = null; // we have no dynamic state to save
  */
 Attack.prototype.GetBestAttack = function()
 {
-	if (this.template.Ranged)
-		return "Ranged";
-	else if (this.template.Melee)
-		return "Melee";
-	else if (this.template.Charge)
-		return "Charge";
-	else
+	return this.GetAttackTypes().pop();
+};
+
+Attack.prototype.GetBestAttackAgainst = function(target)
+{
+	const cmpIdentity = Engine.QueryInterface(target, IID_Identity);
+	if (!cmpIdentity) 
 		return undefined;
+
+	const targetClasses = cmpIdentity.GetClassesList();
+	const isTargetClass = function (value, i, a) { return targetClasses.indexOf(value) != -1; };
+	const types = this.GetAttackTypes();
+	const attack = this;
+	const isAllowed = function (value, i, a) { return !attack.GetRestrictedClasses(value).some(isTargetClass); }
+	const isPreferred = function (value, i, a) { return attack.GetPreferredClasses(value).some(isTargetClass); }
+	const byPreference = function (a, b) { return (types.indexOf(a) + (isPreferred(a) ? types.length : 0) ) - (types.indexOf(b) + (isPreferred(b) ? types.length : 0) ); }
+
+	return types.filter(isAllowed).sort(byPreference).pop();
+};
+
+Attack.prototype.CompareEntitiesByPreference = function(a, b)
+{
+	var aPreference = this.GetPreference(a);
+	var bPreference = this.GetPreference(b);
+
+	if (aPreference === null && bPreference === null) return 0;
+	if (aPreference === null) return 1;
+	if (bPreference === null) return -1;
+	return aPreference - bPreference;
 };
 
 Attack.prototype.GetTimers = function(type)

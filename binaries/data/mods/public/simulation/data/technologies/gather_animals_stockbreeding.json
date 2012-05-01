@@ -1,0 +1,12 @@
+{
+	"genericName": "Stockbreeding",
+	"description": "Breeding livestock for food.",
+	"cost": {"food": 50, "wood": 200, "stone": 50, "metal": 0},
+	"requirements": {"tech": "phase_town"},
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "meat.png",
+	"researchTime": 30,
+	"tooltip": "+25% meat gathering rate for all workers.",
+	"modifications": [{"value": "ResourceGatherer/Rates/food.meat", "multiplier": 1.25}],
+	"affects": ["Worker"]
+}
