@@ -1,0 +1,12 @@
+{
+	"genericName": "Armour plating",
+	"description": "Increased armour on siege weapons",
+	"cost": {"food": 0, "wood": 300, "stone": 0, "metal": 350},
+	"requirements": {"tech": "phase_city"},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "armor_plates_gold.png",
+	"researchTime": 30,
+	"tooltip": "All Siege weapons +2 Hack Armour",
+	"modifications": [{"value": "Armour/Hack", "add": 5.0}],
+	"affects": ["Siege"]
+}

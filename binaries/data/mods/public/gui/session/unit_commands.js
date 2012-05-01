@@ -396,24 +396,32 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		// Button Function (need nested functions to get the closure right)
 		button.onpress = (function(e){ return function() { callback(e) } })(item);
 
-		if (item.pair)
+		if (guiName == RESEARCH)
 		{
-			button.onpress = (function(e){ return function() { callback(e) } })(item.bottom);
+			if (item.pair)
+			{
+				button.onpress = (function(e){ return function() { callback(e) } })(item.bottom);
 
-			var icon1 = getGUIObjectByName("unit"+guiName+"Icon["+(i+rowLength)+"]");
-			button1.hidden = false;
-			button1.tooltip = tooltip1;
-			button1.onpress = (function(e){ return function() { callback(e) } })(item.top);
+				var icon1 = getGUIObjectByName("unit"+guiName+"Icon["+(i+rowLength)+"]");
+				button1.hidden = false;
+				button1.tooltip = tooltip1;
+				button1.onpress = (function(e){ return function() { callback(e) } })(item.top);
 
-			// We add a red overlay to the paired button (we reuse the selection for that)
-			button1.onmouseenter = (function(e){ return function() { setOverlay(e, true) } })(selection);
-			button1.onmouseleave = (function(e){ return function() { setOverlay(e, false) } })(selection);
+				// We add a red overlay to the paired button (we reuse the selection for that)
+				button1.onmouseenter = (function(e){ return function() { setOverlay(e, true) } })(selection);
+				button1.onmouseleave = (function(e){ return function() { setOverlay(e, false) } })(selection);
 
-			var selection1 = getGUIObjectByName("unit"+guiName+"Selection["+(i+rowLength)+"]");;
-			button.onmouseenter = (function(e){ return function() { setOverlay(e, true) } })(selection1);
-			button.onmouseleave = (function(e){ return function() { setOverlay(e, false) } })(selection1);
+				var selection1 = getGUIObjectByName("unit"+guiName+"Selection["+(i+rowLength)+"]");;
+				button.onmouseenter = (function(e){ return function() { setOverlay(e, true) } })(selection1);
+				button.onmouseleave = (function(e){ return function() { setOverlay(e, false) } })(selection1);
 
-			pair.hidden = false;
+				pair.hidden = false;
+			}
+			else
+			{
+				// Hide the overlay
+				selection.hidden = true;
+			}
 		}
 
 		// Get icon image
