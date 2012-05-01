@@ -233,9 +233,10 @@ EconomyManager.prototype.updateResourceMaps = function(gameState, events){
 			if (e.type === "Destroy") {
 				if (e.msg.entityObj){
 					var ent = e.msg.entityObj;
-					if (ent && ent.resourceSupplyType() && ent.resourceSupplyType().generic === resource){
-						var x = Math.round(ent.position()[0] / gameState.cellSize);
-						var z = Math.round(ent.position()[1] / gameState.cellSize);
+					var pos;
+					if (ent && (pos = ent.position()) && ent.resourceSupplyType() && ent.resourceSupplyType().generic === resource){
+						var x = Math.round(pos[0] / gameState.cellSize);
+						var z = Math.round(pos[1] / gameState.cellSize);
 						var strength = Math.round(ent.resourceSupplyMax()/decreaseFactor[resource]);
 						this.resourceMaps[resource].addInfluence(x, z, radius[resource], -1*strength);
 					}
