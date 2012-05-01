@@ -249,7 +249,7 @@ var UnitFsmSpec = {
 		}
 
 		// Work out how to attack the given target
-		var type = this.GetBestAttack();
+		var type = this.GetBestAttackAgainst(this.order.data.target);
 		if (!type)
 		{
 			// Oops, we can't attack at all
@@ -336,7 +336,7 @@ var UnitFsmSpec = {
 		if (this.MustKillGatherTarget(this.order.data.target) && this.CheckTargetVisible(this.order.data.target))
 		{
 			// Make sure we can attack the target, else we'll get very stuck
-			if (!this.GetBestAttack())
+			if (!this.GetBestAttackAgainst(this.order.data.target))
 			{
 				// Oops, we can't attack at all - give up
 				// TODO: should do something so the player knows why this failed
@@ -644,10 +644,10 @@ var UnitFsmSpec = {
 				if (this.GetStance().targetVisibleEnemies)
 				{
 					// Start attacking one of the newly-seen enemy (if any)
-					this.RespondToTargetedEntities(msg.data.added);
+					this.RespondToTargetedEntities(this.GetAttackableEntitiesByPreference(msg.data.added));
 				}
 			},
-			
+
 			"LosHealRangeUpdate": function(msg) {
 				this.RespondToHealableEntities(msg.data.added);
 			},
@@ -2437,6 +2437,14 @@ UnitAI.prototype.GetBestAttack = function()
 	return cmpAttack.GetBestAttack();
 };
 
+UnitAI.prototype.GetBestAttackAgainst = function(target)
+{
+	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	if (!cmpAttack)
+		return undefined;
+	return cmpAttack.GetBestAttackAgainst(target);
+};
+
 /**
  * Try to find one of the given entities which can be attacked,
  * and start attacking it.
@@ -2462,9 +2470,9 @@ UnitAI.prototype.AttackVisibleEntity = function(ents)
  */
 UnitAI.prototype.AttackEntityInZone = function(ents)
 {
-	var type = this.GetBestAttack();
 	for each (var target in ents)
 	{
+		var type = this.GetBestAttackAgainst(target);
 		if (this.CanAttack(target) && this.CheckTargetDistanceFromHeldPosition(target, IID_Attack, type))
 		{
 			this.PushOrderFront("Attack", { "target": target, "force": false });
@@ -2928,8 +2936,7 @@ UnitAI.prototype.FindNewTargets = function()
 	if (!this.GetStance().targetVisibleEnemies)
 		return false;
 
-	SortEntitiesByPriority(ents);
-	return this.RespondToTargetedEntities(ents);
+	return this.RespondToTargetedEntities(this.GetAttackableEntitiesByPreference(ents));
 };
 
 /**
@@ -3023,6 +3030,9 @@ UnitAI.prototype.CanAttack = function(target)
 	// Verify that we're able to respond to Attack commands
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 	if (!cmpAttack)
+		return false;    
+
+	if (!cmpAttack.CanAttack(target))
 		return false;
 
 	// Verify that the target is alive
@@ -3264,6 +3274,17 @@ UnitAI.prototype.WalkToHeldPosition = function()
 		return true;
 	}
 	return false;
+};
+
+UnitAI.prototype.GetAttackableEntitiesByPreference = function(ents)
+{
+	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	if (!cmpAttack)
+		return [];
+
+	return ents
+		.filter(function (v, i, a) { return cmpAttack.CanAttack(v); })
+		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); });
 };
 
 Engine.RegisterComponentType(IID_UnitAI, "UnitAI", UnitAI);
