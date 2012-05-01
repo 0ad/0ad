@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,10 @@
 
 #include "simulation2/system/Component.h"
 #include "ICmpTerritoryInfluence.h"
+
+#include "simulation2/components/ICmpOwnership.h"
+#include "simulation2/components/ICmpPlayerManager.h"
+#include "simulation2/components/ICmpTechnologyManager.h"
 
 class CCmpTerritoryInfluence : public ICmpTerritoryInfluence
 {
@@ -97,7 +101,23 @@ public:
 
 	virtual u32 GetRadius()
 	{
-		return m_Radius;
+		u32 newRadius = m_Radius;
+
+		CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), GetEntityId());
+		if (cmpOwnership && cmpOwnership->GetOwner() != INVALID_PLAYER)
+		{
+			CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSimContext(), SYSTEM_ENTITY);
+			entity_id_t playerEnt = cmpPlayerManager->GetPlayerByID(cmpOwnership->GetOwner());
+
+			if (playerEnt != INVALID_ENTITY)
+			{
+				CmpPtr<ICmpTechnologyManager> cmpTechnologyManager(GetSimContext(), playerEnt);
+				if (cmpTechnologyManager)
+					newRadius = cmpTechnologyManager->ApplyModifications(L"TerritoryInfluence/Radius", m_Radius, GetEntityId());
+			}
+		}
+
+		return newRadius;
 	}
 };
 

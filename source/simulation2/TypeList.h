@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,6 +47,7 @@ MESSAGE(RangeUpdate)
 MESSAGE(TerrainChanged)
 MESSAGE(TerritoriesChanged)
 MESSAGE(PathResult)
+MESSAGE(TechnologyModification)
 
 // TemplateManager must come before all other (non-test) components,
 // so that it is the first to be (de)serialized
@@ -132,6 +133,9 @@ COMPONENT(SettlementScripted)
 
 INTERFACE(SoundManager)
 COMPONENT(SoundManager)
+
+INTERFACE(TechnologyManager)
+COMPONENT(TechnologyManagerScripted)
 
 INTERFACE(Terrain)
 COMPONENT(Terrain)

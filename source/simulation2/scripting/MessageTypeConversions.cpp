@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -183,8 +183,8 @@ CMessage* CMessageOwnershipChanged::FromJSVal(ScriptInterface& scriptInterface, 
 {
 	FROMJSVAL_SETUP();
 	GET_MSG_PROPERTY(entity_id_t, entity);
-	GET_MSG_PROPERTY(int32_t, from);
-	GET_MSG_PROPERTY(int32_t, to);
+	GET_MSG_PROPERTY(player_id_t, from);
+	GET_MSG_PROPERTY(player_id_t, to);
 	return new CMessageOwnershipChanged(entity, from, to);
 }
 
@@ -294,6 +294,24 @@ CMessage* CMessagePathResult::FromJSVal(ScriptInterface& UNUSED(scriptInterface)
 {
 	LOGWARNING(L"CMessagePathResult::FromJSVal not implemented");
 	return NULL;
+}
+
+////////////////////////////////
+
+jsval CMessageTechnologyModification::ToJSVal(ScriptInterface& scriptInterface) const
+{
+	TOJSVAL_SETUP();
+	SET_MSG_PROPERTY(component);
+	SET_MSG_PROPERTY(player);
+	return OBJECT_TO_JSVAL(obj);
+}
+
+CMessage* CMessageTechnologyModification::FromJSVal(ScriptInterface& scriptInterface, jsval val)
+{
+	FROMJSVAL_SETUP();
+	GET_MSG_PROPERTY(std::wstring, component);
+	GET_MSG_PROPERTY(player_id_t, player);
+	return new CMessageTechnologyModification(component, player);
 }
 
 ////////////////////////////////////////////////////////////////
