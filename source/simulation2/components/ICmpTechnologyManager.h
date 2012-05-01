@@ -15,8 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_ICMPPLAYER
-#define INCLUDED_ICMPPLAYER
+#ifndef INCLUDED_ICMPTECHNOLOGYMANAGER
+#define INCLUDED_ICMPTECHNOLOGYMANAGER
 
 #include "simulation2/system/Interface.h"
 
@@ -36,4 +36,4 @@ public:
 	DECLARE_INTERFACE_TYPE(TechnologyManager)
 };
 
-#endif // INCLUDED_ICMPPLAYER
+#endif // INCLUDED_ICMPTECHNOLOGYMANAGER
