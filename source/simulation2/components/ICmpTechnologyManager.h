@@ -23,9 +23,9 @@
 #include "maths/Fixed.h"
 
 /**
- * Player data.
- * (This interface only includes the functions needed by native code for loading maps,
- * and for minimap rendering; most player interaction is handled by scripts instead.)
+ * Technology manager interface.
+ * (This interface only includes the functions needed by native code for accessing
+ *	technology modification data, the associated logic is handled in scripts)
  */
 class ICmpTechnologyManager : public IComponent
 {
