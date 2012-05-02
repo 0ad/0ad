@@ -233,12 +233,23 @@ EconomyManager.prototype.updateResourceMaps = function(gameState, events){
 			if (e.type === "Destroy") {
 				if (e.msg.entityObj){
 					var ent = e.msg.entityObj;
-					var pos;
-					if (ent && (pos = ent.position()) && ent.resourceSupplyType() && ent.resourceSupplyType().generic === resource){
+					var pos = ent.position();
+					if (ent && pos && ent.resourceSupplyType() && ent.resourceSupplyType().generic === resource){
 						var x = Math.round(pos[0] / gameState.cellSize);
 						var z = Math.round(pos[1] / gameState.cellSize);
 						var strength = Math.round(ent.resourceSupplyMax()/decreaseFactor[resource]);
-						this.resourceMaps[resource].addInfluence(x, z, radius[resource], -1*strength);
+						this.resourceMaps[resource].addInfluence(x, z, radius[resource], -strength);
+					}
+				}
+			}else if (e.type === "Create") {
+				if (e.msg.entityObj){
+					var ent = e.msg.entityObj;
+					var pos = ent.position();
+					if (ent && pos && ent.resourceSupplyType() && ent.resourceSupplyType().generic === resource){
+						var x = Math.round(pos[0] / gameState.cellSize);
+						var z = Math.round(pos[1] / gameState.cellSize);
+						var strength = Math.round(ent.resourceSupplyMax()/decreaseFactor[resource]);
+						this.resourceMaps[resource].addInfluence(x, z, radius[resource], strength);
 					}
 				}
 			}

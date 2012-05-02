@@ -3,11 +3,16 @@
 ////////////////////////////////////////////////////////////////////
 
 // To do:
+// Use available civ-type wall elements rather than palisades: Remove 'endLeft' and 'endRight' as default wall elements and adjust default palisade fortress types
+// Add roman army camp to style palisades and add upgraded default palisade fortress types matching civ default fortresses
 // Add some more checks and warnings for example if wall elements with bending are used for linear/circular wall placement
-// Add some more documentation
-// Add further wall elements cornerHalfIn, cornerHalfOut and adjust default fortress types
+// Adjust documentation
+// Add further wall elements cornerHalfIn, cornerHalfOut and adjust default fortress types to better fit in the octagonal territory of a civil center
+// Add further wall elements wallShort, wallLong and adjust default fortress types (Waiting for all entities)
+// Remove endRight, endLeft and adjust generic fortress types palisades
 // Add wall style 'roads'
 // Add trsures to 'others'
+// Think of something to enable splitting walls into two walls so more complex walls can be build and roads can have branches/crossroads
 
 
 ///////////////////////////////
@@ -41,9 +46,6 @@ function WallElement(type, entity, angle, width, indent, bending)
 		// 'entry': A wall element like the gate but without an actual template or just a flag/column/obelisk
 		// 'entryTower': A non-blocking straight wall element represented by a single (maybe indented) template, example: defense tower, wall tower, outpost, watchtower
 		// 'entryFort': A non-blocking straight wall element represented by a single (maybe indented) template, example: fortress, palisade fort
-	// Enlengthening straight blocking non-left/right-symetric wall elements (Wall endings/closings)
-		// 'endLeft': A straight wall element that (only visually) finalizes the wall to the left (e.g. right of entrys), example: wall tower, palisade ending
-		// 'endRight': A straight wall element that (only visually) finalizes the wall to the right (e.g. left of entrys), example: wall tower, palisade ending
 	// Bending wall elements (Wall corners)
 		// 'cornerIn': A wall element bending the wall by PI/2 'inside' (left, +, see above), example: wall tower, palisade curve
 		// 'cornerOut': A wall element bending the wall by PI/2 'outside' (right, -, see above), example: wall tower, palisade curve
@@ -77,6 +79,7 @@ function Fortress(type, wall, center)
 	this.center = [0, 0]; // X/Z offset (in default orientation) from first wall element to center, perhaps should be the other way around...
 }
 
+
 ////////////////////////////////////////////////////
 // Setup data structure for some default wall styles
 ////////////////////////////////////////////////////
@@ -84,135 +87,204 @@ function Fortress(type, wall, center)
 // A wall style is an associative array with all wall elements of that style in it associated with the wall element type string.
 // wallStyles holds all the wall styles within an associative array while a wall style is associated with the civ string or another descriptive strings like 'palisades', 'fence', 'cart', 'celt'...
 var wallStyles = {};
+// Add civilisation wall style 'athen'
+wallStyles['athen'] = {};
+wallStyles['athen']['wall'] = new WallElement('wall', 'structures/athen_wall_medium', 0*PI, 5.9);
+wallStyles['athen']['wallLong'] = new WallElement('wall', 'structures/athen_wall_long', 0*PI, 8.9);
+wallStyles['athen']['wallShort'] = new WallElement('wall', 'structures/athen_wall_short', 0*PI, 3);
+wallStyles['athen']['tower'] = new WallElement('tower', 'structures/athen_wall_tower', PI, 1.7);
+wallStyles['athen']['wallFort'] = new WallElement('wallFort', 'structures/athen_fortress', 2*PI/2 /* PI/2 */, 5.1 /* 5.6 */, 1.9 /* 1.9 */);
+wallStyles['athen']['gate'] = new WallElement('gate', 'structures/athen_wall_gate', 0*PI, 9.1);
+wallStyles['athen']['entry'] = new WallElement('entry', undefined, wallStyles['athen']['gate'].angle, wallStyles['athen']['gate'].width);
+wallStyles['athen']['entryTower'] = new WallElement('entry', 'structures/athen_defense_tower', PI, wallStyles['athen']['gate'].width, -5);
+wallStyles['athen']['entryFort'] = new WallElement('entryFort', 'structures/athen_fortress', 5*PI/2, 12, 7);
+wallStyles['athen']['cornerIn'] = new WallElement('cornerIn', 'structures/athen_wall_tower', 5*PI/4, 0, 0.5, PI/2);
+wallStyles['athen']['cornerOut'] = new WallElement('cornerOut', 'structures/athen_wall_tower', 3*PI/4, 1, 0, -PI/2);
+wallStyles['athen']['outpost'] = new WallElement('outpost', 'structures/athen_outpost', PI, 0, -5);
+wallStyles['athen']['house'] = new WallElement('house', 'structures/athen_house', 3*PI/2, 0, 6);
+wallStyles['athen']['barracks'] = new WallElement('barracks', 'structures/athen_barracks', PI, 0, 6);
+wallStyles['athen']['endRight'] = new WallElement('endRight', wallStyles['athen']['tower'].entity, wallStyles['athen']['tower'].angle, wallStyles['athen']['tower'].width);
+wallStyles['athen']['endLeft'] = new WallElement('endLeft', wallStyles['athen']['tower'].entity, wallStyles['athen']['tower'].angle, wallStyles['athen']['tower'].width);
 // Add civilisation wall style 'cart'
 wallStyles['cart'] = {};
-wallStyles['cart']['wall'] = new WallElement('wall', 'structures/cart_wall', 0*PI, 6.2);
-wallStyles['cart']['tower'] = new WallElement('tower', 'structures/cart_wall_tower', PI, 2.7);
+wallStyles['cart']['wall'] = new WallElement('wall', 'structures/cart_wall_medium', 0*PI, 7.2);
+wallStyles['cart']['wallLong'] = new WallElement('wall', 'structures/cart_wall_long', 0*PI, 10.8);
+wallStyles['cart']['wallShort'] = new WallElement('wall', 'structures/cart_wall_short', 0*PI, 3.6);
+wallStyles['cart']['tower'] = new WallElement('tower', 'structures/cart_wall_tower', PI, 2.4);
 wallStyles['cart']['wallFort'] = new WallElement('wallFort', 'structures/cart_fortress', PI, 5.1, 1.6);
 wallStyles['cart']['gate'] = new WallElement('gate', 'structures/cart_wall_gate', 0*PI, 6.2);
 wallStyles['cart']['entry'] = new WallElement('entry', undefined, wallStyles['cart']['gate'].angle, wallStyles['cart']['gate'].width);
-wallStyles['cart']['entryTower'] = new WallElement('entryTower', 'structures/cart_defense_tower', PI, 6.2, -5);
+wallStyles['cart']['entryTower'] = new WallElement('entryTower', 'structures/cart_defense_tower', PI, wallStyles['cart']['gate'].width, -5);
 wallStyles['cart']['entryFort'] = new WallElement('entryFort', 'structures/cart_fortress', PI, 12, 7);
-wallStyles['cart']['endRight'] = new WallElement('endRight', wallStyles['cart']['tower'].entity, wallStyles['cart']['tower'].angle, wallStyles['cart']['tower'].width);
-wallStyles['cart']['endLeft'] = new WallElement('endLeft', wallStyles['cart']['tower'].entity, wallStyles['cart']['tower'].angle, wallStyles['cart']['tower'].width);
 wallStyles['cart']['cornerIn'] = new WallElement('cornerIn', 'structures/cart_wall_tower', 5*PI/4, 0, 0.8, PI/2);
 wallStyles['cart']['cornerOut'] = new WallElement('cornerOut', 'structures/cart_wall_tower', 3*PI/4, 1.3 /*1.6*/, 0, -PI/2);
 wallStyles['cart']['outpost'] = new WallElement('outpost', 'structures/cart_outpost', PI, 0, -5);
 wallStyles['cart']['house'] = new WallElement('house', 'structures/cart_house', PI, 0, 7);
 wallStyles['cart']['barracks'] = new WallElement('barracks', 'structures/cart_barracks', PI, 0, 7);
+wallStyles['cart']['endRight'] = new WallElement('endRight', wallStyles['cart']['tower'].entity, wallStyles['cart']['tower'].angle, wallStyles['cart']['tower'].width);
+wallStyles['cart']['endLeft'] = new WallElement('endLeft', wallStyles['cart']['tower'].entity, wallStyles['cart']['tower'].angle, wallStyles['cart']['tower'].width);
 // Add civilisation wall style 'celt'
 wallStyles['celt'] = {};
-wallStyles['celt']['wall'] = new WallElement('wall', 'structures/celt_wall', 0*PI, 5.9);
-wallStyles['celt']['tower'] = new WallElement('tower', 'structures/celt_wall_tower', PI, 1.9);
+wallStyles['celt']['wall'] = new WallElement('wall', 'structures/celt_wall_medium', 0*PI, 5.9);
+wallStyles['celt']['wallLong'] = new WallElement('wall', 'structures/celt_wall_long', 0*PI, 8.9);
+wallStyles['celt']['wallShort'] = new WallElement('wall', 'structures/celt_wall_short', 0*PI, 2.9);
+wallStyles['celt']['tower'] = new WallElement('tower', 'structures/celt_wall_tower', PI, 1.7);
 wallStyles['celt']['wallFort'] = new WallElement('wallFort', 'structures/celt_fortress_g', PI, 4.2, 1.5);
 wallStyles['celt']['gate'] = new WallElement('gate', 'structures/celt_wall_gate', 0*PI, 5.6);
 wallStyles['celt']['entry'] = new WallElement('entry', undefined, wallStyles['celt']['gate'].angle, wallStyles['celt']['gate'].width);
-wallStyles['celt']['entryTower'] = new WallElement('entryTower', 'structures/celt_defense_tower', PI, 6, -5);
+wallStyles['celt']['entryTower'] = new WallElement('entryTower', 'structures/celt_defense_tower', PI, wallStyles['celt']['gate'].width, -5);
 wallStyles['celt']['entryFort'] = new WallElement('entryFort', 'structures/celt_fortress_b', PI, 8, 5);
-wallStyles['celt']['endRight'] = new WallElement('endRight', wallStyles['celt']['tower'].entity, wallStyles['celt']['tower'].angle, wallStyles['celt']['tower'].width);
-wallStyles['celt']['endLeft'] = new WallElement('endLeft', wallStyles['celt']['tower'].entity, wallStyles['celt']['tower'].angle, wallStyles['celt']['tower'].width);
 wallStyles['celt']['cornerIn'] = new WallElement('cornerIn', 'structures/celt_wall_tower', 5*PI/4, 0, 0.7, PI/2);
 wallStyles['celt']['cornerOut'] = new WallElement('cornerOut', 'structures/celt_wall_tower', 3*PI/4, 1.3, 0, -PI/2);
 wallStyles['celt']['outpost'] = new WallElement('outpost', 'structures/celt_outpost', PI, 0, -5);
 wallStyles['celt']['house'] = new WallElement('house', 'structures/celt_house', PI, 0, 3);
 wallStyles['celt']['barracks'] = new WallElement('barracks', 'structures/celt_barracks', PI, 0, 7);
+wallStyles['celt']['endRight'] = new WallElement('endRight', wallStyles['celt']['tower'].entity, wallStyles['celt']['tower'].angle, wallStyles['celt']['tower'].width);
+wallStyles['celt']['endLeft'] = new WallElement('endLeft', wallStyles['celt']['tower'].entity, wallStyles['celt']['tower'].angle, wallStyles['celt']['tower'].width);
 // Add civilisation wall style 'hele'
 wallStyles['hele'] = {};
-wallStyles['hele']['wall'] = new WallElement('wall', 'structures/hele_wall', 0*PI, 5.95);
-wallStyles['hele']['tower'] = new WallElement('tower', 'structures/hele_wall_tower', PI, 1.5);
+wallStyles['hele']['wall'] = new WallElement('wall', 'structures/hele_wall_medium', 0*PI, 5.9);
+wallStyles['hele']['wallLong'] = new WallElement('wall', 'structures/hele_wall_long', 0*PI, 8.9);
+wallStyles['hele']['wallShort'] = new WallElement('wall', 'structures/hele_wall_short', 0*PI, 3);
+wallStyles['hele']['tower'] = new WallElement('tower', 'structures/hele_wall_tower', PI, 1.7);
 wallStyles['hele']['wallFort'] = new WallElement('wallFort', 'structures/hele_fortress', 2*PI/2 /* PI/2 */, 5.1 /* 5.6 */, 1.9 /* 1.9 */);
 wallStyles['hele']['gate'] = new WallElement('gate', 'structures/hele_wall_gate', 0*PI, 9.1);
 wallStyles['hele']['entry'] = new WallElement('entry', undefined, wallStyles['hele']['gate'].angle, wallStyles['hele']['gate'].width);
-wallStyles['hele']['entryTower'] = new WallElement('entry', 'structures/hele_defense_tower', PI, 9.1, -5);
+wallStyles['hele']['entryTower'] = new WallElement('entry', 'structures/hele_defense_tower', PI, wallStyles['hele']['gate'].width, -5);
 wallStyles['hele']['entryFort'] = new WallElement('entryFort', 'structures/hele_fortress', 5*PI/2, 12, 7);
-wallStyles['hele']['endRight'] = new WallElement('endRight', wallStyles['hele']['tower'].entity, wallStyles['hele']['tower'].angle, wallStyles['hele']['tower'].width);
-wallStyles['hele']['endLeft'] = new WallElement('endLeft', wallStyles['hele']['tower'].entity, wallStyles['hele']['tower'].angle, wallStyles['hele']['tower'].width);
 wallStyles['hele']['cornerIn'] = new WallElement('cornerIn', 'structures/hele_wall_tower', 5*PI/4, 0, 0.5, PI/2);
 wallStyles['hele']['cornerOut'] = new WallElement('cornerOut', 'structures/hele_wall_tower', 3*PI/4, 1, 0, -PI/2);
 wallStyles['hele']['outpost'] = new WallElement('outpost', 'structures/hele_outpost', PI, 0, -5);
 wallStyles['hele']['house'] = new WallElement('house', 'structures/hele_house', 3*PI/2, 0, 6);
 wallStyles['hele']['barracks'] = new WallElement('barracks', 'structures/hele_barracks', PI, 0, 6);
+wallStyles['hele']['endRight'] = new WallElement('endRight', wallStyles['hele']['tower'].entity, wallStyles['hele']['tower'].angle, wallStyles['hele']['tower'].width);
+wallStyles['hele']['endLeft'] = new WallElement('endLeft', wallStyles['hele']['tower'].entity, wallStyles['hele']['tower'].angle, wallStyles['hele']['tower'].width);
 // Add civilisation wall style 'iber'
 wallStyles['iber'] = {};
-wallStyles['iber']['wall'] = new WallElement('wall', 'structures/iber_wall', 0*PI, 6);
+wallStyles['iber']['wall'] = new WallElement('wall', 'structures/iber_wall_medium', 0*PI, 6);
+wallStyles['iber']['wallLong'] = new WallElement('wall', 'structures/iber_wall_long', 0*PI, 9);
+wallStyles['iber']['wallShort'] = new WallElement('wall', 'structures/iber_wall_short', 0*PI, 2.9);
 wallStyles['iber']['tower'] = new WallElement('tower', 'structures/iber_wall_tower', PI, 1.7);
-wallStyles['iber']['wallFort'] = new WallElement('wallFort', 'structures/iber_fortress', PI, 4.6, 0.7);
+wallStyles['iber']['wallFort'] = new WallElement('wallFort', 'structures/iber_fortress', PI, 5, 0.2);
 wallStyles['iber']['gate'] = new WallElement('gate', 'structures/iber_wall_gate', 0*PI, 7.9);
 wallStyles['iber']['entry'] = new WallElement('entry', undefined, wallStyles['iber']['gate'].angle, wallStyles['iber']['gate'].width);
-wallStyles['iber']['entryTower'] = new WallElement('entryTower', 'structures/iber_wall_tower', PI, 6.9, -5);
+wallStyles['iber']['entryTower'] = new WallElement('entryTower', 'structures/iber_wall_tower', PI, wallStyles['iber']['gate'].width, -5);
 wallStyles['iber']['entryFort'] = new WallElement('entryFort', 'structures/iber_fortress', PI/2, 12, 7);
-wallStyles['iber']['endRight'] = new WallElement('endRight', wallStyles['iber']['tower'].entity, wallStyles['iber']['tower'].angle, wallStyles['iber']['tower'].width);
-wallStyles['iber']['endLeft'] = new WallElement('endLeft', wallStyles['iber']['tower'].entity, wallStyles['iber']['tower'].angle, wallStyles['iber']['tower'].width);
 wallStyles['iber']['cornerIn'] = new WallElement('cornerIn', 'structures/iber_wall_tower', 5*PI/4, 1.7, 0, PI/2);
 wallStyles['iber']['cornerOut'] = new WallElement('cornerOut', 'structures/iber_wall_tower', 3*PI/4, 1.7, 0, -PI/2);
 wallStyles['iber']['outpost'] = new WallElement('outpost', 'structures/iber_outpost', PI, 0, -5);
 wallStyles['iber']['house'] = new WallElement('house', 'structures/iber_house', PI, 0, 4);
 wallStyles['iber']['barracks'] = new WallElement('barracks', 'structures/iber_barracks', PI, 0, 7);
+wallStyles['iber']['endRight'] = new WallElement('endRight', wallStyles['iber']['tower'].entity, wallStyles['iber']['tower'].angle, wallStyles['iber']['tower'].width);
+wallStyles['iber']['endLeft'] = new WallElement('endLeft', wallStyles['iber']['tower'].entity, wallStyles['iber']['tower'].angle, wallStyles['iber']['tower'].width);
+// Add civilisation wall style 'mace'
+wallStyles['mace'] = {};
+wallStyles['mace']['wall'] = new WallElement('wall', 'structures/mace_wall_medium', 0*PI, 5.9);
+wallStyles['mace']['wallLong'] = new WallElement('wall', 'structures/mace_wall_long', 0*PI, 8.9);
+wallStyles['mace']['wallShort'] = new WallElement('wall', 'structures/mace_wall_short', 0*PI, 3);
+wallStyles['mace']['tower'] = new WallElement('tower', 'structures/mace_wall_tower', PI, 1.7);
+wallStyles['mace']['wallFort'] = new WallElement('wallFort', 'structures/mace_fortress', 2*PI/2 /* PI/2 */, 5.1 /* 5.6 */, 1.9 /* 1.9 */);
+wallStyles['mace']['gate'] = new WallElement('gate', 'structures/mace_wall_gate', 0*PI, 9.1);
+wallStyles['mace']['entry'] = new WallElement('entry', undefined, wallStyles['mace']['gate'].angle, wallStyles['mace']['gate'].width);
+wallStyles['mace']['entryTower'] = new WallElement('entry', 'structures/mace_defense_tower', PI, wallStyles['mace']['gate'].width, -5);
+wallStyles['mace']['entryFort'] = new WallElement('entryFort', 'structures/mace_fortress', 5*PI/2, 12, 7);
+wallStyles['mace']['cornerIn'] = new WallElement('cornerIn', 'structures/mace_wall_tower', 5*PI/4, 0, 0.5, PI/2);
+wallStyles['mace']['cornerOut'] = new WallElement('cornerOut', 'structures/mace_wall_tower', 3*PI/4, 1, 0, -PI/2);
+wallStyles['mace']['outpost'] = new WallElement('outpost', 'structures/mace_outpost', PI, 0, -5);
+wallStyles['mace']['house'] = new WallElement('house', 'structures/mace_house', 3*PI/2, 0, 6);
+wallStyles['mace']['barracks'] = new WallElement('barracks', 'structures/mace_barracks', PI, 0, 6);
+wallStyles['mace']['endRight'] = new WallElement('endRight', wallStyles['mace']['tower'].entity, wallStyles['mace']['tower'].angle, wallStyles['mace']['tower'].width);
+wallStyles['mace']['endLeft'] = new WallElement('endLeft', wallStyles['mace']['tower'].entity, wallStyles['mace']['tower'].angle, wallStyles['mace']['tower'].width);
 // Add civilisation wall style 'pers'
 wallStyles['pers'] = {};
-wallStyles['pers']['wall'] = new WallElement('wall', 'structures/pers_wall', 0*PI, 5.9);
+wallStyles['pers']['wall'] = new WallElement('wall', 'structures/pers_wall_medium', 0*PI, 6);
+wallStyles['pers']['wallLong'] = new WallElement('wall', 'structures/pers_wall_long', 0*PI, 9);
+wallStyles['pers']['wallShort'] = new WallElement('wall', 'structures/pers_wall_short', 0*PI, 3);
 wallStyles['pers']['tower'] = new WallElement('tower', 'structures/pers_wall_tower', PI, 1.7);
 wallStyles['pers']['wallFort'] = new WallElement('wallFort', 'structures/pers_fortress', PI, 5.6/*5.5*/, 1.9/*1.7*/);
 wallStyles['pers']['gate'] = new WallElement('gate', 'structures/pers_wall_gate', 0*PI, 6);
 wallStyles['pers']['entry'] = new WallElement('entry', undefined, wallStyles['pers']['gate'].angle, wallStyles['pers']['gate'].width);
-wallStyles['pers']['entryTower'] = new WallElement('entry', 'structures/pers_defense_tower', PI, 6, -5);
+wallStyles['pers']['entryTower'] = new WallElement('entry', 'structures/pers_defense_tower', PI, wallStyles['pers']['gate'].width, -5);
 wallStyles['pers']['entryFort'] = new WallElement('entryFort', 'structures/pers_fortress', PI, 12, 7);
-wallStyles['pers']['endRight'] = new WallElement('endRight', wallStyles['pers']['tower'].entity, wallStyles['pers']['tower'].angle, wallStyles['pers']['tower'].width);
-wallStyles['pers']['endLeft'] = new WallElement('endLeft', wallStyles['pers']['tower'].entity, wallStyles['pers']['tower'].angle, wallStyles['pers']['tower'].width);
 wallStyles['pers']['cornerIn'] = new WallElement('cornerIn', 'structures/pers_wall_tower', 5*PI/4, 0.2, 0.5, PI/2);
 wallStyles['pers']['cornerOut'] = new WallElement('cornerOut', 'structures/pers_wall_tower', 3*PI/4, 0.8, 0, -PI/2);
 wallStyles['pers']['outpost'] = new WallElement('outpost', 'structures/pers_outpost', PI, 0, -5);
 wallStyles['pers']['house'] = new WallElement('house', 'structures/pers_house', PI, 0, 6);
 wallStyles['pers']['barracks'] = new WallElement('barracks', 'structures/pers_barracks', PI, 0, 7);
+wallStyles['pers']['endRight'] = new WallElement('endRight', wallStyles['pers']['tower'].entity, wallStyles['pers']['tower'].angle, wallStyles['pers']['tower'].width);
+wallStyles['pers']['endLeft'] = new WallElement('endLeft', wallStyles['pers']['tower'].entity, wallStyles['pers']['tower'].angle, wallStyles['pers']['tower'].width);
 // Add civilisation wall style 'rome'
 wallStyles['rome'] = {};
-wallStyles['rome']['wall'] = new WallElement('wall', 'structures/rome_wall', 0*PI, 5.9);
+wallStyles['rome']['wall'] = new WallElement('wall', 'structures/rome_wall_medium', 0*PI, 6);
+wallStyles['rome']['wallLong'] = new WallElement('wall', 'structures/rome_wall_long', 0*PI, 9);
+wallStyles['rome']['wallShort'] = new WallElement('wall', 'structures/rome_wall_short', 0*PI, 3);
 wallStyles['rome']['tower'] = new WallElement('tower', 'structures/rome_wall_tower', PI, 2.1);
 wallStyles['rome']['wallFort'] = new WallElement('wallFort', 'structures/rome_fortress', PI, 6.3, 2.1);
 wallStyles['rome']['gate'] = new WallElement('gate', 'structures/rome_wall_gate', 0*PI, 5.9);
 wallStyles['rome']['entry'] = new WallElement('entry', undefined, wallStyles['rome']['gate'].angle, wallStyles['rome']['gate'].width);
-wallStyles['rome']['entryTower'] = new WallElement('entryTower', 'structures/rome_defense_tower', PI, 5.9, -5);
+wallStyles['rome']['entryTower'] = new WallElement('entryTower', 'structures/rome_defense_tower', PI, wallStyles['rome']['gate'].width, -5);
 wallStyles['rome']['entryFort'] = new WallElement('entryFort', 'structures/rome_fortress', PI, 12, 7);
-wallStyles['rome']['endRight'] = new WallElement('endRight', wallStyles['rome']['tower'].entity, wallStyles['rome']['tower'].angle, wallStyles['rome']['tower'].width);
-wallStyles['rome']['endLeft'] = new WallElement('endLeft', wallStyles['rome']['tower'].entity, wallStyles['rome']['tower'].angle, wallStyles['rome']['tower'].width);
 wallStyles['rome']['cornerIn'] = new WallElement('cornerIn', 'structures/rome_wall_tower', 5*PI/4, 0, 0.7, PI/2);
 wallStyles['rome']['cornerOut'] = new WallElement('cornerOut', 'structures/rome_wall_tower', 3*PI/4, 1.1, 0, -PI/2);
 wallStyles['rome']['outpost'] = new WallElement('outpost', 'structures/rome_outpost', PI, 0, -5);
 wallStyles['rome']['house'] = new WallElement('house', 'structures/rome_house', PI, 0, 7);
 wallStyles['rome']['barracks'] = new WallElement('barracks', 'structures/rome_barracks', PI, 0, 6);
+wallStyles['rome']['endRight'] = new WallElement('endRight', wallStyles['rome']['tower'].entity, wallStyles['rome']['tower'].angle, wallStyles['rome']['tower'].width);
+wallStyles['rome']['endLeft'] = new WallElement('endLeft', wallStyles['rome']['tower'].entity, wallStyles['rome']['tower'].angle, wallStyles['rome']['tower'].width);
+// Add civilisation wall style 'spart'
+wallStyles['spart'] = {};
+wallStyles['spart']['wall'] = new WallElement('wall', 'structures/spart_wall_medium', 0*PI, 5.9);
+wallStyles['spart']['wallLong'] = new WallElement('wall', 'structures/spart_wall_long', 0*PI, 8.9);
+wallStyles['spart']['wallShort'] = new WallElement('wall', 'structures/spart_wall_short', 0*PI, 3);
+wallStyles['spart']['tower'] = new WallElement('tower', 'structures/spart_wall_tower', PI, 1.7);
+wallStyles['spart']['wallFort'] = new WallElement('wallFort', 'structures/spart_fortress', 2*PI/2 /* PI/2 */, 5.1 /* 5.6 */, 1.9 /* 1.9 */);
+wallStyles['spart']['gate'] = new WallElement('gate', 'structures/spart_wall_gate', 0*PI, 9.1);
+wallStyles['spart']['entry'] = new WallElement('entry', undefined, wallStyles['spart']['gate'].angle, wallStyles['spart']['gate'].width);
+wallStyles['spart']['entryTower'] = new WallElement('entry', 'structures/spart_defense_tower', PI, wallStyles['spart']['gate'].width, -5);
+wallStyles['spart']['entryFort'] = new WallElement('entryFort', 'structures/spart_fortress', 5*PI/2, 12, 7);
+wallStyles['spart']['cornerIn'] = new WallElement('cornerIn', 'structures/spart_wall_tower', 5*PI/4, 0, 0.5, PI/2);
+wallStyles['spart']['cornerOut'] = new WallElement('cornerOut', 'structures/spart_wall_tower', 3*PI/4, 1, 0, -PI/2);
+wallStyles['spart']['outpost'] = new WallElement('outpost', 'structures/spart_outpost', PI, 0, -5);
+wallStyles['spart']['house'] = new WallElement('house', 'structures/spart_house', 3*PI/2, 0, 6);
+wallStyles['spart']['barracks'] = new WallElement('barracks', 'structures/spart_barracks', PI, 0, 6);
+wallStyles['spart']['endRight'] = new WallElement('endRight', wallStyles['spart']['tower'].entity, wallStyles['spart']['tower'].angle, wallStyles['spart']['tower'].width);
+wallStyles['spart']['endLeft'] = new WallElement('endLeft', wallStyles['spart']['tower'].entity, wallStyles['spart']['tower'].angle, wallStyles['spart']['tower'].width);
 // Add special wall style 'romeSiege'
 wallStyles['romeSiege'] = {};
-wallStyles['romeSiege']['wall'] = new WallElement('wall', 'structures/rome_siege_wall', 0*PI, 6.2);
-wallStyles['romeSiege']['tower'] = new WallElement('tower', 'structures/rome_siege_wall_tower', PI, 0);
+wallStyles['romeSiege']['wall'] = new WallElement('wall', 'structures/rome_siege_wall_medium', 0*PI, 6);
+wallStyles['romeSiege']['wallLong'] = new WallElement('wall', 'structures/rome_siege_wall_long', 0*PI, 9);
+wallStyles['romeSiege']['wallShort'] = new WallElement('wall', 'structures/rome_siege_wall_short', 0*PI, 3);
+wallStyles['romeSiege']['tower'] = new WallElement('tower', 'structures/rome_siege_wall_tower', PI, 1.3);
 wallStyles['romeSiege']['wallFort'] = new WallElement('wallFort', 'structures/rome_army_camp', PI, 7.2, 2);
-wallStyles['romeSiege']['gate'] = new WallElement('gate', 'structures/rome_siege_wall_gate', 0*PI, 5.9);
+wallStyles['romeSiege']['gate'] = new WallElement('gate', 'structures/rome_siege_wall_gate', 0*PI, 9);
 wallStyles['romeSiege']['entry'] = new WallElement('entry', undefined, wallStyles['romeSiege']['gate'].angle, wallStyles['romeSiege']['gate'].width);
-wallStyles['romeSiege']['entryTower'] = new WallElement('entryTower', 'structures/rome_defense_tower', PI, 5.9, -4);
+wallStyles['romeSiege']['entryTower'] = new WallElement('entryTower', 'structures/rome_defense_tower', PI, wallStyles['romeSiege']['gate'].width, -5);
 wallStyles['romeSiege']['entryFort'] = new WallElement('entryFort', 'structures/rome_army_camp', PI, 12, 7);
-wallStyles['romeSiege']['endRight'] = new WallElement('endRight', wallStyles['romeSiege']['tower'].entity, wallStyles['romeSiege']['tower'].angle, wallStyles['romeSiege']['tower'].width);
-wallStyles['romeSiege']['endLeft'] = new WallElement('endLeft', wallStyles['romeSiege']['tower'].entity, wallStyles['romeSiege']['tower'].angle, wallStyles['romeSiege']['tower'].width);
-wallStyles['romeSiege']['cornerIn'] = new WallElement('cornerIn', 'structures/rome_defense_tower', 5*PI/4, 0.1, 0.3, PI/2);
-wallStyles['romeSiege']['cornerIn2'] = new WallElement('cornerIn2', undefined, 5*PI/4, -1.6, 0, PI/2); // Grafic glitch
-wallStyles['romeSiege']['cornerOut'] = new WallElement('cornerOut', 'structures/rome_siege_wall_tower', 3*PI/4, 1.4, -0.2, -PI/2);
+wallStyles['romeSiege']['cornerIn'] = new WallElement('cornerIn', 'structures/rome_siege_wall_tower', 5*PI/4, 0.0, 0.6, PI/2);
+wallStyles['romeSiege']['cornerOut'] = new WallElement('cornerOut', 'structures/rome_siege_wall_tower', 3*PI/4, 1.1, 0, -PI/2);
 wallStyles['romeSiege']['outpost'] = new WallElement('outpost', 'structures/rome_outpost', PI, 0, -5);
 wallStyles['romeSiege']['house'] = new WallElement('house', 'structures/rome_tent', PI, 0, 4);
 wallStyles['romeSiege']['barracks'] = new WallElement('barracks', 'structures/rome_barracks', PI, 0, 6);
+wallStyles['romeSiege']['endRight'] = new WallElement('endRight', wallStyles['romeSiege']['tower'].entity, wallStyles['romeSiege']['tower'].angle, wallStyles['romeSiege']['tower'].width);
+wallStyles['romeSiege']['endLeft'] = new WallElement('endLeft', wallStyles['romeSiege']['tower'].entity, wallStyles['romeSiege']['tower'].angle, wallStyles['romeSiege']['tower'].width);
 // Add special wall style 'palisades'
 wallStyles['palisades'] = {};
-wallStyles['palisades']['wall'] = new WallElement('wall', 'other/palisades_rocks_straight', -PI/2, 2.5);
+wallStyles['palisades']['wall'] = new WallElement('wall', 'other/palisades_rocks_medium', 0*PI, 2.3);
+wallStyles['palisades']['wallLong'] = new WallElement('wall', 'other/palisades_rocks_long', 0*PI, 3.5);
+wallStyles['palisades']['wallShort'] = new WallElement('wall', 'other/palisades_rocks_short', 0*PI, 1.2);
 wallStyles['palisades']['tower'] = new WallElement('tower', 'other/palisades_rocks_tower', -PI/2, 0.7);
 wallStyles['palisades']['wallFort'] = new WallElement('wallFort', 'other/palisades_rocks_fort', PI, 1.7);
 wallStyles['palisades']['gate'] = new WallElement('gate', 'other/palisades_rocks_gate', 0*PI, 3.6);
 wallStyles['palisades']['entry'] = new WallElement('entry', undefined, wallStyles['palisades']['gate'].angle, wallStyles['palisades']['gate'].width);
-wallStyles['palisades']['entryTower'] = new WallElement('entryTower', 'other/palisades_rocks_watchtower', 0*PI, 3.6, -2);
+wallStyles['palisades']['entryTower'] = new WallElement('entryTower', 'other/palisades_rocks_watchtower', 0*PI, wallStyles['palisades']['gate'].width, -3);
 wallStyles['palisades']['entryFort'] = new WallElement('entryFort', 'other/palisades_rocks_fort', PI, 6, 3);
-wallStyles['palisades']['endRight'] = new WallElement('endRight', 'other/palisades_rocks_end', -PI/2, 0.2);
-wallStyles['palisades']['endLeft'] = new WallElement('endLeft', 'other/palisades_rocks_end', PI/2, 0.2);
 wallStyles['palisades']['cornerIn'] = new WallElement('cornerIn', 'other/palisades_rocks_curve', 3*PI/4, 2.1, 0.7, PI/2);
 wallStyles['palisades']['cornerOut'] = new WallElement('cornerOut', 'other/palisades_rocks_curve', 5*PI/4, 2.1, -0.7, -PI/2);
 wallStyles['palisades']['outpost'] = new WallElement('outpost', 'other/palisades_rocks_outpost', PI, 0, -2);
 wallStyles['palisades']['house'] = new WallElement('house', 'other/celt_hut', PI, 0, 5);
 wallStyles['palisades']['barracks'] = new WallElement('barracks', 'other/celt_tavern', PI, 0, 5);
+wallStyles['palisades']['endRight'] = new WallElement('endRight', 'other/palisades_rocks_end', -PI/2, 0.2);
+wallStyles['palisades']['endLeft'] = new WallElement('endLeft', 'other/palisades_rocks_end', PI/2, 0.2);
 // Add special wall style 'road'
 // Add special wall element collection 'other'
 // NOTE: This is not a wall style in the common sense. Use with care!
@@ -248,37 +320,36 @@ var fortressTypes = {};
 // Setup some default fortress types
 // Add fortress type 'tiny'
 fortressTypes['tiny'] = new Fortress('tiny');
-var wallPart = ['entry', 'endLeft', 'wall', 'cornerIn', 'wall', 'endRight'];
+var wallPart = ['entry', 'wall', 'cornerIn', 'wall'];
 fortressTypes['tiny'].wall = wallPart.concat(wallPart, wallPart, wallPart);
 // Add fortress type 'small'
 fortressTypes['small'] = new Fortress('small');
-var wallPart = ['entry', 'endLeft', 'wall', 'outpost', 'wall',
-	'cornerIn', 'wall', 'outpost', 'wall', 'endRight'];
+var wallPart = ['entry', 'endLeft', 'wall', 'cornerIn', 'wall', 'endRight'];
 fortressTypes['small'].wall = wallPart.concat(wallPart, wallPart, wallPart);
 // Add fortress type 'medium'
 fortressTypes['medium'] = new Fortress('medium');
-var wallPart = ['entry', 'endLeft', 'wall', 'tower', 'wall',
-	'cornerIn', 'wall', 'tower', 'wall', 'endRight'];
+var wallPart = ['entry', 'endLeft', 'wall', 'outpost', 'wall',
+	'cornerIn', 'wall', 'outpost', 'wall', 'endRight'];
 fortressTypes['medium'].wall = wallPart.concat(wallPart, wallPart, wallPart);
 // Add fortress type 'normal'
 fortressTypes['normal'] = new Fortress('normal');
-var wallPart = ['entry', 'endLeft', 'wall', 'outpost', 'wall', 'cornerIn', 'wall',
-	'cornerOut', 'wall', 'cornerIn', 'wall', 'outpost', 'wall', 'endRight'];
+var wallPart = ['entry', 'endLeft', 'wall', 'tower', 'wall',
+	'cornerIn', 'wall', 'tower', 'wall', 'endRight'];
 fortressTypes['normal'].wall = wallPart.concat(wallPart, wallPart, wallPart);
 // Add fortress type 'large'
 fortressTypes['large'] = new Fortress('large');
-var wallPart = ['entry', 'endLeft', 'wall', 'tower', 'wall', 'cornerIn', 'wall',
-	'cornerOut', 'wall', 'cornerIn', 'wall', 'tower', 'wall', 'endRight'];
+var wallPart = ['entry', 'endLeft', 'wall', 'outpost', 'wall', 'cornerIn', 'wall',
+	'cornerOut', 'wall', 'cornerIn', 'wall', 'outpost', 'wall', 'endRight'];
 fortressTypes['large'].wall = wallPart.concat(wallPart, wallPart, wallPart);
 // Add fortress type 'veryLarge'
 fortressTypes['veryLarge'] = new Fortress('veryLarge');
-var wallPart = ['entry', 'endLeft', 'wall', 'outpost', 'wall', 'cornerIn', 'wall', 'outpost', 'wall',
-	'cornerOut', 'wall', 'outpost', 'wall', 'cornerIn', 'wall', 'outpost', 'wall', 'endRight'];
+var wallPart = ['entry', 'endLeft', 'wall', 'tower', 'wall', 'cornerIn', 'wall',
+	'cornerOut', 'wall', 'cornerIn', 'wall', 'tower', 'wall', 'endRight'];
 fortressTypes['veryLarge'].wall = wallPart.concat(wallPart, wallPart, wallPart);
 // Add fortress type 'giant'
 fortressTypes['giant'] = new Fortress('giant');
-var wallPart = ['entry', 'endLeft', 'wall', 'tower', 'wall', 'cornerIn', 'wall', 'tower', 'wall',
-	'cornerOut', 'wall', 'tower', 'wall', 'cornerIn', 'wall', 'tower', 'wall', 'endRight'];
+var wallPart = ['entry', 'endLeft', 'wall', 'outpost', 'wall', 'cornerIn', 'wall', 'outpost', 'wall',
+	'cornerOut', 'wall', 'outpost', 'wall', 'cornerIn', 'wall', 'outpost', 'wall', 'endRight'];
 fortressTypes['giant'].wall = wallPart.concat(wallPart, wallPart, wallPart);
 
 // Setup some semi default fortresses for 'palisades' style
@@ -325,7 +396,7 @@ function getWallAlignment(startX, startY, wall, style, orientation)
 		alignment.push([placeX, placeY, element.entity, orientation + element.angle]);
 		// Preset vars for the next wall element
 		if (i+1 < wall.length)
-	{
+		{
 			orientation += element.bending;
 			if (wallStyles[style][wall[i+1]] === undefined)
 				warn('No valid wall element: ' + wall[i+1]);
@@ -335,7 +406,7 @@ function getWallAlignment(startX, startY, wall, style, orientation)
 			if (element.bending !== 0 && element.indent !== 0)
 			{
 				// Indent correction to adjust distance
-			distance += element.indent*sin(element.bending);
+				distance += element.indent*sin(element.bending);
 				// Indent correction to normalize indentation
 				wallX += element.indent * cos(orientation);
 				wallY += element.indent * sin(orientation);

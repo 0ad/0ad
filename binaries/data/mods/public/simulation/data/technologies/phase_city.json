@@ -14,5 +14,7 @@
 	"supersedes": "phase_town",
 	"icon": "city_phase.png",
 	"researchTime": 60,
-	"tooltip": "Advance to City Phase, which unlocks more structures and units."
+	"tooltip": "Advance to City Phase, which unlocks more structures and units. Territory radius for Civilisation Centres increased by another +25%",
+	"modifications": [{"value": "TerritoryInfluence/Radius", "multiplier": 1.25}],
+	"affects": ["CivCentre"]
 }
