@@ -125,7 +125,8 @@ EntityCollection.prototype.removeEnt = function(ent)
 	if (this._entities[ent.id()])
 	{
 		delete this._entities[ent.id()];
-		this._length--;
+		if (this.length !== undefined)
+			this._length--;
 		return true;
 	}
 	else
@@ -144,7 +145,8 @@ EntityCollection.prototype.addEnt = function(ent)
 	else
 	{
 		this._entities[ent.id()] = ent;
-		this._length++;
+		if (this.length !== undefined)
+			this._length++;
 		return true;
 	}
 };

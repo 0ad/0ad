@@ -42,18 +42,25 @@ var Filters = {
 		"dynamicProperties": ['metadata.' + key]};
 	},
 	
-	and:  function(filter1, filter2){
+	and: function(filter1, filter2){
 		return {"func": function(ent){
 			return filter1.func(ent) && filter2.func(ent);
 		}, 
 		"dynamicProperties": filter1.dynamicProperties.concat(filter2.dynamicProperties)};
 	},
 	
-	or:  function(filter1, filter2){
+	or: function(filter1, filter2){
 		return {"func" : function(ent){
 			return filter1.func(ent) || filter2.func(ent);
 		}, 
 		"dynamicProperties": filter1.dynamicProperties.concat(filter2.dynamicProperties)};
+	},
+	
+	not: function(filter){
+		return {"func": function(ent){
+			return !filter.func(ent);
+		},
+		"dynamicProperties": filter.dynamicProperties};
 	},
 	
 	byOwner: function(owner){
