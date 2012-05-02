@@ -125,13 +125,21 @@ TechnologyManager.prototype.CheckTechnologyRequirements = function (reqs)
 	}
 	else if (reqs.class)
 	{
-		if (reqs.numberOfTypes == 0) // silly case but handle it anyway
-			return true;
 		
-		if (this.typeCountsByClass[reqs.class])
-			return (reqs.numberOfTypes <= Object.keys(this.typeCountsByClass[reqs.class]).length);
-		else
-			return false;
+		if (reqs.numberOfTypes)
+		{	
+			if (this.typeCountsByClass[reqs.class])
+				return (reqs.numberOfTypes <= Object.keys(this.typeCountsByClass[reqs.class]).length);
+			else
+				return false;
+		}
+		else if (reqs.number)
+		{
+			if (this.classCounts[reqs.class])
+				return (reqs.number <= this.classCounts[reqs.class]);
+			else
+				return false;
+		}
 	}
 	
 	// The technologies requirements are not a recognised format
