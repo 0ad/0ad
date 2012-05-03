@@ -343,7 +343,7 @@ TechnologyManager.prototype.ApplyModificationsWorker = function(valueName, curVa
 				retValue += (modification.multiplier - 1) * curValue;
 			else if (modification.add)
 				retValue += modification.add;
-			else if (modification.replace) // This will depend on ordering because there is no choice
+			else if (modification.replace !== undefined) // This will depend on ordering because there is no choice
 				retValue = modification.replace;
 			else
 				warn("modification format not recognised (modifying " + valueName + "): " + uneval(modification));
