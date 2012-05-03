@@ -1,0 +1,21 @@
+{
+	"pair": "pair_champ_02",	
+	"genericName": "Will to fight",
+	"specificName": {
+		"hele": "Dynamis",
+		"mace": "Dynamis",
+		"spart": "Dynamis",
+		"athen": "Dynamis"
+	},
+	"description": "The will to fight is crucial to victory.",
+	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 150},
+	"requirements": {"tech": "phase_city"},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "armor_plates_axe.png",
+	"researchTime": 20,
+	"tooltip": "Inspire your troops with higher pay. All citizen-Soldiers +2 attack, but +10 metal cost.",
+	"modifications": [
+		{"value": "Attack/Melee/Hack", "add": 2.0}, "affects": ["CitizenSoldier Melee"]},
+		{"value": "Attack/Melee/Pierce", "add": 2.0}, "affects": ["CitizenSoldier Ranged"]}
+	]
+}

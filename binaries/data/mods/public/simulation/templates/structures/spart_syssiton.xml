@@ -39,6 +39,9 @@
       units/spart_hero_agis
       units/spart_champion_infantry_spear
     </Entities>
+    <Technologies datatype="tokens">
+	  pair_champ_02
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/hellenes/gymnasion.xml</Actor>

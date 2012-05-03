@@ -23,6 +23,9 @@
     <Entities datatype="tokens">
       units/spart_mechanical_siege_ram
     </Entities>
+    <Technologies datatype="tokens">
+	  -pair_champ_02
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/hellenes/fortress_new.xml</Actor>

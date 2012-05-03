@@ -24,6 +24,9 @@
       units/athen_mechanical_siege_oxybeles
       units/athen_mechanical_siege_lithobolos
     </Entities>
+    <Technologies datatype="tokens">
+	  -pair_champ_02
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/athenians/fortress.xml</Actor>
