@@ -16,7 +16,7 @@
 	"researchTime": 20,
 	"tooltip": "Elite units wield the best weapons. Champions +2 attack.",
 	"modifications": [
-		{"value": "Attack/Melee/Hack", "add": 2.0}, "affects": ["Champion Melee"]},
-		{"value": "Attack/Melee/Pierce", "add": 2.0}, "affects": ["Champion Ranged"]}
+		{"value": "Attack/Melee/Hack", "add": 2.0, "affects": ["Champion Melee"]},
+		{"value": "Attack/Ranged/Pierce", "add": 2.0, "affects": ["Champion Ranged"]}
 	]
 }

@@ -13,9 +13,9 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "armor_plates_axe.png",
 	"researchTime": 20,
-	"tooltip": "Inspire your troops with higher pay. All citizen-Soldiers +2 attack, but +10 metal cost.",
+	"tooltip": "Inspire your troops with higher pay. All citizen-Soldiers +2 attack.",
 	"modifications": [
-		{"value": "Attack/Melee/Hack", "add": 2.0}, "affects": ["CitizenSoldier Melee"]},
-		{"value": "Attack/Melee/Pierce", "add": 2.0}, "affects": ["CitizenSoldier Ranged"]}
+		{"value": "Attack/Melee/Hack", "add": 2.0, "affects": ["CitizenSoldier Melee"]},
+		{"value": "Attack/Ranged/Pierce", "add": 2.0, "affects": ["CitizenSoldier Ranged"]}
 	]
 }
