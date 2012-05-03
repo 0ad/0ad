@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -424,36 +424,6 @@ float IGUIObject::GetBufferedZ() const
 			//  Also, you could consider those objects children to the screen resolution.
 			return Z;
 		}
-	}
-}
-
-// TODO Gee: keep this function and all???
-void IGUIObject::CheckSettingsValidity()
-{
-	bool hidden;
-	GUI<bool>::GetSetting(this, "hidden", hidden);
-
-	// If we hide an object, reset many of its parts
-	if (hidden)
-	{
-		// Simulate that no object is hovered for this object and all its children
-		//  why? because it's 
-		try
-		{
-			GUI<IGUIObject*>::RecurseObject(0, this, &IGUIObject::UpdateMouseOver, NULL);
-		}
-		catch (PSERROR_GUI&)
-		{
-		}
-	}
-
-	try
-	{
-		// Send message to itself
-		SendEvent(GUIM_SETTINGS_UPDATED, "update");
-	}
-	catch (PSERROR_GUI&)
-	{
 	}
 }
 

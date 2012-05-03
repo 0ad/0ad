@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -249,20 +249,6 @@ public:
 	virtual void UpdateCachedSize();
 
 	/**
-	 * Should be called every time the settings has been updated
-	 * will also send a message GUIM_SETTINGS_UPDATED, so that
-	 * if a derived object wants to add things to be updated,
-	 * they add it in that message part, this is a better solution
-	 * than making this virtual, since the updates that the base
-	 * class does, are the most essential.
-	 * This is not private since there should be no harm in
-	 * checking validity.
-	 *
-	 * @throws TODO not quite settled yet.
-	 */
-	void CheckSettingsValidity();
-
-	/**
 	 * Set a setting by string, regardless of what type it is.
 	 *
 	 * example a CRect(10,10,20,20) would be "10 10 20 20"
@@ -394,7 +380,8 @@ protected:
 	 */
 	virtual void ResetStates()
 	{
-		m_MouseHovering = false;
+		// Notify the gui that we aren't hovered anymore
+		UpdateMouseOver(NULL);
 	}
 
 public:
@@ -475,6 +462,16 @@ protected:
 
 	void SetScriptHandler(const CStr& Action, JSObject* Function);
 
+	/**
+	 * Inputes the object that is currently hovered, this function
+	 * updates this object accordingly (i.e. if it's the object
+	 * being inputted one thing happens, and not, another).
+	 *
+	 * @param pMouseOver	Object that is currently hovered,
+	 *						can OF COURSE be NULL too!
+	 */
+	void UpdateMouseOver(IGUIObject * const &pMouseOver);
+
 	//@}
 private:
 	//--------------------------------------------------------
@@ -495,16 +492,6 @@ private:
 	 *					the new one.
 	 */
 	void ChooseMouseOverAndClosest(IGUIObject* &pObject);
-
-	/**
-	 * Inputes the object that is currently hovered, this function
-	 * updates this object accordingly (i.e. if it's the object
-	 * being inputted one thing happens, and not, another).
-	 *
-	 * @param pMouseOver	Object that is currently hovered,
-	 *						can OF COURSE be NULL too!
-	 */
-	void UpdateMouseOver(IGUIObject * const &pMouseOver);
 
 	// Is the object a Root object, in philosophy, this means it
 	//  has got no parent, and technically, it's got the m_BaseObject
