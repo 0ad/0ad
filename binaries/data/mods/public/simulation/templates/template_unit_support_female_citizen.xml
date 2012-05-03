@@ -27,7 +27,7 @@
   <Builder>
     <Rate>1.0</Rate>
     <Entities datatype="tokens">
-	  structures/{civ}_house
+      structures/{civ}_house
       structures/{civ}_mill
       structures/{civ}_farmstead
       structures/{civ}_field
@@ -52,6 +52,7 @@
     <History>Women in the ancient world took on a variety of roles - from leadership (Celts) to servant (Greeks). Women are hard workers, the economic backbone of any civilisation. In history, it was typical when all the males (capable of fighting) were killed for the females, children, and elderly to be sold as slaves.</History>
     <Tooltip>Gather resources, build civic structures, and inspire nearby males to work faster. Bonused at foraging and farming.</Tooltip>
     <Classes datatype="tokens">Worker Female Citizen</Classes>
+    <Formations disable=""/>
   </Identity>
   <ResourceGatherer>
     <MaxDistance>2.0</MaxDistance>
@@ -70,8 +71,8 @@
   </ResourceGatherer>
   <Sound>
     <SoundGroups>
-	  <select>voice/hellenes/civ/civ_female_select.xml</select>
-	  <order_walk>voice/hellenes/civ/civ_female_select.xml</order_walk>
+      <select>voice/hellenes/civ/civ_female_select.xml</select>
+      <order_walk>voice/hellenes/civ/civ_female_select.xml</order_walk>
       <order_attack>voice/hellenes/civ/civ_female_select.xml</order_attack>
       <order_gather>voice/hellenes/civ/civ_female_select.xml</order_gather>
       <order_repair>voice/hellenes/civ/civ_female_select.xml</order_repair>

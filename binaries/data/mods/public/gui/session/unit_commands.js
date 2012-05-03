@@ -712,7 +712,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 				function (item) { unload(entState.id, groups.getEntsByName(item)); } );
 		}
 
-		var formations = getEntityFormationsList(entState);
+		var formations = Engine.GuiInterfaceCall("GetAvailableFormations");
 		if (hasClass(entState, "Unit") && !hasClass(entState, "Animal") && !entState.garrisonHolder && formations.length)
 		{
 			setupUnitPanel(FORMATION, usedPanels, entState, formations,

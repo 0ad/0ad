@@ -214,17 +214,21 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 
 	// Choose a sensible size/shape for the various formations, depending on number of units
 	var cols;
-	if (columnar || this.formationName == "Column Closed")
+
+	if (columnar)
+		this.formationName = "Column Closed";
+
+	switch(this.formationName)
 	{
+	case "Column Closed":
 		// Have at most 3 files
 		if (count <= 3)
 			cols = count;
 		else
 			cols = 3;
 		shape = "square";
-	}
-	else if (this.formationName == "Phalanx")
-	{
+		break;
+	case "Phalanx":
 		// Try to have at least 5 files (so batch training gives a single line),
 		// and at most 8
 		if (count <= 5)
@@ -238,9 +242,8 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 		else
 			cols = Math.ceil(count/6);
 		shape = "square";
-	}
-	else if (this.formationName == "Line Closed")
-	{
+		break;
+	case "Line Closed":
 		if (count <= 3)
 			cols = count;
 		else if (count < 30)
@@ -248,19 +251,16 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 		else
 			cols = Math.ceil(count/3);
 		shape = "square";
-	}
-	else if (this.formationName == "Testudo")
-	{
+		break;
+	case "Testudo":
 		cols = Math.ceil(Math.sqrt(count));
 		shape = "square";
-	}
-	else if (this.formationName == "Column Open")
-	{
-		cols = 2
+		break;
+	case "Column Open":
+		cols = 2;
 		shape = "opensquare";
-	}
-	else if (this.formationName == "Line Open")
-	{
+		break;
+	case "Line Open":
 		if (count <= 5)
 			cols = 3;
 		else if (count <= 11)
@@ -270,18 +270,16 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 		else
 			cols = 6;
 		shape = "opensquare";
-	}
-	else if (this.formationName == "Scatter")
-	{
+		break;
+	case "Scatter":
 		var width = Math.sqrt(count) * separation * 5;
 
 		for (var i = 0; i < count; ++i)
 		{
 			offsets.push({"x": Math.random()*width, "z": Math.random()*width});
 		}
-	}
-	else if (this.formationName == "Circle")
-	{
+		break;
+	case "Circle":
 		var depth;
 		var pop;
 		if (count <= 36)
@@ -291,7 +289,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 		}
 		else
 		{
-			depth = 3
+			depth = 3;
 			pop = Math.ceil(count / depth);
 		}
 
@@ -311,9 +309,8 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 				left--;
 			}
 		}
-	}
-	else if (this.formationName == "Box")
-	{
+		break;
+	case "Box":
 		var root = Math.ceil(Math.sqrt(count));
 
 		var left = count;
@@ -334,7 +331,9 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 					meleeleft -= stodo;
 				}
 				else	// compact
+				{
 					stodo = Math.max(0, left - (width-2)*(width-2));
+				}
 			}
 
 			for (var r = -sq; r <= sq && stodo; ++r)
@@ -352,14 +351,12 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 				}
 			}
 		}
-	}
-	else if (this.formationName == "Skirmish")
-	{
+		break;
+	case "Skirmish":
 		cols = Math.ceil(count/2);
 		shape = "opensquare";
-	}
-	else if (this.formationName == "Wedge")
-	{
+		break;
+	case "Wedge":
 		var depth = Math.ceil(Math.sqrt(count));
 
 		var left = count;
@@ -387,9 +384,8 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 				}
 			}
 		}
-	}
-	else if (this.formationName == "Flank")
-	{
+		break;
+	case "Flank":
 		cols = 3;
 		var leftside = [];
 		leftside[0] = Math.ceil(count/2);
@@ -412,14 +408,12 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 				left -= n;
 			}
 		}
-	}
-	else if (this.formationName == "Syntagma")
-	{
-		var cols = Math.ceil(Math.sqrt(count));
+		break;
+	case "Syntagma":
+		cols = Math.ceil(Math.sqrt(count));
 		shape = "square";
-	}
-	else if (this.formationName == "Battle Line")
-	{
+		break;
+	case "Battle Line":
 		if (count <= 5)
 			cols = count;
 		else if (count <= 10)
@@ -433,6 +427,10 @@ Formation.prototype.ComputeFormationOffsets = function(active, columnar)
 		shape = "opensquare";
 		separation /= 1.5;
 		ordering = "cavalryOnTheSides";
+		break;
+	default:
+		warn("Unknown formation: " + this.formationName);
+		break;
 	}
 
 	if (shape == "square")

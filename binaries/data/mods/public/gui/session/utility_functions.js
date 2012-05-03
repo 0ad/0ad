@@ -121,30 +121,6 @@ function damageTypesToText(dmg)
 	return dmgArray.join("[font=\"serif-12\"], [/font]");
 }
 
-function getEntityFormationsList(entState)
-{
-	var civ = g_Players[entState.player].civ;
-	var formations = getCivFormations(civ);
-	return formations;
-}
-
-function getCivFormations(civ)
-{
-	// TODO: this should come from the civ JSON files instead
-
-	var civFormations = ["Scatter", "Box", "Column Closed", "Line Closed", "Column Open", "Line Open", "Flank", "Skirmish", "Wedge", "Battle Line"];
-	if (civ == "hele")
-	{
-		civFormations.push("Phalanx");
-		civFormations.push("Syntagma");
-	}
-	else if (civ == "rome")
-	{
-		civFormations.push("Testudo");
-	}
-	return civFormations;
-}
-
 function getEntityCommandsList(entState)
 {
 	var commands = [];
