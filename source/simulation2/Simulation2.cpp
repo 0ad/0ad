@@ -152,7 +152,7 @@ public:
 	double m_DeltaTime;
 	float m_LastFrameOffset;
 
-	std::wstring m_StartupScript;
+	std::string m_StartupScript;
 	CScriptValRooted m_InitAttributes;
 	CScriptValRooted m_MapSettings;
 
@@ -681,12 +681,12 @@ bool CSimulation2::LoadDefaultScripts()
 	return m->LoadDefaultScripts(m->m_ComponentManager, &m->m_LoadedScripts);
 }
 
-void CSimulation2::SetStartupScript(const std::wstring& code)
+void CSimulation2::SetStartupScript(const std::string& code)
 {
 	m->m_StartupScript = code;
 }
 
-const std::wstring& CSimulation2::GetStartupScript()
+const std::string& CSimulation2::GetStartupScript()
 {
 	return m->m_StartupScript;
 }

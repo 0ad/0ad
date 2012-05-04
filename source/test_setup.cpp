@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -132,7 +132,6 @@ void ScriptTestSetup(ScriptInterface& ifc)
 	std::ifstream ifs(OsString(path).c_str());
 	ENSURE(ifs.good());
 	std::string content((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
-	std::wstring wcontent(content.begin(), content.end());
-	bool ok = ifc.LoadScript(L"test_setup.js", wcontent);
+	bool ok = ifc.LoadScript(L"test_setup.js", content);
 	ENSURE(ok);
 }
