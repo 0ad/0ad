@@ -8,8 +8,11 @@
         <prop actor="props/structures/iberians/sb_1_a.xml" attachpoint="root"/>
         <prop actor="props/structures/iberians/sb_1_b.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
+		<prop actor="props/structures/iberians/iber_bull_statue.xml" attachpoint="statue"/>
+		<prop actor="props/structures/iberians/iber_lion_statue_small.xml" attachpoint="deco1"/>
+		<prop actor="props/structures/iberians/iber_lion_statue_small.xml" attachpoint="deco2"/>
       </props>
-      <texture>structural/iber_struct.dds</texture>
+      <texture>structural/iber_sb1.png</texture>
     </variant>
   </group>
 </actor>

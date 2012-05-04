@@ -59,7 +59,7 @@ CMiniMap::CMiniMap() :
 	AddSetting(GUIST_CStrW,		"tooltip");
 	AddSetting(GUIST_CStr,		"tooltip_style");
 	m_Clicking = false;
-	m_Hovering = false;
+	m_MouseHovering = false;
 }
 
 CMiniMap::~CMiniMap()
@@ -73,7 +73,7 @@ void CMiniMap::HandleMessage(SGUIMessage &Message)
 	{
 	case GUIM_MOUSE_PRESS_LEFT:
 		{
-			if (m_Hovering)
+			if (m_MouseHovering)
 			{
 				SetCameraPos();
 				m_Clicking = true;
@@ -82,7 +82,7 @@ void CMiniMap::HandleMessage(SGUIMessage &Message)
 		}
 	case GUIM_MOUSE_RELEASE_LEFT:
 		{
-			if(m_Hovering && m_Clicking)
+			if(m_MouseHovering && m_Clicking)
 			{
 				SetCameraPos();
 			}
@@ -91,7 +91,7 @@ void CMiniMap::HandleMessage(SGUIMessage &Message)
 		}
 	case GUIM_MOUSE_DBLCLICK_LEFT:
 		{
-			if(m_Hovering && m_Clicking)
+			if(m_MouseHovering && m_Clicking)
 			{
 				SetCameraPos();
 			}
@@ -100,13 +100,13 @@ void CMiniMap::HandleMessage(SGUIMessage &Message)
 		}
 	case GUIM_MOUSE_ENTER:
 		{
-			m_Hovering = true;
+			m_MouseHovering = true;
 			break;
 		}
 	case GUIM_MOUSE_LEAVE:
 		{
 			m_Clicking = false;
-			m_Hovering = false;
+			m_MouseHovering = false;
 			break;
 		}
 	case GUIM_MOUSE_RELEASE_RIGHT:
@@ -121,7 +121,7 @@ void CMiniMap::HandleMessage(SGUIMessage &Message)
 		}
 	case GUIM_MOUSE_MOTION:
 		{
-			if (m_Hovering && m_Clicking)
+			if (m_MouseHovering && m_Clicking)
 			{
 				SetCameraPos();
 			}
