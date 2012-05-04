@@ -269,11 +269,16 @@ Attack.prototype.CompareEntitiesByPreference = function(a, b)
 
 Attack.prototype.GetTimers = function(type)
 {
+	var prepare = +(this.template[type].PrepareTime || 0);
+	var repeat = +(this.template[type].RepeatTime || 1000);
+
 	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-	
-	var prepare = cmpTechMan.ApplyModifications("Attack/" + type + "/PrepareTime", +(this.template[type].PrepareTime || 0), this.entity);
-	var repeat = cmpTechMan.ApplyModifications("Attack/" + type + "/RepeatTime", +(this.template[type].RepeatTime || 1000), this.entity);
-	
+	if (cmpTechMan)
+	{
+		prepare = cmpTechMan.ApplyModifications("Attack/" + type + "/PrepareTime", prepare, this.entity);
+		repeat = cmpTechMan.ApplyModifications("Attack/" + type + "/RepeatTime", repeat, this.entity);
+	}
+
 	return { "prepare": prepare, "repeat": repeat, "recharge": repeat - prepare };
 };
 
@@ -285,9 +290,14 @@ Attack.prototype.GetAttackStrengths = function(type)
 	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 	var applyTechs = function(damageType)
 	{
-		// All causes caching problems so disable it for now.
-		//var allComponent = cmpTechMan.ApplyModifications("Attack/" + type + "/All", (+self.template[type][damageType] || 0), self.entity) - self.template[type][damageType];
-		return cmpTechMan.ApplyModifications("Attack/" + type + "/" + damageType, +(self.template[type][damageType] || 0), self.entity);
+		var strength = +(self.template[type][damageType] || 0);
+		if (cmpTechMan)
+		{
+			// All causes caching problems so disable it for now.
+			//var allComponent = cmpTechMan.ApplyModifications("Attack/" + type + "/All", strength, self.entity) - self.template[type][damageType];
+			strength = cmpTechMan.ApplyModifications("Attack/" + type + "/" + damageType, strength, self.entity);
+		}
+		return strength;
 	};
 	
 	return {

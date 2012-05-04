@@ -49,8 +49,10 @@ Builder.prototype.GetRange = function()
  */
 Builder.prototype.PerformBuilding = function(target)
 {
+	var rate = +this.template.Rate;
 	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-	var rate = cmpTechMan.ApplyModifications("Builder/Rate", +this.template.Rate, this.entity);
+	if (cmpTechMan)
+		rate = cmpTechMan.ApplyModifications("Builder/Rate", rate, this.entity);
 
 	// If it's a foundation, then build it
 	var cmpFoundation = Engine.QueryInterface(target, IID_Foundation);

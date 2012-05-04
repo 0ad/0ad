@@ -57,9 +57,14 @@ Armour.prototype.GetArmourStrengths = function()
 	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 	var applyTechs = function(type)
 	{
-		// All causes caching problems so disable it for now.
-		// var allComponent = cmpTechMan.ApplyModifications("Armour/All", +self.template[type], self.entity) - self.template[type];
-		return cmpTechMan.ApplyModifications("Armour/" + type, +self.template[type], self.entity);
+		var strength = +self.template[type];
+		if (cmpTechMan)
+		{
+			// All causes caching problems so disable it for now.
+			// var allComponent = cmpTechMan.ApplyModifications("Armour/All", strength, self.entity) - self.template[type];
+			strength = cmpTechMan.ApplyModifications("Armour/" + type, strength, self.entity);
+		}
+		return strength;
 	};
 	
 	return {
