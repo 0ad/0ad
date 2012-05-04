@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@
 
 #include "lib/res/h_mgr.h"	// h_reload
 #include "lib/sysdep/dir_watch.h"
+#include "lib/utf8.h"
 
 
 PIVFS g_VFS;
@@ -138,4 +139,19 @@ size_t CVFSFile::GetBufferSize() const
 CStr CVFSFile::GetAsString() const
 {
 	return std::string((char*)GetBuffer(), GetBufferSize());
+}
+
+CStr CVFSFile::DecodeUTF8() const
+{
+	const u8* buffer = GetBuffer();
+
+	// Detect if there's a UTF-8 BOM and strip it
+	if (GetBufferSize() >= 3 && buffer[0] == 0xEF && buffer[1] == 0xBB && buffer[2] == 0xBF)
+	{
+		return std::string(&buffer[3], buffer + GetBufferSize());
+	}
+	else
+	{
+		return std::string(buffer, buffer + GetBufferSize());
+	}
 }

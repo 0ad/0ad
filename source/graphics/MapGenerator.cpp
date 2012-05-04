@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -199,7 +199,7 @@ std::vector<std::string> CMapGeneratorWorker::GetCivData(void* UNUSED(cbdata))
 			}
 			else
 			{
-				data.push_back(std::string(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize()));
+				data.push_back(file.DecodeUTF8()); // assume it's UTF-8
 			}
 		}
 	}

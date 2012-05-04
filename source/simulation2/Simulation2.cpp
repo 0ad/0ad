@@ -798,7 +798,7 @@ std::vector<std::string> CSimulation2::GetRMSData()
 			}
 			else
 			{
-				data.push_back(std::string(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize()));
+				data.push_back(file.DecodeUTF8()); // assume it's UTF-8
 			}
 		}
 	}
@@ -834,7 +834,7 @@ std::vector<std::string> CSimulation2::GetCivData()
 			}
 			else
 			{
-				data.push_back(std::string(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize()));
+				data.push_back(file.DecodeUTF8()); // assume it's UTF-8
 			}
 		}
 	}
@@ -877,7 +877,7 @@ std::string CSimulation2::ReadJSON(VfsPath path)
 		}
 		else
 		{
-			data = std::string(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize());
+			data = file.DecodeUTF8(); // assume it's UTF-8
 		}
 	}
 
