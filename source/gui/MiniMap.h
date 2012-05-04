@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,56 +25,55 @@ class CTerrain;
 
 class CMiniMap : public IGUIObject
 {
-    GUI_OBJECT(CMiniMap)
+	GUI_OBJECT(CMiniMap)
 public:
-    CMiniMap();
-    virtual ~CMiniMap();
+	CMiniMap();
+	virtual ~CMiniMap();
 protected:
-    virtual void Draw();
+	virtual void Draw();
 
 	/**
 	 * @see IGUIObject#HandleMessage()
 	 */
 	virtual void HandleMessage(SGUIMessage &Message);
 
-    // create the minimap textures
-    void CreateTextures();
+	// create the minimap textures
+	void CreateTextures();
 
-    // rebuild the terrain texture map
-    void RebuildTerrainTexture();
+	// rebuild the terrain texture map
+	void RebuildTerrainTexture();
 
-    // destroy and free any memory and textures
-    void Destroy();
+	// destroy and free any memory and textures
+	void Destroy();
 
 	void SetCameraPos();
 
 	void FireWorldClickEvent(int button, int clicks);
 
-    // the terrain we are mini-mapping
-    const CTerrain* m_Terrain;
+	// the terrain we are mini-mapping
+	const CTerrain* m_Terrain;
 
 	const CCamera* m_Camera;
-	
+
 	//Whether or not the mouse is currently down
 	bool m_Clicking;
-	bool m_Hovering;
 
-    // minimap texture handles
-    GLuint m_TerrainTexture;
+	// minimap texture handles
+	GLuint m_TerrainTexture;
 
-    // texture data
-    u32* m_TerrainData;
+	// texture data
+	u32* m_TerrainData;
 
-    // whether we need to regenerate the terrain texture
-    bool m_TerrainDirty;
+	// whether we need to regenerate the terrain texture
+	bool m_TerrainDirty;
 
-    ssize_t m_Width, m_Height;
+	ssize_t m_Width, m_Height;
 
-    // map size
-    ssize_t m_MapSize;
+	// map size
+	ssize_t m_MapSize;
 
-    // texture size
-    GLsizei m_TextureSize;
+	// texture size
+	GLsizei m_TextureSize;
 
 	// 1.f if map is circular or 1.414f if square (to shrink it inside the circle)
 	float m_MapScale;
