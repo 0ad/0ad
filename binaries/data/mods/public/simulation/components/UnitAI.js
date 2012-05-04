@@ -1702,7 +1702,7 @@ UnitAI.prototype.Init = function()
 	this.formationController = INVALID_ENTITY; // entity with IID_Formation that we belong to
 	this.isGarrisoned = false;
 	this.isIdle = false;
-	this.lastFormationName = "Line Closed";
+	this.lastFormationName = "";
 
 	this.SetStance(this.template.DefaultStance);
 };

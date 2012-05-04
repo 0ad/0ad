@@ -118,6 +118,22 @@ function LoadPlayerSettings(settings, newPlayers)
 				}
 			}
 			
+			// If formations explicitly defined, use that; otherwise use civ defaults
+			var formations = getSetting(pData, pDefs, "Formations");
+			if (formations !== undefined)
+			{
+				cmpPlayer.SetFormations(formations);
+			}
+			else
+			{
+				var rawFormations = Engine.ReadCivJSONFile(cmpPlayer.GetCiv()+".json");
+				if (!(rawFormations && rawFormations.Formations))
+				{
+					throw("Player.js: Error reading "+cmpPlayer.GetCiv()+".json");
+				}
+				cmpPlayer.SetFormations(rawFormations.Formations);
+			}
+			
 			var startCam = getSetting(pData, pDefs, "StartingCamera");
 			if (startCam !== undefined)
 			{

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -170,7 +170,7 @@ JSBool JSI_VFS::GetFileSize(JSContext* cx, uintN argc, jsval* vp)
 }
 
 
-// Return file contents in a string.
+// Return file contents in a string. Assume file is UTF-8 encoded text.
 //
 // contents = readFile(filename);
 //   filename: VFS filename (may include path)
@@ -182,12 +182,17 @@ JSBool JSI_VFS::ReadFile(JSContext* cx, uintN argc, jsval* vp)
 	if (!ToPrimitive<CStrW> (cx, JS_ARGV(cx, vp)[0], filename))
 		return JS_FALSE;
 
-	shared_ptr<u8> buf;
-	size_t size;
-	Status err = g_VFS->LoadFile(filename, buf, size);
-	JS_CHECK_FILE_ERR( err );
+	//
+	// read file
+	//
+	CVFSFile file;
+	if (file.Load(g_VFS, filename) != PSRETURN_OK)
+	{
+		JS_SET_RVAL(cx, vp, JSVAL_NULL);
+		return JS_TRUE;
+	}
 
-	CStr contents((const char*)buf.get(), size);
+	CStr contents = file.DecodeUTF8(); // assume it's UTF-8
 
 	// Fix CRLF line endings. (This function will only ever be used on text files.)
 	contents.Replace("\r\n", "\n");
@@ -198,7 +203,7 @@ JSBool JSI_VFS::ReadFile(JSContext* cx, uintN argc, jsval* vp)
 }
 
 
-// Return file contents as an array of lines.
+// Return file contents as an array of lines. Assume file is UTF-8 encoded text.
 //
 // lines = readFileLines(filename);
 //   filename: VFS filename (may include path)
@@ -213,13 +218,14 @@ JSBool JSI_VFS::ReadFileLines(JSContext* cx, uintN argc, jsval* vp)
 	//
 	// read file
 	//
+	CVFSFile file;
+	if (file.Load(g_VFS, filename) != PSRETURN_OK)
+	{
+		JS_SET_RVAL(cx, vp, JSVAL_NULL);
+		return JS_TRUE;
+	}
 
-	shared_ptr<u8> buf;
-	size_t size;
-	Status err = g_VFS->LoadFile(filename, buf, size);
-	JS_CHECK_FILE_ERR( err );
-
-	CStr contents((const char*)buf.get(), size);
+	CStr contents = file.DecodeUTF8(); // assume it's UTF-8
 
 	// Fix CRLF line endings. (This function will only ever be used on text files.)
 	contents.Replace("\r\n", "\n");

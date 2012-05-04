@@ -453,7 +453,7 @@ function ProcessCommand(player, cmd)
 
 	case "formation":
 		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-		GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
+		GetFormationUnitAIs(entities, cmd.name).forEach(function(cmpUnitAI) {
 			var cmpFormation = Engine.QueryInterface(cmpUnitAI.entity, IID_Formation);
 			if (!cmpFormation)
 				return;
@@ -567,7 +567,7 @@ function RemoveFromFormation(ents)
  * Returns a list of UnitAI components, each belonging either to a
  * selected unit or to a formation entity for groups of the selected units.
  */
-function GetFormationUnitAIs(ents)
+function GetFormationUnitAIs(ents, formName)
 {
 	// If an individual was selected, remove it from any formation
 	// and command it individually
@@ -594,13 +594,11 @@ function GetFormationUnitAIs(ents)
 			continue;
 
 		var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-		// TODO: Currently we use LineClosed as effectively a boolean flag
-		// to determine whether formations are allowed at all. Instead we
-		// should check specific formation names and do something sensible
-		// (like what?) when some units don't support them.
-		// TODO: We'll also need to fix other formation code to use
-		// "LineClosed" instead of "Line Closed" etc consistently.
-		if (cmpIdentity && cmpIdentity.CanUseFormation("LineClosed"))
+		// TODO: We only check if the formation is usable by some units
+		// if we move them to it. We should check if we can use formations
+		// for the other cases.
+		// We only use "LineClosed" instead of "Line Closed" to access the templates.
+		if (cmpIdentity && cmpIdentity.CanUseFormation(formName === undefined ? "LineClosed" : formName.replace(/\s+/,'')))
 			formedEnts.push(ent);
 		else
 			nonformedUnitAIs.push(cmpUnitAI);
@@ -738,6 +736,7 @@ function CanMoveEntsIntoFormation(ents, formationName)
 	var count = ents.length;
 
 	// TODO: should check the player's civ is allowed to use this formation
+	// See simulation/components/Player.js GetFormations() for a list of all allowed formations
 
 	var requirements = GetFormationRequirements(formationName);
 	if (!requirements)

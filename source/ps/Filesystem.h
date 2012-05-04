@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -58,21 +58,39 @@ ERROR_GROUP(CVFSFile);
 ERROR_TYPE(CVFSFile, LoadFailed);
 ERROR_TYPE(CVFSFile, AlreadyLoaded);
 
-// Reads a file, then gives read-only access to the contents
+/**
+ * Reads a file, then gives read-only access to the contents
+ */
 class CVFSFile
 {
 public:
 	CVFSFile();
 	~CVFSFile();
 
-	// Returns either PSRETURN_OK or PSRETURN_CVFSFile_LoadFailed.
-	// Dies if a file has already been successfully loaded.
+	/**
+	 * Returns either PSRETURN_OK or PSRETURN_CVFSFile_LoadFailed
+	 * @note Dies if the file has already been successfully loaded
+	 */
 	PSRETURN Load(const PIVFS& vfs, const VfsPath& filename);
 
-	// These die if called when no file has been successfully loaded.
+	/**
+	 * Returns buffer of this file as a stream of bytes
+	 * @note file must have been successfully loaded
+	 */
 	const u8* GetBuffer() const;
 	size_t GetBufferSize() const;
+
+	/**
+	 * Returns contents of file as a string
+	 * @note file must have been successfully loaded
+	 */
 	CStr GetAsString() const;
+
+	/**
+	 * Returns contents of a UTF-8 encoded file as a string with optional BOM removed
+	 * @note file must have been successfully loaded
+	 */
+	CStr DecodeUTF8() const;
 
 private:
 	shared_ptr<u8> m_Buffer;

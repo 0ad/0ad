@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -1018,7 +1018,7 @@ CScriptValRooted ScriptInterface::ReadJSONFile(const VfsPath& path)
 		return CScriptValRooted();
 	}
 
-	std::string content(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize()); // assume it's UTF-8
+	std::string content(file.DecodeUTF8()); // assume it's UTF-8
 
 	return ParseJSON(content);
 }

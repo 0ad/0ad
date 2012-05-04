@@ -25,6 +25,7 @@ Player.prototype.Init = function()
 	this.diplomacy = [];	// array of diplomatic stances for this player with respect to other players (including gaia and self)
 	this.conquestCriticalEntitiesCount = 0; // number of owned units with ConquestCritical class
 	this.phase = "village";
+	this.formations = [];
 	this.startCam = undefined;
 	this.controlAllUnits = false;
 	this.isAI = false;
@@ -202,7 +203,6 @@ Player.prototype.GetConquestCriticalEntitiesCount = function()
 	return this.conquestCriticalEntitiesCount;
 };
 
-
 Player.prototype.GetTeam = function()
 {
 	return this.team;
@@ -221,6 +221,16 @@ Player.prototype.GetDiplomacy = function()
 Player.prototype.SetDiplomacy = function(dipl)
 {
 	this.diplomacy = dipl;
+};
+
+Player.prototype.GetFormations = function()
+{
+	return this.formations;
+};
+
+Player.prototype.SetFormations = function(formations)
+{
+	this.formations = formations;
 };
 
 Player.prototype.GetStartingCameraPos = function()

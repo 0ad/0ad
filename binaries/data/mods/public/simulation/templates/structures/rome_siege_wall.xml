@@ -9,13 +9,14 @@
     <Territory>own neutral enemy</Territory>
   </BuildRestrictions>
   <Cost>
+    <BuildTime>20</BuildTime>
     <Resources>
       <wood>150</wood>
       <stone>0</stone>
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="26.0" depth="8.0"/>
+    <Square width="28.0" depth="8.0"/>
     <Height>7.0</Height>
   </Footprint>
   <Health>
@@ -28,12 +29,16 @@
     <Icon>structures/palisade.png</Icon>
 	<Tooltip>A wooden and turf palisade buildable in enemy and neutral territories.</Tooltip>
     <History>Quick building, but expensive wooden and earthen walls used to surround and siege an enemy town or fortified position. The most famous examples are the Roman sieges of the Iberian stronghold of Numantia and the Gallic stronghold of Alesia.</History>
+	<RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Obstruction>
-    <Static width="26.0" depth="8.0"/>
+    <Static width="25.0" depth="5.0"/>
   </Obstruction>
+  <TerritoryDecay>
+    <HealthDecayRate>1</HealthDecayRate>
+  </TerritoryDecay>
   <VisualActor>
-    <Actor>structures/romans/siege_wall.xml</Actor>
-    <FoundationActor>structures/fndn_1x1.xml</FoundationActor>
+    <Actor>structures/romans/siege_wall_medium.xml</Actor>
+    <FoundationActor>structures/fndn_wall_short.xml</FoundationActor>
   </VisualActor>
 </Entity>

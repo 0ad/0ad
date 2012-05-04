@@ -451,6 +451,13 @@ GuiInterface.prototype.GetNextNotification = function()
 		return "";
 };
 
+GuiInterface.prototype.GetAvailableFormations = function(player, data)
+{
+	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpPlayer = Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(player), IID_Player);
+	return cmpPlayer.GetFormations();
+};
+
 GuiInterface.prototype.GetFormationRequirements = function(player, data)
 {
 	return GetFormationRequirements(data.formationName);
@@ -897,6 +904,7 @@ var exposedFunctions = {
 	"CheckTechnologyRequirements": 1,
 	"GetNextNotification": 1,
 
+	"GetAvailableFormations": 1,
 	"GetFormationRequirements": 1,
 	"CanMoveEntsIntoFormation": 1,
 	"IsFormationSelected": 1,

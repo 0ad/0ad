@@ -81,6 +81,7 @@ CComponentManager::CComponentManager(CSimContext& context, bool skipScriptFuncti
 		m_ScriptInterface.RegisterFunction<int, std::string, CComponentManager::Script_AddLocalEntity> ("AddLocalEntity");
 		m_ScriptInterface.RegisterFunction<void, int, CComponentManager::Script_DestroyEntity> ("DestroyEntity");
 		m_ScriptInterface.RegisterFunction<CScriptVal, std::wstring, CComponentManager::Script_ReadJSONFile> ("ReadJSONFile");
+		m_ScriptInterface.RegisterFunction<CScriptVal, std::wstring, CComponentManager::Script_ReadCivJSONFile> ("ReadCivJSONFile");
 		m_ScriptInterface.RegisterFunction<std::vector<std::string>, std::wstring, CComponentManager::Script_FindJSONFiles> ("FindJSONFiles");
 	}
 
@@ -939,9 +940,19 @@ std::string CComponentManager::GenerateSchema()
 
 CScriptVal CComponentManager::Script_ReadJSONFile(void* cbdata, std::wstring fileName)
 {
+	return ReadJSONFile(cbdata, L"simulation/data", fileName);
+}
+
+CScriptVal CComponentManager::Script_ReadCivJSONFile(void* cbdata, std::wstring fileName)
+{
+	return ReadJSONFile(cbdata, L"civs", fileName);
+}
+
+CScriptVal CComponentManager::ReadJSONFile(void* cbdata, std::wstring filePath, std::wstring fileName)
+{
 	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
 
-	VfsPath path = VfsPath("simulation/data") / fileName;
+	VfsPath path = VfsPath(filePath) / fileName;
 
 	return componentManager->GetScriptInterface().ReadJSONFile(path).get();
 }

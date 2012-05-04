@@ -61,7 +61,7 @@
 		{
 			"Name":"Delian League",
 			"History":"Tribute from Athens' allies contributed to the construction of vast fleets of warships numbering into the hundreds.",
-			"Description":"Warships construct 25% faster."
+			"Description":"Ships construct 25% faster."
 		},
 		{
 			"Name":"Hellenisation",
@@ -123,5 +123,19 @@
 		{
 			"Template": "units/athen_cavalry_javelinist_b"
 		}
+	],
+	"Formations":
+	[
+		"Scatter",
+		"Box",
+		"Column Closed",
+		"Line Closed",
+		"Column Open",
+		"Line Open",
+		"Flank",
+		"Skirmish",
+		"Wedge",
+		"Battle Line",
+		"Phalanx"
 	]
 }
