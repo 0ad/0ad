@@ -195,11 +195,8 @@ for (var i=0; i < numPlayers; i++)
 	var ix = round(fx);
 	var iz = round(fz);
 
-	// get civ specific starting entities
-	var civEntities = getStartingEntities(id-1);
-	
 	// create starting units
-	createStartingPlayerEntities(fx, fz, id, civEntities, BUILDING_ANGlE)
+	placeCivDefaultEntities(fx, fz, id, BUILDING_ANGlE);
 	
 	var citySize = 250
 

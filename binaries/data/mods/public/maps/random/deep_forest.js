@@ -58,7 +58,7 @@ var numPlayers = getNumPlayers();
 var baseRadius = 20;
 var minPlayerRadius = min(mapRadius-1.5*baseRadius, 5*mapRadius/8);
 var maxPlayerRadius = min(mapRadius-baseRadius, 3*mapRadius/4);
-const BUILDING_ANlE = -PI/4;
+const BUILDING_ANGlE = -PI/4;
 var playerStartLocX = new Array(numPlayers);
 var playerStartLocZ = new Array(numPlayers);
 var playerAngle = new Array(numPlayers);
@@ -86,15 +86,13 @@ RMS.SetProgress(2);
 // Place bases
 for (var i=0; i < numPlayers; i++)
 {
-	var civ = g_MapSettings.PlayerData[i].Civ;
-	var startEntities = getStartingEntities(i);
 	playerAngle[i] = (playerAngleStart + i*playerAngleAddAvrg + randFloat(0, playerAngleMaxOff))%(2*PI);
 	var x = round(mapCenterX + randFloat(minPlayerRadius, maxPlayerRadius)*cos(playerAngle[i]));
 	var z = round(mapCenterZ + randFloat(minPlayerRadius, maxPlayerRadius)*sin(playerAngle[i]));
 	playerStartLocX[i] = x;
 	playerStartLocZ[i] = z;
 	// Place starting entities
-	createStartingPlayerEntities(x, z, i+1, startEntities, BUILDING_ANlE)
+	placeCivDefaultEntities(x, z, i+1, BUILDING_ANGlE);
 	// Place base texture
 	var placer = new ClumpPlacer(2*baseRadius*baseRadius, 2/3, 1/8, 10, x, z);
 	var painter = [new LayeredPainter([terrainBaseBorder, terrainBase], [baseRadius/4]), paintClass(clPlayer)];

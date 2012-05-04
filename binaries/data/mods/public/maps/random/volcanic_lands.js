@@ -106,11 +106,8 @@ for (var i = 0; i < numPlayers; i++)
 	var painter = new LayeredPainter([tRoadWild, tRoad], [1]);
 	createArea(placer, painter, null);
 	
-	// get civ specific starting entities
-	var civEntities = getStartingEntities(id-1);
-	
 	// create starting units
-	createStartingPlayerEntities(fx, fz, id, civEntities, BUILDING_ANGlE)
+	placeCivDefaultEntities(fx, fz, id, BUILDING_ANGlE);
 	
 	// create metal mine
 	var bbAngle = randFloat(0, TWO_PI);

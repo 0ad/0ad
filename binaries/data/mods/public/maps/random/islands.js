@@ -132,11 +132,8 @@ for (var i = 0; i < numPlayers; i++)
 	);
 	createArea(placer, [terrainPainter, elevationPainter, paintClass(clPlayer)], null);
 	
-	// get civ specific starting entities
-	var civEntities = getStartingEntities(id-1);
-	
 	// create starting units
-	createStartingPlayerEntities(fx, fz, id, civEntities, BUILDING_ANGlE)
+	placeCivDefaultEntities(fx, fz, id, BUILDING_ANGlE, {'iberWall' : 'towers'});
 	
 	// create animals
 	for (var j = 0; j < 2; ++j)

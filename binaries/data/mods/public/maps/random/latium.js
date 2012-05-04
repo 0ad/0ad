@@ -430,11 +430,8 @@ for (var i = 1; i <= numPlayers; i++)
 	);
 	createArea(placer, [painter, elevationPainter], null);
 	
-	// get civ specific starting entities
-	var civEntities = getStartingEntities(id-1);
-	
 	// create starting units
-	createStartingPlayerEntities(fx, fz, id, civEntities, BUILDING_ANGlE)
+	placeCivDefaultEntities(fx, fz, id, BUILDING_ANGlE);
 	
 	// create animals
 	for (var j = 0; j < 2; ++j)
