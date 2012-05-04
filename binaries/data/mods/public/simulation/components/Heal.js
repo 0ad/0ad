@@ -47,9 +47,13 @@ Heal.prototype.GetTimers = function()
 
 Heal.prototype.GetRange = function()
 {
-	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-	var max = cmpTechMan.ApplyModifications("Heal/Range", +this.template.Range, this.entity);
 	var min = 0;
+	var max = +this.template.Range;
+
+	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	if (cmpTechMan)
+		max = cmpTechMan.ApplyModifications("Heal/Range", max, this.entity);
+
 	return { "max": max, "min": min };
 };
 
