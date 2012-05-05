@@ -44,9 +44,9 @@ CParamNode::CParamNode(bool isOk) :
 {
 }
 
-void CParamNode::LoadXML(CParamNode& ret, const XMBFile& xmb)
+void CParamNode::LoadXML(CParamNode& ret, const XMBFile& xmb, const wchar_t* sourceIdentifier /*= NULL*/)
 {
-	ret.ApplyLayer(xmb, xmb.GetRoot());
+	ret.ApplyLayer(xmb, xmb.GetRoot(), sourceIdentifier);
 }
 
 void CParamNode::LoadXML(CParamNode& ret, const VfsPath& path)
@@ -56,22 +56,22 @@ void CParamNode::LoadXML(CParamNode& ret, const VfsPath& path)
 	if (ok != PSRETURN_OK)
 		return; // (Xeromyces already logged an error)
 
-	LoadXML(ret, xero);
+	LoadXML(ret, xero, path.string().c_str());
 }
 
-PSRETURN CParamNode::LoadXMLString(CParamNode& ret, const char* xml)
+PSRETURN CParamNode::LoadXMLString(CParamNode& ret, const char* xml, const wchar_t* sourceIdentifier /*=NULL*/)
 {
 	CXeromyces xero;
 	PSRETURN ok = xero.LoadString(xml);
 	if (ok != PSRETURN_OK)
 		return ok;
 
-	ret.ApplyLayer(xero, xero.GetRoot());
+	ret.ApplyLayer(xero, xero.GetRoot(), sourceIdentifier);
 
 	return PSRETURN_OK;
 }
 
-void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element)
+void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const wchar_t* sourceIdentifier /*= NULL*/)
 {
 	ResetScriptVal();
 
@@ -128,8 +128,8 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element)
 						if (tokenIt != tokens.end())
 							tokens.erase(tokenIt);
 						else
-							LOGWARNING(L"[ParamNode] Could not remove token '%ls' from node '%hs'; not present in list nor inherited (possible typo?)",
-								newTokens[i].substr(1).c_str(), name.c_str());
+							LOGWARNING(L"[ParamNode] Could not remove token '%ls' from node '%hs'%ls; not present in list nor inherited (possible typo?)",
+								newTokens[i].substr(1).c_str(), name.c_str(), sourceIdentifier ? (L" in '" + std::wstring(sourceIdentifier) + L"'").c_str() : L"");
 					}
 					else
 					{
@@ -153,7 +153,7 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element)
 	// Recurse through the element's children
 	XERO_ITER_EL(element, child)
 	{
-		node.ApplyLayer(xmb, child);
+		node.ApplyLayer(xmb, child, sourceIdentifier);
 	}
 
 	// Add the element's attributes, prefixing names with "@"

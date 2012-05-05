@@ -488,7 +488,7 @@ QUERYHANDLER(PickSimilarObjects)
 	if (cmpOwnership)
 		owner = cmpOwnership->GetOwner();
 
-	msg->ids = EntitySelection::PickSimilarEntities(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), templateName, owner, false, true, true);
+	msg->ids = EntitySelection::PickSimilarEntities(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), templateName, owner, false, true, true, false);
 }
 
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,6 +32,7 @@
 #include "ps/Overlay.h"
 #include "ps/Profile.h"
 #include "renderer/Scene.h"
+#include "ps/CLogger.h"
 
 // Externally, tags are opaque non-zero positive integers.
 // Internally, they are tagged (by shape) indexes into shape lists.
@@ -65,6 +66,8 @@ struct StaticShape
 	CFixedVector2D u, v; // orthogonal unit vectors - axes of local coordinate space
 	entity_pos_t hw, hh; // half width/height in local coordinate space
 	ICmpObstructionManager::flags_t flags;
+	entity_id_t group;
+	entity_id_t group2;
 };
 
 /**
@@ -102,6 +105,8 @@ struct SerializeStaticShape
 		serialize.NumberFixed_Unbounded("hw", value.hw);
 		serialize.NumberFixed_Unbounded("hh", value.hh);
 		serialize.NumberU8_Unbounded("flags", value.flags);
+		serialize.NumberU32_Unbounded("group", value.group);
+		serialize.NumberU32_Unbounded("group2", value.group2);
 	}
 };
 
@@ -257,14 +262,14 @@ public:
 		return UNIT_INDEX_TO_TAG(id);
 	}
 
-	virtual tag_t AddStaticShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h, flags_t flags)
+	virtual tag_t AddStaticShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h, flags_t flags, entity_id_t group, entity_id_t group2 /* = INVALID_ENTITY */)
 	{
 		fixed s, c;
 		sincos_approx(a, s, c);
 		CFixedVector2D u(c, -s);
 		CFixedVector2D v(s, c);
 
-		StaticShape shape = { ent, x, z, u, v, w/2, h/2, flags };
+		StaticShape shape = { ent, x, z, u, v, w/2, h/2, flags, group, group2 };
 		u32 id = m_StaticShapeNext++;
 		m_StaticShapes[id] = shape;
 		MakeDirtyStatic(flags);
@@ -364,6 +369,18 @@ public:
 		{
 			UnitShape& shape = m_UnitShapes[TAG_TO_INDEX(tag)];
 			shape.group = group;
+		}
+	}
+
+	virtual void SetStaticControlGroup(tag_t tag, entity_id_t group, entity_id_t group2)
+	{
+		ENSURE(TAG_IS_VALID(tag) && TAG_IS_STATIC(tag));
+
+		if (TAG_IS_STATIC(tag))
+		{
+			StaticShape& shape = m_StaticShapes[TAG_TO_INDEX(tag)];
+			shape.group = group;
+			shape.group2 = group2;
 		}
 	}
 
@@ -533,7 +550,7 @@ bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, enti
 		std::map<u32, UnitShape>::iterator it = m_UnitShapes.find(unitShapes[i]);
 		ENSURE(it != m_UnitShapes.end());
 
-		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.flags, it->second.group))
+		if (!filter.TestShape(UNIT_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, INVALID_ENTITY))
 			continue;
 
 		CFixedVector2D center(it->second.x, it->second.z);
@@ -548,7 +565,7 @@ bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, enti
 		std::map<u32, StaticShape>::iterator it = m_StaticShapes.find(staticShapes[i]);
 		ENSURE(it != m_StaticShapes.end());
 
-		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), it->second.flags, INVALID_ENTITY))
+		if (!filter.TestShape(STATIC_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, it->second.group2))
 			continue;
 
 		CFixedVector2D center(it->second.x, it->second.z);
@@ -592,7 +609,7 @@ bool CCmpObstructionManager::TestStaticShape(const IObstructionTestFilter& filte
 
 	for (std::map<u32, UnitShape>::iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
 	{
-		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.flags, it->second.group))
+		if (!filter.TestShape(UNIT_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, INVALID_ENTITY))
 			continue;
 
 		CFixedVector2D center1(it->second.x, it->second.z);
@@ -608,7 +625,7 @@ bool CCmpObstructionManager::TestStaticShape(const IObstructionTestFilter& filte
 
 	for (std::map<u32, StaticShape>::iterator it = m_StaticShapes.begin(); it != m_StaticShapes.end(); ++it)
 	{
-		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), it->second.flags, INVALID_ENTITY))
+		if (!filter.TestShape(STATIC_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, it->second.group2))
 			continue;
 
 		CFixedVector2D center1(it->second.x, it->second.z);
@@ -649,7 +666,7 @@ bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter,
 
 	for (std::map<u32, UnitShape>::iterator it = m_UnitShapes.begin(); it != m_UnitShapes.end(); ++it)
 	{
-		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.flags, it->second.group))
+		if (!filter.TestShape(UNIT_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, INVALID_ENTITY))
 			continue;
 
 		entity_pos_t r1 = it->second.r;
@@ -665,7 +682,7 @@ bool CCmpObstructionManager::TestUnitShape(const IObstructionTestFilter& filter,
 
 	for (std::map<u32, StaticShape>::iterator it = m_StaticShapes.begin(); it != m_StaticShapes.end(); ++it)
 	{
-		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), it->second.flags, INVALID_ENTITY))
+		if (!filter.TestShape(STATIC_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, it->second.group2))
 			continue;
 
 		CFixedVector2D center1(it->second.x, it->second.z);
@@ -869,7 +886,7 @@ void CCmpObstructionManager::GetObstructionsInRange(const IObstructionTestFilter
 		std::map<u32, UnitShape>::iterator it = m_UnitShapes.find(unitShapes[i]);
 		ENSURE(it != m_UnitShapes.end());
 
-		if (!filter.Allowed(UNIT_INDEX_TO_TAG(it->first), it->second.flags, it->second.group))
+		if (!filter.TestShape(UNIT_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, INVALID_ENTITY))
 			continue;
 
 		entity_pos_t r = it->second.r;
@@ -890,7 +907,7 @@ void CCmpObstructionManager::GetObstructionsInRange(const IObstructionTestFilter
 		std::map<u32, StaticShape>::iterator it = m_StaticShapes.find(staticShapes[i]);
 		ENSURE(it != m_StaticShapes.end());
 
-		if (!filter.Allowed(STATIC_INDEX_TO_TAG(it->first), it->second.flags, INVALID_ENTITY))
+		if (!filter.TestShape(STATIC_INDEX_TO_TAG(it->first), it->second.flags, it->second.group, it->second.group2))
 			continue;
 
 		entity_pos_t r = it->second.hw + it->second.hh; // overestimate the max dist of an edge from the center

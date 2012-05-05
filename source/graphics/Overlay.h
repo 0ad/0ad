@@ -22,6 +22,7 @@
 #include "graphics/Texture.h"
 #include "maths/Vector2D.h"
 #include "maths/Vector3D.h"
+#include "maths/FixedVector3D.h"
 #include "ps/Overlay.h" // CColor  (TODO: that file has nothing to do with overlays, it should be renamed)
 
 class CTerrain;

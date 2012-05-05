@@ -17,21 +17,19 @@ const ACTION_GARRISON = 1;
 const ACTION_REPAIR = 2;
 var preSelectedAction = ACTION_NONE;
 
-var INPUT_NORMAL = 0;
-var INPUT_SELECTING = 1;
-var INPUT_BANDBOXING = 2;
-var INPUT_BUILDING_PLACEMENT = 3;
-var INPUT_BUILDING_CLICK = 4;
-var INPUT_BUILDING_DRAG = 5;
-var INPUT_BATCHTRAINING = 6;
-var INPUT_PRESELECTEDACTION = 7;
+const INPUT_NORMAL = 0;
+const INPUT_SELECTING = 1;
+const INPUT_BANDBOXING = 2;
+const INPUT_BUILDING_PLACEMENT = 3;
+const INPUT_BUILDING_CLICK = 4;
+const INPUT_BUILDING_DRAG = 5;
+const INPUT_BATCHTRAINING = 6;
+const INPUT_PRESELECTEDACTION = 7;
+const INPUT_BUILDING_WALL_CLICK = 8;
+const INPUT_BUILDING_WALL_PATHING = 9;
 
 var inputState = INPUT_NORMAL;
-
-var defaultPlacementAngle = Math.PI*3/4;
-var placementAngle = undefined;
-var placementPosition = undefined;
-var placementEntity = undefined;
+var placementSupport = new PlacementSupport();
 
 var mouseX = 0;
 var mouseY = 0;
@@ -83,32 +81,60 @@ function updateCursorAndTooltip()
 		Engine.SetCursor("arrow-default");
 	if (!tooltipSet)
 		informationTooltip.hidden = true;
+	
+	var wallDragTooltip = getGUIObjectByName("wallDragTooltip");
+	if (placementSupport.wallDragTooltip)
+	{
+		wallDragTooltip.caption = placementSupport.wallDragTooltip;
+		wallDragTooltip.hidden = false;
+	}
+	else
+	{
+		wallDragTooltip.caption = "";
+		wallDragTooltip.hidden = true;
+	}
 }
 
 function updateBuildingPlacementPreview()
 {
-	// The preview should be recomputed every turn, so that it responds
-	// to obstructions/fog/etc moving underneath it
+	// The preview should be recomputed every turn, so that it responds to obstructions/fog/etc moving underneath it, or
+	// in the case of the wall previews, in response to new tower foundations getting constructed for it to snap to.
+	// See onSimulationUpdate in session.js.
 
-	if (placementEntity && placementPosition)
+	if (placementSupport.mode === "building")
 	{
-		return Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {
-			"template": placementEntity,
-			"x": placementPosition.x,
-			"z": placementPosition.z,
-			"angle": placementAngle
-		});
+		if (placementSupport.template && placementSupport.position)
+		{
+			return Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {
+				"template": placementSupport.template,
+				"x": placementSupport.position.x,
+				"z": placementSupport.position.z,
+				"angle": placementSupport.angle,
+			});
+		}
+	}
+	else if (placementSupport.mode === "wall")
+	{
+		if (placementSupport.wallSet && placementSupport.position)
+		{
+			// Fetch an updated list of snapping candidate entities
+			placementSupport.wallSnapEntities = Engine.PickSimilarFriendlyEntities(
+				placementSupport.wallSet.templates.tower,
+				placementSupport.wallSnapEntitiesIncludeOffscreen,
+				true, // require exact template match
+				true  // include foundations
+			);
+			
+			return Engine.GuiInterfaceCall("SetWallPlacementPreview", {
+				"wallSet": placementSupport.wallSet,
+				"start": placementSupport.position,
+				"end": placementSupport.wallEndPosition,
+				"snapEntities": placementSupport.wallSnapEntities,	// snapping entities (towers) for starting a wall segment
+			});
+		}
 	}
 
 	return false;
-}
-
-function resetPlacementEntity()
-{
-	Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": ""});
-	placementEntity = undefined;
-	placementPosition = undefined;
-	placementAngle = undefined;
 }
 
 function findGatherType(gatherer, supply)
@@ -459,6 +485,12 @@ var dragStart; // used for remembering mouse coordinates at start of drag operat
 
 function tryPlaceBuilding(queued)
 {
+	if (placementSupport.mode !== "building")
+	{
+		error("[tryPlaceBuilding] Called while in '"+placementSupport.mode+"' placement mode instead of 'building'");
+		return false;
+	}
+	
 	var selection = g_Selection.toList();
 
 	// Use the preview to check it's a valid build location
@@ -472,10 +504,10 @@ function tryPlaceBuilding(queued)
 	// Start the construction
 	Engine.PostNetworkCommand({
 		"type": "construct",
-		"template": placementEntity,
-		"x": placementPosition.x,
-		"z": placementPosition.z,
-		"angle": placementAngle,
+		"template": placementSupport.template,
+		"x": placementSupport.position.x,
+		"z": placementSupport.position.z,
+		"angle": placementSupport.angle,
 		"entities": selection,
 		"autorepair": true,
 		"autocontinue": true,
@@ -484,7 +516,60 @@ function tryPlaceBuilding(queued)
 	Engine.GuiInterfaceCall("PlaySound", { "name": "order_repair", "entity": selection[0] });
 
 	if (!queued)
-		resetPlacementEntity();
+		placementSupport.Reset();
+
+	return true;
+}
+
+function tryPlaceWall()
+{
+	if (placementSupport.mode !== "wall")
+	{
+		error("[tryPlaceWall] Called while in '" + placementSupport.mode + "' placement mode; expected 'wall' mode");
+		return false;
+	}
+	
+	var wallPlacementInfo = updateBuildingPlacementPreview(); // entities making up the wall (wall segments, towers, ...)
+	if (!(wallPlacementInfo === false || typeof(wallPlacementInfo) === "object"))
+	{
+		error("[tryPlaceWall] Unexpected return value from updateBuildingPlacementPreview: '" + uneval(placementInfo) + "'; expected either 'false' or 'object'");
+		return false;
+	}
+	
+	if (!wallPlacementInfo)
+		return false;
+	
+	var selection = g_Selection.toList();
+	var cmd = {
+		"type": "construct-wall",
+		"autorepair": true,
+		"autocontinue": true,
+		"queued": true,
+		"entities": selection,
+		"wallSet": placementSupport.wallSet,
+		"pieces": wallPlacementInfo.pieces,
+		"startSnappedEntity": wallPlacementInfo.startSnappedEnt,
+		"endSnappedEntity": wallPlacementInfo.endSnappedEnt,
+	};
+	
+	// make sure that there's at least one non-tower entity getting built, to prevent silly edge cases where the start and end
+	// point are too close together for the algorithm to place a wall segment inbetween, and only the towers are being previewed
+	// (this is somewhat non-ideal and hardcode-ish)
+	var hasWallSegment = false;
+	for (var k in cmd.pieces)
+	{
+		if (cmd.pieces[k].template != cmd.wallSet.templates.tower) // TODO: hardcode-ish :(
+		{
+			hasWallSegment = true;
+			break;
+		}
+	}
+	
+	if (hasWallSegment)
+	{
+		Engine.PostNetworkCommand(cmd);
+		Engine.GuiInterfaceCall("PlaySound", {"name": "order_repair", "entity": selection[0] });
+	}
 
 	return true;
 }
@@ -684,7 +769,34 @@ function handleInputBeforeGui(ev, hoveredObject)
 			if (ev.button == SDL_BUTTON_RIGHT)
 			{
 				// Cancel building
-				resetPlacementEntity();
+				placementSupport.Reset();
+				inputState = INPUT_NORMAL;
+				return true;
+			}
+			break;
+		}
+		break;
+		
+	case INPUT_BUILDING_WALL_CLICK:
+		// User is mid-click in choosing a starting point for building a wall. The build process can still be cancelled at this point
+		// by right-clicking; releasing the left mouse button will 'register' the starting point and commence endpoint choosing mode. 
+		switch (ev.type)
+		{
+		case "mousebuttonup":
+			if (ev.button === SDL_BUTTON_LEFT)
+			{
+    			inputState = INPUT_BUILDING_WALL_PATHING;
+    			return true;
+			}
+			break;
+			
+		case "mousebuttondown":
+			if (ev.button == SDL_BUTTON_RIGHT)
+			{
+				// Cancel building
+				placementSupport.Reset();
+				updateBuildingPlacementPreview();
+				
 				inputState = INPUT_NORMAL;
 				return true;
 			}
@@ -692,6 +804,81 @@ function handleInputBeforeGui(ev, hoveredObject)
 		}
 		break;
 
+	case INPUT_BUILDING_WALL_PATHING:
+		// User has chosen a starting point for constructing the wall, and is now looking to set the endpoint.
+		// Right-clicking cancels wall building mode, left-clicking sets the endpoint and builds the wall and returns to
+		// normal input mode. Optionally, shift + left-clicking does not return to normal input, and instead allows the 
+		// user to continue building walls.
+		switch (ev.type)
+		{
+			case "mousemotion":
+				placementSupport.wallEndPosition = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
+				
+				// Update the building placement preview, and by extension, the list of snapping candidate entities for both (!)
+				// the ending point and the starting point to snap to.
+				// 
+				// TODO: Note that here, we need to fetch all similar entities, including any offscreen ones, to support the case
+				// where the snap entity for the starting point has moved offscreen, or has been deleted/destroyed, or was a
+				// foundation and has been replaced with a completed entity since the user first chose it. Fetching all towers on
+				// the entire map instead of only the current screen might get expensive fast since walls all have a ton of towers
+				// in them. Might be useful to query only for entities within a certain range around the starting point and ending
+				// points.
+				
+				placementSupport.wallSnapEntitiesIncludeOffscreen = true;
+				var result = updateBuildingPlacementPreview(); // includes an update of the snap entity candidates
+				
+				if (result && result.cost)
+				{
+					placementSupport.wallDragTooltip = "";
+					for (var resource in result.cost)
+					{
+						if (result.cost[resource] > 0)
+							placementSupport.wallDragTooltip += getCostComponentDisplayName(resource) + ": " + result.cost[resource] + "\n";
+					}
+				}
+				
+				break;
+				
+			case "mousebuttondown":
+				if (ev.button == SDL_BUTTON_LEFT)
+				{
+					if (tryPlaceWall())
+					{
+    					if (Engine.HotkeyIsPressed("session.queue"))
+    					{
+    						// continue building, just set a new starting position where we left off
+    						placementSupport.position = placementSupport.wallEndPosition;
+    						placementSupport.wallEndPosition = undefined;
+    						
+    						inputState = INPUT_BUILDING_WALL_CLICK;
+    					}
+    					else
+    					{
+    						placementSupport.Reset();
+    						inputState = INPUT_NORMAL;
+    					}
+					}
+					else
+					{
+						placementSupport.wallDragTooltip = "Cannot build wall here!";
+					}
+					
+					updateBuildingPlacementPreview();
+					return true;
+				}
+				else if (ev.button == SDL_BUTTON_RIGHT)
+				{
+					// reset to normal input mode
+					placementSupport.Reset();
+					updateBuildingPlacementPreview();
+					
+					inputState = INPUT_NORMAL;
+					return true;
+				}
+				break;
+		}
+		break;
+		
 	case INPUT_BUILDING_DRAG:
 		switch (ev.type)
 		{
@@ -702,25 +889,25 @@ function handleInputBeforeGui(ev, hoveredObject)
 			if (Math.abs(dragDeltaX) >= maxDragDelta || Math.abs(dragDeltaY) >= maxDragDelta)
 			{
 				// Rotate in the direction of the mouse
-				var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
-				placementAngle = Math.atan2(target.x - placementPosition.x, target.z - placementPosition.z);
+				var target = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
+				placementSupport.angle = Math.atan2(target.x - placementSupport.position.x, target.z - placementSupport.position.z);
 			}
 			else
 			{
 				// If the mouse is near the center, snap back to the default orientation
-				placementAngle = defaultPlacementAngle;
+				placementSupport.SetDefaultAngle();
 			}
 
 			var snapData = Engine.GuiInterfaceCall("GetFoundationSnapData", {
-				"template": placementEntity,
-				"x": placementPosition.x,
-				"z": placementPosition.z
+				"template": placementSupport.template,
+				"x": placementSupport.position.x,
+				"z": placementSupport.position.z
 			});
 			if (snapData)
 			{
-				placementAngle = snapData.angle;
-				placementPosition.x = snapData.x;
-				placementPosition.z = snapData.z;
+				placementSupport.angle = snapData.angle;
+				placementSupport.position.x = snapData.x;
+				placementSupport.position.z = snapData.z;
 			}
 
 			updateBuildingPlacementPreview();
@@ -750,7 +937,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 			if (ev.button == SDL_BUTTON_RIGHT)
 			{
 				// Cancel building
-				resetPlacementEntity();
+				placementSupport.Reset();
 				inputState = INPUT_NORMAL;
 				return true;
 			}
@@ -844,6 +1031,7 @@ function handleInputAfterGui(ev)
 				break;
 		}
 		break;
+		
 	case INPUT_PRESELECTEDACTION:
 		switch (ev.type)
 		{
@@ -874,6 +1062,7 @@ function handleInputAfterGui(ev)
 			}
 		}
 		break;
+		
 	case INPUT_SELECTING:
 		switch (ev.type)
 		{
@@ -947,7 +1136,7 @@ function handleInputAfterGui(ev)
 					}
 
 					// TODO: Should we handle "control all units" here as well?
-					ents = Engine.PickSimilarFriendlyEntities(templateToMatch, showOffscreen, matchRank);
+					ents = Engine.PickSimilarFriendlyEntities(templateToMatch, showOffscreen, matchRank, false);
 				}
 				else
 				{
@@ -986,35 +1175,57 @@ function handleInputAfterGui(ev)
 		switch (ev.type)
 		{
 		case "mousemotion":
-			placementPosition = Engine.GetTerrainAtPoint(ev.x, ev.y);
-			var snapData = Engine.GuiInterfaceCall("GetFoundationSnapData", {
-				"template": placementEntity,
-				"x": placementPosition.x,
-				"z": placementPosition.z
-			});
-			if (snapData)
+			
+			placementSupport.position = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
+			
+			if (placementSupport.mode === "wall")
 			{
-				placementAngle = snapData.angle;
-				placementPosition.x = snapData.x;
-				placementPosition.z = snapData.z;
+				// Including only the on-screen towers in the next snap candidate list is sufficient here, since the user is
+				// still selecting a starting point (which must necessarily be on-screen). (The update itself happens in the
+				// call to updateBuildingPlacementPreview below).
+				placementSupport.wallSnapEntitiesIncludeOffscreen = false;
+			}
+			else
+			{
+				var snapData = Engine.GuiInterfaceCall("GetFoundationSnapData", {
+					"template": placementSupport.template,
+					"x": placementSupport.position.x,
+					"z": placementSupport.position.z,
+				});
+				if (snapData)
+				{
+					placementSupport.angle = snapData.angle;
+					placementSupport.position.x = snapData.x;
+					placementSupport.position.z = snapData.z;
+				}
 			}
 
-			updateBuildingPlacementPreview();
-
+			updateBuildingPlacementPreview(); // includes an update of the snap entity candidates
 			return false; // continue processing mouse motion
 
 		case "mousebuttondown":
 			if (ev.button == SDL_BUTTON_LEFT)
 			{
-				placementPosition = Engine.GetTerrainAtPoint(ev.x, ev.y);
-				dragStart = [ ev.x, ev.y ];
-				inputState = INPUT_BUILDING_CLICK;
+				if (placementSupport.mode === "wall")
+				{
+					var validPlacement = updateBuildingPlacementPreview();
+					if (validPlacement !== false)
+					{
+						inputState = INPUT_BUILDING_WALL_CLICK;
+					}
+				}
+				else
+				{
+					placementSupport.position = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
+    				dragStart = [ ev.x, ev.y ];
+    				inputState = INPUT_BUILDING_CLICK;
+				}
 				return true;
 			}
 			else if (ev.button == SDL_BUTTON_RIGHT)
 			{
 				// Cancel building
-				resetPlacementEntity();
+				placementSupport.Reset();
 				inputState = INPUT_NORMAL;
 				return true;
 			}
@@ -1027,11 +1238,11 @@ function handleInputAfterGui(ev)
 			switch (ev.hotkey)
 			{
 			case "session.rotate.cw":
-				placementAngle += rotation_step;
+				placementSupport.angle += rotation_step;
 				updateBuildingPlacementPreview();
 				break;
 			case "session.rotate.ccw":
-				placementAngle -= rotation_step;
+				placementSupport.angle -= rotation_step;
 				updateBuildingPlacementPreview();
 				break;
 			}
@@ -1054,7 +1265,7 @@ function doAction(action, ev)
 	switch (action.type)
 	{
 	case "move":
-		var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
+		var target = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
 		Engine.PostNetworkCommand({"type": "walk", "entities": selection, "x": target.x, "z": target.z, "queued": queued});
 		Engine.GuiInterfaceCall("PlaySound", { "name": "order_walk", "entity": selection[0] });
 		return true;
@@ -1105,7 +1316,7 @@ function doAction(action, ev)
 		}
 		else
 		{
-			pos = Engine.GetTerrainAtPoint(ev.x, ev.y);
+			pos = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
 		}
 		Engine.PostNetworkCommand({"type": "set-rallypoint", "entities": selection, "x": pos.x, "z": pos.z, "data": action.data});
 		// Display rally point at the new coordinates, to avoid display lag
@@ -1117,7 +1328,7 @@ function doAction(action, ev)
 		return true;
 
 	case "unset-rallypoint":
-		var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
+		var target = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
 		Engine.PostNetworkCommand({"type": "unset-rallypoint", "entities": selection});
 		// Remove displayed rally point
 		Engine.GuiInterfaceCall("DisplayRallyPoint", {
@@ -1175,11 +1386,29 @@ function handleMinimapEvent(target)
 }
 
 // Called by GUI when user clicks construction button
-function startBuildingPlacement(buildEntType)
+// @param buildTemplate Template name of the entity the user wants to build
+function startBuildingPlacement(buildTemplate)
 {
-	placementEntity = buildEntType;
-	placementAngle = defaultPlacementAngle;
-	inputState = INPUT_BUILDING_PLACEMENT;
+	// TODO: we should clear any highlight selection rings here. If the mouse was over an entity before going onto the GUI
+	// to start building a structure, then the highlight selection rings are kept during the construction of the building.
+	// Gives the impression that somehow the hovered-over entity has something to do with the building you're constructing.
+	
+	placementSupport.SetDefaultAngle();
+	
+	// find out if we're building a wall, and change the entity appropriately if so
+	var templateData = GetTemplateData(buildTemplate);
+	if (templateData.wallSet)
+	{
+		placementSupport.mode = "wall";
+		placementSupport.wallSet = templateData.wallSet;
+		inputState = INPUT_BUILDING_PLACEMENT;
+	}
+	else
+	{
+		placementSupport.mode = "building";
+		placementSupport.template = buildTemplate;
+		inputState = INPUT_BUILDING_PLACEMENT;
+	}
 }
 
 // Called by GUI when user changes preferred trading goods

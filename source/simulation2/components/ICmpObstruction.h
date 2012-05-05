@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,6 +44,7 @@ public:
 	/**
 	 * Test whether this entity is colliding with any obstruction that are set to
 	 * block the creation of foundations.
+	 * @param ignoredEntities List of entities to ignore during the test.
 	 * @return true if foundation is valid (not obstructed)
 	 */
 	virtual bool CheckFoundation(std::string className) = 0;
@@ -69,6 +70,12 @@ public:
 	 * the same group. Default is the entity's own ID.
 	 */
 	virtual void SetControlGroup(entity_id_t group) = 0;
+
+	/// See SetControlGroup.
+	virtual entity_id_t GetControlGroup() = 0;
+
+	virtual void SetControlGroup2(entity_id_t group2) = 0;
+	virtual entity_id_t GetControlGroup2() = 0;
 
 	DECLARE_INTERFACE_TYPE(Obstruction)
 };

@@ -8,12 +8,15 @@ function ProcessCommand(player, cmd)
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	if (!cmpPlayerMan || player < 0)
 		return;
+	
 	var playerEnt = cmpPlayerMan.GetPlayerByID(player);
 	if (playerEnt == INVALID_ENTITY)
 		return;
+	
 	var cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
 	if (!cmpPlayer)
 		return;
+	
 	var controlAllUnits = cmpPlayer.CanControlAllUnits();
 
 	// Note: checks of UnitAI targets are not robust enough here, as ownership
@@ -203,151 +206,11 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "construct":
-		// Message structure:
-		// {
-		//   "type": "construct",
-		//   "entities": [...],
-		//   "template": "...",
-		//   "x": ...,
-		//   "z": ...,
-		//   "angle": ...,
-		//   "autorepair": true, // whether to automatically start constructing/repairing the new foundation
-		//   "autocontinue": true, // whether to automatically gather/build/etc after finishing this
-		//   "queued": true,
-		// }
+		TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd);
+		break;
 
-		/*
-		 * Construction process:
-		 *  . Take resources away immediately.
-		 *  . Create a foundation entity with 1hp, 0% build progress.
-		 *  . Increase hp and build progress up to 100% when people work on it.
-		 *  . If it's destroyed, an appropriate fraction of the resource cost is refunded.
-		 *  . If it's completed, it gets replaced with the real building.
-		 */
-		 
-		// Check that we can control these units
-		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-		if (!entities.length)
-			break;
-
-		// Tentatively create the foundation (we might find later that it's a invalid build command)
-		var ent = Engine.AddEntity("foundation|" + cmd.template);
-		if (ent == INVALID_ENTITY)
-		{
-			// Error (e.g. invalid template names)
-			error("Error creating foundation entity for '" + cmd.template + "'");
-			break;
-		}
-
-		// Move the foundation to the right place
-		var cmpPosition = Engine.QueryInterface(ent, IID_Position);
-		cmpPosition.JumpTo(cmd.x, cmd.z);
-		cmpPosition.SetYRotation(cmd.angle);
-
-		// Check whether it's obstructed by other entities or invalid terrain
-		var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
-		if (!cmpBuildRestrictions || !cmpBuildRestrictions.CheckPlacement(player))
-		{
-			if (g_DebugCommands)
-			{
-				warn("Invalid command: build restrictions check failed for player "+player+": "+uneval(cmd));
-			}
-
-			var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-			cmpGuiInterface.PushNotification({ "player": player, "message": "Building site was obstructed" });
-
-			// Remove the foundation because the construction was aborted
-			Engine.DestroyEntity(ent);
-			break;
-		}
-
-		// Check build limits
-		var cmpBuildLimits = QueryPlayerIDInterface(player, IID_BuildLimits);
-		if (!cmpBuildLimits || !cmpBuildLimits.AllowedToBuild(cmpBuildRestrictions.GetCategory()))
-		{
-			if (g_DebugCommands)
-			{
-				warn("Invalid command: build limits check failed for player "+player+": "+uneval(cmd));
-			}
-
-			// TODO: The UI should tell the user they can't build this (but we still need this check)
-
-			// Remove the foundation because the construction was aborted
-			Engine.DestroyEntity(ent);
-			break;
-		}
-		
-		var cmpTechMan = QueryPlayerIDInterface(player, IID_TechnologyManager);
-		// TODO: Enable this check once the AI gets technology support
-		if (!cmpTechMan.CanProduce(cmd.template) && false)
-		{
-			if (g_DebugCommands)
-			{
-				warn("Invalid command: required technology check failed for player "+player+": "+uneval(cmd));
-			}
-
-			var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-			cmpGuiInterface.PushNotification({ "player": player, "message": "Building's technology requirements are not met." });
-
-			// Remove the foundation because the construction was aborted
-			Engine.DestroyEntity(ent);
-		}
-
-		// TODO: AI has no visibility info
-		if (!cmpPlayer.IsAI())
-		{
-			// Check whether it's in a visible or fogged region
-			//	tell GetLosVisibility to force RetainInFog because preview entities set this to false,
-			//	which would show them as hidden instead of fogged
-			var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-			var visible = (cmpRangeManager && cmpRangeManager.GetLosVisibility(ent, player, true) != "hidden");
-			if (!visible)
-			{
-				if (g_DebugCommands)
-				{
-					warn("Invalid command: foundation visibility check failed for player "+player+": "+uneval(cmd));
-				}
-
-				var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-				cmpGuiInterface.PushNotification({ "player": player, "message": "Building site was not visible" });
-
-				Engine.DestroyEntity(ent);
-				break;
-			}
-		}
-
-		var cmpCost = Engine.QueryInterface(ent, IID_Cost);
-		if (!cmpPlayer.TrySubtractResources(cmpCost.GetResourceCosts()))
-		{
-			if (g_DebugCommands)
-			{
-				warn("Invalid command: building cost check failed for player "+player+": "+uneval(cmd));
-			}
-
-			Engine.DestroyEntity(ent);
-			break;
-		}
-
-		// Make it owned by the current player
-		var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
-		cmpOwnership.SetOwner(player);
-
-		// Initialise the foundation
-		var cmpFoundation = Engine.QueryInterface(ent, IID_Foundation);
-		cmpFoundation.InitialiseConstruction(player, cmd.template);
-
-		// Tell the units to start building this new entity
-		if (cmd.autorepair)
-		{
-			ProcessCommand(player, {
-				"type": "repair",
-				"entities": entities,
-				"target": ent,
-				"autocontinue": cmd.autocontinue,
-				"queued": cmd.queued
-			});
-		}
-
+	case "construct-wall":
+		TryConstructWall(player, cmpPlayer, controlAllUnits, cmd);
 		break;
 
 	case "delete-entities":
@@ -547,6 +410,420 @@ function ExtractFormations(ents)
 	var ids = [ id for (id in members) ];
 
 	return { "entities": entities, "members": members, "ids": ids };
+}
+
+/**
+ * Attempts to construct a building using the specified parameters.
+ * Returns true on success, false on failure.
+ */
+function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
+{
+	// Message structure:
+	// {
+	//   "type": "construct",
+	//   "entities": [...],                 // entities that will be ordered to construct the building (if applicable)
+	//   "template": "...",                 // template name of the entity being constructed
+	//   "x": ...,
+	//   "z": ...,
+	//   "angle": ...,
+	//   "autorepair": true,                // whether to automatically start constructing/repairing the new foundation
+	//   "autocontinue": true,              // whether to automatically gather/build/etc after finishing this
+	//   "queued": true,                    // whether to add the construction/repairing of this foundation to entities' queue (if applicable)
+	//   "obstructionControlGroup": ...,    // Optional; the obstruction control group ID that should be set for this building prior to obstruction
+	//                                      // testing to determine placement validity. If specified, must be a valid control group ID (> 0).
+	//   "obstructionControlGroup2": ...,   // Optional; secondary obstruction control group ID that should be set for this building prior to obstruction
+	//                                      // testing to determine placement validity. May be INVALID_ENTITY.
+	// }
+	
+	/*
+	 * Construction process:
+	 *  . Take resources away immediately.
+	 *  . Create a foundation entity with 1hp, 0% build progress.
+	 *  . Increase hp and build progress up to 100% when people work on it.
+	 *  . If it's destroyed, an appropriate fraction of the resource cost is refunded.
+	 *  . If it's completed, it gets replaced with the real building.
+	 */
+	
+	// Check whether we can control these units
+	var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+	if (!entities.length)
+		return false;
+	
+	// Tentatively create the foundation (we might find later that it's a invalid build command)
+	var ent = Engine.AddEntity("foundation|" + cmd.template);
+	if (ent == INVALID_ENTITY)
+	{
+		// Error (e.g. invalid template names)
+		error("Error creating foundation entity for '" + cmd.template + "'");
+		return false;
+	}
+	
+	// Move the foundation to the right place
+	var cmpPosition = Engine.QueryInterface(ent, IID_Position);
+	cmpPosition.JumpTo(cmd.x, cmd.z);
+	cmpPosition.SetYRotation(cmd.angle);
+	
+	// Set the obstruction control group if needed
+	if (cmd.obstructionControlGroup || cmd.obstructionControlGroup2)
+	{
+		var cmpObstruction = Engine.QueryInterface(ent, IID_Obstruction);
+		
+		// primary control group must always be valid
+		if (cmd.obstructionControlGroup)
+		{
+			if (cmd.obstructionControlGroup <= 0)
+				warn("[TryConstructBuilding] Invalid primary obstruction control group " + cmd.obstructionControlGroup + " received; must be > 0");
+			
+			cmpObstruction.SetControlGroup(cmd.obstructionControlGroup);
+		}
+		
+		if (cmd.obstructionControlGroup2)
+			cmpObstruction.SetControlGroup2(cmd.obstructionControlGroup2);
+	}
+	
+	// Check whether it's obstructed by other entities or invalid terrain
+	var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
+	if (!cmpBuildRestrictions || !cmpBuildRestrictions.CheckPlacement(player))
+	{
+		if (g_DebugCommands)
+		{
+			warn("Invalid command: build restrictions check failed for player "+player+": "+uneval(cmd));
+		}
+		
+		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGuiInterface.PushNotification({ "player": player, "message": "Building site was obstructed" });
+		
+		// Remove the foundation because the construction was aborted
+		Engine.DestroyEntity(ent);
+		return false;
+	}
+	
+	// Check build limits
+	var cmpBuildLimits = QueryPlayerIDInterface(player, IID_BuildLimits);
+	if (!cmpBuildLimits || !cmpBuildLimits.AllowedToBuild(cmpBuildRestrictions.GetCategory()))
+	{
+		if (g_DebugCommands)
+		{
+			warn("Invalid command: build limits check failed for player "+player+": "+uneval(cmd));
+		}
+		
+		// TODO: The UI should tell the user they can't build this (but we still need this check)
+		
+		// Remove the foundation because the construction was aborted
+		Engine.DestroyEntity(ent);
+		return false;
+	}
+	
+	var cmpTechMan = QueryPlayerIDInterface(player, IID_TechnologyManager);
+	// TODO: Enable this check once the AI gets technology support 
+	if (!cmpTechMan.CanProduce(cmd.template) && false) 
+	{
+		if (g_DebugCommands)
+		{
+			warn("Invalid command: required technology check failed for player "+player+": "+uneval(cmd));
+		}
+		
+		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGuiInterface.PushNotification({ "player": player, "message": "Building's technology requirements are not met." }); 
+		
+		// Remove the foundation because the construction was aborted 
+		Engine.DestroyEntity(ent); 
+	} 
+	
+	// TODO: AI has no visibility info
+	if (!cmpPlayer.IsAI())
+	{
+		// Check whether it's in a visible or fogged region
+		//	tell GetLosVisibility to force RetainInFog because preview entities set this to false,
+		//	which would show them as hidden instead of fogged
+		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		var visible = (cmpRangeManager && cmpRangeManager.GetLosVisibility(ent, player, true) != "hidden");
+		if (!visible)
+		{
+			if (g_DebugCommands)
+			{
+				warn("Invalid command: foundation visibility check failed for player "+player+": "+uneval(cmd));
+			}
+			
+			var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+			cmpGuiInterface.PushNotification({ "player": player, "message": "Building site was not visible" });
+			
+			Engine.DestroyEntity(ent);
+			return false;
+		}
+	}
+	
+	var cmpCost = Engine.QueryInterface(ent, IID_Cost);
+	if (!cmpPlayer.TrySubtractResources(cmpCost.GetResourceCosts()))
+	{
+		if (g_DebugCommands)
+		{
+			warn("Invalid command: building cost check failed for player "+player+": "+uneval(cmd));
+		}
+		
+		Engine.DestroyEntity(ent);
+		return false;
+	}
+	
+	// Make it owned by the current player
+	var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+	cmpOwnership.SetOwner(player);
+	
+	// Initialise the foundation
+	var cmpFoundation = Engine.QueryInterface(ent, IID_Foundation);
+	cmpFoundation.InitialiseConstruction(player, cmd.template);
+	
+	// Tell the units to start building this new entity
+	if (cmd.autorepair)
+	{
+		ProcessCommand(player, {
+			"type": "repair",
+			"entities": entities,
+			"target": ent,
+			"autocontinue": cmd.autocontinue,
+			"queued": cmd.queued
+		});
+	}
+	
+	return ent;
+}
+
+function TryConstructWall(player, cmpPlayer, controlAllUnits, cmd)
+{
+	// 'cmd' message structure:
+	// {
+	//   "type": "construct-wall",
+	//   "entities": [...],           // entities that will be ordered to construct the wall (if applicable)
+	//   "pieces": [                  // ordered list of information about the pieces making up the wall (towers, wall segments, ...)
+	//      {
+	//         "template": "...",     // one of the templates from the wallset
+	//         "x": ...,
+	//         "z": ...,
+	//         "angle": ...,
+	//      },
+	//      ...
+	//   ],
+	//   "wallSet": {
+	//      "templates": {
+	//        "tower":                // tower template name
+	//        "long":                 // long wall segment template name
+	//        ...                     // etc.
+	//      },
+	//      "maxTowerOverlap": ...,
+	//      "minTowerOverlap": ...,
+	//   },
+	//   "startSnappedEntity":        // optional; entity ID of tower being snapped to at the starting side of the wall
+	//   "endSnappedEntity":          // optional; entity ID of tower being snapped to at the ending side of the wall
+	//   "autorepair": true,          // whether to automatically start constructing/repairing the new foundation
+	//   "autocontinue": true,        // whether to automatically gather/build/etc after finishing this
+	//   "queued": true,              // whether to add the construction/repairing of this wall's pieces to entities' queue (if applicable)
+	// }
+	
+	if (cmd.pieces.length <= 0)
+		return;
+	
+	if (cmd.startSnappedEntity && cmd.pieces[0].template == cmd.wallSet.templates.tower)
+	{
+		error("[TryConstructWall] Starting wall piece cannot be a tower (" + cmd.wallSet.templates.tower + ") when snapping at the starting side");
+		return;
+	}
+	
+	if (cmd.endSnappedEntity && cmd.pieces[cmd.pieces.length - 1].template == cmd.wallSet.templates.tower)
+	{
+		error("[TryConstructWall] Ending wall piece cannot be a tower (" + cmd.wallSet.templates.tower + ") when snapping at the ending side");
+		return;
+	}
+	
+	// Assign obstruction control groups to allow the wall pieces to mutually overlap during foundation placement
+	// and during construction. The scheme here is that whatever wall pieces are inbetween two towers inherit the control 
+	// groups of both of the towers they are connected to (either newly constructed ones as part of the wall, or existing
+	// towers in the case of snapping). The towers themselves all keep their default unique control groups.
+	
+	// To support this, every non-tower piece registers the entity ID of the towers (or foundations thereof) that neighbour
+	// it on either side. Specifically, each non-tower wall piece has its primary control group set equal to that of the 
+	// first tower encountered towards the starting side of the wall, and its secondary control group set equal to that of
+	// the first tower encountered towards the ending side of the wall (if any).
+	
+	// We can't build the whole wall at once by linearly stepping through the wall pieces and build them, because the 
+	// wall segments may/will need the entity IDs of towers that come afterwards. So, build it in two passes:
+	// 
+	//   FIRST PASS:
+	//    - Go from start to end and construct wall piece foundations as far as we can without running into a piece that
+	//        cannot be built (e.g. because it is obstructed). At each non-tower, set the most recently built tower's ID
+	//        as the primary control group, thus allowing it to be built overlapping the previous piece.
+	//    - If we encounter a new tower along the way (which will gain its own control group), do the following:
+	//        o First build it using temporarily the same control group of the previous (non-tower) piece
+	//        o Set the previous piece's secondary control group to the tower's entity ID
+	//        o Restore the primary control group of the constructed tower back its original (unique) value.
+	//      The temporary control group is necessary to allow the newer tower with its unique control group ID to be able
+	//        to be placed while overlapping the previous piece.
+	//   
+	//   SECOND PASS:   
+	//    - Go end to start from the last successfully placed wall piece (which might be a tower we backtracked to), this
+	//      time registering the right neighbouring tower in each non-tower piece.
+	
+	// first pass; L -> R
+	
+	var lastTowerIndex = -1; // index of the last tower we've encountered in cmd.pieces
+	var lastTowerControlGroup = null; // control group of the last tower we've encountered, to assign to non-tower pieces
+	
+	// If we're snapping to an existing entity at the starting end, set lastTowerControlGroup to its control group ID so that
+	// the first wall piece can be built while overlapping it.
+	if (cmd.startSnappedEntity)
+	{
+		var cmpSnappedStartObstruction = Engine.QueryInterface(cmd.startSnappedEntity, IID_Obstruction);
+		if (!cmpSnappedStartObstruction)
+		{
+			error("[TryConstructWall] Snapped entity on starting side does not have an obstruction component");
+			return;
+		}
+		
+		lastTowerControlGroup = cmpSnappedStartObstruction.GetControlGroup();
+		//warn("setting lastTowerControlGroup to control group of start snapped entity " + cmd.startSnappedEntity + ": " + lastTowerControlGroup);
+	}
+	
+	var i = 0;
+	for (; i < cmd.pieces.length; ++i)
+	{
+		var piece = cmd.pieces[i];
+		
+		// 'lastTowerControlGroup' must always be defined and valid here, except if we're at the first piece and we didn't do
+		// start position snapping (implying that the first entity we build must be a tower)
+		if (lastTowerControlGroup === null || lastTowerControlGroup == INVALID_ENTITY)
+		{
+			if (!(i == 0 && piece.template == cmd.wallSet.templates.tower && !cmd.startSnappedEntity))
+			{
+    			error("[TryConstructWall] Expected last tower control group to be available, none found (1st pass, iteration " + i + ")");
+    			break;
+			}
+		}
+		
+		var constructPieceCmd = {
+			"type": "construct",
+			"entities": cmd.entities,
+			"template": piece.template,
+			"x": piece.x,
+			"z": piece.z,
+			"angle": piece.angle,
+			"autorepair": cmd.autorepair,
+			"autocontinue": cmd.autocontinue,
+			"queued": cmd.queued,
+			// Regardless of whether we're building a tower or an intermediate wall piece, it is always (first) constructed
+			// using the control group of the last tower (see comments above).
+			"obstructionControlGroup": lastTowerControlGroup,
+		};
+		
+		// If we're building the last piece and we're attaching to a snapped entity, we need to add in the snapped entity's
+		// control group directly at construction time (instead of setting it in the second pass) to allow it to be built
+		// while overlapping the snapped entity.
+		if (i == cmd.pieces.length - 1 && cmd.endSnappedEntity)
+		{
+			var cmpEndSnappedObstruction = Engine.QueryInterface(cmd.endSnappedEntity, IID_Obstruction);
+			if (cmpEndSnappedObstruction)
+				constructPieceCmd.obstructionControlGroup2 = cmpEndSnappedObstruction.GetControlGroup();
+		}
+		
+		var pieceEntityId = TryConstructBuilding(player, cmpPlayer, controlAllUnits, constructPieceCmd);
+		if (pieceEntityId)
+		{
+			// wall piece foundation successfully built, save the entity ID in the piece info object so we can reference it later
+			piece.ent = pieceEntityId;
+			
+			// if we built a tower, do the control group dance (see outline above) and update lastTowerControlGroup and lastTowerIndex
+			if (piece.template == cmd.wallSet.templates.tower)
+			{
+				var cmpTowerObstruction = Engine.QueryInterface(pieceEntityId, IID_Obstruction);
+				var newTowerControlGroup = pieceEntityId;
+				
+				if (i > 0)
+				{
+					//warn("   updating previous wall piece's secondary control group to " + newTowerControlGroup);
+					var cmpPreviousObstruction = Engine.QueryInterface(cmd.pieces[i-1].ent, IID_Obstruction);
+					// TODO: ensure that cmpPreviousObstruction exists
+					// TODO: ensure that the previous obstruction does not yet have a secondary control group set
+					cmpPreviousObstruction.SetControlGroup2(newTowerControlGroup);
+				}
+				
+				// TODO: ensure that cmpTowerObstruction exists
+				cmpTowerObstruction.SetControlGroup(newTowerControlGroup); // give the tower its own unique control group
+				
+				lastTowerIndex = i;
+				lastTowerControlGroup = newTowerControlGroup;
+			}
+		}
+		else
+		{
+			// failed to build wall piece, abort
+			i = j + 1; // compensate for the -1 subtracted by lastBuiltPieceIndex below
+			break;
+		}
+	}
+	
+	var lastBuiltPieceIndex = i - 1;
+	var wallComplete = (lastBuiltPieceIndex == cmd.pieces.length - 1);
+	
+	// At this point, 'i' is the index of the last wall piece that was successfully constructed (which may or may not be a tower).
+	// Now do the second pass going right-to-left, registering the control groups of the towers to the right of each piece (if any)
+	// as their secondary control groups.
+	
+	lastTowerControlGroup = null; // control group of the last tower we've encountered, to assign to non-tower pieces
+	
+	// only start off with the ending side's snapped tower's control group if we were able to build the entire wall
+	if (cmd.endSnappedEntity && wallComplete)
+	{
+		var cmpSnappedEndObstruction = Engine.QueryInterface(cmd.endSnappedEntity, IID_Obstruction);
+		if (!cmpSnappedEndObstruction)
+		{
+			error("[TryConstructWall] Snapped entity on ending side does not have an obstruction component");
+			return;
+		}
+		
+		lastTowerControlGroup = cmpSnappedEndObstruction.GetControlGroup();
+	}
+	
+	for (var j = lastBuiltPieceIndex; j >= 0; --j)
+	{
+		var piece = cmd.pieces[j];
+		
+		if (!piece.ent)
+		{
+			error("[TryConstructWall] No entity ID set for constructed entity of template '" + piece.template + "'");
+			continue;
+		}
+		
+		var cmpPieceObstruction = Engine.QueryInterface(piece.ent, IID_Obstruction);
+		if (!cmpPieceObstruction)
+		{
+			error("[TryConstructWall] Wall piece of template '" + piece.template + "' has no Obstruction component");
+			continue;
+		}
+		
+		if (piece.template == cmd.wallSet.templates.tower)
+		{
+			// encountered a tower entity, update the last tower control group
+			lastTowerControlGroup = cmpPieceObstruction.GetControlGroup();
+		}
+		else
+		{
+			// Encountered a non-tower entity, update its secondary control group to 'lastTowerControlGroup'.
+			// Note that the wall piece may already have its secondary control group set to the tower's entity ID from a control group
+			// dance during the first pass, in which case we should validate it against 'lastTowerControlGroup'.
+			
+			var existingSecondaryControlGroup = cmpPieceObstruction.GetControlGroup2();
+			if (existingSecondaryControlGroup == INVALID_ENTITY)
+			{
+				if (lastTowerControlGroup != null && lastTowerControlGroup != INVALID_ENTITY)
+				{
+					cmpPieceObstruction.SetControlGroup2(lastTowerControlGroup);
+				}
+			}
+			else if (existingSecondaryControlGroup != lastTowerControlGroup)
+			{
+				error("[TryConstructWall] Existing secondary control group of non-tower entity does not match expected value (2nd pass, iteration " + j + ")");
+				break;
+			}
+		}
+	}
 }
 
 /**

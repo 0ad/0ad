@@ -10,9 +10,12 @@
     <History>Sturdy battlements for city walls.</History>
   </Identity>
   <Obstruction>
-    <Static width="11" depth="11"/>
+    <Static width="10" depth="10"/>
   </Obstruction>
   <VisualActor>
     <Actor>structures/iberians/wall_tower.xml</Actor>
   </VisualActor>
+  <WallPiece>
+  	<Length>10</Length>
+  </WallPiece>
 </Entity>

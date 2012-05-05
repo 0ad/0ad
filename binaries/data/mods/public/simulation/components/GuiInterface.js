@@ -18,6 +18,8 @@ GuiInterface.prototype.Deserialize = function(obj)
 GuiInterface.prototype.Init = function()
 {
 	this.placementEntity = undefined; // = undefined or [templateName, entityID]
+	this.placementWallEntities = undefined;
+	this.placementWallLastAngle = 0;
 	this.rallyPoints = undefined;
 	this.notifications = [];
 	this.renamedEntities = [];
@@ -141,7 +143,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	var ret = {
 		"id": ent,
 		"template": template
-	}
+	};
 
 	var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
 	if (cmpIdentity)
@@ -211,6 +213,15 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	{
 		ret.foundation = {
 			"progress": cmpFoundation.GetBuildPercentage()
+		};
+	}
+
+	var cmpObstruction = Engine.QueryInterface(ent, IID_Obstruction);
+	if (cmpObstruction)
+	{
+		ret.obstruction = {
+			"controlGroup": cmpObstruction.GetControlGroup(),
+			"controlGroup2": cmpObstruction.GetControlGroup2(),
 		};
 	}
 
@@ -331,6 +342,26 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 		}
 	}
 	
+	if (template.BuildRestrictions)
+	{
+		// required properties
+		ret.buildRestrictions = {
+			"placementType": template.BuildRestrictions.PlacementType,
+			"territory": template.BuildRestrictions.Territory,
+			"category": template.BuildRestrictions.Category,
+		};
+		
+		// optional properties
+		if (template.BuildRestrictions.Distance)
+		{
+			ret.buildRestrictions.distance = {
+				"fromCategory": template.BuildRestrictions.Distance.FromCategory,
+			};
+			if (template.BuildRestrictions.Distance.MinDistance) ret.buildRestrictions.distance.min = +template.BuildRestrictions.Distance.MinDistance;
+			if (template.BuildRestrictions.Distance.MaxDistance) ret.buildRestrictions.distance.max = +template.BuildRestrictions.Distance.MaxDistance;
+		}
+	}
+	
 	if (template.Cost)
 	{
 		ret.cost = {};
@@ -340,6 +371,44 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 		if (template.Cost.Resources.metal) ret.cost.metal = +template.Cost.Resources.metal;
 		if (template.Cost.Population) ret.cost.population = +template.Cost.Population;
 		if (template.Cost.PopulationBonus) ret.cost.populationBonus = +template.Cost.PopulationBonus;
+	}
+	
+	if (template.Footprint)
+	{
+		ret.footprint = {"height": template.Footprint.Height};
+		
+		if (template.Footprint.Square)
+			ret.footprint.square = {"width": +template.Footprint.Square["@width"], "depth": +template.Footprint.Square["@depth"]};
+		else if (template.Footprint.Circle)
+			ret.footprint.circle = {"radius": +template.Footprint.Circle["@radius"]};
+		else
+			warn("[GetTemplateData] Unrecognized Footprint type");
+	}
+	
+	if (template.Obstruction)
+	{
+		ret.obstruction = {
+			"active": ("" + template.Obstruction.Active == "true"),
+			"blockMovement": ("" + template.Obstruction.BlockMovement == "true"),
+			"blockPathfinding": ("" + template.Obstruction.BlockPathfinding == "true"),
+			"blockFoundation": ("" + template.Obstruction.BlockFoundation == "true"),
+			"blockConstruction": ("" + template.Obstruction.BlockConstruction == "true"),
+			"disableBlockMovement": ("" + template.Obstruction.DisableBlockMovement == "true"),
+			"disableBlockPathfinding": ("" + template.Obstruction.DisableBlockPathfinding == "true"),
+			"shape": {}
+		};
+		
+		if (template.Obstruction.Static)
+		{
+			ret.obstruction.shape.type = "static";
+			ret.obstruction.shape.width = +template.Obstruction.Static["@width"];
+			ret.obstruction.shape.depth = +template.Obstruction.Static["@depth"];
+		}
+		else
+		{
+			ret.obstruction.shape.type = "unit";
+			ret.obstruction.shape.radius = +template.Obstruction.Unit["@radius"];
+		}
 	}
 	
 	if (template.Health)
@@ -365,6 +434,26 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 			"walk": +template.UnitMotion.WalkSpeed,
 		};
 		if (template.UnitMotion.Run) ret.speed.run = +template.UnitMotion.Run.Speed;
+	}
+
+	if (template.WallSet)
+	{
+		ret.wallSet = {
+			"templates": {
+				"tower": template.WallSet.Templates.Tower,
+				"gate": template.WallSet.Templates.Gate,
+				"long": template.WallSet.Templates.WallLong,
+				"medium": template.WallSet.Templates.WallMedium,
+				"short": template.WallSet.Templates.WallShort,
+			},
+			"maxTowerOverlap": +template.WallSet.MaxTowerOverlap,
+			"minTowerOverlap": +template.WallSet.MinTowerOverlap,
+		};
+	}
+	
+	if (template.WallPiece)
+	{
+		ret.wallPiece = {"length": +template.WallPiece.Length};
 	}
 
 	return ret;
@@ -605,6 +694,7 @@ GuiInterface.prototype.DisplayRallyPoint = function(player, cmd)
  * Display the building placement preview.
  * cmd.template is the name of the entity template, or "" to disable the preview.
  * cmd.x, cmd.z, cmd.angle give the location.
+ * 
  * Returns true if the placement is okay (everything is valid and the entity is not obstructed by others).
  */
 GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
@@ -673,11 +763,571 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 	return false;
 };
 
+/**
+ * Previews the placement of a wall between cmd.start and cmd.end, or just the starting piece of a wall if cmd.end is not 
+ * specified. Returns an object with information about the list of entities that need to be newly constructed to complete
+ * at least a part of the wall, or false if there are entities required to build at least part of the wall but none of
+ * them can be validly constructed.
+ * 
+ * It's important to distinguish between three lists of entities that are at play here, because they may be subsets of one
+ * another depending on things like snapping and whether some of the entities inside them can be validly positioned.
+ * We have:
+ *    - The list of entities that previews the wall. This list is usually equal to the entities required to construct the
+ *      entire wall. However, if there is snapping to an incomplete tower (i.e. a foundation), it includes extra entities
+ *      to preview the completed tower on top of its foundation.
+ *      
+ *    - The list of entities that need to be newly constructed to build the entire wall. This list is regardless of whether
+ *      any of them can be validly positioned. The emphasishere here is on 'newly'; this list does not include any existing
+ *      towers at either side of the wall that we snapped to. Or, more generally; it does not include any _entities_ that we
+ *      snapped to; we might still snap to e.g. terrain, in which case the towers on either end will still need to be newly
+ *      constructed.
+ *      
+ *    - The list of entities that need to be newly constructed to build at least a part of the wall. This list is the same
+ *      as the one above, except that it is truncated at the first entity that cannot be validly positioned. This happens
+ *      e.g. if the player tries to build a wall straight through an obstruction. Note that any entities that can be validly
+ *      constructed but come after said first invalid entity are also truncated away.
+ * 
+ * With this in mind, this method will return false if the second list is not empty, but the third one is. That is, if there
+ * were entities that are needed to build the wall, but none of them can be validly constructed. False is also returned in
+ * case of unexpected errors (typically missing components), and when clearing the preview by passing an empty wallset
+ * argument (see below). Otherwise, it will return an object with the following information:
+ * 
+ * result: {
+ *   'startSnappedEnt':   ID of the entity that we snapped to at the starting side of the wall. Currently only supports towers.
+ *   'endSnappedEnt':     ID of the entity that we snapped to at the (possibly truncated) ending side of the wall. Note that this
+ *                        can only be set if no truncation of the second list occurs; if we snapped to an entity at the ending side
+ *                        but the wall construction was truncated before we could reach it, it won't be set here. Currently only
+ *                        supports towers.
+ *   'pieces':            Array with the following data for each of the entities in the third list:
+ *    [{
+ *       'template':      Template name of the entity. 
+ *       'x':             X coordinate of the entity's position.
+ *       'z':             Z coordinate of the entity's position.
+ *       'angle':         Rotation around the Y axis of the entity (in radians).
+ *     },
+ *     ...]
+ *   'cost': {            The total cost required for constructing all the pieces as listed above.
+ *     'food': ...,
+ *     'wood': ...,
+ *     'stone': ...,
+ *     'metal': ...,
+ *     'population': ...,
+ *     'populationBonus': ...,
+ *   }
+ * }
+ * 
+ * @param cmd.wallSet Object holding the set of wall piece template names. Set to an empty value to clear the preview.
+ * @param cmd.start Starting point of the wall segment being created.
+ * @param cmd.end (Optional) Ending point of the wall segment being created. If not defined, it is understood that only
+ *                 the starting point of the wall is available at this time (e.g. while the player is still in the process
+ *                 of picking a starting point), and that therefore only the first entity in the wall (a tower) should be
+ *                 previewed.
+ * @param cmd.snapEntities List of candidate entities to snap the start and ending positions to.
+ */
+GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
+{
+	var wallSet = cmd.wallSet;
+	
+	var start = {
+		"pos": cmd.start,
+		"angle": 0,
+		"snapped": false,                       // did the start position snap to anything?
+		"snappedEnt": INVALID_ENTITY,           // if we snapped, was it to an entity? if yes, holds that entity's ID
+	};
+	
+	var end = {
+		"pos": cmd.end,
+		"angle": 0,
+		"snapped": false,                       // did the start position snap to anything?
+		"snappedEnt": INVALID_ENTITY,           // if we snapped, was it to an entity? if yes, holds that entity's ID
+	};
+	
+	// --------------------------------------------------------------------------------
+	// do some entity cache management and check for snapping
+	
+	if (!this.placementWallEntities)
+		this.placementWallEntities = {};
+	
+	if (!wallSet)
+	{
+		// we're clearing the preview, clear the entity cache and bail
+		var numCleared = 0;
+		for (var tpl in this.placementWallEntities)
+		{
+			for each (var ent in this.placementWallEntities[tpl].entities)
+				Engine.DestroyEntity(ent);
+			
+			this.placementWallEntities[tpl].numUsed = 0;
+			this.placementWallEntities[tpl].entities = [];
+			// keep template data around
+		}
+		
+		return false;
+	}
+	else
+	{
+		// Move all existing cached entities outside of the world and reset their use count
+		for (var tpl in this.placementWallEntities)
+		{
+			for each (var ent in this.placementWallEntities[tpl].entities)
+			{
+				var pos = Engine.QueryInterface(ent, IID_Position);
+				if (pos)
+					pos.MoveOutOfWorld();
+			}
+			
+			this.placementWallEntities[tpl].numUsed = 0;
+		}
+		
+		// Create cache entries for templates we haven't seen before
+		for each (var tpl in wallSet.templates)
+		{
+			if (!(tpl in this.placementWallEntities))
+			{
+	    		this.placementWallEntities[tpl] = {
+	    			"numUsed": 0,
+	    			"entities": [],
+	    			"templateData": this.GetTemplateData(player, tpl),
+	    		};
+	    		
+	    		// ensure that the loaded template data contains a wallPiece component
+	    		if (!this.placementWallEntities[tpl].templateData.wallPiece)
+	    		{
+	    			error("[SetWallPlacementPreview] No WallPiece component found for wall set template '" + tpl + "'");
+	    			return false;
+	    		}
+			}
+		}
+	}
+	
+	// prevent division by zero errors further on if the start and end positions are the same
+	if (end.pos && (start.pos.x === end.pos.x && start.pos.z === end.pos.z))
+		end.pos = undefined;
+	
+	// See if we need to snap the start and/or end coordinates to any of our list of snap entities. Note that, despite the list
+	// of snapping candidate entities, it might still snap to e.g. terrain features. Use the "ent" key in the returned snapping
+	// data to determine whether it snapped to an entity (if any), and to which one (see GetFoundationSnapData).
+	if (cmd.snapEntities)
+	{
+		var snapRadius = this.placementWallEntities[wallSet.templates.tower].templateData.wallPiece.length * 0.5; // determined through trial and error
+		var startSnapData = this.GetFoundationSnapData(player, {
+    		"x": start.pos.x,
+    		"z": start.pos.z,
+    		"template": wallSet.templates.tower,
+    		"snapEntities": cmd.snapEntities,
+    		"snapRadius": snapRadius,
+    	});
+    	
+    	if (startSnapData)
+    	{
+    		start.pos.x = startSnapData.x;
+    		start.pos.z = startSnapData.z;
+    		start.angle = startSnapData.angle;
+    		start.snapped = true;
+    		
+    		if (startSnapData.ent)
+    			start.snappedEnt = startSnapData.ent; 
+    	}
+    	
+    	if (end.pos)
+    	{
+    		var endSnapData = this.GetFoundationSnapData(player, {
+    			"x": end.pos.x,
+    			"z": end.pos.z,
+    			"template": wallSet.templates.tower,
+    			"snapEntities": cmd.snapEntities,
+    			"snapRadius": snapRadius,
+    		});
+    		
+    		if (endSnapData)
+    		{
+    			end.pos.x = endSnapData.x;
+    			end.pos.z = endSnapData.z;
+    			end.angle = endSnapData.angle;
+    			end.snapped = true;
+    			
+    			if (endSnapData.ent)
+    				end.snappedEnt = endSnapData.ent;
+    		}
+    	}
+	}
+	
+	// clear the single-building preview entity (we'll be rolling our own)
+	this.SetBuildingPlacementPreview(player, {"template": ""});
+	
+	// --------------------------------------------------------------------------------
+	// calculate wall placement and position preview entities
+	
+	var result = {
+		"pieces": [],
+		"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 0, "population": 0, "populationBonus": 0},
+	};
+	
+	var previewEntities = [];
+	if (end.pos)
+		previewEntities = GetWallPlacement(this.placementWallEntities, wallSet, start, end); // see helpers/Walls.js
+	
+	// For wall placement, we may (and usually do) need to have wall pieces overlap each other more than would 
+	// otherwise be allowed by their obstruction shapes. However, during this preview phase, this is not so much of
+	// an issue, because all preview entities have their obstruction components deactivated, meaning that their 
+	// obstruction shapes do not register in the simulation and hence cannot affect it. This implies that the preview
+	// entities cannot be found to obstruct each other, which largely solves the issue of overlap between wall pieces.
+	
+	// Note that they will still be obstructed by existing shapes in the simulation (that have the BLOCK_FOUNDATION
+	// flag set), which is what we want. The only exception to this is when snapping to existing towers (or
+	// foundations thereof); the wall segments that connect up to these will be found to be obstructed by the
+	// existing tower/foundation, and be shaded red to indicate that they cannot be placed there. To prevent this,
+	// we manually set the control group of the outermost wall pieces equal to those of the snapped-to towers, so
+	// that they are free from mutual obstruction (per definition of obstruction control groups). This is done by
+	// assigning them an extra "controlGroup" field, which we'll then set during the placement loop below.
+	
+	// Additionally, in the situation that we're snapping to merely a foundation of a tower instead of a fully
+	// constructed one, we'll need an extra preview entity for the starting tower, which also must not be obstructed
+	// by the foundation it snaps to.
+	
+	if (start.snappedEnt && start.snappedEnt != INVALID_ENTITY)
+	{
+		var startEntObstruction = Engine.QueryInterface(start.snappedEnt, IID_Obstruction);
+		if (previewEntities.length > 0 && startEntObstruction)
+			previewEntities[0].controlGroups = [startEntObstruction.GetControlGroup()];
+		
+		// if we're snapping to merely a foundation, add an extra preview tower and also set it to the same control group
+		var startEntState = this.GetEntityState(player, start.snappedEnt);
+		if (startEntState.foundation)
+		{
+			var cmpPosition = Engine.QueryInterface(start.snappedEnt, IID_Position);
+			if (cmpPosition)
+			{
+				previewEntities.unshift({
+					"template": wallSet.templates.tower,
+					"pos": start.pos,
+					"angle": cmpPosition.GetRotation().y,
+					"controlGroups": [(startEntObstruction ? startEntObstruction.GetControlGroup() : undefined)],
+					"excludeFromResult": true, // preview only, must not appear in the result
+				});
+			}
+		}
+	}
+	else
+	{
+		// Didn't snap to an existing entity, add the starting tower manually. To prevent odd-looking rotation jumps 
+		// when shift-clicking to build a wall, reuse the placement angle that was last seen on a validly positioned 
+		// wall piece.
+		
+		// To illustrate the last point, consider what happens if we used some constant instead, say, 0. Issuing the
+		// build command for a wall is asynchronous, so when the preview updates after shift-clicking, the wall piece
+		// foundations are not registered yet in the simulation. This means they cannot possibly be picked in the list
+		// of candidate entities for snapping. In the next preview update, we therefore hit this case, and would rotate
+		// the preview to 0 radians. Then, after one or two simulation updates or so, the foundations register and 
+		// onSimulationUpdate in session.js updates the preview again. It first grabs a new list of snapping candidates,
+		// which this time does include the new foundations; so we snap to the entity, and rotate the preview back to
+		// the foundation's angle.
+		
+		// The result is a noticeable rotation to 0 and back, which is undesirable. So, for a split second there until
+		// the simulation updates, we fake it by reusing the last angle and hope the player doesn't notice.
+		previewEntities.unshift({
+			"template": wallSet.templates.tower,
+			"pos": start.pos,
+			"angle": (previewEntities.length > 0 ? previewEntities[0].angle : this.placementWallLastAngle)
+		});
+	}
+	
+	if (end.pos)
+	{
+		// Analogous to the starting side case above
+		if (end.snappedEnt && end.snappedEnt != INVALID_ENTITY)
+		{
+			var endEntObstruction = Engine.QueryInterface(end.snappedEnt, IID_Obstruction);
+			
+			// Note that it's possible for the last entity in previewEntities to be the same as the first, i.e. the
+			// same wall piece snapping to both a starting and an ending tower. And it might be more common than you would
+			// expect; the allowed overlap between wall segments and towers facilitates this to some degree. To deal with
+			// the possibility of dual initial control groups, we use a '.controlGroups' array rather than a single
+			// '.controlGroup' property. Note that this array can only ever have 0, 1 or 2 elements (checked at a later time).
+			if (previewEntities.length > 0 && endEntObstruction)
+			{
+				previewEntities[previewEntities.length-1].controlGroups = (previewEntities[previewEntities.length-1].controlGroups || []);
+				previewEntities[previewEntities.length-1].controlGroups.push(endEntObstruction.GetControlGroup());
+			}
+			
+			// if we're snapping to a foundation, add an extra preview tower and also set it to the same control group
+    		var endEntState = this.GetEntityState(player, end.snappedEnt);
+    		if (endEntState.foundation)
+    		{
+    			var cmpPosition = Engine.QueryInterface(end.snappedEnt, IID_Position);
+    			if (cmpPosition)
+    			{
+    				previewEntities.push({
+    					"template": wallSet.templates.tower,
+    					"pos": end.pos,
+    					"angle": cmpPosition.GetRotation().y,
+    					"controlGroups": [(endEntObstruction ? endEntObstruction.GetControlGroup() : undefined)],
+    					"excludeFromResult": true
+    				});
+    			}
+    		}
+		}
+		else
+		{
+			previewEntities.push({
+				"template": wallSet.templates.tower,
+				"pos": end.pos,
+				"angle": (previewEntities.length > 0 ? previewEntities[previewEntities.length-1].angle : this.placementWallLastAngle)
+			});
+		}
+	}
+	
+	var cmpTerrain = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain);
+	if (!cmpTerrain)
+	{
+		error("[SetWallPlacementPreview] System Terrain component not found");
+		return false;
+	}
+	
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	if (!cmpRangeManager)
+	{
+		error("[SetWallPlacementPreview] System RangeManager component not found");
+		return false;
+	}
+	
+	// Loop through the preview entities, and construct the subset of them that need to be, and can be, validly constructed
+	// to build at least a part of the wall (meaning that the subset is truncated after the first entity that needs to be,
+	// but cannot validly be, constructed). See method-level documentation for more details.
+	
+	var allPiecesValid = true;
+	var numRequiredPieces = 0; // number of entities that are required to build the entire wall, regardless of validity
+	
+	for (var i = 0; i < previewEntities.length; ++i)
+	{
+		var entInfo = previewEntities[i];
+		
+		var ent = null;
+		var tpl = entInfo.template;
+		var tplData = this.placementWallEntities[tpl].templateData;
+		var entPool = this.placementWallEntities[tpl];
+		
+		if (entPool.numUsed >= entPool.entities.length)
+		{
+			// allocate new entity
+			ent = Engine.AddLocalEntity("preview|" + tpl);
+			entPool.entities.push(ent);
+		}
+		else
+		{
+			 // reuse an existing one
+			ent = entPool.entities[entPool.numUsed];
+		}
+		
+		if (!ent)
+		{
+			error("[SetWallPlacementPreview] Failed to allocate or reuse preview entity of template '" + tpl + "'");
+			continue;
+		}
+		
+		// move piece to right location
+		// TODO: consider reusing SetBuildingPlacementReview for this, enhanced to be able to deal with multiple entities
+		var cmpPosition = Engine.QueryInterface(ent, IID_Position);
+		if (cmpPosition)
+		{
+			cmpPosition.JumpTo(entInfo.pos.x, entInfo.pos.z);
+			cmpPosition.SetYRotation(entInfo.angle);
+			
+			// if this piece is a tower, then it should have a Y position that is at least as high as its surrounding pieces
+			if (tpl === wallSet.templates.tower)
+			{
+				var terrainGroundPrev = null;
+				var terrainGroundNext = null;
+				
+				if (i > 0)
+					terrainGroundPrev = cmpTerrain.GetGroundLevel(previewEntities[i-1].pos.x, previewEntities[i-1].pos.z);
+				if (i < previewEntities.length - 1)
+					terrainGroundNext = cmpTerrain.GetGroundLevel(previewEntities[i+1].pos.x, previewEntities[i+1].pos.z);
+				
+				if (terrainGroundPrev != null || terrainGroundNext != null)
+				{
+					var targetY = Math.max(terrainGroundPrev, terrainGroundNext);
+					cmpPosition.SetHeightFixed(targetY);
+				}
+			}
+		}
+		
+		var cmpObstruction = Engine.QueryInterface(ent, IID_Obstruction);
+		if (!cmpObstruction)
+		{
+			error("[SetWallPlacementPreview] Preview entity of template '" + tpl + "' does not have an Obstruction component");
+			continue;
+		}
+		
+		// Assign any predefined control groups. Note that there can only be 0, 1 or 2 predefined control groups; if there are
+		// more, we've made a programming error. The control groups are assigned from the entInfo.controlGroups array on a
+		// first-come first-served basis; the first value in the array is always assigned as the primary control group, and
+		// any second value as the secondary control group.
+		
+		// By default, we reset the control groups to their standard values. Remember that we're reusing entities; if we don't
+		// reset them, then an ending wall segment that was e.g. at one point snapped to an existing tower, and is subsequently
+		// reused as a non-snapped ending wall segment, would no longer be capable of being obstructed by the same tower it was
+		// once snapped to.
+		
+		var primaryControlGroup = ent;
+		var secondaryControlGroup = INVALID_ENTITY;
+		
+		if (entInfo.controlGroups && entInfo.controlGroups.length > 0)
+		{
+			if (entInfo.controlGroups.length > 2)
+			{
+				error("[SetWallPlacementPreview] Encountered preview entity of template '" + tpl + "' with more than 2 initial control groups");
+				break;
+			}
+			
+			primaryControlGroup = entInfo.controlGroups[0];
+			if (entInfo.controlGroups.length > 1)
+				secondaryControlGroup = entInfo.controlGroups[1];
+		}
+		
+		cmpObstruction.SetControlGroup(primaryControlGroup);
+		cmpObstruction.SetControlGroup2(secondaryControlGroup);
+		
+		// check whether this wall piece can be validly positioned here
+		var validPlacement = false;
+		
+		// Check whether it's in a visible or fogged region
+		//  tell GetLosVisibility to force RetainInFog because preview entities set this to false,
+		//	which would show them as hidden instead of fogged
+		// TODO: should definitely reuse SetBuildingPlacementPreview, this is just straight up copy/pasta
+		var visible = (cmpRangeManager.GetLosVisibility(ent, player, true) != "hidden");
+		if (visible)
+		{
+			var cmpBuildRestrictions = Engine.QueryInterface(ent, IID_BuildRestrictions);
+			if (!cmpBuildRestrictions)
+			{
+				error("[SetWallPlacementPreview] cmpBuildRestrictions not defined for preview entity of template '" + tpl + "'");
+				continue;
+			}
+			
+			validPlacement = (cmpBuildRestrictions && cmpBuildRestrictions.CheckPlacement(player));
+		}
+		
+		allPiecesValid = allPiecesValid && validPlacement;
+		
+		var cmpVisual = Engine.QueryInterface(ent, IID_Visual);
+		if (cmpVisual)
+		{
+			if (!allPiecesValid)
+				cmpVisual.SetShadingColour(1.4, 0.4, 0.4, 1);
+			else
+				cmpVisual.SetShadingColour(1, 1, 1, 1);
+		}
+		
+		// The requirement below that all pieces so far have to have valid positions, rather than only this single one,
+		// ensures that no more foundations will be placed after a first invalidly-positioned piece. (It is possible
+		// for pieces past some invalidly-positioned ones to still have valid positions, e.g. if you drag a wall 
+		// through and past an existing building).
+		
+		// Additionally, the excludeFromResult flag is set for preview entities that were manually added to be placed
+		// on top of foundations of incompleted towers that we snapped to; they must not be part of the result.
+		
+		if (!entInfo.excludeFromResult)
+			numRequiredPieces++;
+		
+		if (allPiecesValid && !entInfo.excludeFromResult)
+		{
+			result.pieces.push({
+				"template": tpl,
+				"x": entInfo.pos.x,
+				"z": entInfo.pos.z,
+				"angle": entInfo.angle,
+			});
+			this.placementWallLastAngle = entInfo.angle;
+			
+			// grab the cost of this wall piece and add it up (note; preview entities don't have their Cost components
+			// copied over, so we need to fetch it from the template instead).
+			// TODO: we should really use a Cost object or at least some utility functions for this, this is mindless
+			// boilerplate that's probably duplicated in tons of places.
+			result.cost.food += tplData.cost.food;
+			result.cost.wood += tplData.cost.wood;
+			result.cost.stone += tplData.cost.stone;
+			result.cost.metal += tplData.cost.metal;
+			result.cost.population += tplData.cost.population;
+			result.cost.populationBonus += tplData.cost.populationBonus;
+		}
+		
+		entPool.numUsed++;
+	}
+	
+	// If any were entities required to build the wall, but none of them could be validly positioned, return failure
+	// (see method-level documentation).
+	if (numRequiredPieces > 0 && result.pieces.length == 0)
+		return false;
+	
+	if (start.snappedEnt && start.snappedEnt != INVALID_ENTITY)
+		result.startSnappedEnt = start.snappedEnt;
+	
+	// We should only return that we snapped to an entity if all pieces up until that entity can be validly constructed,
+	// i.e. are included in result.pieces (see docs for the result object).
+	if (end.pos && end.snappedEnt && end.snappedEnt != INVALID_ENTITY && allPiecesValid)
+		result.endSnappedEnt = end.snappedEnt;
+	
+	return result;
+};
+
+/**
+ * Given the current position {data.x, data.z} of an foundation of template data.template, returns the position and angle to snap
+ * it to (if necessary/useful).
+ * 
+ * @param data.x            The X position of the foundation to snap.
+ * @param data.z            The Z position of the foundation to snap.
+ * @param data.template     The template to get the foundation snapping data for.
+ * @param data.snapEntities Optional; list of entity IDs to snap to if {data.x, data.z} is within a circle of radius data.snapRadius
+ *                            around the entity. Only takes effect when used in conjunction with data.snapRadius.
+ *                          When this option is used and the foundation is found to snap to one of the entities passed in this list
+ *                            (as opposed to e.g. snapping to terrain features), then the result will contain an additional key "ent",
+ *                            holding the ID of the entity that was snapped to.
+ * @param data.snapRadius   Optional; when used in conjunction with data.snapEntities, indicates the circle radius around an entity that
+ *                            {data.x, data.z} must be located within to have it snap to that entity.
+ */
 GuiInterface.prototype.GetFoundationSnapData = function(player, data)
 {
 	var cmpTemplateMgr = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var template = cmpTemplateMgr.GetTemplate(data.template);
 
+	if (!template)
+	{
+		warn("[GetFoundationSnapData] Failed to load template '" + data.template + "'");
+		return false;
+	}
+	
+	if (data.snapEntities && data.snapRadius && data.snapRadius > 0)
+	{
+		// see if {data.x, data.z} is inside the snap radius of any of the snap entities; and if so, to which it is closest
+		// (TODO: break unlikely ties by choosing the lowest entity ID)
+		
+		var minDist2 = -1;
+		var minDistEntitySnapData = null;
+		var radius2 = data.snapRadius * data.snapRadius;
+		
+		for each (ent in data.snapEntities)
+		{
+			var cmpPosition = Engine.QueryInterface(ent, IID_Position);
+			if (!cmpPosition || !cmpPosition.IsInWorld())
+				continue;
+			
+			var pos = cmpPosition.GetPosition();
+			var dist2 = (data.x - pos.x) * (data.x - pos.x) + (data.z - pos.z) * (data.z - pos.z);
+			if (dist2 > radius2)
+				continue;
+			
+			if (minDist2 < 0 || dist2 < minDist2)
+			{
+				minDist2 = dist2;
+				minDistEntitySnapData = {"x": pos.x, "z": pos.z, "angle": cmpPosition.GetRotation().y, "ent": ent};
+			}
+		}
+		
+		if (minDistEntitySnapData != null)
+			return minDistEntitySnapData;
+	}
+	
 	if (template.BuildRestrictions.Category == "Dock")
 	{
 		var cmpTerrain = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain);
@@ -914,6 +1564,7 @@ var exposedFunctions = {
 	"SetStatusBars": 1,
 	"DisplayRallyPoint": 1,
 	"SetBuildingPlacementPreview": 1,
+	"SetWallPlacementPreview": 1,
 	"GetFoundationSnapData": 1,
 	"PlaySound": 1,
 	"FindIdleUnit": 1,

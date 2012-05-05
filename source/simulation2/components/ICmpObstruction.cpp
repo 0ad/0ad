@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,4 +29,7 @@ DEFINE_INTERFACE_METHOD_1("SetActive", void, ICmpObstruction, SetActive, bool)
 DEFINE_INTERFACE_METHOD_1("SetDisableBlockMovementPathfinding", void, ICmpObstruction, SetDisableBlockMovementPathfinding, bool)
 DEFINE_INTERFACE_METHOD_0("GetBlockMovementFlag", bool, ICmpObstruction, GetBlockMovementFlag)
 DEFINE_INTERFACE_METHOD_1("SetControlGroup", void, ICmpObstruction, SetControlGroup, entity_id_t)
+DEFINE_INTERFACE_METHOD_0("GetControlGroup", entity_id_t, ICmpObstruction, GetControlGroup)
+DEFINE_INTERFACE_METHOD_1("SetControlGroup2", void, ICmpObstruction, SetControlGroup2, entity_id_t)
+DEFINE_INTERFACE_METHOD_0("GetControlGroup2", entity_id_t, ICmpObstruction, GetControlGroup2)
 END_INTERFACE_WRAPPER(Obstruction)

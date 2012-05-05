@@ -133,7 +133,18 @@ function setOverlay(object, value)
 	object.hidden = !value;
 }
 
-// Sets up "unit panels" - the panels with rows of icons (Helper function for updateUnitDisplay)
+/**
+ * Helper function for updateUnitCommands; sets up "unit panels" (i.e. panels with rows of icons) for the currently selected
+ * unit.
+ * 
+ * @param guiName Short identifier string of this panel; see constants defined at the top of this file.
+ * @param usedPanels Output object; usedPanels[guiName] will be set to 1 to indicate that this panel was used during this
+ *                     run of updateUnitCommands and should not be hidden. TODO: why is this done this way instead of having
+ *                     updateUnitCommands keep track of this?
+ * @param unitEntState Entity state of the (first) selected unit.
+ * @param items Panel-specific data to construct the icons with.
+ * @param callback Callback function to argument to execute when an item's icon gets clicked. Takes a single 'item' argument.
+ */
 function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 {
 	usedPanels[guiName] = 1;
@@ -320,7 +331,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				var [batchSize, batchIncrement] = getTrainingBatchStatus(unitEntState.id, entType);
 				var trainNum = batchSize ? batchSize+batchIncrement : batchIncrement;
 
-				tooltip += "\n" + getEntityCost(template);
+				tooltip += "\n" + getEntityCostTooltip(template);
 
 				if (template.health)
 					tooltip += "\n[font=\"serif-bold-13\"]Health:[/font] " + template.health;
@@ -340,7 +351,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				if (template.tooltip)
 					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
 
-				tooltip += "\n" + getEntityCost(template);
+				tooltip += "\n" + getEntityCostTooltip(template);
 
 				if (item.pair)
 				{
@@ -348,7 +359,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 					if (template1.tooltip)
 						tooltip1 += "\n[font=\"serif-13\"]" + template1.tooltip + "[/font]";
 
-					tooltip1 += "\n" + getEntityCost(template1);
+					tooltip1 += "\n" + getEntityCostTooltip(template1);
 				}
 				break;
 
@@ -357,9 +368,9 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				if (template.tooltip)
 					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
 
-				tooltip += "\n" + getEntityCost(template);
+				tooltip += "\n" + getEntityCostTooltip(template); // see utility_functions.js
+				tooltip += getPopulationBonusTooltip(template); // see utility_functions.js
 
-				tooltip += getPopulationBonus(template);
 				if (template.health)
 					tooltip += "\n[font=\"serif-bold-13\"]Health:[/font] " + template.health;
 
@@ -685,7 +696,15 @@ function setupUnitBarterPanel(unitEntState)
 	}
 }
 
-// Updates right Unit Commands Panel - runs in the main session loop via updateSelectionDetails()
+/**
+ * Updates the right hand side "Unit Commands" panel. Runs in the main session loop via updateSelectionDetails().
+ * Delegates to setupUnitPanel to set up individual subpanels, appropriately activated depending on the selected
+ * unit's state.
+ * 
+ * @param entState Entity state of the (first) selected unit.
+ * @param supplementalDetailsPanel Reference to the "supplementalSelectionDetails" GUI Object
+ * @param selection Array of currently selected entity IDs.
+ */
 function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, selection)
 {
 	// Panels that are active

@@ -87,11 +87,13 @@ void CTooltip::SetupText()
 	CPos mousepos, offset;
 	EVAlign anchor;
 	bool independent;
+	
 	GUI<bool>::GetSetting(this, "independent", independent);
 	if (independent)
 		mousepos = GetMousePos();
 	else
 		GUI<CPos>::GetSetting(this, "_mousepos", mousepos);
+
 	GUI<CPos>::GetSetting(this, "offset", offset);
 	GUI<EVAlign>::GetSetting(this, "anchor", anchor);
 

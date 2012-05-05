@@ -9,6 +9,7 @@
 	<script file="gui/common/timer.js"/>
 	<script file="gui/session/session.js"/>
 	<script file="gui/session/selection.js"/>
+	<script file="gui/session/placement.js"/>
 	<script file="gui/session/input.js"/>
 	<script file="gui/session/menu.js"/>
 	<script file="gui/session/selection_details.js"/>
@@ -465,9 +466,15 @@
 		</object>
 
 		<!-- ================================  ================================ -->
-		<!-- Information tooltip -->
+		<!-- Information tooltip
+		     Follows the mouse around if 'independent' is set to 'true'. -->
 		<!-- ================================  ================================ -->
 		<object name="informationTooltip" type="tooltip" independent="true" style="informationTooltip"/>
+
+		<!-- ================================  ================================ -->
+		<!-- Wall-dragging tooltip. Shows the total cost of building a wall while the player is dragging it. -->
+		<!-- ================================  ================================ -->
+		<object name="wallDragTooltip" type="tooltip" independent="true" style="informationTooltip"/>
 
 		<!-- ================================  ================================ -->
 		<!-- START of BOTTOM PANEL -->

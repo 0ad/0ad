@@ -71,6 +71,9 @@ BuildRestrictions.prototype.Init = function()
 	this.territories = this.template.Territory.split(/\s+/);
 };
 
+/**
+ * Returns true iff this entity can be built at its current position.
+ */
 BuildRestrictions.prototype.CheckPlacement = function(player)
 {
 	// TODO: Return error code for invalid placement, which can be handled by the UI

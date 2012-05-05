@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -93,19 +93,24 @@ public:
 
 	/**
 	 * Register a static shape.
+	 * 
 	 * @param ent entity ID associated with this shape (or INVALID_ENTITY if none)
 	 * @param x,z coordinates of center, in world space
 	 * @param a angle of rotation (clockwise from +Z direction)
 	 * @param w width (size along X axis)
 	 * @param h height (size along Z axis)
 	 * @param flags a set of EFlags values
+	 * @param group primary control group of the shape. Must be a valid control group ID.
+	 * @param group2 Optional; secondary control group of the shape. Defaults to INVALID_ENTITY.
 	 * @return a valid tag for manipulating the shape
 	 * @see StaticShape
 	 */
-	virtual tag_t AddStaticShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h, flags_t flags) = 0;
+	virtual tag_t AddStaticShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_angle_t a, 
+		entity_pos_t w, entity_pos_t h, flags_t flags, entity_id_t group, entity_id_t group2 = INVALID_ENTITY) = 0;
 
 	/**
 	 * Register a unit shape.
+	 * 
 	 * @param ent entity ID associated with this shape (or INVALID_ENTITY if none)
 	 * @param x,z coordinates of center, in world space
 	 * @param r radius of circle or half the unit's width/height
@@ -115,7 +120,8 @@ public:
 	 * @return a valid tag for manipulating the shape
 	 * @see UnitShape
 	 */
-	virtual tag_t AddUnitShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_angle_t r, flags_t flags, entity_id_t group) = 0;
+	virtual tag_t AddUnitShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_angle_t r, flags_t flags,
+		entity_id_t group) = 0;
 
 	/**
 	 * Adjust the position and angle of an existing shape.
@@ -141,6 +147,13 @@ public:
 	virtual void SetUnitControlGroup(tag_t tag, entity_id_t group) = 0;
 
 	/**
+	 * Sets the control group of a static shape.
+	 * @param tag Tag of the shape to set the control group for. Must be a valid and static shape tag.
+	 * @param group Control group entity ID.
+	 */
+	virtual void SetStaticControlGroup(tag_t tag, entity_id_t group, entity_id_t group2) = 0;
+
+	/**
 	 * Remove an existing shape. The tag will be made invalid and must not be used after this.
 	 * @param tag tag of shape (must be valid)
 	 */
@@ -162,7 +175,7 @@ public:
 
 	/**
 	 * Collision test a static square shape against the current set of shapes.
-	 * @param filter filter to restrict the shapes that are counted
+	 * @param filter filter to restrict the shapes that are being tested against
 	 * @param x X coordinate of center
 	 * @param z Z coordinate of center
 	 * @param a angle of rotation (clockwise from +Z direction)
@@ -176,12 +189,15 @@ public:
 		std::vector<entity_id_t>* out) = 0;
 
 	/**
-	 * Collision test a unit shape against the current set of shapes.
-	 * @param filter filter to restrict the shapes that are counted
-	 * @param x X coordinate of center
-	 * @param z Z coordinate of center
-	 * @param r radius (half the unit's width/height)
+	 * Collision test a unit shape against the current set of registered shapes, and optionally writes a list of the colliding
+	 * shapes' entities to an output list.
+	 * 
+	 * @param filter filter to restrict the shapes that are being tested against
+	 * @param x X coordinate of shape's center
+	 * @param z Z coordinate of shape's center
+	 * @param r radius of the shape (half the unit's width/height)
 	 * @param out if non-NULL, all colliding shapes' entities will be added to this list
+	 * 
 	 * @return true if there is a collision
 	 */
 	virtual bool TestUnitShape(const IObstructionTestFilter& filter,
@@ -274,34 +290,37 @@ public:
 	virtual ~IObstructionTestFilter() {}
 
 	/**
-	 * Return true if the shape should be counted for collisions.
+	 * Return true if the shape with the specified parameters should be tested for collisions.
 	 * This is called for all shapes that would collide, and also for some that wouldn't.
+	 * 
 	 * @param tag tag of shape being tested
 	 * @param flags set of EFlags for the shape
-	 * @param group the control group (typically the shape's unit, or the unit's formation controller, or 0)
+	 * @param group the control group of the shape (typically the shape's unit, or the unit's formation controller, or 0)
+	 * @param group2 an optional secondary control group of the shape, or INVALID_ENTITY if none specified. Currently 
+	 *               exists only for static shapes.
 	 */
-	virtual bool Allowed(tag_t tag, flags_t flags, entity_id_t group) const = 0;
+	virtual bool TestShape(tag_t tag, flags_t flags, entity_id_t group, entity_id_t group2) const = 0;
 };
 
 /**
- * Obstruction test filter that accepts all shapes.
+ * Obstruction test filter that will test against all shapes.
  */
 class NullObstructionFilter : public IObstructionTestFilter
 {
 public:
-	virtual bool Allowed(tag_t UNUSED(tag), flags_t UNUSED(flags), entity_id_t UNUSED(group)) const
+	virtual bool TestShape(tag_t UNUSED(tag), flags_t UNUSED(flags), entity_id_t UNUSED(group), entity_id_t UNUSED(group2)) const
 	{
 		return true;
 	}
 };
 
 /**
- * Obstruction test filter that accepts all non-moving shapes.
+ * Obstruction test filter that will test only against stationary (i.e. non-moving) shapes.
  */
-class StationaryObstructionFilter : public IObstructionTestFilter
+class StationaryOnlyObstructionFilter : public IObstructionTestFilter
 {
 public:
-	virtual bool Allowed(tag_t UNUSED(tag), flags_t flags, entity_id_t UNUSED(group)) const
+	virtual bool TestShape(tag_t UNUSED(tag), flags_t flags, entity_id_t UNUSED(group), entity_id_t UNUSED(group2)) const
 	{
 		return !(flags & ICmpObstructionManager::FLAG_MOVING);
 	}
@@ -309,22 +328,21 @@ public:
 
 /**
  * Obstruction test filter that reject shapes in a given control group,
- * and optionally rejects moving shapes,
- * and rejects shapes that don't block unit movement.
+ * and rejects shapes that don't block unit movement, and optionally rejects moving shapes.
  */
 class ControlGroupMovementObstructionFilter : public IObstructionTestFilter
 {
 	bool m_AvoidMoving;
 	entity_id_t m_Group;
+
 public:
 	ControlGroupMovementObstructionFilter(bool avoidMoving, entity_id_t group) :
 		m_AvoidMoving(avoidMoving), m_Group(group)
-	{
-	}
+	{}
 
-	virtual bool Allowed(tag_t UNUSED(tag), flags_t flags, entity_id_t group) const
+	virtual bool TestShape(tag_t UNUSED(tag), flags_t flags, entity_id_t group, entity_id_t group2) const
 	{
-		if (group == m_Group)
+		if (group == m_Group || (group2 != INVALID_ENTITY && group2 == m_Group))
 			return false;
 		if (!(flags & ICmpObstructionManager::FLAG_BLOCK_MOVEMENT))
 			return false;
@@ -335,7 +353,52 @@ public:
 };
 
 /**
- * Obstruction test filter that rejects a specific shape.
+ * Obstruction test filter that will test only against shapes that:
+ *     - are part of neither one of the specified control groups
+ *     - AND have at least one of the specified flags set.
+ * 
+ * The first (primary) control group to reject shapes from must be specified and valid. The secondary
+ * control group to reject entities from may be set to INVALID_ENTITY to not use it.
+ * 
+ * This filter is useful to e.g. allow foundations within the same control group to be placed and 
+ * constructed arbitrarily close together (e.g. for wall pieces that need to link up tightly).
+ */
+class SkipControlGroupsRequireFlagObstructionFilter : public IObstructionTestFilter
+{
+	entity_id_t m_Group;
+	entity_id_t m_Group2;
+	flags_t m_Mask;
+
+public:
+	SkipControlGroupsRequireFlagObstructionFilter(entity_id_t group1, entity_id_t group2, flags_t mask) : 
+		m_Group(group1), m_Group2(group2), m_Mask(mask)
+	{
+		// the primary control group to filter out must be valid
+		ENSURE(m_Group != INVALID_ENTITY);
+
+		// for simplicity, if m_Group2 is INVALID_ENTITY (i.e. not used), then set it equal to m_Group
+		// so that we have fewer special cases to consider in TestShape().
+		if (m_Group2 == INVALID_ENTITY)
+			m_Group2 = m_Group;
+	}
+
+	virtual bool TestShape(tag_t UNUSED(tag), flags_t flags, entity_id_t group, entity_id_t group2) const
+	{
+		// To be included in the testing, a shape must have at least one of the flags in m_Mask set, and its
+		// primary control group must be valid and must equal neither our primary nor secondary control group.
+		bool includeInTesting = ((flags & m_Mask) != 0 && group != m_Group && group != m_Group2);
+
+		// If the shape being tested has a valid secondary control group, exclude it from testing if it
+		// matches either our primary or secondary control group.
+		if (group2 != INVALID_ENTITY)
+			includeInTesting = (includeInTesting && group2 != m_Group && group2 != m_Group2);
+
+		return includeInTesting;
+	}
+};
+
+/**
+ * Obstruction test filter that will test only against shapes that do not have the specified tag set.
  */
 class SkipTagObstructionFilter : public IObstructionTestFilter
 {
@@ -345,25 +408,27 @@ public:
 	{
 	}
 
-	virtual bool Allowed(tag_t tag, flags_t UNUSED(flags), entity_id_t UNUSED(group)) const
+	virtual bool TestShape(tag_t tag, flags_t UNUSED(flags), entity_id_t UNUSED(group), entity_id_t UNUSED(group2)) const
 	{
 		return tag.n != m_Tag.n;
 	}
 };
 
 /**
- * Obstruction test filter that rejects a specific shape, and requires the given flags.
+ * Obstruction test filter that will test only against shapes that:
+ *    - do not have the specified tag
+ *    - AND have at least one of the specified flags set.
  */
-class SkipTagFlagsObstructionFilter : public IObstructionTestFilter
+class SkipTagRequireFlagsObstructionFilter : public IObstructionTestFilter
 {
 	tag_t m_Tag;
 	flags_t m_Mask;
 public:
-	SkipTagFlagsObstructionFilter(tag_t tag, flags_t mask) : m_Tag(tag), m_Mask(mask)
+	SkipTagRequireFlagsObstructionFilter(tag_t tag, flags_t mask) : m_Tag(tag), m_Mask(mask)
 	{
 	}
 
-	virtual bool Allowed(tag_t tag, flags_t flags, entity_id_t UNUSED(group)) const
+	virtual bool TestShape(tag_t tag, flags_t flags, entity_id_t UNUSED(group), entity_id_t UNUSED(group2)) const
 	{
 		return (tag.n != m_Tag.n && (flags & m_Mask) != 0);
 	}
