@@ -2,6 +2,10 @@
 <Entity parent="template_structure_defense_wall">
   <Cost>
     <BuildTime>12</BuildTime>
+    <Resources>
+      <wood>60</wood>
+      <stone>0</stone>
+    </Resources>
   </Cost>
   <Footprint>
     <Square width="15" depth="3.0"/>
