@@ -20,6 +20,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#import <AvailabilityMacros.h> // MAC_OS_X_VERSION_MIN_REQUIRED
 #import <Foundation/Foundation.h>
 #import <string>
 
@@ -57,10 +58,14 @@ std::string osx_GetBundlePath()
 	NSBundle *bundle = [NSBundle bundleWithIdentifier: [NSString stringWithUTF8String: BUNDLE_ID_STR]];
 	if (bundle != nil)
 	{
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
 		// Retrieve NSURL and convert to POSIX path, then get C-string
 		//	encoded as UTF-8, and use it to construct std::string
 		// NSURL:path "If the receiver does not conform to RFC 1808, returns nil."
 		NSString *pathStr = [[bundle bundleURL] path];
+#else
+		NSString *pathStr = [bundle bundlePath];
+#endif
 		if (pathStr != nil)
 		{
 			path = std::string([pathStr UTF8String]);
@@ -79,10 +84,14 @@ std::string osx_GetBundleResourcesPath()
 	NSBundle *bundle = [NSBundle bundleWithIdentifier: [NSString stringWithUTF8String: BUNDLE_ID_STR]];
 	if (bundle != nil)
 	{
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
 		// Retrieve NSURL and convert to POSIX path, then get C-string
 		//	encoded as UTF-8, and use it to construct std::string
 		// NSURL:path "If the receiver does not conform to RFC 1808, returns nil."
 		NSString *pathStr = [[bundle resourceURL] path];
+#else
+		NSString *pathStr = [bundle resourcePath];
+#endif
 		if (pathStr != nil)
 		{
 			path = std::string([pathStr UTF8String]);
@@ -101,10 +110,14 @@ std::string osx_GetBundleFrameworksPath()
 	NSBundle *bundle = [NSBundle bundleWithIdentifier: [NSString stringWithUTF8String: BUNDLE_ID_STR]];
 	if (bundle != nil)
 	{
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
 		// Retrieve NSURL and convert to POSIX path, then get C-string
 		//	encoded as UTF-8, and use it to construct std::string
 		// NSURL:path "If the receiver does not conform to RFC 1808, returns nil."
 		NSString *pathStr = [[bundle privateFrameworksURL] path];
+#else
+		NSString *pathStr = [bundle privateFrameworksPath];
+#endif
 		if (pathStr != nil)
 		{
 			path = std::string([pathStr UTF8String]);

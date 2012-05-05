@@ -28,8 +28,10 @@
 #include "lib/sysdep/gfx.h"
 #include "osx_bundle.h"
 
-#include <mach-o/dyld.h>
 #include <ApplicationServices/ApplicationServices.h>
+#include <AvailabilityMacros.h> // MAC_OS_X_VERSION_MIN_REQUIRED
+#include <CoreFoundation/CoreFoundation.h>
+#include <mach-o/dyld.h> // _NSGetExecutablePath
 
 
 // "copy" text into the clipboard. replaces previous contents.
@@ -63,9 +65,11 @@ namespace gfx {
 
 Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq)
 {
-	// TODO: This breaks 10.5 compatibility, as CGDisplayCopyDisplayMode
-	//  and CGDisplayModeCopyPixelEncoding were not available
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
 	CGDisplayModeRef currentMode = CGDisplayCopyDisplayMode(kCGDirectMainDisplay);
+#else
+	CFDictionaryRef currentMode = CGDisplayCurrentMode(kCGDirectMainDisplay);
+#endif
 
 	if(xres)
 		*xres = (int)CGDisplayPixelsWide(kCGDirectMainDisplay);
@@ -75,6 +79,7 @@ Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq)
 
 	if(bpp)
 	{
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
 		// CGDisplayBitsPerPixel was deprecated in OS X 10.6
 		CFStringRef pixelEncoding = CGDisplayModeCopyPixelEncoding(currentMode);
 		if (CFStringCompare(pixelEncoding, CFSTR(IO32BitDirectPixels), kCFCompareCaseInsensitive) == kCFCompareEqualTo)
@@ -88,13 +93,26 @@ Status GetVideoMode(int* xres, int* yres, int* bpp, int* freq)
 
 		// We're responsible for this
 		CFRelease(pixelEncoding);
+#else
+		CFNumberRef num = (CFNumberRef)CFDictionaryGetValue(currentMode, kCGDisplayBitsPerPixel);
+		CFNumberGetValue(num, kCFNumberIntType, bpp);
+#endif
 	}
 
 	if(freq)
+	{
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
 		*freq = (int)CGDisplayModeGetRefreshRate(currentMode);
+#else
+		CFNumberRef num = (CFNumberRef)CFDictionaryGetValue(currentMode, kCGDisplayRefreshRate);
+		CFNumberGetValue(num, kCFNumberIntType, freq);
+#endif
+	}
 
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
 	// We're responsible for this
 	CGDisplayModeRelease(currentMode);
+#endif
 
 	return INFO::OK;
 }

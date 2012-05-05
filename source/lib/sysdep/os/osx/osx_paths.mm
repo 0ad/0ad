@@ -20,6 +20,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#import <AvailabilityMacros.h> // MAC_OS_X_VERSION_MIN_REQUIRED
 #import <Foundation/Foundation.h>
 #import <string>
 
@@ -31,14 +32,22 @@ static std::string getUserDirectoryPath(NSSearchPathDirectory directory)
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	std::string result;
 
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
 	// Returns array of NSURL objects which are preferred for file paths
 	NSArray* paths = [[NSFileManager defaultManager] URLsForDirectory:directory inDomains:NSUserDomainMask];
+#else
+	NSArray* paths = NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, true);
+#endif
 	if ([paths count] > 0)
 	{
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
 		// Retrieve first NSURL and convert to POSIX path, then get C-string
 		//	encoded as UTF-8, and use it to construct std::string
 		// NSURL:path "If the receiver does not conform to RFC 1808, returns nil."
 		NSString* pathStr = [[paths objectAtIndex:0] path];
+#else
+		NSString* pathStr = [paths objectAtIndex:0];
+#endif
 		if (pathStr != nil)
 			result = std::string([pathStr UTF8String]);
 	}
