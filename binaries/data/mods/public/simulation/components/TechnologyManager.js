@@ -9,7 +9,7 @@ TechnologyManager.prototype.Serialize = function()
 	// serialize it.
 	
 	var ret = {};
-	for (i in this)
+	for (var i in this)
 	{
 		if (this.hasOwnProperty(i))
 			ret[i] = this[i];
