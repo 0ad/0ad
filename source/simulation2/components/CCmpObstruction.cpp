@@ -56,23 +56,33 @@ public:
 
 	// Dynamic state:
 
-	/// Whether the obstruction is actively obstructing or just an inactive placeholder
-	bool m_Active; 
+	/// Whether the obstruction is actively obstructing or just an inactive placeholder.
+	bool m_Active;
+	/// Whether the entity associated with this obstruction is currently moving. Only applicable for
+	/// UNIT-type obstructions.
 	bool m_Moving;
 
 	/**
-	 * Unique identifier for grouping obstruction shapes, typically to have member shapes ignore 
-	 * each other during obstruction tests. Defaults to the entity ID.
-	 * 
-	 * TODO: if needed, perhaps add a mask to specify with respect to which flags members of the
-	 * group should ignore each other.
+	 * Primary control group identifier. Indicates to which control group this entity's shape belongs.
+	 * Typically used in combination with obstruction test filters to have member shapes ignore each
+	 * other during obstruction tests. Defaults to the entity's ID. Must never be set to INVALID_ENTITY.
 	 */
 	entity_id_t m_ControlGroup;
+
+	/**
+	 * Optional secondary control group identifier. Similar to m_ControlGroup; if set to a valid value,
+	 * then this field identifies an additional, secondary control group to which this entity's shape
+	 * belongs. Set to INVALID_ENTITY to not assign any secondary group. Defaults to INVALID_ENTITY.
+	 * 
+	 * These are only necessary in case it is not sufficient for an entity to belong to only one control
+	 * group. Otherwise, they can be ignored.
+	 */
 	entity_id_t m_ControlGroup2;
 
-	/// Identifier of this entity's obstruction shape. Contains structure, but should be treated
-	/// as opaque here.
+	/// Identifier of this entity's obstruction shape, as registered in the obstruction manager. Contains
+	/// structure, but should be treated as opaque here.
 	tag_t m_Tag;
+
 	/// Set of flags affecting the behaviour of this entity's obstruction shape.
 	flags_t m_Flags;
 

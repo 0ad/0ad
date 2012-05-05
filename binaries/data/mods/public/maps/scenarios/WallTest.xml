@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="5">
+	<Environment>
+		<LightingModel>standard</LightingModel>
+		<SkySet>default</SkySet>
+		<SunColour r="0.74902" g="0.74902" b="0.74902"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785396"/>
+		<TerrainAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="292.862" y="91.2117" z="154.394"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "CircularMap": true,
+  "Description": "Give an interesting description of your map.",
+  "GameType": "conquest",
+  "Keywords": [
+    "hidden"
+  ],
+  "LockTeams": false,
+  "Name": "WallTest",
+  "PlayerData": [
+    {
+      "AI": "",
+      "Civ": "hele",
+      "Colour": {
+        "b": 200,
+        "g": 46,
+        "r": 46
+      },
+      "Name": "Player 1",
+      "PopulationLimit": 100000,
+      "Resources": {
+        "food": 100000,
+        "metal": 100000,
+        "stone": 100000,
+        "wood": 100000
+      },
+      "StartingCamera": {
+        "Position": {
+          "x": 292.862,
+          "y": 22.3825,
+          "z": 252.692
+        },
+        "Rotation": {
+          "x": 35,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "Team": -1
+    },
+    {
+      "AI": "qbot",
+      "Civ": "hele",
+      "Colour": {
+        "b": 20,
+        "g": 20,
+        "r": 150
+      },
+      "Name": "Player 2",
+      "PopulationLimit": 2,
+      "Resources": {
+        "food": 5000,
+        "metal": 5000,
+        "stone": 5000,
+        "wood": 5000
+      },
+      "Team": -1
+    }
+  ],
+  "RevealMap": false
+}
+]]></ScriptSettings>
+	<Entities>
+		<Entity uid="11">
+			<Template>structures/celt_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="286.75593" z="268.53187"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="12">
+			<Template>structures/pers_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="751.73603" z="789.12446"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>other/palisades_rocks_tower</Template>
+			<Player>1</Player>
+			<Position x="280.52155" z="152.9048"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>other/palisades_rocks_tower</Template>
+			<Player>1</Player>
+			<Position x="405.53681" z="237.12357"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>other/palisades_rocks_tower</Template>
+			<Player>1</Player>
+			<Position x="273.05485" z="368.58619"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>other/palisades_rocks_tower</Template>
+			<Player>1</Player>
+			<Position x="162.9825" z="248.80494"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="64">
+			<Template>units/cart_infantry_swordsman_a</Template>
+			<Player>1</Player>
+			<Position x="297.3943" z="245.43734"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="65">
+			<Template>units/celt_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="300.65796" z="247.85009"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="66">
+			<Template>units/hele_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="304.05463" z="250.32634"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="67">
+			<Template>units/iber_infantry_swordsman_a</Template>
+			<Player>1</Player>
+			<Position x="307.60114" z="254.54291"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="68">
+			<Template>units/pers_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="311.45011" z="258.70716"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="69">
+			<Template>units/rome_infantry_swordsman_a</Template>
+			<Player>1</Player>
+			<Position x="315.29044" z="262.83661"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="70">
+			<Template>structures/cart_house</Template>
+			<Player>1</Player>
+			<Position x="252.36847" z="276.04014"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="71">
+			<Template>structures/cart_farmstead</Template>
+			<Player>1</Player>
+			<Position x="266.76517" z="291.61655"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="72">
+			<Template>structures/cart_mill</Template>
+			<Player>1</Player>
+			<Position x="285.44394" z="308.2942"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+</Scenario>
