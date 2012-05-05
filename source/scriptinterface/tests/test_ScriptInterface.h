@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@ public:
 	{
 		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
 		TestLogger logger;
-		TS_ASSERT(script.LoadScript(L"test.js", L"var x = 1+1;"));
+		TS_ASSERT(script.LoadScript(L"test.js", "var x = 1+1;"));
 		TS_ASSERT_WSTR_NOT_CONTAINS(logger.GetOutput(), L"JavaScript error");
 		TS_ASSERT_WSTR_NOT_CONTAINS(logger.GetOutput(), L"JavaScript warning");
 	}
@@ -39,7 +39,7 @@ public:
 	{
 		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
 		TestLogger logger;
-		TS_ASSERT(!script.LoadScript(L"test.js", L"1+"));
+		TS_ASSERT(!script.LoadScript(L"test.js", "1+"));
 		TS_ASSERT_WSTR_CONTAINS(logger.GetOutput(), L"JavaScript error: test.js line 1\nSyntaxError: syntax error");
 	}
 
@@ -47,7 +47,7 @@ public:
 	{
 		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
 		TestLogger logger;
-		TS_ASSERT(script.LoadScript(L"test.js", L"1+1;"));
+		TS_ASSERT(script.LoadScript(L"test.js", "1+1;"));
 		TS_ASSERT_WSTR_CONTAINS(logger.GetOutput(), L"JavaScript warning: test.js line 1\nuseless expression");
 	}
 
@@ -55,7 +55,7 @@ public:
 	{
 		ScriptInterface script("Test", "Test", ScriptInterface::CreateRuntime());
 		TestLogger logger;
-		TS_ASSERT(!script.LoadScript(L"test.js", L"with(1){}"));
+		TS_ASSERT(!script.LoadScript(L"test.js", "with(1){}"));
 		TS_ASSERT_WSTR_CONTAINS(logger.GetOutput(), L"JavaScript error: test.js line 1\nSyntaxError: strict mode code may not contain \'with\' statements");
 	}
 

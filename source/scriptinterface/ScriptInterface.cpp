@@ -877,11 +877,11 @@ bool ScriptInterface::FreezeObject(jsval obj, bool deep)
 		return JS_FreezeObject(m->m_cx, JSVAL_TO_OBJECT(obj)) ? true : false;
 }
 
-bool ScriptInterface::LoadScript(const VfsPath& filename, const std::wstring& code)
+bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& code)
 {
 	// Compile the code in strict mode, to encourage better coding practices and
 	// to possibly help SpiderMonkey with optimisations
-	std::wstring codeStrict = L"\"use strict\";\n" + code;
+	std::wstring codeStrict = L"\"use strict\";\n" + wstring_from_utf8(code);
 	utf16string codeUtf16(codeStrict.begin(), codeStrict.end());
 	uintN lineNo = 0; // put the automatic 'use strict' on line 0, so the real code starts at line 1
 
@@ -898,11 +898,11 @@ bool ScriptInterface::LoadScript(const VfsPath& filename, const std::wstring& co
 	return ok ? true : false;
 }
 
-bool ScriptInterface::LoadGlobalScript(const VfsPath& filename, const std::wstring& code)
+bool ScriptInterface::LoadGlobalScript(const VfsPath& filename, const std::string& code)
 {
 	// Compile the code in strict mode, to encourage better coding practices and
 	// to possibly help SpiderMonkey with optimisations
-	std::wstring codeStrict = L"\"use strict\";\n" + code;
+	std::wstring codeStrict = L"\"use strict\";\n" + wstring_from_utf8(code);
 	utf16string codeUtf16(codeStrict.begin(), codeStrict.end());
 	uintN lineNo = 0; // put the automatic 'use strict' on line 0, so the real code starts at line 1
 
@@ -932,8 +932,7 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
 		return false;
 	}
 
-	std::string content(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize());
-	std::wstring code = wstring_from_utf8(content);
+	std::wstring code = wstring_from_utf8(file.DecodeUTF8()); // assume it's UTF-8
 
 	// Compile the code in strict mode, to encourage better coding practices and
 	// to possibly help SpiderMonkey with optimisations

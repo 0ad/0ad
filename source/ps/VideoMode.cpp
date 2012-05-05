@@ -110,8 +110,11 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 	Uint32 flags = SDL_OPENGL;
 	if (fullscreen)
 		flags |= SDL_FULLSCREEN;
+#if !OS_MACOSX
+	// TODO: Fix window resizing on OS X, see http://trac.wildfiregames.com/ticket/741
 	else
 		flags |= SDL_RESIZABLE;
+#endif
 
 	SDL_Surface* screen = SDL_SetVideoMode(w, h, bpp, flags);
 

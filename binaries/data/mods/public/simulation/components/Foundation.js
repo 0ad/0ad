@@ -189,15 +189,38 @@ Foundation.prototype.Build = function(builderEnt, work)
 		cmpBuildingPosition.SetXZRotation(rot.x, rot.z);
 		// TODO: should add a ICmpPosition::CopyFrom() instead of all this
 
+		// ----------------------------------------------------------------------
+		
 		var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 		var cmpBuildingOwnership = Engine.QueryInterface(building, IID_Ownership);
 		cmpBuildingOwnership.SetOwner(cmpOwnership.GetOwner());
+		
+		// ----------------------------------------------------------------------
+		
+		// Copy over the obstruction control group IDs from the foundation entities. This is needed to ensure that when a foundation
+		// is completed and replaced by a new entity, it remains in the same control group(s) as any other foundation entities that 
+		// may surround it. This is the mechanism that is used to e.g. enable wall pieces to be built closely together, ignoring their
+		// mutual obstruction shapes (since they would otherwise be prevented from being built so closely together). If the control 
+		// groups are not copied over, the new entity will default to a new control group containing only itself, and will hence block
+		// construction of any surrounding foundations that it was previously in the same control group with.
+		
+		// Note that this will result in the completed building entities having control group IDs that equal entity IDs of old (and soon
+		// to be deleted) foundation entities. This should not have any consequences, however, since the control group IDs are only meant
+		// to be unique identifiers, which is still true when reusing the old ones.
+		
+		var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
+		var cmpBuildingObstruction = Engine.QueryInterface(building, IID_Obstruction);
+		cmpBuildingObstruction.SetControlGroup(cmpObstruction.GetControlGroup());
+		cmpBuildingObstruction.SetControlGroup2(cmpObstruction.GetControlGroup2());
+		
+		// ----------------------------------------------------------------------
 		
 		var cmpPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
 		cmpPlayerStatisticsTracker.IncreaseConstructedBuildingsCounter();
 
 		var cmpIdentity = Engine.QueryInterface(building, IID_Identity);
-		if (cmpIdentity.GetClassesList().indexOf("CivCentre") != -1) cmpPlayerStatisticsTracker.IncreaseBuiltCivCentresCounter();
+		if (cmpIdentity.GetClassesList().indexOf("CivCentre") != -1)
+			cmpPlayerStatisticsTracker.IncreaseBuiltCivCentresCounter();
 		
 		var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 		var cmpBuildingHealth = Engine.QueryInterface(building, IID_Health);
@@ -207,7 +230,6 @@ Foundation.prototype.Build = function(builderEnt, work)
 
 		Engine.PostMessage(this.entity, MT_ConstructionFinished,
 			{ "entity": this.entity, "newentity": building });
-
 		Engine.BroadcastMessage(MT_EntityRenamed, { entity: this.entity, newentity: building });
 
 		Engine.DestroyEntity(this.entity);

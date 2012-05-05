@@ -3,6 +3,14 @@ const FLORA = "flora";
 const FAUNA = "fauna";
 const SPECIAL = "special";
 
+const COST_DISPLAY_NAMES = {
+	"food": "Food",
+	"wood": "Wood",
+	"stone": "Stone",
+	"metal": "Metal",
+	"population": "Population",
+};
+
 //-------------------------------- -------------------------------- --------------------------------
 // Utility functions
 //-------------------------------- -------------------------------- --------------------------------
@@ -169,27 +177,74 @@ function getEntityCommandsList(entState)
 	return commands;
 }
 
-function getEntityCost(template)
+/**
+ * Translates a cost component identifier as they are used internally (e.g. "population", "food", etc.) to proper
+ * display names.
+ */
+function getCostComponentDisplayName(costComponentName)
 {
-	var cost = "";
-	if (template.cost)
-	{
-		var costs = [];
-		if (template.cost.food) costs.push(template.cost.food + " [font=\"serif-12\"]Food[/font]");
-		if (template.cost.wood) costs.push(template.cost.wood + " [font=\"serif-12\"]Wood[/font]");
-		if (template.cost.metal) costs.push(template.cost.metal + " [font=\"serif-12\"]Metal[/font]");
-		if (template.cost.stone) costs.push(template.cost.stone + " [font=\"serif-12\"]Stone[/font]");
-		if (template.cost.population) costs.push(template.cost.population + " [font=\"serif-12\"]Population[/font]");
+	return COST_DISPLAY_NAMES[costComponentName];
+}
 
-		cost += "[font=\"serif-bold-13\"]Costs:[/font] " + costs.join(", ");
+/**
+ * Helper function for getEntityCostTooltip.
+ */
+function getEntityCostComponentsTooltipString(template)
+{
+	var costs = [];
+	if (template.cost.food) costs.push(template.cost.food + " [font=\"serif-12\"]" + getCostComponentDisplayName("food") + "[/font]");
+	if (template.cost.wood) costs.push(template.cost.wood + " [font=\"serif-12\"]" + getCostComponentDisplayName("wood") + "[/font]");
+	if (template.cost.metal) costs.push(template.cost.metal + " [font=\"serif-12\"]" + getCostComponentDisplayName("metal") + "[/font]");
+	if (template.cost.stone) costs.push(template.cost.stone + " [font=\"serif-12\"]" + getCostComponentDisplayName("stone") + "[/font]");
+	if (template.cost.population) costs.push(template.cost.population + " [font=\"serif-12\"]" + getCostComponentDisplayName("population") + "[/font]");
+	return costs;
+}
+
+/**
+ * Returns the cost information to display in the specified entity's construction button tooltip.
+ */
+function getEntityCostTooltip(template)
+{
+	var cost = "[font=\"serif-bold-13\"]Costs:[/font] ";
+	
+	// Entities with a wallset component are proxies for initiating wall placement and as such do not have a cost of
+	// their own; the individual wall pieces within it do.
+	if (template.wallSet)
+	{
+		var templateLong = GetTemplateData(template.wallSet.templates.long);
+		var templateMedium = GetTemplateData(template.wallSet.templates.medium);
+		var templateShort = GetTemplateData(template.wallSet.templates.short);
+		var templateTower = GetTemplateData(template.wallSet.templates.tower);
+		
+		// TODO: the costs of the wall segments should be the same, and for now we will assume they are (ideally we
+		// should take the average here or something).
+		var wallCosts = getEntityCostComponentsTooltipString(templateLong);
+		var towerCosts = getEntityCostComponentsTooltipString(templateTower);
+		
+		cost += "\n";
+		cost += " Walls:  " + wallCosts.join(", ") + "\n";
+		cost += " Towers: " + towerCosts.join(", ");
 	}
+	else if (template.cost)
+	{
+		var costs = getEntityCostComponentsTooltipString(template);
+		cost += costs.join(", ");
+	}
+	else
+	{
+		cost = ""; // cleaner than duplicating the serif-bold-13 stuff
+	}
+	
 	return cost;
 }
 
-function getPopulationBonus(template)
+/**
+ * Returns the population bonus information to display in the specified entity's construction button tooltip.
+ */
+function getPopulationBonusTooltip(template)
 {
 	var popBonus = "";
-	if (template.cost.populationBonus)
+	if (template.cost && template.cost.populationBonus)
 		popBonus = "\n[font=\"serif-bold-13\"]Population Bonus:[/font] " + template.cost.populationBonus;
 	return popBonus;
 }

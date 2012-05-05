@@ -279,6 +279,7 @@ std::vector<T> ts_make_vector(T* start, size_t size_bytes)
 	return std::vector<T>(start, start+(size_bytes/sizeof(T)));
 }
 #define TS_ASSERT_VECTOR_EQUALS_ARRAY(vec1, array) TS_ASSERT_EQUALS(vec1, ts_make_vector((array), sizeof(array)))
+#define TS_ASSERT_VECTOR_CONTAINS(vec1, element) TS_ASSERT(std::find((vec1).begin(), (vec1).end(), element) != (vec1).end());
 
 class ScriptInterface;
 // Script-based testing setup (defined in test_setup.cpp). Defines TS_* functions.

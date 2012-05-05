@@ -76,12 +76,15 @@ std::vector<entity_id_t> PickEntitiesInRect(CSimulation2& simulation, const CCam
  * @param matchRank if true, only entities that exactly match templateName will be selected,
  *	else entities with matching SelectionGroupName will be selected.
  * @param allowEditorSelectables if true, all entities with the ICmpSelectable interface
- *	will be selected (including decorative actors), else only those selectable ingame.
+ *	will be selected (including decorative actors), else only those selectable in-game.
+ * @param allowFoundations if true, foundations are also included in the results. Only takes
+ *  effect when matchRank = true.
  *
  * @return unordered list of selected entities.
  * @see ICmpIdentity
  */
-std::vector<entity_id_t> PickSimilarEntities(CSimulation2& simulation, const CCamera& camera, const std::string& templateName, player_id_t owner, bool includeOffScreen, bool matchRank, bool allowEditorSelectables);
+std::vector<entity_id_t> PickSimilarEntities(CSimulation2& simulation, const CCamera& camera, const std::string& templateName,
+	player_id_t owner, bool includeOffScreen, bool matchRank, bool allowEditorSelectables, bool allowFoundations);
 
 } // namespace
 

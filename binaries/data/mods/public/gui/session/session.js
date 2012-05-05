@@ -187,6 +187,10 @@ function getSavedGameData()
 }
 
 var lastTickTime = new Date;
+
+/**
+ * Called every frame.
+ */
 function onTick()
 {
 	var now = new Date;
@@ -205,7 +209,8 @@ function onTick()
 
 	updateCursorAndTooltip();
 
-	// If the selection changed, we need to regenerate the sim display
+	// If the selection changed, we need to regenerate the sim display (the display depends on both the
+	// simulation state and the current selection).
 	if (g_Selection.dirty)
 	{
 		onSimulationUpdate();
@@ -292,6 +297,10 @@ function checkPlayerState()
 	}
 }
 
+/**
+ * Recomputes GUI state that depends on simulation state or selection state. Called directly every simulation
+ * update (see session.xml), or from onTick when the selection has changed.
+ */
 function onSimulationUpdate()
 {
 	g_Selection.dirty = false;

@@ -156,9 +156,7 @@ void RunHardwareDetection()
 		return;
 	}
 
-	Status err; // ignore encoding errors
-	std::wstring code = wstring_from_utf8(file.GetAsString(), &err);
-
+	std::string code = file.DecodeUTF8(); // assume it's UTF-8
 	scriptInterface.LoadScript(scriptName, code);
 
 	// Collect all the settings we'll pass to the script:

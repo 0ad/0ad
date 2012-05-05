@@ -123,8 +123,11 @@ public:
 	 * Loads the XML data specified by @a file into the node @a ret.
 	 * Any existing data in @a ret will be overwritten or else kept, so this
 	 * can be called multiple times to build up a node from multiple inputs.
+	 * 
+	 * @param sourceIdentifier Optional; string you can pass along to indicate the source of
+	 *        the data getting loaded. Used for output to log messages if an error occurs.
 	 */
-	static void LoadXML(CParamNode& ret, const XMBFile& file);
+	static void LoadXML(CParamNode& ret, const XMBFile& file, const wchar_t* sourceIdentifier = NULL);
 
 	/**
 	 * Loads the XML data specified by @a path into the node @a ret.
@@ -136,8 +139,11 @@ public:
 	/**
 	 * See LoadXML, but parses the XML string @a xml.
 	 * @return error code if parsing failed, else @c PSRETURN_OK
+	 * 
+	 * @param sourceIdentifier Optional; string you can pass along to indicate the source of
+	 *        the data getting loaded. Used for output to log messages if an error occurs.
 	 */
-	static PSRETURN LoadXMLString(CParamNode& ret, const char* xml);
+	static PSRETURN LoadXMLString(CParamNode& ret, const char* xml, const wchar_t* sourceIdentifier = NULL);
 
 	/**
 	 * Finds the childs named @a name from @a src and from @a this, and copies the source child's children
@@ -228,7 +234,16 @@ public:
 	static std::wstring EscapeXMLString(const std::wstring& str);
 
 private:
-	void ApplyLayer(const XMBFile& xmb, const XMBElement& element);
+	
+	/**
+	 * Overlays the specified data onto this node. See class documentation for the concept and examples.
+	 * 
+	 * @param xmb Representation of the XMB file containing an element with the data to apply.
+	 * @param element Element inside the specified @p xmb file containing the data to apply.
+	 * @param sourceIdentifier Optional; string you can pass along to indicate the source of
+	 *        the data getting applied. Used for output to log messages if an error occurs.
+	 */
+	void ApplyLayer(const XMBFile& xmb, const XMBElement& element, const wchar_t* sourceIdentifier = NULL);
 
 	void ResetScriptVal();
 

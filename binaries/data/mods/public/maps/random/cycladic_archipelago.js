@@ -278,13 +278,8 @@ if((numPlayers>=6)||(i==startingPlaces[numPlayers-1][nPlayer])){
 	var painter = new LayeredPainter([tGrass, tCity], [1]);
 	createArea(placer, [painter,paintClass(clCity)], null);
 
-
-	// get civ specific starting entities
-	var civEntities = getStartingEntities(id-1);
-	
 	// create starting units
-	createStartingPlayerEntities(fx, fz, id, civEntities, BUILDING_ANGlE)
-
+	placeCivDefaultEntities(fx, fz, id, BUILDING_ANGlE, {'iberWall' : 'towers'});
 
     nPlayer++;
 }

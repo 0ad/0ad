@@ -153,7 +153,10 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 		}
 		else if (hotkey == "togglefullscreen")
 		{
+#if !OS_MACOSX
+			// TODO: Fix fullscreen toggling on OS X, see http://trac.wildfiregames.com/ticket/741
 			g_VideoMode.ToggleFullscreen();
+#endif
 			return IN_HANDLED;
 		}
 		else if (hotkey == "profile2.enable")

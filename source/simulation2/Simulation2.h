@@ -83,12 +83,12 @@ public:
 	/**
 	 * Set a startup script, which will get executed before the first turn.
 	 */
-	void SetStartupScript(const std::wstring& script);
+	void SetStartupScript(const std::string& script);
 
 	/**
 	 * Get the current startup script.
 	 */
-	const std::wstring& GetStartupScript();
+	const std::string& GetStartupScript();
 
 	/**
 	 * Set the attributes identifying the scenario/RMS used to initialise this

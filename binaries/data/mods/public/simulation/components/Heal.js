@@ -39,9 +39,12 @@ Heal.prototype.Serialize = null; // we have no dynamic state to save
 
 Heal.prototype.GetTimers = function()
 {
-	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 	var prepare = 1000;
-	var repeat = cmpTechMan.ApplyModifications("Heal/Rate", +this.template.Rate, this.entity);
+	var repeat = +this.template.Rate;
+
+	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	if (cmpTechMan)
+		repeat = cmpTechMan.ApplyModifications("Heal/Rate", repeat, this.entity);
 	return { "prepare": prepare, "repeat": repeat };
 };
 
@@ -81,8 +84,11 @@ Heal.prototype.PerformHeal = function(target)
 	if (!cmpHealth)
 		return;
 	
+	var hp = +this.template.HP;
 	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-	var targetState = cmpHealth.Increase(cmpTechMan.ApplyModifications("Heal/HP", +this.template.HP, this.entity));
+	if (cmpTechMan)
+		hp = cmpTechMan.ApplyModifications("Heal/HP", hp, this.entity);
+	var targetState = cmpHealth.Increase(hp);
 
 	// Add XP
 	var cmpLoot = Engine.QueryInterface(target, IID_Loot);

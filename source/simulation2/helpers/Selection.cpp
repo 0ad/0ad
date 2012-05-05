@@ -27,6 +27,7 @@
 #include "simulation2/components/ICmpTemplateManager.h"
 #include "simulation2/components/ICmpSelectable.h"
 #include "simulation2/components/ICmpVisual.h"
+#include "ps/CLogger.h"
 
 std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simulation, const CCamera& camera, int screenX, int screenY, player_id_t player, bool allowEditorSelectables)
 {
@@ -161,7 +162,9 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simul
 	return hitEnts;
 }
 
-std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simulation, const CCamera& camera, const std::string& templateName, player_id_t owner, bool includeOffScreen, bool matchRank, bool allowEditorSelectables)
+std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simulation, const CCamera& camera, 
+	const std::string& templateName, player_id_t owner, bool includeOffScreen, bool matchRank,
+	bool allowEditorSelectables, bool allowFoundations)
 {
 	CmpPtr<ICmpTemplateManager> cmpTemplateManager(simulation, SYSTEM_ENTITY);
 	CmpPtr<ICmpRangeManager> cmpRangeManager(simulation, SYSTEM_ENTITY);
@@ -179,8 +182,11 @@ std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simu
 
 		if (matchRank)
 		{
-			// Exact template name matching
-			if (cmpTemplateManager->GetCurrentTemplateName(ent) != templateName)
+			// Exact template name matching, optionally also allowing foundations
+			std::string curTemplateName = cmpTemplateManager->GetCurrentTemplateName(ent);
+			bool matches = (curTemplateName == templateName ||
+			                (allowFoundations && curTemplateName.substr(0, 11) == "foundation|" && curTemplateName.substr(11) == templateName));
+			if (!matches)
 				continue;
 		}
 

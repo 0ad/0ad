@@ -1293,7 +1293,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 					throw PSERROR_GUI_JSOpenFailed();
 				}
 
-				code = scriptfile.GetAsString();
+				code = scriptfile.DecodeUTF8(); // assume it's UTF-8
 			}
 
 			// Read the inline code (concatenating to the file code, if both are specified)

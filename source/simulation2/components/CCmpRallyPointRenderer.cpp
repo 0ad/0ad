@@ -869,7 +869,7 @@ void CCmpRallyPointRenderer::ReduceSegmentsByVisibility(std::vector<CVector2D>& 
 	// process from there on until the entire line is checked. The output is the array of base nodes.
 
 	std::vector<CVector2D> newCoords;
-	StationaryObstructionFilter obstructionFilter;
+	StationaryOnlyObstructionFilter obstructionFilter;
 	entity_pos_t lineRadius = fixed::FromFloat(m_LineThickness);
 	ICmpPathfinder::pass_class_t passabilityClass = cmpPathFinder->GetPassabilityClass(m_LinePassabilityClass);
 

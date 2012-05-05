@@ -137,7 +137,7 @@ bool CComponentManager::LoadScript(const VfsPath& filename, bool hotload)
 	CVFSFile file;
 	PSRETURN loadOk = file.Load(g_VFS, filename);
 	ENSURE(loadOk == PSRETURN_OK); // TODO
-	std::wstring content(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize()); // TODO: encodings etc
+	std::string content = file.DecodeUTF8(); // assume it's UTF-8
 	bool ok = m_ScriptInterface.LoadScript(filename, content);
 	return ok;
 }

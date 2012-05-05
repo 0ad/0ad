@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,9 +39,8 @@ public:
 	{
 		CVFSFile file;
 		TS_ASSERT_EQUALS(file.Load(g_VFS, pathname), PSRETURN_OK);
-		CStr content = file.GetAsString();
-		std::wstring wcontent(content.begin(), content.end());
-		TSM_ASSERT(L"Running script "+pathname.string(), scriptInterface.LoadScript(pathname, wcontent));
+		CStr content = file.DecodeUTF8(); // assume it's UTF-8
+		TSM_ASSERT(L"Running script "+pathname.string(), scriptInterface.LoadScript(pathname, content));
 	}
 
 	static void Script_LoadComponentScript(void* cbdata, VfsPath pathname)

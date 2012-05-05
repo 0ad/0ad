@@ -13,7 +13,7 @@
 			<WaterBody>
 				<Type>default</Type>
 				<Colour r="0.294118" g="0.34902" b="0.694118"/>
-				<Height>5</Height>
+				<Height>17.2066</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.45</Murkiness>
@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="318.23" y="82.1984" z="314.998"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.610865"/>
+		<Position x="290.787" y="80.2438" z="467.89"/>
+		<Rotation angle="-0.26782"/>
+		<Declination angle="0.440632"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -58,7 +58,7 @@
     },
     {
       "AI": "qbot",
-      "Civ": "hele",
+      "Civ": "spart",
       "Colour": {
         "b": 20,
         "g": 20,
@@ -441,7 +441,7 @@
 		<Entity uid="71">
 			<Template>structures/athen_defense_tower</Template>
 			<Player>1</Player>
-			<Position x="330.06067" z="339.07645"/>
+			<Position x="330.01011" z="338.72767"/>
 			<Orientation y="-0.24071"/>
 		</Entity>
 		<Entity uid="72">
@@ -465,7 +465,7 @@
 		<Entity uid="75">
 			<Template>structures/athen_defense_tower</Template>
 			<Player>1</Player>
-			<Position x="208.50257" z="545.56489"/>
+			<Position x="186.8809" z="527.21204"/>
 			<Orientation y="2.35434"/>
 		</Entity>
 		<Entity uid="76">
@@ -627,7 +627,7 @@
 		<Entity uid="102">
 			<Template>structures/athen_house</Template>
 			<Player>1</Player>
-			<Position x="256.50953" z="500.61738"/>
+			<Position x="256.57264" z="500.50232"/>
 			<Orientation y="-2.47176"/>
 		</Entity>
 		<Entity uid="103">
@@ -640,6 +640,96 @@
 			<Template>structures/athen_market</Template>
 			<Player>1</Player>
 			<Position x="305.90116" z="469.80753"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="105">
+			<Template>structures/athen_corral</Template>
+			<Player>1</Player>
+			<Position x="405.21653" z="426.42048"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="106">
+			<Template>structures/athen_fortress</Template>
+			<Player>1</Player>
+			<Position x="436.06345" z="329.41871"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="107">
+			<Template>structures/spart_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="778.12732" z="498.17518"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="108">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>2</Player>
+			<Position x="752.51514" z="462.30338"/>
+			<Orientation y="3.06812"/>
+		</Entity>
+		<Entity uid="109">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>2</Player>
+			<Position x="756.09162" z="463.69254"/>
+			<Orientation y="-2.96535"/>
+		</Entity>
+		<Entity uid="110">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>2</Player>
+			<Position x="759.16132" z="464.18393"/>
+			<Orientation y="-2.91637"/>
+		</Entity>
+		<Entity uid="111">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>2</Player>
+			<Position x="762.99744" z="462.99207"/>
+			<Orientation y="-2.70293"/>
+		</Entity>
+		<Entity uid="112">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>2</Player>
+			<Position x="766.90143" z="463.4419"/>
+			<Orientation y="-2.48406"/>
+		</Entity>
+		<Entity uid="113">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>2</Player>
+			<Position x="768.49482" z="460.44251"/>
+			<Orientation y="-2.38602"/>
+		</Entity>
+		<Entity uid="114">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>2</Player>
+			<Position x="772.60663" z="458.49567"/>
+			<Orientation y="-2.332"/>
+		</Entity>
+		<Entity uid="115">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>2</Player>
+			<Position x="771.70557" z="454.12681"/>
+			<Orientation y="-2.08684"/>
+		</Entity>
+		<Entity uid="116">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>2</Player>
+			<Position x="773.7768" z="452.27787"/>
+			<Orientation y="-2.19666"/>
+		</Entity>
+		<Entity uid="117">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>2</Player>
+			<Position x="771.89026" z="447.54484"/>
+			<Orientation y="-1.83475"/>
+		</Entity>
+		<Entity uid="118">
+			<Template>structures/athen_dock</Template>
+			<Player>1</Player>
+			<Position x="294.26407" z="564.63801"/>
+			<Orientation y="-0.57856"/>
+		</Entity>
+		<Entity uid="119">
+			<Template>units/athen_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="237.81731" z="586.95771"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>

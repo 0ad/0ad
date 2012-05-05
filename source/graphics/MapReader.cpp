@@ -999,7 +999,7 @@ int CXMLReader::ProgressiveRead()
 		else if (name == "Script")
 		{
 			if (m_MapReader.pSimulation2)
-				m_MapReader.pSimulation2->SetStartupScript(node.GetText().FromUTF8());
+				m_MapReader.pSimulation2->SetStartupScript(node.GetText());
 		}
 		else
 		{

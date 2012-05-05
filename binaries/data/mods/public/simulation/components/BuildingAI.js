@@ -107,20 +107,20 @@ BuildingAI.prototype.OnRangeUpdate = function(msg)
 
 BuildingAI.prototype.GetDefaultArrowCount = function()
 {
+	var arrowCount = +this.template.DefaultArrowCount;
 	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 	if (cmpTechMan)
-		return cmpTechMan.ApplyModifications("BuildingAI/DefaultArrowCount", +this.template.DefaultArrowCount, this.entity);
-	else
-		return +this.template.DefaultArrowCount;
+		arrowCount = cmpTechMan.ApplyModifications("BuildingAI/DefaultArrowCount", arrowCount, this.entity);
+	return arrowCount;
 };
 
 BuildingAI.prototype.GetGarrisonArrowMultiplier = function()
 {
+	var arrowMult = +this.template.GarrisonArrowMultiplier;
 	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 	if (cmpTechMan)
-		return cmpTechMan.ApplyModifications("BuildingAI/GarrisonArrowMultiplier", +this.template.GarrisonArrowMultiplier, this.entity);
-	else
-		return +this.template.GarrisonArrowMultiplier;
+		arrowMult = cmpTechMan.ApplyModifications("BuildingAI/GarrisonArrowMultiplier", arrowMult, this.entity);
+	return arrowMult;
 };
 
 /**

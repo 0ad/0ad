@@ -51,7 +51,7 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Circle radius="2.8"/>
+    <Circle radius="3.5"/>
     <Height>8.0</Height>
   </Footprint>
   <Health>
@@ -67,6 +67,14 @@
 	<Tooltip>Champion War Elephant.
 Good sieging capability. "Stench" Aura vs. Horses. Can run amok. Countered by Swordsmen and Skirmishers.</Tooltip>
   </Identity>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>circle/256x256.png</MainTexture>
+        <MainTextureMask>circle/256x256_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <UnitMotion>
     <WalkSpeed>7.5</WalkSpeed>
     <Run>

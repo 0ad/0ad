@@ -357,7 +357,7 @@ bool CCmpTemplateManager::LoadTemplateFile(const std::string& templateName, int 
 	}
 
 	// Load the new file into the template data (overriding parent values)
-	CParamNode::LoadXML(m_TemplateFileData[templateName], xero);
+	CParamNode::LoadXML(m_TemplateFileData[templateName], xero, wstring_from_utf8(templateName).c_str());
 
 	return true;
 }
@@ -376,7 +376,8 @@ void CCmpTemplateManager::ConstructTemplateActor(const std::string& actorName, C
 	out = m_TemplateFileData[templateName];
 
 	// Initialise the actor's name and make it an Atlas selectable entity.
-	std::string name = utf8_from_wstring(CParamNode::EscapeXMLString(wstring_from_utf8(actorName)));
+	std::wstring actorNameW = wstring_from_utf8(actorName);
+	std::string name = utf8_from_wstring(CParamNode::EscapeXMLString(actorNameW));
 	std::string xml = "<Entity>"
 	                      "<VisualActor><Actor>" + name + "</Actor></VisualActor>"
 	                      "<Selectable>"
@@ -385,7 +386,7 @@ void CCmpTemplateManager::ConstructTemplateActor(const std::string& actorName, C
 	                      "</Selectable>"
 	                  "</Entity>";
 
-	CParamNode::LoadXMLString(out, xml.c_str());
+	CParamNode::LoadXMLString(out, xml.c_str(), actorNameW.c_str());
 }
 
 static Status AddToTemplates(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), const uintptr_t cbData)

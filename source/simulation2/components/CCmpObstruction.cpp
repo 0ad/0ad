@@ -20,10 +20,10 @@
 #include "simulation2/system/Component.h"
 #include "ICmpObstruction.h"
 
+#include "ps/CLogger.h"
+#include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpPosition.h"
-
-#include "simulation2/MessageTypes.h"
 
 /**
  * Obstruction implementation. This keeps the ICmpPathfinder's model of the world updated when the
@@ -49,16 +49,31 @@ public:
 		STATIC,
 		UNIT
 	} m_Type;
+
 	entity_pos_t m_Size0; // radius or width
 	entity_pos_t m_Size1; // radius or depth
 	flags_t m_TemplateFlags;
 
 	// Dynamic state:
 
-	bool m_Active; // whether the obstruction is obstructing or just an inactive placeholder
+	/// Whether the obstruction is actively obstructing or just an inactive placeholder
+	bool m_Active; 
 	bool m_Moving;
+
+	/**
+	 * Unique identifier for grouping obstruction shapes, typically to have member shapes ignore 
+	 * each other during obstruction tests. Defaults to the entity ID.
+	 * 
+	 * TODO: if needed, perhaps add a mask to specify with respect to which flags members of the
+	 * group should ignore each other.
+	 */
 	entity_id_t m_ControlGroup;
+	entity_id_t m_ControlGroup2;
+
+	/// Identifier of this entity's obstruction shape. Contains structure, but should be treated
+	/// as opaque here.
 	tag_t m_Tag;
+	/// Set of flags affecting the behaviour of this entity's obstruction shape.
 	flags_t m_Flags;
 
 	static std::string GetSchema()
@@ -139,6 +154,7 @@ public:
 		m_Tag = tag_t();
 		m_Moving = false;
 		m_ControlGroup = GetEntityId();
+		m_ControlGroup2 = INVALID_ENTITY;
 	}
 
 	virtual void Deinit()
@@ -151,6 +167,7 @@ public:
 		serialize.Bool("active", m_Active);
 		serialize.Bool("moving", m_Moving);
 		serialize.NumberU32_Unbounded("control group", m_ControlGroup);
+		serialize.NumberU32_Unbounded("control group 2", m_ControlGroup2);
 		serialize.NumberU32_Unbounded("tag", m_Tag.n);
 		serialize.NumberU8_Unbounded("flags", m_Flags);
 	}
@@ -194,7 +211,7 @@ public:
 				// Need to create a new pathfinder shape:
 				if (m_Type == STATIC)
 					m_Tag = cmpObstructionManager->AddStaticShape(GetEntityId(),
-						data.x, data.z, data.a, m_Size0, m_Size1, m_Flags);
+						data.x, data.z, data.a, m_Size0, m_Size1, m_Flags, m_ControlGroup, m_ControlGroup2);
 				else
 					m_Tag = cmpObstructionManager->AddUnitShape(GetEntityId(),
 						data.x, data.z, m_Size0, (flags_t)(m_Flags | (m_Moving ? ICmpObstructionManager::FLAG_MOVING : 0)), m_ControlGroup);
@@ -241,10 +258,11 @@ public:
 			if (!cmpPosition->IsInWorld())
 				return; // don't need an obstruction
 
+			// TODO: code duplication from message handlers
 			CFixedVector2D pos = cmpPosition->GetPosition2D();
 			if (m_Type == STATIC)
 				m_Tag = cmpObstructionManager->AddStaticShape(GetEntityId(),
-					pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, m_Flags);
+					pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, m_Flags, m_ControlGroup, m_ControlGroup2);
 			else
 				m_Tag = cmpObstructionManager->AddUnitShape(GetEntityId(),
 					pos.X, pos.Y, m_Size0, (flags_t)(m_Flags | (m_Moving ? ICmpObstructionManager::FLAG_MOVING : 0)), m_ControlGroup);
@@ -255,6 +273,7 @@ public:
 
 			// Delete the obstruction shape
 
+			// TODO: code duplication from message handlers
 			if (m_Tag.valid())
 			{
 				CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
@@ -346,11 +365,21 @@ public:
 		if (!cmpPathfinder)
 			return false; // error
 
+		// required precondition to use SkipControlGroupsRequireFlagObstructionFilter
+		if (m_ControlGroup == INVALID_ENTITY)
+		{
+			LOGERROR(L"[CmpObstruction] Cannot test for foundation obstructions; primary control group must be valid");
+			return false;
+		}
+
 		// Get passability class
 		ICmpPathfinder::pass_class_t passClass = cmpPathfinder->GetPassabilityClass(className);
 
-		// Ignore collisions with self, or with non-foundation-blocking obstructions
-		SkipTagFlagsObstructionFilter filter(m_Tag, ICmpObstructionManager::FLAG_BLOCK_FOUNDATION);
+		// Ignore collisions within the same control group, or with other non-foundation-blocking shapes.
+		// Note that, since the control group for each entity defaults to the entity's ID, this is typically 
+		// equivalent to only ignoring the entity's own shape and other non-foundation-blocking shapes.
+		SkipControlGroupsRequireFlagObstructionFilter filter(m_ControlGroup, m_ControlGroup2,
+			ICmpObstructionManager::FLAG_BLOCK_FOUNDATION);
 
 		if (m_Type == STATIC)
 			return cmpPathfinder->CheckBuildingPlacement(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, GetEntityId(), passClass);
@@ -375,8 +404,18 @@ public:
 		if (!cmpObstructionManager)
 			return ret; // error
 
-		// Ignore collisions with self, or with non-construction-blocking obstructions
-		SkipTagFlagsObstructionFilter filter(m_Tag, ICmpObstructionManager::FLAG_BLOCK_CONSTRUCTION);
+		// required precondition to use SkipControlGroupsRequireFlagObstructionFilter
+		if (m_ControlGroup == INVALID_ENTITY)
+		{
+			LOGERROR(L"[CmpObstruction] Cannot test for construction obstructions; primary control group must be valid");
+			return ret;
+		}
+
+		// Ignore collisions within the same control group, or with other non-construction-blocking shapes.
+		// Note that, since the control group for each entity defaults to the entity's ID, this is typically 
+		// equivalent to only ignoring the entity's own shape and other non-construction-blocking shapes. 
+		SkipControlGroupsRequireFlagObstructionFilter filter(m_ControlGroup, m_ControlGroup2,
+			ICmpObstructionManager::FLAG_BLOCK_CONSTRUCTION);
 
 		if (m_Type == STATIC)
 			cmpObstructionManager->TestStaticShape(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, &ret);
@@ -401,12 +440,41 @@ public:
 	virtual void SetControlGroup(entity_id_t group)
 	{
 		m_ControlGroup = group;
+		UpdateControlGroups();
+	}
 
-		if (m_Tag.valid() && m_Type == UNIT)
+	virtual void SetControlGroup2(entity_id_t group2)
+	{
+		m_ControlGroup2 = group2;
+		UpdateControlGroups();
+	}
+
+	virtual entity_id_t GetControlGroup() 
+	{
+		return m_ControlGroup;
+	}
+
+	virtual entity_id_t GetControlGroup2() 
+	{
+		return m_ControlGroup2;
+	}
+
+	void UpdateControlGroups()
+	{
+		if (m_Tag.valid())
 		{
 			CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
 			if (cmpObstructionManager)
-				cmpObstructionManager->SetUnitControlGroup(m_Tag, m_ControlGroup);
+			{
+				if (m_Type == UNIT)
+				{
+					cmpObstructionManager->SetUnitControlGroup(m_Tag, m_ControlGroup);
+				}
+				else if (m_Type == STATIC)
+				{
+					cmpObstructionManager->SetStaticControlGroup(m_Tag, m_ControlGroup, m_ControlGroup2);
+				}
+			}
 		}
 	}
 
