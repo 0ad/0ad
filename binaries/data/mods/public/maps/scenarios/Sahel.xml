@@ -1,0 +1,2446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="5">
+	<Environment>
+		<LightingModel>standard</LightingModel>
+		<SkySet>cumulus</SkySet>
+		<SunColour r="0.87451" g="0.847059" b="0.647059"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785396"/>
+		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Height>20.5639</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>1</Murkiness>
+				<Tint r="0.701961" g="0.537255" b="0.247059"/>
+				<ReflectionTint r="0.54902" g="0.537255" b="0.439216"/>
+				<ReflectionTintStrength>0.498047</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="394.908" y="153.155" z="510.864"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "CircularMap": true,
+  "Description": "Situated southside of the Atlas mountain range in North Africa.\u000aA somewhat open map with an abundance of food and stone resources.",
+  "GameType": "conquest",
+  "Keywords": [
+    "hidden"
+  ],
+  "LockTeams": false,
+  "Name": "Sahel",
+  "PlayerData": [
+    {
+      "AI": "",
+      "Civ": "rome",
+      "Colour": {
+        "b": 14,
+        "g": 14,
+        "r": 177
+      },
+      "Name": "Player 1",
+      "Team": -1
+    },
+    {
+      "AI": "qbot",
+      "Civ": "cart",
+      "Colour": {
+        "b": 199,
+        "g": 67,
+        "r": 56
+      },
+      "Name": "Player 2",
+      "Team": -1
+    },
+    {
+      "AI": "qbot",
+      "Civ": "pers",
+      "Colour": {
+        "b": 5,
+        "g": 165,
+        "r": 50
+      },
+      "Name": "Player 3",
+      "Team": -1
+    },
+    {
+      "AI": "qbot",
+      "Civ": "iber",
+      "Colour": {
+        "b": 147,
+        "g": 40,
+        "r": 99
+      },
+      "Name": "Player 4",
+      "Team": -1
+    }
+  ],
+  "RevealMap": false
+}
+]]></ScriptSettings>
+	<Entities>
+		<Entity uid="37">
+			<Template>structures/cart_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="352.63572" z="335.05555"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="38">
+			<Template>structures/rome_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="939.25806" z="931.35865"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="39">
+			<Template>structures/pers_civil_centre</Template>
+			<Player>3</Player>
+			<Position x="350.94834" z="907.67676"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="40">
+			<Template>structures/iber_civil_centre</Template>
+			<Player>4</Player>
+			<Position x="943.20997" z="359.7081"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="41">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="393.26996" z="372.47468"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="42">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="395.71988" z="303.586"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="43">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="330.97577" z="278.88596"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="44">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="293.84797" z="326.17878"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="45">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="301.00538" z="391.43183"/>
+			<Orientation y="-0.19994"/>
+		</Entity>
+		<Entity uid="46">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="282.22172" z="356.75162"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="47">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="406.5553" z="334.49714"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="48">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="346.7234" z="404.85822"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="49">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="370.64377" z="280.38294"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="50">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="306.24778" z="301.45221"/>
+			<Orientation y="-0.05858"/>
+		</Entity>
+		<Entity uid="51">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="318.1597" z="402.46625"/>
+			<Orientation y="2.39513"/>
+		</Entity>
+		<Entity uid="52">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="246.69529" z="641.19483"/>
+			<Orientation y="2.80889"/>
+		</Entity>
+		<Entity uid="53">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="417.71528" z="594.17579"/>
+			<Orientation y="1.50274"/>
+		</Entity>
+		<Entity uid="54">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="533.13691" z="635.19031"/>
+			<Orientation y="2.57317"/>
+		</Entity>
+		<Entity uid="55">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="594.36731" z="574.97059"/>
+			<Orientation y="-3.1"/>
+		</Entity>
+		<Entity uid="56">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="583.41437" z="406.6633"/>
+			<Orientation y="-2.81179"/>
+		</Entity>
+		<Entity uid="57">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="510.32718" z="223.0029"/>
+			<Orientation y="-2.38205"/>
+		</Entity>
+		<Entity uid="58">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="402.31055" z="141.59943"/>
+			<Orientation y="2.8718"/>
+		</Entity>
+		<Entity uid="59">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="471.473" z="92.51471"/>
+			<Orientation y="1.43638"/>
+		</Entity>
+		<Entity uid="60">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="535.19776" z="70.362"/>
+			<Orientation y="1.71131"/>
+		</Entity>
+		<Entity uid="61">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="620.74408" z="146.45025"/>
+			<Orientation y="0.64156"/>
+		</Entity>
+		<Entity uid="62">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="730.701" z="126.76111"/>
+			<Orientation y="-0.87394"/>
+		</Entity>
+		<Entity uid="63">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="573.5857" z="235.48874"/>
+			<Orientation y="-0.26812"/>
+		</Entity>
+		<Entity uid="64">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="470.55921" z="404.97733"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="65">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="436.66523" z="245.18778"/>
+			<Orientation y="0.9302"/>
+		</Entity>
+		<Entity uid="66">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="298.81012" z="216.03657"/>
+			<Orientation y="-1.45916"/>
+		</Entity>
+		<Entity uid="67">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="172.06754" z="266.74033"/>
+			<Orientation y="0.62655"/>
+		</Entity>
+		<Entity uid="68">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="226.37443" z="321.02756"/>
+			<Orientation y="-0.1201"/>
+		</Entity>
+		<Entity uid="69">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="199.74115" z="413.47104"/>
+			<Orientation y="-1.054"/>
+		</Entity>
+		<Entity uid="70">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="105.00385" z="477.71982"/>
+			<Orientation y="-0.3491"/>
+		</Entity>
+		<Entity uid="71">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="135.49585" z="554.27161"/>
+			<Orientation y="0.64293"/>
+		</Entity>
+		<Entity uid="72">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="98.22501" z="736.28467"/>
+			<Orientation y="2.26502"/>
+		</Entity>
+		<Entity uid="73">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="213.0838" z="710.30158"/>
+			<Orientation y="2.27558"/>
+		</Entity>
+		<Entity uid="74">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="249.28667" z="603.89386"/>
+			<Orientation y="-0.16475"/>
+		</Entity>
+		<Entity uid="75">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="197.5383" z="1004.29188"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="76">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="297.4339" z="864.78614"/>
+			<Orientation y="2.81554"/>
+		</Entity>
+		<Entity uid="77">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="349.86597" z="748.99598"/>
+			<Orientation y="2.65352"/>
+		</Entity>
+		<Entity uid="78">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="421.60657" z="673.58802"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="79">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="465.05707" z="755.4502"/>
+			<Orientation y="0.5716"/>
+		</Entity>
+		<Entity uid="80">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="545.6208" z="1023.16785"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="81">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="582.19459" z="1145.42383"/>
+			<Orientation y="2.83344"/>
+		</Entity>
+		<Entity uid="82">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="666.98646" z="1027.96094"/>
+			<Orientation y="-3.1406"/>
+		</Entity>
+		<Entity uid="83">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="658.68378" z="860.96204"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="84">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="702.0564" z="699.66041"/>
+			<Orientation y="2.74112"/>
+		</Entity>
+		<Entity uid="85">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="740.64814" z="624.7079"/>
+			<Orientation y="1.49412"/>
+		</Entity>
+		<Entity uid="86">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="887.34882" z="662.36146"/>
+			<Orientation y="0.9461"/>
+		</Entity>
+		<Entity uid="87">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="983.94727" z="736.2848"/>
+			<Orientation y="0.98342"/>
+		</Entity>
+		<Entity uid="88">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="1142.62134" z="823.87098"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="89">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="1091.40186" z="702.6294"/>
+			<Orientation y="-2.73732"/>
+		</Entity>
+		<Entity uid="90">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="1053.12061" z="589.42261"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="91">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="927.75123" z="487.64567"/>
+			<Orientation y="-1.7892"/>
+		</Entity>
+		<Entity uid="92">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="764.91218" z="411.7595"/>
+			<Orientation y="-1.92034"/>
+		</Entity>
+		<Entity uid="93">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="659.62781" z="352.66074"/>
+			<Orientation y="-2.5213"/>
+		</Entity>
+		<Entity uid="94">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="612.18244" z="245.61799"/>
+			<Orientation y="2.68322"/>
+		</Entity>
+		<Entity uid="95">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="649.4095" z="168.13781"/>
+			<Orientation y="-2.93792"/>
+		</Entity>
+		<Entity uid="96">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="616.37061" z="96.97318"/>
+			<Orientation y="-2.50457"/>
+		</Entity>
+		<Entity uid="97">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="750.97657" z="87.53545"/>
+			<Orientation y="1.43372"/>
+		</Entity>
+		<Entity uid="98">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="774.75239" z="61.18482"/>
+			<Orientation y="1.03434"/>
+		</Entity>
+		<Entity uid="99">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="851.69056" z="109.53544"/>
+			<Orientation y="0.17951"/>
+		</Entity>
+		<Entity uid="100">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="559.9839" z="119.94872"/>
+			<Orientation y="-1.39057"/>
+		</Entity>
+		<Entity uid="101">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="409.58191" z="71.80419"/>
+			<Orientation y="-0.84289"/>
+		</Entity>
+		<Entity uid="102">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="305.57319" z="127.85143"/>
+			<Orientation y="-2.93026"/>
+		</Entity>
+		<Entity uid="103">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="379.88367" z="108.14089"/>
+			<Orientation y="0.39298"/>
+		</Entity>
+		<Entity uid="104">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="496.33484" z="37.69115"/>
+			<Orientation y="2.01703"/>
+		</Entity>
+		<Entity uid="105">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="580.7151" z="52.66596"/>
+			<Orientation y="1.37104"/>
+		</Entity>
+		<Entity uid="106">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="921.38587" z="116.42568"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="107">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="856.07178" z="180.14129"/>
+			<Orientation y="-1.48197"/>
+		</Entity>
+		<Entity uid="108">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="749.33204" z="191.54598"/>
+			<Orientation y="-0.63988"/>
+		</Entity>
+		<Entity uid="109">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="649.68873" z="315.73615"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="110">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="599.6595" z="387.37647"/>
+			<Orientation y="-0.70385"/>
+		</Entity>
+		<Entity uid="111">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="523.94642" z="473.47718"/>
+			<Orientation y="-0.14156"/>
+		</Entity>
+		<Entity uid="112">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="509.69935" z="578.9079"/>
+			<Orientation y="0.67383"/>
+		</Entity>
+		<Entity uid="113">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="604.2511" z="691.30658"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="114">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="981.64478" z="189.39567"/>
+			<Orientation y="-1.36001"/>
+		</Entity>
+		<Entity uid="115">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="885.50635" z="243.1157"/>
+			<Orientation y="-1.08303"/>
+		</Entity>
+		<Entity uid="116">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="804.14515" z="316.90403"/>
+			<Orientation y="0.30298"/>
+		</Entity>
+		<Entity uid="117">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="870.34168" z="418.60386"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="118">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="922.84662" z="467.16324"/>
+			<Orientation y="1.76969"/>
+		</Entity>
+		<Entity uid="119">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="1018.1996" z="447.58103"/>
+			<Orientation y="2.13166"/>
+		</Entity>
+		<Entity uid="120">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="1147.97254" z="351.26032"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="121">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="1052.93372" z="259.6211"/>
+			<Orientation y="-2.73897"/>
+		</Entity>
+		<Entity uid="122">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="1145.4596" z="403.65201"/>
+			<Orientation y="0.28353"/>
+		</Entity>
+		<Entity uid="123">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="1179.80384" z="503.02183"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="124">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="808.91334" z="1132.88563"/>
+			<Orientation y="-0.88108"/>
+		</Entity>
+		<Entity uid="125">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="1049.18665" z="699.94153"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="126">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="914.57789" z="714.20215"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="127">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="787.15998" z="482.31113"/>
+			<Orientation y="0.63315"/>
+		</Entity>
+		<Entity uid="128">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="621.98292" z="469.16874"/>
+			<Orientation y="1.61434"/>
+		</Entity>
+		<Entity uid="129">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="697.25586" z="482.18067"/>
+			<Orientation y="-2.79148"/>
+		</Entity>
+		<Entity uid="130">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="751.94245" z="699.15595"/>
+			<Orientation y="-0.17234"/>
+		</Entity>
+		<Entity uid="131">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="747.8725" z="918.33637"/>
+			<Orientation y="-0.15107"/>
+		</Entity>
+		<Entity uid="132">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="688.14051" z="1103.99952"/>
+			<Orientation y="0.65493"/>
+		</Entity>
+		<Entity uid="133">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="515.61524" z="1168.75416"/>
+			<Orientation y="-2.81252"/>
+		</Entity>
+		<Entity uid="134">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="442.53443" z="1052.03882"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="135">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="444.11231" z="906.66785"/>
+			<Orientation y="3.01699"/>
+		</Entity>
+		<Entity uid="136">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="444.38749" z="835.77027"/>
+			<Orientation y="2.50002"/>
+		</Entity>
+		<Entity uid="137">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="581.24982" z="871.77369"/>
+			<Orientation y="1.21171"/>
+		</Entity>
+		<Entity uid="138">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="728.55665" z="1152.36219"/>
+			<Orientation y="2.1771"/>
+		</Entity>
+		<Entity uid="139">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="1077.24048" z="941.28797"/>
+			<Orientation y="-2.75208"/>
+		</Entity>
+		<Entity uid="140">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="976.65766" z="756.44129"/>
+			<Orientation y="-1.62212"/>
+		</Entity>
+		<Entity uid="141">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="769.62671" z="791.26685"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="142">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="848.88672" z="909.39551"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="143">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="843.90772" z="1067.37818"/>
+			<Orientation y="1.00744"/>
+		</Entity>
+		<Entity uid="144">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="1022.30005" z="1029.43616"/>
+			<Orientation y="2.59992"/>
+		</Entity>
+		<Entity uid="145">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="1206.3816" z="765.19715"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="146">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="1125.84266" z="745.76697"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="147">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="1200.7793" z="573.06434"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="148">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="875.4123" z="572.8974"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="149">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="162.43305" z="874.06543"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="150">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="213.25092" z="799.62635"/>
+			<Orientation y="-2.36098"/>
+		</Entity>
+		<Entity uid="151">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="341.14737" z="467.46012"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="152">
+			<Template>gaia/flora_tree_baobab</Template>
+			<Player>0</Player>
+			<Position x="382.31318" z="444.20435"/>
+			<Orientation y="1.78621"/>
+		</Entity>
+		<Entity uid="153">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="837.7865" z="915.47388"/>
+			<Orientation y="-2.90772"/>
+		</Entity>
+		<Entity uid="154">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="852.08741" z="882.99378"/>
+			<Orientation y="1.70757"/>
+		</Entity>
+		<Entity uid="155">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="749.3094" z="922.13697"/>
+			<Orientation y="-2.39206"/>
+		</Entity>
+		<Entity uid="156">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="887.82856" z="878.87598"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="157">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="910.35853" z="863.26429"/>
+			<Orientation y="1.8682"/>
+		</Entity>
+		<Entity uid="158">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="923.36493" z="856.58118"/>
+			<Orientation y="-3.12272"/>
+		</Entity>
+		<Entity uid="159">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="914.87885" z="839.59827"/>
+			<Orientation y="-1.71444"/>
+		</Entity>
+		<Entity uid="160">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="888.50141" z="838.75532"/>
+			<Orientation y="-1.42557"/>
+		</Entity>
+		<Entity uid="161">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="898.34577" z="685.51398"/>
+			<Orientation y="1.7573"/>
+		</Entity>
+		<Entity uid="162">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="832.7508" z="851.12836"/>
+			<Orientation y="0.3438"/>
+		</Entity>
+		<Entity uid="163">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="804.26594" z="880.87262"/>
+			<Orientation y="0.48755"/>
+		</Entity>
+		<Entity uid="164">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="779.41895" z="797.6678"/>
+			<Orientation y="-1.9662"/>
+		</Entity>
+		<Entity uid="165">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="738.05994" z="782.45044"/>
+			<Orientation y="-1.42176"/>
+		</Entity>
+		<Entity uid="166">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="718.33942" z="805.56318"/>
+			<Orientation y="0.73002"/>
+		</Entity>
+		<Entity uid="167">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="732.1916" z="832.9917"/>
+			<Orientation y="-0.45539"/>
+		</Entity>
+		<Entity uid="168">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="701.63801" z="892.27082"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="169">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="697.04682" z="831.5243"/>
+			<Orientation y="-1.64084"/>
+		</Entity>
+		<Entity uid="170">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="735.74982" z="879.99903"/>
+			<Orientation y="1.35776"/>
+		</Entity>
+		<Entity uid="171">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="579.56238" z="792.24231"/>
+			<Orientation y="-1.7832"/>
+		</Entity>
+		<Entity uid="172">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="528.27283" z="796.98334"/>
+			<Orientation y="-2.6131"/>
+		</Entity>
+		<Entity uid="173">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="502.33863" z="770.61677"/>
+			<Orientation y="-2.34594"/>
+		</Entity>
+		<Entity uid="174">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="473.60987" z="732.90058"/>
+			<Orientation y="2.98427"/>
+		</Entity>
+		<Entity uid="175">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="519.2386" z="698.37311"/>
+			<Orientation y="1.24204"/>
+		</Entity>
+		<Entity uid="176">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="553.57563" z="732.28467"/>
+			<Orientation y="0.5113"/>
+		</Entity>
+		<Entity uid="177">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="564.29493" z="747.58356"/>
+			<Orientation y="1.15346"/>
+		</Entity>
+		<Entity uid="178">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="592.09601" z="711.78156"/>
+			<Orientation y="2.1914"/>
+		</Entity>
+		<Entity uid="179">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="599.9115" z="745.06196"/>
+			<Orientation y="-2.90076"/>
+		</Entity>
+		<Entity uid="180">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="566.52051" z="680.34711"/>
+			<Orientation y="-1.59885"/>
+		</Entity>
+		<Entity uid="181">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="486.22028" z="676.71473"/>
+			<Orientation y="0.79146"/>
+		</Entity>
+		<Entity uid="182">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="353.1555" z="793.49097"/>
+			<Orientation y="-1.76891"/>
+		</Entity>
+		<Entity uid="183">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="321.3545" z="785.27698"/>
+			<Orientation y="-1.84726"/>
+		</Entity>
+		<Entity uid="184">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="296.08143" z="780.9889"/>
+			<Orientation y="-2.1797"/>
+		</Entity>
+		<Entity uid="185">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="287.1089" z="765.68732"/>
+			<Orientation y="2.68548"/>
+		</Entity>
+		<Entity uid="186">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="303.8855" z="744.43488"/>
+			<Orientation y="1.61512"/>
+		</Entity>
+		<Entity uid="187">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="326.1008" z="743.71589"/>
+			<Orientation y="1.20481"/>
+		</Entity>
+		<Entity uid="188">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="363.45313" z="753.14271"/>
+			<Orientation y="-1.97103"/>
+		</Entity>
+		<Entity uid="189">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="360.12327" z="724.52863"/>
+			<Orientation y="-2.71911"/>
+		</Entity>
+		<Entity uid="190">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="334.69306" z="689.77582"/>
+			<Orientation y="-1.79085"/>
+		</Entity>
+		<Entity uid="191">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="300.94529" z="706.49036"/>
+			<Orientation y="0.22934"/>
+		</Entity>
+		<Entity uid="192">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="379.15162" z="690.6988"/>
+			<Orientation y="-2.17302"/>
+		</Entity>
+		<Entity uid="193">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="355.80915" z="647.38526"/>
+			<Orientation y="-0.03545"/>
+		</Entity>
+		<Entity uid="194">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="396.9207" z="656.22126"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="195">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="312.33793" z="650.23041"/>
+			<Orientation y="-0.87832"/>
+		</Entity>
+		<Entity uid="196">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="548.71113" z="1059.4557"/>
+			<Orientation y="2.08327"/>
+		</Entity>
+		<Entity uid="197">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="454.74387" z="355.40705"/>
+			<Orientation y="-2.30648"/>
+		</Entity>
+		<Entity uid="198">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="434.6529" z="398.7211"/>
+			<Orientation y="-0.12781"/>
+		</Entity>
+		<Entity uid="199">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="413.85642" z="437.22345"/>
+			<Orientation y="-2.59932"/>
+		</Entity>
+		<Entity uid="200">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="371.29621" z="234.61597"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="201">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="420.00522" z="217.51326"/>
+			<Orientation y="1.46308"/>
+		</Entity>
+		<Entity uid="202">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="428.85807" z="249.70813"/>
+			<Orientation y="0.71741"/>
+		</Entity>
+		<Entity uid="203">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="443.89042" z="284.59577"/>
+			<Orientation y="1.66189"/>
+		</Entity>
+		<Entity uid="204">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="485.87797" z="292.07068"/>
+			<Orientation y="0.65732"/>
+		</Entity>
+		<Entity uid="205">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="498.41456" z="349.98847"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="206">
+			<Template>gaia/fauna_elephant_african_bush</Template>
+			<Player>0</Player>
+			<Position x="799.12177" z="767.2757"/>
+			<Orientation y="0.39504"/>
+		</Entity>
+		<Entity uid="207">
+			<Template>gaia/fauna_elephant_african_bush</Template>
+			<Player>0</Player>
+			<Position x="809.511" z="776.1482"/>
+			<Orientation y="2.9633"/>
+		</Entity>
+		<Entity uid="208">
+			<Template>gaia/fauna_elephant_african_bush</Template>
+			<Player>0</Player>
+			<Position x="804.4209" z="738.65455"/>
+			<Orientation y="-1.39496"/>
+		</Entity>
+		<Entity uid="209">
+			<Template>gaia/fauna_elephant_african_bush</Template>
+			<Player>0</Player>
+			<Position x="525.97535" z="943.15296"/>
+			<Orientation y="0.51378"/>
+		</Entity>
+		<Entity uid="210">
+			<Template>gaia/fauna_elephant_african_bush</Template>
+			<Player>0</Player>
+			<Position x="525.90674" z="913.41651"/>
+			<Orientation y="0.58021"/>
+		</Entity>
+		<Entity uid="211">
+			<Template>gaia/fauna_elephant_african_bush</Template>
+			<Player>0</Player>
+			<Position x="541.3617" z="880.35157"/>
+			<Orientation y="-1.80704"/>
+		</Entity>
+		<Entity uid="212">
+			<Template>gaia/fauna_elephant_african_bush</Template>
+			<Player>0</Player>
+			<Position x="466.2447" z="506.18537"/>
+			<Orientation y="-2.9256"/>
+		</Entity>
+		<Entity uid="213">
+			<Template>gaia/fauna_elephant_african_bush</Template>
+			<Player>0</Player>
+			<Position x="467.1009" z="471.3549"/>
+			<Orientation y="1.21851"/>
+		</Entity>
+		<Entity uid="214">
+			<Template>gaia/fauna_elephant_african_bush</Template>
+			<Player>0</Player>
+			<Position x="493.12974" z="493.79899"/>
+			<Orientation y="1.57081"/>
+		</Entity>
+		<Entity uid="215">
+			<Template>gaia/fauna_elephant_african_bush</Template>
+			<Player>0</Player>
+			<Position x="796.70258" z="465.3621"/>
+			<Orientation y="-2.4888"/>
+		</Entity>
+		<Entity uid="216">
+			<Template>gaia/fauna_elephant_african_bush</Template>
+			<Player>0</Player>
+			<Position x="770.67322" z="431.41254"/>
+			<Orientation y="0.82699"/>
+		</Entity>
+		<Entity uid="217">
+			<Template>gaia/fauna_elephant_african_bush</Template>
+			<Player>0</Player>
+			<Position x="793.21271" z="444.18747"/>
+			<Orientation y="-0.68317"/>
+		</Entity>
+		<Entity uid="218">
+			<Template>gaia/fauna_elephant_african_bush</Template>
+			<Player>0</Player>
+			<Position x="481.07715" z="99.7521"/>
+			<Orientation y="1.27131"/>
+		</Entity>
+		<Entity uid="219">
+			<Template>gaia/fauna_elephant_african_bush</Template>
+			<Player>0</Player>
+			<Position x="1047.43567" z="617.05121"/>
+			<Orientation y="-0.55573"/>
+		</Entity>
+		<Entity uid="220">
+			<Template>gaia/fauna_elephant_african_bush</Template>
+			<Player>0</Player>
+			<Position x="127.4268" z="792.46003"/>
+			<Orientation y="0.83928"/>
+		</Entity>
+		<Entity uid="221">
+			<Template>gaia/fauna_elephant_african_bush</Template>
+			<Player>0</Player>
+			<Position x="1032.49878" z="196.14383"/>
+			<Orientation y="-1.53704"/>
+		</Entity>
+		<Entity uid="222">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="299.15461" z="370.44874"/>
+			<Orientation y="-0.98465"/>
+		</Entity>
+		<Entity uid="223">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="297.16837" z="356.94208"/>
+			<Orientation y="0.95698"/>
+		</Entity>
+		<Entity uid="224">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="351.2447" z="839.25983"/>
+			<Orientation y="-2.53502"/>
+		</Entity>
+		<Entity uid="225">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="341.73707" z="826.5199"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="226">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="911.64771" z="839.82996"/>
+			<Orientation y="-2.03803"/>
+		</Entity>
+		<Entity uid="227">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="898.24262" z="841.34913"/>
+			<Orientation y="0.54409"/>
+		</Entity>
+		<Entity uid="228">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="906.83674" z="417.10615"/>
+			<Orientation y="0.40308"/>
+		</Entity>
+		<Entity uid="229">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="902.92963" z="432.04142"/>
+			<Orientation y="-1.54636"/>
+		</Entity>
+		<Entity uid="230">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="747.08893" z="577.07428"/>
+			<Orientation y="-2.74437"/>
+		</Entity>
+		<Entity uid="231">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="716.14087" z="494.6302"/>
+			<Orientation y="2.05071"/>
+		</Entity>
+		<Entity uid="232">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="605.77698" z="347.08948"/>
+			<Orientation y="0.46331"/>
+		</Entity>
+		<Entity uid="233">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="565.17194" z="406.60785"/>
+			<Orientation y="-0.6931"/>
+		</Entity>
+		<Entity uid="234">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="193.88416" z="504.46161"/>
+			<Orientation y="0.73832"/>
+		</Entity>
+		<Entity uid="235">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="150.8775" z="834.59736"/>
+			<Orientation y="2.99216"/>
+		</Entity>
+		<Entity uid="236">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="457.827" z="135.99585"/>
+			<Orientation y="1.58295"/>
+		</Entity>
+		<Entity uid="237">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="613.9618" z="202.04332"/>
+			<Orientation y="-2.37305"/>
+		</Entity>
+		<Entity uid="238">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="834.10474" z="134.44549"/>
+			<Orientation y="0.96682"/>
+		</Entity>
+		<Entity uid="239">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="1066.55372" z="336.8498"/>
+			<Orientation y="-2.22445"/>
+		</Entity>
+		<Entity uid="240">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="1144.49097" z="499.69794"/>
+			<Orientation y="-0.60097"/>
+		</Entity>
+		<Entity uid="241">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="1048.02857" z="900.56025"/>
+			<Orientation y="-2.06902"/>
+		</Entity>
+		<Entity uid="242">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="378.77091" z="1042.30005"/>
+			<Orientation y="0.46409"/>
+		</Entity>
+		<Entity uid="243">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="245.18175" z="207.88993"/>
+			<Orientation y="-0.1598"/>
+		</Entity>
+		<Entity uid="244">
+			<Template>gaia/fauna_giraffe</Template>
+			<Player>0</Player>
+			<Position x="747.71003" z="268.00483"/>
+			<Orientation y="-0.20019"/>
+		</Entity>
+		<Entity uid="245">
+			<Template>gaia/fauna_giraffe_infant</Template>
+			<Player>0</Player>
+			<Position x="568.52271" z="397.41413"/>
+			<Orientation y="-2.62179"/>
+		</Entity>
+		<Entity uid="246">
+			<Template>gaia/fauna_giraffe_infant</Template>
+			<Player>0</Player>
+			<Position x="752.18677" z="577.98102"/>
+			<Orientation y="0.32786"/>
+		</Entity>
+		<Entity uid="247">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="991.23871" z="627.26948"/>
+			<Orientation y="-2.64577"/>
+		</Entity>
+		<Entity uid="248">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="983.3896" z="613.13929"/>
+			<Orientation y="-2.76261"/>
+		</Entity>
+		<Entity uid="249">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="979.89277" z="601.42255"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="250">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="982.3404" z="593.46894"/>
+			<Orientation y="0.74883"/>
+		</Entity>
+		<Entity uid="251">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="990.28541" z="605.68287"/>
+			<Orientation y="0.2643"/>
+		</Entity>
+		<Entity uid="252">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="994.61591" z="617.27527"/>
+			<Orientation y="1.16868"/>
+		</Entity>
+		<Entity uid="253">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="614.83912" z="958.24"/>
+			<Orientation y="-3.032"/>
+		</Entity>
+		<Entity uid="254">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="612.18061" z="913.79871"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="255">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="615.05372" z="885.53962"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="256">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="620.70093" z="884.11445"/>
+			<Orientation y="0.31704"/>
+		</Entity>
+		<Entity uid="257">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="626.31775" z="904.62482"/>
+			<Orientation y="0.02514"/>
+		</Entity>
+		<Entity uid="258">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="626.43567" z="937.8199"/>
+			<Orientation y="-1.7171"/>
+		</Entity>
+		<Entity uid="259">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="299.20115" z="600.31061"/>
+			<Orientation y="0.55245"/>
+		</Entity>
+		<Entity uid="260">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="317.08616" z="627.44459"/>
+			<Orientation y="-3.06617"/>
+		</Entity>
+		<Entity uid="261">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="314.52677" z="594.26246"/>
+			<Orientation y="0.9068"/>
+		</Entity>
+		<Entity uid="262">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="326.43924" z="610.34522"/>
+			<Orientation y="-1.6319"/>
+		</Entity>
+		<Entity uid="263">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="310.1966" z="611.13721"/>
+			<Orientation y="-0.38886"/>
+		</Entity>
+		<Entity uid="264">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="296.36713" z="622.48304"/>
+			<Orientation y="-2.96631"/>
+		</Entity>
+		<Entity uid="265">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="641.17481" z="275.80362"/>
+			<Orientation y="-3.04912"/>
+		</Entity>
+		<Entity uid="266">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="638.24878" z="239.40038"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="267">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="649.24457" z="242.40911"/>
+			<Orientation y="0.02375"/>
+		</Entity>
+		<Entity uid="268">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="649.1496" z="267.71875"/>
+			<Orientation y="0.24868"/>
+		</Entity>
+		<Entity uid="269">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="656.45221" z="289.50123"/>
+			<Orientation y="1.67205"/>
+		</Entity>
+		<Entity uid="270">
+			<Template>gaia/fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="663.44501" z="278.34324"/>
+			<Orientation y="-3.011"/>
+		</Entity>
+		<Entity uid="271">
+			<Template>gaia/geology_metal_savanna_slabs</Template>
+			<Player>0</Player>
+			<Position x="635.71637" z="606.34052"/>
+			<Orientation y="-0.00933"/>
+		</Entity>
+		<Entity uid="272">
+			<Template>gaia/geology_metal_savanna_slabs</Template>
+			<Player>0</Player>
+			<Position x="350.20432" z="276.16367"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="273">
+			<Template>gaia/geology_metal_savanna_slabs</Template>
+			<Player>0</Player>
+			<Position x="961.12708" z="298.1944"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="274">
+			<Template>gaia/geology_metal_savanna_slabs</Template>
+			<Player>0</Player>
+			<Position x="949.62702" z="861.37281"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="275">
+			<Template>gaia/geology_metal_savanna_slabs</Template>
+			<Player>0</Player>
+			<Position x="385.85639" z="857.38843"/>
+			<Orientation y="0.37066"/>
+		</Entity>
+		<Entity uid="276">
+			<Template>gaia/geology_metal_savanna_slabs</Template>
+			<Player>0</Player>
+			<Position x="1211.08606" z="643.84693"/>
+			<Orientation y="-0.63457"/>
+		</Entity>
+		<Entity uid="277">
+			<Template>gaia/geology_metal_savanna_slabs</Template>
+			<Player>0</Player>
+			<Position x="614.67176" z="1219.8672"/>
+			<Orientation y="0.13405"/>
+		</Entity>
+		<Entity uid="278">
+			<Template>gaia/geology_metal_savanna_slabs</Template>
+			<Player>0</Player>
+			<Position x="84.18572" z="617.67487"/>
+			<Orientation y="-0.6519"/>
+		</Entity>
+		<Entity uid="279">
+			<Template>gaia/geology_metal_savanna_slabs</Template>
+			<Player>0</Player>
+			<Position x="658.54218" z="53.02921"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="280">
+			<Template>gaia/geology_metal_savanna_slabs</Template>
+			<Player>0</Player>
+			<Position x="634.39014" z="341.61768"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="281">
+			<Template>gaia/geology_metal_savanna_slabs</Template>
+			<Player>0</Player>
+			<Position x="955.85865" z="643.71546"/>
+			<Orientation y="1.04178"/>
+		</Entity>
+		<Entity uid="282">
+			<Template>gaia/geology_metal_savanna_slabs</Template>
+			<Player>0</Player>
+			<Position x="346.87275" z="605.78602"/>
+			<Orientation y="-2.82131"/>
+		</Entity>
+		<Entity uid="283">
+			<Template>gaia/geology_metal_savanna_slabs</Template>
+			<Player>0</Player>
+			<Position x="640.96656" z="890.70984"/>
+			<Orientation y="-2.29404"/>
+		</Entity>
+		<Entity uid="284">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="364.20017" z="404.91318"/>
+			<Orientation y="-0.80408"/>
+		</Entity>
+		<Entity uid="285">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="359.28306" z="413.25721"/>
+			<Orientation y="-0.04624"/>
+		</Entity>
+		<Entity uid="286">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="359.09748" z="425.1442"/>
+			<Orientation y="0.71932"/>
+		</Entity>
+		<Entity uid="287">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="367.29987" z="430.53376"/>
+			<Orientation y="-3.05245"/>
+		</Entity>
+		<Entity uid="288">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="376.58118" z="430.53376"/>
+			<Orientation y="-2.88988"/>
+		</Entity>
+		<Entity uid="289">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="383.42197" z="427.90229"/>
+			<Orientation y="0.78434"/>
+		</Entity>
+		<Entity uid="290">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="387.83976" z="417.20902"/>
+			<Orientation y="-1.96872"/>
+		</Entity>
+		<Entity uid="291">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="877.80945" z="338.1201"/>
+			<Orientation y="-2.5009"/>
+		</Entity>
+		<Entity uid="292">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="867.84845" z="323.93552"/>
+			<Orientation y="0.92011"/>
+		</Entity>
+		<Entity uid="293">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="876.96735" z="312.60987"/>
+			<Orientation y="-2.41353"/>
+		</Entity>
+		<Entity uid="294">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="872.63624" z="298.66511"/>
+			<Orientation y="0.82691"/>
+		</Entity>
+		<Entity uid="295">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="882.57996" z="301.58039"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="296">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="892.1142" z="305.87281"/>
+			<Orientation y="0.91565"/>
+		</Entity>
+		<Entity uid="297">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="898.3534" z="314.47022"/>
+			<Orientation y="-0.9408"/>
+		</Entity>
+		<Entity uid="298">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="909.56916" z="1004.89283"/>
+			<Orientation y="-0.09166"/>
+		</Entity>
+		<Entity uid="299">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="907.63727" z="1012.48951"/>
+			<Orientation y="0.12354"/>
+		</Entity>
+		<Entity uid="300">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="909.0041" z="1022.89191"/>
+			<Orientation y="-2.72991"/>
+		</Entity>
+		<Entity uid="301">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="914.50696" z="1028.38318"/>
+			<Orientation y="0.22735"/>
+		</Entity>
+		<Entity uid="302">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="921.67798" z="1027.77015"/>
+			<Orientation y="-3.11783"/>
+		</Entity>
+		<Entity uid="303">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="928.4264" z="1021.779"/>
+			<Orientation y="0.36158"/>
+		</Entity>
+		<Entity uid="304">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="933.18177" z="1015.85401"/>
+			<Orientation y="-0.97895"/>
+		</Entity>
+		<Entity uid="305">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="296.90818" z="895.45167"/>
+			<Orientation y="-1.18223"/>
+		</Entity>
+		<Entity uid="306">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="283.03028" z="900.04651"/>
+			<Orientation y="-0.59249"/>
+		</Entity>
+		<Entity uid="307">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="278.08716" z="908.8249"/>
+			<Orientation y="0.76049"/>
+		</Entity>
+		<Entity uid="308">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="281.16511" z="915.8426"/>
+			<Orientation y="0.07114"/>
+		</Entity>
+		<Entity uid="309">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="282.93049" z="926.06922"/>
+			<Orientation y="2.05304"/>
+		</Entity>
+		<Entity uid="310">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="288.91169" z="926.64362"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="311">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="297.83365" z="922.42731"/>
+			<Orientation y="-0.86783"/>
+		</Entity>
+		<Entity uid="312">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="801.91163" z="565.20337"/>
+			<Orientation y="3.13732"/>
+		</Entity>
+		<Entity uid="313">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="808.35364" z="572.5907"/>
+			<Orientation y="0.54526"/>
+		</Entity>
+		<Entity uid="314">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="814.45307" z="580.15314"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="315">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="820.70411" z="577.78498"/>
+			<Orientation y="2.2992"/>
+		</Entity>
+		<Entity uid="316">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="828.02851" z="571.64911"/>
+			<Orientation y="-2.61977"/>
+		</Entity>
+		<Entity uid="317">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="826.82306" z="560.52369"/>
+			<Orientation y="0.92894"/>
+		</Entity>
+		<Entity uid="318">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="827.72205" z="549.73536"/>
+			<Orientation y="0.32003"/>
+		</Entity>
+		<Entity uid="319">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="510.83198" z="522.63062"/>
+			<Orientation y="2.97124"/>
+		</Entity>
+		<Entity uid="320">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="513.8506" z="506.81864"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="321">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="516.48395" z="528.28443"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="322">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="524.94465" z="530.39167"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="323">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="534.11756" z="525.68928"/>
+			<Orientation y="-0.14101"/>
+		</Entity>
+		<Entity uid="324">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="542.48426" z="523.13624"/>
+			<Orientation y="-2.92617"/>
+		</Entity>
+		<Entity uid="325">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="542.34662" z="508.18937"/>
+			<Orientation y="0.00951"/>
+		</Entity>
+		<Entity uid="326">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="623.46521" z="756.46851"/>
+			<Orientation y="-3.12375"/>
+		</Entity>
+		<Entity uid="327">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="623.18842" z="740.22822"/>
+			<Orientation y="2.62984"/>
+		</Entity>
+		<Entity uid="328">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="630.48469" z="726.98316"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="329">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="640.3548" z="718.60486"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="330">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="633.6927" z="757.86347"/>
+			<Orientation y="0.685"/>
+		</Entity>
+		<Entity uid="331">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="643.61384" z="762.86561"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="332">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="649.51807" z="757.15803"/>
+			<Orientation y="0.29085"/>
+		</Entity>
+		<Entity uid="333">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="1086.00953" z="551.67536"/>
+			<Orientation y="-3.11144"/>
+		</Entity>
+		<Entity uid="334">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="1086.17579" z="537.00513"/>
+			<Orientation y="0.52251"/>
+		</Entity>
+		<Entity uid="335">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="1090.31275" z="559.66999"/>
+			<Orientation y="1.86757"/>
+		</Entity>
+		<Entity uid="336">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="1101.34937" z="559.66999"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="337">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="1109.9325" z="552.73023"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="338">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="1111.14917" z="543.49775"/>
+			<Orientation y="3.0577"/>
+		</Entity>
+		<Entity uid="339">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="1111.84107" z="534.69324"/>
+			<Orientation y="0.33153"/>
+		</Entity>
+		<Entity uid="340">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="592.95838" z="87.50191"/>
+			<Orientation y="-2.30459"/>
+		</Entity>
+		<Entity uid="341">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="572.48157" z="102.26844"/>
+			<Orientation y="0.12587"/>
+		</Entity>
+		<Entity uid="342">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="574.59864" z="110.60021"/>
+			<Orientation y="-2.73725"/>
+		</Entity>
+		<Entity uid="343">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="587.88282" z="110.89206"/>
+			<Orientation y="0.94246"/>
+		</Entity>
+		<Entity uid="344">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="593.11231" z="104.627"/>
+			<Orientation y="-2.63355"/>
+		</Entity>
+		<Entity uid="345">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="593.78473" z="97.18551"/>
+			<Orientation y="-2.85447"/>
+		</Entity>
+		<Entity uid="346">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="566.51758" z="95.0128"/>
+			<Orientation y="0.07245"/>
+		</Entity>
+		<Entity uid="347">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="350.41852" z="161.50358"/>
+			<Orientation y="2.3106"/>
+		</Entity>
+		<Entity uid="348">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="360.00178" z="151.3471"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="349">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="368.14634" z="146.25043"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="350">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="373.2559" z="152.33219"/>
+			<Orientation y="0.41364"/>
+		</Entity>
+		<Entity uid="351">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="378.89966" z="160.50147"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="352">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="384.19397" z="171.56374"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="353">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="379.05353" z="175.88085"/>
+			<Orientation y="-0.91486"/>
+		</Entity>
+		<Entity uid="354">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="119.37078" z="447.94565"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="355">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="120.16584" z="459.27259"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="356">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="119.14818" z="473.41895"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="357">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="125.4787" z="474.95752"/>
+			<Orientation y="2.45774"/>
+		</Entity>
+		<Entity uid="358">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="137.58671" z="470.36799"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="359">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="149.95194" z="456.39255"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="360">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="151.92333" z="445.92228"/>
+			<Orientation y="0.58042"/>
+		</Entity>
+		<Entity uid="361">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="153.9288" z="732.12177"/>
+			<Orientation y="-0.62455"/>
+		</Entity>
+		<Entity uid="362">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="145.65362" z="744.17505"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="363">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="144.85102" z="752.8802"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="364">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="147.35505" z="760.35462"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="365">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="153.69362" z="765.5561"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="366">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="165.28522" z="761.20875"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="367">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="178.05468" z="751.28101"/>
+			<Orientation y="-1.07287"/>
+		</Entity>
+		<Entity uid="368">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="675.89667" z="994.17615"/>
+			<Orientation y="2.56531"/>
+		</Entity>
+		<Entity uid="369">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="686.59412" z="986.28675"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="370">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="696.26978" z="979.55225"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="371">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="697.32056" z="971.99427"/>
+			<Orientation y="-2.67473"/>
+		</Entity>
+		<Entity uid="372">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="693.56208" z="966.21363"/>
+			<Orientation y="-1.85044"/>
+		</Entity>
+		<Entity uid="373">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="683.21125" z="962.71393"/>
+			<Orientation y="-0.05423"/>
+		</Entity>
+		<Entity uid="374">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="673.8672" z="961.68042"/>
+			<Orientation y="-0.29516"/>
+		</Entity>
+		<Entity uid="375">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="1015.58344" z="791.10413"/>
+			<Orientation y="2.664"/>
+		</Entity>
+		<Entity uid="376">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="1021.55622" z="779.29236"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="377">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="1029.22584" z="777.28406"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="378">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="1031.6421" z="777.9469"/>
+			<Orientation y="0.7457"/>
+		</Entity>
+		<Entity uid="379">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="1038.59412" z="786.24146"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="380">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="1038.82703" z="798.37574"/>
+			<Orientation y="-2.3284"/>
+		</Entity>
+		<Entity uid="381">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="1041.72474" z="805.81257"/>
+			<Orientation y="1.65497"/>
+		</Entity>
+		<Entity uid="382">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="387.74842" z="722.51124"/>
+			<Orientation y="0.32068"/>
+		</Entity>
+		<Entity uid="383">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="391.31333" z="732.81568"/>
+			<Orientation y="0.39115"/>
+		</Entity>
+		<Entity uid="384">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="396.21402" z="744.2953"/>
+			<Orientation y="0.58201"/>
+		</Entity>
+		<Entity uid="385">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="403.50824" z="752.44764"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="386">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="405.52387" z="736.39167"/>
+			<Orientation y="2.51334"/>
+		</Entity>
+		<Entity uid="387">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="397.53669" z="717.47168"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="388">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="414.86634" z="745.73243"/>
+			<Orientation y="-2.91483"/>
+		</Entity>
+		<Entity uid="389">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="898.5229" z="207.6164"/>
+			<Orientation y="-2.52302"/>
+		</Entity>
+		<Entity uid="390">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="892.8299" z="198.00307"/>
+			<Orientation y="2.86916"/>
+		</Entity>
+		<Entity uid="391">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="895.04371" z="189.13733"/>
+			<Orientation y="-3.11965"/>
+		</Entity>
+		<Entity uid="392">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="899.39563" z="183.51322"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="393">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="905.39258" z="184.56211"/>
+			<Orientation y="1.7512"/>
+		</Entity>
+		<Entity uid="394">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="913.54267" z="188.86283"/>
+			<Orientation y="0.97005"/>
+		</Entity>
+		<Entity uid="395">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="919.34162" z="192.76987"/>
+			<Orientation y="0.06754"/>
+		</Entity>
+		<Entity uid="396">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="665.88654" z="417.75397"/>
+			<Orientation y="2.97318"/>
+		</Entity>
+		<Entity uid="397">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="668.53669" z="406.34305"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="398">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="673.78583" z="398.81128"/>
+			<Orientation y="0.55166"/>
+		</Entity>
+		<Entity uid="399">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="680.26124" z="394.61042"/>
+			<Orientation y="-1.94455"/>
+		</Entity>
+		<Entity uid="400">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="688.92792" z="395.26105"/>
+			<Orientation y="1.15716"/>
+		</Entity>
+		<Entity uid="401">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="693.74988" z="399.03779"/>
+			<Orientation y="-1.86501"/>
+		</Entity>
+		<Entity uid="402">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="696.38349" z="407.08057"/>
+			<Orientation y="1.26592"/>
+		</Entity>
+		<Entity uid="403">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="452.53531" z="1069.10047"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="404">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="447.61454" z="1075.41944"/>
+			<Orientation y="1.46544"/>
+		</Entity>
+		<Entity uid="405">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="445.16654" z="1082.52076"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="406">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="450.01652" z="1088.4087"/>
+			<Orientation y="-2.65355"/>
+		</Entity>
+		<Entity uid="407">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="455.38718" z="1092.25062"/>
+			<Orientation y="-0.54159"/>
+		</Entity>
+		<Entity uid="408">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="469.44904" z="1095.50464"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="409">
+			<Template>gaia/geology_stone_savanna_small</Template>
+			<Player>0</Player>
+			<Position x="473.54737" z="1087.0121"/>
+			<Orientation y="1.29534"/>
+		</Entity>
+		<Entity uid="410">
+			<Template>structures/iber_wall_long</Template>
+			<Player>4</Player>
+			<Position x="1012.81275" z="341.08625"/>
+			<Orientation y="1.79128"/>
+		</Entity>
+		<Entity uid="411">
+			<Template>structures/iber_wall_long</Template>
+			<Player>4</Player>
+			<Position x="1017.36048" z="391.67273"/>
+			<Orientation y="-2.41865"/>
+		</Entity>
+		<Entity uid="412">
+			<Template>structures/iber_wall_long</Template>
+			<Player>4</Player>
+			<Position x="986.71698" z="413.31962"/>
+			<Orientation y="-2.42176"/>
+		</Entity>
+		<Entity uid="413">
+			<Template>structures/iber_wall_long</Template>
+			<Player>4</Player>
+			<Position x="945.5243" z="428.32032"/>
+			<Orientation y="3.13566"/>
+		</Entity>
+		<Entity uid="414">
+			<Template>structures/iber_wall_long</Template>
+			<Player>4</Player>
+			<Position x="899.81269" z="427.58243"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="415">
+			<Template>structures/iber_wall_long</Template>
+			<Player>4</Player>
+			<Position x="867.07837" z="396.08146"/>
+			<Orientation y="2.80994"/>
+		</Entity>
+		<Entity uid="416">
+			<Template>structures/iber_wall_long</Template>
+			<Player>4</Player>
+			<Position x="863.24457" z="360.02573"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="417">
+			<Template>structures/iber_wall_long</Template>
+			<Player>4</Player>
+			<Position x="852.76471" z="327.92432"/>
+			<Orientation y="1.49155"/>
+		</Entity>
+		<Entity uid="418">
+			<Template>structures/iber_wall_medium</Template>
+			<Player>4</Player>
+			<Position x="862.23145" z="297.0752"/>
+			<Orientation y="0.79474"/>
+		</Entity>
+		<Entity uid="419">
+			<Template>structures/iber_wall_medium</Template>
+			<Player>4</Player>
+			<Position x="896.94751" z="281.25617"/>
+			<Orientation y="-2.76008"/>
+		</Entity>
+		<Entity uid="420">
+			<Template>structures/iber_wall_medium</Template>
+			<Player>4</Player>
+			<Position x="922.55793" z="278.60749"/>
+			<Orientation y="-2.93198"/>
+		</Entity>
+		<Entity uid="421">
+			<Template>structures/iber_wall_long</Template>
+			<Player>4</Player>
+			<Position x="953.90198" z="277.06742"/>
+			<Orientation y="3.0247"/>
+		</Entity>
+		<Entity uid="422">
+			<Template>structures/iber_wall_medium</Template>
+			<Player>4</Player>
+			<Position x="986.99762" z="290.22016"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="423">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="865.20533" z="287.88761"/>
+			<Orientation y="0.31374"/>
+		</Entity>
+		<Entity uid="424">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="880.25666" z="281.08555"/>
+			<Orientation y="-0.34743"/>
+		</Entity>
+		<Entity uid="425">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="906.5033" z="267.9626"/>
+			<Orientation y="0.86558"/>
+		</Entity>
+		<Entity uid="426">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="932.19428" z="265.60093"/>
+			<Orientation y="-2.22922"/>
+		</Entity>
+		<Entity uid="427">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="980.32557" z="271.40116"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="428">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="1007.99494" z="291.93354"/>
+			<Orientation y="-1.66897"/>
+		</Entity>
+		<Entity uid="429">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="1016.34412" z="310.60376"/>
+			<Orientation y="0.57206"/>
+		</Entity>
+		<Entity uid="430">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="1031.33228" z="361.8296"/>
+			<Orientation y="3.13474"/>
+		</Entity>
+		<Entity uid="431">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="1003.16633" z="391.20371"/>
+			<Orientation y="0.92061"/>
+		</Entity>
+		<Entity uid="432">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="978.21668" z="413.3563"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="433">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="926.69135" z="424.27253"/>
+			<Orientation y="-0.47584"/>
+		</Entity>
+		<Entity uid="434">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="889.1432" z="405.06016"/>
+			<Orientation y="-1.26706"/>
+		</Entity>
+		<Entity uid="435">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="876.45942" z="385.90165"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="436">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="845.2375" z="350.5192"/>
+			<Orientation y="2.88355"/>
+		</Entity>
+		<Entity uid="437">
+			<Template>structures/iber_wall_tower</Template>
+			<Player>4</Player>
+			<Position x="845.88428" z="310.16239"/>
+			<Orientation y="-0.8453"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+</Scenario>
