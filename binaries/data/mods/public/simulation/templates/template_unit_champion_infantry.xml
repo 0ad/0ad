@@ -12,6 +12,7 @@
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
+      <PreferredClasses datatype="tokens">Organic</PreferredClasses>
     </Melee>
     <Charge>
       <Hack>46.0</Hack>
@@ -19,6 +20,7 @@
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
       <MinRange>0.0</MinRange>
+      <PreferredClasses datatype="tokens">Organic</PreferredClasses>
     </Charge>
   </Attack>
   <Cost>
