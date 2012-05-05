@@ -23,6 +23,9 @@ var baseConfig = {
 		},
 		"advanced" : {
 			"hele" : [ "structures/{civ}_gymnasion", "structures/{civ}_fortress" ],
+			"athen" : [ "structures/{civ}_gymnasion", "structures/{civ}_fortress" ],
+			"spart" : [ "structures/{civ}_syssiton", "structures/{civ}_fortress" ],
+			"mace" : [ "structures/{civ}_fortress" ],
 			"cart" : [ "structures/{civ}_fortress", "structures/{civ}_embassy_celtic",
 					"structures/{civ}_embassy_iberian", "structures/{civ}_embassy_italiote" ],
 			"celt" : [ "structures/{civ}_kennel", "structures/{civ}_fortress_b", "structures/{civ}_fortress_g" ],
