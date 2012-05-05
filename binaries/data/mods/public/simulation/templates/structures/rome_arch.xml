@@ -12,6 +12,7 @@
     <Square width="20.0" depth="11.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <GarrisonHolder disable=""/>
   <Health>
     <Max>2000</Max>
   </Health>
@@ -25,6 +26,7 @@
   <Obstruction>
     <Static width="18.0" depth="9.0"/>
   </Obstruction>
+  <RallyPoint disable=""/>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_theater.xml</select>
