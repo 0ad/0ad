@@ -1368,10 +1368,10 @@ var UnitFsmSpec = {
 				// Save the current order's data in case we need it later
 				var oldAutocontinue = this.order.data.autocontinue;
 
-                // Save the current state so we can continue walking if necessary
-                // FinishOrder() below will switch to IDLE if there's no order, which sets the idle animation.
-                // Idle animation while moving towards finished construction looks weird (ghosty).
-                var oldState = this.GetCurrentState();
+				// Save the current state so we can continue walking if necessary
+				// FinishOrder() below will switch to IDLE if there's no order, which sets the idle animation.
+				// Idle animation while moving towards finished construction looks weird (ghosty).
+				var oldState = this.GetCurrentState();
 
 				// We finished building it.
 				// Switch to the next order (if any)
@@ -1419,12 +1419,12 @@ var UnitFsmSpec = {
 					return;
 				}
 
-                // Unit was approaching and there's nothing to do now, so switch to walking
-                if (oldState === "INDIVIDUAL.REPAIR.APPROACHING")
-                {
-					// We've already started walking to the given point
-					this.SetNextState("INDIVIDUAL.WALKING");
-                }
+				// Unit was approaching and there's nothing to do now, so switch to walking
+				if (oldState === "INDIVIDUAL.REPAIR.APPROACHING")
+				{
+					// We've already walking to the given point, so add this as a order.
+					this.WalkToTarget(msg.data.newentity, true);
+				}
 			},
 
 			// Override the LeaveFoundation order since we don't want to be
