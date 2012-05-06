@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defense_wallset">
+  <Identity>
+    <Civ>athen</Civ>
+    <SpecificName>Teîkhos</SpecificName>
+    <History>All Hellenic cities were surrounded by stone walls for protection against enemy raids. Some of these fortifications, like the Athenian Long Walls, for example, were massive structures.</History>
+  </Identity>
+  <WallSet>
+    <Templates>
+      <Tower>structures/athen_wall_tower</Tower>
+      <Gate>structures/athen_wall_gate</Gate>
+      <WallLong>structures/athen_wall_long</WallLong>
+      <WallMedium>structures/athen_wall_medium</WallMedium>
+      <WallShort>structures/athen_wall_short</WallShort>
+    </Templates>
+    <MaxTowerOverlap>0.90</MaxTowerOverlap>
+    <MinTowerOverlap>0.05</MinTowerOverlap>
+  </WallSet>
+</Entity>

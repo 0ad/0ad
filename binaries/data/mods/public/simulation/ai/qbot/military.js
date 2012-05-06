@@ -91,6 +91,9 @@ MilitaryAttackManager.prototype.findTrainableUnits = function(gameState, soldier
 
 // Returns the type of a soldier, either citizenSoldier, advanced or siege 
 MilitaryAttackManager.prototype.getSoldierType = function(ent){
+	if (ent.hasClass("Hero")){
+		return undefined;
+	}
 	if (ent.hasClass("CitizenSoldier") && !ent.hasClass("Cavalry")){
 		return "citizenSoldier";
 	}else if (ent.hasClass("Champion") || ent.hasClass("CitizenSoldier")){

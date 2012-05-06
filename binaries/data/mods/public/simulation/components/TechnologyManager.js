@@ -2,6 +2,21 @@ function TechnologyManager() {}
 
 TechnologyManager.prototype.Schema =
 	"<a:component type='system'/><empty/>";
+	
+TechnologyManager.prototype.Serialize = function()
+{
+	// The modifications cache will be affected by property reads from the GUI and other places so we shouldn't 
+	// serialize it.
+	
+	var ret = {};
+	for (var i in this)
+	{
+		if (this.hasOwnProperty(i))
+			ret[i] = this[i];
+	}
+	ret.modificationCache = {};
+	return ret;
+};
 
 TechnologyManager.prototype.Init = function ()
 {

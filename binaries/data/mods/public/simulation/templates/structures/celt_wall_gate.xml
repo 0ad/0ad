@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall_gate">
+  <Cost>
+    <BuildTime>30</BuildTime>
+    <Resources>
+      <wood>200</wood>
+      <stone>0</stone>
+    </Resources>
+  </Cost>
   <Footprint>
     <Square width="26" depth="8.5"/>
     <Height>9.0</Height>
   </Footprint>
+  <Health>
+    <Max>3000</Max>
+  </Health>
   <Identity>
     <Civ>celt</Civ>
     <SpecificName>Gate</SpecificName>

@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall_tower">
-  <Cost>
-    <BuildTime>44</BuildTime>
-  </Cost>
   <Footprint>
-    <Square width="7.5" depth="7.5"/>
+    <Square width="9.0" depth="9.0"/>
     <Height>15.0</Height>
   </Footprint>
   <Health>
@@ -16,9 +13,12 @@
     <History>Towers were an important part of city fortifications. The defending troops shot arrows at the enemy and poured boiling oil over the assailants.</History>
   </Identity>
   <Obstruction>
-    <Static width="7.0" depth="7.0"/>
+    <Static width="7.5" depth="7.5"/>
   </Obstruction>
   <VisualActor>
     <Actor>structures/hellenes/wall_tower.xml</Actor>
   </VisualActor>
+  <WallPiece>
+    <Length>7.5</Length>
+  </WallPiece>
 </Entity>
