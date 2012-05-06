@@ -1422,7 +1422,7 @@ var UnitFsmSpec = {
 				// Unit was approaching and there's nothing to do now, so switch to walking
 				if (oldState === "INDIVIDUAL.REPAIR.APPROACHING")
 				{
-					// We've already walking to the given point, so add this as a order.
+					// We're already walking to the given point, so add this as a order.
 					this.WalkToTarget(msg.data.newentity, true);
 				}
 			},
