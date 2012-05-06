@@ -1181,8 +1181,8 @@ function handleInputAfterGui(ev)
 			if (placementSupport.mode === "wall")
 			{
 				// Including only the on-screen towers in the next snap candidate list is sufficient here, since the user is
-				// still selecting a starting point (which must necessarily be on-screen). (The update itself happens in the
-				// call to updateBuildingPlacementPreview below).
+				// still selecting a starting point (which must necessarily be on-screen). (The update of the snap entities
+				// itself happens in the call to updateBuildingPlacementPreview below).
 				placementSupport.wallSnapEntitiesIncludeOffscreen = false;
 			}
 			else
@@ -1393,7 +1393,7 @@ function startBuildingPlacement(buildTemplate)
 	// to start building a structure, then the highlight selection rings are kept during the construction of the building.
 	// Gives the impression that somehow the hovered-over entity has something to do with the building you're constructing.
 	
-	placementSupport.SetDefaultAngle();
+	placementSupport.Reset();
 	
 	// find out if we're building a wall, and change the entity appropriately if so
 	var templateData = GetTemplateData(buildTemplate);

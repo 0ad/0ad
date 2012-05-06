@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="292.862" y="91.2117" z="154.394"/>
+		<Position x="260.942" y="91.2117" z="190.359"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -180,6 +180,18 @@
 			<Template>structures/cart_mill</Template>
 			<Player>1</Player>
 			<Position x="285.44394" z="308.2942"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="75">
+			<Template>structures/cart_outpost</Template>
+			<Player>1</Player>
+			<Position x="266.43375" z="255.69352"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="76">
+			<Template>structures/cart_corral</Template>
+			<Player>1</Player>
+			<Position x="306.5282" z="292.08948"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
