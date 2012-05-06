@@ -17,14 +17,14 @@
 				<Shininess>1.46484</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.800781</Murkiness>
-				<Tint r="0.411765" g="0.466667" b="0.368627"/>
+				<Tint r="0.411765" g="0.466667" b="0.364706"/>
 				<ReflectionTint r="0.392157" g="0.47451" b="0.654902"/>
 				<ReflectionTintStrength>0.199219</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="709.973" y="115.813" z="584.959"/>
+		<Position x="402.527" y="164.631" z="365.474"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -249,7 +249,7 @@
 		</Entity>
 		<Entity uid="51">
 			<Template>actor|particle/blowing_sand.xml</Template>
-			<Position x="865.65882" z="800.6006"/>
+			<Position x="815.75495" z="719.73658"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="52">
@@ -3469,7 +3469,7 @@
 		<Entity uid="591">
 			<Template>gaia/flora_tree_date_palm</Template>
 			<Player>0</Player>
-			<Position x="942.15784" z="634.45557"/>
+			<Position x="853.15546" z="524.3376"/>
 			<Orientation y="0.37972"/>
 		</Entity>
 		<Entity uid="592">
