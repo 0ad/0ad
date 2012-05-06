@@ -4,53 +4,75 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>stormy</SkySet>
-		<SunColour r="0.9625" g="0.934191" b="0.721875"/>
+		<SunColour r="0.960784" g="0.933333" b="0.721569"/>
 		<SunElevation angle="0.506214"/>
 		<SunRotation angle="-0.693359"/>
-		<TerrainAmbientColour r="0.337255" g="0.411765" b="0.505882"/>
+		<TerrainAmbientColour r="0.337255" g="0.411765" b="0.501961"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>19.9</Height>
 				<Shininess>1.70898</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.746094</Murkiness>
-				<Tint r="0.337255" g="0.411765" b="0.505882"/>
-				<ReflectionTint r="0.835294" g="0.592157" b="0.32549"/>
+				<Tint r="0.337255" g="0.411765" b="0.501961"/>
+				<ReflectionTint r="0.831373" g="0.592157" b="0.321569"/>
 				<ReflectionTintStrength>0.398438</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="449.163" y="100.297" z="191.144"/>
-		<Rotation angle="0.0210103"/>
-		<Declination angle="0.531213"/>
+		<Position x="508.947" y="116.37" z="121.483"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name": "Iberians Sandbox",
-  "Description": "A demo map for the Iberians.",
-  "Keywords": [
-    "demo"
-  ],
-  "PlayerData": [
-    {
-      "Civ": "iber"
-    },
-    {
-      "Civ": "hele"
-    }
-  ],
-  "CircularMap": true,
-  "GameType": "endless",
-  "Size": 192,
-  "Seed": 0,
+  "BaseHeight": 0,
   "BaseTerrain": [
     "medit_rocks_grass"
   ],
-  "BaseHeight": 0
+  "CircularMap": true,
+  "Description": "A demo map for the Iberians.",
+  "GameType": "endless",
+  "Keywords": [
+    "demo"
+  ],
+  "Name": "Iberians Sandbox",
+  "PlayerData": [
+    {
+      "AI": "",
+      "Civ": "iber",
+      "Colour": {
+        "b": 200,
+        "g": 46,
+        "r": 46
+      },
+      "Name": "Player 1",
+      "Resources": {
+        "food": 9990,
+        "metal": 9990,
+        "stone": 9990,
+        "wood": 9990
+      },
+      "Team": -1
+    },
+    {
+      "AI": "qbot",
+      "Civ": "hele",
+      "Colour": {
+        "b": 20,
+        "g": 20,
+        "r": 150
+      },
+      "Name": "Player 2",
+      "Team": -1
+    }
+  ],
+  "Seed": 0,
+  "Size": 192
 }
 ]]></ScriptSettings>
 	<Entities>
@@ -210,24 +232,6 @@
 			<Position x="415.46784" z="288.67127"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="31">
-			<Template>structures/iber_wall_tower</Template>
-			<Player>1</Player>
-			<Position x="466.68033" z="219.55747"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="32">
-			<Template>structures/iber_wall</Template>
-			<Player>1</Player>
-			<Position x="477.54938" z="231.44614"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="33">
-			<Template>structures/iber_wall</Template>
-			<Player>1</Player>
-			<Position x="493.87104" z="228.44446"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="34">
 			<Template>structures/iber_defense_tower</Template>
 			<Player>1</Player>
@@ -245,12 +249,6 @@
 			<Player>1</Player>
 			<Position x="516.39161" z="294.73792"/>
 			<Orientation y="-1.7513"/>
-		</Entity>
-		<Entity uid="37">
-			<Template>structures/iber_wall_gate</Template>
-			<Player>1</Player>
-			<Position x="525.10413" z="257.79593"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="38">
 			<Template>structures/iber_dock</Template>

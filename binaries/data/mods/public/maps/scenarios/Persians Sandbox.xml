@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="667.274" y="145.101" z="548.477"/>
+		<Position x="668.584" y="137.152" z="536.752"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -6448,12 +6448,6 @@
 			<Position x="649.80927" z="799.87757"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="1169">
-			<Template>structures/pers_wall_tower</Template>
-			<Player>1</Player>
-			<Position x="749.46839" z="676.67548"/>
-			<Orientation y="3.06705"/>
-		</Entity>
 		<Entity uid="1170">
 			<Template>structures/pers_defense_tower</Template>
 			<Player>1</Player>
@@ -7653,66 +7647,6 @@
 			<Player>1</Player>
 			<Position x="563.88056" z="742.91132"/>
 			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1528">
-			<Template>structures/pers_wall_tower</Template>
-			<Player>1</Player>
-			<Position x="731.29053" z="675.5694"/>
-			<Orientation y="1.54397"/>
-		</Entity>
-		<Entity uid="1529">
-			<Template>structures/pers_wall_tower</Template>
-			<Player>1</Player>
-			<Position x="690.08155" z="675.7256"/>
-			<Orientation y="-2.98249"/>
-		</Entity>
-		<Entity uid="1530">
-			<Template>structures/pers_wall_tower</Template>
-			<Player>1</Player>
-			<Position x="616.58027" z="705.16535"/>
-			<Orientation y="-2.63576"/>
-		</Entity>
-		<Entity uid="1531">
-			<Template>structures/pers_wall_tower</Template>
-			<Player>1</Player>
-			<Position x="652.38306" z="687.71351"/>
-			<Orientation y="-2.81162"/>
-		</Entity>
-		<Entity uid="1532">
-			<Template>structures/pers_wall_gate</Template>
-			<Player>1</Player>
-			<Position x="710.54297" z="675.14887"/>
-			<Orientation y="3.12958"/>
-		</Entity>
-		<Entity uid="1533">
-			<Template>structures/pers_wall_gate</Template>
-			<Player>1</Player>
-			<Position x="634.1136" z="696.0865"/>
-			<Orientation y="-2.67751"/>
-		</Entity>
-		<Entity uid="1534">
-			<Template>structures/pers_wall_long</Template>
-			<Player>1</Player>
-			<Position x="672.85444" z="681.72156"/>
-			<Orientation y="-2.81579"/>
-		</Entity>
-		<Entity uid="1535">
-			<Template>structures/pers_wall_medium</Template>
-			<Player>1</Player>
-			<Position x="603.48743" z="712.31073"/>
-			<Orientation y="-2.574"/>
-		</Entity>
-		<Entity uid="1536">
-			<Template>structures/pers_wall_short</Template>
-			<Player>1</Player>
-			<Position x="740.24976" z="676.0398"/>
-			<Orientation y="3.09845"/>
-		</Entity>
-		<Entity uid="1537">
-			<Template>structures/pers_wall_tower</Template>
-			<Player>1</Player>
-			<Position x="591.28815" z="720.8661"/>
-			<Orientation y="2.2177"/>
 		</Entity>
 	</Entities>
 	<Paths/>
