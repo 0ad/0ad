@@ -39,6 +39,7 @@ bool g_Shadows = false;
 bool g_ShadowPCF = false;
 bool g_FancyWater = false;
 bool g_Particles = false;
+bool g_Silhouettes = false;
 
 float g_Gamma = 1.0f;
 
@@ -79,6 +80,7 @@ static void LoadGlobals()
 	CFG_GET_USER_VAL("fancywater", Bool, g_FancyWater);
 	CFG_GET_USER_VAL("renderpath", String, g_RenderPath);
 	CFG_GET_USER_VAL("particles", Bool, g_Particles);
+	CFG_GET_USER_VAL("silhouettes", Bool, g_Silhouettes);
 
 	float gain = -1.0f;
 	CFG_GET_USER_VAL("sound.mastergain", Float, gain);

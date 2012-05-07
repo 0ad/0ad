@@ -583,6 +583,7 @@ static void InitRenderer()
 	g_Renderer.SetRenderPath(CRenderer::GetRenderPathByName(g_RenderPath));
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWPCF, g_ShadowPCF);
 	g_Renderer.SetOptionBool(CRenderer::OPT_PARTICLES, g_Particles);
+	g_Renderer.SetOptionBool(CRenderer::OPT_SILHOUETTES, g_Silhouettes);
 
 	// create terrain related stuff
 	new CTerrainTextureManager;

@@ -426,6 +426,7 @@ CRenderer::CRenderer()
 	m_Options.m_ARBProgramShadow = true;
 	m_Options.m_ShadowPCF = false;
 	m_Options.m_Particles = false;
+	m_Options.m_Silhouettes = false;
 	m_Options.m_PreferGLSL = false;
 	m_Options.m_ForceAlphaTest = false;
 	m_Options.m_GPUSkinning = false;
@@ -459,6 +460,7 @@ CRenderer::CRenderer()
 	AddLocalProperty(L"waterShininess", &m->waterManager.m_Shininess, false);
 	AddLocalProperty(L"waterSpecularStrength", &m->waterManager.m_SpecularStrength, false);
 	AddLocalProperty(L"waterWaviness", &m->waterManager.m_Waviness, false);
+	AddLocalProperty(L"silhouettes", &m_Options.m_Silhouettes, false);
 
 	RegisterFileReloadFunc(ReloadChangedFileCB, this);
 }
@@ -665,6 +667,9 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 		case OPT_PARTICLES:
 			m_Options.m_Particles = value;
 			break;
+		case OPT_SILHOUETTES:
+			m_Options.m_Silhouettes = value;
+			break;
 		default:
 			debug_warn(L"CRenderer::SetOptionBool: unknown option");
 			break;
@@ -686,6 +691,8 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 			return m_Options.m_ShadowPCF;
 		case OPT_PARTICLES:
 			return m_Options.m_Particles;
+		case OPT_SILHOUETTES:
+			return m_Options.m_Silhouettes;
 		default:
 			debug_warn(L"CRenderer::GetOptionBool: unknown option");
 			break;
@@ -1460,7 +1467,10 @@ void CRenderer::RenderSubmissions()
 		ogl_WarnIfError();
 	}
 
-	RenderSilhouettes(context);
+	if (m_Options.m_Silhouettes)
+	{
+		RenderSilhouettes(context);
+	}
 
 #if !CONFIG2_GLES
 	// Clean up texture blend mode so particles and other things render OK 

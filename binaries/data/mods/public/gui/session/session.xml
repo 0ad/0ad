@@ -55,6 +55,11 @@
 		<object hotkey="menu.toggle">
 			<action on="Press">openMenu();</action>
 		</object>
+		
+		<!-- Unit silhouettes -->
+		<object hotkey="silhouettes">
+			<action on="Press">renderer.silhouettes = !renderer.silhouettes;</action>
+		</object>
 
 		<!-- Pause -->
 		<object hotkey="pause">
