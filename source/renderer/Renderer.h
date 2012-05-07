@@ -79,7 +79,8 @@ public:
 		OPT_SHADOWS,
 		OPT_FANCYWATER,
 		OPT_SHADOWPCF,
-		OPT_PARTICLES
+		OPT_PARTICLES,
+		OPT_SILHOUETTES
 	};
 
 	enum RenderPath {
@@ -127,6 +128,7 @@ public:
 		bool m_PreferGLSL;
 		bool m_ForceAlphaTest;
 		bool m_GPUSkinning;
+		bool m_Silhouettes;
 	} m_Options;
 
 	struct Caps {

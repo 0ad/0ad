@@ -52,6 +52,8 @@ extern bool g_FancyWater;
 extern bool g_ShadowPCF;
 // flag to switch on particles rendering
 extern bool g_Particles;
+// flag to switch on unit silhouettes
+extern bool g_Silhouettes;
 
 extern float g_Gamma;
 // name of configured render path (depending on OpenGL extensions, this may not be
