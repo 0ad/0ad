@@ -80,7 +80,7 @@ static void LoadGlobals()
 	CFG_GET_USER_VAL("fancywater", Bool, g_FancyWater);
 	CFG_GET_USER_VAL("renderpath", String, g_RenderPath);
 	CFG_GET_USER_VAL("particles", Bool, g_Particles);
-	CFG_GET_USER_VAL("particles", Bool, g_Silhouettes);
+	CFG_GET_USER_VAL("silhouettes", Bool, g_Silhouettes);
 
 	float gain = -1.0f;
 	CFG_GET_USER_VAL("sound.mastergain", Float, gain);
