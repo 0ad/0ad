@@ -37,7 +37,7 @@
 
 #undef DEBUG
 
-#if defined(__FreeBSD__)
+#if defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
 // Fix undefined PF_INET on FreeBSD
 #include <sys/socket.h>
 #endif
