@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -330,9 +330,14 @@ void CNetTurnManager::QuickSave()
 		LOGERROR(L"Failed to quicksave game");
 		return;
 	}
-	LOGMESSAGERENDER(L"Quicksaved game");
 
 	m_QuickSaveState = stream.str();
+	if (g_GUI)
+		m_QuickSaveMetadata = g_GUI->GetScriptInterface().StringifyJSON(g_GUI->GetSavedGameData().get(), false);
+	else
+		m_QuickSaveMetadata = std::string();
+
+	LOGMESSAGERENDER(L"Quicksaved game");
 
 }
 
@@ -353,6 +358,11 @@ void CNetTurnManager::QuickLoad()
 		LOGERROR(L"Failed to quickload game");
 		return;
 	}
+
+	if (g_GUI && !m_QuickSaveMetadata.empty())
+		g_GUI->GetScriptInterface().CallFunctionVoid(OBJECT_TO_JSVAL(g_GUI->GetScriptObject()),
+		"restoreSavedGameData", g_GUI->GetScriptInterface().ParseJSON(m_QuickSaveMetadata));
+
 	LOGMESSAGERENDER(L"Quickloaded game");
 
 	// See RewindTimeWarp

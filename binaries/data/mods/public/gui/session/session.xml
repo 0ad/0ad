@@ -230,7 +230,7 @@
 		<object name="settingsDialogPanel"
 			style="StoneDialog"
 			type="image"
-			size="50%-180 50%-200 50%+180 50%+80"
+			size="50%-180 50%-200 50%+180 50%+100"
 			hidden="true"
 		>
 			<object type="text" style="TitleText" size="50%-96 -16 50%+96 16">Settings</object>
@@ -259,23 +259,30 @@
 					<action on="Load">if (renderer.fancyWater) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.fancyWater = this.checked;</action>
 				</object>
-				
+
 				<!-- Settings / Particles -->
 				<object size="0 85 100%-80 110" type="text" style="RightLabelText" ghost="true">Enable Particles</object>
 				<object name="particlesCheckbox" size="100%-56 90 100%-30 115" type="checkbox" style="StoneCrossBox" checked="true">
 					<action on="Load">if (renderer.particles) this.checked = true; else this.checked = false;</action>
 					<action on="Press">renderer.particles = this.checked;</action>
 				</object>
-				
+
+				<!-- Settings / Unit Silhouettes -->
+				<object size="0 110 100%-80 135" type="text" style="RightLabelText" ghost="true">Enable Unit Silhouettes</object>
+				<object name="silhouettesCheckbox" size="100%-56 115 100%-30 140" type="checkbox" style="StoneCrossBox" checked="true">
+					<action on="Load">if (renderer.silhouettes) this.checked = true; else this.checked = false;</action>
+					<action on="Press">renderer.silhouettes = this.checked;</action>
+				</object>
+
 				<!-- Settings / Music-->
-				<object size="0 110 100%-80 135" type="text" style="RightLabelText" ghost="true">Enable Music</object>
-				<object size="100%-56 115 100%-30 140" type="checkbox" style="StoneCrossBox" checked="true">
+				<object size="0 135 100%-80 160" type="text" style="RightLabelText" ghost="true">Enable Music</object>
+				<object size="100%-56 140 100%-30 165" type="checkbox" style="StoneCrossBox" checked="true">
 					<action on="Press">if (this.checked) global.music.start(); else global.music.stop();</action>
 				</object>
 
 				<!-- Settings / Dev Overlay -->
-				<object size="0 135 100%-80 160" type="text" style="RightLabelText" ghost="true">Developer Overlay</object>
-					<object size="100%-56 140 100%-30 165" type="checkbox" style="StoneCrossBox" checked="false">
+				<object size="0 160 100%-80 185" type="text" style="RightLabelText" ghost="true">Developer Overlay</object>
+					<object size="100%-56 165 100%-30 190" type="checkbox" style="StoneCrossBox" checked="false">
 					<action on="Press">toggleDeveloperOverlay();</action>
 				</object>
 			</object>

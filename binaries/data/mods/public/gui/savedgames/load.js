@@ -60,7 +60,8 @@ function loadGame()
 		Engine.SwitchGuiPage("page_loading.xml", {
 			"attribs": metadata.initAttributes,
 			"isNetworked" : false,
-			"playerAssignments": metadata.gui.playerAssignments
+			"playerAssignments": metadata.gui.playerAssignments,
+			"savedGUIData": metadata.gui
 		});
 	}
 }

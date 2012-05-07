@@ -66,7 +66,7 @@
 # define OS_MACOSX 0
 #endif
 // BSD
-#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+#if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__FreeBSD_kernel__)
 # define OS_BSD 1
 #else
 # define OS_BSD 0
