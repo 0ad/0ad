@@ -100,17 +100,11 @@ EntityGroups.prototype.getTemplateNames = function()
 
 EntityGroups.prototype.getEntsByName = function(templateName)
 {
-	var entTemplateNames = [];
-	for each (var entTemplateName in this.ents)
-		entTemplateNames.push(entTemplateName);
-	
-	var i = 0;
 	var ents = [];
 	for (var ent in this.ents)
 	{
-		if (entTemplateNames[i] == templateName)
+		if (this.ents[ent] == templateName)
 			ents.push(parseInt(ent));
-		i++;
 	}
 
 	return ents;
@@ -119,17 +113,11 @@ EntityGroups.prototype.getEntsByName = function(templateName)
 // Gets all ents in every group except ones of the specified group
 EntityGroups.prototype.getEntsByNameInverse = function(templateName)
 {
-	var entTemplateNames = [];
-	for each (var entTemplateName in this.ents)
-		entTemplateNames.push(entTemplateName);
-	
-	var i = 0;
 	var ents = [];
 	for (var ent in this.ents)
 	{
-		if (entTemplateNames[i] != templateName)
+		if (this.ents[ent] != templateName)
 			ents.push(parseInt(ent));
-		i++;
 	}
 
 	return ents;
@@ -379,7 +367,7 @@ var g_Selection = new EntitySelection();
 //-------------------------------- -------------------------------- --------------------------------
 function EntityGroupsContainer()
 {
-	this.groups = {};
+	this.groups = [];
 	for (var i = 0; i < 10; ++i)
 	{
 		this.groups[i] = new EntityGroups();

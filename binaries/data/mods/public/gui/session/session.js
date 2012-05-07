@@ -78,6 +78,11 @@ function init(initData, hotloadData)
 		// Cache the player data
 		// (This may be updated at runtime by handleNetMessage)
 		g_Players = getPlayerData(g_PlayerAssignments);
+
+		if (initData.savedGUIData)
+		{
+			restoreSavedGameData(initData.savedGUIData);
+		}
 	}
 	else // Needed for autostart loading option
 	{
@@ -182,8 +187,20 @@ function getSavedGameData()
 {
 	var data = {};
 	data.playerAssignments = g_PlayerAssignments;
-	// TODO: control groups, etc
+	data.groups = g_Groups.groups;
+	// TODO: any other gui state?
 	return data;
+}
+
+function restoreSavedGameData(data)
+{
+	// Restore control groups
+	for (groupNumber in data.groups)
+	{
+		g_Groups.groups[groupNumber].groups = data.groups[groupNumber].groups;
+		g_Groups.groups[groupNumber].ents = data.groups[groupNumber].ents;
+	}
+	updateGroups();
 }
 
 var lastTickTime = new Date;
