@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>structural/found_1x1.dae</mesh>
+      <texture>structural/foundation.dds</texture>
+    </variant>
+    <variant>
+      <props>
+        <prop actor="particle/construction_dust.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+</actor>
