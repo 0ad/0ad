@@ -25,6 +25,7 @@
 		  <Multiplier>1.5</Multiplier>
 		</BonusSecondary>
 	  </Bonuses>
+      <RestrictedClasses datatype="tokens">StoneWall</RestrictedClasses>
     </Ranged>
   </Attack>
   <Cost>
@@ -33,10 +34,6 @@
       <wood>80</wood>
     </Resources>
   </Cost>
-  <Footprint>
-    <Circle radius="2.0"/>
-    <Height>5.0</Height>
-  </Footprint>
   <Identity>
     <Classes datatype="tokens">Ranged Javelin</Classes>
     <GenericName>Champion Cavalry Skirmisher.</GenericName>

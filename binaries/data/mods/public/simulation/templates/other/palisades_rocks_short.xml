@@ -22,14 +22,19 @@
   <Identity>
     <Civ>gaia</Civ>
     <SpecificName>Palisade</SpecificName>
+    <Classes datatype="tokens">-StoneWall Palisade</Classes>
     <History>A cheap, quick defensive structure constructed with sharpened tree trunks</History>
     <Icon>gaia/special_palisade.png</Icon>
   </Identity>
   <Obstruction>
     <Static width="4.5" depth="2.0"/>
   </Obstruction>
+  <StatusBars>
+    <HeightOffset>9.0</HeightOffset>
+  </StatusBars>
   <VisualActor>
     <Actor>props/special/palisade_rocks_short.xml</Actor>
+    <FoundationActor>structures/fndn_1x1pal.xml</FoundationActor>
   </VisualActor>
   <WallPiece>
     <Length>4.0</Length>

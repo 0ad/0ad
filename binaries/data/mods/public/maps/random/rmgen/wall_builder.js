@@ -429,7 +429,6 @@ function placeLinearWall(startX, startY, targetX, targetY, wallPart, style, play
 	playerId = (playerId || 0);
 	// endWithFirst = (endWithFirst || true);
 	endWithFirst = typeof endWithFirst == 'undefined' ? true : endWithFirst;
-	log("endWithFirst = " + endWithFirst);
 	// Check arguments
 	for (var elementIndex = 0; elementIndex < wallPart.length; elementIndex++)
 		if (wallStyles[style][wallPart[elementIndex]].bending != 0)
@@ -631,7 +630,7 @@ function placeIrregularPolygonalWall(centerX, centerY, radius, cornerWallElement
 	// Generating a generic wall part assortment with each wall part including 1 gate enlengthend by walls and towers
 	// NOTE: It might be a good idea to write an own function for that...
 	var defaultWallPartsAssortment = [['wallShort'], ['wall'], ['wallLong'], ['gate', 'tower', 'wallShort']];
-	var centeredWallPart = ['entry']; // NOTE: Since gates are not functional yet entrys are used instead...
+	var centeredWallPart = ['gate']; // NOTE: Since gates are not functional yet entrys are used instead...
 	var extandingWallPartAssortment = [['tower', 'wallLong'], ['tower', 'wall']];
 	defaultWallPartsAssortment.push(centeredWallPart)
 	for (var i = 0; i < extandingWallPartAssortment.length; i++)
@@ -683,7 +682,6 @@ function placeIrregularPolygonalWall(centerX, centerY, radius, cornerWallElement
 	for (var partIndex = 0; partIndex < wallPartsAssortment.length; partIndex++)
 	{
 		wallPartLengths.push(getWallLength(wallPartsAssortment[partIndex], style));
-		log("wallPartLengths = " + wallPartLengths);
 		if (wallPartLengths[partIndex] > maxWallPartLength)
 			maxWallPartLength = wallPartLengths[partIndex];
 	}
@@ -695,8 +693,6 @@ function placeIrregularPolygonalWall(centerX, centerY, radius, cornerWallElement
 		// NOTE: This is not exsactly like the length the wall will be in the end. Has to be tweeked...
 		var wallLength = getDistance(corners[i][0], corners[i][1], corners[(i+1)%numCorners][0], corners[(i+1)%numCorners][1])
 		var numWallParts = ceil(wallLength/maxWallPartLength);
-		log("numWallParts = " + numWallParts);
-		log("wallLength = " + wallLength);
 		for (var partIndex = 0; partIndex < wallPartsAssortment.length; partIndex++)
 		{
 			if (numWallParts*wallPartLengths[partIndex] < bestWallLength && numWallParts*wallPartLengths[partIndex] > wallLength)
@@ -706,15 +702,10 @@ function placeIrregularPolygonalWall(centerX, centerY, radius, cornerWallElement
 			}
 		}
 		wallPartList.push(bestWallPart)
-		log("bestWallLength = " + bestWallLength);
-		log("bestWallPart = " + bestWallPart);
 	}
-	log("getWallLength(['wall', 'gate'], style) = " + getWallLength(['wall', 'gate'], style));
-	log("wallPartList = " + wallPartList);
 	// Place Corners and walls
 	for (var i = 0; i < numCorners; i++)
 	{
-		log("wallPartList[" + i + "] = " + wallPartList[i]);
 		var angleToCorner = getAngle(corners[i][0], corners[i][1], centerX, centerY);
 		placeObject(corners[i][0], corners[i][1], wallStyles[style][cornerWallElement].entity, playerId, angleToCorner);
 		if (!(skipFirstWall && i == 0))

@@ -22,6 +22,7 @@
 		</BonusSiege>
 	  </Bonuses>
       <PreferredClasses datatype="tokens">Organic Siege</PreferredClasses>
+      <RestrictedClasses datatype="tokens">StoneWall</RestrictedClasses>
     </Melee>
     <Charge>
       <Hack>15.0</Hack>
@@ -40,6 +41,7 @@
 		</CamelStench>
 	  </Bonuses>
       <PreferredClasses datatype="tokens">Organic Siege</PreferredClasses>
+      <RestrictedClasses datatype="tokens">StoneWall</RestrictedClasses>
     </Charge>
   </Attack>
   <Identity>

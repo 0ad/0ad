@@ -22,6 +22,7 @@
 		  <Multiplier>1.5</Multiplier>
 		</BonusEles>
 	  </Bonuses>
+      <RestrictedClasses datatype="tokens">StoneWall</RestrictedClasses>
     </Melee>
     <Charge>
       <Hack>8.0</Hack>
@@ -39,6 +40,7 @@
 		  <Multiplier>1.5</Multiplier>
 		</BonusEles>
 	  </Bonuses>
+      <RestrictedClasses datatype="tokens">StoneWall</RestrictedClasses>
     </Charge>
   </Attack>
   <Cost>
