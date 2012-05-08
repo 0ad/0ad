@@ -131,7 +131,8 @@ defined by $(x, z, \frac{w}{2}, \frac{h}{2}, \mathbf{u}, \mathbf{v})$:
 
 \begin{tikzpicture}[>=stealth,scale=0.5]
 
-\node[fill=black,circle] (o) at (0,0) [label=below:{$(x,z)$}] {};
+\node (o) at (0,0) [label=below:{$(x,z)$}] {};
+\draw (0,0) circle (0.1cm);
 \node (a) at (3,4) [label=above:{$(x,z) + \frac{w}{2}\mathbf{u} + \frac{h}{2}\mathbf{v}$}] {};
 \node (b) at (5,0) [label=right:{$(x,z) + \frac{w}{2}\mathbf{u} - \frac{h}{2}\mathbf{v}$}] {};
 \node (c) at (-3,-4) [label=below:{$(x,z) - \frac{w}{2}\mathbf{u} - \frac{h}{2}\mathbf{v}$}] {};
@@ -140,7 +141,12 @@ defined by $(x, z, \frac{w}{2}, \frac{h}{2}, \mathbf{u}, \mathbf{v})$:
 \draw[<->,dashed] (o) -- (4,2) node[below,midway] {$\frac{w}{2}$};
 \draw[<->,dashed] (o) -- (-1,2) node[left,midway] {$\frac{h}{2}$};
 
-\draw (3,4) -- (5,0) -- (-3,-4) -- (-5,0) -- cycle;
+\draw
+  (3,4) circle (0.1cm) --
+  (5,0) circle (0.1cm) --
+  (-3,-4) circle (0.1cm) --
+  (-5,0) circle (0.1cm) --
+  (3,4);
 
 \begin{scope}[xshift=-6cm,yshift=-3cm]
 \draw[->] (0,0) -- (1,0.5) node[right] {$\mathbf{u}$};
@@ -362,6 +368,64 @@ TODO: In the implementation, we need to be sure units never try to move
 within a distance $d \leq c$, else they might be blocked by navcells.
 Maybe add $c$ to all (positive) attack/gather/etc ranges?
 
+\subsection{Narrow obstructions}
+
+If an obstruction is especially narrow (e.g.\ a fence),
+it might not block any navcells and units could walk straight through it,
+which would surprise map designers.
+
+The worst case is when rotated 45 degrees,
+in which a long obstruction
+must be at least $\frac{3}{\sqrt{2}}$ (about 2.12) navcells wide
+(including the clearance expansion),
+and a square obstruction must be at least $2\sqrt{2}$ (about 2.83) wide:
+
+\begin{tikzpicture}[
+  >=stealth,
+  blocked/.style={rectangle,draw=black!60,fill=black!50,minimum size=0.5cm}
+]
+
+\draw[step=1cm,black!40,very thin,xshift=-0.5cm,yshift=-0.5cm] (0,0) grid (10,5);
+
+\begin{scope}[xshift=2.5cm,yshift=2cm]
+\draw [color=red,rotate=45,rounded corners=0.5cm] (-1.05,-2.5) rectangle (1.05,2.5);
+\draw[<->,rotate=45] (-1.05,1) node[right] {$\frac{\sqrt{2}}{2}+\sqrt{2}$} -- (1.05,1) ;
+\end{scope}
+
+\begin{scope}[xshift=6.5cm,yshift=2.5cm]
+\draw [color=red,rotate=45,rounded corners=0.5cm] (-1.41,-1.41) rectangle (1.41,1.41);
+\draw[<->,rotate=45] (-1.41,0) -- (1.41,0) node[midway,right] {$2\sqrt{2}$} ;
+\end{scope}
+
+\end{tikzpicture}
+
+But there are still problems when a long obstruction is $\sqrt{5}$ (about 2.24) wide,
+since it may contain gaps that units can walk through:
+
+\begin{tikzpicture}[
+  >=stealth,
+  blocked/.style={rectangle,draw=black!60,fill=black!50,minimum size=1cm}
+]
+
+\draw[step=1cm,black!40,very thin,xshift=-0.5cm,yshift=-0.5cm] (0,0) grid (7,5);
+
+\begin{scope}[xshift=3cm,yshift=2cm]
+\draw [color=red,rotate=63.43,rounded corners=0.5cm] (-1.11,-3) rectangle (1.11,3);
+\draw[<->,rotate=63.43] (-1.11,1) node[right] {$\sqrt{5}$} -- (1.11,1) ;
+\node[blocked] at (-2,1) {};
+\node[blocked] at (0,0) {};
+\node[blocked] at (2,-1) {};
+\end{scope}
+
+\end{tikzpicture}
+
+To avoid these problems,
+when rasterizing a rectangle of size $(w,h)$ with clearance $c$,
+we will instead rasterize a rectangle of size $(w,h)$ with clearance $\max(c,\ (3-\min(w,h))/2)$
+(where 3 is a nice round number that's definitely bigger than the limits demonstrated here).
+When the smallest unit has $c=1$,
+that limit will only take effect for obstructions with $w < 1$ or $h < 1$.
+
 \section{Path goals}
 
 When a path is requested, there is a source unit and a goal.
@@ -538,6 +602,10 @@ Their obstruction shapes are axis-aligned squares with a known radius.
 To stop units intersecting each other,
 each square is expanded by the pathing unit's own obstruction radius.
 
+Note that all edges (from dynamic obstructions and from the navcell grid)
+are axis-aligned. This allows some simplifications and optimisations,
+and avoids precision issues when deciding whether a point is precisely on a line.
+
 TODO: Inconsistency between clearance and obstruction radius?
 
 The pathfinder can then find paths between corners that don't intersect edges.
@@ -616,6 +684,24 @@ instead of getting out as quickly as possible.
 TODO: How can we handle that? (Add a flag to disable the short-range pathfinder?
 What if another unit is in the way?)
 
+\section{Minimum ranges}
+
+Some units have a minimum attack range (e.g.\ a ballista can't be aimed
+at someone standing right in front of it).
+If they are too close to their target,
+they need to move away from it before being able to attack.
+
+Minimum ranges will usually be quite small -- maybe 16 navcells at most.
+That's short enough that the short-range pathfinder will always suffice;
+we don't need to use the long-range pathfinder to work out how to move
+away from the target.
+This means the long-range pathfinder only has to care about how to move
+towards a target (which avoids some minor complexities in the implementation).
+
+The short-range pathfinder already moves to the edge of a goal shape,
+and doesn't care whether the unit is starting inside or outside that shape.
+That means it'll work for minimum-range movement with no futher modifications.
+
 \section{Unit movement}
 
 The short-range pathfinder will give the unit a waypoint to walk towards.
@@ -624,8 +710,29 @@ To cope with dynamic changes to the world,
 the unit needs to verify that its movement won't collide with anything.
 This requires testing the movement line against the navcell grid,
 and against unit obstructions (expanded by the moving unit's radius).
+If there is a collision then the unit won't move, and will search for
+a new path instead.
 
 TODO: Does the implementation work like that?
+
+To check collisions with other units,
+we expand every unit obstruction shape by the moving unit's radius,
+and test the movement line against those squares.
+TODO: How is the testing done, precisely?
+If the start point is inside (or on the edge of) the square,
+then it will never collide;
+otherwise, if the end point is inside (or on the edge)
+then it collides;
+otherwise, it tests whether the line passes through the square
+(TODO: edge cases).
+
+This means a unit must never be placed precisely on the edge
+of another unit obstruction -- it will be able to move inside the second unit.
+If a unit is not inside (or on the edge),
+it will never be able to move so that is inside (or on the edge),
+so we just need to be careful when spawning new units to avoid starting too close.
+
+TODO: Describe the navcell passability testing.
 
 \section{Unit spawning}
 
@@ -719,6 +826,73 @@ TODO: Implement that range restriction somewhere.
 
 \ldots
 
+\section{Summary of constraints}
+
+\begin{itemize}
+
+\item Units have $(x,z)$ position, plus static $\mathrm{UnitClearance}$ and $\mathrm{UnitRadius}$.
+
+\item $\mathrm{UnitClearance}$ should be an integer number of navcells,
+to ensure consistent behaviour when the terrain grid is expanded by clearance.
+
+\item $\mathrm{UnitRadius}$ can be any non-negative number.
+
+\item For any unit, $\mathrm{PointToNavcell}(x,z)$ should be a passable navcell.
+
+If not, the pathfinders will always try to move the unit onto the nearest passable navcell.
+
+\item For any two units, we should have
+\begin{align*}
+|x_1-x_2| &> \mathrm{UnitRadius}_1 + \mathrm{UnitRadius}_2 \\
+|z_1-z_2| &> \mathrm{UnitRadius}_1 + \mathrm{UnitRadius}_2
+\end{align*}
+If not, one unit might walk straight through the other.
+
+\item When a unit is targeting a building, we need
+\[
+\mathrm{MaxRange} \geq \mathrm{UnitClearance} + \varepsilon
+\]
+to ensure the goal shape is fully on passable navcells, and
+is fully reachable by the vector pathfinder.
+
+\item When a unit is targeting another unit, we need
+\[
+\mathrm{MaxRange} \geq \mathrm{UnitRadius}_1 + \mathrm{UnitRadius}_2 + \varepsilon
+\]
+to ensure the goal shape
+is fully reachable by the vector pathfinder.
+
+\item To guarantee those two range constraints,
+we will compute $\mathrm{MaxRange}$ separately in each case,
+as $\mathrm{UnitMaxRange}+\mathrm{UnitClearance}+\varepsilon$ or as
+$\mathrm{UnitMaxRange}+\mathrm{UnitRadius}_1+\mathrm{UnitRadius}_2+\varepsilon$,
+with $\varepsilon=\frac{1}{8}$ (arbitrarily),
+where $\mathrm{UnitMaxRange}$ is the non-negative value specified in the unit definition.
+
+\item When units are spawned,
+they must be on a passable navcell.
+They must not collide with any unit obstruction shapes,
+expanded by $\mathrm{UnitRadius} + \varepsilon$,
+with $\varepsilon=\frac{1}{8}$ (arbitrarily).
+
+\item Static obstructions must be at least $\frac{3}{2}\sqrt{2}$ ($\sim2.12$)
+in each dimension, else they might not block any navcells and units could
+walk through them:
+
+\begin{tikzpicture}[
+  blocked/.style={rectangle,draw=black!60,fill=black!50,minimum size=0.5cm}
+]
+
+\draw[step=1cm,black!60,very thin,xshift=-0.5cm,yshift=-0.5cm] (0,0) grid (6,5);
+
+\begin{scope}[xshift=2.5cm,yshift=2cm]
+\draw [color=blue,rotate=45] (-1.06,-2) rectangle (1.06,2);
+\end{scope}
+
+\end{tikzpicture}
+
+\end{itemize}
+
 \section{TODO}
 
 Things to fix in the implementation:
@@ -727,6 +901,15 @@ Things to fix in the implementation:
  \item Remove (or specify) support for \texttt{CheckFoundation} of \texttt{Unit} shapes.
  \item Fix \texttt{CheckBuildingPlacement} to skip shapes, and put foundations in the navcell grid.
  \item Support dynamic updates.
+ \item Remove cost class parameters.
+ \item Fix vector pathfinder to not do quadrant stuff.
+ \item Set up passability classes for the current units.
+ \item Testing.
+ \item Fix the navcell grid vectorisation.
+ \item Don't use long pathfinder for min range movement.
+ \item AI integration.
+ \item Make impassable-navcell-escaping work properly.
+ \item A* heuristic overestimate with large goals.
  \item ...
 \end{itemize}
 
