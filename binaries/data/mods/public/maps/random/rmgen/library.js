@@ -468,10 +468,10 @@ function primeSortPlayers(source)
 function getStartingEntities(player)
 {	
 	var civ = getCivCode(player);
-	if (!g_CivData[civ] || (g_CivData[civ].SelectableInGameSetup !== undefined && !g_CivData[civ].SelectableInGameSetup) || !g_CivData[civ].StartEntities || !g_CivData[civ].StartEntities.length)
+	if (!g_CivData[civ] || !g_CivData[civ].StartEntities || !g_CivData[civ].StartEntities.length)
 	{
-		warn("Invalid or unimplemented civ '"+civ+"' specified, falling back to 'hele'");
-		civ = "hele";
+		warn("Invalid or unimplemented civ '"+civ+"' specified, falling back to 'athen'");
+		civ = "athen";
 	}
 	
 	return g_CivData[civ].StartEntities;
