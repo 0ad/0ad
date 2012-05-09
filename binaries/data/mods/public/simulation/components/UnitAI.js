@@ -1122,7 +1122,7 @@ var UnitFsmSpec = {
 							this.PushOrderFront("ReturnResource", { "target": nearby, "force": false });
 							return;
 						}
-
+						
 						// No dropsites - just give up
 					}
 				},
@@ -2190,8 +2190,9 @@ UnitAI.prototype.FindNearbyResource = function(filter)
 	{
 		var cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
 		var type = cmpResourceSupply.GetType();
+		var amount = cmpResourceSupply.GetCurrentAmount();
 		var template = cmpTemplateManager.GetCurrentTemplateName(ent);
-		if (filter(ent, type, template))
+		if (amount > 0 && filter(ent, type, template))
 			return ent;
 	}
 
@@ -2792,8 +2793,8 @@ UnitAI.prototype.Ungarrison = function()
 };
 
 /**
- * Adds gather order to the queue, not forced, so it can be
- * interrupted by attacks.
+ * Adds gather order to the queue, forced by the player 
+ * until the target is reached 
  */
 UnitAI.prototype.Gather = function(target, queued)
 {
