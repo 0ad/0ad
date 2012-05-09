@@ -93,7 +93,6 @@ public:
 	{
 		CShaderUniforms uniforms1;
 		CShaderUniforms uniforms2;
-		CShaderUniforms uniforms3;
 		TS_ASSERT(uniforms1 == uniforms1);
 
 		uniforms1.Add("FOO", CVector4D(1.0f, 0.0f, 0.0f, 0.0f));
