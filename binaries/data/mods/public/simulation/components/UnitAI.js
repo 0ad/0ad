@@ -2061,10 +2061,10 @@ UnitAI.prototype.StartTimer = function(offset, repeat)
 	var data = { "timerRepeat": repeat };
 
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-    if (repeat === undefined)
-    	this.timer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "TimerHandler", offset, data);
-    else
-        this.timer = cmpTimer.SetInterval(this.entity, IID_UnitAI, "TimerHandler", offset, repeat, data);
+	if (repeat === undefined)
+		this.timer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "TimerHandler", offset, data);
+	else
+		this.timer = cmpTimer.SetInterval(this.entity, IID_UnitAI, "TimerHandler", offset, repeat, data);
 };
 
 /**
@@ -3146,7 +3146,7 @@ UnitAI.prototype.CanAttack = function(target)
 	// Verify that we're able to respond to Attack commands
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 	if (!cmpAttack)
-		return false;    
+		return false;
 
 	if (!cmpAttack.CanAttack(target))
 		return false;
