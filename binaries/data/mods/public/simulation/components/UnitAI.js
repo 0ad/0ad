@@ -1778,16 +1778,11 @@ UnitAI.prototype.IsGarrisoned = function()
 UnitAI.prototype.OnCreate = function()
 {
 	if (this.IsAnimal())
-		UnitFsm.Init(this, "ANIMAL.FEEDING", this.StateChanged);
+		UnitFsm.Init(this, "ANIMAL.FEEDING");
 	else if (this.IsFormationController())
-		UnitFsm.Init(this, "FORMATIONCONTROLLER.IDLE", this.StateChanged);
+		UnitFsm.Init(this, "FORMATIONCONTROLLER.IDLE");
 	else
-		UnitFsm.Init(this, "INDIVIDUAL.IDLE", this.StateChanged);
-};
-
-UnitAI.prototype.StateChanged = function()
-{
-	Engine.PostMessage(this.entity, MT_UnitAIStateChanged, { "to": this.GetCurrentState()});
+		UnitFsm.Init(this, "INDIVIDUAL.IDLE");
 };
 
 UnitAI.prototype.OnOwnershipChanged = function(msg)
@@ -1898,6 +1893,11 @@ UnitAI.prototype.GetCurrentState = function()
 	return UnitFsm.GetCurrentState(this);
 };
 
+UnitAI.prototype.FsmStateNameChanged = function(state)
+{
+	Engine.PostMessage(this.entity, MT_UnitAIStateChanged, { "to": state });
+};
+
 /**
  * Call when the current order has been completed (or failed).
  * Removes the current order from the queue, and processes the
@@ -1917,8 +1917,8 @@ UnitAI.prototype.FinishOrder = function()
 		var ret = UnitFsm.ProcessMessage(this,
 			{"type": "Order."+this.order.type, "data": this.order.data}
 		);
-		
-		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData()});
+
+		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 
 		// If the order was rejected then immediately take it off
 		// and process the remaining queue
@@ -1953,8 +1953,8 @@ UnitAI.prototype.PushOrder = function(type, data)
 		var ret = UnitFsm.ProcessMessage(this,
 			{"type": "Order."+this.order.type, "data": this.order.data}
 		);
-		
-		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData()});
+
+		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 
 		// If the order was rejected then immediately take it off
 		// and process the remaining queue
@@ -1985,8 +1985,8 @@ UnitAI.prototype.PushOrderFront = function(type, data)
 		var ret = UnitFsm.ProcessMessage(this,
 			{"type": "Order."+this.order.type, "data": this.order.data}
 		);
-		
-		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData()});
+
+		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 
 		// If the order was rejected then immediately take it off again;
 		// assume the previous active order is still valid (the short-lived
@@ -2032,9 +2032,7 @@ UnitAI.prototype.AddOrders = function(orders)
 UnitAI.prototype.GetOrderData = function()
 {
 	if (this.order && this.order.data)
-	{
-		return eval(uneval(this.order.data)); // return a copy
-	}
+		return deepcopy(this.order.data);
 	else
 		return undefined;
 };

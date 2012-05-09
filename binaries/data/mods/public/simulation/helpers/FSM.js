@@ -78,6 +78,19 @@ var FsmSpec = {
 
 }
 
+
+Objects can then make themselves act as an instance of the FSM by running
+	FsmSpec.Init(this, "STATENAME");
+which will define a few properties on 'this' (with names prefixed "fsm"),
+and then they can call the FSM functions on the object like
+	FsmSpec.SetNextState(this, "STATENAME.SUBSTATENAME");
+
+These objects must also define a function property that can be called as
+	this.FsmStateNameChanged(name);
+
+(This design aims to avoid storing any per-instance state that cannot be
+easily serialized - it only stores state-name strings.)
+
  */
 
 function FSM(spec)
@@ -224,15 +237,13 @@ function FSM(spec)
 	process(this, spec, [], {});
 }
 
-FSM.prototype.Init = function(obj, initialState, stateChangedCallback)
+FSM.prototype.Init = function(obj, initialState)
 {
 	this.deferFromState = undefined;
 	
 	obj.fsmStateName = "";
 	obj.fsmNextState = undefined;
 	this.SwitchToNextState(obj, initialState);
-	
-	this.stateChangedCallback = stateChangedCallback;
 };
 
 FSM.prototype.SetNextState = function(obj, state)
@@ -337,8 +348,7 @@ FSM.prototype.SwitchToNextState = function(obj, nextStateName)
 			obj.fsmStateName = fromState[i];
 			if (leave.apply(obj))
 			{
-				if (this.stateChangedCallback)
-					this.stateChangedCallback.apply(obj);
+				obj.FsmStateNameChanged(obj.fsmStateName);
 				return;
 			}
 		}
@@ -352,17 +362,14 @@ FSM.prototype.SwitchToNextState = function(obj, nextStateName)
 			obj.fsmStateName = toState[i];
 			if (enter.apply(obj))
 			{
-				if (this.stateChangedCallback)
-					this.stateChangedCallback.apply(obj);
+				obj.FsmStateNameChanged(obj.fsmStateName);
 				return;
 			}
 		}
 	}
 
 	obj.fsmStateName = nextStateName;
-	
-	if (this.stateChangedCallback)
-		this.stateChangedCallback.apply(obj);
+	obj.FsmStateNameChanged(obj.fsmStateName);
 };
 
 Engine.RegisterGlobal("FSM", FSM);
