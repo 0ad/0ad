@@ -462,9 +462,29 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 	
 	Engine.ProfileStart("Run Workers");
 	gameState.getOwnEntitiesByRole("worker").forEach(function(ent){
-		var worker = new Worker(ent);
-		worker.update(gameState);
+		if (!ent.getMetadata("worker-object")){
+			ent.setMetadata("worker-object", new Worker(ent));
+		}
+		ent.getMetadata("worker-object").update(gameState);
 	});
+	
+	// Gatherer count updates for non-workers
+	var filter = Filters.and(Filters.not(Filters.byMetadata("worker-object", undefined)), 
+	                         Filters.not(Filters.byMetadata("role", "worker")));
+	gameState.updatingCollection("reassigned-workers", filter, gameState.getOwnEntities()).forEach(function(ent){
+		ent.getMetadata("worker-object").updateGathererCounts(gameState);
+	});
+	
+	// Gatherer count updates for destroyed units
+	for (var i in events) {
+		var e = events[i];
+
+		if (e.type === "Destroy") {
+			if (e.msg.metadata[gameState.getPlayerID()] && e.msg.metadata[gameState.getPlayerID()]["worker-object"]){
+				e.msg.metadata[gameState.getPlayerID()]["worker-object"].updateGathererCounts(gameState, true);
+			}
+		}
+	}
 	Engine.ProfileStop();
 
 	Engine.ProfileStop();

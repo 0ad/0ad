@@ -198,15 +198,10 @@ MilitaryAttackManager.prototype.countAvailableUnits = function(filter){
 	}
 };
 
-// Takes an entity id and returns an entity object or false if there is no entity with that id
+// Takes an entity id and returns an entity object or undefined if there is no entity with that id
 // Also sends a debug message warning if the id has no entity
 MilitaryAttackManager.prototype.entity = function(id) {
-	if (this.gameState.entities._entities[id]) {
-		return this.gameState.entities._entities[id]; // TODO: make this nicer
-	}else{
-		//debug("Entity " + id + " requested does not exist");
-	}
-	return undefined;
+	return this.gameState.getEntityById(id);
 };
 
 // Returns the military strength of unit 

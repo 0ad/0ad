@@ -17,11 +17,64 @@ Worker.prototype.update = function(gameState) {
 			Engine.ProfileStart("Start Gathering");
 			this.startGathering(gameState);
 			Engine.ProfileStop();
+			
+			//Engine.PostCommand({"type": "set-shading-color", "entities": [this.ent.id()], "rgb": [10,0,0]});
 		}
 	}else if(subrole === "builder"){
 		if (this.ent.unitAIState().split(".")[1] !== "REPAIR"){
 			var target = this.ent.getMetadata("target-foundation");
 			this.ent.repair(target);
+		}
+		
+		//Engine.PostCommand({"type": "set-shading-color", "entities": [this.ent.id()], "rgb": [0,10,0]});
+	}
+	
+	Engine.ProfileStart("Update Gatherer Counts");
+	this.updateGathererCounts(gameState);
+	Engine.ProfileStop();
+};
+
+Worker.prototype.updateGathererCounts = function(gameState, dead){
+	// update gatherer counts for the resources
+	if (this.ent.unitAIState().split(".")[2] === "GATHERING" && !dead){
+		if (this.gatheringFrom !== this.ent.unitAIOrderData().target){
+			if (this.gatheringFrom){
+				var ent = gameState.getEntityById(this.gatheringFrom);
+				if (ent){
+					ent.setMetadata("gatherer-count", ent.getMetadata("gatherer-count") - 1);
+					this.markFull(ent);
+				}
+			}
+			this.gatheringFrom = this.ent.unitAIOrderData().target;
+			if (this.gatheringFrom){
+				var ent = gameState.getEntityById(this.gatheringFrom);
+				if (ent){
+					ent.setMetadata("gatherer-count", (ent.getMetadata("gatherer-count") || 0) + 1);
+					this.markFull(ent);
+				}
+			}
+		} 
+	}else{
+		if (this.gatheringFrom){
+			var ent = gameState.getEntityById(this.gatheringFrom);
+			if (ent){
+				ent.setMetadata("gatherer-count", ent.getMetadata("gatherer-count") - 1);
+				this.markFull(ent);
+			}
+			this.gatheringFrom = undefined;
+		}
+	}
+};
+
+Worker.prototype.markFull = function(ent){
+	var maxCounts = {"food": 20, "wood": 5, "metal": 20, "stone": 20, "treasure": 1};
+	if (ent.getMetadata("gatherer-count") >= maxCounts[ent.resourceSupplyType().generic]){
+		if (!ent.getMetadata("full")){
+			ent.setMetadata("full", true);
+		}
+	}else{
+		if (ent.getMetadata("full")){
+			ent.setMetadata("full", false);
 		}
 	}
 };
@@ -40,20 +93,29 @@ Worker.prototype.startGathering = function(gameState){
 	var nearestResources = undefined;
 	var nearestDropsite = undefined;
 	
-	gameState.updatingCollection("active-dropsite-" + resource, Filters.byMetadata("active-dropsite" + resource, true), 
+	gameState.updatingCollection("active-dropsite-" + resource, Filters.byMetadata("active-dropsite-" + resource, true), 
 			gameState.getOwnDropsites(resource)).forEach(function (dropsite){
-				if (dropsite.position()){
-					var dist = VectorDistance(ent.postion(), dropsite.position());
-					if (dist < minDropsiteDist){
-						minDropsiteDist = dist;
-						nearestResources = dropsite.getMetadata("nearby-resources-" + type);
-						nearestDropsite = dropsite;
-					}
-				}
-			});
+		if (dropsite.position()){
+			var dist = VectorDistance(ent.position(), dropsite.position());
+			if (dist < minDropsiteDist){
+				minDropsiteDist = dist;
+				nearestResources = dropsite.getMetadata("nearby-resources-" + resource);
+				nearestDropsite = dropsite;
+			}
+		}
+	});
 	
 	if (!nearestResources){
 		nearestResources = gameState.getResourceSupplies(resource);
+		gameState.getOwnDropsites(resource).forEach(function (dropsite){
+			if (dropsite.position()){
+				var dist = VectorDistance(ent.position(), dropsite.position());
+				if (dist < minDropsiteDist){
+					minDropsiteDist = dist;
+					nearestDropsite = dropsite;
+				}
+			}
+		});
 	}
 	
 	if (nearestResources.length === 0){
@@ -82,12 +144,6 @@ Worker.prototype.startGathering = function(gameState){
 		// Go for treasure as a priority
 		if (dist < 200 && supply.resourceSupplyType().generic == "treasure"){
 			dist /= 1000;
-		}
-
-		// Skip targets that are far too far away (e.g. in the
-		// enemy base), only do this for common supplies
-		if (dist > 600){
-			return;
 		}
 		
 		if (dist < nearestSupplyDist){
