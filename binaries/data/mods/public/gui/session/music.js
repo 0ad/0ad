@@ -10,7 +10,7 @@
 //
 //const DEFEAT_CUE = "gen_loss_cue";
 //const DEFEAT_MUSIC = "gen_loss_track";
-//const VICTORY_MUSIC = "win_1";
+//const VICTORY_MUSIC = "Victory_Track";
 //
 ///*
 // * At some point, this ought to be extended to do dynamic music selection and
