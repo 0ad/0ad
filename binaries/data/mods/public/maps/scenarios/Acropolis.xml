@@ -24,8 +24,8 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="486.762" y="108.053" z="397.926"/>
-		<Rotation angle="0"/>
+		<Position x="496.136" y="118.859" z="392.443"/>
+		<Rotation angle="0.24222"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -35,17 +35,17 @@
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
-  "Name": "Acropolis 1",
+  "Name": "Boeotian Plains",
   "PlayerData": [
     {
       "AI": "",
-      "Civ": "hele",
+      "Civ": "athen",
       "Colour": {
         "b": 200,
         "g": 46,
         "r": 46
       },
-      "Name": "Player 1",
+      "Name": "Athenians",
       "Resources": {
         "food": 250,
         "metal": 250,
@@ -56,13 +56,13 @@
     },
     {
       "AI": "qbot",
-      "Civ": "hele",
+      "Civ": "spart",
       "Colour": {
         "b": 20,
         "g": 20,
         "r": 150
       },
-      "Name": "Player 2",
+      "Name": "Spartansa",
       "Resources": {
         "food": 250,
         "metal": 250,
@@ -79,7 +79,7 @@
         "g": 165,
         "r": 50
       },
-      "Name": "Player 3",
+      "Name": "Thebans",
       "Resources": {
         "food": 250,
         "metal": 250,
@@ -90,13 +90,13 @@
     },
     {
       "AI": "qbot",
-      "Civ": "hele",
+      "Civ": "mace",
       "Colour": {
         "b": 75,
         "g": 230,
         "r": 230
       },
-      "Name": "Player 4",
+      "Name": "Macedonians",
       "Resources": {
         "food": 250,
         "metal": 250,
@@ -110,12 +110,6 @@
 }
 ]]></ScriptSettings>
 	<Entities>
-		<Entity uid="7">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="486.76221" z="479.84168"/>
-			<Orientation y="0.79448"/>
-		</Entity>
 		<Entity uid="12">
 			<Template>other/hellenic_royal_stoa</Template>
 			<Player>1</Player>
@@ -127,66 +121,6 @@
 			<Player>1</Player>
 			<Position x="478.40418" z="520.79078"/>
 			<Orientation y="2.34508"/>
-		</Entity>
-		<Entity uid="21">
-			<Template>units/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="511.96601" z="475.93497"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="22">
-			<Template>units/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="515.97394" z="479.08597"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="23">
-			<Template>units/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="518.23786" z="481.1186"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="24">
-			<Template>units/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="519.61725" z="483.62848"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="25">
-			<Template>units/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="521.95978" z="485.33881"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="26">
-			<Template>units/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="515.09833" z="473.88071"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="27">
-			<Template>units/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="518.43958" z="477.74488"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="28">
-			<Template>units/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="520.1186" z="479.47651"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="29">
-			<Template>units/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="522.02417" z="480.83133"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="30">
-			<Template>units/thebes_sacred_band_hoplitai</Template>
-			<Player>1</Player>
-			<Position x="524.38642" z="482.90702"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="31">
 			<Template>other/hellenic_epic_temple</Template>
@@ -241,18 +175,6 @@
 			<Player>0</Player>
 			<Position x="442.37366" z="435.7628"/>
 			<Orientation y="-2.6752"/>
-		</Entity>
-		<Entity uid="41">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="1565.78382" z="1565.92908"/>
-			<Orientation y="-2.40552"/>
-		</Entity>
-		<Entity uid="42">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>4</Player>
-			<Position x="1565.62012" z="472.87357"/>
-			<Orientation y="-0.83779"/>
 		</Entity>
 		<Entity uid="43">
 			<Template>structures/hele_civil_centre</Template>
@@ -1267,12 +1189,6 @@
 			<Player>0</Player>
 			<Position x="1134.25953" z="847.56739"/>
 			<Orientation y="1.4056"/>
-		</Entity>
-		<Entity uid="225">
-			<Template>structures/hele_temple</Template>
-			<Player>1</Player>
-			<Position x="441.58036" z="529.59998"/>
-			<Orientation y="0.80549"/>
 		</Entity>
 		<Entity uid="226">
 			<Template>other/hellenic_stoa</Template>
@@ -13952,18 +13868,6 @@
 			<Position x="1537.50147" z="460.22098"/>
 			<Orientation y="-2.35386"/>
 		</Entity>
-		<Entity uid="2402">
-			<Template>structures/hele_temple</Template>
-			<Player>4</Player>
-			<Position x="1509.92652" z="461.81824"/>
-			<Orientation y="2.37551"/>
-		</Entity>
-		<Entity uid="2403">
-			<Template>structures/hele_temple</Template>
-			<Player>2</Player>
-			<Position x="1536.17042" z="1587.62818"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="2404">
 			<Template>other/hellenic_epic_temple</Template>
 			<Player>2</Player>
@@ -13973,8 +13877,8 @@
 		<Entity uid="2405">
 			<Template>other/hellenic_royal_stoa</Template>
 			<Player>2</Player>
-			<Position x="1592.44434" z="1541.48572"/>
-			<Orientation y="-0.84705"/>
+			<Position x="1591.06165" z="1539.89258"/>
+			<Orientation y="-0.7913"/>
 		</Entity>
 		<Entity uid="2406">
 			<Template>other/hellenic_stoa</Template>
@@ -13993,150 +13897,6 @@
 			<Player>2</Player>
 			<Position x="1601.30823" z="1571.34302"/>
 			<Orientation y="-2.42554"/>
-		</Entity>
-		<Entity uid="2417">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="479.78934" z="507.05231"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2418">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="481.76032" z="508.93989"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2419">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="484.3003" z="510.86951"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2420">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="486.05198" z="512.85895"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2421">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="487.71637" z="514.90198"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2422">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="489.42487" z="516.99909"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2423">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="491.72138" z="520.32972"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2424">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="493.18915" z="521.36225"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2425">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="1571.42627" z="1541.03663"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2426">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="1573.62342" z="1544.4286"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2427">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="1575.70716" z="1547.57178"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2428">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="1578.52442" z="1550.61377"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2429">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="1581.61988" z="1554.87256"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2430">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="1584.11658" z="1558.12232"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2431">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="1586.18628" z="1561.67127"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2432">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="1588.84437" z="1565.73829"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2463">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="1519.10792" z="443.51917"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2464">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="1520.98877" z="444.91602"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2465">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="1522.68409" z="448.1001"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2466">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="1524.64917" z="449.3899"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2467">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="1526.52283" z="450.38685"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2468">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="1527.79761" z="452.75153"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2469">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="1529.86353" z="454.36619"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2470">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="1517.26063" z="441.68107"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2471">
 			<Template>units/hele_support_female_citizen</Template>
@@ -44092,66 +43852,6 @@
 			<Position x="461.88044" z="1527.9463"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="8267">
-			<Template>units/thrace_black_cloak</Template>
-			<Player>2</Player>
-			<Position x="1560.03602" z="1518.0713"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8268">
-			<Template>units/thrace_black_cloak</Template>
-			<Player>2</Player>
-			<Position x="1561.4679" z="1519.80433"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8269">
-			<Template>units/thrace_black_cloak</Template>
-			<Player>2</Player>
-			<Position x="1563.1189" z="1521.34375"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8270">
-			<Template>units/thrace_black_cloak</Template>
-			<Player>2</Player>
-			<Position x="1564.84021" z="1522.98902"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8271">
-			<Template>units/thrace_black_cloak</Template>
-			<Player>2</Player>
-			<Position x="1566.41626" z="1524.82764"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8272">
-			<Template>units/thrace_black_cloak</Template>
-			<Player>2</Player>
-			<Position x="1563.81592" z="1527.13904"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8273">
-			<Template>units/thrace_black_cloak</Template>
-			<Player>2</Player>
-			<Position x="1562.0713" z="1525.36707"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8274">
-			<Template>units/thrace_black_cloak</Template>
-			<Player>2</Player>
-			<Position x="1560.20228" z="1523.85486"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8275">
-			<Template>units/thrace_black_cloak</Template>
-			<Player>2</Player>
-			<Position x="1558.70374" z="1522.08411"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8276">
-			<Template>units/thrace_black_cloak</Template>
-			<Player>2</Player>
-			<Position x="1557.2953" z="1520.49744"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="8277">
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
 			<Player>0</Player>
@@ -44720,6 +44420,282 @@
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
 			<Position x="723.19306" z="187.76395"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8372">
+			<Template>structures/spart_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="1560.7771" z="1562.818"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8373">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="1568.11072" z="1541.1482"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8374">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="1570.65186" z="1543.89478"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8375">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="1572.6609" z="1546.2295"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8376">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="1575.00037" z="1548.44434"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8377">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="1577.3407" z="1551.17627"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8378">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="1579.69886" z="1553.65564"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8379">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="1582.54651" z="1557.0265"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8380">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="1584.87183" z="1559.35853"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8381">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>2</Player>
+			<Position x="1554.18628" z="1520.72571"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8382">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>2</Player>
+			<Position x="1556.27503" z="1522.77466"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8383">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>2</Player>
+			<Position x="1558.52173" z="1525.14771"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8384">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>2</Player>
+			<Position x="1560.46375" z="1526.99549"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8385">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>2</Player>
+			<Position x="1557.38367" z="1517.88831"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8386">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>2</Player>
+			<Position x="1559.63086" z="1519.60193"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8387">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>2</Player>
+			<Position x="1561.25831" z="1521.20386"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8388">
+			<Template>units/spart_champion_infantry_spear</Template>
+			<Player>2</Player>
+			<Position x="1562.94092" z="1523.0763"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8389">
+			<Template>structures/spart_temple</Template>
+			<Player>2</Player>
+			<Position x="1532.50843" z="1593.05945"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8390">
+			<Template>structures/athen_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="484.9857" z="484.13569"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8391">
+			<Template>units/athen_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="494.90955" z="459.6193"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8392">
+			<Template>units/athen_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="496.74421" z="461.22452"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8393">
+			<Template>units/athen_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="498.99314" z="462.78721"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8394">
+			<Template>units/athen_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="500.8339" z="464.29902"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8395">
+			<Template>units/athen_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="502.85663" z="465.75141"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8396">
+			<Template>units/athen_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="504.60721" z="467.84424"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8397">
+			<Template>units/athen_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="506.14393" z="469.66529"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8398">
+			<Template>units/athen_champion_infantry</Template>
+			<Player>1</Player>
+			<Position x="508.22291" z="471.30369"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8399">
+			<Template>units/athen_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="496.30033" z="504.8845"/>
+			<Orientation y="-2.5101"/>
+		</Entity>
+		<Entity uid="8400">
+			<Template>units/athen_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="499.21879" z="502.07093"/>
+			<Orientation y="-2.10215"/>
+		</Entity>
+		<Entity uid="8401">
+			<Template>units/athen_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="501.6952" z="499.11158"/>
+			<Orientation y="-2.48951"/>
+		</Entity>
+		<Entity uid="8402">
+			<Template>units/athen_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="503.39689" z="497.68567"/>
+			<Orientation y="-2.49737"/>
+		</Entity>
+		<Entity uid="8403">
+			<Template>units/athen_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="505.46171" z="495.7454"/>
+			<Orientation y="-2.453"/>
+		</Entity>
+		<Entity uid="8404">
+			<Template>units/athen_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="507.6428" z="493.46656"/>
+			<Orientation y="-2.43378"/>
+		</Entity>
+		<Entity uid="8405">
+			<Template>units/athen_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="509.59937" z="491.63727"/>
+			<Orientation y="-2.13851"/>
+		</Entity>
+		<Entity uid="8406">
+			<Template>units/athen_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="511.34937" z="489.59043"/>
+			<Orientation y="-2.00554"/>
+		</Entity>
+		<Entity uid="8412">
+			<Template>structures/athen_temple</Template>
+			<Player>1</Player>
+			<Position x="443.38291" z="532.78711"/>
+			<Orientation y="0.7899"/>
+		</Entity>
+		<Entity uid="8413">
+			<Template>structures/mace_civil_centre</Template>
+			<Player>4</Player>
+			<Position x="1564.33252" z="472.2139"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8414">
+			<Template>structures/mace_temple</Template>
+			<Player>4</Player>
+			<Position x="1509.31043" z="462.75113"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8415">
+			<Template>units/mace_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="1514.66028" z="446.83014"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8416">
+			<Template>units/mace_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="1516.67225" z="448.43195"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8417">
+			<Template>units/mace_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="1518.15845" z="449.93265"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8418">
+			<Template>units/mace_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="1519.96668" z="451.47767"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8419">
+			<Template>units/mace_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="1521.02955" z="452.90772"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8420">
+			<Template>units/mace_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="1522.21668" z="454.37681"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8421">
+			<Template>units/mace_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="1523.48829" z="456.0569"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8422">
+			<Template>units/mace_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="1525.18055" z="457.4387"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
