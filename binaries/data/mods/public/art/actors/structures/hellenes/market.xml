@@ -2,25 +2,28 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <mesh>structural/hele_tc.dae</mesh>
+    <variant frequency="100" name="Hellenes market">
+      <mesh>structural/hele_market_struct.dae</mesh>
       <props>
-        <prop actor="props/structures/hellenes/market.xml" attachpoint="props_main"/>
-        <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/market_struct_b.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/market_tile_c.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/market_props_a.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
       </props>
-      <texture>structural/hele_struct_1.dds</texture>
+      <texture>structural/hele_struct.dds</texture>
     </variant>
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
     <variant name="death">
       <props>
-        <prop attachpoint="garrisoned"/>
         <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/market.xml" attachpoint="props_main"/>
-        <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/market_struct_b.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/market_tile_c.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/market_props_a.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

@@ -15,7 +15,7 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="17.0" depth="17.0"/>
+    <Square width="33.0" depth="29.0"/>
     <Height>8.0</Height>
   </Footprint>
   <Health>
@@ -36,7 +36,7 @@
     <metal>25</metal>
   </Loot>
   <Obstruction>
-    <Static width="17.0" depth="17.0"/>
+    <Static width="30.0" depth="26.0"/>
   </Obstruction>
   <ProductionQueue>
     <Technologies datatype="tokens">
@@ -64,6 +64,6 @@
     <Range>32</Range>
   </Vision>
   <VisualActor>
-    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
   </VisualActor>
 </Entity>
