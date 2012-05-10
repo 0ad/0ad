@@ -31,7 +31,7 @@
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "Clouds darken the horizon in Northwest India. Nearby rivers swell with monsoon rains, allowing for only a few treacherous crossings.\u000a\u000aThe rivers are heavily forested, while grasslands carpet the surrounding countryside. Watch out for Tigers in the tall grass! Asian elephants are also a common danger.",
+  "Description": "Clouds darken the horizon in Northwest India. Nearby rivers swell with monsoon rains, allowing for only a few treacherous crossings.\u000a\u000aThe rivers are heavily forested, while grasslands carpet the surrounding countryside.",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
@@ -243,18 +243,6 @@
 			<Player>0</Player>
 			<Position x="113.35518" z="578.61597"/>
 			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="51">
-			<Template>gaia/fauna_tiger</Template>
-			<Player>0</Player>
-			<Position x="90.05881" z="481.00013"/>
-			<Orientation y="0.8508"/>
-		</Entity>
-		<Entity uid="52">
-			<Template>gaia/fauna_tiger</Template>
-			<Player>0</Player>
-			<Position x="118.04084" z="475.46311"/>
-			<Orientation y="-0.05277"/>
 		</Entity>
 		<Entity uid="53">
 			<Template>gaia/flora_tree_oak</Template>
@@ -2601,78 +2589,6 @@
 			<Player>0</Player>
 			<Position x="498.50123" z="533.99488"/>
 			<Orientation y="0.77237"/>
-		</Entity>
-		<Entity uid="456">
-			<Template>gaia/fauna_tiger</Template>
-			<Player>0</Player>
-			<Position x="216.54705" z="784.21674"/>
-			<Orientation y="-2.30153"/>
-		</Entity>
-		<Entity uid="457">
-			<Template>gaia/fauna_tiger</Template>
-			<Player>0</Player>
-			<Position x="197.41678" z="812.10822"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="458">
-			<Template>gaia/fauna_tiger</Template>
-			<Player>0</Player>
-			<Position x="288.32605" z="724.03504"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="459">
-			<Template>gaia/fauna_tiger</Template>
-			<Player>0</Player>
-			<Position x="208.1332" z="506.29682"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="460">
-			<Template>gaia/fauna_tiger</Template>
-			<Player>0</Player>
-			<Position x="831.51502" z="228.36133"/>
-			<Orientation y="-1.72347"/>
-		</Entity>
-		<Entity uid="461">
-			<Template>gaia/fauna_tiger</Template>
-			<Player>0</Player>
-			<Position x="850.34955" z="250.00565"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="462">
-			<Template>gaia/fauna_tiger</Template>
-			<Player>0</Player>
-			<Position x="933.82001" z="509.14515"/>
-			<Orientation y="1.06733"/>
-		</Entity>
-		<Entity uid="463">
-			<Template>gaia/fauna_tiger</Template>
-			<Player>0</Player>
-			<Position x="963.33747" z="524.52051"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="464">
-			<Template>gaia/fauna_tiger</Template>
-			<Player>0</Player>
-			<Position x="848.42182" z="476.36677"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="465">
-			<Template>gaia/fauna_tiger</Template>
-			<Player>0</Player>
-			<Position x="915.88862" z="274.37415"/>
-			<Orientation y="-0.15883"/>
-		</Entity>
-		<Entity uid="466">
-			<Template>gaia/fauna_tiger</Template>
-			<Player>0</Player>
-			<Position x="706.35273" z="327.28937"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="467">
-			<Template>gaia/fauna_tiger</Template>
-			<Player>0</Player>
-			<Position x="52.69224" z="668.63166"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="468">
 			<Template>gaia/fauna_elephant_asian</Template>
@@ -28700,24 +28616,6 @@
 			<Player>0</Player>
 			<Position x="510.31089" z="434.5636"/>
 			<Orientation y="0.61672"/>
-		</Entity>
-		<Entity uid="5223">
-			<Template>gaia/fauna_tiger</Template>
-			<Player>0</Player>
-			<Position x="572.78248" z="572.43561"/>
-			<Orientation y="0.9242"/>
-		</Entity>
-		<Entity uid="5224">
-			<Template>gaia/fauna_tiger</Template>
-			<Player>0</Player>
-			<Position x="805.7386" z="870.73377"/>
-			<Orientation y="-2.12545"/>
-		</Entity>
-		<Entity uid="5225">
-			<Template>gaia/fauna_tiger</Template>
-			<Player>0</Player>
-			<Position x="232.85601" z="162.15448"/>
-			<Orientation y="0.44756"/>
 		</Entity>
 		<Entity uid="5226">
 			<Template>actor|fauna/hawk.xml</Template>
