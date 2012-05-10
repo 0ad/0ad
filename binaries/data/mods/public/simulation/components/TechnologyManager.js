@@ -285,13 +285,17 @@ TechnologyManager.prototype.ResearchTechnology = function (tech)
 		}
 	}
 	
+	this.UpdateAutoResearch();
+	
 	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
 	var player = cmpPlayer.GetPlayerID();
+	// TODO: Handle technology broadcasting for autoresearch properly (some components might not be initialized currently)
+	if (player === undefined)
+		return;
 	
-	for (var component in modifiedComponents)
+	for (var component in modifiedComponents){
 		Engine.BroadcastMessage(MT_TechnologyModification, { "component": component, "player": player });
-	
-	this.UpdateAutoResearch();
+	}
 };
 
 // Clears the cached data for an entity from the modifications cache

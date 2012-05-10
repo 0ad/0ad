@@ -884,18 +884,18 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 		{
 			if (!(tpl in this.placementWallEntities))
 			{
-	    		this.placementWallEntities[tpl] = {
-	    			"numUsed": 0,
-	    			"entities": [],
-	    			"templateData": this.GetTemplateData(player, tpl),
-	    		};
-	    		
-	    		// ensure that the loaded template data contains a wallPiece component
-	    		if (!this.placementWallEntities[tpl].templateData.wallPiece)
-	    		{
-	    			error("[SetWallPlacementPreview] No WallPiece component found for wall set template '" + tpl + "'");
-	    			return false;
-	    		}
+				this.placementWallEntities[tpl] = {
+					"numUsed": 0,
+					"entities": [],
+					"templateData": this.GetTemplateData(player, tpl),
+				};
+				
+				// ensure that the loaded template data contains a wallPiece component
+				if (!this.placementWallEntities[tpl].templateData.wallPiece)
+				{
+					error("[SetWallPlacementPreview] No WallPiece component found for wall set template '" + tpl + "'");
+					return false;
+				}
 			}
 		}
 	}
@@ -911,45 +911,45 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 	{
 		var snapRadius = this.placementWallEntities[wallSet.templates.tower].templateData.wallPiece.length * 0.5; // determined through trial and error
 		var startSnapData = this.GetFoundationSnapData(player, {
-    		"x": start.pos.x,
-    		"z": start.pos.z,
-    		"template": wallSet.templates.tower,
-    		"snapEntities": cmd.snapEntities,
-    		"snapRadius": snapRadius,
-    	});
-    	
-    	if (startSnapData)
-    	{
-    		start.pos.x = startSnapData.x;
-    		start.pos.z = startSnapData.z;
-    		start.angle = startSnapData.angle;
-    		start.snapped = true;
-    		
-    		if (startSnapData.ent)
-    			start.snappedEnt = startSnapData.ent; 
-    	}
-    	
-    	if (end.pos)
-    	{
-    		var endSnapData = this.GetFoundationSnapData(player, {
-    			"x": end.pos.x,
-    			"z": end.pos.z,
-    			"template": wallSet.templates.tower,
-    			"snapEntities": cmd.snapEntities,
-    			"snapRadius": snapRadius,
-    		});
-    		
-    		if (endSnapData)
-    		{
-    			end.pos.x = endSnapData.x;
-    			end.pos.z = endSnapData.z;
-    			end.angle = endSnapData.angle;
-    			end.snapped = true;
-    			
-    			if (endSnapData.ent)
-    				end.snappedEnt = endSnapData.ent;
-    		}
-    	}
+			"x": start.pos.x,
+			"z": start.pos.z,
+			"template": wallSet.templates.tower,
+			"snapEntities": cmd.snapEntities,
+			"snapRadius": snapRadius,
+		});
+		
+		if (startSnapData)
+		{
+			start.pos.x = startSnapData.x;
+			start.pos.z = startSnapData.z;
+			start.angle = startSnapData.angle;
+			start.snapped = true;
+			
+			if (startSnapData.ent)
+				start.snappedEnt = startSnapData.ent; 
+		}
+		
+		if (end.pos)
+		{
+			var endSnapData = this.GetFoundationSnapData(player, {
+				"x": end.pos.x,
+				"z": end.pos.z,
+				"template": wallSet.templates.tower,
+				"snapEntities": cmd.snapEntities,
+				"snapRadius": snapRadius,
+			});
+			
+			if (endSnapData)
+			{
+				end.pos.x = endSnapData.x;
+				end.pos.z = endSnapData.z;
+				end.angle = endSnapData.angle;
+				end.snapped = true;
+				
+				if (endSnapData.ent)
+					end.snappedEnt = endSnapData.ent;
+			}
+		}
 	}
 	
 	// clear the single-building preview entity (we'll be rolling our own)
@@ -1051,21 +1051,21 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 			}
 			
 			// if we're snapping to a foundation, add an extra preview tower and also set it to the same control group
-    		var endEntState = this.GetEntityState(player, end.snappedEnt);
-    		if (endEntState.foundation)
-    		{
-    			var cmpPosition = Engine.QueryInterface(end.snappedEnt, IID_Position);
-    			if (cmpPosition)
-    			{
-    				previewEntities.push({
-    					"template": wallSet.templates.tower,
-    					"pos": end.pos,
-    					"angle": cmpPosition.GetRotation().y,
-    					"controlGroups": [(endEntObstruction ? endEntObstruction.GetControlGroup() : undefined)],
-    					"excludeFromResult": true
-    				});
-    			}
-    		}
+			var endEntState = this.GetEntityState(player, end.snappedEnt);
+			if (endEntState.foundation)
+			{
+				var cmpPosition = Engine.QueryInterface(end.snappedEnt, IID_Position);
+				if (cmpPosition)
+				{
+					previewEntities.push({
+						"template": wallSet.templates.tower,
+						"pos": end.pos,
+						"angle": cmpPosition.GetRotation().y,
+						"controlGroups": [(endEntObstruction ? endEntObstruction.GetControlGroup() : undefined)],
+						"excludeFromResult": true
+					});
+				}
+			}
 		}
 		else
 		{

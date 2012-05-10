@@ -7,6 +7,10 @@
       <stone>150</stone>
     </Resources>
   </Cost>
+  <Footprint>
+    <Square width="25.0" depth="25.0"/>
+    <Height>12.0</Height>
+  </Footprint>
   <Health>
     <Max>2200</Max>
   </Health>
@@ -15,6 +19,9 @@
     <SpecificName>Stratēgeîon</SpecificName>
     <History>The Stratigeion was the main military headquarters, where important decisions were taken and plans for battles discussed by the Hellene Generals, or "Strategoi".</History>
   </Identity>
+  <Obstruction>
+    <Static width="20.0" depth="20.0"/>
+  </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
       units/mace_infantry_spearman_b
@@ -26,6 +33,7 @@
     </Entities>
   </ProductionQueue>
   <VisualActor>
-    <Actor>structures/hellenes/barracks.xml</Actor>
+    <Actor>structures/hellenes/barracks_new.xml</Actor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
   </VisualActor>
 </Entity>

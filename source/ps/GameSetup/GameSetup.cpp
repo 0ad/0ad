@@ -1116,7 +1116,9 @@ bool Autostart(const CmdLineArgs& args)
 			CScriptVal player;
 			scriptInterface.Eval("({})", player);
 
-			scriptInterface.SetProperty(player.get(), "Civ", std::string("hele"));
+			// We could load player_defaults.json here, but that would complicate the logic
+			//	even more and autostart is only intended for developers anyway
+			scriptInterface.SetProperty(player.get(), "Civ", std::string("athen"));
 			scriptInterface.SetPropertyInt(playerData.get(), i, player);
 		}
 	}

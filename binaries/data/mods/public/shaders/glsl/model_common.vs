@@ -35,8 +35,6 @@ attribute vec2 a_uv0;
   attribute vec4 a_skinWeights;
 #endif
 
-varying vec4 debugx;
-
 void main()
 {
   #if USE_GPU_SKINNING

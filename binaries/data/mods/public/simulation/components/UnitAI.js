@@ -51,7 +51,10 @@ UnitAI.prototype.Schema =
 // Unit stances.
 // There some targeting options:
 //   targetVisibleEnemies: anything in vision range is a viable target
-//   targetAttackers: anything that hurts us is a viable target
+//   targetAttackersAlways: anything that hurts us is a viable target,
+//     possibly overriding user orders!
+//   targetAttackersPassive: anything that hurts us is a viable target, 
+//     if we're on a passive/unforced order (e.g. gathering/building)
 // There are some response options, triggered when targets are detected:
 //   respondFlee: run away
 //   respondChase: start chasing after the enemy
@@ -64,7 +67,8 @@ UnitAI.prototype.Schema =
 var g_Stances = {
 	"violent": {
 		targetVisibleEnemies: true,
-		targetAttackers: true,
+		targetAttackersAlways: true,
+		targetAttackersPassive: true,
 		respondFlee: false,
 		respondChase: true,
 		respondChaseBeyondVision: true,
@@ -73,7 +77,8 @@ var g_Stances = {
 	},
 	"aggressive": {
 		targetVisibleEnemies: true,
-		targetAttackers: true,
+		targetAttackersAlways: false,
+		targetAttackersPassive: true,
 		respondFlee: false,
 		respondChase: true,
 		respondChaseBeyondVision: false,
@@ -82,7 +87,8 @@ var g_Stances = {
 	},
 	"defensive": {
 		targetVisibleEnemies: true,
-		targetAttackers: true,
+		targetAttackersAlways: false,
+		targetAttackersPassive: true,
 		respondFlee: false,
 		respondChase: false,
 		respondChaseBeyondVision: false,
@@ -91,7 +97,8 @@ var g_Stances = {
 	},
 	"passive": {
 		targetVisibleEnemies: false,
-		targetAttackers: true,
+		targetAttackersAlways: false,
+		targetAttackersPassive: true,
 		respondFlee: true,
 		respondChase: false,
 		respondChaseBeyondVision: false,
@@ -100,7 +107,8 @@ var g_Stances = {
 	},
 	"standground": {
 		targetVisibleEnemies: true,
-		targetAttackers: true,
+		targetAttackersAlways: false,
+		targetAttackersPassive: true,
 		respondFlee: false,
 		respondChase: false,
 		respondChaseBeyondVision: false,
@@ -344,7 +352,7 @@ var UnitFsmSpec = {
 				return;
 			}
 
-			this.PushOrderFront("Attack", { "target": this.order.data.target, "force": true });
+			this.PushOrderFront("Attack", { "target": this.order.data.target, "force": false });
 			return;
 		}
 
@@ -477,6 +485,7 @@ var UnitFsmSpec = {
 		},
 		
 		"Order.GatherNearPosition": function(msg) {
+			// TODO: see notes in Order.Attack
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 			cmpFormation.CallMemberFunction("GatherNearPosition", [msg.data.x, msg.data.z, msg.data.type, false]);
 			cmpFormation.Disband();
@@ -490,6 +499,7 @@ var UnitFsmSpec = {
 		},
 
 		"Order.Garrison": function(msg) {
+			// TODO: see notes in Order.Attack
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 			cmpFormation.CallMemberFunction("Garrison", [msg.data.target, false]);
 			cmpFormation.Disband();
@@ -589,7 +599,9 @@ var UnitFsmSpec = {
 		},
 
 		"Attacked": function(msg) {
-			if (this.GetStance().targetAttackers)
+			// Respond to attack if we always target attackers, or if we target attackers
+			//	during passive orders (e.g. gathering/repairing are never forced)
+			if (this.GetStance().targetAttackersAlways || (this.GetStance().targetAttackersPassive && (!this.order || !this.order.data || !this.order.data.force)))
 			{
 				this.RespondToTargetedEntities([msg.data.attacker]);
 			}
@@ -756,7 +768,8 @@ var UnitFsmSpec = {
 
 				"Attacked": function(msg) {
 					// If we're attacked by a close enemy, we should try to defend ourself
-					if (this.GetStance().targetAttackers && msg.data.type == "Melee")
+					//  but only if we're not forced to target something else
+					if (msg.data.type == "Melee" && (this.GetStance().targetAttackersAlways || (this.GetStance().targetAttackersPassive && !this.order.data.force)))
 					{
 						this.RespondToTargetedEntities([msg.data.attacker]);
 					}
@@ -827,8 +840,9 @@ var UnitFsmSpec = {
 				"Attacked": function(msg) {
 					if (this.order.data.target != msg.data.attacker)
 					{
-						// If we're attacked by a close enemy stronger than our current target, we choose to attack him
-						if (this.GetStance().targetAttackers && msg.data.type == "Melee")
+						// If we're attacked by a close enemy, stronger than our current target,
+						//  we choose to attack it, but only if we're not forced to target something else
+						if (msg.data.type == "Melee" && (this.GetStance().targetAttackersAlways || (this.GetStance().targetAttackersPassive && !this.order.data.force)))
 						{
 							var ents = [this.order.data.target, msg.data.attacker];
 							SortEntitiesByPriority(ents);
@@ -900,13 +914,13 @@ var UnitFsmSpec = {
 						});
 						if (nearby)
 						{
-							this.Gather(nearby, true);
+							this.PerformGather(nearby, true, false);
 							return;
 						}
 
 						// Couldn't find anything else. Just try this one again,
 						// maybe we'll succeed next time
-						this.Gather(oldTarget, true);
+						this.PerformGather(oldTarget, true, false);
 						return;
 					}
 
@@ -937,7 +951,7 @@ var UnitFsmSpec = {
 					// If there is a nearby resource start gathering
 					if (nearby)
 					{
-						this.Gather(nearby, false);
+						this.PerformGather(nearby, false, false);
 						return;
 					}
 
@@ -949,7 +963,11 @@ var UnitFsmSpec = {
 			"GATHERING": {
 				"enter": function() {
 					var target = this.order.data.target;
-					
+
+					// If this order was forced, the player probably gave it, but now we've reached the target
+					//	switch to an unforced order (can be interrupted by attacks)
+					this.order.data.force = false;
+
 					// Calculate timing based on gather rates
 					// This allows the gather rate to control how often we gather, instead of how much.
 					var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
@@ -1024,7 +1042,7 @@ var UnitFsmSpec = {
 							{
 								// (Keep this Gather order on the stack so we'll
 								// continue gathering after returning)
-								this.PushOrderFront("ReturnResource", { "target": nearby });
+								this.PushOrderFront("ReturnResource", { "target": nearby, "force": false });
 								return;
 							}
 
@@ -1043,7 +1061,7 @@ var UnitFsmSpec = {
 							});
 							if (nearby)
 							{
-								this.Gather(nearby, true);
+								this.PerformGather(nearby, true, false);
 								return;
 							}
 						}
@@ -1090,7 +1108,7 @@ var UnitFsmSpec = {
 						});
 						if (nearby)
 						{
-							this.Gather(nearby, true);
+							this.PerformGather(nearby, true, false);
 							return;
 						}
 
@@ -1101,10 +1119,10 @@ var UnitFsmSpec = {
 						var nearby = this.FindNearestDropsite(resourceType.generic);
 						if (nearby)
 						{
-							this.PushOrderFront("ReturnResource", { "target": nearby });
+							this.PushOrderFront("ReturnResource", { "target": nearby, "force": false });
 							return;
 						}
-
+						
 						// No dropsites - just give up
 					}
 				},
@@ -1119,7 +1137,7 @@ var UnitFsmSpec = {
 
 			"Attacked": function(msg) {
 				// If we stand ground we will rather die than flee
-				if (!this.GetStance().respondStandGround)
+				if (!this.GetStance().respondStandGround && !this.order.data.force)
 					this.Flee(msg.data.attacker, false);
 			},
 
@@ -1287,7 +1305,7 @@ var UnitFsmSpec = {
 					if (nearby)
 					{
 						this.FinishOrder();
-						this.PushOrderFront("ReturnResource", { "target": nearby });
+						this.PushOrderFront("ReturnResource", { "target": nearby, "force": false });
 						return;
 					}
 
@@ -1338,6 +1356,11 @@ var UnitFsmSpec = {
 
 			"REPAIRING": {
 				"enter": function() {
+
+					// If this order was forced, the player probably gave it, but now we've reached the target
+					//	switch to an unforced order (can be interrupted by attacks)
+					this.order.data.force = false;
+
 					this.SelectAnimation("build", false, 1.0, "build");
 					this.StartTimer(1000, 1000);
 				},
@@ -1389,7 +1412,7 @@ var UnitFsmSpec = {
 				// if we own the building
 				if (this.CanGather(msg.data.newentity))
 				{
-					this.Gather(msg.data.newentity, true);
+					this.PerformGather(msg.data.newentity, true, false);
 					return;
 				}
 
@@ -1406,7 +1429,7 @@ var UnitFsmSpec = {
 					});
 					if (nearby)
 					{
-						this.Gather(nearby, true);
+						this.PerformGather(nearby, true, false);
 						return;
 					}
 				}
@@ -1415,7 +1438,7 @@ var UnitFsmSpec = {
 				var nearbyFoundation = this.FindNearbyFoundation();
 				if (nearbyFoundation)
 				{
-					this.Repair(nearbyFoundation, oldAutocontinue, true);
+					this.AddOrder("Repair", { "target": nearbyFoundation, "autocontinue": oldAutocontinue, "force": false }, true);
 					return;
 				}
 
@@ -1755,16 +1778,11 @@ UnitAI.prototype.IsGarrisoned = function()
 UnitAI.prototype.OnCreate = function()
 {
 	if (this.IsAnimal())
-		UnitFsm.Init(this, "ANIMAL.FEEDING", this.StateChanged);
+		UnitFsm.Init(this, "ANIMAL.FEEDING");
 	else if (this.IsFormationController())
-		UnitFsm.Init(this, "FORMATIONCONTROLLER.IDLE", this.StateChanged);
+		UnitFsm.Init(this, "FORMATIONCONTROLLER.IDLE");
 	else
-		UnitFsm.Init(this, "INDIVIDUAL.IDLE", this.StateChanged);
-};
-
-UnitAI.prototype.StateChanged = function()
-{
-	Engine.PostMessage(this.entity, MT_UnitAIStateChanged, { "to": this.GetCurrentState()});
+		UnitFsm.Init(this, "INDIVIDUAL.IDLE");
 };
 
 UnitAI.prototype.OnOwnershipChanged = function(msg)
@@ -1875,6 +1893,11 @@ UnitAI.prototype.GetCurrentState = function()
 	return UnitFsm.GetCurrentState(this);
 };
 
+UnitAI.prototype.FsmStateNameChanged = function(state)
+{
+	Engine.PostMessage(this.entity, MT_UnitAIStateChanged, { "to": state });
+};
+
 /**
  * Call when the current order has been completed (or failed).
  * Removes the current order from the queue, and processes the
@@ -1894,8 +1917,8 @@ UnitAI.prototype.FinishOrder = function()
 		var ret = UnitFsm.ProcessMessage(this,
 			{"type": "Order."+this.order.type, "data": this.order.data}
 		);
-		
-		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData()});
+
+		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 
 		// If the order was rejected then immediately take it off
 		// and process the remaining queue
@@ -1930,8 +1953,8 @@ UnitAI.prototype.PushOrder = function(type, data)
 		var ret = UnitFsm.ProcessMessage(this,
 			{"type": "Order."+this.order.type, "data": this.order.data}
 		);
-		
-		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData()});
+
+		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 
 		// If the order was rejected then immediately take it off
 		// and process the remaining queue
@@ -1962,8 +1985,8 @@ UnitAI.prototype.PushOrderFront = function(type, data)
 		var ret = UnitFsm.ProcessMessage(this,
 			{"type": "Order."+this.order.type, "data": this.order.data}
 		);
-		
-		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData()});
+
+		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 
 		// If the order was rejected then immediately take it off again;
 		// assume the previous active order is still valid (the short-lived
@@ -2009,9 +2032,7 @@ UnitAI.prototype.AddOrders = function(orders)
 UnitAI.prototype.GetOrderData = function()
 {
 	if (this.order && this.order.data)
-	{
-		return eval(uneval(this.order.data)); // return a copy
-	}
+		return deepcopy(this.order.data);
 	else
 		return undefined;
 };
@@ -2040,10 +2061,10 @@ UnitAI.prototype.StartTimer = function(offset, repeat)
 	var data = { "timerRepeat": repeat };
 
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-    if (repeat === undefined)
-    	this.timer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "TimerHandler", offset, data);
-    else
-        this.timer = cmpTimer.SetInterval(this.entity, IID_UnitAI, "TimerHandler", offset, repeat, data);
+	if (repeat === undefined)
+		this.timer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "TimerHandler", offset, data);
+	else
+		this.timer = cmpTimer.SetInterval(this.entity, IID_UnitAI, "TimerHandler", offset, repeat, data);
 };
 
 /**
@@ -2169,8 +2190,9 @@ UnitAI.prototype.FindNearbyResource = function(filter)
 	{
 		var cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
 		var type = cmpResourceSupply.GetType();
+		var amount = cmpResourceSupply.GetCurrentAmount();
 		var template = cmpTemplateManager.GetCurrentTemplateName(ent);
-		if (filter(ent, type, template))
+		if (amount > 0 && filter(ent, type, template))
 			return ent;
 	}
 
@@ -2515,7 +2537,7 @@ UnitAI.prototype.RespondToTargetedEntities = function(ents)
 
 	if (this.GetStance().respondFlee)
 	{
-		this.PushOrderFront("Flee", { "target": ents[0] });
+		this.PushOrderFront("Flee", { "target": ents[0], "force": false });
 		return true;
 	}
 
@@ -2696,16 +2718,26 @@ UnitAI.prototype.AddOrder = function(type, data, queued)
 		this.ReplaceOrder(type, data);
 };
 
+/**
+ * Adds walk order to queue, forced by the player.
+ */
 UnitAI.prototype.Walk = function(x, z, queued)
 {
-	this.AddOrder("Walk", { "x": x, "z": z }, queued);
+	this.AddOrder("Walk", { "x": x, "z": z, "force": true }, queued);
 };
 
+/**
+ * Adds walk-to-target order to queue, this only occurs in response
+ * to a player order, and so is forced.
+ */
 UnitAI.prototype.WalkToTarget = function(target, queued)
 {
-	this.AddOrder("WalkToTarget", { "target": target }, queued);
+	this.AddOrder("WalkToTarget", { "target": target, "force": true }, queued);
 };
 
+/**
+ * Adds leave foundation order to queue, treated as forced.
+ */
 UnitAI.prototype.LeaveFoundation = function(target)
 {
 	// If we're already being told to leave a foundation, then
@@ -2714,9 +2746,12 @@ UnitAI.prototype.LeaveFoundation = function(target)
 	if (this.order && this.order.type == "LeaveFoundation")
 		return;
 
-	this.PushOrderFront("LeaveFoundation", { "target": target });
+	this.PushOrderFront("LeaveFoundation", { "target": target, "force": true });
 };
 
+/**
+ * Adds attack order to the queue, forced by the player.
+ */
 UnitAI.prototype.Attack = function(target, queued)
 {
 	if (!this.CanAttack(target))
@@ -2733,6 +2768,9 @@ UnitAI.prototype.Attack = function(target, queued)
 	this.AddOrder("Attack", { "target": target, "force": true }, queued);
 };
 
+/**
+ * Adds garrison order to the queue, forced by the player.
+ */
 UnitAI.prototype.Garrison = function(target, queued)
 {
 	if (!this.CanGarrison(target))
@@ -2740,9 +2778,12 @@ UnitAI.prototype.Garrison = function(target, queued)
 		this.WalkToTarget(target, queued);
 		return;
 	}
-	this.AddOrder("Garrison", { "target": target }, queued);
+	this.AddOrder("Garrison", { "target": target, "force": true }, queued);
 };
 
+/**
+ * Adds ungarrison order to the queue.
+ */
 UnitAI.prototype.Ungarrison = function()
 {
 	if (this.IsGarrisoned())
@@ -2751,7 +2792,19 @@ UnitAI.prototype.Ungarrison = function()
 	}
 };
 
+/**
+ * Adds gather order to the queue, forced by the player 
+ * until the target is reached 
+ */
 UnitAI.prototype.Gather = function(target, queued)
+{
+	this.PerformGather(target, queued, true);
+};
+
+/**
+ * Internal function to abstract the force parameter.
+ */
+UnitAI.prototype.PerformGather = function(target, queued, force)
 {
 	if (!this.CanGather(target))
 	{
@@ -2779,14 +2832,21 @@ UnitAI.prototype.Gather = function(target, queued)
 	if (cmpPosition && cmpPosition.IsInWorld())
 		lastPos = cmpPosition.GetPosition();
 
-	this.AddOrder("Gather", { "target": target, "type": type, "template": template, "lastPos": lastPos }, queued);
+	this.AddOrder("Gather", { "target": target, "type": type, "template": template, "lastPos": lastPos, "force": force }, queued);
 };
 
+/**
+ * Adds gather-near-position order to the queue, not forced, so it can be
+ * interrupted by attacks.
+ */
 UnitAI.prototype.GatherNearPosition = function(x, z, type, queued)
 {
-	this.AddOrder("GatherNearPosition", { "type": type, "x": x, "z": z }, queued);
+	this.AddOrder("GatherNearPosition", { "type": type, "x": x, "z": z, "force": false }, queued);
 };
 
+/**
+ * Adds heal order to the queue, forced by the player.
+ */
 UnitAI.prototype.Heal = function(target, queued)
 {
 	if (!this.CanHeal(target))
@@ -2798,6 +2858,9 @@ UnitAI.prototype.Heal = function(target, queued)
 	this.AddOrder("Heal", { "target": target, "force": true }, queued);
 };
 
+/**
+ * Adds return resource order to the queue, forced by the player.
+ */
 UnitAI.prototype.ReturnResource = function(target, queued)
 {
 	if (!this.CanReturnResource(target, true))
@@ -2806,9 +2869,13 @@ UnitAI.prototype.ReturnResource = function(target, queued)
 		return;
 	}
 
-	this.AddOrder("ReturnResource", { "target": target }, queued);
+	this.AddOrder("ReturnResource", { "target": target, "force": true }, queued);
 };
 
+/**
+ * Adds trade order to the queue. Either walk to the first market, or
+ * start a new route. Not forced, so it can be interrupted by attacks.
+ */
 UnitAI.prototype.SetupTradeRoute = function(target, queued)
 {
 	if (!this.CanTrade(target))
@@ -2822,7 +2889,7 @@ UnitAI.prototype.SetupTradeRoute = function(target, queued)
 	if (marketsChanged)
 	{
 		if (cmpTrader.HasBothMarkets())
-			this.AddOrder("Trade", { "firstMarket": cmpTrader.GetFirstMarket(), "secondMarket": cmpTrader.GetSecondMarket() }, queued);
+			this.AddOrder("Trade", { "firstMarket": cmpTrader.GetFirstMarket(), "secondMarket": cmpTrader.GetSecondMarket(), "force": false }, queued);
 		else
 			this.WalkToTarget(cmpTrader.GetFirstMarket(), queued);
 	}
@@ -2882,6 +2949,10 @@ UnitAI.prototype.StopTrading = function()
 	cmpTrader.StopTrading();
 };
 
+/**
+ * Adds repair/build order to the queue, forced by the player
+ * until the target is reached
+ */
 UnitAI.prototype.Repair = function(target, autocontinue, queued)
 {
 	if (!this.CanRepair(target))
@@ -2890,17 +2961,24 @@ UnitAI.prototype.Repair = function(target, autocontinue, queued)
 		return;
 	}
 
-	this.AddOrder("Repair", { "target": target, "autocontinue": autocontinue }, queued);
+	this.AddOrder("Repair", { "target": target, "autocontinue": autocontinue, "force": true }, queued);
 };
 
+/**
+ * Adds flee order to the queue, not forced, so it can be
+ * interrupted by attacks.
+ */
 UnitAI.prototype.Flee = function(target, queued)
 {
-	this.AddOrder("Flee", { "target": target }, queued);
+	this.AddOrder("Flee", { "target": target, "force": false }, queued);
 };
 
+/**
+ * Adds cheer order to the queue. Forced so it won't be interrupted by attacks.
+ */
 UnitAI.prototype.Cheer = function()
 {
-	this.AddOrder("Cheering", null, false);
+	this.AddOrder("Cheering", { "force": true }, false);
 };
 
 UnitAI.prototype.SetStance = function(stance)
@@ -3030,6 +3108,33 @@ UnitAI.prototype.GetStanceName = function()
 	return this.stance;
 };
 
+
+UnitAI.prototype.SetMoveSpeed = function(speed)
+{
+	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	cmpMotion.SetSpeed(speed);
+};
+
+UnitAI.prototype.SetHeldPosition = function(x, z)
+{
+	this.heldPosition = {"x": x, "z": z};
+};
+
+UnitAI.prototype.GetHeldPosition = function(pos)
+{
+	return this.heldPosition;
+};
+
+UnitAI.prototype.WalkToHeldPosition = function()
+{
+	if (this.heldPosition)
+	{
+		this.AddOrder("Walk", { "x": this.heldPosition.x, "z": this.heldPosition.z, "force": false }, false);
+		return true;
+	}
+	return false;
+};
+
 //// Helper functions ////
 
 UnitAI.prototype.CanAttack = function(target)
@@ -3042,7 +3147,7 @@ UnitAI.prototype.CanAttack = function(target)
 	// Verify that we're able to respond to Attack commands
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 	if (!cmpAttack)
-		return false;    
+		return false;
 
 	if (!cmpAttack.CanAttack(target))
 		return false;
@@ -3260,32 +3365,6 @@ UnitAI.prototype.MoveRandomly = function(distance)
 
 	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	cmpMotion.MoveToPointRange(tx, tz, distance, distance);
-};
-
-UnitAI.prototype.SetMoveSpeed = function(speed)
-{
-	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	cmpMotion.SetSpeed(speed);
-};
-
-UnitAI.prototype.SetHeldPosition = function(x, z)
-{
-	this.heldPosition = {"x": x, "z": z};
-};
-
-UnitAI.prototype.GetHeldPosition = function(pos)
-{
-	return this.heldPosition;
-};
-
-UnitAI.prototype.WalkToHeldPosition = function()
-{
-	if (this.heldPosition)
-	{
-		this.Walk(this.heldPosition.x, this.heldPosition.z, false);
-		return true;
-	}
-	return false;
 };
 
 UnitAI.prototype.GetAttackableEntitiesByPreference = function(ents)
