@@ -480,7 +480,7 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 		var e = events[i];
 
 		if (e.type === "Destroy") {
-			if (e.msg.metadata[gameState.getPlayerID()] && e.msg.metadata[gameState.getPlayerID()]["worker-object"]){
+			if (e.msg.metadata && e.msg.metadata[gameState.getPlayerID()] && e.msg.metadata[gameState.getPlayerID()]["worker-object"]){
 				e.msg.metadata[gameState.getPlayerID()]["worker-object"].updateGathererCounts(gameState, true);
 			}
 		}
