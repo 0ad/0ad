@@ -122,7 +122,7 @@ var Filters = {
 			if (!ent.position()){
 				return false;
 			}else{
-				return (VectorDistance(startPoint, ent.position()) < dist);
+				return (SquareVectorDistance(startPoint, ent.position()) < dist*dist);
 			}
 		},
 		"dynamicProperties": ['position']};
@@ -134,7 +134,7 @@ var Filters = {
 			if (!ent.position()){
 				return false;
 			}else{
-				return (VectorDistance(startPoint, ent.position()) < dist);
+				return (SquareVectorDistance(startPoint, ent.position()) < dist*dist);
 			}
 		},
 		"dynamicProperties": []};
@@ -180,12 +180,17 @@ var Filters = {
 				return false;
 			}
 			
+			// too many workers trying to gather from this resource
+			if (ent.getMetadata("full") === true){
+				return false;
+			}
+			
 			if (type.generic == "treasure"){
 				return (resourceType == type.specific);
 			} else {
 				return (resourceType == type.generic);
 			}
 		},
-		"dynamicProperties": ["resourceSupplyAmount", "owner"]};
+		"dynamicProperties": ["resourceSupplyAmount", "owner", "metadata.inaccessible", "metadata.full"]};
 	}
 };

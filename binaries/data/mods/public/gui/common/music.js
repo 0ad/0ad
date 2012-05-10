@@ -26,7 +26,7 @@ function Music()
 
 	this.tracks = {
 		MAIN_MENU_TRACK : "main_menu.ogg",
-		VICTORY_TRACK : "win_1.ogg",
+		VICTORY_TRACK : "Victory_Track.ogg",
 		DEFEAT_TRACK : "gen_loss_track.ogg",
 		DEFEAT_CUE_TRACK : "gen_loss_cue.ogg"
 	};

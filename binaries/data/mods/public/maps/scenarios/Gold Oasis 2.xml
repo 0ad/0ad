@@ -3,17 +3,17 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>cumulus</SkySet>
-		<SunColour r="0.847059" g="0.792157" b="0.592157"/>
-		<SunElevation angle="0.613592"/>
-		<SunRotation angle="-1.22718"/>
+		<SkySet>sunset</SkySet>
+		<SunColour r="1.01581" g="0.949969" b="0.710126"/>
+		<SunElevation angle="0.558369"/>
+		<SunRotation angle="0.0552233"/>
 		<TerrainAmbientColour r="0.364706" g="0.364706" b="0.294118"/>
 		<UnitsAmbientColour r="0.392157" g="0.356863" b="0.286275"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
 				<Colour r="0.294118" g="0.34902" b="0.694118"/>
-				<Height>19.9</Height>
+				<Height>19.4098</Height>
 				<Shininess>1.46484</Shininess>
 				<Waviness>2</Waviness>
 				<Murkiness>1.2</Murkiness>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="553.763" y="89.8292" z="57.7433"/>
+		<Position x="558.247" y="98.8905" z="39.7741"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -41,11 +41,11 @@
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
-  "Name": "Gold Oasis 1",
+  "Name": "Gold Oasis 2",
   "PlayerData": [
     {
       "AI": "",
-      "Civ": "rome",
+      "Civ": "mace",
       "Colour": {
         "b": 200,
         "g": 46,
@@ -54,7 +54,6 @@
       "Name": "Player 1",
       "Resources": {
         "food": 300,
-        "metal": 300,
         "stone": 300,
         "wood": 300
       },
@@ -62,7 +61,7 @@
     },
     {
       "AI": "qbot",
-      "Civ": "cart",
+      "Civ": "athen",
       "Colour": {
         "b": 20,
         "g": 20,
@@ -71,7 +70,6 @@
       "Name": "Player 2",
       "Resources": {
         "food": 300,
-        "metal": 300,
         "stone": 300,
         "wood": 300
       },
@@ -86,66 +84,6 @@
 }
 ]]></ScriptSettings>
 	<Entities>
-		<Entity uid="150">
-			<Template>structures/cart_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="470.23711" z="867.95846"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="151">
-			<Template>units/cart_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="444.78127" z="859.47318"/>
-			<Orientation y="-2.35621"/>
-		</Entity>
-		<Entity uid="152">
-			<Template>units/cart_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="450.43812" z="853.81632"/>
-			<Orientation y="-2.35621"/>
-		</Entity>
-		<Entity uid="153">
-			<Template>units/cart_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="456.09498" z="848.15947"/>
-			<Orientation y="-2.35621"/>
-		</Entity>
-		<Entity uid="154">
-			<Template>units/cart_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="461.75182" z="842.50261"/>
-			<Orientation y="-2.35621"/>
-		</Entity>
-		<Entity uid="155">
-			<Template>units/cart_infantry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="478.72239" z="842.50261"/>
-			<Orientation y="-3.927"/>
-		</Entity>
-		<Entity uid="156">
-			<Template>units/cart_infantry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="484.37925" z="848.15947"/>
-			<Orientation y="-3.927"/>
-		</Entity>
-		<Entity uid="157">
-			<Template>units/cart_infantry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="490.0361" z="853.81632"/>
-			<Orientation y="-3.927"/>
-		</Entity>
-		<Entity uid="158">
-			<Template>units/cart_infantry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="495.69295" z="859.47318"/>
-			<Orientation y="-3.927"/>
-		</Entity>
-		<Entity uid="159">
-			<Template>units/cart_cavalry_javelinist_b</Template>
-			<Player>2</Player>
-			<Position x="487.20768" z="884.92902"/>
-			<Orientation y="0.78541"/>
-		</Entity>
 		<Entity uid="160">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
@@ -234,13 +172,7 @@
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
 			<Position x="499.04316" z="826.57947"/>
-			<Orientation y="5.76203"/>
-		</Entity>
-		<Entity uid="175">
-			<Template>gaia/geology_metal_desert_slabs</Template>
-			<Player>0</Player>
-			<Position x="562" z="898"/>
-			<Orientation y="0.38704"/>
+			<Orientation y="1.39306"/>
 		</Entity>
 		<Entity uid="176">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -264,12 +196,6 @@
 			<Player>0</Player>
 			<Position x="554.31493" z="900.22252"/>
 			<Orientation y="3.49073"/>
-		</Entity>
-		<Entity uid="180">
-			<Template>gaia/geology_metal_desert_slabs</Template>
-			<Player>0</Player>
-			<Position x="378" z="978"/>
-			<Orientation y="3.89345"/>
 		</Entity>
 		<Entity uid="181">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -629,66 +555,6 @@
 			<Position x="406.30251" z="886.45063"/>
 			<Orientation y="2.57099"/>
 		</Entity>
-		<Entity uid="245">
-			<Template>structures/rome_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="553.7629" z="156.04155"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="246">
-			<Template>units/rome_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="528.30706" z="147.55626"/>
-			<Orientation y="-2.35621"/>
-		</Entity>
-		<Entity uid="247">
-			<Template>units/rome_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="533.96392" z="141.89942"/>
-			<Orientation y="-2.35621"/>
-		</Entity>
-		<Entity uid="248">
-			<Template>units/rome_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="539.62076" z="136.24256"/>
-			<Orientation y="-2.35621"/>
-		</Entity>
-		<Entity uid="249">
-			<Template>units/rome_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="545.27762" z="130.58571"/>
-			<Orientation y="-2.35621"/>
-		</Entity>
-		<Entity uid="250">
-			<Template>units/rome_infantry_swordsman_b</Template>
-			<Player>1</Player>
-			<Position x="562.24819" z="130.58571"/>
-			<Orientation y="-3.927"/>
-		</Entity>
-		<Entity uid="251">
-			<Template>units/rome_infantry_swordsman_b</Template>
-			<Player>1</Player>
-			<Position x="567.90503" z="136.24256"/>
-			<Orientation y="-3.927"/>
-		</Entity>
-		<Entity uid="252">
-			<Template>units/rome_infantry_swordsman_b</Template>
-			<Player>1</Player>
-			<Position x="573.5619" z="141.89942"/>
-			<Orientation y="-3.927"/>
-		</Entity>
-		<Entity uid="253">
-			<Template>units/rome_infantry_swordsman_b</Template>
-			<Player>1</Player>
-			<Position x="579.21874" z="147.55626"/>
-			<Orientation y="-3.927"/>
-		</Entity>
-		<Entity uid="254">
-			<Template>units/rome_cavalry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="570.73346" z="173.01212"/>
-			<Orientation y="0.78541"/>
-		</Entity>
 		<Entity uid="255">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
@@ -752,20 +618,20 @@
 		<Entity uid="265">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="517.01557" z="131.69593"/>
-			<Orientation y="1.19352"/>
+			<Position x="517.0149" z="131.76996"/>
+			<Orientation y="-1.45717"/>
 		</Entity>
 		<Entity uid="266">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="518.83423" z="119.37453"/>
-			<Orientation y="5.34809"/>
+			<Position x="518.33423" z="118.51969"/>
+			<Orientation y="-1.1755"/>
 		</Entity>
 		<Entity uid="267">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
 			<Position x="517.69898" z="124.63852"/>
-			<Orientation y="2.02363"/>
+			<Orientation y="-1.83587"/>
 		</Entity>
 		<Entity uid="268">
 			<Template>gaia/flora_bush_berry</Template>
@@ -777,7 +643,7 @@
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
 			<Position x="524.6036" z="117.2715"/>
-			<Orientation y="5.10714"/>
+			<Orientation y="2.03798"/>
 		</Entity>
 		<Entity uid="270">
 			<Template>gaia/geology_metal_desert_slabs</Template>
@@ -808,12 +674,6 @@
 			<Position x="526.83869" z="258.96164"/>
 			<Orientation y="4.28161"/>
 		</Entity>
-		<Entity uid="275">
-			<Template>gaia/geology_metal_desert_slabs</Template>
-			<Player>0</Player>
-			<Position x="446" z="66"/>
-			<Orientation y="1.10132"/>
-		</Entity>
 		<Entity uid="276">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="443.25132" z="58.48704"/>
@@ -841,7 +701,7 @@
 			<Template>gaia/geology_stonemine_desert_quarry</Template>
 			<Player>0</Player>
 			<Position x="487.57364" z="231.1023"/>
-			<Orientation y="2.56392"/>
+			<Orientation y="-0.22916"/>
 		</Entity>
 		<Entity uid="281">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -873,14 +733,14 @@
 		<Entity uid="286">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
 			<Player>0</Player>
-			<Position x="477.58603" z="231.04673"/>
+			<Position x="477.96955" z="232.80088"/>
 			<Orientation y="6.00635"/>
 		</Entity>
 		<Entity uid="287">
 			<Template>gaia/geology_stonemine_desert_quarry</Template>
 			<Player>0</Player>
 			<Position x="617.30895" z="271.06952"/>
-			<Orientation y="1.68607"/>
+			<Orientation y="1.23203"/>
 		</Entity>
 		<Entity uid="288">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -4542,12 +4402,6 @@
 			<Position x="688.68624" z="339.19478"/>
 			<Orientation y="2.4385"/>
 		</Entity>
-		<Entity uid="951">
-			<Template>gaia/geology_metal_desert_slabs</Template>
-			<Player>0</Player>
-			<Position x="386" z="126"/>
-			<Orientation y="1.29752"/>
-		</Entity>
 		<Entity uid="952">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
@@ -7815,12 +7669,12 @@
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
 			<Position x="589.89545" z="112.74434"/>
-			<Orientation y="0.7231"/>
+			<Orientation y="2.33048"/>
 		</Entity>
 		<Entity uid="1594">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="527.18586" z="849.91279"/>
+			<Position x="528.5448" z="850.97425"/>
 			<Orientation y="-2.32"/>
 		</Entity>
 		<Entity uid="1595">
@@ -8030,7 +7884,7 @@
 		<Entity uid="1629">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
-			<Position x="399.75574" z="764.19813"/>
+			<Position x="414.3949" z="793.87684"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1630">
@@ -9138,7 +8992,7 @@
 		<Entity uid="1846">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
 			<Position x="530.0495" z="264.5315"/>
-			<Orientation y="-2.45061"/>
+			<Orientation y="2.5871"/>
 		</Entity>
 		<Entity uid="1847">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
@@ -9178,7 +9032,7 @@
 		<Entity uid="1854">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
 			<Position x="536.0738" z="263.83716"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="-1.4652"/>
 		</Entity>
 		<Entity uid="1855">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
@@ -10272,47 +10126,47 @@
 		</Entity>
 		<Entity uid="2073">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="395.45063" z="778.66742"/>
+			<Position x="410.08979" z="808.34614"/>
 			<Orientation y="-2.94938"/>
 		</Entity>
 		<Entity uid="2074">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="395.67835" z="755.88953"/>
+			<Position x="410.31751" z="785.56824"/>
 			<Orientation y="2.4772"/>
 		</Entity>
 		<Entity uid="2075">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="398.42444" z="754.03303"/>
+			<Position x="413.0636" z="783.71174"/>
 			<Orientation y="1.60497"/>
 		</Entity>
 		<Entity uid="2076">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="406.5041" z="756.18384"/>
+			<Position x="421.14325" z="785.86255"/>
 			<Orientation y="0.90468"/>
 		</Entity>
 		<Entity uid="2077">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="415.59241" z="764.83228"/>
+			<Position x="430.23157" z="794.511"/>
 			<Orientation y="-0.73128"/>
 		</Entity>
 		<Entity uid="2078">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="406.19556" z="769.8412"/>
+			<Position x="420.83472" z="799.5199"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2079">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="392.17994" z="763.37745"/>
+			<Position x="406.8191" z="793.05616"/>
 			<Orientation y="-1.49592"/>
 		</Entity>
 		<Entity uid="2080">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="408.65455" z="768.28736"/>
+			<Position x="423.29371" z="797.96607"/>
 			<Orientation y="1.10584"/>
 		</Entity>
 		<Entity uid="2081">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="414.10376" z="768.67505"/>
+			<Position x="428.74292" z="798.35376"/>
 			<Orientation y="-1.92052"/>
 		</Entity>
 		<Entity uid="2082">
@@ -10947,7 +10801,7 @@
 		</Entity>
 		<Entity uid="2208">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
-			<Position x="396.83924" z="771.71668"/>
+			<Position x="411.4784" z="801.3954"/>
 			<Orientation y="-2.38073"/>
 		</Entity>
 		<Entity uid="2209">
@@ -11558,7 +11412,7 @@
 		<Entity uid="2330">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
 			<Position x="518.96656" z="230.16518"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="1.72368"/>
 		</Entity>
 		<Entity uid="2331">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
@@ -11624,6 +11478,126 @@
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
 			<Position x="618.42316" z="257.61832"/>
 			<Orientation y="0.95408"/>
+		</Entity>
+		<Entity uid="2344">
+			<Template>structures/mace_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="550.63367" z="151.0785"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2345">
+			<Template>units/mace_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="559.67994" z="130.90037"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2346">
+			<Template>units/mace_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="562.7671" z="133.79879"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2347">
+			<Template>units/mace_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="565.63831" z="137.13981"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2348">
+			<Template>units/mace_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="568.93024" z="140.33964"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2349">
+			<Template>units/mace_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="533.09247" z="140.98993"/>
+			<Orientation y="-2.62087"/>
+		</Entity>
+		<Entity uid="2350">
+			<Template>units/mace_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="536.59076" z="137.056"/>
+			<Orientation y="-2.28275"/>
+		</Entity>
+		<Entity uid="2351">
+			<Template>units/mace_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="539.1714" z="133.81342"/>
+			<Orientation y="-2.37131"/>
+		</Entity>
+		<Entity uid="2352">
+			<Template>units/mace_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="542.5398" z="130.51648"/>
+			<Orientation y="-2.1711"/>
+		</Entity>
+		<Entity uid="2353">
+			<Template>units/mace_cavalry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="566.67481" z="164.46647"/>
+			<Orientation y="0.8412"/>
+		</Entity>
+		<Entity uid="2354">
+			<Template>structures/athen_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="471.33216" z="865.88526"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2355">
+			<Template>units/athen_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="479.27561" z="841.83399"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2356">
+			<Template>units/athen_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="483.81873" z="846.53541"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2357">
+			<Template>units/athen_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="487.37882" z="850.05378"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2358">
+			<Template>units/athen_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="490.98194" z="854.04834"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2359">
+			<Template>units/athen_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="453.62064" z="855.94855"/>
+			<Orientation y="-2.58388"/>
+		</Entity>
+		<Entity uid="2360">
+			<Template>units/athen_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="456.64283" z="852.33008"/>
+			<Orientation y="-2.39307"/>
+		</Entity>
+		<Entity uid="2361">
+			<Template>units/athen_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="460.21549" z="847.86384"/>
+			<Orientation y="-2.2712"/>
+		</Entity>
+		<Entity uid="2362">
+			<Template>units/athen_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="463.88801" z="843.93165"/>
+			<Orientation y="-1.98743"/>
+		</Entity>
+		<Entity uid="2363">
+			<Template>units/athen_cavalry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="488.25522" z="880.00501"/>
+			<Orientation y="0.70191"/>
 		</Entity>
 	</Entities>
 	<Paths/>
