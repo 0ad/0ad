@@ -26,6 +26,10 @@
 		}
 
 		var cmpFootprint = Engine.QueryInterface(ent, IID_Footprint);
+		if (!cmpFootprint) {
+			print(template+" has no footprint\n");
+			continue;
+		}
 		var shape = cmpFootprint.GetShape();
 		var w, h;
 		if (shape.type == 'circle') {
