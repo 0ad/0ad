@@ -368,7 +368,7 @@ var UnitFsmSpec = {
 			// so try gathering it from here.
 			// TODO: need better handling of the can't-reach-target case
 			this.StopMoving();
-			this.SetNextState("INDIVIDUAL.GATHER.GATHERING");
+			this.SetNextStateAlwaysEntering("INDIVIDUAL.GATHER.GATHERING");
 		}
 	},
 	
@@ -914,13 +914,13 @@ var UnitFsmSpec = {
 						});
 						if (nearby)
 						{
-							this.PerformGather(nearby, true, false);
+							this.PerformGather(nearby, false, false);
 							return;
 						}
 
 						// Couldn't find anything else. Just try this one again,
 						// maybe we'll succeed next time
-						this.PerformGather(oldTarget, true, false);
+						this.PerformGather(oldTarget, false, false);
 						return;
 					}
 
@@ -1048,6 +1048,7 @@ var UnitFsmSpec = {
 
 							// Oh no, couldn't find any drop sites. Give up on gathering.
 							this.FinishOrder();
+							return;
 						}
 
 						// If the target is exhausted, we switch to a new target
@@ -1061,7 +1062,7 @@ var UnitFsmSpec = {
 							});
 							if (nearby)
 							{
-								this.PerformGather(nearby, true, false);
+								this.PerformGather(nearby, false, false);
 								return;
 							}
 						}
@@ -1108,7 +1109,7 @@ var UnitFsmSpec = {
 						});
 						if (nearby)
 						{
-							this.PerformGather(nearby, true, false);
+							this.PerformGather(nearby, false, false);
 							return;
 						}
 
@@ -1881,6 +1882,13 @@ UnitAI.prototype.SetupHealRangeQuery = function()
 UnitAI.prototype.SetNextState = function(state)
 {
 	UnitFsm.SetNextState(this, state);
+};
+
+// This will make sure that the state is always entered even if this means leaving it and reentering it
+// This is so that a state can be reinitialized with new order data without having to switch to an intermediate state
+UnitAI.prototype.SetNextStateAlwaysEntering = function(state)
+{
+	UnitFsm.SetNextStateAlwaysEntering(this, state);
 };
 
 UnitAI.prototype.DeferMessage = function(msg)
