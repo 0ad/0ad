@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="503.967" y="394.069" z="-278.678"/>
+		<Position x="770.803" y="73.398" z="238.465"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -6799,6 +6799,18 @@
 			<Template>units/mace_cavalry_spearman_a</Template>
 			<Player>3</Player>
 			<Position x="275.6988" z="382.0293"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1272">
+			<Template>structures/rome_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="136.32929" z="493.13834"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1273">
+			<Template>structures/hele_civil_centre</Template>
+			<Player>3</Player>
+			<Position x="169.73153" z="305.42573"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>

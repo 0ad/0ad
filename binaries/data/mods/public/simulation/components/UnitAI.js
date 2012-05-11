@@ -368,7 +368,7 @@ var UnitFsmSpec = {
 			// so try gathering it from here.
 			// TODO: need better handling of the can't-reach-target case
 			this.StopMoving();
-			this.SetNextState("INDIVIDUAL.GATHER.GATHERING");
+			this.SetNextStateAlwaysEntering("INDIVIDUAL.GATHER.GATHERING");
 		}
 	},
 	
@@ -914,13 +914,13 @@ var UnitFsmSpec = {
 						});
 						if (nearby)
 						{
-							this.PerformGather(nearby, true, false);
+							this.PerformGather(nearby, false, false);
 							return;
 						}
 
 						// Couldn't find anything else. Just try this one again,
 						// maybe we'll succeed next time
-						this.PerformGather(oldTarget, true, false);
+						this.PerformGather(oldTarget, false, false);
 						return;
 					}
 
@@ -1048,23 +1048,12 @@ var UnitFsmSpec = {
 
 							// Oh no, couldn't find any drop sites. Give up on gathering.
 							this.FinishOrder();
+							return;
 						}
 
-						// If the target is exhausted, we switch to a new target
-						if (status.exhausted)
-						{
-							var nearby = this.FindNearbyResource(function (ent, type, template) {
-								return (
-									type.specific == resourceType.specific
-									&& (type.specific != "meat" || resourceTemplate == template)
-								);
-							});
-							if (nearby)
-							{
-								this.PerformGather(nearby, true, false);
-								return;
-							}
-						}
+						// We can gather more from this target, do so in the next timer
+						if (!status.exhausted)
+							return;
 					}
 					else
 					{
@@ -1089,42 +1078,42 @@ var UnitFsmSpec = {
 							this.SetNextState("APPROACHING");
 							return;
 						}
-
-						// We're already in range, or can't get anywhere near it.
-
-						// Give up on this order and try our next queued order
-						if (this.FinishOrder())
-							return;
-
-						// No remaining orders - pick a useful default behaviour
-
-						// Try to find a new resource of the same specific type near our current position:
-						// Also don't switch to a different type of huntable animal
-						var nearby = this.FindNearbyResource(function (ent, type, template) {
-							return (
-								type.specific == resourceType.specific
-								&& (type.specific != "meat" || resourceTemplate == template)
-							);
-						});
-						if (nearby)
-						{
-							this.PerformGather(nearby, true, false);
-							return;
-						}
-
-						// Nothing else to gather - if we're carrying anything then we should
-						// drop it off, and if not then we might as well head to the dropsite
-						// anyway because that's a nice enough place to congregate and idle
-
-						var nearby = this.FindNearestDropsite(resourceType.generic);
-						if (nearby)
-						{
-							this.PushOrderFront("ReturnResource", { "target": nearby, "force": false });
-							return;
-						}
-						
-						// No dropsites - just give up
 					}
+
+					// We're already in range, can't get anywhere near it or the target is exhausted.
+
+					// Give up on this order and try our next queued order
+					if (this.FinishOrder())
+						return;
+
+					// No remaining orders - pick a useful default behaviour
+
+					// Try to find a new resource of the same specific type near our current position:
+					// Also don't switch to a different type of huntable animal
+					var nearby = this.FindNearbyResource(function (ent, type, template) {
+						return (
+							type.specific == resourceType.specific
+							&& (type.specific != "meat" || resourceTemplate == template)
+						);
+					});
+					if (nearby)
+					{
+						this.PerformGather(nearby, false, false);
+						return;
+					}
+
+					// Nothing else to gather - if we're carrying anything then we should
+					// drop it off, and if not then we might as well head to the dropsite
+					// anyway because that's a nice enough place to congregate and idle
+
+					var nearby = this.FindNearestDropsite(resourceType.generic);
+					if (nearby)
+					{
+						this.PushOrderFront("ReturnResource", { "target": nearby, "force": false });
+						return;
+					}
+					
+					// No dropsites - just give up
 				},
 			},
 		},
@@ -1881,6 +1870,13 @@ UnitAI.prototype.SetupHealRangeQuery = function()
 UnitAI.prototype.SetNextState = function(state)
 {
 	UnitFsm.SetNextState(this, state);
+};
+
+// This will make sure that the state is always entered even if this means leaving it and reentering it
+// This is so that a state can be reinitialized with new order data without having to switch to an intermediate state
+UnitAI.prototype.SetNextStateAlwaysEntering = function(state)
+{
+	UnitFsm.SetNextStateAlwaysEntering(this, state);
 };
 
 UnitAI.prototype.DeferMessage = function(msg)

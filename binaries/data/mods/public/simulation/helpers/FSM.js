@@ -249,6 +249,15 @@ FSM.prototype.Init = function(obj, initialState)
 FSM.prototype.SetNextState = function(obj, state)
 {
 	obj.fsmNextState = state;
+	obj.fsmReenter = false;
+};
+
+
+FSM.prototype.SetNextStateAlwaysEntering = function(obj, state)
+{
+	obj.fsmNextState = state;
+	// If reenter is true then the state will always be entered even if this means exiting it to re-enter
+	obj.fsmReenter = true;
 };
 
 FSM.prototype.ProcessMessage = function(obj, msg)
@@ -271,7 +280,7 @@ FSM.prototype.ProcessMessage = function(obj, msg)
 		var nextStateName = this.LookupState(obj.fsmStateName, obj.fsmNextState);
 		obj.fsmNextState = undefined;
 
-		if (nextStateName != obj.fsmStateName)
+		if (nextStateName != obj.fsmStateName || obj.fsmReenter)
 			this.SwitchToNextState(obj, nextStateName);
 	}
 
@@ -327,7 +336,7 @@ FSM.prototype.SwitchToNextState = function(obj, nextStateName)
 {
 	var fromState = this.decompose[obj.fsmStateName];
 	var toState = this.decompose[nextStateName];
-
+	
 	if (!toState)
 		error("Tried to change to non-existent state '" + nextStateName + "'");
 
@@ -336,10 +345,14 @@ FSM.prototype.SwitchToNextState = function(obj, nextStateName)
 	// If any enter/leave function returns true then abort the process
 	// (this lets them intercept the transition and start a new transition)
 
-	for (var equalPrefix = 0; fromState[equalPrefix] === toState[equalPrefix]; ++equalPrefix)
+	for (var equalPrefix = 0; fromState[equalPrefix] && fromState[equalPrefix] === toState[equalPrefix]; ++equalPrefix)
 	{
 	}
-
+	
+	// Check if we should exit and enter the current state due to the reenter parameter. If so we go up 1 level
+	if (obj.fsmReenter && equalPrefix === toState.length)
+		--equalPrefix;
+	
 	for (var i = fromState.length-1; i >= equalPrefix; --i)
 	{
 		var leave = this.states[fromState[i]].leave;
@@ -353,7 +366,7 @@ FSM.prototype.SwitchToNextState = function(obj, nextStateName)
 			}
 		}
 	}
-
+	
 	for (var i = equalPrefix; i < toState.length; ++i)
 	{
 		var enter = this.states[toState[i]].enter;

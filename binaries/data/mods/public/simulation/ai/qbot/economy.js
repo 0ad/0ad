@@ -1,6 +1,6 @@
 var EconomyManager = function() {
 	this.targetNumBuilders = 5; // number of workers we want building stuff
-	this.targetNumFields = 5;
+	this.targetNumFields = 3;
 	
 	this.resourceMaps = {}; // Contains maps showing the density of wood, stone and metal
 	
@@ -182,10 +182,18 @@ EconomyManager.prototype.buildMoreFields = function(gameState, queues) {
 	// give time for treasures to be gathered
 	if (gameState.getTimeElapsed() < 30 * 1000)
 		return;
-	var numFields = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_field"));
-	numFields += queues.field.totalLength();
-
-	for ( var i = numFields; i < this.targetNumFields; i++) {
+	
+	var numFood = 0;
+	
+	gameState.updatingCollection("active-dropsite-food", Filters.byMetadata("active-dropsite-food", true), 
+			gameState.getOwnDropsites("food")).forEach(function (dropsite){
+		numFood += dropsite.getMetadata("nearby-resources-food").length;
+	});
+	
+	numFood += gameState.countFoundationsWithType(gameState.applyCiv("structures/{civ}_field"));
+	numFood += queues.field.totalLength();
+	
+	for ( var i = numFood; i < this.targetNumFields; i++) {
 		queues.field.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_field"));
 	}
 };
@@ -326,7 +334,7 @@ EconomyManager.prototype.updateNearbyResources = function(gameState){
 	var self = this;
 	var resources = ["food", "wood", "stone", "metal"];
 	var resourceSupplies;
-	var radius = 64;
+	var radius = 100;
 	for (key in resources){
 		var resource = resources[key];
 		
@@ -343,7 +351,26 @@ EconomyManager.prototype.updateNearbyResources = function(gameState){
 			
 			if (ent.getMetadata("nearby-resources-" + resource).length === 0){
 				ent.setMetadata("active-dropsite-" + resource, false);
+			}else{
+				ent.setMetadata("active-dropsite-" + resource, true);
 			}
+			/*
+			// Make resources glow wildly 
+			if (resource == "food"){
+				ent.getMetadata("nearby-resources-" + resource).forEach(function(ent){
+					Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [10,0,0]});
+				});
+			}
+			if (resource == "wood"){
+				ent.getMetadata("nearby-resources-" + resource).forEach(function(ent){
+					Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,10,0]});
+				});
+			}
+			if (resource == "metal"){
+				ent.getMetadata("nearby-resources-" + resource).forEach(function(ent){
+					Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,0,10]});
+				});
+			}*/
 		});
 	}
 };

@@ -88,6 +88,7 @@ public:
 	MapSettingsControl(wxWindow* parent, ScenarioEditor& scenarioEditor);
 	void CreateWidgets();
 	void ReadFromEngine();
+	void SetMapSettings(const AtObj& obj);
 	AtObj UpdateSettingsObject();
 private:
 	void SendToEngine();
@@ -208,6 +209,14 @@ void MapSettingsControl::ReadFromEngine()
 		wxDynamicCast(FindWindow(ID_MapKW_Demo), wxCheckBox)->SetValue(m_MapSettingsKeywords.count(L"demo") != 0);
 		wxDynamicCast(FindWindow(ID_MapKW_Hidden), wxCheckBox)->SetValue(m_MapSettingsKeywords.count(L"hidden") != 0);
 	}
+}
+
+void MapSettingsControl::SetMapSettings(const AtObj& obj)
+{
+	m_MapSettings = obj;
+	m_MapSettings.NotifyObservers();
+
+	SendToEngine();
 }
 
 AtObj MapSettingsControl::UpdateSettingsObject()
@@ -504,12 +513,17 @@ void MapSidebar::OnRandomGenerate(wxCommandEvent& WXUNUSED(evt))
 
 	wxString scriptName(settings["Script"]);
 
+	// Copy the old map settings, so we don't lose them if the map generation fails
+	AtObj oldSettings = settings;
+
 	AtlasMessage::qGenerateMap qry((std::wstring)scriptName.wc_str(), json);
 	qry.Post();
 
 	if (qry.status < 0)
 	{
+		// Display error message and revert to old map settings
 		wxLogError(_("Random map script '%ls' failed"), scriptName.wc_str());
+		m_MapSettingsCtrl->SetMapSettings(oldSettings);
 	}
 
 	m_ScenarioEditor.NotifyOnMapReload();
