@@ -68,7 +68,7 @@ Worker.prototype.updateGathererCounts = function(gameState, dead){
 
 Worker.prototype.markFull = function(ent){
 	var maxCounts = {"food": 20, "wood": 5, "metal": 20, "stone": 20, "treasure": 1};
-	if (ent.getMetadata("gatherer-count") >= maxCounts[ent.resourceSupplyType().generic]){
+	if (ent.resourceSupplyType() && ent.getMetadata("gatherer-count") >= maxCounts[ent.resourceSupplyType().generic]){
 		if (!ent.getMetadata("full")){
 			ent.setMetadata("full", true);
 		}
