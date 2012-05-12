@@ -14,10 +14,10 @@ Player.prototype.Init = function()
 	this.maxPop = 300; // maximum population
 	this.trainingBlocked = false; // indicates whether any training queue is currently blocked
 	this.resourceCount = {
-		"food": 1000,	
-		"wood": 1000,	
-		"metal": 500,	
-		"stone": 1000	
+		"food": 300,	
+		"wood": 300,	
+		"metal": 300,	
+		"stone": 300	
 	};
 
 	this.team = -1;	// team number of the player, players on the same team will always have ally diplomatic status - also this is useful for team emblems, scoring, etc.
