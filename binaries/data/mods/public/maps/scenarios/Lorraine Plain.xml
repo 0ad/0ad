@@ -16,7 +16,7 @@
 				<Height>16.3672</Height>
 				<Shininess>8.54492</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.898438</Murkiness>
+				<Murkiness>1</Murkiness>
 				<Tint r="0.458824" g="0.439216" b="0.384314"/>
 				<ReflectionTint r="0.501961" g="1" b="1"/>
 				<ReflectionTintStrength>0.0996094</ReflectionTintStrength>
@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="390.021" y="89.7233" z="712.827"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.610865"/>
+		<Position x="648.476" y="154.867" z="24.739"/>
+		<Rotation angle="-0.0489864"/>
+		<Declination angle="0.595428"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -103,7 +103,7 @@
 		<Entity uid="20">
 			<Template>structures/rome_army_camp</Template>
 			<Player>2</Player>
-			<Position x="567.66138" z="356.36777"/>
+			<Position x="575.48542" z="340.46351"/>
 			<Orientation y="2.68335"/>
 		</Entity>
 		<Entity uid="21">
@@ -7790,7 +7790,7 @@
 			<Template>gaia/flora_tree_poplar</Template>
 			<Player>0</Player>
 			<Position x="599.28766" z="833.60108"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="-2.58675"/>
 		</Entity>
 		<Entity uid="1304">
 			<Template>gaia/flora_tree_poplar</Template>
@@ -8395,43 +8395,43 @@
 		<Entity uid="1404">
 			<Template>gaia/flora_tree_poplar</Template>
 			<Player>0</Player>
-			<Position x="491.64533" z="537.30475"/>
+			<Position x="513.70783" z="509.61017"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1405">
 			<Template>gaia/flora_tree_poplar</Template>
 			<Player>0</Player>
-			<Position x="500.30213" z="515.35181"/>
+			<Position x="522.36457" z="487.65714"/>
 			<Orientation y="2.4421"/>
 		</Entity>
 		<Entity uid="1406">
 			<Template>gaia/flora_tree_poplar</Template>
 			<Player>0</Player>
-			<Position x="518.00965" z="527.43561"/>
+			<Position x="540.07209" z="499.74094"/>
 			<Orientation y="2.63785"/>
 		</Entity>
 		<Entity uid="1407">
 			<Template>gaia/flora_tree_poplar</Template>
 			<Player>0</Player>
-			<Position x="507.93097" z="539.60108"/>
+			<Position x="529.99335" z="511.9066"/>
 			<Orientation y="0.44323"/>
 		</Entity>
 		<Entity uid="1408">
 			<Template>gaia/flora_tree_euro_beech</Template>
 			<Player>0</Player>
-			<Position x="496.27942" z="523.47107"/>
+			<Position x="518.34192" z="495.7764"/>
 			<Orientation y="1.21833"/>
 		</Entity>
 		<Entity uid="1409">
 			<Template>gaia/flora_tree_euro_beech</Template>
 			<Player>0</Player>
-			<Position x="507.2769" z="524.13123"/>
+			<Position x="529.33918" z="496.43656"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1410">
 			<Template>gaia/flora_tree_euro_beech</Template>
 			<Player>0</Player>
-			<Position x="504.04218" z="535.5918"/>
+			<Position x="526.10468" z="507.89713"/>
 			<Orientation y="-0.52213"/>
 		</Entity>
 		<Entity uid="1411">
@@ -8497,25 +8497,25 @@
 		<Entity uid="1421">
 			<Template>gaia/flora_tree_euro_beech</Template>
 			<Player>0</Player>
-			<Position x="486.23826" z="645.08173"/>
+			<Position x="452.9957" z="656.86384"/>
 			<Orientation y="2.34282"/>
 		</Entity>
 		<Entity uid="1422">
 			<Template>gaia/flora_tree_euro_beech</Template>
 			<Player>0</Player>
-			<Position x="499.77262" z="639.15662"/>
+			<Position x="466.53006" z="650.93873"/>
 			<Orientation y="1.7655"/>
 		</Entity>
 		<Entity uid="1423">
 			<Template>gaia/flora_tree_euro_beech</Template>
 			<Player>0</Player>
-			<Position x="514.27613" z="644.22968"/>
+			<Position x="481.03357" z="656.01178"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1424">
 			<Template>gaia/flora_tree_euro_beech</Template>
 			<Player>0</Player>
-			<Position x="522.18781" z="651.89393"/>
+			<Position x="488.94529" z="663.67603"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1425">
@@ -9919,7 +9919,7 @@
 		<Entity uid="1658">
 			<Template>gaia/fauna_fish</Template>
 			<Player>0</Player>
-			<Position x="509.17798" z="588.70545"/>
+			<Position x="581.33478" z="588.35322"/>
 			<Orientation y="0.87992"/>
 		</Entity>
 		<Entity uid="1659">
@@ -11382,77 +11382,77 @@
 		</Entity>
 		<Entity uid="1931">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="554.31336" z="345.66413"/>
+			<Position x="562.1374" z="329.75986"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1932">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="551.35505" z="350.50245"/>
+			<Position x="559.17908" z="334.59818"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1933">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="547.46174" z="357.91285"/>
+			<Position x="555.28577" z="342.00858"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1934">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="555.53077" z="338.98237"/>
+			<Position x="563.3548" z="323.0781"/>
 			<Orientation y="0.72887"/>
 		</Entity>
 		<Entity uid="1935">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="566.18213" z="335.22745"/>
+			<Position x="574.00617" z="319.32319"/>
 			<Orientation y="-2.10528"/>
 		</Entity>
 		<Entity uid="1936">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="563.5329" z="333.60935"/>
+			<Position x="571.35694" z="317.70508"/>
 			<Orientation y="-1.64066"/>
 		</Entity>
 		<Entity uid="1937">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="556.33875" z="333.61329"/>
+			<Position x="564.16279" z="317.70902"/>
 			<Orientation y="-0.82354"/>
 		</Entity>
 		<Entity uid="1938">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="552.35413" z="338.21714"/>
+			<Position x="560.17817" z="322.31287"/>
 			<Orientation y="-0.50496"/>
 		</Entity>
 		<Entity uid="1939">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="552.27363" z="343.36545"/>
+			<Position x="560.09766" z="327.46119"/>
 			<Orientation y="-1.38115"/>
 		</Entity>
 		<Entity uid="1940">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="560.02527" z="333.95997"/>
+			<Position x="567.84931" z="318.0557"/>
 			<Orientation y="-1.524"/>
 		</Entity>
 		<Entity uid="1941">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="586.83204" z="357.92432"/>
+			<Position x="594.65607" z="342.02006"/>
 			<Orientation y="-3.08817"/>
 		</Entity>
 		<Entity uid="1942">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="587.97211" z="348.89502"/>
+			<Position x="595.79615" z="332.99076"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1943">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="587.83875" z="346.68677"/>
+			<Position x="595.66279" z="330.78251"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1944">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="587.3152" z="343.38486"/>
+			<Position x="595.13923" z="327.4806"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1945">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="589.40302" z="353.9339"/>
+			<Position x="597.22706" z="338.02964"/>
 			<Orientation y="0.79421"/>
 		</Entity>
 		<Entity uid="1946">
@@ -16358,6 +16358,1081 @@
 		<Entity uid="2907">
 			<Template>actor|props/flora/water_lillies.xml</Template>
 			<Position x="276.24073" z="244.53693"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2908">
+			<Template>actor|props/flora/water_log.xml</Template>
+			<Position x="489.3787" z="635.16681"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2909">
+			<Template>actor|props/flora/water_log.xml</Template>
+			<Position x="523.37793" z="560.56965"/>
+			<Orientation y="0.52295"/>
+		</Entity>
+		<Entity uid="2910">
+			<Template>actor|props/flora/water_log.xml</Template>
+			<Position x="479.97895" z="546.44477"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2911">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="504.23407" z="561.37934"/>
+			<Orientation y="-2.47146"/>
+		</Entity>
+		<Entity uid="2912">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="509.098" z="557.53907"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2913">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="514.16016" z="557.59583"/>
+			<Orientation y="1.57512"/>
+		</Entity>
+		<Entity uid="2914">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="520.5442" z="557.98548"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2915">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="526.91596" z="554.43488"/>
+			<Orientation y="0.65035"/>
+		</Entity>
+		<Entity uid="2916">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="531.77955" z="562.38166"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2917">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="532.40778" z="561.66504"/>
+			<Orientation y="3.11525"/>
+		</Entity>
+		<Entity uid="2918">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="531.64643" z="554.94788"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2919">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="531.64692" z="554.32941"/>
+			<Orientation y="-2.1362"/>
+		</Entity>
+		<Entity uid="2920">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="516.8639" z="548.57801"/>
+			<Orientation y="-1.4742"/>
+		</Entity>
+		<Entity uid="2921">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="497.61353" z="549.9795"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2922">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="490.02363" z="548.62732"/>
+			<Orientation y="-1.61979"/>
+		</Entity>
+		<Entity uid="2923">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="481.15723" z="546.56598"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2924">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="481.86619" z="551.732"/>
+			<Orientation y="0.90687"/>
+		</Entity>
+		<Entity uid="2925">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="484.96277" z="556.2013"/>
+			<Orientation y="1.3323"/>
+		</Entity>
+		<Entity uid="2926">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="497.86847" z="558.40625"/>
+			<Orientation y="3.05997"/>
+		</Entity>
+		<Entity uid="2927">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="482.68635" z="329.62766"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2928">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="482.4597" z="316.87403"/>
+			<Orientation y="1.05677"/>
+		</Entity>
+		<Entity uid="2929">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="491.5329" z="322.70087"/>
+			<Orientation y="-1.42125"/>
+		</Entity>
+		<Entity uid="2930">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="444.80365" z="378.17054"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2931">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="443.75367" z="376.71821"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2932">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="441.68113" z="374.60157"/>
+			<Orientation y="-2.19022"/>
+		</Entity>
+		<Entity uid="2933">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="437.42881" z="371.65168"/>
+			<Orientation y="-2.08556"/>
+		</Entity>
+		<Entity uid="2934">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="435.262" z="370.04789"/>
+			<Orientation y="-2.38114"/>
+		</Entity>
+		<Entity uid="2935">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="430.81092" z="365.66697"/>
+			<Orientation y="-2.37063"/>
+		</Entity>
+		<Entity uid="2936">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="429.19831" z="364.13224"/>
+			<Orientation y="-2.4408"/>
+		</Entity>
+		<Entity uid="2937">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="427.53867" z="362.33262"/>
+			<Orientation y="-1.8904"/>
+		</Entity>
+		<Entity uid="2938">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="423.09983" z="360.63157"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2939">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="448.98984" z="374.95984"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2940">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="447.77637" z="373.61124"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2941">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="445.63581" z="371.95234"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2942">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="443.70774" z="370.16938"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2943">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="442.90445" z="369.0764"/>
+			<Orientation y="-2.40397"/>
+		</Entity>
+		<Entity uid="2944">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="440.72571" z="367.03791"/>
+			<Orientation y="-2.32404"/>
+		</Entity>
+		<Entity uid="2945">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="438.23316" z="364.91227"/>
+			<Orientation y="-2.22181"/>
+		</Entity>
+		<Entity uid="2946">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="436.13974" z="363.31754"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2947">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="435.15122" z="362.30906"/>
+			<Orientation y="-2.3662"/>
+		</Entity>
+		<Entity uid="2948">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="432.7172" z="360.05057"/>
+			<Orientation y="-2.35407"/>
+		</Entity>
+		<Entity uid="2949">
+			<Template>actor|props/flora/plant_sm.xml</Template>
+			<Position x="431.36951" z="358.39612"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2950">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="470.02042" z="625.38202"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2951">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="472.61329" z="625.67756"/>
+			<Orientation y="2.15851"/>
+		</Entity>
+		<Entity uid="2952">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="478.27332" z="621.52839"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2953">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="479.67463" z="618.90088"/>
+			<Orientation y="1.93564"/>
+		</Entity>
+		<Entity uid="2954">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="483.78891" z="618.40021"/>
+			<Orientation y="-0.17153"/>
+		</Entity>
+		<Entity uid="2955">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="482.73963" z="623.80799"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2956">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="482.89658" z="626.63746"/>
+			<Orientation y="0.59441"/>
+		</Entity>
+		<Entity uid="2957">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="483.90235" z="628.42267"/>
+			<Orientation y="2.9636"/>
+		</Entity>
+		<Entity uid="2958">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="472.33744" z="620.35596"/>
+			<Orientation y="2.53838"/>
+		</Entity>
+		<Entity uid="2959">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="479.27768" z="612.02741"/>
+			<Orientation y="2.34662"/>
+		</Entity>
+		<Entity uid="2960">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="481.56165" z="608.91865"/>
+			<Orientation y="3.126"/>
+		</Entity>
+		<Entity uid="2961">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="480.9275" z="604.81476"/>
+			<Orientation y="-2.49103"/>
+		</Entity>
+		<Entity uid="2962">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="477.6366" z="603.4842"/>
+			<Orientation y="-0.79236"/>
+		</Entity>
+		<Entity uid="2963">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="473.91166" z="607.71912"/>
+			<Orientation y="-0.24415"/>
+		</Entity>
+		<Entity uid="2964">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="471.46351" z="613.2339"/>
+			<Orientation y="-0.51374"/>
+		</Entity>
+		<Entity uid="2965">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="468.9025" z="616.81617"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2966">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="474.0074" z="615.41993"/>
+			<Orientation y="2.40371"/>
+		</Entity>
+		<Entity uid="2967">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="477.58133" z="610.19208"/>
+			<Orientation y="2.621"/>
+		</Entity>
+		<Entity uid="2968">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="477.02488" z="610.71467"/>
+			<Orientation y="-0.45492"/>
+		</Entity>
+		<Entity uid="2969">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="472.31653" z="619.02088"/>
+			<Orientation y="-1.03667"/>
+		</Entity>
+		<Entity uid="2970">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="463.53718" z="622.7104"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2971">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="462.86298" z="622.93049"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2972">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="467.71332" z="625.59821"/>
+			<Orientation y="0.24396"/>
+		</Entity>
+		<Entity uid="2973">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="525.61835" z="635.01734"/>
+			<Orientation y="2.29162"/>
+		</Entity>
+		<Entity uid="2974">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="531.4355" z="630.30994"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2975">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="535.16395" z="628.88801"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2976">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="536.86048" z="628.08472"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2977">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="532.90857" z="623.5813"/>
+			<Orientation y="-2.01188"/>
+		</Entity>
+		<Entity uid="2978">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="524.61597" z="620.37726"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2979">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="522.73469" z="617.44922"/>
+			<Orientation y="-2.85343"/>
+		</Entity>
+		<Entity uid="2980">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="522.0298" z="613.43964"/>
+			<Orientation y="1.60198"/>
+		</Entity>
+		<Entity uid="2981">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="529.30237" z="615.8943"/>
+			<Orientation y="0.57921"/>
+		</Entity>
+		<Entity uid="2982">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="533.97791" z="624.25232"/>
+			<Orientation y="0.60975"/>
+		</Entity>
+		<Entity uid="2983">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="538.82532" z="632.0116"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2984">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="540.03834" z="633.04358"/>
+			<Orientation y="1.39127"/>
+		</Entity>
+		<Entity uid="2985">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="542.37037" z="633.48707"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2986">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="535.57422" z="633.8133"/>
+			<Orientation y="0.65033"/>
+		</Entity>
+		<Entity uid="2987">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="535.60584" z="623.07898"/>
+			<Orientation y="-2.55532"/>
+		</Entity>
+		<Entity uid="2988">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="531.0752" z="616.64362"/>
+			<Orientation y="-2.57198"/>
+		</Entity>
+		<Entity uid="2989">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="526.53199" z="609.6136"/>
+			<Orientation y="-2.80535"/>
+		</Entity>
+		<Entity uid="2990">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="523.1875" z="600.49292"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2991">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="522.1283" z="596.4256"/>
+			<Orientation y="-3.06331"/>
+		</Entity>
+		<Entity uid="2992">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="521.01404" z="596.08228"/>
+			<Orientation y="0.08284"/>
+		</Entity>
+		<Entity uid="2993">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="521.75147" z="604.6919"/>
+			<Orientation y="0.24712"/>
+		</Entity>
+		<Entity uid="2994">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="522.9925" z="609.9029"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2995">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="528.05951" z="624.96888"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2996">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="524.8501" z="628.73005"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2997">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="521.41645" z="628.39179"/>
+			<Orientation y="-1.29278"/>
+		</Entity>
+		<Entity uid="2998">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="513.2917" z="632.37287"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2999">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="479.02811" z="565.40973"/>
+			<Orientation y="1.52183"/>
+		</Entity>
+		<Entity uid="3000">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="485.68345" z="565.01423"/>
+			<Orientation y="0.76119"/>
+		</Entity>
+		<Entity uid="3001">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="486.8921" z="568.258"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3002">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="485.55747" z="573.33747"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3003">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="485.25931" z="577.87787"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3004">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="483.95554" z="583.654"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3005">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="483.86481" z="578.52875"/>
+			<Orientation y="2.97576"/>
+		</Entity>
+		<Entity uid="3006">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="484.59607" z="570.17737"/>
+			<Orientation y="-2.52764"/>
+		</Entity>
+		<Entity uid="3007">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="482.2211" z="567.8653"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3008">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="481.00223" z="565.40394"/>
+			<Orientation y="-2.74183"/>
+		</Entity>
+		<Entity uid="3009">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="483.1302" z="554.81537"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3010">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="477.58844" z="560.09388"/>
+			<Orientation y="0.59035"/>
+		</Entity>
+		<Entity uid="3011">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="483.08799" z="561.41999"/>
+			<Orientation y="-1.5841"/>
+		</Entity>
+		<Entity uid="3012">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="521.37867" z="559.92951"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3013">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="525.07447" z="562.6518"/>
+			<Orientation y="1.9967"/>
+		</Entity>
+		<Entity uid="3014">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="528.65461" z="561.24195"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3015">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="530.076" z="562.04389"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3016">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="531.19471" z="567.72797"/>
+			<Orientation y="-1.96157"/>
+		</Entity>
+		<Entity uid="3017">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="523.9261" z="567.46436"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3018">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="524" z="564.30903"/>
+			<Orientation y="1.46047"/>
+		</Entity>
+		<Entity uid="3019">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="521.04725" z="565.09681"/>
+			<Orientation y="-0.38776"/>
+		</Entity>
+		<Entity uid="3020">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="519.09314" z="568.7099"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3021">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="518.99476" z="570.76001"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3022">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="519.8589" z="574.56733"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3023">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="520.88209" z="578.35907"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3024">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="520.06263" z="582.43812"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3025">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="522.36768" z="571.17676"/>
+			<Orientation y="0.53032"/>
+		</Entity>
+		<Entity uid="3026">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="517.7818" z="562.44916"/>
+			<Orientation y="-1.29804"/>
+		</Entity>
+		<Entity uid="3027">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="518.54535" z="580.37842"/>
+			<Orientation y="-1.11121"/>
+		</Entity>
+		<Entity uid="3028">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="522.79053" z="577.08655"/>
+			<Orientation y="0.80536"/>
+		</Entity>
+		<Entity uid="3029">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="522.79432" z="583.72864"/>
+			<Orientation y="-1.82097"/>
+		</Entity>
+		<Entity uid="3030">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="511.4181" z="566.70936"/>
+			<Orientation y="2.69397"/>
+		</Entity>
+		<Entity uid="3031">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="514.95899" z="562.6822"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3032">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="511.61149" z="560.87061"/>
+			<Orientation y="-1.43731"/>
+		</Entity>
+		<Entity uid="3033">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="504.17804" z="562.31128"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3034">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="500.98008" z="559.27607"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3035">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="497.193" z="560.85785"/>
+			<Orientation y="-1.07552"/>
+		</Entity>
+		<Entity uid="3036">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="491.58936" z="566.76124"/>
+			<Orientation y="-1.70656"/>
+		</Entity>
+		<Entity uid="3037">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="485.84314" z="563.67023"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3038">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="485.9076" z="561.58075"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3039">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="493.12726" z="559.8343"/>
+			<Orientation y="1.64654"/>
+		</Entity>
+		<Entity uid="3040">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="481.97172" z="624.79761"/>
+			<Orientation y="2.10032"/>
+		</Entity>
+		<Entity uid="3041">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="490.84073" z="621.54285"/>
+			<Orientation y="0.28118"/>
+		</Entity>
+		<Entity uid="3042">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="491.36167" z="625.97632"/>
+			<Orientation y="-0.0432"/>
+		</Entity>
+		<Entity uid="3043">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="490.75773" z="630.43049"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3044">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="489.36448" z="635.03199"/>
+			<Orientation y="0.25417"/>
+		</Entity>
+		<Entity uid="3045">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="490.2328" z="638.04664"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3046">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="489.38221" z="637.81537"/>
+			<Orientation y="-1.75937"/>
+		</Entity>
+		<Entity uid="3047">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="486.1792" z="636.99567"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3048">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="485.33787" z="636.1236"/>
+			<Orientation y="-3.08375"/>
+		</Entity>
+		<Entity uid="3049">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="485.14264" z="632.37867"/>
+			<Orientation y="2.96346"/>
+		</Entity>
+		<Entity uid="3050">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="485.81696" z="628.58527"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3051">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="486.10157" z="628.83954"/>
+			<Orientation y="0.94678"/>
+		</Entity>
+		<Entity uid="3052">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="489.50382" z="632.57111"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3053">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="491.08658" z="637.03986"/>
+			<Orientation y="1.44317"/>
+		</Entity>
+		<Entity uid="3054">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="495.29801" z="637.69874"/>
+			<Orientation y="2.70711"/>
+		</Entity>
+		<Entity uid="3055">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="496.73948" z="635.38428"/>
+			<Orientation y="2.09455"/>
+		</Entity>
+		<Entity uid="3056">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="499.86374" z="634.13917"/>
+			<Orientation y="1.18718"/>
+		</Entity>
+		<Entity uid="3057">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="505.55921" z="635.00672"/>
+			<Orientation y="1.97855"/>
+		</Entity>
+		<Entity uid="3058">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="508.81843" z="633.54291"/>
+			<Orientation y="1.38079"/>
+		</Entity>
+		<Entity uid="3059">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="515.5395" z="635.07898"/>
+			<Orientation y="1.52183"/>
+		</Entity>
+		<Entity uid="3060">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="519.98566" z="632.70051"/>
+			<Orientation y="2.87951"/>
+		</Entity>
+		<Entity uid="3061">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="522.42786" z="628.90833"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3062">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="524.32612" z="628.10431"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3063">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="525.45801" z="628.97663"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3064">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="525.44922" z="629.25385"/>
+			<Orientation y="-2.12798"/>
+		</Entity>
+		<Entity uid="3065">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="514.31714" z="623.72974"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3066">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="514.19745" z="622.65345"/>
+			<Orientation y="1.72887"/>
+		</Entity>
+		<Entity uid="3067">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="520.25263" z="622.49872"/>
+			<Orientation y="0.8225"/>
+		</Entity>
+		<Entity uid="3068">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="521.03876" z="627.82001"/>
+			<Orientation y="-1.45136"/>
+		</Entity>
+		<Entity uid="3069">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="514.84986" z="628.04944"/>
+			<Orientation y="-1.6536"/>
+		</Entity>
+		<Entity uid="3070">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="508.77851" z="626.33667"/>
+			<Orientation y="-0.07047"/>
+		</Entity>
+		<Entity uid="3071">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="504.7628" z="628.82868"/>
+			<Orientation y="-1.13553"/>
+		</Entity>
+		<Entity uid="3072">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="501.60465" z="630.89545"/>
+			<Orientation y="1.25911"/>
+		</Entity>
+		<Entity uid="3073">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="495.69178" z="630.85151"/>
+			<Orientation y="-3.02758"/>
+		</Entity>
+		<Entity uid="3074">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="476.71171" z="615.61951"/>
+			<Orientation y="0.23664"/>
+		</Entity>
+		<Entity uid="3075">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="475.71027" z="619.65571"/>
+			<Orientation y="-2.23598"/>
+		</Entity>
+		<Entity uid="3076">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="527.23328" z="565.50544"/>
+			<Orientation y="1.18201"/>
+		</Entity>
+		<Entity uid="3077">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="524.42176" z="558.47815"/>
+			<Orientation y="1.09238"/>
+		</Entity>
+		<Entity uid="3078">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="493.49207" z="559.44599"/>
+			<Orientation y="-1.8692"/>
+		</Entity>
+		<Entity uid="3079">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="489.13517" z="558.86231"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3080">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="486.0022" z="557.78351"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3081">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="484.63172" z="557.54645"/>
+			<Orientation y="-1.728"/>
+		</Entity>
+		<Entity uid="3082">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="481.02466" z="561.46277"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3083">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="473.48023" z="560.81391"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3084">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="470.75635" z="560.23218"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3085">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="478.15568" z="572.18165"/>
+			<Orientation y="0.43148"/>
+		</Entity>
+		<Entity uid="3086">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="480.6792" z="577.91095"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3087">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="483.13804" z="572.56513"/>
+			<Orientation y="1.11844"/>
+		</Entity>
+		<Entity uid="3088">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="489.22965" z="569.63923"/>
+			<Orientation y="-1.56901"/>
+		</Entity>
+		<Entity uid="3089">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="489.67847" z="573.22834"/>
+			<Orientation y="0.80234"/>
+		</Entity>
+		<Entity uid="3090">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="495.34433" z="562.94983"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3091">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="500.73731" z="564.89301"/>
+			<Orientation y="0.5484"/>
+		</Entity>
+		<Entity uid="3092">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="508.66349" z="563.4402"/>
+			<Orientation y="0.14164"/>
+		</Entity>
+		<Entity uid="3093">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="498.27463" z="627.93512"/>
+			<Orientation y="-2.67843"/>
+		</Entity>
+		<Entity uid="3094">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="490.62543" z="624.69294"/>
+			<Orientation y="-2.35866"/>
+		</Entity>
+		<Entity uid="3095">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="486.30048" z="620.92212"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3096">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="486.44797" z="619.15015"/>
+			<Orientation y="2.97191"/>
+		</Entity>
+		<Entity uid="3097">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="498.97782" z="625.51813"/>
+			<Orientation y="-2.08681"/>
+		</Entity>
+		<Entity uid="3098">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="493.02576" z="623.63819"/>
+			<Orientation y="-2.45856"/>
+		</Entity>
+		<Entity uid="3099">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="486.2093" z="616.01685"/>
+			<Orientation y="-2.4699"/>
+		</Entity>
+		<Entity uid="3100">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="479.37055" z="607.76911"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3101">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="465.10084" z="617.05066"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3102">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="467.04154" z="619.87757"/>
+			<Orientation y="-0.00882"/>
+		</Entity>
+		<Entity uid="3103">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="469.75834" z="622.04603"/>
+			<Orientation y="-2.23993"/>
+		</Entity>
+		<Entity uid="3104">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="465.41465" z="624.31232"/>
+			<Orientation y="0.72951"/>
+		</Entity>
+		<Entity uid="3105">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="476.1717" z="624.41419"/>
+			<Orientation y="-2.41974"/>
+		</Entity>
+		<Entity uid="3106">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="479.38343" z="626.07526"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3107">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="460.70432" z="622.15491"/>
+			<Orientation y="-1.78508"/>
+		</Entity>
+		<Entity uid="3108">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="457.16575" z="621.38813"/>
+			<Orientation y="-2.29014"/>
+		</Entity>
+		<Entity uid="3109">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="455.07944" z="620.22846"/>
+			<Orientation y="-2.41933"/>
+		</Entity>
+		<Entity uid="3110">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="460.01246" z="619.10676"/>
+			<Orientation y="1.03557"/>
+		</Entity>
+		<Entity uid="3111">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="532.93451" z="628.2812"/>
+			<Orientation y="-2.38761"/>
+		</Entity>
+		<Entity uid="3112">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="529.96204" z="623.59693"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3113">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="529.09144" z="620.14136"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3114">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="526.00422" z="616.46558"/>
+			<Orientation y="-2.80776"/>
+		</Entity>
+		<Entity uid="3115">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="524.59754" z="624.14527"/>
+			<Orientation y="0.48684"/>
+		</Entity>
+		<Entity uid="3116">
+			<Template>actor|props/flora/water_lillies.xml</Template>
+			<Position x="532.83301" z="619.10431"/>
+			<Orientation y="-1.48325"/>
+		</Entity>
+		<Entity uid="3118">
+			<Template>actor|props/flora/grass_tropic_field.xml</Template>
+			<Position x="561.73127" z="836.508"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3119">
+			<Template>actor|props/flora/grass_tropic_field.xml</Template>
+			<Position x="563.79041" z="832.28058"/>
+			<Orientation y="-2.12623"/>
+		</Entity>
+		<Entity uid="3120">
+			<Template>actor|props/flora/grass_tropic_field.xml</Template>
+			<Position x="484.96503" z="612.67585"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3121">
+			<Template>actor|props/flora/grass_tropic_field.xml</Template>
+			<Position x="503.01703" z="570.72974"/>
+			<Orientation y="1.3767"/>
+		</Entity>
+		<Entity uid="3122">
+			<Template>actor|props/flora/grass_tropic_field.xml</Template>
+			<Position x="512.5506" z="628.29474"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3123">
+			<Template>actor|props/flora/grass_tropic_field.xml</Template>
+			<Position x="265.49262" z="248.48501"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
