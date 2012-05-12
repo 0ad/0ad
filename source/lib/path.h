@@ -83,7 +83,9 @@ public:
 	}
 
 	Path(const char* p)
-		: path(p, p+strlen(p))
+		: path((const unsigned char*)p, (const unsigned char*)p+strlen(p))
+		// interpret bytes as unsigned; makes no difference for ASCII,
+		// and ensures OsPath on Unix will only contain values 0 <= c < 0x100
 	{
 		DetectSeparator();
 	}
@@ -95,7 +97,7 @@ public:
 	}
 
 	Path(const std::string& s)
-		: path(s.begin(), s.end())
+		: path((const unsigned char*)s.c_str(), (const unsigned char*)s.c_str()+s.length())
 	{
 		DetectSeparator();
 	}

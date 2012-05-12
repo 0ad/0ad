@@ -46,6 +46,11 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
+  <TerritoryInfluence>
+    <Root>false</Root>
+    <Radius>20</Radius>
+    <Weight>65536</Weight>
+  </TerritoryInfluence>
   <VisualActor>
     <FoundationActor>structures/fndn_wall.xml</FoundationActor>
   </VisualActor>

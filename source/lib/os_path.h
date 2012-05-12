@@ -27,7 +27,7 @@
 
 // rationale:
 // users are responsible for ensuring the path doesn't contain any forbidden
-// characters (including any code points >= 0x100 on anything but Windows)
+// characters (including any code points < 0x00 or >= 0x100 on anything but Windows)
 typedef Path OsPath;
 
 #if OS_WIN

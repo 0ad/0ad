@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="390.449" y="163.539" z="-103.034"/>
+		<Position x="273.677" y="83.9629" z="143.043"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -37,11 +37,11 @@
     "medit_grass_field_b"
   ],
   "CircularMap": true,
-  "Description": "It's civil war in the enchanted East. Heirs of the noble Achemaenid house vie for the throne of Persia and for mastery of Asia.\u000a\u000aPlayers start the match in their own province near the Persian Gulf. Access to untapped resources territories can be found through the rugged hinterlands.",
+  "Description": "Defend the Persian homeland against the Macedonian invaders or complete the conquest of Persia as the mighty Macedonians.\u000a\u000aPlayers start the match in their own province near the Persian Gulf. Access to untapped resources territories can be found through the rugged hinterlands.",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": true,
-  "Name": "Zagros Mountains 1",
+  "Name": "Zagros Mountains 2",
   "PlayerData": [
     {
       "AI": "",
@@ -51,18 +51,18 @@
         "g": 46,
         "r": 46
       },
-      "Name": "Player 1",
+      "Name": "Dareios III",
       "Team": 0
     },
     {
       "AI": "qbot",
-      "Civ": "pers",
+      "Civ": "mace",
       "Colour": {
-        "b": 30,
-        "g": 30,
-        "r": 191
+        "b": 20,
+        "g": 20,
+        "r": 150
       },
-      "Name": "Player 2",
+      "Name": "Alexander",
       "Team": 1
     }
   ],
@@ -168,12 +168,6 @@
 			<Template>structures/pers_civil_centre</Template>
 			<Player>1</Player>
 			<Position x="360.45902" z="770.31629"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="22">
-			<Template>structures/pers_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="285.81885" z="239.12346"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="80">
@@ -546,126 +540,6 @@
 			<Template>units/pers_infantry_spearman_e</Template>
 			<Player>1</Player>
 			<Position x="360.22602" z="746.25831"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="226">
-			<Template>units/pers_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="278.59534" z="269.95844"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="227">
-			<Template>units/pers_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="279.4534" z="271.4824"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="228">
-			<Template>units/pers_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="280.4788" z="272.83399"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="229">
-			<Template>units/pers_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="281.73026" z="274.1688"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="230">
-			<Template>units/pers_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="283.05439" z="275.46698"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="231">
-			<Template>units/pers_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="284.02955" z="276.59028"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="232">
-			<Template>units/pers_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="285.54245" z="278.09269"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="233">
-			<Template>units/pers_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="286.5735" z="279.82874"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="234">
-			<Template>units/pers_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="287.8353" z="281.22541"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="235">
-			<Template>units/pers_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="289.10004" z="282.55896"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="236">
-			<Template>units/pers_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="280.66901" z="267.6319"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="237">
-			<Template>units/pers_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="282.05622" z="268.77283"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="238">
-			<Template>units/pers_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="283.63328" z="270.4386"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="239">
-			<Template>units/pers_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="284.33619" z="271.37797"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="240">
-			<Template>units/pers_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="285.07834" z="272.5163"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="241">
-			<Template>units/pers_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="286.20844" z="273.46369"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="242">
-			<Template>units/pers_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="287.47129" z="275.17084"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="243">
-			<Template>units/pers_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="288.75528" z="276.48707"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="244">
-			<Template>units/pers_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="290.02384" z="277.94925"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="245">
-			<Template>units/pers_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="291.55784" z="279.69993"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="304">
@@ -22049,12 +21923,6 @@
 			<Position x="390.70237" z="786.96863"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="4345">
-			<Template>structures/pers_sb2</Template>
-			<Player>2</Player>
-			<Position x="236.88622" z="248.73742"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="4346">
 			<Template>gaia/flora_tree_pine</Template>
 			<Player>0</Player>
@@ -22216,6 +22084,138 @@
 			<Player>0</Player>
 			<Position x="806.82483" z="135.73438"/>
 			<Orientation y="-0.32923"/>
+		</Entity>
+		<Entity uid="4374">
+			<Template>structures/mace_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="270.76658" z="242.76212"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4378">
+			<Template>units/mace_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="280.5142" z="262.64179"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4379">
+			<Template>units/mace_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="282.01282" z="263.82926"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4380">
+			<Template>units/mace_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="283.34687" z="265.57898"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4381">
+			<Template>units/mace_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="284.5163" z="266.84128"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4382">
+			<Template>units/mace_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="285.70402" z="268.0876"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4383">
+			<Template>units/mace_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="287.23386" z="269.47834"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4384">
+			<Template>units/mace_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="288.40278" z="270.85477"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4385">
+			<Template>units/mace_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="289.53006" z="272.39469"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4386">
+			<Template>units/mace_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="290.55549" z="273.34037"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4387">
+			<Template>units/mace_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="291.95402" z="275.02088"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4388">
+			<Template>units/mace_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="283.18198" z="260.48881"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4389">
+			<Template>units/mace_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="285.07078" z="262.57746"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4390">
+			<Template>units/mace_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="283.95163" z="261.7569"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4391">
+			<Template>units/mace_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="286.39759" z="264.10114"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4392">
+			<Template>units/mace_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="287.51658" z="265.29075"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4393">
+			<Template>units/mace_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="288.95533" z="267.07053"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4394">
+			<Template>units/mace_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="290.20786" z="268.40845"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4395">
+			<Template>units/mace_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="291.57132" z="269.7313"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4396">
+			<Template>units/mace_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="292.80988" z="271.20972"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4397">
+			<Template>units/mace_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="294.35654" z="272.58136"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4398">
+			<Template>other/hellenic_royal_stoa</Template>
+			<Player>2</Player>
+			<Position x="227.9965" z="250.1349"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>

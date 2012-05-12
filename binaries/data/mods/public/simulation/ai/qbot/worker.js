@@ -105,7 +105,7 @@ Worker.prototype.startGathering = function(gameState){
 		}
 	});
 	
-	if (!nearestResources){
+	if (!nearestResources || nearestResources.length === 0){
 		nearestResources = gameState.getResourceSupplies(resource);
 		gameState.getOwnDropsites(resource).forEach(function (dropsite){
 			if (dropsite.position()){
@@ -142,7 +142,7 @@ Worker.prototype.startGathering = function(gameState){
 		}
 		
 		// Go for treasure as a priority
-		if (dist < 200 && supply.resourceSupplyType().generic == "treasure"){
+		if (dist < 1000 && supply.resourceSupplyType().generic == "treasure"){
 			dist /= 1000;
 		}
 		
