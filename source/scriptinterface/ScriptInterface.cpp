@@ -439,6 +439,22 @@ JSBool ProfileStop(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* vp)
 
 // Math override functions:
 
+// boost::uniform_real is apparently buggy in Boost pre-1.47 - for integer generators
+// it returns [min,max], not [min,max). The bug was fixed in 1.47.
+// We need consistent behaviour, so manually implement the correct version:
+static double generate_uniform_real(boost::rand48& rng, double min, double max)
+{
+	while (true)
+	{
+		double n = (double)(rng() - rng.min());
+		double d = (double)(rng.max() - rng.min()) + 1.0;
+		ENSURE(d > 0 && n >= 0 && n <= d);
+		double r = n / d * (max - min) + min;
+		if (r < max)
+			return r;
+	}
+}
+
 JSBool Math_random(JSContext* cx, uintN UNUSED(argc), jsval* vp)
 {
 	// Grab the RNG that was hidden in our slot
@@ -447,9 +463,7 @@ JSBool Math_random(JSContext* cx, uintN UNUSED(argc), jsval* vp)
 		return JS_FALSE;
 	boost::rand48* rng = static_cast<boost::rand48*>(JSVAL_TO_PRIVATE(rngp));
 
-	// TODO: is the double generation sufficiently deterministic for us?
-	boost::uniform_real<double> dist;
-	double r = dist(*rng);
+	double r = generate_uniform_real(*rng, 0.0, 1.0);
 
 	jsval rv;
 	if (!JS_NewNumberValue(cx, r, &rv))
