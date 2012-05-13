@@ -119,7 +119,7 @@ Worker.prototype.startGathering = function(gameState){
 	}
 	
 	if (nearestResources.length === 0){
-		warn("No " + resource + " found! (1)");
+		debug("No " + resource + " found! (1)");
 		return;
 	}
 	
