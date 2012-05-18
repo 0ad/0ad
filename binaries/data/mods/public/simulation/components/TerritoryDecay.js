@@ -72,7 +72,12 @@ TerritoryDecay.prototype.Decay = function()
 	if (!cmpHealth)
 		return; // error
 
-	cmpHealth.Reduce(+this.template.HealthDecayRate);
+	var decayRate = +this.template.HealthDecayRate;
+	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	if (cmpTechMan)
+		decayRate = cmpTechMan.ApplyModifications("TerritoryDecay/HealthDecayRate", decayRate, this.entity);
+
+	cmpHealth.Reduce(Math.round(decayRate));
 };
 
 Engine.RegisterComponentType(IID_TerritoryDecay, "TerritoryDecay", TerritoryDecay);

@@ -15,7 +15,13 @@ Promotion.prototype.Init = function()
 
 Promotion.prototype.GetRequiredXp = function()
 {
-	return +(this.template.RequiredXp);
+	var requiredXp = +this.template.RequiredXp;
+
+	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	if (cmpTechMan)
+		requiredXp = cmpTechMan.ApplyModifications("Promotion/RequiredXp", requiredXp, this.entity);
+
+	return requiredXp;
 };
 
 Promotion.prototype.GetCurrentXp = function()
@@ -89,18 +95,28 @@ Promotion.prototype.IncreaseXp = function(amount)
 {
 	this.currentXp += +(amount);
 
-	if (this.currentXp >= this.template.RequiredXp)
-	{
+	if (this.currentXp >= this.GetRequiredXp())
+	{	
+		var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+		var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 		var promotionTemplate = this.template;
+		var promotedTemplateName;
+		var requiredXp;
+
+		// We may be able to promote by skipping over multiple templates
+		//	so find the highest level we can reach
 		do
 		{
-			this.currentXp -= promotionTemplate.RequiredXp;
-			var promotedTemplateName = promotionTemplate.Entity;
-			var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+			requiredXp = +promotionTemplate.RequiredXp;
+			if (cmpTechMan)
+				requiredXp = cmpTechMan.ApplyModifications("Promotion/RequiredXp", requiredXp, this.entity);
+			this.currentXp -= requiredXp;
+			promotedTemplateName = promotionTemplate.Entity;
 			var template = cmpTemplateManager.GetTemplate(promotedTemplateName);
-			promotionTemplate = template.Promotion || null;
+			promotionTemplate = template.Promotion;
 		}
-		while (promotionTemplate != null && this.currentXp >= promotionTemplate.RequiredXp);
+		while (promotionTemplate && this.currentXp >= requiredXp);
+
 		this.Promote(promotedTemplateName);
 	}
 }
