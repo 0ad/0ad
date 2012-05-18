@@ -441,7 +441,7 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 	
 	Engine.ProfileStart("Update attacks");
 	// Keep current attacks updated
-	for (i in this.currentAttacks){
+	for (var i in this.currentAttacks){
 		this.currentAttacks[i].update(gameState, this, events);
 	}
 	Engine.ProfileStop();

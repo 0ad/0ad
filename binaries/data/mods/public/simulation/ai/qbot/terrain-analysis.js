@@ -23,7 +23,7 @@ function TerrainAnalysis(gameState){
 copyPrototype(TerrainAnalysis, Map);
 
 // Returns the (approximately) closest point which is passable by searching in a spiral pattern 
-TerrainAnalysis.prototype.findClosestPassablePoint = function(startPoint, quick){
+TerrainAnalysis.prototype.findClosestPassablePoint = function(startPoint, quick, limitDistance){
 	var w = this.width;
 	var p = startPoint;
 	var direction = 1;
@@ -35,6 +35,7 @@ TerrainAnalysis.prototype.findClosestPassablePoint = function(startPoint, quick)
 		}
 	}
 	
+	var count = 0;
 	// search in a spiral pattern.
 	for (var i = 1; i < w; i++){
 		for (var j = 0; j < 2; j++){
@@ -46,6 +47,10 @@ TerrainAnalysis.prototype.findClosestPassablePoint = function(startPoint, quick)
 						return p;
 					}
 				}
+				if (limitDistance && count > 40){
+					return undefined;
+				}
+				count += 1;
 			}
 		}
 		direction *= -1;
@@ -113,15 +118,16 @@ PathFinder.prototype.getPaths = function(start, end, mode){
 	}
 	
 	var paths = [];
-	
 	while (true){
 		this.makeGradient(s,e);
 		var curPath = this.walkGradient(e, mode);
+		
 		if (curPath !== undefined){
 			paths.push(curPath);
 		}else{
 			break;
 		}
+		
 		this.wipeGradient();
 	}
 	
@@ -234,8 +240,9 @@ PathFinder.prototype.walkGradient = function(start, mode){
 	if (blockPoint === undefined){
 		return undefined;
 	}
+	
 	// Add an obstruction to the map at the blockpoint so the next path will take a different route.
-	this.addInfluence(blockPoint[0], blockPoint[1], blockRadius, -10000, 'constant');
+	this.addInfluence(blockPoint[0], blockPoint[1], blockRadius, -1000000, 'constant');
 	if (mode === 'entryPoints'){
 		// returns the point where the path enters the blockPlacementRadius
 		return [blockPoint[0] * this.cellSize, blockPoint[1] * this.cellSize];
@@ -295,7 +302,9 @@ copyPrototype(Accessibility, TerrainAnalysis);
 // Return true if the given point is accessible from the point given when initialising the Accessibility object. #
 // If the given point is impassable the closest passable point is used.
 Accessibility.prototype.isAccessible = function(position){
-	var s = this.findClosestPassablePoint(this.gamePosToMapPos(position), true);
+	var s = this.findClosestPassablePoint(this.gamePosToMapPos(position), true, true);
+	if (!s)
+		return false;
 	
 	return this.map[s[0] + this.width * s[1]] === 1;
 };

@@ -115,7 +115,7 @@ Defence.prototype.updateDefenders = function(gameState){
 	
 	for (var i in this.groups){
 		this.removeDestroyed(gameState, this.groups[i].defenders);
-		for (j in this.groups[i].defenders){
+		for (var j in this.groups[i].defenders){
 			var id = this.groups[i].defenders[j];
 			newDefenders[id] = this.defenders[id];
 			var ent = gameState.getEntityById(id);
