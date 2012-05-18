@@ -24,6 +24,7 @@
   </Health>
   <Identity>
     <Civ>rome</Civ>
+	<SelectionGroupName>structures/rome_wallset_siege</SelectionGroupName>
 	<GenericName>Siege Wall</GenericName>
     <SpecificName>Murus Latericius</SpecificName>
     <Icon>structures/palisade.png</Icon>
@@ -36,6 +37,7 @@
   <TerritoryDecay>
     <HealthDecayRate>1</HealthDecayRate>
   </TerritoryDecay>
+  <TerritoryInfluence disable=""/>
   <VisualActor>
     <Actor>structures/romans/siege_wall_short.xml</Actor>
     <FoundationActor>structures/fndn_1x1.xml</FoundationActor>

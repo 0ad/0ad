@@ -342,10 +342,10 @@ TechnologyManager.prototype.ApplyModificationsWorker = function(valueName, curVa
 		// See if any of the lists of classes matches this entity
 		for (var j in modification.affects)
 		{
-			var hasAllClasses = false;
+			var hasAllClasses = true;
 			// Check each class in affects is present for the entity
 			for (var k in modification.affects[j])
-				hasAllClasses = hasAllClasses || (classes.indexOf(modification.affects[j][k]) !== -1);
+				hasAllClasses = hasAllClasses && (classes.indexOf(modification.affects[j][k]) !== -1);
 			
 			if (hasAllClasses)
 			{

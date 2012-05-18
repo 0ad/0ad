@@ -4,16 +4,17 @@
     <BuildTime>30</BuildTime>
   </Cost>
   <Footprint>
-    <Square width="38.5" depth="8.5"/>
+    <Square width="38.5" depth="9.0"/>
     <Height>9.0</Height>
   </Footprint>
   <Identity>
     <Civ>rome</Civ>
+	<SelectionGroupName>structures/rome_wallset_stone</SelectionGroupName>
     <SpecificName>Moenia</SpecificName>
     <History>Roman city walls used a number of innovations to thwart besiegers.</History>
   </Identity>
   <Obstruction>
-    <Static width="37.0" depth="7.0"/>
+    <Static width="37.0" depth="7.5"/>
   </Obstruction>
   <VisualActor>
     <Actor>structures/romans/wall_long.xml</Actor>
