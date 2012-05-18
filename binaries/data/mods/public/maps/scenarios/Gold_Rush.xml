@@ -4,10 +4,10 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cloudless</SkySet>
-		<SunColour r="0.741881" g="0.675368" b="0.552574"/>
+		<SunColour r="0.741176" g="0.67451" b="0.54902"/>
 		<SunElevation angle="0.877437"/>
 		<SunRotation angle="-0.730175"/>
-		<TerrainAmbientColour r="0.396078" g="0.47451" b="0.654902"/>
+		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="613.468" y="126.255" z="385.796"/>
+		<Position x="135.635" y="72.923" z="490.219"/>
 		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -57,7 +57,7 @@
     },
     {
       "AI": "qbot",
-      "Civ": "hele",
+      "Civ": "mace",
       "Colour": {
         "b": 5,
         "g": 165,
@@ -565,12 +565,6 @@
 			<Template>structures/celt_civil_centre</Template>
 			<Player>2</Player>
 			<Position x="170.17661" z="158.84931"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="120">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>3</Player>
-			<Position x="144.86811" z="572.94349"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="122">
@@ -5272,42 +5266,6 @@
 			<Position x="388.0229" z="88.38024"/>
 			<Orientation y="-1.36544"/>
 		</Entity>
-		<Entity uid="1017">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>3</Player>
-			<Position x="120.79255" z="560.04401"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1018">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>3</Player>
-			<Position x="123.09244" z="562.20081"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1019">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>3</Player>
-			<Position x="125.68621" z="565.58399"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1020">
-			<Template>units/hele_infantry_spearman_b</Template>
-			<Player>3</Player>
-			<Position x="125.45295" z="552.89039"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1021">
-			<Template>units/hele_infantry_spearman_a</Template>
-			<Player>3</Player>
-			<Position x="128.08764" z="555.33924"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1022">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>3</Player>
-			<Position x="131.01023" z="558.19239"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="1029">
 			<Template>units/celt_infantry_spearman_e</Template>
 			<Player>2</Player>
@@ -5349,12 +5307,6 @@
 			<Player>2</Player>
 			<Position x="161.9885" z="133.70145"/>
 			<Orientation y="-2.3003"/>
-		</Entity>
-		<Entity uid="1038">
-			<Template>units/hele_cavalry_swordsman_b</Template>
-			<Player>3</Player>
-			<Position x="135.77805" z="549.55982"/>
-			<Orientation y="-2.14739"/>
 		</Entity>
 		<Entity uid="1048">
 			<Template>gaia/geology_stonemine_desert_quarry</Template>
@@ -5877,6 +5829,54 @@
 			<Player>0</Player>
 			<Position x="620.83661" z="376.32474"/>
 			<Orientation y="-1.28933"/>
+		</Entity>
+		<Entity uid="1154">
+			<Template>structures/mace_civil_centre</Template>
+			<Player>3</Player>
+			<Position x="143.03464" z="574.68055"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1155">
+			<Template>units/mace_cavalry_spearman_b</Template>
+			<Player>3</Player>
+			<Position x="137.4133" z="550.64454"/>
+			<Orientation y="-2.25423"/>
+		</Entity>
+		<Entity uid="1156">
+			<Template>units/mace_infantry_spearman_e</Template>
+			<Player>3</Player>
+			<Position x="131.41597" z="556.3747"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1157">
+			<Template>units/mace_infantry_spearman_a</Template>
+			<Player>3</Player>
+			<Position x="129.48646" z="554.01136"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1158">
+			<Template>units/mace_infantry_spearman_b</Template>
+			<Player>3</Player>
+			<Position x="127.42702" z="552.23536"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1159">
+			<Template>units/mace_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="122.5297" z="557.41028"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1160">
+			<Template>units/mace_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="124.10042" z="559.9726"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1161">
+			<Template>units/mace_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="126.22744" z="561.95936"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>

@@ -17,16 +17,16 @@
 				<Shininess>6.10352</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.800781</Murkiness>
-				<Tint r="0.262745" g="0.603922" b="0.788235"/>
+				<Tint r="0.258824" g="0.603922" b="0.784314"/>
 				<ReflectionTint r="0.00392157" g="0.654902" b="0.764706"/>
 				<ReflectionTintStrength>0.298828</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="250.038" y="122.87" z="61.6697"/>
+		<Position x="840.658" y="69.9167" z="218.321"/>
 		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -49,7 +49,7 @@
     },
     {
       "AI": "qbot",
-      "Civ": "hele",
+      "Civ": "athen",
       "Colour": {
         "b": 20,
         "g": 20,
@@ -63,12 +63,6 @@
 }
 ]]></ScriptSettings>
 	<Entities>
-		<Entity uid="13">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="836.55518" z="291.4091"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="14">
 			<Template>gaia/flora_tree_medit_fan_palm</Template>
 			<Player>0</Player>
@@ -6898,53 +6892,11 @@
 			<Position x="829.03303" z="851.84125"/>
 			<Orientation y="1.34627"/>
 		</Entity>
-		<Entity uid="1422">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="812.41456" z="279.89344"/>
-			<Orientation y="-2.2506"/>
-		</Entity>
-		<Entity uid="1423">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="816.08906" z="277.08393"/>
-			<Orientation y="-2.2959"/>
-		</Entity>
-		<Entity uid="1425">
-			<Template>units/hele_infantry_javelinist_a</Template>
-			<Player>2</Player>
-			<Position x="825.39441" z="269.73047"/>
-			<Orientation y="-2.3924"/>
-		</Entity>
-		<Entity uid="1426">
-			<Template>units/hele_infantry_javelinist_a</Template>
-			<Player>2</Player>
-			<Position x="829.99286" z="266.20978"/>
-			<Orientation y="-2.35854"/>
-		</Entity>
-		<Entity uid="1427">
-			<Template>units/hele_infantry_spearman_a</Template>
-			<Player>2</Player>
-			<Position x="842.76606" z="264.81693"/>
-			<Orientation y="2.3581"/>
-		</Entity>
-		<Entity uid="1428">
-			<Template>units/hele_infantry_spearman_a</Template>
-			<Player>2</Player>
-			<Position x="849.03382" z="271.61329"/>
-			<Orientation y="2.39957"/>
-		</Entity>
-		<Entity uid="1429">
-			<Template>units/hele_infantry_javelinist_a</Template>
-			<Player>2</Player>
-			<Position x="820.78187" z="273.51761"/>
-			<Orientation y="-2.2974"/>
-		</Entity>
 		<Entity uid="1430">
 			<Template>gaia/special_treasure_wood</Template>
 			<Player>0</Player>
 			<Position x="807.41144" z="295.95954"/>
-			<Orientation y="-2.69634"/>
+			<Orientation y="1.11261"/>
 		</Entity>
 		<Entity uid="1431">
 			<Template>gaia/special_treasure_wood</Template>
@@ -13502,6 +13454,54 @@
 			<Template>actor|props/special/eyecandy/water_waves.xml</Template>
 			<Position x="673.688" z="233.96064"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2700">
+			<Template>structures/athen_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="835.09076" z="289.59482"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2701">
+			<Template>units/athen_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="843.6595" z="266.64316"/>
+			<Orientation y="2.64104"/>
+		</Entity>
+		<Entity uid="2702">
+			<Template>units/athen_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="849.86438" z="272.32404"/>
+			<Orientation y="2.76984"/>
+		</Entity>
+		<Entity uid="2703">
+			<Template>units/athen_infantry_javelinist_a</Template>
+			<Player>2</Player>
+			<Position x="828.84131" z="266.41874"/>
+			<Orientation y="-2.54177"/>
+		</Entity>
+		<Entity uid="2704">
+			<Template>units/athen_infantry_javelinist_a</Template>
+			<Player>2</Player>
+			<Position x="825.97504" z="269.72501"/>
+			<Orientation y="-2.26679"/>
+		</Entity>
+		<Entity uid="2705">
+			<Template>units/athen_infantry_javelinist_a</Template>
+			<Player>2</Player>
+			<Position x="822.66401" z="272.59598"/>
+			<Orientation y="-2.45977"/>
+		</Entity>
+		<Entity uid="2706">
+			<Template>units/athen_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="817.03815" z="280.33884"/>
+			<Orientation y="-2.84871"/>
+		</Entity>
+		<Entity uid="2707">
+			<Template>units/athen_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="819.6208" z="277.70142"/>
+			<Orientation y="-2.36612"/>
 		</Entity>
 	</Entities>
 	<Paths/>
