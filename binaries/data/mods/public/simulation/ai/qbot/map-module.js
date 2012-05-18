@@ -27,7 +27,7 @@ Map.createObstructionMap = function(gameState, template){
 	var passabilityMap = gameState.getMap();
 	var territoryMap = gameState.getTerritoryMap(); 
 	
-	const TERRITORY_PLAYER_MASK = 0x7F;
+	const TERRITORY_PLAYER_MASK = 0x3F;
 	
 	// default values
 	var placementType = "land";
@@ -66,13 +66,14 @@ Map.createObstructionMap = function(gameState, template){
 			(!buildOwn && tilePlayer == playerID) || 
 			(!buildAlly && gameState.isPlayerAlly(tilePlayer) && tilePlayer != playerID) || 
 			(!buildNeutral && tilePlayer == 0) || 
-			(!buildEnemy && gameState.isPlayerEnemy(tilePlayer) && tilePlayer !=0) 
+			(!buildEnemy && gameState.isPlayerEnemy(tilePlayer) && tilePlayer != 0) 
 		);
 		var tileAccessible = (gameState.ai.accessibility.map[i] == 1);
 		obstructionTiles[i] = (!tileAccessible || invalidTerritory || (passabilityMap.data[i] & obstructionMask)) ? 0 : 65535; 
 	}
 	
 	var map = new Map(gameState, obstructionTiles);
+	
 	if (template && template.buildDistance()){
 		var minDist = template.buildDistance().MinDistance;
 		var category = template.buildDistance().FromCategory;

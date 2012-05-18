@@ -147,9 +147,7 @@ var EntityTemplate = Class({
 			return undefined;
 		return +this._template.ResourceSupply.Amount;
 	},
-
-
-
+	
 	resourceGatherRates: function() {
 		if (!this._template.ResourceGatherer)
 			return undefined;
@@ -364,6 +362,12 @@ var Entity = Class({
 	repair: function(target, queued) {
 		queued = queued || false;
 		Engine.PostCommand({"type": "repair", "entities": [this.id()], "target": target.id(), "autocontinue": false, "queued": queued});
+		return this;
+	},
+	
+	returnResources: function(target, queued) {
+		queued = queued || false;
+		Engine.PostCommand({"type": "returnresource", "entities": [this.id()], "target": target.id(), "queued": queued});
 		return this;
 	},
 
