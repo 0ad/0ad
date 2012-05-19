@@ -15,16 +15,17 @@
       <ProjectileSpeed>75.0</ProjectileSpeed>
       <PrepareTime>1200</PrepareTime>
       <RepeatTime>2000</RepeatTime>
-	  <Bonuses>
-		<BonusPrimary>
-		  <Classes>Infantry Sword</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusPrimary>
-		<BonusSecondary>
-		  <Classes>Cavalry Spear</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusSecondary>
-	  </Bonuses>
+      <Spread>1.5</Spread>
+      <Bonuses>
+        <BonusPrimary>
+          <Classes>Infantry Sword</Classes>
+          <Multiplier>2.0</Multiplier>
+        </BonusPrimary>
+        <BonusSecondary>
+          <Classes>Cavalry Spear</Classes>
+          <Multiplier>1.5</Multiplier>
+        </BonusSecondary>
+      </Bonuses>
       <PreferredClasses datatype="tokens">Organic</PreferredClasses>
       <RestrictedClasses datatype="tokens">StoneWall</RestrictedClasses>
     </Ranged>

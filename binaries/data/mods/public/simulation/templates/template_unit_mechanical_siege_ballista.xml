@@ -7,19 +7,28 @@
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
-      <Pierce>50.0</Pierce>
-      <Crush>50.0</Crush>
+      <Pierce>20.0</Pierce>
+      <Crush>20.0</Crush>
       <MaxRange>60</MaxRange>
       <MinRange>8.0</MinRange>
+      <Spread>6.0</Spread>
       <ProjectileSpeed>60.0</ProjectileSpeed>
       <PrepareTime>5000</PrepareTime>
       <RepeatTime>5000</RepeatTime>
-	  <Bonuses>
-		<BonusOrganic>
-		  <Classes>Organic</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusOrganic>
-	  </Bonuses>
+      <Bonuses>
+        <BonusOrganic>
+        <Classes>Organic</Classes>
+        <Multiplier>2.0</Multiplier>
+        </BonusOrganic>
+      </Bonuses>
+      <Splash>
+        <Shape>Linear</Shape>
+        <Range>12</Range>
+        <FriendlyFire>false</FriendlyFire>
+        <Hack>0.0</Hack>
+        <Pierce>30.0</Pierce>
+        <Crush>30.0</Crush>
+      </Splash>
     </Ranged>
   </Attack>
   <Cost>

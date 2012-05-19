@@ -20,6 +20,8 @@
 #include "simulation2/system/Component.h"
 #include "ICmpProjectileManager.h"
 
+#include "ICmpObstruction.h"
+#include "ICmpObstructionManager.h"
 #include "ICmpPosition.h"
 #include "ICmpRangeManager.h"
 #include "ICmpTerrain.h"
@@ -58,6 +60,7 @@ public:
 	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
 		m_ActorSeed = 0;
+		m_Id = 1;
 	}
 
 	virtual void Deinit()
@@ -86,7 +89,7 @@ public:
 		case MT_Interpolate:
 		{
 			const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
-			Interpolate(msgData.frameTime, msgData.offset);
+			Interpolate(msgData.frameTime);
 			break;
 		}
 		case MT_RenderSubmit:
@@ -98,15 +101,12 @@ public:
 		}
 	}
 
-	virtual void LaunchProjectileAtEntity(entity_id_t source, entity_id_t target, fixed speed, fixed gravity)
+	virtual uint32_t LaunchProjectileAtPoint(entity_id_t source, CFixedVector3D target, fixed speed, fixed gravity)
 	{
-		LaunchProjectile(source, CFixedVector3D(), target, speed, gravity);
+		return LaunchProjectile(source, target, speed, gravity);
 	}
-
-	virtual void LaunchProjectileAtPoint(entity_id_t source, CFixedVector3D target, fixed speed, fixed gravity)
-	{
-		LaunchProjectile(source, target, INVALID_ENTITY, speed, gravity);
-	}
+	
+	virtual void RemoveProjectile(uint32_t);
 
 private:
 	struct Projectile
@@ -114,36 +114,38 @@ private:
 		CUnit* unit;
 		CVector3D pos;
 		CVector3D target;
-		entity_id_t targetEnt; // INVALID_ENTITY if the target is just a point
 		float timeLeft;
 		float speedFactor;
 		float gravity;
 		bool stopped;
+		uint32_t id;
 	};
 
 	std::vector<Projectile> m_Projectiles;
 
 	uint32_t m_ActorSeed;
+	
+	uint32_t m_Id;
 
-	void LaunchProjectile(entity_id_t source, CFixedVector3D targetPoint, entity_id_t targetEnt, fixed speed, fixed gravity);
+	uint32_t LaunchProjectile(entity_id_t source, CFixedVector3D targetPoint, fixed speed, fixed gravity);
 
-	void AdvanceProjectile(Projectile& projectile, float dt, float frameOffset);
+	void AdvanceProjectile(Projectile& projectile, float dt);
 
-	void Interpolate(float frameTime, float frameOffset);
+	void Interpolate(float frameTime);
 
 	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling);
 };
 
 REGISTER_COMPONENT_TYPE(ProjectileManager)
 
-void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D targetPoint, entity_id_t targetEnt, fixed speed, fixed gravity)
+uint32_t CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D targetPoint, fixed speed, fixed gravity)
 {
 	if (!GetSimContext().HasUnitManager())
-		return; // do nothing if graphics are disabled
+		return 0; // do nothing if graphics are disabled
 
 	CmpPtr<ICmpVisual> cmpSourceVisual(GetSimContext(), source);
 	if (!cmpSourceVisual)
-		return;
+		return 0;
 
 	std::wstring name = cmpSourceVisual->GetProjectileActor();
 	if (name.empty())
@@ -151,7 +153,7 @@ void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D 
 		// If the actor was actually loaded, complain that it doesn't have a projectile
 		if (!cmpSourceVisual->GetActorShortName().empty())
 			LOGERROR(L"Unit with actor '%ls' launched a projectile but has no actor on 'projectile' attachpoint", cmpSourceVisual->GetActorShortName().c_str());
-		return;
+		return 0;
 	}
 
 	CVector3D sourceVec(cmpSourceVisual->GetProjectileLaunchPoint());
@@ -161,7 +163,7 @@ void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D 
 
 		CmpPtr<ICmpPosition> sourcePos(GetSimContext(), source);
 		if (!sourcePos)
-			return;
+			return 0;
 
 		sourceVec = sourcePos->GetPosition();
 		sourceVec.Y += 3.f;
@@ -169,31 +171,20 @@ void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D 
 
 	CVector3D targetVec;
 
-	if (targetEnt == INVALID_ENTITY)
-	{
-		targetVec = CVector3D(targetPoint);
-	}
-	else
-	{
-		CmpPtr<ICmpPosition> cmpTargetPosition(GetSimContext(), targetEnt);
-		if (!cmpTargetPosition)
-			return;
-
-		targetVec = CVector3D(cmpTargetPosition->GetPosition());
-	}
+    targetVec = CVector3D(targetPoint);
 
 	Projectile projectile;
 	std::set<CStr> selections;
 	projectile.unit = GetSimContext().GetUnitManager().CreateUnit(name, m_ActorSeed++, selections);
+	projectile.id = m_Id++;
 	if (!projectile.unit)
 	{
 		// The error will have already been logged
-		return;
+		return 0;
 	}
 
 	projectile.pos = sourceVec;
 	projectile.target = targetVec;
-	projectile.targetEnt = targetEnt;
 
 	CVector3D offset = projectile.target - projectile.pos;
 	float horizDistance = sqrtf(offset.X*offset.X + offset.Z*offset.Z);
@@ -205,9 +196,11 @@ void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D 
 	projectile.gravity = gravity.ToFloat();
 
 	m_Projectiles.push_back(projectile);
+	
+	return projectile.id;
 }
 
-void CCmpProjectileManager::AdvanceProjectile(Projectile& projectile, float dt, float frameOffset)
+void CCmpProjectileManager::AdvanceProjectile(Projectile& projectile, float dt)
 {
 	// Do special processing if we've already reached the target
 	if (projectile.timeLeft <= 0)
@@ -222,24 +215,6 @@ void CCmpProjectileManager::AdvanceProjectile(Projectile& projectile, float dt, 
 		// To prevent arrows going crazily far after missing the target,
 		// apply a bit of drag to them
 		projectile.speedFactor *= powf(1.0f - 0.4f*projectile.speedFactor, dt);
-	}
-	else
-	{
-		// Projectile hasn't reached the target yet:
-		// Track the target entity (if there is one, and it's still alive)
-		if (projectile.targetEnt != INVALID_ENTITY)
-		{
-			CmpPtr<ICmpPosition> cmpTargetPosition(GetSimContext(), projectile.targetEnt);
-			if (cmpTargetPosition && cmpTargetPosition->IsInWorld())
-			{
-				CMatrix3D t = cmpTargetPosition->GetInterpolatedTransform(frameOffset, false);
-				projectile.target = t.GetTranslation();
-				projectile.target.Y += 2.f; // TODO: ought to aim towards a random point in the solid body of the target
-
-				// TODO: if the unit is moving, we should probably aim a bit in front of it
-				// so we don't have to curve so much just before reaching it
-			}
-		}
 	}
 
 	CVector3D offset = (projectile.target - projectile.pos) * projectile.speedFactor;
@@ -296,11 +271,11 @@ void CCmpProjectileManager::AdvanceProjectile(Projectile& projectile, float dt, 
 	projectile.unit->GetModel().SetTransform(transform);
 }
 
-void CCmpProjectileManager::Interpolate(float frameTime, float frameOffset)
+void CCmpProjectileManager::Interpolate(float frameTime)
 {
 	for (size_t i = 0; i < m_Projectiles.size(); ++i)
 	{
-		AdvanceProjectile(m_Projectiles[i], frameTime, frameOffset);
+		AdvanceProjectile(m_Projectiles[i], frameTime);
 	}
 
 	// Remove the ones that have reached their target
@@ -310,7 +285,7 @@ void CCmpProjectileManager::Interpolate(float frameTime, float frameOffset)
 		// Those hitting the ground stay for a while, because it looks pretty.
 		if (m_Projectiles[i].timeLeft <= 0.f)
 		{
-			if (m_Projectiles[i].targetEnt == INVALID_ENTITY && m_Projectiles[i].timeLeft > -PROJECTILE_DECAY_TIME)
+			if (m_Projectiles[i].timeLeft > -PROJECTILE_DECAY_TIME)
 			{
 				// Keep the projectile until it exceeds the decay time
 			}
@@ -326,6 +301,22 @@ void CCmpProjectileManager::Interpolate(float frameTime, float frameOffset)
 
 		++i;
 	}
+}
+
+void CCmpProjectileManager::RemoveProjectile(uint32_t id)
+{
+    // Scan through the projectile list looking for one with the correct id to remove
+    for (size_t i = 0; i < m_Projectiles.size(); i++)
+    {
+        if (m_Projectiles[i].id == id)
+        {
+            // Delete in-place by swapping with the last in the list
+            std::swap(m_Projectiles[i], m_Projectiles.back());
+            GetSimContext().GetUnitManager().DeleteUnit(m_Projectiles.back().unit);
+            m_Projectiles.pop_back();
+            return;
+        }
+    }
 }
 
 void CCmpProjectileManager::RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling)

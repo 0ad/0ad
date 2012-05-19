@@ -50,6 +50,8 @@ public:
 	virtual bool IsFloating() { return false; }
 	virtual CFixedVector3D GetPosition() { return CFixedVector3D(); }
 	virtual CFixedVector2D GetPosition2D() { return CFixedVector2D(); }
+	virtual CFixedVector3D GetPreviousPosition() { return CFixedVector3D(); }
+	virtual CFixedVector2D GetPreviousPosition2D() { return CFixedVector2D(); }
 	virtual void TurnTo(entity_angle_t UNUSED(y)) { }
 	virtual void SetYRotation(entity_angle_t UNUSED(y)) { }
 	virtual void SetXZRotation(entity_angle_t UNUSED(x), entity_angle_t UNUSED(z)) { }

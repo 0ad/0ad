@@ -6,20 +6,29 @@
   </Armour>
   <Attack>
     <Ranged>
-      <Hack>50.0</Hack>
+      <Hack>40.0</Hack>
       <Pierce>0.0</Pierce>
-      <Crush>50.0</Crush>
+      <Crush>40.0</Crush>
       <MaxRange>68</MaxRange>
       <MinRange>12.0</MinRange>
       <ProjectileSpeed>30.0</ProjectileSpeed>
       <PrepareTime>5000</PrepareTime>
       <RepeatTime>5000</RepeatTime>
+      <Spread>6.0</Spread>
 	  <Bonuses>
 		<BonusStruct>
 		  <Classes>Structure</Classes>
 		  <Multiplier>2.0</Multiplier>
 		</BonusStruct>
 	  </Bonuses>
+      <Splash>
+        <Shape>Circular</Shape>
+        <Range>12</Range>
+        <FriendlyFire>true</FriendlyFire>
+        <Hack>12.0</Hack>
+        <Pierce>0.0</Pierce>
+        <Crush>12.0</Crush>
+      </Splash>
     </Ranged>
   </Attack>
   <Cost>

@@ -66,7 +66,9 @@ public:
 	// Dynamic state:
 
 	bool m_InWorld;
-	entity_pos_t m_X, m_Z, m_LastX, m_LastZ; // these values contain undefined junk if !InWorld
+	// m_LastX/Z contain the position from the start of the most recent turn
+	// m_PrevX/Z conatain the position from the turn before that
+	entity_pos_t m_X, m_Z, m_LastX, m_LastZ, m_PrevX, m_PrevZ; // these values contain undefined junk if !InWorld
 	entity_pos_t m_YOffset;
 	bool m_RelativeToGround; // whether m_YOffset is relative to terrain/water plane, or an absolute height
 
@@ -201,8 +203,8 @@ public:
 		if (!m_InWorld)
 		{
 			m_InWorld = true;
-			m_LastX = m_X;
-			m_LastZ = m_Z;
+			m_LastX = m_PrevX = m_X;
+			m_LastZ = m_PrevZ = m_Z;
 		}
 
 		AdvertisePositionChanges();
@@ -210,8 +212,8 @@ public:
 
 	virtual void JumpTo(entity_pos_t x, entity_pos_t z)
 	{
-		m_LastX = m_X = x;
-		m_LastZ = m_Z = z;
+		m_LastX = m_PrevX = m_X = x;
+		m_LastZ = m_PrevZ = m_Z = z;
 		m_InWorld = true;
 
 		AdvertisePositionChanges();
@@ -276,6 +278,43 @@ public:
 		}
 
 		return CFixedVector2D(m_X, m_Z);
+	}
+
+	virtual CFixedVector3D GetPreviousPosition() 
+	{ 
+		if (!m_InWorld) 
+		{ 
+			LOGERROR(L"CCmpPosition::GetPreviousPosition called on entity when IsInWorld is false"); 
+			return CFixedVector3D(); 
+		} 
+
+		entity_pos_t baseY; 
+		if (m_RelativeToGround) 
+		{ 
+			CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY); 
+			if (cmpTerrain) 
+				baseY = cmpTerrain->GetGroundLevel(m_PrevX, m_PrevZ); 
+
+			if (m_Floating) 
+			{ 
+				CmpPtr<ICmpWaterManager> cmpWaterMan(GetSimContext(), SYSTEM_ENTITY); 
+				if (cmpWaterMan) 
+					baseY = std::max(baseY, cmpWaterMan->GetWaterLevel(m_PrevX, m_PrevZ)); 
+			} 
+		} 
+
+		return CFixedVector3D(m_PrevX, baseY + m_YOffset, m_PrevZ); 
+	} 
+
+	virtual CFixedVector2D GetPreviousPosition2D() 
+	{ 
+		if (!m_InWorld) 
+		{ 
+			LOGERROR(L"CCmpPosition::GetPreviousPosition2D called on entity when IsInWorld is false"); 
+			return CFixedVector2D(); 
+		} 
+
+		return CFixedVector2D(m_PrevX, m_PrevZ); 
 	}
 
 	virtual void TurnTo(entity_angle_t y)
@@ -408,6 +447,10 @@ public:
 		}
 		case MT_TurnStart:
 		{
+			// Store the positions from the turn before
+			m_PrevX = m_LastX;
+			m_PrevZ = m_LastZ;
+			
 			m_LastX = m_X;
 			m_LastZ = m_Z;
 

@@ -38,11 +38,6 @@
   <Obstruction>
     <Static width="30.0" depth="26.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <Technologies datatype="tokens">
-      armor_trade_convoys
-    </Technologies>
-  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_market.xml</select>
@@ -56,6 +51,9 @@
     <Weight>65536</Weight>
   </TerritoryInfluence>
   <ProductionQueue>
+    <Technologies datatype="tokens">
+      armor_trade_convoys
+    </Technologies>
     <Entities datatype="tokens">
       units/{civ}_support_trader
     </Entities>

@@ -31,14 +31,6 @@
 class ICmpProjectileManager : public IComponent
 {
 public:
-	/**
-	 * Launch a projectile from entity @p source to entity @p target.
-	 * @param source source entity; the projectile will determined from the "projectile" prop in its actor
-	 * @param target target entity; the projectile will automatically track the target to ensure it always hits precisely
-	 * @param speed horizontal speed in m/s
-	 * @param gravity gravitational acceleration in m/s^2 (determines the height of the ballistic curve)
-	 */
-	virtual void LaunchProjectileAtEntity(entity_id_t source, entity_id_t target, fixed speed, fixed gravity) = 0;
 
 	/**
 	 * Launch a projectile from entity @p source to point @p target.
@@ -46,8 +38,15 @@ public:
 	 * @param target target point
 	 * @param speed horizontal speed in m/s
 	 * @param gravity gravitational acceleration in m/s^2 (determines the height of the ballistic curve)
+	 * @return id of the created projectile 
 	 */
-	virtual void LaunchProjectileAtPoint(entity_id_t source, CFixedVector3D target, fixed speed, fixed gravity) = 0;
+	virtual uint32_t LaunchProjectileAtPoint(entity_id_t source, CFixedVector3D target, fixed speed, fixed gravity) = 0;
+	
+	/**
+     * Removes a projectile, used when the projectile has hit a target
+     * @param id of the projectile to remove
+     */
+	virtual void RemoveProjectile(uint32_t id) = 0;
 
 	DECLARE_INTERFACE_TYPE(ProjectileManager)
 };
