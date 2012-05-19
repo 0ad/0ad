@@ -129,7 +129,7 @@ var BuildingConstructionPlan = Class({
 		// Find all tiles in valid territory that are far enough away from obstructions:
 		var passabilityMap = gameState.getPassabilityMap();
 		var territoryMap = gameState.getTerritoryMap();
-		const TERRITORY_PLAYER_MASK = 0x7F;
+		const TERRITORY_PLAYER_MASK = 0x3F;
 		var obstructionMask = gameState.getPassabilityClassMask("foundationObstruction");
 
 		if (passabilityMap.data.length != territoryMap.data.length)

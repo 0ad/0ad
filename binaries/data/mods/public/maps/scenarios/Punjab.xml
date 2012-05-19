@@ -4,10 +4,10 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cloudless</SkySet>
-		<SunColour r="0.85098" g="0.792157" b="0.592157"/>
+		<SunColour r="0.847059" g="0.792157" b="0.592157"/>
 		<SunElevation angle="0.773126"/>
 		<SunRotation angle="-0.374291"/>
-		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.552941"/>
+		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="219.124" y="81.5623" z="539.553"/>
+		<Position x="246.599" y="91.5253" z="497.928"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -39,7 +39,7 @@
   "PlayerData": [
     {
       "AI": "",
-      "Civ": "hele",
+      "Civ": "spart",
       "Colour": {
         "b": 200,
         "g": 46,
@@ -64,12 +64,6 @@
 }
 ]]></ScriptSettings>
 	<Entities>
-		<Entity uid="11">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="211.39173" z="633.22236"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="12">
 			<Template>structures/pers_civil_centre</Template>
 			<Player>2</Player>
@@ -4599,36 +4593,6 @@
 		<Entity uid="836">
 			<Template>actor|props/flora/plant_tropic_a.xml</Template>
 			<Position x="245.89408" z="650.55195"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="870">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="218.20032" z="607.81135"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="871">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="220.60065" z="610.0373"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="872">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="223.43902" z="612.07355"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="873">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="225.90429" z="614.3921"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="874">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="229.16367" z="616.56702"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="875">
@@ -29808,6 +29772,42 @@
 			<Player>0</Player>
 			<Position x="793.42774" z="544.06116"/>
 			<Orientation y="-0.41327"/>
+		</Entity>
+		<Entity uid="5389">
+			<Template>structures/spart_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="209.09157" z="630.18232"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5390">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="217.89032" z="607.75373"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5391">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="221.15247" z="610.58228"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5392">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="223.51835" z="612.95685"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5393">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="225.75568" z="615.51044"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5394">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="228.06183" z="618.35651"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>

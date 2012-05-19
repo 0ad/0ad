@@ -311,7 +311,7 @@ EconomyManager.prototype.getBestResourceBuildSpot = function(gameState, resource
 EconomyManager.prototype.updateResourceConcentrations = function(gameState){
 	var self = this;
 	var resources = ["food", "wood", "stone", "metal"];
-	for (key in resources){
+	for (var key in resources){
 		var resource = resources[key];
 		gameState.getOwnEntities().forEach(function(ent) {
 			if (ent.resourceDropsiteTypes() && ent.resourceDropsiteTypes().indexOf(resource) !== -1){
@@ -335,7 +335,7 @@ EconomyManager.prototype.updateNearbyResources = function(gameState){
 	var resources = ["food", "wood", "stone", "metal"];
 	var resourceSupplies;
 	var radius = 100;
-	for (key in resources){
+	for (var key in resources){
 		var resource = resources[key];
 		
 		gameState.getOwnDropsites(resource).forEach(function(ent) {
@@ -481,6 +481,32 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 	
 	Engine.ProfileStart("Reassign Idle Workers");
 	this.reassignIdleWorkers(gameState);
+	Engine.ProfileStop();
+	
+	Engine.ProfileStart("Swap Workers");
+	var gathererGroups = {};
+	gameState.getOwnEntitiesByRole("worker").forEach(function(ent){
+		var key = uneval(ent.resourceGatherRates());
+		if (!gathererGroups[key]){
+			gathererGroups[key] = {"food": [], "wood": [], "metal": [], "stone": []};
+		}
+		if (ent.getMetadata("gather-type") in gathererGroups[key]){
+			gathererGroups[key][ent.getMetadata("gather-type")].push(ent);
+		}
+	});
+	
+	for (var i in gathererGroups){
+		for (var j in gathererGroups){
+			var a = eval(i);
+			var b = eval(j);
+			if (a["food.grain"]/b["food.grain"] > a["wood.tree"]/b["wood.tree"] && gathererGroups[i]["wood"].length > 0 && gathererGroups[j]["food"].length > 0){
+				for (var k = 0; k < Math.min(gathererGroups[i]["wood"].length, gathererGroups[j]["food"].length); k++){
+					gathererGroups[i]["wood"][k].setMetadata("gather-type", "food");
+					gathererGroups[j]["food"][k].setMetadata("gather-type", "wood");
+				}
+			}
+		}
+	}
 	Engine.ProfileStop();
 	
 	Engine.ProfileStart("Assign builders");

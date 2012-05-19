@@ -96,7 +96,7 @@ GameState.prototype.isPlayerEnemy = function(id) {
 
 GameState.prototype.getEnemies = function(){
 	var ret = [];
-	for (i in this.playerData.isEnemy){
+	for (var i in this.playerData.isEnemy){
 		if (this.playerData.isEnemy[i]){
 			ret.push(i);
 		}

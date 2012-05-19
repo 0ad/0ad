@@ -56,7 +56,7 @@ function ProcessCommand(player, cmd)
 
 	case "walk":
 		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-		GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
+		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.Walk(cmd.x, cmd.z, cmd.queued);
 		});
 		break;
@@ -70,7 +70,7 @@ function ProcessCommand(player, cmd)
 
 		// See UnitAI.CanAttack for target checks
 		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-		GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
+		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.Attack(cmd.target, cmd.queued);
 		});
 		break;
@@ -84,7 +84,7 @@ function ProcessCommand(player, cmd)
 
 		// See UnitAI.CanHeal for target checks
 		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-		GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
+		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.Heal(cmd.target, cmd.queued);
 		});
 		break;
@@ -99,7 +99,7 @@ function ProcessCommand(player, cmd)
 
 		// See UnitAI.CanRepair for target checks
 		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-		GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
+		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.Repair(cmd.target, cmd.autocontinue, cmd.queued);
 		});
 		break;
@@ -113,14 +113,14 @@ function ProcessCommand(player, cmd)
 
 		// See UnitAI.CanGather for target checks
 		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-		GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
+		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.Gather(cmd.target, cmd.queued);
 		});
 		break;
 		
 	case "gather-near-position":
 		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-		GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
+		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.GatherNearPosition(cmd.x, cmd.z, cmd.resourceType, cmd.queued);
 		});
 		break;
@@ -135,7 +135,7 @@ function ProcessCommand(player, cmd)
 
 		// See UnitAI.CanReturnResource for target checks
 		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-		GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
+		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.ReturnResource(cmd.target, cmd.queued);
 		});
 		break;
@@ -258,7 +258,7 @@ function ProcessCommand(player, cmd)
 		if (CanControlUnit(cmd.target, player, controlAllUnits))
 		{
 			var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-			GetFormationUnitAIs(entities).forEach(function(cmpUnitAI) {
+			GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 				cmpUnitAI.Garrison(cmd.target);
 			});
 		}
@@ -316,7 +316,7 @@ function ProcessCommand(player, cmd)
 
 	case "formation":
 		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
-		GetFormationUnitAIs(entities, cmd.name).forEach(function(cmpUnitAI) {
+		GetFormationUnitAIs(entities, player, cmd.name).forEach(function(cmpUnitAI) {
 			var cmpFormation = Engine.QueryInterface(cmpUnitAI.entity, IID_Formation);
 			if (!cmpFormation)
 				return;
@@ -844,7 +844,7 @@ function RemoveFromFormation(ents)
  * Returns a list of UnitAI components, each belonging either to a
  * selected unit or to a formation entity for groups of the selected units.
  */
-function GetFormationUnitAIs(ents, formName)
+function GetFormationUnitAIs(ents, player, formName)
 {
 	// If an individual was selected, remove it from any formation
 	// and command it individually
@@ -921,6 +921,9 @@ function GetFormationUnitAIs(ents, formName)
 		formationEnt = Engine.AddEntity("special/formation");
 		var cmpFormation = Engine.QueryInterface(formationEnt, IID_Formation);
 		cmpFormation.SetMembers(formation.entities);
+
+		var cmpOwnership = Engine.QueryInterface(formationEnt, IID_Ownership);
+		cmpOwnership.SetOwner(player);
 
 		// If all the selected units were previously in formations of the same shape,
 		// then set this new formation to that shape too; otherwise use the default shape

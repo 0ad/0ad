@@ -139,7 +139,7 @@ var UnitFsmSpec = {
 	"LosRangeUpdate": function(msg) {
 		// ignore newly-seen units by default
 	},
-	
+
 	"LosHealRangeUpdate": function(msg) {
 		// ignore newly-seen injured units by default
 	},
@@ -371,7 +371,7 @@ var UnitFsmSpec = {
 			this.SetNextStateAlwaysEntering("INDIVIDUAL.GATHER.GATHERING");
 		}
 	},
-	
+
 	"Order.GatherNearPosition": function(msg) {
 		// Move the unit to the position to gather from.
 		this.MoveToPoint(this.order.data.x, this.order.data.z);
@@ -421,7 +421,7 @@ var UnitFsmSpec = {
 			this.SetNextState("INDIVIDUAL.REPAIR.REPAIRING");
 		}
 	},
-	
+
 	"Order.Garrison": function(msg) {
 		if (this.MoveToTarget(this.order.data.target))
 		{
@@ -434,7 +434,7 @@ var UnitFsmSpec = {
 			this.SetNextState("INDIVIDUAL.GARRISON.GARRISONED");
 		}
 	},
-	
+
 	"Order.Cheering": function(msg) {
 		this.SetNextState("INDIVIDUAL.CHEERING");
 	},
@@ -448,6 +448,14 @@ var UnitFsmSpec = {
 
 			this.MoveToPoint(this.order.data.x, this.order.data.z);
 			this.SetNextState("WALKING");
+		},
+
+		// Only used by other orders to walk there in formation
+		"Order.WalkToTargetRange": function(msg) {
+			if(this.MoveToTargetRangeExplicit(this.order.data.target, this.order.data.min, this.order.data.max))
+				this.SetNextState("WALKING");
+			else
+				this.FinishOrder();
 		},
 
 		"Order.Attack": function(msg) {
@@ -471,10 +479,23 @@ var UnitFsmSpec = {
 		},
 
 		"Order.Repair": function(msg) {
-			// TODO: see notes in Order.Attack
+			// TODO on what should we base this range?
+			// Check if we are already in range, otherwise walk there
+			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
+			{
+				if (!this.TargetIsAlive(msg.data.target))
+					// The building was finished or destroyed
+					this.FinishOrder();
+				else
+					// Out of range move there in formation
+					this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": 10 });
+				return;
+			}
+
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 			cmpFormation.CallMemberFunction("Repair", [msg.data.target, msg.data.autocontinue, false]);
-			cmpFormation.Disband();
+
+			this.SetNextState("REPAIR");
 		},
 
 		"Order.Gather": function(msg) {
@@ -483,7 +504,7 @@ var UnitFsmSpec = {
 			cmpFormation.CallMemberFunction("Gather", [msg.data.target, false]);
 			cmpFormation.Disband();
 		},
-		
+
 		"Order.GatherNearPosition": function(msg) {
 			// TODO: see notes in Order.Attack
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
@@ -504,7 +525,7 @@ var UnitFsmSpec = {
 			cmpFormation.CallMemberFunction("Garrison", [msg.data.target, false]);
 			cmpFormation.Disband();
 		},
-		
+
 		"IDLE": {
 		},
 
@@ -515,6 +536,19 @@ var UnitFsmSpec = {
 			},
 
 			"MoveCompleted": function(msg) {
+				if (this.FinishOrder())
+					return;
+
+				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				cmpFormation.Disband();
+			},
+		},
+
+		"REPAIR": {
+			"ConstructionFinished": function(msg) {
+				if (msg.data.entity != this.order.data.target)
+					return;
+
 				if (this.FinishOrder())
 					return;
 
@@ -2375,6 +2409,12 @@ UnitAI.prototype.CheckTargetRange = function(target, iid, type)
 	return cmpUnitMotion.IsInTargetRange(target, range.min, range.max);
 };
 
+UnitAI.prototype.CheckTargetRangeExplicit = function(target, min, max)
+{
+	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return cmpUnitMotion.IsInTargetRange(target, min, max);
+};
+
 UnitAI.prototype.CheckGarrisonRange = function(target)
 {
 	var cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
@@ -2666,13 +2706,14 @@ UnitAI.prototype.ComputeWalkingDistance = function()
 			var dz = order.data.z - pos.z;
 			var d = Math.sqrt(dx*dx + dz*dz);
 			distance += d;
-			
+
 			// Remember this as the start position for the next order
 			pos = order.data;
 
 			break; // and continue the loop
 
 		case "WalkToTarget":
+		case "WalkToTargetRange": // This doesn't move to the target (just into range), but a later order will.
 		case "Flee":
 		case "LeaveFoundation":
 		case "Attack":

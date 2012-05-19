@@ -1277,8 +1277,7 @@ function doAction(action, ev)
 
 	case "heal":
 		Engine.PostNetworkCommand({"type": "heal", "entities": selection, "target": action.target, "queued": queued});
-		// TODO: Play a sound?
-//		Engine.GuiInterfaceCall("PlaySound", { "name": "order_heal", "entity": selection[0] });
+		Engine.GuiInterfaceCall("PlaySound", { "name": "order_heal", "entity": selection[0] });
 		return true;
 
 	case "build": // (same command as repair)

@@ -70,7 +70,7 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 		friendlyTiles.addInfluence(x, z, 200);
 		//friendlyTiles.dumpIm("pos.png",	200);
 	}else{
-		// Not position was specified so try and find a sensible place to build
+		// No position was specified so try and find a sensible place to build
 		gameState.getOwnEntities().forEach(function(ent) {
 			if (ent.hasClass("Structure")) {
 				var infl = 32;
@@ -93,8 +93,6 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 						friendlyTiles.addInfluence(x, z, infl/8, -infl/2);
 					}
 				}
-				
-					
 			}
 		});
 	}

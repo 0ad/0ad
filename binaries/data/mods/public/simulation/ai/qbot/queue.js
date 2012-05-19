@@ -29,7 +29,7 @@ Queue.prototype.outQueueNext = function(){
 
 Queue.prototype.outQueueCost = function(){
 	var cost = new Resources();
-	for (key in this.outQueue){
+	for (var key in this.outQueue){
 		cost.add(this.outQueue[key].getCost());
 	}
 	return cost;

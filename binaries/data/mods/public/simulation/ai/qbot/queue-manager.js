@@ -18,7 +18,7 @@ var QueueManager = function(queues, priorities) {
 	this.queues = queues;
 	this.priorities = priorities;
 	this.account = {};
-	for (p in this.queues) {
+	for (var p in this.queues) {
 		this.account[p] = 0;
 	}
 	this.curItemQueue = [];
@@ -26,7 +26,7 @@ var QueueManager = function(queues, priorities) {
 
 QueueManager.prototype.getAvailableResources = function(gameState) {
 	var resources = gameState.getResources();
-	for (key in this.queues) {
+	for (var key in this.queues) {
 		resources.subtract(this.queues[key].outQueueCost());
 	}
 	return resources;
@@ -71,7 +71,7 @@ QueueManager.prototype.futureNeeds = function(gameState) {
 	
 	var futureNum = 20;
 	var queues = [];
-	for (q in this.queues){
+	for (var q in this.queues){
 		queues.push(q);
 	}
 	var needs = recurse(queues, this, futureNum, 0);
@@ -216,7 +216,7 @@ QueueManager.prototype.update = function(gameState) {
 		var ratio = {};
 		var ratioMin = 1000000;
 		var ratioMinQueue = undefined;
-		for (p in this.queues) {
+		for (var p in this.queues) {
 			if (this.queues[p].length() > 0 && this.curItemQueue.indexOf(p) === -1) {
 				var cost = this.queues[p].getNext().getCost().toInt();
 				if (cost < this.account[p]) {
@@ -247,7 +247,7 @@ QueueManager.prototype.update = function(gameState) {
 				&& ratioMinQueue !== undefined) {
 			while (Object.keys(ratio).length > 0 && (availableRes["food"] > 0 || availableRes["wood"] > 0 || availableRes["stone"] > 0 || availableRes["metal"] > 0)){
 				ratioMin = Math.min(); //biggest value
-				for (key in ratio){
+				for (var key in ratio){
 					if (ratio[key] < ratioMin){
 						ratioMin = ratio[key];
 						ratioMinQueue = key;
@@ -255,7 +255,7 @@ QueueManager.prototype.update = function(gameState) {
 				}
 				if (this.onlyUsesSpareAndUpdateSpare(this.queues[ratioMinQueue].getNext().getCost(), availableRes)){
 					if (allSpare){
-						for (p in this.queues) {
+						for (var p in this.queues) {
 							this.account[p] += ratioMin * this.priorities[p];
 						}
 					}
@@ -274,7 +274,7 @@ QueueManager.prototype.update = function(gameState) {
 	Engine.ProfileStart("Execute items");
 	
 	// Handle output queues by executing items where possible
-	for (p in this.queues) {
+	for (var p in this.queues) {
 		while (this.queues[p].outQueueLength() > 0) {
 			var next = this.queues[p].outQueueNext();
 			if (next.category === "building") {

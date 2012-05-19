@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="290.787" y="80.2438" z="467.89"/>
-		<Rotation angle="-0.26782"/>
-		<Declination angle="0.440632"/>
+		<Position x="282.562" y="73.1187" z="342.404"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -225,8 +225,8 @@
 		<Entity uid="29">
 			<Template>units/athen_champion_marine</Template>
 			<Player>1</Player>
-			<Position x="284.34403" z="383.13233"/>
-			<Orientation y="-2.9518"/>
+			<Position x="279.65476" z="402.6977"/>
+			<Orientation y="-2.77518"/>
 		</Entity>
 		<Entity uid="30">
 			<Template>units/athen_champion_marine</Template>
@@ -411,8 +411,8 @@
 		<Entity uid="66">
 			<Template>structures/athen_barracks</Template>
 			<Player>1</Player>
-			<Position x="262.62031" z="427.44755"/>
-			<Orientation y="2.35621"/>
+			<Position x="262.90769" z="427.46125"/>
+			<Orientation y="2.34426"/>
 		</Entity>
 		<Entity uid="67">
 			<Template>structures/athen_barracks</Template>
@@ -424,7 +424,7 @@
 			<Template>structures/athen_civil_centre</Template>
 			<Player>1</Player>
 			<Position x="318.33884" z="434.53275"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="2.45101"/>
 		</Entity>
 		<Entity uid="69">
 			<Template>structures/athen_defense_tower</Template>
@@ -544,7 +544,7 @@
 			<Template>structures/athen_gymnasion</Template>
 			<Player>1</Player>
 			<Position x="354.35611" z="370.32154"/>
-			<Orientation y="-2.39571"/>
+			<Orientation y="2.6555"/>
 		</Entity>
 		<Entity uid="89">
 			<Template>structures/athen_mill</Template>
@@ -559,7 +559,7 @@
 			<Orientation y="1.68052"/>
 		</Entity>
 		<Entity uid="91">
-			<Template>structures/athen_wall</Template>
+			<Template>structures/athen_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="209.71973" z="334.72095"/>
 			<Orientation y="-1.74827"/>
@@ -585,20 +585,20 @@
 		<Entity uid="95">
 			<Template>structures/athen_house</Template>
 			<Player>1</Player>
-			<Position x="239.18833" z="451.82627"/>
+			<Position x="239.31238" z="451.84406"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="96">
 			<Template>structures/athen_house</Template>
 			<Player>1</Player>
 			<Position x="255.0326" z="463.24357"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="2.37204"/>
 		</Entity>
 		<Entity uid="97">
 			<Template>structures/athen_house</Template>
 			<Player>1</Player>
 			<Position x="267.86442" z="478.77244"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="-3.12081"/>
 		</Entity>
 		<Entity uid="98">
 			<Template>structures/athen_house</Template>
@@ -610,7 +610,7 @@
 			<Template>structures/athen_house</Template>
 			<Player>1</Player>
 			<Position x="219.29694" z="465.07016"/>
-			<Orientation y="0.89823"/>
+			<Orientation y="2.3895"/>
 		</Entity>
 		<Entity uid="100">
 			<Template>structures/athen_house</Template>
@@ -628,13 +628,13 @@
 			<Template>structures/athen_house</Template>
 			<Player>1</Player>
 			<Position x="256.57264" z="500.50232"/>
-			<Orientation y="-2.47176"/>
+			<Orientation y="3.07322"/>
 		</Entity>
 		<Entity uid="103">
 			<Template>structures/athen_house</Template>
 			<Player>1</Player>
 			<Position x="285.05839" z="499.89643"/>
-			<Orientation y="0.40593"/>
+			<Orientation y="2.1688"/>
 		</Entity>
 		<Entity uid="104">
 			<Template>structures/athen_market</Template>
@@ -731,6 +731,12 @@
 			<Player>1</Player>
 			<Position x="237.81731" z="586.95771"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="120">
+			<Template>structures/athen_fortress</Template>
+			<Player>1</Player>
+			<Position x="377.33567" z="294.32862"/>
+			<Orientation y="2.7715"/>
 		</Entity>
 	</Entities>
 	<Paths/>

@@ -4,7 +4,7 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>stormy</SkySet>
-		<SunColour r="0.658824" g="0.647059" b="0.521569"/>
+		<SunColour r="0.790074" g="0.775965" b="0.625475"/>
 		<SunElevation angle="0.628932"/>
 		<SunRotation angle="-0.374291"/>
 		<TerrainAmbientColour r="0.564706" g="0.513726" b="0.419608"/>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="250.337" y="67.0706" z="399.864"/>
+		<Position x="214.891" y="62.5682" z="574.075"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -39,7 +39,7 @@
   "PlayerData": [
     {
       "AI": "",
-      "Civ": "hele",
+      "Civ": "athen",
       "Colour": {
         "b": 200,
         "g": 46,
@@ -64,12 +64,6 @@
 }
 ]]></ScriptSettings>
 	<Entities>
-		<Entity uid="11">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="211.39173" z="633.22236"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="13">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="154.78473" z="589.32166"/>
@@ -4593,36 +4587,6 @@
 		<Entity uid="836">
 			<Template>actor|props/flora/plant_tropic_a.xml</Template>
 			<Position x="245.89408" z="650.55195"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="870">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="218.20032" z="607.81135"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="871">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="220.60065" z="610.0373"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="872">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="223.43902" z="612.07355"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="873">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="225.90429" z="614.3921"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="874">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="229.16367" z="616.56702"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="880">
@@ -29575,36 +29539,6 @@
 			<Position x="815.62598" z="382.06266"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="5366">
-			<Template>units/rome_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="824.06403" z="354.64777"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="5367">
-			<Template>units/rome_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="827.35834" z="356.82343"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="5368">
-			<Template>units/rome_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="830.27485" z="359.89734"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="5369">
-			<Template>units/rome_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="833.40534" z="363.33033"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="5370">
-			<Template>units/rome_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="837.25678" z="367.4882"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="5371">
 			<Template>actor|particle/rain_shower.xml</Template>
 			<Position x="674.10492" z="393.4745"/>
@@ -29849,6 +29783,72 @@
 			<Player>0</Player>
 			<Position x="725.78577" z="397.9787"/>
 			<Orientation y="-2.96753"/>
+		</Entity>
+		<Entity uid="5416">
+			<Template>structures/athen_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="211.09595" z="634.54798"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5417">
+			<Template>units/athen_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="219.01633" z="609.95954"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5418">
+			<Template>units/athen_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="221.60921" z="612.36207"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5419">
+			<Template>units/athen_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="223.66182" z="614.45252"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5420">
+			<Template>units/athen_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="226.37626" z="616.80268"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5421">
+			<Template>units/athen_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="228.34624" z="618.62763"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5422">
+			<Template>units/rome_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="826.44721" z="355.3024"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5423">
+			<Template>units/rome_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="828.88111" z="357.477"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5424">
+			<Template>units/rome_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="831.03278" z="359.4032"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5425">
+			<Template>units/rome_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="833.59955" z="361.88013"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5426">
+			<Template>units/rome_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="836.2959" z="364.33066"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>

@@ -14,9 +14,17 @@ Worker.prototype.update = function(gameState) {
 				&& this.getResourceType(this.ent.unitAIOrderData().type) === this.ent.getMetadata("gather-type"))
 				&& !(this.ent.unitAIState().split(".")[1] === "RETURNRESOURCE")){
 			// TODO: handle combat for hunting animals
-			Engine.ProfileStart("Start Gathering");
-			this.startGathering(gameState);
-			Engine.ProfileStop();
+			if (!this.ent.resourceCarrying() || this.ent.resourceCarrying().length === 0 || 
+					this.ent.resourceCarrying()[0].type === this.ent.getMetadata("gather-type")){
+				Engine.ProfileStart("Start Gathering");
+				this.startGathering(gameState);
+				Engine.ProfileStop();
+			} else if (this.ent.unitAIState().split(".")[1] !== "RETURNRESOURCE") {
+				// Should deposit resources
+				Engine.ProfileStart("Return Resources");
+				this.returnResources(gameState);
+				Engine.ProfileStop();
+			} 
 			
 			//Engine.PostCommand({"type": "set-shading-color", "entities": [this.ent.id()], "rgb": [10,0,0]});
 		}
@@ -161,6 +169,39 @@ Worker.prototype.startGathering = function(gameState){
 	}else{
 		debug("No " + resource + " found! (2)");
 	}
+};
+
+// Makes the worker deposit the currently carried resources at the closest dropsite
+Worker.prototype.returnResources = function(gameState){
+	if (!this.ent.resourceCarrying() || this.ent.resourceCarrying().length === 0){
+		return;
+	}
+	var resource = this.ent.resourceCarrying()[0].type;
+	var self = this;
+
+	if (!this.ent.position()){
+		// TODO: work out what to do when entity has no position
+		return;
+	}
+	
+	var closestDropsite = undefined;
+	var dist = Math.min();
+	gameState.getOwnDropsites(resource).forEach(function(dropsite){
+		if (dropsite.position()){
+			var d = VectorDistance(self.ent.position(), dropsite.position());
+			if (d < dist){
+				dist = d;
+				closestDropsite = dropsite;
+			}
+		}
+	});
+	
+	if (!closestDropsite){
+		debug("No dropsite found for " + resource);
+		return;
+	}
+	
+	this.ent.returnResources(closestDropsite);
 };
 
 Worker.prototype.getResourceType = function(type){
