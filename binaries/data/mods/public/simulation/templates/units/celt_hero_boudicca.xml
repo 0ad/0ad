@@ -34,6 +34,16 @@
   <Obstruction>
     <Unit radius="1.5"/>
   </Obstruction>
+  <Sound>
+    <SoundGroups>
+      <select>voice/hellenes/civ/female/civ_female_select.xml</select>
+      <order_walk>voice/hellenes/civ/female/civ_female_walk.xml</order_walk>
+      <order_attack>voice/hellenes/civ/female/civ_female_go_out_against.xml</order_attack>
+      <order_gather>voice/hellenes/civ/female/civ_female_gather_together.xml</order_gather>
+      <order_repair>voice/hellenes/civ/female/civ_female_retreat.xml</order_repair>
+<!--       <death>voice/hellenes/civ/female/civ_female_death.xml</death> -->
+    </SoundGroups>
+  </Sound>
   <UnitMotion>
     <WalkSpeed>15.0</WalkSpeed>
     <Run>

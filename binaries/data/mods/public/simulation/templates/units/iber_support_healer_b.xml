@@ -11,6 +11,17 @@
   <Promotion>
     <Entity>units/iber_support_healer_a</Entity>
   </Promotion>
+  <Sound>
+    <SoundGroups>
+      <select>voice/hellenes/civ/female/civ_female_select.xml</select>
+      <order_walk>voice/hellenes/civ/female/civ_female_walk.xml</order_walk>
+      <order_attack>voice/hellenes/civ/female/civ_female_go_out_against.xml</order_attack>
+      <order_gather>voice/hellenes/civ/female/civ_female_gather_together.xml</order_gather>
+      <order_repair>voice/hellenes/civ/female/civ_female_retreat.xml</order_repair>
+<!--       <order_heal>voice/hellenes/civ/female/civ_female_heal.xml</order_heal> -->
+<!--       <death>voice/hellenes/civ/female/civ_female_death.xml</death> -->
+    </SoundGroups>
+  </Sound>
   <VisualActor>
     <Actor>units/iberians/healer.xml</Actor>
   </VisualActor>
