@@ -23,6 +23,11 @@
       units/pers_infantry_javelinist_b
 	  units/pers_infantry_archer_b
     </Entities>
+    <Technologies datatype="tokens">
+	  pair_inf_01
+	  pair_inf_02
+	  -pair_cav_01
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/persians/barracks.xml</Actor>
