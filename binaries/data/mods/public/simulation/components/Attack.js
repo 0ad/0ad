@@ -70,6 +70,7 @@ Attack.prototype.Schema =
 			"<PrepareTime>800</PrepareTime>" +
 			"<RepeatTime>1600</RepeatTime>" +
 			"<ProjectileSpeed>50.0</ProjectileSpeed>" +
+			"<Spread>2.5</Spread>" +
 			"<Bonuses>" +
 				"<Bonus1>" +
 					"<Classes>Cavalry</Classes>" +
@@ -77,6 +78,14 @@ Attack.prototype.Schema =
 				"</Bonus1>" +
 			"</Bonuses>" +
 			"<RestrictedClasses datatype=\"tokens\">Champion</RestrictedClasses>" +
+			"<Splash>" +
+				"<Shape>Circular</Shape>" +
+				"<Range>20</Range>" +
+				"<FriendlyFire>false</FriendlyFire>" +
+				"<Hack>0.0</Hack>" +
+				"<Pierce>10.0</Pierce>" +
+				"<Crush>0.0</Crush>" +
+			"</Splash>" +
 		"</Ranged>" +
 		"<Charge>" +
 			"<Hack>10.0</Hack>" +
@@ -119,9 +128,23 @@ Attack.prototype.Schema =
 				"<element name='ProjectileSpeed' a:help='Speed of projectiles (in metres per second). If unspecified, then it is a melee attack instead'>" +
 					"<ref name='nonNegativeDecimal'/>" +
 				"</element>" +
+				"<element name='Spread' a:help='Radius over which missiles will tend to land. Roughly 2/3 will land inside this radius (in metres)'><ref name='nonNegativeDecimal'/></element>" +
 				bonusesSchema +
 				preferredClassesSchema +
 				restrictedClassesSchema +
+				"<optional>" +
+					"<element name='Splash'>" +
+						"<interleave>" +
+							"<element name='Shape' a:help='Shape of the splash damage, can be circular or linear'><text/></element>" +
+							"<element name='Range' a:help='Size of the area affected by the splash'><ref name='nonNegativeDecimal'/></element>" +
+							"<element name='FriendlyFire' a:help='Whether the splash damage can hurt non enemy units'><data type='boolean'/></element>" +
+							"<element name='Hack' a:help='Hack damage strength'><ref name='nonNegativeDecimal'/></element>" +
+							"<element name='Pierce' a:help='Pierce damage strength'><ref name='nonNegativeDecimal'/></element>" +
+							"<element name='Crush' a:help='Crush damage strength'><ref name='nonNegativeDecimal'/></element>" +
+							bonusesSchema +
+						"</interleave>" +
+					"</element>" +
+				"</optional>" +
 			"</interleave>" +
 		"</element>" +
 	"</optional>" +
@@ -287,6 +310,14 @@ Attack.prototype.GetAttackStrengths = function(type)
 	// Work out the attack values with technology effects
 	var self = this;
 	
+	var template = this.template[type];
+	var splash = "";
+	if (!template)
+	{
+		template = this.template[type.split(".")[0]].Splash;
+		splash = "/Splash";
+	}
+	
 	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 	var applyTechs = function(damageType)
 	{
@@ -294,8 +325,8 @@ Attack.prototype.GetAttackStrengths = function(type)
 		if (cmpTechMan)
 		{
 			// All causes caching problems so disable it for now.
-			//var allComponent = cmpTechMan.ApplyModifications("Attack/" + type + "/All", strength, self.entity) - self.template[type][damageType];
-			strength = cmpTechMan.ApplyModifications("Attack/" + type + "/" + damageType, strength, self.entity);
+			//var allComponent = cmpTechMan.ApplyModifications("Attack/" + type + splash + "/All", strength, self.entity) - self.template[type][damageType];
+			strength = cmpTechMan.ApplyModifications("Attack/" + type + splash + "/" + damageType, strength, self.entity);
 		}
 		return strength;
 	};
@@ -326,16 +357,20 @@ Attack.prototype.GetRange = function(type)
 Attack.prototype.GetAttackBonus = function(type, target)
 {
 	var attackBonus = 1;
-	if (this.template[type].Bonuses)
+	var template = this.template[type];
+	if (!template)
+		template = this.template[type.split(".")[0]].Splash;
+	
+	if (template.Bonuses)
 	{
 		var cmpIdentity = Engine.QueryInterface(target, IID_Identity);
 		if (!cmpIdentity)
 			return 1;
 		
 		// Multiply the bonuses for all matching classes
-		for (var key in this.template[type].Bonuses)
+		for (var key in template.Bonuses)
 		{
-			var bonus = this.template[type].Bonuses[key];
+			var bonus = template.Bonuses[key];
 			
 			var hasClasses = true;
 			if (bonus.Classes){
@@ -352,6 +387,20 @@ Attack.prototype.GetAttackBonus = function(type, target)
 	return attackBonus;
 };
 
+// Returns a 2d random distribution scaled for a spread of scale 1.
+// The current implementation is a 2d gaussian with sigma = 1
+Attack.prototype.GetNormalDistribution = function(){
+	
+	// Use the Box-Muller transform to get a gaussian distribution
+	var a = Math.random();
+	var b = Math.random();
+	
+	var c = Math.sqrt(-2*Math.log(a)) * Math.cos(2*Math.PI*b);
+	var d = Math.sqrt(-2*Math.log(a)) * Math.sin(2*Math.PI*b);
+	
+	return [c, d];
+};
+
 /**
  * Attack the target entity. This should only be called after a successful range check,
  * and should only be called after GetTimers().repeat msec has passed since the last
@@ -362,32 +411,18 @@ Attack.prototype.PerformAttack = function(type, target)
 	// If this is a ranged attack, then launch a projectile
 	if (type == "Ranged")
 	{
-		// To implement (in)accuracy, for arrows and javelins, we want to do the following:
-		//  * Compute an accuracy rating, based on the entity's characteristics and the distance to the target
-		//  * Pick a random point 'close' to the target (based on the accuracy) which is the real target point
-		//  * Pick a real target unit, based on their footprint's proximity to the real target point
-		//  * If there is none, then harmlessly shoot to the real target point instead
-		//  * If the real target unit moves after being targeted, the projectile will follow it and hit it anyway
-		//
-		// In the future this should be extended:
-		//  * If the target unit moves too far, the projectile should 'detach' and not hit it, so that
-		//    players can dodge projectiles. (Or it should pick a new target after detaching, so it can still
-		//    hit somebody.)
+		// In the future this could be extended:
 		//  * Obstacles like trees could reduce the probability of the target being hit
 		//  * Obstacles like walls should block projectiles entirely
-		//  * There should be more control over the probabilities of hitting enemy units vs friendly units vs missing,
-		//    for gameplay balance tweaks
-		//  * Larger, slower projectiles (catapults etc) shouldn't pick targets first, they should just
-		//    hurt anybody near their landing point
 
 		// Get some data about the entity
 		var horizSpeed = +this.template[type].ProjectileSpeed;
 		var gravity = 9.81; // this affects the shape of the curve; assume it's constant for now
-		var accuracy = 6; // TODO: get from entity template
-
-		//horizSpeed /= 8; gravity /= 8; // slow it down for testing
-
-		// Find the distance to the target
+		
+		var spread = this.template.Ranged.Spread;
+		
+		//horizSpeed /= 2; gravity /= 2; // slow it down for testing
+		
 		var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 		if (!cmpPosition || !cmpPosition.IsInWorld())
 			return;
@@ -396,48 +431,47 @@ Attack.prototype.PerformAttack = function(type, target)
 		if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld())
 			return;
 		var targetPosition = cmpTargetPosition.GetPosition();
-		var horizDistance = Math.sqrt(Math.pow(targetPosition.x - selfPosition.x, 2) + Math.pow(targetPosition.z - selfPosition.z, 2));
+		
+		var relativePosition = {"x": targetPosition.x - selfPosition.x, "z": targetPosition.z - selfPosition.z}
+		var previousTargetPosition = Engine.QueryInterface(target, IID_Position).GetPreviousPosition();
+		
+		var targetVelocity = {"x": (targetPosition.x - previousTargetPosition.x) / this.turnLength, "z": (targetPosition.z - previousTargetPosition.z) / this.turnLength}
+		// the component of the targets velocity radially away from the archer
+		var radialSpeed = this.VectorDot(relativePosition, targetVelocity) / this.VectorLength(relativePosition);
+		
+		var horizDistance = this.VectorDistance(targetPosition, selfPosition);
+		
+		// This is an approximation of the time ot the target, it assumes that the target has a constant radial 
+		// velocity, but since units move in straight lines this is not true.  The exact value would be more 
+		// difficult to calculate and I think this is sufficiently accurate.  (I tested and for cavalry it was 
+		// about 5% of the units radius out in the worst case)
+		var timeToTarget = horizDistance / (horizSpeed - radialSpeed);
+		
+		// Predict where the unit is when the missile lands.
+		var predictedPosition = {"x": targetPosition.x + targetVelocity.x * timeToTarget,
+		                         "z": targetPosition.z + targetVelocity.z * timeToTarget};
+		
+		// Compute the real target point (based on spread and target speed)
+		var randNorm = this.GetNormalDistribution();
+		var offsetX = randNorm[0] * spread * (1 + this.VectorLength(targetVelocity) / 20);
+		var offsetZ = randNorm[1] * spread * (1 + this.VectorLength(targetVelocity) / 20);
 
-		// Compute the real target point (based on accuracy)
-		var angle = Math.random() * 2*Math.PI;
-		var r = 1 - Math.sqrt(Math.random()); // triangular distribution [0,1] (cluster around the center)
-		var offset = r * accuracy; // TODO: should be affected by range
-		var offsetX = offset * Math.sin(angle);
-		var offsetZ = offset * Math.cos(angle);
-
-		var realTargetPosition = { "x": targetPosition.x + offsetX, "y": targetPosition.y, "z": targetPosition.z + offsetZ };
-
-		// TODO: what we should really do here is select the unit whose footprint is closest to the realTargetPosition
-		// (and harmlessly hit the ground if there's none), but as a simplification let's just randomly decide whether to
-		// hit the original target or not.
-		var realTargetUnit = undefined;
-		if (Math.random() < 0.5) // TODO: this is yucky and hardcoded
-		{
-			// Hit the original target
-			realTargetUnit = target;
-			realTargetPosition = targetPosition;
-		}
-		else
-		{
-			// Hit the ground
-			// TODO: ought to make sure Y is on the ground
-		}
-
-		// Hurt the target after the appropriate time
-		if (realTargetUnit)
-		{
-			var realHorizDistance = Math.sqrt(Math.pow(realTargetPosition.x - selfPosition.x, 2) + Math.pow(realTargetPosition.z - selfPosition.z, 2));
-			var timeToTarget = realHorizDistance / horizSpeed;
-			var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-			cmpTimer.SetTimeout(this.entity, IID_Attack, "CauseDamage", timeToTarget*1000, {"type": type, "target": target});
-		}
-
+		var realTargetPosition = { "x": predictedPosition.x + offsetX, "y": targetPosition.y, "z": predictedPosition.z + offsetZ };
+		
+		// Calculate when the missile will hit the target position
+		var realHorizDistance = this.VectorDistance(realTargetPosition, selfPosition);
+		var timeToTarget = realHorizDistance / horizSpeed;
+		
+		var missileDirection = {"x": (realTargetPosition.x - selfPosition.x) / realHorizDistance, "z": (realTargetPosition.z - selfPosition.z) / realHorizDistance};
+		
+		// Make the arrow appear to land slightly behind the target so that arrows landing next to a guys foot don't count but arrows that go through the torso do
+		var graphicalPosition = {"x": realTargetPosition.x + 2*missileDirection.x, "y": realTargetPosition.y + 2*missileDirection.y};
 		// Launch the graphical projectile
 		var cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
-		if (realTargetUnit)
-			cmpProjectileManager.LaunchProjectileAtEntity(this.entity, realTargetUnit, horizSpeed, gravity);
-		else
-			cmpProjectileManager.LaunchProjectileAtPoint(this.entity, realTargetPosition, horizSpeed, gravity);
+		var id = cmpProjectileManager.LaunchProjectileAtPoint(this.entity, realTargetPosition, horizSpeed, gravity);
+		
+		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+ 		cmpTimer.SetTimeout(this.entity, IID_Attack, "MissileHit", timeToTarget*1000, {"type": type, "target": target, "position": realTargetPosition, "direction": missileDirection, "projectileId": id});
 	}
 	else
 	{
@@ -465,6 +499,170 @@ Attack.prototype.TargetKilled = function(killerEntity, targetEntity)
 	}
 };
 
+Attack.prototype.InterpolatedLocation = function(ent, lateness)
+{
+	var targetPositionCmp = Engine.QueryInterface(ent, IID_Position);
+	if (!targetPositionCmp) // TODO: handle dead target properly
+		return undefined;
+	var curPos = targetPositionCmp.GetPosition();
+	var prevPos = targetPositionCmp.GetPreviousPosition();
+	lateness /= 1000;
+	return {"x": (curPos.x * (this.turnLength - lateness) + prevPos.x * lateness) / this.turnLength,
+	        "z": (curPos.z * (this.turnLength - lateness) + prevPos.z * lateness) / this.turnLength};
+};
+
+Attack.prototype.VectorDistance = function(p1, p2)
+{
+	return Math.sqrt((p1.x - p2.x)*(p1.x - p2.x) + (p1.z - p2.z)*(p1.z - p2.z));
+};
+
+Attack.prototype.VectorDot = function(p1, p2)
+{
+	return (p1.x * p2.x + p1.z * p2.z);
+};
+
+Attack.prototype.VectorCross = function(p1, p2)
+{
+	return (p1.x * p2.z - p1.z * p2.x);
+};
+
+Attack.prototype.VectorLength = function(p)
+{
+	return Math.sqrt(p.x*p.x + p.z*p.z);
+};
+
+// Tests whether it point is inside of ent's footprint
+Attack.prototype.testCollision = function(ent, point, lateness)
+{
+	var targetPosition = this.InterpolatedLocation(ent, lateness);
+	var targetShape = Engine.QueryInterface(ent, IID_Footprint).GetShape();
+	
+	if (!targetShape || !targetPosition)
+		return false;
+	
+	if (targetShape.type === 'circle')
+	{
+		return (this.VectorDistance(point, targetPosition) < targetShape.radius);
+	}
+	else
+	{
+		var targetRotation = Engine.QueryInterface(ent, IID_Position).GetRotation().y;
+		
+		var dx = point.x - targetPosition.x;
+		var dz = point.z - targetPosition.z;
+		
+		var dxr = Math.cos(targetRotation) * dx - Math.sin(targetRotation) * dz;
+		var dzr = Math.sin(targetRotation) * dx + Math.cos(targetRotation) * dz;
+		
+		return (-targetShape.width/2 <= dxr && dxr < targetShape.width/2 && -targetShape.depth/2 <= dzr && dzr < targetShape.depth/2);
+	}
+};
+
+Attack.prototype.MissileHit = function(data, lateness)
+{
+	
+	var targetPosition = this.InterpolatedLocation(data.target, lateness);
+	if (!targetPosition)
+		return;
+	
+	if (this.template.Ranged.Splash) // splash damage, do this first in case the direct hit kills the target
+	{
+		var friendlyFire = this.template.Ranged.Splash.FriendlyFire;
+		var splashRadius = this.template.Ranged.Splash.Range;
+		var splashShape = this.template.Ranged.Splash.Shape;
+		
+		var ents = this.GetNearbyEntities(data.target, this.VectorDistance(data.position, targetPosition) * 2 + splashRadius, friendlyFire);
+		ents.push(data.target); // Add the original unit to the list of splash damage targets
+		
+		for (var i = 0; i < ents.length; i++)
+		{
+			var entityPosition = this.InterpolatedLocation(ents[i], lateness);
+			var radius = this.VectorDistance(data.position, entityPosition);
+			
+			if (radius < splashRadius)
+			{
+				var multiplier = 1;
+				if (splashShape == "Circular") // quadratic falloff
+				{
+					multiplier *= 1 - ((radius * radius) / (splashRadius * splashRadius));
+				}
+				else if (splashShape == "Linear")
+				{
+					// position of entity relative to where the missile hit
+					var relPos = {"x": entityPosition.x - data.position.x, "z": entityPosition.z - data.position.z};
+					
+					var splashWidth = splashRadius / 5;
+					var parallelDist = this.VectorDot(relPos, data.direction);
+					var perpDist = Math.abs(this.VectorCross(relPos, data.direction));
+					
+					// Check that the unit is within the distance splashWidth of the line starting at the missile's 
+					// landing point which extends in the direction of the missile for length splashRadius.
+					if (parallelDist > -splashWidth && perpDist < splashWidth)
+					{
+						// Use a quadratic falloff in both directions
+						multiplier = (splashRadius*splashRadius - parallelDist*parallelDist) / (splashRadius*splashRadius)
+						             * (splashWidth*splashWidth - perpDist*perpDist) / (splashWidth*splashWidth);
+					}
+					else
+					{
+						multiplier = 0;
+					}
+				}
+				var newData = {"type": data.type + ".Splash", "target": ents[i], "damageMultiplier": multiplier};
+				this.CauseDamage(newData);
+			}
+		}
+	}
+	
+	if (this.testCollision(data.target, data.position, lateness))
+	{
+		// Hit the primary target
+		this.CauseDamage(data);
+		
+		// Remove the projectile
+		var cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
+		cmpProjectileManager.RemoveProjectile(data.projectileId);
+	}
+	else
+	{
+		// If we didn't hit the main target look for nearby units
+		var ents = this.GetNearbyEntities(data.target, this.VectorDistance(data.position, targetPosition) * 2);
+		
+		for (var i = 0; i < ents.length; i++)
+		{
+			if (this.testCollision(ents[i], data.position, lateness))
+			{
+				var newData = {"type": data.type, "target": ents[i]};
+				this.CauseDamage(newData);
+				
+				// Remove the projectile
+				var cmpProjectileManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ProjectileManager);
+				cmpProjectileManager.RemoveProjectile(data.projectileId);
+			}
+		}
+	}
+};
+
+Attack.prototype.GetNearbyEntities = function(startEnt, range, friendlyFire)
+{
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	var owner = cmpOwnership.GetOwner();
+	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(owner), IID_Player);
+	var numPlayers = cmpPlayerManager.GetNumPlayers();
+	var players = [];
+	
+	for (var i = 1; i < numPlayers; ++i)
+	{	
+		// Only target enemies unless friendly fire is on
+		if (cmpPlayer.IsEnemy(i) || friendlyFire)
+			players.push(i);
+	}
+	
+	var rangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	return rangeManager.ExecuteQuery(startEnt, 0, range, players, IID_DamageReceiver);
+}
+
 /**
  * Inflict damage on the target
  */
@@ -472,12 +670,14 @@ Attack.prototype.CauseDamage = function(data)
 {
 	var strengths = this.GetAttackStrengths(data.type);
 	
-	var attackBonus = this.GetAttackBonus(data.type, data.target);
+	var damageMultiplier = this.GetAttackBonus(data.type, data.target);
+	if (data.damageMultiplier !== undefined)
+		damageMultiplier *= data.damageMultiplier;
 	
 	var cmpDamageReceiver = Engine.QueryInterface(data.target, IID_DamageReceiver);
 	if (!cmpDamageReceiver)
 		return;
-	var targetState = cmpDamageReceiver.TakeDamage(strengths.hack * attackBonus, strengths.pierce * attackBonus, strengths.crush * attackBonus);
+	var targetState = cmpDamageReceiver.TakeDamage(strengths.hack * damageMultiplier, strengths.pierce * damageMultiplier, strengths.crush * damageMultiplier);
 	// if target killed pick up loot and credit experience
 	if (targetState.killed == true)
 	{
@@ -489,5 +689,10 @@ Attack.prototype.CauseDamage = function(data)
 
 	PlaySound("attack_impact", this.entity);
 };
+
+Attack.prototype.OnUpdate = function(msg)
+{
+	this.turnLength = msg.turnLength;
+}
 
 Engine.RegisterComponentType(IID_Attack, "Attack", Attack);

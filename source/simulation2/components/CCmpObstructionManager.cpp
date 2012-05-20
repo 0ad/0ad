@@ -944,9 +944,18 @@ bool CCmpObstructionManager::FindMostImportantObstruction(const IObstructionTest
 
 	// Then look for obstructions that cover the target point when expanded by r
 	// (i.e. if the target is not inside an object but closer than we can get to it)
-
-	// TODO: actually do that
-	// (This might matter when you tell a unit to walk too close to the edge of a building)
+	
+	GetObstructionsInRange(filter, x-r, z-r, x+r, z+r, squares);
+	// Building squares are more important but returned last, so check backwards
+	for (std::vector<ObstructionSquare>::reverse_iterator it = squares.rbegin(); it != squares.rend(); ++it)
+	{
+		CFixedVector2D halfSize(it->hw + r, it->hh + r);
+		if (Geometry::PointIsInSquare(CFixedVector2D(it->x, it->z) - center, it->u, it->v, halfSize))
+		{
+			square = *it;
+			return true;
+		}
+	}
 
 	return false;
 }

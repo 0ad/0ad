@@ -2,19 +2,37 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Spartan Siege Ram">
+    <variant frequency="100" name="Spartan Siege Ram a">
       <animations>
-        <animation file="mechanical/rome_ram_idle.dae" name="Idle" speed="100"/>
-        <animation file="mechanical/rome_ram_move.dae" name="Walk" speed="15"/>
-        <animation file="mechanical/rome_ram_move.dae" name="Run" speed="30"/>
-        <animation event="0.3" file="mechanical/rome_ram_attack.dae" name="Melee" speed="100"/>
+        <animation file="mechanical/spart_siege_ram_idle.dae" name="Idle" speed="100"/>
+        <animation file="mechanical/spart_siege_ram_move.dae" name="Walk" speed="15"/>
+        <animation file="mechanical/spart_siege_ram_move.dae" name="Run" speed="30"/>
+        <animation event="0.3" file="mechanical/spart_siege_ram_attack.dae" name="Melee" speed="100"/>
       </animations>
-      <mesh>structural/rome_ram.dae</mesh>
+      <mesh>structural/spart_siege_ram.dae</mesh>
       <props>
-        <prop actor="props/units/shields/spart_aspis_a.xml" attachpoint="shield_left"/>
-        <prop actor="props/units/shields/spart_aspis_a.xml" attachpoint="shield_right"/>
+        <prop actor="props/units/shields/spart_aspis_a.xml" attachpoint="shield_left_front"/>
+        <prop actor="props/units/shields/spart_aspis_b.xml" attachpoint="shield_right_front"/>
+        <prop actor="props/units/shields/spart_aspis_b.xml" attachpoint="shield_left_back"/>
+        <prop actor="props/units/shields/spart_aspis_skiritai.xml" attachpoint="shield_right_back"/>
       </props>
-      <texture>structural/rome_ram.png</texture>
+      <texture>structural/spart_siege_ram.png</texture>
+    </variant>
+    <variant frequency="100" name="Spartan Siege Ram b">
+      <animations>
+        <animation file="mechanical/spart_siege_ram_idle.dae" name="Idle" speed="100"/>
+        <animation file="mechanical/spart_siege_ram_move.dae" name="Walk" speed="15"/>
+        <animation file="mechanical/spart_siege_ram_move.dae" name="Run" speed="30"/>
+        <animation event="0.3" file="mechanical/spart_siege_ram_attack.dae" name="Melee" speed="100"/>
+      </animations>
+      <mesh>structural/spart_siege_ram.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/spart_aspis_b.xml" attachpoint="shield_left_front"/>
+        <prop actor="props/units/shields/spart_aspis_a.xml" attachpoint="shield_right_front"/>
+        <prop actor="props/units/shields/spart_aspis_skiritai.xml" attachpoint="shield_left_back"/>
+        <prop actor="props/units/shields/spart_aspis_b.xml" attachpoint="shield_right_back"/>
+      </props>
+      <texture>structural/spart_siege_ram.png</texture>
     </variant>
   </group>
   <group>
