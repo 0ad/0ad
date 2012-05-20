@@ -321,7 +321,7 @@ Attack.prototype.GetAttackStrengths = function(type)
 	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 	var applyTechs = function(damageType)
 	{
-		var strength = +(self.template[type][damageType] || 0);
+		var strength = +(template[damageType] || 0);
 		if (cmpTechMan)
 		{
 			// All causes caching problems so disable it for now.
