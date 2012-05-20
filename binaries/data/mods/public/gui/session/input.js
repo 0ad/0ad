@@ -1302,7 +1302,7 @@ function doAction(action, ev)
 
 	case "garrison":
 		Engine.PostNetworkCommand({"type": "garrison", "entities": selection, "target": action.target, "queued": queued});
-		// TODO: Play a sound?
+		Engine.GuiInterfaceCall("PlaySound", { "name": "order_garrison", "entity": selection[0] });
 		return true;
 
 	case "set-rallypoint":

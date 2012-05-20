@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -552,7 +552,7 @@ In C++, use CmpPtr (see its class documentation for details):
 #include "simulation2/components/ICmpPosition.h"
 ...
 CmpPtr<ICmpPosition> cmpPosition(context, ent);
-if (cmpPosition.null())
+if (!cmpPosition)
     // do something to avoid dereferencing null pointers
 cmpPosition->MoveTo(x, y);
 @endcode
@@ -609,7 +609,7 @@ Engine.LoadComponentScript("ExampleTwo.js");
 var cmp = ConstructComponent(1, "ExampleTwo");
 @endcode
 
-where @c Example.js is the component script to test, @c 1 is the entity ID, @c "ExampleTwo" is the component name.
+where @c ExampleTwo.js is the component script to test, @c 1 is the entity ID, @c "ExampleTwo" is the component name.
 Then call methods on @c cmp to test it, using the @c TS_* functions defined in
 @b binaries/data/tests/test_setup.js for common assertions.
 
