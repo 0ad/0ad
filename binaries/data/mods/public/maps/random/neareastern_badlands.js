@@ -171,12 +171,18 @@ for (var i = 0; i < numPlayers; i++)
 	);
 	createObjectGroup(group, 0);
 	
-	// create starting straggler trees
+	var hillSize = PI * radius * radius;
+	// create starting trees
+	var num = floor(hillSize / 100);
+	var tAngle = randFloat(0, TWO_PI);
+	var tDist = randFloat(11, 13);
+	var tX = round(fx + tDist * cos(tAngle));
+	var tZ = round(fz + tDist * sin(tAngle));
 	group = new SimpleGroup(
-		[new SimpleObject(oDatePalm, 1,1, 6,12), new SimpleObject(oSDatePalm, 1,1, 6,12)],
-		true, null,	ix, iz
+		[new SimpleObject(oDatePalm, num, num, 0,5)],
+		false, clBaseResource, tX, tZ
 	);
-	createObjectGroup(group, 0, avoidClasses(clBaseResource,1));
+	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
 }
 
 RMS.SetProgress(10);

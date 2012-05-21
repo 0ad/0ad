@@ -258,20 +258,17 @@ for (var i=0; i < numPlayers; i++)
 	);
 	createObjectGroup(group, 0);
 	
-	// Create starter straggler trees
-	var num = scaleByMapSize(3, 4)
-	for (var j = 0; j < num; j++)
-	{
-		var tAngle = randFloat(0, TWO_PI);
-		var tDist = randFloat(6, bbDist + 5);
-		var tX = round(fx + tDist * cos(tAngle));
-		var tZ = round(fz + tDist * sin(tAngle));
-		group = new SimpleGroup(
-			[new SimpleObject(oOak, 1,3, 0,2)],
-			false, clBaseResource, tX, tZ
-		);
-		createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
-	}
+	// create starting trees
+	var num = 6;
+	var tAngle = randFloat(0, TWO_PI);
+	var tDist = randFloat(11, 13);
+	var tX = round(fx + tDist * cos(tAngle));
+	var tZ = round(fz + tDist * sin(tAngle));
+	group = new SimpleGroup(
+		[new SimpleObject(oOak, num, num, 0,5)],
+		false, clBaseResource, tX, tZ
+	);
+	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
 	
 }
 

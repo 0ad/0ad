@@ -24,7 +24,11 @@ if (rt == 2)
 	tShore = "alpine_shore_rocks_icy";
 	tWater = "alpine_shore_rocks";
 }
-
+else if (rt == 7)
+{
+	tShore = "tropic_dirt_b_plants";
+	tWater = "tropic_dirt_b";
+}
 // gaia entities
 var oOak = rBiomeE1();
 var oOakLarge = rBiomeE2();
@@ -208,20 +212,17 @@ for (var i = 0; i < numPlayers; i++)
 	);
 	createObjectGroup(group, 0);
 	var hillSize = PI * radius * radius;
-	// create starting straggler trees
-	var num = hillSize / 100;
-	for (var j = 0; j < num; j++)
-	{
-		var tAngle = randFloat(0, TWO_PI);
-		var tDist = randFloat(6, radius - 2);
-		var tX = round(fx + tDist * cos(tAngle));
-		var tZ = round(fz + tDist * sin(tAngle));
-		group = new SimpleGroup(
-			[new SimpleObject(oOak, 1,3, 0,2)],
-			false, clBaseResource, tX, tZ
-		);
-		createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
-	}
+	// create starting trees
+	var num = floor(hillSize / 60);
+	var tAngle = randFloat(0, TWO_PI);
+	var tDist = randFloat(11, 13);
+	var tX = round(fx + tDist * cos(tAngle));
+	var tZ = round(fz + tDist * sin(tAngle));
+	group = new SimpleGroup(
+		[new SimpleObject(oOak, num, num, 0,5)],
+		false, clBaseResource, tX, tZ
+	);
+	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
 	
 	// create grass tufts
 	var num = hillSize / 250;

@@ -4,7 +4,7 @@ var tGrass = ["cliff volcanic light", "ocean_rock_a", "ocean_rock_b"];
 var tGrassA = "cliff volcanic light";
 var tGrassB = "ocean_rock_a";
 var tGrassC = "ocean_rock_b";
-var tCliff = "cliff volcanic coarse"
+var tCliff = ["cliff volcanic coarse", "cave_walls"]
 var tDirt = ["ocean_rock_a", "ocean_rock_b"];
 var tRoad = "road1";
 var tRoadWild = "road1";
@@ -141,11 +141,11 @@ for (var i = 0; i < numPlayers; i++)
 	// create starting trees
 	var num = floor(hillSize / 60);
 	var tAngle = randFloat(0, TWO_PI);
-	var tDist = randFloat(9, radius - 2);
+	var tDist = randFloat(11, 13);
 	var tX = round(fx + tDist * cos(tAngle));
 	var tZ = round(fz + tDist * sin(tAngle));
 	group = new SimpleGroup(
-		[new SimpleObject(oTree, num, num, 0,7)],
+		[new SimpleObject(oTree, num, num, 0,5)],
 		false, clBaseResource, tX, tZ
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
@@ -160,8 +160,8 @@ var fx = fractionToTiles(0.5);
 var fz = fractionToTiles(0.5);
 var ix = round(fx);
 var iz = round(fz);
-
-var placer = new ClumpPlacer(mapArea * 0.067, 0.7, 0.05, 100, ix, iz);
+var div = scaleByMapSize(1,8)
+var placer = new ClumpPlacer(mapArea * 0.067 / div, 0.7, 0.05, 100, ix, iz);
 var terrainPainter = new LayeredPainter(
 	[tCliff, tCliff],		// terrains
 	[3]								// widths
@@ -173,7 +173,7 @@ var elevationPainter = new SmoothElevationPainter(
 );
 createArea(placer, [terrainPainter, elevationPainter, paintClass(clHill)], null);
 
-var placer = new ClumpPlacer(mapArea * 0.05, 0.7, 0.05, 100, ix, iz);
+var placer = new ClumpPlacer(mapArea * 0.05 / div, 0.7, 0.05, 100, ix, iz);
 var terrainPainter = new LayeredPainter(
 	[tCliff, tCliff],		// terrains
 	[3]								// widths
@@ -185,7 +185,7 @@ var elevationPainter = new SmoothElevationPainter(
 );
 createArea(placer, [terrainPainter, elevationPainter, paintClass(clHill2)], stayClasses(clHill, 1));
 
-var placer = new ClumpPlacer(mapArea * 0.02, 0.7, 0.05, 100, ix, iz);
+var placer = new ClumpPlacer(mapArea * 0.02 / div, 0.7, 0.05, 100, ix, iz);
 var terrainPainter = new LayeredPainter(
 	[tCliff, tCliff],		// terrains
 	[3]								// widths
@@ -197,7 +197,7 @@ var elevationPainter = new SmoothElevationPainter(
 );
 createArea(placer, [terrainPainter, elevationPainter, paintClass(clHill3)], stayClasses(clHill2, 1));
 
-var placer = new ClumpPlacer(mapArea * 0.011, 0.7, 0.05, 100, ix, iz);
+var placer = new ClumpPlacer(mapArea * 0.011 / div, 0.7, 0.05, 100, ix, iz);
 var terrainPainter = new LayeredPainter(
 	[tCliff, tCliff],		// terrains
 	[3]								// widths
@@ -209,7 +209,7 @@ var elevationPainter = new SmoothElevationPainter(
 );
 createArea(placer, [terrainPainter, elevationPainter, paintClass(clHill4)], stayClasses(clHill3, 1));
 
-var placer = new ClumpPlacer(mapArea * 0.003, 0.7, 0.05, 100, ix, iz);
+var placer = new ClumpPlacer(mapArea * 0.003 / div, 0.7, 0.05, 100, ix, iz);
 var terrainPainter = new LayeredPainter(
 	[tCliff, tLava1, tLava2, tLava3],		// terrains
 	[1, 1, 1]								// widths
@@ -221,7 +221,7 @@ var elevationPainter = new SmoothElevationPainter(
 );
 createArea(placer, [terrainPainter, elevationPainter, paintClass(clHill4)], stayClasses(clHill4, 1));
 
-var num = floor(mapArea * 0.03 / 15);
+var num = floor(mapArea * 0.03 / 15 / div);
 var tX = round(fx);
 var tZ = round(fz);
 var group = new SimpleGroup(
@@ -243,7 +243,7 @@ elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 18, 2);
 createAreas(
 	placer,
 	[terrainPainter, elevationPainter, paintClass(clHill)], 
-	avoidClasses(clPlayer, 12, clHill, 15, clWater, 2),
+	avoidClasses(clPlayer, 12, clHill, 15, clWater, 2, clBaseResources, 2),
 	scaleByMapSize(2, 8) * numPlayers
 );
 
