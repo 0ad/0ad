@@ -246,10 +246,15 @@ for (var i=0; i < numIslands; i++)
 	);
 	createObjectGroup(group, 0);
 	
-	// create starting straggler trees
+	// create starting trees
+	var num = floor(hillSize / 100);
+	var tAngle = randFloat(0, TWO_PI);
+	var tDist = randFloat(11, 13);
+	var tX = round(fx + tDist * cos(tAngle));
+	var tZ = round(fz + tDist * sin(tAngle));
 	group = new SimpleGroup(
-		[new SimpleObject(oPalm, 3,3, 7,10)],
-		true, clBaseResource, ix, iz
+		[new SimpleObject(oPalm, num, num, 0,5)],
+		false, clBaseResource, tX, tZ
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
 }

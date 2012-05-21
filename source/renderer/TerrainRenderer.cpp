@@ -467,10 +467,9 @@ void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* 
 	{
 		shader->BindTexture("shadowTex", shadow->GetTexture());
 		shader->Uniform("shadowTransform", shadow->GetTextureMatrix());
-
-		const float* offsets = shadow->GetFilterOffsets();
-		shader->Uniform("shadowOffsets1", offsets[0], offsets[1], offsets[2], offsets[3]);
-		shader->Uniform("shadowOffsets2", offsets[4], offsets[5], offsets[6], offsets[7]);
+		int width = shadow->GetWidth();
+		int height = shadow->GetHeight();
+		shader->Uniform("shadowScale", width, height, 1.0f / width, 1.0f / height);
 	}
 
 	shader->Uniform("ambient", lightEnv.m_UnitsAmbientColor);

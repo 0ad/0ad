@@ -9,10 +9,9 @@ PARAM ambient = program.local[0];
   PARAM shadingColor = program.local[1];
 #endif
 
-#if USE_SHADOW_PCF
-  PARAM shadowOffsets1 = program.local[2];
-  PARAM shadowOffsets2 = program.local[3];
-  TEMP offset;
+#if USE_FP_SHADOW && USE_SHADOW_PCF
+  PARAM shadowScale = program.local[2];
+  TEMP offset, size, weight;
 #endif
 
 TEMP tex;
@@ -40,26 +39,44 @@ TEX color, fragment.texcoord[0], texture[0], 2D;
 #if USE_SHADOW
   #if USE_FP_SHADOW
     #if USE_SHADOW_PCF
-      MOV offset.zw, fragment.texcoord[2];
-      ADD offset.xy, fragment.texcoord[2], shadowOffsets1;
+      SUB offset.xy, fragment.texcoord[2], 0.5;
+      FRC offset.xy, offset;
+      ADD size.xy, offset, 1.0;
+      SUB size.zw, 2.0, offset.xyxy;
+      RCP weight.x, size.x;
+      RCP weight.y, size.y;
+      RCP weight.z, size.z;
+      RCP weight.w, size.w;
+      SUB weight.xy, 2.0, weight;
+      SUB weight.zw, weight, 1.0;
+
+      SUB offset.xy, fragment.texcoord[2], offset;
+      MOV offset.z, fragment.texcoord[2];
+      ADD weight, weight, offset.xyxy;
+      MUL weight, weight, shadowScale.zwzw;
+
+      MOV offset.xy, weight.zwww;
       TEX temp.x, offset, texture[2], SHADOW2D;
-      ADD offset.xy, fragment.texcoord[2], shadowOffsets1.zwzw;
+      MOV offset.x, weight.x;
       TEX temp.y, offset, texture[2], SHADOW2D;
-      ADD offset.xy, fragment.texcoord[2], shadowOffsets2;
+      MOV offset.xy, weight.zyyy;
       TEX temp.z, offset, texture[2], SHADOW2D;
-      ADD offset.xy, fragment.texcoord[2], shadowOffsets2.zwzw;
+      MOV offset.x, weight.x;
       TEX temp.w, offset, texture[2], SHADOW2D;
-      DP4 temp, temp, 0.25;
+
+      MUL size, size.zxzx, size.wwyy;
+      DP4 temp.x, temp, size;
+      MUL temp.x, temp.x, 0.111111;
     #else
-      TEX temp, fragment.texcoord[2], texture[2], SHADOW2D;
+      TEX temp.x, fragment.texcoord[2], texture[2], SHADOW2D;
     #endif
   #else
     TEX tex, fragment.texcoord[2], texture[2], 2D;
     MOV_SAT temp.z, fragment.texcoord[2].z;
-    SGE temp, tex.x, temp.z;
+    SGE temp.x, tex.x, temp.z;
   #endif
   MUL diffuse.rgb, fragment.color, 2.0;
-  MAD temp.rgb, diffuse, temp, ambient;
+  MAD temp.rgb, diffuse, temp.x, ambient;
   MUL color.rgb, color, temp;
 #else
   MAD temp.rgb, fragment.color, 2.0, ambient;

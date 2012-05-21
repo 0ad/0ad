@@ -180,20 +180,17 @@ for (var i = 0; i < numPlayers; i++)
 	);
 	createObjectGroup(group, 0);
 	
-	// create starting straggler trees
-	var num = hillSize / 100;
-	for (var j = 0; j < num; j++)
-	{
-		var tAngle = randFloat(0, TWO_PI);
-		var tDist = randFloat(6, radius - 2);
-		var tX = round(fx + tDist * cos(tAngle));
-		var tZ = round(fz + tDist * sin(tAngle));
-		group = new SimpleGroup(
-			[new SimpleObject(oPoplar, 1,3, 0,2)],
-			false, clBaseResource, tX, tZ
-		);
-		createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
-	}
+	// create starting trees
+	var num = floor(hillSize / 100);
+	var tAngle = randFloat(0, TWO_PI);
+	var tDist = randFloat(11, 13);
+	var tX = round(fx + tDist * cos(tAngle));
+	var tZ = round(fz + tDist * sin(tAngle));
+	group = new SimpleGroup(
+		[new SimpleObject(oOak, num, num, 0,5)],
+		false, clBaseResource, tX, tZ
+	);
+	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
 	
 	// create grass tufts
 	var num = hillSize / 250;
@@ -276,7 +273,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroups(group, 0,
-	avoidClasses(clPlayer, 0, clHill, 0, clFood, 3, clHighlands, 0, clFlatlands, 3*scaleByMapSize(1, 4)),
+	[stayClasses(clWater, 2), avoidClasses(clFood, 3)],
 	numPlayers, 50
 );
 }

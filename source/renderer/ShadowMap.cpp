@@ -84,8 +84,6 @@ struct ShadowMapInternals
 	// BeginRender and EndRender while we replace it with the shadow camera
 	CCamera SavedViewCamera;
 
-	float FilterOffsets[8];
-
 	// Helper functions
 	void CalcShadowMatrices();
 	void CreateTexture();
@@ -444,18 +442,6 @@ void ShadowMapInternals::CreateTexture()
 		// Disable shadow rendering (but let the user try again if they want)
 		g_Renderer.m_Options.m_Shadows = false;
 	}
-
-	FilterOffsets[0] = -0.4f/Width;
-	FilterOffsets[1] = 1.0f/Height;
-
-	FilterOffsets[2] = -1.0f/Width;
-	FilterOffsets[3] = -0.4f/Height;
-
-	FilterOffsets[4] = 0.4f/Width;
-	FilterOffsets[5] = -1.0f/Height;
-
-	FilterOffsets[6] = 1.0f/Width;
-	FilterOffsets[7] = 0.4f/Height;
 }
 
 
@@ -560,9 +546,16 @@ void ShadowMap::SetDepthTextureBits(int bits)
 	}
 }
 
-const float* ShadowMap::GetFilterOffsets() const
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Depth texture size
+int ShadowMap::GetWidth() const
 {
-	return m->FilterOffsets;
+	return m->Width;
+}
+
+int ShadowMap::GetHeight() const
+{
+	return m->Height;
 }
 
 //////////////////////////////////////////////////////////////////////////////

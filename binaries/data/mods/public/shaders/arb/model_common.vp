@@ -9,6 +9,10 @@ PARAM shadowTransform[4] = { program.local[4..7] };
   PARAM instancingTransform[4] = { program.local[8..11] };
 #endif
 
+#if USE_FP_SHADOW && USE_SHADOW_PCF
+  PARAM shadowScale = program.local[12];
+#endif
+
 TEMP temp;
 TEMP lighting;
 
@@ -75,8 +79,15 @@ MUL result.color, lighting, sunColor;
 MOV v_tex, vertex.texcoord[0];
 
 #if USE_SHADOW
-  DP4 v_shadow.x, shadowTransform[0], position;
-  DP4 v_shadow.y, shadowTransform[1], position;
+  #if USE_FP_SHADOW && USE_SHADOW_PCF
+    TEMP shadowtc;
+    DP4 shadowtc.x, shadowTransform[0], position;
+    DP4 shadowtc.y, shadowTransform[1], position;
+    MUL v_shadow.xy, shadowtc, shadowScale;
+  #else
+    DP4 v_shadow.x, shadowTransform[0], position;
+    DP4 v_shadow.y, shadowTransform[1], position;
+  #endif
   DP4 v_shadow.z, shadowTransform[2], position;
   DP4 v_shadow.w, shadowTransform[3], position;
 #endif

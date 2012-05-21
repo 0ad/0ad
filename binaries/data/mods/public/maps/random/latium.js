@@ -483,10 +483,17 @@ for (var i = 1; i <= numPlayers; i++)
 	);
 	createObjectGroup(group, 0);
 	
-	// create starting straggler trees
+	var radius = scaleByMapSize(15,25);
+	var hillSize = PI * radius * radius;
+	// create starting trees
+	var num = floor(hillSize / 100);
+	var tAngle = randFloat(0, TWO_PI);
+	var tDist = randFloat(7, 9);
+	var tX = round(fx + tDist * cos(tAngle));
+	var tZ = round(fz + tDist * sin(tAngle));
 	group = new SimpleGroup(
-		[new SimpleObject(oPalm, 3,3, 7,10)],
-		true, clBaseResource, ix, iz
+		[new SimpleObject(oPalm, num, num, 0,5)],
+		false, clBaseResource, tX, tZ
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
 }

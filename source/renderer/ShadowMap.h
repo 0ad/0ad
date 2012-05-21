@@ -66,6 +66,20 @@ public:
 	void SetDepthTextureBits(int bits);
 
 	/**
+	 * GetWidth: Return the width of the depth texture.
+	 *
+	 * @return depth texture width
+	 */
+	int GetWidth() const;
+
+	/**
+	 * GetHeight: Return the height of the depth texture
+	 *
+	 * @return depth texture height
+	 */
+	int GetHeight() const;
+
+	/**
 	 * SetupFrame: Configure light space for the given camera and light direction,
 	 * create the shadow texture if necessary, etc.
 	 *
@@ -122,11 +136,6 @@ public:
 	 * Visualize shadow map texture to help in debugging.
 	 */
 	void RenderDebugTexture();
-
-	/**
-	 * Get offsets for PCF filtering.
-	 */
-	const float* GetFilterOffsets() const;
 
 private:
 	ShadowMapInternals* m;

@@ -163,12 +163,17 @@ for (var i = 0; i < numPlayers; i++)
 	);
 	createObjectGroup(group, 0);
 	
-	// create starting straggler trees
+	// create starting trees
+	var num = floor(size / 60);
+	var tAngle = randFloat(0, TWO_PI);
+	var tDist = randFloat(11, 13);
+	var tX = round(fx + tDist * cos(tAngle));
+	var tZ = round(fz + tDist * sin(tAngle));
 	group = new SimpleGroup(
-		[new SimpleObject(oOak, 3, 4, 6,12), new SimpleObject(oOak, 3,4, 6,12)],
-		true, null,	ix, iz
+		[new SimpleObject(oOak, num, num, 0,5)],
+		false, clBaseResource, tX, tZ
 	);
-	createObjectGroup(group, 0, avoidClasses(clBaseResource,1));
+	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
 }
 
 RMS.SetProgress(10);
@@ -227,7 +232,7 @@ createAreas(
 	placer,
 	[terrainPainter, elevationPainter, paintClass(clHill)], 
 	avoidClasses(clPlayer, 3, clCP, 5, clHill, 10),
-	round(scaleByMapSize(1, 4) * numPlayers * 1.4)
+	scaleByMapSize(1, 4) * numPlayers * 3
 );
 
 RMS.SetProgress(35);
