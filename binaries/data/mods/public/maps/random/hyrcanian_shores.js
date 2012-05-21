@@ -276,7 +276,7 @@ group = new SimpleGroup(
 	true, clFood
 );
 createObjectGroups(group, 0,
-	avoidClasses(clPlayer, 0, clHill, 0, clFood, 3, clHighlands, 0, clFlatlands, 3*scaleByMapSize(1, 4)),
+	[stayClasses(clWater, 2), avoidClasses(clFood, 3)],
 	numPlayers, 50
 );
 }
