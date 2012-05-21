@@ -8,6 +8,10 @@ uniform vec2 textureTransform;
 uniform vec2 losTransform;
 uniform mat4 shadowTransform;
 
+#if USE_SHADOW_SAMPLER && USE_SHADOW_PCF
+  uniform vec4 shadowScale;
+#endif
+
 varying vec3 v_lighting;
 varying vec2 v_tex;
 varying vec4 v_shadow;
@@ -52,6 +56,9 @@ void main()
 
   #if USE_SHADOW
     v_shadow = shadowTransform * vec4(a_vertex, 1.0);
+    #if USE_SHADOW_SAMPLER && USE_SHADOW_PCF
+      v_shadow.xy *= shadowScale.xy;
+    #endif  
   #endif
 
   #if USE_SPECULAR

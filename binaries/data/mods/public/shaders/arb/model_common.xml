@@ -8,6 +8,7 @@
         <uniform name="losTransform" loc="3" type="vec2"/>
         <uniform name="shadowTransform" loc="4" type="mat4"/>
         <uniform if="USE_INSTANCING" name="instancingTransform" loc="8" type="mat4"/>
+        <uniform name="shadowScale" loc="12" type="vec4"/>
         <stream name="pos"/>
         <stream name="normal"/>
         <stream name="uv0"/>
@@ -22,11 +23,10 @@
         <uniform if="USE_PLAYERCOLOR" name="playerColor" loc="0" type="vec3"/>
         <uniform name="shadingColor" loc="1" type="vec3"/>
         <uniform name="ambient" loc="2" type="vec3"/>
-        <uniform name="shadowOffsets1" loc="3" type="vec4"/>
-        <uniform name="shadowOffsets2" loc="4" type="vec4"/>
-        <uniform name="specularPower" loc="5" type="float"/>
-        <uniform name="specularColor" loc="6" type="vec3"/>
-        <uniform name="sunColor" loc="7" type="vec3"/>
+        <uniform name="shadowScale" loc="3" type="vec4"/>
+        <uniform name="specularPower" loc="4" type="float"/>
+        <uniform name="specularColor" loc="5" type="vec3"/>
+        <uniform name="sunColor" loc="6" type="vec3"/>
     </fragment>
 
 </program>

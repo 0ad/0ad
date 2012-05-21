@@ -18,18 +18,17 @@ ATTRIB v_los = fragment.texcoord[2];
 PARAM shadingColor = program.local[1];
 PARAM ambient = program.local[2];
 
-#if USE_SHADOW_PCF
-  PARAM shadowOffsets1 = program.local[3];
-  PARAM shadowOffsets2 = program.local[4];
-  TEMP offset;
+#if USE_FP_SHADOW && USE_SHADOW_PCF
+  PARAM shadowScale = program.local[3];
+  TEMP offset, size, weight;
 #endif
 
 #if USE_SPECULAR
   ATTRIB v_normal = fragment.texcoord[3];
   ATTRIB v_half = fragment.texcoord[4];
-  PARAM specularPower = program.local[5];
-  PARAM specularColor = program.local[6];
-  PARAM sunColor = program.local[7];
+  PARAM specularPower = program.local[4];
+  PARAM specularColor = program.local[5];
+  PARAM sunColor = program.local[6];
 #endif
 
 TEMP tex;
@@ -86,23 +85,41 @@ TEX tex, v_tex, texture[0], 2D;
 #if USE_SHADOW && !DISABLE_RECEIVE_SHADOWS
   #if USE_FP_SHADOW
     #if USE_SHADOW_PCF
-      MOV offset.zw, v_shadow;
-      ADD offset.xy, v_shadow, shadowOffsets1;
+      SUB offset.xy, v_shadow, 0.5;
+      FRC offset.xy, offset;
+      ADD size.xy, offset, 1.0;
+      SUB size.zw, 2.0, offset.xyxy;
+      RCP weight.x, size.x;
+      RCP weight.y, size.y;
+      RCP weight.z, size.z;
+      RCP weight.w, size.w;
+      SUB weight.xy, 2.0, weight;
+      SUB weight.zw, weight, 1.0;
+
+      SUB offset.xy, v_shadow, offset;
+      MOV offset.z, v_shadow;
+      ADD weight, weight, offset.xyxy;
+      MUL weight, weight, shadowScale.zwzw;
+
+      MOV offset.xy, weight.zwww;
       TEX temp.x, offset, texture[1], SHADOW2D;
-      ADD offset.xy, v_shadow, shadowOffsets1.zwzw;
+      MOV offset.x, weight.x;
       TEX temp.y, offset, texture[1], SHADOW2D;
-      ADD offset.xy, v_shadow, shadowOffsets2;
+      MOV offset.xy, weight.zyyy;
       TEX temp.z, offset, texture[1], SHADOW2D;
-      ADD offset.xy, v_shadow, shadowOffsets2.zwzw;
+      MOV offset.x, weight.x;
       TEX temp.w, offset, texture[1], SHADOW2D;
-      DP4 shadow, temp, 0.25;
+
+      MUL size, size.zxzx, size.wwyy;
+      DP4 shadow.x, temp, size;
+      MUL shadow.x, shadow.x, 0.111111;
     #else
-      TEX shadow, v_shadow, texture[1], SHADOW2D;
+      TEX shadow.x, v_shadow, texture[1], SHADOW2D;
     #endif
   #else
     TEX tex, v_shadow, texture[1], 2D;
     MOV_SAT temp.z, v_shadow.z;
-    SGE shadow, tex.x, temp.z;
+    SGE shadow.x, tex.x, temp.z;
   #endif
 
   MUL sundiffuse.rgb, fragment.color, 2.0;
@@ -110,9 +127,9 @@ TEX tex, v_tex, texture[0], 2D;
   #if USE_SPECULAR
     MAD color.rgb, texdiffuse, sundiffuse, specular;
     MUL temp.rgb, texdiffuse, ambient;
-    MAD color.rgb, color, shadow, temp;
+    MAD color.rgb, color, shadow.x, temp;
   #else
-    MAD temp.rgb, sundiffuse, shadow, ambient;
+    MAD temp.rgb, sundiffuse, shadow.x, ambient;
     MUL color.rgb, texdiffuse, temp;
   #endif
   

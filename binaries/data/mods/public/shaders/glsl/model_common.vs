@@ -13,6 +13,10 @@ uniform vec2 losTransform;
 uniform mat4 shadowTransform;
 uniform mat4 instancingTransform;
 
+#if USE_SHADOW_SAMPLER && USE_SHADOW_PCF
+  uniform vec4 shadowScale;
+#endif
+
 varying vec3 v_lighting;
 varying vec2 v_tex;
 varying vec4 v_shadow;
@@ -71,6 +75,11 @@ void main()
   
   v_lighting = max(0.0, dot(normal, -sunDir)) * sunColor;
   v_tex = a_uv0;
-  v_shadow = shadowTransform * position;
+  #if USE_SHADOW
+    v_shadow = shadowTransform * position;
+    #if USE_SHADOW_SAMPLER && USE_SHADOW_PCF
+      v_shadow.xy *= shadowScale.xy;
+    #endif  
+  #endif
   v_los = position.xz * losTransform.x + losTransform.y;
 }

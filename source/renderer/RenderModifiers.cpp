@@ -80,10 +80,9 @@ void ShaderRenderModifier::BeginPass(const CShaderProgramPtr& shader)
 	{
 		shader->BindTexture("shadowTex", GetShadowMap()->GetTexture());
 		shader->Uniform("shadowTransform", GetShadowMap()->GetTextureMatrix());
-
-		const float* offsets = GetShadowMap()->GetFilterOffsets();
-		shader->Uniform("shadowOffsets1", offsets[0], offsets[1], offsets[2], offsets[3]);
-		shader->Uniform("shadowOffsets2", offsets[4], offsets[5], offsets[6], offsets[7]);
+		int width = GetShadowMap()->GetWidth();
+		int height = GetShadowMap()->GetHeight();
+		shader->Uniform("shadowScale", width, height, 1.0f / width, 1.0f / height); 
 	}
 
 	if (GetLightEnv())
