@@ -259,7 +259,7 @@ for (var i=0; i < numPlayers; i++)
 	createObjectGroup(group, 0);
 	
 	// create starting trees
-	var num = 6;
+	var num = 2;
 	var tAngle = randFloat(0, TWO_PI);
 	var tDist = randFloat(11, 13);
 	var tX = round(fx + tDist * cos(tAngle));

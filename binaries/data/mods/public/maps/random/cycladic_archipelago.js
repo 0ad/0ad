@@ -227,7 +227,7 @@ for (var i=0; i < numIslands; i++)
 	{
 		mAngle = randFloat(0, TWO_PI);
 	}
-	var mDist = radius - 4;
+	var mDist = 12;
 	var mX = round(fx + mDist * cos(mAngle));
 	var mZ = round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
@@ -245,9 +245,9 @@ for (var i=0; i < numIslands; i++)
 		true, clBaseResource, mX, mZ
 	);
 	createObjectGroup(group, 0);
-	
+	var hillSize = PI * radius * radius;
 	// create starting trees
-	var num = floor(hillSize / 100);
+	var num = 2;
 	var tAngle = randFloat(0, TWO_PI);
 	var tDist = randFloat(11, 13);
 	var tX = round(fx + tDist * cos(tAngle));

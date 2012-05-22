@@ -219,11 +219,11 @@ for (var i = 0; i < numPlayers; i++)
 	// create starting trees
 	var num = floor(hillSize / 60);
 	var tAngle = randFloat(0, TWO_PI);
-	var tDist = randFloat(9, 11);
+	var tDist = 11;
 	var tX = round(fx + tDist * cos(tAngle));
 	var tZ = round(fz + tDist * sin(tAngle));
 	group = new SimpleGroup(
-		[new SimpleObject(oOak, num, num, 0,5)],
+		[new SimpleObject(oOak, num, num, 0,4)],
 		false, clBaseResource, tX, tZ
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
