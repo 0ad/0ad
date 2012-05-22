@@ -243,7 +243,7 @@ elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 18, 2);
 createAreas(
 	placer,
 	[terrainPainter, elevationPainter, paintClass(clHill)], 
-	avoidClasses(clPlayer, 12, clHill, 15, clWater, 2, clBaseResources, 2),
+	avoidClasses(clPlayer, 12, clHill, 15, clWater, 2, clBaseResource, 2),
 	scaleByMapSize(2, 8) * numPlayers
 );
 

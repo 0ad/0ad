@@ -183,7 +183,7 @@ for (var i = 0; i < numPlayers; i++)
 		false, clBaseResource, tX, tZ
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
-	
+	var hillSize = PI * radius * radius;
 	// create grass tufts
 	var num = hillSize / 250;
 	for (var j = 0; j < num; j++)
