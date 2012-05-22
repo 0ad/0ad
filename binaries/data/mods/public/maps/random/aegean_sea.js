@@ -162,7 +162,7 @@ for (var i = 0; i < numPlayers; i++)
 	{
 		mAngle = randFloat(0, TWO_PI);
 	}
-	var mDist = radius - 4;
+	var mDist = 12;
 	var mX = round(fx + mDist * cos(mAngle));
 	var mZ = round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
@@ -182,7 +182,7 @@ for (var i = 0; i < numPlayers; i++)
 	createObjectGroup(group, 0);
 	var hillSize = PI * radius * radius;
 	// create starting trees
-	var num = floor(hillSize / 100);
+	var num = 2;
 	var tAngle = randFloat(0, TWO_PI);
 	var tDist = randFloat(11, 13);
 	var tX = round(fx + tDist * cos(tAngle));
@@ -293,7 +293,7 @@ var num = scaleByMapSize(10,30);
 placer = new ClumpPlacer(numForest / num, 0.15, 0.1, 0.5);
 painter = new TerrainPainter([tForestFloor, pForest]);
 createAreas(placer, [painter, paintClass(clForest)], 
-	avoidClasses(clPlayer, 8, clForest, 10, clWater, 1),
+	avoidClasses(clPlayer, 8, clForest, 10, clWater, 1, clBaseResource, 3),
 	num, 50
 );
 

@@ -89,7 +89,7 @@ var fz = fractionToTiles(0.5);
 ix = round(fx);
 iz = round(fz);
 
-var placer = new ClumpPlacer(mapArea * 0.45, 0.9, 0.1, 10, ix, iz);
+var placer = new ClumpPlacer(mapArea * 0.45, 0.9, 0.09, 10, ix, iz);
 var terrainPainter = new LayeredPainter(
 	[tWater, tShore, tGrass],		// terrains
 	[4, 2]		// widths
@@ -184,7 +184,7 @@ for (var i = 0; i < numPlayers; i++)
 	{
 		mAngle = randFloat(0, TWO_PI);
 	}
-	var mDist = radius - 4;
+	var mDist = 12;
 	var mX = round(fx + mDist * cos(mAngle));
 	var mZ = round(fz + mDist * sin(mAngle));
 	group = new SimpleGroup(
@@ -204,7 +204,7 @@ for (var i = 0; i < numPlayers; i++)
 	createObjectGroup(group, 0);
 	var hillSize = PI * radius * radius;
 	// create starting trees
-	var num = floor(hillSize / 100);
+	var num = 2;
 	var tAngle = randFloat(0, TWO_PI);
 	var tDist = randFloat(11, 13);
 	var tX = round(fx + tDist * cos(tAngle));
@@ -255,7 +255,7 @@ elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 18, 2);
 createAreas(
 	placer,
 	[terrainPainter, elevationPainter, paintClass(clHill)], 
-	[avoidClasses(clPlayer, 10, clHill, 15), stayClasses(clLand, 5)],
+	[avoidClasses(clPlayer, 10, clHill, 15, clBaseResource, 3), stayClasses(clLand, 5)],
 	scaleByMapSize(1, 4) * numPlayers
 );
 
@@ -309,7 +309,7 @@ for (var i = 0; i < types.length; ++i)
 	createAreas(
 		placer,
 		[painter, paintClass(clForest)], 
-		[avoidClasses(clPlayer, 6, clForest, 10, clHill, 0), stayClasses(clLand, 7)],
+		[avoidClasses(clPlayer, 6, clForest, 10, clHill, 0, clBaseResource,2), stayClasses(clLand, 7)],
 		num
 	);
 }

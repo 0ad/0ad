@@ -486,9 +486,9 @@ for (var i = 1; i <= numPlayers; i++)
 	var radius = scaleByMapSize(15,25);
 	var hillSize = PI * radius * radius;
 	// create starting trees
-	var num = floor(hillSize / 100);
+	var num = 5;
 	var tAngle = randFloat(0, TWO_PI);
-	var tDist = randFloat(7, 9);
+	var tDist = randFloat(10, 11);
 	var tX = round(fx + tDist * cos(tAngle));
 	var tZ = round(fz + tDist * sin(tAngle));
 	group = new SimpleGroup(
