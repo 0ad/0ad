@@ -2,14 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant>
+    <variant frequency="100" name="foundation wall short">
       <mesh>structural/found_wall_med_a.dae</mesh>
-      <texture>structural/foundation.dds</texture>
-    </variant>
-    <variant>
       <props>
         <prop actor="particle/construction_dust.xml" attachpoint="root"/>
       </props>
+      <texture>structural/foundation.dds</texture>
     </variant>
   </group>
 </actor>
