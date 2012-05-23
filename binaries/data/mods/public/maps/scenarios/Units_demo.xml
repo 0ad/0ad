@@ -7,7 +7,7 @@
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var entityTemplates = cmpTemplateManager.FindAllTemplates(true);
 
-	var patches = 12;
+	var patches = 30;
 	var x0 = 20, z0 = 20, x1 = patches*16*4-20;
 	var x = x0, z = z0;
 	var maxh = 0;
@@ -60,8 +60,9 @@
 
 	//]]></Script>
 	<Environment>
+		<LightingModel>standard</LightingModel>
 		<SkySet>default</SkySet>
-		<SunColour r="1.5" g="1.5" b="1.5"/>
+		<SunColour r="0.811765" g="0.792157" b="0.701961"/>
 		<SunElevation angle="0.785398"/>
 		<SunRotation angle="5.49779"/>
 		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
