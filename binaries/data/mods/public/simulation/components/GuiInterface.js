@@ -259,7 +259,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	var cmpRallyPoint = Engine.QueryInterface(ent, IID_RallyPoint);
 	if (cmpRallyPoint)
 	{
-		ret.rallyPoint = {'position': cmpRallyPoint.GetPosition()}; // undefined or {x,z} object
+		ret.rallyPoint = {'position': cmpRallyPoint.GetPositions()[0]}; // undefined or {x,z} object
 	}
 
 	var cmpGarrisonHolder = Engine.QueryInterface(ent, IID_GarrisonHolder);
@@ -629,7 +629,7 @@ GuiInterface.prototype.SetStatusBars = function(player, cmd)
 };
 
 /**
- * Displays the rally point of a given list of entities (carried in cmd.entities).
+ * Displays the rally points of a given list of entities (carried in cmd.entities).
  * 
  * The 'cmd' object may carry its own x/z coordinate pair indicating the location where the rally point should 
  * be rendered, in order to support instantaneously rendering a rally point marker at a specified location 
@@ -677,11 +677,15 @@ GuiInterface.prototype.DisplayRallyPoint = function(player, cmd)
 		if (cmd.x && cmd.z)
 			pos = cmd; 
 		else
-			pos = cmpRallyPoint.GetPosition(); // may return undefined if no rally point is set
+			pos = cmpRallyPoint.GetPositions()[0]; // may return undefined if no rally point is set
 
 		if (pos)
 		{
-			cmpRallyPointRenderer.SetPosition({'x': pos.x, 'y': pos.z}); // SetPosition takes a CFixedVector2D which has X/Y components, not X/Z
+			// Only update the position if we changed it (cmd.queued is set)
+			if (cmd.queued == true)
+				cmpRallyPointRenderer.AddPosition({'x': pos.x, 'y': pos.z}); // AddPosition takes a CFixedVector2D which has X/Y components, not X/Z
+			else if (cmd.queued == false)
+				cmpRallyPointRenderer.SetPosition({'x': pos.x, 'y': pos.z}); // SetPosition takes a CFixedVector2D which has X/Y components, not X/Z
 			cmpRallyPointRenderer.SetDisplayed(true);
 			
 			// remember which entities have their rally points displayed so we can hide them again

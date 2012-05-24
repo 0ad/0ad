@@ -215,10 +215,14 @@ GarrisonHolder.prototype.OrderWalkToRallyPoint = function(entities)
 	var cmpRallyPoint = Engine.QueryInterface(this.entity, IID_RallyPoint);
 	if (cmpRallyPoint)
 	{
-		var rallyPos = cmpRallyPoint.GetPosition();
+		var rallyPos = cmpRallyPoint.GetPositions()[0];
 		if (rallyPos)
 		{
-			ProcessCommand(cmpOwnership.GetOwner(), GetRallyPointCommand(cmpRallyPoint, entities));
+			var commands = GetRallyPointCommands(cmpRallyPoint, entities);
+			for each (var com in commands)
+			{
+				ProcessCommand(cmpOwnership.GetOwner(), com);
+			}
 		}
 	}
 };
@@ -295,7 +299,7 @@ GarrisonHolder.prototype.OnHealthChanged = function(msg)
 					cmpHealth.Kill();
 				}
 			}
-			this.entities = [];		
+			this.entities = [];
 			Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {});
 		}
 		else

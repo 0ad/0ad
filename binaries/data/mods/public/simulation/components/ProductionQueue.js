@@ -442,10 +442,14 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 		// rally point is placed.
 		if (cmpRallyPoint)
 		{
-			var rallyPos = cmpRallyPoint.GetPosition();
+			var rallyPos = cmpRallyPoint.GetPositions()[0];
 			if (rallyPos)
 			{
-				ProcessCommand(cmpOwnership.GetOwner(), GetRallyPointCommand(cmpRallyPoint, spawnedEnts));
+				var commands = GetRallyPointCommands(cmpRallyPoint, spawnedEnts);
+				for each(var com in commands)
+				{
+					ProcessCommand(cmpOwnership.GetOwner(), com);
+				}
 			}
 		}
 

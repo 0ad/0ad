@@ -191,11 +191,6 @@ function getActionInfo(action, target)
 	// e.g. prefer to attack an enemy unit, even if some friendly units are closer to the mouse)
 	var targetState = GetEntityState(target);
 
-	// If we selected buildings with rally points, and then click on one of those selected
-	// buildings, we should remove the rally point
-	//if (haveRallyPoints && selection.indexOf(target) != -1)
-	//	return {"type": "unset-rallypoint"};
-
 	// Check if the target entity is a resource, dropsite, foundation, or enemy unit.
 	// Check if any entities in the selection can gather the requested resource,
 	// can return to the dropsite, can build the foundation, or can attack the enemy
@@ -1317,12 +1312,13 @@ function doAction(action, ev)
 		{
 			pos = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
 		}
-		Engine.PostNetworkCommand({"type": "set-rallypoint", "entities": selection, "x": pos.x, "z": pos.z, "data": action.data});
+		Engine.PostNetworkCommand({"type": "set-rallypoint", "entities": selection, "x": pos.x, "z": pos.z, "data": action.data, "queued": queued});
 		// Display rally point at the new coordinates, to avoid display lag
 		Engine.GuiInterfaceCall("DisplayRallyPoint", {
 			"entities": selection,
 			"x": pos.x,
-			"z": pos.z
+			"z": pos.z,
+			"queued": queued
 		});
 		return true;
 
