@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_mechanical_siege_ram">
+  <Footprint replace="">
+    <Square width="8.0" depth="12.0"/>
+    <Height>3.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>mace</Civ>
+    <SpecificName>Aries</SpecificName>
+    <History>Macedonian siege ram</History>
+    <Icon>units/rome_mechanical_siege_ram.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Unit radius="4.0"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>structures/macedonians/siege_ram.xml</Actor>
+  </VisualActor>
+</Entity>
