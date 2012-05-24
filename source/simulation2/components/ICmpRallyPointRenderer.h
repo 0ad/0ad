@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@
 
 /**
  * Rally Point.
- * Holds the position of a unit's rally point, and renders it to screen.
+ * Holds the position of a unit's rally points, and renders them to screen.
  */
 class ICmpRallyPointRenderer : public IComponent
 {
@@ -34,7 +34,12 @@ public:
 	virtual void SetDisplayed(bool displayed) = 0;
 
 	/// Sets the position at which the rally point marker should be displayed.
+	/// Discards all previous positions
 	virtual void SetPosition(CFixedVector2D position) = 0;
+
+	/// Add another position at which a marker should be displayed, connected
+	/// to the previous one.
+	virtual void AddPosition_wrapper(CFixedVector2D position) = 0;
 
 	DECLARE_INTERFACE_TYPE(RallyPointRenderer)
 };

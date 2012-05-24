@@ -1,67 +1,76 @@
-// Returns an command suitable for ProcessCommand() based on the rally point data.
+// Returns an array of commands suitable for ProcessCommand() based on the rally point data.
 // This assumes that the rally point has a valid position.
-function GetRallyPointCommand(cmpRallyPoint, spawnedEnts)
+function GetRallyPointCommands(cmpRallyPoint, spawnedEnts)
 {
-	// Look and see if there is a command in the rally point data, otherwise just walk there.
 	var data = cmpRallyPoint.GetData();
-	var rallyPos = cmpRallyPoint.GetPosition();
-	var command = undefined;
-	if (data && data.command)
+	var rallyPos = cmpRallyPoint.GetPositions();
+	var ret = [];
+	for(var i = 0; i < rallyPos.length; ++i)
 	{
-		command = data.command;
-	}
-	else
-	{
-		command = "walk";
-	}
-
-	// If a target was set and the target no longer exists, or no longer
-	// has a valid position, then just walk to the rally point.
-	if (data && data.target)
-	{
-		var cmpPosition = Engine.QueryInterface(data.target, IID_Position);
-		if (!cmpPosition || !cmpPosition.IsInWorld())
+		// Look and see if there is a command in the rally point data, otherwise just walk there.
+		var command = undefined;
+		if (data[i] && data[i].command)
+		{
+			command = data[i].command;
+		}
+		else
 		{
 			command = "walk";
 		}
-	}
 
-	switch (command)
-	{
-	case "gather":
-		return {
-			"type": "gather-near-position",
-			"entities": spawnedEnts,
-			"x": rallyPos.x,
-			"z": rallyPos.z,
-			"resourceType": data.resourceType,
-			"queued": false
-		};
-	case "repair": 
-	case "build":
-		return {
-			"type": "repair",
-			"entities": spawnedEnts,
-			"target": data.target,
-			"queued": false,
-			"autocontinue": true
-		};
-	case "garrison": 
-		return {
-			"type": "garrison",
-			"entities": spawnedEnts,
-			"target": data.target,
-			"queued": false
-		};
-	default:
-		return {
-			"type": "walk",
-			"entities": spawnedEnts,
-			"x": rallyPos.x,
-			"z": rallyPos.z,
-			"queued": false
-		};
+		// If a target was set and the target no longer exists, or no longer
+		// has a valid position, then just walk to the rally point.
+		if (data[i] && data[i].target)
+		{
+			var cmpPosition = Engine.QueryInterface(data[i].target, IID_Position);
+			if (!cmpPosition || !cmpPosition.IsInWorld())
+			{
+				command = "walk";
+			}
+		}
+
+		switch (command)
+		{
+		case "gather":
+			ret.push( {
+				"type": "gather-near-position",
+				"entities": spawnedEnts,
+				"x": rallyPos[i].x,
+				"z": rallyPos[i].z,
+				"resourceType": data[i].resourceType,
+				"queued": true
+			});
+			break;
+		case "repair": 
+		case "build":
+			ret.push( {
+				"type": "repair",
+				"entities": spawnedEnts,
+				"target": data[i].target,
+				"queued": true,
+				"autocontinue": (i == rallyPos.length-1)
+			});
+			break;
+		case "garrison": 
+			ret.push( {
+				"type": "garrison",
+				"entities": spawnedEnts,
+				"target": data[i].target,
+				"queued": true
+			});
+			break;
+		default:
+			ret.push( {
+				"type": "walk",
+				"entities": spawnedEnts,
+				"x": rallyPos[i].x,
+				"z": rallyPos[i].z,
+				"queued": true
+			});
+			break;
+		}
 	}
+	return ret;
 }
 
-Engine.RegisterGlobal("GetRallyPointCommand", GetRallyPointCommand);
+Engine.RegisterGlobal("GetRallyPointCommands", GetRallyPointCommands);

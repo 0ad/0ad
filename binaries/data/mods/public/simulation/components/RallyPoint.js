@@ -5,30 +5,31 @@ RallyPoint.prototype.Schema =
 
 RallyPoint.prototype.Init = function()
 {
-	this.pos = undefined;
+	this.pos = [];
+	this.data = [];
 };
 
-RallyPoint.prototype.SetPosition = function(x, z)
+RallyPoint.prototype.AddPosition = function(x, z)
 {
-	this.pos = {
+	this.pos.push({
 		"x": x,
 		"z": z
-	};
+	});
 };
 
-RallyPoint.prototype.GetPosition = function()
+RallyPoint.prototype.GetPositions = function()
 {
 	return this.pos;
 };
 
 // Extra data for the rally point, should have a command property and then helpful data for that command
 // See getActionInfo in gui/input.js
-RallyPoint.prototype.SetData = function(data)
+RallyPoint.prototype.AddData = function(data)
 {
-	this.data = data;
+	this.data.push(data);
 };
 
-// Returns the data associated with this rally point.  Uses the data structure:
+// Returns an array with the data associated with this rally point.  Each element has the structure:
 // {"type": "walk/gather/garrison/...", "target": targetEntityId, "resourceType": "tree/fruit/ore/..."} where target 
 // and resourceType (specific resource type) are optional, also target may be an invalid entity, check for existence.
 RallyPoint.prototype.GetData = function()
@@ -38,9 +39,8 @@ RallyPoint.prototype.GetData = function()
 
 RallyPoint.prototype.Unset = function()
 {
-	this.pos = undefined;
-	this.data = undefined;
+	this.pos = [];
+	this.data = [];
 };
-
 
 Engine.RegisterComponentType(IID_RallyPoint, "RallyPoint", RallyPoint);

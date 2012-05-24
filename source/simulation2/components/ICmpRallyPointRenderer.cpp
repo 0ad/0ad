@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,4 +25,5 @@ class CFixedVector2D;
 BEGIN_INTERFACE_WRAPPER(RallyPointRenderer)
 DEFINE_INTERFACE_METHOD_1("SetDisplayed", void, ICmpRallyPointRenderer, SetDisplayed, bool)
 DEFINE_INTERFACE_METHOD_1("SetPosition", void, ICmpRallyPointRenderer, SetPosition, CFixedVector2D)
+DEFINE_INTERFACE_METHOD_1("AddPosition", void, ICmpRallyPointRenderer, AddPosition_wrapper, CFixedVector2D)
 END_INTERFACE_WRAPPER(RallyPointRenderer)

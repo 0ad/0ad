@@ -232,8 +232,11 @@ function ProcessCommand(player, cmd)
 			var cmpRallyPoint = Engine.QueryInterface(ent, IID_RallyPoint);
 			if (cmpRallyPoint)
 			{
-				cmpRallyPoint.SetPosition(cmd.x, cmd.z);
-				cmpRallyPoint.SetData(cmd.data);
+				if (!cmd.queued)
+					cmpRallyPoint.Unset();
+
+				cmpRallyPoint.AddPosition(cmd.x, cmd.z);
+				cmpRallyPoint.AddData(cmd.data);
 			}
 		}
 		break;
