@@ -1,14 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="beard">
       <mesh>props/head_beard.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="head-bare">
       <texture>props/head/hele_healer_a.dds</texture>
@@ -17,5 +14,4 @@
       <texture>props/head/hele_healer_b.dds</texture>
     </variant>
   </group>
-
 </actor>

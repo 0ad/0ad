@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-	<castshadow/>
-	<float/>
-	<group>
-		<variant frequency="1" name="shark_great_white">
-			<mesh>skeletal/shark_a.dae</mesh>
-			<animations>
-				<animation file="quadraped/shark_walk.dae" name="walk" speed="10"/>
-			</animations>
-		</variant>
-	</group>
-	<group>
-		<variant frequency="1" name="shark_light">
-			<texture>skeletal/animal_shark.dds</texture>
-		</variant>
-		<variant frequency="1" name="shark_dark">
-			<texture>skeletal/animal_sharkdark.dds</texture>
-		</variant>
-	</group>
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" name="shark_great_white">
+      <animations>
+        <animation file="quadraped/shark_walk.dae" name="walk" speed="10"/>
+      </animations>
+      <mesh>skeletal/shark_a.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="shark_light">
+      <texture>skeletal/animal_shark.dds</texture>
+    </variant>
+    <variant frequency="1" name="shark_dark">
+      <texture>skeletal/animal_sharkdark.dds</texture>
+    </variant>
+  </group>
+  <material>basic_spec.xml</material>
 </actor>
