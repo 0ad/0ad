@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Mace Siege Ram A">
+      <animations>
+        <animation file="mechanical/mace_siege_ram_idle.dae" name="Idle" speed="100"/>
+        <animation file="mechanical/mace_siege_ram_move.dae" name="Walk" speed="15"/>
+        <animation file="mechanical/mace_siege_ram_move.dae" name="Run" speed="30"/>
+        <animation event="0.3" file="mechanical/mace_siege_ram_attack.dae" name="Melee" speed="100"/>
+      </animations>
+      <mesh>structural/mace_siege_ram.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/mace_argyraspides.xml" attachpoint="shield_left_front"/>
+        <prop actor="props/units/shields/mace_hypaspist.xml" attachpoint="shield_right_front"/>
+        <prop actor="props/units/shields/mace_round_argyraspides.xml" attachpoint="shield_left_mid"/>
+        <prop actor="props/units/shields/mace_round_craterus.xml" attachpoint="shield_right_mid"/>
+        <prop actor="props/units/shields/mace_round_craterus.xml" attachpoint="shield_left_mback"/>
+        <prop actor="props/units/shields/mace_round_hypaspist.xml" attachpoint="shield_right_mback"/>
+        <prop actor="props/units/shields/mace_round_hypaspist.xml" attachpoint="shield_left_back"/>
+        <prop actor="props/units/shields/mace_argyraspides.xml" attachpoint="shield_right_back"/>
+      </props>
+      <texture>structural/spart_siege_ram.png</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+</actor>
