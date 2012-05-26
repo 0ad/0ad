@@ -2,12 +2,13 @@
 
 <Scenario version="5">
 	<Environment>
-		<SkySet>default</SkySet>
-		<SunColour r="1.5" g="1.5" b="1.5"/>
-		<SunElevation angle="0.822214"/>
-		<SunRotation angle="-0.785396"/>
-		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<LightingModel>standard</LightingModel>
+		<SkySet>sunny</SkySet>
+		<SunColour r="0.737255" g="0.721569" b="0.639216"/>
+		<SunElevation angle="0.717903"/>
+		<SunRotation angle="-0.693359"/>
+		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>

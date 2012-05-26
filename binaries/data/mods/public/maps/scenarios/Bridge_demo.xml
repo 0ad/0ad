@@ -2,13 +2,13 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>old</LightingModel>
-		<SkySet>cirrus</SkySet>
-		<SunColour r="1.13477" g="1.13477" b="1.13477"/>
-		<SunElevation angle="0.613592"/>
-		<SunRotation angle="1.22718"/>
-		<TerrainAmbientColour r="0.337255" g="0.403922" b="0.466667"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<LightingModel>standard</LightingModel>
+		<SkySet>sunny</SkySet>
+		<SunColour r="0.737255" g="0.721569" b="0.639216"/>
+		<SunElevation angle="0.717903"/>
+		<SunRotation angle="-0.693359"/>
+		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="470.736" y="106.568" z="328.359"/>
+		<Position x="521.769" y="64.8083" z="389.701"/>
 		<Rotation angle="0"/>
-		<Declination angle="0.610865"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
