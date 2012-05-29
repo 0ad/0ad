@@ -2,7 +2,7 @@ function StatisticsTracker() {}
 
 StatisticsTracker.prototype.Schema =
 	"<a:component type='system'/><empty/>";
-	
+
 StatisticsTracker.prototype.Init = function()
 {
 	// units
@@ -18,9 +18,9 @@ StatisticsTracker.prototype.Init = function()
 	this.enemyCivCentresDestroyed = 0;
 	// resources
 	this.resourcesGathered = {
-			"food": 0,	
-			"wood": 0,	
-			"metal": 0,	
+			"food": 0,
+			"wood": 0,
+			"metal": 0,
 			"stone": 0,
 			"vegetarianFood": 0
 	}
@@ -30,18 +30,18 @@ StatisticsTracker.prototype.Init = function()
 StatisticsTracker.prototype.GetStatistics = function()
 {
 	return {
- 		"unitsTrained": this.unitsTrained,
- 		"unitsLost": this.unitsLost,
- 		"enemyUnitsKilled": this.enemyUnitsKilled,
- 		"buildingsConstructed": this.buildingsConstructed,
- 		"buildingsLost": this.buildingsLost,
- 		"enemyBuildingsDestroyed": this.enemyBuildingsDestroyed,
- 		"civCentresBuilt": this.civCentresBuilt,
- 		"enemyCivCentresDestroyed": this.enemyCivCentresDestroyed,
- 		"resourcesGathered": this.resourcesGathered,
+		"unitsTrained": this.unitsTrained,
+		"unitsLost": this.unitsLost,
+		"enemyUnitsKilled": this.enemyUnitsKilled,
+		"buildingsConstructed": this.buildingsConstructed,
+		"buildingsLost": this.buildingsLost,
+		"enemyBuildingsDestroyed": this.enemyBuildingsDestroyed,
+		"civCentresBuilt": this.civCentresBuilt,
+		"enemyCivCentresDestroyed": this.enemyCivCentresDestroyed,
+		"resourcesGathered": this.resourcesGathered,
 		"treasuresCollected": this.treasuresCollected,
 		"percentMapExplored": this.GetPercentMapExplored()
- 	};
+	};
 };
 
 StatisticsTracker.prototype.IncreaseTrainedUnitsCounter = function()
@@ -64,21 +64,25 @@ StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 	var cmpTargetEntityIdentity = Engine.QueryInterface(targetEntity, IID_Identity);
 	if (cmpTargetEntityIdentity)
 	{
-		var classes = cmpTargetEntityIdentity.GetClassesList();
-		// we want to deal only with real structures, not foundations
 		var cmpFoundation = Engine.QueryInterface(targetEntity, IID_Foundation);
-		var targetIsStructure = classes.indexOf("Structure") != -1 && cmpFoundation == null;
-		var targetIsUnit = classes.indexOf("Unit") != -1;
-		var targetIsCivCentre = classes.indexOf("CivCentre") != -1;
-				
+		// We want to deal only with real structures, not foundations
+		var targetIsStructure = cmpTargetEntityIdentity.HasClass("Structure") && cmpFoundation == null;
+		var targetIsDomesticAnimal = cmpTargetEntityIdentity.HasClass("Animal") && cmpTargetEntityIdentity.HasClass("Domestic");
+		// Don't count domestic animals as units
+		var targetIsUnit = cmpTargetEntityIdentity.HasClass("Unit") && !targetIsDomesticAnimal;
+		var targetIsCivCentre = cmpTargetEntityIdentity.HasClass("CivCentre");
+
 		var cmpTargetOwnership = Engine.QueryInterface(targetEntity, IID_Ownership);
-		
-		// don't increase counters if target player is gaia (player 0)
+
+		// Don't increase counters if target player is gaia (player 0)
 		if (cmpTargetOwnership.GetOwner() != 0)
 		{
-			if (targetIsUnit) this.enemyUnitsKilled++;
-			if (targetIsStructure) this.enemyBuildingsDestroyed++;
-			if (targetIsCivCentre) this.enemyCivCentresDestroyed++;
+			if (targetIsUnit)
+				this.enemyUnitsKilled++;
+			if (targetIsStructure)
+				this.enemyBuildingsDestroyed++;
+			if (targetIsCivCentre)
+				this.enemyCivCentresDestroyed++;
 		}
 	}
 };
@@ -88,14 +92,17 @@ StatisticsTracker.prototype.LostEntity = function(lostEntity)
 	var cmpLostEntityIdentity = Engine.QueryInterface(lostEntity, IID_Identity);
 	if (cmpLostEntityIdentity)
 	{
-		var classes = cmpLostEntityIdentity.GetClassesList();
-		// we want to deal only with real structures, not foundations
 		var cmpFoundation = Engine.QueryInterface(lostEntity, IID_Foundation);
-		var lostEntityIsStructure = classes.indexOf("Structure") != -1 && cmpFoundation == null;
-		var lostEntityIsUnit = classes.indexOf("Unit") != -1;
+		// We want to deal only with real structures, not foundations
+		var lostEntityIsStructure = cmpLostEntityIdentity.HasClass("Structure") && cmpFoundation == null;
+		var lostEntityIsDomesticAnimal = cmpLostEntityIdentity.HasClass("Animal") && cmpLostEntityIdentity.HasClass("Domestic");
+		// Don't count domestic animals as units
+		var lostEntityIsUnit = cmpLostEntityIdentity.HasClass("Unit") && !lostEntityIsDomesticAnimal;
 
-		if (lostEntityIsUnit) this.unitsLost++;
-		if (lostEntityIsStructure) this.buildingsLost++;
+		if (lostEntityIsUnit)
+			this.unitsLost++;
+		if (lostEntityIsStructure)
+			this.buildingsLost++;
 	}
 };
 
