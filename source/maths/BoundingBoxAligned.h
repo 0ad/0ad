@@ -51,7 +51,7 @@ public:
 	/**
 	 * Transform these bounds using the matrix @p transform, and write out the result as an oriented (i.e. non-axis-aligned) box.
 	 * The difference with @ref Transform(const CMatrix3D&, CBoundingBoxAligned&) is that that method is equivalent to first 
-	 * computing this result, and then from that taking the axis-aligned bounding boxes again.
+	 * computing this result, and then taking the axis-aligned bounding boxes from the result again.
 	 */
 	void Transform(const CMatrix3D& m, CBoundingBoxOriented& result) const;
 

@@ -165,53 +165,33 @@ void CBoundingBoxAligned::Transform(const CMatrix3D& m, CBoundingBoxAligned& res
 
 void CBoundingBoxAligned::Transform(const CMatrix3D& transform, CBoundingBoxOriented& result) const
 {
-	// The idea is this: compute the corners of this bounding box, transform them according to the specified matrix,
-	// then derive the box center, orientation vectors, and half-sizes.
-	// TODO: this implementation can be further optimized; see Philip's comments on http://trac.wildfiregames.com/ticket/914
 	const CVector3D& pMin = m_Data[0];
 	const CVector3D& pMax = m_Data[1];
 
-	// Find the corners of these bounds. We only need some of the corners to derive the information we need, so let's 
-	// not actually compute all of them. The corners are numbered starting from the minimum position (m_Data[0]), going
-	// counter-clockwise in the bottom plane, and then in the same order for the top plane (starting from the corner
-	// that's directly above the minimum position). Hence, corner0 is pMin and corner6 is pMax, so we don't need to
-	// custom-create those.
-	
-	CVector3D corner0; // corner0 is pMin, no need to copy it
-	CVector3D corner1(pMax.X, pMin.Y, pMin.Z);
-	CVector3D corner3(pMin.X, pMin.Y, pMax.Z);
-	CVector3D corner4(pMin.X, pMax.Y, pMin.Z);
-	CVector3D corner6; // corner6 is pMax, no need to copy it
+	// the basis vectors of the OBB are the normalized versions of the transformed AABB basis vectors, which
+	// are the columns of the identity matrix, so the unnormalized OBB basis vectors are the transformation
+	// matrix columns:
+	CVector3D u(transform._11, transform._21, transform._31);
+	CVector3D v(transform._12, transform._22, transform._32);
+	CVector3D w(transform._13, transform._23, transform._33);
 
-	// transform corners to world space
-	corner0 = transform.Transform(pMin); // = corner0
-	corner1 = transform.Transform(corner1);
-	corner3 = transform.Transform(corner3);
-	corner4 = transform.Transform(corner4);
-	corner6 = transform.Transform(pMax); // = corner6
-
-	// Compute orientation vectors, half-size vector, and box center. We can get the orientation vectors by just taking
-	// the directional vectors from a specific corner point (corner0) to the other corners, once in each direction. The
-	// half-sizes are similarly computed by taking the distances of those sides and dividing them by 2. Finally, the 
-	// center is simply the middle between the transformed pMin and pMax corners.
-
-	const CVector3D sideU(corner1 - corner0);
-	const CVector3D sideV(corner4 - corner0);
-	const CVector3D sideW(corner3 - corner0);
-
-	result.m_Basis[0] = sideU.Normalized();
-	result.m_Basis[1] = sideV.Normalized();
-	result.m_Basis[2] = sideW.Normalized();
-
+	// the half-sizes are scaled by whatever factor the AABB unit vectors end up scaled by
 	result.m_HalfSizes = CVector3D(
-		sideU.Length()/2.f,
-		sideV.Length()/2.f,
-		sideW.Length()/2.f
+		(pMax.X - pMin.X) / 2.f * u.Length(),
+		(pMax.Y - pMin.Y) / 2.f * v.Length(),
+		(pMax.Z - pMin.Z) / 2.f * w.Length()
 	);
 
-	result.m_Center = (corner0 + corner6) * 0.5f;
-}
+	u.Normalize();
+	v.Normalize();
+	w.Normalize();
 
+	result.m_Basis[0] = u;
+	result.m_Basis[1] = v;
+	result.m_Basis[2] = w;
+
+	result.m_Center = transform.Transform((pMax + pMin) * 0.5f);
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // Intersect with the given frustum in a conservative manner
