@@ -54,29 +54,40 @@ bool CBoundingBoxOriented::RayIntersect(const CVector3D& origin, const CVector3D
 
 	for (int i = 0; i < 3; ++i)
 	{
-		float e = m_Basis[i].Dot(p);
-		float f = m_Basis[i].Dot(dir);
+		// test the ray for intersections with the slab whose normal vector is m_Basis[i]
+		float e = m_Basis[i].Dot(p); // distance between the ray origin and the box center projected onto the slab normal
+		float f = m_Basis[i].Dot(dir); // cosine of the angle between the slab normal and the ray direction
 
-		if(fabs(f) > 1e-10f)
+		if(fabsf(f) > 1e-10f)
 		{
+			// Determine the distances t1 and t2 from the origin of the ray to the points where it intersects
+			// the slab. See docs/ray_intersect.pdf for why/how this works.
 			float invF = 1.f/f;
 			float t1 = (e + m_HalfSizes[i]) * invF;
 			float t2 = (e - m_HalfSizes[i]) * invF;
 
+			// make sure t1 <= t2, swap if necessary
 			if (t1 > t2)
 			{
 				float tmp = t1;
 				t1 = t2;
 				t2 = tmp;
 			}
+
+			// update the overall tMin and tMax if necessary
 			if (t1 > tMin) tMin = t1;
 			if (t2 < tMax) tMax = t2;
-			if (tMin > tMax) return false;
-			if (tMax < 0) return false;
+
+			// try to break out of the loop as fast as possible by checking for some conditions
+			if (tMin > tMax) return false; // ray misses the box
+			if (tMax < 0) return false; // box is behind the ray origin
 		}
 		else
 		{
-			if(-e - m_HalfSizes[i] > 0 || -e + m_HalfSizes[i] < 0) return false;
+			// the ray is parallel to the slab currently being tested, or is as close to parallel
+			// as makes no difference; return false if the ray is outside of the slab.
+			if (e > m_HalfSizes[i] || -e > m_HalfSizes[i])
+				return false;
 		}
 	}
 

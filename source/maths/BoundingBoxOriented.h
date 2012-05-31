@@ -23,9 +23,9 @@
 class CBoundingBoxAligned;
 
 /*
- * Generic oriented box. Originally intended to be used an Oriented Bounding Box (OBB), as opposed to CBoundingBoxAligned which is 
- * always aligned to the world-space axes (AABB). However, it can also be used to represent more generic shapes, such as 
- * parallelepipeds, for other purposes.
+ * Generic oriented box. Originally intended to be used an Oriented Bounding Box (OBB), 
+ * as opposed to CBoundingBoxAligned which is always aligned to the world-space axes (AABB).
+ * However, it could also be used to represent more generic shapes, such as parallelepipeds.
  */
 class CBoundingBoxOriented 
 {
@@ -35,9 +35,10 @@ public:
 	CBoundingBoxOriented() { SetEmpty(); }
 
 	/**
-	 * Constructs a new oriented box centered at @p center and with normalized side vectors @p u, @p v and @p w. These vectors should 
-	 * be mutually orthonormal for a proper rectangular box. The half-widths of the box in each dimension are given by the corresponding
-	 * components of @p halfSizes.
+	 * Constructs a new oriented box centered at @p center and with normalized side vectors @p u,
+	 * @p v and @p w. These vectors should be mutually orthonormal for a proper rectangular box.
+	 * The half-widths of the box in each dimension are given by the corresponding components of
+	 * @p halfSizes.
 	 */
 	CBoundingBoxOriented(const CVector3D& center, const CVector3D& u, const CVector3D& v, const CVector3D& w, const CVector3D& halfSizes)
 		: m_Center(center), m_HalfSizes(halfSizes)
@@ -51,22 +52,26 @@ public:
 	explicit CBoundingBoxOriented(const CBoundingBoxAligned& bound);
 
 	/**
-	 * Check if a given ray intersects this box.
-	 * See also Real-Time Rendering, Third Edition by T. Akenine-Möller, p. 741--742.
-	 * Should not be used if IsEmpty() is true.
+	 * Check if a given ray intersects this box. Must not be used if IsEmpty() is true.
+	 * See Real-Time Rendering, Third Edition by T. Akenine-Möller, p. 741--744.
 	 *
 	 * @param[in] origin Origin of the ray.
-	 * @param[in] dir Direction vector of the ray, defining the positive direction of the ray. Must be of unit length.
-	 * @param[out] tMin,tMax distance in the positive direction from the origin of the ray to the entry and exit points in the 
-	 * box. If the origin is inside the box, then this is counted as an intersection and one of @p tMin and @p tMax may be negative.
+	 * @param[in] dir Direction vector of the ray, defining the positive direction of the ray.
+	 *            Must be of unit length.
+	 * @param[out] tMin,tMax Distance in the positive direction from the origin of the ray to the
+	 *             entry and exit points in the box, provided that the ray intersects the box. if
+	 *             the ray does not intersect the box, no values are written to these variables.
+	 *             If the origin is inside the box, then this is counted as an intersection and one
+	 *             of @p tMin and @p tMax may be negative.
 	 *
-	 * @return true if the ray originating in @p origin and with unit direction vector @p dir intersects this box, false otherwise.
+	 * @return true If the ray originating in @p origin and with unit direction vector @p dir intersects
+	 *         this box, false otherwise.
 	 */
 	bool RayIntersect(const CVector3D& origin, const CVector3D& dir, float& tMin, float& tMax) const;
 
 	/**
 	 * Returns the corner at coordinate (@p u, @p v, @p w). Each of @p u, @p v and @p w must be exactly 1 or -1.
-	 * Should not be used if IsEmpty() is true.
+	 * Must not be used if IsEmpty() is true.
 	 */
 	void GetCorner(int u, int v, int w, CVector3D& out) const
 	{
