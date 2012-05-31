@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="540.029" y="127.447" z="1303.67"/>
+		<Position x="466.629" y="109.526" z="382.526"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -49594,6 +49594,30 @@
 			<Template>units/mace_support_female_citizen</Template>
 			<Player>3</Player>
 			<Position x="467.12934" z="1545.3844"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="10043">
+			<Template>gaia/geology_stonemine_desert_quarry</Template>
+			<Player>0</Player>
+			<Position x="408.0105" z="501.98328"/>
+			<Orientation y="1.33216"/>
+		</Entity>
+		<Entity uid="10044">
+			<Template>gaia/geology_stonemine_desert_quarry</Template>
+			<Player>0</Player>
+			<Position x="1600.74622" z="525.58259"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="10045">
+			<Template>gaia/geology_stonemine_desert_quarry</Template>
+			<Player>0</Player>
+			<Position x="1493.27796" z="1573.29358"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="10046">
+			<Template>gaia/geology_stonemine_desert_quarry</Template>
+			<Player>0</Player>
+			<Position x="443.54426" z="1632.05384"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
