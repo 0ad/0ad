@@ -24,8 +24,8 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="496.136" y="118.859" z="392.443"/>
-		<Rotation angle="0.24222"/>
+		<Position x="497.632" y="100.552" z="410.793"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -1189,12 +1189,6 @@
 			<Player>0</Player>
 			<Position x="1134.25953" z="847.56739"/>
 			<Orientation y="1.4056"/>
-		</Entity>
-		<Entity uid="226">
-			<Template>other/hellenic_stoa</Template>
-			<Player>1</Player>
-			<Position x="527.3158" z="458.4499"/>
-			<Orientation y="-0.78657"/>
 		</Entity>
 		<Entity uid="227">
 			<Template>other/hellenic_stoa</Template>
@@ -6217,12 +6211,6 @@
 			<Player>3</Player>
 			<Position x="486.02518" z="1515.11011"/>
 			<Orientation y="-0.78397"/>
-		</Entity>
-		<Entity uid="1103">
-			<Template>other/hellenic_stoa</Template>
-			<Player>3</Player>
-			<Position x="460.14887" z="1489.30665"/>
-			<Orientation y="-0.76767"/>
 		</Entity>
 		<Entity uid="1104">
 			<Template>structures/hele_temple</Template>
@@ -13856,12 +13844,6 @@
 			<Position x="1509.68836" z="432.06379"/>
 			<Orientation y="0.79824"/>
 		</Entity>
-		<Entity uid="2400">
-			<Template>other/hellenic_stoa</Template>
-			<Player>4</Player>
-			<Position x="1543.82276" z="423.07685"/>
-			<Orientation y="-0.78187"/>
-		</Entity>
 		<Entity uid="2401">
 			<Template>other/hellenic_stoa</Template>
 			<Player>4</Player>
@@ -13891,12 +13873,6 @@
 			<Player>2</Player>
 			<Position x="1517.06739" z="1505.91944"/>
 			<Orientation y="0.78875"/>
-		</Entity>
-		<Entity uid="2408">
-			<Template>other/hellenic_stoa</Template>
-			<Player>2</Player>
-			<Position x="1601.30823" z="1571.34302"/>
-			<Orientation y="-2.42554"/>
 		</Entity>
 		<Entity uid="2471">
 			<Template>units/hele_support_female_citizen</Template>
@@ -44527,8 +44503,8 @@
 		<Entity uid="8389">
 			<Template>structures/spart_temple</Template>
 			<Player>2</Player>
-			<Position x="1532.50843" z="1593.05945"/>
-			<Orientation y="2.35621"/>
+			<Position x="1602.08423" z="1581.21241"/>
+			<Orientation y="-2.3598"/>
 		</Entity>
 		<Entity uid="8390">
 			<Template>structures/athen_civil_centre</Template>
@@ -44635,7 +44611,7 @@
 		<Entity uid="8412">
 			<Template>structures/athen_temple</Template>
 			<Player>1</Player>
-			<Position x="443.38291" z="532.78711"/>
+			<Position x="527.2981" z="457.7829"/>
 			<Orientation y="0.7899"/>
 		</Entity>
 		<Entity uid="8413">
@@ -44696,6 +44672,30 @@
 			<Template>units/mace_support_female_citizen</Template>
 			<Player>4</Player>
 			<Position x="1525.18055" z="457.4387"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8423">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="452.06492" z="1481.69837"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8424">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="437.30988" z="530.96241"/>
+			<Orientation y="-0.78216"/>
+		</Entity>
+		<Entity uid="8425">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="1531.84754" z="401.73194"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="8426">
+			<Template>gaia/geology_stonemine_medit_quarry</Template>
+			<Player>0</Player>
+			<Position x="1525.17151" z="1603.9375"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>

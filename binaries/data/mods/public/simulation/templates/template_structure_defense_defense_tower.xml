@@ -47,7 +47,7 @@
     <Max>1200</Max>
   </Health>
   <Identity>
-    <GenericName>Tower</GenericName>
+    <GenericName>Defense Tower</GenericName>
     <Tooltip>Shoots arrows. Garrison to provide extra defense.</Tooltip>
     <Classes datatype="tokens">Town Defensive Tower GarrisonTower -ConquestCritical</Classes>
     <Icon>structures/defense_tower.png</Icon>
@@ -63,6 +63,11 @@
   <Obstruction>
     <Static width="7.0" depth="7.0"/>
   </Obstruction>
+  <ProductionQueue>
+    <Technologies datatype="tokens">
+      pair_tower_01
+    </Technologies>
+  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_tower.xml</select>

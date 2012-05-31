@@ -121,7 +121,7 @@ function ProcessCommand(player, cmd)
 	case "gather-near-position":
 		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
-			cmpUnitAI.GatherNearPosition(cmd.x, cmd.z, cmd.resourceType, cmd.queued);
+			cmpUnitAI.GatherNearPosition(cmd.x, cmd.z, cmd.resourceType, cmd.resourceTemplate, cmd.queued);
 		});
 		break;
 

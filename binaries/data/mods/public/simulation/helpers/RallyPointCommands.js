@@ -38,6 +38,7 @@ function GetRallyPointCommands(cmpRallyPoint, spawnedEnts)
 				"x": rallyPos[i].x,
 				"z": rallyPos[i].z,
 				"resourceType": data[i].resourceType,
+				"resourceTemplate": data[i].resourceTemplate,
 				"queued": true
 			});
 			break;

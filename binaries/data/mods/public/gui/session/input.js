@@ -195,22 +195,22 @@ function getActionInfo(action, target)
 	// Check if any entities in the selection can gather the requested resource,
 	// can return to the dropsite, can build the foundation, or can attack the enemy
 	var simState = Engine.GuiInterfaceCall("GetSimulationState");
-	
+
 	// Look to see what type of command units going to the rally point should use
 	if (haveRallyPoints && action == "set-rallypoint")
 	{
 		// haveRallyPoints ensures all selected entities can have rally points.
 		// We assume that all entities are owned by the same player.
 		var entState = GetEntityState(selection[0]);
-		
+
 		var playerState = simState.players[entState.player];
 		var playerOwned = (targetState.player == entState.player);
 		var allyOwned = playerState.isAlly[targetState.player];
 		var enemyOwned = playerState.isEnemy[targetState.player];
 		var gaiaOwned = (targetState.player == 0);
-		
+
 		var cursor = "";
-		
+
 		// default to walking there
 		var data = {command: "walk"};
 		if (targetState.garrisonHolder && playerOwned)
@@ -240,6 +240,7 @@ function getActionInfo(action, target)
 			}
 			data.command = "gather";
 			data.resourceType = resourceType;
+			data.resourceTemplate = targetState.template;
 		}
 		else if (targetState.foundation && entState.buildEntities)
 		{
@@ -1293,6 +1294,7 @@ function doAction(action, ev)
 
 	case "setup-trade-route":
 		Engine.PostNetworkCommand({"type": "setup-trade-route", "entities": selection, "target": action.target});
+		Engine.GuiInterfaceCall("PlaySound", { "name": "order_trade", "entity": selection[0] });
 		return true;
 
 	case "garrison":

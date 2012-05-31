@@ -2875,9 +2875,9 @@ UnitAI.prototype.PerformGather = function(target, queued, force)
  * Adds gather-near-position order to the queue, not forced, so it can be
  * interrupted by attacks.
  */
-UnitAI.prototype.GatherNearPosition = function(x, z, type, queued)
+UnitAI.prototype.GatherNearPosition = function(x, z, type, template, queued)
 {
-	this.AddOrder("GatherNearPosition", { "type": type, "x": x, "z": z, "force": false }, queued);
+	this.AddOrder("GatherNearPosition", { "type": type, "template": template, "x": x, "z": z, "force": false }, queued);
 };
 
 /**
