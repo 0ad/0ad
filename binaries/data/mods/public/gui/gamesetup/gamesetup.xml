@@ -90,9 +90,9 @@
 				<object name="playerCivHeading" type="text" style="CenteredLabelText" size="350 0 530 100%">Civilization</object>
 				<object name="civInfoButton"
 					type="button"
-					sprite="iconInfo"
-					sprite_over="iconInfoOver"
-					size="484 0 500 16"
+					sprite="iconInfoGold"
+					sprite_over="iconInfoWhite"
+					size="484 1 500 17"
 					tooltip_style="onscreenToolTip"
 					tooltip="View civilization info"
 				>
