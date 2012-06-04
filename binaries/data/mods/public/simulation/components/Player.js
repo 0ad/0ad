@@ -275,10 +275,7 @@ Player.prototype.IsAI = function()
 
 Player.prototype.SetAlly = function(id)
 {
-	if (id >= 0 && id != this.playerID)
-	{
-		this.diplomacy[id] = 1;
-	}
+	this.diplomacy[id] = 1;
 };
 
 /**
@@ -286,15 +283,12 @@ Player.prototype.SetAlly = function(id)
  */
 Player.prototype.IsAlly = function(id)
 {
-	return (id >= 0 && id < this.diplomacy.length && (id == this.playerID || this.diplomacy[id] > 0));
+	return this.diplomacy[id] > 0;
 };
 
 Player.prototype.SetEnemy = function(id)
 {
-	if (id >= 0 && id != this.playerID)
-	{
-		this.diplomacy[id] = -1;
-	}
+	this.diplomacy[id] = -1;
 };
 
 /**
@@ -302,15 +296,12 @@ Player.prototype.SetEnemy = function(id)
  */
 Player.prototype.IsEnemy = function(id)
 {
-	return (id >= 0 && id < this.diplomacy.length && id != this.playerID && this.diplomacy[id] < 0);
+	return this.diplomacy[id] < 0;
 };
 
 Player.prototype.SetNeutral = function(id)
 {
-	if (id >= 0 && id != this.playerID)
-	{
-		this.diplomacy[id] = 0;
-	}
+	this.diplomacy[id] = 0;
 };
 
 /**
@@ -318,7 +309,7 @@ Player.prototype.SetNeutral = function(id)
  */
 Player.prototype.IsNeutral = function(id)
 {
-	return (id >= 0 && id < this.diplomacy.length && id != this.playerID && this.diplomacy[id] == 0);
+	return this.diplomacy[id] == 0;
 };
 
 /**
