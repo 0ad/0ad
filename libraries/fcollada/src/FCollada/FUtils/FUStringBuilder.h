@@ -135,7 +135,7 @@ public:
 #else
 	inline void append(unsigned int i) { append((uint32) i); } /**< See above. */
 #endif
-#elif defined(__APPLE__)
+#elif defined(__APPLE__) || defined(__OpenBSD__)
 	inline void append(size_t i) { append((uint64)i); }
 #endif // defined(WIN32)
 
