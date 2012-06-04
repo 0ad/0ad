@@ -11,39 +11,34 @@ function LoadPlayerSettings(settings, newPlayers)
 {
 	// Default settings
 	if (!settings)
-	{
 		settings = {};
-	}
 
 	// Get default player data
 	var rawData = Engine.ReadJSONFile("player_defaults.json");
 	if (!(rawData && rawData.PlayerData))
-	{
 		throw("Player.js: Error reading player_defaults.json");
-	}
 
 	var playerDefaults = rawData.PlayerData;
-	
+
 	// default number of players
 	var numPlayers = 8;
-	
+
 	// Get player manager
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	
+
 	// Remove existing players and add new ones
 	if (newPlayers)
 	{
 		cmpPlayerManager.RemoveAllPlayers();
-	
+
 		if (settings.PlayerData)
-		{	// Get number of players including gaia
+		{
+			// Get number of players including gaia
 			numPlayers = settings.PlayerData.length + 1;
 		}
 		else
-		{
 			warn("Player.js: Setup has no player data - using defaults");
-		}
-		
+
 		for (var i = 0; i < numPlayers; ++i)
 		{
 			// Add player entity to engine
@@ -51,50 +46,42 @@ function LoadPlayerSettings(settings, newPlayers)
 			var entID = Engine.AddEntity("special/player");
 			var cmpPlayer = Engine.QueryInterface(entID, IID_Player);
 			if (!cmpPlayer)
-			{
 				throw("Player.js: Error creating player entity "+i);
-			}
-			
+
 			cmpPlayer.SetPlayerID(i);
-			
+
 			// Add player to player manager
 			cmpPlayerManager.AddPlayer(entID);
 		}
 	}
-	
+
 	numPlayers = cmpPlayerManager.GetNumPlayers();
-	
+
 	// Initialize the player data
 	for (var i = 0; i < numPlayers; ++i)
 	{
 		var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
 		var pDefs = playerDefaults ? playerDefaults[i] : {};
-		
+
 		// Skip gaia
 		if (i > 0)
 		{
 			var pData = settings.PlayerData ? settings.PlayerData[i-1] : {};
-			
+
 			cmpPlayer.SetName(getSetting(pData, pDefs, "Name"));
 			cmpPlayer.SetCiv(getSetting(pData, pDefs, "Civ"));
 			var colour = getSetting(pData, pDefs, "Colour");
 			cmpPlayer.SetColour(colour.r, colour.g, colour.b);
-			
+
 			if (getSetting(pData, pDefs, "PopulationLimit") !== undefined)
-			{
 				cmpPlayer.SetMaxPopulation(getSetting(pData, pDefs, "PopulationLimit"));
-			}
-			
+
 			if (getSetting(pData, pDefs, "Resources") !== undefined)
-			{
 				cmpPlayer.SetResourceCounts(getSetting(pData, pDefs, "Resources"));
-			}
-			
+
 			// If diplomacy explicitly defined, use that; otherwise use teams
 			if (getSetting(pData, pDefs, "Diplomacy") !== undefined)
-			{
 				cmpPlayer.SetDiplomacy(getSetting(pData, pDefs, "Diplomacy"));
-			}
 			else
 			{
 				// Init diplomacy
@@ -102,12 +89,11 @@ function LoadPlayerSettings(settings, newPlayers)
 				var myTeam = getSetting(pData, pDefs, "Team");
 				for (var j = 0; j < numPlayers; ++j)
 				{
-					// Check if player is on same team
 					if (j > 0)
 					{
+						// We are always our own ally, else check if player is on the same team
 						var theirTeam = getSetting(settings.PlayerData[j-1], playerDefaults[j], "Team");
-						if (myTeam !== undefined && myTeam != -1
-							&& theirTeam !== undefined && myTeam == theirTeam)
+						if (i == j || (myTeam !== undefined && myTeam != -1 && theirTeam !== undefined && myTeam == theirTeam))
 						{
 							cmpPlayer.SetAlly(j);
 							continue;
@@ -117,39 +103,34 @@ function LoadPlayerSettings(settings, newPlayers)
 					cmpPlayer.SetEnemy(j);
 				}
 			}
-			
+
 			// If formations explicitly defined, use that; otherwise use civ defaults
 			var formations = getSetting(pData, pDefs, "Formations");
 			if (formations !== undefined)
-			{
 				cmpPlayer.SetFormations(formations);
-			}
 			else
 			{
 				var rawFormations = Engine.ReadCivJSONFile(cmpPlayer.GetCiv()+".json");
 				if (!(rawFormations && rawFormations.Formations))
-				{
 					throw("Player.js: Error reading "+cmpPlayer.GetCiv()+".json");
-				}
+
 				cmpPlayer.SetFormations(rawFormations.Formations);
 			}
-			
+
 			var startCam = getSetting(pData, pDefs, "StartingCamera");
 			if (startCam !== undefined)
-			{
 				cmpPlayer.SetStartingCamera(startCam.Position, startCam.Rotation);
-			}
 		}
 		else
-		{	// Copy gaia data from defaults
+		{
+			// Copy gaia data from defaults
 			cmpPlayer.SetName(pDefs.Name);
 			cmpPlayer.SetCiv(pDefs.Civ);
 			cmpPlayer.SetColour(pDefs.Colour.r, pDefs.Colour.g, pDefs.Colour.b);
-			
+
+			// Gaia is everyone's enemy
 			for (var j = 0; j < numPlayers; ++j)
-			{	// Gaia is everyone's enemy
 				cmpPlayer.SetEnemy(j);
-			}
 		}
 	}
 }
@@ -159,11 +140,11 @@ function getSetting(settings, defaults, property)
 {
 	if (settings && (property in settings))
 		return settings[property];
-	
+
 	// Use defaults
 	if (defaults && (property in defaults))
 		return defaults[property];
-	
+
 	return undefined;
 }
 

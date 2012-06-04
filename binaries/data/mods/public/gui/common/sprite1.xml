@@ -14,37 +14,37 @@
 		/>
 	</sprite>
 
-        <sprite name="bkWhiteBorderBlack">
-                <image 	backcolor="white"
+	<sprite name="bkWhiteBorderBlack">
+		<image 	backcolor="white"
 			size="0 0 100% 100%"
 			border="true"
 			bordercolor="black"
 		/>
-        </sprite>
+	</sprite>
 
-        <sprite name="bkGrayBorderBlack">
-                <image 	backcolor="gray"
+	<sprite name="bkGrayBorderBlack">
+		<image 	backcolor="gray"
 			size="0 0 100% 100%"
 			border="true"
 			bordercolor="black"
 		/>
-        </sprite>
+	</sprite>
 
-        <sprite name="bkDarkGrayBorderBlack">
-			<image 	backcolor="darkgray"
-					size="0 0 100% 100%"
-					border="true"
-					bordercolor="black"
-		/>
-        </sprite>
-
-        <sprite name="bkBlueBorderBlack">
-                <image 	backcolor="blue"
+	<sprite name="bkDarkGrayBorderBlack">
+		<image 	backcolor="darkgray"
 			size="0 0 100% 100%"
 			border="true"
 			bordercolor="black"
 		/>
-        </sprite>
+	</sprite>
+
+	<sprite name="bkBlueBorderBlack">
+		<image 	backcolor="blue"
+			size="0 0 100% 100%"
+			border="true"
+			bordercolor="black"
+		/>
+	</sprite>
 
 	<sprite name="bkBorderBlack">
 		<image backcolor="black"
@@ -59,7 +59,7 @@
 		<image 	backcolor="black"
 			size="100% 0 100%+1 100%"
 		/>
-        </sprite>
+	</sprite>
 
 	<sprite name="bkFillBlack">
 		<image backcolor="black"/>
@@ -171,25 +171,27 @@
 	</sprite>
 
 	<sprite name="iconBullet">
-                <image 	texture="global/icon/bullet.dds"
+		<image 	texture="global/icon/bullet.dds"
 			size="0 0 100% 100%"
 		/>
 	</sprite>
 
 	<sprite name="iconInfinity">
-                <image 	texture="global/icon/infinity.dds"
+		<image 	texture="global/icon/infinity.dds"
 			size="0 0 100% 100%"
 		/>
 	</sprite>
 
-	<sprite name="iconInfo">
-                <image 	texture="global/icon/info_white.dds"
+	<sprite name="iconInfoGold">
+		<effect	add_color="237 227 167" />
+		<image 	texture="global/icon/info.png"
 			size="0 3 100% 100%+3"
 		/>
 	</sprite>
 
-	<sprite name="iconInfoOver">
-                <image 	texture="global/icon/info_black.dds"
+	<sprite name="iconInfoWhite">
+		<effect	add_color="255 255 255" />
+		<image 	texture="global/icon/info.png"
 			size="0 3 100% 100%+3"
 		/>
 	</sprite>
@@ -219,11 +221,11 @@
 			texture_size="0 0 32 128"
 			size="100%-22 0 100%+10 100%"
 		/>
-        <image	texture="global/border/corner_bronze.dds"
+		<image	texture="global/border/corner_bronze.dds"
 			real_texture_placement="0 0 15 15"
 			size="100% 100% 100%+10 100%+10"
 		/>
-        <image	texture="global/border/bottom_marble.dds"
+		<image	texture="global/border/bottom_marble.dds"
 			texture_size="0 0 128 32"
 			size="0 100%-22 100% 100%+10"
 		/>
@@ -265,11 +267,11 @@
 			texture_size="0 0 32 128"
 			size="100%-7 0%-10 100%+25 100%+10"
 		/>
-        <image	texture="global/border/corner_bronze.dds"
+		<image	texture="global/border/corner_bronze.dds"
 			real_texture_placement="0 0 15 15"
 			size="100%+10 100%+10 100%+25 100%+25"
 		/>
-        <image	texture="global/border/bottom_marble.dds"
+		<image	texture="global/border/bottom_marble.dds"
 			texture_size="0 0 128 32"
 			size="0%-10 100%-7 100%+10 100%+25"
 		/>
@@ -306,11 +308,11 @@
 			texture_size="0 0 32 128"
 			size="100%-6 0%-10 100%+26 100%+10"
 		/>
-                <image	texture="global/border/corner_bronze.dds"
+		<image	texture="global/border/corner_bronze.dds"
 			real_texture_placement="0 0 15 15"
 			size="100%+10 100%+10 100%+25 100%+25"
 		/>
-                <image	texture="global/border/bottom_marble.dds"
+		<image	texture="global/border/bottom_marble.dds"
 			texture_size="0 0 128 32"
 			size="0%-10 100%-7 100%+10 100%+25"
 		/>
@@ -329,11 +331,11 @@
 			real_texture_placement="0 0 64 32"
 			size="0%+0 0% 64 0%+32"
 		/>
-                <image 	texture="global/titlebar/middle_gold_fern.dds"
+		<image 	texture="global/titlebar/middle_gold_fern.dds"
 			real_texture_placement="0 0 64 32"
 			size="64 0% 100%-64 0%+32"
 		/>
-                <image 	texture="global/titlebar/right_gold_fern.dds"
+		<image 	texture="global/titlebar/right_gold_fern.dds"
 			real_texture_placement="0 0 64 32"
 			size="100%-64 0% 100%+0 0%+32"
 		/>
@@ -343,72 +345,73 @@
 		<image	texture="global/button/checkbox_open_gray.dds"
 			size="0 0 100% 100%"
 		/>
-        </sprite>
+	</sprite>
 
 	<sprite name="wheatCheckBoxTick">
 		<image	texture="global/button/checkbox_tick_gray.dds"
 			size="0 0 100% 100%"
 		/>
-        </sprite>
+	</sprite>
 
 	<sprite name="wheatCheckBoxCross">
 		<image	texture="global/button/checkbox_cross_gray.dds"
 			size="0 0 100% 100%"
 		/>
-        </sprite>
+	</sprite>
 
 	<sprite name="wheatCheckBoxCrossOver">
 		<image	texture="global/button/checkbox_cross_over_gray.dds"
 			size="0 0 100% 100%"
 		/>
-        </sprite>
+	</sprite>
 
 	<sprite name="wheatArrowLeft">
 		<image	texture="global/button/arrowbox_lt.dds"
 			size="0 0 100% 100%"
 		/>
-        </sprite>
+	</sprite>
 
 	<sprite name="wheatArrowLeftOver">
 		<image	texture="global/button/arrowbox_lt_over.dds"
 			size="0 0 100% 100%"
 		/>
-        </sprite>
+	</sprite>
 
 	<sprite name="wheatArrowRight">
 		<image	texture="global/button/arrowbox_rt.dds"
 			size="0 0 100% 100%"
 		/>
-        </sprite>
+	</sprite>
 
 	<sprite name="wheatArrowRightOver">
 		<image	texture="global/button/arrowbox_rt_over.dds"
 			size="0 0 100% 100%"
 		/>
-        </sprite>
+	</sprite>
+
 	<sprite name="wheatArrowUp">
 		<image	texture="global/button/arrowbox_up.dds"
 			size="0 0 100% 100%"
 		/>
-        </sprite>
+	</sprite>
 
 	<sprite name="wheatArrowUpOver">
 		<image	texture="global/button/arrowbox_up_over.dds"
 			size="0 0 100% 100%"
 		/>
-        </sprite>
+	</sprite>
 
 	<sprite name="wheatArrowDn">
 		<image	texture="global/button/arrowbox_dn.dds"
 			size="0 0 100% 100%"
 		/>
-        </sprite>
+	</sprite>
 
 	<sprite name="wheatArrowDnOver">
 		<image	texture="global/button/arrowbox_dn_over.dds"
 			size="0 0 100% 100%"
 		/>
-        </sprite>
+	</sprite>
 
 	<sprite name="wheatScrollSpriteBar">
 		<image	texture="global/border/scrollbar.dds"
@@ -429,7 +432,7 @@
 			real_texture_placement="0 32 160 64"
 			size="0 0 100% 100%"
 		/>
-        </sprite>
+	</sprite>
 
 	<sprite name="wheatButtonDisabled">
 		<effect grayscale="" />
@@ -437,7 +440,7 @@
 			real_texture_placement="0 0 160 31"
 			size="0 0 100% 100%"
 		/>
-        </sprite>
+	</sprite>
 
 	<sprite name="wheatButtonGlow">
 		<effect	add_color="60 42 42 0" />
@@ -445,7 +448,7 @@
 			real_texture_placement="0 0 160 31"
 			size="0 0 100% 100%"
 		/>
-        </sprite>
+	</sprite>
 
 	<sprite name="wheatIndentBorder">
 		<!-- Starting with top left corner continuing in a clockwise manner -->
@@ -534,11 +537,11 @@
 		/>
 	</sprite>
 
-        <!--
-        ==========================================
-        SCREENSHOT WATERMARK
-        ==========================================
-        -->
+	<!--
+	==========================================
+	SCREENSHOT WATERMARK
+	==========================================
+	-->
 
 	<sprite	name="watermarkProduct">
 		<image	texture="global/watermark/product.dds"

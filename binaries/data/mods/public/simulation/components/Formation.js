@@ -10,6 +10,7 @@ Formation.prototype.Init = function()
 	this.members = []; // entity IDs currently belonging to this formation
 	this.columnar = false; // whether we're travelling in column (vs box) formation
 	this.formationName = "Line Closed";
+	this.rearrange = true; // whether we should rearrange all formation members
 };
 
 Formation.prototype.GetMemberCount = function()
@@ -27,6 +28,15 @@ Formation.prototype.GetMemberCount = function()
 Formation.prototype.GetPrimaryMember = function()
 {
 	return this.members[0];
+};
+
+/**
+ * Set whether we should rearrange formation members if
+ * units are removed from the formation.
+ */
+Formation.prototype.SetRearrange = function(rearrange)
+{
+	this.rearrange = rearrange;
 };
 
 /**
@@ -70,6 +80,9 @@ Formation.prototype.RemoveMembers = function(ents)
 		Engine.DestroyEntity(this.entity);
 		return;
 	}
+
+	if (!this.rearrange)
+		return;
 
 	this.ComputeMotionParameters();
 

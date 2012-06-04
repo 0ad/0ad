@@ -105,6 +105,9 @@ public:
 	 */
 	void RenderForegroundOverlays(const CCamera& viewCamera);
 
+	/// Small vertical offset of overlays from terrain to prevent visual glitches
+	static const float OVERLAY_VOFFSET;
+
 private:
 	
 	/**

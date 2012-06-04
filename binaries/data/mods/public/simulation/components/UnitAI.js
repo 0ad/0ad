@@ -493,6 +493,9 @@ var UnitFsmSpec = {
 			}
 
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			// We don't want to rearrange the formation if the individual units are carrying
+			// out a task and one of the members dies/leaves the formation.
+			cmpFormation.SetRearrange(false);
 			cmpFormation.CallMemberFunction("Repair", [msg.data.target, msg.data.autocontinue, false]);
 
 			this.SetNextState("REPAIR");
@@ -532,6 +535,7 @@ var UnitFsmSpec = {
 		"WALKING": {
 			"MoveStarted": function(msg) {
 				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				cmpFormation.SetRearrange(true);
 				cmpFormation.MoveMembersIntoFormation(true);
 			},
 
