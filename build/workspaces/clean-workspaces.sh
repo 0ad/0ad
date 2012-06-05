@@ -1,13 +1,15 @@
 #!/bin/sh
 
-# FreeBSD's make is different than GNU make, so we allow overriding the make command.
-# If not set, MAKE will default to "gmake" on FreeBSD, or "make" on other OSes
-if [ "`uname -s`" = "FreeBSD" ]
-then
-  MAKE=${MAKE:="gmake"}
-else
-  MAKE=${MAKE:="make"}
-fi
+# Some of our makefiles depend on GNU make, so we set some sane defaults if MAKE
+# is not set.
+case "`uname -s`" in
+  "FreeBSD" | "OpenBSD" )
+    MAKE=${MAKE:="gmake"}
+    ;;
+  * )
+    MAKE=${MAKE:="make"}
+    ;;
+esac
 
 # (We don't attempt to clean up every last file here - output in
 # binaries/system/ will still be there, etc. This is mostly just

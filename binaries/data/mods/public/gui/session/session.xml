@@ -28,7 +28,7 @@
 
 		<action on="Press">
 			this.hidden = !this.hidden;
-		</action>
+    </action>
 
 		<!-- ================================  ================================ -->
 		<!-- HOTKEYS (For some reason, they won't work properly unless outside menu) -->
@@ -194,7 +194,7 @@
 		<!-- ================================  ================================ -->
 		<!-- Notification Area -->
 		<!-- ================================  ================================ -->
-		<object name="notificationPanel" type="image" size="50%-300 100%-280 50%+300 100%-220" ghost="true">
+		<object name="notificationPanel" type="image" size="50%-300 100%-300 50%+300 100%-240" ghost="true">
 			<object name="notificationText" size="0 0 100% 100%" type="text" style="notificationPanel" ghost="true"/>
 		</object>
 
@@ -346,7 +346,7 @@
 			<!-- ================================  ================================ -->
 			<!-- Civ Icon -->
 			<!-- ================================  ================================ -->
-			<object size="50%-48 -26 50%+48 70" name="civIcon" type="image"/>
+			<object size="50%-48 -26 50%+48 70" name="civIcon" type="image" tooltip_style="sessionToolTipBold"/>
 
 			<!-- ================================  ================================ -->
 			<!-- Phase -->
@@ -602,7 +602,7 @@
 			</object>
 
 			<!-- ================================  ================================ -->
-			<!-- Details Panel -->
+			<!-- Details Panel (Middle) -->
 			<!-- ================================  ================================ -->
 			<object name="selectionDetails"
 				type="image"
@@ -613,62 +613,81 @@
 				<!-- Unit details for Single Unit -->
 				<object size="50%-112 0 50%+112 100%" name="detailsAreaSingle">
 
+          <!-- Big unit icon -->
+          <object z="30" size= "6 -30 126 90" type="image" name="iconBorder" tooltip_style="sessionToolTip">
+            <object size="2 2 100%-2 100%-2" type="image" name="icon" ghost="true"/>
+            <object size="100%-20 4 100%-4 20" name="rankIcon" type="image" sprite="" ghost="true"/>
+            <object type="image" sprite="glassSquareIcon" ghost="true"/>
+
+            <!-- Resource carrying icon/counter -->
+            <object size="0 40 48 88" type="image" name="resourceCarryingIcon"/>
+            <object size="0 80 48 100" type="text" name="resourceCarryingText" style="statsText"/>
+            
+            
+            <!-- Experience bar -->
+            <object size="2 100%-9 100%-2 100%-1" type="image" name="experience" tooltip="Experience" tooltip_style="sessionToolTip">
+              <object type="image" sprite="experienceBackground" ghost="true"/>
+              <object type="image" sprite="experienceForeground" ghost="true" name="experienceBar"/>
+              <object type="image" sprite="statsBarShader" ghost="true"/>
+            </object>
+          </object>
+          
 					<!-- Player Name -->
-					<object size="0 0 100% 40" name="player" type="text" style="largeCenteredOutlinedText" tooltip_style="sessionToolTipBold"/>
+					<object size="126 -24 100% 0" name="player" type="text" style="largeLeftOutlinedText" tooltip_style="sessionToolTipBold"/>
 
+          <!-- Specific Name -->
+          <object size="126 4 100% 44" name="specific" type="text" style="LeftLabelText" tooltip_style="sessionToolTipBold"/>
+
+          <!-- Stats Bars -->
+          <object size= "126 48 100%-4 136" type="image" tooltip_style="sessionToolTip">
+            <!-- Health bar -->
+            <object size="0 0 100% 16" type="image" name="health" tooltip="Health" tooltip_style="sessionToolTip">
+              <object type="image" sprite="healthBackground" ghost="true"/>
+              <object type="image" sprite="healthForeground" ghost="true" name="healthBar"/>
+              <object type="image" sprite="statsBarShader" ghost="true"/>
+              <object size="0 0 100% 100%" name="healthText" type="text" style="largeCenteredOutlinedText" ghost="true"/>
+            </object>
+
+            <!-- Stamina bar -->
+            <object size="0 20 100% 36" type="image" name="stamina" tooltip="Stamina" tooltip_style="sessionToolTip">
+              <object type="image" sprite="staminaBackground" ghost="true"/>
+              <object type="image" sprite="staminaForeground" ghost="true" name="staminaBar"/>
+              <object type="image" sprite="statsBarShader" ghost="true"/>
+            </object>
+
+            <!-- Resource bar -->
+            <object size="0 20 100% 36" type="image" name="resources" tooltip="Resources" tooltip_style="sessionToolTip">
+              <object type="image" sprite="resourceBackground" ghost="true"/>
+              <object type="image" sprite="resourceForeground" ghost="true" name="resourceBar"/>
+              <object type="image" sprite="statsBarShader" ghost="true"/>
+              <object size="0 0 100% 100%" name="resourceText" type="text" style="largeCenteredOutlinedText" ghost="true"/>
+            </object>
+          </object>
+          
 					<!-- Stats -->
-					<object size="8 36 50%-48 100%" name="statsArea" type="image">
-						<!-- Attack icon -->
-						<object hidden="true" size="0 0 48 48" type="image" name="attackIcon" sprite="stretched:session/icons/stances/aggressive.png" tooltip_style="sessionToolTip"/>
- 
-						<!-- Armour icon "0 48 48 96"-->
-						<object size="0 0 48 48" type="image" name="armourIcon" sprite="stretched:session/icons/stances/defensive.png" tooltip_style="sessionToolTip"/>
-
-						<!-- Resource carrying icon/counter -->
-						<object size="0 40 48 88" type="image" name="resourceCarryingIcon"/>
-						<object size="0 80 48 100" type="text" name="resourceCarryingText" style="statsText"/>
+					<object size="10 94 100% 100%" name="statsArea" type="image">
+            <!-- Attack - icon and Hack Pierce Crush labels -->
+            <object size="0 0 100% 32">
+						  <object size="0 -2 42 40" type="image" name="attackIcon" sprite="stretched:session/icons/stances/violent.png" tooltip_style="sessionToolTip"/>
+              <object size="42 0 92 50%" name="attackHackLabel" type="text" style="CenteredLabelText">Hack</object>
+              <object size="92 0 142 50%" name="attackPierceLabel" type="text" style="CenteredLabelText">Pierce</object>
+              <object size="142 0 192 50%" name="attackCrushLabel" type="text" style="CenteredLabelText">Crush</object>
+              <object size="42 50% 92 100%" name="attackHack" type="text" style="statsText"/>
+              <object size="92 50% 142 100%" name="attackPierce" type="text" style="statsText"/>
+              <object size="142 50% 192 100%" name="attackCrush" type="text" style="statsText"/>
+            </object>
+            
+						<!-- Armour - icon and Hack Pierce Crush labels -->
+            <object size="0 38 100% 70">
+						  <object size="0 -2 42 40" type="image" name="armorIcon" sprite="stretched:session/icons/stances/standground.png" tooltip_style="sessionToolTip"/>
+              <object size="42 0 92 50%" name="armorHackLabel" type="text" style="CenteredLabelText">Hack</object>
+              <object size="92 0 142 50%" name="armorPierceLabel" type="text" style="CenteredLabelText">Pierce</object>
+              <object size="142 0 192 50%" name="armorCrushLabel" type="text" style="CenteredLabelText">Crush</object>
+              <object size="42 50% 92 100%" name="armorHack" type="text" style="statsText"/>
+              <object size="92 50% 142 100%" name="armorPierce" type="text" style="statsText"/>
+              <object size="142 50% 192 100%" name="armorCrush" type="text" style="statsText"/>
+            </object>
 					</object>
-
-					<!-- Big unit icon -->
-					<object size= "50%-48 40 50%+48 136" type="image" name="iconBorder" tooltip_style="sessionToolTip">
-						<object size="2 2 100%-2 100%-2" type="image" name="icon" ghost="true"/>
-						<object size="100%-20 4 100%-4 20" name="rankIcon" type="image" sprite="" ghost="true"/>
-						<object type="image" sprite="glassSquareIcon" ghost="true"/>
-					</object>
-
-					<!-- Stats Bars -->
-					<object size= "50%+48 40 100% 136" type="image" tooltip_style="sessionToolTip">
-						<!-- Health bar -->
-						<object size="18 0 30 100%" type="image" name="health" tooltip="Health" tooltip_style="sessionToolTip">
-							<object type="image" sprite="healthBackground" ghost="true"/>
-							<object type="image" sprite="healthForeground" ghost="true" name="healthBar"/>
-							<object type="image" sprite="statsBarShader" ghost="true"/>
-						</object>
-
-						<!-- Stamina bar -->
-						<object size="32 0 44 100%" type="image" name="stamina" tooltip="Stamina" tooltip_style="sessionToolTip">
-							<object type="image" sprite="staminaBackground" ghost="true"/>
-							<object type="image" sprite="staminaForeground" ghost="true" name="staminaBar"/>
-							<object type="image" sprite="statsBarShader" ghost="true"/>
-						</object>
-
-						<!-- Resource bar -->
-						<object size="18 0 30 100%" type="image" name="resources" tooltip="Resources" tooltip_style="sessionToolTip">
-							<object type="image" sprite="resourceBackground" ghost="true"/>
-							<object type="image" sprite="resourceForeground" ghost="true" name="resourceBar"/>
-							<object type="image" sprite="statsBarShader" ghost="true"/>
-						</object>
-
-						<!-- Experience bar -->
-						<object size="46 0 58 100%" type="image" name="experience" tooltip="Experience" tooltip_style="sessionToolTip">
-							<object type="image" sprite="experienceBackground" ghost="true"/>
-							<object type="image" sprite="experienceForeground" ghost="true" name="experienceBar"/>
-							<object type="image" sprite="statsBarShader" ghost="true"/>
-						</object>
-					</object>
-
-					<!-- Specific Name -->
-					<object size="0 142 100% 162" name="specific" type="text" style="largeCenteredOutlinedText" tooltip_style="sessionToolTipBold"/>
 				</object>
 
 				<!-- Unit details for Multiple Units -->

@@ -102,6 +102,26 @@ function hasClass(entState, className)
 	return false;
 }
 
+
+// For the unit details panel
+function damageValues(dmg)
+{
+	if (dmg)
+	{
+		var dmgArray = [];
+		dmg.hack? dmgArray.push(dmg.hack) : dmgArray.push(0);
+		dmg.pierce? dmgArray.push(dmg.pierce) : dmgArray.push(0);
+		dmg.crush? dmgArray.push(dmg.crush) : dmgArray.push(0);
+
+		return dmgArray;
+	}
+	else
+	{
+		return [0, 0, 0];
+	}
+}
+
+// For the unit details panel
 function damageTypesToTextStacked(dmg)
 {
 	if (!dmg)
@@ -109,6 +129,7 @@ function damageTypesToTextStacked(dmg)
 	return dmg.hack + " Hack\n" + dmg.pierce + " Pierce\n" + dmg.crush + " Crush";
 }
 
+// For the training tooltip
 function damageTypesToText(dmg)
 {
 	if (!dmg)

@@ -33,17 +33,15 @@ function displaySingle(entState, template)
 	getGUIObjectByName("rankIcon").sprite = getRankIconSprite(entState);					
 								
 	// Hitpoints
-	var hitpoints = "";
-
 	if (entState.hitpoints)
 	{
 		var unitHealthBar = getGUIObjectByName("healthBar");
 		var healthSize = unitHealthBar.size;
-		healthSize.rtop = 100-100*Math.max(0, Math.min(1, entState.hitpoints / entState.maxHitpoints));
+		healthSize.rright = 100*Math.max(0, Math.min(1, entState.hitpoints / entState.maxHitpoints));
 		unitHealthBar.size = healthSize;
 
-		hitpoints = "[font=\"serif-bold-13\"]Health [/font]" + entState.hitpoints + "/" + entState.maxHitpoints;
-		getGUIObjectByName("health").tooltip = hitpoints;
+		var hitpoints = entState.hitpoints + " / " + entState.maxHitpoints;
+		getGUIObjectByName("healthText").caption = hitpoints;
 		getGUIObjectByName("health").hidden = false;
 	}
 	else
@@ -72,7 +70,7 @@ function displaySingle(entState, template)
 	{
 		var experienceBar = getGUIObjectByName("experienceBar");
 		var experienceSize = experienceBar.size;
-		experienceSize.rtop = 100 - 100 * Math.max(0, Math.min(1, 1.0 * entState.promotion.curr / entState.promotion.req));
+		experienceSize.rright = 100 * Math.max(0, Math.min(1, 1.0 * +entState.promotion.curr / +entState.promotion.req));
 		experienceBar.size = experienceSize;
  
 		var experience = "[font=\"serif-bold-13\"]Experience [/font]" + Math.floor(entState.promotion.curr);
@@ -87,24 +85,23 @@ function displaySingle(entState, template)
 	}
 
 	// Resource stats
-	var resources = "";
-	var resourceType = "";
-
 	if (entState.resourceSupply)
 	{
-		resources = Math.ceil(+entState.resourceSupply.amount) + "/" + entState.resourceSupply.max;
-		resourceType = entState.resourceSupply.type["generic"];
+		var resources = Math.ceil(+entState.resourceSupply.amount) + " / " + entState.resourceSupply.max;
+		var resourceType = entState.resourceSupply.type["generic"];
 		if (resourceType == "treasure")
 			resourceType = entState.resourceSupply.type["specific"];
 
 		var unitResourceBar = getGUIObjectByName("resourceBar");
 		var resourceSize = unitResourceBar.size;
 
-		resourceSize.rtop = 100-100*Math.max(0, Math.min(1, +entState.resourceSupply.amount / entState.resourceSupply.max));
+		resourceSize.rright = 100 * Math.max(0, Math.min(1, +entState.resourceSupply.amount / +entState.resourceSupply.max));
 		unitResourceBar.size = resourceSize;
 
 		var unitResources = getGUIObjectByName("resources");
-		unitResources.tooltip = "[font=\"serif-bold-13\"]Resources: [/font]" + resources + " " + resourceType;
+		unitResources.tooltip = resourceType;
+
+		getGUIObjectByName("resourceText").caption = resources;
 
 		if (!entState.hitpoints)
 			unitResources.size = getGUIObjectByName("health").size;
@@ -143,10 +140,15 @@ function displaySingle(entState, template)
 		getGUIObjectByName("resourceCarryingText").hidden = true;
 	}
 
-	// Set Captions
+	// Set Player details
 	getGUIObjectByName("specific").caption = specificName;
+	getGUIObjectByName("specific").tooltip = genericName;
 	getGUIObjectByName("player").caption = playerName;
 	getGUIObjectByName("player").textcolor = playerColor;
+	getGUIObjectByName("player").tooltip = civName;
+
+	// TODO: Set this to the current player, not the selected unit's player
+	//getGUIObjectByName("civIcon").tooltip = civName;
 
 	// Icon image
 	if (template.icon)
@@ -159,12 +161,17 @@ function displaySingle(entState, template)
 		getGUIObjectByName("icon").sprite = "bkFillBlack";
 	}
 
-	// Tooltips
-	getGUIObjectByName("specific").tooltip = genericName;
-	getGUIObjectByName("player").tooltip = civName;
-	getGUIObjectByName("health").tooltip = hitpoints;
-	getGUIObjectByName("armourIcon").tooltip = "[font=\"serif-bold-16\"]Attack: [/font]" + damageTypesToText(entState.attack) + 
-		"\n[font=\"serif-bold-16\"]Armor: [/font]" + damageTypesToText(entState.armour);
+	// Attack
+	var attackValues = damageValues(entState.attack);
+	getGUIObjectByName("attackHack").caption = attackValues[0];
+	getGUIObjectByName("attackPierce").caption = attackValues[1];
+	getGUIObjectByName("attackCrush").caption = attackValues[2];
+
+	// Armor
+	var armorValues = damageValues(entState.armour);
+	getGUIObjectByName("armorHack").caption = armorValues[0];
+	getGUIObjectByName("armorPierce").caption = armorValues[1];
+	getGUIObjectByName("armorCrush").caption = armorValues[2];
 
 	// Icon Tooltip
 	var iconTooltip = "";
