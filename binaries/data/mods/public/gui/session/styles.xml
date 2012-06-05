@@ -5,20 +5,19 @@
 	<!-- ================================  ================================ -->
 	<!-- Text Styles -->
 	<!-- ================================  ================================ -->
-        <style name="PauseText"
+  <style name="PauseText"
 		font="serif-bold-24"
 		textcolor="white"
 		text_align="center"
 		text_valign="center"
 	/>
 
-        <style name="PauseMessageText"
+  <style name="PauseMessageText"
 		font="serif-bold-12"
 		textcolor="white"
 		text_align="center"
 		text_valign="center"
 	/>
-
 
 	<style name="leftAlignedText"
 		textcolor="white"
@@ -38,7 +37,7 @@
 		text_valign="center"
 	/>
 
-	<style name="largeBoldCenteredText"
+  <style name="largeBoldCenteredText"
 		font="serif-bold-18"
 		textcolor="white"
 		text_align="center"
@@ -50,6 +49,13 @@
 		textcolor="white"
 		text_align="center"
 		text_valign="center"
+	/>
+
+  <style name="largeLeftOutlinedText"
+    font="serif-bold-stroke-14"
+    textcolor="white"
+    text_align="left"
+    text_valign="center"
 	/>
 
 	<style name="iconButtonCount"
@@ -95,12 +101,20 @@
 		text_valign="center"
 	/>
 
-	<style name="statsText"
+	<style name="statsTextLabel"
 		textcolor="white"
 		font="serif-bold-stroke-14"
 		ghost="true"
 		text_align="center"
 		text_valign="center"
+	/>
+
+  <style name="statsText"
+    textcolor="white"
+    font="serif-bold-stroke-14"
+    ghost="true"
+    text_align="center"
+    text_valign="center"
 	/>
 
 	<style name="settingsText"
