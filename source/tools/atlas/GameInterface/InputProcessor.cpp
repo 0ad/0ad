@@ -67,43 +67,43 @@ bool InputProcessor::ProcessInput(GameLoopState* state)
 
 	if (state->input.scrollSpeed[0] != 0.0f)
 	{
-		camera->m_Orientation.Translate(forwards * (input.scrollSpeed[0] * state->frameLength));
+		camera->m_Orientation.Translate(forwards * (input.scrollSpeed[0] * state->realFrameLength));
 		moved = true;
 	}
 
 	if (state->input.scrollSpeed[1] != 0.0f)
 	{
-		camera->m_Orientation.Translate(forwards * (-input.scrollSpeed[1] * state->frameLength));
+		camera->m_Orientation.Translate(forwards * (-input.scrollSpeed[1] * state->realFrameLength));
 		moved = true;
 	}
 
 	if (state->input.scrollSpeed[2] != 0.0f)
 	{
-		camera->m_Orientation.Translate(leftwards * (input.scrollSpeed[2] * state->frameLength));
+		camera->m_Orientation.Translate(leftwards * (input.scrollSpeed[2] * state->realFrameLength));
 		moved = true;
 	}
 
 	if (state->input.scrollSpeed[3] != 0.0f)
 	{
-		camera->m_Orientation.Translate(leftwards * (-input.scrollSpeed[3] * state->frameLength));
+		camera->m_Orientation.Translate(leftwards * (-input.scrollSpeed[3] * state->realFrameLength));
 		moved = true;
 	}
 
 	if (state->input.scrollSpeed[4] != 0.0f)
 	{
-		Rotate(*camera, input.scrollSpeed[4] * state->frameLength * g_ViewRotateScale);
+		Rotate(*camera, input.scrollSpeed[4] * state->realFrameLength * g_ViewRotateScale);
 		moved = true;
 	}
 
 	if (state->input.scrollSpeed[5] != 0.0f)
 	{
-		Rotate(*camera, -input.scrollSpeed[5] * state->frameLength * g_ViewRotateScale);
+		Rotate(*camera, -input.scrollSpeed[5] * state->realFrameLength * g_ViewRotateScale);
 		moved = true;
 	}
 
 	if (state->input.zoomDelta != 0.0f)
 	{
-		float zoom_proportion = powf(g_ViewZoomSmoothness, state->frameLength);
+		float zoom_proportion = powf(g_ViewZoomSmoothness, state->realFrameLength);
 		camera->m_Orientation.Translate(inwards * (input.zoomDelta * (1.0f - zoom_proportion)));
 		input.zoomDelta *= zoom_proportion;
 

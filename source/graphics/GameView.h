@@ -69,10 +69,13 @@ public:
 
 	CObjectManager& GetObjectManager() const;
 
-	// Update: Update all the view information (i.e. rotate camera, scroll,
-	// whatever). This will *not* change any World information - only the
-	// *presentation*
-	void Update(float DeltaTime);
+	/**
+	 * Updates all the view information (i.e. rotate camera, scroll, whatever). This will *not* change any 
+	 * World information - only the *presentation*.
+	 * 
+	 * @param deltaRealTime Elapsed real time since the last frame.
+	 */
+	void Update(const float deltaRealTime);
 
 	void BeginFrame();
 	void Render();

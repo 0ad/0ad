@@ -309,9 +309,9 @@ static void Frame()
 
 	// .. new method - filtered and more smooth, but errors may accumulate
 #else
-	const float TimeSinceLastFrame = 1.0 / g_frequencyFilter->SmoothedFrequency();
+	const float realTimeSinceLastFrame = 1.0 / g_frequencyFilter->SmoothedFrequency();
 #endif
-	ENSURE(TimeSinceLastFrame > 0.0f);
+	ENSURE(realTimeSinceLastFrame > 0.0f);
 
 	// decide if update/render is necessary
 	bool need_render = !g_app_minimized;
@@ -372,9 +372,9 @@ static void Frame()
 
 	if (g_Game && g_Game->IsGameStarted() && need_update)
 	{
-		g_Game->Update(TimeSinceLastFrame);
+		g_Game->Update(realTimeSinceLastFrame);
 
-		g_Game->GetView()->Update(float(TimeSinceLastFrame));
+		g_Game->GetView()->Update(float(realTimeSinceLastFrame));
 
 		CCamera* camera = g_Game->GetView()->GetCamera();
 		CMatrix3D& orientation = camera->m_Orientation;
@@ -405,7 +405,7 @@ static void Frame()
 
 	g_UserReporter.Update();
 
-	g_Console->Update(TimeSinceLastFrame);
+	g_Console->Update(realTimeSinceLastFrame);
 
 	ogl_WarnIfError();
 	if(need_render)

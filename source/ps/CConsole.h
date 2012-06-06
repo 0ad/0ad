@@ -61,7 +61,10 @@ public:
 	void ToggleVisible();
 	void SetVisible(bool visible);
 
-	void Update(float DeltaTime);
+	/**
+	 * @param deltaRealTime Elapsed real time since the last frame.
+	 */
+	void Update(const float deltaRealTime);
 
 	void Render();
 

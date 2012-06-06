@@ -245,9 +245,9 @@ bool CCinemaPath::Validate()
 	return false;
 }
 
-bool CCinemaPath::Play(float DeltaTime)
+bool CCinemaPath::Play(const float deltaRealTime)
 {
-	m_TimeElapsed += m_Timescale*DeltaTime;
+	m_TimeElapsed += m_Timescale * deltaRealTime;
 
 	if (!Validate())
 	{
@@ -337,9 +337,9 @@ void CCinemaManager::MoveToPointAt(float time)
 				m_CurrentPath->second.m_PreviousRotation );
 }
 
-bool CCinemaManager::Update(float DeltaTime)
+bool CCinemaManager::Update(const float deltaRealTime)
 {
-	if (!m_PathQueue.front().Play(DeltaTime))
+	if (!m_PathQueue.front().Play(deltaRealTime))
 	{
 		m_PathQueue.pop_front();
 		return false;

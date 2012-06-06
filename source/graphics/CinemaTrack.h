@@ -110,8 +110,12 @@ public:
 
 public: 
 
-	//Returns false if finished
-	bool Play(float DeltaTime);
+	/**
+	 * Returns false if finished.
+	 * 
+	 * @param deltaRealTime Elapsed real time since the last frame.
+	 */
+	bool Play(const float deltaRealTime);
 	bool Validate();
 
 	inline float GetTimescale() const { return m_Timescale; }	
@@ -129,7 +133,11 @@ public:
 	//Adds track to list of being played. 
 	void QueuePath(const CStrW& name, bool queue);
 	void OverridePath(const CStrW& name);	//clears track queue and replaces with 'name'
-	bool Update(float DeltaTime);
+
+	/**
+	 * @param deltaRealTime Elapsed real time since the last frame.
+	 */
+	bool Update(const float deltaRealTime);
 	
 	//These stop track play, and accept time, not ratio of time
 	void MoveToPointAt(float time);

@@ -58,7 +58,7 @@ static std::wstring Hexify(const std::string& s)
 }
 
 CNetTurnManager::CNetTurnManager(CSimulation2& simulation, u32 defaultTurnLength, int clientId, IReplayLogger& replay) :
-	m_Simulation2(simulation), m_CurrentTurn(0), m_ReadyTurn(1), m_TurnLength(defaultTurnLength), m_DeltaTime(0),
+	m_Simulation2(simulation), m_CurrentTurn(0), m_ReadyTurn(1), m_TurnLength(defaultTurnLength), m_DeltaSimTime(0),
 	m_PlayerId(-1), m_ClientId(clientId), m_HasSyncError(false), m_Replay(replay),
 	m_TimeWarpNumTurns(0)
 {
@@ -75,7 +75,7 @@ void CNetTurnManager::ResetState(u32 newCurrentTurn, u32 newReadyTurn)
 {
 	m_CurrentTurn = newCurrentTurn;
 	m_ReadyTurn = newReadyTurn;
-	m_DeltaTime = 0;
+	m_DeltaSimTime = 0;
 	size_t queuedCommandsSize = m_QueuedCommands.size();
 	m_QueuedCommands.clear();
 	m_QueuedCommands.resize(queuedCommandsSize);
@@ -86,11 +86,11 @@ void CNetTurnManager::SetPlayerID(int playerId)
 	m_PlayerId = playerId;
 }
 
-bool CNetTurnManager::WillUpdate(float frameLength)
+bool CNetTurnManager::WillUpdate(float simFrameLength)
 {
 	// Keep this in sync with the return value of Update()
 
-	if (m_DeltaTime + frameLength < 0)
+	if (m_DeltaSimTime + simFrameLength < 0)
 		return false;
 
 	if (m_ReadyTurn <= m_CurrentTurn)
@@ -99,12 +99,12 @@ bool CNetTurnManager::WillUpdate(float frameLength)
 	return true;
 }
 
-bool CNetTurnManager::Update(float frameLength, size_t maxTurns)
+bool CNetTurnManager::Update(float simFrameLength, size_t maxTurns)
 {
-	m_DeltaTime += frameLength;
+	m_DeltaSimTime += simFrameLength;
 
 	// If we haven't reached the next turn yet, do nothing
-	if (m_DeltaTime < 0)
+	if (m_DeltaSimTime < 0)
 		return false;
 
 	NETTURN_LOG((L"Update current=%d ready=%d\n", m_CurrentTurn, m_ReadyTurn));
@@ -120,7 +120,7 @@ bool CNetTurnManager::Update(float frameLength, size_t maxTurns)
 		// Reset the next-turn timer to 0 so we try again next update but
 		// so we don't rush to catch up in subsequent turns.
 		// TODO: we should do clever rate adjustment instead of just pausing like this.
-		m_DeltaTime = 0;
+		m_DeltaSimTime = 0;
 
 		return false;
 	}
@@ -130,7 +130,7 @@ bool CNetTurnManager::Update(float frameLength, size_t maxTurns)
 	for (size_t i = 0; i < maxTurns; ++i)
 	{
 		// Check that we've reached the i'th next turn
-		if (m_DeltaTime < 0)
+		if (m_DeltaSimTime < 0)
 			break;
 
 		// Check that the i'th next turn is still ready
@@ -173,7 +173,7 @@ bool CNetTurnManager::Update(float frameLength, size_t maxTurns)
 		NotifyFinishedUpdate(m_CurrentTurn);
 
 		// Set the time for the next turn update
-		m_DeltaTime -= m_TurnLength / 1000.f;
+		m_DeltaSimTime -= m_TurnLength / 1000.f;
 	}
 
 	return true;
@@ -181,7 +181,7 @@ bool CNetTurnManager::Update(float frameLength, size_t maxTurns)
 
 bool CNetTurnManager::UpdateFastForward()
 {
-	m_DeltaTime = 0;
+	m_DeltaSimTime = 0;
 
 	NETTURN_LOG((L"UpdateFastForward current=%d ready=%d\n", m_CurrentTurn, m_ReadyTurn));
 
@@ -247,13 +247,13 @@ void CNetTurnManager::OnSyncError(u32 turn, const std::string& expectedHash)
 		LOGERROR(L"%ls", msg.str().c_str());
 }
 
-void CNetTurnManager::Interpolate(float frameLength)
+void CNetTurnManager::Interpolate(float simFrameLength, float realFrameLength)
 {
 	// TODO: using m_TurnLength might be a bit dodgy when length changes - maybe
 	// we need to save the previous turn length?
 
-	float offset = clamp(m_DeltaTime / (m_TurnLength / 1000.f) + 1.0, 0.0, 1.0);
-	m_Simulation2.Interpolate(frameLength, offset);
+	float offset = clamp(m_DeltaSimTime / (m_TurnLength / 1000.f) + 1.0, 0.0, 1.0);
+	m_Simulation2.Interpolate(simFrameLength, offset, realFrameLength);
 }
 
 void CNetTurnManager::AddCommand(int client, int player, CScriptValRooted data, u32 turn)

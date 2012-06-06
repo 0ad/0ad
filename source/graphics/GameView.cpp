@@ -665,7 +665,7 @@ CVector3D CGameView::GetSmoothPivot(CCamera& camera) const
 	return camera.m_Orientation.GetTranslation() + camera.m_Orientation.GetIn() * m->Zoom.GetSmoothedValue();
 }
 
-void CGameView::Update(float DeltaTime)
+void CGameView::Update(const float deltaRealTime)
 {
 	// If camera movement is being handled by the touch-input system,
 	// then we should stop to avoid conflicting with it
@@ -678,11 +678,11 @@ void CGameView::Update(float DeltaTime)
 	// TODO: this is probably not an ideal place for this, it should probably go
 	// in a CCmpWaterManager or some such thing (once such a thing exists)
 	if (!m->Game->m_Paused)
-		g_Renderer.GetWaterManager()->m_WaterTexTimer += DeltaTime;
+		g_Renderer.GetWaterManager()->m_WaterTexTimer += deltaRealTime;
 
 	if (m->TrackManager.IsActive() && m->TrackManager.IsPlaying())
 	{
-		if (! m->TrackManager.Update(DeltaTime))
+		if (! m->TrackManager.Update(deltaRealTime))
 		{
 //			ResetCamera();
 		}
@@ -698,13 +698,13 @@ void CGameView::Update(float DeltaTime)
 	mouse_last_y = g_mouse_y;
 
 	if (HotkeyIsPressed("camera.rotate.cw"))
-		m->RotateY.AddSmoothly(m->ViewRotateYSpeed * DeltaTime);
+		m->RotateY.AddSmoothly(m->ViewRotateYSpeed * deltaRealTime);
 	if (HotkeyIsPressed("camera.rotate.ccw"))
-		m->RotateY.AddSmoothly(-m->ViewRotateYSpeed * DeltaTime);
+		m->RotateY.AddSmoothly(-m->ViewRotateYSpeed * deltaRealTime);
 	if (HotkeyIsPressed("camera.rotate.up"))
-		m->RotateX.AddSmoothly(-m->ViewRotateXSpeed * DeltaTime);
+		m->RotateX.AddSmoothly(-m->ViewRotateXSpeed * deltaRealTime);
 	if (HotkeyIsPressed("camera.rotate.down"))
-		m->RotateX.AddSmoothly(m->ViewRotateXSpeed * DeltaTime);
+		m->RotateX.AddSmoothly(m->ViewRotateXSpeed * deltaRealTime);
 
 	float moveRightward = 0.f;
 	float moveForward = 0.f;
@@ -718,39 +718,39 @@ void CGameView::Update(float DeltaTime)
 	if (g_mouse_active)
 	{
 		if (g_mouse_x >= g_xres - 2 && g_mouse_x < g_xres)
-			moveRightward += m->ViewScrollSpeed * DeltaTime;
+			moveRightward += m->ViewScrollSpeed * deltaRealTime;
 		else if (g_mouse_x <= 3 && g_mouse_x >= 0)
-			moveRightward -= m->ViewScrollSpeed * DeltaTime;
+			moveRightward -= m->ViewScrollSpeed * deltaRealTime;
 
 		if (g_mouse_y >= g_yres - 2 && g_mouse_y < g_yres)
-			moveForward -= m->ViewScrollSpeed * DeltaTime;
+			moveForward -= m->ViewScrollSpeed * deltaRealTime;
 		else if (g_mouse_y <= 3 && g_mouse_y >= 0)
-			moveForward += m->ViewScrollSpeed * DeltaTime;
+			moveForward += m->ViewScrollSpeed * deltaRealTime;
 	}
 
 	if (HotkeyIsPressed("camera.right"))
-		moveRightward += m->ViewScrollSpeed * DeltaTime;
+		moveRightward += m->ViewScrollSpeed * deltaRealTime;
 	if (HotkeyIsPressed("camera.left"))
-		moveRightward -= m->ViewScrollSpeed * DeltaTime;
+		moveRightward -= m->ViewScrollSpeed * deltaRealTime;
 	if (HotkeyIsPressed("camera.up"))
-		moveForward += m->ViewScrollSpeed * DeltaTime;
+		moveForward += m->ViewScrollSpeed * deltaRealTime;
 	if (HotkeyIsPressed("camera.down"))
-		moveForward -= m->ViewScrollSpeed * DeltaTime;
+		moveForward -= m->ViewScrollSpeed * deltaRealTime;
 
 	if (g_Joystick.IsEnabled())
 	{
 		// This could all be improved with extra speed and sensitivity settings
 		// (maybe use pow to allow finer control?), and inversion settings
 
-		moveRightward += g_Joystick.GetAxisValue(m->JoystickPanX) * m->ViewScrollSpeed * DeltaTime;
-		moveForward -= g_Joystick.GetAxisValue(m->JoystickPanY) * m->ViewScrollSpeed * DeltaTime;
+		moveRightward += g_Joystick.GetAxisValue(m->JoystickPanX) * m->ViewScrollSpeed * deltaRealTime;
+		moveForward -= g_Joystick.GetAxisValue(m->JoystickPanY) * m->ViewScrollSpeed * deltaRealTime;
 
-		m->RotateX.AddSmoothly(g_Joystick.GetAxisValue(m->JoystickRotateX) * m->ViewRotateXSpeed * DeltaTime);
-		m->RotateY.AddSmoothly(-g_Joystick.GetAxisValue(m->JoystickRotateY) * m->ViewRotateYSpeed * DeltaTime);
+		m->RotateX.AddSmoothly(g_Joystick.GetAxisValue(m->JoystickRotateX) * m->ViewRotateXSpeed * deltaRealTime);
+		m->RotateY.AddSmoothly(-g_Joystick.GetAxisValue(m->JoystickRotateY) * m->ViewRotateYSpeed * deltaRealTime);
 
 		// Use a +1 bias for zoom because I want this to work with trigger buttons that default to -1
-		m->Zoom.AddSmoothly((g_Joystick.GetAxisValue(m->JoystickZoomIn) + 1.0f) / 2.0f * m->ViewZoomSpeed * DeltaTime);
-		m->Zoom.AddSmoothly(-(g_Joystick.GetAxisValue(m->JoystickZoomOut) + 1.0f) / 2.0f * m->ViewZoomSpeed * DeltaTime);
+		m->Zoom.AddSmoothly((g_Joystick.GetAxisValue(m->JoystickZoomIn) + 1.0f) / 2.0f * m->ViewZoomSpeed * deltaRealTime);
+		m->Zoom.AddSmoothly(-(g_Joystick.GetAxisValue(m->JoystickZoomOut) + 1.0f) / 2.0f * m->ViewZoomSpeed * deltaRealTime);
 	}
 
 	if (moveRightward || moveForward)
@@ -810,14 +810,14 @@ void CGameView::Update(float DeltaTime)
 	}
 
 	if (HotkeyIsPressed("camera.zoom.in"))
-		m->Zoom.AddSmoothly(-m->ViewZoomSpeed * DeltaTime);
+		m->Zoom.AddSmoothly(-m->ViewZoomSpeed * deltaRealTime);
 	if (HotkeyIsPressed("camera.zoom.out"))
-		m->Zoom.AddSmoothly(m->ViewZoomSpeed * DeltaTime);
+		m->Zoom.AddSmoothly(m->ViewZoomSpeed * deltaRealTime);
 
 	if (m->ConstrainCamera)
 		m->Zoom.ClampSmoothly(m->ViewZoomMin, m->ViewZoomMax);
 
-	float zoomDelta = -m->Zoom.Update(DeltaTime);
+	float zoomDelta = -m->Zoom.Update(deltaRealTime);
 	if (zoomDelta)
 	{
 		CVector3D forwards = m->ViewCamera.m_Orientation.GetIn();
@@ -867,16 +867,16 @@ void CGameView::Update(float DeltaTime)
 		m->PosZ.SetValueSmoothly(desiredPivot.Z + delta.Z);
 	}
 
-	m->PosX.Update(DeltaTime);
-	m->PosY.Update(DeltaTime);
-	m->PosZ.Update(DeltaTime);
+	m->PosX.Update(deltaRealTime);
+	m->PosY.Update(deltaRealTime);
+	m->PosZ.Update(deltaRealTime);
 
 	// Handle rotation around the Y (vertical) axis
 	{
 		CCamera targetCam = m->ViewCamera;
 		SetupCameraMatrixSmooth(m, &targetCam.m_Orientation);
 
-		float rotateYDelta = m->RotateY.Update(DeltaTime);
+		float rotateYDelta = m->RotateY.Update(deltaRealTime);
 		if (rotateYDelta)
 		{
 			// We've updated RotateY, and need to adjust Pos so that it's still
@@ -903,7 +903,7 @@ void CGameView::Update(float DeltaTime)
 		CCamera targetCam = m->ViewCamera;
 		SetupCameraMatrixSmooth(m, &targetCam.m_Orientation);
 
-		float rotateXDelta = m->RotateX.Update(DeltaTime);
+		float rotateXDelta = m->RotateX.Update(deltaRealTime);
 		if (rotateXDelta)
 		{
 			CVector3D rightwards = targetCam.m_Orientation.GetLeft() * -1.0f;

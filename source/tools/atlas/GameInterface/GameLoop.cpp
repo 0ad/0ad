@@ -144,12 +144,12 @@ static void* RunEngine(void* data)
 		{
 			double time = timer_Time();
 			static double last_time = time;
-			float length = (float)(time-last_time);
+			float realFrameLength = (float)(time-last_time);
 			last_time = time;
-			ENSURE(length >= 0.0f);
+			ENSURE(realFrameLength >= 0.0f);
 			// TODO: filter out big jumps, e.g. when having done a lot of slow
 			// processing in the last frame
-			state.frameLength = length;
+			state.realFrameLength = realFrameLength;
 		}
 
 		// Process the input that was received in the past
@@ -222,7 +222,7 @@ static void* RunEngine(void* data)
 		if (g_GUI)
 			g_GUI->TickObjects();
 
-		state.view->Update(state.frameLength);
+		state.view->Update(state.realFrameLength);
 
 		state.view->Render();
 

@@ -190,7 +190,7 @@ public:
 		case MT_Interpolate:
 		{
 			const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
-			Interpolate(msgData.frameTime, msgData.offset);
+			Interpolate(msgData.deltaSimTime, msgData.offset);
 			break;
 		}
 		case MT_RenderSubmit:

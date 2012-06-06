@@ -46,7 +46,7 @@ public:
 	void SetAxesMarkerEnabled(bool enabled);
 	void SetPropPointsMode(int mode);
 	void Render();
-	void Update(float dt);
+	void Update(float simFrameLength, float realFrameLength);
 
 private:
 	ActorViewerImpl& m;

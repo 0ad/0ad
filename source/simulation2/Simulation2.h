@@ -155,7 +155,7 @@ public:
 
 	void Update(int turnLength);
 	void Update(int turnLength, const std::vector<SimulationCommand>& commands);
-	void Interpolate(float frameLength, float frameOffset);
+	void Interpolate(float simFrameLength, float frameOffset, float realFrameLength);
 	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling);
 
 	/**

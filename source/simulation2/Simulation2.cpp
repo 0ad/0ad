@@ -143,7 +143,7 @@ public:
 	int ProgressiveLoad();
 	void Update(int turnLength, const std::vector<SimulationCommand>& commands);
 	static void UpdateComponents(CSimContext& simContext, fixed turnLengthFixed, const std::vector<SimulationCommand>& commands);
-	void Interpolate(float frameLength, float frameOffset);
+	void Interpolate(float simFrameLength, float frameOffset, float realFrameLength);
 
 	void DumpState();
 
@@ -513,13 +513,13 @@ void CSimulation2Impl::UpdateComponents(CSimContext& simContext, fixed turnLengt
 	componentManager.FlushDestroyedComponents();
 }
 
-void CSimulation2Impl::Interpolate(float frameLength, float frameOffset)
+void CSimulation2Impl::Interpolate(float simFrameLength, float frameOffset, float realFrameLength)
 {
 	PROFILE3("sim interpolate");
 
 	m_LastFrameOffset = frameOffset;
 
-	CMessageInterpolate msg(frameLength, frameOffset);
+	CMessageInterpolate msg(simFrameLength, frameOffset, realFrameLength);
 	m_ComponentManager.BroadcastMessage(msg);
 
 	// Clean up any entities destroyed during interpolate (e.g. local corpses)
@@ -653,9 +653,9 @@ void CSimulation2::Update(int turnLength, const std::vector<SimulationCommand>& 
 	m->Update(turnLength, commands);
 }
 
-void CSimulation2::Interpolate(float frameLength, float frameOffset)
+void CSimulation2::Interpolate(float simFrameLength, float frameOffset, float realFrameLength)
 {
-	m->Interpolate(frameLength, frameOffset);
+	m->Interpolate(simFrameLength, frameOffset, realFrameLength);
 }
 
 void CSimulation2::RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling)

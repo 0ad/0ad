@@ -95,17 +95,19 @@ MESSAGE_1(Update_Final, fixed, turnLength)
 jsval CMessageInterpolate::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
-	SET_MSG_PROPERTY(frameTime);
+	SET_MSG_PROPERTY(deltaSimTime);
 	SET_MSG_PROPERTY(offset);
+	SET_MSG_PROPERTY(deltaRealTime);
 	return OBJECT_TO_JSVAL(obj);
 }
 
 CMessage* CMessageInterpolate::FromJSVal(ScriptInterface& scriptInterface, jsval val)
 {
 	FROMJSVAL_SETUP();
-	GET_MSG_PROPERTY(float, frameTime);
+	GET_MSG_PROPERTY(float, deltaSimTime);
 	GET_MSG_PROPERTY(float, offset);
-	return new CMessageInterpolate(frameTime, offset);
+	GET_MSG_PROPERTY(float, deltaRealTime);
+	return new CMessageInterpolate(deltaSimTime, offset, deltaRealTime);
 }
 
 ////////////////////////////////

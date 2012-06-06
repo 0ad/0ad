@@ -17,7 +17,6 @@
 
 #include "precompiled.h"
 
-#include "simulation2/system/Component.h"
 #include "ICmpSelectable.h"
 
 #include "graphics/Overlay.h"
@@ -40,6 +39,7 @@
 #include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpWaterManager.h"
 #include "simulation2/helpers/Render.h"
+#include "simulation2/system/Component.h"
 
 class CCmpSelectable : public ICmpSelectable
 {
@@ -62,7 +62,6 @@ public:
 		  m_FadeBaselineAlpha(0.f), m_FadeDeltaAlpha(0.f), m_FadeProgress(0.f)
 	{
 		m_Color = CColor(0, 0, 0, m_FadeBaselineAlpha);
-		m_LastRealTime = 0;
 	}
 
 	~CCmpSelectable()
@@ -189,6 +188,7 @@ private:
 	SOverlayLine* m_DebugBoundingBoxOverlay;
 	SOverlayLine* m_DebugSelectionBoxOverlay;
 
+	/// Is this entity selectable only in the editor?
 	bool m_EditorOnly;
 	
 	/// Current selection overlay color. Alpha component is subject to fading.
@@ -199,10 +199,10 @@ private:
 	float m_FadeDeltaAlpha;
 	/// Linear time progress of the fade, between 0 and m_FadeDuration.
 	float m_FadeProgress;
+
 	/// Total duration of a single fade, in seconds. Assumed constant for now; feel free to change this into
 	/// a member variable if you need to adjust it per component.
 	static const double FADE_DURATION;
-	double m_LastRealTime; // temporary member, only here to support the TODO case in HandleMessage.
 };
 
 const double CCmpSelectable::FADE_DURATION = 0.3;
@@ -213,17 +213,11 @@ void CCmpSelectable::HandleMessage(const CMessage& msg, bool UNUSED(global))
 	{
 	case MT_Interpolate:
 		{
-			// TODO: temporary solution using real elapsed time instead of simulation time to prevent
-			// the overlay fades from not happening in atlas while the simulation is paused. As a cleaner
-			// solution, we should add a field to CMessageInterpolate that holds an elapsed real time delta.
-			//static double lastRealTime = 0;
-			const double currentRealTime = timer_Time();
-			float deltaRealTime = (float)(currentRealTime - m_LastRealTime);
-			m_LastRealTime = currentRealTime;
+			const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
 
 			if (m_FadeDeltaAlpha != 0.f)
 			{
-				m_FadeProgress += deltaRealTime;
+				m_FadeProgress += msgData.deltaRealTime;
 				if (m_FadeProgress >= FADE_DURATION)
 				{
 					const float targetAlpha = m_FadeBaselineAlpha + m_FadeDeltaAlpha;
@@ -242,10 +236,7 @@ void CCmpSelectable::HandleMessage(const CMessage& msg, bool UNUSED(global))
 
 			// update dynamic overlay only when visible
 			if (m_Color.a > 0)
-			{
-				const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
 				UpdateDynamicOverlay(msgData.offset);
-			}
 
 			break;
 		}

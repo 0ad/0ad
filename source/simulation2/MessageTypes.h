@@ -124,13 +124,18 @@ class CMessageInterpolate : public CMessage
 public:
 	DEFAULT_MESSAGE_IMPL(Interpolate)
 
-	CMessageInterpolate(float frameTime, float offset) :
-		frameTime(frameTime), offset(offset)
+	CMessageInterpolate(float deltaSimTime, float offset, float deltaRealTime) :
+		deltaSimTime(deltaSimTime), offset(offset), deltaRealTime(deltaRealTime)
 	{
 	}
 
-	float frameTime; // time in seconds since previous interpolate
-	float offset; // range [0, 1] (inclusive); fractional time of current frame between previous/next simulation turns
+	/// Elapsed simulation time since previous interpolate, in seconds. This is similar to the elapsed real time, except
+	/// it is scaled by the current simulation rate (and might indeed be zero).
+	float deltaSimTime;
+	/// Range [0, 1] (inclusive); fractional time of current frame between previous/next simulation turns.
+	float offset;
+	/// Elapsed real time since previous interpolate, in seconds.
+	float deltaRealTime;
 };
 
 /**

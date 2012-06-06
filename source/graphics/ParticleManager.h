@@ -47,7 +47,7 @@ public:
 
 	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum);
 
-	void Interpolate(float frameLength);
+	void Interpolate(const float simFrameLength);
 
 	float GetCurrentTime() const { return m_CurrentTime; }
 
