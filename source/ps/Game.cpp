@@ -214,7 +214,7 @@ PSRETURN CGame::ReallyStartGame()
 	// because Update might never interpolate (e.g. if the game starts paused)
 	// and we could end up rendering before having set up any models (so they'd
 	// all be invisible)
-	Interpolate(0);
+	Interpolate(0, 0);
 
 	debug_printf(L"GAME STARTED, ALL INIT COMPLETE\n");
 	m_GameStarted=true;
@@ -252,16 +252,7 @@ void CGame::StartGame(const CScriptValRooted& attribs, const std::string& savedS
 // so that it has more control over the update rate. The game might want to
 // do the same, and then doInterpolate should be redundant and removed.
 
-/**
- * Periodic heartbeat that controls the process.
- * Simulation update is called and game status update is called.
- *
- * @param deltaTime Double. Elapsed time since last beat in seconds.
- * @param doInterpolate Bool. Perform interpolation if true.
- * @return bool false if it can't keep up with the desired simulation rate
- *	indicating that you might want to render less frequently.
- **/
-bool CGame::Update(double deltaTime, bool doInterpolate)
+bool CGame::Update(const double deltaRealTime, bool doInterpolate)
 {
 	if (m_Paused)
 		return true;
@@ -269,14 +260,14 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 	if (!m_TurnManager)
 		return true;
 
-	deltaTime *= m_SimRate;
+	const double deltaSimTime = deltaRealTime * m_SimRate;
 	
 	bool ok = true;
-	if (deltaTime)
+	if (deltaSimTime)
 	{
 		// To avoid confusing the profiler, we need to trigger the new turn
 		// while we're not nested inside any PROFILE blocks
-		if (m_TurnManager->WillUpdate(deltaTime))
+		if (m_TurnManager->WillUpdate(deltaSimTime))
 			g_Profiler.Turn();
 
 		// At the normal sim rate, we currently want to render at least one
@@ -285,7 +276,7 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 		// so just use the sim rate itself as the number of turns per frame.
 		size_t maxTurns = (size_t)m_SimRate;
 
-		if (m_TurnManager->Update(deltaTime, maxTurns))
+		if (m_TurnManager->Update(deltaSimTime, maxTurns))
 		{
 			{
 				PROFILE3("gui sim update");
@@ -298,26 +289,26 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 
 	if (doInterpolate)
 	{
-		m_TurnManager->Interpolate(deltaTime);
+		m_TurnManager->Interpolate(deltaSimTime, deltaRealTime);
 	}
 	
 	// TODO: maybe we should add a CCmpParticleInterface that passes the interpolation commands
 	// etc to CParticleManager. But in the meantime just handle it explicitly here.
 	if (doInterpolate && CRenderer::IsInitialised())
-		g_Renderer.GetParticleManager().Interpolate(deltaTime);
+		g_Renderer.GetParticleManager().Interpolate(deltaSimTime);
 
 	return ok;
 }
 
-void CGame::Interpolate(float frameLength)
+void CGame::Interpolate(float simFrameLength, float realFrameLength)
 {
 	if (!m_TurnManager)
 		return;
 
-	m_TurnManager->Interpolate(frameLength);
+	m_TurnManager->Interpolate(simFrameLength, realFrameLength);
 
 	if (CRenderer::IsInitialised())
-		g_Renderer.GetParticleManager().Interpolate(frameLength);
+		g_Renderer.GetParticleManager().Interpolate(simFrameLength);
 }
 
 

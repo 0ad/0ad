@@ -71,10 +71,11 @@ public:
 	 * Advance the simulation by a certain time. If this brings us past the current
 	 * turn length, the next turns are processed and the function returns true.
 	 * Otherwise, nothing happens and it returns false.
-	 * @param frameLength length of the previous frame in seconds
-	 * @param maxTurns maximum number of turns to simulate at once
+	 * 
+	 * @param simFrameLength Length of the previous frame, in simulation seconds
+	 * @param maxTurns Maximum number of turns to simulate at once
 	 */
-	bool Update(float frameLength, size_t maxTurns);
+	bool Update(float simFrameLength, size_t maxTurns);
 
 	/**
 	 * Advance the simulation by as much as possible. Intended for catching up
@@ -84,16 +85,17 @@ public:
 	bool UpdateFastForward();
 
 	/**
-	 * Returns whether Update(frameLength, ...) will process at least one new turn.
-	 * @param frameLength length of the previous frame in seconds
+	 * Returns whether Update(simFrameLength, ...) will process at least one new turn.
+	 * @param simFrameLength Length of the previous frame, in simulation seconds
 	 */
-	bool WillUpdate(float frameLength);
+	bool WillUpdate(float simFrameLength);
 
 	/**
 	 * Advance the graphics by a certain time.
-	 * @param frameLength length of the previous frame in seconds
+	 * @param simFrameLength Length of the previous frame, in simulation seconds
+	 * @param realFrameLength Length of the previous frame, in real time seconds
 	 */
-	void Interpolate(float frameLength);
+	void Interpolate(float simFrameLength, float realFrameLength);
 
 	/**
 	 * Called by networking code when a simulation message is received.
@@ -172,8 +174,9 @@ protected:
 	int m_PlayerId;
 	uint m_ClientId;
 
-	/// Time remaining until we ought to execute the next turn
-	float m_DeltaTime;
+	/// Simulation time remaining until we ought to execute the next turn (as a negative value to
+	/// add elapsed time increments to until we reach 0).
+	float m_DeltaSimTime;
 
 	bool m_HasSyncError;
 

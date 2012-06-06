@@ -60,9 +60,9 @@ void CParticleManager::ClearUnattachedEmitters()
 	m_UnattachedEmitters.clear();
 }
 
-void CParticleManager::Interpolate(float frameLength)
+void CParticleManager::Interpolate(const float simFrameLength)
 {
-	m_CurrentTime += frameLength;
+	m_CurrentTime += simFrameLength;
 }
 
 struct EmitterHasNoParticles

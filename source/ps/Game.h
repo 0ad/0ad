@@ -56,7 +56,7 @@ class CGame
 	 **/
 	bool m_GameStarted;
 	/**
-	 * scale multiplier for simulation rate.
+	 * Timescale multiplier for simulation rate.
 	 **/
 	float m_SimRate;
 
@@ -76,12 +76,18 @@ public:
 	void StartGame(const CScriptValRooted& attribs, const std::string& savedState);
 	PSRETURN ReallyStartGame();
 
-	/*
-		Perform all per-frame updates
-	*/
-	bool Update(double deltaTime, bool doInterpolate = true);
+	/**
+	 * Periodic heartbeat that controls the process. performs all per-frame updates.
+	 * Simulation update is called and game status update is called.
+	 *
+	 * @param deltaRealTime Elapsed real time since last beat/frame, in seconds.
+	 * @param doInterpolate Perform graphics interpolation if true.
+	 * @return bool false if it can't keep up with the desired simulation rate
+	 *	indicating that you might want to render less frequently.
+	 */
+	bool Update(const double deltaRealTime, bool doInterpolate = true);
 
-	void Interpolate(float frameLength);
+	void Interpolate(float simFrameLength, float realFrameLength);
 
 	int GetPlayerID();
 	void SetPlayerID(int playerID);

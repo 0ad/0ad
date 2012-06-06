@@ -144,12 +144,12 @@ void CConsole::Trim(wchar_t* szMessage, const wchar_t cChar, size_t iSize)
 }
 
 
-void CConsole::Update(const float DeltaTime)
+void CConsole::Update(const float deltaRealTime)
 {
 	if(m_bToggle)
 	{
 		const float AnimateTime = .30f;
-		const float Delta = DeltaTime / AnimateTime;
+		const float Delta = deltaRealTime / AnimateTime;
 		if(m_bVisible)
 		{
 			m_fVisibleFrac += Delta;

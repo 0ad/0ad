@@ -438,7 +438,7 @@ public:
 			if (delta < 0) delta += 2*(float)M_PI; // range 0..2PI
 			delta -= (float)M_PI; // range -M_PI..M_PI
 			// Clamp to max rate
-			float deltaClamped = clamp(delta, -m_RotYSpeed*msgData.frameTime, +m_RotYSpeed*msgData.frameTime);
+			float deltaClamped = clamp(delta, -m_RotYSpeed*msgData.deltaSimTime, +m_RotYSpeed*msgData.deltaSimTime);
 			// Calculate new orientation, in a peculiar way in order to make sure the
 			// result gets close to m_orientation (rather than being n*2*M_PI out)
 			m_InterpolatedRotY = rotY + deltaClamped - delta;

@@ -34,7 +34,7 @@ struct GameLoopState
 	AtlasView* view; // current 'view' (controls updates, rendering, etc)
 
 	const void* glCanvas; // the wxGlCanvas to draw on
-	float frameLength; // smoothed to avoid large jumps
+	float realFrameLength; ///< Real-time duration of the last frame, in seconds. Smoothed to avoid large jumps (TODO).
 
 	struct Input
 	{

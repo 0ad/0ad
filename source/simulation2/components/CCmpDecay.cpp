@@ -157,7 +157,7 @@ public:
 				}
 			}
 
-			m_CurrentTime += msgData.frameTime;
+			m_CurrentTime += msgData.deltaSimTime;
 
 			if (m_CurrentTime > m_DelayTime)
 			{

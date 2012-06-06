@@ -31,11 +31,14 @@ class CSimulation2;
 class AtlasViewGame;
 class AtlasViewActor;
 
+/**
+ * Superclass for all Atlas game views.
+ */
 class AtlasView
 {
 public:
 	virtual ~AtlasView();
-	virtual void Update(float UNUSED(frameLength)) { };
+	virtual void Update(float UNUSED(realFrameLength)) { };
 	virtual void Render() { };
 	virtual void DrawOverlays() { };
 	virtual CCamera& GetCamera() = 0;
@@ -72,12 +75,15 @@ private:
 
 class SimState;
 
+/**
+ * Main editor/game view of Atlas. Editing the world/scenario and simulation testing happens here.
+ */
 class AtlasViewGame : public AtlasView
 {
 public:
 	AtlasViewGame();
 	virtual ~AtlasViewGame();
-	virtual void Update(float frameLength);
+	virtual void Update(float realFrameLength);
 	virtual void Render();
 	virtual void DrawOverlays();
 	virtual CCamera& GetCamera();
@@ -87,7 +93,7 @@ public:
 	virtual void SetParam(const std::wstring& name, bool value);
 	virtual void SetParam(const std::wstring& name, const std::wstring& value);
 
-	void SetSpeedMultiplier(float speed);
+	void SetSpeedMultiplier(float speedMultiplier);
 	void SaveState(const std::wstring& label);
 	void RestoreState(const std::wstring& label);
 	std::wstring DumpState(bool binary);
@@ -112,13 +118,17 @@ private:
 
 class ActorViewer;
 
+/**
+ * Actor Viewer window in Atlas. Dedicated view for examining a single actor/entity and its variations, 
+ * animations, etc. in more detail.
+ */
 class AtlasViewActor : public AtlasView
 {
 public:
 	AtlasViewActor();
 	~AtlasViewActor();
 
-	virtual void Update(float frameLength);
+	virtual void Update(float realFrameLength);
 	virtual void Render();
 	virtual CCamera& GetCamera();
 	virtual CSimulation2* GetSimulation2();
@@ -129,7 +139,7 @@ public:
 	virtual void SetParam(const std::wstring& name, int value);
 	virtual void SetParam(const std::wstring& name, const AtlasMessage::Colour& value);
 
-	void SetSpeedMultiplier(float speed);
+	void SetSpeedMultiplier(float speedMultiplier);
 	ActorViewer& GetActorViewer();
 
 private:

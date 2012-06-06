@@ -74,9 +74,9 @@ AtlasViewActor::~AtlasViewActor()
 	delete m_ActorViewer;
 }
 
-void AtlasViewActor::Update(float frameLength)
+void AtlasViewActor::Update(float realFrameLength)
 {
-	m_ActorViewer->Update(frameLength * m_SpeedMultiplier);
+	m_ActorViewer->Update(realFrameLength * m_SpeedMultiplier, realFrameLength);
 }
 
 void AtlasViewActor::Render()
@@ -114,9 +114,9 @@ bool AtlasViewActor::WantsHighFramerate()
 	return false;
 }
 
-void AtlasViewActor::SetSpeedMultiplier(float speed)
+void AtlasViewActor::SetSpeedMultiplier(float speedMultiplier)
 {
-	m_SpeedMultiplier = speed;
+	m_SpeedMultiplier = speedMultiplier;
 }
 
 ActorViewer& AtlasViewActor::GetActorViewer()
@@ -181,9 +181,9 @@ CSimulation2* AtlasViewGame::GetSimulation2()
 	return g_Game->GetSimulation2();
 }
 
-void AtlasViewGame::Update(float frameLength)
+void AtlasViewGame::Update(float realFrameLength)
 {
-	float actualFrameLength = frameLength * m_SpeedMultiplier;
+	const float actualFrameLength = realFrameLength * m_SpeedMultiplier;
 
 	// Clean up any entities destroyed during UI message processing
 	g_Game->GetSimulation2()->FlushDestroyedEntities();
@@ -191,14 +191,15 @@ void AtlasViewGame::Update(float frameLength)
 	if (m_SpeedMultiplier == 0.f)
 	{
 		// Update unit interpolation
-		g_Game->Interpolate(0.0);
+		g_Game->Interpolate(0.0, realFrameLength);
 
 		// Update particles even when the game is paused, so people can see
-		// what they look like. (TODO: maybe it'd be nice if this only applied in
+		// what they look like (i.e., use real time to simulate them).
+		// (TODO: maybe it'd be nice if this only applied in
 		// the not-testing-game editor state, not the testing-game-but-currently-paused
 		// state. Or maybe display a static snapshot of the particles (at some time
 		// later than 0 so they're actually visible) instead of animation, or something.)
-		g_Renderer.GetParticleManager().Interpolate(frameLength);
+		g_Renderer.GetParticleManager().Interpolate(realFrameLength);
 	}
 	else
 	{
@@ -220,13 +221,13 @@ void AtlasViewGame::Update(float frameLength)
 
 		// Interpolate the graphics - we only want to do this once per visual frame,
 		// not in every call to g_Game->Update
-		g_Game->Interpolate(actualFrameLength);
+		g_Game->Interpolate(actualFrameLength, realFrameLength);
 	}
 
 	// Cinematic motion should be independent of simulation update, so we can
 	// preview the cinematics by themselves
 	if (g_Game->GetView()->GetCinema()->IsPlaying())
-		g_Game->GetView()->GetCinema()->Update(frameLength);
+		g_Game->GetView()->GetCinema()->Update(realFrameLength);
 }
 
 void AtlasViewGame::Render()

@@ -509,20 +509,20 @@ void ActorViewer::Render()
 	ogl_WarnIfError();
 }
 
-void ActorViewer::Update(float dt)
+void ActorViewer::Update(float simFrameLength, float realFrameLength)
 {
-	m.Simulation2.Update((int)(dt*1000));
-	m.Simulation2.Interpolate(dt, 0);
-	g_Renderer.GetParticleManager().Interpolate(dt);
+	m.Simulation2.Update((int)(simFrameLength*1000));
+	m.Simulation2.Interpolate(simFrameLength, 0, realFrameLength);
+	g_Renderer.GetParticleManager().Interpolate(simFrameLength);
 
 	if (m.WalkEnabled && m.CurrentSpeed)
 	{
 		CmpPtr<ICmpPosition> cmpPosition(m.Simulation2, m.Entity);
 		if (cmpPosition)
 		{
-			// Move the model by speed*dt forwards
+			// Move the model by speed*simFrameLength forwards
 			float z = cmpPosition->GetPosition().Z.ToFloat();
-			z -= m.CurrentSpeed*dt;
+			z -= m.CurrentSpeed*simFrameLength;
 			// Wrap at the edges, so it doesn't run off into the horizon
 			ssize_t c = TERRAIN_TILE_SIZE * m.Terrain.GetPatchesPerSide()*PATCH_SIZE/2;
 			if (z < c - TERRAIN_TILE_SIZE*PATCH_SIZE * 0.1f)
