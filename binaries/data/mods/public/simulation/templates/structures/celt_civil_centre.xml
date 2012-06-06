@@ -18,6 +18,10 @@
       units/celt_infantry_javelinist_b
       units/celt_cavalry_javelinist_b
     </Entities>
+    <Technologies datatype="tokens">
+      -phase_city
+	  phase_city_pair_celts
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/celts/civic_centre.xml</Actor>
