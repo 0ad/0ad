@@ -229,14 +229,14 @@ function getActionInfo(action, target)
 		}
 		else if (targetState.resourceSupply)
 		{
-			var resourceType = targetState.resourceSupply.type.specific;
-			if (targetState.resourceSupply.type.generic === "treasure")
+			var resourceType = targetState.resourceSupply.type;
+			if (resourceType.generic == "treasure")
 			{
-				cursor = "action-gather-" + targetState.resourceSupply.type.generic;
+				cursor = "action-gather-" + resourceType.generic;
 			}
 			else
 			{
-				cursor = "action-gather-" + targetState.resourceSupply.type.specific;
+				cursor = "action-gather-" + resourceType.specific;
 			}
 			data.command = "gather";
 			data.resourceType = resourceType;
