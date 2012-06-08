@@ -57,12 +57,29 @@ struct Query
  * Convert an owner ID (-1 = unowned, 0 = gaia, 1..30 = players)
  * into a 32-bit mask for quick set-membership tests.
  */
-static u32 CalcOwnerMask(i32 owner)
+static u32 CalcOwnerMask(player_id_t owner)
 {
 	if (owner >= -1 && owner < 31)
 		return 1 << (1+owner);
 	else
 		return 0; // owner was invalid
+}
+
+/**
+ * Returns shared LOS mask for given list of players.
+ */
+static u32 CalcSharedLosMask(std::vector<player_id_t> players)
+{
+	u32 playerMask = 0;
+	player_id_t player;
+	for (size_t i = 0; i < players.size(); i++)
+	{
+		player = players[i];
+		if (player > 0 && player <= 16)
+			playerMask |= ICmpRangeManager::LOS_MASK << (2*(player-1));
+	}
+
+	return playerMask;
 }
 
 /**
@@ -212,6 +229,9 @@ public:
 	// (TODO: this is usually a waste of memory)
 	std::vector<u32> m_LosStateRevealed;
 
+	// Shared LOS masks, one per player.
+	std::map<player_id_t, u32> m_SharedLosMasks;
+
 	static std::string GetSchema()
 	{
 		return "<a:component type='system'/><empty/>";
@@ -233,6 +253,10 @@ public:
 		// The whole map should be visible to Gaia by default, else e.g. animals
 		// will get confused when trying to run from enemies
 		m_LosRevealAll[0] = true;
+
+		// This is not really an error condition, an entity recently created or destroyed
+		//	might have an owner of INVALID_PLAYER
+		m_SharedLosMasks[INVALID_PLAYER] = 0;
 
 		m_LosCircular = false;
 		m_TerrainVerticesPerSide = 0;
@@ -265,6 +289,8 @@ public:
 		// m_LosState must be serialized since it depends on the history of exploration
 
 		SerializeVector<SerializeU32_Unbounded>()(serialize, "los state", m_LosState);
+
+		SerializeMap<SerializeI32_Unbounded, SerializeU32_Unbounded>()(serialize, "shared los masks", m_SharedLosMasks);
 	}
 
 	virtual void Serialize(ISerializer& serialize)
@@ -910,9 +936,9 @@ public:
 	virtual CLosQuerier GetLosQuerier(player_id_t player)
 	{
 		if (GetLosRevealAll(player))
-			return CLosQuerier(player, m_LosStateRevealed, m_TerrainVerticesPerSide);
+			return CLosQuerier(GetSharedLosMask(player), m_LosStateRevealed, m_TerrainVerticesPerSide);
 		else
-			return CLosQuerier(player, m_LosState, m_TerrainVerticesPerSide);
+			return CLosQuerier(GetSharedLosMask(player), m_LosState, m_TerrainVerticesPerSide);
 	}
 
 	virtual ELosVisibility GetLosVisibility(entity_id_t ent, player_id_t player, bool forceRetainInFog)
@@ -939,8 +965,7 @@ public:
 		}
 
 		// Visible if within a visible region
-
-		CLosQuerier los(player, m_LosState, m_TerrainVerticesPerSide);
+		CLosQuerier los(GetSharedLosMask(player), m_LosState, m_TerrainVerticesPerSide);
 
 		if (los.IsVisible(i, j))
 			return VIS_VISIBLE;
@@ -989,6 +1014,19 @@ public:
 	virtual bool GetLosCircular()
 	{
 		return m_LosCircular;
+	}
+
+	virtual void SetSharedLos(player_id_t player, std::vector<player_id_t> players)
+	{
+		m_SharedLosMasks[player] = CalcSharedLosMask(players);
+	}
+
+	virtual u32 GetSharedLosMask(player_id_t player)
+	{
+		std::map<player_id_t, u32>::const_iterator it = m_SharedLosMasks.find(player);
+		ENSURE(it != m_SharedLosMasks.end());
+
+		return m_SharedLosMasks[player];
 	}
 
 	void UpdateTerritoriesLos()

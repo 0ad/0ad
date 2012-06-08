@@ -185,13 +185,10 @@ public:
 		friend class CCmpRangeManager;
 		friend class TestLOSTexture;
 
-		CLosQuerier(player_id_t player, const std::vector<u32>& data, ssize_t verticesPerSide) :
+		CLosQuerier(u32 playerMask, const std::vector<u32>& data, ssize_t verticesPerSide) :
 			m_Data(&data[0]), m_VerticesPerSide(verticesPerSide)
 		{
-			if (player > 0 && player <= 16)
-				m_PlayerMask = LOS_MASK << (2*(player-1));
-			else
-				m_PlayerMask = 0;
+			m_PlayerMask = playerMask;
 		}
 
 		const CLosQuerier& operator=(const CLosQuerier&); // not implemented
@@ -266,7 +263,8 @@ public:
 	};
 
 	/**
-	 * Returns a CLosQuerier for checking whether vertex positions are visible to the given player.
+	 * Returns a CLosQuerier for checking whether vertex positions are visible to the given player
+	 *	(or other players it shares LOS with).
 	 */
 	virtual CLosQuerier GetLosQuerier(player_id_t player) = 0;
 
@@ -306,6 +304,16 @@ public:
 	 * Returns whether the LOS is restricted to a circular map.
 	 */
 	virtual bool GetLosCircular() = 0;
+
+	/**
+	 * Sets shared LOS data for player to the given list of players.
+	 */
+	virtual void SetSharedLos(player_id_t player, std::vector<player_id_t> players) = 0;
+
+	/**
+	 * Returns shared LOS mask for player.
+	 */
+	virtual u32 GetSharedLosMask(player_id_t player) = 0;
 
 	/**
 	 * Get percent map explored statistics for specified player.

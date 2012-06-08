@@ -511,7 +511,7 @@ var UnitFsmSpec = {
 		"Order.GatherNearPosition": function(msg) {
 			// TODO: see notes in Order.Attack
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			cmpFormation.CallMemberFunction("GatherNearPosition", [msg.data.x, msg.data.z, msg.data.type, false]);
+			cmpFormation.CallMemberFunction("GatherNearPosition", [msg.data.x, msg.data.z, msg.data.type, msg.data.template, false]);
 			cmpFormation.Disband();
 		},
 
@@ -946,8 +946,9 @@ var UnitFsmSpec = {
 						var nearby = this.FindNearbyResource(function (ent, type, template) {
 							return (
 								ent != oldTarget
-								&& type.specific == oldType.specific
-								&& (type.specific != "meat" || oldTemplate == template)
+								&& ((type.generic == "treasure" && oldType.generic == "treasure")
+								|| (type.specific == oldType.specific
+								&& (type.specific != "meat" || oldTemplate == template)))
 							);
 						});
 						if (nearby)
@@ -981,8 +982,9 @@ var UnitFsmSpec = {
 					// Also don't switch to a different type of huntable animal
 					var nearby = this.FindNearbyResource(function (ent, type, template) {
 						return (
-							type.specific == resourceType
-							&& (type.specific != "meat" || resourceTemplate == template)
+							(type.generic == "treasure" && resourceType.generic == "treasure")
+							|| (type.specific == resourceType.specific
+							&& (type.specific != "meat" || resourceTemplate == template))
 						);
 					});
 
@@ -1130,8 +1132,9 @@ var UnitFsmSpec = {
 					// Also don't switch to a different type of huntable animal
 					var nearby = this.FindNearbyResource(function (ent, type, template) {
 						return (
-							type.specific == resourceType.specific
-							&& (type.specific != "meat" || resourceTemplate == template)
+							(type.generic == "treasure" && resourceType.generic == "treasure")
+							|| (type.specific == resourceType.specific
+							&& (type.specific != "meat" || resourceTemplate == template))
 						);
 					});
 					if (nearby)

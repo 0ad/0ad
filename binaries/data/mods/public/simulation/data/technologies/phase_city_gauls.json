@@ -1,0 +1,12 @@
+{
+	"genericName": "City Phase - Gauls",
+	"description": "Advance from a bustling town to large city.",
+	"cost": {"food": 0, "wood": 0, "stone": 1000, "metal": 1000},
+	"requirements": { "class": "Town", "number": 4 },
+	"requirementsTooltip": "Requires 4 town structures of any type. Walls and Civ Centres do not count.",
+	"icon": "city_phase.png",
+	"researchTime": 60,
+	"tooltip": "Advance to City Phase, which unlocks Gallic structures and units. Territory radius for Civilisation Centres increased by another +25%",
+	"modifications": [{"value": "TerritoryInfluence/Radius", "multiplier": 1.25}],
+	"affects": ["CivCentre"]
+}
