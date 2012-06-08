@@ -186,9 +186,8 @@ public:
 		friend class TestLOSTexture;
 
 		CLosQuerier(u32 playerMask, const std::vector<u32>& data, ssize_t verticesPerSide) :
-			m_Data(&data[0]), m_VerticesPerSide(verticesPerSide)
+			m_Data(&data[0]), m_PlayerMask(playerMask), m_VerticesPerSide(verticesPerSide)
 		{
-			m_PlayerMask = playerMask;
 		}
 
 		const CLosQuerier& operator=(const CLosQuerier&); // not implemented
