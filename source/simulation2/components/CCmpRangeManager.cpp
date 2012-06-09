@@ -66,18 +66,23 @@ static u32 CalcOwnerMask(player_id_t owner)
 }
 
 /**
+ * Returns LOS mask for given player.
+ */
+static u32 CalcPlayerLosMask(player_id_t player)
+{
+	if (player > 0 && player <= 16)
+		return ICmpRangeManager::LOS_MASK << (2*(player-1));
+	return 0;
+}
+
+/**
  * Returns shared LOS mask for given list of players.
  */
 static u32 CalcSharedLosMask(std::vector<player_id_t> players)
 {
 	u32 playerMask = 0;
-	player_id_t player;
 	for (size_t i = 0; i < players.size(); i++)
-	{
-		player = players[i];
-		if (player > 0 && player <= 16)
-			playerMask |= ICmpRangeManager::LOS_MASK << (2*(player-1));
-	}
+		playerMask |= CalcPlayerLosMask(players[i]);
 
 	return playerMask;
 }
@@ -1399,7 +1404,7 @@ public:
 	{
 		i32 exploredVertices = 0;
 		i32 overallVisibleVertices = 0;
-		CLosQuerier los(player, m_LosState, m_TerrainVerticesPerSide);
+		CLosQuerier los(CalcPlayerLosMask(player), m_LosState, m_TerrainVerticesPerSide);
 
 		for (i32 j = 0; j < m_TerrainVerticesPerSide; j++)
 		{
