@@ -1,0 +1,117 @@
+{
+	"Code": "gaul",
+	"Name": "Gauls",
+	"Emblem": "session/portraits/emblems/emblem_celts.png",
+	"History": "The Celts of the British Isles.",
+	"Music":[
+			{"File":"The_Road_Ahead.ogg", "Type":"peace"},
+			{"File":"celtic_peace_1.ogg", "Type":"peace"}
+		],
+	"Factions":
+	[
+		{
+			"Name": "Gauls",
+			"Description": "The Celts of mainland Europe.",
+			"Technologies":
+			[
+				{
+					"Name": "Uae Uictos",
+					"History": "Means Woe to the Defeated  It was the words that the Gallic Leader, Brennos, spoke at the Capitol at Rome after they took their plunder.",
+					"Description": "A set amount of ore and food from every structure destroyed or captured " 
+				},
+				{
+					"Name": "Carnutes",
+					"History": "The Carnutes were druids from Aulercia. They fought when needed, and were largely responsible for turning back the Belgae incursions into Armorica and Aulercia.",
+					"Description": "Gallic druids gain a small melee attack." 
+				} 
+			],
+			"Heroes":
+			[
+				{
+					"Name": "Britomartos",
+					"Class": "",
+					"Armament": "",
+					"Emblem": "",
+					"History": "The story of how Marcus Claudius Marcellus killed a Gallic leader at Clastidium (222 B.C.) is typical of such encounters. Advancing with a smallish army, Marcellus met a combined force of Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with the usual rush and terrifying cries, and their king, Britomartos, picking out Marcellus by means of his badges of rank, made for him, shouting a challenge and brandishing his spear. Britomartos was an outstanding figure not only for his size but also for his adornments; for he was resplendent in bright colours and his armour shone with gold and silver. This armour, thought Marcellus, would be a fitting offering to the gods. He charged the Gaul, pierced his bright breastplate and cast him to the ground. It was an easy task to kill Britomartos and strip him of his armour." 
+				},
+				{
+					"Name": "Brennos",
+					"Class": "",
+					"Armament": "",
+					"Emblem": "",
+					"History": "Brennus is the name which the Roman historians give to the famous leader of the Gauls who took Rome in the time of Camillus. According to Geoffrey, the brothers invaded Gaul and sacked Rome in 390 B.C., 'proving' that Britons had conquered Rome, the greatest civilization in the world, long before Rome conquered the Britons. We know from many ancient sources which predate Geoffrey that Rome was indeed sacked, but in 387 not 390, and that the raid was led by a man named Brennos (which was latinized to Brennus), but he and his invading horde were Gallic Senones, not British. In this episode several features of Geoffrey's editing method can be seen: he modified the historical Brennus/Brennos, created the brother Belinus, borrowed the Gallic invasion, but omitted the parts where the Celts seemed weak or foolish. His technique is both additive and subtractive. Like the tale of Trojan origin, the story of the sack of Rome is not pure fabrication; it is a creative rearrangement of the available facts, with details added as necessary. By virtue of their historical association, Beli and Bran are often muddled with the earlier brothers Belinus and Brennus (the sons of Porrex) who contended for power in northern Britain in around 390 B.C., and were regarded as gods in old Celtic tradition." 
+				},
+				{
+					"Name": "Uerkingetorix",
+					"Class": "",
+					"Armament": "",
+					"Emblem": "",
+					"History": "Vercingetorix (Gaulish: Ver-Rix Cingetos) was the chieftain of the Arverni tribe in Gaul (modern France). Starting in 52 B.C. he led a revolt against the invading Romans under Julius Caesar, his actions during the revolt are remembered to this day. Vercingetorix was probably born near his tribes capital (Gergovia). From what little info we have Vercingetorix was probably born in 72 B.C., his father was Celtius and we dont know who his mother was. Because we only know of him from Roman sources we dont know much about Vercingetorix as a child or young man, except that perhaps he was probably very high spirited and probably gained some renown in deeds." 
+				} 
+			] 
+		} 
+	],
+	"CivBonuses":
+	[
+		{
+			"Name": "Ardiosmanae",
+			"History": "Represents Celtic farming methods. ",
+			"Description": "Enhanced food gained from ranching and farming. " 
+		},
+		{
+			"Name": "Deas Celtica",
+			"History": "Celtic religion and druidry inspired their warlike mindset. ",
+			"Description": "Druids increase attack rates of soldiers near them slightly." 
+		} 
+	],
+	"TeamBonuses":
+	[
+		{
+			"Name": "Druides",
+			"History": "The Druids of the Celts maintained an organized religion that advanced the technology of their people even during wartime.",
+			"Description": "Bonus to tech speed." 
+		} 
+	],
+	"Structures":
+	[
+		{
+			"Name": "Melonas",
+			"Class": "",
+			"Emblem": "",
+			"History": "The Celts developed the first rotary flour mill.",
+			"Requirements": "",
+			"Phase": "",
+			"Special": "" 
+		} 
+	],
+	"StartEntities":
+	[
+		{
+			"Template": "structures/gaul_civil_centre" 
+		},
+		{
+			"Template": "units/gaul_support_female_citizen",
+			"Count": 4
+		},
+		{
+			"Template": "units/gaul_infantry_spearman_b",
+			"Count": 4 
+		},
+		{
+			"Template": "units/gaul_cavalry_swordsman_b" 
+		}
+	],
+	"Formations":
+	[
+		"Scatter",
+		"Box",
+		"Column Closed",
+		"Line Closed",
+		"Column Open",
+		"Line Open",
+		"Flank",
+		"Skirmish",
+		"Wedge",
+		"Battle Line"
+	]
+}
