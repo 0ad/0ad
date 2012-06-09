@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_civil_centre">
-  <Footprint replace="">
-    <Circle radius="15.0"/>
+  <Footprint>
+    <Square width="28.0" depth="28.0"/>
     <Height>8.0</Height>
   </Footprint>
   <Identity>
-    <Civ>brit</Civ>
+    <Civ>gaul</Civ>
     <SpecificName>Caer</SpecificName>
     <History>This was be the centre of the town, a great hall where the clan leader resided. All political matters were probably performed inside such a structure.</History>
   </Identity>
@@ -14,13 +14,12 @@
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/brit_infantry_spearman_b
-      units/brit_infantry_javelinist_b
-      units/brit_cavalry_javelinist_b
+      units/gaul_infantry_spearman_b
+      units/gaul_infantry_javelinist_b
+      units/gaul_cavalry_javelinist_b
     </Entities>
   </ProductionQueue>
   <VisualActor>
-    <Actor>structures/celts/homestead.xml</Actor>
-    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+    <Actor>structures/celts/civic_centre.xml</Actor>
   </VisualActor>
 </Entity>

@@ -4,7 +4,7 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>cloudless</SkySet>
-		<SunColour r="0.870588" g="0.839216" b="0.631373"/>
+		<SunColour r="0.866667" g="0.839216" b="0.631373"/>
 		<SunElevation angle="0.714084"/>
 		<SunRotation angle="0.371709"/>
 		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="915.133" y="84.4292" z="818.898"/>
+		<Position x="583.781" y="132.328" z="269.503"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -1011,7 +1011,7 @@
 		<Entity uid="169">
 			<Template>gaia/fauna_fish</Template>
 			<Player>0</Player>
-			<Position x="811.70118" z="574.10621"/>
+			<Position x="811.49573" z="574.39765"/>
 			<Orientation y="1.2118"/>
 		</Entity>
 		<Entity uid="170">
@@ -1463,12 +1463,6 @@
 			<Player>0</Player>
 			<Position x="391.01816" z="282.18903"/>
 			<Orientation y="0.996"/>
-		</Entity>
-		<Entity uid="245">
-			<Template>gaia/fauna_whale_humpback</Template>
-			<Player>0</Player>
-			<Position x="452.48053" z="121.21605"/>
-			<Orientation y="0.36405"/>
 		</Entity>
 		<Entity uid="246">
 			<Template>gaia/fauna_deer</Template>
@@ -3154,7 +3148,7 @@
 		<Entity uid="538">
 			<Template>other/special_treasure_shipwreck</Template>
 			<Player>0</Player>
-			<Position x="696.29236" z="621.4303"/>
+			<Position x="698.6084" z="622.88563"/>
 			<Orientation y="-1.78156"/>
 		</Entity>
 		<Entity uid="539">
@@ -5098,7 +5092,7 @@
 		<Entity uid="870">
 			<Template>gaia/geology_metal_mediterranean_slabs</Template>
 			<Player>0</Player>
-			<Position x="660.73578" z="1103.474"/>
+			<Position x="660.9972" z="1103.33582"/>
 			<Orientation y="-2.26371"/>
 		</Entity>
 		<Entity uid="871">
@@ -5414,18 +5408,6 @@
 			<Template>actor|props/units/heads/prop_skull.xml</Template>
 			<Position x="669.83973" z="1077.55567"/>
 			<Orientation y="-2.10714"/>
-		</Entity>
-		<Entity uid="926">
-			<Template>gaia/fauna_whale_humpback</Template>
-			<Player>0</Player>
-			<Position x="788.33796" z="602.10883"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="927">
-			<Template>gaia/fauna_whale_humpback</Template>
-			<Player>0</Player>
-			<Position x="576.79761" z="1187.05445"/>
-			<Orientation y="-2.74106"/>
 		</Entity>
 		<Entity uid="928">
 			<Template>units/hele_support_female_citizen</Template>
@@ -9379,6 +9361,40 @@
 			<Template>actor|props/flora/grass_soft_dry_small.xml</Template>
 			<Position x="617.34681" z="660.78882"/>
 			<Orientation y="-1.67542"/>
+		</Entity>
+		<Entity uid="1715">
+			<Template>actor|fauna/shark.xml</Template>
+			<Position x="771.80945" z="668.1059"/>
+			<Orientation y="-2.06681"/>
+		</Entity>
+		<Entity uid="1716">
+			<Template>actor|fauna/shark.xml</Template>
+			<Position x="878.05738" z="570.18232"/>
+			<Orientation y="0.77628"/>
+		</Entity>
+		<Entity uid="1717">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="1142.85987" z="902.4112"/>
+			<Orientation y="-2.0185"/>
+		</Entity>
+		<Entity uid="1718">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="439.53513" z="124.57805"/>
+			<Orientation y="0.3989"/>
+		</Entity>
+		<Entity uid="1719">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="560.25361" z="1186.995"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1720">
+			<Template>gaia/fauna_whale_fin</Template>
+			<Player>0</Player>
+			<Position x="1008.61854" z="197.78225"/>
+			<Orientation y="0.57175"/>
 		</Entity>
 	</Entities>
 	<Paths/>
