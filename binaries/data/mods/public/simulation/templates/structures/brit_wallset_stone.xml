@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defense_wallset">
+  <Identity>
+    <Civ>brit</Civ>
+    <SpecificName>Gwarchglawdd</SpecificName>
+    <History>The Romans called this wall 'Murus Gallicus'. Translated, it means 'Gaulish wall'. It was extremely resistant to assault by battering ram. Julius Caesar described a type of wood and stone wall, known as a Murus Gallicus, in his account of the Gallic Wars. These walls were made of a stone wall filled with rubble, with wooden logs inside for stability. Caesar noted how the flexibility of the wood added to the strength of the fort in case of battering ram attack.</History>
+  </Identity>
+  <WallSet>
+    <Templates>
+      <Tower>structures/brit_wall_tower</Tower>
+      <Gate>structures/brit_wall_gate</Gate>
+      <WallLong>structures/brit_wall_long</WallLong>
+      <WallMedium>structures/brit_wall_medium</WallMedium>
+      <WallShort>structures/brit_wall_short</WallShort>
+    </Templates>
+    <MaxTowerOverlap>0.80</MaxTowerOverlap>
+    <MinTowerOverlap>0.05</MinTowerOverlap>
+  </WallSet>
+</Entity>

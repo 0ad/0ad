@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defense_outpost">
+  <Identity>
+    <Civ>brit</Civ>
+    <SpecificName>Brythonic Outpost</SpecificName>
+    <History>*I could not find any evidence of a celtic tower, but I'm giving them one for gameplay reasons.*</History>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/celts/outpost.xml</Actor>
+  </VisualActor>
+</Entity>

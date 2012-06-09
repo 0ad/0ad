@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/brit_support_healer_a">
+  <Heal>
+    <Range>20</Range>
+    <HP>10</HP>
+  </Heal>
+  <Health>
+    <Max>105</Max>
+  </Health>
+  <Identity>
+    <Rank>Elite</Rank>
+  </Identity>
+  <Promotion disable=""/>
+</Entity>
