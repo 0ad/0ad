@@ -140,17 +140,7 @@ function displaySingle(entState, template)
 
 	// Set Player details
 	getGUIObjectByName("specific").caption = specificName;
-	
-	
-	if ("gaia" == playerState.civ)
-	{
-	    getGUIObjectByName("generic").caption = "";
-	}
-	else
-	{
-	    getGUIObjectByName("generic").caption = genericName;
-	}
-	
+	getGUIObjectByName("generic").caption = genericName;
 	getGUIObjectByName("player").caption = playerName;
 	getGUIObjectByName("playerColorBackground").sprite = "colour: " + playerColor;
 	getGUIObjectByName("player").tooltip = civName;

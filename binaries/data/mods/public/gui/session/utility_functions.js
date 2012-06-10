@@ -119,7 +119,6 @@ function hasClass(entState, className)
 	return false;
 }
 
-
 // For the unit details panel
 function damageValues(dmg)
 {
