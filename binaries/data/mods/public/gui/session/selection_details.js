@@ -16,12 +16,12 @@ function displaySingle(entState, template)
 	// Get general unit and player data
 	var specificName = template.name.specific;
 	var genericName = template.name.generic != template.name.specific? template.name.generic : "";
+	var playerState = g_Players[entState.player];
 
-	var civName = g_CivData[g_Players[entState.player].civ].Name;
+	var civName = g_CivData[playerState.civ].Name;
 
-	var playerName = g_Players[entState.player].name;
-	var playerColor = g_Players[entState.player].color.r + " " + g_Players[entState.player].color.g + " " +
-								g_Players[entState.player].color.b+ " " + g_Players[entState.player].color.a;
+	var playerName = playerState.name;
+	var playerColor = playerState.color.r + " " + playerState.color.g + " " + playerState.color.b + " 128";
 
 	// Indicate disconnected players by prefixing their name
 	if (g_Players[entState.player].offline)
@@ -40,31 +40,26 @@ function displaySingle(entState, template)
 		healthSize.rright = 100*Math.max(0, Math.min(1, entState.hitpoints / entState.maxHitpoints));
 		unitHealthBar.size = healthSize;
 
-		var hitpoints = entState.hitpoints + " / " + entState.maxHitpoints;
-		getGUIObjectByName("healthText").caption = hitpoints;
-		getGUIObjectByName("health").hidden = false;
+		var hitpoints = entState.hitpoints + "/" + entState.maxHitpoints;
+		getGUIObjectByName("healthStats").caption = hitpoints;
+		getGUIObjectByName("healthSection").hidden = false;
 	}
 	else
 	{
-		getGUIObjectByName("health").hidden = true;
+		getGUIObjectByName("healthSection").hidden = true;
 	}
 	
 	// TODO: Stamina
-	// getGUIObjectByName("staminaBar");
 	var player = Engine.GetPlayerID();
-	if (entState.player == player || g_DevSettings.controlAll)
+	if (entState.stamina && (entState.player == player || g_DevSettings.controlAll))
 	{
-		//if (entState.stamina !== undefined)
-			getGUIObjectByName("stamina").hidden = false;
-		//else
-		//	getGUIObjectByName("stamina").hidden = true;
+		getGUIObjectByName("staminaSection").hidden = false;
 	}
 	else
 	{
-		getGUIObjectByName("stamina").hidden = true;
+		getGUIObjectByName("staminaSection").hidden = true;
 	}
 
-	
 	// Experience
 	if (entState.promotion)
 	{
@@ -87,7 +82,7 @@ function displaySingle(entState, template)
 	// Resource stats
 	if (entState.resourceSupply)
 	{
-		var resources = Math.ceil(+entState.resourceSupply.amount) + " / " + entState.resourceSupply.max;
+		var resources = Math.ceil(+entState.resourceSupply.amount) + "/" + entState.resourceSupply.max;
 		var resourceType = entState.resourceSupply.type["generic"];
 		if (resourceType == "treasure")
 			resourceType = entState.resourceSupply.type["specific"];
@@ -97,22 +92,19 @@ function displaySingle(entState, template)
 
 		resourceSize.rright = 100 * Math.max(0, Math.min(1, +entState.resourceSupply.amount / +entState.resourceSupply.max));
 		unitResourceBar.size = resourceSize;
+		getGUIObjectByName("resourceLabel").caption = toTitleCase(resourceType) + ":";
+		getGUIObjectByName("resourceStats").caption = resources;
 
-		var unitResources = getGUIObjectByName("resources");
-		unitResources.tooltip = resourceType;
-
-		getGUIObjectByName("resourceText").caption = resources;
-
-		if (!entState.hitpoints)
-			unitResources.size = getGUIObjectByName("health").size;
+		if (entState.hitpoints)
+			getGUIObjectByName("resourceSection").size = getGUIObjectByName("staminaSection").size;
 		else
-			unitResources.size = getGUIObjectByName("stamina").size;
+			getGUIObjectByName("resourceSection").size = getGUIObjectByName("healthSection").size;
 
-		getGUIObjectByName("resources").hidden = false;
+		getGUIObjectByName("resourceSection").hidden = false;
 	}
 	else
 	{
-		getGUIObjectByName("resources").hidden = true;
+		getGUIObjectByName("resourceSection").hidden = true;
 	}
 
 	// Resource carrying
@@ -142,10 +134,10 @@ function displaySingle(entState, template)
 
 	// Set Player details
 	getGUIObjectByName("specific").caption = specificName;
-	getGUIObjectByName("specific").tooltip = genericName;
+	getGUIObjectByName("generic").caption = genericName;
 	getGUIObjectByName("player").caption = playerName;
-	getGUIObjectByName("player").textcolor = playerColor;
-	getGUIObjectByName("player").tooltip = civName;
+	getGUIObjectByName("playerColorBackground").sprite = "colour: " + playerColor;
+	getGUIObjectByName("playerColorBackground").tooltip = civName;
 
 	// TODO: Set this to the current player, not the selected unit's player
 	//getGUIObjectByName("civIcon").tooltip = civName;
@@ -161,17 +153,9 @@ function displaySingle(entState, template)
 		getGUIObjectByName("icon").sprite = "bkFillBlack";
 	}
 
-	// Attack
-	var attackValues = damageValues(entState.attack);
-	getGUIObjectByName("attackHack").caption = attackValues[0];
-	getGUIObjectByName("attackPierce").caption = attackValues[1];
-	getGUIObjectByName("attackCrush").caption = attackValues[2];
-
-	// Armor
-	var armorValues = damageValues(entState.armour);
-	getGUIObjectByName("armorHack").caption = armorValues[0];
-	getGUIObjectByName("armorPierce").caption = armorValues[1];
-	getGUIObjectByName("armorCrush").caption = armorValues[2];
+	// Attack and Armor
+	getGUIObjectByName("attackStats").caption = damageTypeDetails(entState.attack);
+	getGUIObjectByName("armorStats").caption = damageTypeDetails(entState.armour);
 
 	// Icon Tooltip
 	var iconTooltip = "";
@@ -183,6 +167,7 @@ function displaySingle(entState, template)
 		iconTooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
 
 	getGUIObjectByName("iconBorder").tooltip = iconTooltip;
+	getGUIObjectByName("iconBorderPlayerColor").sprite = "colour: " + playerColor;
 
 	// Unhide Details Area
 	getGUIObjectByName("detailsAreaSingle").hidden = false;

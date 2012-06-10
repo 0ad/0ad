@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -42,7 +42,10 @@ public:
 		};
 		std::vector<u32> inputDataVec(inputData, inputData+size*size);
 
-		ICmpRangeManager::CLosQuerier los(1, inputDataVec, size);
+		// LOS_MASK should be cmpRanageManager->GetSharedLosMask(1),
+		// but that would mean adding a huge mock component for this and it
+		// should always be LOS_MASK for player 1 (as the other players are bit-shifted).
+		ICmpRangeManager::CLosQuerier los(ICmpRangeManager::LOS_MASK, inputDataVec, size);
 
 		std::vector<u8> losData;
 		losData.resize(tex.GetBitmapSize(size, size));
@@ -64,7 +67,10 @@ public:
 		std::vector<u32> inputDataVec;
 		inputDataVec.resize(size*size);
 
-		ICmpRangeManager::CLosQuerier los(1, inputDataVec, size);
+		// LOS_MASK should be cmpRanageManager->GetSharedLosMask(1),
+		// but that would mean adding a huge mock component for this and it
+		// should always be LOS_MASK for player 1 (as the other players are bit-shifted).
+		ICmpRangeManager::CLosQuerier los(ICmpRangeManager::LOS_MASK, inputDataVec, size);
 
 		size_t reps = 128;
 		double t = timer_Time();

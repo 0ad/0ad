@@ -490,12 +490,8 @@ for (var i = 0; i < types.length; ++i)
 
 // Set environment
 setSkySet("sunny");
-setSunColour(0.917, 0.828, 0.734);	
-setWaterColour(0.292, 0.347, 0.691);		
+setSunColour(0.917, 0.828, 0.734);
+setWaterColour(0.292, 0.347, 0.691);
 
 // Export map data
 ExportMap();
-
-// Export map data
-ExportMap();
-

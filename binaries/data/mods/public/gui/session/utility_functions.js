@@ -8,12 +8,29 @@ const COST_DISPLAY_NAMES = {
 	"wood": "Wood",
 	"stone": "Stone",
 	"metal": "Metal",
-	"population": "Population",
+	"population": "Population"
 };
 
 //-------------------------------- -------------------------------- --------------------------------
 // Utility functions
 //-------------------------------- -------------------------------- --------------------------------
+
+function toTitleCase(word)
+{
+    if (word.length > 0)
+    {
+	var titleCased = word.substring(0, 1).toUpperCase();
+	
+	if (word.length > 1)
+	{
+	    titleCased += word.substring(1).toLowerCase();
+	}
+	
+	return titleCased;
+    }
+
+    return word;
+}
 
 // Get the basic player data
 function getPlayerData(playerAssignments)
@@ -102,7 +119,6 @@ function hasClass(entState, className)
 	return false;
 }
 
-
 // For the unit details panel
 function damageValues(dmg)
 {
@@ -122,11 +138,21 @@ function damageValues(dmg)
 }
 
 // For the unit details panel
-function damageTypesToTextStacked(dmg)
+function damageTypeDetails(dmg)
 {
-	if (!dmg)
-		return "(None)";
-	return dmg.hack + " Hack\n" + dmg.pierce + " Pierce\n" + dmg.crush + " Crush";
+	if (dmg)
+	{
+	    var dmgArray = [];
+	    if (dmg.hack) dmgArray.push(dmg.hack + "[font=\"sans-10\"][color=\"orange\"]H[/color][/font]");
+	    if (dmg.pierce) dmgArray.push(dmg.pierce + "[font=\"sans-10\"][color=\"orange\"]P[/color][/font]");
+	    if (dmg.crush) dmgArray.push(dmg.crush + "[font=\"sans-10\"][color=\"orange\"]C[/color][/font]");
+	    
+	    return dmgArray.join("[font=\"serif-12\"], [/font]");
+	}
+	else
+	{
+	    return "[font=\"serif-12\"](None)[/font]";
+	}
 }
 
 // For the training tooltip

@@ -148,17 +148,22 @@ function EntitySelection()
 EntitySelection.prototype.makePrimarySelection = function(templateName, modifierKey)
 {
 	var selection = this.toList();
-	var ent;
+	
+	
+	
+// This doesn't seem to do anything
 
-	// Find an ent of a unit of the same type
-	for (var i = 0; i < selection.length; i++)
-	{
-		var entState = GetEntityState(selection[i]);
-		if (!entState)
-			continue;
-		if (entState.template == templateName)
-			ent = selection[i];
-	}
+//	var ent;
+//
+//	// Find an ent of a unit of the same type
+//	for (var i = 0; i < selection.length; i++)
+//	{
+//		var entState = GetEntityState(selection[i]);
+//		if (!entState)
+//			continue;
+//		if (entState.template == templateName)
+//			ent = selection[i];
+//	}
 
 	var template = GetTemplateData(templateName);
 	var key = template.selectionGroupName || templateName;
