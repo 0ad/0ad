@@ -88,23 +88,22 @@ function displaySingle(entState, template)
 	if (entState.resourceSupply)
 	{
 		var resources = Math.ceil(+entState.resourceSupply.amount) + "/" + entState.resourceSupply.max;
-		var resourceType = (resourceType == "treasure")? entState.resourceSupply.type["specific"]
-								: entState.resourceSupply.type["generic"];
+		var resourceType = entState.resourceSupply.type["generic"];
+		if (resourceType == "treasure")
+			resourceType = entState.resourceSupply.type["specific"];
 
 		var unitResourceBar = getGUIObjectByName("resourceBar");
 		var resourceSize = unitResourceBar.size;
 
 		resourceSize.rright = 100 * Math.max(0, Math.min(1, +entState.resourceSupply.amount / +entState.resourceSupply.max));
 		unitResourceBar.size = resourceSize;
-
-		var unitResources = getGUIObjectByName("resources");
-		unitResources.tooltip = resourceType;
-
 		getGUIObjectByName("resourceLabel").caption = toTitleCase(resourceType) + ":";
 		getGUIObjectByName("resourceStats").caption = resources;
 
-		getGUIObjectByName("resourceSection").size = (!entState.hitpoints)? getGUIObjectByName("healthSection").size 
-										    : getGUIObjectByName("staminaSection").size;
+		if (entState.hitpoints)
+			getGUIObjectByName("resourceSection").size = getGUIObjectByName("staminaSection").size;
+		else
+			getGUIObjectByName("resourceSection").size = getGUIObjectByName("healthSection").size;
 
 		getGUIObjectByName("resourceSection").hidden = false;
 	}
@@ -143,7 +142,7 @@ function displaySingle(entState, template)
 	getGUIObjectByName("generic").caption = genericName;
 	getGUIObjectByName("player").caption = playerName;
 	getGUIObjectByName("playerColorBackground").sprite = "colour: " + playerColor;
-	getGUIObjectByName("player").tooltip = civName;
+	getGUIObjectByName("playerColorBackground").tooltip = civName;
 
 	// TODO: Set this to the current player, not the selected unit's player
 	//getGUIObjectByName("civIcon").tooltip = civName;

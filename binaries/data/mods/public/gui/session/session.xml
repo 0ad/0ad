@@ -691,15 +691,15 @@
 			<object size="100%-32 0 100%+4 36" type="image" name="resourceCarryingIcon"/>
 			
 			<!-- Specific Name -->
-			<object size="0 0 100% 36" name="specific" type="text" style="SecondaryLabelTextLeft" tooltip_style="sessionToolTipBold"/>
+			<object size="0 0 100% 36" name="specific" type="text" style="SecondaryLabelTextLeft"/>
 			
 			<!-- Generic Name -->
 			<object size="0 100%-46 100% 100%-26"  type="image" sprite="detailsShader" ghost="true"/>
-			<object size="0 100%-48 100% 100%-26" name="generic" type="text" style="StatsLabelTextLeft" tooltip_style="sessionToolTipBold"/>
+			<object size="0 100%-48 100% 100%-26" name="generic" type="text" style="StatsLabelTextLeft"/>
 			
 			<!-- Player Name -->
-			<object size="2 100%-26 100%-1 100%" name="playerColorBackground" type="image" sprite="playerColorBackground">
-			    <object size="0 0 100% 100%" name="player" type="text" style="PrimaryLabelTextCentered" tooltip_style="sessionToolTipBold"/>
+			<object size="2 100%-26 100%-1 100%" name="playerColorBackground" type="image" sprite="playerColorBackground" tooltip_style="sessionToolTip">
+			    <object size="0 0 100% 100%" name="player" type="text" style="PrimaryLabelTextCentered"/>
 			</object>
 		    </object>
 		    
