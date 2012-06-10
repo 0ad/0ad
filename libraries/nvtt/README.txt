@@ -6,6 +6,7 @@ plus some patches:
   r907.patch and r1025.patch (from NVTT SVN - fixes build on FreeBSD)
   rpath.patch (fixes .so file search paths for bundled copy)
   issue139.patch (fixes http://code.google.com/p/nvidia-texture-tools/issues/detail?id=139)
+  issue176.patch (partially from http:/code.google.com/p/nvidia-texture-tools/issues/detail?id=176 - fixes build on OpenBSD)
   png-api.patch (partially from NVTT SVN r1248 - fixes build with libpng 1.5)
   cmake-freebsd.patch (fixes build on FreeBSD)
   gcc47-unistd.patch (fixes build on GCC 4.7)

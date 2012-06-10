@@ -298,6 +298,11 @@ Metrowerks:
 #  define POSH_OS_STRING "FreeBSD"
 #endif
 
+#if defined __OpenBSD__
+#  define POSH_OS_OPENBSD 1
+#  define POSH_OS_STRING "OpenBSD"
+#endif
+
 #if defined __CYGWIN32__
 #  define POSH_OS_CYGWIN32 1
 #  define POSH_OS_STRING "Cygwin"

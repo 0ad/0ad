@@ -82,6 +82,20 @@ echo
 
 # Now build premake and run it to create the makefiles
 cd ../premake/premake4
+# Fix the premake makefile to work on BSDs
+case "`uname -s`" in
+  "GNU/kFreeBSD" )
+    # This needs -ldl as we have a GNU userland and libc
+    ;;
+  *"BSD" )
+    # BSDs don't need to link with dl so modify the makefile
+    # Only GNU and FreeBSD sed have the -i option (and redirecting 
+    # to the same file results in an empty file and starting a subshell
+    # isn't as obvious as redirecting to a new file and replacing the old)
+    sed -e 's/-ldl //g' build/gmake.unix/Premake4.make > build/gmake.unix/Premake4.make_new
+    mv build/gmake.unix/Premake4.make_new build/gmake.unix/Premake4.make
+    ;;
+esac
 ${MAKE} -C build/gmake.unix ${JOBS} || die "Premake build failed"
 
 echo
