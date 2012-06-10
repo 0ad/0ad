@@ -2,864 +2,881 @@
 
 <objects>
 
-	<script file="gui/common/functions_civinfo.js"/>
-	<script file="gui/common/functions_utility.js" />
-	<script file="gui/common/functions_global_object.js" />
-	<script file="gui/common/music.js"/>
-	<script file="gui/common/timer.js"/>
-	<script file="gui/session/session.js"/>
-	<script file="gui/session/selection.js"/>
-	<script file="gui/session/placement.js"/>
-	<script file="gui/session/input.js"/>
-	<script file="gui/session/menu.js"/>
-	<script file="gui/session/selection_details.js"/>
-	<script file="gui/session/unit_commands.js"/>
-	<script file="gui/session/messages.js"/>
-	<script file="gui/session/utility_functions.js"/>
+    <script file="gui/common/functions_civinfo.js"/>
+    <script file="gui/common/functions_utility.js" />
+    <script file="gui/common/functions_global_object.js" />
+    <script file="gui/common/music.js"/>
+    <script file="gui/common/timer.js"/>
+    <script file="gui/session/session.js"/>
+    <script file="gui/session/selection.js"/>
+    <script file="gui/session/placement.js"/>
+    <script file="gui/session/input.js"/>
+    <script file="gui/session/menu.js"/>
+    <script file="gui/session/selection_details.js"/>
+    <script file="gui/session/unit_commands.js"/>
+    <script file="gui/session/messages.js"/>
+    <script file="gui/session/utility_functions.js"/>
 
-	<object name="sn" hotkey="session.gui.toggle">
-		<action on="Tick">
-			onTick();
-		</action>
+    <object name="sn" hotkey="session.gui.toggle">
+	<action on="Tick">
+	    onTick();
+	</action>
 
-		<action on="SimulationUpdate">
-			onSimulationUpdate();
-		</action>
+	<action on="SimulationUpdate">
+	    onSimulationUpdate();
+	</action>
 
-		<action on="Press">
-			this.hidden = !this.hidden;
-    </action>
+	<action on="Press">
+	    this.hidden = !this.hidden;
+	</action>
 
-		<!-- ================================  ================================ -->
-		<!-- HOTKEYS (For some reason, they won't work properly unless outside menu) -->
-		<!-- ================================  ================================ -->
+	<!-- ================================  ================================ -->
+	<!-- HOTKEYS (For some reason, they won't work properly unless outside menu) -->
+	<!-- ================================  ================================ -->
 
-		<!-- Exit button Hotkey  -->
-			<!--
-				<action on="Press"><![CDATA[
-					messageBox(400, 200, "Do you really want to quit?", "Confirmation", 0,
-						["Yes", "No!"], [leaveGame, null]);
-				]]></action>
-			-->
+	<!-- Exit button Hotkey  -->
+	<!--
+		<action on="Press"><![CDATA[
+			messageBox(400, 200, "Do you really want to quit?", "Confirmation", 0,
+				["Yes", "No!"], [leaveGame, null]);
+		]]></action>
+	-->
 
-		<object hotkey="leave">
-			<action on="Press">closeOpenDialogs();</action>
-		</object>
+	<object hotkey="leave">
+	    <action on="Press">closeOpenDialogs();</action>
+	</object>
 
-		<!-- Chat: Depending on the current state, it either opens message window or closes message window / posts message -->
-		<object hotkey="chat">
-			<action on="Press">toggleChatWindow();</action>
-		</object>
+	<!-- Chat: Depending on the current state, it either opens message window or closes message window / posts message -->
+	<object hotkey="chat">
+	    <action on="Press">toggleChatWindow();</action>
+	</object>
 
-		<!-- Menu -->
-		<object hotkey="menu.toggle">
-			<action on="Press">openMenu();</action>
-		</object>
+	<!-- Menu -->
+	<object hotkey="menu.toggle">
+	    <action on="Press">openMenu();</action>
+	</object>
 		
-		<!-- Unit silhouettes -->
-		<object hotkey="silhouettes">
-			<action on="Press">renderer.silhouettes = !renderer.silhouettes;</action>
-		</object>
+	<!-- Unit silhouettes -->
+	<object hotkey="silhouettes">
+	    <action on="Press">renderer.silhouettes = !renderer.silhouettes;</action>
+	</object>
 
-		<!-- Pause -->
-		<object hotkey="pause">
-			<action on="Press">togglePause();</action>
-		</object>
+	<!-- Pause -->
+	<object hotkey="pause">
+	    <action on="Press">togglePause();</action>
+	</object>
 
-		<!-- Quicksave/load -->
-		<object hotkey="quicksave">
-			<action on="Press">Engine.QuickSave();</action>
-		</object>
-		<object hotkey="quickload">
-			<action on="Press">Engine.QuickLoad();</action>
-		</object>
+	<!-- Quicksave/load -->
+	<object hotkey="quicksave">
+	    <action on="Press">Engine.QuickSave();</action>
+	</object>
+	<object hotkey="quickload">
+	    <action on="Press">Engine.QuickLoad();</action>
+	</object>
 
-		<!-- Delete button Hotkey (For some reason it won't work when the console is visible -->
-		<object hotkey="session.kill">
-			<action on="Press">performCommand(g_Selection.toList()[0], "delete");</action>
-		</object>
+	<!-- Delete button Hotkey (For some reason it won't work when the console is visible -->
+	<object hotkey="session.kill">
+	    <action on="Press">performCommand(g_Selection.toList()[0], "delete");</action>
+	</object>
 
-		<!-- camera.follow mode - follow the first unit in the selection -->
-		<object hotkey="camera.follow">
-			<action on="Press">setCameraFollow(g_Selection.toList()[0]);</action>
-		</object>
+	<!-- camera.follow mode - follow the first unit in the selection -->
+	<object hotkey="camera.follow">
+	    <action on="Press">setCameraFollow(g_Selection.toList()[0]);</action>
+	</object>
 
 		<!-- Find idle warrior - TODO: Potentially move this to own UI button? -->
-		<object hotkey="selection.idlewarrior">
-			<action on="Press">findIdleUnit(["Hero", "Champion", "CitizenSoldier", "Siege", "Warship"]);</action>
-		</object>
+	<object hotkey="selection.idlewarrior">
+	    <action on="Press">findIdleUnit(["Hero", "Champion", "CitizenSoldier", "Siege", "Warship"]);</action>
+	</object>
 
-		<!-- ================================  ================================ -->
-		<!-- Developer / Debug items -->
-		<!-- ================================  ================================ -->
+	<!-- ================================  ================================ -->
+	<!-- Developer / Debug items -->
+	<!-- ================================  ================================ -->
 
-		<!-- Debug text -->
-		<object name="debug"
-			type="text"
-			size="0 70 80% 100%"
-			ghost="true"
-			textcolor="yellow"
-			font="mono-stroke-10"
+	<!-- Debug text -->
+	<object name="debug"
+		type="text"
+		size="0 70 80% 100%"
+		ghost="true"
+		textcolor="yellow"
+		font="mono-stroke-10"
 		/>
 
-		<!-- Dev/cheat commands -->
-		<object name="devCommands" size="100%-156 50%-88 100%-8 50%+88" type="image" sprite="devCommandsBackground"
-				hidden="true" hotkey="session.devcommands.toggle">
-			<action on="Press">
-				toggleDeveloperOverlay();
-			</action>
-
-			<object size="0 0 100%-18 16" type="text" style="devCommandsText">Control all units</object>
-			<object size="100%-16 0 100% 16" type="checkbox" name="devControlAll" style="StoneCrossBox">
-				<action on="Press">
-					g_DevSettings.controlAll = this.checked;
-					Engine.PostNetworkCommand( {"type": "control-all", "flag": this.checked} );
-				</action>
-			</object>
-
-			<object size="0 16 100%-18 32" type="text" style="devCommandsText">Display selection state</object>
-			<object size="100%-16 16 100% 32" type="checkbox" name="devDisplayState" style="StoneCrossBox"/>
-
-			<object size="0 32 100%-18 48" type="text" style="devCommandsText">Pathfinder overlay</object>
-			<object size="100%-16 32 100% 48" type="checkbox" style="StoneCrossBox">
-				<action on="Press">Engine.GuiInterfaceCall("SetPathfinderDebugOverlay", this.checked);</action>
-			</object>
-
-			<object size="0 48 100%-18 64" type="text" style="devCommandsText">Obstruction overlay</object>
-			<object size="100%-16 48 100% 64" type="checkbox" style="StoneCrossBox">
-				<action on="Press">Engine.GuiInterfaceCall("SetObstructionDebugOverlay", this.checked);</action>
-			</object>
-
-			<object size="0 64 100%-18 80" type="text" style="devCommandsText">Unit motion overlay</object>
-			<object size="100%-16 64 100% 80" type="checkbox" style="StoneCrossBox">
-				<action on="Press">g_Selection.SetMotionDebugOverlay(this.checked);</action>
-			</object>
-
-			<object size="0 80 100%-18 96" type="text" style="devCommandsText">Range overlay</object>
-			<object size="100%-16 80 100% 96" type="checkbox" style="StoneCrossBox">
-				<action on="Press">Engine.GuiInterfaceCall("SetRangeDebugOverlay", this.checked);</action>
-			</object>
-
-			<object size="0 96 100%-18 112" type="text" style="devCommandsText">Bounding box overlay</object>
-			<object size="100%-16 96 100% 112" type="checkbox" style="StoneCrossBox">
-				<action on="Press">Engine.SetBoundingBoxDebugOverlay(this.checked);</action>
-			</object>
-
-			<object size="0 112 100%-18 128" type="text" style="devCommandsText">Restrict camera</object>
-			<object size="100%-16 112 100% 128" type="checkbox" style="StoneCrossBox" checked="true">
-				<action on="Press">gameView.constrainCamera = this.checked;</action>
-			</object>
-
-			<object size="0 128 100%-18 144" type="text" style="devCommandsText">Reveal map</object>
-			<object size="100%-16 128 100% 144" type="checkbox" name="devCommandsRevealMap" style="StoneCrossBox">
-				<action on="Press">Engine.PostNetworkCommand({"type": "reveal-map", "enable": this.checked});</action>
-			</object>
-
-			<object size="0 144 100%-18 160" type="text" style="devCommandsText">Enable time warp</object>
-			<object size="100%-16 144 100% 160" type="checkbox" name="devTimeWarp" style="StoneCrossBox">
-				<action on="Press">Engine.EnableTimeWarpRecording(this.checked ? 10 : 0);</action>
-			</object>
-
-			<object size="0 160 100%-18 176" type="text" style="devCommandsText">Promote selected units</object>
-			<object size="100%-16 160 100% 176" type="button" style="StoneCrossBox">
-				<action on="Press">Engine.PostNetworkCommand({"type": "promote", "entities": g_Selection.toList()});</action>
-			</object>
-		</object>
-
-		<!-- ================================  ================================ -->
-		<!-- Time elapsed counter -->
-		<!-- ================================  ================================ -->
-		<object size="100%-100 50 100%-10 70" type="text" name="timeElapsedCounter" style="settingsText" hotkey="timeelapsedcounter.toggle" hidden="true">
-			<action on="Press"><![CDATA[
-				this.hidden = !this.hidden;
-			]]></action>
-		</object>
-
-		<!-- ================================  ================================ -->
-		<!-- Pause Overlay -->
-		<!-- ================================  ================================ -->
-		<object type="button"
-			name="pauseOverlay"
-			size="0 0 100% 100%"
-			tooltip_style="sessionToolTip"
-			hidden="true"
-			z="0"
-		>
-			<object size="0 0 100% 100%" type="image" sprite="devCommandsBackground" ghost="true" z="0"/>
-			<object size="50%-128 50%-20 50%+128 50%+20" type="text" style="PauseText" ghost="true" z="0">Game Paused</object>
-			<object size="50%-128 50%+20 50%+128 50%+30" type="text" style="PauseMessageText" ghost="true" z="0">Click to Resume Game</object>
-			<action on="Press">togglePause();</action>
-		</object>
-
-		<!-- ================================  ================================ -->
-		<!-- Notification Area -->
-		<!-- ================================  ================================ -->
-		<object name="notificationPanel" type="image" size="50%-300 100%-300 50%+300 100%-240" ghost="true">
-			<object name="notificationText" size="0 0 100% 100%" type="text" style="notificationPanel" ghost="true"/>
-		</object>
-
-		<!-- ================================  ================================ -->
-		<!-- Chat -->
-		<!-- ================================  ================================ -->
-
-		<!-- Chat panel -->
-		<object name="chatPanel" size="0 80 100% 100%-240" type="image" ghost="true">
-			<object name="chatText" size="3 1 100%-1 100%-1" type="text" style="chatPanel" ghost="true"/>
-		</object>
-
-		<!-- Chat window -->
-		<object name="chatDialogPanel" size="50%-180 50%-58 50%+180 50%+46" type="image" hidden="true" sprite="genericPanel">
-			<object name="chatInput" size="16 12 100%-16 36" type="input" style="StoneInput" max_length="80">
-				<action on="Press">submitChatInput();</action>
-			</object>
-
-			<object size="50%-144 100%-50 50%-16 100%-22" type="button" style="StoneButton">
-				Send
-				<action on="Press">submitChatInput();</action>
-			</object>
-
-			<object  size="50%+16 100%-50 50%+144 100%-22" type="button" style="StoneButton">
-				Cancel
-				<action on="Press">closeChat();</action>
-			</object>
-		</object>
-
-		<!-- ================================  ================================ -->
-		<!-- Settings Window -->
-		<!-- ================================  ================================ -->
-		<object name="settingsDialogPanel"
-			style="StoneDialog"
-			type="image"
-			size="50%-180 50%-200 50%+180 50%+100"
-			hidden="true"
-		>
-			<object type="text" style="TitleText" size="50%-96 -16 50%+96 16">Settings</object>
-
-			<object style="TranslucentPanelThinBorder"
-				type="image"
-				size="32 32 100%-32 100%-70"
-			>
-				<!-- Settings / shadows -->
-				<object size="0 10 100%-80 35" type="text" style="RightLabelText" ghost="true">Enable Shadows</object>
-				<object name="shadowsCheckbox" size="100%-56 15 100%-30 40" type="checkbox" style="StoneCrossBox" checked="true">
-					<action on="Load">if (renderer.shadows) this.checked = true; else this.checked = false;</action>
-					<action on="Press">renderer.shadows = this.checked;</action>
-				</object>
-
-				<!-- Settings / Shadow PCF -->
-				<object size="0 35 100%-80 60" type="text" style="RightLabelText" ghost="true">Enable Shadow Filtering</object>
-				<object name="shadowPCFCheckbox" size="100%-56 40 100%-30 65" type="checkbox" style="StoneCrossBox" checked="true">
-					<action on="Load">if (renderer.shadowPCF) this.checked = true; else this.checked = false;</action>
-					<action on="Press">renderer.shadowPCF = this.checked;</action>
-				</object>
-
-				<!-- Settings / Water -->
-				<object size="0 60 100%-80 85" type="text" style="RightLabelText" ghost="true">Enable Water Reflections</object>
-				<object name="fancyWaterCheckbox" size="100%-56 65 100%-30 90"  type="checkbox" style="StoneCrossBox" checked="true">
-					<action on="Load">if (renderer.fancyWater) this.checked = true; else this.checked = false;</action>
-					<action on="Press">renderer.fancyWater = this.checked;</action>
-				</object>
-
-				<!-- Settings / Particles -->
-				<object size="0 85 100%-80 110" type="text" style="RightLabelText" ghost="true">Enable Particles</object>
-				<object name="particlesCheckbox" size="100%-56 90 100%-30 115" type="checkbox" style="StoneCrossBox" checked="true">
-					<action on="Load">if (renderer.particles) this.checked = true; else this.checked = false;</action>
-					<action on="Press">renderer.particles = this.checked;</action>
-				</object>
-
-				<!-- Settings / Unit Silhouettes -->
-				<object size="0 110 100%-80 135" type="text" style="RightLabelText" ghost="true">Enable Unit Silhouettes</object>
-				<object name="silhouettesCheckbox" size="100%-56 115 100%-30 140" type="checkbox" style="StoneCrossBox" checked="true">
-					<action on="Load">if (renderer.silhouettes) this.checked = true; else this.checked = false;</action>
-					<action on="Press">renderer.silhouettes = this.checked;</action>
-				</object>
-
-				<!-- Settings / Music-->
-				<object size="0 135 100%-80 160" type="text" style="RightLabelText" ghost="true">Enable Music</object>
-				<object size="100%-56 140 100%-30 165" type="checkbox" style="StoneCrossBox" checked="true">
-					<action on="Press">if (this.checked) global.music.start(); else global.music.stop();</action>
-				</object>
-
-				<!-- Settings / Dev Overlay -->
-				<object size="0 160 100%-80 185" type="text" style="RightLabelText" ghost="true">Developer Overlay</object>
-					<object size="100%-56 165 100%-30 190" type="checkbox" style="StoneCrossBox" checked="false">
-					<action on="Press">toggleDeveloperOverlay();</action>
-				</object>
-			</object>
-
-			<!-- Close button -->
-			<object type="button"
-				style="StoneButton"
-				size="50%-64 100%-52 50%+64 100%-24"
-				tooltip_style="sessionToolTip"
-			>
-				Close
-				<action on="Press">closeSettings(true);</action>
-			</object>
-		</object>
-
-		<!-- ================================  ================================ -->
-		<!-- Top Panel  -->
-		<!-- ================================  ================================ -->
-		<object name="topPanel"
-			type="image"
-			sprite="topPanel"
-			size="-3 0 100%+3 36"
-		>
-			<!-- ================================  ================================ -->
-			<!-- Player resource bar -->
-			<!-- ================================  ================================ -->
-			<object
-				size="10 0 45% 100%"
-			>
-				<!-- Food -->
-				<object size="0 0 90 100%" type="image" style="resourceCounter" tooltip="Food" tooltip_style="sessionToolTipBold">
-					<object size="0 -4 40 36" type="image" sprite="stretched:session/icons/resources/food.png"/>
-					<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceFood"/>
-				</object>
-
-				<!-- Wood -->
-				<object size="90 0 180 100%" type="image" style="resourceCounter" tooltip="Wood" tooltip_style="sessionToolTipBold">
-					<object size="0 -4 40 36" type="image" sprite="stretched:session/icons/resources/wood.png"/>
-					<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceWood"/>
-				</object>
-
-				<!-- Stone -->
-				<object size="180 0 270 100%" type="image" style="resourceCounter" tooltip="Stone" tooltip_style="sessionToolTipBold">
-					<object size="0 -4 40 36" type="image" sprite="stretched:session/icons/resources/stone.png"/>
-					<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceStone"/>
-				</object>
-
-				<!-- Metal -->
-				<object size="270 0 360 100%"  type="image" style="resourceCounter" tooltip="Metal" tooltip_style="sessionToolTipBold">
-					<object size="0 -4 40 36" type="image" sprite="stretched:session/icons/resources/metal.png"/>
-					<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceMetal"/>
-				</object>
-
-				<!-- Population -->
-				<object size="360 0 450 100%" type="image" style="resourceCounter" tooltip="Population (current / limit)" tooltip_style="sessionToolTipBold">
-					<object size="0 -4 40 34" type="image" sprite="stretched:session/icons/resources/population.png"/>
-					<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourcePop"/>
-				</object>
-			</object>
-
-			<!-- ================================  ================================ -->
-			<!-- Civ Icon -->
-			<!-- ================================  ================================ -->
-			<object size="50%-48 -26 50%+48 70" name="civIcon" type="image" tooltip_style="sessionToolTipBold"/>
-
-			<!-- ================================  ================================ -->
-			<!-- Phase -->
-			<!-- ================================  ================================ -->
-			<!--<object size="50%+50 4 50%+300 100%-2" name="PhaseTitleBar" type="text" font="serif-bold-stroke-14" textcolor="white"> Death Match :: Village Phase</object>-->
-
-
-			<!-- ================================  ================================ -->
-			<!-- ALPHA LABELS (alpha, build time, revision) -->
-			<!-- ================================  ================================ -->
-
-			<!-- Displays Alpha name and number -->
-			<object size="70%-128 0 70%+128 100%" name="alphaLabel" type="text" style="CenteredLabelText" text_valign="top" ghost="true">
-				ALPHA X : Jhelum<!-- IMPORTANT: remember to update pregame/mainmenu.xml in sync with this -->
-
-				<!-- Displays build date and revision number-->
-				<object size="50%-128 0 50%+128 100%-2" name="buildTimeLabel" type="text" text_align="center" text_valign="bottom" font="serif-12" textcolor="white" ghost="true">
-					<action on="Load"><![CDATA[this.caption = buildTime(0) + " (" + buildTime(2) + ")";]]></action>
-				</object>
-			</object>
-
-			<!-- ================================  ================================ -->
-			<!-- Menu Button -->
-			<!-- ================================  ================================ -->
-			<object type="button"
-				name="menuButton"
-				size="100%-164 4 100%-8 32"
-				style="StoneButtonFancy"
-				tooltip_style="sessionToolTip"
-				z="50"
-			>
-				<!-- This object covers up the text on the menu
-				buttons as they slide by so that you don't see
-				them on top of the main menu button -->
-				<object size="0 -4 100% 0" type="image" sprite="horizontalThinBorder" ghost="true"/>
-
-				<object size="50%-32 50%-16 50%+32 50%+16" type="image" sprite="menuButton" ghost="true">MENU</object>
-				<action on="Press">
-					toggleMenu();
-				</action>
-			</object> <!-- END OF MENU BUTTON -->
-		</object> <!-- END OF TOP PANEL -->
-
-		<!-- ================================  ================================ -->
-		<!-- Menu -->
-		<!-- ================================  ================================ -->
-		<object name="menu"
-			style="StonePanelThinBorder"
-			type="image"
-			hidden="false"
-		>
-			<object size="4 36 100%-4 50%+20">
-
-				<!-- Settings button -->
-				<object type="button"
-					name="settingsButton"
-					style="StoneButtonFancy"
-					size="0 0 100% 28"
-					tooltip_style="sessionToolTip"
-				>
-					Settings
-					<action on="Press">settingsMenuButton();</action>
-				</object>
-
-
-				<!-- Save game button -->
-				<object type="button"
-					name="saveGameButton"
-					style="StoneButtonFancy"
-					size="0 32 100% 60"
-					tooltip_style="sessionToolTip"
-				>
-					Save
-					<action on="Press">
-						Engine.SaveGame();
-						closeMenu();
-					</action>
-				</object>
-
-				<!-- Chat button -->
-				<object type="button"
-					name="chatButton"
-					style="StoneButtonFancy"
-					size="0 64 100% 92"
-					tooltip_style="sessionToolTip"
-				>
-					Chat
-					<action on="Press">chatMenuButton();</action>
-				</object>
-
-				<!-- Exit button -->
-				<object type="button"
-					name="menuExitButton"
-					style="StoneButtonFancy"
-					size="0 96 100% 124"
-					tooltip_style="sessionToolTip"
-				>
-					Exit
-					<action on="Press">exitMenuButton();</action>
-				</object>
-
-				<!-- Pause / Resume Button -->
-				<object type="button"
-					name="pauseButton"
-					style="StoneButtonFancy"
-					size="0 128 100% 154"
-					tooltip_style="sessionToolTip"
-				>
-					<object name="pauseButtonText" type="text" style="CenteredButtonText" ghost="true">Pause</object>
-					<action on="Press">togglePause();</action>
-				</object>
-			</object>
-		</object>
-
-		<!-- ================================  ================================ -->
-		<!-- Unit Selection Groups -->
-		<!-- ================================  ================================ -->
-		<object
-			name="unitGroupPanel"
-			size="0% 50%-216 0%+36 50%+144"
-		>
-			<repeat count="10">
-				<object name="unitGroupButton[n]" size="0 0 36 36" type="button" hidden="false" style="iconButton" tooltip_style="sessionToolTipBottomBold"
-					tooltip="Click to select grouped units.">
-					<object name="unitGroupIcon[n]" size="3 3 33 33" type="image" sprite="groupsIcon" ghost="true"/>
-					<object name="unitGroupLabel[n]" type="text" style="largeCenteredOutlinedText" ghost="true"/>
-				</object>
-			</repeat>
-		</object>
-
-		<!-- ================================  ================================ -->
-		<!-- Information tooltip
-		     Follows the mouse around if 'independent' is set to 'true'. -->
-		<!-- ================================  ================================ -->
-		<object name="informationTooltip" type="tooltip" independent="true" style="informationTooltip"/>
-
-		<!-- ================================  ================================ -->
-		<!-- Wall-dragging tooltip. Shows the total cost of building a wall while the player is dragging it. -->
-		<!-- ================================  ================================ -->
-		<object name="wallDragTooltip" type="tooltip" independent="true" style="informationTooltip"/>
-
-		<!-- ================================  ================================ -->
-		<!-- START of BOTTOM PANEL -->
-		<!-- ================================  ================================ -->
-
-		<object size="50%-512 100%-180 50%+512 100%">
-
-			<!-- ================================  ================================ -->
-			<!-- Minimap -->
-			<!-- ================================  ================================ -->
-			<object
-				name="minimapPanel"
-				size="0 100%-212 212 100%"
-				type="image"
-				sprite="mapPanel"
-				z="20"
-			>
-				<object name="minimap"
-					type="minimap"
-					size="14 14 100%-14 100%-14"
-				>
-					<action on="WorldClick">handleMinimapEvent(arguments[0]);</action>
-				</object>
-
-				<object name="minimapOverlay" size="10 10 100%-10 100%-10" type="image" sprite="stretched:session/minimap_circle.png" ghost="true"/>
-
-				<!-- Idle Worker Button -->
-				<object type="image"
-					size="100%-36 4 100%-4 36"
-				>
-					<object type="button"
-						style="iconButton"
-						tooltip_style="sessionToolTip"
-						tooltip="Find idle worker"
-						hotkey="selection.idleworker"
-					>
-						<!-- TODO: should highlight the button if there's non-zero idle workers -->
-						<object size="0 0 100% 100%" type="image" sprite="idleWorker" ghost="true" />
-						<action on="Press">findIdleUnit(["Female", "Trade", "FishingBoat", "CitizenSoldier", "Healer"]);</action>
-					</object>
-				</object>
-			</object>
-
-			<!-- ================================  ================================ -->
-			<!-- Supplemental Details Panel on Left -->
-			<!-- ================================  ================================ -->
-			<object size="208 100%-170 50%-110 100%" name="supplementalSelectionDetails" type="image" sprite="bottomLeft" z="30">
-
-				<object name="unitFormationPanel"
-					size="24 12 100% 100%"
-				>
-					<object size="0 0 100% 100%">
-						<repeat count="16">
-							<object name="unitFormationButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBottomBold" z="100">
-								<object name="unitFormationIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
-								<object name="unitFormationSelection[n]" hidden="true" type="image" ghost="true" size="3 3 33 33" sprite="stretched:session/icons/corners.png"/>
-							</object>
-						</repeat>
-					</object>
-				</object>
-
-				<object name="unitGarrisonPanel"
-					size="24 12 100% 100%"
-				>
-					<object size="0 0 100% 100%">
-						<repeat count="16">
-							<object name="unitGarrisonButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBottomBold" z="100">
-								<object name="unitGarrisonIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
-								<object name="unitGarrisonCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
-							</object>
-						</repeat>
-					</object>
-				</object>
-
-				<object name="unitBarterPanel" hidden="true"
-					size="5 5 100% 100%"
-				>
-					<object ghost="true" style="resourceText" type="text" size="0 0 100% 18">Exchange resources:</object>
-					<object size="0 18 100% 64">
-						<repeat count="4">
-							<object name="unitBarterSellButton[n]" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottomBold">
-								<object name="unitBarterSellIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
-								<object name="unitBarterSellAmount[n]" ghost="true" style="resourceText" type="text" size="0 0 100% 50%"/>
-								<object name="unitBarterSellSelection[n]" hidden="true" type="image" ghost="true" size="3 3 43 43" sprite="stretched:session/icons/corners.png"/>
-							</object>
-						</repeat>
-					</object>
-					<object size="0 64 100% 110">
-						<repeat count="4">
-							<object name="unitBarterBuyButton[n]" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottomBold">
-								<object name="unitBarterBuyIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
-								<object name="unitBarterBuyAmount[n]" ghost="true" style="resourceText" type="text" size="0 0 100% 50%"/>
-							</object>
-						</repeat>
-					</object>
-				</object>
-
-				<!-- Stance Selection -->
-				<object name="unitStancePanel"
-					style="TranslucentPanel"
-					size="4 100%-43 100%-4 100%-4"
-					type="text"
-				>
-					<object size="1 2 100% 100%">
-						<repeat count="5">
-							<object name="unitStanceButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBottomBold" z="100">
-								<object name="unitStanceIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
-								<object name="unitStanceSelection[n]" hidden="true" type="image" ghost="true" size="3 3 33 33" sprite="stretched:session/icons/corners.png"/>
-							</object>
-						</repeat>
-					</object>
-				</object>
-			</object>
-
-			<!-- ================================  ================================ -->
-			<!-- Details Panel (Middle) -->
-			<!-- ================================  ================================ -->
-			<object name="selectionDetails"
-				type="image"
-				sprite="bottomMiddle"
-				size="50%-114 100%-205 50%+114 100%"
-				hidden="false"
-			>
-				<!-- Unit details for Single Unit -->
-				<object size="50%-112 0 50%+112 100%" name="detailsAreaSingle">
-
-          <!-- Big unit icon -->
-          <object z="30" size= "6 -30 126 90" type="image" name="iconBorder" tooltip_style="sessionToolTip">
-            <object size="2 2 100%-2 100%-2" type="image" name="icon" ghost="true"/>
-            <object size="100%-20 4 100%-4 20" name="rankIcon" type="image" sprite="" ghost="true"/>
-            <object type="image" sprite="glassSquareIcon" ghost="true"/>
-
-            <!-- Resource carrying icon/counter -->
-            <object size="0 40 48 88" type="image" name="resourceCarryingIcon"/>
-            <object size="0 80 48 100" type="text" name="resourceCarryingText" style="statsText"/>
-            
-            
-            <!-- Experience bar -->
-            <object size="2 100%-9 100%-2 100%-1" type="image" name="experience" tooltip="Experience" tooltip_style="sessionToolTip">
-              <object type="image" sprite="experienceBackground" ghost="true"/>
-              <object type="image" sprite="experienceForeground" ghost="true" name="experienceBar"/>
-              <object type="image" sprite="statsBarShader" ghost="true"/>
-            </object>
-          </object>
-          
-					<!-- Player Name -->
-					<object size="126 -24 100% 0" name="player" type="text" style="largeLeftOutlinedText" tooltip_style="sessionToolTipBold"/>
-
-          <!-- Specific Name -->
-          <object size="126 4 100% 44" name="specific" type="text" style="LeftLabelText" tooltip_style="sessionToolTipBold"/>
-
-          <!-- Stats Bars -->
-          <object size= "126 48 100%-4 136" type="image" tooltip_style="sessionToolTip">
-            <!-- Health bar -->
-            <object size="0 0 100% 16" type="image" name="health" tooltip="Health" tooltip_style="sessionToolTip">
-              <object type="image" sprite="healthBackground" ghost="true"/>
-              <object type="image" sprite="healthForeground" ghost="true" name="healthBar"/>
-              <object type="image" sprite="statsBarShader" ghost="true"/>
-              <object size="0 0 100% 100%" name="healthText" type="text" style="largeCenteredOutlinedText" ghost="true"/>
-            </object>
-
-            <!-- Stamina bar -->
-            <object size="0 20 100% 36" type="image" name="stamina" tooltip="Stamina" tooltip_style="sessionToolTip">
-              <object type="image" sprite="staminaBackground" ghost="true"/>
-              <object type="image" sprite="staminaForeground" ghost="true" name="staminaBar"/>
-              <object type="image" sprite="statsBarShader" ghost="true"/>
-            </object>
-
-            <!-- Resource bar -->
-            <object size="0 20 100% 36" type="image" name="resources" tooltip="Resources" tooltip_style="sessionToolTip">
-              <object type="image" sprite="resourceBackground" ghost="true"/>
-              <object type="image" sprite="resourceForeground" ghost="true" name="resourceBar"/>
-              <object type="image" sprite="statsBarShader" ghost="true"/>
-              <object size="0 0 100% 100%" name="resourceText" type="text" style="largeCenteredOutlinedText" ghost="true"/>
-            </object>
-          </object>
-          
-					<!-- Stats -->
-					<object size="10 94 100% 100%" name="statsArea" type="image">
-            <!-- Attack - icon and Hack Pierce Crush labels -->
-            <object size="0 0 100% 32">
-						  <object size="0 -2 42 40" type="image" name="attackIcon" sprite="stretched:session/icons/stances/violent.png" tooltip_style="sessionToolTip"/>
-              <object size="42 0 92 50%" name="attackHackLabel" type="text" style="CenteredLabelText">Hack</object>
-              <object size="92 0 142 50%" name="attackPierceLabel" type="text" style="CenteredLabelText">Pierce</object>
-              <object size="142 0 192 50%" name="attackCrushLabel" type="text" style="CenteredLabelText">Crush</object>
-              <object size="42 50% 92 100%" name="attackHack" type="text" style="statsText"/>
-              <object size="92 50% 142 100%" name="attackPierce" type="text" style="statsText"/>
-              <object size="142 50% 192 100%" name="attackCrush" type="text" style="statsText"/>
-            </object>
-            
-						<!-- Armour - icon and Hack Pierce Crush labels -->
-            <object size="0 38 100% 70">
-						  <object size="0 -2 42 40" type="image" name="armorIcon" sprite="stretched:session/icons/stances/standground.png" tooltip_style="sessionToolTip"/>
-              <object size="42 0 92 50%" name="armorHackLabel" type="text" style="CenteredLabelText">Hack</object>
-              <object size="92 0 142 50%" name="armorPierceLabel" type="text" style="CenteredLabelText">Pierce</object>
-              <object size="142 0 192 50%" name="armorCrushLabel" type="text" style="CenteredLabelText">Crush</object>
-              <object size="42 50% 92 100%" name="armorHack" type="text" style="statsText"/>
-              <object size="92 50% 142 100%" name="armorPierce" type="text" style="statsText"/>
-              <object size="142 50% 192 100%" name="armorCrush" type="text" style="statsText"/>
-            </object>
-					</object>
-				</object>
-
-				<!-- Unit details for Multiple Units -->
-				<object size="50%-112 0 50%+112 100%" name="detailsAreaMultiple">
-
-					<object name="unitSelectionPanel"
-						size="20 12 100%-20 100%"
-					>
-						<object size="0 0 100% 100%">
-							<repeat count="16">
-								<object name="unitSelectionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBold" z="100">
-									<object name="unitSelectionIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
-									<object name="unitSelectionCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
-									<object size="0 100%-3 100% 100%" name="unitSelectionHealth[n]" ghost="true">
-									</object>
-								</object>
-							</repeat>
-						</object>
-					</object>
-
-					<!-- Total -->
-					<object size="100%-42 12 100%-8 46" type="image" sprite="groupsIcon">
-						<object size="0 0 100% 100%" type="text" style="largeCenteredOutlinedText" name="numberOfUnits"/>
-					</object>
-
-					<!-- Stats Bars -->
-					<object size= "100%-38 52 100%-18 100%-40" type="image" tooltip_style="sessionToolTip">
-						<!-- Health bar -->
-						<object size="0 0 12 100%" type="image" name="healthMultiple" tooltip="Hitpoints" tooltip_style="sessionToolTip">
-							<object type="image" sprite="healthBackground" ghost="true"/>
-							<object type="image" sprite="healthForeground" ghost="true" name="healthBarMultiple"/>
-							<object type="image" sprite="statsBarShader" ghost="true"/>
-						</object>
-
-						<!-- Stamina bar -->
-						<object size="14 0 26 100%" type="image" name="staminaMultiple" tooltip="Stamina" tooltip_style="sessionToolTipBold">
-							<object type="image" sprite="staminaBackground" ghost="true"/>
-							<object type="image" sprite="staminaForeground" ghost="true" name="staminaBarMultiple"/>
-							<object type="image" sprite="statsBarShader" ghost="true"/>
-						</object>
-					</object>
-
-				</object>
-
-				<!-- Unit Commands -->
-				<object name="unitCommandPanel"
-					size="0 100%-36 100% 100%-4"
-					type="image"
-					z="30"
-				>
-					<object size="0 0 100% 100%">
-						<repeat count="6">
-							<object name="unitCommandButton[n]" hidden="true" style="iconButton" type="button" size="0 0 32 32" tooltip_style="sessionToolTipBottomBold">
-								<object name="unitCommandIcon[n]" ghost="true" type="image" size="0 0 100% 100%" style="commandIcon"/>
-								<object name="unitCommandCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
-							</object>
-						</repeat>
-					</object>
-				</object>
-
-			</object> <!-- END OF SELECTION DETAILS -->
-
-			<!-- ================================  ================================ -->
-			<!--Commands Panel -->
-			<!-- ================================  ================================ -->
-			<object name="unitCommands"
-				type="image"
-				sprite="bottomRight"
-				size="622 100%-170 100% 100%"
-				hidden="false"
-			>
-				<object name="unitConstructionPanel"
-					size="14 12 100% 100%"
-				>
-					<object size="0 0 100% 100%">
-						<repeat count="24">
-							<object name="unitConstructionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
-								<object name="unitConstructionIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
-							</object>
-						</repeat>
-					</object>
-				</object>
-
-				<object name="unitResearchPanel"
-					size="14 100%-102 100% 100%"
-				>
-					<object size="0 0 100% 100%">
-						<repeat count="16">
-							<object name="unitResearchButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
-								<object name="unitResearchIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
-								<object name="unitResearchSelection[n]" hidden="true" type="image" ghost="true" size="3 3 43 43" sprite="colour: 255 0 0 127"/>
-							</object>
-						</repeat>
-						<repeat count="8">
-							<object name="unitResearchPair[n]" hidden="true" size="0 0 46 92">
-								<object name="unitResearchPairIcon[n]" type="image" ghost="true" size="8 38 38 54" sprite="stretched:session/icons/vertical_pair.png"/>
-							</object>
-						</repeat>
-					</object>
-				</object>
-
-				<object name="unitTrainingPanel"
-					size="14 12 100% 100%"
-				>
-					<object size="0 0 100% 100%">
-						<repeat count="24">
-							<object name="unitTrainingButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
-								<object name="unitTrainingIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
-							</object>
-						</repeat>
-					</object>
-				</object>
-
-				<object name="unitTradingPanel"
-					size="14 12 100% 100%"
-				>
-					<object size="0 0 100% 100%">
-						<repeat count="4">
-							<object name="unitTradingButton[n]" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
-								<object name="unitTradingIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
-								<object name="unitTradingSelection[n]" hidden="true" type="image" ghost="true" size="3 3 43 43" sprite="stretched:session/icons/corners.png"/>
-							</object>
-						</repeat>
-					</object>
-				</object>
-
-				<object name="unitQueuePanel"
-					size="4 -56 100% 0"
-					type="image"
-					style="TranslucentPanelThinBorder"
-				>
-					<object size="-4 -2 52 54" type="image" sprite="stretched:session/icons/production.png" tooltip_style="sessionToolTipBottom" tooltip="Production queue">
-							<object name="queueProgress" ghost="true" style="iconButtonProgress" type="text"/>
-					</object>
-
-					<object size="48 6 100% 100%">
-						<repeat count="16">
-							<object name="unitQueueButton[n]" hidden="true" style="iconButton" type="button" size="0 0 40 40" tooltip_style="sessionToolTipBottom">
-								<object name="unitQueueIcon[n]" ghost="true" type="image" size="3 3 37 37"/>
-								<object name="unitQueueProgressSlider[n]" type="image" sprite="queueProgressSlider" ghost="true" size="1 1 100%-1 100%-1" z="20"/>
-								<object name="unitQueueCount[n]" ghost="true" style="groupIconsText" type="text" z="20"/>
-							</object>
-						</repeat>
-					</object>
-				</object>
-
-			</object> <!-- END OF UNIT COMMANDS -->
-
-		</object><!-- END OF BOTTOM PANEL -->
-
-	</object> <!-- END OF SN OBJECT -->
-
-	<!-- ================================  ================================ -->
-	<!-- Selection bandbox -->
-	<!-- ================================  ================================ -->
-	<object name="bandbox" type="image" sprite="bandbox" ghost="true" hidden="true" z="200"/>
-
-	<!-- ================================  ================================ -->
-	<!-- Network status -->
-	<!-- ================================  ================================ -->
-	<object name="netStatus" type="text" style="netStatus" z="100" hidden="true">
-			<object type="button"
-				name="disconnectedExitButton"
-				style="StoneButton"
-				size="50%-84 50%+128 50%+84 50%+160"
-				tooltip_style="sessionToolTip"
-				hidden="true"
-			>
-				<object size="0 0 100% 100%" type="text" style="CenteredButtonText" name="disconnectedExitButtonText" ghost="true">Return to Main Menu</object>
-				<action on="Press">leaveGame()</action>
-			</object>
-
+	<!-- Dev/cheat commands -->
+	<object name="devCommands" size="100%-156 50%-88 100%-8 50%+88" type="image" sprite="devCommandsBackground"
+		hidden="true" hotkey="session.devcommands.toggle">
+	    <action on="Press">
+		toggleDeveloperOverlay();
+	    </action>
+
+	    <object size="0 0 100%-18 16" type="text" style="devCommandsText">Control all units</object>
+	    <object size="100%-16 0 100% 16" type="checkbox" name="devControlAll" style="StoneCrossBox">
+		<action on="Press">
+		    g_DevSettings.controlAll = this.checked;
+		    Engine.PostNetworkCommand( {"type": "control-all", "flag": this.checked} );
+		</action>
+	    </object>
+
+	    <object size="0 16 100%-18 32" type="text" style="devCommandsText">Display selection state</object>
+	    <object size="100%-16 16 100% 32" type="checkbox" name="devDisplayState" style="StoneCrossBox"/>
+
+	    <object size="0 32 100%-18 48" type="text" style="devCommandsText">Pathfinder overlay</object>
+	    <object size="100%-16 32 100% 48" type="checkbox" style="StoneCrossBox">
+		<action on="Press">Engine.GuiInterfaceCall("SetPathfinderDebugOverlay", this.checked);</action>
+	    </object>
+
+	    <object size="0 48 100%-18 64" type="text" style="devCommandsText">Obstruction overlay</object>
+	    <object size="100%-16 48 100% 64" type="checkbox" style="StoneCrossBox">
+		<action on="Press">Engine.GuiInterfaceCall("SetObstructionDebugOverlay", this.checked);</action>
+	    </object>
+
+	    <object size="0 64 100%-18 80" type="text" style="devCommandsText">Unit motion overlay</object>
+	    <object size="100%-16 64 100% 80" type="checkbox" style="StoneCrossBox">
+		<action on="Press">g_Selection.SetMotionDebugOverlay(this.checked);</action>
+	    </object>
+
+	    <object size="0 80 100%-18 96" type="text" style="devCommandsText">Range overlay</object>
+	    <object size="100%-16 80 100% 96" type="checkbox" style="StoneCrossBox">
+		<action on="Press">Engine.GuiInterfaceCall("SetRangeDebugOverlay", this.checked);</action>
+	    </object>
+
+	    <object size="0 96 100%-18 112" type="text" style="devCommandsText">Bounding box overlay</object>
+	    <object size="100%-16 96 100% 112" type="checkbox" style="StoneCrossBox">
+		<action on="Press">Engine.SetBoundingBoxDebugOverlay(this.checked);</action>
+	    </object>
+
+	    <object size="0 112 100%-18 128" type="text" style="devCommandsText">Restrict camera</object>
+	    <object size="100%-16 112 100% 128" type="checkbox" style="StoneCrossBox" checked="true">
+		<action on="Press">gameView.constrainCamera = this.checked;</action>
+	    </object>
+
+	    <object size="0 128 100%-18 144" type="text" style="devCommandsText">Reveal map</object>
+	    <object size="100%-16 128 100% 144" type="checkbox" name="devCommandsRevealMap" style="StoneCrossBox">
+		<action on="Press">Engine.PostNetworkCommand({"type": "reveal-map", "enable": this.checked});</action>
+	    </object>
+
+	    <object size="0 144 100%-18 160" type="text" style="devCommandsText">Enable time warp</object>
+	    <object size="100%-16 144 100% 160" type="checkbox" name="devTimeWarp" style="StoneCrossBox">
+		<action on="Press">Engine.EnableTimeWarpRecording(this.checked ? 10 : 0);</action>
+	    </object>
+
+	    <object size="0 160 100%-18 176" type="text" style="devCommandsText">Promote selected units</object>
+	    <object size="100%-16 160 100% 176" type="button" style="StoneCrossBox">
+		<action on="Press">Engine.PostNetworkCommand({"type": "promote", "entities": g_Selection.toList()});</action>
+	    </object>
 	</object>
+
+	<!-- ================================  ================================ -->
+	<!-- Time elapsed counter -->
+	<!-- ================================  ================================ -->
+	<object size="100%-100 50 100%-10 70" type="text" name="timeElapsedCounter" style="settingsText" hotkey="timeelapsedcounter.toggle" hidden="true">
+	    <action on="Press"><![CDATA[
+				this.hidden = !this.hidden;
+			]]>
+	    </action>
+	</object>
+
+	<!-- ================================  ================================ -->
+	<!-- Pause Overlay -->
+	<!-- ================================  ================================ -->
+	<object type="button"
+		name="pauseOverlay"
+		size="0 0 100% 100%"
+		tooltip_style="sessionToolTip"
+		hidden="true"
+		z="0"
+	>
+	    <object size="0 0 100% 100%" type="image" sprite="devCommandsBackground" ghost="true" z="0"/>
+	    <object size="50%-128 50%-20 50%+128 50%+20" type="text" style="PauseText" ghost="true" z="0">Game Paused</object>
+	    <object size="50%-128 50%+20 50%+128 50%+30" type="text" style="PauseMessageText" ghost="true" z="0">Click to Resume Game</object>
+	    <action on="Press">togglePause();</action>
+	</object>
+
+	<!-- ================================  ================================ -->
+	<!-- Notification Area -->
+	<!-- ================================  ================================ -->
+	<object name="notificationPanel" type="image" size="50%-300 100%-300 50%+300 100%-240" ghost="true">
+	    <object name="notificationText" size="0 0 100% 100%" type="text" style="notificationPanel" ghost="true"/>
+	</object>
+
+	<!-- ================================  ================================ -->
+	<!-- Chat -->
+	<!-- ================================  ================================ -->
+
+	<!-- Chat panel -->
+	<object name="chatPanel" size="0 80 100% 100%-240" type="image" ghost="true">
+	    <object name="chatText" size="3 1 100%-1 100%-1" type="text" style="chatPanel" ghost="true"/>
+	</object>
+
+	<!-- Chat window -->
+	<object name="chatDialogPanel" size="50%-180 50%-58 50%+180 50%+46" type="image" hidden="true" sprite="genericPanel">
+	    <object name="chatInput" size="16 12 100%-16 36" type="input" style="StoneInput" max_length="80">
+		<action on="Press">submitChatInput();</action>
+	    </object>
+
+	    <object size="50%-144 100%-50 50%-16 100%-22" type="button" style="StoneButton">
+		Send
+		<action on="Press">submitChatInput();</action>
+	    </object>
+
+	    <object  size="50%+16 100%-50 50%+144 100%-22" type="button" style="StoneButton">
+		Cancel
+		<action on="Press">closeChat();</action>
+	    </object>
+	</object>
+
+	<!-- ================================  ================================ -->
+	<!-- Settings Window -->
+	<!-- ================================  ================================ -->
+	<object name="settingsDialogPanel"
+		style="StoneDialog"
+		type="image"
+		size="50%-180 50%-200 50%+180 50%+100"
+		hidden="true"
+	>
+	    <object type="text" style="TitleText" size="50%-96 -16 50%+96 16">Settings</object>
+
+	    <object style="TranslucentPanelThinBorder"
+		    type="image"
+		    size="32 32 100%-32 100%-70"
+	    >
+		<!-- Settings / shadows -->
+		<object size="0 10 100%-80 35" type="text" style="RightLabelText" ghost="true">Enable Shadows</object>
+		<object name="shadowsCheckbox" size="100%-56 15 100%-30 40" type="checkbox" style="StoneCrossBox" checked="true">
+		    <action on="Load">if (renderer.shadows) this.checked = true; else this.checked = false;</action>
+		    <action on="Press">renderer.shadows = this.checked;</action>
+		</object>
+
+		<!-- Settings / Shadow PCF -->
+		<object size="0 35 100%-80 60" type="text" style="RightLabelText" ghost="true">Enable Shadow Filtering</object>
+		<object name="shadowPCFCheckbox" size="100%-56 40 100%-30 65" type="checkbox" style="StoneCrossBox" checked="true">
+		    <action on="Load">if (renderer.shadowPCF) this.checked = true; else this.checked = false;</action>
+		    <action on="Press">renderer.shadowPCF = this.checked;</action>
+		</object>
+
+		<!-- Settings / Water -->
+		<object size="0 60 100%-80 85" type="text" style="RightLabelText" ghost="true">Enable Water Reflections</object>
+		<object name="fancyWaterCheckbox" size="100%-56 65 100%-30 90"  type="checkbox" style="StoneCrossBox" checked="true">
+		    <action on="Load">if (renderer.fancyWater) this.checked = true; else this.checked = false;</action>
+		    <action on="Press">renderer.fancyWater = this.checked;</action>
+		</object>
+
+		<!-- Settings / Particles -->
+		<object size="0 85 100%-80 110" type="text" style="RightLabelText" ghost="true">Enable Particles</object>
+		<object name="particlesCheckbox" size="100%-56 90 100%-30 115" type="checkbox" style="StoneCrossBox" checked="true">
+		    <action on="Load">if (renderer.particles) this.checked = true; else this.checked = false;</action>
+		    <action on="Press">renderer.particles = this.checked;</action>
+		</object>
+
+		<!-- Settings / Unit Silhouettes -->
+		<object size="0 110 100%-80 135" type="text" style="RightLabelText" ghost="true">Enable Unit Silhouettes</object>
+		<object name="silhouettesCheckbox" size="100%-56 115 100%-30 140" type="checkbox" style="StoneCrossBox" checked="true">
+		    <action on="Load">if (renderer.silhouettes) this.checked = true; else this.checked = false;</action>
+		    <action on="Press">renderer.silhouettes = this.checked;</action>
+		</object>
+
+		<!-- Settings / Music-->
+		<object size="0 135 100%-80 160" type="text" style="RightLabelText" ghost="true">Enable Music</object>
+		<object size="100%-56 140 100%-30 165" type="checkbox" style="StoneCrossBox" checked="true">
+		    <action on="Press">if (this.checked) global.music.start(); else global.music.stop();</action>
+		</object>
+
+		<!-- Settings / Dev Overlay -->
+		<object size="0 160 100%-80 185" type="text" style="RightLabelText" ghost="true">Developer Overlay</object>
+		<object size="100%-56 165 100%-30 190" type="checkbox" style="StoneCrossBox" checked="false">
+		    <action on="Press">toggleDeveloperOverlay();</action>
+		</object>
+	    </object>
+
+	    <!-- Close button -->
+	    <object type="button"
+		    style="StoneButton"
+		    size="50%-64 100%-52 50%+64 100%-24"
+		    tooltip_style="sessionToolTip"
+	    >
+		Close
+		<action on="Press">closeSettings(true);</action>
+	    </object>
+	</object>
+
+	<!-- ================================  ================================ -->
+	<!-- Top Panel  -->
+	<!-- ================================  ================================ -->
+	<object name="topPanel"
+		type="image"
+		sprite="topPanel"
+		size="-3 0 100%+3 36"
+	>
+	    <!-- ================================  ================================ -->
+	    <!-- Player resource bar -->
+	    <!-- ================================  ================================ -->
+	    <object
+		size="10 0 45% 100%"
+	    >
+		<!-- Food -->
+		<object size="0 0 90 100%" type="image" style="resourceCounter" tooltip="Food" tooltip_style="sessionToolTipBold">
+		    <object size="0 -4 40 36" type="image" sprite="stretched:session/icons/resources/food.png"/>
+		    <object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceFood"/>
+		</object>
+
+		<!-- Wood -->
+		<object size="90 0 180 100%" type="image" style="resourceCounter" tooltip="Wood" tooltip_style="sessionToolTipBold">
+		    <object size="0 -4 40 36" type="image" sprite="stretched:session/icons/resources/wood.png"/>
+		    <object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceWood"/>
+		</object>
+
+		<!-- Stone -->
+		<object size="180 0 270 100%" type="image" style="resourceCounter" tooltip="Stone" tooltip_style="sessionToolTipBold">
+		    <object size="0 -4 40 36" type="image" sprite="stretched:session/icons/resources/stone.png"/>
+		    <object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceStone"/>
+		</object>
+
+		<!-- Metal -->
+		<object size="270 0 360 100%"  type="image" style="resourceCounter" tooltip="Metal" tooltip_style="sessionToolTipBold">
+		    <object size="0 -4 40 36" type="image" sprite="stretched:session/icons/resources/metal.png"/>
+		    <object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceMetal"/>
+		</object>
+
+		<!-- Population -->
+		<object size="360 0 450 100%" type="image" style="resourceCounter" tooltip="Population (current / limit)" tooltip_style="sessionToolTipBold">
+		    <object size="0 -4 40 34" type="image" sprite="stretched:session/icons/resources/population.png"/>
+		    <object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourcePop"/>
+		</object>
+	    </object>
+
+	    <!-- ================================  ================================ -->
+	    <!-- Civ Icon -->
+	    <!-- ================================  ================================ -->
+	    <object size="50%-48 -26 50%+48 70" name="civIcon" type="image" tooltip_style="sessionToolTipBold"/>
+
+	    <!-- ================================  ================================ -->
+	    <!-- Phase -->
+	    <!-- ================================  ================================ -->
+	    <!--<object size="50%+50 4 50%+300 100%-2" name="PhaseTitleBar" type="text" font="serif-bold-stroke-14" textcolor="white"> Death Match :: Village Phase</object>-->
+
+
+	    <!-- ================================  ================================ -->
+	    <!-- ALPHA LABELS (alpha, build time, revision) -->
+	    <!-- ================================  ================================ -->
+
+	    <!-- Displays Alpha name and number -->
+	    <object size="70%-128 0 70%+128 100%" name="alphaLabel" type="text" style="CenteredLabelText" text_valign="top" ghost="true">
+		ALPHA X : Jhelum<!-- IMPORTANT: remember to update pregame/mainmenu.xml in sync with this -->
+
+		<!-- Displays build date and revision number-->
+		<object size="50%-128 0 50%+128 100%-2" name="buildTimeLabel" type="text" text_align="center" text_valign="bottom" font="serif-12" textcolor="white" ghost="true">
+		    <action on="Load"><![CDATA[this.caption = buildTime(0) + " (" + buildTime(2) + ")";]]>
+		    </action>
+		</object>
+	    </object>
+
+	    <!-- ================================  ================================ -->
+	    <!-- Menu Button -->
+	    <!-- ================================  ================================ -->
+	    <object type="button"
+		    name="menuButton"
+		    size="100%-164 4 100%-8 32"
+		    style="StoneButtonFancy"
+		    tooltip_style="sessionToolTip"
+		    z="50"
+	    >
+		<!-- This object covers up the text on the menu
+		buttons as they slide by so that you don't see
+		them on top of the main menu button -->
+		<object size="0 -4 100% 0" type="image" sprite="horizontalThinBorder" ghost="true"/>
+
+		<object size="50%-32 50%-16 50%+32 50%+16" type="image" sprite="menuButton" ghost="true">MENU</object>
+		<action on="Press">
+		    toggleMenu();
+		</action>
+	    </object> <!-- END OF MENU BUTTON -->
+	</object> <!-- END OF TOP PANEL -->
+
+	<!-- ================================  ================================ -->
+	<!-- Menu -->
+	<!-- ================================  ================================ -->
+	<object name="menu"
+		style="StonePanelThinBorder"
+		type="image"
+		hidden="false"
+	>
+	    <object size="4 36 100%-4 50%+20">
+
+		<!-- Settings button -->
+		<object type="button"
+			name="settingsButton"
+			style="StoneButtonFancy"
+			size="0 0 100% 28"
+			tooltip_style="sessionToolTip"
+		>
+		    Settings
+		    <action on="Press">settingsMenuButton();</action>
+		</object>
+
+
+		<!-- Save game button -->
+		<object type="button"
+			name="saveGameButton"
+			style="StoneButtonFancy"
+			size="0 32 100% 60"
+			tooltip_style="sessionToolTip"
+		>
+		    Save
+		    <action on="Press">
+			Engine.SaveGame();
+			closeMenu();
+		    </action>
+		</object>
+
+		<!-- Chat button -->
+		<object type="button"
+			name="chatButton"
+			style="StoneButtonFancy"
+			size="0 64 100% 92"
+			tooltip_style="sessionToolTip"
+		>
+		    Chat
+		    <action on="Press">chatMenuButton();</action>
+		</object>
+
+		<!-- Exit button -->
+		<object type="button"
+			name="menuExitButton"
+			style="StoneButtonFancy"
+			size="0 96 100% 124"
+			tooltip_style="sessionToolTip"
+		>
+		    Exit
+		    <action on="Press">exitMenuButton();</action>
+		</object>
+
+		<!-- Pause / Resume Button -->
+		<object type="button"
+			name="pauseButton"
+			style="StoneButtonFancy"
+			size="0 128 100% 154"
+			tooltip_style="sessionToolTip"
+		>
+		    <object name="pauseButtonText" type="text" style="CenteredButtonText" ghost="true">Pause</object>
+		    <action on="Press">togglePause();</action>
+		</object>
+	    </object>
+	</object>
+
+	<!-- ================================  ================================ -->
+	<!-- Unit Selection Groups -->
+	<!-- ================================  ================================ -->
+	<object
+	    name="unitGroupPanel"
+	    size="0% 50%-216 0%+36 50%+144"
+	>
+	    <repeat count="10">
+		<object name="unitGroupButton[n]" size="0 0 36 36" type="button" hidden="false" style="iconButton" tooltip_style="sessionToolTipBottomBold"
+			tooltip="Click to select grouped units.">
+		    <object name="unitGroupIcon[n]" size="3 3 33 33" type="image" sprite="groupsIcon" ghost="true"/>
+		    <object name="unitGroupLabel[n]" type="text" style="largeCenteredOutlinedText" ghost="true"/>
+		</object>
+	    </repeat>
+	</object>
+
+	<!-- ================================  ================================ -->
+	<!-- Information tooltip
+		Follows the mouse around if 'independent' is set to 'true'. -->
+	<!-- ================================  ================================ -->
+	<object name="informationTooltip" type="tooltip" independent="true" style="informationTooltip"/>
+
+	<!-- ================================  ================================ -->
+	<!-- Wall-dragging tooltip. Shows the total cost of building a wall while the player is dragging it. -->
+	<!-- ================================  ================================ -->
+	<object name="wallDragTooltip" type="tooltip" independent="true" style="informationTooltip"/>
+
+	<!-- ================================  ================================ -->
+	<!-- START of BOTTOM PANEL -->
+	<!-- ================================  ================================ -->
+
+	<object size="50%-512 100%-180 50%+512 100%">
+
+	    <!-- ================================  ================================ -->
+	    <!-- Minimap -->
+	    <!-- ================================  ================================ -->
+	    <object
+		name="minimapPanel"
+		size="0 100%-212 212 100%"
+		type="image"
+		sprite="mapPanel"
+		z="20"
+	    >
+		<object name="minimap"
+			type="minimap"
+			size="14 14 100%-14 100%-14"
+		>
+		    <action on="WorldClick">handleMinimapEvent(arguments[0]);</action>
+		</object>
+
+		<object name="minimapOverlay" size="10 10 100%-10 100%-10" type="image" sprite="stretched:session/minimap_circle.png" ghost="true"/>
+
+		<!-- Idle Worker Button -->
+		<object type="image"
+			size="100%-36 4 100%-4 36"
+		>
+		    <object type="button"
+			    style="iconButton"
+			    tooltip_style="sessionToolTip"
+			    tooltip="Find idle worker"
+			    hotkey="selection.idleworker"
+		    >
+			<!-- TODO: should highlight the button if there's non-zero idle workers -->
+			<object size="0 0 100% 100%" type="image" sprite="idleWorker" ghost="true" />
+			<action on="Press">findIdleUnit(["Female", "Trade", "FishingBoat", "CitizenSoldier", "Healer"]);</action>
+		    </object>
+		</object>
+	    </object>
+
+	    <!-- ================================  ================================ -->
+	    <!-- Supplemental Details Panel on Left -->
+	    <!-- ================================  ================================ -->
+	    <object size="208 100%-170 50%-110 100%" name="supplementalSelectionDetails" type="image" sprite="bottomLeft" z="30">
+
+		<object name="unitFormationPanel"
+			size="24 12 100% 100%"
+		>
+		    <object size="0 0 100% 100%">
+			<repeat count="16">
+			    <object name="unitFormationButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBottomBold" z="100">
+				<object name="unitFormationIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
+				<object name="unitFormationSelection[n]" hidden="true" type="image" ghost="true" size="3 3 33 33" sprite="stretched:session/icons/corners.png"/>
+			    </object>
+			</repeat>
+		    </object>
+		</object>
+
+		<object name="unitGarrisonPanel"
+			size="24 12 100% 100%"
+		>
+		    <object size="0 0 100% 100%">
+			<repeat count="16">
+			    <object name="unitGarrisonButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBottomBold" z="100">
+				<object name="unitGarrisonIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
+				<object name="unitGarrisonCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
+			    </object>
+			</repeat>
+		    </object>
+		</object>
+
+		<object name="unitBarterPanel" hidden="true"
+			size="5 5 100% 100%"
+		>
+		    <object ghost="true" style="resourceText" type="text" size="0 0 100% 18">Exchange resources:</object>
+		    <object size="0 18 100% 64">
+			<repeat count="4">
+			    <object name="unitBarterSellButton[n]" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottomBold">
+				<object name="unitBarterSellIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
+				<object name="unitBarterSellAmount[n]" ghost="true" style="resourceText" type="text" size="0 0 100% 50%"/>
+				<object name="unitBarterSellSelection[n]" hidden="true" type="image" ghost="true" size="3 3 43 43" sprite="stretched:session/icons/corners.png"/>
+			    </object>
+			</repeat>
+		    </object>
+		    <object size="0 64 100% 110">
+			<repeat count="4">
+			    <object name="unitBarterBuyButton[n]" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottomBold">
+				<object name="unitBarterBuyIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
+				<object name="unitBarterBuyAmount[n]" ghost="true" style="resourceText" type="text" size="0 0 100% 50%"/>
+			    </object>
+			</repeat>
+		    </object>
+		</object>
+
+		<!-- Stance Selection -->
+		<object name="unitStancePanel"
+			style="TranslucentPanel"
+			size="4 100%-43 100%-4 100%-4"
+			type="text"
+		>
+		    <object size="1 2 100% 100%">
+			<repeat count="5">
+			    <object name="unitStanceButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBottomBold" z="100">
+				<object name="unitStanceIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
+				<object name="unitStanceSelection[n]" hidden="true" type="image" ghost="true" size="3 3 33 33" sprite="stretched:session/icons/corners.png"/>
+			    </object>
+			</repeat>
+		    </object>
+		</object>
+	    </object>
+
+	    <!-- ================================  ================================ -->
+	    <!-- Details Panel (Middle) -->
+	    <!-- ================================  ================================ -->
+	    <object name="selectionDetails"
+		    type="image"
+		    sprite="bottomMiddle"
+		    size="50%-114 100%-205 50%+114 100%"
+		    hidden="false"
+	    >
+		<!-- Unit details for Single Unit -->
+		<object size="50%-112 0 50%+112 100%" name="detailsAreaSingle">
+
+		    <!-- Big unit icon -->
+		    <object z="30" size="-16 -10 88 94" type="image" name="iconBorderPlayerColor" sprite="playerColorBackground">
+			<object size="0 0 100% 100%" type="image" name="iconBorder" tooltip_style="sessionToolTip">
+			    <object size="4 4 100%-4 100%-4" type="image" name="icon" ghost="true"/>
+			    <object size="100%-20 4 100%-4 20" name="rankIcon" type="image" sprite="" ghost="true"/>
+			    <object type="image" sprite="glassSquareIcon" ghost="true"/>
+
+			    <!-- Experience bar -->
+			    <object size="2 100%-9 100%-2 100%-1" type="image" name="experience" tooltip="Experience" tooltip_style="sessionToolTip">
+				<object type="image" sprite="experienceBackground" ghost="true"/>
+				<object type="image" sprite="experienceForeground" ghost="true" name="experienceBar"/>
+				<object type="image" sprite="statsBarShader" ghost="true"/>
+			    </object>
+			</object>
+		    </object>
+		    
+		    <!-- Stats Bars -->
+		    <object size= "88 2 100%-2 92" type="image" tooltip_style="sessionToolTip">
+			<object size="0 0 100% 100%"  type="image" sprite="detailsShader" ghost="true"/>
+			
+			<!-- Health bar -->
+			<object size="0 4 100% 28" name="healthSection">
+			    <object size="0 0 100% 16" name="healthLabel" type="text" style="StatsLabelTextLeft" ghost="true">Health:</object>
+			    <object size="0 0 100% 16" name="healthStats" type="text" style="StatsTextRight" ghost="true"/>
+			    <object size="0 16 100% 24" name="health" type="image">
+				<object type="image" sprite="healthBackground" ghost="true"/>
+				<object type="image" sprite="healthForeground" ghost="true" name="healthBar"/>
+				<object type="image" sprite="statsBarShader" ghost="true"/>
+			    </object>
+			</object>
+
+			<!-- Stamina bar -->
+			<object size="0 28 100% 52" name="staminaSection">
+			    <object size="0 0 100% 16" name="staminaLabel" type="text" style="StatsLabelTextLeft" ghost="true">Stamina:</object>
+			    <object size="0 0 100% 16" name="staminaStats" type="text" style="StatsTextRight" ghost="true"/>
+			    <object size="0 16 100% 24" name="stamina" type="image">
+				<object type="image" sprite="staminaBackground" ghost="true"/>
+				<object type="image" sprite="staminaForeground" ghost="true" name="staminaBar"/>
+				<object type="image" sprite="statsBarShader" ghost="true"/>
+			    </object>
+			</object>
+			
+			<!-- Resource bar -->
+			<object size="0 28 100% 52" name="resourceSection">
+			    <object size="0 0 100% 16" name="resourceLabel" type="text" style="StatsLabelTextLeft" ghost="true"/>
+			    <object size="0 0 100% 16" name="resourceStats" type="text" style="StatsTextRight" ghost="true"/>
+			    <object size="0 16 100% 24" name="resources" type="image">
+				<object type="image" sprite="resourceBackground" ghost="true"/>
+				<object type="image" sprite="resourceForeground" ghost="true" name="resourceBar"/>
+				<object type="image" sprite="statsBarShader" ghost="true"/>
+			    </object>
+			</object>
+			
+			<!-- Attack and Armor -->
+			<object size="0 54 100%+2 86">
+			    <object size="0 0 100% 50%">
+				<object size="0 0 100% 100%" type="text" style="StatsLabelTextLeft">Attack:</object>
+				<object size="0 0 100% 100%" name="attackStats" type="text" style="StatsTextRight"/>
+			    </object>
+			
+			    <object size="0 50% 100% 100%">
+				<object size="0 0 100% 100%" type="text" style="StatsLabelTextLeft">Armor:</object>
+				<object size="0 0 100% 100%" name="armorStats" type="text" style="StatsTextRight"/>
+			    </object>
+			</object>
+			
+		    </object>
+          
+		    <!-- Names -->
+		    <object size="2 88 100%-2 100%-40" name="statsArea" type="image">
+			
+			<!-- Resource carrying icon/counter -->
+			<object size="100%-72 0 100%-26 36" type="text" name="resourceCarryingText" style="StatsTextRight"/>
+			<object size="100%-32 0 100%+4 36" type="image" name="resourceCarryingIcon"/>
+			
+			<!-- Specific Name -->
+			<object size="0 0 100% 36" name="specific" type="text" style="SecondaryLabelTextLeft" tooltip_style="sessionToolTipBold"/>
+			
+			<!-- Generic Name -->
+			<object size="0 100%-46 100% 100%-26"  type="image" sprite="detailsShader" ghost="true"/>
+			<object size="0 100%-48 100% 100%-26" name="generic" type="text" style="StatsLabelTextLeft" tooltip_style="sessionToolTipBold"/>
+			
+			<!-- Player Name -->
+			<object size="2 100%-26 100%-1 100%" name="playerColorBackground" type="image" sprite="playerColorBackground">
+			    <object size="0 0 100% 100%" name="player" type="text" style="PrimaryLabelTextCentered" tooltip_style="sessionToolTipBold"/>
+			</object>
+		    </object>
+		    
+		    <object size="2 100%-40 100%-2 100%-2"  type="image" sprite="detailsShader" ghost="true"/>
+		</object>
+
+		<!-- Unit details for Multiple Units -->
+		<object size="50%-112 0 50%+112 100%" name="detailsAreaMultiple">
+
+		    <object name="unitSelectionPanel"
+			    size="20 12 100%-20 100%"
+		    >
+			<object size="0 0 100% 100%">
+			    <repeat count="16">
+				<object name="unitSelectionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBold" z="100">
+				    <object name="unitSelectionIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
+				    <object name="unitSelectionCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
+				    <object size="0 100%-3 100% 100%" name="unitSelectionHealth[n]" ghost="true">
+				    </object>
+				</object>
+			    </repeat>
+			</object>
+		    </object>
+
+		    <!-- Total -->
+		    <object size="100%-42 12 100%-8 46" type="image" sprite="groupsIcon">
+			<object size="0 0 100% 100%" type="text" style="largeCenteredOutlinedText" name="numberOfUnits"/>
+		    </object>
+
+		    <!-- Stats Bars -->
+		    <object size= "100%-38 50 100%-18 100%-44" type="image" tooltip_style="sessionToolTip">
+			<!-- Health bar -->
+			<object size="0 0 12 100%" type="image" name="healthMultiple" tooltip="Hitpoints" tooltip_style="sessionToolTip">
+			    <object type="image" sprite="healthBackground" ghost="true"/>
+			    <object type="image" sprite="healthForeground" ghost="true" name="healthBarMultiple"/>
+			    <object type="image" sprite="statsBarShader" ghost="true"/>
+			</object>
+
+		    <!-- Stamina bar -->
+			<object size="14 0 26 100%" type="image" name="staminaMultiple" tooltip="Stamina" tooltip_style="sessionToolTipBold">
+			    <object type="image" sprite="staminaBackground" ghost="true"/>
+			    <object type="image" sprite="staminaForeground" ghost="true" name="staminaBarMultiple"/>
+			    <object type="image" sprite="statsBarShader" ghost="true"/>
+			</object>
+		    </object>
+
+		    <object size="2 100%-40 100%-2 100%-2"  type="image" sprite="detailsShader" ghost="true"/>
+		</object>
+
+		<!-- Unit Commands -->
+		<object name="unitCommandPanel"
+			size="0 100%-36 100% 100%-4"
+			type="image"
+			z="30"
+		>
+		    <object size="0 0 100% 100%">
+			<repeat count="6">
+			    <object name="unitCommandButton[n]" hidden="true" style="iconButton" type="button" size="0 0 32 32" tooltip_style="sessionToolTipBottomBold">
+				<object name="unitCommandIcon[n]" ghost="true" type="image" size="0 0 100% 100%" style="commandIcon"/>
+				<object name="unitCommandCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
+			    </object>
+			</repeat>
+		    </object>
+		</object>
+
+	    </object> <!-- END OF SELECTION DETAILS -->
+
+	    <!-- ================================  ================================ -->
+	    <!--Commands Panel -->
+	    <!-- ================================  ================================ -->
+	    <object name="unitCommands"
+		    type="image"
+		    sprite="bottomRight"
+		    size="622 100%-170 100% 100%"
+		    hidden="false"
+	    >
+		<object name="unitConstructionPanel"
+			size="14 12 100% 100%"
+		>
+		    <object size="0 0 100% 100%">
+			<repeat count="24">
+			    <object name="unitConstructionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
+				<object name="unitConstructionIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
+			    </object>
+			</repeat>
+		    </object>
+		</object>
+
+		<object name="unitResearchPanel"
+			size="14 100%-102 100% 100%"
+		>
+		    <object size="0 0 100% 100%">
+			<repeat count="16">
+			    <object name="unitResearchButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
+				<object name="unitResearchIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
+				<object name="unitResearchSelection[n]" hidden="true" type="image" ghost="true" size="3 3 43 43" sprite="colour: 255 0 0 127"/>
+			    </object>
+			</repeat>
+			<repeat count="8">
+			    <object name="unitResearchPair[n]" hidden="true" size="0 0 46 92">
+				<object name="unitResearchPairIcon[n]" type="image" ghost="true" size="8 38 38 54" sprite="stretched:session/icons/vertical_pair.png"/>
+			    </object>
+			</repeat>
+		    </object>
+		</object>
+
+		<object name="unitTrainingPanel"
+			size="14 12 100% 100%"
+		>
+		    <object size="0 0 100% 100%">
+			<repeat count="24">
+			    <object name="unitTrainingButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
+				<object name="unitTrainingIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
+			    </object>
+			</repeat>
+		    </object>
+		</object>
+
+		<object name="unitTradingPanel"
+			size="14 12 100% 100%"
+		>
+		    <object size="0 0 100% 100%">
+			<repeat count="4">
+			    <object name="unitTradingButton[n]" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
+				<object name="unitTradingIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
+				<object name="unitTradingSelection[n]" hidden="true" type="image" ghost="true" size="3 3 43 43" sprite="stretched:session/icons/corners.png"/>
+			    </object>
+			</repeat>
+		    </object>
+		</object>
+
+		<object name="unitQueuePanel"
+			size="4 -56 100% 0"
+			type="image"
+			style="TranslucentPanelThinBorder"
+		>
+		    <object size="-4 -2 52 54" type="image" sprite="stretched:session/icons/production.png" tooltip_style="sessionToolTipBottom" tooltip="Production queue">
+			<object name="queueProgress" ghost="true" style="iconButtonProgress" type="text"/>
+		    </object>
+
+		    <object size="48 6 100% 100%">
+			<repeat count="16">
+			    <object name="unitQueueButton[n]" hidden="true" style="iconButton" type="button" size="0 0 40 40" tooltip_style="sessionToolTipBottom">
+				<object name="unitQueueIcon[n]" ghost="true" type="image" size="3 3 37 37"/>
+				<object name="unitQueueProgressSlider[n]" type="image" sprite="queueProgressSlider" ghost="true" size="1 1 100%-1 100%-1" z="20"/>
+				<object name="unitQueueCount[n]" ghost="true" style="groupIconsText" type="text" z="20"/>
+			    </object>
+			</repeat>
+		    </object>
+		</object>
+
+	    </object> <!-- END OF UNIT COMMANDS -->
+
+	</object><!-- END OF BOTTOM PANEL -->
+
+    </object> <!-- END OF SN OBJECT -->
+
+    <!-- ================================  ================================ -->
+    <!-- Selection bandbox -->
+    <!-- ================================  ================================ -->
+    <object name="bandbox" type="image" sprite="bandbox" ghost="true" hidden="true" z="200"/>
+
+    <!-- ================================  ================================ -->
+    <!-- Network status -->
+    <!-- ================================  ================================ -->
+    <object name="netStatus" type="text" style="netStatus" z="100" hidden="true">
+	<object type="button"
+		name="disconnectedExitButton"
+		style="StoneButton"
+		size="50%-84 50%+128 50%+84 50%+160"
+		tooltip_style="sessionToolTip"
+		hidden="true"
+	>
+	    <object size="0 0 100% 100%" type="text" style="CenteredButtonText" name="disconnectedExitButtonText" ghost="true">Return to Main Menu</object>
+	    <action on="Press">leaveGame()</action>
+	</object>
+
+    </object>
 
 </objects>

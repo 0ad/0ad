@@ -2,210 +2,226 @@
 
 <styles>
 
-	<!-- ================================  ================================ -->
-	<!-- Text Styles -->
-	<!-- ================================  ================================ -->
-  <style name="PauseText"
-		font="serif-bold-24"
-		textcolor="white"
-		text_align="center"
-		text_valign="center"
-	/>
+    <!-- ================================  ================================ -->
+    <!-- Text Styles -->
+    <!-- ================================  ================================ -->
+    <style name="PauseText"
+	   font="serif-bold-24"
+	   textcolor="white"
+	   text_align="center"
+	   text_valign="center"
+    />
 
-  <style name="PauseMessageText"
-		font="serif-bold-12"
-		textcolor="white"
-		text_align="center"
-		text_valign="center"
-	/>
+    <style name="PauseMessageText"
+	   font="serif-bold-12"
+	   textcolor="white"
+	   text_align="center"
+	   text_valign="center"
+    />
 
-	<style name="leftAlignedText"
-		textcolor="white"
-		text_align="left"
-		text_valign="center"
-	/>
+    <style name="leftAlignedText"
+	   textcolor="white"
+	   text_align="left"
+	   text_valign="center"
+    />
 
-	<style name="rightAlignedText"
-		textcolor="white"
-		text_align="right"
-		text_valign="top"
-	/>
+    <style name="rightAlignedText"
+	   textcolor="white"
+	   text_align="right"
+	   text_valign="top"
+    />
 
-	<style name="centeredText"
-		textcolor="black"
-		text_align="center"
-		text_valign="center"
-	/>
+    <style name="centeredText"
+	   textcolor="black"
+	   text_align="center"
+	   text_valign="center"
+    />
 
-  <style name="largeBoldCenteredText"
-		font="serif-bold-18"
-		textcolor="white"
-		text_align="center"
-		text_valign="center"
-	/>
+    <style name="largeBoldCenteredText"
+	   font="serif-bold-18"
+	   textcolor="white"
+	   text_align="center"
+	   text_valign="center"
+    />
 
-	<style name="largeCenteredOutlinedText"
-		font="serif-bold-stroke-14"
-		textcolor="white"
-		text_align="center"
-		text_valign="center"
-	/>
+    <style name="largeCenteredOutlinedText"
+	   font="serif-bold-stroke-14"
+	   textcolor="white"
+	   text_align="center"
+	   text_valign="center"
+    />
 
-  <style name="largeLeftOutlinedText"
-    font="serif-bold-stroke-14"
-    textcolor="white"
-    text_align="left"
-    text_valign="center"
-	/>
+    <style name="largeLeftOutlinedText"
+	   font="serif-bold-stroke-14"
+	   textcolor="white"
+	   text_align="left"
+	   text_valign="center"
+    />
 
-	<style name="iconButtonCount"
-		textcolor="255 255 255"
-		font="serif-9"
-		text_align="right"
-		text_valign="top"
-		buffer_zone="4"
-	/>
+    <style name="iconButtonCount"
+	   textcolor="255 255 255"
+	   font="serif-9"
+	   text_align="right"
+	   text_valign="top"
+	   buffer_zone="4"
+    />
 
-	<style name="iconButtonProgress"
-		textcolor="255 255 255"
-		font="serif-stroke-14"
-		text_align="center"
-		text_valign="center"
-	/>
+    <style name="iconButtonProgress"
+	   textcolor="255 255 255"
+	   font="serif-stroke-14"
+	   text_align="center"
+	   text_valign="center"
+    />
 
-	<style name="groupIconsText"
-		font="serif-bold-stroke-14"
-		textcolor="white"
-		text_align="center"
-		text_valign="center"
-	/>
+    <style name="groupIconsText"
+	   font="serif-bold-stroke-14"
+	   textcolor="white"
+	   text_align="center"
+	   text_valign="center"
+    />
 
-	<style name="groupIconsCenteredText"
-		font="mono-stroke-10"
-		textcolor="255 255 255"
-		text_align="center"
-		text_valign="center"
-	/>
+    <style name="groupIconsCenteredText"
+	   font="mono-stroke-10"
+	   textcolor="255 255 255"
+	   text_align="center"
+	   text_valign="center"
+    />
 
-	<style name="devCommandsText"
-		font="sans-10"
-		textcolor="255 255 255"
-		text_align="right"
-	/>
+    <style name="devCommandsText"
+	   font="sans-10"
+	   textcolor="255 255 255"
+	   text_align="right"
+    />
 
-	<style name="resourceText"
-		textcolor="white"
-		font="serif-bold-stroke-14"
-		ghost="true"
-		text_align="left"
-		text_valign="center"
-	/>
+    <style name="resourceText"
+	   textcolor="white"
+	   font="serif-bold-stroke-14"
+	   ghost="true"
+	   text_align="left"
+	   text_valign="center"
+    />
 
-	<style name="statsTextLabel"
-		textcolor="white"
-		font="serif-bold-stroke-14"
-		ghost="true"
-		text_align="center"
-		text_valign="center"
-	/>
+    <style name="StatsLabelTextLeft"
+	   font="serif-12"
+	   textcolor="white"
+	   text_align="left"
+	   text_valign="center"
+	   ghost="true"
+    />
 
-  <style name="statsText"
-    textcolor="white"
-    font="serif-bold-stroke-14"
-    ghost="true"
-    text_align="center"
-    text_valign="center"
-	/>
+    <style name="StatsTextRight"
+	   font="serif-bold-stroke-14"
+	   textcolor="gold"
+	   text_align="right"
+	   text_valign="center"
+	   ghost="true"
+    />
+    
+    <style name="PrimaryLabelTextCentered"
+	   font="serif-bold-stroke-14"
+	   textcolor="white"
+	   text_align="center"
+	   text_valign="center"
+	   ghost="true"
+    />
+    
+    <style name="SecondaryLabelTextLeft"
+	   font="serif-bold-stroke-14"
+	   textcolor="gold"
+	   text_align="left"
+	   text_valign="center"
+	   ghost="true"
+    />   
 
-	<style name="settingsText"
-		font="serif-16"
-		textcolor="white"
-		text_align="right"
-		text_valign="center"
-	/>
+    <style name="settingsText"
+	   font="serif-16"
+	   textcolor="white"
+	   text_align="right"
+	   text_valign="center"
+    />
 
-	<style name="dialogTitleText"
-		font="serif-bold-18"
-		textcolor="white"
-		text_align="center"
-		text_valign="center"
-	/>
+    <style name="dialogTitleText"
+	   font="serif-bold-18"
+	   textcolor="white"
+	   text_align="center"
+	   text_valign="center"
+    />
 
-	<style name="dialogText"
-		font="serif-16"
-		textcolor="white"
-		text_align="center"
-		text_valign="center"
-	/>
+    <style name="dialogText"
+	   font="serif-16"
+	   textcolor="white"
+	   text_align="center"
+	   text_valign="center"
+    />
 
-	<!-- ================================  ================================ -->
-	<!-- Icon Styles -->
-	<!-- ================================  ================================ -->
-	<style name="commandIcon"
-		sprite="command"
-		ghost="true"
-	/>
+    <!-- ================================  ================================ -->
+    <!-- Icon Styles -->
+    <!-- ================================  ================================ -->
+    <style name="commandIcon"
+	   sprite="command"
+	   ghost="true"
+    />
 
-	<style name="iconButton"
-		sprite="snIconPortrait"
-		sprite_over="snIconPortraitOver"
-		sprite_disabled="snIconPortraitDisabled"
-		tooltip_style="snToolTipBottom"
-	/>
+    <style name="iconButton"
+	   sprite="snIconPortrait"
+	   sprite_over="snIconPortraitOver"
+	   sprite_disabled="snIconPortraitDisabled"
+	   tooltip_style="snToolTipBottom"
+    />
 
-	<!-- ================================  ================================ -->
-	<!-- Tooltip Styles -->
-	<!-- ================================  ================================ -->
-	<style name="resourceCounter"
-		tooltip_style="snToolTip"
-	/>
+    <!-- ================================  ================================ -->
+    <!-- Tooltip Styles -->
+    <!-- ================================  ================================ -->
+    <style name="resourceCounter"
+	   tooltip_style="snToolTip"
+    />
 
-	<style name="resourceCounter"
-		tooltip_style="snToolTip"
-	/>
+    <style name="resourceCounter"
+	   tooltip_style="snToolTip"
+    />
 
-	<style name="informationTooltip"
-		anchor="top"
-		buffer_zone="4"
-		font="serif-bold-14"
-		maxwidth="300"
-		offset="16 32"
-		sprite="BackgroundInformationTooltip"
-		textcolor="255 255 255"
-	/>
+    <style name="informationTooltip"
+	   anchor="top"
+	   buffer_zone="4"
+	   font="serif-bold-14"
+	   maxwidth="300"
+	   offset="16 32"
+	   sprite="BackgroundInformationTooltip"
+	   textcolor="255 255 255"
+    />
 
-	<!-- ================================  ================================ -->
-	<!-- Misc Styles -->
-	<!-- ================================  ================================ -->
-	<style name="chatPanel"
-		buffer_zone="5"
-		font="serif-bold-stroke-14"
-		textcolor="white"
-		textcolor_selected="white"
-		text_align="left"
-		text_valign="top"
-	/>
+    <!-- ================================  ================================ -->
+    <!-- Misc Styles -->
+    <!-- ================================  ================================ -->
+    <style name="chatPanel"
+	   buffer_zone="5"
+	   font="serif-bold-stroke-14"
+	   textcolor="white"
+	   textcolor_selected="white"
+	   text_align="left"
+	   text_valign="top"
+    />
 
-	<style  name="chatInput"
-		sprite="chatInput"
-		sprite_selectarea="chatInputHighlight"
-		textcolor="white"
-		textcolor_selected="darkgray"
-	/>
+    <style  name="chatInput"
+	    sprite="chatInput"
+	    sprite_selectarea="chatInputHighlight"
+	    textcolor="white"
+	    textcolor_selected="darkgray"
+    />
 
-	<style name="notificationPanel"
-		buffer_zone="5"
-		font="serif-bold-stroke-14"
-		textcolor="white"
-		text_align="center"
-		text_valign="bottom"
-	/>
+    <style name="notificationPanel"
+	   buffer_zone="5"
+	   font="serif-bold-stroke-14"
+	   textcolor="white"
+	   text_align="center"
+	   text_valign="bottom"
+    />
 
-	<style name="netStatus"
-		font="serif-bold-18"
-		textcolor="255 255 255"
-		text_align="center"
-		text_valign="center"
-		sprite="netStatusBackground"
-	/>
+    <style name="netStatus"
+	   font="serif-bold-18"
+	   textcolor="255 255 255"
+	   text_align="center"
+	   text_valign="center"
+	   sprite="netStatusBackground"
+    />
 </styles>
