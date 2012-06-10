@@ -50,21 +50,16 @@ function displaySingle(entState, template)
 	}
 	
 	// TODO: Stamina
-	// getGUIObjectByName("staminaBar");
 	var player = Engine.GetPlayerID();
-	if (entState.player == player || g_DevSettings.controlAll)
+	if (entState.stamina && (entState.player == player || g_DevSettings.controlAll))
 	{
-		//if (entState.stamina !== undefined)
-			getGUIObjectByName("staminaSection").hidden = false;
-		//else
-		//	getGUIObjectByName("stamina").hidden = true;
+		getGUIObjectByName("staminaSection").hidden = false;
 	}
 	else
 	{
 		getGUIObjectByName("staminaSection").hidden = true;
 	}
 
-	
 	// Experience
 	if (entState.promotion)
 	{
