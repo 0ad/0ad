@@ -165,7 +165,7 @@
 	</sprite>
 
 	<!-- Bottom Left Panel -->
-	<sprite name="bottomLeft">
+	<sprite name="supplementalDetailsPanel">
 
 		<!-- sides -->
 		<image  texture="global/border/line_horiz.png"
@@ -194,11 +194,13 @@
 			texture_size="0 0 4 4"
 			size="100%-4 100%-4 100% 100%"
 		/>
-		<image  texture="global/border/line_corner_bottom_middle.png"
+		<image
+			texture="global/border/line_corner_bottom_left.png"
 			texture_size="0 0 4 4"
 			size="0 100%-4 4 100%"
 		/>
-		<image  texture="global/border/line_corner_middle_right.png"
+		<image
+			texture="global/border/line_corner_top_left.png"
 			texture_size="0 0 4 4"
 			size="0 0 4 4"
 		/>
@@ -212,7 +214,7 @@
 	</sprite>
 
 	<!-- Bottom Middle Panel -->
-	<sprite name="bottomMiddle">
+	<sprite name="selectionDetailsPanel">
 
                 <!-- background -->
 		<image  texture="session/panel_middle.png"
@@ -259,7 +261,7 @@
 	</sprite>
 
 	<!-- Bottom Right Panel -->
-	<sprite name="bottomRight">
+	<sprite name="unitCommandsPanel">
 
 		<!-- sides -->
 		<image  texture="global/border/line_horiz.png"

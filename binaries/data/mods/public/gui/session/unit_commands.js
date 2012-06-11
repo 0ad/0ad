@@ -703,6 +703,7 @@ function setupUnitBarterPanel(unitEntState)
  * 
  * @param entState Entity state of the (first) selected unit.
  * @param supplementalDetailsPanel Reference to the "supplementalSelectionDetails" GUI Object
+ * @param commandsPanel Reference to the "commandsPanel" GUI Object
  * @param selection Array of currently selected entity IDs.
  */
 function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, selection)
@@ -791,6 +792,14 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			usedPanels["Trading"] = 1;
 			setupUnitTradingPanel(entState, selection);
 		}
+		
+		supplementalDetailsPanel.hidden = false;
+		commandsPanel.hidden = false;
+	}
+	else // owned by another player
+	{
+	    supplementalDetailsPanel.hidden = true;
+	    commandsPanel.hidden = true;
 	}
 
 	// Hides / unhides Unit Panels (panels should be grouped by type, not by order, but we will leave that for another time)
