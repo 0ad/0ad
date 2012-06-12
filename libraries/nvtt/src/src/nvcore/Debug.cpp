@@ -27,7 +27,7 @@
 #	include <signal.h>
 #endif
 
-#if NV_OS_LINUX || NV_OS_DARWIN || NV_OS_FREEBSD
+#if NV_OS_LINUX || NV_OS_DARWIN || NV_OS_FREEBSD || NV_OS_OPENBSD
 #	include <unistd.h>	// getpid
 #endif
 
@@ -38,10 +38,13 @@
 #	endif
 #endif
 
-#if NV_OS_DARWIN || NV_OS_FREEBSD
+#if NV_OS_DARWIN || NV_OS_FREEBSD || NV_OS_OPENBSD
 #	include <sys/types.h>
+#	include <sys/param.h>
 #	include <sys/sysctl.h>	// sysctl
-#	include <sys/ucontext.h>
+#	if !NV_OS_OPENBSD
+#		include <sys/ucontext.h>
+#	endif
 #	undef HAVE_EXECINFO_H
 #	if defined(HAVE_EXECINFO_H) // only after OSX 10.5
 #		include <execinfo.h> // backtrace
@@ -209,6 +212,14 @@ namespace
 #		elif NV_CPU_X86
 			ucontext_t * ucp = (ucontext_t *)secret;
 			return (void *)ucp->uc_mcontext.mc_eip;
+#		endif
+#	elif NV_OS_OPENBSD
+#		if NV_CPU_X86_64
+			ucontext_t * ucp = (ucontext_t *)secret;
+			return (void *)ucp->sc_rip;
+#		elif NV_CPU_X86
+			ucontext_t * ucp = (ucontext_t *)secret;
+			return (void *)ucp->sc_eip;
 #		endif
 #	else
 #		if NV_CPU_X86_64

@@ -136,8 +136,10 @@ function displaySingle(entState, template)
 	getGUIObjectByName("specific").caption = specificName;
 	getGUIObjectByName("generic").caption = genericName;
 	getGUIObjectByName("player").caption = playerName;
-	getGUIObjectByName("playerColorBackground").sprite = "colour: " + playerColor;
 	getGUIObjectByName("playerColorBackground").tooltip = civName;
+	getGUIObjectByName("playerColorBackground").sprite = "colour: " + playerColor;
+	getGUIObjectByName("iconBorderPlayerColor").sprite = "colour: " + playerColor;
+	getGUIObjectByName("unitQueuePanelPlayerColor").sprite = "colour: " + playerColor;
 
 	// TODO: Set this to the current player, not the selected unit's player
 	//getGUIObjectByName("civIcon").tooltip = civName;
@@ -167,7 +169,6 @@ function displaySingle(entState, template)
 		iconTooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
 
 	getGUIObjectByName("iconBorder").tooltip = iconTooltip;
-	getGUIObjectByName("iconBorderPlayerColor").sprite = "colour: " + playerColor;
 
 	// Unhide Details Area
 	getGUIObjectByName("detailsAreaSingle").hidden = false;

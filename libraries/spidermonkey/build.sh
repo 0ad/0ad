@@ -107,6 +107,7 @@ else
   then
     DLL_SRC_SUFFIX=.so.1.0
     LIB_SRC_SUFFIX=.so.1.0
+    LIB_DST_SUFFIX=.so.1.0
   fi
 fi
 

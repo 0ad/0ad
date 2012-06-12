@@ -216,11 +216,6 @@ extern_lib_defs = {
 			if os.is("windows") then
 				add_default_lib_paths("boost")
 			end
-			add_default_links({
-				android_names = { "boost_filesystem-gcc-mt", "boost_system-gcc-mt" },
-				unix_names = { "boost_filesystem-mt", "boost_system-mt" },
-				bsd_names = { "boost_filesystem", "boost_system" },
-			})
 		end,
 	},
 	boost_signals = {
