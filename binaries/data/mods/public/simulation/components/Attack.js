@@ -535,7 +535,12 @@ Attack.prototype.VectorLength = function(p)
 Attack.prototype.testCollision = function(ent, point, lateness)
 {
 	var targetPosition = this.InterpolatedLocation(ent, lateness);
-	var targetShape = Engine.QueryInterface(ent, IID_Footprint).GetShape();
+	if (!targetPosition)
+		return false;
+	var cmpFootprint = Engine.QueryInterface(ent, IID_Footprint);
+	if (!cmpFootprint)
+		return false;
+	var targetShape = cmpFootprint.GetShape();
 	
 	if (!targetShape || !targetPosition)
 		return false;
@@ -560,7 +565,6 @@ Attack.prototype.testCollision = function(ent, point, lateness)
 
 Attack.prototype.MissileHit = function(data, lateness)
 {
-	
 	var targetPosition = this.InterpolatedLocation(data.target, lateness);
 	if (!targetPosition)
 		return;
