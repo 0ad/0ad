@@ -501,11 +501,11 @@ Attack.prototype.TargetKilled = function(killerEntity, targetEntity)
 
 Attack.prototype.InterpolatedLocation = function(ent, lateness)
 {
-	var targetPositionCmp = Engine.QueryInterface(ent, IID_Position);
-	if (!targetPositionCmp) // TODO: handle dead target properly
+	var cmpTargetPosition = Engine.QueryInterface(ent, IID_Position);
+	if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld()) // TODO: handle dead target properly
 		return undefined;
-	var curPos = targetPositionCmp.GetPosition();
-	var prevPos = targetPositionCmp.GetPreviousPosition();
+	var curPos = cmpTargetPosition.GetPosition();
+	var prevPos = cmpTargetPosition.GetPreviousPosition();
 	lateness /= 1000;
 	return {"x": (curPos.x * (this.turnLength - lateness) + prevPos.x * lateness) / this.turnLength,
 	        "z": (curPos.z * (this.turnLength - lateness) + prevPos.z * lateness) / this.turnLength};
