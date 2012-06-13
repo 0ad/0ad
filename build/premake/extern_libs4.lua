@@ -211,6 +211,14 @@ extern_lib_defs = {
 			if os.is("windows") then
 				add_default_include_paths("boost")
 			end
+			if os.getversion().description == "OpenBSD" then
+				includedirs { "/usr/local/include" }
+			end
+			-- Uncomment the following for your system if you are using boost <= 1.42
+			add_default_links({
+				--unix_names = { "boost_system-mt" }
+				--bsd_names = { "boost_system" }
+			})
 		end,
 		link_settings = function()
 			if os.is("windows") then
@@ -350,6 +358,9 @@ extern_lib_defs = {
 		compile_settings = function()
 			if os.is("windows") then
 				add_default_include_paths("libpng")
+			end
+			if os.getversion().description == "OpenBSD" then
+				includedirs { "/usr/local/include/libpng" }
 			end
 		end,
 		link_settings = function()
@@ -533,6 +544,14 @@ extern_lib_defs = {
 		link_settings = function()
 			if os.is("windows") then
 				add_default_lib_paths("vorbis")
+			end
+			-- TODO: We need to force linking with these as currently
+			-- they need to be loaded explicitly on execution
+			if os.getversion().description == "OpenBSD" then
+				add_default_links({
+					unix_names = { "ogg",
+						"vorbis" },
+				})
 			end
 			add_default_links({
 				win_names  = { "vorbisfile" },

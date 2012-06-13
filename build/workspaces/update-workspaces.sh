@@ -92,7 +92,7 @@ case "`uname -s`" in
     # Only GNU and FreeBSD sed have the -i option (and redirecting 
     # to the same file results in an empty file and starting a subshell
     # isn't as obvious as redirecting to a new file and replacing the old)
-    sed -e 's/-ldl //g' build/gmake.unix/Premake4.make > build/gmake.unix/Premake4.make_new
+    sed -e 's/ -ldl/ /g' build/gmake.unix/Premake4.make > build/gmake.unix/Premake4.make_new
     mv build/gmake.unix/Premake4.make_new build/gmake.unix/Premake4.make
     ;;
 esac

@@ -47,12 +47,15 @@ namespace ERR
 #if EMULATE_SECURE_CRT
 
 // (conflicts with glibc definitions)
-#if !OS_UNIX || OS_MACOSX
+#if !OS_UNIX || OS_MACOSX || OS_OPENBSD
 // return length [in characters] of a string, not including the trailing
 // null character. to protect against access violations, only the
 // first <max_len> characters are examined; if the null character is
 // not encountered by then, <max_len> is returned.
+// strnlen is available on OpenBSD
+#if !OS_OPENBSD
 extern size_t strnlen(const char* str, size_t max_len);
+#endif
 extern size_t wcsnlen(const wchar_t* str, size_t max_len);
 #endif
 

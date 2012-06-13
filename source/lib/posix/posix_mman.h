@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2012 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -20,6 +20,9 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef INCLUDED_POSIX_MMAN
+#define INCLUDED_POSIX_MMAN
+
 #if OS_WIN
 # include "lib/sysdep/os/win/wposix/wmman.h"
 #else
@@ -27,3 +30,5 @@
 #endif
 
 #include "lib/posix/posix_errno.h"	// for user convenience
+
+#endif	// #ifndef INCLUDED_POSIX_MMAN

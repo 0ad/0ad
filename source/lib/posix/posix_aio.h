@@ -30,10 +30,22 @@
 
 #if OS_WIN
 # include "lib/sysdep/os/win/wposix/waio.h"
-#elif OS_ANDROID
+#elif OS_ANDROID || OS_OPENBSD
 // Android doesn't provide aio.h. We don't actually use aio on Linuxes (see
 // CONFIG2_FILE_ENABLE_AIO) but we use its symbols and structs, so define
 // them here
+# if OS_OPENBSD
+// OpenBSD 5.1 (latest version at time of writing) has no struct sigevent defined,
+// so we do this here.
+struct sigevent
+{
+	int sigev_notify;
+	int sigev_signo;
+	union sigval sigev_value;
+	void (*sigev_notify_function)(union sigval);
+	pthread_attr_t *sigev_notify_attributes;
+};
+# endif
 # define LIO_READ 0
 # define LIO_WRITE 1
 # define LIO_NOP 2
