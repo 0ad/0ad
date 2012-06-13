@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="324.452" y="83.3138" z="281.84"/>
+		<Position x="322.219" y="95.066" z="280.642"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -39,7 +39,7 @@
   "PlayerData": [
     {
       "AI": "qbot",
-      "Civ": "celt",
+      "Civ": "gaul",
       "Colour": {
         "b": 200,
         "g": 46,
@@ -68,7 +68,7 @@
     },
     {
       "AI": "qbot",
-      "Civ": "celt",
+      "Civ": "gaul",
       "Colour": {
         "b": 64,
         "g": 128,
@@ -97,7 +97,7 @@
     },
     {
       "AI": "qbot",
-      "Civ": "celt",
+      "Civ": "gaul",
       "Colour": {
         "b": 5,
         "g": 165,
@@ -314,12 +314,6 @@
 			<Position x="328.40302" z="343.03174"/>
 			<Orientation y="-2.54506"/>
 		</Entity>
-		<Entity uid="47">
-			<Template>structures/celt_defense_tower</Template>
-			<Player>1</Player>
-			<Position x="303.08713" z="401.12732"/>
-			<Orientation y="-2.33053"/>
-		</Entity>
 		<Entity uid="48">
 			<Template>units/celt_fanatic</Template>
 			<Player>1</Player>
@@ -354,12 +348,6 @@
 			<Template>units/celt_fanatic</Template>
 			<Player>1</Player>
 			<Position x="316.54795" z="368.11158"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="54">
-			<Template>units/celt_hero_caratacos</Template>
-			<Player>1</Player>
-			<Position x="309.61088" z="367.64911"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="58">
@@ -402,30 +390,6 @@
 			<Template>other/palisades_tall_spikes</Template>
 			<Player>1</Player>
 			<Position x="347.61612" z="380.87418"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="65">
-			<Template>structures/celt_kennel</Template>
-			<Player>1</Player>
-			<Position x="293.72294" z="366.84833"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="66">
-			<Template>structures/celt_corral</Template>
-			<Player>1</Player>
-			<Position x="317.65745" z="350.62482"/>
-			<Orientation y="0.79615"/>
-		</Entity>
-		<Entity uid="67">
-			<Template>structures/celt_mill</Template>
-			<Player>1</Player>
-			<Position x="336.65925" z="370.00886"/>
-			<Orientation y="-2.32226"/>
-		</Entity>
-		<Entity uid="68">
-			<Template>structures/celt_farmstead</Template>
-			<Player>1</Player>
-			<Position x="298.85785" z="373.13007"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="69">
@@ -1214,12 +1178,6 @@
 			<Position x="196.08075" z="541.43366"/>
 			<Orientation y="-0.65061"/>
 		</Entity>
-		<Entity uid="202">
-			<Template>structures/celt_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="243.87104" z="371.78919"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="203">
 			<Template>actor|props/special/eyecandy/campfire.xml</Template>
 			<Position x="324.823" z="387.9243"/>
@@ -1229,18 +1187,6 @@
 			<Template>actor|props/special/eyecandy/campfire.xml</Template>
 			<Position x="239.36529" z="359.58173"/>
 			<Orientation y="-0.68833"/>
-		</Entity>
-		<Entity uid="205">
-			<Template>structures/celt_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="754.08588" z="263.96766"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="206">
-			<Template>structures/celt_civil_centre</Template>
-			<Player>3</Player>
-			<Position x="538.66926" z="827.2074"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="207">
 			<Template>other/palisades_rocks_curve</Template>
@@ -1470,36 +1416,6 @@
 			<Position x="672.14405" z="360.46451"/>
 			<Orientation y="0.71708"/>
 		</Entity>
-		<Entity uid="246">
-			<Template>structures/celt_kennel</Template>
-			<Player>2</Player>
-			<Position x="658.81672" z="324.69016"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="247">
-			<Template>structures/celt_farmstead</Template>
-			<Player>2</Player>
-			<Position x="665.391" z="330.95533"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="248">
-			<Template>structures/celt_corral</Template>
-			<Player>2</Player>
-			<Position x="688.31" z="307.71311"/>
-			<Orientation y="0.7973"/>
-		</Entity>
-		<Entity uid="249">
-			<Template>structures/celt_mill</Template>
-			<Player>2</Player>
-			<Position x="711.28986" z="328.48197"/>
-			<Orientation y="-2.32605"/>
-		</Entity>
-		<Entity uid="251">
-			<Template>structures/celt_defense_tower</Template>
-			<Player>2</Player>
-			<Position x="675.13715" z="354.9915"/>
-			<Orientation y="-2.34105"/>
-		</Entity>
 		<Entity uid="252">
 			<Template>units/celt_fanatic</Template>
 			<Player>2</Player>
@@ -1535,12 +1451,6 @@
 			<Player>2</Player>
 			<Position x="685.81977" z="322.15647"/>
 			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="259">
-			<Template>units/celt_hero_brennus</Template>
-			<Player>2</Player>
-			<Position x="681.55536" z="323.5539"/>
-			<Orientation y="2.78132"/>
 		</Entity>
 		<Entity uid="260">
 			<Template>gaia/flora_tree_pine</Template>
@@ -7146,12 +7056,6 @@
 			<Position x="553.83185" z="764.43342"/>
 			<Orientation y="2.02135"/>
 		</Entity>
-		<Entity uid="1234">
-			<Template>structures/celt_defense_tower</Template>
-			<Player>3</Player>
-			<Position x="511.6555" z="779.06861"/>
-			<Orientation y="-2.38901"/>
-		</Entity>
 		<Entity uid="1235">
 			<Template>other/palisades_small_spikes</Template>
 			<Player>3</Player>
@@ -7181,30 +7085,6 @@
 			<Player>3</Player>
 			<Position x="560.39753" z="746.3235"/>
 			<Orientation y="0.76757"/>
-		</Entity>
-		<Entity uid="1240">
-			<Template>structures/celt_kennel</Template>
-			<Player>3</Player>
-			<Position x="497.18488" z="746.92505"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1241">
-			<Template>structures/celt_farmstead</Template>
-			<Player>3</Player>
-			<Position x="503.25168" z="753.26319"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1242">
-			<Template>structures/celt_corral</Template>
-			<Player>3</Player>
-			<Position x="526.24915" z="727.95301"/>
-			<Orientation y="0.7588"/>
-		</Entity>
-		<Entity uid="1243">
-			<Template>structures/celt_mill</Template>
-			<Player>3</Player>
-			<Position x="548.22455" z="749.8639"/>
-			<Orientation y="-2.38614"/>
 		</Entity>
 		<Entity uid="1244">
 			<Template>units/celt_fanatic</Template>
@@ -7240,12 +7120,6 @@
 			<Template>units/celt_fanatic</Template>
 			<Player>3</Player>
 			<Position x="532.32331" z="749.10157"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1250">
-			<Template>units/celt_hero_britomartus</Template>
-			<Player>3</Player>
-			<Position x="517.58307" z="743.60749"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1251">
@@ -21609,6 +21483,132 @@
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
 			<Position x="391.31702" z="564.6095"/>
 			<Orientation y="-2.7127"/>
+		</Entity>
+		<Entity uid="3783">
+			<Template>structures/gaul_mill</Template>
+			<Player>1</Player>
+			<Position x="337.32749" z="368.78318"/>
+			<Orientation y="-2.30781"/>
+		</Entity>
+		<Entity uid="3784">
+			<Template>structures/gaul_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="244.27938" z="376.06385"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3785">
+			<Template>structures/gaul_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="757.17438" z="263.94837"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3786">
+			<Template>structures/gaul_civil_centre</Template>
+			<Player>3</Player>
+			<Position x="534.60676" z="835.05921"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3787">
+			<Template>structures/gaul_mill</Template>
+			<Player>3</Player>
+			<Position x="548.52082" z="749.78467"/>
+			<Orientation y="-2.33152"/>
+		</Entity>
+		<Entity uid="3788">
+			<Template>structures/gaul_mill</Template>
+			<Player>2</Player>
+			<Position x="710.19825" z="327.662"/>
+			<Orientation y="-2.27137"/>
+		</Entity>
+		<Entity uid="3789">
+			<Template>units/gaul_hero_britomartus</Template>
+			<Player>1</Player>
+			<Position x="306.45954" z="363.7841"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3790">
+			<Template>units/gaul_hero_brennus</Template>
+			<Player>2</Player>
+			<Position x="677.07746" z="322.21003"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3791">
+			<Template>units/gaul_hero_vercingetorix</Template>
+			<Player>3</Player>
+			<Position x="513.36518" z="741.80793"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3792">
+			<Template>structures/gaul_farmstead</Template>
+			<Player>3</Player>
+			<Position x="504.7126" z="752.45698"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3793">
+			<Template>structures/gaul_kennel</Template>
+			<Player>3</Player>
+			<Position x="498.40076" z="743.97571"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3794">
+			<Template>structures/gaul_corral</Template>
+			<Player>3</Player>
+			<Position x="525.01764" z="727.83613"/>
+			<Orientation y="0.82229"/>
+		</Entity>
+		<Entity uid="3795">
+			<Template>structures/gaul_defense_tower</Template>
+			<Player>3</Player>
+			<Position x="511.37708" z="778.76667"/>
+			<Orientation y="-2.39335"/>
+		</Entity>
+		<Entity uid="3796">
+			<Template>structures/gaul_farmstead</Template>
+			<Player>1</Player>
+			<Position x="301.35862" z="372.37229"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3797">
+			<Template>structures/gaul_kennel</Template>
+			<Player>1</Player>
+			<Position x="293.30237" z="365.16529"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3798">
+			<Template>structures/gaul_corral</Template>
+			<Player>1</Player>
+			<Position x="317.62031" z="351.44642"/>
+			<Orientation y="0.76215"/>
+		</Entity>
+		<Entity uid="3799">
+			<Template>structures/gaul_defense_tower</Template>
+			<Player>1</Player>
+			<Position x="305.94718" z="400.01127"/>
+			<Orientation y="-2.35409"/>
+		</Entity>
+		<Entity uid="3800">
+			<Template>structures/gaul_farmstead</Template>
+			<Player>2</Player>
+			<Position x="666.05304" z="332.30195"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3801">
+			<Template>structures/gaul_kennel</Template>
+			<Player>2</Player>
+			<Position x="660.09626" z="324.36017"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3802">
+			<Template>structures/gaul_corral</Template>
+			<Player>2</Player>
+			<Position x="687.01233" z="307.55002"/>
+			<Orientation y="0.7589"/>
+		</Entity>
+		<Entity uid="3803">
+			<Template>structures/gaul_defense_tower</Template>
+			<Player>2</Player>
+			<Position x="675.02845" z="354.18677"/>
+			<Orientation y="-2.36197"/>
 		</Entity>
 	</Entities>
 	<Paths/>

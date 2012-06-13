@@ -24,14 +24,14 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="335.157" y="91.2024" z="611.618"/>
+		<Position x="327.921" y="91.1755" z="161.016"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "2 vs. 1 on an old favorite. An otherwise wide-open, flat desert map is pierced in the center by a lush oasis. Ruins lie to the Southwest which can be plundered for resources. Player 1 is handicapped against his 2 rivals for an extra challenge.",
+  "Description": "2 vs. 1 on an old favorite. An otherwise wide-open, flat desert map is pierced in the center by a lush oasis. Ruins lie to the Southwest which can be plundered for resources. Player 1 is handicapped against his 2 barbarian rivals for an extra challenge.",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
@@ -56,7 +56,7 @@
     },
     {
       "AI": "qbot",
-      "Civ": "celt",
+      "Civ": "brit",
       "Colour": {
         "b": 200,
         "g": 46,
@@ -6529,42 +6529,6 @@
 			<Position x="701.39173" z="826.90705"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="1439">
-			<Template>structures/celt_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="301.45551" z="265.86475"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1440">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="319.0634" z="248.937"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1441">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="321.72574" z="251.64557"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1442">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="310.78531" z="239.9196"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1443">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="313.48197" z="242.5045"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1444">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="316.37845" z="245.84049"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="1450">
 			<Template>structures/rome_temple_vesta</Template>
 			<Player>1</Player>
@@ -7135,12 +7099,6 @@
 			<Position x="350.27756" z="727.30756"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="1554">
-			<Template>units/celt_cavalry_javelinist_b</Template>
-			<Player>2</Player>
-			<Position x="329.89271" z="251.67878"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="1555">
 			<Template>units/cart_cavalry_javelinist_b</Template>
 			<Player>1</Player>
@@ -7218,36 +7176,6 @@
 			<Player>3</Player>
 			<Position x="320.90006" z="795.0326"/>
 			<Orientation y="-2.91184"/>
-		</Entity>
-		<Entity uid="1571">
-			<Template>units/celt_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="314.921" z="235.91189"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1572">
-			<Template>units/celt_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="317.46821" z="237.81296"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1573">
-			<Template>units/celt_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="320.22663" z="240.21146"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1574">
-			<Template>units/celt_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="322.44654" z="243.07453"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1575">
-			<Template>units/celt_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="325.60685" z="245.2411"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1576">
 			<Template>units/iber_infantry_spearman_e</Template>
@@ -7494,6 +7422,78 @@
 			<Player>3</Player>
 			<Position x="329.30039" z="651.2887"/>
 			<Orientation y="2.89127"/>
+		</Entity>
+		<Entity uid="1620">
+			<Template>structures/brit_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="300.03669" z="263.6196"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1621">
+			<Template>units/brit_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="308.53464" z="243.63375"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1622">
+			<Template>units/brit_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="311.309" z="246.19965"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1623">
+			<Template>units/brit_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="313.76545" z="248.25303"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1624">
+			<Template>units/brit_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="316.50776" z="250.86152"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1625">
+			<Template>units/brit_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="318.85178" z="253.40934"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1626">
+			<Template>units/brit_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="314.64042" z="238.06424"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1627">
+			<Template>units/brit_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="317.3311" z="239.57816"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1628">
+			<Template>units/brit_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="319.97162" z="242.28074"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1629">
+			<Template>units/brit_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="322.40574" z="244.61048"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1630">
+			<Template>units/brit_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="324.65912" z="247.1483"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1631">
+			<Template>units/brit_cavalry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="329.26105" z="252.1102"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>

@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="648.476" y="154.867" z="24.739"/>
-		<Rotation angle="-0.0489864"/>
-		<Declination angle="0.595428"/>
+		<Position x="373.208" y="63.7395" z="736.651"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -39,7 +39,7 @@
   "PlayerData": [
     {
       "AI": "",
-      "Civ": "celt",
+      "Civ": "gaul",
       "Colour": {
         "b": 200,
         "g": 46,
@@ -70,12 +70,6 @@
 			<Position x="614.40766" z="218.7358"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="15">
-			<Template>structures/celt_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="381.28394" z="812.67548"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="16">
 			<Template>other/celt_tavern</Template>
 			<Player>1</Player>
@@ -97,7 +91,7 @@
 		<Entity uid="19">
 			<Template>other/celt_longhouse</Template>
 			<Player>1</Player>
-			<Position x="351.43104" z="832.36878"/>
+			<Position x="351.44513" z="832.53644"/>
 			<Orientation y="3.08114"/>
 		</Entity>
 		<Entity uid="20">
@@ -4551,18 +4545,6 @@
 			<Player>2</Player>
 			<Position x="657.69538" z="457.43238"/>
 			<Orientation y="2.81782"/>
-		</Entity>
-		<Entity uid="763">
-			<Template>units/celt_ship_trireme</Template>
-			<Player>1</Player>
-			<Position x="349.2887" z="562.02155"/>
-			<Orientation y="-2.01017"/>
-		</Entity>
-		<Entity uid="765">
-			<Template>units/celt_ship_trireme</Template>
-			<Player>1</Player>
-			<Position x="131.41315" z="624.25672"/>
-			<Orientation y="0.50239"/>
 		</Entity>
 		<Entity uid="766">
 			<Template>gaia/flora_tree_oak</Template>
@@ -9494,66 +9476,6 @@
 			<Template>units/rome_infantry_javelinist_b</Template>
 			<Player>2</Player>
 			<Position x="632.76044" z="201.6424"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1588">
-			<Template>units/celt_infantry_spearman_a</Template>
-			<Player>1</Player>
-			<Position x="356.52155" z="795.3224"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1589">
-			<Template>units/celt_infantry_spearman_a</Template>
-			<Player>1</Player>
-			<Position x="358.5795" z="797.66517"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1590">
-			<Template>units/celt_infantry_spearman_a</Template>
-			<Player>1</Player>
-			<Position x="360.65" z="799.75483"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1591">
-			<Template>units/celt_infantry_spearman_a</Template>
-			<Player>1</Player>
-			<Position x="362.9423" z="802.09412"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1592">
-			<Template>units/celt_infantry_spearman_a</Template>
-			<Player>1</Player>
-			<Position x="364.97608" z="803.78937"/>
-			<Orientation y="2.29004"/>
-		</Entity>
-		<Entity uid="1593">
-			<Template>units/celt_infantry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="352.6497" z="799.26996"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1594">
-			<Template>units/celt_infantry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="354.28418" z="801.37073"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1595">
-			<Template>units/celt_infantry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="356.6987" z="803.94813"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1596">
-			<Template>units/celt_infantry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="358.55933" z="805.78162"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1597">
-			<Template>units/celt_infantry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="361.1677" z="808.46955"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1598">
@@ -17434,6 +17356,84 @@
 			<Template>actor|props/flora/grass_tropic_field.xml</Template>
 			<Position x="265.49262" z="248.48501"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3124">
+			<Template>structures/gaul_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="382.59595" z="810.72461"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3125">
+			<Template>units/gaul_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="357.66617" z="795.20777"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3126">
+			<Template>units/gaul_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="359.07468" z="797.00043"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3127">
+			<Template>units/gaul_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="360.5312" z="798.95844"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3128">
+			<Template>units/gaul_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="362.1381" z="800.64747"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3129">
+			<Template>units/gaul_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="364.3993" z="802.90644"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3130">
+			<Template>units/gaul_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="353.03492" z="799.4798"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3131">
+			<Template>units/gaul_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="354.34162" z="801.70014"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3132">
+			<Template>units/gaul_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="356.06717" z="803.95344"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3133">
+			<Template>units/gaul_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="357.76767" z="805.83448"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3134">
+			<Template>units/gaul_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="359.5506" z="808.3354"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3135">
+			<Template>units/gaul_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="149.42141" z="590.04249"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3136">
+			<Template>units/gaul_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="334.65098" z="545.63794"/>
+			<Orientation y="-2.09984"/>
 		</Entity>
 	</Entities>
 	<Paths/>
