@@ -214,10 +214,11 @@ extern_lib_defs = {
 			if os.getversion().description == "OpenBSD" then
 				includedirs { "/usr/local/include" }
 			end
-			-- Uncomment the following for your system if you are using boost <= 1.42
+			-- These are only needed for boost <= 1.43
 			add_default_links({
-				--unix_names = { "boost_system-mt" }
-				--bsd_names = { "boost_system" }
+				android_names = { "boost_system-gcc-mt" },
+				unix_names = { "boost_system-mt" },
+				bsd_names = { "boost_system" },
 			})
 		end,
 		link_settings = function()
