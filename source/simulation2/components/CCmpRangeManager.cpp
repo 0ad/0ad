@@ -941,7 +941,7 @@ public:
 	virtual CLosQuerier GetLosQuerier(player_id_t player)
 	{
 		if (GetLosRevealAll(player))
-			return CLosQuerier(GetSharedLosMask(player), m_LosStateRevealed, m_TerrainVerticesPerSide);
+			return CLosQuerier(0xFFFFFFFFu, m_LosStateRevealed, m_TerrainVerticesPerSide);
 		else
 			return CLosQuerier(GetSharedLosMask(player), m_LosState, m_TerrainVerticesPerSide);
 	}
