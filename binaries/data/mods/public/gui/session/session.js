@@ -93,7 +93,8 @@ function init(initData, hotloadData)
 	g_CivData = loadCivData();
 	g_CivData["gaia"] = { "Code": "gaia", "Name": "Gaia" };
 
-	getGUIObjectByName("civIcon").sprite = "stretched:"+g_CivData[g_Players[Engine.GetPlayerID()].civ].Emblem;
+	getGUIObjectByName("civIcon").sprite = "stretched:" + g_CivData[g_Players[Engine.GetPlayerID()].civ].Emblem;
+	getGUIObjectByName("civIcon").tooltip = g_CivData[g_Players[Engine.GetPlayerID()].civ].Name;
 	initMenuPosition(); // set initial position
 
 	// If in Atlas editor, disable the exit button

@@ -143,11 +143,11 @@ function damageTypeDetails(dmg)
 	if (dmg)
 	{
 	    var dmgArray = [];
-	    if (dmg.hack) dmgArray.push(dmg.hack + "[font=\"sans-10\"][color=\"orange\"]H[/color][/font]");
-	    if (dmg.pierce) dmgArray.push(dmg.pierce + "[font=\"sans-10\"][color=\"orange\"]P[/color][/font]");
-	    if (dmg.crush) dmgArray.push(dmg.crush + "[font=\"sans-10\"][color=\"orange\"]C[/color][/font]");
+	    if (dmg.hack) dmgArray.push(dmg.hack + "[font=\"sans-10\"][color=\"orange\"] Hack[/color][/font]");
+	    if (dmg.pierce) dmgArray.push(dmg.pierce + "[font=\"sans-10\"][color=\"orange\"] Pierce[/color][/font]");
+	    if (dmg.crush) dmgArray.push(dmg.crush + "[font=\"sans-10\"][color=\"orange\"] Crush[/color][/font]");
 	    
-	    return dmgArray.join("[font=\"serif-12\"], [/font]");
+	    return dmgArray.join(", ");
 	}
 	else
 	{

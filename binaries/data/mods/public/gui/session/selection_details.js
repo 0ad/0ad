@@ -19,6 +19,7 @@ function displaySingle(entState, template)
 	var playerState = g_Players[entState.player];
 
 	var civName = g_CivData[playerState.civ].Name;
+	var civEmblem = g_CivData[playerState.civ].Emblem;
 
 	var playerName = playerState.name;
 	var playerColor = playerState.color.r + " " + playerState.color.g + " " + playerState.color.b + " 128";
@@ -51,14 +52,14 @@ function displaySingle(entState, template)
 	
 	// TODO: Stamina
 	var player = Engine.GetPlayerID();
-	if (entState.stamina && (entState.player == player || g_DevSettings.controlAll))
-	{
-		getGUIObjectByName("staminaSection").hidden = false;
-	}
-	else
-	{
-		getGUIObjectByName("staminaSection").hidden = true;
-	}
+//	if (entState.stamina && (entState.player == player || g_DevSettings.controlAll))
+//	{
+//		getGUIObjectByName("staminaSection").hidden = false;
+//	}
+//	else
+//	{
+//		getGUIObjectByName("staminaSection").hidden = true;
+//	}
 
 	// Experience
 	if (entState.promotion)
@@ -134,15 +135,20 @@ function displaySingle(entState, template)
 
 	// Set Player details
 	getGUIObjectByName("specific").caption = specificName;
-	getGUIObjectByName("generic").caption = genericName;
+	getGUIObjectByName("generic").caption = "(" + genericName + ")";
 	getGUIObjectByName("player").caption = playerName;
-	getGUIObjectByName("playerColorBackground").tooltip = civName;
+	getGUIObjectByName("player").tooltip = civName;
 	getGUIObjectByName("playerColorBackground").sprite = "colour: " + playerColor;
-	getGUIObjectByName("iconBorderPlayerColor").sprite = "colour: " + playerColor;
 	getGUIObjectByName("unitQueuePanelPlayerColor").sprite = "colour: " + playerColor;
 
-	// TODO: Set this to the current player, not the selected unit's player
-	//getGUIObjectByName("civIcon").tooltip = civName;
+	if ("Gaia" != civName)
+	{
+		getGUIObjectByName("playerCivIcon").sprite = "stretched:grayscale:" + civEmblem;
+	}
+	else
+	{
+		getGUIObjectByName("playerCivIcon").sprite = "";
+	}
 
 	// Icon image
 	if (template.icon)
@@ -156,8 +162,7 @@ function displaySingle(entState, template)
 	}
 
 	// Attack and Armor
-	getGUIObjectByName("attackStats").caption = damageTypeDetails(entState.attack);
-	getGUIObjectByName("armorStats").caption = damageTypeDetails(entState.armour);
+	getGUIObjectByName("attackAndArmorStats").tooltip = "Attack: " + damageTypeDetails(entState.attack) + "\nArmor: " + damageTypeDetails(entState.armour);
 
 	// Icon Tooltip
 	var iconTooltip = "";
