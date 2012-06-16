@@ -52,14 +52,14 @@ function displaySingle(entState, template)
 	
 	// TODO: Stamina
 	var player = Engine.GetPlayerID();
-//	if (entState.stamina && (entState.player == player || g_DevSettings.controlAll))
-//	{
-//		getGUIObjectByName("staminaSection").hidden = false;
-//	}
-//	else
-//	{
-//		getGUIObjectByName("staminaSection").hidden = true;
-//	}
+	if (entState.stamina && (entState.player == player || g_DevSettings.controlAll))
+	{
+		getGUIObjectByName("staminaSection").hidden = false;
+	}
+	else
+	{
+		getGUIObjectByName("staminaSection").hidden = true;
+	}
 
 	// Experience
 	if (entState.promotion)
@@ -135,19 +135,29 @@ function displaySingle(entState, template)
 
 	// Set Player details
 	getGUIObjectByName("specific").caption = specificName;
-	getGUIObjectByName("generic").caption = "(" + genericName + ")";
-	getGUIObjectByName("player").caption = playerName;
-	getGUIObjectByName("player").tooltip = civName;
+		getGUIObjectByName("player").caption = playerName;
 	getGUIObjectByName("playerColorBackground").sprite = "colour: " + playerColor;
 	getGUIObjectByName("unitQueuePanelPlayerColor").sprite = "colour: " + playerColor;
+	
+	if (genericName)
+	{
+		getGUIObjectByName("generic").caption = "(" + genericName + ")";
+	}
+	else
+	{
+		getGUIObjectByName("generic").caption = "";
+
+	}
 
 	if ("Gaia" != civName)
 	{
 		getGUIObjectByName("playerCivIcon").sprite = "stretched:grayscale:" + civEmblem;
+		getGUIObjectByName("player").tooltip = civName;
 	}
 	else
 	{
 		getGUIObjectByName("playerCivIcon").sprite = "";
+		getGUIObjectByName("player").tooltip = "";
 	}
 
 	// Icon image
