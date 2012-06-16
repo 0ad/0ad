@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="237.153" y="94.6317" z="498.698"/>
-		<Rotation angle="0.0455309"/>
-		<Declination angle="0.587709"/>
+		<Position x="1042.19" y="145.664" z="433.26"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -71,7 +71,7 @@
     },
     {
       "AI": "qbot",
-      "Civ": "celt",
+      "Civ": "brit",
       "Colour": {
         "b": 5,
         "g": 165,
@@ -107,12 +107,6 @@
 }
 ]]></ScriptSettings>
 	<Entities>
-		<Entity uid="13">
-			<Template>structures/celt_civil_centre</Template>
-			<Player>3</Player>
-			<Position x="1057.57007" z="643.3545"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="15">
 			<Template>gaia/geology_metal_desert_slabs</Template>
 			<Player>0</Player>
@@ -2944,24 +2938,6 @@
 			<Player>0</Player>
 			<Position x="344.01114" z="395.02063"/>
 			<Orientation y="-0.9999"/>
-		</Entity>
-		<Entity uid="544">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>3</Player>
-			<Position x="1069.51966" z="622.7154"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="545">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>3</Player>
-			<Position x="1071.91407" z="624.96003"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="546">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>3</Player>
-			<Position x="1074.78772" z="628.10486"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="550">
 			<Template>other/obelisk</Template>
@@ -14914,6 +14890,30 @@
 			<Template>structures/iber_wall_tower</Template>
 			<Player>1</Player>
 			<Position x="188.31292" z="702.59705"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2932">
+			<Template>structures/brit_civil_centre</Template>
+			<Player>3</Player>
+			<Position x="1053.5829" z="643.36255"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2933">
+			<Template>units/brit_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="1065.93885" z="622.69062"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2934">
+			<Template>units/brit_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="1072.35743" z="627.49122"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2935">
+			<Template>units/brit_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="1069.19166" z="625.29407"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>

@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="679.366" y="219.765" z="52.0978"/>
+		<Position x="326.959" y="82.0926" z="858.542"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -126,7 +126,7 @@
     },
     {
       "AI": "qbot",
-      "Civ": "celt",
+      "Civ": "brit",
       "Colour": {
         "b": 75,
         "g": 230,
@@ -15737,41 +15737,11 @@
 			<Position x="982.51441" z="967.96155"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="2939">
-			<Template>structures/celt_civil_centre</Template>
-			<Player>4</Player>
-			<Position x="310.23411" z="967.7563"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="2940">
 			<Template>other/celt_tavern</Template>
 			<Player>4</Player>
 			<Position x="352.23642" z="928.01319"/>
 			<Orientation y="-2.37522"/>
-		</Entity>
-		<Entity uid="2943">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="318.39838" z="946.59968"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2944">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="322.85022" z="950.70301"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2945">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="327.38056" z="955.06031"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2946">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="331.8596" z="959.48328"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2948">
 			<Template>units/pers_kardakes_hoplite</Template>
@@ -15939,6 +15909,36 @@
 			<Template>units/spart_support_female_citizen</Template>
 			<Player>3</Player>
 			<Position x="954.92682" z="257.11124"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2981">
+			<Template>structures/brit_civil_centre</Template>
+			<Player>4</Player>
+			<Position x="311.23761" z="969.201"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2982">
+			<Template>units/brit_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="317.49027" z="947.35785"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2983">
+			<Template>units/brit_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="320.99271" z="950.12073"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2984">
+			<Template>units/brit_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="324.68265" z="954.26606"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2985">
+			<Template>units/brit_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="329.25736" z="958.75556"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>

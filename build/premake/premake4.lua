@@ -307,7 +307,7 @@ function project_set_build_flags()
 				if _ACTION == "gmake" then
 					linkoptions { "-Wl,-rpath,'$$ORIGIN'" } 
 				elseif _ACTION == "codeblocks" then
-					linkoptions { "-Wl,-R\\\\$$ORIGIN" }				
+					linkoptions { "-Wl,-R\\\\$$ORIGIN" }
 				end
 			end
 		end
@@ -338,7 +338,7 @@ function get_main_project_target_type()
 	elseif os.is("macosx") then
 		return "ConsoleApp"
 	else
-		return "WindowedApp"		
+		return "WindowedApp"
 	end
 end
 
@@ -609,7 +609,7 @@ function setup_all_libs ()
 		"cxxtest",
 	}
 
-        if not _OPTIONS["without-audio"] then
+	if not _OPTIONS["without-audio"] then
 		table.insert(extern_libs, "openal")
 		table.insert(extern_libs, "vorbis")
 	end
@@ -765,7 +765,7 @@ function setup_main_exe ()
 			links { "fam" }
 		end
 
-		if not _OPTIONS["android"] then
+		if not _OPTIONS["android"] and not (os.getversion().description == "OpenBSD") then
 			links { "rt" }
 		end
 
@@ -774,14 +774,14 @@ function setup_main_exe ()
 			linkoptions { "-Wl,--fix-cortex-a8" }
 		end
 
-		if os.is("linux") then
+		if os.is("linux") or os.getversion().description == "GNU/kFreeBSD" then
 			links {
 				-- Dynamic libraries (needed for linking for gold)
 				"dl",
 			}
 		elseif os.is("bsd") then
 			links {
-				-- Needed for backtrace* on FreeBSD
+				-- Needed for backtrace* on BSDs
 				"execinfo",
 			}
 		end
@@ -1014,7 +1014,9 @@ function setup_collada_project(project_name, target_type, rel_source_dirs, rel_i
 		linkoptions { "-rdynamic" }
 
 	elseif os.is("bsd") then
-		-- define BSD-something?
+		if os.getversion().description == "OpenBSD" then
+			links { "c", }
+		end
 
 		buildoptions { "-fno-strict-aliasing" }
 
@@ -1180,7 +1182,7 @@ function setup_tests()
 			links { "fam" }
 		end
 
-		if not _OPTIONS["android"] then
+		if not _OPTIONS["android"] and not (os.getversion().description == "OpenBSD") then
 			links { "rt" }
 		end
 
@@ -1189,14 +1191,14 @@ function setup_tests()
 			linkoptions { "-Wl,--fix-cortex-a8" }
 		end
 
-		if os.is("linux") then
+		if os.is("linux") or os.getversion().description == "GNU/kFreeBSD" then
 			links {
 				-- Dynamic libraries (needed for linking for gold)
 				"dl",
 			}
 		elseif os.is("bsd") then
 			links {
-				-- Needed for backtrace* on FreeBSD
+				-- Needed for backtrace* on BSDs
 				"execinfo",
 			}
 		end

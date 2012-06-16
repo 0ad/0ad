@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="554.441" y="118.09" z="-70.7325"/>
+		<Position x="148.894" y="82.0582" z="480.421"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -37,11 +37,26 @@
   "Name": "Massacre of Delphi",
   "PlayerData": [
     {
-      "Civ": "celt"
+      "AI": "",
+      "Civ": "gaul",
+      "Colour": {
+        "b": 200,
+        "g": 46,
+        "r": 46
+      },
+      "Name": "Player 1",
+      "Team": -1
     },
     {
       "AI": "qbot",
-      "Civ": "hele"
+      "Civ": "hele",
+      "Colour": {
+        "b": 20,
+        "g": 20,
+        "r": 150
+      },
+      "Name": "Player 2",
+      "Team": -1
     }
   ],
   "RevealMap": false
@@ -425,84 +440,6 @@
 			<Player>2</Player>
 			<Position x="589.95661" z="112.35276"/>
 			<Orientation y="-2.44976"/>
-		</Entity>
-		<Entity uid="138">
-			<Template>structures/celt_defense_tower</Template>
-			<Player>1</Player>
-			<Position x="146.13724" z="648.2931"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="139">
-			<Template>structures/celt_defense_tower</Template>
-			<Player>1</Player>
-			<Position x="83.71784" z="599.3772"/>
-			<Orientation y="1.9096"/>
-		</Entity>
-		<Entity uid="140">
-			<Template>structures/celt_defense_tower</Template>
-			<Player>1</Player>
-			<Position x="140.50882" z="537.53931"/>
-			<Orientation y="-2.84881"/>
-		</Entity>
-		<Entity uid="141">
-			<Template>structures/celt_defense_tower</Template>
-			<Player>1</Player>
-			<Position x="207.84456" z="591.85621"/>
-			<Orientation y="-3.11068"/>
-		</Entity>
-		<Entity uid="143">
-			<Template>units/celt_hero_caratacos</Template>
-			<Player>1</Player>
-			<Position x="163.56568" z="574.24231"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="147">
-			<Template>units/celt_infantry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="159.94872" z="572.31275"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="148">
-			<Template>units/celt_infantry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="157.18082" z="569.63343"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="149">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="159.05266" z="578.46113"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="150">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="156.51301" z="576.11353"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="151">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="153.68274" z="573.85145"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="152">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="150.74146" z="576.18238"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="153">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="154.12757" z="578.71375"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="154">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="156.93331" z="582.67103"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="155">
 			<Template>units/hele_support_female_citizen</Template>
@@ -2483,24 +2420,6 @@
 			<Position x="614.44202" z="157.3371"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="577">
-			<Template>units/celt_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="160.03722" z="565.995"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="578">
-			<Template>units/celt_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="162.02208" z="567.79011"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="579">
-			<Template>units/celt_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="164.61352" z="569.55451"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="580">
 			<Template>units/hele_infantry_spearman_a</Template>
 			<Player>2</Player>
@@ -3189,24 +3108,6 @@
 			<Template>gaia/flora_tree_cypress</Template>
 			<Player>0</Player>
 			<Position x="635.0315" z="24.46036"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="704">
-			<Template>units/celt_infantry_spearman_a</Template>
-			<Player>1</Player>
-			<Position x="166.38508" z="566.84736"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="705">
-			<Template>units/celt_infantry_spearman_a</Template>
-			<Player>1</Player>
-			<Position x="164.39423" z="565.33338"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="706">
-			<Template>units/celt_infantry_spearman_a</Template>
-			<Player>1</Player>
-			<Position x="162.15342" z="563.2975"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="707">
@@ -4963,12 +4864,6 @@
 			<Template>actor|props/flora/bush_medit_sm.xml</Template>
 			<Position x="51.19776" z="555.25348"/>
 			<Orientation y="1.57081"/>
-		</Entity>
-		<Entity uid="1101">
-			<Template>structures/celt_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="142.87275" z="602.12409"/>
-			<Orientation y="2.3151"/>
 		</Entity>
 		<Entity uid="1114">
 			<Template>other/fence_long</Template>
@@ -16637,24 +16532,6 @@
 			<Position x="135.39594" z="585.9264"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="3387">
-			<Template>units/celt_cavalry_javelinist_e</Template>
-			<Player>1</Player>
-			<Position x="173.57995" z="577.65772"/>
-			<Orientation y="-2.14193"/>
-		</Entity>
-		<Entity uid="3388">
-			<Template>units/celt_cavalry_swordsman_e</Template>
-			<Player>1</Player>
-			<Position x="176.94495" z="574.66358"/>
-			<Orientation y="-2.17658"/>
-		</Entity>
-		<Entity uid="3389">
-			<Template>units/celt_war_dog_e</Template>
-			<Player>1</Player>
-			<Position x="168.9958" z="582.93372"/>
-			<Orientation y="-2.14057"/>
-		</Entity>
 		<Entity uid="3390">
 			<Template>units/hele_cavalry_javelinist_e</Template>
 			<Player>2</Player>
@@ -17026,6 +16903,144 @@
 			<Template>actor|props/flora/bush_medit_underbrush.xml</Template>
 			<Position x="104.6714" z="197.5036"/>
 			<Orientation y="2.25503"/>
+		</Entity>
+		<Entity uid="3464">
+			<Template>structures/gaul_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="144.45258" z="599.76954"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3465">
+			<Template>units/gaul_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="148.63266" z="576.19251"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3466">
+			<Template>units/gaul_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="150.46001" z="577.73145"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3467">
+			<Template>units/gaul_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="152.84366" z="580.99872"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3468">
+			<Template>units/gaul_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="150.58306" z="573.59852"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3469">
+			<Template>units/gaul_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="152.97706" z="576.02515"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3470">
+			<Template>units/gaul_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="154.21827" z="577.73145"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3471">
+			<Template>units/gaul_hero_brennus</Template>
+			<Player>1</Player>
+			<Position x="163.39655" z="579.15119"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3472">
+			<Template>units/gaul_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="163.32576" z="562.40998"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3473">
+			<Template>units/gaul_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="164.94996" z="564.162"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3474">
+			<Template>units/gaul_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="166.71775" z="565.94349"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3475">
+			<Template>units/gaul_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="160.37874" z="565.5796"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3476">
+			<Template>units/gaul_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="162.36052" z="567.29798"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3477">
+			<Template>units/gaul_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="163.84273" z="568.42341"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3478">
+			<Template>units/gaul_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="157.47526" z="568.49665"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3479">
+			<Template>units/gaul_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="159.6008" z="572.1194"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3480">
+			<Template>units/gaul_war_dog_e</Template>
+			<Player>1</Player>
+			<Position x="169.60616" z="583.83271"/>
+			<Orientation y="-2.28772"/>
+		</Entity>
+		<Entity uid="3481">
+			<Template>units/gaul_cavalry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="173.12638" z="579.2422"/>
+			<Orientation y="-2.25344"/>
+		</Entity>
+		<Entity uid="3482">
+			<Template>units/gaul_cavalry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="176.51752" z="575.33631"/>
+			<Orientation y="-2.09052"/>
+		</Entity>
+		<Entity uid="3483">
+			<Template>structures/gaul_defense_tower</Template>
+			<Player>1</Player>
+			<Position x="140.96523" z="531.55335"/>
+			<Orientation y="0.01198"/>
+		</Entity>
+		<Entity uid="3484">
+			<Template>structures/gaul_defense_tower</Template>
+			<Player>1</Player>
+			<Position x="78.03324" z="618.20289"/>
+			<Orientation y="2.27167"/>
+		</Entity>
+		<Entity uid="3485">
+			<Template>structures/gaul_defense_tower</Template>
+			<Player>1</Player>
+			<Position x="148.4722" z="650.77613"/>
+			<Orientation y="2.80514"/>
+		</Entity>
+		<Entity uid="3486">
+			<Template>structures/gaul_defense_tower</Template>
+			<Player>1</Player>
+			<Position x="210.3307" z="589.7212"/>
+			<Orientation y="-1.6365"/>
 		</Entity>
 	</Entities>
 	<Paths/>

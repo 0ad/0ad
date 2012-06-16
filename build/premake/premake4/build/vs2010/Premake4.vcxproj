@@ -134,6 +134,8 @@
 	<ItemGroup>
 		<ClCompile Include="..\..\src\host\os_getcwd.c">
 		</ClCompile>
+		<ClCompile Include="..\..\src\host\os_getversion.c">
+		</ClCompile>
 		<ClCompile Include="..\..\src\host\path_isabsolute.c">
 		</ClCompile>
 		<ClCompile Include="..\..\src\host\os_isdir.c">

@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="669.244" y="144.366" z="683.428"/>
+		<Position x="673.244" y="116.987" z="708.611"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -38,23 +38,38 @@
   "Name": "Death Canyon 1",
   "PlayerData": [
     {
-      "Civ": "celt",
+      "AI": "",
+      "Civ": "brit",
+      "Colour": {
+        "b": 200,
+        "g": 46,
+        "r": 46
+      },
+      "Name": "Player 1",
       "Resources": {
         "food": 250,
         "metal": 300,
         "stone": 250,
         "wood": 250
-      }
+      },
+      "Team": -1
     },
     {
       "AI": "qbot",
       "Civ": "iber",
+      "Colour": {
+        "b": 20,
+        "g": 20,
+        "r": 150
+      },
+      "Name": "Player 2",
       "Resources": {
         "food": 250,
         "metal": 300,
         "stone": 250,
         "wood": 250
-      }
+      },
+      "Team": -1
     }
   ],
   "RevealMap": false
@@ -16060,48 +16075,6 @@
 			<Position x="172.75554" z="493.78525"/>
 			<Orientation y="1.1884"/>
 		</Entity>
-		<Entity uid="3131">
-			<Template>structures/celt_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="669.24415" z="781.72584"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3132">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="683.1291" z="758.76178"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3133">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="686.30481" z="762.9375"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3134">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="688.8282" z="767.20301"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3135">
-			<Template>units/celt_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="651.5121" z="769.02057"/>
-			<Orientation y="-2.6708"/>
-		</Entity>
-		<Entity uid="3136">
-			<Template>units/celt_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="654.21204" z="765.39808"/>
-			<Orientation y="-2.55874"/>
-		</Entity>
-		<Entity uid="3137">
-			<Template>units/celt_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="656.90186" z="761.8985"/>
-			<Orientation y="-2.65075"/>
-		</Entity>
 		<Entity uid="3140">
 			<Template>structures/iber_civil_centre</Template>
 			<Player>2</Player>
@@ -16148,11 +16121,6 @@
 			<Template>actor|props/special/eyecandy/campfire.xml</Template>
 			<Position x="358.1236" z="203.75611"/>
 			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3148">
-			<Template>actor|props/special/eyecandy/campfire.xml</Template>
-			<Position x="683.69227" z="769.20618"/>
-			<Orientation y="3.11536"/>
 		</Entity>
 		<Entity uid="3150">
 			<Template>actor|props/special/eyecandy/broken_rope_bridge_long.xml</Template>
@@ -17811,6 +17779,48 @@
 			<Player>2</Player>
 			<Position x="470.65232" z="208.40053"/>
 			<Orientation y="-2.9995"/>
+		</Entity>
+		<Entity uid="3498">
+			<Template>structures/brit_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="668.83973" z="785.5185"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3499">
+			<Template>units/brit_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="651.78138" z="766.79096"/>
+			<Orientation y="-2.64362"/>
+		</Entity>
+		<Entity uid="3500">
+			<Template>units/brit_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="654.14802" z="763.56464"/>
+			<Orientation y="-2.56449"/>
+		</Entity>
+		<Entity uid="3501">
+			<Template>units/brit_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="656.49073" z="760.91675"/>
+			<Orientation y="-2.15589"/>
+		</Entity>
+		<Entity uid="3502">
+			<Template>units/brit_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="679.25586" z="762.82557"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3503">
+			<Template>units/brit_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="682.67255" z="766.25818"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3504">
+			<Template>units/brit_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="685.85932" z="769.69904"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>

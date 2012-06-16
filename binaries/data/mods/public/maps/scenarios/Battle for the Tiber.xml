@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="798.617" y="144.154" z="152.645"/>
+		<Position x="1517.95" y="125.731" z="266.073"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -73,24 +73,24 @@
     },
     {
       "AI": "qbot",
-      "Civ": "celt",
+      "Civ": "gaul",
       "Colour": {
         "b": 5,
         "g": 165,
         "r": 50
       },
-      "Name": "Celt Invaders",
+      "Name": "Gallic Invaders",
       "Team": 2
     },
     {
       "AI": "qbot",
-      "Civ": "celt",
+      "Civ": "gaul",
       "Colour": {
         "b": 75,
         "g": 230,
         "r": 230
       },
-      "Name": "Celt Invaders",
+      "Name": "Gallic Invaders",
       "Team": 3
     }
   ],
@@ -39157,78 +39157,6 @@
 			<Position x="1552.59925" z="1527.24207"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="8826">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>3</Player>
-			<Position x="1532.31385" z="1523.15406"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8827">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>3</Player>
-			<Position x="1534.35474" z="1525.37989"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8828">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>3</Player>
-			<Position x="1535.97681" z="1527.74451"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8829">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>3</Player>
-			<Position x="1538.41382" z="1530.61731"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8830">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>3</Player>
-			<Position x="1541.79932" z="1535.54615"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8831">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>3</Player>
-			<Position x="1539.77283" z="1533.74085"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8832">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="470.27216" z="464.68525"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8833">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="472.12146" z="467.03525"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8834">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="475.15726" z="470.45704"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8835">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="476.18287" z="471.82703"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8836">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="478.63477" z="474.35026"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8837">
-			<Template>units/celt_support_female_citizen</Template>
-			<Player>4</Player>
-			<Position x="479.71326" z="475.86918"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="8838">
 			<Template>units/celt_fanatic</Template>
 			<Player>4</Player>
@@ -42882,18 +42810,6 @@
 			<Position x="1344.16248" z="299.61045"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="9518">
-			<Template>structures/celt_civil_centre</Template>
-			<Player>3</Player>
-			<Position x="1563.02076" z="1545.21839"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="9519">
-			<Template>structures/celt_civil_centre</Template>
-			<Player>4</Player>
-			<Position x="437.50794" z="467.75965"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="9520">
 			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
 			<Position x="1149.2306" z="509.50824"/>
@@ -43716,6 +43632,90 @@
 			<Player>2</Player>
 			<Position x="882.76246" z="1488.49"/>
 			<Orientation y="-2.34787"/>
+		</Entity>
+		<Entity uid="9684">
+			<Template>structures/gaul_civil_centre</Template>
+			<Player>4</Player>
+			<Position x="436.96976" z="472.97864"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9685">
+			<Template>units/gaul_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="467.17295" z="465.27948"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9686">
+			<Template>units/gaul_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="469.29535" z="467.91785"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9687">
+			<Template>units/gaul_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="471.4102" z="470.3859"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9688">
+			<Template>units/gaul_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="473.38398" z="472.48258"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9689">
+			<Template>units/gaul_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="475.6522" z="474.83851"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9690">
+			<Template>units/gaul_support_female_citizen</Template>
+			<Player>4</Player>
+			<Position x="477.60492" z="477.66425"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9691">
+			<Template>structures/gaul_civil_centre</Template>
+			<Player>3</Player>
+			<Position x="1562.45264" z="1544.7173"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9692">
+			<Template>units/gaul_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="1533.00428" z="1525.52552"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9693">
+			<Template>units/gaul_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="1534.53553" z="1527.49305"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9694">
+			<Template>units/gaul_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="1536.86231" z="1529.89246"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9695">
+			<Template>units/gaul_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="1538.52576" z="1532.02698"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9696">
+			<Template>units/gaul_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="1540.05909" z="1533.60096"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="9697">
+			<Template>units/gaul_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="1542.03125" z="1535.36597"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>

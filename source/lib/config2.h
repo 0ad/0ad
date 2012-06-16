@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2012 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -73,7 +73,8 @@
 #ifndef CONFIG2_FILE_ENABLE_AIO
 // work around a bug introduced in Linux 2.6.38
 // (http://www.wildfiregames.com/forum/index.php?showtopic=14561&view=findpost&p=217710)
-# if OS_LINUX
+// OpenBSD doesn't provide aio.h so we disable its use
+# if OS_LINUX || OS_OPENBSD
 #  define CONFIG2_FILE_ENABLE_AIO 0
 # else
 #  define CONFIG2_FILE_ENABLE_AIO 1

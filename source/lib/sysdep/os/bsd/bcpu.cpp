@@ -28,6 +28,7 @@
 #include "lib/module_init.h"
 
 #include "valgrind.h"
+#include <sys/param.h>
 #include <sys/sysctl.h>
 
 size_t os_cpu_NumProcessors()

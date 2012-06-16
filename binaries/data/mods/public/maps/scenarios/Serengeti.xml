@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="109.525" y="62.2687" z="494.39"/>
+		<Position x="138.109" y="145.073" z="-48.4156"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -57,7 +57,7 @@
     },
     {
       "AI": "qbot",
-      "Civ": "hele",
+      "Civ": "spart",
       "Colour": {
         "b": 5,
         "g": 165,
@@ -3044,12 +3044,6 @@
 			<Player>0</Player>
 			<Position x="421.5112" z="363.41086"/>
 			<Orientation y="0.55619"/>
-		</Entity>
-		<Entity uid="587">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>3</Player>
-			<Position x="119.35479" z="143.41102"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="598">
 			<Template>actor|props/flora/grass_savanna.xml</Template>
@@ -12849,66 +12843,6 @@
 			<Position x="31.70598" z="89.58568"/>
 			<Orientation y="-3.02964"/>
 		</Entity>
-		<Entity uid="2576">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>3</Player>
-			<Position x="142.64649" z="136.9974"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2577">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>3</Player>
-			<Position x="138.7275" z="132.17591"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2578">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>3</Player>
-			<Position x="136.28472" z="129.38529"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2579">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>3</Player>
-			<Position x="133.50908" z="126.42971"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2580">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>3</Player>
-			<Position x="131.07067" z="124.55906"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2581">
-			<Template>units/hele_support_female_citizen</Template>
-			<Player>3</Player>
-			<Position x="127.62496" z="121.71863"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2596">
-			<Template>units/hele_infantry_spearman_b</Template>
-			<Player>3</Player>
-			<Position x="131.21569" z="115.81226"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2597">
-			<Template>units/hele_infantry_javelinist_b</Template>
-			<Player>3</Player>
-			<Position x="135.53663" z="120.61603"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2598">
-			<Template>units/hele_infantry_archer_b</Template>
-			<Player>3</Player>
-			<Position x="139.29856" z="124.24341"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2599">
-			<Template>units/hele_cavalry_swordsman_b</Template>
-			<Player>3</Player>
-			<Position x="143.9595" z="129.9226"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="2612">
 			<Template>actor|geology/stone_savanna_med.xml</Template>
 			<Position x="78.21154" z="534.4914"/>
@@ -15633,6 +15567,72 @@
 			<Player>2</Player>
 			<Position x="641.3368" z="198.95575"/>
 			<Orientation y="-2.61463"/>
+		</Entity>
+		<Entity uid="3196">
+			<Template>structures/spart_civil_centre</Template>
+			<Player>3</Player>
+			<Position x="118.48185" z="146.74468"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3197">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="125.52492" z="123.8591"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3198">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="128.21576" z="125.59363"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3199">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="130.1666" z="127.42641"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3200">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="132.53078" z="130.208"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3201">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="135.46904" z="133.79358"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3202">
+			<Template>units/spart_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="138.41515" z="136.94062"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3203">
+			<Template>units/spart_infantry_spearman_b</Template>
+			<Player>3</Player>
+			<Position x="133.16485" z="118.52096"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3204">
+			<Template>units/spart_infantry_spearman_b</Template>
+			<Player>3</Player>
+			<Position x="135.6065" z="121.11078"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3205">
+			<Template>units/spart_infantry_javelinist_b</Template>
+			<Player>3</Player>
+			<Position x="138.10914" z="124.28396"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3206">
+			<Template>units/spart_cavalry_javelinist_b</Template>
+			<Player>3</Player>
+			<Position x="143.38479" z="128.70705"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>

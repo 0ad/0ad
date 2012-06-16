@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2012 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -68,8 +68,15 @@
 // BSD
 #if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__FreeBSD_kernel__)
 # define OS_BSD 1
+// OpenBSD has no aio.h and we need a way to disable it for it only
+# if defined(__OpenBSD__)
+#  define OS_OPENBSD 1
+# endif
 #else
 # define OS_BSD 0
+#endif
+#ifndef OS_OPENBSD
+# define OS_OPENBSD 0
 #endif
 // Solaris
 #if defined(sun) || defined(__sun)

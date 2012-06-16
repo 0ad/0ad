@@ -501,11 +501,11 @@ Attack.prototype.TargetKilled = function(killerEntity, targetEntity)
 
 Attack.prototype.InterpolatedLocation = function(ent, lateness)
 {
-	var targetPositionCmp = Engine.QueryInterface(ent, IID_Position);
-	if (!targetPositionCmp) // TODO: handle dead target properly
+	var cmpTargetPosition = Engine.QueryInterface(ent, IID_Position);
+	if (!cmpTargetPosition || !cmpTargetPosition.IsInWorld()) // TODO: handle dead target properly
 		return undefined;
-	var curPos = targetPositionCmp.GetPosition();
-	var prevPos = targetPositionCmp.GetPreviousPosition();
+	var curPos = cmpTargetPosition.GetPosition();
+	var prevPos = cmpTargetPosition.GetPreviousPosition();
 	lateness /= 1000;
 	return {"x": (curPos.x * (this.turnLength - lateness) + prevPos.x * lateness) / this.turnLength,
 	        "z": (curPos.z * (this.turnLength - lateness) + prevPos.z * lateness) / this.turnLength};
@@ -535,7 +535,12 @@ Attack.prototype.VectorLength = function(p)
 Attack.prototype.testCollision = function(ent, point, lateness)
 {
 	var targetPosition = this.InterpolatedLocation(ent, lateness);
-	var targetShape = Engine.QueryInterface(ent, IID_Footprint).GetShape();
+	if (!targetPosition)
+		return false;
+	var cmpFootprint = Engine.QueryInterface(ent, IID_Footprint);
+	if (!cmpFootprint)
+		return false;
+	var targetShape = cmpFootprint.GetShape();
 	
 	if (!targetShape || !targetPosition)
 		return false;
@@ -560,7 +565,6 @@ Attack.prototype.testCollision = function(ent, point, lateness)
 
 Attack.prototype.MissileHit = function(data, lateness)
 {
-	
 	var targetPosition = this.InterpolatedLocation(data.target, lateness);
 	if (!targetPosition)
 		return;

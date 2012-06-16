@@ -24,8 +24,8 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="489.545" y="128.411" z="90.1242"/>
-		<Rotation angle="-0.163024"/>
+		<Position x="520.01" y="91.7494" z="731.996"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -47,16 +47,13 @@
       },
       "Name": "Player 1",
       "Resources": {
-        "food": 200,
-        "metal": 200,
-        "stone": 200,
-        "wood": 200
+        "stone": 200
       },
       "Team": -1
     },
     {
       "AI": "qbot",
-      "Civ": "celt",
+      "Civ": "brit",
       "Colour": {
         "b": 20,
         "g": 20,
@@ -64,10 +61,7 @@
       },
       "Name": "Player 2",
       "Resources": {
-        "food": 200,
-        "metal": 200,
-        "stone": 200,
-        "wood": 200
+        "stone": 200
       },
       "Team": -1
     }
@@ -3044,12 +3038,6 @@
 			<Template>structures/spart_civil_centre</Template>
 			<Player>1</Player>
 			<Position x="385.9799" z="196.02164"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="500">
-			<Template>structures/celt_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="503.93268" z="805.89612"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="501">
@@ -8067,42 +8055,6 @@
 			<Position x="539.03327" z="821.72059"/>
 			<Orientation y="0.57682"/>
 		</Entity>
-		<Entity uid="1470">
-			<Template>units/celt_cavalry_javelinist_b</Template>
-			<Player>2</Player>
-			<Position x="526.1266" z="797.56244"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1471">
-			<Template>units/celt_infantry_javelinist_b</Template>
-			<Player>2</Player>
-			<Position x="513.31373" z="787.72614"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1472">
-			<Template>units/celt_infantry_javelinist_b</Template>
-			<Player>2</Player>
-			<Position x="515.68873" z="789.30591"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1473">
-			<Template>units/celt_infantry_javelinist_b</Template>
-			<Player>2</Player>
-			<Position x="517.20563" z="790.71332"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1474">
-			<Template>units/celt_infantry_javelinist_b</Template>
-			<Player>2</Player>
-			<Position x="519.69898" z="792.22864"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1475">
-			<Template>units/celt_infantry_javelinist_b</Template>
-			<Player>2</Player>
-			<Position x="521.06336" z="793.38416"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="1476">
 			<Template>units/spart_cavalry_javelinist_b</Template>
 			<Player>1</Player>
@@ -8635,6 +8587,48 @@
 			<Template>gaia/flora_tree_cretan_date_palm_patch</Template>
 			<Player>0</Player>
 			<Position x="418.3202" z="155.96253"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1565">
+			<Template>structures/brit_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="502.32575" z="807.01319"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1566">
+			<Template>units/brit_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="511.34827" z="787.75977"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1567">
+			<Template>units/brit_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="513.79224" z="790.39295"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1568">
+			<Template>units/brit_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="515.49042" z="792.50599"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1569">
+			<Template>units/brit_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="518.20044" z="795.28827"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1570">
+			<Template>units/brit_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="519.83503" z="796.89002"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1571">
+			<Template>units/brit_cavalry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="523.82197" z="800.41681"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>

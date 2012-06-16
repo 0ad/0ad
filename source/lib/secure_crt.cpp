@@ -106,7 +106,7 @@ STATUS_ADD_DEFINITIONS(secureCrtStatusDefinitions);
 // self-test and the t* defines (needed for test).
 #if EMULATE_SECURE_CRT
 
-#if !OS_UNIX || OS_MACOSX
+#if !OS_UNIX || OS_MACOSX || OS_OPENBSD
 // return length [in characters] of a string, not including the trailing
 // null character. to protect against access violations, only the
 // first <max_len> characters are examined; if the null character is
