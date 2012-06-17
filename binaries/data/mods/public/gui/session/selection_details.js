@@ -19,6 +19,7 @@ function displaySingle(entState, template)
 	var playerState = g_Players[entState.player];
 
 	var civName = g_CivData[playerState.civ].Name;
+	var civEmblem = g_CivData[playerState.civ].Emblem;
 
 	var playerName = playerState.name;
 	var playerColor = playerState.color.r + " " + playerState.color.g + " " + playerState.color.b + " 128";
@@ -65,7 +66,7 @@ function displaySingle(entState, template)
 	{
 		var experienceBar = getGUIObjectByName("experienceBar");
 		var experienceSize = experienceBar.size;
-		experienceSize.rright = 100 * Math.max(0, Math.min(1, 1.0 * +entState.promotion.curr / +entState.promotion.req));
+		experienceSize.rtop = 100 - (100 * Math.max(0, Math.min(1, 1.0 * +entState.promotion.curr / +entState.promotion.req)));
 		experienceBar.size = experienceSize;
  
 		var experience = "[font=\"serif-bold-13\"]Experience [/font]" + Math.floor(entState.promotion.curr);
@@ -134,15 +135,30 @@ function displaySingle(entState, template)
 
 	// Set Player details
 	getGUIObjectByName("specific").caption = specificName;
-	getGUIObjectByName("generic").caption = genericName;
-	getGUIObjectByName("player").caption = playerName;
-	getGUIObjectByName("playerColorBackground").tooltip = civName;
+		getGUIObjectByName("player").caption = playerName;
 	getGUIObjectByName("playerColorBackground").sprite = "colour: " + playerColor;
-	getGUIObjectByName("iconBorderPlayerColor").sprite = "colour: " + playerColor;
 	getGUIObjectByName("unitQueuePanelPlayerColor").sprite = "colour: " + playerColor;
+	
+	if (genericName)
+	{
+		getGUIObjectByName("generic").caption = "(" + genericName + ")";
+	}
+	else
+	{
+		getGUIObjectByName("generic").caption = "";
 
-	// TODO: Set this to the current player, not the selected unit's player
-	//getGUIObjectByName("civIcon").tooltip = civName;
+	}
+
+	if ("Gaia" != civName)
+	{
+		getGUIObjectByName("playerCivIcon").sprite = "stretched:grayscale:" + civEmblem;
+		getGUIObjectByName("player").tooltip = civName;
+	}
+	else
+	{
+		getGUIObjectByName("playerCivIcon").sprite = "";
+		getGUIObjectByName("player").tooltip = "";
+	}
 
 	// Icon image
 	if (template.icon)
@@ -156,8 +172,7 @@ function displaySingle(entState, template)
 	}
 
 	// Attack and Armor
-	getGUIObjectByName("attackStats").caption = damageTypeDetails(entState.attack);
-	getGUIObjectByName("armorStats").caption = damageTypeDetails(entState.armour);
+	getGUIObjectByName("attackAndArmorStats").tooltip = "Attack: " + damageTypeDetails(entState.attack) + "\nArmor: " + damageTypeDetails(entState.armour);
 
 	// Icon Tooltip
 	var iconTooltip = "";

@@ -101,23 +101,39 @@
 	   text_valign="center"
     />
 
-    <style name="StatsLabelTextLeft"
-	   font="serif-12"
+    <style name="StatsTextLeft"
+	   font="serif-bold-12"
 	   textcolor="white"
 	   text_align="left"
 	   text_valign="center"
 	   ghost="true"
     />
-
+    
+    <style name="StatsTextCentered"
+	   font="serif-bold-13"
+	   textcolor="white"
+	   text_align="center"
+	   text_valign="center"
+	   ghost="true"
+    />
+    
     <style name="StatsTextRight"
-	   font="serif-bold-stroke-14"
-	   textcolor="gold"
+	   font="serif-bold-13"
+	   textcolor="white"
 	   text_align="right"
 	   text_valign="center"
 	   ghost="true"
     />
     
-    <style name="PrimaryLabelTextCentered"
+    <style name="PrimaryTextCentered"
+	   font="serif-bold-stroke-14"
+	   textcolor="gold"
+	   text_align="center"
+	   text_valign="center"
+	   ghost="true"
+    />
+    
+    <style name="SecondaryTextCentered"
 	   font="serif-bold-stroke-14"
 	   textcolor="white"
 	   text_align="center"
@@ -125,14 +141,6 @@
 	   ghost="true"
     />
     
-    <style name="SecondaryLabelTextLeft"
-	   font="serif-bold-stroke-14"
-	   textcolor="gold"
-	   text_align="left"
-	   text_valign="center"
-	   ghost="true"
-    />   
-
     <style name="settingsText"
 	   font="serif-16"
 	   textcolor="white"
