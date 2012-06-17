@@ -32,7 +32,7 @@
  * because it allows you to work with variable amounts of vertices and indices more easily. New code should prefer
  * to use VertexArray where possible, though. */
 
-void CTexturedLineRData::Render(const CShaderProgramPtr& shader)
+void CTexturedLineRData::Render(const SOverlayTexturedLine& line, const CShaderProgramPtr& shader)
 {
 	if (!m_VB || !m_VBIndices)
 		return; // might have failed to allocate
@@ -41,9 +41,9 @@ void CTexturedLineRData::Render(const CShaderProgramPtr& shader)
 
 	const int streamFlags = shader->GetStreamFlags();
 
-	shader->BindTexture("baseTex", m_Line->m_TextureBase->GetHandle());
-	shader->BindTexture("maskTex", m_Line->m_TextureMask->GetHandle());
-	shader->Uniform("objectColor", m_Line->m_Color);
+	shader->BindTexture("baseTex", line.m_TextureBase->GetHandle());
+	shader->BindTexture("maskTex", line.m_TextureMask->GetHandle());
+	shader->Uniform("objectColor", line.m_Color);
 
 	GLsizei stride = sizeof(CTexturedLineRData::SVertex);
 	CTexturedLineRData::SVertex* vertexBase = reinterpret_cast<CTexturedLineRData::SVertex*>(m_VB->m_Owner->Bind());
@@ -66,7 +66,7 @@ void CTexturedLineRData::Render(const CShaderProgramPtr& shader)
 	g_Renderer.GetStats().m_OverlayTris += m_VBIndices->m_Count/3; 
 }
 
-void CTexturedLineRData::Update()
+void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 {
 	if (m_VB)
 	{
@@ -79,21 +79,21 @@ void CTexturedLineRData::Update()
 		m_VBIndices = NULL;
 	}
 
-	if (!m_Line->m_SimContext)
+	if (!line.m_SimContext)
 	{
 		debug_warn(L"[TexturedLineRData] No SimContext set for textured overlay line, cannot render (no terrain data)");
 		return;
 	}
 
-	const CTerrain& terrain = m_Line->m_SimContext->GetTerrain();
-	CmpPtr<ICmpWaterManager> cmpWaterManager(*m_Line->m_SimContext, SYSTEM_ENTITY);
+	const CTerrain& terrain = line.m_SimContext->GetTerrain();
+	CmpPtr<ICmpWaterManager> cmpWaterManager(*line.m_SimContext, SYSTEM_ENTITY);
 
 	float v = 0.f;
 	std::vector<SVertex> vertices;
 	std::vector<u16> indices;
 
-	size_t n = m_Line->m_Coords.size() / 2; // number of line points
-	bool closed = m_Line->m_Closed;
+	size_t n = line.m_Coords.size() / 2; // number of line points
+	bool closed = line.m_Closed;
 
 	ENSURE(n >= 2); // minimum needed to avoid errors (also minimum value to make sense, can't draw a line between 1 point)
 
@@ -102,12 +102,12 @@ void CTexturedLineRData::Update()
 	// recompute p2 at the end of each iteration.
 
 	CVector3D p0;
-	CVector3D p1(m_Line->m_Coords[0], 0, m_Line->m_Coords[1]);
-	CVector3D p2(m_Line->m_Coords[(1 % n)*2], 0, m_Line->m_Coords[(1 % n)*2+1]);
+	CVector3D p1(line.m_Coords[0], 0, line.m_Coords[1]);
+	CVector3D p2(line.m_Coords[(1 % n)*2], 0, line.m_Coords[(1 % n)*2+1]);
 
 	if (closed)
 		// grab the ending point so as to close the loop
-		p0 = CVector3D(m_Line->m_Coords[(n-1)*2], 0, m_Line->m_Coords[(n-1)*2+1]);
+		p0 = CVector3D(line.m_Coords[(n-1)*2], 0, line.m_Coords[(n-1)*2+1]);
 	else
 		// we don't want to loop around and use the direction towards the other end of the line, so create an artificial p0 that 
 		// extends the p2 -> p1 direction, and use that point instead
@@ -157,7 +157,7 @@ void CTexturedLineRData::Update()
 		// Adjust bisector length to match the line thickness, along the line's width
 		float l = b.Dot((p2 - p1).Normalized().Cross(norm));
 		if (fabs(l) > 0.000001f) // avoid unlikely divide-by-zero
-			b *= m_Line->m_Thickness / l;
+			b *= line.m_Thickness / l;
 
 		// Push vertices and indices for each quad in GL_TRIANGLES order. The two triangles of each quad are indexed using
 		// the winding orders (BR, BL, TR) and (TR, BL, TR) (where BR is bottom-right of this iteration's quad, TR top-right etc).
@@ -209,7 +209,7 @@ void CTexturedLineRData::Update()
 			// next iteration is the last point of the line, so create an artificial p2 that extends the p0 -> p1 direction
 			p2 = p1 + (p1 - p0);
 		else
-			p2 = CVector3D(m_Line->m_Coords[((i+2) % n)*2], 0, m_Line->m_Coords[((i+2) % n)*2+1]);
+			p2 = CVector3D(line.m_Coords[((i+2) % n)*2], 0, line.m_Coords[((i+2) % n)*2+1]);
 
 		p2.Y = terrain.GetExactGroundLevel(p2.X, p2.Z);
 		if (p2.Y < w)
@@ -242,15 +242,16 @@ void CTexturedLineRData::Update()
 
 		// create end cap
 		CreateLineCap(
+			line,
 			// the order of these vertices is important here, swapping them produces caps at the wrong side
 			vertices[vertices.size()-2].m_Position, // top-right vertex of last quad
 			vertices[vertices.size()-1].m_Position, // top-left vertex of last quad
 			// directional vector between centroids of last vertex pair and second-to-last vertex pair
 			(Centroid(vertices[vertices.size()-2], vertices[vertices.size()-1]) - Centroid(vertices[vertices.size()-4], vertices[vertices.size()-3])).Normalized(),
-			m_Line->m_EndCapType,
+			line.m_EndCapType,
 			capVertices,
 			capIndices
-			);
+		);
 
 		for (unsigned i = 0; i < capIndices.size(); i++)
 			capIndices[i] += vertices.size();
@@ -263,15 +264,16 @@ void CTexturedLineRData::Update()
 
 		// create start cap
 		CreateLineCap(
+			line,
 			// the order of these vertices is important here, swapping them produces caps at the wrong side
 			vertices[1].m_Position,
 			vertices[0].m_Position,
 			// directional vector between centroids of first vertex pair and second vertex pair
 			(Centroid(vertices[1], vertices[0]) - Centroid(vertices[3], vertices[2])).Normalized(),
-			m_Line->m_StartCapType,
+			line.m_StartCapType,
 			capVertices,
 			capIndices
-			);
+		);
 
 		for (unsigned i = 0; i < capIndices.size(); i++)
 			capIndices[i] += vertices.size();
@@ -297,8 +299,8 @@ void CTexturedLineRData::Update()
 
 }
 
-void CTexturedLineRData::CreateLineCap(const CVector3D& corner1, const CVector3D& corner2, const CVector3D& lineDirectionNormal,
-	SOverlayTexturedLine::LineCapType endCapType, std::vector<SVertex>& verticesOut,
+void CTexturedLineRData::CreateLineCap(const SOverlayTexturedLine& line, const CVector3D& corner1, const CVector3D& corner2,
+	const CVector3D& lineDirectionNormal, SOverlayTexturedLine::LineCapType endCapType, std::vector<SVertex>& verticesOut,
 	std::vector<u16>& indicesOut)
 {
 	if (endCapType == SOverlayTexturedLine::LINECAP_FLAT)
@@ -317,7 +319,7 @@ void CTexturedLineRData::CreateLineCap(const CVector3D& corner1, const CVector3D
 	//
 
 	int roundCapPoints = 8; // amount of points to sample along the semicircle for rounded caps (including corner points)
-	float radius = m_Line->m_Thickness;
+	float radius = line.m_Thickness;
 
 	CVector3D centerPoint = (corner1 + corner2) * 0.5f;
 	SVertex centerVertex(centerPoint, 0.5f, 0.5f);
@@ -397,8 +399,8 @@ void CTexturedLineRData::CreateLineCap(const CVector3D& corner1, const CVector3D
 			// are rendered only one-sided; the wrong order of vertices will make the cap visible only from the bottom.
 			verticesOut.push_back(centerVertex);
 			verticesOut.push_back(SVertex(corner2, 0.f, 0.f));
-			verticesOut.push_back(SVertex(corner2 + (lineDirectionNormal * (m_Line->m_Thickness)), 0.f, 0.33333f)); // extend butt corner point 2 along the normal vector 
-			verticesOut.push_back(SVertex(corner1 + (lineDirectionNormal * (m_Line->m_Thickness)), 0.f, 0.66666f)); // extend butt corner point 1 along the normal vector 
+			verticesOut.push_back(SVertex(corner2 + (lineDirectionNormal * (line.m_Thickness)), 0.f, 0.33333f)); // extend butt corner point 2 along the normal vector 
+			verticesOut.push_back(SVertex(corner1 + (lineDirectionNormal * (line.m_Thickness)), 0.f, 0.66666f)); // extend butt corner point 1 along the normal vector 
 			verticesOut.push_back(SVertex(corner1, 0.f, 1.0f)); // push butt corner point 1 
 
 			for (int i=1; i < 4; ++i) 
