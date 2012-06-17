@@ -25,17 +25,26 @@
 #include "renderer/VertexBufferManager.h"
 
 /**
- * Rendering data for a single textured overlay line. Used by the OverlayRenderer.
+ * Rendering data for an STexturedOverlayLine.
+ * 
+ * Note that instances may be shared amongst multiple copies of the same STexturedOverlayLine instance.
+ * The reason is that this rendering data is non-copyable, but we do wish to maintain copyability of
+ * SOverlayTexturedLineData to not limit its usage patterns too much (particularly the practice of storing
+ * them into containers).
+ * 
+ * For this reason, instead of storing a reverse pointer back to any single SOverlayTexturedLine, the methods
+ * in this class accept references to STexturedOverlayLines to work with. It is up to client code to pass in
+ * SOverlayTexturedLines to all methods that are consistently the same instance or non-modified copies of it.
  */
 class CTexturedLineRData : public CRenderData
 {
+	// we hold raw pointers to vertex buffer chunks that are handed out by the vertex buffer manager
+	// and can not be safely duplicated by us.
+	NONCOPYABLE(CTexturedLineRData);
+
 public:
 
-	/**
-	 * @param line Overlay line to associate this render data with. Must not be null.
-	 */
-	CTexturedLineRData(SOverlayTexturedLine* line) : m_Line(line), m_VB(NULL), m_VBIndices(NULL)
-	{ ENSURE(m_Line && "Cannot create textured line render data for null overlay line"); }
+	CTexturedLineRData() : m_VB(NULL), m_VBIndices(NULL) { }
 
 	~CTexturedLineRData()
 	{
@@ -45,9 +54,8 @@ public:
 			g_VBMan.Release(m_VBIndices);
 	}
 
-	void Update();
-
-	void Render(const CShaderProgramPtr& shader);
+	void Update(const SOverlayTexturedLine& line);
+	void Render(const SOverlayTexturedLine& line, const CShaderProgramPtr& shader);
 
 protected:
 
@@ -71,7 +79,7 @@ protected:
 	 * @param verticesOut Output vector of vertices for passing to the renderer.
 	 * @param indicesOut Output vector of vertex indices for passing to the renderer.
 	 */
-	void CreateLineCap(const CVector3D& corner1, const CVector3D& corner2, const CVector3D& normal,
+	void CreateLineCap(const SOverlayTexturedLine& line, const CVector3D& corner1, const CVector3D& corner2, const CVector3D& normal,
 		               SOverlayTexturedLine::LineCapType endCapType, std::vector<SVertex>& verticesOut, std::vector<u16>& indicesOut);
 
 	/// Small utility function; grabs the centroid of the positions of two vertices
@@ -80,7 +88,6 @@ protected:
 		return (v1.m_Position + v2.m_Position) * 0.5;
 	}
 
-	SOverlayTexturedLine* m_Line;
 	CVertexBuffer::VBChunk* m_VB;
 	CVertexBuffer::VBChunk* m_VBIndices;
 };

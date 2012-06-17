@@ -254,8 +254,8 @@ void OverlayRenderer::PrepareForRendering()
 		SOverlayTexturedLine* line = m->texlines[i];
 		if (!line->m_RenderData)
 		{
-			line->m_RenderData = shared_ptr<CRenderData>(new CTexturedLineRData(line));
-			static_cast<CTexturedLineRData*>(line->m_RenderData.get())->Update();
+			line->m_RenderData = shared_ptr<CTexturedLineRData>(new CTexturedLineRData());
+			line->m_RenderData->Update(*line);
 			// We assume the overlay line will get replaced by the caller
 			// if terrain changes, so we don't need to detect that here and
 			// call Update again. Also we assume the caller won't change
@@ -464,10 +464,8 @@ void OverlayRenderer::RenderTexturedOverlayLines(CShaderProgramPtr shader, bool 
 		if (!line->m_RenderData || line->m_AlwaysVisible != alwaysVisible)
 			continue;
 
-		CTexturedLineRData* rdata = static_cast<CTexturedLineRData*>(line->m_RenderData.get());
-		ENSURE(rdata);
-
-		rdata->Render(shader);
+		ENSURE(line->m_RenderData);
+		line->m_RenderData->Render(*line, shader);
 	}
 }
 

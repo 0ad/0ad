@@ -27,6 +27,7 @@
 
 class CTerrain;
 class CSimContext;
+class CTexturedLineRData;
 
 /**
  * Line-based overlay, with world-space coordinates, rendered in the world
@@ -50,8 +51,13 @@ struct SOverlayLine
 };
 
 /**
- * Textured line overlay, with world-space coordinates, rendered in the world
- * onto the terrain. Designed for territory borders.
+ * Textured line overlay, with world-space coordinates, rendered in the world onto the terrain.
+ * Designed for relatively static textured lines, i.e. territory borders, originally.
+ * 
+ * Once submitted for rendering, instances must not be copied afterwards. The reason is that they
+ * are assigned rendering data that is unique to the submitted instance, and non-transferable to
+ * any copies that would otherwise be made. Amongst others, this restraint includes that they must
+ * not be submitted by their address inside a std::vector storing them by value.
  */
 struct SOverlayTexturedLine
 {
@@ -71,8 +77,8 @@ struct SOverlayTexturedLine
 	};
 
 	SOverlayTexturedLine()
-		: m_SimContext(NULL), m_Thickness(1.0f), m_Closed(false), m_AlwaysVisible(false),
-		  m_StartCapType(LINECAP_FLAT), m_EndCapType(LINECAP_FLAT)
+		: m_Thickness(1.0f), m_Closed(false), m_AlwaysVisible(false),
+		  m_StartCapType(LINECAP_FLAT), m_EndCapType(LINECAP_FLAT), m_SimContext(NULL)
 	{ }
 
 	CTexturePtr m_TextureBase;
@@ -92,11 +98,21 @@ struct SOverlayTexturedLine
 	LineCapType m_StartCapType;
 	LineCapType m_EndCapType;
 
-	/// Simulation context applicable for this overlay line; used to obtain terrain information
-	/// during automatic computation of Y coordinates.
+	/**
+	 * Simulation context applicable for this overlay line; used to obtain terrain information
+	 * during automatic computation of Y coordinates.
+	 */
 	const CSimContext* m_SimContext;
-	/// Cached renderer data (shared_ptr so that copies/deletes are automatic).
-	shared_ptr<CRenderData> m_RenderData;
+
+	/**
+	 * Cached renderer data, because expensive to compute. Allocated by the renderer when necessary 
+	 * for rendering purposes.
+	 * 
+	 * Note: the rendering data may be shared between copies of this object to prevent having to 
+	 * recompute it, while at the same time maintaining copyability of this object (see also docs on 
+	 * CTexturedLineRData).
+	 */
+	shared_ptr<CTexturedLineRData> m_RenderData;
 
 	/**
 	 * Converts a string line cap type into its corresponding LineCap enum value, and returns

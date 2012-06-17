@@ -17,8 +17,9 @@
 
 #include "precompiled.h"
 
-#include "ps/CStr.h"
 #include "Overlay.h"
+
+#include "ps/CStr.h"
 
 SOverlayTexturedLine::LineCapType SOverlayTexturedLine::StrToLineCapType(const std::wstring& str)
 {
@@ -35,3 +36,4 @@ SOverlayTexturedLine::LineCapType SOverlayTexturedLine::StrToLineCapType(const s
 		return LINECAP_FLAT;
 	}
 }
+
