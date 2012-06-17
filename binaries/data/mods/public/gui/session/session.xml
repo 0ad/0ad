@@ -626,7 +626,7 @@
 			    <object size="0 16 100% 24" name="health" type="image">
 				<object type="image" sprite="healthBackground" ghost="true"/>
 				<object type="image" sprite="healthForeground" ghost="true" name="healthBar"/>
-				<object type="image" sprite="statsBarShader" ghost="true"/>
+				<object type="image" sprite="statsBarShaderHorizontal" ghost="true"/>
 			    </object>
 			</object>
 
@@ -637,7 +637,7 @@
 			    <object size="0 16 100% 24" name="stamina" type="image">
 				<object type="image" sprite="staminaBackground" ghost="true"/>
 				<object type="image" sprite="staminaForeground" ghost="true" name="staminaBar"/>
-				<object type="image" sprite="statsBarShader" ghost="true"/>
+				<object type="image" sprite="statsBarShaderHorizontal" ghost="true"/>
 			    </object>
 			</object>
 			
@@ -648,7 +648,7 @@
 			    <object size="0 16 100% 24" name="resources" type="image">
 				<object type="image" sprite="resourceBackground" ghost="true"/>
 				<object type="image" sprite="resourceForeground" ghost="true" name="resourceBar"/>
-				<object type="image" sprite="statsBarShader" ghost="true"/>
+				<object type="image" sprite="statsBarShaderHorizontal" ghost="true"/>
 			    </object>
 			</object>
 			
@@ -663,14 +663,15 @@
 		    <!-- Big unit icon -->
 		    <object size="-6 -6 90 90" type="image" name="iconBorder" sprite="iconBorder" tooltip_style="sessionToolTip">
 			<object size="1 1 100%-1 100%-1" type="image" name="icon" ghost="true"/>
-			<object size="100%-20 4 100%-4 20" name="rankIcon" type="image" sprite="" ghost="true"/>
-
+			
 			<!-- Experience bar -->
-			<object size="1 100%-7 100%-1 100%-1" type="image" name="experience" tooltip="Experience" tooltip_style="sessionToolTip">
+			<object size="1 1 9 100%-1" type="image" name="experience" tooltip="Experience" tooltip_style="sessionToolTip">
 			    <object type="image" sprite="experienceBackground" ghost="true"/>
 			    <object type="image" sprite="experienceForeground" ghost="true" name="experienceBar"/>
-			    <object type="image" sprite="statsBarShader" ghost="true"/>
+			    <object type="image" sprite="statsBarShaderVertical" ghost="true"/>
 			</object>
+			
+			<object z="20" size="4 4 20 20" name="rankIcon" type="image" sprite="" ghost="true"/>
 		    </object>
           
 		    <!-- Names -->
@@ -692,7 +693,6 @@
 			<object size="0 45 100% 100%">
 			    <object size="50%-64 -24 50%+64 112" name="playerCivIcon" ghost="true" type="image"/>
 			    <object size="0 0 100% 100%" name="playerColorBackground" ghost="true" type="image" sprite="playerColorBackground"/>
-			    <object size="0 0 100% 100%" type="image" ghost="true" sprite="playerColorShader"/>
 			    
 			    <!-- Why is this being automatically ghosted? In the mean time, set ghost to false -->
 			    <object ghost="false" size="0 0 100% 100%-5" name="player" type="text" style="SecondaryTextCentered" tooltip_style="sessionToolTip"/>

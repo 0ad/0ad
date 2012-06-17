@@ -510,12 +510,12 @@
 		<image  backcolor="0 0 0 50" size="0 5 100% 100%"/>
 	</sprite>
 	
-	<sprite name="playerColorShader">
-		<image	texture="session/panel_shader_edge.png"
-			real_texture_placement="0 0 256 5"
+<!--	<sprite name="playerColorShader">
+		<image	texture="session/panel_shader.png"
+			real_texture_placement="0 0 256 32"
 			size="0 0 100% 100%"
 		/>
-	</sprite>
+	</sprite>-->
 	
 	<sprite name="glassSquareMap">
 		<image backcolor="255 255 255 56" size="0 0 100% 1"/>
@@ -559,13 +559,8 @@
 		<image backcolor="gold" size="0 1 1 100%-1"/>
 	</sprite>
 
-	<sprite name="statsBarShader">
-	    	<image	texture="session/bar_lighting.png"
-			real_texture_placement="0 0 150 7"
-			size="0 0 100% 100%"
-		/>
-	    
-<!--		<image backcolor="0 0 0 192" size="0 0 100% 1"/>
+<!--	<sprite name="statsBarShader">
+		<image backcolor="0 0 0 192" size="0 0 100% 1"/>
 		<image backcolor="0 0 0 192" size="100%-1 1 100% 100%-1"/>
 		<image backcolor="0 0 0 192" size="0 100%-1 100% 100%"/>
 		<image backcolor="0 0 0 192" size="0 1 1 100%-1"/>
@@ -578,10 +573,24 @@
 		<image backcolor="0 0 0 64" size="0 2 100% 3"/>
 		<image backcolor="0 0 0 64" size="100%-3 3 100%-2 100%-3"/>
 		<image backcolor="0 0 0 64" size="0 100%-3 100% 100%-2"/>
-		<image backcolor="0 0 0 64" size="2 3 3 100%-3"/>-->
+		<image backcolor="0 0 0 64" size="2 3 3 100%-3"/>
+	</sprite>-->
+
+	<sprite name="statsBarShaderHorizontal">
+	    	<image	texture="session/bar_lighting_horizontal.png"
+			real_texture_placement="0 0 150 7"
+			size="0 0 100% 100%"
+		/>
 	</sprite>
 	
-	<sprite name="detailsShader">
+	<sprite name="statsBarShaderVertical">
+	    	<image	texture="session/bar_lighting_vertical.png"
+			real_texture_placement="0 0 7 150"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+	
+<!--	<sprite name="detailsShader">
 		<image backcolor="0 0 0 100" size="4 4 100%-4 100%-4"/>
 	    
 		<image backcolor="0 0 0 192" size="0 0 100% 1"/>
@@ -598,7 +607,7 @@
 		<image backcolor="0 0 0 64" size="100%-3 3 100%-2 100%-3"/>
 		<image backcolor="0 0 0 64" size="0 100%-3 100% 100%-2"/>
 		<image backcolor="0 0 0 64" size="2 3 3 100%-3"/>
-	</sprite>
+	</sprite>-->
 
 	<!-- ================================  ================================ -->
 	<!-- Colored Stats Bars -->

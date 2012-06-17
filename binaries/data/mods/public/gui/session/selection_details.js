@@ -66,7 +66,7 @@ function displaySingle(entState, template)
 	{
 		var experienceBar = getGUIObjectByName("experienceBar");
 		var experienceSize = experienceBar.size;
-		experienceSize.rright = 100 * Math.max(0, Math.min(1, 1.0 * +entState.promotion.curr / +entState.promotion.req));
+		experienceSize.rtop = 100 - (100 * Math.max(0, Math.min(1, 1.0 * +entState.promotion.curr / +entState.promotion.req)));
 		experienceBar.size = experienceSize;
  
 		var experience = "[font=\"serif-bold-13\"]Experience [/font]" + Math.floor(entState.promotion.curr);
