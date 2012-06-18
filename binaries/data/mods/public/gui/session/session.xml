@@ -842,6 +842,7 @@
 			style="TranslucentPanelThinBorder"
 		>
 		    <object size="4 4 100%-4 100%-4" name="unitQueuePanelPlayerColor" type="image"/>
+		    <object size="4 4 100%-4 100%-4" type="image" sprite="panelShader"/>
 		    
 		    <object size="-4 -2 52 54" type="image" sprite="stretched:session/icons/production.png" tooltip_style="sessionToolTipBottom" tooltip="Production queue">
 			<object name="queueProgress" ghost="true" style="iconButtonProgress" type="text"/>
