@@ -623,7 +623,8 @@
 			<object size="88 8 100% 32" name="healthSection">
 			    <object size="0 0 100% 16" name="healthLabel" type="text" style="StatsTextLeft" ghost="true">Health:</object>
 			    <object size="0 0 100% 16" name="healthStats" type="text" style="StatsTextRight" ghost="true"/>
-			    <object size="0 16 100% 24" name="health" type="image">
+			    <object size="1 16 100% 23" name="health" type="image">
+				<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
 				<object type="image" sprite="healthBackground" ghost="true"/>
 				<object type="image" sprite="healthForeground" ghost="true" name="healthBar"/>
 				<object type="image" sprite="statsBarShaderHorizontal" ghost="true"/>
@@ -634,7 +635,8 @@
 			<object size="88 36 100% 60" name="staminaSection">
 			    <object size="0 0 100% 16" name="staminaLabel" type="text" style="StatsTextLeft" ghost="true">Stamina:</object>
 			    <object size="0 0 100% 16" name="staminaStats" type="text" style="StatsTextRight" ghost="true"/>
-			    <object size="0 16 100% 24" name="stamina" type="image">
+			    <object size="1 16 100% 23" name="stamina" type="image">
+				<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
 				<object type="image" sprite="staminaBackground" ghost="true"/>
 				<object type="image" sprite="staminaForeground" ghost="true" name="staminaBar"/>
 				<object type="image" sprite="statsBarShaderHorizontal" ghost="true"/>
@@ -645,7 +647,8 @@
 			<object size="88 36 100% 60" name="resourceSection">
 			    <object size="0 0 100% 16" name="resourceLabel" type="text" style="StatsTextLeft" ghost="true"/>
 			    <object size="0 0 100% 16" name="resourceStats" type="text" style="StatsTextRight" ghost="true"/>
-			    <object size="0 16 100% 24" name="resources" type="image">
+			    <object size="1 16 100% 23" name="resources" type="image">
+				<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
 				<object type="image" sprite="resourceBackground" ghost="true"/>
 				<object type="image" sprite="resourceForeground" ghost="true" name="resourceBar"/>
 				<object type="image" sprite="statsBarShaderHorizontal" ghost="true"/>
@@ -665,7 +668,8 @@
 			<object size="1 1 100%-1 100%-1" type="image" name="icon" ghost="true"/>
 			
 			<!-- Experience bar -->
-			<object size="1 1 9 100%-1" type="image" name="experience" tooltip="Experience" tooltip_style="sessionToolTip">
+			<object size="2 2 9 100%-2" type="image" name="experience" tooltip="Experience" tooltip_style="sessionToolTip">
+			    <object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
 			    <object type="image" sprite="experienceBackground" ghost="true"/>
 			    <object type="image" sprite="experienceForeground" ghost="true" name="experienceBar"/>
 			    <object type="image" sprite="statsBarShaderVertical" ghost="true"/>
@@ -726,17 +730,19 @@
 		    <!-- Stats Bars -->
 		    <object size= "100%-38 50 100%-18 100%-44" type="image" tooltip_style="sessionToolTip">
 			<!-- Health bar -->
-			<object size="0 0 12 100%" type="image" name="healthMultiple" tooltip="Hitpoints" tooltip_style="sessionToolTip">
+			<object size="4 0 11 100%" type="image" name="healthMultiple" tooltip="Hitpoints" tooltip_style="sessionToolTip">
+			    <object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
 			    <object type="image" sprite="healthBackground" ghost="true"/>
 			    <object type="image" sprite="healthForeground" ghost="true" name="healthBarMultiple"/>
-			    <object type="image" sprite="statsBarShader" ghost="true"/>
+			    <object type="image" sprite="statsBarShaderVertical" ghost="true"/>
 			</object>
 
 			<!-- Stamina bar -->
-			<object size="14 0 26 100%" type="image" name="staminaMultiple" tooltip="Stamina" tooltip_style="sessionToolTipBold">
+			<object size="15 0 22 100%" type="image" name="staminaMultiple" tooltip="Stamina" tooltip_style="sessionToolTipBold">
+			    <object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
 			    <object type="image" sprite="staminaBackground" ghost="true"/>
 			    <object type="image" sprite="staminaForeground" ghost="true" name="staminaBarMultiple"/>
-			    <object type="image" sprite="statsBarShader" ghost="true"/>
+			    <object type="image" sprite="statsBarShaderVertical" ghost="true"/>
 			</object>
 		    </object>
 		</object>
