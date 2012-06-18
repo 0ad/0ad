@@ -30,8 +30,18 @@ function displaySingle(entState, template)
 		playerName = "[OFFLINE] " + playerName;
 	}
 
-	// Rank					
-	getGUIObjectByName("rankIcon").sprite = getRankIconSprite(entState);					
+	// Rank
+	if (entState.identity && entState.identity.rank && entState.identity.classes)
+	{
+		getGUIObjectByName("rankIcon").tooltip = entState.identity.rank + " Rank";
+		getGUIObjectByName("rankIcon").sprite = getRankIconSprite(entState);					
+		getGUIObjectByName("rankIcon").hidden = false;
+	}
+	else
+	{
+		getGUIObjectByName("rankIcon").hidden = true;
+		getGUIObjectByName("rankIcon").tooltip = "";
+	}
 								
 	// Hitpoints
 	if (entState.hitpoints)
@@ -69,7 +79,7 @@ function displaySingle(entState, template)
 		experienceSize.rtop = 100 - (100 * Math.max(0, Math.min(1, 1.0 * +entState.promotion.curr / +entState.promotion.req)));
 		experienceBar.size = experienceSize;
  
-		var experience = "[font=\"serif-bold-13\"]Experience [/font]" + Math.floor(entState.promotion.curr);
+		var experience = "[font=\"serif-bold-13\"]Experience: [/font]" + Math.floor(entState.promotion.curr);
 		if (entState.promotion.curr < entState.promotion.req)
 			experience += "/" + entState.promotion.req;
 		getGUIObjectByName("experience").tooltip = experience;
@@ -172,7 +182,8 @@ function displaySingle(entState, template)
 	}
 
 	// Attack and Armor
-	getGUIObjectByName("attackAndArmorStats").tooltip = "Attack: " + damageTypeDetails(entState.attack) + "\nArmor: " + damageTypeDetails(entState.armour);
+	getGUIObjectByName("attackAndArmorStats").tooltip = "[font=\"serif-bold-13\"]Attack:[/font] " + damageTypeDetails(entState.attack) + 
+							    "\n[font=\"serif-bold-13\"]Armor:[/font] " + damageTypeDetails(entState.armour);
 
 	// Icon Tooltip
 	var iconTooltip = "";

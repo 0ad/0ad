@@ -490,25 +490,70 @@
 		
 	<sprite name="remove">
 		<image  backcolor="0 0 0 0" size="0 0 100% 100%"/>
+<!--		<image  backcolor="255 0 0 255" size="0 0 100% 100%"/>-->
 	</sprite>
 		
-	<sprite name="topPanelShader">
-		<image  backcolor="0 0 0 72" size="0 5 100% 100%-5"/>
+	<sprite name="panelShader">
+		<image	texture="session/panel_shader.png"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+		
+		
+		
+		
+	
+	<sprite name="edgedPanelShader">
+	    	<image  texture="session/panel_shader_top_edge.png"
+			real_texture_placement="0 0 256 1"
+			size="0 0 100% 1"
+		/>
+		
+		<image	texture="session/panel_shader.png"
+			size="0 0 100% 100%-5"
+		/>
+		
+    		<image	texture="session/panel_shader_bottom_edge.png"
+			real_texture_placement="0 0 256 5"
+			size="0 100%-5 100% 100%"
+		/>
+	</sprite>
+	
+	<sprite name="bottomEdgedPanelShader">
+	    	<image  texture="session/panel_shader_top_edge.png"
+			real_texture_placement="0 0 256 1"
+			size="0 0 100% 1"
+		/>
+		
+		<image	texture="session/panel_shader.png"
+			size="0 0 100% 100%"
+		/>
+	</sprite>
+		
+		
+		
+		
+<!--	<sprite name="topPanelShader">
+		<image	texture="session/panel_shader.png"
+			size="0 0 100% 100%"
+		/>
 
 		<image	texture="session/panel_shader_edge.png"
 			real_texture_placement="0 0 256 5"
-			size="0 100%-5 100% 100%"
+			size="0 100% 100% 100%+5"
 		/>
 	</sprite>
 	
 	<sprite name="bottomPanelShader">
 		<image  texture="session/panel_shader_edge.png"
 			real_texture_placement="0 0 256 5"
-			size="0 0 100% 5"
+			size="0 -5 100% 0"
 		/>
 
-		<image  backcolor="0 0 0 50" size="0 5 100% 100%"/>
-	</sprite>
+		<image	texture="session/panel_shader.png"
+			size="0 0 100% 100%"
+		/>
+	</sprite>-->
 	
 <!--	<sprite name="playerColorShader">
 		<image	texture="session/panel_shader.png"
