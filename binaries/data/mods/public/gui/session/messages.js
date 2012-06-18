@@ -90,9 +90,11 @@ function handleNetMessage(message)
 		case "connected":
 			obj.caption = "Connected to the server.";
 			obj.hidden = false;
+			break;
 		case "authenticated":
 			obj.caption = "Connection to the server has been authenticated.";
 			obj.hidden = false;
+			break;
 		case "disconnected":
 			obj.caption = "Connection to the server has been lost.\n\nThe game has ended.";
 			obj.hidden = false;
