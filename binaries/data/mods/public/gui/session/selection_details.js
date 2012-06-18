@@ -182,7 +182,8 @@ function displaySingle(entState, template)
 	}
 
 	// Attack and Armor
-	getGUIObjectByName("attackAndArmorStats").tooltip = "Attack: " + damageTypeDetails(entState.attack) + "\nArmor: " + damageTypeDetails(entState.armour);
+	getGUIObjectByName("attackAndArmorStats").tooltip = "[font=\"serif-bold-13\"]Attack:[/font] " + damageTypeDetails(entState.attack) + 
+							    "\n[font=\"serif-bold-13\"]Armor:[/font] " + damageTypeDetails(entState.armour);
 
 	// Icon Tooltip
 	var iconTooltip = "";
