@@ -754,10 +754,9 @@
 
 		<!-- Unit Commands -->
 		<object name="unitCommandPanel"
-			size="4 100%-36 100%-4 100%-4"
+			size="0 100%-36 100% 100%-4"
 			type="image"
-			z="50"
-			
+			z="30"
 		>
 		    <object size="0 0 100% 100%">
 			<repeat count="6">
