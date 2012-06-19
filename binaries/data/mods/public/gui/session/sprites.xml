@@ -490,7 +490,6 @@
 		
 	<sprite name="remove">
 		<image  backcolor="0 0 0 0" size="0 0 100% 100%"/>
-<!--		<image  backcolor="255 0 0 255" size="0 0 100% 100%"/>-->
 	</sprite>
 		
 	<sprite name="panelShader">
@@ -498,10 +497,6 @@
 			size="0 0 100% 100%"
 		/>
 	</sprite>
-		
-		
-		
-		
 	
 	<sprite name="edgedPanelShader">
 	    	<image  texture="session/panel_shader_top_edge.png"
@@ -530,38 +525,6 @@
 		/>
 	</sprite>
 		
-		
-		
-		
-<!--	<sprite name="topPanelShader">
-		<image	texture="session/panel_shader.png"
-			size="0 0 100% 100%"
-		/>
-
-		<image	texture="session/panel_shader_edge.png"
-			real_texture_placement="0 0 256 5"
-			size="0 100% 100% 100%+5"
-		/>
-	</sprite>
-	
-	<sprite name="bottomPanelShader">
-		<image  texture="session/panel_shader_edge.png"
-			real_texture_placement="0 0 256 5"
-			size="0 -5 100% 0"
-		/>
-
-		<image	texture="session/panel_shader.png"
-			size="0 0 100% 100%"
-		/>
-	</sprite>-->
-	
-<!--	<sprite name="playerColorShader">
-		<image	texture="session/panel_shader.png"
-			real_texture_placement="0 0 256 32"
-			size="0 0 100% 100%"
-		/>
-	</sprite>-->
-	
 	<sprite name="glassSquareMap">
 		<image backcolor="255 255 255 56" size="0 0 100% 1"/>
 		<image backcolor="255 255 255 56" size="100%-1 1 100% 100%"/>
