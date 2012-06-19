@@ -697,7 +697,7 @@
 			    <object size="1 1 100%-1 100%-1" type="image" name="icon" ghost="true"/>
 			
 			    <!-- Experience bar -->
-			    <object size="2 2 5 100%-2" type="image" name="experience" tooltip="Experience" tooltip_style="sessionToolTip">
+			    <object size="2 2 6 100%-2" type="image" name="experience" tooltip="Experience" tooltip_style="sessionToolTip">
 				<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
 				<object type="image" sprite="experienceBackground" ghost="true"/>
 				<object type="image" sprite="experienceForeground" ghost="true" name="experienceBar"/>
