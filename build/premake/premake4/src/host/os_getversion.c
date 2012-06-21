@@ -14,34 +14,6 @@ struct OsVersionInfo
 	const char* description;
 } ;
 
-static void getversion(struct OsVersionInfo* info);
-
-int os_getversion(lua_State* L)
-{
-	struct OsVersionInfo info;
-	getversion(&info);
-
-	lua_newtable(L);
-
-	lua_pushstring(L, "majorversion");
-	lua_pushnumber(L, info.majorversion);
-	lua_settable(L, -3);
-
-	lua_pushstring(L, "minorversion");
-	lua_pushnumber(L, info.minorversion);
-	lua_settable(L, -3);
-
-	lua_pushstring(L, "revision");
-	lua_pushnumber(L, info.revision);
-	lua_settable(L, -3);
-
-	lua_pushstring(L, "description");
-	lua_pushstring(L, info.description);
-	lua_settable(L, -3);
-
-	return 1;
-}
-
 /*************************************************************/
 
 #if defined(PLATFORM_WINDOWS)
@@ -196,11 +168,14 @@ void getversion(struct OsVersionInfo* info)
 		return;
 	}
 
-#if !defined(PLATFORM_LINUX)
-	info->description = u.sysname;
+#if __GLIBC__
+	// When using glibc, info->description gets set to u.sysname,
+	// but it isn't passed out of this function, so we need to copy 
+	// the string.
+	info->description = malloc(strlen(u.sysname)+1);
+	strcpy((char*)info->description, u.sysname);
 #else
-	// On Linux info->sysname gets set, but it isn't passed out of this function
-	info->description = "Linux";
+	info->description = u.sysname;
 #endif
 
 	if ((ver = strtok(u.release, ".-")) != NULL)
@@ -229,3 +204,37 @@ void getversion(struct OsVersionInfo* info)
 }
 
 #endif
+
+/*************************************************************/
+
+int os_getversion(lua_State* L)
+{
+	struct OsVersionInfo info;
+	getversion(&info);
+
+	lua_newtable(L);
+
+	lua_pushstring(L, "majorversion");
+	lua_pushnumber(L, info.majorversion);
+	lua_settable(L, -3);
+
+	lua_pushstring(L, "minorversion");
+	lua_pushnumber(L, info.minorversion);
+	lua_settable(L, -3);
+
+	lua_pushstring(L, "revision");
+	lua_pushnumber(L, info.revision);
+	lua_settable(L, -3);
+
+	lua_pushstring(L, "description");
+	lua_pushstring(L, info.description);
+	lua_settable(L, -3);
+
+#if (defined(PLATFORM_BSD) || defined(PLATFORM_LINUX) || defined(PLATFORM_SOLARIS)) && __GLIBC__
+	// Check if we had no error in the uname syscall and can free this
+	if (*info.description != *PLATFORM_STRING)
+		free((char*)info.description);
+#endif
+
+	return 1;
+}
