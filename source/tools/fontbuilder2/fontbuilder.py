@@ -192,8 +192,13 @@ fonts = (
     ("serif-bold-20", PagellaBold, 20, filled),
     ("serif-bold-22", PagellaBold, 22, filled),
     ("serif-bold-24", PagellaBold, 24, filled),
+    ("serif-stroke-12", PagellaRegular, 12, stroked2),
+    ("serif-bold-stroke-12", PagellaBold, 12, stroked3),
+    ("serif-stroke-13", PagellaRegular, 13, stroked2),
+    ("serif-bold-stroke-13", PagellaBold, 13, stroked3),
     ("serif-stroke-14", PagellaRegular, 14, stroked2),
     ("serif-bold-stroke-14", PagellaBold, 14, stroked3),
+    ("serif-stroke-16", PagellaRegular, 16, stroked2),
 )
 
 for (name, (fontname, loadopts), size, style) in fonts:
