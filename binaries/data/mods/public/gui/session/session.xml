@@ -767,9 +767,9 @@
 			</repeat>
 		    </object>
 		</object>
-		
+
 		<!-- shading for unit commands area -->
-		<object z="50" size="4 100%-36 100%-4 100%-4" type="image" sprite="bottomEdgedPanelShader"/>
+		<object z="50" size="4 100%-36 100%-4 100%-4" ghost="true" type="image" sprite="bottomEdgedPanelShader"/>
 
 	    </object> <!-- END OF SELECTION DETAILS -->
 
