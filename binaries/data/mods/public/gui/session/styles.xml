@@ -19,6 +19,14 @@
 	   text_valign="center"
     />
 
+    <style name="BuildNameText"
+	   font="serif-stroke-12"
+	   textcolor="white"
+	   text_align="center"
+	   text_valign="bottom"
+	   ghost="true"
+    />
+
     <style name="leftAlignedText"
 	   textcolor="white"
 	   text_align="left"
@@ -102,7 +110,7 @@
     />
 
     <style name="StatsTextLeft"
-	   font="serif-bold-12"
+	   font="serif-stroke-12"
 	   textcolor="white"
 	   text_align="left"
 	   text_valign="center"
@@ -110,7 +118,7 @@
     />
     
     <style name="StatsTextCentered"
-	   font="serif-bold-13"
+	   font="serif-stroke-12"
 	   textcolor="white"
 	   text_align="center"
 	   text_valign="center"
@@ -118,23 +126,23 @@
     />
     
     <style name="StatsTextRight"
-	   font="serif-bold-13"
+	   font="serif-stroke-13"
 	   textcolor="white"
 	   text_align="right"
 	   text_valign="center"
 	   ghost="true"
     />
     
-    <style name="PrimaryTextCentered"
-	   font="serif-bold-stroke-14"
+    <style name="SpecificNameCentered"
+	   font="serif-stroke-13"
 	   textcolor="gold"
 	   text_align="center"
 	   text_valign="center"
 	   ghost="true"
     />
     
-    <style name="SecondaryTextCentered"
-	   font="serif-bold-stroke-14"
+    <style name="GenericNameCentered"
+	   font="serif-stroke-12"
 	   textcolor="white"
 	   text_align="center"
 	   text_valign="center"
