@@ -616,32 +616,6 @@
 		<!-- Unit details for Single Unit -->
 		<object size="50%-112 0 50%+112 100%" name="detailsAreaSingle">
 		    
-		    <!-- Names (this must come before the attack and armor icon to avoid clipping issues) -->
-		    <object size="2 96 100%-2 100%-36" name="statsArea" type="image" sprite="edgedPanelShader">
-			
-			<!-- These images are used to clip off the top and bottom of the civ icon -->
-			<object z="30" size="0 0 100% 40" ghost="true" type="image" sprite="remove"/>
-			<object z="30" size="0 100%-5 100% 100%+40" ghost="true" type="image" sprite="remove"/>
-			
-			<object z="30" size="0 2 100% 45" ghost="true">
-			    <!-- Specific Name -->
-			    <object size="0 0 100% 20" name="specific" ghost="true" type="text" style="SpecificNameCentered"/>
-
-			    <!-- Generic Name -->
-			    <object size="0 20 100% 36" name="generic" ghost="true" type="text" style="GenericNameCentered"/>
-			</object>
-			
-			<!-- Player Name and Civ -->
-			<object size="0 40 100% 100%">
-			    <object size="50%-64 -24 50%+64 112" name="playerCivIcon" type="image" ghost="true"/>
-			    <object size="0 0 100% 100%" name="playerColorBackground" type="image" sprite="playerColorBackground" ghost="true"/>
-			    <object size="0 0 100% 100%" type="image" sprite="bottomEdgedPanelShader" ghost="true"/>
-			    
-			    <!-- Why is this being automatically ghosted? In the mean time, set ghost to false -->
-			    <object ghost="false" size="0 0 100% 100%-5" name="player" type="text" style="largeCenteredOutlinedText" tooltip_style="sessionToolTip"/>
-			</object>
-		    </object>
-		    
 		    <!-- Stats Bars -->
 		    <object size= "2 0 100%-2 98" type="image" tooltip_style="sessionToolTip">
 			
@@ -707,6 +681,33 @@
 			    <object z="20" size="4 4 20 20" name="rankIcon" type="image" tooltip="Rank" tooltip_style="sessionToolTip"/>
 			</object>
 		    </object>
+		    
+		    <!-- Names (this must come before the attack and armor icon to avoid clipping issues) -->
+		    <object size="2 96 100%-2 100%-36" name="statsArea" type="image" sprite="edgedPanelShader">
+			
+			<!-- These images are used to clip off the top and bottom of the civ icon -->
+			<object z="30" size="0 -5 100% 40" ghost="true" type="image" sprite="remove"/>
+			<object z="30" size="0 100%-5 100% 100%+40" ghost="true" type="image" sprite="remove"/>
+			
+			<object z="30" size="0 2 100% 45" ghost="true">
+			    <!-- Specific Name -->
+			    <object size="0 0 100% 20" name="specific" ghost="true" type="text" style="SpecificNameCentered"/>
+
+			    <!-- Generic Name -->
+			    <object size="0 20 100% 36" name="generic" ghost="true" type="text" style="GenericNameCentered"/>
+			</object>
+			
+			<!-- Player Name and Civ -->
+			<object size="0 40 100% 100%">
+			    <object size="50%-64 50%-64 50%+64 50%+64" name="playerCivIcon" type="image" ghost="true"/>
+			    <object size="0 0 100% 100%" name="playerColorBackground" type="image" sprite="playerColorBackground" ghost="true"/>
+			    <object size="0 0 100% 100%" type="image" sprite="bottomEdgedPanelShader" ghost="true"/>
+			    
+			    <!-- Why is this being automatically ghosted? In the mean time, set ghost to false -->
+			    <object ghost="false" size="0 0 100% 100%-5" name="player" type="text" style="largeCenteredOutlinedText" tooltip_style="sessionToolTip"/>
+			</object>
+		    </object>
+
 		</object>
 
 		<!-- Unit details for Multiple Units -->
@@ -841,11 +842,8 @@
 		<object name="unitQueuePanel"
 			size="4 -56 100% 0"
 			type="image"
-			style="TranslucentPanelThinBorder"
+			sprite="queuePanelShader"
 		>
-		    <object size="4 4 100%-4 100%-4" name="unitQueuePanelPlayerColor" type="image"/>
-		    <object size="4 4 100%-4 100%-4" type="image" sprite="panelShader"/>
-		    
 		    <object size="-4 -2 52 54" type="image" sprite="stretched:session/icons/production.png" tooltip_style="sessionToolTipBottom" tooltip="Production queue">
 			<object name="queueProgress" ghost="true" style="iconButtonProgress" type="text"/>
 		    </object>

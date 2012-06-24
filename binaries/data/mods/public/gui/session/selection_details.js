@@ -147,7 +147,6 @@ function displaySingle(entState, template)
 	getGUIObjectByName("specific").caption = specificName;
 		getGUIObjectByName("player").caption = playerName;
 	getGUIObjectByName("playerColorBackground").sprite = "colour: " + playerColor;
-	getGUIObjectByName("unitQueuePanelPlayerColor").sprite = "colour: " + playerColor;
 	
 	if (genericName)
 	{
