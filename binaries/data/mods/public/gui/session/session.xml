@@ -364,7 +364,7 @@
 		ALPHA X : Jhelum<!-- IMPORTANT: remember to update pregame/mainmenu.xml in sync with this -->
 
 		<!-- Displays build date and revision number-->
-		<object size="50%-128 0 50%+128 100%-2" name="buildTimeLabel" type="text" text_align="center" text_valign="bottom" font="serif-12" textcolor="white" ghost="true">
+		<object size="50%-128 0 50%+128 100%-2" name="buildTimeLabel" type="text" style="BuildNameText" ghost="true">
 		    <action on="Load"><![CDATA[this.caption = buildTime(0) + " (" + buildTime(2) + ")";]]>
 		    </action>
 		</object>
@@ -625,10 +625,10 @@
 			
 			<object z="30" size="0 2 100% 45" ghost="true">
 			    <!-- Specific Name -->
-			    <object size="0 0 100% 20" name="specific" ghost="true" type="text" style="PrimaryTextCentered"/>
+			    <object size="0 0 100% 20" name="specific" ghost="true" type="text" style="SpecificNameCentered"/>
 
 			    <!-- Generic Name -->
-			    <object size="0 20 100% 36" name="generic" ghost="true" type="text" style="StatsTextCentered"/>
+			    <object size="0 20 100% 36" name="generic" ghost="true" type="text" style="GenericNameCentered"/>
 			</object>
 			
 			<!-- Player Name and Civ -->
@@ -638,7 +638,7 @@
 			    <object size="0 0 100% 100%" type="image" sprite="bottomEdgedPanelShader" ghost="true"/>
 			    
 			    <!-- Why is this being automatically ghosted? In the mean time, set ghost to false -->
-			    <object ghost="false" size="0 0 100% 100%-5" name="player" type="text" style="SecondaryTextCentered" tooltip_style="sessionToolTip"/>
+			    <object ghost="false" size="0 0 100% 100%-5" name="player" type="text" style="largeCenteredOutlinedText" tooltip_style="sessionToolTip"/>
 			</object>
 		    </object>
 		    
