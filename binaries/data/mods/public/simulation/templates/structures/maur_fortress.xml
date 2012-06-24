@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_fortress">
+  <Cost>
+    <BuildTime>525</BuildTime>
+  </Cost>
+  <Health>
+    <Max>5250</Max>
+  </Health>
+  <Identity>
+    <Civ>maur</Civ>
+    <SpecificName>Fortress</SpecificName>
+	<History>Fortress.</History>
+    <Tooltip>Train Champion Units.</Tooltip>
+  </Identity>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/maur_champion_archer
+	  units/maur_champion_cavalry
+	  units/maur_champion_infantry
+    </Entities>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>structures/mauryans/fortress.xml</Actor>
+  </VisualActor>
+</Entity>

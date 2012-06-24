@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_civil_centre">
+  <Cost>
+    <BuildTime>360</BuildTime>
+  </Cost>
+  <Footprint>
+    <Square width="28.0" depth="28.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Health>
+    <Max>3600</Max>
+  </Health>
+  <Identity>
+    <Civ>maur</Civ>
+	<GenericName>Civ Centre</GenericName>
+    <SpecificName>Civ Centre</SpecificName>
+    <History>Civ Centre</History>
+  </Identity>
+  <Obstruction>
+    <Static width="25.0" depth="25.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/maur_infantry_spearman_b
+      units/maur_infantry_archer_b
+      units/maur_cavalry_javelinist_b
+    </Entities>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>structures/mauryans/civil_centre.xml</Actor>
+  </VisualActor>
+</Entity>
