@@ -169,7 +169,7 @@
 	<!-- ================================  ================================ -->
 	<!-- Time elapsed counter -->
 	<!-- ================================  ================================ -->
-	<object size="100%-100 50 100%-10 70" type="text" name="timeElapsedCounter" style="settingsText" hotkey="timeelapsedcounter.toggle" hidden="true">
+	<object size="100%-100 50 100%-10 70" type="text" name="timeElapsedCounter" style="SettingsText" hotkey="timeelapsedcounter.toggle" hidden="true">
 	    <action on="Press"><![CDATA[
 				this.hidden = !this.hidden;
 			]]>
