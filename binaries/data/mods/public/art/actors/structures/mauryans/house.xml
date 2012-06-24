@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="House A">
+      <mesh>structural/maur_house_a.dae</mesh>
+      <texture>structural/maur_struct_temp.png</texture>
+    </variant>
+    <variant frequency="1" name="House B">
+      <mesh>structural/maur_house_b.dae</mesh>
+      <texture>structural/maur_struct_temp.png</texture>
+    </variant>
+    <variant frequency="1" name="House C">
+      <mesh>structural/maur_house_c.dae</mesh>
+      <texture>structural/maur_struct_temp.png</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
