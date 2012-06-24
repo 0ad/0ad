@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_cavalry_javelinist">
+  <Armour>
+    <Hack>4.0</Hack>
+    <Pierce>8.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
+  <Attack>
+    <Ranged>
+      <Pierce>35.0</Pierce>
+    </Ranged>
+  </Attack>
+  <Cost>
+    <Population>3</Population>
+    <BuildTime>19</BuildTime>
+    <Resources>
+      <food>200</food>
+      <wood>100</wood>
+      <metal>100</metal>
+    </Resources>
+  </Cost>
+  <Footprint replace="">
+    <Square width="5.5" depth="10.0"/>
+    <Height>5.0</Height>
+  </Footprint>
+  <Health>
+    <Max>190</Max>
+  </Health>
+  <Identity>
+    <Civ>maur</Civ>
+    <Classes datatype="tokens">Champion Chariot</Classes>
+	<SelectionGroupName>units/maur_champion_archer</SelectionGroupName>
+	<GenericName>War Chariot</GenericName>
+    <SpecificName>Rath</SpecificName>
+    <History>Champion Cavalry Archer</History>
+	<Icon>units/pers_cavalry_archer.png</Icon>
+    <Tooltip>Counters Spearmen and Swordsmen. Countered by Skirmishers. Trample Damage Aura.</Tooltip>
+  </Identity>
+  <Loot>
+    <xp>200</xp>
+    <food>0</food>
+    <wood>20</wood>
+    <stone>0</stone>
+    <metal>20</metal>
+  </Loot>
+  <Obstruction>
+    <Unit radius="2.0"/>
+  </Obstruction>
+  <ResourceGatherer>
+    <MaxDistance>5.0</MaxDistance>
+    <Capacities>
+      <food>50</food>
+    </Capacities>
+  </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>11.0</WalkSpeed>
+    <Run>
+      <Speed>33.0</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/persians/cavalry_archer_e.xml</Actor>
+  </VisualActor>
+</Entity>

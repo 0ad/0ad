@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_mechanical_ship_merchant">
+  <Footprint>
+    <Square width="12.0" depth="24.0"/>
+    <Height>6.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>maur</Civ>
+	<GenericName>Trading Ship</GenericName>
+    <SpecificName>Vanijyik Nauka</SpecificName>
+    <History>Merchant Ship</History>
+    <Icon>units/celt_ship_merchant.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/celts/merchant_ship.xml</Actor>
+  </VisualActor>
+</Entity>

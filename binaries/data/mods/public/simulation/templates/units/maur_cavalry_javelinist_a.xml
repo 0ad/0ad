@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/maur_cavalry_javelinist_b">
+  <Identity>
+	<Rank>Advanced</Rank>
+  </Identity>
+  <Promotion>
+    <Entity>units/maur_cavalry_javelinist_e</Entity>
+  </Promotion>
+  <ResourceGatherer>
+    <BaseSpeed>0.75</BaseSpeed>
+  </ResourceGatherer>
+  <Health>
+    <Max>130</Max>
+  </Health>
+  <Armour>
+    <Hack>3.0</Hack>
+    <Pierce>4.0</Pierce>
+    <Crush>3.0</Crush>
+  </Armour>
+  <UnitMotion>
+    <WalkSpeed>11.5</WalkSpeed>
+    <Run>
+      <Speed>28.5</Speed>
+    </Run>
+  </UnitMotion>
+  <Attack>
+    <Ranged>
+      <Spread>1.3</Spread>
+      <MaxRange>48</MaxRange>
+    </Ranged>
+  </Attack>
+  <VisualActor>
+    <Actor>units/iberians/cavalry_javelinist_a.xml</Actor>
+  </VisualActor>
+</Entity>

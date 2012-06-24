@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_cavalry">
+  <Armour>
+    <Hack>10.0</Hack>
+    <Pierce>10.0</Pierce>
+    <Crush>15.0</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>20.0</Hack>
+      <Crush>20.0</Crush>
+	  <Bonuses>
+		<BonusStructures>
+		  <Classes>Structure</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusStructures>
+		<BonusCav>
+		  <Classes>Cavalry</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusCav>
+		<BonusGates>
+		  <Classes>Gates</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusGates>
+	  </Bonuses>
+    </Melee>
+    <Charge>
+      <Hack>60.0</Hack>
+      <Crush>60.0</Crush>
+	  <Bonuses>
+		<BonusStructures>
+		  <Classes>Structure</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusStructures>
+		<BonusCav>
+		  <Classes>Cavalry</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusCav>
+		<BonusGates>
+		  <Classes>Gates</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusGates>
+	  </Bonuses>
+    </Charge>
+  </Attack>
+  <Cost>
+    <Resources>
+      <food>200</food>
+      <metal>200</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Circle radius="3.5"/>
+    <Height>6.0</Height>
+  </Footprint>
+  <Health>
+    <Max>400</Max>
+  </Health>
+  <Identity>
+    <Civ>cart</Civ>
+    <Classes datatype="tokens">Elephant -Cavalry</Classes>
+	<GenericName>Indian War Elephant</GenericName>
+    <SpecificName>Gajendra</SpecificName>
+    <Icon>units/cart_champion_cavalry.png</Icon>
+    <History>Painted Indian war elephant with driver and bow rider. Has some armor on its chest and forehead, and swords on its tusks.</History>
+	<Tooltip>Champion War Elephant.
+Good sieging capability. "Stench" Aura vs. Horses. Can run amok. Countered by Swordsmen and Skirmishers.</Tooltip>
+  </Identity>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>circle/256x256.png</MainTexture>
+        <MainTextureMask>circle/256x256_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
+  <UnitMotion>
+    <WalkSpeed>7.0</WalkSpeed>
+    <Run>
+      <Speed>14.0</Speed>
+    </Run>
+  </UnitMotion>
+  <Vision>
+    <Range>80</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>units/carthaginians/champion_unit_2.xml</Actor>
+  </VisualActor>
+</Entity>

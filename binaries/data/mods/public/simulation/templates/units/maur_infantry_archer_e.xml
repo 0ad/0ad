@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/maur_infantry_archer_a">
+  <Armour>
+    <Hack>4.0</Hack>
+    <Pierce>7.0</Pierce>
+    <Crush>6.0</Crush>
+  </Armour>
+  <Attack>
+    <Ranged>
+      <Spread>1.0</Spread>
+      <MaxRange>71.0</MaxRange>
+    </Ranged>
+  </Attack>
+  <Health>
+    <Max>90</Max>
+  </Health>
+  <Identity>
+    <Rank>Elite</Rank>
+  </Identity>
+  <Promotion disable=""/>
+  <ResourceGatherer>
+    <BaseSpeed>0.5</BaseSpeed>
+  </ResourceGatherer>
+  <Vision>
+    <Range>70</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>units/persians/infantry_archer_e.xml</Actor>
+  </VisualActor>
+</Entity>
