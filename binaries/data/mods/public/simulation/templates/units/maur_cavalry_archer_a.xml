@@ -2,13 +2,13 @@
 <Entity parent="template_unit_champion_cavalry">
   <Armour>
     <Hack>10.0</Hack>
-    <Pierce>10.0</Pierce>
+    <Pierce>15.0</Pierce>
     <Crush>15.0</Crush>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>20.0</Hack>
-      <Crush>20.0</Crush>
+      <Hack>22.0</Hack>
+      <Crush>25.0</Crush>
 	  <Bonuses>
 		<BonusStructures>
 		  <Classes>Structure</Classes>
@@ -25,8 +25,8 @@
 	  </Bonuses>
     </Melee>
     <Charge>
-      <Hack>60.0</Hack>
-      <Crush>60.0</Crush>
+      <Hack>66.0</Hack>
+      <Crush>75.0</Crush>
 	  <Bonuses>
 		<BonusStructures>
 		  <Classes>Structure</Classes>
@@ -44,20 +44,21 @@
     </Charge>
   </Attack>
   <Cost>
+    <Population>3</Population>
     <Resources>
-      <food>200</food>
+      <food>300</food>
       <metal>200</metal>
     </Resources>
   </Cost>
   <Footprint>
     <Circle radius="3.5"/>
-    <Height>6.0</Height>
+    <Height>8.0</Height>
   </Footprint>
   <Health>
-    <Max>400</Max>
+    <Max>500</Max>
   </Health>
   <Identity>
-    <Civ>cart</Civ>
+    <Civ>maur</Civ>
     <Classes datatype="tokens">Elephant -Cavalry</Classes>
 	<GenericName>Elephant Archer</GenericName>
     <SpecificName>Vachii Gaja</SpecificName>
@@ -74,15 +75,15 @@
     </Overlay>
   </Selectable>
   <UnitMotion>
-    <WalkSpeed>7.0</WalkSpeed>
+    <WalkSpeed>7.5</WalkSpeed>
     <Run>
-      <Speed>14.0</Speed>
+      <Speed>12.0</Speed>
     </Run>
   </UnitMotion>
   <Vision>
-    <Range>80</Range>
+    <Range>84</Range>
   </Vision>
   <VisualActor>
-    <Actor>units/carthaginians/champion_unit_2.xml</Actor>
+    <Actor>units/persians/war_elephant.xml</Actor>
   </VisualActor>
 </Entity>

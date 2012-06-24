@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="211.496" y="72.4813" z="539.36"/>
+		<Position x="213.72" y="64.4338" z="542.524"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -4624,25 +4624,25 @@
 		<Entity uid="880">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="191.39745" z="575.98707"/>
+			<Position x="190.23983" z="574.09766"/>
 			<Orientation y="0.71793"/>
 		</Entity>
 		<Entity uid="881">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="197.1622" z="577.61774"/>
+			<Position x="178.43154" z="579.20044"/>
 			<Orientation y="1.39368"/>
 		</Entity>
 		<Entity uid="882">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="190.95331" z="582.3971"/>
+			<Position x="184.53071" z="580.55854"/>
 			<Orientation y="3.11283"/>
 		</Entity>
 		<Entity uid="883">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="185.1603" z="587.88721"/>
+			<Position x="184.15018" z="587.91224"/>
 			<Orientation y="-2.33515"/>
 		</Entity>
 		<Entity uid="884">
@@ -29742,25 +29742,25 @@
 		<Entity uid="5396">
 			<Template>units/maur_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="228.00605" z="618.31421"/>
+			<Position x="228.77277" z="617.73536"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5397">
 			<Template>units/maur_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="217.35315" z="607.8089"/>
+			<Position x="218.19349" z="606.36084"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5398">
 			<Template>units/maur_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="220.73018" z="610.98975"/>
+			<Position x="221.37069" z="610.07746"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5399">
 			<Template>units/maur_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="224.25387" z="614.3459"/>
+			<Position x="224.88297" z="614.021"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5403">
@@ -29901,28 +29901,22 @@
 			<Position x="194.77933" z="614.6952"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="5429">
-			<Template>units/maur_cavalry_archer</Template>
-			<Player>1</Player>
-			<Position x="204.14373" z="591.66797"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="5430">
 			<Template>units/maur_infantry_archer_b</Template>
 			<Player>1</Player>
-			<Position x="215.97246" z="593.49994"/>
+			<Position x="216.18413" z="592.3761"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5431">
 			<Template>units/maur_infantry_archer_a</Template>
 			<Player>1</Player>
-			<Position x="218.83909" z="597.27485"/>
+			<Position x="219.99283" z="596.46119"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5432">
 			<Template>units/maur_infantry_archer_e</Template>
 			<Player>1</Player>
-			<Position x="221.59183" z="601.19196"/>
+			<Position x="223.50356" z="600.65705"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5433">
@@ -30205,6 +30199,24 @@
 			<Template>structures/maur_defense_tower</Template>
 			<Player>1</Player>
 			<Position x="177.68859" z="654.41272"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5483">
+			<Template>units/maur_cavalry_archer_a</Template>
+			<Player>1</Player>
+			<Position x="195.61031" z="581.98627"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5484">
+			<Template>units/maur_cavalry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="201.68702" z="584.13062"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5485">
+			<Template>units/maur_cavalry_archer_e</Template>
+			<Player>1</Player>
+			<Position x="203.39992" z="590.83063"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
