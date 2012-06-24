@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="213.72" y="64.4338" z="542.524"/>
+		<Position x="203.911" y="80.7231" z="550.6"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -29793,12 +29793,6 @@
 			<Position x="182.18688" z="641.6294"/>
 			<Orientation y="-2.38785"/>
 		</Entity>
-		<Entity uid="5408">
-			<Template>structures/maur_house</Template>
-			<Player>1</Player>
-			<Position x="190.399" z="650.82703"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="5409">
 			<Template>structures/maur_house</Template>
 			<Player>1</Player>
@@ -30218,6 +30212,12 @@
 			<Player>1</Player>
 			<Position x="203.39992" z="590.83063"/>
 			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5486">
+			<Template>structures/maur_house</Template>
+			<Player>1</Player>
+			<Position x="190.18613" z="651.4787"/>
+			<Orientation y="-2.42725"/>
 		</Entity>
 	</Entities>
 	<Paths/>
