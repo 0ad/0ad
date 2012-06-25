@@ -149,12 +149,10 @@ function leaveGame()
 	if (playerState.state == "won")
 	{
 		gameResult = "You have won the battle!";
-		global.music.setState(global.music.states.VICTORY);
 	}
 	else if (playerState.state == "defeated")
 	{
 		gameResult = "You have been defeated...";
-		global.music.setState(global.music.states.DEFEAT);
 	}
 	else // "active"
 	{
