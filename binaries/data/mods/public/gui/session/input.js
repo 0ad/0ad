@@ -627,6 +627,11 @@ function handleInputBeforeGui(ev, hoveredObject)
 	// Remember whether the mouse is over a GUI object or not
 	mouseIsOverObject = (hoveredObject != null);
 
+	// Close the menu when interacting with the game world
+	if (!mouseIsOverObject && (ev.type =="mousebuttonup" || ev.type == "mousebuttondown")
+	    && (ev.button == SDL_BUTTON_LEFT || ev.button == SDL_BUTTON_RIGHT))
+		closeMenu();
+
 	// State-machine processing:
 	//
 	// (This is for states which should override the normal GUI processing - events will
