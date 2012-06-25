@@ -5,7 +5,7 @@
 	"cost": {"food": 0, "wood": 0, "stone": 100, "metal": 100},
 	"requirements": {"tech": "phase_town"},
 	"requirementsTooltip": "Unlocked in Town Phase.",
-	"icon": "arrow.png",
+	"icon": "crenelations.png",
 	"researchTime": 20,
 	"tooltip": "Install crenellations and murder holes to increase the number of arrows fired per garrisoned soldier +50%.",
 	"modifications": [{"value": "BuildingAI/GarrisonArrowMultiplier", "multiplier": 1.5}],
