@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/maur_infantry_spearman_b">
+  <Armour>
+    <Hack>5.0</Hack>
+    <Pierce>7.0</Pierce>
+    <Crush>7.0</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>6.0</Hack>
+      <Pierce>11.0</Pierce>
+    </Melee>
+    <Charge>
+      <Hack>12.0</Hack>
+      <Pierce>22.0</Pierce>
+    </Charge>
+  </Attack>
+  <Health>
+    <Max>90</Max>
+  </Health>
+  <Identity>
+    <Rank>Advanced</Rank>
+  </Identity>
+  <Promotion>
+    <Entity>units/maur_infantry_spearman_e</Entity>
+  </Promotion>
+  <UnitMotion>
+    <WalkSpeed>7.0</WalkSpeed>
+    <Run>
+      <Speed>21.0</Speed>
+    </Run>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/persians/infantry_spearman_a.xml</Actor>
+  </VisualActor>
+</Entity>

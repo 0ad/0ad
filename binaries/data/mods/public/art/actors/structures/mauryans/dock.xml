@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Dock">
+      <mesh>structural/maur_dock.dae</mesh>
+      <texture>structural/maur_struct_temp.png</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

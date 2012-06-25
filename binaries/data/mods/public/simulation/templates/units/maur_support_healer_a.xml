@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/maur_support_healer_b">
+  <Heal>
+    <Range>15</Range>
+    <HP>7</HP>
+  </Heal>
+  <Health>
+    <Max>95</Max>
+  </Health>
+  <Identity>
+    <Rank>Advanced</Rank>
+  </Identity>
+  <Promotion>
+    <Entity>units/maur_support_healer_e</Entity>
+  </Promotion>
+</Entity>
