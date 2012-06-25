@@ -51,7 +51,7 @@ function displaySingle(entState, template)
 		healthSize.rright = 100*Math.max(0, Math.min(1, entState.hitpoints / entState.maxHitpoints));
 		unitHealthBar.size = healthSize;
 
-		var hitpoints = entState.hitpoints + "/" + entState.maxHitpoints;
+		var hitpoints = entState.hitpoints + " / " + entState.maxHitpoints;
 		getGUIObjectByName("healthStats").caption = hitpoints;
 		getGUIObjectByName("healthSection").hidden = false;
 	}
@@ -81,7 +81,7 @@ function displaySingle(entState, template)
  
 		var experience = "[font=\"serif-bold-13\"]Experience: [/font]" + Math.floor(entState.promotion.curr);
 		if (entState.promotion.curr < entState.promotion.req)
-			experience += "/" + entState.promotion.req;
+			experience += " / " + entState.promotion.req;
 		getGUIObjectByName("experience").tooltip = experience;
 		getGUIObjectByName("experience").hidden = false;
 	}
@@ -93,7 +93,7 @@ function displaySingle(entState, template)
 	// Resource stats
 	if (entState.resourceSupply)
 	{
-		var resources = Math.ceil(+entState.resourceSupply.amount) + "/" + entState.resourceSupply.max;
+		var resources = Math.ceil(+entState.resourceSupply.amount) + " / " + entState.resourceSupply.max;
 		var resourceType = entState.resourceSupply.type["generic"];
 		if (resourceType == "treasure")
 			resourceType = entState.resourceSupply.type["specific"];
@@ -127,7 +127,7 @@ function displaySingle(entState, template)
 		getGUIObjectByName("resourceCarryingIcon").hidden = false;
 		getGUIObjectByName("resourceCarryingText").hidden = false;
 		getGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/resources/"+carried.type+".png";
-		getGUIObjectByName("resourceCarryingText").caption = carried.amount + "/" + carried.max;
+		getGUIObjectByName("resourceCarryingText").caption = carried.amount + " / " + carried.max;
 	}
 	// Use the same indicators for traders
 	else if (entState.trader && entState.trader.goods.amount > 0)
@@ -226,11 +226,10 @@ function displayMultiple(selection, template)
 		healthSize.rtop = 100-100*Math.max(0, Math.min(1, averageHealth / maxHealth));
 		unitHealthBar.size = healthSize;
 
-		var hitpoints = "[font=\"serif-bold-13\"]Hitpoints [/font]" + averageHealth + "/" + maxHealth;
+		var hitpoints = "[font=\"serif-bold-13\"]Hitpoints [/font]" + averageHealth + " / " + maxHealth;
 		var healthMultiple = getGUIObjectByName("healthMultiple");
 		healthMultiple.tooltip = hitpoints;
-		healthMultiple.hidden = false;
-	}
+		healthMultiple.hidden = false;	}
 	else
 	{
 		getGUIObjectByName("healthMultiple").hidden = true;

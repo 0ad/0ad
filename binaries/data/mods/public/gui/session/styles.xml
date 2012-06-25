@@ -126,6 +126,14 @@
     />
     
     <style name="StatsTextRight"
+	   font="serif-stroke-12"
+	   textcolor="white"
+	   text_align="right"
+	   text_valign="center"
+	   ghost="true"
+    />
+    
+    <style name="CarryingTextRight"
 	   font="serif-bold-stroke-13"
 	   textcolor="white"
 	   text_align="right"
@@ -142,7 +150,7 @@
     />
     
     <style name="GenericNameCentered"
-	   font="serif-stroke-13"
+	   font="serif-stroke-12"
 	   textcolor="white"
 	   text_align="center"
 	   text_valign="center"
