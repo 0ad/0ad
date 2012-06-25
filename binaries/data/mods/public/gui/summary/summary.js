@@ -21,31 +21,52 @@ function selectPanel(panelNumber)
 		{
 			getGUIObjectByName(panelNames[i]).hidden = false;
 			getGUIObjectByName(panelButtonNames[i]).sprite = "ForegroundTab";
-                        adjustTabDividers(getGUIObjectByName(panelButtonNames[i]).size);
+			adjustTabDividers(getGUIObjectByName(panelButtonNames[i]).size);
 		}
 	}
 }
 
 function adjustTabDividers(tabSize)
 {
-    var leftSpacer = getGUIObjectByName("tabDividerLeft");
-    var rightSpacer = getGUIObjectByName("tabDividerRight");
-    leftSpacer.size = "20 " + leftSpacer.size.top + " " + (tabSize.left + 2) + " " + leftSpacer.size.bottom;
-    rightSpacer.size = (tabSize.right - 2) + " " + rightSpacer.size.top + " 100%-20 " + rightSpacer.size.bottom;
+	var leftSpacer = getGUIObjectByName("tabDividerLeft");
+	var rightSpacer = getGUIObjectByName("tabDividerRight");
+	leftSpacer.size = "20 " + leftSpacer.size.top + " " + (tabSize.left + 2) + " " + leftSpacer.size.bottom;
+	rightSpacer.size = (tabSize.right - 2) + " " + rightSpacer.size.top + " 100%-20 " + rightSpacer.size.bottom;
 }
 
 function init(data)
 {
 	var civData = loadCivData();
+	var mapSize = "Scenario";
 
 	getGUIObjectByName("timeElapsed").caption = "Time elapsed: " + timeToString(data.timeElapsed);
 
 	getGUIObjectByName("summaryText").caption = data.gameResult;
 
+	// This is only defined for random maps
+	if (data.mapSettings.Size)
+	{
+		// load the map sizes from the JSON file
+		var mapSizes = initMapSizes();
+		var mapSizeIndex;
+
+		// retrieve the index of the map size
+		for (mapSizeIndex in mapSizes.tiles)
+		{
+			if (mapSizes.tiles[mapSizeIndex] == data.mapSettings.Size)
+			{
+				mapSize = mapSizes.names[mapSizeIndex];
+				break;
+			}
+		}
+	}
+
+	getGUIObjectByName("mapName").caption = data.mapSettings.Name + " - " + mapSize;
+
 	// Space player boxes
 	var boxSpacing = 32;
 	for (var i = 0; i < panelNames.length; ++i)
-        {
+	{
 		for (var j = 0; j < MAX_SLOTS; ++j)
 		{
 			var box = getGUIObjectByName("playerBox"+i+"["+j+"]");
@@ -55,7 +76,7 @@ function init(data)
 			boxSize.bottom = j * boxSpacing + h;
 			box.size = boxSize;
 		}
-        }
+	}
 
 	// TODO set maxPlayers as playerCounters.length
 	var maxPlayers = data.playerStates.length - 1;
