@@ -659,11 +659,11 @@
 			
 			<object size="0 60 100% 96" type="image" sprite="edgedPanelShader">
 			    <!-- Attack and Armor -->
-			    <object size="90 0 126 36" name="attackAndArmorStats" type="image" sprite="stretched:session/icons/stances/defensive.png" tooltip="Attack and Armor" tooltip_style="sessionToolTip"/>
+			    <object size="90 -2 126 34" name="attackAndArmorStats" type="image" sprite="stretched:session/icons/stances/defensive.png" tooltip="Attack and Armor" tooltip_style="sessionToolTip"/>
 
 			    <!-- Resource carrying icon/counter -->
-			    <object size="100%-72 0 100%-26 36" type="text" name="resourceCarryingText" style="StatsTextRight"/>
-			    <object size="100%-32 0 100%+4 36" type="image" name="resourceCarryingIcon"/>
+			    <object size="100%-78 -2 100%-28 34" type="text" name="resourceCarryingText" style="CarryingTextRight"/>
+			    <object size="100%-36 -2 100% 34" type="image" name="resourceCarryingIcon"/>
 			</object>
 			
 			<!-- Big unit icon -->
@@ -694,7 +694,7 @@
 			    <object size="0 0 100% 20" name="specific" ghost="true" type="text" style="SpecificNameCentered"/>
 
 			    <!-- Generic Name -->
-			    <object size="0 20 100% 36" name="generic" ghost="true" type="text" style="GenericNameCentered"/>
+			    <object size="0 15 100% 36" name="generic" ghost="true" type="text" style="GenericNameCentered"/>
 			</object>
 			
 			<!-- Player Name and Civ -->
@@ -759,7 +759,7 @@
 			type="image"
 			z="30"
 		>
-		    <object size="0 0 100% 100%">
+		    <object size="0 1 100% 100%">
 			<repeat count="6">
 			    <object name="unitCommandButton[n]" hidden="true" style="iconButton" type="button" size="0 0 32 32" tooltip_style="sessionToolTipBottomBold">
 				<object name="unitCommandIcon[n]" ghost="true" type="image" size="0 0 100% 100%" style="commandIcon"/>

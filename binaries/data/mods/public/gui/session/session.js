@@ -167,13 +167,16 @@ function leaveGame()
 		global.music.setState(global.music.states.DEFEAT);
 	}
 
+	var mapSettings = Engine.GetMapSettings();
+
 	stopAmbient();
 	endGame();
 
 	Engine.SwitchGuiPage("page_summary.xml", {
 							"gameResult"  : gameResult,
 							"timeElapsed" : extendedSimState.timeElapsed,
-							"playerStates": extendedSimState.players
+							"playerStates": extendedSimState.players,
+							"mapSettings": mapSettings
 						 });
 }
 

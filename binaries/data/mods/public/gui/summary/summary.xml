@@ -8,6 +8,7 @@
 
 <objects>
 	<script file="gui/common/functions_civinfo.js"/>
+	<script file="gui/common/functions_utility.js"/>
 	<script file="gui/summary/summary.js"/>
 
 	<object type="image"
@@ -22,10 +23,11 @@
 			Summary
 		</object>
 
-		<object type="image" sprite="ForegroundBody" size="20 20 100%-20 64">
+		<object type="image" sprite="ForegroundBody" size="20 20 100%-20 70">
+
 			<object name="summaryText"
 				type="text"
-				size="50 0 100%-50 100%-3"
+				size="50 6 100%-50 100%-20"
 				font="serif-bold-18"
 				textcolor="255 255 255"
 				text_align="left"
@@ -34,11 +36,22 @@
 
 			<object name="timeElapsed"
 				type="text"
-				size="100%-200 10 100%-10 100%"
+				size="100%-200 8 100%-10 100%-20"
 				font="serif-16"
 				textcolor="255 255 255"
 				text_align="center"
+				text_valign="center"
 			/>
+
+			<object name="mapName"
+				type="text"
+				size="50 20 100%-50 100%-4"
+				font="serif-bold-16"
+				textcolor="255 255 255"
+				text_align="center"
+				text_valign="center"
+			/>
+
 		</object>
 
 		<object name="tabDividerLeft" type="image" sprite="TabSpacer" size="172 120 174 122"/>
