@@ -38,6 +38,17 @@
 
 	local cxxflags =
 	{
+		EnableSSE      = "-msse",
+		EnableSSE2     = "-msse2",
+		ExtraWarnings  = "-Wall",
+		FatalWarnings  = "-Werror",
+		FloatFast      = "-ffast-math",
+		FloatStrict    = "-ffloat-store",
+		NoFramePointer = "-fomit-frame-pointer",
+		Optimize       = "-O2",
+		OptimizeSize   = "-Os",
+		OptimizeSpeed  = "-O3",
+		Symbols        = "-g",
 		NoExceptions   = "-fno-exceptions",
 		NoRTTI         = "-fno-rtti",
 	}
@@ -53,7 +64,7 @@
 			cppflags = "-MMD -MP",
 		},
 		x32 = { 
-			cppflags = "-MMD -MP",	
+			cppflags = "-MMD -MP",
 			flags    = "-m32",
 			ldflags  = "-L/usr/lib32", 
 		},
@@ -101,11 +112,14 @@
 		if cfg.system ~= "windows" and cfg.kind == "SharedLib" then
 			table.insert(result, "-fPIC")
 		end
-		return result		
+		return result
 	end
 	
 	function premake.gcc.getcxxflags(cfg)
 		local result = table.translate(cfg.flags, cxxflags)
+		if cfg.system ~= "windows" and cfg.kind == "SharedLib" then
+			table.insert(result, "-fPIC")
+		end
 		return result
 	end
 	

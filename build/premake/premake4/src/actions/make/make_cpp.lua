@@ -107,7 +107,7 @@
 
 		-- precompiler header rule
 		_.pchrules(prj)
-				
+
 		-- per-file rules
 		for _, file in ipairs(prj.files) do
 			if path.iscppfile(file) then
@@ -145,7 +145,7 @@
 				end
 
 				if not (prj.solution.nasmpath) then
-					prj.solution.nasmpath = 'nasm'				
+					prj.solution.nasmpath = 'nasm'
 				end
 
 				_p('\t$(SILENT)'.._MAKE.esc(prj.solution.nasmpath)..' '..opts..' -i'.._MAKE.esc(path.getdirectory(file))..'/'..' -f '..
@@ -156,7 +156,7 @@
 			end
 			
 		end
-		_p('')		
+		_p('')
 
 		-- output for test-generation
 		-- test generation only works if all required parameters are set!
@@ -244,10 +244,10 @@
 			_p('  AR         = %s', platform.ar)
 		end
 		if not(cfg.gnuexternals) then
-			cfg.gnuexternal = { }		
+			cfg.gnuexternal = { }
 		end 
 
-		_p('  OBJDIR     = %s', _MAKE.esc(cfg.objectsdir))		
+		_p('  OBJDIR     = %s', _MAKE.esc(cfg.objectsdir))
 		_p('  TARGETDIR  = %s', _MAKE.esc(cfg.buildtarget.directory))
 		_p('  TARGET     = $(TARGETDIR)/%s', _MAKE.esc(cfg.buildtarget.name))
 		_p('  DEFINES   += %s', table.concat(cc.getdefines(cfg.defines), " "))
@@ -256,14 +256,14 @@
 
 		-- set up precompiled headers
 		_.pchconfig(cfg)
-				
+
 		_p('  CFLAGS    += $(CPPFLAGS) %s', table.concat(table.join(cc.getcflags(cfg), cfg.buildoptions), " "))
-		_p('  CXXFLAGS  += $(CFLAGS) %s', table.concat(cc.getcxxflags(cfg), " "))
+		_p('  CXXFLAGS  += $(CPPFLAGS) %s', table.concat(table.join(cc.getcxxflags(cfg), cfg.buildoptions), " "))
 		_p('  LDFLAGS   += %s', table.concat(table.join(cc.getldflags(cfg), cfg.linkoptions, cc.getlibdirflags(cfg)), " "))
 		_p('  LIBS      += %s %s', table.concat(cc.getlinkflags(cfg), " "), table.concat(cfg.gnuexternals, " "))
 		_p('  RESFLAGS  += $(DEFINES) $(INCLUDES) %s', table.concat(table.join(cc.getdefines(cfg.resdefines), cc.getincludedirs(cfg.resincludedirs), cfg.resoptions), " "))
 		_p('  LDDEPS    += %s', table.concat(_MAKE.esc(premake.getlinks(cfg, "static", "fullpath")), " "))
-		
+
 		if cfg.kind == "StaticLib" then
 			if cfg.platform:startswith("Universal") then
 				_p('  LINKCMD    = libtool -o $(TARGET) $(OBJECTS)')
@@ -284,7 +284,7 @@
 			_p('  LINKCMD    = $(%s) -o $(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES) %s $(LIBS)', 
 			iif(cfg.language == "C", "CC", "CXX"), lddeps)
 		end
-		
+
 		_p('  define PREBUILDCMDS')
 		if #cfg.prebuildcommands > 0 then
 			_p('\t@echo Running pre-build commands')
@@ -315,7 +315,7 @@
 -- Precompiled header support
 --
 
-	function _.pchconfig(cfg)			
+	function _.pchconfig(cfg)
 		if not cfg.flags.NoPCH and cfg.pchheader then
 			_p('  PCH        = %s', _MAKE.esc(cfg.pchheader))
 			_p('  GCH        = $(OBJDIR)/%s.gch', _MAKE.esc(path.getname(cfg.pchheader))) 
