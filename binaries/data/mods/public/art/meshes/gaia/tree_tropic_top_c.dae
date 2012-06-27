@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>mmm</author>
+      <authoring_tool>3dsMax 7 - Feeling ColladaMax v3.05B.</authoring_tool>
+      <comments>ColladaMax Export Options: ExportNormals=1;ExportEPolyAsTriangles=1;ExportXRefs=1;ExportSelected=1;ExportTangents=0;ExportAnimations=0;SampleAnim=0;ExportAnimClip=0;BakeMatrices=0;ExportRelativePaths=1;AnimStart=0;AnimEnd=3.33333;</comments>
+      <source_data>file:///E:/3dsmax7/scenes/Tree.max</source_data>
+    </contributor>
+    <created>2012-06-25T12:39:37Z</created>
+    <modified>2012-06-25T12:39:38Z</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="tree_tropic_a.png" name="tree_tropic_a_png">
+      <init_from>../../textures/skins/gaia/tree_tropic_a.png</init_from>
+    </image>
+    <image id="tree_oak_a.tga" name="tree_oak_a_tga">
+      <init_from>../../textures/skins/gaia/tree_oak_a.tga</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_1_-_Default" name="_1_-_Default">
+      <instance_effect url="#_1_-_Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_1_-_Default-fx" name="_1_-_Default">
+      <profile_COMMON>
+        <newparam sid="tree_tropic_a_png-surface">
+          <surface type="2D">
+            <init_from>tree_tropic_a.png</init_from>
+            <format>A8R8G8B8</format>
+          </surface>
+        </newparam>
+        <newparam sid="tree_tropic_a_png-sampler">
+          <sampler2D>
+            <source>tree_tropic_a_png-surface</source>
+            <wrap_s>WRAP</wrap_s>
+            <wrap_t>WRAP</wrap_t>
+            <minfilter>NONE</minfilter>
+            <magfilter>NONE</magfilter>
+            <mipfilter>NONE</mipfilter>
+          </sampler2D>
+        </newparam>
+        <newparam sid="tree_oak_a_tga-surface">
+          <surface type="2D">
+            <init_from>tree_oak_a.tga</init_from>
+            <format>A8R8G8B8</format>
+          </surface>
+        </newparam>
+        <newparam sid="tree_oak_a_tga-sampler">
+          <sampler2D>
+            <source>tree_oak_a_tga-surface</source>
+            <wrap_s>WRAP</wrap_s>
+            <wrap_t>WRAP</wrap_t>
+            <minfilter>NONE</minfilter>
+            <magfilter>NONE</magfilter>
+            <mipfilter>NONE</mipfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <blinn>
+            <ambient>
+              <color>0.588235 0.588235 0.588235 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="tree_tropic_a_png-sampler" texcoord="CHANNEL1">
+                <extra>
+                  <technique profile="MAYA">
+                    <mirrorU>0</mirrorU>
+                    <mirrorV>0</mirrorV>
+                    <wrapU>1</wrapU>
+                    <wrapV>1</wrapV>
+                    <repeatU>1</repeatU>
+                    <repeatV>1</repeatV>
+                    <offsetU>0</offsetU>
+                    <offsetV>0</offsetV>
+                    <rotateUV>0</rotateUV>
+                  </technique>
+                  <technique profile="MAX3D">
+                    <amount>1</amount>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color>0.9 0.9 0.9 1</color>
+            </specular>
+            <shininess>
+              <float>0.415939</float>
+            </shininess>
+            <reflective>
+              <color>0 0 0 1</color>
+            </reflective>
+            <reflectivity>
+              <float>1</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <texture texture="tree_oak_a_tga-sampler" texcoord="CHANNEL1">
+                <extra>
+                  <technique profile="MAYA">
+                    <mirrorU>0</mirrorU>
+                    <mirrorV>0</mirrorV>
+                    <wrapU>1</wrapU>
+                    <wrapV>1</wrapV>
+                    <repeatU>1</repeatU>
+                    <repeatV>1</repeatV>
+                    <offsetU>0</offsetU>
+                    <offsetV>0</offsetV>
+                    <rotateUV>0</rotateUV>
+                  </technique>
+                  <technique profile="MAX3D">
+                    <amount>1</amount>
+                  </technique>
+                </extra>
+              </texture>
+            </transparent>
+            <transparency>
+              <float>1</float>
+            </transparency>
+          </blinn>
+          <extra>
+            <technique profile="FCOLLADA">
+              <spec_level>
+                <float>0</float>
+              </spec_level>
+              <emission_level>
+                <float>0</float>
+              </emission_level>
+            </technique>
+          </extra>
+        </technique>
+      </profile_COMMON>
+      <extra>
+        <technique profile="MAX3D">
+          <faceted>0</faceted>
+          <double_sided>0</double_sided>
+          <wireframe>0</wireframe>
+          <face_map>0</face_map>
+        </technique>
+      </extra>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="tree_oak_top_a-Geometry" name="tree_oak_top_a">
+      <mesh>
+        <source id="tree_oak_top_a-Geometry-positions">
+          <float_array id="tree_oak_top_a-Geometry-positions-array" count="225">1.81047 4.43729 18.2278 -3.23163 -1.41882 18.4795 3.22591 -2.52168 21.7035 1.46336 -4.01181 17.5775 4.73332 2.14795 17.4675 -4.70865 4.18611 22.7439 -1.16884 5.39246 21.1567 -4.51446 -1.57343 18.4795 2.72015 -2.44769 20.5086 4.55848 -0.098167 16.0064 0.990456 -4.19709 18.4362 3.02861 3.04728 21.3974 -0.742404 3.53412 10.0262 -4.82111 -3.02949 6.63879 2.27668 -4.68035 10.573 3.782 -1.36275 16.8801 1.74663 6.94153 13.1321 -5.05078 2.60519 17.485 1.80013 7.06265 17.2666 -5.1904 2.80252 13.0842 1.12095 -2.6287 17.1464 -1.92242 -2.18744 16.8801 7.23422 -2.12141 13.1321 2.89788 4.676 17.485 6.62111 0.036798 17.2666 2.36098 7.02732 13.0842 -2.21788 -1.25336 17.1464 3.52537 -5.86182 17.0087 4.99422 1.7503 10.7408 -2.67412 1.57544 16.3368 -1.1977 4.09202 19.4435 -5.63049 -3.21922 15.6956 2.24226 -4.95946 20.0485 -5.75396 -3.26703 19.8301 2.20145 -5.19772 15.6477 1.57911 3.10553 19.7099 3.41908 0.64153 19.4435 -3.89216 5.07432 15.6956 -5.6324 -2.79843 20.0485 -4.19488 5.10994 19.8301 -6.12556 -2.84547 15.6477 2.17769 -2.22313 19.7099 0.816374 -5.56423 19.4435 3.91224 2.40568 15.6956 -4.14309 2.75239 20.0485 3.69396 2.13831 16.2701 -5.26766 2.33047 12.3409 -2.72086 -5.72957 16.9043 -7.259 -6.42597 19.4559 0.368402 -3.14358 14.6329 -3.81355 3.15865 18.8916 1.70829 -3.4857 16.1853 1.90045 5.47593 12.2561 -6.15959 2.92913 16.8195 1.77889 1.36671 18.775 -5.43876 -0.364369 11.903 -1.14667 -7.99867 14.9657 -3.59379 -6.57757 17.5815 5.26506 -5.21064 13.6523 1.35734 2.2847 18.2157 4.38249 -1.29088 16.3425 -0.370365 5.81646 12.5945 -5.27472 -0.583221 16.9474 -1.55792 5.14159 15.9699 -6.66981 -1.25252 11.7875 1.1185 -4.19759 15.8497 -0.695851 -4.01686 18.8081 6.41149 0.735997 15.0601 0.011807 5.64035 19.413 6.5717 0.995303 18.9532 0.17759 6.10719 14.7709 -2.76748 -1.68112 18.833 -5.22023 0.96466 16.5113 0.694594 -5.20938 12.7633 4.41315 1.94471 17.1162</float_array>
+          <technique_common>
+            <accessor source="#tree_oak_top_a-Geometry-positions-array" count="75" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="tree_oak_top_a-Geometry-normals">
+          <float_array id="tree_oak_top_a-Geometry-normals-array" count="225">-0.383837 -0.472498 0.793356 -0.383837 -0.472498 0.793356 -0.383837 -0.472498 0.793356 0.601812 -0.126398 0.788572 0.601812 -0.126398 0.788572 0.601812 -0.126398 0.788572 -0.472498 0.383837 0.793356 -0.472498 0.383837 0.793356 -0.472498 0.383837 0.793356 -0.126398 -0.601812 0.788572 -0.126398 -0.601812 0.788572 -0.126398 -0.601812 0.788572 0.295958 0.531973 0.793356 0.295958 0.531973 0.793356 0.295958 0.531973 0.793356 0.547561 0.266012 0.793356 0.547561 0.266012 0.793356 0.547561 0.266012 0.793356 -0.492009 0.368892 0.788572 -0.492009 0.368892 0.788572 -0.492009 0.368892 0.788572 0.266012 -0.547561 0.793356 0.266012 -0.547561 0.793356 0.266012 -0.547561 0.793356 0.368892 0.492009 0.788572 0.368892 0.492009 0.788572 0.368892 0.492009 0.788572 -0.49305 -0.357054 0.793356 -0.49305 -0.357054 0.793356 -0.49305 -0.357054 0.793356 -0.575283 0.199085 0.793356 -0.575283 0.199085 0.793356 -0.575283 0.199085 0.793356 0.087057 -0.608749 0.788572 0.087057 -0.608749 0.788572 0.087057 -0.608749 0.788572 0.199085 0.575283 0.793356 0.199085 0.575283 0.793356 0.199085 0.575283 0.793356 -0.608749 -0.087057 0.788572 -0.608749 -0.087057 0.788572 -0.608749 -0.087057 0.788572 0.601114 -0.096164 0.793356 0.601114 -0.096164 0.793356 0.601114 -0.096164 0.793356 -0.115229 0.597752 0.793356 -0.115229 0.597752 0.793356 -0.115229 0.597752 0.793356 -0.483664 -0.379768 0.788572 -0.483664 -0.379768 0.788572 -0.483664 -0.379768 0.788572 0.597752 0.115229 0.793356 0.597752 0.115229 0.793356 0.597752 0.115229 0.793356 -0.379768 0.483664 0.788572 -0.379768 0.483664 0.788572 -0.379768 0.483664 0.788572 0.217277 -0.568662 0.793356 0.217277 -0.568662 0.793356 0.217277 -0.568662 0.793356 0.423558 0.437247 0.793356 0.423558 0.437247 0.793356 0.423558 0.437247 0.793356 -0.588506 0.178368 0.788572 -0.588506 0.178368 0.788572 -0.588506 0.178368 0.788572 0.437247 -0.423558 0.793356 0.437247 -0.423558 0.793356 0.437247 -0.423558 0.793356 0.178368 0.588506 0.788572 0.178368 0.588506 0.788572 0.178368 0.588506 0.788572 -0.341196 -0.504154 0.793356 -0.341196 -0.504154 0.793356 -0.341196 -0.504154 0.793356</float_array>
+          <technique_common>
+            <accessor source="#tree_oak_top_a-Geometry-normals-array" count="75" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="tree_oak_top_a-Geometry-map-channel1">
+          <float_array id="tree_oak_top_a-Geometry-map-channel1-array" count="225">1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0</float_array>
+          <technique_common>
+            <accessor source="#tree_oak_top_a-Geometry-map-channel1-array" count="75" stride="3">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+              <param name="P" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="tree_oak_top_a-Geometry-vertices">
+          <input semantic="POSITION" source="#tree_oak_top_a-Geometry-positions"/>
+        </vertices>
+        <triangles material="_1_-_Default" count="25">
+          <input semantic="VERTEX" source="#tree_oak_top_a-Geometry-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#tree_oak_top_a-Geometry-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#tree_oak_top_a-Geometry-map-channel1" offset="2" set="1"/>
+          <p>0 0 0 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6 7 7 7 8 8 8 9 9 9 10 10 10 11 11 11 12 12 12 13 13 13 14 14 14 15 15 15 16 16 16 17 17 17 18 18 18 19 19 19 20 20 20 21 21 21 22 22 22 23 23 23 24 24 24 25 25 25 26 26 26 27 27 27 28 28 28 29 29 29 30 30 30 31 31 31 32 32 32 33 33 33 34 34 34 35 35 35 36 36 36 37 37 37 38 38 38 39 39 39 40 40 40 41 41 41 42 42 42 43 43 43 44 44 44 45 45 45 46 46 46 47 47 47 48 48 48 49 49 49 50 50 50 51 51 51 52 52 52 53 53 53 54 54 54 55 55 55 56 56 56 57 57 57 58 58 58 59 59 59 60 60 60 61 61 61 62 62 62 63 63 63 64 64 64 65 65 65 66 66 66 67 67 67 68 68 68 69 69 69 70 70 70 71 71 71 72 72 72 73 73 73 74 74 74</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Tree.max" name="Tree_max">
+      <node id="tree_oak_top_a" name="tree_oak_top_a" type="NODE">
+        <translate>0 0 0</translate>
+        <scale>1.39329 1.39329 1</scale>
+        <instance_geometry url="#tree_oak_top_a-Geometry">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_1_-_Default" target="#_1_-_Default">
+                <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <extra>
+        <technique profile="FCOLLADA">
+          <start_time>0</start_time>
+          <end_time>3.33333</end_time>
+        </technique>
+      </extra>
+      <extra>
+        <technique profile="MAX3D">
+          <frame_rate>30</frame_rate>
+        </technique>
+      </extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Tree.max"/>
+  </scene>
+</COLLADA>

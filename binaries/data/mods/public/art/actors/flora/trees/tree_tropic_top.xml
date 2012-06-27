@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="tree_tropic-top-mesh-a">
+      <mesh>gaia/tree_tropic_top.dae</mesh>
+    </variant>
+    <variant frequency="1" name="tree_tropic-top-mesh-b">
+      <mesh>gaia/tree_tropic_top_b.dae</mesh>
+    </variant>
+    <variant frequency="1" name="tree_tropic-top-mesh-b">
+      <mesh>gaia/tree_tropic_top_b.dae</mesh>
+    </variant>
+    <variant frequency="1" name="tree_tropic-top-mesh-a">
+      <mesh>gaia/tree_tropic_top.dae</mesh>
+    </variant>
+    <variant frequency="1" name="tree_tropic-top-mesh-a">
+      <mesh>gaia/tree_tropic_top_c.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="tree_tropic-top-texture-a">
+      <texture>gaia/tree_tropic_a.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>
