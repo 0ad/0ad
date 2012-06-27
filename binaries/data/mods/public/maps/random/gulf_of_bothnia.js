@@ -329,7 +329,7 @@ var elevationPainter = new SmoothElevationPainter(
 	seaHeight,				// elevation
 	0				// blend radius
 );
-createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer,scaleByMapSize(15,25)));
+createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer,scaleByMapSize(15,25)+4));
 var elevationPainter = new SmoothElevationPainter(
 	ELEVATION_SET,			// type
 	seaHeight,				// elevation

@@ -251,8 +251,8 @@ for (var i = 0; i < scaleByMapSize(15,40); i++)
 	);
 	var elevationPainter = new SmoothElevationPainter(
 		ELEVATION_SET,			// type
-		20,				// elevation
-		3				// blend radius
+		30,				// elevation
+		2				// blend radius
 	);
 	createArea(placer, [terrainPainter, elevationPainter, paintClass(clHill)], avoidClasses(clPlayer, 15));
 }
@@ -276,7 +276,7 @@ for (var i = 0; i < numPlayers; i++)
 	var elevationPainter = new SmoothElevationPainter(
 		ELEVATION_SET,			// type
 		3,				// elevation
-		3				// blend radius
+		2				// blend radius
 	);
 	createArea(placer, [terrainPainter, elevationPainter, paintClass(clPass)], null);
 }
@@ -335,7 +335,7 @@ terrainPainter = new LayeredPainter(
 	[tGrass, tCliff, tGrass],		// terrains
 	[1, 2]								// widths
 );
-elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 18, 2);
+elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 27, 2);
 createAreas(
 	placer,
 	[terrainPainter, elevationPainter, paintClass(clHill)], 
