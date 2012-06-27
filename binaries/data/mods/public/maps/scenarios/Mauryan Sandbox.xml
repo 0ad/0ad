@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="203.911" y="80.7231" z="550.6"/>
+		<Position x="211.496" y="72.3825" z="539.53"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -4630,7 +4630,7 @@
 		<Entity uid="881">
 			<Template>gaia/flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="178.43154" z="579.20044"/>
+			<Position x="179.11754" z="578.35944"/>
 			<Orientation y="1.39368"/>
 		</Entity>
 		<Entity uid="882">
@@ -30218,6 +30218,12 @@
 			<Player>1</Player>
 			<Position x="190.18613" z="651.4787"/>
 			<Orientation y="-2.42725"/>
+		</Entity>
+		<Entity uid="5487">
+			<Template>units/maur_support_elephant</Template>
+			<Player>1</Player>
+			<Position x="247.5157" z="612.5323"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>
