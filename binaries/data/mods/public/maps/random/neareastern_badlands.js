@@ -174,7 +174,7 @@ for (var i = 0; i < numPlayers; i++)
 	var hillSize = PI * radius * radius;
 	// create starting trees
 	var num = floor(hillSize / 100);
-	var tAngle = randFloat(0, TWO_PI);
+	var tAngle = randFloat(-PI/3, 4*PI/3);
 	var tDist = randFloat(12, 14);
 	var tX = round(fx + tDist * cos(tAngle));
 	var tZ = round(fz + tDist * sin(tAngle));

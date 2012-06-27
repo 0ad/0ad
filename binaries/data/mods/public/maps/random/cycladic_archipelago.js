@@ -248,12 +248,12 @@ for (var i=0; i < numIslands; i++)
 	var hillSize = PI * radius * radius;
 	// create starting trees
 	var num = 2;
-	var tAngle = randFloat(0, TWO_PI);
-	var tDist = randFloat(11, 13);
+	var tAngle = randFloat(-PI/3, 4*PI/3);
+	var tDist = randFloat(12, 13);
 	var tX = round(fx + tDist * cos(tAngle));
 	var tZ = round(fz + tDist * sin(tAngle));
 	group = new SimpleGroup(
-		[new SimpleObject(oPalm, num, num, 0,5)],
+		[new SimpleObject(oPalm, num, num, 0,3)],
 		false, clBaseResource, tX, tZ
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));

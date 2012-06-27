@@ -140,12 +140,12 @@ for (var i = 0; i < numPlayers; i++)
 	var hillSize = PI * radius * radius;
 	// create starting trees
 	var num = floor(hillSize / 60);
-	var tAngle = randFloat(0, TWO_PI);
-	var tDist = randFloat(11, 13);
+	var tAngle = randFloat(-PI/3, 4*PI/3);
+	var tDist = randFloat(12, 13);
 	var tX = round(fx + tDist * cos(tAngle));
 	var tZ = round(fz + tDist * sin(tAngle));
 	group = new SimpleGroup(
-		[new SimpleObject(oTree, num, num, 0,5)],
+		[new SimpleObject(oTree, num, num, 0,3)],
 		false, clBaseResource, tX, tZ
 	);
 	createObjectGroup(group, 0, avoidClasses(clBaseResource,2));
@@ -293,18 +293,46 @@ for (var i = 0; i < sizes.length; i++)
 {
 	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
 	painter = new LayeredPainter(
-		[[tGrass,tGrassA],[tGrassA,tGrassB], [tGrassB,tGrassC]], 		// terrains
-		[1,1]															// widths
+		[tGrassA,tGrassA], 		// terrains
+		[1]															// widths
 	);
 	createAreas(
 		placer,
 		[painter, paintClass(clDirt)],
-		avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
-		scaleByMapSize(15, 45)
+		avoidClasses(clWater, 3, clForest, 0, clHill, 0, clPlayer, 12),
+		scaleByMapSize(20, 80)
 	);
 }
-
-
+var sizes = [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)];
+for (var i = 0; i < sizes.length; i++)
+{
+	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
+	painter = new LayeredPainter(
+		[tGrassB,tGrassB], 		// terrains
+		[1]															// widths
+	);
+	createAreas(
+		placer,
+		[painter, paintClass(clDirt)],
+		avoidClasses(clWater, 3, clForest, 0, clHill, 0, clPlayer, 12),
+		scaleByMapSize(20, 80)
+	);
+}
+var sizes = [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)];
+for (var i = 0; i < sizes.length; i++)
+{
+	placer = new ClumpPlacer(sizes[i], 0.3, 0.06, 0.5);
+	painter = new LayeredPainter(
+		[tGrassC,tGrassC], 		// terrains
+		[1]															// widths
+	);
+	createAreas(
+		placer,
+		[painter, paintClass(clDirt)],
+		avoidClasses(clWater, 3, clForest, 0, clHill, 0, clPlayer, 12),
+		scaleByMapSize(20, 80)
+	);
+}
 
 log("Creating stone mines...");
 // create large stone quarries
