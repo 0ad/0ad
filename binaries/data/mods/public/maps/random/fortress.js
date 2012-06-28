@@ -155,7 +155,7 @@ for (var i=0; i < numPlayers; i++)
 	createArea(placer,[new TerrainPainter(tRoad), paintClass(clPlayer)]);
 	
 	// Place custom fortress
-	if (civ == "celt" || civ == "iber")
+	if (civ == "brit" || civ == "celt" || civ == "gaul" || civ == "iber")
 	{
 		var wall = ['entryTower', 'wall', 'wall',
 			'cornerIn', 'wall', 'barracks', 'wall', 'gate', 'wall', 'house', 'wall',
