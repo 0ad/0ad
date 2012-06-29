@@ -5674,7 +5674,7 @@
 		<Entity uid="1061">
 			<Template>gaia/flora_tree_fig</Template>
 			<Player>0</Player>
-			<Position x="273.92283" z="665.22907"/>
+			<Position x="257.08729" z="663.93958"/>
 			<Orientation y="-2.57528"/>
 		</Entity>
 		<Entity uid="1062">
@@ -29442,7 +29442,7 @@
 		<Entity uid="5340">
 			<Template>gaia/flora_tree_poplar</Template>
 			<Player>0</Player>
-			<Position x="340.5947" z="948.65876"/>
+			<Position x="243.71758" z="686.51276"/>
 			<Orientation y="-1.23728"/>
 		</Entity>
 		<Entity uid="5341">
@@ -29808,8 +29808,8 @@
 		<Entity uid="5411">
 			<Template>structures/maur_fortress</Template>
 			<Player>1</Player>
-			<Position x="170.53109" z="692.2804"/>
-			<Orientation y="2.35621"/>
+			<Position x="156.65595" z="694.58143"/>
+			<Orientation y="0.76638"/>
 		</Entity>
 		<Entity uid="5412">
 			<Template>structures/maur_farmstead</Template>
@@ -29838,7 +29838,7 @@
 		<Entity uid="5417">
 			<Template>structures/maur_corral</Template>
 			<Player>1</Player>
-			<Position x="254.74323" z="671.54188"/>
+			<Position x="243.06081" z="703.09046"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="5418">
@@ -30120,7 +30120,7 @@
 		<Entity uid="5467">
 			<Template>structures/maur_house</Template>
 			<Player>1</Player>
-			<Position x="243.20723" z="697.72413"/>
+			<Position x="220.19985" z="721.6172"/>
 			<Orientation y="-2.20081"/>
 		</Entity>
 		<Entity uid="5468">
@@ -30223,6 +30223,12 @@
 			<Template>units/maur_support_elephant</Template>
 			<Player>1</Player>
 			<Position x="247.5157" z="612.5323"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="5488">
+			<Template>structures/maur_elephant_stables</Template>
+			<Player>1</Player>
+			<Position x="259.38968" z="679.1869"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
