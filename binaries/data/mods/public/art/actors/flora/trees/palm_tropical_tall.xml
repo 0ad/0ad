@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="2" name="Cretan-Date-Palm-01">
+      <mesh>gaia/tree_cretan_date_palm_01.dae</mesh>
+    </variant>
+    <variant frequency="2" name="Cretan-Date-Palm-02">
+      <mesh>gaia/tree_cretan_date_palm_02.dae</mesh>
+    </variant>
+    <variant frequency="2" name="Cretan-Date-Palm-03">
+      <mesh>gaia/tree_cretan_date_palm_03.dae</mesh>
+    </variant>
+    <variant frequency="2" name="Cretan-Date-Palm-06">
+      <mesh>gaia/tree_cretan_date_palm_06.dae</mesh>
+    </variant>
+    <variant frequency="2" name="Cretan-Date-Palm-07">
+      <mesh>gaia/tree_cretan_date_palm_07.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Palm Fronds-a">
+      <texture>gaia/tree_palm_trop_fan_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="Palm Fronds-b">
+      <texture>gaia/tree_palm_trop_fan_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="Palm Fronds-c">
+      <texture>gaia/tree_palm_trop_fan_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="Palm Fronds-d">
+      <texture>gaia/tree_palm_trop_fan_b.dds</texture>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

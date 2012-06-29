@@ -186,7 +186,7 @@ for (var i = 0; i < numPlayers; i++)
 	var bbX = round(fx + bbDist * cos(bbAngle));
 	var bbZ = round(fz + bbDist * sin(bbAngle));
 	group = new SimpleGroup(
-		[new SimpleObject(oWood, 7,7, 0,3)],
+		[new SimpleObject(oWood, 14,14, 0,3)],
 		true, clBaseResource, bbX, bbZ
 	);
 	createObjectGroup(group, 0);
@@ -218,7 +218,7 @@ for (var i = 0; i < numPlayers; i++)
 	var hillSize = PI * radius * radius;
 	// create starting trees
 	var num = floor(hillSize / 60);
-	var tAngle = randFloat(0, TWO_PI);
+	var tAngle = randFloat(-PI/3, 4*PI/3);
 	var tDist = 11;
 	var tX = round(fx + tDist * cos(tAngle));
 	var tZ = round(fz + tDist * sin(tAngle));

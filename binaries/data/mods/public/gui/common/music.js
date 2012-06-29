@@ -9,7 +9,7 @@ function initMusic()
 	// menu stuff to a main_menu page
 
 	if (!global.music)
-	    global.music = new Music();
+		global.music = new Music();
 }
 
 
@@ -21,14 +21,21 @@ function Music()
 	this.reference = this;
 
 	this.RELATIVE_MUSIC_PATH = "audio/music/";
-	this.MUSIC_PEACE = "peace";
-	this.MUSIC_BATTLE = "battle";
+	this.MUSIC = {
+		PEACE: "peace",
+		BATTLE: "battle",
+		VICTORY: "victory",
+		DEFEAT: "defeat",
+		DEFEAT_CUE: "defeat_cue"
+	};
 
 	this.tracks = {
-		MAIN_MENU_TRACK : "main_menu.ogg",
-		VICTORY_TRACK : "Victory_Track.ogg",
-		DEFEAT_TRACK : "gen_loss_track.ogg",
-		DEFEAT_CUE_TRACK : "gen_loss_cue.ogg"
+		MENU: ["main_menu.ogg"],
+		PEACE: [],
+		BATTLE: [],
+		VICTORY : ["Victory_Track.ogg"],
+		DEFEAT : ["gen_loss_track.ogg"],
+		DEFEAT_CUE : ["gen_loss_cue.ogg"]
 	};
 
 	this.states = {
@@ -42,9 +49,6 @@ function Music()
 	};
 
 	this.musicGain = 0.3;
-
-	this.peaceTracks = [];
-	this.battleTracks = [];
 
 	this.currentState = 0;
 	this.oldState = 0;
@@ -71,42 +75,42 @@ Music.prototype.updateState = function()
 
 		switch (this.currentState)
 		{
-			case this.states.OFF:
-			    	if (this.isPlaying())
-				{
-					this.currentMusic.fade(-1, 0.0, 3.0);
-					this.currentMusic = null;
-				}
-				break;
+		case this.states.OFF:
+			if (this.isPlaying())
+			{
+				this.currentMusic.fade(-1, 0.0, 3.0);
+				this.currentMusic = null;
+			}
+			break;
 
-			case this.states.MENU:
-				this.switchMusic(this.tracks.MAIN_MENU_TRACK, 0.0, true);
-				break;
+		case this.states.MENU:
+			this.switchMusic(this.getRandomTrack(this.tracks.MENU), 0.0, true);
+			break;
 
-			case this.states.PEACE:
-				this.switchMusic(this.getRandomPeaceTrack(), 3.0, true);
-				break;
+		case this.states.PEACE:
+			this.switchMusic(this.getRandomTrack(this.tracks.PEACE), 3.0, true);
+			break;
 
-			case this.states.BATTLE:
-				this.switchMusic(this.getRandomBattleTrack(), 2.0, true);
-				break;
+		case this.states.BATTLE:
+			this.switchMusic(this.getRandomTrack(this.tracks.BATTLE), 2.0, true);
+			break;
 
-			case this.states.VICTORY:
-				this.switchMusic(this.tracks.VICTORY_TRACK, 2.0, true);
-				break;
+		case this.states.VICTORY:
+			this.switchMusic(this.getRandomTrack(this.tracks.VICTORY), 2.0, true);
+			break;
 
-			case this.states.DEFEAT:
-				this.switchMusic(this.tracks.DEFEAT_TRACK, 2.0, true);
-				break;
+		case this.states.DEFEAT:
+			this.switchMusic(this.getRandomTrack(this.tracks.DEFEAT), 2.0, true);
+			break;
 
-			case this.states.DEFEAT_CUE:
-				this.switchMusic(this.tracks.DEFEAT_CUE_TRACK, 2.0, false);
-				this.setDelay(this.states.DEFEAT, 7000);
-				break;
+		case this.states.DEFEAT_CUE:
+			this.switchMusic(this.getRandomTrack(this.tracks.DEFEAT_CUE), 2.0, false);
+			this.setDelay(this.states.DEFEAT, 7000);
+			break;
 
-			default:
-				console.write("Unknown music state: " + this.currentState);
-				break;
+		default:
+			warn("Music.updateState(): Unknown music state: " + this.currentState);
+			break;
 		}
 	}
 };
@@ -115,33 +119,29 @@ Music.prototype.storeTracks = function(civMusic)
 {
 	for each (var music in civMusic)
 	{
-		var type = music["Type"];
-
-		switch (type)
+		var type = undefined;
+		for (var i in this.MUSIC)
 		{
-			case this.MUSIC_PEACE:
-				this.peaceTracks.push(music["File"]);
+			if (music.Type == this.MUSIC[i])
+			{
+				type = i;
 				break;
-
-			case this.MUSIC_BATTLE:
-				this.battleTracks.push(music["File"]);
-				break;
-
-			default:
-				console.write("Unrecognized music type: " + type);
-				break;
+			}
 		}
+
+		if (type === undefined)
+		{
+			warn("Music.storeTracks(): Unrecognized music type: " + music.Type);
+			continue;
+		}
+
+		this.tracks[type].push(music.File);
 	}
 };
 
-Music.prototype.getRandomPeaceTrack = function()
+Music.prototype.getRandomTrack = function(tracks)
 {
-	return this.peaceTracks[getRandom(0, this.peaceTracks.length-1)];
-};
-
-Music.prototype.getRandomBattleTrack = function()
-{
-	return this.battleTracks[getRandom(0, this.battleTracks.length-1)];
+	return tracks[getRandom(0, tracks.length-1)];
 };
 
 Music.prototype.switchMusic = function(track, fadeInPeriod, isLooping)

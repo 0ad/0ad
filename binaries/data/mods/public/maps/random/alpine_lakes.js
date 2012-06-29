@@ -208,7 +208,7 @@ for (var i = 0; i < numPlayers; i++)
 	var hillSize = PI * radius * radius;
 	// create starting trees
 	var num = floor(hillSize / 100);
-	var tAngle = randFloat(0, TWO_PI);
+	var tAngle = randFloat(-PI/3, 4*PI/3);
 	var tDist = randFloat(11, 13);
 	var tX = round(fx + tDist * cos(tAngle));
 	var tZ = round(fz + tDist * sin(tAngle));
@@ -249,8 +249,8 @@ for (var i = 0; i < scaleByMapSize(15,40); i++)
 	);
 	var elevationPainter = new SmoothElevationPainter(
 		ELEVATION_SET,			// type
-		25,				// elevation
-		3				// blend radius
+		30,				// elevation
+		2				// blend radius
 	);
 	createArea(placer, [terrainPainter, elevationPainter, paintClass(clHill)], avoidClasses(clPlayer, 15));
 }
@@ -272,7 +272,7 @@ for (var i = 0; i < numPlayers; i++)
 	var elevationPainter = new SmoothElevationPainter(
 		ELEVATION_SET,			// type
 		3,				// elevation
-		3				// blend radius
+		2				// blend radius
 	);
 	createArea(placer, [terrainPainter, elevationPainter, paintClass(clPass)], null);
 }
@@ -313,7 +313,7 @@ terrainPainter = new LayeredPainter(
 	[tGrass, tCliff, tGrass],		// terrains
 	[1, 2]								// widths
 );
-elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 18, 2);
+elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 27, 2);
 createAreas(
 	placer,
 	[terrainPainter, elevationPainter, paintClass(clHill)], 
