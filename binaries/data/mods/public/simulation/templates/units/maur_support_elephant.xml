@@ -7,8 +7,8 @@
   </Armour>
   <Cost>
     <Resources>
-      <food>400</food>
-      <metal>100</metal>
+      <food>100</food>
+      <wood>100</wood>
     </Resources>
   </Cost>
   <Footprint>
@@ -16,12 +16,12 @@
     <Height>6.0</Height>
   </Footprint>
   <Health>
-    <Max>400</Max>
+    <Max>300</Max>
   </Health>
   <Identity>
     <Civ>maur</Civ>
     <Classes datatype="tokens">Elephant</Classes>
-	<GenericName>Support Elephant</GenericName>
+	<GenericName>Worker Elephant</GenericName>
     <SpecificName>Support Elephant</SpecificName>
     <Icon>units/cart_champion_cavalry.png</Icon>
     <History>Support Elephant.</History>

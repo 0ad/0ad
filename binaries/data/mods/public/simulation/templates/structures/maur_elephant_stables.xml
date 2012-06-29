@@ -19,6 +19,7 @@
   <Identity>
     <Civ>maur</Civ>
     <SpecificName>Elephant Stables</SpecificName>
+    <GenericName>Elephant Stables</GenericName>
 	<History>Elephant Stables.</History>
     <Icon>structures/palace.png</Icon>
     <Tooltip>Train Elephant Units.</Tooltip>
@@ -28,9 +29,9 @@
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
+	  units/maur_support_elephant
       units/maur_cavalry_archer_b
       units/maur_champion_cavalry
-	  units/maur_support_elephant
     </Entities>
   </ProductionQueue>
   <Sound>
