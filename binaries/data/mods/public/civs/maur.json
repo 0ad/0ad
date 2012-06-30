@@ -1,8 +1,8 @@
-{
+﻿{
 	"Code": "maur",
 	"Name": "Mauryans",
 	"Emblem": "session/portraits/emblems/emblem_mauryans.png",
-	"History": "Founded in 322 B.C. by Chandragupta Maurya after his conquest of the Nanda Dynasty, the Mauryan Empire quickly expanded into the Indian subcontinent",
+	"History": "Founded in 322 B.C. by Chandragupta Maurya after his conquest of the Nanda Dynasty, the Mauryan Empire quickly expanded into the Indian subcontinent.",
 	"Music":[
 			{"File":"Eastern_Dreams.ogg", "Type":"peace"},
 			{"File":"Sands_of_Time.ogg", "Type":"peace"},
@@ -11,52 +11,97 @@
 	"Factions":
 	[
 		{
-			"Name": "",
+			"Name": "Mauryans",
 			"Description": "",
-			"Technologies": "",
+			"Technologies":
+			[
+				{
+					"Name":"Unknown",
+					"History":"Unknown",
+					"Description":"Unknown"
+				},
+				{
+					"Name":"Unknown",
+					"History":"Unknown",
+					"Description":"Unknown"
+				}
+			],
 			"Heroes":
 			[
 				{
-					"Name": "Chandragupta Maurya",
-					"Class": "",
-					"Armament": "",
-					"Emblem": "",
-					"History": "Founder of the Mauryan Empire" 
+					"Name":"Chandragupta Maurya",
+					"Class":"",
+					"Armament":"",
+					"Emblem":"",
+					"History":"Founder of the Mauryan Empire."
+				},
+				{
+					"Name":"Ashoka the Great",
+					"Class":"",
+					"Armament":"",
+					"Emblem":"",
+					"History":"Last great emperor of the Mauryan dynasty."
+				},
+				{
+					"Name":"Acharya Chanakya",
+					"Class":"",
+					"Armament":"",
+					"Emblem":"",
+					"History":"Great teacher and advisor to Chandragupta Maurya."
 				}
 			]
-		} 
+		}
 	],
 	"CivBonuses":
 	[
 		{
-			"Name": ".",
-			"History": ".",
-			"Description": "."
+			"Name": "Emperor of Emperors.",
+			"History": "The Mauryan Empire encompassed dozens of formerly independent kingdoms over an area of 5 million square kilometers, with a population of close to 60 million people. The Mauryan regents held the title Emperor of Emperors and commanded a standing army of 600,000 infantry, 9000 elephants, 8000 chariots, and 30,000 cavalry, making it arguably the largest army of its time.",
+			"Description": "Mauryans have a +10% population cap bonus (330 pop cap instead of the usual 300)."
 		},
 		{
-			"Name": ".",
-			"History": ".",
-			"Description": "."
+			"Name": "Kṣhatriya Warrior Caste.",
+			"History": "Kshatriya or Kashtriya, meaning warrior, is one of the four varnas (social orders) in Hinduism. Traditionally Kshatriya constitute the military and ruling elite of the Vedic-Hindu social system outlined by the Vedas and the Laws of Manu. The earliest Vedic literature listed by organisation of function, not of caste, the Kshatriya (holders of kṣatra, or authority) as first in rank, and the Brahmins second (priests and teachers of law), before the Vaisya (Cattle-herders, merchant-traders, farmers and some artisan castes), and the Sudra (labourers, some farming castes and other artisan castes).",
+			"Description": "Mauryans gain access to 3 champion units, instead of the standard 2."
 		}
 	],
 	"TeamBonuses":
 	[
 		{
-			"Name": ".",
-			"History": ".",
-			"Description": "." 
+			"Name": "Unknown.",
+			"History": "Unknown.",
+			"Description": "Unknown." 
 		} 
 	],
 	"Structures":
 	[
 		{
-			"Name": ".",
-			"Class": "",
-			"Emblem": "",
-			"History": "",
-			"Phase": "",
-			"Special": "" 
-		} 
+			"Name":"Stupa Shrine",
+			"Class":"SB1",
+			"Emblem":"",
+			"History":".",
+			"Requirements":"Temple",
+			"Phase":"City",
+			"Special":"."
+		},
+		{
+			"Name":"Edict Pillar of Ashoka",
+			"Class":"SB2",
+			"Emblem":"",
+			"History":".",
+			"Requirements":"Built by the Ashoka hero unit.",
+			"Phase":"City",
+			"Special":"."
+		},
+		{
+			"Name":"Elephant Stables",
+			"Class":"SB3",
+			"Emblem":"",
+			"History":".",
+			"Requirements":"Temple",
+			"Phase":"Town",
+			"Special":"Trains Elephant Archer and Worker Elephant at Town Phase, then adds the champion War Elephant at the City phase."
+		}
 	],
 	"StartEntities":
 	[
@@ -69,7 +114,11 @@
 		},
 		{
 			"Template": "units/maur_infantry_spearman_b",
-			"Count": 5 
+			"Count": 4
+		},
+		{
+			"Template": "units/maur_support_elephant",
+			"Count": 1
 		}
 	],
 	"Formations":
