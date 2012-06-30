@@ -8,15 +8,13 @@
   </Health>
   <Identity>
     <Civ>maur</Civ>
-    <SpecificName>Fortress</SpecificName>
+    <SpecificName>Durg</SpecificName>
 	<History>Fortress.</History>
     <Tooltip>Train Champion Units.</Tooltip>
   </Identity>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/maur_cavalry_archer_b
       units/maur_champion_archer
-	  units/maur_champion_cavalry
 	  units/maur_champion_infantry
     </Entities>
   </ProductionQueue>

@@ -1,88 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_champion_cavalry">
-  <Armour>
-    <Hack>10.0</Hack>
-    <Pierce>15.0</Pierce>
-    <Crush>15.0</Crush>
-  </Armour>
-  <Attack>
-    <Melee>
-      <Hack>22.0</Hack>
-      <Crush>25.0</Crush>
-	  <Bonuses>
-		<BonusStructures>
-		  <Classes>Structure</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusStructures>
-		<BonusCav>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusCav>
-		<BonusGates>
-		  <Classes>Gates</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusGates>
-	  </Bonuses>
-    </Melee>
-    <Charge>
-      <Hack>66.0</Hack>
-      <Crush>75.0</Crush>
-	  <Bonuses>
-		<BonusStructures>
-		  <Classes>Structure</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusStructures>
-		<BonusCav>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusCav>
-		<BonusGates>
-		  <Classes>Gates</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusGates>
-	  </Bonuses>
-    </Charge>
-  </Attack>
-  <Cost>
-    <Population>3</Population>
-    <Resources>
-      <food>300</food>
-      <metal>200</metal>
-    </Resources>
-  </Cost>
-  <Footprint>
-    <Circle radius="3.5"/>
-    <Height>8.0</Height>
-  </Footprint>
+<Entity parent="units/maur_cavalry_archer_a">
   <Health>
-    <Max>500</Max>
+    <Max>320</Max>
   </Health>
   <Identity>
-    <Civ>maur</Civ>
-    <Classes datatype="tokens">Elephant -Cavalry</Classes>
-	<GenericName>Elephant Archer</GenericName>
-    <SpecificName>Vachii Gaja</SpecificName>
-    <Icon>units/cart_champion_cavalry.png</Icon>
-    <History>Elephant Archer.</History>
-	<Tooltip>Elephant Archer.</Tooltip>
+	<Rank>Elite</Rank>
   </Identity>
-  <Selectable>
-    <Overlay>
-      <Texture>
-        <MainTexture>circle/256x256.png</MainTexture>
-        <MainTextureMask>circle/256x256_mask.png</MainTextureMask>
-      </Texture>
-    </Overlay>
-  </Selectable>
-  <UnitMotion>
-    <WalkSpeed>7.5</WalkSpeed>
-    <Run>
-      <Speed>12.0</Speed>
-    </Run>
-  </UnitMotion>
-  <Vision>
-    <Range>84</Range>
-  </Vision>
+  <Promotion disable=""/>
+  <ResourceGatherer>
+    <BaseSpeed>0.5</BaseSpeed>
+  </ResourceGatherer>
   <VisualActor>
     <Actor>units/persians/war_elephant.xml</Actor>
   </VisualActor>

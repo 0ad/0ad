@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special">
+  <Cost>
+    <BuildTime>300</BuildTime>
+    <Resources>
+      <food>0</food>
+      <wood>0</wood>
+      <stone>300</stone>
+      <metal>200</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="25.0" depth="25.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Health>
+    <Max>3250</Max>
+  </Health>
+  <Identity>
+    <Civ>maur</Civ>
+    <SpecificName>Elephant Stables</SpecificName>
+    <GenericName>Elephant Stables</GenericName>
+	<History>Elephant Stables.</History>
+    <Icon>structures/palace.png</Icon>
+    <Tooltip>Train Elephant Units.</Tooltip>
+  </Identity>
+  <Obstruction>
+    <Static width="25.0" depth="25.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+	  units/maur_support_elephant
+      units/maur_cavalry_archer_b
+      units/maur_champion_cavalry
+    </Entities>
+  </ProductionQueue>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_broch.xml</select>
+      <constructed>interface/complete/building/complete_broch.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <TerritoryInfluence>
+    <Root>true</Root>
+    <Radius>38</Radius>
+  </TerritoryInfluence>
+  <VisualActor>
+    <Actor>structures/mauryans/fortress.xml</Actor>
+  </VisualActor>
+</Entity>
