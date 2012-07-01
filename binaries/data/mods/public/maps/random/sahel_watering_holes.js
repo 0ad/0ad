@@ -70,6 +70,7 @@ var clMetal = createTileClass();
 var clFood = createTileClass();
 var clBaseResource = createTileClass();
 var clSettlement = createTileClass();
+var clShallows = createTileClass();
 
 // randomize player order
 var playerIDs = [];
@@ -208,11 +209,11 @@ log ("Creating rivers...");
 for (var m = 0; m < numPlayers; m++)
 {
 	var tang = startAngle + (m+0.5)*TWO_PI/numPlayers
-	placer = new ClumpPlacer(floor(PI*scaleByMapSize(10,50)*scaleByMapSize(10,50)/3), 0.95, 0.6, 10, fractionToTiles(0.5 + 0.2*cos(tang)), fractionToTiles(0.5 + 0.2*sin(tang)));
+	placer = new ClumpPlacer(floor(PI*scaleByMapSize(10,50)*scaleByMapSize(10,50)/3), 0.95, 0.6, 10, fractionToTiles(0.5 + 0.15*cos(tang)), fractionToTiles(0.5 + 0.15*sin(tang)));
 	var painter = new LayeredPainter([tShore, tWater, tWater], [1, 3]);
 	var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -4, 4);
 	createArea(placer, [painter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer, 5));
-	var placer = new PathPlacer(fractionToTiles(0.5 + 0.2*cos(tang)), fractionToTiles(0.5 + 0.2*sin(tang)), fractionToTiles(0.5 + 0.49*cos(tang)), fractionToTiles(0.5 + 0.49*sin(tang)), scaleByMapSize(10,50), 0.4, 3*(scaleByMapSize(1,4)), 0.1, 0.05);
+	var placer = new PathPlacer(fractionToTiles(0.5 + 0.15*cos(tang)), fractionToTiles(0.5 + 0.15*sin(tang)), fractionToTiles(0.5 + 0.49*cos(tang)), fractionToTiles(0.5 + 0.49*sin(tang)), scaleByMapSize(10,50), 0.6, 3*(scaleByMapSize(1,4)), 0.2, 0.05);
 	var terrainPainter = new LayeredPainter(
 		[tShore, tWater, tWater],		// terrains
 		[1, 3]								// widths
@@ -228,6 +229,52 @@ for (var m = 0; m < numPlayers; m++)
 	var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -4, 0);
 	createArea(placer, [painter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer, 5));
 }
+
+
+for (var i = 0; i < numPlayers; i++)
+{
+	if (i+1 == numPlayers)
+	{
+		passageMaker(fractionToTiles(playerX[i]), fractionToTiles(playerZ[i]), fractionToTiles(playerX[0]), fractionToTiles(playerZ[0]), 6, -2, -2, 2, clShallows)
+		
+		// create animals in shallows
+		log("Creating animals in shallows...");
+		var group = new SimpleGroup(
+			[new SimpleObject(oElephant, 2,3, 0,4)],
+			true, clFood, round((fractionToTiles(playerX[i]) + fractionToTiles(playerX[0]))/2), round((fractionToTiles(playerZ[i]) + fractionToTiles(playerZ[0]))/2)
+		);
+		createObjectGroup(group, 0);
+		
+		var group = new SimpleGroup(
+			[new SimpleObject(oDeer, 5,6, 0,4)],
+			true, clFood, round((fractionToTiles(playerX[i]) + fractionToTiles(playerX[0]))/2), round((fractionToTiles(playerZ[i]) + fractionToTiles(playerZ[0]))/2)
+		);
+		createObjectGroup(group, 0);
+		
+	}
+	else
+	{
+		passageMaker(fractionToTiles(playerX[i]), fractionToTiles(playerZ[i]), fractionToTiles(playerX[i+1]), fractionToTiles(playerZ[i+1]), 6, -2, -2, 2, clShallows)
+
+		// create animals in shallows
+		log("Creating animals in shallows...");
+		var group = new SimpleGroup(
+			[new SimpleObject(oElephant, 2,3, 0,4)],
+			true, clFood, round((fractionToTiles(playerX[i]) + fractionToTiles(playerX[i+1]))/2), round((fractionToTiles(playerZ[i]) + fractionToTiles(playerZ[i+1]))/2)
+		);
+		createObjectGroup(group, 0);
+		
+		var group = new SimpleGroup(
+			[new SimpleObject(oDeer, 5,6, 0,4)],
+			true, clFood, round((fractionToTiles(playerX[i]) + fractionToTiles(playerX[i+1]))/2), round((fractionToTiles(playerZ[i]) + fractionToTiles(playerZ[i+1]))/2)
+		);
+		createObjectGroup(group, 0);
+		
+	}
+	
+}
+
+
 
 // create bumps
 log("Creating bumps...");
@@ -257,8 +304,8 @@ createAreas(
 
 
 // calculate desired number of trees for map (based on size)
-var MIN_TREES = 200;
-var MAX_TREES = 1250;
+var MIN_TREES = 160;
+var MAX_TREES = 900;
 var P_FOREST = 0.02;
 
 var totalTrees = scaleByMapSize(MIN_TREES, MAX_TREES);
@@ -414,6 +461,8 @@ createObjectGroups(group, 0,
 	3 * numPlayers, 50
 );
 
+
+
 // create giraffe
 log("Creating giraffe...");
 group = new SimpleGroup(
@@ -466,14 +515,14 @@ for (var i = 0; i < types.length; ++i)
 	);
 }
 
-var planetm = 1;
+var planetm = 4;
 //create small grass tufts
 log("Creating small grass tufts...");
 group = new SimpleGroup(
 	[new SimpleObject(aGrassShort, 1,2, 0,1, -PI/8,PI/8)]
 );
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 2, clHill, 2, clPlayer, 2, clDirt, 0),
+	avoidClasses(clWater, 2, clHill, 2, clPlayer, 2),
 	planetm * scaleByMapSize(13, 200)
 );
 
@@ -485,7 +534,7 @@ group = new SimpleGroup(
 	[new SimpleObject(aGrass, 2,4, 0,1.8, -PI/8,PI/8), new SimpleObject(aGrassShort, 3,6, 1.2,2.5, -PI/8,PI/8)]
 );
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 3, clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0),
+	avoidClasses(clWater, 3, clHill, 2, clPlayer, 2, clForest, 0),
 	planetm * scaleByMapSize(13, 200)
 );
 
@@ -497,7 +546,7 @@ group = new SimpleGroup(
 	[new SimpleObject(aBushMedium, 1,2, 0,2), new SimpleObject(aBushSmall, 2,4, 0,2)]
 );
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 2, clHill, 1, clPlayer, 1, clDirt, 1),
+	avoidClasses(clWater, 2, clHill, 1, clPlayer, 1),
 	planetm * scaleByMapSize(13, 200), 50
 );
 
