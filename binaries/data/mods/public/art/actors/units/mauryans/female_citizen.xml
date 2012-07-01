@@ -22,11 +22,19 @@
         <animation event="0.6" file="female/f_build_01.dae" name="Build" speed="70"/>
         <animation file="female/f_death_01.dae" name="Death" speed="130"/>
       </animations>
-      <mesh>skeletal/f_tunic.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_maur_fem.xml" attachpoint="head"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Skirt-Short">
+      <mesh>skeletal/f_tunic.dae</mesh>
       <texture>skeletal/maur_fem.png</texture>
+    </variant>
+    <variant frequency="1" name="Skirt-Long">
+      <mesh>skeletal/f_dress.dae</mesh>
+      <texture>skeletal/maur_fem_b.png</texture>
     </variant>
   </group>
   <group>
