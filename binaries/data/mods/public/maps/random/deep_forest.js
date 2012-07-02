@@ -37,6 +37,7 @@ var terrainBase = ['temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp
 	'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b', 'temp_dirt_gravel', 'temp_grass_b',
 	'temp_grass_b|gaia/fauna_pig', 'temp_dirt_gravel|gaia/fauna_chicken'];
 var terrainBaseBorder = ["temp_grass_b", "temp_grass_b", "temp_grass", "temp_grass_c", "temp_grass_mossy"];
+var terrainBaseCenter = ['temp_dirt_gravel', 'temp_dirt_gravel', 'temp_grass_b'];
 var terrainPath = ['temp_road', "temp_road_overgrown", 'temp_grass_b'];
 var terrainHill = ["temp_highlands", "temp_highlands", "temp_highlands", "temp_dirt_gravel_b", "temp_cliff_a"];
 var terrainHillBorder = ["temp_highlands", "temp_highlands", "temp_highlands", "temp_dirt_gravel_b", "temp_dirt_gravel_plants",
@@ -82,7 +83,9 @@ var resourcePerPlayer = [templateStone, templateMetalMine];
 // Setup woods
 var maxTreeDensity = min(256*256/mapSize/mapSize, 1); // Has to be tweeked but works ok
 var bushChance = 1/3; // 1 means 50% chance in deepest wood, 0.5 means 25% chance in deepest wood
+
 RMS.SetProgress(2);
+
 // Place bases
 for (var i=0; i < numPlayers; i++)
 {
@@ -95,7 +98,7 @@ for (var i=0; i < numPlayers; i++)
 	placeCivDefaultEntities(x, z, i+1, BUILDING_ANGlE);
 	// Place base texture
 	var placer = new ClumpPlacer(2*baseRadius*baseRadius, 2/3, 1/8, 10, x, z);
-	var painter = [new LayeredPainter([terrainBaseBorder, terrainBase], [baseRadius/4]), paintClass(clPlayer)];
+	var painter = [new LayeredPainter([terrainBaseBorder, terrainBase, terrainBaseCenter], [baseRadius/4, baseRadius/4]), paintClass(clPlayer)];
 	createArea(placer, painter);
 	// Place starting resources
 	var distToSL = 10;
