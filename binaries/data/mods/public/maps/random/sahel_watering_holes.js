@@ -235,7 +235,7 @@ for (var i = 0; i < numPlayers; i++)
 {
 	if (i+1 == numPlayers)
 	{
-		passageMaker(fractionToTiles(playerX[i]), fractionToTiles(playerZ[i]), fractionToTiles(playerX[0]), fractionToTiles(playerZ[0]), 6, -2, -2, 2, clShallows)
+		passageMaker(fractionToTiles(playerX[i]), fractionToTiles(playerZ[i]), fractionToTiles(playerX[0]), fractionToTiles(playerZ[0]), 6, -2, -2, 4, clShallows, undefined, -4)
 		
 		// create animals in shallows
 		log("Creating animals in shallows...");
@@ -254,7 +254,7 @@ for (var i = 0; i < numPlayers; i++)
 	}
 	else
 	{
-		passageMaker(fractionToTiles(playerX[i]), fractionToTiles(playerZ[i]), fractionToTiles(playerX[i+1]), fractionToTiles(playerZ[i+1]), 6, -2, -2, 2, clShallows)
+		passageMaker(fractionToTiles(playerX[i]), fractionToTiles(playerZ[i]), fractionToTiles(playerX[i+1]), fractionToTiles(playerZ[i+1]), 6, -2, -2, 4, clShallows, undefined, -4)
 
 		// create animals in shallows
 		log("Creating animals in shallows...");
@@ -273,7 +273,7 @@ for (var i = 0; i < numPlayers; i++)
 	}
 	
 }
-
+paintTerrainBasedOnHeight(-6, 2, 1, tWater);
 
 
 // create bumps

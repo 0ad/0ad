@@ -2,9 +2,10 @@
 	"settings" : {
 		"Name" : "Lake",
 		"Script" : "lake.js",
-		"Description" : "Players start around a lake in the center of the map",
+		"Description" : "Players start around a lake in the center of the map.\n\n\nA lake is a body of relatively still fresh or salt water of considerable size, localized in a basin, that is surrounded by land apart from a river, stream, or other form of moving water that serves to feed or drain the lake. Lakes are inland and not part of the ocean and therefore are distinct from lagoons, and are larger and deeper than ponds. Lakes can be contrasted with rivers or streams, which are usually flowing. However most lakes are fed and drained by rivers and streams. Natural lakes are generally found in mountainous areas, rift zones, and areas with ongoing glaciation. Other lakes are found in endorheic basins or along the courses of mature rivers. In some parts of the world there are many lakes because of chaotic drainage patterns left over from the last Ice Age. All lakes are temporary over geologic time scales, as they will slowly fill in with sediments or spill out of the basin containing them.",
 		"BaseTerrain" : ["medit_sea_depths"],
 		"BaseHeight" : 3,
+		"Preview" : "lake.png",
 		"CircularMap" : false,
 		"XXXXXX" : "Optionally define other things here, like we would for a scenario"
 	}

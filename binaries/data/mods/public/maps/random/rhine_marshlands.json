@@ -2,9 +2,10 @@
 	"settings" : {
 		"Name" : "Rhine Marshlands",
 		"Script" : "rhine_marshlands.js",
-		"Description" : "Shallow, passable marshlands with little room for buildings.",
+		"Description" : "Shallow, passable marshlands with little room for buildings.\n\n\nA marsh is a type of wetland that is dominated by herbaceous rather than woody plant species. Marshes can often be found at the edges of lakes and streams, where they form a transition between the aquatic and terrestrial ecosystems. They are often dominated by grasses, rushes or reeds. If woody plants are present they tend to be low-growing shrubs. This form of vegetation is what differentiates marshes from other types of wetland such as swamps, which are dominated by trees, and bogs, which are wetlands that have accumulated deposits of acidic peat. The delta of the Rhine is home to large marshes across the modern neatherlands.",
 		"BaseTerrain" : ["temp_grass", "temp_grass", "temp_grass_d"],
 		"BaseHeight" : 1,
+		"Preview" : "rhine_marshlands.png",
 		"CircularMap" : true,
 		"XXXXXX" : "Optionally define other things here, like we would for a scenario"
 	}

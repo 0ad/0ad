@@ -2,9 +2,10 @@
 	"settings" : {
 		"Name" : "Canyon",
 		"Script" : "canyon.js",
-		"Description" : "Players start around the map in deep canyons.",
+		"Description" : "Players start around the map in deep canyons.\n\n\nA canyon or gorge is a deep ravine between cliffs often carved from the landscape by a river. Rivers have a natural tendency to reach a baseline elevation, which is the same elevation as the body of water it will eventually drain into. This forms a canyon. Most canyons were formed by a process of long-time erosion from a plateau level. The cliffs form because harder rock strata that are resistant to erosion and weathering remain exposed on the valley walls. Canyons are much more common in arid areas than in wet areas because physical weathering has a greater effect in arid zones. The wind and water from the river combine to erode and cut away less resistant materials such as shales. The freezing and expansion of water also serves to help form canyons. Water seeps into cracks between the rocks and freezes, pushing the rocks apart and eventually causing large chunks to break off the canyon walls which are also known as frost wedging. Canyon walls are often formed of resistant sandstones or granite. Submarine canyons form underwater, generally at the mouths of rivers.",
 		"BaseTerrain" : ["medit_sea_depths"],
 		"BaseHeight" : 30,
+		"Preview" : "canyon.png",
 		"CircularMap" : true,
 		"XXXXXX" : "Optionally define other things here, like we would for a scenario"
 	}
