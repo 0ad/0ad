@@ -1,4 +1,5 @@
 var TILE_CENTERED_HEIGHT_MAP = false;
+var WATER_LEVEL_CHANGED = false;
 
 var g_Map;
 
@@ -70,7 +71,10 @@ function ExportMap()
 	var data = g_Map.getMapData();
 	
 	// Add environment and camera settings
-	g_Environment.Water.WaterBody.Height = SEA_LEVEL - 0.1;
+	if (!WATER_LEVEL_CHANGED)
+	{
+		g_Environment.Water.WaterBody.Height = SEA_LEVEL - 0.1;
+	}
 	data.Environment = g_Environment;
 	
 	// Adjust default cam to roughly center of the map - useful for Atlas
