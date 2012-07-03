@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_house">
-  <Cost>
-    <PopulationBonus>10</PopulationBonus>
-    <BuildTime>140</BuildTime>
-    <Resources>
-      <wood>150</wood>
-    </Resources>
-  </Cost>
   <Footprint>
     <Square width="10.0" depth="10.0"/>
     <Height>5.0</Height>
   </Footprint>
-  <Health>
-    <Max>1400</Max>
-  </Health>
   <Identity>
     <Civ>maur</Civ>
     <SpecificName>Griham</SpecificName>

@@ -2,13 +2,20 @@
 <Entity parent="template_unit_mechanical_siege_onager">
   <Attack>
     <Ranged>
-      <Hack>60.0</Hack>
-      <Crush>60.0</Crush>
       <MaxRange>80</MaxRange>
       <MinRange>16.0</MinRange>
       <ProjectileSpeed>22.0</ProjectileSpeed>
-      <RepeatTime>8000</RepeatTime>
+      <RepeatTime>6000</RepeatTime>
+      <Splash>
+        <Shape>Circular</Shape>
+        <Range>12</Range>
+        <FriendlyFire>true</FriendlyFire>
+        <Hack>60.0</Hack>
+        <Pierce>0.0</Pierce>
+        <Crush>60.0</Crush>
+      </Splash>
     </Ranged>
+
   </Attack>
   <Cost>
     <BuildTime>40</BuildTime>
