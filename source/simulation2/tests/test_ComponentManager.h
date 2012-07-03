@@ -287,6 +287,21 @@ public:
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 3);
 	}
 
+	void test_script_global_helper()
+	{
+		CSimContext context;
+		CComponentManager man(context);
+		man.LoadComponentTypes();
+		TS_ASSERT(man.LoadScript(L"simulation/components/test-global-helper.js"));
+
+		entity_id_t ent1 = 1;
+		CParamNode noParam;
+
+		man.AddComponent(ent1, man.LookupCID("TestScript1_GlobalHelper"), noParam);
+
+		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 2);
+	}
+
 	void test_script_interface()
 	{
 		CSimContext context;

@@ -98,7 +98,16 @@ public:
 	JSContext* GetContext() const;
 	JSRuntime* GetRuntime() const;
 
-	void ReplaceNondeterministicFunctions(boost::rand48& rng);
+	/**
+	 * Load global scripts that most script contexts need,
+	 * located in the /globalscripts directory. VFS must be initialized.
+	 */
+	bool LoadGlobalScripts();
+
+	/**
+	 * Replace the default JS random number geenrator with a seeded, network-sync'd one.
+	 */
+	bool ReplaceNondeterministicRNG(boost::rand48& rng);
 
 	/**
 	 * Call a constructor function, equivalent to JS "new ctor(arg)".

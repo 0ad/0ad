@@ -73,6 +73,7 @@ AddMock(100, IID_BuildLimits, {
 
 AddMock(100, IID_TechnologyManager, {
 	IsTechnologyResearched: function(tech) { return false; },
+	GetTechModifications: function() { return {}; },
 });
 
 AddMock(100, IID_StatisticsTracker, {
@@ -123,6 +124,7 @@ AddMock(101, IID_BuildLimits, {
 
 AddMock(101, IID_TechnologyManager, {
 	IsTechnologyResearched: function(tech) { if (tech == "phase_village") return true; else return false; },
+	GetTechModifications: function() { return {}; },
 });
 
 AddMock(101, IID_StatisticsTracker, {
@@ -170,6 +172,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			isEnemy: [true, true, true],
 			buildLimits: {"Foo": 10},
 			buildCounts: {"Foo": 5},
+			techModifications: {},
 		},
 		{
 			name: "Player 2",
@@ -187,6 +190,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			isEnemy: [false, false, false],
 			buildLimits: {"Bar": 20},
 			buildCounts: {"Bar": 0},
+			techModifications: {},
 		}
 	],
 	circularMap: false,
@@ -211,6 +215,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			isEnemy: [true, true, true],
 			buildLimits: {"Foo": 10},
 			buildCounts: {"Foo": 5},
+			techModifications: {},
 			statistics: {
 				unitsTrained: 10,
 				unitsLost: 9,
@@ -244,6 +249,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			isEnemy: [false, false, false],
 			buildLimits: {"Bar": 20},
 			buildCounts: {"Bar": 0},
+			techModifications: {},
 			statistics: {
 				unitsTrained: 10,
 				unitsLost: 9,
