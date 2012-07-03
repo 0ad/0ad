@@ -11,7 +11,7 @@ Builder.prototype.Schema =
 	"<element name='Rate' a:help='Construction speed multiplier (1.0 is normal speed, higher values are faster)'>" +
 		"<ref name='positiveDecimal'/>" +
 	"</element>" +
-	"<element name='Entities' a:help='Space-separated list of entity template names that this unit can build. The special string \"{civ}\" will be automatically replaced by the unit&apos;s four-character civ code'>" +
+	"<element name='Entities' a:help='Space-separated list of entity template names that this unit can build. The special string \"{civ}\" will be automatically replaced by the unit&apos;s four-character civ code. This element can also be empty, in which case no new foundations may be placed by the unit, but they can still repair existing buildings'>" +
 		"<attribute name='datatype'>" +
 			"<value>tokens</value>" +
 		"</attribute>" +
@@ -26,14 +26,17 @@ Builder.prototype.Serialize = null; // we have no dynamic state to save
 
 Builder.prototype.GetEntitiesList = function()
 {
+	var entities = [];
 	var string = this.template.Entities._string;
-
-	// Replace the "{civ}" codes with this entity's civ ID
-	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
-	if (cmpIdentity)
-		string = string.replace(/\{civ\}/g, cmpIdentity.GetCiv());
-	
-	return string.split(/\s+/);
+	if (string)
+	{
+		// Replace the "{civ}" codes with this entity's civ ID
+		var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
+		if (cmpIdentity)
+			string = string.replace(/\{civ\}/g, cmpIdentity.GetCiv());
+		entities = string.split(/\s+/);
+	}
+	return entities;
 };
 
 Builder.prototype.GetRange = function()

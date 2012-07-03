@@ -7,6 +7,7 @@
   </Armour>
   <Builder>
     <Rate>1.0</Rate>
+    <Entities datatype="tokens"/>
   </Builder>
   <Cost>
     <BuildTime>20</BuildTime>
@@ -24,11 +25,11 @@
   <Identity>
     <Civ>maur</Civ>
     <Classes datatype="tokens">Elephant</Classes>
-	<GenericName>Worker Elephant</GenericName>
+    <GenericName>Worker Elephant</GenericName>
     <SpecificName>Support Elephant</SpecificName>
     <Icon>units/cart_champion_cavalry.png</Icon>
     <History>Support Elephant.</History>
-	<Tooltip>Mobile dropsite.</Tooltip>
+    <Tooltip>Mobile dropsite.</Tooltip>
   </Identity>
   <Loot>
     <xp>50</xp>
