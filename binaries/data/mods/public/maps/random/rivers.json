@@ -2,9 +2,10 @@
 	"settings" : {
 		"Name" : "Rivers",
 		"Script" : "rivers.js",
-		"Description" : "Rivers flow between players and join each other in the center of the map",
+		"Description" : "Rivers flow between players and join each other in the center of the map\n\n\nA river is a natural watercourse, usually freshwater, flowing towards an ocean, a lake, a sea, or another river. In a few cases, a river simply flows into the ground or dries up completely before reaching another body of water. Small rivers may also be called by several other names, including stream, creek, brook, rivulet, tributary and rill. There are no official definitions for generic terms, such as river, as applied to geographic features, although in some countries or communities a stream may be defined by its size. Rivers were home to the world's most ancient civilizations as they provided enough water for agricultural activities.",
 		"BaseTerrain" : ["temp_grass", "temp_grass_c"],
 		"BaseHeight" : 1,
+		"Preview" : "rivers.png",
 		"CircularMap" : true,
 		"XXXXXX" : "Optionally define other things here, like we would for a scenario"
 	}

@@ -53,6 +53,8 @@ CGUIManager::CGUIManager(ScriptInterface& scriptInterface) :
 {
 	ENSURE(ScriptInterface::GetCallbackData(scriptInterface.GetContext()) == NULL);
 	scriptInterface.SetCallbackData(this);
+
+	scriptInterface.LoadGlobalScripts();
 }
 
 CGUIManager::~CGUIManager()

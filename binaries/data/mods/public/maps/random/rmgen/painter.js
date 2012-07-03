@@ -29,7 +29,8 @@ ElevationPainter.prototype.paint = function(area)
 		
 		for (var j=0; j < 4; j++)
 		{
-			g_Map.height[pt.x + this.DX[j]][pt.z + this.DZ[j]] = elevation;
+			if (g_Map.validT(pt.x + this.DX[j],pt.z + this.DZ[j]))
+				g_Map.height[pt.x + this.DX[j]][pt.z + this.DZ[j]] = elevation;
 		}
 	}
 };

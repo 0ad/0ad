@@ -62,7 +62,8 @@ CComponentManager::CComponentManager(CSimContext& context, bool skipScriptFuncti
 	m_ScriptInterface.SetCallbackData(static_cast<void*> (this));
 
 	// TODO: ought to seed the RNG (in a network-synchronised way) before we use it
-	m_ScriptInterface.ReplaceNondeterministicFunctions(m_RNG);
+	m_ScriptInterface.ReplaceNondeterministicRNG(m_RNG);
+	m_ScriptInterface.LoadGlobalScripts();
 
 	// For component script tests, the test system sets up its own scripted implementation of
 	// these functions, so we skip registering them here in those cases

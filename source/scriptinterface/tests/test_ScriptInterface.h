@@ -116,7 +116,7 @@ public:
 		TS_ASSERT_DIFFERS(d1, d2);
 
 		boost::rand48 rng;
-		script.ReplaceNondeterministicFunctions(rng);
+		script.ReplaceNondeterministicRNG(rng);
 		rng.seed((u64)0);
 		TS_ASSERT(script.Eval("Math.random()", d1));
 		TS_ASSERT(script.Eval("Math.random()", d2));

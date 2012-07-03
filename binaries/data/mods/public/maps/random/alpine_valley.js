@@ -309,11 +309,11 @@ for (var i = 0; i < numPlayers; i++)
 {
 	if (i+1 == numPlayers)
 	{
-		passageMaker(fractionToTiles(playerX[i]), fractionToTiles(playerZ[i]), fractionToTiles(playerX[0]), fractionToTiles(playerZ[0]), 6, -2, -2, 2)
+		passageMaker(fractionToTiles(playerX[i]), fractionToTiles(playerZ[i]), fractionToTiles(playerX[0]), fractionToTiles(playerZ[0]), 6, -2, -2, 2, undefined ,undefined , -4)
 	}
 	else
 	{
-		passageMaker(fractionToTiles(playerX[i]), fractionToTiles(playerZ[i]), fractionToTiles(playerX[i+1]), fractionToTiles(playerZ[i+1]), 6, -2, -2, 2)
+		passageMaker(fractionToTiles(playerX[i]), fractionToTiles(playerZ[i]), fractionToTiles(playerX[i+1]), fractionToTiles(playerZ[i+1]), 6, -2, -2, 2,undefined ,undefined , -4)
 	}
 }
 

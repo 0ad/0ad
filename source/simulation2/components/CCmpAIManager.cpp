@@ -82,7 +82,8 @@ private:
 		{
 			m_ScriptInterface.SetCallbackData(static_cast<void*> (this));
 
-			m_ScriptInterface.ReplaceNondeterministicFunctions(rng);
+			m_ScriptInterface.ReplaceNondeterministicRNG(rng);
+			m_ScriptInterface.LoadGlobalScripts();
 
 			m_ScriptInterface.RegisterFunction<void, std::wstring, CAIPlayer::IncludeModule>("IncludeModule");
 			m_ScriptInterface.RegisterFunction<void, CScriptValRooted, CAIPlayer::PostCommand>("PostCommand");
@@ -269,7 +270,8 @@ public:
 		m_ScriptInterface.SetCallbackData(static_cast<void*> (this));
 
 		// TODO: ought to seed the RNG (in a network-synchronised way) before we use it
-		m_ScriptInterface.ReplaceNondeterministicFunctions(m_RNG);
+		m_ScriptInterface.ReplaceNondeterministicRNG(m_RNG);
+		m_ScriptInterface.LoadGlobalScripts();
 	}
 
 	~CAIWorker()

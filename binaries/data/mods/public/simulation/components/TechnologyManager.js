@@ -316,61 +316,14 @@ TechnologyManager.prototype.ApplyModifications = function(valueName, curValue, e
 		this.modificationCache[valueName] = {};
 	
 	if (!this.modificationCache[valueName][ent])
-		this.modificationCache[valueName][ent] = this.ApplyModificationsWorker(valueName, curValue, ent);
+	{
+		var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+		var templateName = cmpTemplateManager.GetCurrentTemplateName(ent);
+		this.modificationCache[valueName][ent] = GetTechModifiedProperty(this.modifications, cmpTemplateManager.GetTemplate(templateName), valueName, curValue);
+	}
 	
 	return this.modificationCache[valueName][ent];
 }
-
-// The code to actually apply the modification
-TechnologyManager.prototype.ApplyModificationsWorker = function(valueName, curValue, ent)
-{
-	// Get all modifications to this value
-	var modifications = this.modifications[valueName];
-	if (!modifications) // no modifications so return the original value
-		return curValue;
-	
-	// Get the classes which this entity belongs to
-	var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-	var classes = cmpIdentity.GetClassesList();
-	
-	var retValue = curValue;
-	
-	for (var i in modifications)
-	{
-		var modification = modifications[i];
-		var applies = false;
-		// See if any of the lists of classes matches this entity
-		for (var j in modification.affects)
-		{
-			var hasAllClasses = true;
-			// Check each class in affects is present for the entity
-			for (var k in modification.affects[j])
-				hasAllClasses = hasAllClasses && (classes.indexOf(modification.affects[j][k]) !== -1);
-			
-			if (hasAllClasses)
-			{
-				applies = true;
-				break;
-			}
-		}
-		
-		// We found a match, apply the modification
-		if (applies)
-		{
-			// Nothing is cumulative so that ordering doesn't matter as much as possible
-			if (modification.multiplier)
-				retValue += (modification.multiplier - 1) * curValue;
-			else if (modification.add)
-				retValue += modification.add;
-			else if (modification.replace !== undefined) // This will depend on ordering because there is no choice
-				retValue = modification.replace;
-			else
-				warn("modification format not recognised (modifying " + valueName + "): " + uneval(modification));
-		}
-	}
-	
-	return retValue;
-};
 
 // Marks a technology as being currently researched
 TechnologyManager.prototype.StartedResearch = function (tech)
@@ -391,6 +344,12 @@ TechnologyManager.prototype.IsInProgress = function(tech)
 		return true;
 	else
 		return false;
+};
+
+// Get helper data for tech modifications
+TechnologyManager.prototype.GetTechModifications = function()
+{
+	return this.modifications;
 };
 
 Engine.RegisterComponentType(IID_TechnologyManager, "TechnologyManager", TechnologyManager);

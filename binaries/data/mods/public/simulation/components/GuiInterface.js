@@ -53,13 +53,13 @@ GuiInterface.prototype.GetSimulationState = function(player)
 		var cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
 		
 		// Work out what phase we are in
-		var cmpTechMan = Engine.QueryInterface(playerEnt, IID_TechnologyManager);
+		var cmpTechnologyManager = Engine.QueryInterface(playerEnt, IID_TechnologyManager);
 		var phase = "";
-		if (cmpTechMan.IsTechnologyResearched("phase_city"))
+		if (cmpTechnologyManager.IsTechnologyResearched("phase_city"))
 			phase = "city";
-		else if (cmpTechMan.IsTechnologyResearched("phase_town"))
+		else if (cmpTechnologyManager.IsTechnologyResearched("phase_town"))
 			phase = "town";
-		else if (cmpTechMan.IsTechnologyResearched("phase_village"))
+		else if (cmpTechnologyManager.IsTechnologyResearched("phase_village"))
 			phase = "village";
 		
 		// store player ally/enemy data as arrays
@@ -85,7 +85,8 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"isAlly": allies,
 			"isEnemy": enemies,
 			"buildLimits": cmpPlayerBuildLimits.GetLimits(),
-			"buildCounts": cmpPlayerBuildLimits.GetCounts()
+			"buildCounts": cmpPlayerBuildLimits.GetCounts(),
+			"techModifications": cmpTechnologyManager.GetTechModifications()
 		};
 		ret.players.push(playerData);
 	}
@@ -133,10 +134,10 @@ GuiInterface.prototype.ClearRenamedEntities = function(player)
 
 GuiInterface.prototype.GetEntityState = function(player, ent)
 {
-	var cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 
 	// All units must have a template; if not then it's a nonexistent entity id
-	var template = cmpTempMan.GetCurrentTemplateName(ent);
+	var template = cmpTemplateManager.GetCurrentTemplateName(ent);
 	if (!template)
 		return null;
 
@@ -312,20 +313,23 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 
 GuiInterface.prototype.GetTemplateData = function(player, name)
 {
-	var cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	var template = cmpTempMan.GetTemplate(name);
+	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	var template = cmpTemplateManager.GetTemplate(name);
 
 	if (!template)
 		return null;
 
 	var ret = {};
 
+	var cmpTechnologyManager = QueryPlayerIDInterface(player, IID_TechnologyManager);
+	var techMods = cmpTechnologyManager.GetTechModifications();
+
 	if (template.Armour)
 	{
 		ret.armour = {
-			"hack": +template.Armour.Hack,
-			"pierce": +template.Armour.Pierce,
-			"crush": +template.Armour.Crush,
+			"hack": GetTechModifiedProperty(techMods, template, "Armour/Hack", +template.Armour.Hack),
+			"pierce": GetTechModifiedProperty(techMods, template, "Armour/Pierce", +template.Armour.Pierce),
+			"crush": GetTechModifiedProperty(techMods, template, "Armour/Crush", +template.Armour.Crush),
 		};
 	}
 	
@@ -335,9 +339,9 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 		for (var type in template.Attack)
 		{
 			ret.attack[type] = {
-				"hack": (+template.Attack[type].Hack || 0),
-				"pierce": (+template.Attack[type].Pierce || 0),
-				"crush": (+template.Attack[type].Crush || 0),
+				"hack": GetTechModifiedProperty(techMods, template, "Attack/"+type+"/Hack", +template.Attack[type].Hack || 0),
+				"pierce": GetTechModifiedProperty(techMods, template, "Attack/"+type+"/Pierce", +template.Attack[type].Pierce || 0),
+				"crush": GetTechModifiedProperty(techMods, template, "Attack/"+type+"/Crush", +template.Attack[type].Crush || 0),
 			};
 		}
 	}
@@ -365,12 +369,12 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 	if (template.Cost)
 	{
 		ret.cost = {};
-		if (template.Cost.Resources.food) ret.cost.food = +template.Cost.Resources.food;
-		if (template.Cost.Resources.wood) ret.cost.wood = +template.Cost.Resources.wood;
-		if (template.Cost.Resources.stone) ret.cost.stone = +template.Cost.Resources.stone;
-		if (template.Cost.Resources.metal) ret.cost.metal = +template.Cost.Resources.metal;
-		if (template.Cost.Population) ret.cost.population = +template.Cost.Population;
-		if (template.Cost.PopulationBonus) ret.cost.populationBonus = +template.Cost.PopulationBonus;
+		if (template.Cost.Resources.food) ret.cost.food = GetTechModifiedProperty(techMods, template, "Cost/Resources/food", +template.Cost.Resources.food);
+		if (template.Cost.Resources.wood) ret.cost.wood = GetTechModifiedProperty(techMods, template, "Cost/Resources/wood", +template.Cost.Resources.wood);
+		if (template.Cost.Resources.stone) ret.cost.stone = GetTechModifiedProperty(techMods, template, "Cost/Resources/stone", +template.Cost.Resources.stone);
+		if (template.Cost.Resources.metal) ret.cost.metal = GetTechModifiedProperty(techMods, template, "Cost/Resources/metal", +template.Cost.Resources.metal);
+		if (template.Cost.Population) ret.cost.population = GetTechModifiedProperty(techMods, template, "Cost/Population", +template.Cost.Population);
+		if (template.Cost.PopulationBonus) ret.cost.populationBonus = GetTechModifiedProperty(techMods, template, "Cost/PopulationBonus", +template.Cost.PopulationBonus);
 	}
 	
 	if (template.Footprint)
@@ -508,23 +512,23 @@ GuiInterface.prototype.GetTechnologyData = function(player, name)
 
 GuiInterface.prototype.IsTechnologyResearched = function(player, tech)
 {
-	var cmpTechMan = QueryPlayerIDInterface(player, IID_TechnologyManager);
+	var cmpTechnologyManager = QueryPlayerIDInterface(player, IID_TechnologyManager);
 	
-	if (!cmpTechMan)
+	if (!cmpTechnologyManager)
 		return false;
 	
-	return cmpTechMan.IsTechnologyResearched(tech);
+	return cmpTechnologyManager.IsTechnologyResearched(tech);
 };
 
 // Checks whether the requirements for this technology have been met
 GuiInterface.prototype.CheckTechnologyRequirements = function(player, tech)
 {
-	var cmpTechMan = QueryPlayerIDInterface(player, IID_TechnologyManager);
+	var cmpTechnologyManager = QueryPlayerIDInterface(player, IID_TechnologyManager);
 	
-	if (!cmpTechMan)
+	if (!cmpTechnologyManager)
 		return false;
 	
-	return cmpTechMan.CanResearch(tech);
+	return cmpTechnologyManager.CanResearch(tech);
 };
 
 GuiInterface.prototype.PushNotification = function(notification)

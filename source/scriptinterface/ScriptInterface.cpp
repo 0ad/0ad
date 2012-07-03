@@ -609,38 +609,44 @@ void* ScriptInterface::GetCallbackData(JSContext* cx)
 	return JS_GetContextPrivate(cx);
 }
 
-void ScriptInterface::ReplaceNondeterministicFunctions(boost::rand48& rng)
+bool ScriptInterface::LoadGlobalScripts()
 {
-	jsval math;
-	if (!JS_GetProperty(m->m_cx, m->m_glob, "Math", &math) || !JSVAL_IS_OBJECT(math))
-	{
-		LOGERROR(L"ReplaceNondeterministicFunctions: failed to get Math");
-		return;
-	}
+	// Ignore this failure in tests
+	if (!g_VFS)
+		return false;
 
-	JSFunction* random = JS_DefineFunction(m->m_cx, JSVAL_TO_OBJECT(math), "random", Math_random, 0,
-			JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
-	if (!random)
+	// Load and execute *.js in the global scripts directory
+	VfsPaths pathnames;
+	vfs::GetPathnames(g_VFS, L"globalscripts/", L"*.js", pathnames);
+	for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
 	{
-		LOGERROR(L"ReplaceNondeterministicFunctions: failed to replace Math.random");
-		return;
-	}
-	// Store the RNG in a slot which is sort-of-guaranteed to be unused by the JS engine
-	JS_SetReservedSlot(m->m_cx, JS_GetFunctionObject(random), 0, PRIVATE_TO_JSVAL(&rng));
-	
-	// Load a script which replaces some of the system dependent trig functions
-	VfsPath path("globalscripts/Math.js");
-	
-	// This function is called from tests without the VFS set up,
-	// so silently fail in that case because every other option seems worse
-	if (g_VFS && VfsFileExists(path))
-	{
-		if (!this->LoadGlobalScriptFile(path))
+		if (!LoadGlobalScriptFile(*it))
 		{
-			LOGERROR(L"ReplaceNondeterministicFunctions: failed to load %ls", path.string().c_str());
-			return;
+			LOGERROR(L"LoadGlobalScripts: Failed to load script %ls", it->string().c_str());
+			return false;
 		}
 	}
+
+	return true;
+}
+
+bool ScriptInterface::ReplaceNondeterministicRNG(boost::rand48& rng)
+{
+	jsval math;
+	if (JS_GetProperty(m->m_cx, m->m_glob, "Math", &math) && JSVAL_IS_OBJECT(math))
+	{
+		JSFunction* random = JS_DefineFunction(m->m_cx, JSVAL_TO_OBJECT(math), "random", Math_random, 0,
+			JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+		if (random)
+		{
+			// Store the RNG in a slot which is sort-of-guaranteed to be unused by the JS engine
+			if (JS_SetReservedSlot(m->m_cx, JS_GetFunctionObject(random), 0, PRIVATE_TO_JSVAL(&rng)))
+				return true;
+		}
+	}
+
+	LOGERROR(L"ReplaceNondeterministicRNG: failed to replace Math.random");
+	return false;
 }
 
 void ScriptInterface::Register(const char* name, JSNative fptr, size_t nargs)

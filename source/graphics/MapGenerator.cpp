@@ -88,7 +88,8 @@ bool CMapGeneratorWorker::Run()
 	m_ScriptInterface->SetCallbackData(static_cast<void*> (this));
 
 	// Replace RNG with a seeded deterministic function
-	m_ScriptInterface->ReplaceNondeterministicFunctions(m_MapGenRNG);
+	m_ScriptInterface->ReplaceNondeterministicRNG(m_MapGenRNG);
+	m_ScriptInterface->LoadGlobalScripts();
 
 	// Functions for RMS
 	m_ScriptInterface->RegisterFunction<bool, std::wstring, CMapGeneratorWorker::LoadLibrary>("LoadLibrary");

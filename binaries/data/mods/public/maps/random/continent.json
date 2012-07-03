@@ -2,9 +2,10 @@
 	"settings" : {
 		"Name" : "Continent",
 		"Script" : "continent.js",
-		"Description" : "All players starts on a continent surrounded by water.",
+		"Description" : "All players starts on a continent surrounded by water.\n\n\nConventionally, continents are understood to be large, continuous, discrete masses of land, ideally separated by expanses of water. Many of the seven most commonly recognized continents identified by convention are not discrete landmasses separated by water. The criterion large leads to arbitrary classification: Greenland, with a surface area of 2,166,086 square kilometres (836,330 sq mi) is considered the world's largest island, while Australia, at 7,617,930 square kilometres (2,941,300 sq mi) is deemed to be a continent. Likewise, the ideal criterion that each be a continuous landmass is often disregarded by the inclusion of the continental shelf and oceanic islands, and contradicted by classifying North and South America as two continents; and/or Eurasia and Africa as two continents, with no natural separation by water.",
 		"BaseTerrain" : ["medit_sea_depths"],
 		"BaseHeight" : -5,
+		"Preview" : "continent.png",
 		"CircularMap" : true,
 		"XXXXXX" : "Optionally define other things here, like we would for a scenario"
 	}
