@@ -81,7 +81,7 @@ var resourceRadius = 2*mapRadius/3; // 3*mapRadius/8;
 var resourcePerPlayer = [templateStone, templateMetalMine];
 
 // Setup woods
-var maxTreeDensity = min(256*256/mapSize/mapSize, 1); // Has to be tweeked but works ok
+var maxTreeDensity = min(256 * (256 - (8 * (8 - numPlayers))) / mapSize / mapSize, 1); // Has to be tweeked but works ok 
 var bushChance = 1/3; // 1 means 50% chance in deepest wood, 0.5 means 25% chance in deepest wood
 
 RMS.SetProgress(2);
