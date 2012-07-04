@@ -80,6 +80,8 @@ template<> void FUSStringBuilder::append(int32 i)
 }
 #endif // UNICODE
 
+template class FUStringBuilderT<char>;
+
 FCOLLADA_EXPORT void TrickLinker2()
 {
 	{
