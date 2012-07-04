@@ -75,7 +75,7 @@ Section "!Game and data files" GameSection
 
   SetOutPath "$INSTDIR"
   File "${CHECKOUTPATH}\*.txt"
-  File "${CHECKOUTPATH}\*.bat"
+  File "${CHECKOUTPATH}\source\tools\openlogsfolder\*.*"
   File /r /x "public" "${CHECKOUTPATH}\binaries"
 
   SetOutPath "$INSTDIR\binaries\data\mods\public"
@@ -107,6 +107,7 @@ Section "!Game and data files" GameSection
   CreateDirectory "$SMPROGRAMS\$StartMenuFolder"
   CreateShortCut "$SMPROGRAMS\$StartMenuFolder\0 A.D..lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" ""
   CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Map editor.lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" "-editor" "$INSTDIR\binaries\data\tools\atlas\icons\ScenarioEditor.ico"
+  CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Open logs folder.lnk" "$INSTDIR\OpenLogsFolder.bat"
   CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
   WriteINIStr "$SMPROGRAMS\$StartMenuFolder\Web site.url" "InternetShortcut" "URL" "http://wildfiregames.com/0ad/"
 
@@ -185,6 +186,7 @@ Section "Uninstall"
 
   !insertmacro MUI_STARTMENU_GETFOLDER Application $StartMenuFolder
 
+  Delete "$SMPROGRAMS\$StartMenuFolder\Open logs folder.lnk"
   Delete "$SMPROGRAMS\$StartMenuFolder\Uninstall.lnk"
   Delete "$SMPROGRAMS\$StartMenuFolder\Map editor.lnk"
   Delete "$SMPROGRAMS\$StartMenuFolder\0 A.D..lnk"

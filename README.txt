@@ -28,7 +28,7 @@ Open the "binaries\system" folder.
 
 To launch the game: Run pyrogenesis.exe
 
-To launch the map editor: Run Atlas.bat
+To launch the map editor: Run Atlas.bat or "pyrogenesis.exe -editor"
 
 
 -----------------------------------
@@ -43,15 +43,5 @@ http://trac.wildfiregames.com/wiki/BuildInstructions
 Reporting problems
 ------------------
 
-Bugs should be reported on Trac: http://trac.wildfiregames.com/
-
-On Windows: If the game crashes, it should generate 'crashlog' files that will
-help us debug the problem. Run OpenLogsFolder.bat to find the files
-("%appdata%\0ad\logs\"), and attach crashlog.txt and crashlog.dmp to the bug
-report.
-
-On Linux / OS X: If the game detects an error, it should generate crashlog.txt
-in ~/.config/0ad/logs/ . If it doesn't, it should at least print some
-information on stdout. Attach crashlog.txt or the other information to the
-bug report. It might also help to run the game in gdb and copy the output of
-the "bt full" command, if possible.
+Bugs should be reported on Trac. For information on reporting problems
+and finding logs, see http://trac.wildfiregames.com/wiki/ReportingErrors

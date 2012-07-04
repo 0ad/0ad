@@ -1,5 +1,7 @@
 RMS.LoadLibrary("rmgen");
 
+TILE_CENTERED_HEIGHT_MAP = true;
+
 //random terrain textures
 var rt = randomizeBiome();
 
@@ -296,7 +298,7 @@ for (var m = 0; m < numPlayers*split; m++)
 		3,				// elevation
 		4				// blend radius
 	);
-	createArea(placer, [terrainPainter, elevationPainter, unPaintClass(clWater)], null);
+	createArea(placer, [terrainPainter, elevationPainter], null);
 }
 
 
@@ -315,7 +317,7 @@ var elevationPainter = new SmoothElevationPainter(
 	4,				// elevation
 	4				// blend radius
 );
-createArea(placer, [terrainPainter, elevationPainter, unPaintClass(clWater)], null);
+createArea(placer, [terrainPainter, elevationPainter], null);
 
 var fx = fractionToTiles(0.5);
 var fz = fractionToTiles(0.5);
@@ -332,9 +334,9 @@ var terrainPainter = new LayeredPainter(
 var elevationPainter = new SmoothElevationPainter(
 	ELEVATION_SET,			// type
 	-2,				// elevation
-	4				// blend radius
+	3				// blend radius
 );
-createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], null);
+createArea(placer, [terrainPainter, elevationPainter], null);
 
 var placer = new ClumpPlacer((mapSize - 50) * (mapSize - 50) * 0.09, 1, 1, 10, ix, iz);
 var terrainPainter = new LayeredPainter(
@@ -344,7 +346,7 @@ var terrainPainter = new LayeredPainter(
 var elevationPainter = new SmoothElevationPainter(
 	ELEVATION_SET,			// type
 	4,				// elevation
-	4				// blend radius
+	3				// blend radius
 );
 createArea(placer, [terrainPainter, elevationPainter, unPaintClass(clWater)], null);
 
@@ -363,6 +365,9 @@ createArea(placer, [terrainPainter, elevationPainter], null);
 paintTerrainBasedOnHeight(-6, 1, 1, tWater);
 paintTerrainBasedOnHeight(1, 2, 1, tShore);
 paintTerrainBasedOnHeight(2, 5, 1, tGrass);
+
+paintTileClassBasedOnHeight(-6, 0.5, 1, clWater)
+unPaintTileClassBasedOnHeight(0.5, 10, 1, clWater)
 
 for (var i = 0; i < numPlayers; i++)
 {
@@ -560,19 +565,6 @@ createObjectGroups(group, 0,
 	avoidClasses(clWater, 3, clForest, 0, clPlayer, 10, clHill, 1, clFood, 20),
 	3 * numPlayers, 50
 );
-
-// create fish
-log("Creating fish...");
-group = new SimpleGroup(
-	[new SimpleObject(oFish, 2,3, 0,2)],
-	true, clFood
-);
-createObjectGroups(group, 0,
-	[avoidClasses(clFood, 20), stayClasses(clWater, 6)],
-	25 * numPlayers, 60
-);
-
-RMS.SetProgress(85);
 
 
 // create straggler trees

@@ -10,7 +10,7 @@ var tGrassA = ["desert_dirt_persia_1", "desert_dirt_persia_2"];
 var tGrassB = "dirta";
 var tGrassC = "medit_dirt_dry";
 var tHill = ["desert_dirt_rocks_1", "desert_dirt_rocks_2", "desert_dirt_rocks_3"];
-var tDirt = ["desert_lakebed_dry", "desert_lakebed_dry_b"];
+var tDirt = ["desert_dirt_rough","desert_dirt_rough","desert_dirt_rough", "desert_dirt_rough_2", "desert_dirt_rocks_2"];
 var tRoad = "desert_city_tile";;
 var tRoadWild = "desert_city_tile";;
 var tGrassPatch = "desert_dirt_rough";;
@@ -63,7 +63,7 @@ var clPlayer = createTileClass();
 var clHill = createTileClass();
 var clForest = createTileClass();
 var clWater = createTileClass();
-var clDirt = createTileClass();
+var clPassage = createTileClass();
 var clRock = createTileClass();
 var clMetal = createTileClass();
 var clFood = createTileClass();
@@ -232,23 +232,25 @@ RMS.SetProgress(20);
 // create bumps
 log("Creating bumps...");
 placer = new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, 1);
-painter = new SmoothElevationPainter(ELEVATION_MODIFY, 4, 2);
-createAreas(
-			placer,
-			painter, 
+painter = new SmoothElevationPainter(ELEVATION_MODIFY, 4, 3);
+createAreas( placer, painter, 
 			avoidClasses(clWater, 5, clPlayer, 10, clBaseResource, 6),
 			scaleByMapSize(30, 70)
 			);
+log("Creating dirt Patches...");
+placer = new ClumpPlacer(80, 0.3, 0.06, 1);
+var terrainPainter = new TerrainPainter(tDirt);
+createAreas( placer, terrainPainter, avoidClasses(clWater, 10, clPlayer, 10, clBaseResource, 6), scaleByMapSize(15, 50) );
+
 log("Creating Dunes...");
-placer = new ClumpPlacer(100, 0.3, 0.06, 1);
+placer = new ClumpPlacer(120, 0.3, 0.06, 1);
 var terrainPainter = new TerrainPainter(tDune);
-painter = new SmoothElevationPainter(ELEVATION_MODIFY, 18, 25);
-createAreas(
-			placer,
-			[terrainPainter, painter], 
+painter = new SmoothElevationPainter(ELEVATION_MODIFY, 18, 30);
+createAreas( placer, [terrainPainter, painter], 
 			avoidClasses(clWater, 13, clPlayer, 10, clBaseResource, 6),
 			scaleByMapSize(15, 50)
 			);
+
 
 log("Creating actual oasis...");
 var size = mapSize * 0.2;
@@ -259,18 +261,11 @@ fz = fractionToTiles(0.5);
 ix = round(fx);
 iz = round(fz);
 placer = new ClumpPlacer(size*1.1, 0.8, 0.2, 10, ix, iz);
-terrainPainter = new LayeredPainter(
-										[pOasisForestLight,tShoreBlend, tWater, tWater, tWater],		// terrains
-										[scaleByMapSize(6,20),3, 5, 2]		// widths
-										);
-var elevationPainter = new SmoothElevationPainter(ELEVATION_SET,			// type
-												  -3,				// elevation
-												  15				// blend radius
-												  );
+terrainPainter = new LayeredPainter( [pOasisForestLight,tShoreBlend, tWater, tWater, tWater], [scaleByMapSize(6,20),3, 5, 2] );
+var elevationPainter = new SmoothElevationPainter(ELEVATION_SET,  -3,  15 );
 createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], null);
 RMS.SetProgress(50);
-if(mapSize > 150)
-{
+if(mapSize > 150) {
 	log ("creating path through");
 	var pAngle = randFloat(0, TWO_PI);
 	var px = round(fx) + round(fractionToTiles(0.13 * cos(pAngle)));
@@ -280,8 +275,12 @@ if(mapSize > 150)
 	var path = new PathPlacer(px,py,pex,pey,scaleByMapSize(7,18), 0.4,1,0.2,0)
 	terrainPainter = new TerrainPainter(tGrass);
 	elevationPainter = new SmoothElevationPainter(ELEVATION_MODIFY, 4, 5 );
-	createArea(path, [terrainPainter, elevationPainter, paintClass(clDirt)], null);
+	createArea(path, [terrainPainter, elevationPainter, paintClass(clPassage)], null);
 }
+log("Creating some straggler trees around the Passage...");
+group = new SimpleGroup([new SimpleObject(ePalmTall, 1,1, 0,0),new SimpleObject(ePalmShort, 1,2, 1,2), new SimpleObject(aBushA, 0,2, 1,3)], true, clForest);
+createObjectGroups(group, 0, stayClasses(clPassage,1), scaleByMapSize(60,250), 100  );
+
 log("Creating stone mines...");
 // create large stone quarries
 group = new SimpleGroup([new SimpleObject(eStoneMine, 1,1, 0,0),new SimpleObject(ePalmShort, 1,2, 3,3),new SimpleObject(ePalmTall, 0,1, 3,3)
@@ -332,7 +331,7 @@ RMS.SetProgress(70);
 */
 log("Creating small decorative rocks...");
 group = new SimpleGroup( [new SimpleObject(aRock, 2,4, 0,2)], true, undefined );
-createObjectGroups(group, 0, avoidClasses(clWater, 3, clForest, 0, clPlayer, 10, clHill, 1, clFood, 20), 30, 10 );
+createObjectGroups(group, 0, avoidClasses(clWater, 3, clForest, 0, clPlayer, 10, clHill, 1, clFood, 20), 30, scaleByMapSize(10,50) );
 
 RMS.SetProgress(70);
 // create deer
@@ -396,7 +395,7 @@ group = new SimpleGroup(
 	[new SimpleObject(aBushB, 1,2, 0,2), new SimpleObject(aBushA, 2,4, 0,2)]
 );
 createObjectGroups(group, 0,
-	avoidClasses(clWater, 2, clHill, 1, clPlayer, 1, clDirt, 1),
+	avoidClasses(clWater, 2, clHill, 1, clPlayer, 1, clPassage, 1),
 	scaleByMapSize(10, 40), 20
 );
 log ("Creating Sand blows and beautifications");
@@ -422,22 +421,33 @@ for (var sandx = 0; sandx < mapSize; sandx += 4)
 				group = new SimpleGroup( [new SimpleObject(aReedsA, 5,12, 0,2),new SimpleObject(aReedsB, 5,12, 0,2)], true, undefined, sandx,sandz );
 				createObjectGroup(group, 0);
 			}
+			if (getTileClass(clPassage).countInRadius(sandx,sandz,2,true) > 0) {
+				if (Math.random() < 0.4)
+				{
+					group = new SimpleGroup( [new SimpleObject(aWaterFlower, 1,4, 1,2)], true, undefined, sandx,sandz );
+					createObjectGroup(group, 0);
+				} else if (Math.random() > 0.3 && getHeight(sandx,sandz) < -1.9)
+				{
+					group = new SimpleGroup( [new SimpleObject(aReedsA, 5,12, 0,2),new SimpleObject(aReedsB, 5,12, 0,2)], true, undefined, sandx,sandz );
+					createObjectGroup(group, 0);
+				}				
+			}
 		}
 	}
 }
 
 setSkySet("sunny");
-setSunColour(0.8,0.55,0.26);
+setSunColour(0.914,0.827,0.639);
 setSunRotation(PI/3);
-setSunElevation(0.785398/1.9);
+setSunElevation(0.5);
 setWaterTint(0.411765,0.466667,0.3);				// muddy brown
 setWaterReflectionTint(0.55, 0.4, 0.55);	// muddy brown
-setWaterMurkiness(1.2);
+setWaterMurkiness(2.0);
 setWaterShininess(1.46484);
-setWaterWaviness(2);
+setWaterWaviness(0);
 setWaterColour(0.294118,0.34902,0.694118);
-setWaterReflectionTintStrength(0.199219);
-setTerrainAmbientColour(0.392157, 0.47451, 0.654902);
+setWaterReflectionTintStrength(0.25);
+setTerrainAmbientColour(0.45, 0.5, 0.6);
 setUnitsAmbientColour(0.501961, 0.501961, 0.501961);
 
 // Export map data
