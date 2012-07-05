@@ -4,10 +4,16 @@
 
 var Worker = function(ent) {
 	this.ent = ent;
+	this.approachCount = 0;
 };
 
 Worker.prototype.update = function(gameState) {
 	var subrole = this.ent.getMetadata("subrole");
+	
+	if (!this.ent.position()){
+		// If the worker has no position then no work can be done
+		return;
+	}
 	
 	if (subrole === "gatherer"){
 		if (!(this.ent.unitAIState().split(".")[1] === "GATHER" && this.ent.unitAIOrderData().type 
@@ -24,9 +30,30 @@ Worker.prototype.update = function(gameState) {
 				Engine.ProfileStart("Return Resources");
 				this.returnResources(gameState);
 				Engine.ProfileStop();
-			} 
+			}
+			
+			this.startApproachingResourceTime = gameState.getTimeElapsed();
 			
 			//Engine.PostCommand({"type": "set-shading-color", "entities": [this.ent.id()], "rgb": [10,0,0]});
+		}else{
+			// If we haven't reached the resource in 2 minutes twice in a row and none of the resource has been 
+			// gathered then mark it as inaccessible.
+			if (gameState.getTimeElapsed() - this.startApproachingResourceTime > 120000){
+				if (this.gatheringFrom){
+					var ent = gameState.getEntityById(this.gatheringFrom);
+					if (ent && ent.resourceSupplyAmount() == ent.resourceSupplyMax()){
+						if (this.approachCount > 0){
+							ent.setMetadata("inaccessible", true);
+							this.ent.setMetadata("subrole", "idle");
+						} 
+						this.approachCount++;
+					}else{
+						this.approachCount = 0;
+					}
+					
+					this.startApproachingResourceTime = gameState.getTimeElapsed();
+				}
+			}
 		}
 	}else if(subrole === "builder"){
 		if (this.ent.unitAIState().split(".")[1] !== "REPAIR"){
@@ -161,7 +188,10 @@ Worker.prototype.startGathering = function(gameState){
 	});
 	
 	if (nearestSupply) {
-		if (!gameState.ai.accessibility.isAccessible(nearestSupply.position())){
+		var pos = nearestSupply.position();
+		var territoryOwner = gameState.getTerritoryMap().getOwner(pos);
+		if (!gameState.ai.accessibility.isAccessible(pos) || 
+				(territoryOwner != gameState.getPlayerID() && territoryOwner != 0)){
 			nearestSupply.setMetadata("inaccessible", true);
 		}else{
 			ent.gather(nearestSupply);

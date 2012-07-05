@@ -1,5 +1,6 @@
-// TODO: Make this cope with negative cell values 
+const TERRITORY_PLAYER_MASK = 0x3F;
 
+//TODO: Make this cope with negative cell values
 function Map(gameState, originalMap){
 	// get the map to find out the correct dimensions
 	var gameMap = gameState.getMap();
@@ -25,9 +26,7 @@ Map.prototype.point = function(p){
 
 Map.createObstructionMap = function(gameState, template){
 	var passabilityMap = gameState.getMap();
-	var territoryMap = gameState.getTerritoryMap(); 
-	
-	const TERRITORY_PLAYER_MASK = 0x3F;
+	var territoryMap = gameState.ai.territoryMap; 
 	
 	// default values
 	var placementType = "land";
@@ -92,15 +91,16 @@ Map.createObstructionMap = function(gameState, template){
 	return map;
 };
 
-Map.createTerritoryMap = function(gameState){
+Map.createTerritoryMap = function(gameState) {
 	var map = gameState.ai.territoryMap;
-
-	var obstructionTiles = new Uint16Array(map.data.length);
-	for ( var i = 0; i < map.data.length; ++i){
-		obstructionTiles[i] = map.data[i] & 0x7F;
+	
+	var ret = new Map(gameState, map.data);
+	
+	ret.getOwner = function(p) {
+		return this.point(p) & TERRITORY_PLAYER_MASK;
 	}
 	
-	return new Map(gameState, obstructionTiles);
+	return ret;
 };
 
 Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type) {
