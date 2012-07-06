@@ -89,21 +89,14 @@ static Status UniFont_reload(UniFont* f, const PIVFS& vfs, const VfsPath& basena
 	int TextureWidth, TextureHeight;
 	FNTStream >> TextureWidth >> TextureHeight;
 
-	GLenum fmt_ovr = GL_ALPHA;
 	if (Version >= 101)
 	{
 		std::string Format;
 		FNTStream >> Format;
 		if (Format == "rgba")
-		{
 			f->HasRGB = true;
-			fmt_ovr = GL_RGBA;
-		}
 		else if (Format == "a")
-		{
 			f->HasRGB = false;
-			fmt_ovr = GL_ALPHA;
-		}
 		else
 			debug_warn(L"Invalid .fnt format string");
 	}
@@ -152,11 +145,22 @@ static Status UniFont_reload(UniFont* f, const PIVFS& vfs, const VfsPath& basena
 	Handle ht = ogl_tex_load(vfs, path / imgName);
 	RETURN_STATUS_IF_ERR(ht);
 	(void)ogl_tex_set_filter(ht, GL_NEAREST);
-	// override is necessary because the GL format is chosen as LUMINANCE,
-	// but we want ALPHA. there is no way of knowing what format
-	// 8bpp textures are in - we could adopt a naming convention and
-	// add some TEX_ flags, but that's overkill.
-	Status err = ogl_tex_upload(ht, fmt_ovr);
+
+	Status err;
+	if (f->HasRGB)
+	{
+		// use format auto-detection
+		err = ogl_tex_upload(ht);
+	}
+	else
+	{
+		// override is necessary because the GL format is chosen as LUMINANCE,
+		// but we want ALPHA. there is no way of knowing what format
+		// 8bpp textures are in - we could adopt a naming convention and
+		// add some TEX_ flags, but that's overkill.
+		err = ogl_tex_upload(ht, GL_ALPHA);
+	}
+
 	if(err < 0)
 	{
 		(void)ogl_tex_free(ht);

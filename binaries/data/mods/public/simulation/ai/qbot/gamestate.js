@@ -60,7 +60,7 @@ GameState.prototype.getMap = function() {
 };
 
 GameState.prototype.getTerritoryMap = function() {
-	return this.ai.territoryMap;
+	return Map.createTerritoryMap(this);
 };
 
 GameState.prototype.getPopulation = function() {

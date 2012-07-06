@@ -221,14 +221,19 @@ function project_set_build_flags()
 				-- always enable strict aliasing (useful in debug builds because of the warnings)
 				"-fstrict-aliasing",
 
-				-- do something (?) so that ccache can handle compilation with PCH enabled
-				"-fpch-preprocess",
-
 				-- don't omit frame pointers (for now), because performance will be impacted
 				-- negatively by the way this breaks profilers more than it will be impacted
 				-- positively by the optimisation
 				"-fno-omit-frame-pointer"
 			}
+
+			if not _OPTIONS["without-pch"] then
+				buildoptions {
+					-- do something (?) so that ccache can handle compilation with PCH enabled
+					-- (ccache 3.1+ also requires CCACHE_SLOPPINESS=time_macros for this to work)
+					"-fpch-preprocess"
+				}
+			end
 
 			if arch == "x86" or arch == "amd64" then
 				buildoptions {

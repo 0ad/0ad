@@ -116,8 +116,7 @@ EconomyManager.prototype.reassignIdleWorkers = function(gameState) {
 	
 	if (idleWorkers.length) {
 		var resourceSupplies;
-		//var territoryMap = Map.createTerritoryMap(gameState); 
-
+		
 		idleWorkers.forEach(function(ent) {
 			// Check that the worker isn't garrisoned
 			if (ent.position() === undefined){

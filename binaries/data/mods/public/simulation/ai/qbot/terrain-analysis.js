@@ -98,8 +98,6 @@ TerrainAnalysis.prototype.countConnected = function(startPoint, maxCount, curCou
 
 function PathFinder(gameState){
 	this.TerrainAnalysis(gameState);
-	
-	this.territoryMap = Map.createTerritoryMap(gameState);
 }
 
 copyPrototype(PathFinder, TerrainAnalysis);

@@ -241,6 +241,32 @@ int32 FUStringConversion::ParseQualifier(const char* qualifier)
 	return returnValue;
 }
 
+template FMVector2 FUStringConversion::ToVector2<char>(const char**);
+template FMVector3 FUStringConversion::ToVector3<char>(const char**);
+template FMVector4 FUStringConversion::ToVector4<char>(const char**);
+
+template bool FUStringConversion::ToBoolean<char>(const char*);
+template unsigned int FUStringConversion::ToUInt32<char>(const char**);
+template unsigned int FUStringConversion::HexToUInt32<char>(const char**, unsigned int);
+
+template void FUStringConversion::ToBooleanList<char>(const char*, fm::vector<bool, true>&);
+template void FUStringConversion::ToDateTime<char>(const char*, FUDateTime&);
+template void FUStringConversion::ToFloatList<char>(const char*, fm::vector<float, true>&);
+template void FUStringConversion::ToInt32List<char>(const char*, fm::vector<int, true>&);
+template void FUStringConversion::ToInterleavedFloatList<char>(char const*, fm::pvector<fm::vector<float, true> >&);
+template void FUStringConversion::ToInterleavedUInt32List<char>(char const*, fm::pvector<fm::vector<unsigned int, true> >&);
+template void FUStringConversion::ToMatrix<char>(const char**, FMMatrix44&);
+template void FUStringConversion::ToMatrixList<char>(const char*, fm::vector<FMMatrix44, false>&);
+template void FUStringConversion::ToUInt32List<char>(const char*, fm::vector<unsigned int, true>&);
+template void FUStringConversion::ToVector3List<char>(const char*, fm::vector<FMVector3, false>&);
+
+template void FUStringConversion::ToString<char>(FUStringBuilderT<char>&, const FMVector2&);
+template void FUStringConversion::ToString<char>(FUStringBuilderT<char>&, const FMVector3&);
+template void FUStringConversion::ToString<char>(FUStringBuilderT<char>&, const FMVector4&);
+template void FUStringConversion::ToString<char>(FUStringBuilderT<char>&, const FMMatrix44&);
+template void FUStringConversion::ToString<char>(FUStringBuilderT<char>&, const fm::vector<float, true>&);
+template void FUStringConversion::ToString<char>(FUStringBuilderT<char>&, const unsigned int*, unsigned long);
+
 // Called by TrickLinker2 in FUStringBuilder.cpp
 extern void TrickLinkerFUStringConversion(void)
 {

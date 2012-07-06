@@ -65,7 +65,7 @@ var Timer = function() {
 		}
 		
 		// Check if the alarm has rung 'alarm.repeat' times if so, delete the alarm.
-		if (alarm.counter >= alarm.repeat) {
+		if (alarm.counter >= alarm.repeat && alarm.repeat != -1) {
 			this.clearTimer(id);
 		}
 		
