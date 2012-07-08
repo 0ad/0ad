@@ -1,32 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_barracks">
-  <Cost>
-    <BuildTime>250</BuildTime>
-    <Resources>
-      <wood>0</wood>
-      <stone>200</stone>
-    </Resources>
-  </Cost>
-  <Health>
-    <Max>2500</Max>
-  </Health>
   <Identity>
     <Civ>maur</Civ>
     <SpecificName>Sainyavasa</SpecificName>
     <History>Barracks.</History>
-    <Icon>structures/pers_barracks.png</Icon>
   </Identity>
   <ProductionQueue>
     <Entities datatype="tokens">
       units/maur_infantry_archer_b
       units/maur_infantry_spearman_b
 	  units/maur_infantry_swordsman_b
+	  units/maur_cavalry_javelinist_b
     </Entities>
-    <Technologies datatype="tokens">
-	  pair_inf_01
-	  pair_inf_02
-	  -pair_cav_01
-    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/mauryans/barracks.xml</Actor>

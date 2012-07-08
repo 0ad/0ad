@@ -265,7 +265,7 @@ template void FUStringConversion::ToString<char>(FUStringBuilderT<char>&, const 
 template void FUStringConversion::ToString<char>(FUStringBuilderT<char>&, const FMVector4&);
 template void FUStringConversion::ToString<char>(FUStringBuilderT<char>&, const FMMatrix44&);
 template void FUStringConversion::ToString<char>(FUStringBuilderT<char>&, const fm::vector<float, true>&);
-template void FUStringConversion::ToString<char>(FUStringBuilderT<char>&, const unsigned int*, unsigned long);
+template void FUStringConversion::ToString<char>(FUStringBuilderT<char>&, const unsigned int*, size_t);
 
 // Called by TrickLinker2 in FUStringBuilder.cpp
 extern void TrickLinkerFUStringConversion(void)
