@@ -60,7 +60,7 @@ public:
 
 	virtual void SetMovingFlag(bool enabled) = 0;
 
-	virtual void SetDisableBlockMovementPathfinding(bool disabled) = 0;
+	virtual void SetDisableBlockMovementPathfinding(bool movementDisabled, bool pathfindingDisabled, int32_t shape) = 0;
 
 	virtual bool GetBlockMovementFlag() = 0;
 

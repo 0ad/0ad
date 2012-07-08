@@ -137,7 +137,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 			// but we've temporarily allowed units to walk all over it
 			// (via CCmpTemplateManager). Now we need to remove that temporary
 			// blocker-disabling, so that we'll perform standard unit blocking instead.
-			cmpObstruction.SetDisableBlockMovementPathfinding(false);
+			cmpObstruction.SetDisableBlockMovementPathfinding(false, false, -1);
 		}
 
 		this.committed = true;

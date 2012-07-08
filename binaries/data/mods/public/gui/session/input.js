@@ -1626,6 +1626,27 @@ function performStance(entity, stanceName)
 	}
 }
 
+// Lock / Unlock the gate
+function lockGate(lock)
+{
+	var selection = g_Selection.toList();
+	Engine.PostNetworkCommand({
+		"type": "lock-gate",
+		"entities": selection,
+		"lock": lock,
+	});
+}
+
+// Transform a wall to a gate
+function transformWallToGate()
+{
+	var selection = g_Selection.toList();
+	Engine.PostNetworkCommand({
+		"type": "wall-to-gate",
+		"entities": selection,
+	});
+}
+
 // Set the camera to follow the given unit
 function setCameraFollow(entity)
 {

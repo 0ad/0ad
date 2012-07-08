@@ -351,6 +351,29 @@ function ProcessCommand(player, cmd)
 		}
 		break;
 
+	case "wall-to-gate":
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		for each (var ent in entities)
+		{
+			TryTransformWallToGate(ent, cmpPlayer);
+		}
+		break;
+
+	case "lock-gate":
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		for each (var ent in entities)
+		{
+			var cmpGate = Engine.QueryInterface(ent, IID_Gate);
+			if (cmpGate)
+			{
+				if (cmd.lock)
+					cmpGate.LockGate();
+				else
+					cmpGate.UnlockGate();
+			}
+		}
+		break;
+
 	case "setup-trade-route":
 		for each (var ent in cmd.entities)
 		{
@@ -1069,6 +1092,67 @@ function CanControlUnit(entity, player, controlAll)
 function FilterEntityList(entities, player, controlAll)
 {
 	return entities.filter(function(ent) { return CanControlUnit(ent, player, controlAll);} );
+}
+
+/**
+ * Try to transform a wall to a gate 
+ */
+function TryTransformWallToGate(ent, cmpPlayer)
+{
+	var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
+	if (!cmpIdentity)
+		return;
+	var civ = cmpIdentity.GetCiv();
+	var template = "structures/" + civ + "_wall_gate";
+	var gate = Engine.AddEntity(template);
+
+	var cmpCost = Engine.QueryInterface(gate, IID_Cost);
+	if (!cmpPlayer.TrySubtractResources(cmpCost.GetResourceCosts()))
+	{
+		if (g_DebugCommands)
+		{
+			warn("Invalid command: building cost check failed for player "+player+": "+uneval(cmd));
+		}
+		
+		Engine.DestroyEntity(gate);
+		return;
+	}
+
+	ReplaceBuildingWith(ent, gate);
+}
+
+/**
+ * Unconditionally replace a building with another one
+ */
+function ReplaceBuildingWith(ent, building)
+{
+	// Move the building to the right place
+	var cmpPosition = Engine.QueryInterface(ent, IID_Position);
+	var cmpBuildingPosition = Engine.QueryInterface(building, IID_Position);
+	var pos = cmpPosition.GetPosition2D();
+	cmpBuildingPosition.JumpTo(pos.x, pos.y);
+	var rot = cmpPosition.GetRotation();
+	cmpBuildingPosition.SetYRotation(rot.y);
+	cmpBuildingPosition.SetXZRotation(rot.x, rot.z);
+
+	// Copy ownership
+	var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+	var cmpBuildingOwnership = Engine.QueryInterface(building, IID_Ownership);
+	cmpBuildingOwnership.SetOwner(cmpOwnership.GetOwner());
+	
+	// Copy control groups
+	var cmpObstruction = Engine.QueryInterface(ent, IID_Obstruction);
+	var cmpBuildingObstruction = Engine.QueryInterface(building, IID_Obstruction);
+	cmpBuildingObstruction.SetControlGroup(cmpObstruction.GetControlGroup());
+	cmpBuildingObstruction.SetControlGroup2(cmpObstruction.GetControlGroup2());
+
+	PlaySound("constructed", building);
+
+	Engine.PostMessage(ent, MT_ConstructionFinished,
+		{ "entity": ent, "newentity": building });
+	Engine.BroadcastMessage(MT_EntityRenamed, { entity: ent, newentity: building });
+
+	Engine.DestroyEntity(ent);
 }
 
 Engine.RegisterGlobal("GetFormationRequirements", GetFormationRequirements);

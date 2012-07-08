@@ -13,7 +13,20 @@
     <History>The Athenian city wall was pierced by numerous gates and posterns of various sizes and importance. The "Sacred Gate" was the gate on the road to Eleusis. Another gate was the Dipylon Gate, whose name literally means "Double Gate."</History>
   </Identity>
   <Obstruction>
-    <Static width="38.0" depth="6.5"/>
+    <Cluster>
+      <Right width="12" depth="6.5">
+        <PosX>13</PosX>
+        <PosZ>0</PosZ>
+      </Right>
+      <Left width="12" depth="6.5">
+        <PosX>-13</PosX>
+        <PosZ>0</PosZ>
+      </Left>
+      <Door width="14.0" depth="6.5">
+        <PosX>0</PosX>
+        <PosZ>0</PosZ>
+      </Door>
+    </Cluster>
   </Obstruction>
   <VisualActor>
     <Actor>structures/hellenes/wall_gate.xml</Actor>
