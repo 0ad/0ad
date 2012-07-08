@@ -28,7 +28,20 @@
     <History>(Insert History Here)</History>
   </Identity>
   <Obstruction>
-    <Static width="37.0" depth="5.0"/>
+    <Cluster>
+      <Right width="12" depth="5">
+        <PosX>12.5</PosX>
+        <PosZ>0</PosZ>
+      </Right>
+      <Left width="12" depth="5">
+        <PosX>-12.5</PosX>
+        <PosZ>0</PosZ>
+      </Left>
+      <Door width="13.0" depth="5">
+        <PosX>0</PosX>
+        <PosZ>0</PosZ>
+      </Door>
+    </Cluster>
   </Obstruction>
   <TerritoryDecay>
     <HealthDecayRate>1</HealthDecayRate>

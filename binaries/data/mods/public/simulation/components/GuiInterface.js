@@ -289,6 +289,14 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"orders": cmpUnitAI.GetOrders(),
 		};
 	}
+	
+	var cmpGate = Engine.QueryInterface(ent, IID_Gate);
+	if (cmpGate)
+	{
+		ret.gate = {
+			"locked": cmpGate.IsLocked(),
+		};
+	}	
 
 	if (!cmpFoundation && cmpIdentity && cmpIdentity.HasClass("BarterMarket"))
 	{
@@ -408,10 +416,14 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 			ret.obstruction.shape.width = +template.Obstruction.Static["@width"];
 			ret.obstruction.shape.depth = +template.Obstruction.Static["@depth"];
 		}
-		else
+		else if (template.Obstruction.Unit)
 		{
 			ret.obstruction.shape.type = "unit";
 			ret.obstruction.shape.radius = +template.Obstruction.Unit["@radius"];
+		}
+		else
+		{
+			ret.obstruction.shape.type = "cluster";
 		}
 	}
 	

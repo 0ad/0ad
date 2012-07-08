@@ -5,6 +5,9 @@
     <Pierce>40.0</Pierce>
     <Crush>10.0</Crush>
   </Armour>
+	<Gate>
+    <Radius>20</Radius>
+	</Gate>
   <BuildRestrictions>
     <Category>Wall</Category>
   </BuildRestrictions>
@@ -36,7 +39,20 @@
     <metal>0</metal>
   </Loot>
   <Obstruction>
-    <Static width="6.0" depth="6.0"/>
+    <Cluster>
+      <Right width="5" depth="5">
+        <PosX>10</PosX>
+        <PosZ>0</PosZ>
+      </Right>
+      <Left width="5" depth="5">
+        <PosX>-10</PosX>
+        <PosZ>0</PosZ>
+      </Left>
+      <Door width="20.0" depth="6.5">
+        <PosX>0</PosX>
+        <PosZ>0</PosZ>
+      </Door>
+    </Cluster>
   </Obstruction>
   <RallyPoint disable=""/>
   <Sound>

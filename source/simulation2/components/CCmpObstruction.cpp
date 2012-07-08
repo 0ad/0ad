@@ -24,6 +24,10 @@
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpPosition.h"
+#include "simulation2/serialization/SerializeTemplates.h"
+
+#define MAX(x,y) x>y ? x : y
+#define MIN(x,y) x>y ? y : x
 
 /**
  * Obstruction implementation. This keeps the ICmpPathfinder's model of the world updated when the
@@ -47,12 +51,22 @@ public:
 
 	enum {
 		STATIC,
-		UNIT
+		UNIT,
+		CLUSTER
 	} m_Type;
 
 	entity_pos_t m_Size0; // radius or width
 	entity_pos_t m_Size1; // radius or depth
 	flags_t m_TemplateFlags;
+
+	typedef struct {
+		entity_pos_t dx, dz;
+		entity_angle_t da;	
+		entity_pos_t size0, size1;
+		flags_t flags;
+	} Shape;
+
+	std::vector<Shape> m_Shapes;
 
 	// Dynamic state:
 
@@ -82,6 +96,7 @@ public:
 	/// Identifier of this entity's obstruction shape, as registered in the obstruction manager. Contains
 	/// structure, but should be treated as opaque here.
 	tag_t m_Tag;
+	std::vector<tag_t> m_ClusterTags;
 
 	/// Set of flags affecting the behaviour of this entity's obstruction shape.
 	flags_t m_Flags;
@@ -104,6 +119,25 @@ public:
 					"<attribute name='radius'>"
 						"<ref name='positiveDecimal'/>"
 					"</attribute>"
+				"</element>"
+				"<element name='Cluster'>"
+					"<zeroOrMore>"
+						"<element>"
+							"<anyName/>"
+							"<element name='PosX'>"
+								"<data type='decimal'/>"
+							"</element>"
+							"<element name='PosZ'>"
+								"<data type='decimal'/>"
+							"</element>"
+							"<attribute name='width'>"
+								"<ref name='positiveDecimal'/>"
+							"</attribute>"
+							"<attribute name='depth'>"
+								"<ref name='positiveDecimal'/>"
+							"</attribute>"
+						"</element>"
+					"</zeroOrMore>"
 				"</element>"
 			"</choice>"
 			"<element name='Active' a:help='If false, this entity will be ignored in collision tests by other units but can still perform its own collision tests'>"
@@ -131,18 +165,6 @@ public:
 
 	virtual void Init(const CParamNode& paramNode)
 	{
-		if (paramNode.GetChild("Unit").IsOk())
-		{
-			m_Type = UNIT;
-			m_Size0 = m_Size1 = paramNode.GetChild("Unit").GetChild("@radius").ToFixed();
-		}
-		else
-		{
-			m_Type = STATIC;
-			m_Size0 = paramNode.GetChild("Static").GetChild("@width").ToFixed();
-			m_Size1 = paramNode.GetChild("Static").GetChild("@depth").ToFixed();
-		}
-
 		m_TemplateFlags = 0;
 		if (paramNode.GetChild("BlockMovement").ToBool())
 			m_TemplateFlags |= ICmpObstructionManager::FLAG_BLOCK_MOVEMENT;
@@ -159,9 +181,47 @@ public:
 		if (paramNode.GetChild("DisableBlockPathfinding").ToBool())
 			m_Flags &= (flags_t)(~ICmpObstructionManager::FLAG_BLOCK_PATHFINDING);
 
+		if (paramNode.GetChild("Unit").IsOk())
+		{
+			m_Type = UNIT;
+			m_Size0 = m_Size1 = paramNode.GetChild("Unit").GetChild("@radius").ToFixed();
+		}
+		else if (paramNode.GetChild("Static").IsOk())
+		{
+			m_Type = STATIC;
+			m_Size0 = paramNode.GetChild("Static").GetChild("@width").ToFixed();
+			m_Size1 = paramNode.GetChild("Static").GetChild("@depth").ToFixed();
+		}
+		else
+		{
+			m_Type = CLUSTER;
+			CFixedVector2D max = CFixedVector2D(fixed::FromInt(0), fixed::FromInt(0));
+			CFixedVector2D min = CFixedVector2D(fixed::FromInt(0), fixed::FromInt(0));
+			const CParamNode::ChildrenMap& clusterMap = paramNode.GetChild("Cluster").GetChildren();
+			for(CParamNode::ChildrenMap::const_iterator it = clusterMap.begin(); it != clusterMap.end(); ++it)
+			{
+				Shape b;
+				b.size0 = it->second.GetChild("@width").ToFixed();
+				b.size1 = it->second.GetChild("@depth").ToFixed();
+				b.dx = it->second.GetChild("PosX").ToFixed();
+				b.dz = it->second.GetChild("PosZ").ToFixed();
+				b.da = entity_angle_t::FromInt(0);
+				b.flags = m_Flags;
+				m_Shapes.push_back(b);
+				max.X = MAX(max.X, b.dx + b.size0/2);
+				max.Y = MAX(max.Y, b.dz + b.size1/2);
+				min.X = MIN(min.X, b.dx - b.size0/2);
+				min.Y = MIN(min.Y, b.dz - b.size1/2);
+			}
+			m_Size0 = fixed::FromInt(2).Multiply(MAX(max.X, -min.X));
+			m_Size1 = fixed::FromInt(2).Multiply(MAX(max.Y, -min.Y));
+		}
+
 		m_Active = paramNode.GetChild("Active").ToBool();
 
 		m_Tag = tag_t();
+		if (m_Type == CLUSTER)
+			m_ClusterTags.clear();
 		m_Moving = false;
 		m_ControlGroup = GetEntityId();
 		m_ControlGroup2 = INVALID_ENTITY;
@@ -170,6 +230,15 @@ public:
 	virtual void Deinit()
 	{
 	}
+
+	struct SerializeTag
+	{
+		template<typename S>
+		void operator()(S& serialize, const char* UNUSED(name), tag_t& value)
+		{
+			serialize.NumberU32_Unbounded("tag", value.n);
+		}
+	};
 
 	template<typename S>
 	void SerializeCommon(S& serialize)
@@ -180,6 +249,8 @@ public:
 		serialize.NumberU32_Unbounded("control group 2", m_ControlGroup2);
 		serialize.NumberU32_Unbounded("tag", m_Tag.n);
 		serialize.NumberU8_Unbounded("flags", m_Flags);
+		if (m_Type == CLUSTER)
+			SerializeVector<SerializeTag>()(serialize, "cluster tags", m_ClusterTags);
 	}
 
 	virtual void Serialize(ISerializer& serialize)
@@ -215,6 +286,17 @@ public:
 			if (data.inWorld && m_Tag.valid())
 			{
 				cmpObstructionManager->MoveShape(m_Tag, data.x, data.z, data.a);
+
+				if(m_Type == CLUSTER)
+				{
+					for (size_t i = 0; i < m_Shapes.size(); ++i)
+					{
+						Shape& b = m_Shapes[i];
+						fixed s, c;
+						sincos_approx(data.a, s, c);
+						cmpObstructionManager->MoveShape(m_ClusterTags[i], data.x + b.dx.Multiply(c) + b.dz.Multiply(s), data.z + b.dz.Multiply(c) - b.dx.Multiply(s), data.a + b.da);
+					}
+				}
 			}
 			else if (data.inWorld && !m_Tag.valid())
 			{
@@ -222,14 +304,18 @@ public:
 				if (m_Type == STATIC)
 					m_Tag = cmpObstructionManager->AddStaticShape(GetEntityId(),
 						data.x, data.z, data.a, m_Size0, m_Size1, m_Flags, m_ControlGroup, m_ControlGroup2);
-				else
+				else if (m_Type == UNIT)
 					m_Tag = cmpObstructionManager->AddUnitShape(GetEntityId(),
 						data.x, data.z, m_Size0, (flags_t)(m_Flags | (m_Moving ? ICmpObstructionManager::FLAG_MOVING : 0)), m_ControlGroup);
+				else
+					AddClusterShapes(data.x, data.x, data.a);
 			}
 			else if (!data.inWorld && m_Tag.valid())
 			{
 				cmpObstructionManager->RemoveShape(m_Tag);
 				m_Tag = tag_t();
+				if(m_Type == CLUSTER)
+					RemoveClusterShapes();
 			}
 			break;
 		}
@@ -243,6 +329,8 @@ public:
 
 				cmpObstructionManager->RemoveShape(m_Tag);
 				m_Tag = tag_t();
+				if(m_Type == CLUSTER)
+					RemoveClusterShapes();
 			}
 			break;
 		}
@@ -273,9 +361,11 @@ public:
 			if (m_Type == STATIC)
 				m_Tag = cmpObstructionManager->AddStaticShape(GetEntityId(),
 					pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, m_Flags, m_ControlGroup, m_ControlGroup2);
-			else
+			else if (m_Type == UNIT)
 				m_Tag = cmpObstructionManager->AddUnitShape(GetEntityId(),
 					pos.X, pos.Y, m_Size0, (flags_t)(m_Flags | (m_Moving ? ICmpObstructionManager::FLAG_MOVING : 0)), m_ControlGroup);
+			else 
+				AddClusterShapes(pos.X, pos.Y, cmpPosition->GetRotation().Y);
 		}
 		else if (!active && m_Active)
 		{
@@ -292,25 +382,33 @@ public:
 
 				cmpObstructionManager->RemoveShape(m_Tag);
 				m_Tag = tag_t();
+				if (m_Type == CLUSTER)
+					RemoveClusterShapes();
 			}
 		}
 		// else we didn't change the active status
 	}
 
-	virtual void SetDisableBlockMovementPathfinding(bool disabled)
+	virtual void SetDisableBlockMovementPathfinding(bool movementDisabled, bool pathfindingDisabled, int32_t shape)
 	{
-		if (disabled)
-		{
-			// Remove the blocking flags
-			m_Flags &= (flags_t)(~ICmpObstructionManager::FLAG_BLOCK_MOVEMENT);
-			m_Flags &= (flags_t)(~ICmpObstructionManager::FLAG_BLOCK_PATHFINDING);
-		}
+		flags_t *flags = NULL;
+		if (shape == -1)
+			flags = &m_Flags;
+		else if (m_Type == CLUSTER && shape < (int32_t)m_Shapes.size())
+			flags = &m_Shapes[shape].flags;
 		else
-		{
-			// Add the blocking flags if the template had enabled them
-			m_Flags = (flags_t)(m_Flags | (m_TemplateFlags & ICmpObstructionManager::FLAG_BLOCK_MOVEMENT));
-			m_Flags = (flags_t)(m_Flags | (m_TemplateFlags & ICmpObstructionManager::FLAG_BLOCK_PATHFINDING));
-		}
+			return; // error
+
+		// Remove the blocking / pathfinding flags or
+		// Add the blocking / pathfinding flags if the template had enabled them
+		if (movementDisabled)
+			*flags &= (flags_t)(~ICmpObstructionManager::FLAG_BLOCK_MOVEMENT);
+		else
+			*flags |= (flags_t)(m_TemplateFlags & ICmpObstructionManager::FLAG_BLOCK_MOVEMENT);
+		if (pathfindingDisabled)
+			*flags &= (flags_t)(~ICmpObstructionManager::FLAG_BLOCK_PATHFINDING);
+		else
+			*flags |= (flags_t)(m_TemplateFlags & ICmpObstructionManager::FLAG_BLOCK_PATHFINDING);
 
 		// Reset the shape with the new flags (kind of inefficiently - we
 		// should have a ICmpObstructionManager::SetFlags function or something)
@@ -347,8 +445,10 @@ public:
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
 		if (m_Type == STATIC)
 			out = cmpObstructionManager->GetStaticShapeObstruction(pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1);
-		else
+		else if (m_Type == UNIT)
 			out = cmpObstructionManager->GetUnitShapeObstruction(pos.X, pos.Y, m_Size0);
+		else
+			out = cmpObstructionManager->GetStaticShapeObstruction(pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1);
 		return true;
 	}
 
@@ -393,8 +493,10 @@ public:
 
 		if (m_Type == STATIC)
 			return cmpPathfinder->CheckBuildingPlacement(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, GetEntityId(), passClass);
-		else
+		else if (m_Type == UNIT)
 			return cmpPathfinder->CheckUnitPlacement(filter, pos.X, pos.Y, m_Size0, passClass);
+		else 
+			return cmpPathfinder->CheckBuildingPlacement(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, GetEntityId(), passClass);
 	}
 
 	virtual std::vector<entity_id_t> GetConstructionCollisions()
@@ -429,9 +531,11 @@ public:
 
 		if (m_Type == STATIC)
 			cmpObstructionManager->TestStaticShape(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, &ret);
-		else
+		else if (m_Type == UNIT)
 			cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Y, m_Size0, &ret);
-
+		else
+			cmpObstructionManager->TestStaticShape(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, &ret);
+	
 		return ret;
 	}
 
@@ -484,8 +588,60 @@ public:
 				{
 					cmpObstructionManager->SetStaticControlGroup(m_Tag, m_ControlGroup, m_ControlGroup2);
 				}
+				else
+				{
+					cmpObstructionManager->SetStaticControlGroup(m_Tag, m_ControlGroup, m_ControlGroup2);
+					for (size_t i = 0; i < m_ClusterTags.size(); ++i)
+					{
+						cmpObstructionManager->SetStaticControlGroup(m_ClusterTags[i], m_ControlGroup, m_ControlGroup2);
+					}
+				}
 			}
 		}
+	}
+
+protected:
+
+	inline void AddClusterShapes(entity_pos_t x, entity_pos_t z, entity_angle_t a)
+	{
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+		if (!cmpObstructionManager)
+			return; // error
+
+		flags_t flags = m_Flags;
+		// Disable block movement and block pathfinding for the obstruction shape
+		flags &= (flags_t)(~ICmpObstructionManager::FLAG_BLOCK_MOVEMENT);
+		flags &= (flags_t)(~ICmpObstructionManager::FLAG_BLOCK_PATHFINDING);
+		
+		m_Tag = cmpObstructionManager->AddStaticShape(GetEntityId(),
+			x, z, a, m_Size0, m_Size1, flags, m_ControlGroup, m_ControlGroup2);
+
+		fixed s, c;
+		sincos_approx(a, s, c);
+
+		for (size_t i = 0; i < m_Shapes.size(); ++i)
+		{
+			Shape& b = m_Shapes[i];
+			tag_t tag = cmpObstructionManager->AddStaticShape(GetEntityId(),
+				x + b.dx.Multiply(c) + b.dz.Multiply(s), z + b.dz.Multiply(c) - b.dx.Multiply(s), a + b.da, b.size0, b.size1, b.flags, m_ControlGroup, m_ControlGroup2);
+			m_ClusterTags.push_back(tag);	
+		}
+	}
+
+	inline void RemoveClusterShapes()
+	{
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+		if (!cmpObstructionManager)
+			return; // error
+
+		for (size_t i = 0; i < m_ClusterTags.size(); ++i)
+		{
+			if (m_ClusterTags[i].valid())
+			{
+				cmpObstructionManager->RemoveShape(m_ClusterTags[i]);
+			}
+		}
+		m_ClusterTags.clear();
 	}
 
 };

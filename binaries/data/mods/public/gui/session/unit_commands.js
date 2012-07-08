@@ -8,6 +8,7 @@ const RESEARCH = "Research";
 const CONSTRUCTION = "Construction";
 const COMMAND = "Command";
 const STANCE = "Stance";
+const GATE = "Gate";
 
 // Constants
 const COMMANDS_PANEL_WIDTH = 228;
@@ -24,10 +25,10 @@ const BARTER_RESOURCES = ["food", "wood", "stone", "metal"];
 const BARTER_ACTIONS = ["Sell", "Buy"];
 
 // The number of currently visible buttons (used to optimise showing/hiding)
-var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Formation": 0, "Garrison": 0, "Training": 0, "Research": 0, "Barter": 0, "Trading": 0, "Construction": 0, "Command": 0, "Stance": 0};
+var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Formation": 0, "Garrison": 0, "Training": 0, "Research": 0, "Barter": 0, "Trading": 0, "Construction": 0, "Command": 0, "Stance": 0, "Gate": 0};
 
 // Unit panels are panels with row(s) of buttons
-var g_unitPanels = ["Selection", "Queue", "Formation", "Garrison", "Training", "Barter", "Trading", "Construction", "Research", "Stance", "Command"];
+var g_unitPanels = ["Selection", "Queue", "Formation", "Garrison", "Training", "Barter", "Trading", "Construction", "Research", "Stance", "Command", "Gate"];
 
 // Indexes of resources to sell and buy on barter panel
 var g_barterSell = 0;
@@ -203,6 +204,11 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				numberOfItems = 6;
 			break;
 
+		case GATE:
+			if(numberOfItems > 1)
+				numberOfItems = 1;
+			break;
+
 		default:
 			break;
 	}
@@ -319,6 +325,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 
 			case STANCE:
 			case FORMATION:
+			case GATE:
 				var tooltip = toTitleCase(item);
 				break;
 
@@ -492,12 +499,16 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			icon.sprite = "stretched:session/icons/" + item.icon;
 
 		}
+		else if (guiName == GATE)
+		{
+			icon.sprite = "stretched:session/icons/production.png";
+		}
 		else if (template.icon)
 		{
 			var grayscale = "";
 			button.enabled = true;
 			
-			if (guiName != SELECTION && template.requiredTechnology && !Engine.GuiInterfaceCall("IsTechnologyResearched", template.requiredTechnology))
+			if (0 && guiName != SELECTION && template.requiredTechnology && !Engine.GuiInterfaceCall("IsTechnologyResearched", template.requiredTechnology))
 			{
 				button.enabled = false;
 				var techName = getEntityName(GetTechnologyData(template.requiredTechnology));
@@ -791,6 +802,26 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		{
 			usedPanels["Trading"] = 1;
 			setupUnitTradingPanel(entState, selection);
+		}
+		
+		if(!entState.foundation && (entState.gate || hasClass(entState, "StoneWall") && !hasClass(entState, "Tower")))
+		{
+			if (entState.gate)
+			{
+				var action = entState.gate.locked ? "Unlock gate": "Lock gate";
+				setupUnitPanel(GATE, usedPanels, entState, [action],
+					function (item) { lockGate(!entState.gate.locked); } );
+			}
+			else // Wall
+			{ 
+				var templateData = GetTemplateData(entState.template);
+				// Only allow long walls section to be transformed to gates
+				if (templateData.wallPiece.length > 20)  //TODO : increase
+				{
+					setupUnitPanel(GATE, usedPanels, entState, ["Create a gate"],
+						function (item) { transformWallToGate(); } );
+				}
+			}
 		}
 		
 		supplementalDetailsPanel.hidden = false;
