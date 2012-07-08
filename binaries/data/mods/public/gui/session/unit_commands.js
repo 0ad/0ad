@@ -508,7 +508,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			var grayscale = "";
 			button.enabled = true;
 			
-			if (0 && guiName != SELECTION && template.requiredTechnology && !Engine.GuiInterfaceCall("IsTechnologyResearched", template.requiredTechnology))
+			if (guiName != SELECTION && template.requiredTechnology && !Engine.GuiInterfaceCall("IsTechnologyResearched", template.requiredTechnology))
 			{
 				button.enabled = false;
 				var techName = getEntityName(GetTechnologyData(template.requiredTechnology));
