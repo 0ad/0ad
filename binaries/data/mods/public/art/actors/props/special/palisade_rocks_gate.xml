@@ -5,7 +5,10 @@
     
   <group>
     <variant frequency="100" name="palisade rocks gate">
-      <animations/>
+      <animations> 
+        <animation file="mechanical/palisade_rocks_gate_closed.dae" name="gate_closed" speed="100"/>
+        <animation file="mechanical/palisade_rocks_gate_open.dae" name="gate_open" speed="100"/>
+      </animations> 
       <mesh>props/palisade_rocks_gate.dae</mesh>
       <texture>props/palisade_main.png</texture>
     </variant>

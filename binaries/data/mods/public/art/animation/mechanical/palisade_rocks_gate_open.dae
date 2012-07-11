@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.62.0 r44136</authoring_tool>
     </contributor>
-    <created>2012-07-11T15:57:47</created>
-    <modified>2012-07-11T15:57:47</modified>
+    <created>2012-07-11T16:05:50</created>
+    <modified>2012-07-11T16:05:50</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -128,6 +128,70 @@
       </sampler>
       <channel source="#gate_origin_pose_matrix-sampler" target="origin/transform"/>
     </animation>
+    <animation id="gate_door_right_pose_matrix">
+      <source id="gate_door_right_pose_matrix-input">
+        <float_array id="gate_door_right_pose_matrix-input-array" count="2">0 1.2</float_array>
+        <technique_common>
+          <accessor source="#gate_door_right_pose_matrix-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="gate_door_right_pose_matrix-output">
+        <float_array id="gate_door_right_pose_matrix-output-array" count="32">-0.08715569 0 -0.9961947 -5.903644 0 1 0 3.874592 0.9961947 0 -0.08715569 0.08077818 0 0 0 1 -0.08715569 0 -0.9961947 -5.903644 0 1 0 3.874592 0.9961947 0 -0.08715569 0.08077818 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#gate_door_right_pose_matrix-output-array" count="2" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="gate_door_right_pose_matrix-interpolation">
+        <Name_array id="gate_door_right_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#gate_door_right_pose_matrix-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="gate_door_right_pose_matrix-sampler">
+        <input semantic="INPUT" source="#gate_door_right_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#gate_door_right_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#gate_door_right_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#gate_door_right_pose_matrix-sampler" target="door_right/transform"/>
+    </animation>
+    <animation id="gate_door_left_pose_matrix">
+      <source id="gate_door_left_pose_matrix-input">
+        <float_array id="gate_door_left_pose_matrix-input-array" count="2">0 1.2</float_array>
+        <technique_common>
+          <accessor source="#gate_door_left_pose_matrix-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="gate_door_left_pose_matrix-output">
+        <float_array id="gate_door_left_pose_matrix-output-array" count="32">-0.08715569 0 0.9961947 5.908257 0 1 0 3.874592 -0.9961947 0 -0.08715569 0.08077549 0 0 0 1 -0.08715569 0 0.9961947 5.908257 0 1 0 3.874592 -0.9961947 0 -0.08715569 0.08077549 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#gate_door_left_pose_matrix-output-array" count="2" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="gate_door_left_pose_matrix-interpolation">
+        <Name_array id="gate_door_left_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#gate_door_left_pose_matrix-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="gate_door_left_pose_matrix-sampler">
+        <input semantic="INPUT" source="#gate_door_left_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#gate_door_left_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#gate_door_left_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#gate_door_left_pose_matrix-sampler" target="door_left/transform"/>
+    </animation>
   </library_animations>
   <library_controllers>
     <controller id="gate_Gate_closed-skin" name="gate">
@@ -181,15 +245,15 @@
         <node id="origin" name="origin" sid="origin" type="JOINT">
           <matrix sid="transform">1 0 0 0 0 7.54979e-8 -1 0 0 1 7.54979e-8 0 0 0 0 1</matrix>
           <node id="door_right" name="door_right" sid="door_right" type="JOINT">
-            <matrix sid="transform">1 0 0 -5.903644 0 1 0 3.874592 0 0 1 0.0807782 0 0 0 1</matrix>
+            <matrix sid="transform">-0.08715572 7.52106e-8 -0.9961947 -5.903644 -7.52106e-8 1 8.2078e-8 3.874592 0.9961947 8.2078e-8 -0.08715572 0.0807782 0 0 0 1</matrix>
             <node id="lock_right" name="lock_right" sid="lock_right" type="JOINT">
-              <matrix sid="transform">1 0 0 3.080173 0 1 0 0.06917667 0 0 1 -2.53597e-7 0 0 0 1</matrix>
+              <matrix sid="transform">1 -1.14434e-15 -2.22734e-9 3.080173 -2.96754e-9 1 -4.39071e-8 0.0691762 2.22734e-9 5.24961e-15 1 -2.39709e-7 0 0 0 1</matrix>
             </node>
           </node>
           <node id="door_left" name="door_left" sid="door_left" type="JOINT">
-            <matrix sid="transform">1 0 0 5.908257 0 1 0 3.874592 0 0 1 0.08077554 0 0 0 1</matrix>
+            <matrix sid="transform">-0.08715572 -7.52106e-8 0.9961947 5.908257 7.52106e-8 1 8.2078e-8 3.874592 -0.9961947 8.2078e-8 -0.08715572 0.08077554 0 0 0 1</matrix>
             <node id="lock_left" name="lock_left" sid="lock_left" type="JOINT">
-              <matrix sid="transform">1 0 0 -3.093425 0 1 0 0.06917667 0 0 1 -2.53597e-7 0 0 0 1</matrix>
+              <matrix sid="transform">1 2.56166e-16 2.22734e-9 -3.093424 1.48377e-9 1 1.57954e-8 0.06917632 5.19489e-9 5.20058e-15 1 -4.40958e-7 0 0 0 1</matrix>
             </node>
           </node>
           <node id="prop_flag_right" name="prop_flag_right" sid="prop_flag_right" type="JOINT">
