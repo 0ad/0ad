@@ -6,8 +6,10 @@
   <group>
     <variant frequency="100" name="palisade rocks gate">
       <animations> 
-        <animation file="mechanical/palisade_rocks_gate_closed.dae" name="gate_closed" speed="100"/>
-        <animation file="mechanical/palisade_rocks_gate_open.dae" name="gate_open" speed="100"/>
+        <animation file="mechanical/palisade_rocks_gate_closed.dae" name="gate_closed" speed="65"/>
+        <animation file="mechanical/palisade_rocks_gate_opening.dae" name="gate_opening" speed="65"/>
+        <animation file="mechanical/palisade_rocks_gate_open.dae" name="gate_open" speed="65"/>
+        <animation file="mechanical/palisade_rocks_gate_closing.dae" name="gate_closing" speed="65"/>
       </animations> 
       <mesh>props/palisade_rocks_gate.dae</mesh>
       <texture>props/palisade_main.png</texture>
