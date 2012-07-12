@@ -27,7 +27,11 @@
     <History>A cheap, quick wooden gate</History>
   </Identity>
   <Obstruction>
-    <Static width="14" depth="2.0"/>
+    <Obstructions>
+      <Right width="2" depth="2" x="6" z="0"/>
+      <Left width="2" depth="2" x="-6" z="0"/>
+      <Door width="10" depth="2" x="0" z="0"/>
+    </Obstructions>
   </Obstruction>
   <StatusBars>
     <HeightOffset>9.0</HeightOffset>

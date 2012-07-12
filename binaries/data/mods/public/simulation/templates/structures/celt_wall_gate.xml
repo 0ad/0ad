@@ -20,20 +20,11 @@
     <History>The Romans called this wall 'Murus Gallicus'. Translated, it means 'Gaulish wall'. It was extremely resistant to assault by battering ram. Julius Caesar described a type of wood and stone wall, known as a Murus Gallicus, in his account of the Gallic Wars. These walls were made of a stone wall filled with rubble, with wooden logs inside for stability. Caesar noted how the flexibility of the wood added to the strength of the fort in case of battering ram attack.</History>
   </Identity>
   <Obstruction>
-    <Cluster>
-      <Right width="5" depth="8">
-        <PosX>10</PosX>
-        <PosZ>0</PosZ>
-      </Right>
-      <Left width="5" depth="8">
-        <PosX>-10</PosX>
-        <PosZ>0</PosZ>
-      </Left>
-      <Door width="15.0" depth="8">
-        <PosX>0</PosX>
-        <PosZ>0</PosZ>
-      </Door>
-    </Cluster>
+    <Obstructions>
+      <Right width="5" depth="8" x="10" z="0"/>
+      <Left width="5" depth="8" x="-10" z="0"/>
+      <Door width="15" depth="8" x="0" z="0"/>
+    </Obstructions>
   </Obstruction>
   <VisualActor>
     <Actor>structures/celts/wall_gate.xml</Actor>

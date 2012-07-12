@@ -10,20 +10,11 @@
     <History>Rome had a number of gates piercing its city walls. One of the most famous of these was the Appian Gate.</History>
   </Identity>
   <Obstruction>
-    <Cluster>
-      <Right width="13" depth="7">
-        <PosX>12</PosX>
-        <PosZ>0</PosZ>
-      </Right>
-      <Left width="13" depth="7">
-        <PosX>-12</PosX>
-        <PosZ>0</PosZ>
-      </Left>
-      <Door width="11.0" depth="7">
-        <PosX>0</PosX>
-        <PosZ>0</PosZ>
-      </Door>
-    </Cluster>
+    <Obstructions>
+      <Right width="13" depth="7" x="12" z="0"/>
+      <Left width="13" depth="7" x="-12" z="0"/>
+      <Door width="11" depth="7" x="0" z="0"/>
+    </Obstructions>
   </Obstruction>
   <VisualActor>
     <Actor>structures/romans/wall_gate.xml</Actor>

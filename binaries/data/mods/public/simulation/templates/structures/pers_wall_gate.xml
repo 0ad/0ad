@@ -16,20 +16,11 @@
     <History>Persepolis, the Persian royal capital, was constructed on an immense man-made terrace with strong defensive walls.</History>
   </Identity>
   <Obstruction>
-    <Cluster>
-      <Right width="11" depth="7.0">
-        <PosX>13</PosX>
-        <PosZ>0</PosZ>
-      </Right>
-      <Left width="11" depth="7.0">
-        <PosX>-13</PosX>
-        <PosZ>0</PosZ>
-      </Left>
-      <Door width="15.0" depth="7.0">
-        <PosX>0</PosX>
-        <PosZ>0</PosZ>
-      </Door>
-    </Cluster>
+    <Obstructions>
+      <Right width="11" depth="7" x="13" z="0"/>
+      <Left width="11" depth="7" x="-13" z="0"/>
+      <Door width="15" depth="7" x="0" z="0"/>
+    </Obstructions>
   </Obstruction>
   <VisualActor>
     <Actor>structures/persians/wall_gate.xml</Actor>
