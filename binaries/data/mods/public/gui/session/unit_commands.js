@@ -814,12 +814,13 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			}
 			else // Wall
 			{ 
-				var templateData = GetTemplateData(entState.template);
 				// Only allow long walls section to be transformed to gates
-				if (templateData.wallPiece.length > 20)  //TODO : increase
+				var longPos = entState.template.indexOf("long");
+				if (longPos != -1)
 				{
-					setupUnitPanel(GATE, usedPanels, entState, ["Create a gate"],
-						function (item) { transformWallToGate(); } );
+					var template = entState.template.substr(0, longPos) + "gate";
+					setupUnitPanel(GATE, usedPanels, entState, ["Convert to gate"],
+						function (item) { transformWallToGate(template); } );
 				}
 			}
 		}
