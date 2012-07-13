@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Constants
-const DEFAULT_NETWORKED_MAP = "Oasis XI";
-const DEFAULT_OFFLINE_MAP = "Punjab III";
+const DEFAULT_NETWORKED_MAP = "Oasis X";
+const DEFAULT_OFFLINE_MAP = "Oasis X";
 
 // TODO: Move these somewhere like simulation\data\game_types.json, Atlas needs them too
 const VICTORY_TEXT = ["Conquest", "None"];
@@ -195,7 +195,8 @@ function initMain()
 		getGUIObjectByName("mapTypeText").hidden = false;
 		getGUIObjectByName("mapFilterSelection").hidden = true;
 		getGUIObjectByName("mapFilterText").hidden = false;
-		getGUIObjectByName("mapSelection").enabled = false;
+		getGUIObjectByName("mapSelectionText").hidden = false;
+		getGUIObjectByName("mapSelection").hidden = true;
 
 		// Disable player and game options controls
 		// TODO: Shouldn't players be able to choose their own assignment?
@@ -401,21 +402,15 @@ function initCivNameList()
 
 	// Extract name/code, and skip civs that are explicitly disabled
 	// (intended for unusable incomplete civs)
-	var civList = [
-		{ "name": civ.Name, "code": civ.Code }
+	var civList = [ { "name": civ.Name, "code": civ.Code }
 		for each (civ in g_CivData)
-			if (civ.SelectableInGameSetup !== false)
-	];
+		if (civ.SelectableInGameSetup !== false) ];
 
 	// Alphabetically sort the list, ignoring case
 	civList.sort(sortNameIgnoreCase);
 
 	var civListNames = [ civ.name for each (civ in civList) ];
 	var civListCodes = [ civ.code for each (civ in civList) ];
-
-	//	Add random civ to beginning of list
-	civListNames.unshift("[color=\"255 160 10 255\"]Random");
-	civListCodes.unshift("random");
 
 	// Update the dropdowns
 	for (var i = 0; i < MAX_PLAYERS; ++i)
@@ -736,17 +731,6 @@ function launchGame()
 		return;
 	}
 
-	var numPlayers = g_GameAttributes.settings.PlayerData.length;
-
-	// Assign random civilizations to players with that choice
-	//	(this is synchronized because we're the host)
-	var civs = [ civ.Code for each (civ in g_CivData) if (civ.SelectableInGameSetup !== false) ];
-	for (var i = 0; i < numPlayers; ++i)
-	{
-		if (g_GameAttributes.settings.PlayerData[i].Civ == "random")
-			g_GameAttributes.settings.PlayerData[i].Civ = civs[Math.floor(Math.random()*civs.length)];
-	}
-
 	if (g_IsNetworked)
 	{
 		Engine.SetNetworkGameAttributes(g_GameAttributes);
@@ -755,6 +739,7 @@ function launchGame()
 	else
 	{
 		// Find the player ID which the user has been assigned to
+		var numPlayers = g_GameAttributes.settings.PlayerData.length;
 		var playerID = -1;
 		for (var i = 0; i < numPlayers; ++i)
 		{
@@ -797,7 +782,7 @@ function onGameAttributesChange()
 		getGUIObjectByName("mapTypeText").caption = mapTypeSelection.list[idx];
 		var mapSelectionBox = getGUIObjectByName("mapSelection");
 		mapSelectionBox.selected = mapSelectionBox.list_data.indexOf(mapName);
-
+		getGUIObjectByName("mapSelectionText").caption = mapName;
 		initMapNameList();
 	}
 
@@ -944,7 +929,7 @@ function onGameAttributesChange()
 				pTeam.hidden = true;
 
 				// Set text values
-				pCivText.caption = (civ != "random" ? g_CivData[civ].Name : "Random");
+				pCivText.caption = g_CivData[civ].Name;
 				pTeamText.caption = (team !== undefined && team >= 0) ? team+1 : "-";
 			}
 			else if (g_GameAttributes.mapType == "random")
