@@ -782,7 +782,7 @@ function onGameAttributesChange()
 		getGUIObjectByName("mapTypeText").caption = mapTypeSelection.list[idx];
 		var mapSelectionBox = getGUIObjectByName("mapSelection");
 		mapSelectionBox.selected = mapSelectionBox.list_data.indexOf(mapName);
-		getGUIObjectByName("mapSelectionText").caption = mapName;
+		getGUIObjectByName("mapSelectionText").caption = getMapDisplayName(mapName);
 		initMapNameList();
 	}
 
