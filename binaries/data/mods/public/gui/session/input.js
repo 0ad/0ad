@@ -1638,12 +1638,13 @@ function lockGate(lock)
 }
 
 // Transform a wall to a gate
-function transformWallToGate()
+function transformWallToGate(template)
 {
 	var selection = g_Selection.toList();
 	Engine.PostNetworkCommand({
 		"type": "wall-to-gate",
 		"entities": selection,
+		"template": template,
 	});
 }
 

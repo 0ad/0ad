@@ -120,16 +120,20 @@ public:
 						"<ref name='positiveDecimal'/>"
 					"</attribute>"
 				"</element>"
-				"<element name='Cluster'>"
+				"<element name='Obstructions'>"
 					"<zeroOrMore>"
 						"<element>"
 							"<anyName/>"
-							"<element name='PosX'>"
-								"<data type='decimal'/>"
-							"</element>"
-							"<element name='PosZ'>"
-								"<data type='decimal'/>"
-							"</element>"
+							"<optional>"
+								"<attribute name='x'>"
+									"<data type='decimal'/>"
+								"</attribute>"
+							"</optional>"
+							"<optional>"
+								"<attribute name='z'>"
+									"<data type='decimal'/>"
+								"</attribute>"
+							"</optional>"
 							"<attribute name='width'>"
 								"<ref name='positiveDecimal'/>"
 							"</attribute>"
@@ -197,14 +201,14 @@ public:
 			m_Type = CLUSTER;
 			CFixedVector2D max = CFixedVector2D(fixed::FromInt(0), fixed::FromInt(0));
 			CFixedVector2D min = CFixedVector2D(fixed::FromInt(0), fixed::FromInt(0));
-			const CParamNode::ChildrenMap& clusterMap = paramNode.GetChild("Cluster").GetChildren();
+			const CParamNode::ChildrenMap& clusterMap = paramNode.GetChild("Obstructions").GetChildren();
 			for(CParamNode::ChildrenMap::const_iterator it = clusterMap.begin(); it != clusterMap.end(); ++it)
 			{
 				Shape b;
 				b.size0 = it->second.GetChild("@width").ToFixed();
 				b.size1 = it->second.GetChild("@depth").ToFixed();
-				b.dx = it->second.GetChild("PosX").ToFixed();
-				b.dz = it->second.GetChild("PosZ").ToFixed();
+				b.dx = it->second.GetChild("@x").ToFixed();
+				b.dz = it->second.GetChild("@z").ToFixed();
 				b.da = entity_angle_t::FromInt(0);
 				b.flags = m_Flags;
 				m_Shapes.push_back(b);

@@ -23,7 +23,11 @@
     <Icon>structures/gate.png</Icon>
   </Identity>
   <Obstruction>
-    <Static width="36.0" depth="13.0"/>
+    <Obstructions>
+      <Right width="11" depth="13" x="12.5" z="0"/>
+      <Left width="11" depth="13" x="-12.5" z="0"/>
+      <Door width="14" depth="13" x="0" z="0"/>
+    </Obstructions>
   </Obstruction>
   <TerritoryInfluence>
     <Root>true</Root>

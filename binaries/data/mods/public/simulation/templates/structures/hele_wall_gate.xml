@@ -13,20 +13,11 @@
     <History>(Insert history)</History>
   </Identity>
   <Obstruction>
-    <Cluster>
-      <Right width="12" depth="6.5">
-        <PosX>13</PosX>
-        <PosZ>0</PosZ>
-      </Right>
-      <Left width="12" depth="6.5">
-        <PosX>-13</PosX>
-        <PosZ>0</PosZ>
-      </Left>
-      <Door width="14.0" depth="6.5">
-        <PosX>0</PosX>
-        <PosZ>0</PosZ>
-      </Door>
-    </Cluster>
+    <Obstructions>
+      <Right width="12" depth="6.5" x="13" z="0"/>
+      <Left width="12" depth="6.5" x="-13" z="0"/>
+      <Door width="14.0" depth="6.5" x="0" z="0"/>
+    </Obstructions>
   </Obstruction>
   <VisualActor>
     <Actor>structures/hellenes/wall_gate.xml</Actor>

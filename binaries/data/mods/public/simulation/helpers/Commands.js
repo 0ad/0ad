@@ -355,7 +355,7 @@ function ProcessCommand(player, cmd)
 		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 		for each (var ent in entities)
 		{
-			TryTransformWallToGate(ent, cmpPlayer);
+			TryTransformWallToGate(ent, cmpPlayer, cmd.template);
 		}
 		break;
 
@@ -1097,13 +1097,12 @@ function FilterEntityList(entities, player, controlAll)
 /**
  * Try to transform a wall to a gate 
  */
-function TryTransformWallToGate(ent, cmpPlayer)
+function TryTransformWallToGate(ent, cmpPlayer, template)
 {
 	var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
 	if (!cmpIdentity)
 		return;
 	var civ = cmpIdentity.GetCiv();
-	var template = "structures/" + civ + "_wall_gate";
 	var gate = Engine.AddEntity(template);
 
 	var cmpCost = Engine.QueryInterface(gate, IID_Cost);

@@ -39,20 +39,11 @@
     <metal>0</metal>
   </Loot>
   <Obstruction>
-    <Cluster>
-      <Right width="5" depth="5">
-        <PosX>10</PosX>
-        <PosZ>0</PosZ>
-      </Right>
-      <Left width="5" depth="5">
-        <PosX>-10</PosX>
-        <PosZ>0</PosZ>
-      </Left>
-      <Door width="20.0" depth="6.5">
-        <PosX>0</PosX>
-        <PosZ>0</PosZ>
-      </Door>
-    </Cluster>
+    <Obstructions>
+      <Right width="5" depth="5" x="10" z="0"/>
+      <Left width="5" depth="5" x="-10" z="0"/>
+      <Door width="20.0" depth="6.5" x="0" z="0"/>
+    </Obstructions>
   </Obstruction>
   <RallyPoint disable=""/>
   <Sound>
