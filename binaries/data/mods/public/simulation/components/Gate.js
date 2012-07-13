@@ -1,7 +1,7 @@
 function Gate() {}
 
 Gate.prototype.Schema =
-	"<element name='Radius'>" +
+	"<element name='PassRange'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>";
 
@@ -10,7 +10,9 @@ Gate.prototype.Schema =
  */
 Gate.prototype.Init = function()
 {
-		this.allyUnits = [];
+	this.units = [];
+	this.opened = false;
+	this.locked = false;
 };
 
 Gate.prototype.OnOwnershipChanged = function(msg)
@@ -18,8 +20,8 @@ Gate.prototype.OnOwnershipChanged = function(msg)
 	if (msg.to != -1)
 	{
 		this.SetupRangeQuery(msg.to);
-		this.UnlockGate();
-		this.CloseGate();
+		if (!this.locked)
+			this.UnlockGate();
 	}
 };
 
@@ -30,8 +32,8 @@ Gate.prototype.OnDestroy = function()
 {
 	// Clean up range query
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	if (this.allyUnitsQuery)
-		cmpRangeManager.DestroyActiveQuery(this.allyUnitsQuery);
+	if (this.unitsQuery)
+		cmpRangeManager.DestroyActiveQuery(this.unitsQuery);
 };
 
 /**
@@ -41,25 +43,23 @@ Gate.prototype.SetupRangeQuery = function(owner)
 {
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	if (this.allyUnitsQuery)
-		cmpRangeManager.DestroyActiveQuery(this.allyUnitsQuery);
-	var allyPlayers = []
+	if (this.unitsQuery)
+		cmpRangeManager.DestroyActiveQuery(this.unitsQuery);
+	var players = []
 	
 	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(owner), IID_Player);
 	var numPlayers = cmpPlayerManager.GetNumPlayers();
 		
 	for (var i = 1; i < numPlayers; ++i)
-	{	// Exclude gaia, allies, and self
-		// TODO: How to handle neutral players - Special query to attack military only?
-		if (cmpPlayer.IsAlly(i))
-			allyPlayers.push(i);
+	{
+		players.push(i);
 	}
 	
-	if (this.GetRadius() > 0)
+	if (this.GetPassRange() > 0)
 	{
-		var range = this.GetRadius();
-		this.allyUnitsQuery = cmpRangeManager.CreateActiveQuery(this.entity, 0, range, allyPlayers, 0, cmpRangeManager.GetEntityFlagMask("normal"));
-		cmpRangeManager.EnableActiveQuery(this.allyUnitsQuery);
+		var range = this.GetPassRange();
+		this.unitsQuery = cmpRangeManager.CreateActiveQuery(this.entity, 0, range, players, 0, cmpRangeManager.GetEntityFlagMask("normal"));
+		cmpRangeManager.EnableActiveQuery(this.unitsQuery);
 	}
 };
 
@@ -68,7 +68,7 @@ Gate.prototype.SetupRangeQuery = function(owner)
  */
 Gate.prototype.OnRangeUpdate = function(msg)
 {
-	if (msg.tag != this.allyUnitsQuery)
+	if (msg.tag != this.unitsQuery)
 		return;
 
 	if (msg.added.length > 0)
@@ -80,7 +80,7 @@ Gate.prototype.OnRangeUpdate = function(msg)
 			{
 				var classes = cmpIdentity.GetClassesList();
 				if(classes.indexOf("Unit") != -1)
-				this.allyUnits.push(entity);
+					this.units.push(entity);
 			}
 		}
 	}
@@ -88,38 +88,44 @@ Gate.prototype.OnRangeUpdate = function(msg)
 	{
 		for each (var entity in msg.removed)
 		{
-			this.allyUnits.splice(this.allyUnits.indexOf(entity), 1);
+			this.units.splice(this.units.indexOf(entity), 1);
 		}
 	}
 
-	this.ManeuverGate();
+	this.OperateGate();
 };
 
 /**
- * Get the range query radius
+ * Get the range in which units are detected
  */
-Gate.prototype.GetRadius = function()
+Gate.prototype.GetPassRange = function()
 {
-	return +this.template.Radius;
+	return +this.template.PassRange;
 };
 
 /**
  * Open or close the gate
  */
-Gate.prototype.ManeuverGate = function()
+Gate.prototype.OperateGate = function()
 {
 	if (this.opened == true )
 	{
-		if (this.allyUnits.length == 0)
+		// If no units are in range, close the gate
+		if (this.units.length == 0)
 		{
 			this.CloseGate();
 		}
 	}
 	else
 	{
-		if (this.allyUnits.length > 0)
+		// If one units in range is owned by an ally, open the gate
+		for each (var ent in this.units)
 		{
-			this.OpenGate();
+			if (IsOwnedByAllyOfEntity(this.entity, ent))
+			{
+				this.OpenGate();
+				break;
+			}
 		}
 	}
 };
@@ -131,12 +137,16 @@ Gate.prototype.IsLocked = function()
 
 Gate.prototype.LockGate = function()
 {
-	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
-	if (!cmpObstruction)
-		return;
-	cmpObstruction.SetDisableBlockMovementPathfinding(false, false, 0);
 	this.locked = true;
-	this.opened = false;
+	// If the door is closed, enable 'block pathfinding'
+	// Else 'block pathfinding' will be enabled the next time the gate close
+	if (!this.opened)
+	{
+		var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
+		if (!cmpObstruction)
+			return;
+		cmpObstruction.SetDisableBlockMovementPathfinding(false, false, 0);
+	}
 };
 
 Gate.prototype.UnlockGate = function()
@@ -144,32 +154,43 @@ Gate.prototype.UnlockGate = function()
 	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
 	if (!cmpObstruction)
 		return;
+
+	// Disable 'block pathfinding'
 	cmpObstruction.SetDisableBlockMovementPathfinding(false, true, 0);
 	this.locked = false;
-	this.opened = false;
-	if (this.allyUnits.length > 0)
-		this.OpenGate();
+
+	// If the gate is closed, open it if necessary
+	if (!this.opened)
+		this.OperateGate();
 };
 
 Gate.prototype.OpenGate = function()
 {
+	// Do not open the gate if it has been locked
 	if (this.locked)
 		return;
+
 	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
 	if (!cmpObstruction)
 		return;
+
+	// Disable 'block movement'
 	cmpObstruction.SetDisableBlockMovementPathfinding(true, true, 0);
 	this.opened = true;
 };
 
 Gate.prototype.CloseGate = function()
 {
-	if (this.locked)
-		return;
 	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
 	if (!cmpObstruction)
 		return;
-	cmpObstruction.SetDisableBlockMovementPathfinding(false, true, 0);
+
+	// If we ordered the gate to be locked, enable 'block movement' and 'block pathfinding'
+	if (this.locked)
+		cmpObstruction.SetDisableBlockMovementPathfinding(false, false, 0);
+	// Else just enable 'block movement'
+	else
+		cmpObstruction.SetDisableBlockMovementPathfinding(false, true, 0);
 	this.opened = false;
 };
 
