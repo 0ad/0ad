@@ -1,12 +1,16 @@
 function Gate() {}
 
 Gate.prototype.Schema =
-	"<element name='PassRange'>" +
+	"<a:help>Controls behavior of wall gates</a:help>" +
+	"<a:example>" +
+		"<PassRange>20</PassRange>" +
+	"</a:example>" +
+	"<element name='PassRange' a:help='Units must be within this distance (in meters) of the gate for it to open'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>";
 
 /**
- * Initialize Gate Component
+ * Initialize Gate component
  */
 Gate.prototype.Init = function()
 {
@@ -20,8 +24,9 @@ Gate.prototype.OnOwnershipChanged = function(msg)
 	if (msg.to != -1)
 	{
 		this.SetupRangeQuery(msg.to);
+		// Set the initial state, but don't play unlocking sound
 		if (!this.locked)
-			this.UnlockGate();
+			this.UnlockGate(true);
 	}
 };
 
@@ -37,7 +42,7 @@ Gate.prototype.OnDestroy = function()
 };
 
 /**
- * Setup the Range Query to detect units coming in & out of range
+ * Setup the range query to detect units coming in & out of range
  */
 Gate.prototype.SetupRangeQuery = function(owner)
 {
@@ -46,19 +51,18 @@ Gate.prototype.SetupRangeQuery = function(owner)
 	if (this.unitsQuery)
 		cmpRangeManager.DestroyActiveQuery(this.unitsQuery);
 	var players = []
-	
-	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(owner), IID_Player);
+
 	var numPlayers = cmpPlayerManager.GetNumPlayers();
-		
+
+	// Ignore gaia units
 	for (var i = 1; i < numPlayers; ++i)
-	{
 		players.push(i);
-	}
-	
-	if (this.GetPassRange() > 0)
+
+	var range = this.GetPassRange();
+	if (range > 0)
 	{
-		var range = this.GetPassRange();
-		this.unitsQuery = cmpRangeManager.CreateActiveQuery(this.entity, 0, range, players, 0, cmpRangeManager.GetEntityFlagMask("normal"));
+		// Only find entities with IID_UnitAI interface
+		this.unitsQuery = cmpRangeManager.CreateActiveQuery(this.entity, 0, range, players, IID_UnitAI, cmpRangeManager.GetEntityFlagMask("normal"));
 		cmpRangeManager.EnableActiveQuery(this.unitsQuery);
 	}
 };
@@ -72,25 +76,12 @@ Gate.prototype.OnRangeUpdate = function(msg)
 		return;
 
 	if (msg.added.length > 0)
-	{
 		for each (var entity in msg.added)
-		{
-			var cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
-			if(cmpIdentity)
-			{
-				var classes = cmpIdentity.GetClassesList();
-				if(classes.indexOf("Unit") != -1)
-					this.units.push(entity);
-			}
-		}
-	}
+			this.units.push(entity);
+
 	if (msg.removed.length > 0)
-	{
 		for each (var entity in msg.removed)
-		{
 			this.units.splice(this.units.indexOf(entity), 1);
-		}
-	}
 
 	this.OperateGate();
 };
@@ -104,7 +95,9 @@ Gate.prototype.GetPassRange = function()
 };
 
 /**
- * Open or close the gate
+ * Attempt to open or close the gate.
+ * An ally unit must be in range to open the gate, but there must be
+ *	no units (including enemies) in range to close it again.
  */
 Gate.prototype.OperateGate = function()
 {
@@ -112,9 +105,7 @@ Gate.prototype.OperateGate = function()
 	{
 		// If no units are in range, close the gate
 		if (this.units.length == 0)
-		{
 			this.CloseGate();
-		}
 	}
 	else
 	{
@@ -135,6 +126,9 @@ Gate.prototype.IsLocked = function()
 	return this.locked;
 };
 
+/**
+ * Lock the gate, with sound. It will close at the next opportunity.
+ */
 Gate.prototype.LockGate = function()
 {
 	this.locked = true;
@@ -147,9 +141,16 @@ Gate.prototype.LockGate = function()
 			return;
 		cmpObstruction.SetDisableBlockMovementPathfinding(false, false, 0);
 	}
+
+	// TODO: Possibly move the lock/unlock sounds to UI? Needs testing
+	PlaySound("gate_locked", this.entity);
 };
 
-Gate.prototype.UnlockGate = function()
+/**
+ * Unlock the gate, with sound. May open the gate if allied units are within range.
+ * If quiet is true, no sound will be played (used for initial setup).
+ */
+Gate.prototype.UnlockGate = function(quiet)
 {
 	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
 	if (!cmpObstruction)
@@ -159,11 +160,18 @@ Gate.prototype.UnlockGate = function()
 	cmpObstruction.SetDisableBlockMovementPathfinding(false, true, 0);
 	this.locked = false;
 
+	// TODO: Possibly move the lock/unlock sounds to UI? Needs testing
+	if (!quiet)
+		PlaySound("gate_unlocked", this.entity);
+
 	// If the gate is closed, open it if necessary
 	if (!this.opened)
 		this.OperateGate();
 };
 
+/**
+ * Open the gate if unlocked, with sound and animation.
+ */
 Gate.prototype.OpenGate = function()
 {
 	// Do not open the gate if it has been locked
@@ -177,8 +185,16 @@ Gate.prototype.OpenGate = function()
 	// Disable 'block movement'
 	cmpObstruction.SetDisableBlockMovementPathfinding(true, true, 0);
 	this.opened = true;
+
+	PlaySound("gate_opening", this.entity);
+	var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	if (cmpVisual)
+		cmpVisual.SelectAnimation("gate_opening", true, 1.0, "");
 };
 
+/**
+ * Close the gate, with sound and animation.
+ */
 Gate.prototype.CloseGate = function()
 {
 	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
@@ -192,6 +208,11 @@ Gate.prototype.CloseGate = function()
 	else
 		cmpObstruction.SetDisableBlockMovementPathfinding(false, true, 0);
 	this.opened = false;
+
+	PlaySound("gate_closing", this.entity);
+	var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	if (cmpVisual)
+		cmpVisual.SelectAnimation("gate_closing", true, 1.0, "");
 };
 
 Engine.RegisterComponentType(IID_Gate, "Gate", Gate);

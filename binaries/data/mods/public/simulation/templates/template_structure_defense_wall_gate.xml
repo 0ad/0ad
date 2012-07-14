@@ -5,9 +5,6 @@
     <Pierce>40.0</Pierce>
     <Crush>10.0</Crush>
   </Armour>
-    <Gate>
-      <PassRange>20</PassRange>
-    </Gate>
   <BuildRestrictions>
     <Category>Wall</Category>
   </BuildRestrictions>
@@ -21,6 +18,9 @@
     <Square width="6.0" depth="6.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <Gate>
+    <PassRange>20</PassRange>
+  </Gate>
   <Health>
     <Max>3000</Max>
   </Health>
@@ -29,7 +29,7 @@
     <Tooltip>Allow units access through a city wall. (Currently not a working feature).</Tooltip>
     <Classes datatype="tokens">-ConquestCritical Defensive Wall Gates</Classes>
     <Icon>structures/gate.png</Icon>
-	<RequiredTechnology>phase_town</RequiredTechnology>
+    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>100</xp>
@@ -51,6 +51,10 @@
       <select>interface/select/building/sel_gate.xml</select>
       <constructed>interface/complete/building/complete_gate.xml</constructed>
       <death>attack/destruction/building_collapse_large.xml</death>
+      <gate_closing>interface/select/building/sel_gate.xml</gate_closing>
+      <gate_opening>interface/select/building/sel_gate.xml</gate_opening>
+      <gate_locked>interface/select/building/sel_gate.xml</gate_locked>
+      <gate_unlocked>interface/select/building/sel_gate.xml</gate_unlocked>
     </SoundGroups>
   </Sound>
   <TerritoryInfluence>
