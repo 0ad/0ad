@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.62.0 r44136</authoring_tool>
     </contributor>
-    <created>2012-07-12T23:18:39</created>
-    <modified>2012-07-12T23:18:39</modified>
+    <created>2012-07-14T10:00:43</created>
+    <modified>2012-07-14T10:00:43</modified>
     <unit name="inch" meter="0.0254"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -98,25 +98,25 @@
   <library_animations>
     <animation id="gate_origin_pose_matrix">
       <source id="gate_origin_pose_matrix-input">
-        <float_array id="gate_origin_pose_matrix-input-array" count="3">0 0.25 1.25</float_array>
+        <float_array id="gate_origin_pose_matrix-input-array" count="5">0 0.08333331 1.041667 1.208333 1.25</float_array>
         <technique_common>
-          <accessor source="#gate_origin_pose_matrix-input-array" count="3" stride="1">
+          <accessor source="#gate_origin_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="gate_origin_pose_matrix-output">
-        <float_array id="gate_origin_pose_matrix-output-array" count="48">1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1</float_array>
+        <float_array id="gate_origin_pose_matrix-output-array" count="80">1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 -1 0 0 1 0 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#gate_origin_pose_matrix-output-array" count="3" stride="16">
+          <accessor source="#gate_origin_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="gate_origin_pose_matrix-interpolation">
-        <Name_array id="gate_origin_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="gate_origin_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#gate_origin_pose_matrix-interpolation-array" count="3" stride="1">
+          <accessor source="#gate_origin_pose_matrix-interpolation-array" count="5" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -130,25 +130,25 @@
     </animation>
     <animation id="gate_door_left_pose_matrix">
       <source id="gate_door_left_pose_matrix-input">
-        <float_array id="gate_door_left_pose_matrix-input-array" count="3">0 0.25 1.25</float_array>
+        <float_array id="gate_door_left_pose_matrix-input-array" count="5">0 0.08333331 1.041667 1.208333 1.25</float_array>
         <technique_common>
-          <accessor source="#gate_door_left_pose_matrix-input-array" count="3" stride="1">
+          <accessor source="#gate_door_left_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="gate_door_left_pose_matrix-output">
-        <float_array id="gate_door_left_pose_matrix-output-array" count="48">0 0 1 5.244834 0 1 0 4.621359 -1 0 0 -2.153937 0 0 0 1 1 0 0 5.244834 0 1 0 4.621359 0 0 1 -2.153937 0 0 0 1 1 0 0 5.244834 0 1 0 4.621359 0 0 1 -2.153937 0 0 0 1</float_array>
+        <float_array id="gate_door_left_pose_matrix-output-array" count="80">0 0 1 5.244834 0 1 0 4.621359 -1 0 0 -2.153937 0 0 0 1 0 0 1 5.244834 0 1 0 4.621359 -1 0 0 -2.153937 0 0 0 1 1 0 0 5.244834 0 1 0 4.621359 0 0 1 -2.153937 0 0 0 1 1 0 0 5.244834 0 1 0 4.621359 0 0 1 -2.153937 0 0 0 1 1 0 0 5.244834 0 1 0 4.621359 0 0 1 -2.153937 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#gate_door_left_pose_matrix-output-array" count="3" stride="16">
+          <accessor source="#gate_door_left_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="gate_door_left_pose_matrix-interpolation">
-        <Name_array id="gate_door_left_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="gate_door_left_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#gate_door_left_pose_matrix-interpolation-array" count="3" stride="1">
+          <accessor source="#gate_door_left_pose_matrix-interpolation-array" count="5" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -162,25 +162,25 @@
     </animation>
     <animation id="gate_lock_left_pose_matrix">
       <source id="gate_lock_left_pose_matrix-input">
-        <float_array id="gate_lock_left_pose_matrix-input-array" count="3">0 0.25 1.25</float_array>
+        <float_array id="gate_lock_left_pose_matrix-input-array" count="5">0 0.08333331 1.041667 1.208333 1.25</float_array>
         <technique_common>
-          <accessor source="#gate_lock_left_pose_matrix-input-array" count="3" stride="1">
+          <accessor source="#gate_lock_left_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="gate_lock_left_pose_matrix-output">
-        <float_array id="gate_lock_left_pose_matrix-output-array" count="48">0.3159327 0.9487816 0 -2.721954 -0.9487816 0.3159327 0 -0.4046763 0 0 1 0 0 0 0 1 0.3159327 0.9487816 0 -2.721954 -0.9487816 0.3159327 0 -0.4046763 0 0 1 0 0 0 0 1 1 0 0 -2.721954 0 1 0 -0.4046763 0 0 1 0 0 0 0 1</float_array>
+        <float_array id="gate_lock_left_pose_matrix-output-array" count="80">0.3159327 0.9487816 0 -2.721954 -0.9487816 0.3159327 0 -0.4046763 0 0 1 0 0 0 0 1 0.3159327 0.9487816 0 -2.721954 -0.9487816 0.3159327 0 -0.4046763 0 0 1 0 0 0 0 1 0.3159327 0.9487816 0 -2.721954 -0.9487816 0.3159327 0 -0.4046763 0 0 1 0 0 0 0 1 1 0 0 -2.721954 0 1 0 -0.4046763 0 0 1 0 0 0 0 1 1 0 0 -2.721954 0 1 0 -0.4046763 0 0 1 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#gate_lock_left_pose_matrix-output-array" count="3" stride="16">
+          <accessor source="#gate_lock_left_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="gate_lock_left_pose_matrix-interpolation">
-        <Name_array id="gate_lock_left_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="gate_lock_left_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#gate_lock_left_pose_matrix-interpolation-array" count="3" stride="1">
+          <accessor source="#gate_lock_left_pose_matrix-interpolation-array" count="5" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -194,25 +194,25 @@
     </animation>
     <animation id="gate_door_right_pose_matrix">
       <source id="gate_door_right_pose_matrix-input">
-        <float_array id="gate_door_right_pose_matrix-input-array" count="3">0 0.25 1.25</float_array>
+        <float_array id="gate_door_right_pose_matrix-input-array" count="5">0 0.08333331 1.041667 1.208333 1.25</float_array>
         <technique_common>
-          <accessor source="#gate_door_right_pose_matrix-input-array" count="3" stride="1">
+          <accessor source="#gate_door_right_pose_matrix-input-array" count="5" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="gate_door_right_pose_matrix-output">
-        <float_array id="gate_door_right_pose_matrix-output-array" count="48">0 0 -1 -5.249735 0 1 0 4.621359 1 0 0 -2.153937 0 0 0 1 1 0 0 -5.249735 0 1 0 4.621359 0 0 1 -2.153937 0 0 0 1 1 0 0 -5.249735 0 1 0 4.621359 0 0 1 -2.153937 0 0 0 1</float_array>
+        <float_array id="gate_door_right_pose_matrix-output-array" count="80">0 0 -1 -5.249735 0 1 0 4.621359 1 0 0 -2.153937 0 0 0 1 0 0 -1 -5.249735 0 1 0 4.621359 1 0 0 -2.153937 0 0 0 1 1 0 0 -5.249735 0 1 0 4.621359 0 0 1 -2.153937 0 0 0 1 1 0 0 -5.249735 0 1 0 4.621359 0 0 1 -2.153937 0 0 0 1 1 0 0 -5.249735 0 1 0 4.621359 0 0 1 -2.153937 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#gate_door_right_pose_matrix-output-array" count="3" stride="16">
+          <accessor source="#gate_door_right_pose_matrix-output-array" count="5" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="gate_door_right_pose_matrix-interpolation">
-        <Name_array id="gate_door_right_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="gate_door_right_pose_matrix-interpolation-array" count="5">LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#gate_door_right_pose_matrix-interpolation-array" count="3" stride="1">
+          <accessor source="#gate_door_right_pose_matrix-interpolation-array" count="5" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>

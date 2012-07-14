@@ -31,6 +31,7 @@
     <item>melee           </item>
     <item>death           </item>
     <item>build           </item>
+    <item>heal            </item>
     <item>promotion       </item>
     <item>gather_fruit    </item>
     <item>gather_grain    </item>
@@ -42,18 +43,10 @@
     <item>gather_treasure </item>
     <item>feeding         </item>
     <item>garrisoned      </item>
+    <item>gate_closed     </item>
+    <item>gate_closing    </item>
+    <item>gate_open       </item>
+    <item>gate_opening    </item>
   </animations>
 
-  <playercolours>
-    <colour name="Gaia"     rgb="255 255 255"/>
-    <colour name="Player 1" rgb="80 80 200" buttontext="255 255 255"/>
-    <colour name="Player 2" rgb="150 20 20" buttontext="255 255 255"/>
-    <colour name="Player 3" rgb="50 165 5" buttontext="255 255 255"/>
-    <colour name="Player 4" rgb="230 230 75" buttontext="255 255 255"/>
-    <colour name="Player 5" rgb="50 170 170" buttontext="255 255 255"/>
-    <colour name="Player 6" rgb="160 80 200" buttontext="255 255 255"/>
-    <colour name="Player 7" rgb="230 120 20" buttontext="255 255 255"/>
-    <colour name="Player 8" rgb="64 64 64" buttontext="255 255 255"/>
-  </playercolours>
-  
 </lists>
