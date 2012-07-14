@@ -401,7 +401,7 @@ function initCivNameList()
 {
 	// Cache civ data
 	g_CivData = loadCivData();
-
+	
 	// Extract name/code, and skip civs that are explicitly disabled
 	// (intended for unusable incomplete civs)
 	var civList = [ 
@@ -947,7 +947,14 @@ function onGameAttributesChange()
 				pTeam.hidden = true;
 
 				// Set text values
-				pCivText.caption = g_CivData[civ].Name;
+				if (civ == "random")
+				{
+					pCivText.caption = "[color=\"255 160 10 255\"]Random";
+				}
+				else
+				{
+					pCivText.caption = g_CivData[civ].Name;
+				}
 				pTeamText.caption = (team !== undefined && team >= 0) ? team+1 : "-";
 			}
 			else if (g_GameAttributes.mapType == "random")
