@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Constants
-const DEFAULT_NETWORKED_MAP = "Oasis X";
-const DEFAULT_OFFLINE_MAP = "Oasis X";
+const DEFAULT_NETWORKED_MAP = "Oasis XI";
+const DEFAULT_OFFLINE_MAP = "Punjab III";
 
 // TODO: Move these somewhere like simulation\data\game_types.json, Atlas needs them too
 const VICTORY_TEXT = ["Conquest", "None"];
@@ -95,7 +95,9 @@ function initMain()
 	// Get default player data - remove gaia
 	g_DefaultPlayerData = initPlayerDefaults();
 	g_DefaultPlayerData.shift();
-
+	for (var i = 0; i < g_DefaultPlayerData.length; i++)
+		g_DefaultPlayerData[i].Civ = "random";
+	
 	g_MapSizes = initMapSizes();
 
 	// Init civs
@@ -402,16 +404,22 @@ function initCivNameList()
 
 	// Extract name/code, and skip civs that are explicitly disabled
 	// (intended for unusable incomplete civs)
-	var civList = [ { "name": civ.Name, "code": civ.Code }
-		for each (civ in g_CivData)
-		if (civ.SelectableInGameSetup !== false) ];
-
+	var civList = [ 
+		{ "name": civ.Name, "code": civ.Code } 
+		for each (civ in g_CivData) 
+			if (civ.SelectableInGameSetup !== false) 
+	]; 
+	
 	// Alphabetically sort the list, ignoring case
 	civList.sort(sortNameIgnoreCase);
 
 	var civListNames = [ civ.name for each (civ in civList) ];
 	var civListCodes = [ civ.code for each (civ in civList) ];
 
+	//  Add random civ to beginning of list 
+	civListNames.unshift("[color=\"255 160 10 255\"]Random"); 
+	civListCodes.unshift("random"); 
+	
 	// Update the dropdowns
 	for (var i = 0; i < MAX_PLAYERS; ++i)
 	{
@@ -693,7 +701,7 @@ function selectMap(name)
 			g_GameAttributes.settings.PlayerData[i].AI = g_DefaultPlayerData[i].AI;
 		}
 	}
-
+	
 	// Reset player assignments on map change
 	if (!g_IsNetworked)
 	{	// Slot 1
@@ -730,7 +738,17 @@ function launchGame()
 	{
 		return;
 	}
-
+	
+	var numPlayers = g_GameAttributes.settings.PlayerData.length; 
+	// Assign random civilizations to players with that choice 
+	//  (this is synchronized because we're the host) 
+	var civs = [ civ.Code for each (civ in g_CivData) if (civ.SelectableInGameSetup !== false) ]; 
+	for (var i = 0; i < numPlayers; ++i) 
+	{ 
+		if (g_GameAttributes.settings.PlayerData[i].Civ == "random") 
+			g_GameAttributes.settings.PlayerData[i].Civ = civs[Math.floor(Math.random()*civs.length)]; 
+	} 
+	
 	if (g_IsNetworked)
 	{
 		Engine.SetNetworkGameAttributes(g_GameAttributes);
