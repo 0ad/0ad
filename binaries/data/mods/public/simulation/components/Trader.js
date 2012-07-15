@@ -1,5 +1,5 @@
 // This constant used to adjust gain value depending on distance
-const DISTANCE_FACTOR = 1 / 50;
+const DISTANCE_FACTOR = 1 / 110;
 
 // Additional gain for trading performed between markets of different players, in percents
 const INTERNATIONAL_TRADING_ADDITION = 50;
