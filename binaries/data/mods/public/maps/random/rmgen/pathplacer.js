@@ -16,7 +16,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////////////////
 
-function PathPlacer(x1, z1, x2, z2, width, a, b, c, taper)
+function PathPlacer(x1, z1, x2, z2, width, a, b, c, taper, failfraction)
 {
 	this.x1 = x1;
 	this.z1 = z1;
@@ -27,17 +27,19 @@ function PathPlacer(x1, z1, x2, z2, width, a, b, c, taper)
 	this.b = b;
 	this.c = c;
 	this.taper = taper;
+	this.failfraction = (failfraction !== undefined ? failfraction : 5);
 }
 
 PathPlacer.prototype.place = function(constraint)
 {
-	// Preliminary bounds check
+	/*/ Preliminary bounds check
 	if (!g_Map.validT(this.x1, this.z1) || !constraint.allows(this.x1, this.z1) ||
 		!g_Map.validT(this.x2, this.z2) || !constraint.allows(this.x2, this.z2))
 	{
 		return undefined;
-	}
+	}*/
 	
+	var failed = 0;
 	var dx = (this.x2 - this.x1);
 	var dz = (this.z2 - this.z1);
 	var dist = Math.sqrt(dx*dx + dz*dz);
@@ -151,9 +153,16 @@ PathPlacer.prototype.place = function(constraint)
 				var right = Math.round(Math.max(x1, x2));
 				for (var x = left; x <= right; x++)
 				{
-					if (g_Map.validT(x, z) && constraint.allows(x, z))
+					if (constraint.allows(x, z))
 					{
-						retVec.push(new PointXZ(x, z));
+						if (g_Map.validT(x, z))
+						{
+							retVec.push(new PointXZ(x, z));
+						}
+					}
+					else
+					{
+						failed++;
 					}
 				}
 			}
@@ -191,5 +200,5 @@ PathPlacer.prototype.place = function(constraint)
 		}
 	}
 	
-	return retVec;
+	return ((failed > this.width*this.failfraction*dist) ? undefined : retVec);
 }

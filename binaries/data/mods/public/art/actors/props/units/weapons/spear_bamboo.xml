@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Texture">
+      <texture>props/maur_props_1.png</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="2" name="Bamboo Spear">
+      <mesh>props/spear_bamboo.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Bamboo Spear Blood">
+      <mesh>props/spear_bamboo_blood.dae</mesh>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

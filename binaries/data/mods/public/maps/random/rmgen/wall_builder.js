@@ -248,35 +248,35 @@ var fortressTypes = {};
 // Setup some default fortress types
 // Add fortress type "tiny"
 fortressTypes["tiny"] = new Fortress("tiny");
-var wallPart = ["entry", "wall", "cornerIn", "wall"];
+var wallPart = ["gate", "wall", "cornerIn", "wall"];
 fortressTypes["tiny"].wall = wallPart.concat(wallPart, wallPart, wallPart);
 // Add fortress type "small"
 fortressTypes["small"] = new Fortress("small");
-var wallPart = ["entry", "endLeft", "wall", "cornerIn", "wall", "endRight"];
+var wallPart = ["gate", "endLeft", "wall", "cornerIn", "wall", "endRight"];
 fortressTypes["small"].wall = wallPart.concat(wallPart, wallPart, wallPart);
 // Add fortress type "medium"
 fortressTypes["medium"] = new Fortress("medium");
-var wallPart = ["entry", "endLeft", "wall", "outpost", "wall",
+var wallPart = ["gate", "endLeft", "wall", "outpost", "wall",
 	"cornerIn", "wall", "outpost", "wall", "endRight"];
 fortressTypes["medium"].wall = wallPart.concat(wallPart, wallPart, wallPart);
 // Add fortress type "normal"
 fortressTypes["normal"] = new Fortress("normal");
-var wallPart = ["entry", "endLeft", "wall", "tower", "wall",
+var wallPart = ["gate", "endLeft", "wall", "tower", "wall",
 	"cornerIn", "wall", "tower", "wall", "endRight"];
 fortressTypes["normal"].wall = wallPart.concat(wallPart, wallPart, wallPart);
 // Add fortress type "large"
 fortressTypes["large"] = new Fortress("large");
-var wallPart = ["entry", "endLeft", "wall", "outpost", "wall", "cornerIn", "wall",
+var wallPart = ["gate", "endLeft", "wall", "outpost", "wall", "cornerIn", "wall",
 	"cornerOut", "wall", "cornerIn", "wall", "outpost", "wall", "endRight"];
 fortressTypes["large"].wall = wallPart.concat(wallPart, wallPart, wallPart);
 // Add fortress type "veryLarge"
 fortressTypes["veryLarge"] = new Fortress("veryLarge");
-var wallPart = ["entry", "endLeft", "wall", "tower", "wall", "cornerIn", "wall",
+var wallPart = ["gate", "endLeft", "wall", "tower", "wall", "cornerIn", "wall",
 	"cornerOut", "wall", "cornerIn", "wall", "tower", "wall", "endRight"];
 fortressTypes["veryLarge"].wall = wallPart.concat(wallPart, wallPart, wallPart);
 // Add fortress type "giant"
 fortressTypes["giant"] = new Fortress("giant");
-var wallPart = ["entry", "endLeft", "wall", "outpost", "wall", "cornerIn", "wall", "outpost", "wall",
+var wallPart = ["gate", "endLeft", "wall", "outpost", "wall", "cornerIn", "wall", "outpost", "wall",
 	"cornerOut", "wall", "outpost", "wall", "cornerIn", "wall", "outpost", "wall", "endRight"];
 fortressTypes["giant"].wall = wallPart.concat(wallPart, wallPart, wallPart);
 
@@ -781,7 +781,7 @@ function placeIrregularPolygonalWall(centerX, centerY, radius, cornerWallElement
 	// Generating a generic wall part assortment with each wall part including 1 gate enlengthend by walls and towers
 	// NOTE: It might be a good idea to write an own function for that...
 	var defaultWallPartsAssortment = [["wallShort"], ["wall"], ["wallLong"], ["gate", "tower", "wallShort"]];
-	var centeredWallPart = ["gate"]; // NOTE: Since gates are not functional yet entrys are used instead...
+	var centeredWallPart = ["gate"];
 	var extandingWallPartAssortment = [["tower", "wallLong"], ["tower", "wall"]];
 	defaultWallPartsAssortment.push(centeredWallPart);
 	for (var i = 0; i < extandingWallPartAssortment.length; i++)
@@ -952,7 +952,7 @@ function placeGenericFortress(centerX, centerY, radius, playerId, style, irregul
 		var angle = getAngle(startX, startY, targetX, targetY);
 		var wallElement = "wallLong";
 		if ((pointIndex + 1) % gateOccurence == 0)
-			wallElement = "entry"; // Has to be changed to "gate" if gates work...
+			wallElement = "gate";
 		var entity = wallStyles[style][wallElement].entity;
 		if (entity)
 		{

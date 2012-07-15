@@ -1,15 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant frequency="1" name="head-turban-1">
-      <mesh>props/dude_head.dae</mesh>
+    <variant frequency="1" name="Indian face b">
       <texture>props/head/indian_face_b.dds</texture>
     </variant>
   </group>
-
+  <group>
+    <variant frequency="3" name="top knot front">
+      <mesh>props/helmet/head_indian_1.dae</mesh>
+    </variant>
+    <variant frequency="2" name="top knot side">
+      <mesh>props/helmet/head_indian_2.dae</mesh>
+    </variant>
+    <variant frequency="1" name="top knot high">
+      <mesh>props/helmet/head_indian_3.dae</mesh>
+    </variant>
+  </group>
   <material>player_trans.xml</material>
-
 </actor>
