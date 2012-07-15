@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2012-07-15T06:52:13Z</created>
+    <modified>2012-07-15T06:52:13Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__3-image" name="Map__3">
+      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\props\maur_props_1.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_4___Default" name="_4___Default">
+      <instance_effect url="#_4___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_4___Default-fx" name="_4___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__3-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="spear_bamboo_002-lib" name="spear_bamboo_002Mesh">
+      <mesh>
+        <source id="spear_bamboo_002-lib-Position">
+          <float_array id="spear_bamboo_002-lib-Position-array" count="54">
+-0.000008 -2.012074 -55.481949
+0.000000 0.000003 -56.146561
+2.012081 0.000004 -55.481918
+-0.000004 2.012088 -55.481949
+-0.000008 1.980374 76.183182
+1.980362 0.000001 76.183182
+-0.000004 1.128919 90.025803
+1.128910 0.000001 90.025803
+-2.012085 0.000003 -55.481949
+-1.980377 0.000001 76.183182
+-1.128922 0.000001 90.025803
+-0.000011 -1.980368 76.183182
+-0.000008 -1.128912 90.025803
+0.000000 5.445186 95.181931
+1.231365 -0.000003 96.892990
+-0.000008 0.000002 117.647934
+-1.231373 0.000001 96.892990
+-0.000023 -5.445180 95.181931
+</float_array>
+          <technique_common>
+            <accessor source="#spear_bamboo_002-lib-Position-array" count="18" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="spear_bamboo_002-lib-Normal0">
+          <float_array id="spear_bamboo_002-lib-Normal0-array" count="288">
+0.000007 -0.313644 -0.949541
+0.000007 -0.000001 -1.000000
+0.313656 -0.000000 -0.949537
+1.000000 0.000001 0.000241
+-0.000007 1.000000 0.000241
+0.000003 1.000000 0.000241
+0.000003 1.000000 0.000241
+1.000000 -0.000004 0.000241
+1.000000 0.000001 0.000241
+0.998114 -0.000001 0.061393
+0.000000 0.998114 0.061394
+0.000001 0.998114 0.061394
+0.000001 0.998114 0.061394
+0.998114 -0.000002 0.061394
+0.998114 -0.000001 0.061393
+-0.000007 1.000000 0.000241
+-1.000000 -0.000003 0.000241
+-1.000000 0.000003 0.000241
+-1.000000 0.000003 0.000241
+0.000003 1.000000 0.000241
+-0.000007 1.000000 0.000241
+0.000000 0.998114 0.061394
+-0.998114 0.000000 0.061394
+-0.998114 -0.000000 0.061394
+-0.998114 -0.000000 0.061394
+0.000001 0.998114 0.061394
+0.000000 0.998114 0.061394
+-1.000000 -0.000003 0.000241
+-0.000002 -1.000000 0.000241
+-0.000004 -1.000000 0.000241
+-0.000004 -1.000000 0.000241
+-1.000000 0.000003 0.000241
+-1.000000 -0.000003 0.000241
+-0.998114 0.000000 0.061394
+-0.000001 -0.998114 0.061394
+-0.000001 -0.998114 0.061394
+-0.000001 -0.998114 0.061394
+-0.998114 -0.000000 0.061394
+-0.998114 0.000000 0.061394
+-0.000002 -1.000000 0.000241
+1.000000 0.000001 0.000241
+1.000000 -0.000004 0.000241
+1.000000 -0.000004 0.000241
+-0.000004 -1.000000 0.000241
+-0.000002 -1.000000 0.000241
+-0.000001 -0.998114 0.061394
+0.998114 -0.000001 0.061393
+0.998114 -0.000002 0.061394
+0.998114 -0.000002 0.061394
+-0.000001 -0.998114 0.061394
+-0.000001 -0.998114 0.061394
+0.000007 0.313643 -0.949541
+0.313656 -0.000000 -0.949537
+0.000007 -0.000001 -1.000000
+0.000007 -0.313644 -0.949541
+-0.313643 -0.000000 -0.949541
+0.000007 -0.000001 -1.000000
+0.000007 -0.000001 -1.000000
+-0.313643 -0.000000 -0.949541
+0.000007 0.313643 -0.949541
+0.841439 0.453156 -0.294331
+0.608496 0.608494 -0.509379
+0.964169 0.264282 -0.023095
+0.964169 0.264282 -0.023095
+0.973036 0.228916 0.028246
+0.841439 0.453156 -0.294331
+0.973036 0.228916 0.028246
+0.964169 0.264282 -0.023095
+0.969715 0.237368 0.057532
+-0.851552 0.519944 -0.067218
+-0.707067 0.707067 -0.010549
+-0.967159 0.253590 -0.017171
+-0.967159 0.253590 -0.017171
+-0.977432 0.204966 -0.051142
+-0.851552 0.519944 -0.067218
+-0.977432 0.204966 -0.051142
+-0.967159 0.253590 -0.017171
+-0.969714 0.237369 0.057532
+-0.841438 -0.453156 -0.294333
+-0.608494 -0.608495 -0.509381
+-0.964170 -0.264280 -0.023095
+-0.964170 -0.264280 -0.023095
+-0.973037 -0.228914 0.028246
+-0.841438 -0.453156 -0.294333
+-0.973037 -0.228914 0.028246
+-0.964170 -0.264280 -0.023095
+-0.969715 -0.237366 0.057532
+0.851550 -0.519946 -0.067219
+0.707066 -0.707069 -0.010549
+0.967159 -0.253593 -0.017171
+0.967159 -0.253593 -0.017171
+0.977431 -0.204969 -0.051142
+0.851550 -0.519946 -0.067219
+0.977431 -0.204969 -0.051142
+0.967159 -0.253593 -0.017171
+0.969714 -0.237372 0.057532
+</float_array>
+          <technique_common>
+            <accessor source="#spear_bamboo_002-lib-Normal0-array" count="96" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="spear_bamboo_002-lib-UV0">
+          <float_array id="spear_bamboo_002-lib-UV0-array" count="50">
+0.857917 0.053159
+0.858427 0.026689
+0.894832 0.003315
+0.895356 0.053060
+0.997937 0.054440
+0.857918 0.053158
+0.895356 0.053233
+0.861285 0.079162
+0.894442 0.105565
+0.279234 0.012924
+0.232304 0.048887
+0.279234 0.049270
+0.279234 0.085616
+0.784821 0.085616
+0.784821 0.049270
+0.848259 0.085616
+0.848259 0.049615
+0.279234 0.049270
+0.784821 0.049270
+0.848259 0.049615
+0.279234 0.012924
+0.784821 0.012924
+0.848259 0.012924
+0.784821 0.012924
+0.848259 0.012924
+</float_array>
+          <technique_common>
+            <accessor source="#spear_bamboo_002-lib-UV0-array" count="25" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="spear_bamboo_002-lib-Vertex">
+          <input semantic="POSITION" source="#spear_bamboo_002-lib-Position"/>
+        </vertices>
+        <polygons material="_4___Default" count="32">
+          <input semantic="VERTEX" offset="0" source="#spear_bamboo_002-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#spear_bamboo_002-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#spear_bamboo_002-lib-UV0"/>
+          <p>0 0 9 1 1 10 2 2 11</p>
+          <p>2 3 11 3 4 12 4 5 13</p>
+          <p>4 6 13 5 7 14 2 8 11</p>
+          <p>5 9 14 4 10 13 6 11 15</p>
+          <p>6 12 15 7 13 16 5 14 14</p>
+          <p>3 15 12 8 16 17 9 17 18</p>
+          <p>9 18 18 4 19 13 3 20 12</p>
+          <p>4 21 13 9 22 18 10 23 19</p>
+          <p>10 24 19 6 25 15 4 26 13</p>
+          <p>8 27 17 0 28 20 11 29 21</p>
+          <p>11 30 21 9 31 18 8 32 17</p>
+          <p>9 33 18 11 34 21 12 35 22</p>
+          <p>12 36 22 10 37 19 9 38 18</p>
+          <p>0 39 9 2 40 11 5 41 14</p>
+          <p>5 42 14 11 43 23 0 44 9</p>
+          <p>11 45 23 5 46 14 7 47 16</p>
+          <p>7 48 16 12 49 24 11 50 23</p>
+          <p>3 51 12 2 52 11 1 53 10</p>
+          <p>0 54 20 8 55 17 1 56 10</p>
+          <p>1 57 10 8 58 17 3 59 12</p>
+          <p>7 60 0 6 61 1 13 62 2</p>
+          <p>13 63 2 14 64 3 7 65 0</p>
+          <p>14 66 3 13 67 2 15 68 4</p>
+          <p>6 69 1 10 70 5 16 71 6</p>
+          <p>16 72 6 13 73 2 6 74 1</p>
+          <p>13 75 2 16 76 6 15 77 4</p>
+          <p>10 78 5 12 79 7 17 80 8</p>
+          <p>17 81 8 16 82 6 10 83 5</p>
+          <p>16 84 6 17 85 8 15 86 4</p>
+          <p>12 87 7 7 88 0 14 89 3</p>
+          <p>14 90 3 17 91 8 12 92 7</p>
+          <p>17 93 8 14 94 3 15 95 4</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="spear_bamboo_002" name="spear_bamboo_002">
+        <matrix sid="matrix">-0.024549 -0.000000 -0.000000 0.000000 -0.000000 -0.000000 0.024549 0.000000 -0.000000 0.024549 0.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#spear_bamboo_002-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_4___Default" target="#_4___Default"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+
