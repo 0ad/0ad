@@ -33,6 +33,7 @@ esac
 
 premake_args=""
 
+without_nvtt=false
 with_system_nvtt=false
 with_system_enet=false
 with_system_mozjs185=false
@@ -41,6 +42,7 @@ enable_atlas=true
 for i in "$@"
 do
   case $i in
+    --without-nvtt ) without_nvtt=true; premake_args="${premake_args} --without-nvtt" ;;
     --with-system-nvtt ) with_system_nvtt=true; premake_args="${premake_args} --with-system-nvtt" ;;
     --with-system-enet ) with_system_enet=true; premake_args="${premake_args} --with-system-enet" ;;
     --with-system-mozjs185 ) with_system_mozjs185=true; premake_args="${premake_args} --with-system-mozjs185" ;;
@@ -71,7 +73,7 @@ if [ "$with_system_mozjs185" = "false" ]; then
   (cd ../../libraries/spidermonkey && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "SpiderMonkey build failed"
 fi
 echo
-if [ "$with_system_nvtt" = "false" ]; then
+if [ "$with_system_nvtt" = "false" ] && [ "$without_nvtt" = "false" ]; then
   (cd ../../libraries/nvtt && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "NVTT build failed"
 fi
 echo
