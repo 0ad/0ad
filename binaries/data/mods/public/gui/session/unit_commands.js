@@ -497,12 +497,18 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		else if (guiName == COMMAND)
 		{
 			icon.sprite = "stretched:session/icons/" + item.icon;
-
 		}
 		else if (guiName == GATE)
 		{
-			var lockIcon = unitEntState.gate.locked ? "gate_unlocked.png" : "gate_locked.png";
-			icon.sprite = "stretched:session/icons/" + lockIcon;
+			var gateIcon;
+			// If already a gate, show (un)lock icon
+			if (unitEntState.gate)
+				gateIcon = unitEntState.gate.locked ? "gate_unlocked.png" : "gate_locked.png";
+			else
+			//	otherwise show gate upgrade icon
+				gateIcon = "production.png";
+
+			icon.sprite = "stretched:session/icons/" + gateIcon;
 		}
 		else if (template.icon)
 		{
