@@ -6,6 +6,7 @@ const FORMATION = "Formation";
 const TRAINING = "Training";
 const RESEARCH = "Research";
 const CONSTRUCTION = "Construction";
+const TRADING = "Trading";
 const COMMAND = "Command";
 const STANCE = "Stance";
 const GATE = "Gate";
@@ -633,8 +634,10 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 }
 
 // Sets up "unit trading panel" - special case for setupUnitPanel
-function setupUnitTradingPanel(unitEntState, selection)
+function setupUnitTradingPanel(usedPanels, unitEntState, selection)
 {
+	usedPanels[TRADING] = 1;
+
 	for (var i = 0; i < TRADING_RESOURCES.length; i++)
 	{
 		var resource = TRADING_RESOURCES[i];
@@ -789,27 +792,37 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		removeDupes(buildableEnts);
 		removeDupes(trainableEnts);
 
-		if (buildableEnts.length && ((trainableEnts.length && hasClass(entState, "Unit")) || !trainableEnts.length))
+		// The first selected entity's type has priority.
+		if (entState.buildEntities)
 			setupUnitPanel(CONSTRUCTION, usedPanels, entState, buildableEnts, startBuildingPlacement);
-		else if (trainableEnts.length)
+		else if (entState.production && entState.production.entities)
 			setupUnitPanel(TRAINING, usedPanels, entState, trainableEnts,
 				function (trainEntType) { addTrainingToQueue(selection, trainEntType); } );
-		
-		if (entState.production && entState.production.technologies.length && selection.length == 1)
+		else if (entState.trader)
+			setupUnitTradingPanel(usedPanels, entState, selection);
+		else
 		{
-			setupUnitPanel(RESEARCH, usedPanels, entState, entState.production.technologies,
-				function (researchType) { addResearchToQueue(entState.id, researchType); } );
+			// The right pane is empty. Fill the pane with a sane type.
+			// Prefer buildables for units and trainables for structures.
+			if (buildableEnts.length && (hasClass(entState, "Unit") || !trainableEnts.length))
+				setupUnitPanel(CONSTRUCTION, usedPanels, entState, buildableEnts, startBuildingPlacement);
+			else if (trainableEnts.length)
+				setupUnitPanel(TRAINING, usedPanels, entState, trainableEnts,
+					function (trainEntType) { addTrainingToQueue(selection, trainEntType); } );
+		}
+
+		// Show technologies if the active panel has at most one row of icons.
+		if (entState.production && entState.production.technologies.length)
+		{
+			var activepane = usedPanels[CONSTRUCTION] ? buildableEnts.length : trainableEnts.length;
+			if (selection.length == 1 || activepane <= 8)
+				setupUnitPanel(RESEARCH, usedPanels, entState, entState.production.technologies,
+					function (researchType) { addResearchToQueue(entState.id, researchType); } );
 		}
 
 		if (entState.production && entState.production.queue.length)
 			setupUnitPanel(QUEUE, usedPanels, entState, entState.production.queue,
 				function (item) { removeFromProductionQueue(entState.id, item.id); } );
-
-		if (entState.trader)
-		{
-			usedPanels["Trading"] = 1;
-			setupUnitTradingPanel(entState, selection);
-		}
 		
 		if(!entState.foundation && (entState.gate || hasClass(entState, "StoneWall") && !hasClass(entState, "Tower")))
 		{
