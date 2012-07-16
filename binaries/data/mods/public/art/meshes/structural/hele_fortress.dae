@@ -15,61 +15,6 @@
     <unit meter="0.025400"/>
     <up_axis>Z_UP</up_axis>
   </asset>
-  <library_images>
-    <image id="Map__293-image" name="Map__293">
-      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\structural\hele_struct_b.dds</init_from>
-    </image>
-  </library_images>
-  <library_materials>
-    <material id="_07___Default" name="_07___Default">
-      <instance_effect url="#_07___Default-fx"/>
-    </material>
-  </library_materials>
-  <library_effects>
-    <effect id="_07___Default-fx" name="_07___Default">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
-            </ambient>
-            <diffuse>
-              <texture texture="Map__293-image" texcoord="CHANNEL0">
-                <extra>
-                  <technique profile="MAYA">
-                    <wrapU sid="wrapU0">TRUE</wrapU>
-                    <wrapV sid="wrapV0">TRUE</wrapV>
-                    <blend_mode>ADD</blend_mode>
-                  </technique>
-                </extra>
-              </texture>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-  </library_effects>
   <library_geometries>
     <geometry id="fortress-lib" name="fortressMesh">
       <mesh>
@@ -7281,7 +7226,6 @@
         <instance_geometry url="#fortress-lib">
           <bind_material>
             <technique_common>
-              <instance_material symbol="_07___Default" target="#_07___Default"/>
             </technique_common>
           </bind_material>
         </instance_geometry>
