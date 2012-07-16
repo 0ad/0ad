@@ -48,15 +48,6 @@ var g_MapFilters = [];
 // tick handler
 var g_LoadingState = 0; // 0 = not started, 1 = loading, 2 = loaded
 
-// Saving the map name and information so that if the player cancelled his 
-// map selection process, we won't loose his previous selection 
-var tempSelectedMapType = "";
-var tempSelectedMapFilter = "";
-var tempSelectedMap = "";
-var tempMapTypeSelected = 0;
-var tempMapFilterSelected = 0;
-var tempMapSelected = 0;
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -810,7 +801,6 @@ function onGameAttributesChange()
 	var victoryCondition = getGUIObjectByName("victoryCondition");
 	var lockTeams = getGUIObjectByName("lockTeams");
 	var mapSize = getGUIObjectByName("mapSize");
-	var mapPreview = getGUIObjectByName("mapPreview");
 	
 	var numPlayersText= getGUIObjectByName("numPlayersText");
 	var mapSizeText = getGUIObjectByName("mapSizeText");

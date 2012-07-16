@@ -11,9 +11,9 @@ function twoDigits(n)
 function generateLabel(metadata)
 {
 	var t = new Date(metadata.time*1000);
-	// TODO: timezones
-	var date = t.getUTCFullYear()+"-"+twoDigits(1+t.getUTCMonth())+"-"+twoDigits(t.getUTCDate());
-	var time = twoDigits(t.getUTCHours())+":"+twoDigits(t.getUTCMinutes())+":"+twoDigits(t.getUTCSeconds());
+
+	var date = t.getFullYear()+"-"+twoDigits(1+t.getMonth())+"-"+twoDigits(t.getDate());
+	var time = twoDigits(t.getHours())+":"+twoDigits(t.getMinutes())+":"+twoDigits(t.getSeconds());
 	return "["+date+" "+time+"] "+metadata.initAttributes.map;
 }
 
