@@ -24,13 +24,14 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="439.344" y="121.006" z="81.923"/>
+		<Position x="436.069" y="127.161" z="62.5812"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
+  "Preview" : "acropolis_2.png",
   "Description": "This is a smaller version of the original Acropolis map. The Spartans and Iberians square off on a richly detailed map of central Greece.\u000a\u000aScout the lands to find free Treasures and to secure new resources.",
   "GameType": "conquest",
   "Keywords": [],
@@ -271,7 +272,7 @@
 		<Entity uid="78">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
 			<Player>0</Player>
-			<Position x="443.27253" z="171.86623"/>
+			<Position x="409.78486" z="181.72735"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="79">
@@ -289,7 +290,7 @@
 		<Entity uid="81">
 			<Template>gaia/flora_tree_poplar_lombardy</Template>
 			<Player>0</Player>
-			<Position x="435.18036" z="194.61625"/>
+			<Position x="460.89716" z="199.82752"/>
 			<Orientation y="0.72333"/>
 		</Entity>
 		<Entity uid="82">
@@ -23584,61 +23585,61 @@
 		<Entity uid="4548">
 			<Template>structures/spart_civil_centre</Template>
 			<Player>1</Player>
-			<Position x="394.10566" z="202.98734"/>
+			<Position x="433.06272" z="197.63413"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4549">
 			<Template>units/spart_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="401.6833" z="182.92544"/>
+			<Position x="440.64036" z="177.57222"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4550">
 			<Template>units/spart_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="405.08661" z="187.02343"/>
+			<Position x="444.04368" z="181.67022"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4551">
 			<Template>units/spart_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="408.52524" z="190.21102"/>
+			<Position x="447.4823" z="184.85781"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4552">
 			<Template>units/spart_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="412.09903" z="194.1061"/>
+			<Position x="451.0561" z="188.75289"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4553">
 			<Template>units/spart_infantry_spearman_b</Template>
 			<Player>1</Player>
-			<Position x="405.14289" z="179.30668"/>
+			<Position x="444.09995" z="173.95347"/>
 			<Orientation y="2.638"/>
 		</Entity>
 		<Entity uid="4554">
 			<Template>units/spart_infantry_spearman_a</Template>
 			<Player>1</Player>
-			<Position x="408.28205" z="183.34446"/>
+			<Position x="447.23911" z="177.99125"/>
 			<Orientation y="2.55262"/>
 		</Entity>
 		<Entity uid="4555">
 			<Template>units/spart_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="412.21839" z="186.82813"/>
+			<Position x="451.17545" z="181.47492"/>
 			<Orientation y="2.78022"/>
 		</Entity>
 		<Entity uid="4556">
 			<Template>units/spart_hero_agis</Template>
 			<Player>1</Player>
-			<Position x="415.65433" z="191.53995"/>
+			<Position x="454.6114" z="186.18674"/>
 			<Orientation y="2.64454"/>
 		</Entity>
 		<Entity uid="4557">
 			<Template>units/spart_cavalry_javelinist_e</Template>
 			<Player>1</Player>
-			<Position x="418.62711" z="196.70179"/>
+			<Position x="457.58417" z="191.34858"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
