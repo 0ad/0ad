@@ -1102,6 +1102,15 @@ function TryTransformWallToGate(ent, cmpPlayer, template)
 	var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
 	if (!cmpIdentity)
 		return;
+
+	// Check if this is a valid long wall segment
+	if (!cmpIdentity.HasClass("LongWall"))
+	{
+		if (g_DebugCommands)
+			warn("Invalid command: invalid wall conversion to gate for player "+player+": "+uneval(cmd));
+		return;
+	}
+
 	var civ = cmpIdentity.GetCiv();
 	var gate = Engine.AddEntity(template);
 
@@ -1109,10 +1118,8 @@ function TryTransformWallToGate(ent, cmpPlayer, template)
 	if (!cmpPlayer.TrySubtractResources(cmpCost.GetResourceCosts()))
 	{
 		if (g_DebugCommands)
-		{
-			warn("Invalid command: building cost check failed for player "+player+": "+uneval(cmd));
-		}
-		
+			warn("Invalid command: convert gate cost check failed for player "+player+": "+uneval(cmd));
+
 		Engine.DestroyEntity(gate);
 		return;
 	}

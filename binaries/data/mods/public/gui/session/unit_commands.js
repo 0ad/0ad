@@ -838,7 +838,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 			setupUnitPanel(QUEUE, usedPanels, entState, entState.production.queue,
 				function (item) { removeFromProductionQueue(entState.id, item.id); } );
 		
-		if(!entState.foundation && (entState.gate || hasClass(entState, "StoneWall") && !hasClass(entState, "Tower")))
+		if(!entState.foundation && (entState.gate || hasClass(entState, "LongWall")))
 		{
 			if (entState.gate)
 			{
@@ -851,9 +851,11 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 				setupUnitPanel(GATE, usedPanels, entState, items,
 					function (item) { lockGate(item.locked); } );
 			}
-			else // Wall
+			else
 			{
-				// Only allow long walls section to be transformed to gates
+				// Allow long wall pieces to be converted to gates
+				// TODO: find the gate template name in a better way
+				// TODO: selections of multiple different types of walls (breaks currently)
 				var longPos = entState.template.indexOf("long");
 				if (longPos != -1)
 				{

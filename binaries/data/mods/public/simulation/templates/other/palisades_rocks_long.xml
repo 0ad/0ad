@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defense_wall">
+<Entity parent="template_structure_defense_wall_long">
   <Armour>
     <Hack>5.0</Hack>
     <Pierce>20.0</Pierce>
@@ -21,10 +21,10 @@
   </Health>
   <Identity>
     <Civ>gaia</Civ>
-	<SelectionGroupName>other/wallset_palisade</SelectionGroupName>
+    <SelectionGroupName>other/wallset_palisade</SelectionGroupName>
     <SpecificName>Palisade</SpecificName>
     <GenericName>Wooden Wall</GenericName>
-    <Classes datatype="tokens">-StoneWall Palisade</Classes>
+    <Classes datatype="tokens">-StoneWall Palisade LongWall</Classes>
     <History>A cheap, quick defensive structure constructed with sharpened tree trunks</History>
     <Icon>gaia/special_palisade.png</Icon>
   </Identity>

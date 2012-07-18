@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defense_wall">
+<Entity parent="template_structure_defense_wall_long">
   <Cost>
     <BuildTime>30</BuildTime>
   </Cost>
@@ -9,7 +9,7 @@
   </Footprint>
   <Identity>
     <Civ>rome</Civ>
-	<SelectionGroupName>structures/rome_wallset_stone</SelectionGroupName>
+    <SelectionGroupName>structures/rome_wallset_stone</SelectionGroupName>
     <SpecificName>Moenia</SpecificName>
     <History>Roman city walls used a number of innovations to thwart besiegers.</History>
   </Identity>
