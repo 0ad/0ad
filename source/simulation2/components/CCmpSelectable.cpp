@@ -41,6 +41,13 @@
 #include "simulation2/helpers/Render.h"
 #include "simulation2/system/Component.h"
 
+// Minimum alpha value for always visible overlays [0 fully transparent, 1 fully opaque]
+static const float MIN_ALPHA_ALWAYS_VISIBLE = 0.65f;
+// Minimum alpha value for other overlays
+static const float MIN_ALPHA_UNSELECTED = 0.0f;
+// Desaturation value for unselected, always visible overlays (0.33 = 33% desaturated or 66% of original saturation)
+static const float RGB_DESATURATION = 0.333333f;
+
 class CCmpSelectable : public ICmpSelectable
 {
 public:
@@ -59,7 +66,8 @@ public:
 	CCmpSelectable()
 		: m_DebugBoundingBoxOverlay(NULL), m_DebugSelectionBoxOverlay(NULL), 
 		  m_BuildingOverlay(NULL), m_UnitOverlay(NULL),
-		  m_FadeBaselineAlpha(0.f), m_FadeDeltaAlpha(0.f), m_FadeProgress(0.f)
+		  m_FadeBaselineAlpha(0.f), m_FadeDeltaAlpha(0.f), m_FadeProgress(0.f),
+		  m_Selected(false), m_Cached(false)
 	{
 		m_Color = CColor(0, 0, 0, m_FadeBaselineAlpha);
 	}
@@ -83,6 +91,11 @@ public:
 				"</element>"
 			"</optional>"
 			"<element name='Overlay' a:help='Specifies the type of overlay to be displayed when this entity is selected'>"
+				"<optional>"
+					"<element name='AlwaysVisible' a:help='If this element is present, the selection overlay will always be visible (with transparency and desaturation)'>"
+						"<empty/>"
+					"</element>"
+				"</optional>"
 				"<choice>"
 					"<element name='Texture' a:help='Displays a texture underneath the entity.'>"
 						"<element name='MainTexture' a:help='Texture to display underneath the entity. Filepath relative to art/textures/selection/.'><text/></element>"
@@ -100,6 +113,16 @@ public:
 	virtual void Init(const CParamNode& paramNode)
 	{
 		m_EditorOnly = paramNode.GetChild("EditorOnly").IsOk();
+
+		// Certain special units always have their selection overlay shown
+		m_AlwaysVisible = paramNode.GetChild("Overlay").GetChild("AlwaysVisible").IsOk();
+		if (m_AlwaysVisible)
+		{
+			m_AlphaMin = MIN_ALPHA_ALWAYS_VISIBLE;
+			m_Color.a = m_AlphaMin;
+		}
+		else
+			m_AlphaMin = MIN_ALPHA_UNSELECTED;
 
 		const CParamNode& textureNode = paramNode.GetChild("Overlay").GetChild("Texture");
 		const CParamNode& outlineNode = paramNode.GetChild("Overlay").GetChild("Outline");
@@ -141,16 +164,36 @@ public:
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global));
 
-	virtual void SetSelectionHighlight(CColor color)
+	virtual void SetSelectionHighlight(CColor color, bool selected)
 	{
+		m_Selected = selected;
 		m_Color.r = color.r;
 		m_Color.g = color.g;
 		m_Color.b = color.b;
+
+		// Always-visible overlays will be desaturated if their parent unit is deselected.
+		if (m_AlwaysVisible && !selected)
+		{
+			float max;
+
+			// Reduce saturation by one-third, the quick-and-dirty way.
+			if (m_Color.r > m_Color.b)
+				max = (m_Color.r > m_Color.g) ? m_Color.r : m_Color.g;
+			else
+				max = (m_Color.b > m_Color.g) ? m_Color.b : m_Color.g;
+
+			m_Color.r += (max - m_Color.r) * RGB_DESATURATION;
+			m_Color.g += (max - m_Color.g) * RGB_DESATURATION;
+			m_Color.b += (max - m_Color.b) * RGB_DESATURATION;
+		}
+
 		SetSelectionHighlightAlpha(color.a);
 	}
 
 	virtual void SetSelectionHighlightAlpha(float alpha)
 	{
+		alpha = std::max(m_AlphaMin, alpha);
+
 		// set up fading from the current value (as the baseline) to the target value
 		m_FadeBaselineAlpha = m_Color.a;
 		m_FadeDeltaAlpha = alpha - m_FadeBaselineAlpha;
@@ -188,11 +231,18 @@ private:
 	SOverlayLine* m_DebugBoundingBoxOverlay;
 	SOverlayLine* m_DebugSelectionBoxOverlay;
 
-	/// Is this entity selectable only in the editor?
+	// Whether the entity is only selectable in Atlas editor
 	bool m_EditorOnly;
-	
+	// Whether the selection overlay is always visible
+	bool m_AlwaysVisible;
+	/// Whether the parent entity is selected (caches GUI's selection state).
+	bool m_Selected;
 	/// Current selection overlay color. Alpha component is subject to fading.
 	CColor m_Color;
+	/// Whether the selectable's player colour has been cached for rendering.
+	bool m_Cached;
+	/// Minimum value for current selection overlay alpha.
+	float m_AlphaMin;
 	/// Baseline alpha value to start fading from. Constant during a single fade.
 	float m_FadeBaselineAlpha;
 	/// Delta between target and baseline alpha. Constant during a single fade. Can be positive or negative.
@@ -260,7 +310,7 @@ void CCmpSelectable::HandleMessage(const CMessage& msg, bool UNUSED(global))
 			// Update the highlight color, while keeping the current alpha target value intact
 			// (i.e. baseline + delta), so that any ongoing fades simply continue with the new color.
 			CColor color = cmpPlayer->GetColour();
-			SetSelectionHighlight(CColor(color.r, color.g, color.b, m_FadeBaselineAlpha + m_FadeDeltaAlpha));
+			SetSelectionHighlight(CColor(color.r, color.g, color.b, m_FadeBaselineAlpha + m_FadeDeltaAlpha), m_Selected);
 		}
 		// fall-through
 	case MT_PositionChanged:
@@ -473,6 +523,32 @@ void CCmpSelectable::RenderSubmit(SceneCollector& collector)
 	// don't render selection overlay if it's not gonna be visible
 	if (m_Color.a > 0)
 	{
+		if (!m_Cached)
+		{
+			// Try to initialize m_Color to the owning player's colour.
+			CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSimContext(), SYSTEM_ENTITY);
+			if (!cmpPlayerManager)
+				return;
+	
+			CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), GetEntityId());
+			if (!cmpOwnership)
+				return;
+	
+			player_id_t owner = cmpOwnership->GetOwner();
+			if (owner == INVALID_PLAYER)
+				return;
+	
+			CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(owner));
+			if (!cmpPlayer)
+				return;
+
+			CColor color = cmpPlayer->GetColour();
+			color.a = m_FadeBaselineAlpha + m_FadeDeltaAlpha;
+
+			SetSelectionHighlight(color, m_Selected);
+			m_Cached = true;
+		}
+
 		switch (m_OverlayDescriptor.m_Type)
 		{
 			case STATIC_OUTLINE:

@@ -603,7 +603,7 @@ GuiInterface.prototype.IsStanceSelected = function(player, data)
 	return false;
 };
 
-GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
+GuiInterface.prototype.SetSelectionHighlight = function(player, cmd, selected)
 {
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var playerColours = {}; // cache of owner -> colour map
@@ -630,7 +630,7 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 			playerColours[owner] = colour;
 		}
 
-		cmpSelectable.SetSelectionHighlight({"r":colour.r, "g":colour.g, "b":colour.b, "a":cmd.alpha});
+		cmpSelectable.SetSelectionHighlight({"r":colour.r, "g":colour.g, "b":colour.b, "a":cmd.alpha}, cmd.selected);
 	}
 };
 

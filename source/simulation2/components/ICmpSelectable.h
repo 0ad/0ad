@@ -53,13 +53,15 @@ public:
 	virtual bool IsEditorOnly() = 0;
 
 	/**
-	 * Set the color of the selection highlight (typically a circle/square
-	 * around the unit). Set a = 0 to disable the highlight.
+	 * Set the selection highlight state.
+	 * The highlight is typically a circle/square overlay around the unit.
+	 * @param color color and alpha of the selection highlight. Set color.a = 0 to hide the highlight.
+	 * @param selected whether the entity is selected; affects desaturation for always visible highlights.
 	 */
-	virtual void SetSelectionHighlight(CColor color) = 0;
+	virtual void SetSelectionHighlight(CColor color, bool selected) = 0;
 
 	/**
-	 * Set the alpha of the selection highlight. Set to 0 to disable the highlight.
+	 * Set the alpha of the selection highlight. Set to 0 to hide the highlight.
 	 */
 	virtual void SetSelectionHighlightAlpha(float alpha) = 0;
 

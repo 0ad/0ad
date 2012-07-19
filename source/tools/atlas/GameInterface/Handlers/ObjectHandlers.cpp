@@ -95,23 +95,54 @@ QUERYHANDLER(GetObjectsList)
 
 
 static std::vector<entity_id_t> g_Selection;
+typedef std::map<player_id_t, CColor> PlayerColorMap;
+
+// Helper function to find color of player owning the given entity,
+//	returns white if entity has no owner. Uses caching to avoid
+//	expensive script calls.
+static CColor GetOwnerPlayerColor(PlayerColorMap& colourMap, entity_id_t id)
+{
+	// Default color - white
+	CColor color(1.0f, 1.0f, 1.0f, 1.0f);
+
+	CSimulation2& sim = *g_Game->GetSimulation2();
+	CmpPtr<ICmpOwnership> cmpOwnership(sim, id);
+	if (cmpOwnership)
+	{
+		player_id_t owner = cmpOwnership->GetOwner();
+		if (colourMap.find(owner) != colourMap.end())
+			return colourMap[owner];
+		else
+		{
+			CmpPtr<ICmpPlayerManager> cmpPlayerManager(sim, SYSTEM_ENTITY);
+			entity_id_t playerEnt = cmpPlayerManager->GetPlayerByID(owner);
+			CmpPtr<ICmpPlayer> cmpPlayer(sim, playerEnt);
+			if (cmpPlayer)
+				color = colourMap[owner] = cmpPlayer->GetColour();
+		}
+	}
+	return color;
+}
 
 MESSAGEHANDLER(SetSelectionPreview)
 {
 	CSimulation2& sim = *g_Game->GetSimulation2();
 
 	// Cache player colours for performance
-	typedef std::map<player_id_t, CColor> PlayerColourMap;
-	PlayerColourMap playerColours;
+	PlayerColorMap playerColors;
 
-	CmpPtr<ICmpPlayerManager> cmpPlayerManager(sim, SYSTEM_ENTITY);
-	
 	// Clear old selection rings
 	for (size_t i = 0; i < g_Selection.size(); ++i)
 	{
+		// We can't set only alpha here, because that won't trigger desaturation
+		//	so we set the complete color (not too evil since it's cached)
 		CmpPtr<ICmpSelectable> cmpSelectable(sim, g_Selection[i]);
 		if (cmpSelectable)
-			cmpSelectable->SetSelectionHighlightAlpha(0);
+		{
+			CColor color = GetOwnerPlayerColor(playerColors, g_Selection[i]);
+			color.a = 0.0f;
+			cmpSelectable->SetSelectionHighlight(color, false);
+		}
 	}
 
 	g_Selection = *msg->ids;
@@ -119,36 +150,9 @@ MESSAGEHANDLER(SetSelectionPreview)
 	// Set new selection rings
 	for (size_t i = 0; i < g_Selection.size(); ++i)
 	{
-		entity_id_t ent = g_Selection[i];
-		CmpPtr<ICmpSelectable> cmpSelectable(sim, ent);
-		if (!cmpSelectable)
-			continue;
-
-		// Default to white for ownerless entities
-		CColor colour(1.0f, 1.0f, 1.0f, 1.0f);
-
-		CmpPtr<ICmpOwnership> cmpOwnership(sim, ent);
-		if (cmpOwnership && cmpPlayerManager)
-		{
-			player_id_t owner = cmpOwnership->GetOwner();
-			if (playerColours.find(owner) != playerColours.end())
-			{
-				colour = playerColours[owner];
-			}
-			else
-			{
-				// Add colour to cache
-				entity_id_t playerEnt = cmpPlayerManager->GetPlayerByID(owner);
-				CmpPtr<ICmpPlayer> cmpPlayer(sim, playerEnt);
-				if (cmpPlayer)
-				{
-					colour = cmpPlayer->GetColour();
-					playerColours[owner] = colour;
-				}
-			}
-		}
-
-		cmpSelectable->SetSelectionHighlight(colour);
+		CmpPtr<ICmpSelectable> cmpSelectable(sim, g_Selection[i]);
+		if (cmpSelectable)
+			cmpSelectable->SetSelectionHighlight(GetOwnerPlayerColor(playerColors, g_Selection[i]), true);
 	}
 }
 
