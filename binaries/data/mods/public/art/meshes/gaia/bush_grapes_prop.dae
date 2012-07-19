@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>mmm</author>
+      <authoring_tool>3dsMax 7 - Feeling ColladaMax v3.05B.</authoring_tool>
+      <comments>ColladaMax Export Options: ExportNormals=1;ExportEPolyAsTriangles=1;ExportXRefs=1;ExportSelected=1;ExportTangents=0;ExportAnimations=0;SampleAnim=0;ExportAnimClip=0;BakeMatrices=0;ExportRelativePaths=1;AnimStart=0;AnimEnd=3.33333;</comments>
+    </contributor>
+    <created>2012-07-16T07:19:10Z</created>
+    <modified>2012-07-16T07:19:10Z</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="trunk_deciduous_b.png" name="trunk_deciduous_b_png">
+      <init_from>../../textures/skins/gaia/trunk_deciduous_b.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_1_-_Default" name="_1_-_Default">
+      <instance_effect url="#_1_-_Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_1_-_Default-fx" name="_1_-_Default">
+      <profile_COMMON>
+        <newparam sid="trunk_deciduous_b_png-surface">
+          <surface type="2D">
+            <init_from>trunk_deciduous_b.png</init_from>
+            <format>A8R8G8B8</format>
+          </surface>
+        </newparam>
+        <newparam sid="trunk_deciduous_b_png-sampler">
+          <sampler2D>
+            <source>trunk_deciduous_b_png-surface</source>
+            <wrap_s>WRAP</wrap_s>
+            <wrap_t>WRAP</wrap_t>
+            <minfilter>NONE</minfilter>
+            <magfilter>NONE</magfilter>
+            <mipfilter>NONE</mipfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <blinn>
+            <ambient>
+              <color>0.588235 0.588235 0.588235 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="trunk_deciduous_b_png-sampler" texcoord="CHANNEL1">
+                <extra>
+                  <technique profile="MAYA">
+                    <mirrorU>0</mirrorU>
+                    <mirrorV>0</mirrorV>
+                    <wrapU>1</wrapU>
+                    <wrapV>1</wrapV>
+                    <repeatU>1</repeatU>
+                    <repeatV>1</repeatV>
+                    <offsetU>0</offsetU>
+                    <offsetV>0</offsetV>
+                    <rotateUV>0</rotateUV>
+                  </technique>
+                  <technique profile="MAX3D">
+                    <amount>1</amount>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color>0.9 0.9 0.9 1</color>
+            </specular>
+            <shininess>
+              <float>0.415939</float>
+            </shininess>
+            <reflective>
+              <color>0 0 0 1</color>
+            </reflective>
+            <reflectivity>
+              <float>1</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color>1 1 1 1</color>
+            </transparent>
+            <transparency>
+              <float>1</float>
+            </transparency>
+          </blinn>
+          <extra>
+            <technique profile="FCOLLADA">
+              <spec_level>
+                <float>0</float>
+              </spec_level>
+              <emission_level>
+                <float>0</float>
+              </emission_level>
+            </technique>
+          </extra>
+        </technique>
+      </profile_COMMON>
+      <extra>
+        <technique profile="MAX3D">
+          <faceted>0</faceted>
+          <double_sided>0</double_sided>
+          <wireframe>0</wireframe>
+          <face_map>0</face_map>
+        </technique>
+      </extra>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="Line03-mesh" name="Line03">
+      <mesh>
+        <source id="Line03-mesh-positions">
+          <float_array id="Line03-mesh-positions-array" count="72">0.015704 -0.329783 0 0.455415 -0.015703 0 -0.06805 0.403068 0 -0.403068 -0.057581 0 0.015704 -0.329783 3 0.455415 -0.015703 3 -0.06805 0.403068 3 -0.403068 -0.057581 3 0.029218 7.57433 -0.10508 0.847329 7.57433 0.069991 -0.126612 7.57433 0.30342 -0.749935 7.57433 0.046648 0.029218 -3.00765 -0.10508 0.847329 -3.00765 0.069991 -0.126612 -3.00765 0.30342 -0.749935 -3.00765 0.046648 0.029218 7.57433 2.77092 0.847329 7.57433 2.94599 -0.126612 7.57433 3.17942 -0.749935 7.57433 2.92264 0.029218 -3.00766 2.77092 0.847329 -3.00766 2.94599 -0.126612 -3.00766 3.17942 -0.749935 -3.00766 2.92264</float_array>
+          <technique_common>
+            <accessor source="#Line03-mesh-positions-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Line03-mesh-normals">
+          <float_array id="Line03-mesh-normals-array" count="168">0.581238 -0.813733 0 0.581238 -0.813733 0 0.581238 -0.813733 0 0.581238 -0.813733 0 0.624695 0.780869 0 0.624695 0.780869 0 0.624695 0.780869 0 0.624695 0.780869 0 -0.808736 0.588172 0 -0.808736 0.588172 0 -0.808736 0.588172 0 -0.808736 0.588172 0 -0.544988 -0.838444 0 -0.544988 -0.838444 0 -0.544988 -0.838444 0 -0.544988 -0.838444 0 0.209257 0 -0.977861 0.209257 0 -0.977861 0.209257 0 -0.977861 0.209257 0 -0.977861 0.233073 0 0.972459 0.233073 0 0.972459 0.233073 0 0.972459 0.233073 0 0.972459 -0.380888 0 0.924621 -0.380888 0 0.924621 -0.380888 0 0.924621 -0.380888 0 0.924621 -0.191145 0 -0.981562 -0.191145 0 -0.981562 -0.191145 0 -0.981562 -0.191145 0 -0.981562 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0.209257 0 -0.977861 0.209257 0 -0.977861 0.209257 0 -0.977861 0.209257 0 -0.977861 0.233073 0 0.972459 0.233073 0 0.972459 0.233073 0 0.972459 0.233073 0 0.972459 -0.380888 0 0.924621 -0.380888 0 0.924621 -0.380888 0 0.924621 -0.380888 0 0.924621 -0.191145 0 -0.981562 -0.191145 0 -0.981562 -0.191144 0 -0.981562 -0.191144 0 -0.981562 0 -1 0 0 -1 0 0 -1 0 0 -1 0</float_array>
+          <technique_common>
+            <accessor source="#Line03-mesh-normals-array" count="56" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Line03-mesh-map-channel1">
+          <float_array id="Line03-mesh-map-channel1-array" count="126">0 0 0 0.237024 0 0 0.531071 0 0 0.780916 0 0 1 0 0 0 1 0 0.237024 1 0 0.531071 1 0 0.780916 1 0 1 1 0 0.27803 0.745763 0 0.346516 0.811138 0 0.264986 0.898305 0 0.212806 0.802421 0 0 0 0 0.237024 0 0 0.531071 0 0 0.780916 0 0 1 0 0 0 1 0 0.237024 1 0 0.531071 1 0 0.780916 1 0 1 1 0 0.27803 0.745763 0 0.346516 0.811138 0 0.264986 0.898305 0 0.212806 0.802421 0 0 0 0 0.237024 0 0 0.531071 0 0 0.780916 0 0 1 0 0 0 1 0 0.237024 1 0 0.531071 1 0 0.780916 1 0 1 1 0 0.27803 0.745763 0 0.346516 0.811138 0 0.264986 0.898305 0 0.212806 0.802421 0</float_array>
+          <technique_common>
+            <accessor source="#Line03-mesh-map-channel1-array" count="42" stride="3">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+              <param name="P" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Line03-mesh-vertices">
+          <input semantic="POSITION" source="#Line03-mesh-positions"/>
+        </vertices>
+        <triangles material="_1_-_Default" count="28">
+          <input semantic="VERTEX" source="#Line03-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Line03-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Line03-mesh-map-channel1" offset="2" set="1"/>
+          <p>0 0 0 1 1 1 5 2 6 0 0 0 5 2 6 4 3 5 1 4 1 2 5 2 6 6 7 1 4 1 6 6 7 5 7 6 2 8 2 3 9 3 7 10 8 2 8 2 7 10 8 6 11 7 3 12 3 0 13 4 4 14 9 3 12 3 4 14 9 7 15 8 8 16 14 9 17 15 13 18 20 8 16 14 13 18 20 12 19 19 9 20 15 10 21 16 14 22 21 9 20 15 14 22 21 13 23 20 10 24 16 11 25 17 15 26 22 10 24 16 15 26 22 14 27 21 11 28 17 8 29 18 12 30 23 11 28 17 12 30 23 15 31 22 12 32 24 13 33 25 14 34 26 12 32 24 14 34 26 15 35 27 16 36 28 17 37 29 21 38 34 16 36 28 21 38 34 20 39 33 17 40 29 18 41 30 22 42 35 17 40 29 22 42 35 21 43 34 18 44 30 19 45 31 23 46 36 18 44 30 23 46 36 22 47 35 19 48 31 16 49 32 20 50 37 19 48 31 20 50 37 23 51 36 20 52 38 21 53 39 22 54 40 20 52 38 22 54 40 23 55 41</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="unnamed_scene" name="unnamed_scene">
+      <node id="Line03-node" name="Line03" type="NODE">
+        <translate>-0.002088 -1.7999 1.96815</translate>
+        <rotate>1 0 0 -90</rotate>
+        <scale>0.259845 0.259845 0.867327</scale>
+        <instance_geometry url="#Line03-mesh">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_1_-_Default" target="#_1_-_Default">
+                <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <extra>
+        <technique profile="FCOLLADA">
+          <start_time>0</start_time>
+          <end_time>3.33333</end_time>
+        </technique>
+      </extra>
+      <extra>
+        <technique profile="MAX3D">
+          <frame_rate>30</frame_rate>
+        </technique>
+      </extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#unnamed_scene"/>
+  </scene>
+</COLLADA>
