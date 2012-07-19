@@ -1643,9 +1643,21 @@ function transformWallToGate(template)
 	var selection = g_Selection.toList();
 	Engine.PostNetworkCommand({
 		"type": "wall-to-gate",
-		"entities": selection,
+		"entities": selection.filter( function(e) { return getWallGateTemplate(e) == template } ),
 		"template": template,
 	});
+}
+
+// Gets the gate form (if any) of a given long wall piece
+function getWallGateTemplate(entity)
+{
+	// TODO: find the gate template name in a better way
+	var entState = GetEntityState(entity);
+	var index;
+
+	if (entState && !entState.foundation && hasClass(entState, "LongWall") && (index = entState.template.indexOf("long")) >= 0)
+		return entState.template.substr(0, index) + "gate";
+	return undefined;
 }
 
 // Set the camera to follow the given unit
