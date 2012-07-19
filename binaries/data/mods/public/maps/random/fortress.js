@@ -1,25 +1,25 @@
 RMS.LoadLibrary("rmgen");
 
-var tGrass = ["temp_grass", "temp_grass", "temp_grass_d"];
-var tGrassPForest = "temp_plants_bog";
-var tGrassDForest = "temp_plants_bog";
-var tGrassA = "temp_grass_plants";
-var tGrassB = "temp_plants_bog";
-var tGrassC = ["temp_grass_b", "temp_grass_c"];
-var tDirt = ["temp_plants_bog", "temp_mud_a"];
-var tHill = ["temp_highlands", "temp_grass_long_b"];
+var tGrass = ["temp_grass_aut", "temp_grass_aut", "temp_grass_d_aut"];
+var tGrassPForest = "temp_grass_aut";
+var tGrassDForest = "temp_grass_aut";
+var tGrassA = "temp_grass_plants_aut";
+var tGrassB = "temp_plants_bog_aut";
+var tGrassC = ["temp_grass_b_aut", "temp_grass_c_aut"];
+var tDirt = ["temp_plants_bog_aut", "temp_mud_a"];
+var tHill = ["temp_highlands_aut", "temp_grass_long_b_aut"];
 var tCliff = ["temp_cliff_a", "temp_cliff_b"];
-var tRoad = "temp_road";
-var tRoadWild = "temp_road_overgrown";
-var tGrassPatch = "temp_grass_plants";
-var tShoreBlend = "temp_grass_plants";
-var tShore = "temp_plants_bog";
+var tRoad = "temp_road_aut";
+var tRoadWild = "temp_road_overgrown_aut";
+var tGrassPatch = "temp_grass_plants_aut";
+var tShoreBlend = "temp_grass_plants_aut";
+var tShore = "temp_plants_bog_aut";
 var tWater = "temp_mud_a";
 
 // gaia entities
-var oBeech = "gaia/flora_tree_euro_beech";
-var oOak = "gaia/flora_tree_oak";
-var oBerryBush = "gaia/flora_bush_berry";
+var oBeech = "gaia/flora_tree_euro_beech_aut";
+var oOak = "gaia/flora_tree_oak_aut";
+var oPine = "gaia/flora_tree_pine";
 var oChicken = "gaia/fauna_chicken";
 var oDeer = "gaia/fauna_deer";
 var oFish = "gaia/fauna_fish";
@@ -33,17 +33,19 @@ var oMetal = "gaia/special_treasure_metal";
 var oStone = "gaia/special_treasure_stone";
 
 // decorative props
-var aGrass = "actor|props/flora/grass_soft_small_tall.xml";
-var aGrassShort = "actor|props/flora/grass_soft_large.xml";
+var aGrass = "actor|props/flora/grass_soft_dry_small_tall.xml";
+var aGrassShort = "actor|props/flora/grass_soft_dry_large.xml";
 var aRockLarge = "actor|geology/stone_granite_med.xml";
 var aRockMedium = "actor|geology/stone_granite_med.xml";
-var aReeds = "actor|props/flora/reeds_pond_lush_a.xml";
+var aReeds = "actor|props/flora/reeds_pond_dry.xml";
 var aLillies = "actor|props/flora/water_lillies.xml";
-var aBushMedium = "actor|props/flora/bush_medit_me.xml";
-var aBushSmall = "actor|props/flora/bush_medit_sm.xml";
+var aBushMedium = "actor|props/flora/bush_medit_me_dry.xml";
+var aBushSmall = "actor|props/flora/bush_medit_sm_dry.xml";
 
 var pForestD = [tGrassDForest + TERRAIN_SEPARATOR + oBeech, tGrassDForest];
-var pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oOak, tGrassPForest];
+var pForestO = [tGrassPForest + TERRAIN_SEPARATOR + oOak, tGrassPForest];
+var pForestP = [tGrassPForest + TERRAIN_SEPARATOR + oPine, tGrassPForest];
+
 const BUILDING_ANGlE = -PI/4;
 
 // initialize map
@@ -263,6 +265,7 @@ var numStragglers = totalTrees * (1.0 - P_FOREST);
 log("Creating forests...");
 var types = [
 	[[tGrassDForest, tGrass, pForestD], [tGrassDForest, pForestD]],
+	[[tGrassDForest, tGrass, pForestO], [tGrassDForest, pForestO]],
 	[[tGrassPForest, tGrass, pForestP], [tGrassPForest, pForestP]]
 ];	// some variation
 var size = numForest / (scaleByMapSize(2,8) * numPlayers);
@@ -402,7 +405,7 @@ RMS.SetProgress(80);
 
 // create straggler trees
 log("Creating straggler trees...");
-var types = [oOak, oBeech];	// some variation
+var types = [oOak, oBeech, oPine];	// some variation
 var num = floor(numStragglers / types.length);
 for (var i = 0; i < types.length; ++i)
 {
@@ -451,6 +454,8 @@ createObjectGroups(group, 0,
 	avoidClasses(clWater, 1, clHill, 1, clPlayer, 1, clDirt, 1),
 	scaleByMapSize(13, 200), 50
 );
+
+setSkySet("sunny");
 
 // Export map data
 ExportMap();
