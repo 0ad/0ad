@@ -16,13 +16,16 @@
     <variant frequency="1" name="tree_tropic-top-mesh-a">
       <mesh>gaia/tree_tropic_top.dae</mesh>
     </variant>
-    <variant frequency="1" name="tree_tropic-top-mesh-a">
+    <variant frequency="1" name="tree_tropic-top-mesh-c">
       <mesh>gaia/tree_tropic_top_c.dae</mesh>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="tree_tropic-top-texture-a">
       <texture>gaia/tree_tropic_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="tree_tropic-top-texture-b">
+      <texture>gaia/tree_tropic_b.dds</texture>
     </variant>
   </group>
 
