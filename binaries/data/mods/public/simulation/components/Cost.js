@@ -49,17 +49,24 @@ Cost.prototype.GetPopBonus = function()
 
 Cost.prototype.GetBuildTime = function()
 {
-	return +this.template.BuildTime;
+	var buildTime = +this.template.BuildTime;
+	var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	if (cmpTechnologyManager)
+		buildTime = cmpTechnologyManager.ApplyModifications("Cost/BuildTime", buildTime, this.entity);
+	return buildTime;
 }
 
 Cost.prototype.GetResourceCosts = function()
 {
-	return {
-		"food": +this.template.Resources.food,
-		"wood": +this.template.Resources.wood,
-		"stone": +this.template.Resources.stone,
-		"metal": +this.template.Resources.metal
-	};
+	var costs = {};
+	var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	for (var r in this.template.Resources)
+	{
+		costs[r] = +this.template.Resources[r];
+		if (cmpTechnologyManager)
+			costs[r] = cmpTechnologyManager.ApplyModifications("Cost/Resources/"+r, costs[r], this.entity);
+	}
+	return costs;
 };
 
 Engine.RegisterComponentType(IID_Cost, "Cost", Cost);

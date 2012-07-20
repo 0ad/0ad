@@ -89,8 +89,8 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 	
 	var string = this.template.Technologies._string;
 	
-	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-	if (!cmpTechMan)
+	var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	if (!cmpTechnologyManager)
 		return [];
 	
 	var techs = string.split(/\s+/);
@@ -102,7 +102,7 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 	for (var i in techs)
 	{
 		var tech = techs[i];
-		var template = cmpTechMan.GetTechnologyTemplate(tech);
+		var template = cmpTechnologyManager.GetTechnologyTemplate(tech);
 		if (!template.supersedes || techs.indexOf(template.supersedes) === -1)
 			techList.push(tech);
 		else
@@ -133,7 +133,7 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 			continue;
 		}
 		
-		var template = cmpTechMan.GetTechnologyTemplate(tech);
+		var template = cmpTechnologyManager.GetTechnologyTemplate(tech);
 		if (template.top)
 			ret[i] = {"pair": true, "top": template.top, "bottom": template.bottom};
 		else
@@ -148,17 +148,17 @@ ProductionQueue.prototype.IsTechnologyResearchedOrInProgress = function(tech)
 	if (!tech)
 		return false;
 	
-	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 	
-	var template = cmpTechMan.GetTechnologyTemplate(tech);
+	var template = cmpTechnologyManager.GetTechnologyTemplate(tech);
 	if (template.top)
 	{
-		return (cmpTechMan.IsTechnologyResearched(template.top) || cmpTechMan.IsInProgress(template.top)
-			|| cmpTechMan.IsTechnologyResearched(template.bottom) || cmpTechMan.IsInProgress(template.bottom))
+		return (cmpTechnologyManager.IsTechnologyResearched(template.top) || cmpTechnologyManager.IsInProgress(template.top)
+			|| cmpTechnologyManager.IsTechnologyResearched(template.bottom) || cmpTechnologyManager.IsInProgress(template.bottom))
 	}
 	else
 	{
-		return (cmpTechMan.IsTechnologyResearched(tech) || cmpTechMan.IsInProgress(tech))
+		return (cmpTechnologyManager.IsTechnologyResearched(tech) || cmpTechnologyManager.IsInProgress(tech))
 	}
 };
 
@@ -186,15 +186,28 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			// Apply a time discount to larger batches.
 			// TODO: work out what equation we should use here.
 			var timeMult = Math.pow(count, 0.7);
-
-			var time = timeMult * template.Cost.BuildTime;
-
+			
+			// We need the costs after tech modifications
+			// Obviously we don't have the entities yet, so we must use template data
+			var costs = {};
 			var totalCosts = {};
-			for each (var r in ["food", "wood", "stone", "metal"])
-				totalCosts[r] = Math.floor(count * template.Cost.Resources[r]);
+			var buildTime = +template.Cost.BuildTime;
+			
+			var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+			if (cmpTechnologyManager)
+				buildTime = cmpTechnologyManager.ApplyModificationsTemplate("Cost/BuildTime", buildTime, template);
+			var time = timeMult * buildTime;
 
-			var population = template.Cost.Population;
-		
+			for (var r in template.Cost.Resources)
+			{
+				costs[r] = +template.Cost.Resources[r];
+				if (cmpTechnologyManager)
+					costs[r] = cmpTechnologyManager.ApplyModificationsTemplate("Cost/Resources/"+r, costs[r], template);
+				totalCosts[r] = Math.floor(count * costs[r]);
+			}
+
+			var population = +template.Cost.Population;
+
 			// TrySubtractResources should report error to player (they ran out of resources)
 			if (!cmpPlayer.TrySubtractResources(totalCosts))
 				return;
@@ -205,7 +218,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 				"unitTemplate": templateName,
 				"count": count,
 				"metadata": metadata,
-				"resources": deepcopy(template.Cost.Resources), // need to copy to avoid serialization problems
+				"resources": costs,
 				"population": population,
 				"productionStarted": false,
 				"timeTotal": time*1000,
@@ -232,8 +245,8 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			
 			// Tell the technology manager that we have started researching this so that people can't research the same 
 			// thing twice.
-			var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-			cmpTechMan.StartedResearch(templateName);
+			var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+			cmpTechnologyManager.StartedResearch(templateName);
 
 			this.queue.push({
 				"id": this.nextID++,
@@ -306,8 +319,8 @@ ProductionQueue.prototype.RemoveBatch = function(id)
 		// Mark the research as stopped if we cancel it
 		if (item.technologyTemplate)
 		{
-			var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-			cmpTechMan.StoppedResearch(item.technologyTemplate);
+			var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+			cmpTechnologyManager.StoppedResearch(item.technologyTemplate);
 		}
 		
 		// Remove from the queue
