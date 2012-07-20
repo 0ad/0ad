@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="442.418" y="175.094" z="202.681"/>
+		<Position x="550.368" y="171.827" z="228.015"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -54,7 +54,7 @@
     },
     {
       "AI": "",
-      "Civ": "hele",
+      "Civ": "cart",
       "Colour": {
         "b": 20,
         "g": 20,
@@ -64,6 +64,7 @@
       "Team": -1
     }
   ],
+  "Preview": "cycladic_archipelago_2.png",
   "Seed": 0,
   "Size": 384
 }
@@ -950,12 +951,6 @@
 			<Player>0</Player>
 			<Position x="272.67795" z="347.331"/>
 			<Orientation y="-0.13595"/>
-		</Entity>
-		<Entity uid="159">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="1076.9043" z="669.78919"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="160">
 			<Template>actor|geology/stone_medit_med.xml</Template>
@@ -15332,6 +15327,12 @@
 			<Template>structures/pers_civil_centre</Template>
 			<Player>1</Player>
 			<Position x="442.29471" z="402.15763"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2870">
+			<Template>structures/cart_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="1074.74012" z="675.18866"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>

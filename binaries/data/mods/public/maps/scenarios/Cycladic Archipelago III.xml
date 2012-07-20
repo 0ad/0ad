@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="447.152" y="131.654" z="272.624"/>
+		<Position x="491.692" y="152.37" z="204.063"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -46,7 +46,7 @@
   "PlayerData": [
     {
       "AI": "",
-      "Civ": "hele",
+      "Civ": "spart",
       "Colour": {
         "b": 200,
         "g": 46,
@@ -64,7 +64,7 @@
     },
     {
       "AI": "",
-      "Civ": "hele",
+      "Civ": "athen",
       "Colour": {
         "b": 13,
         "g": 13,
@@ -81,18 +81,13 @@
       "Team": -1
     }
   ],
+  "Preview": "cycladic_archipelago_3.png",
   "RevealMap": false,
   "Seed": 0,
   "Size": 384
 }
 ]]></ScriptSettings>
 	<Entities>
-		<Entity uid="11">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="445.59647" z="410.84916"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="12">
 			<Template>gaia/geology_stonemine_medit_quarry</Template>
 			<Player>0</Player>
@@ -16327,12 +16322,6 @@
 			<Position x="1449.69068" z="1050.0315"/>
 			<Orientation y="-2.66462"/>
 		</Entity>
-		<Entity uid="3068">
-			<Template>structures/hele_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="1426.51807" z="1080.3772"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="3069">
 			<Template>gaia/fauna_chicken</Template>
 			<Player>0</Player>
@@ -19297,76 +19286,88 @@
 			<Position x="573.83088" z="358.53467"/>
 			<Orientation y="-2.3958"/>
 		</Entity>
-		<Entity uid="3639">
-			<Template>structures/hele_temple</Template>
-			<Player>1</Player>
-			<Position x="467.52683" z="433.26246"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3640">
-			<Template>structures/hele_temple</Template>
+		<Entity uid="3651">
+			<Template>structures/athen_civil_centre</Template>
 			<Player>2</Player>
-			<Position x="1443.91321" z="1103.98194"/>
+			<Position x="1417.85657" z="1084.12623"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="3641">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="454.29029" z="384.68345"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3642">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="456.8686" z="387.4278"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3643">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="459.1508" z="390.25638"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3644">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="460.81067" z="391.83613"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3645">
-			<Template>units/hele_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="462.88935" z="393.98444"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3646">
-			<Template>units/hele_infantry_spearman_e</Template>
+		<Entity uid="3652">
+			<Template>structures/athen_temple</Template>
 			<Player>2</Player>
-			<Position x="1435.3053" z="1054.93763"/>
+			<Position x="1443.13758" z="1106.20887"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="3647">
-			<Template>units/hele_infantry_spearman_e</Template>
+		<Entity uid="3653">
+			<Template>units/athen_infantry_spearman_e</Template>
 			<Player>2</Player>
-			<Position x="1437.32007" z="1057.01941"/>
+			<Position x="1426.91724" z="1059.56751"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="3648">
-			<Template>units/hele_infantry_spearman_e</Template>
+		<Entity uid="3654">
+			<Template>units/athen_infantry_spearman_e</Template>
 			<Player>2</Player>
-			<Position x="1439.63965" z="1059.34925"/>
+			<Position x="1429.25" z="1061.51795"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="3649">
-			<Template>units/hele_infantry_spearman_e</Template>
+		<Entity uid="3655">
+			<Template>units/athen_infantry_spearman_e</Template>
 			<Player>2</Player>
-			<Position x="1441.86268" z="1061.75757"/>
+			<Position x="1431.42688" z="1063.82862"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="3650">
-			<Template>units/hele_infantry_spearman_e</Template>
+		<Entity uid="3656">
+			<Template>units/athen_infantry_spearman_e</Template>
 			<Player>2</Player>
-			<Position x="1444.29468" z="1063.69971"/>
+			<Position x="1433.81788" z="1065.92579"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3657">
+			<Template>units/athen_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="1436.09717" z="1067.62537"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3658">
+			<Template>structures/spart_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="441.33201" z="403.43018"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3659">
+			<Template>units/spart_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="450.04606" z="381.88434"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3660">
+			<Template>units/spart_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="452.05866" z="383.2255"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3661">
+			<Template>units/spart_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="453.76151" z="384.95893"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3662">
+			<Template>units/spart_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="455.41614" z="386.27234"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3663">
+			<Template>units/spart_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="457.33747" z="387.99823"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3664">
+			<Template>structures/spart_temple</Template>
+			<Player>1</Player>
+			<Position x="465.10721" z="424.01935"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
