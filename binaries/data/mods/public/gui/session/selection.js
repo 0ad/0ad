@@ -1,9 +1,15 @@
-const MAX_SELECTION_SIZE = 200; // Limits selection size
+// Limits selection size
+const MAX_SELECTION_SIZE = 200; 
 
-function _setHighlight(ents, alpha)
+// Alpha value of hovered/mouseover/highlighted selection overlays
+// (should probably be greater than always visible alpha value,
+//	see CCmpSelectable)
+const HIGHLIGHTED_ALPHA = 0.75; 
+
+function _setHighlight(ents, alpha, selected)
 {
 	if (ents.length)
-		Engine.GuiInterfaceCall("SetSelectionHighlight", { "entities":ents, "alpha":alpha });
+		Engine.GuiInterfaceCall("SetSelectionHighlight", { "entities":ents, "alpha":alpha, "selected":selected });
 }
 
 function _setStatusBars(ents, enabled)
@@ -214,7 +220,7 @@ EntitySelection.prototype.update = function()
 		if (entState.visibility == "hidden")
 		{
 			// Disable any highlighting of the disappeared unit
-			_setHighlight([ent], 0);
+			_setHighlight([ent], 0, false);
 			_setStatusBars([ent], false);
 			_setMotionOverlay([ent], false);
 
@@ -280,7 +286,7 @@ EntitySelection.prototype.addList = function(ents)
 		}
 	}
 
-	_setHighlight(added, 1);
+	_setHighlight(added, 1, true);
 	_setStatusBars(added, true);
 	_setMotionOverlay(added, this.motionDebugOverlay);
 	if (added.length)
@@ -304,7 +310,7 @@ EntitySelection.prototype.removeList = function(ents)
 		}
 	}
 
-	_setHighlight(removed, 0);
+	_setHighlight(removed, 0, false);
 	_setStatusBars(removed, false);
 	_setMotionOverlay(removed, false);
 
@@ -313,7 +319,7 @@ EntitySelection.prototype.removeList = function(ents)
 
 EntitySelection.prototype.reset = function()
 {
-	_setHighlight(this.toList(), 0);
+	_setHighlight(this.toList(), 0, false);
 	_setStatusBars(this.toList(), false);
 	_setMotionOverlay(this.toList(), false);
 	this.selected = {};
@@ -349,10 +355,10 @@ EntitySelection.prototype.setHighlightList = function(ents)
 		if (!this.highlighted[ent] && !this.selected[ent])
 			added.push(+ent);
 
-	_setHighlight(removed, 0);
+	_setHighlight(removed, 0, false);
 	_setStatusBars(removed, false);
 
-	_setHighlight(added, 0.5);
+	_setHighlight(added, HIGHLIGHTED_ALPHA, true);
 	_setStatusBars(added, true);
 	
 	// Store the new highlight list

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defense_wall">
+<Entity parent="template_structure_defense_wall_long">
   <Cost>
     <BuildTime>30</BuildTime>
   </Cost>
@@ -9,7 +9,7 @@
   </Footprint>
   <Identity>
     <Civ>iber</Civ>
-	<SelectionGroupName>structures/iber_wallset_stone</SelectionGroupName>
+    <SelectionGroupName>structures/iber_wallset_stone</SelectionGroupName>
     <SpecificName>Muro Ancho</SpecificName>
     <History>High and strongly built defensive stone walls were a common structure of the Iberian Peninsula during the period, and for long thereafter.</History>
   </Identity>

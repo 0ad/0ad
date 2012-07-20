@@ -24,7 +24,7 @@
 #include "ps/Overlay.h"
 
 BEGIN_INTERFACE_WRAPPER(Selectable)
-DEFINE_INTERFACE_METHOD_1("SetSelectionHighlight", void, ICmpSelectable, SetSelectionHighlight, CColor)
+DEFINE_INTERFACE_METHOD_2("SetSelectionHighlight", void, ICmpSelectable, SetSelectionHighlight, CColor, bool)
 END_INTERFACE_WRAPPER(Selectable)
 
 bool ICmpSelectable::ms_EnableDebugOverlays = false;

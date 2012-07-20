@@ -43,6 +43,11 @@ Foundation.prototype.InitialiseConstruction = function(owner, template)
 	// decoupled from its owner, so we need to remember it in here (and assume it won't change)
 	this.owner = owner;
 
+	// Remember our cost here, so if it changes after construction begins (from technologies)
+	//	we will use the correct values to refund partial construction costs
+	var cmpCost = Engine.QueryInterface(this.entity, IID_Cost);
+	this.costs = cmpCost.GetResourceCosts();
+
 	this.initialised = true;
 };
 
@@ -69,11 +74,9 @@ Foundation.prototype.OnDestroy = function()
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(this.owner), IID_Player);
 
-	var cmpCost = Engine.QueryInterface(this.entity, IID_Cost);
-	var costs = cmpCost.GetResourceCosts();
-	for (var r in costs)
+	for (var r in this.costs)
 	{
-		var scaled = Math.floor(costs[r] * (1.0 - this.buildProgress));
+		var scaled = Math.floor(this.costs[r] * (1.0 - this.buildProgress));
 		if (scaled)
 			cmpPlayer.AddResource(r, scaled);
 	}

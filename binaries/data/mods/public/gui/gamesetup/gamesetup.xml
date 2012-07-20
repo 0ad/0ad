@@ -36,7 +36,7 @@
 
 		
 		<!-- Player assignments -->
-		<object size="24 64 100%-440 358" type="image" sprite="BackgroundIndentFillDark" name="playerAssignmentsPannel">
+		<object size="24 59 100%-440 358" type="image" sprite="BackgroundIndentFillDark" name="playerAssignmentsPannel">
 			<object size="0 6 100% 30">
 				<object name="playerNameHeading" type="text" style="CenteredLabelText" size="0 0 25% 100%">Player Name</object>
 				<object name="playerPlacementHeading" type="text" style="CenteredLabelText" size="25%+10 0 50% 100%">Player Placement</object>
@@ -121,7 +121,7 @@
 		</object>
 		
 		<!-- Map Preview -->
-		<object  type="image" sprite="BackgroundIndentFillDark" name="gamePreviewBox" size="100%-425 64 100%-25 364">
+		<object  type="image" sprite="BackgroundIndentFillDark" name="gamePreviewBox" size="100%-425 58 100%-25 358">
 			<object type="image" sprite="snMapPreview" size="1 1 399 299" name="mapPreview"/>
 		</object>
 		

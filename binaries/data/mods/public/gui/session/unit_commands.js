@@ -209,8 +209,8 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			break;
 
 		case GATE:
-			if(numberOfItems > 2)
-				numberOfItems = 2;
+			if(numberOfItems > 8)
+				numberOfItems = 8;
 			break;
 
 		default:
@@ -513,17 +513,18 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			// If already a gate, show locking actions
 			if (unitEntState.gate)
 			{
-				gateIcon = "lock_" + GATE_ACTIONS[i].toLowerCase() + "ed.png";
+				gateIcon = "icons/lock_" + GATE_ACTIONS[i].toLowerCase() + "ed.png";
 				selection.hidden = unitEntState.gate.locked != item.locked;
 			}
 			// otherwise show gate upgrade icon
 			else
 			{
-				gateIcon = "gate_closed.png";
+				template = GetTemplateData(item.template);
+				gateIcon = template.icon ?  "portraits/" + template.icon : "icons/gate_closed.png";
 				selection.hidden = true;
 			}
 
-			icon.sprite = "stretched:session/icons/" + gateIcon;
+			icon.sprite = "stretched:session/" + gateIcon;
 		}
 		else if (template.icon)
 		{
@@ -806,6 +807,9 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		removeDupes(buildableEnts);
 		removeDupes(trainableEnts);
 
+		// Whether the GUI's right panel has been filled.
+		var rightUsed = true;
+
 		// The first selected entity's type has priority.
 		if (entState.buildEntities)
 			setupUnitPanel(CONSTRUCTION, usedPanels, entState, buildableEnts, startBuildingPlacement);
@@ -814,7 +818,54 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 				function (trainEntType) { addTrainingToQueue(selection, trainEntType); } );
 		else if (entState.trader)
 			setupUnitTradingPanel(usedPanels, entState, selection);
+		else if (entState.gate)
+		{
+			var items = [];
+			for (var i = 0; i < GATE_ACTIONS.length; ++i)
+				items.push({
+					"tooltip": GATE_ACTIONS[i] + " gate",
+					"locked": i == 0
+				});
+			setupUnitPanel(GATE, usedPanels, entState, items,
+				function (item) { lockGate(item.locked); } );
+		}
+		else if (!entState.foundation && (hasClass(entState, "LongWall")))
+		{
+			// Allow long wall pieces to be converted to gates
+			var longWallTypes = {};
+			var items = [];
+			for (var i in selection)
+			{
+				if ((state = GetEntityState(selection[i])) && hasClass(state, "LongWall") &&
+					!state.gate && !state.foundation && !longWallTypes[state.template])
+				{
+					var gateTemplate = getWallGateTemplate(state.id);
+					if (gateTemplate)
+					{
+						var wallName = GetTemplateData(state.template).name.generic;
+						var gateName = GetTemplateData(gateTemplate).name.generic;
+
+						items.push({
+							"tooltip": "Convert " + wallName + " to " + gateName,
+							"template": gateTemplate
+						});
+					}
+
+					// We only need one entity per type.
+					longWallTypes[state.template] = true;
+				}
+			}
+
+			if (items.length)
+				setupUnitPanel(GATE, usedPanels, entState, items,
+					function (item) { transformWallToGate(item.template); } );
+			else
+				rightUsed = false;
+		}
 		else
+			rightUsed = false;
+
+		if (!rightUsed)
 		{
 			// The right pane is empty. Fill the pane with a sane type.
 			// Prefer buildables for units and trainables for structures.
@@ -837,35 +888,6 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		if (entState.production && entState.production.queue.length)
 			setupUnitPanel(QUEUE, usedPanels, entState, entState.production.queue,
 				function (item) { removeFromProductionQueue(entState.id, item.id); } );
-		
-		if(!entState.foundation && (entState.gate || hasClass(entState, "StoneWall") && !hasClass(entState, "Tower")))
-		{
-			if (entState.gate)
-			{
-				var items = [];
-				for (var i = 0; i < GATE_ACTIONS.length; ++i)
-					items.push({
-						"tooltip": GATE_ACTIONS[i] + " gate",
-						"locked": i == 0
-					});
-				setupUnitPanel(GATE, usedPanels, entState, items,
-					function (item) { lockGate(item.locked); } );
-			}
-			else // Wall
-			{
-				// Only allow long walls section to be transformed to gates
-				var longPos = entState.template.indexOf("long");
-				if (longPos != -1)
-				{
-					var action = {
-						"tooltip": "Convert to gate",
-						"template": entState.template.substr(0, longPos) + "gate"
-					};
-					setupUnitPanel(GATE, usedPanels, entState, [action],
-						function (item) { transformWallToGate(action.template); } );
-				}
-			}
-		}
 		
 		supplementalDetailsPanel.hidden = false;
 		commandsPanel.hidden = false;

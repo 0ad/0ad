@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>mmm</author>
+      <authoring_tool>3dsMax 7 - Feeling ColladaMax v3.05B.</authoring_tool>
+      <comments>ColladaMax Export Options: ExportNormals=1;ExportEPolyAsTriangles=1;ExportXRefs=1;ExportSelected=1;ExportTangents=0;ExportAnimations=0;SampleAnim=0;ExportAnimClip=0;BakeMatrices=0;ExportRelativePaths=1;AnimStart=0;AnimEnd=3.33333;</comments>
+    </contributor>
+    <created>2012-07-16T07:16:30Z</created>
+    <modified>2012-07-16T07:16:31Z</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="bush_grapes.png" name="bush_grapes_png">
+      <init_from>../../textures/skins/gaia/bush_grapes.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_1_-_Default" name="_1_-_Default">
+      <instance_effect url="#_1_-_Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_1_-_Default-fx" name="_1_-_Default">
+      <profile_COMMON>
+        <newparam sid="bush_grapes_png-surface">
+          <surface type="2D">
+            <init_from>bush_grapes.png</init_from>
+            <format>A8R8G8B8</format>
+          </surface>
+        </newparam>
+        <newparam sid="bush_grapes_png-sampler">
+          <sampler2D>
+            <source>bush_grapes_png-surface</source>
+            <wrap_s>WRAP</wrap_s>
+            <wrap_t>WRAP</wrap_t>
+            <minfilter>NONE</minfilter>
+            <magfilter>NONE</magfilter>
+            <mipfilter>NONE</mipfilter>
+          </sampler2D>
+        </newparam>
+        <newparam sid="bush_grapes_png-surface">
+          <surface type="2D">
+            <init_from>bush_grapes.png</init_from>
+            <format>A8R8G8B8</format>
+          </surface>
+        </newparam>
+        <newparam sid="bush_grapes_png-sampler">
+          <sampler2D>
+            <source>bush_grapes_png-surface</source>
+            <wrap_s>WRAP</wrap_s>
+            <wrap_t>WRAP</wrap_t>
+            <minfilter>NONE</minfilter>
+            <magfilter>NONE</magfilter>
+            <mipfilter>NONE</mipfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <blinn>
+            <ambient>
+              <color>0.588235 0.588235 0.588235 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="bush_grapes_png-sampler" texcoord="CHANNEL1">
+                <extra>
+                  <technique profile="MAYA">
+                    <mirrorU>0</mirrorU>
+                    <mirrorV>0</mirrorV>
+                    <wrapU>1</wrapU>
+                    <wrapV>1</wrapV>
+                    <repeatU>1</repeatU>
+                    <repeatV>1</repeatV>
+                    <offsetU>0</offsetU>
+                    <offsetV>0</offsetV>
+                    <rotateUV>0</rotateUV>
+                  </technique>
+                  <technique profile="MAX3D">
+                    <amount>1</amount>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color>0.9 0.9 0.9 1</color>
+            </specular>
+            <shininess>
+              <float>0.415305</float>
+            </shininess>
+            <reflective>
+              <color>0 0 0 1</color>
+            </reflective>
+            <reflectivity>
+              <float>1</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <texture texture="bush_grapes_png-sampler" texcoord="CHANNEL1">
+                <extra>
+                  <technique profile="MAYA">
+                    <mirrorU>0</mirrorU>
+                    <mirrorV>0</mirrorV>
+                    <wrapU>1</wrapU>
+                    <wrapV>1</wrapV>
+                    <repeatU>1</repeatU>
+                    <repeatV>1</repeatV>
+                    <offsetU>0</offsetU>
+                    <offsetV>0</offsetV>
+                    <rotateUV>0</rotateUV>
+                  </technique>
+                  <technique profile="MAX3D">
+                    <amount>1</amount>
+                  </technique>
+                </extra>
+              </texture>
+            </transparent>
+            <transparency>
+              <float>1</float>
+            </transparency>
+          </blinn>
+          <extra>
+            <technique profile="FCOLLADA">
+              <spec_level>
+                <float>0</float>
+              </spec_level>
+              <emission_level>
+                <float>0</float>
+              </emission_level>
+            </technique>
+          </extra>
+        </technique>
+      </profile_COMMON>
+      <extra>
+        <technique profile="MAX3D">
+          <faceted>0</faceted>
+          <double_sided>0</double_sided>
+          <wireframe>0</wireframe>
+          <face_map>0</face_map>
+        </technique>
+      </extra>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="wrld_foragebush_a-Geometry" name="wrld_foragebush_a01">
+      <mesh>
+        <source id="wrld_foragebush_a-Geometry-positions">
+          <float_array id="wrld_foragebush_a-Geometry-positions-array" count="228">1.33882 -3.72511 -3.0218 0.942578 -1.19935 -0.634123 -1.71834 -2.50405 -3.0218 -1.00997 -1.19935 -0.634123 -0.173585 0.92509 -1.2354 -2.70964 0.442404 -3.03983 0.006966 -0.918027 -0.616743 -2.52909 -1.40071 -2.42117 -0.933918 0.400138 -0.448683 -0.832986 -2.22128 -0.967933 0.982751 0.400139 -0.076122 1.08368 -2.22127 -0.595373 1.05352 -1.45548 -0.277283 2.55113 -1.45548 -3.60533 1.05352 0.49706 -0.277283 3.08826 0.497061 -3.11917 0.189432 1.14808 -0.583843 -1.15493 2.34371 -2.9271 -1.49733 -0.748514 -0.583843 -2.8417 0.447116 -2.9271 -1.20995 0.067011 -0.561153 -2.49429 -0.868283 -3.16502 0.214775 -2.03168 -0.472283 -1.06956 -2.96697 -3.07616 -0.200394 -1.375 -0.563213 0.840265 -2.93239 -2.7913 1.90998 0.035166 -0.563213 2.95064 -1.52222 -2.7913 1.3026 -0.870943 -0.559723 2.76663 0.170524 -2.90653 -0.168679 1.19729 -0.559723 1.29535 2.23876 -2.90653 0.942578 -2.31062 -3.25714 0.942578 -0.900214 0.121466 -1.00997 -2.31062 -3.25714 -1.00997 -0.900214 0.121466 -0.050389 0.74948 0.125707 -2.1455 0.680413 -2.64135 0.25099 -1.15604 -0.175283 -1.84412 -1.2251 -2.94235 -0.901389 1.87599 -3.31511 -0.901389 0.465581 0.063497 1.05115 1.87599 -3.31511 1.05115 0.465581 0.063497 -0.666278 -1.09448 -0.368413 1.97062 -1.09448 -0.813853 -0.666277 0.85806 -0.368413 1.97062 0.85806 -0.813853 1.23539 -0.158391 -0.361733 1.23539 1.64073 -2.70499 -1.30277 -0.158391 -0.361733 -1.30277 1.64073 -2.70499 0.194524 1.30511 -0.566443 -1.55585 0.830581 -2.88844 0.43454 -1.14656 0.045067 -1.31583 -1.62109 -1.1704 -1.17341 -0.069231 -0.517033 -1.17341 -1.94231 -2.74512 1.36475 -0.069231 -0.517033 1.36475 -1.94231 -2.74512 -0.040459 -1.45743 -0.359963 1.75621 -1.45743 -2.70677 -0.04046 1.08072 -0.359953 1.75621 1.08073 -2.70677 0.150961 -0.181589 -3.09503 0.016943 0.134399 -0.598073 0.133139 0.067568 -0.594073 0.008032 -0.099382 -3.09994 0.008032 -0.099382 -3.09994 0.016943 0.000738 -0.590083 0.016943 0.134399 -0.598073 0.008032 -0.263795 -3.09012 0.008032 -0.263795 -3.09012 0.133139 0.067568 -0.594073 0.016943 0.000738 -0.590083 0.150961 -0.181589 -3.09503</float_array>
+          <technique_common>
+            <accessor source="#wrld_foragebush_a-Geometry-positions-array" count="76" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_foragebush_a-Geometry-normals">
+          <float_array id="wrld_foragebush_a-Geometry-normals-array" count="294">0 -0.849615 0.527404 0 -0.849615 0.527404 0 -0.849615 0.527404 0 -0.849615 0.527404 0.820665 0.219897 0.527404 0.820665 0.219897 0.527404 0.820665 0.219897 0.527404 0.820665 0.219896 0.527404 0 0.849615 0.527404 0 0.849615 0.527404 0 0.849615 0.527404 0 0.849615 0.527404 -0.849615 0 0.527404 -0.849615 0 0.527404 -0.849615 0 0.527404 -0.849615 0 0.527404 0 -0.542909 0.839792 0 -0.542909 0.839792 0 -0.542909 0.839792 0 -0.542909 0.839792 0.524409 0.140515 0.839792 0.524409 0.140515 0.839792 0.524409 0.140515 0.839792 0.524409 0.140515 0.839792 0 0.542909 0.839792 0 0.542909 0.839792 0 0.542909 0.839792 0 0.542909 0.839792 -0.542909 0 0.839792 -0.542908 0 0.839792 -0.542908 0 0.839792 -0.542908 0 0.839792 0 -0.849615 0.527404 0 -0.849615 0.527404 0 -0.849615 0.527404 0 -0.849615 0.527404 0 -0.849615 0.527404 0 -0.849615 0.527404 -0.601997 -0.216613 0.768556 -0.601997 -0.216613 0.768556 -0.601997 -0.216613 0.768556 -0.601997 -0.216614 0.768556 -0.601997 -0.216614 0.768556 -0.601997 -0.216614 0.768556 0 0.849615 0.527404 0 0.849615 0.527404 0 0.849615 0.527404 0 0.849615 0.527404 0 0.849615 0.527404 0 0.849615 0.527404 0.166565 0 0.986031 0.166565 0 0.986031 0.166565 0 0.986031 0.166565 0 0.986031 0.166565 0 0.986031 0.166565 0 0.986031 0 0.566475 0.824079 0 0.566475 0.824079 0 0.566475 0.824079 0 0.566475 0.824079 0 0.566475 0.824079 0 0.566475 0.824079 -0.590135 0.140515 0.794982 -0.590135 0.140515 0.794982 -0.590134 0.140515 0.794982 -0.590135 0.140515 0.794982 -0.590135 0.140515 0.794982 -0.590135 0.140515 0.794982 0 -0.513726 0.857955 0 -0.513726 0.857955 0 -0.513726 0.857955 0 -0.513726 0.857954 0 -0.513726 0.857954 0 -0.513726 0.857954 0.568104 0 0.822957 0.568104 0 0.822957 0.568104 0 0.822957 0.568105 0 0.822956 0.568105 0 0.822956 0.568105 0 0.822956 0.496967 0.855317 -0.146477 0.496967 0.855317 -0.146477 0.496967 0.855317 -0.146477 0.496969 0.855316 -0.146477 0.496969 0.855316 -0.146477 0.496969 0.855316 -0.146477 -0.99998 0.000377 0.006322 -0.99998 0.000377 0.006322 -0.99998 0.000377 0.006322 -0.99998 0.000377 0.006322 -0.99998 0.000377 0.006322 -0.99998 0.000377 0.006322 0.496333 -0.853476 0.158844 0.496333 -0.853476 0.158844 0.496333 -0.853476 0.158844 0.496335 -0.853475 0.158844 0.496335 -0.853475 0.158844 0.496335 -0.853475 0.158844</float_array>
+          <technique_common>
+            <accessor source="#wrld_foragebush_a-Geometry-normals-array" count="98" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="wrld_foragebush_a-Geometry-map-channel1">
+          <float_array id="wrld_foragebush_a-Geometry-map-channel1-array" count="228">0.000212 -0.005571 0 0.000212 0.997638 0 0.995068 -0.005571 0 0.995068 0.997638 0 0.000212 -0.005571 0 0.000212 0.997638 0 0.995068 -0.005571 0 0.995068 0.997638 0 0.000212 -0.005571 0 0.000212 0.997638 0 0.995068 -0.005571 0 0.995068 0.997638 0 0.000212 -0.005571 0 0.000212 0.997638 0 0.995068 -0.005571 0 0.995068 0.997638 0 0.000212 -0.005571 0 0.000212 0.997638 0 0.995068 -0.005571 0 0.995068 0.997638 0 0.000212 -0.005571 0 0.000212 0.997638 0 0.995068 -0.005571 0 0.995068 0.997638 0 0.000212 -0.005571 0 0.000212 0.997638 0 0.995068 -0.005571 0 0.995068 0.997638 0 0.000212 -0.005571 0 0.000212 0.997638 0 0.995068 -0.005571 0 0.995068 0.997638 0 0.000212 -0.005571 0 0.000212 0.997638 0 0.995068 -0.005571 0 0.995068 0.997638 0 0.000212 -0.005571 0 0.000212 0.997638 0 0.995068 -0.005571 0 0.995068 0.997638 0 0.000212 -0.005571 0 0.000212 0.997638 0 0.995068 -0.005571 0 0.995068 0.997638 0 0.000212 -0.005571 0 0.000212 0.997638 0 0.995068 -0.005571 0 0.995068 0.997638 0 0.000212 -0.005571 0 0.000212 0.997638 0 0.995068 -0.005571 0 0.995068 0.997638 0 0.000212 -0.005571 0 0.000212 0.997638 0 0.995068 -0.005571 0 0.995068 0.997638 0 0.000212 -0.005571 0 0.000212 0.997638 0 0.995068 -0.005571 0 0.995068 0.997638 0 0.000212 -0.005571 0 0.000212 0.997638 0 0.995068 -0.005571 0 0.995068 0.997638 0 0.443295 0.009834 0 0.462105 0.196189 0 0.443407 0.196189 0 0.462105 0.009834 0 0.443295 0.009834 0 0.462105 0.196189 0 0.443407 0.196189 0 0.462105 0.009834 0 0.443295 0.009834 0 0.462105 0.196189 0 0.443407 0.196189 0 0.462105 0.009834 0</float_array>
+          <technique_common>
+            <accessor source="#wrld_foragebush_a-Geometry-map-channel1-array" count="76" stride="3">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+              <param name="P" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="wrld_foragebush_a-Geometry-vertices">
+          <input semantic="POSITION" source="#wrld_foragebush_a-Geometry-positions"/>
+        </vertices>
+        <triangles material="_1_-_Default" count="38">
+          <input semantic="VERTEX" source="#wrld_foragebush_a-Geometry-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#wrld_foragebush_a-Geometry-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#wrld_foragebush_a-Geometry-map-channel1" offset="2" set="1"/>
+          <p>0 0 0 1 1 1 2 2 2 3 3 3 2 2 2 1 1 1 4 4 4 5 5 5 6 6 6 7 7 7 6 6 6 5 5 5 8 8 8 9 9 9 10 10 10 11 11 11 10 10 10 9 9 9 12 12 12 13 13 13 14 14 14 15 15 15 14 14 14 13 13 13 16 16 16 17 17 17 18 18 18 19 19 19 18 18 18 17 17 17 20 20 20 21 21 21 22 22 22 23 23 23 22 22 22 21 21 21 24 24 24 25 25 25 26 26 26 27 27 27 26 26 26 25 25 25 28 28 28 29 29 29 30 30 30 31 31 31 30 30 30 29 29 29 32 32 32 33 33 33 34 34 34 35 35 35 34 36 34 33 37 33 36 38 36 37 39 37 38 40 38 39 41 39 38 42 38 37 43 37 40 44 40 41 45 41 42 46 42 43 47 43 42 48 42 41 49 41 44 50 44 45 51 45 46 52 46 47 53 47 46 54 46 45 55 45 48 56 48 49 57 49 50 58 50 51 59 51 50 60 50 49 61 49 52 62 52 53 63 53 54 64 54 55 65 55 54 66 54 53 67 53 56 68 56 57 69 57 58 70 58 59 71 59 58 72 58 57 73 57 60 74 60 61 75 61 62 76 62 63 77 63 62 78 62 61 79 61 64 80 64 65 81 65 66 82 66 64 83 64 67 84 67 65 85 65 68 86 68 69 87 69 70 88 70 68 89 68 71 90 71 69 91 69 72 92 72 73 93 73 74 94 74 72 95 72 75 96 75 73 97 73</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="unnamed_scene" name="unnamed_scene">
+      <node id="wrld_foragebush_a01-node" name="wrld_foragebush_a01" type="NODE">
+        <translate>0 0 2.97956</translate>
+        <instance_geometry url="#wrld_foragebush_a-Geometry">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_1_-_Default" target="#_1_-_Default">
+                <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <extra>
+        <technique profile="FCOLLADA">
+          <start_time>0</start_time>
+          <end_time>3.33333</end_time>
+        </technique>
+      </extra>
+      <extra>
+        <technique profile="MAX3D">
+          <frame_rate>30</frame_rate>
+        </technique>
+      </extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#unnamed_scene"/>
+  </scene>
+</COLLADA>

@@ -147,9 +147,9 @@ function ProcessCommand(player, cmd)
 		{
 			for each (var ent in entities)
 			{
-				var cmpTechMan = QueryOwnerInterface(ent, IID_TechnologyManager);
+				var cmpTechnologyManager = QueryOwnerInterface(ent, IID_TechnologyManager);
 				// TODO: Enable this check once the AI gets technology support
-				if (cmpTechMan.CanProduce(cmd.template) || true)
+				if (cmpTechnologyManager.CanProduce(cmd.template) || true)
 				{
 					var queue = Engine.QueryInterface(ent, IID_ProductionQueue);
 					// Check if the building can train the unit
@@ -172,9 +172,9 @@ function ProcessCommand(player, cmd)
 		// Verify that the building can be controlled by the player
 		if (CanControlUnit(cmd.entity, player, controlAllUnits))
 		{
-			var cmpTechMan = QueryOwnerInterface(cmd.entity, IID_TechnologyManager);
+			var cmpTechnologyManager = QueryOwnerInterface(cmd.entity, IID_TechnologyManager);
 			// TODO: Enable this check once the AI gets technology support
-			if (cmpTechMan.CanResearch(cmd.template) || true)
+			if (cmpTechnologyManager.CanResearch(cmd.template) || true)
 			{
 				var queue = Engine.QueryInterface(cmd.entity, IID_ProductionQueue);
 				if (queue)
@@ -475,8 +475,10 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 	if (!entities.length)
 		return false;
 	
+	var foundationTemplate = "foundation|" + cmd.template;
+	
 	// Tentatively create the foundation (we might find later that it's a invalid build command)
-	var ent = Engine.AddEntity("foundation|" + cmd.template);
+	var ent = Engine.AddEntity(foundationTemplate);
 	if (ent == INVALID_ENTITY)
 	{
 		// Error (e.g. invalid template names)
@@ -540,9 +542,10 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 		return false;
 	}
 	
-	var cmpTechMan = QueryPlayerIDInterface(player, IID_TechnologyManager);
+	var cmpTechnologyManager = QueryPlayerIDInterface(player, IID_TechnologyManager);
+	
 	// TODO: Enable this check once the AI gets technology support 
-	if (!cmpTechMan.CanProduce(cmd.template) && false) 
+	if (!cmpTechnologyManager.CanProduce(cmd.template) && false) 
 	{
 		if (g_DebugCommands)
 		{
@@ -579,13 +582,22 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 		}
 	}
 	
-	var cmpCost = Engine.QueryInterface(ent, IID_Cost);
-	if (!cmpPlayer.TrySubtractResources(cmpCost.GetResourceCosts()))
+	// We need the cost after tech modifications
+	// To calculate this with an entity requires ownership, so use the template instead
+	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	var template = cmpTemplateManager.GetTemplate(foundationTemplate);
+	var costs = {};
+	for (var r in template.Cost.Resources)
+	{
+		costs[r] = +template.Cost.Resources[r];
+		if (cmpTechnologyManager)
+			costs[r] = cmpTechnologyManager.ApplyModificationsTemplate("Cost/Resources/"+r, costs[r], template);
+	}
+	
+	if (!cmpPlayer.TrySubtractResources(costs))
 	{
 		if (g_DebugCommands)
-		{
 			warn("Invalid command: building cost check failed for player "+player+": "+uneval(cmd));
-		}
 		
 		Engine.DestroyEntity(ent);
 		return false;
@@ -1102,6 +1114,15 @@ function TryTransformWallToGate(ent, cmpPlayer, template)
 	var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
 	if (!cmpIdentity)
 		return;
+
+	// Check if this is a valid long wall segment
+	if (!cmpIdentity.HasClass("LongWall"))
+	{
+		if (g_DebugCommands)
+			warn("Invalid command: invalid wall conversion to gate for player "+player+": "+uneval(cmd));
+		return;
+	}
+
 	var civ = cmpIdentity.GetCiv();
 	var gate = Engine.AddEntity(template);
 
@@ -1109,10 +1130,8 @@ function TryTransformWallToGate(ent, cmpPlayer, template)
 	if (!cmpPlayer.TrySubtractResources(cmpCost.GetResourceCosts()))
 	{
 		if (g_DebugCommands)
-		{
-			warn("Invalid command: building cost check failed for player "+player+": "+uneval(cmd));
-		}
-		
+			warn("Invalid command: convert gate cost check failed for player "+player+": "+uneval(cmd));
+
 		Engine.DestroyEntity(gate);
 		return;
 	}

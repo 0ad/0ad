@@ -323,7 +323,13 @@ TechnologyManager.prototype.ApplyModifications = function(valueName, curValue, e
 	}
 	
 	return this.modificationCache[valueName][ent];
-}
+};
+
+// Alternative version of ApplyModifications, applies to templates instead of entities
+TechnologyManager.prototype.ApplyModificationsTemplate = function(valueName, curValue, template)
+{
+	return GetTechModifiedProperty(this.modifications, template, valueName, curValue);
+};
 
 // Marks a technology as being currently researched
 TechnologyManager.prototype.StartedResearch = function (tech)

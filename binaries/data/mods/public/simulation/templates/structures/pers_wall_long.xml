@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defense_wall">
+<Entity parent="template_structure_defense_wall_long">
   <Cost>
     <BuildTime>38</BuildTime>
   </Cost>
@@ -12,7 +12,7 @@
   </Health>
   <Identity>
     <Civ>pers</Civ>
-	<SelectionGroupName>structures/pers_wallset_stone</SelectionGroupName>
+    <SelectionGroupName>structures/pers_wallset_stone</SelectionGroupName>
     <SpecificName>Dida</SpecificName>
     <History>Persepolis, the Persian royal capital, was constructed on an immense man-made terrace with strong defensive walls.</History>
   </Identity>

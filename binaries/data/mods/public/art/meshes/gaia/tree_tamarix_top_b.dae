@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>mmm</author>
+      <authoring_tool>3dsMax 7 - Feeling ColladaMax v3.05B.</authoring_tool>
+      <comments>ColladaMax Export Options: ExportNormals=1;ExportEPolyAsTriangles=1;ExportXRefs=1;ExportSelected=1;ExportTangents=0;ExportAnimations=0;SampleAnim=0;ExportAnimClip=0;BakeMatrices=0;ExportRelativePaths=1;AnimStart=0;AnimEnd=3.33333;</comments>
+    </contributor>
+    <created>2012-07-15T14:04:07Z</created>
+    <modified>2012-07-15T14:04:08Z</modified>
+    <unit meter="0.01" name="centimeter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="tree_tamarix.png" name="tree_tamarix_png">
+      <init_from>../../textures/skins/gaia/tree_tamarix.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_2_-_Default" name="_2_-_Default">
+      <instance_effect url="#_2_-_Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_2_-_Default-fx" name="_2_-_Default">
+      <profile_COMMON>
+        <newparam sid="tree_tamarix_png-surface">
+          <surface type="2D">
+            <init_from>tree_tamarix.png</init_from>
+            <format>A8R8G8B8</format>
+          </surface>
+        </newparam>
+        <newparam sid="tree_tamarix_png-sampler">
+          <sampler2D>
+            <source>tree_tamarix_png-surface</source>
+            <wrap_s>WRAP</wrap_s>
+            <wrap_t>WRAP</wrap_t>
+            <minfilter>NONE</minfilter>
+            <magfilter>NONE</magfilter>
+            <mipfilter>NONE</mipfilter>
+          </sampler2D>
+        </newparam>
+        <newparam sid="tree_tamarix_png-surface">
+          <surface type="2D">
+            <init_from>tree_tamarix.png</init_from>
+            <format>A8R8G8B8</format>
+          </surface>
+        </newparam>
+        <newparam sid="tree_tamarix_png-sampler">
+          <sampler2D>
+            <source>tree_tamarix_png-surface</source>
+            <wrap_s>WRAP</wrap_s>
+            <wrap_t>WRAP</wrap_t>
+            <minfilter>NONE</minfilter>
+            <magfilter>NONE</magfilter>
+            <mipfilter>NONE</mipfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <blinn>
+            <ambient>
+              <color>0.588235 0.588235 0.588235 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="tree_tamarix_png-sampler" texcoord="CHANNEL1">
+                <extra>
+                  <technique profile="MAYA">
+                    <mirrorU>0</mirrorU>
+                    <mirrorV>0</mirrorV>
+                    <wrapU>1</wrapU>
+                    <wrapV>1</wrapV>
+                    <repeatU>1</repeatU>
+                    <repeatV>1</repeatV>
+                    <offsetU>0</offsetU>
+                    <offsetV>0</offsetV>
+                    <rotateUV>0</rotateUV>
+                  </technique>
+                  <technique profile="MAX3D">
+                    <amount>1</amount>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color>0.9 0.9 0.9 1</color>
+            </specular>
+            <shininess>
+              <float>0.415305</float>
+            </shininess>
+            <reflective>
+              <color>0 0 0 1</color>
+            </reflective>
+            <reflectivity>
+              <float>1</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <texture texture="tree_tamarix_png-sampler" texcoord="CHANNEL1">
+                <extra>
+                  <technique profile="MAYA">
+                    <mirrorU>0</mirrorU>
+                    <mirrorV>0</mirrorV>
+                    <wrapU>1</wrapU>
+                    <wrapV>1</wrapV>
+                    <repeatU>1</repeatU>
+                    <repeatV>1</repeatV>
+                    <offsetU>0</offsetU>
+                    <offsetV>0</offsetV>
+                    <rotateUV>0</rotateUV>
+                  </technique>
+                  <technique profile="MAX3D">
+                    <amount>1</amount>
+                  </technique>
+                </extra>
+              </texture>
+            </transparent>
+            <transparency>
+              <float>1</float>
+            </transparency>
+          </blinn>
+          <extra>
+            <technique profile="FCOLLADA">
+              <spec_level>
+                <float>0</float>
+              </spec_level>
+              <emission_level>
+                <float>0</float>
+              </emission_level>
+            </technique>
+          </extra>
+        </technique>
+      </profile_COMMON>
+      <extra>
+        <technique profile="MAX3D">
+          <faceted>0</faceted>
+          <double_sided>0</double_sided>
+          <wireframe>0</wireframe>
+          <face_map>0</face_map>
+        </technique>
+      </extra>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="tree_oak_top_a-Geometry" name="tree_oak_top_a">
+      <mesh>
+        <source id="tree_oak_top_a-Geometry-positions">
+          <float_array id="tree_oak_top_a-Geometry-positions-array" count="135">0.732159 -2.95589 10.7966 3.07446 3.15898 7.29018 -3.31167 3.32225 11.4016 3.68204 3.21483 11.4867 -3.31595 3.51373 7.24227 -1.36708 -2.16587 11.063 -2.252 0.527029 10.7966 2.95843 -3.35959 7.29018 3.13956 2.83199 11.4016 2.72342 -0.554799 12.0809 3.02231 3.37751 5.44693 -3.34146 3.63347 9.85837 0.377011 4.6107 11.3085 -3.49704 -2.65846 7.29018 3.02277 -0.226127 11.4016 -1.40194 3.83983 9.9184 -2.96524 -0.133598 3.64906 -0.307953 -4.24896 10.6849 -1.36086 -0.77233 9.78669 1.08051 -3.64744 4.84329 4.44913 0.684331 7.82647 -0.541749 -3.47527 11.3732 4.34322 0.262368 6.21276 0.805513 3.92768 12.5158 4.85161 3.4236 8.60452 -1.62848 4.26249 4.0538 -1.59391 -1.27854 9.82174 -1.92443 -1.9563 10.1563 1.87023 -2.01649 5.99773 3.20663 1.19866 10.7905 1.97629 -3.41633 6.97075 0.843274 3.35791 3.7974 -4.05355 1.32715 7.57566 2.06763 3.44077 7.35726 -2.95165 1.50562 3.50516 -0.31211 -3.8795 7.23706 -2.56719 -2.95693 6.97075 3.04704 -2.98393 3.7974 2.1763 3.07292 7.57566 1.7822 -4.12069 8.50729 2.79673 0.471288 3.64429 1.97714 3.56607 8.13354 -2.42501 0.345532 10.3418 -0.882161 -1.64231 5.44363 2.21805 -2.04437 8.97512</float_array>
+          <technique_common>
+            <accessor source="#tree_oak_top_a-Geometry-positions-array" count="45" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="tree_oak_top_a-Geometry-normals">
+          <float_array id="tree_oak_top_a-Geometry-normals-array" count="135">0.547561 0.266012 0.793356 0.547561 0.266012 0.793356 0.547561 0.266012 0.793356 -0.492009 0.368892 0.788572 -0.492009 0.368892 0.788572 -0.492009 0.368892 0.788572 0.266012 -0.547561 0.793356 0.266012 -0.547561 0.793356 0.266012 -0.547561 0.793356 0.368892 0.492009 0.788572 0.368892 0.492009 0.788572 0.368892 0.492009 0.788572 -0.49305 -0.357054 0.793356 -0.49305 -0.357054 0.793356 -0.49305 -0.357054 0.793356 -0.115229 0.597752 0.793356 -0.115229 0.597752 0.793356 -0.115229 0.597752 0.793356 -0.483664 -0.379768 0.788572 -0.483664 -0.379768 0.788572 -0.483664 -0.379768 0.788572 0.597752 0.115229 0.793356 0.597752 0.115229 0.793356 0.597752 0.115229 0.793356 -0.379768 0.483664 0.788572 -0.379768 0.483664 0.788572 -0.379768 0.483664 0.788572 0.217277 -0.568662 0.793356 0.217277 -0.568662 0.793356 0.217277 -0.568662 0.793356 0.423558 0.437247 0.793356 0.423558 0.437247 0.793356 0.423558 0.437247 0.793356 -0.588506 0.178368 0.788572 -0.588506 0.178368 0.788572 -0.588506 0.178368 0.788572 0.437247 -0.423558 0.793356 0.437247 -0.423558 0.793356 0.437247 -0.423558 0.793356 0.178368 0.588506 0.788572 0.178368 0.588506 0.788572 0.178368 0.588506 0.788572 -0.341196 -0.504154 0.793356 -0.341196 -0.504154 0.793356 -0.341196 -0.504154 0.793356</float_array>
+          <technique_common>
+            <accessor source="#tree_oak_top_a-Geometry-normals-array" count="45" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="tree_oak_top_a-Geometry-map-channel1">
+          <float_array id="tree_oak_top_a-Geometry-map-channel1-array" count="135">1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0 1.14836 0.958982 0 0.454035 -0.282879 0 -0.248638 0.958982 0</float_array>
+          <technique_common>
+            <accessor source="#tree_oak_top_a-Geometry-map-channel1-array" count="45" stride="3">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+              <param name="P" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="tree_oak_top_a-Geometry-vertices">
+          <input semantic="POSITION" source="#tree_oak_top_a-Geometry-positions"/>
+        </vertices>
+        <triangles material="_2_-_Default" count="15">
+          <input semantic="VERTEX" source="#tree_oak_top_a-Geometry-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#tree_oak_top_a-Geometry-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#tree_oak_top_a-Geometry-map-channel1" offset="2" set="1"/>
+          <p>0 0 0 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6 7 7 7 8 8 8 9 9 9 10 10 10 11 11 11 12 12 12 13 13 13 14 14 14 15 15 15 16 16 16 17 17 17 18 18 18 19 19 19 20 20 20 21 21 21 22 22 22 23 23 23 24 24 24 25 25 25 26 26 26 27 27 27 28 28 28 29 29 29 30 30 30 31 31 31 32 32 32 33 33 33 34 34 34 35 35 35 36 36 36 37 37 37 38 38 38 39 39 39 40 40 40 41 41 41 42 42 42 43 43 43 44 44 44</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="unnamed_scene" name="unnamed_scene">
+      <node id="tree_oak_top_a" name="tree_oak_top_a" type="NODE">
+        <translate>-0.489245 0 -0.73164</translate>
+        <scale>1.13545 1.13545 1.13545</scale>
+        <instance_geometry url="#tree_oak_top_a-Geometry">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_2_-_Default" target="#_2_-_Default">
+                <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <extra>
+        <technique profile="FCOLLADA">
+          <start_time>0</start_time>
+          <end_time>3.33333</end_time>
+        </technique>
+      </extra>
+      <extra>
+        <technique profile="MAX3D">
+          <frame_rate>30</frame_rate>
+        </technique>
+      </extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#unnamed_scene"/>
+  </scene>
+</COLLADA>
