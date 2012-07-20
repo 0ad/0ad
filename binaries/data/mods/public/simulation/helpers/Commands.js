@@ -477,26 +477,6 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 	
 	var foundationTemplate = "foundation|" + cmd.template;
 	
-	// We need the cost after tech modifications
-	// To calculate this with an entity requires ownership, so use the template instead
-	var cmpTechnologyManager = QueryPlayerIDInterface(player, IID_TechnologyManager);
-	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	var template = cmpTemplateManager.GetTemplate(foundationTemplate);
-	var costs = {};
-	for (var r in template.Cost.Resources)
-	{
-		costs[r] = +template.Cost.Resources[r];
-		if (cmpTechnologyManager)
-			costs[r] = cmpTechnologyManager.ApplyModificationsTemplate("Cost/Resources/"+r, costs[r], template);
-	}
-
-	if (!cmpPlayer.TrySubtractResources(costs))
-	{
-		if (g_DebugCommands)
-			warn("Invalid command: building cost check failed for player "+player+": "+uneval(cmd));
-		return false;
-	}
-	
 	// Tentatively create the foundation (we might find later that it's a invalid build command)
 	var ent = Engine.AddEntity(foundationTemplate);
 	if (ent == INVALID_ENTITY)
@@ -562,6 +542,8 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 		return false;
 	}
 	
+	var cmpTechnologyManager = QueryPlayerIDInterface(player, IID_TechnologyManager);
+	
 	// TODO: Enable this check once the AI gets technology support 
 	if (!cmpTechnologyManager.CanProduce(cmd.template) && false) 
 	{
@@ -598,6 +580,27 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 			Engine.DestroyEntity(ent);
 			return false;
 		}
+	}
+	
+	// We need the cost after tech modifications
+	// To calculate this with an entity requires ownership, so use the template instead
+	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	var template = cmpTemplateManager.GetTemplate(foundationTemplate);
+	var costs = {};
+	for (var r in template.Cost.Resources)
+	{
+		costs[r] = +template.Cost.Resources[r];
+		if (cmpTechnologyManager)
+			costs[r] = cmpTechnologyManager.ApplyModificationsTemplate("Cost/Resources/"+r, costs[r], template);
+	}
+	
+	if (!cmpPlayer.TrySubtractResources(costs))
+	{
+		if (g_DebugCommands)
+			warn("Invalid command: building cost check failed for player "+player+": "+uneval(cmd));
+		
+		Engine.DestroyEntity(ent);
+		return false;
 	}
 	
 	// Make it owned by the current player
