@@ -3,26 +3,30 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="Gate A">
-      <mesh>structural/hele_gate.dae</mesh>
+      <animations>
+        <animation file="mechanical/hele_wall_gate_closed.dae" name="gate_closed" speed="65"/>
+        <animation file="mechanical/hele_wall_gate_opening.dae" name="gate_opening" speed="65"/>
+        <animation file="mechanical/hele_wall_gate_open.dae" name="gate_open" speed="65"/>
+        <animation file="mechanical/hele_wall_gate_closing.dae" name="gate_closing" speed="65"/>
+      </animations>
+      <mesh>structural/hele_wall_gate.dae</mesh>
       <props>
         <prop actor="props/structures/hellenes/gate_door.xml" attachpoint="root"/>
-        <prop actor="props/units/shields/hele_round_a.xml" attachpoint="shield_a"/>
-        <prop actor="props/units/shields/hele_round_b.xml" attachpoint="shield_b"/>
-        <prop actor="props/units/shields/hele_round_e.xml" attachpoint="shield_c"/>
-        <prop actor="props/units/shields/hele_round_a.xml" attachpoint="shield_d"/>
       </props>
-      <texture>structural/hele_struct_b.dds</texture>
+      <texture>props/hele_gate.png</texture>
     </variant>
     <variant frequency="100" name="Gate B">
-      <mesh>structural/hele_gate.dae</mesh>
+      <animations>
+        <animation file="mechanical/hele_wall_gate_closed.dae" name="gate_closed" speed="65"/>
+        <animation file="mechanical/hele_wall_gate_opening.dae" name="gate_opening" speed="65"/>
+        <animation file="mechanical/hele_wall_gate_open.dae" name="gate_open" speed="65"/>
+        <animation file="mechanical/hele_wall_gate_closing.dae" name="gate_closing" speed="65"/>
+      </animations>
+      <mesh>structural/hele_wall_gate.dae</mesh>
       <props>
         <prop actor="props/structures/hellenes/gate_door.xml" attachpoint="root"/>
-        <prop actor="props/units/shields/hele_round_e.xml" attachpoint="shield_a"/>
-        <prop actor="props/units/shields/hele_round_a.xml" attachpoint="shield_b"/>
-        <prop actor="props/units/shields/hele_round_b.xml" attachpoint="shield_c"/>
-        <prop actor="props/units/shields/hele_round_e.xml" attachpoint="shield_d"/>
       </props>
-      <texture>structural/hele_struct_b.dds</texture>
+      <texture>props/hele_gate.png</texture>
     </variant>
   </group>
   <group>

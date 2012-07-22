@@ -7,6 +7,7 @@ newoption { trigger = "icc", description = "Use Intel C++ Compiler (Linux only; 
 newoption { trigger = "outpath", description = "Location for generated project files" }
 newoption { trigger = "without-fam", description = "Disable use of FAM API on Linux" }
 newoption { trigger = "without-audio", description = "Disable use of OpenAL/Ogg/Vorbis APIs" }
+newoption { trigger = "minimal-flags", description = "Only set compiler/linker flags that are really needed. Has no effect on Windows builds" }
 newoption { trigger = "without-nvtt", description = "Disable use of NVTT" }
 newoption { trigger = "without-tests", description = "Disable generation of test projects" }
 newoption { trigger = "without-pch", description = "Disable generation and usage of precompiled headers" }
@@ -135,7 +136,7 @@ end
 function project_set_build_flags()
 
 	flags { "Symbols", "NoEditAndContinue" }
-	if not _OPTIONS["icc"] then
+	if not _OPTIONS["icc"] and (os.is("windows") or not _OPTIONS["minimal-flags"]) then
 		-- adds the -Wall compiler flag
 		flags { "ExtraWarnings" } -- this causes far too many warnings/remarks on ICC
 	end
@@ -144,7 +145,9 @@ function project_set_build_flags()
 		defines { "DEBUG" }
 
 	configuration "Release"
-		flags { "OptimizeSpeed" }
+		if os.is("windows") or not _OPTIONS["minimal-flags"] then
+			flags { "OptimizeSpeed" }
+		end
 		defines { "NDEBUG", "CONFIG_FINAL=1" }
 
 	configuration { }
@@ -176,7 +179,7 @@ function project_set_build_flags()
 		flags { "NativeWChar" }
 
 	else	-- *nix
-		if _OPTIONS["icc"] then
+		if _OPTIONS["icc"] and not _OPTIONS["minimal-flags"] then
 			buildoptions {
 				"-w1",
 				-- "-Wabi",
@@ -196,50 +199,66 @@ function project_set_build_flags()
 				linkoptions { "-multiply_defined","suppress" }
 			end
 		else
-			buildoptions {
-				-- enable most of the standard warnings
-				"-Wno-switch",		-- enumeration value not handled in switch (this is sometimes useful, but results in lots of noise)
-				"-Wno-reorder",		-- order of initialization list in constructors (lots of noise)
-				"-Wno-invalid-offsetof",	-- offsetof on non-POD types (see comment in renderer/PatchRData.cpp)
-
-				"-Wextra",
-				"-Wno-missing-field-initializers",	-- (this is common in external headers we can't fix)
-
-				-- add some other useful warnings that need to be enabled explicitly
-				"-Wunused-parameter",
-				"-Wredundant-decls",	-- (useful for finding some multiply-included header files)
-				-- "-Wformat=2",		-- (useful sometimes, but a bit noisy, so skip it by default)
-				-- "-Wcast-qual",		-- (useful for checking const-correctness, but a bit noisy, so skip it by default)
-				"-Wnon-virtual-dtor",	-- (sometimes noisy but finds real bugs)
-				"-Wundef",				-- (useful for finding macro name typos)
-
-				-- enable security features (stack checking etc) that shouldn't have
-				-- a significant effect on performance and can catch bugs
-				"-fstack-protector-all",
-				"-D_FORTIFY_SOURCE=2",
-
-				-- always enable strict aliasing (useful in debug builds because of the warnings)
-				"-fstrict-aliasing",
-
-				-- don't omit frame pointers (for now), because performance will be impacted
-				-- negatively by the way this breaks profilers more than it will be impacted
-				-- positively by the optimisation
-				"-fno-omit-frame-pointer"
-			}
-
-			if not _OPTIONS["without-pch"] then
+			-- exclude most non-essential build options for minimal-flags
+			if not _OPTIONS["minimal-flags"] then
 				buildoptions {
-					-- do something (?) so that ccache can handle compilation with PCH enabled
-					-- (ccache 3.1+ also requires CCACHE_SLOPPINESS=time_macros for this to work)
-					"-fpch-preprocess"
-				}
-			end
+					-- enable most of the standard warnings
+					"-Wno-switch",		-- enumeration value not handled in switch (this is sometimes useful, but results in lots of noise)
+					"-Wno-reorder",		-- order of initialization list in constructors (lots of noise)
+					"-Wno-invalid-offsetof",	-- offsetof on non-POD types (see comment in renderer/PatchRData.cpp)
 
-			if arch == "x86" or arch == "amd64" then
-				buildoptions {
-					-- enable SSE intrinsics
-					"-msse"
+					"-Wextra",
+					"-Wno-missing-field-initializers",	-- (this is common in external headers we can't fix)
+
+					-- add some other useful warnings that need to be enabled explicitly
+					"-Wunused-parameter",
+					"-Wredundant-decls",	-- (useful for finding some multiply-included header files)
+					-- "-Wformat=2",		-- (useful sometimes, but a bit noisy, so skip it by default)
+					-- "-Wcast-qual",		-- (useful for checking const-correctness, but a bit noisy, so skip it by default)
+					"-Wnon-virtual-dtor",	-- (sometimes noisy but finds real bugs)
+					"-Wundef",				-- (useful for finding macro name typos)
+
+					-- enable security features (stack checking etc) that shouldn't have
+					-- a significant effect on performance and can catch bugs
+					"-fstack-protector-all",
+					"-D_FORTIFY_SOURCE=2",
+
+					-- always enable strict aliasing (useful in debug builds because of the warnings)
+					"-fstrict-aliasing",
+
+					-- don't omit frame pointers (for now), because performance will be impacted
+					-- negatively by the way this breaks profilers more than it will be impacted
+					-- positively by the optimisation
+					"-fno-omit-frame-pointer"
 				}
+
+				if not _OPTIONS["without-pch"] then
+					buildoptions {
+						-- do something (?) so that ccache can handle compilation with PCH enabled
+						-- (ccache 3.1+ also requires CCACHE_SLOPPINESS=time_macros for this to work)
+						"-fpch-preprocess"
+					}
+				end
+
+				if arch == "x86" or arch == "amd64" then
+					buildoptions {
+						-- enable SSE intrinsics
+						"-msse"
+					}
+				end
+
+				if os.is("linux") or os.is("bsd") then
+					linkoptions { "-Wl,--no-undefined", "-Wl,--as-needed" }
+				end
+
+				if arch == "x86" then
+					buildoptions {
+						-- To support intrinsics like __sync_bool_compare_and_swap on x86
+						-- we need to set -march to something that supports them
+						"-march=i686"
+					}
+				end
+
 			end
 
 			if arch == "arm" then
@@ -250,19 +269,9 @@ function project_set_build_flags()
 				buildoptions { "-mthumb -mcpu=cortex-a9 -mfpu=neon -mfloat-abi=softfp" }
 			end
 
-			if os.is("linux") or os.is("bsd") then
-				linkoptions { "-Wl,--no-undefined", "-Wl,--as-needed" }
-			end
-
 			if _OPTIONS["coverage"] then
 				buildoptions { "-fprofile-arcs", "-ftest-coverage" }
 				links { "gcov" }
-			end
-
-			-- To support intrinsics like __sync_bool_compare_and_swap on x86
-			-- we need to set -march to something that supports them
-			if arch == "x86" then
-				buildoptions { "-march=i686" }
 			end
 
 			-- We don't want to require SSE2 everywhere yet, but OS X headers do
@@ -272,11 +281,13 @@ function project_set_build_flags()
 			end
 		end
 
-		buildoptions {
-			-- Hide symbols in dynamic shared objects by default, for efficiency and for equivalence with
-			-- Windows - they should be exported explicitly with __attribute__ ((visibility ("default")))
-			"-fvisibility=hidden"
-		}
+		if not _OPTIONS["minimal-flags"] then
+			buildoptions {
+				-- Hide symbols in dynamic shared objects by default, for efficiency and for equivalence with
+				-- Windows - they should be exported explicitly with __attribute__ ((visibility ("default")))
+				"-fvisibility=hidden"
+			}
+		end
 
 		-- X11 includes may be installed in one of a gadzillion of three places
 		-- Famous last words: "You can't include too much! ;-)"
@@ -297,7 +308,7 @@ function project_set_build_flags()
 			defines { "INSTALLED_LIBDIR=" .. _OPTIONS["libdir"] }
 		end
 
-		if os.is("linux") or os.is("bsd") then
+		if (os.is("linux") or os.is("bsd")) and not _OPTIONS["with-system-mozjs185"] then
 			-- To use our local SpiderMonkey library, it needs to be part of the
 			-- runtime dynamic linker path. Add it with -rpath to make sure it gets found.
 			if _OPTIONS["libdir"] then
@@ -846,7 +857,7 @@ function setup_atlas_project(project_name, target_type, rel_source_dirs, rel_inc
 		-- install_name settings aren't really supported yet by premake, but there are plans for the future.
 		-- we currently use this hack to work around some bugs with wrong install_names.
 		if target_type == "SharedLib" then
-			linkoptions { "-install_name @executable_path/lib"..project_name..".dylib" }		
+			linkoptions { "-install_name @executable_path/lib"..project_name..".dylib" }
 		end
 	end
 
@@ -1034,11 +1045,10 @@ function setup_collada_project(project_name, target_type, rel_source_dirs, rel_i
 		-- install_name settings aren't really supported yet by premake, but there are plans for the future.
 		-- we currently use this hack to work around some bugs with wrong install_names.
 		if target_type == "SharedLib" then
-			linkoptions { "-install_name @executable_path/lib"..project_name..".dylib" }		
+			linkoptions { "-install_name @executable_path/lib"..project_name..".dylib" }
 		end
 
 		buildoptions { "-fno-strict-aliasing" }
-
 		-- On OSX, fcollada uses a few utility functions from coreservices
 		linkoptions { "-framework CoreServices" }
 	end
