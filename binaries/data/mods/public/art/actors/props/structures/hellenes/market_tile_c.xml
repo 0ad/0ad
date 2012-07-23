@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>structural/hele_market_tile_c.dae</mesh>
-      <texture>props/hele_tile_c.dds</texture>
+      <textures><texture file="props/hele_tile_c.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

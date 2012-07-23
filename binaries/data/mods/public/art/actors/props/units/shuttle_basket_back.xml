@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="basket back">
       <mesh>props/special/luggage_female_back.dae</mesh>
-      <texture>props/basket_iber_1.dds</texture>
+      <textures><texture file="props/basket_iber_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

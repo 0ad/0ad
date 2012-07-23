@@ -14,13 +14,13 @@
 
   <group>
     <variant frequency="1" name="shield-scutum-h">
-      <texture>props/shield/iber_oval_h.dds</texture>
+      <textures><texture file="props/shield/iber_oval_h.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-scutum-i">
-      <texture>props/shield/iber_oval_i.dds</texture>
+      <textures><texture file="props/shield/iber_oval_i.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-scutum-j">
-      <texture>props/shield/iber_oval_j.dds</texture>
+      <textures><texture file="props/shield/iber_oval_j.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

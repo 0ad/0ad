@@ -6,7 +6,7 @@
   <group>
     <variant frequency="10" name="1">
       <mesh>props/head_lime.dae</mesh>
-      <texture>props/head/lime.dds</texture>
+      <textures><texture file="props/head/lime.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

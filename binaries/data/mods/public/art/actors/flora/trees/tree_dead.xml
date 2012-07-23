@@ -11,7 +11,7 @@
   </group>
   <group>
     <variant frequency="1" name="texture">
-      <texture>gaia/tree_dead.dds</texture>
+      <textures><texture file="gaia/tree_dead.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

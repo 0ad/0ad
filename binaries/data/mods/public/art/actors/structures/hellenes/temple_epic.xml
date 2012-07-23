@@ -11,7 +11,7 @@
         <prop actor="props/structures/hellenes/parth_walls.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/parth_antefixes.xml" attachpoint="root"/>
       </props>
-      <texture>structural/hele_struct.dds</texture>
+      <textures><texture file="structural/hele_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

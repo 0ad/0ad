@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>structural/campaigns/settlement_houses2.dae</mesh>
-      <texture>structural/rome_struct_2.png</texture>
+      <textures><texture file="structural/rome_struct_2.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

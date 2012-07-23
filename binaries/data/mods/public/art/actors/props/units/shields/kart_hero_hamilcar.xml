@@ -11,7 +11,7 @@
   </group>
   <group>
     <variant frequency="1" name="shield-c-dolphin">
-      <texture>props/shield/kart_round_am.dds</texture>
+      <textures><texture file="props/shield/kart_round_am.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

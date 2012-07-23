@@ -17,7 +17,7 @@
         <prop actor="props/units/cape_celt_boudicca.xml" attachpoint="shoulders"/>
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="r_hand"/>
       </props>
-      <texture>skeletal/celt_boudicca_2.dds</texture>
+      <textures><texture file="skeletal/celt_boudicca_2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

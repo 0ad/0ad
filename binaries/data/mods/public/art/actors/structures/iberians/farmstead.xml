@@ -8,7 +8,7 @@
         <prop actor="props/structures/iberians/farmstead_hay.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/farmstead_mud.xml" attachpoint="root"/>
       </props>
-      <texture>structural/iber_struct.dds</texture>
+      <textures><texture file="structural/iber_struct.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Farmstead B">
       <mesh>structural/iber_farmstead_b.dae</mesh>
@@ -16,7 +16,7 @@
         <prop actor="props/structures/iberians/farmstead_hay.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/farmstead_mud.xml" attachpoint="root"/>
       </props>
-      <texture>structural/iber_struct.dds</texture>
+      <textures><texture file="structural/iber_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

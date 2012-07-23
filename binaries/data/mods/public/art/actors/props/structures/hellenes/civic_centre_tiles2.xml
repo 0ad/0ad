@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="hellenes_civic_centre_tiles2">
       <mesh>structural/hele_civic_tiles_short.dae</mesh>
-      <texture>props/hele_tile_b.dds</texture>
+      <textures><texture file="props/hele_tile_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

@@ -23,6 +23,7 @@
 #define INCLUDED_MODELDEF
 
 #include "ps/CStr.h"
+#include "maths/Vector2D.h"
 #include "maths/Vector3D.h"
 #include "maths/Quaternion.h"
 #include "lib/file/vfs/vfs_path.h"
@@ -104,7 +105,7 @@ struct SModelVertex
 	// vertex normal
 	CVector3D m_Norm;
 	// vertex UVs
-	float m_U, m_V;
+	std::vector<float> m_UVs;
 	// vertex blend data
 	SVertexBlend m_Blend;
 };
@@ -164,6 +165,9 @@ public:
 	// accessor: get vertex data
 	size_t GetNumVertices() const { return m_NumVertices; }
 	SModelVertex* GetVertices() const { return m_pVertices; }
+	
+	// accessor: get number of UV sets
+	size_t GetNumUVsPerVertex() const { return m_NumUVsPerVertex; }
 
 	// accessor: get face data
 	size_t GetNumFaces() const { return m_NumFaces; }
@@ -256,6 +260,7 @@ public:
 	// vertex data
 	size_t m_NumVertices;
 	SModelVertex* m_pVertices;
+	size_t m_NumUVsPerVertex; // number of UV pairs per vertex
 	// face data
 	size_t m_NumFaces;
 	SModelFace* m_pFaces;

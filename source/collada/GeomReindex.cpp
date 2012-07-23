@@ -21,6 +21,7 @@
 
 #include "FCollada.h"
 #include "FCDocument/FCDEntity.h"
+#include "FCDocument/FCDGeometryMesh.h"
 #include "FCDocument/FCDGeometryPolygons.h"
 #include "FCDocument/FCDGeometryPolygonsInput.h"
 #include "FCDocument/FCDGeometrySource.h"
@@ -33,17 +34,17 @@
 
 struct VertexData
 {
-	VertexData(const float* pos, const float* norm, const float* tex, const std::vector<FCDJointWeightPair>& weights)
+	VertexData(const float* pos, const float* norm, const std::vector<float> &uvs, const std::vector<FCDJointWeightPair>& weights)
 		: x(pos[0]), y(pos[1]), z(pos[2]),
 		nx(norm[0]), ny(norm[1]), nz(norm[2]),
-		u(tex[0]), v(tex[1]),
+		uvs(uvs),
 		weights(weights)
 	{
 	}
 
 	float x, y, z;
 	float nx, ny, nz;
-	float u, v;
+	std::vector<float> uvs;
 	std::vector<FCDJointWeightPair> weights;
 };
 
@@ -75,7 +76,7 @@ bool operator==(const VertexData& a, const VertexData& b)
 {
 	return (similar(a.x,  b.x)  && similar(a.y,  b.y)  && similar(a.z,  b.z)
 		 && similar(a.nx, b.nx) && similar(a.ny, b.ny) && similar(a.nz, b.nz)
-		 && similar(a.u,  b.u)  && similar(a.v,  b.v)
+		 && (a.uvs == b.uvs)
 		 && (a.weights == b.weights));
 }
 
@@ -84,7 +85,7 @@ bool operator<(const VertexData& a, const VertexData& b)
 #define CMP(f) if (a.f < b.f) return true; if (a.f > b.f) return false
 	CMP(x);  CMP(y);  CMP(z);
 	CMP(nx); CMP(ny); CMP(nz);
-	CMP(u);  CMP(v);
+	CMP(uvs);
 	CMP(weights);
 #undef CMP
 	return false;
@@ -148,13 +149,14 @@ void ReindexGeometry(FCDGeometryPolygons* polys, FCDSkinController* skin)
 	assert(indicesNormal);
 	assert(indicesTexcoord); // TODO - should be optional, because textureless meshes aren't unreasonable
 
+	FCDGeometrySourceList texcoordSources;
+	polys->GetParent()->FindSourcesByType(FUDaeGeometryInput::TEXCOORD, texcoordSources);
+
 	FCDGeometrySource* sourcePosition = inputPosition->GetSource();
 	FCDGeometrySource* sourceNormal   = inputNormal  ->GetSource();
-	FCDGeometrySource* sourceTexcoord = inputTexcoord->GetSource();
 
 	const float* dataPosition = sourcePosition->GetData();
 	const float* dataNormal   = sourceNormal  ->GetData();
-	const float* dataTexcoord = sourceTexcoord->GetData();
 
 	if (skin)
 	{
@@ -166,7 +168,6 @@ void ReindexGeometry(FCDGeometryPolygons* polys, FCDSkinController* skin)
 
 	uint32 stridePosition = sourcePosition->GetStride();
 	uint32 strideNormal   = sourceNormal  ->GetStride();
-	uint32 strideTexcoord = sourceTexcoord->GetStride();
 
 	std::vector<uint32> indicesCombined;
 	std::vector<VertexData> vertexes;
@@ -188,10 +189,20 @@ void ReindexGeometry(FCDGeometryPolygons* polys, FCDSkinController* skin)
 			CanonicaliseWeights(weights);
 		}
 
+		std::vector<float> uvs;
+		for (size_t set = 0; set < texcoordSources.size(); ++set)
+		{
+			const float* dataTexcoord = texcoordSources[set]->GetData();
+			uint32 strideTexcoord = texcoordSources[set]->GetStride();
+			
+			uvs.push_back(dataTexcoord[indicesTexcoord[i]*strideTexcoord]);
+			uvs.push_back(dataTexcoord[indicesTexcoord[i]*strideTexcoord + 1]);
+		}
+
 		VertexData vtx (
 			&dataPosition[indicesPosition[i]*stridePosition],
 			&dataNormal  [indicesNormal  [i]*strideNormal],
-			&dataTexcoord[indicesTexcoord[i]*strideTexcoord],
+			uvs,
 			weights
 		);
 		size_t idx = inserter.add(vtx);
@@ -215,8 +226,6 @@ void ReindexGeometry(FCDGeometryPolygons* polys, FCDSkinController* skin)
 		newDataNormal  .push_back(vertexes[i].nx);
 		newDataNormal  .push_back(vertexes[i].ny);
 		newDataNormal  .push_back(vertexes[i].nz);
-		newDataTexcoord.push_back(vertexes[i].u);
-		newDataTexcoord.push_back(vertexes[i].v);
 		newWeightedMatches.push_back(vertexes[i].weights);
 	}
 
@@ -226,9 +235,19 @@ void ReindexGeometry(FCDGeometryPolygons* polys, FCDSkinController* skin)
 	inputNormal  ->SetIndices(&indicesCombined.front(), indicesCombined.size());
 	inputTexcoord->SetIndices(&indicesCombined.front(), indicesCombined.size());
 
+	for (size_t set = 0; set < texcoordSources.size(); ++set)
+	{
+		newDataTexcoord.clear();
+		for (size_t i = 0; i < vertexes.size(); ++i)
+		{
+			newDataTexcoord.push_back(vertexes[i].uvs[set * 2]);
+			newDataTexcoord.push_back(vertexes[i].uvs[set * 2 + 1]);
+		}
+		texcoordSources[set]->SetData(newDataTexcoord, 2);
+	}
+
 	sourcePosition->SetData(newDataPosition, 3);
 	sourceNormal  ->SetData(newDataNormal,   3);
-	sourceTexcoord->SetData(newDataTexcoord, 2);
 
 	if (skin)
 	{

@@ -21,7 +21,7 @@
   </group>
   <group>
     <variant frequency="1" name="healer-outfit-1">
-      <texture>skeletal/celt_healer_2.dds</texture>
+      <textures><texture file="skeletal/celt_healer_2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

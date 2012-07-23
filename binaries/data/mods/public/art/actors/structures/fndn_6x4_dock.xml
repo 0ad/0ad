@@ -9,7 +9,7 @@
         <prop actor="props/structures/construction/found_dock_6x4_chains.xml" attachpoint="root"/>
         <prop actor="particle/construction_dust.xml" attachpoint="root"/>
       </props>
-      <texture>structural/foundation.dds</texture>
+      <textures><texture file="structural/foundation.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

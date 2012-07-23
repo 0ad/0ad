@@ -11,7 +11,7 @@
   </group>
   <group>
     <variant frequency="1" name="texture">
-      <texture>props/shield/iber_round_m.dds</texture>
+      <textures><texture file="props/shield/iber_round_m.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_spec.xml</material>

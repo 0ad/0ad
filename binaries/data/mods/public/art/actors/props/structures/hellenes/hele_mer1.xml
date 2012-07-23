@@ -6,7 +6,7 @@
   <group>
     <variant>
       <mesh>props/hele_mer1.dae</mesh>
-      <texture>structural/hele_sail.dds</texture>
+      <textures><texture file="structural/hele_sail.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/rome_farmstead_wood.dae</mesh>
-      <texture>structural/rome_ram.png</texture>
+      <textures><texture file="structural/rome_ram.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

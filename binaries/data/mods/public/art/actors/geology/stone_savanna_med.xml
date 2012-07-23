@@ -26,10 +26,10 @@
   </group>
   <group>
     <variant name="stone color a">
-      <texture>gaia/stone_savanna_b.dds</texture>
+      <textures><texture file="gaia/stone_savanna_b.dds" name="baseTex"/></textures>
     </variant>
     <variant name="stone color b">
-      <texture>gaia/stone_savanna_a.dds</texture>
+      <textures><texture file="gaia/stone_savanna_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

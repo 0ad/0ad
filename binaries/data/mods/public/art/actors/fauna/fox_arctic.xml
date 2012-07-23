@@ -4,7 +4,7 @@
   <group>
     <variant name="Fox (Arctic)">
       <mesh>skeletal/fox.dae</mesh>
-      <texture>skeletal/animal_fox_arctic.dds</texture>
+      <textures><texture file="skeletal/animal_fox_arctic.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

@@ -9,7 +9,7 @@
       <props>
         <prop actor="props/units/shields/celt_caradoc_back.xml" attachpoint="back"/>
       </props>
-      <texture>props/shield/celt_misc_d.dds</texture>
+      <textures><texture file="props/shield/celt_misc_d.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

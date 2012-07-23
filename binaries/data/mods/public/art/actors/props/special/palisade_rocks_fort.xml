@@ -11,7 +11,7 @@
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <texture>props/palisade_main.png</texture>
+      <textures><texture file="props/palisade_main.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

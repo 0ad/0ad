@@ -8,10 +8,10 @@
   </group>
   <group>
     <variant frequency="1" name="wood-wet">
-      <texture>props/wood_c.png</texture>
+      <textures><texture file="props/wood_c.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="wood-dry">
-      <texture>props/wood_b.png</texture>
+      <textures><texture file="props/wood_b.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

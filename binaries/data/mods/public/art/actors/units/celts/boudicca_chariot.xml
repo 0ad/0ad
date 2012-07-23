@@ -15,7 +15,7 @@
         <prop actor="units/celts/boudicca_r2.xml" attachpoint="rider"/>
         <prop actor="units/celts/champion_unit_4_d.xml" attachpoint="driver"/>
       </props>
-      <texture>structural/celt_chariot_b.dds</texture>
+      <textures><texture file="structural/celt_chariot_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

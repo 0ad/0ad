@@ -19,7 +19,7 @@
         <prop actor="props/units/cape_hd_cav.xml" attachpoint="shoulders"/>
         <prop actor="props/units/shields/thracian_oval.xml" attachpoint="shield"/>
       </props>
-      <texture>skeletal/hele_linothorax_scale.dds</texture>
+      <textures><texture file="skeletal/hele_linothorax_scale.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

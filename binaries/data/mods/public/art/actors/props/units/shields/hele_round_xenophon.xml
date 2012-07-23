@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/units/shields/hele_round_back.xml" attachpoint="root"/>
       </props>
-      <texture>props/shield/hele_round_aa.dds</texture>
+      <textures><texture file="props/shield/hele_round_aa.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

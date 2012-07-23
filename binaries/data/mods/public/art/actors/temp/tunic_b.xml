@@ -16,7 +16,7 @@
         <prop actor="props/units/hele_ijv_lboot.xml" attachpoint="l_leg"/>
         <prop actor="props/units/hele_ijv_rboot.xml" attachpoint="r_leg"/>
       </props>
-      <texture>skeletal/hele_ijv_e.dds</texture>
+      <textures><texture file="skeletal/hele_ijv_e.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

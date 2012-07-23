@@ -11,10 +11,10 @@
 
   <group>
     <variant frequency="1" name="decal_01">
-      <texture>gaia/decal_stone_medit_01.dds</texture>
+      <textures><texture file="gaia/decal_stone_medit_01.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="decal_02">
-      <texture>gaia/decal_stone_medit_02.dds</texture>
+      <textures><texture file="gaia/decal_stone_medit_02.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

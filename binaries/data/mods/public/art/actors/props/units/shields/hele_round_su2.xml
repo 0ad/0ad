@@ -11,16 +11,16 @@
   </group>
   <group>
     <variant frequency="1" name="h">
-      <texture>props/shield/hele_round_h.dds</texture>
+      <textures><texture file="props/shield/hele_round_h.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="k">
-      <texture>props/shield/hele_round_k.dds</texture>
+      <textures><texture file="props/shield/hele_round_k.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="m">
-      <texture>props/shield/hele_round_m.dds</texture>
+      <textures><texture file="props/shield/hele_round_m.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="ah">
-      <texture>props/shield/hele_round_ah.dds</texture>
+      <textures><texture file="props/shield/hele_round_ah.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

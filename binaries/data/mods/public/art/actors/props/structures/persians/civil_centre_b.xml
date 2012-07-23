@@ -6,7 +6,7 @@
   <group>
     <variant frequency="1" name="props_b">
       <mesh>props/pers_civic_props_b.dae</mesh>
-      <texture>structural/pers_struct.dds</texture>
+      <textures><texture file="structural/pers_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

@@ -5,11 +5,11 @@
   <group>
     <variant frequency="1" name="wave a">
       <decal angle="0" depth="7" offsetx="0" offsetz="0" width="14"/>
-      <texture>props/water_wave_a.dds</texture>
+      <textures><texture file="props/water_wave_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="wave b">
       <decal angle="0" depth="7" offsetx="0" offsetz="0" width="14"/>
-      <texture>props/water_wave_b.dds</texture>
+      <textures><texture file="props/water_wave_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

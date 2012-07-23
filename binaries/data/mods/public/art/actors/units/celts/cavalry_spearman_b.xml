@@ -15,7 +15,7 @@
       <props>
         <prop actor="props/units/heads/celt_mastiff_b.xml" attachpoint="collar"/>
       </props>
-      <texture>skeletal/mastiff.dds</texture>
+      <textures><texture file="skeletal/mastiff.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

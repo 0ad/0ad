@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>structural/celt_kennel_props_beef.dae</mesh>
-      <texture>props/beefslab.png</texture>
+      <textures><texture file="props/beefslab.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

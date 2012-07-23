@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100">
       <mesh>props/pers_quiver_back.dae</mesh>
-      <texture>props/quiver_xerxes.png</texture>
+      <textures><texture file="props/quiver_xerxes.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

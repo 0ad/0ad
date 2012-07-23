@@ -11,13 +11,13 @@
   </group>
   <group>
     <variant frequency="4" name="Argyraspis (A)">
-      <texture>props/shield/mace_silver_a.dds</texture>
+      <textures><texture file="props/shield/mace_silver_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="Argyraspis (B)">
-      <texture>props/shield/mace_silver_b.dds</texture>
+      <textures><texture file="props/shield/mace_silver_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Argyraspis (C)">
-      <texture>props/shield/mace_silver_c.dds</texture>
+      <textures><texture file="props/shield/mace_silver_c.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

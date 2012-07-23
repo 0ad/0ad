@@ -8,7 +8,7 @@
         <prop actor="props/structures/celts/slope_wall_tower_props.xml" attachpoint="props_main"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <texture>structural/celt_wall.dds</texture>
+      <textures><texture file="structural/celt_wall.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

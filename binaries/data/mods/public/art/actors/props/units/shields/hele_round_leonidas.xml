@@ -11,7 +11,7 @@
   </group>
   <group>
     <variant name="l">
-      <texture>props/shield/hele_spartan_king.dds</texture>
+      <textures><texture file="props/shield/hele_spartan_king.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

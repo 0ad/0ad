@@ -14,7 +14,7 @@
         <prop actor="props/structures/persians/trireme_mast.xml" attachpoint="sail"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <texture>structural/pers_tri.dds</texture>
+      <textures><texture file="structural/pers_tri.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

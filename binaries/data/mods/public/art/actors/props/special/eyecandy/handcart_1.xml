@@ -8,16 +8,16 @@
   </group>
   <group>
     <variant frequency="1" name="wood a">
-      <texture>props/wood_a.png</texture>
+      <textures><texture file="props/wood_a.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="wood b">
-      <texture>props/wood_b.png</texture>
+      <textures><texture file="props/wood_b.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="wood c">
-      <texture>props/wood_c.png</texture>
+      <textures><texture file="props/wood_c.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="wood d">
-      <texture>props/wood_d.png</texture>
+      <textures><texture file="props/wood_d.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

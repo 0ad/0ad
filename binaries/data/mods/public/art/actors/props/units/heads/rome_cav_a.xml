@@ -4,11 +4,11 @@
   <group>
     <variant frequency="1" name="Helmet-Boeotian-Plume">
       <mesh>props/helmet/hele_helmet_u.dae</mesh>
-      <texture>props/helmet/hele_a1.dds</texture>
+      <textures><texture file="props/helmet/hele_a1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Helmet-Boeotian-NoPlume">
       <mesh>props/helmet/hele_helmet_t.dae</mesh>
-      <texture>props/helmet/hele_a1.dds</texture>
+      <textures><texture file="props/helmet/hele_a1.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

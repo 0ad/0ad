@@ -4,11 +4,11 @@
   <group>
     <variant frequency="2" name="plume_feathers_top">
       <mesh>props/helmet/samnite_b.dae</mesh>
-      <texture>props/helmet/samnite-b1.dds</texture>
+      <textures><texture file="props/helmet/samnite-b1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="plume_feathers_sides">
       <mesh>props/helmet/samnite_c.dae</mesh>
-      <texture>props/helmet/samnite-c1.dds</texture>
+      <textures><texture file="props/helmet/samnite-c1.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

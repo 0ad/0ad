@@ -25,13 +25,13 @@
   </group>
   <group>
     <variant frequency="2" name="Iberian-Tunic-beige">
-      <texture>skeletal/iber_isw_a_1.dds</texture>
+      <textures><texture file="skeletal/iber_isw_a_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Iberian-Tunic-brown">
-      <texture>skeletal/iber_isw_a_2.dds</texture>
+      <textures><texture file="skeletal/iber_isw_a_2.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Iberian-Tunic-pect">
-      <texture>skeletal/kart_ijv_a_1.dds</texture>
+      <textures><texture file="skeletal/kart_ijv_a_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

@@ -28,7 +28,7 @@
         <prop actor="props/units/shields/mace_aspis_demetrius.xml" attachpoint="shield"/>
         <prop actor="props/units/cape_hd.xml" attachpoint="shoulders"/>
       </props>
-      <texture>skeletal/hele_demetrius.dds</texture>
+      <textures><texture file="skeletal/hele_demetrius.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

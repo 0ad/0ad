@@ -9,7 +9,7 @@
         <prop actor="props/structures/romans/farmstead_wood.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/farmstead_plants.xml" attachpoint="root"/>
       </props>
-      <texture>structural/rome_struct_2.png</texture>
+      <textures><texture file="structural/rome_struct_2.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

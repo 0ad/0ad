@@ -4,7 +4,7 @@
   <group>
     <variant name="fishing boat sail">
       <mesh>props/celt_boat_fishing_mast.dae</mesh>
-      <texture>structural/celt_sail.dds</texture>
+      <textures><texture file="structural/celt_sail.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

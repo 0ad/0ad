@@ -12,7 +12,7 @@
         <animation file="quadraped/deer_attack_01.dae" name="melee" speed="20"/>
       </animations>
       <mesh>skeletal/deer_mesh.dae</mesh>
-      <texture>skeletal/animal_deer.dds</texture>
+      <textures><texture file="skeletal/animal_deer.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

@@ -21,7 +21,7 @@
   </group>
   <group>
     <variant frequency="1" name="armor-scale reinforced corselet">
-      <texture>skeletal/kart_sacredband_cav.dds</texture>
+      <textures><texture file="skeletal/kart_sacredband_cav.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

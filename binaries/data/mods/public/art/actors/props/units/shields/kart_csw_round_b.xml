@@ -14,13 +14,13 @@
 
   <group>
     <variant name="Shield-A">
-      <texture>props/shield/iber_round_a.dds</texture>
+      <textures><texture file="props/shield/iber_round_a.dds" name="baseTex"/></textures>
     </variant>
     <variant name="Shield-B">
-      <texture>props/shield/iber_round_b.dds</texture>
+      <textures><texture file="props/shield/iber_round_b.dds" name="baseTex"/></textures>
     </variant>
     <variant name="Shield-G">
-      <texture>props/shield/iber_round_g.dds</texture>
+      <textures><texture file="props/shield/iber_round_g.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

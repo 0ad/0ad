@@ -27,7 +27,7 @@
   </group>
   <group>
     <variant frequency="1" name="epilektos-01">
-      <texture>skeletal/athen_epilektos_1.png</texture>
+      <textures><texture file="skeletal/athen_epilektos_1.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

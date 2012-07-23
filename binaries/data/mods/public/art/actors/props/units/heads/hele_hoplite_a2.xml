@@ -4,15 +4,15 @@
   <group>
     <variant frequency="1" name="Helmet-Illyrian-NoCrest">
       <mesh>props/helmet/hele_helmet_c.dae</mesh>
-      <texture>props/helmet/hele_c1.dds</texture>
+      <textures><texture file="props/helmet/hele_c1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Helmet-Attic-NoCrest">
       <mesh>props/helmet/hele_helmet_i.dae</mesh>
-      <texture>props/helmet/hele_h1.dds</texture>
+      <textures><texture file="props/helmet/hele_h1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Helmet-Chalcidean">
       <mesh>props/helmet/mace_helmet_n.dae</mesh>
-      <texture>props/helmet/mace-g.dds</texture>
+      <textures><texture file="props/helmet/mace-g.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_spec.xml</material>

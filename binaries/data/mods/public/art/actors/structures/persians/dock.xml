@@ -6,7 +6,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>structural/pers_dock.dae</mesh>
-      <texture>structural/pers_struct.dds</texture>
+      <textures><texture file="structural/pers_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

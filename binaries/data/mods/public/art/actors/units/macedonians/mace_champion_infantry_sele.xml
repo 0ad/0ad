@@ -23,11 +23,11 @@
   <group>
     <variant frequency="1" name="armour 1">
       <mesh>skeletal/m_tunic_long.dae</mesh>
-      <texture>skeletal/mace_bronzeshield_pikeman_a.dds</texture>
+      <textures><texture file="skeletal/mace_bronzeshield_pikeman_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="armour 2">
       <mesh>skeletal/m_tunic_short.dae</mesh>
-      <texture>skeletal/mace_bronzeshield_2.png</texture>
+      <textures><texture file="skeletal/mace_bronzeshield_2.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

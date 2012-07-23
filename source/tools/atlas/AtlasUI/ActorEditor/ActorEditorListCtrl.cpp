@@ -20,6 +20,7 @@
 #include "ActorEditorListCtrl.h"
 
 #include "AnimListEditor.h"
+#include "TexListEditor.h"
 #include "PropListEditor.h"
 
 #include "AtlasObject/AtlasObject.h"
@@ -48,8 +49,8 @@ ActorEditorListCtrl::ActorEditorListCtrl(wxWindow* parent)
 	AddColumnType(_("Variant"),		90,  "@name",		new FieldEditCtrl_Text());
 	AddColumnType(_("Ratio"),		50,  "@frequency",	new FieldEditCtrl_Text());
 	AddColumnType(_("Model"),		140, "mesh",		new FieldEditCtrl_File(_T("art/meshes/"), _("Mesh files (*.pmd, *.dae)|*.pmd;*.dae|All files (*.*)|*.*")));
-	AddColumnType(_("Texture"),		140, "texture",		new FieldEditCtrl_File(_T("art/textures/skins/"), _("All files (*.*)|*.*"))); // could be dds, or tga, or png, or bmp, etc, so just allow *
-	AddColumnType(_("Animations"),	250, "animations",	new FieldEditCtrl_Dialog(&AnimListEditor::Create));
+	AddColumnType(_("Textures"),		250, "textures",	new FieldEditCtrl_Dialog(&TexListEditor::Create));
+	AddColumnType(_("Animations"),		250, "animations",	new FieldEditCtrl_Dialog(&AnimListEditor::Create));
 	AddColumnType(_("Props"),		220, "props",		new FieldEditCtrl_Dialog(&PropListEditor::Create));
 	AddColumnType(_("Colour"),		80,  "colour",		new FieldEditCtrl_Colour());
 }
@@ -108,7 +109,7 @@ wxListItemAttr* ActorEditorListCtrl::OnGetItemAttr(long item) const
 
 		if (row["mesh"].hasContent())
 			return const_cast<wxListItemAttr*>(&m_ListItemAttr_Model[item%2]);
-		else if (row["texture"].hasContent())
+		else if (row["textures"].hasContent())
 			return const_cast<wxListItemAttr*>(&m_ListItemAttr_Texture[item%2]);
 		else if (row["animations"].hasContent())
 			return const_cast<wxListItemAttr*>(&m_ListItemAttr_Anim[item%2]);

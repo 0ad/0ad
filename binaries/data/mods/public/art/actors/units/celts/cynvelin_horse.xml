@@ -16,7 +16,7 @@
       <props>
         <prop actor="units/celts/cynvelin_r.xml" attachpoint="rider"/>
       </props>
-      <texture>skeletal/horse_celt_cynelvin.dds</texture>
+      <textures><texture file="skeletal/horse_celt_cynelvin.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

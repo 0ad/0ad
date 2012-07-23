@@ -11,10 +11,10 @@
   </group>
   <group>
     <variant frequency="1" name="lamda-1">
-      <texture>props/shield/hele_spartan_v1.dds</texture>
+      <textures><texture file="props/shield/hele_spartan_v1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="lamda-2">
-      <texture>props/shield/hele_spartan_v2.dds</texture>
+      <textures><texture file="props/shield/hele_spartan_v2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

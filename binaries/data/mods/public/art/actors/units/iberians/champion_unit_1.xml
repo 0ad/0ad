@@ -39,13 +39,13 @@
   </group>
   <group>
     <variant frequency="2" name="armour-pectoral-1">
-      <texture>skeletal/iber_su_inf_1.dds</texture>
+      <textures><texture file="skeletal/iber_su_inf_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="armour-pectoral-2">
-      <texture>skeletal/iber_su_inf_2.dds</texture>
+      <textures><texture file="skeletal/iber_su_inf_2.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="4" name="armour-chainmail">
-      <texture>skeletal/iber_champ_inf_3.dds</texture>
+      <textures><texture file="skeletal/iber_champ_inf_3.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/kart_merchant_ship_cargo.dae</mesh>
-      <texture>structural/kart_struct.dds</texture>
+      <textures><texture file="structural/kart_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

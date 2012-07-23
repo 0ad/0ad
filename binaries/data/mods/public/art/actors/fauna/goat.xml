@@ -8,10 +8,10 @@
   </group>
   <group>
     <variant frequency="1" name="Hair-dark">
-      <texture>skeletal/animal_goat.dds</texture>
+      <textures><texture file="skeletal/animal_goat.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Hair-light">
-      <texture>skeletal/animal_goat2.dds</texture>
+      <textures><texture file="skeletal/animal_goat2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

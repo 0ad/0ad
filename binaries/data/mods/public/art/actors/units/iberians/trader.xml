@@ -8,7 +8,7 @@
         <prop actor="units/iberians/trader_r.xml" attachpoint="trader"/>
         <prop actor="units/celts/trader_h.xml" attachpoint="donkey"/>
       </props>
-      <texture>null_white.dds</texture>
+      <textures><texture file="null_white.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

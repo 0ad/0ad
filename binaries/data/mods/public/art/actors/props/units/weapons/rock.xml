@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="rock">
       <mesh>props/onager_projectile.dae</mesh>
-      <texture>gaia/stone_temperate_granite.dds</texture>
+      <textures><texture file="gaia/stone_temperate_granite.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

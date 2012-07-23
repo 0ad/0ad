@@ -10,7 +10,7 @@
         <prop actor="props/structures/celts/mill_shield.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/tavern_mud.xml" attachpoint="root"/>
       </props>
-      <texture>structural/celt_struct_1.dds</texture>
+      <textures><texture file="structural/celt_struct_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

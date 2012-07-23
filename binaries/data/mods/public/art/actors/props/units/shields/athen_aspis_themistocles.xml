@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/units/shields/hele_aspis_back_black.xml" attachpoint="root"/>
       </props>
-      <texture>props/shield/athen_aspis_themistocles.png</texture>
+      <textures><texture file="props/shield/athen_aspis_themistocles.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

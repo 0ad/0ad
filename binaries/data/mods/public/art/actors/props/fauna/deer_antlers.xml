@@ -6,7 +6,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/deer_antlers.dae</mesh>
-      <texture>skeletal/animal_deer.dds</texture>
+      <textures><texture file="skeletal/animal_deer.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

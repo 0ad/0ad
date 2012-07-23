@@ -8,7 +8,7 @@
         <prop actor="props/units/shields/hele_round_back.xml" attachpoint="root"/>
         <prop actor="props/units/shields/hele_aspis_cape.xml" attachpoint="root"/>
       </props>
-      <texture>props/shield/spart_round_b.png</texture>
+      <textures><texture file="props/shield/spart_round_b.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

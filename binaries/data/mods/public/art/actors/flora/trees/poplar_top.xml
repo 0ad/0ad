@@ -26,13 +26,13 @@
 
   <group>
     <variant name="leaf-texture-a">
-      <texture>gaia/poplar_a.dds</texture>
+      <textures><texture file="gaia/poplar_a.dds" name="baseTex"/></textures>
     </variant>
     <variant name="leaf-texture-b">
-      <texture>gaia/poplar_b.dds</texture>
+      <textures><texture file="gaia/poplar_b.dds" name="baseTex"/></textures>
     </variant>
     <variant name="leaf-texture-c">
-      <texture>gaia/poplar_c.dds</texture>
+      <textures><texture file="gaia/poplar_c.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

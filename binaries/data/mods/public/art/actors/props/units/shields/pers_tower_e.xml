@@ -11,10 +11,10 @@
   </group>
   <group>
     <variant frequency="1" name="spara-texture-a">
-      <texture>props/shield/pers_rect_a.dds</texture>
+      <textures><texture file="props/shield/pers_rect_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="spara-texture-g">
-      <texture>props/shield/pers_rect_g.png</texture>
+      <textures><texture file="props/shield/pers_rect_g.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

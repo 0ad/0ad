@@ -43,7 +43,7 @@
         <prop actor="props/units/shields/hele_round_lamtha.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/xiphos.xml" attachpoint="r_hand"/>
       </props>
-      <texture>skeletal/hele_spartitiate.dds</texture>
+      <textures><texture file="skeletal/hele_spartitiate.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

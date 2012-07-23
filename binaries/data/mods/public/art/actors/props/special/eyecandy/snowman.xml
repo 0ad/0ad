@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>gaia/wrld_sp_snowman.dae</mesh>
-      <texture>props/snowman.dds</texture>
+      <textures><texture file="props/snowman.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

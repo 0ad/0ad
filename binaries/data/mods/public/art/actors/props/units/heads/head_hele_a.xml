@@ -11,10 +11,10 @@
 
   <group>
     <variant frequency="1" name="head-c">
-      <texture>props/head/hele_c.dds</texture>
+      <textures><texture file="props/head/hele_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="head-d">
-      <texture>props/head/hele_d.dds</texture>
+      <textures><texture file="props/head/hele_d.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

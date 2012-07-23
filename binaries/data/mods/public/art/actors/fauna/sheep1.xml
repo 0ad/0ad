@@ -12,7 +12,7 @@
         <animation file="quadraped/sheep_death.dae" name="Death" speed="90"/>
       </animations>
       <mesh>skeletal/sheep.dae</mesh>
-      <texture>skeletal/animal_sheep_a.dds</texture>
+      <textures><texture file="skeletal/animal_sheep_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

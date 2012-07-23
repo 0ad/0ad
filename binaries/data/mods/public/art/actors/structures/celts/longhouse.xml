@@ -9,7 +9,7 @@
         <prop actor="props/structures/celts/house_d_color.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
       </props>
-      <texture>structural/celt_struct.dds</texture>
+      <textures><texture file="structural/celt_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

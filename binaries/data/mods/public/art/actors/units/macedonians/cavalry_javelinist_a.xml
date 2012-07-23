@@ -33,10 +33,10 @@
   </group>
   <group>
     <variant frequency="1" name="hyppikon-horse-texture-plain">
-      <texture>skeletal/horse_hele_a_1.dds</texture>
+      <textures><texture file="skeletal/horse_hele_a_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="hyppikon-horse-texture-stripe">
-      <texture>skeletal/horse_hele_a_2.dds</texture>
+      <textures><texture file="skeletal/horse_hele_a_2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

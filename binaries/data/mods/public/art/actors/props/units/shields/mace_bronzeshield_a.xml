@@ -11,7 +11,7 @@
   </group>
   <group>
     <variant frequency="1" name="mace round h">
-      <texture>props/shield/mace_round_h.png</texture>
+      <textures><texture file="props/shield/mace_round_h.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_spec.xml</material>

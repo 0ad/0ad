@@ -14,23 +14,23 @@
   <group>
     <variant frequency="2" name="shield-dip-A">
       <mesh>props/shield/dip_a_f.dae</mesh>
-      <texture>props/shield/celt_dip_a.dds</texture>
+      <textures><texture file="props/shield/celt_dip_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="shield-dip-B">
       <mesh>props/shield/dip_a_f.dae</mesh>
-      <texture>props/shield/celt_dip_b.dds</texture>
+      <textures><texture file="props/shield/celt_dip_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="shield-dip-C">
       <mesh>props/shield/dip_a_f.dae</mesh>
-      <texture>props/shield/celt_dip_c.dds</texture>
+      <textures><texture file="props/shield/celt_dip_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="shield-dip-D">
       <mesh>props/shield/dip_a_f.dae</mesh>
-      <texture>props/shield/celt_dip_d.dds</texture>
+      <textures><texture file="props/shield/celt_dip_d.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="shield-dip-E">
       <mesh>props/shield/dip_a_f.dae</mesh>
-      <texture>props/shield/celt_dip_e.dds</texture>
+      <textures><texture file="props/shield/celt_dip_e.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

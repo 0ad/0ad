@@ -14,16 +14,16 @@
 
   <group>
     <variant frequency="10" name="White / Daisy">
-      <texture>gaia/grass_field_flowering_tall_a.dds</texture>
+      <textures><texture file="gaia/grass_field_flowering_tall_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="5" name="Red / Poppy">
-      <texture>gaia/grass_field_flowering_tall_red.dds</texture>
+      <textures><texture file="gaia/grass_field_flowering_tall_red.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="5" name="Yellow">
-      <texture>gaia/grass_field_flowering_tall_yellow.dds</texture>
+      <textures><texture file="gaia/grass_field_flowering_tall_yellow.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Violet">
-      <texture>gaia/grass_field_flowering_tall_violet.dds</texture>
+      <textures><texture file="gaia/grass_field_flowering_tall_violet.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

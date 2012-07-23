@@ -6,7 +6,7 @@
   <group>
     <variant name="Fence">
       <mesh>props/shared_corral_fence.dae</mesh>
-      <texture>gaia/wrld_prop_1.dds</texture>
+      <textures><texture file="gaia/wrld_prop_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

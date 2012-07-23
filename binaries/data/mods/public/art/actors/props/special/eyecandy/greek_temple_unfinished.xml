@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/special/eyecandy/greek_temple_unfinished_columns.xml" attachpoint="root"/>
       </props>
-      <texture>props/hele_tile_c.dds</texture>
+      <textures><texture file="props/hele_tile_c.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

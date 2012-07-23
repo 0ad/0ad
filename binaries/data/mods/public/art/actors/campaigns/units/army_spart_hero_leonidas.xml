@@ -7,7 +7,7 @@
       <props>
         <prop actor="campaigns/units/spart_leonidas.xml" attachpoint="soldier"/>
       </props>
-      <texture>campaigns/units/pedestal_mace_1.png</texture>
+      <textures><texture file="campaigns/units/pedestal_mace_1.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

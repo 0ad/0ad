@@ -8,7 +8,7 @@
         <prop actor="props/structures/carthaginians/corral.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/hele_corral_mud.xml" attachpoint="root"/>
       </props>
-      <texture>structural/kart_struct.dds</texture>
+      <textures><texture file="structural/kart_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

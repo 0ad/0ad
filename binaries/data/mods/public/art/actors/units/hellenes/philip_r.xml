@@ -17,7 +17,7 @@
         <prop actor="props/units/heads/mace_philip.xml" attachpoint="helmet"/>
         <prop actor="props/units/cape_hd_cav.xml" attachpoint="shoulders"/>
       </props>
-      <texture>skeletal/hele_philip_3.dds</texture>
+      <textures><texture file="skeletal/hele_philip_3.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

@@ -26,7 +26,7 @@
       <props>
         <prop actor="props/units/heads/dudette_head.xml" attachpoint="head"/>
       </props>
-      <texture>skeletal/spart_female_1.png</texture>
+      <textures><texture file="skeletal/spart_female_1.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

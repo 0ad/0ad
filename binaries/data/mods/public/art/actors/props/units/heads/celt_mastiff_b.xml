@@ -6,7 +6,7 @@
   <group>
     <variant name="base">
       <mesh>props/collar_b.dae</mesh>
-      <texture>props/collar_b.dds</texture>
+      <textures><texture file="props/collar_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

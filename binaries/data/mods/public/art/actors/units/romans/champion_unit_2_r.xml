@@ -19,7 +19,7 @@
         <prop actor="props/units/shields/rome_parma_hero.xml" attachpoint="shield"/>
         <prop actor="props/units/cape_hd_cav.xml" attachpoint="shoulders"/>
       </props>
-      <texture>skeletal/rome_consular_cav.dds</texture>
+      <textures><texture file="skeletal/rome_consular_cav.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

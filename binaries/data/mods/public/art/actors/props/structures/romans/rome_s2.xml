@@ -6,7 +6,7 @@
   <group>
     <variant frequency="1" name="Base">
       <mesh>props/rome_s2.dae</mesh>
-      <texture>structural/rome_s2_prop.dds</texture>
+      <textures><texture file="structural/rome_s2_prop.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

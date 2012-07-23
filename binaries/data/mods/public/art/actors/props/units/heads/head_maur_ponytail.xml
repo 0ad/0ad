@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/head_m_ponytail.dae</mesh>
-      <texture>props/head/numid_face_a.dds</texture>
+      <textures><texture file="props/head/numid_face_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

@@ -5,7 +5,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/pers_merc_sail.dae</mesh>
-      <texture>props/pers_trireme_sail_d.dds</texture>
+      <textures><texture file="props/pers_trireme_sail_d.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

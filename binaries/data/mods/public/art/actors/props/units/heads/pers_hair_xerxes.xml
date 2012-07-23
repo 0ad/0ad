@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/helmet/pers_hair.dae</mesh>
-      <texture>props/head/xerxes.png</texture>
+      <textures><texture file="props/head/xerxes.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

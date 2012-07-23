@@ -6,7 +6,7 @@
   <group>
     <variant frequency="1" name="kart_fortress_windows">
       <mesh>props/kart_fortress_windows.dae</mesh>
-      <texture>structural/kart_struct.dds</texture>
+      <textures><texture file="structural/kart_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

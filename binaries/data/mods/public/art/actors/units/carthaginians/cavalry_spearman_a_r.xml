@@ -24,13 +24,13 @@
   </group>
   <group>
     <variant frequency="1" name="pectoral-tripledisc">
-      <texture>skeletal/kart_csp_a_1.dds</texture>
+      <textures><texture file="skeletal/kart_csp_a_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="pectoral-square">
-      <texture>skeletal/kart_csp_a_2.dds</texture>
+      <textures><texture file="skeletal/kart_csp_a_2.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="pectoral-muscle">
-      <texture>skeletal/kart_csp_a_3.dds</texture>
+      <textures><texture file="skeletal/kart_csp_a_3.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

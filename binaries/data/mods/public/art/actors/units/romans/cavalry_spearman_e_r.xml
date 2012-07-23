@@ -20,7 +20,7 @@
         <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
         <prop actor="props/units/cape_hd_cav.xml" attachpoint="shoulders"/>
       </props>
-      <texture>skeletal/rome_csp_e.dds</texture>
+      <textures><texture file="skeletal/rome_csp_e.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

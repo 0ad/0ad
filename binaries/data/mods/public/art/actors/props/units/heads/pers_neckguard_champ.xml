@@ -8,10 +8,10 @@
   </group>
   <group>
     <variant frequency="1" name="Neck Guard Bronze">
-      <texture>props/helmet/pers_h1.dds</texture>
+      <textures><texture file="props/helmet/pers_h1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Neck Guard Iron">
-      <texture>props/helmet/pers_h2.dds</texture>
+      <textures><texture file="props/helmet/pers_h2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

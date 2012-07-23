@@ -14,13 +14,13 @@
 
   <group>
     <variant name="Texture-Tower-K">
-      <texture>props/shield/rome_tower_k.dds</texture>
+      <textures><texture file="props/shield/rome_tower_k.dds" name="baseTex"/></textures>
     </variant>
     <variant name="Texture-Tower-H">
-      <texture>props/shield/rome_tower_h.dds</texture>
+      <textures><texture file="props/shield/rome_tower_h.dds" name="baseTex"/></textures>
     </variant>
     <variant name="Texture-Tower-I">
-      <texture>props/shield/rome_tower_i.dds</texture>
+      <textures><texture file="props/shield/rome_tower_i.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

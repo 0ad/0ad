@@ -14,19 +14,19 @@
   <group>
     <variant frequency="1" name="shield-hex-A">
       <mesh>props/shield/hex_s_f.dae</mesh>
-      <texture>props/shield/celt_hex_a.dds</texture>
+      <textures><texture file="props/shield/celt_hex_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-hex-B">
       <mesh>props/shield/hex_s_f.dae</mesh>
-      <texture>props/shield/celt_hex_b.dds</texture>
+      <textures><texture file="props/shield/celt_hex_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-hex-C">
       <mesh>props/shield/hex_s_f.dae</mesh>
-      <texture>props/shield/celt_hex_c.dds</texture>
+      <textures><texture file="props/shield/celt_hex_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-hex-D">
       <mesh>props/shield/hex_s_f.dae</mesh>
-      <texture>props/shield/celt_hex_d.dds</texture>
+      <textures><texture file="props/shield/celt_hex_d.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

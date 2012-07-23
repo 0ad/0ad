@@ -11,7 +11,7 @@
   </group>
   <group>
     <variant frequency="1" name="Shield-Parma-H">
-      <texture>props/shield/rome_parma_h.dds</texture>
+      <textures><texture file="props/shield/rome_parma_h.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

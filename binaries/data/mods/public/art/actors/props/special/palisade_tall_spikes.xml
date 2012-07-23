@@ -9,7 +9,7 @@
     <variant frequency="100" name="tall spikes">
       <animations/>
       <mesh>props/palisade_tall_spikes.dae</mesh>
-      <texture>props/palisade_main.png</texture>
+      <textures><texture file="props/palisade_main.png" name="baseTex"/></textures>
     </variant>
   </group>
 

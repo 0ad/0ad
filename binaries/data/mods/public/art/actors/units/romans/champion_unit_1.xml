@@ -28,27 +28,27 @@
   <group>
     <variant frequency="2" name="Scale-Brass">
       <mesh>skeletal/m_tunic_long.dae</mesh>
-      <texture>skeletal/rome_su1_extraordinarii.dds</texture>
+      <textures><texture file="skeletal/rome_su1_extraordinarii.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Cuirass&amp;pteruges">
       <mesh>skeletal/m_tunic_long.dae</mesh>
-      <texture>skeletal/rome_su1_b.dds</texture>
+      <textures><texture file="skeletal/rome_su1_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Armour-Cuirass">
       <mesh>skeletal/m_tunic_short.dae</mesh>
-      <texture>skeletal/samnite_isp_e_1.dds</texture>
+      <textures><texture file="skeletal/samnite_isp_e_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="pectoral-tripledisc">
       <mesh>skeletal/m_tunic_short.dae</mesh>
-      <texture>skeletal/kart_csp_a_1.dds</texture>
+      <textures><texture file="skeletal/kart_csp_a_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="pectoral-square">
       <mesh>skeletal/m_tunic_short.dae</mesh>
-      <texture>skeletal/kart_csp_a_2.dds</texture>
+      <textures><texture file="skeletal/kart_csp_a_2.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="pectoral-muscle">
       <mesh>skeletal/m_tunic_short.dae</mesh>
-      <texture>skeletal/kart_csp_a_3.dds</texture>
+      <textures><texture file="skeletal/kart_csp_a_3.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

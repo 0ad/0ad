@@ -14,10 +14,10 @@
 
   <group>
     <variant frequency="1" name="shield-H">
-      <texture>props/shield/iber_round_h.dds</texture>
+      <textures><texture file="props/shield/iber_round_h.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-K">
-      <texture>props/shield/iber_round_k.dds</texture>
+      <textures><texture file="props/shield/iber_round_k.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

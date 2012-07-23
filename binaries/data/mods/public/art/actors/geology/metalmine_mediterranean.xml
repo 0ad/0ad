@@ -23,13 +23,13 @@
   </group>
   <group>
     <variant frequency="1" name="medit_stone_a">
-      <texture>gaia/metal_medit_a.dds</texture>
+      <textures><texture file="gaia/metal_medit_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="medit_stone_b">
-      <texture>gaia/metal_medit_b.dds</texture>
+      <textures><texture file="gaia/metal_medit_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="medit_stone_c">
-      <texture>gaia/metal_medit_c.dds</texture>
+      <textures><texture file="gaia/metal_medit_c.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

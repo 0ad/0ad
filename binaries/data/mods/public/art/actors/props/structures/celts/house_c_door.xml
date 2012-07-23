@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="celt house c door">
       <mesh>props/celt_house_c_door.dae</mesh>
-      <texture>props/celt_prop_1.dds</texture>
+      <textures><texture file="props/celt_prop_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

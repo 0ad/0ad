@@ -14,7 +14,7 @@
         <prop actor="units/hellenes/trader_r.xml" attachpoint="operator2"/>
         <prop actor="" attachpoint="operator1"/>
       </props>
-      <texture>structural/fireraiser.png</texture>
+      <textures><texture file="structural/fireraiser.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

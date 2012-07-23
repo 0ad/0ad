@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/arm_right.dae</mesh>
-      <texture>props/scales_arm_iron.png</texture>
+      <textures><texture file="props/scales_arm_iron.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

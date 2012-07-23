@@ -20,7 +20,7 @@
         <prop actor="props/units/weapons/spear_lance.xml" attachpoint="r_hand"/>
         <prop actor="props/units/cape_hd_cav.xml" attachpoint="shoulders"/>
       </props>
-      <texture>skeletal/mace_bronzeshield_2.png</texture>
+      <textures><texture file="skeletal/mace_bronzeshield_2.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

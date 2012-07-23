@@ -11,16 +11,16 @@
   </group>
   <group>
     <variant frequency="1" name="foliage-a">
-      <texture>gaia/poplar_c.dds</texture>
+      <textures><texture file="gaia/poplar_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="5" name="foliage-b">
-      <texture>gaia/tree_carob_c.dds</texture>
+      <textures><texture file="gaia/tree_carob_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="foliage-c">
-      <texture>gaia/underbrush_medit_a.dds</texture>
+      <textures><texture file="gaia/underbrush_medit_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="foliage-d">
-      <texture>gaia/underbrush_medit_b.dds</texture>
+      <textures><texture file="gaia/underbrush_medit_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

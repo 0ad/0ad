@@ -48,7 +48,7 @@
         <prop actor="props/units/shields/rome_scutum_b.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear_lance.xml" attachpoint="r_hand"/>
       </props>
-      <texture>skeletal/rome_isw_a.dds</texture>
+      <textures><texture file="skeletal/rome_isw_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

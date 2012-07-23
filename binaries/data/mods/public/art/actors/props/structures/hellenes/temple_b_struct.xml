@@ -4,7 +4,7 @@
   <group>
     <variant name="temple_b_structure">
       <mesh>structural/hele_temple_b_struct.dae</mesh>
-      <texture>structural/hele_struct.dds</texture>
+      <textures><texture file="structural/hele_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

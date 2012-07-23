@@ -11,19 +11,19 @@
   </group>
   <group>
     <variant frequency="1" name="shield-scutum-a">
-      <texture>props/shield/rome_imp_scutum_a.dds</texture>
+      <textures><texture file="props/shield/rome_imp_scutum_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-scutum-b">
-      <texture>props/shield/rome_imp_scutum_b.dds</texture>
+      <textures><texture file="props/shield/rome_imp_scutum_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-scutum-c">
-      <texture>props/shield/rome_imp_scutum_c.dds</texture>
+      <textures><texture file="props/shield/rome_imp_scutum_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-scutum-d">
-      <texture>props/shield/rome_imp_scutum_d.dds</texture>
+      <textures><texture file="props/shield/rome_imp_scutum_d.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-scutum-e">
-      <texture>props/shield/rome_imp_scutum_e.dds</texture>
+      <textures><texture file="props/shield/rome_imp_scutum_e.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

@@ -22,7 +22,7 @@
   </group>
   <group>
     <variant frequency="1" name="Blue Eye">
-      <texture>structural/rome_trireme.png</texture>
+      <textures><texture file="structural/rome_trireme.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

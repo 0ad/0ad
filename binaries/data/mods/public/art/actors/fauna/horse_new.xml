@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>skeletal/horse_new.dae</mesh>
-      <texture>null_white.dds</texture>
+      <textures><texture file="null_white.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

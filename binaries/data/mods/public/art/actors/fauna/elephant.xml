@@ -11,10 +11,10 @@
 
   <group>
     <variant frequency="1" name="hide-brown">
-      <texture>skeletal/animal_elephant.dds</texture>
+      <textures><texture file="skeletal/animal_elephant.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="hide-gray">
-      <texture>skeletal/animal_elephant2.dds</texture>
+      <textures><texture file="skeletal/animal_elephant2.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

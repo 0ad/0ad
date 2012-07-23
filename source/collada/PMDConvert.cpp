@@ -149,7 +149,6 @@ public:
 
 			FCDGeometryPolygonsInput* inputPosition = polys->FindInput(FUDaeGeometryInput::POSITION);
 			FCDGeometryPolygonsInput* inputNormal   = polys->FindInput(FUDaeGeometryInput::NORMAL);
-			FCDGeometryPolygonsInput* inputTexcoord = polys->FindInput(FUDaeGeometryInput::TEXCOORD);
 
 			const uint32* indicesCombined = inputPosition->GetIndices();
 			size_t indicesCombinedCount = inputPosition->GetIndexCount();
@@ -157,15 +156,22 @@ public:
 
 			FCDGeometrySource* sourcePosition = inputPosition->GetSource();
 			FCDGeometrySource* sourceNormal   = inputNormal  ->GetSource();
-			FCDGeometrySource* sourceTexcoord = inputTexcoord->GetSource();
+			
+			FCDGeometrySourceList texcoordSources;
+			polys->GetParent()->FindSourcesByType(FUDaeGeometryInput::TEXCOORD, texcoordSources);
+			
+			std::vector<float*> dataTexcoords;
+			for (size_t i = 0; i < texcoordSources.size(); ++i)
+			{
+				dataTexcoords.push_back(texcoordSources[i]->GetData());
+				assert(texcoordSources[i]->GetDataCount() == vertexCount*2);
+			}
 
 			float* dataPosition = sourcePosition->GetData();
 			float* dataNormal   = sourceNormal  ->GetData();
-			float* dataTexcoord = sourceTexcoord->GetData();
 			size_t vertexCount = sourcePosition->GetDataCount() / 3;
 			assert(sourcePosition->GetDataCount() == vertexCount*3);
 			assert(sourceNormal  ->GetDataCount() == vertexCount*3);
-			assert(sourceTexcoord->GetDataCount() == vertexCount*2);
 
 			// Transform mesh coordinate system to game coordinates
 			// (doesn't modify prop points)
@@ -190,7 +196,7 @@ public:
 
 			AddStaticPropPoints(propPoints, upAxisTransform, converter.GetInstance().GetParent());
 
-			WritePMD(output, indicesCombined, indicesCombinedCount, dataPosition, dataNormal, dataTexcoord, vertexCount, boneWeights, boneTransforms, propPoints);
+			WritePMD(output, indicesCombined, indicesCombinedCount, dataPosition, dataNormal, dataTexcoords, vertexCount, boneWeights, boneTransforms, propPoints);
 		}
 		else if (converter.GetInstance().GetType() == FCDEntityInstance::CONTROLLER)
 		{
@@ -417,8 +423,6 @@ public:
 
 			FCDGeometryPolygonsInput* inputPosition = polys->FindInput(FUDaeGeometryInput::POSITION);
 			FCDGeometryPolygonsInput* inputNormal   = polys->FindInput(FUDaeGeometryInput::NORMAL);
-			FCDGeometryPolygonsInput* inputTexcoord = polys->FindInput(FUDaeGeometryInput::TEXCOORD);
-
 
 			const uint32* indicesCombined = inputPosition->GetIndices();
 			size_t indicesCombinedCount = inputPosition->GetIndexCount();
@@ -426,15 +430,22 @@ public:
 
 			FCDGeometrySource* sourcePosition = inputPosition->GetSource();
 			FCDGeometrySource* sourceNormal   = inputNormal  ->GetSource();
-			FCDGeometrySource* sourceTexcoord = inputTexcoord->GetSource();
+
+			FCDGeometrySourceList texcoordSources;
+			polys->GetParent()->FindSourcesByType(FUDaeGeometryInput::TEXCOORD, texcoordSources);
+			
+			std::vector<float*> dataTexcoords;
+			for (size_t i = 0; i < texcoordSources.size(); ++i)
+			{
+				dataTexcoords.push_back(texcoordSources[i]->GetData());
+				assert(texcoordSources[i]->GetDataCount() == vertexCount*2);
+			}
 
 			float* dataPosition = sourcePosition->GetData();
 			float* dataNormal   = sourceNormal  ->GetData();
-			float* dataTexcoord = sourceTexcoord->GetData();
 			size_t vertexCount = sourcePosition->GetDataCount() / 3;
 			assert(sourcePosition->GetDataCount() == vertexCount*3);
 			assert(sourceNormal  ->GetDataCount() == vertexCount*3);
-			assert(sourceTexcoord->GetDataCount() == vertexCount*2);
 
 			// Transform model coordinate system to game coordinates
 
@@ -442,7 +453,7 @@ public:
 				converter.GetEntityTransform(), skin->GetBindShapeTransform(),
 				converter.IsYUp(), converter.IsXSI());
 
-			WritePMD(output, indicesCombined, indicesCombinedCount, dataPosition, dataNormal, dataTexcoord, vertexCount, boneWeights, boneTransforms, propPoints);
+			WritePMD(output, indicesCombined, indicesCombinedCount, dataPosition, dataNormal, dataTexcoords, vertexCount, boneWeights, boneTransforms, propPoints);
 		}
 		else
 		{
@@ -470,7 +481,9 @@ public:
 	 */
 	static void WritePMD(OutputCB& output,
 		const uint32* indices, size_t indexCount,
-		const float* position, const float* normal, const float* texcoord, size_t vertexCount,
+		const float* position, const float* normal,
+		const std::vector<float*>& texcoords,
+		size_t vertexCount,
 		const std::vector<VertexBlend>& boneWeights, const std::vector<BoneTransform>& boneTransforms,
 		const std::vector<PropPoint>& propPoints)
 	{
@@ -489,9 +502,9 @@ public:
 		}
 
 		output("PSMD", 4);  // magic number
-		write(output, (uint32)3); // version number
+		write(output, (uint32)4); // version number
 		write(output, (uint32)(
-			4 + 13*4*vertexCount + // vertices
+			4 + 11*4*vertexCount + 4 + 8*texcoords.size()*vertexCount + // vertices
 			4 + 6*faceCount + // faces
 			4 + 7*4*boneCount + // bones
 			4 + propPointsSize // props
@@ -499,11 +512,17 @@ public:
 
 		// Vertex data
 		write<uint32>(output, (uint32)vertexCount);
+		write<uint32>(output, (uint32)texcoords.size()); // UV pairs per vertex
 		for (size_t i = 0; i < vertexCount; ++i)
 		{
 			output((char*)&position[i*3], 12);
 			output((char*)&normal  [i*3], 12);
-			output((char*)&texcoord[i*2],  8);
+
+			for (size_t s = 0; s < texcoords.size(); ++s)
+			{
+				output((char*)&texcoords[s][i*2], 8);
+			}
+
 			if (boneCount)
 				write(output, boneWeights[i]);
 			else

@@ -14,7 +14,7 @@
         <prop actor="props/structures/hellenes/fisherman_body.xml" attachpoint="root"/>
         <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
       </props>
-      <texture>structural/hele_fishing_boat.dds</texture>
+      <textures><texture file="structural/hele_fishing_boat.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Greek Fishing Boatb">
       <animations>
@@ -28,7 +28,7 @@
         <prop actor="props/units/heads/head_hele_e.xml" attachpoint="head"/>
         <prop actor="props/units/heads/hele_straw.xml" attachpoint="head"/>
       </props>
-      <texture>structural/hele_fishing_boat.dds</texture>
+      <textures><texture file="structural/hele_fishing_boat.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

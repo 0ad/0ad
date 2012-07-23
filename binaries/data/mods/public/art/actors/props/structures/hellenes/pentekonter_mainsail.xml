@@ -8,13 +8,13 @@
   </group>
   <group>
     <variant frequency="1" name="sail_eye">
-      <texture>props/hele_sail_eye_war.dds</texture>
+      <textures><texture file="props/hele_sail_eye_war.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="sail_pegasus">
-      <texture>props/hele_sail_pegasus_war.dds</texture>
+      <textures><texture file="props/hele_sail_pegasus_war.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="sail_star">
-      <texture>props/hele_sail_star_war.dds</texture>
+      <textures><texture file="props/hele_sail_star_war.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

@@ -14,13 +14,13 @@
   </group>
   <group>
     <variant frequency="1" name="face-a">
-      <texture>props/head/pers_fem_a.dds</texture>
+      <textures><texture file="props/head/pers_fem_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="face-b">
-      <texture>props/head/pers_fem_b.dds</texture>
+      <textures><texture file="props/head/pers_fem_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="face-cin-kart">
-      <texture>props/head/kart_fem_a_cin.dds</texture>
+      <textures><texture file="props/head/kart_fem_a_cin.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

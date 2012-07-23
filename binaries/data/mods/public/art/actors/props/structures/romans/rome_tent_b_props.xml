@@ -4,7 +4,7 @@
   <group>
     <variant name="Tent B props">
       <mesh>props/rome_tent_b_props.dae</mesh>
-      <texture>structural/rome_struct_2.png</texture>
+      <textures><texture file="structural/rome_struct_2.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

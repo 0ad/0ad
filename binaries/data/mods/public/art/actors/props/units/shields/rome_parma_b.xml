@@ -14,10 +14,10 @@
 
   <group>
     <variant frequency="1" name="Shield-Parma-A">
-      <texture>props/shield/rome_parma_a.dds</texture>
+      <textures><texture file="props/shield/rome_parma_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Shield-Parma-E">
-      <texture>props/shield/rome_parma_e.dds</texture>
+      <textures><texture file="props/shield/rome_parma_e.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

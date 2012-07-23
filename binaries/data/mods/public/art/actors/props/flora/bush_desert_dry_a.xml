@@ -14,13 +14,13 @@
 
   <group>
     <variant frequency="1" name="Desert-brown">
-      <texture>gaia/bush_dese_dry_a.dds</texture>
+      <textures><texture file="gaia/bush_dese_dry_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Desert-burnt">
-      <texture>gaia/bush_dese_dry_b.dds</texture>
+      <textures><texture file="gaia/bush_dese_dry_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Desert-dusty">
-      <texture>gaia/bush_dese_dry_c.dds</texture>
+      <textures><texture file="gaia/bush_dese_dry_c.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

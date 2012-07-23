@@ -4,7 +4,7 @@
   <group>
     <variant name="chainlinks">
       <mesh>props/found_chains_dock_4x4.dae</mesh>
-      <texture>props/chainlink.dds</texture>
+      <textures><texture file="props/chainlink.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

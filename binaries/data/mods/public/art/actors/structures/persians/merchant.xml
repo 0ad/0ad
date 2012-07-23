@@ -8,7 +8,7 @@
       <props>
         <prop actor="props/structures/persians/merchant_sail.xml" attachpoint="root"/>
       </props>
-      <texture>structural/pers_merc.dds</texture>
+      <textures><texture file="structural/pers_merc.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

@@ -32,7 +32,7 @@
       <props>
         <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
       </props>
-      <texture>skeletal/hele_tunic.dds</texture>
+      <textures><texture file="skeletal/hele_tunic.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

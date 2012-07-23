@@ -4,7 +4,7 @@
   <group>
     <variant name="barracks struct b">
       <mesh>structural/helle_barracks_structb.dae</mesh>
-      <texture>structural/hele_struct_b.dds</texture>
+      <textures><texture file="structural/hele_struct_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

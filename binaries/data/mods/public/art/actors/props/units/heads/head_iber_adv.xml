@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="mesh">
       <mesh>props/head_longhair.dae</mesh>
-      <texture>props/head/iber_isp_b_1.dds</texture>
+      <textures><texture file="props/head/iber_isp_b_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

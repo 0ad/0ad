@@ -32,7 +32,7 @@
         <prop actor="props/units/weapons/spear_ball.xml" attachpoint="r_hand"/>
         <prop actor="props/units/pers_quiver_back.xml" attachpoint="back"/>
       </props>
-      <texture>skeletal/pers_hero_xerxes.png</texture>
+      <textures><texture file="skeletal/pers_hero_xerxes.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

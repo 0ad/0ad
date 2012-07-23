@@ -10,7 +10,7 @@
         <animation file="mechanical/kart_wall_gate_closing.dae" name="gate_closing" speed="65"/>
       </animations>
       <mesh>structural/kart_wall_gate.dae</mesh>
-      <texture>structural/kart_struct.dds</texture>
+      <textures><texture file="structural/kart_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

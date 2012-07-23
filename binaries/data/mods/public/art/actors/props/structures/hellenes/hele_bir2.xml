@@ -8,16 +8,16 @@
   </group>
   <group>
     <variant frequency="1" name="Sail-Plain">
-      <texture>props/hele_sail.dds</texture>
+      <textures><texture file="props/hele_sail.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="5" name="Sail-Pegasus">
-      <texture>props/hele_sail_pegasus.dds</texture>
+      <textures><texture file="props/hele_sail_pegasus.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="6" name="Sail-Star">
-      <texture>props/hele_sail_star_a.dds</texture>
+      <textures><texture file="props/hele_sail_star_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="Sail-Hawk">
-      <texture>props/hele_sail_hawk_a.dds</texture>
+      <textures><texture file="props/hele_sail_hawk_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

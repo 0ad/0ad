@@ -14,13 +14,13 @@
 
   <group>
     <variant frequency="1" name="shield-gerron-a">
-      <texture>props/shield/pers_gerron_a.dds</texture>
+      <textures><texture file="props/shield/pers_gerron_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-gerron-b">
-      <texture>props/shield/pers_gerron_b.dds</texture>
+      <textures><texture file="props/shield/pers_gerron_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-gerron-e">
-      <texture>props/shield/pers_gerron_e.dds</texture>
+      <textures><texture file="props/shield/pers_gerron_e.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

@@ -11,10 +11,10 @@
 
   <group>
     <variant name="apple">
-      <texture>gaia/orchard_apple_a.dds</texture>
+      <textures><texture file="gaia/orchard_apple_a.dds" name="baseTex"/></textures>
     </variant>
     <variant name="pear">
-      <texture>gaia/orchard_pear_a.dds</texture>
+      <textures><texture file="gaia/orchard_pear_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

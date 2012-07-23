@@ -35,7 +35,7 @@
         <prop actor="props/units/weapons/bow_short.xml" attachpoint="l_hand"/>
         <prop actor="props/temp/quiver.xml" attachpoint="back"/>
       </props>
-      <texture>skeletal/hele_tunic.dds</texture>
+      <textures><texture file="skeletal/hele_tunic.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

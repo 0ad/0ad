@@ -7,7 +7,7 @@
     <variant frequency="100" name="palisade rocks medium">
       <animations/>
       <mesh>props/palisade_rocks_medium.dae</mesh>
-      <texture>props/palisade_main.png</texture>
+      <textures><texture file="props/palisade_main.png" name="baseTex"/></textures>
     </variant>
   </group>
 

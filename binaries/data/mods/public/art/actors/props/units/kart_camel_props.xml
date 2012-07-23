@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="camel prop1">
       <mesh>props/kart_camel_prop1.dae</mesh>
-      <texture>structural/kart_struct.dds</texture>
+      <textures><texture file="structural/kart_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

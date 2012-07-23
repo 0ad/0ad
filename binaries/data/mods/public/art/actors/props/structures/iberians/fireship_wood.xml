@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="fireshipwood">
       <mesh>props/iber_fireship_wood.dae</mesh>
-      <texture>props/wood_burned.png</texture>
+      <textures><texture file="props/wood_burned.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

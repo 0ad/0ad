@@ -4,7 +4,7 @@
   <group>
     <variant name="britomartus_b">
       <mesh>props/shield/cermy_a_b.dae</mesh>
-      <texture>props/shield/celt_misc_c_b.dds</texture>
+      <textures><texture file="props/shield/celt_misc_c_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_spec.xml</material>

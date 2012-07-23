@@ -11,10 +11,10 @@
   </group>
   <group>
     <variant frequency="1" name="shield-bronze-A">
-      <texture>props/shield/pers_round_a.dds</texture>
+      <textures><texture file="props/shield/pers_round_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-bronze-B">
-      <texture>props/shield/pers_round_b.dds</texture>
+      <textures><texture file="props/shield/pers_round_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

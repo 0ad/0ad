@@ -26,7 +26,7 @@
         <prop actor="units/romans/hero_scipio_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
       </props>
-      <texture>skeletal/horse_rome_scipio.png</texture>
+      <textures><texture file="skeletal/horse_rome_scipio.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

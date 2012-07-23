@@ -7,7 +7,7 @@
         <animation file="gaia/tree_pine_idle_01.dae" name="idle" speed="10"/>
       </animations>
       <mesh>gaia/tree_pine_01.dae</mesh>
-      <texture>gaia/pine.dds</texture>
+      <textures><texture file="gaia/pine.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

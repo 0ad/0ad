@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/shield/aspis_b.dae</mesh>
-      <texture>props/shield/hele_aspis_back_black.png</texture>
+      <textures><texture file="props/shield/hele_aspis_back_black.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

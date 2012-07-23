@@ -6,7 +6,7 @@
   <group>
     <variant name="Boundary">
       <mesh>props/shared_plot_boundry.dae</mesh>
-      <texture>structural/wrld_settlements.dds</texture>
+      <textures><texture file="structural/wrld_settlements.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

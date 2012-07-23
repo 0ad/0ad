@@ -11,28 +11,28 @@
   </group>
   <group>
     <variant frequency="1" name="kart-shield-f">
-      <texture>props/shield/kart_round_f.dds</texture>
+      <textures><texture file="props/shield/kart_round_f.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="kart-shield-h">
-      <texture>props/shield/kart_round_h.dds</texture>
+      <textures><texture file="props/shield/kart_round_h.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="kart-shield-w">
-      <texture>props/shield/kart_round_w.dds</texture>
+      <textures><texture file="props/shield/kart_round_w.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="kart-shield-ai-double star">
-      <texture>props/shield/kart_round_ai.dds</texture>
+      <textures><texture file="props/shield/kart_round_ai.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="kart-shield-q-dolphin">
-      <texture>props/shield/kart_round_q.dds</texture>
+      <textures><texture file="props/shield/kart_round_q.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="kart-shield-aj-designs">
-      <texture>props/shield/kart_round_aj.dds</texture>
+      <textures><texture file="props/shield/kart_round_aj.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="kart-shield-ak-palm tree">
-      <texture>props/shield/kart_round_ak.dds</texture>
+      <textures><texture file="props/shield/kart_round_ak.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="kart-shield-al-palm and dolphins">
-      <texture>props/shield/kart_round_al.dds</texture>
+      <textures><texture file="props/shield/kart_round_al.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

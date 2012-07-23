@@ -11,7 +11,7 @@
   </group>
   <group>
     <variant frequency="1">
-      <texture>props/helmet/samnite_01.dds</texture>
+      <textures><texture file="props/helmet/samnite_01.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

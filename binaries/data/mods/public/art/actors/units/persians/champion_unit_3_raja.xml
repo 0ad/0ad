@@ -21,11 +21,11 @@
   <group>
     <variant frequency="1" name="Raja-Texture-1">
       <mesh>skeletal/m_pants.dae</mesh>
-      <texture>skeletal/pers_su2_raja_2.dds</texture>
+      <textures><texture file="skeletal/pers_su2_raja_2.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Raja-Texture-2">
       <mesh>skeletal/m_pants_celt.dae</mesh>
-      <texture>skeletal/pers_su2_raja_1.dds</texture>
+      <textures><texture file="skeletal/pers_su2_raja_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

@@ -9,7 +9,7 @@
         <prop actor="particle/flame.xml" attachpoint="root"/>
         <prop actor="props/special/eyecandy/campfire_decal.xml" attachpoint="root"/>
       </props>
-      <texture>structural/celt_struct.dds</texture>
+      <textures><texture file="structural/celt_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

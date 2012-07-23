@@ -10,7 +10,7 @@
         <animation file="mechanical/rome_wall_gate_closing.dae" name="gate_closing" speed="65"/>
       </animations>
       <mesh>structural/rome_wall_gate.dae</mesh>
-      <texture>structural/rome_struct_2.png</texture>
+      <textures><texture file="structural/rome_struct_2.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

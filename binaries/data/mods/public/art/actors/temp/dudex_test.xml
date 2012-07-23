@@ -9,13 +9,13 @@
   </group>
   <group>
     <variant frequency="1" name="Fanatic">
-      <texture>skeletal/celt_ijv_e_02.dds</texture>
+      <textures><texture file="skeletal/celt_ijv_e_02.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Greek">
-      <texture>skeletal/hele_ijv_e_3.dds</texture>
+      <textures><texture file="skeletal/hele_ijv_e_3.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Dude">
-      <texture>skeletal/dude.dds</texture>
+      <textures><texture file="skeletal/dude.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

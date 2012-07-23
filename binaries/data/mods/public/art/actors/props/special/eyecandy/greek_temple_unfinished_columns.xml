@@ -4,7 +4,7 @@
   <group>
     <variant name="columns">
       <mesh>props/temple_unfinished_columns.dae</mesh>
-      <texture>props/hele_props_a.dds</texture>
+      <textures><texture file="props/hele_props_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

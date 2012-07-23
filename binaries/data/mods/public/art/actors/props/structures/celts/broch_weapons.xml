@@ -4,7 +4,7 @@
   <group>
     <variant name="broch weapons">
       <mesh>props/celt_broch_weapons.dae</mesh>
-      <texture>props/prop_weap.dds</texture>
+      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

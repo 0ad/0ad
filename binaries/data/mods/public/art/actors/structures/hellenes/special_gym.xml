@@ -8,7 +8,7 @@
         <prop actor="props/structures/hellenes/special_gym.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
       </props>
-      <texture>structural/hele_struct_1.dds</texture>
+      <textures><texture file="structural/hele_struct_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="helmet-kart-5">
       <mesh>props/helmet/kart_helmet_5.dae</mesh>
-      <texture>props/helmet/kart_thracian_3.dds</texture>
+      <textures><texture file="props/helmet/kart_thracian_3.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

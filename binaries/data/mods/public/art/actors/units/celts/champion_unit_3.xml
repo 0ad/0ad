@@ -29,13 +29,13 @@
   </group>
   <group>
     <variant frequency="1" name="chainmail-1">
-      <texture>skeletal/celt_su3_soldurii_1.dds</texture>
+      <textures><texture file="skeletal/celt_su3_soldurii_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="chainmail-2">
-      <texture>skeletal/celt_su3_soldurii_2.dds</texture>
+      <textures><texture file="skeletal/celt_su3_soldurii_2.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="chainmail-3">
-      <texture>skeletal/celt_su3_soldurii_3.dds</texture>
+      <textures><texture file="skeletal/celt_su3_soldurii_3.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

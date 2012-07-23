@@ -11,16 +11,16 @@
   </group>
   <group>
     <variant frequency="1" name="Shield: Crescent Moon">
-      <texture>props/shield/hele_thespian_a.dds</texture>
+      <textures><texture file="props/shield/hele_thespian_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Shield: Boeotian Shield">
-      <texture>props/shield/hele_thespian_b.dds</texture>
+      <textures><texture file="props/shield/hele_thespian_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Shield: Theban Sphinx">
-      <texture>props/shield/hele_thespian_c.dds</texture>
+      <textures><texture file="props/shield/hele_thespian_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Shield: Snake">
-      <texture>props/shield/hele_round_ab.dds</texture>
+      <textures><texture file="props/shield/hele_round_ab.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

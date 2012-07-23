@@ -13,7 +13,7 @@
       <props>
         <prop actor="props/structures/iberians/wall_gate_shields.xml" attachpoint="root"/>
       </props>
-      <texture>structural/iber_struct.dds</texture>
+      <textures><texture file="structural/iber_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

@@ -4,7 +4,7 @@
   <group>
     <variant name="decal_campaign_laconia">
       <decal angle="45" depth="25" offsetx="0" offsetz="0" width="100"/>
-      <texture>campaigns/labels/greece_laconia.png</texture>
+      <textures><texture file="campaigns/labels/greece_laconia.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

@@ -4,7 +4,7 @@
   <group>
     <variant name="decal_dirt_5x5">
       <decal angle="0" depth="30" offsetx="0" offsetz="0" width="30"/>
-      <texture>props/decal_struct_sand_large.png</texture>
+      <textures><texture file="props/decal_struct_sand_large.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

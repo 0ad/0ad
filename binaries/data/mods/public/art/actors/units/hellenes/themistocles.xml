@@ -27,7 +27,7 @@
         <prop actor="props/units/weapons/xiphos_alexander.xml" attachpoint="r_hand"/>
         <prop actor="props/units/shields/hele_round_themistocles.xml" attachpoint="shield"/>
       </props>
-      <texture>skeletal/hele_themistocles.dds</texture>
+      <textures><texture file="skeletal/hele_themistocles.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

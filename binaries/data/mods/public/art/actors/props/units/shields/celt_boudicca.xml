@@ -14,10 +14,10 @@
 
   <group>
     <variant name="shield-a">
-      <texture>props/shield/celt_misc_a.dds</texture>
+      <textures><texture file="props/shield/celt_misc_a.dds" name="baseTex"/></textures>
     </variant>
     <variant name="shield-b">
-      <texture>props/shield/celt_misc_b.dds</texture>
+      <textures><texture file="props/shield/celt_misc_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

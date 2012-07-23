@@ -6,7 +6,7 @@
   <group>
     <variant frequency="1" name="roman siege wall gate door">
       <mesh>structural/rome_siege_gate_door.dae</mesh>
-      <texture>structural/rome_special_1.dds</texture>
+      <textures><texture file="structural/rome_special_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

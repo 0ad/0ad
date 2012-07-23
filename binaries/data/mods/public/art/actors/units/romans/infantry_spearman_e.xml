@@ -53,10 +53,10 @@
   </group>
   <group>
     <variant frequency="1" name="armour-texture-Color Shoulders">
-      <texture>skeletal/rome_isp_e_1.dds</texture>
+      <textures><texture file="skeletal/rome_isp_e_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="armour-texture-White Shoulders">
-      <texture>skeletal/rome_isp_e_2.dds</texture>
+      <textures><texture file="skeletal/rome_isp_e_2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

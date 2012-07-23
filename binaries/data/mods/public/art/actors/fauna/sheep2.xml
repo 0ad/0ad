@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>gaia/temp_sheep2.dae</mesh>
-      <texture>gaia/ani_sheep_a.dds</texture>
+      <textures><texture file="gaia/ani_sheep_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

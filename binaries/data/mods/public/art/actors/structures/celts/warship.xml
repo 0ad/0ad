@@ -9,7 +9,7 @@
         <prop actor="props/structures/celts/warship_sail.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/bolt.xml" attachpoint="projectile"/>
       </props>
-      <texture>structural/celt_ship.png</texture>
+      <textures><texture file="structural/celt_ship.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

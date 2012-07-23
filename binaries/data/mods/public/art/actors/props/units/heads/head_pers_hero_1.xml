@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="Cyrus Face">
       <mesh>props/head_beard_wide.dae</mesh>
-      <texture>props/head/kart_hannibal.dds</texture>
+      <textures><texture file="props/head/kart_hannibal.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>objectcolor.xml</material>

@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/garrison_flag.dae</mesh>
-      <texture>props/wrld_waypoint_flag.dds</texture>
+      <textures><texture file="props/wrld_waypoint_flag.dds" name="baseTex"/></textures>
       <animations> 
         <animation file="mechanical/garrison_flag_idle.dae" name="Idle" speed="25"/>		
       </animations> 

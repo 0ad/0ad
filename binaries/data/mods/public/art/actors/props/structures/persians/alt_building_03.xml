@@ -8,7 +8,7 @@
       <props>
         <prop actor="props/structures/persians/alt_building_03_prop.xml" attachpoint="root"/>
       </props>
-      <texture>structural/pers_struct.dds</texture>
+      <textures><texture file="structural/pers_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

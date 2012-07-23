@@ -6,7 +6,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/kart_hc.dae</mesh>
-      <texture>props/kart_prop_a.dds</texture>
+      <textures><texture file="props/kart_prop_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

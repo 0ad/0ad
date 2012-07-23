@@ -11,10 +11,10 @@
   </group>
   <group>
     <variant frequency="1" name="White Shield Oval A">
-      <texture>props/shield/celt_oval2_a.dds</texture>
+      <textures><texture file="props/shield/celt_oval2_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="White Shield Oval C">
-      <texture>props/shield/celt_oval2_c.dds</texture>
+      <textures><texture file="props/shield/celt_oval2_c.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

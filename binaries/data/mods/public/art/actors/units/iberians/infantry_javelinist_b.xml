@@ -38,7 +38,7 @@
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="l_hand"/>
         <prop actor="props/units/shields/iberian_buckler_basic.xml" attachpoint="shield"/>
       </props>
-      <texture>skeletal/iber_isw_b_3.dds</texture>
+      <textures><texture file="skeletal/iber_isw_b_3.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

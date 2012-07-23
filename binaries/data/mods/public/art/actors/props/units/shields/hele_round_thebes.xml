@@ -11,7 +11,7 @@
   </group>
   <group>
     <variant name="o">
-      <texture>props/shield/hele_round_x.dds</texture>
+      <textures><texture file="props/shield/hele_round_x.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

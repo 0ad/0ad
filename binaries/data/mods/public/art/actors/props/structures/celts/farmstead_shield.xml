@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/celt_farmstead_shield.dae</mesh>
-      <texture>props/celt_props_new.dds</texture>
+      <textures><texture file="props/celt_props_new.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

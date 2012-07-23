@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="wall_short">
       <mesh>structural/pers_wall_short.dae</mesh>
-      <texture>structural/pers_struct.dds</texture>
+      <textures><texture file="structural/pers_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

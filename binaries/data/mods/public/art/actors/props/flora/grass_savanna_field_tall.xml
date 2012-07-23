@@ -7,7 +7,7 @@
   </group>
   <group>
     <variant frequency="1" name="texture">
-      <texture>gaia/grass_savanna_a.png</texture>
+      <textures><texture file="gaia/grass_savanna_a.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>alphatest.xml</material>

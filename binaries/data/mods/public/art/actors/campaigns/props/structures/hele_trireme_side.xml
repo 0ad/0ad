@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/campaigns/hele_trireme_sideboard.dae</mesh>
-      <texture>campaigns/structures/hele_trireme.png</texture>
+      <textures><texture file="campaigns/structures/hele_trireme.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

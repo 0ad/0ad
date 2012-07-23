@@ -31,16 +31,16 @@
   </group>
   <group>
     <variant frequency="1" name="horse-texture-01">
-      <texture>skeletal/horse_rome_csp_01.png</texture>
+      <textures><texture file="skeletal/horse_rome_csp_01.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="horse-texture-mane black">
-      <texture>skeletal/horse_rome_csp_02.png</texture>
+      <textures><texture file="skeletal/horse_rome_csp_02.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="horse-texture-snipe">
-      <texture>skeletal/horse_rome_csp_03.png</texture>
+      <textures><texture file="skeletal/horse_rome_csp_03.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="horse-texture-mane white">
-      <texture>skeletal/horse_rome_csp_04.png</texture>
+      <textures><texture file="skeletal/horse_rome_csp_04.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

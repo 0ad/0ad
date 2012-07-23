@@ -13,7 +13,7 @@
       <props>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <texture>structural/kart_trireme.dds</texture>
+      <textures><texture file="structural/kart_trireme.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

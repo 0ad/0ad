@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/stone_pile.dae</mesh>
-      <texture>structural/foundation.dds</texture>
+      <textures><texture file="structural/foundation.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

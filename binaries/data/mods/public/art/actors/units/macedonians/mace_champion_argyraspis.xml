@@ -27,16 +27,16 @@
   </group>
   <group>
     <variant frequency="1" name="hypaspist-armour-thorax">
-      <texture>skeletal/mace_hypaspist_1.dds</texture>
+      <textures><texture file="skeletal/mace_hypaspist_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="hypaspist-armour-cuirass">
-      <texture>skeletal/mace_hypaspist_2.dds</texture>
+      <textures><texture file="skeletal/mace_hypaspist_2.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="hypaspist-armour-cuirass-2">
-      <texture>skeletal/mace_su1_hypaspist_1.dds</texture>
+      <textures><texture file="skeletal/mace_su1_hypaspist_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="hypaspist-armour-cuirass-3">
-      <texture>skeletal/mace_su1_hypaspist_2.dds</texture>
+      <textures><texture file="skeletal/mace_su1_hypaspist_2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

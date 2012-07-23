@@ -9,7 +9,7 @@
         <prop actor="props/structures/carthaginians/merchant_ship_sail.xml" attachpoint="root"/>
         <prop actor="props/structures/carthaginians/merchantship_cargo.xml" attachpoint="root"/>
       </props>
-      <texture>structural/kart_merchant_ship.png</texture>
+      <textures><texture file="structural/kart_merchant_ship.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

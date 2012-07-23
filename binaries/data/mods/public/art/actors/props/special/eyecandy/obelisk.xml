@@ -4,7 +4,7 @@
   <group>
     <variant name="obelisk a">
       <mesh>props/obelisk_a.dae</mesh>
-      <texture>props/obelisk_a.dds</texture>
+      <textures><texture file="props/obelisk_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

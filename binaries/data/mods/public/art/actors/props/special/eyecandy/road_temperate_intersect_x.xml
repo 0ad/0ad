@@ -4,7 +4,7 @@
   <group>
     <variant name="road temperate intersect X">
       <decal width="20" depth="20" angle="0" offsetx="0" offsetz="0"/>
-      <texture>props/road_temperate_intersect_X.dds</texture>
+      <textures><texture file="props/road_temperate_intersect_X.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

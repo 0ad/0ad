@@ -19,10 +19,10 @@
   </group>
   <group>
     <variant frequency="1" name="horse-texture-1">
-      <texture>skeletal/horse_iber_su2_1.dds</texture>
+      <textures><texture file="skeletal/horse_iber_su2_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="horse-texture-legs">
-      <texture>skeletal/horse_iber_su2_2.dds</texture>
+      <textures><texture file="skeletal/horse_iber_su2_2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

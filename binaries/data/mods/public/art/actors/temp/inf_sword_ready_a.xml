@@ -14,7 +14,7 @@
         <prop actor="props/units/shields/hele_round_themistocles.xml" attachpoint="shield"/>
         <prop actor="props/units/hero_star.xml" attachpoint="root"/>
       </props>
-      <texture>skeletal/hele_themistocles.dds</texture>
+      <textures><texture file="skeletal/hele_themistocles.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

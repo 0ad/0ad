@@ -9,7 +9,7 @@
         <animation event="0.85" file="mechanical/pers_siege_ram_attack.dae" name="Melee" speed="50"/>
       </animations>
       <mesh>structural/pers_siege_ram.dae</mesh>
-      <texture>structural/assyrian_ram.png</texture>
+      <textures><texture file="structural/assyrian_ram.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

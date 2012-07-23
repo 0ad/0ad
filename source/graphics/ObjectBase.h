@@ -60,6 +60,14 @@ public:
 		// name of the model file - art/actors/props/sword.xml or whatever
 		CStrW m_ModelName;
 	};
+	
+	struct Samp
+	{
+		// identifier name of sampler in GLSL shaders
+		CStr m_SamplerName;
+		// path to load from
+		VfsPath m_SamplerFile;
+	};
 
 	struct Decal
 	{
@@ -79,24 +87,24 @@ public:
 		CStr m_VariantName; // lowercase name
 		int m_Frequency;
 		VfsPath m_ModelFilename;
-		VfsPath m_TextureFilename;
 		Decal m_Decal;
 		VfsPath m_Particles;
 		CStr m_Color;
 
 		std::vector<Anim> m_Anims;
 		std::vector<Prop> m_Props;
+		std::vector<Samp> m_Samplers;
 	};
 
 	struct Variation
 	{
-		VfsPath texture;
 		VfsPath model;
 		Decal decal;
 		VfsPath particles;
 		CStr color;
 		std::multimap<CStr, Prop> props;
 		std::multimap<CStr, Anim> anims;
+		std::multimap<CStr, Samp> samplers;
 	};
 
 	CObjectBase(CObjectManager& objectManager);

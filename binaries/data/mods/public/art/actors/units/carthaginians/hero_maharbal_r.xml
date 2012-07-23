@@ -24,7 +24,7 @@
   </group>
   <group>
     <variant frequency="1" name="Maharbal-chainmail">
-      <texture>skeletal/kart_hero_maharbal.dds</texture>
+      <textures><texture file="skeletal/kart_hero_maharbal.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

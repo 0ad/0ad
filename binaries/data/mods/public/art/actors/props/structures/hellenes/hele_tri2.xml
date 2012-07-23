@@ -11,28 +11,28 @@
 
   <group>
     <variant frequency="1" name="Sail-Plain">
-      <texture>props/hele_sail.dds</texture>
+      <textures><texture file="props/hele_sail.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="Sail-Pegasus">
-      <texture>props/hele_sail_pegasus.dds</texture>
+      <textures><texture file="props/hele_sail_pegasus.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="Sail-Pegasus-2">
-      <texture>props/hele_sail_pegasus_2.dds</texture>
+      <textures><texture file="props/hele_sail_pegasus_2.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Sail-Runner">
-      <texture>props/hele_sail_runner.dds</texture>
+      <textures><texture file="props/hele_sail_runner.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Sail-Eye">
-      <texture>props/hele_sail_eye.dds</texture>
+      <textures><texture file="props/hele_sail_eye.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Sail-Hawk">
-      <texture>props/hele_sail_hawk_a.dds</texture>
+      <textures><texture file="props/hele_sail_hawk_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Sail-Krater">
-      <texture>props/hele_sail_krater.dds</texture>
+      <textures><texture file="props/hele_sail_krater.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="5" name="Sail-Star">
-      <texture>props/hele_sail_star_a.dds</texture>
+      <textures><texture file="props/hele_sail_star_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

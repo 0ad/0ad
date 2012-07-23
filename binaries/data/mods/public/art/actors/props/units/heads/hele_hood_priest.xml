@@ -6,7 +6,7 @@
   <group>
     <variant frequency="1" name="priest-hood-1">
       <mesh>props/helmet/hele_hood.dae</mesh>
-      <texture>props/helmet/hele_hood_1.dds</texture>
+      <textures><texture file="props/helmet/hele_hood_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

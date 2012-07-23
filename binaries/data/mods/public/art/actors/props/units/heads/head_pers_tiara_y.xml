@@ -11,10 +11,10 @@
 
   <group>
     <variant frequency="1" name="tiara-yellow-f">
-      <texture>props/head/pers_face_f_y.dds</texture>
+      <textures><texture file="props/head/pers_face_f_y.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="tiara-yellow-g">
-      <texture>props/head/pers_face_g_y.dds</texture>
+      <textures><texture file="props/head/pers_face_g_y.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

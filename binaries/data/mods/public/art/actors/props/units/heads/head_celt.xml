@@ -11,22 +11,22 @@
 
   <group>
     <variant frequency="1" name="face-a">
-      <texture>props/head/celt_a.dds</texture>
+      <textures><texture file="props/head/celt_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="face-b">
-      <texture>props/head/celt_b.dds</texture>
+      <textures><texture file="props/head/celt_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="face-c">
-      <texture>props/head/celt_c.dds</texture>
+      <textures><texture file="props/head/celt_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="face-d">
-      <texture>props/head/celt_d.dds</texture>
+      <textures><texture file="props/head/celt_d.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="face-g">
-      <texture>props/head/celt_g.dds</texture>
+      <textures><texture file="props/head/celt_g.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="face-j">
-      <texture>props/head/celt_j.dds</texture>
+      <textures><texture file="props/head/celt_j.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

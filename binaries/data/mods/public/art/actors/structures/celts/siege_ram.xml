@@ -13,7 +13,7 @@
       <props>
         <prop actor="props/structures/celts/siege_ram_shields.xml" attachpoint="root"/>
       </props>
-      <texture>structural/celt_siege_ram.dds</texture>
+      <textures><texture file="structural/celt_siege_ram.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

@@ -11,7 +11,7 @@
   </group>
   <group>
     <variant>
-      <texture>props/celt_props_new.dds</texture>
+      <textures><texture file="props/celt_props_new.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

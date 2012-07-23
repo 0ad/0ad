@@ -20,13 +20,13 @@
 
   <group>
     <variant name="a">
-      <texture>gaia/wrld_bush_a_1.dds</texture>
+      <textures><texture file="gaia/wrld_bush_a_1.dds" name="baseTex"/></textures>
     </variant>
     <variant name="b">
-      <texture>gaia/wrld_bush_b_1.dds</texture>
+      <textures><texture file="gaia/wrld_bush_b_1.dds" name="baseTex"/></textures>
     </variant>
     <variant name="c">
-      <texture>gaia/wrld_bush_c_1.dds</texture>
+      <textures><texture file="gaia/wrld_bush_c_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

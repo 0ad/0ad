@@ -14,10 +14,10 @@
 
   <group>
     <variant frequency="1" name="Leaf-Color-Dark">
-      <texture>gaia/bush_tempe_la_b.dds</texture>
+      <textures><texture file="gaia/bush_tempe_la_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Leaf-Color-Light">
-      <texture>gaia/bush_tempe_la_b2.dds</texture>
+      <textures><texture file="gaia/bush_tempe_la_b2.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

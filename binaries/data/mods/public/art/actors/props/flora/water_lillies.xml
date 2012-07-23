@@ -13,13 +13,13 @@
 
   <group>
     <variant frequency="1" name="lillies-a">
-      <texture>gaia/water_lillies.dds</texture>
+      <textures><texture file="gaia/water_lillies.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="lillies-b">
-      <texture>gaia/water_lillies_b.dds</texture>
+      <textures><texture file="gaia/water_lillies_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="lillies-c">
-      <texture>gaia/water_lillies_c.dds</texture>
+      <textures><texture file="gaia/water_lillies_c.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

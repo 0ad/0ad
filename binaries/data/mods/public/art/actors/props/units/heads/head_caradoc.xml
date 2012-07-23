@@ -7,7 +7,7 @@
     <variant frequency="1" name="beard-large">
       <colour>255 255 255</colour>
       <mesh>props/head_longhair.dae</mesh>
-      <texture>props/head/celt_caratacos.dds</texture>
+      <textures><texture file="props/head/celt_caratacos.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

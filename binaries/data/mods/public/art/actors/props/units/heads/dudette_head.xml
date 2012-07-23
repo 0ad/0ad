@@ -11,13 +11,13 @@
 
   <group>
     <variant frequency="1" name="Female-Face-01">
-      <texture>props/head/celt_fem_a.dds</texture>
+      <textures><texture file="props/head/celt_fem_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Female-Face-02">
-      <texture>props/head/celt_fem_a_2.dds</texture>
+      <textures><texture file="props/head/celt_fem_a_2.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Female-Face-03">
-      <texture>props/head/celt_fem_a_3.dds</texture>
+      <textures><texture file="props/head/celt_fem_a_3.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

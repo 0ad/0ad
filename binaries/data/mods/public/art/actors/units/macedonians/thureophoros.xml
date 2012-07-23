@@ -43,7 +43,7 @@
         <prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>
         <prop actor="props/units/cape_hd.xml" attachpoint="shoulders"/>
       </props>
-      <texture>skeletal/mace_thureophoros.dds</texture>
+      <textures><texture file="skeletal/mace_thureophoros.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

@@ -17,7 +17,7 @@
   </group>
   <group>
     <variant name="texture">
-      <texture>props/helmet/rome-d.dds</texture>
+      <textures><texture file="props/helmet/rome-d.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

@@ -32,10 +32,10 @@
   </group>
   <group>
     <variant frequency="1" name="Thorax-Chainmail">
-      <texture>skeletal/mace_thoakrites.dds</texture>
+      <textures><texture file="skeletal/mace_thoakrites.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Thorax-Tube&amp;Yoke Corselet">
-      <texture>skeletal/mace_thorakites_2.png</texture>
+      <textures><texture file="skeletal/mace_thorakites_2.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

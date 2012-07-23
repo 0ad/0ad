@@ -50,16 +50,16 @@
   </group>
   <group>
     <variant frequency="2" name="pectoral-tripledisc">
-      <texture>skeletal/kart_csp_a_1.dds</texture>
+      <textures><texture file="skeletal/kart_csp_a_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="pectoral-square">
-      <texture>skeletal/kart_csp_a_2.dds</texture>
+      <textures><texture file="skeletal/kart_csp_a_2.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="pectoral-muscle">
-      <texture>skeletal/kart_csp_a_3.dds</texture>
+      <textures><texture file="skeletal/kart_csp_a_3.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="cuirass-muscle">
-      <texture>skeletal/samnite_isp_e_1.dds</texture>
+      <textures><texture file="skeletal/samnite_isp_e_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

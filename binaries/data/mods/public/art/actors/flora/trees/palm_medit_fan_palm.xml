@@ -20,10 +20,10 @@
 
   <group>
     <variant frequency="1" name="texture-palm-a">
-      <texture>gaia/tree_palm_medit_fan_a.dds</texture>
+      <textures><texture file="gaia/tree_palm_medit_fan_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="texture-palm-b">
-      <texture>gaia/tree_palm_medit_fan_b.dds</texture>
+      <textures><texture file="gaia/tree_palm_medit_fan_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

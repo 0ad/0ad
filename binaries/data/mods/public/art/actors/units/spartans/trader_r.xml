@@ -13,7 +13,7 @@
         <prop actor="props/units/heads/head_hele_a.xml" attachpoint="head"/>
         <prop actor="props/units/heads/hele_straw.xml" attachpoint="helmet"/>
       </props>
-      <texture>skeletal/hele_trd.dds</texture>
+      <textures><texture file="skeletal/hele_trd.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

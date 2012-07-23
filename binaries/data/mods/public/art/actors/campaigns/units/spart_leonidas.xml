@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="army spartan hero leonidas">
       <mesh>skeletal/campaigns/spart_leonidas.dae</mesh>
-      <texture>campaigns/units/spart_leonidas.png</texture>
+      <textures><texture file="campaigns/units/spart_leonidas.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_spec.xml</material>

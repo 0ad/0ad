@@ -24,7 +24,7 @@
         <prop actor="props/units/weapons/gladus.xml" attachpoint="r_hand"/>
         <prop actor="props/units/shields/rome_scutum_marian.xml" attachpoint="shield"/>
       </props>
-      <texture>skeletal/rome_su3_marian_legion.dds</texture>
+      <textures><texture file="skeletal/rome_su3_marian_legion.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

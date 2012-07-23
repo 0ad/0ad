@@ -6,7 +6,7 @@
   <group>
     <variant name="Boundary">
       <mesh>props/shared_field_grain.dae</mesh>
-      <texture>gaia/farming_wheat_harvest_b.dds</texture>
+      <textures><texture file="gaia/farming_wheat_harvest_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

@@ -11,13 +11,13 @@
   </group>
   <group>
     <variant frequency="1" name="pelta-l">
-      <texture>props/shield/hele_pelta_l.dds</texture>
+      <textures><texture file="props/shield/hele_pelta_l.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="pelta-e">
-      <texture>props/shield/hele_pelta_e.dds</texture>
+      <textures><texture file="props/shield/hele_pelta_e.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="pelta-f">
-      <texture>props/shield/hele_pelta_f.dds</texture>
+      <textures><texture file="props/shield/hele_pelta_f.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

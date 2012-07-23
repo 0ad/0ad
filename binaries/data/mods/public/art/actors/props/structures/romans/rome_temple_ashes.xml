@@ -4,11 +4,11 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/rome_temple_ashes_01.dae</mesh>
-      <texture>props/wood_burned.png</texture>
+      <textures><texture file="props/wood_burned.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="100" name="Base">
       <mesh>props/rome_temple_ashes_02.dae</mesh>
-      <texture>props/wood_burned.png</texture>
+      <textures><texture file="props/wood_burned.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

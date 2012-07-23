@@ -36,7 +36,7 @@
         <prop actor="props/units/weapons/gladus.xml" attachpoint="r_hand"/>
         <prop actor="props/units/weapons/gladus.xml" attachpoint="l_hand"/>
       </props>
-      <texture>skeletal/iber_hero_caros.dds</texture>
+      <textures><texture file="skeletal/iber_hero_caros.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

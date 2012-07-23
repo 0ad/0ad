@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="kart trireme shrouds">
       <mesh>props/kart_trireme_shrouds.dae</mesh>
-      <texture>props/ship_shrouds.dds</texture>
+      <textures><texture file="props/ship_shrouds.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

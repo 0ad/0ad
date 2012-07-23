@@ -26,25 +26,25 @@
   </group>
   <group>
     <variant frequency="1" name="spartan">
-      <texture>skeletal/hele_spartitiate.dds</texture>
+      <textures><texture file="skeletal/hele_spartitiate.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="hoplite-f">
-      <texture>skeletal/hele_isp_e_f.dds</texture>
+      <textures><texture file="skeletal/hele_isp_e_f.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="hoplite-g">
-      <texture>skeletal/hele_isp_e_g.dds</texture>
+      <textures><texture file="skeletal/hele_isp_e_g.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="isp_a">
-      <texture>skeletal/hele_isp_a.dds</texture>
+      <textures><texture file="skeletal/hele_isp_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="xenophon">
-      <texture>skeletal/hele_xenophon.dds</texture>
+      <textures><texture file="skeletal/hele_xenophon.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="pez-1">
-      <texture>skeletal/hele_pezhetairoi.dds</texture>
+      <textures><texture file="skeletal/hele_pezhetairoi.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="pez-2">
-      <texture>skeletal/hele_pezhetairoi_2.dds</texture>
+      <textures><texture file="skeletal/hele_pezhetairoi_2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

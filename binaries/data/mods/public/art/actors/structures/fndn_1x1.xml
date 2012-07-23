@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>structural/wrld_bld_f1x1.dae</mesh>
-      <texture>structural/wrld_wood.dds</texture>
+      <textures><texture file="structural/wrld_wood.dds" name="baseTex"/></textures>
     </variant>
     <variant>
       <props>

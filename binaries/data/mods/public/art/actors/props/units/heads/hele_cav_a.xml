@@ -4,15 +4,15 @@
   <group>
     <variant name="Helmet-Boeotian-noplume">
       <mesh>props/helmet/hele_helmet_t.dae</mesh>
-      <texture>props/helmet/hele_a1.dds</texture>
+      <textures><texture file="props/helmet/hele_a1.dds" name="baseTex"/></textures>
     </variant>
     <variant name="Helmet-Boeotian-plume">
       <mesh>props/helmet/hele_helmet_u.dae</mesh>
-      <texture>props/helmet/hele_a1.dds</texture>
+      <textures><texture file="props/helmet/hele_a1.dds" name="baseTex"/></textures>
     </variant>
     <variant name="Helmet-Boeotian-HighCrest">
       <mesh>props/helmet/hele_boeotian_highcrest.dae</mesh>
-      <texture>props/helmet/mace_d1.dds</texture>
+      <textures><texture file="props/helmet/mace_d1.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

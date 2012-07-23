@@ -21,13 +21,13 @@
   </group>
   <group>
     <variant frequency="1" name="armor-linen linothorax">
-      <texture>skeletal/hele_hetairoi_a.dds</texture>
+      <textures><texture file="skeletal/hele_hetairoi_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="armor-scale mail">
-      <texture>skeletal/hele_hetairoi_b.dds</texture>
+      <textures><texture file="skeletal/hele_hetairoi_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="armor-bronze cuirass">
-      <texture>skeletal/hele_hetairoi_c.dds</texture>
+      <textures><texture file="skeletal/hele_hetairoi_c.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

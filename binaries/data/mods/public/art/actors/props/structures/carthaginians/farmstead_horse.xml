@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="props_horse">
       <mesh>props/kart_farmstead_b.dae</mesh>
-      <texture>skeletal/horse.dds</texture>
+      <textures><texture file="skeletal/horse.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

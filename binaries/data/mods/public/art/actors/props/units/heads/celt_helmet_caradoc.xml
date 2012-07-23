@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="helmet-02">
       <mesh>props/helmet/celt_coolus_caradoc.dae</mesh>
-      <texture>props/helmet/celt_a3.dds</texture>
+      <textures><texture file="props/helmet/celt_a3.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

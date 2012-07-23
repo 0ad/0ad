@@ -12,7 +12,7 @@
         <animation file="mechanical/palisade_rocks_gate_closing.dae" name="gate_closing" speed="65"/>
       </animations> 
       <mesh>props/palisade_rocks_gate.dae</mesh>
-      <texture>props/palisade_main.png</texture>
+      <textures><texture file="props/palisade_main.png" name="baseTex"/></textures>
     </variant>
   </group>
 

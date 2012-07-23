@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/celt_cav_heads.dae</mesh>
-      <texture>props/celt_props_new.dds</texture>
+      <textures><texture file="props/celt_props_new.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

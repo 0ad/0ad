@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>temp/cc.dae</mesh>
-      <texture>null_white.dds</texture>
+      <textures><texture file="null_white.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

@@ -11,28 +11,28 @@
   </group>
   <group>
     <variant name="waypoint_persians">
-      <texture>props/banner_persian.png</texture>
+      <textures><texture file="props/banner_persian.png" name="baseTex"/></textures>
     </variant>
     <variant name="waypoint_hellenes">
-      <texture>props/banner_greek.png</texture>
+      <textures><texture file="props/banner_greek.png" name="baseTex"/></textures>
     </variant>
     <variant name="waypoint_celts">
-      <texture>props/banner_celt.png</texture>
+      <textures><texture file="props/banner_celt.png" name="baseTex"/></textures>
     </variant>
     <variant name="waypoint_carthaginians">
-      <texture>props/banner_carthage.png</texture>
+      <textures><texture file="props/banner_carthage.png" name="baseTex"/></textures>
     </variant>
     <variant name="waypoint_iberians">
-      <texture>props/banner_iberians.png</texture>
+      <textures><texture file="props/banner_iberians.png" name="baseTex"/></textures>
     </variant>
     <variant name="waypoint_romans">
-      <texture>props/banner_romans.png</texture>
+      <textures><texture file="props/banner_romans.png" name="baseTex"/></textures>
     </variant>
     <variant name="waypoint_spartans">
-      <texture>props/banner_spartans.png</texture>
+      <textures><texture file="props/banner_spartans.png" name="baseTex"/></textures>
     </variant>
     <variant name="waypoint_macedonians">
-      <texture>props/banner_macedonians.png</texture>
+      <textures><texture file="props/banner_macedonians.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

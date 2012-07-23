@@ -10,7 +10,7 @@
         <animation event="0.3" file="mechanical/iber_ram_attack.dae" name="Melee" speed="100"/>
       </animations>
       <mesh>structural/iber_ram.dae</mesh>
-      <texture>structural/iber_siege_ram.dds</texture>
+      <textures><texture file="structural/iber_siege_ram.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

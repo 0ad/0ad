@@ -4,7 +4,7 @@
   <group>
     <variant name="sword rack">
       <mesh>props/sword_rack.dae</mesh>
-      <texture>structural/rome_struct_2.png</texture>
+      <textures><texture file="structural/rome_struct_2.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

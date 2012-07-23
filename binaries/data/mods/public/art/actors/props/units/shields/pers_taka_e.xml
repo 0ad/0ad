@@ -11,13 +11,13 @@
   </group>
   <group>
     <variant frequency="1" name="taka shield b">
-      <texture>props/shield/pers_pelta_b.dds</texture>
+      <textures><texture file="props/shield/pers_pelta_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="taka shield e">
-      <texture>props/shield/pers_pelta_e.png</texture>
+      <textures><texture file="props/shield/pers_pelta_e.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="taka shield f">
-      <texture>props/shield/pers_pelta_f.png</texture>
+      <textures><texture file="props/shield/pers_pelta_f.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

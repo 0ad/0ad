@@ -8,13 +8,13 @@
   </group>
   <group>
     <variant frequency="1" name="sail_scorpion">
-      <texture>props/spart_sail_a.png</texture>
+      <textures><texture file="props/spart_sail_a.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="sail_dokana">
-      <texture>props/spart_sail_b.png</texture>
+      <textures><texture file="props/spart_sail_b.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="sail_lamda">
-      <texture>props/spart_sail_c.png</texture>
+      <textures><texture file="props/spart_sail_c.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

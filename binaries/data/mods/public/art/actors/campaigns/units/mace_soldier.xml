@@ -4,7 +4,7 @@
   <group>
     <variant name="army mace soldier">
       <mesh>skeletal/campaigns/mace_soldier.dae</mesh>
-      <texture>campaigns/units/mace_soldier.png</texture>
+      <textures><texture file="campaigns/units/mace_soldier.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_spec.xml</material>

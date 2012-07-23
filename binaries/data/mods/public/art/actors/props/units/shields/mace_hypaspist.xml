@@ -11,10 +11,10 @@
   </group>
   <group>
     <variant frequency="1" name="shield mace a">
-      <texture>props/shield/mace_round_a1.png</texture>
+      <textures><texture file="props/shield/mace_round_a1.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield mace b">
-      <texture>props/shield/mace_round_b1.png</texture>
+      <textures><texture file="props/shield/mace_round_b1.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

@@ -45,10 +45,10 @@
   </group>
   <group>
     <variant frequency="1" name="tunic-beige">
-      <texture>skeletal/iber_isw_a_1.dds</texture>
+      <textures><texture file="skeletal/iber_isw_a_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="tunic-brown">
-      <texture>skeletal/iber_isw_a_2.dds</texture>
+      <textures><texture file="skeletal/iber_isw_a_2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

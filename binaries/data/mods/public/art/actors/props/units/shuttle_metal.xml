@@ -4,7 +4,7 @@
   <group>
     <variant name="carry metal">
       <mesh>props/special/metal_block.dae</mesh>
-      <texture>props/helmet/rome-e-coolus-02.dds</texture>
+      <textures><texture file="props/helmet/rome-e-coolus-02.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_spec.xml</material>

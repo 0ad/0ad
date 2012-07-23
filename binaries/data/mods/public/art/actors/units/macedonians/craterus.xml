@@ -28,7 +28,7 @@
         <prop actor="props/units/shields/mace_round_craterus.xml" attachpoint="shield"/>
         <prop actor="props/units/cape_hd.xml" attachpoint="shoulders"/>
       </props>
-      <texture>skeletal/mace_hero_craterus.png</texture>
+      <textures><texture file="skeletal/mace_hero_craterus.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

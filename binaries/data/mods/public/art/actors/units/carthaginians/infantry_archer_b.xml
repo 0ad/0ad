@@ -35,7 +35,7 @@
         <prop actor="props/units/weapons/bow_short.xml" attachpoint="l_hand"/>
         <prop actor="props/units/quiver_hip.xml" attachpoint="l_hip"/>
       </props>
-      <texture>skeletal/kart_iar_b.dds</texture>
+      <textures><texture file="skeletal/kart_iar_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

@@ -21,13 +21,13 @@
   </group>
   <group>
     <variant frequency="1" name="hyppikon-horse-texture-plain">
-      <texture>skeletal/horse_hele_csw_e_1.dds</texture>
+      <textures><texture file="skeletal/horse_hele_csw_e_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="hyppikon-horse-texture-plain2">
-      <texture>skeletal/horse_hele_csw_e_2.png</texture>
+      <textures><texture file="skeletal/horse_hele_csw_e_2.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="hyppikon-horse-texture-blaze">
-      <texture>skeletal/horse_hele_csw_e_3.png</texture>
+      <textures><texture file="skeletal/horse_hele_csw_e_3.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

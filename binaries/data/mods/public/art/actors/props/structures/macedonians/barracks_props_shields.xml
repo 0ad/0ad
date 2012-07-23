@@ -4,7 +4,7 @@
   <group>
     <variant name="barracks props shields">
       <mesh>structural/helle_barracks_propsb.dae</mesh>
-      <texture>props/mace_prop_shields.png</texture>
+      <textures><texture file="props/mace_prop_shields.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

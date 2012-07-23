@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>structural/wonder_colosseum_details.dae</mesh>
-      <texture>structural/hele_struct_1.dds</texture>
+      <textures><texture file="structural/hele_struct_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

@@ -6,7 +6,7 @@
   <group>
     <variant frequency="100" name="mesh">
       <mesh>props/shield/spara_a_b.dae</mesh>
-      <texture>props/shield/pers_rect_f.dds</texture>
+      <textures><texture file="props/shield/pers_rect_f.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

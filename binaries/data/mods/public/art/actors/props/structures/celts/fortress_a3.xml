@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/celt_fortress_keep.dae</mesh>
-      <texture>structural/celt_broch.dds</texture>
+      <textures><texture file="structural/celt_broch.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="celt wall medium">
       <mesh>structural/celt_wall_medium.dae</mesh>
-      <texture>structural/celt_murus.png</texture>
+      <textures><texture file="structural/celt_murus.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

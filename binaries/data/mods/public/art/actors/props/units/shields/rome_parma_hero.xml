@@ -11,13 +11,13 @@
   </group>
   <group>
     <variant frequency="1" name="Shield-Parma-L">
-      <texture>props/shield/rome_round_l.dds</texture>
+      <textures><texture file="props/shield/rome_round_l.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Shield-Parma-M">
-      <texture>props/shield/rome_round_m.dds</texture>
+      <textures><texture file="props/shield/rome_round_m.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Shield-Parma-N">
-      <texture>props/shield/rome_round_n.dds</texture>
+      <textures><texture file="props/shield/rome_round_n.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

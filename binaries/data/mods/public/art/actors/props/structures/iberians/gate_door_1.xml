@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="props-1">
       <mesh>props/iber_gate_door.dae</mesh>
-      <texture>structural/iber_struct.dds</texture>
+      <textures><texture file="structural/iber_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

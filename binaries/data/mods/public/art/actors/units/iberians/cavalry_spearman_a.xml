@@ -20,10 +20,10 @@
   </group>
   <group>
     <variant frequency="1" name="Horse 1">
-      <texture>skeletal/horse_iber_csp_a_1.dds</texture>
+      <textures><texture file="skeletal/horse_iber_csp_a_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Horse 2">
-      <texture>skeletal/horse_iber_csp_a_2.dds</texture>
+      <textures><texture file="skeletal/horse_iber_csp_a_2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

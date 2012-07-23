@@ -24,10 +24,10 @@
   </group>
   <group>
     <variant frequency="3" name="Iberian-Tunic-brown">
-      <texture>skeletal/iber_isp_a_1.dds</texture>
+      <textures><texture file="skeletal/iber_isp_a_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Iberian-Tunic-pect">
-      <texture>skeletal/iber_isw_e_1.dds</texture>
+      <textures><texture file="skeletal/iber_isw_e_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

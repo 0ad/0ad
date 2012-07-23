@@ -4,11 +4,11 @@
   <group>
     <variant frequency="1" name="Shields 1">
       <mesh>props/iber_fortress_props.dae</mesh>
-      <texture>props/iber_prop_shields.dds</texture>
+      <textures><texture file="props/iber_prop_shields.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1">
       <mesh>props/iber_fortress_propsvar.dae</mesh>
-      <texture>props/iber_prop_shields.dds</texture>
+      <textures><texture file="props/iber_prop_shields.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

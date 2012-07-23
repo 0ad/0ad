@@ -26,10 +26,10 @@
 
   <group>
     <variant frequency="1" name="foliage-texture-apple">
-      <texture>gaia/orchard_apple_a.dds</texture>
+      <textures><texture file="gaia/orchard_apple_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="foliage-texture-pear">
-      <texture>gaia/orchard_pear_a.dds</texture>
+      <textures><texture file="gaia/orchard_pear_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

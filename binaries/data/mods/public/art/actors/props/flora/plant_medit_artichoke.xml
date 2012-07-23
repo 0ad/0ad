@@ -14,16 +14,16 @@
 
   <group>
     <variant name="artichoke-a">
-      <texture>gaia/plant_medit_artichoke_a.dds</texture>
+      <textures><texture file="gaia/plant_medit_artichoke_a.dds" name="baseTex"/></textures>
     </variant>
     <variant name="artichoke-b-flowering">
-      <texture>gaia/plant_medit_artichoke_b_flower.dds</texture>
+      <textures><texture file="gaia/plant_medit_artichoke_b_flower.dds" name="baseTex"/></textures>
     </variant>
     <variant name="artichoke-c">
-      <texture>gaia/plant_medit_artichoke_c.dds</texture>
+      <textures><texture file="gaia/plant_medit_artichoke_c.dds" name="baseTex"/></textures>
     </variant>
     <variant name="artichoke-d-flowering">
-      <texture>gaia/plant_medit_artichoke_d_flower.dds</texture>
+      <textures><texture file="gaia/plant_medit_artichoke_d_flower.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

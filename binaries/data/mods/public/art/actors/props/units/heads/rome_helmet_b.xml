@@ -6,7 +6,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>temp/plac_helmet_e.dae</mesh>
-      <texture>props/helmet/hele_xenophon.dds</texture>
+      <textures><texture file="props/helmet/hele_xenophon.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

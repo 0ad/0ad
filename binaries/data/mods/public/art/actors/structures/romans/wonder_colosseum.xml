@@ -9,7 +9,7 @@
         <prop actor="props/structures/romans/colosseum_interior.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/colosseum_roof.xml" attachpoint="root"/>
       </props>
-      <texture>null_white.dds</texture>
+      <textures><texture file="null_white.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

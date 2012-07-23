@@ -31,7 +31,7 @@
   <group>
     <variant frequency="1" name="Dress-Dark Brown">
       <mesh>skeletal/f_dress.dae</mesh>
-      <texture>skeletal/iber_fem_a.dds</texture>
+      <textures><texture file="skeletal/iber_fem_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

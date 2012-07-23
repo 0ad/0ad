@@ -5,7 +5,7 @@
   <group>
     <variant name="bridge edge hele">
       <mesh>props/special/bridge_edge_hele.dae</mesh>
-      <texture>structural/hele_struct_b.dds</texture>
+      <textures><texture file="structural/hele_struct_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

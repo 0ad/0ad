@@ -8,7 +8,7 @@
   </group>
   <group>
     <variant frequency="100" name="Golden-fleece">
-      <texture>skeletal/special_fleece.dds</texture>
+      <textures><texture file="skeletal/special_fleece.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

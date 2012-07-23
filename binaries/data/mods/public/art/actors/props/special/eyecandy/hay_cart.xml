@@ -4,11 +4,11 @@
   <group>
     <variant frequency="1" name="hay cart small">
       <mesh>props/hay_cart.dae</mesh>
-      <texture>structural/iber_struct.dds</texture>
+      <textures><texture file="structural/iber_struct.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="hay cart large">
       <mesh>props/hay_cart_large.dae</mesh>
-      <texture>structural/iber_struct.dds</texture>
+      <textures><texture file="structural/iber_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

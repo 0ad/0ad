@@ -28,16 +28,16 @@
   </group>
   <group>
     <variant name="Dry">
-      <texture>gaia/grass_field_dry.dds</texture>
+      <textures><texture file="gaia/grass_field_dry.dds" name="baseTex"/></textures>
     </variant>
     <variant name="Green">
-      <texture>gaia/grass_field_medit.dds</texture>
+      <textures><texture file="gaia/grass_field_medit.dds" name="baseTex"/></textures>
     </variant>
     <variant name="Mixed">
-      <texture>gaia/grass_field_mixed.dds</texture>
+      <textures><texture file="gaia/grass_field_mixed.dds" name="baseTex"/></textures>
     </variant>
     <variant name="flowery">
-      <texture>gaia/grass_field_medit_flowering.dds</texture>
+      <textures><texture file="gaia/grass_field_medit_flowering.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

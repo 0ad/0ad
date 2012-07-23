@@ -4,7 +4,7 @@
   <group>
     <variant name="Large Wood Awning">
       <mesh>props/awning_wooden_lg.dae</mesh>
-      <texture>structural/iber_struct.dds</texture>
+      <textures><texture file="structural/iber_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

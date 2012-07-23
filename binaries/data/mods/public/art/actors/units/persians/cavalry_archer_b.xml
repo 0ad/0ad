@@ -14,7 +14,7 @@
         <prop actor="units/persians/pers_chariot_archer_b_h1.xml" attachpoint="horse1"/>
         <prop actor="units/persians/pers_chariot_archer_b_h2.xml" attachpoint="horse2"/>
       </props>
-      <texture>structural/pers_chariot_b.png</texture>
+      <textures><texture file="structural/pers_chariot_b.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>
