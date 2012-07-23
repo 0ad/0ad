@@ -11,16 +11,16 @@
 
   <group>
     <variant name="head e">
-      <texture>props/head/celt_e.dds</texture>
+      <textures><texture file="props/head/celt_e.dds" name="baseTex"/></textures>
     </variant>
     <variant name="head f">
-      <texture>props/head/celt_f.dds</texture>
+      <textures><texture file="props/head/celt_f.dds" name="baseTex"/></textures>
     </variant>
     <variant name="head g">
-      <texture>props/head/celt_g.dds</texture>
+      <textures><texture file="props/head/celt_g.dds" name="baseTex"/></textures>
     </variant>
     <variant name="head h">
-      <texture>props/head/celt_h.dds</texture>
+      <textures><texture file="props/head/celt_h.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

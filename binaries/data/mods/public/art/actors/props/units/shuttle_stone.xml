@@ -4,7 +4,7 @@
   <group>
     <variant name="carry stone">
       <mesh>props/special/stone_block.dae</mesh>
-      <texture>structural/foundation.dds</texture>
+      <textures><texture file="structural/foundation.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

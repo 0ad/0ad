@@ -23,10 +23,10 @@
   </group>
   <group>
     <variant frequency="1" name="metal-a">
-      <texture>gaia/metal_desert_small_a.dds</texture>
+      <textures><texture file="gaia/metal_desert_small_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="metal-b">
-      <texture>gaia/metal_desert_small_b.dds</texture>
+      <textures><texture file="gaia/metal_desert_small_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

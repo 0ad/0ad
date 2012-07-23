@@ -12,7 +12,7 @@
       <props>
         <prop actor="props/units/heads/celt_mastiff_a.xml" attachpoint="collar"/>
       </props>
-      <texture>skeletal/mastiff_e.dds</texture>
+      <textures><texture file="skeletal/mastiff_e.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

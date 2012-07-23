@@ -11,7 +11,7 @@
       <props>
         <prop actor="props/structures/celts/celt_mer1.xml" attachpoint="mast"/>
       </props>
-      <texture>structural/celt_merchant.dds</texture>
+      <textures><texture file="structural/celt_merchant.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

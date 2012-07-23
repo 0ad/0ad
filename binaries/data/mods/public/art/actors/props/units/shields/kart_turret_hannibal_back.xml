@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/shield/howdah_hannibal_shields_b.dae</mesh>
-      <texture>props/shield/celt_oval1_back.dds</texture>
+      <textures><texture file="props/shield/celt_oval1_back.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

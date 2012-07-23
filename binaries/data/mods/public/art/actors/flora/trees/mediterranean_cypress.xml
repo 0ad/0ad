@@ -4,27 +4,27 @@
   <group>
     <variant frequency="1" name="Cypress Tree (Small)">
       <mesh>gaia/tree_cypress_sm.dae</mesh>
-      <texture>gaia/prop_tree_cypess.dds</texture>
+      <textures><texture file="gaia/prop_tree_cypess.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Cypress Tree (Medium)">
       <mesh>gaia/tree_cypress_med.dae</mesh>
-      <texture>gaia/prop_tree_cypess_b.dds</texture>
+      <textures><texture file="gaia/prop_tree_cypess_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Cypress Tree (Large)">
       <mesh>gaia/tree_cypress_large.dae</mesh>
-      <texture>gaia/prop_tree_cypess_c.dds</texture>
+      <textures><texture file="gaia/prop_tree_cypess_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Cypress Tree (XLarge)">
       <mesh>gaia/tree_cypress_xlarge.dae</mesh>
-      <texture>gaia/prop_tree_cypess_b.dds</texture>
+      <textures><texture file="gaia/prop_tree_cypess_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Cypress Tree (Skinny)">
       <mesh>gaia/tree_cypress_skinny.dae</mesh>
-      <texture>gaia/tree_cypress_a.dds</texture>
+      <textures><texture file="gaia/tree_cypress_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Cypress Tree (Tall)">
       <mesh>gaia/tree_cypress_tall.dae</mesh>
-      <texture>gaia/tree_cypress_a.dds</texture>
+      <textures><texture file="gaia/tree_cypress_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

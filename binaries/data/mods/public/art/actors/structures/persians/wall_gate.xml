@@ -10,7 +10,7 @@
         <animation file="mechanical/pers_wall_gate_closing.dae" name="gate_closing" speed="65"/>
       </animations>
       <mesh>structural/pers_wall_gate.dae</mesh>
-      <texture>structural/pers_struct.dds</texture>
+      <textures><texture file="structural/pers_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

@@ -8,7 +8,7 @@
         <prop actor="props/structures/romans/dock.xml" attachpoint="root"/>
         <prop actor=""/>
       </props>
-      <texture>structural/rome_struct_2.png</texture>
+      <textures><texture file="structural/rome_struct_2.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

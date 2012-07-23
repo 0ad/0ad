@@ -6,11 +6,11 @@
   <group>
     <variant frequency="1" name="skeleton_1">
       <mesh>props/skeleton_1.dae</mesh>
-      <texture>props/skeleton_1.dds</texture>
+      <textures><texture file="props/skeleton_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="skeleton_2">
       <mesh>props/skeleton_2.dae</mesh>
-      <texture>props/skeleton_1.dds</texture>
+      <textures><texture file="props/skeleton_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

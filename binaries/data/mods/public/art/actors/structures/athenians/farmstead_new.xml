@@ -10,7 +10,7 @@
         <prop actor="props/structures/decals/farmstead_mud.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/farmstead_roof.xml" attachpoint="root"/>
       </props>
-      <texture>structural/hele_struct_b.dds</texture>
+      <textures><texture file="structural/hele_struct_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

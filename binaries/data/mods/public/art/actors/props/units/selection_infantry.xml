@@ -8,10 +8,10 @@
   </group>
   <group>
     <variant name="blue">
-      <texture>selections/select_blue_infantry.png</texture>
+      <textures><texture file="selections/select_blue_infantry.png" name="baseTex"/></textures>
     </variant>
     <variant name="red">
-      <texture>selections/select_red_infantry.png</texture>
+      <textures><texture file="selections/select_red_infantry.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

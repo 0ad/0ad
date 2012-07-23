@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>structural/airtower.dae</mesh>
-      <texture>structural/airtower.png</texture>
+      <textures><texture file="structural/airtower.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

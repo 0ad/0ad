@@ -30,31 +30,31 @@
   <group>
     <variant frequency="2" name="Dress-Light Brown">
       <mesh>skeletal/f_dress.dae</mesh>
-      <texture>skeletal/hele_fem_a.dds</texture>
+      <textures><texture file="skeletal/hele_fem_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Dress-Dark Brown">
       <mesh>skeletal/f_dress.dae</mesh>
-      <texture>skeletal/hele_fem_b.dds</texture>
+      <textures><texture file="skeletal/hele_fem_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Dress-Gold">
       <mesh>skeletal/f_dress.dae</mesh>
-      <texture>skeletal/hele_fem_c.dds</texture>
+      <textures><texture file="skeletal/hele_fem_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Dress-Player Tint">
       <mesh>skeletal/f_dress.dae</mesh>
-      <texture>skeletal/hele_fem_d.dds</texture>
+      <textures><texture file="skeletal/hele_fem_d.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Dress-linen">
       <mesh>skeletal/f_dress.dae</mesh>
-      <texture>skeletal/hele_fem_e.dds</texture>
+      <textures><texture file="skeletal/hele_fem_e.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="Dress-Chiton">
       <mesh>skeletal/f_tunic.dae</mesh>
-      <texture>skeletal/hele_fem_chiton.dds</texture>
+      <textures><texture file="skeletal/hele_fem_chiton.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Dress-Chiton-Linen">
       <mesh>skeletal/f_tunic.dae</mesh>
-      <texture>skeletal/hele_fem_chiton_linen.dds</texture>
+      <textures><texture file="skeletal/hele_fem_chiton_linen.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

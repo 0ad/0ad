@@ -9,7 +9,7 @@
       <props>
         <prop actor="props/special/eyecandy/tables_weapons_iber_shields.xml" attachpoint="root"/>
       </props>
-      <texture>structural/iber_struct.dds</texture>
+      <textures><texture file="structural/iber_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

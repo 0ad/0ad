@@ -13,22 +13,22 @@
   </group>
   <group>
     <variant frequency="16" name="cblack">
-      <texture>skeletal/horse_black_a.dds</texture>
+      <textures><texture file="skeletal/horse_black_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="17" name="cbrown">
-      <texture>skeletal/horse_brown_a.dds</texture>
+      <textures><texture file="skeletal/horse_brown_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="16" name="cchestnut">
-      <texture>skeletal/horse_chestnut_a.dds</texture>
+      <textures><texture file="skeletal/horse_chestnut_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="17" name="cdun">
-      <texture>skeletal/horse_dun_a.dds</texture>
+      <textures><texture file="skeletal/horse_dun_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="17" name="cgray">
-      <texture>skeletal/horse_gray_a.dds</texture>
+      <textures><texture file="skeletal/horse_gray_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="17" name="ctan">
-      <texture>skeletal/horse_tan_a.dds</texture>
+      <textures><texture file="skeletal/horse_tan_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

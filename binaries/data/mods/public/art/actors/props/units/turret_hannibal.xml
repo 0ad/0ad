@@ -9,7 +9,7 @@
         <prop actor="props/units/shields/kart_turret_hannibal.xml" attachpoint="root"/>
         <prop actor="props/units/shields/kart_turret_hannibal.xml" attachpoint="root"/>
       </props>
-      <texture>props/turret_hannibal.png</texture>
+      <textures><texture file="props/turret_hannibal.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

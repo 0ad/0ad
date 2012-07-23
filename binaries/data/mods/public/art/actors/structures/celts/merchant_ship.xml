@@ -11,7 +11,7 @@
         <prop actor="props/special/eyecandy/basket_hele_a.xml" attachpoint="back"/>
         <prop actor="props/special/eyecandy/vase_hele_a.xml" attachpoint="backb"/>
       </props>
-      <texture>structural/celt_ship.png</texture>
+      <textures><texture file="structural/celt_ship.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="ship mesh b">
       <mesh>structural/celt_merchant.dae</mesh>
@@ -21,7 +21,7 @@
         <prop actor="props/special/eyecandy/vase_hele_a.xml" attachpoint="back"/>
         <prop actor="props/special/eyecandy/wood_sm_pile_b.xml" attachpoint="backb"/>
       </props>
-      <texture>structural/celt_ship.png</texture>
+      <textures><texture file="structural/celt_ship.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

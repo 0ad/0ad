@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/horse_back_blanket.dae</mesh>
-      <texture>props/chariot_horse_blanket.png</texture>
+      <textures><texture file="props/chariot_horse_blanket.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

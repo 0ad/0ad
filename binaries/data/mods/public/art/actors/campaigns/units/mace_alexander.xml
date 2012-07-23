@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>skeletal/campaigns/alexander.dae</mesh>
-      <texture>campaigns/units/mace_alexander.png</texture>
+      <textures><texture file="campaigns/units/mace_alexander.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_spec.xml</material>

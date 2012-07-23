@@ -24,10 +24,10 @@
   </group>
   <group>
     <variant frequency="1" name="rider-chainmail">
-      <texture>skeletal/iber_csp_e_1.dds</texture>
+      <textures><texture file="skeletal/iber_csp_e_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="rider-scalemail">
-      <texture>skeletal/iber_csp_e_2.dds</texture>
+      <textures><texture file="skeletal/iber_csp_e_2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/campaigns/hele_trireme_sail.dae</mesh>
-      <texture>props/hele_sail_star_war.dds</texture>
+      <textures><texture file="props/hele_sail_star_war.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

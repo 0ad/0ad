@@ -3,13 +3,13 @@
   <castshadow/>
   <group>
     <variant frequency="2" name="Texture-Branches-1">
-      <texture>gaia/aleppo_pine.dds</texture>
+      <textures><texture file="gaia/aleppo_pine.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Texture-Branches-2">
-      <texture>gaia/aleppo_pine_test.dds</texture>
+      <textures><texture file="gaia/aleppo_pine_test.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Texture-Branches-3">
-      <texture>gaia/aleppo_pine_test2.dds</texture>
+      <textures><texture file="gaia/aleppo_pine_test2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

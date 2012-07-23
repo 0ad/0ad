@@ -21,7 +21,7 @@
         <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
         <prop actor="props/units/shields/numidian_round_3.xml" attachpoint="shield"/>
       </props>
-      <texture>skeletal/kart_cjv_e_1.dds</texture>
+      <textures><texture file="skeletal/kart_cjv_e_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

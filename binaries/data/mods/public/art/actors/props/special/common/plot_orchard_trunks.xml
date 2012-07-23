@@ -6,7 +6,7 @@
   <group>
     <variant name="Orchard Trunk">
       <mesh>props/shared_orchard_trunk.dae</mesh>
-      <texture>gaia/log_a.dds</texture>
+      <textures><texture file="gaia/log_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

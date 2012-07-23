@@ -4,7 +4,7 @@
   <group>
     <variant name="Wall medium">
       <mesh>structural/rome_wall_medium.dae</mesh>
-      <texture>structural/rome_struct_2.png</texture>
+      <textures><texture file="structural/rome_struct_2.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

@@ -28,6 +28,17 @@
 class CMaterial
 {
 public:
+	
+	struct TextureSampler
+	{
+		TextureSampler(CStr &n, CTexturePtr t) : Name(n), Sampler(t) {}
+		
+		CStrIntern Name;
+		CTexturePtr Sampler;
+	};
+	
+	typedef std::vector<TextureSampler> SamplersVector;
+	
 	CMaterial();
 
 	// Whether this material's shaders use alpha blending, in which case
@@ -36,7 +47,6 @@ public:
 	void SetUsesAlphaBlending(bool flag) { m_AlphaBlending = flag; }
  	bool UsesAlphaBlending() { return m_AlphaBlending; }
 
-	void SetDiffuseTexture(const CTexturePtr& texture);
 	const CTexturePtr& GetDiffuseTexture() const { return m_DiffuseTexture; }
 
 	void SetShaderEffect(const CStr& effect);
@@ -48,8 +58,17 @@ public:
 	void AddStaticUniform(const char* key, const CVector4D& value);
 	const CShaderUniforms& GetStaticUniforms() const { return m_StaticUniforms; }
 
+	void AddSampler(const TextureSampler& texture);
+	const SamplersVector& GetSamplers() const { return m_Samplers; }
+
 private:
+	
+	// This pointer is kept to make it easier for the fixed pipeline to 
+	// access the only texture it's interested in.
 	CTexturePtr m_DiffuseTexture;
+	
+	SamplersVector m_Samplers;
+	
 	CStrIntern m_ShaderEffect;
 	CShaderDefines m_ShaderDefines;
 	CShaderUniforms m_StaticUniforms;

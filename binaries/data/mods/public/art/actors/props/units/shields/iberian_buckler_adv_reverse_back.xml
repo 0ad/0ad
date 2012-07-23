@@ -9,7 +9,7 @@
       <props>
         <prop actor="props/units/shields/iberian_buckler_adv_reverse_front.xml" attachpoint="back"/>
       </props>
-      <texture>props/shield/celt_round_back.dds</texture>
+      <textures><texture file="props/shield/celt_round_back.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

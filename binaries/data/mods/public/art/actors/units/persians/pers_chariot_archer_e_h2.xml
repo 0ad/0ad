@@ -23,10 +23,10 @@
   </group>
   <group>
     <variant frequency="1" name="horse2a">
-      <texture>skeletal/horse_pers_csw_e_1.dds</texture>
+      <textures><texture file="skeletal/horse_pers_csw_e_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="horse2b">
-      <texture>skeletal/horse_pers_csw_e_2.dds</texture>
+      <textures><texture file="skeletal/horse_pers_csw_e_2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

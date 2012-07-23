@@ -11,28 +11,28 @@
   </group>
   <group>
     <variant frequency="2" name="shield-b">
-      <texture>props/shield/hele_round_b.dds</texture>
+      <textures><texture file="props/shield/hele_round_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="shield-q">
-      <texture>props/shield/hele_round_q.dds</texture>
+      <textures><texture file="props/shield/hele_round_q.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="shield-v">
-      <texture>props/shield/hele_round_v.dds</texture>
+      <textures><texture file="props/shield/hele_round_v.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="5" name="shield-af-star-fancy">
-      <texture>props/shield/kart_round_af.dds</texture>
+      <textures><texture file="props/shield/kart_round_af.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="shield-ag-horse head">
-      <texture>props/shield/kart_round_ag.dds</texture>
+      <textures><texture file="props/shield/kart_round_ag.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="shield-ai-double star">
-      <texture>props/shield/kart_round_ai.dds</texture>
+      <textures><texture file="props/shield/kart_round_ai.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="shield-q-dolphin">
-      <texture>props/shield/kart_round_q.dds</texture>
+      <textures><texture file="props/shield/kart_round_q.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="4" name="shield-an-wreath">
-      <texture>props/shield/kart_round_an.dds</texture>
+      <textures><texture file="props/shield/kart_round_an.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

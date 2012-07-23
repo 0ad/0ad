@@ -43,7 +43,7 @@
         <prop actor="props/units/weapons/spear_bamboo.xml" attachpoint="r_hand"/>
         <prop actor="props/units/heads/head_indian_a.xml" attachpoint="head"/>
       </props>
-      <texture>skeletal/maur_isp_b.png</texture>
+      <textures><texture file="skeletal/maur_isp_b.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

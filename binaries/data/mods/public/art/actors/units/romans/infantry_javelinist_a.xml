@@ -46,7 +46,7 @@
         <prop actor="props/units/weapons/verutum.xml" attachpoint="l_hand"/>
         <prop actor="props/units/heads/rome_helmet_wolfskin.xml" attachpoint="helmet"/>
       </props>
-      <texture>skeletal/rome_ijv_a.png</texture>
+      <textures><texture file="skeletal/rome_ijv_a.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

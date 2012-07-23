@@ -28,7 +28,7 @@
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/units/shields/pers_pelta_e_reverse.xml" attachpoint="back"/>
       </props>
-      <texture>skeletal/pers_car_a_r.png</texture>
+      <textures><texture file="skeletal/pers_car_a_r.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

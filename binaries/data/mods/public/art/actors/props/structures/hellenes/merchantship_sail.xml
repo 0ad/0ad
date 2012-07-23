@@ -8,25 +8,25 @@
   </group>
   <group>
     <variant frequency="1" name="sail-pegasus">
-      <texture>props/hele_sail_pegasus.dds</texture>
+      <textures><texture file="props/hele_sail_pegasus.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="sail-krater">
-      <texture>props/hele_sail_krater.dds</texture>
+      <textures><texture file="props/hele_sail_krater.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="sail-triskeles">
-      <texture>props/hele_sail_runner.dds</texture>
+      <textures><texture file="props/hele_sail_runner.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="sail-star">
-      <texture>props/hele_sail_star_a.dds</texture>
+      <textures><texture file="props/hele_sail_star_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="sail-pegasus2">
-      <texture>props/hele_sail_pegasus_2.dds</texture>
+      <textures><texture file="props/hele_sail_pegasus_2.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="sail-hawk">
-      <texture>props/hele_sail_hawk_a.dds</texture>
+      <textures><texture file="props/hele_sail_hawk_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="sail-eye">
-      <texture>props/hele_sail_eye.dds</texture>
+      <textures><texture file="props/hele_sail_eye.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

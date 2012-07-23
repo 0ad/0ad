@@ -4,7 +4,7 @@
   <group>
     <variant>
       <decal angle="0" depth="35" offsetx="0" offsetz="0" width="35"/>
-      <texture>gaia/decal_farmland_2.png</texture>
+      <textures><texture file="gaia/decal_farmland_2.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

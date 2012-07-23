@@ -12,7 +12,7 @@
       <props>
         <prop actor="props/units/horse/donkey_pack_01.xml" attachpoint="saddle"/>
       </props>
-      <texture>skeletal/animal_donkey.dds</texture>
+      <textures><texture file="skeletal/animal_donkey.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

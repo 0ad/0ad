@@ -62,7 +62,7 @@ ShaderModelDef::ShaderModelDef(const CModelDefPtr& mdef)
 
 	VertexArrayIterator<float[2]> UVit = m_UV.GetIterator<float[2]>();
 
-	ModelRenderer::BuildUV(mdef, UVit);
+	ModelRenderer::BuildUV(mdef, UVit, 0);
 
 	m_Array.Upload();
 	m_Array.FreeBackingStore();
@@ -232,9 +232,9 @@ void ShaderModelVertexRenderer::UpdateModelData(CModel* model, CModelRData* data
 void ShaderModelVertexRenderer::BeginPass(int streamflags)
 {
 	if (m->cpuLighting)
-		ENSURE(streamflags == (streamflags & (STREAM_POS | STREAM_UV0 | STREAM_COLOR)));
+		ENSURE(streamflags == (streamflags & (STREAM_POS | STREAM_UV0 | STREAM_UV1 | STREAM_COLOR)));
 	else
-		ENSURE(streamflags == (streamflags & (STREAM_POS | STREAM_UV0 | STREAM_NORMAL)));
+		ENSURE(streamflags == (streamflags & (STREAM_POS | STREAM_UV0 | STREAM_UV1 | STREAM_NORMAL)));
 }
 
 // Cleanup one rendering pass

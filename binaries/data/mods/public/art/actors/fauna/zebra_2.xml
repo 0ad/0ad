@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>skeletal/horse.pmd</mesh>
-      <texture>skeletal/animal_zebra_2.png</texture>
+      <textures><texture file="skeletal/animal_zebra_2.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

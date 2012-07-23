@@ -11,14 +11,14 @@
       <props>
         <prop actor="props/structures/hellenes/hele_tri1.xml" attachpoint="props_main"/>
       </props>
-      <texture>structural/hele_trireme.dds</texture>
+      <textures><texture file="structural/hele_trireme.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="ship-bireme">
       <mesh>structural/hele_bir.dae</mesh>
       <props>
         <prop actor="props/structures/hellenes/hele_bir1.xml" attachpoint="props_main"/>
       </props>
-      <texture>structural/hele_bireme.dds</texture>
+      <textures><texture file="structural/hele_bireme.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

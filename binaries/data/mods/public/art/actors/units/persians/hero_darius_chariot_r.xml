@@ -29,7 +29,7 @@
         <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <texture>skeletal/pers_champ_cav_r_1.png</texture>
+      <textures><texture file="skeletal/pers_champ_cav_r_1.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

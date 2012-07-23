@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/campaigns/hele_trireme_water.dae</mesh>
-      <texture>campaigns/props/ocean_block.png</texture>
+      <textures><texture file="campaigns/props/ocean_block.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

@@ -8,10 +8,10 @@
   </group>
   <group>
     <variant frequency="1" name="quiver light">
-      <texture>props/pers_quiver_light.png</texture>
+      <textures><texture file="props/pers_quiver_light.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="quiver dark">
-      <texture>props/pers_quiver_dark.png</texture>
+      <textures><texture file="props/pers_quiver_dark.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

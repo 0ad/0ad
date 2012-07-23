@@ -11,7 +11,7 @@
   </group>
   <group>
     <variant frequency="1" name="green">
-      <texture>gaia/berry_bushes.png</texture>
+      <textures><texture file="gaia/berry_bushes.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

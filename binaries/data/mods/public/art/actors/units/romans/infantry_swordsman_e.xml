@@ -55,10 +55,10 @@
   </group>
   <group>
     <variant frequency="1" name="chain hauberk">
-      <texture>skeletal/rome_isw_a.dds</texture>
+      <textures><texture file="skeletal/rome_isw_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="chain thorax">
-      <texture>skeletal/rome_isw_e.dds</texture>
+      <textures><texture file="skeletal/rome_isw_e.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

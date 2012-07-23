@@ -13,7 +13,7 @@
         <prop actor="props/units/shields/pers_round_kardakes.xml" attachpoint="shieldb"/>
         <prop actor="props/units/shields/pers_round_kardakes.xml" attachpoint="shieldc"/>
       </props>
-      <texture>structural/pers_struct.dds</texture>
+      <textures><texture file="structural/pers_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

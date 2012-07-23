@@ -4,7 +4,7 @@
   <group>
     <variant name="persian crown">
       <mesh>props/helmet/pers_crown.dae</mesh>
-      <texture>props/helmet/pers_crown.png</texture>
+      <textures><texture file="props/helmet/pers_crown.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_spec.xml</material>

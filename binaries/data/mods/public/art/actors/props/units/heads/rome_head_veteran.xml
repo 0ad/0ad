@@ -5,7 +5,7 @@
     <variant name="base">
       <colour>234 234 234</colour>
       <mesh>props/dude_head.dae</mesh>
-      <texture>props/head/rome_veteran.dds</texture>
+      <textures><texture file="props/head/rome_veteran.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>
@@ -28,7 +28,7 @@
   <group>
     <variant frequency="1" name="Idle"/>
     <variant name="death">
-      <texture>props/head/rome_veteran_bloodied.dds</texture>
+      <textures><texture file="props/head/rome_veteran_bloodied.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>objectcolor.xml</material>

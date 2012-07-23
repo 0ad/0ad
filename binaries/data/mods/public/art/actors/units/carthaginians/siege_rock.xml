@@ -10,7 +10,7 @@
       <props>
         <prop actor="props/units/weapons/rock_flaming.xml" attachpoint="projectile"/>
       </props>
-      <texture>structural/hele_siege.dds</texture>
+      <textures><texture file="structural/hele_siege.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

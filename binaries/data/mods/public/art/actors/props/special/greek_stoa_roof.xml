@@ -4,7 +4,7 @@
   <group>
     <variant name="stoa_roof">
       <mesh>props/hele_stoa_props_roof.dae</mesh>
-      <texture>structural/hele_struct.dds</texture>
+      <textures><texture file="structural/hele_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

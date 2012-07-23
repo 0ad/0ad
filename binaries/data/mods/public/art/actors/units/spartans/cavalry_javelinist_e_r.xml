@@ -20,7 +20,7 @@
         <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
         <prop actor="props/units/cape_hd_cav.xml" attachpoint="shoulders"/>
       </props>
-      <texture>skeletal/hele_cjv_e_1.dds</texture>
+      <textures><texture file="skeletal/hele_cjv_e_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

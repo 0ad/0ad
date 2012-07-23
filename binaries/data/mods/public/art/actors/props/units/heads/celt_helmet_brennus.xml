@@ -4,7 +4,7 @@
   <group>
     <variant name="Base">
       <mesh>props/helmet/celt_helmet_g.dae</mesh>
-      <texture>props/helmet/celt_g1.dds</texture>
+      <textures><texture file="props/helmet/celt_g1.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

@@ -14,15 +14,15 @@
   <group>
     <variant frequency="1" name="Shield-Parma-B">
       <mesh>props/shield/round_s_f.dae</mesh>
-      <texture>props/shield/rome_parma_b.dds</texture>
+      <textures><texture file="props/shield/rome_parma_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Shield-Parma-D">
       <mesh>props/shield/round_b_f.dae</mesh>
-      <texture>props/shield/rome_parma_d.dds</texture>
+      <textures><texture file="props/shield/rome_parma_d.dds" name="baseTex"/></textures>
     </variant>
 	<variant frequency="1" name="Shield-Parma-L">
       <mesh>props/shield/round_b_f.dae</mesh>
-      <texture>props/shield/rome_parma_l.dds</texture>
+      <textures><texture file="props/shield/rome_parma_l.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

@@ -26,7 +26,7 @@
         <prop actor="props/units/weapons/csword.xml" attachpoint="r_hand"/>
         <prop actor="props/units/heads/celt_helmet_caradoc.xml" attachpoint="helmet"/>
       </props>
-      <texture>skeletal/celt_caradoc.dds</texture>
+      <textures><texture file="skeletal/celt_caradoc.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

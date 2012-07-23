@@ -9,7 +9,7 @@
         <prop actor="props/structures/hellenes/house_a_props.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
       </props>
-      <texture>structural/hele_struct_b.png</texture>
+      <textures><texture file="structural/hele_struct_b.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Hellenes House B">
       <mesh>structural/hele_house_b.dae</mesh>
@@ -19,7 +19,7 @@
         <prop actor="props/structures/hellenes/house_b_gables.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
       </props>
-      <texture>structural/hele_struct.dds</texture>
+      <textures><texture file="structural/hele_struct.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Hellenes House C">
       <mesh>structural/hele_house_c.dae</mesh>
@@ -29,7 +29,7 @@
         <prop actor="props/structures/hellenes/house_c_gables.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
       </props>
-      <texture>structural/hele_struct.dds</texture>
+      <textures><texture file="structural/hele_struct.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="4" name="Hellenes House d">
       <mesh>structural/hele_house_d.dae</mesh>
@@ -38,7 +38,7 @@
         <prop actor="props/structures/hellenes/house_d_props.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
       </props>
-      <texture>structural/hele_struct_b.png</texture>
+      <textures><texture file="structural/hele_struct_b.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="4" name="Hellenes House 3">
       <mesh>structural/hele_house_e.dae</mesh>
@@ -47,7 +47,7 @@
         <prop actor="props/structures/hellenes/house_e_props.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
       </props>
-      <texture>structural/hele_struct_b.png</texture>
+      <textures><texture file="structural/hele_struct_b.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

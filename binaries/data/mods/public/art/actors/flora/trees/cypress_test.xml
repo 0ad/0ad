@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>gaia/cypress_test.dae</mesh>
-      <texture>gaia/tree_cypress_b.png</texture>
+      <textures><texture file="gaia/tree_cypress_b.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

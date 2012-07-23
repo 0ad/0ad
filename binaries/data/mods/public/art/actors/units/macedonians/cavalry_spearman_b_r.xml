@@ -19,7 +19,7 @@
         <prop actor="props/units/weapons/spear_lance.xml" attachpoint="r_hand"/>
         <prop actor="props/units/cape_hd_cav.xml" attachpoint="shoulders"/>
       </props>
-      <texture>skeletal/hele_tunic.dds</texture>
+      <textures><texture file="skeletal/hele_tunic.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

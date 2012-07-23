@@ -241,7 +241,8 @@ public:
 	 */
 	static void BuildUV(
 			const CModelDefPtr& mdef,
-			const VertexArrayIterator<float[2]>& UV);
+			const VertexArrayIterator<float[2]>& UV,
+			int UVset);
 
 	/**
 	 * BuildIndices: Create the indices array for the given CModelDef.

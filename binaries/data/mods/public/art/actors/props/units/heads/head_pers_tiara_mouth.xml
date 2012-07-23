@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="tiara-face-h-mouth">
       <mesh>props/head_beard_small.dae</mesh>
-      <texture>props/head/pers_face_h_mouth.dds</texture>
+      <textures><texture file="props/head/pers_face_h_mouth.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>objectcolor.xml</material>

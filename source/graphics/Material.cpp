@@ -27,11 +27,6 @@ CMaterial::CMaterial() :
 {
 }
 
-void CMaterial::SetDiffuseTexture(const CTexturePtr& texture)
-{
-	m_DiffuseTexture = texture;
-}
-
 void CMaterial::SetShaderEffect(const CStr& effect)
 {
 	m_ShaderEffect = CStrIntern(effect);
@@ -45,4 +40,11 @@ void CMaterial::AddShaderDefine(const char* key, const char* value)
 void CMaterial::AddStaticUniform(const char* key, const CVector4D& value)
 {
 	m_StaticUniforms.Add(key, value);
+}
+
+void CMaterial::AddSampler(const TextureSampler& texture)
+{
+	m_Samplers.push_back(texture);
+	if (texture.Name == CStrIntern("baseTex"))
+		m_DiffuseTexture = texture.Sampler;
 }

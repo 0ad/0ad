@@ -9,14 +9,14 @@
       <props>
         <prop actor="props/units/shields/celt_buckler_b_back.xml" attachpoint="back"/>
       </props>
-      <texture>props/shield/pict_c.dds</texture>
+      <textures><texture file="props/shield/pict_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-D">
       <mesh>props/shield/pict_a_f.dae</mesh>
       <props>
         <prop actor="props/units/shields/celt_buckler_a_back.xml" attachpoint="back"/>
       </props>
-      <texture>props/shield/pict_d.dds</texture>
+      <textures><texture file="props/shield/pict_d.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

@@ -2,10 +2,10 @@
 <actor version="1">
   <group>
     <variant name="texture1">
-      <texture>gaia/grass_field_dry_small.dds</texture>
+      <textures><texture file="gaia/grass_field_dry_small.dds" name="baseTex"/></textures>
     </variant>
     <variant name="texture2">
-      <texture>gaia/grass_field_dry_small_b.dds</texture>
+      <textures><texture file="gaia/grass_field_dry_small_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

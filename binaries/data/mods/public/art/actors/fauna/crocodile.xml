@@ -4,7 +4,7 @@
   <group>
     <variant name="crocodile">
       <mesh>skeletal/crocodile.dae</mesh>
-      <texture>null_gray.dds</texture>
+      <textures><texture file="null_gray.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

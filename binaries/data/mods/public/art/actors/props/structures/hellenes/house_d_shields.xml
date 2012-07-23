@@ -8,7 +8,7 @@
   </group>
   <group>
     <variant frequency="1" name="texture">
-      <texture>props/hele_props_b.dds</texture>
+      <textures><texture file="props/hele_props_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

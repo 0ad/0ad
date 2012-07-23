@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/column_doric_top.dae</mesh>
-      <texture>props/hele_tile_c.dds</texture>
+      <textures><texture file="props/hele_tile_c.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

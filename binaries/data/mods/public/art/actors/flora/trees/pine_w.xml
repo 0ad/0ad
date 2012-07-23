@@ -3,10 +3,10 @@
   <castshadow/>
   <group>
     <variant frequency="5" name="snow1">
-      <texture>gaia/pine_w.dds</texture>
+      <textures><texture file="gaia/pine_w.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="4" name="snow2">
-      <texture>gaia/pine_w2.dds</texture>
+      <textures><texture file="gaia/pine_w2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

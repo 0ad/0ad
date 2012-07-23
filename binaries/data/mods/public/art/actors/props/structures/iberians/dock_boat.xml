@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/iber_dock_boat.dae</mesh>
-      <texture>structural/iber_ship.dds</texture>
+      <textures><texture file="structural/iber_ship.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

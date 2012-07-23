@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>gaia/ferns_sm_a.dae</mesh>
-      <texture>gaia/ferns_a.png</texture>
+      <textures><texture file="gaia/ferns_a.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

@@ -11,28 +11,28 @@
   </group>
   <group>
     <variant frequency="1" name="shield-mora-geronthrae">
-      <texture>props/shield/hele_spartan_a.dds</texture>
+      <textures><texture file="props/shield/hele_spartan_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-mora-elos">
-      <texture>props/shield/hele_spartan_c.dds</texture>
+      <textures><texture file="props/shield/hele_spartan_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-mora-steniklaros">
-      <texture>props/shield/hele_spartan_d.dds</texture>
+      <textures><texture file="props/shield/hele_spartan_d.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-mora-amyklae">
-      <texture>props/shield/hele_spartan_e.dds</texture>
+      <textures><texture file="props/shield/hele_spartan_e.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-mora-pylos">
-      <texture>props/shield/hele_spartan_g.dds</texture>
+      <textures><texture file="props/shield/hele_spartan_g.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-mora-limnatos/limnatis">
-      <texture>props/shield/hele_spartan_h.dds</texture>
+      <textures><texture file="props/shield/hele_spartan_h.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-mora-gorgon">
-      <texture>props/shield/hele_spartan_f.dds</texture>
+      <textures><texture file="props/shield/hele_spartan_f.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-mora-aegiade">
-      <texture>props/shield/hele_spartan_j.dds</texture>
+      <textures><texture file="props/shield/hele_spartan_j.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

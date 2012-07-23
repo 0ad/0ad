@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/special/pegasus_wings.dae</mesh>
-      <texture>props/wings.dds</texture>
+      <textures><texture file="props/wings.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

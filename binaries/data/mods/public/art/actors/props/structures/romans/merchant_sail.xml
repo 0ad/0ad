@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="rome merchant sail">
       <mesh>structural/rome_merch_ship_sails.dae</mesh>
-      <texture>props/rome_sail_a.dds</texture>
+      <textures><texture file="props/rome_sail_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

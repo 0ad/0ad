@@ -12,7 +12,7 @@
         <prop actor="props/structures/celts/special_shields.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/celt_sb1_mud.xml" attachpoint="root"/>
       </props>
-      <texture>structural/celt_broch.dds</texture>
+      <textures><texture file="structural/celt_broch.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

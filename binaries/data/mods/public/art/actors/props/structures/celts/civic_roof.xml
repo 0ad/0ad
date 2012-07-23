@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>structural/celt_civic_centre_roof.dae</mesh>
-      <texture>structural/celt_roof_round.png</texture>
+      <textures><texture file="structural/celt_roof_round.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

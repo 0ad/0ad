@@ -4,7 +4,7 @@
   <group>
     <variant name="siege wall medium turf">
       <mesh>structural/siege_medium_turf.dae</mesh>
-      <texture>props/rome_sb_turf.png</texture>
+      <textures><texture file="props/rome_sb_turf.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

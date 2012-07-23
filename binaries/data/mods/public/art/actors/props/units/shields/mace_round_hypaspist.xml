@@ -11,16 +11,16 @@
   </group>
   <group>
     <variant frequency="3" name="shield-b">
-      <texture>props/shield/hele_round_b.dds</texture>
+      <textures><texture file="props/shield/hele_round_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="shield-q">
-      <texture>props/shield/hele_round_q.dds</texture>
+      <textures><texture file="props/shield/hele_round_q.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="shield-v">
-      <texture>props/shield/hele_round_v.dds</texture>
+      <textures><texture file="props/shield/hele_round_v.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="shield-w">
-      <texture>props/shield/hele_round_w.dds</texture>
+      <textures><texture file="props/shield/hele_round_w.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

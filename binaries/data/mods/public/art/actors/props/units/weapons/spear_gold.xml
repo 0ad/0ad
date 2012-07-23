@@ -6,7 +6,7 @@
   <group>
     <variant name="Base">
       <mesh>props/weap_spear_c.dae</mesh>
-      <texture>props/prop_weap.dds</texture>
+      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

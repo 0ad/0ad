@@ -6,7 +6,7 @@
   <group>
     <variant name="a">
       <mesh>props/helmet/pers_floppy_a.dae</mesh>
-      <texture>props/helmet/floppycap_persian_1.dds</texture>
+      <textures><texture file="props/helmet/floppycap_persian_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

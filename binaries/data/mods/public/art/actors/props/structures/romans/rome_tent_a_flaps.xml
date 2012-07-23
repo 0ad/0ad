@@ -4,7 +4,7 @@
   <group>
     <variant name="Tent A flaps">
       <mesh>props/rome_tent_a_flaps.dae</mesh>
-      <texture>props/rome_sb_tent.png</texture>
+      <textures><texture file="props/rome_sb_tent.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

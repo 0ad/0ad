@@ -11,13 +11,13 @@
 
   <group>
     <variant frequency="1" name="shield-C">
-      <texture>props/shield/iber_round_c.dds</texture>
+      <textures><texture file="props/shield/iber_round_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-D">
-      <texture>props/shield/iber_round_d.dds</texture>
+      <textures><texture file="props/shield/iber_round_d.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-E">
-      <texture>props/shield/iber_round_e.dds</texture>
+      <textures><texture file="props/shield/iber_round_e.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

@@ -26,7 +26,7 @@
         <prop actor="props/units/shields/iber_scutum_hero.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
       </props>
-      <texture>skeletal/iber_hero_indibil.dds</texture>
+      <textures><texture file="skeletal/iber_hero_indibil.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

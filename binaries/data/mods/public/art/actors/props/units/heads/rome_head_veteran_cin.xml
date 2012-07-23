@@ -7,7 +7,7 @@
     <variant frequency="100" name="base">
       <colour>234 234 234</colour>
       <mesh>props/head_hero_a.dae</mesh>
-      <texture>props/head/rome_veteran.dds</texture>
+      <textures><texture file="props/head/rome_veteran.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

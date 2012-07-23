@@ -9,7 +9,7 @@
       <props>
         <prop actor="props/special/common/plot_fence.xml" attachpoint="props_main"/>
       </props>
-      <texture>structural/plot_corral.dds</texture>
+      <textures><texture file="structural/plot_corral.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

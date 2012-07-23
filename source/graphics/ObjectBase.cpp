@@ -62,6 +62,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 	EL(prop);
 	EL(mesh);
 	EL(texture);
+	EL(textures);
 	EL(colour);
 	EL(decal);
 	EL(particles);
@@ -147,9 +148,22 @@ bool CObjectBase::Load(const VfsPath& pathname)
 					{
 						currentVariant->m_ModelFilename = VfsPath("art/meshes") / option.GetText().FromUTF8();
 					}
-					else if (option_name == el_texture)
+					else if (option_name == el_textures)
 					{
-						currentVariant->m_TextureFilename = VfsPath("art/textures/skins") / option.GetText().FromUTF8();
+						XERO_ITER_EL(option, textures_element)
+						{
+							ENSURE(textures_element.GetNodeName() == el_texture);
+							
+							Samp samp;
+							XERO_ITER_ATTR(textures_element, se)
+							{
+								if (se.Name == at_file)
+									samp.m_SamplerFile = VfsPath("art/textures/skins") / se.Value.FromUTF8();
+								else if (se.Name == at_name)
+									samp.m_SamplerName = se.Value;
+							}
+							currentVariant->m_Samplers.push_back(samp);
+						}
 					}
 					else if (option_name == el_decal)
 					{
@@ -396,9 +410,6 @@ const CObjectBase::Variation CObjectBase::BuildVariation(const std::vector<u8>& 
 
 		// Apply its data:
 
-		if (! var.m_TextureFilename.empty())
-			variation.texture = var.m_TextureFilename;
-
 		if (! var.m_ModelFilename.empty())
 			variation.model = var.m_ModelFilename;
 
@@ -430,6 +441,12 @@ const CObjectBase::Variation CObjectBase::BuildVariation(const std::vector<u8>& 
 		// and then insert the new ones:
 		for (std::vector<CObjectBase::Anim>::iterator it = var.m_Anims.begin(); it != var.m_Anims.end(); ++it)
 			variation.anims.insert(make_pair(it->m_AnimName, *it));
+		
+		// Same for samplers, though perhaps not strictly necessary:
+		for (std::vector<CObjectBase::Samp>::iterator it = var.m_Samplers.begin(); it != var.m_Samplers.end(); ++it)
+			variation.samplers.erase(it->m_SamplerName);
+		for (std::vector<CObjectBase::Samp>::iterator it = var.m_Samplers.begin(); it != var.m_Samplers.end(); ++it)
+			variation.samplers.insert(make_pair(it->m_SamplerName, *it));
 	}
 
 	return variation;

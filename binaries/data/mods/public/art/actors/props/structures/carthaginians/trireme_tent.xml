@@ -5,7 +5,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/kart_trireme_tent.dae</mesh>
-      <texture>structural/kart_trireme.dds</texture>
+      <textures><texture file="structural/kart_trireme.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

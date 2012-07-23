@@ -23,7 +23,7 @@
         <prop actor="props/units/horse/pers_peytral_iron.xml" attachpoint="chest"/>
         <prop actor="props/units/horse_back_blanket.xml" attachpoint="rider"/>
       </props>
-      <texture>skeletal/horse_pers_cyrus.png</texture>
+      <textures><texture file="skeletal/horse_pers_cyrus.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

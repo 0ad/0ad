@@ -17,7 +17,7 @@
   </group>
   <group>
     <variant name="Texture-Tower-O">
-      <texture>props/shield/rome_tower_o.dds</texture>
+      <textures><texture file="props/shield/rome_tower_o.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

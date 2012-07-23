@@ -13,7 +13,7 @@
   </group>
   <group>
     <variant frequency="100" name="generic texture">
-      <texture>skeletal/animal_fish_generic.png</texture>
+      <textures><texture file="skeletal/animal_fish_generic.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_spec.xml</material>

@@ -20,7 +20,7 @@
   <group>
     <variant frequency="1" name="Iberian healer">
       <mesh>skeletal/f_dress.dae</mesh>
-      <texture>skeletal/iber_healer.dds</texture>
+      <textures><texture file="skeletal/iber_healer.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

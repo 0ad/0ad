@@ -4,27 +4,27 @@
   <group>
     <variant frequency="2" name="Helmet-Corinthian-Crestsmall">
       <mesh>props/helmet/hele_helmet_m.dae</mesh>
-      <texture>props/helmet/hele_d1.dds</texture>
+      <textures><texture file="props/helmet/hele_d1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Helmet-Corinthian-Crestmedium">
       <mesh>props/helmet/hele_helmet_n.dae</mesh>
-      <texture>props/helmet/hele_d1.dds</texture>
+      <textures><texture file="props/helmet/hele_d1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Helmet-Corinthian-Crestmedium-italian var">
       <mesh>props/helmet/hele_helmet_r.dae</mesh>
-      <texture>props/helmet/hele_g1.dds</texture>
+      <textures><texture file="props/helmet/hele_g1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="5" name="Helmet-Corinthian-Crestlarge">
       <mesh>props/helmet/hele_helmet_o.dae</mesh>
-      <texture>props/helmet/hele_d1.dds</texture>
+      <textures><texture file="props/helmet/hele_d1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="Helmet-Corinthian-Cresthigh">
       <mesh>props/helmet/hele_highcrest.dae</mesh>
-      <texture>props/helmet/hele_d1.dds</texture>
+      <textures><texture file="props/helmet/hele_d1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Helmet-Corinthian-CresDual">
       <mesh>props/helmet/helmet_corinthian_dual.dae</mesh>
-      <texture>props/helmet/hele_d1.dds</texture>
+      <textures><texture file="props/helmet/hele_d1.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

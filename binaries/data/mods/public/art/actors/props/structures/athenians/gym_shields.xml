@@ -4,7 +4,7 @@
   <group>
     <variant name="gymnasion shields">
       <mesh>props/hele_gym_shields.dae</mesh>
-      <texture>props/athen_prop_shields.png</texture>
+      <textures><texture file="props/athen_prop_shields.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

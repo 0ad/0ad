@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/shield/per_back_curved.dae</mesh>
-      <texture>props/pers_back_shield.png</texture>
+      <textures><texture file="props/pers_back_shield.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

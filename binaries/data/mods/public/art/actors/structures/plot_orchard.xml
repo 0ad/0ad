@@ -10,7 +10,7 @@
         <prop actor="props/special/common/plot_orchard_trunks.xml" attachpoint="props_main"/>
         <prop actor="props/special/common/plot_orchard_branches.xml" attachpoint="props_secondary"/>
       </props>
-      <texture>structural/plot_orchard.dds</texture>
+      <textures><texture file="structural/plot_orchard.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

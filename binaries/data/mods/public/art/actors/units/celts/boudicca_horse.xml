@@ -16,7 +16,7 @@
       <props>
         <prop actor="units/celts/boudicca_r.xml" attachpoint="rider"/>
       </props>
-      <texture>skeletal/horse_celt_boudicca_a.dds</texture>
+      <textures><texture file="skeletal/horse_celt_boudicca_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

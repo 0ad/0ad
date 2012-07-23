@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="Helmet-Attic-Crested-Bronze">
       <mesh>props/helmet/rome_attic_a_feathers.dae</mesh>
-      <texture>props/helmet/rome_attic_hero1.dds</texture>
+      <textures><texture file="props/helmet/rome_attic_hero1.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

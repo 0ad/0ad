@@ -16,10 +16,10 @@
   </group>
   <group>
     <variant name="Light">
-      <texture>skeletal/animal_giraffe.png</texture>
+      <textures><texture file="skeletal/animal_giraffe.png" name="baseTex"/></textures>
     </variant>
     <variant name="Dark">
-      <texture>skeletal/animal_giraffeb.png</texture>
+      <textures><texture file="skeletal/animal_giraffeb.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

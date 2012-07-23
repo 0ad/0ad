@@ -4,7 +4,7 @@
   <group>
     <variant name="propylaea_walls">
       <mesh>props/propylaea_walls.dae</mesh>
-      <texture>structural/hele_blocks.png</texture>
+      <textures><texture file="structural/hele_blocks.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

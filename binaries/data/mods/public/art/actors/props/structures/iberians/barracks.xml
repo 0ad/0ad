@@ -6,7 +6,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/iber_barracks_a.dae</mesh>
-      <texture>props/iber_prop_shields.dds</texture>
+      <textures><texture file="props/iber_prop_shields.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

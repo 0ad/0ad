@@ -10,7 +10,7 @@
         <prop actor="particle/flame_jav.xml" attachpoint="flame02"/>
         <prop actor="particle/smoke_small_light.xml" attachpoint="flame02"/>
       </props>
-      <texture>structural/rome_hc_01.png</texture>
+      <textures><texture file="structural/rome_hc_01.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

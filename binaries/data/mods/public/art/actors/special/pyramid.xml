@@ -4,7 +4,7 @@
   <group>
     <variant name="Pyramid_Great">
       <mesh>props/pyramid_a.dae</mesh>
-      <texture>props/pyramid_great.dds</texture>
+      <textures><texture file="props/pyramid_great.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

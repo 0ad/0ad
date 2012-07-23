@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/parth_walls.dae</mesh>
-      <texture>structural/hele_blocks.png</texture>
+      <textures><texture file="structural/hele_blocks.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

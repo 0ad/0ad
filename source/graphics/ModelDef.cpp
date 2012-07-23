@@ -226,7 +226,7 @@ void CModelDef::BlendBoneMatrices(
 
 // CModelDef Constructor
 CModelDef::CModelDef() :
-	m_NumVertices(0), m_pVertices(0), m_NumFaces(0), m_pFaces(0),
+	m_NumVertices(0), m_NumUVsPerVertex(0), m_pVertices(0), m_NumFaces(0), m_pFaces(0),
 	m_NumBones(0), m_Bones(0), m_InverseBindBoneMatrices(NULL),
 	m_NumBlends(0), m_pBlends(0), m_pBlendIndices(0),
 	m_Name(L"[not loaded]")
@@ -275,8 +275,34 @@ CModelDef* CModelDef::Load(const VfsPath& filename, const VfsPath& name)
 
 	// now unpack everything 
 	mdef->m_NumVertices = unpacker.UnpackSize();
+	
+	// versions prior to 4 only support 1 UV set, 4 and later store it here
+	if (unpacker.GetVersion() <= 3) 
+	{
+		mdef->m_NumUVsPerVertex = 1;
+	}
+	else
+	{
+		mdef->m_NumUVsPerVertex = unpacker.UnpackSize();
+	}
+
 	mdef->m_pVertices=new SModelVertex[mdef->m_NumVertices];
-	unpacker.UnpackRaw(mdef->m_pVertices,sizeof(SModelVertex)*mdef->m_NumVertices);
+	
+	for (size_t i = 0; i < mdef->m_NumVertices; ++i)
+	{
+		unpacker.UnpackRaw(&mdef->m_pVertices[i].m_Coords, 12);
+		unpacker.UnpackRaw(&mdef->m_pVertices[i].m_Norm, 12);
+		
+		for (size_t s = 0; s < mdef->m_NumUVsPerVertex; ++s)
+		{
+			float uv[2];
+			unpacker.UnpackRaw(&uv[0], 8);
+			mdef->m_pVertices[i].m_UVs.push_back(uv[0]);
+			mdef->m_pVertices[i].m_UVs.push_back(uv[1]);
+		}
+		
+		unpacker.UnpackRaw(&mdef->m_pVertices[i].m_Blend, sizeof(SVertexBlend));
+	}
 	
 	mdef->m_NumFaces = unpacker.UnpackSize();
 	mdef->m_pFaces=new SModelFace[mdef->m_NumFaces];

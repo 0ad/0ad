@@ -32,16 +32,16 @@
   </group>
   <group>
     <variant frequency="4" name="horse-plain">
-      <texture>skeletal/horse_pers_champ_cav_1.png</texture>
+      <textures><texture file="skeletal/horse_pers_champ_cav_1.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="horse-blaze">
-      <texture>skeletal/horse_pers_champ_cav_blaze.png</texture>
+      <textures><texture file="skeletal/horse_pers_champ_cav_blaze.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="horse-snipe">
-      <texture>skeletal/horse_pers_champ_cav_snipe.png</texture>
+      <textures><texture file="skeletal/horse_pers_champ_cav_snipe.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="horse-star">
-      <texture>skeletal/horse_pers_champ_cav_star.png</texture>
+      <textures><texture file="skeletal/horse_pers_champ_cav_star.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

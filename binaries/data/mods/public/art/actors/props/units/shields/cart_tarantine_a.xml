@@ -11,16 +11,16 @@
   </group>
   <group>
     <variant frequency="1" name="shield-c-dolphin">
-      <texture>props/shield/hele_round_c.dds</texture>
+      <textures><texture file="props/shield/hele_round_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-d-dog">
-      <texture>props/shield/hele_round_d.dds</texture>
+      <textures><texture file="props/shield/hele_round_d.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-g-trident">
-      <texture>props/shield/hele_round_g.dds</texture>
+      <textures><texture file="props/shield/hele_round_g.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-i-lion">
-      <texture>props/shield/hele_round_i.dds</texture>
+      <textures><texture file="props/shield/hele_round_i.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

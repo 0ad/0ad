@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/verutum_loaded.dae</mesh>
-      <texture>props/prop_weap.dds</texture>
+      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

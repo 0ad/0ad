@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/structures/iberians/fishship_sail.xml" attachpoint="root"/>
       </props>
-      <texture>structural/iber_ship.dds</texture>
+      <textures><texture file="structural/iber_ship.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

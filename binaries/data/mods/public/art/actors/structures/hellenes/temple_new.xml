@@ -8,7 +8,7 @@
         <prop actor="props/structures/hellenes/temple_a_columns.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/temple_a_struct.xml" attachpoint="root"/>
       </props>
-      <texture>props/hele_tile_c.dds</texture>
+      <textures><texture file="props/hele_tile_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Temple B">
       <mesh>structural/hele_temple_b_base.dae</mesh>
@@ -16,7 +16,7 @@
         <prop actor="props/structures/hellenes/temple_b_struct.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/temple_b_columns.xml" attachpoint="root"/>
       </props>
-      <texture>props/hele_tile_c.dds</texture>
+      <textures><texture file="props/hele_tile_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Temple C">
       <mesh>structural/hele_temple_c_base.dae</mesh>
@@ -24,7 +24,7 @@
         <prop actor="props/structures/hellenes/temple_b_struct.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/temple_c_columns.xml" attachpoint="root"/>
       </props>
-      <texture>props/hele_tile_c.dds</texture>
+      <textures><texture file="props/hele_tile_c.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

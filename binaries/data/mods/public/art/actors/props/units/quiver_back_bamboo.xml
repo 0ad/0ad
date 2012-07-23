@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="Bamboo quiver 1">
       <mesh>props/quiver_bamboo_1.dae</mesh>
-      <texture>props/maur_props_1.png</texture>
+      <textures><texture file="props/maur_props_1.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

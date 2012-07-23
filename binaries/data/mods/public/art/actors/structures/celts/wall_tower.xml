@@ -9,7 +9,7 @@
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <texture>structural/celt_murus.png</texture>
+      <textures><texture file="structural/celt_murus.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

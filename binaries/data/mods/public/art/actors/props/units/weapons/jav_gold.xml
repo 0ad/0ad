@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="gold">
       <mesh>props/weap_jav_g.dae</mesh>
-      <texture>props/prop_weap.dds</texture>
+      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_spec.xml</material>

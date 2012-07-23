@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="Cypress Tree (Giant)">
       <mesh>gaia/tree_cypress_xlarge.dae</mesh>
-      <texture>gaia/prop_tree_cypess_big.dds</texture>
+      <textures><texture file="gaia/prop_tree_cypess_big.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

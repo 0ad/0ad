@@ -32,6 +32,8 @@ struct SPropPoint;
 #include "ps/CStr.h"
 #include "ps/Overlay.h"
 
+#include "graphics/ObjectBase.h"
+
 class CObjectEntry
 {
 public:
@@ -46,7 +48,8 @@ public:
 	// different variations of the actor.
 	CObjectBase* m_Base;
 
-	VfsPath m_TextureName;
+	// samplers list
+	std::vector<CObjectBase::Samp> m_Samplers;
 	// model name
 	VfsPath m_ModelName;
 	// colour (used when doing alpha-channel colouring, but not doing player-colour)

@@ -5,7 +5,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>structural/hele_tric.dae</mesh>
-      <texture>structural/hele_ship_trireme_a.dds</texture>
+      <textures><texture file="structural/hele_ship_trireme_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

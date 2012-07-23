@@ -11,10 +11,10 @@
   </group>
   <group>
     <variant frequency="1" name="Pelt Brown">
-      <texture>props/cape_hd_pelt_brown.png</texture>
+      <textures><texture file="props/cape_hd_pelt_brown.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Pelt Gray">
-      <texture>props/cape_hd_pelt_gray.png</texture>
+      <textures><texture file="props/cape_hd_pelt_gray.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

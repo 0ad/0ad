@@ -60,7 +60,10 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 
 	// Copy the chosen data onto this model:
 
-	m_TextureName = variation.texture;
+	//m_TextureName = variation.texture;
+	for (std::multimap<CStr, CObjectBase::Samp>::iterator it = variation.samplers.begin(); it != variation.samplers.end(); ++it)
+		m_Samplers.push_back(it->second);
+	
 	m_ModelName = variation.model;
 
 	if (! variation.color.empty())
@@ -76,7 +79,17 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 
 	if (variation.decal.m_SizeX && variation.decal.m_SizeZ)
 	{
-		CTextureProperties textureProps(m_TextureName);
+		std::multimap<CStr, CObjectBase::Samp>::iterator iter;
+		
+		iter = variation.samplers.find("baseTex");
+
+		if (iter == variation.samplers.end())
+		{
+			LOGERROR(L"Actor '%ls' tries to create a decal but has no 'baseTex' sampler entry", m_Base->m_ShortName.c_str());
+			return false;
+		}
+
+		CTextureProperties textureProps(iter->second.m_SamplerFile);
 
 		// Decals should be transparent, so clamp to the border (default 0,0,0,0)
 		textureProps.SetWrap(GL_CLAMP_TO_BORDER);
@@ -121,12 +134,19 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	model->SetMaterial(g_Renderer.GetMaterialManager().LoadMaterial(m_Base->m_Material));
 	model->GetMaterial().AddStaticUniform("objectColor", CVector4D(m_Color.r, m_Color.g, m_Color.b, m_Color.a));
 	model->InitModel(modeldef);
-
-	CTextureProperties textureProps(m_TextureName);
-	textureProps.SetWrap(GL_CLAMP_TO_EDGE);
-	CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
-	texture->Prefetch(); // if we've loaded this model we're probably going to render it soon, so prefetch its texture
-	model->GetMaterial().SetDiffuseTexture(texture);
+	
+	std::vector<CObjectBase::Samp>::iterator samp;
+	for (samp = m_Samplers.begin(); samp != m_Samplers.end(); ++samp)
+	{
+		CTextureProperties textureProps(samp->m_SamplerFile);
+		textureProps.SetWrap(GL_CLAMP_TO_EDGE);
+		CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
+		// if we've loaded this model we're probably going to render it soon, so prefetch its texture. 
+		// All textures are prefetched even in the fixed pipeline, including the normal maps etc.
+		// TODO: Should check which renderpath is selected and only preload the necessary textures.
+		texture->Prefetch(); 
+		model->GetMaterial().AddSampler(CMaterial::TextureSampler(samp->m_SamplerName, texture));
+	}
 
 	// calculate initial object space bounds, based on vertex positions
 	model->CalcStaticObjectBounds();

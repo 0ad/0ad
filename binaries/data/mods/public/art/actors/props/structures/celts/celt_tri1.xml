@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/celt_barge_sail.dae</mesh>
-      <texture>structural/celt_sail.dds</texture>
+      <textures><texture file="structural/celt_sail.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

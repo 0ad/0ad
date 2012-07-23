@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/rome_trireme_shields.dae</mesh>
-      <texture>props/rome_prop_shields.dds</texture>
+      <textures><texture file="props/rome_prop_shields.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

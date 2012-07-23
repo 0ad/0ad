@@ -4,7 +4,7 @@
   <group>
     <variant name="Base">
       <mesh>props/helmet/hele_spartan_king.dae</mesh>
-      <texture>props/helmet/spart_agis.png</texture>
+      <textures><texture file="props/helmet/spart_agis.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

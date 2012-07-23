@@ -36,7 +36,7 @@
         <prop actor="props/units/shields/mace_pez_elite.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="r_hand"/>
       </props>
-      <texture>skeletal/hele_pezhetairoi_2.dds</texture>
+      <textures><texture file="skeletal/hele_pezhetairoi_2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

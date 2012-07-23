@@ -13,7 +13,7 @@
         <prop actor="particle/flame_large.xml" attachpoint="projectile"/>
         <prop actor="particle/smoke.xml" attachpoint="projectile"/>
       </props>
-      <texture>structural/fireraiser.png</texture>
+      <textures><texture file="structural/fireraiser.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

@@ -7,7 +7,7 @@
         <animation file="mechanical/garrison_flag_idle.dae" name="Idle" speed="30"/>
       </animations>
       <mesh>props/garrison_flag.dae</mesh>
-      <texture>props/garrison_celt_1.png</texture>
+      <textures><texture file="props/garrison_celt_1.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

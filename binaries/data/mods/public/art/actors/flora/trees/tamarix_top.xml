@@ -14,10 +14,10 @@
 
   <group>
     <variant frequency="1" name="tamarix-top-texture-a">
-	  <texture>gaia/tree_tamarix.dds</texture>
+	  <textures><texture file="gaia/tree_tamarix.dds" name="baseTex"/></textures>
     </variant>
 	<variant frequency="1" name="tamarix-top-texture-b">
-	  <texture>gaia/tree_tamarix_b.dds</texture>
+	  <textures><texture file="gaia/tree_tamarix_b.dds" name="baseTex"/></textures>
 	</variant>
   </group>
 

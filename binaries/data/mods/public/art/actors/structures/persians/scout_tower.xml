@@ -11,7 +11,7 @@
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <texture>structural/pers_struct.dds</texture>
+      <textures><texture file="structural/pers_struct.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="scouttowerb">
       <animations>
@@ -22,7 +22,7 @@
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <texture>structural/pers_struct.dds</texture>
+      <textures><texture file="structural/pers_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

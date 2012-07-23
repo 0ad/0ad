@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/parth_props.dae</mesh>
-      <texture>props/hele_props_a.dds</texture>
+      <textures><texture file="props/hele_props_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

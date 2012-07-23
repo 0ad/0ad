@@ -8,7 +8,7 @@
         <prop actor="props/structures/iberians/mill.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
       </props>
-      <texture>structural/iber_struct.dds</texture>
+      <textures><texture file="structural/iber_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

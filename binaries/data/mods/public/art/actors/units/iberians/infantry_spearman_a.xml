@@ -46,14 +46,14 @@
         <prop actor="props/units/heads/head_iber_su1.xml" attachpoint="head"/>
         <prop actor="props/units/heads/iber_helmet_04.xml" attachpoint="helmet"/>
       </props>
-      <texture>skeletal/iber_isp_a_1.dds</texture>
+      <textures><texture file="skeletal/iber_isp_a_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Scutarius-Body-Texture-2">
       <props>
         <prop actor="props/units/heads/head_iber_adv_hood_1.xml" attachpoint="head"/>
         <prop actor="props/units/heads/iber_helmet_yellow_ridges.xml" attachpoint="helmet"/>
       </props>
-      <texture>skeletal/iber_isp_a_2.dds</texture>
+      <textures><texture file="skeletal/iber_isp_a_2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

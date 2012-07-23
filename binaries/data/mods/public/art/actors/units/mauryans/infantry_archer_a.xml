@@ -35,7 +35,7 @@
         <prop actor="props/units/weapons/bow_long_indian.xml" attachpoint="l_hand"/>
         <prop actor="props/units/quiver_back_bamboo.xml" attachpoint="back"/>
       </props>
-      <texture>skeletal/maur_iar_a.png</texture>
+      <textures><texture file="skeletal/maur_iar_a.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

@@ -16,13 +16,13 @@
   </group>
   <group>
     <variant frequency="5" name="horse2-plain">
-      <texture>skeletal/horse_celt_chariot_1.dds</texture>
+      <textures><texture file="skeletal/horse_celt_chariot_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="5" name="horse2-face">
-      <texture>skeletal/horse_celt_chariot_2.dds</texture>
+      <textures><texture file="skeletal/horse_celt_chariot_2.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="horse2-feet">
-      <texture>skeletal/horse_celt_chariot_3.dds</texture>
+      <textures><texture file="skeletal/horse_celt_chariot_3.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

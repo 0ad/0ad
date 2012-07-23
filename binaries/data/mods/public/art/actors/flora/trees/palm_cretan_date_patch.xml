@@ -11,16 +11,16 @@
   </group>
   <group>
     <variant frequency="1" name="Palm Fronds-a">
-      <texture>gaia/tree_palm_senegal_a.dds</texture>
+      <textures><texture file="gaia/tree_palm_senegal_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Palm Fronds-b">
-      <texture>gaia/tree_palm_senegal_b.dds</texture>
+      <textures><texture file="gaia/tree_palm_senegal_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Palm Fronds-c">
-      <texture>gaia/tree_palm_senegal_c.dds</texture>
+      <textures><texture file="gaia/tree_palm_senegal_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Palm Fronds-d">
-      <texture>gaia/tree_palm_senegal_d.dds</texture>
+      <textures><texture file="gaia/tree_palm_senegal_d.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

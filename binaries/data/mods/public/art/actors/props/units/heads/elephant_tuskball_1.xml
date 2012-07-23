@@ -6,7 +6,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/elephant_tusk_1.dae</mesh>
-      <texture>skeletal/kart_hero_hannibal_mount.dds</texture>
+      <textures><texture file="skeletal/kart_hero_hannibal_mount.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

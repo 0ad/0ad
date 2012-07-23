@@ -5,27 +5,27 @@
   <group>
     <variant frequency="1" name="blood-01">
       <decal width="4.0" depth="4.0" angle="0" offsetx="0" offsetz="0"/>
-      <texture>props/blood_01.dds</texture>
+      <textures><texture file="props/blood_01.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="blood-02">
       <decal width="4.0" depth="4.0" angle="0" offsetx="0" offsetz="0"/>
-      <texture>props/blood_02.dds</texture>
+      <textures><texture file="props/blood_02.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="blood-03">
       <decal width="4.0" depth="4.0" angle="0" offsetx="0" offsetz="0"/>
-      <texture>props/blood_03.dds</texture>
+      <textures><texture file="props/blood_03.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="blood-04">
       <decal width="4.0" depth="4.0" angle="0" offsetx="0" offsetz="0"/>
-      <texture>props/blood_04.dds</texture>
+      <textures><texture file="props/blood_04.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="blood-05">
       <decal width="4.0" depth="4.0" angle="0" offsetx="0" offsetz="0"/>
-      <texture>props/blood_05.dds</texture>
+      <textures><texture file="props/blood_05.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="blood-06">
       <decal width="4.0" depth="4.0" angle="0" offsetx="0" offsetz="0"/>
-      <texture>props/blood_06.dds</texture>
+      <textures><texture file="props/blood_06.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

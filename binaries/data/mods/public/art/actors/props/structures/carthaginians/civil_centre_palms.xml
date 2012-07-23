@@ -8,10 +8,10 @@
   </group>
   <group>
     <variant frequency="1" name="Palm skin a">
-      <texture>gaia/tree_palm_senegal_a.dds</texture>
+      <textures><texture file="gaia/tree_palm_senegal_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Palm skin b">
-      <texture>gaia/tree_palm_senegal_b.dds</texture>
+      <textures><texture file="gaia/tree_palm_senegal_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

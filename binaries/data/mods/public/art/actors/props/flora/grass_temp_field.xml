@@ -29,10 +29,10 @@
 
   <group>
     <variant frequency="1" name="green">
-      <texture>gaia/grass_field_temperate.dds</texture>
+      <textures><texture file="gaia/grass_field_temperate.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="greener">
-      <texture>gaia/grass_field_temperate_2.dds</texture>
+      <textures><texture file="gaia/grass_field_temperate_2.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

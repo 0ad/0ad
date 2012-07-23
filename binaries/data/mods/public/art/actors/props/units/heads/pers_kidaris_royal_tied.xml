@@ -4,7 +4,7 @@
   <group>
     <variant name="Royal Kidaris Tied">
       <mesh>props/helmet/pers_kidaris_royal_tied.dae</mesh>
-      <texture>props/helmet/pers_kidaris_hero.png</texture>
+      <textures><texture file="props/helmet/pers_kidaris_hero.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

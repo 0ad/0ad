@@ -20,7 +20,7 @@
   </group>
   <group>
     <variant frequency="100" name="texture">
-      <texture>structural/celt_temple.png</texture>
+      <textures><texture file="structural/celt_temple.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

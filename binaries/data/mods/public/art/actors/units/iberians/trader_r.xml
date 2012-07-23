@@ -13,7 +13,7 @@
         <prop actor="props/units/heads/head_iber_adv.xml" attachpoint="head"/>
         <prop actor="props/units/backpack_celt.xml" attachpoint="back"/>
       </props>
-      <texture>skeletal/iber_trader_1.dds</texture>
+      <textures><texture file="skeletal/iber_trader_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

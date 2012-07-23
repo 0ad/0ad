@@ -11,7 +11,7 @@
         <prop actor="props/structures/hellenes/barracks_tile_c.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
       </props>
-      <texture>structural/hele_struct.dds</texture>
+      <textures><texture file="structural/hele_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

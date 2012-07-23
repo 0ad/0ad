@@ -22,7 +22,7 @@
         <prop actor="props/units/cape_hd_cav.xml" attachpoint="shoulders"/>
         <prop actor="props/units/shields/thracian_oval.xml" attachpoint="shield"/>
       </props>
-      <texture>skeletal/thrace_blackcloak_a.dds</texture>
+      <textures><texture file="skeletal/thrace_blackcloak_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

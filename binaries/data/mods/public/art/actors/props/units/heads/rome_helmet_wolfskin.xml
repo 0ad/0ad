@@ -6,15 +6,15 @@
   <group>
     <variant frequency="1" name="helmet_wolfskin_a">
       <mesh>props/helmet/rome_wolfskin_a.dae</mesh>
-      <texture>props/helmet/rome_wolfskin_a.png</texture>
+      <textures><texture file="props/helmet/rome_wolfskin_a.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="helmet_wolfskin_b">
       <mesh>props/helmet/rome_wolfskin_a.dae</mesh>
-      <texture>props/helmet/rome_wolfskin_b.png</texture>
+      <textures><texture file="props/helmet/rome_wolfskin_b.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="helmet_wolfskin_c">
       <mesh>props/helmet/rome_wolfskin_a.dae</mesh>
-      <texture>props/helmet/rome_wolfskin_c.png</texture>
+      <textures><texture file="props/helmet/rome_wolfskin_c.png" name="baseTex"/></textures>
     </variant>
   </group>
 

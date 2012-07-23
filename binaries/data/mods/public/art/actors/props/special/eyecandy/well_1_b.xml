@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/special/eyecandy/well_woodbit.xml" attachpoint="woodbit"/>
       </props>
-      <texture>props/wrld_well_b_1.dds</texture>
+      <textures><texture file="props/wrld_well_b_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

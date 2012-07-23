@@ -55,13 +55,13 @@
   </group>
   <group>
     <variant frequency="1" name="pectoral--plain">
-      <texture>skeletal/rome_isw_b.dds</texture>
+      <textures><texture file="skeletal/rome_isw_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="pectoral--muscle">
-      <texture>skeletal/rome_isw_b_2.dds</texture>
+      <textures><texture file="skeletal/rome_isw_b_2.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="pectoral">
-      <texture>skeletal/rome_isw_b_3.dds</texture>
+      <textures><texture file="skeletal/rome_isw_b_3.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

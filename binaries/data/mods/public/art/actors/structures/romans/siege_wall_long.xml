@@ -8,7 +8,7 @@
         <prop actor="props/structures/romans/siege_walls_turf_long.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/siege_walls_long_banners.xml" attachpoint="root"/>
       </props>
-      <texture>structural/siege_walls_wood.png</texture>
+      <textures><texture file="structural/siege_walls_wood.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

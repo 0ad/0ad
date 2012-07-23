@@ -11,16 +11,16 @@
 
   <group>
     <variant name="a">
-      <texture>gaia/wrld_flower_bright1.dds</texture>
+      <textures><texture file="gaia/wrld_flower_bright1.dds" name="baseTex"/></textures>
     </variant>
     <variant name="b">
-      <texture>gaia/wrld_flower_bright2.dds</texture>
+      <textures><texture file="gaia/wrld_flower_bright2.dds" name="baseTex"/></textures>
     </variant>
     <variant name="c">
-      <texture>gaia/wrld_flower_bright3.dds</texture>
+      <textures><texture file="gaia/wrld_flower_bright3.dds" name="baseTex"/></textures>
     </variant>
     <variant name="d">
-      <texture>gaia/wrld_flower_bright4.dds</texture>
+      <textures><texture file="gaia/wrld_flower_bright4.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

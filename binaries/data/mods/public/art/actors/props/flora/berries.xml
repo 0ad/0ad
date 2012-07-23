@@ -4,7 +4,7 @@
   <group>
     <variant name="berries">
       <mesh>gaia/berries.dae</mesh>
-      <texture>gaia/berries.png</texture>
+      <textures><texture file="gaia/berries.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

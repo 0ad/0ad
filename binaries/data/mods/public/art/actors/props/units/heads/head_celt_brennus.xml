@@ -5,7 +5,7 @@
     <variant frequency="1" name="beard-large">
       <colour>241 202 112</colour>
       <mesh>props/m_h_beard.dae</mesh>
-      <texture>props/head/celt_brennus.dds</texture>
+      <textures><texture file="props/head/celt_brennus.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

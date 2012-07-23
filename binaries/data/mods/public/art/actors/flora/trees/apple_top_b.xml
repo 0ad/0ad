@@ -8,13 +8,13 @@
   </group>
   <group>
     <variant name="b-bloom">
-      <texture>gaia/tree_apple_bloom.dds</texture>
+      <textures><texture file="gaia/tree_apple_bloom.dds" name="baseTex"/></textures>
     </variant>
     <variant name="b-ripe">
-      <texture>gaia/tree_apple_a.dds</texture>
+      <textures><texture file="gaia/tree_apple_a.dds" name="baseTex"/></textures>
     </variant>
     <variant name="b-ripe2">
-      <texture>gaia/orchard_apple_a.dds</texture>
+      <textures><texture file="gaia/orchard_apple_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

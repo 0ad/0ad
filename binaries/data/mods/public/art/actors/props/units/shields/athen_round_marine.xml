@@ -12,13 +12,13 @@
   </group>
   <group>
     <variant frequency="1" name="hele-round-g-trident">
-      <texture>props/shield/hele_round_g.dds</texture>
+      <textures><texture file="props/shield/hele_round_g.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="hele-round-h-alpha">
-      <texture>props/shield/hele_round_h.dds</texture>
+      <textures><texture file="props/shield/hele_round_h.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="hele-round-ad-octopus">
-      <texture>props/shield/hele_round_ad.dds</texture>
+      <textures><texture file="props/shield/hele_round_ad.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

@@ -9,7 +9,7 @@
       <props>
         <prop actor="props/structures/hellenes/civil_centre.xml" attachpoint="props_main"/>
       </props>
-      <texture>structural/hele_struct_2.dds</texture>
+      <textures><texture file="structural/hele_struct_2.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

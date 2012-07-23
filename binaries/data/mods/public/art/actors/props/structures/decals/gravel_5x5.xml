@@ -4,7 +4,7 @@
   <group>
     <variant name="decal_gravel_5x5">
       <decal width="30" depth="30" angle="0" offsetx="0" offsetz="0"/>
-      <texture>props/decal_struct_gravel_large.png</texture>
+      <textures><texture file="props/decal_struct_gravel_large.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

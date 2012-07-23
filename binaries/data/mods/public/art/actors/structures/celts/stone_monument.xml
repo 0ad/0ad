@@ -9,7 +9,7 @@
         <prop actor="props/structures/celts/temple_shields.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
       </props>
-      <texture>structural/celt_temple.png</texture>
+      <textures><texture file="structural/celt_temple.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

@@ -8,10 +8,10 @@
   </group>
   <group>
     <variant frequency="1" name="decal_01">
-      <texture>gaia/decal_quarry_tropic_a.png</texture>
+      <textures><texture file="gaia/decal_quarry_tropic_a.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="decal_02">
-      <texture>gaia/decal_quarry_tropic_b.png</texture>
+      <textures><texture file="gaia/decal_quarry_tropic_b.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

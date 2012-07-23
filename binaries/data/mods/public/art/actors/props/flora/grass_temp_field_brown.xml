@@ -28,7 +28,7 @@
   </group>
   <group>
     <variant frequency="1" name="brown">
-      <texture>gaia/grass_field_brown.dds</texture>
+      <textures><texture file="gaia/grass_field_brown.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

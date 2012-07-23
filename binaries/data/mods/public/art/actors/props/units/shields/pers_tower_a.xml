@@ -11,10 +11,10 @@
   </group>
   <group>
     <variant name="spara-texture-b">
-      <texture>props/shield/pers_rect_b.dds</texture>
+      <textures><texture file="props/shield/pers_rect_b.dds" name="baseTex"/></textures>
     </variant>
     <variant name="spara-texture-e">
-      <texture>props/shield/pers_rect_e.dds</texture>
+      <textures><texture file="props/shield/pers_rect_e.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

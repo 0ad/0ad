@@ -11,16 +11,16 @@
   </group>
   <group>
     <variant frequency="1" name="Shield-A">
-      <texture>props/shield/samnite_a.dds</texture>
+      <textures><texture file="props/shield/samnite_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Shield-B">
-      <texture>props/shield/samnite_b.dds</texture>
+      <textures><texture file="props/shield/samnite_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Shield-C">
-      <texture>props/shield/samnite_c.dds</texture>
+      <textures><texture file="props/shield/samnite_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Shield-D">
-      <texture>props/shield/samnite_d.dds</texture>
+      <textures><texture file="props/shield/samnite_d.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

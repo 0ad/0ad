@@ -11,7 +11,7 @@
         <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <texture>structural/hele_struct_b.dds</texture>
+      <textures><texture file="structural/hele_struct_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

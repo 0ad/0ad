@@ -20,7 +20,7 @@
   </group>
   <group>
     <variant frequency="1" name="Blue Eye">
-      <texture>structural/hele_trireme_big.dds</texture>
+      <textures><texture file="structural/hele_trireme_big.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

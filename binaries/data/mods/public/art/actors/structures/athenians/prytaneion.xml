@@ -9,7 +9,7 @@
         <prop actor="structures/hellenes/prytaneion_struct.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/prytaneion_tiles.xml" attachpoint="root"/>
       </props>
-      <texture>structural/hele_struct_b.dds</texture>
+      <textures><texture file="structural/hele_struct_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

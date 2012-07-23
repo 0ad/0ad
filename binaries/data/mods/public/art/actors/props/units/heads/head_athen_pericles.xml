@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/head_pericles.dae</mesh>
-      <texture>props/head/xerxes.png</texture>
+      <textures><texture file="props/head/xerxes.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

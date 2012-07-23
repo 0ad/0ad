@@ -19,10 +19,10 @@
 
   <group>
     <variant frequency="1" name="Tunic-a">
-      <texture>skeletal/hele_tunic.dds</texture>
+      <textures><texture file="skeletal/hele_tunic.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Tunic-b">
-      <texture>skeletal/hele_isp_b.dds</texture>
+      <textures><texture file="skeletal/hele_isp_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

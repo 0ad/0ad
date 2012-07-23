@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/units/heads/misc_head_ninja_fem.xml" attachpoint="head"/>
       </props>
-      <texture>skeletal/ninja_female.png</texture>
+      <textures><texture file="skeletal/ninja_female.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

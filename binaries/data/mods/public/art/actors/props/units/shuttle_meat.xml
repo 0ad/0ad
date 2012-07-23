@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/special/brontoburger.dae</mesh>
-      <texture>props/shuttle_meat.png</texture>
+      <textures><texture file="props/shuttle_meat.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

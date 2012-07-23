@@ -11,10 +11,10 @@
   </group>
   <group>
     <variant frequency="1" name="yellow">
-      <texture>props/helmet/rome_hero_a.png</texture>
+      <textures><texture file="props/helmet/rome_hero_a.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="copper">
-      <texture>props/helmet/rome_hero_b.png</texture>
+      <textures><texture file="props/helmet/rome_hero_b.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

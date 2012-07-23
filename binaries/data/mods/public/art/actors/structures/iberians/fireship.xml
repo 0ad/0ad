@@ -15,7 +15,7 @@
         <prop actor="particle/flame.xml" attachpoint="fire5"/>
         <prop actor="particle/smoke_catapult.xml" attachpoint="fire5"/>
       </props>
-      <texture>structural/iber_ship.dds</texture>
+      <textures><texture file="structural/iber_ship.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="fireb">
       <mesh>structural/iber_fireship.dae</mesh>
@@ -29,7 +29,7 @@
         <prop actor="particle/flame_jav.xml" attachpoint="fire5"/>
         <prop actor="particle/smoke_jav.xml" attachpoint="fire5"/>
       </props>
-      <texture>structural/iber_ship.dds</texture>
+      <textures><texture file="structural/iber_ship.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

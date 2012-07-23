@@ -8,7 +8,7 @@
   </group>
   <group>
     <variant>
-      <texture>props/iber_prop_shields.dds</texture>
+      <textures><texture file="props/iber_prop_shields.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

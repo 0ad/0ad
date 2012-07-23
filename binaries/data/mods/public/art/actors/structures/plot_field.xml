@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/special/common/field_grain.xml" attachpoint="root"/>
       </props>
-      <texture>structural/field_01.dds</texture>
+      <textures><texture file="structural/field_01.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

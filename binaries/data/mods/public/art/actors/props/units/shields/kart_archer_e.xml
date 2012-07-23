@@ -11,19 +11,19 @@
   </group>
   <group>
     <variant frequency="1" name="Shield-Leather-Palm">
-      <texture>props/shield/kart_leather_a.dds</texture>
+      <textures><texture file="props/shield/kart_leather_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Shield-Leather-B">
-      <texture>props/shield/kart_leather_b.dds</texture>
+      <textures><texture file="props/shield/kart_leather_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Shield-Leather-C">
-      <texture>props/shield/kart_leather_c.dds</texture>
+      <textures><texture file="props/shield/kart_leather_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Shield-Leather-Tant">
-      <texture>props/shield/kart_leather_d.dds</texture>
+      <textures><texture file="props/shield/kart_leather_d.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Shield-Leather-E">
-      <texture>props/shield/kart_leather_e.dds</texture>
+      <textures><texture file="props/shield/kart_leather_e.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

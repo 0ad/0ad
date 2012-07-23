@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="mesh">
       <mesh>props/dude_head.dae</mesh>
-      <texture>props/head/skull.png</texture>
+      <textures><texture file="props/head/skull.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

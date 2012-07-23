@@ -8,13 +8,13 @@
   </group>
   <group>
     <variant frequency="1" name="leaf-color-a">
-      <texture>gaia/tree_carob_a.dds</texture>
+      <textures><texture file="gaia/tree_carob_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="leaf-color-b">
-      <texture>gaia/tree_carob_b.dds</texture>
+      <textures><texture file="gaia/tree_carob_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="leaf-color-c">
-      <texture>gaia/tree_carob_c.dds</texture>
+      <textures><texture file="gaia/tree_carob_c.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

@@ -19,7 +19,7 @@
         <prop actor="" attachpoint="23"/>
         <prop actor="" attachpoint="24"/>
       </props>
-      <texture>structural/hele_trireme.dds</texture>
+      <textures><texture file="structural/hele_trireme.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

@@ -47,10 +47,10 @@
   </group>
   <group>
     <variant frequency="1" name="tunic-white">
-      <texture>skeletal/hele_ijv_e_2.dds</texture>
+      <textures><texture file="skeletal/hele_ijv_e_2.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="tunic-brown">
-      <texture>skeletal/hele_ijv_e_3.dds</texture>
+      <textures><texture file="skeletal/hele_ijv_e_3.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

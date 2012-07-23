@@ -8,10 +8,10 @@
   </group>
   <group>
     <variant frequency="1" name="back-i">
-      <texture>props/shield/hele_pelta_i.dds</texture>
+      <textures><texture file="props/shield/hele_pelta_i.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="back-d">
-      <texture>props/shield/hele_pelta_d.dds</texture>
+      <textures><texture file="props/shield/hele_pelta_d.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

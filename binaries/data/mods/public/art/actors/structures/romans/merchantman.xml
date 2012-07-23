@@ -8,7 +8,7 @@
         <prop actor="props/structures/romans/merchant_shrouds.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/merchant_sail.xml" attachpoint="root"/>
       </props>
-      <texture>structural/rome_merch_ship.png</texture>
+      <textures><texture file="structural/rome_merch_ship.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

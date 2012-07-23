@@ -11,7 +11,7 @@
   </group>
   <group>
     <variant frequency="1" name="pers-pelta-d">
-      <texture>props/shield/pers_pelta_d.dds</texture>
+      <textures><texture file="props/shield/pers_pelta_d.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

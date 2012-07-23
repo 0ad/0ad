@@ -8,7 +8,7 @@
         <prop actor="props/structures/carthaginians/temple_big.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_3x6.xml" attachpoint="root"/>
       </props>
-      <texture>structural/kart_struct.dds</texture>
+      <textures><texture file="structural/kart_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

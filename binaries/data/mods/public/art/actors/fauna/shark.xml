@@ -12,10 +12,10 @@
   </group>
   <group>
     <variant frequency="1" name="shark_light">
-      <texture>skeletal/animal_shark.dds</texture>
+      <textures><texture file="skeletal/animal_shark.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shark_dark">
-      <texture>skeletal/animal_sharkdark.dds</texture>
+      <textures><texture file="skeletal/animal_sharkdark.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_spec.xml</material>

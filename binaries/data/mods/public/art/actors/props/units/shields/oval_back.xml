@@ -6,7 +6,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/shield/oval_a_b.dae</mesh>
-      <texture>props/shield/celt_oval2_back.dds</texture>
+      <textures><texture file="props/shield/celt_oval2_back.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

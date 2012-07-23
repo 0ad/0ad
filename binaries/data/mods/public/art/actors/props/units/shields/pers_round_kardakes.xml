@@ -11,10 +11,10 @@
   </group>
   <group>
     <variant frequency="1" name="shield-pers-aspis-1">
-      <texture>props/shield/pers_aspis_1.png</texture>
+      <textures><texture file="props/shield/pers_aspis_1.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-pers-aspis-2">
-      <texture>props/shield/pers_aspis_2.png</texture>
+      <textures><texture file="props/shield/pers_aspis_2.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>test/temple.dae</mesh>
-      <texture>null_check.dds</texture>
+      <textures><texture file="null_check.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

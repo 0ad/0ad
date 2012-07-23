@@ -8,10 +8,10 @@
   </group>
   <group>
     <variant frequency="1" name="sail design - boar">
-      <texture>props/celt_sail_boar.dds</texture>
+      <textures><texture file="props/celt_sail_boar.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="sail design - face">
-      <texture>props/celt_sail_face.dds</texture>
+      <textures><texture file="props/celt_sail_face.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

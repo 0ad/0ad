@@ -18,7 +18,7 @@
         <prop actor="units/persians/hero_xerxes_chariot_r.xml" attachpoint="rider1"/>
         <prop actor="units/persians/hero_xerxes_chariot_d.xml" attachpoint="rider2"/>
       </props>
-      <texture>structural/pers_chariot_xerxes.png</texture>
+      <textures><texture file="structural/pers_chariot_xerxes.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/helmet/kart_straw.dae</mesh>
-      <texture>props/helmet/straw_hat_a.png</texture>
+      <textures><texture file="props/helmet/straw_hat_a.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

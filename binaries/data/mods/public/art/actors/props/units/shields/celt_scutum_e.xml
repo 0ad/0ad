@@ -14,10 +14,10 @@
 
   <group>
     <variant name="F">
-      <texture>props/shield/celt_oval1_f.dds</texture>
+      <textures><texture file="props/shield/celt_oval1_f.dds" name="baseTex"/></textures>
     </variant>
     <variant name="K">
-      <texture>props/shield/celt_oval1_k.dds</texture>
+      <textures><texture file="props/shield/celt_oval1_k.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

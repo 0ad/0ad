@@ -23,7 +23,7 @@
         <prop actor="props/units/weapons/csword.xml" attachpoint="r_hand"/>
         <prop actor="props/temp/l_sheath.xml" attachpoint="l_hip"/>
       </props>
-      <texture>skeletal/celt_cynelvin.dds</texture>
+      <textures><texture file="skeletal/celt_cynelvin.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

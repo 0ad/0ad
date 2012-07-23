@@ -8,7 +8,7 @@
       <props>
         <prop actor="props/structures/iberians/dock_boat.xml" attachpoint="root"/>
       </props>
-      <texture>structural/iber_struct.dds</texture>
+      <textures><texture file="structural/iber_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

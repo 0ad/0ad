@@ -14,7 +14,7 @@
         <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
       </animations>
       <mesh>skeletal/horse.pmd</mesh>
-      <texture>skeletal/horse_celt_boudicca_a.dds</texture>
+      <textures><texture file="skeletal/horse_celt_boudicca_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

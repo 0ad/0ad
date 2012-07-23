@@ -8,7 +8,7 @@
       <props>
         <prop actor="props/structures/celts/skiff_sail.xml" attachpoint="root"/>
       </props>
-      <texture>structural/celt_ship.png</texture>
+      <textures><texture file="structural/celt_ship.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

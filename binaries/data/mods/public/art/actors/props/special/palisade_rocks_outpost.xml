@@ -10,7 +10,7 @@
       <props>
         <prop actor="props/special/palisade_rocks_outpost_banners.xml" attachpoint="root"/>
       </props>
-      <texture>props/palisade_main.png</texture>
+      <textures><texture file="props/palisade_main.png" name="baseTex"/></textures>
     </variant>
   </group>
 

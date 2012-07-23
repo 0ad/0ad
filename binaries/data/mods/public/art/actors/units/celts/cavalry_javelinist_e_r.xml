@@ -21,7 +21,7 @@
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="loaded-r_hand"/>
         <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
       </props>
-      <texture>skeletal/celt_ijv_e_01.dds</texture>
+      <textures><texture file="skeletal/celt_ijv_e_01.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

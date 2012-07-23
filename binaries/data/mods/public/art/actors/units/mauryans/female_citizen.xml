@@ -30,11 +30,11 @@
   <group>
     <variant frequency="1" name="Skirt-Short">
       <mesh>skeletal/f_tunic.dae</mesh>
-      <texture>skeletal/maur_fem.png</texture>
+      <textures><texture file="skeletal/maur_fem.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Skirt-Long">
       <mesh>skeletal/f_dress.dae</mesh>
-      <texture>skeletal/maur_fem_b.png</texture>
+      <textures><texture file="skeletal/maur_fem_b.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

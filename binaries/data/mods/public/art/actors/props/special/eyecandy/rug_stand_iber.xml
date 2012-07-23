@@ -6,7 +6,7 @@
   <group>
     <variant frequency="1" name="rug stand - Iberian">
       <mesh>props/eyecandy_iber_rugstand.dae</mesh>
-      <texture>structural/iber_struct.dds</texture>
+      <textures><texture file="structural/iber_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

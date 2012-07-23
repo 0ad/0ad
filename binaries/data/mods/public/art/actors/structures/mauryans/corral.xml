@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="Corral">
       <mesh>structural/maur_corral.dae</mesh>
-      <texture>structural/maur_struct_temp.png</texture>
+      <textures><texture file="structural/maur_struct_temp.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

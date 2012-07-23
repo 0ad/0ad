@@ -21,23 +21,23 @@
   <group>
     <variant frequency="1" name="Carth-Sacred Band-ShortSleeve">
       <mesh>skeletal/m_tunic_short.dae</mesh>
-      <texture>skeletal/kart_su1_sacredband_1.dds</texture>
+      <textures><texture file="skeletal/kart_su1_sacredband_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Carth-Sacred Band-LongSleeve">
       <mesh>skeletal/m_tunic_short.dae</mesh>
-      <texture>skeletal/kart_su1_sacredband_2.dds</texture>
+      <textures><texture file="skeletal/kart_su1_sacredband_2.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Carth-Sacred Band-LongSleeve-dirty">
       <mesh>skeletal/m_tunic_short.dae</mesh>
-      <texture>skeletal/kart_su1_sacredband_4.dds</texture>
+      <textures><texture file="skeletal/kart_su1_sacredband_4.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Carth-Sacred Band-Brown">
       <mesh>skeletal/m_tunic_short.dae</mesh>
-      <texture>skeletal/kart_su1_sacredband_3.dds</texture>
+      <textures><texture file="skeletal/kart_su1_sacredband_3.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Carth-Sacred Band-Yellow">
       <mesh>skeletal/m_tunic_short.dae</mesh>
-      <texture>skeletal/kart_su1_sacredband_5.dds</texture>
+      <textures><texture file="skeletal/kart_su1_sacredband_5.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

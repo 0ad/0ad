@@ -26,6 +26,7 @@
 
 #include "graphics/Color.h"
 #include "graphics/LightEnv.h"
+#include "graphics/Material.h"
 #include "graphics/Model.h"
 #include "graphics/ModelDef.h"
 #include "graphics/ShaderManager.h"
@@ -148,15 +149,16 @@ void ModelRenderer::BuildColor4ub(
 // Copy UV coordinates
 void ModelRenderer::BuildUV(
 		const CModelDefPtr& mdef,
-		const VertexArrayIterator<float[2]>& UV)
+		const VertexArrayIterator<float[2]>& UV,
+		int UVset)
 {
 	size_t numVertices = mdef->GetNumVertices();
 	SModelVertex* vertices = mdef->GetVertices();
 
 	for (size_t j=0; j < numVertices; ++j)
 	{
-		UV[j][0] = vertices[j].m_U;
-		UV[j][1] = 1.0-vertices[j].m_V;
+		UV[j][0] = vertices[j].m_UVs[UVset * 2];
+		UV[j][1] = 1.0-vertices[j].m_UVs[UVset * 2 + 1];
 	}
 }
 
@@ -467,6 +469,9 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 			else
 			{
 				// Sort model list by modeldef+texture, for batching
+				// TODO: This only sorts by base texture. While this is an OK approximation
+				// for most cases (as related samplers are usually used together), it would be better
+				// to take all the samplers into account when sorting here.
 				std::sort(it->second.begin(), it->second.end(), SMRBatchModel());
 
 				// Add a tech bucket pointing at this model list
@@ -531,6 +536,20 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 		PROFILE3("rendering bucketed submissions");
 
 		size_t idxTechStart = 0;
+		
+		// This vector keeps track of texture changes during rendering. It is kept outside the
+		// loops to avoid excessive reallocations. The token allocation of 64 elements 
+		// should be plenty, though it is reallocated below (at a cost) if necessary.
+		std::vector<CTexture*> currentTexs;
+		currentTexs.reserve(64);
+		
+		// texBindings holds the identifier bindings in the shader, which can no longer be defined 
+		// statically in the ShaderRenderModifier class. texBindingNames uses interned strings to
+		// keep track of when bindings need to be reevaluated.
+		std::vector<CShaderProgram::Binding> texBindings;
+		texBindings.reserve(64);
+		std::vector<CStrIntern> texBindingNames;
+		texBindingNames.reserve(64);
 
 		while (idxTechStart < techBuckets.size())
 		{
@@ -555,12 +574,16 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 				modifier->BeginPass(shader);
 
 				m->vertexRenderer->BeginPass(streamflags);
-
-				CTexture* currentTex = NULL;
+				
+				// When the shader technique changes, textures need to be
+				// rebound, so ensure there are no remnants from the last pass.
+				// (the vector size is set to 0, but memory is not freed)
+				currentTexs.clear();
+				texBindings.clear();
+				texBindingNames.clear();
+				
 				CModelDef* currentModeldef = NULL;
 				CShaderUniforms currentStaticUniforms;
-				// (Texture needs to be rebound after binding a new shader, so we
-				// can't move currentTex outside of this loop to reduce state changes)
 
 				for (size_t idx = idxTechStart; idx < idxTechEnd; ++idx)
 				{
@@ -573,12 +596,44 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 						if (flags && !(model->GetFlags() & flags))
 							continue;
 
-						// Bind texture when it changes
-						CTexture* newTex = model->GetMaterial().GetDiffuseTexture().get();
-						if (newTex != currentTex)
+						CMaterial::SamplersVector samplers = model->GetMaterial().GetSamplers();
+						size_t samplersNum = samplers.size();
+						
+						// make sure the vectors are the right virtual sizes, and also
+						// reallocate if there are more samplers than expected.
+						if (currentTexs.size() != samplersNum)
 						{
-							currentTex = newTex;
-							modifier->PrepareTexture(shader, *currentTex);
+							currentTexs.resize(samplersNum, NULL);
+							texBindings.resize(samplersNum, CShaderProgram::Binding());
+							texBindingNames.resize(samplersNum, CStrIntern());
+						}
+						
+						// bind the samplers to the shader
+						for (size_t s = 0; s < samplersNum; ++s)
+						{
+							CMaterial::TextureSampler &samp = samplers[s];
+							
+							CShaderProgram::Binding bind = texBindings[s];
+							// check that the handles are current
+							// and reevaluate them if necessary
+							if (texBindingNames[s] == samp.Name && bind.Active())
+							{
+								bind = texBindings[s];
+							}
+							else
+							{
+								bind = shader->GetTextureBinding(samp.Name.c_str());		
+								texBindings[s] = bind;
+								texBindingNames[s] = samp.Name;
+							}
+
+							// same with the actual sampler bindings
+							CTexture* newTex = samp.Sampler.get();
+							if (bind.Active() && newTex != currentTexs[s])
+							{
+								shader->BindTexture(bind, samp.Sampler->GetHandle());
+								currentTexs[s] = newTex;
+							}
 						}
 
 						// Bind modeldef when it changes

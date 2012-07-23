@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/iber_farmstead_b_hay.dae</mesh>
-      <texture>props/wrld_hay_a.dds</texture>
+      <textures><texture file="props/wrld_hay_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

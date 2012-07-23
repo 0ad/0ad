@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="broken rope bridge long">
       <mesh>props/special/broken_rope_bridge_long.dae</mesh>
-      <texture>structural/iber_siege_ram.dds</texture>
+      <textures><texture file="structural/iber_siege_ram.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

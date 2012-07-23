@@ -4,7 +4,7 @@
   <group>
     <variant name="road temperate long">
       <decal width="10" depth="40" angle="0" offsetx="0" offsetz="0"/>
-      <texture>props/road_temperate_straight_long.dds</texture>
+      <textures><texture file="props/road_temperate_straight_long.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/helmet/pers_cav_knot.dae</mesh>
-      <texture>props/helmet/rome-e-coolus.dds</texture>
+      <textures><texture file="props/helmet/rome-e-coolus.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

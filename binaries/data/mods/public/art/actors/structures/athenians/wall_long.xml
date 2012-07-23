@@ -4,7 +4,7 @@
   <group>
     <variant name="Wall long">
       <mesh>structural/hele_wall_long.dae</mesh>
-      <texture>structural/hele_struct_b.dds</texture>
+      <textures><texture file="structural/hele_struct_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

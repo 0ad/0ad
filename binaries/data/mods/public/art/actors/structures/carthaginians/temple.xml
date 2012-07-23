@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/structures/carthaginians/temple.xml" attachpoint="props_main"/>
       </props>
-      <texture>structural/kart_struct_1.dds</texture>
+      <textures><texture file="structural/kart_struct_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

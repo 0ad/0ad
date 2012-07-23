@@ -40,7 +40,7 @@
         <prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>
         <prop actor="props/units/cape_hd_pelt.xml" attachpoint="shoulders"/>
       </props>
-      <texture>skeletal/mace_ijv_b.png</texture>
+      <textures><texture file="skeletal/mace_ijv_b.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

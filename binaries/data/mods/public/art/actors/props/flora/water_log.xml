@@ -13,10 +13,10 @@
 
   <group>
     <variant name="a">
-      <texture>gaia/log_a.dds</texture>
+      <textures><texture file="gaia/log_a.dds" name="baseTex"/></textures>
     </variant>
     <variant name="b">
-      <texture>gaia/log_b.dds</texture>
+      <textures><texture file="gaia/log_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

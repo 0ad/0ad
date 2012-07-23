@@ -14,16 +14,16 @@
 
   <group>
     <variant frequency="1" name="shield-E">
-      <texture>props/shield/celt_round_e.dds</texture>
+      <textures><texture file="props/shield/celt_round_e.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-G">
-      <texture>props/shield/celt_round_g.dds</texture>
+      <textures><texture file="props/shield/celt_round_g.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-K">
-      <texture>props/shield/celt_round_k.dds</texture>
+      <textures><texture file="props/shield/celt_round_k.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-M">
-      <texture>props/shield/celt_round_m.dds</texture>
+      <textures><texture file="props/shield/celt_round_m.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

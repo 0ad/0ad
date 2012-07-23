@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="Helmet-Crest">
       <mesh>props/helmet/hele_corinthian_pushed.dae</mesh>
-      <texture>props/helmet/hele_d1.dds</texture>
+      <textures><texture file="props/helmet/hele_d1.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

@@ -27,16 +27,16 @@
   </group>
   <group>
     <variant frequency="1" name="nekkid 01">
-      <texture>skeletal/kart_isw_a_01.dds</texture>
+      <textures><texture file="skeletal/kart_isw_a_01.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="nekkid 02">
-      <texture>skeletal/kart_isw_a_02.dds</texture>
+      <textures><texture file="skeletal/kart_isw_a_02.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="nekkid 03">
-      <texture>skeletal/celt_ijv_e_01.dds</texture>
+      <textures><texture file="skeletal/celt_ijv_e_01.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="nekkid 04">
-      <texture>skeletal/celt_ijv_e_02.dds</texture>
+      <textures><texture file="skeletal/celt_ijv_e_02.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

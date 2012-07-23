@@ -18,31 +18,31 @@
   <group>
     <variant frequency="1" name="d-Tattoos-1">
       <mesh>skeletal/m_tights.dae</mesh>
-      <texture>skeletal/celt_ijv_e_01.dds</texture>
+      <textures><texture file="skeletal/celt_ijv_e_01.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="d-Tattoos-2">
       <mesh>skeletal/m_tights.dae</mesh>
-      <texture>skeletal/celt_ijv_e_02.dds</texture>
+      <textures><texture file="skeletal/celt_ijv_e_02.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="d-Tattoos-3">
       <mesh>skeletal/m_tights.dae</mesh>
-      <texture>skeletal/kart_isw_a_01.dds</texture>
+      <textures><texture file="skeletal/kart_isw_a_01.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="d-Tattoos-4">
       <mesh>skeletal/m_tights.dae</mesh>
-      <texture>skeletal/kart_isw_a_02.dds</texture>
+      <textures><texture file="skeletal/kart_isw_a_02.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="10" name="d-Trousers-1">
       <mesh>skeletal/m_pants.dae</mesh>
-      <texture>skeletal/kart_isw_a_03.dds</texture>
+      <textures><texture file="skeletal/kart_isw_a_03.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="10" name="d-Trousers-2">
       <mesh>skeletal/m_pants.dae</mesh>
-      <texture>skeletal/kart_isw_a_04.dds</texture>
+      <textures><texture file="skeletal/kart_isw_a_04.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="20" name="d-Trousers-3">
       <mesh>skeletal/m_pants.dae</mesh>
-      <texture>skeletal/kart_isw_a_05.dds</texture>
+      <textures><texture file="skeletal/kart_isw_a_05.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

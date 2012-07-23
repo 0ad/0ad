@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/celt_temple_wall.dae</mesh>
-      <texture>structural/celt_wall.dds</texture>
+      <textures><texture file="structural/celt_wall.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

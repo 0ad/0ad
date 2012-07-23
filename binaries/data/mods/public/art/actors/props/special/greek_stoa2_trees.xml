@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="trees">
       <mesh>props/hele_stoa2_trees.dae</mesh>
-      <texture>gaia/prop_tree_cypess.dds</texture>
+      <textures><texture file="gaia/prop_tree_cypess.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

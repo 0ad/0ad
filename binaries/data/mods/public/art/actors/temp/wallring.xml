@@ -4,7 +4,7 @@
   <group>
     <variant>
       <decal width="300" depth="300" angle="0" offsetx="0" offsetz="0"/>
-      <texture>temp/wallring.dds</texture>
+      <textures><texture file="temp/wallring.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

@@ -27,13 +27,13 @@
   </group>
   <group>
     <variant frequency="1" name="Armour-Linen-Linothorax">
-      <texture>skeletal/hele_pezhetairoi_3.dds</texture>
+      <textures><texture file="skeletal/hele_pezhetairoi_3.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Armour-Reinforced Linothorax">
-      <texture>skeletal/hele_pezhetairoi.dds</texture>
+      <textures><texture file="skeletal/hele_pezhetairoi.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Armour-Bronze Cuirass">
-      <texture>skeletal/hele_pezhetairoi_2.dds</texture>
+      <textures><texture file="skeletal/hele_pezhetairoi_2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

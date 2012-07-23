@@ -32,10 +32,10 @@
 
   <group>
     <variant frequency="1" name="trunk_texture_a">
-      <texture>gaia/trunk_deciduous_a.dds</texture>
+      <textures><texture file="gaia/trunk_deciduous_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="trunk_texture_b">
-      <texture>gaia/trunk_deciduous_b.dds</texture>
+      <textures><texture file="gaia/trunk_deciduous_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

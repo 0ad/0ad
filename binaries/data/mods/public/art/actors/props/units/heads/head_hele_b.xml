@@ -11,19 +11,19 @@
 
   <group>
     <variant frequency="1" name="face-young">
-      <texture>props/head/hele_a.dds</texture>
+      <textures><texture file="props/head/hele_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="face-shaven">
-      <texture>props/head/hele_b.dds</texture>
+      <textures><texture file="props/head/hele_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="face-whiskers">
-      <texture>props/head/hele_h.dds</texture>
+      <textures><texture file="props/head/hele_h.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="face-grit-teeth">
-      <texture>props/head/hele_i.dds</texture>
+      <textures><texture file="props/head/hele_i.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="face-generic">
-      <texture>props/head/generic_a.dds</texture>
+      <textures><texture file="props/head/generic_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

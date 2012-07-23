@@ -4,15 +4,15 @@
   <group>
     <variant frequency="1" name="plant-orange">
       <mesh>gaia/plant_tropic_lg.dae</mesh>
-      <texture>gaia/plant_tropic_i.dds</texture>
+      <textures><texture file="gaia/plant_tropic_i.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="plant-green">
       <mesh>gaia/plant_tropic_lg.dae</mesh>
-      <texture>gaia/plant_tropic_j.dds</texture>
+      <textures><texture file="gaia/plant_tropic_j.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="plant-ferns-a">
       <mesh>gaia/plant_tropic_ferns_1.dae</mesh>
-      <texture>gaia/plant_tropic_k.dds</texture>
+      <textures><texture file="gaia/plant_tropic_k.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

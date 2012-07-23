@@ -18,7 +18,7 @@
       <props>
         <prop actor="props/fauna/gazelle_horns.xml" attachpoint="antler"/>
       </props>
-      <texture>skeletal/animal_gazelle_02.dds</texture>
+      <textures><texture file="skeletal/animal_gazelle_02.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="5" name="female">
       <animations>
@@ -34,7 +34,7 @@
         <animation name=""/>
       </animations>
       <mesh>skeletal/deer_mesh.dae</mesh>
-      <texture>skeletal/animal_gazelle_02.dds</texture>
+      <textures><texture file="skeletal/animal_gazelle_02.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

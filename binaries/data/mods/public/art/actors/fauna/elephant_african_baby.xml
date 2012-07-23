@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="elephant_african_bush [infant]">
       <mesh>skeletal/elephant_african_baby.dae</mesh>
-      <texture>skeletal/animal-elephant-base-baby.dds</texture>
+      <textures><texture file="skeletal/animal-elephant-base-baby.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

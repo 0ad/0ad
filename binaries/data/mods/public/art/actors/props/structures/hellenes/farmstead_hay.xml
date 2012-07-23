@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="farmstead hay">
       <mesh>props/hele_farmstead_hay.dae</mesh>
-      <texture>props/celt_prop_1.dds</texture>
+      <textures><texture file="props/celt_prop_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

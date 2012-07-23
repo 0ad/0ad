@@ -20,7 +20,7 @@
         <prop actor="props/units/shields/mace_round_hypaspist.xml" attachpoint="shield_left_back"/>
         <prop actor="props/units/shields/mace_argyraspides.xml" attachpoint="shield_right_back"/>
       </props>
-      <texture>structural/spart_siege_ram.png</texture>
+      <textures><texture file="structural/spart_siege_ram.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

@@ -36,7 +36,7 @@
         <prop actor="props/units/weapons/sling.xml" attachpoint="r_hand"/>
         <prop actor="props/units/weapons/slingrock.xml" attachpoint="projectile"/>
       </props>
-      <texture>skeletal/hele_tunic.dds</texture>	  
+      <textures><texture file="skeletal/hele_tunic.dds" name="baseTex"/></textures>	  
     </variant>
   </group>
   <group>

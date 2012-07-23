@@ -11,7 +11,7 @@
   </group>
   <group>
     <variant frequency="1" name="Shield-D">
-      <texture>props/shield/samnite_d.dds</texture>
+      <textures><texture file="props/shield/samnite_d.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

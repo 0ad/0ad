@@ -42,13 +42,13 @@
   </group>
   <group>
     <variant frequency="1" name="Ekdromos-Chiton-01">
-      <texture>skeletal/hele_su1_01.dds</texture>
+      <textures><texture file="skeletal/hele_su1_01.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Ekdromos-Chiton-02">
-      <texture>skeletal/hele_su1_02.dds</texture>
+      <textures><texture file="skeletal/hele_su1_02.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Ekdromos-Chiton-03">
-      <texture>skeletal/hele_su1_03.dds</texture>
+      <textures><texture file="skeletal/hele_su1_03.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

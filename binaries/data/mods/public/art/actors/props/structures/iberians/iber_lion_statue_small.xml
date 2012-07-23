@@ -4,7 +4,7 @@
   <group>
     <variant name="lion_statue_small">
       <mesh>props/iber_lion_statue_small.dae</mesh>
-      <texture>structural/iber_lion_statue_small.png</texture>
+      <textures><texture file="structural/iber_lion_statue_small.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

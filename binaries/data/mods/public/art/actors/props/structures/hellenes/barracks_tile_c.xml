@@ -4,7 +4,7 @@
   <group>
     <variant name="barracks tile c">
       <mesh>structural/helle_barracks_tilec.dae</mesh>
-      <texture>props/hele_tile_c.dds</texture>
+      <textures><texture file="props/hele_tile_c.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

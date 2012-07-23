@@ -12,40 +12,40 @@
   </group>
   <group>
     <variant name="hele">
-      <texture>props/banner_greek.png</texture>
+      <textures><texture file="props/banner_greek.png" name="baseTex"/></textures>
     </variant>
     <variant name="pers">
-      <texture>props/banner_persian.png</texture>
+      <textures><texture file="props/banner_persian.png" name="baseTex"/></textures>
     </variant>
     <variant name="celt">
-      <texture>props/banner_celt.png</texture>
+      <textures><texture file="props/banner_celt.png" name="baseTex"/></textures>
     </variant>
     <variant name="cart">
-      <texture>props/banner_carthage.png</texture>
+      <textures><texture file="props/banner_carthage.png" name="baseTex"/></textures>
     </variant>
     <variant name="iber">
-      <texture>props/banner_iberians.png</texture>
+      <textures><texture file="props/banner_iberians.png" name="baseTex"/></textures>
     </variant>
     <variant name="rome">
-      <texture>props/banner_romans.png</texture>
+      <textures><texture file="props/banner_romans.png" name="baseTex"/></textures>
     </variant>
     <variant name="spart">
-      <texture>props/banner_spartans.png</texture>
+      <textures><texture file="props/banner_spartans.png" name="baseTex"/></textures>
     </variant>
     <variant name="mace">
-      <texture>props/banner_macedonians.png</texture>
+      <textures><texture file="props/banner_macedonians.png" name="baseTex"/></textures>
     </variant>
     <variant name="athen">
-      <texture>props/banner_greek.png</texture>
+      <textures><texture file="props/banner_greek.png" name="baseTex"/></textures>
     </variant>
     <variant name="brit">
-      <texture>props/banner_celt.png</texture>
+      <textures><texture file="props/banner_celt.png" name="baseTex"/></textures>
     </variant>
     <variant name="gaul">
-      <texture>props/banner_celt.png</texture>
+      <textures><texture file="props/banner_celt.png" name="baseTex"/></textures>
     </variant>
     <variant name="maur">
-      <texture>props/banner_mauryans.png</texture>
+      <textures><texture file="props/banner_mauryans.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

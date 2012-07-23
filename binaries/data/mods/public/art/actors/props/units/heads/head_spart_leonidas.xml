@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="face">
       <mesh>props/head_helmet_face.dae</mesh>
-      <texture>props/head/xerxes.png</texture>
+      <textures><texture file="props/head/xerxes.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

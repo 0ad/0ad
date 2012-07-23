@@ -26,10 +26,10 @@
 
   <group>
     <variant frequency="1" name="Palm Fronds-Green">
-      <texture>gaia/tree_palmdate_a.dds</texture>
+      <textures><texture file="gaia/tree_palmdate_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Palm Fronds-Brown">
-      <texture>gaia/tree_palmdate_b.dds</texture>
+      <textures><texture file="gaia/tree_palmdate_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

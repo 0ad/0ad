@@ -6,7 +6,7 @@
   <group>
     <variant frequency="1" name="face-elite">
       <mesh>props/head_beard_large.dae</mesh>
-      <texture>props/head/numid_face_c.dds</texture>
+      <textures><texture file="props/head/numid_face_c.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

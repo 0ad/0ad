@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="pers treasure 4 (food big)">
       <mesh>props/treasure_pers_4.dae</mesh>
-      <texture>structural/pers_struct.dds</texture>
+      <textures><texture file="structural/pers_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

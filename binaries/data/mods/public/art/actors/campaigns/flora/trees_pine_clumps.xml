@@ -11,7 +11,7 @@
   </group>
   <group>
     <variant name="texture">
-      <texture>gaia/tree_cypress_b.png</texture>
+      <textures><texture file="gaia/tree_cypress_b.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>alphatest.xml</material>

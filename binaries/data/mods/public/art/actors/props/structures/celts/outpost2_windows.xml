@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/celt_outpost2_windows.dae</mesh>
-      <texture>structural/celt_broch.dds</texture>
+      <textures><texture file="structural/celt_broch.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

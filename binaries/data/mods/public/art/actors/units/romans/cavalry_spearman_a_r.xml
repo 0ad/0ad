@@ -24,10 +24,10 @@
   </group>
   <group>
     <variant frequency="1" name="Chainmail-Plain">
-      <texture>skeletal/rome_csp_a.dds</texture>
+      <textures><texture file="skeletal/rome_csp_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Chainmail-Shoulder detail">
-      <texture>skeletal/rome_isp_e_2.dds</texture>
+      <textures><texture file="skeletal/rome_isp_e_2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

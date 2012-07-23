@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>structural/found_1x3.dae</mesh>
-      <texture>structural/foundation.dds</texture>
+      <textures><texture file="structural/foundation.dds" name="baseTex"/></textures>
     </variant>
     <variant>
       <props>

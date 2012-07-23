@@ -4,11 +4,11 @@
   <group>
     <variant frequency="2" name="produce bins a">
       <mesh>props/produce_bins_a.dae</mesh>
-      <texture>structural/iber_struct.dds</texture>
+      <textures><texture file="structural/iber_struct.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="produce bins b">
       <mesh>props/produce_bins_b.dae</mesh>
-      <texture>structural/iber_struct.dds</texture>
+      <textures><texture file="structural/iber_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

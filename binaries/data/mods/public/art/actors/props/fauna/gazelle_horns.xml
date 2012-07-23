@@ -4,7 +4,7 @@
   <group>
     <variant name="gazelle horns">
       <mesh>props/gazelle_horns.dae</mesh>
-      <texture>props/gazelle_horns.dds</texture>
+      <textures><texture file="props/gazelle_horns.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

@@ -7,7 +7,7 @@
       <props>
         <prop actor="particle/construction_dust.xml" attachpoint="root"/>
       </props>
-      <texture>structural/celt_struct_1.dds</texture>
+      <textures><texture file="structural/celt_struct_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

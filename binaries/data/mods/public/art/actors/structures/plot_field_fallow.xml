@@ -4,7 +4,7 @@
   <group>
     <variant name="base">
       <mesh>structural/field_plot.dae</mesh>
-      <texture>structural/plot_field_fallow.dds</texture>
+      <textures><texture file="structural/plot_field_fallow.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/celt_dock_props_1.dae</mesh>
-      <texture>props/celt_prop_1.png</texture>
+      <textures><texture file="props/celt_prop_1.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

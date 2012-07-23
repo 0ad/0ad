@@ -16,7 +16,7 @@
         <prop actor="props/structures/carthaginians/bireme_shroud.xml" attachpoint="root"/>
         <prop actor="props/structures/carthaginians/bireme_shields.xml" attachpoint="root"/>
       </props>
-      <texture>structural/kart_bireme.png</texture>
+      <textures><texture file="structural/kart_bireme.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

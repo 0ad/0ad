@@ -9,10 +9,10 @@
   </group>
   <group>
     <variant frequency="1" name="trireme-sail-zoroaster">
-      <texture>props/pers_trireme_sail.dds</texture>
+      <textures><texture file="props/pers_trireme_sail.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="trireme-sail-royal standard">
-      <texture>props/pers_trireme_sail_b.dds</texture>
+      <textures><texture file="props/pers_trireme_sail_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

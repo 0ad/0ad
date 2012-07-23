@@ -4,7 +4,7 @@
   <group>
     <variant name="decal_flowers_daisies">
       <decal width="10" depth="10" angle="0" offsetx="0" offsetz="2"/>
-      <texture>gaia/flowers_daisies.dds</texture>
+      <textures><texture file="gaia/flowers_daisies.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

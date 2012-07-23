@@ -5,7 +5,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/rome_trireme_shroud.dae</mesh>
-      <texture>props/ship_shrouds.dds</texture>
+      <textures><texture file="props/ship_shrouds.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

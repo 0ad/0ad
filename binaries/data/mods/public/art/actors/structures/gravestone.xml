@@ -6,7 +6,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>structural/gravestone.dae</mesh>
-      <texture>structural/gravestone.dds</texture>
+      <textures><texture file="structural/gravestone.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

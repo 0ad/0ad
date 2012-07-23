@@ -20,7 +20,7 @@
   </group>
   <group>
     <variant frequency="100" name="texture">
-      <texture>props/rome_cc_statues.png</texture>
+      <textures><texture file="props/rome_cc_statues.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

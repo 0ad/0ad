@@ -9,7 +9,7 @@
       <props>
         <prop actor="props/units/weapons/hele_siege_rock.xml" attachpoint="siege"/>
       </props>
-      <texture>structural/hele_wagon.dds</texture>
+      <textures><texture file="structural/hele_wagon.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

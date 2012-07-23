@@ -8,7 +8,7 @@
         <prop actor="particle/flame_jav.xml" attachpoint="root"/>
         <prop actor="particle/smoke_jav.xml" attachpoint="root"/>
       </props>
-      <texture>props/prop_weap.dds</texture>
+      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

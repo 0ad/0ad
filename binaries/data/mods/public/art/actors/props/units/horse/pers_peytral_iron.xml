@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="horse armor peytral - iron">
       <mesh>props/horse_peytral_large.dae</mesh>
-      <texture>props/helmet/pers_h2.dds</texture>
+      <textures><texture file="props/helmet/pers_h2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

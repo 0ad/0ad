@@ -10,7 +10,7 @@
   </group>
   <group>
     <variant frequency="1" name="taxture">
-      <texture>gaia/grass_tropic_a.png</texture>
+      <textures><texture file="gaia/grass_tropic_a.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

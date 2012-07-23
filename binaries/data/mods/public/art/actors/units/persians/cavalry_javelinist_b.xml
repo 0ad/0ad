@@ -27,7 +27,7 @@
         <prop actor="units/persians/cavalry_javelinist_b_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
       </props>
-      <texture>skeletal/horse_pers_csw_b.dds</texture>
+      <textures><texture file="skeletal/horse_pers_csw_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

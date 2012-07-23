@@ -103,13 +103,6 @@ void ShaderRenderModifier::BeginPass(const CShaderProgramPtr& shader)
 	m_BindingInstancingTransform = shader->GetUniformBinding("instancingTransform");
 	m_BindingShadingColor = shader->GetUniformBinding("shadingColor");
 	m_BindingPlayerColor = shader->GetUniformBinding("playerColor");
-	m_BindingBaseTex = shader->GetTextureBinding("baseTex");
-}
-
-void ShaderRenderModifier::PrepareTexture(const CShaderProgramPtr& shader, CTexture& texture)
-{
-	if (m_BindingBaseTex.Active())
-		shader->BindTexture(m_BindingBaseTex, texture.GetHandle());
 }
 
 void ShaderRenderModifier::PrepareModel(const CShaderProgramPtr& shader, CModel* model)

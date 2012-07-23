@@ -10,7 +10,7 @@
         <prop actor="props/units/shields/iber_round_su1.xml" attachpoint="shield2"/>
         <prop actor="props/units/shields/iber_scutum_isp_e.xml" attachpoint="shield3"/>
       </props>
-      <texture>structural/iber_struct.dds</texture>
+      <textures><texture file="structural/iber_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

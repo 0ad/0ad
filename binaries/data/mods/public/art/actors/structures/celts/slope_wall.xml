@@ -9,7 +9,7 @@
         <prop actor="props/structures/celts/slope_wall_prop_1.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/slope_wall_shields.xml" attachpoint="root"/>
       </props>
-      <texture>structural/celt_wall.dds</texture>
+      <textures><texture file="structural/celt_wall.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

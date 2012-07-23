@@ -8,10 +8,10 @@
   </group>
   <group>
     <variant frequency="1" name="helmet texture a1">
-      <texture>props/helmet/hele_a1.dds</texture>
+      <textures><texture file="props/helmet/hele_a1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="helmet texture a3">
-      <texture>props/helmet/hele_a3.dds</texture>
+      <textures><texture file="props/helmet/hele_a3.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

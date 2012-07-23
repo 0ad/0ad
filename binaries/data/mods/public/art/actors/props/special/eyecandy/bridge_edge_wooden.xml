@@ -5,7 +5,7 @@
   <group>
     <variant name="bridge edge wooden">
       <mesh>props/special/bridge_edge_wooden.dae</mesh>
-      <texture>props/bridge_edge_wooden.png</texture>
+      <textures><texture file="props/bridge_edge_wooden.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

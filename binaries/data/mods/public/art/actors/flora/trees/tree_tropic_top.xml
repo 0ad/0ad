@@ -22,10 +22,10 @@
   </group>
   <group>
     <variant frequency="1" name="tree_tropic-top-texture-a">
-      <texture>gaia/tree_tropic_a.dds</texture>
+      <textures><texture file="gaia/tree_tropic_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="tree_tropic-top-texture-b">
-      <texture>gaia/tree_tropic_b.dds</texture>
+      <textures><texture file="gaia/tree_tropic_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

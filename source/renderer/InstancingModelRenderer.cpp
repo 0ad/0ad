@@ -46,12 +46,14 @@ struct IModelDef : public CModelDefRPrivate
 	/// Static per-CModel vertex array
 	VertexArray m_Array;
 
-	/// Position, normals and UV are all static
+	/// Position and normals are static
 	VertexArray::Attribute m_Position;
 	VertexArray::Attribute m_Normal;
-	VertexArray::Attribute m_UV;
 	VertexArray::Attribute m_BlendJoints; // valid iff gpuSkinning == true
 	VertexArray::Attribute m_BlendWeights; // valid iff gpuSkinning == true
+
+	/// The number of UVs is determined by the model
+	VertexArray::Attribute m_UVs[5];
 
 	/// Indices are the same for all models, so share them
 	VertexIndexArray m_IndexArray;
@@ -73,9 +75,12 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning)
 	m_Normal.elems = 3;
 	m_Array.AddAttribute(&m_Normal);
 
-	m_UV.type = GL_FLOAT;
-	m_UV.elems = 2;
-	m_Array.AddAttribute(&m_UV);
+	for (size_t i = 0; i < mdef->GetNumUVsPerVertex(); i++)
+	{
+		m_UVs[i].type = GL_FLOAT;
+		m_UVs[i].elems = 2;
+		m_Array.AddAttribute(&m_UVs[i]);
+	}
 
 	if (gpuSkinning)
 	{
@@ -93,10 +98,14 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning)
 
 	VertexArrayIterator<CVector3D> Position = m_Position.GetIterator<CVector3D>();
 	VertexArrayIterator<CVector3D> Normal = m_Normal.GetIterator<CVector3D>();
-	VertexArrayIterator<float[2]> UVit = m_UV.GetIterator<float[2]>();
 
 	ModelRenderer::CopyPositionAndNormals(mdef, Position, Normal);
-	ModelRenderer::BuildUV(mdef, UVit);
+
+	for (size_t i = 0; i < mdef->GetNumUVsPerVertex(); i++)
+	{
+		VertexArrayIterator<float[2]> UVit = m_UVs[i].GetIterator<float[2]>();
+		ModelRenderer::BuildUV(mdef, UVit, i);
+	}
 
 	if (gpuSkinning)
 	{
@@ -180,7 +189,7 @@ void InstancingModelRenderer::UpdateModelData(CModel* UNUSED(model), CModelRData
 // Setup one rendering pass.
 void InstancingModelRenderer::BeginPass(int streamflags)
 {
-	ENSURE(streamflags == (streamflags & (STREAM_POS|STREAM_NORMAL|STREAM_UV0)));
+	ENSURE(streamflags == (streamflags & (STREAM_POS|STREAM_NORMAL|STREAM_UV0|STREAM_UV1)));
 }
 
 // Cleanup rendering pass.
@@ -209,7 +218,10 @@ void InstancingModelRenderer::PrepareModelDef(const CShaderProgramPtr& shader, i
 		shader->NormalPointer(GL_FLOAT, stride, base + m->imodeldef->m_Normal.offset);
 
 	if (streamflags & STREAM_UV0)
-		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, base + m->imodeldef->m_UV.offset);
+		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, base + m->imodeldef->m_UVs[0].offset);
+	
+	if ((streamflags & STREAM_UV1) && def.GetNumUVsPerVertex() >= 2)
+		shader->TexCoordPointer(GL_TEXTURE1, 2, GL_FLOAT, stride, base + m->imodeldef->m_UVs[1].offset);
 
 	// GPU skinning requires extra attributes to compute positions/normals
 	if (m->gpuSkinning)

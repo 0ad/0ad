@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
       </props>
-      <texture>structural/wrld_settlements.dds</texture>
+      <textures><texture file="structural/wrld_settlements.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

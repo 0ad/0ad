@@ -34,7 +34,7 @@
         <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <texture>skeletal/test_skyth_scaled.dds</texture>
+      <textures><texture file="skeletal/test_skyth_scaled.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

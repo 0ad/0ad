@@ -23,13 +23,13 @@
   </group>
   <group>
     <variant frequency="15" name="leaf-texture-green">
-      <texture>gaia/tree_euro_beech_a.dds</texture>
+      <textures><texture file="gaia/tree_euro_beech_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="leaf-texture-golden">
-      <texture>gaia/tree_euro_beech_b.dds</texture>
+      <textures><texture file="gaia/tree_euro_beech_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="leaf-texture-purple">
-      <texture>gaia/tree_euro_beech_c.dds</texture>
+      <textures><texture file="gaia/tree_euro_beech_c.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

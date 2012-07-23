@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1">
       <mesh>props/hele_farmstead_roof.dae</mesh>
-      <texture>structural/rooftiles_broken.png</texture>
+      <textures><texture file="structural/rooftiles_broken.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

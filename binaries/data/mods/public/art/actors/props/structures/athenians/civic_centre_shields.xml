@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>structural/hele_civic_shields.dae</mesh>
-      <texture>props/athen_prop_shields.png</texture>
+      <textures><texture file="props/athen_prop_shields.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

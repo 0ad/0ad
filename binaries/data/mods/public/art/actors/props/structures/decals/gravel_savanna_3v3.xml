@@ -4,7 +4,7 @@
   <group>
     <variant name="decal_savanna_metalmine">
       <decal width="20" depth="20" angle="0" offsetx="0" offsetz="0"/>
-      <texture>gaia/decal_quarry_savanna_a.png</texture>
+      <textures><texture file="gaia/decal_quarry_savanna_a.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

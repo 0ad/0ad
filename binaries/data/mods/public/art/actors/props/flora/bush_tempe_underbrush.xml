@@ -11,25 +11,25 @@
   </group>
   <group>
     <variant frequency="2" name="foliage-a">
-      <texture>gaia/poplar_c.dds</texture>
+      <textures><texture file="gaia/poplar_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="foliage-b">
-      <texture>gaia/tree_euro_beech_a.dds</texture>
+      <textures><texture file="gaia/tree_euro_beech_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="foliage-c">
-      <texture>gaia/tree_euro_beech_b.dds</texture>
+      <textures><texture file="gaia/tree_euro_beech_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="foliage-d">
-      <texture>gaia/tree_euro_beech_c.dds</texture>
+      <textures><texture file="gaia/tree_euro_beech_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="foliage-e">
-      <texture>gaia/tree_oak_a.dds</texture>
+      <textures><texture file="gaia/tree_oak_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="foliage-f">
-      <texture>gaia/tree_oak_b.dds</texture>
+      <textures><texture file="gaia/tree_oak_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="foliage-g">
-      <texture>gaia/tree_oak_c.dds</texture>
+      <textures><texture file="gaia/tree_oak_c.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

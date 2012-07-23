@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="garrisonflag hellenes">
       <mesh>props/special/garrisonflag.dae</mesh>
-      <texture>props/banner_greek.png</texture>
+      <textures><texture file="props/banner_greek.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

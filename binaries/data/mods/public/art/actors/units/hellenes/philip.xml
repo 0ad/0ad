@@ -24,15 +24,15 @@
   <group>
     <variant frequency="1" name="Armour - Leather Cuirass">
       <mesh>skeletal/m_tunic_short.dae</mesh>
-      <texture>skeletal/hele_philip.dds</texture>
+      <textures><texture file="skeletal/hele_philip.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Armour - Vergina Cuirass">
       <mesh>skeletal/m_tunic_short.dae</mesh>
-      <texture>skeletal/hele_philip_2.dds</texture>
+      <textures><texture file="skeletal/hele_philip_2.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="3" name="Armour - Vergina Cuirass - Leather Pteruges">
       <mesh>skeletal/m_tunic_long.dae</mesh>
-      <texture>skeletal/hele_philip_3.dds</texture>
+      <textures><texture file="skeletal/hele_philip_3.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

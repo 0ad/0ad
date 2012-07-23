@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/units/shields/pelta_a_back.xml" attachpoint="back"/>
       </props>
-      <texture>props/shield/spart_pelta_b.png</texture>
+      <textures><texture file="props/shield/spart_pelta_b.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/rome_trireme_banner_trans.dae</mesh>
-      <texture>structural/rome_trireme.png</texture>
+      <textures><texture file="structural/rome_trireme.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

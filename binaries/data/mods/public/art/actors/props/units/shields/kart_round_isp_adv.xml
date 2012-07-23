@@ -11,22 +11,22 @@
   </group>
   <group>
     <variant frequency="1" name="kart-shield-o">
-      <texture>props/shield/kart_round_o.dds</texture>
+      <textures><texture file="props/shield/kart_round_o.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="kart-shield-k">
-      <texture>props/shield/kart_round_k.dds</texture>
+      <textures><texture file="props/shield/kart_round_k.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="kart-shield-l">
-      <texture>props/shield/kart_round_l.dds</texture>
+      <textures><texture file="props/shield/kart_round_l.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="kart-shield-x">
-      <texture>props/shield/kart_round_x.dds</texture>
+      <textures><texture file="props/shield/kart_round_x.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="kart-shield-o-2">
-      <texture>props/shield/kart_round_o_2.dds</texture>
+      <textures><texture file="props/shield/kart_round_o_2.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="kart-shield-ae-horse head">
-      <texture>props/shield/kart_round_ae.dds</texture>
+      <textures><texture file="props/shield/kart_round_ae.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

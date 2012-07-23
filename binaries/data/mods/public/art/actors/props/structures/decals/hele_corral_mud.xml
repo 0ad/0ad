@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1">
       <decal width="-23" depth="15" angle="0" offsetx="0" offsetz="-3"/>
-      <texture>props/decal_struct_mud_long.dds</texture>
+      <textures><texture file="props/decal_struct_mud_long.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

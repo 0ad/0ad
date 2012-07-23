@@ -6,7 +6,7 @@
   <group>
     <variant>
       <mesh>props/hele_tri3.dae</mesh>
-      <texture>props/oar.dds</texture>
+      <textures><texture file="props/oar.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

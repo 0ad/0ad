@@ -46,15 +46,15 @@
   <group>
     <variant frequency="1" name="Tunic-1">
       <mesh>skeletal/m_tunic_long.dae</mesh>
-      <texture>skeletal/hele_ijv_a.dds</texture>
+      <textures><texture file="skeletal/hele_ijv_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Tunic-2">
       <mesh>skeletal/m_tunic_short.dae</mesh>
-      <texture>skeletal/hele_ijv_a_2.dds</texture>
+      <textures><texture file="skeletal/hele_ijv_a_2.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Tunic-3">
       <mesh>skeletal/m_tunic_long.dae</mesh>
-      <texture>skeletal/hele_ijv_a_3.dds</texture>
+      <textures><texture file="skeletal/hele_ijv_a_3.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

@@ -5,7 +5,7 @@
   <group>
     <variant>
       <mesh>props/kart_merchant_ship_sail.dae</mesh>
-      <texture>props/kart_merchant_sail_a.png</texture>
+      <textures><texture file="props/kart_merchant_sail_a.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

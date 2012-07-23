@@ -10,7 +10,7 @@
         <prop actor="props/structures/hellenes/propylaea_roof.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/propylaea_walls.xml" attachpoint="root"/>
       </props>
-      <texture>structural/hele_struct.dds</texture>
+      <textures><texture file="structural/hele_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

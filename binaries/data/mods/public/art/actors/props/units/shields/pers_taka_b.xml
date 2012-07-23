@@ -17,7 +17,7 @@
   </group>
   <group>
     <variant frequency="1" name="taka shield g">
-      <texture>props/shield/pers_pelta_g.png</texture>
+      <textures><texture file="props/shield/pers_pelta_g.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

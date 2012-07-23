@@ -24,7 +24,7 @@
         <prop actor="props/units/cape_long_ragged.xml" attachpoint="shoulders"/>
         <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
       </props>
-      <texture>skeletal/hele_leonidas.dds</texture>
+      <textures><texture file="skeletal/hele_leonidas.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

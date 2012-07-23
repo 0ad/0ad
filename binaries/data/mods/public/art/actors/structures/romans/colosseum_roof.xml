@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>structural/wonder_colosseum_roof.dae</mesh>
-      <texture>structural/hele_struct_1.dds</texture>
+      <textures><texture file="structural/hele_struct_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

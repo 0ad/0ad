@@ -20,7 +20,7 @@
   </group>
   <group>
     <variant frequency="1" name="texture">
-      <texture>props/helmet/kart_thracian_1.dds</texture>
+      <textures><texture file="props/helmet/kart_thracian_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

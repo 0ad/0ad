@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="wall-medium-studs">
       <mesh>props/celt_slope_wall_studs.dae</mesh>
-      <texture>props/celt_wall_stump.dds</texture>
+      <textures><texture file="props/celt_wall_stump.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

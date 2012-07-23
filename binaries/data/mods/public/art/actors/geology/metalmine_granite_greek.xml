@@ -4,27 +4,27 @@
   <group>
     <variant frequency="2" name="formation-a">
       <mesh>gaia/stonemine_granite_a.dae</mesh>
-      <texture>gaia/metal_granite_greek.dds</texture>
+      <textures><texture file="gaia/metal_granite_greek.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="formation-b">
       <mesh>gaia/stonemine_granite_b.dae</mesh>
-      <texture>gaia/metal_granite_greek.dds</texture>
+      <textures><texture file="gaia/metal_granite_greek.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="formation-c">
       <mesh>gaia/stonemine_granite_c.dae</mesh>
-      <texture>gaia/metal_granite_greek.dds</texture>
+      <textures><texture file="gaia/metal_granite_greek.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="boulder-a">
       <mesh>gaia/stone_granite_boulder_a.dae</mesh>
-      <texture>gaia/metal_granite_greek_hi.dds</texture>
+      <textures><texture file="gaia/metal_granite_greek_hi.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="boulder-b">
       <mesh>gaia/stone_granite_boulder_b.dae</mesh>
-      <texture>gaia/metal_granite_greek_hi.dds</texture>
+      <textures><texture file="gaia/metal_granite_greek_hi.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="boulder-c">
       <mesh>gaia/stone_granite_boulder_c.dae</mesh>
-      <texture>gaia/metal_granite_greek_hi.dds</texture>
+      <textures><texture file="gaia/metal_granite_greek_hi.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_spec.xml</material>

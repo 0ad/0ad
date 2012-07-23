@@ -4,7 +4,7 @@
   <group>
     <variant name="underbrush mediterranean">
       <mesh>props/underbrush_plane_large.dae</mesh>
-      <texture>gaia/grass_underbrush_medit.png</texture>
+      <textures><texture file="gaia/grass_underbrush_medit.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/celt_sb_donkeys.dae</mesh>
-      <texture>skeletal/donkey.dds</texture>
+      <textures><texture file="skeletal/donkey.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

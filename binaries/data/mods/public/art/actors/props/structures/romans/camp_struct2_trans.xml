@@ -4,7 +4,7 @@
   <group>
     <variant name="camp struct 2 trans">
       <mesh>props/rome_camp_struct2_trans.dae</mesh>
-      <texture>structural/rome_struct_2.png</texture>
+      <textures><texture file="structural/rome_struct_2.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

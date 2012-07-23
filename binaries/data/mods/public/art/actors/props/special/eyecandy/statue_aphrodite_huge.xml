@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/statue_aphrodite_huge.dae</mesh>
-      <texture>props/marble.png</texture>
+      <textures><texture file="props/marble.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

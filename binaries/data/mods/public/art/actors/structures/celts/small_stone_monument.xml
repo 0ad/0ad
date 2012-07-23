@@ -6,7 +6,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>structural/celt_hc.dae</mesh>
-      <texture>structural/wrld_stone_celt.dds</texture>
+      <textures><texture file="structural/wrld_stone_celt.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

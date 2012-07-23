@@ -14,16 +14,16 @@
 
   <group>
     <variant frequency="1" name="Shield-Parma-C">
-      <texture>props/shield/rome_parma_c.dds</texture>
+      <textures><texture file="props/shield/rome_parma_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Shield-Parma-F">
-      <texture>props/shield/rome_parma_f.dds</texture>
+      <textures><texture file="props/shield/rome_parma_f.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Shield-Parma-G">
-      <texture>props/shield/rome_parma_g.dds</texture>
+      <textures><texture file="props/shield/rome_parma_g.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Shield-Parma-M">
-      <texture>props/shield/rome_parma_m.dds</texture>
+      <textures><texture file="props/shield/rome_parma_m.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

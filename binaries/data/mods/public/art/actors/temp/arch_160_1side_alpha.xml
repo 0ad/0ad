@@ -6,7 +6,7 @@
   <group>
     <variant>
       <mesh>test/arch_160.dae</mesh>
-      <texture>temp/test.dds</texture>
+      <textures><texture file="temp/test.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

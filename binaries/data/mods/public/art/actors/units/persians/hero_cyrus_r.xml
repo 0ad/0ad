@@ -26,7 +26,7 @@
   </group>
   <group>
     <variant frequency="1" name="Cyrus-Armour">
-      <texture>skeletal/pers_hero_cyrus.png</texture>
+      <textures><texture file="skeletal/pers_hero_cyrus.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

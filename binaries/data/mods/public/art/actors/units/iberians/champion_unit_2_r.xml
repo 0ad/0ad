@@ -22,11 +22,11 @@
   <group>
     <variant frequency="1" name="rider-quilted armour">
       <mesh>skeletal/m_tunic_short.dae</mesh>
-      <texture>skeletal/iber_su2_1.dds</texture>
+      <textures><texture file="skeletal/iber_su2_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="rider-plate armour">
       <mesh>skeletal/m_tunic_long.dae</mesh>
-      <texture>skeletal/iber_su2_2.dds</texture>
+      <textures><texture file="skeletal/iber_su2_2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

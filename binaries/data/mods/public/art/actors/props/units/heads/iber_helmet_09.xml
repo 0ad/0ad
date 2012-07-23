@@ -6,7 +6,7 @@
   <group>
     <variant frequency="1" name="hairnet">
       <mesh>props/helmet/iberian_09.dae</mesh>
-      <texture>props/helmet/iber_09.dds</texture>
+      <textures><texture file="props/helmet/iber_09.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

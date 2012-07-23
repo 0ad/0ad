@@ -4,7 +4,7 @@
   <group>
     <variant frequency="1" name="Cape Spartan">
       <mesh>props/cape_hd_hoplite.dae</mesh>
-      <texture>props/cape_hd.dds</texture>
+      <textures><texture file="props/cape_hd.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

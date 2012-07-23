@@ -6,7 +6,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/special/peltast_lboot.dae</mesh>
-      <texture>props/floppyboot.dds</texture>
+      <textures><texture file="props/floppyboot.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

@@ -21,10 +21,10 @@
   </group>
   <group>
     <variant frequency="1" name="Blanket-1-hide-brown">
-      <texture>skeletal/kart_su2_ele_a.dds</texture>
+      <textures><texture file="skeletal/kart_su2_ele_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Blanket-1-hide-gray">
-      <texture>skeletal/kart_su2_ele_b.dds</texture>
+      <textures><texture file="skeletal/kart_su2_ele_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

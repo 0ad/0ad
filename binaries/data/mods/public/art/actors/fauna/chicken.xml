@@ -19,10 +19,10 @@
   </group>
   <group>
     <variant frequency="1" name="feathers-red">
-      <texture>skeletal/animal_chicken.dds</texture>
+      <textures><texture file="skeletal/animal_chicken.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="feathers-brown">
-      <texture>skeletal/animal_chicken_b.dds</texture>
+      <textures><texture file="skeletal/animal_chicken_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

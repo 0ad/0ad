@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>skeletal/pig.dae</mesh>
-      <texture>skeletal/animal_pig_a.dds</texture>
+      <textures><texture file="skeletal/animal_pig_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

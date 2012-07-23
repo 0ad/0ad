@@ -10,7 +10,7 @@
         <prop actor="props/special/greek_stoa2_props_a.xml" attachpoint="root"/>
         <prop actor="props/special/greek_stoa2_tiles.xml" attachpoint="root"/>
       </props>
-      <texture>structural/hele_struct.dds</texture>
+      <textures><texture file="structural/hele_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

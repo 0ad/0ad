@@ -16,7 +16,7 @@
         <prop actor="props/structures/carthaginians/quin_foresail.xml" attachpoint="root"/>
         <prop actor="props/structures/carthaginians/quin_shroud.xml" attachpoint="root"/>
       </props>
-      <texture>structural/kart_quinquereme.png</texture>
+      <textures><texture file="structural/kart_quinquereme.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

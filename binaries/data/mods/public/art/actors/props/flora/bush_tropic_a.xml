@@ -23,13 +23,13 @@
 
   <group>
     <variant frequency="1" name="texture-a">
-      <texture>gaia/bush_tropic_a.dds</texture>
+      <textures><texture file="gaia/bush_tropic_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="texture-b">
-      <texture>gaia/bush_tropic_b.dds</texture>
+      <textures><texture file="gaia/bush_tropic_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="texture-c">
-      <texture>gaia/bush_tropic_c.dds</texture>
+      <textures><texture file="gaia/bush_tropic_c.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

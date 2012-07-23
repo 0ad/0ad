@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="iron">
       <mesh>props/weap_jav_f.dae</mesh>
-      <texture>props/prop_weap.dds</texture>
+      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_spec.xml</material>

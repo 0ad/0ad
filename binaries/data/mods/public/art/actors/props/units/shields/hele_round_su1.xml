@@ -11,28 +11,28 @@
   </group>
   <group>
     <variant frequency="2" name="shield-mora-a">
-      <texture>props/shield/hele_spartan_a.dds</texture>
+      <textures><texture file="props/shield/hele_spartan_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="shield-mora-b">
-      <texture>props/shield/hele_spartan_b.dds</texture>
+      <textures><texture file="props/shield/hele_spartan_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="shield-mora-c">
-      <texture>props/shield/hele_spartan_c.dds</texture>
+      <textures><texture file="props/shield/hele_spartan_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="shield-mora-d">
-      <texture>props/shield/hele_spartan_d.dds</texture>
+      <textures><texture file="props/shield/hele_spartan_d.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="shield-mora-e">
-      <texture>props/shield/hele_spartan_e.dds</texture>
+      <textures><texture file="props/shield/hele_spartan_e.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="shield-mora-gorgon">
-      <texture>props/shield/hele_spartan_f.dds</texture>
+      <textures><texture file="props/shield/hele_spartan_f.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-mora-skiritai">
-      <texture>props/shield/hele_spartan_skiritai.dds</texture>
+      <textures><texture file="props/shield/hele_spartan_skiritai.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-dokana">
-      <texture>props/shield/hele_spartan_dokana.dds</texture>
+      <textures><texture file="props/shield/hele_spartan_dokana.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

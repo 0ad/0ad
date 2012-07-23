@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/structures/hellenes/merchantship_sail.xml" attachpoint="root"/>
       </props>
-      <texture>structural/kyrenia.dds</texture>
+      <textures><texture file="structural/kyrenia.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

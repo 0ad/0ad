@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/helmet/pers_round_1.dae</mesh>
-      <texture>props/helmet/pers_round_1.dds</texture>
+      <textures><texture file="props/helmet/pers_round_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

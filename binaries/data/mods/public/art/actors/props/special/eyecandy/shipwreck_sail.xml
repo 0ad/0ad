@@ -12,13 +12,13 @@
   </group>
   <group>
     <variant frequency="1" name="sail blank">
-      <texture>props/hele_sail.dds</texture>
+      <textures><texture file="props/hele_sail.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="sail eye">
-      <texture>props/hele_sail_eye.dds</texture>
+      <textures><texture file="props/hele_sail_eye.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="sail triskelion">
-      <texture>props/hele_sail_runner.dds</texture>
+      <textures><texture file="props/hele_sail_runner.dds" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

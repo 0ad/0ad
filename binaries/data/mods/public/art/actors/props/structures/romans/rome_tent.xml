@@ -10,7 +10,7 @@
         <prop actor="props/units/shields/rome_parma_a.xml" attachpoint="shieldround"/>
         <prop actor="props/structures/romans/rome_tent_a_flaps.xml" attachpoint="root"/>
       </props>
-      <texture>props/rome_sb_tent.png</texture>
+      <textures><texture file="props/rome_sb_tent.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Tent B">
       <mesh>props/rome_tent_b.dae</mesh>
@@ -20,7 +20,7 @@
         <prop actor="props/units/shields/rome_parma_b.xml" attachpoint="shieldround"/>
         <prop actor="props/structures/romans/rome_tent_b_flaps.xml" attachpoint="root"/>
       </props>
-      <texture>props/rome_sb_tent.png</texture>
+      <textures><texture file="props/rome_sb_tent.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Tent C (fire)">
       <mesh>props/rome_tent_c.dae</mesh>
@@ -31,7 +31,7 @@
         <prop actor="props/units/shields/rome_parma_e.xml" attachpoint="shieldround"/>
         <prop actor="props/special/eyecandy/campfire_prop.xml" attachpoint="fire"/>
       </props>
-      <texture>props/rome_sb_tent.png</texture>
+      <textures><texture file="props/rome_sb_tent.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

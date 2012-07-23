@@ -50,7 +50,7 @@
         <prop actor="props/units/shields/spart_aspis_skiritai.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/xiphos.xml" attachpoint="r_hand"/>
       </props>
-      <texture>skeletal/mace_ijv_b.png</texture>
+      <textures><texture file="skeletal/mace_ijv_b.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

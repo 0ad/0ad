@@ -30,11 +30,11 @@
   <group>
     <variant frequency="1" name="Dress-01">
       <mesh>skeletal/f_dress.dae</mesh>
-      <texture>skeletal/pers_fem_1.dds</texture>
+      <textures><texture file="skeletal/pers_fem_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Dress-02">
       <mesh>skeletal/f_dress.dae</mesh>
-      <texture>skeletal/pers_fem_2.dds</texture>
+      <textures><texture file="skeletal/pers_fem_2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

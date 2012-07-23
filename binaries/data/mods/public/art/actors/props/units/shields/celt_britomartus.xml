@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/units/shields/celt_britomartus_back.xml" attachpoint="back"/>
       </props>
-      <texture>props/shield/celt_misc_c.dds</texture>
+      <textures><texture file="props/shield/celt_misc_c.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

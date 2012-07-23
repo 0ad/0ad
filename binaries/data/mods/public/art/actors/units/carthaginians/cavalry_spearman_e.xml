@@ -16,7 +16,7 @@
         <prop actor="units/carthaginians/cavalry_spearman_e_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/crest_1.xml" attachpoint="head"/>
       </props>
-      <texture>skeletal/horse_kart_csp_e_1.dds</texture>
+      <textures><texture file="skeletal/horse_kart_csp_e_1.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

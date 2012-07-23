@@ -30,19 +30,19 @@
   <group>
     <variant frequency="2" name="Dress-Light Brown">
       <mesh>skeletal/f_dress.dae</mesh>
-      <texture>skeletal/hele_fem_a.dds</texture>
+      <textures><texture file="skeletal/hele_fem_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Dress-Dark Brown">
       <mesh>skeletal/f_dress.dae</mesh>
-      <texture>skeletal/hele_fem_b.dds</texture>
+      <textures><texture file="skeletal/hele_fem_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Dress-Gold">
       <mesh>skeletal/f_dress.dae</mesh>
-      <texture>skeletal/hele_fem_c.dds</texture>
+      <textures><texture file="skeletal/hele_fem_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Dress-Player Tint">
       <mesh>skeletal/f_dress.dae</mesh>
-      <texture>skeletal/hele_fem_d.dds</texture>
+      <textures><texture file="skeletal/hele_fem_d.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

@@ -8,7 +8,7 @@
       <props>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <texture>structural/elven_ship.png</texture>
+      <textures><texture file="structural/elven_ship.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

@@ -14,7 +14,7 @@
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="particle/smoke_jav.xml" attachpoint="smoke"/>
       </props>
-      <texture>structural/iber_struct.dds</texture>
+      <textures><texture file="structural/iber_struct.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

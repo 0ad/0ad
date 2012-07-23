@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="wall-middle-medium-turf">
       <mesh>props/celt_slope_wall_turf.dae</mesh>
-      <texture>props/celt_wall_turf.dds</texture>
+      <textures><texture file="props/celt_wall_turf.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

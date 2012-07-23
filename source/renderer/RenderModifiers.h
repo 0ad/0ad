@@ -63,17 +63,6 @@ public:
 	virtual void BeginPass(const CShaderProgramPtr& shader) = 0;
 
 	/**
-	 * PrepareTexture: Called before rendering models that use the given
-	 * texture.
-	 *
-	 * Must be implemented by derived classes.
-	 *
-	 * @param pass The current pass number (pass == 0 is the first pass)
-	 * @param texture The texture used by subsequent models
-	 */
-	virtual void PrepareTexture(const CShaderProgramPtr& shader, CTexture& texture) = 0;
-
-	/**
 	 * PrepareModel: Called before rendering the given model.
 	 *
 	 * Default behaviour does nothing.
@@ -133,14 +122,12 @@ public:
 
 	// Implementation
 	void BeginPass(const CShaderProgramPtr& shader);
-	void PrepareTexture(const CShaderProgramPtr& shader, CTexture& texture);
 	void PrepareModel(const CShaderProgramPtr& shader, CModel* model);
 
 private:
 	CShaderProgram::Binding m_BindingInstancingTransform;
 	CShaderProgram::Binding m_BindingShadingColor;
 	CShaderProgram::Binding m_BindingPlayerColor;
-	CShaderProgram::Binding m_BindingBaseTex;
 };
 
 #endif // INCLUDED_RENDERMODIFIERS

@@ -11,7 +11,7 @@
   </group>
   <group>
     <variant name="texture">
-      <texture>gaia/prop_tree_cypess_big.dds</texture>
+      <textures><texture file="gaia/prop_tree_cypess_big.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

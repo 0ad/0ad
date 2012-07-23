@@ -6,7 +6,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/bull_statue.dae</mesh>
-      <texture>props/pers_bull_a.dds</texture>
+      <textures><texture file="props/pers_bull_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

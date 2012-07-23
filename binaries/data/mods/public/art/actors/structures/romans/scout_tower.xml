@@ -15,7 +15,7 @@
         <prop actor="props/units/shields/rome_parma_e.xml" attachpoint="shield2"/>
         <prop actor="props/units/shields/rome_parma_a.xml" attachpoint="shield3"/>
       </props>
-      <texture>structural/rome_struct_2.png</texture>
+      <textures><texture file="structural/rome_struct_2.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

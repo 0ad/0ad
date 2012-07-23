@@ -20,10 +20,10 @@
   </group>
   <group>
     <variant frequency="1" name="Solid Crest">
-      <texture>props/helmet/hele_d1_black.dds</texture>
+      <textures><texture file="props/helmet/hele_d1_black.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Striped Crest">
-      <texture>props/helmet/hele_d2_black.dds</texture>
+      <textures><texture file="props/helmet/hele_d2_black.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

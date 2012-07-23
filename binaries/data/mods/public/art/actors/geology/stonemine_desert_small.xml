@@ -23,10 +23,10 @@
   </group>
   <group>
     <variant frequency="1" name="stone-a">
-      <texture>gaia/stone_desert_small_a.dds</texture>
+      <textures><texture file="gaia/stone_desert_small_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="stone-b">
-      <texture>gaia/stone_desert_small_b.png</texture>
+      <textures><texture file="gaia/stone_desert_small_b.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

@@ -6,7 +6,7 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/f_cape_long.dae</mesh>
-      <texture>props/cape_hero.dds</texture>
+      <textures><texture file="props/cape_hero.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

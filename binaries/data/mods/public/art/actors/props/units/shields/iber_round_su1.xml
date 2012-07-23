@@ -14,16 +14,16 @@
 
   <group>
     <variant frequency="1" name="Shield-E">
-      <texture>props/shield/iber_round_e.dds</texture>
+      <textures><texture file="props/shield/iber_round_e.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Shield-H">
-      <texture>props/shield/iber_round_h.dds</texture>
+      <textures><texture file="props/shield/iber_round_h.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Shield-N">
-      <texture>props/shield/iber_round_n.dds</texture>
+      <textures><texture file="props/shield/iber_round_n.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Shield-X">
-      <texture>props/shield/pict_b.dds</texture>
+      <textures><texture file="props/shield/pict_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

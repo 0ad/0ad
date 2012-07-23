@@ -12,34 +12,34 @@
   </group>
   <group>
     <variant frequency="1" name="shield-e-ship">
-      <texture>props/shield/hele_round_e.dds</texture>
+      <textures><texture file="props/shield/hele_round_e.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-f-gorgon">
-      <texture>props/shield/hele_round_f.dds</texture>
+      <textures><texture file="props/shield/hele_round_f.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-s-rays">
-      <texture>props/shield/hele_round_s.dds</texture>
+      <textures><texture file="props/shield/hele_round_s.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-w2-fancy laurel">
-      <texture>props/shield/hele_round_w_2.dds</texture>
+      <textures><texture file="props/shield/hele_round_w_2.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-y-pegasus">
-      <texture>props/shield/hele_round_y.dds</texture>
+      <textures><texture file="props/shield/hele_round_y.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-ab-fancy snake">
-      <texture>props/shield/hele_round_ab.dds</texture>
+      <textures><texture file="props/shield/hele_round_ab.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-ac-fancy eye">
-      <texture>props/shield/hele_round_ac.dds</texture>
+      <textures><texture file="props/shield/hele_round_ac.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-ad-octopus">
-      <texture>props/shield/hele_round_ad.dds</texture>
+      <textures><texture file="props/shield/hele_round_ad.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-ae-helmet">
-      <texture>props/shield/hele_round_ae.dds</texture>
+      <textures><texture file="props/shield/hele_round_ae.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="shield-af-winged creatures">
-      <texture>props/shield/hele_round_af.dds</texture>
+      <textures><texture file="props/shield/hele_round_af.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>playercolor_spec.xml</material>

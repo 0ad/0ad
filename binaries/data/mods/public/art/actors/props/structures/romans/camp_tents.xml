@@ -4,7 +4,7 @@
   <group>
     <variant frequency="100" name="camp tents">
       <mesh>props/rome_camp_tents.dae</mesh>
-      <texture>props/rome_sb_tent.png</texture>
+      <textures><texture file="props/rome_sb_tent.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

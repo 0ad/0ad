@@ -23,10 +23,10 @@
   </group>
   <group>
     <variant frequency="1" name="Rider-Texture-1">
-      <texture>skeletal/pers_csw_a_01.dds</texture>
+      <textures><texture file="skeletal/pers_csw_a_01.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Rider-Texture-2">
-      <texture>skeletal/pers_csw_a_02.dds</texture>
+      <textures><texture file="skeletal/pers_csw_a_02.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

@@ -4,7 +4,7 @@
   <group>
     <variant>
       <mesh>props/helmet/headband_1.dae</mesh>
-      <texture>props/helmet/mace_a2.dds</texture>
+      <textures><texture file="props/helmet/mace_a2.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

@@ -12,7 +12,7 @@
 		<prop actor="props/structures/iberians/iber_lion_statue_small.xml" attachpoint="deco1"/>
 		<prop actor="props/structures/iberians/iber_lion_statue_small.xml" attachpoint="deco2"/>
       </props>
-      <texture>structural/iber_sb1.png</texture>
+      <textures><texture file="structural/iber_sb1.png" name="baseTex"/></textures>
     </variant>
   </group>
 </actor>

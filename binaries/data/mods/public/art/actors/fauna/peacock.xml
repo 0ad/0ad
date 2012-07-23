@@ -13,7 +13,7 @@
         <animation file="quadraped/peacock_walk_feeding.dae" name="walk_feeding" speed="25"/>
       </animations>
       <mesh>skeletal/peacock.dae</mesh>
-      <texture>skeletal/animal_peacock.png</texture>
+      <textures><texture file="skeletal/animal_peacock.png" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

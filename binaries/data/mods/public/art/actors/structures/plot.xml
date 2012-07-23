@@ -9,7 +9,7 @@
       <props>
         <prop actor="props/special/common/plot_boundary.xml" attachpoint="props_main"/>
       </props>
-      <texture>structural/plot.dds</texture>
+      <textures><texture file="structural/plot.dds" name="baseTex"/></textures>
     </variant>
   </group>
 

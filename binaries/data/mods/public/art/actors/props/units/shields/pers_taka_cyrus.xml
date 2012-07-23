@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/units/shields/taka_a_back.xml" attachpoint="root"/>
       </props>
-      <texture>props/shield/pers_pelta_f.png</texture>
+      <textures><texture file="props/shield/pers_pelta_f.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

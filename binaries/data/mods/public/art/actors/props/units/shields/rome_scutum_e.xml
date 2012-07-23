@@ -11,16 +11,16 @@
   </group>
   <group>
     <variant name="Texture-Tower-D">
-      <texture>props/shield/rome_tower_d.dds</texture>
+      <textures><texture file="props/shield/rome_tower_d.dds" name="baseTex"/></textures>
     </variant>
     <variant name="Texture-Tower-H">
-      <texture>props/shield/rome_tower_h.dds</texture>
+      <textures><texture file="props/shield/rome_tower_h.dds" name="baseTex"/></textures>
     </variant>
     <variant name="Texture-Tower-L">
-      <texture>props/shield/rome_tower_l.dds</texture>
+      <textures><texture file="props/shield/rome_tower_l.dds" name="baseTex"/></textures>
     </variant>
     <variant name="Texture-Tower-M">
-      <texture>props/shield/rome_tower_m.dds</texture>
+      <textures><texture file="props/shield/rome_tower_m.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

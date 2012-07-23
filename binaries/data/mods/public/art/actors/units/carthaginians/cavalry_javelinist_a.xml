@@ -21,13 +21,13 @@
   </group>
   <group>
     <variant frequency="3" name="Horse-Texture-Plain">
-      <texture>skeletal/horse_kart_cjv_b_1.dds</texture>
+      <textures><texture file="skeletal/horse_kart_cjv_b_1.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Horse-Texture-Snipe">
-      <texture>skeletal/horse_kart_cjv_b_2.dds</texture>
+      <textures><texture file="skeletal/horse_kart_cjv_b_2.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Horse-Texture-Boots">
-      <texture>skeletal/horse_kart_cjv_b_3.dds</texture>
+      <textures><texture file="skeletal/horse_kart_cjv_b_3.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

@@ -22,19 +22,19 @@
   <group>
     <variant frequency="2" name="horse-color-palamino">
       <colour>206 199 147</colour>
-      <texture>skeletal/horse_hele_b.dds</texture>
+      <textures><texture file="skeletal/horse_hele_b.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="horse-color-strawberryroan">
       <colour>210 166 136</colour>
-      <texture>skeletal/horse_hele_c.dds</texture>
+      <textures><texture file="skeletal/horse_hele_c.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="horse-color-dun">
       <colour>196 145 111</colour>
-      <texture>skeletal/horse_hele_a.dds</texture>
+      <textures><texture file="skeletal/horse_hele_a.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="horse-color-gray">
       <colour>212 212 212</colour>
-      <texture>skeletal/horse_hele_a.dds</texture>
+      <textures><texture file="skeletal/horse_hele_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>

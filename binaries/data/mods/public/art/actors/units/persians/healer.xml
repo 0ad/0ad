@@ -15,7 +15,7 @@
         <prop actor="props/units/heads/pers_kidaris_tied.xml" attachpoint="helmet"/>
         <prop actor="props/units/staff.xml" attachpoint="r_hand"/>
       </props>
-      <texture>skeletal/pers_healer.png</texture>
+      <textures><texture file="skeletal/pers_healer.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

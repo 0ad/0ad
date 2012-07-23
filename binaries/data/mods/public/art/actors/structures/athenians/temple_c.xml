@@ -8,7 +8,7 @@
         <prop actor="props/structures/hellenes/temple_c_columns.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/temple_b_struct.xml" attachpoint="root"/>
       </props>
-      <texture>props/hele_tile_c.dds</texture>
+      <textures><texture file="props/hele_tile_c.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>
