@@ -53,7 +53,7 @@ struct IModelDef : public CModelDefRPrivate
 	VertexArray::Attribute m_BlendWeights; // valid iff gpuSkinning == true
 
 	/// The number of UVs is determined by the model
-	VertexArray::Attribute m_UVs[5];
+	std::vector<VertexArray::Attribute> m_UVs;
 
 	/// Indices are the same for all models, so share them
 	VertexIndexArray m_IndexArray;
@@ -75,6 +75,7 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning)
 	m_Normal.elems = 3;
 	m_Array.AddAttribute(&m_Normal);
 
+	m_UVs.resize(mdef->GetNumUVsPerVertex());
 	for (size_t i = 0; i < mdef->GetNumUVsPerVertex(); i++)
 	{
 		m_UVs[i].type = GL_FLOAT;

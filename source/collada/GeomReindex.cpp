@@ -32,9 +32,12 @@
 #include <map>
 #include <algorithm>
 
+typedef std::pair<float, float> uv_pair_type;
+
 struct VertexData
 {
-	VertexData(const float* pos, const float* norm, const std::vector<float> &uvs, const std::vector<FCDJointWeightPair>& weights)
+	VertexData(const float* pos, const float* norm, const std::vector<uv_pair_type> &uvs, 
+		   const std::vector<FCDJointWeightPair>& weights)
 		: x(pos[0]), y(pos[1]), z(pos[2]),
 		nx(norm[0]), ny(norm[1]), nz(norm[2]),
 		uvs(uvs),
@@ -44,7 +47,7 @@ struct VertexData
 
 	float x, y, z;
 	float nx, ny, nz;
-	std::vector<float> uvs;
+	std::vector<uv_pair_type> uvs;
 	std::vector<FCDJointWeightPair> weights;
 };
 
@@ -71,6 +74,10 @@ bool operator<(const FCDJointWeightPair& a, const FCDJointWeightPair& b)
 		return false;
 }
 
+bool operator==(const uv_pair_type& a, const uv_pair_type& b)
+{
+	return similar(a.first, b.first) && similar(a.second, b.second);
+}
 
 bool operator==(const VertexData& a, const VertexData& b)
 {
@@ -189,14 +196,16 @@ void ReindexGeometry(FCDGeometryPolygons* polys, FCDSkinController* skin)
 			CanonicaliseWeights(weights);
 		}
 
-		std::vector<float> uvs;
+		std::vector<uv_pair_type> uvs;
 		for (size_t set = 0; set < texcoordSources.size(); ++set)
 		{
 			const float* dataTexcoord = texcoordSources[set]->GetData();
 			uint32 strideTexcoord = texcoordSources[set]->GetStride();
 			
-			uvs.push_back(dataTexcoord[indicesTexcoord[i]*strideTexcoord]);
-			uvs.push_back(dataTexcoord[indicesTexcoord[i]*strideTexcoord + 1]);
+			uv_pair_type p;
+			p.first = dataTexcoord[indicesTexcoord[i]*strideTexcoord];
+			p.second = dataTexcoord[indicesTexcoord[i]*strideTexcoord + 1];
+			uvs.push_back(p);
 		}
 
 		VertexData vtx (
@@ -240,8 +249,8 @@ void ReindexGeometry(FCDGeometryPolygons* polys, FCDSkinController* skin)
 		newDataTexcoord.clear();
 		for (size_t i = 0; i < vertexes.size(); ++i)
 		{
-			newDataTexcoord.push_back(vertexes[i].uvs[set * 2]);
-			newDataTexcoord.push_back(vertexes[i].uvs[set * 2 + 1]);
+			newDataTexcoord.push_back(vertexes[i].uvs[set].first);
+			newDataTexcoord.push_back(vertexes[i].uvs[set].second);
 		}
 		texcoordSources[set]->SetData(newDataTexcoord, 2);
 	}

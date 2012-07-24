@@ -504,6 +504,9 @@ public:
 		output("PSMD", 4);  // magic number
 		write(output, (uint32)4); // version number
 		write(output, (uint32)(
+			// for UVs, we add one uint32 (i.e. 4 bytes) per model that gives the number of 
+			// texcoord sets in the model, plus 2 floats per new UV 
+			// pair per vertex (i.e. 8 bytes * number of pairs * vertex count) 
 			4 + 11*4*vertexCount + 4 + 8*texcoords.size()*vertexCount + // vertices
 			4 + 6*faceCount + // faces
 			4 + 7*4*boneCount + // bones
