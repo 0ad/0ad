@@ -13,6 +13,9 @@ var g_DevSettings = {
 	controlAll: false
 };
 
+// Whether status bars should be shown for all of the player's units.
+var g_ShowAllStatusBars = false;
+
 // Indicate when one of the current player's training queues is blocked
 // (this is used to support population counter blinking)
 var g_IsTrainingBlocked = false;
@@ -337,6 +340,9 @@ function onSimulationUpdate()
 
 	handleNotifications();
 
+	if (g_ShowAllStatusBars)
+		recalculateStatusBarDisplay();
+
 	updateGroups();
 	updateDebug(simState);
 	updatePlayerDisplay(simState);
@@ -423,6 +429,26 @@ function updateTimeElapsedCounter(simState)
 {
 	var timeElapsedCounter = getGUIObjectByName("timeElapsedCounter");
 	timeElapsedCounter.caption = timeToString(simState.timeElapsed);
+}
+
+// Toggles the display of status bars for all of the player's entities.
+function recalculateStatusBarDisplay()
+{
+	if (g_ShowAllStatusBars)
+		var entities = Engine.PickFriendlyEntitiesOnScreen(Engine.GetPlayerID());
+	else
+	{
+		var selected = g_Selection.toList();
+		for each (var ent in g_Selection.highlighted)
+			selected.push(ent);
+
+		// Remove selected entities from the 'all entities' array, to avoid disabling their status bars.
+		var entities = Engine.GuiInterfaceCall("GetPlayerEntities").filter(
+				function(idx) { return (selected.indexOf(idx) == -1); }
+		);
+	}
+
+	Engine.GuiInterfaceCall("SetStatusBars", { "entities": entities, "enabled": g_ShowAllStatusBars });
 }
 
 // Temporarily adding this here
