@@ -975,6 +975,12 @@ function handleInputAfterGui(ev)
 			Engine.RewindTimeWarp();
 	}
 
+	if (ev.hotkey == "session.showstatusbars")
+	{
+		g_ShowAllStatusBars = (ev.type == "hotkeydown");
+		recalculateStatusBarDisplay();
+	}
+
 	// State-machine processing:
 
 	switch (inputState)

@@ -644,6 +644,12 @@ GuiInterface.prototype.SetStatusBars = function(player, cmd)
 	}
 };
 
+GuiInterface.prototype.GetPlayerEntities = function(player)
+{
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	return cmpRangeManager.GetEntitiesByPlayer(player);
+};
+
 /**
  * Displays the rally points of a given list of entities (carried in cmd.entities).
  * 
@@ -1582,6 +1588,7 @@ var exposedFunctions = {
 
 	"SetSelectionHighlight": 1,
 	"SetStatusBars": 1,
+	"GetPlayerEntities": 1,
 	"DisplayRallyPoint": 1,
 	"SetBuildingPlacementPreview": 1,
 	"SetWallPlacementPreview": 1,
