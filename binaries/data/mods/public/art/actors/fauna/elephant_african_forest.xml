@@ -5,6 +5,14 @@
     <variant frequency="1" name="elephant_african_forest [adult]">
       <mesh>skeletal/elephant_african_forest.dae</mesh>
       <textures><texture file="skeletal/animal-elephant-base.dds" name="baseTex"/></textures>
+	  <animations>
+		<animation file="quadraped/elephant_african_idle_01.dae" name="Idle" speed="25" />
+		<animation file="quadraped/elephant_african_idle_01.dae" name="Idle" speed="25" />
+		<animation file="quadraped/elephant_african_idle_01.dae" name="Idle" speed="25" />
+		<animation file="quadraped/elephant_african_idle_02.dae" name="Idle" speed="75" />
+		<animation file="quadraped/elephant_african_walk.dae" name="Walk" speed="15" />
+		<animation file="quadraped/elephant_african_attack.dae" name="Attack" speed="75" />
+	  </animations>
     </variant>
   </group>
   <group>
