@@ -379,7 +379,7 @@ function ProcessCommand(player, cmd)
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 			if (cmpUnitAI)
-				cmpUnitAI.SetupTradeRoute(cmd.target);
+				cmpUnitAI.SetupTradeRoute(cmd.target, cmd.source);
 		}
 		break;
 

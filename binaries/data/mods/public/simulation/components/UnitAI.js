@@ -2919,7 +2919,7 @@ UnitAI.prototype.ReturnResource = function(target, queued)
  * Adds trade order to the queue. Either walk to the first market, or
  * start a new route. Not forced, so it can be interrupted by attacks.
  */
-UnitAI.prototype.SetupTradeRoute = function(target, queued)
+UnitAI.prototype.SetupTradeRoute = function(target, source, queued)
 {
 	if (!this.CanTrade(target))
 	{
@@ -2928,7 +2928,7 @@ UnitAI.prototype.SetupTradeRoute = function(target, queued)
 	}
 
 	var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
-	var marketsChanged = cmpTrader.SetTargetMarket(target);
+	var marketsChanged = cmpTrader.SetTargetMarket(target, source);
 	if (marketsChanged)
 	{
 		if (cmpTrader.HasBothMarkets())

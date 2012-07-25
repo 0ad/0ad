@@ -452,6 +452,9 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 		if (template.UnitMotion.Run) ret.speed.run = +template.UnitMotion.Run.Speed;
 	}
 
+	if (template.Trader)
+		ret.trader = template.Trader;
+
 	if (template.WallSet)
 	{
 		ret.wallSet = {
@@ -1474,6 +1477,14 @@ GuiInterface.prototype.FindIdleUnit = function(player, data)
 	return 0;
 };
 
+GuiInterface.prototype.GetTradingRouteGain = function(player, data)
+{
+	if (!data.firstMarket || !data.secondMarket)
+		return null;
+
+	return CalculateTraderGain(data.firstMarket, data.secondMarket, data.template);
+}
+
 GuiInterface.prototype.GetTradingDetails = function(player, data)
 {
 	var cmpEntityTrader = Engine.QueryInterface(data.trader, IID_Trader);
@@ -1595,6 +1606,7 @@ var exposedFunctions = {
 	"GetFoundationSnapData": 1,
 	"PlaySound": 1,
 	"FindIdleUnit": 1,
+	"GetTradingRouteGain": 1,
 	"GetTradingDetails": 1,
 	"CanAttack": 1,
 
