@@ -1808,6 +1808,7 @@ This skeleton is for the deer and any other similiar shaped animals with the exa
 		<bone name="tail_target"><target>tail_target</target></bone>
 		<bone name="trunk_target"><target>trunk_target</target></bone>
 	</skeleton>
+
 	<standard_skeleton title="Gate Skeleton" id="gate">
                 <bone name="origin">
                     <bone name="door_right">
@@ -1831,6 +1832,5 @@ This skeleton is for the deer and any other similiar shaped animals with the exa
                         <bone name="lock_left"><target>lock_left</target></bone>
 					</bone>
                 </bone> 
-	</skeleton>  
-	
+	</skeleton>
 </skeletons>
