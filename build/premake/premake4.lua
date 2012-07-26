@@ -308,9 +308,9 @@ function project_set_build_flags()
 			defines { "INSTALLED_LIBDIR=" .. _OPTIONS["libdir"] }
 		end
 
-		if (os.is("linux") or os.is("bsd")) and not _OPTIONS["with-system-mozjs185"] then
-			-- To use our local SpiderMonkey library, it needs to be part of the
-			-- runtime dynamic linker path. Add it with -rpath to make sure it gets found.
+		if os.is("linux") or os.is("bsd") then
+			-- To use our local shared libraries, they need to be found in the
+			-- runtime dynamic linker path. Add their path to -rpath.
 			if _OPTIONS["libdir"] then
 				linkoptions {"-Wl,-rpath," .. _OPTIONS["libdir"] }
 			else
