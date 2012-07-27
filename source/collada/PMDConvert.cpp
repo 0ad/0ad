@@ -159,19 +159,19 @@ public:
 			
 			FCDGeometrySourceList texcoordSources;
 			polys->GetParent()->FindSourcesByType(FUDaeGeometryInput::TEXCOORD, texcoordSources);
-			
-			std::vector<float*> dataTexcoords;
-			for (size_t i = 0; i < texcoordSources.size(); ++i)
-			{
-				dataTexcoords.push_back(texcoordSources[i]->GetData());
-				assert(texcoordSources[i]->GetDataCount() == vertexCount*2);
-			}
 
 			float* dataPosition = sourcePosition->GetData();
 			float* dataNormal   = sourceNormal  ->GetData();
 			size_t vertexCount = sourcePosition->GetDataCount() / 3;
 			assert(sourcePosition->GetDataCount() == vertexCount*3);
 			assert(sourceNormal  ->GetDataCount() == vertexCount*3);
+
+			std::vector<float*> dataTexcoords;
+			for (size_t i = 0; i < texcoordSources.size(); ++i)
+			{
+				dataTexcoords.push_back(texcoordSources[i]->GetData());
+				assert(texcoordSources[i]->GetDataCount() == vertexCount*2);
+			}
 
 			// Transform mesh coordinate system to game coordinates
 			// (doesn't modify prop points)
@@ -433,19 +433,19 @@ public:
 
 			FCDGeometrySourceList texcoordSources;
 			polys->GetParent()->FindSourcesByType(FUDaeGeometryInput::TEXCOORD, texcoordSources);
-			
-			std::vector<float*> dataTexcoords;
-			for (size_t i = 0; i < texcoordSources.size(); ++i)
-			{
-				dataTexcoords.push_back(texcoordSources[i]->GetData());
-				assert(texcoordSources[i]->GetDataCount() == vertexCount*2);
-			}
 
 			float* dataPosition = sourcePosition->GetData();
 			float* dataNormal   = sourceNormal  ->GetData();
 			size_t vertexCount = sourcePosition->GetDataCount() / 3;
 			assert(sourcePosition->GetDataCount() == vertexCount*3);
 			assert(sourceNormal  ->GetDataCount() == vertexCount*3);
+
+			std::vector<float*> dataTexcoords;
+			for (size_t i = 0; i < texcoordSources.size(); ++i)
+			{
+				dataTexcoords.push_back(texcoordSources[i]->GetData());
+				assert(texcoordSources[i]->GetDataCount() == vertexCount*2);
+			}
 
 			// Transform model coordinate system to game coordinates
 
