@@ -724,6 +724,7 @@ used_extern_libs = {
 }
 
 if not os.is("windows") and not _OPTIONS["android"] and not os.is("macosx") then
+	-- X11 should only be linked on *nix
 	table.insert(used_extern_libs, "x11")
 	table.insert(used_extern_libs, "xcursor")
 end
@@ -936,9 +937,12 @@ function setup_atlas_projects()
 		"sdl",	-- key definitions
 		"spidermonkey",
 		"wxwidgets",
-		"x11",
 		"zlib",
 	}
+	if not os.is("windows") and not os.is("macosx") then
+		-- X11 should only be linked on *nix
+		table.insert(atlas_extern_libs, "x11")
+	end
 
 	setup_atlas_project("AtlasUI", "SharedLib", atlas_src,
 	{	-- include
