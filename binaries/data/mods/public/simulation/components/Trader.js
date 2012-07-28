@@ -1,8 +1,6 @@
-// This constant used to adjust gain value depending on distance
-const DISTANCE_FACTOR = 1 / 110;
+// See helpers/TraderGain.js for the CalculateTaderGain() function which works out how many 
+// resources a trader gets 
 
-// Additional gain for trading performed between markets of different players, in percents
-const INTERNATIONAL_TRADING_ADDITION = 50;
 // Additional gain for ships for each garrisoned trader, in percents
 const GARRISONED_TRADER_ADDITION = 20;
 
@@ -36,30 +34,13 @@ Trader.prototype.Init = function()
 	this.goods = { "type": null, "amount": 0 };
 }
 
-Trader.prototype.CalculateGain = function(firstMarket, secondMarket)
+Trader.prototype.CalculateGain = function(firstMarket, secondMarket, template)
 {
-	var cmpFirstMarketPosition = Engine.QueryInterface(firstMarket, IID_Position);
-	var cmpSecondMarketPosition = Engine.QueryInterface(secondMarket, IID_Position);
-	if (!cmpFirstMarketPosition || !cmpFirstMarketPosition.IsInWorld() || !cmpSecondMarketPosition || !cmpSecondMarketPosition.IsInWorld())
-		return null;
-	var firstMarketPosition = cmpFirstMarketPosition.GetPosition2D();
-	var secondMarketPosition = cmpSecondMarketPosition.GetPosition2D();
-
-	// Calculate ordinary Euclidean distance between markets.
-	// We don't use pathfinder, because ordinary distance looks more fair.
-	var distance = Math.sqrt(Math.pow(firstMarketPosition.x - secondMarketPosition.x, 2) + Math.pow(firstMarketPosition.y - secondMarketPosition.y, 2));
-	// We calculate gain as square of distance to encourage trading between remote markets
-	var gain = Math.pow(distance * DISTANCE_FACTOR, 2);
-
-	// If markets belongs to different players, multiple gain to INTERNATIONAL_TRADING_MULTIPLIER
-	var cmpFirstMarketOwnership = Engine.QueryInterface(firstMarket, IID_Ownership);
-	var cmpSecondMarketOwnership = Engine.QueryInterface(secondMarket, IID_Ownership);
-	if (cmpFirstMarketOwnership.GetOwner() != cmpSecondMarketOwnership.GetOwner())
-		gain *= 1 + INTERNATIONAL_TRADING_ADDITION / 100;
-
 	// For ship increase gain for each garrisoned trader
+	// Calculate this here to save passing unnecessary stuff into the CalculatetraderGain function
+	var garrisonMultiplier = 1;
 	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
-	if (cmpIdentity.HasClass("Ship"))
+	if (cmpIdentity && cmpIdentity.HasClass("Ship"))
 	{
 		var cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
 		if (cmpGarrisonHolder)
@@ -71,14 +52,11 @@ Trader.prototype.CalculateGain = function(firstMarket, secondMarket)
 				if (cmpGarrisonedUnitTrader)
 					garrisonedTradersCount++;
 			}
-			gain *= 1 + GARRISONED_TRADER_ADDITION * garrisonedTradersCount / 100;
+			garrisonMultiplier *= 1 + GARRISONED_TRADER_ADDITION * garrisonedTradersCount / 100;
 		}
 	}
-
-	if (this.template.GainMultiplier)
-		gain *= this.template.GainMultiplier;
-	gain = Math.round(gain);
-	return gain;
+	
+	return garrisonMultiplier * CalculateTraderGain(firstMarket, secondMarket, this.template);
 }
 
 Trader.prototype.GetGain = function()
@@ -88,7 +66,7 @@ Trader.prototype.GetGain = function()
 
 // Set target as target market.
 // Return true if at least one of markets was changed.
-Trader.prototype.SetTargetMarket = function(target)
+Trader.prototype.SetTargetMarket = function(target, source)
 {
 	// Check that target is a market
 	var cmpTargetIdentity = Engine.QueryInterface(target, IID_Identity);
@@ -96,24 +74,37 @@ Trader.prototype.SetTargetMarket = function(target)
 		return false;
 	if (!cmpTargetIdentity.HasClass("Market") && !cmpTargetIdentity.HasClass("NavalMarket"))
 		return false;
-	var marketsChanged = false;
+	var marketsChanged = true;
+	if (source)
+	{
+		// Establish a trade route with both markets in one go.
+		cmpTargetIdentity = Engine.QueryInterface(source, IID_Identity);
+		if (!cmpTargetIdentity)
+			return false;
+		if (!cmpTargetIdentity.HasClass("Market") && !cmpTargetIdentity.HasClass("NavalMarket"))
+			return false;
+
+		this.firstMarket = source;
+		this.secondMarket = INVALID_ENTITY;
+	}
+
 	if (this.secondMarket)
 	{
 		// If we already have both markets - drop them
 		// and use the target as first market
 		this.firstMarket = target;
 		this.secondMarket = INVALID_ENTITY;
-		marketsChanged = true;
 	}
 	else if (this.firstMarket)
 	{
 		// If we have only one market and target is different from it,
 		// set the target as second one
-		if (target != this.firstMarket)
+		if (target == this.firstMarket)
+			marketsChanged = false;
+		else
 		{
 			this.secondMarket = target;
 			this.gain = this.CalculateGain(this.firstMarket, this.secondMarket);
-			marketsChanged = true;
 		}
 	}
 	else
@@ -121,7 +112,6 @@ Trader.prototype.SetTargetMarket = function(target)
 		// Else we don't have target markets at all,
 		// set the target as first market
 		this.firstMarket = target;
-		marketsChanged = true;
 	}
 	if (marketsChanged)
 	{

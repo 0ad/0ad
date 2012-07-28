@@ -210,6 +210,7 @@ function getActionInfo(action, target)
 		var gaiaOwned = (targetState.player == 0);
 
 		var cursor = "";
+		var tooltip;
 
 		// default to walking there
 		var data = {command: "walk"};
@@ -254,8 +255,29 @@ function getActionInfo(action, target)
 			data.target = target;
 			cursor = "action-repair";
 		}
+		else if (hasClass(entState, "Market") && hasClass(targetState, "Market") && entState.id != targetState.id &&
+				(!hasClass(entState, "NavalMarket") || hasClass(targetState, "NavalMarket")))
+		{
+			// Find a trader (if any) that this building can produce.
+			var trader;
+			if (entState.production && entState.production.entities.length)
+				for (var i = 0; i < entState.production.entities.length; ++i)
+					if ((trader = GetTemplateData(entState.production.entities[i]).trader))
+						break;
+
+			var traderData = { "firstMarket": entState.id, "secondMarket": targetState.id, "template": trader };
+			var gain = Engine.GuiInterfaceCall("GetTradingRouteGain", traderData);
+			if (gain !== null)
+			{
+				data.command = "trade";
+				data.target = traderData.secondMarket;
+				data.source = traderData.firstMarket;
+				cursor = "action-setup-trade-route";
+				tooltip = "Click to establish a default route for new traders. Gain: " + gain + " metal.";
+			}
+		}
 		
-		return {"possible": true, "data": data, "position": targetState.position, "cursor": cursor};
+		return {"possible": true, "data": data, "position": targetState.position, "cursor": cursor, "tooltip": tooltip};
 	}
 
 	for each (var entityID in selection)
@@ -463,7 +485,7 @@ function determineAction(x, y, fromMinimap)
 		else if (getActionInfo("repair", target).possible)
 			return {"type": "build", "cursor": "action-repair", "target": target};
 		else if ((actionInfo = getActionInfo("set-rallypoint", target)).possible)
-			return {"type": "set-rallypoint", "cursor": actionInfo.cursor, "data": actionInfo.data, "position": actionInfo.position};
+			return {"type": "set-rallypoint", "cursor": actionInfo.cursor, "data": actionInfo.data, "tooltip": actionInfo.tooltip, "position": actionInfo.position};
 		else if (getActionInfo("heal", target).possible)
 			return {"type": "heal", "cursor": "action-heal", "target": target};
 		else if (getActionInfo("attack", target).possible)

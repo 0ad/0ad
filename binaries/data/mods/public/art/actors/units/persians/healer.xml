@@ -6,6 +6,7 @@
       <animations>
         <animation file="biped/inf_staff_idle_a.dae" name="Idle" speed="200"/>
         <animation file="biped/inf_staff_walk_a.dae" name="Walk" speed="20"/>
+        <animation file="biped/inf_staff_walk_a.dae" name="Run" speed="30"/>
         <animation file="infantry/general/death/inf_01.psa" name="Death" speed="400"/>
         <animation file="female/f_salute_01.dae" name="Heal" speed="30"/>
       </animations>
@@ -15,7 +16,9 @@
         <prop actor="props/units/heads/pers_kidaris_tied.xml" attachpoint="helmet"/>
         <prop actor="props/units/staff.xml" attachpoint="r_hand"/>
       </props>
-      <textures><texture file="skeletal/pers_healer.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/pers_healer.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

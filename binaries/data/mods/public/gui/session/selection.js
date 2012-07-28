@@ -78,6 +78,18 @@ EntityGroups.prototype.removeEnt = function(ent)
 		delete this.groups[templateName];
 };
 
+EntityGroups.prototype.rebuildGroup = function(renamed)
+{
+	var oldGroup = this.ents;
+	this.reset();
+
+	var toAdd = [];
+	for (var ent in oldGroup)
+		toAdd.push(renamed[ent] ? renamed[ent] : parseInt(ent));
+
+	this.add(toAdd);
+}
+
 EntityGroups.prototype.getCount = function(templateName)
 {
 	return this.groups[templateName];
@@ -240,18 +252,19 @@ EntitySelection.prototype.checkRenamedEntities = function()
 	var renamedEntities = Engine.GuiInterfaceCall("GetRenamedEntities");
 	if (renamedEntities.length > 0)
 	{
-		var removeFromSelectionList = [];
-		var addToSelectionList = [];
+		var renamedLookup = {};
+		for each (var renamedEntity in renamedEntities)
+			renamedLookup[renamedEntity.entity] = renamedEntity.newentity;
+
+		// Reconstruct the selection if at least one entity has been renamed.
 		for each (var renamedEntity in renamedEntities)
 		{
 			if (this.selected[renamedEntity.entity])
 			{
-				removeFromSelectionList.push(renamedEntity.entity);
-				addToSelectionList.push(renamedEntity.newentity);
+				this.rebuildSelection(renamedLookup);
+				break;
 			}
 		}
-		this.removeList(removeFromSelectionList);
-		this.addList(addToSelectionList);
 	}
 }
 
@@ -326,6 +339,18 @@ EntitySelection.prototype.reset = function()
 	this.groups.reset();
 	this.dirty = true;
 };
+
+EntitySelection.prototype.rebuildSelection = function(renamed)
+{
+	var oldSelection = this.selected;
+	g_Selection.reset();
+
+	var toAdd = [];
+	for each (var ent in oldSelection)
+		toAdd.push(renamed[ent] ? renamed[ent] : ent);
+
+	this.addList(toAdd);
+}
 
 EntitySelection.prototype.toList = function()
 {
@@ -427,18 +452,21 @@ EntityGroupsContainer.prototype.checkRenamedEntities = function()
 	var renamedEntities = Engine.GuiInterfaceCall("GetRenamedEntities");
 	if (renamedEntities.length > 0)
 	{
+		var renamedLookup = {};
+		for each (var renamedEntity in renamedEntities)
+			renamedLookup[renamedEntity.entity] = renamedEntity.newentity;
+
 		for each (var group in this.groups)
 		{
-			var addToGroup = [];
 			for each (var renamedEntity in renamedEntities)
 			{
+				// Reconstruct the group if at least one entity has been renamed.
 				if (renamedEntity.entity in group.ents)
 				{
-					group.removeEnt(renamedEntity.entity);
-					addToGroup.push(renamedEntity.newentity);
+					group.rebuildGroup(renamedLookup);
+					break;
 				}
 			}
-			group.add(addToGroup);
 		}
 	}
 }

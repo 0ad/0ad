@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Base">
+      <mesh>gaia/bush_grapes_prop.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant name="grapes_prop">
+      <textures><texture file="gaia/trunk_deciduous_b.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>
