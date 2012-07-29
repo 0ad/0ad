@@ -425,9 +425,9 @@ public:
 			CTextureConverter::SettingsFile* f = GetSettingsFile(settingsPath);
 			if (f)
 				files.push_back(f);
-			p = p / *it;
+			p = p / GetWstringFromWpath(*it);
 		}
-		return m_TextureConverter.ComputeSettings(srcPath.leaf(), files);
+		return m_TextureConverter.ComputeSettings(GetWstringFromWpath(srcPath.leaf()), files);
 	}
 
 	/**

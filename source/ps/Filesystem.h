@@ -54,6 +54,11 @@ void UnregisterFileReloadFunc(FileReloadFunc func, void* obj);
  **/
 extern Status ReloadChangedFiles();
 
+/**
+ * Helper function to handle API differences between Boost Filesystem v2 and v3
+ */
+std::wstring GetWstringFromWpath(const fs::wpath& path);
+
 ERROR_GROUP(CVFSFile);
 ERROR_TYPE(CVFSFile, LoadFailed);
 ERROR_TYPE(CVFSFile, AlreadyLoaded);

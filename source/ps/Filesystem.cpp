@@ -95,6 +95,15 @@ Status ReloadChangedFiles()
 	return INFO::OK;
 }
 
+std::wstring GetWstringFromWpath(const fs::wpath& path)
+{
+#if BOOST_FILESYSTEM_VERSION == 3
+	return path.wstring();
+#else
+	return path.string();
+#endif
+}
+
 
 CVFSFile::CVFSFile()
 	: m_BufferSize(0)

@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -53,7 +53,7 @@ public:
 		fs::wpath components = pathname.string();
 		fs::wpath::iterator it = components.begin();
 		std::advance(it, 2);
-		std::wstring dirname = *it;
+		std::wstring dirname = GetWstringFromWpath(*it);
 
 		CScriptValRooted ai;
 		self->m_ScriptInterface.Eval("({})", ai);
