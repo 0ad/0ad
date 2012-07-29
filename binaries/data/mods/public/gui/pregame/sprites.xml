@@ -30,38 +30,6 @@
 				wrap_mode="clamp_to_edge"
 			/>
 		</sprite>
-		
-		<sprite name="background-persians1-1">
-			<image
-				texture="pregame/backgrounds/persians1-1.png"
-				fixed_h_aspect_ratio="1.777777"
-				round_coordinates="false"
-			/>
-		</sprite>
-
-		<sprite name="background-persians1-2">
-			<image
-				texture="pregame/backgrounds/persians1-2.png"
-				fixed_h_aspect_ratio="1.777777"
-				round_coordinates="false"
-			/>
-		</sprite>
-
-		<sprite name="background-persians1-3">
-			<image
-				texture="pregame/backgrounds/persians1-3.png"
-				round_coordinates="false"
-				wrap_mode="clamp_to_edge"
-			/>
-		</sprite>
-		
-		<sprite name="background-persians1-4">
-			<image
-				texture="pregame/backgrounds/persians1-4.png"
-				round_coordinates="false"
-				wrap_mode="clamp_to_edge"
-			/>
-		</sprite>
 
 		<!--
 		==========================================
@@ -187,37 +155,37 @@
 		-->		
 		
 		<sprite name="snEmblemCelt">
-			<image 	texture="session/portraits/emblems/celt.dds"
+			<image 	texture="session/portraits/emblems/emblem_celts.png"
 					size="0 0 100% 100%"
 			/>
 		</sprite>		
 		
 		<sprite name="snEmblemHele">
-			<image 	texture="session/portraits/emblems/hele.dds"
+			<image 	texture="session/portraits/emblems/emblem_hellenes.png"
 					size="0 0 100% 100%"
 			/>
 		</sprite>		
 		
 		<sprite name="snEmblemIber">
-			<image 	texture="session/portraits/emblems/iber.dds"
+			<image 	texture="session/portraits/emblems/emblem_iberians.png"
 					size="0 0 100% 100%"
 			/>
 		</sprite>		
 		
 		<sprite name="snEmblemKart">
-			<image 	texture="session/portraits/emblems/kart.dds"
+			<image 	texture="session/portraits/emblems/emblem_carthaginians.png"
 					size="0 0 100% 100%"
 			/>
 		</sprite>		
 		
 		<sprite name="snEmblemPers">
-			<image 	texture="session/portraits/emblems/pers.dds"
+			<image 	texture="session/portraits/emblems/emblem_persians.png"
 					size="0 0 100% 100%"
 			/>
 		</sprite>		
 		
 		<sprite name="snEmblemRome">
-			<image 	texture="session/portraits/emblems/rome.dds"
+			<image 	texture="session/portraits/emblems/emblem_romans.png"
 					size="0 0 100% 100%"
 			/>
 		</sprite>		

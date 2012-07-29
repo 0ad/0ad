@@ -1,20 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant>
-      <mesh>structural/hele_wc.dae</mesh>
-      <textures><texture file="structural/hele_struct_1.dds" name="baseTex"/></textures>
+    <variant name="Wall">
+      <mesh>structural/hele_wall_medium.dae</mesh>
+      <textures><texture file="structural/hele_struct_b.dds" name="baseTex"/></textures>
     </variant>
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
     <variant name="death">
       <props>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
+  <material>player_trans.xml</material>
 </actor>

@@ -30,11 +30,11 @@ function Music()
 	};
 
 	this.tracks = {
-		MENU: ["main_menu.ogg"],
+		MENU: ["Honor_Bound.ogg"],
 		PEACE: [],
 		BATTLE: [],
-		VICTORY : ["Victory_Track.ogg"],
-		DEFEAT : ["gen_loss_track.ogg"],
+		VICTORY : ["You_are_Victorious!.ogg"],
+		DEFEAT : ["Dried_Tears.ogg"],
 		DEFEAT_CUE : ["gen_loss_cue.ogg"]
 	};
 
