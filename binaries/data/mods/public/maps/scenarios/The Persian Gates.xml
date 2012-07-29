@@ -3,9 +3,9 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>cumulus</SkySet>
-		<SunColour r="0.776471" g="0.74902" b="0.576471"/>
-		<SunElevation angle="0.785398"/>
+		<SkySet>sunset</SkySet>
+		<SunColour r="1.01305" g="0.977237" b="0.752114"/>
+		<SunElevation angle="0.469398"/>
 		<SunRotation angle="-0.785396"/>
 		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="347.685" y="72.9183" z="938.223"/>
+		<Position x="362.595" y="100.293" z="851.914"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -33,7 +33,9 @@
   "CircularMap": true,
   "Description": "\"It has always been the Greek Dream to go East.\"\u000a\u000a\"Beware such pride. The East has a way of swallowing men and their dreams.\"\u000a\u000aWill Alexander push his way through The Persian Gates and fulfill his destiny, or will Ariobarzanes defend the rugged ancient land of Persis against a foreign invader?",
   "GameType": "conquest",
-  "Keywords": [],
+  "Keywords": [
+    "hidden"
+  ],
   "LockTeams": true,
   "Name": "The Persian Gates",
   "PlayerData": [
