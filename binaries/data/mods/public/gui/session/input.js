@@ -1116,8 +1116,11 @@ function handleInputAfterGui(ev)
 				var ents = Engine.PickEntitiesAtPoint(ev.x, ev.y);
 				if (!ents.length)
 				{
-					g_Selection.reset();
-					resetIdleUnit();
+					if (!Engine.HotkeyIsPressed("selection.add") && !Engine.HotkeyIsPressed("selection.remove"))
+					{
+						g_Selection.reset();
+						resetIdleUnit();
+					}
 					inputState = INPUT_NORMAL;
 					return true;
 				}
