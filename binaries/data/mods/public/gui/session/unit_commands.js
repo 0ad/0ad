@@ -421,7 +421,8 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		button.tooltip = tooltip;
 
 		// Button Function (need nested functions to get the closure right)
-		button.onpress = (function(e){ return function() { callback(e) } })(item);
+		// Items can have a callback element that overrides the normal caller-supplied callback function.
+		button.onpress = (function(e){ return function() { e.callback ? e.callback(e) : callback(e) } })(item);
 
 		if (guiName == RESEARCH)
 		{
@@ -511,10 +512,10 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		{
 			var gateIcon;
 			// If already a gate, show locking actions
-			if (unitEntState.gate)
+			if (item.gate)
 			{
-				gateIcon = "icons/lock_" + GATE_ACTIONS[i].toLowerCase() + "ed.png";
-				selection.hidden = unitEntState.gate.locked != item.locked;
+				gateIcon = "icons/lock_" + GATE_ACTIONS[item.locked ? 0 : 1].toLowerCase() + "ed.png";
+				selection.hidden = item.gate.locked === undefined ? false : item.gate.locked != item.locked;
 			}
 			// otherwise show gate upgrade icon
 			else
@@ -818,26 +819,16 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 				function (trainEntType) { addTrainingToQueue(selection, trainEntType); } );
 		else if (entState.trader)
 			setupUnitTradingPanel(usedPanels, entState, selection);
-		else if (entState.gate)
-		{
-			var items = [];
-			for (var i = 0; i < GATE_ACTIONS.length; ++i)
-				items.push({
-					"tooltip": GATE_ACTIONS[i] + " gate",
-					"locked": i == 0
-				});
-			setupUnitPanel(GATE, usedPanels, entState, items,
-				function (item) { lockGate(item.locked); } );
-		}
-		else if (!entState.foundation && (hasClass(entState, "LongWall")))
+		else if (!entState.foundation && entState.gate || hasClass(entState, "LongWall"))
 		{
 			// Allow long wall pieces to be converted to gates
 			var longWallTypes = {};
-			var items = [];
+			var walls = [];
+			var gates = [];
 			for (var i in selection)
 			{
-				if ((state = GetEntityState(selection[i])) && hasClass(state, "LongWall") &&
-					!state.gate && !state.foundation && !longWallTypes[state.template])
+				state = GetEntityState(selection[i]);
+				if (hasClass(state, "LongWall") && !state.gate && !longWallTypes[state.template])
 				{
 					var gateTemplate = getWallGateTemplate(state.id);
 					if (gateTemplate)
@@ -845,20 +836,34 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 						var wallName = GetTemplateData(state.template).name.generic;
 						var gateName = GetTemplateData(gateTemplate).name.generic;
 
-						items.push({
+						walls.push({
 							"tooltip": "Convert " + wallName + " to " + gateName,
-							"template": gateTemplate
+							"template": gateTemplate,
+							"callback": function (item) { transformWallToGate(item.template); }
 						});
 					}
 
 					// We only need one entity per type.
 					longWallTypes[state.template] = true;
 				}
+				else if (state.gate && !gates.length)
+					for (var j = 0; j < GATE_ACTIONS.length; ++j)
+						gates.push({
+							"gate": state.gate,
+							"tooltip": GATE_ACTIONS[j] + " gate",
+							"locked": j == 0,
+							"callback": function (item) { lockGate(item.locked); }
+						});
+				// Show both 'locked' and 'unlocked' as active if the selected gates have both lock states.
+				else if (state.gate && state.gate.locked != gates[0].gate.locked)
+					for (var j = 0; j < gates.length; ++j)
+						delete gates[j].gate.locked;
 			}
 
+			// Place wall conversion options after gate lock/unlock icons.
+			var items = gates.concat(walls);
 			if (items.length)
-				setupUnitPanel(GATE, usedPanels, entState, items,
-					function (item) { transformWallToGate(item.template); } );
+				setupUnitPanel(GATE, usedPanels, entState, items);
 			else
 				rightUsed = false;
 		}
