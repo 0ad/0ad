@@ -460,7 +460,7 @@ function updateResearchDisplay()
 	for (var tech in researchStarted)
 	{
 		// Show at most 10 in-progress techs.
-		if (numButtons > 10)
+		if (numButtons >= 10)
 			break;
 
 		var template = GetTechnologyData(tech);

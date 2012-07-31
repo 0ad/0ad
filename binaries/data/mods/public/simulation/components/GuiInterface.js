@@ -86,7 +86,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"isEnemy": enemies,
 			"buildLimits": cmpPlayerBuildLimits.GetLimits(),
 			"buildCounts": cmpPlayerBuildLimits.GetCounts(),
-			"techModifications": cmpTechnologyManager.GetTechModifications(),
+			"techModifications": cmpTechnologyManager.GetTechModifications()
 		};
 		ret.players.push(playerData);
 	}
