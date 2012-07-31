@@ -103,7 +103,7 @@
 		/>
 
 	<!-- Dev/cheat commands -->
-	<object name="devCommands" size="100%-156 50%-88 100%-8 50%+88" type="image" sprite="devCommandsBackground"
+	<object name="devCommands" size="100%-156 50%-88 100%-8 50%+88" type="image" sprite="devCommandsBackground" z="40"
 		hidden="true" hotkey="session.devcommands.toggle">
 	    <action on="Press">
 		toggleDeveloperOverlay();
@@ -378,7 +378,7 @@
 		    size="100%-164 4 100%-8 32"
 		    style="StoneButtonFancy"
 		    tooltip_style="sessionToolTip"
-		    z="50"
+		    z="60"
 	    >
 		<!-- This object covers up the text on the menu
 		buttons as they slide by so that you don't see
@@ -399,6 +399,7 @@
 		style="StonePanelThinBorder"
 		type="image"
 		hidden="false"
+		z="40"
 	>
 	    <object size="4 36 100%-4 50%+20">
 
@@ -461,6 +462,16 @@
 		    <action on="Press">togglePause();</action>
 		</object>
 	    </object>
+	</object>
+
+	<!-- In-progress research -->
+	<object size="100%-50 85 100%-10 100%-200">
+		<repeat count="10">
+			<object name="researchStartedButton[n]" hidden="true" style="iconButton" type="button" size="0 0 40 40" tooltip_style="sessionToolTipBottom">
+				<object name="researchStartedIcon[n]" ghost="true" type="image" size="3 3 37 37"/>
+				<object name="researchStartedProgressSlider[n]" type="image" sprite="queueProgressSlider" ghost="true" size="3 3 37 37"/>
+			</object>
+		</repeat>
 	</object>
 
 	<!-- ================================  ================================ -->

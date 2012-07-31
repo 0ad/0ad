@@ -86,7 +86,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"isEnemy": enemies,
 			"buildLimits": cmpPlayerBuildLimits.GetLimits(),
 			"buildCounts": cmpPlayerBuildLimits.GetCounts(),
-			"techModifications": cmpTechnologyManager.GetTechModifications()
+			"techModifications": cmpTechnologyManager.GetTechModifications(),
 		};
 		ret.players.push(playerData);
 	}
@@ -545,6 +545,27 @@ GuiInterface.prototype.CheckTechnologyRequirements = function(player, tech)
 	
 	return cmpTechnologyManager.CanResearch(tech);
 };
+
+// Returns technologies that are being actively researched, along with
+// which entity is researching them and how far along the research is.
+GuiInterface.prototype.GetStartedResearch = function(player)
+{
+	var cmpTechnologyManager = QueryPlayerIDInterface(player, IID_TechnologyManager);
+	if (!cmpTechnologyManager)
+		return false;
+
+	var ret = {};
+	for (var tech in cmpTechnologyManager.GetTechsStarted())
+	{
+		ret[tech] = { "researcher": cmpTechnologyManager.GetResearcher(tech) };
+		var cmpProductionQueue = Engine.QueryInterface(ret[tech].researcher, IID_ProductionQueue);
+		if (cmpProductionQueue)
+			ret[tech].progress = cmpProductionQueue.GetQueue()[0].progress;
+		else
+			ret[tech].progress = 0;
+	}
+	return ret;
+}
 
 GuiInterface.prototype.PushNotification = function(notification)
 {
@@ -1589,6 +1610,7 @@ var exposedFunctions = {
 	"GetTechnologyData": 1,
 	"IsTechnologyResearched": 1,
 	"CheckTechnologyRequirements": 1,
+	"GetStartedResearch": 1,
 	"GetNextNotification": 1,
 
 	"GetAvailableFormations": 1,

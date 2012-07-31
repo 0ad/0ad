@@ -246,7 +246,9 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			// Tell the technology manager that we have started researching this so that people can't research the same 
 			// thing twice.
 			var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-			cmpTechnologyManager.StartedResearch(templateName);
+			cmpTechnologyManager.QueuedResearch(templateName, this.entity);
+			if (this.queue.length == 0)
+				cmpTechnologyManager.StartedResearch(templateName);
 
 			this.queue.push({
 				"id": this.nextID++,
@@ -510,6 +512,13 @@ ProductionQueue.prototype.ProgressTimeout = function(data)
 				
 				// Unset flag that training is blocked
 				cmpPlayer.UnBlockTraining();
+			}
+
+			if (item.technologyTemplate)
+			{
+				// Mark the research as started.
+				var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+				cmpTechnologyManager.StartedResearch(item.technologyTemplate);
 			}
 
 			item.productionStarted = true;
