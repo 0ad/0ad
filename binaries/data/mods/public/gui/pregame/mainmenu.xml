@@ -262,7 +262,7 @@ Status: $status.
 					style="StoneButtonFancy"
 					size="0 32 100% 60"
 					tooltip_style="pgToolTip"
-					tooltip="Host a multiplayer game."
+					tooltip="Host a multiplayer game.\n\nRequires UDP port 20595 to be open."
 				>
 					Host Game
 					<action on="Press">

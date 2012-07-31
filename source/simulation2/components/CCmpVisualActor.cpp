@@ -26,6 +26,7 @@
 #include "ICmpVision.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpFootprint.h"
+#include "simulation2/components/ICmpSelectable.h"
 
 #include "graphics/Frustum.h"
 #include "graphics/Model.h"
@@ -135,6 +136,7 @@ public:
 	virtual void Init(const CParamNode& paramNode)
 	{
 		m_Unit = NULL;
+		m_Visibility = ICmpRangeManager::VIS_HIDDEN;
 
 		m_R = m_G = m_B = fixed::FromInt(1);
 
@@ -466,6 +468,11 @@ public:
 	}
 
 private:
+	/// Whether the visual actor has been rendered at least once.
+	/// Necessary because the visibility update runs on simulation update,
+	/// which may not occur immediately if the game starts paused.
+	bool m_previouslyRendered;
+
 	int32_t GetActorSeed()
 	{
 		return GetEntityId();
@@ -479,6 +486,7 @@ private:
 	void InitSelectionShapeDescriptor(CModelAbstract& model, const CParamNode& paramNode);
 
 	void Update(fixed turnLength);
+	void UpdateVisibility();
 	void Interpolate(float frameTime, float frameOffset);
 	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling);
 };
@@ -562,6 +570,8 @@ void CCmpVisualActor::Update(fixed turnLength)
 	if (m_Unit == NULL)
 		return;
 
+	UpdateVisibility();
+
 	// If we're in the special movement mode, select an appropriate animation
 	if (!m_AnimRunThreshold.IsZero())
 	{
@@ -592,33 +602,48 @@ void CCmpVisualActor::Update(fixed turnLength)
 	}
 }
 
+void CCmpVisualActor::UpdateVisibility()
+{
+	ICmpRangeManager::ELosVisibility oldVisibility = m_Visibility;
+	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+	if (cmpPosition && cmpPosition->IsInWorld())
+	{
+		// The 'always visible' flag means we should always render the unit
+		// (regardless of whether the LOS system thinks it's visible)
+		CmpPtr<ICmpVision> cmpVision(GetSimContext(), GetEntityId());
+		if (cmpVision && cmpVision->GetAlwaysVisible())
+			m_Visibility = ICmpRangeManager::VIS_VISIBLE;
+		else
+		{
+			CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
+			m_Visibility = cmpRangeManager->GetLosVisibility(GetEntityId(), GetSimContext().GetCurrentDisplayedPlayer());
+		}
+	}
+	else
+		m_Visibility = ICmpRangeManager::VIS_HIDDEN;
+
+	if (m_Visibility != oldVisibility)
+	{
+		// Change the visibility of the visual actor's selectable if it has one.
+		CmpPtr<ICmpSelectable> cmpSelectable(GetSimContext(), GetEntityId());
+		if (cmpSelectable)
+			cmpSelectable->SetVisibility(m_Visibility == ICmpRangeManager::VIS_HIDDEN ? false : true);
+	}
+}
+
 void CCmpVisualActor::Interpolate(float frameTime, float frameOffset)
 {
 	if (m_Unit == NULL)
 		return;
 
-	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
-	if (!cmpPosition)
-		return;
-
 	// Disable rendering of the unit if it has no position
-	if (!cmpPosition->IsInWorld())
-	{
-		m_Visibility = ICmpRangeManager::VIS_HIDDEN;
+	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+	if (!cmpPosition || !cmpPosition->IsInWorld())
 		return;
-	}
-
-	// The 'always visible' flag means we should always render the unit
-	// (regardless of whether the LOS system thinks it's visible)
-	CmpPtr<ICmpVision> cmpVision(GetSimContext(), GetEntityId());
-	if (cmpVision && cmpVision->GetAlwaysVisible())
+	else if (!m_previouslyRendered)
 	{
-		m_Visibility = ICmpRangeManager::VIS_VISIBLE;
-	}
-	else
-	{
-		CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
-		m_Visibility = cmpRangeManager->GetLosVisibility(GetEntityId(), GetSimContext().GetCurrentDisplayedPlayer());
+		UpdateVisibility();
+		m_previouslyRendered = true;
 	}
 
 	// Even if HIDDEN due to LOS, we need to set up the transforms

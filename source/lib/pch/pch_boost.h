@@ -25,9 +25,16 @@
 
 // the following boost libraries have been included in TR1 and are
 // thus deemed usable:
-#define BOOST_FILESYSTEM_VERSION 2
+#if BOOST_VERSION >= 104400
+// Filesystem v3 is included since Boost 1.44
+// v2 is deprecated since 1.46 and removed entirely in 1.50
+# define BOOST_FILESYSTEM_VERSION 3
+#else
+# define BOOST_FILESYSTEM_VERSION 2
+#endif
 #include <boost/filesystem.hpp>
 namespace fs = boost::filesystem;
+
 #include <boost/shared_ptr.hpp>
 
 // (these ones are used more rarely, so we don't enable them in minimal configurations)

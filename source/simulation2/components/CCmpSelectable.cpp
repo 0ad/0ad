@@ -67,7 +67,7 @@ public:
 		: m_DebugBoundingBoxOverlay(NULL), m_DebugSelectionBoxOverlay(NULL), 
 		  m_BuildingOverlay(NULL), m_UnitOverlay(NULL),
 		  m_FadeBaselineAlpha(0.f), m_FadeDeltaAlpha(0.f), m_FadeProgress(0.f),
-		  m_Selected(false), m_Cached(false)
+		  m_Selected(false), m_Cached(false), m_Visible(false)
 	{
 		m_Color = CColor(0, 0, 0, m_FadeBaselineAlpha);
 	}
@@ -200,6 +200,11 @@ public:
 		m_FadeProgress = 0.f;
 	}
 
+	virtual void SetVisibility(bool visible)
+	{
+		m_Visible = visible;
+	}
+
 	virtual bool IsEditorOnly()
 	{
 		return m_EditorOnly;
@@ -231,6 +236,8 @@ private:
 	SOverlayLine* m_DebugBoundingBoxOverlay;
 	SOverlayLine* m_DebugSelectionBoxOverlay;
 
+	// Whether the selectable will be rendered.
+	bool m_Visible;
 	// Whether the entity is only selectable in Atlas editor
 	bool m_EditorOnly;
 	// Whether the selection overlay is always visible
@@ -521,7 +528,7 @@ void CCmpSelectable::UpdateDynamicOverlay(float frameOffset)
 void CCmpSelectable::RenderSubmit(SceneCollector& collector)
 {
 	// don't render selection overlay if it's not gonna be visible
-	if (m_Color.a > 0)
+	if (m_Visible && m_Color.a > 0)
 	{
 		if (!m_Cached)
 		{

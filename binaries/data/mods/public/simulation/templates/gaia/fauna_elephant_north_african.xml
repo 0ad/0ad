@@ -52,6 +52,12 @@
       </Texture>
     </Overlay>
   </Selectable>
+  <UnitMotion>
+    <WalkSpeed>3.0</WalkSpeed>
+    <Run>
+      <Speed>10.0</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>fauna/elephant_african_forest.xml</Actor>
   </VisualActor>

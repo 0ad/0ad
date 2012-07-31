@@ -37,7 +37,7 @@ BOOL WINAPI DllMain(HINSTANCE _hInstance, ULONG fdwReason, LPVOID UNUSED(lpvRese
 		}
 		break;
 
-	case DLL_PROCESS_VERIFIER:
+	// DLL_PROCESS_VERIFIER
 	default:
 		break;
 	}

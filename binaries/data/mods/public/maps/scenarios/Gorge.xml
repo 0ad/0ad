@@ -12,26 +12,26 @@
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>8.07869</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.45</Murkiness>
-				<Tint r="0.278431" g="0.298039" b="0.588235"/>
-				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
+				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="460.934" y="233.191" z="38.245"/>
+		<Position x="546.182" y="568.13" z="-281.75"/>
 		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "A riparian gorge meanders its way through the South lands of Gual.",
+  "Description": "A riparian gorge meanders its way through the South lands of Gaul.",
   "GameType": "conquest",
   "Keywords": [
     "hidden"

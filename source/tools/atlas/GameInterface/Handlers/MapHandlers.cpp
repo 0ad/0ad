@@ -62,14 +62,15 @@ namespace
 
 		// TODO: Non progressive load can fail - need a decent way to handle this
 		LDR_NonprogressiveLoad();
-		
-		PSRETURN ret = g_Game->ReallyStartGame();
-		ENSURE(ret == PSRETURN_OK);
 
-		// Disable fog-of-war
+		// Disable fog-of-war - this must be done before starting the game,
+		// as visual actors cache their visibility state on first render.
 		CmpPtr<ICmpRangeManager> cmpRangeManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
 		if (cmpRangeManager)
 			cmpRangeManager->SetLosRevealAll(-1, true);
+
+		PSRETURN ret = g_Game->ReallyStartGame();
+		ENSURE(ret == PSRETURN_OK);
 	}
 }
 

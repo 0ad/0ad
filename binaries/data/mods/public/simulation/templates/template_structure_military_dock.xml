@@ -14,7 +14,7 @@
     <PopulationBonus>5</PopulationBonus>
     <BuildTime>250</BuildTime>
     <Resources>
-      <wood>300</wood>
+      <wood>250</wood>
     </Resources>
   </Cost>
   <Footprint>
@@ -27,9 +27,8 @@
   <Identity>
     <GenericName>Dock</GenericName>
     <Tooltip>Build upon a shoreline to construct naval vessels and to open sea trade.</Tooltip>
-    <Classes datatype="tokens">Town Market NavalMarket</Classes>
+    <Classes datatype="tokens">Village Market NavalMarket</Classes>
     <Icon>structures/dock.png</Icon>
-	<RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>100</xp>

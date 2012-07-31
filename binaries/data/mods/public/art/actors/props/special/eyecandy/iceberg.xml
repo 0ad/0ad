@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <float/>
+  
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="A">
+      <animations/>
+		<mesh>props/iceberg_a.dae</mesh>
+      <props/>
+      <texture>props/iceberg.dds</texture>
+    </variant>
+    <variant frequency="1" name="B">
+      <animations/>
+		<mesh>props/iceberg_b.dae</mesh>
+      <props/>
+      <texture>props/iceberg.dds</texture>
+    </variant>
+  </group>
+
+</actor>

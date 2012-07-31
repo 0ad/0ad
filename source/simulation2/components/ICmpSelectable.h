@@ -61,6 +61,12 @@ public:
 	virtual void SetSelectionHighlight(CColor color, bool selected) = 0;
 
 	/**
+	 * Enables or disables rendering of an entity's selectable.
+	 * @param visible Whether the selectable should be visible.
+	 */
+	virtual void SetVisibility(bool visible) = 0;
+
+	/**
 	 * Set the alpha of the selection highlight. Set to 0 to hide the highlight.
 	 */
 	virtual void SetSelectionHighlightAlpha(float alpha) = 0;
