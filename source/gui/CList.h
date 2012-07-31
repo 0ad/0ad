@@ -124,9 +124,13 @@ protected:
 	void DrawList(const int &selected, const CStr& _sprite, 
 				  const CStr& _sprite_selected, const CStr& _textcolor);
 
-	// Get the area of the list. This is so that i can easily be changed, like in CDropDown
+	// Get the area of the list. This is so that it can easily be changed, like in CDropDown
 	//  where the area is not equal to m_CachedActualSize.
 	virtual CRect GetListRect() const { return m_CachedActualSize; }
+
+	// Returns whether SetupText() has run since the last message was received
+	// (and thus whether list items have possibly changed).
+	virtual bool GetModified() const { return m_Modified; }
 
 	// List of items.
 	//CGUIList m_List;
@@ -138,6 +142,10 @@ protected:
 	 * be zero, but still stored for easy handling.
 	 */
 	std::vector<float> m_ItemsYPositions;
+
+private:
+	// Whether the list's items have been modified since last handling a message.
+	bool m_Modified;
 };
 
 #endif

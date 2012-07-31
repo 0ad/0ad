@@ -192,6 +192,11 @@ void CDropDown::HandleMessage(SGUIMessage &Message)
 
 	// Important that this is after, so that overshadowed implementations aren't processed
 	CList::HandleMessage(Message);
+
+	// As HandleMessage functions return void, we need to manually verify
+	// whether the child list's items were modified.
+	if (CList::GetModified())
+		SetupText();
 }
 
 InReaction CDropDown::ManuallyHandleEvent(const SDL_Event_* ev)
