@@ -119,7 +119,7 @@ var EntityTemplate = Class({
 
 
 	buildableEntities: function() {
-		if (!this._template.Builder)
+		if (!this._template.Builder || !this._template.Builder.Entities._string)
 			return undefined;
 		var civ = this.civ();
 		var templates = this._template.Builder.Entities._string.replace(/\{civ\}/g, civ).split(/\s+/);
