@@ -39,6 +39,7 @@
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpObstruction.h"
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPlayer.h"
 #include "simulation2/components/ICmpPlayerManager.h"
@@ -395,10 +396,11 @@ private:
 	int el_entity;
 	int el_tracks;
 	int el_template, el_player;
-	int el_position, el_orientation;
+	int el_position, el_orientation, el_obstruction;
 	int el_nonentity;
 	int el_actor;
 	int at_x, at_y, at_z;
+	int at_group, at_group2;
 	int at_id;
 	int at_angle;
 	int at_uid;
@@ -446,9 +448,11 @@ void CXMLReader::Init(const VfsPath& xml_filename)
 	EL(player);
 	EL(position);
 	EL(orientation);
+	EL(obstruction);
 	EL(nonentity);
 	EL(actor);
 	AT(x); AT(y); AT(z);
+	AT(group); AT(group2);
 	AT(angle);
 	AT(uid);
 #undef AT
@@ -880,6 +884,10 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 		CFixedVector3D Position;
 		CFixedVector3D Orientation;
 
+		// Obstruction control groups.
+		entity_id_t ControlGroup = INVALID_ENTITY;
+		entity_id_t ControlGroup2 = INVALID_ENTITY;
+
 		XERO_ITER_EL(entity, setting)
 		{
 			int element_name = setting.GetNodeName();
@@ -913,6 +921,13 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 					fixed::FromString(attrs.GetNamedItem(at_z)));
 				// TODO: what happens if some attributes are missing?
 			}
+			// <obstruction>
+			else if (element_name == el_obstruction)
+			{
+				XMBAttributeList attrs = setting.GetAttributes();
+				ControlGroup = attrs.GetNamedItem(at_group).ToInt();
+				ControlGroup2 = attrs.GetNamedItem(at_group2).ToInt();
+			}
 			else
 				debug_warn(L"Invalid map XML data");
 		}
@@ -936,6 +951,17 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 			CmpPtr<ICmpOwnership> cmpOwnership(sim, ent);
 			if (cmpOwnership)
 				cmpOwnership->SetOwner(PlayerID);
+
+			CmpPtr<ICmpObstruction> cmpObstruction(sim, ent);
+			if (cmpObstruction)
+			{
+				if (ControlGroup != INVALID_ENTITY)
+					cmpObstruction->SetControlGroup(ControlGroup);
+				if (ControlGroup2 != INVALID_ENTITY)
+					cmpObstruction->SetControlGroup2(ControlGroup2);
+
+				cmpObstruction->ResolveFoundationCollisions();
+			}
 
 			if (PlayerID == m_MapReader.m_PlayerID && (boost::algorithm::ends_with(TemplateName, L"civil_centre") || m_MapReader.m_StartingCameraTarget == INVALID_ENTITY))
 			{
@@ -1257,6 +1283,13 @@ int CMapReader::ParseEntities()
 			CmpPtr<ICmpOwnership> cmpOwnership(sim, ent);
 			if (cmpOwnership)
 				cmpOwnership->SetOwner(currEnt.playerID);
+
+			// Detect and fix collisions between foundation-blocking entities.
+			// This presently serves to copy wall tower control groups to wall
+			// segments, allowing players to expand RMS-generated walls.
+			CmpPtr<ICmpObstruction> cmpObstruction(sim, ent);
+			if (cmpObstruction)
+				cmpObstruction->ResolveFoundationCollisions();
 
 			if (currEnt.playerID == m_PlayerID && (boost::algorithm::ends_with(currEnt.templateName, L"civil_centre") || m_StartingCameraTarget == INVALID_ENTITY))
 			{
