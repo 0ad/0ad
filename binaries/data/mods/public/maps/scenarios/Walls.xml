@@ -6535,6 +6535,7 @@
 			<Player>1</Player>
 			<Position x="679.66785" z="629.85236"/>
 			<Orientation y="2.71369"/>
+			<Obstruction group="1157" group2="1159"/>
 		</Entity>
 		<Entity uid="1159">
 			<Template>structures/cart_wall_tower</Template>
@@ -6547,6 +6548,7 @@
 			<Player>1</Player>
 			<Position x="699.58875" z="638.62568"/>
 			<Orientation y="2.72083"/>
+			<Obstruction group="1159" group2="1161"/>
 		</Entity>
 		<Entity uid="1161">
 			<Template>structures/cart_wall_tower</Template>
@@ -6559,6 +6561,7 @@
 			<Player>1</Player>
 			<Position x="723.74762" z="646.50281"/>
 			<Orientation y="-0.40474"/>
+			<Obstruction group="1161" group2="1163"/>
 		</Entity>
 		<Entity uid="1163">
 			<Template>structures/cart_wall_tower</Template>
@@ -6571,6 +6574,7 @@
 			<Player>1</Player>
 			<Position x="746.07361" z="656.95795"/>
 			<Orientation y="2.75895"/>
+			<Obstruction group="1163" group2="1165"/>
 		</Entity>
 		<Entity uid="1165">
 			<Template>structures/cart_wall_tower</Template>
@@ -6583,6 +6587,7 @@
 			<Player>1</Player>
 			<Position x="766.865" z="665.61194"/>
 			<Orientation y="-0.41"/>
+			<Obstruction group="1165" group2="1167"/>
 		</Entity>
 		<Entity uid="1167">
 			<Template>structures/cart_wall_tower</Template>
@@ -6595,24 +6600,28 @@
 			<Player>1</Player>
 			<Position x="650.90198" z="629.5074"/>
 			<Orientation y="-2.72217"/>
+			<Obstruction group="1157" group2="1172"/>
 		</Entity>
 		<Entity uid="1169">
 			<Template>structures/cart_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="586.14905" z="659.63306"/>
 			<Orientation y="0.40853"/>
+			<Obstruction group="1173" group2="1175"/>
 		</Entity>
 		<Entity uid="1170">
 			<Template>structures/cart_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="565.11805" z="668.90363"/>
 			<Orientation y="-2.74581"/>
+			<Obstruction group="1174" group2="1175"/>
 		</Entity>
 		<Entity uid="1171">
 			<Template>structures/cart_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="635.69336" z="636.6189"/>
 			<Orientation y="-2.71126"/>
+			<Obstruction group="1172" group2="1176"/>
 		</Entity>
 		<Entity uid="1172">
 			<Template>structures/cart_wall_tower</Template>
@@ -6649,30 +6658,35 @@
 			<Player>1</Player>
 			<Position x="608.07471" z="648.47522"/>
 			<Orientation y="0.42617"/>
+			<Obstruction group="1173" group2="1176"/>
 		</Entity>
 		<Entity uid="1178">
 			<Template>structures/cart_wall</Template>
 			<Player>1</Player>
 			<Position x="543.22876" z="689.56"/>
 			<Orientation y="-1.96174"/>
+			<Obstruction group="1174" group2="1182"/>
 		</Entity>
 		<Entity uid="1179">
 			<Template>structures/cart_wall</Template>
 			<Player>1</Player>
 			<Position x="536.6106" z="704.71753"/>
 			<Orientation y="1.18076"/>
+			<Obstruction group="1182" group2="1183"/>
 		</Entity>
 		<Entity uid="1180">
 			<Template>structures/cart_wall</Template>
 			<Player>1</Player>
 			<Position x="514.39582" z="756.83973"/>
 			<Orientation y="-1.9563"/>
+			<Obstruction group="1184" group2="1185"/>
 		</Entity>
 		<Entity uid="1181">
 			<Template>structures/cart_wall</Template>
 			<Player>1</Player>
 			<Position x="505.74915" z="776.76172"/>
 			<Orientation y="1.22233"/>
+			<Obstruction group="1185" group2="1186"/>
 		</Entity>
 		<Entity uid="1182">
 			<Template>structures/cart_wall_tower</Template>
@@ -6709,30 +6723,35 @@
 			<Player>1</Player>
 			<Position x="523.53956" z="732.74897"/>
 			<Orientation y="1.18088"/>
+			<Obstruction group="1183" group2="1184"/>
 		</Entity>
 		<Entity uid="1188">
 			<Template>structures/cart_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="788.5829" z="686.34235"/>
 			<Orientation y="1.98182"/>
+			<Obstruction group="1167" group2="1192"/>
 		</Entity>
 		<Entity uid="1189">
 			<Template>structures/cart_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="795.27186" z="701.98841"/>
 			<Orientation y="1.97295"/>
+			<Obstruction group="1192" group2="1193"/>
 		</Entity>
 		<Entity uid="1190">
 			<Template>structures/cart_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="817.40589" z="754.44013"/>
 			<Orientation y="1.96604"/>
+			<Obstruction group="1194" group2="1195"/>
 		</Entity>
 		<Entity uid="1191">
 			<Template>structures/cart_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="825.54883" z="774.67042"/>
 			<Orientation y="1.97637"/>
+			<Obstruction group="1195" group2="1197"/>
 		</Entity>
 		<Entity uid="1192">
 			<Template>structures/cart_wall_tower</Template>
@@ -6763,6 +6782,7 @@
 			<Player>1</Player>
 			<Position x="807.40748" z="730.86084"/>
 			<Orientation y="-1.15247"/>
+			<Obstruction group="1193" group2="1194"/>
 		</Entity>
 		<Entity uid="1197">
 			<Template>structures/cart_wall_tower</Template>
@@ -6775,30 +6795,35 @@
 			<Player>1</Player>
 			<Position x="827.03681" z="804.36274"/>
 			<Orientation y="1.14208"/>
+			<Obstruction group="1197" group2="1203"/>
 		</Entity>
 		<Entity uid="1199">
 			<Template>structures/cart_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="820.0005" z="819.27186"/>
 			<Orientation y="-1.9921"/>
+			<Obstruction group="1203" group2="1204"/>
 		</Entity>
 		<Entity uid="1200">
 			<Template>structures/cart_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="787.79078" z="892.8443"/>
 			<Orientation y="-1.94881"/>
+			<Obstruction group="1206" group2="1207"/>
 		</Entity>
 		<Entity uid="1201">
 			<Template>structures/cart_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="794.76496" z="874.7948"/>
 			<Orientation y="1.15712"/>
+			<Obstruction group="1205" group2="1206"/>
 		</Entity>
 		<Entity uid="1202">
 			<Template>structures/cart_wall_gate</Template>
 			<Player>1</Player>
 			<Position x="807.67872" z="846.29963"/>
 			<Orientation y="1.15859"/>
+			<Obstruction group="1204" group2="1205"/>
 		</Entity>
 		<Entity uid="1203">
 			<Template>structures/cart_wall_tower</Template>
@@ -6835,6 +6860,7 @@
 			<Player>1</Player>
 			<Position x="505.15668" z="807.02192"/>
 			<Orientation y="1.87623"/>
+			<Obstruction group="1186" group2="1209"/>
 		</Entity>
 		<Entity uid="1209">
 			<Template>structures/cart_wall_tower</Template>
@@ -6871,48 +6897,56 @@
 			<Player>1</Player>
 			<Position x="510.32074" z="822.43049"/>
 			<Orientation y="1.92316"/>
+			<Obstruction group="1209" group2="1210"/>
 		</Entity>
 		<Entity uid="1215">
 			<Template>structures/cart_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="540.72535" z="897.44123"/>
 			<Orientation y="-1.25231"/>
+			<Obstruction group="1212" group2="1213"/>
 		</Entity>
 		<Entity uid="1216">
 			<Template>structures/cart_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="533.43592" z="880.23633"/>
 			<Orientation y="1.93853"/>
+			<Obstruction group="1211" group2="1212"/>
 		</Entity>
 		<Entity uid="1217">
 			<Template>structures/cart_wall_gate</Template>
 			<Player>1</Player>
 			<Position x="521.01142" z="851.71888"/>
 			<Orientation y="1.95163"/>
+			<Obstruction group="1210" group2="1211"/>
 		</Entity>
 		<Entity uid="1218">
 			<Template>structures/cart_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="560.52912" z="918.5724"/>
 			<Orientation y="-0.39538"/>
+			<Obstruction group="1213" group2="1222"/>
 		</Entity>
 		<Entity uid="1219">
 			<Template>structures/cart_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="580.81458" z="926.91517"/>
 			<Orientation y="-0.37191"/>
+			<Obstruction group="1222" group2="1224"/>
 		</Entity>
 		<Entity uid="1220">
 			<Template>structures/cart_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="632.83411" z="947.8855"/>
 			<Orientation y="2.7666"/>
+			<Obstruction group="1223" group2="1225"/>
 		</Entity>
 		<Entity uid="1221">
 			<Template>structures/cart_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="648.71143" z="953.72278"/>
 			<Orientation y="-0.359"/>
+			<Obstruction group="1225" group2="1226"/>
 		</Entity>
 		<Entity uid="1222">
 			<Template>structures/cart_wall_tower</Template>
@@ -6949,30 +6983,35 @@
 			<Player>1</Player>
 			<Position x="604.6084" z="935.91865"/>
 			<Orientation y="2.7571"/>
+			<Obstruction group="1223" group2="1224"/>
 		</Entity>
 		<Entity uid="1228">
 			<Template>structures/cart_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="678.96546" z="953.26703"/>
 			<Orientation y="0.41892"/>
+			<Obstruction group="1226" group2="1232"/>
 		</Entity>
 		<Entity uid="1229">
 			<Template>structures/cart_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="694.02729" z="946.78315"/>
 			<Orientation y="-2.73607"/>
+			<Obstruction group="1232" group2="1233"/>
 		</Entity>
 		<Entity uid="1230">
 			<Template>structures/cart_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="745.20478" z="923.0962"/>
 			<Orientation y="0.4292"/>
+			<Obstruction group="1207" group2="1234"/>
 		</Entity>
 		<Entity uid="1231">
 			<Template>structures/cart_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="766.63123" z="913.2323"/>
 			<Orientation y="-2.72254"/>
+			<Obstruction group="1207" group2="1235"/>
 		</Entity>
 		<Entity uid="1232">
 			<Template>structures/cart_wall_tower</Template>
@@ -7003,30 +7042,35 @@
 			<Player>1</Player>
 			<Position x="722.32386" z="934.0218"/>
 			<Orientation y="-2.70453"/>
+			<Obstruction group="1233" group2="1234"/>
 		</Entity>
 		<Entity uid="1238">
 			<Template>structures/hele_wall_medium</Template>
 			<Player>2</Player>
 			<Position x="174.47837" z="405.40113"/>
 			<Orientation y="-0.3805"/>
+			<Obstruction group="1242" group2="1243"/>
 		</Entity>
 		<Entity uid="1239">
 			<Template>structures/hele_wall_medium</Template>
 			<Player>2</Player>
 			<Position x="191.9806" z="412.39966"/>
 			<Orientation y="-0.38915"/>
+			<Obstruction group="1243"/>
 		</Entity>
 		<Entity uid="1240">
 			<Template>structures/hele_wall_medium</Template>
 			<Player>2</Player>
 			<Position x="245.2127" z="434.39475"/>
 			<Orientation y="-0.4"/>
+			<Obstruction group="1244"/>
 		</Entity>
 		<Entity uid="1241">
 			<Template>structures/hele_wall_medium</Template>
 			<Player>2</Player>
 			<Position x="268.43586" z="445.06977"/>
 			<Orientation y="-0.41207"/>
+			<Obstruction group="1244" group2="1245"/>
 		</Entity>
 		<Entity uid="1242">
 			<Template>structures/hele_wall_tower</Template>

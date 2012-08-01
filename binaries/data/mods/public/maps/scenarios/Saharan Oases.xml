@@ -14730,6 +14730,7 @@
 			<Player>1</Player>
 			<Position x="290.56727" z="580.10273"/>
 			<Orientation y="1.94494"/>
+			<Obstruction group="2905" group2="2930"/>
 		</Entity>
 		<Entity uid="2905">
 			<Template>structures/iber_wall_tower</Template>
@@ -14742,6 +14743,7 @@
 			<Player>1</Player>
 			<Position x="275.45707" z="554.87116"/>
 			<Orientation y="2.35621"/>
+			<Obstruction group="2905" group2="2907"/>
 		</Entity>
 		<Entity uid="2907">
 			<Template>structures/iber_wall_tower</Template>
@@ -14754,6 +14756,7 @@
 			<Player>1</Player>
 			<Position x="247.68464" z="546.66157"/>
 			<Orientation y="-3.10911"/>
+			<Obstruction group="2907" group2="2909"/>
 		</Entity>
 		<Entity uid="2909">
 			<Template>structures/iber_wall_tower</Template>
@@ -14766,6 +14769,7 @@
 			<Player>1</Player>
 			<Position x="184.42795" z="572.39722"/>
 			<Orientation y="-2.5117"/>
+			<Obstruction group="2911" group2="2912"/>
 		</Entity>
 		<Entity uid="2911">
 			<Template>structures/iber_wall_tower</Template>
@@ -14784,6 +14788,7 @@
 			<Player>1</Player>
 			<Position x="163.1001" z="597.15821"/>
 			<Orientation y="1.18102"/>
+			<Obstruction group="2912" group2="2914"/>
 		</Entity>
 		<Entity uid="2914">
 			<Template>structures/iber_wall_tower</Template>
@@ -14796,6 +14801,7 @@
 			<Player>1</Player>
 			<Position x="160.28106" z="628.14844"/>
 			<Orientation y="1.69722"/>
+			<Obstruction group="2914" group2="2916"/>
 		</Entity>
 		<Entity uid="2916">
 			<Template>structures/iber_wall_tower</Template>
@@ -14808,6 +14814,7 @@
 			<Player>1</Player>
 			<Position x="179.10788" z="692.42133"/>
 			<Orientation y="2.35621"/>
+			<Obstruction group="2918" group2="2931"/>
 		</Entity>
 		<Entity uid="2918">
 			<Template>structures/iber_wall_tower</Template>
@@ -14820,24 +14827,28 @@
 			<Player>1</Player>
 			<Position x="201.2925" z="714.70795"/>
 			<Orientation y="2.35621"/>
+			<Obstruction group="2924" group2="2931"/>
 		</Entity>
 		<Entity uid="2920">
 			<Template>structures/iber_wall_long</Template>
 			<Player>1</Player>
 			<Position x="287.46537" z="696.95411"/>
 			<Orientation y="-2.32789"/>
+			<Obstruction group="2926"/>
 		</Entity>
 		<Entity uid="2921">
 			<Template>structures/iber_wall_long</Template>
 			<Player>1</Player>
 			<Position x="262.90757" z="722.30146"/>
 			<Orientation y="-2.34934"/>
+			<Obstruction group="2923" group2="2926"/>
 		</Entity>
 		<Entity uid="2922">
 			<Template>structures/iber_wall_short</Template>
 			<Player>1</Player>
 			<Position x="242.75937" z="733.20228"/>
 			<Orientation y="-0.16033"/>
+			<Obstruction group="2923" group2="2925"/>
 		</Entity>
 		<Entity uid="2923">
 			<Template>structures/iber_wall_tower</Template>
@@ -14868,12 +14879,14 @@
 			<Player>1</Player>
 			<Position x="300.87534" z="681.69013"/>
 			<Orientation y="-1.87383"/>
+			<Obstruction group="2929"/>
 		</Entity>
 		<Entity uid="2928">
 			<Template>structures/iber_defense_tower</Template>
 			<Player>1</Player>
 			<Position x="297.42322" z="598.35108"/>
 			<Orientation y="-1.60357"/>
+			<Obstruction group="2930"/>
 		</Entity>
 		<Entity uid="2929">
 			<Template>structures/iber_wall_tower</Template>

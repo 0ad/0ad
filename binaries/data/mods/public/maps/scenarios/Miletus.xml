@@ -1809,6 +1809,7 @@
 			<Player>1</Player>
 			<Position x="309.74686" z="110.4787"/>
 			<Orientation y="1.68105"/>
+			<Obstruction group="399"/>
 		</Entity>
 		<Entity uid="360">
 			<Template>other/hellenic_epic_temple</Template>
@@ -1869,18 +1870,21 @@
 			<Player>1</Player>
 			<Position x="88.05324" z="355.6208"/>
 			<Orientation y="-1.83333"/>
+			<Obstruction group="408"/>
 		</Entity>
 		<Entity uid="386">
 			<Template>structures/hele_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="97.19506" z="330.2305"/>
 			<Orientation y="-2.02245"/>
+			<Obstruction group="407" group2="408"/>
 		</Entity>
 		<Entity uid="387">
 			<Template>structures/hele_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="108.8316" z="305.60505"/>
 			<Orientation y="-2.02468"/>
+			<Obstruction group="407"/>
 		</Entity>
 		<Entity uid="388">
 			<Template>structures/hele_wall_gate</Template>
@@ -1893,18 +1897,21 @@
 			<Player>1</Player>
 			<Position x="129.19886" z="252.23505"/>
 			<Orientation y="-2.00577"/>
+			<Obstruction group="406"/>
 		</Entity>
 		<Entity uid="390">
 			<Template>structures/hele_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="140.1839" z="227.48037"/>
 			<Orientation y="-2.045"/>
+			<Obstruction group="405" group2="406"/>
 		</Entity>
 		<Entity uid="391">
 			<Template>structures/hele_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="154.02756" z="203.12046"/>
 			<Orientation y="-2.17086"/>
+			<Obstruction group="405"/>
 		</Entity>
 		<Entity uid="392">
 			<Template>structures/hele_wall_gate</Template>
@@ -1917,18 +1924,21 @@
 			<Player>1</Player>
 			<Position x="189.46093" z="156.40963"/>
 			<Orientation y="-2.38155"/>
+			<Obstruction group="404"/>
 		</Entity>
 		<Entity uid="394">
 			<Template>structures/hele_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="210.08765" z="138.2883"/>
 			<Orientation y="-2.47277"/>
+			<Obstruction group="403" group2="404"/>
 		</Entity>
 		<Entity uid="395">
 			<Template>structures/hele_wall_medium</Template>
 			<Player>1</Player>
 			<Position x="231.77189" z="121.92678"/>
 			<Orientation y="-2.55973"/>
+			<Obstruction group="403"/>
 		</Entity>
 		<Entity uid="397">
 			<Template>structures/hele_wall_gate</Template>
@@ -1941,6 +1951,7 @@
 			<Player>1</Player>
 			<Position x="286.5651" z="100.93021"/>
 			<Orientation y="-2.90026"/>
+			<Obstruction group="399"/>
 		</Entity>
 		<Entity uid="399">
 			<Template>structures/hele_wall_tower</Template>
@@ -1959,6 +1970,7 @@
 			<Player>1</Player>
 			<Position x="71.46808" z="409.0763"/>
 			<Orientation y="-1.83523"/>
+			<Obstruction group="402"/>
 		</Entity>
 		<Entity uid="402">
 			<Template>structures/hele_wall_tower</Template>
