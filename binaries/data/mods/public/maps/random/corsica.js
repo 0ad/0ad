@@ -7,6 +7,7 @@ var tGrassPForest = "forestfloor_dirty";
 var tForestFloor = "medit_grass_shrubs";
 var tGrassA = ["desert_dirt_persia_1", "desert_dirt_persia_2"];
 var tGrassB = "dirta";
+var tLushGrass = ["medit_grass_field","medit_grass_field_a"];
 
 var tSteepCliffs = ["temp_cliff_b", "temp_cliff_a"];
 var tCliffs = ["temp_cliff_b", "medit_cliff_italia", "medit_cliff_italia_grass"];
@@ -19,9 +20,9 @@ var tRoad = ["medit_city_tile","medit_rocks_grass","medit_grass_field_b"];
 var tRoadWild = ["medit_rocks_grass","medit_grass_field_b"];
 var tGrassPatch = "medit_dirt_b";
 
-var tShoreBlend = "medit_rocks_wet";
-var tShore = ["medit_rocks","medit_sand"];
-
+var tShoreBlend = ["medit_sand_wet","medit_rocks_wet"];
+var tShore = ["medit_rocks","medit_sand","medit_sand"];
+var tSandTransition = ["medit_sand","medit_rocks_grass","medit_rocks_grass","medit_rocks_grass"]
 var tVeryDeepWater = ["medit_sea_depths","medit_sea_coral_deep"];
 var tDeepWater = ["medit_sea_coral_deep","tropic_ocean_coral"];
 var tCreekWater = "medit_sea_coral_plants";
@@ -177,7 +178,7 @@ for (var i = 0; i <= nbSubIsland; i++)
 log("Creating Creeks");
 
 // okay so now let's make some cleverly designed creeks: this creates a very jagged relief, looks good
-var nbCreeks = scaleByMapSize(6,5);
+var nbCreeks = scaleByMapSize(6,15);
 // inCorsica first
 var islandX = [SardiniaX,CorsicaX];
 var islandZ = [SardiniaZ,CorsicaZ];
@@ -210,7 +211,7 @@ for (island = 0; island <= 1; island++)
 	for (var i = 0; i <= nbBeaches; i++)
 	{
 		var smallRadius = fractionToTiles( 0.45);
-		var bigRadius = fractionToTiles( 0.55);
+		var bigRadius = fractionToTiles( 0.57);
 		var angle = PI*island + i*(PI/(nbBeaches*2.5)) + PI/(nbBeaches*6) + randFloat(-PI/(nbBeaches*7),PI/(nbBeaches*7));
 		if (swap)
 			angle += PI/2;
@@ -486,7 +487,7 @@ var terrDeep = createTerrain(tDeepWater);
 var terrDark = createTerrain(tVeryDeepWater);
 var terrSand = createTerrain(tShore);
 var terrWetSand = createTerrain(tShoreBlend);
-
+var terrSandTransition = createTerrain(tSandTransition);
 // first pass: who's water?
 for (var sandx = 0; sandx < mapSize; sandx++)
 	for (var sandz = 0; sandz < mapSize; sandz++)
@@ -500,7 +501,10 @@ for (var sandx = 0; sandx < mapSize; sandx++) {
 		{
 			var height = getHeight(sandx,sandz);
 			var heightDiff = getHeightDiff(sandx,sandz);
-			if (height >= 1 && getTileClass(clWater).countMembersInRadius(sandx,sandz,2) == 0)
+			if (height >= 0.5 && height < 1.5 /*&& getTileClass(clWater).countMembersInRadius(sandx,sandz,3) > 0 */ && getTileClass(clShore).countMembersInRadius(sandx,sandz,2) > 0)
+			{
+				terrSandTransition.place(sandx,sandz);
+			} else if (height >= 1 && getTileClass(clWater).countMembersInRadius(sandx,sandz,3) == 0)
 			{
 				// paint hills or cliffs depending on terrain elevation difference
 				if (height > 17 && getTileClass(clPassage).countMembersInRadius(sandx,sandz,2) == 0)
@@ -512,24 +516,30 @@ for (var sandx = 0; sandx < mapSize; sandx++) {
 				} else {
 					terrGrass.place(sandx,sandz);
 				}
-				if (height > 25 && heightDiff >= 10 && getTileClass(clPassage).countMembersInRadius(sandx,sandz,2) == 0)
+				if (height > 25 && heightDiff >= 10 && getTileClass(clPassage).countMembersInRadius(sandx,sandz,2) == 0) {
 					terrSteepCliff.place(sandx,sandz);
-				else if(heightDiff >= 10 && getTileClass(clPassage).countMembersInRadius(sandx,sandz,2) == 0)
+					addToClass(sandx,sandz,clCliffs);
+				} else if(heightDiff >= 10 && getTileClass(clPassage).countMembersInRadius(sandx,sandz,2) == 0) {
 					terrCliff.place(sandx,sandz);
+					addToClass(sandx,sandz,clCliffs);
+				}
 			} else {
 				if (height >= 0 && heightDiff >= 9) {
 					terrCliff.place(sandx,sandz);
-				} else if (height >= -1 && height < 1 && heightDiff < 9) {
+					addToClass(sandx,sandz,clCliffs);
+				} else if (height >= -0.75 && height < 1.5 && heightDiff < 9) {
 						terrSand.place(sandx,sandz);
-				} else if (height >= -3  && height < -1 && heightDiff < 9) {
+				} else if (height >= -3  && height < -0.75 && heightDiff < 9) {
 					terrWetSand.place(sandx,sandz);
 				}  else if (height >= -6  && height < -3 && heightDiff < 9) {
 					terrShallow.place(sandx,sandz);
 				} else if (height > -10  && height < -6 && heightDiff < 6) {
 					terrDeep.place(sandx,sandz);
 				}
-				if (heightDiff >= 9)
+				if (heightDiff >= 9) {
 					terrCliff.place(sandx,sandz);
+					addToClass(sandx,sandz,clCliffs);
+				}
 			}
 		}
 	}
@@ -540,20 +550,24 @@ RMS.SetProgress(65);
 log("Creating stone mines...");
 // create large stone quarries
 group = new SimpleGroup([new SimpleObject(eStoneMine, 1,1, 0,0),new SimpleObject(aBushB, 1,1, 2,2), new SimpleObject(aBushA, 0,2, 1,3)], true, clBaseResource);
-createObjectGroups(group, 0,[stayClasses(clCorsica, 1),avoidClasses(clWater, 3, clPlayer,2 , clBaseResource, 2)],  scaleByMapSize(6,25), 1000  );
-createObjectGroups(group, 0,[stayClasses(clSardinia, 1),avoidClasses(clWater, 3, clPlayer,2 , clBaseResource, 2)],  scaleByMapSize(6,25), 1000  );
+createObjectGroups(group, 0,[stayClasses(clCorsica, 1),avoidClasses(clWater, 3, clPlayer,2 , clBaseResource, 2,clCliffs,1)],  scaleByMapSize(6,25), 1000  );
+createObjectGroups(group, 0,[stayClasses(clSardinia, 1),avoidClasses(clWater, 3, clPlayer,2 , clBaseResource, 2,clCliffs,1)],  scaleByMapSize(6,25), 1000  );
 
 log("Creating metal mines...");
 // create large metal quarries
 group = new SimpleGroup([new SimpleObject(eMetalMine, 1,1, 0,0),new SimpleObject(aBushB, 1,1, 2,2), new SimpleObject(aBushA, 0,2, 1,3)], true, clBaseResource);
-createObjectGroups(group, 0,[avoidClasses(clWater, 3, clPlayer,2 , clBaseResource, 2),stayClasses(clCorsica, 1)],  scaleByMapSize(6,25), 1000  );
-createObjectGroups(group, 0,[avoidClasses(clWater, 3, clPlayer,2 , clBaseResource, 2),stayClasses(clSardinia, 1)],  scaleByMapSize(6,25), 1000  );
+createObjectGroups(group, 0,[avoidClasses(clWater, 3, clPlayer,2 , clBaseResource, 2,clCliffs,1),stayClasses(clCorsica, 1)],  scaleByMapSize(6,25), 1000  );
+createObjectGroups(group, 0,[avoidClasses(clWater, 3, clPlayer,2 , clBaseResource, 2,clCliffs,1),stayClasses(clSardinia, 1)],  scaleByMapSize(6,25), 1000  );
 
+log("Creating grass patches...");
+placer = new ClumpPlacer(20, 0.3, 0.06, 0.5);
+painter = new TerrainPainter(tLushGrass);
+createAreas( placer, [painter,paintClass(clForest)], avoidClasses(clWater, 1,clPlayer, 0,clBaseResource, 3,clCliffs,1), scaleByMapSize(10, 40) );
 
 log ("creating forests");
-var TreeGroup = new SimpleGroup([new SimpleObject(ePine, 2,5, 1,4),new SimpleObject(ePalmTall, 1,2, 1,4),new SimpleObject(eFanPalm, 0,1, 0,2),new SimpleObject(eApple, 0,1, 1,2)], true, clForest);
-createObjectGroups(TreeGroup, 0, [avoidClasses(clWater, 1, clForest, 0,clPlayer, 0,clBaseResource, 3), stayClasses(clCorsica, 5)],  scaleByMapSize(350,2500), 100 );
-createObjectGroups(TreeGroup, 0, [avoidClasses(clWater, 1, clForest, 0,clPlayer, 0,clBaseResource, 3), stayClasses(clSardinia, 5)],  scaleByMapSize(350,2500), 100 );
+var TreeGroup = new SimpleGroup([new SimpleObject(ePine, 3,6, 1,3),new SimpleObject(ePalmTall, 1,3, 1,3),new SimpleObject(eFanPalm, 0,2, 0,2),new SimpleObject(eApple, 0,1, 1,2)], true, clForest);
+createObjectGroups(TreeGroup, 0, [avoidClasses(clWater, 1, clForest, 0,clPlayer, 0,clBaseResource, 2,clCliffs,2), stayClasses(clCorsica, 3)],  scaleByMapSize(350,2500), 100 );
+createObjectGroups(TreeGroup, 0, [avoidClasses(clWater, 1, clForest, 0,clPlayer, 0,clBaseResource, 2,clCliffs,2), stayClasses(clSardinia, 3)],  scaleByMapSize(350,2500), 100 );
 
 RMS.SetProgress(75);
 
@@ -594,8 +608,10 @@ createObjectGroups( group, 0, [avoidClasses(clCreek,3,clShore,3),stayClasses(clW
 RMS.SetProgress(90);
 
 RMS.SetProgress(95);
-
-setSkySet("cumulus");
+if (randFloat(0,1) > 0.5)
+	setSkySet("cumulus");
+else
+	setSkySet("sunny");
 setSunColour(0.8,0.66,0.48);
 setSunElevation(0.828932);
 if (!swap)
@@ -607,7 +623,7 @@ setUnitsAmbientColour(0.53,0.55,0.45);
 setWaterColour(0.2, 0.35, 0.45);		
 setWaterTint(0.2, 0.6, 0.9);				
 setWaterReflectionTint(0.2, 0.6, 0.9);	
-setWaterMurkiness(0.7);
+setWaterMurkiness(0.78);
 setWaterReflectionTintStrength(0.377);
 setWaterWaviness(4);
 // Export map data

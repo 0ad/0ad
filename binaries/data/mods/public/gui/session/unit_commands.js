@@ -315,7 +315,9 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				{
 					getGUIObjectByName("queueProgress").caption = (item.progress ? progress : "");
 					var size = getGUIObjectByName("unit"+guiName+"ProgressSlider["+i+"]").size;
-					size.top = Math.round(item.progress*40);
+
+					// Buttons are assumed to be square, so left/right offsets can be used for top/bottom.
+					size.top = size.left + Math.round(item.progress * (size.right - size.left));
 					getGUIObjectByName("unit"+guiName+"ProgressSlider["+i+"]").size = size;
 				}
 				break;

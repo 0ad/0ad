@@ -36,6 +36,7 @@
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpObstruction.h"
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpTemplateManager.h"
@@ -332,6 +333,27 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 						XML_Attribute("y", rot.Y);
 						// TODO: X, Z maybe
 					}
+				}
+
+				CmpPtr<ICmpObstruction> cmpObstruction(sim, ent);
+				if (cmpObstruction)
+				{
+					// TODO: Currently only necessary because Atlas
+					// does not set up control groups for its walls.
+					cmpObstruction->ResolveFoundationCollisions();
+
+					entity_id_t group = cmpObstruction->GetControlGroup();
+					entity_id_t group2 = cmpObstruction->GetControlGroup2();
+
+					// Don't waste space writing the default control groups.
+					if (group == ent && group2 == INVALID_ENTITY)
+						continue;
+
+					XML_Element("Obstruction");
+					if (group != ent)
+						XML_Attribute("group", group);
+					if (group2 != INVALID_ENTITY)
+						XML_Attribute("group2", group2);
 				}
 			}
 		}

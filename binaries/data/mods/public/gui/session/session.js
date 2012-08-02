@@ -347,6 +347,7 @@ function onSimulationUpdate()
 	updateDebug(simState);
 	updatePlayerDisplay(simState);
 	updateSelectionDetails();
+	updateResearchDisplay();
 	updateBuildingPlacementPreview();
 	updateTimeElapsedCounter(simState);
 }
@@ -423,6 +424,67 @@ function updatePlayerDisplay(simState)
 	getGUIObjectByName("resourcePop").caption = playerState.popCount + "/" + playerState.popLimit;
 
 	g_IsTrainingBlocked = playerState.trainingBlocked;
+}
+
+function selectAndMoveTo(ent)
+{
+	var entState = GetEntityState(ent);
+	if (!entState)
+		return;
+
+	g_Selection.reset();
+	g_Selection.addList([ent]);
+
+	var position = entState.position;
+	Engine.CameraMoveTo(position.x, position.z);
+}
+
+function updateResearchDisplay()
+{
+	var researchStarted = Engine.GuiInterfaceCall("GetStartedResearch", Engine.GetPlayerID());
+	if (!researchStarted)
+		return;
+
+	// Set up initial positioning.
+	var buttonSideLength = getGUIObjectByName("researchStartedButton[0]").size.right;
+	for (var i = 0; i < 10; ++i)
+	{
+		var button = getGUIObjectByName("researchStartedButton[" + i + "]");
+		var size = button.size;
+		size.top = (4 + buttonSideLength) * i;
+		size.bottom = size.top + buttonSideLength;
+		button.size = size;
+	}
+
+	var numButtons = 0;
+	for (var tech in researchStarted)
+	{
+		// Show at most 10 in-progress techs.
+		if (numButtons >= 10)
+			break;
+
+		var template = GetTechnologyData(tech);
+		var button = getGUIObjectByName("researchStartedButton[" + numButtons + "]");
+		button.hidden = false;
+		button.tooltip = getEntityName(template);
+		button.onpress = (function(e) { return function() { selectAndMoveTo(e) } })(researchStarted[tech].researcher);
+
+		var icon = "stretched:session/portraits/" + template.icon;
+		getGUIObjectByName("researchStartedIcon[" + numButtons + "]").sprite = icon;
+
+		// Scale the progress indicator.
+		var size = getGUIObjectByName("researchStartedProgressSlider[" + numButtons + "]").size;
+
+		// Buttons are assumed to be square, so left/right offsets can be used for top/bottom.
+		size.top = size.left + Math.round(researchStarted[tech].progress * (size.right - size.left));
+		getGUIObjectByName("researchStartedProgressSlider[" + numButtons + "]").size = size;
+
+		++numButtons;
+	}
+
+	// Hide unused buttons.
+	for (var i = numButtons; i < 10; ++i)
+		getGUIObjectByName("researchStartedButton[" + i + "]").hidden = true;
 }
 
 function updateTimeElapsedCounter(simState)

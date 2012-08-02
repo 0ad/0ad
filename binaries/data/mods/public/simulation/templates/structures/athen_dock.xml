@@ -3,6 +3,10 @@
   <Cost>
     <BuildTime>275</BuildTime>
   </Cost>
+  <Footprint>
+    <Square width="26.0" depth="30.0"/>
+    <Height>8.0</Height>
+  </Footprint>
   <Health>
     <Max>2750</Max>
   </Health>
@@ -11,6 +15,9 @@
     <SpecificName>Limḗn</SpecificName>
     <History>Greece is a sea country, which is why some of the greatest Hellenic and Hellenistic cities like Athens, Ephesus, Corinth, Alexandria and Antioch were built by the sea. It should also be noted that all colonies during the Great Colonisation were thriving port centres, which traded with the local population. Athens itself had a large sea port at Piraeus, which consisted of 3 separate harbors surrounded by mighty walls and easily chained off to prevent amphibious attacks by enemy fleets. As long as Piraeus was unconquered, Athens remained monarch of the seas. </History>
   </Identity>
+  <Obstruction>
+    <Static width="22.0" depth="26.0"/>
+  </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
       units/athen_ship_bireme
@@ -19,5 +26,6 @@
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/athenians/dock.xml</Actor>
+    <FoundationActor>structures/fndn_6x4_dock.xml</FoundationActor>
   </VisualActor>
 </Entity>

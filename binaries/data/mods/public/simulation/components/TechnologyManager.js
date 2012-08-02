@@ -23,7 +23,8 @@ TechnologyManager.prototype.Init = function ()
 	var cmpTechTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
 	this.allTechs = cmpTechTempMan.GetAllTechs();
 	this.researchedTechs = {}; // technologies which have been researched
-	this.inProgressTechs = {}; // technologies which are being researched currently
+	this.researchQueued = {};  // technologies which are queued for research
+	this.researchStarted = {}; // technologies which are being researched currently (non-queued)
 	
 	// This stores the modifications to unit stats from researched technologies
 	// Example data: {"ResourceGatherer/Rates/food.grain": [ 
@@ -331,25 +332,46 @@ TechnologyManager.prototype.ApplyModificationsTemplate = function(valueName, cur
 	return GetTechModifiedProperty(this.modifications, template, valueName, curValue);
 };
 
-// Marks a technology as being currently researched
+// Marks a technology as being queued for research
+TechnologyManager.prototype.QueuedResearch = function (tech, researcher)
+{
+	this.researchQueued[tech] = researcher;
+};
+
+// Marks a technology as actively being researched
 TechnologyManager.prototype.StartedResearch = function (tech)
 {
-	this.inProgressTechs[tech] = true;
+	this.researchStarted[tech] = true;
 };
 
 // Marks a technology as not being currently researched
 TechnologyManager.prototype.StoppedResearch = function (tech)
 {
-	delete this.inProgressTechs[tech];
+	delete this.researchQueued[tech];
+	delete this.researchStarted[tech];
 };
 
-// Checks whether a technology is being currently researched
+// Checks whether a technology is set to be researched
 TechnologyManager.prototype.IsInProgress = function(tech)
 {
-	if (this.inProgressTechs[tech])
+	if (this.researchQueued[tech])
 		return true;
 	else
 		return false;
+};
+
+// Get all techs that are currently being researched
+TechnologyManager.prototype.GetTechsStarted = function()
+{
+	return this.researchStarted;
+};
+
+// Gets the entity currently researching a technology
+TechnologyManager.prototype.GetResearcher = function(tech)
+{
+	if (this.researchQueued[tech])
+		return this.researchQueued[tech];
+	return undefined;
 };
 
 // Get helper data for tech modifications

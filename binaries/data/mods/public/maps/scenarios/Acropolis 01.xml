@@ -24,14 +24,14 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="464.176" y="91.3431" z="101.55"/>
+		<Position x="475.26" y="172.732" z="53.875"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "An unusual matchup! Gauls vs. Mauryans on a classic acropolis-style map.",
+  "Description": "An unusual matchup! Gauls vs. Persians on a classic acropolis-style map.",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
@@ -53,7 +53,7 @@
     },
     {
       "AI": "qbot",
-      "Civ": "maur",
+      "Civ": "pers",
       "Colour": {
         "b": 20,
         "g": 20,
@@ -22902,58 +22902,52 @@
 			<Position x="452.8718" z="175.84116"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="4622">
-			<Template>structures/maur_civil_centre</Template>
+		<Entity uid="4631">
+			<Template>structures/pers_civil_centre</Template>
 			<Player>2</Player>
-			<Position x="583.93128" z="824.84644"/>
+			<Position x="585.4314" z="825.29767"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="4623">
-			<Template>units/maur_support_elephant</Template>
+		<Entity uid="4632">
+			<Template>units/pers_infantry_spearman_b</Template>
 			<Player>2</Player>
-			<Position x="607.9084" z="822.25086"/>
+			<Position x="594.30768" z="800.20582"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="4624">
-			<Template>units/maur_cavalry_javelinist_b</Template>
+		<Entity uid="4633">
+			<Template>units/pers_infantry_spearman_b</Template>
 			<Player>2</Player>
-			<Position x="569.79047" z="816.0647"/>
-			<Orientation y="-2.54555"/>
-		</Entity>
-		<Entity uid="4625">
-			<Template>units/maur_infantry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="593.51233" z="806.09107"/>
+			<Position x="596.94623" z="802.60993"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="4626">
-			<Template>units/maur_infantry_spearman_b</Template>
+		<Entity uid="4634">
+			<Template>units/pers_infantry_spearman_b</Template>
 			<Player>2</Player>
-			<Position x="594.8899" z="807.71894"/>
+			<Position x="600.17103" z="804.7074"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="4627">
-			<Template>units/maur_infantry_spearman_b</Template>
+		<Entity uid="4635">
+			<Template>units/pers_cavalry_spearman_b</Template>
 			<Player>2</Player>
-			<Position x="596.37446" z="809.24103"/>
+			<Position x="609.48298" z="813.39051"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="4628">
-			<Template>units/maur_support_female_citizen</Template>
+		<Entity uid="4636">
+			<Template>units/pers_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="591.69935" z="808.05726"/>
+			<Position x="591.16614" z="803.00281"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="4629">
-			<Template>units/maur_support_female_citizen</Template>
+		<Entity uid="4637">
+			<Template>units/pers_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="593.40931" z="809.3838"/>
+			<Position x="594.21894" z="805.55146"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="4630">
-			<Template>units/maur_support_female_citizen</Template>
+		<Entity uid="4638">
+			<Template>units/pers_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="594.75306" z="811.0063"/>
+			<Position x="596.64661" z="808.03504"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>

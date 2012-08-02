@@ -31,7 +31,8 @@ CList
 //-------------------------------------------------------------------
 //  Constructor / Destructor
 //-------------------------------------------------------------------
-CList::CList()
+CList::CList() :
+	m_Modified(false)
 {
 	// Add sprite_disabled! TODO
 
@@ -74,6 +75,7 @@ void CList::SetupText()
 	if (!GetGUI())
 		return;
 
+	m_Modified = true;
 	CGUIList *pList;
 	GUI<CGUIList>::GetSettingPointer(this, "list", pList);
 
@@ -151,6 +153,7 @@ void CList::HandleMessage(SGUIMessage &Message)
 	IGUIScrollBarOwner::HandleMessage(Message);
 	//IGUITextOwner::HandleMessage(Message); <== placed it after the switch instead!
 
+	m_Modified = false;
 	switch (Message.type)
 	{
 	case GUIM_SETTINGS_UPDATED:

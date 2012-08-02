@@ -75,6 +75,9 @@ public:
 	/// Whether the entity associated with this obstruction is currently moving. Only applicable for
 	/// UNIT-type obstructions.
 	bool m_Moving;
+	/// Whether an obstruction's control group should be kept consistent and
+	/// used to set control groups for entities that collide with it.
+	bool m_ControlPersist;
 
 	/**
 	 * Primary control group identifier. Indicates to which control group this entity's shape belongs.
@@ -164,7 +167,12 @@ public:
 			"</element>"
 			"<element name='DisableBlockPathfinding' a:help='If true, BlockPathfinding will be overridden and treated as false. (This is a special case to handle foundations)'>"
 				"<data type='boolean'/>"
-			"</element>";
+			"</element>"
+			"<optional>"
+				"<element name='ControlPersist' a:help='If present, the control group of this entity will be given to entities that are colliding with it.'>"
+					"<empty/>"
+				"</element>"
+			"</optional>";
 	}
 
 	virtual void Init(const CParamNode& paramNode)
@@ -222,6 +230,7 @@ public:
 		}
 
 		m_Active = paramNode.GetChild("Active").ToBool();
+		m_ControlPersist = paramNode.GetChild("ControlPersist").IsOk();
 
 		m_Tag = tag_t();
 		if (m_Type == CLUSTER)
@@ -464,6 +473,11 @@ public:
 			return entity_pos_t::Zero();
 	}
 
+	virtual bool IsControlPersistent()
+	{
+		return m_ControlPersist;
+	}
+
 	virtual bool CheckFoundation(std::string className)
 	{
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
@@ -604,6 +618,77 @@ public:
 		}
 	}
 
+	void ResolveFoundationCollisions()
+	{
+		if (m_Type == UNIT)
+			return;
+
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+		if (!cmpObstructionManager)
+			return;
+
+		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+		if (!cmpPosition)
+			return; // error
+
+		if (!cmpPosition->IsInWorld())
+			return; // no obstruction
+
+		CFixedVector2D pos = cmpPosition->GetPosition2D();
+
+		// Ignore collisions within the same control group, or with other non-foundation-blocking shapes.
+		// Note that, since the control group for each entity defaults to the entity's ID, this is typically 
+		// equivalent to only ignoring the entity's own shape and other non-foundation-blocking shapes.
+		SkipControlGroupsRequireFlagObstructionFilter filter(m_ControlGroup, m_ControlGroup2,
+			ICmpObstructionManager::FLAG_BLOCK_FOUNDATION);
+
+		std::vector<entity_id_t> collisions;
+		if (cmpObstructionManager->TestStaticShape(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, &collisions))
+		{
+			std::vector<entity_id_t> persistentEnts, normalEnts;
+
+			if (m_ControlPersist)
+				persistentEnts.push_back(m_ControlGroup);
+			else
+				normalEnts.push_back(GetEntityId());
+
+			for (std::vector<entity_id_t>::iterator it = collisions.begin(); it != collisions.end(); ++it)
+			{
+				entity_id_t ent = *it;
+				if (ent == INVALID_ENTITY)
+					continue;
+
+				CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), ent);
+				if (!cmpObstruction->IsControlPersistent())
+					normalEnts.push_back(ent);
+				else
+					persistentEnts.push_back(cmpObstruction->GetControlGroup());
+			}
+
+			// The collision can't be resolved without usable persistent control groups.
+			if (!persistentEnts.size())
+				return;
+
+			// Attempt to replace colliding entities' control groups with a persistent one.
+			for (std::vector<entity_id_t>::iterator it = normalEnts.begin(); it != normalEnts.end(); ++it)
+			{
+				entity_id_t ent = *it;
+
+				CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), ent);
+				for (std::vector<entity_id_t>::iterator it = persistentEnts.begin(); it != persistentEnts.end(); ++it)
+				{
+					entity_id_t persistent = *it;
+					entity_id_t group = cmpObstruction->GetControlGroup();
+
+					// Only clobber 'default' control groups.
+					if (group == ent)
+						cmpObstruction->SetControlGroup(persistent);
+					else if (cmpObstruction->GetControlGroup2() == INVALID_ENTITY && group != persistent)
+						cmpObstruction->SetControlGroup2(persistent);
+				}
+			}
+		}
+	}
 protected:
 
 	inline void AddClusterShapes(entity_pos_t x, entity_pos_t z, entity_angle_t a)

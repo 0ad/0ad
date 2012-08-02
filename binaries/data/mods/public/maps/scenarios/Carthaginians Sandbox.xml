@@ -162,6 +162,7 @@
 			<Player>1</Player>
 			<Position x="132.6556" z="366.40653"/>
 			<Orientation y="2.17183"/>
+			<Obstruction group="30" group2="944"/>
 		</Entity>
 		<Entity uid="30">
 			<Template>structures/cart_wall_tower</Template>
@@ -4951,12 +4952,14 @@
 			<Player>1</Player>
 			<Position x="702.15442" z="291.06931"/>
 			<Orientation y="2.35621"/>
+			<Obstruction group="951" group2="955"/>
 		</Entity>
 		<Entity uid="948">
 			<Template>other/palisades_rocks_straight</Template>
 			<Player>1</Player>
 			<Position x="681.56507" z="312.76856"/>
 			<Orientation y="2.35621"/>
+			<Obstruction group="949" group2="954"/>
 		</Entity>
 		<Entity uid="949">
 			<Template>other/palisades_rocks_tower</Template>
@@ -4993,24 +4996,28 @@
 			<Player>1</Player>
 			<Position x="721.75532" z="275.91211"/>
 			<Orientation y="1.67827"/>
+			<Obstruction group="955"/>
 		</Entity>
 		<Entity uid="958">
 			<Template>other/palisades_rocks_curve</Template>
 			<Player>1</Player>
 			<Position x="666.15204" z="332.52994"/>
 			<Orientation y="-3.06463"/>
+			<Obstruction group="954"/>
 		</Entity>
 		<Entity uid="959">
 			<Template>other/palisades_rocks_straight</Template>
 			<Player>1</Player>
 			<Position x="714.06232" z="280.56235"/>
 			<Orientation y="2.35621"/>
+			<Obstruction group="955"/>
 		</Entity>
 		<Entity uid="960">
 			<Template>other/palisades_rocks_straight</Template>
 			<Player>1</Player>
 			<Position x="670.36194" z="323.79346"/>
 			<Orientation y="-0.76119"/>
+			<Obstruction group="954"/>
 		</Entity>
 		<Entity uid="961">
 			<Template>gaia/fauna_fish_tuna</Template>
