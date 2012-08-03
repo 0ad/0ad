@@ -1256,6 +1256,12 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 			}
 			
 			validPlacement = (cmpBuildRestrictions && cmpBuildRestrictions.CheckPlacement(player));
+
+			// If a wall piece has two control groups, it's likely a segment that spans
+			// between two existing towers. To avoid placing a duplicate wall segment,
+			// check for collisions with entities that share both control groups.
+			if (validPlacement && entInfo.controlGroups && entInfo.controlGroups.length > 1)
+				validPlacement = cmpObstruction.CheckDuplicateFoundation();
 		}
 		
 		allPiecesValid = allPiecesValid && validPlacement;
