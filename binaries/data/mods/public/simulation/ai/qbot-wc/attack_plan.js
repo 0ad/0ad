@@ -436,10 +436,11 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 				if (IDs.indexOf(e.msg.target) !== -1) {
 					var attacker = gameState.getEntityById(e.msg.attacker);
 					if (attacker && attacker.position() && attacker.hasClass("Unit") && attacker.owner() != 0) {
-						toProcess[attacker.id()] = attacker;
-						
-						var armyID = militaryManager.enemyWatchers[attacker.owner()].getArmyFromMember(attacker.id());
-						armyToProcess[armyID[0]] = armyID[1];
+						if (militaryManager.enemyWatchers[attacker.owner()]) {
+							toProcess[attacker.id()] = attacker;
+							var armyID = militaryManager.enemyWatchers[attacker.owner()].getArmyFromMember(attacker.id());
+							armyToProcess[armyID[0]] = armyID[1];
+						}
 					}
 				}
 			}

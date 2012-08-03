@@ -235,10 +235,6 @@ EconomyManager.prototype.assignToFoundations = function(gameState) {
 };
 
 EconomyManager.prototype.buildMoreFields = function(gameState, queues) {
-	// give time for treasures to be gathered
-	if (gameState.getTimeElapsed() < 30 * 1000)
-		return;
-	
 	var numFood = 0;
 	
 	gameState.updatingCollection("active-dropsite-food", Filters.byMetadata("active-dropsite-food", true), 
@@ -543,9 +539,11 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 	}
 	
 	Engine.ProfileStart("Update Resource Maps and Concentrations");
-	this.updateResourceMaps(gameState, events);
-	this.updateResourceConcentrations(gameState);
-	this.updateNearbyResources(gameState);
+	if (gameState.ai.playedTurn % 2 === 0) {
+		this.updateResourceMaps(gameState, events);
+		this.updateResourceConcentrations(gameState);
+		this.updateNearbyResources(gameState);
+	}
 	Engine.ProfileStop();
 	
 	Engine.ProfileStart("Build new Dropsites");

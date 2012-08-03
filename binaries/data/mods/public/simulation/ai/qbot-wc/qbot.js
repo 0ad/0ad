@@ -4,6 +4,8 @@ function QBotAI(settings) {
 
 	this.turn = 0;
 
+	this.playedTurn = 0;
+
 	this.modules = {
 			"economy": new EconomyManager(), 
 			"military": new MilitaryAttackManager(), 
@@ -93,8 +95,9 @@ QBotAI.prototype.OnUpdate = function() {
 	// Run the update every n turns, offset depending on player ID to balance
 	// the load
 	if ((this.turn + this.player) % 10 == 0) {
-		Engine.ProfileStart("qBot");
+		Engine.ProfileStart("qBot-xp");
 		
+		this.playedTurn++;
 		var gameState = new GameState(this);
 		
 		if (gameState.getOwnEntities().length === 0){

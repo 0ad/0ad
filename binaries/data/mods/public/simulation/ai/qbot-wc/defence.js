@@ -236,6 +236,8 @@ Defence.prototype.defendFromEnemyArmies = function(gameState, events, militaryMa
 	newSoldiers.forEach(function(ent) {
 		if (ent.getMetadata("subrole","attacking"))
 			return;
+		if (nbOfAttackers <= 0)
+			return;
 		// okaaay we attack
 		for (o in self.listOfEnemies) {
 			if (self.attackerCache[o].length === 0) {
@@ -255,6 +257,8 @@ Defence.prototype.defendFromEnemyArmies = function(gameState, events, militaryMa
 	if (nbOfAttackers > 0) {
 		var newSoldiers = gameState.getOwnEntitiesByRole("worker");
 	newSoldiers.forEach(function(ent) {
+		if (nbOfAttackers <= 0)
+			return;
 		// If we're not female, we attack
 		if (ent.hasClass("CitizenSoldier"))
 			for (o in self.listOfEnemies) {
@@ -263,6 +267,7 @@ Defence.prototype.defendFromEnemyArmies = function(gameState, events, militaryMa
 					ent.setMetadata("role","defence");
 					ent.setMetadata("subrole","defending");
 					ent.attack(+o);
+					nbOfAttackers--;
 					break;
 				}
 			}
