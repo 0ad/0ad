@@ -787,6 +787,26 @@ static void Shutdown()
 	pool_destroy(&hpool);
 }
 
+void h_mgr_free_type(const H_Type type)
+{
+	ignoreDoubleFree = true;
+
+	H_ScopedLock s;
+
+	// forcibly close all open handles of the specified type
+	for(HDATA* hd = (HDATA*)hpool.da.base; hd < (HDATA*)(hpool.da.base + hpool.da.pos); hd = (HDATA*)(uintptr_t(hd)+hpool.el_size))
+	{
+		// free if not previously freed and only free the proper type
+		if (hd->key == 0 || hd->type != type)
+			continue;
+
+		// disable caching; we need to release the resource now.
+		hd->keep_open = 0;
+		hd->refs = 0;
+
+		h_free_hd(hd);
+	}
+}
 
 void h_mgr_init()
 {

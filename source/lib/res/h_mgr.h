@@ -384,6 +384,10 @@ extern Handle h_alloc(H_Type type, const PIVFS& vfs, const VfsPath& pathname, si
 extern Status h_free(Handle& h, H_Type type);
 
 
+// Forcibly frees all handles of a specified type.
+void h_mgr_free_type(const H_Type type);
+
+
 // find and return a handle by key (typically filename hash)
 // currently O(log n).
 //
