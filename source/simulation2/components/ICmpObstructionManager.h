@@ -398,6 +398,42 @@ public:
 };
 
 /**
+ * Obstruction test filter that will test only against shapes that:
+ *     - are part of both of the specified control groups
+ *     - AND have at least one of the specified flags set.
+ * 
+ * The first (primary) control group to include shapes from must be specified and valid.
+ * 
+ * This filter is useful for preventing entities with identical control groups
+ * from colliding e.g. building a new wall segment on top of an existing wall)
+ *
+ * @todo This filter needs test cases.
+ */
+class SkipTagRequireControlGroupsAndFlagObstructionFilter : public IObstructionTestFilter
+{
+	bool m_Exclude;
+	tag_t m_Tag;
+	entity_id_t m_Group;
+	entity_id_t m_Group2;
+	flags_t m_Mask;
+
+public:
+	SkipTagRequireControlGroupsAndFlagObstructionFilter(tag_t tag, entity_id_t group1, entity_id_t group2, flags_t mask) : 
+		m_Tag(tag), m_Group(group1), m_Group2(group2), m_Mask(mask)
+	{
+		ENSURE(m_Group != INVALID_ENTITY);
+	}
+
+	virtual bool TestShape(tag_t tag, flags_t flags, entity_id_t group, entity_id_t group2) const
+	{
+		// To be included in testing, a shape must not have the specified tag, and must
+		// match at least one of the flags in m_Mask, as well as both control groups.
+		return (tag.n != m_Tag.n && (flags & m_Mask) != 0 && ((group == m_Group
+			&& group2 == m_Group2) || (group2 == m_Group && group == m_Group2)));
+	}
+};
+
+/**
  * Obstruction test filter that will test only against shapes that do not have the specified tag set.
  */
 class SkipTagObstructionFilter : public IObstructionTestFilter

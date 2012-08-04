@@ -52,6 +52,13 @@ public:
 	virtual bool CheckFoundation(std::string className) = 0;
 
 	/**
+	 * Test whether this entity is colliding with any obstructions that share its
+	 * control groups and block the creation of foundations.
+	 * @return true if foundation is valid (not obstructed)
+	 */
+	virtual bool CheckDuplicateFoundation() = 0;
+
+	/**
 	 * Returns a list of entities that are colliding with this entity, and that
 	 * are set to block construction.
 	 * @return vector of blocking entities

@@ -671,6 +671,9 @@ void Shutdown(int UNUSED(flags))
 
 	g_Profiler2.ShutdownGPU();
 
+	// Free cursors before shutting down SDL, as they may depend on SDL.
+	cursor_shutdown();
+
 	TIMER_BEGIN(L"shutdown SDL");
 	ShutdownSDL();
 	TIMER_END(L"shutdown SDL");

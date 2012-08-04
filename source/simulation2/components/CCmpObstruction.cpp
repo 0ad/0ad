@@ -517,6 +517,38 @@ public:
 			return cmpPathfinder->CheckBuildingPlacement(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, GetEntityId(), passClass);
 	}
 
+	virtual bool CheckDuplicateFoundation()
+	{
+		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+		if (!cmpPosition)
+			return false; // error
+
+		if (!cmpPosition->IsInWorld())
+			return false; // no obstruction
+
+		CFixedVector2D pos = cmpPosition->GetPosition2D();
+
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSimContext(), SYSTEM_ENTITY);
+		if (!cmpObstructionManager)
+			return false; // error
+
+		// required precondition to use SkipControlGroupsRequireFlagObstructionFilter
+		if (m_ControlGroup == INVALID_ENTITY)
+		{
+			LOGERROR(L"[CmpObstruction] Cannot test for foundation obstructions; primary control group must be valid");
+			return false;
+		}
+
+		// Ignore collisions with entities unless they block foundations and match both control groups.
+		SkipTagRequireControlGroupsAndFlagObstructionFilter filter(m_Tag, m_ControlGroup, m_ControlGroup2,
+			ICmpObstructionManager::FLAG_BLOCK_FOUNDATION);
+
+		if (m_Type == UNIT)
+			return !cmpObstructionManager->TestUnitShape(filter, pos.X, pos.Y, m_Size0, NULL);
+		else
+			return !cmpObstructionManager->TestStaticShape(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, NULL);
+	} 
+
 	virtual std::vector<entity_id_t> GetConstructionCollisions()
 	{
 		std::vector<entity_id_t> ret;

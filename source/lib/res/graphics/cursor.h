@@ -46,4 +46,11 @@
  **/
 extern Status cursor_draw(const PIVFS& vfs, const wchar_t* name, int x, int y, bool forceGL);
 
+/**
+ * Forcibly frees all cursor handles.
+ *
+ * Currently used just prior to SDL shutdown.
+ */
+void cursor_shutdown();
+
 #endif	// #ifndef INCLUDED_GRAPHICS_CURSOR

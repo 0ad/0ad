@@ -295,6 +295,11 @@ static Handle cursor_load(const PIVFS& vfs, const VfsPath& name, bool forceGL)
 	return h_alloc(H_Cursor, vfs, name, 0, (int)forceGL);
 }
 
+void cursor_shutdown()
+{
+	h_mgr_free_type(H_Cursor);
+}
+
 static Status cursor_free(Handle& h)
 {
 	return h_free(h, H_Cursor);
