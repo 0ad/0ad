@@ -40,7 +40,7 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpMinimap.h"
-#include "simulation2/components/ICmpTerritoryManager.h"
+#include "simulation2/system/ParamNode.h"
 
 bool g_GameRestarted = false;
 
@@ -60,6 +60,15 @@ CMiniMap::CMiniMap() :
 	AddSetting(GUIST_CStr,		"tooltip_style");
 	m_Clicking = false;
 	m_MouseHovering = false;
+	
+	// Get the maximum height for unit passage in water.
+	CParamNode externalParamNode;
+	CParamNode::LoadXML(externalParamNode, L"simulation/data/pathfinder.xml");
+	const CParamNode pathingSettings = externalParamNode.GetChild("Pathfinder").GetChild("PassabilityClasses");
+	if (pathingSettings.GetChild("default").IsOk() && pathingSettings.GetChild("default").GetChild("MaxWaterDepth").IsOk())
+		m_ShallowPassageHeight = pathingSettings.GetChild("default").GetChild("MaxWaterDepth").ToFloat();
+	else
+		m_ShallowPassageHeight = 0.0f;
 }
 
 CMiniMap::~CMiniMap()
@@ -498,7 +507,11 @@ void CMiniMap::RebuildTerrainTexture()
 					+ m_Terrain->GetVertexGroundLevel((int)i+1, (int)j+1)
 				) / 4.0f;
 
-			if(avgHeight < waterHeight)
+			if(avgHeight < waterHeight && avgHeight > waterHeight - m_ShallowPassageHeight)
+			{
+				// shallow water
+				*dataPtr++ = 0xff7098c0;
+			} else if (avgHeight < waterHeight)
 			{
 				// Set water as constant color for consistency on different maps
 				*dataPtr++ = 0xff5078a0;
