@@ -135,6 +135,7 @@ public:
 
 	virtual void Init(const CParamNode& paramNode)
 	{
+		m_previouslyRendered = false;
 		m_Unit = NULL;
 		m_Visibility = ICmpRangeManager::VIS_HIDDEN;
 
