@@ -395,6 +395,9 @@ Player.prototype.OnPlayerDefeated = function()
 		var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
 		cmpOwnership.SetOwner(0);
 	}
+
+	// Reveal the map for this player.
+	cmpRangeManager.SetLosRevealAll(this.playerID, true);
 };
 
 Engine.RegisterComponentType(IID_Player, "Player", Player);
