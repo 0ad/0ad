@@ -44,3 +44,26 @@ EntityCollection.prototype.getCentrePosition = function(){
 		return [sumPos[0]/count, sumPos[1]/count];
 	}
 };
+
+EntityCollection.prototype.filterNearest = function(targetPos, n)
+{
+	// Compute the distance of each entity
+	var data = []; // [ [id, ent, distance], ... ]
+	for (var id in this._entities)
+	{
+		var ent = this._entities[id];
+		if (ent.position())
+			data.push([id, ent, SquareVectorDistance(targetPos, ent.position())]);
+	}
+	
+	// Sort by increasing distance
+	data.sort(function (a, b) { return (a[2] - b[2]); });
+	if (n === undefined)
+		n = this._length;
+	// Extract the first n
+	var ret = {};
+	for each (var val in data.slice(0, n))
+		ret[val[0]] = val[1];
+	
+	return new EntityCollection(this._ai, ret);
+};
