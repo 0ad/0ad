@@ -354,7 +354,7 @@ for (var i = 0; i < numPlayers; i++)
 	var elevationPainter = new SmoothElevationPainter(
 		ELEVATION_SET,			// type
 		3,				// elevation
-		3				// blend radius
+		2				// blend radius
 	);
 	createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand), paintClass(clHill)], null);
 	
@@ -366,7 +366,7 @@ for (var i = 0; i < numPlayers; i++)
 	var elevationPainter = new SmoothElevationPainter(
 		ELEVATION_SET,			// type
 		3,				// elevation
-		3				// blend radius
+		2				// blend radius
 	);
 	createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand), paintClass(clHill)], null);
 	
