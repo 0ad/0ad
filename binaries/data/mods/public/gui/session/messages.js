@@ -27,6 +27,14 @@ function handleNotifications()
 			"text": notification.message
 		});
 	}
+	else if (notification.type == "defeat")
+	{
+		addChatMessage({
+			"type": "defeat",
+			"guid": findGuidForPlayerID(g_PlayerAssignments, notification.player),
+			"player": notification.player
+		});
+	}
 	else if (notification.type == "quit")
 	{
 		// Used for AI testing
@@ -195,6 +203,12 @@ function addChatMessage(msg, playerAssignments)
 		playerColor = g_Players[n].color.r + " " + g_Players[n].color.g + " " + g_Players[n].color.b;
 		username = escapeText(playerAssignments[msg.guid].name);
 	}
+	else if (msg.type == "defeat" && msg.player)
+	{
+		// This case is hit for AIs, whose names don't exist in playerAssignments.
+		playerColor = g_Players[msg.player].color.r + " " + g_Players[msg.player].color.g + " " + g_Players[msg.player].color.b;
+		username = escapeText(g_Players[msg.player].name);
+	}
 	else
 	{
 		playerColor = "255 255 255";
@@ -212,6 +226,9 @@ function addChatMessage(msg, playerAssignments)
 		break;
 	case "disconnect":
 		formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] has left the game.";
+		break;
+	case "defeat":
+		formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] has been defeated.";
 		break;
 	case "message":
 		console.write("<" + username + "> " + message);

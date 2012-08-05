@@ -398,6 +398,11 @@ Player.prototype.OnPlayerDefeated = function()
 
 	// Reveal the map for this player.
 	cmpRangeManager.SetLosRevealAll(this.playerID, true);
+
+	// Send a chat message notifying of the player's defeat.
+	var notification = {"type": "defeat", "player": this.playerID};
+	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	cmpGUIInterface.PushNotification(notification);
 };
 
 Engine.RegisterComponentType(IID_Player, "Player", Player);
