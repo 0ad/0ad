@@ -253,7 +253,9 @@ function addChatMessage(msg, playerAssignments)
 		formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] has left the game.";
 		break;
 	case "defeat":
-		formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] has been defeated.";
+		// In singleplayer, the local player is "You". "You has" is incorrect.
+		var verb = (!g_IsNetworked && msg.player == Engine.GetPlayerID()) ? "have" : "has";
+		formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] " + verb + " been defeated.";
 		break;
 	case "message":
 		console.write("<" + username + "> " + message);
