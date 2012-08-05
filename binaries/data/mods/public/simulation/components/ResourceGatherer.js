@@ -257,9 +257,13 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 
 	var rate;
 	if (type.specific && rates[type.generic+"."+type.specific])
+	{
 		rate = rates[type.generic+"."+type.specific] / cmpPlayer.cheatTimeMultiplier;
-	else
+	}
+	else if (type.generic && rates[type.generic])
+	{
 		rate = rates[type.generic] / cmpPlayer.cheatTimeMultiplier;
+	}
 	
 	return (rate || 0);
 };
