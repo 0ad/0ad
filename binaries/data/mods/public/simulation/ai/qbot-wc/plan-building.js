@@ -128,6 +128,9 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 		var radius = Math.ceil(template.obstructionRadius() / cellSize) + 2;
 	else
 		var radius = Math.ceil(template.obstructionRadius() / cellSize);
+	
+	if (gameState.playerData.civ == "iber")
+		radius *= 0.95;
 
 	// Find the best non-obstructed tile
 	var bestTile = friendlyTiles.findBestTile(radius, obstructionMap);

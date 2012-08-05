@@ -185,7 +185,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			
 			// Apply a time discount to larger batches.
 			// TODO: work out what equation we should use here.
-			var timeMult = Math.pow(count, 0.7);
+			var timeMult = Math.pow(count, 0.7) * cmpPlayer.cheatTimeMultiplier;
 			
 			// We need the costs after tech modifications
 			// Obviously we don't have the entities yet, so we must use template data
@@ -232,8 +232,8 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			var template = cmpTechTempMan.GetTemplate(templateName);
 			if (!template)
 				return;
-			
-			var time = template.researchTime;
+			var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+			var time = template.researchTime * cmpPlayer.cheatTimeMultiplier;
 
 			var cost = {};
 			for each (var r in ["food", "wood", "stone", "metal"])

@@ -29,6 +29,8 @@ Player.prototype.Init = function()
 	this.startCam = undefined;
 	this.controlAllUnits = false;
 	this.isAI = false;
+	this.cheatsEnabled = true;
+	this.cheatTimeMultiplier = 1;
 };
 
 Player.prototype.SetPlayerID = function(id)
@@ -382,19 +384,53 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 	}
 };
 
-Player.prototype.OnPlayerDefeated = function()
+Player.prototype.OnPlayerDefeated = function(msg)
 {
 	this.state = "defeated";
 
-	// Reassign all player's entities to Gaia
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var entities = cmpRangeManager.GetEntitiesByPlayer(this.playerID);
-	for each (var entity in entities)
+	if (msg.destroy)
 	{
-		// Note: maybe we need to reassign units and buildings only?
-		var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
-		cmpOwnership.SetOwner(0);
+		// Destroy all of the player's entities.
+		for each (var entity in entities)
+		{
+			var cmpHealth = Engine.QueryInterface(entity, IID_Health);
+			if (cmpHealth)
+				cmpHealth.Kill();
+			else
+				Engine.DestroyEntity(entity);
+		}
 	}
+	else
+	{
+		// Reassign all player's entities to Gaia
+		for each (var entity in entities)
+		{
+			// Note: maybe we need to reassign units and buildings only?
+			var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
+			cmpOwnership.SetOwner(0);
+		}
+	}
+
+	// Reveal the map for this player.
+	cmpRangeManager.SetLosRevealAll(this.playerID, true);
+
+	// Send a chat message notifying of the player's defeat.
+	var notification = {"type": "defeat", "player": this.playerID};
+	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	cmpGUIInterface.PushNotification(notification);
 };
+
+
+Player.prototype.SetCheatEnabled = function(flag)
+{
+	this.cheatsEnabled = flag;
+}
+
+Player.prototype.GetCheatEnabled = function(flag)
+{
+	return this.cheatsEnabled;
+}
 
 Engine.RegisterComponentType(IID_Player, "Player", Player);

@@ -8,6 +8,8 @@ var EconomyManager = function() {
 	                    //turns before trying to reassign them.
 	
 	this.femaleRatio = 0.4;
+
+	this.farmingFields = false;
 	
 	this.dropsiteNumbers = {wood: 2, stone: 1, metal: 1};
 };
@@ -235,20 +237,23 @@ EconomyManager.prototype.assignToFoundations = function(gameState) {
 };
 
 EconomyManager.prototype.buildMoreFields = function(gameState, queues) {
-	var numFood = 0;
+	if (this.farmingFields) {
+		var numFarms = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_field"));
+		numFarms += queues.field.countTotalQueuedUnits();
 	
-	gameState.updatingCollection("active-dropsite-food", Filters.byMetadata("active-dropsite-food", true), 
-			gameState.getOwnDropsites("food")).forEach(function (dropsite){
-		numFood += dropsite.getMetadata("nearby-resources-food").length;
-	});
-	
-	var numFarms = gameState.countFoundationsWithType(gameState.applyCiv("structures/{civ}_field"));
-	numFarms += queues.field.countTotalQueuedUnits();
-	
-	if (gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_field")) == 0)
-		numFood = Math.floor(numFood/1.5);
-	if (numFood+numFarms < this.targetNumFields)
-		queues.field.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_field"));
+		if (numFarms < this.targetNumFields + Math.floor(gameState.getTimeElapsed() / 900000))
+			queues.field.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_field"));
+	} else {
+		var foodAmount = 0;
+		gameState.updatingCollection("active-dropsite-food", Filters.byMetadata("active-dropsite-food", true),
+				gameState.getOwnDropsites("food")).forEach(function (dropsite){
+				dropsite.getMetadata("nearby-resources-food").forEach(function (supply) {
+					foodAmount += supply.resourceSupplyAmount();
+				});
+			});
+		if (foodAmount < 300)
+			this.farmingFields = true;
+	}
 };
 
 // If all the CC's are destroyed then build a new one
@@ -266,7 +271,7 @@ EconomyManager.prototype.updateResourceMaps = function(gameState, events){
 	// The weight of the influence function is amountOfResource/decreaseFactor 
 	var decreaseFactor = {'wood': 15, 'stone': 100, 'metal': 100, 'food': 20};
 	// This is the maximum radius of the influence
-	var radius = {'wood':13, 'stone': 10, 'metal': 10, 'food': 10};
+	var radius = {'wood':9, 'stone': 10, 'metal': 10, 'food': 12};
 	
 	var self = this;
 	
@@ -431,7 +436,7 @@ EconomyManager.prototype.updateNearbyResources = function(gameState){
 //return the number of resource dropsites with an acceptable amount of the resource nearby
 EconomyManager.prototype.checkResourceConcentrations = function(gameState, resource){
 	//TODO: make these values adaptive 
-	var requiredInfluence = {wood: 16000, stone: 300, metal: 300};
+	var requiredInfluence = {wood: 1400, stone: 200, metal: 200};
 	var count = 0;
 	gameState.getOwnEntities().forEach(function(ent) {
 		if (ent.resourceDropsiteTypes() && ent.resourceDropsiteTypes().indexOf(resource) !== -1){
@@ -446,7 +451,7 @@ EconomyManager.prototype.checkResourceConcentrations = function(gameState, resou
 };
 
 EconomyManager.prototype.buildMarket = function(gameState, queues){
-	if (gameState.getTimeElapsed() > 600 * 1000){
+	if (gameState.getTimeElapsed() > 360 * 1000){
 		if (queues.economicBuilding.countTotalQueuedUnitsWithClass("BarterMarket") === 0 &&
 			gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_market")) === 0){ 
 			//only ever build one mill/CC/market at a time
@@ -478,7 +483,7 @@ EconomyManager.prototype.tryBartering = function(gameState){
 		}
 	}
 };
-
+// so this always try to build dropsites.
 EconomyManager.prototype.buildDropsites = function(gameState, queues){
 	if (queues.economicBuilding.totalLength() === 0 && 
 			gameState.countFoundationsWithType(gameState.applyCiv("structures/{civ}_mill")) === 0 &&
@@ -522,7 +527,8 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 	Engine.ProfileStart("Train workers and build farms");
 	this.trainMoreWorkers(gameState, queues);
 
-	this.buildMoreFields(gameState,queues);
+	if (gameState.getTimeElapsed() > 5000)
+		this.buildMoreFields(gameState,queues);
 	Engine.ProfileStop();
 	
 	//Later in the game we want to build stuff faster.
@@ -532,7 +538,7 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 		this.targetNumBuilders = 3;
 	}
 	
-	if (gameState.countEntitiesByType(gameState.applyCiv("units/{civ}_support_female_citizen")) > this.targetNumWorkers * 0.8) {
+	if (gameState.getTimeElapsed() > 20*60*1000) {
 		this.dropsiteNumbers = {wood: 3, stone: 2, metal: 2};
 	}else{
 		this.dropsiteNumbers = {wood: 2, stone: 1, metal: 1};

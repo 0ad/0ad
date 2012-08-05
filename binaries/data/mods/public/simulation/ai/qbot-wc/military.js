@@ -374,7 +374,6 @@ MilitaryAttackManager.prototype.buildDefences = function(gameState, queues){
 	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv('structures/{civ}_defense_tower'))
 			+ queues.defenceBuilding.totalLength() < gameState.getBuildLimits()["DefenseTower"]) {
 		
-		
 		gameState.getOwnEntities().forEach(function(dropsiteEnt) {
 			if (dropsiteEnt.resourceDropsiteTypes() && dropsiteEnt.getMetadata("defenseTower") !== true){
 				var position = dropsiteEnt.position();
@@ -503,7 +502,8 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 	
 	this.constructTrainingBuildings(gameState, queues);
 	
-	this.buildDefences(gameState, queues);
+	if(gameState.getTimeElapsed() > 300*1000)
+		this.buildDefences(gameState, queues);
 	
 	for (watcher in this.enemyWatchers)
 		this.enemyWatchers[watcher].detectArmies(gameState,this);

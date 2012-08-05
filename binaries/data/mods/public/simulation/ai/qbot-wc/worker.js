@@ -36,9 +36,9 @@ Worker.prototype.update = function(gameState) {
 			
 			//Engine.PostCommand({"type": "set-shading-color", "entities": [this.ent.id()], "rgb": [10,0,0]});
 		}else{
-			// If we haven't reached the resource in 2 minutes twice in a row and none of the resource has been 
+			// If we haven't reached the resource in 1 minutes twice in a row and none of the resource has been 
 			// gathered then mark it as inaccessible.
-			if (gameState.getTimeElapsed() - this.startApproachingResourceTime > 120000){
+			if (gameState.getTimeElapsed() - this.startApproachingResourceTime > 60000){
 				if (this.gatheringFrom){
 					var ent = gameState.getEntityById(this.gatheringFrom);
 					if (ent && ent.resourceSupplyAmount() == ent.resourceSupplyMax()){
@@ -102,7 +102,7 @@ Worker.prototype.updateGathererCounts = function(gameState, dead){
 };
 
 Worker.prototype.markFull = function(ent){
-	var maxCounts = {"food": 20, "wood": 5, "metal": 20, "stone": 20, "treasure": 1};
+	var maxCounts = {"food": 15, "wood": 5, "metal": 15, "stone": 15, "treasure": 1};
 	if (ent.resourceSupplyType() && ent.getMetadata("gatherer-count") >= maxCounts[ent.resourceSupplyType().generic]){
 		if (!ent.getMetadata("full")){
 			ent.setMetadata("full", true);
@@ -171,7 +171,9 @@ Worker.prototype.startGathering = function(gameState){
 		if (!supply.position()){
 			return;
 		}
-		
+		if (supply.getMetadata("full") == true) {
+			return;
+		}
 		// measure the distance to the resource
 		var dist = VectorDistance(supply.position(), ent.position());
 		// Add on a factor for the nearest dropsite if one exists

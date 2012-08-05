@@ -13,11 +13,14 @@ function InitGame(settings)
 	var cmpAIManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIManager);
 	for (var i = 0; i < settings.PlayerData.length; ++i)
 	{
+		var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i+1), IID_Player);
+		if (!settings.CheatsEnabled)
+			cmpPlayer.SetCheatEnabled(false);
 		if (settings.PlayerData[i] && settings.PlayerData[i].AI && settings.PlayerData[i].AI != "")
 		{
 			cmpAIManager.AddPlayer(settings.PlayerData[i].AI, i+1);
-			var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i+1), IID_Player);
 			cmpPlayer.SetAI(true);
+			cmpPlayer.SetCheatEnabled(true);
 		}
 	}
 }

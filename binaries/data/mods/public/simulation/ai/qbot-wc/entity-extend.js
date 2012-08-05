@@ -33,6 +33,17 @@ EntityTemplate.prototype.garrisonMax = function() {
 		return undefined;
 	return this._template.GarrisonHolder.Max;
 };
+EntityTemplate.prototype.hasClasses = function(array) {
+	var classes = this.classes();
+	if (!classes)
+		return false;
+
+	for (i in array)
+		if (classes.indexOf(array[i]) === -1)
+			return false;
+	return true;
+};
+
 EntityTemplate.prototype.getMaxStrength = function()
 {
 	var strength = 0.0;
@@ -126,12 +137,6 @@ Entity.prototype.garrison = function(target) {
 	return this;
 };
 
-Entity.prototype.attack = function(unitId)
-{
-	Engine.PostCommand({"type": "attack", "entities": [this.id()], "target": unitId, "queued": false});
-	return this;
-};
-
 Entity.prototype.stopMoving = function() {
 	if (this.position() !== undefined)
 		Engine.PostCommand({"type": "walk", "entities": [this.id()], "x": this.position()[0], "z": this.position()[1], "queued": false});
@@ -140,6 +145,9 @@ Entity.prototype.stopMoving = function() {
 Entity.prototype.flee = function(unitToFleeFrom) {
 	if (this.position() !== undefined && unitToFleeFrom.position() !== undefined) {
 		var FleeDirection = [unitToFleeFrom.position()[0] - this.position()[0],unitToFleeFrom.position()[1] - this.position()[1]];
+		var dist = VectorDistance(unitToFleeFrom.position(), this.position() );
+		FleeDirection[0] = (FleeDirection[0]/dist) * 5;
+		FleeDirection[1] = (FleeDirection[1]/dist) * 5;
 		
 		Engine.PostCommand({"type": "walk", "entities": [this.id()], "x": this.position()[0] + FleeDirection[0]*5, "z": this.position()[1] + FleeDirection[1]*5, "queued": false});
 	}

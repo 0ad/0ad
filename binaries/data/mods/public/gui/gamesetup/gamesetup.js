@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Constants
 const DEFAULT_NETWORKED_MAP = "Oasis XI";
-const DEFAULT_OFFLINE_MAP = "Punjab III";
+const DEFAULT_OFFLINE_MAP = "Punjab 3";
 
 // TODO: Move these somewhere like simulation\data\game_types.json, Atlas needs them too
 const VICTORY_TEXT = ["Conquest", "None"];
@@ -179,6 +179,16 @@ function initMain()
 				updateGameAttributes();
 			}
 		};
+		
+		getGUIObjectByName("enableCheats").onPress = function()
+		{	// Update attributes so other players can see change
+			g_GameAttributes.settings.CheatsEnabled = this.checked;
+
+			if (!g_IsInGuiUpdate)
+			{
+				updateGameAttributes();
+			}
+		};
 	}
 	else
 	{
@@ -207,13 +217,27 @@ function initMain()
 		getGUIObjectByName("startGame").enabled = false;
 	}
 
-	// Set up offline-only bits:
+	// Set up multiplayer/singleplayer bits:
 	if (!g_IsNetworked)
 	{
 		getGUIObjectByName("chatPanel").hidden = true;
+		getGUIObjectByName("enableCheats").checked = true;
+		g_GameAttributes.settings.CheatsEnabled = true;
 	}
-
-
+	else
+	{
+		getGUIObjectByName("enableCheatsDesc").hidden = false;
+		getGUIObjectByName("enableCheats").checked = false;
+		g_GameAttributes.settings.CheatsEnabled = false;
+		if (g_IsController)
+		{
+			getGUIObjectByName("enableCheats").hidden = false;
+		}
+		else
+		{
+			getGUIObjectByName("enableCheatsText").hidden = false;
+		}
+	}
 	// Settings for all possible player slots
 	var boxSpacing = 32;
 	for (var i = 0; i < MAX_PLAYERS; ++i)
@@ -245,12 +269,13 @@ function initMain()
 				updateGameAttributes();
 			}
 		};
+		
 
 		// Set events
 		var civ = getGUIObjectByName("playerCiv["+i+"]");
 		civ.onSelectionChange = function()
 		{	// Update civ
-			if (this.selected != -1)
+			if ((this.selected != -1)&&(g_GameAttributes.mapType !== "scenario"))
 			{
 				g_GameAttributes.settings.PlayerData[playerSlot].Civ = this.list_data[this.selected];
 			}
@@ -617,7 +642,8 @@ function selectMapType(type)
 		g_GameAttributes.mapPath = "maps/random/";
 		g_GameAttributes.settings = {
 			PlayerData: g_DefaultPlayerData.slice(0, 4),
-			Seed: Math.floor(Math.random() * 65536)
+			Seed: Math.floor(Math.random() * 65536),
+			CheatsEnabled: g_GameAttributes.settings.CheatsEnabled
 		};
 		break;
 
@@ -801,16 +827,19 @@ function onGameAttributesChange()
 	var victoryCondition = getGUIObjectByName("victoryCondition");
 	var lockTeams = getGUIObjectByName("lockTeams");
 	var mapSize = getGUIObjectByName("mapSize");
+	var enableCheats = getGUIObjectByName("enableCheats");
 	
 	var numPlayersText= getGUIObjectByName("numPlayersText");
 	var mapSizeText = getGUIObjectByName("mapSizeText");
 	var revealMapText = getGUIObjectByName("revealMapText");
 	var victoryConditionText = getGUIObjectByName("victoryConditionText");
 	var lockTeamsText = getGUIObjectByName("lockTeamsText");
-
+	var enableCheatsText = getGUIObjectByName("enableCheatsText");
+	
 	var sizeIdx = (g_MapSizes.tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.tiles.indexOf(mapSettings.Size) : g_MapSizes.default);
 	var victoryIdx = (VICTORY_DATA.indexOf(mapSettings.GameType) != -1 ? VICTORY_DATA.indexOf(mapSettings.GameType) : VICTORY_DEFAULTIDX);
-
+	enableCheats.checked = (g_GameAttributes.settings.CheatsEnabled === undefined || !g_GameAttributes.settings.CheatsEnabled ? false : true)
+	enableCheatsText.caption = (enableCheats.checked ? "Yes" : "No");
 	// Handle map type specific logic
 	switch (g_GameAttributes.mapType)
 	{
@@ -915,7 +944,7 @@ function onGameAttributesChange()
 			var pTeam = getGUIObjectByName("playerTeam["+i+"]");
 			var pTeamText = getGUIObjectByName("playerTeamText["+i+"]");
 			var pColor = getGUIObjectByName("playerColour["+i+"]");
-
+			
 			// Player data / defaults
 			var pData = mapSettings.PlayerData ? mapSettings.PlayerData[i] : {};
 			var pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[i] : {};
@@ -927,7 +956,7 @@ function onGameAttributesChange()
 
 			var team = getSetting(pData, pDefs, "Team");
 			var civ = getSetting(pData, pDefs, "Civ");
-
+			
 			// For clients or scenarios, hide some player dropdowns
 			if (!g_IsController || g_GameAttributes.mapType == "scenario")
 			{
@@ -935,7 +964,6 @@ function onGameAttributesChange()
 				pCiv.hidden = true;
 				pTeamText.hidden = false;
 				pTeam.hidden = true;
-
 				// Set text values
 				if (civ == "random")
 				{
@@ -953,7 +981,6 @@ function onGameAttributesChange()
 				pCiv.hidden = false;
 				pTeamText.hidden = true;
 				pTeam.hidden = false;
-
 				// Set dropdown values
 				pCiv.selected = (civ ? pCiv.list_data.indexOf(civ) : 0);
 				pTeam.selected = (team !== undefined && team >= 0) ? team+1 : 0;

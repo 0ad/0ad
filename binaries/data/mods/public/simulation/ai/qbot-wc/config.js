@@ -45,20 +45,20 @@ var baseConfig = {
 		"house" : 500,
 		"citizenSoldier" : 100,
 		"villager" : 150,
-		"economicBuilding" : 30,
+		"economicBuilding" : 50,
 		"field" : 20,
 		"advancedSoldier" : 30,
 		"siege" : 10,
-		"militaryBuilding" : 50,
+		"militaryBuilding" : 80,
 		"defenceBuilding" : 17,
 		"civilCentre" : 1000
 	},
 	
-	"debug" : true
+	"debug" : false
 };
 
 var Config = {
-		"debug": true
+		"debug": false
 };
 
 Config.__proto__ = baseConfig;

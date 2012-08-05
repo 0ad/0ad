@@ -4,6 +4,8 @@ var HousingManager = function() {
 };
 
 HousingManager.prototype.buildMoreHouses = function(gameState, queues) {
+	if (gameState.getTimeElapsed() < 25000)
+		return;
 	// temporary 'remaining population space' based check, need to do
 	// predictive in future
 	if (gameState.getPopulationLimit() - gameState.getPopulation() < 20

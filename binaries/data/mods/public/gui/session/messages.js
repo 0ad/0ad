@@ -9,6 +9,7 @@ const NOTIFICATION_TIMEOUT = 10000;
 const MAX_NUM_NOTIFICATION_LINES = 3;
 var notifications = [];
 var notificationsTimers = [];
+var cheatList = parseJSONData("simulation/data/cheats.json").Cheats;
 
 // Notifications
 function handleNotifications()
@@ -25,6 +26,14 @@ function handleNotifications()
 			"type": "message",
 			"guid": findGuidForPlayerID(g_PlayerAssignments, notification.player),
 			"text": notification.message
+		});
+	}
+	else if (notification.type == "defeat")
+	{
+		addChatMessage({
+			"type": "defeat",
+			"guid": findGuidForPlayerID(g_PlayerAssignments, notification.player),
+			"player": notification.player
 		});
 	}
 	else if (notification.type == "quit")
@@ -166,13 +175,37 @@ function submitChatInput()
 {
 	var input = getGUIObjectByName("chatInput");
 	var text = input.caption;
+	var isCheat = false;
 	if (text.length)
 	{
-		if (g_IsNetworked)
-			Engine.SendNetworkChat(text);
-		else
-			addChatMessage({ "type": "message", "guid": "local", "text": text });
+		var n = g_PlayerAssignments["local"].player;
+		for (var i = 0; i < cheatList.length; i++)
+		{
+			if (text.indexOf(cheatList[i].Name)>-1)
+			{
+				if (cheatList[i].IsNumeric)
+				{
+					var number = text.substr(cheatList[i].Name.length+1, text.length-1).valueOf();
+					if (!(number > 0))
+						number=cheatList[i].DefaultNumber;
+				}
+				else
+				{
+					var number = undefined;
+				}
+				Engine.PostNetworkCommand({"type": "cheat", "action": cheatList[i].Action, "number": number , "selected": g_Selection.toList(), "templates": cheatList[i].Templates, "player": n});
+				isCheat = true;
+				break;
+			}
+		}
 
+		if (!isCheat)
+		{
+			if (g_IsNetworked)
+				Engine.SendNetworkChat(text);
+			else
+				addChatMessage({ "type": "message", "guid": "local", "text": text });
+		}
 		input.caption = ""; // Clear chat input
 	}
 
@@ -195,6 +228,12 @@ function addChatMessage(msg, playerAssignments)
 		playerColor = g_Players[n].color.r + " " + g_Players[n].color.g + " " + g_Players[n].color.b;
 		username = escapeText(playerAssignments[msg.guid].name);
 	}
+	else if (msg.type == "defeat" && msg.player)
+	{
+		// This case is hit for AIs, whose names don't exist in playerAssignments.
+		playerColor = g_Players[msg.player].color.r + " " + g_Players[msg.player].color.g + " " + g_Players[msg.player].color.b;
+		username = escapeText(g_Players[msg.player].name);
+	}
 	else
 	{
 		playerColor = "255 255 255";
@@ -202,9 +241,9 @@ function addChatMessage(msg, playerAssignments)
 	}
 
 	var message = escapeText(msg.text);
-
+	
 	var formatted;
-
+	
 	switch (msg.type)
 	{
 	case "connect":
@@ -212,6 +251,11 @@ function addChatMessage(msg, playerAssignments)
 		break;
 	case "disconnect":
 		formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] has left the game.";
+		break;
+	case "defeat":
+		// In singleplayer, the local player is "You". "You has" is incorrect.
+		var verb = (!g_IsNetworked && msg.player == Engine.GetPlayerID()) ? "have" : "has";
+		formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] " + verb + " been defeated.";
 		break;
 	case "message":
 		console.write("<" + username + "> " + message);
