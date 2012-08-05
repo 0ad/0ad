@@ -179,6 +179,7 @@ function leaveGame()
 							"gameResult"  : gameResult,
 							"timeElapsed" : extendedSimState.timeElapsed,
 							"playerStates": extendedSimState.players,
+							"players": g_Players,
 							"mapSettings": mapSettings
 						 });
 }

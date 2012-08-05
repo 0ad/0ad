@@ -126,12 +126,7 @@ for (var style in wallScaleByType)
 	wallStyles[style]["wallMedium"] = new WallElement("wall", "structures/" + style + "_wall_medium", 0*PI, 4*wallScaleByType[style]);
 	wallStyles[style]["wallLong"] = new WallElement("wallLong", "structures/" + style + "_wall_long", 0*PI, 6*wallScaleByType[style]);
 	// Gate and entrance wall elements
-	if (style == "cart")
-		var gateWidth = 3.5*wallScaleByType[style];
-	else if (style == "brit" || style == "celt" || style == "gaul")
-		var gateWidth = 4*wallScaleByType[style];
-	else
-		var gateWidth = 6*wallScaleByType[style];
+	var gateWidth = 6*wallScaleByType[style];
 	wallStyles[style]["gate"] = new WallElement("gate", "structures/" + style + "_wall_gate", 0*PI, gateWidth);
 	wallStyles[style]["entry"] = new WallElement("entry", undefined, 0*PI, gateWidth);
 	wallStyles[style]["entryTower"] = new WallElement("entryTower", "structures/" + civ + "_defense_tower", PI, gateWidth, -4*wallScaleByType[style]);
