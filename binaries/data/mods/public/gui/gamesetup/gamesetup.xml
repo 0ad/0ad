@@ -120,6 +120,19 @@
 
 		</object>
 		
+		<object size="20 463.8 11% 615" name="enableCheatsDesc" hidden="true">
+			<object size="0 0 100% 32">
+				<object size="0 0 100% 100%" type="text" style="RightLabelText">Cheats:</object>
+			</object>
+		</object>
+			
+		<object size="10.9% 463.8 28% 615">
+			<object size="0 0 100% 32">
+				<object name="enableCheatsText" size="0 0 100% 100%" type="text" style="LeftLabelText" hidden="true"/>
+				<object name="enableCheats" size="0 50%-8 16 50%+8" type="checkbox" style="StoneCrossBox" hidden="true" tooltip_style="onscreenToolTip" tooltip="Toggle the usability of cheats."/>
+			</object>
+		</object>
+		
 		<!-- Map Preview -->
 		<object  type="image" sprite="BackgroundIndentFillDark" name="gamePreviewBox" size="100%-425 58 100%-25 358">
 			<object type="image" sprite="snMapPreview" size="1 1 399 299" name="mapPreview"/>
@@ -143,8 +156,9 @@
 				<object size="0 60 100% 88">
 					<object size="0 0 100% 100%" type="text" style="RightLabelText">Victory condition:</object>
 				</object>
+				
 			</object>
-
+			
 			<!-- Second Column -->
 			<object size="41% 0 94% 50%">
 
@@ -173,6 +187,7 @@
 			</object>
 
 			<!-- Third Column -->
+			
 			<object size="0 40% 42.3% 100%">
 				<object size="0 0 100% 32">
 					<object size="0 0 100% 100%" type="text" style="RightLabelText">Reveal map:</object>

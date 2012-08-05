@@ -29,6 +29,8 @@ Player.prototype.Init = function()
 	this.startCam = undefined;
 	this.controlAllUnits = false;
 	this.isAI = false;
+	this.cheatsEnabled = true;
+	this.cheatTimeMultiplier = 1;
 };
 
 Player.prototype.SetPlayerID = function(id)
@@ -404,5 +406,16 @@ Player.prototype.OnPlayerDefeated = function()
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	cmpGUIInterface.PushNotification(notification);
 };
+
+
+Player.prototype.SetCheatEnabled = function(flag)
+{
+	this.cheatsEnabled = flag;
+}
+
+Player.prototype.GetCheatEnabled = function(flag)
+{
+	return this.cheatsEnabled;
+}
 
 Engine.RegisterComponentType(IID_Player, "Player", Player);

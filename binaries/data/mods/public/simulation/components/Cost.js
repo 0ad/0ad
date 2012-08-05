@@ -49,7 +49,8 @@ Cost.prototype.GetPopBonus = function()
 
 Cost.prototype.GetBuildTime = function()
 {
-	var buildTime = +this.template.BuildTime;
+	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	var buildTime = (+this.template.BuildTime) * cmpPlayer.cheatTimeMultiplier;
 	var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 	if (cmpTechnologyManager)
 		buildTime = cmpTechnologyManager.ApplyModifications("Cost/BuildTime", buildTime, this.entity);

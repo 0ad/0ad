@@ -245,6 +245,8 @@ ResourceGatherer.prototype.PerformGather = function(target)
  */
 ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 {
+	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+
 	var cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
 	if (!cmpResourceSupply)
 		return 0;
@@ -255,9 +257,9 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 
 	var rate;
 	if (type.specific && rates[type.generic+"."+type.specific])
-		rate = rates[type.generic+"."+type.specific];
+		rate = rates[type.generic+"."+type.specific] / cmpPlayer.cheatTimeMultiplier;
 	else
-		rate = rates[type.generic];
+		rate = rates[type.generic] / cmpPlayer.cheatTimeMultiplier;
 	
 	return (rate || 0);
 };

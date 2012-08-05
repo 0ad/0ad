@@ -9,6 +9,7 @@ const NOTIFICATION_TIMEOUT = 10000;
 const MAX_NUM_NOTIFICATION_LINES = 3;
 var notifications = [];
 var notificationsTimers = [];
+var cheatList = parseJSONData("simulation/data/cheats.json").Cheats;
 
 // Notifications
 function handleNotifications()
@@ -174,13 +175,37 @@ function submitChatInput()
 {
 	var input = getGUIObjectByName("chatInput");
 	var text = input.caption;
+	var isCheat = false;
 	if (text.length)
 	{
-		if (g_IsNetworked)
-			Engine.SendNetworkChat(text);
-		else
-			addChatMessage({ "type": "message", "guid": "local", "text": text });
+		var n = g_PlayerAssignments["local"].player;
+		for (var i = 0; i < cheatList.length; i++)
+		{
+			if (text.indexOf(cheatList[i].Name)>-1)
+			{
+				if (cheatList[i].IsNumeric)
+				{
+					var number = text.substr(cheatList[i].Name.length+1, text.length-1).valueOf();
+					if (!(number > 0))
+						number=cheatList[i].DefaultNumber;
+				}
+				else
+				{
+					var number = undefined;
+				}
+				Engine.PostNetworkCommand({"type": "cheat", "action": cheatList[i].Action, "number": number , "selected": g_Selection.toList(), "templates": cheatList[i].Templates, "player": n});
+				isCheat = true;
+				break;
+			}
+		}
 
+		if (!isCheat)
+		{
+			if (g_IsNetworked)
+				Engine.SendNetworkChat(text);
+			else
+				addChatMessage({ "type": "message", "guid": "local", "text": text });
+		}
 		input.caption = ""; // Clear chat input
 	}
 
@@ -216,9 +241,9 @@ function addChatMessage(msg, playerAssignments)
 	}
 
 	var message = escapeText(msg.text);
-
+	
 	var formatted;
-
+	
 	switch (msg.type)
 	{
 	case "connect":

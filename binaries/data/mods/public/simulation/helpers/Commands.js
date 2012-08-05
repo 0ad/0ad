@@ -31,10 +31,14 @@ function ProcessCommand(player, cmd)
 	case "debug-print":
 		print(cmd.message);
 		break;
-
+	
 	case "chat":
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGuiInterface.PushNotification({"type": "chat", "player": player, "message": cmd.message});
+		break;
+		
+	case "cheat":
+		Cheat(cmd);
 		break;
 		
 	case "quit":
