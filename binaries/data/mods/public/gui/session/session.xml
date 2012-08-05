@@ -378,7 +378,7 @@
 		    size="100%-164 4 100%-8 32"
 		    style="StoneButtonFancy"
 		    tooltip_style="sessionToolTip"
-		    z="60"
+		    z="70"
 	    >
 		<!-- This object covers up the text on the menu
 		buttons as they slide by so that you don't see
@@ -440,11 +440,22 @@
 		    <action on="Press">chatMenuButton();</action>
 		</object>
 
+		<!-- Resign button -->
+		<object type="button"
+			name="menuResignButton"
+			style="StoneButtonFancy"
+			size="0 96 100% 124"
+			tooltip_style="sessionToolTip"
+		>
+		    Resign
+		    <action on="Press">resignMenuButton();</action>
+		</object>
+
 		<!-- Exit button -->
 		<object type="button"
 			name="menuExitButton"
 			style="StoneButtonFancy"
-			size="0 96 100% 124"
+			size="0 128 100% 156"
 			tooltip_style="sessionToolTip"
 		>
 		    Exit
@@ -455,7 +466,7 @@
 		<object type="button"
 			name="pauseButton"
 			style="StoneButtonFancy"
-			size="0 128 100% 154"
+			size="0 160 100% 188"
 			tooltip_style="sessionToolTip"
 		>
 		    <object name="pauseButtonText" type="text" style="CenteredButtonText" ghost="true">Pause</object>

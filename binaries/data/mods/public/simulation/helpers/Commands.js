@@ -257,7 +257,7 @@ function ProcessCommand(player, cmd)
 
 	case "defeat-player":
 		// Send "OnPlayerDefeated" message to player
-		Engine.PostMessage(playerEnt, MT_PlayerDefeated, { "playerId": player } );
+		Engine.PostMessage(playerEnt, MT_PlayerDefeated, { "playerId": player, "destroy": cmd.destroy } );
 		break;
 
 	case "garrison":

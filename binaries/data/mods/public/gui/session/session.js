@@ -143,6 +143,25 @@ function reportPerformance(time)
 	Engine.SubmitUserReport("profile", 3, JSON.stringify(data));
 }
 
+function resignGame()
+{
+	var simState = Engine.GuiInterfaceCall("GetSimulationState");
+
+	// Players can't resign if they've already won or lost.	
+	if (simState.players[Engine.GetPlayerID()].state != "active")
+		return;
+
+	// Tell other players that we have given up and been defeated
+	Engine.PostNetworkCommand({
+		"type": "defeat-player",
+		"destroy": true,
+		"playerId": Engine.GetPlayerID()
+	});
+
+	global.music.setState(global.music.states.DEFEAT);
+	resumeGame();
+}
+
 function leaveGame()
 {
 	var extendedSimState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
@@ -270,6 +289,12 @@ function checkPlayerState()
 
 	if (!g_GameEnded)
 	{
+		// If the game is about to end, disable the ability to resign.
+		if (playerState.state != "active")
+			getGUIObjectByName("menuResignButton").enabled = false;
+		else
+			return;
+
 		if (playerState.state == "defeated")
 		{
 			g_GameEnded = true;
