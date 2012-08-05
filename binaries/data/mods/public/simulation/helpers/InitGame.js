@@ -15,7 +15,7 @@ function InitGame(settings)
 	{
 		var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i+1), IID_Player);
 		if (!settings.CheatsEnabled)
-			cmpPlayer.SetCheatStatus(false);
+			cmpPlayer.SetCheatEnabled(false);
 		if (settings.PlayerData[i] && settings.PlayerData[i].AI && settings.PlayerData[i].AI != "")
 		{
 			cmpAIManager.AddPlayer(settings.PlayerData[i].AI, i+1);
