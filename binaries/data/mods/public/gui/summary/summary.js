@@ -128,8 +128,10 @@ function init(data)
 				var playerColourBox = getGUIObjectByName("playerColourBox"+k+"["+i+"]");
 				playerColourBox.sprite = colourString + " 255";
 
+				// Show the multiplayer name, e.g. "Foobar" rather than "Player 1".
+				// TODO: Perhaps show both the multiplayer and map-specific name?
 				var playerName = getGUIObjectByName("playerName"+k+"["+i+"]");
-				playerName.caption = playerState.name;
+				playerName.caption = data.players[i+1].name;
 
 				getGUIObjectByName("civIcon"+k+"["+i+"]").sprite = "stretched:"+civData[playerState.civ].Emblem;
 			}
