@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>structural/hele_theatron_struct.dae</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/theatron_marble.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/theatron_props.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/theatron_structb.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/theatron_tiles.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/hele_struct.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
