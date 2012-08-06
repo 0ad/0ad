@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="0.1" name="set-a">
+      <mesh>gaia/rock-set-desert-01.dae</mesh>
+    </variant>
+	<variant frequency="0.1" name="set-b">
+      <mesh>gaia/rock-set-desert-02.dae</mesh>
+    </variant>
+	<variant frequency="0.1" name="set-c">
+      <mesh>gaia/rock-set-desert-03.dae</mesh>
+    </variant>
+	<variant frequency="0.1" name="set-d">
+      <mesh>gaia/rock-set-desert-04.dae</mesh>
+    </variant>
+	<variant frequency="0.1" name="set-e">
+      <mesh>gaia/rock-set-desert-05.dae</mesh>
+    </variant>
+	<variant frequency="0.1" name="set-f">
+      <mesh>gaia/rock-set-desert-06.dae</mesh>
+    </variant>
+	<variant frequency="0.1" name="set-g">
+      <mesh>gaia/rock-set-desert-07.dae</mesh>
+    </variant>
+
+  </group>
+  <group>
+    <variant name="stone color a">
+      <textures><texture file="gaia/stonequarry_desert.png" name="baseTex"/></textures>
+    </variant>
+  </group>
+</actor>
