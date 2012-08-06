@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<material>
+    <shader effect="model"/>
+    <alternative material="player_trans.xml" quality="3"/>
+    
+    <define name="USE_PLAYERCOLOR" value="1"/>
+    
+    <!-- REQUIRES: Actor must provide a texture named "normTex", where the RGB channels
+		   are a normal map corresponding to XYZ normals.
+	 EFFICIENCY: This is a relatively inexpensive effect that should run easily on most hardware. -->
+    <define name="USE_NORMAL_MAP" value="1"/>
+    
+    <!-- REQUIRES: Actor must provide a texture named "specTex", where the RGB channels
+		   provide a specular colour multiplier. 
+		   Material must provide a uniform definition for "specularPower" that controls
+		   the glossiness of the effect.
+	 COMMENT: The intensity of the colour controls the specular amount, so black pixels have
+		  no specularity. 
+	 COMPATIBILITY: This effect is incompatible with the old "USE_SPECULAR" effect.
+	 EFFICIENCY: This is a relatively inexpensive effect that should run easily on most hardware. -->
+    <define name="USE_SPECULAR_MAP" value="1"/>
+    
+    <!-- REQUIRES: Actor must provide a texture named "aoTex", where the R channel is the Ambient Occlusion.
+                   The model must provide a second, non-overlapping set of UV coordinates.
+	 COMMENT: The texture is combined using a multiply blend of (2 * ao * baseTex). -->
+    <define name="USE_AO" value="1"/>
+    
+    <!-- Settings for effects above:
+         First value: Normal mapping intensity.
+	 Second value: Specular power.
+	 Third value: Parallax scale. -->
+    <uniform name="effectSettings" value="1.0 50.0 0.0075 0.85"/>
+</material>

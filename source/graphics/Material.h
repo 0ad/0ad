@@ -54,12 +54,18 @@ public:
 
 	void AddShaderDefine(const char* key, const char* value);
 	const CShaderDefines& GetShaderDefines() const { return m_ShaderDefines; }
+	
+	void AddConditionalDefine(const char* defname, const char* defvalue, int type, std::vector<float> &args);
+	const CShaderConditionalDefines& GetConditionalDefines() const { return m_ConditionalDefines; }
 
 	void AddStaticUniform(const char* key, const CVector4D& value);
 	const CShaderUniforms& GetStaticUniforms() const { return m_StaticUniforms; }
 
 	void AddSampler(const TextureSampler& texture);
 	const SamplersVector& GetSamplers() const { return m_Samplers; }
+	
+	void AddRenderQuery(const char* key);
+	const CShaderRenderQueries& GetRenderQueries() const { return m_RenderQueries; }
 
 private:
 	
@@ -71,7 +77,9 @@ private:
 	
 	CStrIntern m_ShaderEffect;
 	CShaderDefines m_ShaderDefines;
+	CShaderConditionalDefines m_ConditionalDefines;
 	CShaderUniforms m_StaticUniforms;
+	CShaderRenderQueries m_RenderQueries;
 
 	bool m_AlphaBlending;
 

@@ -31,6 +31,7 @@
 #include "graphics/LightEnv.h"
 #include "graphics/Model.h"
 #include "graphics/ModelDef.h"
+#include "graphics/weldmesh.h"
 
 #include "renderer/InstancingModelRenderer.h"
 #include "renderer/Renderer.h"
@@ -49,6 +50,7 @@ struct IModelDef : public CModelDefRPrivate
 	/// Position and normals are static
 	VertexArray::Attribute m_Position;
 	VertexArray::Attribute m_Normal;
+	VertexArray::Attribute m_Tangent;
 	VertexArray::Attribute m_BlendJoints; // valid iff gpuSkinning == true
 	VertexArray::Attribute m_BlendWeights; // valid iff gpuSkinning == true
 
@@ -58,11 +60,11 @@ struct IModelDef : public CModelDefRPrivate
 	/// Indices are the same for all models, so share them
 	VertexIndexArray m_IndexArray;
 
-	IModelDef(const CModelDefPtr& mdef, bool gpuSkinning);
+	IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateTangents);
 };
 
 
-IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning)
+IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateTangents)
 	: m_IndexArray(GL_STATIC_DRAW), m_Array(GL_STATIC_DRAW)
 {
 	size_t numVertices = mdef->GetNumVertices();
@@ -82,61 +84,148 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning)
 		m_UVs[i].elems = 2;
 		m_Array.AddAttribute(&m_UVs[i]);
 	}
-
-	if (gpuSkinning)
+	
+	if (calculateTangents)
 	{
-		m_BlendJoints.type = GL_UNSIGNED_BYTE;
-		m_BlendJoints.elems = 4;
-		m_Array.AddAttribute(&m_BlendJoints);
+		// Generate tangents for the geometry:-
+		
+		m_Tangent.type = GL_FLOAT;
+		m_Tangent.elems = 4;
+		m_Array.AddAttribute(&m_Tangent);
+		
+		// floats per vertex; position + normal + tangent + UV*sets
+		int numVertexAttrs = 3 + 3 + 4 + 2 * mdef->GetNumUVsPerVertex();
+		
+		// the tangent generation can increase the number of vertices temporarily
+		// so reserve a bit more memory to avoid reallocations in GenTangents (in most cases)
+		std::vector<float> newVertices;
+		newVertices.reserve(numVertexAttrs * numVertices * 2);
+		
+		// Generate the tangents
+		ModelRenderer::GenTangents(mdef, newVertices);
+		
+		// how many vertices do we have after generating tangents?
+		int newNumVert = newVertices.size() / numVertexAttrs;
+		
+		std::vector<int> remapTable(newNumVert);
+		std::vector<float> vertexDataOut(newNumVert * numVertexAttrs);
 
-		m_BlendWeights.type = GL_UNSIGNED_BYTE;
-		m_BlendWeights.elems = 4;
-		m_Array.AddAttribute(&m_BlendWeights);
-	}
+		// re-weld the mesh to remove duplicated vertices
+		int numVertices2 = WeldMesh(&remapTable[0], &vertexDataOut[0],
+					&newVertices[0], newNumVert, numVertexAttrs);
 
-	m_Array.SetNumVertices(numVertices);
-	m_Array.Layout();
+		// Copy the model data to graphics memory:-
+		
+		m_Array.SetNumVertices(numVertices2);
+		m_Array.Layout();
 
-	VertexArrayIterator<CVector3D> Position = m_Position.GetIterator<CVector3D>();
-	VertexArrayIterator<CVector3D> Normal = m_Normal.GetIterator<CVector3D>();
-
-	ModelRenderer::CopyPositionAndNormals(mdef, Position, Normal);
-
-	for (size_t i = 0; i < mdef->GetNumUVsPerVertex(); i++)
-	{
-		VertexArrayIterator<float[2]> UVit = m_UVs[i].GetIterator<float[2]>();
-		ModelRenderer::BuildUV(mdef, UVit, i);
-	}
-
-	if (gpuSkinning)
-	{
-		VertexArrayIterator<u8[4]> BlendJoints = m_BlendJoints.GetIterator<u8[4]>();
-		VertexArrayIterator<u8[4]> BlendWeights = m_BlendWeights.GetIterator<u8[4]>();
-		for (size_t i = 0; i < numVertices; ++i)
+		VertexArrayIterator<CVector3D> Position = m_Position.GetIterator<CVector3D>();
+		VertexArrayIterator<CVector3D> Normal = m_Normal.GetIterator<CVector3D>();
+		VertexArrayIterator<CVector4D> Tangent = m_Tangent.GetIterator<CVector4D>();
+		
+		// copy everything into the vertex array
+		for (int i = 0; i < numVertices2; i++)
 		{
-			const SModelVertex& vtx = mdef->GetVertices()[i];
-			for (size_t j = 0; j < 4; ++j)
+			int q = numVertexAttrs * i;
+			
+			Position[i] = CVector3D(vertexDataOut[q + 0], vertexDataOut[q + 1], vertexDataOut[q + 2]);
+			
+			Normal[i] = CVector3D(vertexDataOut[q + 3], vertexDataOut[q + 4], vertexDataOut[q + 5]);
+
+			Tangent[i] = CVector4D(vertexDataOut[q + 6], vertexDataOut[q + 7], vertexDataOut[q + 8], 
+					vertexDataOut[q + 9]);
+			
+			for (size_t j = 0; j < mdef->GetNumUVsPerVertex(); j++)
 			{
-				BlendJoints[i][j] = vtx.m_Blend.m_Bone[j];
-				BlendWeights[i][j] = (u8)(255.f * vtx.m_Blend.m_Weight[j]);
+				VertexArrayIterator<float[2]> UVit = m_UVs[j].GetIterator<float[2]>();
+				UVit[i][0] = vertexDataOut[q + 10 + 2 * j];
+				UVit[i][1] = vertexDataOut[q + 11 + 2 * j];
 			}
 		}
+
+		// upload vertex data
+		m_Array.Upload();
+		m_Array.FreeBackingStore();
+
+		m_IndexArray.SetNumVertices(mdef->GetNumFaces() * 3);
+		m_IndexArray.Layout();
+		
+		VertexArrayIterator<u16> Indices = m_IndexArray.GetIterator();
+		
+		size_t idxidx = 0;	
+
+		// reindex geometry and upload index
+		for (size_t j = 0; j < mdef->GetNumFaces(); ++j) 
+		{	
+			Indices[idxidx++] = remapTable[j * 3 + 0];
+			Indices[idxidx++] = remapTable[j * 3 + 1];
+			Indices[idxidx++] = remapTable[j * 3 + 2];
+		}
+		
+		m_IndexArray.Upload();
+		m_IndexArray.FreeBackingStore();
 	}
+	else
+	{
+		// Upload model without calculating tangents:-
+		
+		if (gpuSkinning)
+		{
+			m_BlendJoints.type = GL_UNSIGNED_BYTE;
+			m_BlendJoints.elems = 4;
+			m_Array.AddAttribute(&m_BlendJoints);
 
-	m_Array.Upload();
-	m_Array.FreeBackingStore();
+			m_BlendWeights.type = GL_UNSIGNED_BYTE;
+			m_BlendWeights.elems = 4;
+			m_Array.AddAttribute(&m_BlendWeights);
+		}
+		
+		m_Array.SetNumVertices(numVertices);
+		m_Array.Layout();
 
-	m_IndexArray.SetNumVertices(mdef->GetNumFaces()*3);
-	m_IndexArray.Layout();
-	ModelRenderer::BuildIndices(mdef, m_IndexArray.GetIterator());
-	m_IndexArray.Upload();
-	m_IndexArray.FreeBackingStore();
+		VertexArrayIterator<CVector3D> Position = m_Position.GetIterator<CVector3D>();
+		VertexArrayIterator<CVector3D> Normal = m_Normal.GetIterator<CVector3D>();
+
+		ModelRenderer::CopyPositionAndNormals(mdef, Position, Normal);
+
+		for (size_t i = 0; i < mdef->GetNumUVsPerVertex(); i++)
+		{
+			VertexArrayIterator<float[2]> UVit = m_UVs[i].GetIterator<float[2]>();
+			ModelRenderer::BuildUV(mdef, UVit, i);
+		}
+
+		if (gpuSkinning)
+		{
+			VertexArrayIterator<u8[4]> BlendJoints = m_BlendJoints.GetIterator<u8[4]>();
+			VertexArrayIterator<u8[4]> BlendWeights = m_BlendWeights.GetIterator<u8[4]>();
+			for (size_t i = 0; i < numVertices; ++i)
+			{
+				const SModelVertex& vtx = mdef->GetVertices()[i];
+				for (size_t j = 0; j < 4; ++j)
+				{
+					BlendJoints[i][j] = vtx.m_Blend.m_Bone[j];
+					BlendWeights[i][j] = (u8)(255.f * vtx.m_Blend.m_Weight[j]);
+				}
+			}
+		}
+
+		m_Array.Upload();
+		m_Array.FreeBackingStore();
+
+		m_IndexArray.SetNumVertices(mdef->GetNumFaces()*3);
+		m_IndexArray.Layout();
+		ModelRenderer::BuildIndices(mdef, m_IndexArray.GetIterator());
+		m_IndexArray.Upload();
+		m_IndexArray.FreeBackingStore();
+	}
 }
 
 
 struct InstancingModelRendererInternals
 {
 	bool gpuSkinning;
+	
+	bool calculateTangents;
 
 	/// Previously prepared modeldef
 	IModelDef* imodeldef;
@@ -147,10 +236,11 @@ struct InstancingModelRendererInternals
 
 
 // Construction and Destruction
-InstancingModelRenderer::InstancingModelRenderer(bool gpuSkinning)
+InstancingModelRenderer::InstancingModelRenderer(bool gpuSkinning, bool calculateTangents)
 {
 	m = new InstancingModelRendererInternals;
 	m->gpuSkinning = gpuSkinning;
+	m->calculateTangents = calculateTangents;
 	m->imodeldef = 0;
 }
 
@@ -173,7 +263,7 @@ CModelRData* InstancingModelRenderer::CreateModelData(const void* key, CModel* m
 
 	if (!imodeldef)
 	{
-		imodeldef = new IModelDef(mdef, m->gpuSkinning);
+		imodeldef = new IModelDef(mdef, m->gpuSkinning, m->calculateTangents);
 		mdef->SetRenderData(m, imodeldef);
 	}
 
@@ -217,6 +307,9 @@ void InstancingModelRenderer::PrepareModelDef(const CShaderProgramPtr& shader, i
 
 	if (streamflags & STREAM_NORMAL)
 		shader->NormalPointer(GL_FLOAT, stride, base + m->imodeldef->m_Normal.offset);
+	
+	if (m->calculateTangents)
+		shader->VertexAttribPointer("a_tangent", 4, GL_FLOAT, GL_TRUE, stride, base + m->imodeldef->m_Tangent.offset);
 
 	if (streamflags & STREAM_UV0)
 		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, base + m->imodeldef->m_UVs[0].offset);

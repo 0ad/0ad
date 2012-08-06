@@ -130,6 +130,9 @@ private:
 
 	static Status ReloadChangedFileCB(void* param, const VfsPath& path);
 	Status ReloadChangedFile(const VfsPath& path);
+	
+public:
+	//CStrIntern QueryTime;
 };
 
 #endif // INCLUDED_SHADERMANAGER
