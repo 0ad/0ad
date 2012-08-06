@@ -170,7 +170,6 @@ public:
 			for (size_t i = 0; i < texcoordSources.size(); ++i)
 			{
 				dataTexcoords.push_back(texcoordSources[i]->GetData());
-				assert(texcoordSources[i]->GetDataCount() == vertexCount*2);
 			}
 
 			// Transform mesh coordinate system to game coordinates
@@ -444,7 +443,6 @@ public:
 			for (size_t i = 0; i < texcoordSources.size(); ++i)
 			{
 				dataTexcoords.push_back(texcoordSources[i]->GetData());
-				assert(texcoordSources[i]->GetDataCount() == vertexCount*2);
 			}
 
 			// Transform model coordinate system to game coordinates

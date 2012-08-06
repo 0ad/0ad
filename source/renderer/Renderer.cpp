@@ -64,6 +64,7 @@
 #include "renderer/SkyManager.h"
 #include "renderer/TerrainOverlay.h"
 #include "renderer/TerrainRenderer.h"
+#include "renderer/TimeManager.h"
 #include "renderer/VertexBufferManager.h"
 #include "renderer/WaterManager.h"
 
@@ -268,6 +269,9 @@ public:
 
 	/// Material manager
 	CMaterialManager materialManager;
+	
+	/// Time manager
+	CTimeManager timeManager;
 
 	/// Shadow map
 	ShadowMap shadow;
@@ -430,11 +434,13 @@ CRenderer::CRenderer()
 	m_Options.m_PreferGLSL = false;
 	m_Options.m_ForceAlphaTest = false;
 	m_Options.m_GPUSkinning = false;
+	m_Options.m_GenTangents = false;
 
 	// TODO: be more consistent in use of the config system
 	CFG_GET_USER_VAL("preferglsl", Bool, m_Options.m_PreferGLSL);
 	CFG_GET_USER_VAL("forcealphatest", Bool, m_Options.m_ForceAlphaTest);
 	CFG_GET_USER_VAL("gpuskinning", Bool, m_Options.m_GPUSkinning);
+	CFG_GET_USER_VAL("gentangents", Bool, m_Options.m_GenTangents);
 
 #if CONFIG2_GLES
 	// Override config option since GLES only supports GLSL
@@ -564,11 +570,11 @@ void CRenderer::ReloadShaders()
 
 	bool cpuLighting = (GetRenderPath() == RP_FIXED);
 	m->Model.VertexRendererShader = ModelVertexRendererPtr(new ShaderModelVertexRenderer(cpuLighting));
-	m->Model.VertexInstancingShader = ModelVertexRendererPtr(new InstancingModelRenderer(false));
+	m->Model.VertexInstancingShader = ModelVertexRendererPtr(new InstancingModelRenderer(false, m_Options.m_GenTangents));
 
 	if (GetRenderPath() == RP_SHADER && m_Options.m_GPUSkinning) // TODO: should check caps and GLSL etc too
 	{
-		m->Model.VertexGPUSkinningShader = ModelVertexRendererPtr(new InstancingModelRenderer(true));
+		m->Model.VertexGPUSkinningShader = ModelVertexRendererPtr(new InstancingModelRenderer(true, false));
 		m->Model.NormalSkinned = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexGPUSkinningShader));
 		m->Model.TranspSkinned = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexGPUSkinningShader));
 	}
@@ -1973,6 +1979,11 @@ CParticleManager& CRenderer::GetParticleManager()
 TerrainRenderer& CRenderer::GetTerrainRenderer()
 {
 	return m->terrainRenderer;
+}
+
+CTimeManager& CRenderer::GetTimeManager()
+{
+	return m->timeManager;
 }
 
 CMaterialManager& CRenderer::GetMaterialManager()

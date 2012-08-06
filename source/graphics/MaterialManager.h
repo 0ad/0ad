@@ -25,10 +25,12 @@
 class CMaterialManager
 {
 public:
+	CMaterialManager();
 	CMaterial LoadMaterial(const VfsPath& pathname);
 
 private:
 	std::map<VfsPath, CMaterial> m_Materials;
+	float qualityLevel;
 };
 
 #endif // INCLUDED_MATERIALMANAGER

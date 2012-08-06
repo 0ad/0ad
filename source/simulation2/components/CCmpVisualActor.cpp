@@ -135,7 +135,7 @@ public:
 
 	virtual void Init(const CParamNode& paramNode)
 	{
-		m_previouslyRendered = false;
+		m_PreviouslyRendered = false;
 		m_Unit = NULL;
 		m_Visibility = ICmpRangeManager::VIS_HIDDEN;
 
@@ -472,7 +472,7 @@ private:
 	/// Whether the visual actor has been rendered at least once.
 	/// Necessary because the visibility update runs on simulation update,
 	/// which may not occur immediately if the game starts paused.
-	bool m_previouslyRendered;
+	bool m_PreviouslyRendered;
 
 	int32_t GetActorSeed()
 	{
@@ -641,10 +641,10 @@ void CCmpVisualActor::Interpolate(float frameTime, float frameOffset)
 	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
 	if (!cmpPosition || !cmpPosition->IsInWorld())
 		return;
-	else if (!m_previouslyRendered)
+	else if (!m_PreviouslyRendered)
 	{
 		UpdateVisibility();
-		m_previouslyRendered = true;
+		m_PreviouslyRendered = true;
 	}
 
 	// Even if HIDDEN due to LOS, we need to set up the transforms

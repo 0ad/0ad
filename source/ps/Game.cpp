@@ -38,6 +38,7 @@
 #include "ps/World.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "renderer/Renderer.h"
+#include "renderer/TimeManager.h"
 #include "scripting/ScriptingHost.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
@@ -285,6 +286,9 @@ bool CGame::Update(const double deltaRealTime, bool doInterpolate)
 
 			GetView()->GetLOSTexture().MakeDirty();
 		}
+		
+		if (CRenderer::IsInitialised())
+			g_Renderer.GetTimeManager().Update(deltaSimTime);
 	}
 
 	if (doInterpolate)

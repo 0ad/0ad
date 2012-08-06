@@ -31,6 +31,7 @@
 #include "scripting/ScriptableObject.h"
 
 #include "renderer/Scene.h"
+#include "renderer/TimeManager.h"
 
 // necessary declarations
 class CPatch;
@@ -46,6 +47,7 @@ class CTextureManager;
 class CShaderManager;
 class CParticleManager;
 class TerrainRenderer;
+class CTimeManager;
 class CMaterialManager;
 
 // rendering modes
@@ -129,6 +131,7 @@ public:
 		bool m_ForceAlphaTest;
 		bool m_GPUSkinning;
 		bool m_Silhouettes;
+		bool m_GenTangents;
 	} m_Options;
 
 	struct Caps {
@@ -276,6 +279,8 @@ public:
 	CMaterialManager& GetMaterialManager();
 
 	CShaderDefines GetSystemShaderDefines();
+	
+	CTimeManager& GetTimeManager();
 
 	/**
 	 * GetCapabilities: Return which OpenGL capabilities are available and enabled.
