@@ -19,11 +19,14 @@
 
 #include "LOSTexture.h"
 
+#include "graphics/ShaderManager.h"
 #include "graphics/Terrain.h"
 #include "lib/bits.h"
+#include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "renderer/Renderer.h"
+#include "renderer/TimeManager.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/components/ICmpTerrain.h"
@@ -48,8 +51,23 @@ The blurred bitmap is then uploaded into a GL texture for use by the renderer.
 static const size_t g_BlurSize = 7;
 
 CLOSTexture::CLOSTexture(CSimulation2& simulation) :
-	m_Simulation(simulation), m_Dirty(true), m_Texture(0), m_MapSize(0), m_TextureSize(0)
+	m_Simulation(simulation), m_Dirty(true), m_Texture(0), m_smoothFbo(0), m_MapSize(0), m_TextureSize(0), whichTex(true)
 {
+	if (g_Renderer.m_Options.m_SmoothLOS)
+	{
+		m_smoothShader = g_Renderer.GetShaderManager().LoadEffect("los_interp");
+		CShaderProgramPtr shader = m_smoothShader->GetShader();
+
+		if (m_smoothShader && shader)
+		{
+			pglGenFramebuffersEXT(1, &m_smoothFbo);
+		}
+		else
+		{
+			LOGERROR(L"Failed to load SmoothLOS shader, disabling.");
+			g_Renderer.m_Options.m_SmoothLOS = false;
+		}
+	}
 }
 
 CLOSTexture::~CLOSTexture()
@@ -61,6 +79,11 @@ CLOSTexture::~CLOSTexture()
 void CLOSTexture::DeleteTexture()
 {
 	glDeleteTextures(1, &m_Texture);
+	if (g_Renderer.m_Options.m_SmoothLOS)
+	{
+		glDeleteTextures(1, &m_TextureSmooth1);
+		glDeleteTextures(1, &m_TextureSmooth2);
+	}
 	m_Texture = 0;
 }
 
@@ -79,6 +102,71 @@ void CLOSTexture::BindTexture(int unit)
 
 	g_Renderer.BindTexture(unit, m_Texture);
 }
+
+GLuint CLOSTexture::GetTextureSmooth()
+{
+	if (!g_Renderer.m_Options.m_SmoothLOS)
+		return GetTexture();
+	else
+		return whichTex ? m_TextureSmooth1 : m_TextureSmooth2;
+}
+
+void CLOSTexture::InterpolateLOS()
+{
+	if (!g_Renderer.m_Options.m_SmoothLOS)
+		return;
+	
+	if (m_Dirty)
+	{
+		RecomputeTexture(0);
+		m_Dirty = false;
+	}
+	
+	GLint originalFBO;
+	glGetIntegerv(GL_FRAMEBUFFER_BINDING, &originalFBO);
+	
+	pglBindFramebufferEXT(GL_FRAMEBUFFER, m_smoothFbo);
+	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, 
+				   whichTex ? m_TextureSmooth2 : m_TextureSmooth1, 0);
+	
+	GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
+	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
+	{
+		LOGWARNING(L"LOS framebuffer object incomplete: 0x%04X", status);
+	}
+
+	m_smoothShader->BeginPass();
+	CShaderProgramPtr shader = m_smoothShader->GetShader();
+	
+	shader->Bind();	
+	
+	shader->BindTexture("losTex1", m_Texture);
+	shader->BindTexture("losTex2", whichTex ? m_TextureSmooth1 : m_TextureSmooth2);
+	
+	shader->Uniform("delta", (float)g_Renderer.GetTimeManager().GetFrameDelta() * 4.0f, 0.0f, 0.0f, 0.0f);
+	
+	glPushAttrib(GL_VIEWPORT_BIT); 
+	glViewport(0, 0, m_TextureSize, m_TextureSize);
+	
+	glBegin(GL_QUADS);
+	    glColor4f(1.f, 1.f, 1.f, 1.f);
+	    glTexCoord2f(1.0, 1.0);	glVertex2f(1,1);
+	    glTexCoord2f(0.0, 1.0);	glVertex2f(-1,1);	    
+	    glTexCoord2f(0.0, 0.0);	glVertex2f(-1,-1);
+	    glTexCoord2f(1.0, 0.0);	glVertex2f(1,-1);
+	glEnd();
+	
+	glPopAttrib(); 
+	shader->Unbind();
+	m_smoothShader->EndPass();
+	
+	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, 0, 0);
+	
+	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, originalFBO);
+	
+	whichTex = !whichTex;
+}
+
 
 GLuint CLOSTexture::GetTexture()
 {
@@ -114,20 +202,41 @@ void CLOSTexture::ConstructTexture(int unit)
 	m_TextureSize = (GLsizei)round_up_to_pow2((size_t)m_MapSize + g_BlurSize - 1);
 
 	glGenTextures(1, &m_Texture);
-	g_Renderer.BindTexture(unit, m_Texture);
 
 	// Initialise texture with SoD colour, for the areas we don't
 	// overwrite with glTexSubImage2D later
-	u8* texData = new u8[m_TextureSize * m_TextureSize];
-	memset(texData, 0x00, m_TextureSize * m_TextureSize);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, m_TextureSize, m_TextureSize, 0, GL_ALPHA, GL_UNSIGNED_BYTE, texData);
-	delete[] texData;
+	u8* texData = new u8[m_TextureSize * m_TextureSize * 4];
+	memset(texData, 0x00, m_TextureSize * m_TextureSize * 4);
+	
+	if (g_Renderer.m_Options.m_SmoothLOS)
+	{
+		glGenTextures(1, &m_TextureSmooth1);
+		glGenTextures(1, &m_TextureSmooth2);
+		
+		g_Renderer.BindTexture(unit, m_TextureSmooth1);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_TextureSize, m_TextureSize, 0, GL_ALPHA, GL_UNSIGNED_BYTE, texData);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
+		g_Renderer.BindTexture(unit, m_TextureSmooth2);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_TextureSize, m_TextureSize, 0, GL_ALPHA, GL_UNSIGNED_BYTE, texData);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	}
+	
+	g_Renderer.BindTexture(unit, m_Texture);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, m_TextureSize, m_TextureSize, 0, GL_ALPHA, GL_UNSIGNED_BYTE, texData);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
+	
+	delete[] texData;	
+	
 	{
 		// Texture matrix: We want to map
 		//   world pos (0, y, 0)  (i.e. first vertex)
@@ -166,8 +275,12 @@ void CLOSTexture::RecomputeTexture(int unit)
 			DeleteTexture();
 	}
 
+	bool recreated = false;
 	if (!m_Texture)
+	{
 		ConstructTexture(unit);
+		recreated = true;
+	}
 
 	PROFILE("recompute LOS texture");
 
@@ -181,6 +294,14 @@ void CLOSTexture::RecomputeTexture(int unit)
 	ICmpRangeManager::CLosQuerier los(cmpRangeManager->GetLosQuerier(g_Game->GetPlayerID()));
 
 	GenerateBitmap(los, &losData[0], m_MapSize, m_MapSize);
+
+	if (g_Renderer.m_Options.m_SmoothLOS && recreated)
+	{
+		g_Renderer.BindTexture(unit, m_TextureSmooth1);		
+		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize + g_BlurSize - 1, m_MapSize + g_BlurSize - 1, GL_ALPHA, GL_UNSIGNED_BYTE, &losData[0]);
+		g_Renderer.BindTexture(unit, m_TextureSmooth2);		
+		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize + g_BlurSize - 1, m_MapSize + g_BlurSize - 1, GL_ALPHA, GL_UNSIGNED_BYTE, &losData[0]);
+	}
 
 	g_Renderer.BindTexture(unit, m_Texture);
 	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize + g_BlurSize - 1, m_MapSize + g_BlurSize - 1, GL_ALPHA, GL_UNSIGNED_BYTE, &losData[0]);

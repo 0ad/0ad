@@ -46,6 +46,7 @@
 #include "graphics/Camera.h"
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
+#include "graphics/LOSTexture.h"
 #include "graphics/MaterialManager.h"
 #include "graphics/Model.h"
 #include "graphics/ModelDef.h"
@@ -435,12 +436,14 @@ CRenderer::CRenderer()
 	m_Options.m_ForceAlphaTest = false;
 	m_Options.m_GPUSkinning = false;
 	m_Options.m_GenTangents = false;
+	m_Options.m_SmoothLOS = false;
 
 	// TODO: be more consistent in use of the config system
 	CFG_GET_USER_VAL("preferglsl", Bool, m_Options.m_PreferGLSL);
 	CFG_GET_USER_VAL("forcealphatest", Bool, m_Options.m_ForceAlphaTest);
 	CFG_GET_USER_VAL("gpuskinning", Bool, m_Options.m_GPUSkinning);
 	CFG_GET_USER_VAL("gentangents", Bool, m_Options.m_GenTangents);
+	CFG_GET_USER_VAL("smoothlos", Bool, m_Options.m_SmoothLOS);
 
 #if CONFIG2_GLES
 	// Override config option since GLES only supports GLSL
@@ -1358,6 +1361,8 @@ void CRenderer::RenderParticles()
 void CRenderer::RenderSubmissions()
 {
 	PROFILE3("render submissions");
+	
+	GetScene().GetLOSTexture().InterpolateLOS();
 
 	CShaderDefines context = m->globalContext;
 

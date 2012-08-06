@@ -95,7 +95,7 @@ void ShaderRenderModifier::BeginPass(const CShaderProgramPtr& shader)
 	if (shader->GetTextureBinding("losTex").Active())
 	{
 		CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
-		shader->BindTexture("losTex", los.GetTexture());
+		shader->BindTexture("losTex", los.GetTextureSmooth());
 		// Don't bother sending the whole matrix, we just need two floats (scale and translation)
 		shader->Uniform("losTransform", los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
 	}

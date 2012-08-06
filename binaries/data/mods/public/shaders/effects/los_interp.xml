@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<effect>
+
+    <technique>
+        <require shaders="glsl"/>
+	<pass shader="glsl/los_interp"/>
+    </technique>
+
+</effect>
