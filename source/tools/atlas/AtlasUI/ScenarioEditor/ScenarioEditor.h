@@ -42,6 +42,7 @@ public:
 	void OnOpen(wxCommandEvent& event);
 	void OnSave(wxCommandEvent& event);
 	void OnSaveAs(wxCommandEvent& event);
+	void OnImportHeightmap(wxCommandEvent& event);
 	void OnMRUFile(wxCommandEvent& event);
 
 	void OnQuit(wxCommandEvent& event);

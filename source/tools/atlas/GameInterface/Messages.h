@@ -146,6 +146,10 @@ QUERY(GenerateMap,
 		((int, status))
 		);
 
+MESSAGE(ImportHeightmap,
+		((std::wstring, filename))
+		);
+
 MESSAGE(LoadMap,
 		((std::wstring, filename))
 		);

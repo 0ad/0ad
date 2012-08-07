@@ -28,6 +28,12 @@
 #include "graphics/Terrain.h"
 #include "graphics/TerrainTextureEntry.h"
 #include "graphics/TerrainTextureManager.h"
+#include "lib/bits.h"
+#include "lib/file/file.h"
+#include "lib/tex/tex.h"
+#include "maths/MathUtil.h"
+#include "ps/CLogger.h"
+#include "ps/Filesystem.h"
 #include "ps/Game.h"
 #include "ps/Loader.h"
 #include "ps/World.h"
@@ -133,6 +139,88 @@ MESSAGEHANDLER(LoadMap)
 	scriptInterface.SetProperty(attrs.get(), "map", std::wstring(mapBase));
 
 	StartGame(attrs);
+}
+
+MESSAGEHANDLER(ImportHeightmap)
+{
+	CStrW src = *msg->filename;
+	
+	size_t fileSize;
+	shared_ptr<u8> fileData;
+	
+	// read in image file
+	File file;
+	if (file.Open(src, O_RDONLY) < 0)
+	{
+		LOGERROR(L"Failed to load heightmap.");
+		return;
+	}
+	
+	fileSize = lseek(file.Descriptor(), 0, SEEK_END);
+	lseek(file.Descriptor(), 0, SEEK_SET);
+	
+	fileData = shared_ptr<u8>(new u8[fileSize]);
+	
+	if (read(file.Descriptor(), fileData.get(), fileSize) < 0)
+	{
+		LOGERROR(L"Failed to read heightmap image.");
+		file.Close();
+		return;
+	}
+	
+	file.Close();
+
+	// decode to a raw pixel format
+	Tex tex;
+	if (tex_decode(fileData, fileSize, &tex) < 0)
+	{
+		LOGERROR(L"Failed to decode heightmap.");
+		return;
+	}
+
+	// Convert to uncompressed BGRA with no mipmaps
+	if (tex_transform_to(&tex, (tex.flags | TEX_BGR | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS)) < 0)
+	{
+		LOGERROR(L"Failed to transform heightmap.");
+		tex_free(&tex);
+		return;
+	}
+
+	// pick smallest side of texture; truncate if not divisible by PATCH_SIZE
+	ssize_t terrainSize = std::min(tex.w, tex.h);
+	terrainSize -= terrainSize % PATCH_SIZE;
+	
+	// resize terrain to heightmap size
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+	terrain->Resize(terrainSize / PATCH_SIZE);
+	
+	// copy heightmap data into map
+	u16* heightmap = g_Game->GetWorld()->GetTerrain()->GetHeightMap();
+	ssize_t hmSize = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
+	
+	u8* mapdata = tex_get_data(&tex);
+	ssize_t bytesPP = tex.bpp / 8;
+	ssize_t mapLineSkip = tex.w * bytesPP;
+	
+	for (ssize_t y = 0; y < terrainSize; ++y)
+	{
+		for (ssize_t x = 0; x < terrainSize; ++x)
+		{
+			int offset = y * mapLineSkip + x * bytesPP;
+			
+			// pick colour channel with highest value
+			u16 value = std::max(mapdata[offset+bytesPP*2], std::max(mapdata[offset], mapdata[offset+bytesPP]));
+			
+			heightmap[(terrainSize-y-1) * hmSize + x] = clamp(value * 256, 0, 65535);
+		}
+	}
+	
+	tex_free(&tex);
+	
+	// update simulation
+	CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	if (cmpTerrain) cmpTerrain->ReloadTerrain();
+	g_Game->GetView()->GetLOSTexture().MakeDirty();
 }
 
 MESSAGEHANDLER(SaveMap)

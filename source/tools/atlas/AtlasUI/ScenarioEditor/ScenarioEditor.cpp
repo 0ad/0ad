@@ -309,6 +309,7 @@ enum
 	ID_Open,
 	ID_Save,
 	ID_SaveAs,
+	ID_ImportHeightmap,
 
 	ID_Wireframe,
 	ID_MessageTrace,
@@ -332,6 +333,7 @@ BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 	EVT_MENU(ID_Open, ScenarioEditor::OnOpen)
 	EVT_MENU(ID_Save, ScenarioEditor::OnSave)
 	EVT_MENU(ID_SaveAs, ScenarioEditor::OnSaveAs)
+	EVT_MENU(ID_ImportHeightmap, ScenarioEditor::OnImportHeightmap)
 	EVT_MENU_RANGE(wxID_FILE1, wxID_FILE9, ScenarioEditor::OnMRUFile)
 
 	EVT_MENU(ID_Quit, ScenarioEditor::OnQuit)
@@ -417,6 +419,8 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 		menuFile->Append(ID_Open, _("&Open..."));
 		menuFile->Append(ID_Save, _("&Save"));
 		menuFile->Append(ID_SaveAs, _("Save &As..."));
+		menuFile->AppendSeparator();//-----------
+		menuFile->Append(ID_ImportHeightmap, _("&Import Heightmap..."));
 		menuFile->AppendSeparator();//-----------
 		menuFile->Append(ID_Quit,   _("E&xit"));
 		m_FileHistory.UseMenu(menuFile);//-------
@@ -709,6 +713,28 @@ void ScenarioEditor::OnOpen(wxCommandEvent& WXUNUSED(event))
 		// "is ineffective for GetOpenFileName", but it seems to work anyway
 		wxCHECK_RET(cwd == wxFileName::GetCwd(), _T("cwd changed"));
 	}
+
+	// TODO: Make this a non-undoable command
+}
+
+void ScenarioEditor::OnImportHeightmap(wxCommandEvent& WXUNUSED(event))
+{
+	wxFileDialog dlg (NULL, wxFileSelectorPromptStr,
+		_T(""), _T(""),
+		_T("Valid Image files|*.png;*.jpg;*.bmp|All files (*.*)|*.*"),
+		wxFD_OPEN);
+	// Set default filter
+	dlg.SetFilterIndex(0);
+
+	wxString cwd = wxFileName::GetCwd();
+
+	if (dlg.ShowModal() != wxID_OK)
+		return;
+	
+	OpenFile(_T("_default"), _T(""));
+	
+	std::wstring image(dlg.GetPath().wc_str());
+	POST_MESSAGE(ImportHeightmap, (image));
 
 	// TODO: Make this a non-undoable command
 }
