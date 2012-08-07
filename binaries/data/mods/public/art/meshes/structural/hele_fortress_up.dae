@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.63.0 r46461:46487M</authoring_tool>
     </contributor>
-    <created>2012-08-06T12:31:23</created>
-    <modified>2012-08-06T12:31:23</modified>
+    <created>2012-08-06T13:16:27</created>
+    <modified>2012-08-06T13:16:27</modified>
     <unit name="inch" meter="0.0254"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -38,7 +38,7 @@
               <color sid="ambient">0 0 0 1</color>
             </ambient>
             <diffuse>
-              <texture texture="hele_struct_b_png-sampler"/>
+              <texture texture="hele_struct_b_png-sampler" texcoord="UVMap"/>
             </diffuse>
             <specular>
               <color sid="specular">0.5 0.5 0.5 1</color>

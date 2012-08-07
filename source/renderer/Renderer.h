@@ -132,6 +132,7 @@ public:
 		bool m_GPUSkinning;
 		bool m_Silhouettes;
 		bool m_GenTangents;
+		bool m_SmoothLOS;
 	} m_Options;
 
 	struct Caps {

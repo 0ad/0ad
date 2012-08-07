@@ -617,7 +617,13 @@ void CCmpVisualActor::UpdateVisibility()
 		else
 		{
 			CmpPtr<ICmpRangeManager> cmpRangeManager(GetSimContext(), SYSTEM_ENTITY);
-			m_Visibility = cmpRangeManager->GetLosVisibility(GetEntityId(), GetSimContext().GetCurrentDisplayedPlayer());
+			// Uncomment the following lines to prevent the models from popping into existence
+			// near the LOS boundary. Is rather resource intensive.
+			//if (cmpVision->GetRetainInFog())
+			//	m_Visibility = ICmpRangeManager::VIS_VISIBLE;
+			//else
+				m_Visibility = cmpRangeManager->GetLosVisibility(GetEntityId(), 	
+					GetSimContext().GetCurrentDisplayedPlayer());
 		}
 	}
 	else

@@ -20,6 +20,9 @@
 #include "maths/Matrix3D.h"
 #include "simulation2/components/ICmpRangeManager.h"
 
+#include "graphics/ShaderManager.h"
+
+
 class CSimulation2;
 
 /**
@@ -55,6 +58,9 @@ public:
 	 * The texture is in 8-bit ALPHA format.
 	 */
 	GLuint GetTexture();
+	
+	void InterpolateLOS();
+	GLuint GetTextureSmooth();
 
 	/**
 	 * Returns a matrix to map (x,y,z) world coordinates onto (u,v) LOS texture
@@ -83,6 +89,12 @@ private:
 	bool m_Dirty;
 
 	GLuint m_Texture;
+	GLuint m_TextureSmooth1, m_TextureSmooth2;
+	
+	bool whichTex;
+	
+	GLuint m_smoothFbo;
+	CShaderTechniquePtr m_smoothShader;	
 
 	ssize_t m_MapSize; // vertexes per side
 	GLsizei m_TextureSize; // texels per side
