@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-  <castshadow/>
   <group>
     <variant name="decal_palms_3x3">
       <decal width="18" depth="18" angle="0" offsetx="0" offsetz="0"/>
       <textures><texture file="gaia/decal_palms.png" name="baseTex"/></textures>
     </variant>
   </group>
-  <material>basic_trans.xml</material>
+  <material>terrain_base.xml</material>
 </actor>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<terrain>
+        <textures>
+                <texture name="baseTex" file="types/corral_c.dds"/>
+        </textures>
+	<props groups="water" mmap="49 50 62"/>
+        <material>terrain_base.xml</material>
+</terrain>

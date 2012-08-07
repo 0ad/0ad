@@ -59,10 +59,6 @@ CShaderManager::CShaderManager()
 
 	// Allow hotloading of textures
 	RegisterFileReloadFunc(ReloadChangedFileCB, this);
-	
-	//CShaderRenderQueries rq;
-	
-	//QueryTime = CStrIntern("time");
 }
 
 CShaderManager::~CShaderManager()

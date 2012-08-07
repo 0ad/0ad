@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<terrain>
+        <textures>
+                <texture name="baseTex" file="types/ocean_rock_b.dds"/>
+        </textures>
+	<props groups="water" mmap="91 89 82"/>
+        <material>terrain_base.xml</material>
+</terrain>

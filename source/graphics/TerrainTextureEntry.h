@@ -22,6 +22,7 @@
 
 #include "TerrainTextureManager.h"
 #include "TextureManager.h"
+#include "Material.h"
 
 #include "lib/res/handle.h"
 #include "lib/file/vfs/vfs_path.h"
@@ -46,7 +47,7 @@ private:
 	// The property sheet used by this texture
 	CTerrainPropertiesPtr m_pProperties;
 	
-	CTexturePtr m_Texture;
+	CMaterial m_Material;
 
 	CMatrix3D m_TextureMatrix;
 	
@@ -61,6 +62,8 @@ private:
 
 	// calculate the root color of the texture, used for coloring minimap
 	void BuildBaseColor();
+	
+	void LoadAlphaMaps(VfsPath &amtype);
 
 public:
 	// Most of the texture's data is delay-loaded, so after the constructor has
@@ -76,7 +79,11 @@ public:
 	
 	// Get texture handle, load texture if not loaded.
 	const CTexturePtr& GetTexture() {
-		return m_Texture;
+		return m_Material.GetDiffuseTexture();
+	}
+	
+	const CMaterial& GetMaterial() {
+		return m_Material;
 	}
 
 	// Returns a matrix of the form [c 0 -s 0; -s 0 -c 0; 0 0 0 0; 0 0 0 1]
@@ -88,6 +95,9 @@ public:
 		if (!m_BaseColorValid) BuildBaseColor();
 		return m_BaseColor;
 	}
+	
+	//TerrainAlpha *m_TerrainAlpha;
+	CTerrainTextureManager::TerrainAlphaMap::iterator m_TerrainAlpha;
 };
 
 #endif 

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-  <castshadow/>
   <group>
     <variant name="barracks_decal_5x5">
       <decal width="-30" depth="30" angle="0" offsetx="0" offsetz="0"/>
       <textures><texture file="props/celt_barracks_decal.png" name="baseTex"/></textures>
     </variant>
   </group>
-  <material>basic_trans.xml</material>
+  <material>terrain_base.xml</material>
 </actor>

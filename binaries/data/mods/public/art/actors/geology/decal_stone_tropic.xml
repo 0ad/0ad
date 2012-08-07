@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-  <castshadow/>
   <group>
     <variant name="decal_stone_medit_a">
       <decal angle="0" depth="12" offsetx="0" offsetz="0" width="12"/>
@@ -14,5 +13,5 @@
       <textures><texture file="gaia/decal_quarry_tropic_b.png" name="baseTex"/></textures>
     </variant>
   </group>
-  <material>basic_trans.xml</material>
+  <material>terrain_base.xml</material>
 </actor>

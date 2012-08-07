@@ -65,8 +65,6 @@ private:
 	// All terrain type groups we're a member of
 	GroupVector m_Groups;
 
-	void LoadXml(XMBElement node, CXeromyces *pFile, const VfsPath& pathname);
-
 public:
 	CTerrainProperties(CTerrainPropertiesPtr parent);
 
@@ -74,6 +72,8 @@ public:
 	// failure
 	// The parent pointer may be NULL, for the "root" terrainproperties object.
 	static CTerrainPropertiesPtr FromXML(const CTerrainPropertiesPtr& parent, const VfsPath& pathname);
+	
+	void LoadXml(XMBElement node, CXeromyces *pFile, const VfsPath& pathname);
 
 	// Save the object to an XML file. Implement when needed! ;-)
 	// bool WriteXML(const CStr& path);

@@ -22,6 +22,7 @@
 #include <map>
 #include <boost/shared_ptr.hpp>
 
+#include "lib/res/graphics/ogl_tex.h"
 #include "lib/res/handle.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
@@ -29,6 +30,8 @@
 
 // access to sole CTerrainTextureManager object
 #define g_TexMan CTerrainTextureManager::GetSingleton()
+
+#define NUM_ALPHA_MAPS 14
 
 class XMBElement;
 class CXeromyces;
@@ -67,12 +70,27 @@ public:
 	{ return m_Terrains; }
 };
 
+
+struct TerrainAlpha
+{
+	// ogl_tex handle of composite alpha map (all the alpha maps packed into one texture)
+	Handle m_hCompositeAlphaMap;
+	// coordinates of each (untransformed) alpha map within the packed texture
+	struct {
+		float u0,u1,v0,v1;
+	} m_AlphaMapCoords[NUM_ALPHA_MAPS];
+};
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 // CTerrainTextureManager : manager class for all terrain texture objects
 class CTerrainTextureManager : public Singleton<CTerrainTextureManager>
 {
+	friend class CTerrainTextureEntry;
+	
 public:
 	typedef std::map<CStr, CTerrainGroup *> TerrainGroupMap;
+	typedef std::map<VfsPath, TerrainAlpha> TerrainAlphaMap;
 
 private:
 	// All texture entries created by this class, for easy freeing now that
@@ -80,6 +98,8 @@ private:
 	std::vector<CTerrainTextureEntry *> m_TextureEntries;
 
 	TerrainGroupMap m_TerrainGroups;
+	
+	TerrainAlphaMap m_TerrainAlphas;
 
 	size_t m_LastGroupIndex;
 

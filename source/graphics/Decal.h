@@ -18,6 +18,7 @@
 #ifndef INCLUDED_DECAL
 #define INCLUDED_DECAL
 
+#include "graphics/Material.h"
 #include "graphics/ModelAbstract.h"
 #include "graphics/Texture.h"
 
@@ -30,14 +31,14 @@ class CTerrain;
  */
 struct SDecal
 {
-	SDecal(const CTexturePtr& texture, float sizeX, float sizeZ, float angle,
+	SDecal(const CMaterial& material, float sizeX, float sizeZ, float angle,
 			float offsetX, float offsetZ, bool floating)
-		: m_Texture(texture), m_SizeX(sizeX), m_SizeZ(sizeZ), m_Angle(angle),
+		: m_Material(material), m_SizeX(sizeX), m_SizeZ(sizeZ), m_Angle(angle),
 		  m_OffsetX(offsetX), m_OffsetZ(offsetZ), m_Floating(floating)
 	{
 	}
 
-	CTexturePtr m_Texture;
+	CMaterial m_Material;
 	float m_SizeX;
 	float m_SizeZ;
 	float m_Angle;

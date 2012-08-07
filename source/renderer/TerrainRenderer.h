@@ -35,6 +35,9 @@ struct TerrainRendererInternals;
  */
 class TerrainRenderer
 {
+	friend class CPatchRData;
+	friend class CDecalRData;
+	
 public:
 	TerrainRenderer();
 	~TerrainRenderer();
@@ -158,7 +161,7 @@ private:
 	 */
 	void RenderSimpleWater();
 
-	void PrepareShader(const CShaderProgramPtr& shader, ShadowMap* shadow);
+	static void PrepareShader(const CShaderProgramPtr& shader, ShadowMap* shadow);
 };
 
 #endif // INCLUDED_TERRAINRENDERER

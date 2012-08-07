@@ -20,6 +20,7 @@
 #include "ObjectEntry.h"
 
 #include "graphics/Decal.h"
+#include "graphics/Material.h"
 #include "graphics/MaterialManager.h"
 #include "graphics/MeshManager.h"
 #include "graphics/Model.h"
@@ -60,7 +61,6 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 
 	// Copy the chosen data onto this model:
 
-	//m_TextureName = variation.texture;
 	for (std::multimap<CStr, CObjectBase::Samp>::iterator it = variation.samplers.begin(); it != variation.samplers.end(); ++it)
 		m_Samplers.push_back(it->second);
 	
@@ -79,25 +79,20 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 
 	if (variation.decal.m_SizeX && variation.decal.m_SizeZ)
 	{
-		std::multimap<CStr, CObjectBase::Samp>::iterator iter;
+		CMaterial material = g_Renderer.GetMaterialManager().LoadMaterial(m_Base->m_Material);
 		
-		iter = variation.samplers.find("baseTex");
-
-		if (iter == variation.samplers.end())
+		std::vector<CObjectBase::Samp>::iterator samp;
+		for (samp = m_Samplers.begin(); samp != m_Samplers.end(); ++samp)
 		{
-			LOGERROR(L"Actor '%ls' tries to create a decal but has no 'baseTex' sampler entry", m_Base->m_ShortName.c_str());
-			return false;
+			CTextureProperties textureProps(samp->m_SamplerFile);
+			textureProps.SetWrap(GL_CLAMP_TO_BORDER);
+			CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
+			// TODO: Should check which renderpath is selected and only preload the necessary textures.
+			texture->Prefetch(); 
+			material.AddSampler(CMaterial::TextureSampler(samp->m_SamplerName, texture));
 		}
 
-		CTextureProperties textureProps(iter->second.m_SamplerFile);
-
-		// Decals should be transparent, so clamp to the border (default 0,0,0,0)
-		textureProps.SetWrap(GL_CLAMP_TO_BORDER);
-
-		CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
-		texture->Prefetch(); // if we've loaded this model we're probably going to render it soon, so prefetch its texture
-
-		SDecal decal(texture,
+		SDecal decal(material,
 			variation.decal.m_SizeX, variation.decal.m_SizeZ,
 			variation.decal.m_Angle, variation.decal.m_OffsetX, variation.decal.m_OffsetZ,
 			m_Base->m_Properties.m_FloatOnWater);

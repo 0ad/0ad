@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<terrain>
+        <textures>
+                <texture name="baseTex" file="types/tropic_citytile_a.png"/>
+        </textures>
+	<props groups="city" movementclass="city" mmap="230 227 198"/>
+        <material>terrain_base.xml</material>
+</terrain>

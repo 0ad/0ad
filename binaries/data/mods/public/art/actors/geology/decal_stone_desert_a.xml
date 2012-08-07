@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
 
-  <castshadow/>
-
   <group>
     <variant name="decal_stone_medit_a">
       <decal width="12" depth="12" angle="0" offsetx="0" offsetz="0"/>
@@ -18,6 +16,6 @@
     </variant>
   </group>
 
-  <material>basic_trans.xml</material>
+  <material>terrain_base.xml</material>
 
 </actor>

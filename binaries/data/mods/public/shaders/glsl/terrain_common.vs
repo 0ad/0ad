@@ -13,17 +13,38 @@ uniform mat4 shadowTransform;
 #endif
 
 varying vec3 v_lighting;
-varying vec2 v_tex;
-varying vec4 v_shadow;
+
+#if USE_SHADOW
+  varying vec4 v_shadow;
+#endif
+
 varying vec2 v_los;
 varying vec2 v_blend;
 
-#if USE_SPECULAR
-  varying vec3 v_normal;
-  varying vec3 v_half;
+#if USE_TRIPLANAR
+  varying vec3 v_tex;
+#else
+  varying vec2 v_tex;
 #endif
 
+varying vec3 v_normal;
+
+#if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX_MAP
+  #if USE_NORMAL_MAP || USE_PARALLAX_MAP
+    varying vec4 v_tangent;
+    varying vec3 v_bitangent;
+  #endif
+  #if USE_SPECULAR || USE_SPECULAR_MAP
+    varying vec3 v_half;
+  #endif
+  #if USE_PARALLAX_MAP
+    varying vec3 v_eyeVec;
+  #endif
+#endif
+
+
 attribute vec3 a_vertex;
+attribute vec3 a_normal;
 attribute vec3 a_color;
 attribute vec2 a_uv0;
 attribute vec2 a_uv1;
@@ -32,17 +53,26 @@ void main()
 {
   vec4 position = vec4(a_vertex, 1.0);
 
+  #if USE_GRASS && LAYER
+    position.y = a_vertex.y + (a_normal.y * 0.015 * LAYER);
+  #endif
+
   gl_Position = transform * position;
 
   v_lighting = a_color * sunColor;
   
   #if DECAL
-    v_tex = a_uv0;
+    v_tex.xy = a_uv0;
   #else
-    // Compute texcoords from position and terrain-texture-dependent transform
-    float c = textureTransform.x;
-    float s = -textureTransform.y;
-    v_tex = vec2(a_vertex.x * c + a_vertex.z * -s, a_vertex.x * -s + a_vertex.z * -c);
+
+    #if USE_TRIPLANAR
+      v_tex = a_vertex;
+    #else
+      // Compute texcoords from position and terrain-texture-dependent transform
+      float c = textureTransform.x;
+      float s = -textureTransform.y;
+      v_tex = vec2(a_vertex.x * c + a_vertex.z * -s, a_vertex.x * -s + a_vertex.z * -c);
+    #endif
 
     #if GL_ES
       // XXX: Ugly hack to hide some precision issues in GLES
@@ -60,16 +90,27 @@ void main()
       v_shadow.xy *= shadowScale.xy;
     #endif  
   #endif
+  
+  v_normal = a_normal;
 
-  #if USE_SPECULAR
-    // TODO: for proper specular terrain, we need to provide vertex normals.
-    // But we don't have that yet, so do something wrong instead.
-    vec3 normal = vec3(0, 1, 0);
+  #if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX_MAP || USE_TRIPLANAR
+    #if USE_NORMAL_MAP || USE_PARALLAX_MAP
+      vec3 t = vec3(1.0, 0.0, 0.0);
+      t = normalize(t - v_normal * dot(v_normal, t));
+      v_tangent = vec4(t, -1.0);
+      v_bitangent = cross(v_normal, t);
+    #endif
 
-    vec3 eyeVec = normalize(cameraPos.xyz - position.xyz);
-    vec3 sunVec = -sunDir;
-    v_half = normalize(sunVec + eyeVec);
-    v_normal = normal;
+    #if USE_SPECULAR || USE_SPECULAR_MAP || USE_PARALLAX_MAP
+      vec3 eyeVec = cameraPos.xyz - position.xyz;
+      #if USE_SPECULAR || USE_SPECULAR_MAP
+        vec3 sunVec = -sunDir;
+        v_half = normalize(sunVec + normalize(eyeVec));
+      #endif
+      #if USE_PARALLAX_MAP
+        v_eyeVec = eyeVec;
+      #endif
+    #endif
   #endif
 
   v_los = a_vertex.xz * losTransform.x + losTransform.yy;

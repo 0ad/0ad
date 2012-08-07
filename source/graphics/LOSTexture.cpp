@@ -53,7 +53,7 @@ static const size_t g_BlurSize = 7;
 CLOSTexture::CLOSTexture(CSimulation2& simulation) :
 	m_Simulation(simulation), m_Dirty(true), m_Texture(0), m_smoothFbo(0), m_MapSize(0), m_TextureSize(0), whichTex(true)
 {
-	if (g_Renderer.m_Options.m_SmoothLOS)
+	if (CRenderer::IsInitialised() && g_Renderer.m_Options.m_SmoothLOS)
 	{
 		m_smoothShader = g_Renderer.GetShaderManager().LoadEffect("los_interp");
 		CShaderProgramPtr shader = m_smoothShader->GetShader();
@@ -79,7 +79,7 @@ CLOSTexture::~CLOSTexture()
 void CLOSTexture::DeleteTexture()
 {
 	glDeleteTextures(1, &m_Texture);
-	if (g_Renderer.m_Options.m_SmoothLOS)
+	if (CRenderer::IsInitialised() && g_Renderer.m_Options.m_SmoothLOS)
 	{
 		glDeleteTextures(1, &m_TextureSmooth1);
 		glDeleteTextures(1, &m_TextureSmooth2);
@@ -105,7 +105,7 @@ void CLOSTexture::BindTexture(int unit)
 
 GLuint CLOSTexture::GetTextureSmooth()
 {
-	if (!g_Renderer.m_Options.m_SmoothLOS)
+	if (CRenderer::IsInitialised() && !g_Renderer.m_Options.m_SmoothLOS)
 		return GetTexture();
 	else
 		return whichTex ? m_TextureSmooth1 : m_TextureSmooth2;
@@ -113,7 +113,7 @@ GLuint CLOSTexture::GetTextureSmooth()
 
 void CLOSTexture::InterpolateLOS()
 {
-	if (!g_Renderer.m_Options.m_SmoothLOS)
+	if (CRenderer::IsInitialised() && !g_Renderer.m_Options.m_SmoothLOS)
 		return;
 	
 	if (m_Dirty)
@@ -208,7 +208,7 @@ void CLOSTexture::ConstructTexture(int unit)
 	u8* texData = new u8[m_TextureSize * m_TextureSize * 4];
 	memset(texData, 0x00, m_TextureSize * m_TextureSize * 4);
 	
-	if (g_Renderer.m_Options.m_SmoothLOS)
+	if (CRenderer::IsInitialised() && g_Renderer.m_Options.m_SmoothLOS)
 	{
 		glGenTextures(1, &m_TextureSmooth1);
 		glGenTextures(1, &m_TextureSmooth2);
@@ -295,7 +295,7 @@ void CLOSTexture::RecomputeTexture(int unit)
 
 	GenerateBitmap(los, &losData[0], m_MapSize, m_MapSize);
 
-	if (g_Renderer.m_Options.m_SmoothLOS && recreated)
+	if (CRenderer::IsInitialised() && g_Renderer.m_Options.m_SmoothLOS && recreated)
 	{
 		g_Renderer.BindTexture(unit, m_TextureSmooth1);		
 		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize + g_BlurSize - 1, m_MapSize + g_BlurSize - 1, GL_ALPHA, GL_UNSIGNED_BYTE, &losData[0]);
