@@ -51,6 +51,13 @@ EntityGroups.prototype.add = function(ents)
 		if (!this.ents[ent])
 		{
 			var entState = GetEntityState(ent);
+
+			// When this function is called during group rebuild, deleted
+			// entities will not yet have been removed, so entities might
+			// still be present in the group despite not existing.
+			if (!entState)
+				continue;
+
 			var templateName = entState.template;
 			var template = GetTemplateData(templateName);
 			var key = template.selectionGroupName || templateName;
