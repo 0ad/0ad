@@ -23,6 +23,7 @@
 #include "maths/Vector3D.h"
 #include "graphics/RenderableObject.h"
 #include "graphics/ShaderProgram.h"
+#include "renderer/ShadowMap.h"
 #include "VertexBufferManager.h"
 
 class CPatch;
@@ -45,11 +46,15 @@ public:
 
 	void RenderWater(CShaderProgramPtr& shader);
 
-	static void RenderBases(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader, bool isDummyShader);
-	static void RenderBlends(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader, bool isDummyShader);
+	static void RenderBases(const std::vector<CPatchRData*>& patches, const CShaderDefines& context, 
+			      ShadowMap* shadow, bool isDummyShader=false, const CShaderProgramPtr& dummy=CShaderProgramPtr());
+	static void RenderBlends(const std::vector<CPatchRData*>& patches, const CShaderDefines& context, 
+			      ShadowMap* shadow, bool isDummyShader=false, const CShaderProgramPtr& dummy=CShaderProgramPtr());
 	static void RenderStreams(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader, int streamflags);
 
 	CPatch* GetPatch() { return m_Patch; }
+	
+	static void PrepareShader(const CShaderProgramPtr& shader, ShadowMap* shadow);
 
 	const CBoundingBoxAligned& GetWaterBounds() const { return m_WaterBounds; }
 
@@ -72,8 +77,9 @@ private:
 		CVector3D m_Position;
 		// diffuse color from sunlight
 		SColor4ub m_DiffuseColor;
+		CVector3D m_Normal;
 	};
-	cassert(sizeof(SBaseVertex) == 16);
+	cassert(sizeof(SBaseVertex) == 28);
 
 	struct SSideVertex {
 		// vertex position
@@ -90,10 +96,9 @@ private:
 		SColor4ub m_DiffuseColor;
 		// vertex uvs for alpha texture
 		float m_AlphaUVs[2];
-		// add some padding since VBOs prefer power-of-two sizes
-		u32 m_Padding[2];
+		CVector3D m_Normal;
 	};
-	cassert(sizeof(SBlendVertex) == 32);
+	cassert(sizeof(SBlendVertex) == 36);
 
 	// Mixed Fancy/Simple water vertex description data structure
 	struct SWaterVertex {
@@ -109,7 +114,8 @@ private:
 	// build this renderdata object
 	void Build();
 
-	void AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector<u16>& blendIndices, u16 i, u16 j, u8 shape);
+	void AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector<u16>& blendIndices, 
+			   u16 i, u16 j, u8 shape, CTerrainTextureEntry* texture);
 
 	void BuildBlends();
 	void BuildIndices();

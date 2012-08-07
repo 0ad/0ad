@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<terrain>
+        <textures>
+                <texture name="baseTex" file="types/desert_rough.dds"/>
+        </textures>
+	<props groups="sand" mmap="207 183 123"/>
+        <material>terrain_base.xml</material>
+</terrain>

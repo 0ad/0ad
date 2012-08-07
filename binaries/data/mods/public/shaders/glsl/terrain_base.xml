@@ -5,9 +5,12 @@
         <stream name="pos"/>
         <stream name="color"/>
         <stream name="uv0"/>
+	<stream name="uv1" if="BLEND"/>
         <attrib name="a_vertex" semantics="gl_Vertex"/>
+	<attrib name="a_normal" semantics="gl_Normal"/>
         <attrib name="a_color" semantics="gl_Color"/>
         <attrib name="a_uv0" semantics="gl_MultiTexCoord0"/>
+	<attrib name="a_uv1" semantics="gl_MultiTexCoord1" if="BLEND"/>
     </vertex>
 
     <fragment file="glsl/terrain_common.fs"/>

@@ -89,7 +89,7 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 		if (token == el_alternative)
 		{
 			CStr cond = attrs.GetNamedItem(at_if);
-			if (!(!cond.empty() && preprocessor.TestConditional(cond)))
+			if (cond.empty() || !preprocessor.TestConditional(cond))
 			{
 				cond = attrs.GetNamedItem(at_quality);
 				if (cond.empty())

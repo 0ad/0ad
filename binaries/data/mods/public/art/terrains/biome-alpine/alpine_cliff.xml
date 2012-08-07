@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<terrain>
+        <textures>
+                <texture name="baseTex" file="types/alpine_cliff.dds"/>
+		<texture name="normTex" file="types/alpine_cliff_norm.png"/>
+		<texture name="specTex" file="types/alpine_cliff_spec.png"/>
+         </textures>
+        <material>terrain_triplanar.xml</material>
+</terrain>

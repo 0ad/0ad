@@ -18,8 +18,10 @@
 #ifndef INCLUDED_DECALRDATA
 #define INCLUDED_DECALRDATA
 
+#include "graphics/Camera.h"
 #include "graphics/RenderableObject.h"
 #include "graphics/ShaderProgram.h"
+#include "renderer/ShadowMap.h"
 #include "renderer/VertexArray.h"
 
 class CModelDecal;
@@ -32,7 +34,8 @@ public:
 
 	void Update();
 
-	void Render(const CShaderProgramPtr& shader, bool isDummyShader);
+	static void RenderDecals(std::vector<CDecalRData*>& decals, const CShaderDefines& context, 
+			       ShadowMap* shadow, bool isDummyShader=false, const CShaderProgramPtr& dummy=CShaderProgramPtr());
 
 	CModelDecal* GetDecal() { return m_Decal; }
 

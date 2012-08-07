@@ -1702,6 +1702,9 @@ void CRenderer::BindTexture(int unit, GLuint tex)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // LoadAlphaMaps: load the 14 default alpha maps, pack them into one composite texture and
 // calculate the coordinate of each alphamap within this packed texture
+// NB: A variant of this function is duplicated in TerrainTextureEntry.cpp, for use with the Shader
+// renderpath. This copy is kept to load the 'standard' maps for the fixed pipeline and should
+// be removed if/when the fixed pipeline goes.
 int CRenderer::LoadAlphaMaps()
 {
 	const wchar_t* const key = L"(alpha map composite)";
@@ -1817,6 +1820,25 @@ int CRenderer::LoadAlphaMaps()
 	// upload the composite texture
 	Tex t;
 	(void)tex_wrap(total_w, total_h, 8, TEX_GREY, data, 0, &t);
+	
+	/*VfsPath filename("blendtex.png");
+	
+	DynArray da;
+	RETURN_STATUS_IF_ERR(tex_encode(&t, filename.Extension(), &da));
+
+	// write to disk
+	//Status ret = INFO::OK;
+	{
+		shared_ptr<u8> file = DummySharedPtr(da.base);
+		const ssize_t bytes_written = g_VFS->CreateFile(filename, file, da.pos);
+		if(bytes_written > 0)
+			ENSURE(bytes_written == (ssize_t)da.pos);
+		//else
+		//	ret = (Status)bytes_written;
+	}
+
+	(void)da_free(&da);*/
+	
 	m_hCompositeAlphaMap = ogl_tex_wrap(&t, g_VFS, key);
 	(void)ogl_tex_set_filter(m_hCompositeAlphaMap, GL_LINEAR);
 	(void)ogl_tex_set_wrap  (m_hCompositeAlphaMap, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);

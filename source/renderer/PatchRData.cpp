@@ -23,7 +23,9 @@
 
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
+#include "graphics/LOSTexture.h"
 #include "graphics/Patch.h"
+#include "graphics/ShaderManager.h"
 #include "graphics/Terrain.h"
 #include "graphics/TextRenderer.h"
 #include "lib/alignment.h"
@@ -37,6 +39,7 @@
 #include "ps/GameSetup/Config.h"
 #include "renderer/AlphaMapCalculator.h"
 #include "renderer/PatchRData.h"
+#include "renderer/TerrainRenderer.h"
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
 #include "simulation2/Simulation2.h"
@@ -272,7 +275,7 @@ void CPatchRData::BuildBlends()
 		for (size_t t = 0; t < blendLayers[k].m_Tiles.size(); ++t)
 		{
 			SBlendLayer::Tile& tile = blendLayers[k].m_Tiles[t];
-			AddBlend(blendVertices, blendIndices, tile.i, tile.j, tile.shape);
+			AddBlend(blendVertices, blendIndices, tile.i, tile.j, tile.shape, splat.m_Texture);
 		}
 
 		splat.m_IndexCount = blendIndices.size() - splat.m_IndexStart;
@@ -307,7 +310,8 @@ void CPatchRData::BuildBlends()
 	}
 }
 
-void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector<u16>& blendIndices, u16 i, u16 j, u8 shape)
+void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector<u16>& blendIndices, 
+			   u16 i, u16 j, u8 shape, CTerrainTextureEntry* texture)
 {
 	CTerrain* terrain = m_Patch->m_Parent;
 
@@ -326,11 +330,11 @@ void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector
 	// now actually render the blend tile (if we need one)
 	if (alphamap == -1)
 		return;
-
-	float u0 = g_Renderer.m_AlphaMapCoords[alphamap].u0;
-	float u1 = g_Renderer.m_AlphaMapCoords[alphamap].u1;
-	float v0 = g_Renderer.m_AlphaMapCoords[alphamap].v0;
-	float v1 = g_Renderer.m_AlphaMapCoords[alphamap].v1;
+	
+	float u0 = texture->m_TerrainAlpha->second.m_AlphaMapCoords[alphamap].u0;
+	float u1 = texture->m_TerrainAlpha->second.m_AlphaMapCoords[alphamap].u1;
+	float v0 = texture->m_TerrainAlpha->second.m_AlphaMapCoords[alphamap].v0;
+	float v1 = texture->m_TerrainAlpha->second.m_AlphaMapCoords[alphamap].v1;
 
 	if (alphamapflags & BLENDMAP_FLIPU)
 		std::swap(u0, u1);
@@ -367,6 +371,7 @@ void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector
 
 	terrain->CalcPosition(gx, gz, dst.m_Position);
 	terrain->CalcNormal(gx, gz, normal);
+	dst.m_Normal = normal;
 	dst.m_DiffuseColor = cpuLighting ? lightEnv.EvaluateTerrainDiffuseScaled(normal) : lightEnv.EvaluateTerrainDiffuseFactor(normal);
 	dst.m_AlphaUVs[0] = vtx[0].m_AlphaUVs[0];
 	dst.m_AlphaUVs[1] = vtx[0].m_AlphaUVs[1];
@@ -374,6 +379,7 @@ void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector
 
 	terrain->CalcPosition(gx + 1, gz, dst.m_Position);
 	terrain->CalcNormal(gx + 1, gz, normal);
+	dst.m_Normal = normal;
 	dst.m_DiffuseColor = cpuLighting ? lightEnv.EvaluateTerrainDiffuseScaled(normal) : lightEnv.EvaluateTerrainDiffuseFactor(normal);
 	dst.m_AlphaUVs[0] = vtx[1].m_AlphaUVs[0];
 	dst.m_AlphaUVs[1] = vtx[1].m_AlphaUVs[1];
@@ -381,6 +387,7 @@ void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector
 
 	terrain->CalcPosition(gx + 1, gz + 1, dst.m_Position);
 	terrain->CalcNormal(gx + 1, gz + 1, normal);
+	dst.m_Normal = normal;
 	dst.m_DiffuseColor = cpuLighting ? lightEnv.EvaluateTerrainDiffuseScaled(normal) : lightEnv.EvaluateTerrainDiffuseFactor(normal);
 	dst.m_AlphaUVs[0] = vtx[2].m_AlphaUVs[0];
 	dst.m_AlphaUVs[1] = vtx[2].m_AlphaUVs[1];
@@ -388,6 +395,7 @@ void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector
 
 	terrain->CalcPosition(gx, gz + 1, dst.m_Position);
 	terrain->CalcNormal(gx, gz + 1, normal);
+	dst.m_Normal = normal;
 	dst.m_DiffuseColor = cpuLighting ? lightEnv.EvaluateTerrainDiffuseScaled(normal) : lightEnv.EvaluateTerrainDiffuseFactor(normal);
 	dst.m_AlphaUVs[0] = vtx[3].m_AlphaUVs[0];
 	dst.m_AlphaUVs[1] = vtx[3].m_AlphaUVs[1];
@@ -546,6 +554,8 @@ void CPatchRData::BuildVertices()
 			// for all vertices, it need not be stored in the vertex structure)
 			CVector3D normal;
 			terrain->CalcNormal(ix,iz,normal);
+			
+			vertices[v].m_Normal = normal;
 
 			vertices[v].m_DiffuseColor = cpuLighting ? lightEnv.EvaluateTerrainDiffuseScaled(normal) : lightEnv.EvaluateTerrainDiffuseFactor(normal);
 		}
@@ -708,7 +718,8 @@ typedef POOLED_BATCH_MAP(CVertexBuffer*, IndexBufferBatches) VertexBufferBatches
 // Group batches by texture
 typedef POOLED_BATCH_MAP(CTerrainTextureEntry*, VertexBufferBatches) TextureBatches;
 
-void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader, bool isDummyShader)
+void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CShaderDefines& context, 
+			      ShadowMap* shadow, bool isDummyShader, const CShaderProgramPtr& dummy)
 {
 	Allocators::Arena<> arena(ARENA_SIZE);
 
@@ -744,58 +755,100 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CS
  	// Render each batch
  	for (TextureBatches::iterator itt = batches.begin(); itt != batches.end(); ++itt)
 	{
-		if (itt->first)
+		int numPasses = 1;
+		
+		CShaderTechniquePtr techBase;
+		
+		if (!isDummyShader)
 		{
-			shader->BindTexture("baseTex", itt->first->GetTexture());
+			if (itt->first->GetMaterial().GetShaderEffect().length() == 0)
+			{
+				LOGERROR(L"Terrain renderer failed to load shader effect.\n");
+				continue;
+			}
+						
+			techBase = g_Renderer.GetShaderManager().LoadEffect(itt->first->GetMaterial().GetShaderEffect(),
+						context, itt->first->GetMaterial().GetShaderDefines());
+			
+			numPasses = techBase->GetNumPasses();
+		}
+		
+		for (int pass = 0; pass < numPasses; ++pass)
+		{
+			if (!isDummyShader)
+			{
+				techBase->BeginPass(pass);
+				TerrainRenderer::PrepareShader(techBase->GetShader(), shadow);
+			}
+			
+			const CShaderProgramPtr& shader = isDummyShader ? dummy : techBase->GetShader(pass);
+			
+			if (itt->first->GetMaterial().GetSamplers().size() != 0)
+			{
+				CMaterial::SamplersVector samplers = itt->first->GetMaterial().GetSamplers();
+				size_t samplersNum = samplers.size();
+				
+				for (size_t s = 0; s < samplersNum; ++s)
+				{
+					CMaterial::TextureSampler &samp = samplers[s];
+					shader->BindTexture(samp.Name.c_str(), samp.Sampler);
+				}
+				
+				itt->first->GetMaterial().GetStaticUniforms().BindUniforms(shader);
 
 #if !CONFIG2_GLES
-			if (isDummyShader)
-			{
-				glMatrixMode(GL_TEXTURE);
-				glLoadMatrixf(itt->first->GetTextureMatrix());
-				glMatrixMode(GL_MODELVIEW);
+				if (isDummyShader)
+				{
+					glMatrixMode(GL_TEXTURE);
+					glLoadMatrixf(itt->first->GetTextureMatrix());
+					glMatrixMode(GL_MODELVIEW);
+				}
+				else
+#endif
+				{
+					float c = itt->first->GetTextureMatrix()[0];
+					float ms = itt->first->GetTextureMatrix()[8];
+					shader->Uniform("textureTransform", c, ms, -ms, 0.f);
+				}
 			}
 			else
-#endif
 			{
-				float c = itt->first->GetTextureMatrix()[0];
-				float ms = itt->first->GetTextureMatrix()[8];
-				shader->Uniform("textureTransform", c, ms, -ms, 0.f);
+				shader->BindTexture("baseTex", g_Renderer.GetTextureManager().GetErrorTexture());
 			}
-		}
-		else
-		{
-			shader->BindTexture("baseTex", g_Renderer.GetTextureManager().GetErrorTexture());
-		}
 
-		for (VertexBufferBatches::iterator itv = itt->second.begin(); itv != itt->second.end(); ++itv)
-		{
-			GLsizei stride = sizeof(SBaseVertex);
-			SBaseVertex *base = (SBaseVertex *)itv->first->Bind();
-			shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
-			shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, &base->m_DiffuseColor);
-			shader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, &base->m_Position[0]);
-
-			shader->AssertPointersBound();
-
-			for (IndexBufferBatches::iterator it = itv->second.begin(); it != itv->second.end(); ++it)
+			for (VertexBufferBatches::iterator itv = itt->second.begin(); itv != itt->second.end(); ++itv)
 			{
-				it->first->Bind();
+				GLsizei stride = sizeof(SBaseVertex);
+				SBaseVertex *base = (SBaseVertex *)itv->first->Bind();
+				shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
+				shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, &base->m_DiffuseColor);
+				shader->NormalPointer(GL_FLOAT, stride, &base->m_Normal[0]);
+				shader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, &base->m_Position[0]);
 
-				BatchElements& batch = it->second;
+				shader->AssertPointersBound();
 
-				if (!g_Renderer.m_SkipSubmit)
+				for (IndexBufferBatches::iterator it = itv->second.begin(); it != itv->second.end(); ++it)
 				{
-					// Don't use glMultiDrawElements here since it doesn't have a significant
-					// performance impact and it suffers from various driver bugs (e.g. it breaks
-					// in Mesa 7.10 swrast with index VBOs)
-					for (size_t i = 0; i < batch.first.size(); ++i)
-						glDrawElements(GL_TRIANGLES, batch.first[i], GL_UNSIGNED_SHORT, batch.second[i]);
-				}
+					it->first->Bind();
 
-				g_Renderer.m_Stats.m_DrawCalls++;
-				g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 3;
+					BatchElements& batch = it->second;
+
+					if (!g_Renderer.m_SkipSubmit)
+					{
+						// Don't use glMultiDrawElements here since it doesn't have a significant
+						// performance impact and it suffers from various driver bugs (e.g. it breaks
+						// in Mesa 7.10 swrast with index VBOs)
+						for (size_t i = 0; i < batch.first.size(); ++i)
+							glDrawElements(GL_TRIANGLES, batch.first[i], GL_UNSIGNED_SHORT, batch.second[i]);
+					}
+
+					g_Renderer.m_Stats.m_DrawCalls++;
+					g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 3;
+				}
 			}
+			
+			if (!isDummyShader)
+				techBase->EndPass();
 		}
 	}
 
@@ -842,12 +895,16 @@ struct SBlendStackItem
 	SplatStack splats;
 };
 
-void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader, bool isDummyShader)
+void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const CShaderDefines& context, 
+			      ShadowMap* shadow, bool isDummyShader, const CShaderProgramPtr& dummy)
 {
 	Allocators::Arena<> arena(ARENA_SIZE);
 
 	typedef std::vector<SBlendBatch, ProxyAllocator<SBlendBatch, Allocators::Arena<> > > BatchesStack;
 	BatchesStack batches((BatchesStack::allocator_type(arena)));
+	
+	CShaderDefines contextBlend = context;
+	contextBlend.Add("BLEND", "1");
 
  	PROFILE_START("compute batches");
 
@@ -928,65 +985,109 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
  	CVertexBuffer* lastVB = NULL;
 
  	for (BatchesStack::iterator itt = batches.begin(); itt != batches.end(); ++itt)
-	{
-		if (itt->m_Texture)
+	{		
+		if (itt->m_Texture->GetMaterial().GetSamplers().size() == 0)
+			continue;
+		
+		int numPasses = 1;
+		CShaderTechniquePtr techBase;
+		
+		if (!isDummyShader)
 		{
-			shader->BindTexture("baseTex", itt->m_Texture->GetTexture());
-
-#if !CONFIG2_GLES
-			if (isDummyShader)
-			{
-				pglClientActiveTextureARB(GL_TEXTURE0);
-				glMatrixMode(GL_TEXTURE);
-				glLoadMatrixf(itt->m_Texture->GetTextureMatrix());
-				glMatrixMode(GL_MODELVIEW);
-			}
-			else
-#endif
-			{
-				float c = itt->m_Texture->GetTextureMatrix()[0];
-				float ms = itt->m_Texture->GetTextureMatrix()[8];
-				shader->Uniform("textureTransform", c, ms, -ms, 0.f);
-			}
+			techBase = g_Renderer.GetShaderManager().LoadEffect(itt->m_Texture->GetMaterial().GetShaderEffect(), contextBlend, itt->m_Texture->GetMaterial().GetShaderDefines());
+			
+			numPasses = techBase->GetNumPasses();
 		}
-		else
+		
+		CShaderProgramPtr previousShader;
+		for (int pass = 0; pass < numPasses; ++pass)
 		{
-			shader->BindTexture("baseTex", g_Renderer.GetTextureManager().GetErrorTexture());
-		}
-
-		for (VertexBufferBatches::iterator itv = itt->m_Batches.begin(); itv != itt->m_Batches.end(); ++itv)
-		{
-			// Rebind the VB only if it changed since the last batch
-			if (itv->first != lastVB)
+			if (!isDummyShader)
 			{
-				lastVB = itv->first;
-				GLsizei stride = sizeof(SBlendVertex);
-				SBlendVertex *base = (SBlendVertex *)itv->first->Bind();
-
-				shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
-				shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, &base->m_DiffuseColor);
-				shader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, &base->m_Position[0]);
-				shader->TexCoordPointer(GL_TEXTURE1, 2, GL_FLOAT, stride, &base->m_AlphaUVs[0]);
+				techBase->BeginPass(pass);
+				TerrainRenderer::PrepareShader(techBase->GetShader(), shadow);
 			}
-
-			shader->AssertPointersBound();
-
-			for (IndexBufferBatches::iterator it = itv->second.begin(); it != itv->second.end(); ++it)
+				
+			const CShaderProgramPtr& shader = isDummyShader ? dummy : techBase->GetShader(pass);
+			
+			glEnable(GL_BLEND);
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+				
+			if (itt->m_Texture)
 			{
-				it->first->Bind();
-
-				BatchElements& batch = it->second;
-
-				if (!g_Renderer.m_SkipSubmit)
+				CMaterial::SamplersVector samplers = itt->m_Texture->GetMaterial().GetSamplers();
+				size_t samplersNum = samplers.size();
+				
+				for (size_t s = 0; s < samplersNum; ++s)
 				{
-					for (size_t i = 0; i < batch.first.size(); ++i)
-						glDrawElements(GL_TRIANGLES, batch.first[i], GL_UNSIGNED_SHORT, batch.second[i]);
+					CMaterial::TextureSampler &samp = samplers[s];
+					shader->BindTexture(samp.Name.c_str(), samp.Sampler);
 				}
 
-				g_Renderer.m_Stats.m_DrawCalls++;
-				g_Renderer.m_Stats.m_BlendSplats++;
-				g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 3;
+				shader->BindTexture("blendTex", itt->m_Texture->m_TerrainAlpha->second.m_hCompositeAlphaMap);
+
+				itt->m_Texture->GetMaterial().GetStaticUniforms().BindUniforms(shader);
+				
+#if !CONFIG2_GLES
+				if (isDummyShader)
+				{
+					pglClientActiveTextureARB(GL_TEXTURE0);
+					glMatrixMode(GL_TEXTURE);
+					glLoadMatrixf(itt->m_Texture->GetTextureMatrix());
+					glMatrixMode(GL_MODELVIEW);
+				}
+				else
+#endif
+				{
+					float c = itt->m_Texture->GetTextureMatrix()[0];
+					float ms = itt->m_Texture->GetTextureMatrix()[8];
+					shader->Uniform("textureTransform", c, ms, -ms, 0.f);
+				}
 			}
+			else
+			{
+				shader->BindTexture("baseTex", g_Renderer.GetTextureManager().GetErrorTexture());
+			}
+
+			for (VertexBufferBatches::iterator itv = itt->m_Batches.begin(); itv != itt->m_Batches.end(); ++itv)
+			{
+				// Rebind the VB only if it changed since the last batch
+				if (itv->first != lastVB || shader != previousShader)
+				{
+					lastVB = itv->first;
+					previousShader = shader;
+					GLsizei stride = sizeof(SBlendVertex);
+					SBlendVertex *base = (SBlendVertex *)itv->first->Bind();
+
+					shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
+					shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, &base->m_DiffuseColor);
+					shader->NormalPointer(GL_FLOAT, stride, &base->m_Normal[0]);
+					shader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, &base->m_Position[0]);
+					shader->TexCoordPointer(GL_TEXTURE1, 2, GL_FLOAT, stride, &base->m_AlphaUVs[0]);
+				}
+
+				shader->AssertPointersBound();
+
+				for (IndexBufferBatches::iterator it = itv->second.begin(); it != itv->second.end(); ++it)
+				{
+					it->first->Bind();
+
+					BatchElements& batch = it->second;
+
+					if (!g_Renderer.m_SkipSubmit)
+					{
+						for (size_t i = 0; i < batch.first.size(); ++i)
+							glDrawElements(GL_TRIANGLES, batch.first[i], GL_UNSIGNED_SHORT, batch.second[i]);
+					}
+
+					g_Renderer.m_Stats.m_DrawCalls++;
+					g_Renderer.m_Stats.m_BlendSplats++;
+					g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 3;
+				}
+			}
+			
+			if (!isDummyShader)
+				techBase->EndPass();
 		}
 	}
 

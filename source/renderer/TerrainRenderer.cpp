@@ -227,7 +227,7 @@ void TerrainRenderer::RenderTerrain(bool filtered)
 	glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, one);
 	
 	PROFILE_START("render terrain base");
-	CPatchRData::RenderBases(visiblePatches, dummyShader, true);
+	CPatchRData::RenderBases(visiblePatches, CShaderDefines(), NULL, true, dummyShader);
 	PROFILE_END("render terrain base");
 
 	// render blends
@@ -260,7 +260,7 @@ void TerrainRenderer::RenderTerrain(bool filtered)
 
 	// render blend passes for each patch
 	PROFILE_START("render terrain blends");
-	CPatchRData::RenderBlends(visiblePatches, dummyShader, true);
+	CPatchRData::RenderBlends(visiblePatches, CShaderDefines(), NULL, true, dummyShader);
 	PROFILE_END("render terrain blends");
 
 	// Disable second texcoord array
@@ -284,8 +284,7 @@ void TerrainRenderer::RenderTerrain(bool filtered)
 	glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
 
 	PROFILE_START("render terrain decals");
-	for (size_t i = 0; i < visibleDecals.size(); ++i)
-		visibleDecals[i]->Render(dummyShader, true);
+	CDecalRData::RenderDecals(visibleDecals, CShaderDefines(), NULL, true, dummyShader);
 	PROFILE_END("render terrain decals");
 
 
@@ -482,8 +481,6 @@ void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* 
 
 	shader->Uniform("ambient", lightEnv.m_TerrainAmbientColor);
 	shader->Uniform("sunColor", lightEnv.m_SunColor);
-
-	shader->BindTexture("blendTex", g_Renderer.m_hCompositeAlphaMap);
 }
 
 void TerrainRenderer::RenderTerrainShader(const CShaderDefines& context, ShadowMap* shadow, bool filtered)
@@ -496,10 +493,6 @@ void TerrainRenderer::RenderTerrainShader(const CShaderDefines& context, ShadowM
 		return;
 
 	CShaderManager& shaderManager = g_Renderer.GetShaderManager();
-
-	CShaderTechniquePtr techBase(shaderManager.LoadEffect(CStrIntern("terrain_base"), context, CShaderDefines()));
-	CShaderTechniquePtr techBlend(shaderManager.LoadEffect(CStrIntern("terrain_blend"), context, CShaderDefines()));
-	CShaderTechniquePtr techDecal(shaderManager.LoadEffect(CStrIntern("terrain_decal"), context, CShaderDefines()));
 
 	// render the solid black sides of the map first
 	CShaderTechniquePtr techSolid = g_Renderer.GetShaderManager().LoadEffect("gui_solid");
@@ -515,45 +508,21 @@ void TerrainRenderer::RenderTerrainShader(const CShaderDefines& context, ShadowM
 
 	techSolid->EndPass();
 
-	techBase->BeginPass();
-	PrepareShader(techBase->GetShader(), shadow);
-
 	PROFILE_START("render terrain base");
-	CPatchRData::RenderBases(visiblePatches, techBase->GetShader(), false);
+	CPatchRData::RenderBases(visiblePatches, context, shadow);
 	PROFILE_END("render terrain base");
-
-	techBase->EndPass();
-
-	// render blends
-
-	techBlend->BeginPass();
-	PrepareShader(techBlend->GetShader(), shadow);
-
-	// switch on blending
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	// no need to write to the depth buffer a second time
 	glDepthMask(0);
 
 	// render blend passes for each patch
 	PROFILE_START("render terrain blends");
-	CPatchRData::RenderBlends(visiblePatches, techBlend->GetShader(), false);
+	CPatchRData::RenderBlends(visiblePatches, context, shadow, false);
 	PROFILE_END("render terrain blends");
 
-	techBlend->EndPass();
-
-	// Render terrain decals
-
-	techDecal->BeginPass();
-	PrepareShader(techDecal->GetShader(), shadow);
-
 	PROFILE_START("render terrain decals");
-	for (size_t i = 0; i < visibleDecals.size(); ++i)
-		visibleDecals[i]->Render(techDecal->GetShader(), false);
+	CDecalRData::RenderDecals(visibleDecals, context, shadow, false);
 	PROFILE_END("render terrain decals");
-
-	techDecal->EndPass();
 
 	// restore OpenGL state
 	g_Renderer.BindTexture(1, 0);

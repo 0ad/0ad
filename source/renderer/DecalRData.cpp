@@ -22,11 +22,14 @@
 #include "graphics/Decal.h"
 #include "graphics/LightEnv.h"
 #include "graphics/Model.h"
+#include "graphics/ShaderManager.h"
 #include "graphics/Terrain.h"
 #include "graphics/TextureManager.h"
+#include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "renderer/Renderer.h"
+#include "renderer/TerrainRenderer.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpWaterManager.h"
 
@@ -66,53 +69,114 @@ void CDecalRData::Update()
 	}
 }
 
-void CDecalRData::Render(const CShaderProgramPtr& shader, bool isDummyShader)
+void CDecalRData::RenderDecals(std::vector<CDecalRData*>& decals, const CShaderDefines& context, 
+			       ShadowMap* shadow, bool isDummyShader, const CShaderProgramPtr& dummy)
 {
-	shader->BindTexture("baseTex", m_Decal->m_Decal.m_Texture);
+	CShaderDefines contextDecal = context;
+	contextDecal.Add("DECAL", "1");
 
-	// TODO: Need to handle floating decals correctly. In particular, we need
-	// to render non-floating before water and floating after water (to get
-	// the blending right), and we also need to apply the correct lighting in
-	// each case, which doesn't really seem possible with the current
-	// TerrainRenderer.
-	// Also, need to mark the decals as dirty when water height changes.
+	for (size_t i = 0; i < decals.size(); ++i)
+	{
+		CDecalRData *decal = decals[i];
+		
+		CMaterial &material = decal->m_Decal->m_Decal.m_Material;
+		
+		if (material.GetShaderEffect().length() == 0)
+		{
+			LOGERROR(L"Terrain renderer failed to load shader effect.\n");
+			continue;
+		}
+		
+		int numPasses = 1;
+		CShaderTechniquePtr techBase; 
+		
+		if (!isDummyShader)
+		{
+			techBase = g_Renderer.GetShaderManager().LoadEffect(
+				material.GetShaderEffect(), contextDecal, material.GetShaderDefines());
+			
+			if (!techBase)
+			{
+				LOGERROR(L"Terrain renderer failed to load shader effect (%hs)\n", 			
+						material.GetShaderEffect().string().c_str());
+				continue;
+			}
+			
+			numPasses = techBase->GetNumPasses();
+		}
+		
+		for (int pass = 0; pass < numPasses; ++pass)
+		{
+			if (!isDummyShader)
+			{
+				techBase->BeginPass(pass);
+				TerrainRenderer::PrepareShader(techBase->GetShader(), shadow);
+			}
+			
+			const CShaderProgramPtr& shader = isDummyShader ? dummy : techBase->GetShader(pass);
+				
+			if (material.GetSamplers().size() != 0)
+			{
+				CMaterial::SamplersVector samplers = material.GetSamplers();
+				size_t samplersNum = samplers.size();
+				
+				for (size_t s = 0; s < samplersNum; ++s)
+				{
+					CMaterial::TextureSampler &samp = samplers[s];
+					shader->BindTexture(samp.Name.c_str(), samp.Sampler);
+				}
+				
+				material.GetStaticUniforms().BindUniforms(shader);
 
-//	glDisable(GL_TEXTURE_2D);
-//	m_Decal->GetBounds().Render();
-//	glEnable(GL_TEXTURE_2D);
+				// TODO: Need to handle floating decals correctly. In particular, we need
+				// to render non-floating before water and floating after water (to get
+				// the blending right), and we also need to apply the correct lighting in
+				// each case, which doesn't really seem possible with the current
+				// TerrainRenderer.
+				// Also, need to mark the decals as dirty when water height changes.
 
-	u8* base = m_Array.Bind();
-	GLsizei stride = (GLsizei)m_Array.GetStride();
+				//	glDisable(GL_TEXTURE_2D);
+				//	m_Decal->GetBounds().Render();
+				//	glEnable(GL_TEXTURE_2D);
 
-	u8* indexBase = m_IndexArray.Bind();
+				u8* base = decal->m_Array.Bind();
+				GLsizei stride = (GLsizei)decal->m_Array.GetStride();
+
+				u8* indexBase = decal->m_IndexArray.Bind();
 
 #if !CONFIG2_GLES
-	if (isDummyShader)
-	{
-		glColor3fv(m_Decal->GetShadingColor().FloatArray());
-	}
-	else
+				if (isDummyShader)
+				{
+					glColor3fv(decal->m_Decal->GetShadingColor().FloatArray());
+				}
+				else
 #endif
-	{
-		shader->Uniform("shadingColor", m_Decal->GetShadingColor());
+				{
+					
+					shader->Uniform("shadingColor", decal->m_Decal->GetShadingColor());
+				}
+
+				shader->VertexPointer(3, GL_FLOAT, stride, base + decal->m_Position.offset);
+				shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, base + decal->m_DiffuseColor.offset);
+				shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, base + decal->m_UV.offset);
+
+				shader->AssertPointersBound();
+
+				if (!g_Renderer.m_SkipSubmit)
+				{
+					glDrawElements(GL_TRIANGLES, (GLsizei)decal->m_IndexArray.GetNumVertices(), GL_UNSIGNED_SHORT, indexBase);
+				}
+
+				// bump stats
+				g_Renderer.m_Stats.m_DrawCalls++;
+				g_Renderer.m_Stats.m_TerrainTris += decal->m_IndexArray.GetNumVertices() / 3;
+
+				CVertexBuffer::Unbind();
+			}
+			if (!isDummyShader)
+				techBase->EndPass();
+		}
 	}
-
-	shader->VertexPointer(3, GL_FLOAT, stride, base + m_Position.offset);
-	shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, base + m_DiffuseColor.offset);
-	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, base + m_UV.offset);
-
-	shader->AssertPointersBound();
-
-	if (!g_Renderer.m_SkipSubmit)
-	{
-		glDrawElements(GL_TRIANGLES, (GLsizei)m_IndexArray.GetNumVertices(), GL_UNSIGNED_SHORT, indexBase);
-	}
-
-	// bump stats
-	g_Renderer.m_Stats.m_DrawCalls++;
-	g_Renderer.m_Stats.m_TerrainTris += m_IndexArray.GetNumVertices() / 3;
-
-	CVertexBuffer::Unbind();
 }
 
 void CDecalRData::BuildArrays()

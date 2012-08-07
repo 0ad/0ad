@@ -48,6 +48,13 @@ CTerrainTextureManager::CTerrainTextureManager():
 CTerrainTextureManager::~CTerrainTextureManager()
 {
 	UnloadTerrainTextures();
+	
+	TerrainAlphaMap::iterator it;
+	for (it = m_TerrainAlphas.begin(); it != m_TerrainAlphas.end(); ++it)
+	{
+		ogl_tex_free(it->second.m_hCompositeAlphaMap);
+		it->second.m_hCompositeAlphaMap = 0;
+	}
 }
 
 void CTerrainTextureManager::UnloadTerrainTextures()
@@ -120,45 +127,15 @@ void CTerrainTextureManager::LoadTextures(const CTerrainPropertiesPtr& props, co
 	if(vfs::GetPathnames(g_VFS, path, 0, pathnames) < 0)
 		return;
 
-	// If we have any .cached.dds files then strip that extension to get the
-	// 'real' texture name
 	for(size_t i = 0; i < pathnames.size(); i++)
 	{
-		const std::wstring filename = pathnames[i].Filename().string();
-		if(boost::algorithm::ends_with(filename, L".cached.dds"))
-			pathnames[i] = pathnames[i].Parent() / boost::algorithm::erase_last_copy(filename, L".cached.dds");
-	}
-
-	// Remove any duplicates created by the stripping
-	std::sort(pathnames.begin(), pathnames.end());
-	pathnames.erase(std::unique(pathnames.begin(), pathnames.end()), pathnames.end());
-
-	for(size_t i = 0; i < pathnames.size(); i++)
-	{
-		// skip files that obviously aren't textures.
-		// note: this loop runs for each file in dir, even .xml;
-		// we should skip those to avoid spurious "texture load failed".
-		// we can't use FindFile's filter param because new texture formats
-		// may later be added and that interface doesn't support specifying
-		// multiple extensions.
-		if(!tex_is_known_extension(pathnames[i]))
+		if (pathnames[i].Extension() != L".xml")
 			continue;
-
-		VfsPath pathnameXML = pathnames[i].ChangeExtension(L".xml");
-		CTerrainPropertiesPtr myprops;
-		// Has XML file -> attempt to load properties
-		if (VfsFileExists(pathnameXML))
-		{
-			myprops = GetPropertiesFromFile(props, pathnameXML);
-			if (myprops)
-				LOGMESSAGE(L"CTerrainTextureManager: Successfully loaded override xml %ls for texture %ls", pathnameXML.string().c_str(), pathnames[i].string().c_str());
-		}
-
-		// Error or non-existant xml file -> use parent props
-		if (!myprops)
-			myprops = props;
-
-		AddTexture(myprops, pathnames[i]);
+		
+		if (pathnames[i].Basename() == L"terrains")
+			continue;
+		
+		AddTexture(props, pathnames[i]);
 	}
 }
 
@@ -196,7 +173,7 @@ void CTerrainTextureManager::RecurseDirectory(const CTerrainPropertiesPtr& paren
 int CTerrainTextureManager::LoadTerrainTextures()
 {
 	CTerrainPropertiesPtr rootProps(new CTerrainProperties(CTerrainPropertiesPtr()));
-	RecurseDirectory(rootProps, L"art/textures/terrain/types/");
+	RecurseDirectory(rootProps, L"art/terrains/");
 	return 0;
 }
 
