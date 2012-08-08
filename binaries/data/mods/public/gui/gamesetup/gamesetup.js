@@ -43,6 +43,11 @@ var g_CivData = {};
 
 var g_MapFilters = [];
 
+// Warn about the AI's nonexistent naval map support.
+var g_NavalWarning = "\n\n[font=\"serif-bold-12\"][color=\"orange\"]Warning:[/color][/font] \
+The AI does not support naval maps and may cause severe performance issues. \
+Naval maps are recommended to be played with human opponents only.";
+
 // To prevent the display locking up while we load the map metadata,
 // we'll start with a 'loading' message and switch to the main screen in the
 // tick handler
@@ -926,6 +931,9 @@ function onGameAttributesChange()
 	
 	// Load the description from the map file, if there is one
 	var description = mapSettings.Description || "Sorry, no description available.";
+
+	if (g_GameAttributes.mapFilter == "Naval Maps")
+		description += g_NavalWarning;
 
 	// Describe the number of players
 	var playerString = numPlayers + " " + (numPlayers == 1 ? "player" : "players") + ". ";
