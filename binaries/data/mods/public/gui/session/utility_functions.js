@@ -202,6 +202,11 @@ function getEntityCommandsList(entState)
     if (hasClass(entState, "Unit"))
     {
 	commands.push({
+	    "name": "stop",
+	    "tooltip": "Stop",
+	    "icon": "stop.png"
+	});
+	commands.push({
 	    "name": "garrison",
 	    "tooltip": "Garrison",
 	    "icon": "garrison.png"

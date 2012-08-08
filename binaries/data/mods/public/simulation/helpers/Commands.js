@@ -275,6 +275,13 @@ function ProcessCommand(player, cmd)
 		}
 		break;
 
+	case "stop":
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
+			cmpUnitAI.Stop(cmd.queued);
+		});
+		break;
+
 	case "unload":
 		// Verify that the building can be controlled by the player
 		if (CanControlUnit(cmd.garrisonHolder, player, controlAllUnits))
