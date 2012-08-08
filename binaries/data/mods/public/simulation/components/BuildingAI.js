@@ -32,6 +32,10 @@ BuildingAI.prototype.OnOwnershipChanged = function(msg)
 {
 	if (msg.to != -1)
 		this.SetupRangeQuery(msg.to);
+
+	// Non-Gaia buildings should attack certain Gaia units.
+	if (msg.to != 0 || this.gaiaUnitsQuery)
+		this.SetupGaiaRangeQuery(msg.to);
 };
 
 /**
@@ -50,6 +54,8 @@ BuildingAI.prototype.OnDestroy = function()
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (this.enemyUnitsQuery)
 		cmpRangeManager.DestroyActiveQuery(this.enemyUnitsQuery);
+	if (this.gaiaUnitsQuery)
+		cmpRangeManager.DestroyActiveQuery(this.gaiaUnitsQuery);
 };
 
 /**
@@ -81,12 +87,58 @@ BuildingAI.prototype.SetupRangeQuery = function(owner)
 	}
 };
 
+// Set up a range query for Gaia units within LOS range which can be attacked.
+// This should be called whenever our ownership changes.
+BuildingAI.prototype.SetupGaiaRangeQuery = function()
+{
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	var owner = cmpOwnership.GetOwner();
+
+	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var playerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+
+	if (this.gaiaUnitsQuery)
+	{
+		rangeMan.DestroyActiveQuery(this.gaiaUnitsQuery);
+		this.gaiaUnitsQuery = undefined;
+	}
+
+	if (owner == -1)
+		return;
+
+	var cmpPlayer = Engine.QueryInterface(playerMan.GetPlayerByID(owner), IID_Player);
+	if (!cmpPlayer.IsEnemy(0))
+		return;
+
+	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	if (cmpAttack)
+	{
+		var range = cmpAttack.GetRange("Ranged");
+
+		// This query is only interested in Gaia entities that can attack.
+		this.gaiaUnitsQuery = rangeMan.CreateActiveQuery(this.entity, range.min, range.max, [0], IID_Attack, rangeMan.GetEntityFlagMask("normal"));
+		rangeMan.EnableActiveQuery(this.gaiaUnitsQuery);
+	}
+};
+
 /**
  * Called when units enter or leave range
  */
 BuildingAI.prototype.OnRangeUpdate = function(msg)
 {
-	if (msg.tag != this.enemyUnitsQuery)
+	if (msg.tag == this.gaiaUnitsQuery)
+	{
+		const filter = function(e) {
+			var cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
+			return (cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal()));
+		};
+
+		if (msg.added.length)
+			msg.added = msg.added.filter(filter);
+		if (msg.removed.length)
+			msg.removed = msg.removed.filter(filter);
+	}
+	else if (msg.tag != this.enemyUnitsQuery)
 		return;
 
 	if (msg.added.length > 0)
