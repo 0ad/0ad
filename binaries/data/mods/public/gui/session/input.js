@@ -1563,6 +1563,11 @@ function performCommand(entity, commandName)
 				if (selection.length > 0)
 					openDeleteDialog(selection);
 				break;
+			case "stop":
+				var selection = g_Selection.toList();
+				if (selection.length > 0)
+					stopUnits(selection);
+				break;
 			case "garrison":
 				inputState = INPUT_PRESELECTEDACTION;
 				preSelectedAction = ACTION_GARRISON;
@@ -1744,6 +1749,11 @@ function findIdleUnit(classes)
 	// TODO: display a message or play a sound to indicate no more idle units, or something
 	// Reset for next cycle
 	resetIdleUnit();
+}
+
+function stopUnits(entities)
+{
+	Engine.PostNetworkCommand({ "type": "stop", "entities": entities, "queued": false });
 }
 
 function unload(garrisonHolder, entities)

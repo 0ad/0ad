@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.63.0 r46461:46487M</authoring_tool>
     </contributor>
-    <created>2012-07-27T00:03:34</created>
-    <modified>2012-07-27T00:03:34</modified>
+    <created>2012-08-08T13:32:56</created>
+    <modified>2012-08-08T13:32:56</modified>
     <unit name="inch" meter="0.0254"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -303,7 +303,7 @@
         </technique_common>
       </source>
       <source id="Elephant_tail_2_pose_matrix-output">
-        <float_array id="Elephant_tail_2_pose_matrix-output-array" count="16">1 0 0 0 0 0.8511726 -0.524886 0.6554403 0 0.5248858 0.8511725 0 0 0 0 1</float_array>
+        <float_array id="Elephant_tail_2_pose_matrix-output-array" count="16">1 0 0 0 0 0.8511726 -0.5248858 0.65544 0 0.5248858 0.8511726 -1.75654e-7 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_tail_2_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -335,7 +335,7 @@
         </technique_common>
       </source>
       <source id="Elephant_tail_3_pose_matrix-output">
-        <float_array id="Elephant_tail_3_pose_matrix-output-array" count="16">1 0 0 0 0 0.9914616 -0.1303983 1.015138 0 0.1303983 0.9914618 -1.50271e-7 0 0 0 1</float_array>
+        <float_array id="Elephant_tail_3_pose_matrix-output-array" count="16">1 0 0 0 0 0.9914616 -0.1303983 1.015138 0 0.1303983 0.9914618 0 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_tail_3_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -367,7 +367,7 @@
         </technique_common>
       </source>
       <source id="Elephant_tail_4_pose_matrix-output">
-        <float_array id="Elephant_tail_4_pose_matrix-output-array" count="16">1 0 0 0 0 0.999831 0.01838779 1.043072 0 -0.01838773 0.999831 -2.42311e-7 0 0 0 1</float_array>
+        <float_array id="Elephant_tail_4_pose_matrix-output-array" count="16">1 0 0 0 0 0.9998309 0.01838779 1.043072 0 -0.01838773 0.9998309 0 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_tail_4_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -399,7 +399,7 @@
         </technique_common>
       </source>
       <source id="Elephant_tail_3_joint_pose_matrix-output">
-        <float_array id="Elephant_tail_3_joint_pose_matrix-output-array" count="16">1 1.48779e-7 1.72957e-7 0 -1.47869e-7 -0.1546391 0.9879713 1.043072 1.73736e-7 -0.9879711 -0.1546387 -2.42311e-7 0 0 0 1</float_array>
+        <float_array id="Elephant_tail_3_joint_pose_matrix-output-array" count="16">0.9999571 -3.58622e-5 -9.37464e-5 0 8.7574e-5 -0.1454641 0.9893204 1.043072 -4.87375e-5 -0.9893631 -0.1454641 0 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_tail_3_joint_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -431,7 +431,7 @@
         </technique_common>
       </source>
       <source id="Elephant_tail_2_joint_pose_matrix-output">
-        <float_array id="Elephant_tail_2_joint_pose_matrix-output-array" count="16">1 1.49569e-7 0 0 0 -0.09376817 0.995594 1.015138 1.58303e-7 -0.9955941 -0.09376776 -1.50271e-7 0 0 0 1</float_array>
+        <float_array id="Elephant_tail_2_joint_pose_matrix-output-array" count="16">0.999999 -5.64846e-5 -0.001441061 0 0.001413881 -0.1586272 0.9873375 1.015138 -2.84339e-4 -0.9873386 -0.1586265 0 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_tail_2_joint_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -463,7 +463,7 @@
         </technique_common>
       </source>
       <source id="Elephant_tail_1_joint_pose_matrix-output">
-        <float_array id="Elephant_tail_1_joint_pose_matrix-output-array" count="16">0.9999999 1.47359e-7 1.20599e-7 0 -1.46402e-7 0.1900112 0.9817819 0.6554403 1.21759e-7 -0.9817817 0.1900115 0 0 0 0 1</float_array>
+        <float_array id="Elephant_tail_1_joint_pose_matrix-output-array" count="16">0.9992315 -0.03915166 -0.001852869 0 0.01016861 0.2132903 0.9769356 0.65544 -0.03785347 -0.9762039 0.2135248 -1.75654e-7 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_tail_1_joint_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -559,7 +559,7 @@
         </technique_common>
       </source>
       <source id="Elephant_shin_right_pose_matrix-output">
-        <float_array id="Elephant_shin_right_pose_matrix-output-array" count="16">0.9898823 -0.05327373 0.1315095 0 0.03051787 0.9850848 0.1693418 1.746442 -0.1385694 -0.1636151 0.9767438 0 0 0 0 1</float_array>
+        <float_array id="Elephant_shin_right_pose_matrix-output-array" count="16">0.9898824 -0.05327373 0.1315095 0 0.03051787 0.9850848 0.1693418 1.746442 -0.1385694 -0.1636152 0.9767439 1.36462e-7 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_shin_right_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -591,7 +591,7 @@
         </technique_common>
       </source>
       <source id="Elephant_foot_right_pose_matrix-output">
-        <float_array id="Elephant_foot_right_pose_matrix-output-array" count="16">0.9999662 -0.007710635 0.002865791 0 0.008197546 0.9630182 -0.2693114 1.097984 -6.83264e-4 0.2693258 0.963049 0 0 0 0 1</float_array>
+        <float_array id="Elephant_foot_right_pose_matrix-output-array" count="16">0.9999663 -0.007710635 0.002865791 0 0.008197546 0.9630182 -0.2693114 1.097984 -6.83254e-4 0.2693258 0.9630489 1.52338e-7 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_foot_right_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -623,7 +623,7 @@
         </technique_common>
       </source>
       <source id="Elephant_leg_right_joint_pose_matrix-output">
-        <float_array id="Elephant_leg_right_joint_pose_matrix-output-array" count="16">0.9908468 0.1312758 0.03145676 -0.006547391 0.01082515 0.1550067 -0.987854 1.749491 -0.1345575 0.9791524 0.1521666 -0.04524403 0 0 0 1</float_array>
+        <float_array id="Elephant_leg_right_joint_pose_matrix-output-array" count="16">0.996285 0.05928027 0.06246978 -0.006547272 0.027489 0.4685353 -0.8830172 1.749491 -0.08161497 0.8814536 0.4651651 -0.04524379 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_leg_right_joint_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -719,7 +719,7 @@
         </technique_common>
       </source>
       <source id="Elephant_shin_left_pose_matrix-output">
-        <float_array id="Elephant_shin_left_pose_matrix-output-array" count="16">0.9893659 0.05387526 -0.135102 0 -0.03051781 0.9850847 0.1693419 1.746442 0.1422103 -0.1634181 0.9762534 -2.9906e-7 0 0 0 1</float_array>
+        <float_array id="Elephant_shin_left_pose_matrix-output-array" count="16">0.989366 0.05387526 -0.135102 0 -0.03051781 0.9850848 0.169342 1.746442 0.1422103 -0.1634181 0.9762534 0 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_shin_left_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -751,7 +751,7 @@
         </technique_common>
       </source>
       <source id="Elephant_foot_left_pose_matrix-output">
-        <float_array id="Elephant_foot_left_pose_matrix-output-array" count="16">0.9999663 0.007710695 -0.002865314 0 -0.008197486 0.9630183 -0.2693114 1.097984 6.82769e-4 0.2693258 0.9630489 0 0 0 0 1</float_array>
+        <float_array id="Elephant_foot_left_pose_matrix-output-array" count="16">0.9999662 0.007710695 -0.002865314 0 -0.008197486 0.9630182 -0.2693114 1.097984 6.82752e-4 0.2693258 0.963049 0 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_foot_left_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -783,7 +783,7 @@
         </technique_common>
       </source>
       <source id="Elephant_leg_left_joint_pose_matrix-output">
-        <float_array id="Elephant_leg_left_joint_pose_matrix-output-array" count="16">0.9903074 -0.1349362 -0.03292357 0.006713747 -0.01171982 0.1550165 -0.9878422 1.749491 0.1383991 0.9786535 0.1519327 -0.04521983 0 0 0 1</float_array>
+        <float_array id="Elephant_leg_left_joint_pose_matrix-output-array" count="16">0.9909076 -0.1292335 -0.03744119 0.006713688 -0.01287335 0.1859359 -0.9824776 1.749491 0.1339305 0.9740266 0.1825816 -0.04521965 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_leg_left_joint_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -943,7 +943,7 @@
         </technique_common>
       </source>
       <source id="Elephant_forearm_left_pose_matrix-output">
-        <float_array id="Elephant_forearm_left_pose_matrix-output-array" count="16">0.9997641 0.02113425 0.005025088 -1.46545e-7 -0.02156311 0.9935231 0.1115652 1.310402 -0.002634704 -0.1116474 0.9937445 -1.28154e-7 0 0 0 1</float_array>
+        <float_array id="Elephant_forearm_left_pose_matrix-output-array" count="16">0.9997642 0.02113425 0.005025148 0 -0.02156311 0.9935232 0.1115654 1.310403 -0.002634763 -0.1116474 0.9937444 -1.24109e-7 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_forearm_left_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -975,7 +975,7 @@
         </technique_common>
       </source>
       <source id="Elephant_hand_left_pose_matrix-output">
-        <float_array id="Elephant_hand_left_pose_matrix-output-array" count="16">1 0 2.66846e-7 0 0 0.9909607 -0.1341529 1.17274 -3.01037e-7 0.1341529 0.9909607 0 0 0 0 1</float_array>
+        <float_array id="Elephant_hand_left_pose_matrix-output-array" count="16">1 0 3.11188e-7 0 0 0.9909607 -0.1341529 1.17274 -3.00932e-7 0.1341529 0.9909606 1.25932e-7 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_hand_left_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1007,7 +1007,7 @@
         </technique_common>
       </source>
       <source id="Elephant_arm_left_joint_front_pose_matrix-output">
-        <float_array id="Elephant_arm_left_joint_front_pose_matrix-output-array" count="16">0.9997637 -8.01891e-4 -0.02173763 -1.46545e-7 -0.02159148 -0.1579905 -0.9872045 1.310402 -0.002642393 0.9874404 -0.1579704 -1.28154e-7 0 0 0 1</float_array>
+        <float_array id="Elephant_arm_left_joint_front_pose_matrix-output-array" count="16">0.9996972 -0.01219362 -0.02136307 -1.32028e-7 -0.02344703 -0.2097925 -0.9774648 1.310402 0.007437288 0.9776694 -0.2100147 2.04667e-7 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_arm_left_joint_front_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1039,7 +1039,7 @@
         </technique_common>
       </source>
       <source id="Elephant_arm_left_joint_back_pose_matrix-output">
-        <float_array id="Elephant_arm_left_joint_back_pose_matrix-output-array" count="16">0.9999998 0 0 0 0 -0.9997506 -0.02233421 0 0 0.02233427 -0.9997506 0 0 0 0 1</float_array>
+        <float_array id="Elephant_arm_left_joint_back_pose_matrix-output-array" count="16">0.9999998 0 0 0 0 -0.9997506 -0.02233421 0 0 0.02233427 -0.9997504 0 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_arm_left_joint_back_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1135,7 +1135,7 @@
         </technique_common>
       </source>
       <source id="Elephant_forearm_right_pose_matrix-output">
-        <float_array id="Elephant_forearm_right_pose_matrix-output-array" count="16">0.9997615 -0.02104341 -0.005834281 0 0.02156317 0.9935231 0.1115652 1.310402 0.003448784 -0.1116645 0.9937402 2.64012e-7 0 0 0 1</float_array>
+        <float_array id="Elephant_forearm_right_pose_matrix-output-array" count="16">0.9997615 -0.02104341 -0.005834281 0 0.02156317 0.9935231 0.1115653 1.310402 0.003448784 -0.1116645 0.9937399 0 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_forearm_right_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1167,7 +1167,7 @@
         </technique_common>
       </source>
       <source id="Elephant_hand_right_pose_matrix-output">
-        <float_array id="Elephant_hand_right_pose_matrix-output-array" count="16">1 0 2.72475e-7 0 0 0.9909607 -0.1341528 1.17274 -2.98388e-7 0.1341529 0.9909605 -2.48909e-7 0 0 0 1</float_array>
+        <float_array id="Elephant_hand_right_pose_matrix-output-array" count="16">1 0 2.89654e-7 0 0 0.9909606 -0.134153 1.17274 -2.97769e-7 0.1341529 0.9909607 0 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_hand_right_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1199,7 +1199,7 @@
         </technique_common>
       </source>
       <source id="Elephant_arm_right_joint_front_pose_matrix-output">
-        <float_array id="Elephant_arm_right_joint_front_pose_matrix-output-array" count="16">0.9997634 1.05884e-5 0.02174299 0 0.02147179 -0.1579327 -0.9872163 1.310402 0.003423511 0.9874498 -0.1578952 2.64012e-7 0 0 0 1</float_array>
+        <float_array id="Elephant_arm_right_joint_front_pose_matrix-output-array" count="16">0.9997025 0.01139181 0.0215705 0 0.02348107 -0.2097634 -0.9774702 1.310402 -0.006610453 0.9776858 -0.209968 0 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_arm_right_joint_front_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1231,7 +1231,7 @@
         </technique_common>
       </source>
       <source id="Elephant_arm_right_joint_back_pose_matrix-output">
-        <float_array id="Elephant_arm_right_joint_back_pose_matrix-output-array" count="16">1 0 1.70637e-7 0 0 -0.9997507 -0.02233427 -1.97065e-7 1.72872e-7 0.02233421 -0.9997506 -1.48488e-7 0 0 0 1</float_array>
+        <float_array id="Elephant_arm_right_joint_back_pose_matrix-output-array" count="16">0.9999998 0 1.65268e-7 0 0 -0.9997506 -0.02233427 -1.42378e-7 1.72362e-7 0.02233415 -0.9997505 -1.34401e-7 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_arm_right_joint_back_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1359,7 +1359,7 @@
         </technique_common>
       </source>
       <source id="Elephant_trunk_2_pose_matrix-output">
-        <float_array id="Elephant_trunk_2_pose_matrix-output-array" count="16">1 0 0 0 0 0.965615 0.2599764 0.6027041 0 -0.2599763 0.965615 0 0 0 0 1</float_array>
+        <float_array id="Elephant_trunk_2_pose_matrix-output-array" count="16">1 0 0 0 0 0.9656149 0.2599764 0.6027042 0 -0.2599763 0.965615 0 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_trunk_2_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1391,7 +1391,7 @@
         </technique_common>
       </source>
       <source id="Elephant_trunk_3_pose_matrix-output">
-        <float_array id="Elephant_trunk_3_pose_matrix-output-array" count="16">1 0 3.01275e-7 0 0 0.9989569 0.04566329 0.4224153 -3.01273e-7 -0.04566329 0.9989569 3.52821e-7 0 0 0 1</float_array>
+        <float_array id="Elephant_trunk_3_pose_matrix-output-array" count="16">1 0 3.01301e-7 0 0 0.9989569 0.04566341 0.4224153 -3.01315e-7 -0.04566335 0.9989569 2.94358e-7 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_trunk_3_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1423,7 +1423,7 @@
         </technique_common>
       </source>
       <source id="Elephant_trunk_4_pose_matrix-output">
-        <float_array id="Elephant_trunk_4_pose_matrix-output-array" count="16">1 0 0 0 0 0.9804306 0.1968646 0.4925903 0 -0.1968646 0.9804306 -4.50546e-7 0 0 0 1</float_array>
+        <float_array id="Elephant_trunk_4_pose_matrix-output-array" count="16">1 0 0 0 0 0.9804307 0.1968646 0.4925906 0 -0.1968646 0.9804308 1.26836e-7 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_trunk_4_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1455,7 +1455,7 @@
         </technique_common>
       </source>
       <source id="Elephant_trunk_5_pose_matrix-output">
-        <float_array id="Elephant_trunk_5_pose_matrix-output-array" count="16">1 0 0 0 0 0.998331 0.0577526 0.4329053 0 -0.0577526 0.9983309 -2.23641e-7 0 0 0 1</float_array>
+        <float_array id="Elephant_trunk_5_pose_matrix-output-array" count="16">1 0 0 0 0 0.998331 0.0577526 0.4329055 0 -0.0577526 0.998331 1.28588e-7 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_trunk_5_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1487,7 +1487,7 @@
         </technique_common>
       </source>
       <source id="Elephant_trunk_5_joint_pose_matrix-output">
-        <float_array id="Elephant_trunk_5_joint_pose_matrix-output-array" count="16">0.9999999 -1.83008e-7 1.44945e-7 0 1.61481e-7 0.09385359 -0.9955859 0.4231287 1.68597e-7 0.9955858 0.09385335 0 0 0 0 1</float_array>
+        <float_array id="Elephant_trunk_5_joint_pose_matrix-output-array" count="16">0.9999971 7.56217e-4 0.002282679 0 0.002311229 -0.04017287 -0.9991902 0.4231285 -6.63901e-4 0.9991922 -0.04017466 -2.49688e-7 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_trunk_5_joint_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1519,7 +1519,7 @@
         </technique_common>
       </source>
       <source id="Elephant_trunk_6_pose_matrix-output">
-        <float_array id="Elephant_trunk_6_pose_matrix-output-array" count="16">1 0 0 0 0 0.9613936 0.2751768 0.4231287 0 -0.2751768 0.9613935 0 0 0 0 1</float_array>
+        <float_array id="Elephant_trunk_6_pose_matrix-output-array" count="16">1 0 0 0 0 0.9613936 0.2751769 0.4231285 0 -0.2751768 0.9613935 -2.49688e-7 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_trunk_6_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1551,7 +1551,7 @@
         </technique_common>
       </source>
       <source id="Elephant_trunk_7_pose_matrix-output">
-        <float_array id="Elephant_trunk_7_pose_matrix-output-array" count="16">1 0 -3.02292e-7 0 0 0.9991548 0.04110819 0.3738898 3.02292e-7 -0.04110819 0.9991548 0 0 0 0 1</float_array>
+        <float_array id="Elephant_trunk_7_pose_matrix-output-array" count="16">1 0 -3.02064e-7 0 0 0.9991547 0.04110819 0.3738898 3.02587e-7 -0.04110819 0.9991546 0 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_trunk_7_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1583,7 +1583,7 @@
         </technique_common>
       </source>
       <source id="Elephant_trunk_8_pose_matrix-output">
-        <float_array id="Elephant_trunk_8_pose_matrix-output-array" count="16">1 0 2.76585e-7 0 0 0.8739582 0.486001 0.3805058 -2.75515e-7 -0.486001 0.8739582 -1.7733e-7 0 0 0 1</float_array>
+        <float_array id="Elephant_trunk_8_pose_matrix-output-array" count="16">1 0 2.76585e-7 0 0 0.8739582 0.4860009 0.3805058 -2.75515e-7 -0.486001 0.8739582 1.72757e-7 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_trunk_8_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1615,7 +1615,7 @@
         </technique_common>
       </source>
       <source id="Elephant_trunk_9_pose_matrix-output">
-        <float_array id="Elephant_trunk_9_pose_matrix-output-array" count="16">1 0 0 0 0 0.9983109 0.05809754 0.1876322 0 -0.0580976 0.998311 0 0 0 0 1</float_array>
+        <float_array id="Elephant_trunk_9_pose_matrix-output-array" count="16">1 0 0 0 0 0.998311 0.05809754 0.1876323 0 -0.05809754 0.9983109 0 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_trunk_9_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1647,7 +1647,7 @@
         </technique_common>
       </source>
       <source id="Elephant_trunk_10_pose_matrix-output">
-        <float_array id="Elephant_trunk_10_pose_matrix-output-array" count="16">1 0 0 0 0 0.9973573 0.07265448 0.2214337 0 -0.07265454 0.9973572 0 0 0 0 1</float_array>
+        <float_array id="Elephant_trunk_10_pose_matrix-output-array" count="16">1 0 0 0 0 0.9973573 0.07265448 0.2214334 0 -0.07265448 0.9973572 3.3275e-7 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_trunk_10_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1679,7 +1679,7 @@
         </technique_common>
       </source>
       <source id="Elephant_trunk_11_pose_matrix-output">
-        <float_array id="Elephant_trunk_11_pose_matrix-output-array" count="16">1 0 -3.02067e-7 0 0 0.9936915 0.1121476 0.1940739 3.02067e-7 -0.1121476 0.9936915 -1.79406e-7 0 0 0 1</float_array>
+        <float_array id="Elephant_trunk_11_pose_matrix-output-array" count="16">1 0 -3.02067e-7 0 0 0.9936916 0.1121476 0.1940737 3.02067e-7 -0.1121476 0.9936916 0 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_trunk_11_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1711,7 +1711,7 @@
         </technique_common>
       </source>
       <source id="Elephant_trunk_10_joint_pose_matrix-output">
-        <float_array id="Elephant_trunk_10_joint_pose_matrix-output-array" count="16">1 0 0 0 0 0.2061809 -0.9785139 0.1940739 0 0.9785139 0.2061809 -1.79406e-7 0 0 0 1</float_array>
+        <float_array id="Elephant_trunk_10_joint_pose_matrix-output-array" count="16">1 0 -1.5979e-7 0 -1.39279e-7 0.2061809 -0.9785138 0.1940737 0 0.9785142 0.2061808 0 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_trunk_10_joint_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1743,7 +1743,7 @@
         </technique_common>
       </source>
       <source id="Elephant_trunk_9_joint_pose_matrix-output">
-        <float_array id="Elephant_trunk_9_joint_pose_matrix-output-array" count="16">1 -2.76229e-7 0 0 0 0.09292161 -0.9956734 0.2214337 2.68466e-7 0.9956733 0.09292137 0 0 0 0 1</float_array>
+        <float_array id="Elephant_trunk_9_joint_pose_matrix-output-array" count="16">1 -1.67906e-7 1.42457e-7 0 1.57442e-7 0.09292149 -0.9956734 0.2214334 1.53942e-7 0.9956733 0.09292131 3.3275e-7 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_trunk_9_joint_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1775,7 +1775,7 @@
         </technique_common>
       </source>
       <source id="Elephant_trunk_8_joint_pose_matrix-output">
-        <float_array id="Elephant_trunk_8_joint_pose_matrix-output-array" count="16">1 0 0 0 0 -0.06726425 -0.9977351 0.1876322 0 0.9977352 -0.06726443 0 0 0 0 1</float_array>
+        <float_array id="Elephant_trunk_8_joint_pose_matrix-output-array" count="16">1 -1.48993e-7 -1.32136e-7 0 -1.41859e-7 -0.06726437 -0.9977352 0.1876323 1.39768e-7 0.9977355 -0.06726449 0 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_trunk_8_joint_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1807,7 +1807,7 @@
         </technique_common>
       </source>
       <source id="Elephant_trunk_7_joint_pose_matrix-output">
-        <float_array id="Elephant_trunk_7_joint_pose_matrix-output-array" count="16">1 0 1.58574e-7 0 1.48651e-7 0.1232343 -0.9923775 0.3805058 0 0.9923777 0.1232342 -1.7733e-7 0 0 0 1</float_array>
+        <float_array id="Elephant_trunk_7_joint_pose_matrix-output-array" count="16">1 1.61863e-7 1.42723e-7 0 1.60746e-7 -0.1174563 -0.993078 0.3805058 -1.43979e-7 0.9930784 -0.1174563 1.72757e-7 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_trunk_7_joint_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1839,7 +1839,7 @@
         </technique_common>
       </source>
       <source id="Elephant_trunk_6_joint_pose_matrix-output">
-        <float_array id="Elephant_trunk_6_joint_pose_matrix-output-array" count="16">1 -2.09556e-7 1.47951e-7 0 1.51335e-7 0.01624238 -0.9998682 0.3738898 2.07125e-7 0.9998683 0.0162422 0 0 0 0 1</float_array>
+        <float_array id="Elephant_trunk_6_joint_pose_matrix-output-array" count="16">0.9999998 -1.66014e-7 1.63246e-7 0 1.60956e-7 -0.01370221 -0.9999061 0.3738898 1.68235e-7 0.9999057 -0.01370227 -1.61198e-7 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_trunk_6_joint_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1871,7 +1871,7 @@
         </technique_common>
       </source>
       <source id="Elephant_trunk_4_joint_pose_matrix-output">
-        <float_array id="Elephant_trunk_4_joint_pose_matrix-output-array" count="16">1 -1.4503e-7 -1.44739e-7 0 -1.39526e-7 0.03532093 -0.999376 0.4329053 1.50052e-7 0.9993762 0.03532081 -2.23641e-7 0 0 0 1</float_array>
+        <float_array id="Elephant_trunk_4_joint_pose_matrix-output-array" count="16">1 -1.47963e-7 -1.39912e-7 0 -1.39351e-7 0.003780841 -0.9999929 0.4329052 1.48492e-7 0.9999927 0.003780722 -2.96552e-7 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_trunk_4_joint_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1903,7 +1903,7 @@
         </technique_common>
       </source>
       <source id="Elephant_trunk_3_joint_pose_matrix-output">
-        <float_array id="Elephant_trunk_3_joint_pose_matrix-output-array" count="16">0.9999999 -1.25733e-7 1.61675e-7 0 1.60417e-7 -0.009937822 -0.9999504 0.4925903 1.27334e-7 0.9999505 -0.009938001 -4.50546e-7 0 0 0 1</float_array>
+        <float_array id="Elephant_trunk_3_joint_pose_matrix-output-array" count="16">1 -1.45382e-7 1.78715e-7 0 1.62416e-7 -0.1052811 -0.9944425 0.4925906 1.63389e-7 0.9944428 -0.1052812 0 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_trunk_3_joint_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1935,7 +1935,7 @@
         </technique_common>
       </source>
       <source id="Elephant_trunk_2_joint_pose_matrix-output">
-        <float_array id="Elephant_trunk_2_joint_pose_matrix-output-array" count="16">1 1.84992e-7 1.59115e-7 0 1.59078e-7 1.97301e-4 -0.9999999 0.4224153 -1.85023e-7 1 1.97074e-4 3.52821e-7 0 0 0 1</float_array>
+        <float_array id="Elephant_trunk_2_joint_pose_matrix-output-array" count="16">1 1.46699e-7 1.5876e-7 0 1.63296e-7 -0.03145903 -0.9995051 0.4224151 -1.41632e-7 0.999505 -0.03145915 1.76494e-7 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_trunk_2_joint_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -1967,7 +1967,7 @@
         </technique_common>
       </source>
       <source id="Elephant_trunk_1_joint_pose_matrix-output">
-        <float_array id="Elephant_trunk_1_joint_pose_matrix-output-array" count="16">1 0 0 0 0 0.1496879 -0.9887333 0.6027041 0 0.9887333 0.1496877 0 0 0 0 1</float_array>
+        <float_array id="Elephant_trunk_1_joint_pose_matrix-output-array" count="16">0.9999999 0 0 0 0 0.03006291 -0.9995479 0.6027042 0 0.999548 0.03006273 0 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_trunk_1_joint_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -2159,7 +2159,7 @@
         </technique_common>
       </source>
       <source id="Elephant_leg_left_poletarget_pose_matrix-output">
-        <float_array id="Elephant_leg_left_poletarget_pose_matrix-output-array" count="16">0.9999387 -0.01096343 0.001571476 0.8761977 0.01107549 0.9898213 -0.1418824 0.00958991 0 0.1418911 0.9898823 1.306589 0 0 0 1</float_array>
+        <float_array id="Elephant_leg_left_poletarget_pose_matrix-output-array" count="16">0.9999562 -0.00921297 0.001674115 0.8761977 0.00936383 0.9838446 -0.1787781 0.00958991 0 0.1787859 0.983888 1.306589 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_leg_left_poletarget_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -2191,7 +2191,7 @@
         </technique_common>
       </source>
       <source id="Elephant_leg_right_poletarget_pose_matrix-output">
-        <float_array id="Elephant_leg_right_poletarget_pose_matrix-output-array" count="16">0.9999362 0.0111801 -0.00160253 -0.8761977 -0.01129442 0.9898193 -0.141879 0.00958991 0 0.141888 0.9898827 1.306589 0 0 0 1</float_array>
+        <float_array id="Elephant_leg_right_poletarget_pose_matrix-output-array" count="16">0.9999564 -0.008408546 0.004066884 -0.8761977 0.009340465 0.9001929 -0.4353908 0.00958991 0 0.4354097 0.9002323 1.306589 0 0 0 1</float_array>
         <technique_common>
           <accessor source="#Elephant_leg_right_poletarget_pose_matrix-output-array" count="1" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
@@ -24985,6 +24985,15 @@
               <node id="prop-turret" name="prop-turret" sid="prop-turret" type="JOINT">
                 <matrix sid="transform">-1 2.54515e-9 1.50959e-7 1.50085e-7 -1.85083e-9 0.9995761 -0.02911328 0.383898 -1.50969e-7 -0.02911328 -0.999576 -1.596441 0 0 0 1</matrix>
               </node>
+              <node id="prop-egret_2" name="prop-egret.2" sid="prop-egret_2" type="JOINT">
+                <matrix sid="transform">-1 0 1.50996e-7 0.5697867 -4.39598e-9 0.9995763 -0.02911328 -0.3368559 -1.50932e-7 -0.02911328 -0.999576 -1.200593 0 0 0 1</matrix>
+              </node>
+              <node id="prop-egret_1" name="prop-egret.1" sid="prop-egret_1" type="JOINT">
+                <matrix sid="transform">-1 0 1.50996e-7 -0.6059136 -4.39596e-9 0.9995766 -0.02911316 -1.3625 -1.50932e-7 -0.02911317 -0.9995762 -1.296953 0 0 0 1</matrix>
+              </node>
+              <node id="prop-egret_3" name="prop-egret.3" sid="prop-egret_3" type="JOINT">
+                <matrix sid="transform">-1 0 1.50996e-7 -0.0849802 -4.39596e-9 0.9995766 -0.02911316 1.016117 -1.50932e-7 -0.02911317 -0.9995762 -1.545536 0 0 0 1</matrix>
+              </node>
             </node>
             <node id="belly" name="belly" sid="belly" type="JOINT">
               <matrix sid="transform">1 2.52686e-7 2.1835e-8 -2.11892e-14 -1.61171e-8 0.1492269 -0.9888029 1.565726 -2.53115e-7 0.988803 0.149227 -2.01201e-7 0 0 0 1</matrix>
@@ -25109,10 +25118,7 @@
                 <matrix sid="transform">-1 -8.7998e-8 1.19873e-7 1.39635e-7 7.44737e-10 -0.8090673 -0.5877166 0.716402 1.48703e-7 -0.5877166 0.8090671 0.960319 0 0 0 1</matrix>
               </node>
               <node id="prop-tusk_left" name="prop-tusk.left" sid="prop-tusk_left" type="JOINT">
-                <matrix sid="transform">-1 -6.95446e-8 6.30715e-8 -0.4411501 1.91981e-8 -0.8090669 -0.5877166 1.547849 9.19016e-8 -0.5877165 0.809067 -0.3763209 0 0 0 1</matrix>
-              </node>
-              <node id="prop-tusk_right" name="prop-tusk.right" sid="prop-tusk_right" type="JOINT">
-                <matrix sid="transform">-1 -6.95446e-8 6.30715e-8 0.44115 1.91981e-8 -0.8090669 -0.5877166 1.547849 9.19016e-8 -0.5877165 0.809067 -0.376321 0 0 0 1</matrix>
+                <matrix sid="transform">-1 -8.7998e-8 1.19873e-7 -5.48075e-8 7.44729e-10 -0.8090669 -0.5877166 1.547849 1.48703e-7 -0.5877165 0.809067 -0.3763209 0 0 0 1</matrix>
               </node>
             </node>
             <node id="prop-rider" name="prop-rider" sid="prop-rider" type="JOINT">

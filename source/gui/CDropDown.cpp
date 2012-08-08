@@ -150,9 +150,11 @@ void CDropDown::HandleMessage(SGUIMessage &Message)
 		if (!m_Open)
 		{
 			m_Open = true;
-			GetScrollBar(0).SetPos(0.f);
 			GetScrollBar(0).SetZ(GetBufferedZ());
 			GUI<int>::GetSetting(this, "selected", m_ElementHighlight);
+
+			// Start at the position of the selected item, if possible.
+			GetScrollBar(0).SetPos( m_ItemsYPositions.empty() ? 0 : m_ItemsYPositions[m_ElementHighlight] );
 			return; // overshadow
 		}
 		else

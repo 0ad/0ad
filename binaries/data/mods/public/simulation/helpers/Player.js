@@ -128,8 +128,11 @@ function LoadPlayerSettings(settings, newPlayers)
 			cmpPlayer.SetCiv(pDefs.Civ);
 			cmpPlayer.SetColour(pDefs.Colour.r, pDefs.Colour.g, pDefs.Colour.b);
 
+			// Gaia should be its own ally.
+			cmpPlayer.SetAlly(0);
+
 			// Gaia is everyone's enemy
-			for (var j = 0; j < numPlayers; ++j)
+			for (var j = 1; j < numPlayers; ++j)
 				cmpPlayer.SetEnemy(j);
 		}
 	}

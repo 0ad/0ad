@@ -140,6 +140,10 @@ var UnitFsmSpec = {
 		// ignore newly-seen units by default
 	},
 
+	"LosGaiaRangeUpdate": function(msg) {
+		// ignore newly-seen Gaia units by default
+	},
+
 	"LosHealRangeUpdate": function(msg) {
 		// ignore newly-seen injured units by default
 	},
@@ -187,6 +191,26 @@ var UnitFsmSpec = {
 
 	// Individual orders:
 	// (these will switch the unit out of formation mode)
+
+	"Order.Stop": function(msg) {
+		// We have no control over non-domestic animals.
+		if (this.IsAnimal() && !this.IsDomestic())
+		{
+			this.FinishOrder();
+			return;
+		}
+
+		// Stop moving immediately.
+		this.StopMoving();
+		this.FinishOrder();
+
+		// No orders left, we're an individual now
+		if (this.IsAnimal())
+			this.SetNextState("ANIMAL.IDLE");
+		else
+			this.SetNextState("INDIVIDUAL.IDLE");
+
+	},
 
 	"Order.Walk": function(msg) {
 		// Let players move captured domestic animals around
@@ -458,6 +482,12 @@ var UnitFsmSpec = {
 				this.FinishOrder();
 		},
 
+		"Order.Stop": function(msg) {
+			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+			cmpFormation.CallMemberFunction("Stop", [false]);
+			cmpFormation.Disband();
+		},
+
 		"Order.Attack": function(msg) {
 			// TODO: we should move in formation towards the target,
 			// then break up into individuals when close enough to it
@@ -695,6 +725,14 @@ var UnitFsmSpec = {
 				{
 					// Start attacking one of the newly-seen enemy (if any)
 					this.RespondToTargetedEntities(this.GetAttackableEntitiesByPreference(msg.data.added));
+				}
+			},
+
+			"LosGaiaRangeUpdate": function(msg) {
+				if (this.GetStance().targetVisibleEnemies)
+				{
+					// Start attacking one of the newly-seen enemy (if any)
+					this.RespondToTargetedEntities(this.GetAttackableEntitiesByPreference(msg.data.added, true));
 				}
 			},
 
@@ -1614,9 +1652,7 @@ var UnitFsmSpec = {
 			{
 				this.Flee(msg.data.attacker, false);
 			}
-			else if (this.template.NaturalBehaviour == "violent" ||
-			         this.template.NaturalBehaviour == "aggressive" ||
-			         this.template.NaturalBehaviour == "defensive")
+			else if (this.IsDangerousAnimal() || this.template.NaturalBehaviour == "defensive")
 			{
 				if (this.CanAttack(msg.data.attacker))
 					this.Attack(msg.data.attacker, false);
@@ -1691,8 +1727,7 @@ var UnitFsmSpec = {
 					}
 				}
 				// Start attacking one of the newly-seen enemy (if any)
-				else if (this.template.NaturalBehaviour == "violent" ||
-				         this.template.NaturalBehaviour == "aggressive")
+				else if (this.IsDangerousAnimal())
 				{
 					this.AttackVisibleEntity(msg.data.added);
 				}
@@ -1781,6 +1816,12 @@ UnitAI.prototype.IsAnimal = function()
 	return (this.template.NaturalBehaviour ? true : false);
 };
 
+UnitAI.prototype.IsDangerousAnimal = function()
+{
+	return (this.IsAnimal() && (this.template.NaturalBehaviour == "violent" ||
+			this.template.NaturalBehaviour == "aggressive"));
+};
+
 UnitAI.prototype.IsDomestic = function()
 {
 	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
@@ -1804,6 +1845,19 @@ UnitAI.prototype.IsGarrisoned = function()
 	return this.isGarrisoned;
 };
 
+UnitAI.prototype.CanAttackGaia = function()
+{
+	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	if (!cmpAttack)
+		return false;
+
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership || cmpOwnership.GetOwner() == 0)
+		return false;
+
+	return true;
+};
+
 UnitAI.prototype.OnCreate = function()
 {
 	if (this.IsAnimal())
@@ -1816,9 +1870,14 @@ UnitAI.prototype.OnCreate = function()
 
 UnitAI.prototype.OnOwnershipChanged = function(msg)
 {
-	this.SetupRangeQuery();
-	if (this.IsHealer())
-		this.SetupHealRangeQuery();
+	this.SetupRangeQueries();
+
+	// If the unit isn't being created or dying, clear orders and reset stance.
+	if (msg.to != -1 && msg.from != -1)
+	{
+		this.SetStance(this.template.DefaultStance);
+		this.Stop(false);
+	}
 };
 
 UnitAI.prototype.OnDestroy = function()
@@ -1832,7 +1891,21 @@ UnitAI.prototype.OnDestroy = function()
 		rangeMan.DestroyActiveQuery(this.losRangeQuery);
 	if (this.losHealRangeQuery)
 		rangeMan.DestroyActiveQuery(this.losHealRangeQuery);
+	if (this.losGaiaRangeQuery)
+		rangeMan.DestroyActiveQuery(this.losGaiaRangeQuery);
 };
+
+// Wrapper function that sets up the normal, healer, and Gaia range queries.
+UnitAI.prototype.SetupRangeQueries = function()
+{
+	this.SetupRangeQuery();
+
+	if (this.IsHealer())
+		this.SetupHealRangeQuery();
+
+	if (this.CanAttackGaia() || this.losGaiaRangeQuery)
+		this.SetupGaiaRangeQuery();
+}
 
 // Set up a range query for all enemy units within LOS range
 // which can be attacked.
@@ -1846,7 +1919,10 @@ UnitAI.prototype.SetupRangeQuery = function()
 	var playerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 
 	if (this.losRangeQuery)
+	{
 		rangeMan.DestroyActiveQuery(this.losRangeQuery);
+		this.losRangeQuery = undefined;
+	}
 
 	var players = [];
 
@@ -1903,6 +1979,40 @@ UnitAI.prototype.SetupHealRangeQuery = function()
 
 	this.losHealRangeQuery = rangeMan.CreateActiveQuery(this.entity, range.min, range.max, players, IID_Health, rangeMan.GetEntityFlagMask("injured"));
 	rangeMan.EnableActiveQuery(this.losHealRangeQuery);
+};
+
+// Set up a range query for Gaia units within LOS range which can be attacked.
+// This should be called whenever our ownership changes.
+UnitAI.prototype.SetupGaiaRangeQuery = function()
+{
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	var owner = cmpOwnership.GetOwner();
+
+	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	var playerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+
+	if (this.losGaiaRangeQuery)
+	{
+		rangeMan.DestroyActiveQuery(this.losGaiaRangeQuery);
+		this.losGaiaRangeQuery = undefined;
+	}
+
+	if (owner == -1)
+		return;
+
+	var cmpPlayer = Engine.QueryInterface(playerMan.GetPlayerByID(owner), IID_Player);
+	if (!cmpPlayer.IsEnemy(0))
+		return;
+
+	// Only create the query if Gaia is our enemy and we can attack.
+	if (this.CanAttackGaia())
+	{
+		var range = this.GetQueryRange(IID_Attack);
+	
+		// This query is only interested in Gaia entities that can attack.
+		this.losGaiaRangeQuery = rangeMan.CreateActiveQuery(this.entity, range.min, range.max, [0], IID_Attack, rangeMan.GetEntityFlagMask("normal"));
+		rangeMan.EnableActiveQuery(this.losGaiaRangeQuery);
+	}
 };
 
 //// FSM linkage functions ////
@@ -2157,6 +2267,8 @@ UnitAI.prototype.OnRangeUpdate = function(msg)
 {
 	if (msg.tag == this.losRangeQuery)
 		UnitFsm.ProcessMessage(this, {"type": "LosRangeUpdate", "data": msg});
+	else if (msg.tag == this.losGaiaRangeQuery)
+		UnitFsm.ProcessMessage(this, {"type": "LosGaiaRangeUpdate", "data": msg});
 	else if (msg.tag == this.losHealRangeQuery)
 		UnitFsm.ProcessMessage(this, {"type": "LosHealRangeUpdate", "data": msg});
 };
@@ -2743,6 +2855,9 @@ UnitAI.prototype.ComputeWalkingDistance = function()
 			// Return the total distance to the target
 			return distance;
 
+		case "Stop":
+			return 0;
+
 		default:
 			error("ComputeWalkingDistance: Unrecognised order type '"+order.type+"'");
 			return distance;
@@ -2767,6 +2882,14 @@ UnitAI.prototype.AddOrder = function(type, data, queued)
 UnitAI.prototype.Walk = function(x, z, queued)
 {
 	this.AddOrder("Walk", { "x": x, "z": z, "force": true }, queued);
+};
+
+/**
+ * Adds stop order to queue, forced by the player.
+ */
+UnitAI.prototype.Stop = function(queued)
+{
+	this.AddOrder("Stop", undefined, queued);
 };
 
 /**
@@ -3046,12 +3169,8 @@ UnitAI.prototype.SwitchToStance = function(stance)
 	if (stance == "standground")
 		this.StopMoving();
 
-	// Reset the range query, since the range depends on stance
-	this.SetupRangeQuery();
-	// Just if we are a healer
-	// TODO maybe move those two to a SetupRangeQuerys()
-	if (this.IsHealer())
-		this.SetupHealRangeQuery();
+	// Reset the range queries, since the range depends on stance.
+	this.SetupRangeQueries();
 };
 
 /**
@@ -3060,7 +3179,7 @@ UnitAI.prototype.SwitchToStance = function(stance)
  */
 UnitAI.prototype.FindNewTargets = function()
 {
-	if (!this.losRangeQuery)
+	if (!this.losRangeQuery && !this.losGaiaRangeQuery)
 		return false;
 
 	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
@@ -3068,6 +3187,13 @@ UnitAI.prototype.FindNewTargets = function()
 
 	if (!this.GetStance().targetVisibleEnemies)
 		return false;
+
+	// If no regular enemies were found, attempt to attack a hostile Gaia entity.
+	if (this.losGaiaRangeQuery && (!ents || !ents.length))
+	{
+		ents = rangeMan.ResetActiveQuery(this.losGaiaRangeQuery);
+		return this.RespondToTargetedEntities(this.GetAttackableEntitiesByPreference(ents, true));
+	}
 
 	return this.RespondToTargetedEntities(this.GetAttackableEntitiesByPreference(ents));
 };
@@ -3410,11 +3536,23 @@ UnitAI.prototype.MoveRandomly = function(distance)
 	cmpMotion.MoveToPointRange(tx, tz, distance, distance);
 };
 
-UnitAI.prototype.GetAttackableEntitiesByPreference = function(ents)
+UnitAI.prototype.GetAttackableEntitiesByPreference = function(ents, filterGaia)
 {
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 	if (!cmpAttack)
 		return [];
+
+	if (filterGaia)
+	{
+		const filter = function(e) {
+			var cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
+			return (cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal()));
+		};
+
+		return ents
+			.filter(function (v, i, a) { return cmpAttack.CanAttack(v) && filter(v); })
+			.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); });
+	}
 
 	return ents
 		.filter(function (v, i, a) { return cmpAttack.CanAttack(v); })

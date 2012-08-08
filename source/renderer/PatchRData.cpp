@@ -1086,6 +1086,8 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
 				}
 			}
 			
+			glDisable(GL_BLEND);
+			
 			if (!isDummyShader)
 				techBase->EndPass();
 		}

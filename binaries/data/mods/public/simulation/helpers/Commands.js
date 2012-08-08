@@ -257,7 +257,7 @@ function ProcessCommand(player, cmd)
 
 	case "defeat-player":
 		// Send "OnPlayerDefeated" message to player
-		Engine.PostMessage(playerEnt, MT_PlayerDefeated, { "playerId": player, "destroy": cmd.destroy } );
+		Engine.PostMessage(playerEnt, MT_PlayerDefeated, { "playerId": player } );
 		break;
 
 	case "garrison":
@@ -273,6 +273,13 @@ function ProcessCommand(player, cmd)
 		{
 			warn("Invalid command: garrison target cannot be controlled by player "+player+": "+uneval(cmd));
 		}
+		break;
+
+	case "stop":
+		var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
+		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
+			cmpUnitAI.Stop(cmd.queued);
+		});
 		break;
 
 	case "unload":
