@@ -7,9 +7,11 @@
       <props>
         <prop actor="props/structures/celts/tavern_props_new.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/tavern_props_1.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/tavern_mud.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/celt_tavern.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="structural/celt_struct_1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/celt_struct_1.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -21,7 +23,7 @@
         <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/tavern_props_new.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/tavern_props_1.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/tavern_mud.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/celt_tavern.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
