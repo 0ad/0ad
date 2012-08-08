@@ -1851,8 +1851,9 @@ UnitAI.prototype.CanAttackGaia = function()
 	if (!cmpAttack)
 		return false;
 
+	// Rejects Gaia (0) and INVALID_PLAYER (-1)
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership || cmpOwnership.GetOwner() == 0)
+	if (!cmpOwnership || cmpOwnership.GetOwner() <= 0)
 		return false;
 
 	return true;
@@ -1996,13 +1997,6 @@ UnitAI.prototype.SetupGaiaRangeQuery = function()
 		rangeMan.DestroyActiveQuery(this.losGaiaRangeQuery);
 		this.losGaiaRangeQuery = undefined;
 	}
-
-	if (owner == -1)
-		return;
-
-	var cmpPlayer = Engine.QueryInterface(playerMan.GetPlayerByID(owner), IID_Player);
-	if (!cmpPlayer.IsEnemy(0))
-		return;
 
 	// Only create the query if Gaia is our enemy and we can attack.
 	if (this.CanAttackGaia())
