@@ -388,30 +388,23 @@ Player.prototype.OnPlayerDefeated = function(msg)
 {
 	this.state = "defeated";
 
+	// Reassign all player's entities to Gaia
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var entities = cmpRangeManager.GetEntitiesByPlayer(this.playerID);
-	if (msg.destroy)
+
+	// The ownership change is done in two steps so that entities don't hit idle
+	// (and thus possibly look for "enemies" to attack) before nearby allies get
+	// converted to Gaia as well.
+	for each (var entity in entities)
 	{
-		// Destroy all of the player's entities.
-		for each (var entity in entities)
-		{
-			var cmpHealth = Engine.QueryInterface(entity, IID_Health);
-			if (cmpHealth)
-				cmpHealth.Kill();
-			else
-				Engine.DestroyEntity(entity);
-		}
+		var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
+		cmpOwnership.SetOwnerQuiet(0);
 	}
-	else
-	{
-		// Reassign all player's entities to Gaia
-		for each (var entity in entities)
-		{
-			// Note: maybe we need to reassign units and buildings only?
-			var cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
-			cmpOwnership.SetOwner(0);
-		}
-	}
+
+	// With the real ownership change complete, send OwnershipChanged messages.
+	for each (var entity in entities)
+		Engine.PostMessage(entity, MT_OwnershipChanged, { "entity": entity,
+			"from": this.playerID, "to": 0 });
 
 	// Reveal the map for this player.
 	cmpRangeManager.SetLosRevealAll(this.playerID, true);

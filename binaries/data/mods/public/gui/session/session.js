@@ -154,7 +154,6 @@ function resignGame()
 	// Tell other players that we have given up and been defeated
 	Engine.PostNetworkCommand({
 		"type": "defeat-player",
-		"destroy": true,
 		"playerId": Engine.GetPlayerID()
 	});
 
