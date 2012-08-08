@@ -93,6 +93,12 @@ public:
 		CMessageOwnershipChanged msg(GetEntityId(), old, playerID);
 		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 	}
+
+	virtual void SetOwnerQuiet(player_id_t playerID)
+	{
+		if (playerID != m_Owner)
+			m_Owner = playerID;
+	}
 };
 
 REGISTER_COMPONENT_TYPE(Ownership)

@@ -33,6 +33,9 @@ public:
 
 	virtual void SetOwner(player_id_t playerID) = 0;
 
+	// Operates identically to SetOwner() but does not send a message.
+	virtual void SetOwnerQuiet(player_id_t playerID) = 0;
+
 	DECLARE_INTERFACE_TYPE(Ownership)
 };
 
