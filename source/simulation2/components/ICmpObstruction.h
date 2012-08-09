@@ -59,11 +59,11 @@ public:
 	virtual bool CheckDuplicateFoundation() = 0;
 
 	/**
-	 * Returns a list of entities that are colliding with this entity, and that
-	 * are set to block construction.
+	 * Returns a list of entities that are colliding with this entity,
+	 * filtered depending on type of entities that are requested.
 	 * @return vector of blocking entities
 	 */
-	virtual std::vector<entity_id_t> GetConstructionCollisions() = 0;
+	virtual std::vector<entity_id_t> GetEntityCollisions(bool checkStructures, bool checkUnits) = 0;
 
 	/**
 	 * Detects collisions between foundation-blocking entities and

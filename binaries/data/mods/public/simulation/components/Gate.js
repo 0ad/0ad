@@ -14,7 +14,7 @@ Gate.prototype.Schema =
  */
 Gate.prototype.Init = function()
 {
-	this.units = [];
+	this.allies = [];
 	this.opened = false;
 	this.locked = false;
 };
@@ -39,6 +39,14 @@ Gate.prototype.OnDestroy = function()
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (this.unitsQuery)
 		cmpRangeManager.DestroyActiveQuery(this.unitsQuery);
+
+	// Cancel the closing-blocked timer if it's running.
+	if (this.timer)
+	{
+		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		cmpTimer.CancelTimer(this.timer);
+		this.timer = undefined;
+	}
 };
 
 /**
@@ -48,15 +56,15 @@ Gate.prototype.SetupRangeQuery = function(owner)
 {
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(owner), IID_Player);
 	if (this.unitsQuery)
 		cmpRangeManager.DestroyActiveQuery(this.unitsQuery);
-	var players = []
 
-	var numPlayers = cmpPlayerManager.GetNumPlayers();
-
-	// Ignore gaia units
-	for (var i = 1; i < numPlayers; ++i)
-		players.push(i);
+	// Only allied units can make the gate open.
+	var players = [];
+	for (var i = 0; i < cmpPlayer.GetDiplomacy().length; ++i)
+		if (cmpPlayer.IsAlly(i))
+			players.push(i);
 
 	var range = this.GetPassRange();
 	if (range > 0)
@@ -77,11 +85,11 @@ Gate.prototype.OnRangeUpdate = function(msg)
 
 	if (msg.added.length > 0)
 		for each (var entity in msg.added)
-			this.units.push(entity);
+			this.allies.push(entity);
 
 	if (msg.removed.length > 0)
 		for each (var entity in msg.removed)
-			this.units.splice(this.units.indexOf(entity), 1);
+			this.allies.splice(this.allies.indexOf(entity), 1);
 
 	this.OperateGate();
 };
@@ -96,29 +104,23 @@ Gate.prototype.GetPassRange = function()
 
 /**
  * Attempt to open or close the gate.
- * An ally unit must be in range to open the gate, but there must be
- *	no units (including enemies) in range to close it again.
+ * An ally must be in range to open the gate, but an unlocked gate will only close
+ * if there are no allies in range and no units are inside the gate's obstruction.
  */
 Gate.prototype.OperateGate = function()
 {
-	if (this.opened == true )
+	// Cancel the closing-blocked timer if it's running.
+	if (this.timer)
 	{
-		// If no units are in range, close the gate
-		if (this.units.length == 0)
-			this.CloseGate();
+		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		cmpTimer.CancelTimer(this.timer);
+		this.timer = undefined;
 	}
-	else
-	{
-		// If one units in range is owned by an ally, open the gate
-		for each (var ent in this.units)
-		{
-			if (IsOwnedByAllyOfEntity(this.entity, ent))
-			{
-				this.OpenGate();
-				break;
-			}
-		}
-	}
+
+	if (this.opened && (this.allies.length == 0 || this.locked))
+		this.CloseGate();
+	else if (!this.opened && this.allies.length)
+		this.OpenGate();
 };
 
 Gate.prototype.IsLocked = function()
@@ -141,6 +143,8 @@ Gate.prototype.LockGate = function()
 			return;
 		cmpObstruction.SetDisableBlockMovementPathfinding(false, false, 0);
 	}
+	else
+		this.OperateGate();
 
 	// TODO: Possibly move the lock/unlock sounds to UI? Needs testing
 	PlaySound("gate_locked", this.entity);
@@ -157,7 +161,7 @@ Gate.prototype.UnlockGate = function(quiet)
 		return;
 
 	// Disable 'block pathfinding'
-	cmpObstruction.SetDisableBlockMovementPathfinding(false, true, 0);
+	cmpObstruction.SetDisableBlockMovementPathfinding(this.opened, true, 0);
 	this.locked = false;
 
 	// TODO: Possibly move the lock/unlock sounds to UI? Needs testing
@@ -194,12 +198,28 @@ Gate.prototype.OpenGate = function()
 
 /**
  * Close the gate, with sound and animation.
+ *
+ * The gate may fail to close due to unit obstruction. If this occurs, the
+ * gate will start a timer and attempt to close on each simulation update.
  */
 Gate.prototype.CloseGate = function()
 {
 	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
 	if (!cmpObstruction)
 		return;
+
+	// The gate can't be closed if there are entities colliding with it.
+	var collisions = cmpObstruction.GetEntityCollisions(false, true);
+	if (collisions.length)
+	{		
+		if (!this.timer)
+		{
+			// Set an "instant" timer which will run on the next simulation turn.
+			var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+			this.timer = cmpTimer.SetTimeout(this.entity, IID_Gate, "OperateGate", 0, {});
+		}
+		return;
+	}
 
 	// If we ordered the gate to be locked, enable 'block movement' and 'block pathfinding'
 	if (this.locked)

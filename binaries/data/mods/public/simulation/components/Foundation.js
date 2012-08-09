@@ -109,7 +109,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 			// Otherwise enable this obstruction so it blocks any further
 			// units, and continue building.
 
-			var collisions = cmpObstruction.GetConstructionCollisions();
+			var collisions = cmpObstruction.GetEntityCollisions(true, true);
 			if (collisions.length)
 			{
 				for each (var ent in collisions)
