@@ -724,7 +724,7 @@ var UnitFsmSpec = {
 				if (this.GetStance().targetVisibleEnemies)
 				{
 					// Start attacking one of the newly-seen enemy (if any)
-					this.RespondToTargetedEntities(this.GetAttackableEntitiesByPreference(msg.data.added));
+					this.AttackEntitiesByPreference(msg.data.added);
 				}
 			},
 
@@ -732,7 +732,7 @@ var UnitFsmSpec = {
 				if (this.GetStance().targetVisibleEnemies)
 				{
 					// Start attacking one of the newly-seen enemy (if any)
-					this.RespondToTargetedEntities(this.GetAttackableEntitiesByPreference(msg.data.added, true));
+					this.AttackGaiaEntitiesByPreference(msg.data.added);
 				}
 			},
 
@@ -3173,23 +3173,20 @@ UnitAI.prototype.SwitchToStance = function(stance)
  */
 UnitAI.prototype.FindNewTargets = function()
 {
-	if (!this.losRangeQuery && !this.losGaiaRangeQuery)
+	if (!this.losRangeQuery)
 		return false;
-
-	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var ents = rangeMan.ResetActiveQuery(this.losRangeQuery);
 
 	if (!this.GetStance().targetVisibleEnemies)
 		return false;
 
+	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	if (this.AttackEntitiesByPreference( rangeMan.ResetActiveQuery(this.losRangeQuery) ))
+		return true;
 	// If no regular enemies were found, attempt to attack a hostile Gaia entity.
-	if (this.losGaiaRangeQuery && (!ents || !ents.length))
-	{
-		ents = rangeMan.ResetActiveQuery(this.losGaiaRangeQuery);
-		return this.RespondToTargetedEntities(this.GetAttackableEntitiesByPreference(ents, true));
-	}
+	else if (this.losGaiaRangeQuery)
+		return this.AttackGaiaEntitiesByPreference( rangeMan.ResetActiveQuery(this.losGaiaRangeQuery) );
 
-	return this.RespondToTargetedEntities(this.GetAttackableEntitiesByPreference(ents));
+	return false;
 };
 
 /**
@@ -3530,27 +3527,33 @@ UnitAI.prototype.MoveRandomly = function(distance)
 	cmpMotion.MoveToPointRange(tx, tz, distance, distance);
 };
 
-UnitAI.prototype.GetAttackableEntitiesByPreference = function(ents, filterGaia)
+UnitAI.prototype.AttackEntitiesByPreference = function(ents)
 {
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 	if (!cmpAttack)
-		return [];
+		return false;
 
-	if (filterGaia)
-	{
-		const filter = function(e) {
-			var cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
-			return (cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal()));
-		};
+	return this.RespondToTargetedEntities(
+		ents.filter(function (v, i, a) { return cmpAttack.CanAttack(v); })
+		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); })
+	);
+};
 
-		return ents
-			.filter(function (v, i, a) { return cmpAttack.CanAttack(v) && filter(v); })
-			.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); });
-	}
+UnitAI.prototype.AttackGaiaEntitiesByPreference = function(ents)
+{
+	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	if (!cmpAttack)
+		return false;
 
-	return ents
-		.filter(function (v, i, a) { return cmpAttack.CanAttack(v); })
-		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); });
+	const filter = function(e) {
+		var cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
+		return (cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal()));
+	};
+
+	return this.RespondToTargetedEntities(
+		ents.filter(function (v, i, a) { return cmpAttack.CanAttack(v) && filter(v); })
+		.sort(function (a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); })
+	);
 };
 
 Engine.RegisterComponentType(IID_UnitAI, "UnitAI", UnitAI);
