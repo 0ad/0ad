@@ -4,8 +4,11 @@
   <group>
     <variant frequency="1" name="Helmet-Chalcidean-Crested">
       <mesh>props/helmet/mace_helmet_o.dae</mesh>
-      <textures><texture file="props/helmet/mace-g-silver.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/helmet/mace-g-silver.dds" name="baseTex"/>
+        <texture file="props/helmet/mace-g-silver_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
