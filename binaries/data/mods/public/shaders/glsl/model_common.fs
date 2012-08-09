@@ -195,7 +195,7 @@ void main()
   #if USE_SPECULAR || USE_SPECULAR_MAP
     vec3 specCol;
     float specPow;
-    #if USE_INSTANCING && USE_SPECULAR_MAP
+    #if USE_SPECULAR_MAP
       vec4 s = texture2D(specTex, coord);
       specCol = s.rgb;
       specular.a = s.a;
@@ -218,7 +218,7 @@ void main()
 
   color += ambColor;
 
-  #if USE_INSTANCING && USE_SPECULAR_MAP && USE_SELF_LIGHT
+  #if USE_SPECULAR_MAP && USE_SELF_LIGHT
     color = mix(texdiffuse, color, specular.a);
   #endif
 
