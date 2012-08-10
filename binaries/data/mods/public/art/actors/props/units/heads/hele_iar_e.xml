@@ -4,20 +4,32 @@
   <group>
     <variant frequency="3" name="helmet-boeotian">
       <mesh>props/helmet/hele_helmet_t.dae</mesh>
-      <textures><texture file="props/helmet/hele_a1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/helmet/hele_a1.dds" name="baseTex"/>
+        <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="helmet-chalcidean">
       <mesh>props/helmet/hele_helmet_g.dae</mesh>
-      <textures><texture file="props/helmet/hele_f1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/helmet/hele_f1.dds" name="baseTex"/>
+        <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="helmet-illyrian">
       <mesh>props/helmet/hele_helmet_c.dae</mesh>
-      <textures><texture file="props/helmet/hele_c1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/helmet/hele_c1.dds" name="baseTex"/>
+        <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="helmet-pilos">
       <mesh>props/helmet/hele_pilos_simple.dae</mesh>
-      <textures><texture file="props/helmet/mace_d1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/helmet/mace_d1.dds" name="baseTex"/>
+        <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
