@@ -178,22 +178,26 @@ function submitChatInput()
 	var isCheat = false;
 	if (text.length)
 	{
-		var n = g_PlayerAssignments["local"].player;
 		for (var i = 0; i < cheatList.length; i++)
 		{
-			if (text.indexOf(cheatList[i].Name)>-1)
+			var cheat = cheatList[i];
+
+			// Line must start with the cheat.
+			if (text.indexOf(cheat.Name) == 0)
 			{
-				if (cheatList[i].IsNumeric)
+				var number;
+				if (cheat.IsNumeric)
 				{
-					var number = text.substr(cheatList[i].Name.length+1, text.length-1).valueOf();
-					if (!(number > 0))
-						number=cheatList[i].DefaultNumber;
+					// Match the first word in the substring.
+					var match = text.substr(cheat.Name.length).match(/\S+/);
+					if (match && match[0])
+						number = Math.floor(match[0]);
+
+					if (number <= 0 || isNaN(number))
+						number = cheat.DefaultNumber;
 				}
-				else
-				{
-					var number = undefined;
-				}
-				Engine.PostNetworkCommand({"type": "cheat", "action": cheatList[i].Action, "number": number , "selected": g_Selection.toList(), "templates": cheatList[i].Templates, "player": n});
+
+				Engine.PostNetworkCommand({"type": "cheat", "action": cheat.Action, "number": number, "selected": g_Selection.toList(), "templates": cheat.Templates, "player": Engine.GetPlayerID()});
 				isCheat = true;
 				break;
 			}

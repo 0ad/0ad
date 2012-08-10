@@ -138,11 +138,11 @@ for (var i = 0; i < numPlayers; i++)
 	for (var j = 0; j < 2; ++j)
 	{
 		var aAngle = randFloat(0, TWO_PI);
-		var aDist = 7;
+		var aDist = 9;
 		var aX = round(fx + aDist * cos(aAngle));
 		var aZ = round(fz + aDist * sin(aAngle));
 		var group = new SimpleGroup(
-			[new SimpleObject(eChicken, 5,5, 0,3)],
+			[new SimpleObject(eChicken, 5,5, 0,2)],
 			true, clBaseResource, aX, aZ
 		);
 		createObjectGroup(group, 0);

@@ -28,7 +28,10 @@
         <prop actor="props/units/shields/mace_round_craterus.xml" attachpoint="shield"/>
         <prop actor="props/units/cape_hd.xml" attachpoint="shoulders"/>
       </props>
-      <textures><texture file="skeletal/mace_hero_craterus.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/mace_hero_craterus.png" name="baseTex"/>
+        <texture file="skeletal/mace_hero_craterus_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -39,5 +42,5 @@
       </props>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
