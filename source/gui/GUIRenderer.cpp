@@ -77,6 +77,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 		// Sprite not found. Check whether this a special sprite:
 		//     "stretched:filename.ext" - stretched image
 		//     "stretched:grayscale:filename.ext" - stretched grayscale image
+		//     "cropped:(0.5, 0.25)"    - stretch this ratio (x,y) of the top left of the image
 		//     "colour:r g b a"         - solid colour
 		//
 		// and if so, try to create it as a new sprite.
@@ -100,6 +101,31 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 			CClientArea ca(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
 			Image.m_Size = ca;
 			Image.m_TextureSize = ca;
+
+			CGUISprite Sprite;
+			Sprite.AddImage(Image);
+
+			Sprites[SpriteName] = Sprite;
+			
+			it = Sprites.find(SpriteName);
+			ENSURE(it != Sprites.end()); // The insertion above shouldn't fail
+		}
+		else if (SpriteName.substr(0, 8) == "cropped:")
+		{
+			// TODO: Should check (nicely) that this is a valid file?
+			SGUIImage Image;
+
+			double xRatio = SpriteName.BeforeFirst(",").AfterLast("(").ToDouble();
+			double yRatio = SpriteName.BeforeFirst(")").AfterLast(",").ToDouble();
+			
+			int PathStart = SpriteName.Find(")") + 1;
+			
+			Image.m_TextureName = VfsPath("art/textures/ui") / wstring_from_utf8(SpriteName.substr(PathStart));
+
+			CClientArea ca(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
+			CClientArea cb(CRect(0, 0, 0, 0), CRect(0, 0, 100/xRatio, 100/yRatio));
+			Image.m_Size = ca;
+			Image.m_TextureSize = cb;
 
 			CGUISprite Sprite;
 			Sprite.AddImage(Image);

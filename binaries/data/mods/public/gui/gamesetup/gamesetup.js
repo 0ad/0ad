@@ -865,7 +865,7 @@ function onGameAttributesChange()
 			lockTeamsText.hidden = true;
 
 			// Update map preview
-			getGUIObjectByName("mapPreview").sprite = "stretched:session/icons/mappreview/" + getMapPreview(mapName);
+			getGUIObjectByName("mapPreview").sprite = "cropped:(0.78125,0.5859375)session/icons/mappreview/" + getMapPreview(mapName);
 			
 			mapSizeText.caption = "Map size:";
 			mapSize.selected = sizeIdx;
@@ -887,7 +887,7 @@ function onGameAttributesChange()
 			lockTeamsText.hidden = false;
 			
 			// Update map preview
-			getGUIObjectByName("mapPreview").sprite = "stretched:session/icons/mappreview/" + getMapPreview(mapName);
+			getGUIObjectByName("mapPreview").sprite = "cropped:(0.78125,0.5859375)session/icons/mappreview/" + getMapPreview(mapName);
 			
 			numPlayersText.caption = numPlayers;
 			mapSizeText.caption = g_MapSizes.names[sizeIdx];
@@ -912,7 +912,7 @@ function onGameAttributesChange()
 		lockTeamsText.hidden = false;
 
 		// Update map preview
-		getGUIObjectByName("mapPreview").sprite = "stretched:session/icons/mappreview/" + getMapPreview(mapName);
+		getGUIObjectByName("mapPreview").sprite = "cropped:(0.78125,0.5859375)session/icons/mappreview/" + getMapPreview(mapName);
 		numPlayersText.caption = numPlayers;
 		mapSizeText.caption = "Default";
 		revealMapText.caption = (mapSettings.RevealMap ? "Yes" : "No");
