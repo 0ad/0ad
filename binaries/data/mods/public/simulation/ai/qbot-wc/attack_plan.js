@@ -1,5 +1,5 @@
 // basically an attack plan. The name is an artifact.
-function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , targetFinder){
+function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , targetFinder) {
 	
 	//This is the list of IDs of the units in the plan
 	this.idList=[];
@@ -35,12 +35,33 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 	
 	this.onArrivalReaction = "proceedOnTargets";
 
+	// priority is relative. If all are 0, the only relevant criteria is "currentsize/targetsize".
+	// if not, this is a "bonus". The higher the priority, the more this unit will get built.
+	// Should really be clamped to [0.1-1.5] (assuming 1 is default/the norm)
+	// Eg: if all are priority 1, and the siege is 0.5, the siege units will get built
+	// only once every other category is at least 50% of its target size.
 	this.unitStat = {};
 	this.unitStat["RangedInfantry"] = { "priority" : 1, "minSize" : 4, "targetSize" : 10, "batchSize" : 5, "classes" : ["Infantry","Ranged"], "templates" : [] };
 	this.unitStat["MeleeInfantry"] = { "priority" : 1, "minSize" : 4, "targetSize" : 10, "batchSize" : 5, "classes" : ["Infantry","Melee"], "templates" : [] };
 	this.unitStat["MeleeCavalry"] = { "priority" : 1, "minSize" : 3, "targetSize" : 8 , "batchSize" : 3, "classes" : ["Cavalry","Melee"], "templates" : [] };
 	this.unitStat["RangedCavalry"] = { "priority" : 1, "minSize" : 3, "targetSize" : 8 , "batchSize" : 3, "classes" : ["Cavalry","Ranged"], "templates" : [] };
-	this.unitStat["Siege"] = { "priority" : 1, "minSize" : 0, "targetSize" : 3 , "batchSize" : 1, "classes" : ["Siege"], "templates" : [] };
+	this.unitStat["Siege"] = { "priority" : 0.5, "minSize" : 0, "targetSize" : 3 , "batchSize" : 1, "classes" : ["Siege"], "templates" : [] };
+	
+	
+	if (type === "superSized") {
+		this.unitStat["RangedInfantry"] = { "priority" : 1, "minSize" : 5, "targetSize" : 18, "batchSize" : 5, "classes" : ["Infantry","Ranged"], "templates" : [] };
+		this.unitStat["MeleeInfantry"] = { "priority" : 1, "minSize" : 6, "targetSize" : 24, "batchSize" : 5, "classes" : ["Infantry","Melee"], "templates" : [] };
+		this.unitStat["MeleeCavalry"] = { "priority" : 1, "minSize" : 4, "targetSize" : 12 , "batchSize" : 5, "classes" : ["Cavalry","Melee"], "templates" : [] };
+		this.unitStat["RangedCavalry"] = { "priority" : 1, "minSize" : 4, "targetSize" : 12 , "batchSize" : 5, "classes" : ["Cavalry","Ranged"], "templates" : [] };
+		this.unitStat["Siege"] = { "priority" : 0.5, "minSize" : 3, "targetSize" : 6 , "batchSize" : 3, "classes" : ["Siege"], "templates" : [] };
+		this.maxPreparationTime = 450*1000;
+	}
+
+	/*
+	this.unitStat["Siege"]["filter"] = function (ent) {
+		var strength = [ent.attackStrengths("Melee")["crush"],ent.attackStrengths("Ranged")["crush"]];
+		return (strength[0] > 15 || strength[1] > 15);
+	};*/
 
 	var filter = Filters.and(Filters.byMetadata("plan",this.name),Filters.byOwner(gameState.player));
 	this.unitCollection = gameState.getOwnEntities().filter(filter);
@@ -58,7 +79,7 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 		var cat = unitCat;
 		var Unit = this.unitStat[cat];
 
-		var filter = Filters.and(Filters.byClassesAnd(Unit["classes"]),Filters.and(Filters.byMetadata("plan",this.name),Filters.byOwner(gameState.player)));
+		filter = Filters.and(Filters.byClassesAnd(Unit["classes"]),Filters.and(Filters.byMetadata("plan",this.name),Filters.byOwner(gameState.player)));
 		this.unit[cat] = gameState.getOwnEntities().filter(filter);
 		this.unit[cat].registerUpdates();
 		this.unit[cat].length;
@@ -110,15 +131,22 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 	// taking this so that fortresses won't crash it for now. TODO: change the rally point if it becomes invalid
 	if(gameState.ai.pathsToMe.length > 1)
 		var position = [(gameState.ai.pathsToMe[0][0]+gameState.ai.pathsToMe[1][0])/2.0,(gameState.ai.pathsToMe[0][1]+gameState.ai.pathsToMe[1][1])/2.0];
-	else
+	else if (gameState.ai.pathsToMe.length !== 0)
 		var position = [gameState.ai.pathsToMe[0][0],gameState.ai.pathsToMe[0][1]];
+	else
+		var position = [-1,-1];
 	
 	var CCs = gameState.getOwnEntities().filter(Filters.byClass("CivCentre"));
 	var nearestCCArray = CCs.filterNearest(position, 1).toEntityArray();
 	var CCpos = nearestCCArray[0].position();
 	this.rallyPoint = [0,0];
-	this.rallyPoint[0] = (position[0]*3 + CCpos[0]) / 4.0;
-	this.rallyPoint[1] = (position[1]*3 + CCpos[1]) / 4.0;
+	if (position[0] !== -1) {
+		this.rallyPoint[0] = (position[0]*3 + CCpos[0]) / 4.0;
+		this.rallyPoint[1] = (position[1]*3 + CCpos[1]) / 4.0;
+	} else {
+		this.rallyPoint[0] = CCpos[0];
+		this.rallyPoint[1] = CCpos[1];
+	}
 	if (type == 'harass_raid')
 	{
 		this.rallyPoint[0] = (position[0]*3.9 + 0.1 * CCpos[0]) / 4.0;
@@ -132,12 +160,13 @@ function CityAttack(gameState, militaryManager, uniqueID, targetEnemy, type , ta
 	this.threatList = [];	// sounds so FBI
 	this.tactics = undefined;
 	
-	gameState.ai.queueManager.addQueue("plan_" + this.name, 130);	// high priority: some may gather anyway
+	gameState.ai.queueManager.addQueue("plan_" + this.name, 100);	// high priority: some may gather anyway
 	this.queue = gameState.ai.queues["plan_" + this.name];
 	
-	
 	this.assignUnits(gameState);
-
+	
+	// get a good path to an estimated target.
+	this.pathFinder = new aStarPath(gameState,false);
 };
 
 CityAttack.prototype.getName = function(){
@@ -160,6 +189,8 @@ CityAttack.prototype.canStart = function(gameState){
 	// TODO: check if our target is valid and a few other stuffs (good moment to attack?)
 };
 CityAttack.prototype.isStarted = function(){
+	if ((this.state !== "unexecuted"))
+		debug ("Attack plan already started");
 	return !(this.state == "unexecuted");
 };
 
@@ -178,6 +209,8 @@ CityAttack.prototype.setPaused = function(gameState, boolValue){
 	}
 };
 CityAttack.prototype.mustStart = function(gameState){
+	if (this.isPaused())
+		return false;
 	var MaxReachedEverywhere = true;
 	for (unitCat in this.unitStat) {
 		var Unit = this.unitStat[unitCat];
@@ -191,74 +224,152 @@ CityAttack.prototype.mustStart = function(gameState){
 };
 
 // Three returns possible: 1 is "keep going", 0 is "failed plan", 2 is "start"
+// 3 is a special case: no valid path returned. Right now I stop attacking alltogether.
 CityAttack.prototype.updatePreparation = function(gameState, militaryManager,events) {
-	if (this.isPaused())
-		return 1;	// continue
+	var self = this;
+	
+	if (this.path == undefined || this.target == undefined) {
+		// find our target
+		var targets = this.targetFinder(gameState, militaryManager);
+		if (targets.length === 0){
+			targets = this.defaultTargetFinder(gameState, militaryManager);
+		}
+		if (targets.length) {
+			var rand = Math.floor((Math.random()*targets.length));
+			this.targetPos = undefined;
+			var count = 0;
+			while (!this.targetPos){
+				this.target = targets.toEntityArray()[rand];
+				this.targetPos = this.target.position();
+				count++;
+				if (count > 1000){
+					debug("No target with a valid position found");
+					return false;
+				}
+			}
+			this.path = this.pathFinder.getPath(this.rallyPoint,this.targetPos, false, 2);
+			if (this.path === undefined || this.path[1] === true) {
+				return 3;
+			}
+			this.path = this.path[0];
+		}  else if (targets.length == 0 ) {
+			gameState.ai.gameFinished = true;
+			debug ("I do not have any target. So I'll just assume I won the game.");
+			return 0;
+		}
+	}
 	
 	Engine.ProfileStart("Update Preparation");
 	
-	// let's sort by training advancement, ie 'current size / target size'
-	this.buildOrder.sort(function (a,b) {
-		a[0] = a[2].length/a[3]["targetSize"];
-		b[0] = b[2].length/b[3]["targetSize"];
-		return (a[0]) - (b[0]);
-	});
-	
-	this.assignUnits(gameState);
-	
-	if ( (gameState.ai.turn + gameState.ai.player) % 40 == 0)
-		this.AllToRallyPoint(gameState, false);
-
-	var canstart = this.canStart(gameState);
-
-	Engine.ProfileStart("Creating units and looking through events");
-	
-	// gets the number in training of the same kind as the first one.
-	var specialData = "Plan_"+this.name+"_"+this.buildOrder[0][4];
-	var inTraining = gameState.countOwnQueuedEntitiesWithMetadata("special",specialData);
-	if (this.queue.countTotalQueuedUnits() + inTraining + this.buildOrder[0][2].length < Math.min(15,this.buildOrder[0][3]["targetSize"]) ) {
-		if (this.buildOrder[0][0] < 1 && this.queue.countTotalQueuedUnits() < 5) {
-			
-			var template = militaryManager.findBestTrainableUnit(gameState, this.buildOrder[0][1], [ ["strength",1], ["cost",1] ] );
-			//debug ("tried " + uneval(this.buildOrder[0][1]) +", and " + template);
-			// HACK (TODO replace) : if we have no trainable template... Then we'll simply remove the buildOrder, effectively removing the unit from the plan.
-			if (template === undefined) {
-				delete this.unitStat[this.buildOrder[0][4]];	// deleting the associated unitstat.
-				this.buildOrder.splice(0,1);
-
-			} else {
-				if (gameState.getTemplate(template).hasClasses(["CitizenSoldier", "Infantry"]))
-					this.queue.addItem( new UnitTrainingPlan(gameState,template, { "role" : "worker", "plan" : this.name, "special" : specialData },this.buildOrder[0][3]["batchSize"] ) );
-				else
-					this.queue.addItem( new UnitTrainingPlan(gameState,template, { "role" : "attack", "plan" : this.name, "special" : specialData },this.buildOrder[0][3]["batchSize"] ) );
+	// keep on while the units finish being trained.
+	if (this.mustStart(gameState) && gameState.countOwnQueuedEntitiesWithMetadata("plan", +this.name) ) {
+		this.assignUnits(gameState);
+		if ( (gameState.ai.turn + gameState.ai.player) % 40 == 0) {
+			this.AllToRallyPoint(gameState, true);	// gain some time, start regrouping
+			this.unitCollection.forEach(function (entity) { entity.setMetadata("role","attack"); });
+		}
+		Engine.ProfileStop();
+		return 1;
+	} else if (!this.mustStart(gameState)) {
+		// We still have time left to recruit units and do stuffs.
+		
+		// let's sort by training advancement, ie 'current size / target size'
+		// count the number of queued units too.
+		// substract priority.
+		this.buildOrder.sort(function (a,b) { //}) {
+							 
+			var aQueued = gameState.countOwnQueuedEntitiesWithMetadata("special","Plan_"+self.name+"_"+self.buildOrder[0][4]);
+			aQueued += self.queue.countTotalQueuedUnitsWithMetadata("special","Plan_"+self.name+"_"+self.buildOrder[0][4]);
+			a[0] = (a[2].length + aQueued)/a[3]["targetSize"];
+							 
+			var bQueued = gameState.countOwnQueuedEntitiesWithMetadata("special","Plan_"+self.name+"_"+self.buildOrder[0][4]);
+			bQueued += self.queue.countTotalQueuedUnitsWithMetadata("special","Plan_"+self.name+"_"+self.buildOrder[0][4]);
+			b[0] = (b[2].length + bQueued)/b[3]["targetSize"];
+							 
+			a[0] -= a[3]["priority"];
+			b[0] -= b[3]["priority"];
+			return (a[0]) - (b[0]);
+		});
+		
+		if (!this.isPaused()) {
+			this.assignUnits(gameState);
+		
+			if ( (gameState.ai.turn + gameState.ai.player) % 40 == 0) {
+				this.AllToRallyPoint(gameState, false);
+				this.unitCollection.setStance("defensive");	// make sure units won't disperse out of control
 			}
 		}
-	}
-	// can happen for now
-	if (this.buildOrder.length === 0) {
-		debug ("Ending plan: no build orders");
-		return 0;	// will abort the plan, should return something else
-	}
-
-	for (var key in events){
-		var e = events[key];
-		if (e.type === "Attacked" && e.msg){
-			if (this.unitCollection.toIdArray().indexOf(e.msg.target) !== -1){
-				var attacker = gameState.getEntityById(e.msg.attacker);
-				if (attacker && attacker.position()) {
-					this.unitCollection.attack(e.msg.attacker);
-					break;
+		
+		Engine.ProfileStart("Creating units.");
+		
+		// gets the number in training of the same kind as the first one.
+		var specialData = "Plan_"+this.name+"_"+this.buildOrder[0][4];
+		var inTraining = gameState.countOwnQueuedEntitiesWithMetadata("special",specialData);
+		if (this.queue.countTotalQueuedUnits() + inTraining + this.buildOrder[0][2].length < Math.min(15,this.buildOrder[0][3]["targetSize"]) ) {
+			if (this.buildOrder[0][0] < 1 && this.queue.length() < 4) {
+				
+				var template = militaryManager.findBestTrainableUnit(gameState, this.buildOrder[0][1], [ ["strength",1], ["cost",1] ] );
+				//debug ("tried " + uneval(this.buildOrder[0][1]) +", and " + template);
+				// HACK (TODO replace) : if we have no trainable template... Then we'll simply remove the buildOrder, effectively removing the unit from the plan.
+				if (template === undefined) {
+					delete this.unitStat[this.buildOrder[0][4]];	// deleting the associated unitstat.
+					this.buildOrder.splice(0,1);
+					
+				} else {
+					if (gameState.getTemplate(template).hasClasses(["CitizenSoldier", "Infantry"]))
+						this.queue.addItem( new UnitTrainingPlan(gameState,template, { "role" : "worker", "plan" : this.name, "special" : specialData },this.buildOrder[0][3]["batchSize"] ) );
+					else
+						this.queue.addItem( new UnitTrainingPlan(gameState,template, { "role" : "attack", "plan" : this.name, "special" : specialData },this.buildOrder[0][3]["batchSize"] ) );
 				}
 			}
 		}
+		/*
+		if (!this.startedPathing && this.path === undefined) {
+			
+			// find our target
+			var targets = this.targetFinder(gameState, militaryManager);
+			if (targets.length === 0){
+				targets = this.defaultTargetFinder(gameState, militaryManager);
+			}
+			if (targets.length) {
+				var rand = Math.floor((Math.random()*targets.length));
+				this.targetPos = undefined;
+				var count = 0;
+				while (!this.targetPos){
+					var target = targets.toEntityArray()[rand];
+					this.targetPos = target.position();
+					count++;
+					if (count > 1000){
+						debug("No target with a valid position found");
+						return false;
+					}
+				}
+				this.startedPathing = true;
+				// Start pathfinding using the optimized version, with a minimal sampling of 2
+				this.pathFinder.getPath(this.rallyPoint,this.targetPos, false, 2, gameState);
+			}
+		} else if (this.startedPathing) {
+			var path = this.pathFinder.continuePath(gameState);
+			if (path !== "toBeContinued") {
+				this.startedPathing = false;
+				this.path = path;
+				debug("Pathing ended");
+			}
+		}
+		*/
+		// can happen for now
+		if (this.buildOrder.length === 0) {
+			debug ("Ending plan: no build orders");
+			return 0;	// will abort the plan, should return something else
+		}
+		Engine.ProfileStop();
+		Engine.ProfileStop();
+		return 1;
 	}
 	Engine.ProfileStop();
-	// we count our units by triggering "canStart"
-	// returns false if we can no longer have time and cannot start.
-	// returns 0 if I must start and can't, returns 1 if I don't have to start, and returns 2 if I must start and can
-	if (!this.mustStart(gameState))
-		return 1;
-	else if (canstart)
+	// if we're here, it means we must start (and have no units in training left).
+	// if we can, do, else, abort.
+	if (this.canStart(gameState))
 		return 2;
 	else
 		return 0;
@@ -268,21 +379,13 @@ CityAttack.prototype.assignUnits = function(gameState){
 	var self = this;
 
 	// TODO: assign myself units that fit only, right now I'm getting anything.
-	
-	/*
-	 // I'll take any unit set to "Defense" that has no subrole (ie is set to be a defensive unit, but has no particular task)
-	// I assign it to myself, and then it's mine, the entity collection will detect it.
-	var Defenders = gameState.getOwnEntitiesByRole("defence");
-	Defenders.forEach(function(ent) {
-		if (ent.getMetadata("subrole") == "idle" || !ent.getMetadata("subrole")) {
-			ent.setMetadata("role", "attack");
-			ent.setMetadata("plan", self.name);
-		}
-	});*/
 	// Assign all no-roles that fit (after a plan aborts, for example).
 	var NoRole = gameState.getOwnEntitiesByRole(undefined);
 	NoRole.forEach(function(ent) {
-		ent.setMetadata("role", "attack");
+		if (ent.hasClasses(["CitizenSoldier", "Infantry"]))
+			ent.setMetadata("role", "worker");
+		else
+			ent.setMetadata("role", "attack");
 		ent.setMetadata("plan", self.name);
 	});
 
@@ -314,13 +417,20 @@ CityAttack.prototype.AllToRallyPoint = function(gameState, evenWorkers) {
 CityAttack.prototype.defaultTargetFinder = function(gameState, militaryManager){
 	var targets = undefined;
 	
-	targets = militaryManager.enemyWatchers[this.targetPlayer].getEnemyBuildings("ConquestCritical");
+	targets = militaryManager.enemyWatchers[this.targetPlayer].getEnemyBuildings("CivCentre");
+	if (targets.length == 0) {
+		targets = militaryManager.enemyWatchers[this.targetPlayer].getEnemyBuildings("ConquestCritical");
+	}
 	// If there's nothing, attack anything else that's less critical
 	if (targets.length == 0) {
 		targets = militaryManager.enemyWatchers[this.targetPlayer].getEnemyBuildings("Town");
 	}
 	if (targets.length == 0) {
 		targets = militaryManager.enemyWatchers[this.targetPlayer].getEnemyBuildings("Village");
+	}
+	// no buildings, attack anything conquest critical, even units (it's assuming it won't move).
+	if (targets.length == 0) {
+		targets = gameState.getEnemyEntities().filter(Filters.byClass("ConquestCritical"));
 	}
 	return targets;
 };
@@ -355,59 +465,21 @@ CityAttack.prototype.raidingTargetFinder = function(gameState, militaryManager, 
 // If we're here, it's because we have in our IDlist enough units.
 // now the IDlist units are treated turn by turn
 CityAttack.prototype.StartAttack = function(gameState, militaryManager){
-
-	var targets = [];
-	if (this.type === "harass_raid")
-		targets = this.targetFinder(gameState, militaryManager, "villager");
-	else
-	{
-		targets = this.targetFinder(gameState, militaryManager);
 	
-		if (targets.length === 0){
-			targets = this.defaultTargetFinder(gameState, militaryManager);
-		}
-	}
+	// check we have a target and a path.
 	
-	// If we have a target, move to it
-	if (targets.length) {		
+	if (this.targetPos && this.path !== undefined) {
+		// erase our queue. This will stop any leftover unit from being trained.
+		gameState.ai.queueManager.removeQueue("plan_" + this.name);
+		
 		var curPos = this.unitCollection.getCentrePosition();
-		
-		// pick a random target from the list 
-		var rand = Math.floor((Math.random()*targets.length));
-		this.targetPos = undefined;
-		var count = 0;
-		while (!this.targetPos){
-			var target = targets.toEntityArray()[rand];
-			this.targetPos = target.position();
-			count++;
-			if (count > 1000){
-				warn("No target with a valid position found");
-				return false;
-			}
-		}
-		
-		// Find possible distinct paths to the enemy 
-		var pathFinder = new PathFinder(gameState);
-		var pathsToEnemy = pathFinder.getPaths(curPos, this.targetPos);
-		if (! pathsToEnemy){
-			pathsToEnemy = [[this.targetPos]];
-		}
-		this.path = [];
-		
-		if (this.type !== "harass_raid")
-		{
-			var rand = Math.floor(Math.random() * pathsToEnemy.length);
-			this.path = pathsToEnemy[rand];
-		} else {
-			this.path = pathsToEnemy[Math.min(2,pathsToEnemy.length-1)];		
-		}
 		
 		this.unitCollection.forEach(function(ent) { ent.setMetadata("subrole", "attacking"); ent.setMetadata("role", "attack") ;});
 		
 		// filtering by those that started to attack only
 		var filter = Filters.byMetadata("subrole","attacking");
 		this.unitCollection = this.unitCollection.filter(filter);
-		//this.unitCollection.registerUpdates();
+		this.unitCollection.registerUpdates();
 		//this.unitCollection.length;
 		
 		for (unitCat in this.unitStat) {
@@ -418,7 +490,7 @@ CityAttack.prototype.StartAttack = function(gameState, militaryManager){
 		this.unitCollection.move(this.path[0][0], this.path[0][1]);
 		debug ("Started to attack with the plan " + this.name);
 		this.state = "walking";
-	} else if (targets.length == 0 ) {
+	} else {
 		gameState.ai.gameFinished = true;
 		debug ("I do not have any target. So I'll just assume I won the game.");
 		return true;
@@ -428,6 +500,7 @@ CityAttack.prototype.StartAttack = function(gameState, militaryManager){
 
 // Runs every turn after the attack is executed
 CityAttack.prototype.update = function(gameState, militaryManager, events){
+	var self = this;
 	Engine.ProfileStart("Update Attack");
 
 	// we're marching towards the target
@@ -545,10 +618,10 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 	}*/
 	}
 	if (this.state === "walking"){
-		if (SquareVectorDistance(this.position, this.lastPosition) < 400 && this.path.length > 0) {
+		if (SquareVectorDistance(this.position, this.lastPosition) < 20 && this.path.length > 0) {
 			this.unitCollection.move(this.path[0][0], this.path[0][1]);
 		}
-		if (SquareVectorDistance(this.unitCollection.getCentrePosition(), this.path[0]) < 400){
+		if (SquareVectorDistance(this.unitCollection.getCentrePosition(), this.path[0]) < 900){
 			this.path.shift();
 			if (this.path.length > 0){
 				this.unitCollection.move(this.path[0][0], this.path[0][1]);
@@ -564,31 +637,10 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 		// let's proceed on with whatever happens now.
 		// There's a ton of TODOs on this part.
 		if (this.onArrivalReaction == "proceedOnTargets") {
-			// Each unit will randomly pick a target and attack it and then they'll do what they feel like doing for now. TODO
-			// only the targeted enemy. I've seen the units attack gazelles otherwise.
-			var enemyUnits = gameState.getEnemyEntities().filter(Filters.and(Filters.byStaticDistance(this.unitCollection.getCentrePosition(), 100), Filters.byClass("Unit")));
-			enemyUnits = enemyUnits.filter(Filters.byOwner(this.targetEnemy));
-			var enemyStructures = gameState.getEnemyEntities().filter(Filters.and(Filters.byStaticDistance(this.unitCollection.getCentrePosition(), 150), Filters.byClass("Structure")));
-			enemyStructures = enemyStructures.filter(Filters.byOwner(this.targetEnemy));
-			enemyUnits = enemyUnits.toEntityArray();
-			enemyStructures = enemyStructures.toEntityArray();
-			
-			this.unitCollection.forEach( function (ent) { //}) {
-				if (ent.hasClass("Siege")) {
-					if (enemyStructures.length !== 0) {
-						var rand = Math.floor(Math.random() * enemyStructures.length*0.99);
-						ent.attack(enemyStructures[+rand].id());
-					} else
-						ent.stopMoving();
-				} else {
-					if (enemyUnits.length !== 0) {
-						var rand = Math.floor(Math.random() * enemyUnits.length*0.99);
-						ent.attack(enemyUnits[(+rand)].id());
-					} else
-						ent.stopMoving();
-				}
-			});
 			this.state = "";
+			this.unitCollection.forEach( function (ent) { //}) {
+				ent.stopMoving();
+			});
 		} else if (this.onArrivalReaction == "huntVillagers") {
 			// let's get any villager and target them with a tactics manager
 			var enemyCitizens = gameState.entities.filter(function(ent) {
@@ -608,30 +660,56 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 			}
 		}
 	}
-	if (this.state === ""){
+	
+	if (this.state === "" && gameState.ai.playedTurn % 3 === 0) {
 		// Each unit will randomly pick a target and attack it and then they'll do what they feel like doing for now. TODO
 		// only the targeted enemy. I've seen the units attack gazelles otherwise.
-		var enemyUnits = gameState.getEnemyEntities().filter(Filters.and(Filters.byStaticDistance(this.unitCollection.getCentrePosition(), 200), Filters.byClass("Unit")));
-		enemyUnits = enemyUnits.filter(Filters.byOwner(this.targetEnemy));
-		var enemyStructures = gameState.getEnemyEntities().filter(Filters.and(Filters.byStaticDistance(this.unitCollection.getCentrePosition(), 250), Filters.byClass("Structure")));
-		enemyStructures = enemyStructures.filter(Filters.byOwner(this.targetEnemy));
-		enemyUnits = enemyUnits.toEntityArray();
-		enemyStructures = enemyStructures.toEntityArray();
-		
+		var enemyUnits = gameState.getEnemyEntities().filter(Filters.and(Filters.byOwner(this.targetPlayer), Filters.byClass("Unit")));
+		var enemyStructures = gameState.getEnemyEntities().filter(Filters.and(Filters.byOwner(this.targetPlayer), Filters.byClass("Structure")));
 		this.unitCollection.forEach( function (ent) { //}) {
 			if (ent.isIdle()) {
+				var mStruct = enemyStructures.filter(function (enemy) {// }){
+					if (!enemy.position()) {
+						return false;
+					}
+					if (SquareVectorDistance(enemy.position(),ent.position()) > ent.visionRange()*ent.visionRange() + 100) {
+						return false;
+					}
+					return true;
+				});
+				var mUnit = enemyUnits.filter(function (enemy) {// }){
+					if (!enemy.position()) {
+						return false;
+					}
+					if (SquareVectorDistance(enemy.position(),ent.position()) > ent.visionRange()*ent.visionRange() + 100) {
+						return false;
+					}
+					return true;
+				});
+				mUnit = mUnit.toEntityArray();
+				mStruct = mStruct.toEntityArray();
 				if (ent.hasClass("Siege")) {
-					if (enemyStructures.length !== 0) {
-						var rand = Math.floor(Math.random() * enemyStructures.length*0.99);
-						ent.attack(enemyStructures[+rand].id());
-					} else
-						ent.stopMoving();
+					if (mStruct.length !== 0) {
+						var rand = Math.floor(Math.random() * mStruct.length*0.99);
+						ent.attack(mStruct[+rand].id());
+						//debug ("Siege units attacking a structure from " +mStruct[+rand].owner() + " , " +mStruct[+rand].templateName());
+					} else if (SquareVectorDistance(self.targetPos, ent.position()) > 900 ){
+						//debug ("Siege units moving to " + uneval(self.targetPos));
+						ent.move((self.targetPos[0] + ent.position()[0])/2,(self.targetPos[1] + ent.position()[1])/2);
+					}
 				} else {
-					if (enemyUnits.length !== 0) {
-						var rand = Math.floor(Math.random() * enemyUnits.length*0.99);
-						ent.attack(enemyUnits[(+rand)].id());
-					} else
-						ent.stopMoving();
+					if (mUnit.length !== 0) {
+						var rand = Math.floor(Math.random() * mUnit.length*0.99);
+						ent.attack(mUnit[(+rand)].id());
+						//debug ("Units attacking a unit from " +mUnit[+rand].owner() + " , " +mUnit[+rand].templateName());
+					} else if (mStruct.length !== 0) {
+						var rand = Math.floor(Math.random() * mStruct.length*0.99);
+						ent.attack(mStruct[+rand].id());
+						//debug ("Units attacking a structure from " +mStruct[+rand].owner() + " , " +mStruct[+rand].templateName());
+					} else if (SquareVectorDistance(self.targetPos, ent.position()) > 900 ){
+						//debug ("Units moving to " + uneval(self.targetPos));
+						ent.move((self.targetPos[0] + ent.position()[0])/2,(self.targetPos[1] + ent.position()[1])/2);
+					}
 				}
 			}
 		});
@@ -654,6 +732,7 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 	}*/
 	this.lastPosition = this.position;
 	Engine.ProfileStop();
+	
 	return this.unitCollection.length;
 };
 CityAttack.prototype.totalCountUnits = function(gameState){

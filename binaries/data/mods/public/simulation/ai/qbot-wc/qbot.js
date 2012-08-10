@@ -35,6 +35,9 @@ function QBotAI(settings) {
 	this.firstTime = true;
 
 	this.savedEvents = [];
+	
+	this.defcon = 5;
+	this.defconChangeTime = -10000000;
 }
 
 QBotAI.prototype = new BaseAI();
@@ -78,8 +81,9 @@ QBotAI.prototype.runInit = function(gameState){
 
 		this.templateManager = new TemplateManager(gameState);
 		
-		
-		
+		this.distanceFromMeMap = new Map(gameState);
+		this.distanceFromMeMap.drawDistance(gameState,myKeyEntities.toEntityArray());
+		//this.distanceFromMeMap.dumpIm("dumping.png", this.distanceFromMeMap.width*1.5);
 	}
 };
 
@@ -90,6 +94,12 @@ QBotAI.prototype.OnUpdate = function() {
 	
 	if (this.events.length > 0){
 		this.savedEvents = this.savedEvents.concat(this.events);
+	}
+	
+	if (this.turn == 0) {
+		debug ("Initializing");
+		var gameState = new GameState(this);
+		this.runInit(gameState);
 	}
 	
 	// Run the update every n turns, offset depending on player ID to balance
@@ -105,13 +115,17 @@ QBotAI.prototype.OnUpdate = function() {
 			return; // With no entities to control the AI cannot do anything 
 		}
 		
+		// defcon cooldown
+		if (this.defcon < 5 && gameState.timeSinceDefconChange() > 20000)
+			this.defcon++;
+		
 		this.runInit(gameState);
 		
 		for (var i in this.modules){
 			this.modules[i].update(gameState, this.queues, this.savedEvents);
 		}
 		
-		this.updateDynamicPriorities(gameState, this.queues);
+		//this.updateDynamicPriorities(gameState, this.queues);
 		
 		this.queueManager.update(gameState);
 		

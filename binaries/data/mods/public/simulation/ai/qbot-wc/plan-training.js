@@ -30,7 +30,7 @@ UnitTrainingPlan.prototype.canExecute = function(gameState) {
 
 UnitTrainingPlan.prototype.execute = function(gameState) {
 	//warn("Executing UnitTrainingPlan " + uneval(this));
-
+	var self = this;
 	var trainers = gameState.findTrainers(this.type).toEntityArray();
 
 	// Prefer training buildings with short queues
@@ -38,6 +38,16 @@ UnitTrainingPlan.prototype.execute = function(gameState) {
 	// plans that have already been executed this turn)
 	if (trainers.length > 0){
 		trainers.sort(function(a, b) {
+			
+			if (self.metadata["plan"] !== undefined) {
+				var aa = a.trainingQueueTime();
+				var bb = b.trainingQueueTime();
+				if (a.hasClass("Civic"))
+					aa += 20;
+				if (b.hasClass("Civic"))
+					bb += 20;
+				return (a.trainingQueueTime() - b.trainingQueueTime());
+			}
 			return a.trainingQueueTime() - b.trainingQueueTime();
 		});
 	

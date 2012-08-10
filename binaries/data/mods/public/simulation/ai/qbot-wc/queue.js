@@ -100,6 +100,18 @@ Queue.prototype.countTotalQueuedUnitsWithClass = function(classe){
 	}
 	return count;
 };
+Queue.prototype.countTotalQueuedUnitsWithMetadata = function(data,value){
+	var count = 0;
+	for (var i in this.queue){
+		if (this.queue[i].metadata[data] && this.queue[i].metadata[data] == value)
+			count += this.queue[i].number;
+	}
+	for (var i in this.outQueue){
+		if (this.outQueue[i].metadata[data] && this.outQueue[i].metadata[data] == value)
+			count += this.outQueue[i].number;
+	}
+	return count;
+};
 
 Queue.prototype.totalLength = function(){
 	return this.queue.length + this.outQueue.length;

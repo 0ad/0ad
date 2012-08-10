@@ -7,16 +7,8 @@
  */
 
 var MilitaryAttackManager = function() {
-	// these use the structure soldiers[unitId] = true|false to register the units
-	this.attackManagers = [AttackMoveToLocation];
-	this.availableAttacks = [];
-	this.currentAttacks = [];
-	
-	// Counts how many attacks we have sent at the enemy.
-	this.attackCount = 0;
-	this.lastAttackTime = 0;
-	
 	this.defenceManager = new Defence();
+	
 	this.TotalAttackNumber = 0;
 	this.upcomingAttacks = { "CityAttack" : [] };
 	this.startedAttacks = { "CityAttack" : [] };
@@ -144,8 +136,10 @@ MilitaryAttackManager.prototype.findBestNewUnit = function(gameState, queue, sol
 // picks the best template based on parameters and classes
 MilitaryAttackManager.prototype.findBestTrainableUnit = function(gameState, classes, parameters) {
 	var units = gameState.findTrainableUnits(classes);
+	
 	if (units.length === 0)
 		return undefined;
+	
 	
 	units.sort(function(a, b) { //}) {
 			   var aDivParam = 0, bDivParam = 0;
@@ -407,7 +401,7 @@ MilitaryAttackManager.prototype.constructTrainingBuildings = function(gameState,
 	// Build more military buildings
 	// TODO: make military building better
 	Engine.ProfileStart("Build buildings");
-	if (gameState.countEntitiesByType(gameState.applyCiv("units/{civ}_support_female_citizen")) > 35) {
+	if (gameState.countEntitiesByType(gameState.applyCiv("units/{civ}_support_female_citizen")) > 25) {
 		if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bModerate[0]))
 				+ queues.militaryBuilding.totalLength() < 1) {
 			queues.militaryBuilding.addItem(new BuildingConstructionPlan(gameState, this.bModerate[0]));
@@ -543,37 +537,36 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 				
 				var attack = this.upcomingAttacks[attackType][i];
 				
-				if (!attack.isPaused()) {
-					// okay so we'll get the support plan
-					if (!attack.isStarted()) {
-						if (1) { //gameState.ai.status["underAttack"] == false) {
-							var updateStep = attack.updatePreparation(gameState, this,events);
-							
-							// now we're gonna check if the preparation time is over
-							if (updateStep === 1) {
-								// just chillin'
-							} else if (updateStep === 0) {
-								debug ("Military Manager: " +attack.getType() +" plan " +attack.getName() +" aborted.");
-								attack.Abort(gameState, this);
-								
-								//this.abortedAttacks.push(attack);
-								
-								this.upcomingAttacks[attackType].splice(i,1);
-								i--;
-							} else if (updateStep === 2) {
-								debug ("Military Manager: Starting " +attack.getType() +" plan " +attack.getName());
-								attack.StartAttack(gameState,this);
-								this.startedAttacks[attackType].push(attack);
-								this.upcomingAttacks[attackType].splice(i,1);
-								i--;
-							}
+				// okay so we'll get the support plan
+				if (!attack.isStarted()) {
+					var updateStep = attack.updatePreparation(gameState, this,events);
+					
+					// now we're gonna check if the preparation time is over
+					if (updateStep === 1 || attack.isPaused() ) {
+						// just chillin'
+					} else if (updateStep === 0 || updateStep === 3) {
+						debug ("Military Manager: " +attack.getType() +" plan " +attack.getName() +" aborted.");
+						if (updateStep === 3) {
+							this.attackPlansEncounteredWater = true;
+							debug("I dare not wet my feet");
 						}
-					} else {
-						debug ("Military Manager: Starting " +attack.getType() +" plan " +attack.getName());
-						this.startedAttacks[attackType].push(attack);
-						this.upcomingAttacks[attackType].splice(i,1);
+						attack.Abort(gameState, this);
+						//this.abortedAttacks.push(attack);
+						
 						i--;
+						this.upcomingAttacks[attackType].splice(i,1);
+					} else if (updateStep === 2) {
+						debug ("Military Manager: Starting " +attack.getType() +" plan " +attack.getName());
+						attack.StartAttack(gameState,this);
+						this.startedAttacks[attackType].push(attack);
+						i--;
+						this.upcomingAttacks[attackType].splice(i-1,1);
 					}
+				} else {
+					debug ("Military Manager: Starting " +attack.getType() +" plan " +attack.getName());
+					this.startedAttacks[attackType].push(attack);
+					i--;
+					this.upcomingAttacks[attackType].splice(i-1,1);
 				}
 			}
 		}
@@ -596,10 +589,15 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 		}
 	}
 	// creating plans after updating because an aborted plan might be reused in that case.
-	if (gameState.countEntitiesByType(gameState.applyCiv(this.bModerate[0])) >= 1) {
-		if (this.upcomingAttacks["CityAttack"].length == 0) {
+	if (gameState.countEntitiesByType(gameState.applyCiv(this.bModerate[0])) >= 1 && !this.attackPlansEncounteredWater) {
+		if (this.upcomingAttacks["CityAttack"].length == 0 && gameState.getTimeElapsed() < 25*60000) {
 			var Lalala = new CityAttack(gameState, this,this.TotalAttackNumber, -1);
 			debug ("Military Manager: Creating the plan " +this.TotalAttackNumber);
+			this.TotalAttackNumber++;
+			this.upcomingAttacks["CityAttack"].push(Lalala);
+		} else if (this.upcomingAttacks["CityAttack"].length == 0) {
+			var Lalala = new CityAttack(gameState, this,this.TotalAttackNumber, -1, "superSized");
+			debug ("Military Manager: Creating the super sized plan " +this.TotalAttackNumber);
 			this.TotalAttackNumber++;
 			this.upcomingAttacks["CityAttack"].push(Lalala);
 		}

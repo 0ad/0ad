@@ -177,6 +177,9 @@ enemyWatcher.prototype.splitArmies = function(gameState){
 		army.forEach( function (enemy) {
 			if (enemy.position() == undefined)
 				return;
+					 
+			// debug ("entity " +enemy.templateName() + " is currently " +enemy.visibility(gameState.player));
+					 
 			if (!inRange(enemy.position(),centre, 3500) ) {
 				var newArmyID = uneval( gameState.player + "" + self.totalNBofArmies);
 				if (self.dangerousArmies.indexOf(armyID) !== -1)

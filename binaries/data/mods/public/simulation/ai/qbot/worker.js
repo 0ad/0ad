@@ -16,8 +16,8 @@ Worker.prototype.update = function(gameState) {
 	}
 	
 	if (subrole === "gatherer"){
-		if (!(this.ent.unitAIState().split(".")[1] === "GATHER" && this.ent.unitAIOrderData().type 
-				&& this.getResourceType(this.ent.unitAIOrderData().type) === this.ent.getMetadata("gather-type"))
+		if (!(this.ent.unitAIState().split(".")[1] === "GATHER" && this.ent.unitAIOrderData()[0].type
+				&& this.getResourceType(this.ent.unitAIOrderData()[0].type) === this.ent.getMetadata("gather-type"))
 				&& !(this.ent.unitAIState().split(".")[1] === "RETURNRESOURCE")){
 			// TODO: handle combat for hunting animals
 			if (!this.ent.resourceCarrying() || this.ent.resourceCarrying().length === 0 || 
@@ -72,7 +72,7 @@ Worker.prototype.update = function(gameState) {
 Worker.prototype.updateGathererCounts = function(gameState, dead){
 	// update gatherer counts for the resources
 	if (this.ent.unitAIState().split(".")[2] === "GATHERING" && !dead){
-		if (this.gatheringFrom !== this.ent.unitAIOrderData().target){
+		if (this.gatheringFrom !== this.ent.unitAIOrderData()[0].target){
 			if (this.gatheringFrom){
 				var ent = gameState.getEntityById(this.gatheringFrom);
 				if (ent){
@@ -80,7 +80,7 @@ Worker.prototype.updateGathererCounts = function(gameState, dead){
 					this.markFull(ent);
 				}
 			}
-			this.gatheringFrom = this.ent.unitAIOrderData().target;
+			this.gatheringFrom = this.ent.unitAIOrderData()[0].target;
 			if (this.gatheringFrom){
 				var ent = gameState.getEntityById(this.gatheringFrom);
 				if (ent){

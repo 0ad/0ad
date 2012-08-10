@@ -116,7 +116,10 @@ PathFinder.prototype.getPaths = function(start, end, mode){
 	}
 	
 	var paths = [];
+	var i = 0;
 	while (true){
+		i++;
+		//this.dumpIm("terrainanalysis_"+i+".png", 511);
 		this.makeGradient(s,e);
 		var curPath = this.walkGradient(e, mode);
 		
@@ -134,7 +137,7 @@ PathFinder.prototype.getPaths = function(start, end, mode){
 	if (paths.length > 0){
 		return paths;
 	}else{
-		return undefined;
+		return [];
 	}
 };
 
@@ -292,7 +295,7 @@ function Accessibility(gameState, location){
 		start = this.findClosestPassablePoint(this.gamePosToMapPos(location));
 		iterations += 1;
 	}
-	
+	//this.dumpIm("accessibility.png");
 }
 
 copyPrototype(Accessibility, TerrainAnalysis);
@@ -347,4 +350,362 @@ Accessibility.prototype.floodFill = function(start){
 		newStack = [];
 	}
 	return count;
+};
+
+
+
+
+// Some different take on the idea of Quantumstate... What I'll do is make a list of any terrain obstruction...
+
+function aStarPath(gameState, onWater){
+	var self = this;
+	
+	this.passabilityMap = gameState.getMap();
+	
+	var obstructionMaskLand = gameState.getPassabilityClassMask("default");
+	var obstructionMaskWater = gameState.getPassabilityClassMask("ship");
+	
+	var obstructionTiles = new Uint16Array(this.passabilityMap.data.length);
+	for (var i = 0; i < this.passabilityMap.data.length; ++i)
+	{
+		if (onWater) {
+			obstructionTiles[i] = (this.passabilityMap.data[i] & obstructionMaskWater) ? 0 : 255;
+		} else {
+			obstructionTiles[i] = (this.passabilityMap.data[i] & obstructionMaskLand) ? 0 : 255;
+			// We allow water, but we set it at a different index.
+			if (!(this.passabilityMap.data[i] & obstructionMaskWater) && obstructionTiles[i] === 0)
+				obstructionTiles[i] = 200;
+		}
+	}
+	if (onWater)
+		this.onWater = true;
+	else
+		this.onWater = false;
+	this.pathRequiresWater = this.onWater;
+	
+	this.cellSize = gameState.cellSize;
+	
+	this.Map(gameState, obstructionTiles);
+	this.passabilityMap = new Map(gameState, obstructionTiles, true);
+	
+	var type = ["wood","stone", "metal"];
+	if (onWater)	// trees can perhaps be put into water, I'd doubt so about the rest.
+		type = ["wood"];
+	for (o in type) {
+		var entities = gameState.getResourceSupplies(type[o]);
+		entities.forEach(function (supply) { //}){
+			var radius = Math.floor(supply.obstructionRadius() / self.cellSize);
+			if (type[o] === "wood") {
+				for (var xx = -1; xx <= 1;xx++)
+					for (var yy = -1; yy <= 1;yy++)
+					{
+						var x = self.gamePosToMapPos(supply.position())[0];
+						var y = self.gamePosToMapPos(supply.position())[1];
+						if (x+xx >= 0 && x+xx < self.width && y+yy >= 0 && y+yy < self.height)
+						{
+							self.passabilityMap.map[x+xx + (y+yy)*self.width] = 100; // tree
+						}
+					}
+				self.map[x + y*self.width] = 0;
+				self.passabilityMap.map[x + y*self.width] = 0;
+			} else {
+				for (var xx = -radius; xx <= radius;xx++)
+					for (var yy = -radius; yy <= radius;yy++)
+					{
+						var x = self.gamePosToMapPos(supply.position())[0];
+						var y = self.gamePosToMapPos(supply.position())[1];
+						if (x+xx >= 0 && x+xx < self.width && y+yy >= 0 && y+yy < self.height)
+						{
+							self.map[x+xx + (y+yy)*self.width] = 0;
+							self.passabilityMap.map[x+xx + (y+yy)*self.width] = 0;
+						}
+					}
+			}
+		});
+	}
+	//this.dumpIm("Non-Expanded Obstructions.png",255);
+	this.expandInfluences();
+	//this.dumpIm("Expanded Obstructions.png",10);
+	//this.BluringRadius = 10;
+	//this.Blur(this.BluringRadius); // first steop of bluring
+}
+copyPrototype(aStarPath, TerrainAnalysis);
+
+aStarPath.prototype.getPath = function(start,end,optimized, minSampling, iterationLimit , gamestate)
+{
+	if (minSampling === undefined)
+		this.minSampling = 2;
+	else this.minSampling = minSampling;
+	
+	if (start[0] < 0 || this.gamePosToMapPos(start)[0] >= this.width || start[1] < 0 || this.gamePosToMapPos(start)[1] >= this.height)
+		return undefined;
+	
+	var s = this.findClosestPassablePoint(this.gamePosToMapPos(start));
+	var e = this.findClosestPassablePoint(this.gamePosToMapPos(end));
+	
+	if (!s || !e){
+		return undefined;
+	}
+	
+	var w = this.width;
+	var h = this.height;
+	
+	this.optimized = optimized;
+	if (this.minSampling < 1)
+		this.minSampling = 1;
+	
+	if (gamestate !== undefined)
+	{
+		this.TotorMap = new Map(gamestate);
+		this.TotorMap.addInfluence(s[0],s[1],1,200,'constant');
+		this.TotorMap.addInfluence(e[0],e[1],1,200,'constant');
+	}
+	this.iterationLimit = 65500;
+	if (iterationLimit !== undefined)
+		this.iterationLimit = iterationLimit;
+	
+	this.s = s[0] + w*s[1];
+	this.e = e[0] + w*e[1];
+	
+	// I was using incredibly slow associative arrays before…
+	this.openList = [];
+	this.parentSquare = new Uint32Array(this.map.length);
+	this.isOpened = new Boolean(this.map.length);
+	this.fCostArray = new Uint32Array(this.map.length);
+	this.gCostArray = new Uint32Array(this.map.length);
+	this.currentSquare = this.s;
+	
+	this.totalIteration = 0;
+	
+	this.isOpened[this.s] = true;
+	this.openList.push(this.s);
+	this.fCostArray[this.s] = SquareVectorDistance([this.s%w, Math.floor(this.s/w)], [this.e%w, Math.floor(this.e/w)]);
+	this.gCostArray[this.s] = 0;
+	this.parentSquare[this.s] = this.s;
+	//debug ("Initialized okay");
+	return this.continuePath(gamestate);
+	
+}
+// in case it's not over yet, this can carry on the calculation of a path over multiple turn until it's over
+aStarPath.prototype.continuePath = function(gamestate)
+{
+	var w = this.width;
+	var h = this.height;
+	var positions = [[0,1], [0,-1], [1,0], [-1,0], [1,1], [-1,-1], [1,-1], [-1,1]];
+	var cost = [100,100,100,100,150,150,150,150];
+	var invCost = [1,1,1,1,0.8,0.8,0.8,0.8];
+	//creation of variables used in the loop
+	var found = false;
+	var nouveau = false;
+	var shortcut = false;
+	var Sampling = this.minSampling;
+	var closeToEnd = false;
+	var infinity = Math.min();
+	var currentDist = infinity;
+	var e = this.e;
+	var s = this.s;
+
+	var iteration = 0;
+	// on to A*
+	while (found === false && this.openList.length !== 0 && iteration < this.iterationLimit){
+		currentDist = infinity;
+		
+		if (shortcut === true) {
+			this.currentSquare = this.openList.shift();
+		} else {
+			for (i in this.openList)
+			{
+				var sum = this.fCostArray[this.openList[i]] + this.gCostArray[this.openList[i]];
+				if (sum < currentDist)
+				{
+					this.currentSquare = this.openList[i];
+					currentDist = sum;
+				}
+			}
+			this.openList.splice(this.openList.indexOf(this.currentSquare),1);
+		}
+		if (!this.onWater && this.passabilityMap.map[this.currentSquare] === 200) {
+			this.onWater = true;
+			this.pathRequiresWater = true;
+		} else if (this.onWater && this.passabilityMap.map[this.currentSquare] !== 200)
+			this.onWater = false;
+		
+		shortcut = false;
+		this.isOpened[this.currentSquare] = false;
+		
+		// optimizaiton: can make huge jumps if I know there's nothing in the way
+		Sampling = this.minSampling;
+		if (this.optimized === true) {
+			Sampling = Math.floor( (+this.map[this.currentSquare]-this.minSampling)/Sampling )*Sampling;
+			if (Sampling < this.minSampling)
+				Sampling = this.minSampling;
+		}
+		/*
+		var diagSampling = Math.floor(Sampling / 1.5);
+		if (diagSampling < this.minSampling)
+			diagSampling = this.minSampling;
+		*/
+		var target = [this.e%w, Math.floor(this.e/w)];
+		closeToEnd = false;
+		if (SquareVectorDistance([this.currentSquare%w, Math.floor(this.currentSquare/w)], target) <= Sampling*Sampling)
+		{
+			closeToEnd = true;
+			Sampling = 1;
+		}
+		if (gamestate !== undefined)
+			this.TotorMap.addInfluence(this.currentSquare % w, Math.floor(this.currentSquare / w),1,40,'constant');
+		
+		for (i in positions)
+		{
+			//var hereSampling = cost[i] == 1 ? Sampling : diagSampling;
+			var index = 0 + this.currentSquare +positions[i][0]*Sampling +w*Sampling*positions[i][1];
+			if (this.map[index] >= Sampling)
+			{
+				if(this.isOpened[index] === undefined)
+				{
+					this.parentSquare[index] = this.currentSquare;
+					
+					this.fCostArray[index] = SquareVectorDistance([index%w, Math.floor(index/w)], target);// * cost[i];
+					this.gCostArray[index] = this.gCostArray[this.currentSquare] + cost[i] * Sampling - this.map[index];
+
+					if (!this.onWater && this.passabilityMap.map[index] === 200) {
+						this.gCostArray[index] += this.fCostArray[index]*2;
+					} else if (this.onWater && this.passabilityMap.map[index] !== 200) {
+						this.gCostArray[index] += this.fCostArray[index]*2;
+					} else if (!this.onWater && this.passabilityMap.map[index] === 100) {
+						this.gCostArray[index] += 100;
+					}
+					
+					if (this.openList[0] !== undefined && this.fCostArray[this.openList[0]] + this.gCostArray[this.openList[0]] > this.fCostArray[index] + this.gCostArray[index])
+					{
+						this.openList.unshift(index);
+						shortcut = true;
+					} else {
+						this.openList.push(index);
+					}
+					this.isOpened[index] = true;
+					if (closeToEnd === true && (index === e || index - 1 === e || index + 1 === e || index - w === e || index + w === e
+												|| index + 1 + w === e || index + 1 - w === e || index - 1 + w === e|| index - 1 - w === e)) {
+						this.parentSquare[this.e] = this.currentSquare;
+						found = true;
+						break;
+					}
+				} else {
+					var addCost = 0;
+					if (!this.onWater && this.passabilityMap.map[index] === 200) {
+						addCost = this.fCostArray[index]*2;
+					} else if (this.onWater && this.passabilityMap.map[index] !== 200) {
+						addCost = this.fCostArray[index]*2;
+					} else if (!this.onWater && this.passabilityMap.map[index] === 100) {
+						addCost += 100;
+					}
+					addCost -=  this.map[index];
+					// already on the Open or closed list
+					if (this.gCostArray[index] > cost[i] * Sampling + addCost + this.gCostArray[this.currentSquare])
+					{
+						this.parentSquare[index] = this.currentSquare;
+						this.gCostArray[index] = cost[i] * Sampling + addCost  + this.gCostArray[this.currentSquare];
+					}
+				}
+			}
+		}
+		iteration++;
+	}
+	this.totalIteration += iteration;
+	if (iteration === this.iterationLimit && found === false && this.openList.length !== 0)
+	{
+		
+		// we've got to assume that we stopped because we reached the upper limit of iterations
+		return "toBeContinued";
+	}
+
+	//debug (this.totalIteration);
+	var paths = [];
+	if (found) {
+		this.currentSquare = e;
+		var lastPos = [0,0];
+		while (this.parentSquare[this.currentSquare] !== s)
+		{
+			this.currentSquare = this.parentSquare[this.currentSquare];
+			if (gamestate !== undefined)
+				this.TotorMap.addInfluence(this.currentSquare % w, Math.floor(this.currentSquare / w),1,50,'constant');
+			if (SquareVectorDistance(lastPos,[this.currentSquare % w, Math.floor(this.currentSquare / w)]) > 300)
+			{
+				lastPos = [ (this.currentSquare % w) * this.cellSize, Math.floor(this.currentSquare / w) * this.cellSize];
+				paths.push(lastPos);
+				if (gamestate !== undefined)
+					this.TotorMap.addInfluence(this.currentSquare % w, Math.floor(this.currentSquare / w),1,100,'constant');
+			}
+		}
+	}
+	
+	if (gamestate !== undefined)
+		this.TotorMap.dumpIm("Path From " +s +" to " +e +".png",255);
+	
+	if (paths.length > 0) {
+		return [paths, this.pathRequiresWater];
+	} else {
+		return undefined;
+	}
+	
+}
+
+/**
+ * Make each cell's 8-bit value at least one greater than each of its
+ * neighbours' values. (If the grid is initialised with 0s and things high enough (> 100 on most maps), the
+ * result of each cell is its Manhattan distance to the nearest 0.)
+ */
+aStarPath.prototype.expandInfluences = function() {
+	var w = this.width;
+	var h = this.height;
+	var grid = this.map;
+	for ( var y = 0; y < h; ++y) {
+		var min = 8;
+		for ( var x = 0; x < w; ++x) {
+			var g = grid[x + y * w];
+			if (g > min)
+				grid[x + y * w] = min;
+			else if (g < min)
+				min = g;
+			++min;
+			if (min > 8)
+				min = 8;
+		}
+		
+		for ( var x = w - 2; x >= 0; --x) {
+			var g = grid[x + y * w];
+			if (g > min)
+				grid[x + y * w] = min;
+			else if (g < min)
+				min = g;
+			++min;
+			if (min > 8)
+				min = 8;
+		}
+	}
+	
+	for ( var x = 0; x < w; ++x) {
+		var min = 8;
+		for ( var y = 0; y < h; ++y) {
+			var g = grid[x + y * w];
+			if (g > min)
+				grid[x + y * w] = min;
+			else if (g < min)
+				min = g;
+			++min;
+			if (min > 8)
+				min = 8;
+		}
+		
+		for ( var y = h - 2; y >= 0; --y) {
+			var g = grid[x + y * w];
+			if (g > min)
+				grid[x + y * w] = min;
+			else if (g < min)
+				min = g;
+			++min;
+			if (min > 8)
+				min = 8;
+		}
+	}
 };

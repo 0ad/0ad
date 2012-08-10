@@ -7,15 +7,27 @@ var EconomyManager = function() {
 	this.setCount = 0;  //stops villagers being reassigned to other resources too frequently, count a set number of 
 	                    //turns before trying to reassign them.
 	
+	// this means we'll have about a big third of women, and thus we can maximize resource gathering rates.
 	this.femaleRatio = 0.4;
 
 	this.farmingFields = false;
 	
-	this.dropsiteNumbers = {wood: 2, stone: 1, metal: 1};
+	this.dropsiteNumbers = {"wood": 1, "stone": 0.5, "metal": 0.5};
 };
 // More initialisation for stuff that needs the gameState
 EconomyManager.prototype.init = function(gameState){
-	this.targetNumWorkers = Math.max(Math.floor(gameState.getPopulationMax()/2.5), 1);
+	this.targetNumWorkers = Math.max(Math.floor(gameState.getPopulationMax()*0.55), 1);
+	
+	// initialize once all the resource maps.
+	this.updateResourceMaps(gameState, ["food","wood","stone","metal"]);
+	this.updateResourceConcentrations(gameState,"food");
+	this.updateResourceConcentrations(gameState,"wood");
+	this.updateResourceConcentrations(gameState,"stone");
+	this.updateResourceConcentrations(gameState,"metal");
+	this.updateNearbyResources(gameState, "food");
+	this.updateNearbyResources(gameState, "wood");
+	this.updateNearbyResources(gameState, "stone");
+	this.updateNearbyResources(gameState, "metal");
 };
 
 // okay, so here we'll create both females and male workers.
@@ -29,26 +41,45 @@ EconomyManager.prototype.trainMoreWorkers = function(gameState, queues) {
 	// Count the workers in the world and in progress
 	var numFemales = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("units/{civ}_support_female_citizen"));
 	numFemales += queues.villager.countTotalQueuedUnits();
-	var numWorkers = gameState.countOwnEntitiesAndQueuedWithRole("worker");
-	numWorkers += queues.citizenSoldier.countTotalQueuedUnits();
-	var numTotal = numWorkers + queues.villager.countTotalQueuedUnits() + queues.citizenSoldier.countTotalQueuedUnits();
 
+	// counting the workers that aren't part of a plan
+	var numWorkers = 0;
+	gameState.getOwnEntities().forEach (function (ent) {
+		if (ent.getMetadata("role") == "worker" && ent.getMetadata("plan") == undefined)
+			numWorkers++;
+	});
+	gameState.getOwnTrainingFacilities().forEach(function(ent) {
+	ent.trainingQueue().forEach(function(item) {
+		if (item.metadata && item.metadata.role == "worker" && item.metadata.plan == undefined)
+			numWorkers += item.count;
+		});
+	});
+	var numQueued = queues.villager.countTotalQueuedUnits() + queues.citizenSoldier.countTotalQueuedUnits();
+	var numTotal = numWorkers + numQueued;
+	
+	this.targetNumFields = numFemales/15;
+	if ((gameState.ai.playedTurn+2) % 3 === 0) {
+		this.dropsiteNumbers = {"wood": Math.ceil((numWorkers)/25)/2, "stone": Math.ceil((numWorkers)/40)/2, "metal": Math.ceil((numWorkers)/30)/2};
+	}
+
+	//debug (numTotal + "/" +this.targetNumWorkers + ", " +numFemales +"/" +numTotal);
+	
 	// If we have too few, train more
-	if (numTotal < this.targetNumWorkers && (queues.villager.countTotalQueuedUnits() < 10 || queues.citizenSoldier.countTotalQueuedUnits() < 10) ) {
-		var template = "units/{civ}_support_female_citizen";
-		var size = 1;
-		if (numFemales/numWorkers > this.femaleRatio && gameState.getTimeElapsed() > 60*1000) {
+	// should plan enough to always have females…
+	if (numTotal < this.targetNumWorkers && numQueued < 20) {
+		var template = gameState.applyCiv("units/{civ}_support_female_citizen");
+		var size = Math.min(Math.ceil(gameState.getTimeElapsed() / 240000),5);
+		if (numFemales/numTotal > this.femaleRatio && gameState.getTimeElapsed() > 60*1000) {
+			var size = Math.min(Math.ceil(gameState.getTimeElapsed() / 120000),5);
 			template = this.findBestTrainableUnit(gameState, ["CitizenSoldier", "Infantry"], [ ["cost",1], ["speed",0.5]]);
-			size = 5;
 			if (!template) {
-				template = "units/{civ}_support_female_citizen";
-				size = 1;
+				template = gameState.applyCiv("units/{civ}_support_female_citizen");
 			}
 		}
-		if (size == 5)
-			queues.citizenSoldier.addItem(new UnitTrainingPlan(gameState, template, { "role" : "worker" },size ));
-		else
+		if (template === gameState.applyCiv("units/{civ}_support_female_citizen"))
 			queues.villager.addItem(new UnitTrainingPlan(gameState, template, { "role" : "worker" },size ));
+		else
+			queues.citizenSoldier.addItem(new UnitTrainingPlan(gameState, template, { "role" : "worker" },size ));
 	}
 };
 // picks the best template based on parameters and classes
@@ -101,7 +132,7 @@ EconomyManager.prototype.pickMostNeededResources = function(gameState) {
 	}
 
 	var numGatherers = {};
-	for ( var type in this.gatherWeights){
+	for (type in this.gatherWeights){
 		numGatherers[type] = gameState.updatingCollection("workers-gathering-" + type, 
 				Filters.byMetadata("gather-type", type), gameState.getOwnEntitiesByRole("worker")).length; 
 	}
@@ -200,44 +231,77 @@ EconomyManager.prototype.assignToFoundations = function(gameState) {
 	// If we have some foundations, and we don't have enough
 	// builder-workers,
 	// try reassigning some other workers who are nearby
+	
+	// up to 2.5 buildings at once (that is 3, but one won't be complete).
 
-	var foundations = gameState.getOwnFoundations();
+	var foundations = gameState.getOwnFoundations().toEntityArray();
+	var damagedBuildings = gameState.getOwnEntities().filter(function (ent) { if (ent.needsRepair() && ent.getMetadata("plan") == undefined) { return true; } return false; }).toEntityArray();
 
 	// Check if nothing to build
-	if (!foundations.length){
+	if (!foundations.length && !damagedBuildings.length){
 		return;
 	}
 	var workers = gameState.getOwnEntitiesByRole("worker");
-
 	var builderWorkers = this.workersBySubrole(gameState, "builder");
 	
-	// Check if enough builders
-	var extraNeeded = this.targetNumBuilders*foundations.length - builderWorkers.length;
-	if (extraNeeded <= 0){
-		return;
+	var addedWorkers = 0;
+	
+	for (i in foundations) {
+		var target = foundations[i];
+		if (target._template.BuildRestrictions.Category === "Field")
+			continue; // we do not build fields
+		var assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target).length;
+		if (assigned < this.targetNumBuilders) {
+			if (builderWorkers.length + addedWorkers < this.targetNumBuilders*Math.min(2.5,gameState.getTimeElapsed()/60000)) {
+				var nonBuilderWorkers = workers.filter(function(ent) { return (ent.getMetadata("subrole") !== "builder" && ent.getMetadata("gather-type") !== "food" && ent.position() !== undefined); });
+				var nearestNonBuilders = nonBuilderWorkers.filterNearest(target.position(), this.targetNumBuilders - assigned);
+
+				nearestNonBuilders.forEach(function(ent) {
+					addedWorkers++;
+					ent.setMetadata("subrole", "builder");
+					ent.setMetadata("target-foundation", target);
+				});
+				if (this.targetNumBuilders - assigned - nearestNonBuilders.length > 0) {
+					var nonBuilderWorkers = workers.filter(function(ent) { return (ent.getMetadata("subrole") !== "builder" && ent.position() !== undefined); });
+					var nearestNonBuilders = nonBuilderWorkers.filterNearest(target.position(), this.targetNumBuilders - assigned);
+					nearestNonBuilders.forEach(function(ent) {
+						addedWorkers++;
+						ent.setMetadata("subrole", "builder");
+						ent.setMetadata("target-foundation", target);
+					});
+				}
+			}
+		}
 	}
-
-	// Pick non-builders who are closest to the first foundation,
-	// and tell them to start building it
-
-	var target = foundations.toEntityArray()[0];
-
-	var nonBuilderWorkers = workers.filter(function(ent) {
-		// check position so garrisoned units aren't tasked
-		return (ent.getMetadata("subrole") !== "builder" && ent.position() !== undefined);
-	});
-
-	var nearestNonBuilders = nonBuilderWorkers.filterNearest(target.position(), extraNeeded);
-
-	// Order each builder individually, not as a formation
-	nearestNonBuilders.forEach(function(ent) {
-		ent.setMetadata("subrole", "builder");
-		ent.setMetadata("target-foundation", target);
-	});
+	// don't repair if we're still under attack, unless it's like a vital (civcentre or wall) building that's getting destroyed.
+	for (i in damagedBuildings) {
+		var target = damagedBuildings[i];
+		if (gameState.defcon() < 5) {
+			if (target.healthLevel() > 0.5 || !target.hasClass("CivCentre") || !target.hasClass("StoneWall")) {
+				continue;
+			}
+		}
+		var assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target).length;
+		if (assigned < this.targetNumBuilders) {
+			if (builderWorkers.length + addedWorkers < this.targetNumBuilders*2.5) {
+				
+				var nonBuilderWorkers = workers.filter(function(ent) { return (ent.getMetadata("subrole") !== "builder" && ent.position() !== undefined); });
+				if (gameState.defcon() < 5)
+					nonBuilderWorkers = workers.filter(function(ent) { return (ent.getMetadata("subrole") !== "builder" && ent.hasClass("Female") && ent.position() !== undefined); });
+				var nearestNonBuilders = nonBuilderWorkers.filterNearest(target.position(), this.targetNumBuilders - assigned);
+				
+				nearestNonBuilders.forEach(function(ent) {
+										   addedWorkers++;
+										   ent.setMetadata("subrole", "builder");
+										   ent.setMetadata("target-foundation", target);
+										   });
+			}
+		}
+	}
 };
 
 EconomyManager.prototype.buildMoreFields = function(gameState, queues) {
-	if (this.farmingFields) {
+	if (this.farmingFields === true) {
 		var numFarms = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_field"));
 		numFarms += queues.field.countTotalQueuedUnits();
 	
@@ -245,12 +309,13 @@ EconomyManager.prototype.buildMoreFields = function(gameState, queues) {
 			queues.field.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_field"));
 	} else {
 		var foodAmount = 0;
-		gameState.updatingCollection("active-dropsite-food", Filters.byMetadata("active-dropsite-food", true),
-				gameState.getOwnDropsites("food")).forEach(function (dropsite){
-				dropsite.getMetadata("nearby-resources-food").forEach(function (supply) {
-					foodAmount += supply.resourceSupplyAmount();
-				});
-			});
+		gameState.getOwnDropsites("food").forEach( function (ent) { //}){
+			if (ent.getMetadata("resource-quantity-food") != undefined) {
+				foodAmount += ent.getMetadata("resource-quantity-food");
+			} else {
+				foodAmount = 300; // wait till we initialize
+			}
+		});
 		if (foodAmount < 300)
 			this.farmingFields = true;
 	}
@@ -266,13 +331,22 @@ EconomyManager.prototype.buildNewCC= function(gameState, queues) {
 	}
 };
 
-//creates and maintains a map of tree density
-EconomyManager.prototype.updateResourceMaps = function(gameState, events){
-	// The weight of the influence function is amountOfResource/decreaseFactor 
-	var decreaseFactor = {'wood': 15, 'stone': 100, 'metal': 100, 'food': 20};
-	// This is the maximum radius of the influence
-	var radius = {'wood':9, 'stone': 10, 'metal': 10, 'food': 12};
+// creates and maintains a map of unused resource density
+// this also takes dropsites into account.
+// resources that are "part" of a dropsite are not counted.
+EconomyManager.prototype.updateResourceMaps = function(gameState, events) {
 	
+	// TODO: centralize with that other function that uses the same variables
+	// The weight of the influence function is amountOfResource/decreaseFactor
+	var decreaseFactor = {'wood': 12.0, 'stone': 10.0, 'metal': 10.0, 'food': 20.0};
+	// This is the maximum radius of the influence
+	var radius = {'wood':25.0, 'stone': 24.0, 'metal': 24.0, 'food': 24.0};
+	// smallRadius is the distance necessary to mark a resource as linked to a dropsite.
+	var smallRadius = { 'food':70*70,'wood':120*120,'stone':60*60,'metal':60*60 };
+	// bigRadius is the distance for a weak link (resources are considered when building other dropsites)
+	// and their resource amount is divided by 3 when checking for dropsite resource level.
+	var bigRadius = { 'food':100*100,'wood':180*180,'stone':120*120,'metal':120*120 };
+
 	var self = this;
 	
 	for (var resource in radius){
@@ -291,25 +365,84 @@ EconomyManager.prototype.updateResourceMaps = function(gameState, events){
 				self.resourceMaps[resource].addInfluence(x, z, radius[resource], strength);
 			});
 		}
-		// TODO: fix for treasure and move out of loop
-		// Look for destroy events and subtract the entities original influence from the resourceMap
-		for (var i in events) {
-			var e = events[i];
-
-			if (e.type === "Destroy") {
-				if (e.msg.entityObj){
-					var ent = e.msg.entityObj;
-					if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic === resource){
+	}
+	// Look for destroy events and subtract the entities original influence from the resourceMap
+	// also look for dropsite destruction and add the associated entities (along with unmarking them)
+	for (var i in events) {
+		var e = events[i];
+		if (e.type === "Destroy") {
+			
+			if (e.msg.entityObj){
+				var ent = e.msg.entityObj;
+				if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure") {
+					if  (e.msg.metadata[gameState.getPlayerID()] && !e.msg.metadata[gameState.getPlayerID()]["linked-dropsite"]) {
+						var resource = ent.resourceSupplyType().generic;
 						var x = Math.round(ent.position()[0] / gameState.cellSize);
 						var z = Math.round(ent.position()[1] / gameState.cellSize);
 						var strength = Math.round(ent.resourceSupplyMax()/decreaseFactor[resource]);
 						this.resourceMaps[resource].addInfluence(x, z, radius[resource], -strength);
 					}
 				}
-			}else if (e.type === "Create") {
-				if (e.msg.entityObj){
-					var ent = e.msg.entityObj;
-					if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic === resource){
+				if (ent && ent.owner() == gameState.player && ent.resourceDropsiteTypes() !== undefined) {
+					var resources = ent.resourceDropsiteTypes();
+					for (i in resources) {
+						var resource = resources[i];
+						// loop through all dropsites to see if the resources of his entity collection could
+						// be taken over by another dropsite
+						var dropsites = gameState.getOwnDropsites(resource);
+						var metadata = e.msg.metadata[gameState.getPlayerID()];
+						metadata["linked-resources-" + resource].filter( function (supply) { //}){
+							var takenOver = false;
+							dropsites.forEach( function (otherDropsite) { //}) {
+								var distance = SquareVectorDistance(supply.position(), otherDropsite.position());
+								if (supply.getMetadata("linked-dropsite") == undefined || supply.getMetadata("linked-dropsite-dist") > distance) {
+									if (distance < bigRadius[resource]) {
+										supply.setMetadata("linked-dropsite", otherDropsite.id() );
+										supply.setMetadata("linked-dropsite-dist", +distance);
+										if (distance < smallRadius[resource]) {
+											takenOver = true;
+											supply.setMetadata("linked-dropsite-nearby", true );
+										} else {
+											supply.setMetadata("linked-dropsite-nearby", false );
+										}
+									}
+								}
+							});
+							if (!takenOver) {
+								var x = Math.round(supply.position()[0] / gameState.cellSize);
+								var z = Math.round(supply.position()[1] / gameState.cellSize);
+								var strength = Math.round(supply.resourceSupplyMax()/decreaseFactor[resource]);
+								self.resourceMaps[resource].addInfluence(x, z, radius[resource], strength);
+							}
+						});
+					}
+				}
+			}
+		} else if (e.type === "Create") {
+			if (e.msg.entityObj){
+				var ent = e.msg.entityObj;
+				if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure"){
+					var resource = ent.resourceSupplyType().generic;
+					
+					var addToMap = true;
+					var dropsites = gameState.getOwnDropsites(resource);
+					dropsites.forEach( function (otherDropsite) { //}) {
+						var distance = SquareVectorDistance(ent.position(), otherDropsite.position());
+						if (ent.getMetadata("linked-dropsite") == undefined || ent.getMetadata("linked-dropsite-dist") > distance) {
+							if (distance < bigRadius[resource]) {
+								if (distance < smallRadius[resource]) {
+									if (ent.getMetadata("linked-dropsite") == undefined)
+										addToMap = false;
+									ent.setMetadata("linked-dropsite-nearby", true );
+								} else {
+									ent.setMetadata("linked-dropsite-nearby", false );
+								}
+								ent.setMetadata("linked-dropsite", otherDropsite.id() );
+								ent.setMetadata("linked-dropsite-dist", +distance);
+							}
+						}
+					});
+					if (addToMap) {
 						var x = Math.round(ent.position()[0] / gameState.cellSize);
 						var z = Math.round(ent.position()[1] / gameState.cellSize);
 						var strength = Math.round(ent.resourceSupplyMax()/decreaseFactor[resource]);
@@ -318,140 +451,197 @@ EconomyManager.prototype.updateResourceMaps = function(gameState, events){
 				}
 			}
 		}
-	} 
-	
+	}
 	//this.resourceMaps['wood'].dumpIm("tree_density.png");
 };
 
 // Returns the position of the best place to build a new dropsite for the specified resource
 EconomyManager.prototype.getBestResourceBuildSpot = function(gameState, resource){
-	// A map which gives a positive weight for all CCs and adds a negative weight near all dropsites
+	
 	var friendlyTiles = new Map(gameState);
-	gameState.getOwnEntities().forEach(function(ent) {
-		// We want to build near a CC of ours
-		if (ent.hasClass("CivCentre")){
-			var infl = 200;
 
+	friendlyTiles.add(this.resourceMaps[resource]);
+
+	for (i in this.resourceMaps)
+		if (i !== "food")
+			friendlyTiles.multiply(this.resourceMaps[i],true,100,1.5);
+	
+	//friendlyTiles.dumpIm(gameState.getTimeElapsed() + "_" + resource + "_density_fade_base.png", 65000);
+
+	var territory = Map.createTerritoryMap(gameState);
+	friendlyTiles.multiplyTerritory(gameState,territory);
+
+	var resources = ["wood","stone","metal"];
+	for (i in resources) {
+		gameState.getOwnDropsites(resources[i]).forEach(function(ent) { //)){
+			// We don't want multiple dropsites at one spot so set to zero if too close.
 			var pos = ent.position();
 			var x = Math.round(pos[0] / gameState.cellSize);
 			var z = Math.round(pos[1] / gameState.cellSize);
-			friendlyTiles.addInfluence(x, z, infl, 0.1 * infl);
-			friendlyTiles.addInfluence(x, z, infl/2, 0.1 * infl);
-		}
-		// We don't want multiple dropsites at one spot so add a negative for all dropsites
-		if (ent.resourceDropsiteTypes() && ent.resourceDropsiteTypes().indexOf(resource) !== -1){
-			var infl = 20;
-			
-			var pos = ent.position();
-			var x = Math.round(pos[0] / gameState.cellSize);
-			var z = Math.round(pos[1] / gameState.cellSize);
-			
-			friendlyTiles.addInfluence(x, z, infl, -50, 'quadratic');
-		}
-	});
-	
-	// Multiply by tree density to get a combination of the two maps
-	friendlyTiles.multiply(this.resourceMaps[resource]);
-	
-	//friendlyTiles.dumpIm(resource + "_density_fade.png", 10000);
-	
+			friendlyTiles.setInfluence(x, z, 17, 0);
+		});
+	}
+	//friendlyTiles.dumpIm(gameState.getTimeElapsed() + "_" + resource + "_density_fade_final.png", 10000);
+	friendlyTiles.multiply(gameState.ai.distanceFromMeMap,true,gameState.ai.distanceFromMeMap.width/3,2);
+	//friendlyTiles.dumpIm(gameState.getTimeElapsed() + "_" + resource + "_density_fade_final2.png", 10000);
+
 	var obstructions = Map.createObstructionMap(gameState);
 	obstructions.expandInfluences();
 	
-	var bestIdx = friendlyTiles.findBestTile(4, obstructions)[0];
-	
-	// Convert from 1d map pixel coordinates to game engine coordinates
+	var bestIdx = friendlyTiles.findBestTile(2, obstructions)[0];
 	var x = ((bestIdx % friendlyTiles.width) + 0.5) * gameState.cellSize;
 	var z = (Math.floor(bestIdx / friendlyTiles.width) + 0.5) * gameState.cellSize;
-	return [x,z];
-};
 
-EconomyManager.prototype.updateResourceConcentrations = function(gameState){
-	var self = this;
-	var resources = ["food", "wood", "stone", "metal"];
-	for (var key in resources){
-		var resource = resources[key];
-		gameState.getOwnEntities().forEach(function(ent) {
-			if (ent.resourceDropsiteTypes() && ent.resourceDropsiteTypes().indexOf(resource) !== -1){
-				var radius = 14;
-				
-				var pos = ent.position();
-				var x = Math.round(pos[0] / gameState.cellSize);
-				var z = Math.round(pos[1] / gameState.cellSize);
-				
-				var quantity = self.resourceMaps[resource].sumInfluence(x, z, radius);
-				
-				ent.setMetadata("resourceQuantity_" + resource, quantity);
-			}
-		});	
+	if (territory.getOwner([x,z]) === 0) {
+		bestIdx = friendlyTiles.findBestTile(4, obstructions)[0];
+		x = ((bestIdx % friendlyTiles.width) + 0.5) * gameState.cellSize;
+		z = (Math.floor(bestIdx / friendlyTiles.width) + 0.5) * gameState.cellSize;
+		return [true, [x,z]];
 	}
+	return [false, [x,z]];
+};
+EconomyManager.prototype.updateResourceConcentrations = function(gameState, resource){
+	var self = this;
+	gameState.getOwnDropsites(resource).forEach(function(dropsite) { //}){
+		var amount = 0;
+		var amountFar = 0;
+		if (dropsite.getMetadata("linked-resources-" + resource) == undefined)
+			return;
+		dropsite.getMetadata("linked-resources-" + resource).forEach(function(supply){ //}){
+			if (supply.getMetadata("full") == true)
+				return;
+			if (supply.getMetadata("linked-dropsite-nearby") == true)
+				amount += supply.resourceSupplyAmount();
+			else
+				amountFar += supply.resourceSupplyAmount();
+			supply.setMetadata("dp-update-value",supply.resourceSupplyAmount());
+		});
+		dropsite.setMetadata("resource-quantity-" + resource, amount);
+		dropsite.setMetadata("resource-quantity-far-" + resource, amountFar);
+	});
 };
 
 // Stores lists of nearby resources
-EconomyManager.prototype.updateNearbyResources = function(gameState){
+EconomyManager.prototype.updateNearbyResources = function(gameState,resource){
 	var self = this;
 	var resources = ["food", "wood", "stone", "metal"];
 	var resourceSupplies;
-	var radius = 100;
-	for (var key in resources){
-		var resource = resources[key];
+
+	// TODO: centralize with that other function that uses the same variables
+	// The weight of the influence function is amountOfResource/decreaseFactor
+	var decreaseFactor = {'wood': 12.0, 'stone': 10.0, 'metal': 10.0, 'food': 20.0};
+	// This is the maximum radius of the influence
+	var radius = {'wood':25.0, 'stone': 24.0, 'metal': 24.0, 'food': 24.0};
+	// smallRadius is the distance necessary to mark a resource as linked to a dropsite.
+	var smallRadius = { 'food':80*80,'wood':60*60,'stone':70*70,'metal':70*70 };
+	// bigRadius is the distance for a weak link (resources are considered when building other dropsites)
+	// and their resource amount is divided by 3 when checking for dropsite resource level.
+	var bigRadius = { 'food':140*140,'wood':140*140,'stone':140*140,'metal':140*140 };
+	
+	gameState.getOwnDropsites(resource).forEach(function(ent) { //}){
 		
-		gameState.getOwnDropsites(resource).forEach(function(ent) {
-			if (ent.getMetadata("nearby-resources-" + resource) === undefined){
-				var filterPos = Filters.byStaticDistance(ent.position(), radius);
+		if (ent.getMetadata("nearby-resources-" + resource) === undefined){
+			// let's defined the entity collections (by metadata)
+			gameState.getResourceSupplies(resource).filter( function (supply) { //}){
+				var distance = SquareVectorDistance(supply.position(), ent.position());
+				// if we're close than the current linked-dropsite, or if it's not linked
+				// TODO: change when actualy resource counting is implemented.
 				
-				var collection = gameState.getResourceSupplies(resource).filter(filterPos);
-				collection.registerUpdates();
-				
-				ent.setMetadata("nearby-resources-" + resource, collection);
-				ent.setMetadata("active-dropsite-" + resource, true);
-			}
+				if (supply.getMetadata("linked-dropsite") == undefined || supply.getMetadata("linked-dropsite-dist") > distance) {
+					if (distance < bigRadius[resource]) {
+						if (distance < smallRadius[resource]) {
+							// it's new to the game, remove it from the resource maps
+							if (supply.getMetadata("linked-dropsite") == undefined || supply.getMetadata("linked-dropsite-nearby") == false) {
+								var x = Math.round(supply.position()[0] / gameState.cellSize);
+								var z = Math.round(supply.position()[1] / gameState.cellSize);
+								var strength = Math.round(supply.resourceSupplyMax()/decreaseFactor[resource]);
+								self.resourceMaps[resource].addInfluence(x, z, radius[resource], -strength);
+							}
+							supply.setMetadata("linked-dropsite-nearby", true );
+						} else {
+							supply.setMetadata("linked-dropsite-nearby", false );
+						}
+						supply.setMetadata("linked-dropsite", ent.id() );
+						supply.setMetadata("linked-dropsite-dist", +distance);
+					}
+				}
+			});
+			// This one is both for the nearby and the linked
+			var filter = Filters.byMetadata("linked-dropsite", ent.id());
+			var collection = gameState.getResourceSupplies(resource).filter(filter);
+			collection.registerUpdates();
+			ent.setMetadata("linked-resources-" + resource, collection);
 			
-			if (ent.getMetadata("nearby-resources-" + resource).length === 0){
-				ent.setMetadata("active-dropsite-" + resource, false);
-			}else{
-				ent.setMetadata("active-dropsite-" + resource, true);
-			}
-			/*
-			// Make resources glow wildly 
-			if (resource == "food"){
-				ent.getMetadata("nearby-resources-" + resource).forEach(function(ent){
-					Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [10,0,0]});
-				});
-			}
-			if (resource == "wood"){
-				ent.getMetadata("nearby-resources-" + resource).forEach(function(ent){
-					Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,10,0]});
-				});
-			}
-			if (resource == "metal"){
-				ent.getMetadata("nearby-resources-" + resource).forEach(function(ent){
-					Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,0,10]});
-				});
-			}*/
-		});
-	}
+			filter = Filters.byMetadata("linked-dropsite-nearby",true);
+			var collection2 = collection.filter(filter);
+			collection2.registerUpdates();
+			ent.setMetadata("nearby-resources-" + resource, collection2);
+			
+		}
+		
+		/*
+		// Make resources glow wildly
+		if (resource == "food"){
+			ent.getMetadata("linked-resources-" + resource).forEach(function(ent){
+				Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [1,0,0]});
+			});
+			ent.getMetadata("nearby-resources-" + resource).forEach(function(ent){
+				Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [10,0,0]});
+			});
+		}
+		if (resource == "wood"){
+			ent.getMetadata("linked-resources-" + resource).forEach(function(ent){
+			Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,1,0]});
+			});
+			ent.getMetadata("nearby-resources-" + resource).forEach(function(ent){
+				Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,10,0]});
+			});
+		}
+		if (resource == "metal"){
+			ent.getMetadata("linked-resources-" + resource).forEach(function(ent){
+				Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,0,1]});
+			});
+			ent.getMetadata("nearby-resources-" + resource).forEach(function(ent){
+				Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,0,10]});
+			});
+		}
+		if (resource == "stone"){
+			ent.getMetadata("linked-resources-" + resource).forEach(function(ent){
+				Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,0.5,1]});
+			});
+			ent.getMetadata("nearby-resources-" + resource).forEach(function(ent){
+				Engine.PostCommand({"type": "set-shading-color", "entities": [ent.id()], "rgb": [0,5,10]});
+			});
+		}*/
+	});
 };
 
 //return the number of resource dropsites with an acceptable amount of the resource nearby
 EconomyManager.prototype.checkResourceConcentrations = function(gameState, resource){
-	//TODO: make these values adaptive 
-	var requiredInfluence = {wood: 1400, stone: 200, metal: 200};
+	//TODO: make these values adaptive
+	var requiredInfluence = {"wood": 2500, "stone": 600, "metal": 600};
 	var count = 0;
-	gameState.getOwnEntities().forEach(function(ent) {
-		if (ent.resourceDropsiteTypes() && ent.resourceDropsiteTypes().indexOf(resource) !== -1){
-			var quantity = ent.getMetadata("resourceQuantity_" + resource);
-			
-			if (quantity >= requiredInfluence[resource]){
-				count ++;
-			}
+	gameState.getOwnDropsites(resource).forEach(function(ent) { //}){
+		if (ent.getMetadata("resource-quantity-" + resource) == undefined || typeof(ent.getMetadata("resource-quantity-" + resource)) !== "number") {
+			count++;	// assume it's OK if we don't know.
+			return;
+		}
+		var quantity = +ent.getMetadata("resource-quantity-" + resource);
+		var quantityFar = +ent.getMetadata("resource-quantity-far-" + resource);
+
+		if (quantity >= requiredInfluence[resource]) {
+			count++;
+		} else if (quantity + quantityFar >= requiredInfluence[resource]) {
+			count += 0.5 + (quantity/requiredInfluence[resource])/2;
+		} else {
+			count += ((quantity + quantityFar)/requiredInfluence[resource])/2;
 		}
 	});
 	return count;
 };
 
 EconomyManager.prototype.buildMarket = function(gameState, queues){
-	if (gameState.getTimeElapsed() > 360 * 1000){
+	if (gameState.getTimeElapsed() > 620 * 1000){
 		if (queues.economicBuilding.countTotalQueuedUnitsWithClass("BarterMarket") === 0 &&
 			gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_market")) === 0){ 
 			//only ever build one mill/CC/market at a time
@@ -485,29 +675,19 @@ EconomyManager.prototype.tryBartering = function(gameState){
 };
 // so this always try to build dropsites.
 EconomyManager.prototype.buildDropsites = function(gameState, queues){
-	if (queues.economicBuilding.totalLength() === 0 && 
-			gameState.countFoundationsWithType(gameState.applyCiv("structures/{civ}_mill")) === 0 &&
+	if (queues.economicBuilding.totalLength() === 0 &&  gameState.countFoundationsWithType(gameState.applyCiv("structures/{civ}_mill")) === 0 &&
 			gameState.countFoundationsWithType(gameState.applyCiv("structures/{civ}_civil_centre")) === 0){ 
 			//only ever build one mill/CC/market at a time
 		if (gameState.getTimeElapsed() > 30 * 1000){
 			for (var resource in this.dropsiteNumbers){
 				if (this.checkResourceConcentrations(gameState, resource) < this.dropsiteNumbers[resource]){
+					
 					var spot = this.getBestResourceBuildSpot(gameState, resource);
 					
-					var myCivCentres = gameState.getOwnEntities().filter(function(ent) {
-						if (!ent.hasClass("CivCentre") || ent.position() === undefined){
-							return false;
-						} 
-						var dx = (spot[0]-ent.position()[0]);
-						var dy = (spot[1]-ent.position()[1]);
-						var dist2 = dx*dx + dy*dy;
-						return (ent.hasClass("CivCentre") && dist2 < 180*180);
-					});
-					
-					if (myCivCentres.length === 0){
-						queues.economicBuilding.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_civil_centre", spot));
-					}else{
-						queues.economicBuilding.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_mill", spot));
+					if (spot[0] === true){
+						queues.economicBuilding.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_civil_centre", spot[1]));
+					} else {
+						queues.economicBuilding.addItem(new BuildingConstructionPlan(gameState, "structures/{civ}_mill", spot[1]));
 					}
 					break;
 				}
@@ -524,38 +704,38 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 	
 	this.buildNewCC(gameState,queues);
 
+	// this function also deals with a few things that are number-of-workers related
 	Engine.ProfileStart("Train workers and build farms");
 	this.trainMoreWorkers(gameState, queues);
 
-	if (gameState.getTimeElapsed() > 5000)
+	if ((gameState.ai.playedTurn+1) % 3 === 0)
 		this.buildMoreFields(gameState,queues);
+	
 	Engine.ProfileStop();
 	
 	//Later in the game we want to build stuff faster.
-	if (gameState.countEntitiesByType(gameState.applyCiv("units/{civ}_support_female_citizen")) > this.targetNumWorkers * 0.5) {
+	if (gameState.getTimeElapsed() > 15*60*1000) {
 		this.targetNumBuilders = 6;
 	}else{
 		this.targetNumBuilders = 3;
 	}
-	
-	if (gameState.getTimeElapsed() > 20*60*1000) {
-		this.dropsiteNumbers = {wood: 3, stone: 2, metal: 2};
-	}else{
-		this.dropsiteNumbers = {wood: 2, stone: 1, metal: 1};
-	}
-	
+		
 	Engine.ProfileStart("Update Resource Maps and Concentrations");
+	this.updateResourceMaps(gameState, events);
 	if (gameState.ai.playedTurn % 2 === 0) {
-		this.updateResourceMaps(gameState, events);
-		this.updateResourceConcentrations(gameState);
-		this.updateNearbyResources(gameState);
+		var resources = ["food", "wood", "stone", "metal"];
+		this.updateNearbyResources(gameState, resources[(gameState.ai.playedTurn % 8)/2]);
+	} else if (gameState.ai.playedTurn % 2 === 1) {
+		var resources = ["food", "wood", "stone", "metal"];
+		this.updateResourceConcentrations(gameState, resources[((gameState.ai.playedTurn+1) % 8)/2]);
 	}
 	Engine.ProfileStop();
 	
-	Engine.ProfileStart("Build new Dropsites");
-	this.buildDropsites(gameState, queues);
-	Engine.ProfileStop();
-	
+	if (gameState.ai.playedTurn % 8 === 0) {
+		Engine.ProfileStart("Build new Dropsites");
+		this.buildDropsites(gameState, queues);
+		Engine.ProfileStop();
+	}
 	this.tryBartering(gameState);
 	this.buildMarket(gameState, queues);
 	
@@ -575,32 +755,33 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 	this.reassignIdleWorkers(gameState);
 	Engine.ProfileStop();
 	
-	Engine.ProfileStart("Swap Workers");
-	var gathererGroups = {};
-	gameState.getOwnEntitiesByRole("worker").forEach(function(ent){
-		var key = uneval(ent.resourceGatherRates());
-		if (!gathererGroups[key]){
-			gathererGroups[key] = {"food": [], "wood": [], "metal": [], "stone": []};
-		}
-		if (ent.getMetadata("gather-type") in gathererGroups[key]){
-			gathererGroups[key][ent.getMetadata("gather-type")].push(ent);
-		}
-	});
-	
-	for (var i in gathererGroups){
-		for (var j in gathererGroups){
-			var a = eval(i);
-			var b = eval(j);
-			if (a["food.grain"]/b["food.grain"] > a["wood.tree"]/b["wood.tree"] && gathererGroups[i]["wood"].length > 0 && gathererGroups[j]["food"].length > 0){
-				for (var k = 0; k < Math.min(gathererGroups[i]["wood"].length, gathererGroups[j]["food"].length); k++){
-					gathererGroups[i]["wood"][k].setMetadata("gather-type", "food");
-					gathererGroups[j]["food"][k].setMetadata("gather-type", "wood");
+	// this is pretty slow, run it once in a while
+	if (gameState.ai.playedTurn % 4 === 0) {
+		Engine.ProfileStart("Swap Workers");
+		var gathererGroups = {};
+		gameState.getOwnEntitiesByRole("worker").forEach(function(ent){
+			var key = uneval(ent.resourceGatherRates());
+			if (!gathererGroups[key]){
+				gathererGroups[key] = {"food": [], "wood": [], "metal": [], "stone": []};
+			}
+			if (ent.getMetadata("gather-type") in gathererGroups[key]){
+				gathererGroups[key][ent.getMetadata("gather-type")].push(ent);
+			}
+		});
+		for (var i in gathererGroups){
+			for (var j in gathererGroups){
+				var a = eval(i);
+				var b = eval(j);
+				if (a["food.grain"]/b["food.grain"] > a["wood.tree"]/b["wood.tree"] && gathererGroups[i]["wood"].length > 0 && gathererGroups[j]["food"].length > 0){
+					for (var k = 0; k < Math.min(gathererGroups[i]["wood"].length, gathererGroups[j]["food"].length); k++){
+						gathererGroups[i]["wood"][k].setMetadata("gather-type", "food");
+						gathererGroups[j]["food"][k].setMetadata("gather-type", "wood");
+					}
 				}
 			}
 		}
+		Engine.ProfileStop();
 	}
-	Engine.ProfileStop();
-		
 	Engine.ProfileStart("Run Workers");
 	gameState.getOwnEntitiesByRole("worker").forEach(function(ent){
 		if (!ent.getMetadata("worker-object")){

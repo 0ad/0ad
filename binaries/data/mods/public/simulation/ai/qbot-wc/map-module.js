@@ -1,15 +1,20 @@
 const TERRITORY_PLAYER_MASK = 0x3F;
 
 //TODO: Make this cope with negative cell values
-function Map(gameState, originalMap){
+function Map(gameState, originalMap, actualCopy){
 	// get the map to find out the correct dimensions
 	var gameMap = gameState.getMap();
 	this.width = gameMap.width;
 	this.height = gameMap.height;
 	this.length = gameMap.data.length;
-	if (originalMap){
+
+	if (originalMap && actualCopy){
+		this.map = new Uint16Array(this.length);
+		for (var i = 0; i < originalMap.length; ++i)
+			this.map[i] = originalMap[i];
+	} else if (originalMap) {
 		this.map = originalMap;
-	}else{
+	} else {
 		this.map = new Uint16Array(this.length);
 	}
 	this.cellSize = gameState.cellSize;
@@ -99,12 +104,28 @@ Map.createTerritoryMap = function(gameState) {
 	ret.getOwner = function(p) {
 		return this.point(p) & TERRITORY_PLAYER_MASK;
 	}
-	
+	ret.getOwnerIndex = function(p) {
+		return this.map[p] & TERRITORY_PLAYER_MASK;
+	}
 	return ret;
 };
-
+Map.prototype.drawDistance = function(gameState, elements) {
+	for ( var y = 0; y < this.height; ++y) {
+		for ( var x = 0; x < this.width; ++x) {
+			var minDist = 500000;
+			for (i in elements) {
+				var px = elements[i].position()[0]/gameState.cellSize;
+				var py = elements[i].position()[1]/gameState.cellSize;
+				var dist = VectorDistance([px,py], [x,y]);
+				if (dist < minDist)
+					minDist = dist;
+			}
+			this.map[x + y*this.width] = Math.max(1,this.width - minDist);
+		}
+	}
+};
 Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type) {
-	strength = strength ? strength : maxDist;
+	strength = strength ? +strength : +maxDist;
 	type = type ? type : 'linear';
 	
 	var x0 = Math.max(0, cx - maxDist);
@@ -113,19 +134,18 @@ Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type) {
 	var y1 = Math.min(this.height, cy + maxDist);
 	var maxDist2 = maxDist * maxDist;
 	
-	var str = 0;
+	var str = 0.0;
 	switch (type){
 	case 'linear':
-		str = strength / maxDist;
+		str = +strength / +maxDist;
 		break;
 	case 'quadratic':
-		str = strength / maxDist2;
+		str = +strength / +maxDist2;
 		break;
 	case 'constant':
-		str = strength;
+		str = +strength;
 		break;
 	}
-	
 	for ( var y = y0; y < y1; ++y) {
 		for ( var x = x0; x < x1; ++x) {
 			var dx = x - cx;
@@ -145,12 +165,84 @@ Map.prototype.addInfluence = function(cx, cy, maxDist, strength, type) {
 					quant = str;
 					break;
 				}
-				
 				if (-1 * quant > this.map[x + y * this.width]){
 					this.map[x + y * this.width] = 0; //set anything which would have gone negative to 0
 				}else{
 					this.map[x + y * this.width] += quant;
 				}
+			}
+		}
+	}
+};
+
+Map.prototype.multiplyInfluence = function(cx, cy, maxDist, strength, type) {
+	strength = strength ? +strength : +maxDist;
+	type = type ? type : 'constant';
+	
+	var x0 = Math.max(0, cx - maxDist);
+	var y0 = Math.max(0, cy - maxDist);
+	var x1 = Math.min(this.width, cx + maxDist);
+	var y1 = Math.min(this.height, cy + maxDist);
+	var maxDist2 = maxDist * maxDist;
+	
+	var str = 0.0;
+	switch (type){
+		case 'linear':
+			str = strength / maxDist;
+			break;
+		case 'quadratic':
+			str = strength / maxDist2;
+			break;
+		case 'constant':
+			str = strength;
+			break;
+	}
+	
+	for ( var y = y0; y < y1; ++y) {
+		for ( var x = x0; x < x1; ++x) {
+			var dx = x - cx;
+			var dy = y - cy;
+			var r2 = dx*dx + dy*dy;
+			if (r2 < maxDist2){
+				var quant = 0;
+				switch (type){
+					case 'linear':
+						var r = Math.sqrt(r2);
+						quant = str * (maxDist - r);
+						break;
+					case 'quadratic':
+						quant = str * (maxDist2 - r2);
+						break;
+					case 'constant':
+						quant = str;
+						break;
+				}
+				var machin = this.map[x + y * this.width] * quant;
+				if (machin <= 0){
+					this.map[x + y * this.width] = 0; //set anything which would have gone negative to 0
+				}else{
+					this.map[x + y * this.width] = machin;
+				}
+			}
+		}
+	}
+};
+Map.prototype.setInfluence = function(cx, cy, maxDist, value) {
+	value = value ? value : 0;
+	
+	var x0 = Math.max(0, cx - maxDist);
+	var y0 = Math.max(0, cy - maxDist);
+	var x1 = Math.min(this.width, cx + maxDist);
+	var y1 = Math.min(this.height, cy + maxDist);
+	var maxDist2 = maxDist * maxDist;
+	
+	for ( var y = y0; y < y1; ++y) {
+		for ( var x = x0; x < x1; ++x) {
+			var dx = x - cx;
+			var dy = y - cy;
+			var r2 = dx*dx + dy*dy;
+			if (r2 < maxDist2){
+				this.map[x + y * this.width] = value;
 			}
 		}
 	}
@@ -249,15 +341,37 @@ Map.prototype.findBestTile = function(radius, obstructionTiles){
 	return [bestIdx, bestVal];
 };
 
-// Multiplies current map by the parameter map pixelwise 
-Map.prototype.multiply = function(map){
-	for (var i = 0; i < this.length; i++){
-		this.map[i] *= map.map[i];
+// Multiplies current map by 3 if in my territory
+Map.prototype.multiplyTerritory = function(gameState,map){
+	for (var i = 0; i < this.length; ++i){
+		if (map.getOwnerIndex(i) === gameState.player)
+			this.map[i] *= 2.5;
+	}
+};
+// Multiplies current map by the parameter map pixelwise
+Map.prototype.multiply = function(map, onlyBetter,divider,maxMultiplier){
+	for (var i = 0; i < this.length; ++i){
+		if (map.map[i]/divider > 1)
+			this.map[i] = Math.min(maxMultiplier*this.map[i], this.map[i] * (map.map[i]/divider));
+	}
+};
+// add to current map by the parameter map pixelwise
+Map.prototype.add = function(map){
+	for (var i = 0; i < this.length; ++i){
+		this.map[i] += +map.map[i];
+	}
+};
+// add to current map by the parameter map pixelwise
+Map.prototype.subtract = function(map){
+	for (var i = 0; i < this.length; ++i){
+		this.map[i] += map.map[i];
+		if (this.map[i] <= 0)
+			this.map[i] = 0;
 	}
 };
 
 Map.prototype.dumpIm = function(name, threshold){
 	name = name ? name : "default.png";
-	threshold = threshold ? threshold : 256;
+	threshold = threshold ? threshold : 65500;
 	Engine.DumpImage(name, this.map, this.width, this.height, threshold);
 };

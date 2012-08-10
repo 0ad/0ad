@@ -31,3 +31,12 @@ Filters["byTerritory"] = function(Map, territoryIndex){
 	},
 		"dynamicProperties": ['position']};
 };
+Filters["isDropsite"] = function(resourceType){
+	return {"func": function(ent){
+		return (ent.resourceDropsiteTypes() && ent.resourceDropsiteTypes().indexOf(resourceType) !== -1
+				&& ent.foundationProgress() === undefined);
+	},
+		"dynamicProperties": []};
+};
+
+
