@@ -44,6 +44,23 @@ EntityTemplate.prototype.hasClasses = function(array) {
 	return true;
 };
 
+// returns the classes this counters:
+// each countered class is an array specifying what is required (even if only one) and the Multiplier [ ["whatever","other whatever"] , 0 ].
+EntityTemplate.prototype.getCounteredClasses = function() {
+	if (!this._template.Attack)
+		return undefined;
+	
+	var Classes = [];
+	for (i in this._template.Attack) {
+		if (!this._template.Attack[i].Bonuses)
+			continue;
+		for (o in this._template.Attack[i].Bonuses) {
+			Classes.push([this._template.Attack[i].Bonuses[o].Classes.split(" "), +this._template.Attack[i].Bonuses[o].Multiplier]);
+		}
+	}
+	return Classes;
+};
+
 EntityTemplate.prototype.getMaxStrength = function()
 {
 	var strength = 0.0;
@@ -113,9 +130,16 @@ EntityTemplate.prototype.costSum = function() {
 
 
 
-
 Entity.prototype.deleteMetadata = function(id) {
 	delete this._ai._entityMetadata[this.id()];
+};
+
+Entity.prototype.healthLevel = function() {
+	return (this.hitpoints() / this.maxHitpoints());
+};
+
+Entity.prototype.visibility = function(player) {
+	return this._entity.visibility[player-1];
 };
 
 Entity.prototype.unload = function(id) {
@@ -158,3 +182,4 @@ Entity.prototype.barter = function(buyType, sellType, amount) {
 	Engine.PostCommand({"type": "barter", "sell" : sellType, "buy" : buyType, "amount" : amount });
 	return this;
 };
+

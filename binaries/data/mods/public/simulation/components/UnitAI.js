@@ -2171,10 +2171,12 @@ UnitAI.prototype.AddOrders = function(orders)
 
 UnitAI.prototype.GetOrderData = function()
 {
-	if (this.order && this.order.data)
-		return deepcopy(this.order.data);
-	else
-		return undefined;
+	var orders = [];
+	for (i in this.orderQueue) {
+		if (this.orderQueue[i].data)
+			orders.push(deepcopy(this.orderQueue[i].data));
+		}
+	return orders;
 };
 
 UnitAI.prototype.TimerHandler = function(data, lateness)

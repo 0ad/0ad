@@ -56,7 +56,7 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 
 	var obstructionMap = Map.createObstructionMap(gameState,template);
 	
-	//obstructionMap.dumpIm("obstructions.png");
+	///obstructionMap.dumpIm("obstructions.png");
 
 	obstructionMap.expandInfluences();
 	
@@ -64,12 +64,13 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 
 	var friendlyTiles = new Map(gameState);
 	
+	var alreadyHasHouses = false;
+	
 	// If a position was specified then place the building as close to it as possible
 	if (this.position){
 		var x = Math.round(this.position[0] / cellSize);
 		var z = Math.round(this.position[1] / cellSize);
 		friendlyTiles.addInfluence(x, z, 200);
-		//friendlyTiles.dumpIm("pos.png",	200);
 	}else{
 		// No position was specified so try and find a sensible place to build
 		gameState.getOwnEntities().forEach(function(ent) {
@@ -96,9 +97,10 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 										   
 					}
 				}else{
-					if (template.genericName() == "House" && ent.genericName() == "House")
-						friendlyTiles.addInfluence(x, z, infl*2.0);	// houses are close to other houses
-					else if (template.genericName() == "House") {
+					if (template.genericName() == "House" && ent.genericName() == "House") {
+						friendlyTiles.addInfluence(x, z, 15.0,20,'linear');	// houses are close to other houses
+						alreadyHasHouses = true;
+					} else if (template.genericName() == "House") {
 						friendlyTiles.addInfluence(x, z, Math.ceil(infl/2.0),infl);	// houses are farther away from other buildings but houses
 						friendlyTiles.addInfluence(x, z, Math.ceil(infl/4.0),-infl/2.0);	// houses are farther away from other buildings but houses
 					} else if (ent.genericName() != "House") // houses have no influence on other buildings
@@ -108,13 +110,16 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 					if (ent.hasClass("CivCentre") && template.genericName() != "House"){
 						friendlyTiles.addInfluence(x, z, Math.floor(infl/8), Math.floor(-infl/2));
 					} else if (ent.hasClass("CivCentre")) {
-						friendlyTiles.addInfluence(x, z, Math.floor(infl/3.0), infl + 1);
-						friendlyTiles.addInfluence(x, z, Math.floor(infl/4), -Math.floor(infl));
+						friendlyTiles.addInfluence(x, z, infl/3.0, infl + 1);
+						friendlyTiles.addInfluence(x, z, Math.ceil(infl/5.0), -(infl/2.0), 'linear');
 					}
 				}
 			}
 		});
 	}
+	
+	//friendlyTiles.dumpIm("Building " +gameState.getTimeElapsed() + ".png",	200);
+
 	
 	// Find target building's approximate obstruction radius, and expand by a bit to make sure we're not too close, this
 	// allows room for units to walk between buildings.
@@ -125,18 +130,26 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 	else if (template.buildCategory() === "Dock")
 		var radius = 0;
 	else if (template.genericName() != "House" && !template.hasClass("DropsiteWood") && !template.hasClass("DropsiteStone") && !template.hasClass("DropsiteMetal"))
-		var radius = Math.ceil(template.obstructionRadius() / cellSize) + 2;
+		var radius = Math.ceil(template.obstructionRadius() / cellSize) + 1;
 	else
 		var radius = Math.ceil(template.obstructionRadius() / cellSize);
 	
+	// further contract cause walls
 	if (gameState.playerData.civ == "iber")
 		radius *= 0.95;
 
-	// Find the best non-obstructed tile
-	var bestTile = friendlyTiles.findBestTile(radius, obstructionMap);
-	var bestIdx = bestTile[0];
-	var bestVal = bestTile[1];
-	
+	// Find the best non-obstructed
+	if (template.genericName() == "House" && !alreadyHasHouses) {
+		// try to get some space first
+		var bestTile = friendlyTiles.findBestTile(10, obstructionMap);
+		var bestIdx = bestTile[0];
+		var bestVal = bestTile[1];
+	}
+	if (bestVal === undefined || bestVal === -1) {
+		var bestTile = friendlyTiles.findBestTile(radius, obstructionMap);
+		var bestIdx = bestTile[0];
+		var bestVal = bestTile[1];
+	}
 	if (bestVal === -1){
 		return false;
 	}

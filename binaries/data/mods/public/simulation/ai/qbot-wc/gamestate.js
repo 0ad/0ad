@@ -256,7 +256,7 @@ GameState.prototype.countOwnQueuedEntitiesWithMetadata = function(data, value) {
 	var count = 0;
 	this.getOwnTrainingFacilities().forEach(function(ent) {
 		ent.trainingQueue().forEach(function(item) {
-			if (item.metadata && item.metadata.data && item.metadata.data == value)
+			if (item.metadata && item.metadata[data] && item.metadata[data] == value)
 				count += item.count;
 		});
 	});
@@ -344,15 +344,29 @@ GameState.prototype.findTrainableUnits = function(classes){
 	for (var i in allTrainable) {
 		var template = this.getTemplate(allTrainable[i]);
 		var okay = true;
+		
 		for (o in classes)
 			if (!template.hasClass(classes[o]))
 				okay = false;
+		
 		if (template.hasClass("Hero"))	// disabling heroes for now
 			okay = false;
+		
 		if (okay)
 			ret.push( [allTrainable[i], template] );
 	}
 	return ret;
 };
-
-
+// defcon utilities
+GameState.prototype.timeSinceDefconChange = function() {
+	return this.getTimeElapsed()-this.ai.defconChangeTime;
+};
+GameState.prototype.setDefcon = function(level,force) {
+	if (this.ai.defcon >= level || force) {
+		this.ai.defcon = level;
+		this.ai.defconChangeTime = this.getTimeElapsed();
+	}
+};
+GameState.prototype.defcon = function() {
+	return this.ai.defcon;
+};

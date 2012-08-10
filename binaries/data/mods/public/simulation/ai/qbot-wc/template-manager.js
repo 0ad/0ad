@@ -8,7 +8,9 @@ var TemplateManager = function(gameState) {
 	this.knownTemplatesList = [];
 	this.buildingTemplates = [];
 	this.unitTemplates = [];
-	
+	this.templateCounters = {};
+	this.templateCounteredBy = {};
+
 	// this will store templates that exist
 	this.AcknowledgeTemplates(gameState);
 	this.getBuildableSubtemplates(gameState);
@@ -16,6 +18,8 @@ var TemplateManager = function(gameState) {
 	this.getBuildableSubtemplates(gameState);
 	this.getTrainableSubtemplates(gameState);
 	// should be enough in 100% of the cases.
+	
+	this.getTemplateCounters(gameState);
 	
 };
 TemplateManager.prototype.AcknowledgeTemplates = function(gameState)
@@ -74,3 +78,38 @@ TemplateManager.prototype.getTrainableSubtemplates = function(gameState)
 		}
 	}
 }
+TemplateManager.prototype.getTemplateCounters = function(gameState)
+{
+	for (i in this.unitTemplates)
+	{
+		var tp = gameState.getTemplate(this.unitTemplates[i]);
+		var tpname = this.unitTemplates[i];
+		this.templateCounters[tpname] = tp.getCounteredClasses();
+	}
+}
+// features auto-caching
+TemplateManager.prototype.getCountersToClasses = function(gameState,classes,templateName)
+{
+	if (templateName !== undefined && this.templateCounteredBy[templateName])
+		return this.templateCounteredBy[templateName];
+	
+	var templates = [];
+	for (i in this.templateCounters) {
+		var okay = false;
+		for each (ticket in this.templateCounters[i]) {
+			var okaya = true;
+			for (a in ticket[0]) {
+				if (classes.indexOf(ticket[0][a]) === -1)
+					okaya = false;
+			}
+			if (okaya && templates.indexOf(i) === -1)
+				templates.push([i, ticket[1]]);
+		}
+	}
+	templates.sort (function (a,b) { return -a[1] + b[1]; });
+	
+	if (templateName !== undefined)
+		this.templateCounteredBy[templateName] = templates;
+	return templates;
+}
+

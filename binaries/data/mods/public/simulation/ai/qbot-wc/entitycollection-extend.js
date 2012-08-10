@@ -10,12 +10,11 @@ EntityCollection.prototype.attack = function(unit)
 	Engine.PostCommand({"type": "attack", "entities": this.toIdArray(), "target": unitId, "queued": false});
 	return this;
 };
-
-EntityCollection.prototype.attackMove = function(x, z){
-	Engine.PostCommand({"type": "attack-move", "entities": this.toIdArray(), "x": x, "z": z, "queued": false});
+// violent, aggressive, defensive, passive, standground
+EntityCollection.prototype.setStance = function(stance){
+	Engine.PostCommand({"type": "stance", "entities": this.toIdArray(), "name" : stance, "queued": false});
 	return this;
 };
-
 
 function EntityCollectionFromIds(gameState, idList){
 	var ents = {};

@@ -43,13 +43,13 @@ var baseConfig = {
 	// qbot
 	"priorities" : {  // Note these are dynamic, you are only setting the initial values
 		"house" : 500,
-		"citizenSoldier" : 100,
-		"villager" : 150,
-		"economicBuilding" : 50,
+		"citizenSoldier" : 65,
+		"villager" : 95,
+		"economicBuilding" : 80,
 		"field" : 20,
 		"advancedSoldier" : 30,
 		"siege" : 10,
-		"militaryBuilding" : 80,
+		"militaryBuilding" : 90,
 		"defenceBuilding" : 17,
 		"civilCentre" : 1000
 	},
@@ -58,7 +58,7 @@ var baseConfig = {
 };
 
 var Config = {
-		"debug": false
+		"debug": true
 };
 
 Config.__proto__ = baseConfig;
