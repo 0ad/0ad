@@ -11,7 +11,10 @@
   </group>
   <group>
     <variant>
-      <textures><texture file="gaia/slab_desert_metal.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/slab_desert_metal.dds" name="baseTex"/>
+        <texture file="gaia/slab_savanna_metal_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -22,5 +25,5 @@
       </props>
     </variant>
   </group>
-  <material>basic_spec.xml</material>
+  <material>basic_specmap.xml</material>
 </actor>
