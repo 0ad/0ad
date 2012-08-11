@@ -87,6 +87,7 @@ function LoadPlayerSettings(settings, newPlayers)
 				// Init diplomacy
 				cmpPlayer.SetDiplomacy(new Array(numPlayers));
 				var myTeam = getSetting(pData, pDefs, "Team");
+				cmpPlayer.SetTeam(myTeam);
 				for (var j = 0; j < numPlayers; ++j)
 				{
 					if (j > 0)
