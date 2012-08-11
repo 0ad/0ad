@@ -55,6 +55,8 @@ EntityTemplate.prototype.getCounteredClasses = function() {
 		if (!this._template.Attack[i].Bonuses)
 			continue;
 		for (o in this._template.Attack[i].Bonuses) {
+			if (this._template.attack[i].Bonuses[o].Classes == "")
+				continue;
 			Classes.push([this._template.Attack[i].Bonuses[o].Classes.split(" "), +this._template.Attack[i].Bonuses[o].Multiplier]);
 		}
 	}

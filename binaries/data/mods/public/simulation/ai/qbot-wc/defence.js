@@ -241,6 +241,9 @@ Defence.prototype.defendFromEnemyArmies = function(gameState, events, militaryMa
 	for each (enemy in newEnemies) {
 		if (nonDefenders.length === 0)
 			break;
+		// garrisoned.
+		if (enemy.position() === undefined)
+			continue;
 		
 		var assigned = self.attackerCache[enemy.id()].length;
 		if (assigned >= defenceRatio)
@@ -362,7 +365,7 @@ Defence.prototype.MessageProcess = function(gameState,events, militaryManager) {
 				var attacker = gameState.getEntityById(e.msg.attacker);
 				var ourUnit = gameState.getEntityById(e.msg.target);
 				// the attacker must not be already dead, and it must not be me (think catapults that miss).
-				if (attacker !== undefined && attacker.owner() !== gameState.player) {
+				if (attacker !== undefined && attacker.owner() !== gameState.player && attacker.position() !== undefined) {
 					// note: our unit can already by dead by now... We'll then have to rely on the enemy to react.
 					// if we're not on enemy territory
 					var territory = +this.territoryMap.point(attacker.position())  - 64;

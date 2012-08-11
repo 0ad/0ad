@@ -403,6 +403,7 @@ function aStarPath(gameState, onWater){
 						var y = self.gamePosToMapPos(supply.position())[1];
 						if (x+xx >= 0 && x+xx < self.width && y+yy >= 0 && y+yy < self.height)
 						{
+							self.map[x+xx + (y+yy)*self.width] = 0;
 							self.passabilityMap.map[x+xx + (y+yy)*self.width] = 100; // tree
 						}
 					}
@@ -566,12 +567,12 @@ aStarPath.prototype.continuePath = function(gamestate)
 					this.parentSquare[index] = this.currentSquare;
 					
 					this.fCostArray[index] = SquareVectorDistance([index%w, Math.floor(index/w)], target);// * cost[i];
-					this.gCostArray[index] = this.gCostArray[this.currentSquare] + cost[i] * Sampling - this.map[index];
+					this.gCostArray[index] = this.gCostArray[this.currentSquare] + cost[i] * Sampling;// - this.map[index];
 
 					if (!this.onWater && this.passabilityMap.map[index] === 200) {
-						this.gCostArray[index] += this.fCostArray[index]*2;
+						this.gCostArray[index] += this.width*this.width*2;
 					} else if (this.onWater && this.passabilityMap.map[index] !== 200) {
-						this.gCostArray[index] += this.fCostArray[index]*2;
+						this.gCostArray[index] += this.fCostArray[index];
 					} else if (!this.onWater && this.passabilityMap.map[index] === 100) {
 						this.gCostArray[index] += 100;
 					}
@@ -593,13 +594,13 @@ aStarPath.prototype.continuePath = function(gamestate)
 				} else {
 					var addCost = 0;
 					if (!this.onWater && this.passabilityMap.map[index] === 200) {
-						addCost = this.fCostArray[index]*2;
+						addCost = this.width*this.width*2;
 					} else if (this.onWater && this.passabilityMap.map[index] !== 200) {
-						addCost = this.fCostArray[index]*2;
+						addCost = this.fCostArray[index];
 					} else if (!this.onWater && this.passabilityMap.map[index] === 100) {
 						addCost += 100;
 					}
-					addCost -=  this.map[index];
+					//addCost -=  this.map[index];
 					// already on the Open or closed list
 					if (this.gCostArray[index] > cost[i] * Sampling + addCost + this.gCostArray[this.currentSquare])
 					{
@@ -637,10 +638,18 @@ aStarPath.prototype.continuePath = function(gamestate)
 					this.TotorMap.addInfluence(this.currentSquare % w, Math.floor(this.currentSquare / w),1,100,'constant');
 			}
 		}
+	} else {
+		// we have not found a path.
+		// what do we do then?
 	}
 	
 	if (gamestate !== undefined)
 		this.TotorMap.dumpIm("Path From " +s +" to " +e +".png",255);
+	
+	delete this.parentSquare;
+	delete this.isOpened;
+	delete this.fCostArray;
+	delete this.gCostArray;
 	
 	if (paths.length > 0) {
 		return [paths, this.pathRequiresWater];

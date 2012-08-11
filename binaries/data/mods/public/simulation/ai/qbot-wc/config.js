@@ -58,7 +58,7 @@ var baseConfig = {
 };
 
 var Config = {
-		"debug": true
+		"debug": false
 };
 
 Config.__proto__ = baseConfig;
