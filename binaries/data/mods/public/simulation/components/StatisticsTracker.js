@@ -23,7 +23,10 @@ StatisticsTracker.prototype.Init = function()
 			"metal": 0,
 			"stone": 0,
 			"vegetarianFood": 0
-	}
+	};
+	this.resourcesSold = 0;
+	this.resourcesBought = 0;
+	this.tradeIncome = 0;
 	this.treasuresCollected = 0;
 };
 
@@ -39,6 +42,9 @@ StatisticsTracker.prototype.GetStatistics = function()
 		"civCentresBuilt": this.civCentresBuilt,
 		"enemyCivCentresDestroyed": this.enemyCivCentresDestroyed,
 		"resourcesGathered": this.resourcesGathered,
+		"resourcesSold": this.resourcesSold,
+		"resourcesBought": this.resourcesBought,
+		"tradeIncome": this.tradeIncome,
 		"treasuresCollected": this.treasuresCollected,
 		"percentMapExplored": this.GetPercentMapExplored()
 	};
@@ -123,6 +129,21 @@ StatisticsTracker.prototype.IncreaseTreasuresCollectedCounter = function()
 {
 	return this.treasuresCollected++;
 };
+
+StatisticsTracker.prototype.IncreaseResourcesSoldCounter = function(amount)
+{
+	this.resourcesSold += amount;
+}
+
+StatisticsTracker.prototype.IncreaseResourcesBoughtCounter = function(amount)
+{
+	this.resourcesBought += amount;
+}
+
+StatisticsTracker.prototype.IncreaseTradeIncomeCounter = function(amount)
+{
+	this.tradeIncome += amount;
+}
 
 StatisticsTracker.prototype.GetPercentMapExplored = function()
 {

@@ -181,6 +181,10 @@ Trader.prototype.PerformTrade = function()
 	{
 		var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 		cmpPlayer.AddResource(this.goods.type, this.goods.amount);
+
+		var cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
+		if (cmpStatisticsTracker)
+			cmpStatisticsTracker.IncreaseTradeIncomeCounter(this.goods.amount);
 	}
 	this.goods.type = this.preferredGoods;
 	this.goods.amount = this.gain;
