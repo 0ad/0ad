@@ -12,9 +12,10 @@
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <textures><texture file="structural/rome_struct_2.png" name="baseTex"/>
-	  	  	  <texture file="structural/rome_struct_2_norm.png" name="normTex"/>
-	  <texture file="structural/rome_struct_2_spec.png" name="specTex"/>
+      <textures>
+	    <texture file="structural/rome_struct_2.png" name="baseTex"/>
+	    <texture file="structural/rome_struct_2_norm.png" name="normTex"/>
+	    <texture file="structural/rome_struct_2_spec.png" name="specTex"/>
 	  </textures>
     </variant>
   </group>
@@ -36,5 +37,5 @@
       </props>
     </variant>
   </group>
-   <material>rome_struc__player_trans_parallax_spec.xml</material>
+   <material>player_trans_parallax_spec.xml</material>
 </actor>
