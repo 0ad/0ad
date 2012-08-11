@@ -413,7 +413,7 @@ MilitaryAttackManager.prototype.constructTrainingBuildings = function(gameState,
 			var inConst = 0;
 			for (var i in this.bAdvanced)
 				inConst += gameState.countFoundationsWithType(gameState.applyCiv(this.bAdvanced[i]));
-			if (inConst == 0) {
+			if (inConst == 0 && this.bAdvanced !== undefined) {
 				var i = Math.floor(Math.random() * this.bAdvanced.length);
 				if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bAdvanced[i])) < 1){
 					queues.militaryBuilding.addItem(new BuildingConstructionPlan(gameState, this.bAdvanced[i]));
