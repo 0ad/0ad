@@ -10,64 +10,6 @@
     <unit name="inch" meter="0.0254"/>
     <up_axis>Z_UP</up_axis>
   </asset>
-  <library_lights/>
-  <library_images>
-    <image id="untitled" name="untitled">
-      <init_from></init_from>
-    </image>
-    <image id="animal-elephant-base_dds" name="animal-elephant-base_dds">
-      <init_from>/D:/0%20A.D.%20SVN/binaries/data/mods/public/art/textures/skins/structural/rome_struct_2.png</init_from>
-    </image>
-    <image id="rome_struct_2_spec_png" name="rome_struct_2_spec_png">
-      <init_from>/D:/0%20A.D.%20SVN/binaries/data/mods/public/art/textures/skins/structural/rome_struct_2_spec.png</init_from>
-    </image>
-  </library_images>
-  <library_effects>
-    <effect id="Material-effect">
-      <profile_COMMON>
-        <newparam sid="rome_struct_2_spec_png-surface">
-          <surface type="2D">
-            <init_from>rome_struct_2_spec_png</init_from>
-          </surface>
-        </newparam>
-        <newparam sid="rome_struct_2_spec_png-sampler">
-          <sampler2D>
-            <source>rome_struct_2_spec_png-surface</source>
-          </sampler2D>
-        </newparam>
-        <technique sid="common">
-          <lambert>
-            <emission>
-              <color sid="emission">0 0 0 1</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0 0 0 1</color>
-            </ambient>
-            <diffuse>
-              <texture texture="rome_struct_2_spec_png-sampler" texcoord="UVMap"/>
-            </diffuse>
-            <specular>
-              <texture texture="rome_struct_2_spec_png-sampler" texcoord="UVMap"/>
-            </specular>
-            <index_of_refraction>
-              <float sid="index_of_refraction">1</float>
-            </index_of_refraction>
-          </lambert>
-        </technique>
-        <extra>
-          <technique profile="GOOGLEEARTH">
-            <double_sided>1</double_sided>
-          </technique>
-        </extra>
-      </profile_COMMON>
-      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
-    </effect>
-  </library_effects>
-  <library_materials>
-    <material id="Material-material" name="Material">
-      <instance_effect url="#Material-effect"/>
-    </material>
-  </library_materials>
   <library_geometries>
     <geometry id="rome_farmsteadMesh-mesh" name="rome_farmsteadMesh">
       <mesh>
@@ -132,16 +74,7 @@
         <rotate sid="rotationY">0 1 0 0</rotate>
         <rotate sid="rotationX">1 0 0 0</rotate>
         <scale sid="scale">1 1 1</scale>
-        <instance_geometry url="#rome_farmsteadMesh-mesh">
-          <bind_material>
-            <technique_common>
-              <instance_material symbol="Material" target="#Material-material">
-                <bind_vertex_input semantic="rome_farmstead-lib-UV0" input_semantic="TEXCOORD" input_set="0"/>
-                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="1"/>
-              </instance_material>
-            </technique_common>
-          </bind_material>
-        </instance_geometry>
+        <instance_geometry url="#rome_farmsteadMesh-mesh"/>
       </node>
     </visual_scene>
   </library_visual_scenes>
