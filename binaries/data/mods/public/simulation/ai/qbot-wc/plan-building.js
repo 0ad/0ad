@@ -144,6 +144,8 @@ BuildingConstructionPlan.prototype.findGoodPosition = function(gameState) {
 		var bestTile = friendlyTiles.findBestTile(10, obstructionMap);
 		var bestIdx = bestTile[0];
 		var bestVal = bestTile[1];
+	} else if (template.genericName() == "House") {
+		radius *= 0.9;
 	}
 	if (bestVal === undefined || bestVal === -1) {
 		var bestTile = friendlyTiles.findBestTile(radius, obstructionMap);

@@ -60,9 +60,11 @@ Worker.prototype.update = function(gameState) {
 	} else if(subrole === "builder") {
 		if (this.ent.unitAIState().split(".")[1] !== "REPAIR"){
 			var target = this.ent.getMetadata("target-foundation");
-			this.ent.repair(target);
+			if (target.foundationProgress() === undefined && target.needsRepair() == false)
+				this.ent.setMetadata("subrole", "idle");
+			else
+				this.ent.repair(target);
 		}
-		
 		//Engine.PostCommand({"type": "set-shading-color", "entities": [this.ent.id()], "rgb": [0,10,0]});
 	}
 	

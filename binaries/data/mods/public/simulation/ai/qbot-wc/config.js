@@ -45,7 +45,7 @@ var baseConfig = {
 		"house" : 500,
 		"citizenSoldier" : 65,
 		"villager" : 95,
-		"economicBuilding" : 80,
+		"economicBuilding" : 95,
 		"field" : 20,
 		"advancedSoldier" : 30,
 		"siege" : 10,
