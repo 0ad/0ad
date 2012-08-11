@@ -71,7 +71,10 @@ Defence.prototype.update = function(gameState, events, militaryManager){
 
 	// putting unneeded units at rest
 	this.idleDefs.forEach(function(ent) {
-		ent.setMetadata("role", ent.getMetadata("formerrole") );
+		if (ent.getMetadata("formerrole"))
+			ent.setMetadata("role", ent.getMetadata("formerrole") );
+		else
+			ent.setMetadata("role", "worker");
 		ent.setMetadata("subrole", undefined);
 	});
 
@@ -229,11 +232,29 @@ Defence.prototype.defendFromEnemyArmies = function(gameState, events, militaryMa
 		gameState.setDefcon(3);
 	}
 	
-	var nonDefenders = this.myUnits.filter(Filters.or( Filters.not(Filters.byMetadata("role","defence")),Filters.isIdle()));
-	nonDefenders = nonDefenders.filter(Filters.not(Filters.byClass("Female")));
+	// we're having too many.
+	if (this.myUnits.filter(Filters.byMetadata("role","defence")).length > nbOfAttackers*this.defenceRatio*1.3) {
+		this.myUnits.filter(Filters.byMetadata("role","defence")).forEach(function (defender) { //}){
+			if (defender.unitAIOrderData() && defender.unitAIOrderData()["target"]) {
+				if (self.attackerCache[defender.unitAIOrderData()["target"]].length > 3) {
+					// okay release me.
+					defender.stopMoving();
+					if (defender.getMetadata("formerrole"))
+						defender.setMetadata("role", defender.getMetadata("formerrole") );
+					else
+						defender.setMetadata("role", "worker");
+					defender.setMetadata("subrole", undefined);
+					
+				}
+			}
+		});
+	}
 	
+	var nonDefenders = this.myUnits.filter(Filters.or(Filters.not(Filters.byMetadata("role","defence")),Filters.isIdle()));
+	nonDefenders = nonDefenders.filter(Filters.not(Filters.byClass("Female")));
+	nonDefenders = nonDefenders.filter(Filters.not(Filters.byMetadata("subrole","attacking")));
 	var defenceRatio = this.defenceRatio;
-	if (newEnemies.length * defenceRatio> nonDefenders.length) {
+	if (newEnemies.length * defenceRatio > nonDefenders.length) {
 		defenceRatio = 1;
 	}
 	
@@ -241,6 +262,9 @@ Defence.prototype.defendFromEnemyArmies = function(gameState, events, militaryMa
 	for each (enemy in newEnemies) {
 		if (nonDefenders.length === 0)
 			break;
+		// garrisoned.
+		if (enemy.position() === undefined)
+			continue;
 		
 		var assigned = self.attackerCache[enemy.id()].length;
 		if (assigned >= defenceRatio)
@@ -261,7 +285,8 @@ Defence.prototype.defendFromEnemyArmies = function(gameState, events, militaryMa
 		for (var i = 0; i < defenceRatio && i < counters.length; i++) {
 			if (counters[i].getMetadata("plan") !== undefined)
 				militaryManager.pausePlan(gameState,counters[i].getMetadata("plan"));
-			counters[i].setMetadata("formerrole", counters[i].getMetadata("role"));
+			if (counters[i].getMetadata("role") == "worker" || counters[i].getMetadata("role") == "attack")
+				counters[i].setMetadata("formerrole", counters[i].getMetadata("role"));
 			counters[i].setMetadata("role","defence");
 			counters[i].setMetadata("subrole","defending");
 			counters[i].attack(+enemy.id());
@@ -274,7 +299,8 @@ Defence.prototype.defendFromEnemyArmies = function(gameState, events, militaryMa
 			nonDefenders.filter(Filters.byClass("CitizenSoldier")).filterNearest(enemy.position(),defenceRatio-assigned).forEach(function (defender) { //}){
 				if (defender.getMetadata("plan") !== undefined)
 					militaryManager.pausePlan(gameState,defender.getMetadata("plan"));
-				defender.setMetadata("formerrole", defender.getMetadata("role"));
+				if (defender.getMetadata("role") == "worker" || defender.getMetadata("role") == "attack")
+					defender.setMetadata("formerrole", defender.getMetadata("role"));
 				defender.setMetadata("role","defence");
 				defender.setMetadata("subrole","defending");
 				defender.attack(+enemy.id());
@@ -362,7 +388,7 @@ Defence.prototype.MessageProcess = function(gameState,events, militaryManager) {
 				var attacker = gameState.getEntityById(e.msg.attacker);
 				var ourUnit = gameState.getEntityById(e.msg.target);
 				// the attacker must not be already dead, and it must not be me (think catapults that miss).
-				if (attacker !== undefined && attacker.owner() !== gameState.player) {
+				if (attacker !== undefined && attacker.owner() !== gameState.player && attacker.position() !== undefined) {
 					// note: our unit can already by dead by now... We'll then have to rely on the enemy to react.
 					// if we're not on enemy territory
 					var territory = +this.territoryMap.point(attacker.position())  - 64;

@@ -4,24 +4,39 @@
   <group>
     <variant frequency="1" name="Helmet-Corinthian-Nocrest-VarD">
       <mesh>props/helmet/hele_helmet_d.dae</mesh>
-      <textures><texture file="props/helmet/hele_d1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/helmet/hele_d1.dds" name="baseTex"/>
+        <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Helmet-Corinthian-Nocrest-VarE">
       <mesh>props/helmet/hele_helmet_e.dae</mesh>
-      <textures><texture file="props/helmet/hele_d1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/helmet/hele_d1.dds" name="baseTex"/>
+        <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Helmet-Corinthian-Nocrest-VarF">
       <mesh>props/helmet/hele_helmet_f.dae</mesh>
-      <textures><texture file="props/helmet/hele_d1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/helmet/hele_d1.dds" name="baseTex"/>
+        <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Helmet-Corinthian-Nocrest-VarItalian">
       <mesh>props/helmet/hele_helmet_h.dae</mesh>
-      <textures><texture file="props/helmet/hele_g1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/helmet/hele_g1.dds" name="baseTex"/>
+        <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Helmet-Illyrian-Early-NoCrest">
       <mesh>props/helmet/hele_helmet_b.dae</mesh>
-      <textures><texture file="props/helmet/hele_b1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/helmet/hele_b1.dds" name="baseTex"/>
+        <texture file="props/helmet/hele_a-h_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>basic_spec.xml</material>
+  <material>basic_specmap.xml</material>
 </actor>

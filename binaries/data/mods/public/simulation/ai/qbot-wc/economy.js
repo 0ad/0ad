@@ -291,10 +291,10 @@ EconomyManager.prototype.assignToFoundations = function(gameState) {
 				var nearestNonBuilders = nonBuilderWorkers.filterNearest(target.position(), this.targetNumBuilders - assigned);
 				
 				nearestNonBuilders.forEach(function(ent) {
-										   addedWorkers++;
-										   ent.setMetadata("subrole", "builder");
-										   ent.setMetadata("target-foundation", target);
-										   });
+					addedWorkers++;
+					ent.setMetadata("subrole", "builder");
+					ent.setMetadata("target-foundation", target);
+				});
 			}
 		}
 	}
@@ -470,7 +470,8 @@ EconomyManager.prototype.getBestResourceBuildSpot = function(gameState, resource
 
 	var territory = Map.createTerritoryMap(gameState);
 	friendlyTiles.multiplyTerritory(gameState,territory);
-
+	friendlyTiles.annulateTerritory(gameState,territory);
+	
 	var resources = ["wood","stone","metal"];
 	for (i in resources) {
 		gameState.getOwnDropsites(resources[i]).forEach(function(ent) { //)){
@@ -488,17 +489,18 @@ EconomyManager.prototype.getBestResourceBuildSpot = function(gameState, resource
 	var obstructions = Map.createObstructionMap(gameState);
 	obstructions.expandInfluences();
 	
+	var isCivilCenter = false;
 	var bestIdx = friendlyTiles.findBestTile(2, obstructions)[0];
 	var x = ((bestIdx % friendlyTiles.width) + 0.5) * gameState.cellSize;
 	var z = (Math.floor(bestIdx / friendlyTiles.width) + 0.5) * gameState.cellSize;
 
 	if (territory.getOwner([x,z]) === 0) {
+		isCivilCenter = true;
 		bestIdx = friendlyTiles.findBestTile(4, obstructions)[0];
 		x = ((bestIdx % friendlyTiles.width) + 0.5) * gameState.cellSize;
 		z = (Math.floor(bestIdx / friendlyTiles.width) + 0.5) * gameState.cellSize;
-		return [true, [x,z]];
 	}
-	return [false, [x,z]];
+	return [isCivilCenter, [x,z]];
 };
 EconomyManager.prototype.updateResourceConcentrations = function(gameState, resource){
 	var self = this;
@@ -675,8 +677,9 @@ EconomyManager.prototype.tryBartering = function(gameState){
 };
 // so this always try to build dropsites.
 EconomyManager.prototype.buildDropsites = function(gameState, queues){
-	if (queues.economicBuilding.totalLength() === 0 &&  gameState.countFoundationsWithType(gameState.applyCiv("structures/{civ}_mill")) === 0 &&
-			gameState.countFoundationsWithType(gameState.applyCiv("structures/{civ}_civil_centre")) === 0){ 
+	if ( (queues.economicBuilding.totalLength() - queues.economicBuilding.countTotalQueuedUnitsWithClass("BarterMarket")) === 0 &&
+		 gameState.countFoundationsWithType(gameState.applyCiv("structures/{civ}_mill")) === 0 &&
+		 gameState.countFoundationsWithType(gameState.applyCiv("structures/{civ}_civil_centre")) === 0){
 			//only ever build one mill/CC/market at a time
 		if (gameState.getTimeElapsed() > 30 * 1000){
 			for (var resource in this.dropsiteNumbers){
@@ -804,6 +807,7 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 		if (e.type === "Destroy") {
 			if (e.msg.metadata && e.msg.metadata[gameState.getPlayerID()] && e.msg.metadata[gameState.getPlayerID()]["worker-object"]){
 				e.msg.metadata[gameState.getPlayerID()]["worker-object"].updateGathererCounts(gameState, true);
+				delete e.msg.metadata[gameState.getPlayerID()]["worker-object"];
 			}
 		}
 	}

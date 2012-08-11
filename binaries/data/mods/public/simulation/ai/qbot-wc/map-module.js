@@ -348,6 +348,15 @@ Map.prototype.multiplyTerritory = function(gameState,map){
 			this.map[i] *= 2.5;
 	}
 };
+
+// sets to 0 any enemy territory
+Map.prototype.annulateTerritory = function(gameState,map){
+	for (var i = 0; i < this.length; ++i){
+		if (map.getOwnerIndex(i) !== gameState.player && map.getOwnerIndex(i) !== 0)
+			this.map[i] = 0;
+	}
+};
+
 // Multiplies current map by the parameter map pixelwise
 Map.prototype.multiply = function(map, onlyBetter,divider,maxMultiplier){
 	for (var i = 0; i < this.length; ++i){

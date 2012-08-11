@@ -97,6 +97,13 @@ Barter.prototype.ExchangeResources = function(playerEntity, resourceToSell, reso
 		cmpPlayer.AddResource(resourceToBuy, amountToAdd);
 		var numberOfDeals = Math.round(amount / 100);
 
+		var cmpStatisticsTracker = Engine.QueryInterface(playerEntity, IID_StatisticsTracker);
+		if (cmpStatisticsTracker)
+		{
+			cmpStatisticsTracker.IncreaseResourcesSoldCounter(amount);
+			cmpStatisticsTracker.IncreaseResourcesBoughtCounter(amountToAdd);
+		}
+
 		// Increase price difference for both exchange resources.
 		// Overal price difference (constant + dynamic) can't exceed +-99%
 		// so both buy/sell prices limited to [1%; 199%] interval.

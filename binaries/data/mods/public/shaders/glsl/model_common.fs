@@ -115,6 +115,9 @@ void main()
     float iter = 8.0;
     #if USE_HQ_PARALLAX
       iter = 16.0;
+      #if USE_VHQ_PARALLAX
+        iter = 24.0;
+      #endif
     #endif
 
     s = 1.0 / iter;
@@ -148,6 +151,17 @@ void main()
       PARALLAX_ITER
       PARALLAX_ITER
       PARALLAX_ITER
+
+      #if USE_VHQ_PARALLAX
+        PARALLAX_ITER
+        PARALLAX_ITER
+        PARALLAX_ITER
+        PARALLAX_ITER
+        PARALLAX_ITER
+        PARALLAX_ITER
+        PARALLAX_ITER
+        PARALLAX_ITER
+      #endif      
     #endif      
   }
   #endif

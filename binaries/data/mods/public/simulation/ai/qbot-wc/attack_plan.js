@@ -488,11 +488,16 @@ CityAttack.prototype.StartAttack = function(gameState, militaryManager){
 		}
 		
 		this.unitCollection.move(this.path[0][0], this.path[0][1]);
+		this.unitCollection.setStance("aggressive");	// make sure units won't disperse out of control
+		
+		delete this.pathFinder;
+		
 		debug ("Started to attack with the plan " + this.name);
 		this.state = "walking";
 	} else {
 		gameState.ai.gameFinished = true;
 		debug ("I do not have any target. So I'll just assume I won the game.");
+		delete this.pathFinder;
 		return true;
 	}
 	return true;

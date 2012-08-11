@@ -226,11 +226,32 @@ function addChatMessage(msg, playerAssignments)
 		playerAssignments = g_PlayerAssignments;
 
 	var playerColor, username;
+	
+	// Used for team chat in multiplayer
+	var teamed = false; // Is the player on a team of size > 1
+	var onMyTeam = false; // If the message being sent by a player on my team
+	
 	if (playerAssignments[msg.guid])
 	{
 		var n = playerAssignments[msg.guid].player;
 		playerColor = g_Players[n].color.r + " " + g_Players[n].color.g + " " + g_Players[n].color.b;
 		username = escapeText(playerAssignments[msg.guid].name);
+		
+		// Set the booleans for team chat.
+		var playerData = getPlayerData();
+		if (playerData[n] && playerData[n].team != -1) {
+			if (playerData[Engine.GetPlayerID()].team == playerData[n].team)
+				onMyTeam = true;
+		
+			var teamSize = 0;
+			for (var i = 0; i < playerData.length; i++)
+			{
+				if (playerData[i].team == playerData[n].team)
+					teamSize++;
+			}
+			if (teamSize > 1)
+				teamed = true;
+		}
 	}
 	else if (msg.type == "defeat" && msg.player)
 	{
@@ -262,8 +283,16 @@ function addChatMessage(msg, playerAssignments)
 		formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] " + verb + " been defeated.";
 		break;
 	case "message":
-		console.write("<" + username + "> " + message);
-		formatted = "<[color=\"" + playerColor + "\"]" + username + "[/color]> " + message;
+		// Send messages to your own team only by default
+		if (!teamed || onMyTeam || message.indexOf("g ") == 0)
+		{
+			console.write("<" + username + "> " + message);
+			formatted = "<[color=\"" + playerColor + "\"]" + username + "[/color]> " + message;
+		} 
+		else 
+		{
+			return;
+		}
 		break;
 	default:
 		error("Invalid chat message '" + uneval(msg) + "'");

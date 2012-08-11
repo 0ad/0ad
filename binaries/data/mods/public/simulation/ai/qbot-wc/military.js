@@ -385,7 +385,7 @@ MilitaryAttackManager.prototype.buildDefences = function(gameState, queues){
 	}
 	
 	if (numFortresses + queues.defenceBuilding.totalLength() < 1){ //gameState.getBuildLimits()["Fortress"]) {
-		if (gameState.getTimeElapsed() > 720 * 1000 + numFortresses * 300 * 1000){
+		if (gameState.getTimeElapsed() > 840 * 1000 + numFortresses * 300 * 1000){
 			if (gameState.ai.pathsToMe && gameState.ai.pathsToMe.length > 0){
 				var position = gameState.ai.pathsToMe.shift();
 				// TODO: pick a fort randomly from the list.
@@ -410,7 +410,11 @@ MilitaryAttackManager.prototype.constructTrainingBuildings = function(gameState,
 	//build advanced military buildings
 	if (gameState.getTimeElapsed() > 720*1000){
 		if (queues.militaryBuilding.totalLength() === 0){
-			for (var i in this.bAdvanced){
+			var inConst = 0;
+			for (var i in this.bAdvanced)
+				inConst += gameState.countFoundationsWithType(gameState.applyCiv(this.bAdvanced[i]));
+			if (inConst == 0 && this.bAdvanced !== undefined) {
+				var i = Math.floor(Math.random() * this.bAdvanced.length);
 				if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bAdvanced[i])) < 1){
 					queues.militaryBuilding.addItem(new BuildingConstructionPlan(gameState, this.bAdvanced[i]));
 				}

@@ -1,1 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?> <terrain> <textures> <texture name="baseTex" file="types/desert_cliff_2.dds"/>  </textures> <material>terrain_base.xml</material> </terrain>
+<?xml version="1.0" encoding="utf-8"?>
+<terrain>
+	<textures>
+		<texture name="baseTex" file="types/desert_cliff_2.dds"/>
+	</textures>
+	<material>terrain_triplanar.xml</material>
+</terrain>

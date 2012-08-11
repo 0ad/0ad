@@ -1,8 +1,8 @@
 // Max player slots for any map (should read from config)
 const MAX_SLOTS = 8;
 
-var panelNames = [ 'unitsBuildingsPanel', 'conquestPanel', 'resourcesPanel' ];
-var panelButtonNames = [ 'unitsBuildingsPanelButton', 'conquestPanelButton', 'resourcesPanelButton' ];
+var panelNames = [ 'unitsBuildingsPanel', 'conquestPanel', 'resourcesPanel', 'marketPanel' ];
+var panelButtonNames = [ 'unitsBuildingsPanelButton', 'conquestPanelButton', 'resourcesPanelButton', 'marketPanelButton' ];
 
 /**
  * Select active panel
@@ -108,6 +108,13 @@ function init(data)
 	getGUIObjectByName("stoneGatheredHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("treasuresCollectedHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
 
+	left = 50;
+	getGUIObjectByName("playerName3Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
+	getGUIObjectByName("resourcesSoldHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("resourcesBoughtHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("barterEfficiencyHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("tradeIncomeHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+
 	// Show counters
 	for (var i = 0; i < MAX_SLOTS; ++i)
 	{
@@ -154,6 +161,11 @@ function init(data)
 			var stoneGathered = getGUIObjectByName("stoneGathered["+i+"]");
 			var treasuresCollected = getGUIObjectByName("treasuresCollected["+i+"]");
 
+			var resourcesSold = getGUIObjectByName("resourcesSold["+i+"]");
+			var resourcesBought = getGUIObjectByName("resourcesBought["+i+"]");
+			var barterEfficiency = getGUIObjectByName("barterEfficiency["+i+"]");
+			var tradeIncome = getGUIObjectByName("tradeIncome["+i+"]");
+
 			// align counters
 
 			left = 240;
@@ -187,6 +199,15 @@ function init(data)
 			size.right = left + 10;
 			getGUIObjectByName("playerBox2["+i+"]").size = size;
 
+			left = 240;
+			resourcesSold.size = left + " 2 " + (left + width) + " 100%"; left += width;
+			resourcesBought.size = left + " 2 " + (left + width) + " 100%"; left += width;
+			barterEfficiency.size = left + " 2 " + (left + width) + " 100%"; left += width;
+			tradeIncome.size = left + " 2 " + (left + width) + " 100%"; left += width;
+			size = getGUIObjectByName("playerBox3["+i+"]").size;
+			size.right = left + 10;
+			getGUIObjectByName("playerBox3["+i+"]").size = size;
+
 			// display counters
 			unitsTrained.caption = playerState.statistics.unitsTrained;
 			unitsLost.caption = playerState.statistics.unitsLost;
@@ -206,6 +227,12 @@ function init(data)
 			metalGathered.caption = playerState.statistics.resourcesGathered.metal;
 			stoneGathered.caption = playerState.statistics.resourcesGathered.stone;
 			treasuresCollected.caption = playerState.statistics.treasuresCollected;
+
+			resourcesSold.caption = playerState.statistics.resourcesSold;
+			resourcesBought.caption = playerState.statistics.resourcesBought;
+			barterEfficiency.caption = Math.floor(playerState.statistics.resourcesSold > 0 ?
+				(playerState.statistics.resourcesBought / playerState.statistics.resourcesSold) * 100 : 0) + "%";
+			tradeIncome.caption = playerState.statistics.tradeIncome;
 		}
 		else
 		{
@@ -218,7 +245,7 @@ function init(data)
 		}
 	}
 
-        selectPanel(0);
+	selectPanel(0);
 }
 
 function onTick()

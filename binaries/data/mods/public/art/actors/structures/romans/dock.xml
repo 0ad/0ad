@@ -8,8 +8,13 @@
         <prop actor="props/structures/romans/dock.xml" attachpoint="root"/>
         <prop actor=""/>
       </props>
-      <textures><texture file="structural/rome_struct_2.png" name="baseTex"/></textures>
+      <textures>
+	    <texture file="structural/rome_struct_2.png" name="baseTex"/>
+	    <texture file="structural/rome_struct_2_norm.png" name="normTex"/>
+	    <texture file="structural/rome_struct_2_spec.png" name="specTex"/>
+	    <texture file="structural/ao/rome_fortress_ao.png" name="aoTex"/>
+	  </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

@@ -299,6 +299,7 @@ QueueManager.prototype.update = function(gameState) {
 					if (this.queues[p].outQueueNext().canExecute(gameState)) {
 						this.queues[p].executeNext(gameState);
 						gameState.buildingsBuilt += 1;
+						
 					} else {
 						break;
 					}
