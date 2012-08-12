@@ -121,11 +121,13 @@ void main()
     #endif
 
     s = 1.0 / iter;
+    float t = s;
     move = vec2(-eyeDir.x, eyeDir.y) * scale / (eyeDir.z * iter);
     vec2 nil = vec2(0.0);
 
     #define PARALLAX_ITER {\
-      height -= s;\
+      height -= t;\
+      t = (h < height) ? s : 0.0;\
       vec2 temp = (h < height) ? move : nil;\
       coord += temp;\
       h = texture2D(normTex, coord).a;\
@@ -162,7 +164,13 @@ void main()
         PARALLAX_ITER
         PARALLAX_ITER
       #endif      
-    #endif      
+    #endif
+    
+    // Move back to where we collided with the surface.  
+    // This assumes the surface is linear between the sample point before we 
+    // intersect the surface and after we intersect the surface
+    float hp = texture2D(normTex, coord - move).a;
+    coord -= move * ((h - height) / (s + h - hp)); 
   }
   #endif
 
