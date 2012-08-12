@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <terrain>
-        <textures>
-                <texture name="baseTex" file="types/grass1_spring.dds"/>
-        </textures>
-	<props angle="45.0" size="32.0"/>
-        <material>terrain_base.xml</material>
+	<textures>
+		<texture name="baseTex" file="types/grass1_spring.dds"/>
+		<texture name="normTex" file="types/grass1_spring_norm.png"/>
+		<texture name="specTex" file="types/grass1_spring_spec.png"/>
+	</textures>
+	<material>terrain_norm.xml</material>
 </terrain>

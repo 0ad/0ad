@@ -11,7 +11,10 @@
   </group>
   <group>
     <variant name="Gray Rock">
-      <textures><texture file="gaia/slab_tropic_metal.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/slab_tropic_metal.png" name="baseTex"/>
+        <texture file="gaia/slab_tropic_metal_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -22,5 +25,5 @@
       </props>
     </variant>
   </group>
-  <material>basic_spec.xml</material>
+  <material>basic_specmap.xml</material>
 </actor>
