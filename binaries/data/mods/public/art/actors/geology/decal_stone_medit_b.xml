@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <group>
+    <variant name="decal_stone_medit_b">
+      <decal width="24" depth="24" angle="0" offsetx="0" offsetz="0"/>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="decal_01">
+      <textures>
+	  <texture file="gaia/decal_stone_medit_03.png" name="baseTex"/>
+	  <texture file="gaia/decal_stone_medit_03_spec.png" name="specTex"/>
+	  <texture file="gaia/decal_stone_medit_03_norm.png" name="normTex"/>
+	  </textures>
+    </variant>
+	    <variant frequency="1" name="decal_02">
+      <textures>
+	  <texture file="gaia/decal_stone_medit_04.png" name="baseTex"/>
+	  <texture file="gaia/decal_stone_medit_04_spec.png" name="specTex"/>
+	  <texture file="gaia/decal_stone_medit_04_norm.png" name="normTex"/>	  
+	  
+	  </textures>
+    </variant>
+  </group>
+
+  <material>terrain_norm_test.xml</material>
+
+</actor>
