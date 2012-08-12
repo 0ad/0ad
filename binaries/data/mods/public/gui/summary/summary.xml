@@ -167,11 +167,11 @@
 				<object name="woodGatheredHeading" type="text" style="CenteredTabLabelText">
 					Wood&#10;gathered
 				</object>
-				<object name="metalGatheredHeading" type="text" style="CenteredTabLabelText">
-					Metal&#10;gathered
-				</object>
 				<object name="stoneGatheredHeading" type="text" style="CenteredTabLabelText">
 					Stone&#10;gathered
+				</object>
+				<object name="metalGatheredHeading" type="text" style="CenteredTabLabelText">
+					Metal&#10;gathered
 				</object>
 				<object name="treasuresCollectedHeading" type="text" style="CenteredTabLabelText">
 					Treasures&#10;collected
@@ -187,8 +187,8 @@
 						<object name="foodGathered[n]"     		type="text" style="CenteredLabelText"/>
 						<object name="vegetarianRatio[n]"  		type="text" style="CenteredLabelText"/>
 						<object name="woodGathered[n]"     		type="text" style="CenteredLabelText"/>
-						<object name="metalGathered[n]"    		type="text" style="CenteredLabelText"/>
 						<object name="stoneGathered[n]"    		type="text" style="CenteredLabelText" />
+						<object name="metalGathered[n]"    		type="text" style="CenteredLabelText"/>
 						<object name="treasuresCollected[n]"    	type="text" style="CenteredLabelText"/>
 					</object>
 				</repeat>
@@ -201,11 +201,17 @@
 				<object name="playerName3Heading" type="text" style="LeftTabLabelText">
 					Player name
 				</object>
-				<object name="resourcesSoldHeading" type="text" style="CenteredTabLabelText">
-					Resources&#10;sold
+				<object name="exchangedFoodHeading" type="text" style="CenteredTabLabelText">
+					Food&#10;exchanged
 				</object>
-				<object name="resourcesBoughtHeading" type="text" style="CenteredTabLabelText">
-					Resources&#10;bought
+				<object name="exchangedWoodHeading" type="text" style="CenteredTabLabelText">
+					Wood&#10;exchanged
+				</object>
+				<object name="exchangedStoneHeading" type="text" style="CenteredTabLabelText">
+					Stone&#10;exchanged
+				</object>
+				<object name="exchangedMetalHeading" type="text" style="CenteredTabLabelText">
+					Metal&#10;exchanged
 				</object>
 				<object name="barterEfficiencyHeading" type="text" style="CenteredTabLabelText">
 					Barter&#10;efficiency
@@ -221,8 +227,10 @@
 						<object name="playerColourBox3[n]"      type="image" size="10 4 30 24" />
 						<object name="playerName3[n]"           type="text"  style="LeftLabelText" size="40 2 208 100%" />
 						<object name="civIcon3[n]"              type="image" size="208 0 240 32"/>
-						<object name="resourcesSold[n]"         type="text" style="CenteredLabelText"/>
-						<object name="resourcesBought[n]"       type="text" style="CenteredLabelText"/>
+						<object name="exchangedFood[n]"         type="text" style="CenteredLabelText"/>
+						<object name="exchangedWood[n]"         type="text" style="CenteredLabelText"/>
+						<object name="exchangedStone[n]"         type="text" style="CenteredLabelText"/>
+						<object name="exchangedMetal[n]"         type="text" style="CenteredLabelText"/>
 						<object name="barterEfficiency[n]"      type="text" style="CenteredLabelText"/>
 						<object name="tradeIncome[n]"           type="text" style="CenteredLabelText"/>
 					</object>

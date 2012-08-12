@@ -206,7 +206,7 @@ function submitChatInput()
 		if (!isCheat)
 		{
 			if (getGUIObjectByName("toggleTeamChat").checked)
-				text = "/restrictteam " + text;
+				text = "/team " + text;
 
 			if (g_IsNetworked)
 				Engine.SendNetworkChat(text);
@@ -241,7 +241,7 @@ function addChatMessage(msg, playerAssignments)
 
 		// Parse in-line commands in regular messages.
 		if (msg.type == "message")
-			parseChatCommands(msg, n);
+			parseChatCommands(msg, playerAssignments);
 	}
 	else if (msg.type == "defeat" && msg.player)
 	{
@@ -273,18 +273,18 @@ function addChatMessage(msg, playerAssignments)
 		formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] " + verb + " been defeated.";
 		break;
 	case "message":
-		// May have been hidden by the 'restrictteam' command.
+		// May have been hidden by the 'team' command.
 		if (msg.hide)
 			return;
 
 		if (msg.action)
 		{
-			console.write("* " + username + " " + message);
+			console.write(msg.prefix + "* " + username + " " + message);
 			formatted = msg.prefix + "* [color=\"" + playerColor + "\"]" + username + "[/color] " + message;
 		}
 		else
 		{
-			console.write("<" + username + "> " + message);
+			console.write(msg.prefix + "<" + username + "> " + message);
 			formatted = msg.prefix + "<[color=\"" + playerColor + "\"]" + username + "[/color]> " + message;
 		}
 		break;
@@ -311,40 +311,70 @@ function removeOldChatMessages()
 }
 
 // Parses chat messages for commands.
-function parseChatCommands(msg, sender)
+function parseChatCommands(msg, playerAssignments)
 {
 	// Only interested in messages that start with '/'.
 	if (!msg.text || msg.text[0] != '/')
 		return;
 
+	var sender = playerAssignments[msg.guid].player;
 	var recurse = false;
 	var split = msg.text.split(/\s/);
 
 	// Parse commands embedded in the message.
 	switch (split[0])
 	{
-		case "/restrictteam":
+		case "/all":
+			// Resets values that 'team' or 'enemy' may have set.
+			msg.prefix = "";
+			msg.hide = false;
+			recurse = true;
+			break;
+		case "/team":
 			var playerData = getPlayerData();
-			if (playerData[sender] && playerData[sender].team != -1)
+			if (hasAllies(sender, playerData))
 			{
-				// Only respect the command if the sender has teammates.
-				for (var i = 0; i < playerData.length; i++)
-				{
-					if (playerData[i].team == playerData[sender].team)
-					{
-						if (playerData[Engine.GetPlayerID()].team != playerData[sender].team)
-							msg.hide = true;
-						else
-							msg.prefix = "(Team) ";
-
-						break;
-					}
-				}
+				if (playerData[Engine.GetPlayerID()].team != playerData[sender].team)
+					msg.hide = true;
+				else
+					msg.prefix = "(Team) ";
+			}
+			recurse = true;
+			break;
+		case "/enemy":
+			var playerData = getPlayerData();
+			if (hasAllies(sender, playerData))
+			{
+				if (playerData[Engine.GetPlayerID()].team == playerData[sender].team && sender != Engine.GetPlayerID())
+					msg.hide = true;
+				else
+					msg.prefix = "(Enemy) ";
 			}
 			recurse = true;
 			break;
 		case "/me":
 			msg.action = true;
+			break;
+		case "/msg":
+			var trimmed = msg.text.substr(split[0].length + 1);
+			var matched = "";
+
+			// Reject names which don't match or are a superset of the intended name.
+			for each (var player in playerAssignments)
+				if (trimmed.indexOf(player.name + " ") == 0 && player.name.length > matched.length)
+					matched = player.name;
+
+			// If the local player's name was the longest one matched, show the message.
+			var playerName = g_Players[Engine.GetPlayerID()].name;			
+			if (matched.length && (matched == playerName || sender == Engine.GetPlayerID()))
+			{
+				msg.prefix = "(Private) ";
+				msg.text = trimmed.substr(matched.length + 1);
+				msg.hide = false; // Might override team message hiding.
+				return;
+			}
+			else
+				msg.hide = true;
 			break;
 		default:
 			return;
@@ -352,7 +382,11 @@ function parseChatCommands(msg, sender)
 
 	msg.text = msg.text.substr(split[0].length + 1);
 
+	// Hide the message if parsing commands left it empty.
+	if (!msg.text.length)
+		msg.hide = true;
+
 	// Attempt to parse more commands if the current command allows it.
 	if (recurse)
-		parseChatCommands(msg, sender);
+		parseChatCommands(msg, playerAssignments);
 }
