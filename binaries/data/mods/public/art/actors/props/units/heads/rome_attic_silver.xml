@@ -4,8 +4,11 @@
   <group>
     <variant frequency="1" name="Helmet-Attic-Crested_Silver">
       <mesh>props/helmet/rome_hero_b.dae</mesh>
-      <textures><texture file="props/helmet/rome_hero_c.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/helmet/rome_hero_c.png" name="baseTex"/>
+        <texture file="props/helmet/rome_hero_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

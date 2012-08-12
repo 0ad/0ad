@@ -1,1 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?> <terrain> <textures> <texture name="baseTex" file="types/medit_cliff_aegean_shrubs.dds"/>  </textures> <material>terrain_base.xml</material> </terrain>
+<terrain>
+	<textures>
+		<texture name="baseTex" file="types/medit_cliff_aegean_shrubs.dds"/>
+		<texture name="normTex" file="types/medit_cliff_aegean_shrubs_norm.png"/>
+		<texture name="specTex" file="types/medit_cliff_aegean_shrubs_spec.png"/>
+	</textures>
+	<material>terrain_triplanar_norm_spec.xml</material>
+</terrain>

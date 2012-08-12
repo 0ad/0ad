@@ -11,8 +11,11 @@
   </group>
   <group>
     <variant name="texture">
-      <textures><texture file="props/helmet/rome-a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/helmet/rome-a.dds" name="baseTex"/>
+        <texture file="props/helmet/rome-a_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

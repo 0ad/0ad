@@ -51,6 +51,11 @@
 	    <action on="Press">toggleChatWindow();</action>
 	</object>
 
+	<!-- Team Chat: Does the same as the above, but sets the window up to only send messages to teammates. -->
+	<object hotkey="teamchat">
+	    <action on="Press">toggleChatWindow(true);</action>
+	</object>
+
 	<!-- Menu -->
 	<object hotkey="menu.toggle">
 	    <action on="Press">openMenu();</action>
@@ -209,19 +214,23 @@
 	</object>
 
 	<!-- Chat window -->
-	<object name="chatDialogPanel" size="50%-180 50%-58 50%+180 50%+46" type="image" hidden="true" sprite="genericPanel">
+	<object name="chatDialogPanel" size="50%-180 50%-48 50%+180 50%+36" type="image" hidden="true" sprite="genericPanel">
 	    <object name="chatInput" size="16 12 100%-16 36" type="input" style="StoneInput" max_length="80">
 		<action on="Press">submitChatInput();</action>
 	    </object>
 
-	    <object size="50%-144 100%-50 50%-16 100%-22" type="button" style="StoneButton">
+	    <object size="16 100%-40 30%+16 100%-12" type="button" style="StoneButton">
 		Send
 		<action on="Press">submitChatInput();</action>
 	    </object>
 
-	    <object  size="50%+16 100%-50 50%+144 100%-22" type="button" style="StoneButton">
+	    <object size="30%+24 100%-40 60%+24 100%-12" type="button" style="StoneButton">
 		Cancel
 		<action on="Press">closeChat();</action>
+	    </object>
+	    <object name="toggleTeamChat" size="60%+32 100%-34 60%+48 100%-6" type="checkbox" style="StoneCrossBox"/>
+	    <object size="60%+48 100%-40 100% 100%-12" type="text"  style="LeftLabelText">
+		Team Only
 	    </object>
 	</object>
 

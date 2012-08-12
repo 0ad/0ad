@@ -205,6 +205,9 @@ function submitChatInput()
 
 		if (!isCheat)
 		{
+			if (getGUIObjectByName("toggleTeamChat").checked)
+				text = "/restrictteam " + text;
+
 			if (g_IsNetworked)
 				Engine.SendNetworkChat(text);
 			else
@@ -226,32 +229,19 @@ function addChatMessage(msg, playerAssignments)
 		playerAssignments = g_PlayerAssignments;
 
 	var playerColor, username;
-	
-	// Used for team chat in multiplayer
-	var teamed = false; // Is the player on a team of size > 1
-	var onMyTeam = false; // If the message being sent by a player on my team
-	
+
+	// No prefix by default. May be set by parseChatCommands().
+	msg.prefix = "";
+
 	if (playerAssignments[msg.guid])
 	{
 		var n = playerAssignments[msg.guid].player;
 		playerColor = g_Players[n].color.r + " " + g_Players[n].color.g + " " + g_Players[n].color.b;
 		username = escapeText(playerAssignments[msg.guid].name);
-		
-		// Set the booleans for team chat.
-		var playerData = getPlayerData();
-		if (playerData[n] && playerData[n].team != -1) {
-			if (playerData[Engine.GetPlayerID()].team == playerData[n].team)
-				onMyTeam = true;
-		
-			var teamSize = 0;
-			for (var i = 0; i < playerData.length; i++)
-			{
-				if (playerData[i].team == playerData[n].team)
-					teamSize++;
-			}
-			if (teamSize > 1)
-				teamed = true;
-		}
+
+		// Parse in-line commands in regular messages.
+		if (msg.type == "message")
+			parseChatCommands(msg, n);
 	}
 	else if (msg.type == "defeat" && msg.player)
 	{
@@ -283,15 +273,19 @@ function addChatMessage(msg, playerAssignments)
 		formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] " + verb + " been defeated.";
 		break;
 	case "message":
-		// Send messages to your own team only by default
-		if (!teamed || onMyTeam || message.indexOf("g ") == 0)
+		// May have been hidden by the 'restrictteam' command.
+		if (msg.hide)
+			return;
+
+		if (msg.action)
+		{
+			console.write("* " + username + " " + message);
+			formatted = msg.prefix + "* [color=\"" + playerColor + "\"]" + username + "[/color] " + message;
+		}
+		else
 		{
 			console.write("<" + username + "> " + message);
-			formatted = "<[color=\"" + playerColor + "\"]" + username + "[/color]> " + message;
-		} 
-		else 
-		{
-			return;
+			formatted = msg.prefix + "<[color=\"" + playerColor + "\"]" + username + "[/color]> " + message;
 		}
 		break;
 	default:
@@ -314,4 +308,51 @@ function removeOldChatMessages()
 	chatTimers.shift();
 	chatMessages.shift();
 	getGUIObjectByName("chatText").caption = chatMessages.join("\n");
+}
+
+// Parses chat messages for commands.
+function parseChatCommands(msg, sender)
+{
+	// Only interested in messages that start with '/'.
+	if (!msg.text || msg.text[0] != '/')
+		return;
+
+	var recurse = false;
+	var split = msg.text.split(/\s/);
+
+	// Parse commands embedded in the message.
+	switch (split[0])
+	{
+		case "/restrictteam":
+			var playerData = getPlayerData();
+			if (playerData[sender] && playerData[sender].team != -1)
+			{
+				// Only respect the command if the sender has teammates.
+				for (var i = 0; i < playerData.length; i++)
+				{
+					if (playerData[i].team == playerData[sender].team)
+					{
+						if (playerData[Engine.GetPlayerID()].team != playerData[sender].team)
+							msg.hide = true;
+						else
+							msg.prefix = "(Team) ";
+
+						break;
+					}
+				}
+			}
+			recurse = true;
+			break;
+		case "/me":
+			msg.action = true;
+			break;
+		default:
+			return;
+	}
+
+	msg.text = msg.text.substr(split[0].length + 1);
+
+	// Attempt to parse more commands if the current command allows it.
+	if (recurse)
+		parseChatCommands(msg, sender);
 }

@@ -182,7 +182,7 @@ function closeChat()
 	getGUIObjectByName("chatDialogPanel").hidden = true;
 }
 
-function toggleChatWindow()
+function toggleChatWindow(teamChat)
 {
 	closeSettings();
 
@@ -194,6 +194,7 @@ function toggleChatWindow()
 	else
 		chatInput.caption = ""; // Clear chat input
 
+	getGUIObjectByName("toggleTeamChat").checked = teamChat;
 	chatWindow.hidden = !chatWindow.hidden;
 }
 

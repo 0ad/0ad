@@ -24,14 +24,14 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="901.096" y="82.1231" z="428.234"/>
+		<Position x="447.449" y="169.719" z="192.597"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview" : "belgian_bog.png",
+  "Preview": "belgian_bog.png",
   "Description": "Two Celtic tribes face off across a large bog.",
   "Keywords": [],
   "Name": "Belgian Bog",
@@ -22258,40 +22258,10 @@
 			<Position x="439.14835" z="258.13816"/>
 			<Orientation y="2.20202"/>
 		</Entity>
-		<Entity uid="4227">
-			<Template>gaia/geology_stonemine_tropic_quarry</Template>
-			<Player>0</Player>
-			<Position x="808.15027" z="513.6482"/>
-			<Orientation y="2.94651"/>
-		</Entity>
-		<Entity uid="4228">
-			<Template>gaia/geology_stonemine_tropic_quarry</Template>
-			<Player>0</Player>
-			<Position x="830.6078" z="341.19816"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="4229">
-			<Template>gaia/geology_stonemine_tropic_quarry</Template>
-			<Player>0</Player>
-			<Position x="210.09519" z="464.33371"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="4230">
 			<Template>gaia/geology_stonemine_tropic_quarry</Template>
 			<Player>0</Player>
 			<Position x="90.34858" z="390.33024"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="4231">
-			<Template>gaia/geology_stonemine_tropic_quarry</Template>
-			<Player>0</Player>
-			<Position x="652.22986" z="865.21723"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="4232">
-			<Template>gaia/geology_stonemine_tropic_quarry</Template>
-			<Player>0</Player>
-			<Position x="359.73978" z="195.2765"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="4233">
@@ -22340,7 +22310,7 @@
 			<Template>gaia/geology_metal_tropic_slabs</Template>
 			<Player>0</Player>
 			<Position x="872.10584" z="559.78248"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="0.878"/>
 		</Entity>
 		<Entity uid="4241">
 			<Template>gaia/geology_metal_tropic_slabs</Template>
@@ -22417,6 +22387,36 @@
 			<Player>2</Player>
 			<Position x="278.61924" z="517.35261"/>
 			<Orientation y="-2.41802"/>
+		</Entity>
+		<Entity uid="4256">
+			<Template>gaia/geology_stonemine_temperate_formation</Template>
+			<Player>0</Player>
+			<Position x="811.63941" z="523.00965"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="4257">
+			<Template>gaia/geology_stonemine_temperate_formation</Template>
+			<Player>0</Player>
+			<Position x="827.9513" z="353.04081"/>
+			<Orientation y="-0.61146"/>
+		</Entity>
+		<Entity uid="4258">
+			<Template>gaia/geology_stonemine_temperate_formation</Template>
+			<Player>0</Player>
+			<Position x="211.31717" z="470.17508"/>
+			<Orientation y="-2.2633"/>
+		</Entity>
+		<Entity uid="4259">
+			<Template>gaia/geology_stonemine_temperate_formation</Template>
+			<Player>0</Player>
+			<Position x="363.10895" z="196.09261"/>
+			<Orientation y="0.7201"/>
+		</Entity>
+		<Entity uid="4260">
+			<Template>gaia/geology_stonemine_temperate_formation</Template>
+			<Player>0</Player>
+			<Position x="640.53736" z="871.30011"/>
+			<Orientation y="-0.3297"/>
 		</Entity>
 	</Entities>
 	<Paths/>
