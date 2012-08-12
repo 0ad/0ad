@@ -24,8 +24,18 @@ StatisticsTracker.prototype.Init = function()
 			"stone": 0,
 			"vegetarianFood": 0
 	};
-	this.resourcesSold = 0;
-	this.resourcesBought = 0;
+	this.resourcesSold = {
+			"food": 0,
+			"wood": 0,
+			"metal": 0,
+			"stone": 0
+	};
+	this.resourcesBought = {
+			"food": 0,
+			"wood": 0,
+			"metal": 0,
+			"stone": 0
+	};
 	this.tradeIncome = 0;
 	this.treasuresCollected = 0;
 };
@@ -130,14 +140,14 @@ StatisticsTracker.prototype.IncreaseTreasuresCollectedCounter = function()
 	return this.treasuresCollected++;
 };
 
-StatisticsTracker.prototype.IncreaseResourcesSoldCounter = function(amount)
+StatisticsTracker.prototype.IncreaseResourcesSoldCounter = function(type, amount)
 {
-	this.resourcesSold += amount;
+	this.resourcesSold[type] += amount;
 }
 
-StatisticsTracker.prototype.IncreaseResourcesBoughtCounter = function(amount)
+StatisticsTracker.prototype.IncreaseResourcesBoughtCounter = function(type, amount)
 {
-	this.resourcesBought += amount;
+	this.resourcesBought[type] += amount;
 }
 
 StatisticsTracker.prototype.IncreaseTradeIncomeCounter = function(amount)

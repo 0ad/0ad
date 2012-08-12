@@ -100,8 +100,8 @@ Barter.prototype.ExchangeResources = function(playerEntity, resourceToSell, reso
 		var cmpStatisticsTracker = Engine.QueryInterface(playerEntity, IID_StatisticsTracker);
 		if (cmpStatisticsTracker)
 		{
-			cmpStatisticsTracker.IncreaseResourcesSoldCounter(amount);
-			cmpStatisticsTracker.IncreaseResourcesBoughtCounter(amountToAdd);
+			cmpStatisticsTracker.IncreaseResourcesSoldCounter(resourceToSell, amount);
+			cmpStatisticsTracker.IncreaseResourcesBoughtCounter(resourceToBuy, amountToAdd);
 		}
 
 		// Increase price difference for both exchange resources.
