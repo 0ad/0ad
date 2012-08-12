@@ -104,14 +104,17 @@ sub add_actors
 
         push @roots, $f if ROOT_ACTORS;
 
-        my $actor = XMLin(vfs_to_physical($f), ForceArray => [qw(group variant prop animation)], KeyAttr => []) or die "Failed to parse '$f': $!";
+        my $actor = XMLin(vfs_to_physical($f), ForceArray => [qw(group variant texture prop animation)], KeyAttr => []) or die "Failed to parse '$f': $!";
 
         for my $group (@{$actor->{group}})
         {
             for my $variant (@{$group->{variant}})
             {
                 push @deps, [ $f, "art/meshes/$variant->{mesh}" ] if $variant->{mesh};
-                push @deps, [ $f, "art/textures/skins/$variant->{texture}" ] if $variant->{texture};
+                for my $tex (@{$variant->{textures}{texture}})
+                {
+                    push @deps, [ $f, "art/textures/skins/$tex->{file}" ] if $tex->{file};
+                }
                 for my $prop (@{$variant->{props}{prop}})
                 {
                     push @deps, [ $f, "art/actors/$prop->{actor}" ] if $prop->{actor};
@@ -146,7 +149,7 @@ sub add_scenarios_xml
 
         push @roots, $f;
 
-        my $map = XMLin(vfs_to_physical($f), ForceArray => [qw(Entity)], KeyAttr => []) or die "Failed to parse '$f': $!";
+        my $map = XMLin(vfs_to_physical($f), ForceArray => [qw(ScriptSettings Entity)], KeyAttr => []) or die "Failed to parse '$f': $!";
 
         my %used;
         for my $entity (@{$map->{Entities}{Entity}})
@@ -165,6 +168,10 @@ sub add_scenarios_xml
                 push @deps, [ $f, "simulation/templates/$template.xml" ];
             }
         }
+
+        # Map previews
+        my $settings = decode_json(@{$map->{ScriptSettings}}[0]);
+        push @deps, [ $f, "art/textures/ui/session/icons/mappreview/" . $settings->{Preview} ] if $settings->{Preview};
     }
 }
 
@@ -340,6 +347,28 @@ sub add_civs
     }
 }
 
+sub add_rms
+{
+    print "Loading random maps...\n";
+
+    push @files, find_files('maps/random', 'js');
+    my @rmsdefs = find_files('maps/random', 'json');
+
+    for my $f (sort @rmsdefs)
+    {
+        push @files, $f;
+
+        push @roots, $f;
+
+        open my $fh, vfs_to_physical($f) or die "Failed to open '$f': $!";
+        my $rms = decode_json(do { local $/; <$fh> });
+
+        push @deps, [ $f, "maps/random/" . $rms->{settings}{Script} ];
+
+        # Map previews
+        push @deps, [ $f, "art/textures/ui/session/icons/mappreview/" . $rms->{settings}{Preview} ] if $rms->{settings}{Preview};
+    }
+}
 
 
 sub check_deps
@@ -415,6 +444,8 @@ add_gui_xml();
 add_gui_data();
 
 add_civs();
+
+add_rms();
 
 # TODO: add non-skin textures, and all the references to them
 
