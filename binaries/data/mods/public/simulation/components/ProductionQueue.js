@@ -321,7 +321,8 @@ ProductionQueue.prototype.RemoveBatch = function(id)
 		// Mark the research as stopped if we cancel it
 		if (item.technologyTemplate)
 		{
-			var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+			// item.player is used as this.entity's owner may be invalid (deletion, etc.)
+			var cmpTechnologyManager = QueryPlayerIDInterface(item.player, IID_TechnologyManager);
 			cmpTechnologyManager.StoppedResearch(item.technologyTemplate);
 		}
 		
