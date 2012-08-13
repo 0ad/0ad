@@ -567,6 +567,14 @@ GuiInterface.prototype.GetStartedResearch = function(player)
 	return ret;
 }
 
+// Used to show a red square over GUI elements you can't yet afford.
+GuiInterface.prototype.GetNeededResources = function(player, amounts)
+{
+	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
+	return cmpPlayer.GetNeededResources(amounts);
+};
+
+
 GuiInterface.prototype.PushNotification = function(notification)
 {
 	this.notifications.push(notification);
@@ -1617,6 +1625,7 @@ var exposedFunctions = {
 	"IsTechnologyResearched": 1,
 	"CheckTechnologyRequirements": 1,
 	"GetStartedResearch": 1,
+	"GetNeededResources": 1,
 	"GetNextNotification": 1,
 
 	"GetAvailableFormations": 1,
