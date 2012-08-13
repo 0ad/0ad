@@ -3,8 +3,8 @@
     <shader effect="model_transparent"/>
     <alpha_blending/>
     <define name="USE_TRANSPARENT" value="1"/>
+    <alternative material="basic_trans_ao_spec.xml" quality="8"/>
     <alternative material="alphatest_ao_parallax_spec.xml" if="CFG_FORCE_ALPHATEST"/>
-    
     
     <!-- REQUIRES: Actor must provide a texture named "normTex", where the Alpha channel
                    is the heightmap (white = high). 

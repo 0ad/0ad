@@ -318,6 +318,18 @@ function getPopulationBonusTooltip(template)
     return popBonus;
 }
 
+/**
+ * Returns a message with the amount of each resource needed to create an entity.
+ */
+function getNeededResourcesTooltip(resources)
+{
+	var formatted = [];
+	for (var resource in resources)
+		formatted.push(resources[resource] + " [font=\"serif-12\"]" + getCostComponentDisplayName(resource) + "[/font]");
+
+	return "\n\n[font=\"serif-bold-13\"][color=\"red\"]Insufficient resources:[/color][/font]\n" + formatted.join(", ");
+}
+
 function getEntitySpeed(template)
 {
     var speed = "";

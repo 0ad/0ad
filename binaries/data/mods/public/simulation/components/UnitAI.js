@@ -333,6 +333,13 @@ var UnitFsmSpec = {
 			return;
 		}
 
+		// Healers can't heal themselves.
+		if (this.order.data.target == this.entity)
+		{
+			this.FinishOrder();
+			return;
+		}
+
 		// Check if the target is in range
 		if (this.CheckTargetRange(this.order.data.target, IID_Heal))
 		{

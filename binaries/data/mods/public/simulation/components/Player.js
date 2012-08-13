@@ -160,22 +160,30 @@ Player.prototype.AddResources = function(amounts)
 	}
 };
 
-Player.prototype.TrySubtractResources = function(amounts)
+Player.prototype.GetNeededResources = function(amounts)
 {
 	// Check if we can afford it all
 	var amountsNeeded = {};
 	for (var type in amounts)
-		if (amounts[type] > this.resourceCount[type])
+		if (this.resourceCount[type] != undefined && amounts[type] > this.resourceCount[type])
 			amountsNeeded[type] = amounts[type] - this.resourceCount[type];
-	
-	var formattedAmountsNeeded = [];
-	for (var type in amountsNeeded)
-		formattedAmountsNeeded.push(type + ": " + amountsNeeded[type]);
+
+	if (Object.keys(amountsNeeded).length == 0)
+		return undefined;
+	return amountsNeeded;
+};
+
+Player.prototype.TrySubtractResources = function(amounts)
+{
+	var amountsNeeded = this.GetNeededResources(amounts);
 			
 	// If we don't have enough resources, send a notification to the player
-	if (formattedAmountsNeeded.length)
+	if (amountsNeeded)
 	{
-		var notification = {"player": this.playerID, "message": "Insufficient resources - " + formattedAmountsNeeded.join(", ")};
+		var formatted = [];
+		for (var type in amountsNeeded)
+			formatted.push(amountsNeeded[type] + " " + type[0].toUpperCase() + type.substr(1) );
+		var notification = {"player": this.playerID, "message": "Insufficient resources - " + formatted.join(", ")};
 		var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGUIInterface.PushNotification(notification);
 		return false;

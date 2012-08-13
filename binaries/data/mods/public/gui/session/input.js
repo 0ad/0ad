@@ -347,6 +347,10 @@ function getActionInfo(action, target)
 			// The check if the target is unhealable is done by targetState.needsHeal
 			if (entState.Healer && hasClass(targetState, "Unit") && targetState.needsHeal && (playerOwned || allyOwned))
 			{
+				// Healers can't heal themselves.
+				if (entState.id == targetState.id)
+					return {"possible": false};
+
 				var unhealableClasses = entState.Healer.unhealableClasses;
 				for each (var unitClass in targetState.identity.classes)
 				{

@@ -603,6 +603,7 @@
 			<repeat count="4">
 			    <object name="unitBarterSellButton[n]" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottomBold">
 				<object name="unitBarterSellIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
+				<object name="unitBarterSellUnaffordable[n]" hidden="true" type="image" ghost="true" size="3 3 43 43" sprite="colour: 255 0 0 60"/>
 				<object name="unitBarterSellAmount[n]" ghost="true" style="resourceText" type="text" size="0 0 100% 50%"/>
 				<object name="unitBarterSellSelection[n]" hidden="true" type="image" ghost="true" size="3 3 43 43" sprite="stretched:session/icons/corners.png"/>
 			    </object>
@@ -612,6 +613,7 @@
 			<repeat count="4">
 			    <object name="unitBarterBuyButton[n]" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottomBold">
 				<object name="unitBarterBuyIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
+				<object name="unitBarterBuyUnaffordable[n]" hidden="true" type="image" ghost="true" size="3 3 43 43" sprite="colour: 255 0 0 60"/>
 				<object name="unitBarterBuyAmount[n]" ghost="true" style="resourceText" type="text" size="0 0 100% 50%"/>
 			    </object>
 			</repeat>
@@ -822,6 +824,7 @@
 			<repeat count="24">
 			    <object name="unitConstructionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
 				<object name="unitConstructionIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
+				<object name="unitConstructionUnaffordable[n]" hidden="true" type="image" ghost="true" size="3 3 43 43" sprite="colour: 255 0 0 127"/>
 			    </object>
 			</repeat>
 		    </object>
@@ -835,6 +838,7 @@
 			    <object name="unitResearchButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
 				<object name="unitResearchIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
 				<object name="unitResearchSelection[n]" hidden="true" type="image" ghost="true" size="3 3 43 43" sprite="colour: 255 0 0 127"/>
+				<object name="unitResearchUnaffordable[n]" hidden="true" type="image" ghost="true" size="3 3 43 43" sprite="colour: 255 0 0 60"/>
 			    </object>
 			</repeat>
 			<repeat count="8">
@@ -852,6 +856,7 @@
 			<repeat count="24">
 			    <object name="unitTrainingButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
 				<object name="unitTrainingIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
+				<object name="unitTrainingUnaffordable[n]" hidden="true" type="image" ghost="true" size="3 3 43 43" sprite="colour: 255 0 0 127"/>
 			    </object>
 			</repeat>
 		    </object>
@@ -898,6 +903,7 @@
 			    <object name="unitGateButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
 				<object name="unitGateIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
 				<object name="unitGateSelection[n]" hidden="true" type="image" ghost="true" size="3 3 43 43" sprite="stretched:session/icons/corners.png"/>
+				<object name="unitGateUnaffordable[n]" hidden="true" type="image" ghost="true" size="3 3 43 43" sprite="colour: 255 0 0 127"/>
 			    </object>
 			</repeat>
 		    </object>

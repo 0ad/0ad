@@ -60,9 +60,11 @@ MilitaryAttackManager.prototype.init = function(gameState) {
 	// each enemy watchers keeps a list of entity collections about the enemy it watches
 	// It also keeps track of enemy armies, merging/splitting as needed
 	this.enemyWatchers = {};
+	this.ennWatcherIndex = [];
 	for (var i = 1; i <= 8; i++)
 		if (gameState.player != i && gameState.isPlayerEnemy(i)) {
 			this.enemyWatchers[i] = new enemyWatcher(gameState, i);
+			this.ennWatcherIndex.push(i);
 		}
 
 };
@@ -498,13 +500,17 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 	
 	//this.trainMilitaryUnits(gameState, queues);
 	
+	Engine.ProfileStart("Constructing military buildings and building defences");
 	this.constructTrainingBuildings(gameState, queues);
 	
 	if(gameState.getTimeElapsed() > 300*1000)
 		this.buildDefences(gameState, queues);
-	
-	for (watcher in this.enemyWatchers)
-		this.enemyWatchers[watcher].detectArmies(gameState,this);
+	Engine.ProfileStop();
+
+	Engine.ProfileStart("Updating enemy watchers");
+	this.enemyWatchers[ this.ennWatcherIndex[gameState.ai.playedTurn % this.ennWatcherIndex.length] ].detectArmies(gameState,this);
+	Engine.ProfileStop();
+
 	this.defenceManager.update(gameState, events, this);
 	
 	/*Engine.ProfileStart("Plan new attacks");

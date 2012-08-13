@@ -104,14 +104,18 @@ sub add_actors
 
         push @roots, $f if ROOT_ACTORS;
 
-        my $actor = XMLin(vfs_to_physical($f), ForceArray => [qw(group variant prop animation)], KeyAttr => []) or die "Failed to parse '$f': $!";
+        my $actor = XMLin(vfs_to_physical($f), ForceArray => [qw(group variant texture prop animation)], KeyAttr => []) or die "Failed to parse '$f': $!";
 
         for my $group (@{$actor->{group}})
         {
             for my $variant (@{$group->{variant}})
             {
                 push @deps, [ $f, "art/meshes/$variant->{mesh}" ] if $variant->{mesh};
-                push @deps, [ $f, "art/textures/skins/$variant->{texture}" ] if $variant->{texture};
+                push @deps, [ $f, "art/particles/$variant->{particles}{file}" ] if $variant->{particles}{file};
+                for my $tex (@{$variant->{textures}{texture}})
+                {
+                    push @deps, [ $f, "art/textures/skins/$tex->{file}" ] if $tex->{file};
+                }
                 for my $prop (@{$variant->{props}{prop}})
                 {
                     push @deps, [ $f, "art/actors/$prop->{actor}" ] if $prop->{actor};
@@ -122,16 +126,38 @@ sub add_actors
                 }
             }
         }
+
+        push @deps, [ $f, "art/materials/$actor->{material}" ] if $actor->{material};
     }
 }
 
 sub add_art
 {
     print "Loading art files...\n";
+    push @files, find_files('art/textures/particles', 'dds|png|jpg|tga');
     push @files, find_files('art/textures/terrain', 'dds|png|jpg|tga');
     push @files, find_files('art/textures/skins', 'dds|png|jpg|tga');
     push @files, find_files('art/meshes', 'pmd|dae');
     push @files, find_files('art/animation', 'psa|dae');
+}
+
+sub add_materials
+{
+    print "Loading materials...\n";
+    push @files, find_files('art/materials', 'xml');
+}
+
+sub add_particles
+{
+    print "Loading particles...\n";
+    my @particlefiles = find_files('art/particles', 'xml');
+    for my $f (sort @particlefiles)
+    {
+        push @files, $f;
+
+        my $particle = XMLin(vfs_to_physical($f));
+        push @deps, [ $f, "$particle->{texture}" ] if $particle->{texture};
+    }
 }
 
 sub add_scenarios_xml
@@ -165,6 +191,10 @@ sub add_scenarios_xml
                 push @deps, [ $f, "simulation/templates/$template.xml" ];
             }
         }
+
+        # Map previews
+        my $settings = decode_json($map->{ScriptSettings});
+        push @deps, [ $f, "art/textures/ui/session/icons/mappreview/" . $settings->{Preview} ] if $settings->{Preview};
     }
 }
 
@@ -340,6 +370,28 @@ sub add_civs
     }
 }
 
+sub add_rms
+{
+    print "Loading random maps...\n";
+
+    push @files, find_files('maps/random', 'js');
+    my @rmsdefs = find_files('maps/random', 'json');
+
+    for my $f (sort @rmsdefs)
+    {
+        push @files, $f;
+
+        push @roots, $f;
+
+        open my $fh, vfs_to_physical($f) or die "Failed to open '$f': $!";
+        my $rms = decode_json(do { local $/; <$fh> });
+
+        push @deps, [ $f, "maps/random/" . $rms->{settings}{Script} ];
+
+        # Map previews
+        push @deps, [ $f, "art/textures/ui/session/icons/mappreview/" . $rms->{settings}{Preview} ] if $rms->{settings}{Preview};
+    }
+}
 
 
 sub check_deps
@@ -408,6 +460,10 @@ add_actors();
 
 add_art();
 
+add_materials();
+
+add_particles();
+
 add_soundgroups();
 add_audio();
 
@@ -415,6 +471,8 @@ add_gui_xml();
 add_gui_data();
 
 add_civs();
+
+add_rms();
 
 # TODO: add non-skin textures, and all the references to them
 

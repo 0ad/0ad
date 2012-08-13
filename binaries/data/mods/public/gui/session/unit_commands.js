@@ -332,7 +332,20 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			case GATE:
 				var tooltip = item.tooltip;
 				if (item.template)
-					tooltip += "\n" + getEntityCostTooltip(GetTemplateData(item.template));
+				{
+					var template = GetTemplateData(item.template);
+					tooltip += "\n" + getEntityCostTooltip(template);
+
+					var affordableMask = getGUIObjectByName("unitGateUnaffordable["+i+"]");
+					affordableMask.hidden = true;
+
+					var neededResources = Engine.GuiInterfaceCall("GetNeededResources", template.cost);
+					if (neededResources)
+					{
+						affordableMask.hidden = false;
+						tooltip += getNeededResourcesTooltip(neededResources);
+					}
+				}
 				break;
 
 			case STANCE:
@@ -416,6 +429,8 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		// Button
 		var button = getGUIObjectByName("unit"+guiName+"Button["+i+"]");
 		var button1 = getGUIObjectByName("unit"+guiName+"Button["+(i+rowLength)+"]");
+		var affordableMask = getGUIObjectByName("unit"+guiName+"Unaffordable["+i+"]");
+		var affordableMask1 = getGUIObjectByName("unit"+guiName+"Unaffordable["+(i+rowLength)+"]");
 		var icon = getGUIObjectByName("unit"+guiName+"Icon["+i+"]");
 		var selection = getGUIObjectByName("unit"+guiName+"Selection["+i+"]");
 		var pair = getGUIObjectByName("unit"+guiName+"Pair["+i+"]");
@@ -553,22 +568,84 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			
 			if (guiName == RESEARCH)
 			{
+				// Check resource requirements for first button
+				affordableMask.hidden = true;
+				var neededResources = Engine.GuiInterfaceCall("GetNeededResources", template.cost);
+				if (neededResources)
+				{
+					if (button.enabled !== false)
+					{
+						button.enabled = false;
+						affordableMask.hidden = false;
+					}
+					button.tooltip += getNeededResourcesTooltip(neededResources);
+				}
+
 				if (item.pair)
 				{
 					grayscale = "";
 					button1.enabled = true;
-					if (guiName == RESEARCH && !Engine.GuiInterfaceCall("CheckTechnologyRequirements", entType1))
+
+					if (!Engine.GuiInterfaceCall("CheckTechnologyRequirements", entType1))
 					{
 						button1.enabled = false;
 						button1.tooltip += "\n" + GetTechnologyData(entType1).requirementsTooltip;
 						grayscale = "grayscale:";
 					}
 					icon1.sprite = "stretched:" + grayscale + "session/portraits/" +template1.icon;
+
+					// Check resource requirements for second button
+					affordableMask1.hidden = true;
+					neededResources = Engine.GuiInterfaceCall("GetNeededResources", template.cost);
+					if (neededResources)
+					{
+						if (button1.enabled !== false)
+						{
+							button1.enabled = false;
+							affordableMask1.hidden = false;
+						}
+						button1.tooltip += getNeededResourcesTooltip(neededResources);
+					}
 				}
 				else
 				{
 					pair.hidden = true;
 					button1.hidden = true;
+					affordableMask1.hidden = true;
+  				}
+			}
+			else if (guiName == CONSTRUCTION || guiName == TRAINING)
+			{
+				affordableMask.hidden = true;
+				var totalCosts = {};
+				var trainNum = 1;
+				if (Engine.HotkeyIsPressed("session.batchtrain") && guiName == TRAINING)
+				{
+					var [batchSize, batchIncrement] = getTrainingBatchStatus(unitEntState.id, entType);
+					trainNum = batchSize + batchIncrement;
+				}
+
+				// Walls have no cost defined.
+				if (template.cost !== undefined)
+					for (var r in template.cost)
+						totalCosts[r] = Math.floor(template.cost[r] * trainNum);
+
+				var neededResources = Engine.GuiInterfaceCall("GetNeededResources", totalCosts);
+				if (neededResources)
+				{
+					var totalCost = 0;
+					if (button.enabled !== false)
+					{
+						for each (var resource in neededResources)
+							totalCost += resource;
+
+						button.enabled = false;
+						affordableMask.hidden = false;
+						var alpha = 75 + totalCost/6;
+						alpha = alpha > 150 ? 150 : alpha;
+						affordableMask.sprite = "colour: 255 0 0 " + (alpha);
+					}
+					button.tooltip += getNeededResourcesTooltip(neededResources);
 				}
 			}
 		}
@@ -718,12 +795,28 @@ function setupUnitBarterPanel(unitEntState)
 				var buyPrice = unitEntState.barterMarket.prices["buy"][resource];
 				amountToBuy = "+" + Math.round(sellPrice / buyPrice * amountToSell);
 			}
+
 			var amount;
 			if (j == 0)
 			{
 				button.onpress = (function(i){ return function() { g_barterSell = i; } })(i);
-				amount = (i == g_barterSell) ? "-" + amountToSell : "";
-			}
+				if (i == g_barterSell)
+				{
+					amount = "-" + amountToSell;
+					
+					var neededRes = {};
+					neededRes[resource] = amountToSell;
+					var neededResources = Engine.GuiInterfaceCall("GetNeededResources", neededRes);
+					var hidden = neededResources ? false : true;
+					for (var ii = 0; ii < BARTER_RESOURCES.length; ii++)
+					{
+						var affordableMask = getGUIObjectByName("unitBarterBuyUnaffordable["+ii+"]");
+						affordableMask.hidden = hidden;
+					}
+				}
+				else
+					amount = "";
+ 			}
 			else
 			{
 				var exchangeResourcesParameters = { "sell": BARTER_RESOURCES[g_barterSell], "buy": BARTER_RESOURCES[i], "amount": amountToSell };
