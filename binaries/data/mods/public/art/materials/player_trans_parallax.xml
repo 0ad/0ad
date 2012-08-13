@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
     <shader effect="model"/>
-    <alternative material="player_trans_ao_spec.xml" quality="8"/>
+    <alternative material="player_trans.xml" quality="8"/>
     
     <define name="USE_PLAYERCOLOR" value="1"/>
     
@@ -10,7 +10,9 @@
          COMMENT: Pixels that are exactly white are calculated more efficiently (on average) 
 		  if dynamic branching is supported by the player's GPU.
 	 EFFICIENCY: This is a moderately expensive effect, so use with care. -->
-    <define name="USE_PARALLAX_MAP" value="1"/>
+    <conditional_define name="USE_PARALLAX_MAP" value="1" type="draw_range" conf="PARALLAX_DIST"/>
+    <conditional_define name="USE_HQ_PARALLAX" value="1" type="draw_range" conf="PARALLAX_HQ_DIST"/>
+    <conditional_define name="USE_VHQ_PARALLAX" value="1" type="draw_range" conf="PARALLAX_VHQ_DIST"/>
     
     <!-- REQUIRES: Actor must provide a texture named "normTex", where the RGB channels
 		   are a normal map corresponding to XYZ normals.
