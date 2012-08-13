@@ -431,9 +431,9 @@ Defence.prototype.MessageProcess = function(gameState,events, militaryManager) {
 								// If it's not part of a big army, depending on our priority we may want to kill it (using the same things as animals for that)
 								// TODO (perhaps not any more, but let's mark it anyway)
 								var army = militaryManager.enemyWatchers[attacker.owner()].getArmyFromMember(attacker.id());
-								if (army[1].length > 5) {
+								if (army !== undefined && army[1].length > 5) {
 									militaryManager.enemyWatchers[attacker.owner()].setAsDangerous(army[0]);
-								} else if (!militaryManager.enemyWatchers[attacker.owner()].isDangerous(army[0])) {
+								} else if (army !== undefined && !militaryManager.enemyWatchers[attacker.owner()].isDangerous(army[0])) {
 									// we register this unit as wanted, TODO register the whole army
 									// another function will deal with it.
 									var filter = Filters.and(Filters.byOwner(attacker.owner()),Filters.byID(attacker.id()));

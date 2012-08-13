@@ -775,11 +775,13 @@ EconomyManager.prototype.update = function(gameState, queues, events) {
 			for (var j in gathererGroups){
 				var a = eval(i);
 				var b = eval(j);
-				if (a["food.grain"]/b["food.grain"] > a["wood.tree"]/b["wood.tree"] && gathererGroups[i]["wood"].length > 0 && gathererGroups[j]["food"].length > 0){
-					for (var k = 0; k < Math.min(gathererGroups[i]["wood"].length, gathererGroups[j]["food"].length); k++){
-						gathererGroups[i]["wood"][k].setMetadata("gather-type", "food");
-						gathererGroups[j]["food"][k].setMetadata("gather-type", "wood");
-					}
+				if (a !== undefined && b !== undefined)
+					if (a["food.grain"]/b["food.grain"] > a["wood.tree"]/b["wood.tree"] && gathererGroups[i]["wood"].length > 0
+						&& gathererGroups[j]["food"].length > 0){
+						for (var k = 0; k < Math.min(gathererGroups[i]["wood"].length, gathererGroups[j]["food"].length); k++){
+							gathererGroups[i]["wood"][k].setMetadata("gather-type", "food");
+							gathererGroups[j]["food"][k].setMetadata("gather-type", "wood");
+						}
 				}
 			}
 		}

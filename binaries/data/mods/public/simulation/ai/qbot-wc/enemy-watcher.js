@@ -109,36 +109,46 @@ enemyWatcher.prototype.detectArmies = function(gameState){
 	//this.cleanDebug();
 	
 	var self = this;
-	// let's loop through unmonitored enemy soldiers
-	this.unmonitoredEnemySoldiers.forEach( function (enemy) {
-		if (enemy.position() == undefined)
-			return;
-
-		// this was an unmonitored unit, we do not know any army associated with it. We assign it a new army (we'll merge later if needed)
-		enemy.setMetadata("monitored","true");
-		var armyID = uneval( gameState.player + "" + self.totalNBofArmies);
-		self.totalNBofArmies++,
-		enemy.setMetadata("EnemyWatcherArmy",armyID);
-		var filter = Filters.byMetadata("EnemyWatcherArmy",armyID);
-		var army = self.enemySoldiers.filter(filter);
-		self.armies[armyID] = army;
-		self.armies[armyID].registerUpdates();
-		self.armies[armyID].length;
-	});
-	this.mergeArmies();	// calls "scrap empty armies"
-	this.splitArmies(gameState);
+	if (gameState.ai.playedTurn % 4 === 0) {
+		Engine.ProfileStart("Looking for new soldiers");
+		// let's loop through unmonitored enemy soldiers
+		this.unmonitoredEnemySoldiers.forEach( function (enemy) { //}){
+			if (enemy.position() === undefined)
+				return;
+			
+			// this was an unmonitored unit, we do not know any army associated with it. We assign it a new army (we'll merge later if needed)
+			enemy.setMetadata("monitored","true");
+			var armyID = gameState.player + "" + self.totalNBofArmies;
+			self.totalNBofArmies++,
+			enemy.setMetadata("EnemyWatcherArmy",armyID);
+			var filter = Filters.byMetadata("EnemyWatcherArmy",armyID);
+			var army = self.enemySoldiers.filter(filter);
+			self.armies[armyID] = army;
+			self.armies[armyID].registerUpdates();
+			self.armies[armyID].length;
+		});
+		Engine.ProfileStop();
+	} else if (gameState.ai.playedTurn % 8 === 3) {
+		Engine.ProfileStart("Merging");
+		this.mergeArmies();	// calls "scrap empty armies"
+		Engine.ProfileStop();
+	} else if (gameState.ai.playedTurn % 8 === 7) {
+		Engine.ProfileStart("Splitting");
+		this.splitArmies(gameState);
+		Engine.ProfileStop();
+	}
 };
 // this will merge any two army who are too close together. The distance for "army" is fairly big.
 // note: this doesn't actually merge two entity collections... It simply changes the unit metadatas, and will clear the empty entity collection
 enemyWatcher.prototype.mergeArmies = function(){
 	for (army in this.armies) {
 		var firstArmy = this.armies[army];
-		if (firstArmy.length > 0)
+		if (firstArmy.length !== 0)
 			for (otherArmy in this.armies) {
-				if (otherArmy !== army && this.armies[otherArmy].length > 0) {
+				if (otherArmy !== army && this.armies[otherArmy].length !== 0) {
 					var secondArmy = this.armies[otherArmy];
 					// we're not self merging, so we check if the two armies are close together
-					if (inRange(firstArmy.getCentrePosition(),secondArmy.getCentrePosition(), 3000 ) ) {
+					if (inRange(firstArmy.getApproximatePosition(4),secondArmy.getApproximatePosition(4), 3000 ) ) {
 						// okay so we merge the two together
 						
 						// if the other one was dangerous and we weren't, we're now.
@@ -173,15 +183,13 @@ enemyWatcher.prototype.splitArmies = function(gameState){
 	var self = this;
 	for (armyID in this.armies) {
 		var army = this.armies[armyID];
-		var centre = army.getCentrePosition();
+		var centre = army.getApproximatePosition(4);
 		army.forEach( function (enemy) {
 			if (enemy.position() == undefined)
 				return;
 					 
-			// debug ("entity " +enemy.templateName() + " is currently " +enemy.visibility(gameState.player));
-					 
 			if (!inRange(enemy.position(),centre, 3500) ) {
-				var newArmyID = uneval( gameState.player + "" + self.totalNBofArmies);
+				var newArmyID = gameState.player + "" + self.totalNBofArmies;
 				if (self.dangerousArmies.indexOf(armyID) !== -1)
 					 self.dangerousArmies.push(newArmyID);
 				
