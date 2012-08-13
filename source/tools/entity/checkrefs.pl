@@ -111,6 +111,7 @@ sub add_actors
             for my $variant (@{$group->{variant}})
             {
                 push @deps, [ $f, "art/meshes/$variant->{mesh}" ] if $variant->{mesh};
+                push @deps, [ $f, "art/particles/$variant->{particles}{file}" ] if $variant->{particles}{file};
                 for my $tex (@{$variant->{textures}{texture}})
                 {
                     push @deps, [ $f, "art/textures/skins/$tex->{file}" ] if $tex->{file};
@@ -125,16 +126,38 @@ sub add_actors
                 }
             }
         }
+
+        push @deps, [ $f, "art/materials/$actor->{material}" ] if $actor->{material};
     }
 }
 
 sub add_art
 {
     print "Loading art files...\n";
+    push @files, find_files('art/textures/particles', 'dds|png|jpg|tga');
     push @files, find_files('art/textures/terrain', 'dds|png|jpg|tga');
     push @files, find_files('art/textures/skins', 'dds|png|jpg|tga');
     push @files, find_files('art/meshes', 'pmd|dae');
     push @files, find_files('art/animation', 'psa|dae');
+}
+
+sub add_materials
+{
+    print "Loading materials...\n";
+    push @files, find_files('art/materials', 'xml');
+}
+
+sub add_particles
+{
+    print "Loading particles...\n";
+    my @particlefiles = find_files('art/particles', 'xml');
+    for my $f (sort @particlefiles)
+    {
+        push @files, $f;
+
+        my $particle = XMLin(vfs_to_physical($f));
+        push @deps, [ $f, "$particle->{texture}" ] if $particle->{texture};
+    }
 }
 
 sub add_scenarios_xml
@@ -149,7 +172,7 @@ sub add_scenarios_xml
 
         push @roots, $f;
 
-        my $map = XMLin(vfs_to_physical($f), ForceArray => [qw(ScriptSettings Entity)], KeyAttr => []) or die "Failed to parse '$f': $!";
+        my $map = XMLin(vfs_to_physical($f), ForceArray => [qw(Entity)], KeyAttr => []) or die "Failed to parse '$f': $!";
 
         my %used;
         for my $entity (@{$map->{Entities}{Entity}})
@@ -170,7 +193,7 @@ sub add_scenarios_xml
         }
 
         # Map previews
-        my $settings = decode_json(@{$map->{ScriptSettings}}[0]);
+        my $settings = decode_json($map->{ScriptSettings});
         push @deps, [ $f, "art/textures/ui/session/icons/mappreview/" . $settings->{Preview} ] if $settings->{Preview};
     }
 }
@@ -436,6 +459,10 @@ add_entities();
 add_actors();
 
 add_art();
+
+add_materials();
+
+add_particles();
 
 add_soundgroups();
 add_audio();
