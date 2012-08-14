@@ -244,6 +244,7 @@ EntitySelection.prototype.update = function()
 			_setMotionOverlay([ent], false);
 
 			delete this.selected[ent];
+			this.groups.removeEnt(ent);
 			this.dirty = true;
 			continue;
 		}

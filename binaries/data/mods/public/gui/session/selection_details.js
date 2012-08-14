@@ -229,7 +229,8 @@ function displayMultiple(selection, template)
 		var hitpoints = "[font=\"serif-bold-13\"]Hitpoints [/font]" + averageHealth + " / " + maxHealth;
 		var healthMultiple = getGUIObjectByName("healthMultiple");
 		healthMultiple.tooltip = hitpoints;
-		healthMultiple.hidden = false;	}
+		healthMultiple.hidden = false;
+	}
 	else
 	{
 		getGUIObjectByName("healthMultiple").hidden = true;

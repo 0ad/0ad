@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall_tower">
   <Attack disable=""/>
+  <Cost>
+    <Resources>
+      <wood>30</wood>
+      <stone>20</stone>
+    </Resources>
+  </Cost>
   <Footprint>
     <Square width="10.0" depth="10.0"/>
     <Height>20.0</Height>

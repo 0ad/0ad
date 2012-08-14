@@ -270,6 +270,64 @@ function getEntityCostComponentsTooltipString(template)
 }
 
 /**
+ * Returns an array of strings for a set of wall pieces. If the pieces share
+ * resource type requirements, output will be of the form '10 to 30 Stone',
+ * otherwise output will be, e.g. '10 Stone, 20 Stone, 30 Stone'.
+ */
+function getWallPieceTooltip(wallTypes)
+{
+	var out = [];
+	var resourceCount = {};
+
+	// Initialize the acceptable types for '$x to $y $resource' mode.
+	for (var resource in wallTypes[0].cost)
+		if (wallTypes[0].cost[resource])
+			resourceCount[resource] = [wallTypes[0].cost[resource]];
+
+	var sameTypes = true;
+	for (var i = 1; i < wallTypes.length; ++i)
+	{
+		for (var resource in wallTypes[i].cost)
+		{
+			// Break out of the same-type mode if this wall requires
+			// resource types that the first didn't.
+			if (wallTypes[i].cost[resource] && !resourceCount[resource])
+			{
+				sameTypes = false;
+				break;
+			}
+		}
+
+		for (var resource in resourceCount)
+		{
+			if (wallTypes[i].cost[resource])
+				resourceCount[resource].push(wallTypes[i].cost[resource]);
+			else
+			{
+				sameTypes = false;
+				break;
+			}
+		}
+	}
+
+	if (sameTypes)
+	{
+		for (var resource in resourceCount)
+		{
+			var resourceMin = Math.min.apply(Math, resourceCount[resource]);
+			var resourceMax = Math.max.apply(Math, resourceCount[resource]);
+
+			out.push(resourceMin + " to " + resourceMax + " [font=\"serif-12\"]" + getCostComponentDisplayName(resource) + "[/font]");
+		}
+	}
+	else
+		for (var i = 0; i < wallTypes.length; ++i)
+			out.push(getEntityCostComponentsTooltipString(wallTypes[i]).join(", "));
+
+	return out;
+}
+
+/**
  * Returns the cost information to display in the specified entity's construction button tooltip.
  */
 function getEntityCostTooltip(template)
@@ -285,13 +343,11 @@ function getEntityCostTooltip(template)
 	var templateShort = GetTemplateData(template.wallSet.templates.short);
 	var templateTower = GetTemplateData(template.wallSet.templates.tower);
 		
-	// TODO: the costs of the wall segments should be the same, and for now we will assume they are (ideally we
-	// should take the average here or something).
-	var wallCosts = getEntityCostComponentsTooltipString(templateLong);
+	var wallCosts = getWallPieceTooltip([templateShort, templateMedium, templateLong]);
 	var towerCosts = getEntityCostComponentsTooltipString(templateTower);
 		
 	cost += "\n";
-	cost += " Walls:  " + wallCosts.join(", ") + "\n";
+	cost += " Walls:  " + wallCosts.join("; ") + "\n";
 	cost += " Towers: " + towerCosts.join(", ");
     }
     else if (template.cost)
