@@ -1168,12 +1168,19 @@ function ReplaceBuildingWith(ent, building)
 	var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 	var cmpBuildingOwnership = Engine.QueryInterface(building, IID_Ownership);
 	cmpBuildingOwnership.SetOwner(cmpOwnership.GetOwner());
-	
+
 	// Copy control groups
 	var cmpObstruction = Engine.QueryInterface(ent, IID_Obstruction);
 	var cmpBuildingObstruction = Engine.QueryInterface(building, IID_Obstruction);
 	cmpBuildingObstruction.SetControlGroup(cmpObstruction.GetControlGroup());
 	cmpBuildingObstruction.SetControlGroup2(cmpObstruction.GetControlGroup2());
+
+	// Copy health level from the old entity to the new
+	var cmpHealth = Engine.QueryInterface(ent, IID_Health);
+	var cmpBuildingHealth = Engine.QueryInterface(building, IID_Health);
+	var healthFraction = Math.max(0, Math.min(1, cmpHealth.GetHitpoints() / cmpHealth.GetMaxHitpoints()));
+	var buildingHitpoints = Math.round(cmpBuildingHealth.GetMaxHitpoints() * healthFraction);
+	cmpBuildingHealth.SetHitpoints(buildingHitpoints);
 
 	PlaySound("constructed", building);
 
