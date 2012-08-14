@@ -144,7 +144,17 @@ sub add_art
 sub add_materials
 {
     print "Loading materials...\n";
-    push @files, find_files('art/materials', 'xml');
+    my @materialfiles = find_files('art/materials', 'xml');
+    for my $f (sort @materialfiles)
+    {
+        push @files, $f;
+
+        my $material = XMLin(vfs_to_physical($f), ForceArray => [qw(alternative)], KeyAttr => []);
+        for my $alternative (@{$material->{alternative}})
+        {
+            push @deps, [ $f, "art/materials/$alternative->{material}" ] if $alternative->{material};
+        }
+    }
 }
 
 sub add_particles
