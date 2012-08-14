@@ -24,14 +24,14 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="382.596" y="91.2117" z="712.426"/>
+		<Position x="618.44" y="91.0758" z="93.8673"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview" : "lorraine_plain_scenario.png",
+  "Preview": "lorraine_plain_scenario.png",
   "Description": "The sunset on Celtic dominion of Gaul. \u000a\u000aThe map is cut through the centre by a river traversing east-west with some shallows.\u000a\u000aFairly open-wooded and basically flat. Plenty of building room. Well balanced resources.\u000a\u000aCiv Territories are divided by main river and tributaries (with necessary shallows for crossings).",
   "GameType": "conquest",
   "Keywords": [],
@@ -9539,35 +9539,11 @@
 			<Position x="476.24903" z="486.30863"/>
 			<Orientation y="-2.87154"/>
 		</Entity>
-		<Entity uid="1608">
-			<Template>gaia/geology_stonemine_temperate_quarry</Template>
-			<Player>0</Player>
-			<Position x="602.68396" z="151.54365"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="1609">
 			<Template>gaia/geology_stonemine_temperate_quarry</Template>
 			<Player>0</Player>
 			<Position x="295.27717" z="420.59198"/>
 			<Orientation y="-2.8373"/>
-		</Entity>
-		<Entity uid="1610">
-			<Template>gaia/geology_stonemine_temperate_quarry</Template>
-			<Player>0</Player>
-			<Position x="51.67731" z="500.44172"/>
-			<Orientation y="2.58924"/>
-		</Entity>
-		<Entity uid="1611">
-			<Template>gaia/geology_stonemine_temperate_quarry</Template>
-			<Player>0</Player>
-			<Position x="934.77955" z="393.06885"/>
-			<Orientation y="0.10106"/>
-		</Entity>
-		<Entity uid="1612">
-			<Template>gaia/geology_stonemine_medit_quarry</Template>
-			<Player>0</Player>
-			<Position x="335.96589" z="758.39094"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1613">
 			<Template>gaia/geology_stonemine_medit_quarry</Template>
@@ -9580,12 +9556,6 @@
 			<Player>0</Player>
 			<Position x="470.4109" z="971.20258"/>
 			<Orientation y="2.75853"/>
-		</Entity>
-		<Entity uid="1615">
-			<Template>gaia/geology_stonemine_medit_quarry</Template>
-			<Player>0</Player>
-			<Position x="820.18921" z="836.1637"/>
-			<Orientation y="2.1822"/>
 		</Entity>
 		<Entity uid="1616">
 			<Template>gaia/fauna_sheep</Template>
@@ -17435,6 +17405,36 @@
 			<Player>1</Player>
 			<Position x="334.65098" z="545.63794"/>
 			<Orientation y="-2.09984"/>
+		</Entity>
+		<Entity uid="3137">
+			<Template>gaia/geology_stonemine_temperate_formation</Template>
+			<Player>0</Player>
+			<Position x="333.98313" z="760.9261"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3138">
+			<Template>gaia/geology_stonemine_temperate_formation</Template>
+			<Player>0</Player>
+			<Position x="605.66041" z="153.14144"/>
+			<Orientation y="-1.84487"/>
+		</Entity>
+		<Entity uid="3139">
+			<Template>gaia/geology_stonemine_temperate_formation</Template>
+			<Player>0</Player>
+			<Position x="819.81202" z="836.82789"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3140">
+			<Template>gaia/geology_stonemine_temperate_formation</Template>
+			<Player>0</Player>
+			<Position x="931.54023" z="392.6388"/>
+			<Orientation y="-2.3191"/>
+		</Entity>
+		<Entity uid="3141">
+			<Template>gaia/geology_stonemine_temperate_formation</Template>
+			<Player>0</Player>
+			<Position x="54.19314" z="500.06547"/>
+			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
 	<Paths/>

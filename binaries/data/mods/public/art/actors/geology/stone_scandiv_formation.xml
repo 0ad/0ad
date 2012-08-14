@@ -1,23 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
+  <float/>
   <group>
     <variant name="a">
       <mesh>gaia/rock_scandiv_01.dae</mesh>
     </variant>
-
   </group>
-
   <group>
     <variant>
       <textures>
-	  <texture file="gaia/stone_scandiv_template.png" name="baseTex"/>
-	  <texture file="gaia/stone_scandiv_template_norm.png" name="normTex"/>
-	  <texture file="gaia/stone_scandiv_template_spec.png" name="specTex"/>
-	  <texture file="gaia/stone_scandiv_template_ao.png" name="aoTex"/>
-	  </textures>
+        <texture file="gaia/stone_scandiv_template.png" name="baseTex"/>
+        <texture file="gaia/stone_scandiv_template_norm.png" name="normTex"/>
+        <texture file="gaia/stone_scandiv_template_spec.png" name="specTex"/>
+        <texture file="gaia/stone_scandiv_template_ao.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <material>rock_bump_spec_ao_test.xml</material>

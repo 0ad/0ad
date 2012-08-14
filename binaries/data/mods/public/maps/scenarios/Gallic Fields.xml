@@ -24,14 +24,14 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="322.219" y="95.066" z="280.642"/>
+		<Position x="126.998" y="76.6261" z="409.984"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview" : "gallic_fields.png",
+  "Preview": "gallic_fields.png",
   "Description": "Defend your Gallic outpost against attacks from your treacherous neighbors! They are your cousins by ancestry, but no friends of yours!",
   "GameType": "conquest",
   "Keywords": [],
@@ -158,6 +158,7 @@
 			<Player>1</Player>
 			<Position x="287.85877" z="367.69724"/>
 			<Orientation y="-3.13718"/>
+			<Obstruction group="12"/>
 		</Entity>
 		<Entity uid="14">
 			<Template>other/palisades_rocks_straight</Template>
@@ -170,30 +171,35 @@
 			<Player>1</Player>
 			<Position x="285.35068" z="373.1276"/>
 			<Orientation y="3.01175"/>
+			<Obstruction group="12"/>
 		</Entity>
 		<Entity uid="16">
 			<Template>other/palisades_tall_spikes</Template>
 			<Player>1</Player>
 			<Position x="290.28885" z="382.0536"/>
 			<Orientation y="-2.15049"/>
+			<Obstruction group="12"/>
 		</Entity>
 		<Entity uid="17">
 			<Template>other/palisades_small_spikes</Template>
 			<Player>1</Player>
 			<Position x="283.41926" z="373.96698"/>
 			<Orientation y="-3.02302"/>
+			<Obstruction group="12"/>
 		</Entity>
 		<Entity uid="18">
 			<Template>other/palisades_rocks_straight</Template>
 			<Player>1</Player>
 			<Position x="296.86951" z="380.13361"/>
 			<Orientation y="0.89289"/>
+			<Obstruction group="12"/>
 		</Entity>
 		<Entity uid="19">
 			<Template>other/palisades_rocks_straight</Template>
 			<Player>1</Player>
 			<Position x="337.72504" z="381.74656"/>
 			<Orientation y="2.45415"/>
+			<Obstruction group="30"/>
 		</Entity>
 		<Entity uid="21">
 			<Template>other/palisades_rocks_end</Template>
@@ -212,12 +218,14 @@
 			<Player>1</Player>
 			<Position x="307.17038" z="344.4105"/>
 			<Orientation y="-0.85848"/>
+			<Obstruction group="25"/>
 		</Entity>
 		<Entity uid="24">
 			<Template>other/palisades_rocks_curve</Template>
 			<Player>1</Player>
 			<Position x="314.99994" z="340.41187"/>
 			<Orientation y="1.6486"/>
+			<Obstruction group="25"/>
 		</Entity>
 		<Entity uid="25">
 			<Template>other/palisades_rocks_fort</Template>
@@ -242,6 +250,7 @@
 			<Player>1</Player>
 			<Position x="345.10413" z="369.99659"/>
 			<Orientation y="-0.07187"/>
+			<Obstruction group="30"/>
 		</Entity>
 		<Entity uid="32">
 			<Template>other/palisades_rocks_straight</Template>
@@ -254,18 +263,21 @@
 			<Player>1</Player>
 			<Position x="325.55634" z="347.4593"/>
 			<Orientation y="0.78063"/>
+			<Obstruction group="25"/>
 		</Entity>
 		<Entity uid="34">
 			<Template>other/palisades_tall_spikes</Template>
 			<Player>1</Player>
 			<Position x="317.1662" z="337.68906"/>
 			<Orientation y="1.46691"/>
+			<Obstruction group="25"/>
 		</Entity>
 		<Entity uid="35">
 			<Template>other/palisades_tall_spikes</Template>
 			<Player>1</Player>
 			<Position x="327.46134" z="344.87958"/>
 			<Orientation y="-2.65601"/>
+			<Obstruction group="25"/>
 		</Entity>
 		<Entity uid="36">
 			<Template>other/palisades_rocks_end</Template>
@@ -296,12 +308,14 @@
 			<Player>1</Player>
 			<Position x="341.22443" z="383.68326"/>
 			<Orientation y="1.99071"/>
+			<Obstruction group="30"/>
 		</Entity>
 		<Entity uid="41">
 			<Template>other/palisades_tall_spikes</Template>
 			<Player>1</Player>
 			<Position x="349.17948" z="372.71537"/>
 			<Orientation y="-0.08655"/>
+			<Obstruction group="30"/>
 		</Entity>
 		<Entity uid="44">
 			<Template>other/palisades_tall_spikes</Template>
@@ -314,6 +328,7 @@
 			<Player>1</Player>
 			<Position x="328.40302" z="343.03174"/>
 			<Orientation y="-2.54506"/>
+			<Obstruction group="25"/>
 		</Entity>
 		<Entity uid="48">
 			<Template>units/celt_fanatic</Template>
@@ -392,6 +407,7 @@
 			<Player>1</Player>
 			<Position x="347.61612" z="380.87418"/>
 			<Orientation y="2.35621"/>
+			<Obstruction group="30"/>
 		</Entity>
 		<Entity uid="69">
 			<Template>gaia/flora_tree_pine</Template>
@@ -1194,18 +1210,21 @@
 			<Player>2</Player>
 			<Position x="684.05396" z="297.92887"/>
 			<Orientation y="1.57081"/>
+			<Obstruction group="216"/>
 		</Entity>
 		<Entity uid="208">
 			<Template>other/palisades_rocks_curve</Template>
 			<Player>2</Player>
 			<Position x="655.0287" z="325.88776"/>
 			<Orientation y="-3.12851"/>
+			<Obstruction group="213"/>
 		</Entity>
 		<Entity uid="209">
 			<Template>other/palisades_rocks_curve</Template>
 			<Player>2</Player>
 			<Position x="719.38245" z="329.00669"/>
 			<Orientation y="0.019"/>
+			<Obstruction group="221"/>
 		</Entity>
 		<Entity uid="211">
 			<Template>other/palisades_rocks_straight</Template>
@@ -1248,6 +1267,7 @@
 			<Player>2</Player>
 			<Position x="697.03986" z="304.8022"/>
 			<Orientation y="-2.32073"/>
+			<Obstruction group="216"/>
 		</Entity>
 		<Entity uid="218">
 			<Template>other/palisades_rocks_end</Template>
@@ -1278,12 +1298,14 @@
 			<Player>2</Player>
 			<Position x="712.4311" z="339.22507"/>
 			<Orientation y="2.35621"/>
+			<Obstruction group="221"/>
 		</Entity>
 		<Entity uid="223">
 			<Template>other/palisades_rocks_straight</Template>
 			<Player>2</Player>
 			<Position x="662.96521" z="338.20402"/>
 			<Orientation y="-2.39802"/>
+			<Obstruction group="213"/>
 		</Entity>
 		<Entity uid="224">
 			<Template>other/palisades_rocks_end</Template>
@@ -1302,18 +1324,21 @@
 			<Player>2</Player>
 			<Position x="704.35474" z="297.19034"/>
 			<Orientation y="-2.14817"/>
+			<Obstruction group="216"/>
 		</Entity>
 		<Entity uid="227">
 			<Template>other/palisades_tall_spikes</Template>
 			<Player>2</Player>
 			<Position x="701.71216" z="300.51105"/>
 			<Orientation y="-2.44234"/>
+			<Obstruction group="216"/>
 		</Entity>
 		<Entity uid="228">
 			<Template>other/palisades_tall_spikes</Template>
 			<Player>2</Player>
 			<Position x="693.07361" z="291.96988"/>
 			<Orientation y="1.03708"/>
+			<Obstruction group="216"/>
 		</Entity>
 		<Entity uid="229">
 			<Template>other/palisades_tall_spikes</Template>
@@ -1338,12 +1363,14 @@
 			<Player>2</Player>
 			<Position x="651.6211" z="324.66071"/>
 			<Orientation y="3.07378"/>
+			<Obstruction group="213"/>
 		</Entity>
 		<Entity uid="233">
 			<Template>other/palisades_tall_spikes</Template>
 			<Player>2</Player>
 			<Position x="659.42688" z="342.44599"/>
 			<Orientation y="-2.10112"/>
+			<Obstruction group="213"/>
 		</Entity>
 		<Entity uid="234">
 			<Template>other/palisades_tall_spikes</Template>
@@ -1362,6 +1389,7 @@
 			<Player>2</Player>
 			<Position x="721.93232" z="334.15006"/>
 			<Orientation y="-0.13688"/>
+			<Obstruction group="221"/>
 		</Entity>
 		<Entity uid="237">
 			<Template>other/palisades_tall_spikes</Template>
@@ -1386,6 +1414,7 @@
 			<Player>2</Player>
 			<Position x="651.22596" z="331.41044"/>
 			<Orientation y="0.33802"/>
+			<Obstruction group="213"/>
 		</Entity>
 		<Entity uid="241">
 			<Template>other/palisades_small_spikes</Template>
@@ -6747,29 +6776,11 @@
 			<Position x="636.72028" z="948.75599"/>
 			<Orientation y="0.98452"/>
 		</Entity>
-		<Entity uid="1178">
-			<Template>gaia/geology_stonemine_temperate_quarry</Template>
-			<Player>0</Player>
-			<Position x="306.67865" z="286.41224"/>
-			<Orientation y="2.60531"/>
-		</Entity>
-		<Entity uid="1179">
-			<Template>gaia/geology_stonemine_temperate_quarry</Template>
-			<Player>0</Player>
-			<Position x="720.9369" z="430.2516"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="1180">
-			<Template>gaia/geology_stonemine_temperate_quarry</Template>
-			<Player>0</Player>
-			<Position x="435.3535" z="740.44867"/>
-			<Orientation y="1.57105"/>
-		</Entity>
 		<Entity uid="1181">
 			<Template>gaia/geology_metal_temperate_slabs</Template>
 			<Player>0</Player>
 			<Position x="165.62598" z="415.83698"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="1.34702"/>
 		</Entity>
 		<Entity uid="1182">
 			<Template>gaia/geology_metal_temperate_slabs</Template>
@@ -6799,7 +6810,7 @@
 			<Template>gaia/geology_metal_temperate_slabs</Template>
 			<Player>0</Player>
 			<Position x="308.79114" z="188.61"/>
-			<Orientation y="-2.70705"/>
+			<Orientation y="1.29139"/>
 		</Entity>
 		<Entity uid="1189">
 			<Template>gaia/geology_metal_temperate_slabs</Template>
@@ -6852,18 +6863,21 @@
 			<Player>3</Player>
 			<Position x="492.33674" z="747.0647"/>
 			<Orientation y="3.04125"/>
+			<Obstruction group="1202"/>
 		</Entity>
 		<Entity uid="1200">
 			<Template>other/palisades_rocks_curve</Template>
 			<Player>3</Player>
 			<Position x="556.52302" z="748.91492"/>
 			<Orientation y="0.13331"/>
+			<Obstruction group="1212"/>
 		</Entity>
 		<Entity uid="1201">
 			<Template>other/palisades_rocks_curve</Template>
 			<Player>3</Player>
 			<Position x="523.2497" z="717.52527"/>
 			<Orientation y="1.64791"/>
+			<Obstruction group="1203"/>
 		</Entity>
 		<Entity uid="1202">
 			<Template>other/palisades_rocks_fort</Template>
@@ -6894,6 +6908,7 @@
 			<Player>3</Player>
 			<Position x="500.11237" z="759.49286"/>
 			<Orientation y="0.78994"/>
+			<Obstruction group="1202"/>
 		</Entity>
 		<Entity uid="1207">
 			<Template>other/palisades_rocks_end</Template>
@@ -6912,6 +6927,7 @@
 			<Player>3</Player>
 			<Position x="535.49274" z="725.50745"/>
 			<Orientation y="-2.40027"/>
+			<Obstruction group="1203"/>
 		</Entity>
 		<Entity uid="1210">
 			<Template>other/palisades_rocks_straight</Template>
@@ -6924,6 +6940,7 @@
 			<Player>3</Player>
 			<Position x="549.47571" z="760.52247"/>
 			<Orientation y="2.35621"/>
+			<Obstruction group="1212"/>
 		</Entity>
 		<Entity uid="1212">
 			<Template>other/palisades_rocks_fort</Template>
@@ -6990,18 +7007,21 @@
 			<Player>3</Player>
 			<Position x="498.48908" z="766.07898"/>
 			<Orientation y="2.35621"/>
+			<Obstruction group="1202"/>
 		</Entity>
 		<Entity uid="1223">
 			<Template>other/palisades_tall_spikes</Template>
 			<Player>3</Player>
 			<Position x="496.61084" z="761.81751"/>
 			<Orientation y="-2.3148"/>
+			<Obstruction group="1202"/>
 		</Entity>
 		<Entity uid="1224">
 			<Template>other/palisades_tall_spikes</Template>
 			<Player>3</Player>
 			<Position x="488.82264" z="753.06788"/>
 			<Orientation y="0.20873"/>
+			<Obstruction group="1202"/>
 		</Entity>
 		<Entity uid="1225">
 			<Template>other/palisades_tall_spikes</Template>
@@ -7026,18 +7046,21 @@
 			<Player>3</Player>
 			<Position x="520.12793" z="713.16321"/>
 			<Orientation y="1.71013"/>
+			<Obstruction group="1203"/>
 		</Entity>
 		<Entity uid="1229">
 			<Template>other/palisades_tall_spikes</Template>
 			<Player>3</Player>
 			<Position x="528.99933" z="712.53443"/>
 			<Orientation y="1.4199"/>
+			<Obstruction group="1203"/>
 		</Entity>
 		<Entity uid="1230">
 			<Template>other/palisades_tall_spikes</Template>
 			<Player>3</Player>
 			<Position x="537.6883" z="721.14771"/>
 			<Orientation y="-2.77094"/>
+			<Obstruction group="1203"/>
 		</Entity>
 		<Entity uid="1231">
 			<Template>other/palisades_tall_spikes</Template>
@@ -7050,12 +7073,14 @@
 			<Player>3</Player>
 			<Position x="559.21705" z="751.85297"/>
 			<Orientation y="3.03222"/>
+			<Obstruction group="1212"/>
 		</Entity>
 		<Entity uid="1233">
 			<Template>other/palisades_tall_spikes</Template>
 			<Player>3</Player>
 			<Position x="553.83185" z="764.43342"/>
 			<Orientation y="2.02135"/>
+			<Obstruction group="1212"/>
 		</Entity>
 		<Entity uid="1235">
 			<Template>other/palisades_small_spikes</Template>
@@ -16542,12 +16567,14 @@
 			<Player>1</Player>
 			<Position x="328.78934" z="341.6399"/>
 			<Orientation y="-3.07622"/>
+			<Obstruction group="25"/>
 		</Entity>
 		<Entity uid="2823">
 			<Template>other/palisades_angle_spike</Template>
 			<Player>1</Player>
 			<Position x="324.47761" z="336.72385"/>
 			<Orientation y="-1.97432"/>
+			<Obstruction group="25"/>
 		</Entity>
 		<Entity uid="2824">
 			<Template>other/palisades_angle_spike</Template>
@@ -16602,6 +16629,7 @@
 			<Player>1</Player>
 			<Position x="283.55054" z="373.4979"/>
 			<Orientation y="-0.42118"/>
+			<Obstruction group="12"/>
 		</Entity>
 		<Entity uid="2833">
 			<Template>other/palisades_angle_spike</Template>
@@ -16878,12 +16906,14 @@
 			<Player>2</Player>
 			<Position x="655.00214" z="340.57923"/>
 			<Orientation y="0.94704"/>
+			<Obstruction group="213"/>
 		</Entity>
 		<Entity uid="2879">
 			<Template>other/palisades_angle_spike</Template>
 			<Player>2</Player>
 			<Position x="651.36713" z="336.12598"/>
 			<Orientation y="0.46546"/>
+			<Obstruction group="213"/>
 		</Entity>
 		<Entity uid="2880">
 			<Template>other/palisades_angle_spike</Template>
@@ -16974,6 +17004,7 @@
 			<Player>3</Player>
 			<Position x="531.2234" z="712.94092"/>
 			<Orientation y="-1.74183"/>
+			<Obstruction group="1203"/>
 		</Entity>
 		<Entity uid="2895">
 			<Template>other/palisades_angle_spike</Template>
@@ -17124,12 +17155,14 @@
 			<Player>3</Player>
 			<Position x="491.62031" z="760.31684"/>
 			<Orientation y="0.89811"/>
+			<Obstruction group="1202"/>
 		</Entity>
 		<Entity uid="2920">
 			<Template>other/palisades_angle_spike</Template>
 			<Player>3</Player>
 			<Position x="487.46906" z="753.0901"/>
 			<Orientation y="0.07598"/>
+			<Obstruction group="1202"/>
 		</Entity>
 		<Entity uid="2921">
 			<Template>other/palisades_angle_spike</Template>
@@ -18857,27 +18890,27 @@
 		</Entity>
 		<Entity uid="3257">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="708.04706" z="437.94043"/>
+			<Position x="708.38172" z="432.03235"/>
 			<Orientation y="2.90572"/>
 		</Entity>
 		<Entity uid="3258">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="710.27271" z="427.33686"/>
+			<Position x="710.91578" z="428.49665"/>
 			<Orientation y="-2.93325"/>
 		</Entity>
 		<Entity uid="3259">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="709.3733" z="422.88572"/>
+			<Position x="713.0337" z="423.50812"/>
 			<Orientation y="-2.81521"/>
 		</Entity>
 		<Entity uid="3260">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="707.97748" z="418.7711"/>
+			<Position x="726.78327" z="421.206"/>
 			<Orientation y="-2.897"/>
 		</Entity>
 		<Entity uid="3261">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="715.90278" z="420.1279"/>
+			<Position x="729.28266" z="426.38541"/>
 			<Orientation y="1.30488"/>
 		</Entity>
 		<Entity uid="3262">
@@ -18907,17 +18940,17 @@
 		</Entity>
 		<Entity uid="3267">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="732.31391" z="438.58954"/>
+			<Position x="727.49286" z="430.88718"/>
 			<Orientation y="-1.31952"/>
 		</Entity>
 		<Entity uid="3268">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="729.61872" z="443.53504"/>
+			<Position x="731.95167" z="432.556"/>
 			<Orientation y="1.03092"/>
 		</Entity>
 		<Entity uid="3269">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="735.38794" z="444.73646"/>
+			<Position x="727.0489" z="434.9408"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3270">
@@ -21514,6 +21547,7 @@
 			<Player>3</Player>
 			<Position x="548.52082" z="749.78467"/>
 			<Orientation y="-2.33152"/>
+			<Obstruction group="1212"/>
 		</Entity>
 		<Entity uid="3788">
 			<Template>structures/gaul_mill</Template>
@@ -21544,6 +21578,7 @@
 			<Player>3</Player>
 			<Position x="504.7126" z="752.45698"/>
 			<Orientation y="2.35621"/>
+			<Obstruction group="1202"/>
 		</Entity>
 		<Entity uid="3794">
 			<Template>structures/gaul_corral</Template>
@@ -21580,6 +21615,7 @@
 			<Player>2</Player>
 			<Position x="666.05304" z="332.30195"/>
 			<Orientation y="2.35621"/>
+			<Obstruction group="213"/>
 		</Entity>
 		<Entity uid="3802">
 			<Template>structures/gaul_corral</Template>
@@ -21592,6 +21628,24 @@
 			<Player>2</Player>
 			<Position x="675.02845" z="354.18677"/>
 			<Orientation y="-2.36197"/>
+		</Entity>
+		<Entity uid="3804">
+			<Template>gaia/geology_stonemine_temperate_formation</Template>
+			<Player>0</Player>
+			<Position x="306.60395" z="290.9133"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="3805">
+			<Template>gaia/geology_stonemine_temperate_formation</Template>
+			<Player>0</Player>
+			<Position x="434.14145" z="741.19977"/>
+			<Orientation y="-1.49477"/>
+		</Entity>
+		<Entity uid="3806">
+			<Template>gaia/geology_stonemine_temperate_formation</Template>
+			<Player>0</Player>
+			<Position x="719.625" z="430.80335"/>
+			<Orientation y="0.67426"/>
 		</Entity>
 	</Entities>
 	<Paths/>
