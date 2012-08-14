@@ -4,7 +4,11 @@
   <group>
     <variant name="Rome Big Temple Statues">
       <mesh>props/rome_temple_big_statues.dae</mesh>
-      <textures><texture file="props/rome_cc_statues.png" name="baseTex"/></textures>
+      <textures>
+	    <texture file="props/rome_cc_statues.png" name="baseTex"/>
+	    <texture file="props/ao/rome_temple_mars_statues.png" name="aoTex"/>
+	  </textures>
     </variant>
   </group>
+  <material>player_trans_ao.xml</material>
 </actor>
