@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_defense_wall">
+<Entity parent="template_structure_defense_wall_medium">
   <Armour>
     <Hack>15.0</Hack>
     <Pierce>35.0</Pierce>
@@ -9,9 +9,8 @@
     <Territory>own neutral enemy</Territory>
   </BuildRestrictions>
   <Cost>
-    <BuildTime>20</BuildTime>
     <Resources>
-      <wood>50</wood>
+      <wood>40</wood>
       <stone>0</stone>
     </Resources>
   </Cost>
