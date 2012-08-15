@@ -72,7 +72,7 @@ var Filters = {
 	
 	byNotOwner: function(owner){
 		return {"func" : function(ent){
-			return (ent.owner() != owner);
+			return (ent.owner() !== owner);
 		}, 
 		"dynamicProperties": ['owner']};
 	},
@@ -119,7 +119,7 @@ var Filters = {
 	
 	byDistance: function(startPoint, dist){
 		return {"func": function(ent){
-			if (!ent.position()){
+			if (ent.position() === undefined){
 				return false;
 			}else{
 				return (SquareVectorDistance(startPoint, ent.position()) < dist*dist);
@@ -152,7 +152,7 @@ var Filters = {
 			var type = ent.resourceSupplyType();
 			if (!type)
 				return false;
-			var amount = ent.resourceSupplyAmount();
+			var amount = ent.resourceSupplyMax();
 			if (!amount)
 				return false;
 			
@@ -191,6 +191,6 @@ var Filters = {
 				return (resourceType == type.generic);
 			}
 		},
-		"dynamicProperties": ["resourceSupplyAmount", "owner", "metadata.inaccessible", "metadata.full"]};
+		"dynamicProperties": [/*"resourceSupplyAmount", */"owner", "metadata.inaccessible", "metadata.full"]};
 	}
 };

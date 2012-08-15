@@ -13,6 +13,8 @@ function BaseAI(settings)
 	this._entityCollections = [];
 	this._entityCollectionsByDynProp = {};
 	this._entityCollectionsUID = 0;
+
+	this.turn = 0;
 }
 
 //Return a simple object (using no classes etc) that will be serialized
@@ -198,16 +200,23 @@ BaseAI.prototype.ApplyEntitiesDelta = function(state)
 
 		for (var prop in changes)
 		{
-			this._entities[id]._entity[prop] = changes[prop];
-			this.updateEntityCollections(prop, this._entities[id]);
+			if (prop == "position" || prop == "resourceSupplyAmount") {
+				if (this.turn % 10 === 0) {
+					this._entities[id]._entity[prop] = changes[prop];
+					this.updateEntityCollections(prop, this._entities[id]);
+				}
+			} else {
+				this._entities[id]._entity[prop] = changes[prop];
+				this.updateEntityCollections(prop, this._entities[id]);
+			}
 		}
 	}
-
 	Engine.ProfileStop();
 };
 
 BaseAI.prototype.OnUpdate = function()
 {	// AIs override this function
+	// They should do at least this.turn++;
 };
 
 BaseAI.prototype.chat = function(message)
@@ -253,7 +262,7 @@ BaseAI.prototype.removeUpdatingEntityCollection = function(entCollection)
 
 BaseAI.prototype.updateEntityCollections = function(property, ent)
 {
-	if (this._entityCollectionsByDynProp[property])
+	if (this._entityCollectionsByDynProp[property] !== undefined)
 	{
 		for each (var entCollection in this._entityCollectionsByDynProp[property])
 		{

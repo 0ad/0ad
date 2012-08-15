@@ -184,4 +184,8 @@ Entity.prototype.barter = function(buyType, sellType, amount) {
 	Engine.PostCommand({"type": "barter", "sell" : sellType, "buy" : buyType, "amount" : amount });
 	return this;
 };
-
+Entity.prototype.disband = function() {
+	
+	Engine.PostCommand({"type": "delete-entities", "entities" : [this.id()] });
+	return this;
+};
