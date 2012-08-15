@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,10 +17,10 @@
 
 /**
 * =========================================================================
-* File        : SoundGroup.h
-* Project     : 0 A.D.
+* File		: SoundGroup.h
+* Project	 : 0 A.D.
 * Description : Loads up a group of sound files with shared properties, 
-*				and provides a simple interface for playing them.        
+*				and provides a simple interface for playing them.		
 * =========================================================================
 */
 
@@ -49,24 +49,24 @@ Example SoundGroup.xml
 
 */
 
-#ifndef INCLUDED_SOUNDGROUP
-#define INCLUDED_SOUNDGROUP
+#ifndef INCLUDED_SOUNDGROUP_H
+#define INCLUDED_SOUNDGROUP_H
 
-#include "lib/res/handle.h"
 #include "lib/file/vfs/vfs_path.h"
-#include "ps/CStr.h"
-#include "maths/Vector3D.h"
-#include "lib/res/sound/snd_mgr.h"
 
 #include <vector>
 
+class CVector3D;
+class ISoundItem;
+
 enum eSndGrpFlags
 {
-	eRandOrder     = 0x01,
-	eRandGain      = 0x02,
-	eRandPitch     = 0x04,
-	eLoop          = 0x08,
-	eOmnipresent   = 0x10
+	eRandOrder		= 0x01,
+	eRandGain		= 0x02,
+	eRandPitch		= 0x04,
+	eLoop			= 0x08,
+	eOmnipresent	= 0x10,
+	eDistanceless	= 0x20
 };
 
 
@@ -75,13 +75,15 @@ class CSoundGroup
 	NONCOPYABLE(CSoundGroup);
 public:
 	CSoundGroup(const VfsPath& pathnameXML);
-	CSoundGroup(void);
-	~CSoundGroup(void);
+	CSoundGroup();
+	~CSoundGroup();
 
 	// Play next sound in group
 	// @param position world position of the entity generating the sound
 	// (ignored if the eOmnipresent flag is set)
 	void PlayNext(const CVector3D& position);
+
+	float RadiansOffCenter(const CVector3D& position, bool& onScreen, float& itemRollOff);
 
 	// Load a group
 	bool LoadSoundGroup(const VfsPath& pathnameXML);
@@ -102,18 +104,15 @@ public:
 	
 private:
 	void SetGain(float gain);
-	void UploadPropertiesAndPlay(Handle hSound, const CVector3D& position);
+	void UploadPropertiesAndPlay(int theIndex, const CVector3D& position);
 	void SetDefaultValues();
 
 	size_t m_index;  // index of the next sound to play
-	
-	Handle m_hReplacement;
-	
-	std::vector<Handle> snd_group;  // we store the handles so we can load now and play later
+		
+	std::vector<ISoundItem*> snd_group;  // we store the handles so we can load now and play later
 	std::vector<std::wstring> filenames; // we need the filenames so we can reload when necessary.
-	std::vector<float> playtimes; // it would be better to store this in with the Handles perhaps?
+
 	VfsPath m_filepath; // the file path for the list of sound file resources
-	std::wstring m_intensity_file; // the replacement aggregate 'intense' sound
 
 	float m_CurTime; // Time elapsed since soundgroup was created
 	float m_TimeWindow; // The Intensity Threshold Window
@@ -134,4 +133,4 @@ private:
 	float m_ConeOuterAngle;
 };
 
-#endif //#ifndef INCLUDED_SOUNDGROUP
+#endif //#ifndef INCLUDED_SOUNDGROUP_H

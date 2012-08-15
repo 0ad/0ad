@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,13 +17,13 @@
 
 #include "precompiled.h"
 
+#include "Config.h"
+
 #include "ps/ConfigDB.h"
 #include "ps/CConsole.h"
 #include "ps/GameSetup/CmdLineArgs.h"
 #include "lib/timer.h"
-#include "lib/res/sound/snd_mgr.h"
-#include "Config.h"
-
+#include "soundmanager/SoundManager.h"
 
 // (these variables are documented in the header.)
 
@@ -83,9 +83,26 @@ static void LoadGlobals()
 	CFG_GET_USER_VAL("silhouettes", Bool, g_Silhouettes);
 
 	float gain = -1.0f;
+	float musicGain = -1.0f;
+	float ambientGain = -1.0f;
+	float actionGain = -1.0f;
+	int	bufferCount = 50;
+	unsigned long	bufferSize = 65536;
+	
 	CFG_GET_USER_VAL("sound.mastergain", Float, gain);
-	if(gain >= 0.0f)
-		WARN_IF_ERR(snd_set_master_gain(gain));
+	CFG_GET_USER_VAL("sound.musicgain", Float, musicGain);
+	CFG_GET_USER_VAL("sound.ambientgain", Float, ambientGain);
+	CFG_GET_USER_VAL("sound.actiongain", Float, actionGain);
+
+	CFG_GET_USER_VAL("sound.bufferCount", Int, bufferCount);
+	CFG_GET_USER_VAL("sound.bufferSize", UnsignedLong, bufferSize);
+
+	g_SoundManager->SetMasterGain(gain);
+	g_SoundManager->SetMusicGain(musicGain);
+	g_SoundManager->SetAmbientGain(ambientGain);
+	g_SoundManager->SetActionGain(actionGain);
+
+	g_SoundManager->SetMemoryUsage(bufferSize, bufferCount);
 }
 
 

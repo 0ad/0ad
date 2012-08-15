@@ -212,13 +212,6 @@ function RunDetection(settings)
 		dialog_warnings.push("You are using 260.19.* series NVIDIA drivers, which may crash the game. Please upgrade to 260.19.21 or later.");
 	}
 
-	// http://trac.wildfiregames.com/ticket/685
-	if (os_macosx)
-	{
-		warnings.push("Audio has been disabled, due to problems with OpenAL on OS X.");
-		disable_audio = true;
-	}
-
 	// http://trac.wildfiregames.com/ticket/684
 	// https://bugs.freedesktop.org/show_bug.cgi?id=24047
 	// R600 drivers will advertise support for S3TC but not actually support it,

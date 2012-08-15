@@ -39,7 +39,6 @@ that of Atlas depending on commandline parameters.
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "lib/external_libraries/libsdl.h"
-#include "lib/res/sound/snd_mgr.h"
 
 #include "ps/ArchiveBuilder.h"
 #include "ps/CConsole.h"
@@ -320,7 +319,7 @@ static void Frame()
 	// If we are not running a multiplayer game, disable updates when the game is
 	// minimized or out of focus and relinquish the CPU a bit, in order to make 
 	// debugging easier.
-	if( g_PauseOnFocusLoss && !g_NetClient && !g_app_has_focus )
+	if(g_PauseOnFocusLoss && !g_NetClient && !g_app_has_focus)
 	{
 		PROFILE3("non-focus delay");
 		need_update = false;
@@ -375,28 +374,6 @@ static void Frame()
 		g_Game->Update(realTimeSinceLastFrame);
 
 		g_Game->GetView()->Update(float(realTimeSinceLastFrame));
-
-		CCamera* camera = g_Game->GetView()->GetCamera();
-		CMatrix3D& orientation = camera->m_Orientation;
-		float* pos = &orientation._data[12];
-		float* dir = &orientation._data[8];
-		float* up  = &orientation._data[4];
-		// HACK: otherwise sound effects are L/R flipped. No idea what else
-		// is going wrong, because the listener and camera are supposed to
-		// coincide in position and orientation.
-		float down[3] = { -up[0], -up[1], -up[2] };
-
-		{
-			PROFILE3("sound update");
-			if (snd_update(pos, dir, down) < 0)
-				debug_printf(L"snd_update failed\n");
-		}
-	}
-	else
-	{
-		PROFILE3("sound update (0)");
-		if (snd_update(0, 0, 0) < 0)
-			debug_printf(L"snd_update (pos=0 version) failed\n");
 	}
 
 	// Immediately flush any messages produced by simulation code
@@ -480,8 +457,6 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	// run non-visual simulation replay if requested
 	if (args.Has("replay"))
 	{
-		snd_disable(true);
-
 		Paths paths(args);
 		g_VFS = CreateVfs(20 * MiB);
 		g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE);

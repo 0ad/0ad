@@ -23,6 +23,7 @@
 #include "graphics/LOSTexture.h"
 #include "graphics/ParticleManager.h"
 #include "graphics/UnitManager.h"
+#include "gui/GUIManager.h"
 #include "lib/timer.h"
 #include "network/NetClient.h"
 #include "network/NetServer.h"
@@ -44,8 +45,7 @@
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPlayer.h"
 #include "simulation2/components/ICmpPlayerManager.h"
-
-#include "gui/GUIManager.h"
+#include "soundmanager/SoundManager.h"
 
 extern bool g_GameRestarted;
 
@@ -294,6 +294,7 @@ bool CGame::Update(const double deltaRealTime, bool doInterpolate)
 	if (doInterpolate)
 	{
 		m_TurnManager->Interpolate(deltaSimTime, deltaRealTime);
+		g_SoundManager->IdleTask();
 	}
 	
 	// TODO: maybe we should add a CCmpParticleInterface that passes the interpolation commands

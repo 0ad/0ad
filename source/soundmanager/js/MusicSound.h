@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,50 +29,31 @@
 // - instead, we provide a thin class wrapper (using scriptableobject.h)
 //   on top of the snd API that encapsulates the Handle.
 
-#ifndef INCLUDED_JSI_SOUND
-#define INCLUDED_JSI_SOUND
+#ifndef INCLUDED_MUSICSOUND_H
+#define INCLUDED_MUSICSOUND_H
 
 #include "scripting/ScriptableObject.h"
-#include "lib/res/handle.h"
+#include "soundmanager/items/ISoundItem.h"
 
-class JSI_Sound : public CJSObject<JSI_Sound>
+class JMusicSound : public CJSObject<JMusicSound>
 {
-public:
-
-	Handle m_Handle;
-
-	// note: filename is stored by handle manager; no need to keep a copy here.
-
-	JSI_Sound(const VfsPath& pathname);
-	~JSI_Sound();
-
+public:	
+	JMusicSound(const VfsPath& pathname);
+	virtual ~JMusicSound();
+	
 	// Script-bound functions
-
+	
 	CStr ToString(JSContext* cx, uintN argc, jsval* argv);
-
-	// start playing the sound (one-shot).
-	// it will automatically be freed when done.
+	
 	bool Play(JSContext* cx, uintN argc, jsval* argv);
-
-	// request the sound be played until free() is called. returns immediately.
 	bool Loop(JSContext* cx, uintN argc, jsval* argv);
-
-	// stop sound if currently playing and free resources.
-	// doesn't need to be called unless played via loop() -
-	// sounds are freed automatically when done playing.
-	bool Free(JSContext* cx, uintN argc, jsval* argv);
-
-	bool SetGain(JSContext* cx, uintN argc, jsval* argv);
-
-	bool SetPitch(JSContext* cx, uintN argc, jsval* argv);
-
-	bool SetPosition(JSContext* cx, uintN argc, jsval* argv);
-
-	bool Fade(JSContext* cx, uintN argc, jsval* argv);
-
+	
 	static JSBool Construct(JSContext* cx, uintN argc, jsval* vp);
 
 	static void ScriptingInit();
+	
+protected:
+	VfsPath* m_FileName;
 };
 
-#endif	// #ifndef INCLUDED_JSI_SOUND
+#endif	// #ifndef INCLUDED_MUSICSOUND_H
