@@ -22,6 +22,7 @@
 #include "Components.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/helpers/Player.h"
+#include "ps/Filesystem.h"
 
 #include <boost/random/linear_congruential.hpp>
 #include <boost/unordered_map.hpp>
@@ -69,6 +70,11 @@ private:
 		std::string name;
 		std::string schema; // RelaxNG fragment
 		CScriptValRooted ctor; // only valid if type == CT_Script
+	};
+	
+	struct FindJSONFilesCallbackData {
+		VfsPath path;
+		std::vector<std::string> templates;
 	};
 
 public:
@@ -234,9 +240,12 @@ private:
 	static void Script_DestroyEntity(void* cbdata, int ent);
 	static CScriptVal Script_ReadJSONFile(void* cbdata, std::wstring fileName);
 	static CScriptVal Script_ReadCivJSONFile(void* cbdata, std::wstring fileName);
-	static std::vector<std::string> Script_FindJSONFiles(void* cbdata, std::wstring subPath);
+	static std::vector<std::string> Script_FindJSONFiles(void* cbdata, std::wstring subPath, bool recursive);
 
 	static CScriptVal ReadJSONFile(void *cbdata, std::wstring filePath, std::wstring fileName);
+	
+	// callback function to handle recursively finding files in a directory
+	static Status FindJSONFilesCallback(const VfsPath&, const FileInfo&, const uintptr_t);
 
 	CMessage* ConstructMessage(int mtid, CScriptVal data);
 	void SendGlobalMessage(entity_id_t ent, const CMessage& msg) const;

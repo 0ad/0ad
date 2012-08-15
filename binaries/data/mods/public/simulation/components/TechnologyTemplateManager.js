@@ -28,7 +28,7 @@ TechnologyTemplateManager.prototype.GetTemplate = function(template)
 
 TechnologyTemplateManager.prototype.ListAllTechs = function()
 {
-	return Engine.FindJSONFiles("technologies");
+    return Engine.FindJSONFiles("technologies", true);
 }
 
 TechnologyTemplateManager.prototype.GetAllTechs = function()

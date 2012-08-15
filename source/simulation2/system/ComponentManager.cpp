@@ -83,7 +83,7 @@ CComponentManager::CComponentManager(CSimContext& context, bool skipScriptFuncti
 		m_ScriptInterface.RegisterFunction<void, int, CComponentManager::Script_DestroyEntity> ("DestroyEntity");
 		m_ScriptInterface.RegisterFunction<CScriptVal, std::wstring, CComponentManager::Script_ReadJSONFile> ("ReadJSONFile");
 		m_ScriptInterface.RegisterFunction<CScriptVal, std::wstring, CComponentManager::Script_ReadCivJSONFile> ("ReadCivJSONFile");
-		m_ScriptInterface.RegisterFunction<std::vector<std::string>, std::wstring, CComponentManager::Script_FindJSONFiles> ("FindJSONFiles");
+		m_ScriptInterface.RegisterFunction<std::vector<std::string>, std::wstring, bool, CComponentManager::Script_FindJSONFiles> ("FindJSONFiles");
 	}
 
 	// Define MT_*, IID_* as script globals, and store their names
@@ -957,34 +957,38 @@ CScriptVal CComponentManager::ReadJSONFile(void* cbdata, std::wstring filePath, 
 
 	return componentManager->GetScriptInterface().ReadJSONFile(path).get();
 }
-
-std::vector<std::string> CComponentManager::Script_FindJSONFiles(void* UNUSED(cbdata), std::wstring subPath)
+	
+Status CComponentManager::FindJSONFilesCallback(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), const uintptr_t cbData)
 {
-	VfsPath path(L"simulation/data/" + subPath + L"/");
-	VfsPaths pathnames;
+	FindJSONFilesCallbackData* data = (FindJSONFilesCallbackData*)cbData;
+	
+	VfsPath pathstem = pathname.ChangeExtension(L"");
+	// Strip the root from the path
+	std::wstring name = pathstem.string().substr(data->path.string().length());
 
-	std::vector<std::string> templates;
+	data->templates.push_back(std::string(name.begin(), name.end()));
 
-	// Find all simulation/data/{subPath}/*.json
-	Status ret = vfs::GetPathnames(g_VFS, path, L"*.json", pathnames);
-	if (ret == INFO::OK)
-	{
-		for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
-		{
-			// Strip the .json extension
-			VfsPath pathstem = it->ChangeExtension(L"");
-			// Strip the root from the path
-			std::wstring name = pathstem.string().substr(path.string().length());
+	return INFO::OK;
+}
 
-			templates.push_back(std::string(name.begin(), name.end()));
-		}
+std::vector<std::string> CComponentManager::Script_FindJSONFiles(void* UNUSED(cbdata), std::wstring subPath, bool recursive)
+{
+	FindJSONFilesCallbackData cbData;
+	cbData.path = VfsPath(L"simulation/data/" + subPath + L"/");
+	
+	int dir_flags = 0;
+	if (recursive) {
+		dir_flags = vfs::DIR_RECURSIVE;
 	}
-	else
+
+	// Find all simulation/data/{subPath}/*.json recursively
+	Status ret = vfs::ForEachFile(g_VFS, cbData.path, FindJSONFilesCallback, (uintptr_t)&cbData, L"*.json", dir_flags);
+	if (ret != INFO::OK)
 	{
 		// Some error reading directory
 		wchar_t error[200];
-		LOGERROR(L"Error reading directory '%ls': %ls", path.string().c_str(), StatusDescription(ret, error, ARRAY_SIZE(error)));
+		LOGERROR(L"Error reading directory '%ls': %ls", cbData.path.string().c_str(), StatusDescription(ret, error, ARRAY_SIZE(error)));
 	}
-
-	return templates;
+	
+	return cbData.templates;
 }
