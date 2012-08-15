@@ -1697,6 +1697,7 @@ var UnitFsmSpec = {
 			"Order.Walk": function() { },
 			"Order.WalkToTarget": function() { },
 			"Order.Attack": function() { },
+			"Order.Stop": function() { },
 
 			"Attacked": function(msg) {
 				// Do nothing, because we're dead already
