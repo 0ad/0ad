@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,24 +17,33 @@
 
 /**
 * =========================================================================
-* File        : SoundGroup.cpp
-* Project     : 0 A.D.
+* File		  : SoundGroup.cpp
+* Project	  : 0 A.D.
 * Description : Loads up a group of sound files with shared properties, 
-*				and provides a simple interface for playing them.        
+*				and provides a simple interface for playing them.		
 * =========================================================================
 */
 
 #include "precompiled.h"
+
 #include "SoundGroup.h"
 
-#include <algorithm>
-
+#include "graphics/Camera.h"
+#include "graphics/GameView.h"
 #include "lib/rand.h"
-
-#include "ps/XML/Xeromyces.h"
+#include "ps/Game.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/Util.h"
+#include "ps/XML/Xeromyces.h"
+#include "soundmanager/items/ISoundItem.h"
+#include "soundmanager/SoundManager.h"
+
+#include <algorithm>
+
+extern CGame *g_Game;
+
+#define PI 3.14126f
 
 
 static const bool DISABLE_INTENSITY = true; // disable for now since it's broken
@@ -53,7 +62,7 @@ void CSoundGroup::SetDefaultValues()
 	m_CurTime = 0.0f;
 
 	// sane defaults; will probably be replaced by the values read during LoadSoundGroup.
-	SetGain(0.5f);
+	SetGain(0.7f);
 	m_Pitch = 1.0f;
 	m_Priority = 60;
 	m_PitchUpper = 1.1f;
@@ -90,150 +99,163 @@ static float RandFloat(float min, float max)
 	return float(rand(min*100.0f, max*100.0f) / 100.0f);
 }
 
-void CSoundGroup::UploadPropertiesAndPlay(Handle hSound, const CVector3D& position)
+float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, float& itemRollOff)
 {
-	// interface/UI sounds should always be played at the listener's
-	// position, which is achieved by setting position to 0 and
-	// having that treated as relative to the listener.
-	float x = 0.0f, y = 0.0f, z = 0.0f;
-	bool relative = true;
-	if(!TestFlag(eOmnipresent))
+	float x, y;
+	float answer = 0.0;
+	const size_t screenWidth = g_Game->GetView()->GetCamera()->GetViewPort().m_Width;
+	const size_t screenHeight = g_Game->GetView()->GetCamera()->GetViewPort().m_Height;
+	float bufferSize = screenWidth * 0.10;
+	const size_t audioWidth = screenWidth;
+	float radianCap = PI / 3;
+	
+	g_Game->GetView()->GetCamera()->GetScreenCoordinates(position, x, y);
+	
+	onScreen = true;
+
+	if (x < -bufferSize)
 	{
-		x = position.X;
-		y = position.Y;
-		z = position.Z;
-		relative = false;
+		onScreen = false;
+		answer = -radianCap;
+	}
+	else if (x > screenWidth + bufferSize)
+	{
+		onScreen = false;
+		answer = radianCap;
+	}
+	else {
+		if ((x < 0) || (x > screenWidth))
+		{
+			itemRollOff = 0.5;
+		}
+		float pixPerRadian = audioWidth / (radianCap * 2);
+		answer = (x - (screenWidth/2)) / pixPerRadian;
 	}
 
-	snd_set_pos(hSound, x, y, z, relative);
+	if (y < -bufferSize)
+	{
+		onScreen = false;
+	}
+	else if (y > screenHeight + bufferSize)
+	{
+		onScreen = false;
+	}
+	else {
+		if ((y < 0) || (y > screenHeight))
+		{
+			itemRollOff = 0.5;
+		}
+	}
 
-	float gain = TestFlag(eRandGain)? RandFloat(m_GainLower, m_GainUpper) : m_Gain;
-	gain = std::min(gain, 1.0f);	// guard against roundoff error in RandFloat or too high m_GainUpper
-	snd_set_gain(hSound, gain);
+		
+ //   debug_printf(L"do play at x portion:%f pts x:%f, y=%f at radians=%f\n\n", answer, x, y, answer);
 
-	const float pitch = TestFlag(eRandPitch)? RandFloat(m_PitchLower, m_PitchUpper) : m_Pitch;
-	snd_set_pitch(hSound, pitch);
+	return answer;
+}
 
-	snd_play(hSound, m_Priority);
+void CSoundGroup::UploadPropertiesAndPlay(int theIndex, const CVector3D& position)
+{
+	bool	isOnscreen;
+	ALfloat	initialRolllOff = 0.02f;
+	ALfloat	itemRollOff = initialRolllOff;
+
+	float 	offSet = RadiansOffCenter(position, isOnscreen, itemRollOff);
+
+	if (isOnscreen || TestFlag(eDistanceless) || TestFlag(eOmnipresent))
+	{
+		if (snd_group.size() == 0)
+			Reload();
+
+		ISoundItem* hSound = snd_group[theIndex];
+		CVector3D origin = g_Game->GetView()->GetCamera()->GetOrientation().GetTranslation();
+		float sndDist = origin.Y;
+
+		if (!TestFlag(eOmnipresent))
+		{
+			hSound->SetLocation(CVector3D((sndDist * sin(offSet)), 0, sndDist * cos(offSet)));
+			if (TestFlag(eDistanceless))
+				hSound->SetRollOff(initialRolllOff);
+			else
+				hSound->SetRollOff(itemRollOff);
+		}
+
+		if (TestFlag(eRandPitch))
+			hSound->SetPitch(RandFloat(m_PitchLower, m_PitchUpper));
+		else
+			hSound->SetPitch(m_Pitch);
+
+		ALfloat theGain = m_Gain;
+		if (TestFlag(eRandGain))
+			theGain = RandFloat(m_GainLower, m_GainUpper);
+
+		hSound->SetCone(m_ConeInnerAngle, m_ConeOuterAngle, m_ConeOuterGain);
+
+		g_SoundManager->PlayGroupItem(hSound, theGain);
+	}
 }
 
 
-static void HandleError(const std::wstring& message, const VfsPath& pathname, Status err)
+static void HandleError(const CStrW& message, const VfsPath& pathname, Status err)
 {
-	if(err == ERR::AGAIN)
+	if (err == ERR::AGAIN)
 		return;	// open failed because sound is disabled (don't log this)
 	LOGERROR(L"%ls: pathname=%ls, error=%ls", message.c_str(), pathname.string().c_str(), ErrorString(err));
 }
 
 void CSoundGroup::PlayNext(const CVector3D& position)
 {
-	if(m_Intensity >= m_IntensityThreshold && !DISABLE_INTENSITY)
-	{
-		if(!snd_is_playing(m_hReplacement))
-		{
-			// load up replacement file
-			const VfsPath pathname(m_filepath / m_intensity_file);
-			m_hReplacement = snd_open(g_VFS, pathname);
-			if(m_hReplacement < 0)
-			{
-				HandleError(L"PlayNext: snd_open for replacement file failed", pathname, (Status)m_hReplacement);
-				return;
-			}
-
-			UploadPropertiesAndPlay(m_hReplacement, position);
-		}
-	}
-	else
-	{
-		// if no sounds, return
-		if (filenames.size() == 0)
-			return;
-
-		// try loading on the fly only when we need the sound to see if that fixes release problems...
-		if(TestFlag(eRandOrder))
-			m_index = (size_t)rand(0, (size_t)filenames.size());
-		// (note: previously snd_group[m_index] was used in place of hs)
-		const VfsPath pathname(m_filepath / filenames[m_index]);
-		Handle hs = snd_open(g_VFS, pathname);
-		if(hs < 0)
-		{
-			HandleError(L"PlayNext: snd_open failed", pathname, (Status)hs);
-			return;
-		}
-
-		UploadPropertiesAndPlay(hs, position);
-	}
+	// if no sounds, return
+	if (filenames.size() == 0)
+		return;
 	
-	playtimes.at(m_index) = 0.0f;
-	m_index++;
-	m_Intensity++;
-	if(m_Intensity > m_IntensityThreshold)
-		m_Intensity = m_IntensityThreshold;
-
-	if(m_index >= filenames.size())
-		Reload();
+	m_index = (size_t)rand(0, (size_t)filenames.size());
+	UploadPropertiesAndPlay(m_index, position);
 }
 
 void CSoundGroup::Reload()
 {
 	m_index = 0; // reset our index
-	// get rid of the used handles
-	snd_group.clear();
-	// clear out the old timers
-	playtimes.clear();
-	//Reload the sounds
-	/*for(size_t i = 0; i < filenames.size(); i++)
-	{
-		string szTemp = m_filepath + filenames[i];
-		Handle temp = snd_open(m_filepath + filenames[i]);
-		snd_set_gain(temp, m_Gain);	
-		snd_set_pitch(temp, m_Pitch);
-		snd_set_cone(temp, m_ConeInnerAngle, m_ConeOuterAngle, m_ConeOuterGain);
-		snd_group.push_back(temp);
 
-	}*/
-	while(playtimes.size() < filenames.size())
-		playtimes.push_back(-1.0f);
-	//if(TestFlag(eRandOrder))
-		//random_shuffle(snd_group.begin(), snd_group.end());
+	snd_group.clear();
+
+	for (size_t i = 0; i < filenames.size(); i++)
+	{
+		VfsPath  thePath =  m_filepath/filenames[i];
+		ISoundItem* temp = g_SoundManager->LoadItem(&thePath);
+
+		if (temp == NULL)
+			HandleError(L"error loading sound", thePath, NULL);
+		else
+			snd_group.push_back(temp);
+	}
+
+	if (TestFlag(eRandOrder))
+		random_shuffle(snd_group.begin(), snd_group.end());
 }
 
 void CSoundGroup::ReleaseGroup()
 {
-	for(size_t i = m_index; i<snd_group.size(); i++)
+	for (size_t i = 0; i < snd_group.size(); i++)
 	{
-		//if(!snd_is_playing(snd_group[i]))
-			snd_free(snd_group[i]);
+		snd_group[i]->FadeAndDelete(0.2);
 	}
 	snd_group.clear();
-	playtimes.clear();
-	//if(snd_is_playing(m_hReplacement))
-	//	snd_free(m_hReplacement);
-	m_index = 0;
-
 }
 
-void CSoundGroup::Update(float TimeSinceLastFrame)
+void CSoundGroup::Update(float UNUSED(TimeSinceLastFrame))
 {
-	for(size_t i = 0; i < playtimes.size(); i++)
-	{
-		if(playtimes[i] >= 0.0f)
-			playtimes[i] += TimeSinceLastFrame;
-
-		if(playtimes[i] >= m_Decay)
-		{
-			playtimes[i] = -1.0f;
-			m_Intensity--;
-		}	
-	}
 }
 
 bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 {
+//	LOGERROR(L"loading new sound group '%ls'", pathnameXML.string().c_str());
+
 	CXeromyces XeroFile;
 	if (XeroFile.Load(g_VFS, pathnameXML) != PSRETURN_OK)
+	{
+		HandleError(L"error loading file", pathnameXML, NULL);
 		return false;
-
+	}
 	// Define elements used in XML file
 	#define EL(x) int el_##x = XeroFile.GetElementID(#x)
 	#define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
@@ -241,6 +263,7 @@ bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 	EL(gain);
 	EL(looping);
 	EL(omnipresent);
+	EL(distanceless);
 	EL(pitch);
 	EL(priority);
 	EL(randorder);
@@ -257,7 +280,6 @@ bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 	EL(path);
 	EL(threshold);
 	EL(decay);
-	EL(replacement);
 	#undef AT
 	#undef EL
 
@@ -287,6 +309,11 @@ bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 		{
 			if(child.GetText().ToInt() == 1)
 				SetFlag(eOmnipresent);
+		}
+		else if(child_name == el_distanceless)
+		{
+			if(child.GetText().ToInt() == 1)
+				SetFlag(eDistanceless);
 		}
 		else if(child_name == el_pitch)
 		{
@@ -355,12 +382,7 @@ bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 		{
 			m_Decay = child.GetText().ToFloat();
 		}
-		else if(child_name == el_replacement)
-		{
-			m_intensity_file = child.GetText().FromUTF8();
-		}
 	}
 
-	Reload();
 	return true;
 }

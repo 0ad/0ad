@@ -78,8 +78,8 @@ Music.prototype.updateState = function()
 		case this.states.OFF:
 			if (this.isPlaying())
 			{
-				this.currentMusic.fade(-1, 0.0, 3.0);
-				this.currentMusic = null;
+				var thePlayer = SoundPlayer();
+				thePlayer.stopMusic();
 			}
 			break;
 
@@ -146,13 +146,7 @@ Music.prototype.getRandomTrack = function(tracks)
 
 Music.prototype.switchMusic = function(track, fadeInPeriod, isLooping)
 {
-	if (this.currentMusic)
-	{
-		this.currentMusic.fade(-1, 0.0, 5.0);
-		this.currentMusic = null;
-	}
-
-	this.currentMusic = new Sound(this.RELATIVE_MUSIC_PATH + track);
+	this.currentMusic = new MusicSound(this.RELATIVE_MUSIC_PATH + track);
 
 	if (this.currentMusic)
 	{
@@ -160,9 +154,6 @@ Music.prototype.switchMusic = function(track, fadeInPeriod, isLooping)
 			this.currentMusic.loop();
 		else
 			this.currentMusic.play();
-
-		if (fadeInPeriod)
-			this.currentMusic.fade(0.0, this.musicGain, fadeInPeriod);
 	}
 };
 
@@ -180,6 +171,8 @@ Music.prototype.isPlaying = function()
 
 Music.prototype.start = function()
 {
+	var thePlayer = SoundPlayer();
+	thePlayer.startMusic();
 	this.setState(this.states.PEACE);
 };
 

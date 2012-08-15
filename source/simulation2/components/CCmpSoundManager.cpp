@@ -24,7 +24,7 @@
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpRangeManager.h"
-#include "sound/SoundGroup.h"
+#include "soundmanager/js/SoundGroup.h"
 
 class CCmpSoundManager : public ICmpSoundManager
 {

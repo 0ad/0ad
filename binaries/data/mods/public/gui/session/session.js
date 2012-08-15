@@ -297,7 +297,8 @@ function checkPlayerState()
 		if (playerState.state == "defeated")
 		{
 			g_GameEnded = true;
-			global.music.setState(global.music.states.DEFEAT_CUE);
+			// TODO: DEFEAT_CUE is missing?
+			global.music.setState(global.music.states.DEFEAT);
 
 			closeMenu();
 			closeOpenDialogs();
@@ -551,12 +552,11 @@ function playRandomAmbient(type)
 //			currentAmbient = newRandomSound("ambient", "temperate_", "dayscape");
 
 			const AMBIENT = "audio/ambient/dayscape/day_temperate_gen_03.ogg";
-			currentAmbient = new Sound(AMBIENT);
+			currentAmbient = new AmbientSound(AMBIENT);
 
 			if (currentAmbient)
 			{
 				currentAmbient.loop();
-				currentAmbient.setGain(0.8);
 			}
 			break;
 
@@ -571,7 +571,7 @@ function stopAmbient()
 {
 	if (currentAmbient)
 	{
-		currentAmbient.fade(-1, 0.0, 5.0);
+		currentAmbient.free();
 		currentAmbient = null;
 	}
 }

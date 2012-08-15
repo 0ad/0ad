@@ -535,7 +535,10 @@ function setup_all_libs ()
 		"ps/Network",
 		"ps/GameSetup",
 		"ps/XML",
-		"sound",
+		"soundmanager",
+		"soundmanager/data",
+		"soundmanager/items",
+		"soundmanager/js",
 		"scripting",
 		"maths",
 		"maths/scripting",
@@ -548,8 +551,14 @@ function setup_all_libs ()
 		"zlib",
 		"boost",
 		"enet",
-		"libcurl",
+		"libcurl"
 	}
+	
+	if not _OPTIONS["without-audio"] then
+		table.insert(extern_libs, "openal")
+		table.insert(extern_libs, "vorbis")
+	end
+	
 	setup_static_lib_project("engine", source_dirs, extern_libs, {})
 
 
@@ -568,7 +577,6 @@ function setup_all_libs ()
 		table.insert(extern_libs, "nvtt")
 	end
 	setup_static_lib_project("graphics", source_dirs, extern_libs, {})
-
 
 	source_dirs = {
 		"tools/atlas/GameInterface",
@@ -610,7 +618,6 @@ function setup_all_libs ()
 		"lib/posix",
 		"lib/res",
 		"lib/res/graphics",
-		"lib/res/sound",
 		"lib/sysdep",
 		"lib/tex"
 	}
@@ -624,11 +631,6 @@ function setup_all_libs ()
 		"valgrind",
 		"cxxtest",
 	}
-
-	if not _OPTIONS["without-audio"] then
-		table.insert(extern_libs, "openal")
-		table.insert(extern_libs, "vorbis")
-	end
 
 	-- CPU architecture-specific
 	if arch == "amd64" then

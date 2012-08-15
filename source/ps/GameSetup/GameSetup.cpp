@@ -25,7 +25,6 @@
 #include "lib/file/common/file_stats.h"
 #include "lib/res/h_mgr.h"
 #include "lib/res/graphics/cursor.h"
-#include "lib/res/sound/snd_mgr.h"
 #include "lib/sysdep/cursor.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/gfx.h"
@@ -35,12 +34,34 @@
 #include "lib/sysdep/os/win/wversion.h"
 #endif
 
+#include "graphics/CinemaTrack.h"
+#include "graphics/GameView.h"
+#include "graphics/LightEnv.h"
+#include "graphics/MapReader.h"
+#include "graphics/MaterialManager.h"
+#include "graphics/TerrainTextureManager.h"
+#include "gui/GUI.h"
+#include "gui/GUIManager.h"
+#include "gui/scripting/JSInterface_IGUIObject.h"
+#include "gui/scripting/JSInterface_GUITypes.h"
+#include "gui/scripting/ScriptFunctions.h"
+#include "maths/MathUtil.h"
+#include "maths/scripting/JSInterface_Vector3D.h"
+#include "network/NetServer.h"
+#include "network/NetClient.h"
+
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
 #include "ps/Font.h"
 #include "ps/Game.h"
+#include "ps/GameSetup/Atlas.h"
+#include "ps/GameSetup/GameSetup.h"
+#include "ps/GameSetup/Paths.h"
+#include "ps/GameSetup/Config.h"
+#include "ps/GameSetup/CmdLineArgs.h"
+#include "ps/GameSetup/HWDetect.h"
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
 #include "ps/Joystick.h"
@@ -49,59 +70,25 @@
 #include "ps/Profile.h"
 #include "ps/ProfileViewer.h"
 #include "ps/Profiler2.h"
+#include "ps/Pyrogenesis.h"	// psSetLogDir
+#include "ps/scripting/JSInterface_Console.h"
 #include "ps/TouchInput.h"
 #include "ps/UserReport.h"
 #include "ps/Util.h"
 #include "ps/VideoMode.h"
 #include "ps/World.h"
 
-#include "graphics/CinemaTrack.h"
-#include "graphics/GameView.h"
-#include "graphics/LightEnv.h"
-#include "graphics/MapReader.h"
-#include "graphics/MaterialManager.h"
-#include "graphics/TerrainTextureManager.h"
-
 #include "renderer/Renderer.h"
 #include "renderer/VertexBufferManager.h"
 #include "renderer/ModelRenderer.h"
-
-#include "maths/MathUtil.h"
-
-#include "simulation2/Simulation2.h"
-
 #include "scripting/ScriptingHost.h"
 #include "scripting/ScriptGlue.h"
-
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptStats.h"
-
-#include "maths/scripting/JSInterface_Vector3D.h"
-
-#include "ps/scripting/JSInterface_Console.h"
-
-#include "gui/GUI.h"
-#include "gui/GUIManager.h"
-#include "gui/scripting/JSInterface_IGUIObject.h"
-#include "gui/scripting/JSInterface_GUITypes.h"
-#include "gui/scripting/ScriptFunctions.h"
-
-#include "sound/JSI_Sound.h"
-
-#include "network/NetServer.h"
-#include "network/NetClient.h"
-
-#include "ps/Pyrogenesis.h"	// psSetLogDir
-#include "ps/GameSetup/Atlas.h"
-#include "ps/GameSetup/GameSetup.h"
-#include "ps/GameSetup/Paths.h"
-#include "ps/GameSetup/Config.h"
-#include "ps/GameSetup/CmdLineArgs.h"
-#include "ps/GameSetup/HWDetect.h"
-
+#include "simulation2/Simulation2.h"
+#include "soundmanager/SoundManager.h"
 #include "tools/atlas/GameInterface/GameLoop.h"
 #include "tools/atlas/GameInterface/View.h"
-
 
 #if !(OS_WIN || OS_MACOSX || OS_ANDROID) // assume all other platforms use X11 for wxWidgets
 #define MUST_INIT_X11 1
@@ -202,6 +189,8 @@ void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 void Render()
 {
 	PROFILE3("render");
+
+	g_SoundManager->IdleTask();
 
 	ogl_WarnIfError();
 
@@ -331,14 +320,14 @@ static void RegisterJavascriptInterfaces()
 	// maths
 	JSI_Vector3D::init();
 
+	// sound
+	CSoundManager::ScriptingInit();
+
 	// graphics
 	CGameView::ScriptingInit();
 
 	// renderer
 	CRenderer::ScriptingInit();
-
-	// sound
-	JSI_Sound::ScriptingInit();
 
 	// ps
 	JSI_Console::init();
@@ -695,7 +684,7 @@ void Shutdown(int UNUSED(flags))
 	// resource
 	// first shut down all resource owners, and then the handle manager.
 	TIMER_BEGIN(L"resource modules");
-		snd_shutdown();
+		delete g_SoundManager;
 
 		g_VFS.reset();
 
@@ -872,6 +861,8 @@ void Init(const CmdLineArgs& args, int UNUSED(flags))
 	g_ScriptStatsTable = new CScriptStatsTable;
 	g_ProfileViewer.AddRootTable(g_ScriptStatsTable);
 
+	g_SoundManager = new CSoundManager();
+
 	InitScripting();	// before GUI
 
 	// g_ConfigDB, command line args, globals
@@ -934,7 +925,7 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 		// speed up startup by disabling all sound
 		// (OpenAL init will be skipped).
 		// must be called before first snd_open.
-		snd_disable(true);
+		g_SoundManager->SetEnabled(false);
 	}
 
 	g_GUI = new CGUIManager(g_ScriptingHost.GetScriptInterface());

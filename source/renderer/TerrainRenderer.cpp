@@ -492,8 +492,6 @@ void TerrainRenderer::RenderTerrainShader(const CShaderDefines& context, ShadowM
 	if (visiblePatches.empty() && visibleDecals.empty())
 		return;
 
-	CShaderManager& shaderManager = g_Renderer.GetShaderManager();
-
 	// render the solid black sides of the map first
 	CShaderTechniquePtr techSolid = g_Renderer.GetShaderManager().LoadEffect("gui_solid");
 	techSolid->BeginPass();
