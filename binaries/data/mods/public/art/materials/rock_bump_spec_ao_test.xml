@@ -12,6 +12,7 @@
 	 EFFICIENCY: This is a moderately expensive effect, so use with care. -->
     <conditional_define name="USE_PARALLAX_MAP" value="1" type="draw_range" conf="PARALLAX_DIST"/>
     <conditional_define name="USE_HQ_PARALLAX" value="1" type="draw_range" conf="PARALLAX_HQ_DIST"/>
+    <conditional_define name="USE_VHQ_PARALLAX" value="1" type="draw_range" conf="PARALLAX_VHQ_DIST"/>
     
     <!-- REQUIRES: Actor must provide a texture named "normTex", where the RGB channels
 		   are a normal map corresponding to XYZ normals.
@@ -45,5 +46,5 @@
 	 Second value: Specular power.
 	 Third value: Parallax scale.
 	 Fourth value: AO amount. -->
-    <uniform name="effectSettings" value="5.0 50.0 0.0075 0.85"/>
+    <uniform name="effectSettings" value="1.0 10.0 0.0075 0.85"/>
 </material>
