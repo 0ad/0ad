@@ -1565,7 +1565,8 @@ function performCommand(entity, commandName)
 			case "delete":
 				var selection = g_Selection.toList();
 				if (selection.length > 0)
-					openDeleteDialog(selection);
+					if (!entState.resourceSupply || !entState.resourceSupply.killBeforeGather)
+						openDeleteDialog(selection);
 				break;
 			case "stop":
 				var selection = g_Selection.toList();
