@@ -131,7 +131,7 @@ function ProcessCommand(player, cmd)
 
 	case "returnresource":
 		// Check dropsite is owned by player
-		if (g_DebugCommands && IsOwnedByPlayer(player, cmd.target))
+		if (g_DebugCommands && !IsOwnedByPlayer(player, cmd.target))
 		{
 			// This check is for debugging only!
 			warn("Invalid command: dropsite is not owned by player "+player+": "+uneval(cmd));
