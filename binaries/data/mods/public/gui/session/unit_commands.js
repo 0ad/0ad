@@ -174,8 +174,6 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		case GARRISON:
 			if (numberOfItems > 16)
 				numberOfItems = 16;
-			//Group garrisoned units based on class
-			garrisonGroups.add(unitEntState.garrisonHolder.entities);
 			break;
 
 		case STANCE:
@@ -211,6 +209,23 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		case GATE:
 			if(numberOfItems > 8)
 				numberOfItems = 8;
+			break;
+
+		default:
+			break;
+	}
+
+	switch (guiName)
+	{
+		case GARRISON:
+		case COMMAND:
+			// Common code for garrison and 'unload all' button counts.
+			for (var i = 0; i < selection.length; ++i)
+			{
+				var state = GetEntityState(selection[i]);
+				if (state.garrisonHolder)
+					garrisonGroups.add(state.garrisonHolder.entities)
+			}
 			break;
 
 		default:
@@ -411,7 +426,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				// here, "item" is an object with properties .name (command name), .tooltip and .icon (relative to session/icons/single)
 				if (item.name == "unload-all")
 				{
-					var count = unitEntState.garrisonHolder.entities.length;
+					var count = garrisonGroups.getTotalCount();
 					getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 0 ? count : "");
 				}
 				else
@@ -859,9 +874,15 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		if (entState.garrisonHolder)
 		{
 			var groups = new EntityGroups();
-			groups.add(entState.garrisonHolder.entities);
+			for (var i in selection)
+			{
+				state = GetEntityState(selection[i]);
+				if (state.garrisonHolder)
+					groups.add(state.garrisonHolder.entities)
+			}
+
 			setupUnitPanel(GARRISON, usedPanels, entState, groups.getTemplateNames(),
-				function (item) { unload(entState.id, groups.getEntsByName(item)); } );
+				function (item) { unloadTemplate(item); } );
 		}
 
 		var formations = Engine.GuiInterfaceCall("GetAvailableFormations");
