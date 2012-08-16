@@ -86,12 +86,12 @@ Status CSoundManager::AlcInit()
 			alcMakeContextCurrent(m_Context);
 	}
 
-	const char* dev_name = (const char*)alcGetString(m_Device, ALC_DEVICE_SPECIFIER);
-
 	// check if init succeeded.
 	// some OpenAL implementations don't indicate failure here correctly;
 	// we need to check if the device and context pointers are actually valid.
 	ALCenum err = alcGetError(m_Device);
+	const char* dev_name = (const char*)alcGetString(m_Device, ALC_DEVICE_SPECIFIER);
+
 	if(err == ALC_NO_ERROR && m_Device && m_Context)
 		debug_printf(L"Sound: AlcInit success, using %hs\n", dev_name);
 	else
