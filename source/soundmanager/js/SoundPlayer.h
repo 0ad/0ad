@@ -52,7 +52,7 @@ public:
 	static void ScriptingInit();
 	
 protected:
-	VfsPath* m_FileName;
+	VfsPath m_FileName;
 };
 
 #endif	// #ifndef INCLUDED_JSOUNDPLAYER

@@ -59,17 +59,17 @@ void CSoundData::ReleaseSoundData(CSoundData* theData)
 	}
 }
 
-CSoundData* CSoundData::SoundDataFromFile(const VfsPath* itemPath)
+CSoundData* CSoundData::SoundDataFromFile(const VfsPath& itemPath)
 {
 	if (CSoundData::sSoundData == NULL)
 		CSoundData::sSoundData = new DataMap;
 	
-	Path fExt = itemPath->Extension();
+	Path fExt = itemPath.Extension();
 	DataMap::iterator itemFind;
 	CSoundData* answer = NULL;
 
 
-	if ((itemFind = CSoundData::sSoundData->find(itemPath->string())) != sSoundData->end())
+	if ((itemFind = CSoundData::sSoundData->find(itemPath.string())) != sSoundData->end())
 	{
 		answer = itemFind->second;
 	}
@@ -79,7 +79,7 @@ CSoundData* CSoundData::SoundDataFromFile(const VfsPath* itemPath)
 			answer = SoundDataFromOgg(itemPath);
 	
 		if (answer && answer->IsOneShot())
-			(*CSoundData::sSoundData)[itemPath->string()] = answer;
+			(*CSoundData::sSoundData)[itemPath.string()] = answer;
 	
 	}
 	return answer;
@@ -91,13 +91,13 @@ bool CSoundData::IsOneShot()
 }
 
 
-CSoundData* CSoundData::SoundDataFromOgg(const VfsPath* itemPath)
+CSoundData* CSoundData::SoundDataFromOgg(const VfsPath& itemPath)
 {
 	CSoundData* answer = NULL;
 	COggData* oggAnswer = new COggData();
 
 	OsPath realPath;
-	Status ret = g_VFS->GetRealPath(*itemPath, realPath);
+	Status ret = g_VFS->GetRealPath(itemPath, realPath);
 	if (ret == INFO::OK)
 	{
 		if (oggAnswer->InitOggFile(realPath.string().c_str()))

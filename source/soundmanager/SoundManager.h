@@ -50,7 +50,7 @@ public:
 	CSoundManager();
 	virtual ~CSoundManager();
 
-	ISoundItem* LoadItem(const VfsPath* itemPath);
+	ISoundItem* LoadItem(const VfsPath& itemPath);
 
 	static void ScriptingInit();
 

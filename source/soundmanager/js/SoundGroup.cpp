@@ -221,7 +221,7 @@ void CSoundGroup::Reload()
 	for (size_t i = 0; i < filenames.size(); i++)
 	{
 		VfsPath  thePath =  m_filepath/filenames[i];
-		ISoundItem* temp = g_SoundManager->LoadItem(&thePath);
+		ISoundItem* temp = g_SoundManager->LoadItem(thePath);
 
 		if (temp == NULL)
 			HandleError(L"error loading sound", thePath, NULL);
