@@ -138,7 +138,7 @@ void CSoundManager::SetActionGain(float gain)
 }
 
 
-ISoundItem* CSoundManager::LoadItem(const VfsPath* itemPath)
+ISoundItem* CSoundManager::LoadItem(const VfsPath& itemPath)
 {	
 	CSoundData* itemData = CSoundData::SoundDataFromFile(itemPath);
 	ISoundItem* answer = NULL;

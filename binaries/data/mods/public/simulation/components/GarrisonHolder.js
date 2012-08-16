@@ -245,6 +245,50 @@ GarrisonHolder.prototype.Unload = function(entity, forced)
 };
 
 /**
+ * Unload one or all units that match a template from the
+ * garrisoning entity and order them to move to the Rally Point
+ * Returns true if successful, false if not
+ */
+GarrisonHolder.prototype.UnloadTemplate = function(template, all, forced)
+{
+	var ejectedEntities = [];
+	var success = true;
+	for (var i = 0; i < this.entities.length; ++i)
+	{
+		var entity = this.entities[i];
+		var cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
+
+		// Units with multiple ranks are grouped together.
+		var name = cmpIdentity.GetSelectionGroupName();
+		if (!name)
+		{
+			var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+			name = cmpTemplateManager.GetCurrentTemplateName(entity);
+		}
+		
+		if (name != template)
+			continue;
+
+		if (this.Eject(entity, forced))
+		{
+			--i; // Decrement 'i' as Eject() shortens the array.
+			ejectedEntities.push(entity);
+
+			// If 'all' is false, only ungarrison the first matched unit.
+			if (!all)
+				break;
+		}
+		else
+			success = false;
+	}
+
+	this.OrderWalkToRallyPoint(ejectedEntities);
+	this.UpdateGarrisonFlag();
+
+	return success;
+};
+
+/**
  * Unload all units from the entity
  * Returns true if all successful, false if not
  */

@@ -63,6 +63,13 @@ QBotAI.prototype.runInit = function(gameState){
 			myKeyEntities = gameState.getOwnEntities();
 		}
 		
+		// disband the walls themselves
+		if (gameState.playerData.civ == "iber") {
+			gameState.getOwnEntities().filter(function(ent) { //}){
+				if (ent.hasClass("StoneWall") && !ent.hasClass("Tower"))
+					ent.disband();
+			});
+		}
 		
 		var filter = Filters.byClass("CivCentre");
 		var enemyKeyEntities = gameState.getEnemyEntities().filter(filter);

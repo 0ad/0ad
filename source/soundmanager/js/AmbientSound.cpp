@@ -25,16 +25,9 @@
 
 #include "soundmanager/SoundManager.h"
 
-JAmbientSound::JAmbientSound(const VfsPath& pathname)
+JAmbientSound::JAmbientSound(const VfsPath& pathname) : m_FileName(pathname)
 {
-	m_FileName = new VfsPath(pathname.string().c_str());
 }
-
-JAmbientSound::~JAmbientSound()
-{
-	delete m_FileName;
-}
-
 
 // start playing the sound, all ambient sounds loop
 bool JAmbientSound::Play(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
@@ -44,7 +37,7 @@ bool JAmbientSound::Play(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSE
 	if (aSnd)
 		aSnd->PlayAsAmbient();
 	else
-		debug_printf(L"sound item could not be loaded to play at: %hs\n", m_FileName);
+		debug_printf(L"sound item could not be loaded to play: %ls\n", m_FileName.string().c_str());
 
 	return true;
 }
@@ -57,7 +50,7 @@ bool JAmbientSound::Loop(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSE
 	if (aSnd)
 		aSnd->PlayAsAmbient();
 	else
-		debug_printf(L"sound item could not be loaded to loop at: %hs\n", m_FileName);
+		debug_printf(L"sound item could not be loaded to loop: %ls\n", m_FileName.string().c_str());
 
 	return true;
 }
@@ -85,7 +78,7 @@ CStr JAmbientSound::ToString(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* U
 {
 	std::ostringstream stringStream;
 	stringStream << "[object AmbientSound: ";
-	stringStream << m_FileName->string().c_str();
+	stringStream << m_FileName.string().c_str();
 	
 	return stringStream.str();
 }

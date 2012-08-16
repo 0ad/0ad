@@ -25,8 +25,6 @@ class JAmbientSound : public CJSObject<JAmbientSound>
 {
 public:	
 	JAmbientSound(const VfsPath& pathname);
-	virtual	~JAmbientSound();
-
 	
 	CStr ToString(JSContext* cx, uintN argc, jsval* argv);
 	
@@ -44,7 +42,7 @@ public:
 	static void ScriptingInit();
 protected:
 	
-	VfsPath* m_FileName;
+	VfsPath m_FileName;
 
 };
 

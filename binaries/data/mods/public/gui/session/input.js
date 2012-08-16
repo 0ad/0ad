@@ -1565,7 +1565,8 @@ function performCommand(entity, commandName)
 			case "delete":
 				var selection = g_Selection.toList();
 				if (selection.length > 0)
-					openDeleteDialog(selection);
+					if (!entState.resourceSupply || !entState.resourceSupply.killBeforeGather)
+						openDeleteDialog(selection);
 				break;
 			case "stop":
 				var selection = g_Selection.toList();
@@ -1581,7 +1582,7 @@ function performCommand(entity, commandName)
 				preSelectedAction = ACTION_REPAIR;
 				break;
 			case "unload-all":
-				unloadAll(entity);
+				unloadAll();
 				break;
 			case "focus-rally":
 				// if the selected building has a rally point set, move the camera to it; otherwise, move to the building itself
@@ -1768,7 +1769,33 @@ function unload(garrisonHolder, entities)
 		Engine.PostNetworkCommand({"type": "unload", "entities": [entities[0]], "garrisonHolder": garrisonHolder});
 }
 
-function unloadAll(garrisonHolder)
+function unloadTemplate(template)
 {
-	Engine.PostNetworkCommand({"type": "unload-all", "garrisonHolder": garrisonHolder});
+	// Filter out all entities that aren't garrisonable.
+	var garrisonHolders = g_Selection.toList().filter(function(e) {
+		var state = GetEntityState(e);
+		if (state && state.garrisonHolder)
+			return true;
+		return false;
+	});
+
+	Engine.PostNetworkCommand({
+		"type": "unload-template",
+		"all": Engine.HotkeyIsPressed("session.unloadtype"),
+		"template": template,
+		"garrisonHolders": garrisonHolders
+	});
+}
+
+function unloadAll()
+{
+	// Filter out all entities that aren't garrisonable.
+	var garrisonHolders = g_Selection.toList().filter(function(e) {
+		var state = GetEntityState(e);
+		if (state && state.garrisonHolder)
+			return true;
+		return false;
+	});
+
+	Engine.PostNetworkCommand({"type": "unload-all", "garrisonHolders": garrisonHolders});
 }

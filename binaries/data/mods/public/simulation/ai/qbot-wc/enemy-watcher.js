@@ -128,11 +128,11 @@ enemyWatcher.prototype.detectArmies = function(gameState){
 			self.armies[armyID].length;
 		});
 		Engine.ProfileStop();
-	} else if (gameState.ai.playedTurn % 8 === 3) {
+	} else if (gameState.ai.playedTurn % 16 === 3) {
 		Engine.ProfileStart("Merging");
 		this.mergeArmies();	// calls "scrap empty armies"
 		Engine.ProfileStop();
-	} else if (gameState.ai.playedTurn % 8 === 7) {
+	} else if (gameState.ai.playedTurn % 16 === 7) {
 		Engine.ProfileStart("Splitting");
 		this.splitArmies(gameState);
 		Engine.ProfileStop();
@@ -143,12 +143,13 @@ enemyWatcher.prototype.detectArmies = function(gameState){
 enemyWatcher.prototype.mergeArmies = function(){
 	for (army in this.armies) {
 		var firstArmy = this.armies[army];
-		if (firstArmy.length !== 0)
+		if (firstArmy.length !== 0) {
+			var firstAPos = firstArmy.getApproximatePosition(4);
 			for (otherArmy in this.armies) {
 				if (otherArmy !== army && this.armies[otherArmy].length !== 0) {
 					var secondArmy = this.armies[otherArmy];
 					// we're not self merging, so we check if the two armies are close together
-					if (inRange(firstArmy.getApproximatePosition(4),secondArmy.getApproximatePosition(4), 3000 ) ) {
+					if (inRange(firstAPos,secondArmy.getApproximatePosition(4), 4000 ) ) {
 						// okay so we merge the two together
 						
 						// if the other one was dangerous and we weren't, we're now.
@@ -161,6 +162,7 @@ enemyWatcher.prototype.mergeArmies = function(){
 					}
 				}
 			}
+		}
 	}
 	this.ScrapEmptyArmies();
 };
@@ -181,11 +183,18 @@ enemyWatcher.prototype.ScrapEmptyArmies = function(){
 // splits any unit too far from the centerposition
 enemyWatcher.prototype.splitArmies = function(gameState){
 	var self = this;
+	
+	var map = gameState.getTerritoryMap();
+	
 	for (armyID in this.armies) {
 		var army = this.armies[armyID];
 		var centre = army.getApproximatePosition(4);
+		
+		if (map.getOwner(centre) === gameState.player)
+			continue;
+		
 		army.forEach( function (enemy) {
-			if (enemy.position() == undefined)
+			if (enemy.position() === undefined)
 				return;
 					 
 			if (!inRange(enemy.position(),centre, 3500) ) {

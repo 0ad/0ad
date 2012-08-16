@@ -39,7 +39,6 @@ class JMusicSound : public CJSObject<JMusicSound>
 {
 public:	
 	JMusicSound(const VfsPath& pathname);
-	virtual ~JMusicSound();
 	
 	// Script-bound functions
 	
@@ -53,7 +52,7 @@ public:
 	static void ScriptingInit();
 	
 protected:
-	VfsPath* m_FileName;
+	VfsPath m_FileName;
 };
 
 #endif	// #ifndef INCLUDED_MUSICSOUND_H

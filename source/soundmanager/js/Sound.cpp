@@ -27,7 +27,7 @@
 
 JSound::JSound(const VfsPath& pathname)
 {
-	m_SndItem = g_SoundManager->LoadItem(&pathname);
+	m_SndItem = g_SoundManager->LoadItem(pathname);
 }
 
 JSound::~JSound()

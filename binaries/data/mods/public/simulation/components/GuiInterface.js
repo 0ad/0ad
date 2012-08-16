@@ -238,7 +238,8 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.resourceSupply = {
 			"max": cmpResourceSupply.GetMaxAmount(),
 			"amount": cmpResourceSupply.GetCurrentAmount(),
-			"type": cmpResourceSupply.GetType()
+			"type": cmpResourceSupply.GetType(),
+			"killBeforeGather": cmpResourceSupply.GetKillBeforeGather()
 		};
 	}
 

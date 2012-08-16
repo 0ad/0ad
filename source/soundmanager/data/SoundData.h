@@ -32,8 +32,8 @@ typedef std::map<std::wstring, CSoundData*> DataMap;
 class CSoundData
 {
 public:
-	static CSoundData* SoundDataFromFile(const VfsPath* itemPath);
-	static CSoundData* SoundDataFromOgg(const VfsPath* itemPath);
+	static CSoundData* SoundDataFromFile(const VfsPath& itemPath);
+	static CSoundData* SoundDataFromOgg(const VfsPath& itemPath);
 
 	static void ReleaseSoundData(CSoundData* theData);
 

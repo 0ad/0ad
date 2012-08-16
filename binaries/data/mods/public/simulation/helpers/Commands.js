@@ -131,7 +131,7 @@ function ProcessCommand(player, cmd)
 
 	case "returnresource":
 		// Check dropsite is owned by player
-		if (g_DebugCommands && IsOwnedByPlayer(player, cmd.target))
+		if (g_DebugCommands && !IsOwnedByPlayer(player, cmd.target))
 		{
 			// This check is for debugging only!
 			warn("Invalid command: dropsite is not owned by player "+player+": "+uneval(cmd));
@@ -223,7 +223,11 @@ function ProcessCommand(player, cmd)
 		{
 			var cmpHealth = Engine.QueryInterface(ent, IID_Health);
 			if (cmpHealth)
-				cmpHealth.Kill();
+			{
+				var cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
+				if (!cmpResourceSupply || !cmpResourceSupply.GetKillBeforeGather())
+					cmpHealth.Kill();
+			}
 			else
 				Engine.DestroyEntity(ent);
 		}
@@ -289,19 +293,11 @@ function ProcessCommand(player, cmd)
 			var cmpGarrisonHolder = Engine.QueryInterface(cmd.garrisonHolder, IID_GarrisonHolder);
 			var notUngarrisoned = 0;
 			for each (ent in cmd.entities)
-			{
 				if (!cmpGarrisonHolder || !cmpGarrisonHolder.Unload(ent))
-				{
 					notUngarrisoned++;
-				}
-			}
+
 			if (notUngarrisoned != 0)
-			{
-				var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
-				var notification = {"player": cmpPlayer.GetPlayerID(), "message": (notUngarrisoned == 1 ? "Unable to ungarrison unit" : "Unable to ungarrison units")};
-				var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-				cmpGUIInterface.PushNotification(notification);
-			}
+				notifyUnloadFailure(player, cmd.garrisonHolder)
 		}
 		else if (g_DebugCommands)
 		{
@@ -309,22 +305,23 @@ function ProcessCommand(player, cmd)
 		}
 		break;
 
-	case "unload-all":
-		// Verify that the building can be controlled by the player
-		if (CanControlUnit(cmd.garrisonHolder, player, controlAllUnits))
+	case "unload-template":
+		var selected = FilterEntityList(cmd.garrisonHolders, player, controlAllUnits);
+		for each (var garrisonHolder in selected)
 		{
-			var cmpGarrisonHolder = Engine.QueryInterface(cmd.garrisonHolder, IID_GarrisonHolder);
-			if (!cmpGarrisonHolder || !cmpGarrisonHolder.UnloadAll())
-			{
-				var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
-				var notification = {"player": cmpPlayer.GetPlayerID(), "message": "Unable to ungarrison all units"};
-				var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-				cmpGUIInterface.PushNotification(notification);
-			}
+			var cmpGarrisonHolder = Engine.QueryInterface(garrisonHolder, IID_GarrisonHolder);
+			if (!cmpGarrisonHolder || !cmpGarrisonHolder.UnloadTemplate(cmd.template, cmd.all))
+				notifyUnloadFailure(player, garrisonHolder)
 		}
-		else if (g_DebugCommands)
+		break;
+
+	case "unload-all":
+		var selected = FilterEntityList(cmd.garrisonHolders, player, controlAllUnits);
+		for each (var garrisonHolder in selected)
 		{
-			warn("Invalid command: unload-all target cannot be controlled by player "+player+": "+uneval(cmd));
+			var cmpGarrisonHolder = Engine.QueryInterface(garrisonHolder, IID_GarrisonHolder);
+			if (!cmpGarrisonHolder || !cmpGarrisonHolder.UnloadAll())
+				notifyUnloadFailure(player, garrisonHolder)
 		}
 		break;
 
@@ -421,6 +418,17 @@ function ProcessCommand(player, cmd)
 	default:
 		error("Invalid command: unknown command type: "+uneval(cmd));
 	}
+}
+
+/**
+ * Sends a GUI notification about unit(s) that failed to ungarrison.
+ */
+function notifyUnloadFailure(player, garrisonHolder)
+{
+	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
+	var notification = {"player": cmpPlayer.GetPlayerID(), "message": "Unable to ungarrison unit(s)" };
+	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	cmpGUIInterface.PushNotification(notification);
 }
 
 /**

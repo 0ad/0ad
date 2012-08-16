@@ -25,14 +25,8 @@
 #include "soundmanager/SoundManager.h"
 
 
-JMusicSound::JMusicSound(const VfsPath& pathname)
+JMusicSound::JMusicSound(const VfsPath& pathname) : m_FileName(pathname)
 {
-	m_FileName = new VfsPath(pathname.string().c_str());
-}
-
-JMusicSound::~JMusicSound()
-{
-	delete m_FileName;
 }
 
 bool JMusicSound::Play(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
@@ -67,7 +61,7 @@ CStr JMusicSound::ToString(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNU
 {
 	std::ostringstream stringStream;
 	stringStream << "[object MusicSound: ";
-	stringStream << m_FileName->string().c_str();
+	stringStream << m_FileName.string().c_str();
 	
 	return stringStream.str();
 }
