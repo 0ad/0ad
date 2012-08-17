@@ -2,13 +2,14 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant>
+    <variant name="hele theatron">
       <mesh>structural/hele_theatron_struct.dae</mesh>
       <props>
         <prop actor="props/structures/hellenes/theatron_marble.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/theatron_props.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/theatron_structb.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/theatron_tiles.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/theatron_decor.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/theatron_tile.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/theatron_nature.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="structural/hele_struct.dds" name="baseTex"/>

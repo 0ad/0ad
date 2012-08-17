@@ -2,10 +2,10 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="theatron props">
-      <mesh>structural/hele_theatron_propsa.dae</mesh>
+    <variant name="gymnasion trees">
+      <mesh>props/athen_gym_trees.dae</mesh>
       <textures>
-        <texture file="props/hele_props_a.dds" name="baseTex"/>
+        <texture file="gaia/prop_tree_cypess.dds" name="baseTex"/>
       </textures>
     </variant>
   </group>
