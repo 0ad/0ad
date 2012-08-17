@@ -372,7 +372,9 @@ sub add_civs
         push @roots, $f;
 
         open my $fh, vfs_to_physical($f) or die "Failed to open '$f': $!";
-        my $civ = decode_json(do { local $/; <$fh> });
+        # decode_json expects a UTF-8 string and doesn't handle BOMs, so we strip those
+        # (see http://trac.wildfiregames.com/ticket/1556)
+        my $civ = decode_json(do { local $/; my $file = <$fh>; $file =~ s/^\xEF\xBB\xBF//; $file });
 
         push @deps, [ $f, "art/textures/ui/" . $civ->{Emblem} ];
 
@@ -394,7 +396,9 @@ sub add_rms
         push @roots, $f;
 
         open my $fh, vfs_to_physical($f) or die "Failed to open '$f': $!";
-        my $rms = decode_json(do { local $/; <$fh> });
+        # decode_json expects a UTF-8 string and doesn't handle BOMs, so we strip those
+        # (see http://trac.wildfiregames.com/ticket/1556)
+        my $rms = decode_json(do { local $/; my $file = <$fh>; $file =~ s/^\xEF\xBB\xBF//; $file });
 
         push @deps, [ $f, "maps/random/" . $rms->{settings}{Script} ];
 
