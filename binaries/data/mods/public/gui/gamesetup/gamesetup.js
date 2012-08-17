@@ -1143,12 +1143,8 @@ function updatePlayerList()
 							g_GameAttributes.settings.PlayerData[playerSlot].AI = guid.substr(3);
 						}
 						else
-						{
-							// Reassign the host to this player slot
-							Engine.AssignNetworkPlayer(playerID, guid);
-							// Remove AI from this player slot
-							g_GameAttributes.settings.PlayerData[playerSlot].AI = "";
-						}
+							swapPlayers(guid, playerSlot);
+
 						Engine.SetNetworkGameAttributes(g_GameAttributes);
 					}
 				};
@@ -1171,12 +1167,7 @@ function updatePlayerList()
 							g_GameAttributes.settings.PlayerData[playerSlot].AI = guid.substr(3);
 						}
 						else
-						{
-							// Update the selected host's player ID
-							g_PlayerAssignments[guid].player = playerID;
-							// Remove AI from this player slot
-							g_GameAttributes.settings.PlayerData[playerSlot].AI = "";
-						}
+							swapPlayers(guid, playerSlot);
 
 						updatePlayerList();
 					}
@@ -1186,6 +1177,42 @@ function updatePlayerList()
 	}
 
 	g_IsInGuiUpdate = false;
+}
+
+function swapPlayers(guid, newSlot)
+{
+	// Player slots are indexed from 0 as Gaia is omitted.
+	var newPlayerID = newSlot + 1;
+	var playerID = g_PlayerAssignments[guid].player;
+
+	// Attempt to swap the player or AI occupying the target slot,
+	// if any, into the slot this player is currently in.
+	if (playerID != 255)
+	{
+		for (var i in g_PlayerAssignments)
+		{
+			// Move the player in the destination slot into the current slot.
+			if (g_PlayerAssignments[i].player == newPlayerID)
+			{
+				if (g_IsNetworked)
+					Engine.AssignNetworkPlayer(playerID, i);
+				else
+					g_PlayerAssignments[i].player = playerID;
+				break;
+			}
+		}
+
+		// Transfer the AI from the target slot to the current slot.
+		g_GameAttributes.settings.PlayerData[playerID - 1].AI = g_GameAttributes.settings.PlayerData[newSlot].AI;
+	}
+
+	if (g_IsNetworked)
+		Engine.AssignNetworkPlayer(newPlayerID, guid);
+	else
+		g_PlayerAssignments[guid].player = newPlayerID;
+
+	// Remove AI from this player slot
+	g_GameAttributes.settings.PlayerData[newSlot].AI = "";
 }
 
 function submitChatInput()
