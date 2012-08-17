@@ -5,15 +5,14 @@
 extern "C" {
 #endif
 
-#if defined(_WIN32) && !defined(_XBOX)
- /* _OPENAL32LIB is deprecated */
- #if defined(AL_BUILD_LIBRARY) || defined (_OPENAL32LIB)
-  #define ALC_API __declspec(dllexport)
- #else
+#ifndef ALC_API
+ #if defined(AL_LIBTYPE_STATIC)
+  #define ALC_API
+ #elif defined(_WIN32)
   #define ALC_API __declspec(dllimport)
+ #else
+  #define ALC_API extern
  #endif
-#else
- #define ALC_API extern
 #endif
 
 #if defined(_WIN32)
@@ -22,14 +21,18 @@ extern "C" {
  #define ALC_APIENTRY
 #endif
 
-#if TARGET_OS_MAC
+#if defined(TARGET_OS_MAC) && TARGET_OS_MAC
  #pragma export on
 #endif
 
-/* The ALCAPI, and ALCAPIENTRY macros are deprecated, but are included for applications porting code
-   from AL 1.0 */
+/*
+ * The ALCAPI, ALCAPIENTRY, and ALC_INVALID macros are deprecated, but are
+ * included for applications porting code from AL 1.0
+ */
 #define ALCAPI ALC_API
 #define ALCAPIENTRY ALC_APIENTRY
+#define ALC_INVALID 0
+
 
 #define ALC_VERSION_0_1         1
 
@@ -44,7 +47,7 @@ typedef char ALCboolean;
 typedef char ALCchar;
 
 /** signed 8-bit 2's complement integer */
-typedef char ALCbyte;
+typedef signed char ALCbyte;
 
 /** unsigned 8-bit integer */
 typedef unsigned char ALCubyte;
@@ -78,9 +81,6 @@ typedef void ALCvoid;
 
 
 /* Enumerant values begin at column 50. No tabs. */
-
-/* bad value */
-#define ALC_INVALID                              0
 
 /* Boolean False. */
 #define ALC_FALSE                                0
@@ -120,7 +120,7 @@ typedef void ALCvoid;
 /**
  * No error
  */
-#define ALC_NO_ERROR                             ALC_FALSE
+#define ALC_NO_ERROR                             0
 
 /**
  * No device
@@ -161,15 +161,23 @@ typedef void ALCvoid;
 #define ALC_ATTRIBUTES_SIZE                      0x1002
 #define ALC_ALL_ATTRIBUTES                       0x1003
 
+
 /**
  * Capture extension
  */
+#define ALC_EXT_CAPTURE 1
 #define ALC_CAPTURE_DEVICE_SPECIFIER             0x310
 #define ALC_CAPTURE_DEFAULT_DEVICE_SPECIFIER     0x311
 #define ALC_CAPTURE_SAMPLES                      0x312
 
 
-#if !defined(ALC_NO_PROTOTYPES)
+/**
+ * ALC_ENUMERATE_ALL_EXT enums
+ */
+#define ALC_ENUMERATE_ALL_EXT 1
+#define ALC_DEFAULT_ALL_DEVICES_SPECIFIER        0x1012
+#define ALC_ALL_DEVICES_SPECIFIER                0x1013
+
 
 /*
  * Context Management
@@ -184,7 +192,7 @@ ALC_API void            ALC_APIENTRY alcSuspendContext( ALCcontext *context );
 
 ALC_API void            ALC_APIENTRY alcDestroyContext( ALCcontext *context );
 
-ALC_API ALCcontext *    ALC_APIENTRY alcGetCurrentContext( ALCvoid );
+ALC_API ALCcontext *    ALC_APIENTRY alcGetCurrentContext( void );
 
 ALC_API ALCdevice*      ALC_APIENTRY alcGetContextsDevice( ALCcontext *context );
 
@@ -237,14 +245,15 @@ ALC_API void            ALC_APIENTRY alcCaptureStop( ALCdevice *device );
 
 ALC_API void            ALC_APIENTRY alcCaptureSamples( ALCdevice *device, ALCvoid *buffer, ALCsizei samples );
 
-#else /* ALC_NO_PROTOTYPES */
-
+/*
+ * Pointer-to-function types, useful for dynamically getting ALC entry points.
+ */
 typedef ALCcontext *   (ALC_APIENTRY *LPALCCREATECONTEXT) (ALCdevice *device, const ALCint *attrlist);
 typedef ALCboolean     (ALC_APIENTRY *LPALCMAKECONTEXTCURRENT)( ALCcontext *context );
 typedef void           (ALC_APIENTRY *LPALCPROCESSCONTEXT)( ALCcontext *context );
 typedef void           (ALC_APIENTRY *LPALCSUSPENDCONTEXT)( ALCcontext *context );
 typedef void           (ALC_APIENTRY *LPALCDESTROYCONTEXT)( ALCcontext *context );
-typedef ALCcontext *   (ALC_APIENTRY *LPALCGETCURRENTCONTEXT)( ALCvoid );
+typedef ALCcontext *   (ALC_APIENTRY *LPALCGETCURRENTCONTEXT)( void );
 typedef ALCdevice *    (ALC_APIENTRY *LPALCGETCONTEXTSDEVICE)( ALCcontext *context );
 typedef ALCdevice *    (ALC_APIENTRY *LPALCOPENDEVICE)( const ALCchar *devicename );
 typedef ALCboolean     (ALC_APIENTRY *LPALCCLOSEDEVICE)( ALCdevice *device );
@@ -260,9 +269,7 @@ typedef void           (ALC_APIENTRY *LPALCCAPTURESTART)( ALCdevice *device );
 typedef void           (ALC_APIENTRY *LPALCCAPTURESTOP)( ALCdevice *device );
 typedef void           (ALC_APIENTRY *LPALCCAPTURESAMPLES)( ALCdevice *device, ALCvoid *buffer, ALCsizei samples );
 
-#endif /* ALC_NO_PROTOTYPES */
-
-#if TARGET_OS_MAC
+#if defined(TARGET_OS_MAC) && TARGET_OS_MAC
  #pragma export off
 #endif
 
