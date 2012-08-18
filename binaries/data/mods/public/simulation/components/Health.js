@@ -126,6 +126,12 @@ Health.prototype.Reduce = function(amount)
 			{
 				// Don't destroy the entity
 
+				// TODO: This is a workaround so players don't retain LOS when
+				// their livestock animals die. See ticket #1600.
+				var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+				if (cmpOwnership)
+					cmpOwnership.SetOwner(0);
+
 				// Make it fall over
 				var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 				if (cmpVisual)
