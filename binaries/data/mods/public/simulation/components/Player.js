@@ -75,7 +75,7 @@ Player.prototype.GetColour = function()
 
 Player.prototype.TryReservePopulationSlots = function(num)
 {
-	if (num > (this.GetPopulationLimit() - this.GetPopulationCount()))
+	if (num != 0 && num > (this.GetPopulationLimit() - this.GetPopulationCount()))
 		return false;
 
 	this.popUsed += num;
