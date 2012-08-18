@@ -8,6 +8,9 @@
         <prop actor="props/structures/iberians/house_a.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
       </props>
+      <textures>
+        <texture file="structural/ao/iber_house_a.png" name="aoTex"/>
+      </textures>
     </variant>
     <variant frequency="10" name="House B">
       <mesh>structural/iber_house_b.dae</mesh>
@@ -15,6 +18,9 @@
         <prop actor="props/structures/iberians/house_b.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
       </props>
+      <textures>
+        <texture file="structural/ao/iber_house_b.png" name="aoTex"/>
+      </textures>
     </variant>
     <variant frequency="10" name="House C">
       <mesh>structural/iber_house_c.dae</mesh>
@@ -22,11 +28,18 @@
         <prop actor="props/structures/iberians/house_c.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
       </props>
+      <textures>
+        <texture file="structural/ao/iber_house_c.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
     <variant>
-      <textures><texture file="structural/iber_struct.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/iber_struct.dds" name="baseTex"/>
+        <texture file="structural/iber_struct_norm.png" name="normTex"/>
+        <texture file="structural/iber_struct_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -39,4 +52,5 @@
       </props>
     </variant>
   </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

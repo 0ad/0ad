@@ -8,11 +8,15 @@
         <prop actor="props/structures/iberians/sb_1_a.xml" attachpoint="root"/>
         <prop actor="props/structures/iberians/sb_1_b.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-		<prop actor="props/structures/iberians/iber_bull_statue.xml" attachpoint="statue"/>
-		<prop actor="props/structures/iberians/iber_lion_statue_small.xml" attachpoint="deco1"/>
-		<prop actor="props/structures/iberians/iber_lion_statue_small.xml" attachpoint="deco2"/>
+        <prop actor="props/structures/iberians/iber_bull_statue.xml" attachpoint="statue"/>
+        <prop actor="props/structures/iberians/iber_lion_statue_small.xml" attachpoint="deco1"/>
+        <prop actor="props/structures/iberians/iber_lion_statue_small.xml" attachpoint="deco2"/>
       </props>
-      <textures><texture file="structural/iber_sb1.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/iber_sb1.png" name="baseTex"/>
+        <texture file="structural/ao/iber_sb_mon_1.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
+  <material>player_trans_ao.xml</material>
 </actor>

@@ -8,7 +8,12 @@
         <prop actor="props/structures/iberians/mill.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="structural/iber_struct.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/iber_struct.dds" name="baseTex"/>
+        <texture file="structural/ao/iber_mill.png" name="aoTex"/>
+        <texture file="structural/iber_struct_norm.png" name="normTex"/>
+        <texture file="structural/iber_struct_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -23,4 +28,5 @@
       </props>
     </variant>
   </group>
+  <material>player_trans_ao_spec.xml</material>
 </actor>
