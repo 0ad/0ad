@@ -179,6 +179,7 @@ function openChat()
 function closeChat()
 {
 	getGUIObjectByName("chatInput").caption = ""; // Clear chat input
+	getGUIObjectByName("chatInput").blur(); // Remove focus
 	getGUIObjectByName("chatDialogPanel").hidden = true;
 }
 
