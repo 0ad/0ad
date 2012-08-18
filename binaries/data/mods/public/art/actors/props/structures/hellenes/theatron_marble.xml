@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant>
+    <variant frequency="100" name="theatron marble">
       <mesh>structural/hele_theatron_marble.dae</mesh>
       <textures>
         <texture file="props/marble.png" name="baseTex"/>

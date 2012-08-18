@@ -82,10 +82,10 @@ static void LoadGlobals()
 	CFG_GET_USER_VAL("particles", Bool, g_Particles);
 	CFG_GET_USER_VAL("silhouettes", Bool, g_Silhouettes);
 
-	float gain = -1.0f;
-	float musicGain = -1.0f;
-	float ambientGain = -1.0f;
-	float actionGain = -1.0f;
+	float gain = 0.5f;
+	float musicGain = 0.5f;
+	float ambientGain = 0.5f;
+	float actionGain = 0.5f;
 	int	bufferCount = 50;
 	unsigned long	bufferSize = 65536;
 	

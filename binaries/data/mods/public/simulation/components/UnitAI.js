@@ -185,8 +185,24 @@ var UnitFsmSpec = {
 	// (these will be overridden by various states)
 
 	"Order.LeaveFoundation": function(msg) {
-		// Default behaviour is to ignore the order since we're busy
-		return { "discardOrder": true };
+		if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target))
+		{
+			this.FinishOrder();
+			return;
+		}
+		// Move a tile outside the building
+		var range = 4;
+		var ok = this.MoveToTargetRangeExplicit(msg.data.target, range, range);
+		if (ok)
+		{
+			// We've started walking to the given point
+			this.SetNextState("INDIVIDUAL.WALKING");
+		}
+		else
+		{
+			// We are already at the target, or can't move at all
+			this.FinishOrder();
+		}
 	},
 
 	// Individual orders:
@@ -646,6 +662,7 @@ var UnitFsmSpec = {
 			}
 		},
 
+
 		"IDLE": {
 			"enter": function() {
 				this.SelectAnimation("idle");
@@ -754,29 +771,6 @@ var UnitFsmSpec = {
 					Engine.PostMessage(this.entity, MT_UnitIdleChanged, { "idle": this.isIdle });
 				}
 			},
-
-			// Override the LeaveFoundation order since we're not doing
-			// anything more important
-			"Order.LeaveFoundation": function(msg) {
-				if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target))
-				{
-					this.FinishOrder();
-					return;
-				}
-				// Move a tile outside the building
-				var range = 4;
-				var ok = this.MoveToTargetRangeExplicit(msg.data.target, range, range);
-				if (ok)
-				{
-					// We've started walking to the given point
-					this.SetNextState("INDIVIDUAL.WALKING");
-				}
-				else
-				{
-					// We are already at the target, or can't move at all
-					this.FinishOrder();
-				}
-			},
 		},
 
 		"WALKING": {
@@ -813,6 +807,11 @@ var UnitFsmSpec = {
 		},
 
 		"COMBAT": {
+			"Order.LeaveFoundation": function(msg) {
+				// Ignore the order as we're busy.
+				return { "discardOrder": true };
+			},
+
 			"EntityRenamed": function(msg) {
 				if (this.order.data.target == msg.entity)
 					this.order.data.target = msg.newentity;
@@ -1524,30 +1523,6 @@ var UnitFsmSpec = {
 					this.WalkToTarget(msg.data.newentity, true);
 				}
 			},
-
-			// Override the LeaveFoundation order since we don't want to be
-			// accidentally blocking our own building
-			"Order.LeaveFoundation": function(msg) {
-				if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target))
-				{
-					this.FinishOrder();
-					return;
-				}
-				// Move a tile outside the building
-				var range = 4;
-				var ok = this.MoveToTargetRangeExplicit(msg.data.target, range, range);
-				if (ok)
-				{
-					// We've started walking to the given point
-					this.SetNextState("INDIVIDUAL.WALKING");
-				}
-				else
-				{
-					// We are already at the target, or can't move at all
-					this.FinishOrder();
-				}
-			},
-
 		},
 
 		"GARRISON": {

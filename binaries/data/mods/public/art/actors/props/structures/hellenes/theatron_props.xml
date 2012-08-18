@@ -2,8 +2,8 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant>
-      <mesh>structural/hele_theatron_props.dae</mesh>
+    <variant frequency="100" name="theatron props">
+      <mesh>structural/hele_theatron_propsa.dae</mesh>
       <textures>
         <texture file="props/hele_props_a.dds" name="baseTex"/>
       </textures>

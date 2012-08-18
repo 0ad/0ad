@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
     <shader effect="terrain_base"/>
+	<conditional_define name="USE_PARALLAX_MAP" value="1" type="draw_range" conf="PARALLAX_DIST"/>
+    <conditional_define name="USE_HQ_PARALLAX" value="1" type="draw_range" conf="PARALLAX_HQ_DIST"/>
+    <conditional_define name="USE_VHQ_PARALLAX" value="1" type="draw_range" conf="PARALLAX_VHQ_DIST"/>
     <define name="USE_NORMAL_MAP" value="1"/>
     <define name="USE_SPECULAR_MAP" value="1"/>
     
-    <uniform name="effectSettings" value="2.5 15.0 0.0 0.0"/>
+    <uniform name="effectSettings" value="1.0 15.0 0.0 0.0"/>
 </material>

@@ -168,6 +168,7 @@ public:
 
 		// Dummy values (these will be filled in by the config file)
 		ViewScrollSpeed(0),
+		ViewScrollSpeedModifier(1),
 		ViewRotateXSpeed(0),
 		ViewRotateXMin(0),
 		ViewRotateXMax(0),
@@ -175,12 +176,14 @@ public:
 		ViewRotateYSpeed(0),
 		ViewRotateYSpeedWheel(0),
 		ViewRotateYDefault(0),
+		ViewRotateSpeedModifier(1),
 		ViewDragSpeed(0),
 		ViewZoomSpeed(0),
 		ViewZoomSpeedWheel(0),
 		ViewZoomMin(0),
 		ViewZoomMax(0),
 		ViewZoomDefault(0),
+		ViewZoomSpeedModifier(1),
 		ViewFOV(DEGTORAD(45.f)),
 		ViewNear(2.f),
 		ViewFar(4096.f),
@@ -269,6 +272,7 @@ public:
 	////////////////////////////////////////
 	// Settings
 	float ViewScrollSpeed;
+	float ViewScrollSpeedModifier;
 	float ViewRotateXSpeed;
 	float ViewRotateXMin;
 	float ViewRotateXMax;
@@ -276,12 +280,14 @@ public:
 	float ViewRotateYSpeed;
 	float ViewRotateYSpeedWheel;
 	float ViewRotateYDefault;
+	float ViewRotateSpeedModifier;
 	float ViewDragSpeed;
 	float ViewZoomSpeed;
 	float ViewZoomSpeedWheel;
 	float ViewZoomMin;
 	float ViewZoomMax;
 	float ViewZoomDefault;
+	float ViewZoomSpeedModifier;
 	float ViewFOV;
 	float ViewNear;
 	float ViewFar;
@@ -409,6 +415,7 @@ void CGameViewImpl::ScriptingInit()
 int CGameView::Initialize()
 {
 	CFG_GET_SYS_VAL("view.scroll.speed", Float, m->ViewScrollSpeed);
+	CFG_GET_SYS_VAL("view.scroll.speed.modifier", Float, m->ViewScrollSpeedModifier);
 	CFG_GET_SYS_VAL("view.rotate.x.speed", Float, m->ViewRotateXSpeed);
 	CFG_GET_SYS_VAL("view.rotate.x.min", Float, m->ViewRotateXMin);
 	CFG_GET_SYS_VAL("view.rotate.x.max", Float, m->ViewRotateXMax);
@@ -416,12 +423,14 @@ int CGameView::Initialize()
 	CFG_GET_SYS_VAL("view.rotate.y.speed", Float, m->ViewRotateYSpeed);
 	CFG_GET_SYS_VAL("view.rotate.y.speed.wheel", Float, m->ViewRotateYSpeedWheel);
 	CFG_GET_SYS_VAL("view.rotate.y.default", Float, m->ViewRotateYDefault);
+	CFG_GET_SYS_VAL("view.rotate.speed.modifier", Float, m->ViewRotateSpeedModifier);
 	CFG_GET_SYS_VAL("view.drag.speed", Float, m->ViewDragSpeed);
 	CFG_GET_SYS_VAL("view.zoom.speed", Float, m->ViewZoomSpeed);
 	CFG_GET_SYS_VAL("view.zoom.speed.wheel", Float, m->ViewZoomSpeedWheel);
 	CFG_GET_SYS_VAL("view.zoom.min", Float, m->ViewZoomMin);
 	CFG_GET_SYS_VAL("view.zoom.max", Float, m->ViewZoomMax);
 	CFG_GET_SYS_VAL("view.zoom.default", Float, m->ViewZoomDefault);
+	CFG_GET_SYS_VAL("view.zoom.speed.modifier", Float, m->ViewZoomSpeedModifier);
 
 	CFG_GET_SYS_VAL("joystick.camera.pan.x", Int, m->JoystickPanX);
 	CFG_GET_SYS_VAL("joystick.camera.pan.y", Int, m->JoystickPanY);
@@ -1107,6 +1116,38 @@ InReaction CGameView::HandleEvent(const SDL_Event_* ev)
 		else if (hotkey == "camera.rotate.wheel.ccw")
 		{
 			m->RotateY.AddSmoothly(-m->ViewRotateYSpeedWheel);
+			return IN_HANDLED;
+		}
+		else if (hotkey == "camera.scroll.speed.increase")
+		{
+			m->ViewScrollSpeed *= m->ViewScrollSpeedModifier;
+			return IN_HANDLED;
+		}
+		else if (hotkey == "camera.scroll.speed.decrease")
+		{
+			m->ViewScrollSpeed /= m->ViewScrollSpeedModifier;
+			return IN_HANDLED;
+		}
+		else if (hotkey == "camera.rotate.speed.increase")
+		{
+			m->ViewRotateXSpeed *= m->ViewRotateSpeedModifier;
+			m->ViewRotateYSpeed *= m->ViewRotateSpeedModifier;
+			return IN_HANDLED;
+		}
+		else if (hotkey == "camera.rotate.speed.decrease")
+		{
+			m->ViewRotateXSpeed /= m->ViewRotateSpeedModifier;
+			m->ViewRotateYSpeed /= m->ViewRotateSpeedModifier;
+			return IN_HANDLED;
+		}
+		else if (hotkey == "camera.zoom.speed.increase")
+		{
+			m->ViewZoomSpeed *= m->ViewZoomSpeedModifier;
+			return IN_HANDLED;
+		}
+		else if (hotkey == "camera.zoom.speed.decrease")
+		{
+			m->ViewZoomSpeed /= m->ViewZoomSpeedModifier;
 			return IN_HANDLED;
 		}
 		else if (hotkey == "camera.reset")

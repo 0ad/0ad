@@ -23,10 +23,11 @@
 #include "precompiled.h"
 
 #include "lib/lib.h"
-
 #include "lib/sysdep/sysdep.h"
 #include "lib/sysdep/gfx.h"
+#include "lib/utf8.h"
 #include "osx_bundle.h"
+#include "osx_pasteboard.h"
 
 #include <ApplicationServices/ApplicationServices.h>
 #include <AvailabilityMacros.h> // MAC_OS_X_VERSION_MIN_REQUIRED
@@ -34,29 +35,38 @@
 #include <mach-o/dyld.h> // _NSGetExecutablePath
 
 
-// "copy" text into the clipboard. replaces previous contents.
 Status sys_clipboard_set(const wchar_t* text)
 {
-	return INFO::OK;
+	Status ret = INFO::OK;
+
+	std::string str = utf8_from_wstring(text);
+	bool ok = osx_SendStringToPasteboard(str);
+	if (!ok)
+		ret = ERR::FAIL;
+	return ret;
 }
 
-// allow "pasting" from clipboard. returns the current contents if they
-// can be represented as text, otherwise 0.
-// when it is no longer needed, the returned pointer must be freed via
-// sys_clipboard_free. (NB: not necessary if zero, but doesn't hurt)
-wchar_t* sys_clipboard_get(void)
+wchar_t* sys_clipboard_get()
 {
-	// Remember to implement sys_clipboard_free when implementing this method!
-	return NULL;
+	wchar_t* ret = NULL;
+	std::string str;
+	bool ok = osx_GetStringFromPasteboard(str);
+	if (ok)
+	{
+		// TODO: this is yucky, why are we passing around wchar_t*?
+		std::wstring wstr = wstring_from_utf8(str);
+		size_t len = wcslen(wstr.c_str());
+		ret = (wchar_t*)malloc((len+1)*sizeof(wchar_t));
+		std::copy(wstr.c_str(), wstr.c_str()+len, ret);
+		ret[len] = 0;
+	}
+
+	return ret;
 }
 
-// frees memory used by <copy>, which must have been returned by
-// sys_clipboard_get. see note above.
 Status sys_clipboard_free(wchar_t* copy)
 {
-	// Since clipboard_get never returns allocated memory (unimplemented), we
-	// should only ever get called with a NULL pointer.
-	ENSURE(!copy);
+	free(copy);
 	return INFO::OK;
 }
 

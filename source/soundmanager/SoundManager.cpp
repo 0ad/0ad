@@ -90,18 +90,20 @@ Status CSoundManager::AlcInit()
 	// some OpenAL implementations don't indicate failure here correctly;
 	// we need to check if the device and context pointers are actually valid.
 	ALCenum err = alcGetError(m_Device);
-	if(err != ALC_NO_ERROR || !m_Device || !m_Context)
+	const char* dev_name = (const char*)alcGetString(m_Device, ALC_DEVICE_SPECIFIER);
+
+	if(err == ALC_NO_ERROR && m_Device && m_Context)
+		debug_printf(L"Sound: AlcInit success, using %hs\n", dev_name);
+	else
 	{
+		debug_printf(L"Sound: AlcInit failed, m_Device=%p m_Context=%p dev_name=%hs err=%d\n", m_Device, m_Context, dev_name, err);
+// FIXME Hack to get around exclusive access to the sound device
 #if OS_UNIX
 		ret = INFO::OK;
 #else
 		ret = ERR::FAIL;
 #endif
 	}
-
-	const char* dev_name = (const char*)alcGetString(m_Device, ALC_DEVICE_SPECIFIER);
-	wchar_t buf[200];
-	swprintf(buf, ARRAY_SIZE(buf), L"SND| alc_init: success, using %hs\n", dev_name);
 
 	return ret;
 }

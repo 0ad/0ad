@@ -3,15 +3,18 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="Greek Gymnasion Special Building">
-      <mesh>structural/hele_gym.dae</mesh>
+      <mesh>structural/athen_gym_struct.dae</mesh>
       <props>
         <prop actor="props/structures/athenians/gym_shields.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/gym_props.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/gym_tiles.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/gym_props.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/gym_tiles.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/gym_trees.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/gym_trees.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/gym_decor.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="structural/hele_struct.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/hele_struct.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
