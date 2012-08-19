@@ -8,8 +8,13 @@
       <props>
         <prop actor="props/structures/carthaginians/dock.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="structural/kart_struct.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/kart_struct.dds" name="baseTex"/>
+        <texture file="structural/kart_struct_norm.png" name="normTex"/>
+        <texture file="structural/kart_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/kart_dock.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_ao_spec.xml</material>
 </actor>

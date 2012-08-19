@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -7,7 +7,13 @@
       <props>
         <prop actor="props/structures/carthaginians/temple.xml" attachpoint="props_main"/>
       </props>
-      <textures><texture file="structural/kart_struct_1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/kart_struct_1.dds" name="baseTex"/>
+        <texture file="structural/kart_struct_norm.png" name="normTex"/>
+        <texture file="structural/kart_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/kart_hc.png" name="aoTex"/>
+        <texture name=""/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -21,5 +27,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_ao_spec.xml</material>
 </actor>
