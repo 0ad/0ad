@@ -199,3 +199,4 @@ static void MergeVertsFast(int * piCurNrUniqueVertices, int * piRemapTable, floa
 						   pfVertexDataIn, iNrVerticesIn, iFloatsPerVert, iL, iR_in, iChannelNum);	// weld all right of (or equal to) fSep
 	}
 }
+
