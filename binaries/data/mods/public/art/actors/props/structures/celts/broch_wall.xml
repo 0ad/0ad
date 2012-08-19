@@ -4,7 +4,8 @@
   <group>
     <variant name="broch top">
       <mesh>structural/celt_broch_wall.dae</mesh>
-      <textures><texture file="structural/celt_murus.png" name="baseTex"/></textures>
+      <textures><texture file="structural/celt_murus.png" name="baseTex"/><texture file="structural/celt_murus_norm.png" name="normTex"/></textures>
     </variant>
   </group>
+  <material>player_trans_parallax.xml</material>
 </actor>
