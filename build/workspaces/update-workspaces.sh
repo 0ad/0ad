@@ -84,29 +84,20 @@ echo
 
 # Now build premake and run it to create the makefiles
 cd ../premake/premake4
-# Fix the premake makefile to work on BSDs
+PREMAKE_BUILD_DIR=build/gmake.unix
+# BSD and OS X need different Makefiles
 case "`uname -s`" in
   "GNU/kFreeBSD" )
-    # This needs -ldl as we have a GNU userland and libc
+    # use default gmake.unix (needs -ldl as we have a GNU userland and libc)
     ;;
   *"BSD" )
-    # BSDs don't need to link with dl so modify the makefile
-    # Only GNU and FreeBSD sed have the -i option (and redirecting 
-    # to the same file results in an empty file and starting a subshell
-    # isn't as obvious as redirecting to a new file and replacing the old)
-    mv build/gmake.unix/Premake4.make build/gmake.unix/Premake4.make.bak
-    sed -e 's/ -ldl/ /g' build/gmake.unix/Premake4.make.bak > build/gmake.unix/Premake4.make
-   ;;
+    PREMAKE_BUILD_DIR=build/gmake.bsd
+    ;;
   "Darwin" )
-    # Remove the obsolete -s and the unused -rdynamic parameter and
-    # link with the CoreServices framework.
-    sed -e 's/^\([ ]*LDFLAGS[ ]*+=[ ]*\)\(\( [^ ]*\)*\) -s\(\( [^ ]*\)*\)$/\1\2\4/' \
-        -e 's/^\([ ]*LDFLAGS[ ]*+=[ ]*\)\(\( [^ ]*\)*\) -rdynamic\(\( [^ ]*\)*\)$/\1\2\4/' \
-        -e 's/^\([ ]*LIBS[ ]*+=[ ]*\)\(\( [^ ]*\)*\)$/\1\2 -framework CoreServices /' \
-        -i.bak build/gmake.unix/Premake4.make
+    PREMAKE_BUILD_DIR=build/gmake.macosx
     ;;
 esac
-${MAKE} -C build/gmake.unix ${JOBS} || die "Premake build failed"
+${MAKE} -C $PREMAKE_BUILD_DIR ${JOBS} || die "Premake build failed"
 
 echo
 

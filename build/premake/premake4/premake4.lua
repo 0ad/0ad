@@ -59,12 +59,13 @@
 			
 		configuration "macosx"
 			defines     { "LUA_USE_MACOSX" }
+			links       { "CoreServices.framework" }
 			
 		configuration { "macosx", "gmake" }
-			buildoptions { "-mmacosx-version-min=10.1" }
-			linkoptions { "-lstdc++-static", "-mmacosx-version-min=10.1" }
+			buildoptions{ "-mmacosx-version-min=10.4" }
+			linkoptions { "-mmacosx-version-min=10.4" }
 
-		configuration { "not windows", "not solaris" }
+		configuration { "not windows", "not solaris", "not macosx" }
 			linkoptions { "-rdynamic" }
 			
 		configuration { "solaris" }
