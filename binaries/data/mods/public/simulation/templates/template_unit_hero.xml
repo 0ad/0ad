@@ -36,6 +36,7 @@
   <Identity>
     <GenericName>Hero</GenericName>
     <Classes datatype="tokens">Hero Organic</Classes>
+    <RequiredTechnology>no_heroes</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>400</xp>
@@ -60,7 +61,7 @@
     <SoundGroups>
       <attack>attack/weapon/sword.xml</attack>
       <death>actor/human/death/death.xml</death>
-    </SoundGroups>
+    </SoundGroups>cd 
   </Sound>
   <UnitMotion>
     <WalkSpeed>9.0</WalkSpeed>
