@@ -7,7 +7,10 @@
       <props>
         <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="structural/rome_struct.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/rome_struct.dds" name="baseTex"/>
+        <texture file="structural/ao/kart_embassy_italiote.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -21,5 +24,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_ao_spec.xml</material>
 </actor>

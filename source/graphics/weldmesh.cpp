@@ -1,3 +1,8 @@
+// Slightly modified version of weldmesh, by Wildfire Games, for 0 A.D.
+// 
+// Motivation for changes:
+//  * Fix build on *BSD (including malloc.h produces an error)
+
 #include "precompiled.h"
 
 /**
@@ -25,8 +30,8 @@
 #include <string.h>
 #include <assert.h>
 
-#ifdef __APPLE__
-#include <stdlib.h>  /* OSX gets its malloc stuff through here */
+#if defined(__APPLE__) || defined(__FreeBSD__) || defined(__OpenBSD__)
+#include <stdlib.h>  /* BSD-based OSes get their malloc stuff through here */
 #else
 #include <malloc.h> 
 #endif
@@ -194,3 +199,4 @@ static void MergeVertsFast(int * piCurNrUniqueVertices, int * piRemapTable, floa
 						   pfVertexDataIn, iNrVerticesIn, iFloatsPerVert, iL, iR_in, iChannelNum);	// weld all right of (or equal to) fSep
 	}
 }
+

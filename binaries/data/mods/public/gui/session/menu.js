@@ -179,6 +179,7 @@ function openChat()
 function closeChat()
 {
 	getGUIObjectByName("chatInput").caption = ""; // Clear chat input
+	getGUIObjectByName("chatInput").blur(); // Remove focus
 	getGUIObjectByName("chatDialogPanel").hidden = true;
 }
 
@@ -192,7 +193,14 @@ function toggleChatWindow(teamChat)
 	if (chatWindow.hidden)
 		chatInput.focus(); // Grant focus to the input area
 	else
+	{
+		if (chatInput.caption.length)
+		{
+			submitChatInput();
+			return;
+		}
 		chatInput.caption = ""; // Clear chat input
+	}
 
 	getGUIObjectByName("toggleTeamChat").checked = teamChat;
 	chatWindow.hidden = !chatWindow.hidden;

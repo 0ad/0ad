@@ -42,6 +42,7 @@ that of Atlas depending on commandline parameters.
 
 #include "ps/ArchiveBuilder.h"
 #include "ps/CConsole.h"
+#include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
 #include "ps/Globals.h"
@@ -155,6 +156,8 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 #if !OS_MACOSX
 			// TODO: Fix fullscreen toggling on OS X, see http://trac.wildfiregames.com/ticket/741
 			g_VideoMode.ToggleFullscreen();
+#else
+			LOGWARNING(L"Toggling fullscreen and resizing are disabled on OS X due to a known bug. Please use the config file to change display settings.");
 #endif
 			return IN_HANDLED;
 		}

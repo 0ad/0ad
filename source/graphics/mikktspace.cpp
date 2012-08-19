@@ -1,4 +1,22 @@
+// Slightly modified version of mikktspace, by Wildfire Games, for 0 A.D.
+// 
+// Motivation for changes:
+//  * For quietness with our default warning flags, some warnings are
+//    explicitly disabled.
+
 #include "precompiled.h"
+
+#ifdef _MSC_VER
+# pragma warning(disable:4189) // local variable is initialized but not referenced
+#endif
+
+#if defined(__GNUC__)
+# define GCC_VERSION (__GNUC__*100 + __GNUC_MINOR__)
+
+# if GCC_VERSION >= 402 // older GCCs don't support the diagnostic pragma at all
+#  pragma GCC diagnostic ignored "-Wunused-variable"
+# endif
+#endif
 
 /** \file mikktspace/mikktspace.c
  *  \ingroup mikktspace

@@ -8,7 +8,10 @@
         <prop actor="props/structures/carthaginians/embassy_celtic_props.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="structural/celt_struct_1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/celt_struct_1.dds" name="baseTex"/>
+        <texture file="structural/ao/kart_embassy_celtic.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -23,5 +26,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_ao_spec.xml</material>
 </actor>
