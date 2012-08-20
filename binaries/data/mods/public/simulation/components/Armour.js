@@ -54,6 +54,10 @@ Armour.prototype.GetArmourStrengths = function()
 	// Work out the armour values with technology effects
 	var self = this;
 	
+	var foundationMultiplier = 1;
+	if (Engine.QueryInterface(this.entity, IID_Foundation)) 
+		foundationMultiplier = 0.2;
+	
 	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 	var applyTechs = function(type)
 	{
@@ -68,9 +72,9 @@ Armour.prototype.GetArmourStrengths = function()
 	};
 	
 	return {
-		hack: applyTechs("Hack"),
-		pierce: applyTechs("Pierce"),
-		crush: applyTechs("Crush")
+		hack: foundationMultiplier*applyTechs("Hack"),
+		pierce: foundationMultiplier*applyTechs("Pierce"),
+		crush: foundationMultiplier*applyTechs("Crush")
 	};
 };
 
