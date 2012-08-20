@@ -1447,7 +1447,8 @@ var UnitFsmSpec = {
 					else
 					{
 						var cmpFoundation = Engine.QueryInterface(target, IID_Foundation);
-						cmpFoundation.AddBuilder(this.entity);
+						if (cmpFoundation)
+							cmpFoundation.AddBuilder(this.entity);
 					}
 
 					this.SelectAnimation("build", false, 1.0, "build");
