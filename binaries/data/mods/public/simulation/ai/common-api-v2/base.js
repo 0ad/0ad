@@ -63,6 +63,17 @@ var g_FoundationForbiddenComponents = {
 	"GarrisonHolder": 1,
 };
 
+// Components that will be disabled in resource entity templates.
+// Roughly the inverse of CCmpTemplateManager::CopyResourceSubset.
+var g_ResourceForbiddenComponents = {
+	"Cost": 1,
+	"Decay": 1,
+	"Health": 1,
+	"UnitAI": 1,
+	"UnitMotion": 1,
+	"Vision": 1
+};
+
 BaseAI.prototype.GetTemplate = function(name)
 {
 	if (this._templates[name])
@@ -72,7 +83,7 @@ BaseAI.prototype.GetTemplate = function(name)
 		return this._derivedTemplates[name];
 
 	// If this is a foundation template, construct it automatically
-	if (name.substr(0, 11) === "foundation|")
+	if (name.indexOf("foundation|") !== -1)
 	{
 		var base = this.GetTemplate(name.substr(11));
 
@@ -83,6 +94,18 @@ BaseAI.prototype.GetTemplate = function(name)
 
 		this._derivedTemplates[name] = foundation;
 		return foundation;
+	}
+	else if (name.indexOf("resource|") !== -1)
+	{
+		var base = this.GetTemplate(name.substr(9));
+
+		var resource = {};
+		for (var key in base)
+			if (!g_ResourceForbiddenComponents[key])
+				resource[key] = base[key];
+
+		this._derivedTemplates[name] = resource;
+		return resource;
 	}
 
 	error("Tried to retrieve invalid template '"+name+"'");

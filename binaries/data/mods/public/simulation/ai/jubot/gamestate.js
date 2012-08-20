@@ -216,11 +216,12 @@ var GameState = Class({
 	countEntitiesAndQueuedWithType: function(type)
 	{
 		var foundationType = "foundation|" + type;
+		var resourceType = "resource|" + type;
 		var count = 0;
 		this.getOwnEntities().forEach(function(ent) {
 
 			var t = ent.templateName();
-			if (t == type || t == foundationType)
+			if (t == type || t == foundationType || t == resourceType)
 				++count;
 
 			var queue = ent.trainingQueue();

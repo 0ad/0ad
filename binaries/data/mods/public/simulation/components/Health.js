@@ -124,18 +124,10 @@ Health.prototype.Reduce = function(amount)
 			}
 			else if (this.template.DeathType == "remain")
 			{
-				// Don't destroy the entity
-
-				// TODO: This is a workaround so players don't retain LOS when
-				// their livestock animals die. See ticket #1600.
-				var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-				if (cmpOwnership)
-					cmpOwnership.SetOwner(0);
-
-				// Make it fall over
-				var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
-				if (cmpVisual)
-					cmpVisual.SelectAnimation("death", true, 1.0, "");
+				var resource = this.CreateCorpse(true);
+				if (resource != INVALID_ENTITY)
+					Engine.BroadcastMessage(MT_EntityRenamed, { entity: this.entity, newentity: resource });
+				Engine.DestroyEntity(this.entity);
 			}
 
 			var old = this.hitpoints;
@@ -178,18 +170,23 @@ Health.prototype.Increase = function(amount)
 
 //// Private functions ////
 
-Health.prototype.CreateCorpse = function()
+Health.prototype.CreateCorpse = function(leaveResources)
 {
 	// If the unit died while not in the world, don't create any corpse for it
 	// since there's nowhere for the corpse to be placed
 	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (!cmpPosition.IsInWorld())
-		return;
+		return INVALID_ENTITY;
 
-	// Create a static local version of the current entity
+	// Either creates a static local version of the current entity, or a
+	// persistent corpse retaining the ResourceSupply element of the parent.
 	var cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var templateName = cmpTempMan.GetCurrentTemplateName(this.entity);
-	var corpse = Engine.AddLocalEntity("corpse|" + templateName);
+	var corpse;
+	if (leaveResources)
+		corpse = Engine.AddEntity("resource|" + templateName);
+	else
+		corpse = Engine.AddLocalEntity("corpse|" + templateName);
 
 	// Copy various parameters so it looks just like us
 
@@ -207,6 +204,8 @@ Health.prototype.CreateCorpse = function()
 	// Make it fall over
 	var cmpCorpseVisual = Engine.QueryInterface(corpse, IID_Visual);
 	cmpCorpseVisual.SelectAnimation("death", true, 1.0, "");
+
+	return corpse;
 };
 
 Health.prototype.Repair = function(builderEnt, work)

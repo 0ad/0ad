@@ -618,11 +618,6 @@ var UnitFsmSpec = {
 
 	// States for entities moving as part of a formation:
 	"FORMATIONMEMBER": {
-		"HealthChanged": function(msg) {
-			if (this.IsAnimal() && msg.to == 0)
-				this.SetNextState("ANIMAL.CORPSE");
-		},
-
 		"FormationLeave": function(msg) {
 			// Stop moving as soon as the formation disbands
 			this.StopMoving();
@@ -815,6 +810,12 @@ var UnitFsmSpec = {
 			"EntityRenamed": function(msg) {
 				if (this.order.data.target == msg.entity)
 					this.order.data.target = msg.newentity;
+
+				// If we're hunting, that means we have a queued gather
+				// order whose target also needs to be updated.
+				if (this.order.data.hunting && this.orderQueue[1] &&
+						this.orderQueue[1].type == "Gather")
+					this.orderQueue[1].data.target = msg.newentity;
 			},
 
 			"Attacked": function(msg) {
@@ -1435,6 +1436,21 @@ var UnitFsmSpec = {
 					//	switch to an unforced order (can be interrupted by attacks)
 					this.order.data.force = false;
 
+					var target = this.order.data.target;
+					// Check we can still reach and repair the target
+					if (!this.CheckTargetRange(target, IID_Builder) || !this.CanRepair(target))
+					{
+						// Can't reach it, no longer owned by ally, or it doesn't exist any more
+						this.FinishOrder();
+						return;
+					}
+					else
+					{
+						var cmpFoundation = Engine.QueryInterface(target, IID_Foundation);
+						if (cmpFoundation)
+							cmpFoundation.AddBuilder(this.entity);
+					}
+
 					this.SelectAnimation("build", false, 1.0, "build");
 					this.StartTimer(1000, 1000);
 				},
@@ -1621,13 +1637,6 @@ var UnitFsmSpec = {
 	},
 
 	"ANIMAL": {
-
-		"HealthChanged": function(msg) {
-			// If we died (got reduced to 0 hitpoints), stop the AI and act like a corpse
-			if (msg.to == 0)
-				this.SetNextState("CORPSE");
-		},
-
 		"Attacked": function(msg) {
 			if (this.template.NaturalBehaviour == "skittish" ||
 			    this.template.NaturalBehaviour == "passive")
@@ -1659,31 +1668,6 @@ var UnitFsmSpec = {
 				// Start feeding immediately
 				this.SetNextState("FEEDING");
 				return true;
-			},
-		},
-
-		"CORPSE": {
-			"enter": function() {
-				this.StopMoving();
-			},
-
-			// Ignore all orders that animals might otherwise respond to
-			"Order.FormationWalk": function() { },
-			"Order.Walk": function() { },
-			"Order.WalkToTarget": function() { },
-			"Order.Attack": function() { },
-			"Order.Stop": function() { },
-
-			"Attacked": function(msg) {
-				// Do nothing, because we're dead already
-			},
-
-			"Order.LeaveFoundation": function(msg) {
-				// We can't walk away from the foundation (since we're dead),
-				// but we mustn't block its construction (since the builders would get stuck),
-				// and we don't want to trick gatherers into trying to reach us when
-				// we're stuck in the middle of a building, so just delete our corpse.
-				Engine.DestroyEntity(this.entity);
 			},
 		},
 
@@ -2319,6 +2303,11 @@ UnitAI.prototype.FindNearbyResource = function(filter)
 		var type = cmpResourceSupply.GetType();
 		var amount = cmpResourceSupply.GetCurrentAmount();
 		var template = cmpTemplateManager.GetCurrentTemplateName(ent);
+
+		// Remove "resource|" prefix from template names, if present.
+		if (template.indexOf("resource|") != -1)
+			template = template.slice(9);
+
 		if (amount > 0 && filter(ent, type, template))
 			return ent;
 	}
@@ -2967,6 +2956,10 @@ UnitAI.prototype.PerformGather = function(target, queued, force)
 	// we won't go from hunting slow safe animals to dangerous fast ones
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var template = cmpTemplateManager.GetCurrentTemplateName(target);
+
+	// Remove "resource|" prefix from template name, if present.
+	if (template.indexOf("resource|") != -1)
+		template = template.slice(9);
 
 	// Remember the position of our target, if any, in case it disappears
 	// later and we want to head to its last known position

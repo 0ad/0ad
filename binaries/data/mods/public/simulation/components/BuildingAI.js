@@ -82,7 +82,7 @@ BuildingAI.prototype.SetupRangeQuery = function(owner)
 	if (cmpAttack)
 	{
 		var range = cmpAttack.GetRange("Ranged");
-		this.enemyUnitsQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, 0, cmpRangeManager.GetEntityFlagMask("normal"));
+		this.enemyUnitsQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, IID_DamageReceiver, cmpRangeManager.GetEntityFlagMask("normal"));
 		cmpRangeManager.EnableActiveQuery(this.enemyUnitsQuery);
 	}
 };
@@ -135,8 +135,11 @@ BuildingAI.prototype.OnRangeUpdate = function(msg)
 
 		if (msg.added.length)
 			msg.added = msg.added.filter(filter);
-		if (msg.removed.length)
-			msg.removed = msg.removed.filter(filter);
+
+		// Removed entities may not have cmpUnitAI.
+		for (var i = 0; i < msg.removed.length; ++i)
+			if (this.targetUnits.indexOf(msg.removed[i]) == -1)
+				msg.removed.splice(i--, 1);
 	}
 	else if (msg.tag != this.enemyUnitsQuery)
 		return;
