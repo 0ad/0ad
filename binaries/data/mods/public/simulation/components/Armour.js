@@ -72,9 +72,9 @@ Armour.prototype.GetArmourStrengths = function()
 	};
 	
 	return {
-		hack: foundationMultiplier*applyTechs("Hack"),
-		pierce: foundationMultiplier*applyTechs("Pierce"),
-		crush: foundationMultiplier*applyTechs("Crush")
+		hack: Math.floor(foundationMultiplier*applyTechs("Hack")),
+		pierce: Math.floor(foundationMultiplier*applyTechs("Pierce")),
+		crush: Math.floor(foundationMultiplier*applyTechs("Crush"))
 	};
 };
 
