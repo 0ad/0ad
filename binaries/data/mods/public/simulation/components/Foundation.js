@@ -21,12 +21,14 @@ Foundation.prototype.Init = function()
 	this.timer = cmpTimer.SetInterval(this.entity, IID_Foundation, "UpdateTimeout", 1000, 1000, {});
 	this.recentBuilders = []; // builder entities since the last timeout
 	this.numRecentBuilders = 0; // number of builder entities as of the last timeout
+	this.buildMultiplier = 1; // Multiplier for the amount of work builders do.
 };
 
 Foundation.prototype.UpdateTimeout = function()
 {
 	this.numRecentBuilders = this.recentBuilders.length;
 	this.recentBuilders = [];
+	this.SetBuildMultiplier();
 
 	Engine.QueryInterface(this.entity, IID_Visual).SetVariable("numbuilders", this.numRecentBuilders);
 };
@@ -85,6 +87,32 @@ Foundation.prototype.OnDestroy = function()
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	cmpTimer.CancelTimer(this.timer);
 };
+
+/**
+ * Adds a builder to the counter. Used indirectly by UnitAI to signal that
+ * a unit has started the construction timer and will actually build soon.
+ */
+Foundation.prototype.AddBuilder = function(builderEnt)
+{
+	if (this.recentBuilders.indexOf(builderEnt) != -1)
+		return;
+
+	this.recentBuilders.push(builderEnt);
+	if (this.recentBuilders.length > this.numRecentBuilders)
+	{
+		this.numRecentBuilders = this.recentBuilders.length;
+		this.SetBuildMultiplier();
+	}
+}
+
+/**
+ * Sets the build rate multiplier, which is applied to all builders.
+ */
+Foundation.prototype.SetBuildMultiplier = function()
+{
+	// Yields a total rate of construction equal to numRecentBuilders^0.7
+	this.buildMultiplier = Math.pow(this.numRecentBuilders, 0.7) / this.numRecentBuilders;
+}
 
 /**
  * Perform some number of seconds of construction work.
@@ -151,14 +179,9 @@ Foundation.prototype.Build = function(builderEnt, work)
 	var amount = work / cmpCost.GetBuildTime();
 
 	// Record this builder so we can count the total number
-	this.recentBuilders.push(builderEnt);
+	this.AddBuilder(builderEnt);
 
-	// TODO: implement some kind of diminishing returns for multiple builders.
-	// e.g. record the set of entities that build this, then every ~2 seconds
-	// count them (and reset the list), and apply some function to the count to get
-	// a factor, and apply that factor here.
-
-	this.buildProgress += amount;
+	this.buildProgress += amount * this.buildMultiplier;
 	if (this.buildProgress > 1.0)
 		this.buildProgress = 1.0;
 		

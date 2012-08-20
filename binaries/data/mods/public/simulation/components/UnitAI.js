@@ -1436,6 +1436,20 @@ var UnitFsmSpec = {
 					//	switch to an unforced order (can be interrupted by attacks)
 					this.order.data.force = false;
 
+					var target = this.order.data.target;
+					// Check we can still reach and repair the target
+					if (!this.CheckTargetRange(target, IID_Builder) || !this.CanRepair(target))
+					{
+						// Can't reach it, no longer owned by ally, or it doesn't exist any more
+						this.FinishOrder();
+						return;
+					}
+					else
+					{
+						var cmpFoundation = Engine.QueryInterface(target, IID_Foundation);
+						cmpFoundation.AddBuilder(this.entity);
+					}
+
 					this.SelectAnimation("build", false, 1.0, "build");
 					this.StartTimer(1000, 1000);
 				},
