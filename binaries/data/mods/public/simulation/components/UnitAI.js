@@ -618,11 +618,6 @@ var UnitFsmSpec = {
 
 	// States for entities moving as part of a formation:
 	"FORMATIONMEMBER": {
-		"HealthChanged": function(msg) {
-			if (this.IsAnimal() && msg.to == 0)
-				this.SetNextState("ANIMAL.CORPSE");
-		},
-
 		"FormationLeave": function(msg) {
 			// Stop moving as soon as the formation disbands
 			this.StopMoving();
@@ -1627,13 +1622,6 @@ var UnitFsmSpec = {
 	},
 
 	"ANIMAL": {
-
-		"HealthChanged": function(msg) {
-			// If we died (got reduced to 0 hitpoints), stop the AI and act like a corpse
-			if (msg.to == 0)
-				this.SetNextState("CORPSE");
-		},
-
 		"Attacked": function(msg) {
 			if (this.template.NaturalBehaviour == "skittish" ||
 			    this.template.NaturalBehaviour == "passive")
@@ -1665,31 +1653,6 @@ var UnitFsmSpec = {
 				// Start feeding immediately
 				this.SetNextState("FEEDING");
 				return true;
-			},
-		},
-
-		"CORPSE": {
-			"enter": function() {
-				this.StopMoving();
-			},
-
-			// Ignore all orders that animals might otherwise respond to
-			"Order.FormationWalk": function() { },
-			"Order.Walk": function() { },
-			"Order.WalkToTarget": function() { },
-			"Order.Attack": function() { },
-			"Order.Stop": function() { },
-
-			"Attacked": function(msg) {
-				// Do nothing, because we're dead already
-			},
-
-			"Order.LeaveFoundation": function(msg) {
-				// We can't walk away from the foundation (since we're dead),
-				// but we mustn't block its construction (since the builders would get stuck),
-				// and we don't want to trick gatherers into trying to reach us when
-				// we're stuck in the middle of a building, so just delete our corpse.
-				Engine.DestroyEntity(this.entity);
 			},
 		},
 
