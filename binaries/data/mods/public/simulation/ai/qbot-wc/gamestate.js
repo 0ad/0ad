@@ -211,6 +211,9 @@ GameState.prototype.countEntitiesAndQueuedByType = function(type) {
 	// Count building foundations
 	count += this.countEntitiesByType("foundation|" + type);
 	
+	// Count animal resources
+	count += this.countEntitiesByType("resource|" + type);
+
 	// Count entities in building production queues
 	this.getOwnTrainingFacilities().forEach(function(ent){
 		ent.trainingQueue().forEach(function(item) {
