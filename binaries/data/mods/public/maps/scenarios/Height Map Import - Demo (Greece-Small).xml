@@ -12,19 +12,19 @@
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>5</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>1</Murkiness>
-				<Tint r="0.278431" g="0.298039" b="0.588235"/>
-				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
+				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="826.704" y="182.885" z="239.142"/>
+		<Position x="826.704" y="90.1761" z="362.445"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -32,8 +32,10 @@
 {
   "CircularMap": true,
   "Description": "An example of height map importation. Image was 512x512 grayscale PNG. This image can be found in the scenarios folder, but can be placed anywhere.",
-  "GameType": "conquest",
-  "Keywords": [],
+  "GameType": "endless",
+  "Keywords": [
+    "demo"
+  ],
   "LockTeams": false,
   "Name": "Height Map Import Demo - Greece (small)",
   "PlayerData": [
@@ -62,7 +64,7 @@
       "Civ": "spart"
     }
   ],
-  "RevealMap": false
+  "RevealMap": true
 }
 ]]></ScriptSettings>
 	<Entities/>
