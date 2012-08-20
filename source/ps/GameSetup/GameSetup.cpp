@@ -1232,6 +1232,6 @@ void CancelLoad(const CStrW& message)
 		jsval msgval = ToJSVal(message);
 
 		if (ok && !JSVAL_IS_VOID(fval))
-			ok = JS_CallFunctionValue(cx, g_GUI->GetScriptObject(), fval, 1, &msgval, &rval);
+			JS_CallFunctionValue(cx, g_GUI->GetScriptObject(), fval, 1, &msgval, &rval);
 	}
 }
