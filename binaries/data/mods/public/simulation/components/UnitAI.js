@@ -815,6 +815,12 @@ var UnitFsmSpec = {
 			"EntityRenamed": function(msg) {
 				if (this.order.data.target == msg.entity)
 					this.order.data.target = msg.newentity;
+
+				// If we're hunting, that means we have a queued gather
+				// order whose target also needs to be updated.
+				if (this.order.data.hunting && this.orderQueue[1] &&
+						this.orderQueue[1].type == "Gather")
+					this.orderQueue[1].data.target = msg.newentity;
 			},
 
 			"Attacked": function(msg) {
@@ -2319,6 +2325,11 @@ UnitAI.prototype.FindNearbyResource = function(filter)
 		var type = cmpResourceSupply.GetType();
 		var amount = cmpResourceSupply.GetCurrentAmount();
 		var template = cmpTemplateManager.GetCurrentTemplateName(ent);
+
+		// Remove "resource|" prefix from template names, if present.
+		if (template.indexOf("resource|") != -1)
+			template = template.slice(9);
+
 		if (amount > 0 && filter(ent, type, template))
 			return ent;
 	}
@@ -2967,6 +2978,10 @@ UnitAI.prototype.PerformGather = function(target, queued, force)
 	// we won't go from hunting slow safe animals to dangerous fast ones
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var template = cmpTemplateManager.GetCurrentTemplateName(target);
+
+	// Remove "resource|" prefix from template name, if present.
+	if (template.indexOf("resource|") != -1)
+		template = template.slice(9);
 
 	// Remember the position of our target, if any, in case it disappears
 	// later and we want to head to its last known position
