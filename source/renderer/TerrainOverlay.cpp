@@ -146,6 +146,7 @@ void TerrainOverlay::RenderBeforeWater()
 	// (See e.g. http://www.opengl.org/resources/faq/technical/polygonoffset.htm)
 	glPolygonOffset(-1.f, -1.f);
 	glEnable(GL_POLYGON_OFFSET_LINE);
+	glEnable(GL_POLYGON_OFFSET_FILL);
 
 	pglActiveTextureARB(GL_TEXTURE0);
 	glDisable(GL_TEXTURE_2D);
@@ -172,6 +173,7 @@ void TerrainOverlay::RenderBeforeWater()
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_POLYGON_OFFSET_LINE);
+	glDisable(GL_POLYGON_OFFSET_FILL);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glDepthMask(GL_TRUE);
 	glDisable(GL_BLEND);
