@@ -311,14 +311,14 @@ private:
 	Observable<AtObj>& m_MapSettings;
 	wxArrayString m_Players;
 
-	void SetSelection(size_t playerID)
+	void SetSelection(int playerID)
 	{
 		// This control may not be loaded yet (before first display)
 		//	or may have less items than we expect, which could cause
 		//	an assertion failure, so handle that here
-		if (playerID < GetCount())
+		if ((unsigned int)playerID < GetCount())
 		{
-			wxComboBox::SetSelection((int)playerID);
+			wxComboBox::SetSelection(playerID);
 		}
 		else
 		{

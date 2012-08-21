@@ -205,7 +205,7 @@ PSRETURN CGame::ReallyStartGame()
 		JSBool ok = JS_GetProperty(g_ScriptingHost.getContext(), g_GUI->GetScriptObject(), "reallyStartGame", &fval);
 		ENSURE(ok);
 		if (ok && !JSVAL_IS_VOID(fval))
-			ok = JS_CallFunctionValue(g_ScriptingHost.getContext(), g_GUI->GetScriptObject(), fval, 0, NULL, &rval);
+			JS_CallFunctionValue(g_ScriptingHost.getContext(), g_GUI->GetScriptObject(), fval, 0, NULL, &rval);
 	}
 
 	if (g_NetClient)

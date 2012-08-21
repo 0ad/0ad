@@ -25,9 +25,9 @@
 #include "graphics/ModelDef.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextureManager.h"
-#include <graphics/mikktspace.h>
+#include "graphics/mikktspace.h"
 
-#include <renderer/MikktspaceWrap.h>
+#include "renderer/MikktspaceWrap.h"
 
 
 

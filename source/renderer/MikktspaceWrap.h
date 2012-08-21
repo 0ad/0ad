@@ -19,7 +19,12 @@
 #define INCLUDED_MIKKWRAP
 
 
-#include <graphics/mikktspace.h>
+#include "graphics/mikktspace.h"
+
+// Disable useless MSVC warning
+#if MSC_VERSION
+# pragma warning(disable:4512) // "assignment operator could not be generated"
+#endif
 
 class MikkTSpace
 {

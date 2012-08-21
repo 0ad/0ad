@@ -185,17 +185,15 @@ var EntityTemplate = Class({
  	
 	/**
 	 * Returns whether this is an animal that is too difficult to hunt.
-	 * (Currently this just includes skittish animals, which are probably
-	 * too fast to chase.)
+	 * (Currently this includes all non-domestic animals.)
 	 */
 	isUnhuntable: function() {
 		if (!this._template.UnitAI || !this._template.UnitAI.NaturalBehaviour)
 			return false;
 
-		// return (this._template.UnitAI.NaturalBehaviour == "skittish");
-		// Actually, since the AI is currently rubbish at hunting, skip all animals
-		// that aren't really weak:
-		return this._template.Health.Max >= 10;
+		// Ideally other animals should be huntable, but e.g. skittish animals
+		// must be hunted by ranged units, and some animals may be too tough.
+		return (this._template.UnitAI.NaturalBehaviour != "domestic");
 	},
 
 	buildCategory: function() {

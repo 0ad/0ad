@@ -526,7 +526,6 @@ void CNetServerWorker::AddPlayer(const CStr& guid, const CStrW& name)
 		{
 			// (do nothing)
 		}
-		foundPlayerID = true;
 	}
 
 	PlayerAssignment assignment;
