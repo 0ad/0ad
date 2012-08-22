@@ -1268,7 +1268,9 @@ bool CCmpUnitMotion::MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos
 		goal.type = ICmpPathfinder::Goal::CIRCLE;
 		goal.x = x;
 		goal.z = z;
-		goal.hw = m_Radius + goalDistance;
+
+		// Formerly added m_Radius, but it seems better to go by the mid-point.
+		goal.hw = goalDistance;
 	}
 
 	m_State = STATE_INDIVIDUAL_PATH;
