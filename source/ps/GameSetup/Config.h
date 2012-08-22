@@ -55,7 +55,7 @@ extern bool g_Particles;
 // flag to switch on unit silhouettes
 extern bool g_Silhouettes;
 // flag to switch on sky rendering
-extern bool g_ShowSky
+extern bool g_ShowSky;
 
 extern float g_Gamma;
 // name of configured render path (depending on OpenGL extensions, this may not be
