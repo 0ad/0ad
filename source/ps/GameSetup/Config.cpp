@@ -40,6 +40,7 @@ bool g_ShadowPCF = false;
 bool g_FancyWater = false;
 bool g_Particles = false;
 bool g_Silhouettes = false;
+bool g_ShowSky = false;
 
 float g_Gamma = 1.0f;
 
@@ -81,6 +82,7 @@ static void LoadGlobals()
 	CFG_GET_USER_VAL("renderpath", String, g_RenderPath);
 	CFG_GET_USER_VAL("particles", Bool, g_Particles);
 	CFG_GET_USER_VAL("silhouettes", Bool, g_Silhouettes);
+	CFG_GET_USER_VAL("showsky", Bool, g_ShowSky);
 
 	float gain = 0.5f;
 	float musicGain = 0.5f;

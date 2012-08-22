@@ -66,6 +66,11 @@
 	    <action on="Press">renderer.silhouettes = !renderer.silhouettes;</action>
 	</object>
 
+	<!-- Sky -->
+	<object hotkey="showsky">
+	    <action on="Press">renderer.showsky = !renderer.showsky;</action>
+	</object>
+
 	<!-- Pause -->
 	<object hotkey="pause">
 	    <action on="Press">togglePause();</action>

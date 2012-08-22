@@ -437,6 +437,7 @@ CRenderer::CRenderer()
 	m_Options.m_GPUSkinning = false;
 	m_Options.m_GenTangents = false;
 	m_Options.m_SmoothLOS = false;
+	m_Options.m_ShowSky = false;
 
 	// TODO: be more consistent in use of the config system
 	CFG_GET_USER_VAL("preferglsl", Bool, m_Options.m_PreferGLSL);
@@ -470,6 +471,7 @@ CRenderer::CRenderer()
 	AddLocalProperty(L"waterSpecularStrength", &m->waterManager.m_SpecularStrength, false);
 	AddLocalProperty(L"waterWaviness", &m->waterManager.m_Waviness, false);
 	AddLocalProperty(L"silhouettes", &m_Options.m_Silhouettes, false);
+	AddLocalProperty(L"showsky", &m_Options.m_ShowSky, false);
 
 	RegisterFileReloadFunc(ReloadChangedFileCB, this);
 }
@@ -679,6 +681,9 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 		case OPT_SILHOUETTES:
 			m_Options.m_Silhouettes = value;
 			break;
+		case OPT_SHOWSKY:
+			m_Options.m_ShowSky = value;
+			break;
 		default:
 			debug_warn(L"CRenderer::SetOptionBool: unknown option");
 			break;
@@ -702,6 +707,8 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 			return m_Options.m_Particles;
 		case OPT_SILHOUETTES:
 			return m_Options.m_Silhouettes;
+		case OPT_SHOWSKY:
+			return m_Options.m_ShowSky;
 		default:
 			debug_warn(L"CRenderer::GetOptionBool: unknown option");
 			break;
@@ -1425,6 +1432,11 @@ void CRenderer::RenderSubmissions()
 				glDisable(GL_SCISSOR_TEST);
 			}
 		}
+	}
+
+	if (m_Options.m_ShowSky)
+	{
+		m->skyManager.RenderSky();
 	}
 
 	// render submitted patches and models

@@ -82,7 +82,8 @@ public:
 		OPT_FANCYWATER,
 		OPT_SHADOWPCF,
 		OPT_PARTICLES,
-		OPT_SILHOUETTES
+		OPT_SILHOUETTES,
+		OPT_SHOWSKY
 	};
 
 	enum RenderPath {
@@ -133,6 +134,7 @@ public:
 		bool m_Silhouettes;
 		bool m_GenTangents;
 		bool m_SmoothLOS;
+		bool m_ShowSky;
 	} m_Options;
 
 	struct Caps {
