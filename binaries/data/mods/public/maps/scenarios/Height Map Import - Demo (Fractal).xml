@@ -3,35 +3,41 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>default</SkySet>
-		<SunColour r="0.905882" g="0.905882" b="0.905882"/>
+		<SkySet>sunset 2</SkySet>
+		<SunColour r="1.72995" g="1.46537" b="0.929424"/>
 		<SunElevation angle="0.143341"/>
 		<SunRotation angle="-2.30804"/>
-		<TerrainAmbientColour r="0.341176" g="0.321569" b="0.321569"/>
+		<TerrainAmbientColour r="0.337255" g="0.321569" b="0.321569"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>15.7377</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.45</Murkiness>
-				<Tint r="0.588235" g="0.47451" b="0.278431"/>
-				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
+				<Murkiness>1</Murkiness>
+				<Tint r="0.584314" g="0.47451" b="0.27451"/>
+				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="1046.57" y="531.613" z="-262.108"/>
+		<Position x="1075.92" y="89.4588" z="253.037"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name": "Unnamed map",
-  "Description": "Give an interesting description of your map.",
+  "CircularMap": true,
+  "Description": "Importation of a height map created with fractals.",
+  "GameType": "endless",
+  "Keywords": [
+    "demo"
+  ],
+  "LockTeams": false,
+  "Name": "Height Map Import Demo - Fractal",
   "PlayerData": [
     {
       "Civ": "athen"
@@ -58,7 +64,7 @@
       "Civ": "spart"
     }
   ],
-  "CircularMap": true
+  "RevealMap": true
 }
 ]]></ScriptSettings>
 	<Entities/>
