@@ -32,10 +32,10 @@
     <Classes datatype="tokens">FishingBoat</Classes>
   </Identity>
   <Obstruction>
-    <Unit radius="4.0"/>
+    <Unit radius="2.0"/>
   </Obstruction>
   <ResourceGatherer>
-    <MaxDistance>12.0</MaxDistance>
+    <MaxDistance>6.0</MaxDistance>
     <BaseSpeed>1.0</BaseSpeed>
     <Rates>
       <food.fish>2</food.fish>

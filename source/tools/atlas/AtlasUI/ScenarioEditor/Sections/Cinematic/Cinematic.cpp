@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -60,7 +60,7 @@ public:
 		m_OldScale = CinemaTextFloat(*m_TimeText, 2, -5.f, 5.f, m_OldScale);
 		m_Sidebar->UpdatePath((std::wstring)m_Name->GetLineText(0).wc_str(), m_OldScale);
 	}
-	void Update(std::wstring name, float scale)
+	void UpdatePath(std::wstring name, float scale)
 	{
 		m_Name->SetValue( wxString(name.c_str()) );
 		m_TimeText->SetValue( wxString::Format(L"%f", scale) );
@@ -494,7 +494,7 @@ public:
 		m_Sizer->Add(m_DrawCurrent, 0);
 		m_Sizer->Add( new wxButton(this, Reset_ID, L"Reset Camera"), 0, wxALIGN_CENTER );
 	}
-	void Update(const sCinemaPath* path)
+	void UpdatePath(const sCinemaPath* path)
 	{
 		m_ModeBox->SetSelection(path->mode);
 		m_StyleBox->SetSelection(path->style);
@@ -1080,11 +1080,11 @@ void CinematicSidebar::UpdateTexts()
 	if ( m_SelectedPath < 0 )
 		return;
 
-	m_CinemaBottomBar->Update(GetSelectedPathName(), m_Paths[m_SelectedPath].timescale );
+	m_CinemaBottomBar->UpdatePath(GetSelectedPathName(), m_Paths[m_SelectedPath].timescale );
 	if ( m_SelectedPath >= 0 )
 	{
 		const sCinemaPath* path = GetCurrentPath();
-		m_InfoBox->Update(path);
+		m_InfoBox->UpdatePath(path);
 	}
 }
 void CinematicSidebar::UpdatePathInfo(int mode, int style, float growth, float change, 
