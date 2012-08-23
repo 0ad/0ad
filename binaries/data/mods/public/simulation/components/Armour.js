@@ -15,7 +15,22 @@ Armour.prototype.Schema =
 	"</element>" +
 	"<element name='Crush' a:help='Crush damage protection'>" +
 		"<ref name='nonNegativeDecimal'/>" +
-	"</element>";
+	"</element>" +
+	"<optional>" + 
+		"<element name='Foundation' a:help='Armour given to building foundations'>" +
+			"<interleave>" +
+				"<element name='Hack' a:help='Hack damage protection'>" +
+					"<ref name='nonNegativeDecimal'/>" +
+				"</element>" +
+				"<element name='Pierce' a:help='Pierce damage protection'>" +
+					"<ref name='nonNegativeDecimal'/>" +
+				"</element>" +
+				"<element name='Crush' a:help='Crush damage protection'>" +
+					"<ref name='nonNegativeDecimal'/>" +
+				"</element>" +
+			"</interleave>" +
+		"</element>" +
+	"</optional>";
 
 Armour.prototype.Init = function()
 {
@@ -54,14 +69,20 @@ Armour.prototype.GetArmourStrengths = function()
 	// Work out the armour values with technology effects
 	var self = this;
 	
-	var foundationMultiplier = 1;
-	if (Engine.QueryInterface(this.entity, IID_Foundation)) 
-		foundationMultiplier = 0.2;
-	
 	var cmpTechMan = QueryOwnerInterface(this.entity, IID_TechnologyManager);
-	var applyTechs = function(type)
+	var applyTechs = function(type, foundation)
 	{
-		var strength = +self.template[type];
+		var strength;
+		if (foundation) 
+		{
+			strength = +self.template.Foundation[type];
+			type = "Foundation/" + type;
+		}
+		else
+		{
+			strength = +self.template[type];
+		}
+		
 		if (cmpTechMan)
 		{
 			// All causes caching problems so disable it for now.
@@ -71,11 +92,22 @@ Armour.prototype.GetArmourStrengths = function()
 		return strength;
 	};
 	
-	return {
-		hack: Math.floor(foundationMultiplier*applyTechs("Hack")),
-		pierce: Math.floor(foundationMultiplier*applyTechs("Pierce")),
-		crush: Math.floor(foundationMultiplier*applyTechs("Crush"))
-	};
+	if (Engine.QueryInterface(this.entity, IID_Foundation) && this.template.Foundation) 
+	{
+		return {
+			hack: applyTechs("Hack", true),
+			pierce: applyTechs("Pierce", true),
+			crush: applyTechs("Crush", true)
+		};
+	}
+	else
+	{
+		return {
+			hack: applyTechs("Hack"),
+			pierce: applyTechs("Pierce"),
+			crush: applyTechs("Crush")
+		};
+	}
 };
 
 Engine.RegisterComponentType(IID_DamageReceiver, "Armour", Armour);
