@@ -1,0 +1,4836 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="5">
+	<Environment>
+		<LightingModel>standard</LightingModel>
+		<SkySet>sunny</SkySet>
+		<SunColour r="1.38464" g="1.17287" b="0.743905"/>
+		<SunElevation angle="0.187146"/>
+		<SunRotation angle="-0.785396"/>
+		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>1</Murkiness>
+				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="2768.02" y="107.546" z="1121.81"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "CircularMap": true,
+  "Description": "",
+  "GameType": "endless",
+  "Keywords": [
+    "demo",
+    "hidden"
+  ],
+  "LockTeams": false,
+  "Name": "Campaign Map - Test",
+  "PlayerData": [
+    {
+      "Civ": "athen"
+    },
+    {
+      "Civ": "cart"
+    },
+    {
+      "Civ": "celt"
+    },
+    {
+      "Civ": "iber"
+    },
+    {
+      "Civ": "mace"
+    },
+    {
+      "Civ": "pers"
+    },
+    {
+      "Civ": "rome"
+    },
+    {
+      "Civ": "spart"
+    }
+  ],
+  "RevealMap": true
+}
+]]></ScriptSettings>
+	<Entities>
+		<Entity uid="11">
+			<Template>campaigns/campaign_city_test</Template>
+			<Player>1</Player>
+			<Position x="2807.89771" z="1248.93531"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="12">
+			<Template>actor|campaigns/flora/trees_cypress_clumps.xml</Template>
+			<Position x="2758.39649" z="1252.28418"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>actor|campaigns/flora/trees_cypress_clumps.xml</Template>
+			<Position x="2763.40699" z="1264.13038"/>
+			<Orientation y="-2.06824"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>actor|campaigns/flora/trees_cypress_clumps.xml</Template>
+			<Position x="2797.04688" z="1216.8484"/>
+			<Orientation y="2.85947"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>actor|campaigns/flora/trees_cypress_clumps.xml</Template>
+			<Position x="2799.70411" z="1207.99805"/>
+			<Orientation y="2.57357"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>actor|campaigns/flora/trees_cypress_clumps.xml</Template>
+			<Position x="2804.33887" z="1203.39197"/>
+			<Orientation y="0.31521"/>
+		</Entity>
+		<Entity uid="17">
+			<Template>actor|campaigns/flora/trees_cypress_clumps.xml</Template>
+			<Position x="2808.34083" z="1217.28736"/>
+			<Orientation y="0.76955"/>
+		</Entity>
+		<Entity uid="18">
+			<Template>actor|campaigns/flora/trees_cypress_clumps.xml</Template>
+			<Position x="2812.35157" z="1220.6194"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>actor|campaigns/flora/trees_cypress_clumps.xml</Template>
+			<Position x="2867.95362" z="1178.16761"/>
+			<Orientation y="1.7075"/>
+		</Entity>
+		<Entity uid="20">
+			<Template>actor|campaigns/flora/trees_cypress_clumps.xml</Template>
+			<Position x="2890.09815" z="1191.74097"/>
+			<Orientation y="0.4647"/>
+		</Entity>
+		<Entity uid="21">
+			<Template>actor|campaigns/flora/trees_cypress_clumps.xml</Template>
+			<Position x="2895.89478" z="1206.75696"/>
+			<Orientation y="0.4136"/>
+		</Entity>
+		<Entity uid="22">
+			<Template>actor|campaigns/flora/trees_cypress_clumps.xml</Template>
+			<Position x="2902.97437" z="1229.21216"/>
+			<Orientation y="0.38642"/>
+		</Entity>
+		<Entity uid="23">
+			<Template>actor|campaigns/flora/trees_cypress_clumps.xml</Template>
+			<Position x="2913.89014" z="1254.39625"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="24">
+			<Template>actor|campaigns/flora/trees_cypress_clumps.xml</Template>
+			<Position x="2919.99415" z="1257.813"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="25">
+			<Template>actor|campaigns/flora/trees_cypress_clumps.xml</Template>
+			<Position x="2941.80958" z="1328.36561"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>actor|campaigns/flora/trees_cypress_clumps.xml</Template>
+			<Position x="2953.72706" z="1308.00293"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="27">
+			<Template>actor|campaigns/flora/trees_cypress_clumps.xml</Template>
+			<Position x="2955.36622" z="1311.29322"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="28">
+			<Template>actor|campaigns/flora/trees_cypress_clumps.xml</Template>
+			<Position x="2728.57813" z="1254.29041"/>
+			<Orientation y="-1.58924"/>
+		</Entity>
+		<Entity uid="29">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2750.43165" z="1237.0016"/>
+			<Orientation y="0.63973"/>
+		</Entity>
+		<Entity uid="30">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2779.6504" z="1221.29456"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="31">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2833.02955" z="1134.5553"/>
+			<Orientation y="3.10148"/>
+		</Entity>
+		<Entity uid="32">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2859.4856" z="1138.16858"/>
+			<Orientation y="1.43841"/>
+		</Entity>
+		<Entity uid="33">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2905.37061" z="1111.92078"/>
+			<Orientation y="-2.2597"/>
+		</Entity>
+		<Entity uid="34">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2912.51368" z="1085.47864"/>
+			<Orientation y="2.31888"/>
+		</Entity>
+		<Entity uid="35">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2941.56788" z="1034.79505"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="36">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2986.69556" z="1015.6709"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="37">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2997.45118" z="1033.07007"/>
+			<Orientation y="-1.0579"/>
+		</Entity>
+		<Entity uid="38">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="3004.35694" z="1130.2035"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="39">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2627.7837" z="1186.31678"/>
+			<Orientation y="1.14913"/>
+		</Entity>
+		<Entity uid="40">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="3202.1504" z="725.1922"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="41">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="3219.16504" z="739.82801"/>
+			<Orientation y="-1.72753"/>
+		</Entity>
+		<Entity uid="42">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2384.96802" z="332.33713"/>
+			<Orientation y="2.71215"/>
+		</Entity>
+		<Entity uid="43">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2398.4297" z="304.7209"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="44">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2397.72876" z="293.70652"/>
+			<Orientation y="-2.71178"/>
+		</Entity>
+		<Entity uid="45">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2390.44483" z="277.90491"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="46">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2384.05176" z="274.23407"/>
+			<Orientation y="-0.87883"/>
+		</Entity>
+		<Entity uid="47">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2376.38013" z="282.14362"/>
+			<Orientation y="-0.07633"/>
+		</Entity>
+		<Entity uid="48">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2374.78565" z="307.04645"/>
+			<Orientation y="-0.20385"/>
+		</Entity>
+		<Entity uid="49">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2368.29834" z="328.09534"/>
+			<Orientation y="-0.44915"/>
+		</Entity>
+		<Entity uid="50">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2360.44776" z="342.6219"/>
+			<Orientation y="-0.47336"/>
+		</Entity>
+		<Entity uid="51">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2347.51636" z="367.35456"/>
+			<Orientation y="-0.26197"/>
+		</Entity>
+		<Entity uid="52">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2341.05835" z="393.7335"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="53">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2336.67408" z="419.00153"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="54">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2329.62208" z="449.18989"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="55">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2334.14942" z="471.20026"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="56">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2326.61109" z="507.66169"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="57">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2351.26246" z="406.20905"/>
+			<Orientation y="2.55852"/>
+		</Entity>
+		<Entity uid="58">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2367.0503" z="377.95646"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="59">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2371.14991" z="368.22074"/>
+			<Orientation y="2.87583"/>
+		</Entity>
+		<Entity uid="60">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2365.54883" z="119.7739"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="61">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2380.3506" z="105.35404"/>
+			<Orientation y="2.25066"/>
+		</Entity>
+		<Entity uid="62">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2406.03174" z="97.14917"/>
+			<Orientation y="1.92936"/>
+		</Entity>
+		<Entity uid="63">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2424.96631" z="91.84406"/>
+			<Orientation y="2.90957"/>
+		</Entity>
+		<Entity uid="64">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2428.07691" z="77.24242"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="65">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2022.53663" z="110.9059"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="66">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2026.40857" z="150.86759"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="67">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2033.21436" z="181.99854"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="68">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2047.06043" z="215.29358"/>
+			<Orientation y="0.17206"/>
+		</Entity>
+		<Entity uid="69">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2052.0149" z="244.02619"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="70">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2060.63404" z="262.06528"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="71">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2022.4491" z="57.26803"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="72">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2030.72815" z="49.4361"/>
+			<Orientation y="-1.87575"/>
+		</Entity>
+		<Entity uid="73">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="2003.39271" z="50.56586"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="74">
+			<Template>actor|campaigns/flora/trees_palm_clumps.xml</Template>
+			<Position x="1980.14405" z="54.57442"/>
+			<Orientation y="1.1351"/>
+		</Entity>
+		<Entity uid="75">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2136.63672" z="776.80402"/>
+			<Orientation y="2.76636"/>
+		</Entity>
+		<Entity uid="76">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2162.09449" z="711.83167"/>
+			<Orientation y="2.64533"/>
+		</Entity>
+		<Entity uid="77">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2188.71412" z="658.65845"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="78">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2191.81495" z="644.06177"/>
+			<Orientation y="-2.90732"/>
+		</Entity>
+		<Entity uid="79">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2195.1897" z="618.86725"/>
+			<Orientation y="2.81647"/>
+		</Entity>
+		<Entity uid="80">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2213.34034" z="578.67188"/>
+			<Orientation y="2.35384"/>
+		</Entity>
+		<Entity uid="81">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2216.80835" z="575.36982"/>
+			<Orientation y="1.79847"/>
+		</Entity>
+		<Entity uid="82">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2227.71631" z="587.49372"/>
+			<Orientation y="1.0931"/>
+		</Entity>
+		<Entity uid="83">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2274.74292" z="544.24714"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="84">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2283.85621" z="542.16504"/>
+			<Orientation y="2.48293"/>
+		</Entity>
+		<Entity uid="85">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2292.47584" z="529.91163"/>
+			<Orientation y="2.35123"/>
+		</Entity>
+		<Entity uid="86">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2244.60523" z="487.94605"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="87">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2248.0857" z="485.9379"/>
+			<Orientation y="2.35334"/>
+		</Entity>
+		<Entity uid="88">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2254.20557" z="481.55341"/>
+			<Orientation y="2.41155"/>
+		</Entity>
+		<Entity uid="89">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2259.51954" z="476.89362"/>
+			<Orientation y="2.37784"/>
+		</Entity>
+		<Entity uid="90">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2269.55665" z="470.73609"/>
+			<Orientation y="2.65683"/>
+		</Entity>
+		<Entity uid="91">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2273.292" z="463.8141"/>
+			<Orientation y="2.84198"/>
+		</Entity>
+		<Entity uid="92">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2276.64551" z="452.9214"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="93">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2270.02125" z="452.16126"/>
+			<Orientation y="-1.64956"/>
+		</Entity>
+		<Entity uid="94">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2262.41529" z="450.1969"/>
+			<Orientation y="-2.31942"/>
+		</Entity>
+		<Entity uid="95">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2257.02125" z="445.62787"/>
+			<Orientation y="-2.67188"/>
+		</Entity>
+		<Entity uid="96">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2253.91993" z="439.1035"/>
+			<Orientation y="-2.13477"/>
+		</Entity>
+		<Entity uid="97">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2247.93409" z="437.14118"/>
+			<Orientation y="-2.15767"/>
+		</Entity>
+		<Entity uid="98">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2321.3152" z="409.77088"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="99">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2321.06861" z="397.08326"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="100">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2321.64014" z="384.77912"/>
+			<Orientation y="2.93404"/>
+		</Entity>
+		<Entity uid="101">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2326.56959" z="373.11103"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="102">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2329.48853" z="370.11197"/>
+			<Orientation y="2.7987"/>
+		</Entity>
+		<Entity uid="103">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2332.55835" z="360.99235"/>
+			<Orientation y="3.03917"/>
+		</Entity>
+		<Entity uid="104">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2332.094" z="347.63483"/>
+			<Orientation y="-2.53827"/>
+		</Entity>
+		<Entity uid="105">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2326.21875" z="338.83024"/>
+			<Orientation y="-2.88352"/>
+		</Entity>
+		<Entity uid="106">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2323.89234" z="323.12128"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="107">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2326.5022" z="320.99784"/>
+			<Orientation y="2.03838"/>
+		</Entity>
+		<Entity uid="108">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2339.27051" z="322.4969"/>
+			<Orientation y="0.23655"/>
+		</Entity>
+		<Entity uid="109">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2282.78223" z="304.90088"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="110">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2277.83204" z="297.47407"/>
+			<Orientation y="-2.66774"/>
+		</Entity>
+		<Entity uid="111">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2274.07544" z="293.23566"/>
+			<Orientation y="-2.07572"/>
+		</Entity>
+		<Entity uid="112">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2265.52198" z="292.7616"/>
+			<Orientation y="-0.5826"/>
+		</Entity>
+		<Entity uid="113">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2255.25245" z="311.38218"/>
+			<Orientation y="-0.3385"/>
+		</Entity>
+		<Entity uid="114">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2244.61768" z="334.326"/>
+			<Orientation y="-0.3505"/>
+		</Entity>
+		<Entity uid="115">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2237.53858" z="353.58964"/>
+			<Orientation y="-0.33646"/>
+		</Entity>
+		<Entity uid="116">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2227.60621" z="380.24341"/>
+			<Orientation y="-0.34701"/>
+		</Entity>
+		<Entity uid="117">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2222.0276" z="392.16395"/>
+			<Orientation y="-0.75936"/>
+		</Entity>
+		<Entity uid="118">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2213.22828" z="399.82633"/>
+			<Orientation y="-0.66872"/>
+		</Entity>
+		<Entity uid="119">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2202.17286" z="416.85138"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="120">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2196.88404" z="419.38135"/>
+			<Orientation y="-1.18914"/>
+		</Entity>
+		<Entity uid="121">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2170.95972" z="434.32956"/>
+			<Orientation y="-0.91704"/>
+		</Entity>
+		<Entity uid="122">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2144.1521" z="449.46833"/>
+			<Orientation y="-0.2594"/>
+		</Entity>
+		<Entity uid="123">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2141.61158" z="477.35004"/>
+			<Orientation y="0.05048"/>
+		</Entity>
+		<Entity uid="124">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2142.96583" z="497.30094"/>
+			<Orientation y="-0.60325"/>
+		</Entity>
+		<Entity uid="125">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2118.09424" z="524.19794"/>
+			<Orientation y="3.05416"/>
+		</Entity>
+		<Entity uid="126">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2116.93018" z="514.97345"/>
+			<Orientation y="2.87778"/>
+		</Entity>
+		<Entity uid="127">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2120.5" z="496.93866"/>
+			<Orientation y="2.54804"/>
+		</Entity>
+		<Entity uid="128">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2134.00733" z="475.47761"/>
+			<Orientation y="2.5918"/>
+		</Entity>
+		<Entity uid="129">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2154.06983" z="462.68415"/>
+			<Orientation y="0.0484"/>
+		</Entity>
+		<Entity uid="130">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2160.13843" z="478.79493"/>
+			<Orientation y="2.90859"/>
+		</Entity>
+		<Entity uid="131">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2163.37208" z="460.75867"/>
+			<Orientation y="-2.72709"/>
+		</Entity>
+		<Entity uid="132">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2164.00806" z="448.53129"/>
+			<Orientation y="0.0363"/>
+		</Entity>
+		<Entity uid="133">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2164.48658" z="457.96155"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="134">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2157.63526" z="463.42713"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="135">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2150.26783" z="455.7797"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="136">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2151.5774" z="449.42914"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="137">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2152.25025" z="458.96558"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="138">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2214.20557" z="398.63068"/>
+			<Orientation y="3.08533"/>
+		</Entity>
+		<Entity uid="139">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2215.31641" z="390.05591"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="140">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2214.6526" z="386.3172"/>
+			<Orientation y="2.69994"/>
+		</Entity>
+		<Entity uid="141">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2224.75147" z="388.4625"/>
+			<Orientation y="-2.27904"/>
+		</Entity>
+		<Entity uid="142">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2259.1045" z="249.61617"/>
+			<Orientation y="2.49387"/>
+		</Entity>
+		<Entity uid="143">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2269.2234" z="236.42667"/>
+			<Orientation y="2.77054"/>
+		</Entity>
+		<Entity uid="144">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2273.05225" z="225.5611"/>
+			<Orientation y="2.94085"/>
+		</Entity>
+		<Entity uid="145">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2276.51246" z="206.60172"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="146">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2276.5857" z="199.50397"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="147">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2280.29224" z="200.23638"/>
+			<Orientation y="-0.20736"/>
+		</Entity>
+		<Entity uid="148">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2273.84498" z="225.32612"/>
+			<Orientation y="-0.0036"/>
+		</Entity>
+		<Entity uid="149">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2275.25684" z="242.77056"/>
+			<Orientation y="0.18573"/>
+		</Entity>
+		<Entity uid="150">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2275.96216" z="259.90592"/>
+			<Orientation y="-0.26487"/>
+		</Entity>
+		<Entity uid="151">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2270.13331" z="277.54914"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="152">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2349.10694" z="244.31746"/>
+			<Orientation y="-3.09977"/>
+		</Entity>
+		<Entity uid="153">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2348.03565" z="221.72075"/>
+			<Orientation y="3.0896"/>
+		</Entity>
+		<Entity uid="154">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2348.38697" z="208.9987"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="155">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2307.44288" z="400.22065"/>
+			<Orientation y="-1.90728"/>
+		</Entity>
+		<Entity uid="156">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2117.30933" z="824.35572"/>
+			<Orientation y="2.93506"/>
+		</Entity>
+		<Entity uid="157">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2132.60962" z="785.41742"/>
+			<Orientation y="2.81464"/>
+		</Entity>
+		<Entity uid="158">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2140.2693" z="768.75013"/>
+			<Orientation y="3.0224"/>
+		</Entity>
+		<Entity uid="159">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2146.5691" z="749.54084"/>
+			<Orientation y="2.8788"/>
+		</Entity>
+		<Entity uid="160">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2134.0171" z="682.26832"/>
+			<Orientation y="2.4756"/>
+		</Entity>
+		<Entity uid="161">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2140.35596" z="678.37226"/>
+			<Orientation y="2.70597"/>
+		</Entity>
+		<Entity uid="162">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2147.10425" z="674.61811"/>
+			<Orientation y="2.93503"/>
+		</Entity>
+		<Entity uid="163">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2150.76636" z="670.07837"/>
+			<Orientation y="2.31542"/>
+		</Entity>
+		<Entity uid="164">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2176.4585" z="686.09888"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="165">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2127.67554" z="647.58277"/>
+			<Orientation y="-1.8684"/>
+		</Entity>
+		<Entity uid="166">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2114.80396" z="642.72461"/>
+			<Orientation y="-1.91245"/>
+		</Entity>
+		<Entity uid="167">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2100.04078" z="641.17273"/>
+			<Orientation y="-1.94535"/>
+		</Entity>
+		<Entity uid="168">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2091.1858" z="645.12824"/>
+			<Orientation y="-0.68775"/>
+		</Entity>
+		<Entity uid="169">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2082.66968" z="657.53418"/>
+			<Orientation y="-0.63637"/>
+		</Entity>
+		<Entity uid="170">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2079.72828" z="664.21448"/>
+			<Orientation y="-0.15294"/>
+		</Entity>
+		<Entity uid="171">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2076.85279" z="676.15784"/>
+			<Orientation y="-0.26233"/>
+		</Entity>
+		<Entity uid="172">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2073.35254" z="687.37647"/>
+			<Orientation y="-0.56426"/>
+		</Entity>
+		<Entity uid="173">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2060.44605" z="700.46186"/>
+			<Orientation y="-1.25841"/>
+		</Entity>
+		<Entity uid="174">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2034.24952" z="721.07355"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="175">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2030.23072" z="730.06"/>
+			<Orientation y="0.0196"/>
+		</Entity>
+		<Entity uid="176">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2034.76917" z="741.60035"/>
+			<Orientation y="0.17956"/>
+		</Entity>
+		<Entity uid="177">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2038.59021" z="748.79493"/>
+			<Orientation y="-0.30187"/>
+		</Entity>
+		<Entity uid="178">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2027.15333" z="773.45264"/>
+			<Orientation y="-3.0987"/>
+		</Entity>
+		<Entity uid="179">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2023.60547" z="745.57532"/>
+			<Orientation y="2.878"/>
+		</Entity>
+		<Entity uid="180">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2028.06751" z="728.14344"/>
+			<Orientation y="2.58368"/>
+		</Entity>
+		<Entity uid="181">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2037.01502" z="712.73066"/>
+			<Orientation y="2.57557"/>
+		</Entity>
+		<Entity uid="182">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2044.54932" z="696.86323"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="183">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2046.80665" z="689.41272"/>
+			<Orientation y="2.98185"/>
+		</Entity>
+		<Entity uid="184">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2048.60181" z="675.63831"/>
+			<Orientation y="2.57093"/>
+		</Entity>
+		<Entity uid="185">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2055.94727" z="665.48804"/>
+			<Orientation y="0.44051"/>
+		</Entity>
+		<Entity uid="186">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2060.49903" z="673.85181"/>
+			<Orientation y="-0.0895"/>
+		</Entity>
+		<Entity uid="187">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2060.48951" z="678.44666"/>
+			<Orientation y="1.4384"/>
+		</Entity>
+		<Entity uid="188">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2067.98462" z="677.46625"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="189">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2066.46143" z="663.13715"/>
+			<Orientation y="3.12377"/>
+		</Entity>
+		<Entity uid="190">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2085.32911" z="605.36268"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="191">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2081.60523" z="596.11854"/>
+			<Orientation y="-3.11701"/>
+		</Entity>
+		<Entity uid="192">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2074.68311" z="579.26746"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="193">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2073.51685" z="571.9574"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="194">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2068.42676" z="560.41187"/>
+			<Orientation y="-3.07604"/>
+		</Entity>
+		<Entity uid="195">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2068.75318" z="550.50293"/>
+			<Orientation y="2.75968"/>
+		</Entity>
+		<Entity uid="196">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2075.2444" z="540.07874"/>
+			<Orientation y="1.38146"/>
+		</Entity>
+		<Entity uid="197">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2087.0398" z="543.65796"/>
+			<Orientation y="0.27376"/>
+		</Entity>
+		<Entity uid="198">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2090.4253" z="556.69843"/>
+			<Orientation y="0.01488"/>
+		</Entity>
+		<Entity uid="199">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2089.84571" z="570.54975"/>
+			<Orientation y="0.7514"/>
+		</Entity>
+		<Entity uid="200">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2095.13648" z="497.34083"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="201">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2100.44483" z="483.60453"/>
+			<Orientation y="1.64498"/>
+		</Entity>
+		<Entity uid="202">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2112.79883" z="485.99485"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="203">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1907.662" z="396.78315"/>
+			<Orientation y="2.92132"/>
+		</Entity>
+		<Entity uid="204">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1919.8954" z="358.1031"/>
+			<Orientation y="2.69077"/>
+		</Entity>
+		<Entity uid="205">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1929.38111" z="338.70179"/>
+			<Orientation y="2.64315"/>
+		</Entity>
+		<Entity uid="206">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1947.72681" z="312.82093"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="207">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2031.35035" z="348.07892"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="208">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2020.03553" z="419.3968"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="209">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1998.1908" z="489.97388"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="210">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1984.91956" z="513.82502"/>
+			<Orientation y="-0.23626"/>
+		</Entity>
+		<Entity uid="211">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1972.28895" z="568.90015"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="212">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1822.81653" z="616.33887"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="213">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1817.3158" z="624.26069"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="214">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1795.69507" z="686.13587"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="215">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1798.3993" z="692.49604"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="216">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1804.44129" z="700.93317"/>
+			<Orientation y="0.55417"/>
+		</Entity>
+		<Entity uid="217">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1804.33497" z="621.15107"/>
+			<Orientation y="2.95295"/>
+		</Entity>
+		<Entity uid="218">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1805.45911" z="602.89722"/>
+			<Orientation y="2.78446"/>
+		</Entity>
+		<Entity uid="219">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1815.2522" z="575.90076"/>
+			<Orientation y="2.84688"/>
+		</Entity>
+		<Entity uid="220">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1821.24695" z="547.49201"/>
+			<Orientation y="2.9091"/>
+		</Entity>
+		<Entity uid="221">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1833.02002" z="492.1684"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="222">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1833.12122" z="480.94483"/>
+			<Orientation y="3.11612"/>
+		</Entity>
+		<Entity uid="223">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1834.12586" z="464.54389"/>
+			<Orientation y="2.8926"/>
+		</Entity>
+		<Entity uid="224">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1840.21106" z="445.51856"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="225">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1865.74512" z="433.3877"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="226">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1875.66553" z="424.92194"/>
+			<Orientation y="2.84841"/>
+		</Entity>
+		<Entity uid="227">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1880.92225" z="410.0453"/>
+			<Orientation y="2.50765"/>
+		</Entity>
+		<Entity uid="228">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1886.67273" z="404.5351"/>
+			<Orientation y="1.75773"/>
+		</Entity>
+		<Entity uid="229">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1897.68824" z="403.18995"/>
+			<Orientation y="0.10517"/>
+		</Entity>
+		<Entity uid="230">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1899.36963" z="414.66245"/>
+			<Orientation y="0.00101"/>
+		</Entity>
+		<Entity uid="231">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1899.05567" z="434.39481"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="232">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1895.90003" z="442.08301"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="233">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1886.78931" z="458.51926"/>
+			<Orientation y="-0.17241"/>
+		</Entity>
+		<Entity uid="234">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1884.04554" z="473.28306"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="235">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1977.28138" z="186.53888"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="236">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2284.25635" z="1013.74958"/>
+			<Orientation y="-2.61942"/>
+		</Entity>
+		<Entity uid="237">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2262.64942" z="986.537"/>
+			<Orientation y="2.96882"/>
+		</Entity>
+		<Entity uid="238">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2273.80835" z="972.58783"/>
+			<Orientation y="0.93841"/>
+		</Entity>
+		<Entity uid="239">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2294.32593" z="994.30164"/>
+			<Orientation y="0.16501"/>
+		</Entity>
+		<Entity uid="240">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2293.40772" z="1020.09723"/>
+			<Orientation y="0.3845"/>
+		</Entity>
+		<Entity uid="241">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2308.47999" z="1054.04761"/>
+			<Orientation y="1.02244"/>
+		</Entity>
+		<Entity uid="242">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2435.50025" z="866.40088"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="243">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2433.11084" z="879.17798"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="244">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2436.48218" z="894.1684"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="245">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2442.81397" z="909.44971"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="246">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2438.27906" z="899.27405"/>
+			<Orientation y="3.09748"/>
+		</Entity>
+		<Entity uid="247">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2441.27442" z="830.41498"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="248">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2442.18116" z="805.39856"/>
+			<Orientation y="-3.05132"/>
+		</Entity>
+		<Entity uid="249">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2438.34205" z="784.98707"/>
+			<Orientation y="-2.72266"/>
+		</Entity>
+		<Entity uid="250">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2431.9463" z="766.81379"/>
+			<Orientation y="2.70804"/>
+		</Entity>
+		<Entity uid="251">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2453.82251" z="749.95795"/>
+			<Orientation y="0.60407"/>
+		</Entity>
+		<Entity uid="252">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2468.91065" z="778.89362"/>
+			<Orientation y="0.40818"/>
+		</Entity>
+		<Entity uid="253">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2479.93262" z="804.57984"/>
+			<Orientation y="0.75841"/>
+		</Entity>
+		<Entity uid="254">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2493.36963" z="819.69861"/>
+			<Orientation y="1.57081"/>
+		</Entity>
+		<Entity uid="255">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2509.2339" z="820.50745"/>
+			<Orientation y="2.27013"/>
+		</Entity>
+		<Entity uid="256">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2528.62696" z="811.27302"/>
+			<Orientation y="0.85514"/>
+		</Entity>
+		<Entity uid="257">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2548.13697" z="831.26221"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="258">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2286.1985" z="1146.8423"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="259">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2255.75684" z="1085.96436"/>
+			<Orientation y="-2.43883"/>
+		</Entity>
+		<Entity uid="260">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2225.51465" z="1054.13624"/>
+			<Orientation y="-2.50693"/>
+		</Entity>
+		<Entity uid="261">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2204.52466" z="1022.28968"/>
+			<Orientation y="-2.6464"/>
+		</Entity>
+		<Entity uid="262">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2199.19288" z="1011.95948"/>
+			<Orientation y="2.65589"/>
+		</Entity>
+		<Entity uid="263">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1997.82874" z="773.80762"/>
+			<Orientation y="0.34385"/>
+		</Entity>
+		<Entity uid="264">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2008.53565" z="816.43824"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="265">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2020.40552" z="832.6496"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="266">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1870.8152" z="1047.52271"/>
+			<Orientation y="-1.41395"/>
+		</Entity>
+		<Entity uid="267">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1833.22535" z="1057.1471"/>
+			<Orientation y="-0.38131"/>
+		</Entity>
+		<Entity uid="268">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1823.80335" z="1078.60914"/>
+			<Orientation y="-0.40796"/>
+		</Entity>
+		<Entity uid="269">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1808.92225" z="1096.65223"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="270">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1827.47767" z="1130.65406"/>
+			<Orientation y="1.5967"/>
+		</Entity>
+		<Entity uid="271">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1862.16761" z="1133.839"/>
+			<Orientation y="2.43912"/>
+		</Entity>
+		<Entity uid="272">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1884.5254" z="1110.18934"/>
+			<Orientation y="2.80694"/>
+		</Entity>
+		<Entity uid="273">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1900.8921" z="1069.25574"/>
+			<Orientation y="2.23362"/>
+		</Entity>
+		<Entity uid="274">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1930.85242" z="1052.02662"/>
+			<Orientation y="1.70804"/>
+		</Entity>
+		<Entity uid="275">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1952.29432" z="1057.73475"/>
+			<Orientation y="0.90528"/>
+		</Entity>
+		<Entity uid="276">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1973.04468" z="1066.19336"/>
+			<Orientation y="0.91491"/>
+		</Entity>
+		<Entity uid="277">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1982.02356" z="1068.1565"/>
+			<Orientation y="1.57081"/>
+		</Entity>
+		<Entity uid="278">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1997.74024" z="1068.70899"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="279">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1997.28553" z="1063.87696"/>
+			<Orientation y="-3.0533"/>
+		</Entity>
+		<Entity uid="280">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1997.21912" z="1050.35071"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="281">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1997.09778" z="1060.69459"/>
+			<Orientation y="0.45357"/>
+		</Entity>
+		<Entity uid="282">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2009.14002" z="1084.85523"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="283">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2011.56397" z="1092.38147"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="284">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2012.66395" z="1097.49207"/>
+			<Orientation y="1.9331"/>
+		</Entity>
+		<Entity uid="285">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2022.9264" z="1093.49585"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="286">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2027.5182" z="1091.016"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="287">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2032.35145" z="1090.20765"/>
+			<Orientation y="1.76644"/>
+		</Entity>
+		<Entity uid="288">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2081.4214" z="1116.23609"/>
+			<Orientation y="1.20978"/>
+		</Entity>
+		<Entity uid="289">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2109.87354" z="1132.91102"/>
+			<Orientation y="1.7646"/>
+		</Entity>
+		<Entity uid="290">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2051.90821" z="1266.34937"/>
+			<Orientation y="-1.69616"/>
+		</Entity>
+		<Entity uid="291">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2029.47547" z="1253.60572"/>
+			<Orientation y="-2.13698"/>
+		</Entity>
+		<Entity uid="292">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2014.5713" z="1241.99366"/>
+			<Orientation y="-2.03614"/>
+		</Entity>
+		<Entity uid="293">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2005.44202" z="1219.81812"/>
+			<Orientation y="-2.23996"/>
+		</Entity>
+		<Entity uid="294">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1998.36048" z="1211.37427"/>
+			<Orientation y="-1.45263"/>
+		</Entity>
+		<Entity uid="295">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1972.62232" z="1235.60389"/>
+			<Orientation y="-1.49715"/>
+		</Entity>
+		<Entity uid="296">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1952.92884" z="1246.64856"/>
+			<Orientation y="-1.4533"/>
+		</Entity>
+		<Entity uid="297">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1930.32886" z="1254.17554"/>
+			<Orientation y="-2.13404"/>
+		</Entity>
+		<Entity uid="298">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1927.34986" z="1234.94507"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="299">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1916.7074" z="1242.15076"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="300">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1947.41773" z="1268.62061"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="301">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1943.92359" z="1278.87427"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="302">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1941.99561" z="1285.95594"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="303">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2084.32374" z="1188.74158"/>
+			<Orientation y="-2.01827"/>
+		</Entity>
+		<Entity uid="304">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2069.92579" z="1179.43567"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="305">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2065.00196" z="1167.54236"/>
+			<Orientation y="-2.44536"/>
+		</Entity>
+		<Entity uid="306">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2055.9878" z="1142.91175"/>
+			<Orientation y="-2.90246"/>
+		</Entity>
+		<Entity uid="307">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2048.58863" z="1119.37598"/>
+			<Orientation y="1.16948"/>
+		</Entity>
+		<Entity uid="308">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2067.73292" z="1140.11207"/>
+			<Orientation y="0.61971"/>
+		</Entity>
+		<Entity uid="309">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2074.5547" z="1156.34131"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="310">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2079.65796" z="1167.32642"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="311">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2086.33204" z="1177.06214"/>
+			<Orientation y="-1.34446"/>
+		</Entity>
+		<Entity uid="312">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1710.75574" z="1232.75477"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="313">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1706.21753" z="1208.38672"/>
+			<Orientation y="-3.05204"/>
+		</Entity>
+		<Entity uid="314">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1699.33045" z="1181.13318"/>
+			<Orientation y="-2.82007"/>
+		</Entity>
+		<Entity uid="315">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1690.88172" z="1148.11414"/>
+			<Orientation y="-3.07061"/>
+		</Entity>
+		<Entity uid="316">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1685.39368" z="1112.76685"/>
+			<Orientation y="-2.89341"/>
+		</Entity>
+		<Entity uid="317">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1679.32264" z="1087.78772"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="318">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1675.46937" z="1076.50818"/>
+			<Orientation y="-2.78762"/>
+		</Entity>
+		<Entity uid="319">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1668.51832" z="1063.25977"/>
+			<Orientation y="-1.98136"/>
+		</Entity>
+		<Entity uid="320">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1645.36951" z="1059.26832"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="321">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1641.55555" z="1053.66468"/>
+			<Orientation y="-2.80886"/>
+		</Entity>
+		<Entity uid="322">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1638.34144" z="1044.313"/>
+			<Orientation y="-3.06359"/>
+		</Entity>
+		<Entity uid="323">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1637.50098" z="1031.41504"/>
+			<Orientation y="2.87647"/>
+		</Entity>
+		<Entity uid="324">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1640.98401" z="1022.44318"/>
+			<Orientation y="2.36995"/>
+		</Entity>
+		<Entity uid="325">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1649.55616" z="1013.99622"/>
+			<Orientation y="1.43055"/>
+		</Entity>
+		<Entity uid="326">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1673.04517" z="1022.64875"/>
+			<Orientation y="0.6197"/>
+		</Entity>
+		<Entity uid="327">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1686.19117" z="1040.36097"/>
+			<Orientation y="0.61208"/>
+		</Entity>
+		<Entity uid="328">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1699.64124" z="1059.97986"/>
+			<Orientation y="0.72202"/>
+		</Entity>
+		<Entity uid="329">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1766.82056" z="998.70008"/>
+			<Orientation y="3.10953"/>
+		</Entity>
+		<Entity uid="330">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1772.98523" z="968.10193"/>
+			<Orientation y="-2.97262"/>
+		</Entity>
+		<Entity uid="331">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1760.86243" z="936.91565"/>
+			<Orientation y="-2.38756"/>
+		</Entity>
+		<Entity uid="332">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1744.17481" z="924.55567"/>
+			<Orientation y="-2.39637"/>
+		</Entity>
+		<Entity uid="333">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1734.19532" z="907.63617"/>
+			<Orientation y="-2.86937"/>
+		</Entity>
+		<Entity uid="334">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1730.93848" z="898.33478"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="335">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1722.12037" z="937.146"/>
+			<Orientation y="-2.9763"/>
+		</Entity>
+		<Entity uid="336">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1717.4203" z="854.6637"/>
+			<Orientation y="3.01905"/>
+		</Entity>
+		<Entity uid="337">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1720.76392" z="831.02112"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="338">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1711.18042" z="817.53602"/>
+			<Orientation y="-2.2491"/>
+		</Entity>
+		<Entity uid="339">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1701.22303" z="807.13837"/>
+			<Orientation y="-2.94358"/>
+		</Entity>
+		<Entity uid="340">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1692.64441" z="776.8172"/>
+			<Orientation y="-2.74985"/>
+		</Entity>
+		<Entity uid="341">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1682.49305" z="766.34412"/>
+			<Orientation y="-2.7662"/>
+		</Entity>
+		<Entity uid="342">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1665.70728" z="747.53187"/>
+			<Orientation y="-2.17988"/>
+		</Entity>
+		<Entity uid="343">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1657.96949" z="745.72992"/>
+			<Orientation y="-1.57081"/>
+		</Entity>
+		<Entity uid="344">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1632.35328" z="754.19397"/>
+			<Orientation y="-0.75759"/>
+		</Entity>
+		<Entity uid="345">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1598.69605" z="783.3271"/>
+			<Orientation y="-0.7081"/>
+		</Entity>
+		<Entity uid="346">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1584.01392" z="796.62739"/>
+			<Orientation y="-1.03594"/>
+		</Entity>
+		<Entity uid="347">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1564.60926" z="811.20337"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="348">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1550.03577" z="822.75525"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="349">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1584.8534" z="920.9759"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="350">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1596.43262" z="930.76105"/>
+			<Orientation y="1.00875"/>
+		</Entity>
+		<Entity uid="351">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1617.43506" z="953.55066"/>
+			<Orientation y="-0.56577"/>
+		</Entity>
+		<Entity uid="352">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1605.83594" z="974.05311"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="353">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1597.62452" z="974.48523"/>
+			<Orientation y="-2.58997"/>
+		</Entity>
+		<Entity uid="354">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1538.81153" z="902.21692"/>
+			<Orientation y="-2.56012"/>
+		</Entity>
+		<Entity uid="355">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1521.86524" z="898.93732"/>
+			<Orientation y="-2.85941"/>
+		</Entity>
+		<Entity uid="356">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1515.10254" z="877.58136"/>
+			<Orientation y="3.11248"/>
+		</Entity>
+		<Entity uid="357">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1515.8584" z="851.32923"/>
+			<Orientation y="2.69051"/>
+		</Entity>
+		<Entity uid="358">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1526.84852" z="832.10639"/>
+			<Orientation y="1.8392"/>
+		</Entity>
+		<Entity uid="359">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1576.56141" z="829.12562"/>
+			<Orientation y="2.39695"/>
+		</Entity>
+		<Entity uid="360">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1589.80201" z="816.26874"/>
+			<Orientation y="2.6663"/>
+		</Entity>
+		<Entity uid="361">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1594.42237" z="805.58991"/>
+			<Orientation y="1.63317"/>
+		</Entity>
+		<Entity uid="362">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1660.04139" z="648.02131"/>
+			<Orientation y="-2.71265"/>
+		</Entity>
+		<Entity uid="363">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1625.66724" z="586.78766"/>
+			<Orientation y="-2.31684"/>
+		</Entity>
+		<Entity uid="364">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1594.12232" z="565.5478"/>
+			<Orientation y="-2.05004"/>
+		</Entity>
+		<Entity uid="365">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1559.9192" z="539.54145"/>
+			<Orientation y="-2.18622"/>
+		</Entity>
+		<Entity uid="366">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1535.86182" z="528.53687"/>
+			<Orientation y="-2.27646"/>
+		</Entity>
+		<Entity uid="367">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1521.64698" z="516.9621"/>
+			<Orientation y="-2.84044"/>
+		</Entity>
+		<Entity uid="368">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1517.08045" z="501.26957"/>
+			<Orientation y="2.21004"/>
+		</Entity>
+		<Entity uid="369">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1533.44556" z="488.83872"/>
+			<Orientation y="1.66776"/>
+		</Entity>
+		<Entity uid="370">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1554.58155" z="486.77985"/>
+			<Orientation y="0.85592"/>
+		</Entity>
+		<Entity uid="371">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1579.78614" z="518.7599"/>
+			<Orientation y="0.50422"/>
+		</Entity>
+		<Entity uid="372">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1589.02491" z="536.54877"/>
+			<Orientation y="0.9701"/>
+		</Entity>
+		<Entity uid="373">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1606.24122" z="550.2771"/>
+			<Orientation y="1.95856"/>
+		</Entity>
+		<Entity uid="374">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1612.83252" z="465.0298"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="375">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1596.23426" z="466.37256"/>
+			<Orientation y="-2.8126"/>
+		</Entity>
+		<Entity uid="376">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1586.18348" z="410.44996"/>
+			<Orientation y="2.92721"/>
+		</Entity>
+		<Entity uid="377">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1591.30396" z="385.72968"/>
+			<Orientation y="2.30369"/>
+		</Entity>
+		<Entity uid="378">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1786.27674" z="542.05347"/>
+			<Orientation y="1.59284"/>
+		</Entity>
+		<Entity uid="379">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1823.99244" z="545.92823"/>
+			<Orientation y="1.57081"/>
+		</Entity>
+		<Entity uid="380">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1840.59498" z="550.31165"/>
+			<Orientation y="0.57251"/>
+		</Entity>
+		<Entity uid="381">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1846.39185" z="571.9734"/>
+			<Orientation y="0.27266"/>
+		</Entity>
+		<Entity uid="382">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1849.01648" z="589.48627"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="383">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1929.54346" z="520.81501"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="384">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1912.72144" z="532.97419"/>
+			<Orientation y="-2.35119"/>
+		</Entity>
+		<Entity uid="385">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1903.47327" z="526.61475"/>
+			<Orientation y="-2.60488"/>
+		</Entity>
+		<Entity uid="386">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1894.04151" z="520.63703"/>
+			<Orientation y="-3.01192"/>
+		</Entity>
+		<Entity uid="387">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1889.7096" z="503.79786"/>
+			<Orientation y="-2.85618"/>
+		</Entity>
+		<Entity uid="388">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1885.6045" z="499.21808"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="389">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1562.25037" z="1202.964"/>
+			<Orientation y="-2.54912"/>
+		</Entity>
+		<Entity uid="390">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1531.65516" z="1185.61866"/>
+			<Orientation y="-1.92904"/>
+		</Entity>
+		<Entity uid="391">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1511.12452" z="1186.34449"/>
+			<Orientation y="-1.52645"/>
+		</Entity>
+		<Entity uid="392">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1440.4889" z="1209.85767"/>
+			<Orientation y="-1.48559"/>
+		</Entity>
+		<Entity uid="393">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1422.8678" z="1212.94397"/>
+			<Orientation y="-1.10099"/>
+		</Entity>
+		<Entity uid="394">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1409.52393" z="1221.4469"/>
+			<Orientation y="-0.49549"/>
+		</Entity>
+		<Entity uid="395">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1385.95594" z="1266.31263"/>
+			<Orientation y="0.37937"/>
+		</Entity>
+		<Entity uid="396">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1394.31373" z="1304.38001"/>
+			<Orientation y="0.40618"/>
+		</Entity>
+		<Entity uid="397">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1411.31067" z="1331.87781"/>
+			<Orientation y="1.03722"/>
+		</Entity>
+		<Entity uid="398">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1423.83765" z="1348.02198"/>
+			<Orientation y="1.57081"/>
+		</Entity>
+		<Entity uid="399">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1478.00098" z="1342.48121"/>
+			<Orientation y="1.57081"/>
+		</Entity>
+		<Entity uid="400">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1520.71192" z="1349.15992"/>
+			<Orientation y="1.70269"/>
+		</Entity>
+		<Entity uid="401">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1577.6902" z="1333.91602"/>
+			<Orientation y="1.50321"/>
+		</Entity>
+		<Entity uid="402">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1648.91016" z="1371.32166"/>
+			<Orientation y="1.52221"/>
+		</Entity>
+		<Entity uid="403">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1694.80274" z="1367.68274"/>
+			<Orientation y="1.84353"/>
+		</Entity>
+		<Entity uid="404">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1708.65162" z="1351.72571"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="405">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1686.77784" z="1292.93665"/>
+			<Orientation y="-3.04072"/>
+		</Entity>
+		<Entity uid="406">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1676.86146" z="1245.95032"/>
+			<Orientation y="-2.92717"/>
+		</Entity>
+		<Entity uid="407">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1676.51355" z="1233.13819"/>
+			<Orientation y="-2.73263"/>
+		</Entity>
+		<Entity uid="408">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1640.62708" z="1192.72291"/>
+			<Orientation y="-2.09202"/>
+		</Entity>
+		<Entity uid="409">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1586.18018" z="1168.04444"/>
+			<Orientation y="-2.29154"/>
+		</Entity>
+		<Entity uid="410">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1567.03736" z="1157.05213"/>
+			<Orientation y="2.46311"/>
+		</Entity>
+		<Entity uid="411">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1588.36219" z="1141.0431"/>
+			<Orientation y="1.12031"/>
+		</Entity>
+		<Entity uid="412">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1671.80652" z="1184.9054"/>
+			<Orientation y="0.76687"/>
+		</Entity>
+		<Entity uid="413">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1694.76551" z="1219.19898"/>
+			<Orientation y="0.5187"/>
+		</Entity>
+		<Entity uid="414">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1739.05896" z="1303.87842"/>
+			<Orientation y="-0.1011"/>
+		</Entity>
+		<Entity uid="415">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1741.37391" z="1367.60328"/>
+			<Orientation y="-1.13512"/>
+		</Entity>
+		<Entity uid="416">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1709.36988" z="1384.90894"/>
+			<Orientation y="-1.2736"/>
+		</Entity>
+		<Entity uid="417">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1673.47852" z="1379.563"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="418">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1658.62635" z="1398.04188"/>
+			<Orientation y="-1.57081"/>
+		</Entity>
+		<Entity uid="419">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1634.99903" z="1397.67383"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="420">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1639.33729" z="1430.4004"/>
+			<Orientation y="0.60622"/>
+		</Entity>
+		<Entity uid="421">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1680.16272" z="1472.72681"/>
+			<Orientation y="1.3246"/>
+		</Entity>
+		<Entity uid="422">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1716.5669" z="1470.24"/>
+			<Orientation y="2.45032"/>
+		</Entity>
+		<Entity uid="423">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1743.17212" z="1431.06666"/>
+			<Orientation y="2.15458"/>
+		</Entity>
+		<Entity uid="424">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1756.75757" z="1418.70093"/>
+			<Orientation y="2.21064"/>
+		</Entity>
+		<Entity uid="425">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1832.7339" z="1372.6698"/>
+			<Orientation y="2.26227"/>
+		</Entity>
+		<Entity uid="426">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1847.8501" z="1354.61304"/>
+			<Orientation y="-2.69626"/>
+		</Entity>
+		<Entity uid="427">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1813.219" z="1299.81287"/>
+			<Orientation y="-2.2151"/>
+		</Entity>
+		<Entity uid="428">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1674.74268" z="1225.23365"/>
+			<Orientation y="-2.24976"/>
+		</Entity>
+		<Entity uid="429">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1632.00794" z="1187.41102"/>
+			<Orientation y="-2.64153"/>
+		</Entity>
+		<Entity uid="430">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1624.66358" z="1171.76807"/>
+			<Orientation y="-3.0088"/>
+		</Entity>
+		<Entity uid="431">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1621.2378" z="1149.26001"/>
+			<Orientation y="-2.04317"/>
+		</Entity>
+		<Entity uid="432">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1590.29346" z="1140.89673"/>
+			<Orientation y="-1.54026"/>
+		</Entity>
+		<Entity uid="433">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1526.5398" z="1150.38025"/>
+			<Orientation y="-1.57934"/>
+		</Entity>
+		<Entity uid="434">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1485.45215" z="1149.5475"/>
+			<Orientation y="-1.94167"/>
+		</Entity>
+		<Entity uid="435">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1471.47632" z="1143.47278"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="436">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1349.70557" z="1012.37653"/>
+			<Orientation y="1.94408"/>
+		</Entity>
+		<Entity uid="437">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1417.06214" z="976.62537"/>
+			<Orientation y="2.14672"/>
+		</Entity>
+		<Entity uid="438">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1453.22962" z="954.37574"/>
+			<Orientation y="1.87513"/>
+		</Entity>
+		<Entity uid="439">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1498.34375" z="940.99659"/>
+			<Orientation y="1.1598"/>
+		</Entity>
+		<Entity uid="440">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1528.48096" z="956.04914"/>
+			<Orientation y="1.30217"/>
+		</Entity>
+		<Entity uid="441">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1544.40625" z="963.25593"/>
+			<Orientation y="1.00669"/>
+		</Entity>
+		<Entity uid="442">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1565.61963" z="977.89039"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="443">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1554.7129" z="911.34241"/>
+			<Orientation y="2.91054"/>
+		</Entity>
+		<Entity uid="444">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1565.162" z="888.29505"/>
+			<Orientation y="2.621"/>
+		</Entity>
+		<Entity uid="445">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1573.46521" z="863.56861"/>
+			<Orientation y="-2.92623"/>
+		</Entity>
+		<Entity uid="446">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1576.18042" z="839.7558"/>
+			<Orientation y="3.14132"/>
+		</Entity>
+		<Entity uid="447">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1683.58472" z="911.46198"/>
+			<Orientation y="-2.71137"/>
+		</Entity>
+		<Entity uid="448">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1665.86988" z="871.90967"/>
+			<Orientation y="-2.672"/>
+		</Entity>
+		<Entity uid="449">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1654.33313" z="845.25666"/>
+			<Orientation y="-2.70179"/>
+		</Entity>
+		<Entity uid="450">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1647.79078" z="830.00623"/>
+			<Orientation y="-2.36408"/>
+		</Entity>
+		<Entity uid="451">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1628.51612" z="823.25507"/>
+			<Orientation y="-2.5827"/>
+		</Entity>
+		<Entity uid="452">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1617.85975" z="811.5976"/>
+			<Orientation y="2.96961"/>
+		</Entity>
+		<Entity uid="453">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1706.74024" z="616.30909"/>
+			<Orientation y="-2.51308"/>
+		</Entity>
+		<Entity uid="454">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1661.33741" z="547.86658"/>
+			<Orientation y="-2.821"/>
+		</Entity>
+		<Entity uid="455">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1641.7146" z="504.71528"/>
+			<Orientation y="-3.07247"/>
+		</Entity>
+		<Entity uid="456">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1986.97352" z="873.8772"/>
+			<Orientation y="-2.06092"/>
+		</Entity>
+		<Entity uid="457">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1976.39454" z="863.65223"/>
+			<Orientation y="2.35099"/>
+		</Entity>
+		<Entity uid="458">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2023.00672" z="835.61054"/>
+			<Orientation y="1.1094"/>
+		</Entity>
+		<Entity uid="459">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2065.03516" z="871.30207"/>
+			<Orientation y="0.5896"/>
+		</Entity>
+		<Entity uid="460">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2086.69141" z="911.04181"/>
+			<Orientation y="0.32555"/>
+		</Entity>
+		<Entity uid="461">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2109.29566" z="991.87751"/>
+			<Orientation y="0.07918"/>
+		</Entity>
+		<Entity uid="462">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2109.34522" z="1031.67505"/>
+			<Orientation y="0.17617"/>
+		</Entity>
+		<Entity uid="463">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2117.63501" z="1080.96143"/>
+			<Orientation y="0.17132"/>
+		</Entity>
+		<Entity uid="464">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2124.9773" z="1139.3722"/>
+			<Orientation y="-1.67531"/>
+		</Entity>
+		<Entity uid="465">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2080.51343" z="1045.09815"/>
+			<Orientation y="-2.75448"/>
+		</Entity>
+		<Entity uid="466">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2043.06385" z="988.92164"/>
+			<Orientation y="-2.73598"/>
+		</Entity>
+		<Entity uid="467">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2025.02491" z="963.8603"/>
+			<Orientation y="-2.56035"/>
+		</Entity>
+		<Entity uid="468">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1989.62513" z="959.8296"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="469">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1942.76844" z="1109.02149"/>
+			<Orientation y="-1.4885"/>
+		</Entity>
+		<Entity uid="470">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1899.66553" z="1125.43152"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="471">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1897.60096" z="1124.01075"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="472">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1940.89942" z="1775.30213"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="473">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1950.40638" z="1805.6432"/>
+			<Orientation y="1.4052"/>
+		</Entity>
+		<Entity uid="474">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1960.94446" z="1838.49671"/>
+			<Orientation y="3.02715"/>
+		</Entity>
+		<Entity uid="475">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1961.01124" z="1753.57764"/>
+			<Orientation y="-2.6883"/>
+		</Entity>
+		<Entity uid="476">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1916.51368" z="1698.46424"/>
+			<Orientation y="-1.64898"/>
+		</Entity>
+		<Entity uid="477">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1819.77588" z="1750.99573"/>
+			<Orientation y="-1.3296"/>
+		</Entity>
+		<Entity uid="478">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1786.6692" z="1761.06336"/>
+			<Orientation y="-0.36078"/>
+		</Entity>
+		<Entity uid="479">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1779.78321" z="1785.9032"/>
+			<Orientation y="0.54351"/>
+		</Entity>
+		<Entity uid="480">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1767.83631" z="1923.46595"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="481">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1738.0625" z="1950.78003"/>
+			<Orientation y="-1.47338"/>
+		</Entity>
+		<Entity uid="482">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1691.49244" z="1897.44483"/>
+			<Orientation y="2.99782"/>
+		</Entity>
+		<Entity uid="483">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1706.96314" z="1815.54688"/>
+			<Orientation y="3.08368"/>
+		</Entity>
+		<Entity uid="484">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1716.2638" z="1741.55542"/>
+			<Orientation y="2.69748"/>
+		</Entity>
+		<Entity uid="485">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1731.90992" z="1700.46875"/>
+			<Orientation y="2.45844"/>
+		</Entity>
+		<Entity uid="486">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1770.44654" z="1654.81434"/>
+			<Orientation y="2.25168"/>
+		</Entity>
+		<Entity uid="487">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1809.08741" z="1620.9275"/>
+			<Orientation y="2.35895"/>
+		</Entity>
+		<Entity uid="488">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1832.22425" z="1602.85401"/>
+			<Orientation y="1.86716"/>
+		</Entity>
+		<Entity uid="489">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1866.2428" z="1593.77918"/>
+			<Orientation y="1.75689"/>
+		</Entity>
+		<Entity uid="490">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1901.5796" z="1586.64966"/>
+			<Orientation y="1.65366"/>
+		</Entity>
+		<Entity uid="491">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1931.30921" z="1587.35291"/>
+			<Orientation y="0.65316"/>
+		</Entity>
+		<Entity uid="492">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1946.0846" z="1616.17359"/>
+			<Orientation y="0.53566"/>
+		</Entity>
+		<Entity uid="493">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1967.09278" z="1671.6504"/>
+			<Orientation y="0.29825"/>
+		</Entity>
+		<Entity uid="494">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1973.75452" z="1693.922"/>
+			<Orientation y="0.38765"/>
+		</Entity>
+		<Entity uid="495">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1992.55677" z="1719.92151"/>
+			<Orientation y="0.62742"/>
+		</Entity>
+		<Entity uid="496">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2013.78064" z="1754.90284"/>
+			<Orientation y="1.3033"/>
+		</Entity>
+		<Entity uid="497">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2023.11487" z="1722.4618"/>
+			<Orientation y="-2.98441"/>
+		</Entity>
+		<Entity uid="498">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2007.28736" z="1676.5691"/>
+			<Orientation y="-2.12056"/>
+		</Entity>
+		<Entity uid="499">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1949.7992" z="1667.12696"/>
+			<Orientation y="-1.44942"/>
+		</Entity>
+		<Entity uid="500">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1918.46534" z="1660.16443"/>
+			<Orientation y="-0.70681"/>
+		</Entity>
+		<Entity uid="501">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1875.65796" z="1684.28931"/>
+			<Orientation y="-1.13639"/>
+		</Entity>
+		<Entity uid="502">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1819.44434" z="1746.3794"/>
+			<Orientation y="-1.80718"/>
+		</Entity>
+		<Entity uid="503">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1804.38257" z="1737.44068"/>
+			<Orientation y="2.83785"/>
+		</Entity>
+		<Entity uid="504">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1833.5542" z="1667.27991"/>
+			<Orientation y="2.28313"/>
+		</Entity>
+		<Entity uid="505">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1867.71827" z="1632.26246"/>
+			<Orientation y="2.83437"/>
+		</Entity>
+		<Entity uid="506">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1870.10718" z="1623.29065"/>
+			<Orientation y="2.21724"/>
+		</Entity>
+		<Entity uid="507">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2198.87964" z="1915.78956"/>
+			<Orientation y="-3.0075"/>
+		</Entity>
+		<Entity uid="508">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2190.18409" z="1808.15357"/>
+			<Orientation y="3.02623"/>
+		</Entity>
+		<Entity uid="509">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2190.86084" z="1712.86756"/>
+			<Orientation y="2.87862"/>
+		</Entity>
+		<Entity uid="510">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2201.8047" z="1695.28736"/>
+			<Orientation y="-2.74143"/>
+		</Entity>
+		<Entity uid="511">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2172.24292" z="1640.28772"/>
+			<Orientation y="-2.22031"/>
+		</Entity>
+		<Entity uid="512">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2143.06177" z="1632.63147"/>
+			<Orientation y="-1.66628"/>
+		</Entity>
+		<Entity uid="513">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2093.2439" z="1629.03272"/>
+			<Orientation y="-1.23482"/>
+		</Entity>
+		<Entity uid="514">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2037.62366" z="1654.03821"/>
+			<Orientation y="-1.52173"/>
+		</Entity>
+		<Entity uid="515">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2013.08802" z="1657.3368"/>
+			<Orientation y="2.29516"/>
+		</Entity>
+		<Entity uid="516">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2084.99146" z="1603.50403"/>
+			<Orientation y="1.4336"/>
+		</Entity>
+		<Entity uid="517">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2136.97803" z="1622.30933"/>
+			<Orientation y="1.5022"/>
+		</Entity>
+		<Entity uid="518">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2175.50733" z="1615.83863"/>
+			<Orientation y="1.63451"/>
+		</Entity>
+		<Entity uid="519">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2303.4297" z="1630.33375"/>
+			<Orientation y="-2.60637"/>
+		</Entity>
+		<Entity uid="520">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2270.37452" z="1558.29383"/>
+			<Orientation y="-3.02378"/>
+		</Entity>
+		<Entity uid="521">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2268.56934" z="1533.55701"/>
+			<Orientation y="-2.78217"/>
+		</Entity>
+		<Entity uid="522">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2259.47779" z="1518.31812"/>
+			<Orientation y="2.82616"/>
+		</Entity>
+		<Entity uid="523">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2271.52271" z="1498.15333"/>
+			<Orientation y="1.94297"/>
+		</Entity>
+		<Entity uid="524">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2316.1521" z="1488.56397"/>
+			<Orientation y="1.2059"/>
+		</Entity>
+		<Entity uid="525">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2341.18384" z="1500.24512"/>
+			<Orientation y="0.72254"/>
+		</Entity>
+		<Entity uid="526">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2354.5813" z="1516.08692"/>
+			<Orientation y="0.92199"/>
+		</Entity>
+		<Entity uid="527">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2404.81104" z="1554.10572"/>
+			<Orientation y="2.35247"/>
+		</Entity>
+		<Entity uid="528">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2409.29908" z="1531.12269"/>
+			<Orientation y="-2.50193"/>
+		</Entity>
+		<Entity uid="529">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2376.74366" z="1499.6371"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="530">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2373.71314" z="1495.45325"/>
+			<Orientation y="2.03771"/>
+		</Entity>
+		<Entity uid="531">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2399.15943" z="1498.11951"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="532">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2496.70264" z="1439.00452"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="533">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2501.41749" z="1432.21888"/>
+			<Orientation y="2.58912"/>
+		</Entity>
+		<Entity uid="534">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2531.29834" z="1421.22901"/>
+			<Orientation y="-3.08774"/>
+		</Entity>
+		<Entity uid="535">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2531.68506" z="1408.22278"/>
+			<Orientation y="-2.6565"/>
+		</Entity>
+		<Entity uid="536">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2514.01734" z="1382.54468"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="537">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2506.5752" z="1371.08802"/>
+			<Orientation y="3.01856"/>
+		</Entity>
+		<Entity uid="538">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2512.95948" z="1362.15857"/>
+			<Orientation y="0.78223"/>
+		</Entity>
+		<Entity uid="539">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2555.50025" z="1415.51978"/>
+			<Orientation y="1.19942"/>
+		</Entity>
+		<Entity uid="540">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2597.99073" z="1428.68262"/>
+			<Orientation y="1.17913"/>
+		</Entity>
+		<Entity uid="541">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2606.6875" z="1429.97352"/>
+			<Orientation y="2.40641"/>
+		</Entity>
+		<Entity uid="542">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2637.20215" z="1362.29566"/>
+			<Orientation y="2.96882"/>
+		</Entity>
+		<Entity uid="543">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2677.66163" z="1254.53992"/>
+			<Orientation y="2.84264"/>
+		</Entity>
+		<Entity uid="544">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2638.88428" z="1345.67908"/>
+			<Orientation y="3.1338"/>
+		</Entity>
+		<Entity uid="545">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2644.94459" z="1334.0702"/>
+			<Orientation y="1.48375"/>
+		</Entity>
+		<Entity uid="546">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2697.8418" z="1352.31885"/>
+			<Orientation y="0.84844"/>
+		</Entity>
+		<Entity uid="547">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2727.1421" z="1376.41065"/>
+			<Orientation y="1.29921"/>
+		</Entity>
+		<Entity uid="548">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2759.24244" z="1388.52271"/>
+			<Orientation y="1.4124"/>
+		</Entity>
+		<Entity uid="549">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2821.47193" z="1394.40845"/>
+			<Orientation y="1.73632"/>
+		</Entity>
+		<Entity uid="550">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2847.28248" z="1390.53931"/>
+			<Orientation y="2.28724"/>
+		</Entity>
+		<Entity uid="551">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2875.72217" z="1368.92896"/>
+			<Orientation y="2.8032"/>
+		</Entity>
+		<Entity uid="552">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2877.04175" z="1354.83545"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="553">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2866.14185" z="1340.11854"/>
+			<Orientation y="3.06737"/>
+		</Entity>
+		<Entity uid="554">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2866.47657" z="1285.97254"/>
+			<Orientation y="-2.59014"/>
+		</Entity>
+		<Entity uid="555">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2836.31275" z="1235.2693"/>
+			<Orientation y="-2.59861"/>
+		</Entity>
+		<Entity uid="556">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2833.31275" z="1228.73108"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="557">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2898.75953" z="1210.9463"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="558">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2885.83985" z="1201.44996"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="559">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2879.61011" z="1190.13648"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="560">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2877.30176" z="1182.41602"/>
+			<Orientation y="2.9004"/>
+		</Entity>
+		<Entity uid="561">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2934.53516" z="1407.22266"/>
+			<Orientation y="1.99209"/>
+		</Entity>
+		<Entity uid="562">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2953.33619" z="1398.79395"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="563">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2945.02881" z="1383.89637"/>
+			<Orientation y="-2.32938"/>
+		</Entity>
+		<Entity uid="564">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2923.21534" z="1353.91822"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="565">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2910.1985" z="1353.51026"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="566">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2987.30176" z="1424.64795"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="567">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2951.32251" z="1473.4181"/>
+			<Orientation y="-2.05498"/>
+		</Entity>
+		<Entity uid="568">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2935.47315" z="1466.2461"/>
+			<Orientation y="-2.03792"/>
+		</Entity>
+		<Entity uid="569">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2911.86109" z="1442.42481"/>
+			<Orientation y="-2.61947"/>
+		</Entity>
+		<Entity uid="570">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2896.29175" z="1427.95289"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="571">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2894.18848" z="1417.68482"/>
+			<Orientation y="-2.86979"/>
+		</Entity>
+		<Entity uid="572">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2712.94068" z="1504.09144"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="573">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2708.72706" z="1489.45154"/>
+			<Orientation y="-2.4403"/>
+		</Entity>
+		<Entity uid="574">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2687.05787" z="1470.00123"/>
+			<Orientation y="-2.368"/>
+		</Entity>
+		<Entity uid="575">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2654.64307" z="1466.04578"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="576">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2669.69922" z="1442.09522"/>
+			<Orientation y="2.06495"/>
+		</Entity>
+		<Entity uid="577">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2738.59034" z="1402.7959"/>
+			<Orientation y="1.88846"/>
+		</Entity>
+		<Entity uid="578">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2759.65772" z="1398.2577"/>
+			<Orientation y="1.61611"/>
+		</Entity>
+		<Entity uid="579">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2465.30323" z="1691.66944"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="580">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2420.07398" z="1727.35853"/>
+			<Orientation y="-1.61825"/>
+		</Entity>
+		<Entity uid="581">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2383.9214" z="1728.64307"/>
+			<Orientation y="-2.45226"/>
+		</Entity>
+		<Entity uid="582">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2356.08838" z="1716.19361"/>
+			<Orientation y="-2.29978"/>
+		</Entity>
+		<Entity uid="583">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2329.83106" z="1697.49878"/>
+			<Orientation y="-2.36294"/>
+		</Entity>
+		<Entity uid="584">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2316.15723" z="1690.96802"/>
+			<Orientation y="-1.74881"/>
+		</Entity>
+		<Entity uid="585">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2289.1731" z="1686.44117"/>
+			<Orientation y="2.94645"/>
+		</Entity>
+		<Entity uid="586">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2292.38794" z="1673.53516"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="587">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2157.18433" z="1820.0929"/>
+			<Orientation y="-1.47934"/>
+		</Entity>
+		<Entity uid="588">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1981.47095" z="1842.22303"/>
+			<Orientation y="-1.49796"/>
+		</Entity>
+		<Entity uid="589">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2035.7721" z="1880.87159"/>
+			<Orientation y="0.17914"/>
+		</Entity>
+		<Entity uid="590">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2038.3722" z="1874.21949"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="591">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2019.90186" z="1897.46607"/>
+			<Orientation y="-0.58664"/>
+		</Entity>
+		<Entity uid="592">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1991.02735" z="1921.68104"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="593">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1941.19166" z="1969.67896"/>
+			<Orientation y="-2.82232"/>
+		</Entity>
+		<Entity uid="594">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1936.67811" z="1951.72742"/>
+			<Orientation y="2.92971"/>
+		</Entity>
+		<Entity uid="595">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1946.91944" z="1911.14185"/>
+			<Orientation y="-3.13003"/>
+		</Entity>
+		<Entity uid="596">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1941.34559" z="1898.34021"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="597">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1948.09986" z="1886.8921"/>
+			<Orientation y="1.93174"/>
+		</Entity>
+		<Entity uid="598">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1992.14576" z="1876.82447"/>
+			<Orientation y="1.60607"/>
+		</Entity>
+		<Entity uid="599">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1837.6255" z="1977.35914"/>
+			<Orientation y="-2.69343"/>
+		</Entity>
+		<Entity uid="600">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1785.42383" z="1889.92432"/>
+			<Orientation y="2.87398"/>
+		</Entity>
+		<Entity uid="601">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1820.38172" z="1810.44178"/>
+			<Orientation y="-2.0697"/>
+		</Entity>
+		<Entity uid="602">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1782.81849" z="1791.95923"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="603">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1630.21668" z="1930.23694"/>
+			<Orientation y="-0.96164"/>
+		</Entity>
+		<Entity uid="604">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1542.01441" z="2017.51038"/>
+			<Orientation y="-1.29606"/>
+		</Entity>
+		<Entity uid="605">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1559.36329" z="2048.5459"/>
+			<Orientation y="-0.24326"/>
+		</Entity>
+		<Entity uid="606">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1538.45813" z="2097.14454"/>
+			<Orientation y="-1.26725"/>
+		</Entity>
+		<Entity uid="607">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1443.43311" z="2180.64136"/>
+			<Orientation y="-0.17042"/>
+		</Entity>
+		<Entity uid="608">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1431.81812" z="2233.7444"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="609">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1392.93677" z="2313.75147"/>
+			<Orientation y="-0.47791"/>
+		</Entity>
+		<Entity uid="610">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1363.54249" z="2436.8672"/>
+			<Orientation y="1.61281"/>
+		</Entity>
+		<Entity uid="611">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1494.79065" z="2435.8733"/>
+			<Orientation y="-1.59328"/>
+		</Entity>
+		<Entity uid="612">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1344.80176" z="2415.77417"/>
+			<Orientation y="-1.55744"/>
+		</Entity>
+		<Entity uid="613">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1232.05152" z="2417.50391"/>
+			<Orientation y="-1.92452"/>
+		</Entity>
+		<Entity uid="614">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1116.7555" z="2403.4209"/>
+			<Orientation y="-1.77857"/>
+		</Entity>
+		<Entity uid="615">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1005.13978" z="2406.438"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="616">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="966.54786" z="2485.45704"/>
+			<Orientation y="1.3586"/>
+		</Entity>
+		<Entity uid="617">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1227.74317" z="2524.19507"/>
+			<Orientation y="1.28284"/>
+		</Entity>
+		<Entity uid="618">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1368.63611" z="2567.39039"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="619">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1096.9286" z="2782.66382"/>
+			<Orientation y="-1.52187"/>
+		</Entity>
+		<Entity uid="620">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="934.83454" z="2787.17383"/>
+			<Orientation y="-1.82047"/>
+		</Entity>
+		<Entity uid="621">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="831.15918" z="2747.33887"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="622">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="776.80365" z="2758.80713"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="623">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="953.01496" z="3054.38428"/>
+			<Orientation y="0.46686"/>
+		</Entity>
+		<Entity uid="624">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="945.87946" z="3097.53907"/>
+			<Orientation y="-1.61152"/>
+		</Entity>
+		<Entity uid="625">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="733.48908" z="3110.36402"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="626">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="721.06605" z="3078.06397"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="627">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="635.83912" z="3149.52002"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="628">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="643.5105" z="3212.24292"/>
+			<Orientation y="1.0932"/>
+		</Entity>
+		<Entity uid="629">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="781.15168" z="3305.48316"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="630">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="868.72553" z="3373.20508"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="631">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="964.57593" z="3419.10694"/>
+			<Orientation y="1.23971"/>
+		</Entity>
+		<Entity uid="632">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="996.49738" z="3447.73438"/>
+			<Orientation y="3.09348"/>
+		</Entity>
+		<Entity uid="633">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1187.77552" z="3329.41578"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="634">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1277.66443" z="3446.26587"/>
+			<Orientation y="-0.51684"/>
+		</Entity>
+		<Entity uid="635">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1249.07935" z="3521.11524"/>
+			<Orientation y="1.67008"/>
+		</Entity>
+		<Entity uid="636">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1432.91102" z="3594.06421"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="637">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1524.75904" z="3584.37818"/>
+			<Orientation y="-2.30793"/>
+		</Entity>
+		<Entity uid="638">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1534.44617" z="3570.35303"/>
+			<Orientation y="1.14573"/>
+		</Entity>
+		<Entity uid="639">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1668.94593" z="3624.58619"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="640">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1757.64478" z="3641.62891"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="641">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1871.77881" z="3739.26148"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="642">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1811.52881" z="3801.72803"/>
+			<Orientation y="-2.1754"/>
+		</Entity>
+		<Entity uid="643">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1755.19935" z="3751.44361"/>
+			<Orientation y="-2.59935"/>
+		</Entity>
+		<Entity uid="644">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1779.66724" z="3652.17725"/>
+			<Orientation y="1.54445"/>
+		</Entity>
+		<Entity uid="645">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1842.6338" z="3652.79957"/>
+			<Orientation y="2.31983"/>
+		</Entity>
+		<Entity uid="646">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1879.05445" z="3613.00831"/>
+			<Orientation y="-2.94564"/>
+		</Entity>
+		<Entity uid="647">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1767.50452" z="3568.81397"/>
+			<Orientation y="-2.42447"/>
+		</Entity>
+		<Entity uid="648">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1674.63917" z="3437.81324"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="649">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1666.04725" z="3371.86524"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="650">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1641.49488" z="3232.06275"/>
+			<Orientation y="-2.23215"/>
+		</Entity>
+		<Entity uid="651">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1520.65235" z="3093.1875"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="652">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1509.12696" z="3037.9756"/>
+			<Orientation y="2.96245"/>
+		</Entity>
+		<Entity uid="653">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1537.68177" z="2942.1443"/>
+			<Orientation y="2.98485"/>
+		</Entity>
+		<Entity uid="654">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1551.52698" z="2871.2837"/>
+			<Orientation y="2.91938"/>
+		</Entity>
+		<Entity uid="655">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1581.52112" z="2759.94678"/>
+			<Orientation y="2.3988"/>
+		</Entity>
+		<Entity uid="656">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1618.33423" z="2708.88038"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="657">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1562.39832" z="2683.3877"/>
+			<Orientation y="-1.89014"/>
+		</Entity>
+		<Entity uid="658">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1488.14954" z="2623.16749"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="659">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1571.04847" z="2677.12647"/>
+			<Orientation y="1.22504"/>
+		</Entity>
+		<Entity uid="660">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1731.48133" z="2746.90845"/>
+			<Orientation y="0.7922"/>
+		</Entity>
+		<Entity uid="661">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1848.50611" z="2875.16456"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="662">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1883.31385" z="2932.4209"/>
+			<Orientation y="0.44222"/>
+		</Entity>
+		<Entity uid="663">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1898.24732" z="2951.50342"/>
+			<Orientation y="2.22847"/>
+		</Entity>
+		<Entity uid="664">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1920.16736" z="2941.8838"/>
+			<Orientation y="0.84032"/>
+		</Entity>
+		<Entity uid="665">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1984.84668" z="3109.77515"/>
+			<Orientation y="0.41115"/>
+		</Entity>
+		<Entity uid="666">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1998.08594" z="3201.33545"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="667">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2009.60486" z="3349.84034"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="668">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2018.17884" z="3424.21583"/>
+			<Orientation y="1.05768"/>
+		</Entity>
+		<Entity uid="669">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2176.88404" z="3546.18335"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="670">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2265.26954" z="3654.6421"/>
+			<Orientation y="1.08254"/>
+		</Entity>
+		<Entity uid="671">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2431.68702" z="3729.37867"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="672">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2485.01758" z="3687.74683"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="673">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2551.17676" z="3661.43653"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="674">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2630.15162" z="3689.2234"/>
+			<Orientation y="-2.2756"/>
+		</Entity>
+		<Entity uid="675">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2622.32715" z="3660.33765"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="676">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2713.19166" z="3642.76075"/>
+			<Orientation y="2.74981"/>
+		</Entity>
+		<Entity uid="677">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2722.43335" z="3544.11988"/>
+			<Orientation y="1.95876"/>
+		</Entity>
+		<Entity uid="678">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2706.75245" z="3539.07544"/>
+			<Orientation y="-1.7305"/>
+		</Entity>
+		<Entity uid="679">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2620.76319" z="3541.25586"/>
+			<Orientation y="-1.74772"/>
+		</Entity>
+		<Entity uid="680">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2488.33277" z="3502.97388"/>
+			<Orientation y="-2.7018"/>
+		</Entity>
+		<Entity uid="681">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2495.60084" z="3446.2942"/>
+			<Orientation y="1.6686"/>
+		</Entity>
+		<Entity uid="682">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2656.28394" z="3511.37134"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="683">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2662.89332" z="3512.09327"/>
+			<Orientation y="2.66248"/>
+		</Entity>
+		<Entity uid="684">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2686.39332" z="3507.83301"/>
+			<Orientation y="2.00341"/>
+		</Entity>
+		<Entity uid="685">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2731.05567" z="3493.97876"/>
+			<Orientation y="0.47204"/>
+		</Entity>
+		<Entity uid="686">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2746.50977" z="3690.17823"/>
+			<Orientation y="-2.2248"/>
+		</Entity>
+		<Entity uid="687">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2701.06934" z="3651.1836"/>
+			<Orientation y="-2.25968"/>
+		</Entity>
+		<Entity uid="688">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2641.9043" z="3539.23584"/>
+			<Orientation y="2.10201"/>
+		</Entity>
+		<Entity uid="689">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2728.0459" z="3501.37647"/>
+			<Orientation y="3.12627"/>
+		</Entity>
+		<Entity uid="690">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2740.82447" z="3472.02051"/>
+			<Orientation y="-2.83021"/>
+		</Entity>
+		<Entity uid="691">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2632.86475" z="3273.27247"/>
+			<Orientation y="-1.83761"/>
+		</Entity>
+		<Entity uid="692">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2557.93702" z="3254.2483"/>
+			<Orientation y="-1.71622"/>
+		</Entity>
+		<Entity uid="693">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2510.64795" z="3269.30762"/>
+			<Orientation y="-2.07125"/>
+		</Entity>
+		<Entity uid="694">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2463.95435" z="3244.865"/>
+			<Orientation y="-3.02974"/>
+		</Entity>
+		<Entity uid="695">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2463.91675" z="3213.30738"/>
+			<Orientation y="1.9794"/>
+		</Entity>
+		<Entity uid="696">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2516.3567" z="3193.86011"/>
+			<Orientation y="1.61492"/>
+		</Entity>
+		<Entity uid="697">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2636.23096" z="3203.63038"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="698">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2649.23877" z="3202.63697"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="699">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3054.24415" z="3581.08545"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="700">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3038.29468" z="3576.14942"/>
+			<Orientation y="-1.6854"/>
+		</Entity>
+		<Entity uid="701">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3002.75342" z="3577.52857"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="702">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2987.38746" z="3585.90821"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="703">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2952.22925" z="3586.2671"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="704">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2947.85401" z="3593.46094"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="705">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2952.7732" z="3681.51368"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="706">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2946.7046" z="3690.33155"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="707">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3076.27881" z="3536.96485"/>
+			<Orientation y="-1.57081"/>
+		</Entity>
+		<Entity uid="708">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3011.67334" z="3537.9109"/>
+			<Orientation y="-1.50162"/>
+		</Entity>
+		<Entity uid="709">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2946.66968" z="3545.82178"/>
+			<Orientation y="-1.32523"/>
+		</Entity>
+		<Entity uid="710">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2932.92188" z="3550.61036"/>
+			<Orientation y="-0.86146"/>
+		</Entity>
+		<Entity uid="711">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2865.56177" z="3599.13721"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="712">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2835.17017" z="3598.49952"/>
+			<Orientation y="-1.62183"/>
+		</Entity>
+		<Entity uid="713">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2774.24634" z="3565.53077"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="714">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2819.2544" z="3596.9131"/>
+			<Orientation y="1.03624"/>
+		</Entity>
+		<Entity uid="715">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2901.51514" z="3619.09717"/>
+			<Orientation y="2.52636"/>
+		</Entity>
+		<Entity uid="716">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2945.74366" z="3547.1338"/>
+			<Orientation y="2.859"/>
+		</Entity>
+		<Entity uid="717">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2961.29981" z="3498.14405"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="718">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2978.29859" z="3533.6692"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="719">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2970.57886" z="3563.72974"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="720">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2966.61377" z="3566.73658"/>
+			<Orientation y="-1.16771"/>
+		</Entity>
+		<Entity uid="721">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2937.83741" z="3569.80323"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="722">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2903.85962" z="3591.13868"/>
+			<Orientation y="-2.23421"/>
+		</Entity>
+		<Entity uid="723">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2693.73243" z="3218.66553"/>
+			<Orientation y="-2.89515"/>
+		</Entity>
+		<Entity uid="724">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2676.75123" z="3168.14161"/>
+			<Orientation y="0.69748"/>
+		</Entity>
+		<Entity uid="725">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2708.42212" z="3222.39112"/>
+			<Orientation y="0.7423"/>
+		</Entity>
+		<Entity uid="726">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2741.88233" z="3276.74878"/>
+			<Orientation y="0.48647"/>
+		</Entity>
+		<Entity uid="727">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2761.86353" z="3340.77491"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="728">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2904.73682" z="2909.99463"/>
+			<Orientation y="2.32398"/>
+		</Entity>
+		<Entity uid="729">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2918.91822" z="2898.1084"/>
+			<Orientation y="2.79145"/>
+		</Entity>
+		<Entity uid="730">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2923.72608" z="2888.88648"/>
+			<Orientation y="2.09977"/>
+		</Entity>
+		<Entity uid="731">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2933.95826" z="2887.81763"/>
+			<Orientation y="0.8208"/>
+		</Entity>
+		<Entity uid="732">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2943.17408" z="2906.54664"/>
+			<Orientation y="-1.49091"/>
+		</Entity>
+		<Entity uid="733">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3165.70899" z="3012.8152"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="734">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3129.4563" z="3051.49854"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="735">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3117.89478" z="3071.68238"/>
+			<Orientation y="-0.56984"/>
+		</Entity>
+		<Entity uid="736">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3107.68726" z="3088.38965"/>
+			<Orientation y="-0.2324"/>
+		</Entity>
+		<Entity uid="737">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3094.06763" z="3123.49585"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="738">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3093.88428" z="3138.9441"/>
+			<Orientation y="-1.85387"/>
+		</Entity>
+		<Entity uid="739">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3067.97608" z="3131.97876"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="740">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3051.61597" z="3146.07422"/>
+			<Orientation y="-1.67244"/>
+		</Entity>
+		<Entity uid="741">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3023.62891" z="3153.13306"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="742">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3009.29786" z="3155.83301"/>
+			<Orientation y="-1.47207"/>
+		</Entity>
+		<Entity uid="743">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2989.98072" z="3159.8379"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="744">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3360.54004" z="3387.8711"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="745">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3126.35523" z="3045.2234"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="746">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2556.04786" z="1979.82508"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="747">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2568.48755" z="1955.92737"/>
+			<Orientation y="2.45604"/>
+		</Entity>
+		<Entity uid="748">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2592.6438" z="1927.93372"/>
+			<Orientation y="3.04044"/>
+		</Entity>
+		<Entity uid="749">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2842.40601" z="1706.67359"/>
+			<Orientation y="2.23285"/>
+		</Entity>
+		<Entity uid="750">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2859.29737" z="1695.1996"/>
+			<Orientation y="2.1334"/>
+		</Entity>
+		<Entity uid="751">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2908.68946" z="1668.89905"/>
+			<Orientation y="1.74924"/>
+		</Entity>
+		<Entity uid="752">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2950.7212" z="1667.53895"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="753">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2960.79493" z="1669.05506"/>
+			<Orientation y="1.6549"/>
+		</Entity>
+		<Entity uid="754">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2998.32178" z="1666.03162"/>
+			<Orientation y="1.69018"/>
+		</Entity>
+		<Entity uid="755">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3014.31788" z="1665.28125"/>
+			<Orientation y="1.57081"/>
+		</Entity>
+		<Entity uid="756">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3034.16187" z="1666.03162"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="757">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3026.68506" z="1691.41346"/>
+			<Orientation y="-0.48346"/>
+		</Entity>
+		<Entity uid="758">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3008.41773" z="1710.88257"/>
+			<Orientation y="-0.64649"/>
+		</Entity>
+		<Entity uid="759">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2986.87232" z="1751.02271"/>
+			<Orientation y="-1.44111"/>
+		</Entity>
+		<Entity uid="760">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2959.2527" z="1724.36268"/>
+			<Orientation y="-1.9453"/>
+		</Entity>
+		<Entity uid="761">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2920.67872" z="1721.86988"/>
+			<Orientation y="-2.17257"/>
+		</Entity>
+		<Entity uid="762">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2894.71143" z="1719.1355"/>
+			<Orientation y="-1.57081"/>
+		</Entity>
+		<Entity uid="763">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2844.23243" z="1734.82935"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="764">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2839.63282" z="1734.80909"/>
+			<Orientation y="-2.15429"/>
+		</Entity>
+		<Entity uid="765">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2802.50538" z="1711.85816"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="766">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2783.42237" z="1720.62732"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="767">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2767.13038" z="1852.42725"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="768">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2747.4419" z="1864.36597"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="769">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2744.93433" z="1864.36597"/>
+			<Orientation y="-1.90705"/>
+		</Entity>
+		<Entity uid="770">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2724.2107" z="1857.49341"/>
+			<Orientation y="-1.8924"/>
+		</Entity>
+		<Entity uid="771">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2706.73584" z="1852.42725"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="772">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2713.41163" z="1811.20289"/>
+			<Orientation y="2.39776"/>
+		</Entity>
+		<Entity uid="773">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3254.41993" z="1307.71302"/>
+			<Orientation y="1.76532"/>
+		</Entity>
+		<Entity uid="774">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3268.29249" z="1295.85132"/>
+			<Orientation y="2.37855"/>
+		</Entity>
+		<Entity uid="775">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3278.2881" z="1289.36524"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="776">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3282.38404" z="1285.86756"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="777">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3288.55103" z="1279.63306"/>
+			<Orientation y="2.26174"/>
+		</Entity>
+		<Entity uid="778">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3299.36622" z="1279.52112"/>
+			<Orientation y="0.50509"/>
+		</Entity>
+		<Entity uid="779">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3313.21363" z="1310.02967"/>
+			<Orientation y="-0.17342"/>
+		</Entity>
+		<Entity uid="780">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3291.26856" z="1313.136"/>
+			<Orientation y="-1.67663"/>
+		</Entity>
+		<Entity uid="781">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3268.4043" z="1312.10621"/>
+			<Orientation y="-1.87005"/>
+		</Entity>
+		<Entity uid="782">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3236.89258" z="1319.90821"/>
+			<Orientation y="-1.63695"/>
+		</Entity>
+		<Entity uid="783">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3184.34473" z="1331.63892"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="784">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3187.27369" z="1326.11646"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="785">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3190.31031" z="1314.48853"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="786">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3194.43995" z="1306.15113"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="787">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3547.11548" z="1091.20533"/>
+			<Orientation y="-0.55355"/>
+		</Entity>
+		<Entity uid="788">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3523.69532" z="1112.22608"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="789">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3509.3484" z="1125.97901"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="790">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3498.82422" z="1131.95533"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="791">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3474.48902" z="1162.36329"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="792">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3468.12208" z="1169.7306"/>
+			<Orientation y="-1.48211"/>
+		</Entity>
+		<Entity uid="793">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3437.17798" z="1191.3943"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="794">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3435.4441" z="1192.68982"/>
+			<Orientation y="-0.9905"/>
+		</Entity>
+		<Entity uid="795">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3406.99268" z="1222.74585"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="796">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3414.95801" z="1233.78138"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="797">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3423.05494" z="1243.10718"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="798">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3432.79249" z="1253.6543"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="799">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3435.12159" z="1256.31873"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="800">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3652.35328" z="951.66041"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="801">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3642.3672" z="956.35633"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="802">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3637.24732" z="965.4964"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="803">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3632.96998" z="972.344"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="804">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="3627.58008" z="976.95698"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="805">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2188.77149" z="467.35755"/>
+			<Orientation y="2.34647"/>
+		</Entity>
+		<Entity uid="806">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2243.69092" z="408.95118"/>
+			<Orientation y="2.29244"/>
+		</Entity>
+		<Entity uid="807">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2298.10865" z="367.82554"/>
+			<Orientation y="1.94101"/>
+		</Entity>
+		<Entity uid="808">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2311.93165" z="370.28077"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="809">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2316.11915" z="364.61164"/>
+			<Orientation y="3.03103"/>
+		</Entity>
+		<Entity uid="810">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2315.41114" z="334.08219"/>
+			<Orientation y="-2.67188"/>
+		</Entity>
+		<Entity uid="811">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2321.44141" z="218.971"/>
+			<Orientation y="3.09928"/>
+		</Entity>
+		<Entity uid="812">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2323.36817" z="187.74524"/>
+			<Orientation y="2.65087"/>
+		</Entity>
+		<Entity uid="813">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2339.1189" z="166.61323"/>
+			<Orientation y="2.5888"/>
+		</Entity>
+		<Entity uid="814">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2352.8545" z="146.67351"/>
+			<Orientation y="2.18433"/>
+		</Entity>
+		<Entity uid="815">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1995.15821" z="213.38868"/>
+			<Orientation y="2.92257"/>
+		</Entity>
+		<Entity uid="816">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2007.68738" z="155.46592"/>
+			<Orientation y="2.91062"/>
+		</Entity>
+		<Entity uid="817">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2008.8838" z="120.24863"/>
+			<Orientation y="-2.97481"/>
+		</Entity>
+		<Entity uid="818">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="2002.37623" z="91.26462"/>
+			<Orientation y="-3.07261"/>
+		</Entity>
+		<Entity uid="819">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1614.17591" z="496.76191"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="820">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1604.995" z="494.27051"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="821">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="943.90705" z="1383.18262"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="822">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="919.91486" z="1391.26502"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="823">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="904.33637" z="1392.86792"/>
+			<Orientation y="-1.36483"/>
+		</Entity>
+		<Entity uid="824">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="872.26716" z="1403.87647"/>
+			<Orientation y="-1.79473"/>
+		</Entity>
+		<Entity uid="825">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="856.30402" z="1406.25391"/>
+			<Orientation y="-1.5708"/>
+		</Entity>
+		<Entity uid="826">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="836.98261" z="1411.948"/>
+			<Orientation y="-2.06814"/>
+		</Entity>
+		<Entity uid="827">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="819.62354" z="1405.56153"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="828">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="821.10706" z="1399.64332"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="829">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="827.58008" z="1391.41248"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="830">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="838.18238" z="1390.08057"/>
+			<Orientation y="0.83326"/>
+		</Entity>
+		<Entity uid="831">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="860.77271" z="1400.5409"/>
+			<Orientation y="0.85463"/>
+		</Entity>
+		<Entity uid="832">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="881.22205" z="1408.28834"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="833">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="900.25843" z="1412.54664"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="834">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="908.56269" z="1411.8047"/>
+			<Orientation y="2.09025"/>
+		</Entity>
+		<Entity uid="835">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="865.81757" z="1522.2765"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="836">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="852.57758" z="1522.46778"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="837">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="845.57068" z="1516.97522"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="838">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="837.70966" z="1509.64673"/>
+			<Orientation y="-2.9642"/>
+		</Entity>
+		<Entity uid="839">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="835.07789" z="1485.39637"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="840">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="907.76392" z="1852.146"/>
+			<Orientation y="2.9214"/>
+		</Entity>
+		<Entity uid="841">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="914.75147" z="1820.46241"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="842">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="902.84485" z="1811.49891"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="843">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="892.55506" z="1806.43323"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="844">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="884.14142" z="1805.75025"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="845">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="870.7378" z="1807.96839"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="846">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="873.1612" z="1821.77063"/>
+			<Orientation y="0.56556"/>
+		</Entity>
+		<Entity uid="847">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="898.50611" z="1850.44654"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="848">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1192.70484" z="1840.36866"/>
+			<Orientation y="2.83857"/>
+		</Entity>
+		<Entity uid="849">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1216.14625" z="1819.75428"/>
+			<Orientation y="1.9488"/>
+		</Entity>
+		<Entity uid="850">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1271.52686" z="1820.98877"/>
+			<Orientation y="0.85645"/>
+		</Entity>
+		<Entity uid="851">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1281.62366" z="1856.59644"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="852">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1250.01258" z="1860.90943"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="853">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1216.62574" z="1864.0918"/>
+			<Orientation y="-1.17528"/>
+		</Entity>
+		<Entity uid="854">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1170.31995" z="1861.7334"/>
+			<Orientation y="-1.48037"/>
+		</Entity>
+		<Entity uid="855">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1138.17005" z="1868.92676"/>
+			<Orientation y="-1.22078"/>
+		</Entity>
+		<Entity uid="856">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1103.29322" z="1893.34131"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="857">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1091.17762" z="1898.52955"/>
+			<Orientation y="-1.05004"/>
+		</Entity>
+		<Entity uid="858">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1055.12452" z="1939.78528"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="859">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1041.28528" z="1954.68653"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="860">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1036.01465" z="1955.53345"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="861">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1016.55561" z="1958.12476"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="862">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1007.2389" z="1949.60926"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="863">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="992.66291" z="1930.69373"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="864">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="983.91157" z="1927.13526"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="865">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1059.58692" z="2424.59864"/>
+			<Orientation y="-1.86612"/>
+		</Entity>
+		<Entity uid="866">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1016.27564" z="2456.52027"/>
+			<Orientation y="-1.16883"/>
+		</Entity>
+		<Entity uid="867">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="783.23884" z="2581.03687"/>
+			<Orientation y="-0.77569"/>
+		</Entity>
+		<Entity uid="868">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="690.27558" z="2699.26026"/>
+			<Orientation y="-0.27015"/>
+		</Entity>
+		<Entity uid="869">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="643.80347" z="2872.771"/>
+			<Orientation y="2.16573"/>
+		</Entity>
+		<Entity uid="870">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="733.67481" z="2819.8252"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="871">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="639.6294" z="2952.15577"/>
+			<Orientation y="-0.58024"/>
+		</Entity>
+		<Entity uid="872">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="578.18604" z="2994.68311"/>
+			<Orientation y="-1.57081"/>
+		</Entity>
+		<Entity uid="873">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="541.45582" z="3002.34034"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="874">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="520.9828" z="3016.21583"/>
+			<Orientation y="-1.68136"/>
+		</Entity>
+		<Entity uid="875">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="486.52875" z="3012.57593"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="876">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="467.17328" z="3000.35694"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="877">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="455.1851" z="2997.08301"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="878">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="433.97407" z="3045.35621"/>
+			<Orientation y="1.3426"/>
+		</Entity>
+		<Entity uid="879">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="557.64374" z="3187.82837"/>
+			<Orientation y="0.49703"/>
+		</Entity>
+		<Entity uid="880">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="591.82227" z="3286.22608"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="881">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="604.0597" z="3324.08863"/>
+			<Orientation y="1.17386"/>
+		</Entity>
+		<Entity uid="882">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="726.52668" z="3357.11231"/>
+			<Orientation y="1.40345"/>
+		</Entity>
+		<Entity uid="883">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="810.2981" z="3360.77906"/>
+			<Orientation y="0.79851"/>
+		</Entity>
+		<Entity uid="884">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="843.83826" z="3418.89161"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="885">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="819.74256" z="3474.70972"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="886">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="804.49238" z="3483.19776"/>
+			<Orientation y="-1.57081"/>
+		</Entity>
+		<Entity uid="887">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="761.74903" z="3494.94068"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="888">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="750.02533" z="3487.50562"/>
+			<Orientation y="2.20232"/>
+		</Entity>
+		<Entity uid="889">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="827.04126" z="3516.3423"/>
+			<Orientation y="0.85454"/>
+		</Entity>
+		<Entity uid="890">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="926.40168" z="3606.14747"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="891">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="931.00342" z="3586.344"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="892">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="938.02814" z="3579.75904"/>
+			<Orientation y="2.41092"/>
+		</Entity>
+		<Entity uid="893">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="983.41517" z="3490.50342"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="894">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="986.27442" z="3484.2544"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="895">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="985.72797" z="3451.78907"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="896">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="981.3672" z="3433.52784"/>
+			<Orientation y="2.97913"/>
+		</Entity>
+		<Entity uid="897">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="993.60682" z="3423.79664"/>
+			<Orientation y="1.28238"/>
+		</Entity>
+		<Entity uid="898">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1027.64576" z="3437.29664"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="899">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1056.79786" z="3468.34668"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="900">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1000.51606" z="3396.01075"/>
+			<Orientation y="-2.4024"/>
+		</Entity>
+		<Entity uid="901">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="853.3158" z="3185.94068"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="902">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="845.47352" z="3164.37745"/>
+			<Orientation y="-2.72614"/>
+		</Entity>
+		<Entity uid="903">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="838.13971" z="3141.15577"/>
+			<Orientation y="2.27306"/>
+		</Entity>
+		<Entity uid="904">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="910.2154" z="3146.16553"/>
+			<Orientation y="0.529"/>
+		</Entity>
+		<Entity uid="905">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="934.42743" z="3200.02442"/>
+			<Orientation y="0.3025"/>
+		</Entity>
+		<Entity uid="906">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="951.79004" z="3284.6753"/>
+			<Orientation y="-1.35177"/>
+		</Entity>
+		<Entity uid="907">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="934.39588" z="3332.89283"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="908">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="881.75208" z="3279.89478"/>
+			<Orientation y="-2.91243"/>
+		</Entity>
+		<Entity uid="909">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="900.80323" z="3141.95093"/>
+			<Orientation y="1.54146"/>
+		</Entity>
+		<Entity uid="910">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="944.8053" z="3114.82862"/>
+			<Orientation y="2.1528"/>
+		</Entity>
+		<Entity uid="911">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="983.20997" z="3070.82764"/>
+			<Orientation y="1.9893"/>
+		</Entity>
+		<Entity uid="912">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="991.0965" z="3063.86426"/>
+			<Orientation y="2.48899"/>
+		</Entity>
+		<Entity uid="913">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1004.44135" z="3036.80225"/>
+			<Orientation y="-2.47306"/>
+		</Entity>
+		<Entity uid="914">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="967.84888" z="2996.09522"/>
+			<Orientation y="-2.23049"/>
+		</Entity>
+		<Entity uid="915">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="925.17634" z="2975.47461"/>
+			<Orientation y="-2.65233"/>
+		</Entity>
+		<Entity uid="916">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1099.71302" z="3089.58277"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="917">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1070.07862" z="2993.21607"/>
+			<Orientation y="2.6797"/>
+		</Entity>
+		<Entity uid="918">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1080.88636" z="2909.11573"/>
+			<Orientation y="-2.4249"/>
+		</Entity>
+		<Entity uid="919">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1020.4881" z="2859.24708"/>
+			<Orientation y="-2.59618"/>
+		</Entity>
+		<Entity uid="920">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="983.54395" z="2792.74024"/>
+			<Orientation y="-2.92348"/>
+		</Entity>
+		<Entity uid="921">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="977.25562" z="2773.91041"/>
+			<Orientation y="-1.62896"/>
+		</Entity>
+		<Entity uid="922">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="955.58265" z="2793.22413"/>
+			<Orientation y="0.31551"/>
+		</Entity>
+		<Entity uid="923">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="957.05341" z="2827.86451"/>
+			<Orientation y="0.40015"/>
+		</Entity>
+		<Entity uid="924">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="954.7378" z="2870.98365"/>
+			<Orientation y="-0.79313"/>
+		</Entity>
+		<Entity uid="925">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="944.43641" z="2896.34351"/>
+			<Orientation y="-0.15438"/>
+		</Entity>
+		<Entity uid="926">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="940.04126" z="3018.9795"/>
+			<Orientation y="2.02993"/>
+		</Entity>
+		<Entity uid="927">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1026.81006" z="2976.14136"/>
+			<Orientation y="1.76139"/>
+		</Entity>
+		<Entity uid="928">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1168.29969" z="2966.37208"/>
+			<Orientation y="2.72341"/>
+		</Entity>
+		<Entity uid="929">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1145.19275" z="2904.23975"/>
+			<Orientation y="-2.41544"/>
+		</Entity>
+		<Entity uid="930">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1115.3329" z="2871.4773"/>
+			<Orientation y="-2.2706"/>
+		</Entity>
+		<Entity uid="931">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1012.82392" z="2804.70411"/>
+			<Orientation y="0.63878"/>
+		</Entity>
+		<Entity uid="932">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1174.29395" z="2923.22657"/>
+			<Orientation y="1.17891"/>
+		</Entity>
+		<Entity uid="933">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1250.74927" z="3101.91895"/>
+			<Orientation y="0.14573"/>
+		</Entity>
+		<Entity uid="934">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1257.8512" z="3189.6648"/>
+			<Orientation y="0.58433"/>
+		</Entity>
+		<Entity uid="935">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1308.69471" z="3270.97315"/>
+			<Orientation y="1.24012"/>
+		</Entity>
+		<Entity uid="936">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1390.8252" z="3300.6421"/>
+			<Orientation y="2.6157"/>
+		</Entity>
+		<Entity uid="937">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1392.27381" z="3272.76978"/>
+			<Orientation y="1.08823"/>
+		</Entity>
+		<Entity uid="938">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1502.59363" z="3375.20875"/>
+			<Orientation y="-1.9182"/>
+		</Entity>
+		<Entity uid="939">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1418.6637" z="3332.91749"/>
+			<Orientation y="-2.481"/>
+		</Entity>
+		<Entity uid="940">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1378.7057" z="3282.61817"/>
+			<Orientation y="-3.01978"/>
+		</Entity>
+		<Entity uid="941">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1357.172" z="3233.52149"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="942">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1378.14307" z="3212.1001"/>
+			<Orientation y="2.23301"/>
+		</Entity>
+		<Entity uid="943">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1407.89368" z="3178.17481"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="944">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1458.3246" z="3122.19043"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="945">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1525.5121" z="3040.66114"/>
+			<Orientation y="-2.96865"/>
+		</Entity>
+		<Entity uid="946">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1499.9109" z="3021.24146"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="947">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1467.98902" z="3013.71045"/>
+			<Orientation y="-1.82351"/>
+		</Entity>
+		<Entity uid="948">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1398.20826" z="3024.61963"/>
+			<Orientation y="0.71427"/>
+		</Entity>
+		<Entity uid="949">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1447.53687" z="3072.01441"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="950">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1449.96387" z="3086.20533"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="951">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1400.422" z="3109.49805"/>
+			<Orientation y="-2.86248"/>
+		</Entity>
+		<Entity uid="952">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1369.03992" z="2981.46851"/>
+			<Orientation y="3.01313"/>
+		</Entity>
+		<Entity uid="953">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1378.59986" z="2876.86304"/>
+			<Orientation y="2.64705"/>
+		</Entity>
+		<Entity uid="954">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1404.91871" z="2765.9292"/>
+			<Orientation y="-2.28245"/>
+		</Entity>
+		<Entity uid="955">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1269.81177" z="2683.44434"/>
+			<Orientation y="-2.269"/>
+		</Entity>
+		<Entity uid="956">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1235.38636" z="2567.23975"/>
+			<Orientation y="2.08547"/>
+		</Entity>
+		<Entity uid="957">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1368.49622" z="2549.95728"/>
+			<Orientation y="0.93316"/>
+		</Entity>
+		<Entity uid="958">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1416.80274" z="2604.45752"/>
+			<Orientation y="0.6901"/>
+		</Entity>
+		<Entity uid="959">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1510.53101" z="2741.91285"/>
+			<Orientation y="-2.14161"/>
+		</Entity>
+		<Entity uid="960">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="1111.84461" z="2495.7256"/>
+			<Orientation y="-2.88678"/>
+		</Entity>
+		<Entity uid="961">
+			<Template>actor|campaigns/flora/trees_pine_clumps.xml</Template>
+			<Position x="944.45752" z="2347.04737"/>
+			<Orientation y="1.67873"/>
+		</Entity>
+		<Entity uid="962">
+			<Template>campaigns/army_mace_hero_alexander</Template>
+			<Player>1</Player>
+			<Position x="2773.61207" z="1278.06959"/>
+			<Orientation y="-1.92721"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+</Scenario>

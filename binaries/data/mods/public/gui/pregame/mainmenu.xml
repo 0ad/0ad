@@ -497,10 +497,10 @@ Get involved at: wildfiregames.com/0ad
 				<object type="button"
 					style="StoneButton"
 					tooltip_style="pgToolTip"
-					tooltip="Click to chat in IRC. (#0ad at webchat.quakenet.org)"
+					tooltip="Click to open the 0 A.D. IRC chat in your browser. (#0ad on webchat.quakenet.org)"
 					size="50%+4 100%-36 100%-8 100%-8"
 				>
-					IRC
+					Chat
 					<action on="Press"><![CDATA[
 						var url = "http://webchat.quakenet.org/?channels=0ad";
 						Engine.OpenURL(url);
