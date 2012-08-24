@@ -315,7 +315,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		switch (guiName)
 		{
 			case SELECTION:
-				var name = getEntityName(template);
+				var name = getEntityNames(template).join(" ");
 				var tooltip = name;
 				var count = g_Selection.groups.getCount(item);
 				getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
