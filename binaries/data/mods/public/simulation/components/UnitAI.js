@@ -2694,6 +2694,10 @@ UnitAI.prototype.RespondToHealableEntities = function(ents)
  */
 UnitAI.prototype.ShouldAbandonChase = function(target, force, iid)
 {
+	// Forced orders shouldn't be interrupted.
+	if (force)
+		return false;
+
 	// Stop if we're in hold-ground mode and it's too far from the holding point
 	if (this.GetStance().respondHoldGround)
 	{
@@ -2702,7 +2706,7 @@ UnitAI.prototype.ShouldAbandonChase = function(target, force, iid)
 	}
 
 	// Stop if it's left our vision range, unless we're especially persistent
-	if (!force && !this.GetStance().respondChaseBeyondVision)
+	if (!this.GetStance().respondChaseBeyondVision)
 	{
 		if (!this.CheckTargetIsInVisionRange(target))
 			return true;
