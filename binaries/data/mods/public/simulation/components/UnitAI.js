@@ -809,13 +809,15 @@ var UnitFsmSpec = {
 
 			"EntityRenamed": function(msg) {
 				if (this.order.data.target == msg.entity)
+				{
 					this.order.data.target = msg.newentity;
 
-				// If we're hunting, that means we have a queued gather
-				// order whose target also needs to be updated.
-				if (this.order.data.hunting && this.orderQueue[1] &&
-						this.orderQueue[1].type == "Gather")
-					this.orderQueue[1].data.target = msg.newentity;
+					// If we're hunting, that means we have a queued gather
+					// order whose target also needs to be updated.
+					if (this.order.data.hunting && this.orderQueue[1] &&
+							this.orderQueue[1].type == "Gather")
+						this.orderQueue[1].data.target = msg.newentity;
+				}
 			},
 
 			"Attacked": function(msg) {
