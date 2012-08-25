@@ -640,6 +640,11 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 							currentTexs.resize(samplersNum, NULL);
 							texBindings.resize(samplersNum, CShaderProgram::Binding());
 							texBindingNames.resize(samplersNum, CStrIntern());
+							
+							// ensure they are definitely empty
+							std::fill(texBindings.begin(), texBindings.end(), CShaderProgram::Binding());
+							std::fill(currentTexs.begin(), currentTexs.end(), (CTexture*)NULL);
+							std::fill(texBindingNames.begin(), texBindingNames.end(), CStrIntern());
 						}
 						
 						// bind the samplers to the shader
