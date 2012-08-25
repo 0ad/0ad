@@ -2016,7 +2016,12 @@ UnitAI.prototype.FsmStateNameChanged = function(state)
 UnitAI.prototype.FinishOrder = function()
 {
 	if (!this.orderQueue.length)
-		error("FinishOrder called when order queue is empty");
+	{
+		var stack = new Error().stack.trimRight().replace(/^/mg, '  '); // indent each line
+		var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+		var template = cmpTemplateManager.GetCurrentTemplateName(this.entity);
+		error("FinishOrder called for entity " + this.entity + " (" + template + ") when order queue is empty\n" + stack);
+	}
 
 	this.orderQueue.shift();
 	this.order = this.orderQueue[0];
