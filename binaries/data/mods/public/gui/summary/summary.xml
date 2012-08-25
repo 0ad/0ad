@@ -109,7 +109,7 @@
 					<object type="image" name="playerBox0[n]" size="10 0 10 30" hidden="true">
 						<object name="playerColourBox0[n]"     		type="image" size="10 4 30 24" />
 						<object name="playerName0[n]"          		type="text" style="LeftLabelText" size="40 2 208 100%" />
-						<object name="civIcon0[n]" 			type="image" size="208 0 240 32"/>
+						<object name="civIcon0[n]"          		type="image" size="208 0 240 32" tooltip_style="sessionToolTip"/>
 						<object name="unitsTrained[n]"         		type="text" style="CenteredLabelText"/>
 						<object name="unitsLost[n]"            		type="text" style="CenteredLabelText"/>
 						<object name="enemyUnitsKilled[n]"     		type="text" style="CenteredLabelText"/>
@@ -143,7 +143,7 @@
 					<object type="image" name="playerBox1[n]" size="10 0 10 30" hidden="true">
 						<object name="playerColourBox1[n]"     		type="image" size="10 4 30 24" />
 						<object name="playerName1[n]"          		type="text"  style="LeftLabelText" size="40 2 208 100%" />
-						<object name="civIcon1[n]" 			type="image" size="208 0 240 32"/>
+						<object name="civIcon1[n]"          		type="image" size="208 0 240 32" tooltip_style="sessionToolTip"/>
 						<object name="civCentresBuilt[n]"      		type="text" style="CenteredLabelText"/>
 						<object name="enemyCivCentresDestroyed[n]" 	type="text" style="CenteredLabelText"/>
 						<object name="mapExploration[n]" 		type="text" style="CenteredLabelText"/>
@@ -183,7 +183,7 @@
 					<object type="image" name="playerBox2[n]" size="10 0 10 30" hidden="true">
 						<object name="playerColourBox2[n]" 		type="image" size="10 4 30 24" />
 						<object name="playerName2[n]"      		type="text"  style="LeftLabelText" size="40 2 208 100%" />
-						<object name="civIcon2[n]" 		   	type="image" size="208 0 240 32"/>
+						<object name="civIcon2[n]"      		type="image" size="208 0 240 32" tooltip_style="sessionToolTip"/>
 						<object name="foodGathered[n]"     		type="text" style="CenteredLabelText"/>
 						<object name="vegetarianRatio[n]"  		type="text" style="CenteredLabelText"/>
 						<object name="woodGathered[n]"     		type="text" style="CenteredLabelText"/>
@@ -226,7 +226,7 @@
 					<object type="image" name="playerBox3[n]" size="10 0 10 30" hidden="true">
 						<object name="playerColourBox3[n]"      type="image" size="10 4 30 24" />
 						<object name="playerName3[n]"           type="text"  style="LeftLabelText" size="40 2 208 100%" />
-						<object name="civIcon3[n]"              type="image" size="208 0 240 32"/>
+						<object name="civIcon3[n]"              type="image" size="208 0 240 32" tooltip_style="sessionToolTip"/>
 						<object name="exchangedFood[n]"         type="text" style="CenteredLabelText"/>
 						<object name="exchangedWood[n]"         type="text" style="CenteredLabelText"/>
 						<object name="exchangedStone[n]"         type="text" style="CenteredLabelText"/>

@@ -143,6 +143,7 @@ function init(data)
 				playerName.caption = data.players[i+1].name;
 
 				getGUIObjectByName("civIcon"+k+"["+i+"]").sprite = "stretched:"+civData[playerState.civ].Emblem;
+				getGUIObjectByName("civIcon"+k+"["+i+"]").tooltip = civData[playerState.civ].Name;
 			}
 
 			var unitsTrained = getGUIObjectByName("unitsTrained["+i+"]");
