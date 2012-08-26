@@ -338,8 +338,8 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				break;
 
 			case GARRISON:
-				var name = getEntityName(template);
-				var tooltip = "Unload " + getEntityName(template) + "\nSingle-click to unload 1. Shift-click to unload all of this type.";
+				var name = getEntityNames(template).join(" ");
+				var tooltip = "Unload " + name + "\nSingle-click to unload 1. Shift-click to unload all of this type.";
 				var count = garrisonGroups.getCount(item);
 				getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
 				break;
