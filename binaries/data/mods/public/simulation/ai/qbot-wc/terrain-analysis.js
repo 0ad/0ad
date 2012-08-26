@@ -570,7 +570,7 @@ aStarPath.prototype.continuePath = function(gamestate)
 					this.gCostArray[index] = this.gCostArray[this.currentSquare] + cost[i] * Sampling;// - this.map[index];
 
 					if (!this.onWater && this.passabilityMap.map[index] === 200) {
-						this.gCostArray[index] += this.width*this.width*2;
+						this.gCostArray[index] += this.width*this.width*3;
 					} else if (this.onWater && this.passabilityMap.map[index] !== 200) {
 						this.gCostArray[index] += this.fCostArray[index];
 					} else if (!this.onWater && this.passabilityMap.map[index] === 100) {
@@ -594,7 +594,7 @@ aStarPath.prototype.continuePath = function(gamestate)
 				} else {
 					var addCost = 0;
 					if (!this.onWater && this.passabilityMap.map[index] === 200) {
-						addCost = this.width*this.width*2;
+						addCost = this.width*this.width*3;
 					} else if (this.onWater && this.passabilityMap.map[index] !== 200) {
 						addCost = this.fCostArray[index];
 					} else if (!this.onWater && this.passabilityMap.map[index] === 100) {
