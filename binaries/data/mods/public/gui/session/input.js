@@ -216,14 +216,6 @@ function getActionInfo(action, target)
 		var data = {command: "walk"};
 		if (targetState.garrisonHolder && playerOwned)
 		{
-			// Don't allow the rally point to be set on any of the currently selected units
-			for (var i = 0; i < selection.length; i++)
-			{
-				if (target === selection[i])
-				{
-					return {"possible": false};
-				}
-			}
 			data.command = "garrison";
 			data.target = target;
 			cursor = "action-garrison";
@@ -276,7 +268,12 @@ function getActionInfo(action, target)
 				tooltip = "Click to establish a default route for new traders. Gain: " + gain + " metal.";
 			}
 		}
-		
+
+		// Don't allow the rally point to be set on any of the currently selected entities
+		for (var i = 0; i < selection.length; i++)
+			if (target === selection[i])
+				return {"possible": false};
+
 		return {"possible": true, "data": data, "position": targetState.position, "cursor": cursor, "tooltip": tooltip};
 	}
 
