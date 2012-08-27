@@ -172,8 +172,8 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			break;
 
 		case GARRISON:
-			if (numberOfItems > 16)
-				numberOfItems = 16;
+			if (numberOfItems > 12)
+				numberOfItems = 12;
 			break;
 
 		case STANCE:
@@ -895,7 +895,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		// TODO: probably should load the stance list from a data file,
 		// and/or vary depending on what units are selected
 		var stances = ["violent", "aggressive", "passive", "defensive", "standground"];
-		if (hasClass(entState, "Unit") && !hasClass(entState, "Animal") && !entState.garrisonHolder && stances.length)
+		if (hasClass(entState, "Unit") && !hasClass(entState, "Animal") && stances.length)
 		{
 			setupUnitPanel(STANCE, usedPanels, entState, stances,
 				function (item) { performStance(entState.id, item); } );
