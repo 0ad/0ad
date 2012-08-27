@@ -431,12 +431,12 @@ function getEntityNames(template)
 	else if (template.name.generic)
 		names.push(template.name.generic);
 
-	return (names.length) ? names : ["???"];
+	return (names.length) ? names.join(" ") : "???";
 }
 
-function getEntityNameWithGenericType(template)
+function getEntityNamesFormatted(template)
 {
-    return "[font=\"serif-bold-16\"]" + getEntityNames(template).join(" ") + "[/font]";
+	return '[font="serif-bold-16"]' + getEntityNames(template) + "[/font]";
 }
 
 function getEntityRankedName(entState)

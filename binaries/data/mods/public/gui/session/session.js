@@ -492,7 +492,7 @@ function updateResearchDisplay()
 		var template = GetTechnologyData(tech);
 		var button = getGUIObjectByName("researchStartedButton[" + numButtons + "]");
 		button.hidden = false;
-		button.tooltip = getEntityName(template);
+		button.tooltip = getEntityNames(template);
 		button.onpress = (function(e) { return function() { selectAndMoveTo(e) } })(researchStarted[tech].researcher);
 
 		var icon = "stretched:session/portraits/" + template.icon;

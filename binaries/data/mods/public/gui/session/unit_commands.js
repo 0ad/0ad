@@ -315,14 +315,14 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 		switch (guiName)
 		{
 			case SELECTION:
-				var name = getEntityNames(template).join(" ");
+				var name = getEntityNames(template);
 				var tooltip = name;
 				var count = g_Selection.groups.getCount(item);
 				getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
 				break;
 
 			case QUEUE:
-				var tooltip = getEntityName(template);
+				var tooltip = getEntityNames(template);
 				var progress = Math.round(item.progress*100) + "%";
 				getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (item.count > 1 ? item.count : "");
 
@@ -338,7 +338,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				break;
 
 			case GARRISON:
-				var name = getEntityNames(template).join(" ");
+				var name = getEntityNames(template);
 				var tooltip = "Unload " + name + "\nSingle-click to unload 1. Shift-click to unload all of this type.";
 				var count = garrisonGroups.getCount(item);
 				getGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
@@ -369,7 +369,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				break;
 
 			case TRAINING:
-				var tooltip = getEntityNameWithGenericType(template);
+				var tooltip = getEntityNamesFormatted(template);
 
 				if (template.tooltip)
 					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
@@ -393,7 +393,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				break;
 				
 			case RESEARCH:
-				var tooltip = getEntityNameWithGenericType(template);
+				var tooltip = getEntityNamesFormatted(template);
 				if (template.tooltip)
 					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
 
@@ -401,7 +401,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 
 				if (item.pair)
 				{
-					var tooltip1 = getEntityNameWithGenericType(template1);
+					var tooltip1 = getEntityNamesFormatted(template1);
 					if (template1.tooltip)
 						tooltip1 += "\n[font=\"serif-13\"]" + template1.tooltip + "[/font]";
 
@@ -410,7 +410,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 				break;
 
 			case CONSTRUCTION:
-				var tooltip = getEntityNameWithGenericType(template);
+				var tooltip = getEntityNamesFormatted(template);
 				if (template.tooltip)
 					tooltip += "\n[font=\"serif-13\"]" + template.tooltip + "[/font]";
 
@@ -567,7 +567,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, items, callback)
 			if (guiName != SELECTION && template.requiredTechnology && !Engine.GuiInterfaceCall("IsTechnologyResearched", template.requiredTechnology))
 			{
 				button.enabled = false;
-				var techName = getEntityName(GetTechnologyData(template.requiredTechnology));
+				var techName = getEntityNames(GetTechnologyData(template.requiredTechnology));
 				button.tooltip += "\nRequires " + techName;
 				grayscale = "grayscale:";
 			}
