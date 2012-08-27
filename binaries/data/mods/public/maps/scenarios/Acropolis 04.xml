@@ -24,15 +24,14 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="924.891" y="100.006" z="930.673"/>
+		<Position x="309.296" y="110.439" z="422.824"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview" : "acropolis_4.png",
-  "Description": "Four factions. One winner.",
+  "Description": "Strange bedfellows. Romans and Carthaginians vs. Spartans and Persians.",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
@@ -51,7 +50,7 @@
         "food": 400,
         "wood": 400
       },
-      "Team": -1
+      "Team": 0
     },
     {
       "AI": "qbot",
@@ -66,7 +65,7 @@
         "food": 400,
         "wood": 400
       },
-      "Team": -1
+      "Team": 1
     },
     {
       "AI": "qbot",
@@ -81,7 +80,7 @@
         "food": 400,
         "wood": 400
       },
-      "Team": -1
+      "Team": 2
     },
     {
       "AI": "qbot",
@@ -96,9 +95,10 @@
         "food": 400,
         "wood": 400
       },
-      "Team": -1
+      "Team": 3
     }
   ],
+  "Preview": "acropolis_4.png",
   "RevealMap": false
 }
 ]]></ScriptSettings>
