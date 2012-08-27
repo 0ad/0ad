@@ -423,10 +423,13 @@ function getEntityNames(template)
 {
 	var names = [];
 	if (template.name.specific)
+	{
 		names.push(template.name.specific);
-
-	if (template.name.generic && !names.length | names[0] != template.name.generic)
-		names.push("(" + template.name.generic + ")");
+		if (template.name.generic && names[0] != template.name.generic)
+			names.push("(" + template.name.generic + ")");
+	}
+	else if (template.name.generic)
+		names.push(template.name.generic);
 
 	return (names.length) ? names : ["???"];
 }
