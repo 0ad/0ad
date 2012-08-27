@@ -614,13 +614,15 @@ Formation.prototype.OnGlobalEntityRenamed = function(msg)
 {
 	if (this.members.indexOf(msg.entity) != -1)
 	{
-		this.members[this.members.indexOf(msg.entity)] = msg.newentity;
+		var cmpNewUnitAI = Engine.QueryInterface(msg.newentity, IID_UnitAI);
+		if (cmpNewUnitAI)
+			this.members[this.members.indexOf(msg.entity)] = msg.newentity;
 
 		var cmpOldUnitAI = Engine.QueryInterface(msg.entity, IID_UnitAI);
 		cmpOldUnitAI.SetFormationController(INVALID_ENTITY);
 
-		var cmpNewUnitAI = Engine.QueryInterface(msg.newentity, IID_UnitAI);
-		cmpNewUnitAI.SetFormationController(this.entity);
+		if (cmpNewUnitAI)
+			cmpNewUnitAI.SetFormationController(this.entity);
 	}
 }
 
