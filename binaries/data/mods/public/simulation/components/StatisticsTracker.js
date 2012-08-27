@@ -97,7 +97,7 @@ StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 				this.enemyUnitsKilled++;
 			if (targetIsStructure)
 				this.enemyBuildingsDestroyed++;
-			if (targetIsCivCentre)
+			if (targetIsCivCentre && targetIsStructure)
 				this.enemyCivCentresDestroyed++;
 		}
 	}
