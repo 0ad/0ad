@@ -3341,6 +3341,11 @@ UnitAI.prototype.CanGarrison = function(target)
 
 UnitAI.prototype.CanGather = function(target)
 {
+	// The target must be a valid resource supply.
+	var cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
+	if (!cmpResourceSupply)
+		return false;
+
 	// Formation controllers should always respond to commands
 	// (then the individual units can make up their own minds)
 	if (this.IsFormationController())
