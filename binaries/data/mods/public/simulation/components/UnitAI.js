@@ -866,13 +866,23 @@ var UnitFsmSpec = {
 					var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 					this.attackTimers = cmpAttack.GetTimers(this.attackType);
 
+					// If the repeat time since the last attack hasn't elapsed,
+					// delay this attack to avoid attacking too fast.
+					var prepare = this.attackTimers.prepare;
+					if (this.lastAttacked)
+					{
+						var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+						var repeatLeft = this.lastAttacked + this.attackTimers.repeat - cmpTimer.GetTime();
+						prepare = Math.max(prepare, repeatLeft);
+					}
+
 					this.SelectAnimation("melee", false, 1.0, "attack");
-					this.SetAnimationSync(this.attackTimers.prepare, this.attackTimers.repeat);
-					this.StartTimer(this.attackTimers.prepare, this.attackTimers.repeat);
+					this.SetAnimationSync(prepare, this.attackTimers.repeat);
+					this.StartTimer(prepare, this.attackTimers.repeat);
 					// TODO: we should probably only bother syncing projectile attacks, not melee
 
-					// TODO: if .prepare is short, players can cheat by cycling attack/stop/attack
-					// to beat the .repeat time; should enforce a minimum time
+					// If using a non-default prepare time, re-sync the animation when the timer runs.
+					this.resyncAnimation = (prepare != this.attackTimers.prepare) ? true : false;
 
 					this.FaceTowardsTarget(this.order.data.target);
 				},
@@ -889,9 +899,18 @@ var UnitFsmSpec = {
 						// Check we can still reach the target
 						if (this.CheckTargetRange(target, IID_Attack, this.attackType))
 						{
+							var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+							this.lastAttacked = cmpTimer.GetTime() - msg.lateness;
+
 							this.FaceTowardsTarget(target);
 							var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 							cmpAttack.PerformAttack(this.attackType, target);
+
+							if (this.resyncAnimation)
+							{
+								this.SetAnimationSync(this.attackTimers.repeat, this.attackTimers.repeat);
+								this.resyncAnimation = false;
+							}
 							return;
 						}
 
@@ -1249,12 +1268,24 @@ var UnitFsmSpec = {
 				"enter": function() {
 					var cmpHeal = Engine.QueryInterface(this.entity, IID_Heal);
 					this.healTimers = cmpHeal.GetTimers();
+
+					// If the repeat time since the last heal hasn't elapsed,
+					// delay the action to avoid healing too fast.
+					var prepare = this.healTimers.prepare;
+					if (this.lastHealed)
+					{
+						var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+						var repeatLeft = this.lastHealed + this.healTimers.repeat - cmpTimer.GetTime();
+						prepare = Math.max(prepare, repeatLeft);
+					}
+
 					this.SelectAnimation("heal", false, 1.0, "heal");
-					this.SetAnimationSync(this.healTimers.prepare, this.healTimers.repeat);
-					this.StartTimer(this.healTimers.prepare, this.healTimers.repeat);
-					// TODO if .prepare is short, players can cheat by cycling heal/stop/heal
-					// to beat the .repeat time; should enforce a minimum time
-					// see comment in ATTACKING.enter
+					this.SetAnimationSync(prepare, this.healTimers.repeat);
+					this.StartTimer(prepare, this.healTimers.repeat);
+
+					// If using a non-default prepare time, re-sync the animation when the timer runs.
+					this.resyncAnimation = (prepare != this.healTimers.prepare) ? true : false;
+
 					this.FaceTowardsTarget(this.order.data.target);
 				},
 
@@ -1270,9 +1301,18 @@ var UnitFsmSpec = {
 						// Check if we can still reach the target
 						if (this.CheckTargetRange(target, IID_Heal))
 						{
+							var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+							this.lastHealed = cmpTimer.GetTime() - msg.lateness;
+
 							this.FaceTowardsTarget(target);
 							var cmpHeal = Engine.QueryInterface(this.entity, IID_Heal);
 							cmpHeal.PerformHeal(target);
+
+							if (this.resyncAnimation)
+							{
+								this.SetAnimationSync(this.healTimers.repeat, this.healTimers.repeat);
+								this.resyncAnimation = false;
+							}
 							return;
 						}
 						// Can't reach it - try to chase after it
@@ -1771,6 +1811,10 @@ UnitAI.prototype.Init = function()
 	this.isGarrisoned = false;
 	this.isIdle = false;
 	this.lastFormationName = "";
+
+	// For preventing increased action rate due to Stop orders or target death.
+	this.lastAttacked = undefined;
+	this.lastHealed = undefined;
 
 	this.SetStance(this.template.DefaultStance);
 };
