@@ -158,20 +158,23 @@
 				<object name="playerName2Heading" type="text" style="LeftTabLabelText">
 					Player name
 				</object>
+				<object name="resourceHeading" type="text" style="CenteredTabLabelText">
+					Resource Statistics (Gathered / Used)
+				</object>
 				<object name="foodGatheredHeading" type="text" style="CenteredTabLabelText">
-					Food&#10;gathered
+					Food
+				</object>
+				<object name="woodGatheredHeading" type="text" style="CenteredTabLabelText">
+					Wood
+				</object>
+				<object name="stoneGatheredHeading" type="text" style="CenteredTabLabelText">
+					Stone
+				</object>
+				<object name="metalGatheredHeading" type="text" style="CenteredTabLabelText">
+					Metal
 				</object>
 				<object name="vegetarianRatioHeading" type="text" style="CenteredTabLabelText">
 					Vegetarian&#10;ratio
-				</object>
-				<object name="woodGatheredHeading" type="text" style="CenteredTabLabelText">
-					Wood&#10;gathered
-				</object>
-				<object name="stoneGatheredHeading" type="text" style="CenteredTabLabelText">
-					Stone&#10;gathered
-				</object>
-				<object name="metalGatheredHeading" type="text" style="CenteredTabLabelText">
-					Metal&#10;gathered
 				</object>
 				<object name="treasuresCollectedHeading" type="text" style="CenteredTabLabelText">
 					Treasures&#10;collected
@@ -185,10 +188,10 @@
 						<object name="playerName2[n]"      		type="text"  style="LeftLabelText" size="40 2 208 100%" />
 						<object name="civIcon2[n]"      		type="image" size="208 0 240 32" tooltip_style="sessionToolTip"/>
 						<object name="foodGathered[n]"     		type="text" style="CenteredLabelText"/>
-						<object name="vegetarianRatio[n]"  		type="text" style="CenteredLabelText"/>
 						<object name="woodGathered[n]"     		type="text" style="CenteredLabelText"/>
 						<object name="stoneGathered[n]"    		type="text" style="CenteredLabelText" />
 						<object name="metalGathered[n]"    		type="text" style="CenteredLabelText"/>
+						<object name="vegetarianRatio[n]"  		type="text" style="CenteredLabelText"/>
 						<object name="treasuresCollected[n]"    	type="text" style="CenteredLabelText"/>
 					</object>
 				</repeat>

@@ -191,8 +191,13 @@ Player.prototype.TrySubtractResources = function(amounts)
 	else
 	{
 		// Subtract the resources
+		var cmpStatisticsTracker = QueryPlayerIDInterface(this.playerID, IID_StatisticsTracker);
 		for (var type in amounts)
+		{
 			this.resourceCount[type] -= amounts[type];
+			if (cmpStatisticsTracker)
+				cmpStatisticsTracker.IncreaseResourceUsedCounter(type, amounts[type]);
+		}
 	}
 
 	return true;

@@ -80,7 +80,12 @@ Foundation.prototype.OnDestroy = function()
 	{
 		var scaled = Math.floor(this.costs[r] * (1.0 - this.buildProgress));
 		if (scaled)
+		{
 			cmpPlayer.AddResource(r, scaled);
+			var cmpStatisticsTracker = QueryPlayerIDInterface(this.owner, IID_StatisticsTracker);
+			if (cmpStatisticsTracker)
+				cmpStatisticsTracker.IncreaseResourceUsedCounter(r, -scaled);
+		}
 	}
 
 	// Reset the timer
