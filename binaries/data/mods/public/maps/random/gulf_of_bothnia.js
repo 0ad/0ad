@@ -278,7 +278,7 @@ var fz = fractionToTiles(0.5);
 ix = round(fx);
 iz = round(fz);
 
-var lSize = sqrt(sqrt(sqrt(scaleByMapSize(1, 6))));
+var lSize = 1;
 
 var placer = new ClumpPlacer(mapArea * 0.08 * lSize, 0.7, 0.05, 10, ix, iz);
 var terrainPainter = new LayeredPainter(
@@ -319,7 +319,7 @@ iz = round(fz)+1;
 
 var lSize = sqrt(sqrt(sqrt(scaleByMapSize(1, 6))));
 
-var placer = new ClumpPlacer(mapArea * 0.17 * lSize, 0.7, 0.05, 10, ix, iz);
+var placer = new ClumpPlacer(mapArea * 0.15 * lSize, 0.7, 0.05, 10, ix, iz);
 var terrainPainter = new LayeredPainter(
 	[tGrass, tGrass, tGrass, tGrass],		// terrains
 	[1, 4, 2]		// widths
