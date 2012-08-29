@@ -103,7 +103,7 @@
 
 // allow use of FAM API on Linux
 #ifndef CONFIG2_FAM
-# define CONFIG2_FAM 1
+# define CONFIG2_FAM 0
 #endif
 
 // allow use of OpenAL/Ogg/Vorbis APIs
