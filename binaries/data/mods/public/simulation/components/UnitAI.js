@@ -622,9 +622,14 @@ var UnitFsmSpec = {
 			// Stop moving as soon as the formation disbands
 			this.StopMoving();
 
-			// We're leaving the formation, so stop our FormationWalk order
-			if (this.FinishOrder())
-				return;
+			// If the controller handled an order but some members rejected it,
+			// they will have no orders and be in the FORMATIONMEMBER.IDLE state.
+			if (this.orderQueue.length)
+			{
+				// We're leaving the formation, so stop our FormationWalk order
+				if (this.FinishOrder())
+					return;
+			}
 
 			// No orders left, we're an individual now
 			if (this.IsAnimal())
