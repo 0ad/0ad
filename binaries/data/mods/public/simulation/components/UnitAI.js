@@ -936,7 +936,11 @@ var UnitFsmSpec = {
 
 					// See if we can switch to a new nearby enemy
 					if (this.FindNewTargets())
+					{
+						// Attempt to immediately re-enter the timer function, to avoid wasting the attack.
+						this.TimerHandler(msg.data, msg.lateness);
 						return;
+					}
 
 					// Return to our original position
 					if (this.GetStance().respondHoldGround)
