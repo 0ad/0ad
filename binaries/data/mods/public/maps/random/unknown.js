@@ -1494,7 +1494,7 @@ else //mainland
 
 }
 
-paintTerrainBasedOnHeight(3.12, 30, 1, tCliff);
+paintTerrainBasedOnHeight(3.12, 40, 1, tCliff);
 paintTerrainBasedOnHeight(3, 3.12, 1, tGrass);
 paintTerrainBasedOnHeight(1, 3, 1, tShore);
 paintTerrainBasedOnHeight(-8, 1, 2, tWater);
@@ -1502,8 +1502,7 @@ unPaintTileClassBasedOnHeight(0, 3.12, 1, clWater);
 unPaintTileClassBasedOnHeight(-6, 0, 1, clLand);
 paintTileClassBasedOnHeight(-6, 0, 1, clWater);
 paintTileClassBasedOnHeight(0, 3.12, 1, clLand);
-paintTileClassBasedOnHeight(3.12, 30, 1, clHill);
-paintTileClassBasedOnHeight(3.12, 28, 1, clHill);
+paintTileClassBasedOnHeight(3.12, 40, 1, clHill);
 
 for (var i = 0; i < numPlayers; i++)
 {
