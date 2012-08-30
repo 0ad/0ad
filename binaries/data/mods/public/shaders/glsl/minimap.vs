@@ -19,7 +19,8 @@ void main()
 {
   #if MINIMAP_BASE || MINIMAP_LOS
     gl_Position = gl_ModelViewProjectionMatrix * vec4(a_vertex, 1.0);
-    v_tex = gl_TextureMatrix[0] * gl_MultiTexCoord0;
+    vec4 temp = gl_TextureMatrix[0] * gl_MultiTexCoord0;
+    v_tex = temp.xy;
   #endif
 
   #if MINIMAP_POINT
