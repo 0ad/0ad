@@ -573,15 +573,29 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	
+	CShaderProgramPtr shader;
+	CShaderTechniquePtr tech;
+	
+	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+	{
+		tech = g_Renderer.GetShaderManager().LoadEffect("foreground_overlay");
+		tech->BeginPass();
+		shader = tech->GetShader();
+	}
+	else
+	{
+		shader = g_Renderer.GetShaderManager().LoadProgram("fixed:dummy", CShaderDefines());
+		shader->Bind();
+	}
 
 	float uvs[8] = { 0,0, 1,0, 1,1, 0,1 };
-	glTexCoordPointer(2, GL_FLOAT, sizeof(float)*2, &uvs);
+	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, sizeof(float)*2, &uvs[0]);
 
 	for (size_t i = 0; i < m->sprites.size(); ++i)
 	{
 		SOverlaySprite* sprite = m->sprites[i];
-
-		sprite->m_Texture->Bind();
+		shader->BindTexture("baseTex", sprite->m_Texture);
 
 		CVector3D pos[4] = {
 			sprite->m_Position + right*sprite->m_X0 + up*sprite->m_Y0,
@@ -590,11 +604,20 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 			sprite->m_Position + right*sprite->m_X0 + up*sprite->m_Y1
 		};
 
-		glVertexPointer(3, GL_FLOAT, sizeof(float)*3, &pos[0].X);
+		shader->VertexPointer(3, GL_FLOAT, sizeof(float)*3, &pos[0].X);
 		glDrawArrays(GL_QUADS, 0, (GLsizei)4);
 
 		g_Renderer.GetStats().m_DrawCalls++;
 		g_Renderer.GetStats().m_OverlayTris += 2;
+	}
+	
+	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+	{
+		tech->EndPass();
+	}
+	else
+	{
+		shader->Unbind();
 	}
 
 	glDisableClientState(GL_VERTEX_ARRAY);

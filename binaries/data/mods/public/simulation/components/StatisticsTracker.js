@@ -24,6 +24,12 @@ StatisticsTracker.prototype.Init = function()
 			"stone": 0,
 			"vegetarianFood": 0
 	};
+	this.resourcesUsed = {
+			"food": 0,
+			"wood": 0,
+			"metal": 0,
+			"stone": 0,
+	};
 	this.resourcesSold = {
 			"food": 0,
 			"wood": 0,
@@ -52,6 +58,7 @@ StatisticsTracker.prototype.GetStatistics = function()
 		"civCentresBuilt": this.civCentresBuilt,
 		"enemyCivCentresDestroyed": this.enemyCivCentresDestroyed,
 		"resourcesGathered": this.resourcesGathered,
+		"resourcesUsed": this.resourcesUsed,
 		"resourcesSold": this.resourcesSold,
 		"resourcesBought": this.resourcesBought,
 		"tradeIncome": this.tradeIncome,
@@ -97,7 +104,7 @@ StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 				this.enemyUnitsKilled++;
 			if (targetIsStructure)
 				this.enemyBuildingsDestroyed++;
-			if (targetIsCivCentre)
+			if (targetIsCivCentre && targetIsStructure)
 				this.enemyCivCentresDestroyed++;
 		}
 	}
@@ -133,6 +140,15 @@ StatisticsTracker.prototype.IncreaseResourceGatheredCounter = function(type, amo
 	
 	if (type == "food" && (specificType == "fruit" || specificType == "grain"))
 		this.resourcesGathered["vegetarianFood"] += amount;
+};
+
+/**
+ * @param type Generic type of resource (string)
+ * @param amount Amount of resource, whick should be added (integer)
+ */
+StatisticsTracker.prototype.IncreaseResourceUsedCounter = function(type, amount)
+{
+	this.resourcesUsed[type] += amount;
 };
 
 StatisticsTracker.prototype.IncreaseTreasuresCollectedCounter = function()

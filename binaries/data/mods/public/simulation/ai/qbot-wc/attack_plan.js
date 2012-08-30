@@ -513,6 +513,10 @@ CityAttack.prototype.update = function(gameState, militaryManager, events){
 	var bool_attacked = false;
 	// raids don't care about attacks much
 	
+	// we're over, abort immediately.
+	if (this.unitCollection.length === 0)
+		return 0;
+	
 	this.position = this.unitCollection.getCentrePosition();
 	
 	var IDs = this.unitCollection.toIdArray();

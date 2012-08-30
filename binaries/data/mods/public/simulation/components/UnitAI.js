@@ -622,9 +622,14 @@ var UnitFsmSpec = {
 			// Stop moving as soon as the formation disbands
 			this.StopMoving();
 
-			// We're leaving the formation, so stop our FormationWalk order
-			if (this.FinishOrder())
-				return;
+			// If the controller handled an order but some members rejected it,
+			// they will have no orders and be in the FORMATIONMEMBER.IDLE state.
+			if (this.orderQueue.length)
+			{
+				// We're leaving the formation, so stop our FormationWalk order
+				if (this.FinishOrder())
+					return;
+			}
 
 			// No orders left, we're an individual now
 			if (this.IsAnimal())
@@ -809,13 +814,15 @@ var UnitFsmSpec = {
 
 			"EntityRenamed": function(msg) {
 				if (this.order.data.target == msg.entity)
+				{
 					this.order.data.target = msg.newentity;
 
-				// If we're hunting, that means we have a queued gather
-				// order whose target also needs to be updated.
-				if (this.order.data.hunting && this.orderQueue[1] &&
-						this.orderQueue[1].type == "Gather")
-					this.orderQueue[1].data.target = msg.newentity;
+					// If we're hunting, that means we have a queued gather
+					// order whose target also needs to be updated.
+					if (this.order.data.hunting && this.orderQueue[1] &&
+							this.orderQueue[1].type == "Gather")
+						this.orderQueue[1].data.target = msg.newentity;
+				}
 			},
 
 			"Attacked": function(msg) {
@@ -864,13 +871,23 @@ var UnitFsmSpec = {
 					var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 					this.attackTimers = cmpAttack.GetTimers(this.attackType);
 
+					// If the repeat time since the last attack hasn't elapsed,
+					// delay this attack to avoid attacking too fast.
+					var prepare = this.attackTimers.prepare;
+					if (this.lastAttacked)
+					{
+						var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+						var repeatLeft = this.lastAttacked + this.attackTimers.repeat - cmpTimer.GetTime();
+						prepare = Math.max(prepare, repeatLeft);
+					}
+
 					this.SelectAnimation("melee", false, 1.0, "attack");
-					this.SetAnimationSync(this.attackTimers.prepare, this.attackTimers.repeat);
-					this.StartTimer(this.attackTimers.prepare, this.attackTimers.repeat);
+					this.SetAnimationSync(prepare, this.attackTimers.repeat);
+					this.StartTimer(prepare, this.attackTimers.repeat);
 					// TODO: we should probably only bother syncing projectile attacks, not melee
 
-					// TODO: if .prepare is short, players can cheat by cycling attack/stop/attack
-					// to beat the .repeat time; should enforce a minimum time
+					// If using a non-default prepare time, re-sync the animation when the timer runs.
+					this.resyncAnimation = (prepare != this.attackTimers.prepare) ? true : false;
 
 					this.FaceTowardsTarget(this.order.data.target);
 				},
@@ -887,9 +904,18 @@ var UnitFsmSpec = {
 						// Check we can still reach the target
 						if (this.CheckTargetRange(target, IID_Attack, this.attackType))
 						{
+							var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+							this.lastAttacked = cmpTimer.GetTime() - msg.lateness;
+
 							this.FaceTowardsTarget(target);
 							var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 							cmpAttack.PerformAttack(this.attackType, target);
+
+							if (this.resyncAnimation)
+							{
+								this.SetAnimationSync(this.attackTimers.repeat, this.attackTimers.repeat);
+								this.resyncAnimation = false;
+							}
 							return;
 						}
 
@@ -910,7 +936,11 @@ var UnitFsmSpec = {
 
 					// See if we can switch to a new nearby enemy
 					if (this.FindNewTargets())
+					{
+						// Attempt to immediately re-enter the timer function, to avoid wasting the attack.
+						this.TimerHandler(msg.data, msg.lateness);
 						return;
+					}
 
 					// Return to our original position
 					if (this.GetStance().respondHoldGround)
@@ -1052,6 +1082,7 @@ var UnitFsmSpec = {
 					// If this order was forced, the player probably gave it, but now we've reached the target
 					//	switch to an unforced order (can be interrupted by attacks)
 					this.order.data.force = false;
+					this.order.data.autoharvest = true;
 
 					// Calculate timing based on gather rates
 					// This allows the gather rate to control how often we gather, instead of how much.
@@ -1247,12 +1278,24 @@ var UnitFsmSpec = {
 				"enter": function() {
 					var cmpHeal = Engine.QueryInterface(this.entity, IID_Heal);
 					this.healTimers = cmpHeal.GetTimers();
+
+					// If the repeat time since the last heal hasn't elapsed,
+					// delay the action to avoid healing too fast.
+					var prepare = this.healTimers.prepare;
+					if (this.lastHealed)
+					{
+						var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+						var repeatLeft = this.lastHealed + this.healTimers.repeat - cmpTimer.GetTime();
+						prepare = Math.max(prepare, repeatLeft);
+					}
+
 					this.SelectAnimation("heal", false, 1.0, "heal");
-					this.SetAnimationSync(this.healTimers.prepare, this.healTimers.repeat);
-					this.StartTimer(this.healTimers.prepare, this.healTimers.repeat);
-					// TODO if .prepare is short, players can cheat by cycling heal/stop/heal
-					// to beat the .repeat time; should enforce a minimum time
-					// see comment in ATTACKING.enter
+					this.SetAnimationSync(prepare, this.healTimers.repeat);
+					this.StartTimer(prepare, this.healTimers.repeat);
+
+					// If using a non-default prepare time, re-sync the animation when the timer runs.
+					this.resyncAnimation = (prepare != this.healTimers.prepare) ? true : false;
+
 					this.FaceTowardsTarget(this.order.data.target);
 				},
 
@@ -1268,9 +1311,18 @@ var UnitFsmSpec = {
 						// Check if we can still reach the target
 						if (this.CheckTargetRange(target, IID_Heal))
 						{
+							var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+							this.lastHealed = cmpTimer.GetTime() - msg.lateness;
+
 							this.FaceTowardsTarget(target);
 							var cmpHeal = Engine.QueryInterface(this.entity, IID_Heal);
 							cmpHeal.PerformHeal(target);
+
+							if (this.resyncAnimation)
+							{
+								this.SetAnimationSync(this.healTimers.repeat, this.healTimers.repeat);
+								this.resyncAnimation = false;
+							}
 							return;
 						}
 						// Can't reach it - try to chase after it
@@ -1434,6 +1486,9 @@ var UnitFsmSpec = {
 
 					// If this order was forced, the player probably gave it, but now we've reached the target
 					//	switch to an unforced order (can be interrupted by attacks)
+					if (this.order.data.force)
+						this.order.data.autoharvest = true;
+
 					this.order.data.force = false;
 
 					var target = this.order.data.target;
@@ -1479,7 +1534,7 @@ var UnitFsmSpec = {
 					return; // ignore other buildings
 
 				// Save the current order's data in case we need it later
-				var oldAutocontinue = this.order.data.autocontinue;
+				var oldData = this.order.data;
 
 				// Save the current state so we can continue walking if necessary
 				// FinishOrder() below will switch to IDLE if there's no order, which sets the idle animation.
@@ -1495,20 +1550,20 @@ var UnitFsmSpec = {
 
 				// If autocontinue explicitly disabled (e.g. by AI) then
 				// do nothing automatically
-				if (!oldAutocontinue)
+				if (!oldData.autocontinue)
 					return;
 
-				// If this building was e.g. a farm, we should start gathering from it
-				// if we own the building
-				if (this.CanGather(msg.data.newentity))
+				// If this building was e.g. a farm of ours, the entities that recieved
+				// the build command should start gathering from it
+				if ((oldData.force || oldData.autoharvest) && this.CanGather(msg.data.newentity))
 				{
 					this.PerformGather(msg.data.newentity, true, false);
 					return;
 				}
 
-				// If this building was e.g. a farmstead, we should look for nearby
-				// resources we can gather, if we own the building
-				if (this.CanReturnResource(msg.data.newentity, false))
+				// If this building was e.g. a farmstead of ours, entities that received
+				// the build command should look for nearby resources to gather
+				if ((oldData.force || oldData.autoharvest) && this.CanReturnResource(msg.data.newentity, false))
 				{
 					var cmpResourceDropsite = Engine.QueryInterface(msg.data.newentity, IID_ResourceDropsite);
 					var types = cmpResourceDropsite.GetTypes();
@@ -1528,7 +1583,7 @@ var UnitFsmSpec = {
 				var nearbyFoundation = this.FindNearbyFoundation();
 				if (nearbyFoundation)
 				{
-					this.AddOrder("Repair", { "target": nearbyFoundation, "autocontinue": oldAutocontinue, "force": false }, true);
+					this.AddOrder("Repair", { "target": nearbyFoundation, "autocontinue": oldData.autocontinue, "force": false }, true);
 					return;
 				}
 
@@ -1769,6 +1824,10 @@ UnitAI.prototype.Init = function()
 	this.isGarrisoned = false;
 	this.isIdle = false;
 	this.lastFormationName = "";
+
+	// For preventing increased action rate due to Stop orders or target death.
+	this.lastAttacked = undefined;
+	this.lastHealed = undefined;
 
 	this.SetStance(this.template.DefaultStance);
 };
@@ -2014,7 +2073,12 @@ UnitAI.prototype.FsmStateNameChanged = function(state)
 UnitAI.prototype.FinishOrder = function()
 {
 	if (!this.orderQueue.length)
-		error("FinishOrder called when order queue is empty");
+	{
+		var stack = new Error().stack.trimRight().replace(/^/mg, '  '); // indent each line
+		var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+		var template = cmpTemplateManager.GetCurrentTemplateName(this.entity);
+		error("FinishOrder called for entity " + this.entity + " (" + template + ") when order queue is empty\n" + stack);
+	}
 
 	this.orderQueue.shift();
 	this.order = this.orderQueue[0];
@@ -2692,6 +2756,10 @@ UnitAI.prototype.RespondToHealableEntities = function(ents)
  */
 UnitAI.prototype.ShouldAbandonChase = function(target, force, iid)
 {
+	// Forced orders shouldn't be interrupted.
+	if (force)
+		return false;
+
 	// Stop if we're in hold-ground mode and it's too far from the holding point
 	if (this.GetStance().respondHoldGround)
 	{
@@ -2700,7 +2768,7 @@ UnitAI.prototype.ShouldAbandonChase = function(target, force, iid)
 	}
 
 	// Stop if it's left our vision range, unless we're especially persistent
-	if (!force && !this.GetStance().respondChaseBeyondVision)
+	if (!this.GetStance().respondChaseBeyondVision)
 	{
 		if (!this.CheckTargetIsInVisionRange(target))
 			return true;
@@ -3330,6 +3398,11 @@ UnitAI.prototype.CanGarrison = function(target)
 
 UnitAI.prototype.CanGather = function(target)
 {
+	// The target must be a valid resource supply.
+	var cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
+	if (!cmpResourceSupply)
+		return false;
+
 	// Formation controllers should always respond to commands
 	// (then the individual units can make up their own minds)
 	if (this.IsFormationController())

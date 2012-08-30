@@ -101,11 +101,12 @@ function init(data)
 
 	left = 50;
 	getGUIObjectByName("playerName2Heading").size = left + " 26 " + (left + playerNameHeadingWidth) + " 100%"; left += playerNameHeadingWidth;
-	getGUIObjectByName("foodGatheredHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("resourceHeading").size = left + " 16 " + (left + width * 4) + " 100%";
+	getGUIObjectByName("foodGatheredHeading").size = left + " 34 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("woodGatheredHeading").size = left + " 34 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("stoneGatheredHeading").size = left + " 34 " + (left + width) + " 100%"; left += width;
+	getGUIObjectByName("metalGatheredHeading").size = left + " 34 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("vegetarianRatioHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("woodGatheredHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("stoneGatheredHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
-	getGUIObjectByName("metalGatheredHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
 	getGUIObjectByName("treasuresCollectedHeading").size = left + " 16 " + (left + width) + " 100%"; left += width;
 
 	left = 50;
@@ -143,6 +144,7 @@ function init(data)
 				playerName.caption = data.players[i+1].name;
 
 				getGUIObjectByName("civIcon"+k+"["+i+"]").sprite = "stretched:"+civData[playerState.civ].Emblem;
+				getGUIObjectByName("civIcon"+k+"["+i+"]").tooltip = civData[playerState.civ].Name;
 			}
 
 			var unitsTrained = getGUIObjectByName("unitsTrained["+i+"]");
@@ -157,10 +159,10 @@ function init(data)
 			var mapExploration = getGUIObjectByName("mapExploration["+i+"]");
 
 			var foodGathered = getGUIObjectByName("foodGathered["+i+"]");
-			var vegetarianRatio = getGUIObjectByName("vegetarianRatio["+i+"]");
 			var woodGathered = getGUIObjectByName("woodGathered["+i+"]");
 			var stoneGathered = getGUIObjectByName("stoneGathered["+i+"]");
 			var metalGathered = getGUIObjectByName("metalGathered["+i+"]");
+			var vegetarianRatio = getGUIObjectByName("vegetarianRatio["+i+"]");
 			var treasuresCollected = getGUIObjectByName("treasuresCollected["+i+"]");
 
 			var exchangedFood = getGUIObjectByName("exchangedFood["+i+"]");
@@ -194,10 +196,10 @@ function init(data)
 
 			left = 240;
 			foodGathered.size = left + " 2 " + (left + width) + " 100%"; left += width;
-			vegetarianRatio.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			woodGathered.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			stoneGathered.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			metalGathered.size = left + " 2 " + (left + width) + " 100%"; left += width;
+			vegetarianRatio.size = left + " 2 " + (left + width) + " 100%"; left += width;
 			treasuresCollected.size	= left + " 2 " + (left + width) + " 100%"; left += width;
 			size = getGUIObjectByName("playerBox2["+i+"]").size;
 			size.right = left + 10;
@@ -226,24 +228,28 @@ function init(data)
 			enemyCivCentresDestroyed.caption = playerState.statistics.enemyCivCentresDestroyed;
 			mapExploration.caption = playerState.statistics.percentMapExplored + "%";
 
-			foodGathered.caption = playerState.statistics.resourcesGathered.food;
+			const SOLD_COLOR = '[color="201 255 200"]';
+			const BOUGHT_COLOR = '[color="255 213 213"]';
+			foodGathered.caption = SOLD_COLOR + playerState.statistics.resourcesGathered.food + "[/color] / " +
+				BOUGHT_COLOR + (playerState.statistics.resourcesUsed.food - playerState.statistics.resourcesSold.food) + "[/color]";
+			woodGathered.caption = SOLD_COLOR + playerState.statistics.resourcesGathered.wood + "[/color]  / " +
+				BOUGHT_COLOR + (playerState.statistics.resourcesUsed.wood - playerState.statistics.resourcesSold.wood) + "[/color]";
+			stoneGathered.caption = SOLD_COLOR + playerState.statistics.resourcesGathered.stone + "[/color]  / " +
+				BOUGHT_COLOR + (playerState.statistics.resourcesUsed.stone - playerState.statistics.resourcesSold.stone) + "[/color]";
+			metalGathered.caption = SOLD_COLOR + playerState.statistics.resourcesGathered.metal + "[/color]  / " +
+				BOUGHT_COLOR + (playerState.statistics.resourcesUsed.metal - playerState.statistics.resourcesSold.metal) + "[/color]";
 			vegetarianRatio.caption = Math.floor(playerState.statistics.resourcesGathered.food > 0 ?
 				(playerState.statistics.resourcesGathered.vegetarianFood / playerState.statistics.resourcesGathered.food) * 100 : 0) + "%";
-			woodGathered.caption = playerState.statistics.resourcesGathered.wood;
-			stoneGathered.caption = playerState.statistics.resourcesGathered.stone;
-			metalGathered.caption = playerState.statistics.resourcesGathered.metal;
 			treasuresCollected.caption = playerState.statistics.treasuresCollected;
 
-			const SOLD_COLOR = "201 255 200";
-			const BOUGHT_COLOR = "255 213 213"
-			exchangedFood.caption = '[color="' + SOLD_COLOR + '"]+' + playerState.statistics.resourcesBought.food
-				+ '[/color] [color="' + BOUGHT_COLOR + '"]-' + playerState.statistics.resourcesSold.food + '[/color]';
-			exchangedWood.caption = '[color="' + SOLD_COLOR + '"]+' + playerState.statistics.resourcesBought.wood
-				+ '[/color] [color="' + BOUGHT_COLOR + '"]-' + playerState.statistics.resourcesSold.wood + '[/color]';
-			exchangedStone.caption = '[color="' + SOLD_COLOR + '"]+' + playerState.statistics.resourcesBought.stone
-				+ '[/color] [color="' + BOUGHT_COLOR + '"]-' + playerState.statistics.resourcesSold.stone + '[/color]';
-			exchangedMetal.caption = '[color="' + SOLD_COLOR + '"]+' + playerState.statistics.resourcesBought.metal
-				+ '[/color] [color="' + BOUGHT_COLOR + '"]-' + playerState.statistics.resourcesSold.metal + '[/color]';
+			exchangedFood.caption = SOLD_COLOR + '+' + playerState.statistics.resourcesBought.food
+				+ '[/color] ' + BOUGHT_COLOR + '-' + playerState.statistics.resourcesSold.food + '[/color]';
+			exchangedWood.caption = SOLD_COLOR + '+' + playerState.statistics.resourcesBought.wood
+				+ '[/color] ' + BOUGHT_COLOR + '-' + playerState.statistics.resourcesSold.wood + '[/color]';
+			exchangedStone.caption = SOLD_COLOR + '+' + playerState.statistics.resourcesBought.stone
+				+ '[/color] ' + BOUGHT_COLOR + '-' + playerState.statistics.resourcesSold.stone + '[/color]';
+			exchangedMetal.caption = SOLD_COLOR + '+' + playerState.statistics.resourcesBought.metal
+				+ '[/color] ' + BOUGHT_COLOR + '-' + playerState.statistics.resourcesSold.metal + '[/color]';
 			var totalBought = 0;
 			for each (var boughtAmount in playerState.statistics.resourcesBought)
 				totalBought += boughtAmount;

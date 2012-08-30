@@ -309,8 +309,13 @@ ProductionQueue.prototype.RemoveBatch = function(id)
 
 		// Refund the resource cost for this batch
 		var totalCosts = {};
+		var cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
 		for each (var r in ["food", "wood", "stone", "metal"])
+		{
 			totalCosts[r] = Math.floor(item.count * item.resources[r]);
+			if (cmpStatisticsTracker)
+				cmpStatisticsTracker.IncreaseResourceUsedCounter(r, -totalCosts[r]);
+		}
 		
 		cmpPlayer.AddResources(totalCosts);
 		

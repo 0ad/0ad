@@ -419,15 +419,24 @@ function getEntityName(template)
     return template.name.specific || template.name.generic || "???";
 }
 
-function getEntityNameWithGenericType(template)
+function getEntityNames(template)
 {
-    var name;
-    if ((template.name.specific && template.name.generic) && (template.name.specific != template.name.generic))
-	name = template.name.specific + " (" + template.name.generic + ")";
-    else
-	name = template.name.specific || template.name.generic || "???";
+	var names = [];
+	if (template.name.specific)
+	{
+		names.push(template.name.specific);
+		if (template.name.generic && names[0] != template.name.generic)
+			names.push("(" + template.name.generic + ")");
+	}
+	else if (template.name.generic)
+		names.push(template.name.generic);
 
-    return "[font=\"serif-bold-16\"]" + name + "[/font]";
+	return (names.length) ? names.join(" ") : "???";
+}
+
+function getEntityNamesFormatted(template)
+{
+	return '[font="serif-bold-16"]' + getEntityNames(template) + "[/font]";
 }
 
 function getEntityRankedName(entState)

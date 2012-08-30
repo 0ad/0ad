@@ -1,0 +1,13 @@
+!!ARBvp1.0
+
+ATTRIB position = vertex.position;
+ATTRIB uv = vertex.texcoord[0];
+
+DP4 result.position.x, state.matrix.mvp.row[0], position;
+DP4 result.position.y, state.matrix.mvp.row[1], position;
+DP4 result.position.z, state.matrix.mvp.row[2], position;
+DP4 result.position.w, state.matrix.mvp.row[3], position;
+
+MOV result.texcoord, uv;
+
+END

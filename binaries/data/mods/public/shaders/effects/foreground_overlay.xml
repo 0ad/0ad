@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<effect>
+
+    <technique>
+        <require shaders="arb"/>
+	<pass shader="arb/foreground_overlay"/>
+    </technique>
+
+    <technique>
+        <require shaders="glsl"/>
+	<pass shader="glsl/foreground_overlay"/>
+    </technique>
+
+</effect>

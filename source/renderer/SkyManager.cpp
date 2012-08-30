@@ -39,6 +39,7 @@
 
 #include "graphics/Camera.h"
 #include "graphics/LightEnv.h"
+#include "graphics/ShaderManager.h"
 #include "graphics/TextureManager.h"
 
 
@@ -140,9 +141,6 @@ void SkyManager::RenderSky()
 
 	glDepthMask( GL_FALSE );
 
-	pglActiveTextureARB(GL_TEXTURE0_ARB);
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	
@@ -158,9 +156,24 @@ void SkyManager::RenderSky()
 
 	// Distance to draw the faces at
 	const float D = 2000.0;
+	
+	CShaderProgramPtr shader;
+	CShaderTechniquePtr skytech;
+	
+	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+	{
+		skytech = g_Renderer.GetShaderManager().LoadEffect("sky_simple");
+		skytech->BeginPass();
+		shader = skytech->GetShader();
+	}
+	else
+	{
+		shader = g_Renderer.GetShaderManager().LoadProgram("fixed:dummy", CShaderDefines());
+		shader->Bind();
+	}
 
 	// Front face (positive Z)
-	m_SkyTexture[FRONT]->Bind();
+	shader->BindTexture("baseTex", m_SkyTexture[FRONT]);
 	glBegin( GL_QUADS );
 		glTexCoord2f( 0, 1 );
 		glVertex3f( -D, -D, +D );
@@ -173,7 +186,7 @@ void SkyManager::RenderSky()
 	glEnd();
 
 	// Back face (negative Z)
-	m_SkyTexture[BACK]->Bind();
+	shader->BindTexture("baseTex", m_SkyTexture[BACK]);
 	glBegin( GL_QUADS );
 		glTexCoord2f( 1, 1 );
 		glVertex3f( -D, -D, -D );
@@ -186,7 +199,7 @@ void SkyManager::RenderSky()
 	glEnd();
 
 	// Right face (negative X)
-	m_SkyTexture[RIGHT]->Bind();
+	shader->BindTexture("baseTex", m_SkyTexture[RIGHT]);
 	glBegin( GL_QUADS );
 		glTexCoord2f( 0, 1 );
 		glVertex3f( -D, -D, -D );
@@ -199,7 +212,7 @@ void SkyManager::RenderSky()
 	glEnd();
 
 	// Left face (positive X)
-	m_SkyTexture[LEFT]->Bind();
+	shader->BindTexture("baseTex", m_SkyTexture[LEFT]);
 	glBegin( GL_QUADS );
 		glTexCoord2f( 1, 1 );
 		glVertex3f( +D, -D, -D );
@@ -212,7 +225,7 @@ void SkyManager::RenderSky()
 	glEnd();
 
 	// Top face (positive Y)
-	m_SkyTexture[TOP]->Bind();
+	shader->BindTexture("baseTex", m_SkyTexture[TOP]);
 	glBegin( GL_QUADS );
 		glTexCoord2f( 1, 0 );
 		glVertex3f( +D, +D, -D );
@@ -223,6 +236,15 @@ void SkyManager::RenderSky()
 		glTexCoord2f( 1, 1 );
 		glVertex3f( +D, +D, +D );
 	glEnd();
+	
+	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+	{
+		skytech->EndPass();
+	}
+	else
+	{
+		shader->Unbind();
+	}
 
 	glPopMatrix();
 

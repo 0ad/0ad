@@ -17,6 +17,7 @@
         <texture file="structural/iber_struct.dds" name="baseTex"/>
         <texture file="structural/iber_struct_norm.png" name="normTex"/>
         <texture file="structural/ao/iber_scout_tower.png" name="aoTex"/>
+        <texture file="structural/iber_struct_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -38,5 +39,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans_ao.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>
