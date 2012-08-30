@@ -311,7 +311,12 @@ EntitySelection.prototype.addList = function(ents)
 	_setStatusBars(added, true);
 	_setMotionOverlay(added, this.motionDebugOverlay);
 	if (added.length)
-		_playSound(added[0]);
+	{
+		// Play the sound if the entity is controllable by us or Gaia-owned.
+		var owner = GetEntityState(added[0]).player;
+		if (owner == playerID || owner == 0 || g_DevSettings.controlAll)
+			_playSound(added[0]);
+	}
 
 	this.groups.add(this.toList()); // Create Selection Groups
 	this.dirty = true;
