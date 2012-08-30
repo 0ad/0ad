@@ -3,9 +3,7 @@
 
     <technique>
         <require shaders="glsl"/>
-        <pass shader="glsl/los_interp">
-		<blend src="src_alpha" dst="one_minus_src_alpha"/>
-	</pass>
+	<pass shader="glsl/los_interp"/>
     </technique>
 
 </effect>
