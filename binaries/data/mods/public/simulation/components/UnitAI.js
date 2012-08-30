@@ -3047,6 +3047,10 @@ UnitAI.prototype.PerformGather = function(target, queued, force)
  */
 UnitAI.prototype.GatherNearPosition = function(x, z, type, template, queued)
 {
+	// Remove "resource|" prefix from template name, if present.
+	if (template.indexOf("resource|") != -1)
+		template = template.slice(9);
+
 	this.AddOrder("GatherNearPosition", { "type": type, "template": template, "x": x, "z": z, "force": false }, queued);
 };
 
