@@ -1082,6 +1082,7 @@ var UnitFsmSpec = {
 					// If this order was forced, the player probably gave it, but now we've reached the target
 					//	switch to an unforced order (can be interrupted by attacks)
 					this.order.data.force = false;
+					this.order.data.autoharvest = true;
 
 					// Calculate timing based on gather rates
 					// This allows the gather rate to control how often we gather, instead of how much.
@@ -1485,6 +1486,9 @@ var UnitFsmSpec = {
 
 					// If this order was forced, the player probably gave it, but now we've reached the target
 					//	switch to an unforced order (can be interrupted by attacks)
+					if (this.order.data.force)
+						this.order.data.autoharvest = true;
+
 					this.order.data.force = false;
 
 					var target = this.order.data.target;
@@ -1530,7 +1534,7 @@ var UnitFsmSpec = {
 					return; // ignore other buildings
 
 				// Save the current order's data in case we need it later
-				var oldAutocontinue = this.order.data.autocontinue;
+				var oldData = this.order.data;
 
 				// Save the current state so we can continue walking if necessary
 				// FinishOrder() below will switch to IDLE if there's no order, which sets the idle animation.
@@ -1546,20 +1550,20 @@ var UnitFsmSpec = {
 
 				// If autocontinue explicitly disabled (e.g. by AI) then
 				// do nothing automatically
-				if (!oldAutocontinue)
+				if (!oldData.autocontinue)
 					return;
 
-				// If this building was e.g. a farm, we should start gathering from it
-				// if we own the building
-				if (this.CanGather(msg.data.newentity))
+				// If this building was e.g. a farm of ours, the entities that recieved
+				// the build command should start gathering from it
+				if ((oldData.force || oldData.autoharvest) && this.CanGather(msg.data.newentity))
 				{
 					this.PerformGather(msg.data.newentity, true, false);
 					return;
 				}
 
-				// If this building was e.g. a farmstead, we should look for nearby
-				// resources we can gather, if we own the building
-				if (this.CanReturnResource(msg.data.newentity, false))
+				// If this building was e.g. a farmstead of ours, entities that received
+				// the build command should look for nearby resources to gather
+				if ((oldData.force || oldData.autoharvest) && this.CanReturnResource(msg.data.newentity, false))
 				{
 					var cmpResourceDropsite = Engine.QueryInterface(msg.data.newentity, IID_ResourceDropsite);
 					var types = cmpResourceDropsite.GetTypes();
@@ -1579,7 +1583,7 @@ var UnitFsmSpec = {
 				var nearbyFoundation = this.FindNearbyFoundation();
 				if (nearbyFoundation)
 				{
-					this.AddOrder("Repair", { "target": nearbyFoundation, "autocontinue": oldAutocontinue, "force": false }, true);
+					this.AddOrder("Repair", { "target": nearbyFoundation, "autocontinue": oldData.autocontinue, "force": false }, true);
 					return;
 				}
 
