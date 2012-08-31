@@ -19,8 +19,10 @@
 
 #include "AmbientSound.h"
 
+#include "lib/config2.h"
 #include "lib/utf8.h"
 #include "maths/Vector3D.h"
+#include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 
 #include "soundmanager/SoundManager.h"
@@ -32,31 +34,40 @@ JAmbientSound::JAmbientSound(const VfsPath& pathname) : m_FileName(pathname)
 // start playing the sound, all ambient sounds loop
 bool JAmbientSound::Play(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
-	ISoundItem*	aSnd = g_SoundManager->LoadItem(m_FileName);
+#if CONFIG2_AUDIO
+	if ( g_SoundManager ) {
+		ISoundItem*	aSnd = g_SoundManager->LoadItem(m_FileName);
 
-	if (aSnd)
-		aSnd->PlayAsAmbient();
-	else
-		debug_printf(L"sound item could not be loaded to play: %ls\n", m_FileName.string().c_str());
-
+		if (aSnd)
+			aSnd->PlayAsAmbient();
+		else
+			LOGERROR(L"sound item could not be loaded to play: %ls\n", m_FileName.string().c_str());
+	}
+#endif // CONFIG2_AUDIO
 	return true;
 }
 
 // start playing the sound, all ambient sounds loop
 bool JAmbientSound::Loop(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
-	ISoundItem*	aSnd = g_SoundManager->LoadItem(m_FileName);
+#if CONFIG2_AUDIO
+	if ( g_SoundManager ) {
+		ISoundItem*	aSnd = g_SoundManager->LoadItem(m_FileName);
 
-	if (aSnd)
-		aSnd->PlayAsAmbient();
-	else
-		debug_printf(L"sound item could not be loaded to loop: %ls\n", m_FileName.string().c_str());
-
+		if (aSnd)
+			aSnd->PlayAsAmbient();
+		else
+			LOGERROR(L"sound item could not be loaded to loop: %ls\n", m_FileName.string().c_str());
+	}
+#endif // CONFIG2_AUDIO
 	return true;
 }
 bool JAmbientSound::Free(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
-	g_SoundManager->SetAmbientItem(0L);
+#if CONFIG2_AUDIO
+	if ( g_SoundManager )
+		g_SoundManager->SetAmbientItem(0L);
+#endif // CONFIG2_AUDIO
 
 	return true;
 }
@@ -90,11 +101,12 @@ JSBool JAmbientSound::Construct(JSContext* cx, uintN UNUSED(argc), jsval* vp)
 	CStrW filename;
 	if (! ToPrimitive<CStrW>(cx, JS_ARGV(cx, vp)[0], filename))
 		return JS_FALSE;
-	
+
 	JAmbientSound* newObject = new JAmbientSound(filename);
 	newObject->m_EngineOwned = false;
 
 	JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(newObject->GetScript()));
-	
+
 	return JS_TRUE;
 }
+

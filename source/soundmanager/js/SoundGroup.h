@@ -52,6 +52,7 @@ Example SoundGroup.xml
 #ifndef INCLUDED_SOUNDGROUP_H
 #define INCLUDED_SOUNDGROUP_H
 
+#include "lib/config2.h"
 #include "lib/file/vfs/vfs_path.h"
 
 #include <vector>
@@ -109,7 +110,9 @@ private:
 
 	size_t m_index;  // index of the next sound to play
 		
+#if CONFIG2_AUDIO
 	std::vector<ISoundItem*> snd_group;  // we store the handles so we can load now and play later
+#endif
 	std::vector<std::wstring> filenames; // we need the filenames so we can reload when necessary.
 
 	VfsPath m_filepath; // the file path for the list of sound file resources
@@ -134,3 +137,4 @@ private:
 };
 
 #endif //#ifndef INCLUDED_SOUNDGROUP_H
+

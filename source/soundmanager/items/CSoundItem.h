@@ -18,9 +18,12 @@
 #ifndef INCLUDED_CSOUNDITEM_H
 #define INCLUDED_CSOUNDITEM_H
 
+#include "lib/config2.h"
+
+#if CONFIG2_AUDIO
+
 #include "CSoundBase.h"
 #include "soundmanager/data/SoundData.h"
-
 
 class CSoundItem : public CSoundBase
 {
@@ -34,4 +37,7 @@ public:
 
 };
 
+#endif // CONFIG2_AUDIO
+
 #endif // INCLUDED_CSOUNDITEM_H
+

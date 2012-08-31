@@ -18,6 +18,10 @@
 #ifndef INCLUDED_CSTREAMITEM_H
 #define INCLUDED_CSTREAMITEM_H
 
+#include "lib/config2.h"
+
+#if CONFIG2_AUDIO
+
 #include "soundmanager/data/SoundData.h"
 #include "CSoundBase.h"
 
@@ -35,4 +39,7 @@ protected:
 
 };
 
+#endif // CONFIG2_AUDIO
+
 #endif // INCLUDED_CSTREAMITEM_H
+

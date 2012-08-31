@@ -32,6 +32,7 @@
 #ifndef INCLUDED_JSOUND
 #define INCLUDED_JSOUND
 
+#include "lib/config2.h"
 #include "scripting/ScriptableObject.h"
 #include "soundmanager/items/ISoundItem.h"
 
@@ -61,7 +62,10 @@ public:
 	static void ScriptingInit();
 
 protected:
+#if CONFIG2_AUDIO
 	ISoundItem* m_SndItem;
+#endif
 };
 
 #endif	// #ifndef INCLUDED_JSOUND
+

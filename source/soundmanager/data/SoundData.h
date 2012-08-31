@@ -18,10 +18,12 @@
 #ifndef INCLUDED_SOUNDDATA_H
 #define INCLUDED_SOUNDDATA_H
 
+#include "lib/config2.h"
+
+#if CONFIG2_AUDIO
+
 #include "lib/external_libraries/openal.h"
 #include "lib/file/vfs/vfs_path.h"
-#include "lib/os_path.h"
-
 #include <string>
 #include <map>
 
@@ -61,4 +63,7 @@ protected:
 
 };
 
+#endif // CONFIG2_AUDIO
+
 #endif // INCLUDED_SOUNDDATA_H
+

@@ -18,6 +18,7 @@
 
 #include "SoundPlayer.h"
 
+#include "lib/config2.h"
 #include "lib/utf8.h"
 #include "maths/Vector3D.h"
 #include "ps/Filesystem.h"
@@ -34,15 +35,20 @@ JSoundPlayer::~JSoundPlayer()
 
 bool JSoundPlayer::StartMusic(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
-	g_SoundManager->SetMusicEnabled(true);
-
+#if CONFIG2_AUDIO
+	if ( g_SoundManager )
+		g_SoundManager->SetMusicEnabled(true);
+#endif
 	return true;
 }
 
 // request the sound be played until free() is called. returns immediately.
 bool JSoundPlayer::StopMusic(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
-	g_SoundManager->SetMusicEnabled(false);
+#if CONFIG2_AUDIO
+	if ( g_SoundManager )
+		g_SoundManager->SetMusicEnabled(false);
+#endif
 
 	return true;
 }
@@ -61,7 +67,7 @@ JSBool JSoundPlayer::Construct(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval*
 	JSoundPlayer* newObject = new JSoundPlayer();
 	newObject->m_EngineOwned = false;
 	JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(newObject->GetScript()));
-	
+
 	return JS_TRUE;
 }
 

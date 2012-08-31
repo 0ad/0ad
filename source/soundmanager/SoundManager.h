@@ -18,11 +18,17 @@
 #ifndef INCLUDED_SOUNDMANAGER_H
 #define INCLUDED_SOUNDMANAGER_H
 
-#include "soundmanager/items/ISoundItem.h"
+#include "lib/config2.h"
+
+#if CONFIG2_AUDIO
+
 #include "lib/file/vfs/vfs_path.h"
+#include "soundmanager/items/ISoundItem.h"
 
 #include <vector>
 #include <map>
+
+#define AL_CHECK CSoundManager::al_check(__func__, __LINE__);
 
 typedef std::vector<ISoundItem*> ItemsList;
 
@@ -45,6 +51,7 @@ protected:
 	long m_BufferSize;
 	int m_BufferCount;
 	bool m_MusicEnabled;
+	bool m_SoundEnabled;
 
 public:
 	CSoundManager();
@@ -53,8 +60,14 @@ public:
 	ISoundItem* LoadItem(const VfsPath& itemPath);
 
 	static void ScriptingInit();
+	static void CreateSoundManager();
+	static void SetEnabled(bool doEnable);
+	
+	static void al_ReportError(ALenum err, const char* caller, int line);
+	static void al_check(const char* caller, int line);
 
 	void SetMusicEnabled (bool isEnabled);
+	void setSoundEnabled( bool enabled );
 
 	ISoundItem* ItemFromWAV(VfsPath& fname);
 	ISoundItem* ItemFromOgg(VfsPath& fname);
@@ -78,14 +91,25 @@ public:
 	void SetAmbientGain(float gain);
 	void SetActionGain(float gain);
 	
-	void SetEnabled(bool doEnable);
 protected:
 	void InitListener();
 	virtual Status AlcInit();
 
 };
 
+#else // !CONFIG2_AUDIO
+
+#define AL_CHECK
+
+class CSoundManager
+{
+public:
+	static void ScriptingInit();
+};
+#endif // !CONFIG2_AUDIO
+
+
 extern CSoundManager*  g_SoundManager;
 
-
 #endif // INCLUDED_SOUNDMANAGER_H
+

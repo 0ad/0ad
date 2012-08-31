@@ -41,6 +41,7 @@
 
 #include <algorithm>
 
+
 extern CGame *g_Game;
 
 #define PI 3.14126f
@@ -94,10 +95,12 @@ CSoundGroup::~CSoundGroup()
 	ReleaseGroup();
 }
 
+#if CONFIG2_AUDIO
 static float RandFloat(float min, float max)
 {
 	return float(rand(min*100.0f, max*100.0f) / 100.0f);
 }
+#endif // CONFIG2_AUDIO
 
 float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, float& itemRollOff)
 {
@@ -155,43 +158,50 @@ float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, f
 
 void CSoundGroup::UploadPropertiesAndPlay(int theIndex, const CVector3D& position)
 {
-	bool	isOnscreen;
-	ALfloat	initialRolllOff = 0.02f;
-	ALfloat	itemRollOff = initialRolllOff;
+#if CONFIG2_AUDIO
+	if ( g_SoundManager ) {
+		bool	isOnscreen;
+		ALfloat	initialRolllOff = 0.02f;
+		ALfloat	itemRollOff = initialRolllOff;
 
-	float 	offSet = RadiansOffCenter(position, isOnscreen, itemRollOff);
+		float 	offSet = RadiansOffCenter(position, isOnscreen, itemRollOff);
 
-	if (isOnscreen || TestFlag(eDistanceless) || TestFlag(eOmnipresent))
-	{
-		if (snd_group.size() == 0)
-			Reload();
-
-		ISoundItem* hSound = snd_group[theIndex];
-		CVector3D origin = g_Game->GetView()->GetCamera()->GetOrientation().GetTranslation();
-		float sndDist = origin.Y;
-
-		if (!TestFlag(eOmnipresent))
+		if (isOnscreen || TestFlag(eDistanceless) || TestFlag(eOmnipresent))
 		{
-			hSound->SetLocation(CVector3D((sndDist * sin(offSet)), 0, sndDist * cos(offSet)));
-			if (TestFlag(eDistanceless))
-				hSound->SetRollOff(initialRolllOff);
+			if (snd_group.size() == 0)
+				Reload();
+
+			ISoundItem* hSound = snd_group[theIndex];
+			CVector3D origin = g_Game->GetView()->GetCamera()->GetOrientation().GetTranslation();
+			float sndDist = origin.Y;
+
+			if (!TestFlag(eOmnipresent))
+			{
+				hSound->SetLocation(CVector3D((sndDist * sin(offSet)), 0, sndDist * cos(offSet)));
+				if (TestFlag(eDistanceless))
+					hSound->SetRollOff(initialRolllOff);
+				else
+					hSound->SetRollOff(itemRollOff);
+			}
+
+			if (TestFlag(eRandPitch))
+				hSound->SetPitch(RandFloat(m_PitchLower, m_PitchUpper));
 			else
-				hSound->SetRollOff(itemRollOff);
+				hSound->SetPitch(m_Pitch);
+
+			ALfloat theGain = m_Gain;
+			if (TestFlag(eRandGain))
+				theGain = RandFloat(m_GainLower, m_GainUpper);
+
+			hSound->SetCone(m_ConeInnerAngle, m_ConeOuterAngle, m_ConeOuterGain);
+
+			g_SoundManager->PlayGroupItem(hSound, theGain);
 		}
-
-		if (TestFlag(eRandPitch))
-			hSound->SetPitch(RandFloat(m_PitchLower, m_PitchUpper));
-		else
-			hSound->SetPitch(m_Pitch);
-
-		ALfloat theGain = m_Gain;
-		if (TestFlag(eRandGain))
-			theGain = RandFloat(m_GainLower, m_GainUpper);
-
-		hSound->SetCone(m_ConeInnerAngle, m_ConeOuterAngle, m_ConeOuterGain);
-
-		g_SoundManager->PlayGroupItem(hSound, theGain);
 	}
+#else // !CONFIG2_AUDIO
+	UNUSED2(theIndex);
+	UNUSED2(position);
+#endif // !CONFIG2_AUDIO
 }
 
 
@@ -216,30 +226,36 @@ void CSoundGroup::Reload()
 {
 	m_index = 0; // reset our index
 
+#if CONFIG2_AUDIO
 	snd_group.clear();
 
-	for (size_t i = 0; i < filenames.size(); i++)
-	{
-		VfsPath  thePath =  m_filepath/filenames[i];
-		ISoundItem* temp = g_SoundManager->LoadItem(thePath);
+	if ( g_SoundManager ) {
+		for (size_t i = 0; i < filenames.size(); i++)
+		{
+			VfsPath  thePath =  m_filepath/filenames[i];
+			ISoundItem* temp = g_SoundManager->LoadItem(thePath);
 
-		if (temp == NULL)
-			HandleError(L"error loading sound", thePath, ERR::FAIL);
-		else
-			snd_group.push_back(temp);
+			if (temp == NULL)
+				HandleError(L"error loading sound", thePath, ERR::FAIL);
+			else
+				snd_group.push_back(temp);
+		}
+
+		if (TestFlag(eRandOrder))
+			random_shuffle(snd_group.begin(), snd_group.end());	
 	}
-
-	if (TestFlag(eRandOrder))
-		random_shuffle(snd_group.begin(), snd_group.end());
+#endif // CONFIG2_AUDIO
 }
 
 void CSoundGroup::ReleaseGroup()
 {
+#if CONFIG2_AUDIO
 	for (size_t i = 0; i < snd_group.size(); i++)
 	{
 		snd_group[i]->FadeAndDelete(0.2);
 	}
 	snd_group.clear();
+#endif // CONFIG2_AUDIO
 }
 
 void CSoundGroup::Update(float UNUSED(TimeSinceLastFrame))
@@ -386,3 +402,4 @@ bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 
 	return true;
 }
+
