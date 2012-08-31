@@ -19,6 +19,11 @@
     <Type>food</Type>
     <Colour r="115" g="70" b="30"/>
   </Minimap>
+  <ResourceGatherer>
+    <Rates>
+      <treasure disable=""/>
+    </Rates>
+  </ResourceGatherer>
   <UnitAI>
     <RoamDistance>8.0</RoamDistance>
     <FleeDistance>32.0</FleeDistance>
