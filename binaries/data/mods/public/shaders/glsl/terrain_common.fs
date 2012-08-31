@@ -207,7 +207,7 @@ void main()
       specPow = effectSettings.y;
     #else
       specCol = specularColor;
-      specPow = specularPower.x;
+      specPow = specularPower;
     #endif
     specular.rgb = sunColor * specCol * pow(max(0.0, dot(normalize(normal), v_half)), specPow);
   #endif
