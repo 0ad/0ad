@@ -18,6 +18,7 @@
 #include "precompiled.h"
 
 #include "lib/app_hooks.h"
+#include "lib/config2.h"
 #include "lib/input.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
@@ -190,8 +191,10 @@ void Render()
 {
 	PROFILE3("render");
 
-	g_SoundManager->IdleTask();
-
+#if CONFIG2_AUDIO
+	if (g_SoundManager)
+		g_SoundManager->IdleTask();
+#endif
 	ogl_WarnIfError();
 
 	g_Profiler2.RecordGPUFrameStart();
@@ -685,7 +688,10 @@ void Shutdown(int UNUSED(flags))
 	// resource
 	// first shut down all resource owners, and then the handle manager.
 	TIMER_BEGIN(L"resource modules");
-		delete g_SoundManager;
+#if CONFIG2_AUDIO
+		if (g_SoundManager)
+			delete g_SoundManager;
+#endif
 
 		g_VFS.reset();
 
@@ -862,7 +868,10 @@ void Init(const CmdLineArgs& args, int UNUSED(flags))
 	g_ScriptStatsTable = new CScriptStatsTable;
 	g_ProfileViewer.AddRootTable(g_ScriptStatsTable);
 
-	g_SoundManager = new CSoundManager();
+
+#if CONFIG2_AUDIO
+	CSoundManager::CreateSoundManager();
+#endif
 
 	InitScripting();	// before GUI
 
@@ -926,7 +935,9 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 		// speed up startup by disabling all sound
 		// (OpenAL init will be skipped).
 		// must be called before first snd_open.
-		g_SoundManager->SetEnabled(false);
+#if CONFIG2_AUDIO
+		CSoundManager::SetEnabled(false);
+#endif
 	}
 
 	g_GUI = new CGUIManager(g_ScriptingHost.GetScriptInterface());

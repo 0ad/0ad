@@ -84,6 +84,7 @@ static void LoadGlobals()
 	CFG_GET_USER_VAL("silhouettes", Bool, g_Silhouettes);
 	CFG_GET_USER_VAL("showsky", Bool, g_ShowSky);
 
+#if CONFIG2_AUDIO
 	float gain = 0.5f;
 	float musicGain = 0.5f;
 	float ambientGain = 0.5f;
@@ -99,12 +100,15 @@ static void LoadGlobals()
 	CFG_GET_USER_VAL("sound.bufferCount", Int, bufferCount);
 	CFG_GET_USER_VAL("sound.bufferSize", UnsignedLong, bufferSize);
 
-	g_SoundManager->SetMasterGain(gain);
-	g_SoundManager->SetMusicGain(musicGain);
-	g_SoundManager->SetAmbientGain(ambientGain);
-	g_SoundManager->SetActionGain(actionGain);
+	if ( g_SoundManager ) {
+		g_SoundManager->SetMasterGain(gain);
+		g_SoundManager->SetMusicGain(musicGain);
+		g_SoundManager->SetAmbientGain(ambientGain);
+		g_SoundManager->SetActionGain(actionGain);
 
-	g_SoundManager->SetMemoryUsage(bufferSize, bufferCount);
+		g_SoundManager->SetMemoryUsage(bufferSize, bufferCount);
+	}
+#endif // CONFIG2_AUDIO
 }
 
 

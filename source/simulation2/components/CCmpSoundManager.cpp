@@ -20,6 +20,7 @@
 #include "simulation2/system/Component.h"
 #include "ICmpSoundManager.h"
 
+#include "lib/config2.h"
 #include "ps/CLogger.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpPosition.h"
@@ -36,7 +37,9 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(SoundManager)
 
+#if CONFIG2_AUDIO
 	std::map<std::wstring, CSoundGroup*> m_SoundGroups;
+#endif
 
 	static std::string GetSchema()
 	{
@@ -49,9 +52,11 @@ public:
 
 	virtual void Deinit()
 	{
+#if CONFIG2_AUDIO
 		for (std::map<std::wstring, CSoundGroup*>::iterator it = m_SoundGroups.begin(); it != m_SoundGroups.end(); ++it)
 			delete it->second;
 		m_SoundGroups.clear();
+#endif // CONFIG2_AUDIO
 	}
 
 	virtual void Serialize(ISerializer& UNUSED(serialize))
@@ -71,6 +76,7 @@ public:
 		{
 		case MT_Update:
 		{
+#if CONFIG2_AUDIO
 			// Update all the sound groups
 			// TODO: is it sensible to do this once per simulation turn, not once per renderer frame
 			// or on some other timer?
@@ -79,6 +85,9 @@ public:
 			for (std::map<std::wstring, CSoundGroup*>::iterator it = m_SoundGroups.begin(); it != m_SoundGroups.end(); ++it)
 				if (it->second)
 					it->second->Update(t);
+#else // !CONFIG2_AUDIO
+			UNUSED2(msg);
+#endif // !CONFIG2_AUDIO
 			break;
 		}
 		}
@@ -86,6 +95,7 @@ public:
 
 	virtual void PlaySoundGroup(std::wstring name, entity_id_t source)
 	{
+#if CONFIG2_AUDIO
 		// Make sure the sound group is loaded
 		CSoundGroup* group;
 		if (m_SoundGroups.find(name) == m_SoundGroups.end())
@@ -127,7 +137,13 @@ public:
 
 			group->PlayNext(sourcePos);
 		}
+#else // !CONFIG2_AUDIO
+		UNUSED2(name);
+		UNUSED2(source);
+#endif // !CONFIG2_AUDIO
 	}
 };
 
 REGISTER_COMPONENT_TYPE(SoundManager)
+
+

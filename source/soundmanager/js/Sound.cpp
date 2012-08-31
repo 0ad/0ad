@@ -19,6 +19,7 @@
 
 #include "Sound.h"
 
+#include "lib/config2.h"
 #include "lib/utf8.h"
 #include "maths/Vector3D.h"
 #include "ps/Filesystem.h"
@@ -27,26 +28,36 @@
 
 JSound::JSound(const VfsPath& pathname)
 {
-	m_SndItem = g_SoundManager->LoadItem(pathname);
+#if CONFIG2_AUDIO
+	if ( g_SoundManager )
+		m_SndItem = g_SoundManager->LoadItem(pathname);
+#else // !CONFIG2_AUDIO
+	UNUSED2(pathname);
+#endif // !CONFIG2_AUDIO
 }
 
 JSound::~JSound()
 {
+#if CONFIG2_AUDIO
 	if (m_SndItem)
 	{
 		m_SndItem->FadeAndDelete(0.2);
 		m_SndItem = 0;
 	}
+#endif // CONFIG2_AUDIO
 }
 
 bool JSound::ClearSoundItem()
 {
+#if CONFIG2_AUDIO
 	m_SndItem = 0L;
+#endif
 	return true;
 }
 
 bool JSound::SetGain(JSContext* cx, uintN UNUSED(argc), jsval* argv)
 {
+#if CONFIG2_AUDIO
 	if (! m_SndItem)
 		return false;
 
@@ -54,12 +65,17 @@ bool JSound::SetGain(JSContext* cx, uintN UNUSED(argc), jsval* argv)
 	if (! ToPrimitive<float>(cx, argv[0], gain))
 		return false;
 	
-	m_SndItem->SetGain(gain);	
+	m_SndItem->SetGain(gain);
+#else // !CONFIG2_AUDIO
+	UNUSED2(cx);
+	UNUSED2(argv);
+#endif // !CONFIG2_AUDIO
 	return true;
 }
 
 bool JSound::SetPitch(JSContext* cx, uintN UNUSED(argc), jsval* argv)
 {
+#if CONFIG2_AUDIO
 	if (! m_SndItem)
 		return false;
 
@@ -68,11 +84,16 @@ bool JSound::SetPitch(JSContext* cx, uintN UNUSED(argc), jsval* argv)
 		return false;
 	
 	m_SndItem->SetPitch(pitch);
+#else // !CONFIG2_AUDIO
+	UNUSED2(cx);
+	UNUSED2(argv);
+#endif // CONFIG2_AUDIO
 	return true;
 }
 
 bool JSound::SetPosition(JSContext* cx, uintN argc, jsval* argv)
 {
+#if CONFIG2_AUDIO
 	if (! m_SndItem)
 		return false;
 	
@@ -84,13 +105,18 @@ bool JSound::SetPosition(JSContext* cx, uintN argc, jsval* argv)
 		return false;
 
 	m_SndItem->SetLocation(pos);
-	
+#else // !CONFIG2_AUDIO
+	UNUSED2(cx);
+	UNUSED2(argc);
+	UNUSED2(argv);
+#endif // !CONFIG2_AUDIO
 	return true;
 }
 
 
 bool JSound::Fade(JSContext* cx, uintN UNUSED(argc), jsval* argv)
 {
+#if CONFIG2_AUDIO
 	if (! m_SndItem)
 		return false;
 	
@@ -104,38 +130,44 @@ bool JSound::Fade(JSContext* cx, uintN UNUSED(argc), jsval* argv)
 	
 	m_SndItem->SetGain(initial_gain);
 	m_SndItem->FadeToIn(final_gain, length);
-
+#else // !CONFIG2_AUDIO
+	UNUSED2(cx);
+	UNUSED2(argv);
+#endif // !CONFIG2_AUDIO
 	return true;
 }
 
 bool JSound::Play(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
+#if CONFIG2_AUDIO
 	if (! m_SndItem)
 		return false;
 
 	m_SndItem->Play();
-
+#endif // CONFIG2_AUDIO
 	return true;
 }
 
 bool JSound::Loop(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
+#if CONFIG2_AUDIO
 	if (! m_SndItem)
 		return false;
 
 	m_SndItem->PlayLoop();
-
+#endif // CONFIG2_AUDIO
 	return true;
 }
 
 bool JSound::Free(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
+#if CONFIG2_AUDIO
 	if (m_SndItem)
 	{
 		m_SndItem->FadeAndDelete(0.2);
 		m_SndItem = 0;
 	}
-
+#endif // CONFIG2_AUDIO
 	return true;
 }
 
@@ -155,7 +187,11 @@ void JSound::ScriptingInit()
 
 CStr JSound::ToString(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
+#if CONFIG2_AUDIO
 	return "[object Sound: " + (m_SndItem ? m_SndItem->GetName() : "(null)") + "]";
+#else // !CONFIG2_AUDIO
+	return "[object Sound: audio disabled]";
+#endif // !CONFIG2_AUDIO
 }
 
 JSBool JSound::Construct(JSContext* cx, uintN UNUSED(argc), jsval* vp)
@@ -169,6 +205,7 @@ JSBool JSound::Construct(JSContext* cx, uintN UNUSED(argc), jsval* vp)
 	JSound* newObject = new JSound(filename);
 	newObject->m_EngineOwned = false;
 	JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(newObject->GetScript()));
-	
+
 	return JS_TRUE;
 }
+

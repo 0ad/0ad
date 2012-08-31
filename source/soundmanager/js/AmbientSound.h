@@ -47,3 +47,4 @@ protected:
 };
 
 #endif	// #ifndef INCLUDED_JAMBIENTSOUND
+

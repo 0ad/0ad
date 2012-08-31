@@ -593,11 +593,7 @@ var UnitFsmSpec = {
 			},
 
 			"MoveCompleted": function(msg) {
-				if (this.FinishOrder())
-					return;
-
-				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-				cmpFormation.Disband();
+				this.FinishOrder();
 			},
 		},
 
@@ -674,9 +670,13 @@ var UnitFsmSpec = {
 				this.SelectAnimation("move");
 			},
 
-			// (We stay in this state even if we're already in position
-			// and no longer moving, because the formation controller might
-			// move and we'll automatically start chasing after it again)
+			// Occurs when the unit has reached its destination and the controller
+			// is done moving. The controller is notified, and will disband the
+			// formation if all units are in formation and no orders remain.
+			"MoveCompleted": function(msg) {
+				var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
+				cmpFormation.SetInPosition(this.entity);
+			},
 		},
 	},
 

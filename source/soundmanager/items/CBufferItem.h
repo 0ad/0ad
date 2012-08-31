@@ -18,6 +18,10 @@
 #ifndef INCLUDED_CBUFFERITEM_H
 #define INCLUDED_CBUFFERITEM_H
 
+#include "lib/config2.h"
+
+#if CONFIG2_AUDIO
+
 #include "CSoundBase.h"
 
 class CBufferItem : public CSoundBase
@@ -35,5 +39,7 @@ protected:
 	
 };
 
+#endif // CONFIG2_AUDIO
 
 #endif // INCLUDED_CBUFFERITEM_H
+

@@ -1272,17 +1272,8 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 			if (validPlacement && entInfo.controlGroups && entInfo.controlGroups.length > 1)
 				validPlacement = cmpObstruction.CheckDuplicateFoundation();
 		}
-		
+
 		allPiecesValid = allPiecesValid && validPlacement;
-		
-		var cmpVisual = Engine.QueryInterface(ent, IID_Visual);
-		if (cmpVisual)
-		{
-			if (!allPiecesValid)
-				cmpVisual.SetShadingColour(1.4, 0.4, 0.4, 1);
-			else
-				cmpVisual.SetShadingColour(1, 1, 1, 1);
-		}
 		
 		// The requirement below that all pieces so far have to have valid positions, rather than only this single one,
 		// ensures that no more foundations will be placed after a first invalidly-positioned piece. (It is possible
@@ -1316,7 +1307,21 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 			result.cost.population += tplData.cost.population;
 			result.cost.populationBonus += tplData.cost.populationBonus;
 		}
-		
+
+		var canAfford = true;
+		var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
+		if (cmpPlayer && cmpPlayer.GetNeededResources(result.cost))
+			var canAfford = false;
+
+		var cmpVisual = Engine.QueryInterface(ent, IID_Visual);
+		if (cmpVisual)
+		{
+			if (!allPiecesValid || !canAfford)
+				cmpVisual.SetShadingColour(1.4, 0.4, 0.4, 1);
+			else
+				cmpVisual.SetShadingColour(1, 1, 1, 1);
+		}
+
 		entPool.numUsed++;
 	}
 	

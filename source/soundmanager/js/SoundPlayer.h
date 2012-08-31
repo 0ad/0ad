@@ -56,3 +56,4 @@ protected:
 };
 
 #endif	// #ifndef INCLUDED_JSOUNDPLAYER
+

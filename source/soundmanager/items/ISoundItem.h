@@ -18,6 +18,10 @@
 #ifndef INCLUDED_ISOUNDITEM_H
 #define INCLUDED_ISOUNDITEM_H
 
+#include "lib/config2.h"
+
+#if CONFIG2_AUDIO
+
 #include "lib/external_libraries/openal.h"
 #include "maths/Vector3D.h"
 
@@ -56,5 +60,7 @@ public:
 	virtual void SetRollOff(ALfloat gain) = 0;
 };
 
+#endif // CONFIG2_AUDIO
 
 #endif // INCLUDED_ISOUNDITEM_H
+

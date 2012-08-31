@@ -18,11 +18,16 @@
 #ifndef INCLUDED_CSOUNDBASE_H
 #define INCLUDED_CSOUNDBASE_H
 
+#include "lib/config2.h"
+
+#if CONFIG2_AUDIO
+
 #include "lib/external_libraries/openal.h"
 #include "soundmanager/items/ISoundItem.h"
 #include "soundmanager/data/SoundData.h"
 
 #include <string>
+
 
 class CSoundBase : public ISoundItem
 {
@@ -86,4 +91,7 @@ protected:
 	
 };
 
+#endif // CONFIG2_AUDIO
+
 #endif // INCLUDED_CSOUNDBASE_H
+

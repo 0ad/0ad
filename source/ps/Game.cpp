@@ -24,6 +24,7 @@
 #include "graphics/ParticleManager.h"
 #include "graphics/UnitManager.h"
 #include "gui/GUIManager.h"
+#include "lib/config2.h"
 #include "lib/timer.h"
 #include "network/NetClient.h"
 #include "network/NetServer.h"
@@ -294,7 +295,10 @@ bool CGame::Update(const double deltaRealTime, bool doInterpolate)
 	if (doInterpolate)
 	{
 		m_TurnManager->Interpolate(deltaSimTime, deltaRealTime);
-		g_SoundManager->IdleTask();
+#if CONFIG2_AUDIO
+		if ( g_SoundManager )
+			g_SoundManager->IdleTask();
+#endif
 	}
 	
 	// TODO: maybe we should add a CCmpParticleInterface that passes the interpolation commands

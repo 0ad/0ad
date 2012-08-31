@@ -19,9 +19,12 @@
 
 #include "CSoundBase.h"
 
+#if CONFIG2_AUDIO
+
 #include "lib/timer.h"
 #include "soundmanager/SoundManager.h"
 #include "soundmanager/data/SoundData.h"
+#include "ps/CLogger.h"
 
 #include <iostream>
 
@@ -73,12 +76,17 @@ void CSoundBase::ResetFade()
 
 void CSoundBase::SetGain(ALfloat gain)
 {
+	AL_CHECK
+
 	alSourcef(m_ALSource, AL_GAIN, gain);
+
+	AL_CHECK
 }
 
 void CSoundBase::SetRollOff(ALfloat rolls)
 {
    alSourcef(m_ALSource, AL_ROLLOFF_FACTOR, rolls);
+	AL_CHECK
 }
 
 void CSoundBase::EnsurePlay()
@@ -89,19 +97,25 @@ void CSoundBase::EnsurePlay()
 
 void CSoundBase::SetCone(ALfloat innerCone, ALfloat outerCone, ALfloat coneGain)
 {
-	alSourcef(m_ALSource, innerCone, AL_CONE_INNER_ANGLE);
-	alSourcef(m_ALSource, outerCone, AL_CONE_OUTER_ANGLE);
-	alSourcef(m_ALSource, coneGain, AL_CONE_OUTER_GAIN);
+	AL_CHECK	
+	alSourcef(m_ALSource, AL_CONE_INNER_ANGLE, innerCone);
+	AL_CHECK
+	alSourcef(m_ALSource, AL_CONE_OUTER_ANGLE, outerCone);
+	AL_CHECK
+	alSourcef(m_ALSource, AL_CONE_OUTER_GAIN, coneGain);
+	AL_CHECK
 }
 
 void CSoundBase::SetPitch(ALfloat pitch)
 {
 	alSourcef(m_ALSource, AL_PITCH, pitch);
+	AL_CHECK
 }
 
 void CSoundBase::SetDirection(const CVector3D& direction)
 {
 	alSourcefv(m_ALSource, AL_DIRECTION, direction.GetFloatArray());
+	AL_CHECK
 }
 
 bool CSoundBase::InitOpenAL()
@@ -109,11 +123,10 @@ bool CSoundBase::InitOpenAL()
 	alGetError(); /* clear error */
 	alGenSources(1, &m_ALSource);
 	long anErr = alGetError();
-	if (anErr != AL_NO_ERROR) 
-	{
-		printf("- Error creating sources %ld !!\n", anErr);
-	}
-	else
+
+	AL_CHECK
+
+	if (anErr == AL_NO_ERROR) 
 	{
 		ALfloat source0Pos[]={ -2.0, 0.0, 0.0};
 		ALfloat source0Vel[]={ 0.0, 0.0, 0.0};
@@ -123,6 +136,8 @@ bool CSoundBase::InitOpenAL()
 		alSourcefv(m_ALSource,AL_POSITION,source0Pos);
 		alSourcefv(m_ALSource,AL_VELOCITY,source0Vel);
 		alSourcei(m_ALSource,AL_LOOPING,AL_FALSE);
+		AL_CHECK
+
 		return true;
 	}
 	return false;
@@ -132,6 +147,7 @@ bool CSoundBase::IsPlaying()
 {
 	int proc_state;
 	alGetSourceiv(m_ALSource, AL_SOURCE_STATE, &proc_state);
+	AL_CHECK
 
 	return (proc_state == AL_PLAYING);
 }
@@ -149,10 +165,12 @@ bool CSoundBase::IdleTask()
 void CSoundBase::SetLocation (const CVector3D& position)
 {
 	alSourcefv(m_ALSource,AL_POSITION, position.GetFloatArray());
+	AL_CHECK
 }
 
 bool CSoundBase::HandleFade()
 {
+	AL_CHECK
 	if (m_StartFadeTime != 0)
 	{
 		double currTime = timer_Time();
@@ -169,6 +187,8 @@ bool CSoundBase::HandleFade()
 		}
 		else
 			alSourcef(m_ALSource, AL_GAIN, curGain);	 
+
+		AL_CHECK
 	}
 	return true;
 }
@@ -182,6 +202,7 @@ void CSoundBase::SetLooping(bool loops)
 {
 	m_Looping = loops;
 	alSourcei(m_ALSource, AL_LOOPING, loops ? AL_TRUE : AL_FALSE);
+	AL_CHECK
 }
 
 void CSoundBase::Play()
@@ -189,6 +210,7 @@ void CSoundBase::Play()
 	m_ShouldBePlaying = true;
 	if (m_ALSource != 0)
 		alSourcePlay(m_ALSource);
+	AL_CHECK
 }
 
 void CSoundBase::PlayAndDelete()
@@ -215,6 +237,7 @@ void CSoundBase::PlayLoop()
 	{
 		SetLooping(true);
 		Play();
+		AL_CHECK
 	}
 }
 
@@ -229,6 +252,7 @@ void CSoundBase::FadeToIn(ALfloat newVolume, double fadeDuration)
 		alGetSourcef(m_ALSource, AL_GAIN, &m_StartVolume);
 		m_EndVolume = newVolume;
 	}
+	AL_CHECK
 }
 
 void CSoundBase::PlayAsMusic()
@@ -251,6 +275,8 @@ void CSoundBase::Stop()
 		alGetSourceiv(m_ALSource, AL_SOURCE_STATE, &proc_state);
 		if (proc_state == AL_PLAYING)
 			alSourceStop(m_ALSource);
+
+		AL_CHECK
 	}
 }
 
@@ -273,4 +299,6 @@ void CSoundBase::SetNameFromPath(char* fileLoc)
 	else
 		m_Name->assign(anst.begin(), anst.end());
 }
+
+#endif // CONFIG2_AUDIO
 

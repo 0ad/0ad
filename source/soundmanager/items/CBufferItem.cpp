@@ -19,7 +19,10 @@
 
 #include "CBufferItem.h"
 
+#if CONFIG2_AUDIO
+
 #include "soundmanager/data/SoundData.h"
+#include "soundmanager/SoundManager.h"
 
 #include <iostream>
 
@@ -33,6 +36,8 @@ CBufferItem::CBufferItem(CSoundData* sndData)
 
 CBufferItem::~CBufferItem()
 {
+	AL_CHECK
+
 	Stop();
 	int num_processed;
 	alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
@@ -41,7 +46,8 @@ CBufferItem::~CBufferItem()
 	{
 		ALuint* al_buf = new ALuint[num_processed];
 		alSourceUnqueueBuffers(m_ALSource, num_processed, al_buf);
-
+		
+		AL_CHECK
 		delete[] al_buf;
 	}
 }
@@ -67,7 +73,9 @@ bool CBufferItem::IdleTask()
 		{
 			ALuint al_buf;
 			alSourceUnqueueBuffers(m_ALSource, 1, &al_buf);
+			AL_CHECK
 			alSourceQueueBuffers(m_ALSource, 1, &al_buf);
+			AL_CHECK
 		}
 	}
 
@@ -76,10 +84,12 @@ bool CBufferItem::IdleTask()
 
 void CBufferItem::Attach(CSoundData* itemData)
 {
+AL_CHECK
 	if (itemData != NULL)
 	{
 		m_SoundData = itemData->IncrementCount();
 		alSourceQueueBuffers(m_ALSource, m_SoundData->GetBufferCount(),(const ALuint *) m_SoundData->GetBufferPtr());
+		AL_CHECK
 	}
 }
 
@@ -87,4 +97,6 @@ void CBufferItem::SetLooping(bool loops)
 {
 	m_Looping = loops;
 }
+
+#endif // CONFIG2_AUDIO
 

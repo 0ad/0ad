@@ -19,7 +19,10 @@
 
 #include "CStreamItem.h"
 
+#if CONFIG2_AUDIO
+
 #include "soundmanager/data/OggData.h"
+#include "soundmanager/SoundManager.h"
 
 #include <iostream>
 
@@ -41,16 +44,20 @@ CStreamItem::~CStreamItem()
 	{
 		ALuint* al_buf = new ALuint[num_processed];
 		alSourceUnqueueBuffers(m_ALSource, num_processed, al_buf);
+		AL_CHECK
 		delete[] al_buf;
 	}
 }
 
 bool CStreamItem::IdleTask()
 {
+	AL_CHECK
 	HandleFade();
+	AL_CHECK
 
 	int proc_state;
 	alGetSourceiv(m_ALSource, AL_SOURCE_STATE, &proc_state);
+	AL_CHECK
 	
 	if (proc_state == AL_STOPPED)
 	{
@@ -65,13 +72,16 @@ bool CStreamItem::IdleTask()
 		{
 			int num_processed;
 			alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
+			AL_CHECK
 			
 			if (num_processed > 0)
 			{
 				ALuint* al_buf = new ALuint[num_processed];
 				alSourceUnqueueBuffers(m_ALSource, num_processed, al_buf);
+				AL_CHECK
 				int didWrite = tmp->FetchDataIntoBuffer(num_processed, al_buf);
 				alSourceQueueBuffers(m_ALSource, didWrite, al_buf);
+				AL_CHECK
 				delete[] al_buf;
 			}
 		}
@@ -89,6 +99,7 @@ void CStreamItem::Attach(CSoundData* itemData)
 	{
 		m_SoundData = itemData->IncrementCount();
 		alSourceQueueBuffers(m_ALSource, m_SoundData->GetBufferCount(), (const ALuint *)m_SoundData->GetBufferPtr());
+		AL_CHECK
 	}
 }
 
@@ -96,4 +107,6 @@ void CStreamItem::SetLooping(bool loops)
 {
 	m_Looping = loops;
 }
+
+#endif // CONFIG2_AUDIO
 

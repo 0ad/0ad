@@ -44,7 +44,7 @@ varying vec2 v_los;
   uniform vec3 specularColor;
 #endif
 
-#if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX_MAP || USE_AO
+#if USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX_MAP || USE_AO
   uniform vec4 effectSettings;
 #endif
 
@@ -246,7 +246,7 @@ void main()
 
   #if !IGNORE_LOS
     float los = texture2D(losTex, v_los).a;
-    los = los < 0.01 ? 0.0 : los;
+    los = los < 0.03 ? 0.0 : los;
     color *= los;
   #endif
 

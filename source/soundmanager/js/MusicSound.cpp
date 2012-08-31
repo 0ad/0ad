@@ -19,6 +19,7 @@
 
 #include "MusicSound.h"
 
+#include "lib/config2.h"
 #include "lib/utf8.h"
 #include "maths/Vector3D.h"
 #include "ps/Filesystem.h"
@@ -31,20 +32,26 @@ JMusicSound::JMusicSound(const VfsPath& pathname) : m_FileName(pathname)
 
 bool JMusicSound::Play(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
-	ISoundItem* aSnd = g_SoundManager->LoadItem(m_FileName);
-	if (aSnd != NULL)
-		aSnd->PlayAsMusic();
-
+#if CONFIG2_AUDIO
+	if ( g_SoundManager ) {
+		ISoundItem* aSnd = g_SoundManager->LoadItem(m_FileName);
+		if (aSnd != NULL)
+			aSnd->PlayAsMusic();
+	}
+#endif // CONFIG2_AUDIO
 	return true;
 }
 
 // request the sound be played until free() is called. returns immediately.
 bool JMusicSound::Loop(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
-	ISoundItem* aSnd = g_SoundManager->LoadItem(m_FileName);
-	if (aSnd != NULL)
-		aSnd->PlayAsMusic();
-
+#if CONFIG2_AUDIO
+	if ( g_SoundManager ) {
+		ISoundItem* aSnd = g_SoundManager->LoadItem(m_FileName);
+		if (aSnd != NULL)
+			aSnd->PlayAsMusic();
+	}
+#endif // CONFIG2_AUDIO
 	return true;
 }
 
@@ -75,6 +82,7 @@ JSBool JMusicSound::Construct(JSContext* cx, uintN UNUSED(argc), jsval* vp)
 	JMusicSound* newObject = new JMusicSound(filename);
 	newObject->m_EngineOwned = false;
 	JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(newObject->GetScript()));
-	
+
 	return JS_TRUE;
 }
+

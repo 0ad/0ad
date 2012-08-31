@@ -6,17 +6,21 @@
       <animations>
         <animation event="0.5" load="0.0" name="melee" speed="100"/>
       </animations>
-      <mesh>structural/hele_civic_struct.dae</mesh>
+      <mesh>structural/athen_cc_struct.dae</mesh>
       <props>
-        <prop actor="props/structures/hellenes/civic_centre_props.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/civic_centre_tiles2.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/civic_centre_trees.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/civic_centre_round.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/civic_centre_decor.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/civic_centre_nature.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/civic_centre_trees.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/civic_centre_props_a.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/civic_centre_roundroof.xml" attachpoint="root"/>
         <prop actor="props/structures/athenians/civic_centre_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/civic_centre_tiles.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <textures><texture file="structural/hele_struct.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/hele_struct.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -32,10 +36,11 @@
         <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/civic_centre_props.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/civic_centre_tiles2.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/civic_centre_trees.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/civic_centre_round.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/civic_centre_decor.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/civic_centre_props_a.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/civic_centre_trees.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/civic_centre_roundroof.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/civic_centre_tiles.xml" attachpoint="root"/>
         <prop actor="props/structures/athenians/civic_centre_shields.xml" attachpoint="root"/>
       </props>
     </variant>

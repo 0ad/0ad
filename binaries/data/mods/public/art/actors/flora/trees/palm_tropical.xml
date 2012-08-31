@@ -3,7 +3,11 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="texture">
-      <textures><texture file="gaia/tree_palm_2_a.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/tree_palm_2_a.png" name="baseTex"/>
+        <texture file="gaia/tree_palm_2_a_norm.png" name="normTex"/>
+        <texture file="gaia/tree_palm_2_a_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -23,5 +27,5 @@
       <mesh>gaia/tree_palm_tropical_05.dae</mesh>
     </variant>
   </group>
-  <material>basic_trans.xml</material>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>

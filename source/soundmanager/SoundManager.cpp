@@ -27,8 +27,10 @@
 #include "soundmanager/js/AmbientSound.h"
 #include "soundmanager/js/MusicSound.h"
 #include "soundmanager/js/Sound.h"
+#include "ps/CLogger.h"
 
-CSoundManager* g_SoundManager;
+CSoundManager* g_SoundManager = NULL;
+
 
 void CSoundManager::ScriptingInit()
 {
@@ -36,6 +38,40 @@ void CSoundManager::ScriptingInit()
 	JMusicSound::ScriptingInit();
 	JSound::ScriptingInit();
 	JSoundPlayer::ScriptingInit();
+}
+
+
+#if CONFIG2_AUDIO
+
+void CSoundManager::CreateSoundManager()
+{
+	g_SoundManager = new CSoundManager();
+}
+
+void CSoundManager::SetEnabled(bool doEnable)
+{
+	if ( g_SoundManager && !doEnable ) 
+	{
+		delete g_SoundManager;
+
+		g_SoundManager = NULL;
+	}
+	else if ( ! g_SoundManager && doEnable ) 
+	{
+		CSoundManager::CreateSoundManager();
+	}
+}
+
+void CSoundManager::al_ReportError(ALenum err, const char* caller, int line)
+{
+	LOGERROR(L"OpenAL error: %hs; called from %hs (line %d)\n", alGetString(err), caller, line);
+}
+
+void CSoundManager::al_check(const char* caller, int line)
+{
+	ALenum err = alGetError();
+	if (err != AL_NO_ERROR)
+		al_ReportError(err, caller, line);
 }
 
 CSoundManager::CSoundManager()
@@ -47,11 +83,10 @@ CSoundManager::CSoundManager()
 	m_MusicGain			= 1;
 	m_AmbientGain		= 1;
 	m_ActionGain		= 1;
-	m_Enabled			= true;
 	m_BufferCount		= 50;
 	m_BufferSize		= 65536;
 	m_MusicEnabled		= true;
-	AlcInit();
+	m_Enabled			= AlcInit() == INFO::OK;
 }
 
 CSoundManager::~CSoundManager()
@@ -96,13 +131,13 @@ Status CSoundManager::AlcInit()
 		debug_printf(L"Sound: AlcInit success, using %hs\n", dev_name);
 	else
 	{
-		debug_printf(L"Sound: AlcInit failed, m_Device=%p m_Context=%p dev_name=%hs err=%d\n", m_Device, m_Context, dev_name, err);
+		LOGERROR(L"Sound: AlcInit failed, m_Device=%p m_Context=%p dev_name=%hs err=%d\n", m_Device, m_Context, dev_name, err);
 // FIXME Hack to get around exclusive access to the sound device
 #if OS_UNIX
 		ret = INFO::OK;
 #else
 		ret = ERR::FAIL;
-#endif
+#endif // !OS_UNIX
 	}
 
 	return ret;
@@ -142,8 +177,12 @@ void CSoundManager::SetActionGain(float gain)
 
 ISoundItem* CSoundManager::LoadItem(const VfsPath& itemPath)
 {	
+	AL_CHECK
+
 	CSoundData* itemData = CSoundData::SoundDataFromFile(itemPath);
 	ISoundItem* answer = NULL;
+
+	AL_CHECK
 	
 	if (itemData != NULL)
 	{
@@ -198,10 +237,12 @@ void CSoundManager::IdleTask()
 			deadItems++;
 		}
 	}
+	AL_CHECK
 	if (m_CurrentTune)
 		m_CurrentTune->EnsurePlay();
 	if (m_CurrentEnvirons)
 		m_CurrentEnvirons->EnsurePlay();
+	AL_CHECK
 }
 
 void CSoundManager::DeleteItem(long itemNum)
@@ -232,11 +273,6 @@ void CSoundManager::InitListener()
 	alDistanceModel(AL_EXPONENT_DISTANCE);
 }
 
-void CSoundManager::SetEnabled(bool doEnable)
-{
-	m_Enabled = doEnable;
-}
-
 void CSoundManager::PlayActionItem(ISoundItem* anItem)
 {
 	if (anItem)
@@ -245,6 +281,7 @@ void CSoundManager::PlayActionItem(ISoundItem* anItem)
 		{
 			anItem->SetGain(m_Gain * m_ActionGain);
 			anItem->Play();
+			AL_CHECK
 		}
 	}
 }
@@ -255,6 +292,7 @@ void CSoundManager::PlayGroupItem(ISoundItem* anItem, ALfloat groupGain)
 		if (m_Enabled && (m_ActionGain > 0)) {
 			anItem->SetGain(m_Gain * groupGain);
 			anItem->Play();
+			AL_CHECK
 		}
 	}
 }
@@ -271,6 +309,7 @@ void CSoundManager::SetMusicEnabled (bool isEnabled)
 
 void CSoundManager::SetMusicItem(ISoundItem* anItem)
 {
+	AL_CHECK
 	if (m_CurrentTune)
 	{
 		m_CurrentTune->FadeAndDelete(3.00);
@@ -291,6 +330,7 @@ void CSoundManager::SetMusicItem(ISoundItem* anItem)
 			anItem->StopAndDelete();
 		}
 	}
+	AL_CHECK
 }
 
 void CSoundManager::SetAmbientItem(ISoundItem* anItem)
@@ -312,5 +352,8 @@ void CSoundManager::SetAmbientItem(ISoundItem* anItem)
 			m_CurrentEnvirons->FadeToIn(m_Gain * m_AmbientGain, 2.00);
 		}
 	}
+	AL_CHECK
 }
+
+#endif // CONFIG2_AUDIO
 

@@ -19,9 +19,9 @@
 
 #include "SoundData.h"
 
+#if CONFIG2_AUDIO
+
 #include "OggData.h"
-#include "lib/file/vfs/vfs_util.h"
-#include "ps/Filesystem.h"
 
 #include <iostream>
 
@@ -96,15 +96,9 @@ CSoundData* CSoundData::SoundDataFromOgg(const VfsPath& itemPath)
 	CSoundData* answer = NULL;
 	COggData* oggAnswer = new COggData();
 
-	OsPath realPath;
-	Status ret = g_VFS->GetRealPath(itemPath, realPath);
-	if (ret == INFO::OK)
-	{
-		if (oggAnswer->InitOggFile(realPath.string().c_str()))
-		{
-			answer = oggAnswer;
-		}
-	}	
+	if (oggAnswer->InitOggFile(itemPath))
+		answer = oggAnswer;
+
 	return answer;
 }
 
@@ -139,4 +133,6 @@ ALuint* CSoundData::GetBufferPtr()
 {
 	return &m_ALBuffer;
 }
+
+#endif // CONFIG2_AUDIO
 

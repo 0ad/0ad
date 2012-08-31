@@ -207,7 +207,7 @@ void main()
       specPow = effectSettings.y;
     #else
       specCol = specularColor;
-      specPow = specularPower.x;
+      specPow = specularPower;
     #endif
     specular.rgb = sunColor * specCol * pow(max(0.0, dot(normalize(normal), v_half)), specPow);
   #endif
@@ -219,7 +219,7 @@ void main()
   #endif
 
   float los = texture2D(losTex, v_los).a;
-  los = los < 0.01 ? 0.0 : los;
+  los = los < 0.03 ? 0.0 : los;
   color *= los;
 
   #if DECAL
