@@ -53,6 +53,7 @@ void main()
 	specular = pow(max(0.0, ndoth), shininess) * sunColor * specularStrength;
 
 	losMod = texture2D(losMap, gl_TexCoord[3].st).a;
+	losMod = losMod < 0.01 ? 0.0 : losMod;
 
 	gl_FragColor.rgb = mix(refrColor + 0.3*specular, reflColor + specular, fresnel) * losMod;
 	

@@ -337,6 +337,14 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 	// Check whether there's any alpha channel
 	bool hasAlpha = ((tex.flags & TEX_ALPHA) != 0);
 
+	// TODO: grayscale images will fail on some systems
+	// see http://trac.wildfiregames.com/ticket/1640
+	if (tex.flags & TEX_GREY)
+	{
+		LOGERROR(L"Failed to convert grayscale texture \"%ls\" - only RGB textures are currently supported", src.string().c_str());
+		return false;
+	}
+
 	// Convert to uncompressed BGRA with no mipmaps
 	if (tex_transform_to(&tex, (tex.flags | TEX_BGR | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS)) < 0)
 	{

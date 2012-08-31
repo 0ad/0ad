@@ -7,5 +7,5 @@ attribute vec2 a_uv0;
 void main()
 {
   gl_Position = gl_ModelViewProjectionMatrix * vec4(a_vertex, 1.0);
-  v_tex = gl_MultiTexCoord0;
+  v_tex = gl_MultiTexCoord0.xy;
 }
