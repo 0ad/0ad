@@ -138,7 +138,9 @@ void CLOSTexture::InterpolateLOS()
 	m_smoothShader->BeginPass();
 	CShaderProgramPtr shader = m_smoothShader->GetShader();
 	
-	shader->Bind();	
+	glDisable(GL_BLEND);
+	
+	shader->Bind();
 	
 	shader->BindTexture("losTex1", m_Texture);
 	shader->BindTexture("losTex2", whichTex ? m_TextureSmooth1 : m_TextureSmooth2);

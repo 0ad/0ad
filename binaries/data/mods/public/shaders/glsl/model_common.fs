@@ -246,7 +246,7 @@ void main()
 
   #if !IGNORE_LOS
     float los = texture2D(losTex, v_los).a;
-    los = los < 0.01 ? 0.0 : los;
+    los = los < 0.03 ? 0.0 : los;
     color *= los;
   #endif
 
