@@ -3,11 +3,11 @@
   <castshadow/>
   <group>
     <variant>
-      <mesh>structural/athen_cc_shields.dae</mesh>
+      <mesh>structural/athen_cc_propsa.dae</mesh>
       <textures>
-        <texture file="props/athen_prop_shields.png" name="baseTex"/>
+        <texture file="props/hele_props_a.dds" name="baseTex"/>
       </textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans.xml</material>
 </actor>

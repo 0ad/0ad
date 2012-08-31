@@ -8,7 +8,12 @@
         <prop actor="props/structures/romans/siege_walls_turf_long.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/siege_walls_long_banners.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="structural/siege_walls_wood.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/siege_walls_wood.png" name="baseTex"/>
+        <texture file="structural/siege_walls_wood_norm.png" name="normTex"/>
+        <texture file="structural/siege_walls_wood_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
+  <material>basic_trans_parallax_spec.xml</material>
 </actor>
