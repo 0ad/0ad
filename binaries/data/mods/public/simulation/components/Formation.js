@@ -8,6 +8,7 @@ var g_ColumnDistanceThreshold = 128; // distance at which we'll switch between c
 Formation.prototype.Init = function()
 {
 	this.members = []; // entity IDs currently belonging to this formation
+	this.inPosition = []; // entities that have reached their final position
 	this.columnar = false; // whether we're travelling in column (vs box) formation
 	this.formationName = "Line Closed";
 	this.rearrange = true; // whether we should rearrange all formation members
@@ -28,6 +29,29 @@ Formation.prototype.GetMemberCount = function()
 Formation.prototype.GetPrimaryMember = function()
 {
 	return this.members[0];
+};
+
+/**
+ * Permits formation members to register that they've reached their
+ * destination, and automatically disbands the formation if all members
+ * are at their final positions and no controller orders remain.
+ */
+Formation.prototype.SetInPosition = function(ent)
+{
+	if (this.inPosition.indexOf(ent) != -1)
+		return;
+
+	// Only consider automatically disbanding if there are no orders left.
+	var cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	if (cmpUnitAI.GetOrders().length)
+	{
+		this.inPosition = [];
+		return;
+	}
+
+	this.inPosition.push(ent);
+	if (this.inPosition.length >= this.members.length)
+		this.Disband();
 };
 
 /**
@@ -67,6 +91,7 @@ Formation.prototype.SetMembers = function(ents)
 Formation.prototype.RemoveMembers = function(ents)
 {
 	this.members = this.members.filter(function(e) { return ents.indexOf(e) == -1; });
+	this.inPosition = this.inPosition.filter(function(e) { return ents.indexOf(e) == -1; });
 
 	for each (var ent in ents)
 	{
@@ -102,6 +127,7 @@ Formation.prototype.Disband = function()
 	}
 
 	this.members = [];
+	this.inPosition = [];
 
 	Engine.DestroyEntity(this.entity);
 };

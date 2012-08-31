@@ -84,6 +84,11 @@ public:
 	virtual void SetSpeed(fixed speed) = 0;
 
 	/**
+	 * Get whether the unit is moving.
+	 */
+	virtual bool IsMoving() = 0;
+
+	/**
 	 * Get the default speed that this unit will have when walking, in metres per second.
 	 */
 	virtual fixed GetWalkSpeed() = 0;

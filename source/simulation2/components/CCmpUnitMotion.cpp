@@ -390,6 +390,11 @@ public:
 		}
 	}
 
+	virtual bool IsMoving()
+	{
+		return m_State != STATE_IDLE;
+	}
+
 	virtual fixed GetWalkSpeed()
 	{
 		return m_WalkSpeed;
@@ -903,9 +908,15 @@ void CCmpUnitMotion::Move(fixed dt)
 					{
 						if (IsFormationMember())
 						{
-							// If we're in formation, we've reached our assigned position.
-							// so wait here.
-							// (We'll try to continue following the formation next turn.)
+							// We've reached our assigned position. If the controller
+							// is idle, send a notification in case it should disband,
+							// otherwise continue following the formation next turn.
+							CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_TargetEntity);
+							if (cmpUnitMotion && !cmpUnitMotion->IsMoving())
+							{
+								CMessageMotionChanged msg(false, false);
+								GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
+							}
 						}
 						else
 						{
@@ -1512,7 +1523,7 @@ bool CCmpUnitMotion::IsInTargetRange(entity_id_t target, entity_pos_t minRange, 
 
 void CCmpUnitMotion::MoveToFormationOffset(entity_id_t target, entity_pos_t x, entity_pos_t z)
 {
-	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
+	CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), target);
 	if (!cmpPosition || !cmpPosition->IsInWorld())
 		return;
 
