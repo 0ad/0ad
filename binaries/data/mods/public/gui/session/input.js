@@ -853,12 +853,10 @@ function handleInputBeforeGui(ev, hoveredObject)
 				
 				if (result && result.cost)
 				{
-					placementSupport.wallDragTooltip = "";
-					for (var resource in result.cost)
-					{
-						if (result.cost[resource] > 0)
-							placementSupport.wallDragTooltip += getCostComponentDisplayName(resource) + ": " + result.cost[resource] + "\n";
-					}
+					placementSupport.wallDragTooltip = getEntityCostTooltip(result);
+					var neededResources = Engine.GuiInterfaceCall("GetNeededResources", result.cost);
+					if (neededResources)
+						placementSupport.wallDragTooltip += getNeededResourcesTooltip(neededResources);
 				}
 				
 				break;
