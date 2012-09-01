@@ -3,11 +3,11 @@
   <castshadow/>
   <group>
     <variant>
-      <mesh>structural/mace_cc_shields.dae</mesh>
+      <mesh>structural/spart_cc_decor.dae</mesh>
       <textures>
-        <texture file="props/mace_prop_shields.png" name="baseTex"/>
+        <texture file="props/hele_decor.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>default.xml</material>
 </actor>
