@@ -9,7 +9,7 @@
         <prop actor="props/structures/celts/house_d_color.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="structural/celt_struct.dds" name="baseTex"/></textures>
+      <textures><texture file="structural/celt_struct.dds" name="baseTex"/><texture file="structural/celt_struct_norm.png" name="normTex"/></textures>
     </variant>
   </group>
   <group>
@@ -25,4 +25,5 @@
       </props>
     </variant>
   </group>
+  <material>player_trans_parallax.xml</material>
 </actor>
