@@ -25,6 +25,8 @@
 #include "soundmanager/SoundManager.h"
 #include "ps/Filesystem.h"
 
+#include <cstdio>
+
 COggData::COggData()
 {
 	m_OneShot = false;
