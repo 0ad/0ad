@@ -22,9 +22,11 @@
 
 #if CONFIG2_AUDIO
 
-#include "SoundData.h"
-#include "lib/external_libraries/openal.h"
 #include "ogg.h"
+#include "SoundData.h"
+
+#include "lib/external_libraries/openal.h"
+#include "lib/file/vfs/vfs_path.h"
 
 class COggData : public CSoundData
 {

@@ -22,10 +22,9 @@
 
 #if CONFIG2_AUDIO
 
-#include "soundmanager/SoundManager.h"
+#include "ps/CLogger.h"
 #include "ps/Filesystem.h"
-
-#include <cstdio>
+#include "soundmanager/SoundManager.h"
 
 COggData::COggData()
 {
@@ -46,7 +45,8 @@ void COggData::SetFormatAndFreq(int form, ALsizei freq)
 bool COggData::InitOggFile(const VfsPath& itemPath)
 {
 	int buffersToStart = g_SoundManager->GetBufferCount();	
-	OpenOggNonstream( g_VFS, itemPath, ogg);
+	Status status = OpenOggNonstream(g_VFS, itemPath, ogg);
+	ENSURE(status == INFO::OK);
 
 	m_FileFinished = false;
 
@@ -57,7 +57,7 @@ bool COggData::InitOggFile(const VfsPath& itemPath)
 	
 	if(alGetError() != AL_NO_ERROR) 
 	{
-		printf("- Error creating initial buffer !!\n");
+		LOGERROR(L"Error creating initial buffer for %ls", itemPath.string().c_str());
 		return false;
 	}
 	else
