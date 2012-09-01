@@ -25,6 +25,7 @@
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "soundmanager/SoundManager.h"
+#include "ps/CLogger.h"
 
 COggData::COggData()
 {
@@ -45,34 +46,37 @@ void COggData::SetFormatAndFreq(int form, ALsizei freq)
 bool COggData::InitOggFile(const VfsPath& itemPath)
 {
 	int buffersToStart = g_SoundManager->GetBufferCount();	
-	Status status = OpenOggNonstream(g_VFS, itemPath, ogg);
-	ENSURE(status == INFO::OK);
-
-	m_FileFinished = false;
-
-	SetFormatAndFreq(ogg->Format(), ogg->SamplingRate() );
-
-	alGetError(); /* clear error */
-	alGenBuffers(buffersToStart, m_Buffer);
-	
-	if(alGetError() != AL_NO_ERROR) 
+	if ( OpenOggNonstream( g_VFS, itemPath, ogg) == INFO::OK )
 	{
-		LOGERROR(L"Error creating initial buffer for %ls", itemPath.string().c_str());
-		return false;
-	}
-	else
-	{
-		m_BuffersUsed = FetchDataIntoBuffer(buffersToStart, m_Buffer);
-		if (m_FileFinished)
+		m_FileFinished = false;
+
+		SetFormatAndFreq(ogg->Format(), ogg->SamplingRate() );
+
+		AL_CHECK
+		
+		alGenBuffers(buffersToStart, m_Buffer);
+		
+		if(alGetError() != AL_NO_ERROR) 
 		{
-			m_OneShot = true;
-			if (m_BuffersUsed < buffersToStart)
-			{
-				alDeleteBuffers(buffersToStart - m_BuffersUsed, &m_Buffer[m_BuffersUsed]);
-			}
+			LOGERROR( L"- Error creating initial buffer !!\n");
+			return false;
 		}
+		else
+		{
+			m_BuffersUsed = FetchDataIntoBuffer(buffersToStart, m_Buffer);
+			if (m_FileFinished)
+			{
+				m_OneShot = true;
+				if (m_BuffersUsed < buffersToStart)
+				{
+					alDeleteBuffers(buffersToStart - m_BuffersUsed, &m_Buffer[m_BuffersUsed]);
+				}
+			}
+			AL_CHECK
+		}
+		return true;
 	}
-	return true;
+	return false;
 }
 
 ALsizei COggData::GetBufferCount()

@@ -22,6 +22,7 @@
 #if CONFIG2_AUDIO
 
 #include "OggData.h"
+#include "ps/CLogger.h"
 
 #include <iostream>
 
@@ -96,8 +97,15 @@ CSoundData* CSoundData::SoundDataFromOgg(const VfsPath& itemPath)
 	CSoundData* answer = NULL;
 	COggData* oggAnswer = new COggData();
 
-	if (oggAnswer->InitOggFile(itemPath))
+	if ( oggAnswer->InitOggFile(itemPath) )
+	{
 		answer = oggAnswer;
+	}
+	else
+	{
+		LOGERROR(L"could not initialize ogg data at %ls", itemPath.string().c_str());
+		delete oggAnswer;
+	}
 
 	return answer;
 }
