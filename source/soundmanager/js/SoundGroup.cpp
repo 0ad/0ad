@@ -33,6 +33,7 @@
 #include "lib/rand.h"
 #include "ps/Game.h"
 #include "ps/CLogger.h"
+#include "ps/CStr.h"
 #include "ps/Filesystem.h"
 #include "ps/Util.h"
 #include "ps/XML/Xeromyces.h"
