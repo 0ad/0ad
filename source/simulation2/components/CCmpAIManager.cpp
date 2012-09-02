@@ -261,7 +261,10 @@ public:
 	};
 
 	CAIWorker() :
-		m_ScriptRuntime(ScriptInterface::CreateRuntime()),
+		// TODO: Passing a 32 MB argument to CreateRuntime() is a temporary fix
+		// to prevent frequent AI out-of-memory crashes. The argument should be
+		// removed as soon as AI data-sharing has been implemented. See #1650.
+		m_ScriptRuntime(ScriptInterface::CreateRuntime(33554432)),
 		m_ScriptInterface("Engine", "AI", m_ScriptRuntime),
 		m_TurnNum(0),
 		m_CommandsComputed(true),
