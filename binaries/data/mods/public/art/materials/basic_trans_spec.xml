@@ -3,7 +3,7 @@
     <shader effect="model_transparent"/>
     <alpha_blending/>
     <define name="USE_TRANSPARENT" value="1"/>
-    <alternative material="basic_trans_ao.xml" quality="3"/>
+    <alternative material="basic_trans.xml" quality="2"/>
     <alternative material="alphatest_ao_parallax_spec.xml" if="CFG_FORCE_ALPHATEST"/>
 
     <!--<conditional_define name="USE_PARALLAX_MAP" value="1" type="draw_range" conf="PARALLAX_DIST"/>
@@ -14,10 +14,8 @@
     <define name="USE_SPECULAR_MAP" value="1"/>
     <define name="USE_SELF_LIGHT" value="1"/>
 
-    <define name="USE_AO" value="1"/>
-
     <!-- Settings for effects above:
-     First value: Normal mapping intensity.
+         First value: Normal mapping intensity.
 	 Second value: Specular power.
 	 Third value: Parallax scale.
 	 Fourth value: AO amount. -->

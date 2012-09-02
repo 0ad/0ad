@@ -11,6 +11,11 @@
       <MaxRange>6.0</MaxRange>
     </Charge>
   </Attack>
+  <Builder>
+    <Entities datatype="tokens">
+      structures/mace_theatron
+    </Entities>
+  </Builder>
   <Cost>
     <Resources>
       <wood>60</wood>

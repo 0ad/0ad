@@ -2,8 +2,9 @@
 
 <Scenario version="5">
 	<Environment>
+		<LightingModel>standard</LightingModel>
 		<SkySet>stormy</SkySet>
-		<SunColour r="1.5" g="1.5" b="1.5"/>
+		<SunColour r="1" g="1" b="1"/>
 		<SunElevation angle="0.785398"/>
 		<SunRotation angle="-0.785396"/>
 		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
@@ -11,33 +12,36 @@
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>15.6328</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.45</Murkiness>
-				<Tint r="0.278431" g="0.298039" b="0.588235"/>
-				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
+				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="497.458" y="90.2081" z="261.581"/>
+		<Position x="511.683" y="91.2117" z="294.977"/>
 		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Name":"Resource demo",
-  "Description":"Demo map for resource gathering.",
-  "Keywords": ["demo"],
-  "GameType":"endless",
-  "PlayerData":[{
-      "Civ":"celt"
+  "Name": "Resource demo",
+  "Description": "Demo map for resource gathering.",
+  "Keywords": [
+    "demo"
+  ],
+  "GameType": "endless",
+  "PlayerData": [
+    {
+      "Civ": "celt"
     }
   ],
-  "CircularMap":true
+  "CircularMap": true
 }
 ]]></ScriptSettings>
 	<Entities>
