@@ -4,11 +4,11 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>mountainous</SkySet>
-		<SunColour r="0.819608" g="0.74902" b="0.513726"/>
-		<SunElevation angle="0.671884"/>
-		<SunRotation angle="0.0613592"/>
-		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
-		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<SunColour r="0.992616" g="0.992616" b="0.992616"/>
+		<SunElevation angle="0.877437"/>
+		<SunRotation angle="-0.903888"/>
+		<TerrainAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -24,9 +24,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="507.25" y="610.299" z="-352.455"/>
-		<Rotation angle="-0.00350388"/>
-		<Declination angle="0.70491"/>
+		<Position x="398.332" y="112.998" z="117.948"/>
+		<Rotation angle="0.0438184"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -18824,8 +18824,8 @@
 		<Entity uid="4724">
 			<Template>gaia/geology_stonemine_tropic_quarry</Template>
 			<Player>0</Player>
-			<Position x="954.69684" z="369.82471"/>
-			<Orientation y="-0.0944"/>
+			<Position x="950.0301" z="370.98548"/>
+			<Orientation y="1.98678"/>
 		</Entity>
 		<Entity uid="4725">
 			<Template>gaia/geology_metal_tropic_slabs</Template>
