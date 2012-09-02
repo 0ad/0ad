@@ -33,7 +33,7 @@
 		   transparency being no self-illumination.
 	 COMMENT: Full self-illumination means the screen colour of a pixel is equal to its baseTex value.
 	 EFFICIENCY: This is a very cheap effect, however it also requires the calculation of specular. -->
-    <define name="USE_SELF_LIGHT" value="0"/>
+    <!-- <define name="USE_SELF_LIGHT" value="1"/> -->
     
     <!-- REQUIRES: Actor must provide a texture named "aoTex", where the R channel is the Ambient Occlusion.
                    The model must provide a second, non-overlapping set of UV coordinates.
