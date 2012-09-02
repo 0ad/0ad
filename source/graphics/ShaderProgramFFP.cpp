@@ -675,14 +675,18 @@ protected:
 	{
 		ID_transform,
 		ID_objectColor,
-		ID_playerColor
+		ID_playerColor,
+		ID_losTransform
 	};
+	
+	bool m_IgnoreLos;
 
 public:
 	CShaderProgramFFP_Model_Base(const CShaderDefines& defines, int streamflags)
 		: CShaderProgramFFP(streamflags)
 	{
 		SetUniformIndex("transform", ID_transform);
+		SetUniformIndex("losTransform", ID_losTransform);
 
 		if (defines.GetInt("USE_OBJECTCOLOR"))
 			SetUniformIndex("objectColor", ID_objectColor);
@@ -690,14 +694,29 @@ public:
 		if (defines.GetInt("USE_PLAYERCOLOR"))
 			SetUniformIndex("playerColor", ID_playerColor);
 
+		m_IgnoreLos = (defines.GetInt("IGNORE_LOS") != 0);
+
 		// Texture units:
 		SetUniformIndex("baseTex", 0);
+		SetUniformIndex("losTex", 3);
 	}
 
 	virtual void Uniform(Binding id, const CMatrix3D& v)
 	{
 		if (id.second == ID_transform)
 			glLoadMatrixf(&v._11);
+	}
+	
+	virtual void Uniform(Binding id, float v0, float v1, float v2, float v3)
+	{
+		if (id.second == ID_losTransform)
+		{
+			pglActiveTextureARB(GL_TEXTURE3);
+			GLfloat texgenS1[4] = { v0, 0, 0, v1 };
+			GLfloat texgenT1[4] = { 0, 0, v0, v1 };
+			glTexGenfv(GL_S, GL_OBJECT_PLANE, texgenS1);
+			glTexGenfv(GL_T, GL_OBJECT_PLANE, texgenT1);
+		}
 	}
 
 	virtual void Bind()
@@ -707,6 +726,42 @@ public:
 		glLoadIdentity();
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
+		
+		// -----------------------------------------------------------------------------
+		
+		pglActiveTextureARB(GL_TEXTURE3);
+		glEnable(GL_TEXTURE_2D);
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+
+		if (m_IgnoreLos)
+		{
+			// RGB pass through
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+		}
+		else
+		{
+			// Multiply RGB result up till now with LoS texture alpha channel
+			glEnable(GL_TEXTURE_GEN_S);
+			glEnable(GL_TEXTURE_GEN_T);
+			glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
+			glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
+			// Overridden implementation of Uniform() sets GL_OBJECT_PLANE values
+			
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE1_RGB_ARB, GL_TEXTURE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND1_RGB_ARB, GL_SRC_ALPHA);
+		}
+
+		// alpha pass through
+		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+		glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_PREVIOUS);
+		glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_SRC_ALPHA);
+		
+		// -----------------------------------------------------------------------------
 
 		BindClientStates();
 	}
@@ -714,6 +769,14 @@ public:
 	virtual void Unbind()
 	{
 		UnbindClientStates();
+		
+		pglActiveTextureARB(GL_TEXTURE3);
+		glDisable(GL_TEXTURE_2D);
+
+		glDisable(GL_TEXTURE_GEN_S);
+		glDisable(GL_TEXTURE_GEN_T);
+		
+		pglActiveTextureARB(GL_TEXTURE0);
 
 		glMatrixMode(GL_PROJECTION);
 		glPopMatrix();
