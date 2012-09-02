@@ -41,10 +41,9 @@ CSoundItem::CSoundItem(CSoundData* sndData)
 CSoundItem::~CSoundItem()
 {
 	AL_CHECK
-	ALuint al_buf;
 	
 	Stop();
-	alSourceUnqueueBuffers(m_ALSource, 1, &al_buf);
+	alSourcei(m_ALSource, AL_BUFFER, 0);
 	AL_CHECK
 }
 

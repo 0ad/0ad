@@ -4,7 +4,11 @@
   <group>
     <variant frequency="100" name="celt wall long">
       <mesh>structural/celt_wall_long.dae</mesh>
-      <textures><texture file="structural/celt_murus.png" name="baseTex"/></textures>
+      <textures>
+	    <texture file="structural/celt_murus.png" name="baseTex"/>
+	    <texture file="structural/celt_murus_norm.png" name="normTex"/>
+	    <texture file="structural/celt_murus_spec.png" name="specTex"/>
+	  </textures>
     </variant>
   </group>
   <group>
@@ -17,4 +21,5 @@
       </props>
     </variant>
   </group>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

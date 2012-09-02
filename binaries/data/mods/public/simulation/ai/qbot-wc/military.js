@@ -543,7 +543,7 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 	//if (gameState.defcon() >= 3) {
 	if (1) {
 		for (attackType in this.upcomingAttacks) {
-			for (i in this.upcomingAttacks[attackType]) {
+			for (var i = 0; i < this.upcomingAttacks[attackType].length; ++i) {
 				
 				var attack = this.upcomingAttacks[attackType][i];
 				
@@ -563,20 +563,17 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 						attack.Abort(gameState, this);
 						//this.abortedAttacks.push(attack);
 						
-						i--;
-						this.upcomingAttacks[attackType].splice(i,1);
+						this.upcomingAttacks[attackType].splice(i--,1);
 					} else if (updateStep === 2) {
 						debug ("Military Manager: Starting " +attack.getType() +" plan " +attack.getName());
 						attack.StartAttack(gameState,this);
 						this.startedAttacks[attackType].push(attack);
-						i--;
-						this.upcomingAttacks[attackType].splice(i-1,1);
+						this.upcomingAttacks[attackType].splice(i--,1);
 					}
 				} else {
 					debug ("Military Manager: Starting " +attack.getType() +" plan " +attack.getName());
 					this.startedAttacks[attackType].push(attack);
-					i--;
-					this.upcomingAttacks[attackType].splice(i-1,1);
+					this.upcomingAttacks[attackType].splice(i--,1);
 				}
 			}
 		}
@@ -593,8 +590,7 @@ MilitaryAttackManager.prototype.update = function(gameState, queues, events) {
 				attack.Abort(gameState);
 				
 				//this.abortedAttacks.push(attack);
-				this.startedAttacks[attackType].splice(i,1);
-				i--;
+				this.startedAttacks[attackType].splice(i--,1);
 			}
 		}
 	}

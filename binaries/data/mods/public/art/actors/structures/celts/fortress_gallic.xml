@@ -18,7 +18,10 @@
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
-      <textures><texture file="structural/celt_wall.dds" name="baseTex"/></textures>
+      <textures>
+	    <texture file="structural/celt_wall.dds" name="baseTex"/>
+	    <texture file="structural/celt_wall_norm.png" name="normTex"/>
+	  </textures>
     </variant>
   </group>
   <group>
@@ -45,4 +48,5 @@
       </props>
     </variant>
   </group>
+  <material>player_trans_parallax.xml</material>
 </actor>

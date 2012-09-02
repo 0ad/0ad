@@ -15,61 +15,6 @@
     <unit meter="0.025400"/>
     <up_axis>Y_UP</up_axis>
   </asset>
-  <library_images>
-    <image id="Map__346_image-image" name="Map__346_image">
-      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\public\art\textures\skins\structural\celt_struct.dds</init_from>
-    </image>
-  </library_images>
-  <library_materials>
-    <material id="_6___Default" name="_6___Default">
-      <instance_effect url="#_6___Default-fx"/>
-    </material>
-  </library_materials>
-  <library_effects>
-    <effect id="_6___Default-fx" name="_6___Default">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
-            </ambient>
-            <diffuse>
-              <texture texture="Map__346_image-image" texcoord="CHANNEL0">
-                <extra>
-                  <technique profile="MAYA">
-                    <wrapU sid="wrapU0">TRUE</wrapU>
-                    <wrapV sid="wrapV0">TRUE</wrapV>
-                    <blend_mode>ADD</blend_mode>
-                  </technique>
-                </extra>
-              </texture>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-  </library_effects>
   <library_geometries>
     <geometry id="default_Pivot-lib" name="default_PivotMesh">
       <mesh>
@@ -1260,7 +1205,6 @@
         <instance_geometry url="#default_Pivot-lib">
           <bind_material>
             <technique_common>
-              <instance_material symbol="_6___Default" target="#_6___Default"/>
             </technique_common>
           </bind_material>
         </instance_geometry>

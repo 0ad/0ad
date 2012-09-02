@@ -140,6 +140,9 @@ void SkyManager::RenderSky()
 		return;
 
 	glDepthMask( GL_FALSE );
+	
+	pglActiveTextureARB(GL_TEXTURE0_ARB);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
@@ -166,14 +169,13 @@ void SkyManager::RenderSky()
 		skytech->BeginPass();
 		shader = skytech->GetShader();
 	}
-	else
-	{
-		shader = g_Renderer.GetShaderManager().LoadProgram("fixed:dummy", CShaderDefines());
-		shader->Bind();
-	}
 
 	// Front face (positive Z)
-	shader->BindTexture("baseTex", m_SkyTexture[FRONT]);
+	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+		shader->BindTexture("baseTex", m_SkyTexture[FRONT]);
+	else
+		m_SkyTexture[FRONT]->Bind();
+	
 	glBegin( GL_QUADS );
 		glTexCoord2f( 0, 1 );
 		glVertex3f( -D, -D, +D );
@@ -186,7 +188,11 @@ void SkyManager::RenderSky()
 	glEnd();
 
 	// Back face (negative Z)
-	shader->BindTexture("baseTex", m_SkyTexture[BACK]);
+	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+		shader->BindTexture("baseTex", m_SkyTexture[BACK]);
+	else
+		m_SkyTexture[BACK]->Bind();
+	
 	glBegin( GL_QUADS );
 		glTexCoord2f( 1, 1 );
 		glVertex3f( -D, -D, -D );
@@ -199,7 +205,11 @@ void SkyManager::RenderSky()
 	glEnd();
 
 	// Right face (negative X)
-	shader->BindTexture("baseTex", m_SkyTexture[RIGHT]);
+	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+		shader->BindTexture("baseTex", m_SkyTexture[RIGHT]);
+	else
+		m_SkyTexture[RIGHT]->Bind();
+	
 	glBegin( GL_QUADS );
 		glTexCoord2f( 0, 1 );
 		glVertex3f( -D, -D, -D );
@@ -212,7 +222,11 @@ void SkyManager::RenderSky()
 	glEnd();
 
 	// Left face (positive X)
-	shader->BindTexture("baseTex", m_SkyTexture[LEFT]);
+	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+		shader->BindTexture("baseTex", m_SkyTexture[LEFT]);
+	else 
+		m_SkyTexture[LEFT]->Bind();
+	
 	glBegin( GL_QUADS );
 		glTexCoord2f( 1, 1 );
 		glVertex3f( +D, -D, -D );
@@ -225,7 +239,11 @@ void SkyManager::RenderSky()
 	glEnd();
 
 	// Top face (positive Y)
-	shader->BindTexture("baseTex", m_SkyTexture[TOP]);
+	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+		shader->BindTexture("baseTex", m_SkyTexture[TOP]);
+	else
+		m_SkyTexture[TOP]->Bind();
+	
 	glBegin( GL_QUADS );
 		glTexCoord2f( 1, 0 );
 		glVertex3f( +D, +D, -D );
@@ -238,13 +256,7 @@ void SkyManager::RenderSky()
 	glEnd();
 	
 	if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
-	{
 		skytech->EndPass();
-	}
-	else
-	{
-		shader->Unbind();
-	}
 
 	glPopMatrix();
 

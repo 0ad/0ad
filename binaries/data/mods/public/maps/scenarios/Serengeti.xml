@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="138.109" y="145.073" z="-48.4156"/>
+		<Position x="98.0811" y="108.403" z="447.879"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -32,7 +32,6 @@
 {
   "Description": "The African serengeti has herds of animals criss crossing the plain. Mineral wealth is bountiful and wood is in full supply.",
   "Name": "Serengeti 1",
-  "Preview" : "serengeti_1.png",
   "PlayerData": [
     {
       "AI": "",
@@ -43,7 +42,7 @@
         "r": 0
       },
       "Name": "Carthage",
-      "Team": -1
+      "Team": 0
     },
     {
       "AI": "qbot",
@@ -54,7 +53,7 @@
         "r": 150
       },
       "Name": "Iberia",
-      "Team": -1
+      "Team": 0
     },
     {
       "AI": "qbot",
@@ -65,7 +64,7 @@
         "r": 50
       },
       "Name": "Greece",
-      "Team": -1
+      "Team": 1
     },
     {
       "AI": "qbot",
@@ -76,9 +75,10 @@
         "r": 96
       },
       "Name": "Persia",
-      "Team": -1
+      "Team": 1
     }
-  ]
+  ],
+  "Preview": "serengeti_1.png"
 }
 ]]></ScriptSettings>
 	<Entities>

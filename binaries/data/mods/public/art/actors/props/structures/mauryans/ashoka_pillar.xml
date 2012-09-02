@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="ashoka_pillar">
+      <mesh>props/ashoka_pillar.dae</mesh>
+	   <textures><texture file="structural/ashoka_pillar.png" name="baseTex"/></textures>
+	    <props>
+        <prop actor="props/structures/mauryans/ashoka_lion.xml" attachpoint="ashoka_lion"/>
+		</props>
+    </variant>
+  </group>
+</actor>
