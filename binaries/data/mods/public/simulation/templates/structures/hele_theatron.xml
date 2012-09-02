@@ -32,6 +32,9 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
+  <TerritoryInfluence>
+    <Radius>100</Radius>
+  </TerritoryInfluence>
   <VisualActor>
     <Actor>structures/hellenes/special_theatre.xml</Actor>
     <FoundationActor>structures/fndn_theatron.xml</FoundationActor>
