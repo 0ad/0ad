@@ -625,8 +625,16 @@ void CCmpUnitMotion::PathResult(u32 ticket, const ICmpPathfinder::Path& path)
 		// If there's no waypoints then we couldn't get near the target
 		if (m_ShortPath.m_Waypoints.empty())
 		{
-			StartFailed();
-			return;
+			if (!IsFormationMember())
+			{
+				StartFailed();
+				return;
+			}
+			else
+			{
+				CMessageMotionChanged msg(true, true);
+				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
+			}
 		}
 
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), GetEntityId());
@@ -693,6 +701,11 @@ void CCmpUnitMotion::PathResult(u32 ticket, const ICmpPathfinder::Path& path)
 			{
 				MoveFailed();
 				return;
+			}
+			else
+			{
+				CMessageMotionChanged msg(false, true);
+				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 			}
 		}
 
