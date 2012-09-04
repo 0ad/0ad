@@ -633,7 +633,10 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 						CMaterial::SamplersVector samplers = model->GetMaterial().GetSamplers();
 						size_t samplersNum = samplers.size();
 						
-						// make sure the vectors are the right virtual sizes, and also
+						// Commenting this optimisation out temporarily, 
+						// in case it helps with a bug reported on the forums:
+						
+						/*// make sure the vectors are the right virtual sizes, and also
 						// reallocate if there are more samplers than expected.
 						if (currentTexs.size() != samplersNum)
 						{
@@ -673,8 +676,14 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 								shader->BindTexture(bind, samp.Sampler->GetHandle());
 								currentTexs[s] = newTex;
 							}
+						}*/
+						
+						for (size_t s = 0; s < samplersNum; ++s)
+						{
+							CMaterial::TextureSampler &samp = samplers[s];
+							shader->BindTexture(samp.Name.c_str(), samp.Sampler->GetHandle());
 						}
-
+						
 						// Bind modeldef when it changes
 						CModelDef* newModeldef = model->GetModelDef().get();
 						if (newModeldef != currentModeldef)
