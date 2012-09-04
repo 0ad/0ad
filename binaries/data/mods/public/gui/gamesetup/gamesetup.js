@@ -1038,7 +1038,12 @@ function updatePlayerList()
 	}
 
 	for each (var ai in g_AIs)
-	{	// Give AI a different color so it stands out
+	{
+		// Hide deprecated AIs from the default list (still accessible via "C")
+		if (ai.data.hidden)
+			continue;
+
+		// Give AI a different color so it stands out
 		aiAssignments[ai.id] = hostNameList.length;
 		hostNameList.push("[color=\"70 150 70 255\"]AI: " + ai.data.name);
 		hostGuidList.push("ai:" + ai.id);
