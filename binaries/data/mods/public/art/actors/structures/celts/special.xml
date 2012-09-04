@@ -19,5 +19,21 @@
 	  </textures>
     </variant>
   </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/special.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/special_stone.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/special_donkey.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/special_hay.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/special_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/celt_sb1_mud.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
   <material>player_trans_parallax_spec.xml</material>
 </actor>

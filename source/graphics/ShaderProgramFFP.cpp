@@ -707,7 +707,7 @@ public:
 			glLoadMatrixf(&v._11);
 	}
 	
-	virtual void Uniform(Binding id, float v0, float v1, float v2, float v3)
+	virtual void Uniform(Binding id, float v0, float v1, float UNUSED(v2), float UNUSED(v3))
 	{
 		if (id.second == ID_losTransform)
 		{

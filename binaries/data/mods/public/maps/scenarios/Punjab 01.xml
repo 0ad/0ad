@@ -24,14 +24,14 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="222.09" y="82.1074" z="501.035"/>
-		<Rotation angle="0"/>
+		<Position x="817.298" y="91.5743" z="330.558"/>
+		<Rotation angle="0.200798"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview" : "punjab_1.png",
+  "Preview": "punjab_1.png",
   "Description": "Northwest India. Nearby rivers swell with monsoon rains, allowing for only a few treacherous crossings.\u000a\u000aThe rivers are heavily forested, while grasslands carpet the surrounding countryside. Watch out for Tigers in the tall grass! Asian elephants are also a common danger.",
   "GameType": "conquest",
   "Keywords": [],
@@ -50,7 +50,7 @@
       "Team": -1
     },
     {
-      "AI": "qbot",
+      "AI": "qbot-wc",
       "Civ": "mace",
       "Colour": {
         "b": 20,
@@ -70,11 +70,6 @@
 			<Position x="154.78473" z="589.32166"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="14">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="129.13514" z="563.12195"/>
-			<Orientation y="-2.38762"/>
-		</Entity>
 		<Entity uid="15">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="154.37449" z="535.5359"/>
@@ -89,26 +84,6 @@
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="123.18737" z="511.50486"/>
 			<Orientation y="0.74386"/>
-		</Entity>
-		<Entity uid="18">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="167.67388" z="496.80045"/>
-			<Orientation y="-1.59478"/>
-		</Entity>
-		<Entity uid="19">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="213.82874" z="520.6474"/>
-			<Orientation y="0.02436"/>
-		</Entity>
-		<Entity uid="20">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="95.56185" z="540.28144"/>
-			<Orientation y="-2.89924"/>
-		</Entity>
-		<Entity uid="21">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="75.39039" z="502.76407"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="22">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
@@ -129,11 +104,6 @@
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="92.92385" z="379.95325"/>
 			<Orientation y="-2.11388"/>
-		</Entity>
-		<Entity uid="26">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="69.67598" z="416.53684"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="27">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
@@ -638,20 +608,10 @@
 			<Position x="224.92998" z="762.08332"/>
 			<Orientation y="0.56197"/>
 		</Entity>
-		<Entity uid="120">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="220.65354" z="711.05304"/>
-			<Orientation y="-2.228"/>
-		</Entity>
 		<Entity uid="122">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="272.99103" z="780.46998"/>
 			<Orientation y="-2.4509"/>
-		</Entity>
-		<Entity uid="123">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="238.42841" z="817.43006"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="124">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
@@ -673,11 +633,6 @@
 			<Position x="246.18168" z="908.70118"/>
 			<Orientation y="-2.6828"/>
 		</Entity>
-		<Entity uid="131">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="104.14921" z="690.2367"/>
-			<Orientation y="-2.05076"/>
-		</Entity>
 		<Entity uid="132">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="81.6989" z="729.29535"/>
@@ -687,16 +642,6 @@
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="858.3053" z="251.40514"/>
 			<Orientation y="1.08101"/>
-		</Entity>
-		<Entity uid="134">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="873.1839" z="213.38187"/>
-			<Orientation y="1.12168"/>
-		</Entity>
-		<Entity uid="135">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="907.08838" z="231.62758"/>
-			<Orientation y="-0.1286"/>
 		</Entity>
 		<Entity uid="136">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
@@ -708,16 +653,6 @@
 			<Position x="938.9474" z="287.20939"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="138">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="936.08655" z="250.87398"/>
-			<Orientation y="-1.4884"/>
-		</Entity>
-		<Entity uid="139">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="884.62916" z="187.62"/>
-			<Orientation y="0.91826"/>
-		</Entity>
 		<Entity uid="140">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="835.99976" z="215.05355"/>
@@ -727,11 +662,6 @@
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="914.3733" z="316.30655"/>
 			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="142">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="875.97004" z="304.4369"/>
-			<Orientation y="-0.31031"/>
 		</Entity>
 		<Entity uid="143">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
@@ -743,11 +673,6 @@
 			<Position x="812.17334" z="255.26984"/>
 			<Orientation y="-2.97185"/>
 		</Entity>
-		<Entity uid="145">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="904.84186" z="490.7562"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="146">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="884.70258" z="427.29181"/>
@@ -757,31 +682,6 @@
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="874.15888" z="462.86881"/>
 			<Orientation y="-2.10859"/>
-		</Entity>
-		<Entity uid="148">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="924.62287" z="446.91895"/>
-			<Orientation y="-3.0088"/>
-		</Entity>
-		<Entity uid="149">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="914.05726" z="397.00431"/>
-			<Orientation y="0.9323"/>
-		</Entity>
-		<Entity uid="150">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="955.378" z="420.8589"/>
-			<Orientation y="1.62295"/>
-		</Entity>
-		<Entity uid="151">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="842.9225" z="433.86817"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="152">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="823.67518" z="475.38035"/>
-			<Orientation y="0.2874"/>
 		</Entity>
 		<Entity uid="153">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
@@ -842,11 +742,6 @@
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="776.67444" z="308.55973"/>
 			<Orientation y="2.84775"/>
-		</Entity>
-		<Entity uid="167">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="812.82367" z="306.21436"/>
-			<Orientation y="0.85732"/>
 		</Entity>
 		<Entity uid="168">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
@@ -1244,11 +1139,6 @@
 			<Position x="65.0338" z="298.0911"/>
 			<Orientation y="-1.05295"/>
 		</Entity>
-		<Entity uid="235">
-			<Template>actor|props/flora/grass_tropic_field.xml</Template>
-			<Position x="67.63765" z="320.38923"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="236">
 			<Template>actor|props/flora/grass_tropic_field.xml</Template>
 			<Position x="22.47013" z="419.84961"/>
@@ -1538,13 +1428,13 @@
 		<Entity uid="285">
 			<Template>gaia/geology_metal_temperate_slabs</Template>
 			<Player>0</Player>
-			<Position x="209.61188" z="806.75281"/>
+			<Position x="208.48961" z="766.94153"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="286">
 			<Template>gaia/geology_metal_temperate_slabs</Template>
 			<Player>0</Player>
-			<Position x="831.64484" z="243.60895"/>
+			<Position x="827.32068" z="256.37693"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="287">
@@ -2930,7 +2820,7 @@
 		<Entity uid="529">
 			<Template>gaia/fauna_fish_tilapia</Template>
 			<Player>0</Player>
-			<Position x="422.65339" z="386.72318"/>
+			<Position x="437.13273" z="430.83487"/>
 			<Orientation y="0.6258"/>
 		</Entity>
 		<Entity uid="530">
@@ -10265,7 +10155,7 @@
 		</Entity>
 		<Entity uid="1980">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="678.58509" z="427.34449"/>
+			<Position x="685.53547" z="431.85969"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1981">
@@ -10303,45 +10193,15 @@
 			<Position x="615.88001" z="590.29047"/>
 			<Orientation y="-2.73937"/>
 		</Entity>
-		<Entity uid="1988">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="593.10517" z="556.24445"/>
-			<Orientation y="-0.06835"/>
-		</Entity>
 		<Entity uid="1989">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="581.15485" z="565.03498"/>
+			<Position x="489.92191" z="665.77753"/>
 			<Orientation y="-0.5138"/>
-		</Entity>
-		<Entity uid="1990">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="579.29657" z="592.86445"/>
-			<Orientation y="0.1564"/>
-		</Entity>
-		<Entity uid="1991">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="584.57068" z="635.43226"/>
-			<Orientation y="-0.09762"/>
 		</Entity>
 		<Entity uid="1992">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="584.03327" z="646.20295"/>
 			<Orientation y="0.5023"/>
-		</Entity>
-		<Entity uid="1993">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="608.58698" z="615.1875"/>
-			<Orientation y="0.13106"/>
-		</Entity>
-		<Entity uid="1994">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="563.02057" z="538.05115"/>
-			<Orientation y="-1.2735"/>
-		</Entity>
-		<Entity uid="1995">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="551.01252" z="569.76777"/>
-			<Orientation y="-0.06197"/>
 		</Entity>
 		<Entity uid="1996">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
@@ -10388,11 +10248,6 @@
 			<Position x="345.7013" z="223.70272"/>
 			<Orientation y="0.06441"/>
 		</Entity>
-		<Entity uid="2005">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="317.17356" z="193.82325"/>
-			<Orientation y="-1.84165"/>
-		</Entity>
 		<Entity uid="2006">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="255.14074" z="83.54833"/>
@@ -10438,20 +10293,10 @@
 			<Position x="744.71656" z="81.4502"/>
 			<Orientation y="-0.0835"/>
 		</Entity>
-		<Entity uid="2015">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="780.1446" z="107.28197"/>
-			<Orientation y="-3.12002"/>
-		</Entity>
 		<Entity uid="2016">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="739.15943" z="123.6763"/>
 			<Orientation y="-1.67826"/>
-		</Entity>
-		<Entity uid="2017">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="708.25782" z="93.1604"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2018">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
@@ -10462,11 +10307,6 @@
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="855.10553" z="155.52024"/>
 			<Orientation y="-2.44207"/>
-		</Entity>
-		<Entity uid="2020">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="817.78351" z="177.15787"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2021">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
@@ -11826,11 +11666,6 @@
 			<Position x="392.23945" z="602.1474"/>
 			<Orientation y="-2.28382"/>
 		</Entity>
-		<Entity uid="2270">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="345.13266" z="48.75129"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="2271">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="379.21601" z="33.46187"/>
@@ -11841,11 +11676,6 @@
 			<Position x="377.13672" z="81.03328"/>
 			<Orientation y="-2.34383"/>
 		</Entity>
-		<Entity uid="2273">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="420.26618" z="47.24221"/>
-			<Orientation y="0.59607"/>
-		</Entity>
 		<Entity uid="2274">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="440.5384" z="24.54114"/>
@@ -11855,11 +11685,6 @@
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="417.52198" z="91.37421"/>
 			<Orientation y="-2.11451"/>
-		</Entity>
-		<Entity uid="2276">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="352.9485" z="119.95644"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2277">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
@@ -11931,20 +11756,10 @@
 			<Position x="308.93088" z="61.70321"/>
 			<Orientation y="-1.87992"/>
 		</Entity>
-		<Entity uid="2291">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="484.19751" z="18.38904"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="2292">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="80.86252" z="274.68793"/>
 			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2293">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="148.65264" z="338.17597"/>
-			<Orientation y="0.38122"/>
 		</Entity>
 		<Entity uid="2294">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
@@ -11960,11 +11775,6 @@
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="273.92557" z="557.27112"/>
 			<Orientation y="-3.09598"/>
-		</Entity>
-		<Entity uid="2297">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="330.57139" z="621.00525"/>
-			<Orientation y="-0.12877"/>
 		</Entity>
 		<Entity uid="2298">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
@@ -11990,16 +11800,6 @@
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
 			<Position x="297.9599" z="933.16651"/>
 			<Orientation y="-2.29462"/>
-		</Entity>
-		<Entity uid="2303">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="328.41367" z="905.13093"/>
-			<Orientation y="-2.7369"/>
-		</Entity>
-		<Entity uid="2304">
-			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
-			<Position x="283.66437" z="648.13782"/>
-			<Orientation y="-0.30729"/>
 		</Entity>
 		<Entity uid="2305">
 			<Template>actor|props/flora/grass_tropic_field_tall.xml</Template>
@@ -23281,7 +23081,7 @@
 		<Entity uid="4199">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
 			<Player>0</Player>
-			<Position x="454.98337" z="377.21793"/>
+			<Position x="455.05744" z="377.60828"/>
 			<Orientation y="-2.92739"/>
 		</Entity>
 		<Entity uid="4200">
@@ -26601,7 +26401,7 @@
 		</Entity>
 		<Entity uid="4845">
 			<Template>actor|props/flora/plant_tropic_large.xml</Template>
-			<Position x="671.72168" z="402.87488"/>
+			<Position x="678.4499" z="402.09644"/>
 			<Orientation y="-2.3707"/>
 		</Entity>
 		<Entity uid="4846">
@@ -27606,7 +27406,7 @@
 		</Entity>
 		<Entity uid="5046">
 			<Template>actor|props/flora/bush_tropic_a.xml</Template>
-			<Position x="674.12494" z="415.55414"/>
+			<Position x="686.5619" z="398.01471"/>
 			<Orientation y="2.42322"/>
 		</Entity>
 		<Entity uid="5047">
