@@ -7,6 +7,11 @@
       <ProjectileSpeed>65.0</ProjectileSpeed>
     </Ranged>
   </Attack>
+  <Builder>
+    <Entities datatype="tokens">
+      structures/maur_elephant_stables
+    </Entities>
+  </Builder>
   <Cost>
     <BuildTime>7.5</BuildTime>
     <Resources>

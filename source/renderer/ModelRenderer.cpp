@@ -674,7 +674,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 								currentTexs[s] = newTex;
 							}
 						}
-
+						
 						// Bind modeldef when it changes
 						CModelDef* newModeldef = model->GetModelDef().get();
 						if (newModeldef != currentModeldef)
@@ -696,12 +696,8 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 						for (size_t q = 0; q < renderQueries.GetSize(); q++)
 						{
 							CShaderRenderQueries::RenderQuery rq = renderQueries.GetItem(q);
-							//if (str == g_Renderer.GetShaderManager().QueryTime)
 							if (rq.first == RQUERY_TIME)
 							{
-								
-								//renderQueries.Set(str, (float)time, 0.0f, 0.0f, 0.0f);
-								//shader->Uniform(rq.second, CVector3D(time,0,0));
 								CShaderProgram::Binding binding = shader->GetUniformBinding(rq.second);
 								if (binding.Active())
 								{
@@ -710,7 +706,6 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 								}
 							}
 						}
-						//renderQueries.BindUniforms(shader);
 
 						modifier->PrepareModel(shader, model);
 

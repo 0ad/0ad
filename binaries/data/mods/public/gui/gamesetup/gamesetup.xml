@@ -39,13 +39,13 @@
 		<object size="24 59 100%-440 358" type="image" sprite="BackgroundIndentFillDark" name="playerAssignmentsPannel">
 			<object size="0 6 100% 30">
 				<object name="playerNameHeading" type="text" style="CenteredLabelText" size="0 0 25% 100%">Player Name</object>
-				<object name="playerPlacementHeading" type="text" style="CenteredLabelText" size="25%+10 0 50% 100%">Player Placement</object>
-				<object name="playerCivHeading" type="text" style="CenteredLabelText" size="50%+45 0 85% 100%">Civilization</object>
+				<object name="playerPlacementHeading" type="text" style="CenteredLabelText" size="25%+5 0 55% 100%">Player Placement</object>
+				<object name="playerCivHeading" type="text" style="CenteredLabelText" size="55%+35 0 85% 100%">Civilization</object>
 				<object name="civInfoButton"
 					type="button"
 					sprite="iconInfoGold"
 					sprite_over="iconInfoWhite"
-					size="85%-36 0 85%-20 16"
+					size="85%-26 0 85%-10 16"
 					tooltip_style="onscreenToolTip"
 					tooltip="View civilization info"
 				>
@@ -53,22 +53,22 @@
 						Engine.PushGuiPage("page_civinfo.xml");
 					]]></action>
 				</object>
-				<object name="playerTeamHeading" type="text" style="CenteredLabelText" size="85%+10 0 100%-10 100%">Team</object>
+				<object name="playerTeamHeading" type="text" style="CenteredLabelText" size="85%+5 0 100%-5 100%">Team</object>
 			</object>
 			<object size="1 36 100%-1 100%">
 				<repeat count="8">
 					<object name="playerBox[n]" size="0 0 100% 32" hidden="true">
 						<object name="playerColour[n]" type="image" size="0 0 100% 100%"/>
 						<object name="playerName[n]" type="text" style="CenteredLabelText" size="0 2 25% 30"/>
-						<object name="playerAssignment[n]" type="dropdown" style="StoneDropDown" size="25%+10 2 50% 30" tooltip_style="onscreenToolTip" tooltip="Select player."/>
-						<object name="playerConfig[n]" type="button" style="StoneButton" size="50%+10 6 50%+35 26"
+						<object name="playerAssignment[n]" type="dropdown" style="StoneDropDown" size="25%+5 2 55% 30" tooltip_style="onscreenToolTip" tooltip="Select player."/>
+						<object name="playerConfig[n]" type="button" style="StoneButton" size="55%+5 6 55%+30 26"
 							tooltip_style="onscreenToolTip"
 							tooltip="Configure AI settings."
 						>C</object>
-						<object name="playerCiv[n]" type="dropdown" style="StoneDropDown" size="50%+45 2 85% 30" tooltip_style="onscreenToolTip" tooltip="Select player's civilization."/>
-						<object name="playerCivText[n]" type="text" style="CenteredLabelText" size="50%+45 0 85% 30"/>
-						<object name="playerTeam[n]" type="dropdown" style="StoneDropDown" size="85%+10 2 100%-10 30" tooltip_style="onscreenToolTip" tooltip="Select player's team."/>
-						<object name="playerTeamText[n]" type="text" style="CenteredLabelText" size="85%+10 0 100%-10 100%"/>
+						<object name="playerCiv[n]" type="dropdown" style="StoneDropDown" size="55%+35 2 85% 30" tooltip_style="onscreenToolTip" tooltip="Select player's civilization."/>
+						<object name="playerCivText[n]" type="text" style="CenteredLabelText" size="55%+35 0 85% 30"/>
+						<object name="playerTeam[n]" type="dropdown" style="StoneDropDown" size="85%+5 2 100%-5 30" tooltip_style="onscreenToolTip" tooltip="Select player's team."/>
+						<object name="playerTeamText[n]" type="text" style="CenteredLabelText" size="85%+5 0 100%-5 100%"/>
 					</object>
 				</repeat>
 			</object>
