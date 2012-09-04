@@ -80,8 +80,10 @@ function init(attribs)
 // Called after the map data is loaded and cached
 function initMain()
 {
-	// Load AI list
-	g_AIs = Engine.GetAIs();
+	// Load AI list and hide deprecated AIs
+	g_AIs = Engine.GetAIs().filter( function(ai) {
+		return !ai.data.hidden;
+	});
 
 	// Sort AIs by displayed name
 	g_AIs.sort(function (a, b) {
@@ -1039,10 +1041,6 @@ function updatePlayerList()
 
 	for each (var ai in g_AIs)
 	{
-		// Hide deprecated AIs from the default list (still accessible via "C")
-		if (ai.data.hidden)
-			continue;
-
 		// Give AI a different color so it stands out
 		aiAssignments[ai.id] = hostNameList.length;
 		hostNameList.push("[color=\"70 150 70 255\"]AI: " + ai.data.name);
