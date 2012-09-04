@@ -675,12 +675,6 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 							}
 						}
 						
-						for (size_t s = 0; s < samplersNum; ++s)
-						{
-							CMaterial::TextureSampler &samp = samplers[s];
-							shader->BindTexture(samp.Name.c_str(), samp.Sampler->GetHandle());
-						}
-						
 						// Bind modeldef when it changes
 						CModelDef* newModeldef = model->GetModelDef().get();
 						if (newModeldef != currentModeldef)
