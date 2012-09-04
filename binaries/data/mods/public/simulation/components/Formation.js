@@ -55,6 +55,16 @@ Formation.prototype.SetInPosition = function(ent)
 };
 
 /**
+ * Called by formation members upon entering non-walking states.
+ */
+Formation.prototype.UnsetInPosition = function(ent)
+{
+	var ind = this.inPosition.indexOf(ent);
+	if (ind != -1)
+		this.inPosition.splice(ind, 1);
+}
+
+/**
  * Set whether we should rearrange formation members if
  * units are removed from the formation.
  */
@@ -125,7 +135,12 @@ Formation.prototype.FindInPosition = function()
 	{
 		var cmpUnitMotion = Engine.QueryInterface(this.members[i], IID_UnitMotion);
 		if (!cmpUnitMotion.IsMoving())
-			this.SetInPosition(this.members[i]);
+		{
+			// Verify that members are stopped in FORMATIONMEMBER.WALKING
+			var cmpUnitAI = Engine.QueryInterface(this.members[i], IID_UnitAI);
+			if (cmpUnitAI.IsWalking())
+				this.SetInPosition(this.members[i]);
+		}
 	}
 }
 
