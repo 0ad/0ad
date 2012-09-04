@@ -426,7 +426,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 			CModel* model = m->submissions[i];
 			
 			CShaderDefines defs = model->GetMaterial().GetShaderDefines();
-			/*CShaderConditionalDefines condefs = model->GetMaterial().GetConditionalDefines();
+			CShaderConditionalDefines condefs = model->GetMaterial().GetConditionalDefines();
 			
 			for (size_t j = 0; j < condefs.GetSize(); ++j)
 			{
@@ -448,7 +448,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 						break;
 					}
 				}
-			}*/
+			}
 
 			SMRMaterialBucketKey key(model->GetMaterial().GetShaderEffect(), defs);
 			std::vector<CModel*>& bucketItems = materialBuckets[key];
@@ -633,10 +633,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 						CMaterial::SamplersVector samplers = model->GetMaterial().GetSamplers();
 						size_t samplersNum = samplers.size();
 						
-						// Commenting this optimisation out temporarily, 
-						// in case it helps with a bug reported on the forums:
-						
-						/*// make sure the vectors are the right virtual sizes, and also
+						// make sure the vectors are the right virtual sizes, and also
 						// reallocate if there are more samplers than expected.
 						if (currentTexs.size() != samplersNum)
 						{
@@ -676,7 +673,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 								shader->BindTexture(bind, samp.Sampler->GetHandle());
 								currentTexs[s] = newTex;
 							}
-						}*/
+						}
 						
 						for (size_t s = 0; s < samplersNum; ++s)
 						{
@@ -686,7 +683,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 						
 						// Bind modeldef when it changes
 						CModelDef* newModeldef = model->GetModelDef().get();
-						//if (newModeldef != currentModeldef)
+						if (newModeldef != currentModeldef)
 						{
 							currentModeldef = newModeldef;
 							m->vertexRenderer->PrepareModelDef(shader, streamflags, *currentModeldef);
@@ -694,7 +691,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 
 						// Bind all uniforms when any change
 						CShaderUniforms newStaticUniforms = model->GetMaterial().GetStaticUniforms();
-						//if (newStaticUniforms != currentStaticUniforms)
+						if (newStaticUniforms != currentStaticUniforms)
 						{
 							currentStaticUniforms = newStaticUniforms;
 							currentStaticUniforms.BindUniforms(shader);
