@@ -128,6 +128,7 @@ public:
 	// Dynamic state:
 
 	entity_pos_t m_Radius;
+	bool m_Moving;
 
 	enum State
 	{
@@ -276,6 +277,7 @@ public:
 	{
 		m_FormationController = paramNode.GetChild("FormationController").ToBool();
 
+		m_Moving = false;
 		m_WalkSpeed = paramNode.GetChild("WalkSpeed").ToFixed();
 		m_Speed = m_WalkSpeed;
 
@@ -392,7 +394,7 @@ public:
 
 	virtual bool IsMoving()
 	{
-		return m_State != STATE_IDLE;
+		return m_Moving;
 	}
 
 	virtual fixed GetWalkSpeed()
@@ -429,6 +431,7 @@ public:
 
 	virtual void StopMoving()
 	{
+		m_Moving = false;
 		m_ExpectedPathTicket = 0;
 		m_State = STATE_STOPPING;
 		m_PathState = PATHSTATE_NONE;
@@ -485,6 +488,8 @@ private:
 
 	void MoveSucceeded()
 	{
+		m_Moving = false;
+
 		CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), GetEntityId());
 		if (cmpObstruction)
 			cmpObstruction->SetMovingFlag(false);
@@ -632,6 +637,7 @@ void CCmpUnitMotion::PathResult(u32 ticket, const ICmpPathfinder::Path& path)
 			}
 			else
 			{
+				m_Moving = false;
 				CMessageMotionChanged msg(true, true);
 				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 			}
@@ -704,6 +710,7 @@ void CCmpUnitMotion::PathResult(u32 ticket, const ICmpPathfinder::Path& path)
 			}
 			else
 			{
+				m_Moving = false;
 				CMessageMotionChanged msg(false, true);
 				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 			}
@@ -927,6 +934,7 @@ void CCmpUnitMotion::Move(fixed dt)
 							CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), m_TargetEntity);
 							if (cmpUnitMotion && !cmpUnitMotion->IsMoving())
 							{
+								m_Moving = false;
 								CMessageMotionChanged msg(false, false);
 								GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 							}
@@ -1125,6 +1133,9 @@ void CCmpUnitMotion::BeginPathing(CFixedVector2D from, const ICmpPathfinder::Goa
 {
 	// Cancel any pending path requests
 	m_ExpectedPathTicket = 0;
+
+	// Update the unit's movement status.
+	m_Moving = true;
 
 	// Set our 'moving' flag, so other units pathfinding now will ignore us
 	CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), GetEntityId());

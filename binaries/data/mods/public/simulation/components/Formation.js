@@ -116,6 +116,20 @@ Formation.prototype.RemoveMembers = function(ents)
 };
 
 /**
+ * Called when the formation stops moving in order to detect
+ * units that have already reached their final positions.
+ */
+Formation.prototype.FindInPosition = function()
+{
+	for (var i = 0; i < this.members.length; ++i)
+	{
+		var cmpUnitMotion = Engine.QueryInterface(this.members[i], IID_UnitMotion);
+		if (!cmpUnitMotion.IsMoving())
+			this.SetInPosition(this.members[i]);
+	}
+}
+
+/**
  * Remove all members and destroy the formation.
  */
 Formation.prototype.Disband = function()

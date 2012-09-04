@@ -593,7 +593,12 @@ var UnitFsmSpec = {
 			},
 
 			"MoveCompleted": function(msg) {
-				this.FinishOrder();
+				if (this.FinishOrder())
+					return;
+					
+				// If this was the last order, attempt to disband the formation.
+				var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				cmpFormation.FindInPosition();
 			},
 		},
 
