@@ -426,7 +426,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 			CModel* model = m->submissions[i];
 			
 			CShaderDefines defs = model->GetMaterial().GetShaderDefines();
-			CShaderConditionalDefines condefs = model->GetMaterial().GetConditionalDefines();
+			/*CShaderConditionalDefines condefs = model->GetMaterial().GetConditionalDefines();
 			
 			for (size_t j = 0; j < condefs.GetSize(); ++j)
 			{
@@ -448,7 +448,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 						break;
 					}
 				}
-			}
+			}*/
 
 			SMRMaterialBucketKey key(model->GetMaterial().GetShaderEffect(), defs);
 			std::vector<CModel*>& bucketItems = materialBuckets[key];
