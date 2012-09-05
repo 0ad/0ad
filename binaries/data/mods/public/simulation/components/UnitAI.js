@@ -654,7 +654,7 @@ var UnitFsmSpec = {
 			if (ok)
 			{
 				// We've started walking to the given point
-				this.SetNextState("WALKING");
+				this.SetNextState("WALKINGTOPOINT");
 			}
 			else
 			{
@@ -681,6 +681,19 @@ var UnitFsmSpec = {
 			"MoveCompleted": function(msg) {
 				var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
 				cmpFormation.SetInPosition(this.entity);
+			},
+		},
+
+		// Special case used by Order.LeaveFoundation
+		"WALKINGTOPOINT": {
+			"enter": function() {
+				var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
+				cmpFormation.UnsetInPosition(this.entity);
+				this.SelectAnimation("move");
+			},
+
+			"MoveCompleted": function() {
+				this.FinishOrder();
 			},
 		},
 	},
@@ -1874,6 +1887,12 @@ UnitAI.prototype.IsIdle = function()
 UnitAI.prototype.IsGarrisoned = function()
 {
 	return this.isGarrisoned;
+};
+
+UnitAI.prototype.IsWalking = function()
+{
+	var state = this.GetCurrentState().split(".").pop();
+	return (state == "WALKING");
 };
 
 UnitAI.prototype.CanAttackGaia = function()
