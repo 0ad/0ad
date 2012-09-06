@@ -130,6 +130,11 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	model->GetMaterial().AddStaticUniform("objectColor", CVector4D(m_Color.r, m_Color.g, m_Color.b, m_Color.a));
 	model->InitModel(modeldef);
 	
+	if (m_Samplers.size() == 0)
+	{
+		LOGERROR(L"Actor '%ls' has no textures.", m_Base->m_ShortName.c_str());
+	}
+	
 	std::vector<CObjectBase::Samp>::iterator samp;
 	for (samp = m_Samplers.begin(); samp != m_Samplers.end(); ++samp)
 	{
