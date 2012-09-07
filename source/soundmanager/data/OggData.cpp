@@ -51,7 +51,8 @@ bool COggData::InitOggFile(const VfsPath& itemPath)
 		m_FileFinished = false;
 
 		SetFormatAndFreq(ogg->Format(), ogg->SamplingRate() );
-
+		SetFileName( itemPath );
+	
 		AL_CHECK
 		
 		alGenBuffers(buffersToStart, m_Buffer);

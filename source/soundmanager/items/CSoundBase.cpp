@@ -78,15 +78,20 @@ void CSoundBase::SetGain(ALfloat gain)
 {
 	AL_CHECK
 
-	alSourcef(m_ALSource, AL_GAIN, gain);
-
-	AL_CHECK
+	if ( m_ALSource )	
+	{
+		alSourcef(m_ALSource, AL_GAIN, gain);
+		AL_CHECK
+	}
 }
 
 void CSoundBase::SetRollOff(ALfloat rolls)
 {
-   alSourcef(m_ALSource, AL_ROLLOFF_FACTOR, rolls);
-	AL_CHECK
+	if ( m_ALSource )	
+   	{
+   		alSourcef(m_ALSource, AL_ROLLOFF_FACTOR, rolls);
+		AL_CHECK
+	}
 }
 
 void CSoundBase::EnsurePlay()
@@ -97,25 +102,34 @@ void CSoundBase::EnsurePlay()
 
 void CSoundBase::SetCone(ALfloat innerCone, ALfloat outerCone, ALfloat coneGain)
 {
-	AL_CHECK	
-	alSourcef(m_ALSource, AL_CONE_INNER_ANGLE, innerCone);
-	AL_CHECK
-	alSourcef(m_ALSource, AL_CONE_OUTER_ANGLE, outerCone);
-	AL_CHECK
-	alSourcef(m_ALSource, AL_CONE_OUTER_GAIN, coneGain);
-	AL_CHECK
+	if ( m_ALSource )
+	{
+		AL_CHECK	
+		alSourcef(m_ALSource, AL_CONE_INNER_ANGLE, innerCone);
+		AL_CHECK
+		alSourcef(m_ALSource, AL_CONE_OUTER_ANGLE, outerCone);
+		AL_CHECK
+		alSourcef(m_ALSource, AL_CONE_OUTER_GAIN, coneGain);
+		AL_CHECK
+	}
 }
 
 void CSoundBase::SetPitch(ALfloat pitch)
 {
-	alSourcef(m_ALSource, AL_PITCH, pitch);
-	AL_CHECK
+	if ( m_ALSource )
+	{
+		alSourcef(m_ALSource, AL_PITCH, pitch);
+		AL_CHECK
+	}
 }
 
 void CSoundBase::SetDirection(const CVector3D& direction)
 {
-	alSourcefv(m_ALSource, AL_DIRECTION, direction.GetFloatArray());
-	AL_CHECK
+	if ( m_ALSource )
+	{
+		alSourcefv(m_ALSource, AL_DIRECTION, direction.GetFloatArray());
+		AL_CHECK
+	}
 }
 
 bool CSoundBase::InitOpenAL()
@@ -139,6 +153,10 @@ bool CSoundBase::InitOpenAL()
 		AL_CHECK
 
 		return true;
+	}
+	else
+	{
+		CSoundManager::al_ReportError( anErr, __func__, __LINE__);
 	}
 	return false;
 }
@@ -164,8 +182,11 @@ bool CSoundBase::IdleTask()
 
 void CSoundBase::SetLocation (const CVector3D& position)
 {
-	alSourcefv(m_ALSource,AL_POSITION, position.GetFloatArray());
-	AL_CHECK
+	if ( m_ALSource )
+	{
+		alSourcefv(m_ALSource,AL_POSITION, position.GetFloatArray());
+		AL_CHECK
+	}
 }
 
 bool CSoundBase::HandleFade()

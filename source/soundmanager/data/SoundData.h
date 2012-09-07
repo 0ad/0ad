@@ -53,7 +53,9 @@ public:
 	
 	virtual ALuint GetBuffer();
 	virtual ALsizei GetBufferCount();
-	CStrW GetFileName();
+	virtual std::wstring* GetFileName();
+	virtual void SetFileName(const Path& aName);
+
 	virtual ALuint* GetBufferPtr();
 
 protected:
@@ -61,7 +63,7 @@ protected:
 
 	ALuint m_ALBuffer;
 	int m_RetentionCount;
-	CStrW m_FileName;
+	std::wstring* m_FileName;
 
 };
 
