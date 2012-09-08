@@ -110,6 +110,7 @@ int COggData::FetchDataIntoBuffer(int count, ALuint* buffers)
 	
 	for (int i = 0; (i < count) && !m_FileFinished; i++)
 	{
+		memset( pcmout, 0, bufferSize + 5000 );
 		Status totalRet = ogg->GetNextChunk( pcmout, bufferSize);
 		m_FileFinished = ogg->atFileEOF();
 		if (totalRet > 0)
