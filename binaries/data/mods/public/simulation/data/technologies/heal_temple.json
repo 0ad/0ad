@@ -1,0 +1,12 @@
+{
+	"genericName": "Divine Offerings",
+	"description": "Garrisoned units are healed faster.",
+	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 200},
+	"requirements": {"tech": "phase_city"},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "statue_face_stone.png",
+	"researchTime": 20,
+	"tooltip": "Healing rate +50% for Temples.",
+	"modifications": [{"value": "GarrisonHolder/BuffHeal", "multiplier": 0.5}],
+	"affects": ["Temple"]  
+}
