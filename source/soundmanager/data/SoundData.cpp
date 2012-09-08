@@ -37,12 +37,15 @@ CSoundData::~CSoundData()
 {
 	if (m_ALBuffer != 0)
 		alDeleteBuffers(1, &m_ALBuffer);
+	if ( m_FileName )
+		delete m_FileName;
 }
 
 void CSoundData::InitProperties()
 {
 	m_ALBuffer = 0;
 	m_RetentionCount = 0;
+	m_FileName = NULL;
 }
 
 void CSoundData::ReleaseSoundData(CSoundData* theData)
@@ -51,12 +54,11 @@ void CSoundData::ReleaseSoundData(CSoundData* theData)
 
 	if (theData->DecrementCount())
 	{
-		if ((itemFind = CSoundData::sSoundData->find(theData->GetFileName())) != sSoundData->end())
+		if ((itemFind = CSoundData::sSoundData->find( *theData->GetFileName() )) != sSoundData->end())
 		{
-			CSoundData* dier = itemFind->second;
 			CSoundData::sSoundData->erase(itemFind);
-			delete dier;
 		}
+		delete theData;
 	}
 }
 
@@ -79,10 +81,13 @@ CSoundData* CSoundData::SoundDataFromFile(const VfsPath& itemPath)
 	   	if (fExt == ".ogg")
 			answer = SoundDataFromOgg(itemPath);
 	
-		if (answer && answer->IsOneShot())
+		if (answer && answer->IsOneShot()) 
+		{
 			(*CSoundData::sSoundData)[itemPath.string()] = answer;
+		}
 	
 	}
+
 	return answer;
 }
 
@@ -115,9 +120,17 @@ ALsizei CSoundData::GetBufferCount()
 	return 1;
 }
 
-CStrW CSoundData::GetFileName()
+std::wstring* CSoundData::GetFileName()
 {
 	return m_FileName;
+}
+
+void CSoundData::SetFileName(const Path& aName)
+{
+	if ( m_FileName )
+		delete m_FileName;
+
+	m_FileName = new std::wstring( aName.string() );
 }
 
 CSoundData* CSoundData::IncrementCount()
@@ -137,6 +150,7 @@ ALuint CSoundData::GetBuffer()
 {
 	return m_ALBuffer;
 }
+
 ALuint* CSoundData::GetBufferPtr()
 {
 	return &m_ALBuffer;

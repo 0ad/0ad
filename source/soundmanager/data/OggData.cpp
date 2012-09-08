@@ -51,7 +51,8 @@ bool COggData::InitOggFile(const VfsPath& itemPath)
 		m_FileFinished = false;
 
 		SetFormatAndFreq(ogg->Format(), ogg->SamplingRate() );
-
+		SetFileName( itemPath );
+	
 		AL_CHECK
 		
 		alGenBuffers(buffersToStart, m_Buffer);
@@ -109,6 +110,7 @@ int COggData::FetchDataIntoBuffer(int count, ALuint* buffers)
 	
 	for (int i = 0; (i < count) && !m_FileFinished; i++)
 	{
+		memset( pcmout, 0, bufferSize + 5000 );
 		Status totalRet = ogg->GetNextChunk( pcmout, bufferSize);
 		m_FileFinished = ogg->atFileEOF();
 		if (totalRet > 0)
