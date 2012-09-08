@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+	
+	<castshadow/>
+	
+	<group>
+		<variant frequency="100" name="Base">
+			<animations/>
+			<mesh>test/reservoir.dae</mesh>
+			<props>
+				<prop actor="temp/reservoir_water.xml" attachpoint="root"/>
+			</props>
+			<textures>
+				<texture file="structural/rome_struct.png" name="baseTex"/>
+			</textures>
+		</variant>
+	</group>
+	
+</actor>

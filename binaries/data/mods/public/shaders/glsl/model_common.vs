@@ -18,7 +18,7 @@ uniform mat4 instancingTransform;
 #endif
 
 #if USE_WIND
-  uniform vec4 time;
+  uniform vec4 sim_time;
   uniform vec4 windData;
 #endif
 
@@ -115,9 +115,9 @@ void main()
 
     vec4 cosVec;
     // these determine the speed of the wind's "cosine" waves.
-    cosVec.x = time.x * modelPos[0] + position.x;
-    cosVec.y = time.x * modelPos[2] / 3 + instancingTransform[3][0];
-    cosVec.z = time.x * abswind / 4 + position.z;
+    cosVec.x = sim_time.x * modelPos[0] + position.x;
+    cosVec.y = sim_time.x * modelPos[2] / 3 + instancingTransform[3][0];
+    cosVec.z = sim_time.x * abswind / 4 + position.z;
 
     // calculate "cosines" in parallel, using a smoothed triangle wave
     cosVec = fakeCos(cosVec);

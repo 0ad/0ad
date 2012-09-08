@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="5">
+	<Environment>
+		<LightingModel>standard</LightingModel>
+		<SkySet>default</SkySet>
+		<SunColour r="0.74902" g="0.74902" b="0.74902"/>
+		<SunElevation angle="0.847634"/>
+		<SunRotation angle="2.90106"/>
+		<TerrainAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Height>20.459</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="361.546" y="68.2657" z="436.481"/>
+		<Rotation angle="2.45146"/>
+		<Declination angle="0.610865"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "CircularMap": true,
+  "Description": "Give an interesting description of your map.",
+  "GameType": "conquest",
+  "Keywords": [],
+  "LockTeams": false,
+  "Name": "reservoir",
+  "PlayerData": [
+    {
+      "Civ": "athen"
+    },
+    {
+      "Civ": "cart"
+    },
+    {
+      "Civ": "celt"
+    },
+    {
+      "Civ": "iber"
+    },
+    {
+      "Civ": "mace"
+    },
+    {
+      "Civ": "pers"
+    },
+    {
+      "Civ": "rome"
+    },
+    {
+      "Civ": "spart"
+    }
+  ],
+  "RevealMap": false
+}
+]]></ScriptSettings>
+	<Entities>
+		<Entity uid="11">
+			<Template>actor|temp/reservoir.xml</Template>
+			<Position x="310.00702" z="357.20054"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="12">
+			<Template>actor|temp/reservoir.xml</Template>
+			<Position x="299.92014" z="352.99659"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>actor|temp/reservoir.xml</Template>
+			<Position x="298.5027" z="365.18433"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>actor|temp/reservoir.xml</Template>
+			<Position x="312.8779" z="370.01944"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>actor|temp/reservoir.xml</Template>
+			<Position x="321.0926" z="362.23527"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>actor|temp/reservoir.xml</Template>
+			<Position x="315.39463" z="347.00016"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="17">
+			<Template>actor|temp/reservoir.xml</Template>
+			<Position x="302.84464" z="342.69767"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="18">
+			<Template>actor|temp/reservoir.xml</Template>
+			<Position x="282.24692" z="353.6772"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>actor|temp/reservoir.xml</Template>
+			<Position x="283.96378" z="373.65336"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="20">
+			<Template>actor|temp/reservoir.xml</Template>
+			<Position x="290.09272" z="345.00287"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="21">
+			<Template>actor|temp/reservoir.xml</Template>
+			<Position x="301.7169" z="384.36884"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="22">
+			<Template>actor|temp/reservoir.xml</Template>
+			<Position x="290.35068" z="361.19556"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="23">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="391.6338" z="395.76957"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="24">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="394.14985" z="398.31098"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="25">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="396.52332" z="400.85099"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="399.038" z="403.40088"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="27">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="401.65821" z="405.71094"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="28">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="404.06232" z="408.08393"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="29">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="406.64917" z="410.45774"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="30">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="409.1117" z="413.06794"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="31">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="411.76688" z="415.4311"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="32">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="393.90308" z="393.42301"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="33">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="396.36619" z="390.92405"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="34">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="398.87095" z="388.45627"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="35">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="401.3683" z="385.97358"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="36">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="403.85386" z="383.46708"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="37">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="406.37107" z="385.97928"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="38">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="408.84894" z="388.48087"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="39">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="411.42362" z="390.88727"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="40">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="413.93647" z="393.39576"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="42">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="416.43302" z="395.88935"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="43">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="419.06147" z="398.19208"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="44">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="421.42371" z="400.66822"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="45">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="424.0221" z="403.13981"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="46">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="421.6786" z="405.67103"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="48">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="419.16178" z="408.17997"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="49">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="416.623" z="410.58536"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="50">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="414.19803" z="412.99277"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="51">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="396.56995" z="395.81104"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="52">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="399.0121" z="393.27103"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="53">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="401.4821" z="390.97767"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="54">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="403.80875" z="388.55872"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="55">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="399.0445" z="398.3859"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="56">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="401.49555" z="400.89731"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="57">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="404.00824" z="403.1555"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="58">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="406.45554" z="405.6673"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="59">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="409.12024" z="407.95588"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="60">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="411.65986" z="410.54435"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="61">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="414.08854" z="408.22724"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="62">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="416.62577" z="405.79764"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="63">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="419.13843" z="403.33222"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="64">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="401.52604" z="395.8107"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="65">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="403.85431" z="393.39182"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="66">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="406.33252" z="390.9773"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="68">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="408.99857" z="393.35639"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="69">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="406.67313" z="395.61353"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="70">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="404.24637" z="398.04056"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="71">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="406.49631" z="400.74924"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="72">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="409.06095" z="403.245"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="73">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="411.72861" z="405.5847"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="74">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="414.2187" z="403.15452"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="75">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="416.62131" z="400.77439"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="76">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="411.50434" z="400.84543"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="77">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="413.95813" z="398.4109"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="78">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="411.40647" z="395.88331"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="79">
+			<Template>actor|temp/reservoir_water.xml</Template>
+			<Position x="408.98533" z="398.34345"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="80">
+			<Template>actor|temp/water_plane.xml</Template>
+			<Position x="249.05802" z="303.48603"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="81">
+			<Template>actor|temp/waterfall.xml</Template>
+			<Position x="420.21323" z="392.30652"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="82">
+			<Template>actor|temp/waterfall.xml</Template>
+			<Position x="255.33231" z="301.27381"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+</Scenario>

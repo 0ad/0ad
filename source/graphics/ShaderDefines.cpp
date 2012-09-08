@@ -236,9 +236,17 @@ void CShaderUniforms::BindUniforms(const CShaderProgramPtr& shader) const
 
 void CShaderRenderQueries::Add(const char* name)
 {
-	if (name == std::string("time"))
+	if (name == CStr("sim_time"))
 	{
 		m_Items.push_back(std::make_pair(RQUERY_TIME, CStrIntern(name)));
+	}
+	else if (name == CStr("water_tex"))
+	{
+		m_Items.push_back(std::make_pair(RQUERY_WATER_TEX, CStrIntern(name)));
+	}
+	else if (name == CStr("sky_cube"))
+	{
+		m_Items.push_back(std::make_pair(RQUERY_SKY_CUBE, CStrIntern(name)));
 	}
 }
 
