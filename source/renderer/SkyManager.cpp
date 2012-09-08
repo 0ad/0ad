@@ -67,6 +67,8 @@ SkyManager::SkyManager()
 	m_SkySet = L"";
 
 	m_HorizonHeight = -150.0f;
+	
+	m_SkyCubeMap = 0;
 }
 
 
@@ -84,6 +86,77 @@ void SkyManager::LoadSkyTextures()
 		texture->Prefetch();
 		m_SkyTexture[i] = texture;
 	}
+	
+	glGenTextures(1, &m_SkyCubeMap);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, m_SkyCubeMap);
+	
+	int types[] = {
+		GL_TEXTURE_CUBE_MAP_POSITIVE_X,
+		GL_TEXTURE_CUBE_MAP_NEGATIVE_X,
+		GL_TEXTURE_CUBE_MAP_POSITIVE_Z,
+		GL_TEXTURE_CUBE_MAP_NEGATIVE_Z,
+		GL_TEXTURE_CUBE_MAP_POSITIVE_Y,
+		GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
+	};
+	
+	const wchar_t* images[numTextures+1] = {
+		L"front",
+		L"back",
+		L"right",
+		L"left",
+		L"top",
+		L"top"
+	};
+	
+	for (size_t i = 0; i < numTextures+1; ++i)
+	{
+		VfsPath path = VfsPath("art/textures/skies") / m_SkySet / (Path::String(images[i])+L".dds");
+		
+		shared_ptr<u8> file;
+		size_t fileSize;
+		g_VFS->LoadFile(path, file, fileSize);
+		
+		Tex tex;
+		tex_decode(file, fileSize, &tex);
+		
+		tex_transform_to(&tex, (tex.flags | TEX_BOTTOM_UP | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS));
+		
+		u8* data = tex_get_data(&tex);
+		
+		if (types[i] == GL_TEXTURE_CUBE_MAP_NEGATIVE_Y || types[i] == GL_TEXTURE_CUBE_MAP_POSITIVE_Y)
+		{
+			std::vector<u8> rotated(tex.dataSize);
+		
+			for (size_t y = 0; y < tex.h; ++y)
+			{
+				for (size_t x = 0; x < tex.w; ++x)
+				{
+					size_t invx = y, invy = tex.w-x-1;
+					
+					rotated[(y*tex.w + x) * 4 + 0] = data[(invy*tex.w + invx) * 4 + 0];
+					rotated[(y*tex.w + x) * 4 + 1] = data[(invy*tex.w + invx) * 4 + 1];
+					rotated[(y*tex.w + x) * 4 + 2] = data[(invy*tex.w + invx) * 4 + 2];
+					rotated[(y*tex.w + x) * 4 + 3] = data[(invy*tex.w + invx) * 4 + 3];
+				}
+			}
+			
+			glTexImage2D(types[i], 0, GL_RGB, tex.w, tex.h, 0, GL_RGBA, GL_UNSIGNED_BYTE, &rotated[0]);
+		}
+		else
+		{
+			glTexImage2D(types[i], 0, GL_RGB, tex.w, tex.h, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+		}
+		
+		tex_free(&tex);
+	}
+	
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+	
+	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 
@@ -93,6 +166,13 @@ void SkyManager::SetSkySet( const CStrW& newSet )
 {
 	if(newSet == m_SkySet)
 		return;
+	
+	if (m_SkyCubeMap)
+	{
+		glDeleteTextures(1, &m_SkyCubeMap);
+		m_SkyCubeMap = 0;
+	}
+	
 	m_SkySet = newSet;
 
 	LoadSkyTextures();

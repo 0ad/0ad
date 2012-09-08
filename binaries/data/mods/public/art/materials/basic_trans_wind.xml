@@ -3,7 +3,7 @@
     <shader effect="model_transparent"/>
     <alpha_blending/>
     <define name="USE_TRANSPARENT" value="1"/>
-    <renderquery name="time"/>
+    <renderquery name="sim_time"/>
     <define name="USE_WIND" value="1"/>
     <uniform name="windData" value="1.0 1.0"/>
 </material>

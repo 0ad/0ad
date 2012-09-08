@@ -270,7 +270,7 @@ function ProcessCommand(player, cmd)
 		{
 			var entities = FilterEntityList(cmd.entities, player, controlAllUnits);
 			GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
-				cmpUnitAI.Garrison(cmd.target);
+				cmpUnitAI.Garrison(cmd.target, cmd.queued);
 			});
 		}
 		else if (g_DebugCommands)

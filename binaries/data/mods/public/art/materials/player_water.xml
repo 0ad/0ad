@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<material>
+    <shader effect="model_water"/>
+    <renderquery name="water_tex"/>
+    <renderquery name="sky_cube"/>
+    <renderquery name="sim_time"/>
+    <uniform name="translation" value="0.05 -0.05"/>
+    
+    <uniform name="shininess" value="32.0"/>
+    <uniform name="specularStrength" value="1.5"/>
+    <uniform name="waviness" value="0.5"/>
+    <uniform name="waterTint" value="0.2 0.3 0.2"/>
+    <uniform name="murkiness" value="0.6"/>
+    <uniform name="reflectionTint" value="0.3 0.4 0.3"/>
+    <uniform name="reflectionTintStrength" value="0.1"/>
+</material>

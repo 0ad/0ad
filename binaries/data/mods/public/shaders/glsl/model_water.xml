@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<program type="glsl">
+
+    <vertex file="glsl/model_water.vs">
+        <stream name="pos"/>
+        <stream name="normal"/>
+        <stream name="uv0"/>
+	<stream name="uv1" if="USE_AO"/>
+        <attrib name="a_vertex" semantics="gl_Vertex"/>
+        <attrib name="a_normal" semantics="gl_Normal"/>
+        <attrib name="a_uv0" semantics="gl_MultiTexCoord0"/>
+	<attrib name="a_uv1" semantics="gl_MultiTexCoord1" if="USE_AO"/>
+        <attrib name="a_skinJoints" semantics="CustomAttribute0" if="USE_GPU_SKINNING"/>
+        <attrib name="a_skinWeights" semantics="CustomAttribute1" if="USE_GPU_SKINNING"/>
+	<attrib name="a_tangent" semantics="CustomAttribute2" if="USE_INSTANCING"/>
+    </vertex>
+
+    <fragment file="glsl/model_water.fs"/>
+
+</program>

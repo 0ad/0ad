@@ -47,6 +47,10 @@ public:
 	inline const CStrW& GetSkySet() const {
 		return m_SkySet;
 	}
+	
+	GLuint GetSkyCube() {
+		return m_SkyCubeMap;
+	}
 
 	/**
 	 * GetSkySet(): Set the sky set name, potentially loading the textures.
@@ -78,6 +82,8 @@ private:
 
 	// Sky textures
 	CTexturePtr m_SkyTexture[numTextures];
+	
+	GLuint m_SkyCubeMap;
 
 	// Array of image names (defined in SkyManager.cpp), in the order of the IMG_ id's
 	static const wchar_t* s_imageNames[numTextures];

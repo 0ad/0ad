@@ -37,6 +37,8 @@
 #include "renderer/ModelVertexRenderer.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderModifiers.h"
+#include "renderer/SkyManager.h"
+#include "renderer/WaterManager.h"
 
 #include <boost/weak_ptr.hpp>
 
@@ -704,6 +706,19 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 									double time = g_Renderer.GetTimeManager().GetGlobalTime();
 									shader->Uniform(binding, time, 0,0,0);
 								}
+							}
+							else if (rq.first == RQUERY_WATER_TEX)
+							{
+								WaterManager* WaterMgr = g_Renderer.GetWaterManager();
+								double time = WaterMgr->m_WaterTexTimer;
+								double period = 1.6;
+								int curTex = (int)(time*60/period) % 60;
+								
+								shader->BindTexture("waterTex", WaterMgr->m_NormalMap[curTex]);
+							}
+							else if (rq.first == RQUERY_SKY_CUBE)
+							{
+								shader->BindTexture("skyCube", g_Renderer.GetSkyManager()->GetSkyCube());
 							}
 						}
 
