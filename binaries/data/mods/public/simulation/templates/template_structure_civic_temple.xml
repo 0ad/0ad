@@ -43,7 +43,10 @@
   <Identity>
     <GenericName>Temple</GenericName>
     <Tooltip>Train healers. Garrison up to 20 units to heal them at a quick rate.</Tooltip>
-    <Classes datatype="tokens">Town</Classes>
+    <Classes datatype="tokens">
+		Town
+		Temple
+	</Classes>
     <Icon>structures/temple.png</Icon>
 	<RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
@@ -75,6 +78,7 @@
     </Entities>
     <Technologies datatype="tokens">
 	  pair_heal_01
+	  heal_temple
     </Technologies>
   </ProductionQueue>
   <Vision>

@@ -302,8 +302,7 @@ for (var m = 0; m < scaleByMapSize(1,3)*randInt(3,4); m++)
 	var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -4, 4);
 	createArea(placer, [painter, elevationPainter], avoidClasses(clPlayer, 15));
 }
-paintTerrainBasedOnHeight(3.1, 20, 0, tCliff);
-paintTerrainBasedOnHeight(20, 21, 1, tGrass);
+paintTerrainBasedOnHeight(3.1, 40, 0, tCliff);
 
 for (var i = 0; i < numPlayers; i++)
 {

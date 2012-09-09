@@ -24,6 +24,8 @@
 #include "ps/Filesystem.h"
 #include "soundmanager/SoundManager.h"
 
+#include <sstream>
+
 
 JSoundPlayer::JSoundPlayer()
 {
