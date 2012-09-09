@@ -1,7 +1,7 @@
 RMS.LoadLibrary("rmgen");
 
 const tCity = "desert_city_tile_plaza";
-const tSand = ["desert_dirt_persia_1", "desert_dirt_persia_2"];
+const tSand = ["desert_dirt_persia_1", "desert_dirt_persia_2", "grass_field_dry"];
 const tDunes = ["desert_lakebed_dry_b", "desert_dirt_persia_1", "desert_dirt_persia_2", "desert_lakebed_dry"];
 const tDunes2 = ["desert_lakebed_dry_b", "desert_dirt_persia_1", "desert_dirt_persia_2", "desert_lakebed_dry", "desert_dirt_persia_2", "desert_dirt_persia_1"];
 const tFineSand = "desert_pebbles_rough";
@@ -9,7 +9,7 @@ const tCliff = ["desert_cliff_persia_1", "desert_cliff_persia_2"];
 const tForestFloor = "medit_grass_field_dry";
 const tRocky = "desert_dirt_persia_rocky";
 const tRocks = "desert_dirt_persia_rocks";
-const tDirt = "desert_dirt_rough";
+const tDirt = ["desert_pebbles_rough", "grass_field_brown"];
 const tHill = "desert_cliff_persia_base";
 
 // gaia entities
@@ -23,7 +23,7 @@ const oLion = "gaia/fauna_lioness";
 const oStoneLarge = "gaia/geology_stonemine_desert_badlands_quarry";
 const oStoneSmall = "gaia/geology_stone_desert_small";
 const oMetalLarge = "gaia/geology_metal_desert_slabs";
-const oDead = "gaia/flora_tree_dead";
+const oDead = "gaia/flora_tree_tamarix";
 const oOak = "gaia/flora_tree_oak";
 
 // decorative props
@@ -35,8 +35,8 @@ const aBushes = [aBush1, aBush2, aBush3, aBush4];
 const aDecorativeRock = "actor|geology/stone_desert_med.xml";
 
 // terrain + entity (for painting)
-const pForestO = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor];
-const pForestD = [tForestFloor + TERRAIN_SEPARATOR + oDead, tForestFloor + TERRAIN_SEPARATOR + oDead, tForestFloor];
+const pForestO = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor, tSand, tSand];
+const pForestD = [tForestFloor + TERRAIN_SEPARATOR + oDead, tForestFloor + TERRAIN_SEPARATOR + oDead, tForestFloor, tSand, tSand];
 
 const BUILDING_ANGlE = -PI/4;
 
