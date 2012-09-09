@@ -10,13 +10,13 @@
       <animations/>
 		<mesh>props/iceberg_a.dae</mesh>
       <props/>
-      <texture>props/iceberg.dds</texture>
+      <textures><texture file="props/iceberg.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="B">
       <animations/>
 		<mesh>props/iceberg_b.dae</mesh>
       <props/>
-      <texture>props/iceberg.dds</texture>
+      <textures><texture file="props/iceberg.dds" name="baseTex"/></textures>
     </variant>
   </group>
 
