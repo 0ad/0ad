@@ -26,6 +26,8 @@
 #include "ps/Filesystem.h"
 #include "soundmanager/SoundManager.h"
 
+#include <sstream>
+
 
 JMusicSound::JMusicSound(const VfsPath& pathname) : m_FileName(pathname)
 {
