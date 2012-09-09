@@ -14,7 +14,7 @@ GarrisonHolder.prototype.Schema =
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" + 
 	"<element name='BuffHeal' a:help='Number of hit points that will be restored to this holder&apos;s garrisoned units each second'>" +
-		"<data type='nonNegativeInteger'/>" +
+		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
 	"<element name='LoadingRange' a:help='The maximum distance from this holder at which entities are allowed to garrison. Should be about 2.0 for land entities and preferably greater for ships'>" +
 		"<ref name='nonNegativeDecimal'/>" +
