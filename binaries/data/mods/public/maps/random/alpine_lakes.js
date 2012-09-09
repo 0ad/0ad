@@ -292,8 +292,7 @@ createAreas(
 	scaleByMapSize(5, 16)
 );
 
-paintTerrainBasedOnHeight(3.1, 20, 0, tCliff);
-paintTerrainBasedOnHeight(20, 21, 1, tGrass);
+paintTerrainBasedOnHeight(3.1, 40, 0, tCliff);
 
 // create bumps
 log("Creating bumps...");

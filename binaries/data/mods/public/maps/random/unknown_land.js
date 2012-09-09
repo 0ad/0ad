@@ -86,117 +86,10 @@ for (var ix = 0; ix < mapSize; ix++)
 }
 
 
-var md = randInt(1,13);
+var md = randInt(2,13);
 var needsAdditionalWood = false;
-//*****************************************************************************************************************************
-if (md == 1) //archipelago and island
-{
-	needsAdditionalWood = true;
-	
-	// randomize player order
-	var playerIDs = [];
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerIDs.push(i+1);
-	}
-	playerIDs = sortPlayers(playerIDs);
-
-	// place players
-
-	var playerX = new Array(numPlayers);
-	var playerZ = new Array(numPlayers);
-	var playerAngle = new Array(numPlayers);
-
-	var startAngle = randFloat(0, TWO_PI);
-	for (var i = 0; i < numPlayers; i++)
-	{
-		playerAngle[i] = startAngle + i*TWO_PI/numPlayers;
-		playerX[i] = 0.5 + 0.35*cos(playerAngle[i]);
-		playerZ[i] = 0.5 + 0.35*sin(playerAngle[i]);
-	}
-
-	var mdd1 = randInt(1,3);
-	
-	for (var i = 0; i < numPlayers; ++i)
-	{
-		var radius = scaleByMapSize(17, 29);
-		var shoreRadius = 4;
-		var elevation = 3;
-
-		var hillSize = PI * radius * radius;
-		// get the x and z in tiles
-		var fx = fractionToTiles(playerX[i]);
-		var fz = fractionToTiles(playerZ[i]);
-		var ix = round(fx);
-		var iz = round(fz);
-		// create a player island
-		var placer = new ClumpPlacer(hillSize, 0.80, 0.1, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tGrass , tGrass, tGrass],		// terrains
-			[1, shoreRadius]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			elevation,				// elevation
-			shoreRadius				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clPlayer)], null);
-	}
-	if (mdd1 == 1) //archipelago
-	{
-		// create islands
-		log("Creating islands...");
-		placer = new ClumpPlacer(floor(hillSize*randFloat(0.8,1.2)), 0.80, 0.1, 10);
-		terrainPainter = new LayeredPainter(
-			[tGrass, tGrass],		// terrains
-			[2]								// widths
-		);
-		elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 3, 4);
-		createAreas(
-			placer,
-			[terrainPainter, elevationPainter, paintClass(clLand)], 
-			null,
-			scaleByMapSize(2, 5)*randInt(8,14)
-		);
-	}
-	else if (mdd1 == 2) //islands
-	{
-		// create islands
-		log("Creating islands...");
-		placer = new ClumpPlacer(floor(hillSize*randFloat(0.6,1.4)), 0.80, 0.1, randFloat(0.0, 0.2));
-		terrainPainter = new LayeredPainter(
-			[tGrass, tGrass],		// terrains
-			[2]								// widths
-		);
-		elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 3, 4);
-		createAreas(
-			placer,
-			[terrainPainter, elevationPainter, paintClass(clLand)], 
-			avoidClasses(clLand, 3, clPlayer, 3),
-			scaleByMapSize(6, 10)*randInt(8,14)
-		);
-	}
-	else if (mdd1 == 3) // tight islands
-	{
-		// create islands
-		log("Creating islands...");
-		placer = new ClumpPlacer(floor(hillSize*randFloat(0.8,1.2)), 0.80, 0.1, 10);
-		terrainPainter = new LayeredPainter(
-			[tGrass, tGrass],		// terrains
-			[2]								// widths
-		);
-		elevationPainter = new SmoothElevationPainter(ELEVATION_SET, 3, 4);
-		createAreas(
-			placer,
-			[terrainPainter, elevationPainter, paintClass(clLand)], 
-			avoidClasses(clLand, randInt(8, 16), clPlayer, 3),
-			scaleByMapSize(2, 5)*randInt(8,14)
-		);
-	}
-	
-}
 //********************************************************************************************************
-else if (md == 2) //continent
+if (md == 2) //continent
 {
 
 	// randomize player order
@@ -467,27 +360,25 @@ playerIDs = primeSortPlayers(sortPlayers(playerIDs));
 		}
 	}
 	
-	if (!randInt(3))
+	if (mdd1 == 1) //vertical
 	{
-		if (mdd1 == 1) //vertical
-		{
-			var placer = new PathPlacer(1, fractionToTiles(0.5), fractionToTiles(0.99), fractionToTiles(0.5), scaleByMapSize(randInt(16,24),randInt(100,140)), 0.5, 3*(scaleByMapSize(1,4)), 0.1, 0.01);
-		}
-		else
-		{
-			var placer = new PathPlacer(fractionToTiles(0.5), 1, fractionToTiles(0.5), fractionToTiles(0.99), scaleByMapSize(randInt(16,24),randInt(100,140)), 0.5, 3*(scaleByMapSize(1,4)), 0.1, 0.01);
-		}
-		var terrainPainter = new LayeredPainter(
-			[tGrass, tGrass, tGrass],		// terrains
-			[1, 3]								// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			3.1,				// elevation
-			4				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, unPaintClass(clWater)], null);
+		var placer = new PathPlacer(1, fractionToTiles(0.5), fractionToTiles(0.99), fractionToTiles(0.5), scaleByMapSize(randInt(16,24),randInt(100,140)), 0.5, 3*(scaleByMapSize(1,4)), 0.1, 0.01);
 	}
+	else
+	{
+		var placer = new PathPlacer(fractionToTiles(0.5), 1, fractionToTiles(0.5), fractionToTiles(0.99), scaleByMapSize(randInt(16,24),randInt(100,140)), 0.5, 3*(scaleByMapSize(1,4)), 0.1, 0.01);
+	}
+	var terrainPainter = new LayeredPainter(
+		[tGrass, tGrass, tGrass],		// terrains
+		[1, 3]								// widths
+	);
+	var elevationPainter = new SmoothElevationPainter(
+		ELEVATION_SET,			// type
+		3.1,				// elevation
+		4				// blend radius
+	);
+	createArea(placer, [terrainPainter, elevationPainter, unPaintClass(clWater)], null);
+
 	var mdd2 = randInt(1,3);
 	if (mdd2 == 1)
 	{
@@ -640,21 +531,18 @@ else if (md == 4) //central river
 	var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -4, 2);
 	createArea(placer, [painter, elevationPainter], avoidClasses(clPlayer, 8));
 	
-	var mdd2 = randInt(1,2)
-	if (mdd2 == 1)
-	{
-		// create the shallows of the main river
-		log("Creating the shallows of the main river");
+	// create the shallows of the main river
+	log("Creating the shallows of the main river");
 
-		for (var i = 0; i <= randInt(1, scaleByMapSize(4,8)); i++)
-		{
-			var cLocation = randFloat(0.15,0.85);
-			if (mdd1 == 1)
-				passageMaker(fractionToTiles(cLocation), fractionToTiles(0.35), fractionToTiles(cLocation), fractionToTiles(0.65), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
-			else
-				passageMaker(fractionToTiles(0.35), fractionToTiles(cLocation), fractionToTiles(0.65), fractionToTiles(cLocation), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
-		}
+	for (var i = 0; i <= randInt(1, scaleByMapSize(4,8)); i++)
+	{
+		var cLocation = randFloat(0.15,0.85);
+		if (mdd1 == 1)
+			passageMaker(fractionToTiles(cLocation), fractionToTiles(0.35), fractionToTiles(cLocation), fractionToTiles(0.65), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
+		else
+			passageMaker(fractionToTiles(0.35), fractionToTiles(cLocation), fractionToTiles(0.65), fractionToTiles(cLocation), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
 	}
+
 	
 	if (randInt(1,2) == 1)
 	{
@@ -721,17 +609,19 @@ else if (md == 4) //central river
 				}
 			}
 		}
-	if (mdd2 == 1)
-	{
-		if (mdd1 == 1)
-		{
-			passageMaker(fractionToTiles(0.2), fractionToTiles(0.25), fractionToTiles(0.8), fractionToTiles(0.25), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
-			passageMaker(fractionToTiles(0.2), fractionToTiles(0.75), fractionToTiles(0.8), fractionToTiles(0.75), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
-		}
-			passageMaker(fractionToTiles(0.25), fractionToTiles(0.2), fractionToTiles(0.25), fractionToTiles(0.8), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
-			passageMaker(fractionToTiles(0.75), fractionToTiles(0.2), fractionToTiles(0.75), fractionToTiles(0.8), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
-		}
 	}
+	
+	if (mdd1 == 1)
+	{
+		passageMaker(fractionToTiles(0.2), fractionToTiles(0.25), fractionToTiles(0.8), fractionToTiles(0.25), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
+		passageMaker(fractionToTiles(0.2), fractionToTiles(0.75), fractionToTiles(0.8), fractionToTiles(0.75), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
+	}
+	else
+	{
+		passageMaker(fractionToTiles(0.25), fractionToTiles(0.2), fractionToTiles(0.25), fractionToTiles(0.8), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
+		passageMaker(fractionToTiles(0.75), fractionToTiles(0.2), fractionToTiles(0.75), fractionToTiles(0.8), scaleByMapSize(4,8), -2, -2, 2, clShallow, undefined, -4);
+	}
+
 }
 //********************************************************************************************************
 else if (md == 5) //rivers and lake
@@ -791,48 +681,6 @@ else if (md == 5) //rivers and lake
 		createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], null);
 	}
 
-	if (randInt(1,2) == 1) //rivers
-	{
-		//create rivers
-		log ("Creating rivers...");
-		for (var m = 0; m < numPlayers; m++)
-		{
-			var tang = startAngle + (m+0.5)*TWO_PI/(numPlayers);
-			var placer = new PathPlacer(fractionToTiles(0.5), fractionToTiles(0.5), fractionToTiles(0.5 + 0.49*cos(tang)), fractionToTiles(0.5 + 0.49*sin(tang)), scaleByMapSize(14,24), 0.4, 3*(scaleByMapSize(1,3)), 0.2, 0.05);
-			var terrainPainter = new LayeredPainter(
-				[tShore, tWater, tWater],		// terrains
-				[1, 3]								// widths
-			);
-			var elevationPainter = new SmoothElevationPainter(
-				ELEVATION_SET,			// type
-				-4,				// elevation
-				4				// blend radius
-			);
-			createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer, 5));
-			placer = new ClumpPlacer(floor(PI*scaleByMapSize(10,50)*scaleByMapSize(10,50)/5), 0.95, 0.6, 10, fractionToTiles(0.5 + 0.49*cos(tang)), fractionToTiles(0.5 + 0.49*sin(tang)));
-			var painter = new LayeredPainter([tWater, tWater], [1]);
-			var elevationPainter = new SmoothElevationPainter(ELEVATION_SET, -4, 0);
-			createArea(placer, [painter, elevationPainter, paintClass(clWater)], avoidClasses(clPlayer, 5));
-
-		}
-					
-		var fx = fractionToTiles(0.5);
-		var fz = fractionToTiles(0.5);
-		ix = round(fx);
-		iz = round(fz);
-		
-		var placer = new ClumpPlacer(mapArea * 0.005, 0.7, 0.1, 10, ix, iz);
-		var terrainPainter = new LayeredPainter(
-			[tShore, tWater, tWater, tWater],		// terrains
-			[1, 4, 2]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			-4,				// elevation
-			4				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clWater)], null);
-	}
 	
 	if ((randInt(1,3) == 1)&&(mdd1 == 1))//island
 	{
