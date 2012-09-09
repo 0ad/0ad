@@ -91,7 +91,8 @@ void main()
 	vec3 reflColor, refrColor, specular;
 	float losMod;
 
-	vec4 wtex = textureGrad(waterTex, vec3(fract(v_tex.xy), v_tex.z), dFdx(v_tex.xy), dFdy(v_tex.xy));
+	//vec4 wtex = textureGrad(waterTex, vec3(fract(v_tex.xy), v_tex.z), dFdx(v_tex.xy), dFdy(v_tex.xy));
+	vec4 wtex = texture2D(waterTex, fract(v_tex.xy));
 
 	n = normalize(wtex.xzy - vec3(0.5, 0.5, 0.5));
 	l = -sunDir;
