@@ -2421,8 +2421,18 @@ UnitAI.prototype.FindNearestDropsite = function(genericType)
 	if (cmpOwnership)
 		players.push(cmpOwnership.GetOwner());
 
+	// Ships are unable to reach land dropsites and shouldn't attempt to do so.
+	var excludeLand = Engine.QueryInterface(this.entity, IID_Identity).HasClass("Ship");
+
 	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var nearby = rangeMan.ExecuteQuery(this.entity, 0, -1, players, IID_ResourceDropsite);
+	if (excludeLand)
+	{
+		nearby = nearby.filter( function(e) {
+			return Engine.QueryInterface(e, IID_Identity).HasClass("Naval");
+		});
+	}
+
 	for each (var ent in nearby)
 	{
 		var cmpDropsite = Engine.QueryInterface(ent, IID_ResourceDropsite);
