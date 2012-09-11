@@ -556,8 +556,14 @@ var UnitFsmSpec = {
 
 		"Order.Gather": function(msg) {
 			// TODO: see notes in Order.Attack
+
+			// If the resource no longer exists, send a GatherNearPosition order
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			cmpFormation.CallMemberFunction("Gather", [msg.data.target, false]);
+			if (this.CanGather(msg.data.target))
+				cmpFormation.CallMemberFunction("Gather", [msg.data.target, false]);
+			else
+				cmpFormation.CallMemberFunction("GatherNearPosition", [msg.data.lastPos.x, msg.data.lastPos.z, msg.data.type, msg.data.template, false]);
+
 			cmpFormation.Disband();
 		},
 
