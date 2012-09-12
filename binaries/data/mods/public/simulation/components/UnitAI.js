@@ -556,8 +556,14 @@ var UnitFsmSpec = {
 
 		"Order.Gather": function(msg) {
 			// TODO: see notes in Order.Attack
+
+			// If the resource no longer exists, send a GatherNearPosition order
 			var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-			cmpFormation.CallMemberFunction("Gather", [msg.data.target, false]);
+			if (this.CanGather(msg.data.target))
+				cmpFormation.CallMemberFunction("Gather", [msg.data.target, false]);
+			else
+				cmpFormation.CallMemberFunction("GatherNearPosition", [msg.data.lastPos.x, msg.data.lastPos.z, msg.data.type, msg.data.template, false]);
+
 			cmpFormation.Disband();
 		},
 
@@ -2415,8 +2421,18 @@ UnitAI.prototype.FindNearestDropsite = function(genericType)
 	if (cmpOwnership)
 		players.push(cmpOwnership.GetOwner());
 
+	// Ships are unable to reach land dropsites and shouldn't attempt to do so.
+	var excludeLand = Engine.QueryInterface(this.entity, IID_Identity).HasClass("Ship");
+
 	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var nearby = rangeMan.ExecuteQuery(this.entity, 0, -1, players, IID_ResourceDropsite);
+	if (excludeLand)
+	{
+		nearby = nearby.filter( function(e) {
+			return Engine.QueryInterface(e, IID_Identity).HasClass("Naval");
+		});
+	}
+
 	for each (var ent in nearby)
 	{
 		var cmpDropsite = Engine.QueryInterface(ent, IID_ResourceDropsite);

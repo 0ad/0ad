@@ -3,7 +3,7 @@
 <Scenario version="5">
 	<Environment>
 		<LightingModel>standard</LightingModel>
-		<SkySet>default</SkySet>
+		<SkySet>cloudless</SkySet>
 		<SunColour r="0.74902" g="0.74902" b="0.74902"/>
 		<SunElevation angle="0.847634"/>
 		<SunRotation angle="2.90106"/>
@@ -24,45 +24,34 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="361.546" y="68.2657" z="436.481"/>
-		<Rotation angle="2.45146"/>
+		<Position x="335.064" y="72.9702" z="293.763"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "Give an interesting description of your map.",
-  "GameType": "conquest",
-  "Keywords": [],
+  "Description": "A demo showing water planes.",
+  "GameType": "endless",
+  "Keywords": [
+    "demo"
+  ],
   "LockTeams": false,
-  "Name": "reservoir",
+  "Name": "Reservoir",
   "PlayerData": [
     {
-      "Civ": "athen"
-    },
-    {
-      "Civ": "cart"
-    },
-    {
-      "Civ": "celt"
-    },
-    {
-      "Civ": "iber"
-    },
-    {
-      "Civ": "mace"
-    },
-    {
-      "Civ": "pers"
-    },
-    {
-      "Civ": "rome"
-    },
-    {
-      "Civ": "spart"
+      "AI": "",
+      "Civ": "athen",
+      "Colour": {
+        "b": 200,
+        "g": 46,
+        "r": 46
+      },
+      "Name": "Player 1",
+      "Team": -1
     }
   ],
-  "RevealMap": false
+  "RevealMap": true
 }
 ]]></ScriptSettings>
 	<Entities>

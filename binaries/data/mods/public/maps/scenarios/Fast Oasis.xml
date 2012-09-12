@@ -24,13 +24,12 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="88.3229" y="91.2124" z="-10.5598"/>
+		<Position x="439.816" y="82.0798" z="27.2104"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "Preview" : "fast_oasis.png",
   "Description": "A small desert map. Each player starts near an oasis spotted about an otherwise bleak and sandy desert that is wide open to assault and depredation.\u000a\u000aGameplay is tight and fast, with no time to stop and smell the roses.",
   "GameType": "conquest",
   "Keywords": [],
@@ -46,6 +45,12 @@
         "r": 80
       },
       "Name": "Player 1",
+      "Resources": {
+        "food": 1000,
+        "metal": 1000,
+        "stone": 1000,
+        "wood": 1000
+      },
       "Team": -1
     },
     {
@@ -57,6 +62,12 @@
         "r": 150
       },
       "Name": "Player 2",
+      "Resources": {
+        "food": 1000,
+        "metal": 1000,
+        "stone": 1000,
+        "wood": 1000
+      },
       "Team": -1
     },
     {
@@ -68,20 +79,33 @@
         "r": 50
       },
       "Name": "Player 3",
+      "Resources": {
+        "food": 1000,
+        "metal": 1000,
+        "stone": 1000,
+        "wood": 1000
+      },
       "Team": -1
     },
     {
       "AI": "qbot",
-      "Civ": "cart",
+      "Civ": "maur",
       "Colour": {
         "b": 75,
         "g": 230,
         "r": 230
       },
       "Name": "Player 4",
+      "Resources": {
+        "food": 1000,
+        "metal": 1000,
+        "stone": 1000,
+        "wood": 1000
+      },
       "Team": -1
     }
   ],
+  "Preview": "fast_oasis.png",
   "RevealMap": false
 }
 ]]></ScriptSettings>
@@ -6604,12 +6628,6 @@
 			<Position x="112.22886" z="403.89072"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="8690">
-			<Template>structures/cart_civil_centre</Template>
-			<Player>4</Player>
-			<Position x="448.14985" z="108.54468"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="8694">
 			<Template>gaia/geology_metal_desert_badlands_slabs</Template>
 			<Player>0</Player>
@@ -7164,77 +7182,11 @@
 			<Position x="87.11162" z="86.48392"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="8792">
-			<Template>units/athen_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="94.25463" z="111.03628"/>
+		<Entity uid="8804">
+			<Template>structures/maur_civil_centre</Template>
+			<Player>4</Player>
+			<Position x="453.48533" z="110.87072"/>
 			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8793">
-			<Template>units/athen_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="97.35228" z="108.11474"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8794">
-			<Template>units/athen_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="100.59307" z="103.8214"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8795">
-			<Template>units/athen_infantry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="94.36464" z="67.55636"/>
-			<Orientation y="2.72118"/>
-		</Entity>
-		<Entity uid="8796">
-			<Template>units/athen_infantry_javelinist_a</Template>
-			<Player>1</Player>
-			<Position x="98.04331" z="70.63335"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="8797">
-			<Template>units/athen_infantry_javelinist_e</Template>
-			<Player>1</Player>
-			<Position x="101.50338" z="74.09847"/>
-			<Orientation y="1.71601"/>
-		</Entity>
-		<Entity uid="8798">
-			<Template>units/athen_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="78.36742" z="65.54923"/>
-			<Orientation y="-2.45357"/>
-		</Entity>
-		<Entity uid="8799">
-			<Template>units/athen_infantry_spearman_a</Template>
-			<Player>1</Player>
-			<Position x="75.74947" z="67.95646"/>
-			<Orientation y="-2.47779"/>
-		</Entity>
-		<Entity uid="8800">
-			<Template>units/athen_infantry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="71.47306" z="71.42452"/>
-			<Orientation y="-2.44982"/>
-		</Entity>
-		<Entity uid="8801">
-			<Template>units/athen_cavalry_swordsman_b</Template>
-			<Player>1</Player>
-			<Position x="60.7882" z="90.57319"/>
-			<Orientation y="-1.03095"/>
-		</Entity>
-		<Entity uid="8802">
-			<Template>units/athen_cavalry_swordsman_a</Template>
-			<Player>1</Player>
-			<Position x="63.66884" z="96.01986"/>
-			<Orientation y="-0.94275"/>
-		</Entity>
-		<Entity uid="8803">
-			<Template>units/athen_cavalry_swordsman_e</Template>
-			<Player>1</Player>
-			<Position x="66.38097" z="100.20336"/>
-			<Orientation y="-0.35071"/>
 		</Entity>
 	</Entities>
 	<Paths/>
