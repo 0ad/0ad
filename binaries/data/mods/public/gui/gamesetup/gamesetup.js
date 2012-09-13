@@ -767,10 +767,40 @@ function launchGame()
 	// Assign random civilizations to players with that choice 
 	//  (this is synchronized because we're the host) 
 	var civs = [ civ.Code for each (civ in g_CivData) if (civ.SelectableInGameSetup !== false) ]; 
+	
+	const romanNumbers = [undefined, "I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
 	for (var i = 0; i < numPlayers; ++i) 
 	{ 
 		if (g_GameAttributes.settings.PlayerData[i].Civ == "random") 
 			g_GameAttributes.settings.PlayerData[i].Civ = civs[Math.floor(Math.random()*civs.length)]; 
+		// Setting names for AI players. Check if the player is AI and the match is not a scenario
+		if ((g_GameAttributes.mapType !== "scenario")&&(g_GameAttributes.settings.PlayerData[i].AI))
+		{
+			// Get the civ specific names
+			if (g_CivData[g_GameAttributes.settings.PlayerData[i].Civ].AINames !== undefined)
+			{
+				var civAINames = shuffleArray(g_CivData[g_GameAttributes.settings.PlayerData[i].Civ].AINames);
+			}
+			else
+			{
+				var civAINames = [g_CivData[g_GameAttributes.settings.PlayerData[i].Civ].Name];
+			}
+			// Choose the name
+			var usedName = 0;
+			if (i < civAINames.length)
+				var chosenName = civAINames[i];
+			else 
+				var chosenName = civAINames[Math.floor(Math.random() * civAINames.length)];
+			for (var j = 0; j < numPlayers; ++j) 
+				if (g_GameAttributes.settings.PlayerData[j].Name.indexOf(chosenName) !== -1)
+					usedName++;
+			
+			// Assign civ specific names to AI players
+			if (usedName)
+				g_GameAttributes.settings.PlayerData[i].Name = chosenName + " " + romanNumbers[usedName+1];
+			else
+				g_GameAttributes.settings.PlayerData[i].Name = chosenName;
+		}
 	} 
 	
 	if (g_IsNetworked)
@@ -1356,7 +1386,3 @@ function keywordTestOR(keywords, matches)
 	}
 	return false;
 }
-
-
-
-
