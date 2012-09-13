@@ -333,8 +333,12 @@ GarrisonHolder.prototype.OnHealthChanged = function(msg)
 		//	ships: not land passable, so assume units have drowned in a shipwreck
 		//  building: land passable, so units can be ejected freely
 		var classes = (Engine.QueryInterface(this.entity, IID_Identity)).GetClassesList();
-		if (classes.indexOf("Ship") != -1)
-		{	// Ship - kill all units
+		var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+
+		// Destroy the garrisoned units if the holder is a ship or is not in the
+		// world (generally means this holder is inside a ship which has sunk).
+		if (classes.indexOf("Ship") != -1 || !cmpPosition.IsInWorld())
+		{
 			for each (var entity in this.entities)
 			{
 				var cmpHealth = Engine.QueryInterface(entity, IID_Health);
