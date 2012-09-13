@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="5">
+	<Environment>
+		<LightingModel>standard</LightingModel>
+		<SkySet>stormy</SkySet>
+		<SunColour r="1.27799" g="1.08716" b="0.688151"/>
+		<SunElevation angle="0.291456"/>
+		<SunRotation angle="0.478602"/>
+		<TerrainAmbientColour r="0.396078" g="0.47451" b="0.654902"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>7.44919</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>1</Murkiness>
+				<Tint r="0.396078" g="0.47451" b="0.654902"/>
+				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="1892" y="213.567" z="2481.01"/>
+		<Rotation angle="-0.151509"/>
+		<Declination angle="0.610865"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "CircularMap": true,
+  "Description": "A demo map of the British Isles, created with the assistance of a height map.",
+  "GameType": "endless",
+  "Keywords": [
+    "demo"
+  ],
+  "LockTeams": false,
+  "Name": "Eire and Albion (British Isles)",
+  "PlayerData": [
+    {
+      "AI": "",
+      "Civ": "brit",
+      "Colour": {
+        "b": 200,
+        "g": 46,
+        "r": 46
+      },
+      "Name": "Player 1",
+      "Resources": {
+        "food": 100000,
+        "metal": 100000,
+        "stone": 100000,
+        "wood": 100000
+      },
+      "Team": -1
+    },
+    {
+      "AI": "qbot",
+      "Civ": "rome",
+      "Colour": {
+        "b": 20,
+        "g": 20,
+        "r": 150
+      },
+      "Name": "Player 2",
+      "Resources": {
+        "food": 100000,
+        "metal": 100000,
+        "stone": 100000,
+        "wood": 100000
+      },
+      "Team": -1
+    }
+  ],
+  "RevealMap": true
+}
+]]></ScriptSettings>
+	<Entities>
+		<Entity uid="15">
+			<Template>structures/brit_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="3025.6985" z="1049.75428"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>actor|structures/celts/stone_monument.xml</Template>
+			<Position x="2418.65333" z="644.37269"/>
+			<Orientation y="0.59557"/>
+		</Entity>
+		<Entity uid="50">
+			<Template>structures/rome_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="2972.63526" z="737.94367"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+</Scenario>
