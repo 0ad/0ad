@@ -34,6 +34,7 @@ bool g_NoGLAutoMipmap = false;
 bool g_NoGLVBO = false;
 
 bool g_PauseOnFocusLoss = false;
+CStr g_PlayerName = "";
 
 bool g_Shadows = false;
 bool g_ShadowPCF = false;
@@ -76,6 +77,7 @@ static void LoadGlobals()
 	CFG_GET_USER_VAL("noautomipmap", Bool, g_NoGLAutoMipmap);
 	CFG_GET_USER_VAL("novbo", Bool, g_NoGLVBO);
 	CFG_GET_USER_VAL("pauseonfocusloss", Bool, g_PauseOnFocusLoss);
+	CFG_GET_USER_VAL("playername", String, g_PlayerName);
 	CFG_GET_USER_VAL("shadows", Bool, g_Shadows);
 	CFG_GET_USER_VAL("shadowpcf", Bool, g_ShadowPCF);
 	CFG_GET_USER_VAL("fancywater", Bool, g_FancyWater);

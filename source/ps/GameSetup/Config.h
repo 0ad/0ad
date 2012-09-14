@@ -44,6 +44,9 @@ extern bool g_NoGLVBO;
 // flag to pause the game on window focus loss
 extern bool g_PauseOnFocusLoss;
 
+// default player name to use in multiplayer
+extern CStr g_PlayerName;
+
 // flag to switch on shadows
 extern bool g_Shadows;
 // flag to switch on reflective/refractive water
