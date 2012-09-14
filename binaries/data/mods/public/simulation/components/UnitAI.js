@@ -1125,7 +1125,7 @@ var UnitFsmSpec = {
 						
 						// No rate, give up on gathering
 						this.FinishOrder();
-						return;
+						return true;
 					}
 
 					// Scale timing interval based on rate, and start timer
@@ -1521,7 +1521,7 @@ var UnitFsmSpec = {
 					{
 						// Can't reach it, no longer owned by ally, or it doesn't exist any more
 						this.FinishOrder();
-						return;
+						return true;
 					}
 					else
 					{
@@ -1676,10 +1676,9 @@ var UnitFsmSpec = {
 							}
 						}
 					}
-
 					// Garrisoning failed for some reason, so finish the order
 					this.FinishOrder();
-					return;
+					return true;
 				},
 				
 				"Order.Ungarrison": function() {
