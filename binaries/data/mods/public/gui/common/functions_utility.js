@@ -239,3 +239,20 @@ function removeDupes(array)
 		}
 	}
 }
+
+// ====================================================================
+// "Inside-out" implementation of Fisher-Yates shuffle
+function shuffleArray(source)
+{
+	if (!source.length)
+		return [];
+
+	var result = [source[0]];
+	for (var i = 1; i < source.length; ++i)
+	{
+		var j = Math.floor(Math.random() * i);
+		result[i] = result[j];
+		result[j] = source[i];
+	}
+	return result;
+}

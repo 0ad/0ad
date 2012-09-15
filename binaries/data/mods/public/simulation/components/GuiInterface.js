@@ -1501,22 +1501,38 @@ function isIdleUnit(ent, idleClass)
 	return (cmpUnitAI && cmpIdentity && cmpUnitAI.IsIdle() && !cmpUnitAI.IsGarrisoned() && idleClass && cmpIdentity.HasClass(idleClass));
 }
 
-GuiInterface.prototype.FindIdleUnit = function(player, data)
+GuiInterface.prototype.FindIdleUnits = function(player, data)
 {
 	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var playerEntities = rangeMan.GetEntitiesByPlayer(player);
+	var playerEntities = rangeMan.GetEntitiesByPlayer(player).filter( function(e) {
+		var cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
+		if (cmpUnitAI)
+			return true;
+		return false;
+	});
 
-	// Find the first matching entity that is after the previous selection,
-	// so that we cycle around in a predictable order
-	for each (var ent in playerEntities)
+	var idleUnits = [];
+	var noFilter = (data.prevUnit == undefined && data.excludeUnits == undefined);
+
+	for (var j = 0; j < playerEntities.length; ++j)
 	{
-		if (ent > data.prevUnit && isIdleUnit(ent, data.idleClass))
-			return ent;
+		var ent = playerEntities[j];
+		if (!isIdleUnit(ent, data.idleClass))
+			continue;
+
+		if (noFilter || ((data.prevUnit == undefined || ent > data.prevUnit) &&
+				(data.excludeUnits == undefined || data.excludeUnits.indexOf(ent) == -1)))
+		{
+			idleUnits.push(ent);
+			playerEntities.splice(j--, 1);
+		}
+
+		if (data.limit && idleUnits.length >= data.limit)
+			break;
 	}
 
-	// No idle entities left in the class
-	return 0;
-};
+	return idleUnits;
+}
 
 GuiInterface.prototype.GetTradingRouteGain = function(player, data)
 {
@@ -1648,7 +1664,7 @@ var exposedFunctions = {
 	"SetWallPlacementPreview": 1,
 	"GetFoundationSnapData": 1,
 	"PlaySound": 1,
-	"FindIdleUnit": 1,
+	"FindIdleUnits": 1,
 	"GetTradingRouteGain": 1,
 	"GetTradingDetails": 1,
 	"CanAttack": 1,

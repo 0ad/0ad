@@ -169,8 +169,10 @@ int GetPlayerID(void* UNUSED(cbdata))
 
 std::wstring GetDefaultPlayerName(void* UNUSED(cbdata))
 {
-	// TODO: this should come from a config file or something
-	std::wstring name = sys_get_user_name();
+	std::wstring name = g_PlayerName.FromUTF8();
+	if (name.empty())
+		name = sys_get_user_name();
+
 	if (name.empty())
 		name = L"anonymous";
 	return name;

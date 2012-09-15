@@ -1120,12 +1120,12 @@ var UnitFsmSpec = {
 						{
 							// Let the Timer logic handle this
 							this.StartTimer(0);
-							return;
+							return false;
 						}
 						
 						// No rate, give up on gathering
 						this.FinishOrder();
-						return;
+						return true;
 					}
 
 					// Scale timing interval based on rate, and start timer
@@ -1144,6 +1144,7 @@ var UnitFsmSpec = {
 						var typename = "gather_" + this.order.data.type.specific;
 						this.SelectAnimation(typename, false, 1.0, typename);
 					}
+					return false;
 				},
 
 				"leave": function() {
@@ -1521,7 +1522,7 @@ var UnitFsmSpec = {
 					{
 						// Can't reach it, no longer owned by ally, or it doesn't exist any more
 						this.FinishOrder();
-						return;
+						return true;
 					}
 					else
 					{
@@ -1532,6 +1533,7 @@ var UnitFsmSpec = {
 
 					this.SelectAnimation("build", false, 1.0, "build");
 					this.StartTimer(1000, 1000);
+					return false;
 				},
 
 				"leave": function() {
@@ -1662,7 +1664,7 @@ var UnitFsmSpec = {
 										cmpResourceGatherer.CommitResources(dropsiteTypes);
 								}
 								
-								return;
+								return false;
 							}
 						}
 						else
@@ -1672,14 +1674,13 @@ var UnitFsmSpec = {
 							if (this.MoveToTarget(target))
 							{
 								this.SetNextState("APPROACHING");
-								return;
+								return false;
 							}
 						}
 					}
-
 					// Garrisoning failed for some reason, so finish the order
 					this.FinishOrder();
-					return;
+					return true;
 				},
 				
 				"Order.Ungarrison": function() {
