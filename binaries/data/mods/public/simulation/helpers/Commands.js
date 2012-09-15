@@ -743,7 +743,11 @@ function TryConstructWall(player, cmpPlayer, controlAllUnits, cmd)
 	for (; i < cmd.pieces.length; ++i)
 	{
 		var piece = cmd.pieces[i];
-		
+
+		// All wall pieces after the first must be queued.
+		if (i > 0 && !cmd.queued)
+			cmd.queued = true;
+
 		// 'lastTowerControlGroup' must always be defined and valid here, except if we're at the first piece and we didn't do
 		// start position snapping (implying that the first entity we build must be a tower)
 		if (lastTowerControlGroup === null || lastTowerControlGroup == INVALID_ENTITY)
