@@ -3,13 +3,13 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="Greek Gymnasion Special Building">
-      <mesh>structural/hele_gym.dae</mesh>
+      <mesh>structural/spart_sissyton_struct.dae</mesh>
       <props>
-        <prop actor="props/structures/spartans/syssiton_shields.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/gym_props.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/gym_tiles.xml" attachpoint="root"/>
+        <prop actor="props/structures/spartans/sissyton_decor.xml" attachpoint="root"/>
+        <prop actor="props/structures/spartans/sissyton_props_a.xml" attachpoint="root"/>
+        <prop actor="props/structures/spartans/sissyton_shields.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/gym_trees.xml" attachpoint="root"/>
+        <prop actor="props/structures/spartans/sissyton_tile_b.xml" attachpoint="root"/>
       </props>
       <textures><texture file="structural/hele_struct.dds" name="baseTex"/></textures>
     </variant>
@@ -21,11 +21,11 @@
         <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/spartans/syssiton_shields.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/gym_props.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/gym_tiles.xml" attachpoint="root"/>
+        <prop actor="props/structures/spartans/sissyton_decor.xml" attachpoint="root"/>
+        <prop actor="props/structures/spartans/sissyton_props_a.xml" attachpoint="root"/>
+        <prop actor="props/structures/spartans/sissyton_shields.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/gym_trees.xml" attachpoint="root"/>
+        <prop actor="props/structures/spartans/sissyton_tile_b.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

@@ -24,7 +24,7 @@ uniform vec2 translation;
 attribute vec3 a_vertex;
 attribute vec3 a_normal;
 attribute vec2 a_uv0;
-
+attribute vec2 a_uv1;
 
 varying vec4 worldPos;
 varying vec4 v_tex;
@@ -32,7 +32,7 @@ varying vec4 v_shadow;
 varying vec2 v_los;
 varying vec3 v_half;
 varying vec3 v_normal;
-
+varying float v_transp;
 varying vec3 v_lighting;
 
 
@@ -41,6 +41,7 @@ void main()
 	worldPos = instancingTransform * vec4(a_vertex, 1.0);
 	
 	v_tex.xy = a_uv0 + sim_time * translation;
+	v_transp = a_uv1.x;
 
 	#if USE_SHADOW
 		v_shadow = shadowTransform * worldPos;

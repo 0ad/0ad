@@ -440,7 +440,7 @@ function initCivNameList()
 	var civListCodes = [ civ.code for each (civ in civList) ];
 
 	//  Add random civ to beginning of list 
-	civListNames.unshift("[color=\"255 160 10 255\"]Random"); 
+	civListNames.unshift("[color=\"orange\"]Random"); 
 	civListCodes.unshift("random"); 
 	
 	// Update the dropdowns
@@ -492,6 +492,9 @@ function initMapNameList()
 	// Alphabetically sort the list, ignoring case
 	mapList.sort(sortNameIgnoreCase);
 
+	if (g_GameAttributes.mapType == "random")
+		mapList.unshift({ "name": "[color=\"orange\"]Random[/color]", "file": "random" });
+	
 	var mapListNames = [ map.name for each (map in mapList) ];
 	var mapListFiles = [ map.file for each (map in mapList) ];
 
@@ -514,6 +517,12 @@ function loadMapData(name)
 	if (!name)
 	{
 		return undefined;
+	}
+	
+	if (name == "random")
+	{
+		g_MapData[name] = {settings : {"Name" : "Random", "Description" : "Randomly selects a map from the list"}};
+		return g_MapData[name];
 	}
 
 	if (!g_MapData[name])
@@ -712,11 +721,12 @@ function selectMap(name)
 	// Copy any new settings
 	g_GameAttributes.map = name;
 	g_GameAttributes.script = mapSettings.Script;
-	for (var prop in mapSettings)
+	if (mapData !== "Random")
 	{
-		g_GameAttributes.settings[prop] = mapSettings[prop];
+		for (var prop in mapSettings)
+			g_GameAttributes.settings[prop] = mapSettings[prop];
 	}
-
+	
 	// Use default AI if the map doesn't specify any explicitly
 	for (var i = 0; i < g_GameAttributes.settings.PlayerData.length; ++i)
 	{
@@ -763,6 +773,10 @@ function launchGame()
 		return;
 	}
 	
+	if (g_GameAttributes.map == "random")
+		selectMap(getGUIObjectByName("mapSelection").list_data[Math.floor(Math.random() *
+			getGUIObjectByName("mapSelection").list.length - 1) + 1]);
+
 	var numPlayers = g_GameAttributes.settings.PlayerData.length; 
 	// Assign random civilizations to players with that choice 
 	//  (this is synchronized because we're the host) 
@@ -1007,7 +1021,7 @@ function onGameAttributesChange()
 				// Set text values
 				if (civ == "random")
 				{
-					pCivText.caption = "[color=\"255 160 10 255\"]Random";
+					pCivText.caption = "[color=\"orange\"]Random";
 				}
 				else
 				{

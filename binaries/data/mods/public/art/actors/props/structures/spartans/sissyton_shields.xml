@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>structural/spart_sissyton_shields.dae</mesh>
+      <textures>
+        <texture file="props/spart_prop_shields.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>playercolor_spec.xml</material>
+</actor>

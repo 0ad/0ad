@@ -9,7 +9,7 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="30.0" depth="30.0"/>
+    <Square width="20.0" depth="30.0"/>
     <Height>8.0</Height>
   </Footprint>
   <Health>
@@ -24,7 +24,7 @@
     <Icon>structures/gymnasion.png</Icon>
   </Identity>
   <Obstruction>
-    <Static width="28.0" depth="28.0"/>
+    <Static width="16.0" depth="26.0"/>
   </Obstruction>
   <Sound>
     <SoundGroups>
@@ -45,6 +45,6 @@
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/spartans/syssiton.xml</Actor>
-    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+    <FoundationActor>structures/fndn_4x6.xml</FoundationActor>
   </VisualActor>
 </Entity>

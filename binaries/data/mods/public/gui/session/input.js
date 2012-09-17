@@ -540,7 +540,7 @@ function tryPlaceBuilding(queued)
 	return true;
 }
 
-function tryPlaceWall()
+function tryPlaceWall(queued)
 {
 	if (placementSupport.mode !== "wall")
 	{
@@ -563,7 +563,7 @@ function tryPlaceWall()
 		"type": "construct-wall",
 		"autorepair": true,
 		"autocontinue": true,
-		"queued": true,
+		"queued": queued,
 		"entities": selection,
 		"wallSet": placementSupport.wallSet,
 		"pieces": wallPlacementInfo.pieces,
@@ -864,21 +864,22 @@ function handleInputBeforeGui(ev, hoveredObject)
 			case "mousebuttondown":
 				if (ev.button == SDL_BUTTON_LEFT)
 				{
-					if (tryPlaceWall())
+					var queued = Engine.HotkeyIsPressed("session.queue");
+					if (tryPlaceWall(queued))
 					{
-    					if (Engine.HotkeyIsPressed("session.queue"))
-    					{
-    						// continue building, just set a new starting position where we left off
-    						placementSupport.position = placementSupport.wallEndPosition;
-    						placementSupport.wallEndPosition = undefined;
-    						
-    						inputState = INPUT_BUILDING_WALL_CLICK;
-    					}
-    					else
-    					{
-    						placementSupport.Reset();
-    						inputState = INPUT_NORMAL;
-    					}
+						if (queued)
+						{
+							// continue building, just set a new starting position where we left off
+							placementSupport.position = placementSupport.wallEndPosition;
+							placementSupport.wallEndPosition = undefined;
+							
+							inputState = INPUT_BUILDING_WALL_CLICK;
+						}
+						else
+						{
+							placementSupport.Reset();
+							inputState = INPUT_NORMAL;
+						}
 					}
 					else
 					{

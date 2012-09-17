@@ -714,7 +714,10 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 								double period = 1.6;
 								int curTex = (int)(time*60/period) % 60;
 								
-								shader->BindTexture("waterTex", WaterMgr->m_NormalMap[curTex]);
+								if (WaterMgr->m_RenderWater && WaterMgr->WillRenderFancyWater())
+									shader->BindTexture("waterTex", WaterMgr->m_NormalMap[curTex]);
+								else
+									shader->BindTexture("waterTex", g_Renderer.GetTextureManager().GetErrorTexture());
 							}
 							else if (rq.first == RQUERY_SKY_CUBE)
 							{
