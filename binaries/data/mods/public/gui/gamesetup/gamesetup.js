@@ -493,7 +493,7 @@ function initMapNameList()
 	mapList.sort(sortNameIgnoreCase);
 
 	if (g_GameAttributes.mapType == "random")
-		mapList.unshift({ "name": "Random", "file": "random" });
+		mapList.unshift({ "name": "[color=\"orange\"]Random[/color]", "file": "random" });
 	
 	var mapListNames = [ map.name for each (map in mapList) ];
 	var mapListFiles = [ map.file for each (map in mapList) ];
