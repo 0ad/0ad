@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special">
+  <Footprint replace="">
+    <Square width="62.0" depth="62.0"/>
+    <Height>10.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>pers</Civ>
+    <GenericName>Special Structure</GenericName>
+    <SpecificName>Hanging Gardens of Babylon</SpecificName>
+    <History>A magnificent structure built in the 6th century BC by the Neo-Babylonian king Nebuchadnezzar II in order to please his wife Amytis of Media, who was homesick for the gardens and mountains of her homeland.</History>
+    <Icon>structures/gardens.png</Icon>
+  </Identity>
+  <Loot>
+    <xp>200</xp>
+  </Loot>
+  <Obstruction>
+    <Static width="59.0" depth="59.0"/>
+  </Obstruction>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_temple.xml</select>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <StatusBars>
+    <BarWidth>6.0</BarWidth>
+    <BarHeight>0.6</BarHeight>
+    <HeightOffset>12.0</HeightOffset>
+  </StatusBars>
+  <TerritoryInfluence>
+    <Radius>100</Radius>
+  </TerritoryInfluence>
+  <Vision>
+    <Range>72</Range>
+    <RetainInFog>true</RetainInFog>
+  </Vision>
+  <VisualActor>
+    <Actor>structures/persians/gardens_struct.xml</Actor>
+  </VisualActor>
+</Entity>
