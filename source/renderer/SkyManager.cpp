@@ -87,6 +87,10 @@ void SkyManager::LoadSkyTextures()
 		m_SkyTexture[i] = texture;
 	}
 	
+	///////////////////////////////////////////////////////////////////////////
+	// HACK: THE HORRIBLENESS HERE IS OVER 9000. The following code is a HUGE hack and will be removed completely
+	// as soon as all the hardcoded GL_TEXTURE_2D references are corrected in the TextureManager/OGL/tex libs.
+	
 	glGenTextures(1, &m_SkyCubeMap);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, m_SkyCubeMap);
 	
@@ -114,7 +118,16 @@ void SkyManager::LoadSkyTextures()
 		
 		shared_ptr<u8> file;
 		size_t fileSize;
-		g_VFS->LoadFile(path, file, fileSize);
+		if (g_VFS->LoadFile(path, file, fileSize) < 0)
+		{
+			VfsPath path2 = VfsPath("art/textures/skies") / m_SkySet / (Path::String(images[i])+L".dds.cached.dds");
+			if (g_VFS->LoadFile(path2, file, fileSize) < 0)
+			{
+				glDeleteTextures(1, &m_SkyCubeMap);
+				LOGERROR(L"Error creating sky cubemap.");
+				return;
+			}
+		}
 		
 		Tex tex;
 		tex_decode(file, fileSize, &tex);
@@ -157,6 +170,7 @@ void SkyManager::LoadSkyTextures()
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 	
 	glBindTexture(GL_TEXTURE_2D, 0);
+	///////////////////////////////////////////////////////////////////////////
 }
 
 
