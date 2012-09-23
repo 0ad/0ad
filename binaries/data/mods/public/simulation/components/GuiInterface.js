@@ -430,7 +430,7 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 	
 	if (template.Health)
 	{
-		ret.health = +template.Health.Max;
+		ret.health = Math.round(GetTechModifiedProperty(techMods, template, "Health/Max", +template.Health.Max));
 	}
 
 	if (template.Identity)
