@@ -176,6 +176,10 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	{
 		var type = cmpAttack.GetBestAttack(); // TODO: how should we decide which attack to show? show all?
 		ret.attack = cmpAttack.GetAttackStrengths(type);
+		var range = cmpAttack.GetRange(type);
+		ret.attack.type = type;
+		ret.attack.minRange = range.min;
+		ret.attack.maxRange = range.max;
 	}
 
 	var cmpArmour = Engine.QueryInterface(ent, IID_DamageReceiver);
@@ -348,9 +352,11 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 		for (var type in template.Attack)
 		{
 			ret.attack[type] = {
-				"hack": GetTechModifiedProperty(techMods, template, "Attack/"+type+"/Hack", +template.Attack[type].Hack || 0),
-				"pierce": GetTechModifiedProperty(techMods, template, "Attack/"+type+"/Pierce", +template.Attack[type].Pierce || 0),
-				"crush": GetTechModifiedProperty(techMods, template, "Attack/"+type+"/Crush", +template.Attack[type].Crush || 0),
+				"hack": GetTechModifiedProperty(techMods, template, "Attack/"+type+"/Hack", +(template.Attack[type].Hack || 0)),
+				"pierce": GetTechModifiedProperty(techMods, template, "Attack/"+type+"/Pierce", +(template.Attack[type].Pierce || 0)),
+				"crush": GetTechModifiedProperty(techMods, template, "Attack/"+type+"/Crush", +(template.Attack[type].Crush || 0)),
+				"minRange": GetTechModifiedProperty(techMods, template, "Attack/"+type+"/MinRange", +(template.Attack[type].MinRange || 0)),
+				"maxRange": GetTechModifiedProperty(techMods, template, "Attack/"+type+"/MaxRange", +template.Attack[type].MaxRange),
 			};
 		}
 	}
