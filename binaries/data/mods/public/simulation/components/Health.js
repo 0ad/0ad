@@ -34,6 +34,8 @@ Health.prototype.Schema =
 
 Health.prototype.Init = function()
 {
+	// Cache this value so it allows techs to maintain previous health level
+	this.maxHitpoints = +this.template.Max;
 	// Default to <Initial>, but use <Max> if it's undefined or zero
 	// (Allowing 0 initial HP would break our death detection code)
 	this.hitpoints = +(this.template.Initial || this.GetMaxHitpoints());
@@ -52,7 +54,7 @@ Health.prototype.GetHitpoints = function()
 
 Health.prototype.GetMaxHitpoints = function()
 {
-	return +this.template.Max;
+	return this.maxHitpoints;
 };
 
 Health.prototype.SetHitpoints = function(value)
@@ -232,6 +234,25 @@ Health.prototype.Repair = function(builderEnt, work)
 	{
 		Engine.PostMessage(this.entity, MT_ConstructionFinished,
 			{ "entity": this.entity, "newentity": this.entity });
+	}
+};
+
+Health.prototype.OnTechnologyModification = function(msg)
+{
+	if (msg.component == "Health")
+	{
+		var cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+		if (cmpTechnologyManager)
+		{
+			var oldMaxHitpoints = this.GetMaxHitpoints();
+			var newMaxHitpoints = Math.round(cmpTechnologyManager.ApplyModifications("Health/Max", +this.template.Max, this.entity));
+			if (oldMaxHitpoints != newMaxHitpoints)
+			{
+				var newHitpoints = Math.round(this.GetHitpoints() * newMaxHitpoints/oldMaxHitpoints);
+				this.maxHitpoints = newMaxHitpoints;
+				this.SetHitpoints(newHitpoints);
+			}
+		}
 	}
 };
 

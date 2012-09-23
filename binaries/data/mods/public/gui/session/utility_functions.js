@@ -403,15 +403,19 @@ function getEntitySpeed(template)
 
 function getEntityAttack(template)
 {
-    var attacks = [];
-    if (template.attack)
-    {
-	for (var type in template.attack)
+	var attacks = [];
+	if (template.attack)
 	{
-	    attacks.push("[font=\"serif-bold-13\"]" + type + " Attack:[/font] " + damageTypesToText(template.attack[type]));
+		for (var type in template.attack)
+		{
+			var attack = "[font=\"serif-bold-13\"]" + type + " Attack:[/font] " + damageTypesToText(template.attack[type]);
+			// Show max attack range if ranged attack, also convert to tiles (4m per tile)
+			if (type == "Ranged")
+				attack += ", [font=\"serif-bold-13\"]Range:[/font] "+Math.round(template.attack[type].maxRange/4);
+			attacks.push(attack);
+		}
 	}
-    }
-    return attacks.join("\n");
+	return attacks.join("\n");
 }
 
 function getEntityName(template)

@@ -32,25 +32,10 @@ function GetTechModifiedProperty(currentTechModifications, entityTemplateData, p
 	for (var i in modifications)
 	{
 		var modification = modifications[i];
-		var applies = false;
-		// See if any of the lists of classes matches this entity
-		for (var j in modification.affects)
+		if (DoesModificationApply(modification, classes))
 		{
-			var hasAllClasses = true;
-			// Check each class in affects is present for the entity
-			for (var k in modification.affects[j])
-				hasAllClasses = hasAllClasses && (classes.indexOf(modification.affects[j][k]) !== -1);
+			// We found a match, apply the modification
 
-			if (hasAllClasses)
-			{
-				applies = true;
-				break;
-			}
-		}
-
-		// We found a match, apply the modification
-		if (applies)
-		{
 			// Nothing is cumulative so that ordering doesn't matter as much as possible
 			if (modification.multiplier)
 				retValue += (modification.multiplier - 1) * propertyValue;
@@ -64,4 +49,24 @@ function GetTechModifiedProperty(currentTechModifications, entityTemplateData, p
 	}
 
 	return retValue;
+}
+
+/**
+ * Returns whether the given modification applies to the entity containing the given class list
+ */
+function DoesModificationApply(modification, classes)
+{
+	// See if any of the lists of classes matches this entity
+	for (var j in modification.affects)
+	{
+		var hasAllClasses = true;
+		// Check each class in affects is present for the entity
+		for (var k in modification.affects[j])
+			hasAllClasses = hasAllClasses && (classes.indexOf(modification.affects[j][k]) !== -1);
+
+		if (hasAllClasses)
+			return true;
+	}
+
+	return false;
 }
