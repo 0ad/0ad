@@ -180,18 +180,41 @@ TechnologyManager.prototype.OnGlobalOwnershipChanged = function (msg)
 			return;
 		
 		var cmpIdentity = Engine.QueryInterface(msg.entity, IID_Identity);
-		if (cmpIdentity)
+		if (!cmpIdentity)
+			return;
+			
+		var classes = cmpIdentity.GetClassesList();
+		for (var i in classes)
 		{
-			var classes = cmpIdentity.GetClassesList();
-			for (var i in classes)
+			this.classCounts[classes[i]] = this.classCounts[classes[i]] || 0;
+			this.classCounts[classes[i]] += 1;
+			
+			this.typeCountsByClass[classes[i]] = this.typeCountsByClass[classes[i]] || {};
+			this.typeCountsByClass[classes[i]][template] = this.typeCountsByClass[classes[i]][template] || 0;
+			this.typeCountsByClass[classes[i]][template] += 1;
+		}
+		
+		// Newly created entity, check if any researched techs might apply
+		// (only do this for new entities because even if an entity is converted or captured,
+		//	we want it to maintain whatever technologies previously applied)
+		if (msg.from == -1)
+		{
+			var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+			var playerID = cmpPlayer.GetPlayerID();
+			var modifiedComponents = {};
+			for (var name in this.modifications)
 			{
-				this.classCounts[classes[i]] = this.classCounts[classes[i]] || 0;
-				this.classCounts[classes[i]] += 1;
-				
-				this.typeCountsByClass[classes[i]] = this.typeCountsByClass[classes[i]] || {};
-				this.typeCountsByClass[classes[i]][template] = this.typeCountsByClass[classes[i]][template] || 0;
-				this.typeCountsByClass[classes[i]][template] += 1;
+				// We only need to find one one tech per component for a match
+				var modifications = this.modifications[name];
+				var component = name.split("/")[0];
+				for (var i in modifications)
+					if (!modifiedComponents[component] && DoesModificationApply(modifications[i], classes))
+						modifiedComponents[component] = true;
 			}
+
+			// Send mesage(s) to the entity so it knows about researched techs
+			for (var component in modifiedComponents)
+				Engine.PostMessage(msg.entity, MT_TechnologyModification, { "component": component, "player": playerID });
 		}
 	}
 	if (msg.from == playerID)
