@@ -1040,6 +1040,12 @@ function setup_collada_project(project_name, target_type, rel_source_dirs, rel_i
 			links { "c", }
 		end
 
+		if os.getversion().description == "GNU/kFreeBSD" then
+			links {
+				"dl",
+			}
+		end
+
 		buildoptions { "-fno-strict-aliasing" }
 
 		buildoptions { "-rdynamic" }
