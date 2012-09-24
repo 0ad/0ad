@@ -94,6 +94,12 @@ Attack.prototype.Schema =
 			"<MaxRange>24.0</MaxRange>" +
 			"<MinRange>20.0</MinRange>" +
 		"</Charge>" +
+		"<Slaughter>" +
+			"<Hack>1000.0</Hack>" +
+			"<Pierce>0.0</Pierce>" +
+			"<Crush>0.0</Crush>" +
+			"<MaxRange>4.0</MaxRange>" +
+		"</Slaughter>" +
 	"</a:example>" +
 	"<optional>" +
 		"<element name='Melee'>" +
@@ -156,6 +162,19 @@ Attack.prototype.Schema =
 				"<element name='Crush' a:help='Crush damage strength'><ref name='nonNegativeDecimal'/></element>" +
 				"<element name='MaxRange'><ref name='nonNegativeDecimal'/></element>" + // TODO: how do these work?
 				"<element name='MinRange'><ref name='nonNegativeDecimal'/></element>" +
+				bonusesSchema +
+				preferredClassesSchema +
+				restrictedClassesSchema +
+			"</interleave>" +
+		"</element>" +
+	"</optional>" +
+	"<optional>" +
+		"<element name='Slaughter' a:help='A special attack to kill domestic animals'>" +
+			"<interleave>" +
+				"<element name='Hack' a:help='Hack damage strength'><ref name='nonNegativeDecimal'/></element>" +
+				"<element name='Pierce' a:help='Pierce damage strength'><ref name='nonNegativeDecimal'/></element>" +
+				"<element name='Crush' a:help='Crush damage strength'><ref name='nonNegativeDecimal'/></element>" +
+				"<element name='MaxRange'><ref name='nonNegativeDecimal'/></element>" + // TODO: how do these work?
 				bonusesSchema +
 				preferredClassesSchema +
 				restrictedClassesSchema +
@@ -275,6 +294,11 @@ Attack.prototype.GetBestAttackAgainst = function(target)
 	const isAllowed = function (value, i, a) { return !attack.GetRestrictedClasses(value).some(isTargetClass); }
 	const isPreferred = function (value, i, a) { return attack.GetPreferredClasses(value).some(isTargetClass); }
 	const byPreference = function (a, b) { return (types.indexOf(a) + (isPreferred(a) ? types.length : 0) ) - (types.indexOf(b) + (isPreferred(b) ? types.length : 0) ); }
+	
+	// Always slaughter domestic animals instead of using a normal attack
+	if (isTargetClass("Domestic") && this.template.Slaughter) {
+		return "Slaughter";
+	}
 
 	return types.filter(isAllowed).sort(byPreference).pop();
 };
