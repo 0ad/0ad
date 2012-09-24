@@ -178,7 +178,7 @@ function ProcessCommand(player, cmd)
 		{
 			var cmpTechnologyManager = QueryOwnerInterface(cmd.entity, IID_TechnologyManager);
 			// TODO: Enable this check once the AI gets technology support
-			if (cmpTechnologyManager.CanResearch(cmd.template) || true)
+			if (cmpTechnologyManager.CanResearch(cmd.template) || cmpPlayer.IsAI())
 			{
 				var queue = Engine.QueryInterface(cmd.entity, IID_ProductionQueue);
 				if (queue)
@@ -564,7 +564,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 	var cmpTechnologyManager = QueryPlayerIDInterface(player, IID_TechnologyManager);
 	
 	// TODO: Enable this check once the AI gets technology support 
-	if (!cmpTechnologyManager.CanProduce(cmd.template) && false) 
+	if (!cmpTechnologyManager.CanProduce(cmd.template) && !cmpPlayer.IsAI()) 
 	{
 		if (g_DebugCommands)
 		{

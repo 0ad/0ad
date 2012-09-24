@@ -5,6 +5,14 @@
     <Pierce>1.0</Pierce>
     <Crush>9.0</Crush>
   </Armour>
+  <Attack>
+    <Slaughter>
+      <Hack>1000.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>4.0</MaxRange>
+    </Slaughter>
+  </Attack>
   <Builder>
     <Rate>1.0</Rate>
     <Entities datatype="tokens">

@@ -491,7 +491,6 @@ function initMapNameList()
 
 	// Alphabetically sort the list, ignoring case
 	mapList.sort(sortNameIgnoreCase);
-
 	if (g_GameAttributes.mapType == "random")
 		mapList.unshift({ "name": "[color=\"orange\"]Random[/color]", "file": "random" });
 	
@@ -722,10 +721,8 @@ function selectMap(name)
 	g_GameAttributes.map = name;
 	g_GameAttributes.script = mapSettings.Script;
 	if (mapData !== "Random")
-	{
 		for (var prop in mapSettings)
 			g_GameAttributes.settings[prop] = mapSettings[prop];
-	}
 	
 	// Use default AI if the map doesn't specify any explicitly
 	for (var i = 0; i < g_GameAttributes.settings.PlayerData.length; ++i)
@@ -775,16 +772,27 @@ function launchGame()
 	
 	if (g_GameAttributes.map == "random")
 		selectMap(getGUIObjectByName("mapSelection").list_data[Math.floor(Math.random() *
-			getGUIObjectByName("mapSelection").list.length - 1) + 1]);
+			(getGUIObjectByName("mapSelection").list.length - 1)) + 1]);
 
 	var numPlayers = g_GameAttributes.settings.PlayerData.length; 
 	// Assign random civilizations to players with that choice 
 	//  (this is synchronized because we're the host) 
-	var civs = [ civ.Code for each (civ in g_CivData) if (civ.SelectableInGameSetup !== false) ]; 
+	var cultures = [];
+	for each (civ in g_CivData)
+		if ((civ.Culture !== undefined)&&(cultures.indexOf(civ.Culture) < 0))
+			cultures.push(civ.Culture);
+	var allcivs = new Array(cultures.length);
+	for (var i = 0; i < allcivs.length; ++i)
+		allcivs[i] = [];
+	for each (civ in g_CivData)
+		if (civ.Culture !== undefined)
+			allcivs[cultures.indexOf(civ.Culture)].push(civ.Code);
 	
 	const romanNumbers = [undefined, "I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
 	for (var i = 0; i < numPlayers; ++i) 
 	{ 
+		civs = allcivs[Math.floor(Math.random()*allcivs.length)];
+		
 		if (g_GameAttributes.settings.PlayerData[i].Civ == "random") 
 			g_GameAttributes.settings.PlayerData[i].Civ = civs[Math.floor(Math.random()*civs.length)]; 
 		// Setting names for AI players. Check if the player is AI and the match is not a scenario
