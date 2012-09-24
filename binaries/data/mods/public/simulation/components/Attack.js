@@ -296,9 +296,8 @@ Attack.prototype.GetBestAttackAgainst = function(target)
 	const byPreference = function (a, b) { return (types.indexOf(a) + (isPreferred(a) ? types.length : 0) ) - (types.indexOf(b) + (isPreferred(b) ? types.length : 0) ); }
 	
 	// Always slaughter domestic animals instead of using a normal attack
-	if (isTargetClass("Domestic") && this.template.Slaughter) {
+	if (isTargetClass("Domestic") && this.template.Slaughter) 
 		return "Slaughter";
-	}
 
 	return types.filter(isAllowed).sort(byPreference).pop();
 };

@@ -106,6 +106,9 @@ TechnologyManager.prototype.CanResearch = function (tech)
 	
 	if (template.pair && !this.CanResearch(template.pair))
 		return false;
+		
+	if (this.IsInProgress(tech))
+		return false;
 	
 	return this.CheckTechnologyRequirements(template.requirements);
 };
