@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,18 +20,24 @@
 #include "simulation2/system/Component.h"
 #include "ICmpVision.h"
 
+#include "simulation2/MessageTypes.h"
+#include "simulation2/components/ICmpOwnership.h"
+#include "simulation2/components/ICmpPlayerManager.h"
+#include "simulation2/components/ICmpTechnologyManager.h"
+
 class CCmpVision : public ICmpVision
 {
 public:
-	static void ClassInit(CComponentManager& UNUSED(componentManager))
+	static void ClassInit(CComponentManager& componentManager)
 	{
+		componentManager.SubscribeGloballyToMessageType(MT_TechnologyModification);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(Vision)
 
 	// Template state:
 
-	entity_pos_t m_Range;
+	entity_pos_t m_Range, m_BaseRange;
 	bool m_RetainInFog;
 	bool m_AlwaysVisible;
 
@@ -51,7 +57,7 @@ public:
 
 	virtual void Init(const CParamNode& paramNode)
 	{
-		m_Range = paramNode.GetChild("Range").ToFixed();
+		m_BaseRange = m_Range = paramNode.GetChild("Range").ToFixed();
 		m_RetainInFog = paramNode.GetChild("RetainInFog").ToBool();
 		m_AlwaysVisible = paramNode.GetChild("AlwaysVisible").ToBool();
 	}
@@ -68,6 +74,44 @@ public:
 	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
 	{
 		Init(paramNode);
+	}
+
+	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	{
+		switch (msg.GetType())
+		{
+		case MT_TechnologyModification:
+		{
+			const CMessageTechnologyModification& msgData = static_cast<const CMessageTechnologyModification&> (msg);
+			if (msgData.component == L"Vision")
+			{
+				CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), GetEntityId());
+				if (cmpOwnership)
+				{
+					player_id_t owner = cmpOwnership->GetOwner();
+					if (owner != INVALID_PLAYER && owner == msgData.player)
+					{
+						CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSimContext(), SYSTEM_ENTITY);
+						entity_id_t playerEnt = cmpPlayerManager->GetPlayerByID(owner);
+						CmpPtr<ICmpTechnologyManager> cmpTechnologyManager(GetSimContext(), playerEnt);
+						if (playerEnt != INVALID_ENTITY && cmpTechnologyManager)
+						{
+							entity_pos_t newRange = cmpTechnologyManager->ApplyModifications(L"Vision/Range", m_BaseRange, GetEntityId());
+							if (newRange != m_Range)
+							{
+								// Update our vision range and broadcast message
+								entity_pos_t oldRange = m_Range;
+								m_Range = newRange;
+								CMessageVisionRangeChanged msg(GetEntityId(), oldRange, newRange);
+								GetSimContext().GetComponentManager().BroadcastMessage(msg);
+							}
+						}
+					}
+				}
+			}
+			break;
+		}
+		}
 	}
 
 	virtual entity_pos_t GetRange()

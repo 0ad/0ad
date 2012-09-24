@@ -316,6 +316,26 @@ CMessage* CMessageTechnologyModification::FromJSVal(ScriptInterface& scriptInter
 	return new CMessageTechnologyModification(component, player);
 }
 
+////////////////////////////////
+
+jsval CMessageVisionRangeChanged::ToJSVal(ScriptInterface& scriptInterface) const
+{
+	TOJSVAL_SETUP();
+	SET_MSG_PROPERTY(entity);
+	SET_MSG_PROPERTY(oldRange);
+	SET_MSG_PROPERTY(newRange);
+	return OBJECT_TO_JSVAL(obj);
+}
+
+CMessage* CMessageVisionRangeChanged::FromJSVal(ScriptInterface& scriptInterface, jsval val)
+{
+	FROMJSVAL_SETUP();
+	GET_MSG_PROPERTY(entity_id_t, entity);
+	GET_MSG_PROPERTY(entity_pos_t, oldRange);
+	GET_MSG_PROPERTY(entity_pos_t, newRange);
+	return new CMessageVisionRangeChanged(entity, oldRange, newRange);
+}
+
 ////////////////////////////////////////////////////////////////
 
 CMessage* CMessageFromJSVal(int mtid, ScriptInterface& scriptingInterface, jsval val)
