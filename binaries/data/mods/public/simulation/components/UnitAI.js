@@ -1953,6 +1953,13 @@ UnitAI.prototype.OnDestroy = function()
 		rangeMan.DestroyActiveQuery(this.losGaiaRangeQuery);
 };
 
+UnitAI.prototype.OnVisionRangeChanged = function(msg)
+{
+	// Update range queries
+	if (this.entity == msg.entity)
+		this.SetupRangeQueries();
+};
+
 // Wrapper function that sets up the normal, healer, and Gaia range queries.
 UnitAI.prototype.SetupRangeQueries = function()
 {

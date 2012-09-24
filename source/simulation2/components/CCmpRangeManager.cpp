@@ -188,6 +188,7 @@ public:
 		componentManager.SubscribeGloballyToMessageType(MT_PositionChanged);
 		componentManager.SubscribeGloballyToMessageType(MT_OwnershipChanged);
 		componentManager.SubscribeGloballyToMessageType(MT_Destroy);
+		componentManager.SubscribeGloballyToMessageType(MT_VisionRangeChanged);
 
 		componentManager.SubscribeToMessageType(MT_Update);
 
@@ -354,7 +355,7 @@ public:
 			const CMessagePositionChanged& msgData = static_cast<const CMessagePositionChanged&> (msg);
 			entity_id_t ent = msgData.entity;
 
-			std::map<u32, EntityData>::iterator it = m_EntityData.find(ent);
+			std::map<entity_id_t, EntityData>::iterator it = m_EntityData.find(ent);
 
 			// Ignore if we're not already tracking this entity
 			if (it == m_EntityData.end())
@@ -401,7 +402,7 @@ public:
 			const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
 			entity_id_t ent = msgData.entity;
 
-			std::map<u32, EntityData>::iterator it = m_EntityData.find(ent);
+			std::map<entity_id_t, EntityData>::iterator it = m_EntityData.find(ent);
 
 			// Ignore if we're not already tracking this entity
 			if (it == m_EntityData.end())
@@ -424,7 +425,7 @@ public:
 			const CMessageDestroy& msgData = static_cast<const CMessageDestroy&> (msg);
 			entity_id_t ent = msgData.entity;
 
-			std::map<u32, EntityData>::iterator it = m_EntityData.find(ent);
+			std::map<entity_id_t, EntityData>::iterator it = m_EntityData.find(ent);
 
 			// Ignore if we're not already tracking this entity
 			if (it == m_EntityData.end())
@@ -438,6 +439,37 @@ public:
 			ENSURE(it->second.owner == -1);
 
 			m_EntityData.erase(it);
+
+			break;
+		}
+		case MT_VisionRangeChanged:
+		{
+			const CMessageVisionRangeChanged& msgData = static_cast<const CMessageVisionRangeChanged&> (msg);
+			entity_id_t ent = msgData.entity;
+
+			std::map<entity_id_t, EntityData>::iterator it = m_EntityData.find(ent);
+
+			// Ignore if we're not already tracking this entity
+			if (it == m_EntityData.end())
+				break;
+
+			CmpPtr<ICmpVision> cmpVision(GetSimContext(), ent);
+			if (!cmpVision)
+				break;
+
+			entity_pos_t oldRange = it->second.visionRange;
+			entity_pos_t newRange = msgData.newRange;
+
+			// If the range changed and the entity's in-world, we need to manually adjust it
+			//	but if it's not in-world, we only need to set the new vision range
+			CFixedVector2D pos(it->second.x, it->second.z);
+			if (it->second.inWorld)
+				LosRemove(it->second.owner, oldRange, pos);
+
+			it->second.visionRange = newRange;
+
+			if (it->second.inWorld)
+				LosAdd(it->second.owner, newRange, pos);
 
 			break;
 		}

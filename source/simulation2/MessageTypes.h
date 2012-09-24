@@ -380,4 +380,22 @@ public:
 	player_id_t player;
 };
 
+/**
+ * Sent by CCmpVision when an entity's vision range changes.
+ */
+class CMessageVisionRangeChanged : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(VisionRangeChanged)
+
+	CMessageVisionRangeChanged(entity_id_t entity, entity_pos_t oldRange, entity_pos_t newRange) :
+	entity(entity), oldRange(oldRange), newRange(newRange)
+	{
+	}
+
+	entity_id_t entity;
+	entity_pos_t oldRange;
+	entity_pos_t newRange;
+};
+
 #endif // INCLUDED_MESSAGETYPES
