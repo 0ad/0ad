@@ -523,8 +523,13 @@ bool FArchiveXML::EndExport(fm::vector<uint8>& outData)
 	xmlOutputBufferPtr buf = xmlAllocOutputBuffer(NULL);
 	xmlNodeDumpOutput(buf, rootNode->doc, rootNode, 0, 0, NULL);
 
+#ifdef LIBXML2_NEW_BUFFER
+	outData.resize(xmlOutputBufferGetSize(buf) * sizeof(xmlChar));
+	memcpy(outData.begin(), xmlOutputBufferGetContent(buf), outData.size());
+#else
 	outData.resize(buf->buffer->use * sizeof(xmlChar));
 	memcpy(outData.begin(), buf->buffer->content, outData.size());
+#endif
 
 	xmlOutputBufferClose(buf);
 	daeDocument.ReleaseXmlData();
