@@ -465,6 +465,10 @@ function determineAction(x, y, fromMinimap)
 			break;
 		}
 	}
+	else if (Engine.HotkeyIsPressed("session.attack") && getActionInfo("attack", target).possible)
+	{
+		return {"type": "attack", "cursor": "action-attack", "target": target};
+	}
 	else if (Engine.HotkeyIsPressed("session.garrison"))
 	{
 		if (getActionInfo("garrison", target).possible)
