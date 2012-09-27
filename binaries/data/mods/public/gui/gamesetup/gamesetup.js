@@ -779,13 +779,13 @@ function launchGame()
 	//  (this is synchronized because we're the host) 
 	var cultures = [];
 	for each (civ in g_CivData)
-		if ((civ.Culture !== undefined)&&(cultures.indexOf(civ.Culture) < 0))
+		if ((civ.Culture !== undefined)&&(cultures.indexOf(civ.Culture) < 0)&&(civ.SelectableInGameSetup == undefined)||(civ.SelectableInGameSetup))
 			cultures.push(civ.Culture);
 	var allcivs = new Array(cultures.length);
 	for (var i = 0; i < allcivs.length; ++i)
 		allcivs[i] = [];
 	for each (civ in g_CivData)
-		if (civ.Culture !== undefined)
+		if ((civ.Culture !== undefined)&&(civ.SelectableInGameSetup == undefined)||(civ.SelectableInGameSetup))
 			allcivs[cultures.indexOf(civ.Culture)].push(civ.Code);
 	
 	const romanNumbers = [undefined, "I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
