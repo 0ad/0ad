@@ -130,7 +130,7 @@ float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, f
 	else {
 		if ((x < 0) || (x > screenWidth))
 		{
-			itemRollOff = 0.5;
+			itemRollOff = 5.0;
 		}
 		float pixPerRadian = audioWidth / (radianCap * 2);
 		answer = (x - (screenWidth/2)) / pixPerRadian;
@@ -147,7 +147,7 @@ float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, f
 	else {
 		if ((y < 0) || (y > screenHeight))
 		{
-			itemRollOff = 0.5;
+			itemRollOff = 5.0;
 		}
 	}
 
@@ -162,7 +162,7 @@ void CSoundGroup::UploadPropertiesAndPlay(int theIndex, const CVector3D& positio
 #if CONFIG2_AUDIO
 	if ( g_SoundManager ) {
 		bool	isOnscreen;
-		ALfloat	initialRolllOff = 0.02f;
+		ALfloat	initialRolllOff = 1.0f;
 		ALfloat	itemRollOff = initialRolllOff;
 
 		float 	offSet = RadiansOffCenter(position, isOnscreen, itemRollOff);
@@ -178,7 +178,7 @@ void CSoundGroup::UploadPropertiesAndPlay(int theIndex, const CVector3D& positio
 
 			if (!TestFlag(eOmnipresent))
 			{
-				hSound->SetLocation(CVector3D((sndDist * sin(offSet)), 0, sndDist * cos(offSet)));
+				hSound->SetLocation(CVector3D((sndDist * sin(offSet)), 0, - sndDist * cos(offSet)));
 				if (TestFlag(eDistanceless))
 					hSound->SetRollOff(initialRolllOff);
 				else
@@ -265,8 +265,6 @@ void CSoundGroup::Update(float UNUSED(TimeSinceLastFrame))
 
 bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 {
-//	LOGERROR(L"loading new sound group '%ls'", pathnameXML.string().c_str());
-
 	CXeromyces XeroFile;
 	if (XeroFile.Load(g_VFS, pathnameXML) != PSRETURN_OK)
 	{

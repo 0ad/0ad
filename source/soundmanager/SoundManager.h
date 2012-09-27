@@ -32,6 +32,7 @@
 
 typedef std::vector<ISoundItem*> ItemsList;
 
+class CSoundManagerWorker;
 
 class CSoundManager
 {
@@ -42,7 +43,7 @@ protected:
 	ALCdevice* m_Device;
 	ISoundItem* m_CurrentTune;
 	ISoundItem* m_CurrentEnvirons;
-	ItemsList* m_Items;
+	CSoundManagerWorker* m_Worker;
 	float m_Gain;
 	float m_MusicGain;
 	float m_AmbientGain;
