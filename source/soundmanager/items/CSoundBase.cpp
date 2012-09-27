@@ -142,7 +142,7 @@ bool CSoundBase::InitOpenAL()
 
 	if (anErr == AL_NO_ERROR) 
 	{
-		ALfloat source0Pos[]={ -2.0, 0.0, 0.0};
+		ALfloat source0Pos[]={ 0.0, 0.0, -1.0};
 		ALfloat source0Vel[]={ 0.0, 0.0, 0.0};
 		
 		alSourcef(m_ALSource,AL_PITCH,1.0f);
@@ -150,6 +150,12 @@ bool CSoundBase::InitOpenAL()
 		alSourcefv(m_ALSource,AL_POSITION,source0Pos);
 		alSourcefv(m_ALSource,AL_VELOCITY,source0Vel);
 		alSourcei(m_ALSource,AL_LOOPING,AL_FALSE);
+		AL_CHECK
+		alSourcef(m_ALSource, AL_REFERENCE_DISTANCE, 70.0f);
+		AL_CHECK
+		alSourcef(m_ALSource, AL_MAX_DISTANCE, 145.0);
+		AL_CHECK
+		alSourcef(m_ALSource, AL_ROLLOFF_FACTOR, 1.0);
 		AL_CHECK
 
 		return true;
