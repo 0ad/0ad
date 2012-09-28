@@ -4,6 +4,9 @@
     <Circle radius="15.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_6x6</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>brit</Civ>
     <SpecificName>Caer</SpecificName>

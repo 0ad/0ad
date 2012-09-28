@@ -25,13 +25,14 @@
   </Footprint>
   <Health>
     <Max>3000</Max>
+    <SpawnEntityOnDeath>rubble/rubble_wall</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Classes datatype="tokens">-ConquestCritical Defensive StoneWall</Classes>
     <GenericName>Stone Wall</GenericName>
     <Tooltip>Wall off your town for a stout defense.</Tooltip>
     <Icon>structures/wall.png</Icon>
-	<RequiredTechnology>phase_town</RequiredTechnology>
+    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>100</xp>

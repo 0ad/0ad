@@ -14,10 +14,11 @@
   </Footprint>
   <Health>
     <Max>2200</Max>
+    <SpawnEntityOnDeath>rubble/rubble_4x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>spart</Civ>
-	<GenericName>Military Mess Hall</GenericName>
+    <GenericName>Military Mess Hall</GenericName>
     <SpecificName>Syssíton</SpecificName>
     <Tooltip>Train Spartan heroes and Spartiate champion hoplites.</Tooltip>
     <History>The Syssítia was where full-blooded Spartans were barracked and dined together, even Spartan kings.</History>
@@ -40,7 +41,7 @@
       units/spart_champion_infantry_spear
     </Entities>
     <Technologies datatype="tokens">
-	  pair_champ_02
+      pair_champ_02
     </Technologies>
   </ProductionQueue>
   <VisualActor>

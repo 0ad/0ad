@@ -4,6 +4,9 @@
     <Square width="16.0" depth="16.0"/>
     <Height>5.0</Height>
   </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_4x4</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>iber</Civ>
     <SpecificName>Corral</SpecificName>

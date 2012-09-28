@@ -4,6 +4,9 @@
     <Circle radius="11.0"/>
     <Height>12.0</Height>
   </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_3x3</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>rome</Civ>
     <GenericName>Temple of Vesta</GenericName>
@@ -15,7 +18,7 @@
     <Static width="19.0" depth="19.0"/>
   </Obstruction>
   <VisualActor>
-    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
     <Actor>structures/romans/temple_vesta.xml</Actor>
+    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
   </VisualActor>
 </Entity>

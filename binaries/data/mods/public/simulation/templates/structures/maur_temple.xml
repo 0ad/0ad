@@ -4,6 +4,9 @@
     <Square width="19.0" depth="19.0"/>
     <Height>12.0</Height>
   </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_4x4</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>maur</Civ>
     <SpecificName>Devalaya</SpecificName>

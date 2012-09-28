@@ -7,6 +7,9 @@
     <Square width="26.0" depth="24.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_5x5</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>gaul</Civ>
     <SpecificName>Marchnaty</SpecificName>

@@ -25,6 +25,7 @@
   </Footprint>
   <Health>
     <Max>800</Max>
+    <SpawnEntityOnDeath>rubble/rubble_3x3</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <GenericName>Mill</GenericName>
@@ -44,9 +45,9 @@
   </Obstruction>
   <ProductionQueue>
     <Technologies datatype="tokens">
-	  pair_gather_01
-	  pair_gather_02
-	  pair_gather_03
+      pair_gather_01
+      pair_gather_02
+      pair_gather_03
     </Technologies>
   </ProductionQueue>
   <RallyPoint disable=""/>

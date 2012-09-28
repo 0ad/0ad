@@ -4,6 +4,9 @@
     <Square width="36.0" depth="30.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_6x6</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>rome</Civ>
     <SpecificName>Forum</SpecificName>
@@ -13,7 +16,7 @@
     <Static width="32.0" depth="26.0"/>
   </Obstruction>
   <VisualActor>
-    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
     <Actor>structures/romans/market.xml</Actor>
+    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
   </VisualActor>
 </Entity>

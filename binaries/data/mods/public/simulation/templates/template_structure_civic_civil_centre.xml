@@ -58,15 +58,16 @@
   </GarrisonHolder>
   <Health>
     <Max>3000</Max>
+    <SpawnEntityOnDeath>rubble/rubble_6x6</SpawnEntityOnDeath>
   </Health>
-  <Identity>
+    <Identity>
     <GenericName>Civic Centre</GenericName>
     <Tooltip>Build to acquire large tracts of territory. Train citizens. Garrison: 20.</Tooltip>
     <Classes datatype="tokens">
-		Village 
-		Defensive
-		CivCentre
-	</Classes>
+      Village 
+      Defensive
+      CivCentre
+    </Classes>
     <Icon>structures/civic_centre.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

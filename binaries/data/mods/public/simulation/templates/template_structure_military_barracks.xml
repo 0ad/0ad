@@ -32,13 +32,14 @@
   </GarrisonHolder>
   <Health>
     <Max>2000</Max>
+    <SpawnEntityOnDeath>rubble/rubble_4x4</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <GenericName>Barracks</GenericName>
     <Tooltip>Train citizen-soldiers. Research military improvements. Garrison: 10.</Tooltip>
     <Classes datatype="tokens">Town</Classes>
     <Icon>structures/barracks.png</Icon>
-	<RequiredTechnology>phase_town</RequiredTechnology>
+    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>100</xp>
@@ -52,9 +53,9 @@
   </Obstruction>
   <ProductionQueue>
     <Technologies datatype="tokens">
-	  pair_inf_01
-	  pair_inf_02
-	  pair_cav_01
+      pair_inf_01
+      pair_inf_02
+      pair_cav_01
     </Technologies>
   </ProductionQueue>
   <Sound>

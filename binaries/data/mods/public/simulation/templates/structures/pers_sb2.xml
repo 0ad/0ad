@@ -15,14 +15,15 @@
   </Footprint>
   <Health>
     <Max>3000</Max>
+    <SpawnEntityOnDeath>rubble/rubble_6x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>pers</Civ>
-	<GenericName>Persian Special Building</GenericName>
+    <GenericName>Persian Special Building</GenericName>
     <SpecificName>Parihuvādā</SpecificName>
     <History>Special Persian building</History>
     <Icon>structures/palace.png</Icon>
-	<Tooltip>Special Building.
+    <Tooltip>Special Building.
 Train War Elephants and Kardakes mercenaries.</Tooltip>
   </Identity>
   <Obstruction>
@@ -42,9 +43,9 @@ Train War Elephants and Kardakes mercenaries.</Tooltip>
   </TerritoryInfluence>
   <ProductionQueue>
     <Entities datatype="tokens">
-	  units/pers_kardakes_hoplite
-	  units/pers_kardakes_skirmisher
-	  units/pers_war_elephant
+      units/pers_kardakes_hoplite
+      units/pers_kardakes_skirmisher
+      units/pers_war_elephant
     </Entities>
   </ProductionQueue>
   <VisualActor>
