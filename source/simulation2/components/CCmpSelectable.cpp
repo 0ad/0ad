@@ -532,24 +532,26 @@ void CCmpSelectable::RenderSubmit(SceneCollector& collector)
 	{
 		if (!m_Cached)
 		{
-			// Try to initialize m_Color to the owning player's colour.
-			CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSimContext(), SYSTEM_ENTITY);
-			if (!cmpPlayerManager)
-				return;
-	
+			// Default to white if there's no owner (e.g. decorative, editor-only actors)
+			CColor color = CColor(1.0, 1.0, 1.0, 1.0);
 			CmpPtr<ICmpOwnership> cmpOwnership(GetSimContext(), GetEntityId());
-			if (!cmpOwnership)
-				return;
-	
-			player_id_t owner = cmpOwnership->GetOwner();
-			if (owner == INVALID_PLAYER)
-				return;
-	
-			CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(owner));
-			if (!cmpPlayer)
-				return;
+			if (cmpOwnership)
+			{
+				player_id_t owner = cmpOwnership->GetOwner();
+				if (owner == INVALID_PLAYER)
+					return;
 
-			CColor color = cmpPlayer->GetColour();
+				// Try to initialize m_Color to the owning player's colour.
+				CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSimContext(), SYSTEM_ENTITY);
+				if (!cmpPlayerManager)
+					return;
+
+				CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(owner));
+				if (!cmpPlayer)
+					return;
+
+				color = cmpPlayer->GetColour();
+			}
 			color.a = m_FadeBaselineAlpha + m_FadeDeltaAlpha;
 
 			SetSelectionHighlight(color, m_Selected);
