@@ -54,6 +54,7 @@
 #include "simulation2/components/ICmpTerrain.h"
 #include "simulation2/components/ICmpUnitMotion.h"
 #include "simulation2/components/ICmpVisual.h"
+#include "simulation2/components/ICmpWaterManager.h"
 #include "simulation2/helpers/Render.h"
 
 struct ActorViewerImpl : public Scene
@@ -81,6 +82,7 @@ public:
 	float CurrentSpeed;
 	bool WalkEnabled;
 	bool GroundEnabled;
+	bool WaterEnabled;
 	bool ShadowsEnabled;
 	bool SelectionBoxEnabled;
 	bool AxesMarkerEnabled;
@@ -247,6 +249,7 @@ ActorViewer::ActorViewer()
 {
 	m.WalkEnabled = false;
 	m.GroundEnabled = true;
+	m.WaterEnabled = false;
 	m.ShadowsEnabled = g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWS);
 	m.SelectionBoxEnabled = false;
 	m.AxesMarkerEnabled = false;
@@ -290,6 +293,7 @@ ActorViewer::ActorViewer()
 	if (cmpTerrain)
 		cmpTerrain->ReloadTerrain();
 
+	// Remove FOW since we're in Atlas
 	CmpPtr<ICmpRangeManager> cmpRangeManager(m.Simulation2, SYSTEM_ENTITY);
 	if (cmpRangeManager)
 		cmpRangeManager->SetLosRevealAll(-1, true);
@@ -445,6 +449,15 @@ void ActorViewer::SetBackgroundColour(const SColor4ub& colour)
 
 void ActorViewer::SetWalkEnabled(bool enabled)    { m.WalkEnabled = enabled; }
 void ActorViewer::SetGroundEnabled(bool enabled)  { m.GroundEnabled = enabled; }
+void ActorViewer::SetWaterEnabled(bool enabled)
+{
+	m.WaterEnabled = enabled;
+	// Adjust water level
+	entity_pos_t waterLevel = entity_pos_t::FromFloat(enabled ? 10.f : 0.f);
+	CmpPtr<ICmpWaterManager> cmpWaterManager(m.Simulation2, SYSTEM_ENTITY);
+	if (cmpWaterManager)
+		cmpWaterManager->SetWaterLevel(waterLevel);
+}
 void ActorViewer::SetShadowsEnabled(bool enabled) { m.ShadowsEnabled = enabled; }
 void ActorViewer::SetBoundingBoxesEnabled(bool enabled) { m.SelectionBoxEnabled = enabled; }
 void ActorViewer::SetAxesMarkerEnabled(bool enabled)    { m.AxesMarkerEnabled = enabled; }
@@ -464,7 +477,7 @@ void ActorViewer::Render()
 
 	g_Renderer.SetClearColor(m.Background);
 
-	// Disable shadows locally (avoid clobbering global state)
+	// Set shadows, sky and water locally (avoid clobbering global state)
 	bool oldShadows = g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWS);
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, m.ShadowsEnabled);
 
@@ -472,7 +485,10 @@ void ActorViewer::Render()
 	g_Renderer.GetSkyManager()->m_RenderSky = false;
 
 	bool oldWater = g_Renderer.GetWaterManager()->m_RenderWater;
-	g_Renderer.GetWaterManager()->m_RenderWater = false;
+	g_Renderer.GetWaterManager()->m_RenderWater = m.WaterEnabled;
+
+	// Set simulation context for rendering purposes
+	g_Renderer.SetSimulation(&m.Simulation2);
 
 	g_Renderer.BeginFrame();
 

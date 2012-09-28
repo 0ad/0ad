@@ -84,6 +84,8 @@ struct TerrainRendererInternals
 
 	/// Fancy water shader
 	CShaderProgramPtr fancyWaterShader;
+
+	CSimulation2* simulation;
 };
 
 
@@ -101,6 +103,10 @@ TerrainRenderer::~TerrainRenderer()
 	delete m;
 }
 
+void TerrainRenderer::SetSimulation(CSimulation2* simulation)
+{
+	m->simulation = simulation;
+}
 
 ///////////////////////////////////////////////////////////////////
 // Submit a patch for rendering
@@ -112,10 +118,10 @@ void TerrainRenderer::Submit(CPatch* patch)
 	if (data == 0)
 	{
 		// no renderdata for patch, create it now
-		data = new CPatchRData(patch);
+		data = new CPatchRData(patch, m->simulation);
 		patch->SetRenderData(data);
 	}
-	data->Update();
+	data->Update(m->simulation);
 
 	m->visiblePatches.push_back(data);
 }
@@ -130,10 +136,10 @@ void TerrainRenderer::Submit(CModelDecal* decal)
 	if (data == 0)
 	{
 		// no renderdata for decal, create it now
-		data = new CDecalRData(decal);
+		data = new CDecalRData(decal, m->simulation);
 		decal->SetRenderData(data);
 	}
-	data->Update();
+	data->Update(m->simulation);
 
 	m->visibleDecals.push_back(data);
 }

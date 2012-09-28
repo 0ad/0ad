@@ -59,11 +59,12 @@ const ssize_t BlendOffsets[9][2] = {
 
 ///////////////////////////////////////////////////////////////////
 // CPatchRData constructor
-CPatchRData::CPatchRData(CPatch* patch) :
+CPatchRData::CPatchRData(CPatch* patch, CSimulation2* simulation) :
 	m_Patch(patch), m_VBSides(0),
 	m_VBBase(0), m_VBBaseIndices(0),
 	m_VBBlends(0), m_VBBlendIndices(0),
-	m_VBWater(0), m_VBWaterIndices(0)
+	m_VBWater(0), m_VBWaterIndices(0),
+	m_Simulation(simulation)
 {
 	ENSURE(patch);
 	Build();
@@ -572,7 +573,7 @@ void CPatchRData::BuildSide(std::vector<SSideVertex>& vertices, CPatchSideFlags 
 {
 	ssize_t vsize = PATCH_SIZE + 1;
 	CTerrain* terrain = m_Patch->m_Parent;
-	CmpPtr<ICmpWaterManager> cmpWaterManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	CmpPtr<ICmpWaterManager> cmpWaterManager(*m_Simulation, SYSTEM_ENTITY);
 
 	for (ssize_t k = 0; k < vsize; k++)
 	{
@@ -658,8 +659,9 @@ void CPatchRData::Build()
 	BuildWater();
 }
 
-void CPatchRData::Update()
+void CPatchRData::Update(CSimulation2* simulation)
 {
+	m_Simulation = simulation;
 	if (m_UpdateFlags!=0) {
 		// TODO,RC 11/04/04 - need to only rebuild necessary bits of renderdata rather
 		// than everything; it's complicated slightly because the blends are dependent
@@ -1292,7 +1294,7 @@ void CPatchRData::BuildWater()
 
 	// We need to use this to access the water manager or we may not have the
 	// actual values but some compiled-in defaults
-	CmpPtr<ICmpWaterManager> cmpWaterManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	CmpPtr<ICmpWaterManager> cmpWaterManager(*m_Simulation, SYSTEM_ENTITY);
 	if (!cmpWaterManager)
 		return;
 

@@ -27,6 +27,7 @@
 #include "VertexBufferManager.h"
 
 class CPatch;
+class CSimulation2;
 class CTerrainTextureEntry;
 class CTextRenderer;
 
@@ -36,10 +37,10 @@ class CTextRenderer;
 class CPatchRData : public CRenderData
 {
 public:
-	CPatchRData(CPatch* patch);
+	CPatchRData(CPatch* patch, CSimulation2* simulation);
 	~CPatchRData();
 
-	void Update();
+	void Update(CSimulation2* simulation);
 	void RenderOutline();
 	void RenderSides(CShaderProgramPtr& shader);
 	void RenderPriorities(CTextRenderer& textRenderer);
@@ -156,6 +157,8 @@ private:
 
 	// Water indices buffer
 	CVertexBuffer::VBChunk* m_VBWaterIndices;
+
+	CSimulation2* m_Simulation;
 
 	// Build water vertices and indices (vertex buffer and data vector)
 	void BuildWater();

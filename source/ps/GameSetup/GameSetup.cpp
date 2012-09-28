@@ -211,6 +211,9 @@ void Render()
 	if (g_Game && g_Game->IsGameStarted())
 		g_Game->GetView()->BeginFrame();
 
+	if (g_Game)
+		g_Renderer.SetSimulation(g_Game->GetSimulation2());
+
 	// start new frame
 	g_Renderer.BeginFrame();
 

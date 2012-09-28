@@ -41,6 +41,7 @@ enum
 	ID_ViewerWireframe,
 	ID_ViewerMove,
 	ID_ViewerGround,
+	ID_ViewerWater,
 	ID_ViewerShadows,
 	ID_ViewerPolyCount,
 	ID_ViewerAnimation,
@@ -81,6 +82,7 @@ private:
 	bool m_ViewerWireframe;
 	bool m_ViewerMove;
 	bool m_ViewerGround;
+	bool m_ViewerWater;
 	bool m_ViewerShadows;
 	bool m_ViewerPolyCount;
 	bool m_ViewerBoundingBox;
@@ -371,6 +373,7 @@ ObjectBottomBar::ObjectBottomBar(
 	m_ViewerWireframe = false;
 	m_ViewerMove = false;
 	m_ViewerGround = true;
+	m_ViewerWater = false;
 	m_ViewerShadows = true;
 	m_ViewerPolyCount = false;
 	m_ViewerBoundingBox = false;
@@ -391,12 +394,13 @@ ObjectBottomBar::ObjectBottomBar(
 		viewerButtonsLeft->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerWireframe,   _("Wireframe")),      _("Toggle wireframe / solid rendering")), wxSizerFlags().Expand());
 		viewerButtonsLeft->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerMove,        _("Move")),           _("Toggle movement along ground when playing walk/run animations")), wxSizerFlags().Expand());
 		viewerButtonsLeft->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerGround,      _("Ground")),         _("Toggle the ground plane")), wxSizerFlags().Expand());
+		viewerButtonsLeft->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerWater,       _("Water")),          _("Toggle the water plane")), wxSizerFlags().Expand());
 		viewerButtonsLeft->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerShadows,     _("Shadows")),        _("Toggle shadow rendering")), wxSizerFlags().Expand());
 		viewerButtonsLeft->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerPolyCount,   _("Poly count")),     _("Toggle polygon-count statistics - turn off ground and shadows for more useful data")), wxSizerFlags().Expand());
-		viewerButtonsLeft->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerBoundingBox, _("Bounding Boxes")), _("Toggle bounding boxes")), wxSizerFlags().Expand());
 
 		wxSizer* viewerButtonsRight = new wxBoxSizer(wxVERTICAL);
 		viewerButtonsRight->SetMinSize(110,-1);
+		viewerButtonsRight->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerBoundingBox, _("Bounding Boxes")), _("Toggle bounding boxes")), wxSizerFlags().Expand());
 		viewerButtonsRight->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerAxesMarker,  _("Axes Marker")), _("Toggle the axes marker (R=X, G=Y, B=Z)")), wxSizerFlags().Expand());
 		viewerButtonsRight->Add(Tooltipped(new wxButton(m_ViewerPanel, ID_ViewerPropPoints,  _("Prop Points")), _("Toggle prop points (works best in wireframe mode)")), wxSizerFlags().Expand());
 
@@ -487,6 +491,7 @@ void ObjectBottomBar::OnFirstDisplay()
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"wireframe", m_ViewerWireframe));
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"walk", m_ViewerMove));
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"ground", m_ViewerGround));
+	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"water", m_ViewerWater));
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"shadows", m_ViewerShadows));
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"stats", m_ViewerPolyCount));
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"bounding_box", m_ViewerBoundingBox));
@@ -514,6 +519,10 @@ void ObjectBottomBar::OnViewerSetting(wxCommandEvent& evt)
 	case ID_ViewerGround:
 		m_ViewerGround = !m_ViewerGround;
 		POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"ground", m_ViewerGround));
+		break;
+	case ID_ViewerWater:
+		m_ViewerWater = !m_ViewerWater;
+		POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"water", m_ViewerWater));
 		break;
 	case ID_ViewerShadows:
 		m_ViewerShadows = !m_ViewerShadows;
@@ -559,6 +568,7 @@ BEGIN_EVENT_TABLE(ObjectBottomBar, wxPanel)
 	EVT_BUTTON(ID_ViewerWireframe, ObjectBottomBar::OnViewerSetting)
 	EVT_BUTTON(ID_ViewerMove, ObjectBottomBar::OnViewerSetting)
 	EVT_BUTTON(ID_ViewerGround, ObjectBottomBar::OnViewerSetting)
+	EVT_BUTTON(ID_ViewerWater, ObjectBottomBar::OnViewerSetting)
 	EVT_BUTTON(ID_ViewerShadows, ObjectBottomBar::OnViewerSetting)
 	EVT_BUTTON(ID_ViewerPolyCount, ObjectBottomBar::OnViewerSetting)
 	EVT_CHOICE(ID_ViewerAnimation, ObjectBottomBar::OnSelectAnim)

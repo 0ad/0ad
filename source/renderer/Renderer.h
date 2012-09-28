@@ -34,21 +34,21 @@
 #include "renderer/TimeManager.h"
 
 // necessary declarations
-class CPatch;
-class CMaterial;
-class CModel;
 class CLightEnv;
-class CShaderDefines;
-
-class RenderPathVertexShader;
-class WaterManager;
-class SkyManager;
-class CTextureManager;
-class CShaderManager;
-class CParticleManager;
-class TerrainRenderer;
-class CTimeManager;
+class CMaterial;
 class CMaterialManager;
+class CModel;
+class CParticleManager;
+class CPatch;
+class CShaderDefines;
+class CShaderManager;
+class CSimulation2;
+class CTextureManager;
+class CTimeManager;
+class RenderPathVertexShader;
+class SkyManager;
+class TerrainRenderer;
+class WaterManager;
 
 // rendering modes
 enum ERenderMode { WIREFRAME, SOLID, EDGED_FACES };
@@ -176,6 +176,13 @@ public:
 	void BeginFrame();
 	// signal frame end
 	void EndFrame();
+
+	/**
+	 * Set simulation context for rendering purposes.
+	 * Must be called at least once when the game has started and before
+	 * frames are rendered.
+	 */
+	void SetSimulation(CSimulation2* simulation);
 
 	// set color used to clear screen in BeginFrame()
 	void SetClearColor(SColor4ub color);
