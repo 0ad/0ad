@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="rubble 3x3">
+      <mesh>props/rubble_wood_3x3.dae</mesh>
+      <props>
+        <prop actor="particle/flame.xml" attachpoint="flame1"/>
+        <prop actor="particle/smoke.xml" attachpoint="flame1"/>
+        <prop actor="particle/flame_jav.xml" attachpoint="flame2"/>
+        <prop actor="particle/smoke_jav.xml" attachpoint="flame2"/>
+        <prop actor="props/structures/decals/destruct_3x3.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="props/wood_burned.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>
