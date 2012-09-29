@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,14 +25,15 @@
 #include "renderer/VertexArray.h"
 
 class CModelDecal;
+class CSimulation2;
 
 class CDecalRData : public CRenderData
 {
 public:
-	CDecalRData(CModelDecal* decal);
+	CDecalRData(CModelDecal* decal, CSimulation2* simulation);
 	~CDecalRData();
 
-	void Update();
+	void Update(CSimulation2* simulation);
 
 	static void RenderDecals(std::vector<CDecalRData*>& decals, const CShaderDefines& context, 
 			       ShadowMap* shadow, bool isDummyShader=false, const CShaderProgramPtr& dummy=CShaderProgramPtr());
@@ -50,6 +51,8 @@ private:
 	VertexArray::Attribute m_UV;
 
 	CModelDecal* m_Decal;
+
+	CSimulation2* m_Simulation;
 };
 
 #endif // INCLUDED_DECALRDATA

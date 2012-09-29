@@ -4,6 +4,9 @@
     <Square width="20.0" depth="20.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_4x4</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>maur</Civ>
     <SpecificName>Kantu</SpecificName>

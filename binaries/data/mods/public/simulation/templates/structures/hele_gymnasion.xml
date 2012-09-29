@@ -14,10 +14,11 @@
   </Footprint>
   <Health>
     <Max>2200</Max>
+    <SpawnEntityOnDeath>rubble/rubble_6x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>hele</Civ>
-	<GenericName>Gymnasium</GenericName>
+    <GenericName>Gymnasium</GenericName>
     <SpecificName>Gymnásion</SpecificName>
     <Tooltip>Train champion units.</Tooltip>
     <History>The gymnasion was a vital place in Hellenistic polises, where physical exercises were performed and social contacts established.</History>

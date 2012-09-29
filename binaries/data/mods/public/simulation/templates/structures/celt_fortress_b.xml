@@ -13,6 +13,9 @@
     <Circle radius="17.0"/>
     <Height>18.0</Height>
   </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_4x4</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>celt</Civ>
     <SpecificName>Brythonic Broch</SpecificName>

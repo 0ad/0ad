@@ -38,8 +38,8 @@
 // case we should probably redesign this to batch them all together for more
 // efficient rendering.
 
-CDecalRData::CDecalRData(CModelDecal* decal)
-	: m_Decal(decal), m_IndexArray(GL_STATIC_DRAW), m_Array(GL_STATIC_DRAW)
+CDecalRData::CDecalRData(CModelDecal* decal, CSimulation2* simulation)
+	: m_Decal(decal), m_IndexArray(GL_STATIC_DRAW), m_Array(GL_STATIC_DRAW), m_Simulation(simulation)
 {
 	m_Position.type = GL_FLOAT;
 	m_Position.elems = 3;
@@ -60,8 +60,9 @@ CDecalRData::~CDecalRData()
 {
 }
 
-void CDecalRData::Update()
+void CDecalRData::Update(CSimulation2* simulation)
 {
+	m_Simulation = simulation;
 	if (m_UpdateFlags != 0)
 	{
 		BuildArrays();
@@ -201,7 +202,7 @@ void CDecalRData::BuildArrays()
 
 	// Construct vertex data arrays
 
-	CmpPtr<ICmpWaterManager> cmpWaterManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	CmpPtr<ICmpWaterManager> cmpWaterManager(*m_Simulation, SYSTEM_ENTITY);
 
 	m_Array.SetNumVertices((i1-i0+1)*(j1-j0+1));
 	m_Array.Layout();

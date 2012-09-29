@@ -25,13 +25,14 @@
   </Footprint>
   <Health>
     <Max>1500</Max>
+    <SpawnEntityOnDeath>rubble/rubble_5x5</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <GenericName>Market</GenericName>
     <Tooltip>Create trade units to trade between other markets. Barter resources.</Tooltip>
     <Classes datatype="tokens">Town Market BarterMarket</Classes>
     <Icon>structures/market.png</Icon>
-	<RequiredTechnology>phase_town</RequiredTechnology>
+    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>100</xp>

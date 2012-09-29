@@ -39,16 +39,17 @@
   </GarrisonHolder>
   <Health>
     <Max>2000</Max>
+    <SpawnEntityOnDeath>rubble/rubble_4x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <GenericName>Temple</GenericName>
     <Tooltip>Train healers. Garrison up to 20 units to heal them at a quick rate.</Tooltip>
     <Classes datatype="tokens">
-		Town
-		Temple
-	</Classes>
+      Town
+      Temple
+    </Classes>
     <Icon>structures/temple.png</Icon>
-	<RequiredTechnology>phase_town</RequiredTechnology>
+    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>100</xp>
@@ -77,8 +78,8 @@
       units/{civ}_support_healer_b
     </Entities>
     <Technologies datatype="tokens">
-	  pair_heal_01
-	  heal_temple
+      pair_heal_01
+      heal_temple
     </Technologies>
   </ProductionQueue>
   <Vision>

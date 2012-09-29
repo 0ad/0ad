@@ -24,6 +24,7 @@
 #define INCLUDED_TERRAINRENDERER
 
 class CPatch;
+class CSimulation2;
 class ShadowMap;
 class WaterManager;
 
@@ -41,6 +42,12 @@ class TerrainRenderer
 public:
 	TerrainRenderer();
 	~TerrainRenderer();
+
+	/**
+	 * Set the simulation context for this frame.
+	 * Call at start of frame, before any other Submits.
+	 */
+	void SetSimulation(CSimulation2* simulation);
 
 	/**
 	 * Submit: Add a patch for rendering in this frame.

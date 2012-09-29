@@ -4,6 +4,9 @@
     <Square width="18.0" depth="12.0"/>
     <Height>5.0</Height>
   </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_4x2</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>maur</Civ>
     <SpecificName>Goshala</SpecificName>

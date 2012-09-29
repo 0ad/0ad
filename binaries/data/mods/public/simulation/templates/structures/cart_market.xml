@@ -4,6 +4,9 @@
     <Square width="30.0" depth="23.0"/>
     <Height>10.0</Height>
   </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_6x4</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>cart</Civ>
     <SpecificName>Šūq</SpecificName>

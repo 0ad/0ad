@@ -132,6 +132,8 @@ void AtlasViewActor::SetParam(const std::wstring& name, bool value)
 		m_ActorViewer->SetWalkEnabled(value);
 	else if (name == L"ground")
 		m_ActorViewer->SetGroundEnabled(value);
+	else if (name == L"water")
+		m_ActorViewer->SetWaterEnabled(value);
 	else if (name == L"shadows")
 		m_ActorViewer->SetShadowsEnabled(value);
 	else if (name == L"stats")

@@ -11,12 +11,15 @@
     <Square width="28.0" depth="28.0"/>
     <Height>15.0</Height>
   </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_5x5</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>cart</Civ>
     <GenericName>Embassy</GenericName>
     <SpecificName>Embassy</SpecificName>
     <History>The Carthaginian army was a cosmopolitan affair, made up of mercenaries from dozens of lands.</History>
-	<Tooltip>Hire mercenaries.</Tooltip>
+    <Tooltip>Hire mercenaries.</Tooltip>
   </Identity>
   <Obstruction>
     <Static width="28.0" depth="28.0"/>

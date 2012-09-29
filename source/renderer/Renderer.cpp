@@ -801,6 +801,12 @@ void CRenderer::BeginFrame()
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
+void CRenderer::SetSimulation(CSimulation2* simulation)
+{
+	// set current simulation context for terrain renderer
+	m->terrainRenderer.SetSimulation(simulation);
+}
+
 // SetClearColor: set color used to clear screen in BeginFrame()
 void CRenderer::SetClearColor(SColor4ub color)
 {

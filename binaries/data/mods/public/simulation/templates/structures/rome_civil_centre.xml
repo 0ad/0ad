@@ -4,6 +4,9 @@
     <Square width="40.0" depth="40.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_8x8</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>rome</Civ>
     <SpecificName>Municipium</SpecificName>
@@ -20,7 +23,7 @@
     </Entities>
   </ProductionQueue>
   <VisualActor>
-    <FoundationActor>structures/fndn_8x8.xml</FoundationActor>
     <Actor>structures/romans/civic_centre.xml</Actor>
+    <FoundationActor>structures/fndn_8x8.xml</FoundationActor>
   </VisualActor>
 </Entity>

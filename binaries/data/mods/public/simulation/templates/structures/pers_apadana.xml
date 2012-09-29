@@ -16,14 +16,15 @@
   </Footprint>
   <Health>
     <Max>3000</Max>
+    <SpawnEntityOnDeath>rubble/rubble_6x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>pers</Civ>
-	<GenericName>Persian Palace</GenericName>
+    <GenericName>Persian Palace</GenericName>
     <SpecificName>Apadana</SpecificName>
     <History>The term Apadana designates a large hypostyle palace found in Persia. The best known example, and by far the largest, was the great Apadana at Persepolis. Functioning as the empire's central audience hall, the palace is famous for the reliefs of the tribute-bearers and of the army, including the Immortals. The annual tribute that the Persians received from their satrapies and vassal states, as regularised by Darius the Great, accounted for incredible annual revenue.</History>
     <Icon>structures/palace.png</Icon>
-	<Tooltip>"Satrapy Tribute": Gain a trickle of food, wood, stone, and metal resources (not implemented yet). Train Persian heroes and their "Immortals" bodyguards. Build Limit: 1.</Tooltip>
+    <Tooltip>"Satrapy Tribute": Gain a trickle of food, wood, stone, and metal resources (not implemented yet). Train Persian heroes and their "Immortals" bodyguards. Build Limit: 1.</Tooltip>
   </Identity>
   <Obstruction>
     <Static width="30.0" depth="30.0"/>
@@ -34,9 +35,9 @@
   </TerritoryInfluence>
   <ProductionQueue>
     <Entities datatype="tokens">
-	  units/pers_hero_cyrus
-	  units/pers_hero_darius
-	  units/pers_hero_xerxes
+      units/pers_hero_cyrus
+      units/pers_hero_darius
+      units/pers_hero_xerxes
       units/pers_champion_infantry
     </Entities>
   </ProductionQueue>

@@ -15,6 +15,11 @@ Health.prototype.Schema =
 			"<data type='positiveInteger'/>" +
 		"</element>" +
 	"</optional>" +
+	"<optional>" +
+		"<element name='SpawnEntityOnDeath' a:help='Entity template to spawn when this entity dies. Note: this is different than the corpse, which retains the original entity&apos;s appearance'>" +
+			"<text/>" +
+		"</element>" +
+	"</optional>" +
 	"<element name='RegenRate' a:help='Hitpoint regeneration rate per second. Not yet implemented'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
@@ -112,8 +117,12 @@ Health.prototype.Reduce = function(amount)
 		if (this.hitpoints)
 		{
 			state.killed = true;
-			
+
 			PlaySound("death", this.entity);
+
+			// If SpawnEntityOnDeath is set, spawn the entity
+			if(this.template.SpawnEntityOnDeath)
+				this.CreateDeathSpawnedEntity();
 
 			if (this.template.DeathType == "corpse")
 			{
@@ -134,7 +143,7 @@ Health.prototype.Reduce = function(amount)
 
 			var old = this.hitpoints;
 			this.hitpoints = 0;
-			
+
 			Engine.PostMessage(this.entity, MT_HealthChanged, { "from": old, "to": this.hitpoints });
 		}
 
@@ -208,6 +217,28 @@ Health.prototype.CreateCorpse = function(leaveResources)
 	cmpCorpseVisual.SelectAnimation("death", true, 1.0, "");
 
 	return corpse;
+};
+
+Health.prototype.CreateDeathSpawnedEntity = function()
+{
+	// If the unit died while not in the world, don't spawn a death entity for it
+	// since there's nowhere for it to be placed
+	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (!cmpPosition.IsInWorld())
+		return INVALID_ENTITY;
+
+	// Create SpawnEntityOnDeath entity
+	var spawnedEntity = Engine.AddLocalEntity(this.template.SpawnEntityOnDeath);
+
+	// Move to same position
+	var cmpSpawnedPosition = Engine.QueryInterface(spawnedEntity, IID_Position);
+	var pos = cmpPosition.GetPosition();
+	cmpSpawnedPosition.JumpTo(pos.x, pos.z);
+	var rot = cmpPosition.GetRotation();
+	cmpSpawnedPosition.SetYRotation(rot.y);
+	cmpSpawnedPosition.SetXZRotation(rot.x, rot.z);
+
+	return spawnedEntity;
 };
 
 Health.prototype.Repair = function(builderEnt, work)

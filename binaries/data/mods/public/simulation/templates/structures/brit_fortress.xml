@@ -13,6 +13,9 @@
     <Circle radius="17.0"/>
     <Height>18.0</Height>
   </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_5x5</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>brit</Civ>
     <SpecificName>Brythonic Broch</SpecificName>
@@ -36,7 +39,7 @@
       units/brit_hero_cynvelin
       units/brit_champion_cavalry
       units/brit_champion_infantry
-	  units/brit_mechanical_siege_ram
+      units/brit_mechanical_siege_ram
     </Entities>
   </ProductionQueue>
   <Vision>

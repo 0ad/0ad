@@ -18,10 +18,11 @@
   </Footprint>
   <Health>
     <Max>1000</Max>
+    <SpawnEntityOnDeath>rubble/rubble_1x1pal</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>gaia</Civ>
-	<SelectionGroupName>other/wallset_palisade</SelectionGroupName>
+    <SelectionGroupName>other/wallset_palisade</SelectionGroupName>
     <SpecificName>Palisade</SpecificName>
     <GenericName>Wooden Wall</GenericName>
     <Classes datatype="tokens">-StoneWall Palisade Tower</Classes>

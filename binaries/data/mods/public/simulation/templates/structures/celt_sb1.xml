@@ -15,6 +15,9 @@
     <Height>6.0</Height>
   </Footprint>
   <GarrisonHolder disable=""/>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_4x4</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>celt</Civ>
     <GenericName>Rotary Mill</GenericName>

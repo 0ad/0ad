@@ -14,10 +14,11 @@
   </Footprint>
   <Health>
     <Max>2200</Max>
+    <SpawnEntityOnDeath>rubble/rubble_6x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>athen</Civ>
-	<GenericName>Gymnasium</GenericName>
+    <GenericName>Gymnasium</GenericName>
     <SpecificName>Gymnásieon</SpecificName>
     <Tooltip>Train champion units.</Tooltip>
     <History>The gymnasion was a vital place in Athens, where physical exercises were performed and social contacts established.</History>
@@ -39,7 +40,7 @@
       units/athen_champion_ranged
     </Entities>
     <Technologies datatype="tokens">
-	  pair_champ_02
+      pair_champ_02
     </Technologies>
   </ProductionQueue>
   <VisualActor>

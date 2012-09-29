@@ -10,6 +10,9 @@
     <Square width="28.0" depth="28.0"/>
     <Height>5.0</Height>
   </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_5x5</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>rome</Civ>
     <SpecificName>Armamentarium</SpecificName>
@@ -27,7 +30,7 @@
     </Entities>
   </ProductionQueue>
   <VisualActor>
-    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
     <Actor>structures/romans/barracks.xml</Actor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
   </VisualActor>
 </Entity>

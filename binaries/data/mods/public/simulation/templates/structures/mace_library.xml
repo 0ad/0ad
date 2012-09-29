@@ -4,9 +4,12 @@
     <Square width="29.0" depth="34.0"/>
     <Height>9.0</Height>
   </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>rubble/rubble_4x6</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>mace</Civ>
-	<GenericName>Library</GenericName>
+    <GenericName>Library</GenericName>
     <SpecificName>Bibliothikon</SpecificName>
     <Tooltip>Research special technologies and reduce the research time of all remaining technologies.</Tooltip>
     <History>Alexander the Great founded libraries all over his new empire. These became a center of learning for an entirely new synthesized culture: the Hellenistic culture.</History>
