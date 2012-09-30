@@ -24,15 +24,14 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="303.047" y="63.5944" z="207.075"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.610865"/>
+		<Position x="511.732" y="540.687" z="-317.943"/>
+		<Rotation angle="-0.00699301"/>
+		<Declination angle="0.692371"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview" : "oasis_1.png",
-  "Description": "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by a lush oasis.",
+  "Description": "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by a lush double oasis.\u000a\u000aEach player starts the match with 4 defense towers.",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
@@ -97,6 +96,7 @@
       "Team": -1
     }
   ],
+  "Preview": "oasis_1.png",
   "RevealMap": false
 }
 ]]></ScriptSettings>
@@ -3898,7 +3898,7 @@
 		<Entity uid="680">
 			<Template>gaia/fauna_camel</Template>
 			<Player>0</Player>
-			<Position x="165.5477" z="280.52601"/>
+			<Position x="165.89936" z="289.356"/>
 			<Orientation y="0.55062"/>
 		</Entity>
 		<Entity uid="681">
@@ -9114,6 +9114,54 @@
 			<Template>units/athen_infantry_spearman_e</Template>
 			<Player>2</Player>
 			<Position x="302.49503" z="266.10563"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1735">
+			<Template>structures/pers_defense_tower</Template>
+			<Player>1</Player>
+			<Position x="549.399" z="803.57795"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1736">
+			<Template>structures/pers_defense_tower</Template>
+			<Player>1</Player>
+			<Position x="798.24775" z="791.73487"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1737">
+			<Template>structures/pers_defense_tower</Template>
+			<Player>1</Player>
+			<Position x="673.80652" z="931.50715"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1738">
+			<Template>structures/pers_defense_tower</Template>
+			<Player>1</Player>
+			<Position x="672.49274" z="678.21106"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1739">
+			<Template>structures/athen_defense_tower</Template>
+			<Player>2</Player>
+			<Position x="286.54712" z="400.00293"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1740">
+			<Template>structures/athen_defense_tower</Template>
+			<Player>2</Player>
+			<Position x="409.07844" z="271.83521"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1741">
+			<Template>structures/athen_defense_tower</Template>
+			<Player>2</Player>
+			<Position x="287.42087" z="151.99122"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="1742">
+			<Template>structures/athen_defense_tower</Template>
+			<Player>2</Player>
+			<Position x="164.76198" z="277.81916"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>

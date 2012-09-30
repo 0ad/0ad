@@ -24,14 +24,13 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="326.959" y="82.0926" z="858.542"/>
+		<Position x="476.51" y="238.006" z="-59.2971"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview" : "oasis_4.png",
   "Description": "An otherwise wide-open, flat desert map is pierced in the center by two lush oases.",
   "GameType": "conquest",
   "Keywords": [],
@@ -65,7 +64,7 @@
           "z": 0
         }
       },
-      "Team": -1
+      "Team": 0
     },
     {
       "AI": "qbot",
@@ -94,7 +93,7 @@
           "z": 0
         }
       },
-      "Team": -1
+      "Team": 1
     },
     {
       "AI": "qbot",
@@ -123,7 +122,7 @@
           "z": 0
         }
       },
-      "Team": -1
+      "Team": 1
     },
     {
       "AI": "qbot",
@@ -152,9 +151,10 @@
           "z": 0
         }
       },
-      "Team": -1
+      "Team": 0
     }
   ],
+  "Preview": "oasis_4.png",
   "RevealMap": false
 }
 ]]></ScriptSettings>
@@ -15864,30 +15864,6 @@
 			<Position x="936.87037" z="266.1389"/>
 			<Orientation y="2.35621"/>
 		</Entity>
-		<Entity uid="2973">
-			<Template>units/spart_champion_infantry_spear</Template>
-			<Player>3</Player>
-			<Position x="949.1692" z="243.53286"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2974">
-			<Template>units/spart_champion_infantry_spear</Template>
-			<Player>3</Player>
-			<Position x="952.14393" z="246.11324"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2975">
-			<Template>units/spart_champion_infantry_spear</Template>
-			<Player>3</Player>
-			<Position x="954.84913" z="250.00557"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="2976">
-			<Template>units/spart_champion_infantry_spear</Template>
-			<Player>3</Player>
-			<Position x="958.69611" z="253.66492"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="2977">
 			<Template>units/spart_support_female_citizen</Template>
 			<Player>3</Player>
@@ -15940,6 +15916,36 @@
 			<Template>units/brit_support_female_citizen</Template>
 			<Player>4</Player>
 			<Position x="329.25736" z="958.75556"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2986">
+			<Template>units/mace_thorakites</Template>
+			<Player>3</Player>
+			<Position x="950.2635" z="241.90735"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2987">
+			<Template>units/mace_thorakites</Template>
+			<Player>3</Player>
+			<Position x="952.90864" z="244.53766"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2988">
+			<Template>units/mace_thorakites</Template>
+			<Player>3</Player>
+			<Position x="954.90748" z="246.5414"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2989">
+			<Template>units/mace_thorakites</Template>
+			<Player>3</Player>
+			<Position x="957.32996" z="248.59995"/>
+			<Orientation y="2.35621"/>
+		</Entity>
+		<Entity uid="2990">
+			<Template>units/cart_sacred_band_cavalry</Template>
+			<Player>2</Player>
+			<Position x="316.45212" z="304.66272"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 	</Entities>
