@@ -4,7 +4,7 @@
 	<Environment>
 		<LightingModel>standard</LightingModel>
 		<SkySet>sunny</SkySet>
-		<SunColour r="0.866667" g="0.843137" b="0.74902"/>
+		<SunColour r="0.866667" g="0.839216" b="0.74902"/>
 		<SunElevation angle="0.984816"/>
 		<SunRotation angle="-0.785396"/>
 		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
@@ -24,7 +24,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="551.959" y="109.611" z="368.128"/>
+		<Position x="136.703" y="137.226" z="252.864"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -32,7 +32,6 @@
 {
   "Description": "The African savanna is chocked full of animal life for hunting, while the nearby mineral deposits are plentiful. The dry season is approaching and the watering holes are drying up.",
   "Name": "Sahel Watering Holes",
-  "Preview" : "sahel_watering_holes_scn.png",
   "PlayerData": [
     {
       "AI": "",
@@ -43,7 +42,7 @@
         "r": 46
       },
       "Name": "Player 1",
-      "Team": -1
+      "Team": 0
     },
     {
       "AI": "qbot",
@@ -54,7 +53,7 @@
         "r": 150
       },
       "Name": "Player 2",
-      "Team": -1
+      "Team": 1
     },
     {
       "AI": "qbot",
@@ -65,7 +64,7 @@
         "r": 50
       },
       "Name": "Player 3",
-      "Team": -1
+      "Team": 0
     },
     {
       "AI": "qbot",
@@ -76,9 +75,10 @@
         "r": 230
       },
       "Name": "Player 4",
-      "Team": -1
+      "Team": 1
     }
-  ]
+  ],
+  "Preview": "sahel_watering_holes_scn.png"
 }
 ]]></ScriptSettings>
 	<Entities>
