@@ -36,7 +36,7 @@ class CShaderProgramARB : public CShaderProgram
 public:
 	CShaderProgramARB(const VfsPath& vertexFile, const VfsPath& fragmentFile,
 		const CShaderDefines& defines,
-		const std::map<CStrIntern, int>& vertexIndexes, const std::map<CStrIntern, int>& fragmentIndexes,
+		const std::map<CStrIntern, int>& vertexIndexes, const std::map<CStrIntern, frag_index_pair_t>& fragmentIndexes,
 		int streamflags) :
 		CShaderProgram(streamflags),
 		m_VertexFile(vertexFile), m_FragmentFile(fragmentFile),
@@ -147,42 +147,45 @@ public:
 		return it->second;
 	}
 
-	int GetUniformFragmentIndex(CStrIntern id)
+	frag_index_pair_t GetUniformFragmentIndex(CStrIntern id)
 	{
-		std::map<CStrIntern, int>::iterator it = m_FragmentIndexes.find(id);
+		std::map<CStrIntern, frag_index_pair_t>::iterator it = m_FragmentIndexes.find(id);
 		if (it == m_FragmentIndexes.end())
-			return -1;
+			return std::make_pair(-1, 0);
 		return it->second;
 	}
 
 	virtual Binding GetTextureBinding(texture_id_t id)
 	{
-		int index = GetUniformFragmentIndex(CStrIntern(id));
+		frag_index_pair_t fPair = GetUniformFragmentIndex(CStrIntern(id));
+		int index = fPair.first;
 		if (index == -1)
 			return Binding();
 		else
-			return Binding((int)GL_TEXTURE_2D, index);
+			return Binding((int)fPair.second, index);
 	}
 
 	virtual void BindTexture(texture_id_t id, Handle tex)
 	{
-		int index = GetUniformFragmentIndex(CStrIntern(id));
+		frag_index_pair_t fPair = GetUniformFragmentIndex(CStrIntern(id));
+		int index = fPair.first;
 		if (index != -1)
 		{
 			GLuint h;
 			ogl_tex_get_texture_id(tex, &h);
 			pglActiveTextureARB(GL_TEXTURE0+index);
-			glBindTexture(GL_TEXTURE_2D, h);
+			glBindTexture(fPair.second, h);
 		}
 	}
 
 	virtual void BindTexture(texture_id_t id, GLuint tex)
 	{
-		int index = GetUniformFragmentIndex(CStrIntern(id));
+		frag_index_pair_t fPair = GetUniformFragmentIndex(CStrIntern(id));
+		int index = fPair.first;
 		if (index != -1)
 		{
 			pglActiveTextureARB(GL_TEXTURE0+index);
-			glBindTexture(GL_TEXTURE_2D, tex);
+			glBindTexture(fPair.second, tex);
 		}
 	}
 
@@ -196,12 +199,12 @@ public:
 	virtual Binding GetUniformBinding(uniform_id_t id)
 	{
 		CStrIntern idIntern(id);
-		return Binding(GetUniformVertexIndex(idIntern), GetUniformFragmentIndex(idIntern));
+		return Binding(GetUniformVertexIndex(idIntern), GetUniformFragmentIndex(idIntern).first);
 	}
 
 	virtual Binding GetUniformBinding(CStrIntern id)
 	{
-		return Binding(GetUniformVertexIndex(id), GetUniformFragmentIndex(id));
+		return Binding(GetUniformVertexIndex(id), GetUniformFragmentIndex(id).first);
 	}
 
 	virtual void Uniform(Binding id, float v0, float v1, float v2, float v3)
@@ -247,7 +250,9 @@ private:
 	GLuint m_FragmentProgram;
 
 	std::map<CStrIntern, int> m_VertexIndexes;
-	std::map<CStrIntern, int> m_FragmentIndexes;
+	
+	// pair contains <index, gltype>
+	std::map<CStrIntern, frag_index_pair_t> m_FragmentIndexes;
 };
 
 #endif // #if !CONFIG2_GLES
@@ -680,7 +685,7 @@ CShaderProgram::CShaderProgram(int streamflags)
 #else
 /*static*/ CShaderProgram* CShaderProgram::ConstructARB(const VfsPath& vertexFile, const VfsPath& fragmentFile,
 	const CShaderDefines& defines,
-	const std::map<CStrIntern, int>& vertexIndexes, const std::map<CStrIntern, int>& fragmentIndexes,
+	const std::map<CStrIntern, int>& vertexIndexes, const std::map<CStrIntern, frag_index_pair_t>& fragmentIndexes,
 	int streamflags)
 {
 	return new CShaderProgramARB(vertexFile, fragmentFile, defines, vertexIndexes, fragmentIndexes, streamflags);
