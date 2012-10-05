@@ -1,11 +1,11 @@
 #version 110
 
-varying vec2 v_tex;
+varying vec3 v_tex;
 attribute vec3 a_vertex;
-attribute vec2 a_uv0;
+attribute vec3 a_uv0;
 
 void main()
 {
   gl_Position = gl_ModelViewProjectionMatrix * vec4(a_vertex, 1.0);
-  v_tex = gl_MultiTexCoord0.xy;
+  v_tex = gl_MultiTexCoord0.xyz;
 }

@@ -6,7 +6,7 @@
     </vertex>
 
     <fragment file="arb/sky.fp">
-        <uniform name="baseTex" loc="0" type="sampler2D"/>
+        <uniform name="baseTex" loc="0" type="samplerCube"/>
     </fragment>
 
 </program>

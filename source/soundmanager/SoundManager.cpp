@@ -215,25 +215,6 @@ private:
 	double m_PauseUntilTime;
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void CSoundManager::ScriptingInit()
 {
 	JAmbientSound::ScriptingInit();

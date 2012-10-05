@@ -5,7 +5,6 @@ newoption { trigger = "coverage", description = "Enable code coverage data colle
 newoption { trigger = "gles", description = "Use non-working OpenGL ES 2.0 mode" }
 newoption { trigger = "icc", description = "Use Intel C++ Compiler (Linux only; should use either \"--cc icc\" or --without-pch too, and then set CXX=icpc before calling make)" }
 newoption { trigger = "outpath", description = "Location for generated project files" }
-newoption { trigger = "without-fam", description = "Disable use of FAM API on Linux" }
 newoption { trigger = "without-audio", description = "Disable use of OpenAL/Ogg/Vorbis APIs" }
 newoption { trigger = "minimal-flags", description = "Only set compiler/linker flags that are really needed. Has no effect on Windows builds" }
 newoption { trigger = "without-nvtt", description = "Disable use of NVTT" }
@@ -154,10 +153,6 @@ function project_set_build_flags()
 
 	if _OPTIONS["gles"] then
 		defines { "CONFIG2_GLES=1" }
-	end
-
-	if _OPTIONS["without-fam"] then
-		defines { "CONFIG2_FAM=0" }
 	end
 
 	if _OPTIONS["without-audio"] then
@@ -780,10 +775,6 @@ function setup_main_exe ()
 
 	elseif os.is("linux") or os.is("bsd") then
 
-		if not _OPTIONS["without-fam"] then
-			links { "fam" }
-		end
-
 		if not _OPTIONS["android"] and not (os.getversion().description == "OpenBSD") then
 			links { "rt" }
 		end
@@ -1204,10 +1195,6 @@ function setup_tests()
 		project_add_manifest()
 
 	elseif os.is("linux") or os.is("bsd") then
-
-		if not _OPTIONS["without-fam"] then
-			links { "fam" }
-		end
 
 		if not _OPTIONS["android"] and not (os.getversion().description == "OpenBSD") then
 			links { "rt" }

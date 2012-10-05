@@ -175,7 +175,7 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 	VfsPath fragmentFile;
 	CShaderDefines defines = baseDefines;
 	std::map<CStrIntern, int> vertexUniforms;
-	std::map<CStrIntern, int> fragmentUniforms;
+	std::map<CStrIntern, CShaderProgram::frag_index_pair_t> fragmentUniforms;
 	std::map<CStrIntern, int> vertexAttribs;
 	int streamFlags = 0;
 
@@ -240,7 +240,22 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 
 				if (Param.GetNodeName() == el_uniform)
 				{
-					fragmentUniforms[CStrIntern(Attrs.GetNamedItem(at_name))] = Attrs.GetNamedItem(at_loc).ToInt();
+					// A somewhat incomplete listing, missing "shadow" and "rect" versions
+					// which are interpreted as 2D (NB: our shadowmaps may change
+					// type based on user config).
+					GLenum type = GL_TEXTURE_2D;
+					CStr t = Attrs.GetNamedItem(at_type);
+					if (t == "sampler1D")
+						type = GL_TEXTURE_1D;
+					else if (t == "sampler2D")
+						type = GL_TEXTURE_2D;
+					else if (t == "sampler3D")
+						type = GL_TEXTURE_3D;
+					else if (t == "samplerCube")
+						type = GL_TEXTURE_CUBE_MAP;
+					
+					fragmentUniforms[CStrIntern(Attrs.GetNamedItem(at_name))] = 
+						std::make_pair(Attrs.GetNamedItem(at_loc).ToInt(), type);
 				}
 			}
 		}

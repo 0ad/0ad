@@ -67,12 +67,17 @@ class CShaderProgram
 	NONCOPYABLE(CShaderProgram);
 
 public:
+	typedef const char* attrib_id_t;
+	typedef const char* texture_id_t;
+	typedef const char* uniform_id_t;
+	typedef std::pair<int, GLenum> frag_index_pair_t;
+	
 	/**
 	 * Construct based on ARB vertex/fragment program files.
 	 */
 	static CShaderProgram* ConstructARB(const VfsPath& vertexFile, const VfsPath& fragmentFile,
 		const CShaderDefines& defines,
-		const std::map<CStrIntern, int>& vertexIndexes, const std::map<CStrIntern, int>& fragmentIndexes,
+		const std::map<CStrIntern, int>& vertexIndexes, const std::map<CStrIntern, frag_index_pair_t>& fragmentIndexes,
 		int streamflags);
 
 	/**
@@ -87,11 +92,7 @@ public:
 	 * Construct an instance of a pre-defined fixed-function pipeline setup.
 	 */
 	static CShaderProgram* ConstructFFP(const std::string& id, const CShaderDefines& defines);
-
-	typedef const char* attrib_id_t;
-	typedef const char* texture_id_t;
-	typedef const char* uniform_id_t;
-
+	
 	/**
 	 * Represents a uniform attribute or texture binding.
 	 * For uniforms:

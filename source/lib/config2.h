@@ -101,11 +101,6 @@
 # define CONFIG2_GLES 0
 #endif
 
-// allow use of FAM API on Linux
-#ifndef CONFIG2_FAM
-# define CONFIG2_FAM 0
-#endif
-
 // allow use of OpenAL/Ogg/Vorbis APIs
 #ifndef CONFIG2_AUDIO
 # define CONFIG2_AUDIO 1
