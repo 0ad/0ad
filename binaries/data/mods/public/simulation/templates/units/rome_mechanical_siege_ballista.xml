@@ -2,20 +2,19 @@
 <Entity parent="template_unit_mechanical_siege_onager">
   <Attack>
     <Ranged>
-      <MaxRange>80</MaxRange>
+      <MaxRange>76</MaxRange>
       <MinRange>16.0</MinRange>
       <ProjectileSpeed>22.0</ProjectileSpeed>
       <RepeatTime>6000</RepeatTime>
       <Splash>
         <Shape>Circular</Shape>
-        <Range>12</Range>
+        <Range>10</Range>
         <FriendlyFire>true</FriendlyFire>
-        <Hack>60.0</Hack>
+        <Hack>40.0</Hack>
         <Pierce>0.0</Pierce>
-        <Crush>60.0</Crush>
+        <Crush>40.0</Crush>
       </Splash>
     </Ranged>
-
   </Attack>
   <Cost>
     <BuildTime>40</BuildTime>
@@ -37,7 +36,7 @@
     <Unit radius="3.5"/>
   </Obstruction>
   <Vision>
-    <Range>94</Range>
+    <Range>88</Range>
   </Vision>
   <VisualActor>
     <Actor>units/romans/siege_rock.xml</Actor>

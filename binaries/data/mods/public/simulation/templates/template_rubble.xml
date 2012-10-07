@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity>
   <Decay>
-    <DelayTime>10.0</DelayTime>
+    <DelayTime>15.0</DelayTime>
     <SinkRate>0.2</SinkRate>
     <SinkAccel>0</SinkAccel>
   </Decay>
@@ -17,7 +17,7 @@
     <AlwaysVisible>false</AlwaysVisible>
   </Vision>
   <VisualActor>
-    <Actor>structures/fndn_1x1.xml</Actor>
+    <Actor>structures/rubble_stone_3x3.xml</Actor>
     <SilhouetteDisplay>false</SilhouetteDisplay>
     <SilhouetteOccluder>false</SilhouetteOccluder>
   </VisualActor>
