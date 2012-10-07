@@ -94,7 +94,7 @@ Player.prototype.GetPopulationCount = function()
 
 Player.prototype.GetPopulationLimit = function()
 {
-	return Math.min(this.maxPop, this.popBonuses);
+	return Math.min(this.GetMaxPopulation(), this.popBonuses);
 };
 
 Player.prototype.SetMaxPopulation = function(max)
@@ -104,7 +104,11 @@ Player.prototype.SetMaxPopulation = function(max)
 
 Player.prototype.GetMaxPopulation = function()
 {
-	return this.maxPop;
+	var cmpTechMan = Engine.QueryInterface(this.entity, IID_TechnologyManager);
+	if (cmpTechMan) 
+		return cmpTechMan.ApplyModifications("Player/MaxPopulation", this.maxPop, this.entity);
+	else
+		return this.maxPop;
 };
 
 Player.prototype.IsTrainingBlocked = function()

@@ -53,6 +53,12 @@ TechnologyManager.prototype.Init = function ()
 	this.UpdateAutoResearch();
 };
 
+TechnologyManager.prototype.OnUpdate = function () 
+{
+	this.UpdateAutoResearch();
+}
+
+
 // This function checks if the requirements of any autoresearch techs are met and if they are it researches them
 TechnologyManager.prototype.UpdateAutoResearch = function ()
 {
@@ -159,6 +165,14 @@ TechnologyManager.prototype.CheckTechnologyRequirements = function (reqs)
 			else
 				return false;
 		}
+	} 
+	else if (reqs.civ) 
+	{
+		var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+		if (cmpPlayer && cmpPlayer.GetCiv() == reqs.civ) 
+			return true;
+		else 
+			return false;
 	}
 	
 	// The technologies requirements are not a recognised format
