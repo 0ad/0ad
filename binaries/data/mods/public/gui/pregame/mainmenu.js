@@ -16,6 +16,11 @@ function init()
 	currentSubmenuType = "submenuSinglePlayer";
 
 	EnableUserReport(Engine.IsUserReportEnabled());
+	
+	if(Engine.IsSplashScreenEnabled())
+	{
+		Engine.PushGuiPage("page_splashscreen.xml", { "page": "splashscreen" } );
+	}
 }
 
 var t0 = new Date;
