@@ -4,7 +4,7 @@
     <texture>art/textures/particles/smoke_256a.png</texture>
     <blend mode="over"/>
 	
-    <constant name="emissionrate" value="30.0"/>
+    <constant name="emissionrate" value="50.0"/>
     <uniform name="lifetime" min="3.0" max="8.0"/>
 
     <uniform name="position.x" min="-18.0" max="18.0"/>
