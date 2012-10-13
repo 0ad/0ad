@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_civil_centre">
-  <Cost>
-    <BuildTime>360</BuildTime>
-  </Cost>
-  <Health>
-    <Max>3600</Max>
-  </Health>
   <Identity>
     <Civ>pers</Civ>
 	<GenericName>Provincial Governor</GenericName>
@@ -18,6 +12,9 @@
       units/pers_infantry_archer_b
       units/pers_cavalry_javelinist_b
     </Entities>
+    <Technologies datatype="tokens">
+      persians/persian_architecture
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/persians/civil_centre.xml</Actor>

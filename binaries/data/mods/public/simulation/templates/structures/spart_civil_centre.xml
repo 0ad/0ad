@@ -17,6 +17,11 @@
       units/spart_infantry_javelinist_b
       units/spart_cavalry_javelinist_b
 	</Entities>
+    <Technologies datatype="tokens">
+      phase_town
+      -phase_city
+      phase_city_spart
+    </Technologies>
   </ProductionQueue>
   <VisualActor>
     <Actor>structures/spartans/civic_centre.xml</Actor>
