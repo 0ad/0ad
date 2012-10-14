@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="stone rubble short wall">
+      <mesh>props/rubble_stone_wall_short.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/destruct_wall_short.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="props/rubble_stone.png" name="baseTex"/>
+        <texture file="props/ao/rubble_stone_wall_short_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_ao.xml</material>
+</actor>

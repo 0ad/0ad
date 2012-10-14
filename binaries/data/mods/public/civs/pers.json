@@ -23,7 +23,7 @@
 				{
 					"Name": "Persian Architecture",
 					"History": "The Persians built the wonderful 1200 mile-long Royal Highway from Sardis to Susa; Darius the Great and Xerxes also built the magnificent Persepolis; Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old Elamite capital of Susa.",
-					"Description": "Increases hitpoints of all structures."
+					"Description": "Increases hitpoints of all structures, but build time increased appropriately."
 				} 
 			],
 			"Heroes":
@@ -57,37 +57,42 @@
 		{
 			"Name": "Corral Camels and Horses",
 			"History": "While the Persians employed camelry only in a few cases, its use was always accompanied by great success (most notably during the battle of Sardis in 546 B.C.) The satrapy of Bactria was a rich source of 'two-hump' camels, while Northern Arabia supplied 'one-hump' camels.",
-			"Description": "Cost of training camel-mounted units or horse-mounted units (as appropriate) is reduced by a fixed amount per corralled animal"
-		},		{
-			"Name": "Royal Road",
-			"History": ".",
-			"Description": "Persian land Traders receive a 25% trading bonus."
+			"Description": "Cost of training camel-mounted units or horse-mounted units (as appropriate) is reduced by a fixed amount per corralled animal."
 		},
 		{
 			"Name": "Great King's Levy",
 			"History": "The Persians could and did levy a large number of infantry during wartime due to the sheer size of the Achaemenid Empire and the way in which it was set-up. In general the Persian infantry was well trained and fought with great tenacity. However while this was true the infantry were poor hand-to-hand, close combat fighters. Also, with the exception of the elite regiments, the Persian infantry was not a standing professional force.",
-			"Description": "All Persian Citizen Infantry units are available at a reduced cost." 
+			"Description": "Population cap for the Persian player is increased +10%." 
 		} 
 	],
 	"TeamBonuses":
 	[
 		{
-			"Name": "Reform",
+			"Name": "Royal Road",
 			"History": "Coinage was invented by the Lydians in 7th Century B.C., but it was not very common until the Persian period. Darius the Great standardised coined money and his golden coins (known as 'darics') became commonplace not only throughout his empire, but as far to the west as Central Europe.",
-			"Description": "Higher income from trade routes." 
+			"Description": "Higher income (+25%) from land trade routes for the player's traders and his ally's traders."
 		} 
 	],
 	"Structures":
 	[
 		{
-			"Name": "Tacara",
+			"Name": "Cavalry Stables",
 			"Class": "",
 			"Emblem": "",
-			"History": "The annual tribute that the Persians received from their satrapies and vassal states, as regularised by Darius the Great, accounted for incredible annual revenue. As a result this building is named Tacara, after the winter palace of Darius in Persepolis.",
+			"History": "The Persian Empire's best soldiers were Eastern horsemen.",
 			"Requirements": "",
-			"Phase": "",
-			"Special": "" 
-		} 
+			"Phase": "Town",
+			"Special": "Train Cavalry citizen-soldiers." 
+		},
+ 		{
+			"Name": "Apadana",
+			"Class": "",
+			"Emblem": "",
+			"History": "The term Apadana designates a large hypostyle palace found in Persia. The best known example, and by far the largest, was the great Apadana at Persepolis. Functioning as the empire's central audience hall, the palace is famous for the reliefs of the tribute-bearers and of the army, including the Immortals.",
+			"Requirements": "",
+			"Phase": "City",
+			"Special": "Trains heroes and Persian Immortals. Gives a slow trickle of all resources as 'Satrapy Tribute.'" 
+		}
 	],
 	"StartEntities":
 	[

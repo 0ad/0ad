@@ -1,0 +1,18 @@
+{
+	"genericName": "City Phase",
+	"specificName": {
+		"spart": "Megalopolis"
+	},
+	"description": "Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology. This is the Spartan city phase, where unit promotion is boosted and the population cap reduced to balance.",
+	"cost": {"food": 0, "wood": 0, "stone": 1000, "metal": 1000},
+	"requirements": { "class": "Town", "number": 4 },
+	"requirementsTooltip": "Requires 4 new Town Phase structures (except Walls and Civ Centres).",
+	"supersedes": "phase_town",
+	"icon": "city_phase.png",
+	"researchTime": 60,
+	"tooltip": "Advance to City Phase, which unlocks more structures and units. Territory radius for Civilisation Centres increased by another +25%. All citizen-soldiers promote directly to Elite rank after 1 kill, but population cap reduced -10%.",
+	"modifications": [
+		{"value": "Promotion/RequiredXp", "multiplier": 0.1, "affects": ["CitizenSoldier"]},
+		{"value": "Player/MaxPopulation", "multiplier": 0.9}
+	]
+}

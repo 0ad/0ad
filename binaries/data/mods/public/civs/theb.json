@@ -62,6 +62,11 @@
 			"Name":"Unknown",
 			"History":"Unknown.",
 			"Description":"Unknown."
+		},
+		{
+			"Name":"Hellenisation",
+			"History":"By means of their superior culture and evocative language, the Greeks were highly successful in Hellenising various foreigners. During the Hellenistic Age, Greek was the lingua franca of the Ancient World, spoken widely from Spain to India.",
+			"Description":"Constructing an expensive Theatron increases the territory expanse of all buildings by 20%."
 		}
 	],
 	"TeamBonuses":
@@ -75,12 +80,21 @@
 	"Structures":
 	[
 		{
+			"Name":"Theatron",
+			"Class":"",
+			"Emblem":"",
+			"History":"Greek theatres were places where the immortal tragedies of Aeschylus, Sophocles and many other talented dramatists were staged to the delight of the populace. They were instrumental in enriching Hellenic culture.",
+			"Requirements":"",
+			"Phase":"City",
+			"Special":"The Hellenisation civ bonus. Building a Theatron increases the territory effect of all buildings by 20%."
+		},
+		{
 			"Name":"Siege Workshop",
 			"Class":"",
 			"Emblem":"",
 			"History":"At the siege of the Athenian fortress at Delium, the Thebans employed what may be deemed the first recorded use of a flame thrower in warfare.",
 			"Requirements":".",
-			"Phase":"",
+			"Phase":"City",
 			"Special":"."
 		}
 	],

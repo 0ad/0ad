@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wall_short">
-  <Cost>
-    <BuildTime>13</BuildTime>
-  </Cost>
   <Footprint>
     <Square width="14.0" depth="8.0"/>
     <Height>9.0</Height>
   </Footprint>
-  <Health>
-    <Max>3750</Max>
-  </Health>
   <Identity>
     <Civ>pers</Civ>
 	<SelectionGroupName>structures/pers_wallset_stone</SelectionGroupName>

@@ -102,11 +102,14 @@ Map.prototype.getEntityID = function()
 }
 
 // Check bounds on tile map
-Map.prototype.validT = function(x, z)
+Map.prototype.validT = function(x, z, distance)
 {
 	if (g_MapSettings.CircularMap)
 	{	// Within map circle
-		var halfSize = Math.floor(0.5*this.size);
+		if (distance == undefined)
+			var halfSize = Math.floor(0.5*this.size);
+		else
+			var halfSize = Math.floor(0.5*this.size)-distance;
 		var dx = (x - halfSize);
 		var dz = (z - halfSize);
 		return Math.round(Math.sqrt(dx*dx + dz*dz)) < halfSize;
