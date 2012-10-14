@@ -12,7 +12,6 @@
 	"researchTime": 60,
 	"tooltip": "Advance to City Phase, which unlocks more structures and units. Territory radius for Civilisation Centres increased by another +25%. All citizen-soldiers promote directly to Elite rank after 1 kill, but population cap reduced -10%.",
 	"modifications": [
-		{"value": "TerritoryInfluence/Radius", "multiplier": 1.25, "affects": ["CivCentre"]},
 		{"value": "Promotion/RequiredXp", "multiplier": 0.1, "affects": ["CitizenSoldier"]},
 		{"value": "Player/MaxPopulation", "multiplier": 0.9}
 	]

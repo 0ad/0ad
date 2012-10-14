@@ -515,10 +515,10 @@ GuiInterface.prototype.GetTechnologyData = function(player, name)
 	};
 	ret.icon = "technologies/" + template.icon;
 	ret.cost = {
-		"food": +template.cost.food,
-		"wood": +template.cost.wood,
-		"metal": +template.cost.metal,
-		"stone": +template.cost.stone,
+		"food": template.cost ? (+template.cost.food) : 0,
+		"wood": template.cost ? (+template.cost.wood) : 0,
+		"metal": template.cost ? (+template.cost.metal) : 0,
+		"stone": template.cost ? (+template.cost.stone) : 0,
 	}
 	ret.tooltip = template.tooltip;
 	

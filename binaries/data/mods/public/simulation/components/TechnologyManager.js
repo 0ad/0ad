@@ -150,7 +150,6 @@ TechnologyManager.prototype.CheckTechnologyRequirements = function (reqs)
 	}
 	else if (reqs.class)
 	{
-		
 		if (reqs.numberOfTypes)
 		{	
 			if (this.typeCountsByClass[reqs.class])
