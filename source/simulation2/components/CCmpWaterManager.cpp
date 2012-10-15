@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2012 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,12 +24,14 @@
 #include "graphics/Terrain.h"
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
+#include "simulation2/MessageTypes.h"
 
 class CCmpWaterManager : public ICmpWaterManager
 {
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
+		componentManager.SubscribeToMessageType(MT_Interpolate);
 		componentManager.SubscribeToMessageType(MT_RenderSubmit);
 	}
 
@@ -69,6 +71,13 @@ public:
 	{
 		switch (msg.GetType())
 		{
+		case MT_Interpolate:
+		{
+			const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
+			if (CRenderer::IsInitialised())
+				g_Renderer.GetWaterManager()->m_WaterTexTimer += msgData.deltaSimTime;
+			break;
+		}
 		case MT_RenderSubmit:
 		{
 			// Don't actually do rendering here, but tell the renderer how to draw water
