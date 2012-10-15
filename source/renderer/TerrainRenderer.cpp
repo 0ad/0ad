@@ -487,6 +487,9 @@ void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* 
 
 	shader->Uniform("ambient", lightEnv.m_TerrainAmbientColor);
 	shader->Uniform("sunColor", lightEnv.m_SunColor);
+	
+	shader->Uniform("fogColor", lightEnv.m_FogColor);
+	shader->Uniform("fogParams", lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);
 }
 
 void TerrainRenderer::RenderTerrainShader(const CShaderDefines& context, ShadowMap* shadow, bool filtered)
@@ -702,6 +705,8 @@ bool TerrainRenderer::RenderFancyWater()
 	m->fancyWaterShader->Uniform("refractionMatrix", WaterMgr->m_RefractionMatrix);
 	m->fancyWaterShader->Uniform("losMatrix", losTexture.GetTextureMatrix());
 	m->fancyWaterShader->Uniform("cameraPos", camPos);
+	m->fancyWaterShader->Uniform("fogColor", lightEnv.m_FogColor);
+	m->fancyWaterShader->Uniform("fogParams", lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);
 
 	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
 	{

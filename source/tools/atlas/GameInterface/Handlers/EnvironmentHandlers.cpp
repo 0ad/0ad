@@ -61,10 +61,18 @@ sEnvironmentSettings GetSettings()
 		sunrotation -= (float)M_PI*2;
 	s.sunrotation = sunrotation;
 	s.sunelevation = g_LightEnv.GetElevation();
-
-	s.lightingmodel = CStr(g_LightEnv.GetLightingModel()).FromUTF8();
+	
+	s.posteffect = g_Renderer.GetPostprocManager().GetPostEffect();
 
 	s.skyset = g_Renderer.GetSkyManager()->GetSkySet();
+	
+	s.fogfactor = g_LightEnv.m_FogFactor;
+	s.fogmax = g_LightEnv.m_FogMax;
+	
+	s.brightness = g_LightEnv.m_Brightness;
+	s.contrast = g_LightEnv.m_Contrast;
+	s.saturation = g_LightEnv.m_Saturation;
+	s.bloom = g_LightEnv.m_Bloom;
 
 	// RGBColor (CVector3D) colours
 #define COLOUR(A, B) A = Colour((int)(B.X*255), (int)(B.Y*255), (int)(B.Z*255))
@@ -78,6 +86,7 @@ sEnvironmentSettings GetSettings()
 	COLOUR(s.suncolour, g_LightEnv.m_SunColor);
 	COLOUR(s.terraincolour, g_LightEnv.m_TerrainAmbientColor);
 	COLOUR(s.unitcolour, g_LightEnv.m_UnitsAmbientColor);
+	COLOUR(s.fogcolour, g_LightEnv.m_FogColor);
 #undef COLOUR
 
 	return s;
@@ -104,19 +113,31 @@ void SetSettings(const sEnvironmentSettings& s)
 
 	g_LightEnv.SetRotation(s.sunrotation);
 	g_LightEnv.SetElevation(s.sunelevation);
-
-	g_LightEnv.SetLightingModel(CStrW(*s.lightingmodel).ToUTF8());
+	
+	CStrW posteffect = *s.posteffect;
+	if (posteffect.length() == 0)
+		posteffect = L"default";
+	g_Renderer.GetPostprocManager().SetPostEffect(posteffect);
 
 	CStrW skySet = *s.skyset;
 	if (skySet.length() == 0)
 		skySet = L"default";
 	g_Renderer.GetSkyManager()->SetSkySet(skySet);
+	
+	g_LightEnv.m_FogFactor = s.fogfactor;
+	g_LightEnv.m_FogMax = s.fogmax;
+	
+	g_LightEnv.m_Brightness = s.brightness;
+	g_LightEnv.m_Contrast = s.contrast;
+	g_LightEnv.m_Saturation = s.saturation;
+	g_LightEnv.m_Bloom = s.bloom;
 
 #define COLOUR(A, B) B = RGBColor(A->r/255.f, A->g/255.f, A->b/255.f)
 	COLOUR(s.suncolour, g_LightEnv.m_SunColor);
 	g_LightEnv.m_SunColor *= s.sunoverbrightness;
 	COLOUR(s.terraincolour, g_LightEnv.m_TerrainAmbientColor);
 	COLOUR(s.unitcolour, g_LightEnv.m_UnitsAmbientColor);
+	COLOUR(s.fogcolour, g_LightEnv.m_FogColor);
 #undef COLOUR
 }
 
@@ -157,6 +178,13 @@ QUERYHANDLER(GetSkySets)
 {
 	std::vector<CStrW> skies = g_Renderer.GetSkyManager()->GetSkySets();
 	msg->skysets = std::vector<std::wstring>(skies.begin(), skies.end());
+}
+
+
+QUERYHANDLER(GetPostEffects)
+{
+	std::vector<CStrW> effects = g_Renderer.GetPostprocManager().GetPostEffects();
+	msg->posteffects = std::vector<std::wstring>(effects.begin(), effects.end());
 }
 
 }

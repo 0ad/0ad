@@ -2,13 +2,17 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>cumulus</SkySet>
 		<SunColour r="0.909804" g="0.87451" b="0.666667"/>
 		<SunElevation angle="0.773126"/>
 		<SunRotation angle="-0.73892"/>
 		<TerrainAmbientColour r="0.282353" g="0.337255" b="0.486275"/>
 		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<Fog>
+			<FogFactor>0</FogFactor>
+			<FogThickness>0.5</FogThickness>
+			<FogColour r="0.8" g="0.8" b="0.898039"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -22,11 +26,18 @@
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1.32129</Contrast>
+			<Saturation>0.857422</Saturation>
+			<Bloom>0.110742</Bloom>
+			<PostEffect>DOF</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="1368.83" y="137.267" z="973.66"/>
-		<Rotation angle="-0.0034965"/>
-		<Declination angle="0.69864"/>
+		<Position x="1423.85" y="92.7839" z="1013.14"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {

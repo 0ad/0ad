@@ -432,13 +432,22 @@ struct sEnvironmentSettings
 
 	// support different lighting models ("old" for the version compatible with old scenarios,
 	// "standard" for the new normal model that supports much brighter lighting)
-	Shareable<std::wstring> lightingmodel;
+	Shareable<std::wstring> posteffect;
 
 	Shareable<std::wstring> skyset;
 
 	Shareable<Colour> suncolour;
 	Shareable<Colour> terraincolour;
 	Shareable<Colour> unitcolour;
+	Shareable<Colour> fogcolour;
+	
+	Shareable<float> fogfactor;
+	Shareable<float> fogmax;
+	
+	Shareable<float> brightness;
+	Shareable<float> contrast;
+	Shareable<float> saturation;
+	Shareable<float> bloom;
 };
 SHAREABLE_STRUCT(sEnvironmentSettings);
 #endif
@@ -457,6 +466,12 @@ QUERY(GetSkySets,
 	  // no inputs
 	  ,
 	  ((std::vector<std::wstring>, skysets))
+	  );
+
+QUERY(GetPostEffects,
+	  // no inputs
+	  ,
+	  ((std::vector<std::wstring>, posteffects))
 	  );
 
 

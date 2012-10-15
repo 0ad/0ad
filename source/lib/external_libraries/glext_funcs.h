@@ -181,6 +181,8 @@ FUNC(void, glFramebufferTexture3DEXT, (GLenum target, GLenum attachment, GLenum 
 FUNC(void, glFramebufferRenderbufferEXT, (GLenum target, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer))
 FUNC(void, glGetFramebufferAttachmentParameterivEXT, (GLenum target, GLenum attachment, GLenum pname, GLint *params))
 FUNC(void, glGenerateMipmapEXT, (GLenum target))
+FUNC(void, glBlitFramebufferEXT, (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter))
+FUNC(void, glDrawBuffers, (GLsizei n, const GLenum *bufs))
 
 // GL_ARB_vertex_program, GL_ARB_fragment_program
 FUNC(void, glProgramStringARB, (GLenum target, GLenum format, GLsizei len, const GLvoid *string))

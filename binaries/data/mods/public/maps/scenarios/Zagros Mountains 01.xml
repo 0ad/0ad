@@ -2,13 +2,17 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
-		<SkySet>cumulus</SkySet>
+		<SkySet>fog</SkySet>
 		<SunColour r="0.811765" g="0.792157" b="0.701961"/>
 		<SunElevation angle="0.773126"/>
 		<SunRotation angle="-0.668816"/>
 		<TerrainAmbientColour r="0.337255" g="0.427451" b="0.603922"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Fog>
+			<FogFactor>0.00446289</FogFactor>
+			<FogThickness>0.276367</FogThickness>
+			<FogColour r="0.8" g="0.8" b="0.894118"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -22,9 +26,16 @@
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>-0.0478516</Brightness>
+			<Contrast>1.17871</Contrast>
+			<Saturation>0.916992</Saturation>
+			<Bloom>0.0663574</Bloom>
+			<PostEffect>hdr</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="390.449" y="163.539" z="-103.034"/>
+		<Position x="360.459" y="90.1135" z="672.018"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -37,7 +48,7 @@
     "medit_grass_field_b"
   ],
   "CircularMap": true,
-  "Preview" : "zagros_mountains.png",
+  "Preview": "zagros_mountains.png",
   "Description": "It's civil war in the enchanted East. Heirs of the noble Achemaenid house vie for the throne of Persia and for mastery of Asia.\u000a\u000aPlayers start the match in their own province near the Persian Gulf. Access to untapped resources territories can be found through the rugged hinterlands.",
   "GameType": "conquest",
   "Keywords": [],

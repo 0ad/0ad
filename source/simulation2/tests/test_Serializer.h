@@ -506,7 +506,7 @@ public:
 		CMapReader* mapReader = new CMapReader(); // it'll call "delete this" itself
 
 		LDR_BeginRegistering();
-		mapReader->LoadMap(L"maps/scenarios/Latium.pmp", &terrain, NULL, NULL, NULL, NULL, NULL, NULL,
+		mapReader->LoadMap(L"maps/scenarios/Latium.pmp", &terrain, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 			&sim2, &sim2.GetSimContext(), -1, false);
 		LDR_EndRegistering();
 		TS_ASSERT_OK(LDR_NonprogressiveLoad());

@@ -90,6 +90,9 @@ void ShaderRenderModifier::BeginPass(const CShaderProgramPtr& shader)
 		shader->Uniform("ambient", GetLightEnv()->m_UnitsAmbientColor);
 		shader->Uniform("sunDir", GetLightEnv()->GetSunDir());
 		shader->Uniform("sunColor", GetLightEnv()->m_SunColor);
+		
+		shader->Uniform("fogColor", GetLightEnv()->m_FogColor);
+		shader->Uniform("fogParams", GetLightEnv()->m_FogFactor, GetLightEnv()->m_FogMax, 0.f, 0.f);
 	}
 
 	if (shader->GetTextureBinding("losTex").Active())

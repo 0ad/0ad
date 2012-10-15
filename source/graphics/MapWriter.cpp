@@ -33,6 +33,7 @@
 #include "ps/Loader.h"
 #include "ps/Filesystem.h"
 #include "ps/XML/XMLWriter.h"
+#include "renderer/PostprocManager.h"
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
 #include "simulation2/Simulation2.h"
@@ -53,6 +54,7 @@ CMapWriter::CMapWriter()
 void CMapWriter::SaveMap(const VfsPath& pathname, CTerrain* pTerrain,
 						 WaterManager* pWaterMan, SkyManager* pSkyMan,
 						 CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema,
+						 CPostprocManager* pPostproc,
 						 CSimulation2* pSimulation2)
 {
 	CFilePacker packer(FILE_VERSION, "PSMP");
@@ -64,7 +66,7 @@ void CMapWriter::SaveMap(const VfsPath& pathname, CTerrain* pTerrain,
 	packer.Write(pathname);
 
 	VfsPath pathnameXML = pathname.ChangeExtension(L".xml");
-	WriteXML(pathnameXML, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema, pSimulation2);
+	WriteXML(pathnameXML, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema, pPostproc, pSimulation2);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -173,6 +175,7 @@ void CMapWriter::PackTerrain(CFilePacker& packer, CTerrain* pTerrain)
 void CMapWriter::WriteXML(const VfsPath& filename,
 						  WaterManager* pWaterMan, SkyManager* pSkyMan,
 						  CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema,
+						  CPostprocManager* pPostproc,
 						  CSimulation2* pSimulation2)
 {
 	XML_Start();
@@ -190,7 +193,6 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 		{
 			XML_Element("Environment");
 
-			XML_Setting("LightingModel", pLightEnv->GetLightingModel());
 			XML_Setting("SkySet", pSkyMan->GetSkySet());
 			{
 				XML_Element("SunColour");
@@ -217,6 +219,17 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 				XML_Attribute("r", pLightEnv->m_UnitsAmbientColor.X);
 				XML_Attribute("g", pLightEnv->m_UnitsAmbientColor.Y);
 				XML_Attribute("b", pLightEnv->m_UnitsAmbientColor.Z);
+			}
+			{
+				XML_Element("Fog");
+				XML_Setting("FogFactor", pLightEnv->m_FogFactor);
+				XML_Setting("FogThickness", pLightEnv->m_FogMax);
+				{
+					XML_Element("FogColour");
+					XML_Attribute("r", pLightEnv->m_FogColor.X);
+					XML_Attribute("g", pLightEnv->m_FogColor.Y);
+					XML_Attribute("b", pLightEnv->m_FogColor.Z);
+				}
 			}
 
 			{
@@ -249,6 +262,17 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 						XML_Attribute("b", pWaterMan->m_ReflectionTint.b);
 					}
 					XML_Setting("ReflectionTintStrength", pWaterMan->m_ReflectionTintStrength);
+				}
+			}
+			
+			{
+				XML_Element("Postproc");
+				{
+					XML_Setting("Brightness", pLightEnv->m_Brightness);
+					XML_Setting("Contrast", pLightEnv->m_Contrast);
+					XML_Setting("Saturation", pLightEnv->m_Saturation);
+					XML_Setting("Bloom", pLightEnv->m_Bloom);
+					XML_Setting("PostEffect", pPostproc->GetPostEffect());
 				}
 			}
 		}

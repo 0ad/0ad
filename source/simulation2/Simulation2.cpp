@@ -385,7 +385,7 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 
 			VfsPath mapfilename(VfsPath("maps/scenarios") / (mapFile + L".pmp"));
 			mapReader->LoadMap(mapfilename, &secondaryTerrain, NULL, NULL, NULL, NULL, NULL, NULL,
-				NULL, &secondaryContext, INVALID_PLAYER, true); // throws exception on failure
+				NULL, NULL, &secondaryContext, INVALID_PLAYER, true); // throws exception on failure
 		}
 		else
 		{
