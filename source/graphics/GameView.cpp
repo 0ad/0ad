@@ -684,11 +684,6 @@ void CGameView::Update(const float deltaRealTime)
 	if (!g_app_has_focus)
 		return;
 
-	// TODO: this is probably not an ideal place for this, it should probably go
-	// in a CCmpWaterManager or some such thing (once such a thing exists)
-	if (!m->Game->m_Paused)
-		g_Renderer.GetWaterManager()->m_WaterTexTimer += deltaRealTime;
-
 	if (m->TrackManager.IsActive() && m->TrackManager.IsPlaying())
 	{
 		if (! m->TrackManager.Update(deltaRealTime))
