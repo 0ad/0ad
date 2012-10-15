@@ -22,6 +22,11 @@ function InitGame(settings)
 			cmpPlayer.SetAI(true);
 			cmpPlayer.SetCheatEnabled(true);
 		}
+		cmpPlayer.maxPop = settings.PopulationCap;
+
+		if (settings.mapType !== "scenario")
+			for (var resouces in cmpPlayer.resourceCount)
+				cmpPlayer.resourceCount[resouces] = settings.StartingResources;
 	}
 }
 
