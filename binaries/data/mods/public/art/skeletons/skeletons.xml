@@ -54,6 +54,53 @@
 			</bone>
 		</bone>
 	</standard_skeleton>
+
+	<skeleton title="BlenderBiped" target="biped"><identifier><root>Armature</root></identifier>
+		<bone name="root"><target>root</target>
+			<bone name="root_pelvis"><target>pelvis</target>
+				<bone name="root_spine"><target>spine</target>
+					<bone name="root_spine1"><target>spine1</target>
+						<bone name="root_neck"><target>neck</target>
+							<bone name="root_head"><target>head</target>
+							</bone>
+							<bone name="root_l_clavicle"><target>l_clavicle</target>
+								<bone name="root_l_upperarm"><target>l_upperarm</target>
+									<bone name="root_l_forearm"><target>l_forearm</target>
+										<bone name="root_l_hand"><target>l_hand</target>
+											<bone name="root_l_finger0"><target>DUMMY_l_finger0</target></bone>
+										</bone>
+									</bone>
+								</bone>
+							</bone>
+							<bone name="root_r_clavicle"><target>r_clavicle</target>
+								<bone name="root_r_upperarm"><target>r_upperarm</target>
+									<bone name="root_r_forearm"><target>r_forearm</target>
+										<bone name="root_r_hand"><target>r_hand</target>
+											<bone name="root_r_finger0"><target>DUMMY_r_finger0</target></bone>
+										</bone>
+									</bone>
+								</bone>
+							</bone>
+						</bone>
+					</bone>
+					<bone name="root_l_thigh"><target>l_thigh</target>
+						<bone name="root_l_calf"><target>l_calf</target>
+							<bone name="root_l_foot"><target>l_foot</target>
+								<bone name="root_l_toe0"><target>DUMMY_l_toe0</target></bone>
+							</bone>
+						</bone>
+					</bone>
+					<bone name="root_r_thigh"><target>r_thigh</target>
+						<bone name="root_r_calf"><target>r_calf</target>
+							<bone name="root_r_foot"><target>r_foot</target>
+								<bone name="root_r_toe0"><target>DUMMY_r_toe0</target></bone>
+							</bone>
+						</bone>
+					</bone>
+				</bone>
+			</bone>
+		</bone>
+	</skeleton>
 	
 <!--
 
@@ -953,98 +1000,6 @@ This skeleton is for the deer and any other similiar shaped animals with the exa
 			</bone>
 		</bone>
     </skeleton>
-
-	<standard_skeleton title="Boar" id="Boar">
-		<bone name="BoarArmature">
-			<bone name="Body">
-				<bone name="Body2">
-					<bone name="Rear">
-						<bone name="Tail" />
-						<bone name="Hip_Left">
-							<bone name="Back_Leg_Left">
-								<bone name="Shin_Left">
-									<bone name="Back_Foot_Left" />
-								</bone>
-							</bone>
-						</bone>
-						<bone name="Hip_Right">
-							<bone name="Back_Leg_Right">
-								<bone name="Shin_Right">
-									<bone name="Back_Foot_Right" />
-								</bone>
-							</bone>
-						</bone>
-					</bone>
-				</bone>
-			</bone>
-			<bone name="Neck">
-				<bone name="Head">
-					<bone name="Ear_Left" />
-					<bone name="Ear_Right" />
-				</bone>
-			</bone>
-			<bone name="Shoulder_Left">
-				<bone name="Front_Leg_Left">
-					<bone name="Forearm_Left">
-						<bone name="Front_Foot_Left" />
-					</bone>
-				</bone>
-			</bone>
-			<bone name="Shoulder_Right">
-				<bone name="Front_Leg_Right">
-					<bone name="Forearm_Right">
-						<bone name="Front_Foot_Right" />
-					</bone>
-				</bone>
-			</bone>
-		</bone>
-	</standard_skeleton>
-
-	<skeleton title="Boar" target="Boar"><identifier><root>Armature</root></identifier>
-		<bone name="BoarArmature"><target>BoarArmature</target>
-			<bone name="Body"><target>Body</target>
-				<bone name="Body2"><target>Body2</target>
-					<bone name="Rear"><target>Rear</target>
-						<bone name="Tail"><target>Tail</target></bone>
-						<bone name="Hip_Left"><target>Hip_Left</target>
-							<bone name="Back_Leg_Left"><target>Back_Leg_Left</target>
-								<bone name="Shin_Left"><target>Shin_Left</target>
-									<bone name="Back_Foot_Left"><target>Back_Foot_Left</target></bone>
-								</bone>
-							</bone>
-						</bone>
-						<bone name="Hip_Right"><target>Hip_Right</target>
-							<bone name="Back_Leg_Right"><target>Back_Leg_Right</target>
-								<bone name="Shin_Right"><target>Shin_Right</target>
-									<bone name="Back_Foot_Right"><target>Back_Foot_Right</target></bone>
-								</bone>
-							</bone>
-						</bone>
-					</bone>
-				</bone>
-			</bone>
-			<bone name="Neck"><target>Neck</target>
-				<bone name="Head"><target>Head</target>
-					<bone name="Ear_Left"><target>Ear_Left</target></bone>
-					<bone name="Ear_Right"><target>Ear_Right</target></bone>
-				</bone>
-			</bone>
-			<bone name="Shoulder_Left"><target>Shoulder_Left</target>
-				<bone name="Front_Leg_Left"><target>Front_Leg_Left</target>
-					<bone name="Forearm_Left"><target>Forearm_Left</target>
-						<bone name="Front_Foot_Left"><target>Front_Foot_Left</target></bone>
-					</bone>
-				</bone>
-			</bone>
-			<bone name="Shoulder_Right"><target>Shoulder_Right</target>
-				<bone name="Front_Leg_Right"><target>Front_Leg_Right</target>
-					<bone name="Forearm_Right"><target>Forearm_Right</target>
-						<bone name="Front_Foot_Right"><target>Front_Foot_Right</target></bone>
-					</bone>
-				</bone>
-			</bone>
-		</bone>
-	</skeleton>
 	
 	<standard_skeleton title="Sheep" id="Sheep">
 		<bone name="ThreeBagsFull">
@@ -1809,5 +1764,29 @@ This skeleton is for the deer and any other similiar shaped animals with the exa
                         <bone name="lock_left"><target>lock_left</target></bone>
 					</bone>
                 </bone> 
+	</skeleton>
+
+	<standard_skeleton title="FloatingBarrels" id="FloatingBarrels">
+		<bone name="Barrel_2">
+			<bone name="Barrel_2_Controller" />
+		</bone>
+		<bone name="Barrel_3">
+			<bone name="Barrel_3_Controller" />
+		</bone>
+		<bone name="Barrel_1">
+			<bone name="Barrel_1_Controller" />
+		</bone>
+	</standard_skeleton>
+
+	<skeleton title="FloatingBarrels" target="FloatingBarrels"><identifier><root>Barrel_2</root></identifier>
+		<bone name="Barrel_2"><target>Barrel_2</target>
+			<bone name="Barrel_2_Controller"><target>Barrel_2_Controller</target></bone>
+		</bone>
+		<bone name="Barrel_3"><target>Barrel_3</target>
+			<bone name="Barrel_3_Controller"><target>Barrel_3_Controller</target></bone>
+		</bone>
+		<bone name="Barrel_1"><target>Barrel_1</target>
+			<bone name="Barrel_1_Controller"><target>Barrel_1_Controller</target></bone>
+		</bone>
 	</skeleton>
 </skeletons>

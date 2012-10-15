@@ -6,6 +6,9 @@
     <variant name="floating barrels">
       <mesh>props/special/floating_barrels.dae</mesh>
       <textures><texture file="props/hele_props_a.dds" name="baseTex"/></textures>
+      <animations>
+        <animation file="other/floating_barrels.dae" name="Idle" speed="75"/>
+      </animations>
     </variant>
   </group>
 </actor>
