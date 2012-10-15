@@ -1,0 +1,12 @@
+{
+	"genericName": "Colonisation",
+	"description": "Carthaginians established many trading centres as colonies and ultimately held dominion over 300 cities and towns in North Africa alone.",
+	"cost": {"food": 0, "wood": 250, "stone": 0, "metal": 250},
+	"requirements": {"tech": "phase_town"},
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "political_face.png",
+	"researchTime": 30,
+	"tooltip": "Carthaginians were colonisers. Civilisation Centres, Temples, and Houses -50% build time.",
+	"modifications": [{"value": "Cost/BuildTime", "multiplier": 0.5}],
+	"affects": ["Civic"]
+}

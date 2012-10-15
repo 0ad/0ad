@@ -1,0 +1,15 @@
+{
+	"genericName": "Hellenistic Metropolis",
+	"description": "Beginning with Alexander, the Hellenistic monarchs founded many cities throughout their empires, where Greek culture and art blended with local customs to create the motley Hellenistic civilisation.",
+	"cost": {"food": 0, "wood": 0, "stone": 250, "metal": 250},
+	"requirements": {"tech": "phase_city"},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "political_face.png",
+	"researchTime": 30,
+	"tooltip": "Civic Centres +100% health and double default arrows.",
+	"modifications": [
+		{"value": "BuildingAI/DefaultArrowCount", "multiplier": 2.0},
+		{"value": "Health/Max", "multiplier": 2.0}
+	],
+	"affects": ["CivCentre"]
+}

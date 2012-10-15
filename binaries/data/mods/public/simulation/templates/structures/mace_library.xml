@@ -13,11 +13,16 @@
     <SpecificName>Bibliothikon</SpecificName>
     <Tooltip>Research special technologies and reduce the research time of all remaining technologies.</Tooltip>
     <History>Alexander the Great founded libraries all over his new empire. These became a center of learning for an entirely new synthesized culture: the Hellenistic culture.</History>
-    <Icon>structures/temple.png</Icon>
+    <Icon>structures/tholos.png</Icon>
   </Identity>
   <Obstruction>
     <Static width="25.0" depth="30.0"/>
   </Obstruction>
+  <ProductionQueue>
+    <Technologies datatype="tokens">
+      hellenes/special_hellenistic_metropolis
+    </Technologies>
+  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_temple.xml</select>
