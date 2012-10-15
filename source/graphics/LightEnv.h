@@ -69,6 +69,12 @@ public:
 	RGBColor m_SunColor;
 	RGBColor m_TerrainAmbientColor;
 	RGBColor m_UnitsAmbientColor;
+	RGBColor m_FogColor;
+
+	float m_FogFactor;
+	float m_FogMax;
+	
+	float m_Brightness, m_Contrast, m_Saturation, m_Bloom;
 
 public:
 	CLightEnv();
@@ -134,7 +140,14 @@ public:
 			m_LightingModel == o.m_LightingModel &&
 			m_SunColor == o.m_SunColor &&
 			m_TerrainAmbientColor == o.m_TerrainAmbientColor &&
-			m_UnitsAmbientColor == o.m_UnitsAmbientColor;
+			m_UnitsAmbientColor == o.m_UnitsAmbientColor &&
+			m_FogColor == o.m_FogColor &&
+			m_FogFactor == o.m_FogFactor &&
+			m_FogMax == o.m_FogMax &&
+			m_Brightness == o.m_Brightness &&
+			m_Contrast == o.m_Contrast &&
+			m_Saturation == o.m_Saturation &&
+			m_Bloom == o.m_Bloom;
 	}
 
 	bool operator!=(const CLightEnv& o) const

@@ -89,7 +89,7 @@
         <require shaders="arb"/>
         <pass shader="arb/model_common">
             <define name="USE_TRANSPARENT" value="1"/>
-            <define name="REQUIRE_ALPHA_GEQUAL" value="0.9375"/>
+            <define name="REQUIRE_ALPHA_GEQUAL" value="0.6375"/>
         </pass>
     </technique>
 
@@ -98,7 +98,7 @@
         <require shaders="glsl"/>
         <pass shader="glsl/model_common">
             <define name="USE_TRANSPARENT" value="1"/>
-            <define name="REQUIRE_ALPHA_GEQUAL" value="0.9375"/>
+            <define name="REQUIRE_ALPHA_GEQUAL" value="0.6375"/>
         </pass>
     </technique>
 
@@ -106,7 +106,7 @@
         <require context="ALPHABLEND_PASS_OPAQUE"/>
         <require shaders="fixed"/>
         <pass shader="fixed:model">
-            <alpha func="gequal" ref="0.9375"/>
+            <alpha func="gequal" ref="0.6375"/>
         </pass>
     </technique>
 

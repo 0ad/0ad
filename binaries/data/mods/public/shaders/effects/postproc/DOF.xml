@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<effect>
+
+    <technique>
+        <require shaders="glsl"/>
+	<pass shader="glsl/dof">
+		<define name="BLUR_FOV" value="3"/>
+	</pass>
+	<pass shader="glsl/hdr"/>
+    </technique>
+
+</effect>

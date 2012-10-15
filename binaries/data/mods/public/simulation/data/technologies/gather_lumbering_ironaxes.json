@@ -1,0 +1,13 @@
+{
+	"pair": "pair_gather_wood_01",	
+	"genericName": "Iron Ax Heads",
+	"description": "Increases wood gathering rates for trees.",
+	"cost": {"food": 0, "wood": 50, "stone": 0, "metal": 50},
+	"requirements": {"tech": "phase_town"},
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "wood_axe.png",
+	"researchTime": 20,
+	"tooltip": "Workers +25% lumbering rate for trees.",
+	"modifications": [{"value": "ResourceGatherer/Rates/wood/tree", "multiplier": 1.25}],
+	"affects": ["Worker"]
+}

@@ -231,6 +231,7 @@ MESSAGEHANDLER(SaveMap)
 		g_Game->GetWorld()->GetTerrain(),
 		g_Renderer.GetWaterManager(), g_Renderer.GetSkyManager(),
 		&g_LightEnv, g_Game->GetView()->GetCamera(), g_Game->GetView()->GetCinema(),
+		&g_Renderer.GetPostprocManager(),
 		g_Game->GetSimulation2());
 }
 

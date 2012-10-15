@@ -83,6 +83,9 @@ struct ShadowMapInternals
 	// Copy of renderer's standard view camera, saved between
 	// BeginRender and EndRender while we replace it with the shadow camera
 	CCamera SavedViewCamera;
+	
+	// Save the caller's FBO so it can be restored
+	GLint SavedViewFBO;
 
 	// Helper functions
 	void CalcShadowMatrices();
@@ -318,6 +321,9 @@ void ShadowMapInternals::CreateTexture()
 		pglDeleteFramebuffersEXT(1, &Framebuffer);
 		Framebuffer = 0;
 	}
+	
+	// save the caller's FBO	
+	glGetIntegerv(GL_FRAMEBUFFER_BINDING, &SavedViewFBO);
 
 	pglGenFramebuffersEXT(1, &Framebuffer);
 
@@ -433,7 +439,7 @@ void ShadowMapInternals::CreateTexture()
 
 	GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, SavedViewFBO);
 
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
@@ -450,6 +456,9 @@ void ShadowMapInternals::CreateTexture()
 void ShadowMap::BeginRender()
 {
 	// HACK HACK: this depends in non-obvious ways on the behaviour of the caller
+	
+	// save caller's FBO
+	glGetIntegerv(GL_FRAMEBUFFER_BINDING, &m->SavedViewFBO);
 
 	// Calc remaining shadow matrices
 	m->CalcShadowMatrices();
@@ -502,7 +511,7 @@ void ShadowMap::EndRender()
 
 	{
 		PROFILE("unbind framebuffer");
-		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m->SavedViewFBO);
 	}
 
 	glViewport(0, 0, g_Renderer.GetWidth(), g_Renderer.GetHeight());

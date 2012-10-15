@@ -30,6 +30,7 @@
 #include "ps/Singleton.h"
 #include "scripting/ScriptableObject.h"
 
+#include "renderer/PostprocManager.h"
 #include "renderer/Scene.h"
 #include "renderer/TimeManager.h"
 
@@ -135,6 +136,7 @@ public:
 		bool m_GenTangents;
 		bool m_SmoothLOS;
 		bool m_ShowSky;
+		bool m_Postproc;
 	} m_Options;
 
 	struct Caps {
@@ -291,6 +293,8 @@ public:
 	CShaderDefines GetSystemShaderDefines();
 	
 	CTimeManager& GetTimeManager();
+	
+	CPostprocManager& GetPostprocManager();
 
 	/**
 	 * GetCapabilities: Return which OpenGL capabilities are available and enabled.

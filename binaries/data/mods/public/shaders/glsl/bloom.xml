@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<program type="glsl">
+
+    <vertex file="glsl/hdr.vs">
+        <stream name="pos"/>
+        <stream name="uv0"/>
+    </vertex>
+
+    <fragment file="glsl/bloom.fs"/>
+
+</program>

@@ -1,0 +1,18 @@
+{
+	"pair": "pair_gather_wood_01",	
+	"genericName": "Wheelbarrow",
+	"description": "Increases shuttling capacity for all resources.",
+	"cost": {"food": 100, "wood": 50, "stone": 0, "metal": 0},
+	"requirements": {"tech": "phase_town"},
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "wheel.png",
+	"researchTime": 20,
+	"tooltip": "Workers use wheelbarrows. +20% shuttle capacity for all resources.",
+	"modifications": [
+		{"value": "ResourceGatherer/Capacities/food", "multiplier": 1.20},
+		{"value": "ResourceGatherer/Capacities/wood", "multiplier": 1.20},
+		{"value": "ResourceGatherer/Capacities/stone", "multiplier": 1.20},
+		{"value": "ResourceGatherer/Capacities/metal", "multiplier": 1.20}		
+	],
+	"affects": ["Worker"]
+}

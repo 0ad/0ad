@@ -276,6 +276,9 @@ public:
 
 	/// Shadow map
 	ShadowMap shadow;
+	
+	/// Postprocessing effect manager
+	CPostprocManager postprocManager;
 
 	/// Various model renderers
 	struct Models
@@ -437,6 +440,7 @@ CRenderer::CRenderer()
 	m_Options.m_GPUSkinning = false;
 	m_Options.m_GenTangents = false;
 	m_Options.m_SmoothLOS = false;
+	m_Options.m_Postproc = false;
 	m_Options.m_ShowSky = false;
 
 	// TODO: be more consistent in use of the config system
@@ -445,6 +449,7 @@ CRenderer::CRenderer()
 	CFG_GET_USER_VAL("gpuskinning", Bool, m_Options.m_GPUSkinning);
 	CFG_GET_USER_VAL("gentangents", Bool, m_Options.m_GenTangents);
 	CFG_GET_USER_VAL("smoothlos", Bool, m_Options.m_SmoothLOS);
+	CFG_GET_USER_VAL("postproc", Bool, m_Options.m_Postproc);
 
 #if CONFIG2_GLES
 	// Override config option since GLES only supports GLSL
@@ -642,6 +647,9 @@ bool CRenderer::Open(int width, int height)
 	// Let component renderers perform one-time initialization after graphics capabilities and
 	// the shader path have been determined.
 	m->overlayRenderer.Initialize();
+	
+	if (m_Options.m_Postproc)
+		m->postprocManager.Initialize();
 
 	return true;
 }
@@ -654,6 +662,9 @@ void CRenderer::Resize(int width,int height)
 
 	m_Width = width;
 	m_Height = height;
+	
+	if (m_Options.m_Postproc)
+		m->postprocManager.RecreateBuffers();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -1376,6 +1387,9 @@ void CRenderer::RenderSubmissions()
 	PROFILE3("render submissions");
 	
 	GetScene().GetLOSTexture().InterpolateLOS();
+	
+	if (m_Options.m_Postproc)
+		m->postprocManager.CaptureRenderOutput();
 
 	CShaderDefines context = m->globalContext;
 
@@ -1495,6 +1509,12 @@ void CRenderer::RenderSubmissions()
 		RenderParticles();
 		ogl_WarnIfError();
 	}
+	
+	if (m_Options.m_Postproc)
+	{
+		m->postprocManager.ApplyPostproc();
+		m->postprocManager.ReleaseRenderOutput();
+	}
 
 	if (m_Options.m_Silhouettes)
 	{
@@ -1519,6 +1539,7 @@ void CRenderer::RenderSubmissions()
 	// render overlays that should appear on top of all other objects
 	m->overlayRenderer.RenderForegroundOverlays(m_ViewCamera);
 	ogl_WarnIfError();
+	
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2034,4 +2055,9 @@ CTimeManager& CRenderer::GetTimeManager()
 CMaterialManager& CRenderer::GetMaterialManager()
 {
 	return m->materialManager;
+}
+
+CPostprocManager& CRenderer::GetPostprocManager()
+{
+	return m->postprocManager;
 }

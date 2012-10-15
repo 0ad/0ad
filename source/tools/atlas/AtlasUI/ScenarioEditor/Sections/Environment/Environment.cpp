@@ -227,13 +227,29 @@ EnvironmentSidebar::EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow*
 	sunSizer->Add(new VariableSliderBox(this, _("Sun elevation"), g_EnvironmentSettings.sunelevation, -M_PIf/2, M_PIf/2), wxSizerFlags().Expand());
 	sunSizer->Add(new VariableSliderBox(this, _("Sun overbrightness"), g_EnvironmentSettings.sunoverbrightness, 1.0f, 3.0f), wxSizerFlags().Expand());
 
-	sunSizer->Add(m_LightingModelList = new VariableListBox(this, _("Light model"), g_EnvironmentSettings.lightingmodel), wxSizerFlags().Expand());
+	sunSizer->Add(m_PostEffectList = new VariableListBox(this, _("Post Effect"), g_EnvironmentSettings.posteffect), wxSizerFlags().Expand());
+	
+	wxSizer* fogSizer = new wxGridSizer(2);
+	m_MainSizer->Add(fogSizer, wxSizerFlags().Expand().Border(wxTOP, 8));
+
+	fogSizer->Add(new VariableSliderBox(this, _("Fog Factor"), g_EnvironmentSettings.fogfactor, 0.0, 0.01), wxSizerFlags().Expand());
+	fogSizer->Add(new VariableSliderBox(this, _("Fog Thickness"), g_EnvironmentSettings.fogmax, 0.5, 0.0), wxSizerFlags().Expand());
 
 	m_MainSizer->Add(new LightControl(this, wxSize(150, 150), g_EnvironmentSettings));
 	m_MainSizer->Add(m_SkyList = new VariableListBox(this, _("Sky set"), g_EnvironmentSettings.skyset), wxSizerFlags().Expand());
+	
+	wxSizer* SSSizer = new wxGridSizer(2);
+	m_MainSizer->Add(SSSizer, wxSizerFlags().Expand().Border(wxTOP, 8));
+
+	SSSizer->Add(new VariableSliderBox(this, _("Brightness"), g_EnvironmentSettings.brightness, -0.5, 0.5), wxSizerFlags().Expand());
+	SSSizer->Add(new VariableSliderBox(this, _("Contrast (HDR)"), g_EnvironmentSettings.contrast, 0.5, 1.5), wxSizerFlags().Expand());
+	SSSizer->Add(new VariableSliderBox(this, _("Saturation"), g_EnvironmentSettings.saturation, 0.0, 1.0), wxSizerFlags().Expand());
+	SSSizer->Add(new VariableSliderBox(this, _("Bloom"), g_EnvironmentSettings.bloom, 0.2, 0.0), wxSizerFlags().Expand());
+	
 	m_MainSizer->Add(new VariableColourBox(this, _("Sun colour"), g_EnvironmentSettings.suncolour), wxSizerFlags().Expand());
 	m_MainSizer->Add(new VariableColourBox(this, _("Terrain ambient colour"), g_EnvironmentSettings.terraincolour), wxSizerFlags().Expand());
 	m_MainSizer->Add(new VariableColourBox(this, _("Object ambient colour"), g_EnvironmentSettings.unitcolour), wxSizerFlags().Expand());
+	m_MainSizer->Add(new VariableColourBox(this, _("Fog colour"), g_EnvironmentSettings.fogcolour), wxSizerFlags().Expand());
 
 	m_Conn = g_EnvironmentSettings.RegisterObserver(0, &SendToGame);
 }
@@ -245,16 +261,14 @@ void EnvironmentSidebar::OnFirstDisplay()
 	AtlasMessage::qGetSkySets qry_skysets;
 	qry_skysets.Post();
 	m_SkyList->SetChoices(*qry_skysets.skysets);
+	
+	AtlasMessage::qGetPostEffects qry_effects;
+	qry_effects.Post();
+	m_PostEffectList->SetChoices(*qry_effects.posteffects);
 
 	AtlasMessage::qGetEnvironmentSettings qry_env;
 	qry_env.Post();
 	g_EnvironmentSettings = qry_env.settings;
-
-
-	std::vector<std::wstring> lightingModels;
-	lightingModels.push_back(L"standard");
-	m_LightingModelList->SetChoices(lightingModels);
-
 
 	g_EnvironmentSettings.NotifyObservers();
 }

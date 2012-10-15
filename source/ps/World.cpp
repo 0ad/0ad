@@ -82,7 +82,8 @@ void CWorld::RegisterInit(const CStrW& mapFile, int playerID)
 				CRenderer::IsInitialised() ? g_Renderer.GetSkyManager() : NULL,
 				&g_LightEnv, m_pGame->GetView(),
 				m_pGame->GetView() ? m_pGame->GetView()->GetCinema() : NULL,
-				pTriggerManager, m_pGame->GetSimulation2(), &m_pGame->GetSimulation2()->GetSimContext(), playerID, false);
+				pTriggerManager, CRenderer::IsInitialised() ? &g_Renderer.GetPostprocManager() : NULL,
+				m_pGame->GetSimulation2(), &m_pGame->GetSimulation2()->GetSimContext(), playerID, false);
 				// fails immediately, or registers for delay loading
 		}
 		catch (PSERROR_File& err)
@@ -106,7 +107,8 @@ void CWorld::RegisterInitRMS(const CStrW& scriptFile, const CScriptValRooted& se
 		CRenderer::IsInitialised() ? g_Renderer.GetSkyManager() : NULL,
 		&g_LightEnv, m_pGame->GetView(),
 		m_pGame->GetView() ? m_pGame->GetView()->GetCinema() : NULL,
-		pTriggerManager, m_pGame->GetSimulation2(), playerID);
+		pTriggerManager, CRenderer::IsInitialised() ? &g_Renderer.GetPostprocManager() : NULL,
+		m_pGame->GetSimulation2(), playerID);
 		// registers for delay loading
 }
 

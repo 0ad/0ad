@@ -29,6 +29,7 @@ class CLightEnv;
 class CTerrain;
 class CCamera;
 class CCinemaManager;
+class CPostprocManager;
 class CTriggerManager;
 class WaterManager;
 class SkyManager;
@@ -46,7 +47,8 @@ public:
 	void SaveMap(const VfsPath& pathname, CTerrain* pTerr,
 									WaterManager* pWaterMan, SkyManager* pSkyMan, 
 									CLightEnv* pLightEnv, CCamera* pCamera, 
-									CCinemaManager* pCinema, CSimulation2* pSimulation2);
+									CCinemaManager* pCinema, CPostprocManager* pPostproc,
+									CSimulation2* pSimulation2);
 
 private:
 	// PackMap: pack the current world into a raw data stream
@@ -62,7 +64,8 @@ private:
 	// WriteXML: output some other data (entities, etc) in XML format
 	void WriteXML(const VfsPath& pathname, WaterManager* pWaterMan,
 								SkyManager* pSkyMan, CLightEnv* pLightEnv, CCamera* pCamera, 
-								CCinemaManager* pCinema, CSimulation2* pSimulation2);
+								CCinemaManager* pCinema, CPostprocManager* pPostproc,
+								CSimulation2* pSimulation2);
 //	void WriteTriggerGroup(XMLWriter_File& xml_file_, const MapTriggerGroup& group,
 //											const std::list<MapTriggerGroup>& groupList);
 //	void WriteTrigger(XMLWriter_File& xml_file_, const MapTrigger& trigger);

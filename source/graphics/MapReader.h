@@ -32,6 +32,7 @@ class WaterManager;
 class SkyManager;
 class CLightEnv;
 class CCinemaManager;
+class CPostprocManager;
 class CTriggerManager;
 class CSimulation2;
 class CSimContext;
@@ -53,10 +54,10 @@ public:
 
 	// LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
 	void LoadMap(const VfsPath& pathname, CTerrain*, WaterManager*, SkyManager*, CLightEnv*, CGameView*,
-		CCinemaManager*, CTriggerManager*, CSimulation2*, const CSimContext*, int playerID, bool skipEntities);
+		CCinemaManager*, CTriggerManager*, CPostprocManager* pPostproc, CSimulation2*, const CSimContext*, 
+	        int playerID, bool skipEntities);
 
-	void LoadRandomMap(const CStrW& scriptFile, const CScriptValRooted& settings, CTerrain*, WaterManager*, SkyManager*, CLightEnv*, CGameView*,
-		CCinemaManager*, CTriggerManager*, CSimulation2*, int playerID);
+	void LoadRandomMap(const CStrW& scriptFile, const CScriptValRooted& settings, CTerrain*, WaterManager*, SkyManager*, CLightEnv*, CGameView*, CCinemaManager*, CTriggerManager*, CPostprocManager* pPostproc_, CSimulation2*, int playerID);
 
 private:
 	// Load script settings for use by scripts
@@ -129,6 +130,7 @@ private:
 	CTerrain* pTerrain;
 	WaterManager* pWaterMan;
 	SkyManager* pSkyMan;
+	CPostprocManager* pPostproc;
 	CLightEnv* pLightEnv;
 	CGameView* pGameView;
 	CCinemaManager* pCinema;

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Sandstone Block Pile A">
+      <mesh>props/wrld_block_1_pile_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Sandstone Block Pile B">
+      <mesh>props/wrld_block_1_pile_b.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant name="Texture">
+      <textures>
+        <texture file="props/wrld_block_sandstone.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+</actor>

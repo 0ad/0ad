@@ -22,6 +22,9 @@ uniform vec3 ambient;
 uniform vec3 sunColor;
 uniform vec3 sunDir;
 
+uniform vec3 fogColor;
+uniform vec2 fogParams;
+
 uniform vec2 textureTransform;
 
 varying vec3 v_lighting;
@@ -140,6 +143,21 @@ vec4 triplanarNormals(sampler2D sampler, vec3 wpos)
 }
 #endif
 
+vec3 get_fog(vec3 color)
+{
+  float density = fogParams.x;
+  float maxFog = fogParams.y;
+
+  const float LOG2 = 1.442695;
+  float z = gl_FragCoord.z / gl_FragCoord.w;
+  float fogFactor = exp2(-density * density * z * z * LOG2);
+
+  fogFactor = fogFactor * (1.0 - maxFog) + maxFog;
+
+  fogFactor = clamp(fogFactor, 0.0, 1.0);
+
+  return mix(fogColor, color, fogFactor);
+}
 
 void main()
 {
@@ -217,6 +235,8 @@ void main()
   #if USE_SPECULAR_MAP && USE_SELF_LIGHT
     color = mix(texdiffuse, color, specular.a);
   #endif
+
+  color = get_fog(color);
 
   float los = texture2D(losTex, v_los).a;
   los = los < 0.03 ? 0.0 : los;

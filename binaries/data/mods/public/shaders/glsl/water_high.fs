@@ -17,8 +17,27 @@ uniform float fullDepth;		// Depth at which to use full murkiness (shallower wat
 uniform vec3 reflectionTint;	// Tint for reflection (used for really muddy water)
 uniform float reflectionTintStrength;	// Strength of reflection tint (how much of it to mix in)
 
+uniform vec3 fogColor;
+uniform vec2 fogParams;
+
 varying vec3 worldPos;
 varying float waterDepth;
+
+vec3 get_fog(vec3 color)
+{
+  float density = fogParams.x;
+  float maxFog = fogParams.y;
+
+  const float LOG2 = 1.442695;
+  float z = gl_FragCoord.z / gl_FragCoord.w;
+  float fogFactor = exp2(-density * density * z * z * LOG2);
+
+  fogFactor = fogFactor * (1.0 - maxFog) + maxFog;
+
+  fogFactor = clamp(fogFactor, 0.0, 1.0);
+
+  return mix(fogColor, color, fogFactor);
+}
 
 void main()
 {
@@ -55,7 +74,11 @@ void main()
 	losMod = texture2D(losMap, gl_TexCoord[3].st).a;
 	losMod = losMod < 0.03 ? 0.0 : losMod;
 
-	gl_FragColor.rgb = mix(refrColor + 0.3*specular, reflColor + specular, fresnel) * losMod;
+	gl_FragColor.rgb = mix(refrColor + 0.3*specular, reflColor + specular, fresnel);
+
+	gl_FragColor.rgb = get_fog(gl_FragColor.rgb);
+
+	gl_FragColor.rgb *= losMod;
 	
 	// Make alpha vary based on both depth (so it blends with the shore) and view angle (make it
 	// become opaque faster at lower view angles so we can't look "underneath" the water plane)

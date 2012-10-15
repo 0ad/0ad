@@ -36,6 +36,7 @@
 #include "ps/LoaderThunks.h"
 #include "ps/World.h"
 #include "ps/XML/Xeromyces.h"
+#include "renderer/PostprocManager.h"
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
 #include "simulation2/Simulation2.h"
@@ -56,13 +57,15 @@ CMapReader::CMapReader()
 	cur_terrain_tex = 0;	// important - resets generator state
 
 	// Maps that don't override the default probably want the old lighting model
-	m_LightEnv.SetLightingModel("old");
+	//m_LightEnv.SetLightingModel("old");
+	//pPostproc->SetPostEffect(L"default");
+	
 }
 
 // LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
 void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 						 WaterManager* pWaterMan_, SkyManager* pSkyMan_,
-						 CLightEnv *pLightEnv_, CGameView *pGameView_, CCinemaManager* pCinema_, CTriggerManager* pTrigMan_,
+						 CLightEnv *pLightEnv_, CGameView *pGameView_, CCinemaManager* pCinema_, CTriggerManager* pTrigMan_, CPostprocManager* pPostproc_,
 						 CSimulation2 *pSimulation2_, const CSimContext* pSimContext_, int playerID_, bool skipEntities)
 {
 	// latch parameters (held until DelayedLoadFinished)
@@ -73,6 +76,7 @@ void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 	pSkyMan = pSkyMan_;
 	pCinema = pCinema_;
 	pTrigMan = pTrigMan_;
+	pPostproc = pPostproc_;
 	pSimulation2 = pSimulation2_;
 	pSimContext = pSimContext_;
 	m_PlayerID = playerID_;
@@ -106,6 +110,10 @@ void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 	// delete all existing entities
 	if (pSimulation2)
 		pSimulation2->ResetState();
+	
+	// reset post effects
+	if (pPostproc)
+		pPostproc->SetPostEffect(L"default");
 
 	// load map settings script
 	RegMemFun(this, &CMapReader::LoadScriptSettings, L"CMapReader::LoadScriptSettings", 50);
@@ -133,7 +141,7 @@ void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 // LoadRandomMap: try to load the map data; reinitialise the scene to new data if successful
 void CMapReader::LoadRandomMap(const CStrW& scriptFile, const CScriptValRooted& settings, CTerrain *pTerrain_,
 						 WaterManager* pWaterMan_, SkyManager* pSkyMan_,
-						 CLightEnv *pLightEnv_, CGameView *pGameView_, CCinemaManager* pCinema_, CTriggerManager* pTrigMan_,
+						 CLightEnv *pLightEnv_, CGameView *pGameView_, CCinemaManager* pCinema_, CTriggerManager* pTrigMan_, CPostprocManager* pPostproc_,
 						 CSimulation2 *pSimulation2_, int playerID_)
 {
 	// latch parameters (held until DelayedLoadFinished)
@@ -146,6 +154,7 @@ void CMapReader::LoadRandomMap(const CStrW& scriptFile, const CScriptValRooted& 
 	pSkyMan = pSkyMan_;
 	pCinema = pCinema_;
 	pTrigMan = pTrigMan_;
+	pPostproc = pPostproc_;
 	pSimulation2 = pSimulation2_;
 	pSimContext = pSimulation2 ? &pSimulation2->GetSimContext() : NULL;
 	m_PlayerID = playerID_;
@@ -558,6 +567,7 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 #define EL(x) int el_##x = xmb_file.GetElementID(#x)
 #define AT(x) int at_##x = xmb_file.GetAttributeID(#x)
 	EL(lightingmodel);
+	EL(posteffect);
 	EL(skyset);
 	EL(suncolour);
 	EL(sunelevation);
@@ -575,6 +585,15 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 	EL(tint);
 	EL(reflectiontint);
 	EL(reflectiontintstrength);
+	EL(fog);
+	EL(fogcolour);
+	EL(fogfactor);
+	EL(fogthickness);
+	EL(postproc);
+	EL(brightness);
+	EL(contrast);
+	EL(saturation);
+	EL(bloom);
 	AT(r); AT(g); AT(b);
 #undef AT
 #undef EL
@@ -587,7 +606,7 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 
 		if (element_name == el_lightingmodel)
 		{
-			m_MapReader.m_LightEnv.SetLightingModel(element.GetText());
+			// NOP - obsolete.
 		}
 		else if (element_name == el_skyset)
 		{
@@ -622,6 +641,56 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 				attrs.GetNamedItem(at_r).ToFloat(),
 				attrs.GetNamedItem(at_g).ToFloat(),
 				attrs.GetNamedItem(at_b).ToFloat());
+		}
+		else if (element_name == el_fog)
+		{
+			XERO_ITER_EL(element, fog)
+			{
+				int element_name = fog.GetNodeName();
+				if (element_name == el_fogcolour)
+				{
+					XMBAttributeList attrs = fog.GetAttributes();
+					m_MapReader.m_LightEnv.m_FogColor = RGBColor(
+						attrs.GetNamedItem(at_r).ToFloat(),
+						attrs.GetNamedItem(at_g).ToFloat(),
+						attrs.GetNamedItem(at_b).ToFloat());
+				}
+				else if (element_name == el_fogfactor)
+				{
+					m_MapReader.m_LightEnv.m_FogFactor = fog.GetText().ToFloat();
+				}
+				else if (element_name == el_fogthickness)
+				{
+					m_MapReader.m_LightEnv.m_FogMax = fog.GetText().ToFloat();
+				}
+			}
+		}
+		else if (element_name == el_postproc)
+		{
+			XERO_ITER_EL(element, postproc)
+			{
+				int element_name = postproc.GetNodeName();
+				if (element_name == el_brightness)
+				{
+					m_MapReader.m_LightEnv.m_Brightness = postproc.GetText().ToFloat();
+				}
+				else if (element_name == el_contrast)
+				{
+					m_MapReader.m_LightEnv.m_Contrast = postproc.GetText().ToFloat();
+				}
+				else if (element_name == el_saturation)
+				{
+					m_MapReader.m_LightEnv.m_Saturation = postproc.GetText().ToFloat();
+				}
+				else if (element_name == el_bloom)
+				{
+					m_MapReader.m_LightEnv.m_Bloom = postproc.GetText().ToFloat();
+				}
+				else if (element_name == el_posteffect)
+				{
+					m_MapReader.pPostproc->SetPostEffect(postproc.GetText().FromUTF8());
+				}
+			}
 		}
 		else if (element_name == el_water)
 		{
@@ -1321,7 +1390,9 @@ int CMapReader::ParseEnvironment()
 		return 0;
 	}
 
-	m_LightEnv.SetLightingModel("standard");
+	//m_LightEnv.SetLightingModel("standard");
+	if (pPostproc)
+		pPostproc->SetPostEffect(L"default");
 
 	std::wstring skySet;
 	GET_ENVIRONMENT_PROPERTY(envObj.get(), SkySet, skySet)

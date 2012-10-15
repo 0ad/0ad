@@ -7,7 +7,12 @@ const DEFAULT_OFFLINE_MAP = "Acropolis 1";
 const VICTORY_TEXT = ["Conquest", "None"];
 const VICTORY_DATA = ["conquest", "endless"];
 const VICTORY_DEFAULTIDX = 0;
-
+const POPULATION_CAP = ["50", "100", "150", "200", "250", "300", "Unlimited"];
+const POPULATION_CAP_DATA = [50, 100, 150, 200, 250, 300, 10000];
+const POPULATION_CAP_DEFAULTIDX = 5;
+const STARTING_RESOURCES = ["Very Low", "Low", "Medium", "High", "Very High", "Deathmatch"];
+const STARTING_RESOURCES_DATA = [100, 300, 500, 1000, 3000, 50000];
+const STARTING_RESOURCES_DEFAULTIDX = 1;
 // Max number of players for any map
 const MAX_PLAYERS = 8;
 
@@ -52,7 +57,6 @@ Naval maps are recommended to be played with human opponents only.";
 // we'll start with a 'loading' message and switch to the main screen in the
 // tick handler
 var g_LoadingState = 0; // 0 = not started, 1 = loading, 2 = loaded
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -134,6 +138,40 @@ function initMain()
 		numPlayersSelection.list_data = players;
 		numPlayersSelection.selected = MAX_PLAYERS - 1;
 
+		var populationCaps = getGUIObjectByName("populationCap");
+		populationCaps.list = POPULATION_CAP;
+		populationCaps.list_data = POPULATION_CAP_DATA;
+		populationCaps.selected = POPULATION_CAP_DEFAULTIDX;
+		populationCaps.onSelectionChange = function()
+		{
+			if (this.selected != -1)
+			{
+				g_GameAttributes.settings.PopulationCap = POPULATION_CAP_DATA[this.selected];
+			}
+			
+			if (!g_IsInGuiUpdate)
+			{
+				updateGameAttributes();
+			}
+		}
+		
+		var startingResourcesL = getGUIObjectByName("startingResources");
+		startingResourcesL.list = STARTING_RESOURCES;
+		startingResourcesL.list_data = STARTING_RESOURCES_DATA;
+		startingResourcesL.selected = STARTING_RESOURCES_DEFAULTIDX;
+		startingResourcesL.onSelectionChange = function()
+		{
+			if (this.selected != -1)
+			{
+				g_GameAttributes.settings.StartingResources = STARTING_RESOURCES_DATA[this.selected];
+			}
+			
+			if (!g_IsInGuiUpdate)
+			{
+				updateGameAttributes();
+			}
+		}
+		
 		var victoryConditions = getGUIObjectByName("victoryCondition");
 		victoryConditions.list = VICTORY_TEXT;
 		victoryConditions.list_data = VICTORY_DATA;
@@ -207,7 +245,9 @@ function initMain()
 		getGUIObjectByName("mapFilterText").hidden = false;
 		getGUIObjectByName("mapSelectionText").hidden = false;
 		getGUIObjectByName("mapSelection").hidden = true;
-
+		getGUIObjectByName("victoryConditionText").hidden = false;
+		getGUIObjectByName("victoryCondition").hidden = true;
+		
 		// Disable player and game options controls
 		// TODO: Shouldn't players be able to choose their own assignment?
 		for (var i = 0; i < MAX_PLAYERS; ++i)
@@ -774,6 +814,7 @@ function launchGame()
 		selectMap(getGUIObjectByName("mapSelection").list_data[Math.floor(Math.random() *
 			(getGUIObjectByName("mapSelection").list.length - 1)) + 1]);
 
+	g_GameAttributes.settings.mapType = g_GameAttributes.mapType;
 	var numPlayers = g_GameAttributes.settings.PlayerData.length; 
 	// Assign random civilizations to players with that choice 
 	//  (this is synchronized because we're the host) 
@@ -877,6 +918,10 @@ function onGameAttributesChange()
 		var mapSelectionBox = getGUIObjectByName("mapSelection");
 		mapSelectionBox.selected = mapSelectionBox.list_data.indexOf(mapName);
 		getGUIObjectByName("mapSelectionText").caption = getMapDisplayName(mapName);
+		var populationCapBox = getGUIObjectByName("populationCap");
+		populationCapBox.selected = populationCapBox.list_data.indexOf(mapSettings.PopulationCap);
+		var startingResourcesBox = getGUIObjectByName("startingResources");
+		startingResourcesBox.selected = startingResourcesBox.list_data.indexOf(mapSettings.StartingResources);
 		initMapNameList();
 	}
 
@@ -887,6 +932,8 @@ function onGameAttributesChange()
 	var lockTeams = getGUIObjectByName("lockTeams");
 	var mapSize = getGUIObjectByName("mapSize");
 	var enableCheats = getGUIObjectByName("enableCheats");
+	var populationCap = getGUIObjectByName("populationCap");
+	var startingResources = getGUIObjectByName("startingResources");
 	
 	var numPlayersText= getGUIObjectByName("numPlayersText");
 	var mapSizeText = getGUIObjectByName("mapSizeText");
@@ -894,11 +941,17 @@ function onGameAttributesChange()
 	var victoryConditionText = getGUIObjectByName("victoryConditionText");
 	var lockTeamsText = getGUIObjectByName("lockTeamsText");
 	var enableCheatsText = getGUIObjectByName("enableCheatsText");
+	var populationCapText = getGUIObjectByName("populationCapText");
+	var startingResourcesText = getGUIObjectByName("startingResourcesText");
 	
 	var sizeIdx = (g_MapSizes.tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.tiles.indexOf(mapSettings.Size) : g_MapSizes.default);
 	var victoryIdx = (VICTORY_DATA.indexOf(mapSettings.GameType) != -1 ? VICTORY_DATA.indexOf(mapSettings.GameType) : VICTORY_DEFAULTIDX);
 	enableCheats.checked = (g_GameAttributes.settings.CheatsEnabled === undefined || !g_GameAttributes.settings.CheatsEnabled ? false : true)
 	enableCheatsText.caption = (enableCheats.checked ? "Yes" : "No");
+	populationCap.selected = (POPULATION_CAP_DATA.indexOf(mapSettings.PopulationCap) != -1 ? POPULATION_CAP_DATA.indexOf(mapSettings.PopulationCap) : POPULATION_CAP_DEFAULTIDX);
+	populationCapText.caption = POPULATION_CAP[populationCap.selected];
+	startingResources.selected = (STARTING_RESOURCES_DATA.indexOf(mapSettings.StartingResources) != -1 ? STARTING_RESOURCES_DATA.indexOf(mapSettings.StartingResources) : STARTING_RESOURCES_DEFAULTIDX);
+	startingResourcesText.caption = STARTING_RESOURCES[startingResources.selected];
 	// Handle map type specific logic
 	switch (g_GameAttributes.mapType)
 	{
@@ -911,13 +964,17 @@ function onGameAttributesChange()
 			revealMap.hidden = false;
 			victoryCondition.hidden = false;
 			lockTeams.hidden = false;
+			populationCap.hidden = false;
+			startingResources.hidden = false;
 			
 			numPlayersText.hidden = true;
 			mapSizeText.hidden = true;
 			revealMapText.hidden = true;
 			victoryConditionText.hidden = true;
 			lockTeamsText.hidden = true;
-
+			populationCapText.hidden = true;
+			startingResourcesText.hidden = true;
+			
 			// Update map preview
 			getGUIObjectByName("mapPreview").sprite = "cropped:(0.78125,0.5859375)session/icons/mappreview/" + getMapPreview(mapName);
 			
@@ -939,10 +996,13 @@ function onGameAttributesChange()
 			revealMapText.hidden = false;
 			victoryConditionText.hidden = false;
 			lockTeamsText.hidden = false;
-			
+			populationCap.hidden = true;
+			populationCapText.hidden = false;
+			startingResources.hidden = true;
+			startingResourcesText.hidden = false;
 			// Update map preview
 			getGUIObjectByName("mapPreview").sprite = "cropped:(0.78125,0.5859375)session/icons/mappreview/" + getMapPreview(mapName);
-			
+
 			numPlayersText.caption = numPlayers;
 			mapSizeText.caption = g_MapSizes.names[sizeIdx];
 			revealMapText.caption = (mapSettings.RevealMap ? "Yes" : "No");
@@ -964,7 +1024,11 @@ function onGameAttributesChange()
 		revealMapText.hidden = false;
 		victoryConditionText.hidden = false;
 		lockTeamsText.hidden = false;
-
+		populationCap.hidden = true;
+		populationCapText.hidden = false;
+		startingResources.hidden = true;
+		startingResourcesText.hidden = false;
+		
 		// Update map preview
 		getGUIObjectByName("mapPreview").sprite = "cropped:(0.78125,0.5859375)session/icons/mappreview/" + getMapPreview(mapName);
 		numPlayersText.caption = numPlayers;
@@ -972,7 +1036,7 @@ function onGameAttributesChange()
 		revealMapText.caption = (mapSettings.RevealMap ? "Yes" : "No");
 		victoryConditionText.caption = VICTORY_TEXT[victoryIdx];
 		lockTeamsText.caption = (mapSettings.LockTeams === undefined || mapSettings.LockTeams  ? "Yes" : "No");
-
+		getGUIObjectByName("populationCap").selected = POPULATION_CAP_DEFAULTIDX;
 		break;
 
 	default:
@@ -1324,6 +1388,11 @@ function addChatMessage(msg)
 	g_ChatMessages.push(formatted);
 
 	getGUIObjectByName("chatText").caption = g_ChatMessages.join("\n");
+}
+
+function toggleMoreOptions()
+{
+	getGUIObjectByName("moreOptions").hidden = !getGUIObjectByName("moreOptions").hidden;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
