@@ -2,19 +2,23 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
-		<SkySet>rain</SkySet>
-		<SunColour r="0.956863" g="0.882353" b="0.713726"/>
+		<SkySet>cumulus</SkySet>
+		<SunColour r="0.866667" g="0.737255" b="0.466667"/>
 		<SunElevation angle="0.920389"/>
-		<SunRotation angle="0.582913"/>
-		<TerrainAmbientColour r="0.356863" g="0.356863" b="0.356863"/>
-		<UnitsAmbientColour r="0.431373" g="0.431373" b="0.431373"/>
+		<SunRotation angle="0.263845"/>
+		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.552941"/>
+		<UnitsAmbientColour r="0.407843" g="0.462745" b="0.501961"/>
+		<Fog>
+			<FogFactor>0.00338867</FogFactor>
+			<FogThickness>0</FogThickness>
+			<FogColour r="1" g="1" b="1"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
 				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>19.2</Height>
-				<Shininess>0.488281</Shininess>
+				<Shininess>4.15039</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>1</Murkiness>
 				<Tint r="0.447059" g="0.34902" b="0.211765"/>
@@ -22,16 +26,23 @@
 				<ReflectionTintStrength>0.298828</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0.0419922</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>1</Saturation>
+			<Bloom>0.162695</Bloom>
+			<PostEffect>hdr</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="362.09" y="70.5112" z="343.296"/>
+		<Position x="334.687" y="88.8236" z="346.694"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview" : "gambia_river_scenario.png",
+  "Preview": "gambia_river_scenario.png",
   "Description": "All players start on one bank of the river, with minimal harvestable metal. Across the Gambia River is a savanna with many deposits of metal to be claimed. \u000a\u000a(Warning: Large map. Good computer specs recommended)",
   "GameType": "conquest",
   "Keywords": [],
@@ -7023,6 +7034,7 @@
 			<Player>0</Player>
 			<Position x="739.46607" z="381.22278"/>
 			<Orientation y="2.35621"/>
+			<Obstruction group="15053"/>
 		</Entity>
 		<Entity uid="1419">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -20223,6 +20235,7 @@
 			<Player>0</Player>
 			<Position x="696.31537" z="372.48362"/>
 			<Orientation y="2.35621"/>
+			<Obstruction group="15054"/>
 		</Entity>
 		<Entity uid="5013">
 			<Template>gaia/flora_tree_cretan_date_palm_tall</Template>
@@ -50118,6 +50131,7 @@
 			<Player>0</Player>
 			<Position x="742.30958" z="211.30575"/>
 			<Orientation y="1.05056"/>
+			<Obstruction group="15067"/>
 		</Entity>
 		<Entity uid="11426">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -56916,6 +56930,7 @@
 			<Player>0</Player>
 			<Position x="681.05427" z="345.56266"/>
 			<Orientation y="2.35621"/>
+			<Obstruction group="15055"/>
 		</Entity>
 		<Entity uid="13253">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -56928,6 +56943,7 @@
 			<Player>0</Player>
 			<Position x="680.44025" z="347.79108"/>
 			<Orientation y="-0.81926"/>
+			<Obstruction group="15055"/>
 		</Entity>
 		<Entity uid="13256">
 			<Template>gaia/flora_tree_senegal_date_palm</Template>
@@ -62275,6 +62291,7 @@
 			<Player>0</Player>
 			<Position x="665.13312" z="319.2722"/>
 			<Orientation y="-1.35686"/>
+			<Obstruction group="15056"/>
 		</Entity>
 		<Entity uid="14426">
 			<Template>gaia/flora_tree_cretan_date_palm_short</Template>
