@@ -986,7 +986,15 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 		if (!Autostart(args))
 		{
 			const bool setup_gui = ((flags & INIT_NO_GUI) == 0);
-			InitPs(setup_gui, L"page_pregame.xml", JSVAL_VOID);
+			// We only want to display the splash screen at startup
+			CScriptValRooted data;
+			if (g_GUI)
+			{
+				ScriptInterface& scriptInterface = g_GUI->GetScriptInterface();
+				scriptInterface.Eval("({})", data);
+				scriptInterface.SetProperty(data.get(), "isStartup", true);
+			}
+			InitPs(setup_gui, L"page_pregame.xml", data.get());
 		}
 	}
 	catch (PSERROR_Game_World_MapLoadFailed e)

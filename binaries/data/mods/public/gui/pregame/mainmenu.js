@@ -3,7 +3,7 @@ var currentSubmenuType; // contains submenu type
 const MARGIN = 4; // menu border size
 const background = "hellenes1"; // Background type. Currently: 'hellenes1', 'persians1'.
 
-function init()
+function init(initData)
 {
 	initMusic();
 
@@ -16,11 +16,10 @@ function init()
 	currentSubmenuType = "submenuSinglePlayer";
 
 	EnableUserReport(Engine.IsUserReportEnabled());
-	
-	if(Engine.IsSplashScreenEnabled())
-	{
+
+	// Only show splash screen once
+	if (initData && initData.isStartup && Engine.IsSplashScreenEnabled())
 		Engine.PushGuiPage("page_splashscreen.xml", { "page": "splashscreen" } );
-	}
 }
 
 var t0 = new Date;
