@@ -3,7 +3,21 @@
     <technique>
         <require shaders="glsl"/>
 		<pass shader="glsl/hqdof">
-			<define name="BLUR_FOV" value="3"/>
+			<define name="samples" value="3"/>
+			<define name="rings" value="3"/>
+
+			<define name="ndofstart" value="10.0"/>
+			<define name="ndofdist" value="35.0"/>
+			<define name="fdofstart" value="8.0"/>
+			<define name="fdofdist" value="40.0"/>
+
+			<define name="maxblur" value="2"/>
+
+			<define name="threshold" value="0.9"/>
+			<define name="gain" value="2.0"/>
+
+			<define name="bias" value="0.5"/>
+			<define name="fringe" value="0.7"/>
 		</pass>
 		<pass shader="glsl/hdr"/>
     </technique>

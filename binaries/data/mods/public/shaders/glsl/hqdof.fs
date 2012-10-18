@@ -59,20 +59,22 @@ uniform bool showFocus; //show debug focus point and focal range (red = focal po
 make sure that these two values are the same for your camera, otherwise distances will be wrong.
 */
 
-float znear = 0.5; //camera clipping start
-float zfar = 100.0; //camera clipping end
+//float znear = 0.5; //camera clipping start
+//float zfar = 100.0; //camera clipping end
+uniform float zNear;
+uniform float zFar;
 
 //------------------------------------------
 //user variables
 
-int samples = 3; //samples on the first ring
-int rings = 3; //ring count
+//int samples = 3; //samples on the first ring
+//int rings = 3; //ring count
 
 bool manualdof = true; //manual dof calculation
-float ndofstart = 3.0; //near dof falloff start
-float ndofdist = 8.0; //near dof falloff distance
-float fdofstart = 3.0; //far dof falloff start
-float fdofdist = 10.0; //far dof falloff distance
+//float ndofstart = 10.0; //near dof falloff start
+//float ndofdist = 35.0; //near dof falloff distance
+//float fdofstart = 8.0; //far dof falloff start
+//float fdofdist = 40.0; //far dof falloff distance
 
 float CoC = 0.03;//circle of confusion size in mm (35mm film = 0.03mm)
 
@@ -83,13 +85,13 @@ float vignfade = 22.0; //f-stops till vignete fades
 
 bool autofocus = true; //use autofocus in shader? disable if you use external focalDepth value
 vec2 focus = vec2(0.5,0.5); // autofocus point on screen (0.0,0.0 - left lower corner, 1.0,1.0 - upper right)
-float maxblur = 2.0; //clamp value of max blur (0.0 = no blur,1.0 default)
+//float maxblur = 2.0; //clamp value of max blur (0.0 = no blur,1.0 default)
 
-float threshold = 0.9; //highlight threshold;
-float gain = 2.0; //highlight gain;
+//float threshold = 0.9; //highlight threshold;
+//float gain = 2.0; //highlight gain;
 
-float bias = 0.5; //bokeh edge bias
-float fringe = 0.7; //bokeh chromatic aberration/fringing
+//float bias = 0.5; //bokeh edge bias
+//float fringe = 0.7; //bokeh chromatic aberration/fringing
 
 bool noise = true; //use noise instead of pattern for sample dithering
 float namount = 0.0001; //dither amount
@@ -219,7 +221,7 @@ vec3 debugFocus(vec3 col, float blur, float depth)
 
 float linearize(float depth)
 {
-	return -zfar * znear / (depth * (zfar - znear) - zfar);
+	return -zFar * zNear / (depth * (zFar - zNear) - zFar);
 }
 
 float vignette()
@@ -300,18 +302,19 @@ void main()
 
 		for (int j = 0 ; j < ringsamples ; j += 1)
 		{
-			float step = PI*2.0 / float(ringsamples);
-			float pw = (cos(float(j)*step)*float(i));
-			float ph = (sin(float(j)*step)*float(i));
-			float p = 1.0;
+			float step = PI*2.0 / ringsamples;
+			float pw = (cos(j*step)*i);
+			float ph = (sin(j*step)*i);
+			/*float p = 1.0;
 			if (pentagon)
 			{
 				p = penta(vec2(pw,ph));
-			}
-			col += color(v_tex + vec2(pw*w,ph*h),blur)*mix(1.0,(float(i))/(float(rings)),bias)*p;
-			s += 1.0*mix(1.0,(float(i))/(float(rings)),bias)*p;
+			}*/
+			col += color(v_tex + vec2(pw*w,ph*h),blur)*mix(1.0,i/rings,bias);//*p
+			s += 1.0*mix(1.0,i/rings,bias);//*p
 		}
 	}
+
 	col /= s; //divide by sample count
 
 	if (showFocus)
@@ -326,4 +329,22 @@ void main()
 
 	gl_FragColor.rgb = col;
 	gl_FragColor.a = 1.0;
+
+	#ifdef DEBUGVISUALIZATION
+	gl_FragColor.rgb = vec3(20 - (texture2D(depthTex, v_tex).x * 20));
+
+	if (v_tex.x < 0.501 && v_tex.x > 0.499)
+	{
+		gl_FragColor.rgb += vec3(0.1);
+	}
+	if (v_tex.y < 0.501 && v_tex.y > 0.499)
+	{
+		gl_FragColor.rgb += vec3(0.1);
+	}
+
+	if (blur == 0)
+	{
+		gl_FragColor.rgb += vec3(0.05);
+	}
+	#endif
 }
