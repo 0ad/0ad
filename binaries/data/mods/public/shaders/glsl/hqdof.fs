@@ -39,6 +39,15 @@ changelog:
 - bokeh bias to bring out bokeh edges
 - image thresholding to bring out highlights when image is out of focus
 
+----------------------
+Changes from original shader:
+
+- Changed names of samplers and values to their equivalents in 0 A.D.'s postproc manager.
+- Moved user variables into HQDOF.xml defines and modified their values..
+- Removed an optimization that caused lines to appear on the edges of the (mostly) focused area.
+- Removed unnecessary pentagon bokeh shaped code from the sample code.
+----------------------
+
 */
 
 uniform sampler2D renderedTex;
