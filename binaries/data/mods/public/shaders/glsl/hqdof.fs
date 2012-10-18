@@ -65,7 +65,7 @@ float zfar = 100.0; //camera clipping end
 //------------------------------------------
 //user variables
 
-int samples = 5; //samples on the first ring
+int samples = 3; //samples on the first ring
 int rings = 3; //ring count
 
 bool manualdof = true; //manual dof calculation
