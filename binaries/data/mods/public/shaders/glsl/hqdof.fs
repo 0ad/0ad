@@ -46,6 +46,7 @@ Changes from original shader:
 - Moved user variables into HQDOF.xml defines and modified their values..
 - Removed an optimization that caused lines to appear on the edges of the (mostly) focused area.
 - Removed unnecessary pentagon bokeh shaped code from the sample code.
+- Made manual DOF scale with zoom.
 ----------------------
 
 */
@@ -60,9 +61,9 @@ uniform float height;
 vec2 texel = vec2(1.0/width,1.0/height);
 
 uniform float focalDepth;  //focal distance value in meters, but you may use autofocus option below
-uniform float focalLength; //focal length in mm
-uniform float fstop; //f-stop value
-uniform bool showFocus; //show debug focus point and focal range (red = focal point, green = focal range)
+//uniform float focalLength = 1000; //focal length in mm
+//uniform float fstop = 200; //f-stop value
+uniform bool showFocus = false; //show debug focus point and focal range (red = focal point, green = focal range)
 
 /*
 make sure that these two values are the same for your camera, otherwise distances will be wrong.
@@ -79,7 +80,7 @@ uniform float zFar;
 //int samples = 3; //samples on the first ring
 //int rings = 3; //ring count
 
-bool manualdof = true; //manual dof calculation
+//bool manualdof = false; //manual dof calculation
 //float ndofstart = 10.0; //near dof falloff start
 //float ndofdist = 35.0; //near dof falloff distance
 //float fdofstart = 8.0; //far dof falloff start
@@ -272,6 +273,7 @@ void main()
 		float b = (a-fdofstart)/fdofdist; //far DoF
 		float c = (-a-ndofstart)/ndofdist; //near Dof
 		blur = (a>0.0)?b:c;
+		blur /= max((fDepth / 25) - 5, 1);
 	}
 	else
 	{
