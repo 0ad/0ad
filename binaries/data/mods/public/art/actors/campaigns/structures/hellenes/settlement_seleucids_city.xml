@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Eastern Greek City">
+      <mesh>structural/campaigns/settlement_walls_eastern.dae</mesh>
+      <props>
+        <prop actor="campaigns/structures/hellenes/settlement_seleucids_greek_buildings.xml" attachpoint="root"/>
+        <prop actor="campaigns/structures/hellenes/settlement_seleucids_eastern_buildings.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/strat_eastern_greek_walls.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+</actor>

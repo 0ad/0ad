@@ -2,19 +2,23 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
-		<SkySet>sunrise</SkySet>
-		<SunColour r="0.976471" g="0.831373" b="0.529412"/>
-		<SunElevation angle="0.447922"/>
-		<SunRotation angle="-1.11674"/>
+		<SkySet>cloudless</SkySet>
+		<SunColour r="0.819608" g="0.74902" b="0.513726"/>
+		<SunElevation angle="0.757787"/>
+		<SunRotation angle="-0.693359"/>
 		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
-		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.552941"/>
+		<Fog>
+			<FogFactor>0.00199219</FogFactor>
+			<FogThickness>0</FogThickness>
+			<FogColour r="0.819608" g="0.74902" b="0.513726"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
 				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>26.3344</Height>
-				<Shininess>0</Shininess>
+				<Shininess>1.2207</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>1</Murkiness>
 				<Tint r="0.313726" g="0.321569" b="0.47451"/>
@@ -22,16 +26,23 @@
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>-0.0253906</Brightness>
+			<Contrast>1.00879</Contrast>
+			<Saturation>1</Saturation>
+			<Bloom>0.2</Bloom>
+			<PostEffect>hdr</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="500.544" y="578.87" z="-343.429"/>
-		<Rotation angle="0.00699301"/>
-		<Declination angle="0.69237"/>
+		<Position x="748.108" y="96.3776" z="138.75"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview" : "median_oasis_4.png",
+  "Preview": "median_oasis_4.png",
   "Description": "An oasis surrounded by mountains and desert. Farmlands near the water's edge provide much-needed boost in farming, but foraging and hunting is in short supply.",
   "GameType": "conquest",
   "Keywords": [],
@@ -5674,7 +5685,7 @@
 		</Entity>
 		<Entity uid="1113">
 			<Template>actor|particle/blowing_sand.xml</Template>
-			<Position x="579.60743" z="843.50806"/>
+			<Position x="551.94025" z="865.69416"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1114">
@@ -5694,7 +5705,7 @@
 		</Entity>
 		<Entity uid="1117">
 			<Template>actor|particle/blowing_sand.xml</Template>
-			<Position x="605.13324" z="796.37647"/>
+			<Position x="607.37726" z="840.66022"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1118">
@@ -5739,7 +5750,7 @@
 		</Entity>
 		<Entity uid="1126">
 			<Template>actor|particle/blowing_sand.xml</Template>
-			<Position x="527.0105" z="782.8733"/>
+			<Position x="535.91858" z="774.63703"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1127">

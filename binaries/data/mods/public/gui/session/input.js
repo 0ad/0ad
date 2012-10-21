@@ -321,20 +321,20 @@ function getActionInfo(action, target)
 				switch (tradingDetails.type)
 				{
 				case "is first":
-					tooltip = "First trade market.";
+					tooltip = "Origin trade market.";
 					if (tradingDetails.hasBothMarkets)
-						tooltip += " Gain: " + tradingDetails.gain + " " + tradingDetails.goods + ". Click to establish another route."
+						tooltip += " Gain: " + tradingDetails.gain + " " + tradingDetails.goods + ". Right-click to create a new trade route."
 					else
-						tooltip += " Click on another market to establish a trade route."
+						tooltip += " Right-click on another market to set it as a destination trade market."
 					break;
 				case "is second":
-					tooltip = "Second trade market. Gain: " + tradingDetails.gain + " " + tradingDetails.goods + "." + " Click to establish another route.";
+					tooltip = "Destination trade market. Gain: " + tradingDetails.gain + " " + tradingDetails.goods + "." + " Right-click to create a new trade route.";
 					break;
 				case "set first":
-					tooltip = "Set as first trade market";
+					tooltip = "Set as origin trade market";
 					break;
 				case "set second":
-					tooltip = "Set as second trade market. Gain: " + tradingDetails.gain + " " + tradingDetails.goods + ".";
+					tooltip = "Set as destination trade market. Gain: " + tradingDetails.gain + " " + tradingDetails.goods + ".";
 					break;
 				}
 				return {"possible": true, "tooltip": tooltip};
