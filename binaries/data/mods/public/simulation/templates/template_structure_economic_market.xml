@@ -30,7 +30,7 @@
   <Identity>
     <GenericName>Market</GenericName>
     <Tooltip>Create trade units to trade between other markets. Barter resources.</Tooltip>
-    <Classes datatype="tokens">Town Market BarterMarket</Classes>
+    <Classes datatype="tokens">Town Market BarterMarket -ConquestCritical</Classes>
     <Icon>structures/market.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
