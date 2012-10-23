@@ -7,3 +7,4 @@
  */
 Engine.RegisterMessageType("EntityRenamed");
 
+Engine.RegisterMessageType("DiplomacyChanged");

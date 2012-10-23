@@ -21,6 +21,7 @@ Player.prototype.Init = function()
 	};
 
 	this.team = -1;	// team number of the player, players on the same team will always have ally diplomatic status - also this is useful for team emblems, scoring, etc.
+	this.teamsLocked = false;
 	this.state = "active"; // game state - one of "active", "defeated", "won"
 	this.diplomacy = [];	// array of diplomatic stances for this player with respect to other players (including gaia and self)
 	this.conquestCriticalEntitiesCount = 0; // number of owned units with ConquestCritical class
@@ -180,7 +181,7 @@ Player.prototype.GetNeededResources = function(amounts)
 Player.prototype.TrySubtractResources = function(amounts)
 {
 	var amountsNeeded = this.GetNeededResources(amounts);
-			
+
 	// If we don't have enough resources, send a notification to the player
 	if (amountsNeeded)
 	{
@@ -229,7 +230,37 @@ Player.prototype.GetTeam = function()
 
 Player.prototype.SetTeam = function(team)
 {
-	this.team = team;
+	if (!this.teamsLocked)
+	{
+		this.team = team;
+
+		var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+		if (cmpPlayerManager && this.team != -1)
+		{
+			// Set all team members as allies
+			for (var i = 0; i < this.diplomacy.length; ++i)
+			{
+				var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
+				if (this.team == cmpPlayer.GetTeam())
+				{
+					this.SetAlly(i);
+					cmpPlayer.SetAlly(this.playerID);
+				}
+			}
+		}
+
+		Engine.BroadcastMessage(MT_DiplomacyChanged, {"player": this.playerID});
+	}
+};
+
+Player.prototype.SetLockTeams = function(value)
+{
+	this.teamsLocked = value;
+};
+
+Player.prototype.GetLockTeams = function()
+{
+	return this.teamsLocked;
 };
 
 Player.prototype.GetDiplomacy = function()
@@ -239,15 +270,33 @@ Player.prototype.GetDiplomacy = function()
 
 Player.prototype.SetDiplomacy = function(dipl)
 {
+	// Should we check for teamsLocked here?
 	this.diplomacy = dipl;
-	this.UpdateSharedLos();
+	Engine.BroadcastMessage(MT_DiplomacyChanged, {"player": this.playerID});
 };
 
 Player.prototype.SetDiplomacyIndex = function(idx, value)
 {
-	// TODO: send a message too?
-	this.diplomacy[idx] = value;
-	this.UpdateSharedLos();
+	// You can have alliances with other players,
+	if (this.teamsLocked)
+	{
+		var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+		if (cmpPlayerManager)
+		{
+			var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(idx), IID_Player);
+			// but can't stab your team members in the back
+			if (this.team == -1 || cmpPlayer && this.team != cmpPlayer.GetTeam())
+			{
+				this.diplomacy[idx] = value;
+				Engine.BroadcastMessage(MT_DiplomacyChanged, {"player": this.playerID});
+			}
+		}
+	}
+	else
+	{
+		this.diplomacy[idx] = value;
+		Engine.BroadcastMessage(MT_DiplomacyChanged, {"player": this.playerID});
+	}
 };
 
 Player.prototype.UpdateSharedLos = function()
@@ -256,12 +305,18 @@ Player.prototype.UpdateSharedLos = function()
 	if (!cmpRangeManager)
 		return;
 
-	// TODO: only check our alliances currently, more advanced checks
-	//	will be needed when we have full diplomacy
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	if (!cmpPlayerManager)
+		return;
+
 	var sharedLos = [];
 	for (var i = 0; i < this.diplomacy.length; ++i)
 		if (this.IsAlly(i))
-			sharedLos.push(i);
+		{
+			var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
+			if (cmpPlayer && cmpPlayer.IsAlly(this.playerID))
+				sharedLos.push(i);
+		}
 
 	cmpRangeManager.SetSharedLos(this.playerID, sharedLos);
 };
@@ -377,7 +432,7 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 	if (msg.from == this.playerID)
 	{
 		if (isConquestCritical)
-			this.conquestCriticalEntitiesCount--;	
+			this.conquestCriticalEntitiesCount--;
 
 		var cost = Engine.QueryInterface(msg.entity, IID_Cost);
 		if (cost)
@@ -404,6 +459,8 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 Player.prototype.OnPlayerDefeated = function(msg)
 {
 	this.state = "defeated";
+
+	// TODO: Tribute all resources to this player's active allies (if any)
 
 	// Reassign all player's entities to Gaia
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
@@ -432,15 +489,38 @@ Player.prototype.OnPlayerDefeated = function(msg)
 	cmpGUIInterface.PushNotification(notification);
 };
 
+Player.prototype.OnDiplomacyChanged = function()
+{
+	this.UpdateSharedLos();
+};
 
 Player.prototype.SetCheatEnabled = function(flag)
 {
 	this.cheatsEnabled = flag;
-}
+};
 
 Player.prototype.GetCheatEnabled = function(flag)
 {
 	return this.cheatsEnabled;
-}
+};
+
+Player.prototype.TributeResource = function(player, amounts)
+{
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	if (!cmpPlayerManager)
+		return;
+
+	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(player), IID_Player);
+
+	if (cmpPlayer && !this.GetNeededResources(amounts))
+	{
+		for (var type in amounts)
+			this.resourceCount[type] -= amounts[type];
+
+		cmpPlayer.AddResources(amounts);
+		// TODO: notify the receiver
+	}
+	// else not enough resources... TODO: send gui notification
+};
 
 Engine.RegisterComponentType(IID_Player, "Player", Player);

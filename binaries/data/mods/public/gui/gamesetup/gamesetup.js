@@ -285,6 +285,7 @@ function initMain()
 			getGUIObjectByName("enableCheatsText").hidden = false;
 		}
 	}
+
 	// Settings for all possible player slots
 	var boxSpacing = 32;
 	for (var i = 0; i < MAX_PLAYERS; ++i)
@@ -986,7 +987,7 @@ function onGameAttributesChange()
 			victoryConditionText.caption = "Victory condition:";
 			victoryCondition.selected = victoryIdx;
 			lockTeamsText.caption = "Teams locked:";
-			lockTeams.checked =  (mapSettings.LockTeams === undefined || mapSettings.LockTeams ? true : false);
+			lockTeams.checked = (mapSettings.LockTeams ? true : false);
 		}
 		else
 		{
@@ -1007,7 +1008,7 @@ function onGameAttributesChange()
 			mapSizeText.caption = g_MapSizes.names[sizeIdx];
 			revealMapText.caption = (mapSettings.RevealMap ? "Yes" : "No");
 			victoryConditionText.caption = VICTORY_TEXT[victoryIdx];
-			lockTeamsText.caption = (mapSettings.LockTeams === undefined || mapSettings.LockTeams ? "Yes" : "No");
+			lockTeamsText.caption = (mapSettings.LockTeams ? "Yes" : "No");
 		}
 
 		break;
@@ -1035,8 +1036,9 @@ function onGameAttributesChange()
 		mapSizeText.caption = "Default";
 		revealMapText.caption = (mapSettings.RevealMap ? "Yes" : "No");
 		victoryConditionText.caption = VICTORY_TEXT[victoryIdx];
-		lockTeamsText.caption = (mapSettings.LockTeams === undefined || mapSettings.LockTeams  ? "Yes" : "No");
+		lockTeamsText.caption = (mapSettings.LockTeams ? "Yes" : "No");
 		getGUIObjectByName("populationCap").selected = POPULATION_CAP_DEFAULTIDX;
+
 		break;
 
 	default:

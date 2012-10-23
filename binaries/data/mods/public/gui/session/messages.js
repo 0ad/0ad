@@ -36,6 +36,19 @@ function handleNotifications()
 			"player": notification.player
 		});
 	}
+	else if (notification.type == "diplomacy")
+	{
+		addChatMessage({
+			"type": "diplomacy",
+			"player": notification.player,
+			"player1": notification.player1,
+			"status": notification.status
+		});
+
+		// If the diplomacy panel is open refresh it.
+		if (isDiplomacyOpen)
+			openDiplomacy();
+	}
 	else if (notification.type == "quit")
 	{
 		// Used for AI testing
@@ -272,6 +285,23 @@ function addChatMessage(msg, playerAssignments)
 		var verb = (!g_IsNetworked && msg.player == Engine.GetPlayerID()) ? "have" : "has";
 		formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] " + verb + " been defeated.";
 		break;
+	case "diplomacy":
+		username= escapeText(g_Players[msg.player1].name);
+
+		// TODO: Proper wording for all cases
+		if (msg.player == Engine.GetPlayerID())
+		{
+			playerColor = g_Players[msg.player1].color.r + " " + g_Players[msg.player1].color.g + " " + g_Players[msg.player1].color.b;
+			formatted = "You are now "+msg.status+" with [color=\"" + playerColor + "\"]"+username + "[/color].";
+		}
+		else if (msg.player1 == Engine.GetPlayerID())
+		{
+			playerColor = g_Players[msg.player].color.r + " " + g_Players[msg.player].color.g + " " + g_Players[msg.player].color.b;
+			formatted = "[color=\"" + playerColor + "\"]" + username + "[/color] is now " + msg.status + " with you."
+		}
+		else // No need for other players to know of this.
+			return;
+		break;
 	case "message":
 		// May have been hidden by the 'team' command.
 		if (msg.hide)
@@ -365,7 +395,7 @@ function parseChatCommands(msg, playerAssignments)
 					matched = player.name;
 
 			// If the local player's name was the longest one matched, show the message.
-			var playerName = g_Players[Engine.GetPlayerID()].name;			
+			var playerName = g_Players[Engine.GetPlayerID()].name;
 			if (matched.length && (matched == playerName || sender == Engine.GetPlayerID()))
 			{
 				msg.prefix = "(Private) ";
