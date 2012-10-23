@@ -62,12 +62,14 @@ GuiInterface.prototype.GetSimulationState = function(player)
 		else if (cmpTechnologyManager.IsTechnologyResearched("phase_village"))
 			phase = "village";
 		
-		// store player ally/enemy data as arrays
+		// store player ally/neutral/enemy data as arrays
 		var allies = [];
+		var neutrals = [];
 		var enemies = [];
 		for (var j = 0; j <= n; ++j)
 		{
 			allies[j] = cmpPlayer.IsAlly(j);
+			neutrals[j] = cmpPlayer.IsNeutral(j);
 			enemies[j] = cmpPlayer.IsEnemy(j);
 		}
 		var playerData = {
@@ -81,8 +83,10 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"trainingBlocked": cmpPlayer.IsTrainingBlocked(),
 			"state": cmpPlayer.GetState(),
 			"team": cmpPlayer.GetTeam(),
+			"teamsLocked": cmpPlayer.GetLockTeams(),
 			"phase": phase,
 			"isAlly": allies,
+			"isNeutral": neutrals,
 			"isEnemy": enemies,
 			"buildLimits": cmpPlayerBuildLimits.GetLimits(),
 			"buildCounts": cmpPlayerBuildLimits.GetCounts(),

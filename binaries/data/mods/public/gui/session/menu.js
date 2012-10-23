@@ -32,6 +32,8 @@ const MENU_SPEED = 1.2;
 var isMenuOpen = false;
 var menu;
 
+var isDiplomacyOpen = false;
+
 // Ignore size defined in XML and set the actual menu size here
 function initMenuPosition()
 {
@@ -111,6 +113,13 @@ function chatMenuButton()
 	openChat();
 }
 
+function diplomacyMenuButton()
+{
+	closeMenu();
+	closeOpenDialogs();
+	openDiplomacy();
+}
+
 function pauseMenuButton()
 {
 	togglePause();
@@ -159,14 +168,14 @@ function openSettings(pause)
 {
 	getGUIObjectByName("settingsDialogPanel").hidden = false;
 	if (pause)
-	    pauseGame();
+		pauseGame();
 }
 
 function closeSettings(resume)
 {
-        getGUIObjectByName("settingsDialogPanel").hidden = true;
+	getGUIObjectByName("settingsDialogPanel").hidden = true;
 	if (resume)
-	    resumeGame();
+		resumeGame();
 }
 
 function openChat()
@@ -205,6 +214,102 @@ function toggleChatWindow(teamChat)
 	getGUIObjectByName("toggleTeamChat").checked = teamChat;
 	chatWindow.hidden = !chatWindow.hidden;
 }
+
+function setDiplomacy(data)
+{
+	Engine.PostNetworkCommand({"type": "diplomacy", "to": data.to, "player": data.player});
+}
+
+function tributeResource(data)
+{
+	Engine.PostNetworkCommand({"type": "tribute", "player": data.player, "amounts":  data.amounts});
+}
+
+function openDiplomacy()
+{
+	isDiplomacyOpen = true;
+
+	var we = Engine.GetPlayerID();
+	var players = getPlayerData(g_PlayerAssignments);
+
+	// Get offset for one line
+	var onesize = getGUIObjectByName("diplomacyPlayer[0]").size;
+	var rowsize = onesize.bottom - onesize.top;
+
+	// We don't include gaia
+	for (var i = 1; i < players.length; i++)
+	{
+		// Apply offset
+		var row = getGUIObjectByName("diplomacyPlayer["+(i-1)+"]");
+		var size = row.size;
+		size.top = rowsize*(i-1);
+		size.bottom = rowsize*i;
+		row.size = size;
+
+		// Set background colour
+		var playerColor = players[i].color.r+" "+players[i].color.g+" "+players[i].color.b;
+		row.sprite = "colour: "+playerColor + " 32";
+
+		getGUIObjectByName("diplomacyPlayerName["+(i-1)+"]").caption = "[color=\"" + playerColor + "\"]" + players[i].name + "[/color]";
+		getGUIObjectByName("diplomacyPlayerCiv["+(i-1)+"]").caption = g_CivData[players[i].civ].Name;
+
+		getGUIObjectByName("diplomacyPlayerTeam["+(i-1)+"]").caption = (players[i].team < 0) ? "None" : players[i].team+1;
+
+		// Don't display this for ourself and our locked team members
+		if (i != we && !(players[we].teamsLocked && players[we].team != -1 && players[we].team == players[i].team))
+		{
+			getGUIObjectByName("diplomacyPlayerTheirs["+(i-1)+"]").caption = (players[i].isAlly[we] ? "Ally" : (players[i].isNeutral[we] ? "Neutral" : "Enemy") );
+
+			// Set up the buttons
+			for each (var setting in ["ally", "neutral", "enemy"])
+			{
+				var button = getGUIObjectByName("diplomacyPlayer"+toTitleCase(setting)+"["+(i-1)+"]");
+				// Disable the button with the current setting
+				// TODO: Needs new graphics for the button (enabled/disabled) to make it
+				// look more like a checkbox
+				button.enabled = !((setting=="ally" && players[we].isAlly[i])
+					|| (setting=="neutral" && players[we].isNeutral[i])
+					|| (setting=="enemy" && players[we].isEnemy[i]));
+				button.onpress = (function(e){ return function() { setDiplomacy(e) } })({"player": i, "to": setting});
+				button.hidden = false;
+			}
+		}
+		
+		// Tributes (you can't tribute to yourself)
+		if (i != we)
+		{
+			for each (var resource in ["food", "wood", "stone", "metal"])
+			{
+				var button = getGUIObjectByName("diplomacyPlayerTribute"+toTitleCase(resource)+"["+(i-1)+"]");
+				// TODO: Make amounts changeable or change to 500 if shift is pressed
+				var amounts = {
+					"food": (resource=="food")?100:0,
+					"wood": (resource=="wood")?100:0,
+					"stone": (resource=="stone")?100:0,
+					"metal": (resource=="metal")?100:0,
+				};
+				button.onpress = (function(e){ return function() { tributeResource(e) } })({"player": i, "amounts": amounts});
+				button.hidden = false;
+			}
+		}
+	}
+
+	getGUIObjectByName("diplomacyDialogPanel").hidden = false;
+}
+
+function closeDiplomacy()
+{
+	isDiplomacyOpen = false;
+	getGUIObjectByName("diplomacyDialogPanel").hidden = true;
+}
+
+function toggleDiplomacy()
+{
+	if (isDiplomacyOpen)
+		closeDiplomacy();
+	else
+		openDiplomacy();
+};
 
 function pauseGame()
 {
@@ -254,6 +359,7 @@ function closeOpenDialogs()
 {
 	closeMenu();
 	closeChat();
+	closeDiplomacy();
 	closeSettings(false);
 }
 

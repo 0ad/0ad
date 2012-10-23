@@ -87,22 +87,16 @@ function LoadPlayerSettings(settings, newPlayers)
 				// Init diplomacy
 				cmpPlayer.SetDiplomacy(new Array(numPlayers));
 				var myTeam = getSetting(pData, pDefs, "Team");
-				cmpPlayer.SetTeam(myTeam);
+
+				// Set all but self as enemies as SetTeam takes care of allies
 				for (var j = 0; j < numPlayers; ++j)
 				{
-					if (j > 0)
-					{
-						// We are always our own ally, else check if player is on the same team
-						var theirTeam = getSetting(settings.PlayerData[j-1], playerDefaults[j], "Team");
-						if (i == j || (myTeam !== undefined && myTeam != -1 && theirTeam !== undefined && myTeam == theirTeam))
-						{
-							cmpPlayer.SetAlly(j);
-							continue;
-						}
-					}
-					// Gaia, different team, or no team defined
-					cmpPlayer.SetEnemy(j);
+					if (i == j)
+						cmpPlayer.SetAlly(j);
+					else
+						cmpPlayer.SetEnemy(j);
 				}
+				cmpPlayer.SetTeam(myTeam);
 			}
 
 			// If formations explicitly defined, use that; otherwise use civ defaults
@@ -137,6 +131,15 @@ function LoadPlayerSettings(settings, newPlayers)
 				cmpPlayer.SetEnemy(j);
 		}
 	}
+
+	// NOTE: We need to do the team locking here, as otherwise
+	// SetTeam can't ally the players.
+	if (settings.LockTeams)
+		for (var i = 0; i < numPlayers; ++i)
+		{
+			var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
+			cmpPlayer.SetLockTeams(true);
+		}
 }
 
 // Get a setting if it exists or return default

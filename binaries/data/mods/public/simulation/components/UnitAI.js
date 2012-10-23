@@ -1926,6 +1926,13 @@ UnitAI.prototype.OnCreate = function()
 		UnitFsm.Init(this, "INDIVIDUAL.IDLE");
 };
 
+UnitAI.prototype.OnDiplomacyChanged = function(msg)
+{
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (cmpOwnership && cmpOwnership.GetOwner() == msg.player)
+		this.SetupRangeQuery();
+};
+
 UnitAI.prototype.OnOwnershipChanged = function(msg)
 {
 	this.SetupRangeQueries();

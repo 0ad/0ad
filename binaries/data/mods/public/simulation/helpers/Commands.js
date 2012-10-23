@@ -47,6 +47,29 @@ function ProcessCommand(player, cmd)
 		cmpGuiInterface.PushNotification({"type": "quit"});
 		break;
 
+	case "diplomacy":
+		switch(cmd.to)
+		{
+		case "ally":
+			cmpPlayer.SetAlly(cmd.player);
+			break;
+		case "neutral":
+			cmpPlayer.SetNeutral(cmd.player);
+			break;
+		case "enemy":
+			cmpPlayer.SetEnemy(cmd.player);
+			break;
+		default:
+			warn("Invalid command: Could not set "+player+" diplomacy status of player "+cmd.player+" to "+cmd.to);
+		}
+		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGuiInterface.PushNotification({"type": "diplomacy", "player": player, "player1": cmd.player, "status": cmd.to});
+		break;
+
+	case "tribute":
+		cmpPlayer.TributeResource(cmd.player, cmd.amounts);
+		break;
+
 	case "control-all":
 		cmpPlayer.SetControlAllUnits(cmd.flag);
 		break;
