@@ -286,6 +286,7 @@ function getActionInfo(action, target)
 		var playerState = simState.players[entState.player];
 		var playerOwned = (targetState.player == entState.player);
 		var allyOwned = playerState.isAlly[targetState.player];
+		var neutralOwned = playerState.isNeutral[targetState.player];
 		var enemyOwned = playerState.isEnemy[targetState.player];
 		var gaiaOwned = (targetState.player == 0);
 
@@ -388,7 +389,7 @@ function getActionInfo(action, target)
 				return {"possible": true};
 			break;
 		case "attack":
-			if (entState.attack && targetState.hitpoints && enemyOwned)
+			if (entState.attack && targetState.hitpoints && (enemyOwned || neutralOwned))
 				return {"possible": Engine.GuiInterfaceCall("CanAttack", {"entity": entState.id, "target": target})};
 			break;
 		}

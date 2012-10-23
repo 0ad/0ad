@@ -246,7 +246,6 @@ function IsOwnedByGaia(target)
  */
 function IsOwnedByAllyOfPlayer(player, target)
 {
-	// Figure out which player controls the foundation being built
 	var targetOwner = 0;
 	var cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
 	if (cmpOwnershipTarget)
@@ -263,11 +262,10 @@ function IsOwnedByAllyOfPlayer(player, target)
 }
 
 /**
- * Returns true if the entity 'target' is owned by an enemy of player
+ * Returns true if the entity 'target' is owned by someone neutral to player
  */
-function IsOwnedByEnemyOfPlayer(player, target)
+function IsOwnedByNeutralOfPlayer(player,target)
 {
-	// Figure out which player controls the foundation being built
 	var targetOwner = 0;
 	var cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
 	if (cmpOwnershipTarget)
@@ -276,7 +274,27 @@ function IsOwnedByEnemyOfPlayer(player, target)
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(player), IID_Player);
 
-	// Check for allied diplomacy status
+	// Check for neutral diplomacy status
+	if (cmpPlayer.IsNeutral(targetOwner))
+		return true;
+
+	return false;
+}
+
+/**
+ * Returns true if the entity 'target' is owned by an enemy of player
+ */
+function IsOwnedByEnemyOfPlayer(player, target)
+{
+	var targetOwner = 0;
+	var cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
+	if (cmpOwnershipTarget)
+		targetOwner = cmpOwnershipTarget.GetOwner();
+
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(player), IID_Player);
+
+	// Check for enemy diplomacy status
 	if (cmpPlayer.IsEnemy(targetOwner))
 		return true;
 
@@ -290,4 +308,5 @@ Engine.RegisterGlobal("IsOwnedByAllyOfEntity", IsOwnedByAllyOfEntity);
 Engine.RegisterGlobal("IsOwnedByPlayer", IsOwnedByPlayer);
 Engine.RegisterGlobal("IsOwnedByGaia", IsOwnedByGaia);
 Engine.RegisterGlobal("IsOwnedByAllyOfPlayer", IsOwnedByAllyOfPlayer);
+Engine.RegisterGlobal("IsOwnedByNeutralOfPlayer", IsOwnedByNeutralOfPlayer);
 Engine.RegisterGlobal("IsOwnedByEnemyOfPlayer", IsOwnedByEnemyOfPlayer);
