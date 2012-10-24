@@ -2,13 +2,17 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>cloudless</SkySet>
 		<SunColour r="0.776471" g="0.74902" b="0.576471"/>
 		<SunElevation angle="0.785398"/>
 		<SunRotation angle="-0.785396"/>
 		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Fog>
+			<FogFactor>0</FogFactor>
+			<FogThickness>0.5</FogThickness>
+			<FogColour r="0.8" g="0.8" b="0.898039"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -22,16 +26,23 @@
 				<ReflectionTintStrength>0.199219</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.1999</Bloom>
+			<PostEffect>default</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="465.219" y="201.199" z="97.306"/>
+		<Position x="236.518" y="164.645" z="333.885"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview" : "oasis_2.png",
+  "Preview": "oasis_2.png",
   "Description": "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by a lush oasis.",
   "GameType": "conquest",
   "Keywords": [],
@@ -6174,11 +6185,6 @@
 			<Template>actor|props/special/eyecandy/awning_wood_large.xml</Template>
 			<Position x="749.59864" z="328.5907"/>
 			<Orientation y="-2.66222"/>
-		</Entity>
-		<Entity uid="1093">
-			<Template>actor|props/special/eyecandy/barrels_floating.xml</Template>
-			<Position x="754.55054" z="324.8343"/>
-			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1094">
 			<Template>actor|props/special/eyecandy/basket_celt_a.xml</Template>

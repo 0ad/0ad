@@ -2,13 +2,17 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>cumulus</SkySet>
 		<SunColour r="0.776471" g="0.74902" b="0.576471"/>
 		<SunElevation angle="0.785398"/>
 		<SunRotation angle="-0.785396"/>
 		<TerrainAmbientColour r="0.392157" g="0.47451" b="0.654902"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Fog>
+			<FogFactor>0.00253906</FogFactor>
+			<FogThickness>0</FogThickness>
+			<FogColour r="0.819608" g="0.74902" b="0.513726"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -22,11 +26,18 @@
 				<ReflectionTintStrength>0.199219</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>-0.0253906</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.189844</Bloom>
+			<PostEffect>hdr</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="511.732" y="540.687" z="-317.943"/>
-		<Rotation angle="-0.00699301"/>
-		<Declination angle="0.692371"/>
+		<Position x="332.301" y="91.5167" z="118.338"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -6037,11 +6048,6 @@
 			<Position x="749.59864" z="328.5907"/>
 			<Orientation y="-2.66222"/>
 		</Entity>
-		<Entity uid="1093">
-			<Template>actor|props/special/eyecandy/barrels_floating.xml</Template>
-			<Position x="754.75721" z="323.29056"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="1094">
 			<Template>actor|props/special/eyecandy/basket_celt_a.xml</Template>
 			<Position x="745.53235" z="330.36527"/>
@@ -6295,7 +6301,7 @@
 		<Entity uid="1169">
 			<Template>gaia/special_treasure_metal_persian_small</Template>
 			<Player>0</Player>
-			<Position x="603.02973" z="412.23047"/>
+			<Position x="603.0467" z="412.04584"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1170">

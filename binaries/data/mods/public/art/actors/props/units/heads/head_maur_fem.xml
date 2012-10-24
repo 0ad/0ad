@@ -11,7 +11,10 @@
   </group>
   <group>
     <variant frequency="1" name="face-a">
-      <textures><texture file="props/head/maur_fem_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/maur_fem_a.dds" name="baseTex"/>
+        <texture file="props/head/maur_fem_a_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -19,5 +22,5 @@
       <colour>0 0 0</colour>
     </variant>
   </group>
-  <material>objectcolor.xml</material>
+  <material>objectcolor_specmap.xml</material>
 </actor>

@@ -2,13 +2,17 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>sunny</SkySet>
-		<SunColour r="0.737255" g="0.721569" b="0.639216"/>
+		<SunColour r="0.741176" g="0.721569" b="0.643137"/>
 		<SunElevation angle="0.717903"/>
 		<SunRotation angle="-0.693359"/>
-		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<TerrainAmbientColour r="0.447059" g="0.509804" b="0.552941"/>
 		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
+		<Fog>
+			<FogFactor>0.00223633</FogFactor>
+			<FogThickness>0.298828</FogThickness>
+			<FogColour r="0.752941" g="0.752941" b="0.752941"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -22,9 +26,16 @@
 				<ReflectionTintStrength>0.304688</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0.0253906</Brightness>
+			<Contrast>0.974609</Contrast>
+			<Saturation>1</Saturation>
+			<Bloom>0.186523</Bloom>
+			<PostEffect>hdr</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="487.641" y="109.658" z="54.4614"/>
+		<Position x="606.872" y="80.269" z="762.391"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -22949,8 +22960,8 @@
 		<Entity uid="4510">
 			<Template>units/spart_hero_leonidas</Template>
 			<Player>2</Player>
-			<Position x="603.95466" z="808.39161"/>
-			<Orientation y="2.35621"/>
+			<Position x="603.12208" z="806.66486"/>
+			<Orientation y="3.10683"/>
 		</Entity>
 		<Entity uid="4511">
 			<Template>units/spart_cavalry_javelinist_e</Template>
