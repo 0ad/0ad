@@ -141,14 +141,11 @@ bool CSoundBase::InitOpenAL()
 	AL_CHECK
 
 	if (anErr == AL_NO_ERROR) 
-	{
-		ALfloat source0Pos[]={ 0.0, 0.0, -1.0};
-		ALfloat source0Vel[]={ 0.0, 0.0, 0.0};
-		
+	{		
 		alSourcef(m_ALSource,AL_PITCH,1.0f);
+		AL_CHECK
 		alSourcef(m_ALSource,AL_GAIN,1.0f);
-		alSourcefv(m_ALSource,AL_POSITION,source0Pos);
-		alSourcefv(m_ALSource,AL_VELOCITY,source0Vel);
+		AL_CHECK
 		alSourcei(m_ALSource,AL_LOOPING,AL_FALSE);
 		AL_CHECK
 		alSourcef(m_ALSource, AL_REFERENCE_DISTANCE, 70.0f);

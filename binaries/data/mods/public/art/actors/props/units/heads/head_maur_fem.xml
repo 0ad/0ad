@@ -4,14 +4,23 @@
   <group>
     <variant frequency="100" name="hair-bun">
       <mesh>props/dudette_head.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="root"/>
+      </props>
     </variant>
     <variant frequency="50" name="hair-shoulder">
       <mesh>props/helmet/head_female_d.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="face-a">
-      <textures><texture file="props/head/maur_fem_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/maur_fem_a.dds" name="baseTex"/>
+        <texture file="props/head/maur_fem_a_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -19,5 +28,5 @@
       <colour>0 0 0</colour>
     </variant>
   </group>
-  <material>objectcolor.xml</material>
+  <material>objectcolor_specmap.xml</material>
 </actor>

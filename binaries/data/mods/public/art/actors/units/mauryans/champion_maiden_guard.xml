@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="female/f_idle_01.dae" name="Idle" speed="100"/>
+        <animation file="female/f_walk_01.dae" name="Walk" speed="25"/>
+        <animation file="female/f_walk_01.dae" name="Run" speed="25"/>
+        <animation file="female/f_walk_01.dae" name="carry_food" speed="25"/>
+        <animation file="female/f_walk_01.dae" name="carry_meat" speed="25"/>
+        <animation file="female/f_walk_01.dae" name="carry_wood" speed="25"/>
+        <animation file="female/f_walk_01.dae" name="carry_stone" speed="25"/>
+        <animation file="female/f_walk_01.dae" name="carry_metal" speed="25"/>
+        <animation event="0.4" file="female/f_lumber_01.dae" name="gather_tree" speed="60"/>
+        <animation file="female/f_farm_01.dae" name="gather_grain" speed="75"/>
+        <animation file="female/f_gather_01.dae" name="gather_fruit" speed="25"/>
+        <animation file="female/f_gather_01.dae" name="gather_meat" speed="25"/>
+        <animation event="0.4" file="female/f_mine_01.dae" name="gather_rock" speed="150"/>
+        <animation event="0.4" file="female/f_mine_01.dae" name="gather_ore" speed="150"/>
+        <animation file="female/f_mine_01.dae" name="gather_ruins" speed="150"/>
+        <animation event="0.6" file="female/f_build_01.dae" name="Build" speed="70"/>
+        <animation file="female/f_death_01.dae" name="Death" speed="130"/>
+      </animations>
+      <props>
+        <prop actor="props/units/heads/head_maur_fem.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/broadsword.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Skirt-Short">
+      <mesh>skeletal/f_tunic.dae</mesh>
+      <textures>
+        <texture file="skeletal/maur_maiden_guard_1.png" name="baseTex"/>
+        <texture file="skeletal/maur_maiden_guard_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant name="Death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>

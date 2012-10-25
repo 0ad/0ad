@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero_infantry_archer">
+  <Identity>
+    <Civ>maur</Civ>
+	<GenericName>Acharya Chanakya</GenericName>
+    <SpecificName>Acharya Chanakya</SpecificName>
+    <Icon>units/pers_hero_xerxes.png</Icon>
+	<Tooltip>Hero Archer.
+Hero Special: "Teacher." TBD.</Tooltip>
+    <History>TBD.</History>
+  </Identity>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/maur_champion_maiden
+    </Entities>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>units/persians/hero_xerxes.xml</Actor>
+  </VisualActor>
+</Entity>

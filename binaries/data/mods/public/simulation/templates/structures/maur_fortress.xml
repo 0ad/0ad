@@ -4,11 +4,15 @@
     <Civ>maur</Civ>
     <SpecificName>Durg</SpecificName>
 	<History>Fortress.</History>
-    <Tooltip>Train Champion Units.</Tooltip>
+    <Tooltip>Train heroes and champion units.</Tooltip>
   </Identity>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/maur_champion_archer
+      units/maur_hero_chanakya
+      units/maur_hero_maurya
+      units/maur_hero_ashoka
+	  units/maur_champion_chariot
+	  units/maur_champion_maiden
 	  units/maur_champion_infantry
     </Entities>
   </ProductionQueue>

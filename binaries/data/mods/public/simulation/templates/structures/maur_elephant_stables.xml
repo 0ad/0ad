@@ -22,7 +22,7 @@
     <SpecificName>Vāraṇaśālā</SpecificName>
 	<History>Elephant Stables.</History>
     <Icon>structures/palace.png</Icon>
-    <Tooltip>Train Elephant Units.</Tooltip>
+    <Tooltip>Train elephant units.</Tooltip>
   </Identity>
   <Obstruction>
     <Static width="25.0" depth="25.0"/>
@@ -31,7 +31,7 @@
     <Entities datatype="tokens">
 	  units/maur_support_elephant
       units/maur_cavalry_archer_b
-      units/maur_champion_cavalry
+      units/maur_champion_elephant
     </Entities>
   </ProductionQueue>
   <Sound>

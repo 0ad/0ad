@@ -11,7 +11,7 @@
 		<Fog>
 			<FogFactor>0</FogFactor>
 			<FogThickness>0.5</FogThickness>
-			<FogColour r="0.8" g="0.8" b="0.898039"/>
+			<FogColour r="0.8" g="0.8" b="0.894118"/>
 		</Fog>
 		<Water>
 			<WaterBody>
@@ -31,7 +31,7 @@
 			<Contrast>1.32129</Contrast>
 			<Saturation>0.857422</Saturation>
 			<Bloom>0.110742</Bloom>
-			<PostEffect>DOF</PostEffect>
+			<PostEffect>HQDOF</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
@@ -52,7 +52,7 @@
   "PlayerData": [
     {
       "AI": "",
-      "Civ": "hele",
+      "Civ": "athen",
       "Colour": {
         "b": 200,
         "g": 46,
@@ -110,7 +110,7 @@
     },
     {
       "AI": "qbot",
-      "Civ": "hele",
+      "Civ": "mace",
       "Colour": {
         "b": 5,
         "g": 165,
@@ -178,7 +178,7 @@
     },
     {
       "AI": "qbot",
-      "Civ": "hele",
+      "Civ": "spart",
       "Colour": {
         "b": 20,
         "g": 20,

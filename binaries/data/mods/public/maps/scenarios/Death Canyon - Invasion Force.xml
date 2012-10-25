@@ -2,13 +2,17 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>overcast</SkySet>
 		<SunColour r="1.03932" g="0.872214" b="0.55838"/>
 		<SunElevation angle="0.506214"/>
 		<SunRotation angle="0.674952"/>
 		<TerrainAmbientColour r="0.258824" g="0.321569" b="0.454902"/>
 		<UnitsAmbientColour r="0.458824" g="0.439216" b="0.384314"/>
+		<Fog>
+			<FogFactor>0.00474609</FogFactor>
+			<FogThickness>0.262695</FogThickness>
+			<FogColour r="0.819608" g="0.74902" b="0.513726"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -22,16 +26,23 @@
 				<ReflectionTintStrength>0.43457</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1.09961</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.2</Bloom>
+			<PostEffect>hdr</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="669.636" y="132.892" z="712.844"/>
+		<Position x="679.379" y="126.188" z="732.106"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Preview" : "death_canyon_invasion_force.png",
+  "Preview": "death_canyon_invasion_force.png",
   "Description": "A deep rocky canyon slicing through the desert. Good for multiplayer.\u000a\u000a2 teams of 2 players. 1 player on each team starts with a base and resources. The other player starts with only a large army to assist their teammate.",
   "GameType": "conquest",
   "Keywords": [],
@@ -16665,7 +16676,7 @@
 			<Template>structures/cart_civil_centre</Template>
 			<Player>3</Player>
 			<Position x="364.87122" z="231.89711"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="2.38741"/>
 		</Entity>
 		<Entity uid="3621">
 			<Template>units/cart_infantry_spearman_e</Template>

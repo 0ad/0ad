@@ -2,13 +2,17 @@
 
 <Scenario version="5">
 	<Environment>
-		<LightingModel>standard</LightingModel>
 		<SkySet>cumulus</SkySet>
 		<SunColour r="0.847059" g="0.792157" b="0.592157"/>
 		<SunElevation angle="0.613592"/>
 		<SunRotation angle="-1.22718"/>
 		<TerrainAmbientColour r="0.364706" g="0.364706" b="0.294118"/>
 		<UnitsAmbientColour r="0.392157" g="0.356863" b="0.286275"/>
+		<Fog>
+			<FogFactor>0.00253906</FogFactor>
+			<FogThickness>0</FogThickness>
+			<FogColour r="0.741176" g="0.721569" b="0.643137"/>
+		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -22,9 +26,16 @@
 				<ReflectionTintStrength>0.298828</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1.02539</Contrast>
+			<Saturation>1</Saturation>
+			<Bloom>0.2</Bloom>
+			<PostEffect>hdr</PostEffect>
+		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="553.763" y="89.8292" z="57.7433"/>
+		<Position x="469.27" y="90.0104" z="753.874"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -37,7 +48,7 @@
     "medit_dirt_c"
   ],
   "CircularMap": true,
-  "Preview" : "gold_oasis_1.png",
+  "Preview": "gold_oasis_1.png",
   "Description": "Players start around a small oasis in the center of the map which holds much of the available wood on the map.\u000a\u000aElsewhere, in the hinterlands, lies great riches, in the form of large deposits of gold and other metals.",
   "GameType": "conquest",
   "Keywords": [],

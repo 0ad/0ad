@@ -89,7 +89,7 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "attack":
-		if (g_DebugCommands && !IsOwnedByEnemyOfPlayer(player, cmd.target))
+		if (g_DebugCommands && !(IsOwnedByEnemyOfPlayer(player, cmd.target) || IsOwnedByNeutralOfPlayer(player, cmd.target)))
 		{
 			// This check is for debugging only!
 			warn("Invalid command: attack target is not owned by enemy of player "+player+": "+uneval(cmd));
