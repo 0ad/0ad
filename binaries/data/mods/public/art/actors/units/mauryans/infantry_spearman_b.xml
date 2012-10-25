@@ -39,11 +39,13 @@
       </animations>
       <mesh>skeletal/m_tunic_long.dae</mesh>
       <props>
-        <prop actor="props/units/shields/pers_tower.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/gerron_plain.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear_bamboo.xml" attachpoint="r_hand"/>
         <prop actor="props/units/heads/head_indian_a.xml" attachpoint="head"/>
       </props>
-      <textures><texture file="skeletal/maur_isp_b.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/maur_isp_b.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>

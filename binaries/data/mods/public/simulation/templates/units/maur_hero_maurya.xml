@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero_cavalry_spearman">
+  <Armour>
+    <Hack>13.0</Hack>
+    <Pierce>25.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
+  <Attack>
+    <Melee>
+      <Hack>25.0</Hack>
+      <Crush>25.0</Crush>
+	  <Bonuses>
+		<BonusStructures>
+		  <Classes>Structure</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusStructures>
+		<BonusCav>
+		  <Classes>Cavalry</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusCav>
+		<BonusGates>
+		  <Classes>Gates</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusGates>
+	  </Bonuses>
+    </Melee>
+    <Charge>
+      <Hack>75.0</Hack>
+      <Crush>75.0</Crush>
+	  <Bonuses>
+		<BonusStructures>
+		  <Classes>Structure</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusStructures>
+		<BonusCav>
+		  <Classes>Cavalry</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusCav>
+		<BonusGates>
+		  <Classes>Gates</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusGates>
+	  </Bonuses>
+    </Charge>
+  </Attack>
+  <Cost>
+    <Population>3</Population>
+    <Resources>
+      <food>300</food>
+      <metal>500</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Circle radius="4.0"/>
+    <Height>9.0</Height>
+  </Footprint>
+  <Health>
+    <Max>600</Max>
+  </Health>
+  <Identity>
+    <Civ>maur</Civ>
+    <Classes datatype="tokens">Elephant -Cavalry</Classes>
+    <GenericName>Chandragupta Maurya</GenericName>
+    <SpecificName>Chandragupta Maurya</SpecificName>
+	<Tooltip>Hero Aura: "TBD"</Tooltip>
+    <History>TBD.</History>
+    <Icon>units/cart_hero_hannibal.png</Icon>
+  </Identity>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/maur_champion_maiden
+    </Entities>
+  </ProductionQueue>
+  <UnitMotion>
+    <WalkSpeed>8.5</WalkSpeed>
+    <Run>
+      <Speed>13.0</Speed>
+    </Run>
+  </UnitMotion>
+  <Vision>
+    <Range>100</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>units/carthaginians/hero_hannibal_mount.xml</Actor>
+  </VisualActor>
+</Entity>

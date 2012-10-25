@@ -4,9 +4,15 @@
   <group>
     <variant frequency="100" name="hair-bun">
       <mesh>props/dudette_head.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="root"/>
+      </props>
     </variant>
     <variant frequency="50" name="hair-shoulder">
       <mesh>props/helmet/head_female_d.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <group>
