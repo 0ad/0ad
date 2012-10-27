@@ -9,9 +9,9 @@
 		<TerrainAmbientColour r="0.282353" g="0.337255" b="0.486275"/>
 		<UnitsAmbientColour r="0.447059" g="0.509804" b="0.54902"/>
 		<Fog>
-			<FogFactor>0</FogFactor>
-			<FogThickness>0.5</FogThickness>
-			<FogColour r="0.8" g="0.8" b="0.894118"/>
+			<FogFactor>0.00101562</FogFactor>
+			<FogThickness>0</FogThickness>
+			<FogColour r="1" g="1" b="1"/>
 		</Fog>
 		<Water>
 			<WaterBody>
@@ -28,16 +28,16 @@
 		</Water>
 		<Postproc>
 			<Brightness>0</Brightness>
-			<Contrast>1.32129</Contrast>
+			<Contrast>1.22168</Contrast>
 			<Saturation>0.857422</Saturation>
-			<Bloom>0.110742</Bloom>
+			<Bloom>0.159375</Bloom>
 			<PostEffect>HQDOF</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="1423.85" y="92.7839" z="1013.14"/>
+		<Position x="1424.59" y="116.792" z="991.616"/>
 		<Rotation angle="0"/>
-		<Declination angle="0.610865"/>
+		<Declination angle="0.661022"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {

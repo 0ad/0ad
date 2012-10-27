@@ -23,7 +23,7 @@
       </animations>
       <mesh>skeletal/horse.pmd</mesh>
       <props>
-        <prop actor="units/persians/champion_unit_2_r.xml" attachpoint="rider"/>
+        <prop actor="units/persians/champion_unit_2_archer_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/horse_chest_colorband.xml" attachpoint="chest"/>
         <prop actor="props/units/heads/pers_cav_knot.xml" attachpoint="head"/>
         <prop actor="props/units/horse_back_blanket.xml" attachpoint="rider"/>
@@ -34,25 +34,21 @@
     <variant frequency="4" name="horse-plain">
       <textures>
         <texture file="skeletal/horse_pers_champ_cav_1.png" name="baseTex"/>
-        <texture file="skeletal/horse_pers_champ_cav_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="horse-blaze">
       <textures>
         <texture file="skeletal/horse_pers_champ_cav_blaze.png" name="baseTex"/>
-        <texture file="skeletal/horse_pers_champ_cav_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="horse-snipe">
       <textures>
         <texture file="skeletal/horse_pers_champ_cav_snipe.png" name="baseTex"/>
-        <texture file="skeletal/horse_pers_champ_cav_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="3" name="horse-star">
       <textures>
         <texture file="skeletal/horse_pers_champ_cav_star.png" name="baseTex"/>
-        <texture file="skeletal/horse_pers_champ_cav_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -77,6 +73,11 @@
         <prop actor="particle/dust_cav.xml" attachpoint="root"/>
       </props>
     </variant>
+    <variant name="Death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
-  <material>objectcolor_specmap.xml</material>
+  <material>objectcolor.xml</material>
 </actor>

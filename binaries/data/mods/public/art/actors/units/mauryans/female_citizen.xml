@@ -135,6 +135,11 @@
         <prop attachpoint="r_hand"/>
       </props>
     </variant>
+    <variant name="death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <material>player_trans_spec.xml</material>
 </actor>
