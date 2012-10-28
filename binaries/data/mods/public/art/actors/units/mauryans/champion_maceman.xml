@@ -47,119 +47,15 @@
       <props>
         <prop actor="props/units/shields/maur_tall_curved_a.xml" attachpoint="shield"/>
         <prop actor="props/units/heads/head_indian_a.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/falcata.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/mace_mauryan.xml" attachpoint="r_hand"/>
       </props>
       <textures>
-        <texture file="skeletal/maur_isw_e.png" name="baseTex"/>
+        <texture file="skeletal/maur_iar_e.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant name="gather_tree">
-      <props>
-        <prop actor="props/units/tools/axe.xml" attachpoint="l_hand"/>
-        <prop attachpoint="r_hand"/>
-        <prop attachpoint="shield"/>
-        <prop attachpoint="helmet"/>
-      </props>
-    </variant>
-    <variant name="gather_grain">
-      <props>
-        <prop actor="props/units/tools/hoe.xml" attachpoint="l_hand"/>
-        <prop attachpoint="r_hand"/>
-        <prop attachpoint="shield"/>
-        <prop attachpoint="helmet"/>
-      </props>
-    </variant>
-    <variant name="gather_fruit">
-      <props>
-        <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
-        <prop attachpoint="r_hand"/>
-        <prop attachpoint="shield"/>
-        <prop attachpoint="helmet"/>
-      </props>
-    </variant>
-    <variant name="gather_meat">
-      <props>
-        <prop attachpoint="helmet"/>
-        <prop attachpoint="r_hand"/>
-        <prop attachpoint="shield"/>
-        <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
-      </props>
-    </variant>
-    <variant name="gather_rock">
-      <props>
-        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
-        <prop attachpoint="r_hand"/>
-        <prop attachpoint="shield"/>
-        <prop attachpoint="helmet"/>
-      </props>
-    </variant>
-    <variant name="gather_ore">
-      <props>
-        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
-        <prop attachpoint="r_hand"/>
-        <prop attachpoint="shield"/>
-        <prop attachpoint="helmet"/>
-      </props>
-    </variant>
-    <variant name="gather_ruins">
-      <props>
-        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
-        <prop attachpoint="r_hand"/>
-        <prop attachpoint="shield"/>
-        <prop attachpoint="helmet"/>
-      </props>
-    </variant>
-    <variant name="Build">
-      <props>
-        <prop actor="props/units/tools/mallet.xml" attachpoint="r_hand"/>
-        <prop attachpoint="l_hand"/>
-        <prop attachpoint="shield"/>
-        <prop attachpoint="helmet"/>
-      </props>
-    </variant>
-    <variant name="carry_food">
-      <props>
-        <prop actor="props/units/shuttle_basket.xml" attachpoint="r_hand"/>
-        <prop attachpoint="l_hand"/>
-        <prop attachpoint="helmet"/>
-        <prop attachpoint="shield"/>
-      </props>
-    </variant>
-    <variant name="carry_meat">
-      <props>
-        <prop actor="props/units/shuttle_meat.xml" attachpoint="r_hand"/>
-        <prop attachpoint="l_hand"/>
-        <prop attachpoint="helmet"/>
-        <prop attachpoint="shield"/>
-      </props>
-    </variant>
-    <variant name="carry_wood">
-      <props>
-        <prop actor="props/units/shuttle_wood.xml" attachpoint="r_hand"/>
-        <prop actor="" attachpoint="l_hand"/>
-        <prop attachpoint="helmet"/>
-        <prop attachpoint="shield"/>
-      </props>
-    </variant>
-    <variant name="carry_stone">
-      <props>
-        <prop actor="props/units/shuttle_stone.xml" attachpoint="r_hand"/>
-        <prop actor="" attachpoint="l_hand"/>
-        <prop attachpoint="helmet"/>
-        <prop attachpoint="shield"/>
-      </props>
-    </variant>
-    <variant name="carry_metal">
-      <props>
-        <prop actor="props/units/shuttle_metal.xml" attachpoint="r_hand"/>
-        <prop actor="" attachpoint="l_hand"/>
-        <prop attachpoint="helmet"/>
-        <prop attachpoint="shield"/>
-      </props>
-    </variant>
     <variant name="death">
       <props>
         <prop actor="props/units/blood_01.xml" attachpoint="root"/>

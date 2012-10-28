@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <textures>
+        <texture file="props/prop_weap.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Club">
+      <mesh>props/maur_club.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Mace">
+      <mesh>props/maur_mace_gada.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Spiked Mace">
+      <mesh>props/maur_spiked_mace.dae</mesh>
+    </variant>
+  </group>
+</actor>

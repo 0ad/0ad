@@ -32,10 +32,12 @@
       <mesh>skeletal/m_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_indian_a.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/bow_long_indian.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/weapons/bow_bamboo_long.xml" attachpoint="l_hand"/>
         <prop actor="props/units/quiver_back_bamboo.xml" attachpoint="back"/>
       </props>
-      <textures><texture file="skeletal/maur_iar_a.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/maur_iar_a.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
