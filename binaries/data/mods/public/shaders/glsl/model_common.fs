@@ -38,7 +38,7 @@ varying vec4 v_lighting;
 varying vec2 v_tex;
 varying vec2 v_los;
 
-#if USE_INSTANCING && USE_AO
+#if (USE_INSTANCING || USE_GPU_SKINNING) && USE_AO
   varying vec2 v_tex2;
 #endif
 
@@ -53,14 +53,14 @@ varying vec2 v_los;
 
 #if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX_MAP
   varying vec4 v_normal;
-  #if USE_INSTANCING && (USE_NORMAL_MAP || USE_PARALLAX_MAP)
+  #if (USE_INSTANCING || USE_GPU_SKINNING) && (USE_NORMAL_MAP || USE_PARALLAX_MAP)
     varying vec4 v_tangent;
     //varying vec3 v_bitangent;
   #endif
   #if USE_SPECULAR || USE_SPECULAR_MAP
     varying vec3 v_half;
   #endif
-  #if USE_INSTANCING && USE_PARALLAX_MAP
+  #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_PARALLAX_MAP
     varying vec3 v_eyeVec;
   #endif
 #endif
@@ -112,12 +112,12 @@ void main()
 {
   vec2 coord = v_tex;
 
-  #if USE_PARALLAX_MAP || USE_NORMAL_MAP
+  #if (USE_INSTANCING || USE_GPU_SKINNING) && (USE_PARALLAX_MAP || USE_NORMAL_MAP)
     vec3 bitangent = vec3(v_normal.w, v_tangent.w, v_lighting.w);
     mat3 tbn = mat3(v_tangent.xyz, bitangent, v_normal.xyz);
   #endif
 
-  #if USE_PARALLAX_MAP
+  #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_PARALLAX_MAP
   {
     float h = texture2D(normTex, coord).a;
 
@@ -222,7 +222,7 @@ void main()
     vec3 normal = v_normal.xyz;
   #endif
 
-  #if USE_INSTANCING && USE_NORMAL_MAP
+  #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_NORMAL_MAP
     vec3 ntex = texture2D(normTex, coord).rgb * 2.0 - 1.0;
     ntex.y = -ntex.y;
     normal = normalize(tbn * ntex);
@@ -251,7 +251,7 @@ void main()
   vec3 color = (texdiffuse * sundiffuse + specular.rgb) * get_shadow();
   vec3 ambColor = texdiffuse * ambient;
 
-  #if USE_INSTANCING && USE_AO
+  #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_AO
     vec3 ao = texture2D(aoTex, v_tex2).rrr;
     ao = mix(vec3(1.0), ao * 2.0, effectSettings.w);
     ambColor *= ao;

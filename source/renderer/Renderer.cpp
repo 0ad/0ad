@@ -584,7 +584,7 @@ void CRenderer::ReloadShaders()
 
 	if (GetRenderPath() == RP_SHADER && m_Options.m_GPUSkinning) // TODO: should check caps and GLSL etc too
 	{
-		m->Model.VertexGPUSkinningShader = ModelVertexRendererPtr(new InstancingModelRenderer(true, false));
+		m->Model.VertexGPUSkinningShader = ModelVertexRendererPtr(new InstancingModelRenderer(true, m_Options.m_GenTangents));
 		m->Model.NormalSkinned = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexGPUSkinningShader));
 		m->Model.TranspSkinned = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexGPUSkinningShader));
 	}

@@ -12,7 +12,7 @@
 	<attrib name="a_uv1" semantics="gl_MultiTexCoord1" if="USE_AO"/>
         <attrib name="a_skinJoints" semantics="CustomAttribute0" if="USE_GPU_SKINNING"/>
         <attrib name="a_skinWeights" semantics="CustomAttribute1" if="USE_GPU_SKINNING"/>
-	<attrib name="a_tangent" semantics="CustomAttribute2" if="USE_INSTANCING"/>
+	<attrib name="a_tangent" semantics="CustomAttribute2" if="USE_INSTANCING || USE_GPU_SKINNING"/>
     </vertex>
 
     <fragment file="glsl/model_common.fs"/>

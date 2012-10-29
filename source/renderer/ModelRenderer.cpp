@@ -149,9 +149,9 @@ void ModelRenderer::BuildColor4ub(
 }
 
 
-void ModelRenderer::GenTangents(const CModelDefPtr& mdef, std::vector<float>& newVertices)
+void ModelRenderer::GenTangents(const CModelDefPtr& mdef, std::vector<float>& newVertices, bool gpuSkinning)
 {
-	MikkTSpace ms(mdef, newVertices);
+	MikkTSpace ms(mdef, newVertices, gpuSkinning);
 
 	ms.generate();
 }

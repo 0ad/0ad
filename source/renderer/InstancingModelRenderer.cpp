@@ -31,12 +31,13 @@
 #include "graphics/LightEnv.h"
 #include "graphics/Model.h"
 #include "graphics/ModelDef.h"
-#include "graphics/weldmesh.h"
 
 #include "renderer/InstancingModelRenderer.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderModifiers.h"
 #include "renderer/VertexArray.h"
+
+#include "third_party/mikktspace/weldmesh.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -85,6 +86,17 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 		m_Array.AddAttribute(&m_UVs[i]);
 	}
 	
+	if (gpuSkinning)
+	{
+		m_BlendJoints.type = GL_UNSIGNED_BYTE;
+		m_BlendJoints.elems = 4;
+		m_Array.AddAttribute(&m_BlendJoints);
+
+		m_BlendWeights.type = GL_UNSIGNED_BYTE;
+		m_BlendWeights.elems = 4;
+		m_Array.AddAttribute(&m_BlendWeights);
+	}
+	
 	if (calculateTangents)
 	{
 		// Generate tangents for the geometry:-
@@ -93,8 +105,12 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 		m_Tangent.elems = 4;
 		m_Array.AddAttribute(&m_Tangent);
 		
-		// floats per vertex; position + normal + tangent + UV*sets
+		// floats per vertex; position + normal + tangent + UV*sets [+ GPUskinning]
 		int numVertexAttrs = 3 + 3 + 4 + 2 * mdef->GetNumUVsPerVertex();
+		if (gpuSkinning)
+		{
+			numVertexAttrs += 8;
+		}
 		
 		// the tangent generation can increase the number of vertices temporarily
 		// so reserve a bit more memory to avoid reallocations in GenTangents (in most cases)
@@ -102,7 +118,7 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 		newVertices.reserve(numVertexAttrs * numVertices * 2);
 		
 		// Generate the tangents
-		ModelRenderer::GenTangents(mdef, newVertices);
+		ModelRenderer::GenTangents(mdef, newVertices, gpuSkinning);
 		
 		// how many vertices do we have after generating tangents?
 		int newNumVert = newVertices.size() / numVertexAttrs;
@@ -123,23 +139,44 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 		VertexArrayIterator<CVector3D> Normal = m_Normal.GetIterator<CVector3D>();
 		VertexArrayIterator<CVector4D> Tangent = m_Tangent.GetIterator<CVector4D>();
 		
+		VertexArrayIterator<u8[4]> BlendJoints;
+		VertexArrayIterator<u8[4]> BlendWeights;
+		if (gpuSkinning)
+		{
+			BlendJoints = m_BlendJoints.GetIterator<u8[4]>();
+			BlendWeights = m_BlendWeights.GetIterator<u8[4]>();
+		}
+		
 		// copy everything into the vertex array
 		for (int i = 0; i < numVertices2; i++)
 		{
 			int q = numVertexAttrs * i;
 			
 			Position[i] = CVector3D(vertexDataOut[q + 0], vertexDataOut[q + 1], vertexDataOut[q + 2]);
+			q += 3;
 			
-			Normal[i] = CVector3D(vertexDataOut[q + 3], vertexDataOut[q + 4], vertexDataOut[q + 5]);
+			Normal[i] = CVector3D(vertexDataOut[q + 0], vertexDataOut[q + 1], vertexDataOut[q + 2]);
+			q += 3;
 
-			Tangent[i] = CVector4D(vertexDataOut[q + 6], vertexDataOut[q + 7], vertexDataOut[q + 8], 
-					vertexDataOut[q + 9]);
+			Tangent[i] = CVector4D(vertexDataOut[q + 0], vertexDataOut[q + 1], vertexDataOut[q + 2], 
+					vertexDataOut[q + 3]);
+			q += 4;
+			
+			if (gpuSkinning)
+			{
+				for (size_t j = 0; j < 4; ++j)
+				{
+					BlendJoints[i][j] = (u8)vertexDataOut[q + 0 + 2 * j];
+					BlendWeights[i][j] = (u8)vertexDataOut[q + 1 + 2 * j];
+				}
+				q += 8;
+			}
 			
 			for (size_t j = 0; j < mdef->GetNumUVsPerVertex(); j++)
 			{
 				VertexArrayIterator<float[2]> UVit = m_UVs[j].GetIterator<float[2]>();
-				UVit[i][0] = vertexDataOut[q + 10 + 2 * j];
-				UVit[i][1] = vertexDataOut[q + 11 + 2 * j];
+				UVit[i][0] = vertexDataOut[q + 0 + 2 * j];
+				UVit[i][1] = vertexDataOut[q + 1 + 2 * j];
 			}
 		}
 
@@ -168,17 +205,6 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 	else
 	{
 		// Upload model without calculating tangents:-
-		
-		if (gpuSkinning)
-		{
-			m_BlendJoints.type = GL_UNSIGNED_BYTE;
-			m_BlendJoints.elems = 4;
-			m_Array.AddAttribute(&m_BlendJoints);
-
-			m_BlendWeights.type = GL_UNSIGNED_BYTE;
-			m_BlendWeights.elems = 4;
-			m_Array.AddAttribute(&m_BlendWeights);
-		}
 		
 		m_Array.SetNumVertices(numVertices);
 		m_Array.Layout();
