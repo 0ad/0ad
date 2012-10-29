@@ -262,7 +262,7 @@ public:
 	 * @param newVertices An out vector of the unindexed vertices with tangents added. 
 	 * The new vertices cannot be used with existing face index and must be welded/reindexed.
 	 */
-	static void GenTangents(const CModelDefPtr& mdef, std::vector<float>& newVertices);
+	static void GenTangents(const CModelDefPtr& mdef, std::vector<float>& newVertices, bool gpuSkinning);
 };
 
 

@@ -30,27 +30,27 @@ varying vec2 v_los;
   varying vec4 v_shadow;
 #endif
 
-#if USE_INSTANCING && USE_AO
+#if (USE_INSTANCING || USE_GPU_SKINNING) && USE_AO
   varying vec2 v_tex2;
 #endif
 
 #if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX_MAP
   varying vec4 v_normal;
-  #if USE_INSTANCING && (USE_NORMAL_MAP || USE_PARALLAX_MAP)
+  #if (USE_INSTANCING || USE_GPU_SKINNING) && (USE_NORMAL_MAP || USE_PARALLAX_MAP)
     varying vec4 v_tangent;
     //varying vec3 v_bitangent;
   #endif
   #if USE_SPECULAR || USE_SPECULAR_MAP
     varying vec3 v_half;
   #endif
-  #if USE_INSTANCING && USE_PARALLAX_MAP
+  #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_PARALLAX_MAP
     varying vec3 v_eyeVec;
   #endif
 #endif
 
 attribute vec3 a_vertex;
 attribute vec3 a_normal;
-#if USE_INSTANCING
+#if (USE_INSTANCING || USE_GPU_SKINNING)
   attribute vec4 a_tangent;
 #endif
 attribute vec2 a_uv0;
@@ -86,9 +86,13 @@ void main()
       }
     }
     vec4 position = instancingTransform * vec4(p, 1.0);
-    vec3 normal = mat3(instancingTransform) * normalize(n);
+    mat3 normalMatrix = mat3(instancingTransform[0].xyz, instancingTransform[1].xyz, instancingTransform[2].xyz);
+    vec3 normal = normalMatrix * normalize(n);
+    #if (USE_NORMAL_MAP || USE_PARALLAX_MAP)
+      vec3 tangent = normalMatrix * a_tangent.xyz;
+    #endif
   #else
-  #if USE_INSTANCING
+  #if (USE_INSTANCING)
     vec4 position = instancingTransform * vec4(a_vertex, 1.0);
     mat3 normalMatrix = mat3(instancingTransform[0].xyz, instancingTransform[1].xyz, instancingTransform[2].xyz);
     vec3 normal = normalMatrix * a_normal;
@@ -140,7 +144,7 @@ void main()
   #if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX_MAP
     v_normal.xyz = normal;
 
-    #if USE_INSTANCING && (USE_NORMAL_MAP || USE_PARALLAX_MAP)
+    #if (USE_INSTANCING || USE_GPU_SKINNING) && (USE_NORMAL_MAP || USE_PARALLAX_MAP)
       v_tangent.xyz = tangent;
       vec3 bitangent = cross(v_normal.xyz, v_tangent.xyz) * a_tangent.w;
       v_normal.w = bitangent.x;
@@ -154,7 +158,7 @@ void main()
         vec3 sunVec = -sunDir;
         v_half = normalize(sunVec + normalize(eyeVec));
       #endif
-      #if USE_INSTANCING && USE_PARALLAX_MAP
+      #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_PARALLAX_MAP
         v_eyeVec = eyeVec;
       #endif
     #endif
@@ -164,7 +168,7 @@ void main()
 
   v_tex = a_uv0;
 
-  #if USE_INSTANCING && USE_AO
+  #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_AO
     v_tex2 = a_uv1;
   #endif
 

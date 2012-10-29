@@ -19,7 +19,7 @@
 #define INCLUDED_MIKKWRAP
 
 
-#include "graphics/mikktspace.h"
+#include "third_party/mikktspace/mikktspace.h"
 
 // Disable useless MSVC warning
 #if MSC_VERSION
@@ -31,18 +31,19 @@ class MikkTSpace
 
 public:
 	
-	MikkTSpace(const CModelDefPtr& m, std::vector<float>& v);
+	MikkTSpace(const CModelDefPtr& m, std::vector<float>& v, bool gpuSkinning);
 
 	void generate();
 	
 private:
 	
-	SMikkTSpaceInterface interface;
-	SMikkTSpaceContext context;
+	SMikkTSpaceInterface m_Interface;
+	SMikkTSpaceContext m_Context;
 
-	const CModelDefPtr& model;
+	const CModelDefPtr& m_Model;
 
-	std::vector<float>& newVertices;
+	std::vector<float>& m_NewVertices;
+	bool m_GpuSkinning;
 	
 
 	// Returns the number of faces (triangles/quads) on the mesh to be processed.
@@ -66,20 +67,6 @@ private:
 			float fvTexcOut[], const int iFace, const int iVert);
 
 
-	// either (or both) of the two setTSpace callbacks can be set.
-	// The call-back m_setTSpaceBasic() is sufficient for basic normal mapping.
-
-	// This function is used to return the tangent and fSign to the application.
-	// fvTangent is a unit length vector.
-	// For normal maps it is sufficient to use the following simplified version of the bitangent which is generated at pixel/vertex level.
-	// bitangent = fSign * cross(vN, tangent);
-	// Note that the results are returned unindexed. It is possible to generate a new index list
-	// But averaging/overwriting tangent spaces by using an already existing index list WILL produce INCRORRECT results.
-	// DO NOT! use an already existing index list.
-	//void setTSpaceBasic(const MikkTSpace *parent, const SMikkTSpaceContext *pContext, 
-	//		const float fvTangent[], const float fSign, const int iFace, const int iVert);
-
-
 	// This function is used to return tangent space results to the application.
 	// fvTangent and fvBiTangent are unit length vectors and fMagS and fMagT are their
 	// true magnitudes which can be used for relief mapping effects.
@@ -88,9 +75,6 @@ private:
 	// For normal maps it is sufficient to use the following simplified version of the bitangent which is generated at pixel/vertex level.
 	// fSign = bIsOrientationPreserving ? 1.0f : (-1.0f);
 	// bitangent = fSign * cross(vN, tangent);
-	// Note that the results are returned unindexed. It is possible to generate a new index list
-	// But averaging/overwriting tangent spaces by using an already existing index list WILL produce INCRORRECT results.
-	// DO NOT! use an already existing index list.
 	static void setTSpace(const SMikkTSpaceContext * pContext, const float fvTangent[], 
 			const float fvBiTangent[], const float fMagS, const float fMagT, 
 			const tbool bIsOrientationPreserving, const int iFace, const int iVert);
