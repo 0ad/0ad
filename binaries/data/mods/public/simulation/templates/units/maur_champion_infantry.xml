@@ -6,10 +6,10 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack>60.0</Hack>
+      <Crush>20.0</Crush>
     </Melee>
     <Charge>
-      <Hack>80.0</Hack>
+      <Crush>40.0</Crush>
     </Charge>
   </Attack>
   <Cost>
@@ -32,6 +32,6 @@
     </Run>
   </UnitMotion>
   <VisualActor>
-    <Actor>units/celts/fanatic.xml</Actor>
+    <Actor>units/mauryans/champion_maceman.xml</Actor>
   </VisualActor>
 </Entity>

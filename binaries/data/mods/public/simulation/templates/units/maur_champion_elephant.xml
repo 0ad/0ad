@@ -9,6 +9,7 @@
     <Melee>
       <Hack>20.0</Hack>
       <Crush>20.0</Crush>
+      <MaxRange>8.0</MaxRange>
 	  <Bonuses>
 		<BonusStructures>
 		  <Classes>Structure</Classes>
@@ -27,6 +28,7 @@
     <Charge>
       <Hack>60.0</Hack>
       <Crush>60.0</Crush>
+      <MaxRange>8.0</MaxRange>
 	  <Bonuses>
 		<BonusStructures>
 		  <Classes>Structure</Classes>
@@ -84,6 +86,6 @@ Good sieging capability. "Stench" Aura vs. Horses. Can run amok. Countered by Sw
     <Range>80</Range>
   </Vision>
   <VisualActor>
-    <Actor>units/carthaginians/champion_unit_2.xml</Actor>
+    <Actor>units/mauryans/champion_elephant.xml</Actor>
   </VisualActor>
 </Entity>

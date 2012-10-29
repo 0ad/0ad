@@ -1,20 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
-      <mesh>props/dudette_head.dae</mesh>
+      <mesh>props/head_female_shorthair.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="Female-Face-01">
-      <textures><texture file="props/head/misc_fem_ninja.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/misc_fem_ninja.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
   <material>objectcolor.xml</material>
-
 </actor>

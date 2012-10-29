@@ -43,10 +43,13 @@ changelog:
 Changes from original shader:
 
 - Changed names of samplers and values to their equivalents in 0 A.D.'s postproc manager.
-- Moved user variables into HQDOF.xml defines and modified their values..
+- Moved user variables into HQDOF.xml defines and modified their values.
 - Removed an optimization that caused lines to appear on the edges of the (mostly) focused area.
-- Removed unnecessary pentagon bokeh shaped code from the sample code.
+- Removed pentagon-shaped bokeh code.
 - Made manual DOF scale with zoom.
+- Moved blur level calculation to its own function.
+- Added code to remove a blurred halo-like outline around focused foreground objects.
+- Renamed some variables to make the code more readable.
 ----------------------
 
 */
@@ -73,6 +76,8 @@ make sure that these two values are the same for your camera, otherwise distance
 //float zfar = 100.0; //camera clipping end
 uniform float zNear;
 uniform float zFar;
+
+bool foregroundcleanup = true;
 
 //------------------------------------------
 //user variables
@@ -109,56 +114,12 @@ float namount = 0.0001; //dither amount
 bool depthblur = false; //blur the depth buffer?
 float dbsize = 1.25; //depthblursize
 
-/*
-next part is experimental
-not looking good with small sample and ring count
-looks okay starting from samples = 4, rings = 4
-*/
-
-bool pentagon = false; //use pentagon as bokeh shape?
-float feather = 0.4; //pentagon shape feather
-
 //------------------------------------------
-
-
-float penta(vec2 coords) //pentagonal shape
-{
-	float scale = float(rings) - 1.3;
-	vec4  HS0 = vec4( 1.0,         0.0,         0.0,  1.0);
-	vec4  HS1 = vec4( 0.309016994, 0.951056516, 0.0,  1.0);
-	vec4  HS2 = vec4(-0.809016994, 0.587785252, 0.0,  1.0);
-	vec4  HS3 = vec4(-0.809016994,-0.587785252, 0.0,  1.0);
-	vec4  HS4 = vec4( 0.309016994,-0.951056516, 0.0,  1.0);
-	vec4  HS5 = vec4( 0.0        ,0.0         , 1.0,  1.0);
-
-	vec4  one = vec4( 1.0 );
-
-	vec4 P = vec4((coords),vec2(scale, scale));
-
-	vec4 dist = vec4(0.0);
-	float inorout = -4.0;
-
-	dist.x = dot( P, HS0 );
-	dist.y = dot( P, HS1 );
-	dist.z = dot( P, HS2 );
-	dist.w = dot( P, HS3 );
-
-	dist = smoothstep( -feather, feather, dist );
-
-	inorout += dot( dist, one );
-
-	dist.x = dot( P, HS4 );
-	dist.y = HS5.w - abs( P.z );
-
-	dist = smoothstep( -feather, feather, dist );
-	inorout += dist.x;
-
-	return clamp( inorout, 0.0, 1.0 );
-}
 
 float bdepth(vec2 coords, float blursize) //blurring depth
 {
 	float d = 0.0;
+	float div = 0;
 	float kernel[9];
 	vec2 offset[9];
 
@@ -180,23 +141,29 @@ float bdepth(vec2 coords, float blursize) //blurring depth
 	kernel[3] = 2.0/16.0;   kernel[4] = 4.0/16.0;   kernel[5] = 2.0/16.0;
 	kernel[6] = 1.0/16.0;   kernel[7] = 2.0/16.0;   kernel[8] = 1.0/16.0;
 
+	float depth = texture2D(depthTex, coords).r;
 
 	for( int i=0; i<9; i++ )
 	{
 		float tmp = texture2D(depthTex, coords + offset[i]).r;
-		d += tmp * kernel[i];
+
+		if (tmp <= depth)
+		{
+			d += tmp * kernel[i];
+			div += kernel[i];
+		}
 	}
 
-	return d;
+	return d / div;
 }
 
 vec3 color(vec2 coords,float blur) //processing the sample
 {
 	vec3 col = vec3(0.0);
 
-	col.r = texture2D(renderedTex,coords + vec2(0.0,1.0)*texel*fringe*blur).r;
-	col.g = texture2D(renderedTex,coords + vec2(-0.866,-0.5)*texel*fringe*blur).g;
-	col.b = texture2D(renderedTex,coords + vec2(0.866,-0.5)*texel*fringe*blur).b;
+	col.r = texture2D(renderedTex,coords + (vec2(0.0,1.0)*texel*fringe*blur)).r;
+	col.g = texture2D(renderedTex,coords + (vec2(-0.866,-0.5)*texel*fringe*blur)).g;
+	col.b = texture2D(renderedTex,coords + (vec2(0.866,-0.5)*texel*fringe*blur)).b;
 
 	vec3 lumcoeff = vec3(0.299,0.587,0.114);
 	float lum = dot(col.rgb, lumcoeff);
@@ -241,31 +208,9 @@ float vignette()
 	return clamp(dist,0.0,1.0);
 }
 
-varying vec2 v_tex;
-
-void main()
+float bluramount(float depth, float fDepth)
 {
-	//scene depth calculation
-
-	float depth = linearize(texture2D(depthTex,v_tex).x);
-
-	if (depthblur)
-	{
-		depth = linearize(bdepth(v_tex, dbsize));
-	}
-
-	//focal plane calculation
-
-	float fDepth = focalDepth;
-
-	if (autofocus)
-	{
-		fDepth = linearize(texture2D(depthTex,focus).x);
-	}
-
-	//dof blur factor calculation
-
-	float blur = 0.0;
+	float blur;
 
 	if (manualdof)
 	{
@@ -273,7 +218,7 @@ void main()
 		float b = (a-fdofstart)/fdofdist; //far DoF
 		float c = (-a-ndofstart)/ndofdist; //near Dof
 		blur = (a>0.0)?b:c;
-		blur /= max((fDepth / 25) - 5, 1);
+		blur /= max((fDepth / 15) - 7, 1);
 	}
 	else
 	{
@@ -288,7 +233,38 @@ void main()
 		blur = abs(a-b)*c;
 	}
 
-	blur = clamp(blur,0.0,1.0);
+	return clamp(blur, 0, 1);
+}
+
+varying vec2 v_tex;
+
+void main()
+{
+	//scene depth calculation
+
+	float depth;
+
+	if (depthblur)
+	{
+		depth = linearize(bdepth(v_tex, dbsize));
+	}
+	else
+	{
+		depth = linearize(texture2D(depthTex,v_tex).x);
+	}
+
+	//focal plane calculation
+
+	float fDepth = focalDepth;
+
+	if (autofocus)
+	{
+		fDepth = linearize(texture2D(depthTex,focus).x);
+	}
+
+	//dof blur factor calculation
+
+	float blur = bluramount(depth, fDepth);
 
 	// calculation of pattern for ditering
 
@@ -296,49 +272,92 @@ void main()
 
 	// getting blur x and y step factor
 
-	float w = (1.0/width)*blur*maxblur+noise.x;
-	float h = (1.0/height)*blur*maxblur+noise.y;
+	float w = texel.x*blur*maxblur+noise.x;
+	float h = texel.y*blur*maxblur+noise.y;
+
+	float w2 = texel.x*maxblur+noise.x;
+	float h2 = texel.y*maxblur+noise.y;
 
 	// calculation of final color
-    vec3 col = vec3(0.0);
+    vec3 color = texture2D(renderedTex, v_tex).rgb;
+    vec3 samplecolor = color;
+	float samplediv = 1.0;
 
-	col = texture2D(renderedTex, v_tex).rgb;
-
-	float s = 1.0;
 	int ringsamples;
 
 	for (int i = 1; i <= rings; i += 1)
 	{
 		ringsamples = i * samples;
+		float step = PI*2.0 / ringsamples;
 
-		for (int j = 0 ; j < ringsamples ; j += 1)
+		for (int j = 0; j < ringsamples; j += 1)
 		{
-			float step = PI*2.0 / ringsamples;
+			// find sample coordinates
 			float pw = (cos(j*step)*i);
 			float ph = (sin(j*step)*i);
-			/*float p = 1.0;
-			if (pentagon)
+
+			vec2 samplecoord = v_tex + vec2(pw*w,ph*h);
+
+			// set this sample's color and count
+			vec3 samplecoloradd = color(samplecoord,blur)*mix(1.0,i/rings,bias);
+			float sampledivadd = mix(1.0,i/rings,bias);
+
+			// begin performance-unfriendly (but nice-looking) removal of fully-focused foreground samples
+			if (foregroundcleanup)
 			{
-				p = penta(vec2(pw,ph));
-			}*/
-			col += color(v_tex + vec2(pw*w,ph*h),blur)*mix(1.0,i/rings,bias);//*p
-			s += 1.0*mix(1.0,i/rings,bias);//*p
+				float sampledepth = linearize(texture2D(depthTex, samplecoord).x);
+				int depthweight = (sampledepth > depth) ? 1 : 0;
+				float sampleblur = bluramount(sampledepth, fDepth);
+
+				float weight = clamp(depthweight + sampleblur, 0, 1);
+				samplecoloradd *= weight;
+				sampledivadd *= weight;
+			}
+
+			// add sample values
+			samplecolor += samplecoloradd;
+			samplediv += sampledivadd;
 		}
+
+/*#define BLURONSHARPCHECK
+		#ifdef BLURONSHARPCHECK
+		for (int k = j; k < ringsamples * 2; k += 1)
+		{
+			float pw = (cos(k*step)*i);
+			float ph = (sin(k*step)*i);
+
+			vec2 samplecoord = v_tex + vec2(pw*w2,ph*h2);
+
+			float sampledepth = linearize(texture2D(depthTex, samplecoord).x);
+			int depthweight = (sampledepth > depth) ? 0 : 1;
+			float sampleblur = bluramount(sampledepth, fDepth);
+
+			vec3 coladd = color(samplecoord,sampleblur)*mix(1.0,i/rings,bias);
+			float sadd = mix(1.0,i/rings,bias);
+
+			float weight = (sampleblur > blur) ? clamp(depthweight * (0.2 - blur) * (float(k) / ringsamples / 2) * sampleblur, 0, 1) : 0.0;
+			coladd *= weight;
+			sadd *= weight;
+
+			samplecolor += coladd;
+			samplediv += sadd;
+		}
+		#endif*/
 	}
 
-	col /= s; //divide by sample count
+	samplecolor /= samplediv; //divide by sample count
 
 	if (showFocus)
 	{
-	    col = debugFocus(col, blur, depth);
+	    samplecolor = debugFocus(samplecolor, blur, depth);
 	}
 
 	if (vignetting)
 	{
-	    col *= vignette();
+	    samplecolor *= vignette();
 	}
 
-	gl_FragColor.rgb = col;
+	gl_FragColor.rgb = samplecolor;
 	gl_FragColor.a = 1.0;
 
 	#ifdef DEBUGVISUALIZATION

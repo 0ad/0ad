@@ -23,10 +23,16 @@
   </group>
   <group>
     <variant frequency="1" name="Rider-Armour-Iron">
-      <textures><texture file="skeletal/pers_champ_cav_r_1.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/pers_champ_cav_r_1.png" name="baseTex"/>
+        <texture file="skeletal/pers_champ_cav_r_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Rider-Armour-Bronze">
-      <textures><texture file="skeletal/pers_champ_cav_r_2.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/pers_champ_cav_r_2.png" name="baseTex"/>
+        <texture file="skeletal/pers_champ_cav_r_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -43,5 +49,5 @@
       </props>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_spec_helmet.xml</material>
 </actor>

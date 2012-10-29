@@ -3,7 +3,9 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Indian face b">
-      <textures><texture file="props/head/indian_face_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/indian_face_b.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -15,6 +17,18 @@
     </variant>
     <variant frequency="1" name="top knot high">
       <mesh>props/helmet/head_indian_3.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="No earrings">
+      <props>
+        <prop attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Earrings">
+      <props>
+        <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <material>player_trans.xml</material>

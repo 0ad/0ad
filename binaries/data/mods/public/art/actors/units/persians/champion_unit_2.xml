@@ -32,16 +32,28 @@
   </group>
   <group>
     <variant frequency="4" name="horse-plain">
-      <textures><texture file="skeletal/horse_pers_champ_cav_1.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_pers_champ_cav_1.png" name="baseTex"/>
+        <texture file="skeletal/horse_pers_champ_cav_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="horse-blaze">
-      <textures><texture file="skeletal/horse_pers_champ_cav_blaze.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_pers_champ_cav_blaze.png" name="baseTex"/>
+        <texture file="skeletal/horse_pers_champ_cav_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="horse-snipe">
-      <textures><texture file="skeletal/horse_pers_champ_cav_snipe.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_pers_champ_cav_snipe.png" name="baseTex"/>
+        <texture file="skeletal/horse_pers_champ_cav_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="horse-star">
-      <textures><texture file="skeletal/horse_pers_champ_cav_star.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/horse_pers_champ_cav_star.png" name="baseTex"/>
+        <texture file="skeletal/horse_pers_champ_cav_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -66,5 +78,5 @@
       </props>
     </variant>
   </group>
-  <material>objectcolor.xml</material>
+  <material>objectcolor_specmap.xml</material>
 </actor>

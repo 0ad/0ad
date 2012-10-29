@@ -4,8 +4,11 @@
   <group>
     <variant>
       <mesh>props/arm_left.dae</mesh>
-      <textures><texture file="props/scales_arm_iron.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/scales_arm_iron.png" name="baseTex"/>
+        <texture file="props/scales_arm_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
