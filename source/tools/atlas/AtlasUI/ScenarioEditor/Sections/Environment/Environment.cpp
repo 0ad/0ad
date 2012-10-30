@@ -232,8 +232,8 @@ EnvironmentSidebar::EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow*
 	wxSizer* fogSizer = new wxGridSizer(2);
 	m_MainSizer->Add(fogSizer, wxSizerFlags().Expand().Border(wxTOP, 8));
 
-	fogSizer->Add(new VariableSliderBox(this, _("Fog Factor"), g_EnvironmentSettings.fogfactor, 0.0, 0.01), wxSizerFlags().Expand());
-	fogSizer->Add(new VariableSliderBox(this, _("Fog Thickness"), g_EnvironmentSettings.fogmax, 0.5, 0.0), wxSizerFlags().Expand());
+	fogSizer->Add(new VariableSliderBox(this, _("Fog Factor"), g_EnvironmentSettings.fogfactor, 0.0f, 0.01f), wxSizerFlags().Expand());
+	fogSizer->Add(new VariableSliderBox(this, _("Fog Thickness"), g_EnvironmentSettings.fogmax, 0.5f, 0.0f), wxSizerFlags().Expand());
 
 	m_MainSizer->Add(new LightControl(this, wxSize(150, 150), g_EnvironmentSettings));
 	m_MainSizer->Add(m_SkyList = new VariableListBox(this, _("Sky set"), g_EnvironmentSettings.skyset), wxSizerFlags().Expand());
@@ -241,10 +241,10 @@ EnvironmentSidebar::EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow*
 	wxSizer* SSSizer = new wxGridSizer(2);
 	m_MainSizer->Add(SSSizer, wxSizerFlags().Expand().Border(wxTOP, 8));
 
-	SSSizer->Add(new VariableSliderBox(this, _("Brightness"), g_EnvironmentSettings.brightness, -0.5, 0.5), wxSizerFlags().Expand());
-	SSSizer->Add(new VariableSliderBox(this, _("Contrast (HDR)"), g_EnvironmentSettings.contrast, 0.5, 1.5), wxSizerFlags().Expand());
-	SSSizer->Add(new VariableSliderBox(this, _("Saturation"), g_EnvironmentSettings.saturation, 0.0, 1.0), wxSizerFlags().Expand());
-	SSSizer->Add(new VariableSliderBox(this, _("Bloom"), g_EnvironmentSettings.bloom, 0.2, 0.0), wxSizerFlags().Expand());
+	SSSizer->Add(new VariableSliderBox(this, _("Brightness"), g_EnvironmentSettings.brightness, -0.5f, 0.5f), wxSizerFlags().Expand());
+	SSSizer->Add(new VariableSliderBox(this, _("Contrast (HDR)"), g_EnvironmentSettings.contrast, 0.5f, 1.5f), wxSizerFlags().Expand());
+	SSSizer->Add(new VariableSliderBox(this, _("Saturation"), g_EnvironmentSettings.saturation, 0.0f, 1.0f), wxSizerFlags().Expand());
+	SSSizer->Add(new VariableSliderBox(this, _("Bloom"), g_EnvironmentSettings.bloom, 0.2f, 0.0f), wxSizerFlags().Expand());
 	
 	m_MainSizer->Add(new VariableColourBox(this, _("Sun colour"), g_EnvironmentSettings.suncolour), wxSizerFlags().Expand());
 	m_MainSizer->Add(new VariableColourBox(this, _("Terrain ambient colour"), g_EnvironmentSettings.terraincolour), wxSizerFlags().Expand());
