@@ -560,7 +560,8 @@ function setup_all_libs ()
 	source_dirs = {
 		"graphics",
 		"graphics/scripting",
-		"renderer"
+		"renderer",
+		"third_party/mikktspace"
 	}
 	extern_libs = {
 		"opengl",

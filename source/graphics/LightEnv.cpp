@@ -34,9 +34,9 @@ CLightEnv::CLightEnv()
 	m_TerrainAmbientColor(0x50/255.f, 0x60/255.f, 0x85/255.f),
 	m_UnitsAmbientColor(0x80/255.f, 0x80/255.f, 0x80/255.f),
 	m_FogColor(0xCC/255.f, 0xCC/255.f, 0xE5/255.f),
-	m_FogFactor(0.000),
-	m_FogMax(0.5),
-	m_Brightness(0.0), m_Contrast(1.0), m_Saturation(0.99), m_Bloom(0.1999)
+	m_FogFactor(0.000f),
+	m_FogMax(0.5f),
+	m_Brightness(0.0f), m_Contrast(1.0f), m_Saturation(0.99f), m_Bloom(0.1999f)
 {
 	CalculateSunDirection();
 }
