@@ -346,7 +346,7 @@ void InstancingModelRenderer::PrepareModelDef(const CShaderProgramPtr& shader, i
 	// GPU skinning requires extra attributes to compute positions/normals
 	if (m->gpuSkinning)
 	{
-		shader->VertexAttribIPointer("a_skinJoints", 4, GL_UNSIGNED_BYTE, stride, base + m->imodeldef->m_BlendJoints.offset);
+		shader->VertexAttribPointer("a_skinJoints", 4, GL_UNSIGNED_BYTE, GL_FALSE, stride, base + m->imodeldef->m_BlendJoints.offset);
 		shader->VertexAttribPointer("a_skinWeights", 4, GL_UNSIGNED_BYTE, GL_TRUE, stride, base + m->imodeldef->m_BlendWeights.offset);
 	}
 
